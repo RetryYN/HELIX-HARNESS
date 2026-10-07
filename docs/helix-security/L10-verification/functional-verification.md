@@ -30,7 +30,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 | `HELIXSECURITY-L2-016` | `SECURITY-FR-016-01` | `SECURITY-AC-016-01` | `SECURITY-CASE-016-01` | 1.0は分類記録基盤、公開sinkへの適用は1.x |
 | `HELIXSECURITY-L2-020` | `SECURITY-FR-020-01` | `SECURITY-AC-020-01` | `SECURITY-CASE-020-01` | Guard基盤は1.0、Botは必要時のみ |
 | `HELIXSECURITY-L2-028` | `SECURITY-FR-028-01` | `SECURITY-AC-028-01` | `SECURITY-CASE-028-01` | 1.0 |
-| `HELIXSECURITY-L2-033` | `SECURITY-FR-033-01` | `SECURITY-AC-033-01` | `SECURITY-CASE-033-01` | 1.0 |
+| `HELIXSECURITY-L2-033` | `SECURITY-FR-033-01` | `SECURITY-AC-033-01` | `SECURITY-CASE-033-01`–`SECURITY-CASE-033-07` | 1.0 |
 
 ## Case catalog
 
@@ -224,6 +224,11 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 - **固定L11受入oracle**：固定L11 `security-acceptance.md:124–133`（raw span SHA-256 `6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0`）の全受入句を採用し、別sourceであるP0追補 `145–151`（digest `e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6`）の訂正条件も適用する。P0は既存L2-008 authority、非公開・範囲付きL2-005 credential-use、該当L2-007 enforcementとL2-006 egress条件が揃うとdispatch可能とする。raw secret値を渡す必要のあるtaskと、secret/機密task内容を渡すtaskは別negative。出力単独でauthority/stateを作らない。
 - **fixture/oracle**: normal fixtureは対象project、目的、成果形式、許可scope、予算/期限を満たすOS assignmentと既存authorityを束ね、同一HEAD/規則revision/境界のtaskを許可する。raw secret値の要求とsecret/機密task content露出を別々にdenyする。context mismatch/stale/unboundはdispatch停止し理由・対象revision・不足・戻し先を残す。self-reportでapproval/verified/canonical stateを書き換えない。
   - L2-007の隔離制約だけを適用不能にしたfixture、および適用は宣言されたが観測不能にしたfixtureを別々に投入し、各々該当dispatchだけを停止して理由・対象revision・不足・既存ownerへの戻し先を保持する。
+  - owner誤帰属negative 1（OS）：OSのassignment／共通Worker契約の確認結果だけを、物理enforcement/effective stateの証拠として扱うowner誤帰属の単独変異を拒否する。assignment、共通契約identity/version/stateおよび他のbinding条件は有効な正常値に固定し、OSの確認結果を物理適用証拠へ読み替えない。dispatchは停止し、物理適用/effective state不足はINFRASTRUCTUREへ返す。
+  - owner誤帰属negative 2（SECURITY）：SECURITY policy宣言だけをeffective enforcement evidenceとして扱う単独変異を拒否する。dispatchは停止し、物理適用/effective state不足はINFRASTRUCTUREへ返す。
+  - owner誤帰属negative 3（Worker）：Workerの自己申告だけをeffective stateとして扱う単独変異を拒否する。dispatchは停止し、物理適用/effective state不足はINFRASTRUCTUREへ返す。
+  - owner誤帰属negative 4（INFRASTRUCTURE）：INFRASTRUCTUREがpolicy/authorityを決定する単独変異を拒否する。policy/authority不足はSECURITYへ返す。
+  - contract identity/version/state unknown negativesはSECURITY-CASE-033-02〜SECURITY-CASE-033-07に分け、各fieldを一つだけunknownにして他の2 fieldと他のbinding条件は固定する。
   - Worker version/config変更：Worker descriptorのversionまたはconfigだけを変更する。旧bindingを流用せず、このassignmentの適用scope/revisionを再照合し、互換性unknownなら当該dispatchを停止する。
   - target変更：task targetだけを変更する。旧bindingを流用せず、target identityと適用authority/scopeを再照合し、互換性unknownなら当該dispatchを停止する。
   - 規則revision変更：SECURITY rule revisionだけを変更する。旧bindingを流用せず、このtask/assignmentに対する規則を再照合し、互換性unknownなら当該dispatchを停止する。
@@ -232,7 +237,14 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 
 - **未見の正常例**：bindingと既存authorityが一致する未見の通常taskを、秘密値/機密task内容なしでdispatch対象として扱い、Worker出力からapproval/stateを生成しない。有効なscoped credential-useだけを理由に拒否しない。
 - **negative/boundary oracle**：Worker version/config、target、規則revision、authority tupleの各要素、assignment scope、HEAD、boundaryの変更/欠落/unknownをそれぞれ個別fixtureにし、旧binding流用または未解決dispatchを拒否する。各結果に理由・対象revision・不足・owner戻し先を保持する。主Workerには追加runtime専用L2-029/031条件を課さず、選択された追加runtimeでは両条件を満たす。runtime採用/追加権限を推定しない。直接commit/adopt/merge/promoteを拒否し、isolated worktree内の通常成果作成は許可する。新schema/別承認者を作らない。raw secret値要求とsecret/機密task content露出は独立にdenyする。無関係taskの一律停止、有効な既存credential-useのみを理由としたdeny、別HEAD成果の受入、Worker出力だけによるapproval/verified/canonical state生成も不合格。
-- **owner oracle・失敗時の戻し先**：OSはassignment/progression、Worker実行環境は隔離/enforcementを所有し、物理適用観測はL2-007の適用観測ownerへ戻す。SECURITYはauthorityとpolicyを所有する。HARNESSはtaskが選択された場合のtask contractだけを所有する。OSがauthority、SECURITYがassignment、Worker出力がapproval、HARNESSが未選択契約を代行する各変異を個別に拒否する。CONNECT責務は生成しない。
+- **owner oracle・失敗時の戻し先**：OSはassignment/progressionとWorker共通実行契約、SECURITYはauthority/policy、INFRASTRUCTUREは物理資源とeffective stateの適用・観測を所有する。Worker実行環境は制約を強制するenforcer、Workerは制約下のexecution subjectであり、Worker自身の出力は適用証拠にならない。HARNESSはtaskが選択された場合のtask contractだけを所有する。assignment/common contractの不足はOS、policy/authorityの不足はSECURITY、物理適用/effective stateの不足はINFRASTRUCTUREへ返す。owner誤帰属（OSが物理適用を証明、SECURITYがassignmentを決定、Workerが自己の適用を認定、INFRASTRUCTUREがpolicy/authorityを決定、Worker出力がapprovalを生成、HARNESSが未選択契約を代行）をそれぞれ個別に拒否する。具体contract identity/version/stateがunknownならunknownを維持し、名前・schema・適用済み状態を補作しない。CONNECT責務は生成しない。
+  - **SECURITY-CASE-033-02 — OS common Worker contract identity unknown**：OS共通契約のidentityだけをunknownにし、version/state、assignment、他のbinding条件は有効なまま固定する。具体identityを推定せず、dispatchを停止して契約不足をOSへ返す。
+  - **SECURITY-CASE-033-03 — OS common Worker contract version unknown**：OS共通契約のversionだけをunknownにし、identity/state、assignment、他のbinding条件は有効なまま固定する。versionを推定せず、dispatchを停止して契約不足をOSへ返す。
+  - **SECURITY-CASE-033-04 — OS common Worker contract state unknown**：OS共通契約のstateだけをunknownにし、identity/version、assignment、他のbinding条件は有効なまま固定する。stateを推定せず、dispatchを停止して契約不足をOSへ返す。
+  - **SECURITY-CASE-033-05 — INFRASTRUCTURE enforcement contract identity unknown**：実行環境・適用観測契約のidentityだけをunknownにし、version/effective stateと他のbinding条件は有効なまま固定する。具体identityを推定せず、dispatchを停止して物理適用・effective stateの不足をINFRASTRUCTUREへ返す。
+  - **SECURITY-CASE-033-06 — INFRASTRUCTURE enforcement contract version unknown**：実行環境・適用観測契約のversionだけをunknownにし、identity/effective stateと他のbinding条件は有効なまま固定する。versionを推定せず、dispatchを停止して物理適用・effective stateの不足をINFRASTRUCTUREへ返す。
+  - **SECURITY-CASE-033-07 — INFRASTRUCTURE effective state unknown**：実行環境・適用観測契約のeffective stateだけをunknownにし、identity/versionと他のbinding条件は有効なまま固定する。適用済みと推定せず、dispatchを停止して物理適用・effective stateの不足をINFRASTRUCTUREへ返す。
+  - owner誤帰属（OSが物理適用を証明、SECURITYがassignmentを決定、Workerが自己の適用を認定、INFRASTRUCTUREがpolicy/authorityを決定、Worker出力がapprovalを生成、HARNESSが未選択契約を代行）もそれぞれ個別に拒否する。CONNECT責務は生成しない。
 
 ## 親別 oracle の保持範囲
 
