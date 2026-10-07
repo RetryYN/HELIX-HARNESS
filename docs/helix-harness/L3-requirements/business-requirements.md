@@ -174,3 +174,23 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 **BR-HARNESS-L3-046-01 — 選択styleに応じたworkflow evidenceの扱いを保つ**：各workflow scopeの選択styleとtarget revisionに沿って、適用する全体workflow・設計freeze・V-pair検証を確認できる。Full Vはsystem全体workflowのL1–L5段階freezeと12条件を扱い、Scrum slice/backfill/SR4条件を課さない。Production Scrumまたは許可合成内Scrumは、該当するslice delta・既存trigger・backfill・SR4状態をscope/revisionへ結び付ける。checkpoint receiptの適用は既存triggerに従う一方、Production Scrumまたは許可合成内でScrumを適用するscopeでは、SR4 receiptがmissing/unknownならtrigger成立有無にかかわらずrelease-readyと主張できない。これは事業成果・市場投入判断・release許可を追加しない。
 
 **Business境界**：方式選択は既存L2-002/003とPOの方式定義に従う。候補出力は方式選択、L2合意、要件承認、OS記録、release decisionを変更しない。Full V／Scrum双方に当てはまる成果値、追加gate、工程数は作らない。
+
+## Stage 3 親054の業務要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
+
+**採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
+
+**状態と根拠**：本節はHARNESS-L2-054／L11-054の意味をL3要件とL10 oracleへ再導出する起草候補である。POの決定記録 `MPR-RC-HARNESS-L2-054-001` は採択（判断記録revision `b0b0719dfe786370e9bee48c5d2f753710546b6f`、PO row 34）。固定L2/L11本文に残る「未採択候補」は当時の本文メタデータであり、この後のPO決定を覆さない。L2-047は別親で、その既存のmuster判断を受け渡すだけで意味を変更しない。PO-047条件判断や別親の採択を本候補から生成しない。
+
+**旧sourceとの扱い**：旧HIL-BR-09/30、HIL-FR-59/60/61/62/63の対応を起点に、工程・入力・必要性判断・runtime-neutral契約・OS handoffへ責務を再導出する。旧runtime固有projectionや旧TeamDefinition schemaは再利用しない。旧100 CASE IDとraw literalは監査用に保持し、現行fixture条件は固定L2/L11に沿って再導出する。旧source全体、旧runtime/testの実行、旧要件の全件closureを主張しない。HIL-FR-63の歴史的effort defaultは旧sourceにとどめ、1.0の技術値や閾値へ前倒ししない。
+
+**責務とauthority**：HARNESSはprocess/verificationの意味、muster必要性判断、runtime-neutral contract内容と型付きhandoffを所有する。OSは正規のassignment発行者であり、assignment、profile、budget/deadline、lifecycle、実行と結果を既存契約の範囲で所有する。INTELLIGENCEはplacement proposal、LABOはevidenceの適用可能性、SECURITYはoperation authority・制約・隔離を所有する。HARNESSがOS assignmentを発行したりWorkerを起動したりしない。通常の既存roleへのOS assignmentは許される。`existing_role_sufficient`なら追加specialist contractも追加specialist assignmentも生成しない。
+
+**型付きhandoffの候補条件**：対象task/ticket identity、scope、要求/oracle revision、`layer × drive`の意味対応・source/revision・適用範囲、process phase、task-kind、verification pattern、design obligation/oracle、domain/risk、judgment-pack revision、single-worker比較条件、適用可能なLABO evidenceと未評価状態を保持する。必要な場合のみINTELLIGENCE proposal、OS profile/budget/deadline/lifecycle、SECURITY authority/制約への参照を結ぶ。`muster_candidate`は契約参照（複数の場合はその全体集合）と対応するinput/output digest、複数参照時の集合digest、generation-rule revision、理由、比較対象/evidence、guard結果を同じscope/revisionに結ぶ。複数contractが適用されるときは参照全体集合と対応する集合digestを入力source値と出力で照合する。digestの算法、wire format、enum、固定worker数、threshold、TeamDefinition、provider/runtime固有fieldは新設しない。receiptやdigest自体はauthorityではない。
+
+`existing_role_sufficient`は入力にある対象既存role参照と比較根拠を値として返し、両値が同一task/scope/revisionに対応する入力値と一致することを照合する。specialist contractを含めず、既存roleへの通常assignmentはOSが発行する。この分岐から追加specialist assignmentや新規Worker起動を生成しない。`unknown_or_defer`は不足・不確実・staleの条件、既知の責務区分、再照合に必要な入力を入力値に対応させて返し、それぞれが同じtask/scope/revisionに一致することを照合する。既知の責務区分へ個体identityの特定有無にかかわらず不足を返し、個別source identityやowner identityが特定できないときはその個体だけunknownのまま別記する。ownerの新設、値の推定、unknown軸の別軸への畳込みをしない。OS応答/assignmentが欠落、対象不一致、revision不一致または条件不明ならhandoffは未完である。
+
+### 業務要件 `BR-HARNESS-L3-054`
+
+HARNESS-L2-054で採択されたconnection範囲内で、L2-047のmuster判断・runtime-neutral contract意味を、assignmentを所有するOSへ追跡可能にhand offする。これはHARNESS独立の新たな業務成果、採択権限、specialist起動権限を追加しない。OSによる既存role assignmentをHARNESSが代行せず、existing-role-sufficient時に追加specialistを作らない。
+
+この親は新たな利用者成果・業務outcomeを定義しない。対象scopeはL2-054のtask/scope/revision結合、型付きhandoffとcause-specific deferまで。配置、必須artifact、要求意味の変更は現候補の外でありPO decisionへ戻す。

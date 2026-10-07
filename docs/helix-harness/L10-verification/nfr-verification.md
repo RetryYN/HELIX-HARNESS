@@ -235,3 +235,29 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 | `CASE-HARNESS-L10-NFR-046-03` | `NFR-C-HARNESS-046-03` | Production Scrumまたは許可合成Scrum inputとFull V-only negative controlを並べ、Scrum側は既存trigger成立・不成立の両方をsource定義に従って評価し、trigger不成立のSR4-missing反例も含める。 | Scrum-specific delta/backfill/checkpoint receiptの適用は既存triggerに従い、Full VではScrum condition適用数0。Production Scrumが選択・合成適用されるscopeのSR4 receipt missing/unknownはtrigger成立有無にかかわらずrelease-ready不可。 | scope selectionまたはtrigger適用条件unknownは未評価。Full VをScrum要求で不合格にすれば不合格。 |
 
 **実行限界**：文書上のoracle candidateのみ。runtime、旧test/CI、L3承認、実行・release結果を検証していない。
+
+## Stage 3 親054の非機能検証：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
+
+**採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
+
+**状態と根拠**：本節はHARNESS-L2-054／L11-054の意味をL3要件とL10 oracleへ再導出する起草候補である。POの決定記録 `MPR-RC-HARNESS-L2-054-001` は採択（判断記録revision `b0b0719dfe786370e9bee48c5d2f753710546b6f`、PO row 34）。固定L2/L11本文に残る「未採択候補」は当時の本文メタデータであり、この後のPO決定を覆さない。L2-047は別親で、その既存のmuster判断を受け渡すだけで意味を変更しない。PO-047条件判断や別親の採択を本候補から生成しない。
+
+**旧sourceとの扱い**：旧HIL-BR-09/30、HIL-FR-59/60/61/62/63の対応を起点に、工程・入力・必要性判断・runtime-neutral契約・OS handoffへ責務を再導出する。旧runtime固有projectionや旧TeamDefinition schemaは再利用しない。旧100 CASE IDとraw literalは監査用に保持し、現行fixture条件は固定L2/L11に沿って再導出する。旧source全体、旧runtime/testの実行、旧要件の全件closureを主張しない。HIL-FR-63の歴史的effort defaultは旧sourceにとどめ、1.0の技術値や閾値へ前倒ししない。
+
+**責務とauthority**：HARNESSはprocess/verificationの意味、muster必要性判断、runtime-neutral contract内容と型付きhandoffを所有する。OSは正規のassignment発行者であり、assignment、profile、budget/deadline、lifecycle、実行と結果を既存契約の範囲で所有する。INTELLIGENCEはplacement proposal、LABOはevidenceの適用可能性、SECURITYはoperation authority・制約・隔離を所有する。HARNESSがOS assignmentを発行したりWorkerを起動したりしない。通常の既存roleへのOS assignmentは許される。`existing_role_sufficient`なら追加specialist contractも追加specialist assignmentも生成しない。
+
+**型付きhandoffの候補条件**：対象task/ticket identity、scope、要求/oracle revision、`layer × drive`、process phase、task-kind、verification pattern、design obligation/oracle、domain/risk、judgment-pack revision、single-worker比較条件、適用可能なLABO evidenceと未評価状態を保持する。必要な場合のみINTELLIGENCE proposal、OS profile/budget/deadline/lifecycle、SECURITY authority/制約への参照を結ぶ。`muster_candidate`は契約参照（複数の場合はその全体集合）と対応するinput/output digest、複数参照時の集合digest、generation-rule revision、理由、比較対象/evidence、guard結果を同じscope/revisionに結ぶ。digestの算法、wire format、enum、固定worker数、threshold、TeamDefinition、provider/runtime固有fieldは新設しない。receiptやdigest自体はauthorityではない。
+
+`existing_role_sufficient`は入力にある対象既存role参照と比較根拠を値として返し、両値が同一task/scope/revisionに対応する入力値と一致することを照合する。specialist contractを含めず、既存roleへの通常assignmentはOSが発行する。この分岐から追加specialist assignmentや新規Worker起動を生成しない。`unknown_or_defer`は不足・不確実・staleの条件、既知の責務区分、再照合に必要な入力を入力値に対応させて返し、それぞれが同じtask/scope/revisionに一致することを照合する。既知の責務区分へ個体identityの特定有無にかかわらず不足を返し、個別source identityやowner identityが特定できないときはその個体だけunknownのまま別記する。ownerの新設、値の推定、unknown軸の別軸への畳込みをしない。OS応答/assignmentが欠落、対象不一致、revision不一致または条件不明ならhandoffは未完である。
+
+### 品質検証 `NV-HARNESS-L10-054`
+
+| 品質特性 | 静的oracle確認 | 制限 |
+|---|---|---|
+| 追跡可能性 | c03でlayer/drive applicability-scopeのsource inputと出力値を項目別照合し、複数時の全参照集合・集合digestも正常照合する。c20–c22はfield単独欠落/集合不一致を拒否し、c04–c07はscope/revision等を照合 | 値は合成fixture source-input。集合digestはalgorithm/wire formatを定義しない |
+| authority境界 | c09–c12/c23–c28/c32–c35/c38–c54でassignment、Worker起動、authority、実行許可、security許可、要求採択、L3承認、provider/model差からの独立性推定を独立fieldで拒否。c51–c54は仮登録3出力とhandoff実行許可を単独で拒否 | 実行・承認・security decisionを示さない |
+| 証拠の非昇格 | c29–c34/c38–c47でsource/coverage receipt・候補・fixture・OS例から要求採択/L3承認、仮登録・候補本文からWorker起動、証拠存在からoracle実行/合格、runtime projection、assignment、security許可、利用者受入が生成される各fieldを個別拒否 | すべて静的合成fixtureであり、正常入力を既存ownerへ転嫁しない |
+| fail-closedな不確実性 | c08/c36/c37に加えc55–c62でlayer/drive applicability-scopeのmissing/stale/conflict/unknownを各field単独で保留 | owner個体が未知ならunknownのまま |
+| 既存role境界 | c01/c02でOS既存roleの普通のassignmentを許し、追加specialistだけを拒否 | 比較条件の新閾値を追加しない |
+
+**測定方法**：本candidateでは構造化された合成fixture fieldの静的照合のみを提案する。実測値、性能閾値、環境、toolchain、runtime projection、実行済み結果は定義・主張しない。

@@ -1,0 +1,866 @@
+{
+  "artifact_type": "HARNESS-L2-054 Stage 3 L3/L10 delegated decision evidence bundle candidate",
+  "language": "ja",
+  "status": "/tmp candidate only; canonical decision record and evidence bundle are not written; no current authority effect",
+  "candidate_paths": {
+    "decision_record_relative_to_governance_decisions": "docs/governance/decisions/helix-harness-stage3-parent054-l3-l10-po-decision-2026-10-07.md",
+    "evidence_bundle_relative_to_governance_audits_requirements_stage": "docs/governance/audits/requirements-stage/harness054-l3-l10-decision-evidence-2026-10-07.json"
+  },
+  "review_target": {
+    "repository": "RetryYN/HELIX-HARNESS",
+    "pull_request": 2646,
+    "parent_identity": "HARNESS-L2-054",
+    "stage": "Stage 3",
+    "version_target": "1.0",
+    "base": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+    "content_head": "2254c2458fc088e06561a5a10874744012f3a5ff",
+    "body_revision": "3f8dd46b933cec2f1733d98e17cc30e046d6bb06",
+    "worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent054",
+    "worktree_clean": true
+  },
+  "candidate_frontmatter": {
+    "decision_record_id": "HDEC-HARNESS-STAGE3-PARENT054-L3-L10-DELEGATED-2026-10-07",
+    "decision_status": "recorded",
+    "decider_role": "PO（委任：Opus・Fable一致）",
+    "decided_at": "2026-10-07",
+    "recorded_at": "2026-10-07",
+    "review_base": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+    "reviewed_content_head": "2254c2458fc088e06561a5a10874744012f3a5ff",
+    "reviewed_content_revision": "3f8dd46b933cec2f1733d98e17cc30e046d6bb06",
+    "authority_effect": "effective_when_this_record_is_admitted_to_main"
+  },
+  "delegation_condition_evidence": {
+    "condition1": {
+      "formal_comment_id": "6027399367",
+      "formal_body_sha256": "fbd55323091d42597057cd0606a788a82e85412cf2be8637a6d6f737d59c6439",
+      "formal_reports": "Opusシンプルブラインド Major 0; reviewer states delegation condition 1 and 2 align on this exact body revision. No separate Minor count is asserted in the record.",
+      "mailbox_inspect_result": "no_findings",
+      "mailbox_findings_count": 0,
+      "mailbox_unreviewed_count": 0,
+      "mailbox_authority_effect": "none"
+    },
+    "condition2": {
+      "formal_comment_id": "6027399367",
+      "formal_body_sha256": "fbd55323091d42597057cd0606a788a82e85412cf2be8637a6d6f737d59c6439",
+      "reported_fable_conclusion": "承認してよい",
+      "reported_opus_conclusion": "Fableの判断を支持する",
+      "same_body_revision": "3f8dd46b933cec2f1733d98e17cc30e046d6bb06",
+      "scope_note": "review05 formal body is the source for both reported conclusions; no separate standalone Fable comment ID is asserted."
+    },
+    "condition3": {
+      "status": "unverified",
+      "meaning": "after adding this decision record, re-read exact HEAD and verify the six target document bytes remain unchanged before Ready; this check is not yet performed."
+    }
+  },
+  "fixed_parent_source_actual": {
+    "L2-054": {
+      "revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "physical_line_start": 1154,
+      "physical_line_end_inclusive": 1162,
+      "full_document_bytes": 295676,
+      "full_document_sha256": "45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+      "span_bytes": 4652,
+      "span_sha256": "b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193",
+      "raw_literal": "### HARNESS-L2-054 専門Worker判定・契約のOS割当handoff候補（接続候補、version_target: 1.0）\n\n- **親・状態**：親は採択済み`HARNESS-L1-001/002/004`。`HARNESS-L2-047`の契約意味・muster判断をOSの既存assignment契約へ渡す不足条件だけを記す未採択候補であり、047の本文・採択条件を変更しない。HARNESS ownerの配置は2026-09-29 PO判断の条件付きA配置に従い、配置Bまたは新たな必須artifactの意味が必要なら対象revision付きPO判断へ戻す。仮登録・候補本文は要求採択、L3承認、assignment・Worker起動を生成しない。\n- **適用入力**：047の対象task/ticket identity、scope、要求・oracle revisionに加え、工程表の`layer × drive`、選択済みprocess phase、task-kind、verification pattern、design obligation/oracle、domain/risk、judgment pack revision、single-worker比較条件、適用scopeを持つLABO evidenceと未評価状態を保持する。必要時のみINTELLIGENCE placement proposal、OSのassignment/runtime profile/budget/期限/lifecycle条件、SECURITY authority/制約への参照を結ぶ。`layer`または`drive`の意味対応、適用範囲、revisionが不明・欠落・conflict・staleなら軸を落としたり別値へ推定変換せず`unknown_or_defer`とする。現行process phase等との具体的mappingは本候補で新設せず未決条件として残す。\n- **型付きhandoff結果**：HARNESSはtask/scope/source revisionと上記入力のdigest・適用条件に結んで、`muster_candidate`、`existing_role_sufficient`、`unknown_or_defer`のいずれかの意味をOSへ渡す。`muster_candidate`は047のruntime-neutral specialist Worker contract参照（複数の場合はその集合とdigest）、生成規則revision、理由、比較対象/evidence、guard結果を伴う。`existing_role_sufficient`は対象既存roleと比較根拠を示し、新規専門contractを含めない。`unknown_or_defer`は不足・不確実・stale条件、担当owner、再照合に必要な入力を示し、assignmentへ進めない。OSは受け取ったhandoffの同じtask/scope/revisionを既存assignmentへ結び、assignment・profile適格性または保留理由を既存のOS state/evidenceで追跡する。OSの応答・assignmentが欠落、対象不一致または適用条件不明ならhandoffを完了扱いしない。\n- **軸と形式の限界**：`layer × drive`と047の関連入力軸を保持する意味条件であり、軸のenum、独自wire format、固定Worker数、TeamDefinition/member schema、provider/runtime固有fieldを定義しない。旧Claude/Codex射影は引き継がない。旧TeamDefinition相当の集約表現・複数contractの構成規則が要求意味として必須か、およびlayer/driveから現行phase等への厳密な対応は未確定であり、必要ならPO/L3設計で判断する。\n- **責務・authority境界**：HARNESSは工程・verification意味、必要性判定、runtime-neutral contractとhandoff内容を所有する。OSは割当、runtime profileへのprojection、budget/期限、lease/fencing/失効/retireと実行・結果の記録を既存要求の範囲で所有する。INTELLIGENCEは配置案、LABOは適用可能な能力evidence、SECURITYはoperation authority・制約と隔離の正本を持つ。HARNESS handoff、tool/path候補、contract digest、OS受領記録はauthorityや実行許可を発生させず、各ownerの正本を置換しない。\n- **旧sourceとの差分と保留**：旧HIL-BR-09/30、HIL-FR-59/60の工程表軸、専門化判断、contract出力、OS実行への受け渡しを現行責務へ分けて意味再導出する。旧runtime-specific projection、W-agent／TeamDefinition具体schema、IR上の補助・非選択条件、残る旧要求atomは引き継がず生存中holdingへ残す。旧出力のどの部分がHARNESSの集約contractを要求し、どの部分がOS assignmentで満たされるかの追加意味変更はこの候補で決めない。\n- **不成立と戻し先**：軸・scope・oracle・contract/evidence revisionの欠落や不一致、OS assignment/profile/lifecycle条件不足は保留し、理由を該当ownerへ戻す。muster根拠なし、single-worker十分性の無視、HARNESSによる割当・起動、提案・証拠からのauthority生成、同一provider/modelだけによる独立性判定、unknown軸の推定補完は不成立とする。候補とL11 oracleは未実行であり、HARNESS-L2-047、OS-L2-004/-042/-043、SECURITYの既存要求を変更・代替しない。\n"
+    },
+    "L11-054": {
+      "revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "physical_line_start": 865,
+      "physical_line_end_inclusive": 875,
+      "full_document_bytes": 202050,
+      "full_document_sha256": "216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+      "span_bytes": 3239,
+      "span_sha256": "5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0",
+      "raw_literal": "### HARNESS-L11-054 専門Worker判定・契約のOS割当handoff受入候補（未実行）\n\n**対応要求**：`HARNESS-L2-054`（HELIX-HARNESS connection候補、`version_target: 1.0`、未採択）。既存HARNESS-L2-047の内容oracleとOS-L2-004/-042/-043のassignment・成果・event責務を接続する静的oracle案であり、いずれの要求の採択・実行結果も示さない。\n\n- **muster handoff**：対象task/scope/revision、`layer × drive`、process phase、task-kind、verification pattern/oracle、比較条件、適用LABO evidence状態を入力する。HARNESSの`muster_candidate`とcontract参照・digest・生成規則revision・理由・guard結果が同じ入力revisionへ結ばれ、OSが同じ対象と条件を既存assignmentへ結んだ場合だけhandoff対応を確認する。assignment/resultの記録はHARNESS contractの意味・oracleを変更しない。\n- **既存role十分**：single-worker比較により`existing_role_sufficient`となる入力では既存role参照と比較根拠をhandoffし、追加specialist contractやそれ由来の新規専門assignmentを生成しない。既存の通常assignmentはOS側契約に従う。\n- **unknown/defer**：`layer`、`drive`、軸のsource/revision、task boundary/oracle、比較対象、evidence適用範囲、contract digestまたはOS profile/lifecycle条件を一つずつ欠落・stale・conflictにする。未知値を別軸へ畳み込まず、HARNESSまたは不足を所有する機構へ戻し、該当specialist handoff/assignmentを保留する。layer/driveの現行phase等とのmappingが未定義ならmapping済みとして扱わない。\n- **不成立例**：muster候補がないのにcontractをOSへ渡す、scope/revisionの違うcontractをassignmentへ使う、contract生成receiptをassignment・authority・Worker起動・成果受入として数える、tool/path候補やLABO/INTELLIGENCE材料からSECURITY許可を作る、worker/verifierのidentity・context・authorityの分離を欠く例は不成立とする。provider/modelの一致だけで独立性を否定しない。\n- **未見例と変更**：未見task-kind/domain/riskまたは工程表の別layer/driveを与え、選択入力のrevision、軸、比較範囲、contract outcome、OSへの対応づけと戻し先を再照合する。source/authority/profile/oracleのrevision変更は依存するhandoffをstaleとして再確認する。\n- **型と境界**：旧Claude/Codex専用projection、任意のTeamDefinition/member schema、固定Worker数を受入条件にしない。runtime-neutral contractの意味はHARNESS、assignment/runtime profile/lifecycleはOS、evidence適用性はLABO、placement案はINTELLIGENCE、operation authority/隔離はSECURITYの既存正本へ戻す。具体的なTeamDefinition相当の集約表現またはlayer/driveの厳密mappingが必要という判断は本oracleから生成せず、未決のPO/L3設計項目とする。\n- **受入境界**：source/coverage receipt、候補本文、fixture、OS記録例の存在はoracle実行、実runtime projection、assignment、security許可、利用者受入、要求採択、L3承認を示さない。旧runtime/testを実行しない。\n"
+    }
+  },
+  "po_adoption_source": {
+    "source_revision": "b0b0719dfe786370e9bee48c5d2f753710546b6f",
+    "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+    "physical_line": 34,
+    "full_document_bytes": 11472,
+    "full_document_sha256": "57419892406b5fa0c439d47d5ce6782edaed9585beba8759e2704b9548a54959",
+    "span_bytes": 585,
+    "span_sha256": "5ad1167ad45d7f2befba1423f20dd5ffc0d9e4c2c5846f913b8174f836d17a7d",
+    "raw_literal": "| `HARNESS-L2-054` | 採択 | `MPR-RC-HARNESS-L2-054-001` | `docs/helix-harness/L2-requirements/product-requirements.md` | `45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108` | `sha256:b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7` | `sha256:5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0` | `docs/governance/audits/requirement-registration/harness-specialist-handoff-coverage-receipt-2026-09-29.json` |\n",
+    "verified_unchanged_at_review_base": {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "full_document_bytes": 11473,
+      "full_document_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "span_bytes": 585,
+      "span_sha256": "5ad1167ad45d7f2befba1423f20dd5ffc0d9e4c2c5846f913b8174f836d17a7d",
+      "row_bytes_match": true
+    },
+    "registration_id": "MPR-RC-HARNESS-L2-054-001",
+    "disposition": "採択"
+  },
+  "approval_delegation_policy_sources": [
+    {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+      "bytes": 6210,
+      "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+    },
+    {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "bytes": 53710,
+      "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+    },
+    {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "bytes": 23313,
+      "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb"
+    }
+  ],
+  "decision_record_format_precedent": {
+    "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+    "path": "docs/governance/decisions/helix-harness-stage3-parent047-l3-l10-po-decision-2026-10-07.md",
+    "bytes": 10635,
+    "sha256": "0324037c0f265817db8b24699371bf8e9903d6654a4ffd899cafe233d4a1c147",
+    "usage": "decision-record format precedent only; parent047 approval is not inherited by parent054"
+  },
+  "legacy_authority_boundary_excerpt": {
+    "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+    "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+    "file_pin": {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "bytes": 23313,
+      "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb"
+    },
+    "L82-L85": "### 自律境界（charter §3）\n\n- **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。\n- **AI**: L3 起草 ＋ L4 以降〜GitHub PR/CI/merge/tag を**完全自動**（不可逆操作のみ escalate）。\n",
+    "L195-L197": "- main は branch protection 済み: required check = `harness-check` (strict)、enforce_admins、\n  **人間 approve 不要 (PO 明示承認)**。品質ゲートは CI と harness 内クロスランタイム\n  review evidence が担う。force-push / branch 削除は GitHub 側でも禁止。",
+    "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0"
+  },
+  "six_target_document_actual_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "head_bytes": 19117,
+      "head_sha256": "febb90354052621f8203d82dd9f5ba749f9784208b80e4ba37db31d7938dc4cb",
+      "body_commit_bytes": 19117,
+      "body_commit_sha256": "febb90354052621f8203d82dd9f5ba749f9784208b80e4ba37db31d7938dc4cb",
+      "head_and_body_commit_blob_equal": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "head_bytes": 228406,
+      "head_sha256": "d0c741ba4f94d47d99674689d9e9d68331eee2a2b216790323f368c76e68dfd0",
+      "body_commit_bytes": 228406,
+      "body_commit_sha256": "d0c741ba4f94d47d99674689d9e9d68331eee2a2b216790323f368c76e68dfd0",
+      "head_and_body_commit_blob_equal": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "head_bytes": 50710,
+      "head_sha256": "a78cd4ec0349265d595c209b65d6b6ffa62c0fea4aeb40199bb47b1c9bd71115",
+      "body_commit_bytes": 50710,
+      "body_commit_sha256": "a78cd4ec0349265d595c209b65d6b6ffa62c0fea4aeb40199bb47b1c9bd71115",
+      "head_and_body_commit_blob_equal": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "head_bytes": 15525,
+      "head_sha256": "91bad8e42f66c91d47fd8ce5b318e2cedad4ff36dce763f1088890e618962a27",
+      "body_commit_bytes": 15525,
+      "body_commit_sha256": "91bad8e42f66c91d47fd8ce5b318e2cedad4ff36dce763f1088890e618962a27",
+      "head_and_body_commit_blob_equal": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "head_bytes": 874751,
+      "head_sha256": "51f1ba615a31cdaa04e70f1ffe295725d62915703a1cd12f344110da2d9a876c",
+      "body_commit_bytes": 874751,
+      "body_commit_sha256": "51f1ba615a31cdaa04e70f1ffe295725d62915703a1cd12f344110da2d9a876c",
+      "head_and_body_commit_blob_equal": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "head_bytes": 44053,
+      "head_sha256": "5c1a1e2ffc287b5aa1adc3ca670d6c5e18c69689d89ad01cc90505d938a92579",
+      "body_commit_bytes": 44053,
+      "body_commit_sha256": "5c1a1e2ffc287b5aa1adc3ca670d6c5e18c69689d89ad01cc90505d938a92579",
+      "head_and_body_commit_blob_equal": true
+    }
+  ],
+  "formal_review_sources": [
+    {
+      "review_number": 1,
+      "comment_id": "6024625350",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6024625350",
+      "created_at": "2026-10-06T20:14:56Z",
+      "body_utf8_bytes": 5273,
+      "body_sha256": "00e7ef622b3158215aec6f410cfc39ef2177127cb973dddfdb7f47ed88551b6a",
+      "review_head_as_stated": "b8ba5af24707e5d48eee8b786f9ad87ea4dd4fa3",
+      "review_base_as_stated": "ceda1c53b",
+      "review_result_as_stated": "Major 2",
+      "raw_body": "## review01（independent review、PR #2646 親HARNESS-L2-054、HEAD b8ba5af24707e5d48eee8b786f9ad87ea4dd4fa3、base main ceda1c53b）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-01` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：11候補記録（po-decision-2026-09-29-11candidates.md）の34行が、`MPR-RC-HARNESS-L2-054-001`を採択している。git grepで、後日の別採択がないことを確かめた。\n- **対象版**：固定親は記録用main `5aa100319361b0cc86edd3c51815ec777d55410a`である（L2:1154–1162、L11:865–875）。\n  - **file SHA-256**：L2 `45955ffb…`、L11 `216a8dcc…`。reviewerが計算し、34行と一致した。\n  - **節SHA-256**：L2 `b76b7b1a…`、L11 `5d1ab0ba…`。ブラインドが計算し、34行と一致した。\n- **追補条件**：11候補記録で054が出てくるのは34行だけで、054だけに付いた条件はない。\n  - 表の後ろの注記は、038/053だけに関わるものである。\n  - 依存先の047は、57候補記録52行の条件付きA配置である。本文の「別親・意味不変」と矛盾しない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **Opusシンプルブラインド**：Major 2。Majorがあったので、Fableへは回していない。\n2. **reviewerの確認**：固定L2:1158「型付きhandoff結果」の全文を読んだ。054節のCASEを「比較根拠」「既存role参照」「再照合に必要」でgrepし、該当するoracleがないことを確かめて、2件ともMajorと確定した。\n\n### Major\n**M1（`existing_role_sufficient`の出力に、対象既存roleと比較根拠があるかを照合していない）**\n- **欠陥**：\n  - 正常のc01（functional-verification.md:1768）の判定は、「OS発行として認識し、追加specialist生成なし」だけである。\n  - `existing_role_sufficient`の出力が持つべき「対象既存role参照」と「比較根拠」の値は、照合していない。\n  - これらを単独で欠落・別値にするCASEもない。r18-new-contract-onlyとr04-comparison-target-missingは、別の要素（新contractの生成と、入力側の比較対象）を扱っている。\n  - そのため、role参照や比較根拠のない`existing_role_sufficient`が合格する（類型4）。\n- **守るべき行**：固定L2-054（5aa10031 product-requirements.md:1158）「`existing_role_sufficient`は対象既存roleと比較根拠を示し」\n\n**M2（`unknown_or_defer`の出力に、再照合に必要な入力があるかを照合していない）**\n- **欠陥**：\n  - unknown/deferを扱うCASE（:1725、:1748、:1775 c08など）の判定は、「unknown/defer保持」と「戻し先owner」だけである。\n  - 出力が持つべき「再照合に必要な入力」は、正常判定でも単独CASEでも照合していない。\n  - B0（:1655）にも、`unknown_or_defer`出力の正常値がない。\n  - そのため、再照合入力を欠いたdeferが合格する（類型4）。\n- **守るべき行**：固定L2-054（product-requirements.md:1158）「`unknown_or_defer`は不足・不確実・stale条件、担当owner、再照合に必要な入力を示し」\n\n### 後で直す残余（承認を止めない）\n- **R1（戻し先の余地）**：r05-source-revision-missing（:1748）は、「無条件で戻す」としながら「機構区分が特定不能なら区分不明」も認めている。戻し先が決まらない余地が残っている。区分不明の場合でも、既知の候補区分へ返す形にすることを勧める。\n- **R2（契約の集合とreference）**：\n  - `muster_candidate`で契約が複数ある場合の「集合とdigest」を確かめる単独CASEがない。\n  - typed contract reference単体の欠落CASEもない。digest欠落のCASEで、間接的に覆われるだけである。\n- **R3（digestの言い換え）**：L3の「input/output digest」は、L2の「入力digest/contract digest」の言い換えとして少し広がっている。意味は変えていない。\n- **R4（muster出力の値）**：c03の正常判定は、muster出力の比較対象とevidenceを値として照合していない。入力側のr04/r05単独CASEで、間接的に覆われる。\n- **R5（前置き節の重複）**：同一の前置き節が、5ファイルに重複している。\n\n### 次の手順\n- **M1**：c01の正常判定に、`existing_role_sufficient`出力の対象既存role参照と比較根拠が入力と一致することの照合を入れる。または、それぞれを単独で欠落・別値にするCASEを置く。\n- **M2**：`unknown_or_defer`の正常値をB0に置き、再照合に必要な入力の照合を判定に入れる。または、それだけを欠落させる単独CASEを置く。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "review_number": 2,
+      "comment_id": "6025288166",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6025288166",
+      "created_at": "2026-10-06T20:55:59Z",
+      "body_utf8_bytes": 6210,
+      "body_sha256": "92fda6321c32a0959084954b405a512a4864cf0c736b7ae2f258bbcedb94a394",
+      "review_head_as_stated": "192becd35eccc285cab875f01bfa1641308fe3fe",
+      "review_base_as_stated": "ceda1c53b",
+      "review_result_as_stated": "Major 3",
+      "raw_body": "## review02（independent review、PR #2646 親HARNESS-L2-054、HEAD 192becd35eccc285cab875f01bfa1641308fe3fe、base main ceda1c53b）：Major 3\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-02` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：11候補記録34行（`MPR-RC-HARNESS-L2-054-001`）。後日の別revisionの採択はない。\n- **固定親**：記録用main 5aa10031（L2:1154–1162、L11:865–875）。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **review01の解消の確認**（reviewerが差分で確かめた）：M1とM2は解消した。\n   - `existing_role_sufficient`の対象既存role参照と比較根拠を、c01の正常判定で値として照合するようになった。単独CASEとして、c13〜c16（欠落と不一致）が置かれた。\n   - `unknown_or_defer`の再照合に必要な入力を、正常deferのc19で照合するようになった。単独CASEとして、c17/c18が置かれた。\n2. **Opusシンプルブラインド**：Major 3。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2の1158行と1160行、L11の870行と875行の原文を読んだ。054節のCASEを「集合」でgrepし、3件ともMajorと確定した。\n\n**reviewer側の誤り**：M1は、review01で残余R2（「`muster_candidate`で契約が複数ある場合の『集合とdigest』を確かめる単独CASEがない」）としていた点である。固定L2の出力要素なので、review01でMajorとすべきだった。分類を誤ったので、ここで訂正する（#2644 review02と同じ誤りである）。\n\n### Major\n**M1（複数contractの「集合とdigest」が落ちている）**\n- **欠陥**：\n  - L3は、muster出力を「契約参照とそのinput/output digest」の単数形に狭めている。該当箇所は次のとおりである。\n    - business-requirements.md:139\n    - functional-requirements.md:731（AC-01）、733（AC-03）\n    - nfr-grade.md:205\n  - L10のB0とc03は、単一の`contract-ref-054-a`だけを使っている。054節のCASEに、「集合」の語は0件である。\n  - 集合の一部が欠ける、集合digestがない、別の集合になる、のいずれについても、判定する正常fixtureも単独CASEもない。\n  - そのため、複数contractのmusterで集合が不完全な出力でも合格する（類型3・4）。\n- **守るべき行**：固定L2-054（5aa10031 product-requirements.md:1158）「`muster_candidate`は047のruntime-neutral specialist Worker contract参照（複数の場合はその集合とdigest）…を伴う」\n\n**M2（digest・OS受領記録・contract生成receiptからのauthority・実行許可・起動・受入の生成に、単独の拒否CASEがない）**\n- **欠陥**：\n  - **contract digest → authority/実行許可**、**OS受領記録 → authority/実行許可**：c03の正常判定が文中で「receipt/digestから推定しない」と書くだけで、変異CASEがない。\n  - **contract生成receipt → Worker起動**、**contract生成receipt → 成果受入**：単独CASEは、r09-001（assignmentへの誤分類）だけである。CASE-25と27の対象は「candidate/handoff」で、receiptを単独で変異させていない。\n  - 固定親が禁じる生成に、拒否fixtureがない（類型2）。\n- **守るべき行**：\n  - 固定L2-054（product-requirements.md:1160）「HARNESS handoff、tool/path候補、contract digest、OS受領記録は…」authorityや実行許可を発生させない。\n  - L11-054（product-acceptance.md:870）「contract生成receiptをassignment・authority・Worker起動・成果受入として数える…」例は不成立とする。\n\n**M3（L11「受入境界」の禁止に、単独の拒否CASEがない）**\n- **欠陥**：\n  - source/coverage receipt、候補本文、fixture、OS記録例の存在から、次のものを生成する変異のCASEがない。\n    - oracle実行/合格\n    - 実runtime projection\n    - assignment\n    - security許可\n    - 利用者受入\n  - c11とc12が扱うのは、handoff receiptからの要求採択とL3承認だけである。\n  - 固定親が禁じる生成に、拒否fixtureがない（類型2・4）。\n- **守るべき行**：L11-054（product-acceptance.md:875「受入境界」）「source/coverage receipt、候補本文、fixture、OS記録例の存在はoracle実行、実runtime projection、assignment、security許可、利用者受入、要求採択、L3承認を示さない」\n\n### 後で直す残余（承認を止めない）\n- **R1、R3〜R5**：review01から変わらない。\n- **R2**：M1へ繰り上げた。\n- **R6（担当ownerの置き換え）**：L2の「担当owner」を、L3は「既知の責務区分＋個体identity unknown」に置き換えている。c19で区分値を照合している。\n- **R7（適用条件の値）**：「入力digest・適用条件に結ぶ」のうち、「適用条件」がB0の値として固定されていない。c07が、scopeの束縛を代わりに照合している。\n- **R8（範囲・形式の注記）**：次の注記には、単独CASEがない。\n  - 「未知値を別軸へ畳み込まない」（L11:869）\n  - 「assignment/resultの記録はHARNESS contractの意味・oracleを変更しない」（L11:867）\n  - 「047・OS・SECURITYを変更・代替しない」\n\n### 次の手順\n- **M1**：L3のmuster出力に、「複数の場合は契約参照の集合と集合digest」を戻す。複数contractの正常fixtureを置き、集合の一部欠落、集合digestの欠落、別集合への差し替えを、それぞれ単独のCASEとして置く。\n- **M2・M3**：上に挙げた生成のそれぞれについて、その1つだけを変異させて拒否する単独CASEを置く。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "review_number": 3,
+      "comment_id": "6025994726",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6025994726",
+      "created_at": "2026-10-06T21:42:50Z",
+      "body_utf8_bytes": 6352,
+      "body_sha256": "b2c7a0dcead66f6f69500c5761c7371a4468a0723fbe39c7f22f22348be70d7b",
+      "review_head_as_stated": "524d50f00b81395a48856313c334149a0bf32ddd",
+      "review_base_as_stated": "0acbed34b",
+      "review_result_as_stated": "Major 2",
+      "raw_body": "## review03（independent review、PR #2646 親HARNESS-L2-054、HEAD 524d50f00b81395a48856313c334149a0bf32ddd、base main 0acbed34b）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-03` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：11候補記録34行（-001）。後日の別revisionの採択はない。\n- **固定親**：記録用main 5aa10031。file SHAと節digestは記録値と一致する。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。041節とのID衝突はない。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review02の解消の確認**（reviewerが本文修正commit a66908edcで確かめた）：\n   - **M1**：解消した。c03の正常判定は、複数contractの集合と集合digestを照合する。単独の反例として、c20〜c22が置かれた。\n   - **M2・M3**：review02で列挙した項目について、c23〜c34の単独拒否12件が置かれた。\n2. **Opusシンプルブラインド**：Major 2。禁止の全件照合、閉じた列挙の一致、前回までの残余R1〜R8の洗い直しを含めた。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：該当3行の戻し先の原文、固定L2の1155、1156、1158、1162行、L11の869、870、873、875行を読んだ。下の判定とした。\n\n**reviewer側の誤り**：\n- **M2(b)**：review02のM2で、L11:870の4項目（assignment・authority・Worker起動・成果受入）のうち、「contract生成receipt→authority」を挙げ漏らしていた。\n- **M2(c)**：「軸を落とす・未知値を別軸へ畳み込む」を、これまで残余R8（範囲の注記）としていた。これは推測による変換であり、状態の推測にあたる。そのため、Majorへ繰り上げる。\n\n### Major\n**M1（戻し先が決まらないCASEが3件ある。旧R1を含む）**\n- **欠陥**：\n  - **r05-source-revision-missing**：「無条件で戻す」としながら、「区分不明と個体unknownを分けて記録し推測しない」を許している。これは、区分を特定できない場合に返却を止める例外の形である。\n  - **r02-unseen-drive**：戻し先が「上流契約へ戻す」で、機構を指していない。\n  - **root-04-dependent-stale**：「既存ownerへ戻す」としか書いておらず、宛先が決まらない。\n  - 3件とも、宛先が決まらないまま終わる（類型1）。\n- **守るべき行**：\n  - 固定L2-054（5aa10031 product-requirements.md:1162）「欠落や不一致…は保留し、理由を該当ownerへ戻す」\n  - 同1158行（`unknown_or_defer`の「担当owner」）\n\n**M2（禁止列挙のうち、単独の拒否CASEがない項目）**\n- **欠陥**：\n  - **(a) 採択・L3承認・Worker起動**：source/coverage receipt、候補本文、fixture、OS記録例の存在から、要求採択またはL3承認を出す変異の拒否CASEがない。\n    - c29〜c34は、採択・承認を扱っていない。\n    - c11/c12は、handoff receiptを起点にした変異だけである。\n    - nfr-grade.mdの列挙からも、採択・承認が落ちている。\n    - 仮登録・候補本文から、Worker起動を出す変異の拒否CASEもない。\n  - **(b) contract生成receipt→authority**：contract生成receiptをauthorityとして数える変異の拒否CASEがない。\n    - c23/c25は、digestとOS receiptが起点である。\n    - c27/c28は、起動と受入だけである。\n  - **(c) 軸の落とし・未知値の畳み込み**：軸を落とす変異と、未知値を別軸へ畳み込む変異の拒否CASEがない。c08は、推定値による成立だけを扱っている。\n  - 固定親が禁じる生成と推測に、拒否fixtureがない（類型2）。\n- **守るべき行**：\n  - L11-054（product-acceptance.md:875）受入境界「…要求採択、L3承認を示さない」\n  - 同870行「contract生成receiptをassignment・authority・Worker起動・成果受入として数える…例は不成立」\n  - 同869行「未知値を別軸へ畳み込まず」\n  - 固定L2:1155「仮登録・候補本文は…Worker起動を生成しない」\n  - 同1156行「軸を落としたり別値へ推定変換せず」\n\n### 後で直す残余（承認を止めない）\n- **R1**：M1へ繰り上げた。\n- **R2、R4**：解消した。\n- **R3、R5〜R7**：変わらない。\n- **R8**：一部をM2(c)へ繰り上げた。残りは、「assignment/resultの記録はcontract意味を変更しない」「047・OS・SECURITYを変更・代替しない」の範囲の注記である。\n- **R9（見出しの配下）**：054節の「採択本文の固定」行が、親041のH2見出しの配下に置かれている。041のpinと読み違えられる。\n- **R10（戻し先の機構名）**：r03-source-revision-changeの戻し先「source authorityを定める既存owner」には、機構名がない。M1を直すときに、合わせて機構区分を書くことを勧める。\n- **R11（oracle由来の判断）**：「TeamDefinition相当の集約表現」「layer/drive厳密mappingの必要性」の判断を、本oracleから生成しないこと（L11:873）に単独CASEがない。設計判断の注記なので、残余とする。\n- **R12（provider/modelの肯定方向）**：「provider/modelの違いだけで独立と判定する」肯定方向の単独CASEがない。#2644（047）review03 M1と同じ点である。047側で直したら、054でも合わせることを勧める。\n\n### 次の手順\n- **M1**：3件の戻し先を、固定親の機構区分（HARNESS process/axis-source、OS、LABO、INTELLIGENCE、SECURITY、要求owner等）のうち原因に当たるものへ決める。個体identityが不明でも、既知の区分へは返し、個体identityだけを別fieldでunknownとする。\n- **M2**：(a)〜(c)の各項目について、その1つだけを変異させる単独の拒否CASEを置く。nfr-grade.mdの列挙にも、要求採択とL3承認を加える。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "review_number": 4,
+      "comment_id": "6026691451",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6026691451",
+      "created_at": "2026-10-06T22:34:44Z",
+      "body_utf8_bytes": 6874,
+      "body_sha256": "c4e581aac9e2bc0c0aa1317eeff6054ae00c0822535808dddd940b7531f2cf51",
+      "review_head_as_stated": "50e8292d6cd4156818940ea4904bdc9c1effb62f",
+      "review_base_as_stated": "0acbed34b",
+      "review_result_as_stated": "Major 3",
+      "raw_body": "## review04（independent review、PR #2646 親HARNESS-L2-054、HEAD 50e8292d6cd4156818940ea4904bdc9c1effb62f、base main 0acbed34b）：Major 3\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-04` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：11候補記録34行（-001）。後日の別revisionの採択はない。\n- **固定親**：5aa10031。file SHAは一致する。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。\n- **条件付きの戻し先**：0件。review03 M1のr05の「区分不明」の書き方は、消えた。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review03の解消の確認**（reviewerが差分で確かめた）：\n   - **M1**：解消した。3件の戻し先が、原因別の区分になった。r03の宛先も、HARNESS process/axis-sourceになった。\n   - **M2**：review03で挙げた項目には、c35〜c47の単独拒否CASEが置かれた。\n   - **R9、R10、R12**：解消した。c48〜c50（provider差の向き）とH2の見出しが置かれた。\n2. **Opusシンプルブラインド**：Major 3。今回は、次の3つの表を作らせた。Majorがあったので、Fableへは回していない。\n   - 項目×状態の表\n   - 出力要素の表\n   - 禁止列挙の照合表\n3. **reviewerの確認**：表の×のマスを、固定L2:1155、1156、1158、1160の原文と照らし合わせた。3件ともMajorと確定した。\n\n**reviewer側の誤り**：M1の前半（仮登録を起点にした要求採択・L3承認・assignmentの生成）は、review03 M2(a)で挙げ漏らしていた。review03 M2(a)は、「仮登録・候補本文」のうち仮登録についてWorker起動だけを挙げていた。固定L2:1155は「仮登録・候補本文は要求採択、L3承認、assignment・Worker起動を生成しない」と、4つの出力を並べている。\n\n### 照合の範囲の固定\n**太字の×**が、今回のMajorである。reviewerは次回、この3つの表の太字×と既存の照合項目で照合する。表の外から、新しい組み合わせを求めることはしない。\n\n**表1 項目×状態（固定L2:1156、1160、L11:869、872）**\n\n| 項目 | 欠落 | stale | conflict | 不明 |\n|---|---|---|---|---|\n| layer、drive、軸のmapping、軸のsource/revision、process phase、task boundary、oracle、比較対象、evidence適用範囲、contract digest、OS profile/lifecycle、OS assignment/response/receipt | ○（ブラインドの表のとおり） | ○ | ○ | ○または− |\n| **軸の適用範囲** | **×** | **×** | **×** | **×** |\n\n**表2 出力要素（固定L2:1158）**：○は「適用条件」以外の全要素（正常判定のc01、c03、c19と、単独CASE）である。\n- **適用条件**：(a)正常判定は**×**、(b)単独CASEも**×**である。\n\n**表3 禁止列挙**：○は下の2行以外の全行である。\n- **仮登録→要求採択／L3承認／assignment**（L2:1155）：**×／×／×**\n- **HARNESS handoff→実行許可**（L2:1160）：**×**（handoff→authorityはCASE-26で○）\n\n### Major\n**M1（仮登録とhandoffを起点にした生成に、単独の拒否CASEがない）**\n- **欠陥**：\n  - 仮登録だけを起点に、要求採択・L3承認・assignmentを出力する変異の単独拒否CASEがない。仮登録を起点にしたCASEは、c46（Worker起動）だけである。\n  - HARNESS handoffだけを起点に、「実行許可」を出す変異の単独拒否CASEもない。CASE-25が扱うのは「実行状態」で、c24・c26はdigestとOS receiptが起点である。\n  - 類型2である。\n- **守るべき行**：\n  - 固定L2-054（5aa10031 product-requirements.md:1155）「仮登録・候補本文は要求採択、L3承認、assignment・Worker起動を生成しない」\n  - 同1160行「HARNESS handoff…はauthorityや実行許可を発生させず」\n\n**M2（layer/driveの適用範囲と、handoff結果の「適用条件」が、照合されていない）**\n- **欠陥**：\n  - layer/driveの適用範囲が、欠落・stale・conflict・不明のどの場合にも、単独CASEがない。c07とroot-field-05が扱うのは、digestとtargetのscopeだけである。\n  - handoff結果を「適用条件に結ぶ」ことも、照合されていない。B0とc03の正常判定にも、単独CASEにもない。旧R7を繰り上げた。\n  - そのため、適用範囲を推定したhandoffが合格する（類型4）。\n- **守るべき行**：\n  - 固定L2-054（:1156）「`layer`または`drive`の意味対応、適用範囲、revisionが不明・欠落・conflict・staleなら…`unknown_or_defer`」\n  - 同1158行「上記入力のdigest・適用条件に結んで」\n\n**M3（FVの「型付きhandoffの候補条件」の閉じた列挙が、ほかの文書と食い違っている）**\n- **欠陥**：\n  - functional-verification.md（054節の「型付きhandoffの候補条件」）は、muster出力の列挙から「複数の場合はその全体集合」と「集合digest」を落としている。\n  - BR、NFR、BV、NVの列挙には、この2つがある（類型3）。\n- **守るべき行**：固定L2-054（:1158）「契約参照（複数の場合はその集合とdigest）」\n\n### 後で直す残余（承認を止めない）\n- **R3、R5、R6、R8、R11**：変わらない。\n- **R9、R10、R12**：解消した。\n- **R7**：M2へ繰り上げた。\n- **R13（driveを落とす単独CASE）**：drive軸を落とす単独CASEがない（c36はlayerだけ）。入力digestの照合で、間接的に覆われている。\n- **R14（証拠の種別ごとの分割）**：c29〜c34は、4種の証拠を同時に与える形である。証拠の種別ごとには分けていない。\n- **R15（BVの参照）**：BVの「証拠の非昇格」行が、c38〜c47を参照していない。\n- **R16（形式の注記）**：wire formatやprovider固有fieldを定義しないことに、単独CASEがない。\n\n### 次の手順\n- **M1**：次の4つの変異を、それぞれ単独のCASEとして拒否する。\n  - 仮登録→要求採択\n  - 仮登録→L3承認\n  - 仮登録→assignment\n  - HARNESS handoff→実行許可\n- **M2**：layer/driveの適用範囲の4状態（欠落、stale、conflict、不明）の単独CASEを置く。判定は`unknown_or_defer`とする。適用条件は、c03の正常判定で値を照合するか、単独CASEを置く。\n- **M3**：FVの列挙に、「複数の場合はその全体集合」と「集合digest」を加え、ほかの文書と一致させる。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "review_number": 5,
+      "comment_id": "6027399367",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6027399367",
+      "created_at": "2026-10-06T23:34:08Z",
+      "body_utf8_bytes": 5231,
+      "body_sha256": "fbd55323091d42597057cd0606a788a82e85412cf2be8637a6d6f737d59c6439",
+      "review_head_as_stated": "2254c2458fc088e06561a5a10874744012f3a5ff",
+      "review_base_as_stated": "03d9cd19d",
+      "review_result_as_stated": "Major 0",
+      "raw_body": "## review05（independent review、PR #2646 親HARNESS-L2-054、HEAD 2254c2458fc088e06561a5a10874744012f3a5ff、base main 03d9cd19d）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-05` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：11候補記録（po-decision-2026-09-29-11candidates.md）の34行が、`MPR-RC-HARNESS-L2-054-001`を採択している。`docs/governance/decisions/`に、054の別revisionを採択した記録はない。\n- **対象版**：固定親は`5aa100319361b0cc86edd3c51815ec777d55410a`（L2 1154–1162、L11 865–875）である。\n- **base整合**：merge-baseは依頼のbase（03d9cd19d）と一致し、削除行は0である。新baseから見た054の追加315行は、旧base（0acbed34b）に修正commit 6f1d726d9を足した場合の追加行と一致する。041節・047節はmainの文脈として入っているだけで、054の追加の意味は変わっていない。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review04の解消の確認**：照合はreview04で固定した3表の太字×のマスと、既存の照合項目に限った。\n   - **M1（仮登録・handoff起点の生成）**：解消した。c51〜c53（仮登録→要求採択／L3承認／assignment）とc54（handoff→実行許可）が、それぞれ1fieldだけを変える単独の拒否CASEとして置かれた。\n   - **M2（軸の適用範囲×4状態）**：解消した。c55〜c62が、layer/driveの軸別・状態別（欠落、stale、conflict、不明）に置かれた。判定はunknown_or_deferで、戻し先はHARNESS process/axis-sourceへ無条件である。\n   - **M3（出力の適用条件、FVの列挙）**：解消した。c03の正常判定が、適用条件（layer/driveの値、source revision、適用範囲）を入力sourceと項目ごとに照合するようになった。FVの集合と集合digestの列挙も直った。\n2. **Opusシンプルブラインド**：Major 0。3表の太字マスはすべて○だった。041節・047節とのID衝突もない。\n3. **Fableの判断**：「承認してよい」。Fableは、固定親とPO記録、6本文を自分で読んで照合した。\n4. **Opusによる敵対照合**：「Fableの判断を支持する」。次の点を照合したが、崩せなかった。\n   - 禁止列挙\n   - 項目×状態\n   - 適用条件\n   - L2の意味変更（047本文、条件付きA配置、各機構の責務）\n   - 041節・047節との相互作用\n5. **reviewerの結論**：委任の条件1（Opusのexact HEADでのMajor 0）と条件2（Fableの同一本文revisionでの判断）が、このHEADでそろった。\n\n### 6本文（このHEADのSHA-256）\n- business-verification `91bad8e4…`\n- functional-verification `51f1ba61…`\n- nfr-verification `5c1a1e2f…`\n- business-requirements `febb9035…`\n- functional-requirements `d0c741ba…`\n- nfr-grade `a78cd4ec…`\n\n### 後で直す残余（承認を止めない）\n- **R3、R5、R6、R8、R11、R13〜R16**：変わらない。\n- **R17（修飾語の差）**：layer×driveの修飾語が、文書によって違う。項目の集合は一致している。\n- **R18（分岐での適用条件）**：適用条件の正常照合は、musterの分岐（c03）だけにある。existing_role_sufficient（c01）とunknown_or_defer（c19）の分岐にはない。review04の表2は要素単位で固定したので、分岐単位の要求は表の外とする。\n- **R19（出力側の適用範囲）**：出力側の適用範囲に、単独CASEがない。c03で照合している。\n- **R20（staleの定義）**：c56とc60でのstaleの定義を、明記することを勧める。\n- **R21（未決項目の明示）**：固定L2:1159とL11:873にある「TeamDefinition相当の集約表現・layer/driveの厳密mappingは、未決のPO/L3設計項目」という表現が、6本文に明示されていない。中身は、厳密mappingを採択しないこと、未定義ならunknown/defer、必須artifactはPOへ、という各記述で保たれている。\n- **R22（OSのbudget/期限）**：「責務別差戻し」の列挙に、OSのbudget/期限がない。固定L2:1161の不成立行にもないため、表の外とする。\n- **R23（宛先の書き方）**：索引行r04-contract-digest-missingの宛先が「HARNESS contract/OS assignment boundary」となっていて、二重に読める。参照先のr02は、HARNESSへの無条件の返却である。\n- **R24（件数の基準）**：matrix countの「既存150 ID」は、PR内の前回revisionを基準にした書き方で、baseが基準ではない。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - 委任承認の判断記録。このexact HEADの6本文のbytesとSHAを固定したもの。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n"
+    }
+  ],
+  "formal_review_comment_history_raw_source": {
+    "path": "/tmp/root-pr2646-comments-review05.json",
+    "bytes": 49488,
+    "sha256": "26f0c55a925137c72a428fcc45132341236cd1aa21ca22f36da5ebbc840e67f9",
+    "comment_object_count": 10,
+    "comment_objects_full_raw": [
+      {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024290151",
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6024290151",
+        "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+        "id": 6024290151,
+        "node_id": "IC_kwDOTG8BRc8AAAABZxNfZw",
+        "user": {
+          "login": "RetryYN",
+          "id": 131282486,
+          "node_id": "U_kgDOB9M2Ng",
+          "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/RetryYN",
+          "html_url": "https://github.com/RetryYN",
+          "followers_url": "https://api.github.com/users/RetryYN/followers",
+          "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+          "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+          "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+          "repos_url": "https://api.github.com/users/RetryYN/repos",
+          "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "created_at": "2026-10-06T19:54:33Z",
+        "updated_at": "2026-10-06T19:54:33Z",
+        "body": "初回独立review依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `b8ba5af24707e5d48eee8b786f9ad87ea4dd4fa3`。採択MPR054001 fixed5aa L21154–1162/L11865–875、旧100raw/現112再導出6列、OS通常assignment/追加specialist拒否、六prefixbyte保持/25pins/raw100物理/六actual、mapping未決保持。gov/diff/public8 PASS。Draft。fixture実行・独立review・承認未。独立照合と同六本文Fable判断をお願いします。\n",
+        "author_association": "OWNER",
+        "reactions": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024290151/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null,
+        "minimized": null
+      },
+      {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024625350",
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6024625350",
+        "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+        "id": 6024625350,
+        "node_id": "IC_kwDOTG8BRc8AAAABZxh8xg",
+        "user": {
+          "login": "RetryYN",
+          "id": 131282486,
+          "node_id": "U_kgDOB9M2Ng",
+          "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/RetryYN",
+          "html_url": "https://github.com/RetryYN",
+          "followers_url": "https://api.github.com/users/RetryYN/followers",
+          "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+          "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+          "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+          "repos_url": "https://api.github.com/users/RetryYN/repos",
+          "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "created_at": "2026-10-06T20:14:56Z",
+        "updated_at": "2026-10-06T20:14:56Z",
+        "body": "## review01（independent review、PR #2646 親HARNESS-L2-054、HEAD b8ba5af24707e5d48eee8b786f9ad87ea4dd4fa3、base main ceda1c53b）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-01` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：11候補記録（po-decision-2026-09-29-11candidates.md）の34行が、`MPR-RC-HARNESS-L2-054-001`を採択している。git grepで、後日の別採択がないことを確かめた。\n- **対象版**：固定親は記録用main `5aa100319361b0cc86edd3c51815ec777d55410a`である（L2:1154–1162、L11:865–875）。\n  - **file SHA-256**：L2 `45955ffb…`、L11 `216a8dcc…`。reviewerが計算し、34行と一致した。\n  - **節SHA-256**：L2 `b76b7b1a…`、L11 `5d1ab0ba…`。ブラインドが計算し、34行と一致した。\n- **追補条件**：11候補記録で054が出てくるのは34行だけで、054だけに付いた条件はない。\n  - 表の後ろの注記は、038/053だけに関わるものである。\n  - 依存先の047は、57候補記録52行の条件付きA配置である。本文の「別親・意味不変」と矛盾しない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **Opusシンプルブラインド**：Major 2。Majorがあったので、Fableへは回していない。\n2. **reviewerの確認**：固定L2:1158「型付きhandoff結果」の全文を読んだ。054節のCASEを「比較根拠」「既存role参照」「再照合に必要」でgrepし、該当するoracleがないことを確かめて、2件ともMajorと確定した。\n\n### Major\n**M1（`existing_role_sufficient`の出力に、対象既存roleと比較根拠があるかを照合していない）**\n- **欠陥**：\n  - 正常のc01（functional-verification.md:1768）の判定は、「OS発行として認識し、追加specialist生成なし」だけである。\n  - `existing_role_sufficient`の出力が持つべき「対象既存role参照」と「比較根拠」の値は、照合していない。\n  - これらを単独で欠落・別値にするCASEもない。r18-new-contract-onlyとr04-comparison-target-missingは、別の要素（新contractの生成と、入力側の比較対象）を扱っている。\n  - そのため、role参照や比較根拠のない`existing_role_sufficient`が合格する（類型4）。\n- **守るべき行**：固定L2-054（5aa10031 product-requirements.md:1158）「`existing_role_sufficient`は対象既存roleと比較根拠を示し」\n\n**M2（`unknown_or_defer`の出力に、再照合に必要な入力があるかを照合していない）**\n- **欠陥**：\n  - unknown/deferを扱うCASE（:1725、:1748、:1775 c08など）の判定は、「unknown/defer保持」と「戻し先owner」だけである。\n  - 出力が持つべき「再照合に必要な入力」は、正常判定でも単独CASEでも照合していない。\n  - B0（:1655）にも、`unknown_or_defer`出力の正常値がない。\n  - そのため、再照合入力を欠いたdeferが合格する（類型4）。\n- **守るべき行**：固定L2-054（product-requirements.md:1158）「`unknown_or_defer`は不足・不確実・stale条件、担当owner、再照合に必要な入力を示し」\n\n### 後で直す残余（承認を止めない）\n- **R1（戻し先の余地）**：r05-source-revision-missing（:1748）は、「無条件で戻す」としながら「機構区分が特定不能なら区分不明」も認めている。戻し先が決まらない余地が残っている。区分不明の場合でも、既知の候補区分へ返す形にすることを勧める。\n- **R2（契約の集合とreference）**：\n  - `muster_candidate`で契約が複数ある場合の「集合とdigest」を確かめる単独CASEがない。\n  - typed contract reference単体の欠落CASEもない。digest欠落のCASEで、間接的に覆われるだけである。\n- **R3（digestの言い換え）**：L3の「input/output digest」は、L2の「入力digest/contract digest」の言い換えとして少し広がっている。意味は変えていない。\n- **R4（muster出力の値）**：c03の正常判定は、muster出力の比較対象とevidenceを値として照合していない。入力側のr04/r05単独CASEで、間接的に覆われる。\n- **R5（前置き節の重複）**：同一の前置き節が、5ファイルに重複している。\n\n### 次の手順\n- **M1**：c01の正常判定に、`existing_role_sufficient`出力の対象既存role参照と比較根拠が入力と一致することの照合を入れる。または、それぞれを単独で欠落・別値にするCASEを置く。\n- **M2**：`unknown_or_defer`の正常値をB0に置き、再照合に必要な入力の照合を判定に入れる。または、それだけを欠落させる単独CASEを置く。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+        "author_association": "OWNER",
+        "reactions": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024625350/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null,
+        "minimized": null
+      },
+      {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024842539",
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6024842539",
+        "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+        "id": 6024842539,
+        "node_id": "IC_kwDOTG8BRc8AAAABZxvNKw",
+        "user": {
+          "login": "RetryYN",
+          "id": 131282486,
+          "node_id": "U_kgDOB9M2Ng",
+          "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/RetryYN",
+          "html_url": "https://github.com/RetryYN",
+          "followers_url": "https://api.github.com/users/RetryYN/followers",
+          "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+          "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+          "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+          "repos_url": "https://api.github.com/users/RetryYN/repos",
+          "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "created_at": "2026-10-06T20:28:16Z",
+        "updated_at": "2026-10-06T20:28:16Z",
+        "body": "review02依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `192becd35eccc285cab875f01bfa1641308fe3fe`。review01 M1/M2: role参照・比較根拠・defer再照合入力のsource値一致、正常muster全field/正常deferc19と6単独変異、119core旧112ID/旧100raw、fixed5aa/PO34・六SHA・R1–5raw。gov/diff PASS。修正後body独立review・fixture・承認未。固定親・旧source起点で独立照合と同六本文Fable判断をお願いします。\n",
+        "author_association": "OWNER",
+        "reactions": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024842539/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null,
+        "minimized": null
+      },
+      {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025288166",
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6025288166",
+        "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+        "id": 6025288166,
+        "node_id": "IC_kwDOTG8BRc8AAAABZyKZ5g",
+        "user": {
+          "login": "RetryYN",
+          "id": 131282486,
+          "node_id": "U_kgDOB9M2Ng",
+          "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/RetryYN",
+          "html_url": "https://github.com/RetryYN",
+          "followers_url": "https://api.github.com/users/RetryYN/followers",
+          "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+          "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+          "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+          "repos_url": "https://api.github.com/users/RetryYN/repos",
+          "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "created_at": "2026-10-06T20:55:59Z",
+        "updated_at": "2026-10-06T20:55:59Z",
+        "body": "## review02（independent review、PR #2646 親HARNESS-L2-054、HEAD 192becd35eccc285cab875f01bfa1641308fe3fe、base main ceda1c53b）：Major 3\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-02` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：11候補記録34行（`MPR-RC-HARNESS-L2-054-001`）。後日の別revisionの採択はない。\n- **固定親**：記録用main 5aa10031（L2:1154–1162、L11:865–875）。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **review01の解消の確認**（reviewerが差分で確かめた）：M1とM2は解消した。\n   - `existing_role_sufficient`の対象既存role参照と比較根拠を、c01の正常判定で値として照合するようになった。単独CASEとして、c13〜c16（欠落と不一致）が置かれた。\n   - `unknown_or_defer`の再照合に必要な入力を、正常deferのc19で照合するようになった。単独CASEとして、c17/c18が置かれた。\n2. **Opusシンプルブラインド**：Major 3。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2の1158行と1160行、L11の870行と875行の原文を読んだ。054節のCASEを「集合」でgrepし、3件ともMajorと確定した。\n\n**reviewer側の誤り**：M1は、review01で残余R2（「`muster_candidate`で契約が複数ある場合の『集合とdigest』を確かめる単独CASEがない」）としていた点である。固定L2の出力要素なので、review01でMajorとすべきだった。分類を誤ったので、ここで訂正する（#2644 review02と同じ誤りである）。\n\n### Major\n**M1（複数contractの「集合とdigest」が落ちている）**\n- **欠陥**：\n  - L3は、muster出力を「契約参照とそのinput/output digest」の単数形に狭めている。該当箇所は次のとおりである。\n    - business-requirements.md:139\n    - functional-requirements.md:731（AC-01）、733（AC-03）\n    - nfr-grade.md:205\n  - L10のB0とc03は、単一の`contract-ref-054-a`だけを使っている。054節のCASEに、「集合」の語は0件である。\n  - 集合の一部が欠ける、集合digestがない、別の集合になる、のいずれについても、判定する正常fixtureも単独CASEもない。\n  - そのため、複数contractのmusterで集合が不完全な出力でも合格する（類型3・4）。\n- **守るべき行**：固定L2-054（5aa10031 product-requirements.md:1158）「`muster_candidate`は047のruntime-neutral specialist Worker contract参照（複数の場合はその集合とdigest）…を伴う」\n\n**M2（digest・OS受領記録・contract生成receiptからのauthority・実行許可・起動・受入の生成に、単独の拒否CASEがない）**\n- **欠陥**：\n  - **contract digest → authority/実行許可**、**OS受領記録 → authority/実行許可**：c03の正常判定が文中で「receipt/digestから推定しない」と書くだけで、変異CASEがない。\n  - **contract生成receipt → Worker起動**、**contract生成receipt → 成果受入**：単独CASEは、r09-001（assignmentへの誤分類）だけである。CASE-25と27の対象は「candidate/handoff」で、receiptを単独で変異させていない。\n  - 固定親が禁じる生成に、拒否fixtureがない（類型2）。\n- **守るべき行**：\n  - 固定L2-054（product-requirements.md:1160）「HARNESS handoff、tool/path候補、contract digest、OS受領記録は…」authorityや実行許可を発生させない。\n  - L11-054（product-acceptance.md:870）「contract生成receiptをassignment・authority・Worker起動・成果受入として数える…」例は不成立とする。\n\n**M3（L11「受入境界」の禁止に、単独の拒否CASEがない）**\n- **欠陥**：\n  - source/coverage receipt、候補本文、fixture、OS記録例の存在から、次のものを生成する変異のCASEがない。\n    - oracle実行/合格\n    - 実runtime projection\n    - assignment\n    - security許可\n    - 利用者受入\n  - c11とc12が扱うのは、handoff receiptからの要求採択とL3承認だけである。\n  - 固定親が禁じる生成に、拒否fixtureがない（類型2・4）。\n- **守るべき行**：L11-054（product-acceptance.md:875「受入境界」）「source/coverage receipt、候補本文、fixture、OS記録例の存在はoracle実行、実runtime projection、assignment、security許可、利用者受入、要求採択、L3承認を示さない」\n\n### 後で直す残余（承認を止めない）\n- **R1、R3〜R5**：review01から変わらない。\n- **R2**：M1へ繰り上げた。\n- **R6（担当ownerの置き換え）**：L2の「担当owner」を、L3は「既知の責務区分＋個体identity unknown」に置き換えている。c19で区分値を照合している。\n- **R7（適用条件の値）**：「入力digest・適用条件に結ぶ」のうち、「適用条件」がB0の値として固定されていない。c07が、scopeの束縛を代わりに照合している。\n- **R8（範囲・形式の注記）**：次の注記には、単独CASEがない。\n  - 「未知値を別軸へ畳み込まない」（L11:869）\n  - 「assignment/resultの記録はHARNESS contractの意味・oracleを変更しない」（L11:867）\n  - 「047・OS・SECURITYを変更・代替しない」\n\n### 次の手順\n- **M1**：L3のmuster出力に、「複数の場合は契約参照の集合と集合digest」を戻す。複数contractの正常fixtureを置き、集合の一部欠落、集合digestの欠落、別集合への差し替えを、それぞれ単独のCASEとして置く。\n- **M2・M3**：上に挙げた生成のそれぞれについて、その1つだけを変異させて拒否する単独CASEを置く。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+        "author_association": "OWNER",
+        "reactions": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025288166/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null,
+        "minimized": null
+      },
+      {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025433593",
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6025433593",
+        "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+        "id": 6025433593,
+        "node_id": "IC_kwDOTG8BRc8AAAABZyTR-Q",
+        "user": {
+          "login": "RetryYN",
+          "id": 131282486,
+          "node_id": "U_kgDOB9M2Ng",
+          "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/RetryYN",
+          "html_url": "https://github.com/RetryYN",
+          "followers_url": "https://api.github.com/users/RetryYN/followers",
+          "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+          "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+          "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+          "repos_url": "https://api.github.com/users/RetryYN/repos",
+          "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "created_at": "2026-10-06T21:05:17Z",
+        "updated_at": "2026-10-06T21:05:17Z",
+        "body": "修正後の独立再レビューを依頼します。\n\nHEAD `524d50f00b81395a48856313c334149a0bf32ddd`、base `0acbed34bfda48e32092feb63db61d2eff6d5ec4`。054 review02M1複数contract集合digest正常と3単独反例、M2/M3禁止出力12単独拒否、134旧119保持/sourcepins/R1–8。Root六actual SHA/bytes・時点監査を検収し、041 main本文prefixと親054の修正済suffixをbyte保持してbase更新しました。公開/Git全12文書一致を確認済みです。\n\n時点監査 `harness-stage3-parent054-review02-disposition-2026-10-07-a66908ed.{json,md}`。govcheck・base全差分diff checkはPASS。MDの未展開placeholderを初公開前にactual値へ整形しました。旧100 raw・25source pins・R1–8履歴を保持しています。\n\n新base/HEADで独立review・同六本文Fable判断をお願いします。fixtureは未実行です。\n",
+        "author_association": "OWNER",
+        "reactions": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025433593/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null,
+        "minimized": null
+      },
+      {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025994726",
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6025994726",
+        "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+        "id": 6025994726,
+        "node_id": "IC_kwDOTG8BRc8AAAABZy1h5g",
+        "user": {
+          "login": "RetryYN",
+          "id": 131282486,
+          "node_id": "U_kgDOB9M2Ng",
+          "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/RetryYN",
+          "html_url": "https://github.com/RetryYN",
+          "followers_url": "https://api.github.com/users/RetryYN/followers",
+          "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+          "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+          "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+          "repos_url": "https://api.github.com/users/RetryYN/repos",
+          "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "created_at": "2026-10-06T21:42:50Z",
+        "updated_at": "2026-10-06T21:42:50Z",
+        "body": "## review03（independent review、PR #2646 親HARNESS-L2-054、HEAD 524d50f00b81395a48856313c334149a0bf32ddd、base main 0acbed34b）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-03` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：11候補記録34行（-001）。後日の別revisionの採択はない。\n- **固定親**：記録用main 5aa10031。file SHAと節digestは記録値と一致する。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。041節とのID衝突はない。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review02の解消の確認**（reviewerが本文修正commit a66908edcで確かめた）：\n   - **M1**：解消した。c03の正常判定は、複数contractの集合と集合digestを照合する。単独の反例として、c20〜c22が置かれた。\n   - **M2・M3**：review02で列挙した項目について、c23〜c34の単独拒否12件が置かれた。\n2. **Opusシンプルブラインド**：Major 2。禁止の全件照合、閉じた列挙の一致、前回までの残余R1〜R8の洗い直しを含めた。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：該当3行の戻し先の原文、固定L2の1155、1156、1158、1162行、L11の869、870、873、875行を読んだ。下の判定とした。\n\n**reviewer側の誤り**：\n- **M2(b)**：review02のM2で、L11:870の4項目（assignment・authority・Worker起動・成果受入）のうち、「contract生成receipt→authority」を挙げ漏らしていた。\n- **M2(c)**：「軸を落とす・未知値を別軸へ畳み込む」を、これまで残余R8（範囲の注記）としていた。これは推測による変換であり、状態の推測にあたる。そのため、Majorへ繰り上げる。\n\n### Major\n**M1（戻し先が決まらないCASEが3件ある。旧R1を含む）**\n- **欠陥**：\n  - **r05-source-revision-missing**：「無条件で戻す」としながら、「区分不明と個体unknownを分けて記録し推測しない」を許している。これは、区分を特定できない場合に返却を止める例外の形である。\n  - **r02-unseen-drive**：戻し先が「上流契約へ戻す」で、機構を指していない。\n  - **root-04-dependent-stale**：「既存ownerへ戻す」としか書いておらず、宛先が決まらない。\n  - 3件とも、宛先が決まらないまま終わる（類型1）。\n- **守るべき行**：\n  - 固定L2-054（5aa10031 product-requirements.md:1162）「欠落や不一致…は保留し、理由を該当ownerへ戻す」\n  - 同1158行（`unknown_or_defer`の「担当owner」）\n\n**M2（禁止列挙のうち、単独の拒否CASEがない項目）**\n- **欠陥**：\n  - **(a) 採択・L3承認・Worker起動**：source/coverage receipt、候補本文、fixture、OS記録例の存在から、要求採択またはL3承認を出す変異の拒否CASEがない。\n    - c29〜c34は、採択・承認を扱っていない。\n    - c11/c12は、handoff receiptを起点にした変異だけである。\n    - nfr-grade.mdの列挙からも、採択・承認が落ちている。\n    - 仮登録・候補本文から、Worker起動を出す変異の拒否CASEもない。\n  - **(b) contract生成receipt→authority**：contract生成receiptをauthorityとして数える変異の拒否CASEがない。\n    - c23/c25は、digestとOS receiptが起点である。\n    - c27/c28は、起動と受入だけである。\n  - **(c) 軸の落とし・未知値の畳み込み**：軸を落とす変異と、未知値を別軸へ畳み込む変異の拒否CASEがない。c08は、推定値による成立だけを扱っている。\n  - 固定親が禁じる生成と推測に、拒否fixtureがない（類型2）。\n- **守るべき行**：\n  - L11-054（product-acceptance.md:875）受入境界「…要求採択、L3承認を示さない」\n  - 同870行「contract生成receiptをassignment・authority・Worker起動・成果受入として数える…例は不成立」\n  - 同869行「未知値を別軸へ畳み込まず」\n  - 固定L2:1155「仮登録・候補本文は…Worker起動を生成しない」\n  - 同1156行「軸を落としたり別値へ推定変換せず」\n\n### 後で直す残余（承認を止めない）\n- **R1**：M1へ繰り上げた。\n- **R2、R4**：解消した。\n- **R3、R5〜R7**：変わらない。\n- **R8**：一部をM2(c)へ繰り上げた。残りは、「assignment/resultの記録はcontract意味を変更しない」「047・OS・SECURITYを変更・代替しない」の範囲の注記である。\n- **R9（見出しの配下）**：054節の「採択本文の固定」行が、親041のH2見出しの配下に置かれている。041のpinと読み違えられる。\n- **R10（戻し先の機構名）**：r03-source-revision-changeの戻し先「source authorityを定める既存owner」には、機構名がない。M1を直すときに、合わせて機構区分を書くことを勧める。\n- **R11（oracle由来の判断）**：「TeamDefinition相当の集約表現」「layer/drive厳密mappingの必要性」の判断を、本oracleから生成しないこと（L11:873）に単独CASEがない。設計判断の注記なので、残余とする。\n- **R12（provider/modelの肯定方向）**：「provider/modelの違いだけで独立と判定する」肯定方向の単独CASEがない。#2644（047）review03 M1と同じ点である。047側で直したら、054でも合わせることを勧める。\n\n### 次の手順\n- **M1**：3件の戻し先を、固定親の機構区分（HARNESS process/axis-source、OS、LABO、INTELLIGENCE、SECURITY、要求owner等）のうち原因に当たるものへ決める。個体identityが不明でも、既知の区分へは返し、個体identityだけを別fieldでunknownとする。\n- **M2**：(a)〜(c)の各項目について、その1つだけを変異させる単独の拒否CASEを置く。nfr-grade.mdの列挙にも、要求採択とL3承認を加える。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+        "author_association": "OWNER",
+        "reactions": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025994726/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null,
+        "minimized": null
+      },
+      {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026305527",
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6026305527",
+        "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+        "id": 6026305527,
+        "node_id": "IC_kwDOTG8BRc8AAAABZzIf9w",
+        "user": {
+          "login": "RetryYN",
+          "id": 131282486,
+          "node_id": "U_kgDOB9M2Ng",
+          "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/RetryYN",
+          "html_url": "https://github.com/RetryYN",
+          "followers_url": "https://api.github.com/users/RetryYN/followers",
+          "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+          "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+          "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+          "repos_url": "https://api.github.com/users/RetryYN/repos",
+          "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "created_at": "2026-10-06T22:05:20Z",
+        "updated_at": "2026-10-06T22:05:20Z",
+        "body": "review03修正後の独立再レビューを依頼します。\n\nHEAD `50e8292d6cd4156818940ea4904bdc9c1effb62f`、base `0acbed34bfda48e32092feb63db61d2eff6d5ec4`、本文revision `0f802e76e05ddc2a8e63db1926bcd89f0f54d5de`。原因別3CASE返却、証拠から要求採択/L3承認/Worker起動・contract receipt authority・axis loss/folding・provider独立性各単独16反例、six H2、150旧134/100raw/25pins/R1–12保持。Rootは変更本文/固定親を実読し、六実blob SHAと時点監査を検算しました。gov/diffおよび公開/Git全対象一致PASS（14 paths）。既公開の時点監査とreview履歴を保持。Draft、fixture未実行、未承認。同六本文の独立reviewとFable判断をお願いします。\n",
+        "author_association": "OWNER",
+        "reactions": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026305527/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null,
+        "minimized": null
+      },
+      {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026691451",
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6026691451",
+        "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+        "id": 6026691451,
+        "node_id": "IC_kwDOTG8BRc8AAAABZzgDew",
+        "user": {
+          "login": "RetryYN",
+          "id": 131282486,
+          "node_id": "U_kgDOB9M2Ng",
+          "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/RetryYN",
+          "html_url": "https://github.com/RetryYN",
+          "followers_url": "https://api.github.com/users/RetryYN/followers",
+          "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+          "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+          "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+          "repos_url": "https://api.github.com/users/RetryYN/repos",
+          "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "created_at": "2026-10-06T22:34:44Z",
+        "updated_at": "2026-10-06T22:34:44Z",
+        "body": "## review04（independent review、PR #2646 親HARNESS-L2-054、HEAD 50e8292d6cd4156818940ea4904bdc9c1effb62f、base main 0acbed34b）：Major 3\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-04` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：11候補記録34行（-001）。後日の別revisionの採択はない。\n- **固定親**：5aa10031。file SHAは一致する。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。\n- **条件付きの戻し先**：0件。review03 M1のr05の「区分不明」の書き方は、消えた。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review03の解消の確認**（reviewerが差分で確かめた）：\n   - **M1**：解消した。3件の戻し先が、原因別の区分になった。r03の宛先も、HARNESS process/axis-sourceになった。\n   - **M2**：review03で挙げた項目には、c35〜c47の単独拒否CASEが置かれた。\n   - **R9、R10、R12**：解消した。c48〜c50（provider差の向き）とH2の見出しが置かれた。\n2. **Opusシンプルブラインド**：Major 3。今回は、次の3つの表を作らせた。Majorがあったので、Fableへは回していない。\n   - 項目×状態の表\n   - 出力要素の表\n   - 禁止列挙の照合表\n3. **reviewerの確認**：表の×のマスを、固定L2:1155、1156、1158、1160の原文と照らし合わせた。3件ともMajorと確定した。\n\n**reviewer側の誤り**：M1の前半（仮登録を起点にした要求採択・L3承認・assignmentの生成）は、review03 M2(a)で挙げ漏らしていた。review03 M2(a)は、「仮登録・候補本文」のうち仮登録についてWorker起動だけを挙げていた。固定L2:1155は「仮登録・候補本文は要求採択、L3承認、assignment・Worker起動を生成しない」と、4つの出力を並べている。\n\n### 照合の範囲の固定\n**太字の×**が、今回のMajorである。reviewerは次回、この3つの表の太字×と既存の照合項目で照合する。表の外から、新しい組み合わせを求めることはしない。\n\n**表1 項目×状態（固定L2:1156、1160、L11:869、872）**\n\n| 項目 | 欠落 | stale | conflict | 不明 |\n|---|---|---|---|---|\n| layer、drive、軸のmapping、軸のsource/revision、process phase、task boundary、oracle、比較対象、evidence適用範囲、contract digest、OS profile/lifecycle、OS assignment/response/receipt | ○（ブラインドの表のとおり） | ○ | ○ | ○または− |\n| **軸の適用範囲** | **×** | **×** | **×** | **×** |\n\n**表2 出力要素（固定L2:1158）**：○は「適用条件」以外の全要素（正常判定のc01、c03、c19と、単独CASE）である。\n- **適用条件**：(a)正常判定は**×**、(b)単独CASEも**×**である。\n\n**表3 禁止列挙**：○は下の2行以外の全行である。\n- **仮登録→要求採択／L3承認／assignment**（L2:1155）：**×／×／×**\n- **HARNESS handoff→実行許可**（L2:1160）：**×**（handoff→authorityはCASE-26で○）\n\n### Major\n**M1（仮登録とhandoffを起点にした生成に、単独の拒否CASEがない）**\n- **欠陥**：\n  - 仮登録だけを起点に、要求採択・L3承認・assignmentを出力する変異の単独拒否CASEがない。仮登録を起点にしたCASEは、c46（Worker起動）だけである。\n  - HARNESS handoffだけを起点に、「実行許可」を出す変異の単独拒否CASEもない。CASE-25が扱うのは「実行状態」で、c24・c26はdigestとOS receiptが起点である。\n  - 類型2である。\n- **守るべき行**：\n  - 固定L2-054（5aa10031 product-requirements.md:1155）「仮登録・候補本文は要求採択、L3承認、assignment・Worker起動を生成しない」\n  - 同1160行「HARNESS handoff…はauthorityや実行許可を発生させず」\n\n**M2（layer/driveの適用範囲と、handoff結果の「適用条件」が、照合されていない）**\n- **欠陥**：\n  - layer/driveの適用範囲が、欠落・stale・conflict・不明のどの場合にも、単独CASEがない。c07とroot-field-05が扱うのは、digestとtargetのscopeだけである。\n  - handoff結果を「適用条件に結ぶ」ことも、照合されていない。B0とc03の正常判定にも、単独CASEにもない。旧R7を繰り上げた。\n  - そのため、適用範囲を推定したhandoffが合格する（類型4）。\n- **守るべき行**：\n  - 固定L2-054（:1156）「`layer`または`drive`の意味対応、適用範囲、revisionが不明・欠落・conflict・staleなら…`unknown_or_defer`」\n  - 同1158行「上記入力のdigest・適用条件に結んで」\n\n**M3（FVの「型付きhandoffの候補条件」の閉じた列挙が、ほかの文書と食い違っている）**\n- **欠陥**：\n  - functional-verification.md（054節の「型付きhandoffの候補条件」）は、muster出力の列挙から「複数の場合はその全体集合」と「集合digest」を落としている。\n  - BR、NFR、BV、NVの列挙には、この2つがある（類型3）。\n- **守るべき行**：固定L2-054（:1158）「契約参照（複数の場合はその集合とdigest）」\n\n### 後で直す残余（承認を止めない）\n- **R3、R5、R6、R8、R11**：変わらない。\n- **R9、R10、R12**：解消した。\n- **R7**：M2へ繰り上げた。\n- **R13（driveを落とす単独CASE）**：drive軸を落とす単独CASEがない（c36はlayerだけ）。入力digestの照合で、間接的に覆われている。\n- **R14（証拠の種別ごとの分割）**：c29〜c34は、4種の証拠を同時に与える形である。証拠の種別ごとには分けていない。\n- **R15（BVの参照）**：BVの「証拠の非昇格」行が、c38〜c47を参照していない。\n- **R16（形式の注記）**：wire formatやprovider固有fieldを定義しないことに、単独CASEがない。\n\n### 次の手順\n- **M1**：次の4つの変異を、それぞれ単独のCASEとして拒否する。\n  - 仮登録→要求採択\n  - 仮登録→L3承認\n  - 仮登録→assignment\n  - HARNESS handoff→実行許可\n- **M2**：layer/driveの適用範囲の4状態（欠落、stale、conflict、不明）の単独CASEを置く。判定は`unknown_or_defer`とする。適用条件は、c03の正常判定で値を照合するか、単独CASEを置く。\n- **M3**：FVの列挙に、「複数の場合はその全体集合」と「集合digest」を加え、ほかの文書と一致させる。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+        "author_association": "OWNER",
+        "reactions": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026691451/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null,
+        "minimized": null
+      },
+      {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027177566",
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6027177566",
+        "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+        "id": 6027177566,
+        "node_id": "IC_kwDOTG8BRc8AAAABZz9uXg",
+        "user": {
+          "login": "RetryYN",
+          "id": 131282486,
+          "node_id": "U_kgDOB9M2Ng",
+          "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/RetryYN",
+          "html_url": "https://github.com/RetryYN",
+          "followers_url": "https://api.github.com/users/RetryYN/followers",
+          "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+          "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+          "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+          "repos_url": "https://api.github.com/users/RetryYN/repos",
+          "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "created_at": "2026-10-06T23:15:09Z",
+        "updated_at": "2026-10-06T23:15:09Z",
+        "body": "review04修正後の独立再レビューを依頼します。\n\nHEAD `2254c2458fc088e06561a5a10874744012f3a5ff`、base `03d9cd19dfb92dc7dda74c8cb50f85dc320c873c`、本文revision `3f8dd46b933cec2f1733d98e17cc30e046d6bb06`。review04 Major3修正12単独反例・162旧150/100raw/25pins、main047接続後全6親suffix不変、新baseで独立review/Fable再実施。Rootは変更本文/固定親を実読し、六実blob SHAと時点監査を検算しました。gov/diffおよび公開/Git全対象一致PASS（18 paths）。既公開の時点監査とreview履歴を保持。Draft、fixture未実行、未承認。同六本文の独立reviewとFable判断をお願いします。\n",
+        "author_association": "OWNER",
+        "reactions": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027177566/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null,
+        "minimized": null
+      },
+      {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027399367",
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6027399367",
+        "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+        "id": 6027399367,
+        "node_id": "IC_kwDOTG8BRc8AAAABZ0LQxw",
+        "user": {
+          "login": "RetryYN",
+          "id": 131282486,
+          "node_id": "U_kgDOB9M2Ng",
+          "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/RetryYN",
+          "html_url": "https://github.com/RetryYN",
+          "followers_url": "https://api.github.com/users/RetryYN/followers",
+          "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+          "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+          "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+          "repos_url": "https://api.github.com/users/RetryYN/repos",
+          "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "created_at": "2026-10-06T23:34:08Z",
+        "updated_at": "2026-10-06T23:34:08Z",
+        "body": "## review05（independent review、PR #2646 親HARNESS-L2-054、HEAD 2254c2458fc088e06561a5a10874744012f3a5ff、base main 03d9cd19d）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-05` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：11候補記録（po-decision-2026-09-29-11candidates.md）の34行が、`MPR-RC-HARNESS-L2-054-001`を採択している。`docs/governance/decisions/`に、054の別revisionを採択した記録はない。\n- **対象版**：固定親は`5aa100319361b0cc86edd3c51815ec777d55410a`（L2 1154–1162、L11 865–875）である。\n- **base整合**：merge-baseは依頼のbase（03d9cd19d）と一致し、削除行は0である。新baseから見た054の追加315行は、旧base（0acbed34b）に修正commit 6f1d726d9を足した場合の追加行と一致する。041節・047節はmainの文脈として入っているだけで、054の追加の意味は変わっていない。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review04の解消の確認**：照合はreview04で固定した3表の太字×のマスと、既存の照合項目に限った。\n   - **M1（仮登録・handoff起点の生成）**：解消した。c51〜c53（仮登録→要求採択／L3承認／assignment）とc54（handoff→実行許可）が、それぞれ1fieldだけを変える単独の拒否CASEとして置かれた。\n   - **M2（軸の適用範囲×4状態）**：解消した。c55〜c62が、layer/driveの軸別・状態別（欠落、stale、conflict、不明）に置かれた。判定はunknown_or_deferで、戻し先はHARNESS process/axis-sourceへ無条件である。\n   - **M3（出力の適用条件、FVの列挙）**：解消した。c03の正常判定が、適用条件（layer/driveの値、source revision、適用範囲）を入力sourceと項目ごとに照合するようになった。FVの集合と集合digestの列挙も直った。\n2. **Opusシンプルブラインド**：Major 0。3表の太字マスはすべて○だった。041節・047節とのID衝突もない。\n3. **Fableの判断**：「承認してよい」。Fableは、固定親とPO記録、6本文を自分で読んで照合した。\n4. **Opusによる敵対照合**：「Fableの判断を支持する」。次の点を照合したが、崩せなかった。\n   - 禁止列挙\n   - 項目×状態\n   - 適用条件\n   - L2の意味変更（047本文、条件付きA配置、各機構の責務）\n   - 041節・047節との相互作用\n5. **reviewerの結論**：委任の条件1（Opusのexact HEADでのMajor 0）と条件2（Fableの同一本文revisionでの判断）が、このHEADでそろった。\n\n### 6本文（このHEADのSHA-256）\n- business-verification `91bad8e4…`\n- functional-verification `51f1ba61…`\n- nfr-verification `5c1a1e2f…`\n- business-requirements `febb9035…`\n- functional-requirements `d0c741ba…`\n- nfr-grade `a78cd4ec…`\n\n### 後で直す残余（承認を止めない）\n- **R3、R5、R6、R8、R11、R13〜R16**：変わらない。\n- **R17（修飾語の差）**：layer×driveの修飾語が、文書によって違う。項目の集合は一致している。\n- **R18（分岐での適用条件）**：適用条件の正常照合は、musterの分岐（c03）だけにある。existing_role_sufficient（c01）とunknown_or_defer（c19）の分岐にはない。review04の表2は要素単位で固定したので、分岐単位の要求は表の外とする。\n- **R19（出力側の適用範囲）**：出力側の適用範囲に、単独CASEがない。c03で照合している。\n- **R20（staleの定義）**：c56とc60でのstaleの定義を、明記することを勧める。\n- **R21（未決項目の明示）**：固定L2:1159とL11:873にある「TeamDefinition相当の集約表現・layer/driveの厳密mappingは、未決のPO/L3設計項目」という表現が、6本文に明示されていない。中身は、厳密mappingを採択しないこと、未定義ならunknown/defer、必須artifactはPOへ、という各記述で保たれている。\n- **R22（OSのbudget/期限）**：「責務別差戻し」の列挙に、OSのbudget/期限がない。固定L2:1161の不成立行にもないため、表の外とする。\n- **R23（宛先の書き方）**：索引行r04-contract-digest-missingの宛先が「HARNESS contract/OS assignment boundary」となっていて、二重に読める。参照先のr02は、HARNESSへの無条件の返却である。\n- **R24（件数の基準）**：matrix countの「既存150 ID」は、PR内の前回revisionを基準にした書き方で、baseが基準ではない。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - 委任承認の判断記録。このexact HEADの6本文のbytesとSHAを固定したもの。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n",
+        "author_association": "OWNER",
+        "reactions": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027399367/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null,
+        "minimized": null
+      }
+    ]
+  },
+  "mailbox_inspect_separate_source": {
+    "path": "/tmp/root-pr2646-review05-inspect.json",
+    "bytes": 3433,
+    "sha256": "e351cccde89742ec495c0c57c1007776e92c4ab4336600b6f0015f2c2083d005",
+    "untrusted_data_only": true,
+    "authority_effect": "none",
+    "raw_json": {
+      "untrusted_data": {
+        "payload": {
+          "evidence_kind": "scaffold",
+          "authority_effect": "none",
+          "event_id": "RH-PR2646-HARNESS-STAGE3-PARENT054-05-RESPONSE",
+          "kind": "review_response",
+          "sender_runtime": "claude",
+          "sender_session": "66d9c527-e899-4091-b8bb-240e5cdce85e",
+          "receiver_runtime": "codex",
+          "receiver_session": "01a10157-79ad-72f3-b547-8aeb1034aec4",
+          "request": {
+            "schema": "scaffold-review-request.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "request_id": "RH-PR2646-HARNESS-STAGE3-PARENT054-05",
+            "repository": "RetryYN/HELIX-HARNESS",
+            "pr": 2646,
+            "base_sha": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+            "content_sha": "2254c2458fc088e06561a5a10874744012f3a5ff",
+            "author": "codex",
+            "reviewer": "claude",
+            "purpose": "review04修正後の独立reviewと同六本文Fable判断",
+            "scope": [
+              "review04 Major3修正12単独反例・162旧150/100raw/25pins、main047接続後全6親suffix不変、新baseで独立review/Fable再実施"
+            ],
+            "route": "vscode_gui_mailbox",
+            "references": [
+              {
+                "path": "AGENTS.md",
+                "kind": "project_rule",
+                "sha256": "386d30378d49b96c055d237ccaa88ed02f3e43359ccfe006e4fd9c96bf5a595c"
+              },
+              {
+                "path": "CLAUDE.md",
+                "kind": "project_context",
+                "sha256": "910635d193d29146e145b1543b8f1398e2b42bdf2bea412d57eddf88874f8d74"
+              },
+              {
+                "path": "docs/governance/new-generation-start-here.md",
+                "kind": "work_entry",
+                "sha256": "864274542beb009f331ebd7590a108c7c19cfde066c8552eba82fe1c3004b01f"
+              },
+              {
+                "path": "docs/governance/github-upstream-operating-model.md",
+                "kind": "operation_contract",
+                "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+              },
+              {
+                "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+                "kind": "decision_record",
+                "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+              },
+              {
+                "path": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+                "kind": "decision_record",
+                "sha256": "899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf"
+              },
+              {
+                "path": "docs/helix-os/L1-planning/system-intent.md",
+                "kind": "upstream_reference",
+                "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+              },
+              {
+                "path": "docs/governance/candidates/legacy-rule-derived-requirements.md",
+                "kind": "candidate_reference_only",
+                "sha256": "f647bbbcbe21ef775186760086decac511c6a7845f7575952eb7eb551dd55101"
+              },
+              {
+                "path": "scaffold/governance/index.md",
+                "kind": "scaffold_reference_only",
+                "sha256": "df813986485eab51022fbb472605b7bf1948c18d5b367881271d481fd6e4f818"
+              }
+            ],
+            "payload_sha256": "cb2c0c3c4f1c9838484cc910538297542a4e603bd0a27af6476283f2d2b8b2d5"
+          },
+          "response": {
+            "schema": "scaffold-review-response.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "request_id": "RH-PR2646-HARNESS-STAGE3-PARENT054-05",
+            "request_payload_sha256": "cb2c0c3c4f1c9838484cc910538297542a4e603bd0a27af6476283f2d2b8b2d5",
+            "base_sha": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+            "content_sha": "2254c2458fc088e06561a5a10874744012f3a5ff",
+            "reviewer": "claude",
+            "result": "no_findings",
+            "findings": [],
+            "unreviewed": []
+          }
+        },
+        "digest": "407222cf466d868af9dca5ab2f1767949e58cd3d719d6640c6235c65f07dd0c5",
+        "created": 1791329650.287606,
+        "expires": 1791333250.287606,
+        "status": "claimed",
+        "claim": {
+          "session": "01a10157-79ad-72f3-b547-8aeb1034aec4",
+          "at": 1791329650.940894,
+          "nonce": "980175ff68c74813abf4670092267258"
+        },
+        "ack": null
+      }
+    }
+  },
+  "decision_pin_checkpoint_source": {
+    "path": "/tmp/root-pr2646-review05-decision-pins.json",
+    "bytes": 1521,
+    "sha256": "5f1a6ef398366a37bbdeee9ca39ac4b01702da819196b90278c8617eb84dc1a6"
+  },
+  "prior_review04_postbody_audit_reference": {
+    "canonical_relative_path_from_decision": "docs/governance/audits/requirements-stage/harness054-review04-postbody-audit-2026-10-07.json",
+    "worktree_head": "2254c2458fc088e06561a5a10874744012f3a5ff",
+    "bytes": 1541862,
+    "sha256": "18d3d580e504ffea78032a67fe64f8db8022c038aa2219b84f2f5870bf445518",
+    "same_as_root_readonly_copy": true,
+    "old_literal_count": 100,
+    "old_source_consumer_pin_count": 25,
+    "prior_review_history_is_immutable": true,
+    "embedded_status_is_historical_candidate_text_preserved": true,
+    "summary_note": "旧100 CASE raw literal、25 source/consumer pins、fixed parentとPO span actual、旧review historyはこの既存auditを参照し、raw全量を新bundleに再複写しない。"
+  },
+  "review_history_scope": {
+    "formal_reviews_included": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "raw_residual_sections_preserved": true,
+    "missing_R_numbers_fabricated": false,
+    "semantic_reclassification_from_older_residuals": false,
+    "latest_formal_result": "review05 reports Major 0 and no unresolved blocker; residual R3/R5/R6/R8/R11/R13-R24 are carried verbatim as residuals, with no invented R-number for omitted numbers."
+  },
+  "candidate_limits": [
+    "This candidate does not independently review the content; it records formal review05 and its associated mailbox evidence.",
+    "The formal body says Major 0; the record does not invent a Minor 0 count.",
+    "Mailbox inspect is separate evidence with authority_effect none.",
+    "The exact-head condition3 check has not been run because the decision record is still only a /tmp candidate.",
+    "No fixture execution, requirement acceptance, implementation permission, release authority, or Issue closure is created.",
+    "Prior 25 source/consumer pins and 100 raw literals remain in the linked immutable review04 audit."
+  ]
+}
