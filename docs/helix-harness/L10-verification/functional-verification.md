@@ -1548,7 +1548,7 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 
 ### M5の当時の未分離範囲（r19で個別化）
 
-固定L2:913はAffected/Unaffected/Unknownを分け、L11:676はUX完了時のunknown applicability、証拠scope/revision違い、stale/missingを拒否しつつ候補形成を止めない。継承したfixtureには各UX軸のevidence missing/stale/unknown、walkthrough scope/revisionとUI軸のN/A拒否例があり、当時の入力では各軸のapplicability unknownとUX evidence scope/revision mismatchを全て独立変異にしていなかった。この旧fixtureの限界は、r19の21件（7軸それぞれのapplicability unknown、evidence scope mismatch、evidence revision mismatch）で個別に照合する。各CASEはCASE-039-05の正常baselineから一要素だけを変え、該当軸の`ux_verified`のみを拒否し、`implemented`と候補形成・設計開始を保持する。
+固定L2:913はAffected/Unaffected/Unknownを分け、L11:676はUX完了時のunknown applicability、証拠scope/revision違い、stale/missingを拒否しつつ候補形成を止めない。継承したfixtureには各UX軸のevidence missing/stale/unknown、walkthrough scope/revisionとUI軸のN/A拒否例があり、当時の入力では各軸のapplicability unknownとUX evidence scope/revision mismatchを全て独立変異にしていなかった。この旧fixtureの限界は、r19の21件（7軸それぞれのapplicability unknown、evidence scope mismatch、evidence revision mismatch）で個別に照合する。各CASEはCASE-039-05の正常baselineから一要素だけを変える。7件は該当軸の適用性をunknownへ変え、14件は該当軸のevidence scopeまたはrevision bindingだけを変える。いずれも当該scope/revisionの`ux_verified`主張だけを拒否し、`implemented`と候補形成・設計開始を保持する。
 
 ### ACとCASEの照合境界
 

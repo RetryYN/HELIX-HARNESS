@@ -69,7 +69,8 @@
       "before_sha256": "43e4c188068d8d857b2309a4cd64b0033b7ebcc952e229cc21ef9a6f436fd33d",
       "after_worktree_bytes": 271676,
       "after_worktree_sha256": "2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5",
-      "unchanged": false
+      "unchanged": false,
+      "previous_supplement_after_sha256": "2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5"
     },
     {
       "path": "docs/helix-harness/L3-requirements/business-requirements.md",
@@ -78,7 +79,8 @@
       "before_sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
       "after_worktree_bytes": 27827,
       "after_worktree_sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
-      "unchanged": true
+      "unchanged": true,
+      "previous_supplement_after_sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2"
     },
     {
       "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
@@ -87,16 +89,18 @@
       "before_sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
       "after_worktree_bytes": 60172,
       "after_worktree_sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
-      "unchanged": true
+      "unchanged": true,
+      "previous_supplement_after_sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d"
     },
     {
       "path": "docs/helix-harness/L10-verification/functional-verification.md",
       "before_revision": "9afad3c8b6016568f860f6f8e4faa0c82a48398a",
       "before_bytes": 1184060,
       "before_sha256": "61ac766ad331595dd25cf0fb4a90d63a3144a392aa51ba4798e22fc2cffb6777",
-      "after_worktree_bytes": 1182694,
-      "after_worktree_sha256": "1a426f004b3212dc10f8e15beff3e8e2f1fa9b8eeb1a04581380ef02198870e1",
-      "unchanged": false
+      "after_worktree_bytes": 1182856,
+      "after_worktree_sha256": "d1c55ca4e6b432ccdc941d8d9813c88e5f33476ef2c2d55aa0bfafe549b6726f",
+      "unchanged": false,
+      "previous_supplement_after_sha256": "1a426f004b3212dc10f8e15beff3e8e2f1fa9b8eeb1a04581380ef02198870e1"
     },
     {
       "path": "docs/helix-harness/L10-verification/business-verification.md",
@@ -105,7 +109,8 @@
       "before_sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
       "after_worktree_bytes": 26039,
       "after_worktree_sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
-      "unchanged": true
+      "unchanged": true,
+      "previous_supplement_after_sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad"
     },
     {
       "path": "docs/helix-harness/L10-verification/nfr-verification.md",
@@ -114,7 +119,8 @@
       "before_sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
       "after_worktree_bytes": 54341,
       "after_worktree_sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
-      "unchanged": true
+      "unchanged": true,
+      "previous_supplement_after_sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9"
     }
   ],
   "changed_spans": [
@@ -126,7 +132,8 @@
       "before_raw_lf_sha256": "32dd0bb9dc3cbfb2a11462b92bd8327db4f329f4bfed66c0f7f5da06e33352b9",
       "after_raw_lf_sha256": "453b274f27f24b9d38ca5fd6e5e9accf22c629fd808bcbafad5c1597e7ad3ff6",
       "before_span_bytes": 21325,
-      "after_span_bytes": 19705
+      "after_span_bytes": 19705,
+      "previous_supplement_after_raw_lf_sha256": "453b274f27f24b9d38ca5fd6e5e9accf22c629fd808bcbafad5c1597e7ad3ff6"
     },
     {
       "path": "docs/helix-harness/L10-verification/functional-verification.md",
@@ -134,9 +141,10 @@
       "end_line": 1555,
       "label": "M5当時残余の履歴化と164定義行の件数",
       "before_raw_lf_sha256": "74d49a59e96e37bce5c40dfe3f755e768c98dba55a62f510372a763b60c60a51",
-      "after_raw_lf_sha256": "f02bd70bd593626c563931a64dbd7cc6bd55e2697ff852ba4fadd9c0306e063c",
+      "after_raw_lf_sha256": "ad2e0c53180b81c0e8c9b9b9eac636df4fa9266d85022b28e0f51c348e88c3ae",
       "before_span_bytes": 1157,
-      "after_span_bytes": 1411
+      "after_span_bytes": 1573,
+      "previous_supplement_after_raw_lf_sha256": "f02bd70bd593626c563931a64dbd7cc6bd55e2697ff852ba4fadd9c0306e063c"
     },
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
@@ -146,7 +154,8 @@
       "before_raw_lf_sha256": "190f988652ccc8e5e506e0cacc2287cdd35a7f44873b37ba364be62a4a663f32",
       "after_raw_lf_sha256": "545a4a93537a68f020581ba64a17360e96eec65069769033877124c221da7a65",
       "before_span_bytes": 1022,
-      "after_span_bytes": 1007
+      "after_span_bytes": 1007,
+      "previous_supplement_after_raw_lf_sha256": "545a4a93537a68f020581ba64a17360e96eec65069769033877124c221da7a65"
     }
   ],
   "temporary_prior_memo": {
@@ -164,7 +173,8 @@
     "audit_json_validation": "passed (parsed with Python json)",
     "case_count_and_unique_id_check": true,
     "r19_axis_partition_check": true,
-    "no_old_runtime_or_CI": "confirmed not invoked"
+    "no_old_runtime_or_CI": "confirmed not invoked",
+    "root_recheck_wording": "corrected; 7 applicability cases / 14 evidence-binding cases; scope/revision ux_verified claim only"
   },
   "r19_partition": {
     "total_definitions": 21,
@@ -175,5 +185,11 @@
     "joined_axis_evidence_tokens_remaining": 0,
     "stale_review_phrases_remaining": [],
     "check_pass": true
+  },
+  "correction_history": {
+    "previous_unpublished_supplement_revision": "61a5ca67fb6f65d0e2c12de437f82831fb1d7406",
+    "previous_json_blob_sha256": "274a9b56c219065b610d2d013547d679d3a71a25443b34c3123e595e2cdcea8f",
+    "previous_md_blob_sha256": "997372607170d261fc8385d8a4fae4a78d47cc41f3e3bfef7c3dfc93725e557f",
+    "recheck": "Root found the former prose incorrectly generalized evidence binding mutation to all 21 cases; corrected split is 7 applicability-state mutations and 14 evidence-binding mutations. M5 now rejects the ux_verified claim for target scope/revision, not an axis-specific state."
   }
 }
