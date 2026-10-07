@@ -131,7 +131,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 
 - **対象AC**: `SECURITY-AC-009-01`
 - **固定L11受入oracle**：revoke、scope drift、credential漏洩、異常通信、runtime逸脱、unknownを投入すると、OSの新規割当停止、Workerの実行停止と途中成果物隔離、CONNECT通信停止、credential使用停止、artifact access停止の該当先へ伝わる。どれかの該当停止が確認できず成功扱いで継続したら不合格。unknownは列挙triggerの安全上の影響や不明な外部副作用に関するものとし、無関係な一般文書の意味unknownを全操作停止へ広げない。operation/project/worker/credential/connection/artifactの該当identityに束縛して伝播し、recipient別の受領・適用・未達・未観測を区別する。
-- **fixture/oracle**: SECURITYはpolicy/triggerだけを返し、OS/Worker/CONNECT/credential/artifact stateを代行変更しない。各recipientの受領/適用/未達/未観測を独立に変異し、混同を拒否する。復旧可能な前状態identityを記録して隔離し、復旧不能をsuccessにしない。
+- **fixture/oracle**: revoke、scope drift、credential漏洩、異常通信、runtime逸脱、unknownを各々独立した入力にする。各triggerごとに、そのscopeに該当するOS/Worker/CONNECT/credential/artifact recipientを列挙し、全該当recipientで受領・適用を個別確認する。各trigger×該当recipientの組ごとに未達または未観測のnegativeを設け、該当recipientの停止未確認をsuccess扱いして対象operationを継続したら不合格とする。別triggerの成功結果でこのnegativeを満たした扱いにしない。SECURITYはpolicy/triggerだけを返し、OS/Worker/CONNECT/credential/artifact stateを代行変更しない。各recipientの受領/適用/未達/未観測を独立に変異し、混同を拒否する。復旧可能な前状態identityを記録して隔離し、復旧不能をsuccessにしない。
 - **未見の正常例**：新しいrevoke triggerでも、そのscopeに該当するrecipientを列挙し、受領・適用を個別確認する。無関係scopeを停止しない。
 - **negative/boundary oracle**：該当recipientの未達/未観測をsuccess扱いし対象operationを継続したら不合格。無関係な通常操作まで停止することも不合格。伝播相関identityを混同しない。
 - **owner oracle・失敗時の戻し先**：L2-003/005/006/007/008、OS assignment、Worker実行環境、CONNECT、artifact access、INFRASTRUCTURE観測。 失敗時は、recipient未応答・未観測・unknownの間は対象operation/新規割当てを止める。authority/policy意味差はL1-009へ、OS/Worker/CONNECT/INFRAのenforcement差はその接続先L1へ戻す。
@@ -157,9 +157,9 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 ### SECURITY-CASE-012-01 — supply-chain provenance
 
 - **対象AC**: `SECURITY-AC-012-01`
-- **固定L11受入oracle**：package/container/GitHub repo/MCP/plugin/Skill/Agent/model/binaryでsource、producer、version、digest、dependency、permission、network、known risk、update delta、rollbackを辿れる。不明な供給元/実行能力をtrustedへ昇格したら不合格。
+- **固定L11受入oracle**：package/container/GitHub repo/MCP/plugin/Skill/Agent package/model/binaryでsource、producer、version、digest、dependency、permission、network、known risk、update delta、rollbackを辿れる。不明な供給元/実行能力をtrustedへ昇格したら不合格。Agent packageはL2-010のAgent definitionとは別の対象表記である。
 - **fixture/oracle**: 対象種別ごとにprovenance fieldを確認し、不明項目はsource/producer/version/digest/dependency/permission/network/risk/update/rollbackのfield名とunknown値を結果に列挙する。producerだけを不一致にするfixtureも追加し、supplier/producer/permission unknown、dependency mismatch、rollback欠落を投入してunknown/reject。
-- **未見の正常例**：新しいpackage/repository sourceでもproducer、version、digest、dependency、permission、network、risk/update/rollbackの既存fieldが追跡可能なら同じprovenance判定を返す。
+- **未見の正常例**：新しいpackage/repository sourceでもproducer、version、digest、dependency、permission、network、risk/update/rollbackの既存fieldが追跡可能なら同じprovenance判定を返す。Agent packageを含むpackage対象は同じ既存fieldで扱い、L2-010のAgent definitionと同一対象に併合しない。
 - **negative/boundary oracle**：supplier/source/producer/version/digest/dependency/permission/network/risk/update/rollbackの不明・不一致をtrustedとしたら不合格。特定scanner/registry/providerなしを理由に拒否しない。1.0のprovenance traceから1.x Core Asset Guard/sink protectionの完成を主張しない。
 - **owner oracle・失敗時の戻し先**：L2-010更新candidateとL2-013artifact identity。特定scanner/registry/providerを新規必須化しない。 失敗時は、欠落または不一致はunknown/reject。対象範囲の変更はL1-012へ戻す。
 
