@@ -162,3 +162,15 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 | L2親 | business requirement | 理由 |
 |---|---|---|
 | `HARNESS-L2-043` | 独立したbusiness requirementを導出しない | 例coverageは選択scopeのverification adequacyであり、別の事業成果や価値閾値を追加しない。 |
+
+## Stage 3 親046の業務要件
+
+起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
+
+**固定親とPO根拠**：親L2は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1025–1035`（全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、対象span SHA-256 `47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e`）。対L11は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:759–771`（全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f`）。PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:51`、file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、row SHA-256 `60fb90a139b313760ad5a259e2362e3c406e071aa1dfba8ed6d21d0cb9fb55a4`。POは`HARNESS-L2-046`を採択し、registrationは`MPR-RC-HARNESS-L2-046-001`。隣接row 52の`HARNESS-L2-047`は046へ混ぜない。
+
+**旧sourceの処置**：旧起点はv1.3 `LEGACY-ASSET-02319C2481B9E01698D5`。§4.4 L259はFull Vのsystem workflow/L1–L5段階freezeと12 workflow条件の検証（atom S1）およびProduction Scrumのslice delta先行・Scrum Reverse/backfill時点・SR4前release-ready不可（独立atom S2）を別条件として記述する。§10 L647は両者を要約する別atomで、第三の独立条件に数えない。6fabd125 baselineの同文companionも別revisionとして保持する。旧consumerのUWJ-FR-015とL4 boundaryは確認範囲に限定し、consumer全体網羅は主張しない。 意味条件は現行Full V／Scrum選択scopeへ再導出し、旧v1.3 runtime、ticket graph、workflow instance/schemaは置換する。ScrumはFull Vから推論せず、L2-002/003に沿った選択styleまたは許可された合成入力から判定する。
+
+**BR-HARNESS-L3-046-01 — 選択styleに応じたworkflow evidenceの扱いを保つ**：各workflow scopeの選択styleとtarget revisionに沿って、適用する全体workflow・設計freeze・V-pair検証を確認できる。Full Vはsystem全体workflowのL1–L5段階freezeと12条件を扱い、Scrum slice/backfill/SR4条件を課さない。Production Scrumまたは許可合成内Scrumは、該当するslice delta・既存trigger・backfill・SR4状態をscope/revisionへ結び付ける。checkpoint receiptの適用は既存triggerに従う一方、Production Scrumまたは許可合成内でScrumを適用するscopeでは、SR4 receiptがmissing/unknownならtrigger成立有無にかかわらずrelease-readyと主張できない。これは事業成果・市場投入判断・release許可を追加しない。
+
+**Business境界**：方式選択は既存L2-002/003とPOの方式定義に従う。候補出力は方式選択、L2合意、要件承認、OS記録、release decisionを変更しない。Full V／Scrum双方に当てはまる成果値、追加gate、工程数は作らない。

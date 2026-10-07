@@ -236,3 +236,19 @@ NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の�
 | NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
 |---|---|---|---|
 | `HARNESS-L2-043` | 独立した数値NFRを導出しない | 固定L2-043はrule/branch/risk coverageを意味で判定し、正例・境界負例を各適用rule/branchに対応させる。 | case数の総量、coverage率の新閾値、全組合せ数を追加しない。未選択scopeを分母に加えない。 |
+
+## Stage 3 親046の非機能要件候補
+
+起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
+
+**固定親とPO根拠**：親L2は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1025–1035`（全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、対象span SHA-256 `47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e`）。対L11は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:759–771`（全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f`）。PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:51`、file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、row SHA-256 `60fb90a139b313760ad5a259e2362e3c406e071aa1dfba8ed6d21d0cb9fb55a4`。POは`HARNESS-L2-046`を採択し、registrationは`MPR-RC-HARNESS-L2-046-001`。隣接row 52の`HARNESS-L2-047`は046へ混ぜない。
+
+**旧sourceの処置**：旧起点はv1.3 `LEGACY-ASSET-02319C2481B9E01698D5`。§4.4 L259はFull Vのsystem workflow/L1–L5段階freezeと12 workflow条件の検証（atom S1）およびProduction Scrumのslice delta先行・Scrum Reverse/backfill時点・SR4前release-ready不可（独立atom S2）を別条件として記述する。§10 L647は両者を要約する別atomで、第三の独立条件に数えない。6fabd125 baselineの同文companionも別revisionとして保持する。旧consumerのUWJ-FR-015とL4 boundaryは確認範囲に限定し、consumer全体網羅は主張しない。 固定条件の範囲を測る候補を置く。旧runtime、SLA、固定作業時間、追加retry数は再利用しない。
+
+| 候補ID | 測る性質 | 根拠付き候補判定 | 測定単位 |
+|---|---|---|---|
+| `NFR-C-HARNESS-046-01` | Full V workflow coverage | 選択scopeの12固定条件をすべて適用状態または理由付きunknownとして列挙し、未提示条件をpassにしない。条件数12は固定L2/L11の列挙そのもの。 | 同一workflow revisionで、各12条件のapplicability、対応L1–L5 freeze、V-pair/oracle/evidenceを合成fixtureで照合。 |
+| `NFR-C-HARNESS-046-02` | Full V freeze trace | 適用するL1–L5設計層の段階freezeが同じsystem workflow revisionと結ばれる。新しい時間・割合閾値なし。 | 適用layerごとにidentity/revision/freeze evidenceとV-pair traceを照合。 |
+| `NFR-C-HARNESS-046-03` | Conditional Scrum backfill / SR4 release readiness | Scrum delta/backfillとSR0–SR4 checkpoint receiptの適用は、明示されたProduction Scrum／許可合成scopeおよび既存triggerに従う。Production Scrumが選択・合成適用されるscopeのSR4 receipt missing/unknownはtrigger成立有無にかかわらずrelease-ready不可とする。 | style/scope/revision、existing trigger、delta、backfill対象、checkpoint receipt適用条件、SR4 receiptの有無を別々に比較する。Full Vに適用するScrum-only condition数は0。 |
+
+**限界**：時間、成功率、SLA、release cadence等の技術値は固定sourceにないため作らない。これは候補fixture設計であり測定結果や運転実績ではない。

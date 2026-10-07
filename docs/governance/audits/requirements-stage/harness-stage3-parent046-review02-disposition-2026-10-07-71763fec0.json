@@ -1,0 +1,814 @@
+{
+  "body_revision": "71763fec0c6d3491ba098fdb82263c750b7fb0f5",
+  "base": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+  "review02_candidate_full_raw": {
+    "artifact_type": "HARNESS-046 review02 M1/M2 candidate-only exact correction record",
+    "status": "/tmp-only proposal; canonical/worktree unchanged; no approval, independent review closure, fixture execution, or merge claim",
+    "target": {
+      "pr": 2643,
+      "comment_id": 6023372160,
+      "head": "0c4287f9d2b8f52612e634b8ee33f194f1170d2b",
+      "base": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "pre_review01_head": "b9bd5d2fff5e42024cefbb5daf722a383dd6a9d5",
+      "body_revision": "c50b1c04a4ff7483312f74e0ae6103980e812c2a"
+    },
+    "scope": "Review02 M1, M2, and the same-ID r12-scrum-normal expectation disagreement (R9) directly relevant to the M1 normal/contrast fixture. No other R/X disposition.",
+    "formal_review_raw": [
+      {
+        "id": 6023160374,
+        "body": "046の独立reviewとFable判断依頼です。base `3c3c512c09320c0494904602b23e544a81206eed`、HEAD `b9bd5d2fff5e42024cefbb5daf722a383dd6a9d5`、body `16f1dbdcc13f0fc73f7974821edfbb0a91c009bb`。固定318 L2/L11とPO51、旧48 raw literal/全IDを保持した66 CASE、Full V三単一出力拒否とScrum scope分離、cause別の固定責務区分返却を対本文へ記録しました。authoring auditに六SHA/旧source/consumer/revision pinsを保存。govcheck、diffcheck、固定SHA/prefix、public8照合PASS。未実行設計、Draft。mailbox RH-PR2643-HARNESS-STAGE3-PARENT046-01 に配送済み。\n",
+        "utf8_bytes": 614,
+        "sha256": "dfc7e7da04cc540049c899e790610c94619f87c5d097394e78c1b44790f6f406"
+      },
+      {
+        "id": 6023372160,
+        "body": "## review02（independent review、PR #2643 親HARNESS-L2-046、HEAD 0c4287f9d2b8f52612e634b8ee33f194f1170d2b、base main ceda1c53b）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023368215（`RH-PR2643-HARNESS-STAGE3-PARENT046-02`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録の51行（`-001`）だけで、後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件だった。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - **`git diff --check`は失敗する**。今回追加した`docs/governance/audits/requirements-stage/harness-stage3-parent046-review01-disposition-2026-10-07-c50b1c04a.md:38`の末尾に、空行がある（X1）。\n\n### 照合の結果\n- **review01 M1**（同定できないと返却しない経路）：解消した。共通規定、FR-03、AC-03に、「identityの特定有無にかかわらず返す」と明記されている。\n- **review01 R1**（trigger不成立のScrum scopeでSR4がない場合）：明示された。ただし範囲が狭い（下のM1）。\n- **Opusのブラインド照合**：Majorの候補を2件挙げた。reviewerが固定親の原文と本文で確かめ、2件ともMajorとした。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（SR4欠落時にrelease-readyにしない規則が「Production Scrum scope」だけに書かれ、許可合成でScrumを適用する部分が外れている）**\n- **欠陥**：次の箇所は、「trigger成立有無にかかわらず、SR4 receiptがmissing/unknownならrelease-readyにしない」という規則を、Production Scrum scopeだけに書いている。\n  - `FR-HARNESS-L3-046-02`の後半\n  - `BR-HARNESS-L3-046-01`：「Production Scrumまたは許可合成内Scrumは…」と並べた直後に、「一方、Production Scrum scopeで…」と範囲を狭めている。\n  - `NFR-C-HARNESS-046-03`、`CASE-HARNESS-L10-NFR-046-03`\n  - 単独変異の`CASE-HARNESS-L10-046-r12-scrum-sr4-missing`：baselineが「Production Scrum B0」に限られている。\n- **これまでとの関係**：review01のR1で、reviewerはこの規則を明示するよう求めた。その結果、範囲が固定親より狭い形で書かれた。\n- **守るべき行**：\n  - L2-046（318ec4a product-requirements.md:1034「Production Scrumが選択・合成適用されるscopeでbackfill対象・時点・SR4 receiptが不明／欠落している場合は…release-readyと主張できない」、:1032）\n  - L11-046（product-acceptance.md:765）\n\n**M2（workflow instanceの生成を拒否するfixtureがない）**\n- **欠陥**：\n  - authorityの単独拒否fixtureは、`CASE-HARNESS-L10-046-r12-refuse-*`の7件（採択、要求合意、要件承認、OS ticket発行、実行結果、release許可、利用者受入）である。workflow instanceを生成する変異を拒否するfixtureはない。\n  - `FR-HARNESS-L3-046-04`と`AC-HARNESS-L3-046-04`も、生成しない対象にworkflow instanceを挙げていない。「OSはticket/workflow instance/state/runtimeの運転を所有する」と書くだけである。\n- **守るべき行**：\n  - L2-046（product-requirements.md:1033「OSはticket/workflow instanceの生成・記録・運転を担い、本候補はそれらを生成しない」）\n  - L11-046（product-acceptance.md:771「OS ticket、workflow instance、保存state、runtimeをこの候補の成果とせず」）\n\n### 後で直す残余（承認を止めない）\n- **R1**：上のM1へ移した。\n- **R2〜R7**：review01から変わらない。\n- **R8（ACの割当）**：root-r02-unseen-valid、r02-slice-only、r02-other-revision-sr4、r02-general-v-pair、root-r02-scope-extrapolation、046-05/07/08/11/12が、authorityの拒否だけを扱うAC-04に割り当てられている。r10-*はAC-01、r12-fullv-condition-missingはAC-03に割り当てられていて、そろっていない。\n- **R9（期待値のずれ）**：同じCASE ID `r12-scrum-normal`の期待値が、ファイルの間でずれている。business側はtrigger成立と不成立を対にした入力、functional側は成立したtriggerだけを定義している。\n- **R10（戻し先の表現）**：CASE-046-09の戻し先「既存OS boundary」は、L11:771の2区分にない表現である。\n- **R11（区別の明記）**：SR4 receiptの欠落を004/022へ返す行と、L2:1034の「SR0〜SR4/checkpointの適用条件の不明」は002/003へ返すという規定との区別が、本文に書かれていない。\n- **X1**：上の`git diff --check`の失敗。\n\n### 次の手順\n- M1を直す。SR4欠落時の規則の範囲を、固定親のとおり「Production Scrumが選択・合成適用されるscope」にそろえ、合成のfixtureを加える。\n- M2を直す。workflow instanceの生成を、FR-04とAC-04に加え、単独の拒否fixtureを加える。\n- X1を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+        "utf8_bytes": 5233,
+        "sha256": "4f78b408e4a8d9410e2f83c6016e286f5ff498b3c377afebb95b73fa8a2da9c5"
+      }
+    ],
+    "formal_R1_R11_raw_fragments": [
+      {
+        "ids": [
+          "R1"
+        ],
+        "raw_fragment": "- **R1**：上のM1へ移した。",
+        "sha256": "df1682abcd0c669da827c8930d83caa5f69e59ab305018556c50d2249e623605",
+        "formal_comment_id": 6023372160
+      },
+      {
+        "ids": [
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7"
+        ],
+        "raw_fragment": "- **R2〜R7**：review01から変わらない。",
+        "sha256": "042ab53acd22534db338e4a8531a921f8d81ef9845e792a4b21a774160098b38",
+        "formal_comment_id": 6023372160
+      },
+      {
+        "ids": [
+          "R8"
+        ],
+        "raw_fragment": "- **R8（ACの割当）**：root-r02-unseen-valid、r02-slice-only、r02-other-revision-sr4、r02-general-v-pair、root-r02-scope-extrapolation、046-05/07/08/11/12が、authorityの拒否だけを扱うAC-04に割り当てられている。r10-*はAC-01、r12-fullv-condition-missingはAC-03に割り当てられていて、そろっていない。",
+        "sha256": "6d90e6ec6baaa9f06c8b1ff361b0a8fbbe7e1ac9769835da1ad92ef72634f0d1",
+        "formal_comment_id": 6023372160
+      },
+      {
+        "ids": [
+          "R9"
+        ],
+        "raw_fragment": "- **R9（期待値のずれ）**：同じCASE ID `r12-scrum-normal`の期待値が、ファイルの間でずれている。business側はtrigger成立と不成立を対にした入力、functional側は成立したtriggerだけを定義している。",
+        "sha256": "278a30715f150d3dcf4cd2c5bfdc821f063e129b6e28175a723cfc022dd476f3",
+        "formal_comment_id": 6023372160
+      },
+      {
+        "ids": [
+          "R10"
+        ],
+        "raw_fragment": "- **R10（戻し先の表現）**：CASE-046-09の戻し先「既存OS boundary」は、L11:771の2区分にない表現である。",
+        "sha256": "1a9e372db0200429e4f2741bd69407bc242dc1779c4d592f098e15f340a86baa",
+        "formal_comment_id": 6023372160
+      },
+      {
+        "ids": [
+          "R11"
+        ],
+        "raw_fragment": "- **R11（区別の明記）**：SR4 receiptの欠落を004/022へ返す行と、L2:1034の「SR0〜SR4/checkpointの適用条件の不明」は002/003へ返すという規定との区別が、本文に書かれていない。",
+        "sha256": "d9b7317077e28e0a3ab214a694d7e4f5517619bed89622a23c2eb8b59bd761f7",
+        "formal_comment_id": 6023372160
+      }
+    ],
+    "fixed_parent_pins": [
+      {
+        "label": "L2:1032-1034",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "physical_lines": [
+          1032,
+          1034
+        ],
+        "file_bytes": 254934,
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "span_bytes": 1954,
+        "span_raw_lf_sha256": "068ef99654e189a55a65da946264b0c3fc9c873e6b205a0a130a7e2a2fbdbf3c",
+        "literal_raw": "- **Production Scrumのdeltaとbackfill**：Production Scrumを選択したscope、または許可された方式合成でScrumを適用する部分に限りslice deltaの先行を許す。該当するScrum進行では、現行L2-002/003のtriggerに従い、sprint review時またはrelease合流前にScrum Reverseでsystem workflowと該当L1〜L5設計資産へbackfillし、旧sourceが要求するSR4 pair-freezeなしにrelease-readyとしない。選択style、方式の定義・合成許可、trigger条件を本候補は変更せず、旧ticketや旧runtimeの形も再導入しない。\n- **依存区分と境界**：全scopeで常時必須は選択style、対象system workflow revision、当該styleで適用する層・設計資産と対応V-pair。Full VではFull V段落のscopeと列挙条件が適用される。Production Scrumが選択・合成適用されるscopeに限り、Scrum slice delta、backfill対象と時点、既存trigger/checkpointおよびSR4状態が条件付きで必須となる。特定操作時のみ必須はworkflowまたはslice coverageを照合する操作。選択した入力元に応じて必須は適用するrequirement、design、transition、oracleのsource identity/revision。参照資料のみは旧workflow model、schema、runtime。OSはticket/workflow instanceの生成・記録・運転を担い、本候補はそれらを生成しない。\n- **適合・不明時**：Full V scopeではsystem workflowまたは列挙条件の適用・検証関係が不明ならcoverage未完またはunknownとするが、Scrumのslice/backfill/SR4条件を適用しない。Production Scrumが選択・合成適用されるscopeでbackfill対象・時点・SR4 receiptが不明／欠落している場合はScrum scopeのcoverage未完またはunknownとし、当該scopeをrelease-readyと主張できない。既存のSR0〜SR4/checkpointの適用条件に不明があればHARNESS-L2-002/003へ返す。\n"
+      },
+      {
+        "label": "L11:765,767,771",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "physical_lines": [
+          765,
+          771
+        ],
+        "file_bytes": 172806,
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "span_bytes": 2233,
+        "span_raw_lf_sha256": "4c63ee770ced2ba75d911b38e6ee3d5629543cb43d85bf93343e28d943503399",
+        "literal_raw": "**Production Scrumを含むscopeの正常例**：Production Scrumを選択したscope、または2026-09-25 PO判断に基づき許可された方式合成のうちL2-002/003でScrumを適用する部分に、system workflowから切り出したslice deltaを先行適用する。既存triggerに従い、sprint review時またはrelease合流前にScrum Reverseがsystem workflowと該当L1〜L5設計資産へbackfillし、SR4 pair-freezeを得たScrum scopeだけをrelease-ready候補にできることを確認する。SR0〜SR4を要する既存checkpoint triggerが成立するscopeでは各段階とreceiptを別々に確認し、SR4 receiptが欠けるScrum scopeをrelease-readyとしない。方式定義・合成許可、L3までの共通工程とtrigger条件は変更しない。\n\n**誤りを含む例**：Full V scopeで適用するL1〜L5層の段階的freezeを欠く、system workflowのtransition等の適用条件を未検証のまま全体完了とする例は不成立またはunknownにする。Full VにScrum slice deltaやSR4 receiptがないことだけを理由に不成立とする判定は過剰適用であり、認めない。Production Scrumを選択・合成適用するscopeでは、slice deltaをsystem workflowへ戻さないままsprint reviewまたはrelease合流を進める、該当L1〜L5設計資産のbackfillを欠く、または必要なSR4 receiptなしにrelease-readyとする例を不成立またはunknownにする。slice単体の成功、一般的なV-pair一覧、別revisionのSR4 receiptでScrum scopeの不足を相殺しない。\n\n**未見例**：作成側に伏せた追加transition、exception、または新しいslice deltaを与え、対象system workflowとbackfillのcoverageを再照合する。入力にoracle・適用性・source revisionがない範囲はunknown／未評価を維持し、別scopeや別revisionへ結果を外挿しない。\n\n**戻し先と境界**：workflow semanticsまたはstyle適用条件の不足はHARNESS-L2-002/003、検証義務・pair oracleの不足はHARNESS-L2-004/022へ戻す。OS ticket、workflow instance、保存state、runtimeをこの候補の成果とせず、L11例は利用者受入の実行結果を生成しない。\n"
+      },
+      {
+        "label": "L2:1032",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 1032,
+        "raw_bytes": 598,
+        "raw_lf_sha256": "c2ec53f7befc075e3eacd8ef1b891ddbac6b3e89c995a09e57b66318b8799dcd",
+        "literal_raw": "- **Production Scrumのdeltaとbackfill**：Production Scrumを選択したscope、または許可された方式合成でScrumを適用する部分に限りslice deltaの先行を許す。該当するScrum進行では、現行L2-002/003のtriggerに従い、sprint review時またはrelease合流前にScrum Reverseでsystem workflowと該当L1〜L5設計資産へbackfillし、旧sourceが要求するSR4 pair-freezeなしにrelease-readyとしない。選択style、方式の定義・合成許可、trigger条件を本候補は変更せず、旧ticketや旧runtimeの形も再導入しない。\n"
+      },
+      {
+        "label": "L2:1033",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 1033,
+        "raw_bytes": 805,
+        "raw_lf_sha256": "e6237560e738068c1aeec68607730522b4775587b5842646315e16cb29f480b8",
+        "literal_raw": "- **依存区分と境界**：全scopeで常時必須は選択style、対象system workflow revision、当該styleで適用する層・設計資産と対応V-pair。Full VではFull V段落のscopeと列挙条件が適用される。Production Scrumが選択・合成適用されるscopeに限り、Scrum slice delta、backfill対象と時点、既存trigger/checkpointおよびSR4状態が条件付きで必須となる。特定操作時のみ必須はworkflowまたはslice coverageを照合する操作。選択した入力元に応じて必須は適用するrequirement、design、transition、oracleのsource identity/revision。参照資料のみは旧workflow model、schema、runtime。OSはticket/workflow instanceの生成・記録・運転を担い、本候補はそれらを生成しない。\n"
+      },
+      {
+        "label": "L2:1034",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 1034,
+        "raw_bytes": 551,
+        "raw_lf_sha256": "971ddcb4d1f911382e0e5d5f72e04f68fb33386b503f729af12df9dc68d0280f",
+        "literal_raw": "- **適合・不明時**：Full V scopeではsystem workflowまたは列挙条件の適用・検証関係が不明ならcoverage未完またはunknownとするが、Scrumのslice/backfill/SR4条件を適用しない。Production Scrumが選択・合成適用されるscopeでbackfill対象・時点・SR4 receiptが不明／欠落している場合はScrum scopeのcoverage未完またはunknownとし、当該scopeをrelease-readyと主張できない。既存のSR0〜SR4/checkpointの適用条件に不明があればHARNESS-L2-002/003へ返す。\n"
+      },
+      {
+        "label": "L11:765",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "line": 765,
+        "raw_bytes": 794,
+        "raw_lf_sha256": "3af60c9bf69606017e886778c316e5476cb714328dd1f7ad96d4dd702fec0374",
+        "literal_raw": "**Production Scrumを含むscopeの正常例**：Production Scrumを選択したscope、または2026-09-25 PO判断に基づき許可された方式合成のうちL2-002/003でScrumを適用する部分に、system workflowから切り出したslice deltaを先行適用する。既存triggerに従い、sprint review時またはrelease合流前にScrum Reverseがsystem workflowと該当L1〜L5設計資産へbackfillし、SR4 pair-freezeを得たScrum scopeだけをrelease-ready候補にできることを確認する。SR0〜SR4を要する既存checkpoint triggerが成立するscopeでは各段階とreceiptを別々に確認し、SR4 receiptが欠けるScrum scopeをrelease-readyとしない。方式定義・合成許可、L3までの共通工程とtrigger条件は変更しない。\n"
+      },
+      {
+        "label": "L11:767",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "line": 767,
+        "raw_bytes": 793,
+        "raw_lf_sha256": "3be3425613bdff6faea3fe5bb45c5890559b878dbe6c4ac94422273c2fe4d7a0",
+        "literal_raw": "**誤りを含む例**：Full V scopeで適用するL1〜L5層の段階的freezeを欠く、system workflowのtransition等の適用条件を未検証のまま全体完了とする例は不成立またはunknownにする。Full VにScrum slice deltaやSR4 receiptがないことだけを理由に不成立とする判定は過剰適用であり、認めない。Production Scrumを選択・合成適用するscopeでは、slice deltaをsystem workflowへ戻さないままsprint reviewまたはrelease合流を進める、該当L1〜L5設計資産のbackfillを欠く、または必要なSR4 receiptなしにrelease-readyとする例を不成立またはunknownにする。slice単体の成功、一般的なV-pair一覧、別revisionのSR4 receiptでScrum scopeの不足を相殺しない。\n"
+      },
+      {
+        "label": "L11:771",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "line": 771,
+        "raw_bytes": 320,
+        "raw_lf_sha256": "94075306c100c42c8d784a42faeefa6a1bd1d86c92d17776bc83d9a08cc681f3",
+        "literal_raw": "**戻し先と境界**：workflow semanticsまたはstyle適用条件の不足はHARNESS-L2-002/003、検証義務・pair oracleの不足はHARNESS-L2-004/022へ戻す。OS ticket、workflow instance、保存state、runtimeをこの候補の成果とせず、L11例は利用者受入の実行結果を生成しない。\n"
+      }
+    ],
+    "current_six_body_pins_at_HEAD": [
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "bytes": 16646,
+        "sha256": "730fa3ca94c1c20b6850c58084a9e3900950addeb008ee84c9de3583f02edc16"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "bytes": 211736,
+        "sha256": "324a1ea5a2d3fd2154af292a842132b5750052a731088694bbe7059ad9e268c1"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "bytes": 46612,
+        "sha256": "868886f3711e67c22ba1ba6c9de520f533204bc25f2fcb847c64a0ccd28bf47c"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "bytes": 12760,
+        "sha256": "da7e3ec44ba7d04bab910a0e166c4d9fe329a1956e6a15a7eb772e82b27facd9"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "bytes": 674884,
+        "sha256": "cf2358a50397d43d96c06de54b98ebb31c5f8cb49fda4762b57cec60e9b24bd9"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "bytes": 40340,
+        "sha256": "d54c2cd3dfddef956fb32c03820cf91a497b76d09362fdf4b1c83263f3d58f48"
+      }
+    ],
+    "prior_review01_audit_immutable": {
+      "path": "docs/governance/audits/requirements-stage/harness-stage3-parent046-review01-disposition-2026-10-07-c50b1c04a.md",
+      "revision": "0c4287f9d2b8f52612e634b8ee33f194f1170d2b",
+      "raw_bytes": 3767,
+      "raw_sha256": "4c9e3eaee9751bd129c40dad60b7a2ced8f2dc30fed8764c21d63d2d087a399e",
+      "raw_tail_hex": "657730312d706f7374626f64792d617574686f72696e672d61756469742d323032362d31302d30372e6a736f6e600a0a",
+      "raw_tail_repr": "b'\\xae\\x9f\\xe8\\xa1\\x8c\\xe3\\x80\\x81consumer\\xe5\\x85\\xa8\\xe4\\xbd\\x93\\xe3\\x81\\xae\\xe7\\xb6\\xb2\\xe7\\xbe\\x85\\xe6\\x80\\xa7\\xe3\\x80\\x82\\n\\nJSON\\xe5\\x80\\x99\\xe8\\xa3\\x9c: `/tmp/harness046-review01-postbody-authoring-audit-2026-10-07.json`\\n\\n'",
+      "preserve_as_is": true,
+      "formal_exception_request_for_new_immutable_audit": "Retain the existing review01 audit byte-for-byte, including its final empty line. In the new time-specific audit, record that review02 observed the final empty line and requested formal exception/acceptance for preserving this historical raw artifact; do not describe it as corrected or silently normalize it."
+    },
+    "old_48_case_raw_inventory": {
+      "source_audit_path": "/tmp/harness046-review01-postbody-authoring-audit-2026-10-07.json",
+      "source_audit_sha256": "1a0a5b773e0d5cabbc59451e6b995d4b1a1d657c2f563f054ad4808e6b4c90e3",
+      "raw_inventory": {
+        "revision": "3fd20391",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "full_sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+        "raw_case_count": 48,
+        "all_raw_literals_rechecked_in_source": true,
+        "id_count": 48,
+        "ids": [
+          "CASE-HARNESS-L10-046-01",
+          "CASE-HARNESS-L10-046-02",
+          "CASE-HARNESS-L10-046-03",
+          "CASE-HARNESS-L10-046-04",
+          "CASE-HARNESS-L10-046-05",
+          "CASE-HARNESS-L10-046-06",
+          "CASE-HARNESS-L10-046-07",
+          "CASE-HARNESS-L10-046-08",
+          "CASE-HARNESS-L10-046-09",
+          "CASE-HARNESS-L10-046-10",
+          "CASE-HARNESS-L10-046-11",
+          "CASE-HARNESS-L10-046-12",
+          "CASE-HARNESS-L10-046-r02-slice-only",
+          "CASE-HARNESS-L10-046-r02-other-revision-sr4",
+          "CASE-HARNESS-L10-046-r02-exception-missing",
+          "CASE-HARNESS-L10-046-r02-general-v-pair",
+          "CASE-HARNESS-L10-046-root-r02-unseen-valid",
+          "CASE-HARNESS-L10-046-root-r02-scope-extrapolation",
+          "CASE-HARNESS-L10-046-r04-046-oracle-missing",
+          "CASE-HARNESS-L10-046-r04-046-applicability-missing",
+          "CASE-HARNESS-L10-046-r04-046-source-revision-missing",
+          "CASE-HARNESS-L10-046-r04-oracle-conflict",
+          "CASE-HARNESS-L10-046-r04-oracle-stale",
+          "CASE-HARNESS-L10-046-r04-applicability-conflict",
+          "CASE-HARNESS-L10-046-r04-applicability-stale",
+          "CASE-HARNESS-L10-046-r04-source-revision-conflict",
+          "CASE-HARNESS-L10-046-r04-source-revision-stale",
+          "CASE-HARNESS-L10-046-r05-full-v-freeze-missing",
+          "CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations",
+          "CASE-HARNESS-L10-046-r05-slice-delta-missing",
+          "CASE-HARNESS-L10-046-r05-backfill-missing",
+          "CASE-HARNESS-L10-046-r05-sr4-receipt-missing",
+          "CASE-HARNESS-L10-046-r05-root-checkpoint-missing",
+          "CASE-HARNESS-L10-046-r06-slice-delta-not-returned",
+          "CASE-HARNESS-L10-046-r06-backfill-missing",
+          "CASE-HARNESS-L10-046-r06-applicability-unknown",
+          "CASE-HARNESS-L10-046-r10-transition-missing",
+          "CASE-HARNESS-L10-046-r10-loop-missing",
+          "CASE-HARNESS-L10-046-r10-terminal-missing",
+          "CASE-HARNESS-L10-046-r10-permission-missing",
+          "CASE-HARNESS-L10-046-r10-timeout-missing",
+          "CASE-HARNESS-L10-046-r10-notification-missing",
+          "CASE-HARNESS-L10-046-r10-audit-missing",
+          "CASE-HARNESS-L10-046-r10-data-missing",
+          "CASE-HARNESS-L10-046-r10-switching-missing",
+          "CASE-HARNESS-L10-046-r10-routing-missing",
+          "CASE-HARNESS-L10-046-r10-resource-allocation-missing",
+          "CASE-HARNESS-L10-046-r10-exception-missing"
+        ],
+        "raw_rows": [
+          {
+            "id": "CASE-HARNESS-L10-046-01",
+            "line": 865,
+            "literal": "| `CASE-HARNESS-L10-046-01` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V条件12項目の索引。transition=`CASE-HARNESS-L10-046-r10-transition-missing`、loop=`CASE-HARNESS-L10-046-r10-loop-missing`、terminal=`CASE-HARNESS-L10-046-r10-terminal-missing`、exception=`CASE-HARNESS-L10-046-r10-exception-missing`、permission=`CASE-HARNESS-L10-046-r10-permission-missing`、timeout=`CASE-HARNESS-L10-046-r10-timeout-missing`、notification=`CASE-HARNESS-L10-046-r10-notification-missing`、audit=`CASE-HARNESS-L10-046-r10-audit-missing`、data=`CASE-HARNESS-L10-046-r10-data-missing`、switching=`CASE-HARNESS-L10-046-r10-switching-missing`、routing=`CASE-HARNESS-L10-046-r10-routing-missing`、resource allocation=`CASE-HARNESS-L10-046-r10-resource-allocation-missing`。 | 索引のみ。各条件を個別に検査する。 | indexを数えず、Full V選択scopeの各参照先oracleを照合する。Production Scrum固有条件をFull Vへ適用しない。 |\n",
+            "raw_lf_sha256": "0e88c7721bfc2134d2f9b8dccae63820e096509f0a07554ea1f352fb6cb4d16f"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-02",
+            "line": 866,
+            "literal": "| `CASE-HARNESS-L10-046-02` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-02` | Production Scrum、許可済み合成内のScrum部分、Full Vのみを選択したscopeを比較する正常系index。 | 索引のみ。Full V freeze欠落は`CASE-HARNESS-L10-046-r05-full-v-freeze-missing`、Scrum非選択scopeへのScrum義務付与は`CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations`で個別に試す。 | Full VはL1〜L5 freezeを要しScrum delta/Reverse/SR0〜SR4を要求しない。indexを独立negativeに数えない。 |\n",
+            "raw_lf_sha256": "81ff12997abf1f45d460891b5519ad55329310751a5d10a9c374520af03d0ab0"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-03",
+            "line": 867,
+            "literal": "| `CASE-HARNESS-L10-046-03` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-03` | 選択済みScrum workflow/scopeの索引。単独欠落はslice delta=`CASE-HARNESS-L10-046-r05-slice-delta-missing`、L1–L5 backfill=`CASE-HARNESS-L10-046-r05-backfill-missing`、適用checkpoint=`CASE-HARNESS-L10-046-r05-root-checkpoint-missing`、SR4 receipt=`CASE-HARNESS-L10-046-r05-sr4-receipt-missing`。未見正常（AC-04）=`CASE-HARNESS-L10-046-root-r02-unseen-valid`。 | 索引のみ。 各欠落は一件ずつ変異する。 | 各IDの単独oracleで確認しindexをcoverageへ数えない。 |\n",
+            "raw_lf_sha256": "6f4535826f04a2f0cc012cd8c6133135e22063a27a909c1489f109833ce1b0fc"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-04",
+            "line": 908,
+            "literal": "| `CASE-HARNESS-L10-046-04` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | Production Scrumで選択したscope/revisionにおいて、slice delta、Reverse/backfill、適用trigger、SR0–SR4 checkpoint、SR4 pair-freeze receipt、workflow obligationを同一scopeで結ぶ正常fixture。 | 変異なし。 | 成立した正常fixtureとして記録する。scope外や別revisionのreceiptは流用しない。 |\n",
+            "raw_lf_sha256": "6dcb43092059deeeaf20b768df5df2db80446fd7372ebf58b48a7adb759edb57"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-05",
+            "line": 961,
+            "literal": "| `CASE-HARNESS-L10-046-05` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | Scrum scopeと同じscope/revisionのworkflow obligation/pair evidenceを提示する正常fixture。 | slice単体成功による相殺はCASE-HARNESS-L10-046-r02-slice-only、一般V-pair流用はCASE-HARNESS-L10-046-r02-general-v-pairで独立に試す。 | 対象scope内の欠落義務のみ未完。 |\n",
+            "raw_lf_sha256": "5e3412f473c575880c90efab86a1d5a0fceac47e86ed1d2fa7a2081d43473b65"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-06",
+            "line": 962,
+            "literal": "| `CASE-HARNESS-L10-046-06` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | coverage receiptはcoverage事実のまま保持する。 | 索引のみ。ticket発行とrelease許可生成は`CASE-HARNESS-L10-046-09`、`CASE-HARNESS-L10-046-10`で個別に試す。 | 状態/許可生成を拒否し、不足workflow/pair/oracleはHARNESS-L2-002/003または004/022の既存ownerへ戻す。indexを独立negativeに数えない。 |\n",
+            "raw_lf_sha256": "d4e614444c5e9b942090aeafd5784802c5a653f301d17833ec1cfe5cb570d8d4"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-07",
+            "line": 995,
+            "literal": "| `CASE-HARNESS-L10-046-07` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | hidden transitionとslice deltaを選択scope/revision内の別要素として登録し、同scopeの適用oracleに沿う正常結果を得る。 | negativeは`CASE-HARNESS-L10-046-r10-exception-missing`、`CASE-HARNESS-L10-046-r02-other-revision-sr4`、`CASE-HARNESS-L10-046-r02-general-v-pair`で個別に確認する。AC-01のFull V条件欠落はAC-01 CASEへのcross-AC参照であり、このCASEの変異ではない。 | 選択scope内の結果だけを評価し、未見正常やselected Scrum scopeからID全体の成功を推定しない。AC-04未見正常は`CASE-HARNESS-L10-046-root-r02-unseen-valid`で別に確認する。 |\n",
+            "raw_lf_sha256": "3e8c61c21ad411152c69985e9db25533d121fb4949aedac6e3fc66de471f5f16"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-08",
+            "line": 996,
+            "literal": "| `CASE-HARNESS-L10-046-08` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | workflow不整合、pair/oracle欠落をそれぞれ既存責務へ戻すmatrix。 | workflow→L2-002/003、pair/oracle→004/022の誤routeをCASE-HARNESS-L10-046-11、CASE-HARNESS-L10-046-12で個別に試す。 | 原因ごとのrouteのみを受理し、ownerを新設しない。 |\n",
+            "raw_lf_sha256": "d853bba7fe82afbbbff6dafbe48025ba601b592b0ee154218fb9275f2cae4348"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-09",
+            "line": 1090,
+            "literal": "| `CASE-HARNESS-L10-046-09` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | coverage receiptを事実記録に限る。 | receiptからticketを発行する。 | ticket生成を拒否し既存OS boundaryへ戻す。 |\n",
+            "raw_lf_sha256": "6704af8746d5b9c811b084a5078c39ec9734459d0ee6ff3f92a8d827e3975f3b"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-10",
+            "line": 1091,
+            "literal": "| `CASE-HARNESS-L10-046-10` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | coverage receiptを事実記録に限る。 | receiptからrelease許可を生成する。 | 許可生成を拒否しHARNESS-L2-002/003のworkflow契約ownerへ戻す。 |\n",
+            "raw_lf_sha256": "de9f69ec4b0fba73dab128a94200f943ef6a442da51bc912f0c4db2aaf02b68b"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-11",
+            "line": 1092,
+            "literal": "| `CASE-HARNESS-L10-046-11` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | workflow/style contract不整合を既存L2-002/003へ戻す。 | workflow/style不整合をpair/oracle ownerへ返す。 | 誤routeを不合格としL2-002/003責務へ戻す。 |\n",
+            "raw_lf_sha256": "2ae1857a400303f6a6ff6df8f4e8d6677aa805e6beeb4b3a1b3a2a54883d20bb"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-12",
+            "line": 1093,
+            "literal": "| `CASE-HARNESS-L10-046-12` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | pair/oracle不足を既存L2-004/022へ戻す。 | pair/oracle不足をworkflow ownerへ返す。 | 誤routeを不合格としL2-004/022責務へ戻す。 |\n",
+            "raw_lf_sha256": "6a4b0bf50beee8f7f48665b5a3b9fec4fb1ac2e311d5cb093f321c8946031198"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r02-slice-only",
+            "line": 1312,
+            "literal": "| `CASE-HARNESS-L10-046-r02-slice-only` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | Scrum selected scopeのslice delta以外の義務も同revisionで揃う。 | slice単体成功だけを全scope完了としてclaim。 | 他義務の不足を相殺せずScrum scopeを未完に保つ。 |\n",
+            "raw_lf_sha256": "f32c939b463f42c8dc0f86881044c3dbb8fb1a98e0ef44dc9e66b1e765a4631b"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r02-other-revision-sr4",
+            "line": 1313,
+            "literal": "| `CASE-HARNESS-L10-046-r02-other-revision-sr4` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | SR4 pair-freezeが対象revisionに結び付く。 | SR4だけを別revisionから流用。 | receiptを受領せず、対象revisionのpair evidenceを求める。 |\n",
+            "raw_lf_sha256": "357ff28ab0eae09b9ee52799c752a19c3ab38d732456514686edbdc34d086ee1"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r02-exception-missing",
+            "line": 1314,
+            "literal": "| `CASE-HARNESS-L10-046-r02-exception-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-01` | 索引のみ。同じFull V exception条件欠落の `CASE-HARNESS-L10-046-r10-exception-missing` を参照。 | 索引のみ。 | `CASE-HARNESS-L10-046-r10-exception-missing` だけを独立fixtureへ計上し、Full V closure拒否とHARNESS-L2-002/003への返却をそこで照合する。 |\n",
+            "raw_lf_sha256": "ff5f6527f3c96a0a70560a5c540f0fab9e69027ac24ac8154a7c3fc6939096c8"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r02-general-v-pair",
+            "line": 1320,
+            "literal": "| `CASE-HARNESS-L10-046-r02-general-v-pair` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | Scrum選択scopeの必要なSR4 pair evidenceを同revisionで結ぶ。 | 一般V-pair一覧だけをSR4 coverage receiptの代わりに使う。 | 不足を未完にし、HARNESS-L2-004/022の既存pair/oracle ownerへ戻す。ticket/release許可を生成しない。 |\n",
+            "raw_lf_sha256": "2cc027bf923f5bdccf9d4ecf37fea2134011cf76f872d8854dc6b38f1b2b1af5"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-root-r02-unseen-valid",
+            "line": 1327,
+            "literal": "| `CASE-HARNESS-L10-046-root-r02-unseen-valid` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | 事前fixtureにないtransition・exception・slice deltaでも、選択scopeのworkflow契約・source revision・必要pair/oracleに適合する。 | 未見という理由だけで候補を拒否する。 | 一律拒否を不成立とし、適合する候補を受け入れる。下流実行の成功は生成しない。 |\n",
+            "raw_lf_sha256": "94713af5651ff8ef4a5ccdb5be5b94f7a8c7ead97a17cc75c15d2f5163c9b4d9"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-root-r02-scope-extrapolation",
+            "line": 1328,
+            "literal": "| `CASE-HARNESS-L10-046-root-r02-scope-extrapolation` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | 選択scope/revision内のworkflow coverageを保持する。 | 別scopeの未評価義務へ成功を流用する。 | 流用を拒否し、002/003のworkflow契約ownerへ未完義務を返す。 |\n",
+            "raw_lf_sha256": "c66ee729cdaa74dda19ed3261b9516a6f41acb133dcd5e48c540ba867e559439"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r04-046-oracle-missing",
+            "line": 1439,
+            "literal": "| `CASE-HARNESS-L10-046-r04-046-oracle-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択workflow/scope、oracle以外の適用性とsource revision、他の正常条件はcurrent。 | oracleだけをmissingにする。 | unknown/未評価を保持し、HARNESS-L2-004/022の既存oracle ownerへ戻す。 |\n",
+            "raw_lf_sha256": "15370644e5b406ab524674fc6a41e47d53cfaa9323fa99e5ab891f70ed53d300"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r04-046-applicability-missing",
+            "line": 1440,
+            "literal": "| `CASE-HARNESS-L10-046-r04-046-applicability-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択workflow/scope、適用性以外のoracleとsource revision、他の正常条件はcurrent。 | applicabilityだけをmissingにする。 | unknown/未評価を保持し、HARNESS-L2-002/003の既存workflow applicability ownerへ戻す。 |\n",
+            "raw_lf_sha256": "1ec908bb2f7eef2581c20466ea36ec0444fbfac4a5727937a9b5c25980332232"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r04-046-source-revision-missing",
+            "line": 1441,
+            "literal": "| `CASE-HARNESS-L10-046-r04-046-source-revision-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択workflow/scope、source identity、他のfield/oracle/applicabilityはcurrent。 | source revisionだけをmissingにする。 | unknown/未評価を保持し、選択source identityの既存ownerへ戻す。source ownerを特定できなければunknownを維持する。 |\n",
+            "raw_lf_sha256": "7fd57c0b1384132aa5e8897462464349424a07f1a7dc2002b66e7382a23c21a5"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r04-oracle-conflict",
+            "line": 1483,
+            "literal": "| `CASE-HARNESS-L10-046-r04-oracle-conflict` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | oracleだけをconflictへ変異。 | unknown/未評価としてHARNESS-L2-004/022の既存oracle ownerへ戻し、適用scopeを超える評価をしない。 |\n",
+            "raw_lf_sha256": "fa57987dea68db0efa274dc10c7fb544577e625d58021c095e9ae6890a74d4b1"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r04-oracle-stale",
+            "line": 1484,
+            "literal": "| `CASE-HARNESS-L10-046-r04-oracle-stale` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | oracleだけをstaleへ変異。 | unknown/未評価としてHARNESS-L2-004/022の既存oracle ownerへ戻し、適用scopeを超える評価をしない。 |\n",
+            "raw_lf_sha256": "ab55c84d63a6632b4ce76c763cd11fcec795a061eeedc2d76824cd76d104b42b"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r04-applicability-conflict",
+            "line": 1485,
+            "literal": "| `CASE-HARNESS-L10-046-r04-applicability-conflict` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | applicabilityだけをconflictへ変異。 | unknown/未評価としてHARNESS-L2-002/003の既存workflow applicability ownerへ戻し、適用scopeを超える評価をしない。 |\n",
+            "raw_lf_sha256": "61e9b32c32b612d02ee4a676535240a97654a4f512ca31ac796b2b0920a51886"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r04-applicability-stale",
+            "line": 1486,
+            "literal": "| `CASE-HARNESS-L10-046-r04-applicability-stale` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | applicabilityだけをstaleへ変異。 | unknown/未評価としてHARNESS-L2-002/003の既存workflow applicability ownerへ戻し、適用scopeを超える評価をしない。 |\n",
+            "raw_lf_sha256": "8b3fb0375d0fbce070887d8d1db39828f83533c6519b0fd1f50c0fb29a24740d"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r04-source-revision-conflict",
+            "line": 1487,
+            "literal": "| `CASE-HARNESS-L10-046-r04-source-revision-conflict` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | source revisionだけをconflictへ変異。 | unknown/未評価として選択sourceの既存owner（identity不明ならunknown）へ戻し、適用scopeを超える評価をしない。 |\n",
+            "raw_lf_sha256": "3acec922c90789c8881b01e2ccdc25325a17000d4de528ec0c40385286a3adfd"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r04-source-revision-stale",
+            "line": 1488,
+            "literal": "| `CASE-HARNESS-L10-046-r04-source-revision-stale` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | source revisionだけをstaleへ変異。 | unknown/未評価として選択sourceの既存owner（identity不明ならunknown）へ戻し、適用scopeを超える評価をしない。 |\n",
+            "raw_lf_sha256": "cdd468a6b09b81715c4fc6836e42ef653a22b7aeac8fca16d24e65f50c4c2535"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r05-full-v-freeze-missing",
+            "line": 1518,
+            "literal": "| `CASE-HARNESS-L10-046-r05-full-v-freeze-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-02` | Full Vで適用するL1〜L5設計層の段階freezeを同revisionで揃える。 | 適用L1〜L5 freezeだけを欠落させる。 | Full V closureを未完に保つ。HARNESS-L2-002/003のworkflow ownerへ戻す。Scrum receiptは要求しない。 |\n",
+            "raw_lf_sha256": "7ccd01d3a36576d272fcaf87a1ec0a56bf97f94d3213ebaf9e7b81b64fe8c843"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations",
+            "line": 1519,
+            "literal": "| `CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-02` | Full VまたはScrum非選択scopeで、その方式に適用する条件だけを照合する。 | Scrum非選択scopeだけへslice delta/Reverse/SR4 receiptを追加必須化する。 | 過剰適用を拒否し、非選択scopeへScrum条件を要求しない。 |\n",
+            "raw_lf_sha256": "f81465004ec304ea70ba511dbc739b92df3976f8df424aaf6a1e90cea26d85b3"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r05-slice-delta-missing",
+            "line": 1520,
+            "literal": "| `CASE-HARNESS-L10-046-r05-slice-delta-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択Scrum scopeのdelta、trigger、Reverse/backfill、SR4 receiptを同revisionで結ぶ。 | slice deltaだけを欠落させる。 | 当該Scrum scopeを未完に保ち、HARNESS-L2-002/003のworkflow ownerへ戻す。 |\n",
+            "raw_lf_sha256": "9deb05acd154fb0c1fe16594678ca71c3913f54056c7a4ca358481913f07c59b"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r05-backfill-missing",
+            "line": 1521,
+            "literal": "| `CASE-HARNESS-L10-046-r05-backfill-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択Scrum scopeのdelta、trigger、Reverse/backfill、SR4 receiptを同revisionで結ぶ。 | L1〜L5 workflow/design backfillだけを欠落させる。 | 当該Scrum scopeを未完に保ち、HARNESS-L2-002/003のworkflow ownerへ戻す。 |\n",
+            "raw_lf_sha256": "eb288648fd595fc158e5940f9bd47e096655b6f10129fd1177f9020fb0c725aa"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r05-sr4-receipt-missing",
+            "line": 1522,
+            "literal": "| `CASE-HARNESS-L10-046-r05-sr4-receipt-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択Scrum scopeで必要triggerに対応するSR4 pair-freeze receiptを同revisionへ結ぶ。 | SR4 receiptだけを欠落させる。 | Scrum scopeをrelease-ready候補にせず、HARNESS-L2-004/022の既存pair/oracle ownerへ戻す。 |\n",
+            "raw_lf_sha256": "10f944743796482a33038f087fb05bd8aadda110d26c5cc28b5db731282bcdc2"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r05-root-checkpoint-missing",
+            "line": 1648,
+            "literal": "| `CASE-HARNESS-L10-046-r05-root-checkpoint-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択Scrum scopeで既存triggerにより必要とされたcheckpointとdelta/Reverse/backfill/SR4 evidenceを同revisionへ結ぶ。 | 適用するcheckpoint一件の根拠だけを欠落させる。他義務は保持。 | 当該Scrum scopeを未完に保ち002/003 workflow ownerへ戻す。未選択checkpointや他styleへ条件を追加しない。 |\n",
+            "raw_lf_sha256": "00ef5fbc3d8e6407afe9513edbf5f750a6564474901f58e90ca31bb27cd1e79d"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r06-slice-delta-not-returned",
+            "line": 1680,
+            "literal": "| `CASE-HARNESS-L10-046-r06-slice-delta-not-returned` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択Scrum scopeで適用slice deltaが固定workflowへ結ばれる。 | slice deltaだけsystem workflowへ戻さない。 | 合流を保留し、deltaを002/003 workflow ownerへ返す。 |\n",
+            "raw_lf_sha256": "e2c2f71c9919ce8166565b43ce633072c6989b4c53f6152c9f5f8428f03ca116"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r06-backfill-missing",
+            "line": 1681,
+            "literal": "| `CASE-HARNESS-L10-046-r06-backfill-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | `CASE-HARNESS-L10-046-r05-backfill-missing`の索引参照。 | 独立変異として数えない。 | backfill欠落の単独oracleは参照先で照合し、重複計上しない。 |\n",
+            "raw_lf_sha256": "d7940f8a60ad29dd23d2ed6d5a183f3275d5921bdfb78875753e9cf49796e912"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r06-applicability-unknown",
+            "line": 1682,
+            "literal": "| `CASE-HARNESS-L10-046-r06-applicability-unknown` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | selected source/workflow revisionと適用義務はcurrent。 | 適用根拠だけをunknownにする。 | 別revisionまたは別scopeへの外挿を止め、unknown/未評価を保持する。HARNESS-L2-002/003の既存workflow ownerへ適用根拠を戻す。 |\n",
+            "raw_lf_sha256": "c5636a5f354b1cc6c7a40f6f6d8728930fe7e4c354c1c652256aace2194c13bf"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-transition-missing",
+            "line": 1972,
+            "literal": "| `CASE-HARNESS-L10-046-r10-transition-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでtransition条件とoracleが適用され、他の11条件もcurrentである。 | transition条件だけを欠落させる。 | transition条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "d6416b3fce4cb538db4a7fefd135967947cb1408c1bc0c8b1118d98bfc0cb076"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-loop-missing",
+            "line": 1973,
+            "literal": "| `CASE-HARNESS-L10-046-r10-loop-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでloop条件とoracleが適用され、他の11条件もcurrentである。 | loop条件だけを欠落させる。 | loop条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "04b613de12710fc0726f61b760729c08fb63148bd27a1c1ff492d777b8024009"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-terminal-missing",
+            "line": 1974,
+            "literal": "| `CASE-HARNESS-L10-046-r10-terminal-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでterminal条件とoracleが適用され、他の11条件もcurrentである。 | terminal条件だけを欠落させる。 | terminal条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "ef427301dacba743aab3bd4610fbb67a85ebd67991c91a6a00d3e0d924a4ac2b"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-permission-missing",
+            "line": 1975,
+            "literal": "| `CASE-HARNESS-L10-046-r10-permission-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでpermission条件とoracleが適用され、他の11条件もcurrentである。 | permission条件だけを欠落させる。 | permission条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "5f5f582dd4d56f2b302557be4d7db78eaea7d6b9b83f2cd553685fa1c479382f"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-timeout-missing",
+            "line": 1976,
+            "literal": "| `CASE-HARNESS-L10-046-r10-timeout-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでtimeout条件とoracleが適用され、他の11条件もcurrentである。 | timeout条件だけを欠落させる。 | timeout条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "894f4dfb47bfb9282ef6468fa8c7ae1743b6d9f8a3355e5f48c738d0422f1940"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-notification-missing",
+            "line": 1977,
+            "literal": "| `CASE-HARNESS-L10-046-r10-notification-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでnotification条件とoracleが適用され、他の11条件もcurrentである。 | notification条件だけを欠落させる。 | notification条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "6a413c777ece2c2178b62ab0a0235c9c12f0bbdc17197856a1398b711c8639d3"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-audit-missing",
+            "line": 1978,
+            "literal": "| `CASE-HARNESS-L10-046-r10-audit-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでaudit条件とoracleが適用され、他の11条件もcurrentである。 | audit条件だけを欠落させる。 | audit条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "4ef8dc10523895369f684160da656dccefb0b47a583b052c4871a2a905e87f60"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-data-missing",
+            "line": 1979,
+            "literal": "| `CASE-HARNESS-L10-046-r10-data-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでdata条件とoracleが適用され、他の11条件もcurrentである。 | data条件だけを欠落させる。 | data条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "5be6563294308fc109ed9a48afd8e20858509e124ab1e4439ddba44d1074c5da"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-switching-missing",
+            "line": 1980,
+            "literal": "| `CASE-HARNESS-L10-046-r10-switching-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでswitching条件とoracleが適用され、他の11条件もcurrentである。 | switching条件だけを欠落させる。 | switching条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "fd3cd86303942ae4030520506ee9a7460afb801ea74f3c1d1b92050df8e55b06"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-routing-missing",
+            "line": 1981,
+            "literal": "| `CASE-HARNESS-L10-046-r10-routing-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでrouting条件とoracleが適用され、他の11条件もcurrentである。 | routing条件だけを欠落させる。 | routing条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "229556eabcecf5c9f9822bfd3aeda35946399d88e5b59f7299dc400316e9b3dc"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-resource-allocation-missing",
+            "line": 1982,
+            "literal": "| `CASE-HARNESS-L10-046-r10-resource-allocation-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでresource allocation条件とoracleが適用され、他の11条件もcurrentである。 | resource allocation条件だけを欠落させる。 | resource allocation条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+            "raw_lf_sha256": "d6eda7ab1106a28407c8fd09d4b198a6982012bd80cf41f95845a9bc79f40bdb"
+          },
+          {
+            "id": "CASE-HARNESS-L10-046-r10-exception-missing",
+            "line": 1983,
+            "literal": "| `CASE-HARNESS-L10-046-r10-exception-missing` | `FR-HARNESS-L3-046`|`AC-HARNESS-L3-046-01`| Full V選択scope/revisionとL1–L5 freezeを固定し、exception条件とそのoracleが適用され、他の11条件とoracleもcurrentである。 | exception条件だけを欠落させる。 | exception coverageを未完にしFull V closureを主張しない。workflow/style条件の不足はHARNESS-L2-002/003へ戻す（L2:1031/1034、L11:763/771）。 |\n",
+            "raw_lf_sha256": "00fa5d97369adf168363cfaa7d71d5e33db7356bd9bb8f2b4152b09238ca02e7"
+          }
+        ],
+        "old_ids_preserved_in_current": true
+      },
+      "all_48_ids_in_existing_66_core_ids": true
+    },
+    "current_case_id_preservation": {
+      "core_physical_case_rows": 66,
+      "core_unique_ids": 66,
+      "core_ids_all_retained": true,
+      "nfr_physical_rows": 3,
+      "nfr_unique_ids": 3,
+      "nfr_ids_all_retained": true,
+      "old_48_ids_retained": true,
+      "new_fixture_id": "CASE-HARNESS-L10-046-r12-refuse-workflow-instance",
+      "new_fixture_id_absent_at_HEAD": true
+    },
+    "exact_replacements": [
+      {
+        "target": "BR-HARNESS-L3-046-01",
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "before": "**BR-HARNESS-L3-046-01 — 選択styleに応じたworkflow evidenceの扱いを保つ**：各workflow scopeの選択styleとtarget revisionに沿って、適用する全体workflow・設計freeze・V-pair検証を確認できる。Full Vはsystem全体workflowのL1–L5段階freezeと12条件を扱い、Scrum slice/backfill/SR4条件を課さない。Production Scrumまたは許可合成内Scrumは、該当するslice delta・既存trigger・backfill・SR4状態をscope/revisionへ結び付ける。checkpoint receiptの適用は既存triggerに従う一方、Production Scrum scopeでSR4 receiptがmissing/unknownならtrigger成立有無にかかわらずrelease-readyと主張できない。これは事業成果・市場投入判断・release許可を追加しない。",
+        "after": "**BR-HARNESS-L3-046-01 — 選択styleに応じたworkflow evidenceの扱いを保つ**：各workflow scopeの選択styleとtarget revisionに沿って、適用する全体workflow・設計freeze・V-pair検証を確認できる。Full Vはsystem全体workflowのL1–L5段階freezeと12条件を扱い、Scrum slice/backfill/SR4条件を課さない。Production Scrumまたは許可合成内Scrumは、該当するslice delta・既存trigger・backfill・SR4状態をscope/revisionへ結び付ける。checkpoint receiptの適用は既存triggerに従う一方、Production Scrumまたは許可合成内でScrumを適用するscopeでは、SR4 receiptがmissing/unknownならtrigger成立有無にかかわらずrelease-readyと主張できない。これは事業成果・市場投入判断・release許可を追加しない。",
+        "before_sha256": "492da1c99f909cc7ac63a569bdf9a77be3c2f91a713e0ab4d5a78920de312b01",
+        "after_sha256": "dd047ee857b2b5d2459c2b9d29d8a76ef81781559363f153a4e843806babbffc",
+        "before_occurrences_in_target_HEAD": 1
+      },
+      {
+        "target": "FR-HARNESS-L3-046-02",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "before": "**FR-HARNESS-L3-046-02 — Production Scrum slice/backfill**：input styleがProduction Scrumであるscope、またはPOが許可した方式合成のうちL2-002/003に従ってScrumを適用するscopeだけを対象とする。slice deltaの先行を許容し、既存triggerに従うsprint review時またはrelease合流前にScrum Reverseでsystem workflowと該当L1–L5設計資産へbackfillする。SR0–SR4 checkpoint receiptは既存triggerが要求する場合に照合する。これとは別に、Production Scrum scopeではSR4 pair-freeze receiptがmissing/unknownなら、trigger成立有無にかかわらずrelease-ready候補へ進めない。style・合成許可・triggerをこの要件が変更しない。",
+        "after": "**FR-HARNESS-L3-046-02 — Production Scrum slice/backfill**：input styleがProduction Scrumであるscope、またはPOが許可した方式合成のうちL2-002/003に従ってScrumを適用するscopeだけを対象とする。slice deltaの先行を許容し、既存triggerに従うsprint review時またはrelease合流前にScrum Reverseでsystem workflowと該当L1–L5設計資産へbackfillする。SR0–SR4 checkpoint receiptは既存triggerが要求する場合に照合する。これとは別に、Production Scrumが選択・合成適用されるscopeではSR4 pair-freeze receiptがmissing/unknownなら、trigger成立有無にかかわらずrelease-ready候補へ進めない。style・合成許可・triggerをこの要件が変更しない。",
+        "before_sha256": "5c7f60797c1047615dc3890991611bd021786b7be385278ae23e1ed1e941b1e2",
+        "after_sha256": "2908bd32dfe8e752f97e9ffe36bda24e840e45e5c9f1c006d30b510d2bbc4490",
+        "before_occurrences_in_target_HEAD": 1
+      },
+      {
+        "target": "AC-HARNESS-L3-046-02",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "before": "**AC-HARNESS-L3-046-02 — Scrum選択scope正常・backfill**：Production Scrumまたは許可合成内のScrum適用scopeを明示し、slice delta、system workflowと該当L1–L5資産へのbackfill、trigger条件、適用されるcheckpoint/SR4 receiptを同じscope/revisionで確認する。checkpointは既存triggerに従う。",
+        "after": "**AC-HARNESS-L3-046-02 — Scrum選択scope正常・backfill**：Production Scrumまたは許可合成内のScrum適用scopeを明示し、slice delta、system workflowと該当L1–L5資産へのbackfill、trigger条件、適用されるcheckpoint/SR4 receiptを同じscope/revisionで確認する。checkpointは既存triggerに従う。両方の適用範囲でSR4 receiptがmissing/unknownなら、trigger成立有無にかかわらずrelease-ready候補にせず、release authorityも生成しない。",
+        "before_sha256": "6d773d814dc323f12cb891bd142ca7873bed97438ea4a043da709bf7ff9c6431",
+        "after_sha256": "68005247c22a329b22e86d2e32226c87c784e05c7b9645191249a37e3012ac45",
+        "before_occurrences_in_target_HEAD": 1
+      },
+      {
+        "target": "NFR-C-HARNESS-046-03",
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "before": "| `NFR-C-HARNESS-046-03` | Conditional Scrum backfill / SR4 release readiness | Scrum delta/backfillとSR0–SR4 checkpoint receiptの適用は、明示されたProduction Scrum／許可合成scopeおよび既存triggerに従う。Production Scrum scopeのSR4 receipt missing/unknownはtrigger成立有無にかかわらずrelease-ready不可とする。 | style/scope/revision、existing trigger、delta、backfill対象、checkpoint receipt適用条件、SR4 receiptの有無を別々に比較する。Full Vに適用するScrum-only condition数は0。 |",
+        "after": "| `NFR-C-HARNESS-046-03` | Conditional Scrum backfill / SR4 release readiness | Scrum delta/backfillとSR0–SR4 checkpoint receiptの適用は、明示されたProduction Scrum／許可合成scopeおよび既存triggerに従う。Production Scrumが選択・合成適用されるscopeのSR4 receipt missing/unknownはtrigger成立有無にかかわらずrelease-ready不可とする。 | style/scope/revision、existing trigger、delta、backfill対象、checkpoint receipt適用条件、SR4 receiptの有無を別々に比較する。Full Vに適用するScrum-only condition数は0。 |",
+        "before_sha256": "0820a575fefb483b2e541027bb644475048c0a35b3f1fffd8027db63a7f10252",
+        "after_sha256": "56d95fe4f20c6869f3232d291e1f6ff020b11c67ae3ece71674de057b077a5a3",
+        "before_occurrences_in_target_HEAD": 1
+      },
+      {
+        "target": "CASE-HARNESS-L10-046-r12-scrum-normal",
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "before": "| `CASE-HARNESS-L10-046-r12-scrum-normal` | `AC-HARNESS-L3-046-02` | 同じProduction Scrum scope/revisionの対照入力を置く。A: 既存trigger成立、sourceに定義されたbackfillとtrigger適用checkpoint/SR4がcurrent。B: 既存trigger不成立、同じsource定義のbackfillはcurrent、trigger由来checkpointは適用しないがSR4 receiptはcurrent。どちらも新しい義務を足さない。 | A/Bとも、既存sourceに定義されたbackfill対象・時点・revisionを照合し、trigger条件に従う。BもL2のSR4 release-readiness条件を入力で満たす。 | A/Bの各正常scopeを評価可能としrelease authorityは生成しない。既存trigger applicability、backfill対象/時点、receipt identityが不明ならその範囲を未評価とする。 |",
+        "after": "| `CASE-HARNESS-L10-046-r12-scrum-normal` | `AC-HARNESS-L3-046-02` | 同じProduction Scrum選択または許可合成内Scrum適用のscope/revisionについて、source定義済みbackfillとSR4 receiptがcurrentの対照入力を2つ置く。A: 既存trigger成立、backfillとtrigger適用checkpoint/SR4がcurrent。B: 既存trigger不成立、同じbackfillはcurrent、trigger由来checkpointは適用しないがSR4 receiptはcurrent。どちらも新しい義務を足さない。 | A/Bとも既存source定義のbackfill対象・時点・revisionを照合し、trigger条件に従う。両方ともL2のSR4 release-readiness条件を入力で満たす。 | A/B各正常scopeを評価可能としrelease authorityは生成しない。既存trigger applicability、backfill対象/時点、receipt identityが不明ならその範囲を未評価とする。 |",
+        "before_sha256": "097d572b8506254a1c2f22f3f4250a0e35294ccd8b14539f16bebcc591918d25",
+        "after_sha256": "e8c44bd40d67faf8176d4f88f0fcc853a27d68fd1c64814b17e3b1f4bde56eed",
+        "before_occurrences_in_target_HEAD": 1
+      },
+      {
+        "target": "CASE-HARNESS-L10-046-r12-scrum-normal",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "before": "| `CASE-HARNESS-L10-046-r12-scrum-normal` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-02` | Production Scrum選択、または許可合成でScrum適用が明示されたscope/revision、slice delta、既存trigger、backfillとtrigger適用checkpoint/SR4を固定。 | 変異なし。 | deltaをsystem workflowと該当L1–L5へbackfillし、成立したexisting triggerに沿うSR4を同revisionに結ぶ。 | receiptは合成観測。release permissionは生成しない。 |",
+        "after": "| `CASE-HARNESS-L10-046-r12-scrum-normal` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-02` | 同じProduction Scrum選択または許可合成内Scrum適用のscope/revisionについて、source定義済みbackfillとSR4 receiptがcurrentの2 profileを固定する。A: 既存trigger成立、backfillとtrigger適用checkpoint/SR4がcurrent。B: 既存trigger不成立、同じbackfillはcurrent、trigger由来checkpointは適用しないがSR4 receiptはcurrent。各profileで他条件もcurrent。 | 変異なし。 | A/Bともbackfillをsystem workflowと該当L1–L5へ結び、checkpointはexisting triggerに従う。両profileでsource定義済みSR4がcurrentであることを確認する。 | 合成観測。release permissionは生成しない。 |",
+        "before_sha256": "ac4d7d05e8c3736448b25a1d3c255bd4ab08c785208d27ba83ef6175897d7b5c",
+        "after_sha256": "b9bffb8fe1bb86742bafb6be50b04f4d782491c3907a34be55c077e337c36c9d",
+        "before_occurrences_in_target_HEAD": 1
+      },
+      {
+        "target": "CASE-HARNESS-L10-046-r12-scrum-sr4-missing",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "before": "| `CASE-HARNESS-L10-046-r12-scrum-sr4-missing` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-03` | Production Scrum B0で既存triggerは不成立、slice deltaとsource定義済みbackfillはcurrent、SR4 pair-freeze receiptは対象scope/revisionに存在し、他の条件も固定。 | SR4 pair-freeze receiptのstatus fieldだけを変異し、missingとunknownを別々に評価する。trigger状態、backfill、他のreceiptは固定する。 | trigger不成立でもSR4 receiptがmissing/unknownならScrum scopeをrelease-readyにしない。 | 欠けたSR4 pair-freeze receipt/verification evidenceをHARNESS-L2-004/022の既存責務区分へ無条件で返す。個別source/owner identity unknownは別に保持し、unknown identityを返却停止条件にしない。 |",
+        "after": "| `CASE-HARNESS-L10-046-r12-scrum-sr4-missing` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-03` | 正常caseのAまたはB profile（Production Scrum選択または許可合成内Scrum適用）を固定し、対象scope/revisionのSR4 pair-freeze receiptと他条件をcurrentにする。 | 単一field mutation: SR4 pair-freeze receipt statusだけをmissingまたはunknownにする。trigger、backfill、他receipt、scopeは不変。 | SR4 receiptがmissing/unknownなら、trigger成立有無にかかわらず当該Scrum scopeをrelease-readyとせず、coverageを未完/unknownにする。 | 欠けたSR4 pair-freeze receipt/verification evidenceをHARNESS-L2-004/022既存責務区分へ無条件で返す。個別identity unknownは別保持。 |",
+        "before_sha256": "7e072ab3b6ad793f36c5755d35b74b44188f7d12f32354ee2438c483e277a5b7",
+        "after_sha256": "94dcbf6a8ad2a43638c008ee9301bae8c1e0ea0de9477e85009cc4a506f8127f",
+        "before_occurrences_in_target_HEAD": 1
+      },
+      {
+        "target": "CASE-HARNESS-L10-NFR-046-03",
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "before": "| `CASE-HARNESS-L10-NFR-046-03` | `NFR-C-HARNESS-046-03` | Production Scrumまたは許可合成Scrum inputとFull V-only negative controlを並べ、Scrum側は既存trigger不成立・SR4 receipt missingを含むscopeを評価する。 | Scrum-specific delta/backfill/checkpoint receiptの適用は既存triggerに従い、Full VではScrum condition適用数0。Production Scrum scopeのSR4 receipt missing/unknownはtrigger成立有無にかかわらずrelease-ready不可。 | scope selectionまたはtrigger適用条件unknownは未評価。Full VをScrum要求で不合格にすれば不合格。 |",
+        "after": "| `CASE-HARNESS-L10-NFR-046-03` | `NFR-C-HARNESS-046-03` | Production Scrumまたは許可合成Scrum inputとFull V-only negative controlを並べ、Scrum側は既存trigger成立・不成立の両方をsource定義に従って評価し、trigger不成立のSR4-missing反例も含める。 | Scrum-specific delta/backfill/checkpoint receiptの適用は既存triggerに従い、Full VではScrum condition適用数0。Production Scrumが選択・合成適用されるscopeのSR4 receipt missing/unknownはtrigger成立有無にかかわらずrelease-ready不可。 | scope selectionまたはtrigger適用条件unknownは未評価。Full VをScrum要求で不合格にすれば不合格。 |",
+        "before_sha256": "2a6f62c80193f01b031f0f4f39328a29340b6dfda91ee1ab5961d0035c5fd348",
+        "after_sha256": "914fad17ca54c51c8315a26396c8ce1759521527d40400ccd82361cc8c6e37ed",
+        "before_occurrences_in_target_HEAD": 1
+      },
+      {
+        "target": "FR-HARNESS-L3-046-04",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "before": "**FR-HARNESS-L3-046-04 — authority非生成**：候補／coverage receiptからL2/L11採択、要求合意、要件承認、OS ticket、実行結果、release許可、利用者受入を生成しない。OSはticket/workflow instance/state/runtimeの運転を所有する。",
+        "after": "**FR-HARNESS-L3-046-04 — authority非生成**：候補／coverage receiptからL2/L11採択、要求合意、要件承認、OS ticket、OS workflow instance、実行結果、release許可、利用者受入を生成しない。OSはticket/workflow instance/state/runtimeの生成・記録・運転を所有する。",
+        "before_sha256": "d61896dfbd675db758dc7e2c7ed9ecea60f7f4a829e84da4fd27bb0645141749",
+        "after_sha256": "931803fa6687b2fae483147f73bff5869131839e42a13e3b71bbe307448d50d4",
+        "before_occurrences_in_target_HEAD": 1
+      },
+      {
+        "target": "AC-HARNESS-L3-046-04",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "before": "**AC-HARNESS-L3-046-04 — authority出力の単独拒否**：採択、要求合意、要件承認、OS ticket、実行結果、release許可、利用者受入の各出力を個別fixtureで一つずつ生成させる変異を拒否し、他output fieldは変えない。",
+        "after": "**AC-HARNESS-L3-046-04 — authority出力の単独拒否**：採択、要求合意、要件承認、OS ticket、OS workflow instance、実行結果、release許可、利用者受入の各出力を個別fixtureで一つずつ生成させる変異を拒否し、他output fieldは変えない。",
+        "before_sha256": "de158e0d2c7ca751bc1392d3f9e725e208f7b53e05b28bcf22bdbbd7dcac4428",
+        "after_sha256": "1afab79e45eeefe7c6437ce1e2452e41f5152866d0b8e962477f86df72e6ba43",
+        "before_occurrences_in_target_HEAD": 1
+      }
+    ],
+    "new_fixture_row": {
+      "id": "CASE-HARNESS-L10-046-r12-refuse-workflow-instance",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "insert_after_id": "CASE-HARNESS-L10-046-r12-refuse-user-acceptance",
+      "literal": "| `CASE-HARNESS-L10-046-r12-refuse-workflow-instance` | `FR-HARNESS-L3-046-04` / `AC-HARNESS-L3-046-04` | 権限値のないFull V正常coverage候補または選択済みScrum候補coverageを入力し、他の全output fieldを固定する。 | `OS workflow instance` field一つだけをcoverage結果から生成させる。 | OS workflow instanceを生成せず、固定PO/L2/L11 authority stateとOS-owned operation stateを変更しない。 | このfixtureは `OS workflow instance` output一つだけを変異する。 |",
+      "sha256": "7cc2e9b8c91d630e24e9cca335fe95b233ec2e788194f5b7b00ef48e73182f83",
+      "column_count": 6,
+      "one_output_field_mutation": true,
+      "only_new_case_id": "CASE-HARNESS-L10-046-r12-refuse-workflow-instance"
+    },
+    "R9_minimal_alignment": "Replace the functional r12-scrum-normal row with the same A/B trigger-established / trigger-not-established profiles and source-defined evidence contract already present in BV; then the fixed-SR4 normal input and single-field missing/unknown mutation use the same scope and definitions. No new workflow obligations or authority are added.",
+    "interpretation": {
+      "M1": "For any scope whose selected style is Production Scrum or whose permitted composite explicitly applies Scrum, existing trigger governs checkpoint applicability, but missing/unknown SR4 remains disqualifying for release-ready regardless of trigger. Full V remains outside Scrum-only conditions. The synthetic missing fixture changes only SR4 status and covers both trigger profiles through the existing normal case.",
+      "M2": "Add workflow instance to FR-04/AC-04 refusal outputs and add one isolated single-output refusal fixture, preserving OS ownership of workflow instance generation/recording/operation.",
+      "X1": "Prior review01 audit final blank line is preserved byte-exact. Candidate asks a new immutable audit to record/request formal exception; no old audit is edited."
+    },
+    "static_checks": {
+      "formal_review02_raw_sha256_matches": true,
+      "r1_r11_fragments_present": true,
+      "six_current_body_hashes_recorded": true,
+      "fixed_l2_l11_actual_read": true,
+      "old_48_raw_inventory_preserved": true,
+      "66_core_and_3_nfr_ids_retained": true,
+      "new_fixture_id_unique_and_six_columns": true,
+      "same_case_R9_baseline_expectation_aligned": true,
+      "x1_raw_bytes_retained_unmodified": true,
+      "worktree_unchanged_at_capture": true
+    },
+    "limitations": [
+      "Text-only candidate; no proposed changes were applied to WT or canonical documents.",
+      "No fixture/runtime/test/CI was executed; source IDs, raw pins, exact lines and columns were statically checked only.",
+      "R1–R11 are retained verbatim; only R9 receives a narrow proposal because it directly conflicts with the corrected baseline. Other findings and X1 status are not adjudicated.",
+      "The formal exception for the preserved audit trailing blank line is a request in the proposed future audit, not an approval."
+    ]
+  },
+  "Root_additional_composite_fixture": {
+    "path": "docs/helix-harness/L10-verification/functional-verification.md",
+    "literal": "| `CASE-HARNESS-L10-046-r12-composed-scrum-sr4-missing` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-03` | 合成scope Scompでは既存002/003 sourceが方式合成を許可しScrum適用を明示。target revision、slice delta、source定義backfill、SR4 pair-freeze receiptはcurrent。既存triggerは不成立、他条件は正常B profileと同じ。 | SR4 receipt status field一つだけをmissingにする。合成許可・Scrum適用・trigger・backfillは不変。 | 合成内Scrum scopeもrelease-readyにせず未完に保つ。 | 不足SR4 verification evidenceを004/022の既存責務区分へ返し、個体identity unknownを別記する。合成許可やtriggerを変更しない。 |",
+    "basis": "正式6023372160 M1合成適用scope固定318L2 1034/L11 765"
+  },
+  "six_actual_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 16698,
+      "sha256": "993030d003b39ab90d751cbd2f8db6833eeb1eb229e243bfb987a19a1119ee2c"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 212000,
+      "sha256": "1fb0a7257d6e0828d10f9838ce446645c220a7f963a5ca2f7afbbf9c8ae135d5"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 46644,
+      "sha256": "d2ed3c4e09ea53bf1c247aa0eea07059e6b8b1aebe5c69709dd028787bcd439f"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 12826,
+      "sha256": "f414b8cf754100f05cf9a62b60dfab4c572e83fd0aae0d6a1b4e593c53acbe61"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 676377,
+      "sha256": "7b061115f01541eaf671299532fb6352aaf50660793a28d56971fdbd7341213f"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 40426,
+      "sha256": "528c7160334ac89aa25639b738dd826623a2b7e50c36cc2b55615d34ed47c341"
+    }
+  ],
+  "case_ids": [
+    "`CASE-HARNESS-L10-046-01`",
+    "`CASE-HARNESS-L10-046-02`",
+    "`CASE-HARNESS-L10-046-03`",
+    "`CASE-HARNESS-L10-046-04`",
+    "`CASE-HARNESS-L10-046-05`",
+    "`CASE-HARNESS-L10-046-06`",
+    "`CASE-HARNESS-L10-046-07`",
+    "`CASE-HARNESS-L10-046-08`",
+    "`CASE-HARNESS-L10-046-09`",
+    "`CASE-HARNESS-L10-046-10`",
+    "`CASE-HARNESS-L10-046-11`",
+    "`CASE-HARNESS-L10-046-12`",
+    "`CASE-HARNESS-L10-046-r02-slice-only`",
+    "`CASE-HARNESS-L10-046-r02-other-revision-sr4`",
+    "`CASE-HARNESS-L10-046-r02-exception-missing`",
+    "`CASE-HARNESS-L10-046-r02-general-v-pair`",
+    "`CASE-HARNESS-L10-046-root-r02-unseen-valid`",
+    "`CASE-HARNESS-L10-046-root-r02-scope-extrapolation`",
+    "`CASE-HARNESS-L10-046-r04-046-oracle-missing`",
+    "`CASE-HARNESS-L10-046-r04-046-applicability-missing`",
+    "`CASE-HARNESS-L10-046-r04-046-source-revision-missing`",
+    "`CASE-HARNESS-L10-046-r04-oracle-conflict`",
+    "`CASE-HARNESS-L10-046-r04-oracle-stale`",
+    "`CASE-HARNESS-L10-046-r04-applicability-conflict`",
+    "`CASE-HARNESS-L10-046-r04-applicability-stale`",
+    "`CASE-HARNESS-L10-046-r04-source-revision-conflict`",
+    "`CASE-HARNESS-L10-046-r04-source-revision-stale`",
+    "`CASE-HARNESS-L10-046-r05-full-v-freeze-missing`",
+    "`CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations`",
+    "`CASE-HARNESS-L10-046-r05-slice-delta-missing`",
+    "`CASE-HARNESS-L10-046-r05-backfill-missing`",
+    "`CASE-HARNESS-L10-046-r05-sr4-receipt-missing`",
+    "`CASE-HARNESS-L10-046-r05-root-checkpoint-missing`",
+    "`CASE-HARNESS-L10-046-r06-slice-delta-not-returned`",
+    "`CASE-HARNESS-L10-046-r06-backfill-missing`",
+    "`CASE-HARNESS-L10-046-r06-applicability-unknown`",
+    "`CASE-HARNESS-L10-046-r10-transition-missing`",
+    "`CASE-HARNESS-L10-046-r10-loop-missing`",
+    "`CASE-HARNESS-L10-046-r10-terminal-missing`",
+    "`CASE-HARNESS-L10-046-r10-permission-missing`",
+    "`CASE-HARNESS-L10-046-r10-timeout-missing`",
+    "`CASE-HARNESS-L10-046-r10-notification-missing`",
+    "`CASE-HARNESS-L10-046-r10-audit-missing`",
+    "`CASE-HARNESS-L10-046-r10-data-missing`",
+    "`CASE-HARNESS-L10-046-r10-switching-missing`",
+    "`CASE-HARNESS-L10-046-r10-routing-missing`",
+    "`CASE-HARNESS-L10-046-r10-resource-allocation-missing`",
+    "`CASE-HARNESS-L10-046-r10-exception-missing`",
+    "`CASE-HARNESS-L10-046-r12-fullv-normal`",
+    "`CASE-HARNESS-L10-046-r12-fullv-no-scrum`",
+    "`CASE-HARNESS-L10-046-r12-fullv-refuse-slice-delta`",
+    "`CASE-HARNESS-L10-046-r12-fullv-refuse-scrum-reverse`",
+    "`CASE-HARNESS-L10-046-r12-fullv-refuse-sr4-obligation`",
+    "`CASE-HARNESS-L10-046-r12-fullv-condition-missing`",
+    "`CASE-HARNESS-L10-046-r12-scrum-normal`",
+    "`CASE-HARNESS-L10-046-r12-scrum-backfill-missing`",
+    "`CASE-HARNESS-L10-046-r12-scrum-sr4-missing`",
+    "`CASE-HARNESS-L10-046-r12-style-unknown`",
+    "`CASE-HARNESS-L10-046-r12-pair-oracle-unknown`",
+    "`CASE-HARNESS-L10-046-r12-refuse-adoption`",
+    "`CASE-HARNESS-L10-046-r12-refuse-agreement`",
+    "`CASE-HARNESS-L10-046-r12-refuse-requirement-approval`",
+    "`CASE-HARNESS-L10-046-r12-refuse-os-ticket`",
+    "`CASE-HARNESS-L10-046-r12-refuse-execution`",
+    "`CASE-HARNESS-L10-046-r12-refuse-release-permission`",
+    "`CASE-HARNESS-L10-046-r12-refuse-user-acceptance`",
+    "`CASE-HARNESS-L10-046-r12-refuse-workflow-instance`",
+    "`CASE-HARNESS-L10-046-r12-composed-scrum-sr4-missing`"
+  ],
+  "old_count": 66,
+  "new_count": 68,
+  "X1": "旧時点監査末尾空行bytesを変更しない。formal例外をレビュー側へ要請し、承認済みと推定しない。",
+  "limits": "独立closure/Fable一致/承認/fixture実行未確認"
+}

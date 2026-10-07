@@ -219,3 +219,19 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 | CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-043-01` | 独立NFRなし | fixed L2-043の選択scope内adequacy matrix | 数値性能・coverage率ではなく、適用rule/branchとoracle/risk根拠のtraceを機能ACで確認する。 | 新規閾値やall-combinations実行を設けない。 |
+
+## Stage 3 親046の非機能検証
+
+起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
+
+**固定親とPO根拠**：親L2は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1025–1035`（全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、対象span SHA-256 `47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e`）。対L11は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:759–771`（全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f`）。PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:51`、file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、row SHA-256 `60fb90a139b313760ad5a259e2362e3c406e071aa1dfba8ed6d21d0cb9fb55a4`。POは`HARNESS-L2-046`を採択し、registrationは`MPR-RC-HARNESS-L2-046-001`。隣接row 52の`HARNESS-L2-047`は046へ混ぜない。
+
+**source/測定境界**：旧起点はv1.3 `LEGACY-ASSET-02319C2481B9E01698D5`。§4.4 L259はFull Vのsystem workflow/L1–L5段階freezeと12 workflow条件の検証（atom S1）およびProduction Scrumのslice delta先行・Scrum Reverse/backfill時点・SR4前release-ready不可（独立atom S2）を別条件として記述する。§10 L647は両者を要約する別atomで、第三の独立条件に数えない。6fabd125 baselineの同文companionも別revisionとして保持する。旧consumerのUWJ-FR-015とL4 boundaryは確認範囲に限定し、consumer全体網羅は主張しない。 NFR候補をL3機能条件から重複定義せず、synthetic scopeで観測する。時間・成功率・SLA・追加gateは設けない。
+
+| 検証ID | NFR候補 | 入力・比較 | oracle | 未評価・不合格 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-046-01` | `NFR-C-HARNESS-046-01` | Full V B0で12条件のapplicability、L1–L5 freeze、対応V-pair evidenceを固定し、各condition別欠落fixtureと比較する。 | 12 condition identitiesの全てをscope/revision内で列挙し、欠落した条件だけを未完/unknownにする。Full V-specific denominatorにScrum-only obligationsは含めない。 | applicability/oracle unknownは未評価。欠落を別style条件や別scopeの証拠で補えば不合格。 |
+| `CASE-HARNESS-L10-NFR-046-02` | `NFR-C-HARNESS-046-02` | Full V selected scopeの適用L1–L5層と段階freeze traceを同revisionで評価。 | 適用層ごとにworkflow revision・freeze evidence・V-pair relationが追跡可能。 | 適用層不明はL2-002/003へ戻しunknown維持。 |
+| `CASE-HARNESS-L10-NFR-046-03` | `NFR-C-HARNESS-046-03` | Production Scrumまたは許可合成Scrum inputとFull V-only negative controlを並べ、Scrum側は既存trigger成立・不成立の両方をsource定義に従って評価し、trigger不成立のSR4-missing反例も含める。 | Scrum-specific delta/backfill/checkpoint receiptの適用は既存triggerに従い、Full VではScrum condition適用数0。Production Scrumが選択・合成適用されるscopeのSR4 receipt missing/unknownはtrigger成立有無にかかわらずrelease-ready不可。 | scope selectionまたはtrigger適用条件unknownは未評価。Full VをScrum要求で不合格にすれば不合格。 |
+
+**実行限界**：文書上のoracle candidateのみ。runtime、旧test/CI、L3承認、実行・release結果を検証していない。
