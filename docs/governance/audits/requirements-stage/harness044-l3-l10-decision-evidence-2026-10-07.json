@@ -1,0 +1,1412 @@
+{
+  "artifact_type": "delegated_l3_l10_decision_record_candidate_evidence",
+  "language": "ja",
+  "status": "/tmp candidate for Root inspection; no canonical file, commit, push, Ready or merge action",
+  "intended_paths": {
+    "decision_markdown": "docs/governance/decisions/helix-harness-stage3-parent044-l3-l10-po-decision-2026-10-07.md",
+    "evidence_bundle": "docs/governance/audits/requirements-stage/harness044-l3-l10-decision-evidence-2026-10-07.json",
+    "relative_markdown_link": "../audits/requirements-stage/harness044-l3-l10-decision-evidence-2026-10-07.json"
+  },
+  "target": {
+    "repository": "RetryYN/HELIX-HARNESS",
+    "pr": 2641,
+    "worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent044",
+    "review_base": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+    "merge_base": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+    "formal_review_head": "cfa88380fc4da94ea72248ccdf9c334fd755ad94",
+    "reviewed_content_head": "cfa88380fc4da94ea72248ccdf9c334fd755ad94",
+    "reviewed_content_revision": "64a0ca7ff6d55c6f8003517ca4e645589a14b607",
+    "parent_identity": "HARNESS-L2-044",
+    "stage": "Stage 3",
+    "version_target": "1.0",
+    "registration_scope": "MPR-RC-HARNESS-L2-044-002 adopted; -003 is locator-only metadata successor with authority_effect none"
+  },
+  "decision": {
+    "decision_status": "recorded",
+    "decider_role": "PO（委任：Opus・Fable一致）",
+    "decided_at": "2026-10-07",
+    "authority_effect": "effective_when_this_record_is_admitted_to_main",
+    "formal_review10_comment_id": 6028109178,
+    "formal_review10_result": "Major 0; reviewer states condition 1 and condition 2 aligned for exact content revision",
+    "fable_conclusion": "承認してよい",
+    "opus_conclusion": "Fableの判断を支持する",
+    "separate_fable_comment_id": null,
+    "separate_fable_comment_id_note": "Review10 formal comment itself preserves Fable verdict and Opus support; no separate Fable PR comment ID is identified in the supplied thread. Do not invent one.",
+    "condition_1_and_2": "formal review10 explicitly records both aligned on this exact content revision; mailbox no_findings response is separately pinned and has authority_effect none.",
+    "explicit_minor_or_blocker_counts": "Not separately stated as numeric counts in the formal body; no numeric values are added here.",
+    "condition_3": "unverified; after this decision record is added, independent review must confirm exact HEAD citations and all six document bytes/SHA unchanged before Ready.",
+    "ready": "not confirmed; condition 3 has not been checked after adding this candidate record.",
+    "fixture_execution": "not run",
+    "semantic_completeness": "not asserted",
+    "requirement_meaning_scope_owner_version_change": "none asserted"
+  },
+  "adopted_parent": {
+    "identity": "HARNESS-L2-044",
+    "adopted_registration_id": "MPR-RC-HARNESS-L2-044-002",
+    "po_source": {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_file": {
+        "bytes": 45099,
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      "row": 49,
+      "row_pin": {
+        "bytes": 730,
+        "sha256": "212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b"
+      },
+      "raw_row": "| `HARNESS-L2-044` | 条件付き採択：Bルート、名称はDesign Contract Portfolio。採択済み025/026へ無断追記しない。 | `MPR-RC-HARNESS-L2-044-002` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2` | `HARNESS-L2-044` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8` | `docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044` |\n"
+    },
+    "adoption_conditions": "B route; Design Contract Portfolio; no unauthorized additions to adopted 025/026",
+    "locator_successor": {
+      "old_registration_id": "MPR-RC-HARNESS-L2-044-002",
+      "new_registration_id": "MPR-RC-HARNESS-L2-044-003",
+      "authority_effect": "none",
+      "correction_reason": "refresh current locators only; candidate meaning, source/candidate digests, counts, state, authority, owner and human-decision status unchanged",
+      "source_revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "source_path": "docs/governance/audits/requirement-registration/l3-d0-live-locator-closure-2026-10-03.json",
+      "source_file": {
+        "bytes": 211740,
+        "sha256": "16d39403ad62035029be6a7741c8f428d4a3cdce9fa1d522cb4df5adff835bb4"
+      },
+      "mapping_object": {
+        "old_registration_id": "MPR-RC-HARNESS-L2-044-002",
+        "new_registration_id": "MPR-RC-HARNESS-L2-044-003"
+      }
+    },
+    "register_entries": [
+      {
+        "line": 550,
+        "pin": {
+          "bytes": 3280,
+          "sha256": "4c439e0253926b1fe00eab7e3d42c5267ed52bb2c5201e78cf135eda35928eaf"
+        },
+        "raw_jsonl_line": "{\"registration_id\":\"MPR-RC-HARNESS-L2-044-002\",\"supersedes_registration_id\":\"MPR-RC-HARNESS-L2-044-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HARNESS-L2-044\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-HARNESS\",\"candidate_source_path\":\"docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-044\",\"candidate_semantic_digest\":\"sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（対象本文固定。044候補採択は継承しない）\",\"parent_planning_revision\":\"docs/helix-harness/L1-planning/product-intent.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（対象本文固定。044候補採択は継承しない）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl#HIL-FR-54\",\"source_atom_set_digest\":\"sha256:4f91e2819e94c09ea3590e713032118eb4fec47399d08cbfeeb8689222c15d66\",\"source_atom_count\":1,\"source_collection_scope\":\"旧HIL-FR-54のarchive L1要求表144行（source atom PORTFOLIO-FIXTURE-HIL-FR-54-L0144）だけを入力とし、契約portfolioのclass-wise coverage閉包条件をHARNESS-L2/L11-044候補へ再導出する。旧HIL-FR-55は別atomとしてactive MPR-SH-PORTFOLIO-FIXTURE-002に残し、本receiptはFR55、旧IR record全体、旧portfolio tool/schema/runtime、実装、受入実行、正式successor割当、候補採択または2 atom holding全体の被覆を主張しない。 source-linesのrelation欄が記録する過去のL2-025変更提案は履歴として保持し、採択済み025の訂正とは扱わない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[\"PORTFOLIO-FIXTURE-HIL-FR-54-L0144\"],\"preserved_pending_registration_refs\":[\"MPR-SH-PORTFOLIO-FIXTURE-002\",\"MPR-SH-IR-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-28T12:43:16+09:00\",\"evidence_refs\":[\"docs/helix-harness/L1-planning/product-intent.md\",\"docs/helix-harness/L2-requirements/product-requirements.md\",\"docs/helix-harness/L11-acceptance/product-acceptance.md\",\"docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl\",\"docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json\",\"docs/governance/audits/requirements-stage/portfolio-fixture-legacy-differences-2026-09-28.md\",\"docs/governance/crosswalks/concept-requirement-po-decision-packet.md\"],\"correction_reason\":\"R2246-02: HARNESS-L2/L11-044候補をHELIX-HARNESS内の部品候補として明記し、旧packet row 1008のgeneric 部品粒度とPO未決のより具体的な配置を区別。L2候補digest、receipt L11 file SHA、PO packetを訂正する。既存-001 bytes、source atom scope、authority_effect:noneは保持。\"}\n",
+        "parsed": {
+          "registration_id": "MPR-RC-HARNESS-L2-044-002",
+          "supersedes_registration_id": "MPR-RC-HARNESS-L2-044-001",
+          "registration_kind": "requirement_candidate",
+          "requirement_identity": "HARNESS-L2-044",
+          "requirement_kind": "unit",
+          "product_target": "HELIX-HARNESS",
+          "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-044",
+          "candidate_semantic_digest": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
+          "parent_concept_revision": "docs/concept/helix-concept.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（対象本文固定。044候補採択は継承しない）",
+          "parent_planning_revision": "docs/helix-harness/L1-planning/product-intent.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（対象本文固定。044候補採択は継承しない）",
+          "source_atom_set_ref": "docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl#HIL-FR-54",
+          "source_atom_set_digest": "sha256:4f91e2819e94c09ea3590e713032118eb4fec47399d08cbfeeb8689222c15d66",
+          "source_atom_count": 1,
+          "source_collection_scope": "旧HIL-FR-54のarchive L1要求表144行（source atom PORTFOLIO-FIXTURE-HIL-FR-54-L0144）だけを入力とし、契約portfolioのclass-wise coverage閉包条件をHARNESS-L2/L11-044候補へ再導出する。旧HIL-FR-55は別atomとしてactive MPR-SH-PORTFOLIO-FIXTURE-002に残し、本receiptはFR55、旧IR record全体、旧portfolio tool/schema/runtime、実装、受入実行、正式successor割当、候補採択または2 atom holding全体の被覆を主張しない。 source-linesのrelation欄が記録する過去のL2-025変更提案は履歴として保持し、採択済み025の訂正とは扱わない。",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044",
+          "coverage_result": "no_loss",
+          "carried_atom_refs": [
+            "PORTFOLIO-FIXTURE-HIL-FR-54-L0144"
+          ],
+          "preserved_pending_registration_refs": [
+            "MPR-SH-PORTFOLIO-FIXTURE-002",
+            "MPR-SH-IR-003"
+          ],
+          "human_decision_disposition_refs": [],
+          "unaccounted_atom_refs": [],
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "registered_by": "Codex execution lane",
+          "registered_at": "2026-09-28T12:43:16+09:00",
+          "evidence_refs": [
+            "docs/helix-harness/L1-planning/product-intent.md",
+            "docs/helix-harness/L2-requirements/product-requirements.md",
+            "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl",
+            "docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json",
+            "docs/governance/audits/requirements-stage/portfolio-fixture-legacy-differences-2026-09-28.md",
+            "docs/governance/crosswalks/concept-requirement-po-decision-packet.md"
+          ],
+          "correction_reason": "R2246-02: HARNESS-L2/L11-044候補をHELIX-HARNESS内の部品候補として明記し、旧packet row 1008のgeneric 部品粒度とPO未決のより具体的な配置を区別。L2候補digest、receipt L11 file SHA、PO packetを訂正する。既存-001 bytes、source atom scope、authority_effect:noneは保持。"
+        }
+      },
+      {
+        "line": 996,
+        "pin": {
+          "bytes": 3538,
+          "sha256": "255d4b7364f6cc36ee0ef58735730b3db8d3024a4d7e9453b38a51414a740daf"
+        },
+        "raw_jsonl_line": "{\"registration_id\":\"MPR-RC-HARNESS-L2-044-003\",\"supersedes_registration_id\":\"MPR-RC-HARNESS-L2-044-002\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HARNESS-L2-044\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-HARNESS\",\"candidate_source_path\":\"docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-044\",\"candidate_semantic_digest\":\"sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（対象本文固定。044候補採択は継承しない）\",\"parent_planning_revision\":\"docs/helix-harness/L1-planning/product-intent.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（対象本文固定。044候補採択は継承しない）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl#HIL-FR-54\",\"source_atom_set_digest\":\"sha256:4f91e2819e94c09ea3590e713032118eb4fec47399d08cbfeeb8689222c15d66\",\"source_atom_count\":1,\"source_collection_scope\":\"旧HIL-FR-54のarchive L1要求表144行（source atom PORTFOLIO-FIXTURE-HIL-FR-54-L0144）だけを入力とし、契約portfolioのclass-wise coverage閉包条件をHARNESS-L2/L11-044候補へ再導出する。旧HIL-FR-55は別atomとしてactive MPR-SH-PORTFOLIO-FIXTURE-002に残し、本receiptはFR55、旧IR record全体、旧portfolio tool/schema/runtime、実装、受入実行、正式successor割当、候補採択または2 atom holding全体の被覆を主張しない。 source-linesのrelation欄が記録する過去のL2-025変更提案は履歴として保持し、採択済み025の訂正とは扱わない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[\"PORTFOLIO-FIXTURE-HIL-FR-54-L0144\"],\"preserved_pending_registration_refs\":[\"MPR-SH-PORTFOLIO-FIXTURE-002\",\"MPR-SH-IR-004\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane (L3-D0 current locator correction; authority_effect:none)\",\"registered_at\":\"2026-10-03T00:00:00+09:00\",\"evidence_refs\":[\"docs/helix-harness/L1-planning/product-intent.md\",\"docs/helix-harness/L2-requirements/product-requirements.md\",\"docs/helix-harness/L11-acceptance/product-acceptance.md\",\"docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl\",\"docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json\",\"docs/governance/audits/requirements-stage/portfolio-fixture-legacy-differences-2026-09-28.md\",\"docs/governance/crosswalks/concept-requirement-po-decision-packet.md\"],\"correction_reason\":\"R2246-02: HARNESS-L2/L11-044候補をHELIX-HARNESS内の部品候補として明記し、旧packet row 1008のgeneric 部品粒度とPO未決のより具体的な配置を区別。L2候補digest、receipt L11 file SHA、PO packetを訂正する。既存-001 bytes、source atom scope、authority_effect:noneは保持。; L3-D0 current locator correction: refresh current holding/receipt locators only; candidate meaning, source/candidate digests, counts, state, authority, owner and human-decision status are unchanged.\"}\n",
+        "parsed": {
+          "registration_id": "MPR-RC-HARNESS-L2-044-003",
+          "supersedes_registration_id": "MPR-RC-HARNESS-L2-044-002",
+          "registration_kind": "requirement_candidate",
+          "requirement_identity": "HARNESS-L2-044",
+          "requirement_kind": "unit",
+          "product_target": "HELIX-HARNESS",
+          "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-044",
+          "candidate_semantic_digest": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
+          "parent_concept_revision": "docs/concept/helix-concept.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（対象本文固定。044候補採択は継承しない）",
+          "parent_planning_revision": "docs/helix-harness/L1-planning/product-intent.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（対象本文固定。044候補採択は継承しない）",
+          "source_atom_set_ref": "docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl#HIL-FR-54",
+          "source_atom_set_digest": "sha256:4f91e2819e94c09ea3590e713032118eb4fec47399d08cbfeeb8689222c15d66",
+          "source_atom_count": 1,
+          "source_collection_scope": "旧HIL-FR-54のarchive L1要求表144行（source atom PORTFOLIO-FIXTURE-HIL-FR-54-L0144）だけを入力とし、契約portfolioのclass-wise coverage閉包条件をHARNESS-L2/L11-044候補へ再導出する。旧HIL-FR-55は別atomとしてactive MPR-SH-PORTFOLIO-FIXTURE-002に残し、本receiptはFR55、旧IR record全体、旧portfolio tool/schema/runtime、実装、受入実行、正式successor割当、候補採択または2 atom holding全体の被覆を主張しない。 source-linesのrelation欄が記録する過去のL2-025変更提案は履歴として保持し、採択済み025の訂正とは扱わない。",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044",
+          "coverage_result": "no_loss",
+          "carried_atom_refs": [
+            "PORTFOLIO-FIXTURE-HIL-FR-54-L0144"
+          ],
+          "preserved_pending_registration_refs": [
+            "MPR-SH-PORTFOLIO-FIXTURE-002",
+            "MPR-SH-IR-004"
+          ],
+          "human_decision_disposition_refs": [],
+          "unaccounted_atom_refs": [],
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "registered_by": "Codex execution lane (L3-D0 current locator correction; authority_effect:none)",
+          "registered_at": "2026-10-03T00:00:00+09:00",
+          "evidence_refs": [
+            "docs/helix-harness/L1-planning/product-intent.md",
+            "docs/helix-harness/L2-requirements/product-requirements.md",
+            "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl",
+            "docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json",
+            "docs/governance/audits/requirements-stage/portfolio-fixture-legacy-differences-2026-09-28.md",
+            "docs/governance/crosswalks/concept-requirement-po-decision-packet.md"
+          ],
+          "correction_reason": "R2246-02: HARNESS-L2/L11-044候補をHELIX-HARNESS内の部品候補として明記し、旧packet row 1008のgeneric 部品粒度とPO未決のより具体的な配置を区別。L2候補digest、receipt L11 file SHA、PO packetを訂正する。既存-001 bytes、source atom scope、authority_effect:noneは保持。; L3-D0 current locator correction: refresh current holding/receipt locators only; candidate meaning, source/candidate digests, counts, state, authority, owner and human-decision status are unchanged."
+        }
+      }
+    ]
+  },
+  "fixed_parent_sources": {
+    "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "L2-044": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "physical_lines_inclusive": [
+        1002,
+        1011
+      ],
+      "full_file": {
+        "bytes": 254934,
+        "sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+      },
+      "span": {
+        "bytes": 4307,
+        "sha256": "690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2"
+      },
+      "raw_utf8": "### HARNESS-L2-044 design obligation portfolioの契約coverage候補（HELIX-HARNESS内の部品候補）\n\n**対応要求**：HARNESS-L2-044（HELIX-HARNESS内の部品候補、単体能力、`version_target: 1.0`、未採択。個別部品の配置はPO判断待ち）。親L1は`HARNESS-L1-001/004/009`。旧sourceはHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`（line SHA-256 `502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67`）。旧PO packet `docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1008`の配置表示は`HELIX-HARNESS、部品`までであり、より具体的な所属は特定しない。\n\n- **種別・scope**：対象revisionのrequirement atomとdesign obligationを契約coverageの意味classへ整理し、適用されるclassとnormative contractの割当を照合するHELIX-HARNESS内の部品候補（単体能力）。旧sourceの分類語やportfolio schemaを現行の固定形式にしない。\n- **入力**：対象L1・要求・design scopeとrevision、当該scopeに適用されるrequirement atom／Design Obligation Graph、関連するnormative contract・対oracleのidentity/revisionと適用根拠。L2-009等から導かれる義務や025/026の設計成果を参照する場合も、そのsource revisionとscopeを結ぶ。required atom、契約、適用性またはoracleがunknown/conflict/staleなら閉包判定を行わない。\n- **出力**：authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の適用義務を意味classへまとめたobligation-to-contract coverageと、対象revision・scope付きportfolio提案。classごとにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規契約、根拠付き非適用を区別する。重複割当・意味重複・未被覆classと根拠を示し、未被覆0かつ意味重複0となる最小portfolio候補を提示する。\n- **依存区分**（HARNESS-L2-023の4区分）：**常時必須**＝選択された対象L1／要求／design scopeとrevision、そのscopeの適用義務class、normative contract、対oracleおよび各identity・契約版・適用根拠。**特定操作時のみ必須**＝当該portfolioを評価・提案する操作とそのscope。評価操作を選んだときは対象範囲のcoverage閉包を完了できないmissing/unknown/staleがあれば未完または保留を返す。**選択した入力元に応じて必須**＝template由来義務、041の抽出結果、025/026の設計成果を選択入力に含めるscopeでは、そのsource identity/revision・適用範囲・互換を照合する。未選択sourceは未観測とし、不在や合格を推測しない。**参照資料のみ**＝旧schema、旧runtime、背景説明、今回のscopeやauthority・義務・契約・oracleを定めない資料。これらを現行依存や評価根拠へ変換しない。\n- **保証と差戻し**：適用classの全てに契約または根拠付き非適用が対応し、各割当が同じ義務意味と対oracleを覆うか照合できる。複数契約への分割は必要な境界と根拠を明示する。意味不明・authority不足は要求ownerへ、template適用・義務導出の不足はHARNESS-L2-009/対象template ownerへ、設計要素やpair oracleの不足はHARNESS-L2-026/022等の該当ownerへ返す。旧schema、旧runtime、特定のPlanner実装は要求せず、候補の出力は要求合意、設計承認、実装、候補採択を生成しない。\n- **既存候補との境界**：009はtemplate選択・適用と設計義務を導出し、041はtemplate要素の抽出と未対応gapを示し、043はrule/branchごとの例coverageを評価する。026はunit設計と対検証設計を構成し、025はgeneric compositeの設計整合を検査する。044はそれらの成果を入力に契約portfolio全体のclass coverageを照合する候補であり、義務抽出・設計生成・例妥当性判定・構成体設計oracleを重複実装しない。旧FR-55の例coverageは043、旧FR-56のworkflow phase bindingは別scopeとして扱う。\n"
+    },
+    "L11-044": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "physical_lines_inclusive": [
+        735,
+        745
+      ],
+      "full_file": {
+        "bytes": 172806,
+        "sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+      },
+      "span": {
+        "bytes": 3224,
+        "sha256": "9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8"
+      },
+      "raw_utf8": "### HARNESS-L2-044 design obligation portfolioの契約coverage（HELIX-HARNESS内の部品候補）\n\n**対応要求**：HARNESS-L2-044（HELIX-HARNESS内の部品候補、単体能力、`version_target: 1.0`、未採択。個別部品の配置はPO判断待ち）。親L1は`HARNESS-L1-001/004/009`。本候補は旧HIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`（line SHA-256 `502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67`）の意味条件を現行の抽象的なcoverage契約へ再導出する。旧PO packet `docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1008`の配置表示は汎用の`HELIX-HARNESS、部品`までで、個別所属は決めない。受入は未実行であり、候補採択を意味しない。\n\n**正常例**：同一対象revision/scopeの適用requirement atom、design obligation、normative contractと対oracleを意味classへ整理し、authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の該当条件を各classで追跡する。各classについて、原則一つのnormative contractへの割当、既存契約の再利用、delta追加、新規作成、または根拠付き非適用を確認する。classごとの義務とoracleが割当先に対応し、未被覆classと意味重複がゼロであることをcoverageから再構成できる場合に限り、そのscopeのportfolio閉包を受け入れる。\n\n**誤りを含む例**：適用義務classに契約／oracleがない、同じ意味の義務を複数契約へ無説明で割り当てる、根拠なしに非適用とする、既存normative contractを孤立させる、または未被覆・意味重複を残したまま最小portfolioとする場合は不合格とする。複数契約が必要な場合に境界・理由が示されない例も不合格とする。fieldやmatrixが存在しても、義務内容と契約の意味対応をoracleで照合できなければ受け入れない。\n\n**未見・失敗例**：作成側に伏せた適用義務class、契約revision、またはapplicability branchを加え、分母とportfolio coverageを更新する。新classが未割当なら未被覆として検出され、意味重複があれば該当classとcontractを示す。source atom、active template、適用性、oracle、契約版の欠落・矛盾・staleはunknown／未評価に残し、合格扱いにしない。変更された入力に既存receiptを流用しない。\n\n**戻し先と境界**：要求意味・authority不足は要求owner、template適用と義務導出不足はHARNESS-L2-009/対象template owner、template atom抽出不足はHARNESS-L2-041相当の契約owner、具体設計と対oracle不足はHARNESS-L2-026/022等の該当ownerへ戻す。HARNESS-L2-025のgeneric composite整合やHARNESS-L2-043の例coverageだけで本候補のportfolio閉包を代替しない。候補や受入結果は要求合意、L3承認、設計承認、実装、OS実行、利用者受入を生成せず、旧schema／runtime固有の形式を要求しない。\n"
+    }
+  },
+  "six_target_documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "HEAD": {
+        "bytes": 17416,
+        "sha256": "045372f3441246a8169ce7b8755145e6746d02621950d3d41d3ec92eab950963"
+      },
+      "reviewed_content_revision": {
+        "bytes": 17416,
+        "sha256": "045372f3441246a8169ce7b8755145e6746d02621950d3d41d3ec92eab950963"
+      },
+      "same_bytes": true,
+      "terminal_lf": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "HEAD": {
+        "bytes": 233023,
+        "sha256": "dafc5df128292135037faee5ab209f826d1fd4c7b1b0a75895e93bc6c1f6dc39"
+      },
+      "reviewed_content_revision": {
+        "bytes": 233023,
+        "sha256": "dafc5df128292135037faee5ab209f826d1fd4c7b1b0a75895e93bc6c1f6dc39"
+      },
+      "same_bytes": true,
+      "terminal_lf": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "HEAD": {
+        "bytes": 47738,
+        "sha256": "54e34ace8add6055a3b7de68aa02955b50fab1b70dae7493f700aa189d7d993d"
+      },
+      "reviewed_content_revision": {
+        "bytes": 47738,
+        "sha256": "54e34ace8add6055a3b7de68aa02955b50fab1b70dae7493f700aa189d7d993d"
+      },
+      "same_bytes": true,
+      "terminal_lf": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "HEAD": {
+        "bytes": 13650,
+        "sha256": "24fd59b8c85048f54fbe83a96ca439239ee6e3c2c2c272586beef3f3fdfe26ae"
+      },
+      "reviewed_content_revision": {
+        "bytes": 13650,
+        "sha256": "24fd59b8c85048f54fbe83a96ca439239ee6e3c2c2c272586beef3f3fdfe26ae"
+      },
+      "same_bytes": true,
+      "terminal_lf": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "HEAD": {
+        "bytes": 838630,
+        "sha256": "036759ccb78158b0de580517596b1b0f4ae0c822ad3fb5462533f0a6bbdd2b6f"
+      },
+      "reviewed_content_revision": {
+        "bytes": 838630,
+        "sha256": "036759ccb78158b0de580517596b1b0f4ae0c822ad3fb5462533f0a6bbdd2b6f"
+      },
+      "same_bytes": true,
+      "terminal_lf": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "HEAD": {
+        "bytes": 41999,
+        "sha256": "ea577d3bdf09e32caf2896ae3a0fc80b9e53d43b15360f3cc531d9a9e3dcf769"
+      },
+      "reviewed_content_revision": {
+        "bytes": 41999,
+        "sha256": "ea577d3bdf09e32caf2896ae3a0fc80b9e53d43b15360f3cc531d9a9e3dcf769"
+      },
+      "same_bytes": true,
+      "terminal_lf": true
+    }
+  ],
+  "delegation_policy_sources": {
+    "po_decision": {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+      "bytes": 6210,
+      "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+      "raw_utf8": "---\ntitle: \"L3／L10承認のAI 2者一致への委任 decision record（2026-10-05）\"\ndecision_record_id: HDEC-L3-L10-APPROVAL-DELEGATION-2026-10-05\ndecision_status: recorded\ndecider_role: PO\ndecided_at: 2026-10-05\nrecorded_at: 2026-10-05\nsource_repository_revision: f54ea028ddd37fd9aea2924e500dafe9dbd72a62\nauthority_effect: effective_when_this_record_is_admitted_to_main\n---\n\n# L3／L10承認のAI 2者一致への委任（2026-10-05）\n\n## 記録の範囲\n\n2026-10-05（Asia/Tokyo）のClaude作業session（`review_merge` lane、session `66d9c527-e899-4091-b8bb-240e5cdce85e`）で、\nPOが今後の運用としてL3承認の委任を指示し、AIの問いに対して委任の範囲と事後確認の時期を選んだ。本書はその記録である。\nPOの発言と選択はそのまま引用し、AIの整理と区別する。POが選んだ選択肢は、選択肢の説明文も含めてPOが選んだ内容として扱う。\n本記録は、本書がmainへ入った後のL3／L10承認の手続きを定める。本書より前のPO承認（CONNECT、HARNESS、BRAIN、INFRASTRUCTUREの各Stage 1）を取り消したり作り直したりしない。\n本記録から、Concept、企画（L1）、要求とprototype／非UIの合意（L2）、実装許可、release、Issue closeを生成しない。\n\n## POの指示\n\nAIが#2579（INFRASTRUCTURE Stage 1）の承認の扱いを報告した後の、POの指示：\n\n> あと今後の運用だが、FableとOpusの両見解が一致したら承認を通していいものとする。毎回承認するのは骨が折れるから最終チェックに周りてくれ。\n\n## AIの問いとPOの選択\n\nAIは、旧HELIXの自律境界ではL3が人の承認だけを行う層であり、これを委任する変更になることを示して、二つを問うた。\n\n一つ目の問い：\n\n> FableとOpusの見解が一致したら承認とする範囲はどこまで？（旧HELIXの自律境界では、L3は人が承認だけする層。今回はそこを委任する変更になる）\n\nPOの選択：\n\n> L3／L10だけ（推奨）\n>\n> 要件と総合検証設計の承認だけを委任する。Concept・L1企画・L2要求・prototypeの合意は今までどおり人が判断する。要求の意味や範囲を変えるときは、今までどおりL2へ戻してPOへ上げる。\n\n選ばれなかった選択肢は「L3以下すべて」（L3に加えて、その下の層で人の判断を求められる箇所もAI 2者の一致で通す）である。\n\n二つ目の問い：\n\n> 「最終チェック」は、いつやる？\n\nPOの選択：\n\n> 機構×Stageの区切りで一括（推奨）\n>\n> AI 2者が一致したPRはそのままmergeまで進める。機構のStageがまとまったら、承認したものの一覧をPOがまとめて事後確認する。問題があれば差し戻しの判断記録を作る。\n\n選ばれなかった選択肢は「merge前に毎回ひと目」（AI 2者の一致を見てから、merge前にPOがOKかNGを一言返す）である。\n\n## 続くPOの指示と選択\n\nAIが本委任のPR（#2584）を作った直後の、POの指示：\n\n> あとそもそも変更耐性に強くすること。完璧な計画はないし、やることで見えることもある。毎回毎回ユーザー承認はだるすぎる。前提がヒューマンアウトオブザループで考えろ。\n\nAIの問い：\n\n> ヒューマンアウトオブザループを前提にするなら、人が残るところはどこにする？（さっき作った#2584はL3／L10だけを委任する内容。答えに合わせて広げるね）\n\nAIが示した選択肢は、「Conceptと不可逆な外部作用だけ（推奨）」「Conceptと企画（L1）まで人」「不可逆な外部作用だけ人」の三つだった。POはいずれも選ばず、次のように答えた。\n\n> L3までだが、承認回数を減らせ。\n\nAIはこの答えを、委任の範囲はL3（L3／L10）までのまま広げず、人が持つ判断（Concept、L1、L2）は残したうえで、人に承認を求める回数を減らす、と読んだ。\n\n続けてPOは、次のように述べた。\n\n> そのためのブレインやPoCや画面プロト、インテリジェンスの機能。\n\nAIはこれを、人に聞く回数を減らし、やってみて分かることを取り込むための手段が、HELIX-BRAIN（知識）、PoC、画面prototype、HELIX-INTELLIGENCE（判断）の機能である、と読んだ。\n\n## 決まったこと\n\n1. L3要件とL10総合検証設計の対象revisionの承認は、Opus（Claudeの`review_merge` lane）の独立reviewと、Fable（Claudeのadvisor）の独立確認の見解が、同じ対象revisionについて一致した場合に成立する。\n2. 委任はL3／L10に限る。Concept、企画（L1）、要求とprototype／非UIの合意（L2）は、今までどおり人が判断する。要求の意味・範囲・担当・版を変える必要が出た場合は、今までどおりL2へ戻してPOへ上げる。\n3. 一致したPRは、PO承認を待たずに判断記録の追加、Ready化、merge admission、mergeまで進める。\n4. POは、機構×Stageの区切りで、委任により承認したものの一覧をまとめて事後確認する。問題があれば差し戻しの判断記録を作る。\n5. 作業はヒューマンアウトオブザループを前提とし、変更に強くする。計画や承認済みの文書は、やってみて分かったことで直してよい。\n6. 委任の範囲はL3までのまま広げない。人が持つ判断（Concept、L1、L2）は残し、人に承認を求める回数を減らす。\n7. 人に聞く前に、PoC、画面prototype、調査、およびHELIX-BRAIN・HELIX-INTELLIGENCEの機能で論点を絞り、証拠を添える。これらの機構は、人に聞く回数を減らし、やってみて分かることを取り込むためにある。\n\n手続きの詳細（「見解の一致」の条件、記録の形、一致しない場合の扱い、事後確認の一覧）は、\n[GitHub上流運用モデル](../github-upstream-operating-model.md)「L3／L10承認の委任」に置く。\n"
+    },
+    "github_upstream_operating_model": {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "bytes": 53710,
+      "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+      "raw_utf8": "# GitHub上流運用モデル\n\nstatus: bootstrap_candidate\ngeneration: new-generation-2026-09-14\nlocal_authority: repository documents at exact revision\ngithub_role: work_review_evidence_projection\n\n文書、要求carry-forward、管理層仮登録、作業、GitHub projectionの状態は[上流authority状態モデル](authority-state-model.md)の独立した五軸で扱う。\n\n## 目的\n\nGitHubのIssue、PR、label、checkを追いかけて要求を推定する運用をやめ、ローカル上流からGitHub上の作業を\n再生成できる状態を作る。本書は新世代repositoryを整理した後に要求を一件ずつ詰め、設計・検証・実装へ\n順に降ろすための運用上流である。\n\n## authority順序\n\n1. 対象revisionへ束縛した人間decision record。L3／L10では、POの委任による判断記録を含む（「L3／L10承認の委任」）。\n2. decision recordにより承認されたrepo-owned Concept、Vision、対象別L1、対象別L2とL11、および旧要求の無損失carry-forward記録。\n3. 承認済み要求から導出しfreezeしたL3とL10、以降の正規V-pair。\n4. 判断論点、known／assumption／unknown／conflict／staleを持つpremise packet、research、限定PoC、prototype、人間反応。これらは上流判断の証拠入力であり、単独では意味authorityを持たない。\n5. repo-owned Feature Ticketと変更契約。\n6. GitHub Issue、PR、review、check、Project等のprojection。\n\n下位projectionから上位の要求意味、採否、承認、完了を生成しない。GitHub上の状態が失われても、承認済みlocal sourceと\n投影記録から未完作業を再構築できることを運用成立条件とする。\n\nこの順序はauthorityの優先順位である。GitHubへ作業を導出する上流整理は`Concept／Vision／企画／人間指示 → 判断論点 → 必要なpremise／research／PoC／prototype → 人間decision → 承認済み上流revision`で行う。これはGitHub運用上の文書導出順であり、HARNESS製品内の開発workflowを一つの直線として定義しない。証拠入力が先に作られることを上位authorityであることと混同しない。新しい人間指示は受領時に失わず登録し、既存の承認済み上流と衝突する場合は、指示だけで旧revisionを暗黙上書きせず人間decisionへ送る。\n\n## PR classとscope\n\n本書で用いる上流入力を次のように区別する。\n\n- `Vision`: 一つの対象productについて、親Conceptの範囲内で将来到達像、利用者価値、時間境界、成功観測を示すsource-qualified identity。L1企画と同一視せず、revisionと親Conceptを持つ。\n- `判断論点`: Concept／Vision／企画／指示の間で、人間が選ぶ必要のある一つの問い。選択肢、維持条件、影響対象、必要証拠、返却先を持ち、結論を先取りしない。\n- `premise packet`: 一つの判断論点に対するknown／assumption／unknown／conflict／stale、source、取得時点、適用条件、限界、反例、再調査条件を持つversioned evidence bundle。要求authorityや人間decisionではない。\n\n| PR class | 一つのPRが扱うもの | 必須入力 | mergeで成立するもの | mergeで成立しないもの |\n|---|---|---|---|---|\n| `repository_foundation` | 旧世代archive隔離、新世代物理構成、authority・GitHub運用規則 | archive manifest、対象構成、運用上流 | 新世代を整理・reviewするrepository基盤 | 個別要求の承認、L3、実装、CI、製品完成 |\n| `concept_revision` | 一つのConcept identityの新設または意味revision | 人間指示、現行Concept revision、変更理由、影響対象 | 人間decisionへ提示できるConcept差分。decision記録を同じPRへ束縛した場合だけ承認revision | L1以下の自動承認、設計・実装・運用許可 |\n| `planning_revision` | 一つの対象productのVision／L1企画identityの新設または意味revision | 親Concept revision、premise、対象product、変更理由 | 人間decisionへ提示できるVision／L1差分。decision記録を同じPRへ束縛した場合だけ承認revision | L2以下の自動承認、他productの意味変更 |\n| `research_premise` | 一つの判断論点に対する前提確認または要求探索research | 親Concept／Vision／企画revision、調査scope、必要証拠 | 出典・版・時点・適用条件・限界・反例付きpremise packet | Concept／L1／要求／技術の採用、実装許可 |\n| `discovery_evidence` | 一つの要求候補を比較する限定PoCまたはUI・動画prototype | 親判断論点、仮説、timebox、使い捨てscope、評価方法、返却先 | 再現可能な試作証拠と要求候補・premiseへのbackflow | production pathへの取込、要求採用、設計freeze、製品完成 |\n| `requirement` | 一つの要求identityと対になるL11。分割案はsuccessor候補を列挙できるが、別identityを同じPRで確定しない | 親Concept／L1 exact revision、source、対象product、要求kind | 判断記録に束縛した一要求revision | 他要求、設計方式、実装、CI、受入pass |\n| `design_verification` | 一つの承認要求に対するL3とL10、または後続の一つのV-pair。L3／L10は一つの機構の一つのStageに属する承認要求のpair群までを一つのPRにまとめてよい（「PRの原子性」） | 承認要求revision、適用template、risk、未解決 | 対象pairのfreeze可能な設計・検証契約 | 実装完了、利用者受入、運用成立 |\n| `implementation` | 一つの承認・freeze済みticketが指定する成果と必要検証 | Feature Ticket、親要求、設計、oracle、許可、HEAD | 対象成果と検証証拠 | 無関係な要求・設計の変更、release、deployment |\n| `operation_change` | GitHub、CI、Worker、配布等の一つの外部運用変更 | HELIX-OS要求、操作authority、backup、rollback、read-after | 許可scope内の外部状態変更 | 要求意味、人間承認、別操作の許可 |\n\n要求PRは原則として一つの要求identityだけを扱う。複数要求を一括変更しない。connection要求は接続そのもの、\ncomposite要求は組合せ固有の全体条件を一つのidentityとして扱い、構成unitの要求PRと分ける。\n`requirement` PRをReadyにする前に、親Concept／Vision／企画revisionから判断論点を特定し、premise packetまたは\n`research_not_required`の理由・判断者・再評価条件を参照する。research結果は要求候補の根拠であり、採用authorityではない。\npremiseが承認済みConcept／Vision／L1と`conflict`または`stale`になった場合は、対象の`concept_revision`または`planning_revision`へbackflowしてから要求採否へ進む。`unknown`または`assumption`を残す場合は、影響範囲、判断者、再評価条件を記録する。PoC／prototypeは`discovery_evidence`としてproduction pathから隔離し、結果だけをpremiseまたは要求候補へ戻す。\n\n要求を降ろす順序は、単独で成立する`unit`、採用済みunit間の関係を定める`connection`、採用済みunit／connectionの集合に固有な結果を定める`composite`とする。後段要求は参照先のexact revisionを持ち、unitの成立からconnectionやcompositeの成立を推定しない。分割元の旧要求は、各successorを別PRで確定し、全意味atomの被覆を確認するまで`pending`を残す。要求revisionの承認後に管理が工程を推進へ渡し、推進がFeature Ticketを発行する。親要求、必要なconnection／composite、premise状態、HARNESS contract、停止条件のいずれかが未確定ならticketをReadyにしない。\n\n### PRの原子性\n\n一つのPRは、一つの変更目的と、上表のclassが定める一つの対象だけを扱う。`requirement`の対象は一つの要求identityである。\n`design_verification`のL3／L10は、POが承認する単位に合わせ、一つの機構の一つのStage（要求段階の対応順序案とその追補が定めるStage）に\n属する承認要求のpair群を上限とする。複数の機構、または複数のStageにまたがる要求のL3／L10を同じPRで起草・修正・確定しない。\nPRの中でも要求identityごとにL3とL10の対を分けて書き、別の要求の条件を混ぜない。\n\n対象PRが実際に参照する共通部品（template、共通規則、参照先の契約）が未確定なら、その共通部品を先行PRで閉じてmergeし、\n対象PRはそのexact revisionを参照する。対象PRは共通部品の規則を本文へ書き写さず参照し、その対象に固有の条件だけを書く。\n対象PRが参照しない共通部品のmergeを待つ必要はない。後段の内容を先行PRへ混載しない。\n\n人が読む本文の差分は200〜400行を目安とする。目安を超える場合は、PR本文に超える理由と、範囲をさらに分けられない理由を書く。\n監査・照合の証拠や機械生成の記録は行数の目安に含めないが、範囲を広げる理由にはしない。\n\n範囲を超えて作業した成果は、そのPRをmergeせず、範囲ごとのPRへ切り出す。切り出した各PRはexact HEADで独立reviewを受け直し、\n元PRには切り出し先PRの一覧と、元の範囲の全対象が切り出し先で被覆されたことを記録してからcloseする。被覆を確認するまで、\n元PRの範囲で未確定の対象を確定済みとして扱わない。\n\nレビュー対応側は、本文の句単位reviewの前に、PR class、範囲（`design_verification`では機構とStage）、変更目的の数を確かめる。\n範囲を超えるか変更目的が複数なら、範囲違反をblockerとして返し、句単位reviewには進まない。範囲違反のPRではmerge admissionは成立しない。\n\n旧sourceは次のとおりである。いずれも台帳上`unresolved`であり、本文を完全一致copyせず意味を再導出する。\n\n- `archive/legacy-generation-2026-09-14/root/docs/governance/ai-dev-team-operations_v1.1.md`（`LEGACY-ASSET-20C14BB23C519C65E7BD`、\n  SHA-256 `4c03ceed6fd11985158cb9dd7d3e5f455274cf74e839523b756da7f35441867d`）101–107行「原則5: 1 PR = 1 変更目的」：\n  複数の目的を1つのPRに詰め込まない、差分200〜400行の目安、巨大PRはreviewされない。\n- `archive/legacy-generation-2026-09-14/root/docs/governance/github-operations-reference-audit-2026-07-18.md`（`LEGACY-ASSET-57E3CD5314D2CB4C2EF1`、\n  SHA-256 `c6f2c106ee33720b7664f3ac9f02ba1896b7b819cb4f57bc119f1ce817ff27a3`）41行：採用した「1 PR 1目的」と短命branch。\n- `archive/legacy-generation-2026-09-14/root/docs/governance/l3-rebaseline-g3-freeze-packet.md`（`LEGACY-ASSET-269C287365D652DEAD93`、\n  SHA-256 `519be70ab005c875d57acab510869b67bea23bd3304f8f24d9b0223da37a2ebd`）340–342行：責務ごとに小PRで閉じ、\n  先行PRのmerge後に後段PRを別PRで閉じ、後段PRを先行PRへ混載しない。\n- `archive/legacy-generation-2026-09-14/root/docs/governance/github-issue-hierarchy-rules.md`（`LEGACY-ASSET-3BBD5A19BFD9A0FC7166`、\n  SHA-256 `c965a2744c99cbdfe69f071167fe009ade68337e31e0fb1de13377568084d1ca`）37行：1 PRは1 `task` Issueだけを閉じる。\n\n保持する点は、1 PR 1目的、行数の目安、後段の混載禁止である。変更する点は四つある。\n\n一つ目は、PRの範囲を旧sourceのPLAN・`task` Issue単位から、現行のPR class表が定める対象の単位へ置き換えることである。\n現行の工程はPLANやIssueから要求意味を生成しないためである。\n\n二つ目は、`design_verification`のL3／L10の範囲を、一つの承認要求から一つの機構の一つのStageへ広げることである。\n起点は利用者の起草指示`scaffold/review-handoff/local/codex-goals-2026-10-03-l3.md`（SHA-256\n`3561eb221023220ccd6dda9ace008882851eac343ca76611742b07b2e30703e5`）のL3-G1「機構ごとまたは依存のまとまりごとにPRを分けてよい」と、\n同「PO承認への渡し方」の「承認は機構またはStageのまとまりごとに受ける」である。2026-10-05にPOが、PRの単位の上限を\n機構×Stageとすることを選んだ（[判断記録](decisions/pr-atomicity-unit-po-decisions-2026-10-05.md)）。PRの範囲を承認の単位と揃え、承認単位をまたぐ一括PRを作らないためである。\n影響として、PR class表の`design_verification`行に範囲の上限を追記した。要求identityごとのL3／L10の対と、PO承認の記録方法は変えない。\n\n三つ目は、共通部品の先行mergeである。旧`l3-rebaseline-g3-freeze-packet.md:340–342`は、GitHubの五責務ごとにL4基本設計とL9結合oracleを閉じ、\nそのmerge後にL5詳細契約とL8単体oracleを閉じる層間の順序であり、共通部品一般の先行mergeを定めていない。本節はこの順序を、\n対象PRが実際に参照する未確定の共通部品へ一般化する。理由は、共通規則を対象ごとに書き写すと、規則の変更が全対象への手作業の同期になり、\n取りこぼしが再発するためである。影響として、対象PRは自分が参照する共通部品のmergeだけを待つ。参照しない共通部品は待たない。\n\n四つ目は、レビュー対応側が句単位reviewの前に範囲を確かめ、範囲違反をblockerとして返すことである。\n旧sourceは巨大PRがreviewされないことを心得として述べるだけだった。\n\n二つ目から四つ目の理由となった事例は#2564である。8機構・全Stageの274件のL3／L10を一つの`design_verification` PRで扱い、\n11回の往復でmajorを減らせなかった。毎回、規則の書き写しと兄弟対象の取りこぼしが再発した。新しい人間承認手続きは加えない。\n\n## L3／L10承認の委任\n\n2026-10-05のPO判断（[判断記録](decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md)）により、\n`design_verification` PRのL3／L10の対象revision承認は、Opus（Claudeの`review_merge` lane）とFable（Claudeのadvisor）の見解が一致した場合に成立する。\n委任はL3／L10に限る。Concept、企画（L1）、要求とprototype／非UIの合意（L2）は人が判断する。要求の意味・範囲・担当・版を変える必要が出た場合は、L2へ戻してPOへ上げる。\n\n### 見解の一致\n\n次の三つが、同じ対象の本文revisionについてそろった場合だけ、見解が一致したとする。\n\n1. Opusの独立reviewが、exact base／content HEADについてBlocker、Major、Minor、未確認範囲をすべて0としている（`no_findings`）。\n2. Fableが、同じ本文revisionの6文書と固定親を自分で読み、承認を止める問題がないと結論している。Fableには、review経過を入力として渡してよいが、結論は本文と固定親を読んだうえでFable自身が出す。\n3. 1と2の後で、6文書のbytesが変わっていない。\n\nFableが承認を止める問題を挙げた場合は、一致しない。Opusがその問題を固定親に照らして確かめ、妥当なら作成側へfindingとして返す。\n修正で本文revisionが変わった場合は、新しいrevisionについて1と2をやり直す。OpusとFableの判断が分かれたまま解けない場合は、両方の見解を添えてPOへ上げる。\nFableが挙げたMinorだけの場合も、返すかどうかはOpusが固定親に照らして決める。返した場合は本文revisionが変わるので、1と2をやり直す。\n\n### 記録とmerge\n\n- Opusは、Fableの結論（承認可否、残る問題、照合した対象revision）を、Fableの本文から要約せずにPR commentへ記録する。Opusの`no_findings`も、従来どおりPR commentとmailboxで返す。\n- 作成側は、従来のPO判断記録と同じ形式で判断記録を加える。`decider_role`は`PO（委任：Opus・Fable一致）`とし、次を固定する。\n  - 本委任の判断記録\n  - Opusの`no_findings` commentとFableの結論commentのIDと、取得したbodyのSHA-256\n  - 承認対象の本文revisionと、6文書のSHA-256\n- review側は、判断記録の引用と、6文書が承認対象から変わっていないことを照合する。照合の後は、従来どおり作成側がReady化し、review側がmerge admissionを再照合して明示mergeする。\n- 委任による承認は、POの承認を待たない。本委任より前に受けたPO承認は、そのまま有効である。\n\n### 人に承認を求める回数を減らす\n\n作業はヒューマンアウトオブザループを前提とし、計画や承認済みの文書は、やってみて分かったことで直してよい（変更耐性）。人の判断は省かず、求める回数を減らす。\n\n- 承認済みのL3／L10を直す場合、親L2の意味・範囲・担当・版が変わらない限り、新しい本文revisionについて「見解の一致」をやり直すだけでよい。POの承認は求めない。\n- 人が持つ判断（Concept、L1、L2の合意と意味変更、retire、L2へ戻す意味変更）が必要になった場合も、一件ずつ止めて聞かない。論点を記録して、その論点に依存しない作業を続ける。POへは、機構×Stageの事後確認と同じ機会にまとめて出す。\n- 待っている判断に依存する作業だけを止める。待つこと自体を、作業全体の停止理由にしない。\n- 人へ論点を出す前に、PoC、画面prototype、調査で論点を絞り、証拠を添える。HELIX-BRAIN（知識）とHELIX-INTELLIGENCE（判断）の機能ができた後は、それらも使う。これらの機構は、人に聞く回数を減らし、やってみて分かることを取り込むためにある（POの指示「そのためのブレインやPoCや画面プロト、インテリジェンスの機能。」）。\n- 不可逆な外部作用（release、tag、cutover、配布repo切替など）は、従来どおり対象と作用を明示した許可を要する。\n\n### POの事後確認\n\n機構のStageについて委任による承認がまとまった時点で、review側はPOへ一覧を出す。一覧には、PR、承認対象の本文revision、判断記録、OpusとFableの結論commentを並べる。\nPOが差し戻すと判断した場合は、差し戻しの判断記録を作る。対象revisionの承認は、その判断記録で取り消し、該当する本文を修正のPRへ戻す。事後確認の前にmergeした内容は、差し戻しの判断記録が入るまで有効とする。\n\n### 旧HELIXとの対応\n\n- 旧`CLAUDE.md`（`LEGACY-ASSET-6EBDB617A8104A7756D0`、SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）82–85行「自律境界」：人は企画・要求・デザインモックを持ち、L3要件は承認のみ、L3起草以下はAIが自走する。\n- 同195–197行：mainのbranch protectionで「人間 approve 不要 (PO 明示承認)」とし、品質ゲートをCIとクロスランタイムのreview証拠に置いた。\n\n保持する点は三つある。Concept、企画、要求とprototype／非UIの合意は人が持つ。L3はAIが起草する。不可逆な外部作用は、対象と作用を明示した許可を要する。\n\n変更する点は、L3要件の承認を、人が毎回行う形から、POの委任によりOpusとFableの見解の一致で成立する形へ移し、POは機構×Stageの区切りで事後確認することである。\n旧195–197行は、POの明示承認により、人のapproveを異なるruntimeのreview証拠へ置き換えていた。本節はこの置換えを、PRのapproveからL3の対象revision承認へ広げる。\n\nあわせて、人の判断を求める機会を、一件ごとから、機構×Stageの事後確認にまとめる。旧HELIXの自律境界でも、人が直接関わるのは上流の判断に限られており、それ以外はAIが自走していた。本節はこれを、人の判断が要る場合の聞き方にも当てはめる。\n\n変更の理由は、POが「毎回承認するのは骨が折れるから最終チェックに周りてくれ」「前提がヒューマンアウトオブザループで考えろ」「L3までだが、承認回数を減らせ」と指示したことである。影響として、L3／L10のPRはPO承認待ちで止まらずにmergeまで進む。\n人が持つ判断の論点は、まとめて出されるまで作業全体を止めない。POの判断は、Concept・L1・L2と、L2へ戻す意味変更、および事後確認での差し戻しに残る。\n\n## IssueとFeature Ticket\n\n- GitHubで人が読むtitle、見出し、目的、判断、状態説明、停止理由は日本語を原則とする。ID、path、command、schema語彙、\n  label等の機械識別子と一般的な開発用語は原語を保てるが、英語見出しだけで意味を判断させない。\n- `.github/PULL_REQUEST_TEMPLATE.md`と`.github/ISSUE_TEMPLATE/feature-ticket-projection.yml`は、ローカル正本をGitHubへ転記する補助surfaceであり、要求やticket意味の入力面ではない。templateが欠けても本書のauthorityは失われず、template入力だけで上流承認を生成しない。\n- Feature Ticketはlocal work authorityであり、親上流、対象product、scope、依存、停止条件、backflowを持つ。\n- IssueはFeature Ticketの協調projectionであり、Issue番号を要求IDやticket IDにしない。\n- Issue投影前にlocal ticketの存在、`source_revision`での内容、source digestを確認する。Issueの意味欄はlocal ticket本文からの転記に限定し、転記内容のdigest不一致はprojection失敗とする。\n- local ticketが存在しないIssue Form入力はwork authorityにしない。新規の人間指示を含む場合は入力を原eventとしてローカル登録へ戻し、要求採否と分けたprojection failure receiptを残してIssueを非実装状態で閉じる。入力を黙って捨てない。\n- `requirement` PRは[管理層の要求仮登録契約](management-provisional-requirement-registration.md)に従い、要求候補と旧source atomの無損失被覆をHELIX-OS管理層へ仮登録してからmerge admissionへ進む。GitHub Issue／PRは仮登録recordのprojectionであり、仮登録正本ではない。\n- 上流承認前に人間の明示指示から起票する場合は`proposed_upstream_waiting`に固定し、実装可能状態へ進めない。\n- HARNESSが工程のnormative vocabulary、trigger、適用条件、各route内の順序、join、停止・差戻し・完了条件を所有する。単一の固定列ではなく、下記の条件付きrouteをHARNESS contractとして保持する。\n- 推進機構はHARNESS語彙を別定義せず、operational tag、versioned mapping、composition、workflow instance生成規則を所有し、管理から受けた目的・要求・制約をticket graphへ変換する。\n- 管理層は生成物を登録・統制する。HARNESSは個別ticket発行やworkflow instance生成を行わず、推進は入力に合うHARNESS routeとtriggerを評価し、必要なrouteだけを規定順で具体化する。\n- PRは対応するlocal ticketとIssueを参照する。Issue closeやPR mergeだけでticket完了を生成しない。\n\n### HARNESSの条件付き工程contract\n\n| contract | 旧source identity | trigger／選択 | 保持する順序と合流 |\n|---|---|---|---|\n| 開発style | requirements v1.3 §4（`docs/governance/requirements-source/helix-requirements_v1.3.md:71-75,83-85`）、HARNESS-L2-002の移管元 | Full V／Production Scrum／V設計＋Scrum実装Hybridの三方式から適用可能な一つを選択する。未選択、複数選択、適用不能はfail-closeする | 選択styleの工程を進める。Discovery／PoCを第四の排他的styleにしない |\n| case-driven Discovery／PoC | `HR-FR-HYB-003`、`FR-L1-15`、`HIL-BR-28`、起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:631` | `requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`のいずれか | `S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`。S4は人間が判断し、採択結果だけをL3機能要件へ合流する |\n| Research | `FR-L1-27`、起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:632` | `tech_decision_required`、`option_comparison_needed`、`adr_required`のいずれか | research memoとADRを生成し、ADR参照点／L4基本設計（`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md:123`）へ合流する。成立性実験が必要ならDiscovery／PoCへ切り替える |\n| UI prototype | `HIL-BR-13`、requirements v1.3のScreen Applicability／agreement条件 | 画面対象で要求理解・操作・状態・failureの合意が必要 | 独立phaseにせず`L2要求 ↔ prototype`を反復する。agreement receiptなしにL3をfreezeしない。画面非対象は理由・判定者・入力digest・再entry triggerを持つskip receiptを要求する |\n| Scrum Reverse | requirements v1.3 §4.1（L94、L96-108）、§4.2（L112-119）、§10（L642-643） | sprint review前、release candidate合流前、public contract／DB schema／主要dependency／NFR budget変更、trace欠落、finding再発・性能退行・障害・手動回避 | `SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`。v1.3 L104に従い4 entityを単一進捗値へ縮退せず、SR4 receiptなしにrelease-readyへ進めず、findingを4種の修正routeのexactly oneへ送る |\n\n`premise organization`／`premise research`は上流候補sourceから保持したGitHub運用上の証拠整理語彙であり、上記のHARNESS route候補と同じauthorityへ自動昇格させない。推進はrouteを無条件に全適用せず、triggerを満たすrouteを選び、その内部順序・human gate・joinを保持してworkflow instanceを生成する。\n\n次の旧workflow clauseも要求sourceとidentity台帳で保持し、削除・非継承にしない。ただし新世代のnormative名称・trigger・順序・joinは未承認なので、現時点では`preserved_pending_rehome`である。\n\n| 旧workflow identity | source | 保持する意味 | 現在状態 |\n|---|---|---|---|\n| Forward本線 | `FR-L1-13`、requirements v1.3 §5 L507 | L1〜L12の正方向と3 development styleでの工程実行 | `preserved_pending_rehome` |\n| Reverse | `FR-L1-14`、`HIL-BR-04`、`HIL-FR-04`、requirements v1.3 §5 L508、旧business requirements §3.2 | 実装前のR0–R4、RGC、fullback、Forward再合流 | `preserved_pending_rehome` |\n| Incident | `FR-L1-16`、requirements v1.3 §9.2 L626、旧business requirements §3.2 | 障害検出、hotfix、即release、収束、production境界・approval確認、対応層へのbackfill | `preserved_pending_rehome` |\n| Add-feature | `FR-L1-24`、旧business requirements §3.2 | 既存上流への差分設計・実装接続とForward再合流 | `preserved_pending_rehome` |\n| Refactor | `FR-L1-25`、旧business requirements §3.2 | 振る舞い不変検証、旧L0-L14体系のL7/G7確認後のForward復帰。canonical L1-L12への層写像は未決定 | `preserved_pending_rehome` |\n| Design Refactor | requirements v1.3 §4.2／§5 L510、`HIL-BR-21`、`HIL-FR-39`、`HIL-FR-50`、`HIL-NFR-24` | 外部挙動を保つ責務・依存・命名・共通化・外部化・DDD境界改善。名称類似だけで統合せず、機能追加を混載しない。observable behavior／public surface／DB semantics／要求に差分があればRedesign／Retrofitへrerouteする | `preserved_pending_rehome` |\n| Performance Refactor | requirements v1.3 §4.2 L116／L119 | 設計を保つ性能改善。変更前baseline、budget、workload、profile、統計条件、回帰oracleを先に固定 | `preserved_pending_rehome` |\n| Retrofit | `FR-L1-26`、旧business requirements §3.2 | 影響評価と段階移行。旧L0-L14体系のL4-L7移行後／L7以降合流を保持し、canonical L1-L12への層写像は未決定 | `preserved_pending_rehome` |\n| Recovery | `FR-L1-08`、`FR-L1-10`、requirements v1.3 §9.2 L625 | 検出・routing、runaway、context exhaustion、開発回帰、forced stopから、再開点・訂正履歴・rollbackを伴って復旧 | `preserved_pending_rehome` |\n| version-up | requirements v1.3 §9.2、旧business requirements §3.2 | 将来版activationまでparkし、activation後にAdd-feature／Forwardへ合流 | `preserved_pending_rehome` |\n| selected-style change intake | requirements v1.3 §9.2 | styleを暗黙変更せず、影響によりRedesign／Add-feature／Scrum sliceへroute | `preserved_pending_rehome` |\n| Redesign re-entry | `HIL-BR-05`、`HIL-FR-05`、`HIL-FR-31`、requirements v1.3 §5 L509 | 影響上流とV-pairをstale化し、再freeze後にForwardへ戻す | `preserved_pending_rehome` |\n| Scrum Reverse entity／state | requirements v1.3 §4.1 L104-108、archive asset `LEGACY-ASSET-873BE1F8C64356A2FA0F` | v1.3 L104-106の4 entity名・SR4 publish条件・provisional非canonicalと、archive FR文書内のSRV-FR-101〜112／SRV-AC-101〜112の写し。宣言oracle、全state表、fixture、confirmed親文書は[300行全量台帳](legacy-migration/delegated-document/scrum-reverse-source-line-inventory.md)で保持する | `preserved_pending_rehome` |\n| 共通Reverse closure | 旧business requirements §3.3.1 L140-143 | 7 routeのReverse closure再利用と、Add-feature／version-up例外。旧層番号はcanonicalへ自動写像しない | `preserved_pending_rehome` |\n| interrupt subtype routing | requirements v1.3 §9.2 L633 | 暴走、未確定、追加、層内gapをRecovery、Discovery／PoC、Add-feature、Forwardへ分岐 | `preserved_pending_rehome` |\n\nこの一覧は非網羅追加索引であり、不在を非継承・削除・対象外の根拠にしない。旧mode実行器や`signal → mode`をcurrentへ採用する表ではない。各source clauseを失わず、後続の一要求identity PRで新世代HARNESS contractとOS推進mappingへ分離するための未移管一覧である。interrupt横断機構、signal routing前提、差戻し手順と合流層、specialist workflow、gate順序は既存全量台帳に、Scrum Reverseの宣言oracle・state表・fixture・confirmed親文書は[専用300行台帳](legacy-migration/delegated-document/scrum-reverse-source-line-inventory.md)に保持し、本一覧では未移管のまま残す。Hybrid親styleはv1.3 L138-139を入力として扱う。\n\n### 自動投影実装前のbootstrap\n\n推進生成器と管理登録層が未実装の間は、repository maintainerが人間の明示指示を原文・時点・対象・source digest付き原eventとして登録し、その原文から意味を追加せず`proposed_upstream_waiting`のlocal ticketへ転記できる。曖昧さ、対象不明、依存不明は補完せず停止条件へ置く。repository maintainerは承認済み操作scope内で、存在確認済みlocal ticketをGitHubへ同一内容投影できる。投影前にticket ID、path、full source revision、source digestを記録し、投影後にIssue本文とlocal ticketの意味欄を再読して一致を確認する。このbootstrapは要求採否、workflow生成、実装許可を行わず、登録層と推進生成器が成立した時点で閉じる。\n\n## review、判断、merge admission\n\nすべてのPRは対象HEADを固定してreviewする。作成側と意味判断側を分け、利用可能な新世代の独立review通路を用いる。\nreviewはfindingであり、要求・Concept等の人間判断を代替しない。旧CI、旧test、旧runtime、ローカルClaude CLIをfallbackにしない。\nPR classが未選択または複数指定のPRはReadyにしない。\n\n### 旧HELIXのGitHub自走運用から保持する契約\n\n旧sourceは`archive/legacy-generation-2026-09-14/root/CLAUDE.md`（`LEGACY-ASSET-6EBDB617A8104A7756D0`、\nSHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）の「GitHub 自走運用」と、\n同階層の`AGENTS.md`（`LEGACY-ASSET-A54FF182C7E8ACF56ACF`、\nSHA-256 `fafe73efa4b34864c3b5e6a60775a21007d9c6bf358e710edaa5d2bce50ea2bf`）である。\n両assetは台帳上`unresolved`でconsumer_refsも未確定の旧AI instructionであり、本文を現行instructionへ完全一致copyしない。\n旧sourceの作成側／review側の分離、push→Draft PR→独立review→明示merge、blockerの一括返却と修正後HEADの再判定を意味再導出する。\n新世代CI、`harness-check`、PLANの`review_evidence`、DB追従、旧`helix` CLIは現行の合格条件やfallbackにしない。\nConcept・要求の人間判断、Scaffold Bindingのstale確認、現行PR class条件は維持する。\n旧sourceでの失敗・consumerの個別閉包は未確認であり、旧runtimeの稼働実績を新世代の運転証拠にしない。\n[Capability Lease承認record](decisions/capability-lease-bootstrap-approval-2026-09-20.md)は後続のmerge executorと実行環境許可を\n別途承認しているが、lease実装・有効化はそのrecordだけでは成立しない。本再導出案の直接`gh pr merge --merge`と\nleaseの二重境界は両立しないため、双方を同時に現行運用として扱わない。後続lease導入時にはこの差分の採否を\n別revisionで判断し、承認済みrecordを黙って削除・失効させない。\n\n### 作成側とレビュー対応側の責務\n\n- `レビュー対応側`はPR作成・修正側と異なるcontextのruntimeとし、対象PRのexact HEADをread-onlyで独立reviewしてfindingをPR commentへ記録し、merge admissionを判定する。作成側の差分編集・push・Ready化はしない。review findingの投稿者名、`@claude` mention、ローカルClaude sessionだけで独立性やreview成立を推定しない。\n- PR作成・修正側は、対象差分の作成、静的証拠提示、push、Draft PR作成、review依頼、finding対応、再review依頼までを明示依頼を待たずに担う。blockerは同じHEADについて一括で返し、修正後HEADは新しい独立blockerの実証がなければ一巡だけ再判定する。review側が修正後HEADの結果を記録し、未解消blockerが0件であることを作成側が確認したらReady化する。\n- PR作成・修正側は、自分のPRをmerge、auto-merge予約、対応Issueのcloseまで進めない。Ready化は独立review結果の確認後に限る。\n- レビュー対応側は、依頼と応答が同じexact base／content HEAD pairへ束縛され、必要なfinding対応が反映されたことを確認する。\n- レビュー対応側は、PR classを問わず、merge admissionの直前に、PRのcontent HEADを変えずに、最新baseとのmerge結果（GitHubの`refs/pull/<番号>/merge`、またはローカルの試験merge）に対して`scfctl stale`が`stale=0`を返すことを確認し、結果をreview記録に残す。Scaffold Bindingの上流（`upstream[].path`）は文書・台帳を問わず`scaffold/`の外にあり、どのclassのPRでも変更されうる。PRのhead時点で一致していても、baseの進行や積んだPRのmergeで変わりうる。PR branchへbaseを取り込んでcontent HEADを変えると、exact HEADに束縛したreviewをやり直すことになるため、そうしない。`refs/pull/<番号>/merge`はGitHubが非同期に再計算するため最新baseより古いことがある。使う場合は、その第1親が再取得したbase HEADと、第2親がcontent HEADと一致することを確かめ、一致しなければローカルの試験mergeで実行する。`stale`が1件以上ならmergeせず作成側へ返す。\n- merge admission成立後、レビュー対応側が人間の追加approveを待たず`gh pr merge --merge`で明示mergeし、post-merge read-afterを行う。GitHub native auto-mergeは使わない。対応Issueのcloseは要求・ticketの完了条件を別に確認し、mergeだけから完了へ進めない。merge後に不一致があればcloseせず、作成側へ返す。\n- review結果の投稿だけではmerge admissionは成立しない。レビュー対応側が対象PR、review済みHEAD、必要な人間decision、Scaffold Binding、merge方式を再照合する。\n\n### governance／operation_change PRのmerge admission\n\n個別のmerge admissionが定義されていないgovernance／`operation_change` PRは、少なくとも次をすべて満たす。\n\n1. review requestと独立review responseが同じPRのexact base／content full SHAを示し、応答が現行HEADに対するものである。配送commentの存在やmentionだけでreview成立としない。\n2. current content HEADに未解消のblockerが0件である。同じ責務・既存scopeで安全に閉じるfindingは本PRで修正し、独立責務・別設計・lifecycle・性能改善は別episodeへ分ける。\n3. merge直前にbase HEAD、content HEAD、main HEAD、merge可能性、merge方式を再取得し、review済みpairから変化していない。\n4. 作成側とは独立したレビュー対応側が`gh pr merge --merge`で明示mergeし、post-merge read-afterを行う。人間の追加approveをmergeの前提にしない。\n5. merge commit方式で統合し、第1親、第2親、content HEADの祖先性をread-afterする。期待と一致しない場合はIssueをcloseせず作成側へ返す。\n\nreview依頼は対象PRとexact base／content HEADを示すcommentで行い、投稿後にremote本文と対象HEADを読み直す。\nlocal file pathや`@file`文字列だけが投稿された場合や対象HEADが変わった場合は再依頼する。\ncomment作成成功、mention、reaction、workflow起動だけをreview receiptにしない。review応答が対象HEADと所見を示すことを\n確認し、修正でHEADが変わった場合は新しいrevisionとして再reviewする。別の`review_request_delivery_receipt` commentは\nmerge admissionの必須条件にしない。\n\n### PR #1797 `repository_foundation`\n\n条件1〜6をすべて満たした場合だけReady化し、merge実行候補にできる。条件7はmerge後の統合完了条件である。\n\n1. archive manifestが旧資産集合を完全に固定し、現行pathから旧workflow、runtime、AI instruction、testを実行できない。\n2. active文書がConcept、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS、governanceへ物理分離されている。\n3. 本運用モデル、authority入口、旧資産採否・copy・Issue／Project操作記録が相互参照できる。\n4. 相対リンク、対象別L2↔L11、merge admission packet等の静的整合が対象content HEADで成立する。\n5. GitHub Claudeのexact base／content HEAD pair意味reviewで未解消Blocker／Major／Minorが0であり、request、delivery receipt、\n   responseのidentity、full SHA、payload digestがread-afterで一致する。\n6. merge直前にPR base／HEAD、main HEAD、merge可能性、merge方式、branch protection、ruleset、required platform gateを再取得し、\n   review済みpairと一致する。repository整理だけを対象とするため、別の人間承認やdecision recordは要求しない。\n7. merge APIまたは`gh pr merge --merge`で方式を明示し、squash／rebaseを使わずmerge commitで取り込む。API応答のmerge SHAを\n   直ちに取得し、第1親がreview済みbase HEAD、第2親がreview済みcontent HEADで、PR途中commitを含む全履歴がmainの祖先に\n   なったことをread-afterする。baseが動いた、merge commitが利用できない、またはread-afterが不成立なら統合完了にせず停止する。\n   post-merge不一致はrevert／force-pushで隠さず、local監査文書のcorrective PRから専用Issueへ投影して人間判断を求める。\n\n既存CodeQL、旧`harness-check`、旧testのgreenは条件に含めない。#1797に含まれるConcept、Vision、L1、L2、L11、Feature Ticketはbootstrap用のcandidate／draft containerとinventoryであり、mergeしても内容の承認revision、要求採否、ticket Readyを生成しない。個別の人間decisionは対応する後続PRへ分離する。#1797では旧要求sourceを同一byteのread-only snapshotとして保持し、153件と補助sourceを原文・digest付き台帳へ固定する。37件の対象別L2は整理先を示すrouting containerであり、旧要求の代替、縮約、棄却ではない。merge admissionの詳細は[repository foundation merge admission packet](audits/source-rebaseline/repository-foundation-merge-admission-packet.md)を正とする。\n\n### 後続`requirement` PR\n\n各PRは少なくとも次を満たす。\n\n1. 一つの対象productと親Concept／L1 exact revisionへ束縛する。\n2. 親Concept／Vision／企画から導いた判断論点と、premise packetまたはresearch非適用判断へ束縛する。\n3. 一つの要求identity、`unit`／`connection`／`composite`、actor、目的、scope、non-goal、制約、失敗・回復を示す。\n4. 対になるL11に正常系とnegative case、N/Aなら理由・判断者・再評価条件を持つ。\n5. 旧要求を扱う場合は原要求ID、原文digest、successor ID、意味atomの被覆、未被覆atomを記録する。未被覆は`pending`として保持し、旧実装・旧CIをauthorityへ戻さない。\n6. HARNESSの無損失被覆contractで、入力source atom集合を当該要求へ保持した集合、別の生存中仮登録へ残す集合、人間decisionにより変更・retireする集合へ完全分割し、未計上atomを0にする。\n7. 対象要求候補のsemantic digest、source atom集合digest、`coverage_result: no_loss`、未計上atom0を持つHELIX-OS管理層の`registered_proposal` recordへ束縛し、対象HEADでread-afterする。仮登録は`authority_effect: none`とする。\n8. 影響する既存要求だけを示し、無関係な要求を同じPRへ混載しない。\n9. GitHub Claudeの対象HEAD意味reviewで未解消Blocker／Majorが0である。\n10. すべての`requirement` PRで、対象revisionに束縛した人間decision recordを持つ。保持・再配置の確認、意味変更、retireを別decision種別として記録する。\n\n## GUIレーンの運転と通知\n\n作成側とレビュー対応側は、同じVS CodeのClaude Code拡張とCodex拡張の既存セッションで動く。通知の仕組みは\n[SCF-B-0003の仮組み](../../scaffold/review-handoff/README.md)であり、ここではその運転の決まりを定める。\n\n- **レーンの割当**：作成（`execution`）とレビュー対応（`review_merge`）は、利用者の作業指示に従い、`gui_mailbox.py bind`で既存セッションを登録して決める。同じruntimeが両レーンを兼ねない。現在の割当は`gui_mailbox.py status`で確かめ、本文書には固定しない。\n- **セッション開始時**：各GUIは自分のセッションがレーンに登録済みで、leaseが有効かを`status`で確かめる。失効していれば同じセッションを`bind`し直す。別セッションへの付替えは、利用者の指示またはセッションの交代のときに限る。\n- **依頼と指摘の記録**：記録の正本は上記のとおりPR commentである。通知箱はそのPR commentを相手のセッションへ届け、起床させるための配送であり、通知本文・ACKをreview receiptやmerge admissionにしない。作成側はreview依頼のPR commentを投稿した後、同じexact base／content HEADで`review_request`を送る。レビュー対応側は所見をPR commentへ記録した後、`review_response`を送る。通知の向きはレーンではなくそのPRの作成側（packetの`author`）とreview側（`reviewer`）で決まり、どちらのレーンが作成したPRでも同じ経路を使う。\n- **配送不成立の扱い**：宛先のleaseが失効していても、登録済みのセッションへは通知を積み、そのセッションの次の動作で届く。`send`の出力`receiver_lease_active`がfalseのとき、宛先のhookがGUIで信頼・読込されていないとき、ACKが返らないときは、配送不成立とする。`queued`や登録済みleaseだけで配送成功とせず、PR commentを投稿したうえで利用者へ配送不成立を伝える。期限切れや未ACKの通知を自動で再送せず、対象HEADを取り直して新しいevent IDで送る。\n- **相手の応答を待つとき**：停止後に通知で起きられないruntime（現行のCodex。Stop hookは停止時に短く確かめるだけである）は、相手のreview結果、Ready化、mergeなど自分のゴールに必要な応答を待つ間、ターンを終えずに待受を続ける。1回を10分とし、各回の前に同じセッションを`bind`し直してleaseを保ち、`receive --wait 600`で通知箱を待ち、各回の後に対象PRの状態とPR commentを確かめる。通知を受けたら`inspect`で本文を読んでACKし、作業へ戻る。対象PRがmerge・closeされたとき、待つべき応答がなくなったとき、利用者が別の指示をしたときに待受を終える。待受は配送の手段であり、待っている間の経過や通知から承認やmerge admissionを生成しない。Claudeは`asyncRewake`のStop hookで停止後も通知により起きるため、この待受を要しない。\n- **指示の同期**：両runtimeの利用者instruction（`~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`）のHELIX管理区間は、`configure_gui.py --apply`で同じsourceから同期し、手で書き換えない。管理区間の外に旧`helix` CLI、`harness.db`、`.helix/`を正規経路とする記述が残る場合は、管理区間と矛盾するため利用者の確認を経て除く。\n- **GUI側の操作**：新しいhookの信頼・読込は利用者がGUIで行う。hook設定の書込やscfctlの合格だけで接続成立としない。接続の確認は、両GUIが実際に通知を受けてACKを返したことで行う。\n\n旧sourceは`archive/legacy-generation-2026-09-14/root/.claude/settings.json`（`LEGACY-ASSET-F27AC6F39D89FE021C56`、\nSHA-256 `df8a6f6d51152446708f93558917c1d760a1d9f5639c31d5474a350d1e697ef1`）のStop hook（67〜89行目、`asyncRewake`で\n「Claude宛て通知を待機」）と、上記`CLAUDE.md`の「GitHub 自走運用」である。保持する点は、相手の作業を同じセッションへ届けて起こし、\n人の取次ぎを待たずに作成→review→mergeを回すことである。変更する点は、配送元を旧harness memory・DBから仮組みの通知箱へ替え、\nCodex側にも同じ待受と指示の同期を置くことである。変更の理由は、旧runtimeを起動しない現行の境界の下で、旧世代と同じく\n取次ぎなしで回すためである。新しい承認手続きは加えていない。\n\n応答を待つ間の待受は、上記`CLAUDE.md`の「GitHub 自走運用」（193行目「明示依頼を待たずpush→Draft PR→CI監視→self-heal→AI-B最終review→明示mergeまで継続する」）を旧sourceとする。\n- **保持する点**：相手の作業やCIを待つ間も作業を手放さず、mergeまで監視を続けること。\n- **変更する点**：監視の対象を旧CIと旧runtimeから、通知箱と対象PRの状態へ替えること。停止後に起きられないruntimeだけが、ターン内で10分ごとの待受を行う。\n- **変更の理由**：Codexの既存GUIセッションはターンを終えると通知では起きず、相手の応答を待つ間に止まると、利用者が声を掛けるまで作業が止まるためである。#2563と#2564では、Codexがreview結果やReady化を待つ間に停止し、利用者の声掛けまで進まなかった。新しい承認手続きは加えていない。\n\n通知の向きをPRごとの作成側・review側で決める点は、上記`CLAUDE.md`の「GitHub 自走運用」（AI-Aが作成・blocker修正・push、AI-Bがread-only収束review・merge判断）と、同じファイルの正規コマンド（`helix codex --role <role> --task \"...\"`と`helix claude --role <role> --task \"...\"`の両方向の委譲）を旧sourceとする。\n- **保持する点**：作成役とreview役をruntimeに固定せず、どちらのruntimeが作成しても、もう一方が独立にreviewしてmergeまで回すこと。\n- **変更する点**：委譲のために相手のproviderを起動するのではなく、既存GUIセッション間の通知箱で届けること。作成側とreview側が別runtimeであることは、レーンの向きではなくpacketの`author`と`reviewer`で確かめる。\n- **変更の理由**：レーンの向きで固定すると、`review_merge`のレーンが作成したPRで依頼も指摘も届かず、自走が止まるためである。新しい承認手続きは加えていない。\n\n### レーンの交代と、両レーンが作成したPR\n\n- 作成側かどうかはPRのcommitで判断する。commitを作ったレーンは、そのPRの作成側である。\n- POの指示で`review_merge`のレーンが作成側を担う場合も、review依頼はPR commentに記録したうえで、通知箱から`review_request`を送る。この場合は`execution`のレーンがreviewとmergeを担い、指摘は`review_response`で返す。以前の通知箱は`execution`から`review_merge`への依頼だけを受け付けていたため、#2424と#2562ではPR commentだけで依頼し、相手が気づくまで止まった。\n- 一つのPRに両レーンのcommitがある場合、各レーンは相手が作ったcommitだけを独立reviewとして扱い、自分のcommitをreviewしたことにしない。両レーンが作成側を含むため、merge担当はPOに確かめ、その選択をPR commentに原文で残す。#2424では、POが「Codexがmerge (Recommended)」（元の分担に戻し、Claudeが作成・Codexがreviewしてmerge）を選んだ（2026-10-04）。\n\n### 作業branchとworktreeの片付け\n\n作業branchとworktreeは、内容を失わない範囲で片付ける。作業管理Issue #2093の運用を、ここで決まりとして定める。\n\n- **remoteのbranch**：mergeされたPRのbranchは、repositoryの`delete_branch_on_merge`で自動削除する。この設定は維持する。mergeされずにcloseされたPRのbranchは、`refs/pull/<番号>/head`で中身を辿れるため、削除してよい。`main`、`archive`、open PRのbranchは消さない。\n- **worktreeとローカルbranch**：次をすべて満たすものだけを、`git worktree remove`と`git branch -d`で片付ける。\n  - 未commitの変更がない。\n  - 先端のcommitが`origin/main`の祖先である。\n  - そのworktreeで動いているprocessがない。\n- **独自の内容を持つbranch**：`origin/main`にないcommitやファイル内容を持つbranchは、作ったレーンの判断なしに消さない。消すときは、事前に`git bundle`でバックアップを取る。ファイル内容がすべて`origin/main`にあることを確かめた場合に限り、`git branch -D`を使う。\n- **他レーンの作業**：他のレーンが作業中のworktreeや未commitの変更には触れない。\n- **記録**：片付けた件数、残した件数とその理由を#2093に記録する。片付けは作業領域の管理であり、要求・PR・Issueの完了やcloseを生成しない。\n\n旧sourceは上記`CLAUDE.md`の「GitHub 自走運用」（`repoのdelete-branch-on-merge設定は維持する`）と、同じファイルの「Hybrid 多ランタイム commit 協調」（191〜236行目。相手のruntimeのcommitを破棄・デグレさせない）である。\n- **保持する点**：merge後のbranch自動削除と、相手のruntimeの作業を失わないこと。\n- **変更する点**：旧`git-command-guard`とoverride markerを、ここに書いた条件（未commitの変更なし、mainの祖先、process不在、事前のbundle）に置き換えること。\n- **変更の理由**：旧runtimeを起動しない現行の境界の下で、同じ保護を手順として保つためである。新しい承認手続きは加えていない。\n\n## 新世代CIへの接続\n\n新世代CIは、承認済み要求とfreeze済み設計・検証から必要oracleを導出できる段階で、HELIX-OSの\n`operation_change` PRとして設計する。それまではCIをmerge admissionの代替にせず、旧workflowとのparityやdual-greenを\n要求しない。本運用モデルと後続要求PRの証拠構造が、新世代CIを上流から生成するための入力となる。\n"
+    },
+    "policy_excerpt": "The PO delegated only L3/L10 approval to Opus/Fable agreement. Conditions are: exact-base/content Opus no-findings; Fable independently reads the same six documents and fixed parent and finds no approval blocker; then the six documents remain byte-identical. After the decision record is added, review checks its citations and six-document identity; only then is the PR readied."
+  },
+  "legacy_authority_boundary": {
+    "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+    "lines": [
+      82,
+      85
+    ],
+    "full_file": {
+      "bytes": 23313,
+      "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb"
+    },
+    "span": {
+      "bytes": 287,
+      "sha256": "fc924232f93af2593a0d8ec97c36224a3c2f641ca5c03468ecae747107bd4785"
+    },
+    "raw_utf8": "### 自律境界（charter §3）\n\n- **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。\n- **AI**: L3 起草 ＋ L4 以降〜GitHub PR/CI/merge/tag を**完全自動**（不可逆操作のみ escalate）。\n"
+  },
+  "formal_thread_source": {
+    "path": "/tmp/root-pr2641-comments-review10.json",
+    "source_file": {
+      "bytes": 89958,
+      "sha256": "27226529fb3fce4177e5ee590a7b7261fce18fa9ac80186cd891348bf01fdc48"
+    },
+    "comment_count": 20,
+    "comments": [
+      {
+        "comment_id": 6022679998,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6022679998",
+        "created_at": "2026-10-06T18:20:21Z",
+        "body_bytes": 1092,
+        "body_sha256": "a83b81c7b0931765a8cf8e8ea566ba9e7e10bcb6952ee2a88b8e63ab85601b43",
+        "body": "親044 review01依頼。base f5a974a4059a209982cb1cdec39c0537f52683b8、HEADba96c226ed504907b0b0fd921a5b477acd22fd2d、body89389ee260343b392a32c5bda9aea79dc0d698aa。PO49 MPR044002のB route Design Contract Portfolio。全六Stage3、旧39ID/source raw保持・現51 unique六列/new12、正常9classはfixture母集団のみ、reuse/delta/new/N/Aをscope付き意味と対oracleへ結ぶ。025/043代用拒否、authority各7単独拒否、旧r05bundleは単独設計承認/採択への索引化、既知責務と個体unknown分離。\n\n旧HIL54/隣接55・paired consumerを実文pinで限定保持、六main prefix/Gitpublic8 exact、govdiff成功。共有読取L2slice1002–1014に隣接045が含まれるため監査でPOexact採択1002–1011 sha690f2bfaと区別、L11sha9c79b731。Root/tmp補助suffix_sha/utf8_bytes未更新metadataは原値＋物理再計算値を時点監査へ保存、正本suffix LF+markdown一致を正とした。新監査MD/六actualSHA/原文/pinsをRoot検収。独立review/同HEAD Fable判断を正式commentへお願いします。Draft、未承認。\n"
+      },
+      {
+        "comment_id": 6022860141,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6022860141",
+        "created_at": "2026-10-06T18:31:03Z",
+        "body_bytes": 5797,
+        "body_sha256": "4a1714acce25b1ae74b00989881cd6cc6c286f2481d82d23ddaefe76e4ff3954",
+        "body": "## review01（independent review、PR #2641 親HARNESS-L2-044、HEAD ba96c226ed504907b0b0fd921a5b477acd22fd2d、base main f5a974a40）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022679998（`RH-PR2641-HARNESS-STAGE3-PARENT044-01`）に応える。\n\n### 照合の方法と結果\n1. **Opusのシンプルなブラインド照合**\n   - 読んだもの：固定親（318ec4a product-requirements.md:1002–1012、product-acceptance.md:735–746）、判断記録49行（条件付き採択：Bルート）、6本文の追補。\n   - 結果：Major 0、未確認範囲0。\n2. **Fableの判断**：「承認してよい」。\n   - Bルートの条件（旧FR-54/55の分離、名称Design Contract Portfolio、採択済み025/026へ無断で追記しない）が保たれていることを、Fableが自分で確かめた。\n   - authority非生成の7出力にも、それぞれ単独の拒否fixtureがある。\n3. **Opusによる敵対照合**：「Fableの判断を支持しない」。崩せたMajorは1件で、下のM1である。\n4. **reviewerの確認**：M1を、固定L11:741の原文と、L10の該当行で確かめた。\n   - HARNESS-L2-044を、後の判断記録が別のrevisionで採択していないことも確かめた。\n   - 「ownerを特定できる場合だけ返す」型の条件付きの戻し先が、6本文の追加行に0件であることも、grepで確かめた。\n5. **静的検査**\n   - scfctl validate 147/0、stale 0、residuals 0\n   - govcheck ok\n   - `git diff --check`成功\n   - 差分は追加だけで、削除は0行\n   - 作成時のmainとの`merge-tree`は衝突なし\n   - 現在のmain 3c3c512c0（親042 merge後）では、HARNESSの6本文が重なる。取り込みが必要かどうかを作成側で確かめてほしい。\n- **今後の流れ**：Majorがあるので、このHEADでは承認の条件は成立しない。\n\n### Major\n**M1（L11が「不合格」とする既知の誤り例を、L10が「unknown/未完」に置き換えている）**\n- **欠陥**：L10 functional-verificationの次の4行が、L11の不合格を別の判定に置き換えている。\n  - `CASE-HARNESS-L10-044-05`：「必要な複数contract間の境界または理由だけを欠く」変異を、「判定をunknown/未完に保つ」としている。\n  - `CASE-HARNESS-L10-044-08`：孤立させたcontractを、「未完finding」としている。\n  - `CASE-HARNESS-L10-044-r09-001`：説明なしの重複割当を、「portfolioを未完」としている。\n  - `CASE-HARNESS-L10-044-r04-na-rationale-missing`：根拠なしのN/Aを、「class未完」としている。\n- **何が狭まっているか**：\n  - 固定L11は、既知の誤り例を「不合格」、初見で不明な未見例を「unknown」と分けている。\n  - 上の4行のうちCASE-05は、既知の誤り例をunknownの側へ移している。残りの3行は、「未完」とだけ書き、不合格と判定しない。\n  - L3 `AC-HARNESS-L3-044-03`も「境界を示す」とだけ書き、示さない場合を不合格とは定めていない。\n  - closureそのものは拒否されるが、L11が定める判定の区分を狭めている（類型3）。\n- **守るべき行**：\n  - L11-044「誤りを含む例」（318ec4a product-acceptance.md:741「…無説明で割り当てる、根拠なしに非適用とする、既存normative contractを孤立させる…場合は不合格とする。複数契約が必要な場合に境界・理由が示されない例も不合格とする」）\n  - L2-044（product-requirements.md:1010「複数契約への分割は必要な境界と根拠を明示する」）\n\n### 後で直す残余（承認を止めない）\n- **R1（span表記）**：L3は固定親L2のspanを`1002–1014`と書いていて、HARNESS-L2-045の見出し（1013行）まで含んでいる。監査mdの末尾は、正しいspan 1002–1011（SHA `690f2bfa…`、PO判断のL2 digest）を記録している。\n- **R2（判定状態の不揃い）**：`r04-class-oracle-absent`は「不合格・未被覆」、`r04-oracle-missing`は「unknown/未完」で、判定状態がそろっていない。\n- **R3（行内の戻し先）**：`r04-class-oracle-absent`、`r06-semantic-map-unverifiable`、`r04-025/043-output-substitution`は、行の中に戻し先がない。共通の「owner返却」で補っている。\n- **R4（戻し先の不揃い）**：近い系統の行の間で、戻し先がそろっていない。`r05-source-atom-stale`、`r04-source-atom-missing`、`r09-004`は、義務導出の不足（009）を区別していない。\n- **R5（9 classの由来）**：「9 contract class」と、L2:1008や旧HIL-FR-54:144に列挙されたclassとの対応が示されていない。本文は、合成fixtureの母集団であって新しいclassではない、と明記している。\n- **R6（1件割当の明示）**：FR-044-01に、L2:1008の「classごとに原則1件割当」が明示されていない。\n- **R7（CASE-06の文言）**：\n  - CASE-06の「承認・採択receiptなしの追加義務を受理しない」は、receiptがあれば受理するように読める。FR-044-03は、無条件に「隣接候補を編集しない」としている。\n  - CASE-06の「既存要求ownerに限り、identityが示されなければunknownを維持」は、L2:1010の無条件の「要求ownerへ」より狭い文言になっている。L3 functional-requirementsが「既知の責務区分は維持する」としているので、残余とする。\n\n### 次の手順\n- M1を直す。上の4行と、L3 AC-03を、L11の「不合格」に合わせる。\n- 現在のmainとの重なりを確かめる。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6023012134,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023012134",
+        "created_at": "2026-10-06T18:39:56Z",
+        "body_bytes": 629,
+        "body_sha256": "b2cb520cca2fed2d349bc1879652b11c0c5a1a9eee857a7485262a4ed53d7960",
+        "body": "044 review02依頼。base3c3c512c09320c0494904602b23e544a81206eed、HEAD9e80b4d98371bd06dcc9eea4340b053f20b7cd8c、修正bodyd6877a9033a7c500bdc244b5372f514cb7c91383/context3eed3f00022790ce3fe458560f2fea6ac6cb195c。正式6022860141全文Read、固定L11:741実読しCASE05/08/r09001/NArationaleとAC03を既知誤り不合格に合わせ、初見source/applicability/oracle unknownを保持。51unique旧39ID保持、main042六prefix保持、旧authoring audit不変/原文M1R1–7を新時点監査へ。gov/diff/public10PASS。修正後独立reviewと同HEAD Fable判断をお願いします。旧Fableは継承せずDraft。\n"
+      },
+      {
+        "comment_id": 6023061713,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023061713",
+        "created_at": "2026-10-06T18:42:56Z",
+        "body_bytes": 5121,
+        "body_sha256": "cb3894e0c02d6ae9f957ca9a2eb2073182169de62e9be2eacc0a06b6fb3a0344",
+        "body": "## review02（independent review、PR #2641 親HARNESS-L2-044、HEAD 9e80b4d98371bd06dcc9eea4340b053f20b7cd8c、base main 3c3c512c0）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023012134（`RH-PR2641-HARNESS-STAGE3-PARENT044-02`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：HARNESS-L2-044の採択記録は、mainでは57候補の49行だけである（`-002`、条件付き採択：Bルート）。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - **`git diff --check`は失敗する**。`docs/governance/audits/requirements-stage/harness-stage3-parent044-review01-disposition-2026-10-07-d6877a903.md`の49、51、54行に、行末の空白がある。このPRで追加した記録なので、直してほしい。\n- **条件付きの戻し先**：reviewerの事前確認の正規表現は、前回「特定できなければ」「示さなければ」を拾えていなかった。正規表現を直して実行し直したところ、4件が見つかった（下のM2）。\n\n### 照合の結果\n- **review01 M1**：解消した。044-05、044-08、r09-001、r04-na-rationale-missingの既知の誤り例は、L10とAC-03ですべて「不合格」になっている。\n- **Bルートの条件と生成拒否**：\n  - PO判断49行のBルートの条件は保たれている。\n  - authority生成の拒否fixtureは、7出力のすべてにそろっている。\n- **Opusのブラインド照合**：このHEADで取り直し、Majorの候補を2件挙げた。reviewerが固定親の原文と本文で確かめ、2件ともMajorとした。どちらもreview01の時点からあり、reviewerはreview01で見落としていた。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（「意味重複0」を「未説明の意味重複0」に緩め、説明付きの意味重複を正常として通している）**\n- **欠陥**：次の3か所が、意味重複を0とする条件に「未説明」「説明のない」を付けている。説明が付いた意味重複は、正常として通ってしまう。\n  - L3 nfr-gradeの`NFR-C-HARNESS-044-02`：「未説明の意味重複 `0`」\n  - L10の`CASE-HARNESS-L10-NFR-044-02`：「未説明duplicate=0条件を照合」\n  - L10 functionalの`CASE-HARNESS-L10-044-r16-normal-nine-class`：「説明のないsemantic duplicate=0」\n- **PR内の食い違い**：同じPRの`FR-HARNESS-L3-044-01`は、「意味重複0」と書いている。\n- **固定親との差**：固定親で境界と理由を付けて許されるのは、「複数契約への分割」（L2:1010、L11:741）だけである。意味重複は許されていない。\n- **守るべき行**：\n  - L2-044「出力」（318ec4a product-requirements.md:1008「未被覆0かつ意味重複0となる最小portfolio候補」）\n  - L11-044「正常例」（product-acceptance.md:739「未被覆classと意味重複がゼロ」）\n\n**M2（戻し先が「ownerを特定できる場合」に条件付けられ、特定できないと返却されない）**\n- **欠陥**：次の4か所は、ownerや原因を特定できない場合にunknownを維持するだけで、返却先へのfallbackがない。\n  - L10の「owner返却」：「sourceがowner identityを示さなければunknownを維持する」\n  - `CASE-HARNESS-L10-044-r14-class-contract-relation-missing`：「原因またはowner identityをsourceから特定できない場合だけunknownを維持する」\n  - `CASE-HARNESS-L10-044-r04-source-atom-missing`：「source type/identityが特定できなければunknownを維持し」\n  - CASE-06：「意味判断の戻し先は固定sourceが示す既存要求ownerに限り、identityが示されなければunknownを維持する」\n- **固定親との差**：固定親は、原因が分からない入力を「意味不明」の区分として要求ownerへ返す。\n- **これまでとの一致**：#2635 review05・06のM1、067 M1、041 M1と同じ型である。既知の責務区分へは無条件に返し、個体のowner identityが不明な場合は別にunknownを保持する形にする。\n- **守るべき行**：\n  - L2-044「保証と差戻し」（product-requirements.md:1010「意味不明・authority不足は要求ownerへ」）\n  - L11-044の戻し先（product-acceptance.md:745）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R7**：review01から変わらない。\n- **R8（判定の区別）**：r04-oracle-missingは「unknown／未完」、r04-class-oracle-absentは「不合格」としている。どこで区別するのかの説明がない。\n- **R9（CASE IDの重複）**：business-verification.mdが、functional側と同じ名前のCASE ID（r16-normal-nine-classなど）を重ねて定義している。\n\n### 次の手順\n- M1、M2と、行末の空白を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6023287183,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023287183",
+        "created_at": "2026-10-06T18:55:54Z",
+        "body_bytes": 851,
+        "body_sha256": "22d2e81e41f7bade96ac674b6f56f75cadba1c441a5875f3b95c5149359f756e",
+        "body": "044 review03依頼。最新baseceda1c53b53c53fffb8c23f394add1f2b809deb1、HEADe7af7499a419059addd475a6ae3ec72fa3b0c9cc、bodyc0045afd3b3c789360f71ce647161dada4ed7d84。正式6023061713 M1意味重複0三箇所/M2既知owner区分無条件返却四箇所を固定L2/L11に合わせました。51ID/旧39保持、六actualSHA/gov/current新差分PASS/public12PASS。main069contextはHARNESS六本文不変。X1旧review01時点MD49/51/54末尾空白は原文を保ち、新時点auditにraw証拠と全base diffcheck FAIL・X1以外PASSを記録しました。AGENTS時点記録不変原則との整合を照合し、X1は本文意味影響のない記録済み例外として扱えるかも独立reviewに含めてください。X1を解消済みとは主張しません。修正後独立review/Fableをお願いします。Draft/mail03配送済み。\n"
+      },
+      {
+        "comment_id": 6023320984,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023320984",
+        "created_at": "2026-10-06T18:57:55Z",
+        "body_bytes": 4653,
+        "body_sha256": "e21820ab1cdc7defab00887e8078697d05a2171c391d41ed89e6e568320d5b74",
+        "body": "## review03（independent review、PR #2641 親HARNESS-L2-044、HEAD e7af7499a419059addd475a6ae3ec72fa3b0c9cc、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023287183（`RH-PR2641-HARNESS-STAGE3-PARENT044-03`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録の49行（`-002`、条件付き採択：Bルート）だけである。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：拡張した正規表現で検索して0件だった。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`は、review02のX1（review01 disposition mdの行末空白3行）だけで失敗する。作成側はこれを時点の記録として書き換えない例外と明示しているので、069のX1と同じ扱いにする。\n\n### 照合の結果\n- **review02 M1**：解消した。「未説明の意味重複」という表現はなくなり、意味重複0は各箇所で保たれている。\n- **review02 M2**：functional側では解消した。ただし、business側に同じ型が1件残っている（下のM1）。\n- **review01 M1**：解消したまま。既知の誤り例4種は、AC-03とL10で「不合格」である。\n- **PO判断49行のBルートの条件**：保たれている。\n- **Opusのブラインド照合**：Majorの候補を2件挙げた。reviewerは1件をMajor（下のM1）、1件を残余（下のR11）とした。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（同じCASE IDに2つの期待値があり、business側は返却しない経路を持つ）**\n- **欠陥**：\n  - business-verificationの追補にある`CASE-HARNESS-L10-044-r16-delta-insufficient`は、「classまたはoracle自体のidentityが未確定ならunknownとして未評価」とだけ書き、返却先がない。\n  - 同じCASE IDのfunctional-verificationの行は、「固定L2-026/022等の既存owner区分へ原因別に戻す」と書いている。一つのCASEに、矛盾する二つの期待値がある。\n  - business側の`r16-normal-delta`（「意味対応oracleが不足なら未評価／未完」）と`r16-normal-nine-class`（「未評価」）にも、返却先がない。business側には、返却の共通規定もない。\n- **これまでとの一致**：識別できない場合に返却しないという型で、review02 M2、#2635、#2643と同じ型である。\n- **守るべき行**：\n  - L2-044「保証と差戻し」（318ec4a product-requirements.md:1010「意味不明・authority不足は要求ownerへ…設計要素やpair oracleの不足はHARNESS-L2-026/022等の該当ownerへ返す」）\n  - L11-044の戻し先（product-acceptance.md:745）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R9**：review02から変わらない。R9（business-verificationがfunctional側と同じCASE IDを重ねて定義している）は、上のM1の原因でもある。\n- **R10（トレース）**：既知の誤り例4種のCASEはAC-01/02に結びついていて、AC-03の索引044-03からは参照されていない。\n- **R11（「に限り」の書き方）**：`r10-old-denominator-receipt`は、「要求意味が異なる場合に限り既存要求ownerへ戻し、ID不明はunknownを維持する」と書いている。原因別の返却（template由来は009、要求意味の差は要求owner）はあり、「ID不明」は個体のidentityを指すので、残余とする。ただし「に限り」は、共通規定の「区分を確定できない場合は既存要求ownerへ返す」と読み違えを招く。\n- **R12（L3の共通規定）**：L3の「owner・差戻し」は、責務の区分を確定できない場合に要求ownerへ返すことを明記していない。これを書いているのは、L10の共通規定だけである。\n- **R13（ACの欠落）**：FR-03（PO条件：025/026へ無断で追記しない）に専用のACがない。044-06はAC-03に結びついているが、AC-03の本文にはこの条件がない。\n- **R14（「最小」の脱落）**：FR-01は、固定L2:1008の「最小portfolio候補」から「最小」を落としている。\n\n### 次の手順\n- M1を直す。business側の3行を、functional側と同じ期待値と、原因ごとの返却にそろえる。CASE IDの重複定義（R9）も解消するのが望ましい。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6023521196,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023521196",
+        "created_at": "2026-10-06T19:08:46Z",
+        "body_bytes": 518,
+        "body_sha256": "e08d0c1f87da4afdb973cb8f2fcd840e1a398e1eba8ca511dd3c7e54989864cf",
+        "body": "044 review04依頼。base ceda1c53、HEAD 656c3504b6ca0ee5c9f423b1974a1072d819a31f。正式6023320984 M1に対しBVをFV主CASE参照索引へ統一し、原因別返却・既存要求owner fallback・個体unknown分離・scope未完とclosure拒否を明示。主51/旧39ID不変、BV一本文だけ修正、六actualSHA照合、新時点監査R1–14raw。X1は正式review03例外どおり旧監査bytes不変。gov/newdiff/public14PASS。Draft、mail04配送済み。独立再review/Fableをお願いします。\n"
+      },
+      {
+        "comment_id": 6023709227,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023709227",
+        "created_at": "2026-10-06T19:18:02Z",
+        "body_bytes": 5266,
+        "body_sha256": "0c38e0155f257504368ab7415d017717a120e3778b6f591a3a644eff9c221e4b",
+        "body": "## review04（independent review、PR #2641 親HARNESS-L2-044、HEAD 656c3504b6ca0ee5c9f423b1974a1072d819a31f、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-04` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択、Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`は、review01 disposition mdの時点記録で失敗する。既知のX1例外であり、変わっていない。\n\n### 照合の経過\n1. **差分の確認**：e7af7499aからの本文差分は、business-verification.mdの044節だけである。\n   - 表を、functional主CASEへの参照索引に置き換えた。\n   - 「不足時の返却」規定を追加した。\n   - functional側のr16-delta-insufficientには「固定L2-026/022等の既存owner区分へ原因別に戻す」がある。\n   - reviewerが確かめた。review03 M1（業務とfunctionalで期待値が違い、戻し先もなかった件）は解消した。\n2. **Opusシンプルブラインド**：Major 3。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2-044の「出力」行（318ec4a product-requirements.md 044節「出力」、1008行）と、L11の739〜741行を読んだ。functional-verification.mdの044節では、全CASEの変異列を確かめた。ブラインドの3件は同じ型なので、M1の(a)〜(c)にまとめてMajorと確定した。\n\n**基準の変更について**：今回から、固定L2が「出力する」と定める要素ごとに、その要素だけを欠落させる、または誤らせるfixtureがあるかを確かめている。#2637 review06で同じ型をMajorにしたので、それに揃えた。review01〜03ではこの観点を照合していなかった。これはreviewer側の見落としであり、作成側の後退ではない。\n\n### Major\n**M1（固定L2が出力すると定める3要素に、欠落・誤りを拒否するfixtureがない）**\n- **欠陥**：次の3要素について、その要素だけを変異させるCASEがない（類型4）。\n  - **(a) reuse/delta/新規/根拠付きN/Aの区分**：\n    - r16-normal-reuse、normal-delta、normal-new-contractは、どれも変異のない正常対照である。\n    - r16-delta-insufficientは、relationの欠落だけを変える。\n    - 区分のラベルだけを誤らせるCASE（例：deltaをreuseと表示する）がないので、区分を誤ったportfolioでも合格する。\n  - **(b) 出力portfolioの対象revision・scope**：\n    - r10-old-denominator-receiptとr09-002は、入力側のreceiptとcontract revisionを変える。\n    - 出力portfolioから対象revision・scopeを落とす、または別の値にするCASEがない。\n  - **(c) finding（重複割当・意味重複・未被覆class）の根拠**：\n    - r04-semantic-duplicate、r09-001、r09-004は、findingが出るかどうかを見ている。\n    - 根拠のないfindingを拒否するかは判定していない。\n    - 044-05とr04-na-rationale-missingは、入力側の境界・理由・N/A根拠の欠落であり、finding出力の根拠ではない。\n- **守るべき行**：\n  - 固定L2-044「出力」（318ec4a）：「対象revision・scope付きportfolio提案」「既存契約の再利用、delta追加、新規契約、根拠付き非適用を区別する」「重複割当・意味重複・未被覆classと根拠を示し」\n  - L11-044（product-acceptance.md:739）：「同一対象revision/scope」「再利用、delta追加、新規作成、または根拠付き非適用を確認する」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R14**：review03から変わらない。\n- **R15（戻し先の記載）**：次のCASEは、期待値に戻し先を書いていない。共通規定で宛先は決まる。\n  - r04-class-oracle-absent\n  - r06-semantic-map-unverifiable\n  - r04-025-output-substitution\n  - r04-043-output-substitution\n- **R16（source atomの戻し先の揃い）**：r05-source-atom-staleは、常に要求ownerへ戻している。r04-source-atom-missingとconflictは、原因別に振り分けている。\n- **R17（AC-03の直接fixture）**：L11:741の既知の誤り例4種は、044-05、044-08、r09-001、r04-na-rationale-missingで不合格と判定されている。ただし、どれもAC-01/02に割り当てられていて、AC-03には直接のfixtureがない。\n- **R18（文言）**：BRの「固定済み候補」は、正確には「採択済み」である。\n- **X1**：変わらない。\n\n### 次の手順\n- M1を直す。(a)〜(c)の各要素について、その要素だけを欠落させる、または誤らせるCASEを置く。oracleは、portfolioを未完に保ってclosureを拒否し、原因別の既存owner区分へ戻すものにする。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6023884987,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023884987",
+        "created_at": "2026-10-06T19:28:38Z",
+        "body_bytes": 439,
+        "body_sha256": "f51bff38df295a6c69e3861959224ea802fdee08aeccc9dfa9d3ba290eebe1ee",
+        "body": "044portfolio出力要素照合修正後独立review/Fable。base ceda1c53b53c53fffb8c23f394add1f2b809deb1、HEAD 685ebbf59b73ce05cf8c9ff0e071533ad9ff9ba0。正式6023709227M1a–c/11単独反例旧51+11計62/正常ラベル4/revision scope欠落不一致4/finding根拠3/六actual/R1–18raw/旧X1不変。gov/newdiff/public bytes PASS。Draft、mail05配送済み。独立reviewと修正後六本文のFable判断をお願いします。\n"
+      },
+      {
+        "comment_id": 6023925146,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023925146",
+        "created_at": "2026-10-06T19:31:03Z",
+        "body_bytes": 4529,
+        "body_sha256": "3fd8902b3eef8674e331110f25d6560a56b91106f2a19d8c1bd616da4691aee1",
+        "body": "## review05（independent review、PR #2641 親HARNESS-L2-044、HEAD 685ebbf59b73ce05cf8c9ff0e071533ad9ff9ba0、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-05` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択、Bルート）。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`はX1（review01 disposition md）だけで、変わっていない。\n\n### 照合の経過\n1. **review04の解消の確認**（reviewerが確かめた）：\n   - M1(a)〜(c)の3要素について、単独CASEが計11件置かれた。\n     - classification-reuse/delta/new/na\n     - output-revision/scope-missing/mismatch\n     - finding-*-basis-missing\n   - FR-01、AC-01、AC-02にも、出力の区分、revision/scope、finding根拠を照合し、誤りを拒否する文が入った。\n   - 照合の範囲としては、M1は解消している。\n2. **Opusシンプルブラインド**：Major 1。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2-044の1002〜1012行（318ec4a）を読んだ。「保証と差戻し」の全文と、所有に関する記述の有無も確かめた。そのうえで、追加された11件の戻し先を読み、Majorと確定した。\n\n### Major\n**M1（044自身の出力誤りを、入力側のowner（026/009）へ返している）**\n- **欠陥**：\n  - 追加された11件（functional-verification.md:1713–1723）は、どれも入力を正常のまま固定している。source、relation、他の出力はそのままで、044の出力field一つだけを誤らせている。\n  - それなのに戻し先は、次のとおり入力側のownerになっている。\n    - 10件：「026責務へ照合を返す」\n    - classification-na：「009/対象template owner責務へ照合を返す」\n  - 入力側の026や009には、不足がない。これは、044が自分で出した出力の誤りを、別のownerへ押し付ける形である（類型1）。\n  - PO判断49行の「採択済み025/026へ無断追記しない」とも衝突する。026に、044の出力を照合する責務を足すことになるからである。\n- **守るべき行**：固定L2-044「保証と差戻し」（318ec4a product-requirements.md:1010）。ここで定める返却先は、次の3区分だけである。どれも入力の不足に対するもので、044の出力誤りは当てはまらない。\n  - 意味不明・authority不足 → 要求owner\n  - template適用・義務導出の不足 → 009/対象template owner\n  - 設計要素・pair oracleの不足 → 026/022等\n\n**reviewer側の責任**：review04の「次の手順」で、私は「原因別の既存owner区分へ戻す」と書いた。これが、出力誤りまで入力側の区分へ送る形を招いた。指示の書き方が不正確だった。\n\n### 後で直す残余（承認を止めない）\n- **R1〜R18**：review04から変わらない。\n- **R19（固定親spanの表記）**：「1002–1014」は、045の見出し（1013行）を含んでいる。SHA-256はこの範囲のbyte列と一致するので、pinは再現できる。\n- **X1**：変わらない。\n\n### 次の手順\n- **M1を直す**：11件の判定を、次の形にする。\n  - 044の出力誤りとして拒否する。\n  - portfolioを未完に保ち、closureを拒否する。\n  - 入力側のowner（026/009）へは返さない。\n- **戻し先の書き方**：固定親の返却区分のどれにも当たらないことを、明記する。返すなら、044の当該出力を出した処理（HARNESS-L2-044の候補出力）へ差し戻すことと書く。\n  - #2637（041）では、抽出出力の誤りを「HARNESS-L2-041 extraction-contract owner」へ返している。その根拠は、固定L2-041の所有境界（「HARNESS-COREは…gapの意味と戻し先を所有」）である。\n  - 固定L2-044には、同じ所有の文がない。そのため、出力誤りを044自身の処理へ差し戻す根拠は、L3で「固定親の返却区分外であり、他ownerへ返さない」と明記して示してほしい。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6024113019,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6024113019",
+        "created_at": "2026-10-06T19:42:33Z",
+        "body_bytes": 428,
+        "body_sha256": "528966673dd30c922717b3db9f823142e89dac544f00b35a112b5fa4fa9f6325",
+        "body": "review06依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `a9499d7bb52b677d3907ff724c5d3ae4fecad248`。正式6023925146M1、入力正常の044候補出力11誤りは当該出力処理訂正/未完closure拒否、入力側009026への追加責務撤回、AC02明記、62ID/12exact/六actual/R1–19raw/X1不変。gov/newdiff/public19 PASS。Draft。独立再reviewと同六本文Fable判断をお願いします。\n"
+      },
+      {
+        "comment_id": 6024534236,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6024534236",
+        "created_at": "2026-10-06T20:09:24Z",
+        "body_bytes": 4096,
+        "body_sha256": "70ca4a59f1edeecb849d3ad1b7c32e0feb91c82d68552b460ff0922a8e890ede",
+        "body": "## review06（independent review、PR #2641 親HARNESS-L2-044、HEAD a9499d7bb52b677d3907ff724c5d3ae4fecad248、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-06` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択：Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`はX1だけで、変わっていない。\n\n### 照合の経過\n1. **review05の解消の確認**（reviewerが差分で確かめた）：M1は解消した。\n   - 追加の11件の判定は、次のとおりになった。\n     - 「入力不足への固定親返却区分には該当しない044自身の候補出力誤り」とする。\n     - portfolioを未完に保ち、closureを拒否する。\n     - 入力側の009/026等へ責務を移さない。\n   - AC-02にも同じ趣旨が入った。\n2. **Opusシンプルブラインド**：Major 1。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：044節で「意味重複」「semantic」を含むCASEを全部読み、Majorと確定した。\n   - 意味重複を残したportfolioのclosureを拒否するCASEは、1件もなかった。\n   - **#2637 R28との違い**：#2637のR28は、AC本文が完了claimの拒否を書いていて、しかも欠陥の各類に完了claimを拒否するfixtureが少なくとも1件あった。そのため残余とした。今回は、意味重複の類に、closureを拒否するfixtureが1件もない。\n\n### Major\n**M1（意味重複を残したportfolioを不合格にするoracleがない）**\n- **欠陥**：\n  - r04-semantic-duplicate（functional-verification.md:1672）の判定は、「重複findingを返し、独立義務を落とさない」だけである。不合格、portfolioの未完、closureの拒否は判定していない。\n  - そのため、意味重複findingを出しながら閉包候補を提示する誤った出力でも、このCASEに合格する（類型4）。\n  - ほかのCASEもこれを受けていない。\n    - r09-001は、無説明の重複「割当」の不合格を判定していて、意味重複とは別の類である。\n    - finding-semantic-duplicate-basis-missingは、finding根拠の欠落だけを扱う。\n    - NFR-044-02は、「意味重複0条件を照合」にとどまる。\n  - L3 AC-02（functional-requirements.md:741）の「意味重複…を拒否する」とも合っていない。\n- **守るべき行**：\n  - 固定L11-044（318ec4a product-acceptance.md:741）「未被覆・意味重複を残したまま最小portfolioとする場合は不合格とする」\n  - 固定L2-044（product-requirements.md:1008）「未被覆0かつ意味重複0となる最小portfolio候補」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R19**：review05から変わらない。\n- **R20（L3の確定不能時の返却）**：L3の「owner・差戻し」（functional-requirements.md:747）は、責務区分を確定できない場合の返却先を明記していない。L10の共通規定には明記されていて、L3も「意味/authority不足は固定要求ownerへ」で実質的に覆われている。\n- **R21（source atomの戻し先）**：source atomの変異の戻し先がそろっていない。staleは要求ownerへ、conflictは009へ返している。どちらも固定親の区分内である。\n- **X1**：変わらない。\n\n### 次の手順\n- M1を直す。r04-semantic-duplicateの判定に、「意味重複を残したportfolioを不合格とし、未完に保ってclosureを拒否する」を入れる。戻し先は、design boundary不足として026へ返すままでよい。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6024749707,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6024749707",
+        "created_at": "2026-10-06T20:22:34Z",
+        "body_bytes": 480,
+        "body_sha256": "760d37a870f8c433eb2a6ab214a6d769e8ade9385bf5ce0e3a132f4956512056",
+        "body": "修正後の独立再review依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `d09a1007112b26dd0961e17e1b3e8726a1753937`。review06 M1: 意味重複portfolio不合格・未完・closure拒否、62ID不変・旧39raw、R1–21/X1原文保持、固定318/PO49、六本文SHA。govcheck・新規差分diff check PASS。Draft。fixture実行・新HEAD独立review・承認未。固定親・旧sourceから照合し、同六本文へのFable判断もお願いします。\n"
+      },
+      {
+        "comment_id": 6025129879,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6025129879",
+        "created_at": "2026-10-06T20:45:57Z",
+        "body_bytes": 5190,
+        "body_sha256": "6d50fb94f6411e8e5883b493f86354ea028c57a2be7a85daaf4a1d400161d864",
+        "body": "## review07（independent review、PR #2641 親HARNESS-L2-044、HEAD d09a1007112b26dd0961e17e1b3e8726a1753937、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-07` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択：Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`はX1だけで、変わっていない。\n\n### 照合の経過\n1. **review06の解消の確認**（reviewerが差分で確かめた）：M1は解消した。r04-semantic-duplicateの判定は、次のとおりになった。\n   - 意味重複を残したportfolioを不合格とし、未完に保ち、closureを拒否する。\n   - findingを提示しただけでは、閉包候補として受け入れない。\n2. **Opusシンプルブラインド**：Major 1を挙げた。固定親の禁止列挙を全件照合し、(a)〜(f)の6項目を挙げている。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2の1004、1009、1011行とL11:745を読み、L3/L10の044節を「未選択」「未観測」でgrepした。\n   - (a)(b)は、M1としてMajorと確定した。\n   - (c)〜(f)は、範囲・形式の注記なので、下のR22とした。\n   - **区分の基準**：Majorにするのは、authority・完了の生成、状態・合格・不在の推測、誤った完了につながる禁止に限る。参照資料の扱い、旧形式を要求しないこと、重複実装しないことは残余とする。\n\n### Major\n**M1（未選択sourceを「不在」または「合格」と推測する経路を拒否していない）**\n- **欠陥**：\n  - 固定L2-044の依存区分は、次のように定めている。\n    - template由来の義務、041の抽出結果、025/026の設計成果は、「選択した入力元に応じて必須」である。\n    - 「未選択sourceは未観測とし、不在や合格を推測しない」。\n  - しかし、L3（FR-02:732、AC-02:740）には、未選択sourceの扱いがない。L3の044節に、「未選択」の語は0件である。\n  - L10にも、未選択sourceを「不在」とする変異のCASEはない。たとえば、未選択の041/025/026成果を不在とみなしてclassを分母から落とす変異である。「合格」とする変異のCASEもない。たとえば、未選択の026設計成果を合格とみなしてclosureを出す変異である。\n  - r09-003は、選択済みのapplicability branchを隠すCASEで、未選択sourceのCASEではない。\n  - そのため、未選択sourceを合格や不在と推測して閉包を出す実装が合格する（類型3・4）。#2642（043）review03 M1（条件付き依存の扱い）と同じ依存区分の型である。\n- **守るべき行**：固定L2-044（318ec4a product-requirements.md:1009、依存区分）「**選択した入力元に応じて必須**＝template由来義務、041の抽出結果、025/026の設計成果を選択入力に含めるscopeでは、そのsource identity/revision・適用範囲・互換を照合する。未選択sourceは未観測とし、不在や合格を推測しない」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R21**：review06から変わらない。\n- **R22（範囲・形式の注記に単独CASEがない）**：次の項目には、単独の拒否CASEがない。いずれもauthorityの生成や誤った完了ではないので、残余とする。\n  - 参照資料（旧schema・旧runtime・背景説明）を、現行の依存や評価根拠へ変換すること（固定L2:1009）\n  - 旧分類語や旧portfolio schemaを、現行の固定形式にすること（:1004）。旧schema/runtime固有の形式を要求すること（L11:745）。\n  - 義務抽出、設計生成、例妥当性判定、構成体設計oracleを重複実装すること（:1011）。r04-025/043-output-substitutionは「代替」の拒否である。\n- **R23（class identityの戻し先）**：r09-004（class identityを隠す）の戻し先が、要求ownerだけになっている。義務導出の不足なら、009が該当しうる。\n- **R24（ACの割当）**：AC-02は「旧denominator receipt再利用」の拒否を挙げている。しかし、対応するr10は、AC-01だけに割り当てられている。\n- **X1**：変わらない。\n\n### 次の手順\n- M1を直す。\n  - FR-02とAC-02に、「未選択sourceは未観測とし、不在や合格を推測しない」を入れる。\n  - L10に、未選択sourceを不在とみなす変異（分母からclassを落とす）を、単独のCASEとして置き、拒否する。\n  - 未選択sourceを合格とみなす変異（closureを出す）も、単独のCASEとして置き、拒否する。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6025432919,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6025432919",
+        "created_at": "2026-10-06T21:05:14Z",
+        "body_bytes": 852,
+        "body_sha256": "8b57d6a831b41a32f58c2b233eca57745029b70fb49bd82fff2a4173f1122856",
+        "body": "修正後の独立再レビューを依頼します。\n\nHEAD `ce753466868d7bedaa72ea90e12e36e4198431f3`、base `0acbed34bfda48e32092feb63db61d2eff6d5ec4`。044 review07M1未選択source未観測/不在推測分母除外・合格推測closure各単独拒否、64旧62保持/X1不変。Root六actual SHA/bytes・時点監査を検収し、041 main本文prefixと親044の修正済suffixをbyte保持してbase更新しました。公開/Git全23文書一致を確認済みです。\n\n時点監査 `harness-stage3-parent044-review07-disposition-2026-10-07-0999a056.{json,md}`。govcheck・新修正差分diff checkはPASS。base全差分は既存immutable X1の3行末空白のみ、過去hash不変です。残余R1–24を保持しています。\n\n新base/HEADで独立review・同六本文Fable判断をお願いします。fixtureは未実行です。\n"
+      },
+      {
+        "comment_id": 6025933756,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6025933756",
+        "created_at": "2026-10-06T21:38:27Z",
+        "body_bytes": 4516,
+        "body_sha256": "9f9ba93f6053e6768d57a6e18fedce4b074cc33e282992f9da355d79778514a3",
+        "body": "## review08（independent review、PR #2641 親HARNESS-L2-044、HEAD ce753466868d7bedaa72ea90e12e36e4198431f3、base main 0acbed34b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-08` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択：Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。041節は、mainの文脈として取り込まれている。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `merge-tree`は衝突なし\n  - `git diff --check`はX1だけである。\n\n### 照合の経過\n1. **review07の解消の確認**（reviewerが本文修正commit 0999a056cで確かめた）：M1は解消した。\n   - FR-02とAC-02に、未選択sourceを未観測とし、不在や合格を推測しないことが入った。\n   - 単独の拒否CASEとして、次の2件が置かれた。\n     - r17-unselected-source-drops-established-class：未選択sourceを不在とみなし、分母からclassを落とす変異\n     - r17-unselected-source-assumed-pass-closure：未選択sourceを合格とみなし、closureを出す変異\n2. **Opusシンプルブラインド**：Major 1。出力要素、禁止の全件照合、閉じた列挙の一致、041節との相互作用、前回までの残余R1〜R24の洗い直しも行った。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：L3のFR-02とAC-02の原文と、044の全CASEを「scope」「revision」で確かめた。Majorと確定した。\n   - scope/revisionを変えるCASEは、出力側の4件（r04-output-revision/scope-*）と、contract revisionのr09-002だけである。\n\n**reviewer側の照合漏れ**：この欠陥は、review01のHEADからあった。review01〜07の照合で、拾えていなかった。\n\n### Major\n**M1（入力側の対象scope/revisionの欠落・stale・conflictに、拒否CASEがない）**\n- **欠陥**：\n  - FR-044-02は、欠落時に未完とする対象に「scope/revision」を入れている。しかし、AC-044-02の単一変異の列挙（source atom、active template、applicability、oracle、contract version、class identityまたはrelation）には、scope/revisionがない。FRとACで、閉じた列挙が食い違っている。\n  - L10のB0は、「対象要求/L3候補revision・選択scope」を固定している。しかし、入力の対象L1・要求・design scope/revisionだけを、欠落・stale・conflictにするCASEは0件である。\n  - r04-output-revision/scope-*が見ているのは、出力が入力R0/S0と一致するかだけである。r10は、旧receiptのdenominatorのCASEである。\n  - そのため、staleな対象revision、または不一致の対象revisionの上で閉包を出す実装が合格する（類型3・4）。\n- **守るべき行**：\n  - 固定L2-044（318ec4a product-requirements.md:1009）「**常時必須**＝選択された対象L1／要求／design scopeとrevision…評価操作を選んだときは対象範囲のcoverage閉包を完了できないmissing/unknown/staleがあれば未完または保留を返す」\n  - 同1007行「入力：対象L1・要求・design scopeとrevision」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R24**：変わらない。ブラインドが洗い直したが、Majorに当たるものはなかった。\n- **R25（AC-02末尾の文の掛かり方）**：AC-02末尾の「これらは…044自身の候補出力誤り…009/026等へ返却責務を追加しない」は、どこまでに掛かるかが曖昧である。r04-semantic-duplicate（026へ返す）やna-rationale-missing（009へ返す）と、矛盾して読める。掛かる範囲を、出力要素の誤りに限ると明記することを勧める。\n\n### 次の手順\n- M1を直す。\n  - AC-02の単一変異の列挙に、「対象L1・要求・design scope/revision」を加える。\n  - 入力側の対象scope/revisionだけを欠落・stale・conflictにする単独CASEを、それぞれ置く。判定は、portfolioを未完/保留にしてclosureを拒否することとする。\n  - 戻し先は、固定L2:1010の区分（意味・authority不足なら要求owner）に従う。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6026202789,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6026202789",
+        "created_at": "2026-10-06T21:57:46Z",
+        "body_bytes": 660,
+        "body_sha256": "d36e3b9ec851e0b98ebc4dce0633aa8508694a84c0a4af8a7f316f8a12167537",
+        "body": "review08修正後の独立再レビューを依頼します。\n\nHEAD `975cfa50fedf4b86c50cc5462e627e897921a6c4`、base `0acbed34bfda48e32092feb63db61d2eff6d5ec4`、本文revision `36b7fa508d5c61b6f4eb8743e23fa02e14ce11d2`。4入力軸それぞれmissing/stale/conflict計12CASE、AC02/self-output訂正範囲、76旧64/39raw/R1–25/X1保持。Rootは変更本文/固定親を実読し、六実blob SHAと時点監査を検算しました。gov/diffおよび公開/Git全対象一致PASS（25 paths）。既公開の時点監査とreview履歴を保持。Draft、fixture未実行、未承認。同六本文の独立reviewとFable判断をお願いします。\n"
+      },
+      {
+        "comment_id": 6026542146,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6026542146",
+        "created_at": "2026-10-06T22:23:06Z",
+        "body_bytes": 4959,
+        "body_sha256": "b0b473ecb9424eb59281efd85bf400adfe66192368d2135cabe37c5e99dfcd4c",
+        "body": "## review09（independent review、PR #2641 親HARNESS-L2-044、HEAD 975cfa50fedf4b86c50cc5462e627e897921a6c4、base main 0acbed34b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-09` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択：Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `merge-tree`は衝突なし\n  - `git diff --check`はX1だけである。\n\n### 照合の経過\n1. **review08の解消の確認**（reviewerが差分で確かめた）：M1は解消した。\n   - 入力の4軸（対象L1、要求、design scope、revision）について、missing/stale/conflictの12マスに、r18の単独CASEが置かれた。\n   - AC-02の列挙にも、これらが入った。\n2. **Opusシンプルブラインド**：Major 1。今回は、項目×状態の表照合を加えた。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：044のCASE IDを状態ごとに並べて、下の表を作り、Majorと確定した。\n   - AC-02が自分で列挙している組み合わせ（class identity/relation×矛盾・stale）に、CASEがないマスがある。\n   - 固定L2:1007と1009は、unknownをmissingとは別の状態として挙げている。#2642（043）review06でも、missingとunknownの区別を求めている。\n\n### Major\n**M1（項目×状態の表に、単独CASEのないマスが残っている）**\n- **現在の表**：○は単独CASEあり、×はなし。\n\n| 項目 | missing | unknown | conflict | stale |\n|---|---|---|---|---|\n| 対象L1 | ○ r18 | × | ○ r18 | ○ r18 |\n| 対象要求 | ○ r18 | × | ○ r18 | ○ r18 |\n| design scope | ○ r18 | × | ○ r18 | ○ r18 |\n| 対象revision | ○ r18 | × | ○ r18 | ○ r18 |\n| source atom | ○ r04 | × | ○ r04 | ○ r05 |\n| active template | ○ r04 | × | ○ r05 | ○ r04 |\n| applicability | ○ r04 | × | ○ r04 | ○ r05 |\n| oracle | ○ r04 | × | ○ r05 | ○ r04 |\n| contract version | ○ r04 | ○ r09-002 | ○ r04 | ○ r05 |\n| class identity | ○ r09-004 | × | × | × |\n| class→contract relation | ○ r14 | × | × | × |\n\n- **欠陥**：\n  - **AC-02が自分で列挙しているのにCASEがないマス**：AC-HARNESS-L3-044-02は、「source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき」と書いている。そのうち、class identityとrelationのconflict・staleにCASEがない。\n  - **unknownの列**：固定L2は、unknownをmissingと別に挙げている。contract version以外のunknownは、すべて×である。\n  - そのため、staleなrelationの上や、明示的にunknownとされた入力の上で、closureを出す実装が合格する（類型4）。\n- **守るべき行**：\n  - 固定L2-044（318ec4a product-requirements.md:1007）「required atom、契約、適用性またはoracleがunknown/conflict/staleなら閉包判定を行わない」\n  - 同1009行「常時必須＝…対象L1／要求／design scopeとrevision、そのscopeの適用義務class…missing/unknown/staleがあれば未完または保留」\n  - L11-044（product-acceptance.md:743）「欠落・矛盾・staleはunknown／未評価に残し、合格扱いにしない」\n\n**往復を減らすため**：上の表の×のマスを、すべて単独CASEで埋めてほしい。表は監査記録に置き、○×で照合できるようにしてほしい。reviewerは次回、この表のマスごとに照合する。表の外の項目について、新しい状態の組み合わせを要求することはしない。\n\n### 後で直す残余（承認を止めない）\n- **R1〜R25**：変わらない。ブラインドが洗い直したが、Majorに当たるものはなかった。\n- **R26（「不合格」の語）**：r14-class-contract-relation-missingは、L11:741の既知の誤り「classに契約がない」に当たる。しかし、期待値に「不合格」の語がない。closureは拒否している。\n- **R27（source互換の不一致）**：選択した入力元（041の抽出、025/026の成果）について、source互換の不一致だけを変える単独CASEがない。\n\n### 次の手順\n- M1を直す。上の表の×のマス、つまり次のマスに、単独CASEを置く。\n  - unknownの10マス\n  - class identityとrelationのconflict・staleの4マス\n  - 判定は、portfolioを未完/保留にし、closureを拒否することとする。\n  - 戻し先は、固定L2:1010の区分に従う。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6027245638,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6027245638",
+        "created_at": "2026-10-06T23:21:04Z",
+        "body_bytes": 720,
+        "body_sha256": "52ed1cfedea6206e8b9ecd411f0da443aa6a227dd2894c3852cee89371229ed0",
+        "body": "review09修正後の独立再レビューを依頼します。\n\nHEAD `cfa88380fc4da94ea72248ccdf9c334fd755ad94`、base `03d9cd19dfb92dc7dda74c8cb50f85dc320c873c`、本文revision `64a0ca7ff6d55c6f8003517ca4e645589a14b607`。review09修正15単独反例・91旧76/39raw/11pins、unknown10分類版も追加、main047接続全6親suffix不変、R1–27とX1保持、新baseで独立review/Fable再実施。Rootは変更本文/固定親を実読し、六実blob SHAと時点監査を検算しました。gov/diffおよび公開/Git全対象一致PASS（29 paths）。既公開の時点監査とreview履歴を保持。Draft、fixture未実行、未承認。同六本文の独立reviewとFable判断をお願いします。\n"
+      },
+      {
+        "comment_id": 6028109178,
+        "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6028109178",
+        "created_at": "2026-10-07T00:28:23Z",
+        "body_bytes": 6706,
+        "body_sha256": "a69c77c7b5f0dbd0ea1ab999d51047a1ffbceb82cd4b388c8e5a95c65d9be353",
+        "body": "## review10（independent review、PR #2641 親HARNESS-L2-044、HEAD cfa88380fc4da94ea72248ccdf9c334fd755ad94、base main 03d9cd19d）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-10` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：57候補記録の49行が、`MPR-RC-HARNESS-L2-044-002`を採択している。\n  - 条件付き採択で、条件はBルート、名称はDesign Contract Portfolio、採択済み025/026への無断追記の禁止である。\n  - Fableが、-002→-003はlocator metadataのsuccessor（`authority_effect: none`）で、採択revisionは変わらないことを確かめた。\n  - PO条件は、FR-044-01〜04で保たれている。\n- **対象版**：固定親は318ec4a（L2 1002–1012、L11 735–745）である。file SHAは、PO判断49行と一致する。\n- **base整合**：merge-baseは依頼のbase（03d9cd19d）と一致し、削除行は0である。\n  - 6本文の044節の追加行は、旧base（0acbed34b）に修正commit 05528d472を足した場合の追加行とバイト一致する。\n  - 041節・047節とのあいだに、ID衝突はない。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - merge-treeは衝突なし\n  - `git diff --check`は、6本文と判断記録の範囲で成功した。PRの全範囲では、既知のX1（immutableな監査記録`harness-stage3-parent044-review01-disposition-2026-10-07-d6877a903.md:49`の行末空白）だけが出る。\n\n### 照合の経過\n1. **review09の解消の確認**：照合は、review09で固定した11項目×missing/unknown/conflict/staleの表と、既存の照合項目に限った。\n   - ×だった15マスは、`CASE-HARNESS-L10-044-r19-*`の15件で埋まった。内訳は次のとおりである。\n     - contract version以外の10項目×unknown\n     - class identity×conflict・stale\n     - class→contract relation×conflict・stale\n   - どれも1fieldだけを変える単独変異である。判定はclosureを拒否して、未完/保留またはunknownに保つ。\n   - 戻し先は、全件、固定L2:1010（要求owner／009／026／022）またはL11:745（041相当）の区分内である。\n   - source atom以外の項目は、状態の間で戻し先がそろっている。\n2. **Opusシンプルブラインド**：Major候補は1件だった。\n   - `r05-source-atom-stale`は、atomの由来を固定せず、「意味不明」として要求ownerへ返している。\n   - 新しい`r19-source-atom-unknown`は、041抽出由来を固定して、041相当ownerへ返している。\n   - **reviewerの判定**：残余とした。理由は次のとおりである。\n     - このマス（source atom×stale）は、review09の表で○と確定している。\n     - 内容は、既知の残余R16（review04）とR21（review06）と同じである。\n     - 新しい事実もない。\n     - 照合範囲の約束（表の外から新しい要求をしない）に従う。\n3. **Fableの判断**：「承認してよい」。\n   - 固定親、PO記録、6本文を自分で読んで照合した。\n   - 上の差は、別々の前提による差だとした。r05は由来を固定せず、L2:1010の「意味不明→要求owner」を適用している。r19は041抽出sourceを固定し、L11:745を適用している。\n   - そのうえで、残余とする判定に同意した。\n4. **Opusによる敵対照合**：「Fableの判断を支持する」。次の点を照合したが、崩せなかった。\n   - r19の15件\n   - r05とr19の戻し先の差：同じ前提に別の宛先を与える食い違いにも、状態推測にも当たらない。r05は状態をunknown/未完に保持し、合格や完了を推測していない。\n   - 041節・047節との相互作用：r04-source-atom-conflictはAC-041-01と一致する。自己訂正の境界は、047と同じ形である。\n   - 自分で生成した材料でclosureへ進む経路（r10、r17、044-06、r06）\n   - 7出力の生成禁止\n5. **reviewerの結論**：\n   - 条件1：このexact HEADで、Opusの判定はMajor 0である（ブラインドのMajor候補1件は、上記のとおり残余と判定した）。\n   - 条件2：Fableが、同じ本文revisionで判断を出した。\n   - 以上で、このHEADで条件1・2がそろった。\n\n### 6本文（このHEADのSHA-256）\n- business-verification `24fd59b8…`\n- functional-verification `036759cc…`\n- nfr-verification `ea577d3b…`\n- business-requirements `045372f3…`\n- functional-requirements `dafc5df1…`\n- nfr-grade `54e34ace…`\n\n### 後で直す残余（承認を止めない）\n- **R1〜R27**：変わらない。\n- **R16/R21（source atomのstaleの宛先）**：r05-source-atom-staleのbaselineに、atomの由来（041抽出、template、独立source）を明記し、由来ごとに041／009／要求ownerへ振り分けることを勧める。staleを「意味不明」と呼ぶのは、原因のラベルとして粗い。041節のAC-041-01は、staleな入力を009へ返している。\n- **R28（行内の戻し先）**：`r04-class-oracle-absent`、`r06-semantic-map-unverifiable`、025/043による代替のCASEには、行の中に戻し先がない。共通規定で決まる。\n- **R29（class identityのstale）**：r19のclass identity staleは、要求ownerだけへ返している。義務導出が由来なら、009が該当しうる。\n- **R30（正常fixtureの照合）**：正常fixture（r16-normal-*）の判定に、出力のsource identity/revisionと入力の値との一致照合が明記されていない。入力側のstale/conflictと、出力側の欠落CASEで、間接的に覆われている。\n- **R31（locatorの表記）**：本文の固定親locator「L2 1002–1014」は、1013行のHARNESS-L2-045の見出しを含む（044節は1002–1012）。full-file SHAがPO判断49行と一致するので、同一性には影響しない。\n- **R32（AC-02の戻し先の表記）**：AC-044-02の本文は、入力不足の戻し先を「L2:1010」とだけ書いている。一方、r19-source-atom-unknownは、L11:745の041相当へ返している。041は、FR-044のowner節に明記されている。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - 委任承認の判断記録。このexact HEADの6本文のbytesとSHAを固定したもの。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n"
+      }
+    ],
+    "latest_formal_comment_id": 6028109178,
+    "latest_formal_comment_bytes": 6706,
+    "latest_formal_comment_sha256": "a69c77c7b5f0dbd0ea1ab999d51047a1ffbceb82cd4b388c8e5a95c65d9be353"
+  },
+  "mailbox_response_separate_source": {
+    "path": "/tmp/root-pr2641-review10-inspect.json",
+    "source_file": {
+      "bytes": 3507,
+      "sha256": "1a1bc745b7ec0056d3941b65f80d36ee638c8c6ec966257769aadef3c2c061ab"
+    },
+    "request_id": "RH-PR2641-HARNESS-STAGE3-PARENT044-10",
+    "response": {
+      "schema": "scaffold-review-response.v1",
+      "evidence_kind": "scaffold",
+      "authority_effect": "none",
+      "request_id": "RH-PR2641-HARNESS-STAGE3-PARENT044-10",
+      "request_payload_sha256": "6d0adf34b67fb5b65f97a38c863698fe98ba67a3d539e424a9e322e2e694466d",
+      "base_sha": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "content_sha": "cfa88380fc4da94ea72248ccdf9c334fd755ad94",
+      "reviewer": "claude",
+      "result": "no_findings",
+      "findings": [],
+      "unreviewed": []
+    },
+    "authority_effect": "none",
+    "role": "transport/review response evidence only; not approval authority"
+  },
+  "prior_review09_postbody_audit": {
+    "revision": "cfa88380fc4da94ea72248ccdf9c334fd755ad94",
+    "path": "docs/governance/audits/requirements-stage/harness-stage3-parent044-review09-postbody-audit-2026-10-07-05528d472.json",
+    "file": {
+      "bytes": 1506579,
+      "sha256": "103ccc7e2f7e51a3ffc39d9016423e00a1b1c0326d1a1c9f9c3905c13a8825cf"
+    },
+    "formal_review09_raw_source": {
+      "path": "/tmp/root-pr2641-comments-review09.json",
+      "raw_bytes": 79266,
+      "sha256": "bdb62cc8f507071dd042635c417ecde0014c15037ebcb32fdbffccfb626a9706",
+      "comment_count": 18,
+      "latest_comment_id": 6026542146,
+      "latest_comment_raw": "## review09（independent review、PR #2641 親HARNESS-L2-044、HEAD 975cfa50fedf4b86c50cc5462e627e897921a6c4、base main 0acbed34b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-09` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択：Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `merge-tree`は衝突なし\n  - `git diff --check`はX1だけである。\n\n### 照合の経過\n1. **review08の解消の確認**（reviewerが差分で確かめた）：M1は解消した。\n   - 入力の4軸（対象L1、要求、design scope、revision）について、missing/stale/conflictの12マスに、r18の単独CASEが置かれた。\n   - AC-02の列挙にも、これらが入った。\n2. **Opusシンプルブラインド**：Major 1。今回は、項目×状態の表照合を加えた。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：044のCASE IDを状態ごとに並べて、下の表を作り、Majorと確定した。\n   - AC-02が自分で列挙している組み合わせ（class identity/relation×矛盾・stale）に、CASEがないマスがある。\n   - 固定L2:1007と1009は、unknownをmissingとは別の状態として挙げている。#2642（043）review06でも、missingとunknownの区別を求めている。\n\n### Major\n**M1（項目×状態の表に、単独CASEのないマスが残っている）**\n- **現在の表**：○は単独CASEあり、×はなし。\n\n| 項目 | missing | unknown | conflict | stale |\n|---|---|---|---|---|\n| 対象L1 | ○ r18 | × | ○ r18 | ○ r18 |\n| 対象要求 | ○ r18 | × | ○ r18 | ○ r18 |\n| design scope | ○ r18 | × | ○ r18 | ○ r18 |\n| 対象revision | ○ r18 | × | ○ r18 | ○ r18 |\n| source atom | ○ r04 | × | ○ r04 | ○ r05 |\n| active template | ○ r04 | × | ○ r05 | ○ r04 |\n| applicability | ○ r04 | × | ○ r04 | ○ r05 |\n| oracle | ○ r04 | × | ○ r05 | ○ r04 |\n| contract version | ○ r04 | ○ r09-002 | ○ r04 | ○ r05 |\n| class identity | ○ r09-004 | × | × | × |\n| class→contract relation | ○ r14 | × | × | × |\n\n- **欠陥**：\n  - **AC-02が自分で列挙しているのにCASEがないマス**：AC-HARNESS-L3-044-02は、「source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき」と書いている。そのうち、class identityとrelationのconflict・staleにCASEがない。\n  - **unknownの列**：固定L2は、unknownをmissingと別に挙げている。contract version以外のunknownは、すべて×である。\n  - そのため、staleなrelationの上や、明示的にunknownとされた入力の上で、closureを出す実装が合格する（類型4）。\n- **守るべき行**：\n  - 固定L2-044（318ec4a product-requirements.md:1007）「required atom、契約、適用性またはoracleがunknown/conflict/staleなら閉包判定を行わない」\n  - 同1009行「常時必須＝…対象L1／要求／design scopeとrevision、そのscopeの適用義務class…missing/unknown/staleがあれば未完または保留」\n  - L11-044（product-acceptance.md:743）「欠落・矛盾・staleはunknown／未評価に残し、合格扱いにしない」\n\n**往復を減らすため**：上の表の×のマスを、すべて単独CASEで埋めてほしい。表は監査記録に置き、○×で照合できるようにしてほしい。reviewerは次回、この表のマスごとに照合する。表の外の項目について、新しい状態の組み合わせを要求することはしない。\n\n### 後で直す残余（承認を止めない）\n- **R1〜R25**：変わらない。ブラインドが洗い直したが、Majorに当たるものはなかった。\n- **R26（「不合格」の語）**：r14-class-contract-relation-missingは、L11:741の既知の誤り「classに契約がない」に当たる。しかし、期待値に「不合格」の語がない。closureは拒否している。\n- **R27（source互換の不一致）**：選択した入力元（041の抽出、025/026の成果）について、source互換の不一致だけを変える単独CASEがない。\n\n### 次の手順\n- M1を直す。上の表の×のマス、つまり次のマスに、単独CASEを置く。\n  - unknownの10マス\n  - class identityとrelationのconflict・staleの4マス\n  - 判定は、portfolioを未完/保留にし、closureを拒否することとする。\n  - 戻し先は、固定L2:1010の区分に従う。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "all_comment_objects_raw": [
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6022679998",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6022679998",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6022679998,
+          "node_id": "IC_kwDOTG8BRc8AAAABZvrNvg",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T18:20:21Z",
+          "updated_at": "2026-10-06T18:20:21Z",
+          "body": "親044 review01依頼。base f5a974a4059a209982cb1cdec39c0537f52683b8、HEADba96c226ed504907b0b0fd921a5b477acd22fd2d、body89389ee260343b392a32c5bda9aea79dc0d698aa。PO49 MPR044002のB route Design Contract Portfolio。全六Stage3、旧39ID/source raw保持・現51 unique六列/new12、正常9classはfixture母集団のみ、reuse/delta/new/N/Aをscope付き意味と対oracleへ結ぶ。025/043代用拒否、authority各7単独拒否、旧r05bundleは単独設計承認/採択への索引化、既知責務と個体unknown分離。\n\n旧HIL54/隣接55・paired consumerを実文pinで限定保持、六main prefix/Gitpublic8 exact、govdiff成功。共有読取L2slice1002–1014に隣接045が含まれるため監査でPOexact採択1002–1011 sha690f2bfaと区別、L11sha9c79b731。Root/tmp補助suffix_sha/utf8_bytes未更新metadataは原値＋物理再計算値を時点監査へ保存、正本suffix LF+markdown一致を正とした。新監査MD/六actualSHA/原文/pinsをRoot検収。独立review/同HEAD Fable判断を正式commentへお願いします。Draft、未承認。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6022679998/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6022860141",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6022860141",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6022860141,
+          "node_id": "IC_kwDOTG8BRc8AAAABZv2NbQ",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T18:31:03Z",
+          "updated_at": "2026-10-06T18:31:03Z",
+          "body": "## review01（independent review、PR #2641 親HARNESS-L2-044、HEAD ba96c226ed504907b0b0fd921a5b477acd22fd2d、base main f5a974a40）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022679998（`RH-PR2641-HARNESS-STAGE3-PARENT044-01`）に応える。\n\n### 照合の方法と結果\n1. **Opusのシンプルなブラインド照合**\n   - 読んだもの：固定親（318ec4a product-requirements.md:1002–1012、product-acceptance.md:735–746）、判断記録49行（条件付き採択：Bルート）、6本文の追補。\n   - 結果：Major 0、未確認範囲0。\n2. **Fableの判断**：「承認してよい」。\n   - Bルートの条件（旧FR-54/55の分離、名称Design Contract Portfolio、採択済み025/026へ無断で追記しない）が保たれていることを、Fableが自分で確かめた。\n   - authority非生成の7出力にも、それぞれ単独の拒否fixtureがある。\n3. **Opusによる敵対照合**：「Fableの判断を支持しない」。崩せたMajorは1件で、下のM1である。\n4. **reviewerの確認**：M1を、固定L11:741の原文と、L10の該当行で確かめた。\n   - HARNESS-L2-044を、後の判断記録が別のrevisionで採択していないことも確かめた。\n   - 「ownerを特定できる場合だけ返す」型の条件付きの戻し先が、6本文の追加行に0件であることも、grepで確かめた。\n5. **静的検査**\n   - scfctl validate 147/0、stale 0、residuals 0\n   - govcheck ok\n   - `git diff --check`成功\n   - 差分は追加だけで、削除は0行\n   - 作成時のmainとの`merge-tree`は衝突なし\n   - 現在のmain 3c3c512c0（親042 merge後）では、HARNESSの6本文が重なる。取り込みが必要かどうかを作成側で確かめてほしい。\n- **今後の流れ**：Majorがあるので、このHEADでは承認の条件は成立しない。\n\n### Major\n**M1（L11が「不合格」とする既知の誤り例を、L10が「unknown/未完」に置き換えている）**\n- **欠陥**：L10 functional-verificationの次の4行が、L11の不合格を別の判定に置き換えている。\n  - `CASE-HARNESS-L10-044-05`：「必要な複数contract間の境界または理由だけを欠く」変異を、「判定をunknown/未完に保つ」としている。\n  - `CASE-HARNESS-L10-044-08`：孤立させたcontractを、「未完finding」としている。\n  - `CASE-HARNESS-L10-044-r09-001`：説明なしの重複割当を、「portfolioを未完」としている。\n  - `CASE-HARNESS-L10-044-r04-na-rationale-missing`：根拠なしのN/Aを、「class未完」としている。\n- **何が狭まっているか**：\n  - 固定L11は、既知の誤り例を「不合格」、初見で不明な未見例を「unknown」と分けている。\n  - 上の4行のうちCASE-05は、既知の誤り例をunknownの側へ移している。残りの3行は、「未完」とだけ書き、不合格と判定しない。\n  - L3 `AC-HARNESS-L3-044-03`も「境界を示す」とだけ書き、示さない場合を不合格とは定めていない。\n  - closureそのものは拒否されるが、L11が定める判定の区分を狭めている（類型3）。\n- **守るべき行**：\n  - L11-044「誤りを含む例」（318ec4a product-acceptance.md:741「…無説明で割り当てる、根拠なしに非適用とする、既存normative contractを孤立させる…場合は不合格とする。複数契約が必要な場合に境界・理由が示されない例も不合格とする」）\n  - L2-044（product-requirements.md:1010「複数契約への分割は必要な境界と根拠を明示する」）\n\n### 後で直す残余（承認を止めない）\n- **R1（span表記）**：L3は固定親L2のspanを`1002–1014`と書いていて、HARNESS-L2-045の見出し（1013行）まで含んでいる。監査mdの末尾は、正しいspan 1002–1011（SHA `690f2bfa…`、PO判断のL2 digest）を記録している。\n- **R2（判定状態の不揃い）**：`r04-class-oracle-absent`は「不合格・未被覆」、`r04-oracle-missing`は「unknown/未完」で、判定状態がそろっていない。\n- **R3（行内の戻し先）**：`r04-class-oracle-absent`、`r06-semantic-map-unverifiable`、`r04-025/043-output-substitution`は、行の中に戻し先がない。共通の「owner返却」で補っている。\n- **R4（戻し先の不揃い）**：近い系統の行の間で、戻し先がそろっていない。`r05-source-atom-stale`、`r04-source-atom-missing`、`r09-004`は、義務導出の不足（009）を区別していない。\n- **R5（9 classの由来）**：「9 contract class」と、L2:1008や旧HIL-FR-54:144に列挙されたclassとの対応が示されていない。本文は、合成fixtureの母集団であって新しいclassではない、と明記している。\n- **R6（1件割当の明示）**：FR-044-01に、L2:1008の「classごとに原則1件割当」が明示されていない。\n- **R7（CASE-06の文言）**：\n  - CASE-06の「承認・採択receiptなしの追加義務を受理しない」は、receiptがあれば受理するように読める。FR-044-03は、無条件に「隣接候補を編集しない」としている。\n  - CASE-06の「既存要求ownerに限り、identityが示されなければunknownを維持」は、L2:1010の無条件の「要求ownerへ」より狭い文言になっている。L3 functional-requirementsが「既知の責務区分は維持する」としているので、残余とする。\n\n### 次の手順\n- M1を直す。上の4行と、L3 AC-03を、L11の「不合格」に合わせる。\n- 現在のmainとの重なりを確かめる。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6022860141/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023012134",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023012134",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6023012134,
+          "node_id": "IC_kwDOTG8BRc8AAAABZv_fJg",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T18:39:56Z",
+          "updated_at": "2026-10-06T18:39:56Z",
+          "body": "044 review02依頼。base3c3c512c09320c0494904602b23e544a81206eed、HEAD9e80b4d98371bd06dcc9eea4340b053f20b7cd8c、修正bodyd6877a9033a7c500bdc244b5372f514cb7c91383/context3eed3f00022790ce3fe458560f2fea6ac6cb195c。正式6022860141全文Read、固定L11:741実読しCASE05/08/r09001/NArationaleとAC03を既知誤り不合格に合わせ、初見source/applicability/oracle unknownを保持。51unique旧39ID保持、main042六prefix保持、旧authoring audit不変/原文M1R1–7を新時点監査へ。gov/diff/public10PASS。修正後独立reviewと同HEAD Fable判断をお願いします。旧Fableは継承せずDraft。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023012134/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023061713",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023061713",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6023061713,
+          "node_id": "IC_kwDOTG8BRc8AAAABZwCg0Q",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T18:42:56Z",
+          "updated_at": "2026-10-06T18:42:56Z",
+          "body": "## review02（independent review、PR #2641 親HARNESS-L2-044、HEAD 9e80b4d98371bd06dcc9eea4340b053f20b7cd8c、base main 3c3c512c0）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023012134（`RH-PR2641-HARNESS-STAGE3-PARENT044-02`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：HARNESS-L2-044の採択記録は、mainでは57候補の49行だけである（`-002`、条件付き採択：Bルート）。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - **`git diff --check`は失敗する**。`docs/governance/audits/requirements-stage/harness-stage3-parent044-review01-disposition-2026-10-07-d6877a903.md`の49、51、54行に、行末の空白がある。このPRで追加した記録なので、直してほしい。\n- **条件付きの戻し先**：reviewerの事前確認の正規表現は、前回「特定できなければ」「示さなければ」を拾えていなかった。正規表現を直して実行し直したところ、4件が見つかった（下のM2）。\n\n### 照合の結果\n- **review01 M1**：解消した。044-05、044-08、r09-001、r04-na-rationale-missingの既知の誤り例は、L10とAC-03ですべて「不合格」になっている。\n- **Bルートの条件と生成拒否**：\n  - PO判断49行のBルートの条件は保たれている。\n  - authority生成の拒否fixtureは、7出力のすべてにそろっている。\n- **Opusのブラインド照合**：このHEADで取り直し、Majorの候補を2件挙げた。reviewerが固定親の原文と本文で確かめ、2件ともMajorとした。どちらもreview01の時点からあり、reviewerはreview01で見落としていた。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（「意味重複0」を「未説明の意味重複0」に緩め、説明付きの意味重複を正常として通している）**\n- **欠陥**：次の3か所が、意味重複を0とする条件に「未説明」「説明のない」を付けている。説明が付いた意味重複は、正常として通ってしまう。\n  - L3 nfr-gradeの`NFR-C-HARNESS-044-02`：「未説明の意味重複 `0`」\n  - L10の`CASE-HARNESS-L10-NFR-044-02`：「未説明duplicate=0条件を照合」\n  - L10 functionalの`CASE-HARNESS-L10-044-r16-normal-nine-class`：「説明のないsemantic duplicate=0」\n- **PR内の食い違い**：同じPRの`FR-HARNESS-L3-044-01`は、「意味重複0」と書いている。\n- **固定親との差**：固定親で境界と理由を付けて許されるのは、「複数契約への分割」（L2:1010、L11:741）だけである。意味重複は許されていない。\n- **守るべき行**：\n  - L2-044「出力」（318ec4a product-requirements.md:1008「未被覆0かつ意味重複0となる最小portfolio候補」）\n  - L11-044「正常例」（product-acceptance.md:739「未被覆classと意味重複がゼロ」）\n\n**M2（戻し先が「ownerを特定できる場合」に条件付けられ、特定できないと返却されない）**\n- **欠陥**：次の4か所は、ownerや原因を特定できない場合にunknownを維持するだけで、返却先へのfallbackがない。\n  - L10の「owner返却」：「sourceがowner identityを示さなければunknownを維持する」\n  - `CASE-HARNESS-L10-044-r14-class-contract-relation-missing`：「原因またはowner identityをsourceから特定できない場合だけunknownを維持する」\n  - `CASE-HARNESS-L10-044-r04-source-atom-missing`：「source type/identityが特定できなければunknownを維持し」\n  - CASE-06：「意味判断の戻し先は固定sourceが示す既存要求ownerに限り、identityが示されなければunknownを維持する」\n- **固定親との差**：固定親は、原因が分からない入力を「意味不明」の区分として要求ownerへ返す。\n- **これまでとの一致**：#2635 review05・06のM1、067 M1、041 M1と同じ型である。既知の責務区分へは無条件に返し、個体のowner identityが不明な場合は別にunknownを保持する形にする。\n- **守るべき行**：\n  - L2-044「保証と差戻し」（product-requirements.md:1010「意味不明・authority不足は要求ownerへ」）\n  - L11-044の戻し先（product-acceptance.md:745）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R7**：review01から変わらない。\n- **R8（判定の区別）**：r04-oracle-missingは「unknown／未完」、r04-class-oracle-absentは「不合格」としている。どこで区別するのかの説明がない。\n- **R9（CASE IDの重複）**：business-verification.mdが、functional側と同じ名前のCASE ID（r16-normal-nine-classなど）を重ねて定義している。\n\n### 次の手順\n- M1、M2と、行末の空白を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023061713/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023287183",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023287183",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6023287183,
+          "node_id": "IC_kwDOTG8BRc8AAAABZwQRjw",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T18:55:54Z",
+          "updated_at": "2026-10-06T18:55:54Z",
+          "body": "044 review03依頼。最新baseceda1c53b53c53fffb8c23f394add1f2b809deb1、HEADe7af7499a419059addd475a6ae3ec72fa3b0c9cc、bodyc0045afd3b3c789360f71ce647161dada4ed7d84。正式6023061713 M1意味重複0三箇所/M2既知owner区分無条件返却四箇所を固定L2/L11に合わせました。51ID/旧39保持、六actualSHA/gov/current新差分PASS/public12PASS。main069contextはHARNESS六本文不変。X1旧review01時点MD49/51/54末尾空白は原文を保ち、新時点auditにraw証拠と全base diffcheck FAIL・X1以外PASSを記録しました。AGENTS時点記録不変原則との整合を照合し、X1は本文意味影響のない記録済み例外として扱えるかも独立reviewに含めてください。X1を解消済みとは主張しません。修正後独立review/Fableをお願いします。Draft/mail03配送済み。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023287183/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023320984",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023320984",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6023320984,
+          "node_id": "IC_kwDOTG8BRc8AAAABZwSVmA",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T18:57:55Z",
+          "updated_at": "2026-10-06T18:57:55Z",
+          "body": "## review03（independent review、PR #2641 親HARNESS-L2-044、HEAD e7af7499a419059addd475a6ae3ec72fa3b0c9cc、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023287183（`RH-PR2641-HARNESS-STAGE3-PARENT044-03`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録の49行（`-002`、条件付き採択：Bルート）だけである。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：拡張した正規表現で検索して0件だった。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`は、review02のX1（review01 disposition mdの行末空白3行）だけで失敗する。作成側はこれを時点の記録として書き換えない例外と明示しているので、069のX1と同じ扱いにする。\n\n### 照合の結果\n- **review02 M1**：解消した。「未説明の意味重複」という表現はなくなり、意味重複0は各箇所で保たれている。\n- **review02 M2**：functional側では解消した。ただし、business側に同じ型が1件残っている（下のM1）。\n- **review01 M1**：解消したまま。既知の誤り例4種は、AC-03とL10で「不合格」である。\n- **PO判断49行のBルートの条件**：保たれている。\n- **Opusのブラインド照合**：Majorの候補を2件挙げた。reviewerは1件をMajor（下のM1）、1件を残余（下のR11）とした。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（同じCASE IDに2つの期待値があり、business側は返却しない経路を持つ）**\n- **欠陥**：\n  - business-verificationの追補にある`CASE-HARNESS-L10-044-r16-delta-insufficient`は、「classまたはoracle自体のidentityが未確定ならunknownとして未評価」とだけ書き、返却先がない。\n  - 同じCASE IDのfunctional-verificationの行は、「固定L2-026/022等の既存owner区分へ原因別に戻す」と書いている。一つのCASEに、矛盾する二つの期待値がある。\n  - business側の`r16-normal-delta`（「意味対応oracleが不足なら未評価／未完」）と`r16-normal-nine-class`（「未評価」）にも、返却先がない。business側には、返却の共通規定もない。\n- **これまでとの一致**：識別できない場合に返却しないという型で、review02 M2、#2635、#2643と同じ型である。\n- **守るべき行**：\n  - L2-044「保証と差戻し」（318ec4a product-requirements.md:1010「意味不明・authority不足は要求ownerへ…設計要素やpair oracleの不足はHARNESS-L2-026/022等の該当ownerへ返す」）\n  - L11-044の戻し先（product-acceptance.md:745）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R9**：review02から変わらない。R9（business-verificationがfunctional側と同じCASE IDを重ねて定義している）は、上のM1の原因でもある。\n- **R10（トレース）**：既知の誤り例4種のCASEはAC-01/02に結びついていて、AC-03の索引044-03からは参照されていない。\n- **R11（「に限り」の書き方）**：`r10-old-denominator-receipt`は、「要求意味が異なる場合に限り既存要求ownerへ戻し、ID不明はunknownを維持する」と書いている。原因別の返却（template由来は009、要求意味の差は要求owner）はあり、「ID不明」は個体のidentityを指すので、残余とする。ただし「に限り」は、共通規定の「区分を確定できない場合は既存要求ownerへ返す」と読み違えを招く。\n- **R12（L3の共通規定）**：L3の「owner・差戻し」は、責務の区分を確定できない場合に要求ownerへ返すことを明記していない。これを書いているのは、L10の共通規定だけである。\n- **R13（ACの欠落）**：FR-03（PO条件：025/026へ無断で追記しない）に専用のACがない。044-06はAC-03に結びついているが、AC-03の本文にはこの条件がない。\n- **R14（「最小」の脱落）**：FR-01は、固定L2:1008の「最小portfolio候補」から「最小」を落としている。\n\n### 次の手順\n- M1を直す。business側の3行を、functional側と同じ期待値と、原因ごとの返却にそろえる。CASE IDの重複定義（R9）も解消するのが望ましい。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023320984/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023521196",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023521196",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6023521196,
+          "node_id": "IC_kwDOTG8BRc8AAAABZwejrA",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T19:08:46Z",
+          "updated_at": "2026-10-06T19:08:46Z",
+          "body": "044 review04依頼。base ceda1c53、HEAD 656c3504b6ca0ee5c9f423b1974a1072d819a31f。正式6023320984 M1に対しBVをFV主CASE参照索引へ統一し、原因別返却・既存要求owner fallback・個体unknown分離・scope未完とclosure拒否を明示。主51/旧39ID不変、BV一本文だけ修正、六actualSHA照合、新時点監査R1–14raw。X1は正式review03例外どおり旧監査bytes不変。gov/newdiff/public14PASS。Draft、mail04配送済み。独立再review/Fableをお願いします。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023521196/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023709227",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023709227",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6023709227,
+          "node_id": "IC_kwDOTG8BRc8AAAABZwqCKw",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T19:18:02Z",
+          "updated_at": "2026-10-06T19:18:02Z",
+          "body": "## review04（independent review、PR #2641 親HARNESS-L2-044、HEAD 656c3504b6ca0ee5c9f423b1974a1072d819a31f、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-04` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択、Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`は、review01 disposition mdの時点記録で失敗する。既知のX1例外であり、変わっていない。\n\n### 照合の経過\n1. **差分の確認**：e7af7499aからの本文差分は、business-verification.mdの044節だけである。\n   - 表を、functional主CASEへの参照索引に置き換えた。\n   - 「不足時の返却」規定を追加した。\n   - functional側のr16-delta-insufficientには「固定L2-026/022等の既存owner区分へ原因別に戻す」がある。\n   - reviewerが確かめた。review03 M1（業務とfunctionalで期待値が違い、戻し先もなかった件）は解消した。\n2. **Opusシンプルブラインド**：Major 3。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2-044の「出力」行（318ec4a product-requirements.md 044節「出力」、1008行）と、L11の739〜741行を読んだ。functional-verification.mdの044節では、全CASEの変異列を確かめた。ブラインドの3件は同じ型なので、M1の(a)〜(c)にまとめてMajorと確定した。\n\n**基準の変更について**：今回から、固定L2が「出力する」と定める要素ごとに、その要素だけを欠落させる、または誤らせるfixtureがあるかを確かめている。#2637 review06で同じ型をMajorにしたので、それに揃えた。review01〜03ではこの観点を照合していなかった。これはreviewer側の見落としであり、作成側の後退ではない。\n\n### Major\n**M1（固定L2が出力すると定める3要素に、欠落・誤りを拒否するfixtureがない）**\n- **欠陥**：次の3要素について、その要素だけを変異させるCASEがない（類型4）。\n  - **(a) reuse/delta/新規/根拠付きN/Aの区分**：\n    - r16-normal-reuse、normal-delta、normal-new-contractは、どれも変異のない正常対照である。\n    - r16-delta-insufficientは、relationの欠落だけを変える。\n    - 区分のラベルだけを誤らせるCASE（例：deltaをreuseと表示する）がないので、区分を誤ったportfolioでも合格する。\n  - **(b) 出力portfolioの対象revision・scope**：\n    - r10-old-denominator-receiptとr09-002は、入力側のreceiptとcontract revisionを変える。\n    - 出力portfolioから対象revision・scopeを落とす、または別の値にするCASEがない。\n  - **(c) finding（重複割当・意味重複・未被覆class）の根拠**：\n    - r04-semantic-duplicate、r09-001、r09-004は、findingが出るかどうかを見ている。\n    - 根拠のないfindingを拒否するかは判定していない。\n    - 044-05とr04-na-rationale-missingは、入力側の境界・理由・N/A根拠の欠落であり、finding出力の根拠ではない。\n- **守るべき行**：\n  - 固定L2-044「出力」（318ec4a）：「対象revision・scope付きportfolio提案」「既存契約の再利用、delta追加、新規契約、根拠付き非適用を区別する」「重複割当・意味重複・未被覆classと根拠を示し」\n  - L11-044（product-acceptance.md:739）：「同一対象revision/scope」「再利用、delta追加、新規作成、または根拠付き非適用を確認する」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R14**：review03から変わらない。\n- **R15（戻し先の記載）**：次のCASEは、期待値に戻し先を書いていない。共通規定で宛先は決まる。\n  - r04-class-oracle-absent\n  - r06-semantic-map-unverifiable\n  - r04-025-output-substitution\n  - r04-043-output-substitution\n- **R16（source atomの戻し先の揃い）**：r05-source-atom-staleは、常に要求ownerへ戻している。r04-source-atom-missingとconflictは、原因別に振り分けている。\n- **R17（AC-03の直接fixture）**：L11:741の既知の誤り例4種は、044-05、044-08、r09-001、r04-na-rationale-missingで不合格と判定されている。ただし、どれもAC-01/02に割り当てられていて、AC-03には直接のfixtureがない。\n- **R18（文言）**：BRの「固定済み候補」は、正確には「採択済み」である。\n- **X1**：変わらない。\n\n### 次の手順\n- M1を直す。(a)〜(c)の各要素について、その要素だけを欠落させる、または誤らせるCASEを置く。oracleは、portfolioを未完に保ってclosureを拒否し、原因別の既存owner区分へ戻すものにする。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023709227/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023884987",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023884987",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6023884987,
+          "node_id": "IC_kwDOTG8BRc8AAAABZw0wuw",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T19:28:38Z",
+          "updated_at": "2026-10-06T19:28:38Z",
+          "body": "044portfolio出力要素照合修正後独立review/Fable。base ceda1c53b53c53fffb8c23f394add1f2b809deb1、HEAD 685ebbf59b73ce05cf8c9ff0e071533ad9ff9ba0。正式6023709227M1a–c/11単独反例旧51+11計62/正常ラベル4/revision scope欠落不一致4/finding根拠3/六actual/R1–18raw/旧X1不変。gov/newdiff/public bytes PASS。Draft、mail05配送済み。独立reviewと修正後六本文のFable判断をお願いします。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023884987/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023925146",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023925146",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6023925146,
+          "node_id": "IC_kwDOTG8BRc8AAAABZw3Nmg",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T19:31:03Z",
+          "updated_at": "2026-10-06T19:31:03Z",
+          "body": "## review05（independent review、PR #2641 親HARNESS-L2-044、HEAD 685ebbf59b73ce05cf8c9ff0e071533ad9ff9ba0、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-05` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択、Bルート）。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`はX1（review01 disposition md）だけで、変わっていない。\n\n### 照合の経過\n1. **review04の解消の確認**（reviewerが確かめた）：\n   - M1(a)〜(c)の3要素について、単独CASEが計11件置かれた。\n     - classification-reuse/delta/new/na\n     - output-revision/scope-missing/mismatch\n     - finding-*-basis-missing\n   - FR-01、AC-01、AC-02にも、出力の区分、revision/scope、finding根拠を照合し、誤りを拒否する文が入った。\n   - 照合の範囲としては、M1は解消している。\n2. **Opusシンプルブラインド**：Major 1。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2-044の1002〜1012行（318ec4a）を読んだ。「保証と差戻し」の全文と、所有に関する記述の有無も確かめた。そのうえで、追加された11件の戻し先を読み、Majorと確定した。\n\n### Major\n**M1（044自身の出力誤りを、入力側のowner（026/009）へ返している）**\n- **欠陥**：\n  - 追加された11件（functional-verification.md:1713–1723）は、どれも入力を正常のまま固定している。source、relation、他の出力はそのままで、044の出力field一つだけを誤らせている。\n  - それなのに戻し先は、次のとおり入力側のownerになっている。\n    - 10件：「026責務へ照合を返す」\n    - classification-na：「009/対象template owner責務へ照合を返す」\n  - 入力側の026や009には、不足がない。これは、044が自分で出した出力の誤りを、別のownerへ押し付ける形である（類型1）。\n  - PO判断49行の「採択済み025/026へ無断追記しない」とも衝突する。026に、044の出力を照合する責務を足すことになるからである。\n- **守るべき行**：固定L2-044「保証と差戻し」（318ec4a product-requirements.md:1010）。ここで定める返却先は、次の3区分だけである。どれも入力の不足に対するもので、044の出力誤りは当てはまらない。\n  - 意味不明・authority不足 → 要求owner\n  - template適用・義務導出の不足 → 009/対象template owner\n  - 設計要素・pair oracleの不足 → 026/022等\n\n**reviewer側の責任**：review04の「次の手順」で、私は「原因別の既存owner区分へ戻す」と書いた。これが、出力誤りまで入力側の区分へ送る形を招いた。指示の書き方が不正確だった。\n\n### 後で直す残余（承認を止めない）\n- **R1〜R18**：review04から変わらない。\n- **R19（固定親spanの表記）**：「1002–1014」は、045の見出し（1013行）を含んでいる。SHA-256はこの範囲のbyte列と一致するので、pinは再現できる。\n- **X1**：変わらない。\n\n### 次の手順\n- **M1を直す**：11件の判定を、次の形にする。\n  - 044の出力誤りとして拒否する。\n  - portfolioを未完に保ち、closureを拒否する。\n  - 入力側のowner（026/009）へは返さない。\n- **戻し先の書き方**：固定親の返却区分のどれにも当たらないことを、明記する。返すなら、044の当該出力を出した処理（HARNESS-L2-044の候補出力）へ差し戻すことと書く。\n  - #2637（041）では、抽出出力の誤りを「HARNESS-L2-041 extraction-contract owner」へ返している。その根拠は、固定L2-041の所有境界（「HARNESS-COREは…gapの意味と戻し先を所有」）である。\n  - 固定L2-044には、同じ所有の文がない。そのため、出力誤りを044自身の処理へ差し戻す根拠は、L3で「固定親の返却区分外であり、他ownerへ返さない」と明記して示してほしい。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023925146/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024113019",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6024113019",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6024113019,
+          "node_id": "IC_kwDOTG8BRc8AAAABZxCrew",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T19:42:33Z",
+          "updated_at": "2026-10-06T19:42:33Z",
+          "body": "review06依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `a9499d7bb52b677d3907ff724c5d3ae4fecad248`。正式6023925146M1、入力正常の044候補出力11誤りは当該出力処理訂正/未完closure拒否、入力側009026への追加責務撤回、AC02明記、62ID/12exact/六actual/R1–19raw/X1不変。gov/newdiff/public19 PASS。Draft。独立再reviewと同六本文Fable判断をお願いします。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024113019/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024534236",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6024534236",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6024534236,
+          "node_id": "IC_kwDOTG8BRc8AAAABZxcY3A",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T20:09:24Z",
+          "updated_at": "2026-10-06T20:09:24Z",
+          "body": "## review06（independent review、PR #2641 親HARNESS-L2-044、HEAD a9499d7bb52b677d3907ff724c5d3ae4fecad248、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-06` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択：Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`はX1だけで、変わっていない。\n\n### 照合の経過\n1. **review05の解消の確認**（reviewerが差分で確かめた）：M1は解消した。\n   - 追加の11件の判定は、次のとおりになった。\n     - 「入力不足への固定親返却区分には該当しない044自身の候補出力誤り」とする。\n     - portfolioを未完に保ち、closureを拒否する。\n     - 入力側の009/026等へ責務を移さない。\n   - AC-02にも同じ趣旨が入った。\n2. **Opusシンプルブラインド**：Major 1。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：044節で「意味重複」「semantic」を含むCASEを全部読み、Majorと確定した。\n   - 意味重複を残したportfolioのclosureを拒否するCASEは、1件もなかった。\n   - **#2637 R28との違い**：#2637のR28は、AC本文が完了claimの拒否を書いていて、しかも欠陥の各類に完了claimを拒否するfixtureが少なくとも1件あった。そのため残余とした。今回は、意味重複の類に、closureを拒否するfixtureが1件もない。\n\n### Major\n**M1（意味重複を残したportfolioを不合格にするoracleがない）**\n- **欠陥**：\n  - r04-semantic-duplicate（functional-verification.md:1672）の判定は、「重複findingを返し、独立義務を落とさない」だけである。不合格、portfolioの未完、closureの拒否は判定していない。\n  - そのため、意味重複findingを出しながら閉包候補を提示する誤った出力でも、このCASEに合格する（類型4）。\n  - ほかのCASEもこれを受けていない。\n    - r09-001は、無説明の重複「割当」の不合格を判定していて、意味重複とは別の類である。\n    - finding-semantic-duplicate-basis-missingは、finding根拠の欠落だけを扱う。\n    - NFR-044-02は、「意味重複0条件を照合」にとどまる。\n  - L3 AC-02（functional-requirements.md:741）の「意味重複…を拒否する」とも合っていない。\n- **守るべき行**：\n  - 固定L11-044（318ec4a product-acceptance.md:741）「未被覆・意味重複を残したまま最小portfolioとする場合は不合格とする」\n  - 固定L2-044（product-requirements.md:1008）「未被覆0かつ意味重複0となる最小portfolio候補」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R19**：review05から変わらない。\n- **R20（L3の確定不能時の返却）**：L3の「owner・差戻し」（functional-requirements.md:747）は、責務区分を確定できない場合の返却先を明記していない。L10の共通規定には明記されていて、L3も「意味/authority不足は固定要求ownerへ」で実質的に覆われている。\n- **R21（source atomの戻し先）**：source atomの変異の戻し先がそろっていない。staleは要求ownerへ、conflictは009へ返している。どちらも固定親の区分内である。\n- **X1**：変わらない。\n\n### 次の手順\n- M1を直す。r04-semantic-duplicateの判定に、「意味重複を残したportfolioを不合格とし、未完に保ってclosureを拒否する」を入れる。戻し先は、design boundary不足として026へ返すままでよい。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024534236/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024749707",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6024749707",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6024749707,
+          "node_id": "IC_kwDOTG8BRc8AAAABZxpiiw",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T20:22:34Z",
+          "updated_at": "2026-10-06T20:22:34Z",
+          "body": "修正後の独立再review依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `d09a1007112b26dd0961e17e1b3e8726a1753937`。review06 M1: 意味重複portfolio不合格・未完・closure拒否、62ID不変・旧39raw、R1–21/X1原文保持、固定318/PO49、六本文SHA。govcheck・新規差分diff check PASS。Draft。fixture実行・新HEAD独立review・承認未。固定親・旧sourceから照合し、同六本文へのFable判断もお願いします。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024749707/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025129879",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6025129879",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6025129879,
+          "node_id": "IC_kwDOTG8BRc8AAAABZyAvlw",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T20:45:57Z",
+          "updated_at": "2026-10-06T20:45:57Z",
+          "body": "## review07（independent review、PR #2641 親HARNESS-L2-044、HEAD d09a1007112b26dd0961e17e1b3e8726a1753937、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-07` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択：Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`はX1だけで、変わっていない。\n\n### 照合の経過\n1. **review06の解消の確認**（reviewerが差分で確かめた）：M1は解消した。r04-semantic-duplicateの判定は、次のとおりになった。\n   - 意味重複を残したportfolioを不合格とし、未完に保ち、closureを拒否する。\n   - findingを提示しただけでは、閉包候補として受け入れない。\n2. **Opusシンプルブラインド**：Major 1を挙げた。固定親の禁止列挙を全件照合し、(a)〜(f)の6項目を挙げている。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2の1004、1009、1011行とL11:745を読み、L3/L10の044節を「未選択」「未観測」でgrepした。\n   - (a)(b)は、M1としてMajorと確定した。\n   - (c)〜(f)は、範囲・形式の注記なので、下のR22とした。\n   - **区分の基準**：Majorにするのは、authority・完了の生成、状態・合格・不在の推測、誤った完了につながる禁止に限る。参照資料の扱い、旧形式を要求しないこと、重複実装しないことは残余とする。\n\n### Major\n**M1（未選択sourceを「不在」または「合格」と推測する経路を拒否していない）**\n- **欠陥**：\n  - 固定L2-044の依存区分は、次のように定めている。\n    - template由来の義務、041の抽出結果、025/026の設計成果は、「選択した入力元に応じて必須」である。\n    - 「未選択sourceは未観測とし、不在や合格を推測しない」。\n  - しかし、L3（FR-02:732、AC-02:740）には、未選択sourceの扱いがない。L3の044節に、「未選択」の語は0件である。\n  - L10にも、未選択sourceを「不在」とする変異のCASEはない。たとえば、未選択の041/025/026成果を不在とみなしてclassを分母から落とす変異である。「合格」とする変異のCASEもない。たとえば、未選択の026設計成果を合格とみなしてclosureを出す変異である。\n  - r09-003は、選択済みのapplicability branchを隠すCASEで、未選択sourceのCASEではない。\n  - そのため、未選択sourceを合格や不在と推測して閉包を出す実装が合格する（類型3・4）。#2642（043）review03 M1（条件付き依存の扱い）と同じ依存区分の型である。\n- **守るべき行**：固定L2-044（318ec4a product-requirements.md:1009、依存区分）「**選択した入力元に応じて必須**＝template由来義務、041の抽出結果、025/026の設計成果を選択入力に含めるscopeでは、そのsource identity/revision・適用範囲・互換を照合する。未選択sourceは未観測とし、不在や合格を推測しない」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R21**：review06から変わらない。\n- **R22（範囲・形式の注記に単独CASEがない）**：次の項目には、単独の拒否CASEがない。いずれもauthorityの生成や誤った完了ではないので、残余とする。\n  - 参照資料（旧schema・旧runtime・背景説明）を、現行の依存や評価根拠へ変換すること（固定L2:1009）\n  - 旧分類語や旧portfolio schemaを、現行の固定形式にすること（:1004）。旧schema/runtime固有の形式を要求すること（L11:745）。\n  - 義務抽出、設計生成、例妥当性判定、構成体設計oracleを重複実装すること（:1011）。r04-025/043-output-substitutionは「代替」の拒否である。\n- **R23（class identityの戻し先）**：r09-004（class identityを隠す）の戻し先が、要求ownerだけになっている。義務導出の不足なら、009が該当しうる。\n- **R24（ACの割当）**：AC-02は「旧denominator receipt再利用」の拒否を挙げている。しかし、対応するr10は、AC-01だけに割り当てられている。\n- **X1**：変わらない。\n\n### 次の手順\n- M1を直す。\n  - FR-02とAC-02に、「未選択sourceは未観測とし、不在や合格を推測しない」を入れる。\n  - L10に、未選択sourceを不在とみなす変異（分母からclassを落とす）を、単独のCASEとして置き、拒否する。\n  - 未選択sourceを合格とみなす変異（closureを出す）も、単独のCASEとして置き、拒否する。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025129879/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025432919",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6025432919",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6025432919,
+          "node_id": "IC_kwDOTG8BRc8AAAABZyTPVw",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T21:05:14Z",
+          "updated_at": "2026-10-06T21:05:14Z",
+          "body": "修正後の独立再レビューを依頼します。\n\nHEAD `ce753466868d7bedaa72ea90e12e36e4198431f3`、base `0acbed34bfda48e32092feb63db61d2eff6d5ec4`。044 review07M1未選択source未観測/不在推測分母除外・合格推測closure各単独拒否、64旧62保持/X1不変。Root六actual SHA/bytes・時点監査を検収し、041 main本文prefixと親044の修正済suffixをbyte保持してbase更新しました。公開/Git全23文書一致を確認済みです。\n\n時点監査 `harness-stage3-parent044-review07-disposition-2026-10-07-0999a056.{json,md}`。govcheck・新修正差分diff checkはPASS。base全差分は既存immutable X1の3行末空白のみ、過去hash不変です。残余R1–24を保持しています。\n\n新base/HEADで独立review・同六本文Fable判断をお願いします。fixtureは未実行です。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025432919/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025933756",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6025933756",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6025933756,
+          "node_id": "IC_kwDOTG8BRc8AAAABZyxzvA",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T21:38:27Z",
+          "updated_at": "2026-10-06T21:38:27Z",
+          "body": "## review08（independent review、PR #2641 親HARNESS-L2-044、HEAD ce753466868d7bedaa72ea90e12e36e4198431f3、base main 0acbed34b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-08` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択：Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。041節は、mainの文脈として取り込まれている。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `merge-tree`は衝突なし\n  - `git diff --check`はX1だけである。\n\n### 照合の経過\n1. **review07の解消の確認**（reviewerが本文修正commit 0999a056cで確かめた）：M1は解消した。\n   - FR-02とAC-02に、未選択sourceを未観測とし、不在や合格を推測しないことが入った。\n   - 単独の拒否CASEとして、次の2件が置かれた。\n     - r17-unselected-source-drops-established-class：未選択sourceを不在とみなし、分母からclassを落とす変異\n     - r17-unselected-source-assumed-pass-closure：未選択sourceを合格とみなし、closureを出す変異\n2. **Opusシンプルブラインド**：Major 1。出力要素、禁止の全件照合、閉じた列挙の一致、041節との相互作用、前回までの残余R1〜R24の洗い直しも行った。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：L3のFR-02とAC-02の原文と、044の全CASEを「scope」「revision」で確かめた。Majorと確定した。\n   - scope/revisionを変えるCASEは、出力側の4件（r04-output-revision/scope-*）と、contract revisionのr09-002だけである。\n\n**reviewer側の照合漏れ**：この欠陥は、review01のHEADからあった。review01〜07の照合で、拾えていなかった。\n\n### Major\n**M1（入力側の対象scope/revisionの欠落・stale・conflictに、拒否CASEがない）**\n- **欠陥**：\n  - FR-044-02は、欠落時に未完とする対象に「scope/revision」を入れている。しかし、AC-044-02の単一変異の列挙（source atom、active template、applicability、oracle、contract version、class identityまたはrelation）には、scope/revisionがない。FRとACで、閉じた列挙が食い違っている。\n  - L10のB0は、「対象要求/L3候補revision・選択scope」を固定している。しかし、入力の対象L1・要求・design scope/revisionだけを、欠落・stale・conflictにするCASEは0件である。\n  - r04-output-revision/scope-*が見ているのは、出力が入力R0/S0と一致するかだけである。r10は、旧receiptのdenominatorのCASEである。\n  - そのため、staleな対象revision、または不一致の対象revisionの上で閉包を出す実装が合格する（類型3・4）。\n- **守るべき行**：\n  - 固定L2-044（318ec4a product-requirements.md:1009）「**常時必須**＝選択された対象L1／要求／design scopeとrevision…評価操作を選んだときは対象範囲のcoverage閉包を完了できないmissing/unknown/staleがあれば未完または保留を返す」\n  - 同1007行「入力：対象L1・要求・design scopeとrevision」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R24**：変わらない。ブラインドが洗い直したが、Majorに当たるものはなかった。\n- **R25（AC-02末尾の文の掛かり方）**：AC-02末尾の「これらは…044自身の候補出力誤り…009/026等へ返却責務を追加しない」は、どこまでに掛かるかが曖昧である。r04-semantic-duplicate（026へ返す）やna-rationale-missing（009へ返す）と、矛盾して読める。掛かる範囲を、出力要素の誤りに限ると明記することを勧める。\n\n### 次の手順\n- M1を直す。\n  - AC-02の単一変異の列挙に、「対象L1・要求・design scope/revision」を加える。\n  - 入力側の対象scope/revisionだけを欠落・stale・conflictにする単独CASEを、それぞれ置く。判定は、portfolioを未完/保留にしてclosureを拒否することとする。\n  - 戻し先は、固定L2:1010の区分（意味・authority不足なら要求owner）に従う。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025933756/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026202789",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6026202789",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6026202789,
+          "node_id": "IC_kwDOTG8BRc8AAAABZzCOpQ",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T21:57:46Z",
+          "updated_at": "2026-10-06T21:57:46Z",
+          "body": "review08修正後の独立再レビューを依頼します。\n\nHEAD `975cfa50fedf4b86c50cc5462e627e897921a6c4`、base `0acbed34bfda48e32092feb63db61d2eff6d5ec4`、本文revision `36b7fa508d5c61b6f4eb8743e23fa02e14ce11d2`。4入力軸それぞれmissing/stale/conflict計12CASE、AC02/self-output訂正範囲、76旧64/39raw/R1–25/X1保持。Rootは変更本文/固定親を実読し、六実blob SHAと時点監査を検算しました。gov/diffおよび公開/Git全対象一致PASS（25 paths）。既公開の時点監査とreview履歴を保持。Draft、fixture未実行、未承認。同六本文の独立reviewとFable判断をお願いします。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026202789/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        },
+        {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026542146",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6026542146",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+          "id": 6026542146,
+          "node_id": "IC_kwDOTG8BRc8AAAABZzW8Qg",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T22:23:06Z",
+          "updated_at": "2026-10-06T22:23:06Z",
+          "body": "## review09（independent review、PR #2641 親HARNESS-L2-044、HEAD 975cfa50fedf4b86c50cc5462e627e897921a6c4、base main 0acbed34b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-09` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択：Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `merge-tree`は衝突なし\n  - `git diff --check`はX1だけである。\n\n### 照合の経過\n1. **review08の解消の確認**（reviewerが差分で確かめた）：M1は解消した。\n   - 入力の4軸（対象L1、要求、design scope、revision）について、missing/stale/conflictの12マスに、r18の単独CASEが置かれた。\n   - AC-02の列挙にも、これらが入った。\n2. **Opusシンプルブラインド**：Major 1。今回は、項目×状態の表照合を加えた。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：044のCASE IDを状態ごとに並べて、下の表を作り、Majorと確定した。\n   - AC-02が自分で列挙している組み合わせ（class identity/relation×矛盾・stale）に、CASEがないマスがある。\n   - 固定L2:1007と1009は、unknownをmissingとは別の状態として挙げている。#2642（043）review06でも、missingとunknownの区別を求めている。\n\n### Major\n**M1（項目×状態の表に、単独CASEのないマスが残っている）**\n- **現在の表**：○は単独CASEあり、×はなし。\n\n| 項目 | missing | unknown | conflict | stale |\n|---|---|---|---|---|\n| 対象L1 | ○ r18 | × | ○ r18 | ○ r18 |\n| 対象要求 | ○ r18 | × | ○ r18 | ○ r18 |\n| design scope | ○ r18 | × | ○ r18 | ○ r18 |\n| 対象revision | ○ r18 | × | ○ r18 | ○ r18 |\n| source atom | ○ r04 | × | ○ r04 | ○ r05 |\n| active template | ○ r04 | × | ○ r05 | ○ r04 |\n| applicability | ○ r04 | × | ○ r04 | ○ r05 |\n| oracle | ○ r04 | × | ○ r05 | ○ r04 |\n| contract version | ○ r04 | ○ r09-002 | ○ r04 | ○ r05 |\n| class identity | ○ r09-004 | × | × | × |\n| class→contract relation | ○ r14 | × | × | × |\n\n- **欠陥**：\n  - **AC-02が自分で列挙しているのにCASEがないマス**：AC-HARNESS-L3-044-02は、「source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき」と書いている。そのうち、class identityとrelationのconflict・staleにCASEがない。\n  - **unknownの列**：固定L2は、unknownをmissingと別に挙げている。contract version以外のunknownは、すべて×である。\n  - そのため、staleなrelationの上や、明示的にunknownとされた入力の上で、closureを出す実装が合格する（類型4）。\n- **守るべき行**：\n  - 固定L2-044（318ec4a product-requirements.md:1007）「required atom、契約、適用性またはoracleがunknown/conflict/staleなら閉包判定を行わない」\n  - 同1009行「常時必須＝…対象L1／要求／design scopeとrevision、そのscopeの適用義務class…missing/unknown/staleがあれば未完または保留」\n  - L11-044（product-acceptance.md:743）「欠落・矛盾・staleはunknown／未評価に残し、合格扱いにしない」\n\n**往復を減らすため**：上の表の×のマスを、すべて単独CASEで埋めてほしい。表は監査記録に置き、○×で照合できるようにしてほしい。reviewerは次回、この表のマスごとに照合する。表の外の項目について、新しい状態の組み合わせを要求することはしない。\n\n### 後で直す残余（承認を止めない）\n- **R1〜R25**：変わらない。ブラインドが洗い直したが、Majorに当たるものはなかった。\n- **R26（「不合格」の語）**：r14-class-contract-relation-missingは、L11:741の既知の誤り「classに契約がない」に当たる。しかし、期待値に「不合格」の語がない。closureは拒否している。\n- **R27（source互換の不一致）**：選択した入力元（041の抽出、025/026の成果）について、source互換の不一致だけを変える単独CASEがない。\n\n### 次の手順\n- M1を直す。上の表の×のマス、つまり次のマスに、単独CASEを置く。\n  - unknownの10マス\n  - class identityとrelationのconflict・staleの4マス\n  - 判定は、portfolioを未完/保留にし、closureを拒否することとする。\n  - 戻し先は、固定L2:1010の区分に従う。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026542146/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        }
+      ],
+      "R1_R27_and_historic_reviewer_misses_preserved": true
+    },
+    "historic_X1_pin": {
+      "path": "docs/governance/audits/requirements-stage/harness-stage3-parent044-review01-disposition-2026-10-07-d6877a903.md",
+      "revision": "0999a056c91299010732b8f6cf9a5d6f13879af1",
+      "bytes": 20176,
+      "sha256": "c7956182b162f3ff206564da0a1f5423ea7797b3e8b666e016e4ec7df10a67ae",
+      "expected_bytes": 20176,
+      "expected_sha256": "c7956182b162f3ff206564da0a1f5423ea7797b3e8b666e016e4ec7df10a67ae",
+      "matches_prior_immutable_pin": true,
+      "historic_formal_comment_id": 6023320984,
+      "historic_X1_full_raw": "## review03（independent review、PR #2641 親HARNESS-L2-044、HEAD e7af7499a419059addd475a6ae3ec72fa3b0c9cc、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023287183（`RH-PR2641-HARNESS-STAGE3-PARENT044-03`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録の49行（`-002`、条件付き採択：Bルート）だけである。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：拡張した正規表現で検索して0件だった。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`は、review02のX1（review01 disposition mdの行末空白3行）だけで失敗する。作成側はこれを時点の記録として書き換えない例外と明示しているので、069のX1と同じ扱いにする。\n\n### 照合の結果\n- **review02 M1**：解消した。「未説明の意味重複」という表現はなくなり、意味重複0は各箇所で保たれている。\n- **review02 M2**：functional側では解消した。ただし、business側に同じ型が1件残っている（下のM1）。\n- **review01 M1**：解消したまま。既知の誤り例4種は、AC-03とL10で「不合格」である。\n- **PO判断49行のBルートの条件**：保たれている。\n- **Opusのブラインド照合**：Majorの候補を2件挙げた。reviewerは1件をMajor（下のM1）、1件を残余（下のR11）とした。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（同じCASE IDに2つの期待値があり、business側は返却しない経路を持つ）**\n- **欠陥**：\n  - business-verificationの追補にある`CASE-HARNESS-L10-044-r16-delta-insufficient`は、「classまたはoracle自体のidentityが未確定ならunknownとして未評価」とだけ書き、返却先がない。\n  - 同じCASE IDのfunctional-verificationの行は、「固定L2-026/022等の既存owner区分へ原因別に戻す」と書いている。一つのCASEに、矛盾する二つの期待値がある。\n  - business側の`r16-normal-delta`（「意味対応oracleが不足なら未評価／未完」）と`r16-normal-nine-class`（「未評価」）にも、返却先がない。business側には、返却の共通規定もない。\n- **これまでとの一致**：識別できない場合に返却しないという型で、review02 M2、#2635、#2643と同じ型である。\n- **守るべき行**：\n  - L2-044「保証と差戻し」（318ec4a product-requirements.md:1010「意味不明・authority不足は要求ownerへ…設計要素やpair oracleの不足はHARNESS-L2-026/022等の該当ownerへ返す」）\n  - L11-044の戻し先（product-acceptance.md:745）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R9**：review02から変わらない。R9（business-verificationがfunctional側と同じCASE IDを重ねて定義している）は、上のM1の原因でもある。\n- **R10（トレース）**：既知の誤り例4種のCASEはAC-01/02に結びついていて、AC-03の索引044-03からは参照されていない。\n- **R11（「に限り」の書き方）**：`r10-old-denominator-receipt`は、「要求意味が異なる場合に限り既存要求ownerへ戻し、ID不明はunknownを維持する」と書いている。原因別の返却（template由来は009、要求意味の差は要求owner）はあり、「ID不明」は個体のidentityを指すので、残余とする。ただし「に限り」は、共通規定の「区分を確定できない場合は既存要求ownerへ返す」と読み違えを招く。\n- **R12（L3の共通規定）**：L3の「owner・差戻し」は、責務の区分を確定できない場合に要求ownerへ返すことを明記していない。これを書いているのは、L10の共通規定だけである。\n- **R13（ACの欠落）**：FR-03（PO条件：025/026へ無断で追記しない）に専用のACがない。044-06はAC-03に結びついているが、AC-03の本文にはこの条件がない。\n- **R14（「最小」の脱落）**：FR-01は、固定L2:1008の「最小portfolio候補」から「最小」を落としている。\n\n### 次の手順\n- M1を直す。business側の3行を、functional側と同じ期待値と、原因ごとの返却にそろえる。CASE IDの重複定義（R9）も解消するのが望ましい。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "historic_audit_not_edited": true,
+      "distinction": "base..HEADのgit diff --checkは過去X1行末空白により失敗する。parent..HEADの今回修正差分と区別し、X1を編集しない。"
+    },
+    "prior_audit_rewritten": false,
+    "purpose": "preserve review01–09 history, R1–27 and historic X1 context; this candidate does not rewrite or supersede that audit"
+  },
+  "review_history_scope": {
+    "formal_comments_source_path": "/tmp/root-pr2641-comments-review10.json",
+    "all_thread_comments_preserved": 20,
+    "review_reports_present": [
+      "review01",
+      "review02",
+      "review03",
+      "review04",
+      "review05",
+      "review06",
+      "review07",
+      "review08",
+      "review09",
+      "review10"
+    ],
+    "review10_residuals": "R1–R27 retained as unchanged per formal comment; R28–R32 and X1 retained verbatim in the formal review/comment history. This record does not renumber, reinterpret, or claim residual closure.",
+    "raw_review_bodies_are_embedded_in_decision_markdown_and_evidence_json": true
+  },
+  "limits": [
+    "This is a /tmp candidate only. It is not canonical, not admitted to main, not Ready, and not merged.",
+    "No fixture was executed. No implementation, runtime, release, issue closure, or semantic completeness claim is made.",
+    "Condition 3 remains unverified until independent review reads the exact HEAD after this decision record is added and checks the six document pins.",
+    "Mailbox response is authority_effect none and does not create PO approval.",
+    "Formal review10 says Major 0 and reports condition 1/2 aligned; separate numeric blocker/minor counts are not invented.",
+    "The condition-1/2 decision is limited to Stage 3, HARNESS-L2-044 and the exact six-document revision listed above."
+  ]
+}

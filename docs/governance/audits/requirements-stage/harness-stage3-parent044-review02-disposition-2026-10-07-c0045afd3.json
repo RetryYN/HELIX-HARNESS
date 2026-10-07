@@ -1,0 +1,317 @@
+{
+  "audit_type": "HARNESS-044 review02 post-body correction disposition audit",
+  "status": "/tmp-only point-in-time audit; no independent review or approval conclusion; canonical source unchanged by Worker",
+  "target": {
+    "pr": 2641,
+    "head": "c0045afd3b3c789360f71ce647161dada4ed7d84",
+    "pre_correction_head": "9e80b4d98371bd06dcc9eea4340b053f20b7cd8c",
+    "main_base": "3c3c512c09320c0494904602b23e544a81206eed",
+    "fixed_parent_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "branch": "l3-harness-stage3-parent044",
+    "root_applied_body_commit": "c0045afd3b3c789360f71ce647161dada4ed7d84"
+  },
+  "formal_review02": {
+    "path": "/tmp/root-pr2641-comments-review02.json",
+    "raw_file_sha256": "c89285d1c52778acbbdebd777dad7e6b45aa66081f7eec46f3cc9d02007e96ff",
+    "comment_id": 6023061713,
+    "comment_body_sha256": "cb3894e0c02d6ae9f957ca9a2eb2073182169de62e9be2eacc0a06b6fb3a0344",
+    "full_comment_body_raw": "## review02（independent review、PR #2641 親HARNESS-L2-044、HEAD 9e80b4d98371bd06dcc9eea4340b053f20b7cd8c、base main 3c3c512c0）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023012134（`RH-PR2641-HARNESS-STAGE3-PARENT044-02`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：HARNESS-L2-044の採択記録は、mainでは57候補の49行だけである（`-002`、条件付き採択：Bルート）。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - **`git diff --check`は失敗する**。`docs/governance/audits/requirements-stage/harness-stage3-parent044-review01-disposition-2026-10-07-d6877a903.md`の49、51、54行に、行末の空白がある。このPRで追加した記録なので、直してほしい。\n- **条件付きの戻し先**：reviewerの事前確認の正規表現は、前回「特定できなければ」「示さなければ」を拾えていなかった。正規表現を直して実行し直したところ、4件が見つかった（下のM2）。\n\n### 照合の結果\n- **review01 M1**：解消した。044-05、044-08、r09-001、r04-na-rationale-missingの既知の誤り例は、L10とAC-03ですべて「不合格」になっている。\n- **Bルートの条件と生成拒否**：\n  - PO判断49行のBルートの条件は保たれている。\n  - authority生成の拒否fixtureは、7出力のすべてにそろっている。\n- **Opusのブラインド照合**：このHEADで取り直し、Majorの候補を2件挙げた。reviewerが固定親の原文と本文で確かめ、2件ともMajorとした。どちらもreview01の時点からあり、reviewerはreview01で見落としていた。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（「意味重複0」を「未説明の意味重複0」に緩め、説明付きの意味重複を正常として通している）**\n- **欠陥**：次の3か所が、意味重複を0とする条件に「未説明」「説明のない」を付けている。説明が付いた意味重複は、正常として通ってしまう。\n  - L3 nfr-gradeの`NFR-C-HARNESS-044-02`：「未説明の意味重複 `0`」\n  - L10の`CASE-HARNESS-L10-NFR-044-02`：「未説明duplicate=0条件を照合」\n  - L10 functionalの`CASE-HARNESS-L10-044-r16-normal-nine-class`：「説明のないsemantic duplicate=0」\n- **PR内の食い違い**：同じPRの`FR-HARNESS-L3-044-01`は、「意味重複0」と書いている。\n- **固定親との差**：固定親で境界と理由を付けて許されるのは、「複数契約への分割」（L2:1010、L11:741）だけである。意味重複は許されていない。\n- **守るべき行**：\n  - L2-044「出力」（318ec4a product-requirements.md:1008「未被覆0かつ意味重複0となる最小portfolio候補」）\n  - L11-044「正常例」（product-acceptance.md:739「未被覆classと意味重複がゼロ」）\n\n**M2（戻し先が「ownerを特定できる場合」に条件付けられ、特定できないと返却されない）**\n- **欠陥**：次の4か所は、ownerや原因を特定できない場合にunknownを維持するだけで、返却先へのfallbackがない。\n  - L10の「owner返却」：「sourceがowner identityを示さなければunknownを維持する」\n  - `CASE-HARNESS-L10-044-r14-class-contract-relation-missing`：「原因またはowner identityをsourceから特定できない場合だけunknownを維持する」\n  - `CASE-HARNESS-L10-044-r04-source-atom-missing`：「source type/identityが特定できなければunknownを維持し」\n  - CASE-06：「意味判断の戻し先は固定sourceが示す既存要求ownerに限り、identityが示されなければunknownを維持する」\n- **固定親との差**：固定親は、原因が分からない入力を「意味不明」の区分として要求ownerへ返す。\n- **これまでとの一致**：#2635 review05・06のM1、067 M1、041 M1と同じ型である。既知の責務区分へは無条件に返し、個体のowner identityが不明な場合は別にunknownを保持する形にする。\n- **守るべき行**：\n  - L2-044「保証と差戻し」（product-requirements.md:1010「意味不明・authority不足は要求ownerへ」）\n  - L11-044の戻し先（product-acceptance.md:745）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R7**：review01から変わらない。\n- **R8（判定の区別）**：r04-oracle-missingは「unknown／未完」、r04-class-oracle-absentは「不合格」としている。どこで区別するのかの説明がない。\n- **R9（CASE IDの重複）**：business-verification.mdが、functional側と同じ名前のCASE ID（r16-normal-nine-classなど）を重ねて定義している。\n\n### 次の手順\n- M1、M2と、行末の空白を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+    "R1_to_R9_residual_excerpt_raw": "- **R1〜R7**：review01から変わらない。\n- **R8（判定の区別）**：r04-oracle-missingは「unknown／未完」、r04-class-oracle-absentは「不合格」としている。どこで区別するのかの説明がない。\n- **R9（CASE IDの重複）**：business-verification.mdが、functional側と同じ名前のCASE ID（r16-normal-nine-classなど）を重ねて定義している。",
+    "finding_residuals": "R1–R7 unchanged from review01; R8 oracle-missing unknown/incomplete vs class-oracle-absent fail distinction unexplained; R9 duplicate CASE names across business/functional verification."
+  },
+  "applied_M1_M2_exact_changes": {
+    "proposed_replacements": [
+      {
+        "finding": "M1",
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "old": "選択scope内で未説明の意味重複 `0`。",
+        "new": "選択scope内で意味重複 `0`。",
+        "reason": "固定L2:1008/L11:739は無条件に意味重複0。",
+        "occurrences_before": 1,
+        "before_sha256": "3a308584e39e3fb8126903f625fa68bde59dbdb9d5764031b5e813bca47591cd",
+        "after_sha256": "960bdb59ad915239f1abe9a81759b360c25c11290afd3589f02950abbe0cdea3"
+      },
+      {
+        "finding": "M1",
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "old": "未説明duplicate=0条件を照合。",
+        "new": "意味重複0条件を照合。",
+        "reason": "説明の有無で意味重複の許容可否を変えない。",
+        "occurrences_before": 1,
+        "before_sha256": "1112f6c051126f0fd472c6921c28a4666408012b80d9aa0f10cc1aa7078a11f2",
+        "after_sha256": "c267eb8375f6091bd6e485b48cc837d92e5bbbe3026d9f1a06970742c556d0d1"
+      },
+      {
+        "finding": "M1",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "old": "uncovered=0、説明のないsemantic duplicate=0を確認する。",
+        "new": "uncovered=0、semantic duplicate=0を確認する。",
+        "reason": "正常fixtureも固定親どおり意味重複0を照合。",
+        "occurrences_before": 1,
+        "before_sha256": "1d9f9db56d34acd4010b647eb135bcad91c66faa135a310d0dcbe70f342cc8e5",
+        "after_sha256": "b3a2a297ee48d5df71e3b59a42fcf17251c24326a6fb14f247cbcfb5168537e7"
+      },
+      {
+        "finding": "M2",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "old": "sourceがowner identityを示さなければunknownを維持する。",
+        "new": "責務区分が既知なら該当する既存owner区分へ返却し、個体のowner identityが不明な場合はidentity unknownを別に保持する。意味またはauthorityが不明で原因別の既存責務区分を確定できない場合は、固定L2-044に従い既存要求ownerへ返す。",
+        "reason": "責務区分を個体identityの可用性に条件付けず、意味不明・authority不足の要求owner fallbackを保つ。",
+        "occurrences_before": 1,
+        "before_sha256": "57bd977265a3892688b4cd03b0d7d285eecd26718e6f2ffb31816ecaa310881e",
+        "after_sha256": "bc50aebec409cbc767bf73dc01e243e9d4e9e2629bbd568a69f0bfc963b08e70"
+      },
+      {
+        "finding": "M2",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "old": "原因またはowner identityをsourceから特定できない場合だけunknownを維持する。",
+        "new": "原因別の既知責務区分は該当する既存owner区分へ返す。個体のowner identityが不明ならidentity unknownを別に保持する。原因の意味またはauthority不足で責務区分を確定できない場合は、固定L2-044に従い既存要求ownerへ返し、結果は未評価/unknownに保つ。",
+        "reason": "既知の責務区分を保ち、未確定の要求意味/authorityだけ既存要求ownerへfallback。",
+        "occurrences_before": 1,
+        "before_sha256": "71d428ed8aaef39c0f0331c65fb48aa0facf5301f7839317e3ed44c9695f4188",
+        "after_sha256": "2f68a095abefbffa948fc55efa0c2adbf95fed55b97d3649e00db32ee08c7780"
+      },
+      {
+        "finding": "M2",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "old": "source type/identityが特定できなければunknownを維持し、template ownerを推定しない。",
+        "new": "template適用性欠落はHARNESS-L2-009/対象template owner、atom抽出・対応欠落はHARNESS-L2-041の既存owner、要求意味/authority不足は既存要求ownerへ返す。責務区分が判別できない意味/authority不足は既存要求ownerへ返し、個体identityが不明な場合はunknownを別に保持する。template ownerの個体identityは推定しない。",
+        "reason": "source typeの個体identity不明で既知責務区分を消さず、意味・authority不明には固定親のfallback。",
+        "occurrences_before": 1,
+        "before_sha256": "162ea0281ff1cb9f007668f0dd3ea57834260e264736539f4d8bd71bad5f8485",
+        "after_sha256": "542295123df5631b5ddbbe71c1020c18acf7d67ac5d47854cd1981ed70e83ac7"
+      },
+      {
+        "finding": "M2",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "old": "意味判断の戻し先は固定sourceが示す既存要求ownerに限り、identityが示されなければunknownを維持する。",
+        "new": "意味判断は固定L2-044に従って既存要求ownerへ返す。個体owner identityが固定sourceに示されない場合も要求ownerという既知責務区分を維持し、個体identity unknownを別に保持する。意味/authority不足の結果は未評価/unknownに保つ。",
+        "reason": "要求ownerへの返却を個体identity有無で条件付けない。",
+        "occurrences_before": 1,
+        "before_sha256": "7cb37375810abbdaccb7efff5ce69091e288bd378ac56199db42cfd1051b2a15",
+        "after_sha256": "76d9180b15f783c8bdda731419c161b89e0cd790573bd05bf757e944893a2eb3"
+      }
+    ],
+    "actual_text_checks": [
+      {
+        "finding": "M1",
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "new_phrase_present": true,
+        "old_phrase_absent": true,
+        "new_phrase_occurrences": 1
+      },
+      {
+        "finding": "M1",
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "new_phrase_present": true,
+        "old_phrase_absent": true,
+        "new_phrase_occurrences": 1
+      },
+      {
+        "finding": "M1",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "new_phrase_present": true,
+        "old_phrase_absent": true,
+        "new_phrase_occurrences": 1
+      },
+      {
+        "finding": "M2",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "new_phrase_present": true,
+        "old_phrase_absent": true,
+        "new_phrase_occurrences": 1
+      },
+      {
+        "finding": "M2",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "new_phrase_present": true,
+        "old_phrase_absent": true,
+        "new_phrase_occurrences": 1
+      },
+      {
+        "finding": "M2",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "new_phrase_present": true,
+        "old_phrase_absent": true,
+        "new_phrase_occurrences": 1
+      },
+      {
+        "finding": "M2",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "new_phrase_present": true,
+        "old_phrase_absent": true,
+        "new_phrase_occurrences": 1
+      }
+    ],
+    "all_expected_replacements_present_and_old_phrases_absent": true
+  },
+  "six_documents_actual": [
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "prefix_bytes": 8819,
+      "prefix_sha256": "2faacacf78b835b5127e990b805adb97b079439c887a1ef2bd6d69f2478d53c9",
+      "prefix_equals_main_base": true,
+      "pre_correction_full_sha256": "a119ddbe629f03b4adbad00d2fff91ab8dcb77cbe0e3b554fbc7ce019585c543",
+      "pre_correction_suffix_sha256": "9e3eebf82c16e72d8fc71d2675e965ad808f146ed17f738a8536c8640e474410",
+      "actual_full_bytes": 12931,
+      "actual_full_sha256": "a119ddbe629f03b4adbad00d2fff91ab8dcb77cbe0e3b554fbc7ce019585c543",
+      "actual_suffix_bytes": 4112,
+      "actual_suffix_sha256": "9e3eebf82c16e72d8fc71d2675e965ad808f146ed17f738a8536c8640e474410",
+      "candidate_projection_full_sha256": "a119ddbe629f03b4adbad00d2fff91ab8dcb77cbe0e3b554fbc7ce019585c543",
+      "candidate_projection_suffix_sha256": "9e3eebf82c16e72d8fc71d2675e965ad808f146ed17f738a8536c8640e474410",
+      "actual_matches_candidate_projection": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "prefix_bytes": 636566,
+      "prefix_sha256": "bc63c3abbabd727dbb2cfa37a5c3741985181308ad93378ebf2e5846907770f0",
+      "prefix_equals_main_base": true,
+      "pre_correction_full_sha256": "adedbf5b0c3e9031fc115d7c9525dcd4c73a8c25059d0af881f864a670296edb",
+      "pre_correction_suffix_sha256": "ec6b031f0c5c995821c5e24e23eeecff8a0bc62ddf7026e9f3d1bc05f999caf1",
+      "actual_full_bytes": 668790,
+      "actual_full_sha256": "3420b2760d56bd25ae5463ce80ab815e2fe27ae99a8df20a9ea2336125aa8a48",
+      "actual_suffix_bytes": 32224,
+      "actual_suffix_sha256": "4af61fe29a78b8b79b164bf6bf7bbd03be111f54ee6a5e152be35500f1557e66",
+      "candidate_projection_full_sha256": "3420b2760d56bd25ae5463ce80ab815e2fe27ae99a8df20a9ea2336125aa8a48",
+      "candidate_projection_suffix_sha256": "4af61fe29a78b8b79b164bf6bf7bbd03be111f54ee6a5e152be35500f1557e66",
+      "actual_matches_candidate_projection": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "prefix_bytes": 36464,
+      "prefix_sha256": "bb319529b2c2e2af75067c36bf204d386816fb7e78d48f18043973be6290ccd1",
+      "prefix_equals_main_base": true,
+      "pre_correction_full_sha256": "87846d426ae890be69944a49a03ea7b2a22bc1f690679320cafad1c009ad5fec",
+      "pre_correction_suffix_sha256": "55451863b2686da8555150ce3f791a6d02044407b0b2cd52f07697f8ca77aa05",
+      "actual_full_bytes": 40600,
+      "actual_full_sha256": "18bb204d6057cb0b6f2c2dc7c9bec635408a9d2c148ac23eb36a21895c683ced",
+      "actual_suffix_bytes": 4136,
+      "actual_suffix_sha256": "5e685ac22ad516e2f059cc45768b08b087192e1de80e0e98a5abb2e28b4c0332",
+      "candidate_projection_full_sha256": "18bb204d6057cb0b6f2c2dc7c9bec635408a9d2c148ac23eb36a21895c683ced",
+      "candidate_projection_suffix_sha256": "5e685ac22ad516e2f059cc45768b08b087192e1de80e0e98a5abb2e28b4c0332",
+      "actual_matches_candidate_projection": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "prefix_bytes": 13240,
+      "prefix_sha256": "c51f0bc2b98ae5c6a77bfa354050ec70ee87a70641b5f0161b14d5a3afd33e8f",
+      "prefix_equals_main_base": true,
+      "pre_correction_full_sha256": "7c1d8c454867d5f87e356a5b1c3388a965d60678097a1aec5bea3bb9b07f3b6b",
+      "pre_correction_suffix_sha256": "73e6a1a20bd5cc91f4e09e0c425f25a99484016c2574efc9f39f4a39acdaab4f",
+      "actual_full_bytes": 16811,
+      "actual_full_sha256": "7c1d8c454867d5f87e356a5b1c3388a965d60678097a1aec5bea3bb9b07f3b6b",
+      "actual_suffix_bytes": 3571,
+      "actual_suffix_sha256": "73e6a1a20bd5cc91f4e09e0c425f25a99484016c2574efc9f39f4a39acdaab4f",
+      "candidate_projection_full_sha256": "7c1d8c454867d5f87e356a5b1c3388a965d60678097a1aec5bea3bb9b07f3b6b",
+      "candidate_projection_suffix_sha256": "73e6a1a20bd5cc91f4e09e0c425f25a99484016c2574efc9f39f4a39acdaab4f",
+      "actual_matches_candidate_projection": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "prefix_bytes": 204919,
+      "prefix_sha256": "4fce6bb6cd3af5938a11719866050bd729234adbebf70c4210398aa90cad5dff",
+      "prefix_equals_main_base": true,
+      "pre_correction_full_sha256": "0b8521a18172a49e87e8f3372ec6c207d25ccda292b0e9f155cd96e4bb82be66",
+      "pre_correction_suffix_sha256": "7e0ae71f26ccff0779eb28fe92733455139af1d9086568e020e7b535db859535",
+      "actual_full_bytes": 211548,
+      "actual_full_sha256": "0b8521a18172a49e87e8f3372ec6c207d25ccda292b0e9f155cd96e4bb82be66",
+      "actual_suffix_bytes": 6629,
+      "actual_suffix_sha256": "7e0ae71f26ccff0779eb28fe92733455139af1d9086568e020e7b535db859535",
+      "candidate_projection_full_sha256": "0b8521a18172a49e87e8f3372ec6c207d25ccda292b0e9f155cd96e4bb82be66",
+      "candidate_projection_suffix_sha256": "7e0ae71f26ccff0779eb28fe92733455139af1d9086568e020e7b535db859535",
+      "actual_matches_candidate_projection": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "prefix_bytes": 42916,
+      "prefix_sha256": "b364e8c6dc92f4548df34638488fefec1533d13941a991de685a74bb64471fc9",
+      "prefix_equals_main_base": true,
+      "pre_correction_full_sha256": "fb83e509953cd880780e2c7efc18ea863ab2264a778bea0e89c8ad3b4ff1ec0d",
+      "pre_correction_suffix_sha256": "6c53a95997343de698afd625a7ba82fa79d09cae5095762029d0c38361277908",
+      "actual_full_bytes": 46412,
+      "actual_full_sha256": "d27ede8b122ca15ef7035f9f40fe7e03a75b915cfce4265962983bd923028fec",
+      "actual_suffix_bytes": 3496,
+      "actual_suffix_sha256": "aa8c65d49949c1eec9c8f1b7451c1011fd0491141275bee1d2a67f31fbef0094",
+      "candidate_projection_full_sha256": "d27ede8b122ca15ef7035f9f40fe7e03a75b915cfce4265962983bd923028fec",
+      "candidate_projection_suffix_sha256": "aa8c65d49949c1eec9c8f1b7451c1011fd0491141275bee1d2a67f31fbef0094",
+      "actual_matches_candidate_projection": true
+    }
+  ],
+  "fixture_inventory": {
+    "functional_case_physical_rows": 51,
+    "functional_case_unique_ids": 51,
+    "old_literal_case_count": 39,
+    "old_literal_ids_all_retained": true,
+    "old_ids_missing": [],
+    "additional_current_ids": [
+      "CASE-HARNESS-L10-044-r16-delta-insufficient",
+      "CASE-HARNESS-L10-044-r16-normal-delta",
+      "CASE-HARNESS-L10-044-r16-normal-new-contract",
+      "CASE-HARNESS-L10-044-r16-normal-nine-class",
+      "CASE-HARNESS-L10-044-r16-normal-reuse",
+      "CASE-HARNESS-L10-044-r16-refuse-adoption",
+      "CASE-HARNESS-L10-044-r16-refuse-design-approval",
+      "CASE-HARNESS-L10-044-r16-refuse-implementation",
+      "CASE-HARNESS-L10-044-r16-refuse-l3-approval",
+      "CASE-HARNESS-L10-044-r16-refuse-os-execution",
+      "CASE-HARNESS-L10-044-r16-refuse-requirement-agreement",
+      "CASE-HARNESS-L10-044-r16-refuse-user-acceptance"
+    ],
+    "pooled_total_claim": "No completeness claim is derived from these counts."
+  },
+  "fixed_parent_span_checks": {
+    "L2_1008_1010": {
+      "expected_sha256": "acecba67e8bce3a57845402da3f2efc2d4de7319bec58c2361987785d01a74ab",
+      "actual_sha256": "acecba67e8bce3a57845402da3f2efc2d4de7319bec58c2361987785d01a74ab",
+      "match": true,
+      "raw": "- **出力**：authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の適用義務を意味classへまとめたobligation-to-contract coverageと、対象revision・scope付きportfolio提案。classごとにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規契約、根拠付き非適用を区別する。重複割当・意味重複・未被覆classと根拠を示し、未被覆0かつ意味重複0となる最小portfolio候補を提示する。\n- **依存区分**（HARNESS-L2-023の4区分）：**常時必須**＝選択された対象L1／要求／design scopeとrevision、そのscopeの適用義務class、normative contract、対oracleおよび各identity・契約版・適用根拠。**特定操作時のみ必須**＝当該portfolioを評価・提案する操作とそのscope。評価操作を選んだときは対象範囲のcoverage閉包を完了できないmissing/unknown/staleがあれば未完または保留を返す。**選択した入力元に応じて必須**＝template由来義務、041の抽出結果、025/026の設計成果を選択入力に含めるscopeでは、そのsource identity/revision・適用範囲・互換を照合する。未選択sourceは未観測とし、不在や合格を推測しない。**参照資料のみ**＝旧schema、旧runtime、背景説明、今回のscopeやauthority・義務・契約・oracleを定めない資料。これらを現行依存や評価根拠へ変換しない。\n- **保証と差戻し**：適用classの全てに契約または根拠付き非適用が対応し、各割当が同じ義務意味と対oracleを覆うか照合できる。複数契約への分割は必要な境界と根拠を明示する。意味不明・authority不足は要求ownerへ、template適用・義務導出の不足はHARNESS-L2-009/対象template ownerへ、設計要素やpair oracleの不足はHARNESS-L2-026/022等の該当ownerへ返す。旧schema、旧runtime、特定のPlanner実装は要求せず、候補の出力は要求合意、設計承認、実装、候補採択を生成しない。\n"
+    },
+    "L11_739": {
+      "expected_sha256": "6b425bb81dbd18732699f04834d497057616c6746eebd0c521e4f83aa3a93772",
+      "actual_sha256": "6b425bb81dbd18732699f04834d497057616c6746eebd0c521e4f83aa3a93772",
+      "match": true,
+      "raw": "**正常例**：同一対象revision/scopeの適用requirement atom、design obligation、normative contractと対oracleを意味classへ整理し、authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の該当条件を各classで追跡する。各classについて、原則一つのnormative contractへの割当、既存契約の再利用、delta追加、新規作成、または根拠付き非適用を確認する。classごとの義務とoracleが割当先に対応し、未被覆classと意味重複がゼロであることをcoverageから再構成できる場合に限り、そのscopeのportfolio閉包を受け入れる。\n"
+    },
+    "L11_745": {
+      "expected_sha256": "7449dfa8c7bbc81d31d84d318abfdb187dd01fa3cc474ea891c02eadd299d6d8",
+      "actual_sha256": "7449dfa8c7bbc81d31d84d318abfdb187dd01fa3cc474ea891c02eadd299d6d8",
+      "match": true,
+      "raw": "**戻し先と境界**：要求意味・authority不足は要求owner、template適用と義務導出不足はHARNESS-L2-009/対象template owner、template atom抽出不足はHARNESS-L2-041相当の契約owner、具体設計と対oracle不足はHARNESS-L2-026/022等の該当ownerへ戻す。HARNESS-L2-025のgeneric composite整合やHARNESS-L2-043の例coverageだけで本候補のportfolio閉包を代替しない。候補や受入結果は要求合意、L3承認、設計承認、実装、OS実行、利用者受入を生成せず、旧schema／runtime固有の形式を要求しない。\n"
+    }
+  },
+  "immutable_X1_audit": {
+    "path": "docs/governance/audits/requirements-stage/harness-stage3-parent044-review01-disposition-2026-10-07-d6877a903.md",
+    "pre_correction_sha256": "c7956182b162f3ff206564da0a1f5423ea7797b3e8b666e016e4ec7df10a67ae",
+    "actual_sha256": "c7956182b162f3ff206564da0a1f5423ea7797b3e8b666e016e4ec7df10a67ae",
+    "bytes_unchanged_between_review02_head_and_current_head": true,
+    "sha_matches_prior_immutable_audit": false,
+    "physical_trailing_space_lines": [
+      49,
+      51,
+      54
+    ],
+    "action": "left unchanged as an immutable point-in-time record"
+  },
+  "diff_check": {
+    "full_base_to_head_exit_code": 2,
+    "full_base_to_head_stderr": "",
+    "body_docs_only_exit_code": 0,
+    "body_docs_only_passed": true,
+    "all_changed_files_excluding_immutable_X1_exit_code": 0,
+    "all_changed_files_excluding_immutable_X1_passed": true,
+    "interpretation": "Full base diff-check fails only on the three recorded trailing-space lines in the immutable review01 disposition audit; current six L3/L10 document deltas pass diff-check. X1 was not edited."
+  },
+  "verification_notes": {
+    "root_reported_govcheck": "PASS (reported by Root; not rerun by this audit worker)",
+    "scfctl": "not run",
+    "stale": "not run",
+    "independent_review": "not performed for this exact HEAD; formal review02 findings have not been confirmed closed by a new independent review",
+    "Fable_decision": "not present for this corrected HEAD",
+    "meaning_or_scope_change": "none proposed; candidates operationalize fixed parent text only"
+  },
+  "source_audit_pins": {
+    "review01_disposition_audit_json_sha256": "09ecd9acd9f403c395f0663baa75478d215fd3e547b588a59b4286b66229a7fc",
+    "review01_disposition_audit_md_sha256": "c7956182b162f3ff206564da0a1f5423ea7797b3e8b666e016e4ec7df10a67ae",
+    "previous_review01_audit_record_sha256": "aa8eebda9b28a20780b13d2ea9a416335df1376b340f96795fe40ee5485e24b5"
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "body_revision": "91a57d305b3a272ce3abc93181000aa16e60a88b",
+  "base": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+  "formal_review04": {
+    "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023709227",
+    "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2641#issuecomment-6023709227",
+    "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2641",
+    "id": 6023709227,
+    "node_id": "IC_kwDOTG8BRc8AAAABZwqCKw",
+    "user": {
+      "login": "RetryYN",
+      "id": 131282486,
+      "node_id": "U_kgDOB9M2Ng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/RetryYN",
+      "html_url": "https://github.com/RetryYN",
+      "followers_url": "https://api.github.com/users/RetryYN/followers",
+      "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+      "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+      "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+      "repos_url": "https://api.github.com/users/RetryYN/repos",
+      "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2026-10-06T19:18:02Z",
+    "updated_at": "2026-10-06T19:18:02Z",
+    "body": "## review04（independent review、PR #2641 親HARNESS-L2-044、HEAD 656c3504b6ca0ee5c9f423b1974a1072d819a31f、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-04` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択、Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`は、review01 disposition mdの時点記録で失敗する。既知のX1例外であり、変わっていない。\n\n### 照合の経過\n1. **差分の確認**：e7af7499aからの本文差分は、business-verification.mdの044節だけである。\n   - 表を、functional主CASEへの参照索引に置き換えた。\n   - 「不足時の返却」規定を追加した。\n   - functional側のr16-delta-insufficientには「固定L2-026/022等の既存owner区分へ原因別に戻す」がある。\n   - reviewerが確かめた。review03 M1（業務とfunctionalで期待値が違い、戻し先もなかった件）は解消した。\n2. **Opusシンプルブラインド**：Major 3。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2-044の「出力」行（318ec4a product-requirements.md 044節「出力」、1008行）と、L11の739〜741行を読んだ。functional-verification.mdの044節では、全CASEの変異列を確かめた。ブラインドの3件は同じ型なので、M1の(a)〜(c)にまとめてMajorと確定した。\n\n**基準の変更について**：今回から、固定L2が「出力する」と定める要素ごとに、その要素だけを欠落させる、または誤らせるfixtureがあるかを確かめている。#2637 review06で同じ型をMajorにしたので、それに揃えた。review01〜03ではこの観点を照合していなかった。これはreviewer側の見落としであり、作成側の後退ではない。\n\n### Major\n**M1（固定L2が出力すると定める3要素に、欠落・誤りを拒否するfixtureがない）**\n- **欠陥**：次の3要素について、その要素だけを変異させるCASEがない（類型4）。\n  - **(a) reuse/delta/新規/根拠付きN/Aの区分**：\n    - r16-normal-reuse、normal-delta、normal-new-contractは、どれも変異のない正常対照である。\n    - r16-delta-insufficientは、relationの欠落だけを変える。\n    - 区分のラベルだけを誤らせるCASE（例：deltaをreuseと表示する）がないので、区分を誤ったportfolioでも合格する。\n  - **(b) 出力portfolioの対象revision・scope**：\n    - r10-old-denominator-receiptとr09-002は、入力側のreceiptとcontract revisionを変える。\n    - 出力portfolioから対象revision・scopeを落とす、または別の値にするCASEがない。\n  - **(c) finding（重複割当・意味重複・未被覆class）の根拠**：\n    - r04-semantic-duplicate、r09-001、r09-004は、findingが出るかどうかを見ている。\n    - 根拠のないfindingを拒否するかは判定していない。\n    - 044-05とr04-na-rationale-missingは、入力側の境界・理由・N/A根拠の欠落であり、finding出力の根拠ではない。\n- **守るべき行**：\n  - 固定L2-044「出力」（318ec4a）：「対象revision・scope付きportfolio提案」「既存契約の再利用、delta追加、新規契約、根拠付き非適用を区別する」「重複割当・意味重複・未被覆classと根拠を示し」\n  - L11-044（product-acceptance.md:739）：「同一対象revision/scope」「再利用、delta追加、新規作成、または根拠付き非適用を確認する」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R14**：review03から変わらない。\n- **R15（戻し先の記載）**：次のCASEは、期待値に戻し先を書いていない。共通規定で宛先は決まる。\n  - r04-class-oracle-absent\n  - r06-semantic-map-unverifiable\n  - r04-025-output-substitution\n  - r04-043-output-substitution\n- **R16（source atomの戻し先の揃い）**：r05-source-atom-staleは、常に要求ownerへ戻している。r04-source-atom-missingとconflictは、原因別に振り分けている。\n- **R17（AC-03の直接fixture）**：L11:741の既知の誤り例4種は、044-05、044-08、r09-001、r04-na-rationale-missingで不合格と判定されている。ただし、どれもAC-01/02に割り当てられていて、AC-03には直接のfixtureがない。\n- **R18（文言）**：BRの「固定済み候補」は、正確には「採択済み」である。\n- **X1**：変わらない。\n\n### 次の手順\n- M1を直す。(a)〜(c)の各要素について、その要素だけを欠落させる、または誤らせるCASEを置く。oracleは、portfolioを未完に保ってclosureを拒否し、原因別の既存owner区分へ戻すものにする。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+    "author_association": "OWNER",
+    "reactions": {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023709227/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  },
+  "historical_comment_bodies_raw": [
+    {
+      "id": 6022679998,
+      "body": "親044 review01依頼。base f5a974a4059a209982cb1cdec39c0537f52683b8、HEADba96c226ed504907b0b0fd921a5b477acd22fd2d、body89389ee260343b392a32c5bda9aea79dc0d698aa。PO49 MPR044002のB route Design Contract Portfolio。全六Stage3、旧39ID/source raw保持・現51 unique六列/new12、正常9classはfixture母集団のみ、reuse/delta/new/N/Aをscope付き意味と対oracleへ結ぶ。025/043代用拒否、authority各7単独拒否、旧r05bundleは単独設計承認/採択への索引化、既知責務と個体unknown分離。\n\n旧HIL54/隣接55・paired consumerを実文pinで限定保持、六main prefix/Gitpublic8 exact、govdiff成功。共有読取L2slice1002–1014に隣接045が含まれるため監査でPOexact採択1002–1011 sha690f2bfaと区別、L11sha9c79b731。Root/tmp補助suffix_sha/utf8_bytes未更新metadataは原値＋物理再計算値を時点監査へ保存、正本suffix LF+markdown一致を正とした。新監査MD/六actualSHA/原文/pinsをRoot検収。独立review/同HEAD Fable判断を正式commentへお願いします。Draft、未承認。\n"
+    },
+    {
+      "id": 6022860141,
+      "body": "## review01（independent review、PR #2641 親HARNESS-L2-044、HEAD ba96c226ed504907b0b0fd921a5b477acd22fd2d、base main f5a974a40）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022679998（`RH-PR2641-HARNESS-STAGE3-PARENT044-01`）に応える。\n\n### 照合の方法と結果\n1. **Opusのシンプルなブラインド照合**\n   - 読んだもの：固定親（318ec4a product-requirements.md:1002–1012、product-acceptance.md:735–746）、判断記録49行（条件付き採択：Bルート）、6本文の追補。\n   - 結果：Major 0、未確認範囲0。\n2. **Fableの判断**：「承認してよい」。\n   - Bルートの条件（旧FR-54/55の分離、名称Design Contract Portfolio、採択済み025/026へ無断で追記しない）が保たれていることを、Fableが自分で確かめた。\n   - authority非生成の7出力にも、それぞれ単独の拒否fixtureがある。\n3. **Opusによる敵対照合**：「Fableの判断を支持しない」。崩せたMajorは1件で、下のM1である。\n4. **reviewerの確認**：M1を、固定L11:741の原文と、L10の該当行で確かめた。\n   - HARNESS-L2-044を、後の判断記録が別のrevisionで採択していないことも確かめた。\n   - 「ownerを特定できる場合だけ返す」型の条件付きの戻し先が、6本文の追加行に0件であることも、grepで確かめた。\n5. **静的検査**\n   - scfctl validate 147/0、stale 0、residuals 0\n   - govcheck ok\n   - `git diff --check`成功\n   - 差分は追加だけで、削除は0行\n   - 作成時のmainとの`merge-tree`は衝突なし\n   - 現在のmain 3c3c512c0（親042 merge後）では、HARNESSの6本文が重なる。取り込みが必要かどうかを作成側で確かめてほしい。\n- **今後の流れ**：Majorがあるので、このHEADでは承認の条件は成立しない。\n\n### Major\n**M1（L11が「不合格」とする既知の誤り例を、L10が「unknown/未完」に置き換えている）**\n- **欠陥**：L10 functional-verificationの次の4行が、L11の不合格を別の判定に置き換えている。\n  - `CASE-HARNESS-L10-044-05`：「必要な複数contract間の境界または理由だけを欠く」変異を、「判定をunknown/未完に保つ」としている。\n  - `CASE-HARNESS-L10-044-08`：孤立させたcontractを、「未完finding」としている。\n  - `CASE-HARNESS-L10-044-r09-001`：説明なしの重複割当を、「portfolioを未完」としている。\n  - `CASE-HARNESS-L10-044-r04-na-rationale-missing`：根拠なしのN/Aを、「class未完」としている。\n- **何が狭まっているか**：\n  - 固定L11は、既知の誤り例を「不合格」、初見で不明な未見例を「unknown」と分けている。\n  - 上の4行のうちCASE-05は、既知の誤り例をunknownの側へ移している。残りの3行は、「未完」とだけ書き、不合格と判定しない。\n  - L3 `AC-HARNESS-L3-044-03`も「境界を示す」とだけ書き、示さない場合を不合格とは定めていない。\n  - closureそのものは拒否されるが、L11が定める判定の区分を狭めている（類型3）。\n- **守るべき行**：\n  - L11-044「誤りを含む例」（318ec4a product-acceptance.md:741「…無説明で割り当てる、根拠なしに非適用とする、既存normative contractを孤立させる…場合は不合格とする。複数契約が必要な場合に境界・理由が示されない例も不合格とする」）\n  - L2-044（product-requirements.md:1010「複数契約への分割は必要な境界と根拠を明示する」）\n\n### 後で直す残余（承認を止めない）\n- **R1（span表記）**：L3は固定親L2のspanを`1002–1014`と書いていて、HARNESS-L2-045の見出し（1013行）まで含んでいる。監査mdの末尾は、正しいspan 1002–1011（SHA `690f2bfa…`、PO判断のL2 digest）を記録している。\n- **R2（判定状態の不揃い）**：`r04-class-oracle-absent`は「不合格・未被覆」、`r04-oracle-missing`は「unknown/未完」で、判定状態がそろっていない。\n- **R3（行内の戻し先）**：`r04-class-oracle-absent`、`r06-semantic-map-unverifiable`、`r04-025/043-output-substitution`は、行の中に戻し先がない。共通の「owner返却」で補っている。\n- **R4（戻し先の不揃い）**：近い系統の行の間で、戻し先がそろっていない。`r05-source-atom-stale`、`r04-source-atom-missing`、`r09-004`は、義務導出の不足（009）を区別していない。\n- **R5（9 classの由来）**：「9 contract class」と、L2:1008や旧HIL-FR-54:144に列挙されたclassとの対応が示されていない。本文は、合成fixtureの母集団であって新しいclassではない、と明記している。\n- **R6（1件割当の明示）**：FR-044-01に、L2:1008の「classごとに原則1件割当」が明示されていない。\n- **R7（CASE-06の文言）**：\n  - CASE-06の「承認・採択receiptなしの追加義務を受理しない」は、receiptがあれば受理するように読める。FR-044-03は、無条件に「隣接候補を編集しない」としている。\n  - CASE-06の「既存要求ownerに限り、identityが示されなければunknownを維持」は、L2:1010の無条件の「要求ownerへ」より狭い文言になっている。L3 functional-requirementsが「既知の責務区分は維持する」としているので、残余とする。\n\n### 次の手順\n- M1を直す。上の4行と、L3 AC-03を、L11の「不合格」に合わせる。\n- 現在のmainとの重なりを確かめる。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "id": 6023012134,
+      "body": "044 review02依頼。base3c3c512c09320c0494904602b23e544a81206eed、HEAD9e80b4d98371bd06dcc9eea4340b053f20b7cd8c、修正bodyd6877a9033a7c500bdc244b5372f514cb7c91383/context3eed3f00022790ce3fe458560f2fea6ac6cb195c。正式6022860141全文Read、固定L11:741実読しCASE05/08/r09001/NArationaleとAC03を既知誤り不合格に合わせ、初見source/applicability/oracle unknownを保持。51unique旧39ID保持、main042六prefix保持、旧authoring audit不変/原文M1R1–7を新時点監査へ。gov/diff/public10PASS。修正後独立reviewと同HEAD Fable判断をお願いします。旧Fableは継承せずDraft。\n"
+    },
+    {
+      "id": 6023061713,
+      "body": "## review02（independent review、PR #2641 親HARNESS-L2-044、HEAD 9e80b4d98371bd06dcc9eea4340b053f20b7cd8c、base main 3c3c512c0）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023012134（`RH-PR2641-HARNESS-STAGE3-PARENT044-02`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：HARNESS-L2-044の採択記録は、mainでは57候補の49行だけである（`-002`、条件付き採択：Bルート）。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - **`git diff --check`は失敗する**。`docs/governance/audits/requirements-stage/harness-stage3-parent044-review01-disposition-2026-10-07-d6877a903.md`の49、51、54行に、行末の空白がある。このPRで追加した記録なので、直してほしい。\n- **条件付きの戻し先**：reviewerの事前確認の正規表現は、前回「特定できなければ」「示さなければ」を拾えていなかった。正規表現を直して実行し直したところ、4件が見つかった（下のM2）。\n\n### 照合の結果\n- **review01 M1**：解消した。044-05、044-08、r09-001、r04-na-rationale-missingの既知の誤り例は、L10とAC-03ですべて「不合格」になっている。\n- **Bルートの条件と生成拒否**：\n  - PO判断49行のBルートの条件は保たれている。\n  - authority生成の拒否fixtureは、7出力のすべてにそろっている。\n- **Opusのブラインド照合**：このHEADで取り直し、Majorの候補を2件挙げた。reviewerが固定親の原文と本文で確かめ、2件ともMajorとした。どちらもreview01の時点からあり、reviewerはreview01で見落としていた。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（「意味重複0」を「未説明の意味重複0」に緩め、説明付きの意味重複を正常として通している）**\n- **欠陥**：次の3か所が、意味重複を0とする条件に「未説明」「説明のない」を付けている。説明が付いた意味重複は、正常として通ってしまう。\n  - L3 nfr-gradeの`NFR-C-HARNESS-044-02`：「未説明の意味重複 `0`」\n  - L10の`CASE-HARNESS-L10-NFR-044-02`：「未説明duplicate=0条件を照合」\n  - L10 functionalの`CASE-HARNESS-L10-044-r16-normal-nine-class`：「説明のないsemantic duplicate=0」\n- **PR内の食い違い**：同じPRの`FR-HARNESS-L3-044-01`は、「意味重複0」と書いている。\n- **固定親との差**：固定親で境界と理由を付けて許されるのは、「複数契約への分割」（L2:1010、L11:741）だけである。意味重複は許されていない。\n- **守るべき行**：\n  - L2-044「出力」（318ec4a product-requirements.md:1008「未被覆0かつ意味重複0となる最小portfolio候補」）\n  - L11-044「正常例」（product-acceptance.md:739「未被覆classと意味重複がゼロ」）\n\n**M2（戻し先が「ownerを特定できる場合」に条件付けられ、特定できないと返却されない）**\n- **欠陥**：次の4か所は、ownerや原因を特定できない場合にunknownを維持するだけで、返却先へのfallbackがない。\n  - L10の「owner返却」：「sourceがowner identityを示さなければunknownを維持する」\n  - `CASE-HARNESS-L10-044-r14-class-contract-relation-missing`：「原因またはowner identityをsourceから特定できない場合だけunknownを維持する」\n  - `CASE-HARNESS-L10-044-r04-source-atom-missing`：「source type/identityが特定できなければunknownを維持し」\n  - CASE-06：「意味判断の戻し先は固定sourceが示す既存要求ownerに限り、identityが示されなければunknownを維持する」\n- **固定親との差**：固定親は、原因が分からない入力を「意味不明」の区分として要求ownerへ返す。\n- **これまでとの一致**：#2635 review05・06のM1、067 M1、041 M1と同じ型である。既知の責務区分へは無条件に返し、個体のowner identityが不明な場合は別にunknownを保持する形にする。\n- **守るべき行**：\n  - L2-044「保証と差戻し」（product-requirements.md:1010「意味不明・authority不足は要求ownerへ」）\n  - L11-044の戻し先（product-acceptance.md:745）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R7**：review01から変わらない。\n- **R8（判定の区別）**：r04-oracle-missingは「unknown／未完」、r04-class-oracle-absentは「不合格」としている。どこで区別するのかの説明がない。\n- **R9（CASE IDの重複）**：business-verification.mdが、functional側と同じ名前のCASE ID（r16-normal-nine-classなど）を重ねて定義している。\n\n### 次の手順\n- M1、M2と、行末の空白を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "id": 6023287183,
+      "body": "044 review03依頼。最新baseceda1c53b53c53fffb8c23f394add1f2b809deb1、HEADe7af7499a419059addd475a6ae3ec72fa3b0c9cc、bodyc0045afd3b3c789360f71ce647161dada4ed7d84。正式6023061713 M1意味重複0三箇所/M2既知owner区分無条件返却四箇所を固定L2/L11に合わせました。51ID/旧39保持、六actualSHA/gov/current新差分PASS/public12PASS。main069contextはHARNESS六本文不変。X1旧review01時点MD49/51/54末尾空白は原文を保ち、新時点auditにraw証拠と全base diffcheck FAIL・X1以外PASSを記録しました。AGENTS時点記録不変原則との整合を照合し、X1は本文意味影響のない記録済み例外として扱えるかも独立reviewに含めてください。X1を解消済みとは主張しません。修正後独立review/Fableをお願いします。Draft/mail03配送済み。\n"
+    },
+    {
+      "id": 6023320984,
+      "body": "## review03（independent review、PR #2641 親HARNESS-L2-044、HEAD e7af7499a419059addd475a6ae3ec72fa3b0c9cc、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023287183（`RH-PR2641-HARNESS-STAGE3-PARENT044-03`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録の49行（`-002`、条件付き採択：Bルート）だけである。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：拡張した正規表現で検索して0件だった。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`は、review02のX1（review01 disposition mdの行末空白3行）だけで失敗する。作成側はこれを時点の記録として書き換えない例外と明示しているので、069のX1と同じ扱いにする。\n\n### 照合の結果\n- **review02 M1**：解消した。「未説明の意味重複」という表現はなくなり、意味重複0は各箇所で保たれている。\n- **review02 M2**：functional側では解消した。ただし、business側に同じ型が1件残っている（下のM1）。\n- **review01 M1**：解消したまま。既知の誤り例4種は、AC-03とL10で「不合格」である。\n- **PO判断49行のBルートの条件**：保たれている。\n- **Opusのブラインド照合**：Majorの候補を2件挙げた。reviewerは1件をMajor（下のM1）、1件を残余（下のR11）とした。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（同じCASE IDに2つの期待値があり、business側は返却しない経路を持つ）**\n- **欠陥**：\n  - business-verificationの追補にある`CASE-HARNESS-L10-044-r16-delta-insufficient`は、「classまたはoracle自体のidentityが未確定ならunknownとして未評価」とだけ書き、返却先がない。\n  - 同じCASE IDのfunctional-verificationの行は、「固定L2-026/022等の既存owner区分へ原因別に戻す」と書いている。一つのCASEに、矛盾する二つの期待値がある。\n  - business側の`r16-normal-delta`（「意味対応oracleが不足なら未評価／未完」）と`r16-normal-nine-class`（「未評価」）にも、返却先がない。business側には、返却の共通規定もない。\n- **これまでとの一致**：識別できない場合に返却しないという型で、review02 M2、#2635、#2643と同じ型である。\n- **守るべき行**：\n  - L2-044「保証と差戻し」（318ec4a product-requirements.md:1010「意味不明・authority不足は要求ownerへ…設計要素やpair oracleの不足はHARNESS-L2-026/022等の該当ownerへ返す」）\n  - L11-044の戻し先（product-acceptance.md:745）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R9**：review02から変わらない。R9（business-verificationがfunctional側と同じCASE IDを重ねて定義している）は、上のM1の原因でもある。\n- **R10（トレース）**：既知の誤り例4種のCASEはAC-01/02に結びついていて、AC-03の索引044-03からは参照されていない。\n- **R11（「に限り」の書き方）**：`r10-old-denominator-receipt`は、「要求意味が異なる場合に限り既存要求ownerへ戻し、ID不明はunknownを維持する」と書いている。原因別の返却（template由来は009、要求意味の差は要求owner）はあり、「ID不明」は個体のidentityを指すので、残余とする。ただし「に限り」は、共通規定の「区分を確定できない場合は既存要求ownerへ返す」と読み違えを招く。\n- **R12（L3の共通規定）**：L3の「owner・差戻し」は、責務の区分を確定できない場合に要求ownerへ返すことを明記していない。これを書いているのは、L10の共通規定だけである。\n- **R13（ACの欠落）**：FR-03（PO条件：025/026へ無断で追記しない）に専用のACがない。044-06はAC-03に結びついているが、AC-03の本文にはこの条件がない。\n- **R14（「最小」の脱落）**：FR-01は、固定L2:1008の「最小portfolio候補」から「最小」を落としている。\n\n### 次の手順\n- M1を直す。business側の3行を、functional側と同じ期待値と、原因ごとの返却にそろえる。CASE IDの重複定義（R9）も解消するのが望ましい。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "id": 6023521196,
+      "body": "044 review04依頼。base ceda1c53、HEAD 656c3504b6ca0ee5c9f423b1974a1072d819a31f。正式6023320984 M1に対しBVをFV主CASE参照索引へ統一し、原因別返却・既存要求owner fallback・個体unknown分離・scope未完とclosure拒否を明示。主51/旧39ID不変、BV一本文だけ修正、六actualSHA照合、新時点監査R1–14raw。X1は正式review03例外どおり旧監査bytes不変。gov/newdiff/public14PASS。Draft、mail04配送済み。独立再review/Fableをお願いします。\n"
+    },
+    {
+      "id": 6023709227,
+      "body": "## review04（independent review、PR #2641 親HARNESS-L2-044、HEAD 656c3504b6ca0ee5c9f423b1974a1072d819a31f、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2641-HARNESS-STAGE3-PARENT044-04` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録49行（条件付き採択、Bルート）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`は、review01 disposition mdの時点記録で失敗する。既知のX1例外であり、変わっていない。\n\n### 照合の経過\n1. **差分の確認**：e7af7499aからの本文差分は、business-verification.mdの044節だけである。\n   - 表を、functional主CASEへの参照索引に置き換えた。\n   - 「不足時の返却」規定を追加した。\n   - functional側のr16-delta-insufficientには「固定L2-026/022等の既存owner区分へ原因別に戻す」がある。\n   - reviewerが確かめた。review03 M1（業務とfunctionalで期待値が違い、戻し先もなかった件）は解消した。\n2. **Opusシンプルブラインド**：Major 3。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2-044の「出力」行（318ec4a product-requirements.md 044節「出力」、1008行）と、L11の739〜741行を読んだ。functional-verification.mdの044節では、全CASEの変異列を確かめた。ブラインドの3件は同じ型なので、M1の(a)〜(c)にまとめてMajorと確定した。\n\n**基準の変更について**：今回から、固定L2が「出力する」と定める要素ごとに、その要素だけを欠落させる、または誤らせるfixtureがあるかを確かめている。#2637 review06で同じ型をMajorにしたので、それに揃えた。review01〜03ではこの観点を照合していなかった。これはreviewer側の見落としであり、作成側の後退ではない。\n\n### Major\n**M1（固定L2が出力すると定める3要素に、欠落・誤りを拒否するfixtureがない）**\n- **欠陥**：次の3要素について、その要素だけを変異させるCASEがない（類型4）。\n  - **(a) reuse/delta/新規/根拠付きN/Aの区分**：\n    - r16-normal-reuse、normal-delta、normal-new-contractは、どれも変異のない正常対照である。\n    - r16-delta-insufficientは、relationの欠落だけを変える。\n    - 区分のラベルだけを誤らせるCASE（例：deltaをreuseと表示する）がないので、区分を誤ったportfolioでも合格する。\n  - **(b) 出力portfolioの対象revision・scope**：\n    - r10-old-denominator-receiptとr09-002は、入力側のreceiptとcontract revisionを変える。\n    - 出力portfolioから対象revision・scopeを落とす、または別の値にするCASEがない。\n  - **(c) finding（重複割当・意味重複・未被覆class）の根拠**：\n    - r04-semantic-duplicate、r09-001、r09-004は、findingが出るかどうかを見ている。\n    - 根拠のないfindingを拒否するかは判定していない。\n    - 044-05とr04-na-rationale-missingは、入力側の境界・理由・N/A根拠の欠落であり、finding出力の根拠ではない。\n- **守るべき行**：\n  - 固定L2-044「出力」（318ec4a）：「対象revision・scope付きportfolio提案」「既存契約の再利用、delta追加、新規契約、根拠付き非適用を区別する」「重複割当・意味重複・未被覆classと根拠を示し」\n  - L11-044（product-acceptance.md:739）：「同一対象revision/scope」「再利用、delta追加、新規作成、または根拠付き非適用を確認する」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R14**：review03から変わらない。\n- **R15（戻し先の記載）**：次のCASEは、期待値に戻し先を書いていない。共通規定で宛先は決まる。\n  - r04-class-oracle-absent\n  - r06-semantic-map-unverifiable\n  - r04-025-output-substitution\n  - r04-043-output-substitution\n- **R16（source atomの戻し先の揃い）**：r05-source-atom-staleは、常に要求ownerへ戻している。r04-source-atom-missingとconflictは、原因別に振り分けている。\n- **R17（AC-03の直接fixture）**：L11:741の既知の誤り例4種は、044-05、044-08、r09-001、r04-na-rationale-missingで不合格と判定されている。ただし、どれもAC-01/02に割り当てられていて、AC-03には直接のfixtureがない。\n- **R18（文言）**：BRの「固定済み候補」は、正確には「採択済み」である。\n- **X1**：変わらない。\n\n### 次の手順\n- M1を直す。(a)〜(c)の各要素について、その要素だけを欠落させる、または誤らせるCASEを置く。oracleは、portfolioを未完に保ってclosureを拒否し、原因別の既存owner区分へ戻すものにする。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    }
+  ],
+  "exact_changes": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "before": "未被覆class、意味重複、複数contract分割の境界と根拠を出す。",
+      "after": "対象revision・scopeを出力portfolioへ明示し、重複割当、未被覆class、意味重複、複数contract分割の境界と各finding根拠を出す。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "before": "reuse/delta/newの扱いが各classの義務意味・oracleに対応することを確かめる。",
+      "after": "出力のreuse/delta/new/根拠付きN/A区分が各classの義務意味・oracle・適用根拠に対応すること、対象revision/scopeとfinding根拠が出力に保たれることを確かめる。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "before": "根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。",
+      "after": "根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。入力が正常でも、出力処置区分の誤り、出力対象revision/scopeの欠落・不一致、出力finding根拠の欠落をそれぞれ拒否しportfolioを未完に保ちclosureを主張しない。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-classification-reuse` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 選択class Creuseのsource適用根拠・契約relationが再利用を一意に示し、正常出力区分も一致する。 | Creuseの出力区分ラベルだけをdeltaへ変える。source・relation・他classの出力は不変。 | 出力区分の誤対応を拒否しportfolioを未完に保ちclosureを拒否する。既知のclass-to-contract設計relationを担う026責務へ照合を返す。個体owner identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-classification-delta` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 選択class Cdeltaのsource適用根拠・契約relationがdelta追加を一意に示し、正常出力区分も一致する。 | Cdeltaの出力区分ラベルだけをreuseへ変える。source・relation・他classの出力は不変。 | 出力区分の誤対応を拒否しportfolioを未完に保ちclosureを拒否する。既知のclass-to-contract設計relationを担う026責務へ照合を返す。個体owner identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-classification-new` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 選択class Cnewのsource適用根拠・契約relationが新規契約を一意に示し、正常出力区分も一致する。 | Cnewの出力区分ラベルだけをreuseへ変える。source・relation・他classの出力は不変。 | 出力区分の誤対応を拒否しportfolioを未完に保ちclosureを拒否する。既知のclass-to-contract設計relationを担う026責務へ照合を返す。個体owner identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-classification-na` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 選択class Cnaの009が入力へ提供するsource適用根拠・契約relationが根拠付き非適用を一意に示し、正常出力区分も一致する。 | Cnaの出力区分ラベルだけをnewへ変える。source・relation・他classの出力は不変。 | 出力区分の誤対応を拒否しportfolioを未完に保ちclosureを拒否する。既知のtemplate適用根拠を担う009/対象template owner責務へ照合を返す。個体owner identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-output-revision-missing` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 | 出力portfolioのrevision fieldだけを欠落させる。入力対象と他出力は不変。 | 出力対象binding欠陥を拒否しportfolioを未完に保ちclosureを拒否する。対象design/contract scopeの既存026責務へ照合を返し、固定sourceと対応する個体identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-output-revision-mismatch` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 | 出力portfolioのrevision fieldだけをR0に対応しない別値へ変える。入力対象と他出力は不変。 | 出力対象binding欠陥を拒否しportfolioを未完に保ちclosureを拒否する。対象design/contract scopeの既存026責務へ照合を返し、固定sourceと対応する個体identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-output-scope-missing` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 | 出力portfolioのscope fieldだけを欠落させる。入力対象と他出力は不変。 | 出力対象binding欠陥を拒否しportfolioを未完に保ちclosureを拒否する。対象design/contract scopeの既存026責務へ照合を返し、固定sourceと対応する個体identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-output-scope-mismatch` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 | 出力portfolioのscope fieldだけをS0に対応しない別値へ変える。入力対象と他出力は不変。 | 出力対象binding欠陥を拒否しportfolioを未完に保ちclosureを拒否する。対象design/contract scopeの既存026責務へ照合を返し、固定sourceと対応する個体identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-finding-duplicate-assignment-basis-missing` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 同一R0/S0のclass/contract/source/oracle記録で重複割当が確かめられ、正常findingは該当class・contractとsource根拠を具体的に示す。他finding/outputは根拠付きで不変。 | 重複割当finding出力の根拠fieldだけを欠落させる。元source記録・finding対象・他出力は不変。 | 根拠のないfindingを照合済みとせずportfolioを未完に保ちclosureを拒否する。設計contract relationの既存026責務へ根拠照合を返し、source/owner個体unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-finding-semantic-duplicate-basis-missing` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 同一R0/S0のclass/contract/source/oracle記録で意味重複が確かめられ、正常findingは該当class・contractとsource根拠を具体的に示す。他finding/outputは根拠付きで不変。 | 意味重複finding出力の根拠fieldだけを欠落させる。元source記録・finding対象・他出力は不変。 | 根拠のないfindingを照合済みとせずportfolioを未完に保ちclosureを拒否する。設計contract relationの既存026責務へ根拠照合を返し、source/owner個体unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-044-r04-finding-uncovered-class-basis-missing` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 同一R0/S0のclass/contract/source/oracle記録で未被覆classが確かめられ、正常findingは該当class・contractとsource根拠を具体的に示す。他finding/outputは根拠付きで不変。 | 未被覆classfinding出力の根拠fieldだけを欠落させる。元source記録・finding対象・他出力は不変。 | 根拠のないfindingを照合済みとせずportfolioを未完に保ちclosureを拒否する。設計contract relationの既存026責務へ根拠照合を返し、source/owner個体unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |"
+    }
+  ],
+  "six_actual_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 16811,
+      "sha256": "7c1d8c454867d5f87e356a5b1c3388a965d60678097a1aec5bea3bb9b07f3b6b"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 211945,
+      "sha256": "34d96f19e6748ab34a68421a2831639cdd43266ba75a35ac65c4ed10e6461610"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 46412,
+      "sha256": "d27ede8b122ca15ef7035f9f40fe7e03a75b915cfce4265962983bd923028fec"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 13125,
+      "sha256": "fd1eec8bc798670b6f970146a502e0d6d33ea25a43137b16558b8abbcd5ab3e5"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 677561,
+      "sha256": "0a631b1b4e69de879b96b65e7d41c6cf4f98fabd442e4bc9d27ef0a583075c81"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 40600,
+      "sha256": "18bb204d6057cb0b6f2c2dc7c9bec635408a9d2c148ac23eb36a21895c683ced"
+    }
+  ],
+  "case_ids": [
+    "CASE-HARNESS-L10-044-01",
+    "CASE-HARNESS-L10-044-02",
+    "CASE-HARNESS-L10-044-03",
+    "CASE-HARNESS-L10-044-04",
+    "CASE-HARNESS-L10-044-05",
+    "CASE-HARNESS-L10-044-06",
+    "CASE-HARNESS-L10-044-07",
+    "CASE-HARNESS-L10-044-08",
+    "CASE-HARNESS-L10-044-r04-na-rationale-missing",
+    "CASE-HARNESS-L10-044-r04-source-atom-missing",
+    "CASE-HARNESS-L10-044-r04-active-template-missing",
+    "CASE-HARNESS-L10-044-r04-applicability-missing",
+    "CASE-HARNESS-L10-044-r04-oracle-missing",
+    "CASE-HARNESS-L10-044-r04-contract-version-missing",
+    "CASE-HARNESS-L10-044-r04-class-oracle-absent",
+    "CASE-HARNESS-L10-044-r14-class-contract-relation-missing",
+    "CASE-HARNESS-L10-044-r04-025-output-substitution",
+    "CASE-HARNESS-L10-044-r04-043-output-substitution",
+    "CASE-HARNESS-L10-044-r04-044-denominator-old-receipt",
+    "CASE-HARNESS-L10-044-r04-semantic-duplicate",
+    "CASE-HARNESS-L10-044-r04-unsupported-na",
+    "CASE-HARNESS-L10-044-r04-source-atom-conflict",
+    "CASE-HARNESS-L10-044-r04-active-template-stale",
+    "CASE-HARNESS-L10-044-r04-applicability-conflict",
+    "CASE-HARNESS-L10-044-r04-oracle-stale",
+    "CASE-HARNESS-L10-044-r04-contract-version-conflict",
+    "CASE-HARNESS-L10-044-r05-minimum-portfolio-drops-obligation",
+    "CASE-HARNESS-L10-044-r05-candidate-promoted-to-approval",
+    "CASE-HARNESS-L10-044-r05-source-atom-stale",
+    "CASE-HARNESS-L10-044-r05-active-template-conflict",
+    "CASE-HARNESS-L10-044-r05-applicability-stale",
+    "CASE-HARNESS-L10-044-r05-oracle-conflict",
+    "CASE-HARNESS-L10-044-r05-contract-version-stale",
+    "CASE-HARNESS-L10-044-r06-semantic-map-unverifiable",
+    "CASE-HARNESS-L10-044-r09-001",
+    "CASE-HARNESS-L10-044-r09-002",
+    "CASE-HARNESS-L10-044-r09-003",
+    "CASE-HARNESS-L10-044-r09-004",
+    "CASE-HARNESS-L10-044-r10-old-denominator-receipt",
+    "CASE-HARNESS-L10-044-r16-normal-nine-class",
+    "CASE-HARNESS-L10-044-r16-normal-reuse",
+    "CASE-HARNESS-L10-044-r16-normal-delta",
+    "CASE-HARNESS-L10-044-r16-normal-new-contract",
+    "CASE-HARNESS-L10-044-r16-delta-insufficient",
+    "CASE-HARNESS-L10-044-r16-refuse-requirement-agreement",
+    "CASE-HARNESS-L10-044-r16-refuse-l3-approval",
+    "CASE-HARNESS-L10-044-r16-refuse-design-approval",
+    "CASE-HARNESS-L10-044-r16-refuse-adoption",
+    "CASE-HARNESS-L10-044-r16-refuse-implementation",
+    "CASE-HARNESS-L10-044-r16-refuse-os-execution",
+    "CASE-HARNESS-L10-044-r16-refuse-user-acceptance",
+    "CASE-HARNESS-L10-044-r04-classification-reuse",
+    "CASE-HARNESS-L10-044-r04-classification-delta",
+    "CASE-HARNESS-L10-044-r04-classification-new",
+    "CASE-HARNESS-L10-044-r04-classification-na",
+    "CASE-HARNESS-L10-044-r04-output-revision-missing",
+    "CASE-HARNESS-L10-044-r04-output-revision-mismatch",
+    "CASE-HARNESS-L10-044-r04-output-scope-missing",
+    "CASE-HARNESS-L10-044-r04-output-scope-mismatch",
+    "CASE-HARNESS-L10-044-r04-finding-duplicate-assignment-basis-missing",
+    "CASE-HARNESS-L10-044-r04-finding-semantic-duplicate-basis-missing",
+    "CASE-HARNESS-L10-044-r04-finding-uncovered-class-basis-missing"
+  ],
+  "fixed_parent_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+  "fixed_l2_output_line": 1008,
+  "fixed_l11_normal_line": 739,
+  "limits": "旧51ID保持、新11反例。旧X1時点監査不変。未実行設計、独立closure/Fable一致/承認未確認"
+}
