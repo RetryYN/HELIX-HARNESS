@@ -86,7 +86,7 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE-OS-L10-NFR-042-01 | NFR-OS-L3-042-01 | strict failureと、選択済み既存契約が実際にexpiryを指定する場合だけその期限の境界前後を比較する。期限/適用scope/再検証欠落による誤昇格を観測し、新期限値は設けない。 |
 | CASE-OS-L10-NFR-043-01 | NFR-OS-L3-043-01 | request必須operationのrequest/call/result順序・correlation欠落と、request不要operationの許可済みcall/result対照を入力。chain completeness、誤approval数、不要request件数。 |
 | CASE-OS-L10-NFR-044-01 | NFR-OS-L3-044-01 | prose-only handoverと固定された既存source lifecycle/evidence conditionを比較する。unknown/stale/conflictの保留と理由保持を観測し、source HEAD mismatchを新たな判定条件にしない。 |
-| CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを15/60min bucketで比較しlimitとstate countsを別確認し、成果・予算・未完義務のlineageを保持する。無根拠dispatchと誤状態数。 |
+| CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを既存config revisionごとの不変区間で比較し、configured limit/WIP/state countsとutilizationを別確認する。区間ごとにrevision・scope・capacity・観測時間・状態/count・成果/予算/未完義務lineageを対応させる。固定bucket幅は追加しない。revision境界または観測時間が不明な区間はunknown/未評価とし、無根拠dispatch・誤状態数を観測する。 |
 | CASE-OS-L10-NFR-050-01 | NFR-OS-L3-050-01 | fixed parent/sourceから入力された設定閾値・capacity・縮退条件の通常/境界/spike/downstream blocker fixtureを比較。親にない数値やbucket境界は追加しない。誤増枠・backpressure漏れを観測する。 |
 | CASE-OS-L10-NFR-051-01 | NFR-OS-L3-051-01 | expiryを持つsourceではその値を照合し、持たないsourceではexpiry条件を課さず適用scope/class/revisionで判定する。scope change・同名別providerを個別fixtureで照合する。freshness日数を新設しない。 |
 
@@ -95,7 +95,8 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE ID | NFR trace | 観測・分母・未知の扱い |
 |---|---|---|
 | CASE-OS-L10-NFR-037-02 | NFR-OS-L3-037-01 | weekly drift route と cumulative debt route を別scope/ownerで測定し、観測済み対象期間数を分母、欠測をnot observedとして残す。成功候補・価値判定はOSが生成しない。 |
-| CASE-OS-L10-NFR-049-02 | NFR-OS-L3-049-01 | configured capacity × 有効な経過秒を時間分母として別記し、assignment/task count、unused capacity、unfinished lineageを独立集計する。時間0/欠測capacityは算出不能、分母が有効でcount 0なら実測0。 |
+| CASE-OS-L10-NFR-049-02 | NFR-OS-L3-049-01 | 既存config revisionが一定の各区間でconfigured capacity × 有効な経過時間を分母として区間ごとに別記し、すべての区間境界が既存の観測時点で判別できる場合に限り区間分母の合算値も示す。assignment/task count、unused capacity、unfinished lineageを独立集計する。時間0・欠測capacity・不明なrevision境界は算出不能でunknown/未評価とし、分母が有効でcount 0の場合のみ実測0とする。 |
+| CASE-OS-L10-NFR-049-03 | NFR-OS-L3-049-01 | CASE-OS-L10-049-04の設定revision一定・観測時間既知の正常区間、CASE-OS-L10-049-08の記録済みrevision境界、CASE-OS-L10-049-09の観測時間unknownを別々に集計する。revisionをまたぐ区間を一つのcapacityで計算した値、unknownを0または成功率へ置換した値を誤計測として数える。 |
 | CASE-OS-L10-NFR-050-02 | NFR-OS-L3-050-01 | 同期間のtyped metricとeligible reviewer capacityを集計し、cause unknown/metric missing/lease staleは分母から除外せず未評価数として別表示。評価値だけでquality/merge stateを作らない。 |
 | CASE-OS-L10-NFR-051-02 | NFR-OS-L3-051-01 | scope/class/revisionごとの適格evidence件数を母集団にし、期限欠測・source stale・availability unknownを別状態で報告する。provider名は適格性の代理値にしない。 |
 
