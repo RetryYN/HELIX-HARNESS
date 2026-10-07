@@ -1,0 +1,68 @@
+{
+  "record_type": "HDEC-HARNESS-STAGE5-PARENT035-REVIEW01-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-HARNESS",
+    "stage": 5,
+    "parents": [
+      "HARNESS-L2-035"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6045677594,
+    "formal_body_raw": "## review01（HEAD 44f3e325e957df1888b0111d37ad25c694ded4e4 / base 37a8283be429c57f3706153ad522e7ad288fecc3）— Claude review_merge\n\n### 結論：Major 0。同じ本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- OpusとFableが、このrevisionをそれぞれ独立に読みました。どちらもMajorなしで、承認してよいと判断しました。\n- 判断記録と6本文pinを追加した後に、条件3を別途照合します。\n\n### 照合した点\n- **範囲分割で落ちたCASE**\n  - FVには `CASE-HARNESS-L10-035-S5-001`〜`046` の46件が、欠番も重複もなく実在します。\n  - tombstoneはS5-033（FV:814）だけです。\n  - 新しい範囲は `001–006` ＋ `007–032` ＋ `034–046` の45件で、除外はS5-033だけです。運用負債欠測のS5-041（FV:822）と、三観点の正常入力S5-028は範囲内です。\n- **固定親との整合**\n  - 差分は、nfr-grade.md:146 と nfr-verification.md:107,119 の3行だけです。\n  - oracleは変わっていません。三観点の欠測はunknown/missingとして保持し、相殺はしません。閾値も追加していません。\n  - 既存の nfr-grade.md:153 と NFRV:126「S5-033は個別fixture分母から除外」とも整合しています。\n  - 固定L2-035（633bf12 product-requirements.md:931–941）と L11（product-acceptance.md:678–686）の三観点の意味は、保持されています。\n- **他の箇所に残っていないか**\n  - `docs/helix-harness/` 全体を確認しました。S5-033を含む範囲表記は残っていません。\n- **SHA**\n  - 次のものは、すべて実bytesと一致しました。\n    - 固定親のspan（L2 `f095be7d…`、L11 `5cd7416b…`）\n    - PO決定行のdigest\n    - 旧source HIL-NFR-07（`db31f424…`、187行span `c8e2b4a1…`）\n    - 6本文のbefore/after\n  - 固定親L2/L11は、633bf12、base、HEAD、最新mainのどれでも同じbytesです。\n- **静的検査**\n  - `scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n  - 最新main `e028e18` との `git merge-tree` も通りました。base..mainで `docs/helix-harness` の変更は0件です。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 27,827 | `9fb531a5…` |\n| FR | 271,676 | `2180967f…` |\n| NFR | 60,266 | `b83709b3…` |\n| BV | 26,039 | `864b0034…` |\n| FV | 1,182,856 | `d1c55ca4…` |\n| NFRV | 54,525 | `8a731bb2…` |\n\n### 返さない所見（Minor。承認は止めず、解消済みとも扱いません）\n1. 監査JSONの固定親行範囲が、本文の行範囲と末尾2行ずれています。\n   - 監査JSON：L2 `931–939`、L11 `678–684`\n   - 本文：`931–941`、`678–686`\n   - ずれた940–941行と685–686行は空行で、内容の差はありません。\n2. 監査JSONの `finding_reference.prior_readonly_audit` が、repository外の一時path（`/tmp/...`）を指しています。発見経緯の参照で、判定の根拠ではありません。\n\n### 未確認範囲\n- fixtureは実行していません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 3223,
+    "formal_body_sha256": "a67414a0d43cd9ec80052621280aef90fc53652c5075d47e83f8ac47c8c8120a",
+    "reviewed_head": "44f3e325e957df1888b0111d37ad25c694ded4e4",
+    "review_base": "37a8283be429c57f3706153ad522e7ad288fecc3",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 27827,
+      "sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 271676,
+      "sha256": "2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 60266,
+      "sha256": "b83709b35a6f3ea93badf9e6586c01bef85ceabdbf19ec6c4b68208c3d47489a"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 26039,
+      "sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 1182856,
+      "sha256": "d1c55ca4e6b432ccdc941d8d9813c88e5f33476ef2c2d55aa0bfafe549b6726f"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 54525,
+      "sha256": "8a731bb2a1e27006cdead8430075889cea75ed7bd830c491727eca049e6ae912"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-harness-stage5-parent035-review01-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 2756,
+    "sha256": "0872f6ad4ae0815723b45f84330ca9267c58f19827bfc3bdbf769fface011a0f"
+  },
+  "minor_not_returned": [
+    "旧JSONの固定spanはL2 931–939/L11 678–684、本文locatorは931–941/678–686。末尾2空行差のみで旧時点pin不変。",
+    "prior_readonly_auditの/tmp pathは発見経緯の参照であり根拠authorityではない。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}
