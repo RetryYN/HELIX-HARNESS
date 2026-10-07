@@ -1,0 +1,33 @@
+{
+  "authority_effect": "none",
+  "base": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+  "draft": "4d57559def2f1372555c154eef53c404b7b483d1",
+  "integrated_head": "3ad9a7f266fac715ff4b0f700e4b724db214ef31",
+  "delta_check": "親049の追加削除全行は元修正と一致、main親040保持",
+  "six_document_pins": {
+    "docs/helix-os/L10-verification/business-verification.md": {
+      "bytes": 17774,
+      "sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051"
+    },
+    "docs/helix-os/L10-verification/functional-verification.md": {
+      "bytes": 244617,
+      "sha256": "831266213f7e70120f4b6bd608d5f28e22527869a05f7018ae73fa2df5bf26cc"
+    },
+    "docs/helix-os/L10-verification/nfr-verification.md": {
+      "bytes": 30986,
+      "sha256": "d556e641606cb16c0ad53efdaa02eecad6e8e9d9f9b3b66ee9c9f7b579bfc844"
+    },
+    "docs/helix-os/L3-requirements/business-requirements.md": {
+      "bytes": 20354,
+      "sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702"
+    },
+    "docs/helix-os/L3-requirements/functional-requirements.md": {
+      "bytes": 202246,
+      "sha256": "b429488980bac0ae7c883efe60d63f95ffa715eb80925a1a8db37cad5827b4c1"
+    },
+    "docs/helix-os/L3-requirements/nfr-grade.md": {
+      "bytes": 33764,
+      "sha256": "4ca6b8deefbf859e652dd438db8a71e2ae46ffd2fce38743ecc9b712c6f9909c"
+    }
+  }
+}
