@@ -1,0 +1,194 @@
+{
+  "record_type": "HARNESS Stage3 parent046 BV/FV same CASE ID inventory for m20",
+  "authority_effect": "none",
+  "decision_effect": "none",
+  "scope": "HARNESS Stage3 parent046 only; compare three same-identifier BV rows to FV primary definitions. No body edits, no approval or test-execution claim.",
+  "review_comment": {
+    "id": 6041633885,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2655#issuecomment-6041633885",
+    "raw_body_utf8_bytes": 4193,
+    "raw_body_sha256": "1d9547637296f14c7bd5c62489626849fd400046c358a0b349de93a6b13e6480",
+    "raw_body": "## review05（independent review、HEAD c21523111debdbb4de8622f7557ed794319e4a7e、merge-base f14ac303d265b6d23ecb1847b5dfd52901a442c6）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n- 条件1は、Opus 5.5の照合と、reviewerによる確認で判定した。\n- 条件2は、Fable advisor（claude-fable-5-1）の見解である。Fableは、6本文のStage 5節（021/025/033/035/037）と、固定親（021/025/033は@f6dad2a33、035/037は@318ec4a04）を読み直して判断した。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新mainと衝突なし\n\n### review04（#6041334894）への対応\n- **M1は解消した。**\n  - S5-066 が、NFR側の025の範囲の3か所に入った（nfr-grade.md:144、nfr-verification.md:105、:117。表記は「065〜066」「S5-065–066」）。\n  - nfr-grade.md:144 には、CORE自身の製品契約の版が明記された。\n  - 025のS5 CASEは、001–041、062、063、065、066 である。064 は037のIDなので、範囲表の飛び番とは食い違わない。\n- **m13〜m16 は解消した。**\n  - S5-066 の行は、065 の後ろへ移った。\n  - AC-11 の前の空行を除いた。\n  - S5-066 と AC-11 は、owner_identity `core-contract-owner:fixture` が完全に一致するかを照合するようになった。\n  - FR:492 に責務の根拠を追記した。根拠は、025の固定L2:552、026の固定L2:538・542、既存のCASE-026-04/19/20/21 である。新しいownerは作っていない。\n- **旧文と新文の突き合わせ（類型5）**：旧文は一字も削られていない。CASE行の移動先の内容は、旧行の内容をすべて含んでいる。\n- **main統合**：#2666（Stage3 043）の取り込みで、手で解消した競合はない（remerge-diffが空）。増えた差分は043の行だけで、Stage 5節には触れていない。`043-r10-025` は043の名前空間のIDで、025-S5 とは取り違えられていない。\n- **ID対応**：Stage 5のCASE定義（021:001–016、025:001–041+062/063/065/066、033:001–047、035:001–046、037:001–064）に、重複はない。L10が参照するAC IDは、すべてL3で定義されている。\n\n### Major\nなし。前回までに返したMajor（review01の6件、review02の3件、review03の2件、review04の1件）は、すべて解消した。\n\n### Minor（返却しない。次に触るときに直せばよい）\n- m17：nfr-grade.md:144 の「CORE自身の製品契約版・connector/Templateの既知ownerとidentity unknownを分ける」は、CORE owner identityが欠ける単独CASEもあるように読める。実際にあるのは、066（版unknown、identity宣言あり）だけである。固定親は対称のCASEを求めていないので、分母には影響しない。\n- m18：FR:489 の不変条件は、L3の戻し先の根拠として、L10 CASE-026-04/19/20/21 を挙げている。主な根拠は L2-025:552 と L2-026:538・542 で足りている。\n- m19：business-verification.md:55 は、owner戻しの S5-062/063/066 を「authority boundary」と呼んでいる。business-requirements.md:94 の例示には、065/066 がない。\n- m20：business-verification.md:128/150 と functional-verification.md:2159/2353 で、044/046の同じCASE IDが両方に出てくる（Stage 5の範囲外。別途確認が要る）。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（c21523111）でそろった。\n- **条件3は未照合。** 判断記録を作った後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `9fb531a5…75e2` |\n| L3-FR | `bd038522…8c0c` |\n| L3-NFR | `ee84bc87…263d` |\n| L10-BV | `864b0034…65ad` |\n| L10-FV | `191dcb11…0e9a` |\n| L10-NFR | `b8a2ac27…7386` |\n\n### 未確認範囲\nなし。021/033/035/037のStage 5本文のうち、今回の差分以外の部分は、review01〜04の照合を引き継いだ。\n",
+    "reviewed_pr_head": "c21523111debdbb4de8622f7557ed794319e4a7e",
+    "current_main_revision": "4fdcd449fac8ffbc7c6ab18654b355497be07b91",
+    "scope_note": "formal review comment m20 asks for a separate check of same CASE IDs appearing in both BV and FV for parents 044/046 outside the Stage5 scope; this inventory checks the three pairs for Stage3 parent046. It transfers no Stage5 findings or approvals."
+  },
+  "fixed_parent": {
+    "L2": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 1025,
+      "end_line": 1035,
+      "bytes": 4764,
+      "sha256": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+      "source_file_bytes": 254934,
+      "source_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+    },
+    "L11": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 759,
+      "end_line": 771,
+      "bytes": 3471,
+      "sha256": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f",
+      "source_file_bytes": 172806,
+      "source_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+    },
+    "PO_decision": {
+      "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 51,
+      "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "adopted": "HARNESS-L2-046",
+      "registration": "MPR-RC-HARNESS-L2-046-001",
+      "line_sha256_including_lf": "60fb90a139b313760ad5a259e2362e3c406e071aa1dfba8ed6d21d0cb9fb55a4"
+    }
+  },
+  "legacy_source": {
+    "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "asset_revision": 3,
+    "source_revision": "3fd20391",
+    "source": {
+      "revision": "3fd20391",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "bytes": 64313,
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "line_259_without_lf_sha256": "e4c0f143df26e2777e66ada84e1903a154519b42e9732eaa6f06f9d09c849db6",
+      "line_647_without_lf_sha256": "6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e",
+      "line_259": "Full Vではsystem全体のworkflow modelをL1〜L5で段階的に凍結し、右腕で全transition、loop、terminal、exception、permission、timeout、notification、audit、data、switching、routing、resource allocationを検証する。Production Scrumではslice deltaだけを先行利用できるが、sprint reviewまたはrelease合流前にScrum Reverseでsystem workflowとL1〜L5設計資産へbackfillし、SR4 pair-freezeなしにrelease-readyとしない。",
+      "line_647": "- Full Vはsystem workflow全体、Production Scrumはslice deltaとSR0〜SR4 backfillの両方を保持する。"
+    },
+    "baseline_companion": {
+      "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+      "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "bytes": 62494,
+      "sha256": "1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "line_244_without_lf_sha256": "e4c0f143df26e2777e66ada84e1903a154519b42e9732eaa6f06f9d09c849db6",
+      "line_628_without_lf_sha256": "6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e",
+      "same_line_244_text": "Full Vではsystem全体のworkflow modelをL1〜L5で段階的に凍結し、右腕で全transition、loop、terminal、exception、permission、timeout、notification、audit、data、switching、routing、resource allocationを検証する。Production Scrumではslice deltaだけを先行利用できるが、sprint reviewまたはrelease合流前にScrum Reverseでsystem workflowとL1〜L5設計資産へbackfillし、SR4 pair-freezeなしにrelease-readyとしない。"
+    },
+    "classification": "§4.4 L259 S1 and S2 remain separate conditions; §10 L647 is a summary atom overlapping them, not a third condition; corroborated in immutable review12 evidence."
+  },
+  "current_main_documents": {
+    "BV": {
+      "revision": "4fdcd449fac8ffbc7c6ab18654b355497be07b91",
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 26039,
+      "sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad"
+    },
+    "FV": {
+      "revision": "4fdcd449fac8ffbc7c6ab18654b355497be07b91",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 1161137,
+      "sha256": "191dcb11cb400c10516e2a437314ffea60de97cb7432091ff6ee47f964640e9a"
+    }
+  },
+  "case_comparison": [
+    {
+      "case_id": "CASE-HARNESS-L10-046-r12-fullv-normal",
+      "label": "Full V正常",
+      "ac": "AC-HARNESS-L3-046-01",
+      "business_row": {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "line": 149,
+        "bytes": 369,
+        "sha256_including_lf": "47b72126cf97787ccdde447a7ee9f21ce69c5aa57e3345ce89f79dd177971fd2",
+        "text": "| `CASE-HARNESS-L10-046-r12-fullv-normal` | `AC-HARNESS-L3-046-01` / `BR-HARNESS-L3-046-01` | style=Full V、対象workflow revision、適用L1–L5段階freeze、12条件とV-pair evidenceを合成入力する。 | Full V scope coverageを再構成し、Scrum delta/backfill/SR4を要求しない。 | 12条件のapplicability/oracle不明ならunknown/未評価。 |"
+      },
+      "functional_primary_definition": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 2347,
+        "bytes": 449,
+        "sha256_including_lf": "8609a3764bf63540433cbb93ef62691ba472acf5d787c27e316a26a5e7332077",
+        "text": "| `CASE-HARNESS-L10-046-r12-fullv-normal` | `FR-HARNESS-L3-046-01` / `AC-HARNESS-L3-046-01` | style=Full V、workflow revision、適用L1–L5層の段階freezeと12条件各々のapplicability/V-pair/oracle/evidenceを同scope/revisionで固定。 | 変異なし。 | 適用する全12条件を検証し、各適用層のfreeze/evidenceをworkflow revisionに結ぶ。 | 合成positive fixture。Scrum-only fieldを必要条件に含めない。 |"
+      }
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-046-r12-scrum-normal",
+      "label": "Scrum正常",
+      "ac": "AC-HARNESS-L3-046-02",
+      "business_row": {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "line": 150,
+        "bytes": 1119,
+        "sha256_including_lf": "b3fcdc0a29dfd3e2fd66f1556f5850be00a6bd51ad108a886bf0fc29ca66fa71",
+        "text": "| `CASE-HARNESS-L10-046-r12-scrum-normal` | `AC-HARNESS-L3-046-02` | 同じProduction Scrum選択または許可合成内Scrum適用のscope/revisionについて、source定義済みbackfillとSR4 receiptがcurrentの対照入力を2つ置く。A: 既存trigger成立、backfillとtrigger適用checkpoint/SR4がcurrent。B: 既存trigger不成立、同じbackfillはcurrent、trigger由来checkpointは適用しないがSR4 receiptはcurrent。profile BでもSR4 receiptのidentity・target scope/revision・source evidence値は同じscope/revisionに結び付く既存sourceと一致する。どちらも新しい義務を足さない。 | A/Bとも既存source定義のbackfill対象・時点・revisionを照合し、trigger条件に従う。両方ともL2のSR4 release-readiness条件を入力で満たし、SR4 receiptのidentity・source evidenceが対象scope/revisionと一致することを確認する。 | A/B各正常scopeを評価可能としrelease authorityは生成しない。既存trigger applicability、backfill対象/時点、receipt identityが不明ならその範囲を未評価とする。 |"
+      },
+      "functional_primary_definition": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 2353,
+        "bytes": 1049,
+        "sha256_including_lf": "15fa7bb6e2703c9c839e26b82f6180ea36f250a9519ca625c8183b67151ae11c",
+        "text": "| `CASE-HARNESS-L10-046-r12-scrum-normal` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-02` | 同じProduction Scrum選択または許可合成内Scrum適用のscope/revisionについて、source定義済みbackfillとSR4 receiptがcurrentの2 profileを固定する。A: 既存trigger成立、backfillとtrigger適用checkpoint/SR4がcurrent。B: 既存trigger不成立、同じbackfillはcurrent、trigger由来checkpointは適用しないがSR4 receiptはcurrent。各profileで他条件もcurrent。 | 変異なし。 | AはSR0/SR1/SR2/SR3/SR4各段階identity・receipt・source evidence値が同scope/revisionに一致することを別々に確認し、一部確認や集約フラグで代用しない。Bはtrigger由来checkpointを追加せず、source定義backfillとSR4 pair-freeze receiptがcurrentであることに加え、receipt identity・target scope/revision・source evidence値が同じscope/revisionに結び付く既存sourceと一致することを確認する。 | 合成観測。release permissionは生成しない。 |"
+      }
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-046-r12-fullv-no-scrum",
+      "label": "Full V no-Scrum",
+      "ac": "AC-HARNESS-L3-046-01",
+      "business_row": {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "line": 151,
+        "bytes": 361,
+        "sha256_including_lf": "97ea77fc2c6299e5d698229ff62b7dfa6ad67530134a32d952cd42b50d50d842",
+        "text": "| `CASE-HARNESS-L10-046-r12-fullv-no-scrum` | `AC-HARNESS-L3-046-01` | Full Vの正常baselineからScrum-specific delta/Reverse/SR0–SR4/SR4 receiptの全てを省略する。 | Full Vの段階freezeと12条件がcurrentならFull V ACを評価でき、Scrum artifact欠落だけでは拒否しない。 | 他Full V必須条件欠落は該当scope未完。 |"
+      },
+      "functional_primary_definition": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 2348,
+        "bytes": 400,
+        "sha256_including_lf": "b3a901d9b8cb4ef92e4844b9790acdd580a1387206185df3ba77eecd6a64c96e",
+        "text": "| `CASE-HARNESS-L10-046-r12-fullv-no-scrum` | `FR-HARNESS-L3-046-01` / `AC-HARNESS-L3-046-01` | 上記Full V B0は全必須入力current。 | Full V scopeからScrum slice delta、Scrum Reverse、SR0–SR4、SR4 receiptを入力しない。 | Scrum artifactの欠落だけでFull Vをfailにしない。Full VのL1–L5 freeze/12条件を個別評価。 | M18のscope誤判定を避ける対照。 |"
+      }
+    }
+  ],
+  "reference_context": {
+    "business_lines_121_123": [
+      {
+        "line": 121,
+        "text": "**主fixtureの参照**：以下はfunctional-verification.mdにある主CASEのbusiness観点の索引で、CASEを再定義しない。入力・単独変異・期待値は主CASEをそのまま照合し、独立fixtureとして重複計上しない。",
+        "sha256_including_lf": "899d3c641242ac7844225e05ab02efa897cbda4564f3511ecd2a3c90f2428ed1"
+      },
+      {
+        "line": 122,
+        "text": "",
+        "sha256_including_lf": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "line": 123,
+        "text": "**不足時の返却**：要求意味・authority不足は既存要求owner、template適用と義務導出不足はHARNESS-L2-009/対象template owner、atom抽出不足はHARNESS-L2-041、具体設計・delta relationと対oracle不足はHARNESS-L2-026/022等の原因別既存責務区分へ返す。責務区分を確定できない意味/authority不足は既存要求ownerへ返す。個体source/owner identity不明は別にunknownを保持し、既知区分への返却を止めない。不足scopeは未完/未評価に保ちportfolio closureを主張しない。",
+        "sha256_including_lf": "d89f42e74ebf35887f62be18cc5780b7b381ecc59f17c230e9deaf1c1656e85a"
+      }
+    ],
+    "functional_index_line_2300": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 2300,
+      "bytes": 850,
+      "sha256_including_lf": "328f704c307353f35ddd934bd455010def49a66a56007987f25daba133493fe3",
+      "text": "| `CASE-HARNESS-L10-046-02` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-02` | Full V scopeと明示選択されたScrum scopeを別fixtureへ分けたcurrent index。 | 索引のみ。Full VのScrum artifact非生成は`CASE-HARNESS-L10-046-r12-fullv-refuse-slice-delta`、`CASE-HARNESS-L10-046-r12-fullv-refuse-scrum-reverse`、`CASE-HARNESS-L10-046-r12-fullv-refuse-sr4-obligation`で個別に試す。Full Vの通常条件は`CASE-HARNESS-L10-046-r12-fullv-no-scrum`、Scrum scopeは`CASE-HARNESS-L10-046-r12-scrum-normal`、backfill/SR4欠落は各r12 direct CASEを参照する。 | Full VではL1–L5 freezeと12条件を評価し、Scrum非選択をScrum義務へ変換しない。各参照先を独立に評価し、本indexを件数に含めない。 | 旧IDを保持する非独立index。別のindexを経由せず直接CASEへ結ぶ。 |"
+    }
+  },
+  "inventory_result": {
+    "same_fixture_identity": "yes; each BV row repeats the exact CASE ID and matching AC of one FV primary definition; the business rows summarize the same scenario and add no distinct mutation/input fixture.",
+    "unique_primary_fixture_count": 3,
+    "definitions_in_scope": {
+      "BV_rows": 3,
+      "FV_primary_definitions": 3,
+      "FV_046_02_index": 1
+    },
+    "explicitness": "FV differentiates index vs primary definitions, but BV parent046 table lacks a local note identifying its three exact-ID rows as business views/references to the FV primary definitions and excluding independent redefinition/counting. In contrast, current BV parent044 explicitly supplies that note (line 122); its FV 044 row says primary fixture reference/no redefinition/no separate count.",
+    "denominator_risk": "No explicit cross-table unique-fixture denominator is given for parent046. Counting table rows rather than unique CASE IDs could report 6 instead of 3 primary fixtures across BV and FV, or count FV index mention separately. Actual unique primary fixture IDs remain three; do not infer any aggregate total beyond this local inventory.",
+    "recommended_minimal_correction": "Add one sentence immediately before the BV parent046 table: “以下3行は、同一CASE IDのFV一次CASE定義を業務観点から参照する。入力・変異・oracleはFV定義に従い、BV行で再定義せず独立fixtureとして重複計上しない。” Optionally change first column to a reference label; the note alone is enough.",
+    "limits": "This is evidence inventory only, not a change to requirement meaning, acceptance, authority, fixture execution, or a delegated approval."
+  },
+  "validation": {
+    "checks": [
+      "Current files read at exact main revision and SHA-pinned.",
+      "Each of three CASE IDs appears as one BV row and one FV primary definition; AC and described scenario align.",
+      "FV 046-02 is explicitly an index only; BV parent046 is missing the equivalent local no-redefinition/no-double-count note.",
+      "Fixed L2/L11 and PO decision provenance were pinned; old-source source-line pins corroborated from immutable review12 record and exact source revisions."
+    ],
+    "no_body_edits": true,
+    "commit_or_push": false
+  }
+}
