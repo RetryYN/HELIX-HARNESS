@@ -1,0 +1,31 @@
+{
+  "authority_effect": "none",
+  "record_type": "delegated_approval_supplement_source_pin",
+  "reviewed_content_head": "b713e1a2ef2bab08983dfdfc92ae22dc2cc5c12e",
+  "records": [
+    {
+      "path": "docs/governance/decisions/helix-labo-stage5-parent066-070-l3-l10-delegated-decision-evidence-2026-10-08.md",
+      "sha256": "0c2456a3a85937e8eaf97181fc69441597c919a78f4c0f239a5eda01a4736fa7",
+      "bytes": 8345
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent066-070-review03-delegated-decision-evidence-2026-10-08-6041593075.json",
+      "sha256": "ebd329c1f6a366f24899a6567443a70495e18d79f520e8bb009605d90f66f24b",
+      "bytes": 18428
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-stage5-parent066-070-l3-l10-delegated-approval-2026-10-08.md",
+      "sha256": "83a99bc96d803aaf74bc9ae90a95239ca8cb327cf66cc6d4a1e792d349c2fa94",
+      "bytes": 2196
+    }
+  ],
+  "review04": {
+    "comment_id": 6041873444,
+    "raw_utf8_body": "## review04（条件3の照合。HEAD 79a996106125dcfc81bfce9a0d0edc8cd17da711、merge-base 4fdcd449fac8ffbc7c6ab18654b355497be07b91）\n\nreviewer: Claude（lane `review_merge`、Opus 5.5）。\n\n### 本文と引用の照合（ここは成立）\n- `git diff b713e1a2e HEAD -- docs/helix-labo` は空だった。承認対象のrevisionから、6本文は変わっていない。\n- 6本文のSHA-256は、記録の表と6件とも一致した。\n- **review03 comment**（#6041593075）：APIから本文を取り直して計算した。UTF-8で3560 bytes、SHA-256 `d4f39ead…3245493`。pin JSONと一致した。\n- **委任判断記録**（2026-10-05）：SHA-256 `9028384f…` が一致した。\n- **範囲**：対象は HELIXLABO-L2-066 と 070 の Stage 5 に限られている。別の親・別のrevisionへは継承しない、と書かれている。\n- **静的確認**：scfctl 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` clean、最新mainと衝突なし。\n\n### Major\n**M1：この記録には、承認の効力がいつ生じるかが書かれていない**\n- `helix-labo-stage5-parent066-070-l3-l10-delegated-decision-evidence-2026-10-08.md` の現状：\n  - frontmatter は `record_type: delegated_decision_evidence_record` と `authority_effect: none` である。\n  - 本文には「本記録は条件3を成立済みにせず、L3承認の効力…を生成しない」とある。\n  - 条件3の照合とmain admissionの後に効力が生じる、とはどこにも書かれていない。\n- ほかの委任判断記録は、効力の始まりを書いている。\n  - #2657（OS 026/031/047）：`authority_effect: effective_after_condition3_crosscheck_and_main_admission`\n  - #2660（OS 018/019）：「条件3とmain admissionまで効力なし」\n  - #2653（BRAIN 025）：`effective_when_this_record_is_admitted_to_main`\n- 影響：このままmergeしても、066/070のL3承認がいつ有効になるかが、記録から決まらない。タイトルも「委任判断条件記録」「時点記録」で、承認の判断記録としては読めない。\n- 直し方：\n  - 表、pin、正式commentの収録など、今の内容は残す。\n  - そのうえで、ほかの委任判断記録と同じように、次の2点を書き足す。\n    - 「委任規則に基づき、上記本文revisionの066/070 Stage 5 L3要件とL10総合検証設計を承認する。効力は条件3の照合とmain admissionの後に生じる」\n    - それに合わせた `authority_effect` の値\n  - 記録の種別とタイトルも、承認の判断記録として読めるものにする。\n- 本文は変えないので、条件1・2はやり直さなくてよい。直した記録について、条件3だけを照合し直す。\n\n### 委任条件の状態\n- 条件1・2：review03で成立している（本文 `b713e1a2e`）。\n- 条件3：本文が変わっていないことは成立した。ただし、判断記録が承認の効力を定めていないので、まだ完了としない。\n",
+    "sha256": "cec540d9db0e854093a5e846649f3ed772b5dc356b866aa116cebb7f5e51fd98",
+    "bytes": 3037
+  },
+  "six_bodies_unchanged": true,
+  "condition3": "pending_independent_crosscheck",
+  "old_records_modified": false
+}

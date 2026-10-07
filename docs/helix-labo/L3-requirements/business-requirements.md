@@ -206,4 +206,4 @@
 
 旧source line 399のselected telemetry/coshow atomsを意味再導出する。旧HIL scorecard全体や旧consumerの業務成果を移管・採択したとは扱わない。
 
-scorecardからsource event、oracle/threshold、計測または実行許可、要求採択、Worker assignment、rollback trigger、rollback操作、Recovery操作権限、Recovery実行、evidence ageからのfresh/stale判定・期限・適格性、LABO独自の受入境界・受入済み・escaped判定、L3承認、完了を生成しない。これら固定親の境界は、独立した業務成果を追加せずL10の単独出力fixtureで照合する。欠落・stale・矛盾したsource情報、時計不正、およびprovenance出力の照合はCASE-110〜126をCASE-01と組み合わせて確認する。
+scorecardからsource event、oracle/threshold、計測または実行許可、要求採択、Worker assignment、rollback trigger、rollback操作、Recovery操作権限、Recovery実行、evidence ageからのfresh/stale判定・期限・適格性、LABO独自の受入境界・受入済み・escaped判定、L3承認、完了を生成しない。これら固定親の境界は、独立した業務成果を追加せずL10の単独出力fixtureで照合する。欠落・stale・矛盾したsource情報、時計不正、およびprovenance出力の照合はCASE-110〜126およびCASE-128〜130をCASE-01と組み合わせて確認する。
