@@ -1,0 +1,645 @@
+{
+  "schema": "helix-os-stage3-parent036-return-routing-repair-audit-v1",
+  "audit_id": "OS-STAGE3-PARENT036-RETURN-ROUTING-REPAIR-2026-10-08",
+  "audit_date": "2026-10-08",
+  "base_main": "3c6372ebd57674b90310843ea2454eda659558ad",
+  "scope": {
+    "parent": "HELIXOS-L2-036",
+    "mechanism": "HELIX-OS",
+    "stage": 3,
+    "version_target": "1.0",
+    "allowed_body_changes": [
+      "FR AC-OS-L3-036-02",
+      "FR AC-OS-L3-036-03",
+      "FR AC-OS-L3-036-04",
+      "FV CASE-OS-L10-036-02",
+      "FV CASE-OS-L10-036-04",
+      "FV CASE-OS-L10-036-08b"
+    ],
+    "not_in_scope": "他の親、Stage、要求意味、owner、authority、threshold、実装・実行"
+  },
+  "authority_version": {
+    "po_adoption_basis": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "po_decision_row": {
+      "locator": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L59",
+      "line_pin": {
+        "line": 59,
+        "bytes": 593,
+        "raw_sha256": "288fe20e56430ca686b47c544a04903048bf909a2d11ced346682e403cb1cf43",
+        "text": "| `HELIXOS-L2-036` | 採択 | `MPR-RC-HELIXOS-L2-036-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9` | `HELIXOS-L2-036` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | sha256:daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3 | `docs/governance/audits/requirement-registration/os-retrofit-preflight-coverage-receipt-2026-09-28.json` |"
+      },
+      "status": "採択",
+      "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+      "candidate_semantic_digest": "sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9"
+    },
+    "g0": {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "identity": "HELIXOS-L2-036",
+      "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+      "adopted_version": "1.0",
+      "stage": "Stage 3",
+      "source_section_locator": "docs/helix-os/L2-requirements/governance-requirements.md#L1033",
+      "candidate_digest": "sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+      "registered_raw_span_sha256": "sha256:1db82b6f6f2877d1938fa5082e91f781692c56fc59d726350a9ef6f2296d2921"
+    },
+    "fixed_parent_at_633bf12": {
+      "checkpoint": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "bytes": 447207,
+        "sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+        "span": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "start_line": 1033,
+          "end_line_inclusive": 1064,
+          "bytes": 8683,
+          "raw_sha256": "1db82b6f6f2877d1938fa5082e91f781692c56fc59d726350a9ef6f2296d2921"
+        }
+      },
+      "l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "bytes": 331746,
+        "sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "span": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "start_line": 624,
+          "end_line_inclusive": 636,
+          "bytes": 2447,
+          "raw_sha256": "25b0a97de4e4b36a4c3925664ff383455b94bfd3f3dfef1deea7bd78193bf0d1"
+        }
+      },
+      "supporting_spans": {
+        "OS-L2-010-row": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "start_line": 63,
+          "end_line_inclusive": 63,
+          "bytes": 1506,
+          "raw_sha256": "5a6b2dd37b0bd10dd632f52e70e152c484579675b105214fb14f497eb7c63c98"
+        },
+        "OS-L2-019-section": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "start_line": 682,
+          "end_line_inclusive": 690,
+          "bytes": 1312,
+          "raw_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a"
+        },
+        "HARNESS-L2-005": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "start_line": 56,
+          "end_line_inclusive": 56,
+          "bytes": 856,
+          "raw_sha256": "6d4ca115f2d2114ddfa4dd41b4ec0305cb4818954b64ebb66bd2a08a39e5f63f"
+        },
+        "SECURITY-L2-007-008": {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "start_line": 130,
+          "end_line_inclusive": 148,
+          "bytes": 2463,
+          "raw_sha256": "2cd38f0de6c9d4c5edba6911716ddacdd1b7c8c5745349478aca79ccaeba8b00"
+        }
+      }
+    },
+    "main_current_L2_file_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+    "main_current_L2_span": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+      "start_line": 1033,
+      "end_line_inclusive": 1064,
+      "bytes": 8683,
+      "raw_sha256": "1db82b6f6f2877d1938fa5082e91f781692c56fc59d726350a9ef6f2296d2921"
+    },
+    "correction_of_prior_audit": {
+      "prior_audit_path": "docs/governance/audits/requirements-stage/os-stage3-parent036-bounded-semantic-audit-d629e2525-2026-10-08.json",
+      "prior_audit_file_sha256": "adc25713a96863b597d29a562d50b605db90d73e22cd954d25e4dc3dc25cbc5b",
+      "corrected_field": "authority_and_version.fixed_L2.file_sha256",
+      "error": {
+        "recorded_as_fixed": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+        "actual_d629_file_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+        "actual_633_fixed_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+        "d629_span_sha256": "1db82b6f6f2877d1938fa5082e91f781692c56fc59d726350a9ef6f2296d2921",
+        "633_span_sha256": "1db82b6f6f2877d1938fa5082e91f781692c56fc59d726350a9ef6f2296d2921"
+      },
+      "correction": "The previous bounded audit stored the full-file SHA from d629 current L2 as if it were the full-file SHA at fixed checkpoint 633bf12. The fixed 633bf12 full-file SHA is c530b01...; d629 current full-file SHA is 97f9158...; the parent036 raw span SHA 1db82b6... is the same at both revisions. The earlier audit remains immutable; this new audit corrects the revision/hash role only.",
+      "prior_audit_source_commit": "3b5fa06d0c5e4ed892fcbe21b15bf24be3a0c965"
+    }
+  },
+  "fixed_source_and_owner_check": {
+    "fixed_OS_L2_010": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+      "start_line": 63,
+      "end_line_inclusive": 63,
+      "bytes": 1506,
+      "raw_sha256": "5a6b2dd37b0bd10dd632f52e70e152c484579675b105214fb14f497eb7c63c98"
+    },
+    "finding": "provenance and unfinished-duty continuity; no general read-only policy selection owner is declared.",
+    "fixed_OS_L2_019": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+      "start_line": 682,
+      "end_line_inclusive": 690,
+      "bytes": 1312,
+      "raw_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a"
+    },
+    "fixed_HARNESS_L2_005": {
+      "pin": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "start_line": 56,
+        "end_line_inclusive": 56,
+        "bytes": 856,
+        "raw_sha256": "6d4ca115f2d2114ddfa4dd41b4ec0305cb4818954b64ebb66bd2a08a39e5f63f"
+      },
+      "finding": "derives verification duties/evidence from ticket/change/layer/risk and CI selection/assembly rule. It does not establish ownership of every separately supplied read-only verify policy."
+    },
+    "fixed_SECURITY_L2_007_008": {
+      "pin": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "start_line": 130,
+        "end_line_inclusive": 148,
+        "bytes": 2463,
+        "raw_sha256": "2cd38f0de6c9d4c5edba6911716ddacdd1b7c8c5745349478aca79ccaeba8b00"
+      },
+      "finding": "execution constraints and operation-specific authority; not read-only verification policy selection."
+    },
+    "fixed_L2_036_failure_return": {
+      "locator": "docs/helix-os/L2-requirements/governance-requirements.md:1053",
+      "pin": "1db82b6f6f2877d1938fa5082e91f781692c56fc59d726350a9ef6f2296d2921",
+      "mapping": {
+        "duty/oracle missing": "HARNESS-L2-005 owner",
+        "preflight source/evidence missing": "source/domain owner",
+        "ticket/scope/revision tuple mismatch": "OS-L2-010",
+        "authority missing": "existing SECURITY path",
+        "resource missing": "INFRASTRUCTURE/OS path"
+      }
+    },
+    "fixed_L11_036": {
+      "pin": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "start_line": 624,
+        "end_line_inclusive": 636,
+        "bytes": 2447,
+        "raw_sha256": "25b0a97de4e4b36a4c3925664ff383455b94bfd3f3dfef1deea7bd78193bf0d1"
+      },
+      "scope": "non-upgrade keeps applicable HARNESS verification duties and other read-only verify policies; no selection owner specified."
+    }
+  },
+  "old_source_read": {
+    "source_pins": {
+      "old_req": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "bytes": 64313,
+        "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+      },
+      "old_process": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/retrofit.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "bytes": 4108,
+        "sha256": "b7b053d867fd5f59c9256d1d60e4685d64c10ef50ff1f9de665dcf506d13c049"
+      },
+      "old_concept": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "bytes": 142042,
+        "sha256": "b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c"
+      },
+      "old_registry": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "bytes": 5541,
+        "sha256": "eeb30c1bb51f74798563b31b0802b301fb687d2e750c517061588969a7ff344f"
+      }
+    },
+    "spans": {
+      "old_req_624": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "start_line": 624,
+        "end_line_inclusive": 624,
+        "bytes": 94,
+        "raw_sha256": "2014a23fd29156eb5ae7111e25d47a9093d1c3ffda2099f10e6068e3c3f7a2f4"
+      },
+      "old_process_plan": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/retrofit.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "start_line": 30,
+        "end_line_inclusive": 39,
+        "bytes": 745,
+        "raw_sha256": "50ec63e82ac50ed586b04743e9fcce9a7cddbbcecb0e2448c7d3008257fc1b49"
+      },
+      "old_process_fail": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/retrofit.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "start_line": 84,
+        "end_line_inclusive": 87,
+        "bytes": 369,
+        "raw_sha256": "11db512a99c0acc98be0d0192ed8ea1c0fd43455761eacb99a0b00e26b711d70"
+      },
+      "old_concept_trigger": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "start_line": 445,
+        "end_line_inclusive": 445,
+        "bytes": 94,
+        "raw_sha256": "12bcc89ee75f44699b25a70f4a9fb5d603b723c39c39a4b5a948dec6ec41e738"
+      },
+      "old_concept_policy": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "start_line": 470,
+        "end_line_inclusive": 479,
+        "bytes": 710,
+        "raw_sha256": "70bb2847f79f7441a8adf10b7f064f8e8e446f801976da6a1a4719b3555951ff"
+      },
+      "old_registry": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "start_line": 141,
+        "end_line_inclusive": 155,
+        "bytes": 498,
+        "raw_sha256": "763988cce3576f9421ebf7ce87f0f9a83fcff44c2cc2a1c9abcc898969740b3f"
+      }
+    },
+    "legacy_ledger": {
+      "pin": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+        "bytes": 4857919,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+      },
+      "rows": [
+        {
+          "line": 501,
+          "asset_id": "LEGACY-ASSET-27224BBE5714E3442753",
+          "asset_class": "Historical",
+          "disposition": "unresolved",
+          "authority_status": "historical",
+          "raw_sha256": "bfbfa626a29fcbe38eae8072d12356b0cad5c9e1f18667a152b94bfa52f33245"
+        },
+        {
+          "line": 953,
+          "asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "asset_class": "Historical",
+          "disposition": "unresolved",
+          "authority_status": "historical",
+          "raw_sha256": "8edc3a3b89deec125edc585f7f57620f7108d80962133d01620799b99d2b543c"
+        },
+        {
+          "line": 956,
+          "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+          "asset_class": "RequirementSourceSnapshot",
+          "disposition": "source_snapshot_preservation",
+          "authority_status": null,
+          "raw_sha256": "30e5b492932bcbdd27fa905fe559d19d071c63a90435121bcb8bf7a3060ec243"
+        },
+        {
+          "line": 2304,
+          "asset_id": "LEGACY-ASSET-31D606AEA5C40091CD49",
+          "asset_class": "Historical",
+          "disposition": "unresolved",
+          "authority_status": "historical",
+          "raw_sha256": "2cd3866c40f6e3e52a8f392398f8ba05dbc2106c46f681ca7e032f94cefc3eb2"
+        }
+      ]
+    },
+    "semantic_disposition": "Old requirements v1.3:624 + Retrofit phase/failure lines are re-derived for upgrade preflight and plan ordering. Old Concept distinguishes high-risk trigger and historic config_drift approval; no old approval is reintroduced. Old registry is a Historical/unresolved read-only verify binding with explicit applies_when; it is not authority for new policy selection or apply. No old runtime, tool, CLI, test or CI was run."
+  },
+  "preexisting_bounded_audit_correction": {
+    "path": "docs/governance/audits/requirements-stage/os-stage3-parent036-bounded-semantic-audit-d629e2525-2026-10-08.json",
+    "immutable": true,
+    "historical_F1": "identified tuple-mismatch return routing gap from fixed L2:1053; this repair applies the existing OS-L2-010 destination to the relevant AC/CASE only.",
+    "historical_F2_LIMIT": "said policy selection owner remains unknown; this repair removes unsupported attribution of all other read-only policy selection to HARNESS-L2-005 and consumes only policy selection/source already supplied in fixture input."
+  },
+  "changes": {
+    "changed_documents": [
+      {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+        "before": {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+          "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+          "bytes": 203858,
+          "sha256": "be029fcba4a073b55b2c219e9d14058ec423ca9b4c27584a1a1c357d0a7f09d7"
+        },
+        "after": {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+          "revision": "worktree_after_edit_on_3c6372ebd57674b90310843ea2454eda659558ad",
+          "bytes": 204206,
+          "sha256": "c2a284246deafe498a0727ceaae967f1c98732bfa6c658572e86fcd0cbbca73a"
+        }
+      },
+      {
+        "path": "docs/helix-os/L10-verification/functional-verification.md",
+        "before": {
+          "path": "docs/helix-os/L10-verification/functional-verification.md",
+          "revision": "3c6372ebd57674b90310843ea2454eda659558ad",
+          "bytes": 245876,
+          "sha256": "394b9a3ca45eb5d07f34a64215cbe655481a3c65de3fff328765b1d40e2a466c"
+        },
+        "after": {
+          "path": "docs/helix-os/L10-verification/functional-verification.md",
+          "revision": "worktree_after_edit_on_3c6372ebd57674b90310843ea2454eda659558ad",
+          "bytes": 246354,
+          "sha256": "699b551f82b15c685dbc7b85c86ba52bfda494c986482ca7a746a7cc1ddaed56"
+        }
+      }
+    ],
+    "exact_changed_rows": [
+      {
+        "document": "fr",
+        "token": "AC-OS-L3-036-02",
+        "before": {
+          "line": 267,
+          "bytes": 159,
+          "raw_sha256": "9e13b7fd2740bd90811f3b869387a331b3677b1f12a55c50d78d2350d34c5610",
+          "text": "- AC-OS-L3-036-02：未実施/failed、ticket/revision違い、stale result、apply直前drift、authority失効を各々変異し、確定またはapply 0。"
+        },
+        "after": {
+          "line": 267,
+          "bytes": 256,
+          "raw_sha256": "395b505f15c8e872ced5a8b1a35dc7b2a980784b77f17f111800dc3dd3150cd5",
+          "text": "- AC-OS-L3-036-02：未実施/failed、ticket/revision違い、stale result、apply直前drift、authority失効を各々独立に変異し、確定またはapply 0。ticket・source/target revision・選択scopeのbinding不一致はOS-L2-010へ戻す。"
+        },
+        "changed": true
+      },
+      {
+        "document": "fr",
+        "token": "AC-OS-L3-036-03",
+        "before": {
+          "line": 268,
+          "bytes": 409,
+          "raw_sha256": "cbb68b5a677c8bd35571ee011fa8281cb236edfe79d9b6820c1c1b7b36bd137e",
+          "text": "- AC-OS-L3-036-03：applicability/result owner unknownなら当該scopeを保留する。非upgrade Retrofit operationにはupgrade専用preflight順序条件を一律に課さないが、HARNESS-L2-005の選択により入力で選択・適用される既存HARNESS verification dutiesと他のread-only verify policyを維持し、preflight対象外であることをそれらの省略理由にしない。"
+        },
+        "after": {
+          "line": 268,
+          "bytes": 527,
+          "raw_sha256": "70de2e897baadb7cca20017821ddb90b07d9e076ffe868e999b9b402f2ff53e8",
+          "text": "- AC-OS-L3-036-03：applicability/result owner unknownなら当該scopeを保留する。非upgrade Retrofit operationにはupgrade専用preflight順序条件を一律に課さないが、HARNESS-L2-005が導く選択済みverification dutiesと、入力で選択・適用済みと示される他のread-only verify policyを維持し、preflight対象外であることをそれらの省略理由にしない。policy選択authorityは本要件で追加せず、selection/sourceがunknownならsource/domain ownerへ戻す。"
+        },
+        "changed": true
+      },
+      {
+        "document": "fr",
+        "token": "AC-OS-L3-036-04",
+        "before": {
+          "line": 269,
+          "bytes": 529,
+          "raw_sha256": "316cde77aadf118660ab2c47c0727d2bd5287700b9968d140a3ce9897fb741b3",
+          "text": "- AC-OS-L3-036-04：unknown HARNESS oracle、異なるdependency/config scope、一般CI green、rollback planのみを選択upgradeのpreflight結果として与える各fixtureでplan確定/applyを止める。oracle欠落はHARNESS、technical applicability/resultはそのsource owner、run/authority/resourceはOS/SECURITY/INFRASTRUCTUREへ戻し、OSが意味やSECURITY authorityを作らない。OSがHARNESS oracleを書換える、preflight結果からSECURITY authorityを生成する変異も独立に拒否する。"
+        },
+        "after": {
+          "line": 269,
+          "bytes": 662,
+          "raw_sha256": "575a99572474b7d40b6a7664dc08a867f652c7c7d9cde3e7a20577c06156559a",
+          "text": "- AC-OS-L3-036-04：unknown HARNESS oracle、選択preflight resultのdependency/config scope不一致、一般CI green、rollback planのみを選択upgradeのpreflight結果として与える各fixtureでplan確定/applyを止める。ticket・source/target revision・選択scopeのbinding不一致はOS-L2-010へ戻す。oracle欠落はHARNESS、technical applicability/result unknownはそのsource owner、run/authority/resourceは既存OS/SECURITY/INFRASTRUCTURE経路へ戻し、OSが意味やSECURITY authorityを作らない。OSがHARNESS oracleを書換える、preflight結果からSECURITY authorityを生成する変異も独立に拒否する。"
+        },
+        "changed": true
+      },
+      {
+        "document": "fv",
+        "token": "CASE-OS-L10-036-02",
+        "before": {
+          "line": 627,
+          "bytes": 302,
+          "raw_sha256": "cc9ec9a1093ffa2b5db4f8ceb25a3a0c62eb1deb53aab1b1b111f6d5bcb0c489",
+          "text": "| CASE-OS-L10-036-02 | AC-OS-L3-036-02 | 各upgradeのpreflight未実施/failed/stale、wrong ticket・revision、apply直前drift/authority失効を一件ずつ変異。 | 影響upgradeのplan確定/apply 0。影響調査/未確定draftは継続可能で、未完理由とownerが維持される。 |"
+        },
+        "after": {
+          "line": 627,
+          "bytes": 461,
+          "raw_sha256": "8d4ac00df90b13e9ef98f0e620ce0a0c8e549135a49114bc80f54b2c29253f88",
+          "text": "| CASE-OS-L10-036-02 | AC-OS-L3-036-02 | 正常upgrade fixtureから、preflight未実施、failed、stale、ticket identity不一致、source/target revision binding不一致、apply直前drift、authority失効を各々一つだけ変異。 | 影響upgradeのplan確定/apply 0。ticket/revision binding不一致だけをOS-L2-010へ戻し、他のfailureは既存の該当ownerと未完理由を維持する。影響調査/未確定draftは継続可能。 |"
+        },
+        "changed": true
+      },
+      {
+        "document": "fv",
+        "token": "CASE-OS-L10-036-04",
+        "before": {
+          "line": 668,
+          "bytes": 313,
+          "raw_sha256": "9cc932c425822c4dfc42f88d0db36d4076e3eb2f44be1e1c36e486e34ec454d5",
+          "text": "| CASE-OS-L10-036-04 | AC-OS-L3-036-04 | 選択upgradeのunknown oracle、別dependency/config scope、一般CI greenのみ、rollback planのみを個別入力する。 | どれも選択preflightの成功にならずplan確定/applyを止める。oracle/technical owner/authority/resourceへ別々に戻す。 |"
+        },
+        "after": {
+          "line": 668,
+          "bytes": 587,
+          "raw_sha256": "770b70e872b5547baa2b7d897a69aa5b6b77237a87a09c7b039169065ddddb1b",
+          "text": "| CASE-OS-L10-036-04 | AC-OS-L3-036-04 | 正常upgrade fixtureから、unknown HARNESS oracle、選択preflight resultのdependency/config scopeだけが対象operation tupleと異なる状態、一般CI greenのみ、rollback planのみを各々独立に与える。 | どれも選択preflightの成功にならずplan確定/applyを止める。tupleのticket/scope/revision binding mismatchだけをOS-L2-010へ戻す。oracle欠落はHARNESS、technical applicability/result unknownはそのsource owner、run/authority/resourceは既存OS/SECURITY/INFRASTRUCTURE経路へ戻す。 |"
+        },
+        "changed": true
+      },
+      {
+        "document": "fv",
+        "token": "CASE-OS-L10-036-08b",
+        "before": {
+          "line": 700,
+          "bytes": 525,
+          "raw_sha256": "7b6fe5bcfb404df0bf4d9c62a2c53d3ebe1fd93d54a996ccb2e07597e399cbee",
+          "text": "| CASE-OS-L10-036-08b | AC-OS-L3-036-03 | CASE-036-07の正常入力から、選択済みread-only verify policy一つだけを抑止する。HARNESS dutyや他入力は保持する。 | non-upgrade分類を理由とするpolicy抑止を成功にしない。HARNESS-L2-005の選択によって入力された既存read-only policyを維持し、欠落は未完としてHARNESS-L2-005 ownerへ戻す。policyのsource自体が不明ならsource/domain ownerへ戻す。preflight適用や変更authorityは生成しない。 |"
+        },
+        "after": {
+          "line": 700,
+          "bytes": 570,
+          "raw_sha256": "ea6d68fcafb307f857a6b25c2d9a61608584e7d5352707e11495a6d93b3d9d97",
+          "text": "| CASE-OS-L10-036-08b | AC-OS-L3-036-03 | CASE-036-07の正常入力から、入力で選択・適用済みと示されるread-only verify policy一つだけを抑止する。HARNESS dutyや他入力は保持する。 | non-upgrade分類を理由とするpolicy抑止を成功にしない。policy欠落と未完状態を保持し、その既存policy source/domain ownerへ戻す。source/owner自体がunknownならunknownを保持してsource/domainへ戻し、選択authorityをOS/HARNESSへ追加しない。preflight適用や変更authorityは生成しない。 |"
+        },
+        "changed": true
+      }
+    ],
+    "return_mapping_after": {
+      "ticket_identity/source-target_revision/selected_scope_binding_mismatch": "OS-L2-010",
+      "missing HARNESS oracle/verification duty": "HARNESS-L2-005 owner",
+      "technical applicability/result unknown": "the existing source/domain owner",
+      "missing preflight source/evidence": "the existing source/domain owner",
+      "run/authority/resource": "existing OS/SECURITY/INFRASTRUCTURE route",
+      "already selected other read-only policy suppressed": "that policy source/domain existing responsibility; unknown source/owner stays unknown and returns source/domain"
+    },
+    "other_mutation_return_owners": "unchanged; no broad owner reassignment."
+  },
+  "current_six_body_pins_after": {
+    "br": {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20490,
+      "sha256": "da524c179c66fea54c3e967a949fe5d8a1dc89b2241e513def4fca50e3cadb01"
+    },
+    "fr": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 204206,
+      "sha256": "c2a284246deafe498a0727ceaae967f1c98732bfa6c658572e86fcd0cbbca73a"
+    },
+    "nfr": {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 34321,
+      "sha256": "4a85cea8d1e9394243cbd701a69849a0f30de9d6c3e3620225605df2166496d5"
+    },
+    "bv": {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17963,
+      "sha256": "8d028efe0e14ecd1769c95a5bf1926ab6e04d6b53981f9a9826635f8dc5ae9ad"
+    },
+    "fv": {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 246354,
+      "sha256": "699b551f82b15c685dbc7b85c86ba52bfda494c986482ca7a746a7cc1ddaed56"
+    },
+    "nfrv": {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 31704,
+      "sha256": "8fdce24ec5a1201e73b9c0add64921abaf53fe90d1cdacd40ad4ba0aad0ad262"
+    }
+  },
+  "current_036_parent_spans_after": {
+    "br_036": {
+      "line": 65,
+      "bytes": 148,
+      "raw_sha256": "cfc481d2dd67d7b235e559c2ad9a09e869e6a18a112e8418447bb529b11cf98d",
+      "text": "| HELIXOS-L2-036 | 機能要件のみ。Retrofit成否の技術判定は各owner。 | OSはpreflight-plan/apply trace。FR-OS-L3-036 AC-01..04。 |"
+    },
+    "fr_036": {
+      "start_line": 264,
+      "end_line_inclusive": 269,
+      "bytes": 2326,
+      "raw_sha256": "8fc8172c4f2b719f5367ad4096f81c1dfb6b361fe655a374b61e61e5cf569ce0"
+    },
+    "nfr_036": {
+      "line": 91,
+      "bytes": 584,
+      "raw_sha256": "f33f1947dbaf8dbf2f034702628b889c81e705b0bc48172b3456bd721e6da88b",
+      "text": "| NFR-OS-L3-036-01 / 036 / AC-01..04 | 全Retrofit upgradeごとにplan確定前preflightとapply直前再照合のcoverage 100%。 | plan前だけではapply前driftを見逃す。通常operationへ拡張しない。 | 複数upgrade ticket fixtureで各upgrade両境界のcurrent source/authority照合、欠落0。非upgrade保持群と義務/policy省略negative（FV CASE-OS-L10-036-07, CASE-OS-L10-036-08a, CASE-OS-L10-036-08b）は別集計し、固定L11 oracleに対する省略期待数0を照合する。upgrade分母と混ぜず、追加の数値閾値は設けない。 |"
+    },
+    "bv_036": {
+      "line": 54,
+      "bytes": 208,
+      "raw_sha256": "ce11c48fa9c624b3bb05ef15e2193708203012ea8c0dd848a3c56e26b97ca20d",
+      "text": "| CASE-OS-L10-BIZ-036 | HELIXOS-L2-036 / FR-OS-L3-036 AC-01..04 | upgradeのpreflight/plan/applyと、非upgradeの既存検証義務・read-only policy保持を別状態で示す。 | Retrofit投資効果 |"
+    },
+    "fv_036_cases": {
+      "case_ids": [
+        "CASE-OS-L10-036-01",
+        "CASE-OS-L10-036-02",
+        "CASE-OS-L10-036-03",
+        "CASE-OS-L10-036-04",
+        "CASE-OS-L10-036-05",
+        "CASE-OS-L10-036-06a",
+        "CASE-OS-L10-036-06b",
+        "CASE-OS-L10-036-07",
+        "CASE-OS-L10-036-08a",
+        "CASE-OS-L10-036-08b"
+      ],
+      "count": 10,
+      "individual_row_pins": [
+        {
+          "line": 626,
+          "bytes": 676,
+          "raw_sha256": "8554e10f23e5573539c083e3ba4ab4b32073d59965afa2d24f2bdd121471bc14",
+          "text": "| CASE-OS-L10-036-01 | AC-OS-L3-036-01 | 複数のRetrofit upgradeを含むticketでpreflight前の影響調査/未確定plan draft、各upgradeのpreflight成功、plan確定、各apply直前に最新source/authorityを再照合する。別fixtureでは未見のpackage manager/dependency/config形式でも選択oracleが明示対応する正常upgradeを入力する。 | 未確定draftはpreflight成功前から可能。全upgradeに両境界の同ticket/revision記録があり一致するものだけapply可能。未見形式も既存oracleが対応する範囲では同条件で扱う。非upgradeの既存検証保持はCASE-036-07/08a/08bで別に照合する。 |"
+        },
+        {
+          "line": 627,
+          "bytes": 461,
+          "raw_sha256": "8d4ac00df90b13e9ef98f0e620ce0a0c8e549135a49114bc80f54b2c29253f88",
+          "text": "| CASE-OS-L10-036-02 | AC-OS-L3-036-02 | 正常upgrade fixtureから、preflight未実施、failed、stale、ticket identity不一致、source/target revision binding不一致、apply直前drift、authority失効を各々一つだけ変異。 | 影響upgradeのplan確定/apply 0。ticket/revision binding不一致だけをOS-L2-010へ戻し、他のfailureは既存の該当ownerと未完理由を維持する。影響調査/未確定draftは継続可能。 |"
+        },
+        {
+          "line": 628,
+          "bytes": 179,
+          "raw_sha256": "0eb7d572aaeba36d7e60efac2fc2ec0cd1879d5417891ace01ca72c06d34bc5d",
+          "text": "| CASE-OS-L10-036-03 | AC-OS-L3-036-03 | 適用可能contract/result ownerをunknownにする。 | unknownのままplanを保留。技術compatibilityをOSが補完しない。 |"
+        },
+        {
+          "line": 668,
+          "bytes": 587,
+          "raw_sha256": "770b70e872b5547baa2b7d897a69aa5b6b77237a87a09c7b039169065ddddb1b",
+          "text": "| CASE-OS-L10-036-04 | AC-OS-L3-036-04 | 正常upgrade fixtureから、unknown HARNESS oracle、選択preflight resultのdependency/config scopeだけが対象operation tupleと異なる状態、一般CI greenのみ、rollback planのみを各々独立に与える。 | どれも選択preflightの成功にならずplan確定/applyを止める。tupleのticket/scope/revision binding mismatchだけをOS-L2-010へ戻す。oracle欠落はHARNESS、technical applicability/result unknownはそのsource owner、run/authority/resourceは既存OS/SECURITY/INFRASTRUCTURE経路へ戻す。 |"
+        },
+        {
+          "line": 736,
+          "bytes": 224,
+          "raw_sha256": "3e3ed14eebeca43e4fb77d4a63998adf2d966823e84d4329fca918ba70eac62b",
+          "text": "| CASE-OS-L10-036-05 | AC-OS-L3-036-01 | 未見package manager/dependency種類/config形式だが選択oracleが対応する正常upgrade。 | OSは方式/schema名だけを理由に拒否せずscope/revisionを結ぶ。 |"
+        },
+        {
+          "line": 696,
+          "bytes": 146,
+          "raw_sha256": "42f02361df35ee0442d3c7ede2c454b2ae461250e88655e3f60102729de0f5b8",
+          "text": "| CASE-OS-L10-036-06a | AC-OS-L3-036-04 | OSが選択HARNESS oracleを改変する。 | oracleを変更せず、選択HARNESS ownerへ戻す。 |"
+        },
+        {
+          "line": 697,
+          "bytes": 168,
+          "raw_sha256": "f39b3864b2e4e1c6055f17f8820af216cdc625316b032ac619aae411c3e49bf0",
+          "text": "| CASE-OS-L10-036-06b | AC-OS-L3-036-04 | preflight resultだけからSECURITY authorityを生成する。 | authorityを生成せず既存SECURITY ownerへ戻す。 |"
+        },
+        {
+          "line": 698,
+          "bytes": 464,
+          "raw_sha256": "022afb7744ae3f9d56e848f1e739396e63ea7169835f5209ddb117f8e5ed1246",
+          "text": "| CASE-OS-L10-036-07 | AC-OS-L3-036-03 | preflight upgrade条件の対象外となる非upgrade Retrofit operationに、入力で当該operationに選択・適用される全HARNESS verification dutiesと他のread-only verify policiesを明示する。 | upgrade専用preflight順序条件は追加せず、適用される既存verification dutyとread-only policyはいずれも省略せず保持する。既存の未完義務・検証状態を失わない。 |"
+        },
+        {
+          "line": 699,
+          "bytes": 394,
+          "raw_sha256": "13e1501852d908fb5405c9bf04b8699277935d5b71778c2925cc918919d01ab5",
+          "text": "| CASE-OS-L10-036-08a | AC-OS-L3-036-03 | CASE-036-07の正常入力から、選択済みHARNESS verification dutyの適用/未完状態一つだけを欠落させる。read-only policyや他入力は保持する。 | preflight対象外を理由にHARNESS dutyを省略した状態を成功にしない。未完義務を保持し、verification duty/oracleをHARNESS-L2-005 ownerへ戻す。 |"
+        },
+        {
+          "line": 700,
+          "bytes": 570,
+          "raw_sha256": "ea6d68fcafb307f857a6b25c2d9a61608584e7d5352707e11495a6d93b3d9d97",
+          "text": "| CASE-OS-L10-036-08b | AC-OS-L3-036-03 | CASE-036-07の正常入力から、入力で選択・適用済みと示されるread-only verify policy一つだけを抑止する。HARNESS dutyや他入力は保持する。 | non-upgrade分類を理由とするpolicy抑止を成功にしない。policy欠落と未完状態を保持し、その既存policy source/domain ownerへ戻す。source/owner自体がunknownならunknownを保持してsource/domainへ戻し、選択authorityをOS/HARNESSへ追加しない。preflight適用や変更authorityは生成しない。 |"
+        }
+      ]
+    },
+    "nfrv_036": {
+      "line": 81,
+      "bytes": 474,
+      "raw_sha256": "ec890c2000a4131b460b62f9d9243d74465bcf4fdee8f85c4a010305ea710abf",
+      "text": "| CASE-OS-L10-NFR-036-01 | NFR-OS-L3-036-01 | 複数upgrade ticketの全Retrofit upgradeごとにplan前/apply直前のsource/authority capture。upgrade単位境界網羅率・stale pass数。非upgrade保持群はFV CASE-OS-L10-036-07, CASE-OS-L10-036-08a, CASE-OS-L10-036-08bだけを別集計し、固定L11が要求するHARNESS duty/read-only policy保持に対する省略期待数0を照合する。upgrade分母と混ぜず、別の数値閾値は設けない。 |"
+    }
+  },
+  "static_verification": {
+    "json_schema_parse": "pass",
+    "all_pins_recomputed": "pass",
+    "case_ids_unique": true,
+    "case_id_count": 10,
+    "checks": [
+      "FR AC-02 and AC-04 route only ticket/scope/revision tuple mismatch to OS-L2-010.",
+      "FV CASE-02 and CASE-04 preserve one-variable failure fixtures; expected OS-L2-010 return applies only to the mismatch branch.",
+      "FR AC-03 separates HARNESS-derived selected verification duties from other read-only policies already marked selected/applied in input.",
+      "FV CASE-08b suppresses only one already-selected policy, preserves all other input, returns through that existing policy source/domain responsibility, and does not infer new selection authority.",
+      "Six canonical full-file SHA-256 values and parent-specific spans are pinned.",
+      "The old audit file is byte-unchanged and the revision/full-SHA role error is corrected only by this supplement.",
+      "git diff --check passed after all 2 document and 2 audit artifacts were generated."
+    ],
+    "git_diff_check": "pass",
+    "not_run": [
+      "fixture execution",
+      "tests",
+      "old runtime/CLI/hook/CI",
+      "deployment/operation"
+    ]
+  },
+  "authority_status": {
+    "new_L3_approval": "none",
+    "condition3": "not performed",
+    "PO_post_confirmation": "not performed",
+    "implementation_authorization": "none",
+    "L10_execution": "not performed",
+    "global_274_semantic_closure": "not claimed",
+    "independent_review": "not yet performed"
+  },
+  "source_revision_for_prior_audit_pin": "3b5fa06d0c5e4ed892fcbe21b15bf24be3a0c965"
+}
