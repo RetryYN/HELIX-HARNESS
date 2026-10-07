@@ -51,7 +51,7 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 | CASE-OS-L10-BIZ-033 | HELIXOS-L2-033 / FR-OS-L3-033 AC-01..06 | 選択scope再現receiptと未評価を分ける。 | detector精度KPI |
 | CASE-OS-L10-BIZ-034 | HELIXOS-L2-034 / FR-OS-L3-034 AC-01..05 | 原event/disposition/appeal履歴を保ち、OSがrisk acceptanceを確定しない。 | risk appetite |
 | CASE-OS-L10-BIZ-035 | HELIXOS-L2-035 / FR-OS-L3-035 AC-01..05 | job登録と監査実施・finding解消を別状態にする。 | 監査時間SLO |
-| CASE-OS-L10-BIZ-036 | HELIXOS-L2-036 / FR-OS-L3-036 AC-01..04 | preflight/plan/applyを別状態にする。 | Retrofit投資効果 |
+| CASE-OS-L10-BIZ-036 | HELIXOS-L2-036 / FR-OS-L3-036 AC-01..04 | upgradeのpreflight/plan/applyと、非upgradeの既存検証義務・read-only policy保持を別状態で示す。 | Retrofit投資効果 |
 | CASE-OS-L10-BIZ-037 | HELIXOS-L2-037 / FR-OS-L3-037 AC-01..05 | 観測欠落/条件不成立/handoffを分ける。 | 負債金額化 |
 | CASE-OS-L10-BIZ-038 | HELIXOS-L2-038 / FR-OS-L3-038 AC-01..04 | snapshot/proposal appendとHARNESS採択を分ける。 | layer coverage目標 |
 | CASE-OS-L10-BIZ-040 | HELIXOS-L2-040 / FR-OS-L3-040 AC-01..06 | retry routeを回復済みと数えない。 | 旧ticket taxonomy |
