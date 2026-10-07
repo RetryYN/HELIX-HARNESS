@@ -303,7 +303,7 @@ HARNESS-L2-010/011のdescriptor（機能identity、contract version、artifact v
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：SECURITYはartifactのSECURITY固有accept/reject/unknown（provenance、許可、対象version/range条件）だけを所有する。HARNESSは共通descriptor・交換・rollback・未完義務lifecycleを所有する。依存はHARNESS-L2-010/011共通pack契約とSECURITY-L2-010/013だけに限り、OS progression/artifact ownerの意味を追加しない。戻し先: SECURITY固有の受入軸の意味変更はL1-010、artifact identity/integrityはL1-013、共通pack契約不足はHARNESS ownerへ返し、本unitで補完しない。
 
-**L3 acceptance (`SECURITY-AC-028-01`)**：HARNESS-L2-010/011の共通pack descriptor（機能identity、contract version、artifact version、dependency identity/version、compatibility range、verification scope）を入力として特定する。SECURITY更新candidateのidentity/実artifact version/digestとdependency versionがdescriptorおよびdeclared rangeに一致し、宣言verification scopeの検証が実行され、その検証対象と更新後artifactのidentity/version/digestが一致し、provenanceとL2-010/013のSECURITY条件を満たす場合だけSECURITY固有の受入判定を返す。`version_target`は目標版で実版ではない。descriptor必須fieldまたはscopeの欠落/unknown、不一致、range外、検証対象と更新後artifactの不一致を受入れたら不合格。共通交換/rollback/未完義務lifecycleの所有・受入をSECURITY-L2-028の証拠に含めたら不合格。
+**L3 acceptance (`SECURITY-AC-028-01`)**：HARNESS-L2-010/011の共通pack descriptor（機能identity、contract version、artifact version、dependency identity/version、compatibility range、verification scope）を入力として特定する。SECURITY更新candidateのidentity/実artifact version/digestとdependency versionがdescriptorおよびdeclared rangeに一致し、宣言verification scopeに対応する検証結果が提示され、その対象と更新後artifactのidentity/version/digestが一致し、provenanceとL2-010/013のSECURITY条件を満たす場合だけSECURITY固有の受入判定を返す。`version_target`は目標版で実版ではない。descriptor必須fieldまたはscopeの欠落/unknown、不一致、range外、candidateまたは検証対象のidentity/version/digest欠落/unknown、不一致、検証対象と更新後artifactの不一致を受入れたら不合格。共通交換/rollback/未完義務lifecycleの所有・受入をSECURITY-L2-028の証拠に含めたら不合格。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-028`。
 

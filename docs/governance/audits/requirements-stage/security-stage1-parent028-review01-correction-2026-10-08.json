@@ -1,0 +1,53 @@
+{
+  "reviewed_head": "88d05678270230908ca0634cbe79e5364a19b1b9",
+  "formal_comments": [
+    6046185992,
+    6046234336
+  ],
+  "six_body_pins": {
+    "docs/helix-security/L3-requirements/business-requirements.md": {
+      "before_revision": "88d05678270230908ca0634cbe79e5364a19b1b9",
+      "before_sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+      "after_sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+      "after_bytes": 2999
+    },
+    "docs/helix-security/L3-requirements/functional-requirements.md": {
+      "before_revision": "88d05678270230908ca0634cbe79e5364a19b1b9",
+      "before_sha256": "aa967870fbf155c32973c24ccfedefdfd4b46b0f968c79276b9a58cb8bdd19a2",
+      "after_sha256": "f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e",
+      "after_bytes": 137779
+    },
+    "docs/helix-security/L3-requirements/nfr-grade.md": {
+      "before_revision": "88d05678270230908ca0634cbe79e5364a19b1b9",
+      "before_sha256": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b",
+      "after_sha256": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b",
+      "after_bytes": 18947
+    },
+    "docs/helix-security/L10-verification/business-verification.md": {
+      "before_revision": "88d05678270230908ca0634cbe79e5364a19b1b9",
+      "before_sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+      "after_sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+      "after_bytes": 2356
+    },
+    "docs/helix-security/L10-verification/functional-verification.md": {
+      "before_revision": "88d05678270230908ca0634cbe79e5364a19b1b9",
+      "before_sha256": "dc216f70d350c51c4cb7df746918a3bc900513632ffb7a9c626b145af70e4361",
+      "after_sha256": "f37da9b01739f8a7718be2b6ff124c56c0a21342a8b32bae11337368f3480910",
+      "after_bytes": 178403
+    },
+    "docs/helix-security/L10-verification/nfr-verification.md": {
+      "before_revision": "88d05678270230908ca0634cbe79e5364a19b1b9",
+      "before_sha256": "dea5e91b347e74d95749b9ec4dd56fb6218a3ad170e8c451cb951328a976d000",
+      "after_sha256": "3675115f6d1b242a511651e627e8c46cfc71013ce9cf129c5045f1ce51e5f685",
+      "after_bytes": 14254
+    }
+  },
+  "corrections": [
+    "M1固定L11引用を原文へ復元。L2由来追加oracleはfixture行に保持。",
+    "M2 artifact owner追加を撤去しL1-013/HARNESS/L1-010のみへ返却。",
+    "m1 candidate/target identity/version/digest欠落/unknownを明記。",
+    "m2 検証結果の提示へ表現を修正し実行主体を追加しない。"
+  ],
+  "authority_effect": "none",
+  "runtime_executed": false
+}
