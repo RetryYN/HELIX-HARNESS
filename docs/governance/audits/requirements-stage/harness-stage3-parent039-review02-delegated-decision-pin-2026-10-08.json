@@ -1,0 +1,97 @@
+{
+  "record_type": "harness_stage3_parent039_review02_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-HARNESS",
+    "stage": 3,
+    "parents": [
+      "HELIXHARNESS-L2-039"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comments": [
+      {
+        "comment_id": 6045219337,
+        "raw_body": "## review02（HEAD 4171786737e594f5df21b162f1331c6c94191456 / base c9e73bcc367a9d5203c92ef9775511013da4f85d）— Claude review_merge\n\n### 結論：Major 0。同じ本文revisionで委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- OpusとFableが、このrevisionを独立に読みました。どちらもMajorなしで、承認してよいと判断しました。\n- 判断記録と6本文pinを追加した後に、条件3を別に照合します。\n- 旧reviewの判断は継承していません。\n\n### review01の解消\n- **M1（解消）**\n  - FV:1549–1551の見出しは「M5の当時の未分離範囲（r19で個別化）」に変わりました。本文は履歴として書き直され、r19の21件で個別に照合する現在の状態に揃っています。「区別しない」「必須化しない」という現在形の主張は消えました。\n  - FV:1555の「全164定義行（主表155行＋境界fixture 9行）」は、実際に数えた結果と一致します。主表155行、境界9行、ID重複は0件、r19は21件（unknown 7件、scope 7件、revision 7件）でした。\n- **Minor（すべて解消）**\n  - 語の結合ミスは、残り0件です。\n  - scope/revisionの14行の入力列は、「正常baselineはCASE-039-05で、対象軸以外は同じ」に統一されました。human-evaluationの定型文は残っていません。\n  - FR:681のAC-02から、重複していた表現が除かれました。\n  - 追補JSONで、before/afterの時点を分けて書いています。 のメモは「根拠ではなく、再現不要」と明記されました。\n\n### 照合\n- **新しい文言と固定親の整合**\n  - M5節の新しい文言（当該scope/revisionの  主張だけを拒否し、implemented・候補形成・設計開始は保持する）は、固定L11:676とL2:913/929に合っています。\n  - r19の21行の戻し先は、すべて005/022です。これはL2:921の範囲内です。\n- **既存の境界check**\n  - 削除はありません。FVの変更は、21行の追加と4行の書き換えだけです。\n- **固定親とmain統合**\n  - 固定親（633bf12 L2:891–930、L11:670–676）は、HEADでも変わっていません。\n  - main統合後も、HARNESSの本文は修正commitから変わっていません。\n- **SHA**\n  - 追補監査に記録された次の値は、すべて実bytesと一致しました。\n    - 6本文の修正前と修正後のSHA\n    - span SHA\n    - review01 comment本文（5,887 bytes、`d1dfa696…`）\n- **静的検査**\n  - `scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### 新しい6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256（先頭） |\n|---|---:|---|\n| BR | 27827 | `9fb531a5…` |\n| FR | 271676 | `2180967f…` |\n| NFR | 60172 | `ee84bc87…` |\n| BV | 26039 | `864b0034…` |\n| FV | 1182856 | `d1c55ca4…` |\n| NFRV | 54341 | `17ee1dc8…` |\n\n### 返さない所見（Minor。承認は止めず、解消済みとは扱いません）\n1. 適用性unknownの7行の入力列で、baselineの記述が二重になっていて冗長です。意味の矛盾はありません。\n2. 実測データ軸と人間評価軸のscope/revision行の期待列だけ、「軸の」が入っていません。他の5軸は「〜軸のevidence」です。表記が揃っていません。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 005/022の本文の詳細は読んでいません。戻し先の確認は、L2:921のカテゴリとの一致までです。\n\n本reviewは承認・merge admissionを生成しません。\n",
+        "bytes": 3658,
+        "sha256": "8e348ff48176d6df60e9b042e112404165e6c1264cce778f1717e743a1503577"
+      },
+      {
+        "comment_id": 6045223326,
+        "raw_body": "## review02 訂正（[comment 6045219337](https://github.com/RetryYN/HELIX-HARNESS/pull/2679#issuecomment-6045219337) の記載漏れ）— Claude review_merge\n\nreview02の本文で、作成時のshell展開により2か所の語が抜けていました。判定（Major 0、条件1・2成立）と、その他の記載は変わりません。原commentは編集せず、ここで訂正します。\n\n- 「Minor（すべて解消）」の4項目め：\n  - 誤：「 のメモは「根拠ではなく、再現不要」と明記されました。」\n  - 正：「`/tmp` のメモは「根拠ではなく、再現不要」と明記されました。」\n- 「照合」の1項目め：\n  - 誤：「当該scope/revisionの  主張だけを拒否し」\n  - 正：「当該scope/revisionの `ux_verified` 主張だけを拒否し」\n",
+        "bytes": 825,
+        "sha256": "548d3c25de7b618f2ba50bf72b41fefb7cc38a26426b1059c702deca1197f38e"
+      }
+    ],
+    "reviewed_head": "4171786737e594f5df21b162f1331c6c94191456",
+    "review_base": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "fixed_parent_source": [
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 891,
+      "end_line_inclusive": 930,
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "span_sha256": "b4132e8de3e7751f082c0d68046a40a4e8feab4169f3c9188a9f21fd2998dd52"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 670,
+      "end_line_inclusive": 676,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "span_sha256": "26dffc7737929d96cac0973229f465a2013e36c384e92d18887398e2a3383449"
+    }
+  ],
+  "six_body_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 27827,
+      "sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 271676,
+      "sha256": "2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 60172,
+      "sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 26039,
+      "sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 1182856,
+      "sha256": "d1c55ca4e6b432ccdc941d8d9813c88e5f33476ef2c2d55aa0bfafe549b6726f"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 54341,
+      "sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-harness-stage3-parent039-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 3119,
+    "sha256": "a2e09dda98408efe8f9ca55bd8c2e51265432845023c7ae6261bba55e7a101fb"
+  },
+  "minor_not_returned": [
+    "適用性unknown7行のbaseline重複",
+    "2軸の軸の表記差"
+  ],
+  "limits": [
+    "fixture未実行",
+    "005/022本文詳細はreview対象外",
+    "274親検収未完"
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "audit_id": "HARNESS-L3-L10-039-UX-axis-applicability-and-evidence-binding-repair-2026-10-08",
+  "created_at": "2026-10-08",
+  "base_main": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf",
+  "scope": {
+    "mechanism": "HELIX-HARNESS",
+    "stage": "Stage 3",
+    "fixed_parent": "HARNESS-L2-039",
+    "version_target": "1.0",
+    "changes": [
+      "FR-HARNESS-L3-039 AC-02 wording only",
+      "21 AC-HARNESS-L3-039-02 standalone CASE rows; update existing CASE-039-05 index residual text"
+    ],
+    "out_of_scope": [
+      "business requirements",
+      "NFR grade/verification because they explicitly delegate UX evidence to functional AC-02",
+      "other parent/stage/mechanism",
+      "requirements meaning/owner/version/authority/gate"
+    ]
+  },
+  "finding_source": {
+    "prior_semantic_audit": "/tmp/harness-stage3-first5-semantic-audit-9229.md",
+    "false_success": "7 UX axes may have current evidence while one axis applicability remains unknown, or one axis evidence belongs to a different scope/revision; ux_verified would violate fixed L2/L11."
+  },
+  "fixed_parent_basis": {
+    "decision_main": "633bf12",
+    "decision_record": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line_start": 44,
+      "line_end": 44,
+      "git_blob": "f91f7c5cf28b57e41666ae24d729378c67f0aaab",
+      "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "span_sha256_including_lf": "048d22bc06df04095a7ca95c8f1ae0119a20ac57cdca197fa62143e0dc529c9d",
+      "text": "| `HARNESS-L2-039` | 採択 | `MPR-RC-HARNESS-L2-039-003` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0` | `HARNESS-L2-039` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746 | `docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r3.json#HARNESS-L2-039` |"
+    },
+    "l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line_start": 891,
+      "line_end": 930,
+      "git_blob": "d791e21ed415b62b90dca01e047800ab81d2dccc",
+      "full_file_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "span_sha256_including_lf": "b4132e8de3e7751f082c0d68046a40a4e8feab4169f3c9188a9f21fd2998dd52",
+      "text": "### HARNESS-L2-039 体験・UI・Frontend契約を同一scopeへ結ぶ（HARNESS-CORE composite候補、version_target: 1.0）\n\n**状態**：新規の未採択候補。2026-09-28に合意した250候補には含まれず、この候補・記載内容をPO採択済みと扱わない。既採択のHARNESS-L2-024/025/026を変更・置換せず、それらの要求形成、設計単体、設計構成体の間で、体験成果とUI/Frontendの契約が同じ対象scope・revisionを指すための構成体条件を追加する。\n\n**親L1**：主親はHARNESS-L1-001（上流意図から運用評価までのV-pair）、HARNESS-L1-003（要求変更の影響を設計・実装・検証へ伝える）、HARNESS-L1-004（対象revision/riskに合う検証義務・oracle・証拠）、HARNESS-L1-006（要求形成、prototype/非UI適用性、合意・freeze・差戻し）、HARNESS-L1-008（指示と根拠から要求を形成し、欠落・矛盾・過剰解釈を確認）とする。HARNESS-L1-009は設計義務・不足入力を戻す関連親。HARNESS-L1-005/007は外部提供時の適用条件とVersion 1成果範囲の文脈で、内部OSを利用者依存に変えたり新しい完成条件を追加したりしない。これらの現行L1本文の意味内であり、Experience/UI/Frontendの新しい企画価値をL1へ追加しない。\n\n**所属・scope**：HELIX-HARNESS-COREのcomposite候補。要求・設計・受入の責務を同一scope・対象revisionで結ぶ契約を定義する。UIの有無を問わず、各要求まとまりの業務目的を親へ辿れることを扱う。画面を持つscopeではExperience、UI、Frontendの適用条件を照合し、画面を持たないscopeではUI項目を根拠付きN/A・再評価条件として残す。UIの存在や契約適用性がunknownならN/Aへ変換しない。全screen/製品に特定技術・field名・固定schemaを強制しない。\n\n**単独で成り立つための依存**（常時必須）：対象Concept/L1および要求・対象のscope/revision/authority状態、HARNESS-L2-008の要求意味・候補と人間合意境界、HARNESS-L2-003/004の段階状態・変更影響とrelation、HARNESS-L2-022の段階別oracle・result・evidence状態を照合する。必要な入力、authority、oracleが欠けるときは不足/未評価を返し、上位の意味や合意を補完しない。HARNESS-COREが契約と設計上のrelation/oracleを所有し、OSのticket発行・割当・CI運転・実行状態記録、利用者環境の実行、L11の利用者受入判断を所有しない。\n\n**特定操作時のみ必須**：UI/UXを含む要求・設計scopeを形成または変更するときは、HARNESS-L2-024の該当するprototype/非UI適用性・screen scope・agreement状態、HARNESS-L2-026の該当unit設計と対の検証設計、およびHARNESS-L2-025の構成体oracle/端から端の整合を照合する。検証義務を決める操作ではHARNESS-L2-005のticket/risk別選択を使う。L2-022に属する段階stateを主張するときはそのoracle/evidence条件を適用する。これら既存要求の完了receiptを039の開始前提にはせず、各操作が必要とする入力だけを要求する。\n\n**選択した入力元に応じて必須**：対象が明示選択するprototype、screen/flow/interaction資料、design token/component実体、content/analytics event定義、frontend data/state owner、permission/logging/error仕様、device・locale・network等の環境条件、および選択Pattern/design systemを使う場合の各source identity・revision・scope・authority状態を束縛する。選択されていないsourceを存在/不存在/適格/成功と推定しない。BRAIN由来Patternを選択した場合は現行の026/025とconnector契約を適用し、039独自の知識正本を持たない。\n\n**参照資料のみ**：旧sourceのfield名・旧registry/schema/runtime、例示に過ぎない画面manifest形式は参照資料とする。039はFE検証の実行結果を自己生成しない。036のFE 5軸を選択scopeの検証に使う場合に限りその契約・版・結果を後段で照合し、036候補の採択は推定しない。旧工程名・旧layer番号を現行の新工程へ作り替えない。\n\n**受け取るもの**：対象L1/L2/L11と適用されるL3要件の対象revision・authority状態、要求原子とそのscope/非目標、該当UI/非UI適用判定、上記で選択された各source、変更影響・risk、既存のV-pair/verification/acceptance oracleと未完義務。\n\n**提供するもの**：同じ対象scope/revisionに結ばれた次のrelationと差分候補を、根拠・authority状態・適用性とともに返す。\n\n- **Experience/要求の親graph**：要求原子または要求まとまりから、適用可能なUser Task、Business Outcome、scenario/context、success result、decision rationaleへ意味上の親を辿る。親が不要または適用不能な要素は理由を記録する。要求を小さく分割しても親成果・成功条件・決定理由の対応を失わせない。単に親fieldを埋めたことを意味成立としない。\n- **UI/Frontendの端から端trace**：画面を持つscopeで、適用するscreen/flow/region/slot/interaction/action/state/component/token/content等の要素を、permission/actor、command/API、data/state owner、不変条件、domain event/analytics event、logging/errorと、対応する設計・検証・受入oracleまで結ぶ。適用外のidentity型を機械的に生成しない。上記はsemantic relationとして扱い、旧identity名や特定のデータ構造を要求しない。\n- **drift/変更影響**：prototypeと要求、component/DOMと設計、design tokenと描画実体、interactionとE2E、content/analyticsとその要求・oracle、accessibility/responsive/motionに関する適用条件の差をscope単位で示す。変更されたrelationから影響を導き、Affected/Unaffected/Unknownを区別する。UnknownをUnaffectedへ変えず、未評価の実装をpassにしない。意味・要求変更はHARNESS-L2-008および既存Backflowへ、設計・oracle不足はHARNESS-L2-026/025/022へ戻す。\n- **riskに応じたUI検証設計**：選択されたUI scopeのriskに基づき、適用するdevice/input/role/locale/data volume/network/concurrent update/destructive/undo要因を選び、risk-based pairwise組合せを設計する。適用外・選外は根拠を残す。全組合せ実行や固定factor一式を強制せず、risk/適用性unknownを合格にしない。検証実行はHARNESS-L2-005に従う。\n- **状態と証拠の区別**：設計成果、実装状態、実測UX評価を一つの完成状態にまとめない。`implemented`を主張する場合は現行V-pairで定める実装/検証関係へ結び、`ux_verified`を主張するoperationに限って対象scopeに適用されるL10–L12 real-data evidenceとhuman evaluationを別状態として要求する。これらの未来の実行結果を要求形成・設計契約の作成開始条件にはしない。screen数、route数、placeholder、generic table、screenshot単体で完成を主張しない。\n- **Discovery PoCとauthority**：Discovery PoCはprototype/vision仮説の調査・比較を行えるが、対象ownerの既存判断前に`implemented`、`ux_verified`、production-readyまたは採択済みと主張しない。採択された仮説は既存の正規V-pairへ接続する。PoCの固定S0–S4工程や別authority machineを追加しない。HARNESS/AIはproduct vision、brand、体験優先順位、prototype agreement、L3要求freeze、L11利用者acceptance、L12改善採否を自己承認しない。\n- **既存stageへのbackfill**：Full V/Scrum等の選択された工程で、該当するprototype agreement、screen ledger/profile、frontend binding、mission/oracle、UX evidence、change deltaの未完義務を現行V-pairの対応する層・受入・戻し先へ結ぶ。適用しないartifactは理由を記録する。UI sliceが既存SR4/review/release合流を求める時点では、適用されるbackfill義務とpair receiptを照合し、未完義務を完了扱いにしない。旧S0–S4やSR4等を別の現行工程、追加freeze、独立承認として新設しない。既存のstage receipt/evidenceの条件を置き換えない。\n\n**保証・authority境界**：本候補は要求意味、prototype agreement、L3 freeze、L11 acceptance、L12改善採否を承認しない。出力は対象ownerが照合できる設計契約・差分・不足・検証義務候補であり、候補の生成/比較/検査から採択・操作権限・実行許可を生成しない。HARNESSは要求/設計/verification契約を所有し、OSは既決authorityに従う進行・実行・証拠記録を所有し、CONNECTは必要な情報配送を所有し、LABOは実測後の評価/改善候補を所有する。この候補はそれらの責務を移さない。\n\n**失敗・戻し先**：親scope/成功条件/authorityがunknownなら要求形成へ戻し、画面適用性やprototype合意が該当して未決ならHARNESS-L2-024へ戻す。trace/設計不整合は026/025、test oracle/段階証拠不足は005/022へ戻し、実行・ticket・記録不足はOSの既存責務へ渡す。source版/互換不明は選択source ownerへ戻す。人が持つ上流の意味に変更が必要な場合だけ、既存判断境界へ選択肢・影響を示す。新たな承認者や承認gateを作らない。\n\n**旧sourceと差分**：asset `LEGACY-ASSET-02319C2481B9E01698D5`。`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。§4.5:265–277のうち269/271/273/275行のExperience/UI/Frontend三契約、Full V/Scrum backfill、PoC/implemented/ux_verifiedの状態差と非自己承認を意味再導出する。§4.9の385–390行（HR-FR-DHR-001–006）と392行（実装・UX証拠が揃うまで完成状態を主張しない条件）からidentity trace、UI applicability、screen-to-acceptance関係、risk-based pairwise、drift、Experience親graphを再導出する。旧ID/field/schema、runtime、固定旧phaseは現行要求へ移さず、個別の適用範囲・現行layer・根拠付きoracleへ再構成する。\n\n**固定照合基準**：現行L1/L2/L11はcommit `d0900f30b92720114c6e0b5f436813d48172a020`。旧sourceの実装方式・211件のinventory（267/277行）や別entity機械の詳細（394行以降）は本候補の一括被覆対象にせず、元のsource保持を継続する。\n\n**UI prototype証拠の受渡し**：UI適用scopeのprototype合意/closureを主張する段階では、操作可能なprototype相当と、同じscope/revisionを実際にwalkthroughした結果・未決事項・訂正を、既存008/024の合意根拠へ結ぶ。静止画や一覧だけを操作可能性・walkthrough実施の証拠へ変換しない。旧manifest schemaは固定せず、未実施なら当該義務を未完として保持する。039の契約候補形成の開始に、未来のprototype完成やwalkthrough完了は要求しない。非UIなら既存の根拠付き非適用判定と再評価条件を保持する。\n\n**UX完了主張時の証拠**：UI/UXが適用されるscopeで`ux_verified`（UX完了）を主張するoperationは、同じ対象scope/revisionに対してL10–L12で評価したreal-data、responsive、motion、accessibility、performance、continuity、人間評価の全軸のcurrent evidenceを必要とする。いずれかの軸の証拠がmissingまたはstale、または適用性がunknownならUX完了を拒否する。UI/UX適用scopeで個別軸をN/Aとして省略しない。`implemented`は既存V-pair上の実装・検証関係で別に判定し、両状態を相互に推定しない。この証拠はUX完了主張の条件であり、候補形成、要求・設計・prototype検討の開始条件ではない。非UI scopeでは既存の根拠付きN/A境界を維持し、UX完了状態を生成しない。旧根拠：`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:650`、`docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt:631`。"
+    },
+    "l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "line_start": 670,
+      "line_end": 676,
+      "git_blob": "ecfc1812d7c7c25dc21c40b30a257b6995aa571a",
+      "full_file_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "span_sha256_including_lf": "26dffc7737929d96cac0973229f465a2013e36c384e92d18887398e2a3383449",
+      "text": "**旧source照合**：`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。§4.5:269–275（Experience/UI/Frontend、Full V/Scrum backfill、PoC状態・evidence・authority境界）と§4.9:385–392（HR-FR-DHR-001–006）を、現行L1/L2/L11の対象scope・V-pair・authority境界へ意味再導出した fixture である。旧schema名・旧runtime・実測済みとの主張は導入しない。\n\n**prototype/walkthroughの反例**：UI scopeに静止画とscreen一覧・trace・agreement表示だけを与え、操作可能なprototype相当やwalkthroughの実施結果がないのに、prototype確認済みとしてclosureする例を拒否する。正常例では同一scope/revisionの操作可能性とwalkthrough結果・未決事項・訂正を既存008/024の合意根拠へ渡す。開始時に未実施なら未完義務として候補を返せるが、実施済みへ補完しない。旧manifest形式を別の固定schemaとして要求しない。\n\n**正常例：UX完了に必要なcurrent evidence**：UI/UX適用scopeの同一対象scope/revisionについて、L10–L12で評価したreal-data、responsive、motion、accessibility、performance、continuity、人間評価の全7軸のcurrent evidenceがそろい、既存V-pair上の実装・検証関係も別途示されるfixtureを与える。実装状態と`ux_verified`は別に判定し、7軸の全てを確認できた場合だけUX完了主張を成立させる。個別軸をN/Aとして省略しない。非UI scopeは既存の根拠付きN/A境界を維持し、UX完了を主張しない。\n\n**誤り例：UX evidenceの欠落・stale・適用性不明**：7軸のうちいずれか1軸について、証拠が欠ける、対象revision/scopeが異なる、またはcurrentでないfixtureは、その軸以外の証拠がそろっていてもUX完了を拒否する。7軸のいずれかの適用性がunknownであるfixtureもUX完了を拒否し、N/Aへ変換しない。こうした欠落は`implemented`や候補形成・要求/設計作業の開始を取り消さず、保留するのはUX完了主張だけとする。新しいauthority、承認者、実装状態は追加しない。"
+    },
+    "decision_attribution": "PO採択行44はregistration MPR-RC-HARNESS-L2-039-003とL2/L11の固定digestを採択。doc metadata「未採択」は判断前snapshotであり、L3本文の承認や実装許可は生成しない。"
+  },
+  "legacy_source": {
+    "source_main": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf",
+    "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "source_revision": "archive/legacy-generation-2026-09-14",
+    "file_sha256_expected": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "pins": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "git_blob": "0e377caa483c5f1e00a7e0b03b49410d2c23f0d3",
+        "full_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "line": 650,
+        "line_sha256_including_lf": "999cedbf2c81d4232971cb5e7ea124e5505eba38cffa5f356aa99aff38d4029e",
+        "text": "- `implemented`と`ux_verified`を独立判定し、real-data、responsive、motion、accessibility、performance、continuity、人間評価のcurrent evidenceが無ければUX完成を拒否する。"
+      },
+      {
+        "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+        "git_blob": "a20b4846e9ababf05930812a266677d2355edccf",
+        "full_file_sha256": "1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+        "line": 631,
+        "line_sha256_including_lf": "999cedbf2c81d4232971cb5e7ea124e5505eba38cffa5f356aa99aff38d4029e",
+        "text": "- `implemented`と`ux_verified`を独立判定し、real-data、responsive、motion、accessibility、performance、continuity、人間評価のcurrent evidenceが無ければUX完成を拒否する。"
+      }
+    ],
+    "disposition": {
+      "v1_3_650": "意味再利用: implemented / ux_verifiedを別判定し、7種のcurrent evidenceの欠落でUX完成を拒否する旧atomを保持。",
+      "baseline_631": "上記の同一legacy要件snapshot由来の別source holding lineを確認し、独立の要求意味として重複加算しない。",
+      "current_derivation": "適用性unknown・evidence scope/revision一致条件は旧650/631へ付け足すのではなく、fixed633 L2:897/929およびL11:674/676から再導出。",
+      "replacement": "旧S0–S4/SR0–SR4、旧schema/runtime、現行外のlayer番号を移植しない。"
+    }
+  },
+  "current_six_document_sha256": {
+    "business_l3": {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "full_sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "git_blob_before_change": "9aea0fe5604373a41773e63f3c46b58e61c29c8f"
+    },
+    "functional_l3": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "full_sha256": "43e4c188068d8d857b2309a4cd64b0033b7ebcc952e229cc21ef9a6f436fd33d",
+      "git_blob_before_change": "0f87e76aceb3d1864fc1565fcb654e5435e065e2"
+    },
+    "nfr_l3": {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "full_sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+      "git_blob_before_change": "ac1e38e6324e20f85bcd5139375db90d1302890a"
+    },
+    "business_l10": {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "full_sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "git_blob_before_change": "f02062b533e4f85cf9df3a523ce6c638ef7ef02c"
+    },
+    "functional_l10": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "full_sha256": "61ac766ad331595dd25cf0fb4a90d63a3144a392aa51ba4798e22fc2cffb6777",
+      "git_blob_before_change": "51706e7ccb06ea909a87ba0ca7b6093dc954dc39"
+    },
+    "nfr_l10": {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "full_sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
+      "git_blob_before_change": "523f25f2be5e59ce16d103cf9fb6c85a76e1c757"
+    }
+  },
+  "changed_spans": {
+    "functional_l3": {
+      "line": 681,
+      "raw_sha256_including_lf": "190f988652ccc8e5e506e0cacc2287cdd35a7f44873b37ba364be62a4a663f32",
+      "purpose": "AC-02で7軸の適用性とevidence bindingを分離して明示。"
+    },
+    "functional_l10": {
+      "line_start": 1396,
+      "line_end": 1417,
+      "raw_sha256_including_lf": "32dd0bb9dc3cbfb2a11462b92bd8327db4f329f4bfed66c0f7f5da06e33352b9",
+      "new_case_count": 21,
+      "new_case_ids": [
+        "CASE-HARNESS-L10-039-r19-applicability-unknown-real-data",
+        "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-real-data",
+        "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-real-data",
+        "CASE-HARNESS-L10-039-r19-applicability-unknown-responsive",
+        "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-responsive",
+        "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-responsive",
+        "CASE-HARNESS-L10-039-r19-applicability-unknown-motion",
+        "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-motion",
+        "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-motion",
+        "CASE-HARNESS-L10-039-r19-applicability-unknown-accessibility",
+        "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-accessibility",
+        "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-accessibility",
+        "CASE-HARNESS-L10-039-r19-applicability-unknown-performance",
+        "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-performance",
+        "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-performance",
+        "CASE-HARNESS-L10-039-r19-applicability-unknown-continuity",
+        "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-continuity",
+        "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-continuity",
+        "CASE-HARNESS-L10-039-r19-applicability-unknown-human-evaluation",
+        "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-human-evaluation",
+        "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-human-evaluation"
+      ],
+      "purpose": "CASE-039-05索引の残余説明を21件の単独CASEへ同期し、7軸×適用性unknown/evidence scope mismatch/evidence revision mismatchを定義。"
+    }
+  },
+  "case_design": {
+    "baseline": "CASE-HARNESS-L10-039-05: same UI scope/revision, current implemented relation, all seven known axis applicability/evidence, current human evaluation, same operation context.",
+    "per_axis_mutations": [
+      {
+        "axis": "real-data",
+        "case_ids": [
+          "CASE-HARNESS-L10-039-r19-applicability-unknown-real-data",
+          "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-real-data",
+          "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-real-data"
+        ]
+      },
+      {
+        "axis": "responsive",
+        "case_ids": [
+          "CASE-HARNESS-L10-039-r19-applicability-unknown-responsive",
+          "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-responsive",
+          "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-responsive"
+        ]
+      },
+      {
+        "axis": "motion",
+        "case_ids": [
+          "CASE-HARNESS-L10-039-r19-applicability-unknown-motion",
+          "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-motion",
+          "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-motion"
+        ]
+      },
+      {
+        "axis": "accessibility",
+        "case_ids": [
+          "CASE-HARNESS-L10-039-r19-applicability-unknown-accessibility",
+          "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-accessibility",
+          "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-accessibility"
+        ]
+      },
+      {
+        "axis": "performance",
+        "case_ids": [
+          "CASE-HARNESS-L10-039-r19-applicability-unknown-performance",
+          "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-performance",
+          "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-performance"
+        ]
+      },
+      {
+        "axis": "continuity",
+        "case_ids": [
+          "CASE-HARNESS-L10-039-r19-applicability-unknown-continuity",
+          "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-continuity",
+          "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-continuity"
+        ]
+      },
+      {
+        "axis": "human-evaluation",
+        "case_ids": [
+          "CASE-HARNESS-L10-039-r19-applicability-unknown-human-evaluation",
+          "CASE-HARNESS-L10-039-r19-evidence-scope-mismatch-human-evaluation",
+          "CASE-HARNESS-L10-039-r19-evidence-revision-mismatch-human-evaluation"
+        ]
+      }
+    ],
+    "each_negative_changes_one_field": "applicability unknown OR evidence scope mismatch OR evidence revision mismatch for one axis only.",
+    "oracle": "Reject ux_verified for the target scope/revision; preserve source-scope/source-revision validity, implemented/current, candidate formation and design start; no evidence-offset across axes.",
+    "owner": "Selected HARNESS-L2-005 verification duty or existing HARNESS-L2-022 pair oracle. No owner or approval path added."
+  },
+  "static_verification": {
+    "json_source_sha_calculation": "Python hashlib.sha256 over exact git-show bytes; span bytes concatenate physical lines including LF.",
+    "checks": [
+      "21 unique new CASE IDs each have exactly one definition and appear once in the CASE-039-05 index",
+      "all 7 axes have 3 negatives: applicability unknown, evidence scope mismatch, evidence revision mismatch",
+      "every row points to FR-HARNESS-L3-039 / AC-HARNESS-L3-039-02 and baseline CASE-039-05",
+      "each row states only ux_verified refusal and preserves implemented/current plus candidate/design start",
+      "CASE-039-05 index explicitly lists all 21 new CASE IDs and describes their residual coverage",
+      "changed files restricted to L3 functional requirements, L10 functional verification, and this audit pair",
+      "git diff --check passes"
+    ],
+    "not_executed": [
+      "runtime",
+      "legacy tests/CI/CLI/hooks",
+      "L10 execution",
+      "independent Opus/Fable review",
+      "PO post-confirmation"
+    ]
+  },
+  "authority_effect": "none; no L3 approval, L10 execution/result, PO post-confirmation, implementation permission, or requirement change is generated."
+}
