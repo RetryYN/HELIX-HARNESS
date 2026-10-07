@@ -1,0 +1,458 @@
+{
+  "record_type": "read_only_semantic_audit",
+  "target_commit": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf",
+  "worktree_head": "dd03b90cd25891fa76918ed1cc2bd9af0239a225",
+  "scope": {
+    "mechanism": "HELIX-LABO",
+    "requested_stage": "Stage 3",
+    "requested_stage_parent_count": 0,
+    "actual_audited_stage": "Stage 2b",
+    "parent_ids": [
+      "HELIXLABO-L2-002",
+      "HELIXLABO-L2-003",
+      "HELIXLABO-L2-004",
+      "HELIXLABO-L2-005",
+      "HELIXLABO-L2-006",
+      "HELIXLABO-L2-007",
+      "HELIXLABO-L2-008",
+      "HELIXLABO-L2-009",
+      "HELIXLABO-L2-010"
+    ],
+    "version_target": "1.0",
+    "authority_effect": "none"
+  },
+  "stage_basis": {
+    "canonical_table": "docs/governance/l3-l10-po-post-confirmation.md:175",
+    "stage3_present": false,
+    "274_roster": "docs/governance/audits/requirements-stage/l3-final-admission-closure-2026-10-08-911b896f.json parent_authority_mapping.parents",
+    "LABO_stage3_parent_ids": []
+  },
+  "fixed_basis": {
+    "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_adoption_decision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "l2_l11_source": "docs/helix-labo/L2-requirements/labo-requirements.md:77-148; docs/helix-labo/L11-acceptance/labo-acceptance.md:46-54"
+  },
+  "files": {
+    "l2": {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "bytes": 123228,
+      "lines": 584,
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    "l11": {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "bytes": 73036,
+      "lines": 316,
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    "br": {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 32852,
+      "lines": 209,
+      "sha256": "7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a"
+    },
+    "fr": {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 354046,
+      "lines": 1977,
+      "sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece"
+    },
+    "ng": {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 91242,
+      "lines": 330,
+      "sha256": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b"
+    },
+    "bv": {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 31387,
+      "lines": 219,
+      "sha256": "2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac"
+    },
+    "fv": {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 692699,
+      "lines": 3734,
+      "sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e"
+    },
+    "nv": {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 82074,
+      "lines": 282,
+      "sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a"
+    },
+    "legacy_uil": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "bytes": 12101,
+      "lines": 243,
+      "sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4"
+    },
+    "legacy_uil_acceptance": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "bytes": 4977,
+      "lines": 46,
+      "sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943"
+    },
+    "legacy_bench": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "bytes": 6446,
+      "lines": 170,
+      "sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116"
+    },
+    "legacy_bench_acceptance": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "bytes": 3701,
+      "lines": 46,
+      "sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185"
+    },
+    "legacy_common_l3": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "bytes": 15617,
+      "lines": 284,
+      "sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3"
+    }
+  },
+  "findings": [],
+  "assessment": "指定Stage 2bの親別意味照合では具体的不整合を確認しなかった。L3/L10は未承認候補で、評価は意味監査に限る。",
+  "limitations": [
+    "他Stage意味は未監査",
+    "旧sourceは記載されたbounded spanに限定、archive全体の不存在を主張しない",
+    "fixture/oracle未実行、runtime/test/CI未起動",
+    "PO事後確認とL10実施なし"
+  ],
+  "parents": [
+    {
+      "id": "HELIXLABO-L2-002",
+      "version_target": "1.0",
+      "l2_lines": [
+        77,
+        84
+      ],
+      "l11_line": 46,
+      "fr_requirement_ac": "LABO-002-FR-01 / LABO-002-AC-01..03",
+      "functional_case_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "nfr_l3_lines": [
+        56,
+        57
+      ],
+      "nfr_l10_lines": [
+        24,
+        25
+      ],
+      "business_trace": "no independent BR/BV/BCASE; L3 functional AC + paired L10 functional oracle is sole condition"
+    },
+    {
+      "id": "HELIXLABO-L2-003",
+      "version_target": "1.0",
+      "l2_lines": [
+        85,
+        92
+      ],
+      "l11_line": 47,
+      "fr_requirement_ac": "LABO-003-FR-01 / LABO-003-AC-01..03",
+      "functional_case_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "nfr_l3_lines": [
+        58
+      ],
+      "nfr_l10_lines": [
+        26
+      ],
+      "business_trace": "no independent BR/BV/BCASE; L3 functional AC + paired L10 functional oracle is sole condition"
+    },
+    {
+      "id": "HELIXLABO-L2-004",
+      "version_target": "1.0",
+      "l2_lines": [
+        93,
+        100
+      ],
+      "l11_line": 48,
+      "fr_requirement_ac": "LABO-004-FR-01 / LABO-004-AC-01..03",
+      "functional_case_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "nfr_l3_lines": [
+        59
+      ],
+      "nfr_l10_lines": [
+        27
+      ],
+      "business_trace": "no independent BR/BV/BCASE; L3 functional AC + paired L10 functional oracle is sole condition"
+    },
+    {
+      "id": "HELIXLABO-L2-005",
+      "version_target": "1.0",
+      "l2_lines": [
+        101,
+        108
+      ],
+      "l11_line": 49,
+      "fr_requirement_ac": "LABO-005-FR-01 / LABO-005-AC-01..03",
+      "functional_case_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "nfr_l3_lines": [
+        60
+      ],
+      "nfr_l10_lines": [
+        28
+      ],
+      "business_trace": "no independent BR/BV/BCASE; L3 functional AC + paired L10 functional oracle is sole condition"
+    },
+    {
+      "id": "HELIXLABO-L2-006",
+      "version_target": "1.0",
+      "l2_lines": [
+        109,
+        116
+      ],
+      "l11_line": 50,
+      "fr_requirement_ac": "LABO-006-FR-01 / LABO-006-AC-01..03",
+      "functional_case_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "nfr_l3_lines": [
+        42,
+        43,
+        61,
+        62
+      ],
+      "nfr_l10_lines": [
+        39,
+        40
+      ],
+      "business_trace": "no independent BR/BV/BCASE; L3 functional AC + paired L10 functional oracle is sole condition"
+    },
+    {
+      "id": "HELIXLABO-L2-007",
+      "version_target": "1.0",
+      "l2_lines": [
+        117,
+        124
+      ],
+      "l11_line": 51,
+      "fr_requirement_ac": "LABO-007-FR-01 / LABO-007-AC-01..03",
+      "functional_case_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "nfr_l3_lines": [
+        44,
+        45,
+        63,
+        64
+      ],
+      "nfr_l10_lines": [
+        41,
+        42
+      ],
+      "business_trace": "no independent BR/BV/BCASE; L3 functional AC + paired L10 functional oracle is sole condition"
+    },
+    {
+      "id": "HELIXLABO-L2-008",
+      "version_target": "1.0",
+      "l2_lines": [
+        125,
+        132
+      ],
+      "l11_line": 52,
+      "fr_requirement_ac": "LABO-008-FR-01 / LABO-008-AC-01..03",
+      "functional_case_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "nfr_l3_lines": [
+        46,
+        65
+      ],
+      "nfr_l10_lines": [
+        43
+      ],
+      "business_trace": "no independent BR/BV/BCASE; L3 functional AC + paired L10 functional oracle is sole condition"
+    },
+    {
+      "id": "HELIXLABO-L2-009",
+      "version_target": "1.0",
+      "l2_lines": [
+        133,
+        140
+      ],
+      "l11_line": 53,
+      "fr_requirement_ac": "LABO-009-FR-01 / LABO-009-AC-01..03",
+      "functional_case_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "nfr_l3_lines": [
+        47,
+        66
+      ],
+      "nfr_l10_lines": [
+        44
+      ],
+      "business_trace": "no independent BR/BV/BCASE; L3 functional AC + paired L10 functional oracle is sole condition"
+    },
+    {
+      "id": "HELIXLABO-L2-010",
+      "version_target": "1.0",
+      "l2_lines": [
+        141,
+        148
+      ],
+      "l11_line": 54,
+      "fr_requirement_ac": "LABO-010-FR-01 / LABO-010-AC-01..03",
+      "functional_case_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "nfr_l3_lines": [
+        48,
+        67,
+        68
+      ],
+      "nfr_l10_lines": [
+        45,
+        46
+      ],
+      "business_trace": "no independent BR/BV/BCASE; L3 functional AC + paired L10 functional oracle is sole condition"
+    }
+  ],
+  "findings_disposition": "no_concrete_semantic_finding_in_reviewed_scope"
+}

@@ -1,0 +1,1065 @@
+{
+  "record_type": "read_only_stage3_semantic_audit",
+  "audit_date": "2026-10-08",
+  "base_revision": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+  "scope": {
+    "stage": "OS Stage 3",
+    "version_target": "1.0",
+    "parents": [
+      "HELIXOS-L2-049",
+      "HELIXOS-L2-050",
+      "HELIXOS-L2-051"
+    ],
+    "parent_count": 3
+  },
+  "authority": {
+    "fixed_l2_l11": {
+      "fixed_l2_l11_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "fixed_l2_full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "fixed_l11_full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "parents": {
+        "049": {
+          "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+          "l2_lines": "1205-1212",
+          "l2_span_sha256": "d01a2bde869d91d91b803ce8ff772225522869c8b328a22d02ddd9bc18c0fb39",
+          "l2_span_bytes": 2974,
+          "l11_lines": "821-829",
+          "l11_span_sha256": "9b0f89f227d824787e3715b287a34ce7aecf5b23a014c873dbd6de581e57e3d4",
+          "l11_span_bytes": 2555,
+          "po_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "po_line": 72,
+          "po_row_sha256": "d687c78415c220eeb40b695e4c6126951712eb1680e064be2dc87501edc8da5a",
+          "register_line": 598,
+          "register_raw_lf_sha256": "c6c522a09cc2be92562de7cbd2f97604559b2d82b626292b84fac5cfa783f677"
+        },
+        "050": {
+          "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+          "l2_lines": "1213-1220",
+          "l2_span_sha256": "e8a34140ed885ff3ad3c3fee6bbdfe3e5749bed1161cb41db27c02c3e9c65267",
+          "l2_span_bytes": 3423,
+          "l11_lines": "830-838",
+          "l11_span_sha256": "fa67b048c413b556d740e618be711aacbc5ff440c2cb97c6afce5d951c48386e",
+          "l11_span_bytes": 3427,
+          "po_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "po_line": 73,
+          "po_row_sha256": "5a0a4db9008e24c78edaa7215b52d466158f7317529c2a7986261e562c18718a",
+          "register_line": 599,
+          "register_raw_lf_sha256": "816990960623c75bc539bd327d556658be803183f9a1cedbe7542b6a6dc2dd2b"
+        },
+        "051": {
+          "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+          "l2_lines": "1221-1230",
+          "l2_span_sha256": "97024d3b3c996cc834655aad39e6d40c446c1e33095ce61a654aa566a56e771b",
+          "l2_span_bytes": 3616,
+          "l11_lines": "839-846",
+          "l11_span_sha256": "bf4943961606b3e7b05f70299c3bebd1b7eb930324e133530331016e689d3fe8",
+          "l11_span_bytes": 1991,
+          "po_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "po_line": 74,
+          "po_row_sha256": "65e1362c1f2c78e95e409b3ce5adadf99b71adc1a4b94ec956a910dadd8ff152",
+          "register_line": 589,
+          "register_raw_lf_sha256": "b603f09041fd60cb5b923dcd4502365cd5d9bdf11ccfa9dd7233b1b3a546d707"
+        }
+      }
+    },
+    "decision_record": {
+      "path": "docs/governance/decisions/helix-os-stage3-l3-l10-po-decision-2026-10-05.md",
+      "sha256": "48f590122e1c9237e9f1e787c97edb53217cf85a91f703b1d16ad1fb26f816a6",
+      "reviewed_body_revision": "f3e5f40a55be02ad7a92668dced4e32619a75ae0",
+      "effect": "this decision record is in base; scoped approval applies to its approved 15 parents and exact reviewed body. Candidate-stage L2 text is interpreted with the exact PO decision rows, not stale body metadata."
+    },
+    "delegated_pin_path": "docs/governance/audits/requirements-stage/l3-l10-os-stage3-delegated-decision-pin-2026-10-05.json",
+    "pin_scope_and_digest_verified": true
+  },
+  "source_and_consumer_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+  "legacy_sources_and_consumers": {
+    "source_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+    "049": [
+      {
+        "role": "requirements/business origin",
+        "asset_id": "LEGACY-ASSET-11E8FE0479751F02A4A3",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md",
+        "lines": "17-21",
+        "full_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba",
+        "span_sha256": "4fdeaa0b169eb526de938501871ae37c514b64f9de0aa2d6f22828163de7f195",
+        "meaning": "capacity種別/pool上限とactive WIPの分離、accepted throughputとtime-to-accepted。ただし固定provider countはauthorityでない。"
+      },
+      {
+        "role": "requirements",
+        "asset_id": "LEGACY-ASSET-F172CBC75CAA4FCFC2EB",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requirements.md",
+        "lines": "31",
+        "full_sha256": "d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e",
+        "span_sha256": "8eb5e52d8772ac82175cf3faaea7c3ec61db49add1f9f478addf3435e579c65a",
+        "meaning": "downstream capacityからactive WIP/backpressureを決める。"
+      },
+      {
+        "role": "requirements/related consumer",
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+        "lines": "58-60,104-106",
+        "full_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+        "meaning": "READY/dependency/changed-path/authority conflictless taskへsingle-writer lease、merge read-after後に次task。旧DB/runtimeは置換。"
+      },
+      {
+        "role": "acceptance consumer",
+        "asset_id": "LEGACY-ASSET-B143CAC2AFF236C80280",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-acceptance.md",
+        "lines": "17-24",
+        "full_sha256": "14075ae16016c3585947f88d5bc633f1e2022a29fbe7a602d4403dd87c14e047",
+        "span_sha256": "f2d22da87e55584bc3295c5108282691dd571b827d4f1a551b269cb6bd7f9284",
+        "meaning": "3L-AC-030 downstream WIP/backpressure false-dispatch oracle; 031 burst/reviewer conditions; 032 review lease/rework lineage."
+      }
+    ],
+    "050": [
+      {
+        "role": "requirements",
+        "asset_id": "LEGACY-ASSET-F172CBC75CAA4FCFC2EB",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requirements.md",
+        "lines": "35,37-39",
+        "full_sha256": "d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e",
+        "span_sha256": "3ae8e70b7be8de1cbef4bca87f57d2b4edd87194dd97d9717a403e727be8128c",
+        "meaning": "capacity expansion conditions for reviewers; exact-once generation-scoped review lease and rework lineage."
+      },
+      {
+        "role": "acceptance consumer",
+        "asset_id": "LEGACY-ASSET-B143CAC2AFF236C80280",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-acceptance.md",
+        "lines": "17-24",
+        "full_sha256": "14075ae16016c3585947f88d5bc633f1e2022a29fbe7a602d4403dd87c14e047",
+        "span_sha256": "f2d22da87e55584bc3295c5108282691dd571b827d4f1a551b269cb6bd7f9284",
+        "meaning": "independent-review capacity, no double review, resource/cause backpressure, merge distinction."
+      }
+    ],
+    "051": [
+      {
+        "role": "requirements",
+        "asset_id": "LEGACY-ASSET-0A53D5BC3F5DCCF3DB8F",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
+        "lines": "65-68",
+        "full_sha256": "8217489834e66ad11100b6fb3187be4fe3a91a858f24aa0ea67dff3000adf934",
+        "span_sha256": "a93b167c1b115e7b292ebb800e9db4af1adcddb482462fdc39d25fd77a1ca229",
+        "meaning": "Luna handback to Sol for scope/diff/test/receipt verification; Claude independent review bound to exact candidate HEAD."
+      },
+      {
+        "role": "acceptance consumer",
+        "asset_id": "LEGACY-ASSET-47AB782F19F8A77BB556",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/codex-native-worker-routing-acceptance.md",
+        "lines": "20,39",
+        "full_sha256": "bf3f93d6383d81d7e6486977988088fe4fca5a3dad014147af14043b755619f6",
+        "span_sha256": "7a40908348500949e274480fcd63ff601d08c923d4933d34981f6a947cb0b827",
+        "meaning": "exact candidate HEAD, separate parent/worker/reviewer identity, no self-review or stale HEAD."
+      }
+    ]
+  },
+  "legacy_reuse_rederive_replace": {
+    "049": "旧capacity request/requirementsを起点にpool上限/active状態とdownstream backpressureを意味再導出。旧数値/provider/slot/DB/CIを置換。MICのREADY/lease/merge-afterの条件は固定L2/L11条件へ再導出。",
+    "050": "旧review-capacity threshold/lease/rework oracleを起点に、4 typed metric/原因別backpressure/既存admission境界を固定L2から再導出。固定reviewer/provider countsとMerge Train等は置換。",
+    "051": "旧role separation/exact-HEAD handbackを起点に、task単位のconditional eligibilityを再導出。旧Codex/Cursor/Claude provider matrix/runtimeは置換。"
+  },
+  "documents": {
+    "FR": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 201537,
+      "sha256": "95a6f1c5bdd1015d8849829de88fd99e62c842784135e4ebdbd5b4140d843544",
+      "target_rows_bytes": 5175,
+      "target_rows_sha256": "0b0a09ec5e50e3b7d4810b75ef89f5142783de57f398fb3a4b32f8522364d51c",
+      "target_rows_equal_approval_revision": true,
+      "approved_body_revision": "f3e5f40a55be02ad7a92668dced4e32619a75ae0",
+      "approved_target_rows_bytes": 5175,
+      "approved_target_rows_sha256": "0b0a09ec5e50e3b7d4810b75ef89f5142783de57f398fb3a4b32f8522364d51c"
+    },
+    "BR": {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20354,
+      "sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "target_rows_bytes": 514,
+      "target_rows_sha256": "5a7b8ff59e5ae50881491eac53a01fe7a1ef38afb146f14e1c939455be13101b",
+      "target_rows_equal_approval_revision": true,
+      "approved_body_revision": "f3e5f40a55be02ad7a92668dced4e32619a75ae0",
+      "approved_target_rows_bytes": 514,
+      "approved_target_rows_sha256": "5a7b8ff59e5ae50881491eac53a01fe7a1ef38afb146f14e1c939455be13101b"
+    },
+    "NFR": {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 32737,
+      "sha256": "ec63ecd54db5258ff14714624c3df6bcfd3c1c189ac9a08a29271c06231e3066",
+      "target_rows_bytes": 1417,
+      "target_rows_sha256": "5bbb24af7225aa8bcf620ad12605194bc479a3ceb06b468e90fb4c63265cebf4",
+      "target_rows_equal_approval_revision": true,
+      "approved_body_revision": "f3e5f40a55be02ad7a92668dced4e32619a75ae0",
+      "approved_target_rows_bytes": 1417,
+      "approved_target_rows_sha256": "5bbb24af7225aa8bcf620ad12605194bc479a3ceb06b468e90fb4c63265cebf4"
+    },
+    "FV": {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 240108,
+      "sha256": "8a99792f723abb96034274c72424902fba51df515e2a99f637823427aa03821c",
+      "target_rows_bytes": 9029,
+      "target_rows_sha256": "4fa18f47177b05b85d430c76a16c18f2f6ca6008dfca74e7e6e8c82c9306c053",
+      "target_rows_equal_approval_revision": true,
+      "approved_body_revision": "f3e5f40a55be02ad7a92668dced4e32619a75ae0",
+      "approved_target_rows_bytes": 9029,
+      "approved_target_rows_sha256": "4fa18f47177b05b85d430c76a16c18f2f6ca6008dfca74e7e6e8c82c9306c053"
+    },
+    "BV": {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17702,
+      "sha256": "5a75c21ce10b33fc8441adda71253870fd20a8687c18e7939cfe8b25f9d393c8",
+      "target_rows_bytes": 458,
+      "target_rows_sha256": "68a5af21e57521705c4f47562452a2402ead54cb99772453521664d9c7cccf96",
+      "target_rows_equal_approval_revision": true,
+      "approved_body_revision": "f3e5f40a55be02ad7a92668dced4e32619a75ae0",
+      "approved_target_rows_bytes": 458,
+      "approved_target_rows_sha256": "68a5af21e57521705c4f47562452a2402ead54cb99772453521664d9c7cccf96"
+    },
+    "NFRV": {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 29480,
+      "sha256": "3019648b66a351418945033646bf82c84d0c7ef771edee49378cef2be266e256",
+      "target_rows_bytes": 1619,
+      "target_rows_sha256": "281d4892fd324eec69095bd151b612d4a2be4242d2d38b6545b7fbca8d6c6cca",
+      "target_rows_equal_approval_revision": true,
+      "approved_body_revision": "f3e5f40a55be02ad7a92668dced4e32619a75ae0",
+      "approved_target_rows_bytes": 1619,
+      "approved_target_rows_sha256": "281d4892fd324eec69095bd151b612d4a2be4242d2d38b6545b7fbca8d6c6cca"
+    }
+  },
+  "parents": {
+    "049": {
+      "parent": "HELIXOS-L2-049",
+      "ac": [
+        {
+          "id": "AC-OS-L3-049-01",
+          "line": 328,
+          "raw_lf_sha256": "611b2939c14898fdea33171fcf8d13339d60d2d1c347ab3a05fb4bcf73731fc2"
+        },
+        {
+          "id": "AC-OS-L3-049-02",
+          "line": 329,
+          "raw_lf_sha256": "2f5a862fccb371c00de843ff82b8651585766626697c49b6182b54990754b008"
+        },
+        {
+          "id": "AC-OS-L3-049-03",
+          "line": 330,
+          "raw_lf_sha256": "271cc09616a610c95c8f592602bcf78c41b5656151cf1a3955c2e750ff57aab0"
+        },
+        {
+          "id": "AC-OS-L3-049-04",
+          "line": 331,
+          "raw_lf_sha256": "901527b0aa50cc1782f043afc333cd46a0a637403d2fbcb843e416548c8655cc"
+        },
+        {
+          "id": "AC-OS-L3-049-05",
+          "line": 332,
+          "raw_lf_sha256": "2f013f2d368e9c587dc82b223f7151d76c8abb095df2db3d9e4e4b912395e9f1"
+        }
+      ],
+      "functional_cases": [
+        {
+          "id": "CASE-OS-L10-049-01",
+          "ac": "AC-OS-L3-049-01",
+          "line": 646,
+          "raw_lf_sha256": "c40eeede9a15ef678b9c32994b51237727b0be0413c9184c5c1f339c1669e94f"
+        },
+        {
+          "id": "CASE-OS-L10-049-02",
+          "ac": "AC-OS-L3-049-02",
+          "line": 647,
+          "raw_lf_sha256": "de84f8ffbb5b149d440f61629dbbaec7f588b3f1cc6c387aca6dec61010306ac"
+        },
+        {
+          "id": "CASE-OS-L10-049-03",
+          "ac": "AC-OS-L3-049-03",
+          "line": 648,
+          "raw_lf_sha256": "67415564147d56c4b506189850fd7affb46c34d6c29b4f2384f00d71b3242c3e"
+        },
+        {
+          "id": "CASE-OS-L10-049-04",
+          "ac": "AC-OS-L3-049-04",
+          "line": 678,
+          "raw_lf_sha256": "6e1c5a9c2caaf80b4a6930a7a0510571568c338ffbf3f42359613ced3ae2940f"
+        },
+        {
+          "id": "CASE-OS-L10-049-05",
+          "ac": "AC-OS-L3-049-05",
+          "line": 679,
+          "raw_lf_sha256": "774d5dbd28f06737229a22f4840b40e9cf29346a505185555766aa52caf77fcc"
+        },
+        {
+          "id": "CASE-OS-L10-049-07",
+          "ac": "AC-OS-L3-049-01",
+          "line": 697,
+          "raw_lf_sha256": "56c9749f2e4126259fbe85784eec37d923bf64a482c2def65cd250f6acaeceeb"
+        },
+        {
+          "id": "CASE-OS-L10-049-06a",
+          "ac": "AC-OS-L3-049-02",
+          "line": 777,
+          "raw_lf_sha256": "e745dcdd02b2cf5859054dd31c48df2f290d055c78bde54daa2108c640317915"
+        },
+        {
+          "id": "CASE-OS-L10-049-06b",
+          "ac": "AC-OS-L3-049-01",
+          "line": 778,
+          "raw_lf_sha256": "820381998ca6506646352db2386dc252a574857cc194b4a7ce064d9d32395d10"
+        },
+        {
+          "id": "CASE-OS-L10-049-06c",
+          "ac": "AC-OS-L3-049-02",
+          "line": 779,
+          "raw_lf_sha256": "3fd912065e6ef18fd70bda7a228b928cebb02f132474ba13b6ebd575b115c466"
+        },
+        {
+          "id": "CASE-OS-L10-049-06d",
+          "ac": "AC-OS-L3-049-04",
+          "line": 780,
+          "raw_lf_sha256": "15e6a9ea64c43ac8887efbe4b6b720b44f776d5945f0c2b40e60f5050f5a07fb"
+        },
+        {
+          "id": "CASE-OS-L10-049-06e",
+          "ac": "AC-OS-L3-049-05",
+          "line": 781,
+          "raw_lf_sha256": "9c83f151437c5f590600bb22e52318ec8ddf21cb8bd2aa3f06bd3da0f46acf3e"
+        }
+      ],
+      "functional_case_count": 11,
+      "unique_case_ids": true,
+      "case_count_by_ac": {
+        "AC-OS-L3-049-01": 3,
+        "AC-OS-L3-049-02": 3,
+        "AC-OS-L3-049-03": 1,
+        "AC-OS-L3-049-04": 2,
+        "AC-OS-L3-049-05": 2
+      },
+      "business_requirement_row": [
+        {
+          "line": 73,
+          "text": "| HELIXOS-L2-049 | 独立business outcomeなし。configured pool・利用率をproductivity/throughputと同一視しない。 | FR-OS-L3-049 AC-01..05を参照。 |",
+          "raw_lf_sha256": "b985f6f4765830d81748b295e49d8178c3045476c5cc07571109b5cf49c7ec9b"
+        }
+      ],
+      "nfr_requirement_row": [
+        {
+          "line": 99,
+          "text": "| NFR-OS-L3-049-01 / 049 / AC-01..05 | observation bucket 15min candidate、configured max/WIP/state countsは別軸。15minは短期状態遷移の視認候補で固定worker数でない。 | 1minはnoise/high overhead、60minは短い競合を隠す。15/60分fixtureで状態誤分類と観測負荷を比較。 | 同じtask traceを各windowでreplayしstate conservation、後段capacity確保なしのdispatch 0。 |",
+          "raw_lf_sha256": "ef3530b0f78b67703ba06c51800fbf68f397b7794ce8187583dbc932adaabedf"
+        }
+      ],
+      "business_verification_row": [
+        {
+          "line": 62,
+          "text": "| CASE-OS-L10-BIZ-049 | HELIXOS-L2-049 / FR-OS-L3-049 AC-01..05 | configured capacity・実行状態・割当候補を別集計する。 | utilization目標 |",
+          "raw_lf_sha256": "8bbe799e79039ef2a5c0ea00b67913a0ad36f8e07d345e86176e718cc83ace4f"
+        }
+      ],
+      "nfr_verification_rows": [
+        {
+          "line": 89,
+          "text": "| CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを15/60min bucketで比較しlimitとstate countsを別確認し、成果・予算・未完義務のlineageを保持する。無根拠dispatchと誤状態数。 |",
+          "raw_lf_sha256": "9c0e3ba4851115acdead1d67a85f88cd80455730612e222025307c31ff2e1851"
+        },
+        {
+          "line": 98,
+          "text": "| CASE-OS-L10-NFR-049-02 | NFR-OS-L3-049-01 | configured capacity × 有効な経過秒を時間分母として別記し、assignment/task count、unused capacity、unfinished lineageを独立集計する。時間0/欠測capacityは算出不能、分母が有効でcount 0なら実測0。 |",
+          "raw_lf_sha256": "e1a4ba65f74fee2446721389a1e884d44d7e0d8bd888852ed8b3a95f4e98a8e5"
+        }
+      ],
+      "ac_count": 5,
+      "coverage_complete": true
+    },
+    "050": {
+      "parent": "HELIXOS-L2-050",
+      "ac": [
+        {
+          "id": "AC-OS-L3-050-01",
+          "line": 336,
+          "raw_lf_sha256": "2182f7758fba99f8ef55a92df290322c91fb51647d7c40de8b316edb2c6f80c6"
+        },
+        {
+          "id": "AC-OS-L3-050-02",
+          "line": 337,
+          "raw_lf_sha256": "d2e4bbc14e2fed0b194ed28947e6e0c1d39de371b4cc8de45448186a5e452019"
+        },
+        {
+          "id": "AC-OS-L3-050-03",
+          "line": 338,
+          "raw_lf_sha256": "0015408ed865811e578d0e17be3d5f9c9bcdc274d332c8a5914379ad54ea4465"
+        },
+        {
+          "id": "AC-OS-L3-050-04",
+          "line": 339,
+          "raw_lf_sha256": "2b095b3deb884ecbebd8dc354f2bf65ce6e109abe67f8eac29fbefdb1e49ae29"
+        },
+        {
+          "id": "AC-OS-L3-050-05",
+          "line": 340,
+          "raw_lf_sha256": "4e1faa29eddbe419f829cdcbdc9aaab849efe7522ae8f273965d0cb2d25187f3"
+        }
+      ],
+      "functional_cases": [
+        {
+          "id": "CASE-OS-L10-050-01",
+          "ac": "AC-OS-L3-050-01",
+          "line": 649,
+          "raw_lf_sha256": "8974dadb78b735a646fca2d32491359fff70a6839a64dd2ca460ac6753fb1553"
+        },
+        {
+          "id": "CASE-OS-L10-050-02",
+          "ac": "AC-OS-L3-050-02",
+          "line": 650,
+          "raw_lf_sha256": "e912f15fc5b5437893ef2507e80a086ca125c20f87444f97dabf4c363bd8867f"
+        },
+        {
+          "id": "CASE-OS-L10-050-03",
+          "ac": "AC-OS-L3-050-03",
+          "line": 651,
+          "raw_lf_sha256": "b554c2832a419a0a4cf4b4c5eecc22d21d76820c49ef115e2e6e6dd001c81512"
+        },
+        {
+          "id": "CASE-OS-L10-050-04",
+          "ac": "AC-OS-L3-050-04",
+          "line": 652,
+          "raw_lf_sha256": "858cffce9424bc3ecb2010c1ce196e32cf10926ec782ebb81311c535289a310d"
+        },
+        {
+          "id": "CASE-OS-L10-050-01b",
+          "ac": "AC-OS-L3-050-01",
+          "line": 680,
+          "raw_lf_sha256": "82f0dda57b50bd66872c90520acda19e306e9d1f712e882f96ee064962e1b278"
+        },
+        {
+          "id": "CASE-OS-L10-050-01c",
+          "ac": "AC-OS-L3-050-01",
+          "line": 681,
+          "raw_lf_sha256": "45d8801f931b0b4cf780c2a9b76933151d988e38e17a86030e1e5a3e90a9d7ea"
+        },
+        {
+          "id": "CASE-OS-L10-050-05",
+          "ac": "AC-OS-L3-050-05",
+          "line": 682,
+          "raw_lf_sha256": "afc21245c4dbba9743b73c5d97d0f9636f272dd88fd8b2f5e163a4c37095f244"
+        },
+        {
+          "id": "CASE-OS-L10-050-08",
+          "ac": "AC-OS-L3-050-01",
+          "line": 698,
+          "raw_lf_sha256": "72efe6527ace246395e4a0450d72ee226406c53d94ce59d068b00d0e15eec86e"
+        },
+        {
+          "id": "CASE-OS-L10-050-07a",
+          "ac": "AC-OS-L3-050-02",
+          "line": 782,
+          "raw_lf_sha256": "58a19a2268bbd4d6287baf24184ea8cfc655b7718cd18032f5c432d21257f6a9"
+        },
+        {
+          "id": "CASE-OS-L10-050-07b",
+          "ac": "AC-OS-L3-050-02",
+          "line": 783,
+          "raw_lf_sha256": "f520233ab1ccf2727b458d260a23cd5e4f253b3b19497757142c21218f39af93"
+        },
+        {
+          "id": "CASE-OS-L10-050-07c",
+          "ac": "AC-OS-L3-050-02",
+          "line": 784,
+          "raw_lf_sha256": "39ae058a283152fe8c41c0b5e125849a1fa144c689c083a705fff801970f2f91"
+        },
+        {
+          "id": "CASE-OS-L10-050-07d",
+          "ac": "AC-OS-L3-050-04",
+          "line": 785,
+          "raw_lf_sha256": "8a92583a8b595671e04b669f12a2195b6c734c70d8ce73f54cce50d7400d7324"
+        },
+        {
+          "id": "CASE-OS-L10-050-07e",
+          "ac": "AC-OS-L3-050-05",
+          "line": 786,
+          "raw_lf_sha256": "b8f45ed5418b9c4c5f0cec69df3d6338230c86d9bb4738d4a9a5f613afcf58dc"
+        }
+      ],
+      "functional_case_count": 13,
+      "unique_case_ids": true,
+      "case_count_by_ac": {
+        "AC-OS-L3-050-01": 4,
+        "AC-OS-L3-050-02": 4,
+        "AC-OS-L3-050-03": 1,
+        "AC-OS-L3-050-04": 2,
+        "AC-OS-L3-050-05": 2
+      },
+      "business_requirement_row": [
+        {
+          "line": 74,
+          "text": "| HELIXOS-L2-050 | 機能要件のみ。review capacity増枠はquality/merge acceptanceを意味しない。 | HARNESS independence/admission、OS queue/assignment。FR-OS-L3-050 AC-01..05。 |",
+          "raw_lf_sha256": "8b2e20da3b85353d39e9236828f2245eb0baf67a677418f7f3ad845630d7307c"
+        }
+      ],
+      "nfr_requirement_row": [
+        {
+          "line": 100,
+          "text": "| NFR-OS-L3-050-01 / 050 / AC-01..05 | 適用中の既存設定閾値・capacity・縮退条件に対する判定、原因別backpressure、lease保全を測る。 | 閾値・bucket時間・増枠数値はこの親で新設しない。1/2 bucketや15/60minは採択候補にもせず、比較はfixtureに与えた設定値だけで行う。 | 設定上のspike/持続状態、downstream blocker、縮退、stale returnを別々に与え、誤増枠・backpressure漏れを確認。 |",
+          "raw_lf_sha256": "b6a7cead8b18bfe3b35a37736abf0e0595c996b4ea9c8412438f9f79b8dcd044"
+        }
+      ],
+      "business_verification_row": [
+        {
+          "line": 63,
+          "text": "| CASE-OS-L10-BIZ-050 | HELIXOS-L2-050 / FR-OS-L3-050 AC-01..05 | 原因別backpressureとreview assignmentを分ける。 | merge pass rate |",
+          "raw_lf_sha256": "5f77bdc19feb6e57cc09e98dcf184775539f9a5e26f946ad29ddec30102a2855"
+        }
+      ],
+      "nfr_verification_rows": [
+        {
+          "line": 90,
+          "text": "| CASE-OS-L10-NFR-050-01 | NFR-OS-L3-050-01 | fixed parent/sourceから入力された設定閾値・capacity・縮退条件の通常/境界/spike/downstream blocker fixtureを比較。親にない数値やbucket境界は追加しない。誤増枠・backpressure漏れを観測する。 |",
+          "raw_lf_sha256": "43d97db7328aae6cedced51c94814aed7bd6dc95327a63573c852aefeee70188"
+        },
+        {
+          "line": 99,
+          "text": "| CASE-OS-L10-NFR-050-02 | NFR-OS-L3-050-01 | 同期間のtyped metricとeligible reviewer capacityを集計し、cause unknown/metric missing/lease staleは分母から除外せず未評価数として別表示。評価値だけでquality/merge stateを作らない。 |",
+          "raw_lf_sha256": "4fd754146e8a37a2d86bc8edbb5693885175988ccc6edb4dc022557815dd5ea5"
+        }
+      ],
+      "ac_count": 5,
+      "coverage_complete": true
+    },
+    "051": {
+      "parent": "HELIXOS-L2-051",
+      "ac": [
+        {
+          "id": "AC-OS-L3-051-01",
+          "line": 344,
+          "raw_lf_sha256": "b56b6aebfd2f2b7e1d9ab99ffe813526e9d9db9ae900e2e9ac2e62d9fc1c7ff1"
+        },
+        {
+          "id": "AC-OS-L3-051-02",
+          "line": 345,
+          "raw_lf_sha256": "4f0dce52c8e5be33f11ae819d4e8415626dcf6b23814c3c76e8ef54651977d01"
+        },
+        {
+          "id": "AC-OS-L3-051-03",
+          "line": 346,
+          "raw_lf_sha256": "e7defaa9cd2f4ec21e0144ba487ffeabfe7eb2731fff8b3d539bc1bf09ba247c"
+        },
+        {
+          "id": "AC-OS-L3-051-04",
+          "line": 347,
+          "raw_lf_sha256": "fc4c7ea616dc57d858295081d0f267ff9ef6e8ffc1dd7c1e7bdd9a91c92d70db"
+        },
+        {
+          "id": "AC-OS-L3-051-05",
+          "line": 348,
+          "raw_lf_sha256": "ca6a6d6a6ebed0e591defddc3dff63c8334541bb141280baa311ca1df0430bb8"
+        },
+        {
+          "id": "AC-OS-L3-051-06",
+          "line": 349,
+          "raw_lf_sha256": "1b1946e5953666724440cf2f6ff8f3c03f045f2aa0e3c2898b0165971908a1bf"
+        },
+        {
+          "id": "AC-OS-L3-051-07",
+          "line": 350,
+          "raw_lf_sha256": "7b406c666f4d3bbba1c98e34077c56017ae1acb91696c9a02912b669a9a94807"
+        },
+        {
+          "id": "AC-OS-L3-051-08",
+          "line": 351,
+          "raw_lf_sha256": "8c2fb6f1f9b0a3133f529f9b064e737064488bb4d37b821f0345503348c105a1"
+        },
+        {
+          "id": "AC-OS-L3-051-09",
+          "line": 352,
+          "raw_lf_sha256": "83f233fe683d394f8bfeb4beecf647ea0d50f2344d5e0d1a16e4b05c0926202e"
+        }
+      ],
+      "functional_cases": [
+        {
+          "id": "CASE-OS-L10-051-01",
+          "ac": "AC-OS-L3-051-01",
+          "line": 653,
+          "raw_lf_sha256": "2c3bbacd9dd44b809a758435f7a214d29a8eadb949c6c5be414c7a8886d82fac"
+        },
+        {
+          "id": "CASE-OS-L10-051-02",
+          "ac": "AC-OS-L3-051-02",
+          "line": 654,
+          "raw_lf_sha256": "c25093f8c300c8fb3ec714a67920ac4c406667fa43d30e7de66d4be80baa2507"
+        },
+        {
+          "id": "CASE-OS-L10-051-03",
+          "ac": "AC-OS-L3-051-03",
+          "line": 655,
+          "raw_lf_sha256": "09a3226b7cb6728b6d1decd1928e295bb9e2cd971f44c8bbae94290cc8d527fa"
+        },
+        {
+          "id": "CASE-OS-L10-051-04",
+          "ac": "AC-OS-L3-051-04",
+          "line": 683,
+          "raw_lf_sha256": "2537aa9ce0def5eb69a789c9e58e3a655c53254c8eb6ec09b29a49b4c2bfbe8d"
+        },
+        {
+          "id": "CASE-OS-L10-051-05",
+          "ac": "AC-OS-L3-051-05",
+          "line": 684,
+          "raw_lf_sha256": "ae4ad2c69bbd3b762c90c6625d64a4f6abe3e9dcceae632540f8d6df8cd3e646"
+        },
+        {
+          "id": "CASE-OS-L10-051-06",
+          "ac": "AC-OS-L3-051-06",
+          "line": 685,
+          "raw_lf_sha256": "af35c8579a72c388ed760eb10e96ed293576d35b1cba5edca55b9f46854bf14d"
+        },
+        {
+          "id": "CASE-OS-L10-051-07",
+          "ac": "AC-OS-L3-051-07",
+          "line": 686,
+          "raw_lf_sha256": "d63b092cb66bf2358f6f1b8afc040f41f5d8b7fbeb3ec17530b2e57337dca97b"
+        },
+        {
+          "id": "CASE-OS-L10-051-08",
+          "ac": "AC-OS-L3-051-08",
+          "line": 687,
+          "raw_lf_sha256": "907fbd9a141cf572b7fbee1c5284423588a4840e62d5e3e6936a618b867bb540"
+        },
+        {
+          "id": "CASE-OS-L10-051-09a",
+          "ac": "AC-OS-L3-051-04",
+          "line": 787,
+          "raw_lf_sha256": "579c93d9c3d41dc74fc24014f620d06cb4f3f48433ae8e159a63ef7abe121944"
+        },
+        {
+          "id": "CASE-OS-L10-051-09b",
+          "ac": "AC-OS-L3-051-07",
+          "line": 788,
+          "raw_lf_sha256": "017bf0fe8a16e0314a6097b2167040aece3dd257c96fb3f6235d6ab7e25882f8"
+        },
+        {
+          "id": "CASE-OS-L10-051-09c",
+          "ac": "AC-OS-L3-051-08",
+          "line": 789,
+          "raw_lf_sha256": "5427ebd8f0457c61337e9579661cae473579cd98147da9ce07a96dbc3b144a86"
+        },
+        {
+          "id": "CASE-OS-L10-051-09d",
+          "ac": "AC-OS-L3-051-09",
+          "line": 790,
+          "raw_lf_sha256": "f02c6e7752338ab4af79eec6bf2657cc8a47651d55092d12d0c9bb5bbbc6316b"
+        }
+      ],
+      "functional_case_count": 12,
+      "unique_case_ids": true,
+      "case_count_by_ac": {
+        "AC-OS-L3-051-01": 1,
+        "AC-OS-L3-051-02": 1,
+        "AC-OS-L3-051-03": 1,
+        "AC-OS-L3-051-04": 2,
+        "AC-OS-L3-051-05": 1,
+        "AC-OS-L3-051-06": 1,
+        "AC-OS-L3-051-07": 2,
+        "AC-OS-L3-051-08": 2,
+        "AC-OS-L3-051-09": 1
+      },
+      "business_requirement_row": [
+        {
+          "line": 75,
+          "text": "| HELIXOS-L2-051 | 独立business outcomeなし。配車適性候補は新しいperformance評価ではない。 | FR-OS-L3-051 AC-01..09を参照。 |",
+          "raw_lf_sha256": "b53f6d803664ef5ca68b25ca137b3c4861692e48761adbe7de4df8dab5a99ddf"
+        }
+      ],
+      "nfr_requirement_row": [
+        {
+          "line": 101,
+          "text": "| NFR-OS-L3-051-01 / 051 / AC-01..09 | task class/scope/revisionに対する既存適性evidenceの適用条件・版照合と、task単位選択を測る。expiry fieldはsourceが持つ場合のみ照合し、expiryなしをunknownとしない。 | evidence freshness期限/thresholdの新設は対象外。期限が既存sourceにある場合のみ、その入力値を用いる。 | 既存期限のある/ないsourceを分け、scope変更・stale・同名別providerを独立fixtureで照合する。 |",
+          "raw_lf_sha256": "f9bd3bc5dd3da1682d908ccda4cc53d658f25c571d3fd6f28167a97f49b3d29a"
+        }
+      ],
+      "business_verification_row": [
+        {
+          "line": 64,
+          "text": "| CASE-OS-L10-BIZ-051 | HELIXOS-L2-051 / FR-OS-L3-051 AC-01..09 | suitability evidenceと配置案をreview結果から分ける。 | provider優劣score |",
+          "raw_lf_sha256": "6cd74f8181a31773926aa0d01ccf8f265cc8e66da13f757e6026d2dfc4b6e963"
+        }
+      ],
+      "nfr_verification_rows": [
+        {
+          "line": 91,
+          "text": "| CASE-OS-L10-NFR-051-01 | NFR-OS-L3-051-01 | expiryを持つsourceではその値を照合し、持たないsourceではexpiry条件を課さず適用scope/class/revisionで判定する。scope change・同名別providerを個別fixtureで照合する。freshness日数を新設しない。 |",
+          "raw_lf_sha256": "a5457428a921bd9db8d3442b7ac43012f5f9b23f6bdcb9e9e8afbe394820ad1f"
+        },
+        {
+          "line": 100,
+          "text": "| CASE-OS-L10-NFR-051-02 | NFR-OS-L3-051-01 | scope/class/revisionごとの適格evidence件数を母集団にし、期限欠測・source stale・availability unknownを別状態で報告する。provider名は適格性の代理値にしない。 |",
+          "raw_lf_sha256": "faeb4d33e9ea6c06dd527766f8ee7ff2b35348ff35a39a4cb1c1c22b3ea71ca7"
+        }
+      ],
+      "ac_count": 9,
+      "coverage_complete": true
+    }
+  },
+  "selected_rows_by_parent": {
+    "049": {
+      "fr_heading_and_ac": [
+        {
+          "line": 326,
+          "text": "### FR-OS-L3-049 — HELIXOS-L2-049",
+          "raw_lf_sha256": "ec7586f23f97578a2c453e98709919e2ff616c20d0c0773d11f2e424faaee859"
+        }
+      ],
+      "br": [
+        {
+          "line": 73,
+          "text": "| HELIXOS-L2-049 | 独立business outcomeなし。configured pool・利用率をproductivity/throughputと同一視しない。 | FR-OS-L3-049 AC-01..05を参照。 |",
+          "raw_lf_sha256": "b985f6f4765830d81748b295e49d8178c3045476c5cc07571109b5cf49c7ec9b"
+        }
+      ],
+      "nfr": [
+        {
+          "line": 99,
+          "text": "| NFR-OS-L3-049-01 / 049 / AC-01..05 | observation bucket 15min candidate、configured max/WIP/state countsは別軸。15minは短期状態遷移の視認候補で固定worker数でない。 | 1minはnoise/high overhead、60minは短い競合を隠す。15/60分fixtureで状態誤分類と観測負荷を比較。 | 同じtask traceを各windowでreplayしstate conservation、後段capacity確保なしのdispatch 0。 |",
+          "raw_lf_sha256": "ef3530b0f78b67703ba06c51800fbf68f397b7794ce8187583dbc932adaabedf"
+        }
+      ],
+      "fv_case_rows": [
+        {
+          "line": 646,
+          "text": "| CASE-OS-L10-049-01 | AC-OS-L3-049-01 | 有限task状態表とconfigured limit、READY/依存/優先順/authority/scope/競合を満たし、適用可能なINTELLIGENCE low-impact evidenceと後段検証担当/capacity確保済みの適格idle task。 | 各状態別集計、適格taskだけ別assignment。上限とrun countを別値として返す。 |",
+          "raw_lf_sha256": "c40eeede9a15ef678b9c32994b51237727b0be0413c9184c5c1f339c1669e94f"
+        },
+        {
+          "line": 647,
+          "text": "| CASE-OS-L10-049-02 | AC-OS-L3-049-02 | dependency/authority/scope/path/deadline/downstream owner/capacity/limitを各々欠落・不適合化。 | 不適格dispatch 0、idleはidle、理由を残す。 |",
+          "raw_lf_sha256": "de84f8ffbb5b149d440f61629dbbaec7f588b3f1cc6c387aca6dec61010306ac"
+        },
+        {
+          "line": 648,
+          "text": "| CASE-OS-L10-049-03 | AC-OS-L3-049-03 | resource/proposal/observation時点をunknownにする。 | 割当可能・実行中へ推定せず、source ownerへ返す。 |",
+          "raw_lf_sha256": "67415564147d56c4b506189850fd7affb46c34d6c29b4f2384f00d71b3242c3e"
+        },
+        {
+          "line": 678,
+          "text": "| CASE-OS-L10-049-04 | AC-OS-L3-049-04 | 同一scope/time window内でconfigured capacity・経過観測秒・assignment/task counts・unused capacity・unfinished lineageを別々に固定しutilizationを算出する。 | denominatorが明示され、counts/未完系譜と別指標。dummy taskを作らない。missing time/capacityは未評価で成功分母に入れない。 |",
+          "raw_lf_sha256": "6e1c5a9c2caaf80b4a6930a7a0510571568c338ffbf3f42359613ced3ae2940f"
+        },
+        {
+          "line": 679,
+          "text": "| CASE-OS-L10-049-05 | AC-OS-L3-049-05 | downstream owner/capacity、READY、priority、deadline、lease、authority、config revisionを一項目ずつ不適合化する。 | 不適合範囲のみ保留、HARNESS義務と未完理由を保持。OSはimpactを判定しない。 |",
+          "raw_lf_sha256": "774d5dbd28f06737229a22f4840b40e9cf29346a505185555766aa52caf77fcc"
+        },
+        {
+          "line": 697,
+          "text": "| CASE-OS-L10-049-07 | AC-OS-L3-049-01 | 未見task identityを有限fixtureへ加え、既存設定・READY/dependency/priority/authority/scope/後段義務・担当・capacityをすべて満たす。 | task単位の既存条件で評価し、登録数と実行/throughputは分ける。 |",
+          "raw_lf_sha256": "56c9749f2e4126259fbe85784eec37d923bf64a482c2def65cd250f6acaeceeb"
+        },
+        {
+          "line": 777,
+          "text": "| CASE-OS-L10-049-06a | AC-OS-L3-049-02 | 後段義務/担当/実施capacityが未確保。 | 新assignmentを保留し未完理由を保持。 |",
+          "raw_lf_sha256": "e745dcdd02b2cf5859054dd31c48df2f290d055c78bde54daa2108c640317915"
+        },
+        {
+          "line": 778,
+          "text": "| CASE-OS-L10-049-06b | AC-OS-L3-049-01 | 後段review/mergeがまだ完了していないが割当前の検証義務・担当・容量は確保済み。 | それ自体を割当拒否理由にしない。後段は既存担当/admissionへ残す。 |",
+          "raw_lf_sha256": "820381998ca6506646352db2386dc252a574857cc194b4a7ce064d9d32395d10"
+        },
+        {
+          "line": 779,
+          "text": "| CASE-OS-L10-049-06c | AC-OS-L3-049-02 | 設定上限が2から5へ切替、またはsetting missing/unknown/stale。 | 有効設定ごとに判定し、不明なら新規dispatch保留。 |",
+          "raw_lf_sha256": "3fd912065e6ef18fd70bda7a228b928cebb02f132474ba13b6ebd575b115c466"
+        },
+        {
+          "line": 780,
+          "text": "| CASE-OS-L10-049-06d | AC-OS-L3-049-04 | utilizationを分子/分母単位・時点・scopeなしで提示。 | 指標を算出済み扱いせず、分母式の根拠を示す。 |",
+          "raw_lf_sha256": "15e6a9ea64c43ac8887efbe4b6b720b44f776d5945f0c2b40e60f5050f5a07fb"
+        },
+        {
+          "line": 781,
+          "text": "| CASE-OS-L10-049-06e | AC-OS-L3-049-05 | 旧provider数/8-slot/CI/DB/Merge TrainまたはLEGACY-ASSET-23D3D9769B093AFDCC25の旧capacity値を成立証拠にする。 | 旧候補値を除外し固定親条件で判定し、成果・予算・未完義務のlineageを保持する。 |",
+          "raw_lf_sha256": "9c83f151437c5f590600bb22e52318ec8ddf21cb8bd2aa3f06bd3da0f46acf3e"
+        }
+      ],
+      "bv": [
+        {
+          "line": 62,
+          "text": "| CASE-OS-L10-BIZ-049 | HELIXOS-L2-049 / FR-OS-L3-049 AC-01..05 | configured capacity・実行状態・割当候補を別集計する。 | utilization目標 |",
+          "raw_lf_sha256": "8bbe799e79039ef2a5c0ea00b67913a0ad36f8e07d345e86176e718cc83ace4f"
+        }
+      ],
+      "nfrv": [
+        {
+          "line": 89,
+          "text": "| CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを15/60min bucketで比較しlimitとstate countsを別確認し、成果・予算・未完義務のlineageを保持する。無根拠dispatchと誤状態数。 |",
+          "raw_lf_sha256": "9c0e3ba4851115acdead1d67a85f88cd80455730612e222025307c31ff2e1851"
+        },
+        {
+          "line": 98,
+          "text": "| CASE-OS-L10-NFR-049-02 | NFR-OS-L3-049-01 | configured capacity × 有効な経過秒を時間分母として別記し、assignment/task count、unused capacity、unfinished lineageを独立集計する。時間0/欠測capacityは算出不能、分母が有効でcount 0なら実測0。 |",
+          "raw_lf_sha256": "e1a4ba65f74fee2446721389a1e884d44d7e0d8bd888852ed8b3a95f4e98a8e5"
+        }
+      ]
+    },
+    "050": {
+      "fr_heading_and_ac": [
+        {
+          "line": 334,
+          "text": "### FR-OS-L3-050 — HELIXOS-L2-050",
+          "raw_lf_sha256": "8a19303ef9de7667c5b3069a6b9c1890502e8f90f84a3b788ea1ca8b70c059f3"
+        }
+      ],
+      "br": [
+        {
+          "line": 74,
+          "text": "| HELIXOS-L2-050 | 機能要件のみ。review capacity増枠はquality/merge acceptanceを意味しない。 | HARNESS independence/admission、OS queue/assignment。FR-OS-L3-050 AC-01..05。 |",
+          "raw_lf_sha256": "8b2e20da3b85353d39e9236828f2245eb0baf67a677418f7f3ad845630d7307c"
+        }
+      ],
+      "nfr": [
+        {
+          "line": 100,
+          "text": "| NFR-OS-L3-050-01 / 050 / AC-01..05 | 適用中の既存設定閾値・capacity・縮退条件に対する判定、原因別backpressure、lease保全を測る。 | 閾値・bucket時間・増枠数値はこの親で新設しない。1/2 bucketや15/60minは採択候補にもせず、比較はfixtureに与えた設定値だけで行う。 | 設定上のspike/持続状態、downstream blocker、縮退、stale returnを別々に与え、誤増枠・backpressure漏れを確認。 |",
+          "raw_lf_sha256": "b6a7cead8b18bfe3b35a37736abf0e0595c996b4ea9c8412438f9f79b8dcd044"
+        }
+      ],
+      "fv_case_rows": [
+        {
+          "line": 649,
+          "text": "| CASE-OS-L10-050-01 | AC-OS-L3-050-01 | 同一期間のtyped backlog/wait/rework/reviewer capacityと独立reviewer候補。 | review capacity不足が主因の範囲だけHEAD/generation boundの一意assignment。 |",
+          "raw_lf_sha256": "8974dadb78b735a646fca2d32491359fff70a6839a64dd2ca460ac6753fb1553"
+        },
+        {
+          "line": 650,
+          "text": "| CASE-OS-L10-050-02 | AC-OS-L3-050-02 | downstream bottleneck、limit、reviewerなし、重複generation、active lease、threshold欠落を個別変異し、別fixtureで原因・観測値・待ち義務を省く。 | 不当増枠0、active lease不変、merge/Ready権限の追加0。backpressure時に原因・観測値・待ち義務を保持する。 |",
+          "raw_lf_sha256": "e912f15fc5b5437893ef2507e80a086ca125c20f87444f97dabf4c363bd8867f"
+        },
+        {
+          "line": 651,
+          "text": "| CASE-OS-L10-050-03 | AC-OS-L3-050-03 | 原因/threshold/authority/適性unknownと、別対象の許可済みreviewを入力。 | 対象scopeだけbackpressure、無関係な許可済みreviewは継続可。 |",
+          "raw_lf_sha256": "b554c2832a419a0a4cf4b4c5eecc22d21d76820c49ef115e2e6e6dd001c81512"
+        },
+        {
+          "line": 652,
+          "text": "| CASE-OS-L10-050-04 | AC-OS-L3-050-04 | 既存設定の縮退条件を満たす通常fixtureと、active leaseが残る対照fixtureを入力する。 | 新規review assignment増加を止める。縮退は選択可能な対応であり、active leaseを中断しない。merge前base/HEAD/scope/admission照合は既存規則。 |",
+          "raw_lf_sha256": "858cffce9424bc3ecb2010c1ce196e32cf10926ec782ebb81311c535289a310d"
+        },
+        {
+          "line": 680,
+          "text": "| CASE-OS-L10-050-01b | AC-OS-L3-050-01 | review待ち件数・待ち時間・rework占有率・reviewer稼働率、scope/period、主因、eligible reviewer availability、authority/context/leaseが揃う正常fixtureを作る。 | capacity causeに対応するassignment候補だけ記録し、quality/Ready/merge stateは別に保つ。 |",
+          "raw_lf_sha256": "82f0dda57b50bd66872c90520acda19e306e9d1f712e882f96ee064962e1b278"
+        },
+        {
+          "line": 681,
+          "text": "| CASE-OS-L10-050-01c | AC-OS-L3-050-01 | 現行review_merge担当者が既存merge admissionを満たしたreview結果を使ってmergeを行う正常case。 | 既存admission後のmerge可能状態を保ち、本候補だけで拒否/追加許可を作らない。 |",
+          "raw_lf_sha256": "45d8801f931b0b4cf780c2a9b76933151d988e38e17a86030e1e5a3e90a9d7ea"
+        },
+        {
+          "line": 682,
+          "text": "| CASE-OS-L10-050-05 | AC-OS-L3-050-05 | reviewer capacity/lease/priority/deadline/downstream owner/capacity/authorityを個々に欠落・失効させ、別fixtureでcreator/subagent reviewer、HEAD drift、base drift、scope drift、複数PRの片方merge後に残りのbaseを再取得しない条件を与える。 | 不当増枠0。capacityからindependence、branch edit、Ready、merge authorityを生成しない。 |",
+          "raw_lf_sha256": "afc21245c4dbba9743b73c5d97d0f9636f272dd88fd8b2f5e163a4c37095f244"
+        },
+        {
+          "line": 698,
+          "text": "| CASE-OS-L10-050-08 | AC-OS-L3-050-01 | 未見のreview backlog eventを既存typed metric contractで入力し、原因・eligible reviewer・既存設定を満たす。 | 新thresholdを作らず既存capacity候補だけ記録し、quality/Ready/mergeを生成しない。 |",
+          "raw_lf_sha256": "72efe6527ace246395e4a0450d72ee226406c53d94ce59d068b00d0e15eec86e"
+        },
+        {
+          "line": 782,
+          "text": "| CASE-OS-L10-050-07a | AC-OS-L3-050-02 | provider/model名差だけでindependent review認定。 | independenceを成立させない。 |",
+          "raw_lf_sha256": "58a19a2268bbd4d6287baf24184ea8cfc655b7718cd18032f5c432d21257f6a9"
+        },
+        {
+          "line": 783,
+          "text": "| CASE-OS-L10-050-07b | AC-OS-L3-050-02 | review完了だけで他HARNESS stage condition成立と表示。 | capacity/review状態だけを記録しstage状態は変更しない。 |",
+          "raw_lf_sha256": "f520233ab1ccf2727b458d260a23cd5e4f253b3b19497757142c21218f39af93"
+        },
+        {
+          "line": 784,
+          "text": "| CASE-OS-L10-050-07c | AC-OS-L3-050-02 | 既存原因/観測値/待ち義務を落としてbackpressureする。 | 三つを保持し該当scopeを限定する。 |",
+          "raw_lf_sha256": "39ae058a283152fe8c41c0b5e125849a1fa144c689c083a705fff801970f2f91"
+        },
+        {
+          "line": 785,
+          "text": "| CASE-OS-L10-050-07d | AC-OS-L3-050-04 | 負荷が既存縮退条件を満たす。 | 新規増枠を停止し、縮退は可能な場合に選べる。active lease完了前の中断や縮退を必須としない。 |",
+          "raw_lf_sha256": "8a92583a8b595671e04b669f12a2195b6c734c70d8ce73f54cce50d7400d7324"
+        },
+        {
+          "line": 786,
+          "text": "| CASE-OS-L10-050-07e | AC-OS-L3-050-05 | stale時に作成側へ原因なしで返す。 | 理由付きで該当作成側へ返し未完を保持。 |",
+          "raw_lf_sha256": "b8f45ed5418b9c4c5f0cec69df3d6338230c86d9bb4738d4a9a5f613afcf58dc"
+        }
+      ],
+      "bv": [
+        {
+          "line": 63,
+          "text": "| CASE-OS-L10-BIZ-050 | HELIXOS-L2-050 / FR-OS-L3-050 AC-01..05 | 原因別backpressureとreview assignmentを分ける。 | merge pass rate |",
+          "raw_lf_sha256": "5f77bdc19feb6e57cc09e98dcf184775539f9a5e26f946ad29ddec30102a2855"
+        }
+      ],
+      "nfrv": [
+        {
+          "line": 90,
+          "text": "| CASE-OS-L10-NFR-050-01 | NFR-OS-L3-050-01 | fixed parent/sourceから入力された設定閾値・capacity・縮退条件の通常/境界/spike/downstream blocker fixtureを比較。親にない数値やbucket境界は追加しない。誤増枠・backpressure漏れを観測する。 |",
+          "raw_lf_sha256": "43d97db7328aae6cedced51c94814aed7bd6dc95327a63573c852aefeee70188"
+        },
+        {
+          "line": 99,
+          "text": "| CASE-OS-L10-NFR-050-02 | NFR-OS-L3-050-01 | 同期間のtyped metricとeligible reviewer capacityを集計し、cause unknown/metric missing/lease staleは分母から除外せず未評価数として別表示。評価値だけでquality/merge stateを作らない。 |",
+          "raw_lf_sha256": "4fd754146e8a37a2d86bc8edbb5693885175988ccc6edb4dc022557815dd5ea5"
+        }
+      ]
+    },
+    "051": {
+      "fr_heading_and_ac": [
+        {
+          "line": 342,
+          "text": "### FR-OS-L3-051 — HELIXOS-L2-051",
+          "raw_lf_sha256": "71035b477ff67610ae35b40519386f535e2600d9cf3ecab0908d01016443fa20"
+        }
+      ],
+      "br": [
+        {
+          "line": 75,
+          "text": "| HELIXOS-L2-051 | 独立business outcomeなし。配車適性候補は新しいperformance評価ではない。 | FR-OS-L3-051 AC-01..09を参照。 |",
+          "raw_lf_sha256": "b53f6d803664ef5ca68b25ca137b3c4861692e48761adbe7de4df8dab5a99ddf"
+        }
+      ],
+      "nfr": [
+        {
+          "line": 101,
+          "text": "| NFR-OS-L3-051-01 / 051 / AC-01..09 | task class/scope/revisionに対する既存適性evidenceの適用条件・版照合と、task単位選択を測る。expiry fieldはsourceが持つ場合のみ照合し、expiryなしをunknownとしない。 | evidence freshness期限/thresholdの新設は対象外。期限が既存sourceにある場合のみ、その入力値を用いる。 | 既存期限のある/ないsourceを分け、scope変更・stale・同名別providerを独立fixtureで照合する。 |",
+          "raw_lf_sha256": "f9bd3bc5dd3da1682d908ccda4cc53d658f25c571d3fd6f28167a97f49b3d29a"
+        }
+      ],
+      "fv_case_rows": [
+        {
+          "line": 653,
+          "text": "| CASE-OS-L10-051-01 | AC-OS-L3-051-01 | task class別evidence、INTELLIGENCE案、authority/capability、作成/review候補を入力。 | 条件適用内の役割別配置を対象revisionへ記録。異方向の適格配置も正常。 |",
+          "raw_lf_sha256": "2c3bbacd9dd44b809a758435f7a214d29a8eadb949c6c5be414c7a8886d82fac"
+        },
+        {
+          "line": 654,
+          "text": "| CASE-OS-L10-051-02 | AC-OS-L3-051-02 | 同一context両役割、Cursor reviewer、stale evidence、wrong scope/authority/headを個別変異。 | 不適切配置0。provider名差のみの独立性claim 0。 |",
+          "raw_lf_sha256": "c25093f8c300c8fb3ec714a67920ac4c406667fa43d30e7de66d4be80baa2507"
+        },
+        {
+          "line": 655,
+          "text": "| CASE-OS-L10-051-03 | AC-OS-L3-051-03 | evidence/availability/scopeをunknownにする。 | 未割当・戻し先記録。Claude優先/Cursor条件でunknownを迂回しない。 |",
+          "raw_lf_sha256": "09a3226b7cb6728b6d1decd1928e295bb9e2cd971f44c8bbae94290cc8d527fa"
+        },
+        {
+          "line": 683,
+          "text": "| CASE-OS-L10-051-04 | AC-OS-L3-051-04 | 要求/設計taskのClaude-create/Codex-review、適格性が成立する逆配置、非要求/設計taskの適格配置を別fixtureにする。 | Claude優先は要求/設計taskに限り、各正常配置のscope/evidenceを維持。 |",
+          "raw_lf_sha256": "2537aa9ce0def5eb69a789c9e58e3a655c53254c8eb6ec09b29a49b4c2bfbe8d"
+        },
+        {
+          "line": 684,
+          "text": "| CASE-OS-L10-051-05 | AC-OS-L3-051-05 | Cursor reviewer、同一runtime/context、stale evidence、wrong scope/authority/HEAD、provider-name-only independence、通知/ACK/reviewer名だけのassignment/review receiptを各々独立に変異。 | 各誤配置/receiptを拒否し既存ownerへ戻す。 |",
+          "raw_lf_sha256": "ae4ad2c69bbd3b762c90c6625d64a4f6abe3e9dcceae632540f8d6df8cd3e646"
+        },
+        {
+          "line": 685,
+          "text": "| CASE-OS-L10-051-06 | AC-OS-L3-051-06 | LABO evidence / INTELLIGENCE proposalまたは適格sourceの一つをunknownにし、別適格候補がある組合せとない組合せを対照にする。 | 適格根拠がある候補のみ選択。根拠なしは未割当として対応ownerへ戻す。 |",
+          "raw_lf_sha256": "af35c8579a72c388ed760eb10e96ed293576d35b1cba5edca55b9f46854bf14d"
+        },
+        {
+          "line": 686,
+          "text": "| CASE-OS-L10-051-07 | AC-OS-L3-051-07 | reviewerが対象content HEADをread-onlyで読みfindingを作成側へ返し、修正後HEADを別reviewとして読む正常循環を与える。 | 各finding/revisionが結び、前HEAD receiptを新HEADへ流用しない。 |",
+          "raw_lf_sha256": "d63b092cb66bf2358f6f1b8afc040f41f5d8b7fbeb3ec17530b2e57337dca97b"
+        },
+        {
+          "line": 687,
+          "text": "| CASE-OS-L10-051-08 | AC-OS-L3-051-08 | 適性計測/配置案のみでscope・branch・budget・authority・review成立を変える変異と、通知/ACK/reviewer名のみでassignment/receiptを作る変異を独立入力。 | 状態を変更せず既存authority/assignment ownerへ返す。 |",
+          "raw_lf_sha256": "907fbd9a141cf572b7fbee1c5284423588a4840e62d5e3e6936a618b867bb540"
+        },
+        {
+          "line": 787,
+          "text": "| CASE-OS-L10-051-09a | AC-OS-L3-051-04 | Claude優先を実装/運用等、要求・設計以外のtaskに適用。 | 優先条件を適用せず、task別の通常適格性だけ判定。 |",
+          "raw_lf_sha256": "579c93d9c3d41dc74fc24014f620d06cb4f3f48433ae8e159a63ef7abe121944"
+        },
+        {
+          "line": 788,
+          "text": "| CASE-OS-L10-051-09b | AC-OS-L3-051-07 | exact HEAD read-only finding→作成側修正→新HEAD再review。 | 全revision/actor/returnをtraceし、前receiptを流用しない。 |",
+          "raw_lf_sha256": "017bf0fe8a16e0314a6097b2167040aece3dd257c96fb3f6235d6ab7e25882f8"
+        },
+        {
+          "line": 789,
+          "text": "| CASE-OS-L10-051-09c | AC-OS-L3-051-08 | LABO/INTELLIGENCEだけでscope/branch/budget/authority/review成立を変更。 | 各変更を拒否し既存authority/assignment ownerへ戻す。 |",
+          "raw_lf_sha256": "5427ebd8f0457c61337e9579661cae473579cd98147da9ce07a96dbc3b144a86"
+        },
+        {
+          "line": 790,
+          "text": "| CASE-OS-L10-051-09d | AC-OS-L3-051-09 | 適格taskのtask class/scope/revision/evidence/runtime/context、authority、review finding return、新HEAD再reviewを一つのlineageで入力。 | 選択と独立reviewの全fieldが同じchange lineageへ結び、provider名だけでは独立性を判断しない。 |",
+          "raw_lf_sha256": "f02c6e7752338ab4af79eec6bf2657cc8a47651d55092d12d0c9bb5bbbc6316b"
+        }
+      ],
+      "bv": [
+        {
+          "line": 64,
+          "text": "| CASE-OS-L10-BIZ-051 | HELIXOS-L2-051 / FR-OS-L3-051 AC-01..09 | suitability evidenceと配置案をreview結果から分ける。 | provider優劣score |",
+          "raw_lf_sha256": "6cd74f8181a31773926aa0d01ccf8f265cc8e66da13f757e6026d2dfc4b6e963"
+        }
+      ],
+      "nfrv": [
+        {
+          "line": 91,
+          "text": "| CASE-OS-L10-NFR-051-01 | NFR-OS-L3-051-01 | expiryを持つsourceではその値を照合し、持たないsourceではexpiry条件を課さず適用scope/class/revisionで判定する。scope change・同名別providerを個別fixtureで照合する。freshness日数を新設しない。 |",
+          "raw_lf_sha256": "a5457428a921bd9db8d3442b7ac43012f5f9b23f6bdcb9e9e8afbe394820ad1f"
+        },
+        {
+          "line": 100,
+          "text": "| CASE-OS-L10-NFR-051-02 | NFR-OS-L3-051-01 | scope/class/revisionごとの適格evidence件数を母集団にし、期限欠測・source stale・availability unknownを別状態で報告する。provider名は適格性の代理値にしない。 |",
+          "raw_lf_sha256": "faeb4d33e9ea6c06dd527766f8ee7ff2b35348ff35a39a4cb1c1c22b3ea71ca7"
+        }
+      ]
+    }
+  },
+  "observations": [
+    {
+      "type": "measurement_candidate_risk",
+      "parent": "HELIXOS-L2-049",
+      "status": "limited_not_confirmed_requirement_defect",
+      "evidence": [
+        "L2 fixed: configured capacity is a changeable setting: docs/helix-os/L2-requirements/governance-requirements.md:1208",
+        "L3 NFR: denominator candidate is configured capacity × elapsed observed time: docs/helix-os/L3-requirements/nfr-grade.md:99",
+        "L10 CASE-049-04 inputs one configured capacity over a window; no config-revision transition is stated: docs/helix-os/L10-verification/functional-verification.md:678"
+      ],
+      "risk": "A window spanning a capacity-setting revision could use an unrepresentative single capacity and bias utilization. The formula is expressly a technical candidate, not a fixed threshold or acceptance gate; L2 does not mandate a utilization formula. No parent semantic blocker established. If the metric is retained, split at existing config revisions or define a stable-source window before interpreting utilization."
+    },
+    {
+      "type": "technical_candidate",
+      "parent": "HELIXOS-L2-049",
+      "status": "explicitly_candidate_not_requirement",
+      "evidence": [
+        "docs/helix-os/L3-requirements/nfr-grade.md:99"
+      ],
+      "risk": "15min and 15/60min comparison has a qualitative rationale (1min noise/overhead; 60min hides short conflicts), but no empirical measurement. It is labeled candidate, does not impose a fixed bucket or L2 outcome."
+    },
+    {
+      "type": "limited_no_finding",
+      "parent": "HELIXOS-L2-050",
+      "status": "no_confirmed_semantic_defect",
+      "evidence": [
+        "All 5 ACs are mapped to distinct L10 CASE IDs; capacity-only success does not produce quality/Ready/merge; no threshold/provider value is invented."
+      ]
+    },
+    {
+      "type": "limited_no_finding",
+      "parent": "HELIXOS-L2-051",
+      "status": "no_confirmed_semantic_defect",
+      "evidence": [
+        "All 9 ACs map to L10 CASE IDs; conditional Cursor-create-only/Claude priority are bounded; missing expiry remains non-unknown in L3 and NFR L10 distinguishes sources with/without expiry."
+      ]
+    }
+  ],
+  "validation": {
+    "ac_case_trace_all_present": true,
+    "case_ids_unique_per_parent": true,
+    "all_selected_fixed_spans_match_pin": true,
+    "six_targeted_row_groups_match_approved_body_revision_f3e5": true,
+    "tests_runtime_ci": false,
+    "semantic_depth": "Scoped exact reading of all three selected parents, all corresponding ACs and L10 case rows, related BR/NFR rows, direct old source and listed old consumer excerpts; no full-depth re-review of all 15 parents or all 274 documents."
+  },
+  "limits": [
+    "No fixture, legacy runtime, CLI, hook, CI, or archive test was run.",
+    "The finding candidate is a metric-window design risk, not a confirmed omission from fixed L2.",
+    "The other 12 OS Stage 3 parents were not reread in this audit; their prior audit evidence is not independently revalidated here.",
+    "No claim is made that all 274 stage documents have been meaning-reviewed."
+  ],
+  "next_os_candidate": "Within the approved OS Stage 3 15-parent roster, these are the final 3 remaining parents in this task; assuming earlier audits remain valid, no unreviewed parent in this roster remains. Next candidate is whichever OS stage outside this 1.0 Stage 3 roster is still unreviewed; this audit does not independently identify/close that broader scope."
+}

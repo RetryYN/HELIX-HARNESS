@@ -1,0 +1,194 @@
+{
+  "audit_type": "read-only semantic audit",
+  "base_commit": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+  "fixed_parent_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "scope": [
+    "HELIXINTELLIGENCE-L2-070",
+    "HELIXINTELLIGENCE-L2-071",
+    "HELIXINTELLIGENCE-L2-074",
+    "HELIXINTELLIGENCE-L2-077"
+  ],
+  "six_document_sha256": {
+    "BR": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+    "FR": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+    "NFR": "b26a93177d8857cfe9dba92a37ccf6153d1fb5cdf08e5b808e0b3d94ef8b42c1",
+    "BV": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+    "FV": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+    "NFRV": "a8008b4ed973d43ff20952a496db241da1dcb438cd79056a55ae24dd30ea1e5e"
+  },
+  "fixed_l2_l11": {
+    "sha256_fixed": {
+      "L2": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "L11": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    "sha256_at_base": {
+      "L2": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "L11": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    "same_bytes_at_fixed_revision": true
+  },
+  "parent_reviews": [
+    {
+      "parent": "HELIXINTELLIGENCE-L2-070",
+      "stage": 5,
+      "fixed_l2": "633bf12:528-543",
+      "fixed_l11": "rows 229-238,251-257",
+      "ac": "AC-INT-070-01..09",
+      "case_population": "01-04 normal stage cases; 05a-f connection negatives; 06a-i duplicate/late/compat cases plus 10a-c order/stale; 07a-l contract/binding negatives; 08a-e prediction/actual/threshold/consumer unknown (08a index to 05c); 09a-g source/result/identity/regression/authority negatives.",
+      "assessment": "The ordered 033 input→069 result→040 send→LABO-024 consumer chain is preserved; each stage has its own receipt and later receipt is not an earlier input prerequisite. Virtual result vs later observation and receipt vs LABO evaluation remain distinct. NFR-070-01 stage ledger, -02 07/08 fixture population (08a excluded), -03 09/06/10 population and NFRV mapping separate stage states; no latency/SLA threshold or business KPI is added.",
+      "owners": "Product Core/HARNESS source authority; CONNECT connector/transport; SECURITY data-use; LABO consumer/evaluation. Unknown correlation/scope where L2 gives no return owner remains unknown."
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-071",
+      "stage": 5,
+      "fixed_l2": "633bf12:544-560",
+      "fixed_l11": "rows 239-257",
+      "ac": "AC-INT-071-01..05",
+      "case_population": "01 normal; 02a-h independent mismatches; 03 held-out; 04a-c fixed normal scenarios plus 04d-j independent negatives; 05a-r operation/receipt/contract negatives, 05f/h index to 04f/g.",
+      "assessment": "Baseline/load, DB disconnect, and virtual-worker scenarios have separate fixed oracles; same-model revision, scope, units, causal edges, shared ceiling, numeric unknowns, and downstream receipt are maintained. L2/L11 expect an oracle for fixed acceptance fixtures or explicitly selected verification operations but not for ordinary calculation; 05a/b preserve this. NFR-071-02 separates 3 normal + 7 negatives and 02h scope mismatch; -03 excludes 05f/h indices and keeps operations/contract conditions distinct. Simulation is not actual, LABO-evaluated, or OS assignment."
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-074",
+      "stage": 5,
+      "fixed_l2": "633bf12:609-617",
+      "fixed_l11": "rows 328-335",
+      "ac": "AC-INT-074-01..06",
+      "case_population": "01 normal; 02a-d core negatives with 02e/f index; 03 held-out; 04a-c single-field unknown; 05a-aa (05f/05l/05y indices, 05w/x normal; 24 unique fixtures); 06a-h (06e index).",
+      "assessment": "Only evaluated feedback applicable to matching task/revision/scope may be cited for the next proposal. LABO evaluates, INT proposes, OS issues/reissues/assigns. Single feedback does not create durable worker rank/qualification or modify model/requirements. 05aa independently retains the L2-010 capability condition while denying proposal qualification from evaluation receipt alone. Unknown applicability owner remains unknown. NFR-074-01 eligible/unknown/excluded counts; -02 3 unknown facets + 24 unique fixtures; -03 missing/stale feedback fields are separated without new thresholds."
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-077",
+      "stage": 5,
+      "fixed_l2": "633bf12:635-645",
+      "fixed_l11": "rows 352-362",
+      "ac": "AC-INT-077-01..06",
+      "case_population": "01 internal qualified source normal; 02 external source normal; 03a-m index/negative, only 03g independent unknown consumer; 04 held-out; 05a-z 26 independent field/origin/authority cases; 06a-g four-category dependency cases with 06e/f indices.",
+      "assessment": "Selected qualified receipt identity/revision/owner/origin remain distinct; unknown is not converted to 0/neutral/unchanged/observed, no unselected/reference fallback occurs, and no direct Requirement/Design/Release/Assignment/merge mutation is allowed. Formal consumer/route remains unknown. NFR-077-01 reports internal/external selected populations; -02 separately reports 05a-z and 03g, without runtime rate or generic pass threshold."
+    }
+  ],
+  "legacy_sources_read": [
+    {
+      "parents": [
+        "070",
+        "074"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "lines": "47-64",
+      "sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "assessment": "provider-neutral worker receipt, benchmark and owner boundaries are context only; current task evidence/assignment is LABO/OS owned"
+    },
+    {
+      "parents": [
+        "070",
+        "074"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "lines": "18-64",
+      "sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "assessment": "acceptance evidence and isolated negatives are comparison material; no legacy HAT execution/admission carried forward"
+    },
+    {
+      "parents": [
+        "070",
+        "074"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "lines": "30-82",
+      "sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "assessment": "same-task comparative evidence, versioned cohort and cost context; old scorer/provider/admission not transferred"
+    },
+    {
+      "parents": [
+        "070",
+        "074"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "lines": "30-41",
+      "sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "assessment": "source/version and receipt oracles are context, not execution proof or worker qualification authority"
+    },
+    {
+      "parents": [
+        "070"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "lines": "105-154",
+      "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "assessment": "typed observation/incident/backflow and stale/duplicate correlation boundaries; no CORE-to-LABO schema transfer"
+    },
+    {
+      "parents": [
+        "070"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "lines": "17-46",
+      "sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+      "assessment": "receipt quality, correlation, duplicate/out-of-order nonpromotion and independent evidence boundary"
+    },
+    {
+      "parents": [
+        "070",
+        "074"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "lines": "43-59,125-160",
+      "sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "assessment": "source identity, baseline/current/prediction distinction and typed existing-route boundary; no old autonomous loop imported"
+    },
+    {
+      "parents": [
+        "070",
+        "074"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "lines": "17-46",
+      "sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "assessment": "receipt/lineage/negative-oracle shape; not runtime or acceptance evidence"
+    },
+    {
+      "parents": [
+        "071"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "lines": "1114-1124",
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "assessment": "pre-merge governance projection simulation, not finite product design-model calculation; not a simulation implementation source"
+    },
+    {
+      "parents": [
+        "074"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "lines": "399-401",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "assessment": "ticket telemetry includes first-pass/attempt/repair and delayed evidence context; no autonomous ticket or assignment authority transferred"
+    },
+    {
+      "parents": [
+        "077"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "lines": "52-53,71",
+      "sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "assessment": "selected qualified source, origin/owner distinction, unknown non-defaulting and non-write boundary re-derived; no UIL/TER live owner introduced"
+    },
+    {
+      "parents": [
+        "077"
+      ],
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "lines": "19-22,39-44",
+      "sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "assessment": "origin swap, unknown mutation and direct-write rejection semantics retained as comparison material, not inherited acceptance"
+    }
+  ],
+  "findings": [],
+  "no_findings_summary": "No concrete omitted parent atom, owner reversal, false-success oracle, unsupported technical threshold, or out-of-scope requirement was found in the four assigned parents after checking the fixed L2/L11 against FR/AC, individual normal/negative/unknown CASE rows, and NFR/NFRV populations. This is not a claim that every legacy consumer has been fully reviewed.",
+  "limits": [
+    "No old tests, runtime, CLI, hook, or CI were executed.",
+    "No current L10 scenario was run; this is a text/oracle design review only.",
+    "The audit covers only the four requested Stage 5 parents; it does not audit 069 or all nine Stage 5 parents.",
+    "No L3 approval, operational result, benchmark performance, consumer behavior outside the written cases, or runtime capability is inferred."
+  ],
+  "repo_edits": false
+}

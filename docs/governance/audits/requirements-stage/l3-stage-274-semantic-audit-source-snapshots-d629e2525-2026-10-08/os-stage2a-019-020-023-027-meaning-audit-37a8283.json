@@ -1,0 +1,321 @@
+{
+  "audit_type": "read_only_semantic_review",
+  "target_main": "37a8283be429c57f3706153ad522e7ad288fecc3",
+  "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": "2a",
+    "parents": [
+      "HELIXOS-L2-019",
+      "HELIXOS-L2-020",
+      "HELIXOS-L2-023",
+      "HELIXOS-L2-027"
+    ],
+    "current_docs": [
+      "docs/helix-os/L3-requirements/business-requirements.md",
+      "docs/helix-os/L3-requirements/functional-requirements.md",
+      "docs/helix-os/L3-requirements/nfr-grade.md",
+      "docs/helix-os/L10-verification/business-verification.md",
+      "docs/helix-os/L10-verification/functional-verification.md",
+      "docs/helix-os/L10-verification/nfr-verification.md"
+    ]
+  },
+  "fixed_parent_spans": {
+    "docs/helix-os/L2-requirements/governance-requirements.md": {
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "bytes": 153353,
+      "spans": [
+        {
+          "lines": "682-691",
+          "sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f"
+        },
+        {
+          "lines": "692-701",
+          "sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15"
+        },
+        {
+          "lines": "722-731",
+          "sha256": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248"
+        },
+        {
+          "lines": "824-845",
+          "sha256": "f0e3e68996a3f9b9cf1740413a979483f32b78dcc8cd1aca9a881d7dd7fa2d0c"
+        }
+      ]
+    },
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": {
+      "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "bytes": 82708,
+      "spans": [
+        {
+          "lines": "352-357",
+          "sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+        },
+        {
+          "lines": "359-365",
+          "sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+        },
+        {
+          "lines": "380-386",
+          "sha256": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d"
+        },
+        {
+          "lines": "442-456",
+          "sha256": "a2ae828eaa67210d5b6a38de065d989a5addfd5676f0408d6564fa318bb541c2"
+        }
+      ]
+    }
+  },
+  "current_l3_l10_spans": {
+    "docs/helix-os/L3-requirements/business-requirements.md": {
+      "full_sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "bytes": 20354,
+      "span": "35-49",
+      "span_sha256": "1acb69d15d03b519b0a49211a479f74d41bf7288bd0d389b41f31f489f42bf7f"
+    },
+    "docs/helix-os/L3-requirements/functional-requirements.md": {
+      "full_sha256": "68bf95443b494e16bb2a72506358536d7d8740fb620e09d55ed0b922d3b9ed03",
+      "bytes": 201811,
+      "span": "168-207",
+      "span_sha256": "5bd688e28d8212b6005d9202fd69123981497a003814cdb87b7e67a1404dc41f"
+    },
+    "docs/helix-os/L3-requirements/nfr-grade.md": {
+      "full_sha256": "d4e76c3dc15b28894937ddc0e39cb223aeef106284fae13b8ea4212dfce02726",
+      "bytes": 33002,
+      "span": "61-75",
+      "span_sha256": "8ba5aaf885f3f3fc3a354713ff76dd2c6be32ef701ed40b073c8aaf0615dd7ca"
+    },
+    "docs/helix-os/L10-verification/business-verification.md": {
+      "full_sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "bytes": 17774,
+      "span": "17-30",
+      "span_sha256": "a32a5f251f9072c049e5a089947d1f80febc1aa146a023e2e0499954d97a7faa"
+    },
+    "docs/helix-os/L10-verification/functional-verification.md": {
+      "full_sha256": "2c2ce95380e2deb5478bb06c27057d519373bfeabc9259799e400b390e0c5d3e",
+      "bytes": 241506,
+      "span": "417-597",
+      "span_sha256": "4865a61ac3bf2a8d66914b620f7e2686f95de75f92f03f8337e442d5e550d6ba"
+    },
+    "docs/helix-os/L10-verification/nfr-verification.md": {
+      "full_sha256": "156c0b6cf45630ba44f3540ceb97dae511fb7bdd93148e1a99ef4e0adfd9e543",
+      "bytes": 29758,
+      "span": "51-65",
+      "span_sha256": "6d008bedb7dd5fec05271f08b2d9a3283a0dd8c2fd9e3d687fb3ae57a6eb356a"
+    }
+  },
+  "legacy_source_spans": {
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md": {
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "bytes": 65731,
+      "spans": [
+        {
+          "lines": "38-57",
+          "sha256": "bdb56ad09b5ce182466bcfaa9494d2ceaf60be075fc76efd65bfa6709e2278dc"
+        },
+        {
+          "lines": "134-197",
+          "sha256": "747723b54908e79652e347ab529875943afc051fc9f9182d149481f01475e5a0"
+        },
+        {
+          "lines": "198-307",
+          "sha256": "7f3326adfef43b9fbcc3542cf2351058a87af78e7952875c7bc95f0343f985d5"
+        }
+      ]
+    },
+    "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md": {
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "bytes": 30874,
+      "spans": [
+        {
+          "lines": "109-119",
+          "sha256": "ffd9b24475bdecbf6243537ac38e4cb0bff1a60d7e6617d6d2734970aea3bf58"
+        }
+      ]
+    },
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md": {
+      "full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "bytes": 42556,
+      "spans": [
+        {
+          "lines": "663-666",
+          "sha256": "e5491837b6d6df74cc5fbc66e93706c298df1d7520b660f8eb3f128db39a5769"
+        },
+        {
+          "lines": "520-558",
+          "sha256": "6e29966520e29f3d81d8b563a382dc57675281bb58b7e95bf2801c338efea9da"
+        },
+        {
+          "lines": "717-745",
+          "sha256": "130e2e132478a52856b1416bd5cd1a44a958a77cb875db60c86984db22e851f9"
+        },
+        {
+          "lines": "871-879",
+          "sha256": "1c6451c0f718c14c26d5b75d2c32525c9afeb2afbf82ff949ba223754f14128b"
+        },
+        {
+          "lines": "907-907",
+          "sha256": "306bafdf5f989bf2803f86592a50e2b59fb5e8c3f095e4fe5051cf5f7b930bdb"
+        }
+      ]
+    },
+    "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md": {
+      "full_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "bytes": 4078,
+      "spans": [
+        {
+          "lines": "17-55",
+          "sha256": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da"
+        }
+      ]
+    },
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/orchestration-memory-runtime.md": {
+      "full_sha256": "c4fae09ac57f335a572b1d86ad353e7985551caa364f991a08e15d24d603c857",
+      "bytes": 3096,
+      "spans": [
+        {
+          "lines": "14-50",
+          "sha256": "6ca6a61afc1b9a5fd247f79c93c92b1abac5544a06c10ef9e10f09411fa2241f"
+        }
+      ]
+    },
+    "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/lifecycle-state-separation-acceptance.md": {
+      "full_sha256": "73a371eadd006c4f850cc0129f8c6cdf2b44c17d8356b94164cf253711c4f60c",
+      "bytes": 12136,
+      "spans": [
+        {
+          "lines": "235-265",
+          "sha256": "76e4d210553408b6ee98fe9d59df0a8e883cdeea893f5f484ac65baa46a2fad7"
+        }
+      ]
+    },
+    "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md": {
+      "full_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "bytes": 40170,
+      "spans": [
+        {
+          "lines": "147-164",
+          "sha256": "e60f17e9d78b8530a87dde95c412361019f064bfee64c37d9613d99927b6296b"
+        }
+      ]
+    }
+  },
+  "adoption_roster_and_evidence": {
+    "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md": {
+      "full_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "bytes": 5689
+    },
+    "docs/governance/audits/requirements-stage/helix-os-po-confirmation-2026-09-27.md": {
+      "full_sha256": "9c3fc5519da841a83d8d1719f84147a59b48f4810c9f995713d895be6dd94737",
+      "bytes": 21027
+    },
+    "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27.json": {
+      "full_sha256": "e7d69318d725977d14f4c5db94afb851e5d24d4b3c23d8dc392cab057573fffe",
+      "bytes": 15514
+    },
+    "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27-r2.json": {
+      "full_sha256": "84b1095f1a677853f4598a46566085bfc82e39ff48c52cf4cb8b85dabb36a8a8",
+      "bytes": 4688
+    },
+    "docs/governance/audits/requirement-registration/helix-os-first-run-coverage-receipt-2026-09-27-r2.json": {
+      "full_sha256": "f4f36ad57a589c15502d984757c1e542048d17542eee7f23f3fad9176e896a81",
+      "bytes": 49668
+    },
+    "docs/governance/audits/requirements-stage/l3-final-admission-closure-2026-10-08-911b896f.json": {
+      "full_sha256": "9a5cf035205436bdef182aa94426f221b8cdeed793254185bd06a8dfcb189165",
+      "bytes": 1487750
+    },
+    "docs/governance/audits/requirements-stage/os-stage2a-parent018019-delegated-decision-pin-2026-10-08.json": {
+      "full_sha256": "a267787ddea97e58a2636116c338938c1192b8888fe999fbfa5831ceb3f73e8e",
+      "bytes": 5883
+    },
+    "docs/governance/audits/requirements-stage/l3-l10-os-stage2a-po-review-2026-10-05-2cf89e02c.md": {
+      "full_sha256": "92d7c7b18b0caf8f8eae31ef315dba4b18db56fe4db9221f5c8264b26fdcff9c",
+      "bytes": 2577
+    },
+    "docs/governance/decisions/body-reinforcement-po-decisions-2026-09-27.md": {
+      "full_sha256": "c0cf47913b93e462cd609b51f3a8ca634b84bf46dc351aa1debfcb91b919ce8d",
+      "bytes": 14237
+    },
+    "docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md": {
+      "full_sha256": "cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78",
+      "bytes": 7380
+    }
+  },
+  "findings": [
+    {
+      "id": "OS2A-023-SEM-001",
+      "severity": "検討対象の設計被覆gap",
+      "status": "静的に確認。実装時の挙動は未実行で未判定",
+      "claim": "L2-023はhandoffをrevision/digest/因果ID/scope/未完義務/停止理由/evidenceへ束縛し、どれかの不一致で未成立に戻す。正常CASE-OS-023-01は全bindingを送るが、AC-OS-023-02の個別negative表にはrevision/digest/authority/evidence mismatch、receiver未受領、interface identity/version欠落はある一方、causal ID、scope、unfinished-duty field、stop reasonそれぞれの欠落/不一致を一つだけ変異させる行がない。NFR-OS-023-01は全bindingのpresence/value censusを要求するが、negative時の拒否・owner返却を示すfixtureまでは補わない。",
+      "evidence": [
+        "固定L2-023:722-731, especially 726,729",
+        "固定L11-023:380-386, especially 383,385",
+        "FR-OS-023:188-195",
+        "CASE-OS-023-01/02a-02n: FV:481-506",
+        "BR-OS-023 and BV row: BR:43-45; BV:29-30",
+        "NFR-OS-023-01/NFRV: NFR:69-72; NFRV:59-61"
+      ],
+      "impact": "正常traceとcensus oracleは存在するため、要件の意味自体が消えたとは言わない。ただし各必須bindingの欠落を個別に拒否し発生側source/管理へ返すことをL10の否定fixtureから確認できないため、これらのmutantが誤受理される設計上の穴を静的には排除できない。",
+      "suggested_review": "Rootが修正要否を判断。意味を追加せず、必要と判断した場合にのみ既存AC-OS-023-02のnegative表へ各必須field単独の欠落/不一致mutationと同じL2:729/L11:385の返却先を追記する。"
+    },
+    {
+      "id": "OS2A-019-IDX-001",
+      "severity": "索引のlocatability漏れ",
+      "status": "semantic coverageは存在、dependency indexのみ不一致",
+      "claim": "functional-requirements.mdのL2-004とL2-009行（116,121）、L2-005行（117）のCASE列はCASE-OS-019-01/02a-02f/03を挙げるが、期限projection extensionのCASE-OS-019-02g-02lを含めない。BR/FR/BV/functional verificationの本文で同じ意味を確認でき、NFR/NFRVもsource/owner/unfinished duty付き人間向けprojection listを判定対象としている。",
+      "impact": "case lookup/dependency coverage tableだけからL2-004/005/009とextension casesの関係を追えない。functional oracleからcaseが消失している意味欠落ではない。既存018/019 scopeの承認判定や新しいparent/authorityを生成しない。",
+      "suggested_review": "索引修正要否をRoot判断。semantic blockerとは分類しない。"
+    }
+  ],
+  "parent_assessments": [
+    {
+      "parent": "HELIXOS-L2-019",
+      "adoption": "PO採択register MPR-RC-HELIXOS-L2-019-001（unit/registered_proposal; authority_effect=none）、9/28にfixed L2/L11候補015-029を採択",
+      "meaning": "provenance/event continuity、state separation、失敗時復元、hold/期限状態のprojectionとしてL3/L10が保持。legacy provider memory/runtimeをcanonical authorityにせず再導出。AC04はL1-002/008人間向け投影に限定し旧AI解決可能性・PO routingを除外。",
+      "legacy_assets": [
+        "LEGACY-ASSET-8FECCE93E3996E8AAAFF",
+        "LEGACY-ASSET-1EAF81D2FED559ED38C4",
+        "LEGACY-ASSET-9F48ADEEB477DCA54039"
+      ],
+      "finding": "02g-02lのdependency-index listing omission only; 018/019 audit scope only."
+    },
+    {
+      "parent": "HELIXOS-L2-020",
+      "adoption": "PO採択register MPR-RC-HELIXOS-L2-020-001 (unit/registered_proposal; authority_effect=none)",
+      "meaning": "HARNESS contract owns obligations/oracles, OS profile composition and run, SECURITY permission, INFRA resource facts. Head/oracle/env/run exact binding, execution states, no upstream acceptance/merge/release. L10 includes required obligation missing, wrong head/environment, old CI, oracle change, isolation/monitoring missing, weakened tests, resume binding. No new thresholds; p50/p95 only real timestamps.",
+      "legacy_assets": [
+        "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "LEGACY-ASSET-44DD86E3DEC09E65EF51"
+      ],
+      "finding": "No concrete semantic gap found within read spans."
+    },
+    {
+      "parent": "HELIXOS-L2-023",
+      "adoption": "PO採択register MPR-RC-HELIXOS-L2-023-002 (connection/registered_proposal; authority_effect=none); parent remains connection candidate, no new promotion inferred",
+      "meaning": "handoff binding, sender/receiver duties, distinct unit/connection/composite/next stage states and authority roles preserved. Old resident-lane runtime replaced/rederived. Dedicated case list checks multiple role/state errors but does not isolate all binding field omissions.",
+      "legacy_assets": [
+        "LEGACY-ASSET-50CA1C554747F12266D3",
+        "LEGACY-ASSET-437A6A68F9A9E0AE1B9E"
+      ],
+      "finding": "OS2A-023-SEM-001 candidate design-coverage gap."
+    },
+    {
+      "parent": "HELIXOS-L2-027",
+      "adoption": "PO採択register MPR-RC-HELIXOS-L2-027-002 (composite/registered_proposal; authority_effect=none), first-run receipt R2; adopted fixed L2 content is exact authority source",
+      "meaning": "six low-risk constraints and operation authority are conjunctive; unassessed does not itself deny, score cannot authorize; human proposal substitute does not imply generated/assessed/permission; worker assignment, evidence, independent human result check, LABO evaluation remain distinct. L10 independently mutates each enumerated condition and has owner return routes; no universal N/score threshold.",
+      "legacy_assets": [
+        "LEGACY-ASSET-50CA1C554747F12266D3",
+        "LEGACY-ASSET-437A6A68F9A9E0AE1B9E"
+      ],
+      "finding": "No concrete semantic gap found in reviewed spans; no fixture execution."
+    }
+  ],
+  "limitations": [
+    "全274親の同深度監査ではない。今回の4親と列挙したspanのみ。",
+    "レビューは文章上のrequirements/verification設計のみ。旧runtime、test、CIおよび現行fixtureは実行していない。",
+    "PO採択register authority_effect=noneを、L3承認、L10実行、実装成立と解釈しない。",
+    "過去decision/pinのpendingや承認状態は当時対象に限定し、現在の全OS2a authority状態を表すものとして扱わない。",
+    "旧sourceは記載したcrosswalk assets/line spansのみ。全legacy consumersを実読した主張ではない。"
+  ]
+}

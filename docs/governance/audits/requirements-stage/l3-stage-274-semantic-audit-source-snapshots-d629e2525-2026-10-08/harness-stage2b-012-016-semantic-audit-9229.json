@@ -1,0 +1,50 @@
+{
+  "audit_kind": "semantic_read_only",
+  "target_commit": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf",
+  "checkout_head_observed": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+  "read_method": "git show <target_commit>:<path>",
+  "repository_edits": false,
+  "scope": {
+    "mechanism": "HELIX-HARNESS",
+    "stage": "Stage 2b",
+    "parents": ["HARNESS-L2-012", "HARNESS-L2-013", "HARNESS-L2-014", "HARNESS-L2-015", "HARNESS-L2-016"],
+    "excluded": ["HARNESS-L2-017", "HARNESS-L2-018", "HARNESS-L2-019", "HARNESS-L2-020", "HARNESS-L2-024", "all other parents and consumers"]
+  },
+  "finding": "none_concrete_in_read_scope",
+  "finding_dimensions_checked": [
+    "fixed L2/L11 atom represented by L3/AC/L10",
+    "normal case falsifiable against fixed oracle",
+    "single-failure negative coverage for cited atoms",
+    "owner and Backflow route",
+    "unsupported fixed numeric thresholds",
+    "old-source reuse/derivation/replacement does not contradict fixed parent"
+  ],
+  "source_spans": [
+    {"path":"docs/helix-harness/L2-requirements/product-requirements.md","lines":"363-401","role":"fixed L2"},
+    {"path":"docs/helix-harness/L11-acceptance/product-acceptance.md","lines":"207-211,274-280,323-324","role":"fixed L11"},
+    {"path":"docs/helix-harness/L3-requirements/business-requirements.md","lines":"18-37","role":"L3 business"},
+    {"path":"docs/helix-harness/L3-requirements/functional-requirements.md","lines":"99-203","role":"L3 functional and old-source dispositions"},
+    {"path":"docs/helix-harness/L3-requirements/nfr-grade.md","lines":"56-73","role":"L3 measurement candidates"},
+    {"path":"docs/helix-harness/L10-verification/business-verification.md","lines":"17-31","role":"L10 business"},
+    {"path":"docs/helix-harness/L10-verification/functional-verification.md","lines":"32-52,54-102","role":"all Stage 2b 012-016 CASE rows"},
+    {"path":"docs/helix-harness/L10-verification/nfr-verification.md","lines":"25-45","role":"L10 measurement candidates"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md","lines":"143,152,181","role":"012 and 015 historical source atoms"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md","lines":"100,109,136","role":"012 and 015 historical acceptance atoms"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md","lines":"25-50","role":"012 historical prototype/applicability cases"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md","lines":"42-67","role":"013 historical source"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md","lines":"16-33","role":"013 historical acceptance source"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md","lines":"60-70","role":"014 historical source"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-design-registry-requirement-family-acceptance-test-design.md","lines":"28-45","role":"014 historical acceptance source"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md","lines":"146-150","role":"016 historical source"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md","lines":"18-37","role":"016 historical acceptance source"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md","lines":"50,79","role":"016 historical semantic route source"},
+    {"path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md","lines":"16-40","role":"016 historical consumer/oracle source; cited 015 LIT-N3-04 line 77 not separately read"}
+  ],
+  "unverified": [
+    "consumer-wide completeness beyond listed fixed L2/L11, six L3/L10 documents, and legacy spans",
+    "legacy-source rows outside the listed spans",
+    "015 old LIT-N3-04 source line 77 was cited by current text but not separately inspected"
+  ],
+  "execution": {"current_runtime": false, "legacy_runtime": false, "legacy_tests": false, "old_cli": false, "ci": false},
+  "authority_effect": "none"
+}

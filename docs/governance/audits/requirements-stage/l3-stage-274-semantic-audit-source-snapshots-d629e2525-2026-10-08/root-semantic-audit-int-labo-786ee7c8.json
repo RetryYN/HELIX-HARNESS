@@ -1,0 +1,62 @@
+{
+  "target_main": "786ee7c85c5454e3b2314c1d8ee3ca28f5178db1",
+  "fixed_parent_revisions": {"INTELLIGENCE-010/066/068":"f6dad2a33e24f000b87d7f09b8d40288257e74cc","LABO-055/056/057":"f6dad2a33e24f000b87d7f09b8d40288257e74cc","INTELLIGENCE-075":"1880c422311a7f8321dbb0e2b98fa12c69449201 (L2 618-625 / L11 337-343; PO MPR-RC-HELIXINTELLIGENCE-L2-075-002 pins L2/L11 SHA c302d45ef008b8d73f71c9484c1c9e2432c8e195f23c559b513d36309cdb80f6 / b81bd9e52df97cc92f0f228fb9effab476012836e7e113b985641ea2c99ac08e)"},
+  "po_adoption_basis": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "audit_kind": "read-only semantic text review; no tests/runtime/old CLI/CI executed",
+  "repository_edited": false,
+  "scope": [
+    {"mechanism":"INTELLIGENCE","stage":"2a","parents":["010","066"]},
+    {"mechanism":"INTELLIGENCE","stage":"2c","parents":["068","075"]},
+    {"mechanism":"LABO","stage":"2a","parents":["055","056","057"]}
+  ],
+  "result": {
+    "concrete_requirement_atom_omission_found": false,
+    "wrong_owner_found": false,
+    "positive_or_negative_false_pass_found": false,
+    "unsupported_technical_threshold_or_sla_found": false,
+    "finding_status": "No concrete semantic finding identified in inspected scope; not proof of runtime correctness or uninspected consumers."
+  },
+  "parent_semantic_checks": [
+    {"id":"INT-010","fixed_l2":"intelligence-requirements.md:102-107","fixed_l11":"intelligence-acceptance.md:34,71,146,163,191-197","l3":["business-requirements.md:7-11","functional-requirements.md:11-26","nfr-grade.md:7-15"],"l10":["business-verification.md:7-15","functional-verification.md:7-49","nfr-verification.md:7-15"],"checked":"task attributes and same-scope evidence; price/name/benchmark-only negative; owner returns; assignment/execution authority separation; NFR candidate windows/denominators"},
+    {"id":"INT-066","fixed_l2":"intelligence-requirements.md:454-465","fixed_l11":"intelligence-acceptance.md:131-139,285","l3":["business-requirements.md:13-17","functional-requirements.md:28-44","nfr-grade.md:17-24"],"l10":["business-verification.md:17-25","functional-verification.md:51-128","nfr-verification.md:17-23"],"checked":"human origin and complete field/source/version/receipt binding; no fake evaluation, assignment or manual approval stage; descriptive latency only"},
+    {"id":"INT-068","fixed_l2":"intelligence-requirements.md:491-506","fixed_l11":"intelligence-acceptance.md:202-209","l3":["business-requirements.md:35-38","functional-requirements.md:70-84","nfr-grade.md:42-49"],"l10":["business-verification.md:39-41","functional-verification.md:131-181","nfr-verification.md:41-48"],"checked":"preparation independent of failure evidence; selected diagnosis/consult conditions; source/packet restrictions; per-operation partial return; no OS020/028/029 universal prerequisite; no thresholds"},
+    {"id":"INT-075","fixed_l2":"intelligence-requirements.md:618-625","fixed_l11":"intelligence-acceptance.md:337-343","l3":["business-requirements.md:40-42","functional-requirements.md:87-104","nfr-grade.md:52-59"],"l10":["business-verification.md:44-46","functional-verification.md:183-222","nfr-verification.md:51-57"],"checked":"all proposal fields, six single identity checks, temporality, qualification handoff, finding/remediation separation; no AAFD-R-04 scope creep/qualification gate"},
+    {"id":"LABO-055","fixed_l2":"labo-requirements.md:150-154","fixed_l11":"labo-acceptance.md:56,191-196","l3":["business-requirements.md:16-20","functional-requirements.md:310-331","nfr-grade.md:74-85"],"l10":["business-verification.md:16-18","functional-verification.md:Stage 2a 055 CASE-01..14","nfr-verification.md:54-65"],"checked":"task type×model class grouping; real state retention; evidence state distinct from oracle level; unknown/unassessed; denominator/scorer reconstruction; no placement/qualification; no invented threshold"},
+    {"id":"LABO-056","fixed_l2":"labo-requirements.md:379-389","fixed_l11":"labo-acceptance.md:138-146,198-203","l3":["business-requirements.md:16-20","functional-requirements.md:333-341","nfr-grade.md:74-85"],"l10":["business-verification.md:16-18","functional-verification.md:Stage 2a 056 CASE-01..24","nfr-verification.md:54-65"],"checked":"initial result observation and provenance; five states; exact oracle/result receipt; returns; mismatch, scope and score do not promote assessment/authority"},
+    {"id":"LABO-057","fixed_l2":"labo-requirements.md:391-401","fixed_l11":"labo-acceptance.md:148-154","l3":["business-requirements.md:16-20","functional-requirements.md:343-350","nfr-grade.md:74-85"],"l10":["business-verification.md:16-18","functional-verification.md:Stage 2a 057 CASE-01..25","nfr-verification.md:54-65"],"checked":"CONNECT or valid explicit human receipt alternatives; single-method sufficiency and neither-method rejection; retry/dedupe/stale; proper owner returns; no 027 dependency or promotion"}
+  ],
+  "legacy_sources_read": [
+    {"asset_id":"LEGACY-ASSET-9114D4E463E95B67DD0C","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md","ranges":["26-45","47-110","123-137"],"sha256":"773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290"},
+    {"asset_id":"LEGACY-ASSET-C6ADB99F1353965C5449","path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md","ranges":["18-64"],"sha256":"c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d"},
+    {"asset_id":"LEGACY-ASSET-28FB139B26CD61CC51EE","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md","ranges":["21-33","35-94"],"sha256":"a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116"},
+    {"asset_id":"LEGACY-ASSET-A952A3A175EB82A4781B","path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md","ranges":["28-41"],"sha256":"6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185"},
+    {"asset_id":"LEGACY-ASSET-02D897E62EF2FA267267","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md","ranges":["143-160"],"sha256":"01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4"},
+    {"asset_id":"LEGACY-ASSET-0B5B38F146D9538C9A36","path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md","ranges":["31-42"],"sha256":"f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943"},
+    {"asset_id":"LEGACY-ASSET-437A6A68F9A9E0AE1B9E","path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md","ranges":["17-55"],"sha256":"63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707"},
+    {"asset_id":"LEGACY-ASSET-EB3700B0088F311C2295","path":"archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md","ranges":["23-41"],"sha256":"685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a"},
+    {"asset_id":"LEGACY-ASSET-CAC0C64EB7540180B1FE","path":"archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md","ranges":["15-17"],"sha256":"09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a"}
+  ],
+  "full_blob_sha256_at_target": {
+    "docs/helix-intelligence/L2-requirements/intelligence-requirements.md":"592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+    "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md":"98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+    "docs/helix-intelligence/L3-requirements/business-requirements.md":"026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md":"01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md":"a1113329da1b463968b2a67a19692db77c41b0fcdb6bf028ac969d83921066a2",
+    "docs/helix-intelligence/L10-verification/business-verification.md":"b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+    "docs/helix-intelligence/L10-verification/functional-verification.md":"aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+    "docs/helix-intelligence/L10-verification/nfr-verification.md":"1049e8edef98fd41f1f2c57caff98eebc999e65652e558b42646976e517614a1",
+    "docs/helix-labo/L2-requirements/labo-requirements.md":"cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+    "docs/helix-labo/L11-acceptance/labo-acceptance.md":"39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+    "docs/helix-labo/L3-requirements/business-requirements.md":"7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a",
+    "docs/helix-labo/L3-requirements/functional-requirements.md":"5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+    "docs/helix-labo/L3-requirements/nfr-grade.md":"343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+    "docs/helix-labo/L10-verification/business-verification.md":"2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac",
+    "docs/helix-labo/L10-verification/functional-verification.md":"5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+    "docs/helix-labo/L10-verification/nfr-verification.md":"2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a"
+  },
+  "unverified": [
+    "No runtime behavior, implementation, old tests, old consumers, or all-274-parent full-depth review was performed.",
+    "Only the listed legacy source spans were semantically compared; no full legacy inventory/consumer audit was repeated."
+  ],
+  "repository_changes": []
+}

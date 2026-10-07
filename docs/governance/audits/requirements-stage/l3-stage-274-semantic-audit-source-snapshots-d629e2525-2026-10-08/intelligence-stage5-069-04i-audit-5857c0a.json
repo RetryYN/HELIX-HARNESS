@@ -1,0 +1,81 @@
+{
+  "audit": "INTELLIGENCE Stage5 L2-069 CASE-INT-069-04i read-only semantic audit",
+  "basis_revision": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+  "scope": {
+    "parent": "HELIXINTELLIGENCE-L2-069",
+    "case": "CASE-INT-069-04i",
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": 5
+  },
+  "conclusion": {
+    "numeric_output_fabrication_permitted": false,
+    "when_source_ceiling_is_available": "preserve the source-bound ceiling and reject proportional worker speed; L11 normal oracle has 8 jobs/min ceiling",
+    "when_ceiling_is_absent_from_selected_input_and_no_same-revision_source_exists": "do not invent ceiling/throughput/time; return calculation unavailable/partial unknown per fixed L2",
+    "candidate_ambiguity": "CASE wording does not identify whether deletion removes the source field or only causes calculation to ignore a still-available baseline value, nor does it identify an input object proving ceiling remains available."
+  },
+  "pins": {
+    "fixed_l2": {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "lines": "513-527",
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    "fixed_l11": {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "lines": "211-228",
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    "l3_fr": {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "lines": "694-704,756",
+      "sha256": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a"
+    },
+    "l10_fv": {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "lines": "2468-2484",
+      "sha256": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77"
+    },
+    "old_source": {
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "lines": "1114-1124",
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "disposition_line": "docs/governance/legacy-asset-disposition.jsonl:477"
+    },
+    "po_original": {
+      "path": "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+      "lines": "28-34",
+      "sha256": "ab8bb6ae8cd418053d6baaafccaa80ee8ef2e715caab1576e5a00c306e97d1f8"
+    },
+    "derivation_record": {
+      "path": "docs/governance/decisions/design-model-calculation-derivation-2026-09-27.md",
+      "lines": "11-21,31-34",
+      "sha256": "00a26c9f2b1c590dd8442254e62b2a76ea695e19b60cd0d691421c4bfe7314d4"
+    }
+  },
+  "search": {
+    "legacy_paths": [
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates",
+      "archive/legacy-generation-2026-09-14/root/CLAUDE.md"
+    ],
+    "terms": [
+      "simulation",
+      "simulate",
+      "シミュレーション",
+      "what-if",
+      "条件.*動か",
+      "負荷.*試算",
+      "仮想.*worker",
+      "shared DB ceiling"
+    ],
+    "direct_matches": [
+      "resident-lane-orchestration-requirements.md:1114 pre-merge simulation (governance projection, not finite product-model arithmetic)"
+    ],
+    "finite_design_model_match": "not found in searched paths; current derivation record reports same search"
+  },
+  "limits": [
+    "Only parent 069 and its CASE-INT-069-04i were re-evaluated in this resumed pass.",
+    "Other Stage5 parent semantic scopes remain as stated in /tmp/intelligence-stage5-audit-partial-5857c0a.md.",
+    "No tests/runtime/L10 execution or repository edit."
+  ]
+}

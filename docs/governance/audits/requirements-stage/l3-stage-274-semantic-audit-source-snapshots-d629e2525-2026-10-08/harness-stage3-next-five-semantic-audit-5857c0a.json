@@ -1,0 +1,1882 @@
+{
+  "audit_kind": "read_only_semantic_audit",
+  "base_commit": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+  "fixed_parent_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "scope": {
+    "mechanism": "HELIX-HARNESS",
+    "stage": "Stage 3",
+    "adopted_1_0_parents": [
+      "041",
+      "042",
+      "043",
+      "044",
+      "046"
+    ],
+    "excluded_already_audited": [
+      "034",
+      "036",
+      "038",
+      "039",
+      "040"
+    ],
+    "not_claimed_global_closure": true
+  },
+  "current_six_documents": {
+    "BR": {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "bytes": 27827
+    },
+    "FR": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "sha256": "cb58f9ff835c71d198be990a4ddbc378a10ec381c83fd3093d78eb703bf4f6a7",
+      "bytes": 271404
+    },
+    "NFR": {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+      "bytes": 60172
+    },
+    "BV": {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "bytes": 26039
+    },
+    "FV": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741",
+      "bytes": 1165699
+    },
+    "NFV": {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
+      "bytes": 54341
+    }
+  },
+  "parents": {
+    "041": {
+      "current_FR": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "start_line": 747,
+        "end_line": 761,
+        "sha256_including_lf": "5c571e69ad25ddc90583e5786970466266a940350ccf21b815e01573fff43adb",
+        "bytes": 5002
+      },
+      "current_L10_CASE_span": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "start_line": 1690,
+        "end_line": 1759,
+        "sha256_including_lf": "164d31a874aa0e7381bbdfd70647bd6c8f5c95a3e22f080c64c7efbdc82ca2cc",
+        "bytes": 41023
+      },
+      "defined_case_count": 70,
+      "case_definitions": [
+        {
+          "id": "CASE-HARNESS-L10-041-01",
+          "line": 1690
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-02",
+          "line": 1691
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-004",
+          "line": 1692
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-03",
+          "line": 1693
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-04",
+          "line": 1694
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-05",
+          "line": 1695
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-06",
+          "line": 1696
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-07",
+          "line": 1697
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-08",
+          "line": 1698
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-09",
+          "line": 1699
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-10",
+          "line": 1700
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version",
+          "line": 1701
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope",
+          "line": 1702
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-unselected-template-extrapolation",
+          "line": 1703
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-source-span",
+          "line": 1704
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-atom-gap",
+          "line": 1705
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-empty-field",
+          "line": 1706
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-tbd-field",
+          "line": 1707
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-branch-missing",
+          "line": 1708
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-extractor-unavailable",
+          "line": 1709
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-duplicate-atom",
+          "line": 1710
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-one-obligation-split",
+          "line": 1711
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-two-obligations-merge",
+          "line": 1712
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-digest-mismatch",
+          "line": 1713
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-digest-atom-gap",
+          "line": 1714
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-missing",
+          "line": 1715
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-unknown",
+          "line": 1716
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-stale",
+          "line": 1717
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-missing",
+          "line": 1718
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-unknown",
+          "line": 1719
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-conflict",
+          "line": 1720
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-conflict",
+          "line": 1721
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-stale",
+          "line": 1722
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r05-root-revision-hidden",
+          "line": 1723
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r08-digest-match-other-scope",
+          "line": 1724
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-001",
+          "line": 1725
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-002",
+          "line": 1726
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-003",
+          "line": 1727
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-l2-009-applicability-unknown",
+          "line": 1728
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-template-authority",
+          "line": 1729
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-ledger-registration",
+          "line": 1730
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-adoption",
+          "line": 1731
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-requirement-agreement",
+          "line": 1732
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-design-success",
+          "line": 1733
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-user-acceptance",
+          "line": 1734
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-l3-approval",
+          "line": 1735
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-implementation-complete",
+          "line": 1736
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-os-registration",
+          "line": 1737
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-os-save",
+          "line": 1738
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-os-projection",
+          "line": 1739
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-os-execution",
+          "line": 1740
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-owner-individual-unknown-class-preserved",
+          "line": 1741
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-unresolved-obligation-aggregate-covered",
+          "line": 1742
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction",
+          "line": 1743
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction",
+          "line": 1744
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction",
+          "line": 1745
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction",
+          "line": 1746
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-11",
+          "line": 1747
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-12",
+          "line": 1748
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-025-result-generated-from-extraction",
+          "line": 1749
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-026-result-generated-from-extraction",
+          "line": 1750
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r11-template-meaning-unknown",
+          "line": 1751
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r06-output-extractor-digest-missing",
+          "line": 1752
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r06-output-extractor-digest-mismatch",
+          "line": 1753
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-kind-missing",
+          "line": 1754
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-kind-mismatch",
+          "line": 1755
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-branch-missing",
+          "line": 1756
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-branch-mismatch",
+          "line": 1757
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-template-revision-missing",
+          "line": 1758
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-template-revision-mismatch",
+          "line": 1759
+        }
+      ],
+      "fixed_L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 957,
+        "end_line": 968,
+        "sha256_including_lf": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+        "bytes": 3908
+      },
+      "fixed_L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 699,
+        "end_line": 715,
+        "sha256_including_lf": "312d258f447d2de14cd7770440381e15c24fb69a949e6c70c1adc3ab3d90f3c4",
+        "bytes": 3654
+      },
+      "case_execution_status": "未実行（内容候補）"
+    },
+    "042": {
+      "current_FR": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "start_line": 713,
+        "end_line": 726,
+        "sha256_including_lf": "e75a8f0619fb621f7e17b942ee0abf9af5cc79e7b1deacf45d63168c9783cbc5",
+        "bytes": 2950
+      },
+      "current_L10_CASE_span": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "start_line": 1635,
+        "end_line": 1679,
+        "sha256_including_lf": "a68c6001b5ba57710cbcbf50eeb378c159643970fbaa3ccf3ced08645d25d1a8",
+        "bytes": 20476
+      },
+      "defined_case_count": 45,
+      "case_definitions": [
+        {
+          "id": "CASE-HARNESS-L10-042-01",
+          "line": 1635
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-02",
+          "line": 1636
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-03",
+          "line": 1637
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-04",
+          "line": 1638
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-05",
+          "line": 1639
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-06",
+          "line": 1640
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-07",
+          "line": 1641
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-08",
+          "line": 1642
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-09",
+          "line": 1643
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-10",
+          "line": 1644
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-11",
+          "line": 1645
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-semantic-similarity-missing",
+          "line": 1646
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-semantic-similarity-stale",
+          "line": 1647
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-consumer-missing",
+          "line": 1648
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-consumer-stale",
+          "line": 1649
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-oracle-missing",
+          "line": 1650
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-oracle-stale",
+          "line": 1651
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-dependency-graph-missing",
+          "line": 1652
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-dependency-graph-stale",
+          "line": 1653
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-other-scope",
+          "line": 1654
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-other-revision",
+          "line": 1655
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-feature",
+          "line": 1656
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-downstream-execution",
+          "line": 1657
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-normal-similarity",
+          "line": 1658
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r03-name-only-similarity",
+          "line": 1659
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r03-revision-unknown",
+          "line": 1660
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r04-042-revision-unidentified",
+          "line": 1661
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r04-042-l2-019-return",
+          "line": 1662
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r05-public-contract-change",
+          "line": 1663
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r05-requirement-meaning-change",
+          "line": 1664
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r05-persistent-state-change",
+          "line": 1665
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r06-unseen-consumer-valid",
+          "line": 1666
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r06-consumer-unknown",
+          "line": 1667
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r09-001",
+          "line": 1668
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r09-002",
+          "line": 1669
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r09-003",
+          "line": 1670
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-authority-generation-denied",
+          "line": 1671
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-requirement-adopted-denied",
+          "line": 1672
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-l3-approved-denied",
+          "line": 1673
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-implementation-complete-denied",
+          "line": 1674
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-execution-complete-denied",
+          "line": 1675
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-acceptance-complete-denied",
+          "line": 1676
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied",
+          "line": 1677
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-performance-threshold-generation-denied",
+          "line": 1678
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r11-contract-absent-return",
+          "line": 1679
+        }
+      ],
+      "fixed_L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 972,
+        "end_line": 982,
+        "sha256_including_lf": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+        "bytes": 3571
+      },
+      "fixed_L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 716,
+        "end_line": 727,
+        "sha256_including_lf": "8a23ef23377d8d46a0ae423ce0d4cf294785ab04ab1648bea66a9e63eeedae1b",
+        "bytes": 2333
+      },
+      "case_execution_status": "未実行（内容候補）"
+    },
+    "043": {
+      "current_FR": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "start_line": 868,
+        "end_line": 883,
+        "sha256_including_lf": "3cc6e6dc1465b84b034621c7570c95295cf49304dc2ea9c5a99d507519a59ff0",
+        "bytes": 6274
+      },
+      "current_L10_CASE_span": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "start_line": 2230,
+        "end_line": 2288,
+        "sha256_including_lf": "1e1dd7723df8df118398388821d18d8a98694fb6bb7f1afb9ca1289a334b6def",
+        "bytes": 35239
+      },
+      "defined_case_count": 59,
+      "case_definitions": [
+        {
+          "id": "CASE-HARNESS-L10-043-01",
+          "line": 2230
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-02",
+          "line": 2231
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-03",
+          "line": 2232
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-04",
+          "line": 2233
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-05",
+          "line": 2234
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-06",
+          "line": 2235
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-07",
+          "line": 2236
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r02-negative-not-boundary",
+          "line": 2237
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r03-other-revision-unseen",
+          "line": 2238
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-oracle-unbound",
+          "line": 2239
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-count-only-sufficiency",
+          "line": 2240
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-rule-branch-conflict",
+          "line": 2241
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-extracted-rule-missing",
+          "line": 2242
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-applicability-unknown",
+          "line": 2243
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-risk-rationale-missing",
+          "line": 2244
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-active-revision-stale",
+          "line": 2245
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r05-unselected-template-extrapolation",
+          "line": 2246
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r05-other-scope-extrapolation",
+          "line": 2247
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected",
+          "line": 2248
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-na-without-basis",
+          "line": 2249
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+          "line": 2250
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-new-revision-missing",
+          "line": 2251
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-new-revision-identity-conflict",
+          "line": 2252
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-risk-basis-conflict",
+          "line": 2253
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-risk-basis-stale",
+          "line": 2254
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-active-revision-missing",
+          "line": 2255
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r09-001",
+          "line": 2256
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r09-002",
+          "line": 2257
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r09-003",
+          "line": 2258
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-valid-selected-profile-no-mutation",
+          "line": 2259
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r20-independent-rule-branch-input-normal",
+          "line": 2260
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r20-independent-rule-branch-output-mismatch",
+          "line": 2261
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r21-independent-rule-content-missing",
+          "line": 2262
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r21-independent-rule-content-tbd",
+          "line": 2263
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-profile-missing-to-005",
+          "line": 2264
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-template-applicability-to-009",
+          "line": 2265
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-extracted-atom-to-041",
+          "line": 2266
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-risk-oracle-to-004",
+          "line": 2267
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-025-not-substituted",
+          "line": 2268
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-026-not-substituted",
+          "line": 2269
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-025-receipt-only-not-coverage",
+          "line": 2270
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-026-receipt-only-not-coverage",
+          "line": 2271
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-requirement-agreement-not-generated",
+          "line": 2272
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-adoption-not-generated",
+          "line": 2273
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-l3-approval-not-generated",
+          "line": 2274
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-design-established-not-generated",
+          "line": 2275
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-implementation-not-generated",
+          "line": 2276
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-execution-not-generated",
+          "line": 2277
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-acceptance-not-generated",
+          "line": 2278
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-no-cartesian-expansion",
+          "line": 2279
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-active-revision-unknown",
+          "line": 2280
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-applicability-conflict",
+          "line": 2281
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-applicability-stale",
+          "line": 2282
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-denominator-unknown",
+          "line": 2283
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-denominator-source-revision-stale",
+          "line": 2284
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r35-risk-basis-output-equal",
+          "line": 2285
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r35-risk-basis-output-missing",
+          "line": 2286
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r35-risk-basis-output-mismatch",
+          "line": 2287
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-risk-basis-unknown",
+          "line": 2288
+        }
+      ],
+      "fixed_L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 986,
+        "end_line": 1000,
+        "sha256_including_lf": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+        "bytes": 5449
+      },
+      "fixed_L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 728,
+        "end_line": 739,
+        "sha256_including_lf": "6c4377e4db0f8473c22cb6185ded4d0fa5e0e2ecf731097b0f346b4d3fd04503",
+        "bytes": 3377
+      },
+      "case_execution_status": "未実行（内容候補）"
+    },
+    "044": {
+      "current_FR": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "start_line": 848,
+        "end_line": 862,
+        "sha256_including_lf": "b7502a1ca2c6445ef696fb84546d7d0b4db314a7b1c7ae1b66ed11050f764ee2",
+        "bytes": 6026
+      },
+      "current_L10_CASE_span": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "start_line": 2123,
+        "end_line": 2222,
+        "sha256_including_lf": "03258a7f5b33364ed3ab0c46c3e199c7b82d2796d5b75380526569959b28e4ce",
+        "bytes": 78651
+      },
+      "defined_case_count": 91,
+      "case_definitions": [
+        {
+          "id": "CASE-HARNESS-L10-044-01",
+          "line": 2123
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-02",
+          "line": 2124
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-03",
+          "line": 2125
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-04",
+          "line": 2126
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-05",
+          "line": 2127
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-06",
+          "line": 2128
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-07",
+          "line": 2129
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-08",
+          "line": 2130
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-na-rationale-missing",
+          "line": 2131
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-source-atom-missing",
+          "line": 2132
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-active-template-missing",
+          "line": 2133
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-applicability-missing",
+          "line": 2134
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-oracle-missing",
+          "line": 2135
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-contract-version-missing",
+          "line": 2136
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-class-oracle-absent",
+          "line": 2137
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r14-class-contract-relation-missing",
+          "line": 2138
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-025-output-substitution",
+          "line": 2139
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-043-output-substitution",
+          "line": 2140
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-044-denominator-old-receipt",
+          "line": 2141
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-semantic-duplicate",
+          "line": 2142
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-unsupported-na",
+          "line": 2143
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-source-atom-conflict",
+          "line": 2144
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-active-template-stale",
+          "line": 2145
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-applicability-conflict",
+          "line": 2146
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-oracle-stale",
+          "line": 2147
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-contract-version-conflict",
+          "line": 2148
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-minimum-portfolio-drops-obligation",
+          "line": 2149
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-candidate-promoted-to-approval",
+          "line": 2150
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-source-atom-stale",
+          "line": 2151
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-active-template-conflict",
+          "line": 2152
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-applicability-stale",
+          "line": 2153
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-oracle-conflict",
+          "line": 2154
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-contract-version-stale",
+          "line": 2155
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r06-semantic-map-unverifiable",
+          "line": 2156
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r09-001",
+          "line": 2157
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r09-002",
+          "line": 2158
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r09-003",
+          "line": 2159
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r09-004",
+          "line": 2160
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r10-old-denominator-receipt",
+          "line": 2161
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-normal-nine-class",
+          "line": 2162
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-normal-reuse",
+          "line": 2163
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-normal-delta",
+          "line": 2164
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-normal-new-contract",
+          "line": 2165
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-delta-insufficient",
+          "line": 2166
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-requirement-agreement",
+          "line": 2167
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-l3-approval",
+          "line": 2168
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-design-approval",
+          "line": 2169
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-adoption",
+          "line": 2170
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-implementation",
+          "line": 2171
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-os-execution",
+          "line": 2172
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-user-acceptance",
+          "line": 2173
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-classification-reuse",
+          "line": 2183
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-classification-delta",
+          "line": 2184
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-classification-new",
+          "line": 2185
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-classification-na",
+          "line": 2186
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-output-revision-missing",
+          "line": 2187
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-output-revision-mismatch",
+          "line": 2188
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-output-scope-missing",
+          "line": 2189
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-output-scope-mismatch",
+          "line": 2190
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-finding-duplicate-assignment-basis-missing",
+          "line": 2191
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-finding-semantic-duplicate-basis-missing",
+          "line": 2192
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-finding-uncovered-class-basis-missing",
+          "line": 2193
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r17-unselected-source-drops-established-class",
+          "line": 2194
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r17-unselected-source-assumed-pass-closure",
+          "line": 2195
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-l1-missing",
+          "line": 2196
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-l1-stale",
+          "line": 2197
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-l1-conflict",
+          "line": 2198
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-requirement-missing",
+          "line": 2199
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-requirement-stale",
+          "line": 2200
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-requirement-conflict",
+          "line": 2201
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-design-scope-missing",
+          "line": 2202
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-design-scope-stale",
+          "line": 2203
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-design-scope-conflict",
+          "line": 2204
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-revision-missing",
+          "line": 2205
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-revision-stale",
+          "line": 2206
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-revision-conflict",
+          "line": 2207
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-target-l1-unknown",
+          "line": 2208
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-target-requirement-unknown",
+          "line": 2209
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-design-scope-unknown",
+          "line": 2210
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-target-revision-unknown",
+          "line": 2211
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-source-atom-unknown",
+          "line": 2212
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-active-template-unknown",
+          "line": 2213
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-applicability-unknown",
+          "line": 2214
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-oracle-unknown",
+          "line": 2215
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-contract-version-unknown-field-present",
+          "line": 2216
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-identity-unknown",
+          "line": 2217
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-contract-relation-unknown",
+          "line": 2218
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-identity-conflict",
+          "line": 2219
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-identity-stale",
+          "line": 2220
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-contract-relation-conflict",
+          "line": 2221
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-contract-relation-stale",
+          "line": 2222
+        }
+      ],
+      "fixed_L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 1002,
+        "end_line": 1012,
+        "sha256_including_lf": "22087ada8ea4b0bd31bf1ec32fa3c925633087ebd3ceeee229f2ef2ea4e58f0a",
+        "bytes": 4308
+      },
+      "fixed_L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 740,
+        "end_line": 751,
+        "sha256_including_lf": "a83f6e631c9653c1c708ea0817a6b6be4ff96b7868736dcb301e9b34f5fbcf99",
+        "bytes": 3225
+      },
+      "current_BR": {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "start_line": 154,
+        "end_line": 154,
+        "sha256_including_lf": "577142554d8ed742f162dd1af81f3eb940c50c99ee0211a4527a0b05d23fb368",
+        "bytes": 494
+      },
+      "current_BV": {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "start_line": 119,
+        "end_line": 129,
+        "sha256_including_lf": "74d6017a7df56732ffd12b99212b3ac1f1c4bbefd75af8b83f80faa626bece32",
+        "bytes": 2034
+      },
+      "case_execution_status": "未実行（内容候補）"
+    },
+    "046": {
+      "current_FR": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "start_line": 897,
+        "end_line": 913,
+        "sha256_including_lf": "7d4dad4a8dcaf67562dbb256851746596bb6d64716f9a3b23c412b8caa85d62d",
+        "bytes": 6253
+      },
+      "current_L10_CASE_span": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "start_line": 2304,
+        "end_line": 2413,
+        "sha256_including_lf": "398a1b6c74d33668fabc95e3067b9cbd2e2cfb31ae8cbd86d90e0b32f8866353",
+        "bytes": 48519
+      },
+      "defined_case_count": 81,
+      "case_definitions": [
+        {
+          "id": "CASE-HARNESS-L10-046-01",
+          "line": 2304
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-02",
+          "line": 2305
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-03",
+          "line": 2306
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-04",
+          "line": 2307
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-05",
+          "line": 2308
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-06",
+          "line": 2309
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-07",
+          "line": 2310
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-08",
+          "line": 2311
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-09",
+          "line": 2312
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-10",
+          "line": 2313
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-11",
+          "line": 2314
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-12",
+          "line": 2315
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-slice-only",
+          "line": 2316
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-other-revision-sr4",
+          "line": 2317
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-exception-missing",
+          "line": 2318
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-general-v-pair",
+          "line": 2319
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-root-r02-unseen-valid",
+          "line": 2320
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-root-r02-scope-extrapolation",
+          "line": 2321
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-046-oracle-missing",
+          "line": 2322
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-046-applicability-missing",
+          "line": 2323
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-046-source-revision-missing",
+          "line": 2324
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-oracle-conflict",
+          "line": 2325
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-oracle-stale",
+          "line": 2326
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-applicability-conflict",
+          "line": 2327
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-applicability-stale",
+          "line": 2328
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-source-revision-conflict",
+          "line": 2329
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-source-revision-stale",
+          "line": 2330
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-full-v-freeze-missing",
+          "line": 2331
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations",
+          "line": 2332
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-slice-delta-missing",
+          "line": 2333
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-backfill-missing",
+          "line": 2334
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-sr4-receipt-missing",
+          "line": 2335
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-root-checkpoint-missing",
+          "line": 2336
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r06-slice-delta-not-returned",
+          "line": 2337
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r06-backfill-missing",
+          "line": 2338
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r06-applicability-unknown",
+          "line": 2339
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-transition-missing",
+          "line": 2340
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-loop-missing",
+          "line": 2341
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-terminal-missing",
+          "line": 2342
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-permission-missing",
+          "line": 2343
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-timeout-missing",
+          "line": 2344
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-notification-missing",
+          "line": 2345
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-audit-missing",
+          "line": 2346
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-data-missing",
+          "line": 2347
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-switching-missing",
+          "line": 2348
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-routing-missing",
+          "line": 2349
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-resource-allocation-missing",
+          "line": 2350
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-exception-missing",
+          "line": 2351
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-normal",
+          "line": 2352
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-no-scrum",
+          "line": 2353
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-refuse-slice-delta",
+          "line": 2354
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-refuse-scrum-reverse",
+          "line": 2355
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-refuse-sr4-obligation",
+          "line": 2356
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-condition-missing",
+          "line": 2357
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-scrum-normal",
+          "line": 2358
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r15-refuse-sr4-receipt-generation",
+          "line": 2359
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-scrum-backfill-missing",
+          "line": 2360
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-scrum-sr4-missing",
+          "line": 2361
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-style-unknown",
+          "line": 2362
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-pair-oracle-unknown",
+          "line": 2363
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-adoption",
+          "line": 2364
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-agreement",
+          "line": 2365
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-requirement-approval",
+          "line": 2366
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-os-ticket",
+          "line": 2367
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-execution",
+          "line": 2368
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-release-permission",
+          "line": 2369
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-user-acceptance",
+          "line": 2370
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-workflow-instance",
+          "line": 2371
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-os-saved-state",
+          "line": 2372
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-os-runtime",
+          "line": 2373
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-composed-scrum-sr4-missing",
+          "line": 2383
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r13-sr0-receipt-missing",
+          "line": 2389
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r13-sr1-receipt-missing",
+          "line": 2390
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r13-sr2-receipt-missing",
+          "line": 2391
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r13-sr3-receipt-missing",
+          "line": 2392
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-refuse-style-rewrite",
+          "line": 2408
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-refuse-method-definition-rewrite",
+          "line": 2409
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-refuse-composition-permission-rewrite",
+          "line": 2410
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-refuse-trigger-condition-rewrite",
+          "line": 2411
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-refuse-common-process-rewrite",
+          "line": 2412
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-composition-permission-missing",
+          "line": 2413
+        }
+      ],
+      "fixed_L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 1025,
+        "end_line": 1035,
+        "sha256_including_lf": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+        "bytes": 4764
+      },
+      "fixed_L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 764,
+        "end_line": 777,
+        "sha256_including_lf": "962be21a333af845f2b314dccd06b9c57f00cd6818f659f3524185c754609f78",
+        "bytes": 3472
+      },
+      "current_BR": {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "start_line": 174,
+        "end_line": 174,
+        "sha256_including_lf": "0ad9a09ee1790922a6deadf1589119025dbb1285907be710c0283ff1ccf15261",
+        "bytes": 831
+      },
+      "current_BV": {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "start_line": 145,
+        "end_line": 151,
+        "sha256_including_lf": "96258a0f3c704f533b02eb602abc09c3d0e1937b8e077d20281bf9f2353d9b8a",
+        "bytes": 2075
+      },
+      "case_execution_status": "未実行（内容候補）"
+    }
+  },
+  "fixed_parent_spans": {
+    "041_L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 957,
+      "end_line": 968,
+      "sha256_including_lf": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "bytes": 3908
+    },
+    "042_L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 972,
+      "end_line": 982,
+      "sha256_including_lf": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+      "bytes": 3571
+    },
+    "043_L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 986,
+      "end_line": 1000,
+      "sha256_including_lf": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+      "bytes": 5449
+    },
+    "044_L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 1002,
+      "end_line": 1012,
+      "sha256_including_lf": "22087ada8ea4b0bd31bf1ec32fa3c925633087ebd3ceeee229f2ef2ea4e58f0a",
+      "bytes": 4308
+    },
+    "046_L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 1025,
+      "end_line": 1035,
+      "sha256_including_lf": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+      "bytes": 4764
+    },
+    "041_L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 699,
+      "end_line": 715,
+      "sha256_including_lf": "312d258f447d2de14cd7770440381e15c24fb69a949e6c70c1adc3ab3d90f3c4",
+      "bytes": 3654
+    },
+    "042_L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 716,
+      "end_line": 727,
+      "sha256_including_lf": "8a23ef23377d8d46a0ae423ce0d4cf294785ab04ab1648bea66a9e63eeedae1b",
+      "bytes": 2333
+    },
+    "043_L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 728,
+      "end_line": 739,
+      "sha256_including_lf": "6c4377e4db0f8473c22cb6185ded4d0fa5e0e2ecf731097b0f346b4d3fd04503",
+      "bytes": 3377
+    },
+    "044_L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 740,
+      "end_line": 751,
+      "sha256_including_lf": "a83f6e631c9653c1c708ea0817a6b6be4ff96b7868736dcb301e9b34f5fbcf99",
+      "bytes": 3225
+    },
+    "046_L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 764,
+      "end_line": 777,
+      "sha256_including_lf": "962be21a333af845f2b314dccd06b9c57f00cd6818f659f3524185c754609f78",
+      "bytes": 3472
+    }
+  },
+  "legacy_source_pins": [
+    {
+      "name": "old_HIL_FR_46_47",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "start_line": 136,
+      "end_line": 137,
+      "sha256_including_lf": "e1acf0d4b69ae2c7f6180b1338d7041ec4cc0cab8ed02e120599e79d83f59780",
+      "bytes": 916,
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "file_bytes": 56091
+    },
+    {
+      "name": "old_HIL_FR_54_55",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "start_line": 144,
+      "end_line": 145,
+      "sha256_including_lf": "066fb22106e8e0720a02aeeaaf4ea58f8d726d456adfa60828130fe176480413",
+      "bytes": 1053,
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "file_bytes": 56091
+    },
+    {
+      "name": "old_v13_refactor",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "start_line": 119,
+      "end_line": 119,
+      "sha256_including_lf": "47e51a6d8f7ec3c8175b7c3f5b0581c4ca2d6535159e4a9badc74bd069637b86",
+      "bytes": 361,
+      "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "file_bytes": 64313
+    },
+    {
+      "name": "v13_audit_baseline_refactor",
+      "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "start_line": 104,
+      "end_line": 104,
+      "sha256_including_lf": "47e51a6d8f7ec3c8175b7c3f5b0581c4ca2d6535159e4a9badc74bd069637b86",
+      "bytes": 361,
+      "file_sha256": "1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "file_bytes": 62494
+    },
+    {
+      "name": "old_v13_full_v_scrum",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "start_line": 259,
+      "end_line": 259,
+      "sha256_including_lf": "d4b27cddbf01683c90e6c92243b0ab18ced3d79f8a660cb6050e424543464846",
+      "bytes": 478,
+      "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "file_bytes": 64313
+    },
+    {
+      "name": "old_v13_scrum_backfill_summary",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "start_line": 647,
+      "end_line": 647,
+      "sha256_including_lf": "1ed1374fd45bf155359a6b2f007b2680a5a8e929ea604f95720055985a8b45c6",
+      "bytes": 114,
+      "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "file_bytes": 64313
+    },
+    {
+      "name": "old_v13_sr4_receipt",
+      "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+      "start_line": 94,
+      "end_line": 106,
+      "sha256_including_lf": "a5d61f5b46d713e6f6d630c7bf381c20cd29dcf5cba176dd4c9466a7d50364cd",
+      "bytes": 1278,
+      "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "file_bytes": 64313
+    }
+  ],
+  "adoption_evidence": {
+    "po_decision_rows_39_53": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "start_line": 39,
+      "end_line": 53,
+      "sha256_including_lf": "1de37c7f6aa17478d55c2c306e0f2701a66636141cfe5f62d555be873eadd957",
+      "bytes": 9679
+    },
+    "po_row_mapping": {
+      "041": "MPR-RC-HARNESS-L2-041-003",
+      "042": "MPR-RC-HARNESS-L2-042-001",
+      "043": "MPR-RC-HARNESS-L2-043-002 conditional B / CORE proposed",
+      "044": "MPR-RC-HARNESS-L2-044-002 conditional B / Design Contract Portfolio",
+      "046": "MPR-RC-HARNESS-L2-046-001"
+    },
+    "implementation_order_addendum": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+    "implementation_order_addendum_pin": {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "bytes": 1823772
+    },
+    "implementation_order_assignments_pin": {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "bytes": 122862
+    },
+    "stage3_order_note_pin": {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-2026-09-27.md",
+      "sha256": "9b6c7233c57a42dc43c20146f776399a03c9aaf827f40f03a436cba15d7cb862",
+      "bytes": 33112
+    }
+  },
+  "legacy_inventory_pins": {
+    "041_coverage_receipt_sha256": "e5278268f34c5a213f5440675af2c050f70816c4f0dead40c9475bf9b830717e",
+    "041_source_lines_sha256": "215e78dd9a7b2f1f3b3eebbaa20db33d8c448735b2c525d13a89c1a512ae89b4"
+  },
+  "consumer_scope_read": [
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "locators": [
+        "HARNESS-L2-002/003/004/009: product-requirements.md:53-60,98-105",
+        "HARNESS-L2-016:395-401; 019:419-425; 022:447-461; 025:544-558; 026:530-543; 040:946-956",
+        "Stage3 target fixed parent sections listed in fixed_parent_spans"
+      ],
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "locators": [
+        "041:699-715",
+        "042:716-727",
+        "043:728-739",
+        "044:740-751",
+        "046:764-777"
+      ],
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "locators": [
+        "041:747-761",
+        "042:713-726",
+        "043:868-883",
+        "044:848-862",
+        "046:897-913"
+      ],
+      "revision": "5857c0a396cb24a23d765e3079a18a2367b6d078"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "locators": [
+        "041:1690-1759",
+        "042:1635-1679",
+        "043:2230-2288",
+        "044:2123-2222",
+        "046:2304-2413"
+      ],
+      "revision": "5857c0a396cb24a23d765e3079a18a2367b6d078"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "result": "対象5 IDなし。全親の候補specific NFR行の有無を全文検索し未発見。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "result": "対象5 IDなし。全親のcandidate-specific NFR CASE行の有無を全文検索し未発見。"
+    }
+  ],
+  "findings": [],
+  "conclusion": "No concrete false-success, wrong-owner, or unsupported-threshold defect identified in the five scoped parents after the inspected fixed L2/L11, current FR/BV/FV, and named legacy source spans. This is a scoped review result, not a claim of all consumer closure or total semantic completeness.",
+  "uninspected_or_limited": [
+    "No execution of candidate oracles; this was static content review only.",
+    "Did not execute old runtime/tests/CI.",
+    "Did not exhaustively inspect every downstream consumer outside the named L2/L11 consumer locators.",
+    "The six target L3/L10 documents were read only for the five parent scopes; unrelated parent sections are outside scope.",
+    "Business verification rows for 044/046 are indexes to functional cases and are not counted as independent CASE fixtures."
+  ],
+  "case_execution_status": "未実行。CASE行は未実行候補oracleとして静的意味照合のみ。旧test/runtime/CIも不実行。"
+}

@@ -1,0 +1,373 @@
+{
+  "revision": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+  "parents": [
+    "027",
+    "028",
+    "029",
+    "030",
+    "034"
+  ],
+  "six_sha256": {
+    "docs/helix-labo/L3-requirements/business-requirements.md": "7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a",
+    "docs/helix-labo/L3-requirements/functional-requirements.md": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+    "docs/helix-labo/L3-requirements/nfr-grade.md": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+    "docs/helix-labo/L10-verification/business-verification.md": "2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac",
+    "docs/helix-labo/L10-verification/functional-verification.md": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+    "docs/helix-labo/L10-verification/nfr-verification.md": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a"
+  },
+  "cases": {
+    "027": [
+      {
+        "id": "L10-LABO-027-C01",
+        "sha256": "498c1b0a19b8c980b331a0c3b1b3d97c366040bd8017c2456be96f6d4514c068",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-027-C02",
+        "sha256": "308136bd251de7441c81ac7d7910666e8d3ed7717dc7dec90a961a3ddd1e7ad8",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-027-C03",
+        "sha256": "3e0275717074ef2e879964a6ae9e2686cab9d4939d30183b73b8b2625cb8b637",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-027-C04",
+        "sha256": "7e89da31b83abc1142f32900b9e46d7333452fb766d04cd97c8d6a118338c673",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-027-C16",
+        "sha256": "ceb59801a43feec8517ade3601fd1eee15d06192cce58ecc6572786d12262577",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-027-C05",
+        "sha256": "9722e264eb4dc041c9e0af59a65dd87e22f85b391682b1c00e4fd1195b858f76",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-027-C06",
+        "sha256": "52b18a17248857496ede6ad52355f7a3af7adf4610a1570ba6aac261af2f77ef",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-027-C07",
+        "sha256": "ccb9cfca018b04a7578e5166ffc6d82475cc56d3926bee7569af77289fa0852b",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-027-C08",
+        "sha256": "fe3ff483ef3a342df90991dd20d98b50c411954cc2f00e90c24068ce98675879",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-027-C09",
+        "sha256": "08b1788868ac05f4fcce192ff00f3e43c7b9d8108f82d932e21e6eedba56cde9",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-027-C10",
+        "sha256": "bff73c84d60fd2f4931bda3636a84c3cd7cf898ddb237304bd2e41da9f8b4406",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-027-C11",
+        "sha256": "a2ebb5a42df5caed5bf5d8e4b0e4b134c5286e9a0f424bde20aa7f916e300051",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-027-C12",
+        "sha256": "d5a6ebbe314a04fe8ac9cda56b3e7feee83437b23d512d18af16cc764b6d1626",
+        "index": false
+      }
+    ],
+    "028": [
+      {
+        "id": "L10-LABO-028-C01",
+        "sha256": "45db4d1674ab79577def19f356bd2fb5faad01865dab407d688a07264b212cc6",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C02",
+        "sha256": "861b68c5ba3a6b04f106a35be287cd9df77ab90cc5c1d74e9040291a997c9011",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-028-C03",
+        "sha256": "563b15fdc4f69a8afd0c91c3f030a3798a8322f4cf3b7375bad3ea164b9f28d7",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C04",
+        "sha256": "3a8b6f25b9e9f27bb142f162da27782f4a397c6bb83814249e943afc676db530",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C16",
+        "sha256": "2f14bd4f0d5c9c63fba7bfc50b3215ba138c9be702a79a01e1564c1b9290a194",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C05",
+        "sha256": "802f6ecf4d0b35f6eff6ff5a6635252a6947bae3640588eeef34a4fccdda7d0b",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C06",
+        "sha256": "352bb1f01210e170bb705c2ceef2bce8e4c335b23ee74eb450b23b349081ca09",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C07",
+        "sha256": "aafa73d7e71166ae783bee38ce8e5a3a824693eae2b1dc21774ca2866d2b4ef0",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C08",
+        "sha256": "194ddbf660881d2ae73f75b59b706d13895f98fa5d45a2cd6abb8290d80fdd8b",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C09",
+        "sha256": "9c5f04a8cdf24971cace77354a04ff66c5e0ca0af60eb9e0a230211a3c35513f",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C10",
+        "sha256": "b77b4627110a5378e457ca56aa6426666a147300be3312d33d0f18626dc79a97",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C11",
+        "sha256": "477dad659a61935db229174c6c67dd48d78a989a433e82377be47361de5966a9",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C12",
+        "sha256": "7e64a2bc256323d1f47d8561669a0fa1a750fb03952d9e9b98ec59cc888c402e",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C13",
+        "sha256": "f70903cd0c48ff793eab1493f38e3f79f35f4db086ada600dc28611e241ac5be",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C14",
+        "sha256": "ab14ae9a3a1f5e44d9a963683189979a228529d19d78bc935d4a5d6c1c677dd8",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-028-C15",
+        "sha256": "9fc07e2edfb231f8c46a83a48501db099f473fc4716aad72c5735da81f0fddaa",
+        "index": false
+      }
+    ],
+    "029": [
+      {
+        "id": "L10-LABO-029-C01",
+        "sha256": "3fc182cea44f558d221b72459b83fcda19767e8b9d72aef44c782c18f78bc284",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C02",
+        "sha256": "3ece198ede32fbbb09c3728ea0b62270fd51fb9218f39b56fd7c88404f17c20a",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-029-C03",
+        "sha256": "2a295f28652b9655564c5e31ebe7e1ef953913da62d97f7df4c32872deee3cb6",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-029-C04",
+        "sha256": "5261a1c93ff96e3c836b2021fc3958c33803dabb13889186caf9f1328a467dfc",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C16",
+        "sha256": "0249ccc39c2dcef5239d5e4fbdfd2964ea7d5c0c6cff1849d32f096b4f8d8c75",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C17",
+        "sha256": "4494ea3e3412a2d009ca1b5c1c10326f479b52de645d8ee3b3e84db7ba88e645",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C18",
+        "sha256": "d27a16f968b4dabc1fa4e6da978d66a9ced8140f13e5c697129b5e7e8596573f",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C05",
+        "sha256": "b1a3b188a46b7c801e40b5618cf9aea96bbce3a25d299f78481d8d97981fdbe4",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C06",
+        "sha256": "abfaf25f0c6b2d8cfe9f52d7f7c2a4cdf1c423c2094d6192b8afb7e62fdfb1d7",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C07",
+        "sha256": "adecddd02322ef0690ed6b19217836f7a0973d81a35fe31e39a8cf813aa5c0f7",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C08",
+        "sha256": "8ff077a79f5e852088613d154e968c0181e56feaad02fd0307a72f8f8e21d90a",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-029-C09",
+        "sha256": "b6db4cb651350b91db0f0bb2a4eef4e5bef850169e17cbb54afbc2a32e9eafef",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C10",
+        "sha256": "77c36eb82135647c0d6ba36d9aa3816db145551fdd5900c5d706cc7f1538d246",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C11",
+        "sha256": "800aae4e726fd07d106c2fd5636ce29424cd8b86593c239152c8d35e29676dc1",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C12",
+        "sha256": "bf0e83c1af1df37e9bb842a6c093f025feacaa035675d0c047c282c7984ef594",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-029-C19",
+        "sha256": "d6f8140da8163e079920de3ce32ac894c5ba962eccf76843e107a8b2360be80b",
+        "index": false
+      }
+    ],
+    "030": [
+      {
+        "id": "L10-LABO-030-C01",
+        "sha256": "91e0b8ea935c1091f6bb3f8042bfe874aee2a39801408a15a5346f504f8cdf27",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-030-C02",
+        "sha256": "f02d629539d1c3a055694ecccf84abcf8c6186df85a6a88e13235b2628f78d8b",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-030-C03",
+        "sha256": "700a8efca12269e67f687b41f2955a5bb7f42cc4133e714a1d33f26b28c424c7",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-030-C04",
+        "sha256": "398915cc82e9155ebe69ca0faa90a61ac46ce9a7e84a823723c472fb996385d0",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-030-C05",
+        "sha256": "5c1bc9df8341c594926b96b80ff872ba051b2be26e340dadeb0cb731780d2309",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-030-C06",
+        "sha256": "712bfa189de5292642253e19422067b6c20a2c8c6d39feb2de8a69071f5d4092",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-030-C07",
+        "sha256": "a6a46a70eac7383f68685074b856a39aa8cb6417500a05012524ed21511b70a7",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-030-C08",
+        "sha256": "7ff68775ac41b85959fca4bc2fd501e742ee5d8f88afc6d13720e812ea38f2ae",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-030-C09",
+        "sha256": "c85b29990b106040e208f4124fe5ab77e51e3cd2272ae3adcee7315a7f395c18",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-030-C10",
+        "sha256": "7a652762ff63719461c62df610cbb766107895936972b02a416a110ac41f21bc",
+        "index": false
+      }
+    ],
+    "034": [
+      {
+        "id": "L10-LABO-034-C01",
+        "sha256": "6c6cac8c7e57c7e3f3293f6da44db02c0ef9d9f15deb5b41c1533cb734e514de",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-034-C02",
+        "sha256": "59dd4b61beba8e61ba647cff5da23ce42363bd2e5e90b96dfa00298fabe30bd5",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-034-C03",
+        "sha256": "3397f352d6f0f67102ef84d29057b3a0740a2c8073a4be149515964a9c1cc1e7",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-034-C04",
+        "sha256": "f3b20a727daef86cb3449db1b4ff6707801f566eb5c0d813258d8c50d6e5a106",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-034-C05",
+        "sha256": "7c9ac7f4b19dab13523cee4ffd977d9725a6d7257ee258db7ba2a5b239f3de61",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-034-C06",
+        "sha256": "5056907d8e11d35477258f09e5e458525566a3495a3f20522ae831bc9cfa76e0",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-034-C07",
+        "sha256": "7cd8e556a9a549d9d9f1b3436534feeb7bfe44391924d1a0f1d80f5fd29a3b80",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-034-C08",
+        "sha256": "8d65820b366ec3ccda0e15d02859c9e74c3729351dd999a4aba4b44ebc87c526",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-034-C09",
+        "sha256": "edb9d570bda9cb98fd9090b3d7d3fa903e6699821282e539135cf60a05faea7c",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-034-C10",
+        "sha256": "e58e8ac8d4fbfeda480417265b1df2ae109bc01970f3fff624a29ddf42091b5d",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-034-C11",
+        "sha256": "cf1332f15f32e74bd2806cda94b0f1a4125e83e66db9ca1862ca4b42fabba763",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-034-C12",
+        "sha256": "78a2e159f8e02a7fa660e7e9d41e37a4cf907ebbdd04f1ece4c319848c2a8ddd",
+        "index": false
+      }
+    ]
+  },
+  "finding": "限定範囲で具体的欠落なし",
+  "authority_effect": "none",
+  "limits": [
+    "独立review未実施",
+    "fixture未実行",
+    "全旧consumer未照合",
+    "274完了ではない"
+  ]
+}

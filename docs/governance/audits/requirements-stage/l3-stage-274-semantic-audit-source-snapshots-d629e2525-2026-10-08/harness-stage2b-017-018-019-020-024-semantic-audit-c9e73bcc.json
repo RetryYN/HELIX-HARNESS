@@ -1,0 +1,1412 @@
+{
+  "audit_kind": "read-only semantic audit",
+  "base_commit": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+  "authority": "fixed PO-adopted L2/L11 revision f6dad2a33e24f000b87d7f09b8d40288257e74cc; PO adoption is evidenced by the 2026-09-28 decision rows, not registration metadata alone",
+  "scope": [
+    "HARNESS-L2-017",
+    "HARNESS-L2-018",
+    "HARNESS-L2-019",
+    "HARNESS-L2-020",
+    "HARNESS-L2-024"
+  ],
+  "files": {
+    "L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d"
+    },
+    "L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4"
+    },
+    "BR": {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2"
+    },
+    "FR": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "sha256": "cb58f9ff835c71d198be990a4ddbc378a10ec381c83fd3093d78eb703bf4f6a7"
+    },
+    "NFR": {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d"
+    },
+    "BV": {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad"
+    },
+    "FV": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741"
+    },
+    "NFV": {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9"
+    },
+    "PO": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    }
+  },
+  "spans": {
+    "L2:403-410": {
+      "sha256_including_lf": "a0f17d12b26f7dd7c5f4f52767ae06fae8b32c4f31c156d04d3538b77edba2fb"
+    },
+    "L2:411-418": {
+      "sha256_including_lf": "97d4f669fb90eea59a8909a2c5b482a8b438018ab219dd6279e526ae49a89b17"
+    },
+    "L2:419-426": {
+      "sha256_including_lf": "0f50a16bcb31791e5d27f784a0d97f8142f41559d957b12713e19f1ab80d7609"
+    },
+    "L2:427-437": {
+      "sha256_including_lf": "28980b6713714debd1aab0c83c83f025ca415209427e9f7a657e624af305b4b3"
+    },
+    "L2:499-525": {
+      "sha256_including_lf": "ec4ece6e411152941c16cd8dc25a1c43613dff5e6b5c3051ef675c66c8b9b2cc"
+    },
+    "L11:212-215": {
+      "sha256_including_lf": "d62ac4baf51ed8e9b6609d3124433c4ac313b86fcd3a5058380df73c39857473"
+    },
+    "L11:240-250": {
+      "sha256_including_lf": "982dfcaa50b99367be17011fa54e0ee8513dd3760bf9e28276e7c4d63990a2ac"
+    },
+    "BR:68-78": {
+      "sha256_including_lf": "b6ea82680f800ce2b0569bb4987cb79283005fc0d93ec72a9a47f40e9c34dca2"
+    },
+    "FR:361-455": {
+      "sha256_including_lf": "b279ca3c025cafd43544734e56264b6a0137d70aa7e9cd491ecfade407176bb9"
+    },
+    "BV:35-39": {
+      "sha256_including_lf": "8d218e2ea02794e328c446516828e95a06f78adeeee96fe1ec7edcba34e96eb7"
+    },
+    "PO:46-53": {
+      "sha256_including_lf": "c8917fe0cd0eeaeee434227ade1be98283c242e0c16e02f8b63db6b17b768750"
+    },
+    "NFR:119": {
+      "sha256_including_lf": "8586b9f077f9aa08bacf8606a711739d46929d637f091f9c45189324bb47677f"
+    },
+    "NFR:120": {
+      "sha256_including_lf": "ec0e758d582cc1bb24246893e95e29288b258ab612d718506bf4e84d2adc81d7"
+    },
+    "NFR:121": {
+      "sha256_including_lf": "46e32e38c55646e9215189e5d47d8833fe11c80ec2231e7ab2211064ae72f7fa"
+    },
+    "NFR:122": {
+      "sha256_including_lf": "a5df8ecdb816526b0e2a9a8e82b22dd8614f594173f382491d0b12bd9d8f66e5"
+    },
+    "NFR:123": {
+      "sha256_including_lf": "f8e82c30c7977ed5d66c4f7ce24253375840bce9d7359d6d3c95c888e10f60eb"
+    }
+  },
+  "cases": {
+    "017": {
+      "count": 20,
+      "rows": [
+        {
+          "id": "CASE-HARNESS-L10-017-R001",
+          "line": 382,
+          "sha256_including_lf": "f2b3f7e3f270e4ab73f35733ce183cc85e62336fab080a4c59413863c0f37f4a"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R002",
+          "line": 387,
+          "sha256_including_lf": "4ed911aee520a4cae65cad80c0e6cbcdd8ca3228c4ce8f2206702aafec334a95"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R003",
+          "line": 388,
+          "sha256_including_lf": "873fab25b26b3557bd00031fca1fdf50f9d45695f76c2e53ef869684eef5719f"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R004",
+          "line": 389,
+          "sha256_including_lf": "0c70c400f165ee3c9ac27741a40d6af8f62d993fb25858130a24d54f35c77c72"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R005",
+          "line": 390,
+          "sha256_including_lf": "6084b1c77c2ed51ff16b8fa5b98623aa52f3b6b3e6d45a6ac6e5b88d22ba2cca"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R006",
+          "line": 391,
+          "sha256_including_lf": "0c7f0b03fc0cf1d281a8ce13479e79e258131f80c22c2046000cf843abba6ff2"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R007",
+          "line": 392,
+          "sha256_including_lf": "31acb4c5dbd8830eb8743dbfa479d824cdfea8b9859e074dfa4b186ff9bd4fc7"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R008",
+          "line": 393,
+          "sha256_including_lf": "30208e0df650060a2992d09df77f5f107c5b6d4aba43964abe78421665c82479"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R009",
+          "line": 394,
+          "sha256_including_lf": "e1c3d71d8167d7be93a4b6acb81c36263350ec1abaaf788feff14ec8de7c20ea"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R010",
+          "line": 395,
+          "sha256_including_lf": "696e11d4791bc4a16f1bc3446dbc8bc3f6b12f2c5559b8d8f841f055f4d77187"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R011",
+          "line": 396,
+          "sha256_including_lf": "93fe1042f2819ab290610d786436ab4b66d2a9067bd8243108b763d73876b3eb"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R012",
+          "line": 397,
+          "sha256_including_lf": "ffb62c608ecaa4a3d4db86922380c3669444549625a4d667a11bea322f2d8442"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R013",
+          "line": 398,
+          "sha256_including_lf": "7037e7606ef1ed7bf30e195d04a5ec0e756e69d1bef13269172fcf0a0383f3b7"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R014",
+          "line": 399,
+          "sha256_including_lf": "19426a69656bc65ea797efb7dc0bc005abb124f83925532e8f24f550bb20d235"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R015",
+          "line": 531,
+          "sha256_including_lf": "67e4f4928c390902f0c0fbed036c1ceac18e991f11d6c683e6adf5e832240788"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R016",
+          "line": 532,
+          "sha256_including_lf": "827cd363cb5c889e0ff31d6d9616a0d22b9d8409cc3b1da0f636f9e80181df5d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R017",
+          "line": 538,
+          "sha256_including_lf": "28ce65db0b7fae0daad3cdac2b71db403225c7117dcd88520742d1c69b50ce9c"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R018",
+          "line": 567,
+          "sha256_including_lf": "678799399421c403d80e2fd9075f4ca27ff928ce4ef5607495ac5a1c78ed1593"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R019",
+          "line": 568,
+          "sha256_including_lf": "e49edb353f0dac3b410f124178ed83219dd5c72ae7e8c11c891b58567c58c36a"
+        },
+        {
+          "id": "CASE-HARNESS-L10-017-R020",
+          "line": 604,
+          "sha256_including_lf": "7357d347c250d4333607314da678f3bc9a2a20c63778bd884021c9b8ed427a51"
+        }
+      ]
+    },
+    "018": {
+      "count": 58,
+      "rows": [
+        {
+          "id": "CASE-HARNESS-L10-018-R001",
+          "line": 383,
+          "sha256_including_lf": "5f8fb5474cfed38214cf5257b09c03c0ba5b0413f499d0f95157b1c73723a360"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R002",
+          "line": 400,
+          "sha256_including_lf": "eaa44ba5a9196cf0ae71f70e05102dab2f965bcb3ed594e3f457922defd01f69"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R003",
+          "line": 401,
+          "sha256_including_lf": "de98cd0cdfd41f51e004c719c73d7337aaf7300cc75b1f649bcfb4cf5c4370f6"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R004",
+          "line": 402,
+          "sha256_including_lf": "fece8e8c68b604a9417b9a604add49a3776c5bb6ea8cda38fd7616eef8af50a4"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R005",
+          "line": 403,
+          "sha256_including_lf": "91dd27abbf65e430d71679263d9aea645415c1187e559044e5979f18480cf533"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R006",
+          "line": 404,
+          "sha256_including_lf": "ac9a813edc692f37cd6b2ced0eb7b21d8cfa3f47997ffb0c4083252ac6923af0"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R007",
+          "line": 405,
+          "sha256_including_lf": "40826f3395a166467f6694396a81d632aa4bf513b4789382d0d2342488b94ce4"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R008",
+          "line": 406,
+          "sha256_including_lf": "ea89b86ca1d7a9c800d197994b1e9fbea039ecb0e9f7a3bcd90963c4450a4c3e"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R009",
+          "line": 407,
+          "sha256_including_lf": "d55a1f89df490260a919686eb3b684eb19a5675207b9f69c586fc35d6d18fc0e"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R010",
+          "line": 408,
+          "sha256_including_lf": "5eb24a1db8228f8ffe56ceaa9f1b9751ee0880b5b41e2d2a26dd906bcabe8166"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R011",
+          "line": 409,
+          "sha256_including_lf": "11584766b819d500ce9b0c4bfa18896a3e117ba9ce30f00e868860626aef736c"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R012",
+          "line": 410,
+          "sha256_including_lf": "fa3984ac29c3ef6f812f125da44d7779062d69db1ceb5923f1fc2ffd38cca986"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R013",
+          "line": 411,
+          "sha256_including_lf": "158e10031190b40b1e6c542b45f5be10a73ee9cf05543a52260ec7089d4297a6"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R014",
+          "line": 412,
+          "sha256_including_lf": "65f6409760132438cf5b4177a96d83884339d77aaa706f50f6b01f8b264018b9"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R015",
+          "line": 413,
+          "sha256_including_lf": "e31e8d7d0f8d1ec2eafe5bc3716b95239a56929131971faf5dace1173498f4bc"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R016",
+          "line": 414,
+          "sha256_including_lf": "b3a09472121e79b5196bcfe9ea15ecfe8bffefa9a6287c613a242f26f40a78b0"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R017",
+          "line": 415,
+          "sha256_including_lf": "69694c105002bdff766ac3cc29ea7a39f67d4822d27de84f519b7348851169ee"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R018",
+          "line": 416,
+          "sha256_including_lf": "7c5627797d669096d40f28b4b29883b5546aafd0a5b5498d1d902e3ce3412af5"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R019",
+          "line": 417,
+          "sha256_including_lf": "7caef47ff6d47f797d6c19b7d939f626b38c182d72b3455ac36adfd945bb1532"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R020",
+          "line": 418,
+          "sha256_including_lf": "688624407cb8ce32368c6c79f6ec838806f06c2885dabac3707e1fcc68686400"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R021",
+          "line": 419,
+          "sha256_including_lf": "76a028b097cd79b4bd2591dbc5678937d345a8b0236698b8a18a3e53aaee49f3"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R022",
+          "line": 420,
+          "sha256_including_lf": "51a17336eb4a0bb68a65b237f816994f4cfe17d9a97bc51acd32fa3920eaf23a"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R023",
+          "line": 421,
+          "sha256_including_lf": "d39ce0a886acc1f5ea5ba668d80e3c864c3d8190fcc7de26d83da822952baf52"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R024",
+          "line": 422,
+          "sha256_including_lf": "e52e98cca4b4e6f73c9d4d7d77c0f99a7a3cd14ba9cdca098d797c62314b1de2"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R025",
+          "line": 423,
+          "sha256_including_lf": "0867b5189183594dac09cd2319b8a393aad821e51206d7ab266ddb93c529bc03"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R026",
+          "line": 424,
+          "sha256_including_lf": "bafb548b6aea713592ac14e836efb79ff5c38cfad282f9e3d3d1fd71d30d9d2a"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R027",
+          "line": 425,
+          "sha256_including_lf": "962753442d57c599c6000a73b86a59ac77a4e533090756187fe8c81eb00b825c"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R028",
+          "line": 426,
+          "sha256_including_lf": "43dd90b8fcbb21ed829d2d11096f749b36d85df3ddea1579bf1845e5013a71c6"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R029",
+          "line": 427,
+          "sha256_including_lf": "ec6c1c0c8ce8cbdca1ee115fac169b965a832df92abd68f02a523fd84a0d6c4a"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R030",
+          "line": 428,
+          "sha256_including_lf": "e69453adb8776b1e78aa4e239c0c942323e713e19fdf3e582b6a3c11f2a2e7ea"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R031",
+          "line": 429,
+          "sha256_including_lf": "8b01ade02b861415c271ce24ed307d6ca82541a4d6ef105cba3e2fda5fa4bb5d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R032",
+          "line": 430,
+          "sha256_including_lf": "20997fed4d107366898b165f30943ba6523b14775ba253e121b499f561d2e942"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R033",
+          "line": 431,
+          "sha256_including_lf": "2d62413688b7e815c8277a1d82c0f07443a4b125d562d5c22f1b4cd2d02a2440"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R034",
+          "line": 432,
+          "sha256_including_lf": "b1fa8d8ca978d0bea627046ab05c0061862c6d585b31678694cd4aa2641b4f24"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R035",
+          "line": 433,
+          "sha256_including_lf": "616fcb11dec710175bf0a487dd6bab984dc858bd33dd79d17816848bf5ccf485"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R036",
+          "line": 434,
+          "sha256_including_lf": "3dec411371ea946c02e18414bcccb40242da8defe6eff8691a3a2d465f2e506d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R037",
+          "line": 435,
+          "sha256_including_lf": "b098e14422f34b896dcef9e9176400e18dace6f156718416c3075f98dc53bece"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R038",
+          "line": 436,
+          "sha256_including_lf": "f726406418cdc9c53ff8c6c9cca546d8bd71a76a5705e0041856ce55281ef3b0"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R039",
+          "line": 437,
+          "sha256_including_lf": "07d74990e1224cc890ce85ac9e8578b2e9a329cc35476e8c2c0defe7cef4e18a"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R040",
+          "line": 438,
+          "sha256_including_lf": "d60d97001d585ad89f043bc7cc55d8bd8b89b9cc904525ee5e6ee334a25430d2"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R041",
+          "line": 439,
+          "sha256_including_lf": "1135eacc2f5358b2be48888b3fa81e5ea4ff31e39a9cee78ea37c1f437adb7b4"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R042",
+          "line": 440,
+          "sha256_including_lf": "22f38ef819b8251b87825d3f1afff983041d96e032525176b79d2d3d6bd15231"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R043",
+          "line": 441,
+          "sha256_including_lf": "99d9239fd9289e49396d6c6052a45e9e728aa76dd1c657a8e421a64eb975bca8"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R044",
+          "line": 442,
+          "sha256_including_lf": "b1f02bd5889ba87a300dd247ab1c7e0f26075856008209b1235f26ba5977b1aa"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R045",
+          "line": 443,
+          "sha256_including_lf": "dc62d7dc96174e39cc1cb4a82c25225cf3bc7c468ccc8380c215be2cdd063be8"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R046",
+          "line": 444,
+          "sha256_including_lf": "f73d899884dc520bc9ca12ec5c308ab33969773a724c7be1fd98a3acba393830"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R047",
+          "line": 559,
+          "sha256_including_lf": "6579c8b79e90c08db8a3f2b223579bf35b7adfc51e089c31796f2056bd6fb1f2"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R048",
+          "line": 569,
+          "sha256_including_lf": "377441e4df00a06b4f84842cbd951064acbe8ca946d2468c7d6d2ec43f81c159"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R049",
+          "line": 570,
+          "sha256_including_lf": "b45c4dd18a062bcb27ac5cbf8bb882281730b8cafcd6d45dcdf350db246a1b1b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R050",
+          "line": 574,
+          "sha256_including_lf": "5982980ff4f07b047ace5a59472908b1d852127039940ac713a75ad2ec6f3a1c"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R051",
+          "line": 575,
+          "sha256_including_lf": "7069c86c9696434e9d0196544fdd92564501b0cc44875f709b60047fe3013181"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R052",
+          "line": 576,
+          "sha256_including_lf": "409d610531d9d0f2a0b02e3d346576cb007782c35925323e3c2061dfb3c513bf"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R053",
+          "line": 577,
+          "sha256_including_lf": "d96b5698b995f1db69105fe7465ed2fa919c0c3e7e2e2fd30595d0d845794491"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R054",
+          "line": 578,
+          "sha256_including_lf": "9b49d9c00a5f4e890996153ee653cdd37e25c25d2538aeed1c2fc3c6f9627014"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R055",
+          "line": 579,
+          "sha256_including_lf": "da833b54b7a961a7c262e4543fff5524692ca4cb1467e54061acba7d2f2001cc"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R056",
+          "line": 602,
+          "sha256_including_lf": "eac5b3185b0f5cfa99bf855b5e386c9f432e0c2d8aff73aece2d3155d7c5d605"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R057",
+          "line": 603,
+          "sha256_including_lf": "be51d8d40ad9d93bc723ac2ba742bd539eefeeb48a098065aebc7eead96d5fbd"
+        },
+        {
+          "id": "CASE-HARNESS-L10-018-R058",
+          "line": 618,
+          "sha256_including_lf": "d6777531a061804ef54e79b22602670c246d8460a285f40be7497739b648b5d1"
+        }
+      ]
+    },
+    "019": {
+      "count": 24,
+      "rows": [
+        {
+          "id": "CASE-HARNESS-L10-019-R001",
+          "line": 384,
+          "sha256_including_lf": "20f120ed6af2e278424e7359b03b9b6e3f3f52216da44e43ac801cdd1d16fa6d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R002",
+          "line": 445,
+          "sha256_including_lf": "4fca5bea92b924e8cf6719706adecb324e853c19514f802478e9ba6e6e2cf4d4"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R003",
+          "line": 446,
+          "sha256_including_lf": "5298c4062fc124d3e892e398bee77838f37680614d1c9a86bf61c4e766d02bcc"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R004",
+          "line": 447,
+          "sha256_including_lf": "6b1642ff7b7d74c62c3d41bcec885bb78d96a12d34b79771419272c550084cfd"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R005",
+          "line": 448,
+          "sha256_including_lf": "cb3e8436568c0c2d9488b90ae548e50a2c765972f5ac0ff9731ccc7e721379b6"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R006",
+          "line": 449,
+          "sha256_including_lf": "eea3b0aa7a1607a1a725873106c6db0718392bdd5f82f0e09a6734adf6a07f10"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R007",
+          "line": 450,
+          "sha256_including_lf": "e42a59f51a94451a582ca266b7891ab2ff01e6d290fbc8f1ad57ffeef61ad82b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R008",
+          "line": 451,
+          "sha256_including_lf": "ae3b2b56f2a8adb23a6d04a41ad0a87a472eeacd9b3b6841bd8bc4c144b724d5"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R009",
+          "line": 452,
+          "sha256_including_lf": "c01b275a11ae34ff2377813554d5829628bde68dbf45f80f950aa167773c1901"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R010",
+          "line": 453,
+          "sha256_including_lf": "1bd3adb37666677fb432c4e0a142320afc519f7db17ba586b7d6ac60ef838f25"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R011",
+          "line": 454,
+          "sha256_including_lf": "0d7e0ebcc447ac3191d968eaed4a6ac2b41852ee879fb7b83a6f1cfd09cd239f"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R012",
+          "line": 455,
+          "sha256_including_lf": "d161f650b9a17ffa7776d86ad27333892dd270fd786d2a0d4ab818f84cc16d88"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R013",
+          "line": 456,
+          "sha256_including_lf": "168e4ae96c13d21e55b031cf591820d7ea97895ffc8fea16094e28202184f7c4"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R014",
+          "line": 556,
+          "sha256_including_lf": "a867ce773becb0a0f3484521e525636b8743b998f43b863577475592ab3fda5e"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R015",
+          "line": 557,
+          "sha256_including_lf": "0ed138520bf2bcc020ee4ebb249866ee7b324b79f32b1be407546184d71ddcb0"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R016",
+          "line": 558,
+          "sha256_including_lf": "611b427ff58d89bc1ad1ec11d4e2f8aae3d2b9e61c58c9286b594311f7667a92"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R017",
+          "line": 560,
+          "sha256_including_lf": "35a42561fe6952dd4d88f0e5fb223b837c46228356c76718f3c3a09d0237a319"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R018",
+          "line": 561,
+          "sha256_including_lf": "31a9c566c67869618098b251c9b8d520f5e9a3da75022829f3d9bb2b4bf5bf62"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R019",
+          "line": 562,
+          "sha256_including_lf": "99b758c7fa0e3b2753357ce6574e83947664ccdd9770e85df40d9635687f84d6"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R020",
+          "line": 563,
+          "sha256_including_lf": "d29296283b1ca8a3286c1b14083f70bf6b32930d2306b8707565be8ba52e6896"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R021",
+          "line": 564,
+          "sha256_including_lf": "6651fe8ab38d697833134f4b3e8b33cf795caeb73eac655d4b3caf294a8d4fd9"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R022",
+          "line": 565,
+          "sha256_including_lf": "18c5f5f1bd82e98b3d1110e46a62bc141932c8baa9e433cdb80804e0872dce37"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R023",
+          "line": 566,
+          "sha256_including_lf": "371375f01c738bbeeb5c0b1e0d8daa2a8dc9b7aeb8ac994c8cf9d615d7ead5b4"
+        },
+        {
+          "id": "CASE-HARNESS-L10-019-R024",
+          "line": 596,
+          "sha256_including_lf": "38afe517360b21c7d1768271e6dbde2b8336ce061e7d371e84206fdf0d8436f1"
+        }
+      ]
+    },
+    "020": {
+      "count": 23,
+      "rows": [
+        {
+          "id": "CASE-HARNESS-L10-020-R001",
+          "line": 385,
+          "sha256_including_lf": "868849a9c702ae613bfcf8083617a87d4b5d5a1ae0da30934d475241cb482647"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R002",
+          "line": 457,
+          "sha256_including_lf": "065d7d2c5c408dd9a68bf7e3ae08aaa860f3c86214ab88b0662a4618b608d74d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R003",
+          "line": 458,
+          "sha256_including_lf": "97347616cd9faac03d9344a3aca307ceaec99a80a19daaf0aaf4d61a4f8c86dc"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R004",
+          "line": 459,
+          "sha256_including_lf": "5c0219beda854f4e5a703b304816164a9be9d254d21a7ee27e7d4294d24f29fd"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R005",
+          "line": 460,
+          "sha256_including_lf": "01c065a8795edfe727eea5395a798a6cb4d0688f009a73f1a5e5181632f6e186"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R006",
+          "line": 461,
+          "sha256_including_lf": "ed403b1880ebf5dc5a428a07d7abac3c4f7c10c08ba7eedf057a97cc7accfc59"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R007",
+          "line": 462,
+          "sha256_including_lf": "7713dcd4205595c00855ec4814435d85ed31e20fca0f15f80b37fff348ceead2"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R008",
+          "line": 463,
+          "sha256_including_lf": "c306df7f91ee44fba2a634574898940841a54569063456144dc6a9d0c4ead14b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R009",
+          "line": 464,
+          "sha256_including_lf": "e3dff06e85a8962fa621bede427701159fc3dd10323634977d665371448b332d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R010",
+          "line": 465,
+          "sha256_including_lf": "cdf33ea2c7a9c8b7d38f66f9a93df830b3c53972d84081ee8e33ef619958a554"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R011",
+          "line": 466,
+          "sha256_including_lf": "b95473c9760633157feb22feccaba5c9420998942b477e16d1cb73408027675c"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R012",
+          "line": 467,
+          "sha256_including_lf": "1094ba70d9d6a683ec30b4f17aee8db359470a628aa2fa2e80bee8cf6f0f8695"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R013",
+          "line": 468,
+          "sha256_including_lf": "b8883ee65379ba0df79e4b907047be91c147c8eb50e5025b8c2143d97145a530"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R014",
+          "line": 469,
+          "sha256_including_lf": "171e1534ae7b40dc5359a025232baace87c229b881bae136a80a92e515cfd58c"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R015",
+          "line": 470,
+          "sha256_including_lf": "7f9436789def866042f290b0ad348c6789f51257e5f42582e73a7b1c3c4a1b73"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R016",
+          "line": 471,
+          "sha256_including_lf": "ad5cc21fe93cb332a9b5bd57c07a1f54e51299d7f8ec9527c4b30407f75b6831"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R017",
+          "line": 472,
+          "sha256_including_lf": "ffa7e55c7397a65fd66ce4f3f17de82629bd993c10259149bb2edea9db9c704d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R018",
+          "line": 533,
+          "sha256_including_lf": "3f5618ec1c04f822195cbd44a2d824d27e49f29a9e8ad4648588039cc2f04f13"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R019",
+          "line": 539,
+          "sha256_including_lf": "4240f35e6e80bd5ecc8df8097c30f8b2f4ae44eac5500dc42a1fcea082fff629"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R020",
+          "line": 540,
+          "sha256_including_lf": "bd95fcce80b0d80c56e0678437052881b8746944aedd82c7811c22a14463f8a9"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R021",
+          "line": 541,
+          "sha256_including_lf": "80f8ef7923e1d726162559d8244eb225af310e0821bdc48ded89e1cee24a102d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R022",
+          "line": 571,
+          "sha256_including_lf": "4ef3fc2a0b47e30a860cb40c57cf66e3a63547683422422dedfe15e7a8a73026"
+        },
+        {
+          "id": "CASE-HARNESS-L10-020-R023",
+          "line": 580,
+          "sha256_including_lf": "1c4a873100c89c6c3500ea1c062ca05878a6c8cc57fbd464f62886cd8f58197b"
+        }
+      ]
+    },
+    "024": {
+      "count": 100,
+      "rows": [
+        {
+          "id": "CASE-HARNESS-L10-024-R001",
+          "line": 386,
+          "sha256_including_lf": "647bedae8454f3fb67f3fee97518c923ea8037f68f16e5aa8c503c09e2aa3e37"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R002",
+          "line": 473,
+          "sha256_including_lf": "4b1fa3c64eeacbc62c9f973dcc14592431620413c31e85167c7c87d29bba5832"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R003",
+          "line": 474,
+          "sha256_including_lf": "99e04683b1d6ce1553c82dd8057c0b946bf7fc18179b004de3ea8f24e102b909"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R004",
+          "line": 475,
+          "sha256_including_lf": "67fd742eb535501ce9ae064db8639f1190b60986061a491c51ee80fe314635d1"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R005",
+          "line": 476,
+          "sha256_including_lf": "5f6c07b9477fdc1b17d8207f3c7536b5907bd383f7e15e5af2a00a816e1ceb07"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R006",
+          "line": 477,
+          "sha256_including_lf": "a76f0f10f33a39c1d9187486ca90acac691e7a3c91f465b3906590a1405448ac"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R007",
+          "line": 478,
+          "sha256_including_lf": "863b0f316025997d68af1412c57ebfe00150a8c98dbfc26ff12c465de8a244e9"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R008",
+          "line": 479,
+          "sha256_including_lf": "c2097fb00105a1981936f1685a55612171a3522e5e2f0c3e99a6782257bc3c3d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R009",
+          "line": 480,
+          "sha256_including_lf": "4a756ede391f6ebcfe820d6cd2527c03bd6fac72a959af357fcc9a6ea7dfda1c"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R010",
+          "line": 481,
+          "sha256_including_lf": "a00297c0e22151d42447b6a7adee55814f4187dcabe63b67f0e012429d278ae2"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R011",
+          "line": 482,
+          "sha256_including_lf": "b443b5ede0d7e64238117243ce55153f5457a6c2d8a3125cbcc04644bf1354e1"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R012",
+          "line": 483,
+          "sha256_including_lf": "8faff8493579d6d6587fd59f755ced641b11b75094200901a87797cba6234dd9"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R013",
+          "line": 484,
+          "sha256_including_lf": "0418a6a1a40e5d1d2ee8f1a3c902fbc2f4cec11bcc23c7fd60ff86c4ad0e2297"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R014",
+          "line": 485,
+          "sha256_including_lf": "ce7ce0de169d634b2219939adc3e1f3635d625bb4531c07e5b70c263180e3ee2"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R015",
+          "line": 486,
+          "sha256_including_lf": "fc4d00de521c7956968ee5ccd4a5be9debddd7c45bcb4edfc48b754b96c4712e"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R016",
+          "line": 487,
+          "sha256_including_lf": "d12edffe93950208341eda9e7e5fc9200caee3f9036637f61a4d81036fd597df"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R017",
+          "line": 488,
+          "sha256_including_lf": "df523df790790d07920a15ded6db602e3b4d543b60cc1180672c93cf5765e685"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R018",
+          "line": 489,
+          "sha256_including_lf": "3ca7474c52c7114de5bb682e868cbe6aef6e615e418d0c6cded297889708c47a"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R019",
+          "line": 490,
+          "sha256_including_lf": "b5a2aa05edf86c72ed75deb1a07d9ae60363b30d428021eeef06030554e8541c"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R020",
+          "line": 491,
+          "sha256_including_lf": "d50256816f0d4c011744a49f28a7c0486d2082e38b7fa64dd1d7fe37b2feb437"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R021",
+          "line": 492,
+          "sha256_including_lf": "7f02a3e180845f81485b2d16faa647a2dcc46853e345bea996d8269769efb37f"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R022",
+          "line": 493,
+          "sha256_including_lf": "2c5e78ab39415ba65b08f7723d8da98497c539d0d016117891f0e4176a50fb93"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R023",
+          "line": 494,
+          "sha256_including_lf": "7a55be8f6b2339c3a92f50d54a7c4d5ce5c4b5e4758d1bf57c37a7b1f2740127"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R024",
+          "line": 495,
+          "sha256_including_lf": "ea81667db8fae6b3ff4cfea387a51c8ab24eeb8fc9a0374675ed636888d8f036"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R025",
+          "line": 496,
+          "sha256_including_lf": "1074771a2398b053763f1d968440390ba09d36971f17df2d0c32cf30488c6358"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R026",
+          "line": 497,
+          "sha256_including_lf": "f1dd168943c12195aa51ba4b3b3d149381557328f4f7ef062b1be3026e20a246"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R027",
+          "line": 498,
+          "sha256_including_lf": "f303ce81ab62ce1554da347843a7411cce194254fe250f0e667154c1d0fb8703"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R028",
+          "line": 499,
+          "sha256_including_lf": "acfc88362f6f960575a34a444b254254619a4baea8a1176c09fa81f1ce12d014"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R029",
+          "line": 500,
+          "sha256_including_lf": "536cf75fcc56d3e025a6959ac940d43ae097cc7bd50082a82270653d7348f169"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R030",
+          "line": 501,
+          "sha256_including_lf": "aa587f8d65790115025620ab9033fb36e4727af21b6cb50a1407dc892c34c18b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R031",
+          "line": 502,
+          "sha256_including_lf": "7856d4555e1ab092cf2964f4fb60347695ec540b8727bc1adbff96a962986e3d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R032",
+          "line": 503,
+          "sha256_including_lf": "69d4f526a0314cba5dc4aac7b2e0f540c284abf0f1b88e9c32d337a959ee0b12"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R033",
+          "line": 504,
+          "sha256_including_lf": "d920f7277f5d6fb5f025fdbd9f4d7b712c82bf91f344c1fa8443595826cb476d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R034",
+          "line": 505,
+          "sha256_including_lf": "606372eeeb0bbfcfad73abc11580fab3a7991e7eea56d5c99ca6cee0021caa5e"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R035",
+          "line": 506,
+          "sha256_including_lf": "bf4f5a94e203f0b1b991f016355fb609a8d4e24e93b2ed44aad072220a8f6aeb"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R036",
+          "line": 507,
+          "sha256_including_lf": "f21245aa3db81dbfa4874e1fbde9d2597170a644c15be1e4fbbe86d9cbdab5b9"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R037",
+          "line": 508,
+          "sha256_including_lf": "b9522696a5d95c8ea5e292b248fe5e503430615ef264c5e257497b2df40e8051"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R038",
+          "line": 509,
+          "sha256_including_lf": "41db456972f931d06ce02bdff81d28d86a9ecb3eb2c7f8414144191e2d722eb1"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R039",
+          "line": 510,
+          "sha256_including_lf": "4142295a5d71e3b86f1d6fede31ca0b5641490c8869a7eb45225330ebc27ddfb"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R040",
+          "line": 511,
+          "sha256_including_lf": "7517127348afbf3e62ef40365f51605760a3286cc91dde202a86b13ce588df12"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R041",
+          "line": 512,
+          "sha256_including_lf": "e4f0fe051d37c880fd76dd39fed5ee3e1a987287b81f2a2d1fe4ebbf11bd08cc"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R042",
+          "line": 513,
+          "sha256_including_lf": "248bed52a9c194f7142b593880efcc78a57a530e3b2da336fd7e8dc6a3ddab3b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R043",
+          "line": 514,
+          "sha256_including_lf": "9bb8bf70476623ca44ca8c5d19a222bf15ad64e94dee849bf6e2f6c91c2f34a1"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R044",
+          "line": 515,
+          "sha256_including_lf": "5845af51c15e7f15f04b12be0fa9f3427f617e9d253efc6388d2483c76877697"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R045",
+          "line": 516,
+          "sha256_including_lf": "8c4457e0f83177b77764e6984afee123b07360809a50cbc509bf3865e7ff5f91"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R046",
+          "line": 517,
+          "sha256_including_lf": "1ce600347118c72c6b48a0b3132523f15812621efb860d15228861d8bac7c780"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R047",
+          "line": 518,
+          "sha256_including_lf": "189188fa1b76471d67215fc6a94e5d111eefae1cd6548e84e3f0b70be52c3b6f"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R048",
+          "line": 519,
+          "sha256_including_lf": "98a8d58baca68363e4d92c07cf306cafee81637cfc791480d9a4af0309093d97"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R049",
+          "line": 520,
+          "sha256_including_lf": "9754d239aa7403c3eafc1322807820f357c1551f2fbf85597fd1d9bccd321d76"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R050",
+          "line": 521,
+          "sha256_including_lf": "89b639819d407ebcf103cbd97416872dfba3f9fd719fd4b8321dfe642d6c20db"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R051",
+          "line": 522,
+          "sha256_including_lf": "ae41fada02d65ce9779d66b0b28447c6e5204f27a0ba450c0a0e0dc4bdd30b10"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R052",
+          "line": 523,
+          "sha256_including_lf": "ffb3c2e9bebf7bf3977eb18c1b014f211c19b8ce4ed658b846668b7cc4a7f62a"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R053",
+          "line": 524,
+          "sha256_including_lf": "cb2397eeb7a32ba6067b380139622a6d7c8a1e5d5b7e763bf52c53f9baa2a17d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R054",
+          "line": 525,
+          "sha256_including_lf": "162e4dcd5ee3814102d96b3e7c5c89600e9edc628333b5432a7ce857d4a699e7"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R055",
+          "line": 526,
+          "sha256_including_lf": "96c76ffd04366265ddc9b5fa6a19367040b4bc4c690528514ee9bfc079f91e6f"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R056",
+          "line": 527,
+          "sha256_including_lf": "426cd9b24287b16a11a95261da3ef5f1a9056f6937331ea8cdb22ac467aa461f"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R057",
+          "line": 528,
+          "sha256_including_lf": "db786792def0d4d2bbb4555a404cddf4be62a8a1b7c6fb9486d4ede27a6f4318"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R058",
+          "line": 529,
+          "sha256_including_lf": "88b58147e04b461bddb64c9164924746471c2e8db4a3bbeacf17ba22768b9c40"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R059",
+          "line": 530,
+          "sha256_including_lf": "82857678b002e3ca646a2e821282349b3184e06e1a58c987a9a56949bf55dd71"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R060",
+          "line": 534,
+          "sha256_including_lf": "64926b28bab9c9e3e199301e67797133987494c1327e028031c132944aa00c3f"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R061",
+          "line": 535,
+          "sha256_including_lf": "c590b4f93b11d18af4131f39923f399b033215caf331912331f5ae36cf2e83fb"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R062",
+          "line": 536,
+          "sha256_including_lf": "5f212c74cd3a3227400bcc2ca6ad26cfe69b8b3a05975e55ccb1b41c7c33f31b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R063",
+          "line": 537,
+          "sha256_including_lf": "d367ae83bda71dc80874ce139cf1f1eaa3aca0720ad7c2f414ed4292e73b6967"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R064",
+          "line": 542,
+          "sha256_including_lf": "36239961ce1b7f4a13a4e0d5733166d3977a0f9bf6c2f12d46a22f8da1854d02"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R065",
+          "line": 543,
+          "sha256_including_lf": "a5d29305b90fc3dac6e3d752d093dfdcbebc44864d9f6afd3c03bbfdffd3130d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R066",
+          "line": 544,
+          "sha256_including_lf": "ab2d0a1a6a07447ec7dce8668692ef0e78ea7749a7c7bd00251b6583cee1f51d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R067",
+          "line": 545,
+          "sha256_including_lf": "94addb30ab3eb5eee6118cb4849bd0190eaaf0155a0b85b1c88dfe63b799304e"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R068",
+          "line": 546,
+          "sha256_including_lf": "8c85c42cc4a0620926fb9eec59f97b26493c42dec8dab517415318eea6d79d0b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R069",
+          "line": 547,
+          "sha256_including_lf": "777b6154ba09ce71072f33ae10d770918d7217215afc8da57deb002f1e47c8dd"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R070",
+          "line": 548,
+          "sha256_including_lf": "8b271f9495bc9fdc4d6b01f277bd8ee2d25e3fdf6dd2e657ef42fc1055e881b3"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R071",
+          "line": 549,
+          "sha256_including_lf": "749042a31367b48a1f3afb291afef13980c461dd6dd98ab57aac39cfdd4dd16d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R072",
+          "line": 550,
+          "sha256_including_lf": "bbfc6777051dc6a65d2f21280723abdd193b53de97ac45239beea059ab29d0db"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R073",
+          "line": 551,
+          "sha256_including_lf": "bd2a86aa299657068ec18c5b558d9723c04c1c2dadf682ffafef14714ff06913"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R074",
+          "line": 552,
+          "sha256_including_lf": "cfb6ea90ff3a7d253b6992f29443a7cecf3c87fe6c2e69f57f1b459c97bc7d7f"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R075",
+          "line": 553,
+          "sha256_including_lf": "9f699aa19f2a1e6a634dab8f4668e2fd89be560420c6917d2fc7ab141f8d0764"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R076",
+          "line": 554,
+          "sha256_including_lf": "4385dd74942f14ee687d0785c7e19e54526068b0aaa2bd235b63147d0993c379"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R077",
+          "line": 555,
+          "sha256_including_lf": "8b53da094a0322167801faaa3c40c68487cf75a531d0fc53cf65890837305548"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R078",
+          "line": 572,
+          "sha256_including_lf": "fd453197538630e059a19b6cd1de8b42e910c91524a12625ef6f5aa1a39677e8"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R079",
+          "line": 573,
+          "sha256_including_lf": "8023941d2dd06df4f7e45627ba6a0e1678ccd935ab31f9d6944de24bf2e55fb3"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R080",
+          "line": 581,
+          "sha256_including_lf": "faaa69a70bacb6405a43231d3001aaafb7dd1008af91c3150a5f3fdd8f622997"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R081",
+          "line": 582,
+          "sha256_including_lf": "b27913fc7bdd8a58460ca1e4fd1f20428ae2207d239e79171ac35d3f578e2d72"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R082",
+          "line": 583,
+          "sha256_including_lf": "fe61ebc5e9df5dbfaa0f0a0407587fdf9f63199949c35783f09792759c9499db"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R083",
+          "line": 584,
+          "sha256_including_lf": "a70d62673b0324923f5b577a6fe8d61bc62100a8d1f0ab25c9f95e963ee3e363"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R084",
+          "line": 585,
+          "sha256_including_lf": "0de861e8f8828ebef193e392ee1f32034049a398be8635350fc5832a453b6b5a"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R085",
+          "line": 586,
+          "sha256_including_lf": "874e6835e69dff67d9995bde1d8e2256fc77d881f2d70d56cd302d57d0a32336"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R086",
+          "line": 587,
+          "sha256_including_lf": "687b50c9be67195317eafbba2229f6effe1ed39dd9be36a2a364032dc1300eb6"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R087",
+          "line": 588,
+          "sha256_including_lf": "55dff97ad96ca67127da2fb4c4744fe7d4683e04df933216c74a854300047272"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R088",
+          "line": 589,
+          "sha256_including_lf": "df37825deb2300a2b2a12f50751583d427014b2a82202849345c4588c1eb9a29"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R089",
+          "line": 590,
+          "sha256_including_lf": "50805e18c3db505b15562f24b551de50ac5a12fbd736ed80f926bda9f58d84d6"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R090",
+          "line": 591,
+          "sha256_including_lf": "e4cdd063cf5186cef04f131cc1ada48fe9502b2eb83ab24d51e2862a043df95c"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R091",
+          "line": 592,
+          "sha256_including_lf": "e6782951c4a25682af944d76d030b2b84fc505b09b69d1fb5354e58fab11db9b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R092",
+          "line": 593,
+          "sha256_including_lf": "1735ff294d8656d6a2624fb5fe78af03db0881d231eb49f0c793025939b339c3"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R093",
+          "line": 594,
+          "sha256_including_lf": "b7d97e85102c819dde34a0ef8bbe65001d4b2b1508abf88700da56a773c17327"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R094",
+          "line": 595,
+          "sha256_including_lf": "1cbcad603de7b130ec5053ba3a56e2ee5f671785bbbe80ba13f91ee452ff0d79"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R095",
+          "line": 605,
+          "sha256_including_lf": "1c16569b13d9c13a1a0a6c3d3061f380d94e38366ba5be40bef438e3747e4a6a"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R096",
+          "line": 606,
+          "sha256_including_lf": "7624730cbeb545c020f1e3a2177d1c6bde8e636e501c9d5a4d7bf0d7192d80f7"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R097",
+          "line": 607,
+          "sha256_including_lf": "47b4808b655f5e0514ad8393091b0277331259327644c7d7c59786cf14caf5cd"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R098",
+          "line": 608,
+          "sha256_including_lf": "2da0277a824a25f7dec420342ce9978e98f16202f511e47b454ecc920e3e1a18"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R099",
+          "line": 609,
+          "sha256_including_lf": "347c6f2b7082a40d21bcc63127d4b3dab3a9c4465ff27140f10375a205e99346"
+        },
+        {
+          "id": "CASE-HARNESS-L10-024-R100",
+          "line": 610,
+          "sha256_including_lf": "ce478a6e3e8556008aaab0702123e119b6fbc0c8c774fe4c2be47baa6313cde9"
+        }
+      ]
+    }
+  },
+  "parent_semantic_read": {
+    "017": {
+      "FR": "FR-HARNESS-L3-017 lines 381-391; AC-017-01..03",
+      "cases": "R001–R020 (20): normal eligible packet; external/OS-independent positives; isolated missing/skipped/identity/revision/environment/dependency/security/deploy/rollback/provisional/late-port negatives; deterministic rebuild, Deployed != Observed, no prior stages required."
+    },
+    "018": {
+      "FR": "FR-HARNESS-L3-018 lines 393-403; AC-018-01..03",
+      "cases": "R001–R058 (58): owner-approved individualized requirements across eleven quality domains; applicable/N/A/unknown; separate five states and revision/time/evidence; no universal override and isolated missing owner/evidence/revision/time, draft approval, owner-value omissions, revision mismatch. No fixed common SLO."
+    },
+    "019": {
+      "FR": "FR-HARNESS-L3-019 lines 405-415; AC-019-01..03",
+      "cases": "R001–R024 (24): partial/full/unknown/contradictory inputs from each release unit; no entry execution requirement; per-atom missing source/revision/owner/meaning, missing pair, unconvertible part, and omitted selected-scope classification negatives; no approval generation."
+    },
+    "020": {
+      "FR": "FR-HARNESS-L3-020 lines 417-427; AC-020-01..03",
+      "cases": "R001–R023 (23): adjacent compatible contract positive, external contract positive, contract-permitted unknown field; isolated version/field/artifact/revision/owner/evidence mismatch; outstanding obligations and collection evidence; Provisional vs Verified/Accepted; semantic Backflow. No stage-wide sequencing."
+    },
+    "024": {
+      "FR": "FR-HARNESS-L3-024 lines 429-443; AC-024-01..06",
+      "cases": "R001–R100 (100): priority/tie-break, duplicate/open-answer and revision freshness, formation versus human-pending, 4 region states, empty history vs lost records, pending/lost prototype agreement, timeout/resume, unknown impact, each false convergence source, authority boundaries, same/unseen fixture, no-observation, omission, owner/re-entry, product-pack isolation, missing/mismatched pack, and human decision packet per-field evidence."
+    }
+  },
+  "legacy_sources": [
+    {
+      "label": "017 requirements",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+      "full_sha256": "336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c",
+      "spans": [
+        {
+          "lines": "82-100",
+          "sha256_including_lf": "e02b17fc5f52ea6c5b26d37ed65f52520153ac25ff40ebc697a27c210c308f6c"
+        },
+        {
+          "lines": "123-131",
+          "sha256_including_lf": "008e6a506cdca651baec2484f34d2ac964ed9949f4d5355e9afc190fc53c7f88"
+        }
+      ]
+    },
+    {
+      "label": "017 acceptance consumer",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/release-module-bundle-composition-acceptance.md",
+      "full_sha256": "71600a710a31b47c1db3434d68fd6135366058f1c591df489a57a51732cd423b",
+      "spans": [
+        {
+          "lines": "22-42",
+          "sha256_including_lf": "dffeae81102d651da3deac3ce8f1f3e05c6184fa1b0f80e6cb2ded558d3a24a8"
+        }
+      ]
+    },
+    {
+      "label": "018 requirements",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "full_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "spans": [
+        {
+          "lines": "25-35",
+          "sha256_including_lf": "79fb8d16efa94d63e0c67779bec9d1658ab8c4d80202f6805d0da8031897a0ff"
+        },
+        {
+          "lines": "66-143",
+          "sha256_including_lf": "50d4c5e38f722eb52928f1d46b9c23a1786ce620fd323eadf0da236075954602"
+        },
+        {
+          "lines": "173-197",
+          "sha256_including_lf": "708296f405a8db744740d061f379b4d6a42eaa72532527c2e6fb5ee9d57675f1"
+        }
+      ]
+    },
+    {
+      "label": "018 acceptance consumer",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "full_sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+      "spans": [
+        {
+          "lines": "22-47",
+          "sha256_including_lf": "9b8c3ce8ca0576117398150e5758e3dc66e5aa00dc46f0c15c221339156eee00"
+        }
+      ]
+    },
+    {
+      "label": "019 requirements",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "spans": [
+        {
+          "lines": "78-169",
+          "sha256_including_lf": "9a11817f29ed1c541c8259aede0b0e93df1a6f105e57b31bddfcda90a4a593dc"
+        }
+      ]
+    },
+    {
+      "label": "019 acceptance consumer",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "full_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "spans": [
+        {
+          "lines": "16-43",
+          "sha256_including_lf": "7c229fcaadeab4ea8d4156c2ae146dbf34b47ffaf8af79c6ca2deb713e3b0c3e"
+        }
+      ]
+    },
+    {
+      "label": "024 requirements",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "full_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "spans": [
+        {
+          "lines": "48-48",
+          "sha256_including_lf": "1ce3dae8056a97ff09bd954f0d3afaa20b679c3c682ed67372e5663eed9516a8"
+        },
+        {
+          "lines": "52-52",
+          "sha256_including_lf": "6ff1103782a2edde657b085c3130d78188f916fb86001e1dc29e822b2d967a85"
+        }
+      ]
+    },
+    {
+      "label": "024 acceptance consumer",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "full_sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+      "spans": [
+        {
+          "lines": "22-22",
+          "sha256_including_lf": "25e60c56118dfbb4bcc47acd42a0cb3355ad8be5138f22b6ff063c87a7abbe59"
+        },
+        {
+          "lines": "26-26",
+          "sha256_including_lf": "8699b50c5d42401d7f601b0443af4668eeb4722db255443728f3e5da58fbf9fd"
+        }
+      ]
+    },
+    {
+      "label": "020 contextual requirement analog only",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+      "full_sha256": "336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c",
+      "spans": [
+        {
+          "lines": "123-131",
+          "sha256_including_lf": "008e6a506cdca651baec2484f34d2ac964ed9949f4d5355e9afc190fc53c7f88"
+        }
+      ]
+    },
+    {
+      "label": "020 contextual consumer analog only",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-pillar-integration-test-design.md",
+      "full_sha256": "0bf20d470daba6a63b515ebd0d53509ee24c64df2c9e6bd6235e7874af23a8f5",
+      "spans": [
+        {
+          "lines": "20-60",
+          "sha256_including_lf": "af36a201fce44f0b5210efe7306dc18ae2d562b9d9354bd5950b6da8b1d035eb"
+        }
+      ]
+    }
+  ],
+  "findings": [],
+  "limited_conclusion": "No concrete semantic defect confirmed within these five parent scopes after reading the specified fixed inputs, six current L3/L10 documents, cases, and listed legacy source/consumer spans. This is not closure for all HARNESS parents or all 274 parents.",
+  "not_checked": [
+    "Runtime behavior, test execution, CI, implementation consumers, external product owners, and other parents/stages.",
+    "Any L3 approval, PO post-confirmation, downstream permission, or L10 execution; all remain outside this read-only audit."
+  ]
+}

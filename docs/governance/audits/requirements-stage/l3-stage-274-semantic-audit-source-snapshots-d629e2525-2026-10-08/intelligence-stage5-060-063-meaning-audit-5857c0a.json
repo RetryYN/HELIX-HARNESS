@@ -1,0 +1,154 @@
+{
+  "audit": "INTELLIGENCE Stage 5 semantic read-only audit",
+  "base_commit": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+  "fixed_parent_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "fixed_parent_commit_full": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "working_tree_head": "4bc86c3a19652033ede35ddef118185fbb004649",
+  "working_tree_note": "The checked-out worktree is an unrelated earlier repair branch; all repository content in this audit was obtained via git show from the exact base commit. No repository files were changed for this task.",
+  "scope": [
+    "HELIXINTELLIGENCE-L2-060",
+    "HELIXINTELLIGENCE-L2-061",
+    "HELIXINTELLIGENCE-L2-062",
+    "HELIXINTELLIGENCE-L2-063"
+  ],
+  "out_of_scope": [
+    "HELIXINTELLIGENCE-L2-069",
+    "HELIXINTELLIGENCE-L2-070",
+    "HELIXINTELLIGENCE-L2-071",
+    "HELIXINTELLIGENCE-L2-074",
+    "HELIXINTELLIGENCE-L2-077"
+  ],
+  "six_document_sha256": {
+    "BR": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+    "FR": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+    "NFR": "a1113329da1b463968b2a67a19692db77c41b0fcdb6bf028ac969d83921066a2",
+    "BV": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+    "FV": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+    "NFRV": "1049e8edef98fd41f1f2c57caff98eebc999e65652e558b42646976e517614a1"
+  },
+  "fixed_l2_l11_sha256": {
+    "L2": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+    "L11": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+  },
+  "fixed_l2_l11_blob_oids": {
+    "L2": "055cb521c2786a372ab23994b24cd354d4df047b",
+    "L11": "b3541ad2fd255e94b38b72d04380d5daeafd87a3"
+  },
+  "parent_reviews": [
+    {
+      "id": "HELIXINTELLIGENCE-L2-060",
+      "stage": 5,
+      "fixed_l2": "633bf12:354-359",
+      "fixed_l11": "rows 114/158/281",
+      "l3": "FR-INT-060; AC-INT-060-01..06",
+      "cases": "CASE-INT-060-01,02a-f,03,04a-b(index),05a-i(index+fixtures),06a-l(index+fixtures)",
+      "normal": "060-01, 060-03, 060-05i",
+      "negative": "02a-f, 05e-h, 06a-d/f/g/i/j/l",
+      "observations": "05a-d and 06e/h/k are explicitly indices; 04b indexes 05h; 06e/h/k index stale/unknown cases. NFR counts 05e-h as four independent negatives plus 05i normal, and 06a-d/f/g/i/j/l as nine runs. Owners remain source owner/HARNESS/OS/BRAIN as fixed; no ticket issuance from INT."
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L2-061",
+      "stage": 5,
+      "fixed_l2": "633bf12:360-365",
+      "fixed_l11": "rows 115/163/282",
+      "l3": "FR-INT-061; AC-INT-061-01..06",
+      "cases": "CASE-INT-061-01,02a-h,03,04,05a-f,06a-c",
+      "normal": "061-01, 061-03",
+      "negative": "02a-h, 05a-f, 06a-c",
+      "observations": "Price/name/benchmark, task/scope, evaluation state, assignment owner, stale evidence are separate. NFR-061-02 covers six 05 fixtures; NFR-061-03 covers three 06 fixtures. LABO evidence judgment and OS assignment remain distinct."
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L2-062",
+      "stage": 5,
+      "fixed_l2": "633bf12:366-371",
+      "fixed_l11": "rows 116/169/283",
+      "l3": "FR-INT-062; AC-INT-062-01..05",
+      "cases": "CASE-INT-062-01,02a-h,03,04a-i,05a-e",
+      "normal": "062-01, 062-03",
+      "negative": "02a-f/h, 04a/d/e/f/h/i, 05a-e; 02g/04g order negative; 04b/c indices",
+      "observations": "Four independent stage receipts have SECURITY, Worker, HARNESS, OS owners. Candidate omission is unknown-owner (05a). AC-04 indices 04b/c/g to 05a/02d/02g. NFR-062-02 counts six 04-stage fixtures; NFR-062-03 counts five repair-result fixtures. Order failure does not invent an owner."
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L2-063",
+      "stage": 5,
+      "fixed_l2": "633bf12:372-377",
+      "fixed_l11": "rows 117/170-171/284",
+      "l3": "FR-INT-063; AC-INT-063-01..05",
+      "cases": "CASE-INT-063-01,02a-g,03,04a-h,05a-d",
+      "normal": "063-01, 063-03, 04f, 04g",
+      "negative": "02a-c/e-f, 04a-e/h, 05a-d; 02d excluded",
+      "observations": "Effectiveness LABO, canonical knowledge BRAIN, current judgment INT, execution OS, process contract HARNESS. NFR-063-02 covers 04a-h; NFR-063-03 covers 05a-d and excludes stale legacy 02d."
+    }
+  ],
+  "legacy_source_review": [
+    {
+      "parent": "060",
+      "paths": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md:43-59,125-160",
+        ".../root/docs/test-design/helix/universal-improvement-loop-acceptance.md:17-38",
+        ".../root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md:25-60",
+        ".../root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md:17-40",
+        ".../root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md:31-52",
+        ".../root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md:17-34"
+      ],
+      "disposition": "source-trace/decision proposal and independent negative-oracle shape re-derived; old autonomous UIL lifecycle/routes, UWJ interview/schema, Infinity Loop provider/runtime not transferred."
+    },
+    {
+      "parent": "061",
+      "paths": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md:47-64",
+        ".../root/docs/test-design/helix/worker-common-contract-acceptance.md:18-64",
+        ".../root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:30-82",
+        ".../root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:30-41"
+      ],
+      "disposition": "same-task/scope evidence and severe-failure non-compensation are comparison material; provider descriptors/CLI/sandbox, blind score/admission and price ownership are not transferred. LABO capability assessment and OS assignment are current fixed owners."
+    },
+    {
+      "parent": "062",
+      "paths": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md:84-120,164-183",
+        ".../root/docs/test-design/helix/universal-improvement-loop-acceptance.md:1-46",
+        ".../root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md:31-60",
+        ".../root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md:1-63",
+        ".../root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:105-154",
+        ".../root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:17-46"
+      ],
+      "disposition": "evidence/failure/owner return and false-closure checks re-derived. Old terminal lifecycle, route/runtime, deployment/rollback authority is replaced by the fixed four-stage current owner chain."
+    },
+    {
+      "parent": "063",
+      "paths": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md:59-76,162-196",
+        ".../root/docs/test-design/helix/universal-improvement-loop-acceptance.md:1-46",
+        ".../root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:154-156,237-242",
+        ".../root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32-90,91-216",
+        ".../root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md:31-52",
+        ".../root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md:17-34"
+      ],
+      "disposition": "before/after effect, fact/unknown, owner distinction re-derived. Old recipe promotion, memory/runtime loop, and approval workflow are not transferred or executed."
+    }
+  ],
+  "findings": [
+    {
+      "id": "candidate-063-composite-index-wording",
+      "severity": "textual inconsistency / potential fixture accounting ambiguity",
+      "source": [
+        "FR lines 685-692, especially line 690",
+        "FV lines 2444-2454",
+        "FV lines 2645-2652",
+        "NFR lines 266-269",
+        "NFRV rows 183-184"
+      ],
+      "claim": "FR-INT-063 AC-INT-063-02 says CASE-INT-063-02a–02g are independently evaluated, while its own description and FV define CASE-INT-063-02g as a composite legacy index whose out-of-order and duplicate predicates are independently tested by CASE-INT-063-04g/04h. NFR-063-02/NFRV-063-02 count 04a–04h, not 02g.",
+      "practical_impact": "A reader using the AC summary literally may require/count an extra composite fixture or double-count two predicates, while L10/NFR treat it as a non-independent index. Detailed oracle and owner behavior in 04g/04h is present, so this is a trace/fixture-accounting ambiguity rather than evidence of a false positive acceptance path.",
+      "fixed_parent_check": "L2-063 / L11-063 require historical outcomes to stay attached to their original episode and not overwrite current judgment; they do not require an extra composite test.",
+      "recommendation": "At the next authorized text revision, clarify that 02g is an index and that its two predicates are independently covered by 04g/04h; do not add a fixture or change parent meaning. No immediate blocker assertion."
+    }
+  ],
+  "limits": [
+    "Only the four assigned parents are semantically audited; Stage 5 parents 069/070/071/074/077 are out of scope here.",
+    "L3/L10 are unapproved draft/test design; no runtime/old test/CI execution was performed.",
+    "Legacy material was read only as source context; no old workflow/runtime/test was executed.",
+    "The audit checks current source text and selected case oracles, not every consumer of all legacy assets."
+  ]
+}

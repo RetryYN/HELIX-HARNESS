@@ -1,0 +1,58 @@
+{
+  "audit_type": "read_only_semantic_audit",
+  "scope": "HELIX-OS Stage 3 adopted parent HELIXOS-L2-032; fixed L2/L11, current canonical six L3/L10 documents, OS-020 cross-trace, and cited legacy sources",
+  "current_body_revision": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf",
+  "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "verdict": {
+    "confirmed_false_success": false,
+    "confirmed_uncovered_requirement": false,
+    "initial_candidate": "A present but wrong current-run HEAD/tree value might receive eligible quarantine.",
+    "candidate_resolution": "Disproved as a confirmed gap: AC-OS-L3-032-04 and CASE-OS-L10-032-04 include current HEAD/tree as a one-field missing/changed mutation and expect eligible=0. Fixed L2 additionally requires exact current-run identity and sends profile/run/receipt mismatch to OS-L2-020/007. CASE-OS-L10-020-02d independently rejects wrong-head results.",
+    "residual_readability_note": "CASE-032-04 does not print a concrete wrong-but-present hash/tree pair or explicitly spell the fixture join from OS-020's run receipt. That may be made more explicit for fixture readability, but the audited parent and CASE oracle already cover the meaning, so this audit does not classify it as a requirement omission.",
+    "initial_misread": "The first pass treated the named current HEAD/tree field as absence-only. Re-reading the encompassing AC/L10 clause shows each listed field is independently missing/changed; the initial concern is not retained as a finding."
+  },
+  "fixed_sources": [
+    {
+      "identity": "HELIXOS-L2-032",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "lines": "913-928",
+      "full_bytes": 447207,
+      "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "raw_span_bytes": 4453,
+      "raw_span_sha256": "349a36e7c736e7532c677ffedde1e2fe6769efe2f4f44041d65070941afcd108"
+    },
+    {
+      "identity": "HELIXOS-L11-032",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "lines": "513-523",
+      "full_bytes": 331746,
+      "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "raw_span_bytes": 3647,
+      "raw_span_sha256": "57fb18f76c8091d94f3e89ada8bd101050eb5df2910ec1f993722b00bb1d941d"
+    }
+  ],
+  "current_documents": [
+    {"role":"L3 business","path":"docs/helix-os/L3-requirements/business-requirements.md","full_bytes":20354,"full_sha256":"cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702","read_spans":[{"lines":"61-61","bytes":179,"sha256":"9b87dd649ff3144bb5309accc4975fa6ab6a4b98d93153f8f13ea3a8734ea4ff"}]},
+    {"role":"L3 functional","path":"docs/helix-os/L3-requirements/functional-requirements.md","full_bytes":201537,"full_sha256":"95a6f1c5bdd1015d8849829de88fd99e62c842784135e4ebdbd5b4140d843544","read_spans":[{"lines":"230-237","bytes":2111,"sha256":"1b2fa6f55d69c81f61d7ec8ce04a6ca91bc296a3c3e220700a642b3eec7763dd"},{"lines":"179-186 (shared OS-020)","bytes":1622,"sha256":"673851e419bb42bab32ef7fcc8f02f6ad9ef8b7c6080020aa778efb193b8eb95"}]},
+    {"role":"L3 NFR","path":"docs/helix-os/L3-requirements/nfr-grade.md","full_bytes":32737,"full_sha256":"ec63ecd54db5258ff14714624c3df6bcfd3c1c189ac9a08a29271c06231e3066","read_spans":[{"lines":"85-87","bytes":558,"sha256":"0f732fc6f41feef456d5f3b3dea0d869c7e75401ce5c311f632945b424db2fdb"}]},
+    {"role":"L10 business verification","path":"docs/helix-os/L10-verification/business-verification.md","full_bytes":17702,"full_sha256":"5a75c21ce10b33fc8441adda71253870fd20a8687c18e7939cfe8b25f9d393c8","read_spans":[{"lines":"48-50","bytes":249,"sha256":"9e7403ecf153820cb0f16eecfefdbdf38c4fdd085888798ca5fe55a9cbe53a30"}]},
+    {"role":"L10 functional verification","path":"docs/helix-os/L10-verification/functional-verification.md","full_bytes":240108,"full_sha256":"8a99792f723abb96034274c72424902fba51df515e2a99f637823427aa03821c","read_spans":[{"lines":"456-479 (shared OS-020)","bytes":2418,"sha256":"b782c9e019b551fbe17c7c984c791ee5b61ea61552775a43b0e45d022e911bb4"},{"lines":"609-611 (CASE-032-01..03)","bytes":1104,"sha256":"fb20c5c1ab92cc9f06ce663106c9994b6699ccf29b7f3a375163d9f165053d24"},{"lines":"656-657 (CASE-032-04..05)","bytes":730,"sha256":"e8661cee9c9cb94edb3aedc0f1946a8a04a4ba4ebfe4d39827ca3e82b967e11f"},{"lines":"688 (CASE-032-06)","bytes":351,"sha256":"f5bde994201ac7d91854897a6a70358aa29cf04d4093c9276f81b258b47bb07e"}]},
+    {"role":"L10 NFR verification","path":"docs/helix-os/L10-verification/nfr-verification.md","full_bytes":29480,"full_sha256":"3019648b66a351418945033646bf82c84d0c7ef771edee49378cef2be266e256","read_spans":[{"lines":"73-77","bytes":541,"sha256":"254a2335cbf25e7da2a280a9e2ef5e6fb0c844115bfac04349fd963b46a2cef5"}]}
+  ],
+  "legacy_sources": [
+    {"asset_id":"LEGACY-ASSET-719D5EC9C06FC4AAD0FF","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md","full_bytes":56091,"full_sha256":"db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb","lines":"119","span_bytes":323,"span_sha256":"7a8feac77b05f6341d18321bb9e87beb19bb0cfe57a15c46ab50212d67e7d851","meaning":"HIL-FR-29 limits quarantine to known failure bound to check/fingerprint/baseline and requires remediation/owner/expiry-or-limit/minimum gate."},
+    {"asset_id":"LEGACY-ASSET-C7F0C3B79CBAA72960BF","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md","full_bytes":18905,"full_sha256":"8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6","lines":"40;69","span_sha256s":["4d9fd5254fb3a372846bab08313a4fceb482c174bde34f6e41a44a6d382be84d","b3007b496ede267607c7c67891d197bc92dc9c1de9c003e693503ceb71fbc91b"],"meaning":"HR-FR-HIL-06 and HAC-HIL-06c retain same SHA/tree CI lineage and limited exact-known-failure quarantine."},
+    {"asset_id":"LEGACY-ASSET-FA8C6E69463183D6A19B","path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md","full_bytes":7819,"full_sha256":"a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a","lines":"38","span_bytes":217,"span_sha256":"adf5a27081a02bc2a722896ea636b7a31fef6de7922605d5522162c8d261b6d0","meaning":"HAT-HIL-06 groups SHA/tree lineage, check/log, expiry, and negative conditions."},
+    {"asset_id":"LEGACY-ASSET-E0ACE453BCF2E992DDF8","path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-three-stage-ci-quarantine-unit-test-design.md","full_bytes":13317,"full_sha256":"aa18b5037ddc859f107cda2d38fe0d78f0df2e9ab77fce42e7376a4490fc1c02","spans":[{"lines":"44-54","bytes":3570,"sha256":"91bdd28322b612b75288238e29832a704df4bb638129869f930aa81a49eedfdf"},{"lines":"98-101","bytes":508,"sha256":"f0adb7a24861c2796e78559ea93ae7c3c381cb971ddfd064f833fc2b7c76242b"}],"meaning":"U-CIQ-010 rejects other chain/SHA or same SHA/different tree; U-CIQ-017 makes baseline/tree/profile/scope drift expired/stale; tests not run."},
+    {"asset_id":"LEGACY-ASSET-8CEC5559B69B216F7CCF","path":"archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md","full_bytes":12926,"full_sha256":"e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705","lines":"49","span_bytes":294,"span_sha256":"5d323a3f1b60bd81fb524d74ff57ba37a8b5afbb18938cabaf576acc98e3194d","meaning":"HST-HIL-022 summarizes exact-known-failure, different fingerprint, expiry, and missing-gate cases; not executed."},
+    {"asset_id":"LEGACY-ASSET-F23AB691AD5152B1C0E9","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/three-stage-ci-quarantine.md","full_bytes":23273,"full_sha256":"ffaa415d0f2a098f0eed16c17da4c86863a8365a816b657a66915230268e2ca6","lines":"117-144","span_bytes":2869,"span_sha256":"8666e0a3babb5583c4553f51b6deb470ed29eb7b17344348af0fde6bec651976","meaning":"Stage receipts bind exact source/tree/scope/predecessor; changes to key quarantine binding fields stale prior application."},
+    {"asset_id":"LEGACY-ASSET-3EA58A84F0A944151B36","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/three-stage-ci-quarantine.md","full_bytes":27061,"full_sha256":"33fbd51e6adc156e7171bb4eb1692ee2c819a279a8c5f4190ec4c339fa890e81","spans":[{"lines":"52-59","bytes":2660,"sha256":"571675b6cde9010eb57c4c5057588ef7c5d2905c677e8bfe2ed4741ddb8d2075"},{"lines":"76-88","bytes":1689,"sha256":"b0553a773d806b1405a629f31fe5898496eecd3ec2603c6100b8aadb9b56e4b5"}],"meaning":"Old function contracts and disposition table map lineage mismatch, tree mismatch and expiry to rejection outcomes; not executed."}
+  ],
+  "verification_limits": [
+    "No repository files changed for this audit.",
+    "No archive tests, CI, runtime, CLI, or hook were run.",
+    "No fixtures were executed; conclusions are static document-semantic findings only.",
+    "Other OS Stage 3 parents, other stages, mechanisms, and all legacy consumers were not re-audited.",
+    "The wrong-value case does not print an example pair of expected/observed HEAD/tree in prose; this is a readability enhancement possibility, not a confirmed missing requirement."
+  ]
+}

@@ -1,0 +1,1216 @@
+{
+  "audit_revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+  "fixed_parent_checkpoint": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "parents": {
+    "033": {
+      "fixed_revision": "MPR-RC-HELIXOS-L2-033-001",
+      "adoption_locator": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:56",
+      "l2_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+        "bytes": 447207,
+        "start_line": 929,
+        "end_line": 944,
+        "span_sha256": "b1d3bef2920641726bebe86571a1fa10c65b94a5889863faa073eaf8a1422240",
+        "span_bytes": 4709
+      },
+      "l11_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "bytes": 331746,
+        "start_line": 524,
+        "end_line": 538,
+        "span_sha256": "ebf8ecaff524a20989fc87ef04cb5a0f46b03d5768a6397719b563c08757f0f1",
+        "span_bytes": 4412
+      },
+      "current_trace_rows": {
+        "FR": [
+          {
+            "line": 239,
+            "text": "### FR-OS-L3-033 — HELIXOS-L2-033"
+          },
+          {
+            "line": 241,
+            "text": "- AC-OS-L3-033-01：選択された全engine/detectorの同一snapshot・版/config・target再実行で、artifact digest/finding fingerprint一致範囲だけ再現receipt。"
+          },
+          {
+            "line": 242,
+            "text": "- AC-OS-L3-033-02：選択物の個別欠落、版/config/snapshot drift、artifact/finding混同、rerun差異、およびdetector必要fieldの各個別欠落はscope全体の再現成功にしない。"
+          },
+          {
+            "line": 243,
+            "text": "- AC-OS-L3-033-03：未登録能力/版は選択分のみ未評価。未選択能力のrunは要求しない。"
+          },
+          {
+            "line": 244,
+            "text": "- AC-OS-L3-033-04：各選択engineはrun identity、artifact identity/digest、exit statusを、各選択detectorはrun identity、finding code/severity/location/subject/evidence、dedupe identity、原provenanceを別receiptで結ぶ。artifact/finding fieldを一つずつ欠落・混同したfixtureでは全体再現を宣言しない。partial/failed runは成功receiptにしない。"
+          },
+          {
+            "line": 245,
+            "text": "- AC-OS-L3-033-05：選択された全能力に有効な同一snapshotの未見正常fixtureは限定scopeだけ再現を示す。必要field/source/版の不足は当該機能owner、oracleはHARNESS-L2-005、run/receiptはOS-L2-020/007、authorityはSECURITY、資源はINFRASTRUCTUREへ個別に戻す。"
+          },
+          {
+            "line": 246,
+            "text": "- AC-OS-L3-033-06：dedupeで元run/artifact/finding evidenceを失う、差異をquarantine/未完として記録しない、registry参照だけから実行・書込権限を推定する各変異を別々に拒否し、原provenanceとopen dutyを保つ。"
+          }
+        ],
+        "FV": [
+          {
+            "line": 612,
+            "text": "| CASE-OS-L10-033-01 | AC-OS-L3-033-01 | 選択された全engine/detectorを同一snapshot/target/revision/configでrun→rerun。 | 全選択集合のartifact digest/finding fingerprint一致、owner別receipt完備時だけ限定scope再現成立。 |"
+          },
+          {
+            "line": 613,
+            "text": "| CASE-OS-L10-033-02 | AC-OS-L3-033-02 | 各capability欠落、版/config/snapshot drift、artifact/finding混同、digest差異に加え、detector identity/version、finding code/severity/location/subject/evidence、dedupe identity、原provenanceを一fieldずつ欠落させる。 | 各変異で全scope再現claim 0。artifact digest/fingerprintが一致してもfinding必要field欠落を見逃さずpartialを明示。 |"
+          },
+          {
+            "line": 614,
+            "text": "| CASE-OS-L10-033-03 | AC-OS-L3-033-03 | 未選択能力を省いた正常fixtureと選択済みunknown version fixture。 | 未選択runは不要。選択unknownだけ未評価で残し既存分のprovenanceを保持。 |"
+          },
+          {
+            "line": 658,
+            "text": "| CASE-OS-L10-033-04 | AC-OS-L3-033-04 | engineのrun/artifact/digest/exit status、detectorのrun/finding fields/dedupe/provenanceを各々一つ欠落。partial/failed executionも別caseにする。 | 一つの欠落も全体再現を許可せず、partial/failedを成功にしない。engine/detector owner・HARNESS oracle・OS run・SECURITY/INFRASTRUCTUREを分けて戻す。 |"
+          },
+          {
+            "line": 659,
+            "text": "| CASE-OS-L10-033-05 | AC-OS-L3-033-05 | 未見正常のselected capability集合を同じsnapshotで2回処理し、別scopeでrequired field/source/compatibility unknownを与える。 | 成立するscopeだけ再現を記録する。unknownのscopeは未評価のまま各入力ownerへ戻す。 |"
+          },
+          {
+            "line": 689,
+            "text": "| CASE-OS-L10-033-06a | AC-OS-L3-033-06 | dedupe候補を適用し原run/artifact/finding evidenceを消す変異。 | dedupeを拒否し原provenanceとevidenceを保持。 |"
+          },
+          {
+            "line": 690,
+            "text": "| CASE-OS-L10-033-06b | AC-OS-L3-033-06 | 異なるrun結果をquarantineまたはunfinishedとして記録しない変異。 | 差異と未完義務を保持し再現成功にしない。 |"
+          },
+          {
+            "line": 691,
+            "text": "| CASE-OS-L10-033-06c | AC-OS-L3-033-06 | registry referenceだけでrunまたはwrite permissionを成立させる変異。 | 権限を生成せず既存authority ownerへ戻す。 |"
+          }
+        ],
+        "NFR": [
+          {
+            "line": 88,
+            "text": "| NFR-OS-L3-033-01 / 033 / AC-01..06 | 最小candidateは同一snapshotのrun+rerun 2回、選択集合全件digest/fingerprint一致。determinismを比較する最低対。 | 3回runはflakiness検出力を上げるが計算費用増。L10は2回の受入対に加え3回stressを測定候補とする。 | 2-run一致率=100%のselected capability coverage、差異隠蔽0。 |"
+          }
+        ],
+        "NFRV": [
+          {
+            "line": 78,
+            "text": "| CASE-OS-L10-NFR-033-01 | NFR-OS-L3-033-01 | selected capabilityごと2回、stressで3回same snapshot rerun。digest/fingerprint equalityと未実行選択数、dedupe evidence loss、差異のquarantine/unfinished保持、registry参照のみの権限誤認を計測。 |"
+          }
+        ],
+        "BR": [
+          {
+            "line": 62,
+            "text": "| HELIXOS-L2-033 | 機能要件のみ。再現receiptを品質合格KPIにしない。 | capability ownerが結果意味、OSがregistry/provenance。FR-OS-L3-033 AC-01..06。 |"
+          }
+        ],
+        "BV": [
+          {
+            "line": 51,
+            "text": "| CASE-OS-L10-BIZ-033 | HELIXOS-L2-033 / FR-OS-L3-033 AC-01..06 | 選択scope再現receiptと未評価を分ける。 | detector精度KPI |"
+          }
+        ]
+      },
+      "semantic_digest": "580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc"
+    },
+    "034": {
+      "fixed_revision": "MPR-RC-HELIXOS-L2-034-003",
+      "adoption_locator": "docs/governance/decisions/po-decision-2026-09-30-live26.md:51",
+      "l2_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+        "bytes": 447207,
+        "start_line": 945,
+        "end_line": 986,
+        "span_sha256": "c363a4e957a2295657004808a8d7ecc29e68724cf057dc71259a7b245d5c6716",
+        "span_bytes": 9141
+      },
+      "l11_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "bytes": 331746,
+        "start_line": 539,
+        "end_line": 580,
+        "span_sha256": "4dfcbb69be8e10084cac59848ce82c97597d2a2d72cd0f41773f69f0e975fb00",
+        "span_bytes": 8684
+      },
+      "current_trace_rows": {
+        "FR": [
+          {
+            "line": 248,
+            "text": "### FR-OS-L3-034 — HELIXOS-L2-034"
+          },
+          {
+            "line": 250,
+            "text": "- AC-OS-L3-034-01：duplicateには生存target/oracle包含とdigest/evidenceの一致根拠、false-positiveには独立反証/review、accepted-risk/cancel等には各々L11所定のaction-bound receiptを結ぶ。target失効、同一originの言い換えだけ、digest不一致をduplicate確定の根拠にしない。live26で共同採択されたHARNESS-L2-058、OS-L2-034、OS-L2-101の関係を保つ。101固有条件は101で扱い、本親へ範囲拡張しない。"
+          },
+          {
+            "line": 251,
+            "text": "- AC-OS-L3-034-02：根拠欠落/stale、target非生存・包含なし、digest不一致、同一originの言い換えだけ、同じ根拠の主張言い換えによるfalse-positive扱い、自己反証、必須receipt欠落、projection closeのみを独立変異し、終端化/削除せず既存source/authority ownerへ戻す。"
+          },
+          {
+            "line": 252,
+            "text": "- AC-OS-L3-034-03：未知dispositionまたはfinding source kind不明は推測せず非終端unknown。reopenは先行event/receiptを保持して新根拠を追加する。"
+          },
+          {
+            "line": 253,
+            "text": "- AC-OS-L3-034-04：user directive cancel/supersedeとreview findingのcancel/supersedeは、それぞれ対象に適用される既存PO権限receiptを別々に照合し、finding accepted-risk、non-actionable findingも別fixtureにする。accepted-riskだけL5 action-binding PO receiptと独立reviewを両方結び、directive receiptをfindingへ流用しない。各処分は既存authority/ownerに戻し、原eventとopen dutyは非終端で保持する。"
+          },
+          {
+            "line": 254,
+            "text": "- AC-OS-L3-034-05：分類前durable intake保存失敗、ticket closureとの不一致、appeal/reopen receiptの欠落を別々に与える。原eventを受領済・処分済と表示せず、source/authority ownerへ戻す。"
+          }
+        ],
+        "FV": [
+          {
+            "line": 615,
+            "text": "| CASE-OS-L10-034-01 | AC-OS-L3-034-01 | 合成directive duplicateに生存target/oracle包含、finding false-positiveに独立反証、accepted-riskに適切なexisting receipt。 | dispositionごとの必要根拠と原event/履歴を相互trace。各種authorityを相互流用しない。 |"
+          },
+          {
+            "line": 616,
+            "text": "| CASE-OS-L10-034-02 | AC-OS-L3-034-02 | target消失、oracle非包含、same-author false-positive、accepted-risk receipt欠落、Issue projection closeを個別変異。 | 対象eventのみ非終端、削除/terminalize 0。ownerと欠落証拠を返す。 |"
+          },
+          {
+            "line": 617,
+            "text": "| CASE-OS-L10-034-03 | AC-OS-L3-034-03 | 未知disposition後にchallenge/reopenを入力。 | unknown保持、先行event不変、新根拠がappend。別dispositionへ自動分類しない。 |"
+          },
+          {
+            "line": 660,
+            "text": "| CASE-OS-L10-034-04 | AC-OS-L3-034-04 | directive cancel/supersede、finding accepted-risk、non-actionable findingを独立fixture化し、accepted-riskではL5 action-binding PO receiptまたは独立reviewを一方ずつ外す。 | accepted-riskは両方揃う時のみ既存receiptを関連付ける。directive receiptをfindingへ流用せず、原eventを非終端で保つ。 |"
+          },
+          {
+            "line": 661,
+            "text": "| CASE-OS-L10-034-05 | AC-OS-L3-034-05 | 分類前durable intake保存失敗、projection closeとlocal closure receipt不一致、appeal/reopen receipt欠落を個別投入する。 | 原eventを欠落/終端化せず未完として保持。既存source/authority ownerへ戻す。 |"
+          },
+          {
+            "line": 709,
+            "text": "| CASE-OS-L10-034-06a | AC-OS-L3-034-02 | digestが異なるduplicate候補を入力。 | digest不一致を理由に同一findingとして確定・統合せず、origin eventを保持してtarget/oracle包含の確認待ちにする。 |"
+          },
+          {
+            "line": 710,
+            "text": "| CASE-OS-L10-034-06b | AC-OS-L3-034-02 | 文面類似だけがある異なるfindingを入力。 | 同一findingへ統合しない。 |"
+          },
+          {
+            "line": 711,
+            "text": "| CASE-OS-L10-034-06c | AC-OS-L3-034-02 | Issue番号一致だけの候補を入力。 | digest/source/target根拠なしに統合しない。 |"
+          },
+          {
+            "line": 712,
+            "text": "| CASE-OS-L10-034-06d | AC-OS-L3-034-02 | 失効したtargetだけを入力。 | 生存targetを確認できないためduplicate terminalizationを成立させず、対象をownerへ返す。 |"
+          },
+          {
+            "line": 713,
+            "text": "| CASE-OS-L10-034-06e | AC-OS-L3-034-02 | 元finding/evidence欠落のfalse-positive claim。 | 元eventを消さず反証根拠不足として保留。 |"
+          },
+          {
+            "line": 714,
+            "text": "| CASE-OS-L10-034-06f1 | AC-OS-L3-034-02 | 反証source identityがunknown。 | false-positive終端を拒否し不足sourceを返す。 |"
+          },
+          {
+            "line": 715,
+            "text": "| CASE-OS-L10-034-06f2 | AC-OS-L3-034-02 | 反証source identityがstale。 | false-positive終端を拒否し現行sourceを再取得する。 |"
+          },
+          {
+            "line": 716,
+            "text": "| CASE-OS-L10-034-06g | AC-OS-L3-034-04 | CI greenだけのdirective/finding確定を入力。 | authority receiptとして流用しない。 |"
+          },
+          {
+            "line": 717,
+            "text": "| CASE-OS-L10-034-06h | AC-OS-L3-034-04 | 別scope/古いPO receiptだけを入力。 | action binding不一致として保留。 |"
+          },
+          {
+            "line": 718,
+            "text": "| CASE-OS-L10-034-06i | AC-OS-L3-034-03 | PR updateだけを与えappeal reopen済みと表示する変異。 | reopenを生成せず、既存dispositionとeventを保持。 |"
+          },
+          {
+            "line": 719,
+            "text": "| CASE-OS-L10-034-06j | AC-OS-L3-034-03 | dispositionに異議経路/receiptがない状態でterminal表示。 | terminal化せずunknown/未完。 |"
+          },
+          {
+            "line": 720,
+            "text": "| CASE-OS-L10-034-06k | AC-OS-L3-034-03 | finding source kind unknown。 | 種別を推測せずunknown保持。 |"
+          },
+          {
+            "line": 721,
+            "text": "| CASE-OS-L10-034-06l | AC-OS-L3-034-02 | 元findingを覆す独立反証の代わりに、根拠が同じ主張を言い換えただけのfalse-positive claimを与える。 | 独立反証として受け入れずfalse-positive終端を保留し、原finding/evidenceを保持して既存source/authority ownerへ照合を戻す。 |"
+          },
+          {
+            "line": 722,
+            "text": "| CASE-OS-L10-034-06d2 | AC-OS-L3-034-02 | 失効ではなく、閉じたtargetだけをduplicate候補へ与える。他の参照は正常。 | 生存targetの条件を満たさずduplicateを確定しない。元event/未完義務を保持し既存ownerへ返す。 |"
+          },
+          {
+            "line": 723,
+            "text": "| CASE-OS-L10-034-06m | AC-OS-L3-034-04 | review findingのcancel/supersedeを、既存PO権限に結ぶreceipt付きで入力する正常fixture。 | directiveの取消しと同一扱いせず、対象findingの既存PO権限receiptを追記し、原eventと先行履歴を保持する。 |"
+          }
+        ],
+        "NFR": [
+          {
+            "line": 89,
+            "text": "| NFR-OS-L3-034-01 / 034 / AC-01..05 | disposition別必須証拠充足100%、必須証拠欠落時のterminalization 0。 | 全dispositionへ一律PO receiptを要求する案はL11のauthority差を広げるため不採択。 | 全L11定義disposition枝ごとにrequired evidence field mutation、誤terminal 0。 |"
+          }
+        ],
+        "NFRV": [
+          {
+            "line": 79,
+            "text": "| CASE-OS-L10-NFR-034-01 | NFR-OS-L3-034-01 | dispositionごと所定evidence set、各欠落mutation。required-evidence coverage/誤terminal数。 |"
+          }
+        ],
+        "BR": [
+          {
+            "line": 63,
+            "text": "| HELIXOS-L2-034 | 機能要件のみ。disposition正当性やリスク受容をOSが評価しない。 | 元source/PO authority。FR-OS-L3-034 AC-01..05。 |"
+          }
+        ],
+        "BV": [
+          {
+            "line": 52,
+            "text": "| CASE-OS-L10-BIZ-034 | HELIXOS-L2-034 / FR-OS-L3-034 AC-01..05 | 原event/disposition/appeal履歴を保ち、OSがrisk acceptanceを確定しない。 | risk appetite |"
+          }
+        ]
+      },
+      "semantic_digest": "6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8"
+    },
+    "035": {
+      "fixed_revision": "MPR-RC-HELIXOS-L2-035-001",
+      "adoption_locator": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:58",
+      "l2_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+        "bytes": 447207,
+        "start_line": 987,
+        "end_line": 1032,
+        "span_sha256": "621ba614037001827c87454267d46102f104249d93189859fa7486f5139114a7",
+        "span_bytes": 11447
+      },
+      "l11_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "bytes": 331746,
+        "start_line": 581,
+        "end_line": 619,
+        "span_sha256": "ac7dae3f98ab5e9c30617f4f801c99448750a96976cf10a247e1b3b3b6d76d5d",
+        "span_bytes": 5548
+      },
+      "current_trace_rows": {
+        "FR": [
+          {
+            "line": 256,
+            "text": "### FR-OS-L3-035 — HELIXOS-L2-035"
+          },
+          {
+            "line": 258,
+            "text": "- AC-OS-L3-035-01：scope内のcreate/update/complete相当event（全base branch・stacked PR含む）がsource/headと結ばれ、一eventにつきjob registration receipt一つ。event登録はregistration状態だけを生成し、job complete/reviewed/CI pass/mergeable/requirement approved等の表示・状態を生成しない。"
+          },
+          {
+            "line": 259,
+            "text": "- AC-OS-L3-035-02：再送、古head、旧receiptの新head転用、base/stacked PRをdelivery filterが除外する条件、scope外混入、author/providerによる選択対象の不適用化を個別に変異し、duplicate/誤head/誤scope/根拠なし除外を拒む。部分coverageを全scope網羅と表示しない。"
+          },
+          {
+            "line": 260,
+            "text": "- AC-OS-L3-035-03：未知action/source版は未完・未観測とし、既存契約が支持するeventはaction未fixtureだけを理由に落とさない。"
+          },
+          {
+            "line": 261,
+            "text": "- AC-OS-L3-035-04：新HEADのevent登録後に旧HEAD eventを遅着させても、現行revisionを巻き戻さない。source/head/correlationはL2-007 evidenceへ、durable/idempotent relationはL2-009へ戻す。"
+          },
+          {
+            "line": 262,
+            "text": "- AC-OS-L3-035-05：durable intake後、L2-010登録receipt前の中断から同じevent/job identityへ再相関し、二重jobを作らず登録完了を先取りしない。source delivery coverage・base ref・event identity・authority applicabilityの欠落/unknownはscope別に未完としてsource owner、OS-L2-010、または既存authority ownerへ戻す。"
+          }
+        ],
+        "FV": [
+          {
+            "line": 618,
+            "text": "| CASE-OS-L10-035-01 | AC-OS-L3-035-01 | 選択repoの複数base branch・stacked PRのcreate/update/complete eventを投入しL2-010 registration responseを読む。 | 全選択eventはhead/sourceに結ばれ、論理jobとwork-item registration receiptが一つずつ。監査実行/レビュー完了は要求しない。 |"
+          },
+          {
+            "line": 619,
+            "text": "| CASE-OS-L10-035-02 | AC-OS-L3-035-02 | 同一event再送、新head、旧receipt、base/stacked PRの除外、scope外repo、author/providerを理由とする対象event除外を個別変異。 | 同eventの二重job 0、旧head結果の現行転用0、scope外追加0、既存scope eventの根拠なし除外0。 |"
+          },
+          {
+            "line": 620,
+            "text": "| CASE-OS-L10-035-03 | AC-OS-L3-035-03 | action/source versionがunknownのeventと固定契約が支持する未fixture event。 | unknownは未観測として残す。明示対応済みeventは処理し、未知ラベルのみでdropしない。 |"
+          },
+          {
+            "line": 621,
+            "text": "| CASE-OS-L10-035-05a | AC-OS-L3-035-05 | event intakeのdurable記録後、L2-010 job登録前に中断し、既存event/checkpointからresume。 | partial eventは保持され、同じlogical jobが一つだけ登録される。処理済み表示・registration receiptはjob登録後にのみ成立する。 |"
+          },
+          {
+            "line": 662,
+            "text": "| CASE-OS-L10-035-04 | AC-OS-L3-035-04 | 新HEAD登録後に旧HEADのeventを遅着させる。 | 現行revisionは巻き戻らず、旧eventはそのsource/headの履歴へ結ばれる。 |"
+          },
+          {
+            "line": 663,
+            "text": "| CASE-OS-L10-035-05b | AC-OS-L3-035-05 | eventをdurable intake後、OS-L2-010登録receipt前に中断し、同じevent再送とbase ref/event identity/authority applicability欠落の各fixtureを使う。 | resumeは同じjob identityを一つだけ登録。receipt前は完了表示しない。欠落は該当source owner、OS-L2-010、または既存authority ownerへ戻す。 |"
+          },
+          {
+            "line": 724,
+            "text": "| CASE-OS-L10-035-07a | AC-OS-L3-035-02 | delivery filterが一部base/stacked scopeを除外しているのに全scope網羅表示。 | coverageをpartialとして保持し全scope claimを拒否。 |"
+          },
+          {
+            "line": 725,
+            "text": "| CASE-OS-L10-035-07b1 | AC-OS-L3-035-01 | event受領だけでjob completeと表示。 | registrationだけ記録しjob completeを生成しない。 |"
+          },
+          {
+            "line": 726,
+            "text": "| CASE-OS-L10-035-07b2 | AC-OS-L3-035-01 | event受領だけでreviewedと表示。 | registrationだけ記録しreview resultを生成しない。 |"
+          },
+          {
+            "line": 727,
+            "text": "| CASE-OS-L10-035-07b3 | AC-OS-L3-035-01 | event受領だけでCI passと表示。 | registrationだけ記録しCI resultを生成しない。 |"
+          },
+          {
+            "line": 728,
+            "text": "| CASE-OS-L10-035-07b4 | AC-OS-L3-035-01 | event受領だけでmergeableと表示。 | registrationだけ記録しmergeabilityを生成しない。 |"
+          },
+          {
+            "line": 729,
+            "text": "| CASE-OS-L10-035-07b5 | AC-OS-L3-035-01 | event受領だけでrequirement approvedと表示。 | registrationだけ記録しrequirement approvalを生成しない。 |"
+          },
+          {
+            "line": 730,
+            "text": "| CASE-OS-L10-035-07c | AC-OS-L3-035-05 | job登録後receipt受領前に停止し、再起動後既存job identityで再相関。 | receipt受領前を完了扱いせず、既存jobへ結ぶ。 |"
+          },
+          {
+            "line": 731,
+            "text": "| CASE-OS-L10-035-07d | AC-OS-L3-035-03 | 未見の新base branchでscope内PR event。 | 固定契約が支持する範囲でeventを扱い、未対応部だけunknownとして戻す。 |"
+          }
+        ],
+        "NFR": [
+          {
+            "line": 90,
+            "text": "| NFR-OS-L3-035-01 / 035 / AC-01..05 | 同一event identity/revisionのjob registration cardinality=1。3 delivery再送はtest fixture候補。 | 1回だけでは冪等性を測れず、10回は初期要件の根拠なし。3回は初回+重複二回の判別 fixtureに限定。 | 各event 3 delivery後もregistered job 1、job executionは測らない。 |"
+          }
+        ],
+        "NFRV": [
+          {
+            "line": 80,
+            "text": "| CASE-OS-L10-NFR-035-01 | NFR-OS-L3-035-01 | 同一eventを3回delivery、headを変えた次eventも投入。registration cardinalityとold-head reuse数。 |"
+          }
+        ],
+        "BR": [
+          {
+            "line": 64,
+            "text": "| HELIXOS-L2-035 | 機能要件のみ。job登録数を監査完了率に読み替えない。 | OS-L2-010 ticket owner、HARNESS接続は別scope。FR-OS-L3-035 AC-01..05。 |"
+          }
+        ],
+        "BV": [
+          {
+            "line": 53,
+            "text": "| CASE-OS-L10-BIZ-035 | HELIXOS-L2-035 / FR-OS-L3-035 AC-01..05 | job登録と監査実施・finding解消を別状態にする。 | 監査時間SLO |"
+          }
+        ]
+      },
+      "semantic_digest": "01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03"
+    },
+    "037": {
+      "fixed_revision": "MPR-RC-HELIXOS-L2-037-001",
+      "adoption_locator": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:60",
+      "l2_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+        "bytes": 447207,
+        "start_line": 1075,
+        "end_line": 1095,
+        "span_sha256": "c26bdea1ab00bb33ee3bea0c9cbb13158c24787cc9e1039563edb6c655559f95",
+        "span_bytes": 5938
+      },
+      "l11_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "bytes": 331746,
+        "start_line": 652,
+        "end_line": 670,
+        "span_sha256": "a104b01550b3b4fbaae1b88ef0370a59836dd9dc31d5d68b345622ccfea941dd",
+        "span_bytes": 3875
+      },
+      "current_trace_rows": {
+        "FR": [
+          {
+            "line": 271,
+            "text": "### FR-OS-L3-037 — HELIXOS-L2-037"
+          },
+          {
+            "line": 273,
+            "text": "- AC-OS-L3-037-01：当該週にHARNESS設計/実装差分があれば同一scope・source revision付きで既存Reverse/Backflowへ渡し、差分がなければ報告だけを残す。負債候補はsource ownerによる負債分類後だけ既存LABO/OS経路へ渡す。"
+          },
+          {
+            "line": 274,
+            "text": "- AC-OS-L3-037-02：観測期間/source欠落、stale source、差分なしでのReverse/Backflow ticket、未分類sourceの負債化、scope/revision外oracle、OSによる閾値・負債定義の補作、既存readiness/authority gate迂回をそれぞれ独立に拒否する。同finding重複はこの親の独立成立条件にせず、既存event identity契約に従う。"
+          },
+          {
+            "line": 275,
+            "text": "- AC-OS-L3-037-03：条件/source unknownは当該scopeのみ未評価。無関係ticketを停止しない。"
+          },
+          {
+            "line": 276,
+            "text": "- AC-OS-L3-037-04：旧FR-L1-11/BR §3.3の週次頻度でHARNESS設計/実装driftをsource付きで観測し、差分があれば既存Reverse/Backflowへ、なければ報告のみとする。source分類済累積負債は別経路でLABO評価→OS-L2-022 candidate→OS-L2-010 repayment-plan candidateへ進める。L10で二観測期間をfixtureに使う場合は継続性/欠測の設計選択に限り、成立閾値としない。"
+          },
+          {
+            "line": 277,
+            "text": "- AC-OS-L3-037-05：sourceなしの負債candidate、ticket candidateをexecution/priorityへ自動昇格する変異、LABO-L2-063等の別scope評価を一般化する変異は拒否する。owner/source/priority unknownは当該ownerへ返し、差分なし・未観測・条件不成立を別状態に保つ。"
+          }
+        ],
+        "FV": [
+          {
+            "line": 625,
+            "text": "| CASE-OS-L10-037-01 | AC-OS-L3-037-01 | 旧BR §3.3/FR-L1-11の週次観測で、同一scope/source revisionにHARNESS drift差分ありの週と差分なしの週を別fixtureにする。 | 差分ありは既存Reverse/Backflowへ送る。差分なしは報告のみ。負債経路はsource owner分類後の別traceに限る。 |"
+          },
+          {
+            "line": 626,
+            "text": "| CASE-OS-L10-037-02 | AC-OS-L3-037-02 | 共通正常入力から週次観測欠落、stale source、scope外/別revision oracle、差分なしでReverse ticket発行、未分類sourceを負債candidate化、OSによる閾値補作、readiness gate bypassを各々一変数で変える。 | 各該当caseだけ未観測/stale/unknown/拒否し元sourceまたは既存ownerへ返す。差分なしではticketを出さない。 |"
+          },
+          {
+            "line": 627,
+            "text": "| CASE-OS-L10-037-03 | AC-OS-L3-037-03 | detector/applicability unknownに加え、無関係ticketの許可済み処理をfixtureに置く。 | 対象scopeのみ未評価、無関係ticketは同期停止されない。 |"
+          },
+          {
+            "line": 665,
+            "text": "| CASE-OS-L10-037-04 | AC-OS-L3-037-04 | 正常経路A: weekly HARNESS design/implementation driftをexisting Reverse/Backflowへ渡す。正常経路B: source-classified cumulative debtをLABO評価、OS-L2-022 candidate、OS-L2-010 repayment-plan candidateへ渡す。 | 両方を別traceで観測し、責務/優先順位/gateを既存契約から維持する。2 periodsはmissingness/continuity観測であり成立閾値でない。 |"
+          },
+          {
+            "line": 666,
+            "text": "| CASE-OS-L10-037-05 | AC-OS-L3-037-05 | sourceなしcandidate、candidateからexecution/priorityへの自動昇格、LABO-063別scopeの一般化をそれぞれ入力する。 | 候補を作らず/昇格せずscopeを保つ。owner/source/priority unknownはそのownerへ戻す。no-delta、not observed、condition not metは区別する。 |"
+          },
+          {
+            "line": 733,
+            "text": "| CASE-OS-L10-037-06a | AC-OS-L3-037-03 | 週次観測を同期gateとして全作業停止へ変える。 | gateを生成せず、既存同scope gateだけ適用し、無関係作業を一律停止しない。 |"
+          },
+          {
+            "line": 734,
+            "text": "| CASE-OS-L10-037-06b | AC-OS-L3-037-02 | 差分なしの週にReverse ticket発行。 | ticketを作らず報告のみ。 |"
+          },
+          {
+            "line": 735,
+            "text": "| CASE-OS-L10-037-06c | AC-OS-L3-037-02 | scope外oracleを同一扱いする。 | 候補を保留し元scope/sourceへ戻す。 |"
+          },
+          {
+            "line": 736,
+            "text": "| CASE-OS-L10-037-06d | AC-OS-L3-037-02 | OSが負債定義または閾値を補う。 | 追加条件を拒否しsource ownerへ戻す。 |"
+          },
+          {
+            "line": 737,
+            "text": "| CASE-OS-L10-037-06e | AC-OS-L3-037-02 | 同scope既存readiness/authority gateを迂回。 | gateを維持し当該scopeを未完にする。 |"
+          },
+          {
+            "line": 738,
+            "text": "| CASE-OS-L10-037-06f | AC-OS-L3-037-03 | 未見project/scope/revisionとLABO-063適用可能性あり/unknown。 | 適用可能なsourceだけ接続し、unknownは未評価のままownerへ戻す。 |"
+          }
+        ],
+        "NFR": [
+          {
+            "line": 92,
+            "text": "| NFR-OS-L3-037-01 / 037 / AC-01..05 | 週次報告・観測の結果、source/revisionの可追跡性、未観測と差分なしの区別を測る。頻度の出所は旧BR §3.3/FR-L1-11。 | 週次頻度は既存親で保持。連続二観測はL10 fixture設計の一候補で、閾値や新しい成立条件にしない。 | Reverse/Backflowとsource-classified debtの二経路を別々に通し、fixture上の複数週・週境界・欠測・staleを比較。欠測をno-drift扱いしない。 |"
+          }
+        ],
+        "NFRV": [
+          {
+            "line": 82,
+            "text": "| CASE-OS-L10-NFR-037-01 | NFR-OS-L3-037-01 | 旧BR §3.3/FR-L1-11の週次観測についてReverse/Backflow経路と負債分類後のLABO/OS経路を分ける。fixtureの連続週・週境界・missing/staleを比較し、欠測をno-driftとした件数を観測する。週次は親の保持条件、fixture期間数は測定設計。 |"
+          },
+          {
+            "line": 97,
+            "text": "| CASE-OS-L10-NFR-037-02 | NFR-OS-L3-037-01 | weekly drift route と cumulative debt route を別scope/ownerで測定し、観測済み対象期間数を分母、欠測をnot observedとして残す。成功候補・価値判定はOSが生成しない。 |"
+          }
+        ],
+        "BR": [
+          {
+            "line": 66,
+            "text": "| HELIXOS-L2-037 | 機能要件のみ。負債分類・評価はsource owner/LABO、既存OSの優先順位決定責務を保持する。 | ticket登録はOS-L2-010。FR-OS-L3-037 AC-01..05。 |"
+          }
+        ],
+        "BV": [
+          {
+            "line": 55,
+            "text": "| CASE-OS-L10-BIZ-037 | HELIXOS-L2-037 / FR-OS-L3-037 AC-01..05 | 観測欠落/条件不成立/handoffを分ける。 | 負債金額化 |"
+          }
+        ]
+      },
+      "semantic_digest": "29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64"
+    },
+    "038": {
+      "fixed_revision": "MPR-RC-HELIXOS-L2-038-002",
+      "adoption_locator": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:35; jointly with HARNESS-L2-041-003 at rows 37-40",
+      "l2_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+        "bytes": 447207,
+        "start_line": 1096,
+        "end_line": 1114,
+        "span_sha256": "1adb7145d4d787e5fdda7e00a79a10ce8fbb4b996f5c73191eeb224ce745cbce",
+        "span_bytes": 10488
+      },
+      "l11_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "bytes": 331746,
+        "start_line": 671,
+        "end_line": 696,
+        "span_sha256": "9fdb58d0351f9e51f9757082b95db32a92fdf6b15d5c1600895ec5b2cd3f032a",
+        "span_bytes": 5722
+      },
+      "current_trace_rows": {
+        "FR": [
+          {
+            "line": 279,
+            "text": "### FR-OS-L3-038 — HELIXOS-L2-038"
+          },
+          {
+            "line": 281,
+            "text": "- AC-OS-L3-038-01：有効contract/templateに適合する選択layer proposalを一度だけ追記し、source/base/template/digest/scopeへ双方向traceする。"
+          },
+          {
+            "line": 282,
+            "text": "- AC-OS-L3-038-02：stale base/template、authority/scope欠落、L0をlayer扱い、再送、途中保存失敗、OSによるHARNESS proposalの補完/統合/削除、append結果から採択/PO decision/L3開始許可/HARNESS validation pass/CI green/merge/release readinessを生成する変異を独立に照合する。入力衝突は両入力と対象revisionを保持して保留し、成功receiptや上書きを出さない。重複/部分成功/意味変更を0とする。HARNESS-L2-041-003の非原子的obligation findingではcandidate rowを増やさず、rejected outcome findingを記録し、既存snapshotを不変に保つ。"
+          },
+          {
+            "line": 283,
+            "text": "- AC-OS-L3-038-03：HARNESS-L2-041-003の同一入力再抽出不一致はquarantineし、current ledger更新0・snapshot不変とする。未知atom/contractもgap/未完としてHARNESS/source ownerへ戻す。"
+          },
+          {
+            "line": 284,
+            "text": "- AC-OS-L3-038-04：base L11の671–689、追加negative oracle 690–696、未見正常例698–700、境界・受入結果702–704を別々に照合する。未見正常例ではHARNESS契約が新revisionを明示支持する場合に内容を補完せず既存writer条件で追記でき、unknown/staleは未完に保持する。追加negative fixtureはPO採択済みOS-038-002およびHARNESS-041-003の適用条件が揃ったときだけ実施し、HARNESSの抽出finding意味をOSが再判定しない。歴史的な「未採択」表記から採否を推定しない。"
+          }
+        ],
+        "FV": [
+          {
+            "line": 628,
+            "text": "| CASE-OS-L10-038-01 | AC-OS-L3-038-01 | 有効HARNESS contract/templateと041-003の対応済み抽出結果、選択layer、L0別anchor、source atom proposalを入力。 | 一度だけappend、snapshotとreceiptのbase/template/contract/scope/source digestが往復追跡可能。approval stateは不変。 |"
+          },
+          {
+            "line": 629,
+            "text": "| CASE-OS-L10-038-02 | AC-OS-L3-038-02 | stale base/template、authority/scope欠落、L0 row化、同一proposal再送、各保存境界失敗、および041-003の複数obligationを単一atomにまとめたfindingを個別投入。 | stale/unauthorized拒否、duplicate append 0、L0 layer row 0、部分成功claim 0。非原子的findingではcandidate row増分0、rejected outcome findingを追記し、snapshot bytes不変。 |"
+          },
+          {
+            "line": 630,
+            "text": "| CASE-OS-L10-038-03 | AC-OS-L3-038-03 | 対象input/template/extractor versionに束縛済みのHARNESS-L2-041-003 nondeterminism findingを入力し、別fixtureで未対応atom/contractと独立した適格layerを入力。 | OSは抽出を再比較・再判定しない。findingに従うwriter outcomeを記録しquarantine/current update 0/snapshot不変を保つ。未知atomはgapのまま、独立適格layerだけ継続可能。 |"
+          },
+          {
+            "line": 667,
+            "text": "| CASE-OS-L10-038-04 | AC-OS-L3-038-04 | base L11 671–689、supplement 690–696、adopted unseen-normal 698–700、boundary/result 702–704を別spanとして照合し、PO row 35とscope 37–40、HARNESS-041-003 adoptionを関連付ける。 | supplement適用条件を確認するが抽出findingの意味は再判定しない。historical “unadopted” wordingだけから状態を作らない。 |"
+          },
+          {
+            "line": 668,
+            "text": "| CASE-OS-L10-038-05g | AC-OS-L3-038-04 | 固定L11にない組合せの新contract revisionを入力し、HARNESS契約がそのrevisionを明示的に支持し、source span・scope・atom schema・layer/baseが一致する。 | 内容をOSが補完せず、既存writer条件を満たすproposalとして通常appendする。これは未見正常例で、unknown/stale条件を省略しない。 |"
+          },
+          {
+            "line": 739,
+            "text": "| CASE-OS-L10-038-05a | AC-OS-L3-038-02 | 同じproposal/correlation IDへ異なるpayloadを再送する。 | rejectや成功receiptを出さずconflictとして両payloadと対象revisionを保持し、既存snapshotを不変にする。 |"
+          },
+          {
+            "line": 740,
+            "text": "| CASE-OS-L10-038-05b | AC-OS-L3-038-02 | 同じproposal/correlation IDへ異なるbase digestを再送する。 | rejectや成功receiptを出さずconflictとして両入力と対象revisionを保持し、既存row/snapshotを不変にする。 |"
+          },
+          {
+            "line": 741,
+            "text": "| CASE-OS-L10-038-05c1 | AC-OS-L3-038-02 | HARNESS-L2-040が未採択または無効。 | commit/appendを保留しHARNESS ownerへ戻す。 |"
+          },
+          {
+            "line": 742,
+            "text": "| CASE-OS-L10-038-05c2 | AC-OS-L3-038-02 | 対象revisionへ適用するHARNESS-L2-041 revision -002の契約状態だけを無効にする。他のwriter入力は正常。 | 適用契約が無効のためwriterを保留しHARNESS契約ownerへ戻す。-002という版番号だけを無効理由とせず、採択済み-003の追加failure契約とは分離する。 |"
+          },
+          {
+            "line": 743,
+            "text": "| CASE-OS-L10-038-05c3 | AC-OS-L3-038-02 | L2-009 applicabilityがunknown。 | commit/appendを保留し既存契約ownerへ戻す。 |"
+          },
+          {
+            "line": 744,
+            "text": "| CASE-OS-L10-038-05d1 | AC-OS-L3-038-02 | OSがHARNESS proposalを補完する。 | semantic editを拒否し原proposalを保持する。 |"
+          },
+          {
+            "line": 745,
+            "text": "| CASE-OS-L10-038-05d2 | AC-OS-L3-038-02 | OSがHARNESS proposalを統合する。 | semantic editを拒否し原proposalを保持する。 |"
+          },
+          {
+            "line": 746,
+            "text": "| CASE-OS-L10-038-05d3 | AC-OS-L3-038-02 | OSがHARNESS proposalを削除する。 | semantic editを拒否し原proposalを保持する。 |"
+          },
+          {
+            "line": 747,
+            "text": "| CASE-OS-L10-038-05e1 | AC-OS-L3-038-02 | append結果を採択と表示。 | append receiptだけを記録し採択stateを生成しない。 |"
+          },
+          {
+            "line": 748,
+            "text": "| CASE-OS-L10-038-05e2 | AC-OS-L3-038-02 | append結果をL3開始許可と表示。 | append receiptだけを記録し開始許可を生成しない。 |"
+          },
+          {
+            "line": 749,
+            "text": "| CASE-OS-L10-038-05e3 | AC-OS-L3-038-02 | append結果をCI greenと表示。 | append receiptだけを記録しCI stateを生成しない。 |"
+          },
+          {
+            "line": 750,
+            "text": "| CASE-OS-L10-038-05e4 | AC-OS-L3-038-02 | append結果をmerge readinessと表示。 | append receiptだけを記録しmerge readinessを生成しない. |"
+          },
+          {
+            "line": 751,
+            "text": "| CASE-OS-L10-038-05f1 | AC-OS-L3-038-03 | HARNESS finding欠落。 | outcome unknown/staleで保留しOS側で意味を再評価しない。 |"
+          },
+          {
+            "line": 752,
+            "text": "| CASE-OS-L10-038-05f2 | AC-OS-L3-038-03 | HARNESS findingが別inputへ束縛。 | outcome unknown/staleで保留しOS側で意味を再評価しない。 |"
+          },
+          {
+            "line": 753,
+            "text": "| CASE-OS-L10-038-05f3 | AC-OS-L3-038-03 | HARNESS finding状態が不明。 | outcome unknown/staleで保留しOS側で意味を再評価しない。 |"
+          },
+          {
+            "line": 754,
+            "text": "| CASE-OS-L10-038-05h | AC-OS-L3-038-02 | 正常append結果だけをPO decisionとして表示する。 | 状態遷移を拒否し、append結果と未判断のPO状態を分けて該当authority ownerへ返す。 |"
+          },
+          {
+            "line": 755,
+            "text": "| CASE-OS-L10-038-05i | AC-OS-L3-038-02 | 正常append結果だけをHARNESS validation passとして表示する。 | 状態遷移を拒否し、append結果をHARNESS判定へ流用せず該当判定ownerへ返す。 |"
+          },
+          {
+            "line": 756,
+            "text": "| CASE-OS-L10-038-05j | AC-OS-L3-038-02 | 正常append結果だけをrelease readinessとして表示する。 | 状態遷移を拒否し、append結果とrelease readinessを分けて該当authority/判定ownerへ返す。 |"
+          }
+        ],
+        "NFR": [
+          {
+            "line": 93,
+            "text": "| NFR-OS-L3-038-01 / 038 / AC-01..04 | source proposal IDあたりappend 1、snapshot digestの整合100%、非原子的finding時row増分0、非決定抽出時current update 0/snapshot不変、失敗時完了claim 0。 | retry回数の固定値は親にないため設定しない。 | same ID重送/途中失敗、041-003のatomicity findingとsame-input nondeterminism、candidate row増分・current ledger・snapshot/receiptを再照合。 |"
+          }
+        ],
+        "NFRV": [
+          {
+            "line": 83,
+            "text": "| CASE-OS-L10-NFR-038-01 | NFR-OS-L3-038-01 | proposal ID重送とappend/snapshot/receipt各中断点、041-003非原子的finding・same-input nondeterminism。row増分、current update、snapshot bytes/digest一致、部分成功claim数。 |"
+          }
+        ],
+        "BR": [
+          {
+            "line": 67,
+            "text": "| HELIXOS-L2-038 | 機能要件のみ。snapshot/proposal appendは採択・coverage完了でない。 | HARNESS semantic contract owner。FR-OS-L3-038 AC-01..04。 |"
+          }
+        ],
+        "BV": [
+          {
+            "line": 56,
+            "text": "| CASE-OS-L10-BIZ-038 | HELIXOS-L2-038 / FR-OS-L3-038 AC-01..04 | snapshot/proposal appendとHARNESS採択を分ける。 | layer coverage目標 |"
+          }
+        ]
+      },
+      "semantic_digest": "c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013",
+      "l11_base_revision_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "bytes": 331746,
+        "start_line": 671,
+        "end_line": 689,
+        "span_sha256": "595807170cec7bfc4f7f1e4c3c88be7e50d84326a258c9212e46d714f0bba436",
+        "span_bytes": 3684
+      },
+      "l11_002_supplement_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "bytes": 331746,
+        "start_line": 690,
+        "end_line": 696,
+        "span_sha256": "86287e73d09522940b2a07bf8f304135ff3d495904df055088f07fff077766ed",
+        "span_bytes": 2038
+      },
+      "l11_related_normal_boundary_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "bytes": 331746,
+        "start_line": 698,
+        "end_line": 704,
+        "span_sha256": "9ddcfd347d9d3b141b9eb596595ae50c2b1452678b2dd6a5343f02860699540f",
+        "span_bytes": 1392
+      }
+    }
+  },
+  "current_documents": {
+    "BR": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "full_sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "bytes": 20354,
+      "start_line": 55,
+      "end_line": 78,
+      "span_sha256": "82f107c0a91eabcefc8712e0c86d8b4deb4d8f59e4d3981893e87cad03c6591c",
+      "span_bytes": 3127
+    },
+    "FR": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "full_sha256": "c2a11a70ccc7ad5af41eae92b3c690869c6e7e35fc22d2019b9287c980901731",
+      "bytes": 202209,
+      "start_line": 226,
+      "end_line": 443,
+      "span_sha256": "25276b4136152a5793234cd785ba7b5091ec9e9132b1de2ec4249fbf9887df0e",
+      "span_bytes": 74247
+    },
+    "NFR": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "full_sha256": "c815ea15001b7148a8b3257c36c2fb8a18cb19c035d0ef14f953ab9e993acacd",
+      "bytes": 33338,
+      "start_line": 81,
+      "end_line": 102,
+      "span_sha256": "22161f5efb1420d66bcdaebd568674a5d358c89569eeb32443e947ccdd68a3c7",
+      "span_bytes": 7239
+    },
+    "BV": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "full_sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "bytes": 17774,
+      "start_line": 40,
+      "end_line": 65,
+      "span_sha256": "0e3ea0b6f572bb18d1609c12c59a08c51a57c46999d8520ac2e9e8124124647f",
+      "span_bytes": 2798
+    },
+    "FV": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "full_sha256": "784b314d8425a26551a37951f777531570f287c87aef326d6ef751b521ad1822",
+      "bytes": 243724,
+      "start_line": 603,
+      "end_line": 798,
+      "span_sha256": "c43037a84aacea67228e26363feea8265262c9b7fa629533c26f6f8c924b8aa3",
+      "span_bytes": 45674
+    },
+    "NFRV": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "full_sha256": "bd98bf3265c74d5ddddd879b4f87d4eaec9343bf63ee377950c63f32fb47e868",
+      "bytes": 30083,
+      "start_line": 71,
+      "end_line": 101,
+      "span_sha256": "d2273343a0246b0146a8015853afee35840ef3ba40d5341e88c55522fae00a20",
+      "span_bytes": 5734
+    }
+  },
+  "legacy_sources": [
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "bytes": 56091,
+      "start_line": 115,
+      "end_line": 116,
+      "span_sha256": "1213b789939fbee358aa441a6e3e2b8ae940fcc99284200b99fda9cc29977b4f",
+      "span_bytes": 602,
+      "label": "033-old-L1-capability-detector"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "bytes": 7819,
+      "start_line": 42,
+      "end_line": 42,
+      "span_sha256": "b1c50a2c2dcd0f575c4cb8badace7d5a44072e841dc5729328d04876d8f472d8",
+      "span_bytes": 254,
+      "label": "033-HAT"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "full_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "bytes": 12926,
+      "start_line": 35,
+      "end_line": 36,
+      "span_sha256": "9ccf3cc4bba0c45f88cbf9dff660947980e8cd9bbc28d8a38618c5cfd0f7cf10",
+      "span_bytes": 627,
+      "label": "033-HST"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "bytes": 56091,
+      "start_line": 59,
+      "end_line": 59,
+      "span_sha256": "2af637b6e3f81a54058357359cbc9c2e19fd79701658afede0998a92262b7732",
+      "span_bytes": 310,
+      "label": "034-HIL-BR-07"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "bytes": 18905,
+      "start_line": 39,
+      "end_line": 39,
+      "span_sha256": "937b2eacf7bcbd43aee17f301204050acbbfbd56768d8b8c8bd83a273722da64",
+      "span_bytes": 495,
+      "label": "034-old-FR"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "bytes": 18905,
+      "start_line": 68,
+      "end_line": 68,
+      "span_sha256": "bb254e86e276a830a99f937ab4ca4a940880bc1287ecc6850212246c0e3c3751",
+      "span_bytes": 177,
+      "label": "034-old-FR-action"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "bytes": 56091,
+      "start_line": 201,
+      "end_line": 201,
+      "span_sha256": "c3932ff442a13b57057d2bf51c9955170a4173f2f1d7ef392f0555ed3fb7f370",
+      "span_bytes": 250,
+      "label": "034-old-NFR"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "bytes": 7819,
+      "start_line": 37,
+      "end_line": 37,
+      "span_sha256": "c752ed0797d3f10712e4b483ef46fa42698a3f1f4feacf69ce14212d5c638b82",
+      "span_bytes": 262,
+      "label": "034-HAT"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "full_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "bytes": 16537,
+      "start_line": 63,
+      "end_line": 63,
+      "span_sha256": "09b9a5393cea4155a2cb982b1bd1dedf382edac6b551212358c2cd3909cf4dda",
+      "span_bytes": 299,
+      "label": "034-HOT"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/issue-scope-authority-gates.md",
+      "full_sha256": "0ee65db4140e4135ed314a0081de17bf76acd54b664bddd47529ceb1fc29887a",
+      "bytes": 21218,
+      "start_line": 168,
+      "end_line": 180,
+      "span_sha256": "f1bf74ab788627cb9cefadb8b6e9242f526397f5a578275f8f45df5fd2bbfd56",
+      "span_bytes": 485,
+      "label": "034-L5-action-binding"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "bytes": 56091,
+      "start_line": 54,
+      "end_line": 54,
+      "span_sha256": "02654f5c4162fb00408fdf043d60c2501dc1cc176bb5316c973b0b9d85edcb16",
+      "span_bytes": 191,
+      "label": "035-HIL-BR-02"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "bytes": 7819,
+      "start_line": 35,
+      "end_line": 35,
+      "span_sha256": "bdf2f1ebaa2b34eac622d911b3b8d4e963816c53fd415deae322e433f81c4c9f",
+      "span_bytes": 383,
+      "label": "035-HAT"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "full_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "bytes": 12926,
+      "start_line": 31,
+      "end_line": 31,
+      "span_sha256": "f128869e481fcae0c04042bd981749586da5b61e10eeded90991f4dce7fa6ad9",
+      "span_bytes": 313,
+      "label": "035-HST"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "full_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "bytes": 49933,
+      "start_line": 42,
+      "end_line": 42,
+      "span_sha256": "f69d6f6eb06eb49f0150d3ae18ef84c5b7775c756fe82fdea6a6baf7b7dd8e38",
+      "span_bytes": 330,
+      "label": "037-old-FR-L1-11"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "full_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "bytes": 40170,
+      "start_line": 129,
+      "end_line": 136,
+      "span_sha256": "0ff0a273862cee16f3c3fe2b2f0e67e27590eb11565704ec7e2fdc084dd63f1e",
+      "span_bytes": 533,
+      "label": "037-old-BR-weekly"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/refactor.md",
+      "full_sha256": "06023f7b1149883d813d593ba207898e64a7485ec32eb68c7e01e17a2323d397",
+      "bytes": 8274,
+      "start_line": 21,
+      "end_line": 23,
+      "span_sha256": "1bac193c4e3d580d6ee87cdcf3023c78eb395b2cc3bdb2ca437c17b379e697ca",
+      "span_bytes": 242,
+      "label": "037-refactor-process"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/refactor.md",
+      "full_sha256": "06023f7b1149883d813d593ba207898e64a7485ec32eb68c7e01e17a2323d397",
+      "bytes": 8274,
+      "start_line": 43,
+      "end_line": 48,
+      "span_sha256": "bd4c11c24ce467b6fec7e1b52d78dd8aeb2ef2953680e3ff52b3086b34cdb911",
+      "span_bytes": 464,
+      "label": "037-refactor-process-2"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/refactor.md",
+      "full_sha256": "06023f7b1149883d813d593ba207898e64a7485ec32eb68c7e01e17a2323d397",
+      "bytes": 8274,
+      "start_line": 55,
+      "end_line": 68,
+      "span_sha256": "2309d899b99e5e152199fb6169245734b2540f5d5bb243fec725ebe329dd16db",
+      "span_bytes": 1457,
+      "label": "037-refactor-process-3"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/refactor.md",
+      "full_sha256": "06023f7b1149883d813d593ba207898e64a7485ec32eb68c7e01e17a2323d397",
+      "bytes": 8274,
+      "start_line": 75,
+      "end_line": 87,
+      "span_sha256": "09c500c924e3fd2b9b5a52f3c52bc68ada7bd7e5735bf0903bcb2eae23e5b8dc",
+      "span_bytes": 940,
+      "label": "037-refactor-process-4"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/refactor.md",
+      "full_sha256": "06023f7b1149883d813d593ba207898e64a7485ec32eb68c7e01e17a2323d397",
+      "bytes": 8274,
+      "start_line": 89,
+      "end_line": 95,
+      "span_sha256": "e0e061dd8280dcaf98824948397eef5cda7d90cf500943f1843e45544c277a5e",
+      "span_bytes": 569,
+      "label": "037-refactor-process-5"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/drive-route-system.md",
+      "full_sha256": "22c7980eccafffab84216b3ef250c374a719045dfca2f7d6ea8f08960243e950",
+      "bytes": 6616,
+      "start_line": 62,
+      "end_line": 66,
+      "span_sha256": "503bc002bac6c30a4187fecdf7d406af238ef20fcc1821ebbdee3448fc3650de",
+      "span_bytes": 239,
+      "label": "037-drive-route"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/gates.md",
+      "full_sha256": "dcbc0009d6fd7576cd305f90cfbf47916f666ada0031711f1fa1f952b7014b08",
+      "bytes": 11592,
+      "start_line": 114,
+      "end_line": 115,
+      "span_sha256": "4f31c45986e822d2c13782f19d53535268672802813bc3fa518a03efac05c390",
+      "span_bytes": 175,
+      "label": "037-gates"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "full_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "bytes": 64313,
+      "start_line": 623,
+      "end_line": 623,
+      "span_sha256": "6bf922ca389121ce41ab0ce63c20242adf1f57bdc72f6142d139dc8ab3eb025f",
+      "span_bytes": 88,
+      "label": "037-v1.3"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "full_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "bytes": 23313,
+      "start_line": 177,
+      "end_line": 177,
+      "span_sha256": "48d47f89acbd3f31bd7c6ee281dda82e0676fc506aa9afc165e02ad962322a60",
+      "span_bytes": 42,
+      "label": "037-CLAUDE"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "bytes": 18905,
+      "start_line": 52,
+      "end_line": 52,
+      "span_sha256": "e8aeb66409fa9d6116230077031f6d9b4fc45cdfe7dc809e3dc57a2cefab7cf2",
+      "span_bytes": 609,
+      "label": "038-old-FR"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "bytes": 18905,
+      "start_line": 81,
+      "end_line": 81,
+      "span_sha256": "197f87bc286c52a3d6f5e1fd52c22bee2b8d492d2cea5f7a7bd44af6c1f7657b",
+      "span_bytes": 216,
+      "label": "038-old-FR-anchor"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "bytes": 7819,
+      "start_line": 50,
+      "end_line": 50,
+      "span_sha256": "7b7ba6217ec5ac4543606cad3774d7aca8a0c4eb77c913358db37dc2ccb286f1",
+      "span_bytes": 320,
+      "label": "038-HAT"
+    },
+    {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "full_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "bytes": 12926,
+      "start_line": 57,
+      "end_line": 57,
+      "span_sha256": "a83e352b22d1ff599d3a098a4d62cb668928f5aed696343f514ff1b87bf9f37e",
+      "span_bytes": 477,
+      "label": "038-HST"
+    },
+    {
+      "label": "035-HIL-BR-02-IR",
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "full_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "bytes": 284683,
+      "start_line": 45,
+      "end_line": 58,
+      "span_sha256": "4154fc8ad5fedb1ac6af4d8d25b73e825d561638484704fdf7827e8c1895a0b8",
+      "span_bytes": 652
+    }
+  ],
+  "adoption_records": [
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "bytes": 45099,
+      "start_line": 56,
+      "end_line": 56,
+      "span_sha256": "1b2f3e8bd602b488a4af5f20db36de7674359673da3b3dcb0ed4f2f09df6855a",
+      "span_bytes": 594,
+      "label": "033 adopted"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "full_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "bytes": 16056,
+      "start_line": 51,
+      "end_line": 51,
+      "span_sha256": "33000708725de32e3fad97b4edb9ef4e893edef98adab92b145bfa263d27147a",
+      "span_bytes": 244,
+      "label": "034 -003 adopted"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "bytes": 45099,
+      "start_line": 58,
+      "end_line": 58,
+      "span_sha256": "f4a5dec58d237ed7836aac99488ea08fde6bb48cfad1155fea4442ce8a1fce2c",
+      "span_bytes": 592,
+      "label": "035 adopted"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "bytes": 45099,
+      "start_line": 60,
+      "end_line": 60,
+      "span_sha256": "6532ef241d34bb91ad1bdad3dad16e17c53d3325bc943b9122c01eb26c8292ea",
+      "span_bytes": 587,
+      "label": "037 adopted"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "full_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "bytes": 11473,
+      "start_line": 35,
+      "end_line": 40,
+      "span_sha256": "d1e9f6f6ce3681085252e191023d40ed709973f2b740d28c42554ee8cc11fd59",
+      "span_bytes": 1938,
+      "label": "038 -002 + HARNESS-041-003 joint adoption"
+    }
+  ],
+  "adopted_dependency_sources": [
+    {
+      "label": "HARNESS-L2-041-003 adopted paired L11 condition",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "bytes": 343806,
+      "start_line": 699,
+      "end_line": 715,
+      "span_sha256": "312d258f447d2de14cd7770440381e15c24fb69a949e6c70c1adc3ab3d90f3c4",
+      "span_bytes": 3654,
+      "semantic_digest": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "decision_rows_pin": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "full_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "bytes": 11473,
+        "start_line": 35,
+        "end_line": 40,
+        "span_sha256": "d1e9f6f6ce3681085252e191023d40ed709973f2b740d28c42554ee8cc11fd59",
+        "span_bytes": 1938,
+        "label": "038 -002 + HARNESS-041-003 joint adoption"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "parent": "HELIXOS-L2-033",
+      "classification": "candidate_uncovered_requirement_atom",
+      "fixed_source": "633bf12ea8f948db8ba3d6600179c4a9507377a7:docs/helix-os/L2-requirements/governance-requirements.md:934",
+      "atom": "detector applicability to selected engine/output kind",
+      "current_l3": "FR-OS-L3-033 lines 240-246 does not name relation as an input/required field",
+      "current_l10": "CASE-OS-L10-033-01..06c rows 612-614, 658-659, 689-691 have no single mutation isolating only missing/mismatched applicable engine/output kind",
+      "risk": "field-complete detector receipt may be attached to an engine/output kind outside the detector applicability and still be counted as selected-scope reproducibility",
+      "minimal_candidate": "Add missing and mismatched applicability as isolated arms under AC-OS-L3-033-02 / CASE-OS-L10-033-02; reject scope-wide reproducibility and return through existing detector registration/meaning owner route (OS for missing registry receipt); include observation in NFRV-033-01. Do not add schema, owner, threshold, or authority."
+    }
+  ]
+}

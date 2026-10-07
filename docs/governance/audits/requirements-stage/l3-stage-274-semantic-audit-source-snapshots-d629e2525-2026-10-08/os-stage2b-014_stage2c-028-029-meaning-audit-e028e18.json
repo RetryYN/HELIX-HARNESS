@@ -1,0 +1,561 @@
+{
+  "record_type": "OS Stage2b-014 and Stage2c-028/029 read-only semantic audit",
+  "base_revision": "e028e18c90e83295c84d77c4829702a349bce0dc",
+  "scope": [
+    "HELIXOS-L2-014",
+    "HELIXOS-L2-028",
+    "HELIXOS-L2-029"
+  ],
+  "authority_effect": "none",
+  "repo_edit": false,
+  "legacy_execution": false,
+  "adoption": {
+    "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_adoption_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "po_record": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "additional_014_decision": "docs/governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md",
+    "status": "固定L2/L11と各親の採択を識別。L3は候補であり、L10未実行。"
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "意味欠落ではなく、個別oracle/NFR観測範囲の不足候補",
+      "parents": [
+        "HELIXOS-L2-028"
+      ],
+      "evidence": [
+        "L2:857",
+        "FR:60",
+        "FR:67",
+        "FV:117-140",
+        "NFR:25",
+        "NFRV:19-21"
+      ],
+      "detail": "選択sourceについて固定L2はidentity/revision/provenance/permission/relevance/scope/constraintsを保持する。L3のselected-source条件も同じ列挙を持つ。一方、既存のsource関連単独negativeはpermission(03b)、revision(03o)、scope(03p)、source/相談案receipt(03q)までで、identity/provenance/relevance/constraintsを単独変異するCASEは見当たらない。NFR-028-01の完結chain列挙にもprovenance/constraintsがないため、当該fieldが欠落してもNFRのcandidate numerator上receipt chain completeと数え得る。FRの義務は存在するため要求意味の欠落ではなく、individual oracle/censusの網羅漏れ。"
+    },
+    {
+      "id": "F2",
+      "priority": "計測母集団のfield binding不足候補",
+      "parents": [
+        "HELIXOS-L2-029"
+      ],
+      "evidence": [
+        "L2:873",
+        "FR:73-80",
+        "FV:146-203",
+        "NFR:31"
+      ],
+      "detail": "固定L2-029:873は選択support sourceのidentity/version/scope/provenance/permissionと、support/consult/repairの段階別記録を要求する。FR-029はsupport選択時のINTELLIGENCE proposalを束ね、functional casesはno-consult、support未選択、consult selectedを区別するが、pre-work support source field単独のnegativeは宣言しない。NFR-029-01はstarted composite attemptsのproposal/diff/optional consult/result/review/owner/repair/unfinishedを数えるものの、選択support sourceのidentity/version/scope/provenance/permissionを完結receipt chain項目に列挙しない。NFR-028の相談source censusはactual consultation attemptsに限定され、pre-work support/no-consultを補わない。よってsource field欠落がcomposite censusで見逃される可能性がある。"
+    },
+    {
+      "id": "R1",
+      "priority": "追加PO判断の適用範囲要確認（finding確定せず）",
+      "parents": [
+        "HELIXOS-L2-014"
+      ],
+      "evidence": [
+        "PO追補decision 2026-10-07:31-44,55-57",
+        "FR:7,26",
+        "FV:55-57"
+      ],
+      "detail": "2026-10-07 PO追補はreleaseと自己開発での内部deploymentを別事象とし、内部deployment cutoverに明示PO許可を要すると記録する。既存014のL3/L10は技術的なsynthetic stage transition/cutoverと状態保持を照合するが、この追補許可をoracleとして示さない。記録対象がL2-014の内部transition testcaseにも適用するのか、外部実operationだけかをread-only資料から確定できない。L2変更と決めつけず、Root判断待ち。"
+    }
+  ],
+  "coverage": {
+    "014": "BR独立business outcomeなしを固定親に沿って明示。AC-01..11→functional CASE-01..11を読み、identity/public version separation、conditional dependency closure、end-to-end、人手、tuple/reproduction、synthetic secret-free、forward/rollback state carry、self-dependency、stage/pack/1.0 separation、owner、INFRA-023/version boundary、旧dispositionを照合。AC-02/04のdependency/tuple status別・単独negative designを確認。NFR-014-01/02→NFRV-014-01/02、母集団・unknown/missing・分母0・未測定を確認。候補値2 build/2 transition classは比較値でありthresholdでない。",
+    "028": "独立BRなし。FR-028のcommon always inputs、selected source/consult conditional, source owner boundaries; AC-01/02/03/04/05/06/07全CASEを確認。02 normal, 02a/b, 05; 03a-r; 06a-e; 07a-c; unknown endpoint hold; identity/scope/return/unfinished and owner routing. NFR-028 candidate and NFRV CASE-028-01 selected/authorized consult population, denied outside-population, dispatch-before-stop unfinished, denominator handling.",
+    "029": "独立BRなし。FR-029 AC-01..06と全CASE-01,07,02,03,04a-l,05,06a-eを確認。Support/no-support, consult/no-consult, proposal vs actual execution, required HARNESS results, independent review identity/current HEAD, owner receipt, acceptance separation, unfinished stop, optional LABO effect measurement."
+  },
+  "limitations": [
+    "意味監査は指定3親とその直接traceに限定。Stage2a/3の別親や全274親の全面同深度監査ではない。",
+    "L10 oracle/fixturesは全て設計文書として静的に照合。fixture/runtime/test/CIは実行していない。",
+    "L2-014の10/7 PO追補decisionがsynthetic acceptance designにどこまで写るかはauthority boundaryの解釈が残り、確定findingにしていない。",
+    "未記載のfield CASEは文書上の設計不足として指摘し、実装不具合・実測失敗とは主張しない。"
+  ],
+  "pins": [
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "full_bytes": 447171,
+      "physical_lines": 1670,
+      "full_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+      "spans": [
+        {
+          "start_line": 619,
+          "end_line": 634,
+          "bytes": 4947,
+          "sha256": "d93b66dcf374918b27044b873a5625257978858e92cc917ded05bc8437d51408"
+        },
+        {
+          "start_line": 847,
+          "end_line": 877,
+          "bytes": 11729,
+          "sha256": "36f89f309f59de8cd9a200899c23f1afae7130bff164c5b6c24b1251d3ad20b7"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "full_bytes": 331746,
+      "physical_lines": 1361,
+      "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "spans": [
+        {
+          "start_line": 317,
+          "end_line": 317,
+          "bytes": 1969,
+          "sha256": "4151a53da492df9e4809195f08cc6fe2794faa4774dac122bc061437bd156769"
+        },
+        {
+          "start_line": 457,
+          "end_line": 478,
+          "bytes": 9023,
+          "sha256": "afc652c5e1264fd7858416daf0f93cde5c8043e694ac3cc5af2cfdad2ff743b1"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "full_bytes": 20354,
+      "physical_lines": 117,
+      "full_sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line": 11,
+          "bytes": 1388,
+          "sha256": "0511d67950ecc9af9540700f9500157ccc4a733c26908a07cdd7c2495a1c3037"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "full_bytes": 201811,
+      "physical_lines": 629,
+      "full_sha256": "68bf95443b494e16bb2a72506358536d7d8740fb620e09d55ed0b922d3b9ed03",
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line": 52,
+          "bytes": 12601,
+          "sha256": "9eb2aefe6718fb5b39471287d5e5b8983e8f34e20eac8cde194392ac1ce0de08"
+        },
+        {
+          "start_line": 53,
+          "end_line": 92,
+          "bytes": 19580,
+          "sha256": "aa31606d867d776186d0b3aaa2ffd19801040602dd70055b27bc560892b75aea"
+        },
+        {
+          "start_line": 82,
+          "end_line": 91,
+          "bytes": 4671,
+          "sha256": "40cd615e857aef842a381d783cfde62cef81125c9c9e77e73d4b11b179c440b3"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "full_bytes": 33002,
+      "physical_lines": 143,
+      "full_sha256": "d4e76c3dc15b28894937ddc0e39cb223aeef106284fae13b8ea4212dfce02726",
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line": 38,
+          "bytes": 7022,
+          "sha256": "d294e9ff5fff33fdfbd7416e62b3ced4b78f50323d4a3fed8affdb75b33e23fb"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "full_bytes": 17774,
+      "physical_lines": 108,
+      "full_sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line": 16,
+          "bytes": 1652,
+          "sha256": "4cc166bf8ce794554b89c32027097167bf634d02e44fb64adef70cfe8be0c49d"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "full_bytes": 241506,
+      "physical_lines": 1289,
+      "full_sha256": "2c2ce95380e2deb5478bb06c27057d519373bfeabc9259799e400b390e0c5d3e",
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line": 204,
+          "bytes": 37206,
+          "sha256": "4837afb35986042d4187de2258921dfc6710f2b7bf76abe6e2a39eb16e9e0ea9"
+        },
+        {
+          "start_line": 205,
+          "end_line": 210,
+          "bytes": 1495,
+          "sha256": "e46011e80487c9b65df83a24a03c73544f24401fbd829ef70e6dc4b536e94e39"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "full_bytes": 29758,
+      "physical_lines": 149,
+      "full_sha256": "156c0b6cf45630ba44f3540ceb97dae511fb7bdd93148e1a99ef4e0adfd9e543",
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line": 30,
+          "bytes": 6233,
+          "sha256": "9671bbc586b586c8d09803b1c0636ea715bec879d5a693463cac004f0c848bfe"
+        }
+      ]
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "full_bytes": 5689,
+      "physical_lines": 64,
+      "full_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "spans": [
+        {
+          "start_line": 20,
+          "end_line": 60,
+          "bytes": 4492,
+          "sha256": "9ecbf08a7f700f4bcfaf7eb9ad42bbe20bf740d63bdbb27398e21e11cca1ed04"
+        }
+      ]
+    },
+    {
+      "path": "docs/governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md",
+      "full_bytes": 12637,
+      "physical_lines": 111,
+      "full_sha256": "b7bd5a34fb0c722be49f90a58ba917de65a1dc8d28db36ae9eb86336cbbea0cb",
+      "spans": [
+        {
+          "start_line": 14,
+          "end_line": 18,
+          "bytes": 674,
+          "sha256": "b58f0c5504fa89f4b4172f284acd879278061a875d7ccd08480de8b2a7270e81"
+        },
+        {
+          "start_line": 27,
+          "end_line": 71,
+          "bytes": 5836,
+          "sha256": "1fda5cdb425bd7b7c70556808528c6b58521e4957715baad53195ed8df7bcdad"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "full_bytes": 13712,
+      "physical_lines": 209,
+      "full_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "spans": [
+        {
+          "start_line": 162,
+          "end_line": 170,
+          "bytes": 645,
+          "sha256": "ae9173793efb444a32a1c78239ba4c69609ea37db00a1592d9e56b67cb65ca5d"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "full_bytes": 5412,
+      "physical_lines": 82,
+      "full_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "spans": [
+        {
+          "start_line": 61,
+          "end_line": 61,
+          "bytes": 162,
+          "sha256": "e6f26d40e4db7ff7272ad1a9dd302d678ea3bf61f90ff8b96d93bcb80ef85375"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "full_bytes": 15617,
+      "physical_lines": 284,
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "spans": [
+        {
+          "start_line": 148,
+          "end_line": 166,
+          "bytes": 1209,
+          "sha256": "dd94d271bc924f93244ae9ef92258154b943aa464b2639cec0be0e1266bd1e4f"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_bytes": 65731,
+      "physical_lines": 354,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "spans": [
+        {
+          "start_line": 224,
+          "end_line": 235,
+          "bytes": 4715,
+          "sha256": "bb574069713ae60c9ce9c0e8b790cd3fe192235761213b7af3557ba55df5b6e6"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "full_bytes": 30874,
+      "physical_lines": 216,
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "spans": [
+        {
+          "start_line": 104,
+          "end_line": 104,
+          "bytes": 1587,
+          "sha256": "c2d5905826996429f528a247e4781d58609a6f753eb5776498dda78629f8eb49"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/harness-agent-lifecycle.md",
+      "full_bytes": 23981,
+      "physical_lines": 303,
+      "full_sha256": "894500dee389a2fab00961697bae4baa71427c5ffe1431bbc77592497b2b3fd7",
+      "spans": [
+        {
+          "start_line": 34,
+          "end_line": 120,
+          "bytes": 7003,
+          "sha256": "8279192dc0164261da340571de77b5239d1064f2693385c98935f1b09fad052d"
+        },
+        {
+          "start_line": 159,
+          "end_line": 191,
+          "bytes": 2372,
+          "sha256": "2795eacc69d9d985f123b8dbad2bc33fbed21f6c0b22232c6b547e0135a8cb25"
+        },
+        {
+          "start_line": 222,
+          "end_line": 278,
+          "bytes": 5073,
+          "sha256": "28a169d1ec4d44cf445921b7581c74152338c39456e801393b3242bf444ca598"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/harness-agent-lifecycle.md",
+      "full_bytes": 27412,
+      "physical_lines": 359,
+      "full_sha256": "7c3fbb7c6f0ea8dcbdb8cdb7e06143331455f48c59263f29f970ae5c79a9e275",
+      "spans": [
+        {
+          "start_line": 27,
+          "end_line": 65,
+          "bytes": 8475,
+          "sha256": "a16ee0bf1ce5979eb79e2ecddb175483511930d196954a849731e228fe2fb446"
+        },
+        {
+          "start_line": 82,
+          "end_line": 130,
+          "bytes": 6059,
+          "sha256": "35de254caf6a4040a1ce8f1630beb8645442db6594e0de9c5b611e0c604c73b8"
+        },
+        {
+          "start_line": 291,
+          "end_line": 305,
+          "bytes": 1242,
+          "sha256": "8ec9c7c99ea86bab1da37efd48708d8cb8e7d4f6b3fdf55803593a9d0d6cf5c0"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "full_bytes": 42556,
+      "physical_lines": 1225,
+      "full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "spans": [
+        {
+          "start_line": 213,
+          "end_line": 315,
+          "bytes": 2538,
+          "sha256": "a581087d27dda4a373117927b2d0b3476e81dfef86c9485cec05f269e9148cec"
+        },
+        {
+          "start_line": 351,
+          "end_line": 376,
+          "bytes": 946,
+          "sha256": "f6aea052d52705774623cfcede8a02efc7e67217a8d69b4b25e9914f79381b9d"
+        },
+        {
+          "start_line": 532,
+          "end_line": 559,
+          "bytes": 1094,
+          "sha256": "df530b4f1cd1b5201b26ee0e2df4850c3750ec2fe765a228a039146f13e5e8b0"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "full_bytes": 4078,
+      "physical_lines": 58,
+      "full_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "spans": [
+        {
+          "start_line": 17,
+          "end_line": 58,
+          "bytes": 3561,
+          "sha256": "56e01b21db8e007093c5491c0e043ea0a319a2eb100dd3946621d10696349a54"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-budget-lifecycle.md",
+      "full_bytes": 4509,
+      "physical_lines": 55,
+      "full_sha256": "dc366afb9d17229d3d963b4323bb3dad98a39ea0df268847f930cd9385acc8a2",
+      "spans": [
+        {
+          "start_line": 9,
+          "end_line": 55,
+          "bytes": 4244,
+          "sha256": "b803a6a78ec308ae3a0fa69fe71dad771b13d6e71748e9380025500d955d7bf1"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-worker-budget-lifecycle.md",
+      "full_bytes": 3109,
+      "physical_lines": 28,
+      "full_sha256": "d0c5b43ec2d155f4a0d8d095da8c2fcac387085d5fb8fcadad862e36bb786136",
+      "spans": [
+        {
+          "start_line": 9,
+          "end_line": 28,
+          "bytes": 2835,
+          "sha256": "0c75f39cc92a9ec7a7b55cf7296123cf0380dad7413152583f7398a6a2640a34"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-harness-agent-lifecycle-integration-test-design.md",
+      "full_bytes": 9725,
+      "physical_lines": 90,
+      "full_sha256": "8b821ca4d5774f9e510a5ceb7b8c338735a1ba79c693c79478b4c62cf73dccce",
+      "spans": [
+        {
+          "start_line": 9,
+          "end_line": 45,
+          "bytes": 4527,
+          "sha256": "af6ce5affab4b597ed69c42c7d122beffa4efa4ebdb7e2d606d0ee6bd38a3649"
+        },
+        {
+          "start_line": 72,
+          "end_line": 90,
+          "bytes": 2033,
+          "sha256": "4d24e808c497670a2733064d18f79068502be3cf77fcd7562b37ec7daed35234"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-harness-agent-lifecycle-unit-test-design.md",
+      "full_bytes": 11783,
+      "physical_lines": 98,
+      "full_sha256": "224bc00a7e225287033310972204bc9fff3efbc3b379758e9540139e16d46faa",
+      "spans": [
+        {
+          "start_line": 9,
+          "end_line": 45,
+          "bytes": 5236,
+          "sha256": "0d6839505eb850e8acb2eb2d756ef6f7dc7be871eea5074e5298874055d7a9de"
+        },
+        {
+          "start_line": 72,
+          "end_line": 98,
+          "bytes": 2608,
+          "sha256": "db131e8648e177ef985a361b2af5f62a96fcce2d896db88afd3a55e1eb5b5f24"
+        }
+      ]
+    }
+  ],
+  "fixed_parent_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "full_bytes": 153353,
+      "physical_lines": 877,
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "spans": [
+        {
+          "start_line": 619,
+          "end_line": 634,
+          "bytes": 4947,
+          "sha256": "d93b66dcf374918b27044b873a5625257978858e92cc917ded05bc8437d51408"
+        },
+        {
+          "start_line": 847,
+          "end_line": 877,
+          "bytes": 11729,
+          "sha256": "36f89f309f59de8cd9a200899c23f1afae7130bff164c5b6c24b1251d3ad20b7"
+        }
+      ]
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "full_bytes": 82708,
+      "physical_lines": 478,
+      "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "spans": [
+        {
+          "start_line": 317,
+          "end_line": 317,
+          "bytes": 1969,
+          "sha256": "4151a53da492df9e4809195f08cc6fe2794faa4774dac122bc061437bd156769"
+        },
+        {
+          "start_line": 457,
+          "end_line": 478,
+          "bytes": 9023,
+          "sha256": "afc652c5e1264fd7858416daf0f93cde5c8043e694ac3cc5af2cfdad2ff743b1"
+        }
+      ]
+    }
+  ],
+  "source_documents": [
+    {
+      "path": "docs/governance/audits/requirement-registration/os-stage2b-014-repair02-2026-10-05.json",
+      "revision": "e028e18c90e83295c84d77c4829702a349bce0dc",
+      "full_bytes": 43007,
+      "physical_lines": 823,
+      "full_sha256": "758872de2204091acd7802ffb7c730cf67dac53cf40dc8d4ea2ca1e9c2d10615",
+      "spans": []
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2c-publication-cutout-2026-10-05-f9b34ab56.json",
+      "revision": "e028e18c90e83295c84d77c4829702a349bce0dc",
+      "full_bytes": 254302,
+      "physical_lines": 3875,
+      "full_sha256": "680f30f7bf2c15788516eae1ac6f65cc869eaecaa7ead66d241d0b5adffc02e1",
+      "spans": []
+    },
+    {
+      "path": "docs/governance/decisions/stage-release-po-decisions-2026-09-27.md",
+      "revision": "e028e18c90e83295c84d77c4829702a349bce0dc",
+      "full_bytes": 11448,
+      "physical_lines": 76,
+      "full_sha256": "3d98b7a9162a14cc9295c0c0681e95b560da262794d7425cbca2beca985f5ec2",
+      "spans": []
+    },
+    {
+      "path": "docs/governance/decisions/worker-support-derivation-2026-09-27.md",
+      "revision": "e028e18c90e83295c84d77c4829702a349bce0dc",
+      "full_bytes": 6022,
+      "physical_lines": 44,
+      "full_sha256": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "spans": []
+    }
+  ]
+}

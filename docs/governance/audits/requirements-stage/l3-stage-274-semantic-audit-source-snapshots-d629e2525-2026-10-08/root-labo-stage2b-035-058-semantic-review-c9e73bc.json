@@ -1,0 +1,329 @@
+{
+  "revision": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+  "parents": [
+    "035",
+    "058"
+  ],
+  "six_sha256": {
+    "docs/helix-labo/L3-requirements/business-requirements.md": "7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a",
+    "docs/helix-labo/L3-requirements/functional-requirements.md": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+    "docs/helix-labo/L3-requirements/nfr-grade.md": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+    "docs/helix-labo/L10-verification/business-verification.md": "2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac",
+    "docs/helix-labo/L10-verification/functional-verification.md": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+    "docs/helix-labo/L10-verification/nfr-verification.md": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a"
+  },
+  "cases": {
+    "035": [
+      {
+        "id": "L10-LABO-035-C01",
+        "sha256": "adc6bf599205349fd2e1ef6f1e30ab49c11ea8a3dfd18eed12677986164df285",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C02",
+        "sha256": "1bfbffaa35929cd41139a3797d668c34dd47fc4658ada6737401f265a9337223",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-035-C03",
+        "sha256": "d9f63d35e3742e2302f3117b02de841545c5e0b8c6e6ba28f982fbbcf2b36f72",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-035-C04",
+        "sha256": "5ae48d79ef024e82021e6533c758ed9bcbb769efb8223cbd4840986ee98d56f1",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C05",
+        "sha256": "d65cb82566d5bcc2f02bf6e1bff5897cc810e1fb7f29bcfe31df2891f43fac3c",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C06",
+        "sha256": "411a4b1b0af80cd97901fbdf89364f6f6131915703357cf1791770fe778ff0c2",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C07",
+        "sha256": "ce7d862dd7f1a0a1f1530a7ee5491ed9fc7cf4a554a294b80b8d21e011583242",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C08",
+        "sha256": "fbfbf99e531de03b53768ca736fee22e09a0cd051acb3966a6d414f6abd2d198",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C09",
+        "sha256": "d8137af96240248504b9833abbd4990dcd0a914e8ba8a70dd2391870edadc2c4",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C10",
+        "sha256": "85a72b76bf8a1a1ddbe87514c83807d5914562da57ccb03b2c219e31ca493f5e",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C11",
+        "sha256": "b1671274526c16da00dc86e7773a97e0b09e366d8a52d0caf6d8ff6c0c9f8d3a",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C12",
+        "sha256": "eaec85dab4cab445facc3b0b040a58cf183a25e55f92d4dc9ca6df39ea584d70",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C13",
+        "sha256": "ceffa08e53e163ad33ee6d0c91aaaf43c158077cd04c371a6a7c42c7bdcb955d",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C14",
+        "sha256": "0bd5240e44ff47d0818480fdf9598fd21b7a5e33e999fbb914ee5dd9a9a98991",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C15",
+        "sha256": "f4edcb288663d541befa1929b889a7e9f7a401142812504998913924b7cd7949",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C16",
+        "sha256": "b7ac24f8210691ae075bf886db08cd4038b74f9cb5fefe8ab52bba39ceddf00d",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C17",
+        "sha256": "1d204fe96dc5078df114d5a816b4cef0aa16c13f50bb6acb97143d11b5a984bf",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C18",
+        "sha256": "7a4611603c40b3a117187b776d234ad5740bddf53031eacd3b6d92447cf93008",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-035-C19",
+        "sha256": "bc5a23c66d7ad7d6cea508575029a86b16efb147d13bc87066c46f0270640b8e",
+        "index": false
+      }
+    ],
+    "058": [
+      {
+        "id": "L10-LABO-058-C01",
+        "sha256": "00609d1f5f4b3b71ee4d2e08263e2789140bada9fa0c43a3b1f00c11269ef582",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C02",
+        "sha256": "83c3f3f898dfb285156106b01628f3ed8e05f0d3fe6e8f27630fe6de91c2b794",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-058-C03",
+        "sha256": "5de7f1e10bf0c4c5463397c5c22956eebd530066b92a42172a627aaf8d6c4ce2",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-058-C04",
+        "sha256": "3dd3c763410ef1c01005c2cd9797a85c116c7efed361675b93e429d416b7fa3d",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-058-C05",
+        "sha256": "504e80a121265ca9fd49c87399b79e979841924b046cfe81c1d9697e90d0d487",
+        "index": true
+      },
+      {
+        "id": "L10-LABO-058-C06",
+        "sha256": "728058631448260fd6c21cfd837e80691d01f3196f2312d81ac37668047171c8",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C07",
+        "sha256": "2a35ffddc11345f0a31fc4bd0f3a1f11c6349da10571002c21fbebf72bb6f874",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C08",
+        "sha256": "cc7a724885a1a53beddf3309260fd0b2f895c9c7046eb56ae44d3ce618be1cf0",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C09",
+        "sha256": "78ae9d9341b5762075e29f8d799c3db975652080c98523102de1ecd575de237a",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C10",
+        "sha256": "497df572e08a9d471949f5a9f0a25941cab199d7777e84a4465976f0611aee25",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C11",
+        "sha256": "8cd9dc65b880b40813b02b133d9000b2b73decce7e7e267bd55d9b92118be86c",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C12",
+        "sha256": "d1e29bac4f2d7759d339a2a8df05c246d1583e665bc1289763d4644672cad3ad",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C13",
+        "sha256": "0973041928f529f174f6f67b3b0595a45bf3697128f628e93b5f723e55dc2cea",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C14",
+        "sha256": "a47e213db46fa53712b7bcabf542cf9361bd65f5afb17956cc0d7e9033188f5e",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C15",
+        "sha256": "87f9bdb1506e64bb50448eba26e7ae86088da6b9d06acc16cc222955c22afdfc",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C16",
+        "sha256": "556b4b19bf30686aa01ea1785bf63369a2556fed0646fe756c48c45e167a1bd6",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C17",
+        "sha256": "97ce587199fbe2e35ba6208a61cd1d57c977e532c033473cf52eabfe7a4a4a2f",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C18",
+        "sha256": "aa219f529807e04993cacaf5b5ee940b51aab624c40c20b98316e6345e207f6f",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C19",
+        "sha256": "0f9557c5de72997fb0a7670778e99df7a906cb154d73bda1679a545485f60e67",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C20",
+        "sha256": "d540c1c220c6a034b7dbc6e38eee5643259ffec2ca02bb9bb0418a2e791a5c59",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C21",
+        "sha256": "8a519d59bb1e43508328cf366fd14032bb1c318286a27e77236f5f1d24731a6e",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C22",
+        "sha256": "f642d93ec993a7287242b9d0644f765755ac18e6f3c4f34707f3d8096fda4487",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C23",
+        "sha256": "f1821152515011695ad839085716752e1dff2fa364b655b3db8b51668d08cdb2",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C24",
+        "sha256": "6a6285b84538159c7f2df0a81e1075d471321c30492a945613b17e11fd9b5e97",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C25",
+        "sha256": "67805bd5a3c1e18aeda665255360a7854647f4cec8cf8927828cbccc4abf84ee",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C26",
+        "sha256": "a97f57762627e2c76e86aad39c8e370a0da62184285bfaeac5f01cc9ac6f1770",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C27",
+        "sha256": "97c5162ed5161c44b8c168d5593926c6fd89e552197edca664b3dde098e2a201",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C28",
+        "sha256": "b81d83913c45a47e109ffae1bc20e4821fbbbb8c4d19bbbbc5d3b8439d282d1c",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C29",
+        "sha256": "f6b8c94e4a8c88f3bd24898ca4772e208b70aaf99e26ce30f4998487b5331b83",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C30",
+        "sha256": "36c8d8c4374f9deb1161bec0077aa96bd7114618f4808959e3d3c4815debd287",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C31",
+        "sha256": "48cc703f89114ae39a56e00c66a44f4f36d0866ebf08abb68255c0da46753fc9",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C32",
+        "sha256": "51929f43b7ebcb23b6080fe24bf0ac7c69ff1a58eac920a1f96e6c51b253a03e",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C33",
+        "sha256": "0f0c875055a6a41bc06aea08989185f3eaa882c350a5ec1764b57b9669d94b92",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C34",
+        "sha256": "01e7087de7f6b6987a9d823cd31744cb8395e1a2645e627d2f7bf1efd6f0c4a6",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C35",
+        "sha256": "e679d8fa02095332ea569e2ab6dd8732f450417fd89b4a0b8f580b71b1957343",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C36",
+        "sha256": "cdbfa09578964439a48618d8709836c76fe0c7bb02011f64ad0ebfd2ef42e1ca",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C37",
+        "sha256": "e91955f6a09e722011129e6fa405ef638450f3db7c3ffd341a18acece54504b4",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C38",
+        "sha256": "617fd8dd09e0feb41eded2e3e1212852810479e34391ed1f9a87b6ef372cef23",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C39",
+        "sha256": "bb9da25d55c35171e5f60c2d52a7efb39a5dc91e5a4019cd314666b936e9cc16",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C40",
+        "sha256": "908ef0ca980e14984a4ad813b3f5b02cc5c5a477578925a5bd7615b1976344de",
+        "index": false
+      },
+      {
+        "id": "L10-LABO-058-C41",
+        "sha256": "065d88b24dca36dd004010cf1ac398251e7b1c9358f01880bc0e8460a89acbbd",
+        "index": false
+      }
+    ]
+  },
+  "finding": "限定範囲で具体的欠落なし",
+  "authority_effect": "none",
+  "limits": [
+    "独立review未実施",
+    "fixture未実行",
+    "全旧consumer未照合",
+    "274完了ではない"
+  ]
+}

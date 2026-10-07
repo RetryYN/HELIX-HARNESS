@@ -1,0 +1,14 @@
+{
+  "audit_id": "HARNESS-Stage2b-012-016-old-LIT-N3-04-source-supplement",
+  "canonical_main": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf",
+  "scope": "補足のみ。旧source locatorの取り違えを正し、LIT-N3-04 line 77を現物で読んだ事実を追補する。prior /tmp semantic auditは不変。",
+  "source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-pillar-integration-test-design.md",
+    "line": 77,
+    "file_git_blob": "bee21636175d58361b7d9bb152c9ec2059bd89aa",
+    "raw_file_sha256": "0bf20d470daba6a63b515ebd0d53509ee24c64df2c9e6bd6235e7874af23a8f5",
+    "line_text": "| LIT-N3-04 | HR-NFR-P3-04 | HC-P3 | 前提: AI implementation / 操作: TDD evidence を確認 / 期待: Red/oracle/Green/refactor または substitute oracle が存在する |"
+  },
+  "assessment": "LIT-N3-04は旧P3のAI implementationに対するTDD evidenceとしてRed/oracle/Green/refactorまたはsubstitute oracleを確認する期待を示す。これは012–016 current semantic auditの既存「観察形だけを再利用し旧P3 gate/実行を移植しない」という判断を補助する旧根拠。旧runtime/testの実行結果や現行合格根拠にはしない。",
+  "previous_audit_correction": "prior audit cited archive/.../L5-design-refactoring-domain-model-integration-test-design.md:77 as not separately inspected; actual LIT-N3-04 is in L5-pillar-integration-test-design.md:77. The cited refactoring-domain file is a different source and is not substituted."
+}
