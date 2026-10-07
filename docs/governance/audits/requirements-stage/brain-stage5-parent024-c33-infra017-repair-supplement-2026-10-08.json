@@ -1,0 +1,185 @@
+{
+  "record_type": "HELIX-BRAIN Stage 5 parent024 C33 and INFRA-017 trace repair supplement",
+  "language": "ja",
+  "as_of": "2026-10-08",
+  "authority_effect": "none",
+  "worktree_base_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+  "worktree_branch": "codex/brain-stage5-parent024-audit",
+  "worktree_path": "/home/tenni/.helix-worktrees/brain-stage5-parent024-audit",
+  "scope": [
+    "HELIXBRAIN-L2-024 C33 fixture clarification and L2-INFRA-017 dependency/maturity trace only"
+  ],
+  "immutable_prior_audit": {
+    "path": "docs/governance/audits/requirements-stage/brain-stage5-parent024-current-six-body-audit-2026-10-08.json",
+    "sha256": "24ab51f9e8af99fecf8658a4a7e849c3e69d23aeb60778d2ff4d7dd776d59091",
+    "unchanged": true
+  },
+  "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "fixed_parent_pins": {
+    "L2_024": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "git_blob_oid": "c8723dff3f3e1d702bf8734f80e37199099f6589",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span": {
+        "start_line": 454,
+        "end_line": 463,
+        "inclusive": true,
+        "raw_byte_span_sha256": "c91976bfc0f128dd8628b8d3448ddac57af0e4531f8d54f996ed094cd3b018c3"
+      }
+    },
+    "L11_024": {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "git_blob_oid": "67e187349c0d0c61da7213f646a07bbcee82143d",
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span": {
+        "start_line": 64,
+        "end_line": 64,
+        "inclusive": true,
+        "raw_byte_span_sha256": "aff2c5df94b1b823fa92d879ae7625c791d623f28eed0851ed7d4d585fa6f440"
+      }
+    },
+    "L2_020_common_and_conditional_maturity_clause": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "git_blob_oid": "c8723dff3f3e1d702bf8734f80e37199099f6589",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span": {
+        "start_line": 414,
+        "end_line": 421,
+        "inclusive": true,
+        "raw_byte_span_sha256": "bc967d34739ea1b7823241db0cd61ced49c71b7a362f2e9233563fab7660d069"
+      }
+    },
+    "L2_024_dependency_list": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "span": {
+        "start_line": 454,
+        "end_line": 463,
+        "inclusive": true,
+        "raw_byte_span_sha256": "c91976bfc0f128dd8628b8d3448ddac57af0e4531f8d54f996ed094cd3b018c3"
+      }
+    }
+  },
+  "repair_decisions": {
+    "L2_INFRA_017": "Keep the fixed L2-024 dependency enumeration. Trace selected dependency identity, version/revision, and declared compatibility in the ordinary arm. Preserve L2-020 conditional wording exactly in meaning: maturity-specific state/evidence comparison applies only when Infrastructure candidate maturity is selected. No new state/evidence schema, owner, threshold, or compatibility syntax/value is introduced.",
+    "C33": "Use only a non-secret synthetic sentinel in the credential-value slot to represent a credential-value storage attempt. No actual credential or usable secret is created or used. Do not interpret this as prohibiting non-secret opaque identity/provenance references; the case tests storing a credential value, not reference metadata."
+  },
+  "six_canonical_bodies": {
+    "BR": {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "before_sha256": "91938d4d33d9ced2ea79e860843a88084c8460d586bbd937c7afcd1a5a21ccd8",
+      "after_sha256": "826b383d7f1c49f90f44718a8b418bf163a7b09cc51833193e719b970068c465"
+    },
+    "FR": {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "before_sha256": "88d17de0dcd5cec559f321a4456bfa7aa1bcbc417aecb19a140ffb279dea11c1",
+      "after_sha256": "44f767d2ccbcb7ba0dff944fa92eeb9ec66f870fd8dce04a95560327d820c001"
+    },
+    "NFR": {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "before_sha256": "e4ff12ae0c74dfaf8b5e8bca5210a834dd99a756711bdaceca600649e701f912",
+      "after_sha256": "80c147548ea4dc15f972ce2f5c9dd4e24835a427b64ffa9a47798fcfb0d7cad8"
+    },
+    "BV": {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "before_sha256": "c0417e7fa14acfb6dbb408b4bafc59820fa154ba6af6bd9d153a07736bf12c99",
+      "after_sha256": "01fc8bd34a64cce6a6f6bbcf0ba0a472a7ed967402ea01140fadb03e7eee331d"
+    },
+    "FV": {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "before_sha256": "857c25372d27632b7fc80963b9d35803b6bbcdd5e1d3f1835a1b6ca466ca716a",
+      "after_sha256": "2a82d5acf6813668e95bfeb124ba226e9ef9db5c98613762e47e123ae308be67"
+    },
+    "NFRV": {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "before_sha256": "6a0abd94aa982a8aaffb67efc1f33cb4e6f19fb0838800672df50cd3de174044",
+      "after_sha256": "12fa94201c909c2ec38e6433b4a2c4687895bc3a8571b46c6168179b4ad50c84"
+    }
+  },
+  "case_inventory": {
+    "preexisting_C01_C45_retained": true,
+    "new_cases": [
+      {
+        "id": "L10-BRAIN-024-C46",
+        "arm": "ordinary selected L2-INFRA-017 dependency; maturity unselected; normal trace"
+      },
+      {
+        "id": "L10-BRAIN-024-C47",
+        "arm": "ordinary dependency; identity unknown only"
+      },
+      {
+        "id": "L10-BRAIN-024-C48",
+        "arm": "ordinary dependency; version/revision unknown only"
+      },
+      {
+        "id": "L10-BRAIN-024-C49",
+        "arm": "ordinary dependency; declared compatibility mismatch only"
+      },
+      {
+        "id": "L10-BRAIN-024-C50",
+        "arm": "Infrastructure maturity selected; normal trace"
+      },
+      {
+        "id": "L10-BRAIN-024-C51",
+        "arm": "selected maturity; state missing only"
+      },
+      {
+        "id": "L10-BRAIN-024-C52",
+        "arm": "selected maturity; evidence missing only"
+      },
+      {
+        "id": "L10-BRAIN-024-C53",
+        "arm": "selected maturity; target revision mismatch only"
+      }
+    ],
+    "existing_maturity_dependency_negatives_retained": [
+      "L10-BRAIN-024-C30",
+      "L10-BRAIN-024-C31"
+    ],
+    "index_only_cases": [
+      "L10-BRAIN-024-C10",
+      "L10-BRAIN-024-C15"
+    ],
+    "identifier_count": 53,
+    "unique_fixture_count": 51
+  },
+  "authority_and_immutability": {
+    "old_decision_records_modified": false,
+    "fixed_L2_or_L11_modified": false,
+    "previous_or_parent025_approval_inherited": false,
+    "new_approval_or_meaning_decision_generated": false,
+    "independent_exact_revision_review_still_required": true,
+    "commit_or_push": false
+  },
+  "verification": {
+    "six_full_body_sha256_after_repair": {
+      "BR": "826b383d7f1c49f90f44718a8b418bf163a7b09cc51833193e719b970068c465",
+      "FR": "44f767d2ccbcb7ba0dff944fa92eeb9ec66f870fd8dce04a95560327d820c001",
+      "NFR": "80c147548ea4dc15f972ce2f5c9dd4e24835a427b64ffa9a47798fcfb0d7cad8",
+      "BV": "01fc8bd34a64cce6a6f6bbcf0ba0a472a7ed967402ea01140fadb03e7eee331d",
+      "FV": "2a82d5acf6813668e95bfeb124ba226e9ef9db5c98613762e47e123ae308be67",
+      "NFRV": "12fa94201c909c2ec38e6433b4a2c4687895bc3a8571b46c6168179b4ad50c84"
+    },
+    "six_full_body_sha256_before_repair": {
+      "BR": "91938d4d33d9ced2ea79e860843a88084c8460d586bbd937c7afcd1a5a21ccd8",
+      "FR": "88d17de0dcd5cec559f321a4456bfa7aa1bcbc417aecb19a140ffb279dea11c1",
+      "NFR": "e4ff12ae0c74dfaf8b5e8bca5210a834dd99a756711bdaceca600649e701f912",
+      "BV": "c0417e7fa14acfb6dbb408b4bafc59820fa154ba6af6bd9d153a07736bf12c99",
+      "FV": "857c25372d27632b7fc80963b9d35803b6bbcdd5e1d3f1835a1b6ca466ca716a",
+      "NFRV": "6a0abd94aa982a8aaffb67efc1f33cb4e6f19fb0838800672df50cd3de174044"
+    },
+    "changed_documents_only": [
+      "BR",
+      "FR",
+      "NFR",
+      "BV",
+      "FV",
+      "NFRV"
+    ],
+    "secrets_created_or_used": false,
+    "static_case_arm_and_single_mutant_review": "passed: C46/C50 normal arms; C47-C49 and C51-C53 isolated negatives; existing C30/C31 retained."
+  }
+}

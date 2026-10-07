@@ -1,0 +1,216 @@
+{
+  "record_type": "HELIX-BRAIN Stage5 parent024 Root follow-up correction and source recheck",
+  "language": "ja",
+  "as_of": "2026-10-08",
+  "authority_effect": "none",
+  "worktree": {
+    "path": "/home/tenni/.helix-worktrees/brain-stage5-parent024-audit",
+    "branch": "codex/brain-stage5-parent024-audit",
+    "base_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+    "HEAD_before_commit": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+    "commit_or_push": false
+  },
+  "scope": [
+    "C33 credential-value negative wording",
+    "C46-C50 L2-INFRA-017 selected reference / conditional maturity trace only"
+  ],
+  "immutable_prior_audits": {
+    "docs/governance/audits/requirements-stage/brain-stage5-parent024-c33-infra017-repair-supplement-2026-10-08.json": {
+      "sha256": "6582ce5d584c2da00a8d5779a05b710f8084ca743913d4a08fbadf943c6ee806",
+      "unchanged": true
+    },
+    "docs/governance/audits/requirements-stage/brain-stage5-parent024-current-six-body-audit-2026-10-08.json": {
+      "sha256": "24ab51f9e8af99fecf8658a4a7e849c3e69d23aeb60778d2ff4d7dd776d59091",
+      "unchanged": true
+    }
+  },
+  "fixed_parent_source_pins": {
+    "L2_024": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "lines": "454-463",
+      "span_sha256": "c91976bfc0f128dd8628b8d3448ddac57af0e4531f8d54f996ed094cd3b018c3",
+      "span_bytes": 1805
+    },
+    "L2_020": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "lines": "414-421",
+      "span_sha256": "bc967d34739ea1b7823241db0cd61ced49c71b7a362f2e9233563fab7660d069",
+      "span_bytes": 1165
+    },
+    "BRAIN_L2_INFRA_017": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "lines": "382-390",
+      "span_sha256": "191b4c13d075cd3a9cfbd938bf5d0a961615936e30a9266a904dc633c28fa348",
+      "span_bytes": 827
+    },
+    "L11_024": {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "lines": "64-64",
+      "span_sha256": "aff2c5df94b1b823fa92d879ae7625c791d623f28eed0851ed7d4d585fa6f440",
+      "span_bytes": 404
+    },
+    "L11_020": {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "lines": "60-60",
+      "span_sha256": "a2e14b5a11026650f650dcc5d622fae8b5526342c7a198f7a80bb258ed45f3a4",
+      "span_bytes": 408
+    },
+    "BRAIN_L11_INFRA_017": {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "lines": "57-57",
+      "span_sha256": "9209db4b4e0810bad881e9a714120abaae22beb29bc0490e259d281423133420",
+      "span_bytes": 281
+    },
+    "legacy_source_inventory_reference": {
+      "audit": "docs/governance/audits/requirements-stage/brain-stage5-parent024-current-six-body-audit-2026-10-08.json",
+      "sha256": "24ab51f9e8af99fecf8658a4a7e849c3e69d23aeb60778d2ff4d7dd776d59091",
+      "legacy_assets_and_dispositions_unchanged": true
+    }
+  },
+  "source_semantics_and_disposition": {
+    "L2_024": "Lines 457-461 enumerate INFRA-009/010/012/017 and BRAIN 019/020/022 plus CORE/Runtime/LABO contracts; their purposes include CORE routing, Runtime→LABO→candidate flow, and no direct Runtime data path. The source does not define generic per-dependency compatibility relation syntax/field.",
+    "L2_020": "Lines 418-420 require receipt linking source/version/evaluation identity; common generic provenance/identity/state; and INFRA-017 state/evidence only when Infrastructure candidate maturity is handled, tied to same revision.",
+    "BRAIN_INFRA_017": "Lines 382-390 define maturity states, distinct BRAIN version and project usage version, four inputs (usage, failure, counterexample, LABO evaluation), and no single-success universal promotion. The paired L11:57 matches these requirements.",
+    "reuse_classification": "Semantic re-derivation of fixed dependencies; no new compatibility contract/schema/owner/threshold. Preserve conditional maturity scope; ordinary path checks only the selected reference identity/target revision source-to-output match."
+  },
+  "repair_and_change_reason": [
+    {
+      "finding": "C33 contained an additional allowance-like sentence excluding non-secret opaque reference/provenance metadata from the credential prohibition.",
+      "change": "Removed that sentence. C33 now only rejects a synthetic non-secret sentinel in the credential-value slot; C44 remains an independent negative that stops a packet containing a synthetic credential reference.",
+      "reason": "Fixed L2-024:459 prohibits BRAIN storage/ownership of credentials without an opaque-reference exception; fixed source does not justify the extra carve-out. C44 preserves reference-flow rejection. No real credential/secret is created or used."
+    },
+    {
+      "finding": "C46-C49 asserted ordinary dependency identity/version/compatibility matching without source support; C50 lacked field-level source/output equality.",
+      "change": "C46 now compares fixed enumerated reference identity and a synthetic target revision from input source receipt to output. C47 and C48 independently make input identity or target revision unknown and require matching unknown output. C49 independently mismatches only output revision from a valid source baseline. C50 gives source-defined maturity fields and checks each output value/revision against its source receipt. Removed the unsupported generic compatibility relation requirement."
+    }
+  ],
+  "old_case_nonweakening_check": {
+    "C01_C32_and_C34_C45": "unchanged by this follow-up; checked against the current six-body snapshot before edits.",
+    "C33": "Narrowed to the exact credential-value storage attempt. The prior extra non-secret reference carve-out was not fixed-source-backed; C44 still independently rejects credential-reference packet flow. Fixed L2-024 credential boundary remains unchanged.",
+    "C46_C49": "Older wording was broader than the adopted fixed source: dependency contract compatibility was not a defined field. Change removes unsupported technical requirement, not fixed L2 meaning. The retained checks trace only selected dependency reference identity/target revision values and unknown/mismatch states.",
+    "C50_C53": "Maturity remains conditional. C50 now checks values and revision relation sourced from BRAIN INFRA-017 / L2-020; C51-C53 remain independent state/evidence/revision missing/mismatch negatives."
+  },
+  "canonical_six_body_sha256": [
+    {
+      "key": "BR",
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "bytes": 12580,
+      "sha256": "826b383d7f1c49f90f44718a8b418bf163a7b09cc51833193e719b970068c465",
+      "ends_lf": true
+    },
+    {
+      "key": "FR",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "bytes": 173617,
+      "sha256": "1d10a795a61d543f051c26e6a6e62f0206047760529187e6f4ed571ae4ac5f45",
+      "ends_lf": true
+    },
+    {
+      "key": "NFR",
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "bytes": 38401,
+      "sha256": "80c147548ea4dc15f972ce2f5c9dd4e24835a427b64ffa9a47798fcfb0d7cad8",
+      "ends_lf": true
+    },
+    {
+      "key": "BV",
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "bytes": 10498,
+      "sha256": "01fc8bd34a64cce6a6f6bbcf0ba0a472a7ed967402ea01140fadb03e7eee331d",
+      "ends_lf": true
+    },
+    {
+      "key": "FV",
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "bytes": 233190,
+      "sha256": "905fc6e562d60e9ffdfe902de75a7e42f3a2105374f58785581d1b68c9c3ab4a",
+      "ends_lf": true
+    },
+    {
+      "key": "NFRV",
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "bytes": 28562,
+      "sha256": "12fa94201c909c2ec38e6433b4a2c4687895bc3a8571b46c6168179b4ad50c84",
+      "ends_lf": true
+    }
+  ],
+  "changed_spans": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "lines": "716-716",
+      "span_sha256": "452ddb583728385b788a3993dbcf47c427aa7b387948ae6b91b72ae5eb93e8bb"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "lines": "721-721",
+      "span_sha256": "8e2fbc0be864edee8e21654631f2d5c059561920d80bba6313c9a319a06c92e2"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "lines": "861-861",
+      "span_sha256": "26be3ff404eb17d6c36e37bdd0e683e88949681623121eeee99dc828caa83736"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "lines": "873-873",
+      "span_sha256": "bcec06acd406f5d87c2e7ed7e8fcd2e74b9d3eceb21f3c7e803befdcd4709234"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "lines": "876-876",
+      "span_sha256": "677effa87446c5768928148c3a3223858b11a9a718d5c99c6e085caccf5ffe72"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "lines": "877-877",
+      "span_sha256": "2c84ddce8575ef77a378633cdfe8b7ac195f8c58b53af52b6929d8e5543ae1ee"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "lines": "878-878",
+      "span_sha256": "94c47146d0ecf20be68f15614c8b775074ddd59fa9389acac1bd9b5d78ab14b8"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "lines": "879-879",
+      "span_sha256": "5468590a33250f2422569e8a569ec54f9f21ddf10a5f3128876a9f6a1d975bee"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "lines": "880-880",
+      "span_sha256": "25c65acb44f82c93baf1f5faa569415b3e1660f46e877e6c45b27fe41399693c"
+    }
+  ],
+  "static_verification": {
+    "C33_allowance_sentence_removed": "pass",
+    "C44_credential_reference_flow_negative_retained": "pass",
+    "C46_source_output_identity_and_revision_equality": "pass",
+    "C47_C48_unknown_input_fields_keep_output_unknown": "pass",
+    "C49_single_output_revision_mismatch": "pass",
+    "C50_each_defined_state_version_and_four_input_value_compared_to_source_receipt": "pass",
+    "conditional_maturity_only_when_selected": "pass; FR-024, C46, C50 and existing C51-C53 preserve branch",
+    "no_generic_compatibility_requirement_or_new_schema_owner_threshold": "pass",
+    "case_ids_C01_C53_unique": "pass; 53 IDs / 53 unique",
+    "prior_two_audits_unchanged": "pass; SHA-256 recorded above",
+    "git_diff_check": "pass",
+    "runtime_test_CI": "not run; document-only upper-layer work"
+  },
+  "authority_state": {
+    "L2_024_fixed_meaning_changed": false,
+    "new_approval_created": false,
+    "implementation_or_execution_authority_created": false,
+    "commit_or_push": false
+  }
+}
