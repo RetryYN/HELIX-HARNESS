@@ -1,0 +1,28 @@
+{
+  "record_type": "root-post-integration-six-pin-correction",
+  "authority_effect": "none",
+  "source_revision": "7230bcbe5e47966b077875f7bca4adc9e1dce54d",
+  "main_base": "00298f79229198965d889ebf0b6a1bedc4d03648",
+  "prior_audit": {
+    "path": "docs/governance/audits/requirements-stage/harness-stage2b-review02-ma-repair-2026-10-08.json",
+    "sha256": "6b0f4fe2bf37d5d7ebd0a6255ec71b6354e6d8cd1b6d8a202766ed9113024cf5",
+    "unchanged": true
+  },
+  "correction": {
+    "path": "docs/helix-harness/L10-verification/functional-verification.md",
+    "recorded_sha256": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741",
+    "actual_sha256": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741",
+    "note": "最終修正後本文の実bytesに基づき訂正。以前の全6SHA一致という記述をこの値で訂正する。"
+  },
+  "six_document_sha256": {
+    "docs/helix-harness/L3-requirements/business-requirements.md": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+    "docs/helix-harness/L3-requirements/functional-requirements.md": "cb58f9ff835c71d198be990a4ddbc378a10ec381c83fd3093d78eb703bf4f6a7",
+    "docs/helix-harness/L3-requirements/nfr-grade.md": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+    "docs/helix-harness/L10-verification/business-verification.md": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+    "docs/helix-harness/L10-verification/functional-verification.md": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741",
+    "docs/helix-harness/L10-verification/nfr-verification.md": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9"
+  },
+  "integration_unchanged": true,
+  "fixture_execution": "not_executed",
+  "delegated_approval": "not_generated"
+}
