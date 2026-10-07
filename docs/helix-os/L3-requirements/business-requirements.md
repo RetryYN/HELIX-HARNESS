@@ -98,7 +98,7 @@
 
 | 親 | business扱い | L10で照合する境界 |
 |---|---|---|
-| `HELIXOS-L2-025` | 独立BRなし | service①〜⑦ unit/選択connection/composite正常と部分未見正常を区別し、unknown/stale/未許可/human-wait・後続版・OS製品化・LABO移管境界、未決authorityと後続受入への義務引継ぎを個別CASEで保持する。|
+| `HELIXOS-L2-025` | 独立BRなし | service①〜⑦ unit/選択connection/composite正常と部分未見正常を区別し、HELIX自身＋異種projectの要求authority→ticket→Worker→検収→提供/運用→LABO評価→OS還流trace各段値の一致と各段単独欠落、unknown/stale/未許可/human-wait・後続版・OS製品化・LABO移管境界、配布全7製品gate誤追加、1.0全体normal/1製品欠落を個別CASEで保持する。|
 | `HELIXOS-L2-026` | 独立BRなし | 要求source/contract/compatibility/recovery/permission/owner/human processと各dependency state、packごとの版・適用対象、要求確認→作業→検証→結果記録までの出力経路を独立CASEで照合する。空集合・安全省略・未決pack・未撤去WT・他stage boot・一層削除minimumと必要な検証を除いた過小構成の誤りを拒否する。|
 | `HELIXOS-L2-031` | 独立BRなし | wall-clock、runner-minute、failure feedback latency p50/p95、原因分類を含む測定全field/適用scope、Recovery Issueを正本にしない境界、correctnessと性能、4弱化、escaped defect/mutation/flake、warm cache/review HEAD、lease/fence/artifact/fallback/DAG/cancel/exactly-once/causal traceを区別する。|
 | `HELIXOS-L2-047` | 独立BRなし | reason/evidence/根拠source revision、元assignmentとの因果relation・未完義務追跡、assignment/attempt/result/authority非継承、provider-only変更、参照両方向、旧証拠とnew revision、split/scope/backflow既存owner、検収oracle不足/Worker入力不足の正常返却を独立照合する。|
@@ -111,7 +111,7 @@
 
 | 親 | business扱い | 補正後functional CASE範囲 | 境界 |
 |---|---|---|---|
-| 025 | 独立BRなし | CASE-025-01〜32 | target/version/unit状態の欠落、document/mechanismの存在だけによる誤成立を区別し、構成体の未完義務を保持し、HELIX-OSを外販製品と誤分類しない。|
+| 025 | 独立BRなし | CASE-025-01〜21, 022〜039, 047〜049 | target/version/unit状態の欠落、document/mechanismの存在だけによる誤成立を区別し、構成体の未完義務を保持し、HELIX-OSを外販製品と誤分類しない。|
 | 026 | 独立BRなし | CASE-026-01〜60 | 導出結果から採択/実装/受入/tag/外部配布を生成せず、適用scope外の機構完成を追加条件にしない。段階構成採択を導出成功から生成しない。|
 | 031 | 独立BRなし | CASE-031-01〜95（066/068/070/072除外、031-25は031-06のalias） | old numeric comparison、ticket-driven duty、正しさ/性能、LABO/authority境界を分け、実測SLO/merge基準を作らない。|
 | 047 | 独立BRなし | CASE-047-01〜41、CASE-047-20はCASE-047-04のalias | issuerからの返却・revision lineage・参照境界を保ち、独立のticket効率KPIを作らない。|
