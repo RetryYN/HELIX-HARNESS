@@ -1,0 +1,128 @@
+{
+  "kind": "model_attribution_correction_evidence",
+  "authority_effect": "none",
+  "base": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "records": [
+    {
+      "scope": "CONNECT Stage5",
+      "pr": 2615,
+      "invalid_condition1_comment": 6003274683,
+      "actual_model_of_old_condition1": "Fable 5.1 (reviewer correction)",
+      "opus_recheck_comment": 6039141314,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2615#issuecomment-6039141314",
+      "body_sha256": "c96c4afe6afd020b2ffd8949107665992aadcb2d094a84a31bb806602c1169db",
+      "body_raw": "## 委任条件1の再照合（Opus、2026-10-07）：CONNECT Stage5（PR #2615）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n\n**経緯**：本PRの委任承認（判断記録 `helix-connect-stage5-l3-l10-po-decision-2026-10-06`）で条件1（Opus `no_findings`）の根拠にしたcomment #6003274683 は、Fable 5.1で動いていたreviewセッションのものだった。commentの中では「reviewer本人（Opus側）」と書いていたが、実際はOpusではない。条件1と条件2がどちらもFableになっており、委任の条件「OpusとFableの見解の一致」（[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）を満たしていなかった。これはreview側（本lane）の誤りである。\n\nこれを正すため、承認対象の本文revisionを、Opusで独立にブラインド照合し直した。照合範囲は次のとおり。\n- 対象：merge-baseから本文revisionまでの6本文の追補\n- 照合先：固定親のL2/L11と、PO採択行\n- 読まなかったもの：audits、PR comment、Fableの見解\n- 基準：Majorの5類型、禁止列挙の単独拒否CASE、出力要素のfixture\n\n**対象**：本文 `af0c0641c`、HEAD `0a6d7d452`、base `5acae3843`。親はHELIXCONNECT-L2-007（固定 `f6dad2a` L2:128–138、L11:74–77）。追補92行、削除0行。禁止列挙のすべてに単独の拒否CASEがあり、出力要素もすべて照合されている。残余は表記の揺れだけである（FR:215の採択登録の表記-001と-002、SECURITYへ戻す導出が書かれていないこと、など）。\n\n**結論**：**Major 0（未確認範囲0）**。この本文revisionで、委任条件1（Opus `no_findings`）が成立する。条件2（Fable「承認してよい」）は既存の記録のとおりである。判断記録は書き換えない。条件1の根拠を本commentに置き換える追補は、作成側に依頼する。\n",
+      "major": 0,
+      "current_handling": "旧条件1は不成立。新Opus commentは条件1成立を報告。六本文pinsと既存条件2/3の訂正記録照合待ち。"
+    },
+    {
+      "scope": "HARNESS Stage2b残部",
+      "pr": 2613,
+      "invalid_condition1_comment": 6003038860,
+      "actual_model_of_old_condition1": "Fable 5.1 (reviewer correction)",
+      "opus_recheck_comment": 6039142042,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2613#issuecomment-6039142042",
+      "body_sha256": "9d20653bebacb5890ef3fdcb63aaaf14f662c239b0ac1b79e6772582a1dd150a",
+      "body_raw": "## 委任条件1の再照合（Opus、2026-10-07）：HARNESS Stage2b残り（PR #2613）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n\n**経緯**：本PRの委任承認（判断記録 `helix-harness-stage2b-remainder-l3-l10-po-decision-2026-10-06`）で条件1（Opus `no_findings`）の根拠にしたcomment #6003038860 は、Fable 5.1で動いていたreviewセッションのものだった。commentの中では「reviewer本人（Opus側）」と書いていたが、実際はOpusではない。条件1と条件2がどちらもFableになっており、委任の条件「OpusとFableの見解の一致」（[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）を満たしていなかった。これはreview側（本lane）の誤りである。\n\nこれを正すため、承認対象の本文revisionを、Opusで独立にブラインド照合し直した。照合範囲は次のとおり。\n- 対象：merge-baseから本文revisionまでの6本文の追補\n- 照合先：固定親のL2/L11と、PO採択行\n- 読まなかったもの：audits、PR comment、Fableの見解\n- 基準：Majorの5類型、禁止列挙の単独拒否CASE、出力要素のfixture\n\n**対象**：本文 `3aa88a697`、HEAD `9981f376c`、base `0757e1587`。親はHARNESS-L2-017/018/019/020/024（固定 `f6dad2a`）。追補383行、削除0行、CASEは機能220件とNFR5件。禁止列挙と出力要素はすべて照合されている。照合者が未確認として残した017 R004の戻し先（L2-022）は、reviewerが固定L2-017の原文で確認した。L2-017は成果物をL2-022の契約で受け取り、束ねる条件にL2-005を含むので、戻し先は区分の内側にある。L2-005を名指しする方が正確だが、これは残余とする。\n\n**結論**：**Major 0（未確認範囲0）**。この本文revisionで、委任条件1（Opus `no_findings`）が成立する。条件2（Fable「承認してよい」）は既存の記録のとおりである。判断記録は書き換えない。条件1の根拠を本commentに置き換える追補は、作成側に依頼する。\n",
+      "major": 0,
+      "current_handling": "旧条件1は不成立。新Opus commentは条件1成立を報告。六本文pinsと既存条件2/3の訂正記録照合待ち。"
+    },
+    {
+      "scope": "INTELLIGENCE Stage4",
+      "pr": 2612,
+      "invalid_condition1_comment": 6003660688,
+      "actual_model_of_old_condition1": "Fable 5.1 (reviewer correction)",
+      "opus_recheck_comment": 6039142543,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2612#issuecomment-6039142543",
+      "body_sha256": "93a016485012e1fdcea9c1e849de034f3bfcbdc422e5828f9c8ec3ed7c40c850",
+      "body_raw": "## 委任条件1の再照合（Opus、2026-10-07）：INTELLIGENCE Stage4（PR #2612）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n\n**経緯**：本PRの委任承認（判断記録 `helix-intelligence-stage4-l3-l10-po-decision-2026-10-06`）で条件1（Opus `no_findings`）の根拠にしたcomment #6003660688 は、Fable 5.1で動いていたreviewセッションのものだった。commentの中では「reviewer本人（Opus側）」と書いていたが、実際はOpusではない。条件1と条件2がどちらもFableになっており、委任の条件「OpusとFableの見解の一致」（[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）を満たしていなかった。これはreview側（本lane）の誤りである。\n\nこれを正すため、承認対象の本文revisionを、Opusで独立にブラインド照合し直した。照合範囲は次のとおり。\n- 対象：merge-baseから本文revisionまでの6本文の追補\n- 照合先：固定親のL2/L11と、PO採択行\n- 読まなかったもの：audits、PR comment、Fableの見解\n- 基準：Majorの5類型、禁止列挙の単独拒否CASE、出力要素のfixture\n\n**対象**：本文 `8227416bc`、HEAD `976d2a2bf`、base `1a7933157`。親は15件（HELIXINTELLIGENCE-L2-017、030〜041、044、045。固定 `633bf12`）。追補1484行、削除0行。禁止列挙の主要項目すべてに単独の拒否CASEがあり、15親の出力要素も照合されている。残余は、033-04aの最終的な宛先、044の戻し先にBRAIN knowledge ownerを加えていること、NFRの100%候補の書き方などである。\n\n**結論**：**Major 0（未確認範囲0）**。この本文revisionで、委任条件1（Opus `no_findings`）が成立する。条件2（Fable「承認してよい」）は既存の記録のとおりである。判断記録は書き換えない。条件1の根拠を本commentに置き換える追補は、作成側に依頼する。\n",
+      "major": 0,
+      "current_handling": "旧条件1は不成立。新Opus commentは条件1成立を報告。六本文pinsと既存条件2/3の訂正記録照合待ち。"
+    },
+    {
+      "scope": "LABO Stage2b残部",
+      "pr": 2614,
+      "invalid_condition1_comment": 6005201116,
+      "actual_model_of_old_condition1": "Fable 5.1 (reviewer correction)",
+      "opus_recheck_comment": 6039143224,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2614#issuecomment-6039143224",
+      "body_sha256": "2e6383e66246c42900e868d87046dce387af09802d0ce5223eb34320be7129ad",
+      "body_raw": "## 委任条件1の再照合（Opus、2026-10-07）：LABO Stage2b残り（PR #2614）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n\n**経緯**：本PRの委任承認（判断記録 `helix-labo-stage2b-remainder-l3-l10-po-decision-2026-10-06`）で条件1（Opus `no_findings`）の根拠にしたcomment #6005201116 は、Fable 5.1で動いていたreviewセッションのものだった。commentの中では「reviewer本人（Opus側）」と書いていたが、実際はOpusではない。条件1と条件2がどちらもFableになっており、委任の条件「OpusとFableの見解の一致」（[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）を満たしていなかった。これはreview側（本lane）の誤りである。\n\nこれを正すため、承認対象の本文revisionを、Opusで独立にブラインド照合し直した。照合範囲は次のとおり。\n- 対象：merge-baseから本文revisionまでの6本文の追補\n- 照合先：固定親のL2/L11と、PO採択行\n- 読まなかったもの：audits、PR comment、Fableの見解\n- 基準：Majorの5類型、禁止列挙の単独拒否CASE、出力要素のfixture\n\n**対象**：本文 `4e61305f3`、HEAD `a43bb658f`、base `0757e1587`。親は22件（HELIXLABO-L2-012〜030、034、035、058。固定 `f6dad2a`）。追補3152行、削除0行。22親を4本に分けてOpusで照合し、Majorの候補7件は固定親の行で裏を取ったうえで残余とした。戻し先は、どれも固定親が名指しする当事者である。残余は、戻し先の表記がそろっていないこと、015-C01のarmごとの値一致などである。\n\n**結論**：**Major 0（未確認範囲0）**。この本文revisionで、委任条件1（Opus `no_findings`）が成立する。条件2（Fable「承認してよい」）は既存の記録のとおりである。判断記録は書き換えない。条件1の根拠を本commentに置き換える追補は、作成側に依頼する。\n",
+      "major": 0,
+      "current_handling": "旧条件1は不成立。新Opus commentは条件1成立を報告。六本文pinsと既存条件2/3の訂正記録照合待ち。"
+    },
+    {
+      "scope": "BRAIN Stage5",
+      "pr": 2618,
+      "invalid_condition1_comment": 6004615684,
+      "actual_model_of_old_condition1": "Fable 5.1 (reviewer correction)",
+      "opus_recheck_comment": 6039138761,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2618#issuecomment-6039138761",
+      "body_sha256": "fbb4f502fbdd2887ae419b81b74483246fc048bae7632c93e10d34f32b069286",
+      "body_raw": "## 委任条件1の再照合（Opus、2026-10-07）：BRAIN Stage5（PR #2618）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n\n**経緯**：本PRの委任承認（判断記録 `helix-brain-stage5-l3-l10-po-decision-2026-10-06`）で条件1（Opus `no_findings`）の根拠にしたcomment #6004615684 は、Fable 5.1で動いていたreviewセッションのものだった。commentの中では「reviewer本人（Opus側）」と書いていたが、実際はOpusではない。条件1と条件2がどちらもFableになっており、委任の条件「OpusとFableの見解の一致」（[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）を満たしていなかった。これはreview側（本lane）の誤りである。\n\nこれを正すため、承認対象の本文revisionを、Opusで独立にブラインド照合し直した。照合範囲は次のとおり。\n- 対象：merge-baseから本文revisionまでの6本文の追補\n- 照合先：固定親のL2/L11と、PO採択行\n- 読まなかったもの：audits、PR comment、Fableの見解\n- 基準：Majorの5類型、禁止列挙の単独拒否CASE、出力要素のfixture\n\n**対象**：本文 `237a85621`、HEAD `1a9c9fb7f`、base `5acae3843`。親はHELIXBRAIN-L2-024/025（固定 `f6dad2a` L2:454–473、L11:64–65）。追補205行、削除0行。\n\n**Major 3（未確認範囲0）**\n- **M1（類型4）**：L2-025の提供要素「findingのowner付きreceipt」に、正常判定での値一致もなく、単独の変異CASEもない。L3 AC-01〜05にもfindingが出てこない。\n  - 欠陥：FV C01（`L10-BRAIN-025-C01`）、FR AC-025\n  - 固定親：L2:468「未完義務・finding・反例のowner付きreceipt」\n- **M2（類型4）**：同じ行の「未完義務のowner付きreceipt」も同じく照合されていない。C50の期待欄は「未完義務を保持」と書くだけである。\n  - 固定親：L2:468\n- **M3（類型1）**：C49は、maturityのevidence revision不一致の戻し先を「L2-INFRA-017」としている。これは契約IDであってownerではなく、固定025の戻し先区分（LABO／OS／該当L1／BRAIN change owner）にも入らない。\n  - 固定親：L2:472、依存L2-020の戻し先\n\nreviewerは、L2:468とC01・C49・C50の原文で、上の3件を確認した（FVの中で「finding」が出るのは1箇所だけ）。\n\n**結論**：この本文revisionでは、委任条件1が成立しない。\n",
+      "major": 3,
+      "current_handling": "unknown;修正と新revision再確認待ち"
+    },
+    {
+      "scope": "SECURITY Stage5",
+      "pr": 2617,
+      "invalid_condition1_comment": 6004760964,
+      "actual_model_of_old_condition1": "Fable 5.1 (reviewer correction)",
+      "opus_recheck_comment": 6039139172,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2617#issuecomment-6039139172",
+      "body_sha256": "5dbef00150087777e93068e340675822b820ab992cb7bf237e04a4069e3eeac1",
+      "body_raw": "## 委任条件1の再照合（Opus、2026-10-07）：SECURITY Stage5（PR #2617）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n\n**経緯**：本PRの委任承認（判断記録 `helix-security-stage5-l3-l10-po-decision-2026-10-06`）で条件1（Opus `no_findings`）の根拠にしたcomment #6004760964 は、Fable 5.1で動いていたreviewセッションのものだった。commentの中では「reviewer本人（Opus側）」と書いていたが、実際はOpusではない。条件1と条件2がどちらもFableになっており、委任の条件「OpusとFableの見解の一致」（[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）を満たしていなかった。これはreview側（本lane）の誤りである。\n\nこれを正すため、承認対象の本文revisionを、Opusで独立にブラインド照合し直した。照合範囲は次のとおり。\n- 対象：merge-baseから本文revisionまでの6本文の追補\n- 照合先：固定親のL2/L11と、PO採択行\n- 読まなかったもの：audits、PR comment、Fableの見解\n- 基準：Majorの5類型、禁止列挙の単独拒否CASE、出力要素のfixture\n\n**対象**：本文 `a118057fa`、HEAD `43f6413f5`、base `64086f7f0`。親はHELIXSECURITY-L2-027（固定 `633bf12` L2:332–341、L11:51）。追補150行、削除0行。\n\n**Major 1（未確認範囲0）**\n- **M1（類型4）**：L2の提供要素「接続先ownerへ返す未完義務」に、正常判定での値一致もなく、単独の変異CASEもない。AC-027-01〜03はこの出力に触れていない。CASE-027-002/003のoracleは「denyと未実施handoffを保持」だけで、義務があるか、宛先ownerが正しいかを照合していない。このため、deny/holdを返してもownerへ義務を返さない誤った実装が通る。\n  - 欠陥：FR:558–560、FV:865–866\n  - 固定親：L2:335、L2:339\n\n**結論**：この本文revisionでは、委任条件1が成立しない。\n",
+      "major": 1,
+      "current_handling": "unknown;修正と新revision再確認待ち"
+    },
+    {
+      "scope": "OS Stage5",
+      "pr": 2616,
+      "invalid_condition1_comment": 6005798978,
+      "actual_model_of_old_condition1": "Fable 5.1 (reviewer correction)",
+      "opus_recheck_comment": 6039139596,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2616#issuecomment-6039139596",
+      "body_sha256": "b03080cd57fafcc289d20c858abb0f64833f850f08311141e400bfe366f03081",
+      "body_raw": "## 委任条件1の再照合（Opus、2026-10-07）：OS Stage5（PR #2616）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n\n**経緯**：本PRの委任承認（判断記録 `helix-os-stage5-l3-l10-po-decision-2026-10-06`）で条件1（Opus `no_findings`）の根拠にしたcomment #6005798978 は、Fable 5.1で動いていたreviewセッションのものだった。commentの中では「reviewer本人（Opus側）」と書いていたが、実際はOpusではない。条件1と条件2がどちらもFableになっており、委任の条件「OpusとFableの見解の一致」（[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）を満たしていなかった。これはreview側（本lane）の誤りである。\n\nこれを正すため、承認対象の本文revisionを、Opusで独立にブラインド照合し直した。照合範囲は次のとおり。\n- 対象：merge-baseから本文revisionまでの6本文の追補\n- 照合先：固定親のL2/L11と、PO採択行\n- 読まなかったもの：audits、PR comment、Fableの見解\n- 基準：Majorの5類型、禁止列挙の単独拒否CASE、出力要素のfixture\n\n**対象**：本文 `bda60fea9`、HEAD `3edfe6e9d`、base `190d23aac`。親はHELIXOS-L2-025/026/031/047（固定 `633bf12`）。追補458行、削除0行。\n\n**Major 4（未確認範囲0）**\n- **M1（類型4）**：026の出力要素「要求確認→作業→検証→結果記録まで閉じる経路」と「各packの版・適用対象」が照合されていない。L3の出力定義からも落ちている。\n  - 欠陥：FV:991、FV:1012（CASE-026-01）、FR:552\n  - 固定親：L2:815、L11:435–436\n- **M2（類型4）**：031の出力要素のうち、wall-clock、runner-minute、failure feedback latencyのp50/p95、予算超過の原因分類が照合されていない。AC-031-01の「全測定field」の列挙にも入っていない。\n  - 欠陥：FV:995、1020、1204、FR:564\n  - 固定親：L2:904\n- **M3（類型2）**：L2-031は「Recovery Issueという作業projectionを要求や採否の正本としない」と定めているが、これを拒否する単独のCASEがない。\n  - 欠陥：FV:995–998\n  - 固定親：L2:905\n  - reviewerが原文を確認した。031のCASEに「Recovery Issue」は出てこない。\n- **M4（類型4）**：047の出力要素のうち「返却を元assignmentへ結ぶこと」と「未完義務を追跡できること」が照合されていない。\n  - 欠陥：FV:1025、999、FR:578\n  - 固定親：L2:1188、L11:805\n\n**結論**：この本文revisionでは、委任条件1が成立しない。\n",
+      "major": 4,
+      "current_handling": "unknown;修正と新revision再確認待ち"
+    },
+    {
+      "scope": "HARNESS Stage5",
+      "pr": 2621,
+      "invalid_condition1_comment": 6006664206,
+      "actual_model_of_old_condition1": "Fable 5.1 (reviewer correction)",
+      "opus_recheck_comment": 6039140122,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2621#issuecomment-6039140122",
+      "body_sha256": "11a8b859053f958410ccd678e875eace25f0a7713954a4e8dc3513215798a629",
+      "body_raw": "## 委任条件1の再照合（Opus、2026-10-07）：HARNESS Stage5（PR #2621）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n\n**経緯**：本PRの委任承認（判断記録 `helix-harness-stage5-l3-l10-po-decision-2026-10-06`）で条件1（Opus `no_findings`）の根拠にしたcomment #6006664206 は、Fable 5.1で動いていたreviewセッションのものだった。commentの中では「reviewer本人（Opus側）」と書いていたが、実際はOpusではない。条件1と条件2がどちらもFableになっており、委任の条件「OpusとFableの見解の一致」（[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）を満たしていなかった。これはreview側（本lane）の誤りである。\n\nこれを正すため、承認対象の本文revisionを、Opusで独立にブラインド照合し直した。照合範囲は次のとおり。\n- 対象：merge-baseから本文revisionまでの6本文の追補\n- 照合先：固定親のL2/L11と、PO採択行\n- 読まなかったもの：audits、PR comment、Fableの見解\n- 基準：Majorの5類型、禁止列挙の単独拒否CASE、出力要素のfixture\n\n**対象**：本文 `ed1161e03`、HEAD `ad65e84ce`、base `8a763ce42`。親はHARNESS-L2-021/025/033（固定 `f6dad2a`）と035/037（固定 `318ec4a`）。追補404行、削除0行。\n\n**Major 6**\n- **M1（類型2）**：025で、採択・実装済み・利用者受入済みを生成させない拒否CASEがない。S5-006は「L3承認済み」の場合しか扱っていない。\n  - 欠陥：FV:632、FR:499（AC-025-04は3つとも列挙している）\n  - 固定親：L2:551、L11:348\n  - reviewerが原文を確認した。\n- **M2（類型2）**：033で、テストの生成・受渡しから要求承認やreleaseを生成させない拒否CASEがない。\n  - 欠陥：FV:774、FR:509\n  - 固定親：L11:442\n- **M3（類型2）**：035の「原指示を記録しただけでは対象revisionの合意へ変換しない」が、FRにもCASEにもない。\n  - 欠陥：FR:521、FV:815\n  - 固定親：L2:722\n- **M4（類型2）**：035の「照合の結果から実装・実行を許可しない」について、正常な照合結果から実行許可を生成する反例CASEがない。\n  - 欠陥：FV:785、813、816\n  - 固定親：L2:726\n- **M5（類型4）**：037の出力要素「根拠」と「適用限界」が、FRの出力からも、正常判定と単独CASEからも抜けている。\n  - 欠陥：FR:544、FV:732\n  - 固定親：L2:796\n- **M6（類型1）**：025で、CORE connectorの版がunknownの場合と、Templateが互換範囲外の場合の戻し先が、「設計/pair形成の不足が確認できる場合だけ026/022」になっている。それ以外の場合は保留だけで、宛先が決まらない。\n  - 欠陥：FR:492、FV:675–676\n  - 固定親：L2:552、554、L11:360\n\n**未確認範囲**\n- 035/037の節digestの算出方法\n- audits配下の台帳\n- 依存先L2-009/022/026の全文\n- Stage 2cの既存CASEが033の共通禁止を代わりに覆っているか\n\n**結論**：この本文revisionでは、委任条件1が成立しない。\n",
+      "major": 6,
+      "current_handling": "unknown;修正と新revision再確認待ち"
+    },
+    {
+      "scope": "INTELLIGENCE Stage3",
+      "pr": 2607,
+      "invalid_condition1_comment": 6004252416,
+      "actual_model_of_old_condition1": "Fable 5.1 (reviewer correction)",
+      "opus_recheck_comment": 6039140907,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2607#issuecomment-6039140907",
+      "body_sha256": "776d071817a56bdb93821b8431070dd15d5d15835f0b49e68f3e6259b741ced9",
+      "body_raw": "## 委任条件1の再照合（Opus、2026-10-07）：INTELLIGENCE Stage3（PR #2607）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n\n**経緯**：本PRの委任承認（判断記録 `helix-intelligence-stage3-l3-l10-po-decision-2026-10-06`）で条件1（Opus `no_findings`）の根拠にしたcomment #6004252416 は、Fable 5.1で動いていたreviewセッションのものだった。commentの中では「reviewer本人（Opus側）」と書いていたが、実際はOpusではない。条件1と条件2がどちらもFableになっており、委任の条件「OpusとFableの見解の一致」（[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）を満たしていなかった。これはreview側（本lane）の誤りである。\n\nこれを正すため、承認対象の本文revisionを、Opusで独立にブラインド照合し直した。照合範囲は次のとおり。\n- 対象：merge-baseから本文revisionまでの6本文の追補\n- 照合先：固定親のL2/L11と、PO採択行\n- 読まなかったもの：audits、PR comment、Fableの見解\n- 基準：Majorの5類型、禁止列挙の単独拒否CASE、出力要素のfixture\n\n**対象**：本文 `7c39f1fc0`、HEAD `c90bbfddd`、base `1d7f57491`。親は22件（固定 `633bf12`）。追補1468行、削除0行。\n\n**Major 5**\n- **M1（類型2）**：072-005で、dispatch・実tool操作・worker assignment・OS/SECURITYの権限変更の生成を拒否するCASEがない。\n  - 欠陥：FR:548–566（AC-072-01〜11）、FV:1595–1599、1643\n  - 固定親：L2:680、L11:400、424\n  - reviewerが原文を確認した。072の全CASEに、dispatch・tool authority・assignmentの生成を拒否するものはない。\n- **M2（類型4と類型2）**：072のpack構成要素（判断目的、観点、反証質問、必要evidence、severity、escalation/停止条件、model適性）が照合されていない。また、「model適性が未評価なら推測で埋めない」を拒否するCASEがない。\n  - 固定親：L2:594、L11:308\n- **M3（類型2）**：078で、formalなFuture Synthesisのconsumer/producer/owner、Issue route、#1037の現行相当を推測・割当てる変異を拒否するCASEがない。AC-078-11に文言はあるが、078の負例はすべて「有効に束縛したowner」を前提にしている。\n  - 固定親：L2:648、652、657、L11:371、381\n- **M4（類型4）**：067の提供要素のうち、採用候補と除外理由、effort条件、完了時間のevidenceが照合されていない。\n  - 欠陥：FR:540–547、FV:1563\n  - 固定親：L2:476\n- **M5（類型4）**：011の比較値のうち、findings・reproducibility・latencyが照合されていない。\n  - 欠陥：FR:446、FV:1424\n  - 固定親：L2:110–112、L11:164\n\n**未確認範囲**\n- FVの不合格条件の列の後半\n- 依存先の本文（HARNESS-010/011/023、LABO-034/035/052/059）\n\n**結論**：この本文revisionでは、委任条件1が成立しない。\n",
+      "major": 5,
+      "current_handling": "unknown;修正と新revision再確認待ち"
+    }
+  ],
+  "legacy_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+    "lines": "82-85",
+    "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+    "disposition": "旧自律境界を保持し、L3承認の委任だけを既存PO判断に従う。新たな免除や承認手順を設けない。"
+  },
+  "checks": {
+    "record_count": 9,
+    "major_repair_groups": 5,
+    "major_count": 19,
+    "no_l3_l10_body_changes": true,
+    "no_old_decision_record_changes": true
+  }
+}
