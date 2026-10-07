@@ -1,0 +1,64 @@
+{
+  "record_type": "immutable_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": "HELIX-HARNESS Stage3 parent043 only",
+  "review_head": "69be139c372ff5d8966c50242a90e4a783fcc8a0",
+  "review_base": "74e82abff8f06d390ea8727966fd3169864a79f0",
+  "review_comment_id": 6041256040,
+  "review_raw_body": "## review01（independent review、HEAD 69be139c372ff5d8966c50242a90e4a783fcc8a0、merge-base 74e82abff8f06d390ea8727966fd3169864a79f0）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n- 条件1は、Opus 5.5のブラインド照合と、reviewerの確認で判定した。\n- 条件2は、Fable advisor（claude-fable-5-1）の見解である。Fableは、043 Stage 3節の全体、固定親@318ec4a04（L2:986–1001、L11:723–734）、旧HIL-FR-55:145、#2642 review12 comment（6030127214）の原文を読み直して判断した。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新mainと衝突なし\n\n### 照合の結果（#2642 review12の残余R34／R35／R38）\n- **R34**：r10-025/026-receipt-only-not-coverageは、025/026のreceiptだけを根拠に、043のcoverageをcompleteへ書き換える単独変異を拒否する。これは固定L2:996「026/025は…本候補のtemplate例coverageを代替しない」に対応する。逆方向のr10-025/026-not-substitutedも残っている。\n- **R35**：r35-risk-basis-output-equalは、正常値 `risk-register:S0:RISK-A@rev-3` との完全な一致だけを受け入れる。出力の欠落（missing）と不一致（mismatch）は、別々の単独CASEに分かれている。既存のr22-risk-basis-unknownやr06-conflict/staleとも混同していない。\n- **R38**：CASE-043-07は、入力source、選択した場合の041抽出結果、所見根拠がすべてcurrentのときに限り、確立済みの重複finding出力を043自身の候補matrixの訂正として扱う。L2:994は、重複・冗長性findingを043の出力に含めている。そのため、この自己訂正は区分の外への戻しではない。宛先も、AC-043-02と原因別戻し先の節に明記されていて、一つに決まる。\n- **旧文と新文の突き合わせ（類型5）**：既存の条件で弱まったものはない。\n  - 旧07のoracleの2文（全組合せを推測で追加しない、既存ownerの判断なしに義務を削除しない）は、そのまま残っている。\n  - AC-04の「matrixは025/026の成果を代替しない」と、生成禁止の7項目も残っている。\n  - 009・041・004への戻しと、「独立sourceの欠落を041の欠落へ読み替えない」も残っている。\n- **ID対応**：043節について、business／NFR側の4本文は、もとからL2ごとに1行の「独立要件／criterionなし」の形で、CASE単位の範囲表を持っていない。そのため、同期が必要な箇所はない。043のCASE行ID 59件に、重複はない。\n\n### Major\nなし。\n\n### Minor（返却しない。次に触るときに直せばよい）\n- m1：r35-missing/mismatchのAC欄は `AC-043-04` だけである。出力の訂正の根拠はAC-043-02にあるので、CASE-07と同じく `04/02` と併記すると追跡が正確になる。\n- m2：r10-receipt-onlyのoracleの末尾「設計成果物の不足は025/026へ返す」が、不足がないbaselineに対して条件文として浮いている。\n- m3：r35の3行が、r22群の行の間（FV:2243–2245）に入っていて、並び順がそろっていない。\n- m4：索引行の043-01〜03（FV:2188–2190）は「列挙された子CASE」と書いているが、子CASEのIDを列挙していない（変更前から）。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（69be139c3）でそろった。\n- **条件3は未照合。** 判断記録を作った後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `781e337f…cb33` |\n| L3-FR | `e3b18c53…e885` |\n| L3-NFR | `ed08243e…8317` |\n| L10-BV | `84f68583…f1a4` |\n| L10-FV | `0cb0d7a9…7f9c` |\n| L10-NFR | `def22775…a53e` |\n\n### Info\n- #2655（HARNESS Stage5）も、同じHARNESSの6本文を変更している。\n- どちらかが先にmergeされたら、もう片方は最新mainを取り込んだうえで、次の2つをやり直す。\n  - 差分が同じであることの確認\n  - 条件1・2の照合\n\n### 未確認範囲\nなし。\n",
+  "review_raw_sha256": "584040baaca9d494a3eec9ad5c17185f8628cc52952e227c325540a8cf132b5f",
+  "review_raw_bytes": 4353,
+  "six_document_sha256": {
+    "docs/helix-harness/L3-requirements/functional-requirements.md": "e3b18c538d2903e7adfd3d800bc82f6eb7190a6de870e72ac2e4913b733de885",
+    "docs/helix-harness/L3-requirements/business-requirements.md": "781e337ff60f8765467b216edefdeca14416c2b8c1fd3889b8afa5d6f4d7cb33",
+    "docs/helix-harness/L3-requirements/nfr-grade.md": "ed08243e009b629aba5167786bf47d946f27e2e1ff8526d61480d826cd3a8317",
+    "docs/helix-harness/L10-verification/functional-verification.md": "0cb0d7a9fc0fc23d38c809dd47cca770f860c47905cd60e7d7f59222d3a07f9c",
+    "docs/helix-harness/L10-verification/business-verification.md": "84f68583915cc9c206d44d08e188508f73b0b9ea69ae73b82b61ceec8196f1a4",
+    "docs/helix-harness/L10-verification/nfr-verification.md": "def2277503ef06c49fef4868dce7eab2322f761c9ff31e630b217f133325a53e"
+  },
+  "fixed_source_pins": [
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "spans": [
+        {
+          "start_line": 986,
+          "end_line": 1001,
+          "sha256_raw_lf": "4817136b4aca117e056abd02e0d3a138beec59b6a3a3989ace216f062dd2a048"
+        }
+      ]
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "spans": [
+        {
+          "start_line": 723,
+          "end_line": 734,
+          "sha256_raw_lf": "6c4377e4db0f8473c22cb6185ded4d0fa5e0e2ecf731097b0f346b4d3fd04503"
+        }
+      ]
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256_raw_lf": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "spans": [
+        {
+          "start_line": 145,
+          "end_line": 145,
+          "sha256_raw_lf": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF"
+    }
+  ],
+  "condition1": "Opus5.5 no_findings Major0 unreviewed0",
+  "condition2": "Fable claude-fable-5-1 承認してよい",
+  "condition3": "pending independent comparison",
+  "minor_disposition": "m1-m4 explicitly not returned; retained without body edits",
+  "concurrent_body_pr": 2655
+}

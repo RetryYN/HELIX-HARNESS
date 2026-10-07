@@ -1,0 +1,250 @@
+{
+  "record_type": "static_source_and_draft_repair_evidence",
+  "record_status": "draft_evidence_only",
+  "authority_effect": "none",
+  "base_commit": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "worktree": "/home/tenni/.helix-worktrees/l3-os-hold-expiry-repair",
+  "branch": "codex/l3-os-hold-expiry-repair",
+  "task_basis": {
+    "formal_comment_id": 6038681135,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2652#issuecomment-6038681135",
+    "scope": "B — OS hold/confirmation-wait expiry handling; L3/L10 draft only"
+  },
+  "accepted_stage2a_parents": [
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "bytes": 153353,
+      "spans": [
+        {
+          "lines": "672-681",
+          "sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72"
+        },
+        {
+          "lines": "682-691",
+          "sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "bytes": 82708,
+      "spans": [
+        {
+          "lines": "341-351",
+          "sha256": "d494fc31441a875fd3591c7a63858ecdaaf6965959a8a9547942dec55d651285"
+        },
+        {
+          "lines": "352-358",
+          "sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+        }
+      ]
+    }
+  ],
+  "po_adoption_record": {
+    "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "commit": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+    "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "bytes": 5689,
+    "spans": [
+      {
+        "lines": "46-57",
+        "sha256": "a03c6f2129aebe9e89a9306f33542b8ba49285410ab747d6b587ca6e8bacf1f8"
+      }
+    ]
+  },
+  "legacy_business_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+    "commit": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+    "sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+    "bytes": 40170,
+    "spans": [
+      {
+        "lines": "147-156",
+        "sha256": "b250a3ec8e39600ebf41c124f5b903038842293ab842aa89e1c24b5bd0830a1d"
+      },
+      {
+        "lines": "160-164",
+        "sha256": "88459d2f3dde88dfe32a5192096321c6690c56948acd9288a3cd4618e10391d5"
+      }
+    ]
+  },
+  "legacy_hmc_source_disambiguation": {
+    "source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requests.md",
+      "commit": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "sha256": "38769f088c8f2dee4ae79c9d0528c1779eadc175b61284aa77518274b23bc772",
+      "bytes": 3656,
+      "spans": [
+        {
+          "lines": "21-25",
+          "sha256": "904fcc9f05cbc0bc99a6c91881660c6002c2f69e58b0a5127792104c232b6d83"
+        }
+      ]
+    },
+    "use": "The source labels the coordination request HMC-BR-001. It is a legacy candidate reference only, not an adopted direct L3 parent or authority source. The supplied proposal’s HMC-BR-009 label is not present and is not carried forward."
+  },
+  "parent_and_routing_correction": {
+    "direct_requirement_scope": [
+      "HELIXOS-L2-018 deadline/assignment/handoff input",
+      "HELIXOS-L2-019 event continuity, unfinished-duty retention, episode/projection"
+    ],
+    "bundled_reference_only": [
+      "HELIXOS-L2-004",
+      "HELIXOS-L2-009"
+    ],
+    "legacy_OS_009": "routing container; stage null; not a direct Stage 2a parent; no new FR/BR or parent added",
+    "interpretation": "L2-018 supplies only an already-declared deadline and its source scope. L2-019 preserves and projects that state. Missing declaration or comparison basis remains undeclared/unknown; it does not create a new upstream deadline contract."
+  },
+  "legacy_disposition": {
+    "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+    "reused_meaning": "AI is autonomous after upstream authority boundaries and unresolved residue is made visible to the PO; the PO retains upstream judgment and exception intervention.",
+    "rederived_for_current_layers": "PO receives AI-unresolved residue with source, owner, deadline state, evidence and unfinished duties. This presentation does not constitute a decision.",
+    "replaced_or_excluded": "Old L0-L3 numbering, L4+ human per-gate/merge model, runtime, and approval routing are not transferred. No new permission, human approval gate, deadline value, comparison boundary, reminder interval, aging threshold, auto-stop or reassignment is introduced."
+  },
+  "findings_and_cases": [
+    {
+      "id": "declared_deadline_and_continuity",
+      "parent": "HELIXOS-L2-018 -> HELIXOS-L2-019",
+      "case": "CASE-OS-019-02g",
+      "oracle": "Declared source deadline is retained across hold/restart; pre-expiry state is not shown as expired."
+    },
+    {
+      "id": "undeclared_deadline",
+      "parent": "HELIXOS-L2-019",
+      "case": "CASE-OS-019-02h",
+      "oracle": "Explicitly show deadline undeclared; do not infer time or stop."
+    },
+    {
+      "id": "confirmed_expiry_list",
+      "parent": "HELIXOS-L2-018/019",
+      "case": "CASE-OS-019-02i",
+      "oracle": "Only source-confirmed expired unresolved holds appear as expired with owner/source/scope/duty trace; no current-guidance resurrection, stop or reassignment."
+    },
+    {
+      "id": "unknown_expiry_basis",
+      "parent": "HELIXOS-L2-018/019",
+      "cases": [
+        "CASE-OS-019-02j1a",
+        "CASE-OS-019-02j1b",
+        "CASE-OS-019-02j1c",
+        "CASE-OS-019-02j2",
+        "CASE-OS-019-02j3",
+        "CASE-OS-019-02j4"
+      ],
+      "single_mutations": [
+        "source revision",
+        "applicable scope",
+        "current time",
+        "source comparison boundary"
+      ],
+      "oracle": "Unknown/unfinished only; no inferred expiry or validity."
+    },
+    {
+      "id": "ai_unresolved_residue_to_po",
+      "basis": "legacy business source re-derived under current PO authority boundary",
+      "cases": [
+        "CASE-OS-019-02k",
+        "CASE-OS-019-02l"
+      ],
+      "single_mutation": "PO response event absent/present",
+      "oracle": "PO sees residue with evidence/owner/unfinished state; neither presentation nor a mere response generates decision, authority, resolution or completion."
+    }
+  ],
+  "target_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "bf16fa3676869d507d9dc31f3f571432bb6a9f14a59b06d311d9e44c27035eac",
+      "bytes": 198278,
+      "spans": [
+        {
+          "lines": "166-176",
+          "sha256": "61b06f9ae2b55383a34acce669c84931871f25548b0d8848afc664eeead72742"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "335e768de63388595f472bf1ac97a724901e59acf39410f5aefab8d09a7fe659",
+      "bytes": 19764,
+      "spans": [
+        {
+          "lines": "35-38",
+          "sha256": "e6eed2a96466210567e3bba5e38f1eb37efe27e5e381efd3cd620bcaaeea1528"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "b0ffb507b995700e619e2854c463c9c5e6a1e59ee93943376419840daa5239af",
+      "bytes": 32024,
+      "spans": [
+        {
+          "lines": "61-64",
+          "sha256": "f570e387626c12a54c114236e99933b66d424423e5ebf8b0e9ccd0637f247b99"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "697cf4ccbe6b9d5838c4ec3af89833de18c3db01387840164b2b5e4fa1a0a14d",
+      "bytes": 228305,
+      "spans": [
+        {
+          "lines": "417-448",
+          "sha256": "0fd5930489f6664b35f4a2eb769f61200c78b1c42ab2fabb516192a4ab2f230f"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "a1e9fb7bb96db770c12032774d452f18327d6772196143380bea8ee19a78255c",
+      "bytes": 17113,
+      "spans": [
+        {
+          "lines": "27-108",
+          "sha256": "e3e8846e76d59d7cb1b8a4a7bb03432c7963e659316fea769ae2261f68a6162f"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "daa4b6c0342eaacf23bae40610a2eb73ad9ef80c8d9d087d49a88bb1c851563c",
+      "bytes": 28778,
+      "spans": [
+        {
+          "lines": "51-54",
+          "sha256": "d013df8865d6cd2777ef67ffb4d5a7b0645979beb0539e855002f06292380c55"
+        }
+      ]
+    }
+  ],
+  "static_validation": {
+    "status": "passed",
+    "checks": [
+      "exactly six allowed L3/L10 documents changed",
+      "Author inspection performed before commit",
+      "fixed L2/L11 source files are unchanged",
+      "fixed parent PO adoption and old business source spans are pinned",
+      "all eleven new functional CASE IDs occur exactly once and are cross-indexed once in business verification",
+      "AC-OS-019-04 occurs once",
+      "unknown expiry inputs are split into independent single-field mutations",
+      "explicit undeclared/expired/unknown/residue conditions covered",
+      "no fabricated deadline, duration, reminder, threshold, auto-stop, or reassignment",
+      "OS-009 is explicitly excluded as direct parent and no HMC-BR-009 claim is introduced",
+      "git diff --check passed"
+    ],
+    "runtime_tests_executed": false,
+    "l10_execution_performed": false,
+    "approval_created": false
+  },
+  "root_acceptance_notes": [
+    "Root verified all source full/span pins.",
+    "Missing/stale/conflict source revision split into independent CASE IDs; 11 new cases total.",
+    "Concrete synthetic deadline, comparison boundary and before/at-boundary time inputs declared. These are not product defaults.",
+    "Projection no-new-stop statement explicitly preserves L2-018 existing assignment-stop obligation."
+  ]
+}

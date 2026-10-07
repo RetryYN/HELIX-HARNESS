@@ -1,0 +1,145 @@
+{
+  "artifact_type": "intelligence_stage3_review03_correction",
+  "authority_effect": "none; no approval, L10 pass, or delegated decision generated",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": 3,
+    "review": "#2658 review03",
+    "parents": [
+      "HELIXINTELLIGENCE-L2-072",
+      "HELIXINTELLIGENCE-L2-067",
+      "HELIXINTELLIGENCE-L2-078",
+      "HELIXINTELLIGENCE-L2-011",
+      "HELIXINTELLIGENCE-L2-007"
+    ],
+    "boundaries": "Only review03 corrections in the six L3/L10 bodies and this immutable evidence; fixed parent semantics and prior decision/audit records remain unchanged."
+  },
+  "base": "43e8e044107129ccf46e314f18a622441aae8c35",
+  "formal_review_comment": {
+    "issue": "#2658",
+    "comment_id": 6041244687,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2658#issuecomment-6041244687",
+    "body_utf8_bytes": 5584,
+    "body_sha256": "1ba692e47d622a5d9a4496b6d3b993b72a6d9b980da184534681e4fd19dc11d5"
+  },
+  "fixed_source_pins": {
+    "L2-072:561-598": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "lines": "561-598",
+      "utf8_bytes": 13144,
+      "sha256": "7329b3b66941fcbc737b5b22bef36a2067f58fe6c7481d93b29cc29a84d53d61"
+    },
+    "L2-078:646-658": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "lines": "646-658",
+      "utf8_bytes": 8356,
+      "sha256": "855512dea63dfe30bdd768d8c59f75f278a3b8c2cceccc0177be6c81020dc292"
+    },
+    "L2-067:466-481": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "lines": "466-481",
+      "utf8_bytes": 5879,
+      "sha256": "2b8f8948e38b2238d6922b2b17062466d49038c23cfd606a342605cac3a51e37"
+    },
+    "L2-011:84-90": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "lines": "84-90",
+      "utf8_bytes": 1075,
+      "sha256": "6b922cf9e44859741a7d9e98093cd4db0db6adad840c6f6168396fa7fc86cc93"
+    },
+    "L11": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    }
+  },
+  "legacy_source_boundary": {
+    "inventory": "docs/governance/audits/requirements-stage/intelligence-stage3-delegation-recheck-2026-10-07.md",
+    "inventory_sha256": "b6990bf91b63d25e33e45657e57f00204009059706fdff1e24901a0270426d6e",
+    "assets_read": {
+      "LEGACY-ASSET-28FB": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:19-84 sha256 a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "LEGACY-ASSET-A952": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:30-41 sha256 6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185"
+    }
+  },
+  "corrections": [
+    {
+      "finding": "M1",
+      "change": "AC-072-12 now routes only to the fixed L2-072 four categories: requirement/target owner for judgment meaning/scope; BRAIN for selected knowledge; LABO for experiment/effect evidence; HARNESS for common pack contract. Candidate pack own version routes to requirement/target owner only when fixed meaning/scope and owner are identifiable; otherwise unknown. No INTELLIGENCE candidate owner is invented."
+    },
+    {
+      "finding": "M2",
+      "change": "NFR-078 grade and verification enumerate PO-limited three placement values plus five formal role/route values as eight independent single-variable negatives."
+    },
+    {
+      "finding": "M3",
+      "change": "AC-072-12 and both NFR-072 rows cover independent BRAIN identity/version, LABO shadow experiment/evaluation evidence, and HARNESS common contract version missing cases; candidate pack own version remains distinct."
+    },
+    {
+      "finding": "m12",
+      "change": "Added separate 067 effort-value and completion-time-value mismatch cases, with other values fixed and LABO return."
+    },
+    {
+      "finding": "m13",
+      "change": "CASE-011-06c now changes latency value only, with unit/measurement condition normal; oracle records value mismatch and preserves other metrics."
+    },
+    {
+      "finding": "m14",
+      "change": "CASE-072-07-02..09 failures explicitly reject wrong-owner routing outside fixed L2-072 categories or against each case oracle."
+    },
+    {
+      "finding": "m15",
+      "change": "INTELLIGENCE Stage 3 parent 007 added to BR and BV indexes."
+    }
+  ],
+  "preserved_immutable_records": {
+    "docs/governance/audits/requirements-stage/intelligence-stage3-delegation-recheck-2026-10-07.md": {
+      "sha256": "b6990bf91b63d25e33e45657e57f00204009059706fdff1e24901a0270426d6e",
+      "unchanged": true
+    },
+    "docs/governance/audits/requirements-stage/intelligence-stage3-review02-repair-2026-10-07.json": {
+      "sha256": "7ecf2061baf37095697610e20cc15373ae4a7181439e0961cfe995cd38c49556",
+      "unchanged": true
+    },
+    "docs/governance/audits/requirements-stage/intelligence-stage3-review02-followup-2026-10-08.json": {
+      "sha256": "559584f8aad0af008acfef20737a0237d3e9b6eeeecb903acb2428a910fbb2da",
+      "unchanged": true
+    },
+    "docs/governance/audits/requirements-stage/intelligence-stage3-review02-followup-2026-10-08.md": {
+      "sha256": "c9dca4cfabe7ca7af35b284f3ea50788fa5cb2b84729396784ec2ce25e626507",
+      "unchanged": true
+    }
+  },
+  "six_document_sha256": {
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": "bde86431339e3464e9e893dcd4e2f7aa9f6b7a81035762938621a258e2b2cc44",
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": "c19825b3fa82edaafd787bd092076bea910a89b99d13aa4c208b0c51e781b82f",
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": "a50c5379206610db3dd730a230ad4a52657f9600f7c8363101e1603d59ac8681",
+    "docs/helix-intelligence/L10-verification/business-verification.md": "386251e6fd6097b8892ace2ba2db5c69ce009fdb843a1c5bca3996f8cf581c4a",
+    "docs/helix-intelligence/L10-verification/functional-verification.md": "aeefde170f0087794bf86d3d3895c35c7646b5b7ec2a68666b90c4f0f35913a0",
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": "f38e48d6dc2928009caa14147d675dd1d7572cd0f8c2c65c993fbe5dc43baf12"
+  },
+  "validation": {
+    "static_checks": [
+      "exact formal comment raw body byte count and SHA256 matched",
+      "fixed 633bf12 source spans checked against raw git-show bytes",
+      "old-source inventory and asset boundary read and pinned; prior immutable audit hashes unchanged",
+      "normal/single-variable mismatch or missing fixtures and owner return paths cross-checked across FR/NFR grade/FV/NV",
+      "NFR-078 has 8 distinct single-variable negatives in grade and verification",
+      "CASE-072-07-02..09 reject wrong-owner routes; no invented INTELLIGENCE candidate owner remains",
+      "BR/BV Stage 3 index includes 007",
+      "six resulting document SHA256 recorded",
+      "git diff --check passed"
+    ],
+    "not_run": [
+      "runtime",
+      "tests",
+      "old CLI/hooks/runtime/CI"
+    ],
+    "independent_review": "pending",
+    "commit_push": "not performed"
+  },
+  "human_readable_record_sha256": "70fbe09914197c0ce02987eade072ec3d2e885aec0b0bf5f24f5e3aa1dc97c91"
+}

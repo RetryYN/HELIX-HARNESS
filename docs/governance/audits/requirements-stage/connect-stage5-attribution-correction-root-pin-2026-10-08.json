@@ -1,0 +1,27 @@
+{
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": "CONNECT Stage5 parent007 only",
+  "Root_verified": [
+    "actual formal raw comments",
+    "six bodies equal target review and current main",
+    "prior records unchanged",
+    "fixed L2/L11 raw spans",
+    "bounded old source comparators"
+  ],
+  "records": [
+    {
+      "path": "docs/governance/decisions/helix-connect-stage5-l3-l10-attribution-correction-2026-10-08.md",
+      "sha256": "69bda9950dccb721bf0640c6d590ea8f5c7a990b8e5d0ea3114c8916d8f0ac97"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/connect-stage5-historical-attribution-reproof-2026-10-08.json",
+      "sha256": "58fe401a0e5d9fc319321f2f15d7644adf367bb3f5f50fce1cc76edf4e5cf64c"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/connect-stage5-historical-attribution-reproof-2026-10-08.md",
+      "sha256": "f102b868d538d380d5d4412e3a03d5502de44df2c391aad8a1c718ac97806657"
+    }
+  ],
+  "condition3": "pending independent verification",
+  "L10_executed": false
+}

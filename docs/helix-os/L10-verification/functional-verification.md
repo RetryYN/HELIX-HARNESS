@@ -418,6 +418,8 @@ identity/context/authority evidenceの不足も既存ownerへ戻し、CASE-OS-01
 
 source/revision/correlation ID/actor/data-use class付きの要求・判断・作業・検証・backflow/checkpoint eventからepisodeを再構成。Oracleはmissing/duplicate/stale/denied/not-runとsuccessを区別し、restart後もscope/deadline/budget/failure count/unfinished dutiesを保持する。
 
+期限fixtureの合成宣言値はsource `deadline-policy-sim@r1`、scope `hold-sim`、owner `OS`、deadline `2030-01-01T10:00:00Z`、比較境界 `now >= deadline` とする。02gの現在時刻は `2030-01-01T09:59:00Z`、02iは `2030-01-01T10:00:00Z` とし、他CASEはこの宣言を保って指定の一項目だけを変える。これはfixture値であり製品の期限既定値ではない。対象はL1-002/008に沿う人間向けL2-019確認対象一覧のprojectionであり、実行中assignmentの既存停止条件を無効にしない。
+
 ### AC-OS-019-02 — continuity negatives（AC-OS-019-02）
 
 | CASE | mutation（他条件は正常） | expected / owner |
@@ -428,6 +430,24 @@ source/revision/correlation ID/actor/data-use class付きの要求・判断・�
 | `CASE-OS-019-02d` | unauthorized data-use classを他project/learning用途へ送る | 送信を拒否しSECURITY/origin ownerへ返す |
 | `CASE-OS-019-02e` | event/record countだけをepisode completionとする | completionを拒否しrequired state/evidenceへ戻す |
 | `CASE-OS-019-02f` | replay時に失敗位置の証拠を欠落させraw-event全件再読込で成功扱い | checkpointを確定せず失敗位置・未完義務を保持してorigin ownerへ返す |
+
+### CASE-OS-019-02g–02l — hold・確認待ちの人間向け一覧projection（AC-OS-019-04）
+
+以下はL1-002/008に沿う人間向けL2-019 projection listの静的oracleである。期限値・境界・間隔はfixture固有の既存契約sourceからのみ入力し、一CASEにつき期限状態またはprojectionの一つを変える。CASEは実運用の催促、停止、再割当、要求判断、L10実行を意味しない。
+
+| CASE | mutation（他条件は正常） | expected / owner |
+|---|---|---|
+| `CASE-OS-019-02g` | 契約ownerが期限と比較境界を宣言したhold/確認待ちを期限前に中断し、期限内に再開 | L2-019 projection listに期限前状態をholdとして示し、restart後も同じsource/revision/scope、deadline、未完義務を保持する。期限切れを早期に立てない |
+| `CASE-OS-019-02h` | 他の入力は有効なままdeadline宣言だけを欠落 | L2-019 projection listに「期限未宣言」と残し、期限・期限切れ・継続停止を推測しない。該当source ownerへ確認を戻し、未完義務を保持する |
+| `CASE-OS-019-02i` | 既存sourceの期限と比較境界により期限切れが確定し、hold/確認待ちが未解決 | 人間向けL2-019 projection listで期限切れとして識別し、owner/source/revision/scope/deadline/未完義務を示す。古い通知をcurrent guidanceや成功checkpointへ戻さず、source-boundな解決まで履歴を追跡する。自動停止・再割当はしない |
+| `CASE-OS-019-02j1a` | deadlineのsource revisionだけをmissingにする | projection listで期限状態をunknown/未完として表示し、期限切れまたは有効を断定せず、該当source ownerへ確認を戻し、未完義務を保持する |
+| `CASE-OS-019-02j1b` | deadlineのsource revisionだけをstaleにする | projection listで期限状態をunknown/未完として表示し、期限切れまたは有効を断定せず、該当source ownerへ確認を戻し、未完義務を保持する |
+| `CASE-OS-019-02j1c` | deadlineのsource revisionだけをconflictにする | projection listで期限状態をunknown/未完として表示し、期限切れまたは有効を断定せず、該当source ownerへ確認を戻し、未完義務を保持する |
+| `CASE-OS-019-02j2` | deadlineの適用scopeだけをunknownにする | projection listで期限状態をunknown/未完として表示し、他scopeの期限を流用しない |
+| `CASE-OS-019-02j3` | 期限判定に用いる現在時刻だけをunknownにする | 期限切れまたは有効を断定せず、projection listの期限状態をunknown/未完に保つ |
+| `CASE-OS-019-02j4` | 期限sourceの比較境界だけを欠落させる | 境界を推測せずprojection listをunknown/未完に保ち、deadlineを新しい期限規則へ変換しない |
+| `CASE-OS-019-02k` | owner/source/revision/scopeと未完義務がsource-boundなhold/確認待ちを人間向け一覧へ投影する | L2-019 projection listにevidence、owner、期限状態、未完義務を表示し、一覧の表示だけでは判断、authority、要求解決、完了を生成しない |
+| `CASE-OS-019-02l` | 02kと同一入力で、projection listをdecision/authority/completionとして扱う誤出力をそれぞれ独立armで追加する。各armは単一出力fieldだけを変異させ、他の入力と出力を正常値に保つ | decision arm・authority arm・completion armを個別に拒否し、source-boundな未完義務と一覧projectionを維持する |
 
 ### CASE-OS-019-03 — unseen crash/replay sequence（AC-OS-019-03）
 
@@ -981,13 +1001,13 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 
 この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
 
-全行は静的oracle候補である。ID/記載の存在は要求採択、実装許可、L3承認、stage completionを生成しない。missing/unknown/staleは、固定L2に明記された該当source/unit/connection/要求ownerへ返し、scope外の親や全Stageへ波及させない。
+全行は静的oracle候補である。ID/記載の存在は要求採択、実装許可、L3承認、stage completionを生成しない。missing/unknown/staleは、固定L2に明記された該当source/unit/connection/要求ownerへ返し、scope外の親や全Stageへ波及させない。既存CASE-025-01〜21とCASE-025-022〜032はIDを変更せず保持し、今回以後の追加IDは3桁連番を使用する。
 
 | AC候補 | 親 | 正常・独立反例の範囲 |
 |---|---|---|
-| `AC-OS-L3-025-01` | `HELIXOS-L2-025` | 各unit（サービス①〜⑦を個別に含む）、選択connection、composite正常、部分未見正常を別identityで照合する。個別CASE: 025-01,03,05–13。|
-| `AC-OS-L3-025-02` | `HELIXOS-L2-025` | 一つの対象projectの単独成立と7製品/別project/構成体の未完を分け、unknown/stale/未許可/human-waitを隠さず、後続版前倒し・OS外部製品化・LABO移管戻しを拒否する。個別CASE: 025-02,04,14–21。|
-| `AC-OS-L3-025-03` | `HELIXOS-L2-025` | target/version/unit入力束縛と、未決authority・残る義務の後続受入への引継ぎを確認する。個別CASE: 025-022–032。|
+| `AC-OS-L3-025-01` | `HELIXOS-L2-025` | HELIX自身＋性質の異なるprojectでの全段一致trace、各unit（サービス①〜⑦）、選択connection、composite正常を照合する。個別CASE: 025-01,03,05–13,048。|
+| `AC-OS-L3-025-02` | `HELIXOS-L2-025` | 一つの対象projectの単独成立と7製品/別project/構成体の未完を分け、unknown/stale/未許可/human-wait、後続版前倒し・OS外部製品化・LABO移管戻し・7製品完成を個別初期配布へ要求する誤前提を拒否する。個別CASE: 025-02,04,14–21,047,049。|
+| `AC-OS-L3-025-03` | `HELIXOS-L2-025` | target/version/unit入力束縛、trace各段の単独欠落、未決authority・残る義務の後続受入への引継ぎを確認する。個別CASE: 025-022–039。|
 | `AC-OS-L3-026-01` | `HELIXOS-L2-026` | 同一revisionへ束縛したvalid入力から候補、closed dependency/safety set、除外、比較範囲を返す。空pack集合の除外と最小性誤導出を拒否する。個別CASE: 026-01,04–06,25–30。|
 | `AC-OS-L3-026-02` | `HELIXOS-L2-026` | source identity/revision、contract version/compatibility、recovery、permission/owner/human-processと通常/安全依存の各missing/unknown/stale/conflictを単独化する。個別CASE: 026-02,03,07–24。|
 | `AC-OS-L3-026-03` | `HELIXOS-L2-026` | 未決pack境界・未撤去working tree・別stage bootstrap cycleを閉包不足として保持し、局所的な1層削除だけのminimum主張を拒否する。trace-only cycleは誤判定しない。導出成功から段階構成採択を生成しない。個別CASE: 026-04,05,25–30,060。|
@@ -1008,7 +1028,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 
 | CASE ID | 親 / AC | 入力・単独変異 | 期待oracle |
 |---|---|---|---|
-| `CASE-OS-L10-025-01` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 複数projectの異なる対象revisionで、各unit・明示接続・composite evidenceが揃う正常例。 | 3種類のstate/ownerを別々にtraceし、単位証拠の合算でcomposite条件を代替しない。|
+| `CASE-OS-L10-025-01` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 合成fixtureのHELIX自身 `HELIX-self@r1`（scope `OS self-management`）と性質の異なる `project:campaign-site@r3`（scope `public-site service`）を含める。両方で要求authority→ticket→Worker→検収→提供/運用→LABO評価→OS還流を記録する。HELIX側は `auth:h1→ticket:h1→worker:h1→inspect:h1→operate:h1→labo:h1→os-return:h1`、project側は `auth:p3→ticket:p3→worker:p3→inspect:p3→operate:p3→labo:p3→os-return:p3`。各HELIX段は同じ `(project=HELIX-self, target_revision=r1, scope=OS self-management, authority_ref=auth:h1)`、各project段は同じ `(project=campaign-site, target_revision=r3, scope=public-site service, authority_ref=auth:p3)` を保持し、source refは各連鎖の直前段IDへ一致させる。fixture値のみで実decisionを生成しない。 | 両連鎖の各段でproject/revision/scope/authority値と直前段source参照が一致し、unit・選択connection・compositeを別stateでtraceする。|
 | `CASE-OS-L10-025-02` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 一つのproject/serviceだけで独立成立し、他の製品と別projectは未完のままの個別初期作業。 | 選択scopeを扱い、全7製品完了待ちを追加しない。全体1.0成立も主張しない。|
 | `CASE-OS-L10-025-03` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 選択connection evidenceだけを一つ欠落させる。 | 当該connectionとcompositeのみ未完にし、source/connection ownerへ戻す。他unit成功は保持。|
 | `CASE-OS-L10-025-04` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | unit成功をcomposite成功に昇格する一変異。 | 構成体固有義務の未完を保持し、成功上書きを拒否。|
@@ -1045,15 +1065,15 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-025-10` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | HARNESSサービス⑥の対象revisionと単体受入が明示され、他サービスと構成体は未完。 | サービス⑥だけを個別成立として保持し、全体1.0は未完。 |
 | `CASE-OS-L10-025-11` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | HARNESSサービス⑦の対象revisionと単体受入が明示され、他サービスと構成体は未完。 | サービス⑦だけを個別成立として保持し、全体1.0は未完。 |
 | `CASE-OS-L10-025-12` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 選択されたconnectionの明示契約・対象revision・受入evidenceが揃う正常例。 | そのconnectionだけ別identityで成立し、非選択connectionを必須化しない。 |
-| `CASE-OS-L10-025-13` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 選択サービス・connection・複数projectを含む構成体固有端から端evidenceが揃う正常例。 | 構成体だけの受入条件を別に記録し、単位成功とのidentityを保つ。 |
+| `CASE-OS-L10-025-13` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 独立した合成fixtureとして `HELIX-self@r2`（`OS self-management`）と性質の異なる `project:data-migration@r8`（`data-migration service`）を含める。HELIX側source refは `auth:h2→ticket:h2→worker:h2→inspect:h2→operate:h2→labo:h2→os-return:h2`、project側は `auth:p8→ticket:p8→worker:p8→inspect:p8→operate:p8→labo:p8→os-return:p8`。各HELIX段は同じ `(project=HELIX-self, target_revision=r2, scope=OS self-management, authority_ref=auth:h2)`、各project段は同じ `(project=data-migration, target_revision=r8, scope=data-migration service, authority_ref=auth:p8)` を保持し、source refは各連鎖の直前段IDへ一致させる。選択connection/composite evidenceも同じproject/revisionへ結ぶ。| 両連鎖の各段でproject/revision/scope/authority値と直前段source参照が一致し、構成体受入をunit単独成功と混同しない。|
 | `CASE-OS-L10-025-14` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 未fixtureのHARNESSサービスが選択され、同じ固定L2契約内で単独受入が揃う正常例。 | 未見であることだけを理由に拒否せず、選択scopeだけを評価し全体成立は補完しない。 |
 | `CASE-OS-L10-025-15` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 他のprojectのauthority stateをunknownにする単独変異。 | unknownを表示し個別単位を全体成功へ昇格せず、当該source ownerへ返す。 |
 | `CASE-OS-L10-025-16` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 選択connection revisionだけをstaleにする単独変異。 | 該当connection/compositeを未完にし、単独unitの結果を保持する。 |
 | `CASE-OS-L10-025-17` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 選択serviceに必要な操作許可だけを欠落させる単独変異。 | 許可状態を推測せず当該operationを未許可で保持する。 |
-| `CASE-OS-L10-025-18` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 人の確認待ち状態だけを未解決にする単独変異。 | human-waitを表示し、unitまたはcompositeの成功へ読み替えない。 |
-| `CASE-OS-L10-025-19` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 1.0 scopeへ2.0/3.0/4.0/5.0能力を必須化する一変異。 | 後続版能力を前提から除き、固定L2の1.0条件だけで判定する。 |
-| `CASE-OS-L10-025-20` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | HELIX-OSを外部販売HARNESS製品として数える一変異。 | 機構と製品属性を訂正し、OSを外販製品に分類しない。 |
-| `CASE-OS-L10-025-21` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | L1-011/012のLABO移管済み研究・横断診断をOSへ戻す一変異。 | OS側の成立を拒否し、既存LABO/INTELLIGENCE等の移管状態を保持する。 |
+| `CASE-OS-L10-025-18` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 必要な既存人間判断入力は存在し、その判断状態だけが待ちのまま。他の入力を有効に保つ単独変異。 | 既存判断のpending/human-waitを示し、unit/compositeを成功へ読み替えない。判断入力自体の欠落（CASE-025-031）とは区別する。|
+| `CASE-OS-L10-025-19` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 1.0 scopeへ2.0/3.0/4.0/5.0能力を必須化する一変異。 | 後続版を1.0前提にせず、誤った追加条件をその条件の既存要求/source ownerへ返す。固定L2の1.0条件だけを判定する。|
+| `CASE-OS-L10-025-20` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | HELIX-OSを外部販売HARNESS製品として数える一変異。 | 機構と製品属性を訂正し、誤分類の起点となる既存Concept/対象L1 sourceへ返す。OSを外販製品に分類しない。|
+| `CASE-OS-L10-025-21` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | L1-011/012のLABO移管済み研究・横断診断をOSへ戻す一変異。 | OS側への再移管を拒否し、移管先として既に記録されたLABO/INTELLIGENCE等のsource ownerへ戻して移管状態を保持する。|
 | `CASE-OS-L10-026-07` | `HELIXOS-L2-026` / `AC-OS-L3-026-02` | 要求source identityだけを欠落。 | 要求/authority ownerへ返し、他入力・既存依存stateを保ったまま導出を未完にする。 |
 | `CASE-OS-L10-026-08` | `HELIXOS-L2-026` / `AC-OS-L3-026-02` | 要求source revisionだけを欠落。 | revision unknownを保持し、候補導出を成立扱いしない。 |
 | `CASE-OS-L10-026-09` | `HELIXOS-L2-026` / `AC-OS-L3-026-02` | HARNESS contract versionだけを欠落。 | 互換を推定せずHARNESS ownerへ返す。 |
@@ -1252,5 +1272,15 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 
 | CASE ID | 親 / AC | 入力・単独変異 | 期待oracle・戻し先 |
 |---|---|---|---|
-| `CASE-OS-L10-025-031` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | 必要な既存人間判断のreceiptだけ欠落。対象revision・HARNESS構成版・全unit状態/証拠・停止条件は有効。 | 判断を捏造せず当該義務を未完として保持し、欠けた判断sourceへ返す。他unitの有効状態を保持し追加の判断者・承認を作らない。 |
+| `CASE-OS-L10-025-031` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | 必要な既存人間判断入力自体だけが欠落。対象revision・HARNESS構成版・全unit状態/証拠・停止条件は有効。CASE-025-18の既存判断待ちとは別条件。 | 判断入力を推測せず当該義務を未完で保持し、欠けた判断sourceへ返す。他の有効stateを保持し新しい判断者・承認を作らない。|
 | `CASE-OS-L10-025-032` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | **正常引継ぎ**：構成体の他条件は保持し、authorityが未決で残る受入義務を後続受入へ渡す。 | 後続受入へ未決authorityと義務を明示して引き継ぎ、後続側でも未決・未完を保つ。完了やauthorityを作らない（L2-025:742–751, L11-025:396–399）。|
+| `CASE-OS-L10-025-033` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-01のHELIX側連鎖で要求authority recordだけを欠落させる単独変異。ticket以降および異種projectの全段は保持。 | authorityを後続ticket等から推測せず、欠けた要求/source ownerへ返す。残る義務と他project/unit stateを保持する。|
+| `CASE-OS-L10-025-034` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-01のHELIX側連鎖でticket recordだけを欠落させる単独変異。その他すべてを保持。 | ticketをWorker assignment等から推測せず、欠けたticket/source ownerへ返しtrace未完を保持する。|
+| `CASE-OS-L10-025-035` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-01のHELIX側連鎖でWorker stage recordだけを欠落させる単独変異。その他すべてを保持。 | Worker実施を検収/提供結果から推測せず、該当source/unit ownerへ返して未完を保持する。|
+| `CASE-OS-L10-025-036` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-01のHELIX側連鎖で検収stage recordだけを欠落させる単独変異。その他すべてを保持。 | 検収を提供/運用またはLABO評価から推測せず、該当source/unit ownerへ返して未完を保持する。|
+| `CASE-OS-L10-025-037` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-01のHELIX側連鎖で提供/運用stage recordだけを欠落させる単独変異。その他すべてを保持。 | 提供/運用をLABO評価やOS還流から推測せず、該当source/unit ownerへ返して未完を保持する。|
+| `CASE-OS-L10-025-038` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-01のHELIX側連鎖でLABO評価stage recordだけを欠落させる単独変異。その他すべてを保持。 | LABO評価を前後段から推測せず、LABO側の既存source ownerへ返して未完を保持する。|
+| `CASE-OS-L10-025-039` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-01のHELIX側連鎖でOS還流stage recordだけを欠落させる単独変異。その他すべてを保持。 | OS還流をLABO評価から推測せず、OSの既存sourceへ返して未完を保持する。|
+| `CASE-OS-L10-025-047` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 個別初期配布対象1製品のunit/対象revision/許可は揃い、他6製品は未完。個別配布の前提として7製品すべての完成を要求する一変異。 | 固定L2の個別初期配布境界を保ち7製品全完成の追加前提を拒否する。対象unit状態を既存owner/sourceに従って保ち、全体1.0は成立扱いしない。|
+| `CASE-OS-L10-025-048` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 1.0全体正常例。HARNESS 7製品それぞれの単体成立、選択connection、構成体固有端から端受入を同一scope/revisionで入力する。 | 7 unit、選択connection、compositeを別identityで照合し、固定L2の1.0全体確認を満たす正常oracleを返す。配布を生成しない。|
+| `CASE-OS-L10-025-049` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | CASE-025-048からHARNESSサービス⑥の単体成立/evidenceだけを欠落。残り6製品、選択connection、その他composite inputを保持する単独変異。 | 1.0全体を未完とし、6製品の個別成功は保持する。欠けたサービス⑥のsource/unit ownerへ返し、他製品を失敗扱いしない。|

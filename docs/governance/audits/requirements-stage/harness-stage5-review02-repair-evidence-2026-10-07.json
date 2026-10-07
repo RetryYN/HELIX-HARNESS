@@ -1,0 +1,320 @@
+{
+  "record_type": "l3_l10_stage5_review01_repair_evidence",
+  "record_id": "harness-stage5-review02-repair-evidence-2026-10-07",
+  "language": "ja",
+  "scope": "HELIX-HARNESS Stage5 review01修正の作成側証拠。旧判断記録とreview01 auditは不変。",
+  "status": "修正候補を起草・静的検査済み。独立review02、Opus/Fable再照合、L3承認、commit/push/PR操作は未実施。",
+  "authority_effect": "none",
+  "worktree": {
+    "path": "/home/tenni/.helix-worktrees/l3-harness-stage5-repair",
+    "branch": "codex/l3-harness-stage5-repair",
+    "base": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+    "head_before_changes": "c5ba216865d1cb66f688ac7304a28b935a88844f"
+  },
+  "formal_review01": {
+    "pr": 2655,
+    "comment_id": 6039580572,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2655#issuecomment-6039580572",
+    "reviewed_head": "c5ba216865d1cb66f688ac7304a28b935a88844f",
+    "reviewed_base": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+    "body_sha256_utf8": "99329e1ece2087bfb6c4b894a4ce1f76e94b10fdd49e7946856802cfa48ddc22",
+    "major_findings": 6,
+    "minor_findings": 1,
+    "finding_source_comment": {
+      "pr": 2621,
+      "comment_id": 6039140122
+    }
+  },
+  "prior_records_immutable": [
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage5-review01-supplement-2026-10-06.json",
+      "sha256": "af71c0492e89ea4a6bb9089e8b47b3917671c9633be313b51121841feeebcdcb"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage5-review01-root-acceptance-2026-10-06.json",
+      "sha256": "79e733fb7fe07a3d2564f142255df7bc5265ff663cedcf46b62a9e09231c50fb"
+    }
+  ],
+  "fixed_parent_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "spans": [
+        {
+          "start_line": 528,
+          "end_line": 528,
+          "sha256_raw_lf": "1213540183d5ba7f13c7f94564ca14ac956e2c500a795df4f368daf8bf7aebf6"
+        },
+        {
+          "start_line": 551,
+          "end_line": 554,
+          "sha256_raw_lf": "42a496b43375ab0aef23bc85f7a8ce179bd9b076f887955b54d201c69552efc0"
+        }
+      ]
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "spans": [
+        {
+          "start_line": 360,
+          "end_line": 360,
+          "sha256_raw_lf": "be3096f2e40c653d552e145f1517a32b202d8c5e71f8f9b03f0b43699db12d56"
+        },
+        {
+          "start_line": 442,
+          "end_line": 442,
+          "sha256_raw_lf": "320ed518583eaa5e05bdaeea27495c93d17b5091a97fe1f409368a5b7edc9e39"
+        }
+      ]
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "spans": [
+        {
+          "start_line": 726,
+          "end_line": 726,
+          "sha256_raw_lf": "2581f16b5f1a38eb70581ce7bb2a18351de73b9944dab270e55c750a3deae696"
+        },
+        {
+          "start_line": 779,
+          "end_line": 779,
+          "sha256_raw_lf": "68889f196d3efb40e35147e5851bfa9a346a888595875da7b033dcf37d961847"
+        }
+      ]
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "spans": [
+        {
+          "start_line": 527,
+          "end_line": 573,
+          "sha256_raw_lf": "c7b24b6526978f062f322a447b35adaf5c9b195d771761b234b2a55a34322d38"
+        }
+      ]
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "full_sha256_raw_lf": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "spans": [
+        {
+          "start_line": 574,
+          "end_line": 610,
+          "sha256_raw_lf": "2b4311388ea93d3ed51ff58b28ce901c331b71b697d92022f537d91540e42654"
+        }
+      ],
+      "retain_or_change": "旧HARNESS functional requirementsのStage 5 scope/authority semanticsを保持。現行対象のidentity別traceに再導出し、追加CASEで分割した。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "full_sha256_raw_lf": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "spans": [
+        {
+          "start_line": 121,
+          "end_line": 126,
+          "sha256_raw_lf": "5f1c6b0ed41a9621c381579ac141d5b5752ad7d4c8c39e59b40d4c3d1f9d1e76"
+        },
+        {
+          "start_line": 140,
+          "end_line": 140,
+          "sha256_raw_lf": "34209408ffd589b359218df42e113025b8fc6d86e795c858d6e95586281001dd"
+        }
+      ],
+      "retain_or_change": "旧L3 acceptance designの独立acceptance/oracle境界を保持。現行L10 CASEへ意味を再導出し旧testを実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "spans": [
+        {
+          "start_line": 39,
+          "end_line": 39,
+          "sha256_raw_lf": "937b2eacf7bcbd43aee17f301204050acbbfbd56768d8b8c8bd83a273722da64"
+        },
+        {
+          "start_line": 44,
+          "end_line": 44,
+          "sha256_raw_lf": "3f64c76317cdf3ab41aa23650c0464af0fe1699a104dd376aba7b9ac9fb078f4"
+        },
+        {
+          "start_line": 50,
+          "end_line": 50,
+          "sha256_raw_lf": "636bf050b8a9523e41735710af74de1a1b0711936385a0a16d6b8b501b4a66e0"
+        }
+      ],
+      "retain_or_change": "旧HELIX L3 infinity-loop functional semanticsのtrace/authority制約を保持。合成owner fixture値は旧source由来の製品実ownerではなく、検証用識別子として明示。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256_raw_lf": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "spans": [
+        {
+          "start_line": 128,
+          "end_line": 130,
+          "sha256_raw_lf": "9e4c85a7ae15753d7ba5cd3d36b01d66c0e4ca315b5433983e7f36c9ebf34ada"
+        },
+        {
+          "start_line": 187,
+          "end_line": 188,
+          "sha256_raw_lf": "ffaffe024cc55befcc10c92f4a44e1d0d4820c4c2c49ee76ec54d127f432b93d"
+        },
+        {
+          "start_line": 203,
+          "end_line": 205,
+          "sha256_raw_lf": "6f47ccb88bec60bb6a60a0ac09c4b6c3213f7e810adb127f63ef8d49f7ebe7a5"
+        }
+      ],
+      "retain_or_change": "旧HELIX L1 platform requirement由来のowner/権限/品質義務を参照し、責務カテゴリは保持。具体ownerを推測しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "full_sha256_raw_lf": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "spans": [
+        {
+          "start_line": 48,
+          "end_line": 48,
+          "sha256_raw_lf": "b40434529b50478c487fb56188086a535fe73b3ac2bd0549f2fb8593d6aeace8"
+        }
+      ],
+      "retain_or_change": "旧L9 system-test locatorをsource lineageとして保持し、旧test/runtimeを実行せず現行静的fixture設計に置換。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+      "full_sha256_raw_lf": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14",
+      "spans": [
+        {
+          "start_line": 250,
+          "end_line": 250,
+          "sha256_raw_lf": "234b96ee8aa737a0b8d79f56087ea8f928eeb574a96bef340a740dc3569986d4"
+        }
+      ],
+      "retain_or_change": "旧function specのcoverage semanticsを保持し、旧関数実装・APIを規範化しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+      "full_sha256_raw_lf": "477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf",
+      "spans": [
+        {
+          "start_line": 64,
+          "end_line": 64,
+          "sha256_raw_lf": "54d0eb07cd769ca336cd8f332fcd5b04cb57901e50e443adcf82ee7d14e68588"
+        }
+      ],
+      "retain_or_change": "旧unit coverageの独立trace/case semanticsを保持し、旧coverage/testを完了証拠にしない."
+    }
+  ],
+  "legacy_mapping": "旧source semanticsは既存review01 supplementのsource inventoryから継承し、旧判断本文は変更しない。ownerカテゴリを保持し、未特定の製品owner identityを定義しない。追加のfixture値はテストcase用合成identityであり、旧source/製品実ownerの主張ではない。",
+  "finding_dispositions": [
+    {
+      "id": "M1",
+      "status": "修正",
+      "response": "025出力とAC-025-04で要求採択・要求/L3承認・設計承認・実装許可・実装完了・利用者受入の禁止境界を保持。CASE 025-S5-040/041が設計承認・実装許可を独立に拒否する。"
+    },
+    {
+      "id": "M2",
+      "status": "修正",
+      "response": "S5-012/013にfixtureだけのowner_identity合成値を宣言し、出力owner_identityとのexact一致をoracle化。S5-062/063は対応値だけをmissingにした単独変異。BRAIN connector契約ownerとL2-009 source ownerカテゴリを分離し、026/022は別個のdesign/pair/oracle形成不足時だけ。"
+    },
+    {
+      "id": "M3",
+      "status": "修正",
+      "response": "CASE 033-S5-045/046/047でtest pass、Provisional→Integrated、Verifiedをそれぞれ個別に生成拒否。正常値はS5-038の独立sourceと照合。"
+    },
+    {
+      "id": "M4",
+      "status": "修正",
+      "response": "035正常CASE S5-043で実装許可・実行許可を独立source fieldとして明示。AC-035-11とCASE S5-046で実装許可のみの変異を拒否。"
+    },
+    {
+      "id": "M5",
+      "status": "修正",
+      "response": "AC-037-06とCASE S5-062/063/064で設計承認・別後続revisionの要件承認・実装許可を各々単独に拒否。レビュー経過の記述は要件本文から削除し監査証拠だけに保持。"
+    },
+    {
+      "id": "M6",
+      "status": "修正",
+      "response": "6文書のID trace、range table、business/NFR対応を同期。033-S5-043/044は同一の033 CASE表へ連続して配置。"
+    },
+    {
+      "id": "Minor-1",
+      "status": "修正",
+      "response": "FV表の033-S5-043/044直前の空行を除き、表を継続しID順の孤立行を解消。"
+    }
+  ],
+  "root_followup_corrections": [
+    {
+      "id": "R1",
+      "status": "修正",
+      "response": "AC-037-06からreview01の経過説明を削除。レビューfindingの再分類は本evidenceのfinding_dispositionsだけに記録。"
+    },
+    {
+      "id": "R2",
+      "status": "修正",
+      "response": "S5-012 owner_identity=`brain-connector-owner:fixture`、S5-013 owner_identity=`template-contract-source-owner:fixture`を宣言し、各oracleが出力とのexact一致を要求。合成値は製品実owner identityを定めない。S5-062/063は各identityだけを欠落させる。"
+    }
+  ],
+  "six_body_documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "sha256": "dc34fe7efc747f970c040d2b904b504d110358c28cfb6575318f1365a3ce5334"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "sha256": "821ebdeddfd75915cd92d095c7f86f3d5f2761d4b8c245353cbb1347b3a76302"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "sha256": "977dbd5cb04a388b7e68a704f40d19d1b733082a1cb4fd54976706bc5ce62e59"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "9f71d018b667da8fbf04543c702129b58987a85b92e071808e3d070daac89469"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "9b64457b0eb8d7046ae9534aef18a4681cbe5ea78b2dd452d14d12e323504731"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "e2838c9876b35a0a5247d4d162746b9affc2eb63c3870b25042ce994d4ee3645"
+    }
+  ],
+  "static_verification": {
+    "git_diff_check": "clean",
+    "authorized_scope": "既存6本文 + 本追補JSONのみ。既存audit/判断記録は不変。",
+    "checks": [
+      "FR AC / CASE trace links for the repaired findings",
+      "owner fixture synthetic values match output owner_identity exactly; 062/063 remove only the corresponding identity",
+      "033 S5-038–047 rows are contiguous and ordered",
+      "035 implementation permission normal / isolated negative field separation",
+      "037 authority negatives 062–064 and no review-history text in requirement body",
+      "six-document Stage5 trace/range synchronization",
+      "declared Stage5 CASE table row IDs are unique"
+    ],
+    "fixtures_executed": false,
+    "tests_or_old_cli_ci_runtime_executed": false
+  },
+  "limitations": [
+    "この記録は作成側の修正証拠であり独立reviewではない。",
+    "Opus/Fable再照合とL3承認は未実施。",
+    "静的fixture/CASEは設計のみで実行していない。"
+  ],
+  "actions_not_performed": [
+    "commit",
+    "push",
+    "PR comment/post",
+    "Ready",
+    "merge",
+    "L3 approval",
+    "implementation permission",
+    "execution permission"
+  ]
+}

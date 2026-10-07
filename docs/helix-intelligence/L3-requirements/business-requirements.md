@@ -68,7 +68,7 @@ Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT
 
 ## Stage 3 — 採択22親の業務境界
 
-固定L2に独立した業務成果基準がないため、このStage 3範囲で新たなbusiness requirement/KPI/事業ownerを導出しない。各親の機能条件はfunctional L3へ参照し、機能成立を事業価値達成・利用者受入と読み替えない。
+固定L2に独立した業務成果基準がないため、このStage 3範囲で新たなbusiness requirement/KPI/事業ownerを導出しない。各親の機能条件はfunctional L3へ参照し、機能成立を事業価値達成・利用者受入と読み替えない。011のmetric一致、067の採用候補/effort/evidence、072のpack candidateと非強制境界、078のdelta/role unknownも機能とsource traceの条件であり、事業成果・PO判断・採択結果ではない。
 
 | 親L2 | 扱い | 機能参照 | 境界 |
 |---|---|---|---|
@@ -95,7 +95,7 @@ Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT
 | `HELIXINTELLIGENCE-L2-073` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-073-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
 | `HELIXINTELLIGENCE-L2-078` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-078-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
 
-review08追補の005/016/067/072各機能fixtureは対応ACへtraceする。独立business基準や業務成果の承認は追加せず、比較成立・候補成立・修復結果照合からownerの業務判断を生成しない。
+review08追補およびStage 3再照合の005/007/011/016/067/072/078各機能fixtureは対応ACへtraceする。独立business基準や業務成果の承認は追加せず、比較成立・候補成立・修復結果照合からownerの業務判断を生成しない。
 ## Stage 5 — business outcome範囲（INTELLIGENCE 9親）
 
 状態: L3未承認の起草候補。旧L3のbusiness-detail分離形を起点とし、固定L2/L11が独立のbusiness outcome owner/metricを置く場合だけBR化する。今回の9親はfunction/acceptance/evidence ownershipを定めるが、独立事業KPIや成果閾値を定めないため新しいBR・business metric・Business CASEを追加しない。

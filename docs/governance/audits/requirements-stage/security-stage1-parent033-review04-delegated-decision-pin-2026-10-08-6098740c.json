@@ -1,0 +1,326 @@
+{
+  "record_type": "security_stage1_parent033_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "recorded_at": "2026-10-08",
+  "scope": {
+    "mechanism": "HELIX-SECURITY",
+    "stage": "Stage 1",
+    "parent": "HELIXSECURITY-L2-033",
+    "version_target": "1.0",
+    "adopted_registration": "MPR-RC-HELIXSECURITY-L2-033-002",
+    "also_bound_correction": "P0 correction supplement separately pinned by the adopted PO decision",
+    "exclusions": [
+      "Stage 2c parent031",
+      "other Stage 1 parents",
+      "other stages/mechanisms",
+      "L10 execution/pass",
+      "implementation/release/issue close"
+    ]
+  },
+  "review": {
+    "pr": 2663,
+    "formal_comment_id": 6041610577,
+    "formal_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2663#issuecomment-6041610577",
+    "formal_comment_created_at": "2026-10-07T15:55:33Z",
+    "formal_author_api": "RetryYN",
+    "formal_body_utf8_bytes": 3478,
+    "formal_body_sha256": "5ced57916467920dbcd5e78797448ee34e7c28b27ed77e08725f3eba6537689e",
+    "formal_body_raw": "## review04（independent review、HEAD 6098740c61f2c6dbd6d59921bf05d594103a99f2、merge-base f14ac303d265b6d23ecb1847b5dfd52901a442c6）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n- 条件1は、Opus 5.5の照合とreviewerの確認で判定した。\n- 条件2は、Fable advisor（claude-fable-5-1）の見解である。Fableは、6本文と固定親@318ec4a04（4つのspanのraw SHA-256を照合）を読み直したうえで判断した。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新mainと衝突なし\n\n### review03（#6041490928）への対応\n- **M1は解消した。** owner分類の期待値と、それ以外の分類を不合格とする規定が入った。\n  - CASE-02〜04（FV:242/249/256）の期待値は「OS（共通Worker契約の不足）」。固定L2-033:460とL2-033:463（OSの責務）、FR:320の分類表に合っている。\n  - CASE-05〜07（FV:264/272/280）の期待値は「unknown」。固定L2-007:137「未適用/未観測/unsupportedは実行停止・unknown」に合っている。物理欠落の候補は、CASE-09（観測済みのnot-applied）だけに限られている。\n  - 停止結果の配送先（既存OS assignment）は残っている。配送先と、不足しているownerの分類を混同しないことも明記された。\n  - FR:326にも同じ趣旨の追補があり、L3とL10で期待値が食い違わない。\n- **m10〜m13は解消した。**\n  - CASE-09には、観測済みのnot-appliedであるという前提が足された。owner移動や戻し先の循環を禁止する規定も残っている。\n  - CASE-12〜14は、評価器への適用証拠の入力をreceipt／宣言／自己申告だけに差し替える単独変異になった。前の版で「物理適用観測を正常値に固定」していたことによる矛盾は、これで解消した。\n  - CASE-05〜07の呼称の範囲を明記した。\n- **旧文と新文の突き合わせ（類型5）**：弱まった条件はない。\n- **ID対応**：次の4つは、いずれも一致している。\n  - FV:33（01–15）\n  - CASE見出し15件\n  - FR:326\n  - L11との対応\n\n### Major\nなし。\n\n### Minor（返却しない）\n- m14：FV:264/272/280とFR:326の理由文「責務主体を固定sourceから確定しない」は、L2-034:474の「Worker実行環境／INFRASTRUCTUREが物理適用・観測を担う」と並べると読み合わせにくい。「単一の機構のownerへは確定しない（L2-007:137の未観測の扱い）」と書くと正確になる。\n- m15：CASE-13の「宣言／自己申告」はCASE-14と共通の言い回しで、CASE-13の変異（宣言だけ）に対しては少し広い。「後記receipt／後記の宣言」も読みにくい。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（6098740c6）でそろった。\n- **条件3は未照合。** 判断記録の作成後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `30a0456a…7019` |\n| L3-FR | `f6da676a…8ea5` |\n| L3-NFR | `5b4a6472…f66e` |\n| L10-BV | `7da2a3b8…70a4` |\n| L10-FV | `30b4e334…947a` |\n| L10-NFR | `444560c4…0e43` |\n\n### 未確認範囲\nなし。\n",
+    "reviewed_head": "6098740c61f2c6dbd6d59921bf05d594103a99f2",
+    "review_base": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+    "reviewer": "Claude review_merge lane / Opus 5.5",
+    "condition1": {
+      "status": "satisfied",
+      "evidence": "Opus 5.5 independent review; Major none, unconfirmed scope none; same body revision."
+    },
+    "condition2": {
+      "status": "satisfied",
+      "evidence": "Fable advisor claude-fable-5-1 read six bodies and fixed-parent pins; exact conclusion is 「承認してよい」; same body revision."
+    },
+    "condition3": {
+      "status": "pending_unchecked_after_decision_record_creation",
+      "evidence": "Formal review expressly says six body SHA must be checked after decision-record creation. No condition-3 verification performed by this draft."
+    },
+    "minor_not_returned": [
+      {
+        "id": "m14",
+        "status": "explicitly_not_returned",
+        "text": "FV:264/272/280 and FR:326 wording: fixed source does not establish responsibility subject. Reviewer suggests “not assignable to a single mechanism owner” more precisely."
+      },
+      {
+        "id": "m15",
+        "status": "explicitly_not_returned",
+        "text": "CASE-13 phrase “declaration/self-report” is broader than the isolated declaration-only mutation; suggested wording cleanup."
+      }
+    ],
+    "formal_review_finding": "Major none; no unconfirmed scope; no weakening in old/new comparison, per formal comment."
+  },
+  "approved_body_revision": "6098740c61f2c6dbd6d59921bf05d594103a99f2",
+  "six_body_pins": [
+    {
+      "label": "L3-BR",
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "bytes": 2999,
+      "sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019"
+    },
+    {
+      "label": "L3-FR",
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "bytes": 135995,
+      "sha256": "f6da676a3c816e6e845e7cc7c8e7711f9f0d9e4a6b8fa6a6c6595dd730aa8ea5"
+    },
+    {
+      "label": "L3-NFR",
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "bytes": 17738,
+      "sha256": "5b4a647220bea4192788ac937f9ee889574abb49639493f5e78edadc2950f66e"
+    },
+    {
+      "label": "L10-BV",
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "bytes": 2356,
+      "sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4"
+    },
+    {
+      "label": "L10-FV",
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "bytes": 175057,
+      "sha256": "30b4e33419b617c0f7b2710f26e2aa8ae771b67e3fa29510aa01495e0200947a"
+    },
+    {
+      "label": "L10-NFR",
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "bytes": 13172,
+      "sha256": "444560c4ffe00c4a330d6b8a76ad2c86798be1bd4ab506886c96ce0cc4a40e43"
+    }
+  ],
+  "fixed_parent_source": {
+    "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "scope_statement": "Four raw fixed-source spans specifically read by Opus/Fable: L2-007:137; L2-033:460,463; L2-034:474. Additional direct L2-033/L11-033 adoption and correction spans are pinned separately.",
+    "four_reviewed_support_spans": [
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "full_bytes": 85899,
+        "full_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "start_line": 137,
+        "end_line_inclusive": 137,
+        "span_bytes": 189,
+        "span_sha256": "9d015f917940ca5171ac197b59f2d5d4e14bc6122085e090309fb182dcea2a1f",
+        "line_ending": "raw bytes, LF inclusive"
+      },
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "full_bytes": 85899,
+        "full_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "start_line": 460,
+        "end_line_inclusive": 460,
+        "span_bytes": 665,
+        "span_sha256": "bbcd9d8d23a687d073598cbaeba904c5440fa5dbe56bb7d5db9bcbe4bec36f4d",
+        "line_ending": "raw bytes, LF inclusive"
+      },
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "full_bytes": 85899,
+        "full_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "start_line": 463,
+        "end_line_inclusive": 463,
+        "span_bytes": 473,
+        "span_sha256": "77b171a42590293d3735663a28e6e3a3f3f4e08f81f00d6839a098aa6ae8bbc2",
+        "line_ending": "raw bytes, LF inclusive"
+      },
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "full_bytes": 85899,
+        "full_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "start_line": 474,
+        "end_line_inclusive": 474,
+        "span_bytes": 543,
+        "span_sha256": "92e66b0c0a1c3b5c4e624b004f77f339fbe8e2ce057ad3ae1444bde68db3cf4e",
+        "line_ending": "raw bytes, LF inclusive"
+      }
+    ],
+    "l2_033_and_p0_source_spans": [
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "full_bytes": 85899,
+        "full_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "start_line": 455,
+        "end_line_inclusive": 465,
+        "span_bytes": 4417,
+        "span_sha256": "85097dbe6b785747b5b53f319ef4220943ecd5bd19c6fd7c11cd7836ea42bf54",
+        "line_ending": "raw bytes, LF inclusive"
+      },
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "full_bytes": 85899,
+        "full_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "start_line": 479,
+        "end_line_inclusive": 485,
+        "span_bytes": 1731,
+        "span_sha256": "15c0ea7827a41bd6bca6ba2b0fb70597ad1e9a9d27b5073687b2b41745fdc6df",
+        "line_ending": "raw bytes, LF inclusive"
+      },
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "full_bytes": 41234,
+        "full_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "start_line": 124,
+        "end_line_inclusive": 133,
+        "span_bytes": 4047,
+        "span_sha256": "6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0",
+        "line_ending": "raw bytes, LF inclusive"
+      },
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "full_bytes": 41234,
+        "full_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "start_line": 145,
+        "end_line_inclusive": 151,
+        "span_bytes": 1836,
+        "span_sha256": "e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6",
+        "line_ending": "raw bytes, LF inclusive"
+      }
+    ],
+    "parent_033_fixed_semantics": "Adopted MPR -002 plus separately pinned P0 correction; scoped credential-use remains allowed under existing conditions, raw secret/secret task content exposure forbidden, and ownership boundaries remain OS assignment/common contract, SECURITY policy/authority, Worker execution environment enforcement, INFRASTRUCTURE physical resource/evidence. No inference of a new contract schema, owner identity, or runtime authorization.",
+    "po_adoption_pins": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_bytes": 45099,
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "rows": [
+        {
+          "line": 92,
+          "bytes": 630,
+          "sha256": "3e4275def4b5f2251a91e556338f2accbf25b7c4f673b85e7bf02f74ba3a47c0",
+          "raw_lf_inclusive": "| `HELIXSECURITY-L2-033` | 採択 | `MPR-RC-HELIXSECURITY-L2-033-002` | `docs/helix-security/L2-requirements/security-requirements.md` | `d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5` | `sha256:b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a` | `HELIXSECURITY-L2-033` | `docs/helix-security/L11-acceptance/security-acceptance.md` | `e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556` | `sha256:6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0` | `docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json` |"
+        },
+        {
+          "line": 113,
+          "bytes": 109,
+          "sha256": "8ea382c8e8de96fce44f501d31b652868527f5810a6b85e15f65fca054fffd44",
+          "raw_lf_inclusive": "- **HELIXSECURITY-L2-033**：訂正追補を含むregistration `-002`の本文と対L11を対象にする。"
+        },
+        {
+          "line": 124,
+          "bytes": 193,
+          "sha256": "a24ae9b3400a40b478dddcfe3374a6df602b807cb0803973faeac44f6872b35f",
+          "raw_lf_inclusive": "| `HELIXSECURITY-L2-033` | 採択対象の追加受入 | `## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）` | `sha256:e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6` |"
+        }
+      ],
+      "purpose": "Row 92 adopts registration -002 with fixed L2/L11 spans; row 113 describes corrected registration; row 124 separately adopts P0 L11 correction. These are source pins only."
+    }
+  },
+  "old_source_locator_pins": {
+    "inventory_origin": "Current HELIX-SECURITY functional-requirements.md parent033 crosswalk and requirement-specific paragraph read; no old code/runtime/test executed.",
+    "sources": [
+      {
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "line_start": 428,
+        "line_end_inclusive": 428,
+        "full_bytes": 64313,
+        "full_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "span_bytes": 249,
+        "span_sha256": "2cb8c38eb048d3404b34e1da9d0eeb05fda671e4f343bbfc4bfc35a66f00400c",
+        "disposition": "HR-FR-P2-05: external AI worker context, isolation, secret task deny, non-authoritative output; direct semantic origin, separate archive atom."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "line_start": 128,
+        "line_end_inclusive": 131,
+        "full_bytes": 10302,
+        "full_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "span_bytes": 519,
+        "span_sha256": "d986b65c984b0ee4b450b54baf9ea2f6542bd8285cf604d8f99d919cb1e195a6",
+        "disposition": "SEC-FR-CAP-007 reason receipt form only; not credential-use / Worker-dispatch semantic authority."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "line_start": 160,
+        "line_end_inclusive": 166,
+        "full_bytes": 10302,
+        "full_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "span_bytes": 1034,
+        "span_sha256": "851ea0172fb9de5c90248726fc4073ca24ab58180e635fc3bb1d8f8b8c43f279",
+        "disposition": "CAP function inventory including CAP-007; format/consumer context only."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+        "line_start": 20,
+        "line_end_inclusive": 29,
+        "full_bytes": 5198,
+        "full_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+        "span_bytes": 2241,
+        "span_sha256": "2aaa279481a2d5136846612fb3896a050e7f9719990f6541a415d1acf1fa708d",
+        "disposition": "CAP acceptance negative/reasoned outcomes as adjacent consumer pattern; not old runtime pass evidence."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+        "line_start": 55,
+        "line_end_inclusive": 59,
+        "full_bytes": 5198,
+        "full_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+        "span_bytes": 326,
+        "span_sha256": "fcd21414c7097bd545cc489cc25457d96c5a0ffb51c6b931c6d78dace75132ee",
+        "disposition": "Evidence preservation form; no secret/raw command persistence."
+      }
+    ],
+    "separate_revision_atom": {
+      "revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "full_bytes": 62494,
+      "full_sha256": "1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "start_line": 409,
+      "end_line_inclusive": 409,
+      "span_bytes": 249,
+      "span_sha256": "2cb8c38eb048d3404b34e1da9d0eeb05fda671e4f343bbfc4bfc35a66f00400c",
+      "line_ending": "raw bytes, LF inclusive"
+    },
+    "source_disposition": "HR-FR-P2-05 is direct origin for context binding/isolation/secret task deny/non-authoritative output. Archive and 6fabd125 baseline are separate atoms, not merged. Old CAP-007 reason receipt/acceptance are only format and adjacent negative-oracle consumer context; fixed L2/PO correction supplies current credential-use meaning."
+  },
+  "historical_context": {
+    "existing_stage1_decision": {
+      "path": "docs/governance/decisions/helix-security-stage1-l3-l10-po-decision-2026-10-05.md",
+      "sha256": "c142d84cf5c7a044167e960fd4d21cd2cd6237ec125ac2e0dbe09c5965621afa",
+      "status": "unchanged; broader Stage1 decision historical record for prior revision",
+      "prior_revision": "3f8e6f220eaeeab42618d97f005b5dab17bec66f"
+    },
+    "stage2c_decision_031": {
+      "path": "docs/governance/decisions/helix-security-stage2c-l3-l10-po-decision-2026-10-05.md",
+      "status": "not applicable; parent031 only, left unchanged"
+    },
+    "harness_stage3_parent043_reference": "docs/governance/decisions/helix-harness-stage3-parent043-l3-l10-delegated-decision-2026-10-08.md (reference format only; not an authority source for SECURITY)"
+  },
+  "authority_and_followup": {
+    "decision_record_path": "docs/governance/decisions/helix-security-stage1-parent033-l3-l10-delegated-decision-2026-10-08.md",
+    "pin_json_path": "docs/governance/audits/requirements-stage/security-stage1-parent033-review04-delegated-decision-pin-2026-10-08-6098740c.json",
+    "po_confirmation": "機構×Stageの事後確認は別途。現記録/notification/commentからPO確認を生成しない。",
+    "l10_execution": "not run; this is an L3/L10 design decision snapshot, not test execution result.",
+    "decision_status": "recorded_pending_condition3",
+    "effective_when": "Only after an independent condition-3 exact SHA check and main admission; neither is performed here."
+  },
+  "static_verification": {
+    "formal_body_sha_recomputed": true,
+    "six_body_sha_recomputed": true,
+    "fixed_parent_four_span_sha_recomputed": true,
+    "old_source_locator_pins_recomputed": true,
+    "condition3_checked": false,
+    "po_confirmation_generated": false,
+    "l10_executed": false,
+    "tests_ci_runtime_old_cli_run": false,
+    "commit_push_pr_comment_merge": false
+  },
+  "six_body_pins_capture_phase": "Exact full-body hashes captured from review HEAD before writing this new decision record; no post-record condition-3 check was run."
+}

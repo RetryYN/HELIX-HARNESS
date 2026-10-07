@@ -50,7 +50,7 @@
 
 ### CASE-NFR-OS-019-01 — event/replay classification
 
-親 `HELIXOS-L2-019`; fixture eventをmissing/duplicate/stale/denied/not-run/success別に数え、normal crash/restartの測定と失敗後replayを分ける。normalでは通常のcrash/restart eventから再構築し、negative/replayでは原eventを使い固定L2の失敗位置から再構築した差分を示す。実timestampがある場合の各durationは別母集団として観測候補に表示し、保持日数/復旧時間のcutoffにしない。
+親 `HELIXOS-L2-019`; fixture eventをmissing/duplicate/stale/denied/not-run/success別に数え、normal crash/restartの測定と失敗後replayを分ける。hold/確認待ちfixtureは宣言済/未宣言/期限切れ/判定unknown別に数え、各々のsource・owner・未完義務とL1-002/008に沿う人間向けL2-019 projection listへのtrace completenessを別記する。AI解決可能性の分類やPO宛先を測定・要求しない。normalでは通常のcrash/restart eventから再構築し、negative/replayでは原eventを使い固定L2の失敗位置から再構築した差分を示す。実timestampがある場合の各durationは別母集団として観測候補に表示し、保持日数/復旧時間のcutoff、期限値・催促間隔・滞留率/目標にしない。
 
 ### CASE-NFR-OS-020-01 — applicable verification obligation census
 
@@ -128,7 +128,7 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 
 | NFR CASE | NFR候補 | 集計対象 functional CASE | 観測と未評価条件 |
 |---|---|---|---|
-| `CASE-OS-L10-NFR-025-01` | `NFR-OS-L3-025-01` | `CASE-OS-L10-025-01`–`32` | service①〜⑦および選択scopeの正常/部分未見とunknown等のfixture内分類・誤結合を計数。全運転KPIではない。|
+| `CASE-OS-L10-NFR-025-01` | `NFR-OS-L3-025-01` | `CASE-OS-L10-025-01`–`21`, `CASE-OS-L10-025-022`–`039`, `CASE-OS-L10-025-047`–`049` | HELIX自身＋異種projectの7段trace値一致/単独欠落、service①〜⑦/選択scope/部分未見、配布gate誤追加、全体normal/1製品欠落、unknown等のfixture内分類・誤結合を計数。全運転KPIではない。|
 | `CASE-OS-L10-NFR-026-01` | `NFR-OS-L3-026-01` | `CASE-OS-L10-026-01`–`60` | source/contract/permission/dependency/recovery/human入力状態、pack版・適用対象・一周出力、closure、空pack集合の候補除外、代替space、minimum-proof stateを分離。|
 | `CASE-OS-L10-NFR-031-01` | `NFR-OS-L3-031-01` | `CASE-OS-L10-031-01`–`95` (066/068/070/072除外; 031-25 alias) | old 60s/3m comparisonと現在適用budgetを混同しない。wall-clock、runner-minute、failure feedback latency p50/p95、超過原因を含む固定L2-031 measurement fieldの有無/stale/scope不一致、Recovery Issue正本誤用、AC03単変異、安全性/並列化/回収traceをCASE別集計し、欠落population等のpercentileを未評価とする。|
 | `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | `CASE-OS-L10-047-01`–`41` | reason/evidence/根拠source revisionの独立欠落、元assignmentとのrelation・未完義務追跡、Assignment/Attempt/result/authority非継承、unknown軸、双方向参照・owner backflowをCASE別集計する。|
@@ -141,7 +141,7 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 
 | NFR CASE | 親 / NFR / AC | 補正後functional CASE集合 | 観測 |
 |---|---|---|---|
-| `CASE-OS-L10-NFR-025-01` | 025 / NFR-025-01 / AC-025-01〜03 | CASE-025-01〜32、aliasなし | 固定L2入力の個別欠落、unit・connection・composite区分、document/mechanism existenceのみの誤成立。|
+| `CASE-OS-L10-NFR-025-01` | 025 / NFR-025-01 / AC-025-01〜03 | CASE-025-01〜21、022〜039、047〜049、aliasなし | 固定L2入力と7段traceの個別欠落/値一致、unit・connection・composite区分、配布gateと1製品欠落、document/mechanism existenceのみの誤成立。|
 | `CASE-OS-L10-NFR-026-01` | 026 / NFR-026-01 / AC-026-01〜05 | CASE-026-01〜60、全ID個別判定 | 入力単独欠落、dependency/安全/比較状態、pack版/適用対象/一周出力、結果から状態生成、scope・環境・更新/rollback、資源不足の返却、導出成功からStage構成採択を生成しない。|
 | `CASE-OS-L10-NFR-031-01` | 031 / NFR-031-01 / AC-031-01〜05 | CASE-031-01〜95（066/068/070/072除外）、ただし031-25は031-06のalias | 各measurement field、Recovery Issue正本誤用、予算/母集団/改善前後値、ticket/source/base/measurement scope、旧数値/既決工程、正しさ/性能、LABO/authority、非縮退回収を分離。|
 | `CASE-OS-L10-NFR-047-01` | 047 / NFR-047-01 / AC-047-01〜05 | CASE-047-01〜41、ただし047-20は047-04のalias | r1/r2、元assignment・未完義務、source scope/revision/issuer/conflict、proposal authority、Ticket→Ticket参照をそれぞれ観測。|
