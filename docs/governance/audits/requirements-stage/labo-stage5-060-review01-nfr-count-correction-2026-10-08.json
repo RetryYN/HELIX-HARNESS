@@ -1,0 +1,91 @@
+{
+  "record_type": "labo060_review01_nfr_count_correction",
+  "previous_head": "2e342982323f5b46d0a97828dcceda78ee9e7d40",
+  "authority_effect": "none",
+  "formal_comment": {
+    "id": 6045669950,
+    "raw": "## review01（HEAD 2e342982323f5b46d0a97828dcceda78ee9e7d40 / base e028e18c90e83295c84d77c4829702a349bce0dc）— Claude review_merge\n\n**結論：Major 1。現HEADは承認しません（条件1不成立）。**\n- Opusが同じ文書群の件数表記を照合し、6本文の件数が食い違っていることを確認しました。\n- 条件1（Opus）が成立していないため、Fableの見解を待たずに返します。修正後のrevisionで、OpusとFableが改めて照合します。\n\n### M1（Major：6本文の件数不整合）`docs/helix-labo/L3-requirements/nfr-grade.md:184`\n- 本PRは、BR/BVの参照表を `05–52`、negative 47 へ同期しました。FVには、`L10-LABO-060-CASE-01`〜`52` が実在します（03a–e・04a–bを含め57定義。CASE-47〜52は、FV:2778–2783のAC-03個別誤出力）。\n- 一方、同じ親060のNFR-grade:184には、次の旧件数が残っています。\n  - 「L10の現在のCASE定義IDは**51件**（正常候補2、negative候補**41**、非独立索引候補8）」\n- 修正後のBR/BV（57定義、negative 47）と、NFR（51件、negative 41）が、同じ「現在の分類」として食い違っています。\n- 監査MDの「他4本文不変」「57定義は正常2/negative47/index8」という記述とも矛盾します。\n- **修正案**\n  - 保つもの：BR/BVの同期、CASE定義、索引8件を分母へ重ねない旨、「ID数や一意性は完全性を証明しない」の限定。\n  - 直すもの：NFR-grade:184を「57件（正常候補2、negative候補47、非独立索引候補8）」へ揃えてください。\n  - あわせて、L10 nfr-verificationにも同じ旧件数が残っていないか確認してください。今回の検索では、`nfr-verification.md` に060の件数表記は見つかりませんでした。\n  - 直した後は、監査の6本文pinと「他4本文不変」の記述を更新してください。\n\n### 成立を確認した点\n- **BR/BVの更新**：差分は2表の範囲と件数だけです（`05–46`/41 → `05–52`/47）。CASE定義、他の本文の意味、固定親、owner、版、閾値は変わっていません。\n- **CASE-47〜52の根拠**：6件とも、LABO評価からINTELLIGENCEのproposal、Worker推奨、採用、配置、受入authority、merge authorityを生成する誤出力を、それぞれ単独で拒否するCASEです。これは固定 `f6dad2a` L2:443–455 / L11:178–186の境界に沿っています。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### 未確認範囲\n- 監査JSONの固定親SHAと旧source SHAは、修正後のrevisionで照合します。\n- fixtureは実行していません。\n\n本reviewは承認・merge admissionを生成しません。修正後は新しいHEADで再依頼してください。\n",
+    "bytes": 2865,
+    "sha256": "c31f38b2bd0433ab0de2d3701f6a506ac236e1487a38f6fd414c70bc61d3ac20"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 32852,
+      "sha256": "057caceeb0d2269cfc58bec6011ea26233c4272cef71ec90fbaabc497f78d183"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 354046,
+      "sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 91242,
+      "sha256": "1272733e555a25b5ee62bdeb87e3caf47ac41bc4fb982d4faca4006fffb8ddbc"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 31387,
+      "sha256": "df60d5b7410107c249636b3dc5989f0cfdf6291a17e8e169a37971cd36bf37cb"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 692699,
+      "sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 82074,
+      "sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a"
+    }
+  ],
+  "fixed_and_legacy_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "start_line": 443,
+      "end_line_inclusive": 455,
+      "full_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_sha256": "4293e966be8c29ccd7abe46d29edf66ecef7a087e763ca1f1b5d45d834d3d0bb"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "start_line": 178,
+      "end_line_inclusive": 186,
+      "full_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_sha256": "a5b4369cfb4b1bf6ca96d957d7a4db23bc3bb1ce2ec010b35031f85de035ccd9"
+    },
+    {
+      "revision": "2e342982323f5b46d0a97828dcceda78ee9e7d40",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "start_line": 147,
+      "end_line_inclusive": 147,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "span_sha256": "80e5e1458b29a3a528da1363136da617fc21bc6212b46074b871e2ef0d6964cf"
+    },
+    {
+      "revision": "2e342982323f5b46d0a97828dcceda78ee9e7d40",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "start_line": 224,
+      "end_line_inclusive": 224,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "span_sha256": "727dd6e270f6f0fdf2c1ae597c70366bf4db298b4476a073c408c5b8e2bdbd47"
+    },
+    {
+      "revision": "2e342982323f5b46d0a97828dcceda78ee9e7d40",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "start_line": 104,
+      "end_line_inclusive": 104,
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "span_sha256": "c2d5905826996429f528a247e4781d58609a6f753eb5776498dda78629f8eb49"
+    }
+  ],
+  "nfrv": "既存57/47/8のため不変",
+  "limits": [
+    "fixture未実行",
+    "独立再review未実施",
+    "274親検収未完"
+  ]
+}
