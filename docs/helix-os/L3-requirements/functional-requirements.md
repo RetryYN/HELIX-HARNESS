@@ -265,7 +265,7 @@ L2意味・適用scope・owner・versionの変更が必要と判明した場合�
 全Retrofit upgradeについて、対象upgradeごとにpreflightを計画確定前に同一ticket/対象revisionへ結び、計画確定後はapplyの直前にもcurrent source・結果・authorityを再照合する。preflight成功前も影響調査と未確定plan draftは続けられるが、failed/unknown/staleは計画確定・applyへ進めない。preflightの技術的意味/互換性はowner側に残す。
 - AC-OS-L3-036-01：正常fixtureでpreflight success後にだけ同ticket計画を確定し、apply直前の再照合receiptを結ぶ。未見のpackage manager/dependency/configuration形式でも、選択oracle/source contractが対応する範囲なら結果をscope/revisionへ結び、方式名・schema差だけでは拒否しない。対応oracleなしまたは対象不明はpassにせず未評価を保持する。
 - AC-OS-L3-036-02：未実施/failed、ticket/revision違い、stale result、apply直前drift、authority失効を各々変異し、確定またはapply 0。
-- AC-OS-L3-036-03：applicability/result owner unknownなら保留。非upgrade Retrofit operationへ一律preflightを課さない。
+- AC-OS-L3-036-03：applicability/result owner unknownなら当該scopeを保留する。非upgrade Retrofit operationにはupgrade専用preflight順序条件を一律に課さないが、選択・適用される既存HARNESS verification dutiesと他のread-only verify policyを維持し、preflight対象外であることをそれらの省略理由にしない。
 - AC-OS-L3-036-04：unknown HARNESS oracle、異なるdependency/config scope、一般CI green、rollback planのみを選択upgradeのpreflight結果として与える各fixtureでplan確定/applyを止める。oracle欠落はHARNESS、technical applicability/resultはそのsource owner、run/authority/resourceはOS/SECURITY/INFRASTRUCTUREへ戻し、OSが意味やSECURITY authorityを作らない。OSがHARNESS oracleを書換える、preflight結果からSECURITY authorityを生成する変異も独立に拒否する。
 
 ### FR-OS-L3-037 — HELIXOS-L2-037

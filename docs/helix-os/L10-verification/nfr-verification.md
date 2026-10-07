@@ -78,7 +78,7 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE-OS-L10-NFR-033-01 | NFR-OS-L3-033-01 | selected capabilityごと2回、stressで3回same snapshot rerun。digest/fingerprint equalityと未実行選択数、dedupe evidence loss、差異のquarantine/unfinished保持、registry参照のみの権限誤認を計測。 |
 | CASE-OS-L10-NFR-034-01 | NFR-OS-L3-034-01 | dispositionごと所定evidence set、各欠落mutation。required-evidence coverage/誤terminal数。 |
 | CASE-OS-L10-NFR-035-01 | NFR-OS-L3-035-01 | 同一eventを3回delivery、headを変えた次eventも投入。registration cardinalityとold-head reuse数。 |
-| CASE-OS-L10-NFR-036-01 | NFR-OS-L3-036-01 | 複数upgrade ticketの全Retrofit upgradeごとにplan前/apply直前のsource/authority capture。upgrade単位境界網羅率・stale pass数。 |
+| CASE-OS-L10-NFR-036-01 | NFR-OS-L3-036-01 | Upgrade母集団は全Retrofit upgradeについてplan前/apply直前のsource/authority captureを測る。非upgrade保持群はFV CASE-OS-L10-036-07, CASE-OS-L10-036-08a, CASE-OS-L10-036-08bだけを別集計し、固定L11が要求するHARNESS duty/read-only policy保持に対する省略期待数0を照合する。upgrade分母と混ぜず、別の数値閾値は設けない。 |
 | CASE-OS-L10-NFR-037-01 | NFR-OS-L3-037-01 | 旧BR §3.3/FR-L1-11の週次観測についてReverse/Backflow経路と負債分類後のLABO/OS経路を分ける。fixtureの連続週・週境界・missing/staleを比較し、欠測をno-driftとした件数を観測する。週次は親の保持条件、fixture期間数は測定設計。 |
 | CASE-OS-L10-NFR-038-01 | NFR-OS-L3-038-01 | proposal ID重送とappend/snapshot/receipt各中断点、041-003非原子的finding・same-input nondeterminism。row増分、current update、snapshot bytes/digest一致、部分成功claim数。 |
 | CASE-OS-L10-NFR-040-01 | NFR-OS-L3-040-01 | 入力された適用中retry policy上限に対する到達/未到達、ledger欠落、同一lineage、実験budget分離を個別fixtureで照合する。OSがretry回数候補を追加しない。 |
