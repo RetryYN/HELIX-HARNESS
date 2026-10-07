@@ -1,0 +1,27 @@
+{
+  "record_type": "immutable_main_integration_recheck",
+  "as_of": "2026-10-08",
+  "authority_effect": "none",
+  "scope": "HELIX-BRAIN Stage 5 parent024 review01 repair only",
+  "preintegration_repair_commit": "628e7a9c6",
+  "latest_origin_main": "c0dab045c9708f1eabde20407609cb3e5fb5734a",
+  "integration_head": "fc07a08e8d92ea8b8a56cab18f84072b58b4bfdd",
+  "comparison": "All six canonical L3/L10 files are byte-identical between repair commit and integration head.",
+  "six_document_sha256": {
+    "docs/helix-brain/L3-requirements/business-requirements.md": "e3dfad1e76e4120d4a438e1b8145d5efc28f7cda0f039021b47339e4c264ccb8",
+    "docs/helix-brain/L3-requirements/functional-requirements.md": "6cf8be0c095fcd5ad5e52b6ee99e607c18d1b26be6f0d2e625e727d868a33cdf",
+    "docs/helix-brain/L3-requirements/nfr-grade.md": "07b6c0843cde302252228675088a3a74147672a540c4da5c63e30b2d51f85793",
+    "docs/helix-brain/L10-verification/business-verification.md": "65fc061d4e78b7360cf77d83a396d4c303f4159c1ba047990b31fb6810992d6e",
+    "docs/helix-brain/L10-verification/functional-verification.md": "866f1e1d852b272611d6233c725035d3138d8b013f932f539a9af02bbefeba6c",
+    "docs/helix-brain/L10-verification/nfr-verification.md": "40fbd13f0a253a4686d8c127cf190d63c342ecc0e18aae3796b414eae33d5b70"
+  },
+  "prior_review_and_repair_record": "docs/governance/audits/requirements-stage/brain-stage5-parent024-review01-repair-2026-10-08.json",
+  "status": "Draft repair only; latest six-body revision requires fresh exact-revision Opus/Fable review. No prior approval inherited.",
+  "static_checks": {
+    "six_body_byte_identity": "pass",
+    "scfctl_stale": "stale=0",
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "git_diff_check": "pass",
+    "legacy_runtime_or_test_executed": false
+  }
+}

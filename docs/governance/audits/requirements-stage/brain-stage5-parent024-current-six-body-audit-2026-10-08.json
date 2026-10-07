@@ -1,0 +1,573 @@
+{
+  "record_type": "HELIX-BRAIN Stage 5 parent024 current-six-body inventory, fixed-parent and legacy-source audit",
+  "language": "ja",
+  "as_of": "2026-10-08",
+  "authority_effect": "none",
+  "base_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+  "worktree_branch": "codex/brain-stage5-parent024-audit",
+  "worktree_path": "/home/tenni/.helix-worktrees/brain-stage5-parent024-audit",
+  "scope": [
+    "HELIXBRAIN-L2-024 only"
+  ],
+  "explicit_exclusions": [
+    "HELIXBRAIN-L2-025 approval/meaning is not inherited or generated.",
+    "No implementation/execution approval is generated."
+  ],
+  "fixed_parent": {
+    "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "L2": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "git_blob_oid": "c8723dff3f3e1d702bf8734f80e37199099f6589",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span": {
+        "start_line": 454,
+        "end_line": 463,
+        "inclusive": true,
+        "raw_byte_span_sha256": "c91976bfc0f128dd8628b8d3448ddac57af0e4531f8d54f996ed094cd3b018c3"
+      }
+    },
+    "L11": {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "git_blob_oid": "67e187349c0d0c61da7213f646a07bbcee82143d",
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span": {
+        "start_line": 64,
+        "end_line": 64,
+        "inclusive": true,
+        "raw_byte_span_sha256": "aff2c5df94b1b823fa92d879ae7625c791d623f28eed0851ed7d4d585fa6f440"
+      }
+    },
+    "PO_adoption": {
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "source_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+      "git_blob_oid": "7037703ca2a2618a496cd41663d47098832ca514",
+      "full_sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+      "span": {
+        "start_line": 80,
+        "end_line": 85,
+        "inclusive": true,
+        "raw_byte_span_sha256": "ae9018389ca3d3818cc4fc90f11d29eb9fc4463e4ba66401510dd796e52313be"
+      }
+    },
+    "PO_decision_identity": "HELIXBRAIN-L2-024, MPR-RC-HELIXBRAIN-L2-024-002, composite / version_target 1.0, adopted as one of the 42 explicit identities.",
+    "fixed_register_row": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "git_blob_oid": "32a93b6195bf3e103b7a57f6493ea2415509e7f3",
+      "full_sha256": "71df2d06aaa144eecca2047aeb0fe1930dc8f4e82326e18bbed6975a93b3a808",
+      "span": {
+        "start_line": 229,
+        "end_line": 229,
+        "inclusive": true,
+        "raw_byte_span_sha256": "ca28ca44d495d36d82b61843368da5d21bc85488fb9e48d6aa3e216a40411543"
+      }
+    },
+    "current_register_metadata_successor": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "source_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+      "git_blob_oid": "1044bd06a37e7cb38f536eeeb9ab3973bb54c5a8",
+      "full_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "span": {
+        "start_line": 809,
+        "end_line": 809,
+        "inclusive": true,
+        "raw_byte_span_sha256": "3c5444086e9ecf50b6edaef1b9df7dc372f5d2d30faf510ddcb89c0a7de55425"
+      }
+    },
+    "registration_authority": "Both are candidate registration metadata with authority_effect:none. Current -003 is a metadata-only successor with the same semantic digest; no L3 approval is inferred.",
+    "L2-020_conditional_maturity_clause": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "git_blob_oid": "c8723dff3f3e1d702bf8734f80e37199099f6589",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span": {
+        "start_line": 414,
+        "end_line": 421,
+        "inclusive": true,
+        "raw_byte_span_sha256": "bc967d34739ea1b7823241db0cd61ced49c71b7a362f2e9233563fab7660d069"
+      }
+    },
+    "L2-INFRA-017_maturity_clause": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "git_blob_oid": "c8723dff3f3e1d702bf8734f80e37199099f6589",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span": {
+        "start_line": 382,
+        "end_line": 390,
+        "inclusive": true,
+        "raw_byte_span_sha256": "191b4c13d075cd3a9cfbd938bf5d0a961615936e30a9266a904dc633c28fa348"
+      }
+    }
+  },
+  "previous_combined_approval_context": {
+    "decision_record_path": "docs/governance/decisions/helix-brain-stage5-l3-l10-po-decision-2026-10-06.md",
+    "decision_record_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+    "decision_record_sha256": "c8b795b8226db0512a63bef71a4d59c58dc1e4b33167a3b0c3e87c1f10c57a62",
+    "approved_content_revision": "237a8562137c2fd35e85d7c15702b3694212240a",
+    "approved_scope": [
+      "HELIXBRAIN-L2-024",
+      "HELIXBRAIN-L2-025"
+    ],
+    "current_revision_authority_inherited": false,
+    "reason": "All six current full-body hashes differ from the prior combined approved body; although the extracted 024-only blocks are byte-identical, the current six-body revision requires independent exact-revision review and approval. No 025 approval or prior combined approval is reused."
+  },
+  "six_canonical_bodies": {
+    "BR": {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "current_full_sha256": "91938d4d33d9ced2ea79e860843a88084c8460d586bbd937c7afcd1a5a21ccd8",
+      "current_source_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+      "current_relevant_span": {
+        "start_line": 89,
+        "end_line": 96,
+        "inclusive": true,
+        "raw_byte_span_sha256": "0c516c917c9ff4e249422a6e4d132ef417a90ae1dbf4513c71881cccaa8fe819"
+      },
+      "previous_combined_approval_full_sha256": "3ad786e18e488ccc246c30114f21e683e6d52fb2fa32e0e96e80be084fd13c1b",
+      "previous_combined_approval_content_revision": "237a8562137c2fd35e85d7c15702b3694212240a",
+      "parent024_scoped_bytes_sha256_current": "6e43964f1c48b820a08e1747e577dea9f2630df436f8abf36948ef130280d3b0",
+      "parent024_scoped_bytes_sha256_previous": "6e43964f1c48b820a08e1747e577dea9f2630df436f8abf36948ef130280d3b0",
+      "parent024_scoped_bytes_unchanged": true,
+      "previous_approval_used_for_current_authority": false
+    },
+    "FR": {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "current_full_sha256": "88d17de0dcd5cec559f321a4456bfa7aa1bcbc417aecb19a140ffb279dea11c1",
+      "current_source_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+      "current_relevant_span": {
+        "start_line": 704,
+        "end_line": 742,
+        "inclusive": true,
+        "raw_byte_span_sha256": "b416a25e1a5d7e10bc4375ba4d327664538bcbca2c7c55b914d70dceb0653987"
+      },
+      "previous_combined_approval_full_sha256": "51e6dd396ddb7d6ea0304fd17b514f2bb41c8bd9020ecbbd80f820b66db9c4a0",
+      "previous_combined_approval_content_revision": "237a8562137c2fd35e85d7c15702b3694212240a",
+      "parent024_scoped_bytes_sha256_current": "b27d8dc2e9378750acd3c828e3d6ab9a23df17e925017b6239581b34d6f3c976",
+      "parent024_scoped_bytes_sha256_previous": "b27d8dc2e9378750acd3c828e3d6ab9a23df17e925017b6239581b34d6f3c976",
+      "parent024_scoped_bytes_unchanged": true,
+      "previous_approval_used_for_current_authority": false
+    },
+    "NFR": {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "current_full_sha256": "e4ff12ae0c74dfaf8b5e8bca5210a834dd99a756711bdaceca600649e701f912",
+      "current_source_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+      "current_relevant_span": {
+        "start_line": 116,
+        "end_line": 122,
+        "inclusive": true,
+        "raw_byte_span_sha256": "1e3ffd91c2214f71c6710aec137b75773199722d1ecb432c6cfb13b79e959af1"
+      },
+      "previous_combined_approval_full_sha256": "1e57eb1d3c08a2eaec77bb5c0014598c08e9adbe0aeaea54bfaa21c329674a02",
+      "previous_combined_approval_content_revision": "237a8562137c2fd35e85d7c15702b3694212240a",
+      "parent024_scoped_bytes_sha256_current": "ea93624ef6e696c18bc2bf734995b049104179d17a2e13e034a73fe0e5019520",
+      "parent024_scoped_bytes_sha256_previous": "ea93624ef6e696c18bc2bf734995b049104179d17a2e13e034a73fe0e5019520",
+      "parent024_scoped_bytes_unchanged": true,
+      "previous_approval_used_for_current_authority": false
+    },
+    "BV": {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "current_full_sha256": "c0417e7fa14acfb6dbb408b4bafc59820fa154ba6af6bd9d153a07736bf12c99",
+      "current_source_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+      "current_relevant_span": {
+        "start_line": 88,
+        "end_line": 95,
+        "inclusive": true,
+        "raw_byte_span_sha256": "eb82ff6ce7e07d3e9f1372c9826aa6d4d250da25092a98754b58af444a1586ff"
+      },
+      "previous_combined_approval_full_sha256": "b80c0603bed8dfb8973f2f60830cd9f47dec00fe8cf6a4772745887ac1f75064",
+      "previous_combined_approval_content_revision": "237a8562137c2fd35e85d7c15702b3694212240a",
+      "parent024_scoped_bytes_sha256_current": "c2f34b4ad4fd56d4c26bd19f1b55d8d557b14c05f77cf1acea255c6a3528836b",
+      "parent024_scoped_bytes_sha256_previous": "c2f34b4ad4fd56d4c26bd19f1b55d8d557b14c05f77cf1acea255c6a3528836b",
+      "parent024_scoped_bytes_unchanged": true,
+      "previous_approval_used_for_current_authority": false
+    },
+    "FV": {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "current_full_sha256": "857c25372d27632b7fc80963b9d35803b6bbcdd5e1d3f1835a1b6ca466ca716a",
+      "current_source_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+      "current_relevant_span": {
+        "start_line": 821,
+        "end_line": 875,
+        "inclusive": true,
+        "raw_byte_span_sha256": "1bb32bfaa72614ff8317f1b7948b21eec3e7c02839dd5f0af091e8a51e0a33da"
+      },
+      "previous_combined_approval_full_sha256": "eae9d75918cb83b168fc0811097e163d2c533faee01921324e5be86e749a9aef",
+      "previous_combined_approval_content_revision": "237a8562137c2fd35e85d7c15702b3694212240a",
+      "parent024_scoped_bytes_sha256_current": "773f08c397247120499b317ba5bb919892cdba3252b848c9b7f15440db340321",
+      "parent024_scoped_bytes_sha256_previous": "773f08c397247120499b317ba5bb919892cdba3252b848c9b7f15440db340321",
+      "parent024_scoped_bytes_unchanged": true,
+      "previous_approval_used_for_current_authority": false
+    },
+    "NFRV": {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "current_full_sha256": "6a0abd94aa982a8aaffb67efc1f33cb4e6f19fb0838800672df50cd3de174044",
+      "current_source_revision": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+      "current_relevant_span": {
+        "start_line": 106,
+        "end_line": 114,
+        "inclusive": true,
+        "raw_byte_span_sha256": "8ed9683a0c45092f43b37d36643745912e8fcf9fda19aeb7a16b280ee6965287"
+      },
+      "previous_combined_approval_full_sha256": "6b5586cbf0df2971845afe674319f9bac7783c9084af2065d9c383c0e290fc96",
+      "previous_combined_approval_content_revision": "237a8562137c2fd35e85d7c15702b3694212240a",
+      "parent024_scoped_bytes_sha256_current": "ca13db04c16e7e20fc9b71bc4d3c4ea67be6f93166b4e6adf4179e965357899e",
+      "parent024_scoped_bytes_sha256_previous": "ca13db04c16e7e20fc9b71bc4d3c4ea67be6f93166b4e6adf4179e965357899e",
+      "parent024_scoped_bytes_unchanged": true,
+      "previous_approval_used_for_current_authority": false
+    }
+  },
+  "legacy_sources": [
+    {
+      "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "full_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "span": {
+        "start_line": 37,
+        "end_line": 49,
+        "inclusive": true,
+        "raw_byte_span_sha256": "c1526059c51f18c9b9ec274bfae1b8ecf4129d125ed930cc808aecc0b36c6d26"
+      },
+      "disposition": "RCLS-BR-004/006 proposal/evidence and no authority overwrite are semantic re-derivation inputs; cross-project/shadow/Mechanism promotion are not imported."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "full_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+      "span": {
+        "start_line": 24,
+        "end_line": 39,
+        "inclusive": true,
+        "raw_byte_span_sha256": "4545bdcee36f412d5135b97fd1540859dbc7a9618971a7e1a634b5f3f29745aa"
+      },
+      "disposition": "Old paired-oracle comparison only: independent verification and no promotion by single evidence. No legacy schema/threshold/runtime reused."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span": {
+        "start_line": 41,
+        "end_line": 41,
+        "inclusive": true,
+        "raw_byte_span_sha256": "1c457ace3161002377923fbe293326f079020354829a5f0ed3d1b578aa42aef4"
+      },
+      "disposition": "Old HIL-07 supports keeping raw/secret mixing and self-promotion as negative categories; memory/compaction/shadow mechanism is replaced."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span": {
+        "start_line": 39,
+        "end_line": 39,
+        "inclusive": true,
+        "raw_byte_span_sha256": "95a791c99b1d700b677a4628cca06754952dd18a0458763fb639925793149feb"
+      },
+      "disposition": "Paired HAT-HIL-07 is negative-oracle semantic comparator; not executed, no old case mechanics or thresholds reused."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "span": {
+        "start_line": 148,
+        "end_line": 168,
+        "inclusive": true,
+        "raw_byte_span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9"
+      },
+      "disposition": "L3 functional/business/NFR plus AC structure only; no old G3/subgate authority."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "full_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "span": {
+        "start_line": 162,
+        "end_line": 170,
+        "inclusive": true,
+        "raw_byte_span_sha256": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5"
+      },
+      "disposition": "L10 as downstream paired verification of L3 behavior; workflow/gate semantics not reused."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "full_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "span": {
+        "start_line": 16,
+        "end_line": 56,
+        "inclusive": true,
+        "raw_byte_span_sha256": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a"
+      },
+      "disposition": "functional/business/NFR and paired AC organization format; HARNESS-specific content is not moved into BRAIN."
+    }
+  ],
+  "case_parent_trace": [
+    {
+      "case_id": "L10-BRAIN-024-C01",
+      "parent_basis": "L2-024:455-461; L2-019/022 design-knowledge contract; normal CORE route.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C02",
+      "parent_basis": "L2-024:455-461; L2-020 runtime owner→LABO→candidate, with source/scope/result/failure/counterexample/unassessed range.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C03",
+      "parent_basis": "L2-024:457 direct Runtime read forbidden.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C04",
+      "parent_basis": "L2-024:457 direct Runtime write forbidden.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C05",
+      "parent_basis": "L2-024:457 direct Runtime learning forbidden; actual result only through LABO.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C06",
+      "parent_basis": "L2-024:457 server state not stored/owned by BRAIN.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C07",
+      "parent_basis": "L2-024:457 network state not stored/owned by BRAIN.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C08",
+      "parent_basis": "L2-024:457 database state not stored/owned by BRAIN.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C09",
+      "parent_basis": "L2-024:457 operation permission not stored/owned by BRAIN.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C10",
+      "parent_basis": "Index only; aliases C34 and C35. Not an independent fixture.",
+      "unique_fixture": false
+    },
+    {
+      "case_id": "L10-BRAIN-024-C11",
+      "parent_basis": "L2-024:456-458 design handoff via CORE; no direct BRAIN product design adoption.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C12",
+      "parent_basis": "L2-024:456-461 runtime result returns only after LABO evaluation.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C13",
+      "parent_basis": "L2-024:456-458 separate Runtime/LABO/BRAIN identities and owners.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C14",
+      "parent_basis": "L2-024:455-461 and L2-020 candidate/evaluation target revision binding.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C15",
+      "parent_basis": "Index only; points to listed independent selected-dependency unknown/mismatch cases. Not an independent fixture.",
+      "unique_fixture": false
+    },
+    {
+      "case_id": "L10-BRAIN-024-C16",
+      "parent_basis": "L2-024:455-461 source identity and evaluation source trace.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C17",
+      "parent_basis": "L2-024:455-461 evaluation scope trace.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C18",
+      "parent_basis": "L2-024:461 selected L2-INFRA-009 dependency; selected contract identity unknown.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C19",
+      "parent_basis": "L2-024:461 selected L2-INFRA-009 dependency; known identity mismatch.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C20",
+      "parent_basis": "L2-024:461 selected L2-INFRA-012 dependency; revision unknown.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C21",
+      "parent_basis": "L2-024:461 selected L2-INFRA-012 dependency; known revision mismatch.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C22",
+      "parent_basis": "L2-024:455,461 L2-019/022 CORE contract identity unknown.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C23",
+      "parent_basis": "L2-024:455,461 L2-019/022 CORE contract revision mismatch.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C24",
+      "parent_basis": "L2-024:457 Runtime actual-state owner identity unknown.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C25",
+      "parent_basis": "L2-024:457 Runtime owner identity mismatch.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C26",
+      "parent_basis": "L2-024:455,461 L2-020 LABO contract identity unknown.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C27",
+      "parent_basis": "L2-024:455,461 L2-020 LABO contract identity mismatch.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C28",
+      "parent_basis": "L2-024:455,461 L2-020 LABO contract revision unknown.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C29",
+      "parent_basis": "L2-024:455,461 L2-020 LABO contract revision mismatch.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C30",
+      "parent_basis": "L2-024:461 lists L2-INFRA-017; L2-020 conditionally applies it when Infrastructure maturity is handled.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C31",
+      "parent_basis": "L2-024:461 lists L2-INFRA-017; L2-020 conditional maturity dependency; selected revision mismatch.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C32",
+      "parent_basis": "L2-024:457 provider account not stored/owned by BRAIN.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C33",
+      "parent_basis": "L2-024:457 credential not stored/owned by BRAIN; fixture wording is ambiguous about whether it asks for a credential value. Use non-secret synthetic marker/reference only.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C34",
+      "parent_basis": "L2-024:457 raw log not stored/owned by BRAIN.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C35",
+      "parent_basis": "L2-024:457 raw metrics not stored/owned by BRAIN.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C36",
+      "parent_basis": "L2-024:461 selected L2-INFRA-010 dependency; identity unknown.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C37",
+      "parent_basis": "L2-024:461 selected L2-INFRA-010 dependency; known identity mismatch.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C38",
+      "parent_basis": "L2-024:461 selected L2-INFRA-010 dependency; revision unknown.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C39",
+      "parent_basis": "L2-024:461 selected L2-INFRA-010 dependency; known revision mismatch.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C40",
+      "parent_basis": "L2-024:457 product Runtime actual state remains with that product Runtime owner; normal route.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C41",
+      "parent_basis": "L2-024:457 HELIX self-runtime owner is HELIX-INFRASTRUCTURE.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C42",
+      "parent_basis": "L2-024:457 product runtime state stays with target product Runtime owner.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C43",
+      "parent_basis": "L2-024:457-461 generic Pattern meaning returns to BRAIN; product design adoption stays CORE.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C44",
+      "parent_basis": "L2-024:462 direct credential/raw input requires receipt stop; fixture says synthetic reference/no secret value.",
+      "unique_fixture": true
+    },
+    {
+      "case_id": "L10-BRAIN-024-C45",
+      "parent_basis": "L2-024:462 direct raw runtime data inflow requires receipt stop.",
+      "unique_fixture": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "wording clarification for credential-safe fixture",
+      "locator": "docs/helix-brain/L10-verification/functional-verification.md:861 (L10-BRAIN-024-C33; C02 at :829 is explicitly synthetic); compare C44 at :873",
+      "finding": "C33 is based on C02, which is explicitly a synthetic fixture; no actual credential value or secret is present or used. However C33 says “credential value or reference” without the C44 qualification “synthetic reference only / no secret values”; this can be read as asking future fixtures to contain credential values, contrary to project secret/credential handling rules.",
+      "repair_candidate": "Change the fixture input to a non-secret synthetic sentinel representing credential presence or an opaque credential reference only; state explicitly that no actual credential value is used. Keep C33 as the storage rejection case and C44 as the direct receipt-stop case. No L2 meaning change."
+    },
+    {
+      "id": "F2",
+      "severity": "dependency-scope clarification needed",
+      "locator": "fixed L2-024:461; fixed L2-020 dependency clause; current FR-024 dependency line 716; FV C30/C31",
+      "finding": "L2-024 lists L2-INFRA-017 in its dependency set without an explicit condition. L2-020 says L2-INFRA-017 applies only when Infrastructure candidate maturity is handled. FR-024 lists it as a dependency unconditionally, while L10 C30/C31 check it only if a candidate selects a maturity relation. The current text does not say whether the L2-024 dependency is always required or is conditional through L2-020.",
+      "repair_candidate": "Before approval, make the L3/L10 trace explicit against both fixed clauses. Do not drop L2-INFRA-017; if its use is conditional via L2-020, state that source and map C30/C31 accordingly. If L2-024 intended an unconditional input, add a matching normal selected-dependency trace and corresponding isolated mutants. If the interpretation would change L2-024 scope, return that narrow meaning question to the L2 owner/PO."
+    }
+  ],
+  "cross_document_assessment": {
+    "business": "No independent business outcome/KPI/owner is created; both business documents point to FR/AC/FV only.",
+    "nfr": "No numeric NFR/threshold/time target is invented; NFR rows map functional CASE as semantic observations only.",
+    "functional_pair": "AC-01 maps C01/C02/C40 normal flows; AC-02 maps direct read/write/learning, forbidden state/storage, selected contract mismatches, wrong routes and wrong owner cases.",
+    "fixture_count": "C10 and C15 are explicitly index-only aliases, so the 45 identifiers denote 43 unique fixtures; this distinction is stated in FV. Do not count indexes as independent fixtures.",
+    "old_reuse": "RCLS-BR-004/006 and HR-FR-HIL-07/HAT-HIL-07 are semantic comparators only. Preserve proposal/evidence boundary and negative raw/secret/self-promotion categories; do not import RCLS cross-project/shadow/Mechanism rules, old runtime/schema, or old numeric/operation targets."
+  },
+  "verification": {
+    "six_full_body_hashes_match_base": true,
+    "024_scoped_sections_equal_previous_combined_approved_body": true,
+    "prior_approval_inherited": false,
+    "025_approval_inherited": false,
+    "case_identifier_count": 45,
+    "unique_fixture_count": 43,
+    "index_only_cases": [
+      "L10-BRAIN-024-C10",
+      "L10-BRAIN-024-C15"
+    ],
+    "old_runtime_test_or_ci_executed": false,
+    "secrets_created_or_used": false,
+    "files_modified_except_new_audit": false,
+    "commit_or_push": false
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "record_type": "HELIX-BRAIN Stage 5 parent024 review01 M1/m1-m5 repair evidence",
+  "language": "ja",
+  "as_of": "2026-10-08",
+  "authority_effect": "none",
+  "base_revision": "068741e714ece983ca4ab7992311371aa9cd1252",
+  "merge_base": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+  "worktree_branch": "codex/brain-stage5-parent024-audit",
+  "scope": [
+    "HELIXBRAIN-L2-024 only",
+    "review01 M1 and m1-m5"
+  ],
+  "review": {
+    "pull_request": 2668,
+    "comment_id": "6041576044",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2668#issuecomment-6041576044",
+    "raw_utf8_body_sha256": "9fc2ce73732a63c7a2a91d07237137cda6ec279e872a7ad4f167602ad09a4e66",
+    "raw_utf8_body_bytes": 5565,
+    "conditions": {
+      "Opus_condition1": "no_findings failed; M1 returned; exact-revision re-review required",
+      "Fable_condition2": "承認してよい; not approval for this revised body"
+    }
+  },
+  "immutable_prior_evidence": [
+    {
+      "path": "docs/governance/audits/requirements-stage/brain-stage5-parent024-current-six-body-audit-2026-10-08.json",
+      "sha256": "24ab51f9e8af99fecf8658a4a7e849c3e69d23aeb60778d2ff4d7dd776d59091",
+      "treatment": "read-only; unchanged"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/brain-stage5-parent024-c33-infra017-repair-supplement-2026-10-08.json",
+      "sha256": "6582ce5d584c2da00a8d5779a05b710f8084ca743913d4a08fbadf943c6ee806",
+      "treatment": "read-only; unchanged"
+    }
+  ],
+  "fixed_source": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "L2_024": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_lines_inclusive": [
+        454,
+        463
+      ],
+      "span_sha256": "c91976bfc0f128dd8628b8d3448ddac57af0e4531f8d54f996ed094cd3b018c3"
+    },
+    "L2_020": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_lines_inclusive": [
+        414,
+        421
+      ],
+      "span_sha256": "bc967d34739ea1b7823241db0cd61ced49c71b7a362f2e9233563fab7660d069"
+    },
+    "L2_INFRA_017": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_lines_inclusive": [
+        382,
+        390
+      ],
+      "span_sha256": "191b4c13d075cd3a9cfbd938bf5d0a961615936e30a9266a904dc633c28fa348"
+    },
+    "L11_024": {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_line": 64,
+      "span_sha256": "aff2c5df94b1b823fa92d879ae7625c791d623f28eed0851ed7d4d585fa6f440"
+    },
+    "authority_reading": "L2-024 enumerates L2-INFRA-017 as a dependency. L2-020 applies maturity-specific state/evidence only when Infrastructure candidate maturity is handled; ordinary dependency tracing remains in scope. L2-020:421 returns evaluation/revision mismatch to LABO. L2-INFRA-017 is the BRAIN requirement at brain-requirements.md:382-390."
+  },
+  "review_request_correction": "The review request reportedly named an Infrastructure-document path for L2-INFRA-017. The exact fixed source is HELIXBRAIN-L2-INFRA-017 in docs/helix-brain/L2-requirements/brain-requirements.md:382-390. Opus and Fable used this correct source; the request typo does not affect their findings.",
+  "repairs": {
+    "M1_C52_C53": "Keep the existing hold and no-completion behavior. Add explicit LABO return for evidence/source-evaluation insufficiency and evaluation-target revision mismatch (L2-024:461; L2-020:421); explicitly reject returns to any other destination.",
+    "m1_C51": "Keep state unknown/hold. Because the fixed parent does not identify a unique state provider/owner/return destination for this missing input, preserve owner and destination as unknown and do not infer LABO or another owner.",
+    "m2_C33": "Restore the original credential-value storage rejection with only a non-secret synthetic sentinel; no usable credential is created or used. C44 remains a separate reference-inflow stop.",
+    "m3_C46_C47_C48_C49": "Fix C46 to the C01 CORE design-knowledge normal route; C47-C49 explicitly inherit that same baseline and vary one dependency identity/revision field at a time.",
+    "m4_FR": "Remove the duplicate L2-INFRA-017 trace paragraph after AC-02 and retain its unique field-by-field consistency requirement by integrating BRAIN version, project usage version, usage evidence, failure, counterexample, and LABO evaluation into the preceding dependency/version/return paragraph.",
+    "m5_C02": "Explicitly state source identity/revision, owner, candidate/target revision and scope values across source/evaluation/L2-020 receipts and require exact value agreement in the normal oracle.",
+    "cross_document_trace": "Update all six canonical bodies. FR AC-02 and BR/BV/NFR/NFRV include C54; no existing CASE is removed or renamed.",
+    "m2_C54": "Add a new independent single-mutant CASE for changing only the storage destination of an opaque, non-secret synthetic credential reference; this restores the reference-storage rejection without replacing C33."
+  },
+  "six_canonical_bodies": {
+    "BR": {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "before_sha256": "f6245596e9a6f935199225d49ba57c290dbd7c653dc39fcfb696a66c8fbf7caa",
+      "after_sha256": "e3dfad1e76e4120d4a438e1b8145d5efc28f7cda0f039021b47339e4c264ccb8"
+    },
+    "FR": {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "before_sha256": "66097f911a9eb0e4fa8ff2ac1644367c7abf9fd08a555179db4db888dccb8118",
+      "after_sha256": "6cf8be0c095fcd5ad5e52b6ee99e607c18d1b26be6f0d2e625e727d868a33cdf"
+    },
+    "NFR": {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "before_sha256": "28b1095d0bd494d3e3ebcf96f05b02ac61aea18deb3744629e8da6172e890b8d",
+      "after_sha256": "07b6c0843cde302252228675088a3a74147672a540c4da5c63e30b2d51f85793"
+    },
+    "BV": {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "before_sha256": "bd35c29e7f5e5c2a92705894dc360fcc6d3e060f940af6728e214fe69eec5272",
+      "after_sha256": "65fc061d4e78b7360cf77d83a396d4c303f4159c1ba047990b31fb6810992d6e"
+    },
+    "FV": {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "before_sha256": "ed450d07f2b355f10927ccdfb708f86cb88d79ab0905778a9a60e99e09544f74",
+      "after_sha256": "866f1e1d852b272611d6233c725035d3138d8b013f932f539a9af02bbefeba6c"
+    },
+    "NFRV": {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "before_sha256": "61f55012116d740e5a7285b2020c83c34e10972a4bcf7ac1d9c14d6313371778",
+      "after_sha256": "40fbd13f0a253a4686d8c127cf190d63c342ecc0e18aae3796b414eae33d5b70"
+    }
+  },
+  "case_inventory": {
+    "parent024_identifiers": 54,
+    "new_case_ids": [
+      "L10-BRAIN-024-C54"
+    ],
+    "C46_normal_baseline": "C01 CORE route",
+    "C47_C49": "each derives from C46 and changes one dependency field only",
+    "C51_owner_and_return": "unknown; no owner inferred",
+    "C52_C53_return": "LABO only; other destinations fail",
+    "C33_secret_handling": "synthetic non-secret value-presence sentinel only; no real/usable credential created or used",
+    "C33": "credential-value storage negative; non-secret synthetic sentinel only",
+    "C54": "opaque reference storage destination-only negative; non-secret synthetic marker only",
+    "unique_fixture_count": 52
+  },
+  "static_verification": {
+    "six_base_hashes_match_exact_review_head": true,
+    "fixed_parent_full_and_span_sha_verified_at_f6dad": true,
+    "old_audits_unchanged": true,
+    "case_inventory_unchanged": false,
+    "git_diff_check": "passed",
+    "json_parse": "passed",
+    "legacy_runtime_or_test_executed": false,
+    "secrets_created_or_used": false,
+    "old_decision_records_modified": false,
+    "commit_or_push": false,
+    "case_inventory": "54 identifiers; 52 unique fixtures because C10/C15 are index-only aliases; C54 is the new independent reference-storage negative.",
+    "C33_value_and_C54_reference_cases": "both present as separate single-mutant cases",
+    "017_fields_retained_after_duplicate_cleanup": true
+  },
+  "limits": "Draft repair only. No L3 approval, implementation admission, execution permission, or independent review is created."
+}
