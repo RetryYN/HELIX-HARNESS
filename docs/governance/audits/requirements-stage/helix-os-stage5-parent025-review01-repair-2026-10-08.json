@@ -1,0 +1,123 @@
+{
+  "record_type": "OS Stage 5 HELIXOS-L2-025 review01 M1/m1-m7 repair evidence",
+  "language": "ja",
+  "as_of": "2026-10-08",
+  "authority_effect": "none",
+  "base_revision": "140e82ba49acb8522a7944c0bdfda5f3d6c26666",
+  "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "worktree_branch": "codex/os-stage5-parent025-audit",
+  "scope": [
+    "HELIXOS-L2-025 only",
+    "review01 findings M1 and m1-m7"
+  ],
+  "review": {
+    "pull_request": 2665,
+    "comment_id": "6041232949",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2665#issuecomment-6041232949",
+    "raw_utf8_body_sha256": "23801caf89b3ba5f5253db66a83beb77706e49eebc6bb3934bc9e4d45f59583a",
+    "raw_utf8_body_bytes": 5051,
+    "scope_note": "Formal review01 on the exact base HEAD above was read in full. Findings on parents 026/031/047 were out of scope and not edited."
+  },
+  "prior_immutable_evidence": [
+    {
+      "path": "docs/governance/audits/requirements-stage/helix-os-stage5-parent025-ac-repair-2026-10-08.json",
+      "sha256": "5c25ab89e1d67cc0e7a250217b05caa6cc99c11b5e6eaf36e4abe856be4d7435",
+      "treatment": "read-only; unchanged"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/helix-os-stage5-four-parent-l3-l10-draft-2026-10-06.json",
+      "treatment": "fixed-parent/source/register pin reference; read-only"
+    }
+  ],
+  "fixed_parent": {
+    "L2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "span_lines_inclusive": [
+        742,
+        751
+      ],
+      "span_sha256": "b7166f6399db9a0f1d3a9db76977ec4ec0f1e7f708503ccc42beea0ec97121e1"
+    },
+    "L11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "span_lines_inclusive": [
+        394,
+        399
+      ],
+      "span_sha256": "4fc6622e1bac457871fb23f84e693944fee7a9acebe90996c9e14ab86adb0c1f"
+    },
+    "PO_adoption": {
+      "identity": "HELIXOS-L2-025",
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "decision_full_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "decision_span_lines_inclusive": [
+        45,
+        48
+      ],
+      "decision_span_sha256": "ceb82a2a8174197bf5df3f3e918e2af1d452958354579ddc28e3b67f40031c7a",
+      "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "register_source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "register_full_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
+      "register_line": 59,
+      "register_line_sha256": "c7907da917d87aaf38e06f5d81a97906ab226b958956967dae151f2a392c2e69"
+    }
+  },
+  "finding_repairs": {
+    "M1": "AC-025-01、CASE-01/13を保持・具体化し、HELIX自身と性質の異なるprojectの要求authority→ticket→Worker→検収→提供/運用→LABO評価→OS還流の各段にproject/target revision/scope/source参照の値一致を記載。CASE-033〜039を各一段だけ欠く独立negativeとして追加し、AC索引とBR/BV/NFR/NFRVの参照を同期。合成fixtureであり新authorityは生成しない。",
+    "m1": "固定L2-025が列挙する依存に限定し、Concept、対象L1/L2、必要connection契約、許可資源と各L2-015〜024の適用可能性をFR境界へ記載。",
+    "m2": "failure解消を一律禁止する旧overlay訂正をAC-025-02本文へ反映し、overlayによる本文取消を除去。未決authorityと未完受入義務は保持する。",
+    "m3": "CASE-18を人判断入力あり・判断待ち、CASE-031を必要判断入力自体の欠落としてFR/FVで分離。",
+    "m4": "CASE-047で個別初期配布に全7製品完成を必須とする単独誤変異を追加。AC-025-02本文にも個別初期配布は全7製品待ちを前提としない境界を明記。",
+    "m5": "CASE-048を7製品/選択connection/composite全体の正常1.0例、CASE-049をサービス⑥だけを欠く独立negativeとして追加。",
+    "m6": "CASE-19/20/21の既存source/ownerへの戻し先を明示し、LABO/INTELLIGENCE移管を逆流させない。",
+    "m7": "NFR/NFRVの旧CASE範囲を実在する非連続ID一覧へ同期。過去IDは改名せず、今後の追加IDは3桁連番と明記。"
+  },
+  "canonical_bodies": {
+    "BR": {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "before_sha256": "e12042f38e018c890155e2b6c5c51080a6504585fc4af94092ddc755795ae2f3",
+      "after_sha256": "3e74d098f400da46e22f477a0fb4dffc821648d37bd5f81640a53b2aebb55257"
+    },
+    "FR": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "before_sha256": "fefd3a35ea9c4d652ed2765f460775461175e08973dffad3579290be240e4dec",
+      "after_sha256": "ed81934c228094e750ceca566de7c767ff5467162d3480e3fb82b561e6fc2b69"
+    },
+    "NFR": {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "before_sha256": "948bd74bd5b20a3d359bb8aa42ba399aa6ddeecfbe1748dfe70e9a07201d4eac",
+      "after_sha256": "ec659c86fb695f670631c71f373b426824da4eafa78565fbcbb0b15c0d8a0904"
+    },
+    "BV": {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "before_sha256": "8102b93a3b1afe2825bc92d8acdfd98cca4fb50274974d61324707e547558a85",
+      "after_sha256": "cd48bc57bd8b8ceac8edbd527a8b42b1074088af03749ba3fe7b2187292414b3"
+    },
+    "FV": {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "before_sha256": "55e080018decbf42cbba35ee430801fd25923a8c80623864653a79fed17d1e81",
+      "after_sha256": "dde7de0983a2d87a11371e7d4ecea56ed789a55014148e438f22d7d632781135"
+    },
+    "NFRV": {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "before_sha256": "2b7d63629298f33b34faf5add0b39645085d97234ace789397e97db37823a0b8",
+      "after_sha256": "2beb31505b0d0855be712983ad1a21a53421ab940e37e490145e7f7fb0b953f0"
+    }
+  },
+  "static_verification": {
+    "fixture_ids": "42 defined IDs: 01-21, 022-039, 047-049; no gaps inside the declared ranges and no aliases claimed",
+    "trace_single_mutants": "CASE-033..039 each removes exactly one named stage record while retaining the other trace inputs; CASE-01 and CASE-13 remain normal cross-project traces",
+    "case_parent_trace": "Every new condition maps to L2-025:745–751 and/or L11-025:394–399; no L10-derived requirement, new owner, new schema, or fixed-parent meaning change",
+    "format": "git diff --check and JSON parsing checked",
+    "runtime_or_legacy_test_executed": false,
+    "old_decision_or_audit_edited": false,
+    "commit_or_push": false,
+    "table_layout": "Root removed repeated table header between CASE032 and033; one continuous four-column table."
+  },
+  "limits": "This is a draft repair and static evidence only. No delegated L3 approval, implementation admission, runtime execution, or independent review is created."
+}
