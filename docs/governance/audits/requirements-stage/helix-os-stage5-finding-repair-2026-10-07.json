@@ -1,0 +1,437 @@
+{
+  "record_type": "static_source_and_finding_repair_evidence",
+  "record_status": "draft_evidence_only",
+  "authority_effect": "none",
+  "base_commit": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "worktree": "/home/tenni/.helix-worktrees/l3-os-stage5-repair",
+  "branch": "codex/l3-os-stage5-repair",
+  "official_opus_recheck": {
+    "comment_id": 6039139596,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2616#issuecomment-6039139596",
+    "result": "Major 4; unreviewed 0; prior Opus identity citation withdrawn; no current delegated approval established"
+  },
+  "fixed_parent_and_l11": [
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "bytes": 447207,
+      "spans": [
+        {
+          "lines": "742-805",
+          "sha256": "d77d0be6d5210dce4c3ae56b58908a874f0bfd70536a6c1b593f9c62adef9e36"
+        },
+        {
+          "lines": "807-822",
+          "sha256": "e52cc56d219b6aa77e037985b55ff5b21aff2be2a6f5ea497f84cffb3f679374"
+        },
+        {
+          "lines": "900-911",
+          "sha256": "a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462"
+        },
+        {
+          "lines": "1185-1193",
+          "sha256": "e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "bytes": 331746,
+      "spans": [
+        {
+          "lines": "394-428",
+          "sha256": "c9853ac6d5ccc53ba68245838201c850caeb44be178b74f68b1ff47a9834d64c"
+        },
+        {
+          "lines": "430-440",
+          "sha256": "a52f3386616340d841fe8de620d030897fa20c375c7efd9df2659d8621ecd8ea"
+        },
+        {
+          "lines": "500-511",
+          "sha256": "9e0caa1d717cf3f71a74ee1d829ed9625406fe9fd3f85a917ae6945e7918abcb"
+        },
+        {
+          "lines": "802-810",
+          "sha256": "d36677691f846bfc793b1dbc2322cb047aae86a3b102e97026e0275801ec7871"
+        }
+      ]
+    }
+  ],
+  "historical_decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage5-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "76d953b35060a27c3c0cd0c5624e9fbcd7fa87fe54f48dc321782a6fba951d79",
+    "bytes": 3419
+  },
+  "nonapproval_supplement_draft": {
+    "path": "docs/governance/decisions/helix-os-stage5-l3-l10-nonapproval-supplement-draft-2026-10-07.md",
+    "sha256": "761326767d50f9138c8e39eb38096a72e4813935c8752bf1512997fcdb59575b",
+    "bytes": 3740
+  },
+  "legacy_source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "bytes": 15617,
+      "spans": [
+        {
+          "lines": "148-168",
+          "sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "bytes": 26481,
+      "spans": [
+        {
+          "lines": "46-67",
+          "sha256": "d79801220234ea5d71470b9e3bddf04da1d7291f172f631b8573228609dce790"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "bytes": 5412,
+      "spans": [
+        {
+          "lines": "23-67",
+          "sha256": "0b640473d25bde7bab525a6c9f0f7b924ac94f54dfb828d44bd176a9beee31d3"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "bytes": 13328,
+      "spans": [
+        {
+          "lines": "52-111",
+          "sha256": "a5391eb837ed987da79a6c06e1c4ac77156cc5435540465685c79aff299c0fff"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "bytes": 8294,
+      "spans": [
+        {
+          "lines": "32-59",
+          "sha256": "d5330a498ebe3b4bfa8ce605efeb1d2a84b90d31a77428eae86d97af51819ea8"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+      "sha256": "7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1",
+      "bytes": 2959,
+      "spans": [
+        {
+          "lines": "14-34",
+          "sha256": "9a54390eefde7578aa3fe19aae6925eab6b27b40669d5eb11c2369417d69e1d6"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
+      "sha256": "52af19a483d6222f31d1d52031482fc60c62c504fe97496687d8175aa7a53756",
+      "bytes": 11059,
+      "spans": [
+        {
+          "lines": "52-64",
+          "sha256": "1582e571c230b8719fb1ff6667cb2f7ef77c5b6350a26935505296d06bd181cd"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+      "sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+      "bytes": 6436,
+      "spans": [
+        {
+          "lines": "94-124",
+          "sha256": "4164ec26419c29b4e6c7385bf76f6e5c371d1be6e983fe0e262450126b88f119"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-ci-performance-system-test-design.md",
+      "sha256": "8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232",
+      "bytes": 1915,
+      "spans": [
+        {
+          "lines": "20-28",
+          "sha256": "d20d43b0c172943b1db0e021d3155e94809f43ac802c127ddc2005b8376a318c"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "bytes": 46889,
+      "spans": [
+        {
+          "lines": "99-105",
+          "sha256": "c33caa53a234a2c829b00ed809ef21c48450d52a6925b71609791c1eb2f37f82"
+        },
+        {
+          "lines": "220-228",
+          "sha256": "fad88c4dbed46c74b47b55425d388818a2ab7d11003be082c03bad5f6265143e"
+        },
+        {
+          "lines": "278-282",
+          "sha256": "4e95fb073af841862131a4e23e4a0639c97495d087165642c46a08f706e26ebc"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "bytes": 13648,
+      "spans": [
+        {
+          "lines": "18-20",
+          "sha256": "5eafa63ba506c1a110a299d272c02a40cdede20b4159adc59384b95b7827c969"
+        },
+        {
+          "lines": "34-70",
+          "sha256": "e861f0f60204a8bc0150c877d0f887adccfce3cebe88e78b08872d1e2b3ab351"
+        },
+        {
+          "lines": "127-135",
+          "sha256": "66ce16ab6689c5c1ae9b683636fccab602c10a766f141821074934f86832eecf"
+        }
+      ]
+    }
+  ],
+  "legacy_scope_search": {
+    "query": "統合運転|統合運転構成体|HELIX-OS統合",
+    "directories": [
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/helix"
+    ],
+    "matched_lines": 0,
+    "interpretation": "No exact phrase match in this restricted search; this does not prove semantic absence."
+  },
+  "findings": [
+    {
+      "id": "M1",
+      "basis": "L2-026 output list and L11-026 expected derived result",
+      "new_ac": "AC-OS-L3-026-05",
+      "cases": [
+        "CASE-OS-L10-026-056",
+        "CASE-OS-L10-026-057",
+        "CASE-OS-L10-026-058",
+        "CASE-OS-L10-026-059"
+      ],
+      "normal": "026-056 includes each selected pack version/applicability target and a same-scope requirements→work→verification→result-recording path",
+      "single_mutations": [
+        "026-057 pack version missing only",
+        "026-058 applicability target missing only",
+        "026-059 result-recording path missing only"
+      ],
+      "source_disposition": "Meaning re-derived from fixed HELIXOS-L2-026/L11-026; legacy FRS versions/channels are not imported."
+    },
+    {
+      "id": "M2",
+      "basis": "L2-031:903-906; confirmed legacy CIS-R-15 plus paired GH-AC-017/018 measurement evidence",
+      "new_ac": "AC-OS-L3-031-05",
+      "cases": [
+        "CASE-OS-L10-031-088",
+        "CASE-OS-L10-031-089",
+        "CASE-OS-L10-031-090",
+        "CASE-OS-L10-031-091",
+        "CASE-OS-L10-031-092",
+        "CASE-OS-L10-031-093",
+        "CASE-OS-L10-031-094"
+      ],
+      "normal_values": {
+        "wall_clock_seconds": 240,
+        "runner_minutes": 12,
+        "fixture_budget_seconds": 180,
+        "failure_feedback_latency_p50_seconds": 120,
+        "failure_feedback_latency_p95_seconds": 300,
+        "over_budget_cause_fixture": "runner queue wait",
+        "classification": "illustrative fixture inputs only; no threshold, SLO, cause taxonomy, sample-size, or window is imposed"
+      },
+      "single_mutations": [
+        "089 wall-clock only",
+        "090 runner-minute only",
+        "091 feedback-latency p50 only",
+        "092 feedback-latency p95 only",
+        "093 over-budget cause classification only",
+        "094 feedback-latency population only"
+      ],
+      "source_disposition": "Metrics retained as measurable fields; old p95=60s/3m stays bound to its old environment/profile/population."
+    },
+    {
+      "id": "M3",
+      "basis": "L2-031:905 expressly says Recovery Issue is a work projection, not requirement/adoption authority",
+      "new_case": "CASE-OS-L10-031-095",
+      "normal_context": "CASE-OS-L10-031-073",
+      "single_mutation": "Recovery Issue is the sole requirement/adoption source; reject that authority while retaining existing ticket/source/evidence state",
+      "source_disposition": "Legacy Recovery Issue workflow is not restored; only the fixed current projection boundary is stated."
+    },
+    {
+      "id": "M4",
+      "basis": "L2-047:1188-1191; L11-047:805,807-808; legacy ticket/assignment exact binding and pending obligation trace",
+      "new_ac": "AC-OS-L3-047-05",
+      "cases": [
+        "CASE-OS-L10-047-039",
+        "CASE-OS-L10-047-040",
+        "CASE-OS-L10-047-041"
+      ],
+      "normal": "047-039 binds return to original assignment and tracks outstanding duties through successor revision",
+      "single_mutations": [
+        "047-040 original-assignment relation absent only",
+        "047-041 outstanding-duty tracking absent only"
+      ],
+      "source_disposition": "Meaning re-derived from immutable ticket revision, exact Assignment binding, and unresolved obligation retention; no new schema or relation type."
+    }
+  ],
+  "target_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "85f2887d9dc368267e609b4299aa39b7fea997b8fcfa7b187cef411362138c89",
+      "bytes": 19467,
+      "spans": [
+        {
+          "lines": "93-116",
+          "sha256": "5b02d8c702908a3325b5d0f0637290535d10c280a54b60bdd64ddada688166fd"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "3fcf412f572eff211fb645c7846b23f6f3b45e9cf53314a6d0ddcee67d1fcd6e",
+      "bytes": 197862,
+      "spans": [
+        {
+          "lines": "534-624",
+          "sha256": "e96469e1264947c34afc7cbaaecdbce2eb1f00217ed8c5865fdf1c6493fed420"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "942333c9fe9bef8717a48ab722cd56d0f8abab3f47c46699fabf22264b36a6b8",
+      "bytes": 31929,
+      "spans": [
+        {
+          "lines": "117-142",
+          "sha256": "0a49d7fbbb2f72a8d0008fde47c34f67c85fdb2908f6df625a6bdadb9b5a7233"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "459297635fbb24ead446d7295ea744a908593c67dcae88012a5c09975ccb13c8",
+      "bytes": 17100,
+      "spans": [
+        {
+          "lines": "82-108",
+          "sha256": "fa95e86ed47db43c0260b1b44098662e9d19d55b4f2a579e4f940ca09e5469b0"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "bd1a1d88e68112afe589b84a9aea4a2a88a3ffd60c106d5e903380a57d212aab",
+      "bytes": 230074,
+      "spans": [
+        {
+          "lines": "980-1255",
+          "sha256": "d10a31332f490357182b583329135f07c17ecdd5af1d3dad1b67ab03ba10afc8"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "09ecfd6703644ef17b232315707962cf6aedc8459f70bd811b4e4031db6cb9e8",
+      "bytes": 28852,
+      "spans": [
+        {
+          "lines": "125-149",
+          "sha256": "d85d733c478088113a7c56b3d76a4ea0891d528465ec17c240f539032ed56bbc"
+        }
+      ]
+    }
+  ],
+  "static_validation": {
+    "status": "passed",
+    "checks": [
+      "HEAD equals designated base commit",
+      "exactly six allowed Stage5 L3/L10 files modified in the worktree",
+      "fixed L2, fixed L11, and existing 2026-10-06 decision record unchanged",
+      "new M1/M2/M3/M4 case IDs each occur exactly once in functional verification",
+      "new M1/M2/M4 L3 AC IDs each occur exactly once",
+      "normal fixture and each listed independent single-mutation fixture are represented",
+      "fixture p50 <= p95 and illustrative over-budget wall-clock > illustrative budget",
+      "tracked edits pass git diff --check",
+      "case-range indexes in business and NFR verification align with newly added functional cases"
+    ],
+    "runtime_tests_executed": false,
+    "approval_created": false,
+    "l10_execution_or_measurement_performed": false
+  },
+  "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "base_parent_and_l11": [
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+      "bytes": 447171,
+      "spans": [
+        {
+          "lines": "742-805",
+          "sha256": "d77d0be6d5210dce4c3ae56b58908a874f0bfd70536a6c1b593f9c62adef9e36"
+        },
+        {
+          "lines": "807-822",
+          "sha256": "e52cc56d219b6aa77e037985b55ff5b21aff2be2a6f5ea497f84cffb3f679374"
+        },
+        {
+          "lines": "900-911",
+          "sha256": "a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462"
+        },
+        {
+          "lines": "1185-1193",
+          "sha256": "e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "bytes": 331746,
+      "spans": [
+        {
+          "lines": "394-428",
+          "sha256": "c9853ac6d5ccc53ba68245838201c850caeb44be178b74f68b1ff47a9834d64c"
+        },
+        {
+          "lines": "430-440",
+          "sha256": "a52f3386616340d841fe8de620d030897fa20c375c7efd9df2659d8621ecd8ea"
+        },
+        {
+          "lines": "500-511",
+          "sha256": "9e0caa1d717cf3f71a74ee1d829ed9625406fe9fd3f85a917ae6945e7918abcb"
+        },
+        {
+          "lines": "802-810",
+          "sha256": "d36677691f846bfc793b1dbc2322cb047aae86a3b102e97026e0275801ec7871"
+        }
+      ]
+    }
+  ],
+  "parent_pin_comparison": {
+    "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "base_revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+    "all_four_finding_spans_byte_identical": true,
+    "full_file_bytes_equal": false,
+    "observed_base_to_fixed_full_file_diff": "L2 has a four-line URL/path correction outside all four pinned finding spans; L11 full bytes are equal.",
+    "meaning_check": "The Stage5 parents used for M1-M4 are byte-identical at their pinned spans between fixed 633bf12 and base 5efdf026. Therefore the full-file digest correction changes source revision identification, not the parent meaning used by the findings."
+  }
+}
