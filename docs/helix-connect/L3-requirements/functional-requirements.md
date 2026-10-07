@@ -22,7 +22,7 @@
 
 | 固定親 | 入力 | 出力 |
 |---|---|---|
-| HELIXCONNECT-L2-001 | source/consumerと端点の所有者が宣言する接続目的・能力名、端点、方向、scope、契約・成果物・依存のrevisionと互換範囲、適用されるSECURITY許可とdata-use/classification識別子。 | 接続identity、登録revision、端点/能力/契約/依存の参照、状態、登録結果receipt。 |
+| HELIXCONNECT-L2-001 | source/consumerと端点の所有者が宣言する接続目的・能力名、端点、方向、scope、契約・成果物・依存のrevisionと互換範囲、適用されるSECURITY許可とdata-use/classification識別子。 | 接続identity、登録revision、端点/能力/契約/依存と適用識別子の参照、状態、登録結果receipt。 |
 | HELIXCONNECT-L2-002 | 互換性照合には、接続identity、登録receipt、実使用する両端契約/成果物/依存revision、互換宣言、scopeを使い、入力の読取りには適用される既存scope/access条件を守る。送信適格性を判断する操作に限り、actor、target、operation、environment、expiry、該当するSECURITY許可識別子とdata-use/classification条件を追加で照合する。 | revision組合せを固定した互換性receipt（compatible/incompatible/unknown/stale）。送信操作の要求がある場合のみ、互換成立と有効な適用許可/data-use条件の双方を満たした`eligible`、または理由付きの`withheld`を返す。参照のみの場合は`send_eligibility=not_evaluated`とし、送信attemptを発行しない。 |
 | HELIXCONNECT-L2-003 | L2-001の接続登録とL2-002の現在revision照合、能力名、契約/成果物/依存revision、target scope、correlation ID、expiry、idempotency key、result stateの初期値、適用されるSECURITY/data-use識別子、契約に適合するmessage envelope。 | 端点へ渡されたenvelopeと受信側receipt、送信/受信/unknown/拒否のresult state、未完義務があれば共通recovery先へのhandoff情報。 |
 | HELIXCONNECT-L2-004 | 未完operation、同一correlation/idempotency identityとdigest、元のscope/expiry/許可、直前attemptとACK/result state、互換確認済みの単一contract revision、契約上の再送上限と可否。 | attemptごとのreceipt、重複効果なしを示す受信確認、終端またはunknown/unfinished状態とrecovery先。 |
@@ -42,7 +42,7 @@
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：接続候補と両端ownerが宣言した契約。通信、再送、他接続を必須にしない。 戻し先: 欠落/衝突/unknownは登録を未成立にし、不足または矛盾した宣言を該当する接続元・consumer ownerへ戻す。
 
-**L3 acceptance (`CONNECT-AC-001-01`)**：登録identityと両端契約が一意に結び付き、不足・不明・同一接続identityの異なる宣言による重複・identity衝突は利用可能にならない。識別可能な別接続による端点共有は拒否しない。能力名、契約/成果物/依存版、scope、correlation ID、期限、冪等キー、result stateを含む完全descriptorを照合し、各必須値欠落・未登録revision・衝突をusableにせず、別identityや既定登録へのfallbackで補わない。登録から業務承認・SECURITY許可を生成しない
+**L3 acceptance (`CONNECT-AC-001-01`)**：登録identityと両端契約が一意に結び付き、不足・不明・同一接続identityの異なる宣言による重複・identity衝突は利用可能にならない。識別可能な別接続による端点共有は拒否しない。能力名、契約/成果物/依存版、scope、correlation ID、期限、冪等キー、result stateを含む完全descriptorを照合し、各必須値欠落・未登録revision・衝突をusableにせず、別identityや既定登録へのfallbackで補わない。source/consumerが適用対象として宣言したSECURITY許可・data-use・classification識別子は、値を変更せずdescriptorと登録receiptへ結ぶ。いずれかの適用識別子が欠落またはunknownなら登録をusableにせず、宣言元のsource/consumer ownerへ戻す。source/consumerがこの登録scopeに適用する識別子はないと明示した場合の正常登録も許し、識別子の有無から適用性を推測しない。登録から業務承認・SECURITY許可を生成せず、送信時の許可有効性を判定しない。
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-001`。
 
