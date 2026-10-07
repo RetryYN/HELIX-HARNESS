@@ -38,3 +38,7 @@
 ## 検証と限界
 
 文書をexact baseから読み、差分後のFR AC ↔ FV CASE ↔ NFR trace ↔ NFRV oracleのID参照を静的に確認した。重複ID、差分外本文、L2/L11/旧source bytesの変更がないことを確認し、`git diff --check`を実行した。旧test/runtime/CIおよび現行fixtureは実行していない。したがって、これは文書oracleの整合確認であり、実装や実行結果の合格を示さない。
+
+## 2026-10-08 07h境界の表現訂正
+
+後続の検収で、初回の07h入力「次のretryが入力済上限Nに達する」は、現在の正しい累積がN-1で次のretryによりNへ達する意味にも読め、期待oracleとの矛盾が生じると確認した。本文は「現在までのattempt eventの正しい累積が入力済上限Nである境界」と明示し、期待も「現在までの正しい累積が既に上限に達しているためretryを許さない」と限定した。policy、N、owner、対象failure classは変えていない。初回表のFV hashは当時の状態を示す歴史pinとして残す。今回の訂正後、FV `docs/helix-os/L10-verification/functional-verification.md` は241,465 bytes、SHA-256 `e0834b1e7dee0ee0175e28d73f155d07ff2fc856cf97bc0765d28166a123410e`。変更はCASE-040-07hの一行だけである。
