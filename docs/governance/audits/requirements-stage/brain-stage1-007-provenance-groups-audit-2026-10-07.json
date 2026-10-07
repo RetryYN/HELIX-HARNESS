@@ -1,0 +1,152 @@
+{
+  "record_type": "requirements-stage-static-authoring-audit",
+  "date": "2026-10-07",
+  "target": "HELIX-BRAIN Stage 1, HELIXBRAIN-L2-007 provenance groups and paired L3/L10 trace",
+  "base_head": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "authority_effect": "none",
+  "scope": "Six Stage 1 L3/L10 documents only; fixed L2/L11 and prior audit records remain unchanged.",
+  "fixed_parent_pins": [
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "lines": "150-160",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256": "f96983fecc67fdb539d5ff143ed758a9c2ae799ae3f4fb6fa24bad2c381a6774"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "lines": "35-35",
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256": "10d2eca8689ebae8e517fe59ec8ae5586b9410dc3acec5d70fa39e1b9a551a3f"
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "source": "legacy L3 design phase",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "lines": "148-168",
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9"
+    },
+    {
+      "source": "legacy L10 verification phase",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "spans": [
+        {
+          "lines": "162-170",
+          "sha256": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5"
+        },
+        {
+          "lines": "195-207",
+          "sha256": "9a91c1d2094be6c1c0463b9f3af280f41abb15b0503f8520c7e72be12c27c75b"
+        }
+      ],
+      "full_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a"
+    },
+    {
+      "source": "RCLS requirements R-04..08 (incl. PatternKnowledge counterexample/scope and VerificationAssessment target revision)",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md",
+      "lines": "32-38",
+      "full_sha256": "0d395f7ccd81a8c749ef4c3b8c0a660505b6183531992b4678267b5b51c929eb",
+      "span_sha256": "27ceb2663fe1f49bceb6858a16c55c4376c9dd41c7fbd632890b7c6b8a6dfa94"
+    },
+    {
+      "source": "RCLS-BR-004/006 staged promotion and proposal/evidence boundary",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "lines": "37-48",
+      "full_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "span_sha256": "544c67d83c4ecb5dcbfbae26d260f6a8c8bc5b4f40c1d411ad690863715b8ead"
+    },
+    {
+      "source": "RCLS-AC-004/007 independent verification and staged promotion",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "lines": "22-27",
+      "full_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+      "span_sha256": "c056b6e1af76d451b8ae5236c690d9e8fa9004acb1583de3dd65d71989a4e4de"
+    },
+    {
+      "source": "legacy MLP unit test design (read only; no execution)",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-memory-learning-promotion-unit-test-design.md",
+      "lines": "31-49",
+      "full_sha256": "54b69856ccc617f81b31fbc918424cf3b12f4c0ca382586f8ea8db1e291a40a9",
+      "span_sha256": "9d04526c786d9f585a623ea3133dc661e7ca151aa1882da61d6cb5029ac3618b"
+    },
+    {
+      "source": "legacy MLP integration test design (read only; no execution)",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-memory-learning-promotion-integration-test-design.md",
+      "lines": "38-56",
+      "full_sha256": "0e84cdc06c0e88205a4948136c7506c307ef8d7d27fa1324a4d32f4cf90c4b5f",
+      "span_sha256": "57018911a3eaa4ec8cfffc522b98b6d81db8286028a8009653cf1a4b2126d56b"
+    }
+  ],
+  "disposition": {
+    "fixed_semantic_groups": [
+      "source identity/revision",
+      "provenance",
+      "evidence",
+      "adopted reason",
+      "evaluated scope",
+      "counterexample",
+      "limitation"
+    ],
+    "additional_group": "LABO evaluation target revision",
+    "group_denominator": "8 total groups: 7 provenance groups plus the LABO evaluation target revision group.",
+    "atomic_mutation_set": "8 provenance atomics: source identity and source revision are tested separately, alongside provenance, evidence, adopted reason, evaluated scope, counterexample, and limitation. The LABO evaluation target revision is the 8th group / separate target-revision atomic, not a 9th group.",
+    "added_case": "L10-BRAIN-007-C10 isolates missing LABO target revision while other provenance groups, candidate revision, evaluation content, and owners remain normal; hold and return to LABO; no adoption.",
+    "preserved": "Fixed L2/L11 meaning, owner assignments, 1.0 version target, Stage 1 scope, and no-new-threshold boundary.",
+    "legacy_mapping": "Reuse the legacy L3 FR/AC-to-L10 pair structure. Re-derive atomic field mutation tests from fixed parent groups and legacy stale/dangling/evidence failure classes. Keep legacy RCLS staged promotion/independent verification/authority separation; do not reuse old IDs, thresholds, test implementations, or runtime."
+  },
+  "six_document_sha256": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "sha256": "19e06775a504283d3179a9ddc088f7d96ef60c9d3ca0ecd9817ec865716c04d1",
+      "bytes": 171666
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "sha256": "6b5bbc7c572dd9c7a5f444a8150b339ab00889041913f381f132a29c2dce5964",
+      "bytes": 12607
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "sha256": "0b3e01ea34106837984cd7823b89940828fc1b6d859c56fbcc70c9b2bf892734",
+      "bytes": 38681
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "sha256": "c169c41c05fa8b712212a3336eff3a6b4df337f30ec253a3bffc5c6bd1d992f5",
+      "bytes": 221326
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "sha256": "f020b57e9efd80cf1b5bbc3119f2165dfa0a5250e35433d82a56910defbbf495",
+      "bytes": 10498
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "sha256": "2aafd5c7fe34147a3fd6142c900315fb31bd976dd2c380b86da33cb482f6a981",
+      "bytes": 28984
+    }
+  ],
+  "static_validation": {
+    "result": "pass",
+    "checks": [
+      "6 target document SHA-256 values recorded",
+      "L10-BRAIN-007 C01-C10 each appears exactly once",
+      "C09 defines the 8 required groups as 7 provenance groups plus LABO target revision; source identity/revision remain one group",
+      "C02 separately describes 8 atomic provenance field mutants and distinguishes them from group denominator",
+      "C10 isolates missing LABO target revision; C05 retains mismatch case",
+      "L3/BR/NFR/L10 references include C10 and are synchronized",
+      "fixed L2/L11 full and span SHA-256 recomputed at f6dad and matched",
+      "git diff --check",
+      "Root検収：旧NFRのrevision不一致検査を維持し、C02/NFRにmismatchを明記"
+    ],
+    "execution": "Documentation/static reference verification only; no archived tests, old CLI, hook, runtime, or CI executed."
+  },
+  "delivery": {
+    "commit": null,
+    "push": null,
+    "review_or_approval": "not performed / not claimed"
+  }
+}
