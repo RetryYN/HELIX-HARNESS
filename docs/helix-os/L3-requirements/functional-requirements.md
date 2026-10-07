@@ -328,7 +328,7 @@ configured resource上限と割当可能/割当中/実行中/遊休/検証待ち
 - AC-OS-L3-049-01：有限task fixtureで各状態を分離し、READY・dependency・priority・authority/scope/競合と適用可能なINTELLIGENCE low-impact evidenceが揃い、後段義務/担当/容量を割当前に確保した適格taskだけ追加する。割当先task自体のreview/merge完了を割当条件にしない。
 - AC-OS-L3-049-02：依存/authority/scope/競合/期限/後段担当・容量/上限を各々変異しdispatchを保留。
 - AC-OS-L3-049-03：INTELLIGENCE案、INFRASTRUCTURE資源、観測時点unknownは稼働中と推定せず、適格taskなしはidleのまま。
-- AC-OS-L3-049-04：utilizationの分母は選択scope/time window内のconfigured capacity × elapsed observed timeとして明示し、assignment/task counts・unused capacity・unfinished lineageは別々に報告する。計測のためdummy taskを生成しない。
+- AC-OS-L3-049-04：utilizationの分母は選択scope/time window内のconfigured capacity（window中は同一設定revision）× elapsed observed timeとして明示し、assignment/task counts・unused capacity・unfinished lineageは別々に報告する。計測のためdummy taskを生成しない。
 - AC-OS-L3-049-05：後段義務/owner/capacity、READY、priority、deadline、lease、authority、config revisionの各停止・不適合を別々に変異し、影響するscopeのみ保留する。旧provider数/slot/CI/DB/Merge Trainや旧容量値を適格性証拠にせず、HARNESS義務と成果・予算・未完義務lineageを保ち、OSがimpact判定を代行しない。
 
 ### FR-OS-L3-050 — HELIXOS-L2-050
