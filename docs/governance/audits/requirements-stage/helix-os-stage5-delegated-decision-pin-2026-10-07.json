@@ -1,0 +1,191 @@
+{
+  "authority_effect": "none_pending_condition3_review_crosscheck_and_main_admission",
+  "body_revision": "b293b404c99aeb346218f488f22d9800ef5f46ec",
+  "reviewed_head": "b293b404c99aeb346218f488f22d9800ef5f46ec",
+  "review_base": "b86ad094ac2e127e22f0fc4c50531482d0fcfa7d",
+  "latest_base_reported_by_review": "3a256fc63",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": 5,
+    "version_target": "1.0",
+    "approved_parents": [
+      "HELIXOS-L2-026",
+      "HELIXOS-L2-031",
+      "HELIXOS-L2-047"
+    ],
+    "unchanged_excluded_parent": "HELIXOS-L2-025",
+    "approval_for_025_created": false
+  },
+  "formal_comment": {
+    "id": 6040359375,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2657#issuecomment-6040359375",
+    "body": "## review02（independent review、HEAD b293b404c99aeb346218f488f22d9800ef5f46ec、merge-base b86ad094ac2e127e22f0fc4c50531482d0fcfa7d）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。条件1は、Opus 5.5のブラインド照合とreviewerの確認で判定した。条件2は、Fable advisor（claude-fable-5-1）が6本文、固定親@633bf12、PO採択行（54行と70行）を読み直して出した見解である。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新main（3a256fc63）と衝突なし。merge-base以降、mainでhelix-osの本文は変わっていない。\n- PRは一覧mdを変更していない（merge-base基準）。\n\n### review01（#6039695911）への対応\n- **M1は解消した。** business-requirements.md:115–117 が、026-01〜60、031-01〜95（066／068／070／072は除外、031-25はalias）、047-01〜41 になった。\n- **M2は解消した。** nfr-grade.md:139–141 と 126–128 が、AC-0xx-01〜05 と新しいCASEの範囲になった。旧範囲（55／87／38、AC 01〜04）が残っていないことは、grepで確認した。\n- **M3は解消した。** CASE-026-059（FV:1205）の戻し先が「該当source／pack owner」になり、固定L2:818／L11:439の区分の中に入った。\n- **M4は解消した。** CASE-026-060（FV:1206）が、導出の成功から段階構成の採択を生じさせる反例を、単独で拒否する。対応する固定親はL2:817／L11:437。この追加はFV:993のAC-026-03にも反映されている。\n- **m1〜m4も解消した。** 次の4か所を確認した。\n  - FV:1001：037–038\n  - FR:617：AC-0xx-05の対応補正\n  - FR:576：AC-031-05のRecovery Issue非正本\n  - FV:1122：CASE-047-16の宛先がOS issuer\n- **旧文と新文の突き合わせ（類型5）：** 差分は追記と置換だけで、既存の境界条件を弱めた箇所はなかった。\n\n### Major\nなし。\n\n### Minor（返却しない。次に触るときに直せばよい）\n- m5：CASE-031-094（failure feedback latencyの対象母集団欠落）は、既存のCASE-031-21（対象母集団だけ欠落）と同じ単独変異に読める。031-25のようにaliasとして明記しないと、独立した分母に二重に数えられる。\n- m6：AC-031-05（FR:576、FV:1000）は「欠落・stale・scope不一致」を対象と書いている。ところが、新しい4項目（wall-clock、runner-minute、p50/p95、原因）の単独CASEは、欠落だけである。固定L11:502の列挙にはこの4項目が入っていないので、AC本文の書きすぎにとどまる。\n- m7：CASE-026-059の「該当source／pack owner」には、L2:818の「当該機構とHARNESS」のうちHARNESSが明示されていない。\n- m8：CASE-031-095の期待結果と、FR:578の「入力を既存要求ownerへ戻す」で、主語がずれている。\n- m9：導出の成功から「対象製品のHARNESS配布」を生じさせる反例（L11:437）には、専用のCASEがない。026-037（外部配布）と026-032（同一視）で、間接的に覆っている。\n- m10：FVの「AC候補」表の個別CASE列に、026-031〜042と047-05〜07が列挙されていない。inventory行では対応済みで、この不備は今回より前からある。\n- m11：CASE-031-088の例示数値（240秒、12分、180秒など）は、fixtureの入力だと明記されている。それでも、nfr-gradeの「根拠のない技術値を追加しない」と読み違えるおそれがある。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。Fableが挙げたMinorは、m5、m10、m11と同じ内容で、止める理由にしていない。\n- 条件1と2は、同じbody revision（b293b404c）でそろった。\n- **条件3は未照合。** 判断記録の作成後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `e12042f3…2f3` |\n| L3-FR | `04944e39…6725` |\n| L3-NFR | `948bd74b…4eac` |\n| L10-BV | `8102b93a…8a85` |\n| L10-FV | `abf2e559…bc93` |\n| L10-NFR | `2b7d6362…a0b8` |\n\n### Info\nPRに入っている `docs/governance/decisions/helix-os-stage5-l3-l10-nonapproval-supplement-draft-2026-10-07.md`（非承認追補のドラフト）は、承認対象外として読んでいない。条件3の判断記録では、承認の根拠をこのreview02と、委任条件の成立に置いてほしい。\n\n### 未確認範囲\nなし。\n- 025のStage 5節は、今回の差分に入っていない。前回の照合から変わっていない。\n- 031と047の既存CASE（01〜87、01〜38）による禁止列挙の網羅は、review01の照合を引き継いだ。\n",
+    "sha256_utf8": "afe788bcfdc008f086b03f4b1ce492285b0b73f840e15253f273caa505eb390a",
+    "bytes_utf8": 4897,
+    "api_created_at": "2026-10-07T14:41:23Z",
+    "condition1": "成立: Opus no_findings、Major 0、未確認範囲0",
+    "condition2": "成立: Fable原文「承認してよい。」、同じ6本文revisionと固定親を確認",
+    "minor_disposition": "formal review02 says Minor findings are not returned; no body change required"
+  },
+  "fixed_requirement_baseline": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "sources": {
+    "fixed_l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "bytes": 447207,
+      "spans": [
+        {
+          "lines": "814-819",
+          "sha256": "cb6d63276c42ca15855f230edf1bdfe89e839e3e4512c8b196f50bfa0c87ef59"
+        },
+        {
+          "lines": "903-905",
+          "sha256": "74879b695736cb7ecb7d361e2ca9b200d10b0cea94ce146430261eb14edff733"
+        },
+        {
+          "lines": "1188-1191",
+          "sha256": "9478167010cfa9e35bc94006ba308d9fc88ec3a87e67e3766b4b1e417d2c7080"
+        }
+      ]
+    },
+    "fixed_l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "bytes": 331746,
+      "spans": [
+        {
+          "lines": "432-439",
+          "sha256": "a8207524c74253189c69989d4a57109099b9de9a73bcead297fb3b2f3ec22833"
+        },
+        {
+          "lines": "504-511",
+          "sha256": "31a6ebe06b00da7224f2a17a3e1869c4fbb3fa9f68616067bf650b3d46e81bb9"
+        },
+        {
+          "lines": "805-808",
+          "sha256": "17a5168134191fc3095703969ea013029458af0a2feee11f5d25df21ba2d57c6"
+        }
+      ]
+    },
+    "po_adoption_025_026": {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "bytes": 5689,
+      "spans": [
+        {
+          "lines": "45-52",
+          "sha256": "b207627c688b19d81e22c74b7f0d96ece87746664ae869f01d2665b5b597a7be"
+        }
+      ]
+    },
+    "po_adoption_031_047": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "bytes": 45099,
+      "spans": [
+        {
+          "lines": "54-54",
+          "sha256": "6748fddcc4f82bd0f0f0fce3a1b0e9987bba989722cbd37e4e161bffec79415b"
+        },
+        {
+          "lines": "70-70",
+          "sha256": "f03e66901529dfad317010ef922afdb5632e925cc07f000415a900ba2dfdc1ed"
+        }
+      ]
+    }
+  },
+  "documents": [
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "8102b93a3b1afe2825bc92d8acdfd98cca4fb50274974d61324707e547558a85",
+      "bytes": 17169
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "abf2e5596557336434c1f39c2d137eebc402cb7b4d256bb01b220d4d3359bc93",
+      "bytes": 230480
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "2b7d63629298f33b34faf5add0b39645085d97234ace789397e97db37823a0b8",
+      "bytes": 28908
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "e12042f38e018c890155e2b6c5c51080a6504585fc4af94092ddc755795ae2f3",
+      "bytes": 19524
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "04944e39cceca725136a90f970dcd08bda9d5354daa1c6e44a3c6b2e95eb6725",
+      "bytes": 198132
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "948bd74bd5b20a3d359bb8aa42ba399aa6ddeecfbe1748dfe70e9a07201d4eac",
+      "bytes": 32042
+    }
+  ],
+  "delegation_record": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "operating_model": {
+    "path": "docs/governance/github-upstream-operating-model.md",
+    "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+  },
+  "prior_records": {
+    "historical_decision_not_modified": {
+      "path": "docs/governance/decisions/helix-os-stage5-l3-l10-po-decision-2026-10-06.md",
+      "sha256": "76d953b35060a27c3c0cd0c5624e9fbcd7fa87fe54f48dc321782a6fba951d79",
+      "bytes": 3419,
+      "approval_basis_for_this_record": false
+    },
+    "nonapproval_draft_not_modified_or_used_as_authority": {
+      "path": "docs/governance/decisions/helix-os-stage5-l3-l10-nonapproval-supplement-draft-2026-10-07.md",
+      "sha256": "761326767d50f9138c8e39eb38096a72e4813935c8752bf1512997fcdb59575b",
+      "bytes": 3740,
+      "decision_status": "draft_not_effective",
+      "approval_basis_for_this_record": false
+    }
+  },
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage5-l3-l10-delegated-decision-2026-10-07.md",
+    "sha256": "83ee39c4032a495effc7cf65bbaa354afd508ad70690003a9ad98457acd2c066",
+    "bytes": 4101
+  },
+  "condition3": {
+    "status": "pending_review_side_crosscheck",
+    "required_checks": [
+      "判断記録の内容・SHA",
+      "正式comment raw UTF-8本文SHA",
+      "委任判断record SHA",
+      "github-upstream-operating-model SHA",
+      "6本文全件のSHAとbytes",
+      "Ready/merge前の最新baseと既存admission"
+    ],
+    "review_side_crosscheck_performed_by_author": false,
+    "main_admission": false
+  },
+  "static_validation": {
+    "status": "passed",
+    "checks": [
+      "GitHub APIからformal review02 comment全文を取得・読了しUTF-8本文SHAを再計算",
+      "固定633bf12のL2/L11該当spanを実読・SHA固定",
+      "PO採択の2026-09-28 025/026判断および57候補行54/70（031/047）を実読・pin",
+      "6本文の作業tree bytesがapproved body HEADと一致し、formal commentの全SHAと一致",
+      "前回review済みrevision bda60feaと比較し、変更は026/031/047のみで025に差分なし",
+      "旧判断記録と非承認draftは変更せず、新承認根拠として不使用",
+      "新規decision Markdownとcompanion evidence JSONのみ作成、commit/pushなし"
+    ]
+  },
+  "limits": [
+    "review-side condition3未照合",
+    "main admissionまでは権限効力なし",
+    "L10 fixture実行なし"
+  ]
+}
