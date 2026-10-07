@@ -184,5 +184,27 @@
     "他Stage・他親・固定L2/L11の意味は変更していない。",
     "旧source/旧acceptanceは読取のみ。旧runtime/test/CIは起動していない。",
     "全旧consumerの意味完了やparent061全般の完全性を主張しない。"
-  ]
+  ],
+  "residual_classification_source_snapshot": {
+    "scope": "historical residual classification basis; source snapshot is exact copy and remains immutable",
+    "files": {
+      "labo-stage5-decision-residual-review-f0e210b3.md": {
+        "repo_relative_path": "docs/governance/audits/requirements-stage/labo-stage5-decision-residual-review-f0e210b3.md",
+        "bytes": 9173,
+        "sha256": "821eb25720dd7d7637688a98f07980c0b5d1bbc54d76259e665ef3c7437b6d34",
+        "source_tmp_path": "/tmp/root-labo-stage5-decision-residual-review-f0e210b3.md",
+        "source_tmp_sha256": "821eb25720dd7d7637688a98f07980c0b5d1bbc54d76259e665ef3c7437b6d34",
+        "byte_identical_to_tmp": true
+      },
+      "labo-stage5-decision-residual-review-f0e210b3.json": {
+        "repo_relative_path": "docs/governance/audits/requirements-stage/labo-stage5-decision-residual-review-f0e210b3.json",
+        "bytes": 29901,
+        "sha256": "f8a0f3459af108975d704cb9a9ee87807b2d18b7f05a98056cc640a29573a6ec",
+        "source_tmp_path": "/tmp/root-labo-stage5-decision-residual-review-f0e210b3.json",
+        "source_tmp_sha256": "f8a0f3459af108975d704cb9a9ee87807b2d18b7f05a98056cc640a29573a6ec",
+        "byte_identical_to_tmp": true
+      }
+    },
+    "fixed_050_locator_recheck": "JSON confirms fixed parent f6dad2a33e24f000b87d7f09b8d40288257e74cc, L2:298-303 and L11:120-126; no locator change was made."
+  }
 }

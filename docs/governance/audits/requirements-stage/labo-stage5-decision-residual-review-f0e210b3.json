@@ -1,0 +1,423 @@
+{
+  "title": "LABO Stage5 050/061/063 official decision residual reconciliation",
+  "reviewed_main": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+  "read_only": true,
+  "scope": "LABO Stage5 official decision residuals: 050 R1-R2, 061 R1-R13, 063 R1-R17",
+  "six_current_body_pins": {
+    "BR": "9f56b674f11f9b666bc546a20e7a7492d1dfe377a24495d351392698c8389777",
+    "FR": "0f11b654be30baae1749800ce3c184a146ceb4bce22710f762ef368f5d40e536",
+    "NFR": "d5838368f1ec9ee9e57cc143aa6e346ae1ff7f924d46c234880798098936b773",
+    "BV": "54e42a8af0d30f7eb1c2b75810b51fab6197558633ab3bac7a50b024e581445e",
+    "FV": "304aebc0edf618fd0eba2d73b745611b1d259ffd94429c0375df16ca58874bb4",
+    "NFRV": "922f8fccc63917178606dbb5edd165f5bdc6805de3753ead6d703b8342fdb8b7"
+  },
+  "fixed_sources": {
+    "050": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "spans": "L2:298–303; L11:120–126"
+    },
+    "061_063": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "spans": "061 L2:457–469/L11:205–215; 063 L2:480–489/L11:225–231"
+    }
+  },
+  "old_sources": [
+    {
+      "id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/helix-bench-evaluation.md",
+      "spans": "R-04 96–120; R-08 143–147",
+      "sha256": "a1a5fea1fb89434bf025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116"
+    },
+    {
+      "id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "spans": "AC005/006/012/013 32–40",
+      "sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185"
+    },
+    {
+      "id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "spans": "HR-FR-P4-02 149/154–156; HAC-P4-02a/b 230–231/237–240"
+    },
+    {
+      "id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "spans": "HAT-P4-02 112"
+    },
+    {
+      "id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "spans": "R-11 175–181; R-12 183–187; sequence 210–220; related, not direct P4 source"
+    },
+    {
+      "id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "spans": "AC-017/018 36–37; related consumer"
+    }
+  ],
+  "official_decision_record_pins": {
+    "050": {
+      "path": "docs/governance/decisions/helix-labo-stage5-parent050-l3-l10-po-decision-2026-10-06.md",
+      "sha256": "2192823d9df313c83cf983a7ec94260568096c0f8d0b36c346fbfcde1e2db7d4",
+      "official_review": "#2623 formal review03 comment 6013922417"
+    },
+    "061": {
+      "path": "docs/governance/decisions/helix-labo-stage5-parent061-l3-l10-po-decision-2026-10-06.md",
+      "sha256": "4dc5a19dbf5a494b074f6fe0e447887a2f9ae4f78913aebbae096e04ce53aa62",
+      "official_reviews": "#2629 review01 comment 6017505879 (body SHA-256 d09306dfaf752e1d882664840c9ced1c52b57283de6907d9739c074b7a37c653); review02 comment 6017673994"
+    },
+    "063": {
+      "path": "docs/governance/decisions/helix-labo-stage5-parent063-l3-l10-po-decision-2026-10-06.md",
+      "sha256": "2b79967abbfc4e4befefef7b7574aaeb776cf152ae992570aa24c25fbf0fc118",
+      "official_reviews": "#2630 review01 comment 6018603693 (body SHA-256 70064f1fe4e0a1f456f11934bf22da3208fa7208570e599d7712ec79ec66a5f1); review02 comment 6018940116"
+    }
+  },
+  "residuals": [
+    {
+      "scope": "LABO-050",
+      "residual": "R1",
+      "classification": "固定親の意味から導いた戻し先区分",
+      "status": "一部解消。ルート分割は本文に明示、固定親の明文再現はない",
+      "current_refs": "FR:1574–1580; FV:2572–2576,2600–2604",
+      "fixed_or_old_basis": "固定f6dad L2:300–302 / L11:123–125。旧UIL 43–76,162–196、旧HAT 20–42。",
+      "assessment": "現FR:1580はOS assignment側ticket/receiptをOS、Worker-result experiment/target bindingをLABO、変更/検証をtarget ownerと明記し、CASE24/27/28および03b/03c/03e/25/26が分ける。固定親は役割を定めるがこの細分routeを逐語指定しないため、意味再導出として根拠の明示が要る。現行の受入経路は対応済みで、残りは導出根拠の記録粒度。",
+      "minimum_proposal": "FR:1580の三分類を固定L2:302/L11:123–125の句に直接結ぶ短い根拠句を追記。新ownerは作らない。"
+    },
+    {
+      "scope": "LABO-050",
+      "residual": "R2",
+      "classification": "証拠不足／任意明確化",
+      "status": "責務境界は保持、宛先は未特定のまま",
+      "current_refs": "FV:2605; FR:1576,1580; L2固定source L2:300–302",
+      "fixed_or_old_basis": "固定f6dad L2:300–302 / L11:123–125。",
+      "assessment": "CASE29は順序違反のみ変異し、固定段階順序不一致を拒否してLABO評価責務を維持する。固定親は段階責務を示すが順序違反の専用return destinationを規定しない。ここで宛先を追加すると新しいowner割当になるため、拒否・未完保持は成立し、owner明記要求は任意明確化。",
+      "minimum_proposal": "必要なら「責務境界を維持し、固定sourceにない専用宛先は推定しない」と明記。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R1",
+      "classification": "証拠・件数表記",
+      "status": "部分解消。ID実態の明示はまだ不十分",
+      "current_refs": "FV:2790,2792–2925; NFR:Stage 5 061 row; NFRV:061 inventory",
+      "fixed_or_old_basis": "固定318ec L2:457–469/L11:205–215。旧R04/R08 `helix-bench-evaluation.md:96–120,143–147`; paired acceptance `helix-bench-evaluation-acceptance.md:32–40`.",
+      "assessment": "現FVには132定義ID、表130行+normal bullet 2の実態がある。機械照合では欠番03/04/110、派生ID03a–t/04aを含めunique 132。既存headerは欠番理由とID群の見せ方を説明せず、CASE-24正常もnormal bulletに加えていない。本文内の対象ID自体は存在し、要件意味の欠落ではない。",
+      "minimum_proposal": "人数説明を「132定義、表130+normal02、欠番03/04/110、派生03a–t/04a」と一致させる。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R2",
+      "classification": "owner明記・証拠文言",
+      "status": "一部残存。CASE86はunknown化済み",
+      "current_refs": "FR:1697,1705,1709; FV:2842–2843,2834,2848,2851–2854",
+      "fixed_or_old_basis": "固定318ec L2:467–469/L11:209–215。旧R04/R08およびpaired AC005/006/012/013。",
+      "assessment": "author/judge分離違反CASE12/13は比較未評価とするが戻し先を名指ししない。CASE86はversion field/sourceを推測せずtask/oracle condition unknownとする。task/oracle owner系の用語は揺れる。固定親が専用routeを指定しないケースで人やownerを作らない点は正しい一方、12/13はLABO評価で未完保持か既存task ownerへ返すのか読者に一意でない。",
+      "minimum_proposal": "CASE12/13の比較を未評価のままLABO評価へ保持する、または不足source identityが判明した場合だけ既存ownerへ返す、と固定区分の範囲で明示。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R3",
+      "classification": "計数・表示ラベル",
+      "status": "部分解消。CASE24はnormalだがheader未同期。102の「normal baseline」語が残る",
+      "current_refs": "FV:2790,2817,2914; NFR denominator entry",
+      "fixed_or_old_basis": "固定318ec L2:457–469。旧sourceは061 review audit pinned。",
+      "assessment": "CASE24はAC01の正常比較として定義された。CASE102はAC03、単独変異と拒否oracleを持ち、field-missing分母外の非適用対照と明記したが、行頭はなお「normal baseline」。誤った成功期待はないが種別表示が自己矛盾する。",
+      "minimum_proposal": "normal一覧へCASE24を入れ、CASE102を「非適用対照（field-missing分母外）」と呼ぶ。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R4",
+      "classification": "受入検証不足",
+      "status": "部分解消。明示された項目は閉じ、独立fixture不足が残る",
+      "current_refs": "FR:1693–1709; FV:2800–2801,2817,2823,2848,2914–2925; L3 AC02/03",
+      "fixed_or_old_basis": "固定318ec L2:461–467/L11:207–215。旧R04/R08とpaired acceptance AC005/006/012/013。",
+      "assessment": "明示CASEでscore→assignment/permission/admission/judge/qualification生成を拒否（103–106,113）、未知適用性をunknownへ保持（03e、18、AC02）、未選択task非依存（AC02、102）がある。一方、OS registration/delivery成功だけで隔離を推定する独立変異、LABOによるWorker開始/候補採択を明確に拒否する独立変異、既に固定済み059 revisionへ新判断を遡及適用しない独立fixtureは特定できない。L3の宣言とAC03は一般に境界を述べるため、これらの指定動作がfixtureとして確かめられない。",
+      "minimum_proposal": "既存CASEを保持し、欠ける動作だけを各単独negativeで明示。新しいscopeやpermission意味を追加しない。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R5",
+      "classification": "証拠locator精度",
+      "status": "L3対応表の誤参照が残る",
+      "current_refs": "FR:1696–1697",
+      "fixed_or_old_basis": "固定318ec L2:465–469/L11:211–215。",
+      "assessment": "FR:1696の選択task表はL2:465–467に059/060を含むが、FR:1697はfailed/invalid/historicalにL2:467–469を掲げ、固定本文の失敗条項はL2:467まで。060の採択範囲は補われた。意味実装よりsource locatorの精度問題。",
+      "minimum_proposal": "引用範囲を実在する固定句の行に合わせ、空行/隣接節を含めない。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R6",
+      "classification": "任意明確化・編集表記",
+      "status": "一部残存",
+      "current_refs": "FV:2790,2797,2823,2914,2835–2840",
+      "fixed_or_old_basis": "固定318ec L2:461–469/L11:208–215。",
+      "assessment": "CASE03cはWorker-visible leakage一変異、05–10はindividual leakage fixtures。CASE75と102は明示単独変異を持つ。CASE76はquality oracle不合格、CASE78はfield value emptyでそれぞれ別条件を持つが、表記に「単独変異/baseline」が揃わない。誤ったoracleや複合変異の証拠は見つからず、英語invalid state表記も編集品質に留まる。",
+      "minimum_proposal": "日本語の状態語・CASE変異の書式を揃えるのは任意。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R7",
+      "classification": "証拠provenance不足",
+      "status": "監査pathのみ。現在L3/L10に実質影響なし",
+      "current_refs": "official review01 disposition JSON path metadata; six bodies contain source citations",
+      "fixed_or_old_basis": "旧audit JSON had /tmp references; source spans are in current FR:1713 and the authoring audit.",
+      "assessment": "repo外一時pathは再現可能な参照でないが、L3本文は旧asset ID/pathを持ち、判断recordにraw commentが固定される。要求意味欠落ではない。",
+      "minimum_proposal": "追補監査でrepo内の正式記録/埋込みraw commentを正本として参照。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R8",
+      "classification": "証拠provenance・歴史的基準",
+      "status": "本文は旧L10 snapshotを基準と明記。祖先でない事実は現状も同じ",
+      "current_refs": "FV:2790, FR:1713; official decision record",
+      "fixed_or_old_basis": "旧source a4a365dcd…; current origin/main f0e210b3; `a4a365d` is not its ancestor.",
+      "assessment": "現L10は旧公開132 IDを保持する根拠としてsnapshotを記載。基準revisionが現main ancestry外でも、ID/case text is explicitly copied historic baseline, not current proof. 監査証拠の取得経路と現行meaningは分離が必要。",
+      "minimum_proposal": "監査では旧snapshotをhistorical source pinとして保存し、現行の完了根拠にしない。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R9",
+      "classification": "証拠・件数明確化",
+      "status": "監査記載のみ",
+      "current_refs": "disposition/audit record",
+      "fixed_or_old_basis": "fixed parent meaning unaffected.",
+      "assessment": "313+82+2の粒度差が証拠計数を不鮮明にする。L3/L10本文でfalse acceptanceは確認されない。",
+      "minimum_proposal": "現行監査でcount unitを説明。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R10",
+      "classification": "任意明確化・表示順",
+      "status": "解消対象は表示順のみ",
+      "current_refs": "FV:2792–2925",
+      "fixed_or_old_basis": "fixed parent unaffected; historical source IDs preserved.",
+      "assessment": "CASE順は非昇順だがID個別の意味/参照は保たれる。機械検証への影響は人間照合の誤読リスクに限る。",
+      "minimum_proposal": "番号順へ並べるのは任意編集。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R11",
+      "classification": "任意明確化・表示順",
+      "status": "解消対象は表示順のみ",
+      "current_refs": "FV:2802–2803",
+      "fixed_or_old_basis": "fixed parent unaffected.",
+      "assessment": "03tが03fと03gの間にある。fixtureはindexであり、本文に重複計上を拒否する。意味への影響は見つからない。",
+      "minimum_proposal": "隣接する03a–t群内を整列。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R12",
+      "classification": "受入証拠・runtime禁止境界",
+      "status": "本文境界はあり、単独fixtureはない",
+      "current_refs": "FR:1705,1709; FV:2790,2914; repo instructions prohibit legacy runtime",
+      "fixed_or_old_basis": "fixed L2:465–467 / L11:213.",
+      "assessment": "非選択taskは参照のみとAC02/CASE102で扱い、旧runtimeを起動しないことはL3節にも宣言文にもなく、project boundaryが現行手順を禁止する。これをL3機能fixtureへ新設する必要は限定的。過去runtimeを実行して確認することは不可。",
+      "minimum_proposal": "新gate/実行を作らず、必要なら受入文書で「legacy runtimeを起動しない」を静的な手順境界として明記。"
+    },
+    {
+      "scope": "LABO-061",
+      "residual": "R13",
+      "classification": "意味欠陥なし／任意route明確化",
+      "status": "現在の返却は固定区分内",
+      "current_refs": "FR:1694,1697,1709; FV:2852,2920",
+      "fixed_or_old_basis": "fixed L2-061 information isolation/failure clauses, L2-060 responsibility split.",
+      "assessment": "CASE22/108はpermission evidence欠落をSECURITYへ返す。information/permission boundaryにSECURITYが含まれ、実行主体証拠欠落と混同した成功はない。固定sourceが厳密に一宛先を命じる証拠もなく、別route追加は不要。",
+      "minimum_proposal": "現行SECURITY routeを維持。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R1",
+      "classification": "固定親の受入要件をL3へ定義する不足",
+      "status": "残存。高確度",
+      "current_refs": "FR:1722–1733 crosswalk references AC01/02/03, but no AC definition headings/body in 063 FR; FV:2952–3026 CASE rows use AC labels",
+      "fixed_or_old_basis": "固定318ec L2:480–489/L11:225–231。旧P4-02 HR-FR-P4-02/HAC-P4-02a/b, HAT-P4-02; related UIL R11/R12 only context.",
+      "assessment": "L3 FR has relevant prose and a trace table but refers to AC01/02/03 as if defined; definitions appear only in L10 CASE mapping and L3 NFR. AC is the normative bridge from fixed meaning to acceptance. The PO decision explicitly says L3 lacks definitions. This leaves the requirements-side acceptance contract underspecified even though many cases exist.",
+      "minimum_proposal": "L3 FRにAC-01正常/保持、AC-02未見・版/未完、AC-03失敗/責務境界を既存L2/L11 meaningから定義し、現行CASEを参照。新要件なし。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R2",
+      "classification": "証拠・行locator精度",
+      "status": "本文crosswalkの引用行ずれが残る",
+      "current_refs": "FR:1724–1733; decision record cites L2 input 480–482 vs exact L2 input 483; return route 488 vs table 489–490; L11 rows offset",
+      "fixed_or_old_basis": "fixed318ec L2:480–489/L11:225–231.",
+      "assessment": "FR table locator is stale/off by one/two, but the cited clauses and route content are present. This is evidence precision, not semantic scope.",
+      "minimum_proposal": "L2/L11引用を固定親の実際の句行へ合わせる。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R3",
+      "classification": "証拠・分母明確化",
+      "status": "多くは解消。same-axis candidates remain, but indexes now excluded",
+      "current_refs": "FV:2954,2960,2972–2987,3024; NFR:146–152",
+      "fixed_or_old_basis": "fixed318ec L2:483–489. Old P4-02 paired consumer and UIL related source pins above.",
+      "assessment": "CASE03a/33,25/36,35/39 now explicitly say index/non-independent and no double-count. NFR classifies 11 indices outside 53 negative candidates; however, additional same-axis pairs (08/54,09/55,49/56,50/57,12/59,15/61,16/62,04a/17,13/58,27/40) remain listed as separate candidate negatives, and the current text does not say whether they exercise distinct oracle dimensions or duplicate the same one. Candidate classification disclaimer prevents a false completeness claim, but planned denominator independence is not established.",
+      "minimum_proposal": "各同軸pairの独立評価差分を1句で示すか、索引として主fixtureへ束ねる。数だけを合格率やcoverageに変えない。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R4",
+      "classification": "任意の文言明確化",
+      "status": "解消済み",
+      "current_refs": "FV:2973,2983",
+      "fixed_or_old_basis": "fixed318ec L2:485.",
+      "assessment": "25/35 now labeled index, with direct reference and duplicate-count prohibition.",
+      "minimum_proposal": "なし。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R5",
+      "classification": "証拠・分類明確化",
+      "status": "候補であることは明示、5 normal IDsはまだ未列挙",
+      "current_refs": "FV:2954–2959; NFR:151–152",
+      "fixed_or_old_basis": "fixed318ec L2/L11.",
+      "assessment": "Text says literal classification is candidate only and case IDs do not prove completeness. Thus no normative status is incorrectly asserted. Enumeration would improve auditability but is not an acceptance gap.",
+      "minimum_proposal": "任意でnormal candidate IDsを列挙し、candidate classificationを維持。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R6",
+      "classification": "任意の用語対応明確化",
+      "status": "意味routeは分類内。語彙対応が残る",
+      "current_refs": "FR:1720,1729; FV:2966–2969,2977,2988,2995–2996",
+      "fixed_or_old_basis": "fixed318ec L2:488 “提供主体”; L2:483 verification contract/results are HARNESS.",
+      "assessment": "Provider/source owner language means the existing source provider category; HARNESS is an instance of verification provider. No fourth owner appears to be introduced, but exact mapping is not expressed uniformly.",
+      "minimum_proposal": "「提供主体（HARNESS検証契約の場合を含む）」のように既存区分との対応を明示。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R7",
+      "classification": "owner帰属明確化不足",
+      "status": "残存。1.0 ownerが曖昧",
+      "current_refs": "FV:2965; FR:1743; BV:97",
+      "fixed_or_old_basis": "fixed318ec L2:489 and L11:231; concept decision HMC-BR-003 says 1.0–2.x LABO evaluates/retains knowledge.",
+      "assessment": "CASE04b rejects single-item promotion but sends to generic “既存knowledge owner”. Fixed source and HMC-BR-003 identify LABO as the 1.0 knowledge evaluation/retention owner. This makes the rejection destination less precise than the fixed responsibility boundary, but the failure itself is rejected.",
+      "minimum_proposal": "CASE04b destination to LABO knowledge evaluation/retention, retaining no generic memory authority. New authority not added."
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R8",
+      "classification": "任意の記述一貫性",
+      "status": "拒否は成立。destination wording differs",
+      "current_refs": "FV:3010,3023",
+      "fixed_or_old_basis": "fixed318ec L2:486–489; no separate named destination for frequency-created permission.",
+      "assessment": "CASE16 explicitly says destination owner unknown; CASE62 says preserve existing authority boundary without route. Both deny permission/authority generation. The fixed parent does not provide a new route for this prohibition; no false success.",
+      "minimum_proposal": "CASE62 can explicitly keep destination unknown, matching CASE16; do not invent owner."
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R9",
+      "classification": "受入検証不足",
+      "status": "部分的に残存",
+      "current_refs": "FR:1728; FV:2958,2982,2999–3000; no direct one-green-only normal/nonnormal row identified",
+      "fixed_or_old_basis": "fixed318ec L2:483–487/L11:228–231. Old P4 acceptance HAT-P4-02 line112; UIL related source separate.",
+      "assessment": "Single-green-as-success is partly covered by CASE34 (repair candidate alone fails), but not an isolated lone-green/result mutation. CASE05 holds LABO knowledge and treats OS backlog registration as a separate field; CASE06 is registration failure, but no positive case asserts successful linkage while preserving distinct OS responsibility. Historical evaluation not forcing new repair is stated in FR:1728 but not an individual CASE. Assignment/adoption generation has cases 16/38/62 and CASE01 refuses adoption.",
+      "minimum_proposal": "Only add cases if needed: one isolated green-only mutation, one normal OS backlog linkage, and one historical evaluation with no new repair request. Keep existing ownership and no thresholds."
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R10",
+      "classification": "受入検証不足",
+      "status": "残存。full positive lineage未形成",
+      "current_refs": "FV:2958–2959,2999–3001; BV:97; FR:1720",
+      "fixed_or_old_basis": "fixed318ec L11:228–231 and L2:482–489; old P4 paired consumer HAT-P4-02 line112.",
+      "assessment": "CASE01 positive provides successful repair, HARNESS verification, target revision, linked recurrence and counterexample, then emits only a prevention candidate. CASE05 is a normal knowledge retention example, CASE07 recurrence candidate. None gives a single positive lineage OS registration→target-owner adoption/change→verification→post-operation observation/effect while holding their separate owners. Negative cases cannot substitute for positive observability.",
+      "minimum_proposal": "既存CASEを変えず、固定L11:228にある全段階を一episodeで別状態/receiptとして追跡する正例を追加。success/authorityは生成しない。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R11",
+      "classification": "受入fixture定義不足",
+      "status": "残存",
+      "current_refs": "FV:2961",
+      "fixed_or_old_basis": "fixed318ec L2:480–489.",
+      "assessment": "“target revision only differs” does not say whether the repair target, OS assignment target, worker-result target, target-change result, or post-change observation revision differs. Oracle cannot be reproduced from this fixture input.",
+      "minimum_proposal": "既存target revision fieldを対象化し、他revision/identityはbaselineと同じにした一単独変異とする。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R12",
+      "classification": "監査provenance",
+      "status": "audit / tmp path only",
+      "current_refs": "review disposition JSON `review05_raw_path`; current FR:1735–1744 has repository source spans",
+      "fixed_or_old_basis": "fixed318ec source + old P4 pins.",
+      "assessment": "Raw review text is embedded and hash-pinned in the audit per record, but temporary path is not durable. No current requirement-body effect.",
+      "minimum_proposal": "追補でrepository内recordまたは埋込raw本文参照を使う。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R13",
+      "classification": "監査証拠整合",
+      "status": "audit metadata only",
+      "current_refs": "decision record referenced spans; FR:1724–1733",
+      "fixed_or_old_basis": "fixed318ec L2:480–489.",
+      "assessment": "“unpublished” vs “published” is audit-state metadata mismatch; the PO source span should be 480–489 not 480–490. Current requirements meaning is not changed.",
+      "minimum_proposal": "現行監査追補でstate/line rangeを正確化。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R14",
+      "classification": "任意の文言明確化",
+      "status": "日本語表現に英文混在",
+      "current_refs": "FR:1720–1745; FV:2954–3026",
+      "fixed_or_old_basis": "old P4 source and UIL, terminology boundary.",
+      "assessment": "Terms such as post-operation observation, duplicate send, repair procedure persist; technical meaning remains understandable but Japanese human-readable standard is uneven.",
+      "minimum_proposal": "日本語訳＋必要な英語原語併記は任意。"
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R15",
+      "classification": "規範文言の一貫性",
+      "status": "一部残存。L3 AC未定義が主要問題",
+      "current_refs": "FR:1726; FV:3001,3003,3004,3016; NFR:146–152",
+      "fixed_or_old_basis": "fixed318ec L2:485 says aggregate by identity and unknown threshold remains unknown.",
+      "assessment": "FR trace maps same-identity recurrence and unknown threshold; CASE07/10 use supplied threshold, CASE09/55 preserve unknown denominator/threshold. But official AC01 condition is narrower than L2 text and AC01 is not defined in L3. Existing negative cases appear to protect unknown, so no false success observed; L3 acceptance definition still must reconcile.",
+      "minimum_proposal": "L3 AC-01 should say identity-bound aggregation proceeds while thresholds/population remain input/unknown; preserve cases09/55 unknown outputs."
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R16",
+      "classification": "任意oracle明確化",
+      "status": "部分的に残存",
+      "current_refs": "FV:2995,2966–2969,2977–2996",
+      "fixed_or_old_basis": "fixed318ec L2:488–489 requires unknown when source identity not determinable.",
+      "assessment": "CASE47 only says return if provider identifiable; unlike 48 and similar rows, it omits explicit unknown when not identifiable. This is a fallback ambiguity, not an observed false success.",
+      "minimum_proposal": "CASE47 add “特定できない場合は戻し先unknown” preserving source provider category."
+    },
+    {
+      "scope": "LABO-063",
+      "residual": "R17",
+      "classification": "owner classification gap",
+      "status": "残存。same CASE03b as R11",
+      "current_refs": "FV:2961; FR:1729; CASE29/40/58 nearby for differentiated return categories",
+      "fixed_or_old_basis": "fixed318ec L2:488–489: missing observation/target version -> observation provider; version/applicability change can require LABO reevaluation.",
+      "assessment": "CASE03b routes target revision mismatch unconditionally to target owner. It does not state which record has the stale revision. Thus the failure may be missing target-version observation (provider) or an applicability/version change requiring LABO reevaluation. Fixed source gives both categories. The current case cannot select the right existing category.",
+      "minimum_proposal": "CASE03b bind mutation to one named existing record/category and route to corresponding fixed category; do not add owner."
+    }
+  ],
+  "summary": {
+    "still_substantive_acceptance_or_owner_gaps": [
+      "061 R4 (several isolated behaviors)",
+      "063 R1",
+      "063 R7",
+      "063 R9 (partial)",
+      "063 R10",
+      "063 R11/R17"
+    ],
+    "resolved_or_not_a_current_semantic_defect": [
+      "063 R4",
+      "061 R13",
+      "050 R2 as owner assignment request"
+    ],
+    "evidence_or_editorial_only": [
+      "061 R1/R5/R7/R8/R9/R10/R11",
+      "063 R2/R5/R12/R13/R14",
+      "050 R1 rationale trace"
+    ]
+  },
+  "limitations": [
+    "No repo files modified.",
+    "No legacy runtime, tests, CI, or archive execution.",
+    "This is a residual-only semantic review, not a full 274-parent review or L10 execution.",
+    "No new gate, threshold, permission, approval, or authority is introduced."
+  ]
+}

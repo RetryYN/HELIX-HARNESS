@@ -21,4 +21,8 @@ R5 locatorはFRの固定L2引用を`467–469`から`465–467`へ改めた。R1
 
 六本文の修正前SHAは補足WT開始HEAD `a30d1c81fc7e22bee501c46e0e9a2b4ab125045d` の実blob bytesから、修正後SHAはこの作業treeの実bytesから算出し、同名JSONへ記録した。CASE ID/row件数、CASE115–119のAC、CASE24/102表示、FR locator、BR/BV範囲、NFR/NFRV count文言を静的照合する。先行R4 immutable監査はそのまま保持する。
 
+## 残余分類記録の永続参照
+
+CASE115–119/R1/R3/R5の確認起点にした `/tmp/root-labo-stage5-decision-residual-review-f0e210b3.md` と `.json` を、同一bytesの監査snapshotとしてこの監査と同じディレクトリへ保存した。JSON側の050固定親locatorも読み、`f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2:298–303/L11:120–126表記を確認した。snapshot本文は変更せず、今回以降の状態を追記・上書きしない。各ファイルのrepo相対path、byte数、SHA-256は同名JSONの`residual_classification_source_snapshot`に記録する。
+
 authority_effect / approval_effect / execution_effect: `none`。
