@@ -1,0 +1,69 @@
+{
+  "record_type": "HDEC-OS-STAGE3-PARENT049-REVIEW02-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": 3,
+    "parents": [
+      "HELIXOS-L2-049"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6046097893,
+    "formal_body_raw": "## review02（HEAD 061733f82ba10fbee5e136807d6d90f4f0a819a8 / base 0d8fcb67ef64e17e0e3529715011d6140652f017）— Claude review_merge\n\n### 結論：Major 0。新しい本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- 作成側がMinorを補強し、mainを統合したため、本文のbytesが変わりました。review01の承認は継承していません。\n- OpusとFableが、このrevisionを改めて独立に読みました。\n- 判断記録と6本文pinを追加した後に、条件3を別途照合します。\n\n### 照合（固定 `633bf12` L2:1205–1211 / L11:821–828）\n- **AC-OS-L3-049-04（FR:331）の変更**\n  - 「configured capacity（window中は同一設定revision）× elapsed observed time」に変わりました。\n  - これは、変更可能な設定の下で分母を一意にするための計測条件を明示したものです。新しい数値、gate、field、ownerはありません（review01のMinor 6）。\n- **CASE-OS-L10-NFR-049-02（NFRV:98）の変更**\n  - 区間ごとの値を常に別記し、全区間の境界が既存の観測時点で判別できる場合に限って合算値も示す、という形になりました。\n  - これはL11の「観測時点が示される」「推定しない」から導いた報告条件で、閾値ではありません（review01のMinor 4）。\n- **既存CASEとの整合**\n  - CASE-049-06c（有効設定ごとに判定）とAC/CASE-049-05（config revision不適合→scope保留）は、dispatchの軸です。利用率の分母の軸とは独立しており、方向も整合しています。\n- **Minor 1（state conservation）を不採用にした点**\n  - 妥当と判断しました。固定L2/L11には、状態保存の文言がありません。\n  - 「誤状態数を観測」（NFRV-049-01）が残っているので、実質的な欠落はありません。\n- **Minor 2/3（監査の根拠）**\n  - 新しい時点監査で、判断記録:59の根拠と、missing timeの記述が既存CASEに由来することを補正しています。旧監査は変更していません。\n- **mainの取り込み**\n  - 親040/035の行は上書きされていません。`docs/helix-os` 差分の追加・削除行は、049の行だけです。\n  - 049の追加・削除行は、元の修正commitと完全に一致しました。\n- **SHA**\n  - 次の値は、すべて実bytesと一致しました。\n    - 統合監査の6本文pin\n    - 追補監査の前後値\n    - 固定親、PO registerの72行、旧source 4 span\n    - review01 comment本文（5,120 bytes、`e927853b…`）\n  - 旧監査は変更されていません。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 20,354 | `cbe1866d…` |\n| FR | 202,246 | `b4294889…` |\n| NFR | 33,764 | `4ca6b8de…` |\n| BV | 17,774 | `f785e13a…` |\n| FV | 244,617 | `83126621…` |\n| NFRV | 30,986 | `d556e641…` |\n\n### 返さない所見（Minor。承認を止めず、解消済みとは扱いません）\n1. 追補監査JSONの `static_checks.git_diff_check` が `\"pending\"` のままです。再計算した結果はCLEANでした。\n2. 判断記録:59の行SHAは改行なしで計算した値で、L2/L11のspanは改行込みで計算した値です。計算方式が混在しているので、注記があると再現が速くなります。\n3. NFRV-049-02の合算値は、AC本文には書かれていない、L10側の追加の報告値です。「合算は区間別記の付記」と一文あると、ACとの対応が明瞭になります。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 旧source原文の意味は再読していません。確認したのは、spanのSHAの一致までです。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 3965,
+    "formal_body_sha256": "8cf2aa4825023ed77f3ac429f1408ada58ab5f296a3ddb77b2ff3ee3b74bf982",
+    "reviewed_head": "061733f82ba10fbee5e136807d6d90f4f0a819a8",
+    "review_base": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20354,
+      "sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 202246,
+      "sha256": "b429488980bac0ae7c883efe60d63f95ffa715eb80925a1a8db37cad5827b4c1"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 33764,
+      "sha256": "4ca6b8deefbf859e652dd438db8a71e2ae46ffd2fce38743ecc9b712c6f9909c"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17774,
+      "sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 244617,
+      "sha256": "831266213f7e70120f4b6bd608d5f28e22527869a05f7018ae73fa2df5bf26cc"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 30986,
+      "sha256": "d556e641606cb16c0ad53efdaa02eecad6e8e9d9f9b3b66ee9c9f7b579bfc844"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage3-parent049-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 2917,
+    "sha256": "2c981f9b186cc5d76562b7cbac4cd753a34688e0d4b327b92e81e5eac10eb4fa"
+  },
+  "minor_not_returned": [
+    "旧追補JSON git_diff_checkはpending表記のまま。Rootと独立reviewではCLEANを実検証。",
+    "判断記録59の行SHAは改行なし、L2/L11 span SHAは改行込み。旧時点記録不変。",
+    "NFRV合算は区間別記に付加するL10報告値で、AC本文には合算を明記していない。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}
