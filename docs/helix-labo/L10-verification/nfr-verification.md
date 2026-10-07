@@ -125,7 +125,7 @@
 ## Stage 5 — HELIXLABO-L2-059 NFR検証設計
 
 - CASE-NFR-LABO-059-01: 選択群に適用する同条件、quality/acceptance result、既決decisionのscope/effectivity、OS assignment/result receipt、各費目・price source、human intervention quantity、duration definition、未選択群/unknownを個別に再計算する。実行済み値を生成せず、missing/unknown/未価格化/未完をsuccessまたは0へ変換しない。率を示す場合は分子/分母と適用scopeを出し、分母0/不明は率なし。固定閾値なし。
-- Functional CASE定義の参照対象はCASE-01/02、03a–m、04a/b、05–21、22–29、30–47、48–70。非独立index CASE-22/33–36、複合CASE-30は個別独立negativeの分母から除く。設計分類では定義83件、独立fixture 77件、compound1件、index5件。CASE-48は正常、CASE-49–70はnegative。数値はCASE定義数であり実測ではない。
+- Functional CASE定義の参照対象はCASE-01/02、03a–m、04a/b、05–21、22–29、30–47、48–72。非独立index CASE-22/33–36、複合CASE-30は個別独立negativeの分母から除く。設計分類では定義85件、独立fixture 79件、compound1件、index5件。CASE-48は正常、CASE-49–72はnegative。CASE-14はtask revision、CASE-58はsource revision、CASE-71はrequirement revision、CASE-72はacceptance-oracle revisionの不一致をそれぞれ単独で照合し、戻し先区分も分ける。数値はCASE定義数であり実測ではない。
 - Provider label変更とactual model identity/revision mismatchを異なるfield/CASEとして扱う。CASE64は入力labelだけの違いに対してscoreが不変かを見る。human investigation/verification quantityは通貨換算と分離する。
 
 
@@ -177,7 +177,7 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 ## Stage 5 — HELIXLABO-L2-067 NFR verification design
 
 - `CASE-NLABO-067-FR-01-01`: selected task/scope/revisionに属するpredicate/oracle revision、candidate digest/event receipt、OS assignment/AttemptID、LABO observation/result receiptのfield completenessを再照合する。ordered repair countはevent receiptとidentityが確定した同一assignment Attempt内だけを再計算し、unknown/missing/duplicate/out-of-order/Attempt-mismatchを区別する。source individual identityがunknownでもtask/要求owner, OS, LABO, SECURITYというknown role classificationを保持する。minimum N、rate threshold、実測値、completion/permissionを出力しない。
-- Functional CASE index: old 30 `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23` と追加候補 `CASE-24–38` を参照する。index/countは意味完全性、独立性、実行済み結果を証明しない。
+- Functional CASE index: old 30 `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23` と追加候補 `CASE-24–39` を参照する。index/countは意味完全性、独立性、実行済み結果を証明しない。
 
 ## Stage 5 — HELIX-LABO L10 NFR検証候補 — HELIXLABO-L2-069
 
