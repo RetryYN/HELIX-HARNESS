@@ -45,14 +45,14 @@ execution_status: designed_only_not_executed
 | 親L2 | business検証の扱い | 判定境界 |
 |---|---|---|
 | `HARNESS-L2-021` | 独立business oracleなし。構成体固有trace/運用還流はfunctional CASEで照合する。 | unit成功の合算やL12観測だけで業務達成を出さない。 |
-| `HARNESS-L2-025` | 独立business oracleなし。常時connector、選択Pattern条件、横断invariant、設計承認/実装許可の非生成をfunctional CASEで照合する。 | 設計整合から承認・許可・実装・利用者受入を生成しない。 |
+| `HARNESS-L2-025` | 独立business oracleなし。常時connector、選択Pattern条件、横断invariant、L2要求合意/L3要件承認/設計承認/実装許可の非生成をfunctional CASEで照合する。 | 設計整合から承認・許可・実装・利用者受入を生成しない。 |
 | `HARNESS-L2-033` | 独立business oracleなし。選択operationの段階別result receiptとtest pass/Integrated/Verifiedの非生成をfunctional CASEで照合する。 | run/pass receiptを事業KPIや顧客成果にせず、生成/handoffから進行状態を作らない。 |
 | `HARNESS-L2-035` | 独立business oracleなし。source根拠・受入寄与・unknown状態と実装/実行許可の非生成をfunctional CASEで照合する。 | budgetやscopeの価値判断を新設しない。 |
-| `HARNESS-L2-037` | 独立business oracleなし。適用可能なscopeでphase別authority、合流、設計承認/要求承認/実装許可の非生成をfunctional CASEで照合する。 | 適用候補から一般業務価値や全製品への強制を導かない。 |
+| `HARNESS-L2-037` | 独立business oracleなし。適用可能なscopeでphase別authority、合流、設計承認/L3要件承認/実装許可の非生成をfunctional CASEで照合する。 | 適用候補から一般業務価値や全製品への強制を導かない。 |
 
 ### Root検収補正 — Stage5 CASE境界
 
-追加functional CASE（各親の既存001–00Nと続番S5行）は固定5親の工程・設計・根拠・適用性oracleを検証する。025-S5-040/041、033-S5-045–047、035-S5-046、037-S5-062–064のauthority boundaryは対のfunctional-verification.mdで検証し、business CASEへ重複計上しない。独立business requirement/KPI/business CASEは0件のままであり、件数や結果から事業価値、release、利用者受入、承認を生成しない。
+追加functional CASE（各親の既存001–00Nと続番S5行）は固定5親の工程・設計・根拠・適用性oracleを検証する。025-S5-040/041、033-S5-045–047、035-S5-046、025-S5-062/063/065、033-S5-043/044、037-S5-062–064のauthority boundaryは対のfunctional-verification.mdで検証し、business CASEへ重複計上しない。独立business requirement/KPI/business CASEは0件のままであり、件数や結果から事業価値、release、利用者受入、承認を生成しない。
 
 
 ## Stage 3 親034の業務総合検証

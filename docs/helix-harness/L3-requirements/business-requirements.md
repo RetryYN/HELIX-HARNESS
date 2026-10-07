@@ -79,7 +79,7 @@ paired_l10: ../L10-verification/business-verification.md
 
 ## Stage 5 suffix — HARNESS-L2-021/025/033/035/037
 
-この5親から独立したbusiness requirement、business owner、事業価値/KPI閾値を導出しない。021の端から端利用価値も、固定L2/L11の構成体固有functional obligationとして対の[functional-requirements.md](functional-requirements.md)に置く。025設計整合、033 case/repro trace、035根拠照合、037適用時の二段設計は機能・authority境界であり、業務上の成果値ではない。旧business-detailの別業務意味・owner・KPIは再利用しない。これはHARNESS全体にbusiness要件がないことを意味しない。
+この5親から独立したbusiness requirement、business owner、事業価値/KPI閾値を導出しない。021の端から端利用価値も、固定L2/L11の構成体固有functional obligationとして対の[functional-requirements.md](functional-requirements.md)に置く。025設計整合、033 case/repro trace、035根拠照合、037適用時の二段設計は機能・authority境界であり、業務上の成果値ではない。025-S5-062/063および033-S5-043/044もfunctional authority CASEであり、独立business outcomeではない。旧business-detailの別業務意味・owner・KPIは再利用しない。これはHARNESS全体にbusiness要件がないことを意味しない。
 
 | 親L2 | business要件への扱い | 境界 |
 |---|---|---|

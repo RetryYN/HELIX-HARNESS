@@ -487,22 +487,22 @@ scope: 本追補5親のみ / G0 version_class 1.0
 
 **入力**：025固定L2の常時必須である対象L3 authority/revision、026設計unitとreceipt、CORE/Design Template/BRAIN connector契約のidentity/version/compatibility、scopeと022 oracle、選択時のみPattern receipt・required input/relation/version、画面/API/DB/permission/state要素とfailure path。
 
-**出力**：要求→設計要素→oracleの双方向trace、unit/connection/composite relation、横断invariant、正常・拒否・failure pathの対検証設計、conflict/unknown/alternative/差戻し先を含む各条件の状態と既存ownerへの不足返却。025は026を生成せず、014を置換せず、要求の採択・要求/L3承認・設計承認・実装許可・実装済み・利用者受入済みの状態を出力から生成・変更しない。
+**出力**：要求→設計要素→oracleの双方向trace、unit/connection/composite relation、横断invariant、正常・拒否・failure pathの対検証設計、conflict/unknown/alternative/差戻し先を含む各条件の状態と既存ownerへの不足返却。025は026を生成せず、014を置換せず、要求採択、L2要求合意、L3要件承認、設計承認、実装許可、実装済み、利用者受入済みの各状態を出力から個別に生成・変更しない。
 
-**不変条件・戻し先**：BRAIN connector契約と026 unitは常時必須。Patternは明示選択された場合だけ、そのreceiptと全required input/relation/versionが必須であり、未選択Patternは未観測である。意味差はHARNESS-L2-008/上流owner、L3 authority/revision差は該当L3 owner、Pattern/relationの不足・衝突・version差はBRAIN connector/Pattern owner、設計要素/pair/oracleの形成不足はHARNESS-L2-026/022の形成へ返す。CORE connectorの版がunknownまたは適用範囲外なら、対象compositeを保留し、当該connector契約の参照元が示す既存ownerへ版・互換情報の不足を返す。選択Templateの適用性または互換性がunknown／範囲外なら、対象compositeを保留し、HARNESS-L2-009の適用契約を供給した既存ownerへ確認を返す。参照元にowner identityがなければowner identityをunknownとして保持し、別ownerを推定しない。これらを026/022形成不足へ一律に割り当てず、025固定L2:554の設計要素/pair/oracle形成不足が確認できる場合だけ026/022形成へ返す。未特定のgeneric permission owner、CORE connector owner、Design Template ownerを新設しない。connector自体が無い場合もPattern利用で代替しない。固定L2に示す承認後編集禁止例では、申請→承認→編集要求→拒否の状態とpermission/data invariantを端から端で確認する。
+**不変条件・戻し先**：BRAIN connector契約と026 unitは常時必須。Patternは明示選択された場合だけ、そのreceiptと全required input/relation/versionが必須であり、未選択Patternは未観測である。意味差はHARNESS-L2-008/上流owner、L3 authority/revision差は該当L3 owner、Pattern/relationの不足・衝突・version差はBRAIN connector/Pattern owner、設計要素/pair/oracleの形成不足はHARNESS-L2-026/022の形成へ返す。固定L2:552が列挙するCORE契約、Design Template契約、BRAIN connector契約は別依存である。本Stage5のconnector版unknown条件は、固定L2-026:542の「COREのBRAIN connector契約」（正本HELIXBRAIN-L2-030）の版だけを指し、CORE自身の製品契約やDesign Template契約を指さない。この版がunknownまたは適用範囲外なら対象compositeを不適合として保留し、BRAIN connector契約ownerへ不足を返す。BRAIN connector identity自体の欠落は別条件としてBRAINへ返す。選択Templateの適用性または互換性がunknown／範囲外なら、対象compositeを不適合として保留し、HARNESS-L2-009の適用契約source ownerへ確認を返す。具体owner identityがsourceにない場合はそのidentityをunknownとして保持し、既知の責務カテゴリを消したり別ownerを推定したりしない。これらを026/022形成不足へ一律に割り当てず、025固定L2:554の設計要素/pair/oracle形成不足が確認できる場合だけ026/022形成へ返す。未特定のgeneric permission owner、CORE自身の契約owner、Design Template ownerを新設しない。connector自体が無い場合もPattern利用で代替しない。固定L2に示す承認後編集禁止例では、申請→承認→編集要求→拒否の状態とpermission/data invariantを端から端で確認する。
 
 HARNESS-L2-014が設計一式の整合を提供するscopeでは、そのscopeに対するHARNESS-L2-025の検査を常時必須とする。これは対象scope内の検査条件であり、別の承認・開始gateを追加しない。
 
 - **`AC-HARNESS-L3-025-01` 常時必須契約**：026 unit、L3 revision/scope、CORE/Design Template/BRAIN connector契約と022 oracleを一致させるnormal compositeを確認する。Patternを選ばないfixtureではPattern receiptを要求せず、全Patternの知識を要求しない。
 - **`AC-HARNESS-L3-025-02` 選択Pattern条件**：同じ正常compositeでPatternを一つ選択し、対応するHELIXBRAIN-L2-030 receipt・選択Patternのrequired relation/versionを結ぶ。receipt欠落、unknown、stale、scope mismatchを別CASEで保留し、別Patternへ暗黙fallbackしない。
 - **`AC-HARNESS-L3-025-03` 構成体invariant**：申請から承認後編集拒否までのscreen/API/permission/state/data oracleを一つのtraceへ結び、単体・connection passのみでは合格にしない。反例は一つのrelationまたはoracle状態だけを変え、誤ったcomposite passを拒否する。
-- **`AC-HARNESS-L3-025-04` authority非生成**：composite設計・検証設計が整っても、要求採択、要求/L3承認、設計承認、実装許可、実装済み、利用者受入済みの各状態を独立して生成・変更しない。これらの状態は対応する既存authority sourceの入力状態を保つ。
+- **`AC-HARNESS-L3-025-04` authority非生成**：composite設計・検証設計が整っても、要求採択、L2要求合意、L3要件承認、設計承認、実装許可、実装済み、利用者受入済みの各状態を個別に生成・変更しない。特にL2要求合意とL3要件承認を一つの状態へまとめず、それぞれ対応する既存authority sourceの入力状態を保つ。
 - **`AC-HARNESS-L3-025-05` 代替の意味保持**：固定L2:550のalternativeを出力し、L11:346に従い意味を保つ比較候補を示す。複数Patternの衝突時は意味保持案を比較可能に示し、意味変更案は採用せずL2-008/上流へ戻す。意味変更案しかない場合も同じ戻し先へ返す。
 - **`AC-HARNESS-L3-025-06` 未見actor/遷移**：固定scopeに未見のactorまたはstate transitionを一つ追加したfixtureで同じscope義務・oracleを照合する。名称未見だけで拒否せず、transition oracle不足はL2-022形成へ、意味変更はL2-008/上流へ戻す。
-- **`AC-HARNESS-L3-025-07` connector版unknownの戻し先**：CORE connectorのversionだけをunknownにした場合、compositeを保留し、参照元に示されたconnector契約ownerへ不足を返す。owner identityがsourceにない場合はunknownを保ち、026/022形成へは設計要素/pair/oracle形成不足が別途確認された場合だけ返す。
-- **`AC-HARNESS-L3-025-08` Template互換範囲外の戻し先**：選択Templateのcompatibility versionだけを適用range外にした場合、compositeを保留し、L2-009適用契約を供給した既存source ownerへ不足を返す。具体owner identityがsourceにない場合はそのidentityだけunknownで保留し、既知の責務カテゴリを消さない。固定L2:554の026/022形成へは設計要素/pair/oracle形成不足が別途確認された場合だけ返し、BRAIN connector/knowledge source不足とは分ける。
+- **`AC-HARNESS-L3-025-07` connector版unknownの戻し先**：HARNESS-COREが常時使う「COREのBRAIN connector契約」（HARNESS-L2-026:542、正本HELIXBRAIN-L2-030）のversionだけをunknownにした場合、compositeを不適合として保留し、BRAIN connector契約ownerという既知の責務カテゴリへ不足を返す。具体owner identityがsourceにない場合はそのidentityだけunknownを保つ。BRAIN connector identity自体の欠落は別条件としてBRAINへ返し、026/022形成へは設計要素/pair/oracle形成不足が別途確認された場合だけ返す。
+- **`AC-HARNESS-L3-025-08` Template互換範囲外の戻し先**：選択Templateのcompatibility versionだけを適用range外にした場合、compositeを不適合として保留し、L2-009適用契約を供給した既存source ownerへ不足を返す（固定L2-037:787と対L11:709のL2-009適用契約・該当owner返却）。具体owner identityがsourceにない場合はそのidentityだけunknownで保留し、既知の責務カテゴリを消さない。固定L2:554の026/022形成へは設計要素/pair/oracle形成不足が別途確認された場合だけ返し、BRAIN connector/knowledge source不足とは分ける。
 - **`AC-HARNESS-L3-025-09` authority非生成の設計承認・実装許可**：正常compositeから出力の設計承認だけ、または実装許可だけを個別に新規生成する変異を拒否し、他の入力・出力状態と各独立authority sourceを保つ。
-- **`AC-HARNESS-L3-025-10` owner identityの固定とunknown保持**：connector版unknownのfixtureでは、sourceがBRAIN connector契約ownerを `brain-connector-owner:fixture` と宣言し、oracleが出力owner_identityとこの値のexact一致を確認する。Template互換範囲外のfixtureでは、L2-009適用契約source ownerを `template-contract-source-owner:fixture` と宣言し、oracleが出力owner_identityとこの値のexact一致を確認する。これらはfixture内の責務カテゴリを識別する合成値であり、製品の実owner identityを定めない。別caseでは他の入力を保ち、owner identityだけを欠落させて既知の責務カテゴリとidentity unknownを分け、別ownerを推定しない。設計要素/pair/oracle形成不足がある場合だけ026/022へ返す。
+- **`AC-HARNESS-L3-025-10` owner identityの固定とunknown保持**：connector版unknownのfixtureでは、sourceが「COREのBRAIN connector契約」（HARNESS-L2-026:542、HELIXBRAIN-L2-030正本）のownerカテゴリを `core-brain-connector-contract-owner:fixture` と宣言し、oracleが出力owner_identityとこの値のexact一致を確認する。Template互換範囲外のfixtureでは、L2-009適用契約source ownerを `template-contract-source-owner:fixture` と宣言し、oracleが出力owner_identityとこの値のexact一致を確認する。これらはfixture内の責務カテゴリを識別する合成値であり、製品の実owner identityを定めない。別caseでは他の入力を保ち、owner identityだけを欠落させて既知の責務カテゴリとidentity unknownを分け、別ownerを推定しない。設計要素/pair/oracle形成不足がある場合だけ026/022へ返す。
 
 ### `FR-HARNESS-L3-033` — failure-to-regressionの段階別trace
 
@@ -539,7 +539,7 @@ HARNESS-L2-014が設計一式の整合を提供するscopeでは、そのscope�
 - **`AC-HARNESS-L3-035-07` 上流訂正後の再導出**：上流revisionを訂正した状態で旧導出receiptだけを与え、現revisionのcandidate根拠として受け入れない。該当要求形成/source ownerへ戻す。
 - **`AC-HARNESS-L3-035-08` CORE/OS分離**：OS登録・ticket・実行receiptがなくてもCOREの意味照合を正常に行う。逆にOS登録だけから意味照合成立、人の合意、実行権限を作らない。
 - **`AC-HARNESS-L3-035-09` 原指示記録と対象revision合意の分離**：対象revision付きの独立判断がないnormal入力では、原指示の受領・記録を示しながら合意状態をunknown/未合意のまま出力する。原指示の記録状態だけを変えずに合意状態だけを合意済みにする変異を拒否する。
-- **`AC-HARNESS-L3-035-10` 正常照合と実行許可の分離**：全source/revision/scope/寄与/必要性/代替/budgetが正常な照合結果でも、実装・実行許可は別authority sourceの入力状態を保つ。照合結果だけからいずれの許可済み状態も生成しない。
+- **`AC-HARNESS-L3-035-10` 正常照合と実行許可の分離**：全source/revision/scope/寄与/必要性/代替/budgetが正常な照合結果でも、実行許可は別authority sourceの入力状態を保つ。照合結果だけから実行許可済み状態を生成しない。
 - **`AC-HARNESS-L3-035-11` 正常照合と実装許可の独立拒否**：正常なsource/revision/scope/寄与/必要性/代替/budget照合から実装許可を生成しない。実装許可だけを加えた単独変異を拒否し、既存authority sourceの状態を保つ。
 
 ### Stage 5 Root検収追補 — scope計測の反例対応
@@ -559,7 +559,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 - **`AC-HARNESS-L3-037-03` 合流条件**：各phaseの固有L2/L3/design/L9 tupleが同一scopeにそろった場合だけ合流候補を返す。片方のreceipt・authority・scopeを一つずつ欠落/不一致にしたfixtureでは未完義務を保持する。
 - **`AC-HARNESS-L3-037-04` 現行pair/状態境界**：旧phase.yamlや旧層番号を入力必須にせず、現行L3↔L10、L2↔L11、L1↔L12の別状態を保つ。設計の存在から実行・受入・観測を推定しない。利用者の選択executorを使うscopeに内部OS一式を要求せず、旧構造との差だけで不合格にせず、unknownだけから新人間承認を固定しない。
 - **`AC-HARNESS-L3-037-05` 根拠と適用限界の出力**：正常fixtureで各phaseのauthority/revision、template applicability、handoff、合流候補の出力に、当該relationを支えるsource/evidenceと適用scope・限界が個別に結び付く。根拠または適用限界の一方を単独で欠落させた場合はtraceを未完として合流候補の判定を保留する。
-- **`AC-HARNESS-L3-037-06` 二段traceからのauthority非生成**：phase別traceが正常でも、設計承認・要求承認・実装許可をそれぞれ個別に生成しない。各一状態だけを変える単独変異を拒否し、入力された独立authority stateを保つ。
+- **`AC-HARNESS-L3-037-06` 二段traceからのauthority非生成**：phase別traceが正常でも、設計承認・L3要件承認・実装許可の3状態をそれぞれ個別に生成しない。L2要求合意とL3要件承認は別のauthority stateとして区別する。このACで拒否する単独変異は、設計承認・後続revisionのL3要件承認・実装許可に限り、S5-062/063/064が各一状態を対象とする。
 
 
 ## Stage 3 親034の計測契約（version_target 1.0）
