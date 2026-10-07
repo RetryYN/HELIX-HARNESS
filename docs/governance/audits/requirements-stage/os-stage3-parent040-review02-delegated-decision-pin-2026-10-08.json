@@ -1,0 +1,70 @@
+{
+  "record_type": "os_stage3_parent040_review02_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": 3,
+    "parents": [
+      "HELIXOS-L2-040"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6045652056,
+    "formal_body_raw": "## review02（HEAD cbb49be9b7e10af05a80ea06d1626e35b97f96b8 / base 37a8283be429c57f3706153ad522e7ad288fecc3）— Claude review_merge\n\n### 結論：Major 0。新しい本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- 作成側がMinorを補強したため、本文のbytesが変わりました。そのためreview01の承認は継承せず、OpusとFableがこのrevisionを独立に読み直しました。\n- 判断記録と6本文pinを追加した後に、条件3を別途照合します。\n\n### 変更点の照合（固定 `633bf12` L2:1125–1134 / L11:732–743）\n- **07g**：正しい現在の累積がNなら、retryを拒否します。誤集計でN-1に見えても、その値を採用しません。review01のMinor 2は解消しました。\n- **07i**\n  - 正しい累積N-1なら、同じscopeでの次回retryを許可します。\n  - 別のfixtureで対象外のfailureを混入させても、premature routeは0です。\n  - review01のMinor 2（肯定の期待がない）は解消しました。\n  - 「許可」は、固定L2:1128が提供するもの「次回retryの可否」のうち「可」にあたります。L11:737もretryの許可を正常な出力として前提にしています。実行authorityを新設しないこと（L2:1129）とは矛盾せず、authorityの生成ではありません。\n- **新しい07j（AC-02）**\n  - 初回を数えないpolicyで、集計が初回を誤って算入するケースです。N-1がNに見えてもpremature routeを作らず、N-1を保持します。\n  - これはL11:735「初回を含むか」の逆方向にあたり、AC-02「初回attempt計上有無の反転」に収まります。review01のMinor 1は解消しました。\n- **用語**：failure classに「固定L11-040の『対象となる失敗の範囲』」を併記しました。review01のMinor 3は解消しました。\n- **変えていないもの**\n  - NFR/NFRVの追記は、07g..07jの照合だけです。NFR traceの `AC-01..06` は変わっていません。\n  - 07h、CASE-01..06、07a–07f、AC-02..06も変わっていません。削除された箇所はありません。\n  - 036の行に差分はありません。固定L2のspan（`a5ba2bdc…`）は、HEADでも同じbytesです。\n- **SHA**：時点監査の6本文（変更前・変更後）、固定親、旧source、review01 comment本文（5,204 bytes、`119d2bde…`）は、いずれも実bytesと一致しました。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 20,354 | `cbe1866d…` |\n| FR | 202,209 | `c2a11a70…` |\n| NFR | 33,338 | `c815ea15…` |\n| BV | 17,774 | `f785e13a…` |\n| FV | 243,724 | `784b314d…` |\n| NFRV | 30,083 | `bd98bf32…` |\n\n### 返さない所見（Minor。承認を止めず、解消済みとも扱いません）\n1. 07i/07jの「許可する」を、L2:1128の語「次回retryの可否」に一度対応付けると、L2:1129との関係がさらに明示されます。たとえば「可否判定を可とする。retryの起動・実行authorityは生成しない」です。\n2. 監査JSONの `base_commit`（`cc893eb…`）は変更前のHEADを指しています。PRのbaseと誤読されないように、今後の記録では `previous_head` などの名前にしてください。\n3. review01のMinor 4（既存の監査MDの6本文表）は、時点記録として不変のまま保持されています。現在のpinは新しい監査に記録されています。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 040以外の行は差分の外として、全文は読んでいません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 3858,
+    "formal_body_sha256": "f3cc7f57206f0970d1a8056d330a2f3371c17e25ea2f9db4cfe7b0c7a19b97a2",
+    "reviewed_head": "cbb49be9b7e10af05a80ea06d1626e35b97f96b8",
+    "review_base": "37a8283be429c57f3706153ad522e7ad288fecc3",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20354,
+      "sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 202209,
+      "sha256": "c2a11a70ccc7ad5af41eae92b3c690869c6e7e35fc22d2019b9287c980901731"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 33338,
+      "sha256": "c815ea15001b7148a8b3257c36c2fb8a18cb19c035d0ef14f953ab9e993acacd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17774,
+      "sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 243724,
+      "sha256": "784b314d8425a26551a37951f777531570f287c87aef326d6ef751b521ad1822"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 30083,
+      "sha256": "bd98bf3265c74d5ddddd879b4f87d4eaec9343bf63ee377950c63f32fb47e868"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage3-parent040-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 2937,
+    "sha256": "83462f4b1fff7ce894e9a96f0427e6e1a81a5895883f0afbf4d1e6459502b1dc"
+  },
+  "minor_not_returned": [
+    "07i/07jの許可は固定L2:1128次回retryの可否の可を意味する。起動・実行authority非生成の明文化候補は未解消。",
+    "補正監査JSON base_commitは変更前HEAD cc893ebを意味しPR baseではない。旧時点記録は変更しない。",
+    "初期監査MDの6本文表は歴史pin。現在の判断対象は下記6pinであり、旧表を現revisionへ継承しない。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "他親全文未再読",
+    "274親検収未完"
+  ]
+}

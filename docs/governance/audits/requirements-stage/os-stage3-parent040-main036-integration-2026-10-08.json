@@ -1,0 +1,45 @@
+{
+  "record_type": "os040_main036_integration",
+  "authority_effect": "none",
+  "base": "d8a6be234c17a8ce44b9f000c2f41ebf15a70434",
+  "content_before_record": "251246f451c55ddcb410259b090b0b5b2ea5f992",
+  "scope": "親040 counter semantics補強のみ。main2680親036修正を統合し、036差分を上書きしない。以前の時点監査は歴史pinとして保持。新6本文について旧承認を継承せず独立reviewと対象revision判断を待つ。",
+  "six_body_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20354,
+      "sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 202151,
+      "sha256": "55d68c119464756b1374be9a80dd1877ec5f6465c566915b3389bfab8cf96826"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 33214,
+      "sha256": "9d822aaefe3aece34ffa6c8c08bfa52946f4f4ca476ed54256ebbae01c269eb4"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17774,
+      "sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 242863,
+      "sha256": "9b1ec9f20ef7b81a7267c9721b5f5a7f62c03c3237969cca0c9a006f9ebe4b10"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 29856,
+      "sha256": "2b06afe1715a28705c3963b0eb017311e020333510a49730fedcf653b0b715c1"
+    }
+  ],
+  "validation": [
+    "git diff --check PASS",
+    "scfctl147/0 stale=0",
+    "fixture未実行",
+    "Root最新baseからOS差分全文読了"
+  ]
+}
