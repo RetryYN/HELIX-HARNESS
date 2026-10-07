@@ -172,7 +172,7 @@
 未計測設計。固定L2/L11のfieldとoracleだけを使い、最低N、成功率/資格threshold、SLA、freshness期限、PO別parameter approvalを加えない。
 
 - NFR-LABO-059-01 比較可能性・費用/時間内訳: 選択されたscope/cohortごとにtask/snapshot、quality/acceptance oracle、decision scope、protocol/scorer/hardware/toolchain、receipt completeness、費目、human quantity、duration、未選択群/未測定状態を別々に記録する。欠測・unknown・未価格化・未完を成功/0へ変えない。分母0/不明では率を出さない。
-- 対象定義はL10-LABO-059の全定義84件。正常/未見正常とnegative、compound CASE-30、non-independent index CASE-22/33–36を分類別に集計する。独立fixture設計は78件（既存54＋追加24）、compound1件・index5件は分母外。CASE-14はtask/source revision不一致、CASE-71はrequirement/acceptance oracle revision不一致を個別に照合する。これは設計上の件数で、実測母集団や成功件数ではない。
+- 対象定義はL10-LABO-059の全定義85件。正常/未見正常とnegative、compound CASE-30、non-independent index CASE-22/33–36を分類別に集計する。独立fixture設計は79件（既存54＋追加25）、compound1件・index5件は分母外。CASE-14はtask revision、CASE-58はsource revision、CASE-71はrequirement revision、CASE-72はacceptance-oracle revisionの不一致を個別に照合する。これは設計上の件数で、実測母集団や成功件数ではない。
 - CASE-NFR-LABO-059-01は実行記録ではない。CASE-64ではprovider labelのみの入力差とactual model identityを分離し、score invarianceを別観点として数える。人間調査/検証時間は貨幣費用と別fieldとする。
 
 
