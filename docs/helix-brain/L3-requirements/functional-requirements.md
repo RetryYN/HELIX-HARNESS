@@ -715,10 +715,10 @@ BRAIN→HARNESS-CORE query/receipt接続において、常時必須のconnection
 
 **保持・変更**：旧RCLS-BR-006は学習機構が既存authorityを奪わず提案を出す意味として再導出する。旧RCLS-BR-004の段階・責務分離も候補状態／評価／登録／独立検証を分ける点で再導出する。旧RCLS sourceにInfrastructureの実server/network/database状態、provider account、credential、操作権限、実log/metrics・Core/LABO経路の直接対応はなく、現行固定L2-024、L2-INFRA-009/010/012/017、L2-019/020/022から固有のflowを再導出する。旧runtime、旧DB、古いshadow/cross-project運用は置換し、L2にないshadow期間やcross-project検証、人間承認を必須にしない。
 
-**依存・版・戻し先**：L2-INFRA-009/010/012/017、L2-019/020/022およびHARNESS-CORE/Runtime/LABO contractを照合する。実状態・操作・raw runtime dataはRuntime owner、評価source/scopeはLABO、製品設計はCore、汎用知識意味はBRAINへ返す。L2でownerが指定されない不整合はunknownを保持しownerを創作しない。`version_target: 1.0`。
+**依存・版・戻し先**：固定L2-024:460が列挙するL2-INFRA-009/010/012/017、L2-019/020/022およびCORE/Runtime/LABO contractを依存traceとして照合する。通常armでは、選択したL2-INFRA-017の参照identityと対象revisionについて、入力source receiptの値とBRAIN出力を一致照合する。固定L2-020:420が定めるとおり、L2-INFRA-017固有のmaturity state/evidenceを照合するのはInfrastructure candidate maturityを扱う場合に限り、その場合も同じ対象revisionへ結ぶ。maturityを選ばない通常armにはmaturity判定を要求しない。maturity選択armではL2-INFRA-017に定義されたBRAIN version、project usage version、利用実績、failure、反例、LABO評価の各値もsource receiptとfield単位で一致照合する。固定親にないcompatibility relation/schema、state/evidence schema、owner、閾値を追加しない。実状態・操作・raw runtime dataはRuntime owner、評価source/scopeはLABO、製品設計はCore、汎用Pattern意味はBRAINへ返す。L2でownerが指定されない不整合はunknownを保持しownerを創作しない。`version_target: 1.0`。
 
-- **BRAIN-024-AC-01 — 正常な二経路**：Infrastructure design candidateのsource/revisionをCore向け設計知識receiptとして追跡し、別のRuntime owner実利用結果はRuntime owner→LABO評価（source/scope/result/failure/反例/未評価範囲）→L2-020候補として追跡する。BRAIN側のcandidateは二経路の由来を保ち、Runtime実状態のowner記録を別identityで保持する。
-- **BRAIN-024-AC-02 — 個別拒否・責務境界**：BRAINからの直接Runtime read、直接Runtime write、実績を受けた直接learningを別々に拒否する。さらにserver state、network state、database state、provider account、credential、操作権限、実log、実metricsをそれぞれ単独変異として拒否する。Core迂回、LABO迂回、owner identity移動も個別に拒否する。各拒否は実状態/操作をRuntime owner、製品設計をCore、評価をLABOへ返し、汎用知識意味だけBRAINへ戻す。
+- **BRAIN-024-AC-01 — 正常な二経路**：Infrastructure design candidateのsource/revisionをCore向け設計知識receiptとして追跡し、別のRuntime owner実利用結果はRuntime owner→LABO評価（source/scope/result/failure/反例/未評価範囲）→L2-020候補として追跡する。BRAIN側candidate/evaluation receiptのsource identity・source revision・candidate/target revision・scopeはsource値と一致させ、二経路の由来を保ち、Runtime実状態のowner記録を別identityで保持する。
+- **BRAIN-024-AC-02 — 個別拒否・責務境界**：BRAINからの直接Runtime read、直接Runtime write、実績を受けた直接learningを別々に拒否する。さらにserver state、network state、database state、provider account、credential valueの保存、credential referenceの保存、操作権限、実log、実metricsをそれぞれ単独変異として拒否し、credential referenceの直接流入停止も保存拒否と分けて確認する。Core迂回、LABO迂回、owner identity移動も個別に拒否する。各拒否は実状態/操作をRuntime owner、製品設計をCore、評価をLABOへ返し、汎用知識意味だけBRAINへ戻す。
 
 ### BRAIN-025-FR-01 — HELIXBRAIN-L2-025 内部知識candidateの独立検証・採否
 
@@ -739,8 +739,8 @@ BRAIN→HARNESS-CORE query/receipt接続において、常時必須のconnection
 
 | 親 | AC | 明示CASE trace |
 |---|---|---|
-| `HELIXBRAIN-L2-024` | `BRAIN-024-AC-01` | `L10-BRAIN-024-C01`, `L10-BRAIN-024-C02`, `L10-BRAIN-024-C40` |
-| `HELIXBRAIN-L2-024` | `BRAIN-024-AC-02` | `L10-BRAIN-024-C03`–`L10-BRAIN-024-C39`（索引C10/C15を含む）、`L10-BRAIN-024-C41`–`L10-BRAIN-024-C45` |
+| `HELIXBRAIN-L2-024` | `BRAIN-024-AC-01` | `L10-BRAIN-024-C01`, `L10-BRAIN-024-C02`, `L10-BRAIN-024-C40`, `L10-BRAIN-024-C46`, `L10-BRAIN-024-C50` |
+| `HELIXBRAIN-L2-024` | `BRAIN-024-AC-02` | `L10-BRAIN-024-C03`–`L10-BRAIN-024-C39`（索引C10/C15を含む）、`L10-BRAIN-024-C41`–`L10-BRAIN-024-C45`、`L10-BRAIN-024-C47`–`L10-BRAIN-024-C49`、`L10-BRAIN-024-C51`–`L10-BRAIN-024-C54` |
 | `HELIXBRAIN-L2-025` | `BRAIN-025-AC-01` | `L10-BRAIN-025-C01`, `L10-BRAIN-025-C33`, `L10-BRAIN-025-C46` |
 | `HELIXBRAIN-L2-025` | `BRAIN-025-AC-02` | `L10-BRAIN-025-C02`, `L10-BRAIN-025-C03`, `L10-BRAIN-025-C04`, `L10-BRAIN-025-C05`, `L10-BRAIN-025-C06`, `L10-BRAIN-025-C10`, `L10-BRAIN-025-C11`, `L10-BRAIN-025-C12`, `L10-BRAIN-025-C13`, `L10-BRAIN-025-C14`, `L10-BRAIN-025-C15`, `L10-BRAIN-025-C16`, `L10-BRAIN-025-C17`, `L10-BRAIN-025-C18`, `L10-BRAIN-025-C19`, `L10-BRAIN-025-C20`, `L10-BRAIN-025-C21`, `L10-BRAIN-025-C22`, `L10-BRAIN-025-C35`, `L10-BRAIN-025-C36`, `L10-BRAIN-025-C50`, `L10-BRAIN-025-C51`, `L10-BRAIN-025-C52` |
 | `HELIXBRAIN-L2-025` | `BRAIN-025-AC-03` | `L10-BRAIN-025-C07`, `L10-BRAIN-025-C08`, `L10-BRAIN-025-C09`, `L10-BRAIN-025-C23`, `L10-BRAIN-025-C24`, `L10-BRAIN-025-C25`, `L10-BRAIN-025-C26`, `L10-BRAIN-025-C34`, `L10-BRAIN-025-C37`–`L10-BRAIN-025-C45`, `L10-BRAIN-025-C67` |
