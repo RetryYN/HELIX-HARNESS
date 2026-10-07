@@ -107,3 +107,23 @@ execution_status: designed_only_not_executed
 | 049の採択意味 | 入力済みrenderable prototypeの画面表示計測、機械検査の精度材料、profile根拠の文言findingに限る。 | この範囲を独立business requirement/KPI/ROIへ広げず、render pass、CASE数、精度fixtureを事業成果・release判断にしない。 |
 | 要求受入 | 既存authorityに属する人の要求受入decisionを測定結果から生成しない。 | machine pass、LABO評価、POのL2採択からL3要件承認や利用者acceptanceを推定しない。 |
 | locale/device/view | 選択scope単位の機械観測状態を記録する。 | 特定locale/device/viewの観測を、未選択条件または要求受入の証明にしない。 |
+
+### HELIX-HARNESS L2-044 — 業務検証（Stage 3、version_target: 1.0、起草候補）
+
+起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
+
+**固定親・判断根拠**：L2親は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1002–1014`、全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、span SHA-256 `b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d`。 L11対は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:735–745`、全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8`。 PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49`、SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、line SHA-256 `212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b`、registration `MPR-RC-HARNESS-L2-044-002`。POはB route / Design Contract Portfolioを条件付き採択し、採択済み025/026へ無断追記しない。
+
+**旧source・責務境界**：旧起点はHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line/span SHA-256 `b8c3eb6a8d4e25985f97f95281851e79a0cf6bf6576d3d6a074abdb1df97b070`。旧HIL-FR-55は別要求として043に残り、044へ移さない。 HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50等のpaired consumerは広い複合要求なので、044へ全量移管したとは扱わない。 旧HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50は複数要求を束ねるconsumerであり、044の独立business outcomeや受入実行記録として扱わない。HARNESS-L2-044はscope付きportfolio coverage候補を作成する。PO採択、設計決定、release outcomeはこの検証対象でない。
+
+**対象business requirement**：`BR-HARNESS-L3-044-01`。同一要求revision/scopeの義務class、contract、reuse/delta/new/reasoned-N/A、uncovered/duplicate根拠を説明できること。新しい収益・優先順位・導入価値条件は設けない。
+
+**主fixtureの参照**：以下はfunctional-verification.mdにある主CASEのbusiness観点の索引で、CASEを再定義しない。入力・単独変異・期待値は主CASEをそのまま照合し、独立fixtureとして重複計上しない。
+
+**不足時の返却**：要求意味・authority不足は既存要求owner、template適用と義務導出不足はHARNESS-L2-009/対象template owner、atom抽出不足はHARNESS-L2-041、具体設計・delta relationと対oracle不足はHARNESS-L2-026/022等の原因別既存責務区分へ返す。責務区分を確定できない意味/authority不足は既存要求ownerへ返す。個体source/owner identity不明は別にunknownを保持し、既知区分への返却を止めない。不足scopeは未完/未評価に保ちportfolio closureを主張しない。
+
+| 主fixture参照 | L3 AC / BR | business観点 |
+|---|---|---|
+| `CASE-HARNESS-L10-044-r16-normal-nine-class` | `AC-HARNESS-L3-044-01` / `BR-HARNESS-L3-044-01` | 主CASEの同scope/revisionのC1–C9入力を用い、義務意味と対oracleを再構成し未被覆0・意味重複0を照合する。固定範囲不足は上の原因別既存責務へ返す。 |
+| `CASE-HARNESS-L10-044-r16-normal-delta` | `AC-HARNESS-L3-044-01` | 主CASEの十分なdeltaを使い、義務意味・oracle・他classを保つcoverageを照合する。設計relation・pair oracle不足は既存026/022等の区分へ返し未完とする。 |
+| `CASE-HARNESS-L10-044-r16-delta-insufficient` | `AC-HARNESS-L3-044-02` | 主CASEのdelta relation一つの欠落を使い、該当class未被覆/未完とportfolio closure拒否、および既存026/022等の区分への原因別返却を照合する。identity不明は区分と分けunknownに保つ。 |
