@@ -1957,7 +1957,7 @@ HELIXLABO-L1-005をprimary、L1-011をcontextとして、旧source line 399か�
 - **LABO-070-AC-02 — 正常な異単位field**：source定義に一致する異なるunitのfieldは別fieldのまま表示し、相互換算・合算しない。
 - **LABO-070-AC-03 — 欠落・不一致の隔離**：必要event/clock/unit/time/source/revision/oracle/scope/relation/receiptが欠落・不明・矛盾・staleなら該当fieldだけunknown/invalid/unavailableとし、0・成功・不存在に置き換えない。他の根拠あるfieldは別に保持する。
 - **LABO-070-AC-04 — 固定親の境界保持**：4 durationは独立、escaped defectは既存oracleと受入済対象/受入境界後の検証済みrelationに限定、rollbackは観測だけ、overheadは直接測定だけ、freshnessはage観測だけ。追加の観測window/重大度/合否threshold/expiry/decisionを作らない。Recovery操作権限/実行、age由来fresh/stale/期限/適格性、LABO作成の受入境界/受入済み/escapedの単独field生成拒否はL10 CASE-102–109で確認する。
-- **LABO-070-AC-05 — Attempt co-presentation**：scope適用可能な067/068 fieldを元定義とreceiptどおり独立表示し、不在・不一致のfieldは理由付きunavailable/unknownにする。換算・合算・代替で完全scorecardに見せない。L10の正常CASE-01、欠落CASE-16/17、scope mismatch CASE-18/127、metric置換禁止CASE-19、067/068未採択を推定しないCASE-65、predicate/oracle/結果receipt・出力field欠落CASE-66/68/67/73、および065からの置換禁止CASE-72をこのACで照合する。
+- **LABO-070-AC-05 — Attempt co-presentation**：scope適用可能な067/068 fieldを元定義とreceiptどおり独立表示し、不在・不一致のfieldは理由付きunavailable/unknownにする。換算・合算・代替で完全scorecardに見せない。L10の正常CASE-01、欠落CASE-16/17、067/068個別scope mismatch CASE-18/127、067/068定義revision mismatch CASE-129/130、metric置換禁止CASE-19、067/068未採択を推定しないCASE-65、predicate欠落CASE-66、oracle欠落CASE-73、結果receipt欠落CASE-68、出力field欠落CASE-67、および065からの置換禁止CASE-72をこのACで照合する。汎用telemetry event/receiptとscorecardのscope不一致はCASE-128で別に照合する。
 
 ### 欠落・不一致と出典保持の照合
 

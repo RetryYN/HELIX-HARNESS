@@ -3460,7 +3460,7 @@ CASE-09/11/13/15/18は旧literal上も索引であり、各主fixtureへ直接�
 | `L10-LABO-071-CASE-r03-major-miss-permission-isolation` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のC0/V0/Q0とrecord済みmajor miss M0を固定。独立SECURITY permission P0、OS assignment A0、authority H0はcurrentで、permissionに独立expiry/revocationはない。M0によりqualification Q0だけが失効する。 | Q0失効を根拠にpermission output field P0だけをexpiredまたはrevokedへ変える（どちらか一方だけを選ぶ代替変異。両方は同時に変えない）。M0/source、A0、H0および全入力は不変。 | 記録済みM0に従いqualificationを失効し、permission P0を独立SECURITY source値へLABO自身で訂正する。A0/H0も各source値と一致させ、資格失効からpermission expiryを生成しない。 |
 | `L10-LABO-071-CASE-r05-evidence-qualification-scope-conflict` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のtask class C0/model revision V0、qualification記録scope S0、evidence E0のscope S0は一致し、source identity/revisionはcurrent。title T0、permission P0、authority H0、assignment A0は各独立current source値と一致する。 | evidence E0の評価範囲fieldだけを別scope S1へ変え、qualification記録のS0との矛盾を作る。class/revision、source版、他入力は不変。 | evidence scope S1とqualification記録scope S0を比較して不一致を検出し、qualificationをunknown/未評価にする。S0の資格をS1へ外挿せず、titleや他属性から補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個別identity unknownは別に保持する。P0/H0/A0とtitleは各source値のまま変更しない。 |
 
-### HELIXLABO-L2-066 — 同条件比較のfunctional verification / 87 CASE
+### HELIXLABO-L2-066 — 同条件比較のfunctional verification / 86 CASE
 
 状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
 
@@ -3481,7 +3481,7 @@ CASE-09/11/13/15/18は旧literal上も索引であり、各主fixtureへ直接�
 | candidate / Q3 | 1 | 1 | 誤修復receiptがあり、cutoff時にも受入可能な解決なし |
 | candidate / Q4 | 0 | 0 | cutoff前に受入可能な修復を確認 |
 
-以下の二つの6列表は合計87 unique ID（既存78 IDを保持し、今回の9単独CASEを追加。索引2行を除く定義済みfixtureは85行）。列中のowner routeは固定L2/L11が明示する既知責務区分だけを用いる。責務カテゴリが分かっている場合、それを個体identity unknownで消さない。個体owner自体がsourceから特定できない場合は個体unknownも記録する。
+以下の三つの表は合計86 unique ID。列中のowner routeは固定L2/L11が明示する既知責務区分だけを用いる。責務カテゴリが分かっている場合、それを個体identity unknownで消さない。個体owner自体がsourceから特定できない場合は個体unknownも記録する。
 
 | CASE ID | FR ID | AC ID | baseline/input | mutation/index role | expected oracle / return route |
 |---|---|---|---|---|---|
@@ -3581,12 +3581,12 @@ CASE-09/11/13/15/18は旧literal上も索引であり、各主fixtureへ直接�
 | `L10-LABO-066-CASE-78` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 両群のOS assignment/run eventと既存time measurement source receiptは相互に一致し、比較条件/他receiptsも正常。LABO comparison outputは最初は正常。 | LABO comparison outputの`elapsed_time_measurement_receipt.duration` fieldだけを、保持された正常なevent/source receiptと異なる合成値へ変更する。全入力と他出力は不変。 | 正常なsource inputを使ったLABO自身の出力誤りとして、その出力をsource evidenceに合わせてLABO内で訂正する。source ownerやOSへ返さず、新thresholdを作らない。 |
 
 
-| CASE ID | AC ID | baseline | single mutation | expected oracle / responsibility return | 範囲・制限 |
-|---|---|---|---|---|---|
-| `L10-LABO-066-CASE-79` | `LABO-066-AC-03` | CASE-01と同じ有効なA/candidate identity/version、task/scope/target revision、共通eligible set N、oracle/scorer、protocol/toolchain/environment/cutoff、両群receiptを使う。 | 独立した禁止出力変異: `fixed_target`（比較で満たすべき固定結果値）fieldだけを追加する。他の入力・出力は不変。 | 新しいfixed targetを拒否し、比較結果から目標値・合否を作らない。既存のcase receiptとsource-defined比較結果は保ち、L2にないtargetは未設定のままとする。LABO自身の誤出力としてfield生成を訂正する。 | 固定L2/L11-066の固定target禁止のみを照合。 |
-| `L10-LABO-066-CASE-80` | `LABO-066-AC-03` | CASE-01と同じ有効入力。 | 独立した禁止出力変異: `allowed_rate`/`tolerance`（許容misrepair/unresolved率）fieldだけを追加する。他の入力・出力は不変。 | 許容率/toleranceを新設せず、結果をrate thresholdと比較しない。元の分子/分母とunknown状態は保つ。LABO自身の誤出力としてfield生成を訂正する。 | 固定L2/L11-066の許容率/tolerance禁止のみを照合。 |
-| `L10-LABO-066-CASE-81` | `LABO-066-AC-03` | CASE-01と同じ有効入力。既存sourceで定義されたeligible set Nと観測された試行結果receiptはそのまま表示される。 | 独立した禁止出力変異: 比較前提としての最低/固定`required_trial_count` fieldだけを追加する。観測済みreceiptおよび実際のNは変更しない。 | 固定試行数・最低sample数を要求せず、Nや観測済み結果数から新しい実施義務を作らない。観測値はsourceどおり保持し、LABO自身の誤出力として追加fieldを訂正する。 | 固定L2/L11-066の試行件数禁止のみを照合し、観測値の記録と固定件数要求を区別する。 |
-| `L10-LABO-066-CASE-82` | `LABO-066-AC-03` | CASE-01と同じ有効入力とsource-defined比較出力。pass/fail判定fieldは未生成。 | 独立した禁止出力変異: `pass_threshold`/合否判定用の固定`misrepair_rate`または`unresolved_rate` threshold fieldだけを追加する。 | 合否thresholdとそれに基づくpass/failを生成しない。比較結果・指標をL2-066の意味の範囲で表示し、閾値未定義をunknown/未設定のまま保つ。LABO自身の誤出力としてfield生成を訂正する。 | 固定L2/L11-066の合否threshold禁止のみを照合。 |
+| CASE ID | FR ID | AC ID | baseline | single mutation | expected oracle / responsibility return | 範囲・制限 |
+|---|---|---|---|---|---|---|
+| `L10-LABO-066-CASE-79` | `LABO-066-FR-01/02/03` | `LABO-066-AC-03` | CASE-01と同じ有効なA/candidate identity/version、task/scope/target revision、共通eligible set N、oracle/scorer、protocol/toolchain/environment/cutoff、両群receiptを使う。 | 独立した禁止出力変異: `fixed_target`（比較で満たすべき固定結果値）fieldだけを追加する。他の入力・出力は不変。 | 新しいfixed targetを拒否し、比較結果から目標値・合否を作らない。既存のcase receiptとsource-defined比較結果は保ち、L2にないtargetは未設定のままとする。LABO自身の誤出力としてfield生成を訂正する。 | 固定L2/L11-066の固定target禁止のみを照合。 |
+| `L10-LABO-066-CASE-80` | `LABO-066-FR-01/02/03` | `LABO-066-AC-03` | CASE-01と同じ有効入力。 | 独立した禁止出力変異: `allowed_rate`/`tolerance`（許容misrepair/unresolved率）fieldだけを追加する。他の入力・出力は不変。 | 許容率/toleranceを新設せず、結果をrate thresholdと比較しない。元の分子/分母とunknown状態は保つ。LABO自身の誤出力としてfield生成を訂正する。 | 固定L2/L11-066の許容率/tolerance禁止のみを照合。 |
+| `L10-LABO-066-CASE-81` | `LABO-066-FR-01/02/03` | `LABO-066-AC-03` | CASE-01と同じ有効入力。既存sourceで定義されたeligible set Nと観測された試行結果receiptはそのまま表示される。 | 独立した禁止出力変異: 比較前提としての最低/固定`required_trial_count` fieldだけを追加する。観測済みreceiptおよび実際のNは変更しない。 | 固定試行数・最低sample数を要求せず、Nや観測済み結果数から新しい実施義務を作らない。観測値はsourceどおり保持し、LABO自身の誤出力として追加fieldを訂正する。 | 固定L2/L11-066の試行件数禁止のみを照合し、観測値の記録と固定件数要求を区別する。 |
+| `L10-LABO-066-CASE-82` | `LABO-066-FR-01/02/03` | `LABO-066-AC-03` | CASE-01と同じ有効入力とsource-defined比較出力。pass/fail判定fieldは未生成。 | 独立した禁止出力変異: `pass_threshold`/合否判定用の固定`misrepair_rate`または`unresolved_rate` threshold fieldだけを追加する。 | 合否thresholdとそれに基づくpass/failを生成しない。比較結果・指標をL2-066の意味の範囲で表示し、閾値未定義をunknown/未設定のまま保つ。LABO自身の誤出力としてfield生成を訂正する。 | 固定L2/L11-066の合否threshold禁止のみを照合。 |
 
 CASE-44..82は上記の表に属するこの候補内の安定IDで、canonical採番の確定ではない。
 
@@ -3725,5 +3725,9 @@ CASE-44..82は上記の表に属するこの候補内の安定IDで、canonical�
 | `L10-LABO-070-CASE-125` | `LABO-070-AC-01` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。source provenance outputのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: LABO outputのprovenance fieldだけを欠落させる。ほかの入力・receipt・出力fieldは不変。 | 不完全なLABO出力を拒否し、当該出力fieldをreceiptの実値P0へ訂正する。正常sourceへ返さず他の出力fieldを保持する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |
 | `L10-LABO-070-CASE-126` | `LABO-070-AC-01` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。source provenance outputのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: LABO outputのprovenance fieldだけをP0から異なるP1へ変える。ほかの入力・receipt・出力fieldは不変。 | 不一致のLABO出力を拒否し、当該出力fieldを正確なP0へ訂正する。正常sourceへ返さず他の出力fieldを保持する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |
 | `L10-LABO-070-CASE-127` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ有効な067/068 field。各定義revision、identity/grain、receipt、scorecard scopeは基準scope S0と一致する。 | 単独変異: 068 fieldのscopeだけをS0と異なる値にする。067 fieldと全source/output条件は不変。 | 068 fieldだけを理由付きunavailable/unknownにし、067 fieldと他の正常fieldを保持する。scope違いのAttempt countを混ぜず、complete co-present scorecardとしない。LABO scope評価責務へ戻す。 | 固定L2/L11-070のscope不一致時のfield隔離を照合。 |
+
+| `L10-LABO-070-CASE-128` | `LABO-070-AC-03` | CASE-01と同じ正常scorecard入力B0。scorecard scope S0、4 duration、escaped-defect、rollback/Recovery、observer overhead、freshnessの各汎用event/receipt scope S0、067/068 fieldは有効で一致する。全scope値は合成fixture値。 | 単独変異: 汎用telemetryのqueue-wait event/receiptのscope fieldだけをS0からS1へ変える。他のevent/receipt、scorecard scope、067/068 field、他の入力・出力は不変。 | scope不一致のqueue-wait fieldをreason付きunknown/unavailableとし、S1 eventをS0 scorecardへ混ぜない。他のscope一致する汎用metric・067/068 fieldは保持し、queue-waitの欠落を隠して完全なscorecardと主張しない。比較・scope評価責務はLABOに残す。 | 固定L2/L11-070の汎用event scope隔離を、067/068固有scope CASE-18/127と分けて照合。 |
+| `L10-LABO-070-CASE-129` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ正常scorecard入力B0。067 definition revision D0670（D0670/D0671は合成fixtureラベル）、predicate/oracle、identity/grain、scope、receiptと、068側を含む他fieldは有効で一致する。 | 単独変異: 067 fieldのdefinition_revision参照だけをD0670から互換性のない既知revision D0671へ変える。predicate/oracle、068 field、他のreceipt/outputは不変。 | 067 fieldだけをunknown/unavailableとして理由を保ち、068と他の正常fieldを保持する。異なる定義revisionを適用・換算せず、067定義/receiptの既存責務区分へ返す。complete co-present scorecardとしない。 | 固定L2/L11-070の067定義revision一致とfield隔離を照合。 |
+| `L10-LABO-070-CASE-130` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ正常scorecard入力B0。068 definition revision D0680（D0680/D0681は合成fixtureラベル）、OS Attempt identity集合/完全性receipt、identity/grain、scopeと、067側を含む他fieldは有効で一致する。 | 単独変異: 068 fieldのdefinition_revision参照だけをD0680から互換性のない既知revision D0681へ変える。Attempt identities/完全性receipt、067 field、他のreceipt/outputは不変。 | 068 fieldだけをunknown/unavailableとして理由を保ち、067と他の正常fieldを保持する。異なる定義revisionを適用・換算せず、068定義/OS記録の既存責務区分へ返す。complete co-present scorecardとしない。 | 固定L2/L11-070の068定義revision一致とfield隔離を照合。 |
 
 **index/aliasの扱い**：旧index/alias IDは意味再導出した索引行として保持し、独立変異として数えない。raw旧84 literalは添付JSON監査に保全する。

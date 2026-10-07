@@ -258,7 +258,7 @@ protocol/toolchain/environment/task/scope/target/oracle/cutoffの一要素だけ
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。
 
-実行前の測定設計候補。旧84 literalとraw ID/hashはJSON監査側に保持し、現行FVは旧84 IDを6列へ意味再導出し、CASE-85およびCASE-86..126を加えた126行の候補とする。以下は各測定軸に対する観測/判定材料で、実測結果ではない。
+実行前の測定設計候補。旧84 literalとraw ID/hashはJSON監査側に保持し、現行FVは旧84 IDを6列へ意味再導出し、CASE-85およびCASE-86..130を加えた130行の候補とする。以下は各測定軸に対する観測/判定材料で、実測結果ではない。
 
 | 測定軸 | 合成入力・比較 | 判定材料 |
 |---|---|---|
@@ -267,8 +267,8 @@ protocol/toolchain/environment/task/scope/target/oracle/cutoffの一要素だけ
 | rollback/Recovery | source event・result receiptを正常観測し、CASE-03f/g/59–62/70とCASE-85の単一field変異を適用。 | missing receiptはunknown。059と同一receiptを一回参照。観測値をrollback action/permissionへ変換しない。CASE-85/90/91はrollback trigger/permission/execution、CASE-102/103はRecovery操作権限/実行出力を各単独で拒否する。 |
 | overhead | direct measured observer-resource receiptを与え、CASE-03h/12/71でreceiptだけ欠落・対象workへの二重算入を変異。 | source定義単位の直接計測だけ保持。unknownはunknown、0や根拠なき推計値にしない。 |
 | freshness | source effective/occurred timeとobserved timeを正常に与え、CASE-03i/14/15でtimestamp不正/欠落とage起点の権限生成を個別に変異。 | age観測値またはunknown/invalidのみ。CASE-104/105/106はfresh/stale状態、期限、適格性をそれぞれ単独で生成する変異を拒否する。CASE-15の入力は有効であり、ageからのauthority/permission誤出力を拒否して070出力処理を訂正する。expiry/適格性/採否/許可を生成しない。 |
-| co-present metrics | 適用可能な067 first-eligible/same-Attempt repair fieldsと068 total Attempt fieldを各元receipt・revisionで示し、CASE-01、16–21/65–73、127を照合。 | identity/grain/revision/scope/receiptを分離し換算・合算・代替しない。CASE-18/127は067/068のscope mismatchを個別に隔離し、CASE-19は正常な067/068入力の換算誤出力を拒否して070出力処理を訂正し、CASE-68はtotal Attempt countとresult stateの双方をunknownとする。欠落は原因別の既存責務区分へ返し、個別identity unknownを分ける。 |
-| evidence validity and provenance | CASE-110–126で、source completeness・identity・revision・unit・oracle・relation・receipt・scope/windowの固定親照合と、clock validity/provenanceの単独変異を照合する。正常CASE-01ではsource receiptのprovenance実値を期待値にする。 | 該当する欠落/stale/矛盾fieldはunknown/invalid/unavailable。正常receiptに対するprovenance出力誤りは070出力を訂正し、source責務へ返さない。 |
+| co-present metrics | 適用可能な067 first-eligible/same-Attempt repair fieldsと068 total Attempt fieldを各元receipt・revisionで示し、CASE-01、16–21/65–73、127–130を照合。 | identity/grain/revision/scope/receiptを分離し換算・合算・代替しない。CASE-18/127は067/068のscope mismatchを個別に隔離し、CASE-128は一般telemetryとscorecardのscope mismatchを隔離し、CASE-129/130は067/068のdefinition revision mismatchを個別に隔離する。CASE-19は正常な067/068入力の換算誤出力を拒否して070出力処理を訂正し、CASE-68はtotal Attempt countとresult stateの双方をunknownとする。欠落は原因別の既存責務区分へ返し、個別identity unknownを分ける。 |
+| evidence validity and provenance | CASE-110–126およびCASE-128–130で、source completeness・identity・revision・unit・oracle・relation・receipt・scope/windowの固定親照合と、clock validity/provenanceの単独変異を照合する。正常CASE-01ではsource receiptのprovenance実値を期待値にする。 | 該当する欠落/stale/矛盾fieldはunknown/invalid/unavailable。正常receiptに対するprovenance出力誤りは070出力を訂正し、source責務へ返さない。 |
 
 追加の観測window/重大度/合否threshold/expiryの数値評価は行わない。固定親にない性能値や集計閾値を合否oracleへ足さない。
 

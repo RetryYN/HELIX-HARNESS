@@ -1,0 +1,229 @@
+{
+  "artifact": "HELIX-LABO Stage5 review01 correction evidence; point-in-time, not approval or execution",
+  "date": "2026-10-07",
+  "authority_effect": "none",
+  "status": "draft_unapproved_unexecuted",
+  "scope": "PR #2661 review01 findings M1, M2, m3, m4; only LABO Stage5 requirement/verification traces",
+  "worktree": "/home/tenni/.helix-worktrees/l3-labo-stage5-oracle-repair",
+  "base": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "reviewed_head": "1dfe24fa3f70277dee5a02725911e2adbcb854b4",
+  "formal_review": {
+    "comment_id": 6040272329,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2661#issuecomment-6040272329",
+    "body_sha256": "56e87031927fb361584c6ca5e5df26fae3b1fe75c3646d2b76bbbb524a764e38"
+  },
+  "fixed_parent_pins": [
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "lines": [
+        518,
+        528
+      ],
+      "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "span_sha256": "5a67776a3f4567fa662c86898caf275fddbe8dc806fd3a19622cae9f733cdb69",
+      "span_bytes": 4684
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "lines": [
+        261,
+        268
+      ],
+      "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "span_sha256": "dd302f23a38d74475e707be64d9ee69a0bfda35b98902c62173c45d8c369a556",
+      "span_bytes": 2304
+    },
+    {
+      "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "lines": [
+        561,
+        574
+      ],
+      "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "span_sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533",
+      "span_bytes": 6468
+    },
+    {
+      "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "lines": [
+        297,
+        307
+      ],
+      "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "span_sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1",
+      "span_bytes": 4672
+    }
+  ],
+  "metric_definition_source_pins": [
+    {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "lines": [
+        529,
+        540
+      ],
+      "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "span_sha256": "bf545a7b5e4714f442c4f96cec498ac07056f314b13765fc05ad049b69a8c188",
+      "span_bytes": 5373
+    },
+    {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "lines": [
+        541,
+        552
+      ],
+      "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "span_sha256": "469a5a7950cfa8ba5c260c40ffb3932ee171cbe7c1a26559f11cf1fb7a0722c9",
+      "span_bytes": 4217
+    },
+    {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "lines": [
+        269,
+        277
+      ],
+      "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "span_sha256": "7b3e55cbeeb4fb0f2ae322b3ea439b63ea6acfcaabf2753a642aee158f378a16",
+      "span_bytes": 3249
+    },
+    {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "lines": [
+        278,
+        288
+      ],
+      "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "span_sha256": "2bca2d4e055596160b1ff07e4d423a878e522f854df23c3a9b397fe27968c4cf",
+      "span_bytes": 3215
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "line": 75,
+      "full_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "line_sha256": "678d10fb645494bf12216a7dd4a4ff9f45a6cb88e4dfc6d7d23d9de30a15fbe8"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "line": 399,
+      "full_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "line_sha256": "aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468"
+    }
+  ],
+  "retained_audit_sha256": {
+    "docs/governance/audits/requirements-stage/labo-stage5-oracle-coverage-repair-2026-10-07.json": "8b0c4a1cd80206400f5a55b7dece23152de26413c56c20dbc7d637214c35becf",
+    "docs/governance/audits/requirements-stage/labo-stage5-parent066-authoring-audit-2026-10-07-fe489ac41.json": "685b7a391f90294e6e3876fd98802c0ea62617374b65ffa2198bf42e7533cd64"
+  },
+  "repair_mapping": [
+    {
+      "finding": "M1",
+      "change": "Keep CASE-18 and CASE-127 as separate 067/068 scope mutations; add CASE-128 for generic queue-wait event/receipt scope mismatch, changing only its scope field."
+    },
+    {
+      "finding": "M2",
+      "change": "066 actual count now says 86 unique IDs across 3 tables; add FR column to CASE-79..82; NFRV states 130 rows and traces 128..130."
+    },
+    {
+      "finding": "m3",
+      "change": "AC-05 locators ordered and typed: predicate CASE-66, oracle CASE-73, result receipt CASE-68, output field CASE-67."
+    },
+    {
+      "finding": "m4",
+      "change": "CASE-129 and CASE-130 independently mutate only 067 and 068 definition_revision, respectively; synthetic labels only; CASE-114 remains generic source-definition revision."
+    }
+  ],
+  "six_body_sha256": {
+    "docs/helix-labo/L10-verification/business-verification.md": "bf240469ba0333665e9eabb49becb1443c8426e425f8c67e82c81baa4d0b1709",
+    "docs/helix-labo/L10-verification/functional-verification.md": "e1b2863f0e6f77ba8a8c77df3e9b008cee470b7b95d3ab8d925eeed76e80bbb1",
+    "docs/helix-labo/L10-verification/nfr-verification.md": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+    "docs/helix-labo/L3-requirements/business-requirements.md": "0f8ac8cd03c76c62492f9c5f4e3557eb7f84dc8e761e17186bac532fb5efff43",
+    "docs/helix-labo/L3-requirements/functional-requirements.md": "5051f0829c518e7d861b35643c2e58305b9f4ccae8bcc8873648ae84121e56b3",
+    "docs/helix-labo/L3-requirements/nfr-grade.md": "61783c6e66e56b4eca612a856a84e3b398669e29f42515f180d7874b6d6712ef"
+  },
+  "changed_section_pins": [
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "lines": [
+        3463,
+        3591
+      ],
+      "sha256": "8166b2dc0fd4dd0b72c6fc53e61d57bffa3876b961e88076c30a49f4cf2c0f09",
+      "bytes": 64632
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "lines": [
+        3593,
+        3733
+      ],
+      "sha256": "bc7fc8100ebc9b57332090c10069f70005b2afbf7aa2377f6f9883253f12a8e9",
+      "bytes": 81813
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "lines": [
+        258,
+        272
+      ],
+      "sha256": "6d7a0a7a97ee4b7f082e3e66d4a313d8e970f53daacb52350d9aab332a009fe1",
+      "bytes": 4036
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "lines": [
+        1942,
+        1966
+      ],
+      "sha256": "1a60f7aef0ee879a8066a02505f72919aa8bda84c86b4158808db11dc3ac6bcd",
+      "bytes": 7582
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "lines": [
+        323,
+        331
+      ],
+      "sha256": "1108aa3132679948fbd7ecbd12f9c0a81b7f36e7bc2d31b31aca58638dda4d88",
+      "bytes": 3081
+    }
+  ],
+  "static_verification": {
+    "git_diff_check": "pending final diff-check",
+    "json_parse": "passed",
+    "case_066_unique_ids": 86,
+    "case_066_tables": 3,
+    "case_066_cases_79_82_fr_column": "present",
+    "case_070_unique_definitions": 130,
+    "case_070_new_cases_128_130": "unique and AC/trace mappings synchronized",
+    "ac05_order": "CASE-66 predicate; CASE-73 oracle; CASE-68 result receipt; CASE-67 output field",
+    "six_body_sha_pins": "recomputed after Root wording correction",
+    "legacy_and_fixed_parent_sha_pins": "match",
+    "fixture_execution": false,
+    "old_cli_runtime_test_ci_executed": false,
+    "new_ci_executed": false,
+    "changed_section_sha_pins": "recomputed from recorded line spans after Root wording correction"
+  },
+  "unverified": [
+    "Opus condition1 and Fable condition2 rerun on repaired exact revision",
+    "independent review of repaired HEAD"
+  ],
+  "external_actions": {
+    "commit": false,
+    "push": false,
+    "pr_comment": false,
+    "ready": false,
+    "merge": false
+  },
+  "audit_markdown_pin": {
+    "path": "docs/governance/audits/requirements-stage/labo-stage5-review01-repair-2026-10-07-6040272329.md",
+    "sha256": "900882c785d201dd24bfd0120fb86de50d01871db7be407c53002176f0dbd20e"
+  }
+}
