@@ -63,7 +63,7 @@ NFR候補の選択や運用値はPOへparameterごとの質問にせず、根拠
 
 共通HARNESS-L2-010/011 packのfield母集団は全対象operationで照合する。例外として、L2-017は固定L2に共通pack句がないため、当該operationがpackを実際に消費する場合だけ該当fieldを必須分母へ含める。
 
-親が有限個で明示するrequired source/field/ownerを照合するNFR候補。技術値は全required fieldの充足率100%候補と、誤ったsource/owner bind 0候補（親の完全保持条件から導出）に限定し、既定SLA、minimum sample、runtime latencyを新設しない。missing/unknown/stale/conflictは別stateで保持し、未選択sourceを母集団へ入れない。
+親が有限個で明示するrequired source/field/ownerを照合するNFR候補。100%候補のsource-bound coverageは、正常なsource-bound入力を与えるpositive fixtureのrequired fieldだけで算出する。誤ったsource/owner bind 0候補は別に記録する。negative fixtureは各CASEの期待状態・拒否・戻し先へのoracle適合として別記録し、正しい拒否をnormal coverageの成功または失敗へ算入しない。missing/unknown/stale/conflictをsource-bound fieldや成功へ変換しない。未実行・観測不能は未実測/観測不能として別記録し、分母へ入れない。未選択sourceを母集団へ入れない。これらは計測候補の定義であり、親の意味、閾値、gateを変更しない。既定SLA、minimum sample、runtime latencyを新設しない。
 
 ### NFR-INT-017-01 — required source binding completeness候補
 
@@ -167,7 +167,7 @@ NFR候補の選択や運用値はPOへparameterごとの質問にせず、根拠
 
 - 固定親: `HELIXINTELLIGENCE-L2-045`。
 - 対象測定: Product Core meaning conflict/gap/improvement candidate、source revision、target identity。
-- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。 target identityが既知で固定親がそのtargetを要する候補だけをcoverage分母に含める。target identity欠落のCASE-INT-045-02aとtarget identity unknownの04a、および未見identityをunroutedのまま保持するCASE-INT-045-03は分母外のunrouted falsificationとして別集計し、coverageを失敗にも成功にも算入しない。target identityが既知でownerだけ不明の04b、およびtarget既知で直接routeする02kは分母に含める。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。target identityが既知で固定親がそのtargetを要するpositive fixtureだけをnormal source-bound coverage分母に含める。target identity欠落のCASE-INT-045-02aとtarget identity unknownの04a、および未見identityをunroutedのまま保持するCASE-INT-045-03はnormal coverage分母外のunrouted falsificationとして別集計し、coverageを失敗にも成功にも算入しない。target identityが既知でownerだけ不明の04b、およびtarget既知で直接routeする02kもnegative oracleとして別記録し、normal coverageの成功や失敗に算入しない。
 - 根拠CASE: `CASE-INT-045-01`, `CASE-INT-045-02a`, `CASE-INT-045-02b`, `CASE-INT-045-02c`, `CASE-INT-045-02d`, `CASE-INT-045-02e`, `CASE-INT-045-02f`, `CASE-INT-045-02g`, `CASE-INT-045-02h`, `CASE-INT-045-02i`, `CASE-INT-045-02j`, `CASE-INT-045-02k`, `CASE-INT-045-02l`, `CASE-INT-045-02m`, `CASE-INT-045-03`, `CASE-INT-045-04a`, `CASE-INT-045-04b`, `CASE-INT-045-04c`, `CASE-INT-045-04d`, `CASE-INT-045-04e`, `CASE-INT-045-04f`, `CASE-INT-045-04g`, `CASE-INT-045-05a`, `CASE-INT-045-05b`, `CASE-INT-045-05c`, `CASE-INT-045-05d`, `CASE-INT-045-05e`, `CASE-INT-045-05f`, `CASE-INT-045-05g`, `CASE-INT-045-05h`, `CASE-INT-045-05i`, `CASE-INT-045-05j`, `CASE-INT-045-05k`, `CASE-INT-045-05l`, `CASE-INT-045-05m`, `CASE-INT-045-05n`, `CASE-INT-045-05o`, `CASE-INT-045-05p`, `CASE-INT-045-05q`
 
 review06追補の個別変異はCASE-INT-017-02o（revoked）とCASE-INT-034-02l/02m/02n（結果値の両方向反転/欠落）。04表のA/B列挙はfieldごとの独立fixtureとして扱う。測定時のrun識別と分母は対L10のnfr-verificationに従う。数値閾値を新設しない。

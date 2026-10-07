@@ -1,0 +1,73 @@
+{
+  "record_type": "stage4-nfr-normal-coverage-and-negative-oracle-measurement-definition-repair",
+  "authority_effect": "none",
+  "base_revision": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": "4",
+    "parents": "existing Stage 4 parents only",
+    "files_changed": [
+      "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "docs/helix-intelligence/L10-verification/nfr-verification.md"
+    ]
+  },
+  "source_basis": {
+    "legacy_asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+    "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+    "legacy_lines": [
+      "21-34",
+      "58-81"
+    ],
+    "legacy_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+    "legacy_disposition_path_line": "docs/governance/legacy-asset-disposition.jsonl:350",
+    "reuse": "特性→測定方法→受入条件の構造のみ再利用。IPA grade、閾値、pass条件、runtime/CIは非再利用。現行二軸は固定L2/L11とL10 oracleから再導出。"
+  },
+  "finding": "宣言field分母とfixture分類は示されていたが、正常source-bound coverageとnegative expected-oracle適合の集計境界がなかった。",
+  "rule_after": {
+    "normal_source_bound_coverage": "positive fixture/runで正しいsource/revision/scope/ownerへ束縛された適用required field数 / positive fixture/runで適用されるrequired field数",
+    "positive_negative_unit": "CASE familyでなく個別fixture/runの期待oracle。入力を受け入れる正常oracleがpositive、欠落等や拒否/保留/owner戻しを期待するoracleがnegative。",
+    "negative_oracle": "期待状態・拒否・戻し先と実際の結果をCASEごとに別記録。正しい拒否はnormal coverage成功にも失敗にも含めない。",
+    "unknown_missing_stale_conflict_mismatch": "source-bound fieldや成功に変換しない。",
+    "wrong_bind": "別件数として記録しcoverageで相殺しない。",
+    "unexecuted_unobservable": "未実行・観測不能として分け、成功へ置換しない。"
+  },
+  "examples": {
+    "CASE-INT-036-02p": "target revision mismatchのnegative oracle。SECURITYへ戻し、実行可能化しない。正しい拒否はnegative oracle適合でありnormal coverage成功fieldではない。",
+    "CASE-INT-045-02a": "L10上、normal coverage denominatorから明示除外。実欠陥の分母根拠にはせず、期待状態を別記録する境界対照。",
+    "CASE-INT-045-04b": "owner unknownのnegative oracleとして別記録しnormal coverageへ含めない。",
+    "CASE-INT-045-02k": "direct routeのnegative oracleとして別記録しnormal coverageへ含めない。"
+  },
+  "scope_guards": [
+    "固定親/要求意味/owner/versionは不変",
+    "候補値100%およびwrong-bind 0候補を新閾値化しない",
+    "新gate/SLA/minimum sample/latency/runtime条件を追加しない",
+    "機能CASE本文と残り4本文は不変",
+    "L10実行/承認/PO確認を主張しない"
+  ],
+  "stage2a_boundary": "NFR-INT-075 matrixはStage2a固有のnormal+negative fixture presence候補でありStage4の共通計数定義ではないため流用しない。",
+  "six_document_sha256": {
+    "before_base_9229f59": {
+      "docs/helix-intelligence/L3-requirements/business-requirements.md": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+      "docs/helix-intelligence/L3-requirements/functional-requirements.md": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+      "docs/helix-intelligence/L3-requirements/nfr-grade.md": "a1113329da1b463968b2a67a19692db77c41b0fcdb6bf028ac969d83921066a2",
+      "docs/helix-intelligence/L10-verification/business-verification.md": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+      "docs/helix-intelligence/L10-verification/functional-verification.md": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+      "docs/helix-intelligence/L10-verification/nfr-verification.md": "1049e8edef98fd41f1f2c57caff98eebc999e65652e558b42646976e517614a1"
+    },
+    "after_worktree": {
+      "docs/helix-intelligence/L3-requirements/business-requirements.md": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+      "docs/helix-intelligence/L3-requirements/functional-requirements.md": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+      "docs/helix-intelligence/L3-requirements/nfr-grade.md": "c6407848a70cb4dc0c85fd24055f1f0726fe890b96d4608542a135ae8ba49ed5",
+      "docs/helix-intelligence/L10-verification/business-verification.md": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+      "docs/helix-intelligence/L10-verification/functional-verification.md": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+      "docs/helix-intelligence/L10-verification/nfr-verification.md": "9675fe8ee19a1f3e910b8f73fa37d0e767f7df1381b3a4f6a79a43542ad91851"
+    }
+  },
+  "validation": {
+    "git_diff_check": "clean",
+    "runtime_tests_old_ci": "not run by instruction",
+    "independent_review": "not yet performed",
+    "l10_execution": "not performed"
+  },
+  "limits": "本記録は計測定義修正の監査であり、承認、PO事後確認、L10実行を生成しない。"
+}
