@@ -1,4 +1,4 @@
-# SECURITY Stage 1 parent 009 trigger matrix / parent 012 scope clarification (2026-10-08)
+# SECURITY Stage 1：親009のtrigger別検証と親012の対象表記（2026-10-08）
 
 ## 対象と固定根拠
 
@@ -13,7 +13,7 @@
 | L2-012 | L2 `:180–188`, `6d2afeee0c6f60a332265c1196c447f47b578e6e72700b8216d03d4e00f49a27` | 50 |
 | L11-012 | L11 `:36`, `1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114` | 50 |
 
-PO adoption source is `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`, fixed at `49318f1f1de5810dfc61fdfe3a2565b86509009d`; it is not the L2/L11 source revision. This change does not alter a parent, decision, requirement meaning, owner, scope, or version.
+PO採択の出典は `49318f1f1de5810dfc61fdfe3a2565b86509009d` の `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md` であり、L2/L11本文のrevisionと区別する。今回の変更は親、判断、要求意味、owner、範囲、版を変えない。
 
 ## 旧source起点と処置
 
@@ -27,7 +27,7 @@ L2-012は `Agent package` を列挙し、L2-010は別に `Agent definition` を�
 
 | Path | base full SHA-256 | 修正後 full SHA-256 |
 |---|---|---|
-| `docs/helix-security/L3-requirements/functional-requirements.md` | `f6da676a3c816e6e845e7cc7c8e7711f9f0d9e4a6b8fa6a6c6595dd730aa8ea5` | `666d9548008a88a265a3db30c6814bfdf632e506f8b435e6a0e1b6c525ff5f3d` |
+| `docs/helix-security/L3-requirements/functional-requirements.md` | `f6da676a3c816e6e845e7cc7c8e7711f9f0d9e4a6b8fa6a6c6595dd730aa8ea5` | `817fcfb01339151047f6688276cc66bc341b3e1b8b1396eee9f2cd0f403bda6e` |
 | `docs/helix-security/L10-verification/functional-verification.md` | `30b4e33419b617c0f7b2710f26e2aa8ae771b67e3fa29510aa01495e0200947a` | `39b06b8363abce0f2027e23387c076c76fbc81236c2a79d41abce9431afd13b9` |
 
 ## 静的検証と限界
