@@ -285,10 +285,10 @@ L2意味・適用scope・owner・versionの変更が必要と判明した場合�
 
 ### FR-OS-L3-040 — HELIXOS-L2-040
 入力済retry上限に達したoperationをattempt lineage/失敗根拠とともに既存typed return routeへ戻す。実験retryでも本線と実験のcounter/budgetを初期化せず、本線budgetへ混ぜない。未採択旧ticket型や親にないbudget/上限値を新設しない。
-- AC-OS-L3-040-01：入力済上限到達時だけtyped Recovery/Backflow候補と未完義務を記録。
-- AC-OS-L3-040-02：要求意味不足をRecovery成功で隠す、context復旧をBackflowで代替する、route待ちをclose/successへ昇格する変異を個別に拒否する。未到達、別ticket/scope、値欠落/改変、再送も個別変異し誤route/counter reset/二重生成0。
+- AC-OS-L3-040-01：適用中policyが定める初回attemptの計上有無と対象failure classを変更せず、同一episodeのattempt eventだけをそのcounter semanticsで集計する。入力済上限への到達時だけtyped Recovery/Backflow候補と未完義務を記録する。
+- AC-OS-L3-040-02：要求意味不足をRecovery成功で隠す、context復旧をBackflowで代替する、route待ちをclose/successへ昇格する変異を個別に拒否する。未到達、別ticket/scope、値欠落/改変、再送に加え、初回attempt計上有無の反転、対象failure classの除外/混入をそれぞれ独立に変異し、誤route/counter reset/二重生成0。
 - AC-OS-L3-040-03：適用中policyのrevision/上限がunknownなら続行せず、その上限を決定する既存policy ownerへ戻す。記録台帳の読取不能とは区別し、旧分類名を復活させない。
-- AC-OS-L3-040-04：Worker/session交代およびresumeを同じ適用中lineageへ結び、本線と実験のcounter/budgetを交代で初期化しない。実験budgetを本線へ混ぜず、別experimentは別identityを維持する。
+- AC-OS-L3-040-04：Worker/session交代およびresumeを同じ適用中episode/lineageへ結び、適用中policyのcounter semanticsによる本線と実験のcounter/budgetを交代で初期化しない。実験budgetを本線へ混ぜず、別experimentは別identityを維持する。
 - AC-OS-L3-040-05：ledger欠落/取得不能と入力済上限到達を別々に変異する。missing ledgerをcap到達やroute成立と推定せず、記録owner HELIXOS-L2-019へ戻して追加retryを保留する。
 - AC-OS-L3-040-06：無関係taskは継続可能な対照fixtureに置き、別taskの上限到達のみで停止させない。
 
