@@ -760,9 +760,10 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | CASE-OS-L10-040-07d | AC-OS-L3-040-01 | Backflow→要求engine、Recovery→中断工程の型別戻し先。 | 各入力を固定L2 routeへ返し別型を混同しない。 |
 | CASE-OS-L10-040-07e | AC-OS-L3-040-03 | 未見budget/policy revisionで適用上限が不明。 | 追加retryを保留し、記録ではなく上限を決定する既存policy ownerへ戻す。 |
 | CASE-OS-L10-040-07f | AC-OS-L3-040-05 | ledgerに遅着attempt eventがあり、current lineageの再構築が未完。 | cap到達を推定せず追加retryを保留し、元eventと未完状態をHELIXOS-L2-019記録ownerへ戻す。 |
-| CASE-OS-L10-040-07g | AC-OS-L3-040-02 | 初回attemptを数えるpolicyを固定した共通正常入力から、集計側だけ初回を除外する変異を与える。 | policyどおりなら上限到達となる境界で追加retryを許さず、元policy semanticsと未完義務を保持する。 |
+| CASE-OS-L10-040-07g | AC-OS-L3-040-02 | 初回attemptを数えるpolicyを固定した共通正常入力で、現在までの正しい同一episode累積がNであることを確認する。集計側だけ初回を除外する変異を与える。 | 正しい現在累積Nでは上限到達済みなので追加retryを許さない。変異後にN-1と見えても、誤集計を採用せず上限到達、元policy semantics、未完義務を保持する。 |
 | CASE-OS-L10-040-07h | AC-OS-L3-040-02 | 現在までのattempt eventの正しい累積が入力済上限Nである境界で、対象に含めるfailure classのattempt一つだけを集計から除外する。 | 誤集計でN-1と見えてもretryを許さず、現在までの正しい累積が既に上限に達しているものとして扱う。 |
-| CASE-OS-L10-040-07i | AC-OS-L3-040-02 | 適用中policyの正しい同一episode集計がN-1となる境界で、対象外failure classのattempt一つだけを誤って混入する。 | 混入によりNと見えてもpremature typed routeを作らず、policy対象内eventだけで上限を判定する。 |
+| CASE-OS-L10-040-07i | AC-OS-L3-040-02 | 適用中policyの正しい同一episode集計がN-1となる境界で、対象内eventだけを使う正常判定では同一scopeの次回retryを許可する。別fixtureでは、他の条件を固定して対象外failure classのattempt一つだけを集計へ誤混入する。 | 正常判定では正しいN-1に基づき同一scopeの次回retryを許可する。誤混入fixtureでは見かけ上Nでもpremature typed routeを作らず、policy対象内eventだけで上限を判定する。 |
+| CASE-OS-L10-040-07j | AC-OS-L3-040-02 | 初回attemptを数えないpolicyの正常fixtureで、初回eventを除いた現在の同一episode累積がN-1となる状態を固定する。集計側だけ初回eventを含める一つの変異を与える。 | 正常状態のN-1では同一scopeの次回retryを許可する。初回を誤算入してNと見えてもpremature typed routeを作らず、適用policyどおり初回を除いた累積N-1を保持する。 |
 | CASE-OS-L10-041-05a | AC-OS-L3-041-02 | 会話要約だけでcanonical sourceの代わりにする。 | 正本確認済みとせずcoordination-only未完で固定L2の既存authority ownerへ戻す。 |
 | CASE-OS-L10-041-05b | AC-OS-L3-041-02 | conflict sourceを確認済みと表示。 | conflictを保持し継続を保留して固定L2の既存authority ownerへ戻す。 |
 | CASE-OS-L10-041-05c | AC-OS-L3-041-02 | CLR-R06 candidateまたはpacket存在を採択根拠に昇格。 | candidate/packetをauthorityにせず、固定L2の既存authority ownerへ戻す。 |
