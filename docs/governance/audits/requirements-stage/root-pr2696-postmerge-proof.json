@@ -1,0 +1,29 @@
+{
+  "pr": 2696,
+  "merge": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+  "head": "46fde619b8d0e399bb52c6147c96c12429c6add4",
+  "parents": [
+    "691afef75aeab0f315c937f91a14746802542c63",
+    "46fde619b8d0e399bb52c6147c96c12429c6add4"
+  ],
+  "tree": "05cb5c6b6020b4f1b7277415cbed3e1773c2fe61",
+  "paths": [
+    "docs/governance/audits/requirements-stage/labo-stage5-decision-residual-review-f0e210b3.json",
+    "docs/governance/audits/requirements-stage/labo-stage5-decision-residual-review-f0e210b3.md",
+    "docs/governance/audits/requirements-stage/labo-stage5-parent061-main063-integration-2026-10-08.json",
+    "docs/governance/audits/requirements-stage/labo-stage5-parent061-main063-integration-2026-10-08.md",
+    "docs/governance/audits/requirements-stage/labo-stage5-parent061-r12-runtime-supplement-audit-2026-10-08.json",
+    "docs/governance/audits/requirements-stage/labo-stage5-parent061-r12-runtime-supplement-audit-2026-10-08.md",
+    "docs/governance/audits/requirements-stage/labo-stage5-parent061-r4-repair-audit-2026-10-08.json",
+    "docs/governance/audits/requirements-stage/labo-stage5-parent061-r4-repair-audit-2026-10-08.md",
+    "docs/governance/audits/requirements-stage/labo-stage5-parent061-review01-delegated-decision-pin-2026-10-08.json",
+    "docs/governance/decisions/helix-labo-stage5-parent061-review01-l3-l10-delegated-decision-2026-10-08.md",
+    "docs/helix-labo/L10-verification/business-verification.md",
+    "docs/helix-labo/L10-verification/functional-verification.md",
+    "docs/helix-labo/L10-verification/nfr-verification.md",
+    "docs/helix-labo/L3-requirements/business-requirements.md",
+    "docs/helix-labo/L3-requirements/functional-requirements.md",
+    "docs/helix-labo/L3-requirements/nfr-grade.md"
+  ],
+  "root_read_after": "PASS: all changed bytes and tree"
+}
