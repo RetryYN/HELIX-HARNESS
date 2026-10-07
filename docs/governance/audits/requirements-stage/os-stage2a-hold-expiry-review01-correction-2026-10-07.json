@@ -1,0 +1,195 @@
+{
+  "record_type": "append_only_static_review_correction_evidence",
+  "record_status": "draft_evidence_only",
+  "authority_effect": "none",
+  "branch": "codex/l3-os-hold-expiry-repair",
+  "base_commit": "b86ad094ac2e127e22f0fc4c50531482d0fcfa7d",
+  "reviewed_head": "667cb4d4957e2c26c25030749529d1b4b9ae6cce",
+  "scope": "PR #2660 review01 M1/m1-m4; Stage 2a parent018/019 only",
+  "formal_review_comment": {
+    "id": "IC_kwDOTG8BRc8AAAABaATVtA",
+    "sha256": "cc6c9db5116e638c99dca6bffd4fbb9a2a4b890a7e3ca1d3aac690404b2b9d68",
+    "source": "GitHub PR #2660 comment, full body read"
+  },
+  "fixed_parent_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "sources": {
+    "l2_018": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "bytes": 153353,
+      "spans": [
+        {
+          "lines": "672-681",
+          "sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72"
+        }
+      ]
+    },
+    "l2_019": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "bytes": 153353,
+      "spans": [
+        {
+          "lines": "682-691",
+          "sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f"
+        }
+      ]
+    },
+    "l11_018": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "bytes": 82708,
+      "spans": [
+        {
+          "lines": "345-351",
+          "sha256": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891"
+        }
+      ]
+    },
+    "l11_019": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "bytes": 82708,
+      "spans": [
+        {
+          "lines": "352-357",
+          "sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+        }
+      ]
+    },
+    "l1_human_projection": {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "bytes": 6972,
+      "spans": [
+        {
+          "lines": "31-37",
+          "sha256": "e55eb3a10e8fdb86d7e59d9d03e079ea2af31a847d1f887c5b9ec8ebb08381ab"
+        }
+      ]
+    },
+    "legacy_business": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "bytes": 40170,
+      "spans": [
+        {
+          "lines": "147-156",
+          "sha256": "b250a3ec8e39600ebf41c124f5b903038842293ab842aa89e1c24b5bd0830a1d"
+        },
+        {
+          "lines": "160-164",
+          "sha256": "88459d2f3dde88dfe32a5192096321c6690c56948acd9288a3cd4618e10391d5"
+        }
+      ]
+    }
+  },
+  "target_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "51ea3f5e51b7ac8dcdc9fb9275e26101f360a81f46eade4849937f50a765e5f3",
+      "bytes": 198292
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "1944c0aaef55f8ecba65e0b477e809579e85ca79f9e8c947d5cb02669b145def",
+      "bytes": 19814
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "ef8e3c73bf63fb3ad18cd2740b96caef9e97c4382e6585098a3dc674d78e1a65",
+      "bytes": 32102
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "23beebd82e591344f9c88db01ad9482175e68acc32196950bd80de38cf6b3234",
+      "bytes": 228918
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "5ab8ba69f110ed16d2a0364bccc752acab1458b40fbcb460370535eb3d6801a1",
+      "bytes": 17131
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "1070f7ce16d49e7e4af79210dbd92668a3c08cfbb59abcb00c0ec901e6cb369b",
+      "bytes": 28864
+    }
+  ],
+  "correction_disposition": {
+    "M1": "L1-002/008に沿う人間向けL2-019 projection listへ限定。AI解決可能性分類・PO宛先をL3/L10から除去。人間residueの扱いを新L2へ追加していない。 source missing/stale/conflictは既存source ownerへの確認返却を維持し、02lのdecision/authority/completionは各単独出力armで検査する。",
+    "m1": "L11-018 pinをgovernance-acceptance.md:345-351へ修正。",
+    "m2": "誤見出しCASE-OS-019-04を廃止しCASE-OS-019-02g–02lの見出しに修正。",
+    "m3": "人間向け確認対象一覧をL1-002/008に沿うL2-019 projection listと明示。",
+    "m4": "CASE-OS-019-02g–02lをAC-02表から移しAC-OS-019-04表のみに配置。"
+  },
+  "case_ids": {
+    "CASE-OS-019-02g": {
+      "functional_count": 1,
+      "business_index_count": 1
+    },
+    "CASE-OS-019-02h": {
+      "functional_count": 1,
+      "business_index_count": 1
+    },
+    "CASE-OS-019-02i": {
+      "functional_count": 1,
+      "business_index_count": 1
+    },
+    "CASE-OS-019-02j1a": {
+      "functional_count": 1,
+      "business_index_count": 1
+    },
+    "CASE-OS-019-02j1b": {
+      "functional_count": 1,
+      "business_index_count": 1
+    },
+    "CASE-OS-019-02j1c": {
+      "functional_count": 1,
+      "business_index_count": 1
+    },
+    "CASE-OS-019-02j2": {
+      "functional_count": 1,
+      "business_index_count": 1
+    },
+    "CASE-OS-019-02j3": {
+      "functional_count": 1,
+      "business_index_count": 1
+    },
+    "CASE-OS-019-02j4": {
+      "functional_count": 1,
+      "business_index_count": 1
+    },
+    "CASE-OS-019-02k": {
+      "functional_count": 1,
+      "business_index_count": 1
+    },
+    "CASE-OS-019-02l": {
+      "functional_count": 1,
+      "business_index_count": 1
+    }
+  },
+  "static_validation": {
+    "status": "passed",
+    "checks": [
+      "六対象文書を編集前に読了し、固定f6dad parent/L11およびlegacy business sourceを照合",
+      "変更範囲は指定された6本文と新規append-only correction evidenceのみ",
+      "11 CASE IDsはfunctional fixtureとbusiness indexに各1回、旧02a–02fも各1回",
+      "AC-OS-019-04にCASE-OS-019-02g–02lのみ配置し、AC-02表から分離",
+      "六本文にAI未解決residue、AI解消不能の分類またはPO提示要件を残さない",
+      "L11-018 pinは345–351で統一",
+      "git diff --check passed",
+      "source missing/stale/conflictの既存source ownerへの確認返却を保持し、02lのdecision/authority/completionを単独field armで分ける",
+      "6本文SHAをこの差分後に再計算"
+    ],
+    "runtime_tests_executed": false,
+    "L10_execution_performed": false,
+    "approval_created": false,
+    "commit_or_push_performed": false
+  },
+  "limits": [
+    "L3要件は未承認草案",
+    "L10は未実行の設計",
+    "独立レビュー/Fable判断はこの作業では行っていない"
+  ]
+}
