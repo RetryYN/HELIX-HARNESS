@@ -1,6 +1,4 @@
-# HELIX-INTELLIGENCE L3 NFR・技術候補
-
-> **本書の範囲（2026-10-07追記）**：題名にあった「Stage 2a」は、本書で最初に起草した節の範囲である。本書には、その後のStageの節（Stage 2c、Stage 3、Stage 4、Stage 5）が追補されている。各節の対象親、対象revision、判断状態は[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)と各判断記録を正とする。冒頭の状態の記述は、最初の節を起草した時点のものとして読む。本追記は範囲の表示だけを直し、要件・検証の意味、ID、承認状態を変えない。
+# HELIX-INTELLIGENCE L3 NFR・技術候補（Stage 2a）
 
 状態: PO L3承認前の起草候補。固定採択L2に数値thresholdがない箇所は、観測と比較を可能にする根拠付き技術候補を記録する。候補値・測定軸は採択値、実測結果、実行許可を意味しない。
 
