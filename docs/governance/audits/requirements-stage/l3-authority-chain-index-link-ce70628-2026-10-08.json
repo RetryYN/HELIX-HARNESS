@@ -1,0 +1,53 @@
+{
+  "record_type": "append_only_l3_authority_chain_index_link",
+  "recorded_at": "2026-10-08",
+  "target_main": "ce70628e53ff5f78c1321accf57429c740ea585d",
+  "authority_effect": "none; links a read-only historical chain projection only",
+  "copied_artifacts": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-authority-chain-41groups-ce70628.json",
+      "source_tmp": "/tmp/l3-authority-chain-41groups-ce70628.json",
+      "bytes": 15440560,
+      "sha256": "f40140efaeaa1cc84067adbc77d189f79c56ba991cb54d751760343335ed23bb"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-authority-chain-41groups-ce70628.md",
+      "source_tmp": "/tmp/l3-authority-chain-41groups-ce70628.md",
+      "bytes": 30299,
+      "sha256": "af37fecbba1b3ee382c418f7f9af2571c0c251972791f47c69ae0c455c36ef57"
+    }
+  ],
+  "unchanged_existing_artifacts": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-d629e2525-2026-10-08.json",
+      "bytes": 1060032,
+      "sha256": "95447df5f9f63e07e19cd884744a48328031f5cdc1dea2d22602871314b9458f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-mapping-correction-2026-10-08-main-dddab671b.json",
+      "bytes": 7843,
+      "sha256": "d86a9fd272b5cfbd706fb20d57053e5d5a1425a4cf1adc9959b739ec3ec48096"
+    }
+  ],
+  "later_status_outside_target_snapshot": [
+    {
+      "scope": "LABO Stage 5 parent063",
+      "pr": 2694,
+      "condition3_formal_comment": "6047432658",
+      "reported_state": "Ready; merge requested",
+      "target_main_admission": false
+    },
+    {
+      "scope": "OS Stage 3 parent036",
+      "pr": 2695,
+      "condition3_formal_comment": "6047419887",
+      "reported_state": "Ready; merge requested",
+      "target_main_admission": false
+    }
+  ],
+  "scope_limitations": [
+    "#2678 INT Stage 4 applies to NFR measurement definition scope only; does not replace the original parent-wide or FR/FV authority chain.",
+    "Target ce706 and later PR status are separate time states.",
+    "This index-link record does not produce semantic completion, a new approval, PO post-confirmation, or L10 execution."
+  ]
+}
