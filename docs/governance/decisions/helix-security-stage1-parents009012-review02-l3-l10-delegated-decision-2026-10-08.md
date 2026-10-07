@@ -30,7 +30,7 @@ review02はreview01のM1/m1修正を確認した。009のCASE-009-01にはfixtur
 | L2-012 `docs/helix-security/L2-requirements/security-requirements.md:180–189` | `027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c` | `6d2afeee0c6f60a332265c1196c447f47b578e6e72700b8216d03d4e00f49a27` |
 | L11-012 `docs/helix-security/L11-acceptance/security-acceptance.md:36` | `25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01` | `1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114` |
 
-The adopted registration IDs are `MPR-RC-HELIXSECURITY-L2-009-002` and `MPR-RC-HELIXSECURITY-L2-012-001`. The prior Stage 1 decision record is retained as an earlier-revision snapshot; it does not replace this exact-revision review or condition 3.
+採択registration IDは`MPR-RC-HELIXSECURITY-L2-009-002`と`MPR-RC-HELIXSECURITY-L2-012-001`である。以前のStage 1判断記録は旧revisionの時点記録として保持し、今回のexact revision reviewや条件3の代わりにしない。
 
 ## 6本文の対象revision pin
 

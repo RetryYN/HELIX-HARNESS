@@ -203,8 +203,8 @@
   "decision_record": {
     "path": "docs/governance/decisions/helix-security-stage1-parents009012-review02-l3-l10-delegated-decision-2026-10-08.md",
     "revision": null,
-    "bytes": 6017,
-    "sha256": "d9231a16607dd00e4adc620120db518f1b296f5f3200d58e5ae1cadfe49bf0a6"
+    "bytes": 6020,
+    "sha256": "e64bc34fe17d6afae5d672c293ac345e25e22ad7c7d32a31a1842b98bb31ef58"
   },
   "verification": {
     "formal_body_sha_recomputed": true,
