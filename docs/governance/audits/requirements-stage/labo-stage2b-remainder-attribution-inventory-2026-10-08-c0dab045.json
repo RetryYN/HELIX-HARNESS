@@ -1,0 +1,1228 @@
+{
+  "record_type": "immutable_historical_attribution_and_current_inventory",
+  "as_of": "2026-10-08",
+  "authority_effect": "none",
+  "scope": "HELIX-LABO Stage2b remainder L3/L10 delegated review evidence attribution and current-main six-body inventory; 22 adopted parents only.",
+  "revisions": {
+    "historical_approved_body_revision": "4e61305f38d16cb5caefd7e5c7168a6d483eb7c4",
+    "historical_reviewed_head": "a43bb658fdef9bab5f082ce39d54969d1bcc1f7f",
+    "current_main": "c0dab045c9708f1eabde20407609cb3e5fb5734a",
+    "fixed_L2_L11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "PO_adoption_and_register_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "base_revision": "c0dab045c9708f1eabde20407609cb3e5fb5734a",
+    "worktree_branch": "codex/labo-stage2b-historical-attribution-inventory"
+  },
+  "historical_attribution_finding": {
+    "prior_decision_claim": "Old decision/pin labels comment 6005201116 as Opus condition 1; formal API body identifies review_merge Fable 5.1, and the comment itself contains the Fable conclusion. Thus original recorded evidence did not establish Opus+Fable concurrence.",
+    "correct_actual_pair": "Comment 6039143224 is formal Opus 5.5 independent recheck; comment 6005201116 is Fable 5.1 conclusion. Do not treat both as Opus or the correction as inherited authority.",
+    "opus_scope_from_formal_body": "Six body additions from merge-base to body revision; fixed L2/L11 plus PO adoption rows; audits/comments/Fable view expressly excluded by the Opus reviewer. The body states 22 parents: L2-012–030, 034, 035, 058; fixed f6dad. Major 0, unreviewed scope 0.",
+    "fable_scope_from_formal_body": "review10 over body 4e61305f and HEAD a43bb658f; six body scope; conclusion text “承認してよい”. Formal body also reports old review condition 3 as follow-up, not an authority source for a new current revision."
+  },
+  "formal_comments": {
+    "6039143224": {
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2614#issuecomment-6039143224",
+      "reviewer": "Opus 5.5",
+      "api_author": "RetryYN",
+      "created_at": "2026-10-07T13:37:25Z",
+      "raw_utf8_body_sha256": "2e6383e66246c42900e868d87046dce387af09802d0ce5223eb34320be7129ad",
+      "raw_utf8_body_bytes": 2117,
+      "body_excerpt": "## 委任条件1の再照合（Opus、2026-10-07）：LABO Stage2b残り（PR #2614）"
+    },
+    "6005201116": {
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2614#issuecomment-6005201116",
+      "reviewer": "Fable 5.1",
+      "api_author": "RetryYN",
+      "created_at": "2026-10-05T23:16:00Z",
+      "raw_utf8_body_sha256": "bc7a0aed8a37461b4887c75dd874ccf6b95aa10d198ec7094c39150a343043e8",
+      "raw_utf8_body_bytes": 3143,
+      "body_excerpt": "## review10（independent review、HEAD a43bb658fdef9bab5f082ce39d54969d1bcc1f7f、body 4e61305f38d16cb5caefd7e5c7168a6d483eb7c4）"
+    }
+  },
+  "historical_decision_and_pin": {
+    "decision_path": "docs/governance/decisions/helix-labo-stage2b-remainder-l3-l10-po-decision-2026-10-06.md",
+    "pin_path": "docs/governance/audits/requirements-stage/labo-stage2b-remainder-delegated-decision-pin-2026-10-06.json",
+    "current_main_file_pins": {
+      "docs/governance/decisions/helix-labo-stage2b-remainder-l3-l10-po-decision-2026-10-06.md": {
+        "sha256": "42ad0b7ece7cd9bbb95bb2185b739af265e03a51fda16d8a6243b8e0ce992562",
+        "bytes": 3578
+      },
+      "docs/governance/audits/requirements-stage/labo-stage2b-remainder-delegated-decision-pin-2026-10-06.json": {
+        "sha256": "5a937496e0c43783289d07710434bd973751cf03046a9b672b99fbfc69eca2a8",
+        "bytes": 5630
+      },
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md": {
+        "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "bytes": 12756
+      },
+      "docs/governance/management-provisional-requirement-register.jsonl": {
+        "sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+        "bytes": 3370048
+      },
+      "docs/governance/l3-l10-po-post-confirmation.md": {
+        "sha256": "2d164207f1231226dea273b779dbfea5b1073d861a35396d4c83cb3b6f5a636d",
+        "bytes": 141340
+      },
+      "docs/governance/audits/requirements-stage/l3-delegation-model-recheck-2026-10-07.json": {
+        "sha256": "537954e4f191390ca5ae8dc1c8af58b56b16b895f1dc8d3efd26a5417dd6e2d0",
+        "bytes": 28242
+      },
+      "docs/governance/audits/requirements-stage/l3-l10-po-post-confirmation-evidence-correction-2026-10-07-8e2751e3.json": {
+        "sha256": "f266e9cc36c3bfa7ee0446a4afb1121e793e25f942b1ea60b9b30c7664c39fed",
+        "bytes": 4513359
+      }
+    },
+    "decision_records_immutable": true,
+    "superseded_attribution_is_not_rewritten": true
+  },
+  "fixed_parent_and_PO_pins": {
+    "fixed_parent_sources": {
+      "L2": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "full_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+        "full_bytes": 73845,
+        "rows": {
+          "012": {
+            "line_start": 167,
+            "line_end": 170,
+            "raw_span_sha256": "fa1281a914381cc416a7630bebb7a4547abc3fa7f78cf96d90f947be965ad728",
+            "bytes": 294,
+            "source_excerpt": "### HELIXLABO-L2-012 — Correlate → Decompose  - 親：HELIXLABO-L1-002, HELIXLABO-L1-003。入力：episode/evidence/relation。出力：分類対象。依存：L2-002。保証：episodeの根拠・unknownを保持。relation版不一致は訂正sourceへ戻す。`version_target: 1.0`。"
+          },
+          "013": {
+            "line_start": 171,
+            "line_end": 174,
+            "raw_span_sha256": "58416ed8ae9464b5e48264a3a121c35fced5b290fd1343f12270fdf429fcc56c",
+            "bytes": 308,
+            "source_excerpt": "### HELIXLABO-L2-013 — Decompose → Vector Shu-Ha-Ri  - 親：HELIXLABO-L1-003, HELIXLABO-L1-004。入力：根拠付き分解結果。出力：意味・条件別の比較仮説入力。依存：L2-003。保証：分類軸と根拠を保持。欠落はsource evidenceへ戻す。`version_target: 1.0`。"
+          },
+          "014": {
+            "line_start": 175,
+            "line_end": 178,
+            "raw_span_sha256": "0f2cd059b20388f4012379e895c7b124c2f1fdd6b0b1d17281b3ee248ae4385c",
+            "bytes": 363,
+            "source_excerpt": "### HELIXLABO-L2-014 — Vector → Transformation  - 親：HELIXLABO-L1-004（Vector）、HELIXLABO-L1-004（Transformation）。入力：元意味・目的・条件を含む部分比較candidate。出力：変換候補。依存：L2-004。保証：意味保持と変える部分を区別。元の意味不明ならL1/sourceへ戻す。`version_target: 1.0`。"
+          },
+          "015": {
+            "line_start": 179,
+            "line_end": 182,
+            "raw_span_sha256": "71522fc0ea82bd050c976d565aa4b0092df047538cd67634dd18cb52c434fbe3",
+            "bytes": 427,
+            "source_excerpt": "### HELIXLABO-L2-015 — Transformation → Experiment  - 親：HELIXLABO-L1-004（Transformation）、HELIXLABO-L1-005（Experiment）。入力：変換candidate・適用条件。出力：baseline/current、candidate、hybridの比較条件。依存：L2-005、評価oracleと対象版。保証：版・条件の同一性を保持。oracle/比較条件不足なら実験を成立扱いせず戻す。`version_target: 1.0`。"
+          },
+          "016": {
+            "line_start": 183,
+            "line_end": 186,
+            "raw_span_sha256": "7f79a3cecff61f2667bdce6214cf5e8de9c6b2ba6169de3ae28b33c01a42ede7",
+            "bytes": 390,
+            "source_excerpt": "### HELIXLABO-L2-016 — Experiment → Assurance Allocation  - 親：HELIXLABO-L1-005（Experiment）、HELIXLABO-L1-006（Assurance Allocation）。入力：比較結果・反例・oracle・中断状態。出力：system/operation評価材料。依存：L2-006。保証：比較可能性と反例を保持。判定不能はoperation候補として保留する。`version_target: 1.0`。"
+          },
+          "017": {
+            "line_start": 187,
+            "line_end": 190,
+            "raw_span_sha256": "0a6fa1d91e9d1fd88e191ba8594b0348b092e82e1517fa68edc801bd8210c763",
+            "bytes": 406,
+            "source_excerpt": "### HELIXLABO-L2-017 — Assurance Allocation → Operational Fallback  - 親：HELIXLABO-L1-006（Assurance Allocation／Operational Fallback）。入力：system/operation適格性と現行保証。出力：再評価候補・未完義務。依存：L2-007と現行版情報。保証：LABOは切替を実行しない。所有者の運転結果が不足すればownerへ戻す。`version_target: 1.0`。"
+          },
+          "018": {
+            "line_start": 191,
+            "line_end": 194,
+            "raw_span_sha256": "582e5b71bc97b9fe10e7ab1b22498b9dd023e91c393aaee3af8cedede135fd29",
+            "bytes": 371,
+            "source_excerpt": "### HELIXLABO-L2-018 — Experiment → Generalization  - 親：HELIXLABO-L1-005（Experiment）、HELIXLABO-L1-007（Generalization）。入力：比較結果、標本条件、反例。出力：支持される適用範囲。依存：L2-006。保証：適用範囲を証拠以上に広げない。反例・条件欠落は実験評価へ戻す。`version_target: 1.0`。"
+          },
+          "019": {
+            "line_start": 195,
+            "line_end": 198,
+            "raw_span_sha256": "2c931ae3ef60fcd739ce16a8c03e1ddc1c80462b4c791b8f8a79ec4ff3707670",
+            "bytes": 469,
+            "source_excerpt": "### HELIXLABO-L2-019 — Generalization → Feedback Derivation  - 親：HELIXLABO-L1-005（Generalizationの結果元）、HELIXLABO-L1-007（Feedback先）、HELIXLABO-L1-010（INTELLIGENCE評価材料）。入力：範囲付き知見とtarget/responsibility候補。出力：target別Feedback候補。依存：L2-009、target identity/evidence。保証：targetごとに提案を分ける。target不明はOS routing候補として戻す。`version_target: 1.0`。"
+          },
+          "020": {
+            "line_start": 199,
+            "line_end": 202,
+            "raw_span_sha256": "1de241d1126644a0f5bdf4775b091ae87977920a7552ea999b5094bc52480082",
+            "bytes": 378,
+            "source_excerpt": "### HELIXLABO-L2-020 — Operational Fallback → Aggregate  - 親：HELIXLABO-L1-001（Aggregate）、HELIXLABO-L1-006（Operational Fallback）。入力：operation復帰後の結果・旧新rule版。出力：新observation。依存：L2-008とL2-001。保証：復帰後も未完義務と前後版を保持する。欠落はsource ownerへ戻す。`version_target: 1.0`。"
+          },
+          "021": {
+            "line_start": 203,
+            "line_end": 206,
+            "raw_span_sha256": "2a420b02039e3701f61387f78236753dfd59924b05bc4f0dfaa3215fec12a50b",
+            "bytes": 379,
+            "source_excerpt": "### HELIXLABO-L2-021 — HELIX-HARNESS → Aggregate  - 親：HELIXLABO-L1-001。入力：HARNESSから許可された過去工程・実績観測。出力：source identity/revision付きobservation。依存：HARNESS source contractと個別connector。保証：HARNESS authorityとraw recordを保持。data scope/版不明はHARNESS ownerへ戻す。`version_target: 1.0`。"
+          },
+          "022": {
+            "line_start": 207,
+            "line_end": 210,
+            "raw_span_sha256": "c9de9a9d703d3a2605715ecd57511cea1cc8625891eafadea5eb2b01b6a3837d",
+            "bytes": 348,
+            "source_excerpt": "### HELIXLABO-L2-022 — HELIX-OS → Aggregate  - 親：HELIXLABO-L1-001。入力：OSから許可されたticket/運転/証拠観測。出力：source identity/revision付きobservation。依存：OS source contractと個別connector。保証：OS正本を保持し未完/unknownを区別。stale/欠落はOSへ戻す。`version_target: 1.0`。"
+          },
+          "023": {
+            "line_start": 211,
+            "line_end": 214,
+            "raw_span_sha256": "c9cf147b928712f82694042c22cb9951530186f1dc3036ed36c19b2b1c487cc1",
+            "bytes": 342,
+            "source_excerpt": "### HELIXLABO-L2-023 — BRAIN → Aggregate  - 親：HELIXLABO-L1-001。入力：許可された知識利用・適用結果の観測。出力：source版付きobservation。依存：BRAIN source contractと個別connector。保証：BRAIN知識正本を書き換えない。source identity不明はBRAINへ戻す。`version_target: 1.0`。"
+          },
+          "024": {
+            "line_start": 215,
+            "line_end": 218,
+            "raw_span_sha256": "300c79db30dd775aa504d23005b53d51bb966b6c52b9d722aa2efa41239e7fa7",
+            "bytes": 397,
+            "source_excerpt": "### HELIXLABO-L2-024 — INTELLIGENCE → Aggregate  - 親：HELIXLABO-L1-001。入力：許可された判断/予測/診断/reviewの結果観測。出力：観測事実と判断結果を区別したobservation。依存：INTELLIGENCE source contractと個別connector。保証：過去評価は現在のauthorityにならない。版不一致はINTELLIGENCEへ戻す。`version_target: 1.0`。"
+          },
+          "025": {
+            "line_start": 219,
+            "line_end": 222,
+            "raw_span_sha256": "11ddd89eb4195637bea7e61ef1af9b2e6096603ab2b601da4f35aaac4ccafac0",
+            "bytes": 336,
+            "source_excerpt": "### HELIXLABO-L2-025 — SECURITY → Aggregate  - 親：HELIXLABO-L1-001。入力：SECURITYが許可した安全性・incident evidence。出力：範囲付きobservation。依存：SECURITY data-use scopeとconnector。保証：restricted dataとauthorityを移さない。scope不明はSECURITYへ戻す。`version_target: 1.0`。"
+          },
+          "026": {
+            "line_start": 223,
+            "line_end": 226,
+            "raw_span_sha256": "a47b3ed9e39ae16dac5c50ab0d87282b5109c20874830693e5019e38742428ae",
+            "bytes": 342,
+            "source_excerpt": "### HELIXLABO-L2-026 — INFRASTRUCTURE → Aggregate  - 親：HELIXLABO-L1-001。入力：許可されたresource/runtime evidence。出力：source版付きobservation。依存：INFRASTRUCTURE source contractとconnector。保証：resource authorityはINFRASTRUCTUREに残る。stale/unknownはsourceへ戻す。`version_target: 1.0`。"
+          },
+          "027": {
+            "line_start": 227,
+            "line_end": 230,
+            "raw_span_sha256": "23833b323d44a786c302f054e22ead8a33e41ecdf66ff54fa1068ae1ac1eb30d",
+            "bytes": 380,
+            "source_excerpt": "### HELIXLABO-L2-027 — HELIX-CONNECT → Aggregate  - 親：HELIXLABO-L1-001。入力：HELIX-CONNECTを介した個別connection observationとtrace。出力：provenance/schema版を保つobservation。依存：元接続ごとのcontractと専用connector。保証：drift/unknownを明示する。contract不一致はCONNECT/source ownerへ戻す。`version_target: 1.0`。"
+          },
+          "028": {
+            "line_start": 231,
+            "line_end": 234,
+            "raw_span_sha256": "672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd",
+            "bytes": 375,
+            "source_excerpt": "### HELIXLABO-L2-028 — Worker → Aggregate  - 親：HELIXLABO-L1-001。入力：許可されたWorker作業結果。出力：task class/assignment/source付きobservation。依存：OS assignmentとWorker result contract。保証：Workerをauthority ownerとせず、未評価結果を評価済みにしない。assignment不明はOSへ戻す。`version_target: 1.0`。"
+          },
+          "029": {
+            "line_start": 235,
+            "line_end": 238,
+            "raw_span_sha256": "10ee9155ebdbcb711715fddb6bddc644421559d8be4a3c404e22fdf3eedfdb29",
+            "bytes": 355,
+            "source_excerpt": "### HELIXLABO-L2-029 — CI/test → Aggregate  - 親：HELIXLABO-L1-001。入力：許可されたCI/test結果と対象revision。出力：検査範囲付きobservation。依存：HARNESS verification contractとOS実行証拠。保証：未実行/stale/中断をpassとしない。検査範囲欠落はsource ownerへ戻す。`version_target: 1.0`。"
+          },
+          "030": {
+            "line_start": 239,
+            "line_end": 242,
+            "raw_span_sha256": "9631b221fb6c1cb7b135324e0f914084146031297e2b82b95d64e14cc0df3613",
+            "bytes": 415,
+            "source_excerpt": "### HELIXLABO-L2-030 — Product Core → Aggregate  - 親：HELIXLABO-L1-001。入力：各製品の許可利用・結果観測。出力：product/source identity別observation。依存：そのProduct Coreのsource contractと専用connector。保証：製品意味とauthorityを保つ。異なるsourceは同一identityに統合しない。`version_target`は接続対象製品の採択済みscopeに従う。"
+          },
+          "034": {
+            "line_start": 255,
+            "line_end": 258,
+            "raw_span_sha256": "ca533b2327c362fa9c455470b9e3a524ffb883f43b2641d897d5b133b8db3231",
+            "bytes": 467,
+            "source_excerpt": "### HELIXLABO-L2-034 — LABO → BRAIN  - 親：HELIXLABO-L1-007, HELIXLABO-L1-009。入力：異なるproduct/meaning/episodeを横断して支持されたgeneric structure evidence。出力：BRAIN向け構造candidate。依存：L2-009、BRAINとの個別connector。保証：product固有meaningは渡さない。一事例・適用範囲不明はL2-009へ戻す。`version_target: 1.0`（内部evidence）。外部知識の評価loopは`version_target: 2.0`。"
+          },
+          "035": {
+            "line_start": 259,
+            "line_end": 262,
+            "raw_span_sha256": "deba00a65917db6a1d3663472a52aaf23ea7a586fd4035e14ed7e72f2afcfb44",
+            "bytes": 872,
+            "source_excerpt": "### HELIXLABO-L2-035 — LABO → INTELLIGENCE 評価材料境界  - 親：HELIXLABO-L1-007, HELIXLABO-L1-010, HELIXINTELLIGENCE-L1-018。入力：判断精度、failure corpus、counterexample、model/provider比較、FP/FN、diagnosis/review/bot評価等のLABO評価材料。HELIX-Benchの水準は専用接続L2-054で扱い、本接続のpayloadへ重複定義しない。出力：適用範囲・source revision・未評価状態付きpacketをINTELLIGENCE境界へ渡すこと。依存：評価済みevidenceとINTELLIGENCE connector。保証：この節は境界での受渡し契約を定義し、構成体の全材料収集・同一revisionの到達確認はL2-052が受け持つ。LABOは現在判断・配置・botを実行しない。未評価はそのまま渡す。`version_target: 1.0`（評価材料）。学習・調整は別の`version_target: 3.0+`。"
+          },
+          "058": {
+            "line_start": 403,
+            "line_end": 415,
+            "raw_span_sha256": "b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf",
+            "bytes": 3695,
+            "source_excerpt": "### HELIXLABO-L2-058 — 観測集積の入力元ごとの依存条件（単体追補候補、1.0）  - **親L1**：HELIXLABO-L1-001。既存HELIXLABO-L2-001の集積能力に適用する依存区分の追補候補であり、新しい集積エンジンを作らない。現行L1/L2の採択状態は変えない。 - **起点**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第2点、HARNESS-L2-010／011とその依存区分追補候補HARNESS-L2-023。旧FRS-R-06の必要な依存欠落・暗黙包含拒否、FRS-R-13／14の安全閉包・不明時停止を保持し、対応能力全体と個別呼出しの必須入力を分離する意味の再導出である。旧資産の具体位置・digestはG10依存監査に記録する。旧実装・runtimeは利用しない。 - **受け取るもの**：集積対象scopeと選択source identity、操作、source/契約版、観測の利用許可、source別入力接続、既存001の観測状態・provenance・最低項目の契約。選択の根拠と未選択sourceも表示する。 - **提供するもの**：その呼出しに必要なsource別接続と安全・版条件を照合したLABO observation、未観測の入力元、受領失敗・不足の理由。元の001の観測本文・責務・出力項目を変更しない。 - **常時必須**：LABO001のprovenance、source identity/revision、状態区分、対象scope、適用するdata-use/authority、契約版、source正本を変更しない条件。入力元を選ばないことを、権限不明なデータの取込許可へ変えない。 - **選択した入力元に応じて必須**：001に列挙されたL2-021〜030は、当該呼出しが受け取る各sourceに対応する接続を要求する。例えばWorker観測のみならL2-028の入力・受領契約とその安全依存を必要とし、入力に含まれないBRAIN等の別source接続の稼働は当該呼出しの成立条件にしない。複数sourceを選べばその全部に対応する接続・許可・依存閉包を要求する。selected sourceの欠落を「未選択」へ変えて成功にしない。 - **特定操作時のみ必須**：Web/WEB-OS観測を加える操作では、既存L2-031／032に記したsource contractの採択と該当接続・安全条件を満たす。Webを選ばないLABO 1.0の呼出しへWeb実運用を前提にしない。2.0の外部取得入力は既存L2-033の版範囲に従い、1.0へ無断追加しない。 - **参照のみ**：全sourceに対応する1.0要求範囲の一覧、未選択sourceの契約説明、旧資産の比較資料は、個別呼出しの実行サービス依存ではない。ただし一覧にある1.0対象能力の完成義務は保持し、個別呼出しで不要という理由で削除・延期しない。 - **保証・失敗時**：未選択または未接続のsourceは未観測を保持し、成功・観測済みへ変換しない。選択sourceのversion/scope/許可/receiptが不足・不一致ならその入力の成立を拒みsource owner／SECURITYへ戻す。選択条件自体がunknownなら全部不要とせず呼出し条件の確認へ戻す。観測集積の成功をBench評価済み、割当許可、全source対応完成にしない。 - **単独成立の依存**：既存HELIXLABO-L2-001の契約本文、HARNESS-L2-010／011／023の依存区分契約、選択sourceの入力接続とその安全・版条件。この追補自身を001の実行前提に再帰的に要求せず、001の利用条件を補う。実契約版は採択後に入力へ束縛し、`version_target: 1.0`を実装版・採択状態と混同しない。"
+          }
+        }
+      },
+      "L11": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "full_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+        "full_bytes": 40455,
+        "rows": {
+          "012": {
+            "line_start": 63,
+            "line_end": 63,
+            "raw_span_sha256": "a41398bc948241e1debed13e04d3c5687e9f384dfa91bb56d3ade9aa0f5541ff",
+            "bytes": 190,
+            "source_excerpt": "| HELIXLABO-L2-012 | episode evidenceからdecompositionへ辿れ、分類の根拠・反証が残る | relation版違いを黙って受け入れる、相関を因果として転送する |"
+          },
+          "013": {
+            "line_start": 64,
+            "line_end": 64,
+            "raw_span_sha256": "0a8e7c050690dedba46033fb10522d0cba61e5e818283c42e5f85aac4dce59a8",
+            "bytes": 176,
+            "source_excerpt": "| HELIXLABO-L2-013 | 分解の各軸と証拠をVector比較へ渡し、unknownや条件依存も保持する | 分類根拠を失う、unknownを成功要素として扱う |"
+          },
+          "014": {
+            "line_start": 65,
+            "line_end": 65,
+            "raw_span_sha256": "54b130016f71a5f4a240d7f5ca286ec13a46d90c91e460370748655e16770bc9",
+            "bytes": 239,
+            "source_excerpt": "| HELIXLABO-L2-014 | 元の目的・構造・条件と部分比較をTransformationへ渡し、候補変更との差分を追える | 元の意味・適用条件が欠けても変換する、candidateを変更済み正本へ昇格する |"
+          },
+          "015": {
+            "line_start": 66,
+            "line_end": 66,
+            "raw_span_sha256": "f1a39cea94468330ceeb40d4bd0a5389eb5df3cc99c9f5a9007fbb6bdb85c50c",
+            "bytes": 236,
+            "source_excerpt": "| HELIXLABO-L2-015 | current/candidate/hybridそれぞれの版、条件、oracle、scopeがexperiment inputで区別できる | baselineまたはcandidateの版不一致、oracle欠落、条件変更を隠して比較成立とする |"
+          },
+          "016": {
+            "line_start": 67,
+            "line_end": 67,
+            "raw_span_sha256": "81cfb4530796eefc94942936e18c88acc62c8c121fc1979a926d4784143fa644",
+            "bytes": 204,
+            "source_excerpt": "| HELIXLABO-L2-016 | Experiment結果・反例からAssurance Allocationへ、比較可能性とoracleを保って渡す | 実験実行のみでsystem化適格と判定する、反例を欠落させる |"
+          },
+          "017": {
+            "line_start": 68,
+            "line_end": 68,
+            "raw_span_sha256": "0b9a1c01a794e210b36c4603dd6ebacd3aea9a11570ca825eef2526a59d508a0",
+            "bytes": 199,
+            "source_excerpt": "| HELIXLABO-L2-017 | Assurance結果からOperational Fallbackへ、system/operation条件と未完義務を引き継ぐ | LABO結果だけでsystem切替、例外・保証消失を成功とする |"
+          },
+          "018": {
+            "line_start": 69,
+            "line_end": 69,
+            "raw_span_sha256": "ca7204a3b86588f0702ac3f1eaaf5e7f8f59a749d1fc51de25f7625976f78a0a",
+            "bytes": 195,
+            "source_excerpt": "| HELIXLABO-L2-018 | 比較結果の標本・条件・反例をGeneralizationへ渡し、適用範囲を限定できる | 単一caseを一般構造として渡す、母数や条件を落とす |"
+          },
+          "019": {
+            "line_start": 70,
+            "line_end": 70,
+            "raw_span_sha256": "e8fdf1caa07eb6cdded964d264559d78bbbbc009ace7f06dd2a0629c629e35fd",
+            "bytes": 243,
+            "source_excerpt": "| HELIXLABO-L2-019 | 範囲付き結果からtargetごとにFeedbackを分け、target/responsibilityとevidenceを保持する | generic/product-specific/OS/INTELLIGENCE責務を混ぜる、target未確定の候補を確定routingとする |"
+          },
+          "020": {
+            "line_start": 71,
+            "line_end": 71,
+            "raw_span_sha256": "5da626ec22070a603e52688df3931712ca9145a95a9601aa2d30c0ab8d972377",
+            "bytes": 214,
+            "source_excerpt": "| HELIXLABO-L2-020 | operation復帰後の結果が新しい観測として集積され、前後のrule版・未完義務へ辿れる | source状態を上書きする、復帰後観測を別版と区別しない |"
+          },
+          "021": {
+            "line_start": 72,
+            "line_end": 72,
+            "raw_span_sha256": "a212fa7824f504c3a0ec38f6815a2cbf17e03175ee0fccc2e8d31f447f0906d2",
+            "bytes": 186,
+            "source_excerpt": "| HELIXLABO-L2-021 | HELIX-HARNESSから個別connectorで許可observationを受け、source revisionと契約版を保つ | source authorityを移す、未許可scope/staleを通す |"
+          },
+          "022": {
+            "line_start": 73,
+            "line_end": 73,
+            "raw_span_sha256": "389111921084b5e65007060642f4a67b8c583afeed83bd73c6789f24abe61f47",
+            "bytes": 177,
+            "source_excerpt": "| HELIXLABO-L2-022 | HELIX-OSから個別connectorで許可運転・ticket・証拠を受け、未完/unknownを保つ | OS正本を書き換える、未完を完了化する |"
+          },
+          "023": {
+            "line_start": 74,
+            "line_end": 74,
+            "raw_span_sha256": "b284030d54e979fc492a71e9283260389da8205f52c7a69893c9533d80508671",
+            "bytes": 138,
+            "source_excerpt": "| HELIXLABO-L2-023 | BRAINから個別connectorで許可利用/変更結果を受け、source版を保つ | BRAIN正本をLABOへ移す |"
+          },
+          "024": {
+            "line_start": 75,
+            "line_end": 75,
+            "raw_span_sha256": "a1cb1b580641dd5f04ab97f489a86b5d551031bf038ca91595f71e405a304ca4",
+            "bytes": 184,
+            "source_excerpt": "| HELIXLABO-L2-024 | INTELLIGENCEから個別connectorで許可判断/評価結果を受け、現行判断と過去評価を区別する | 稼働中判断を過去実績と混ぜる |"
+          },
+          "025": {
+            "line_start": 76,
+            "line_end": 76,
+            "raw_span_sha256": "9d0c96838440cf81cc345762b6734689a222a3a48bb26031babebec17380f4a8",
+            "bytes": 168,
+            "source_excerpt": "| HELIXLABO-L2-025 | SECURITY scopeに適合する安全性/incident evidenceだけを個別connectorで受ける | restricted dataやauthorityをLABOへ取り込む |"
+          },
+          "026": {
+            "line_start": 77,
+            "line_end": 77,
+            "raw_span_sha256": "f01587e60ad6c4fc356c4060bafb538209d7c0eb0012cc8c4c66503010479008",
+            "bytes": 189,
+            "source_excerpt": "| HELIXLABO-L2-026 | INFRASTRUCTUREから許可resource/runtime evidenceを個別connectorで受け、source版を保持する | resource authorityを移す、staleをcurrent扱いする |"
+          },
+          "027": {
+            "line_start": 78,
+            "line_end": 78,
+            "raw_span_sha256": "79e2865cb423d148497334b5d513c0e955e3d0737a18aa7a3b9a0f3005003cf2",
+            "bytes": 200,
+            "source_excerpt": "| HELIXLABO-L2-027 | HELIX-CONNECTの個別connection contract/provenance/schema版を経由した許可observationを受ける | connectorを全sourceで暗黙共用する、drift/unknownを隠す |"
+          },
+          "028": {
+            "line_start": 79,
+            "line_end": 79,
+            "raw_span_sha256": "208b35f2bdc5a3e2586b819e1e6dc1e1b77930b6dac44dacb79fa6a4e8e99781",
+            "bytes": 327,
+            "source_excerpt": "| HELIXLABO-L2-028 | Workerから許可作業結果を受け、責務とOS assignment/ticketへ照合し、実験結果ならL2-006のexperiment・対象版へ同一性を保って渡す | Workerを機構・authority ownerとして扱う、assignmentを推測する、別ticket/experimentの実績を同一比較へ混ぜる |"
+          },
+          "029": {
+            "line_start": 80,
+            "line_end": 80,
+            "raw_span_sha256": "4f6ae244267f9d2344b0888ec285b92d0d8f36aefbe981e91d53812c3d5694ac",
+            "bytes": 139,
+            "source_excerpt": "| HELIXLABO-L2-029 | CI/testから許可結果を受け、対象revisionと検査範囲を保持する | stale/未実行をpassと扱う |"
+          },
+          "030": {
+            "line_start": 81,
+            "line_end": 81,
+            "raw_span_sha256": "d89d8e38658a4023b3dcd7499875e3bb51d6791fb875365cc3b4cb8a8dc54336",
+            "bytes": 183,
+            "source_excerpt": "| HELIXLABO-L2-030 | Product Coreから許可された製品利用・結果を個別に受け、製品meaningを保持する | 異なるproduct sourceを一つの正本へ混ぜる |"
+          },
+          "034": {
+            "line_start": 85,
+            "line_end": 85,
+            "raw_span_sha256": "c4577878ae481935d542f2872a88f377ef551d6f107b7d7915826996bc0bda7a",
+            "bytes": 246,
+            "source_excerpt": "| HELIXLABO-L2-034 | 複数meaning/product/episodeで支持されたgeneric structure candidateだけを根拠・範囲付きでBRAIN向けに出す | product meaning、顧客固有ルール、一事例のみのpatternをgenericとして送る |"
+          },
+          "035": {
+            "line_start": 86,
+            "line_end": 86,
+            "raw_span_sha256": "a6c60e1ff69b35964d4e6bea14e0291f112784eb4486f840e1a9921116bb8177",
+            "bytes": 377,
+            "source_excerpt": "| HELIXLABO-L2-035 | 判断精度、failure corpus、counterexample、model/provider比較、FP/FN、diagnosis/review/bot結果と未評価印を定義済みpayloadとしてINTELLIGENCE境界へ渡せる | LABOが現行判断・配置・botを実行する、未評価を評価済みに変える、HELIX-Bench水準を別定義する、材料受渡しで学習許可とする |"
+          },
+          "058": {
+            "line_start": 156,
+            "line_end": 177,
+            "raw_span_sha256": "0f4c60b53a129bc5eb4d85cf9682cdddfd8878dd93bab2f697fe065e23f27143",
+            "bytes": 5846,
+            "source_excerpt": "### HELIXLABO-L2-058 観測集積の入力元ごとの依存条件  - **正常例**：選択入力がWorker観測だけの呼出しで、001/028のprovenance・版・scope・許可・状態区分・受領契約と安全依存が揃う。他の未選択入力は未観測を表示したまま、Worker観測を取り込める。全入力元対応の完成を主張しない。 - **複数入力例**：WorkerとOSの観測を選択した場合は、両方のsource別接続と安全依存を要求する。片方のreceiptが欠落した結果を完全な集積成功にしない。 - **反例**：未選択sourceの完成待ちで、必要条件を満たすWorker入力を拒む。選択済みsourceが欠けたため未選択へ改変する。安全依存を参照のみと分類する。未選択を観測済みへ変える。Web未採択を理由に全LABO 1.0を不成立にする。個別呼出しの成功を1.0全source対応済みとする。 - **版・変更**：sourceの追加/削除、操作、scope、契約版が変わった場合に依存分類と閉包を再照合する。前回の選択やreceiptを無条件に継承しない。 - **不足・戻し先**：選択条件が不明なら要求された呼出しscopeのownerへ、入力契約・版は各sourceとLABOへ、許可/classificationはSECURITYへ戻す。未観測・未完義務を消さず、既存001の出力保証を保つ。  ## 効果判定の優先関係に関する受入追補候補（G13）  [LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。  | 対応要求 | 合格条件 | 反例 | |---|---|---| | `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |  **読み合わせの具体例** 1. **適切な有効成功**：same-scope taskで目的に応じた群を同じ可視oracle・比較可能run conditionに結ぶ。導入効果のあり／なし二者なら旧版evidenceなしでも比較でき、改訂効果の旧版／新版二者ならHELIXなしを要求しない。三者の関係を主張するfixtureでは三者すべてを照合する。実験条件baseline/current/candidate/hybridは別fieldとして各cohort runへ対応づけ、quality gateは選択群の各結果を個別判定する。old cohortを選択した場合は既存read-only証拠だけを使う。新構成workerが安価でも救援とhuman fix込みで総費用が増えたこと、完了時間、介入量を分けて示す。scope/revisionに有効な既決の「品質gate後の優先と許容悪化」があれば再確認を求めずそれを適用する。未決・失効・適用境界外の変更時のみ該当owner判断へ戻す。人時間rateが未決なら介入時間は報告し、monetary totalは未完成と表示する。 2. **不適切な成功主張**：candidate単価が低く、accepted changeが0、上位Worker救援と人修正が多数なのに、それらを除外し「low cost / better performance」とする。反例。品質gate未達を時間短縮で埋めるのも拒否する。 3. **比較不能／未評価**：旧版を選んだ比較で適用scopeや結果receiptが見つからない、またはcurrentとtask/oracle/scorer/protocol/hardwareが異なるときは当該比較を未測定/比較不能とする。旧runtimeを起動せず、歴史結果はcurrent evidenceへ転用しない。三者主張のfixtureで旧版が欠ければ三者比較は未完だが、導入効果を測るあり／なし二者の必要証拠が揃っている場合はその比較結果を保持する。二者結果だけで三者の関係を主張する例、および未選択旧版の欠落で有効な二者比較を拒否する例はいずれも反例。 4. **effort/配置境界**：同じtask classの複数effort resultとLABO evidenceが揃い、scope別の選好からINTELLIGENCEが推奨候補を示す。未評価effort/Workerは未評価のまま。OSがassignmentを別判断する。INT/LABOのproposalやscoreだけからworker/run/authorityを生成しない。"
+          }
+        }
+      }
+    },
+    "PO_adoption_and_register_at_633bf12": {
+      "adoption_decision": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "full_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "full_bytes": 12756,
+        "rows": {
+          "012": {
+            "line": 60,
+            "sha256": "d4b0c6703db67e2e2854a53bc8047bfcd61bb3d5f1005df3e09ca49a3cd94d78",
+            "text": "| `HELIXLABO-L2-012` | `MPR-RC-HELIXLABO-L2-012-001` | connection / 1.0 |"
+          },
+          "013": {
+            "line": 61,
+            "sha256": "595e7a0e97cd593e9733034533c73a061b2deea900ef54b9a81875fef89f1a06",
+            "text": "| `HELIXLABO-L2-013` | `MPR-RC-HELIXLABO-L2-013-001` | connection / 1.0 |"
+          },
+          "014": {
+            "line": 62,
+            "sha256": "4d71f54e4a33b218e7744084de7faf880ea6bd49a4860a2fe302c1c7af90b5b2",
+            "text": "| `HELIXLABO-L2-014` | `MPR-RC-HELIXLABO-L2-014-001` | connection / 1.0 |"
+          },
+          "015": {
+            "line": 63,
+            "sha256": "9ea2e5c585dbfe2ded4c75873a8c05762b942ce3a255c7b0ef3345a6d38cdab0",
+            "text": "| `HELIXLABO-L2-015` | `MPR-RC-HELIXLABO-L2-015-001` | connection / 1.0 |"
+          },
+          "016": {
+            "line": 64,
+            "sha256": "92ca9b8cd573e66b256f270c5b8e9d0618dbda22bed0f9156cdf7a7cff94d162",
+            "text": "| `HELIXLABO-L2-016` | `MPR-RC-HELIXLABO-L2-016-001` | connection / 1.0 |"
+          },
+          "017": {
+            "line": 65,
+            "sha256": "4f846e324e0c7fd6dc2f5cbc1e072f0eec40353b8e62085b1bf32ea0e23249e8",
+            "text": "| `HELIXLABO-L2-017` | `MPR-RC-HELIXLABO-L2-017-001` | connection / 1.0 |"
+          },
+          "018": {
+            "line": 66,
+            "sha256": "73c26d3884878c05c23e2c9dd21d0ae52d3a917e55fb941dd1083e39507f9841",
+            "text": "| `HELIXLABO-L2-018` | `MPR-RC-HELIXLABO-L2-018-001` | connection / 1.0 |"
+          },
+          "019": {
+            "line": 67,
+            "sha256": "1385306b9bafe781d7bdc1d1cae81cdacdb311cf54c7e72232045046a4b42ca2",
+            "text": "| `HELIXLABO-L2-019` | `MPR-RC-HELIXLABO-L2-019-001` | connection / 1.0 |"
+          },
+          "020": {
+            "line": 68,
+            "sha256": "2ecb14bca57e9884a415b456508343d2b32fa53a4d3c5b74feb25c717b2b80f6",
+            "text": "| `HELIXLABO-L2-020` | `MPR-RC-HELIXLABO-L2-020-001` | connection / 1.0 |"
+          },
+          "021": {
+            "line": 69,
+            "sha256": "f6ebd9e96ab45f5a06f90ee8ea5e76190d09c8067f8a619508ff09fa5e8ad7b6",
+            "text": "| `HELIXLABO-L2-021` | `MPR-RC-HELIXLABO-L2-021-001` | connection / 1.0 |"
+          },
+          "022": {
+            "line": 70,
+            "sha256": "e9b34e76f63dd1c090cd817c4385d884b11a247d4452c01c9060a6ef10c84b03",
+            "text": "| `HELIXLABO-L2-022` | `MPR-RC-HELIXLABO-L2-022-001` | connection / 1.0 |"
+          },
+          "023": {
+            "line": 71,
+            "sha256": "fbedb8d1a1d60e51272b96a040bbc7e3411f85e79ea48d2f9d715f2c72b94d2c",
+            "text": "| `HELIXLABO-L2-023` | `MPR-RC-HELIXLABO-L2-023-001` | connection / 1.0 |"
+          },
+          "024": {
+            "line": 72,
+            "sha256": "e2753e01add3f192e21d6f465bcf856b386b9f306f5f19719870f4dabccb032e",
+            "text": "| `HELIXLABO-L2-024` | `MPR-RC-HELIXLABO-L2-024-001` | connection / 1.0 |"
+          },
+          "025": {
+            "line": 73,
+            "sha256": "3dd46871b90a26a3b4cb455cd833927ffa55dbcf0dcc030257fe634ab37257a6",
+            "text": "| `HELIXLABO-L2-025` | `MPR-RC-HELIXLABO-L2-025-001` | connection / 1.0 |"
+          },
+          "026": {
+            "line": 74,
+            "sha256": "bb1230b7dd609d0935a57b939072ca000ea1c339cdad2343bcf2b890e7194a7e",
+            "text": "| `HELIXLABO-L2-026` | `MPR-RC-HELIXLABO-L2-026-001` | connection / 1.0 |"
+          },
+          "027": {
+            "line": 75,
+            "sha256": "f634660a3d2d7f1bbbe1a304c67c29dab193a6111fbafdfce3f0fb0f3a9538a5",
+            "text": "| `HELIXLABO-L2-027` | `MPR-RC-HELIXLABO-L2-027-001` | connection / 1.0 |"
+          },
+          "028": {
+            "line": 76,
+            "sha256": "dea6833be4a1cc8d1b55d510123cbd3e9b7d1fc231f1dbb41a08fce70e33d305",
+            "text": "| `HELIXLABO-L2-028` | `MPR-RC-HELIXLABO-L2-028-001` | connection / 1.0 |"
+          },
+          "029": {
+            "line": 77,
+            "sha256": "b4c2231c30b44b0b83414e59572adb604151b4e8796ad707600fd701d0a950d2",
+            "text": "| `HELIXLABO-L2-029` | `MPR-RC-HELIXLABO-L2-029-001` | connection / 1.0 |"
+          },
+          "030": {
+            "line": 78,
+            "sha256": "3b5bf222abb250e17ddedd09550232a2dcc4a859205a4f89cc195f45d307c62f",
+            "text": "| `HELIXLABO-L2-030` | `MPR-RC-HELIXLABO-L2-030-001` | connection / 1.0 |"
+          },
+          "034": {
+            "line": 82,
+            "sha256": "335179495ed3e9be0be3b03ab96c7aba75318aacc1989d233cf1ec55ebfd4ae8",
+            "text": "| `HELIXLABO-L2-034` | `MPR-RC-HELIXLABO-L2-034-001` | connection / 1.0 |"
+          },
+          "035": {
+            "line": 83,
+            "sha256": "e51c58dba011a5e5e28aadd0bb7d5efb310196f5ee133b33f420cdf6d8ef0f67",
+            "text": "| `HELIXLABO-L2-035` | `MPR-RC-HELIXLABO-L2-035-001` | connection / 1.0 |"
+          },
+          "058": {
+            "line": 98,
+            "sha256": "2c834789d3519865352f16954a9f08748aed4220b7ed259bf826f2627630b34c",
+            "text": "| `HELIXLABO-L2-058` | `MPR-RC-HELIXLABO-L2-058-001` | unit / 1.0 |"
+          }
+        }
+      },
+      "register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "full_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
+        "full_bytes": 2108075,
+        "rows": {
+          "012": {
+            "line": 246,
+            "registration_id": "MPR-RC-HELIXLABO-L2-012-001",
+            "row_sha256": "d818a1284cc4398402d97401e7c0da0fa09e2a485c44f4290474285811cdab9d",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:bce298745ed3da0c1538e5bf7324a22da4b16e68715f915e46c48fa7731435a4"
+          },
+          "013": {
+            "line": 247,
+            "registration_id": "MPR-RC-HELIXLABO-L2-013-001",
+            "row_sha256": "0376314301e9bd9c011e4f028a0700752bfddf84d021bce10d2461d493f959f6",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:f2072a508c91ea00ff35ba233c945365b4dffe3e2d5a3c800152ce38add38876"
+          },
+          "014": {
+            "line": 248,
+            "registration_id": "MPR-RC-HELIXLABO-L2-014-001",
+            "row_sha256": "982a0da85fa268ef09c5339515ed5a0b0aed9a503b25629839912be428c23650",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:3d255c00ffd8f560dd9a181790bcc294bfae57e0571acac032ea1eba0f8760d8"
+          },
+          "015": {
+            "line": 249,
+            "registration_id": "MPR-RC-HELIXLABO-L2-015-001",
+            "row_sha256": "2e425f44a212c3f90f2efd71a7467569818eedb303f7141ad5f57a4d8feb816e",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:c55dbc5072f5a55a2e35c7d7acd39392441d19ca3f3c3db387c313c63e73437c"
+          },
+          "016": {
+            "line": 250,
+            "registration_id": "MPR-RC-HELIXLABO-L2-016-001",
+            "row_sha256": "8c33922bb8feaca0cb4857219389ff59374e7a54e98e57413f9026b228303b81",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:439c9ed877915de9a0d2f3028fce04a12f451d7812946e3322be8b46306e8467"
+          },
+          "017": {
+            "line": 251,
+            "registration_id": "MPR-RC-HELIXLABO-L2-017-001",
+            "row_sha256": "67131ee6fad313e455de795cb3b13574d4c4356e4a27408c4ac367409502843f",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:34ceade9563b09db94ef5d031c66df4c2741db3d13aa126ca0aa74b9a92b5440"
+          },
+          "018": {
+            "line": 252,
+            "registration_id": "MPR-RC-HELIXLABO-L2-018-001",
+            "row_sha256": "135be1b17ea46255358fea1b3a1f69c4d1b2357c604af4b3c55200597f4d2950",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:d1b31fb8d379f9dcfcdc6213ac4d7fcb193e20d7d59276e231f548f3db9dcfdd"
+          },
+          "019": {
+            "line": 253,
+            "registration_id": "MPR-RC-HELIXLABO-L2-019-001",
+            "row_sha256": "05ceed129276317cda0d985dc7054ca6ed650b48d4ff71f6dd2ea700faae3bf2",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:e7a90eba26b101083aa9fa449b220ea53d5c8230eed1f82980797cdabbb51d65"
+          },
+          "020": {
+            "line": 254,
+            "registration_id": "MPR-RC-HELIXLABO-L2-020-001",
+            "row_sha256": "9797ac61bc6b7ee9f4b49f40e11bda63d136eac01bfb3a29423ec8e55f16932a",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:61ae506fe25a2218b3c2581e47eb76a167f8344cc792d5c27d4895bd65121501"
+          },
+          "021": {
+            "line": 255,
+            "registration_id": "MPR-RC-HELIXLABO-L2-021-001",
+            "row_sha256": "502a3f523533d0d2395ee7fd3b7f9488d4e4b540a3d5505e0f82ec9c27cec08c",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:00dda7b8a7675bba719585e6fbb94e43a2f273146b195d00daae5718f3f1fc9e"
+          },
+          "022": {
+            "line": 256,
+            "registration_id": "MPR-RC-HELIXLABO-L2-022-001",
+            "row_sha256": "555854154ce6ef40da153aaf8a4954a6bece82c5ecbb2640a6708513f35179fa",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:4dba319cb6d4abe7c909c9ffc1c9e50593efe4aa6d26548fd0434375baeae783"
+          },
+          "023": {
+            "line": 257,
+            "registration_id": "MPR-RC-HELIXLABO-L2-023-001",
+            "row_sha256": "2a4bb532bfe9efd90805430ea19a414978a3292da70f377c01bc6b9d6081d3d0",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:aafe6d1641624bd7986d5fd6c6a1c67644221c9df0f4503433f442c98f26a36b"
+          },
+          "024": {
+            "line": 258,
+            "registration_id": "MPR-RC-HELIXLABO-L2-024-001",
+            "row_sha256": "603c40440d8a4afa1c39572bea4bd1ce5920f7a4d13cbdc160b7ec143d4a8d48",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:b9716e90512221b17da8f2eb3df7d8ea64bcdab2e4223ea32a720ae8c19ddbd4"
+          },
+          "025": {
+            "line": 259,
+            "registration_id": "MPR-RC-HELIXLABO-L2-025-001",
+            "row_sha256": "c987a79ce2ff34cea6ccff34e43c26fa8000e8552add9544b459a4c0abf1c431",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:e6cc467c72635a5fb91257cfb90f6a1039654d8f34a28454353566e3f3c28bf3"
+          },
+          "026": {
+            "line": 260,
+            "registration_id": "MPR-RC-HELIXLABO-L2-026-001",
+            "row_sha256": "00831f5a85eba46d3667cf6fddf04db4eab3f0917a4669d48079fd9fce27de04",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:64944055712d4d2c8ad4817624c5eeacba241c5bf7a008da18b2cfcdb53ec150"
+          },
+          "027": {
+            "line": 261,
+            "registration_id": "MPR-RC-HELIXLABO-L2-027-001",
+            "row_sha256": "7d4af3134b12988cc9649a9501ecc4e469b1bd491bebe066e1cecbbd56b74d1d",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:ee444d777dfa4e45646584941998a8fa812b0070d62261e0c9ae3249928b8bab"
+          },
+          "028": {
+            "line": 262,
+            "registration_id": "MPR-RC-HELIXLABO-L2-028-001",
+            "row_sha256": "9448a30238861afe0771f0aa26ae7628db53c565c17703e771ea3c8e1164cdda",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:f51b751526a581ca0cd80821dfdb9b558d3e2d4d0d3cb123420ea7391e45564e"
+          },
+          "029": {
+            "line": 263,
+            "registration_id": "MPR-RC-HELIXLABO-L2-029-001",
+            "row_sha256": "e57ed0db58df2dde69f2e3d6be24c1a942e38d13f1edabc450f3815854b06500",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:c37e1dbc85f2c6fcfb9b55e28d867faf9c4727a3615bd36882a71353eed3c89f"
+          },
+          "030": {
+            "line": 264,
+            "registration_id": "MPR-RC-HELIXLABO-L2-030-001",
+            "row_sha256": "38a8a9d93f1fd760b86227cbdcfcce4e66e3e75fc6951036f080b27904eaa36d",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:79a9ed7a30f650e949b2f092958a3e84c428e7ff84c0e6409fd056196d4c1e50"
+          },
+          "034": {
+            "line": 268,
+            "registration_id": "MPR-RC-HELIXLABO-L2-034-001",
+            "row_sha256": "c12b6fbe1bc32da0f882bda439e56729e46fa152f3aefce39e2a8ef8d9870020",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:3d6fa067472bd28ce86fa0da805972e817170bde8602652a2e070b9af572cdbf"
+          },
+          "035": {
+            "line": 269,
+            "registration_id": "MPR-RC-HELIXLABO-L2-035-001",
+            "row_sha256": "a6b3c3f613d35b2218cc90871609439f11dfd15f31ec2afa279e2bf9decbe0a0",
+            "kind": "connection",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:8cdd8f7cbbdeb905ea12b600ff007e25ad5f0bb6196c70009402ef1453662bfd"
+          },
+          "058": {
+            "line": 350,
+            "registration_id": "MPR-RC-HELIXLABO-L2-058-001",
+            "row_sha256": "bbba25e553c0b2d163660d65e6cb373fbac5e5b4bdae2711ed4f6015cabfd067",
+            "kind": "unit",
+            "version": null,
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:0ff4f665f3a465611b2489a908bfb161e852fa5706393d04c21d59c3598d9f17"
+          }
+        }
+      }
+    },
+    "adopted_parent_ids": [
+      "HELIXLABO-L2-012",
+      "HELIXLABO-L2-013",
+      "HELIXLABO-L2-014",
+      "HELIXLABO-L2-015",
+      "HELIXLABO-L2-016",
+      "HELIXLABO-L2-017",
+      "HELIXLABO-L2-018",
+      "HELIXLABO-L2-019",
+      "HELIXLABO-L2-020",
+      "HELIXLABO-L2-021",
+      "HELIXLABO-L2-022",
+      "HELIXLABO-L2-023",
+      "HELIXLABO-L2-024",
+      "HELIXLABO-L2-025",
+      "HELIXLABO-L2-026",
+      "HELIXLABO-L2-027",
+      "HELIXLABO-L2-028",
+      "HELIXLABO-L2-029",
+      "HELIXLABO-L2-030",
+      "HELIXLABO-L2-034",
+      "HELIXLABO-L2-035",
+      "HELIXLABO-L2-058"
+    ],
+    "version_target": "1.0",
+    "po_stage2b_decision_path": "docs/governance/decisions/helix-labo-stage2b-remainder-l3-l10-po-decision-2026-10-06.md",
+    "adoption_semantics": "The PO decision explicitly adopts 22 candidate identities with meaning/scope/owner/version unchanged; these rows are not new approval for current six-body full revisions."
+  },
+  "legacy_source_inventory": {
+    "legacy_infinity_l3": {
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "bytes": 18905,
+      "cited_raw_spans": [
+        {
+          "lines": [
+            35,
+            36
+          ],
+          "raw_span_sha256": "3c8528904fc448fd67726b3c64d576aeb1d83ccac12f80792d57c82521f60cd7",
+          "bytes": 958
+        },
+        {
+          "lines": [
+            45,
+            45
+          ],
+          "raw_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+          "bytes": 449
+        },
+        {
+          "lines": [
+            64,
+            65
+          ],
+          "raw_span_sha256": "5d26ab8dba0092e085a8fbc322709065ef3a24325f28e813b1e5290f9a668e22",
+          "bytes": 370
+        },
+        {
+          "lines": [
+            74,
+            74
+          ],
+          "raw_span_sha256": "cc1cf0656852a932dfe3e3a776687b111d3fec418d6b51bd8474c85dca9aad10",
+          "bytes": 173
+        },
+        {
+          "lines": [
+            94,
+            94
+          ],
+          "raw_span_sha256": "2e5aff8e82f27044f7ea2ccdd22e836688097304cecf9559b50ab54288f555ac",
+          "bytes": 30
+        }
+      ],
+      "disposition": "意味・版・source lineage・unknownを保つ要求の形を類例として再利用。Stage2bの各domain接続semanticsは現行固定L2から再導出。旧Issue/runtime/approval gateは置換/不採用。"
+    },
+    "legacy_infinity_acceptance": {
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "bytes": 7819,
+      "cited_raw_spans": [
+        {
+          "lines": [
+            33,
+            34
+          ],
+          "raw_span_sha256": "e8d3be0648318d19fea9323febf78fe25756deda290baebdd1456fddc0269736",
+          "bytes": 448
+        },
+        {
+          "lines": [
+            43,
+            43
+          ],
+          "raw_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+          "bytes": 221
+        }
+      ],
+      "disposition": "positive/negative traceと独立caseの組み方のみ類例として再利用。旧test-designやruntimeは実行せず、旧case ID・oracleを移植しない。"
+    },
+    "legacy_uil_l3": {
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "bytes": 12101,
+      "cited_raw_spans": [
+        {
+          "lines": [
+            33,
+            40
+          ],
+          "raw_span_sha256": "8f7667669513264d56c0f20db8e3bb99bc829c4f54aa697cd7dd9121593b3fc2",
+          "bytes": 731
+        },
+        {
+          "lines": [
+            41,
+            75
+          ],
+          "raw_span_sha256": "24f4495d5868f8a5ba6f257751be1adc2d4ba651dab87ddc11c6752cb7cecc77",
+          "bytes": 2716
+        },
+        {
+          "lines": [
+            76,
+            122
+          ],
+          "raw_span_sha256": "6a791b9454420a969d6f2e2d279de3364f8ccbf0fdb79357c09e45b94f0dd4d3",
+          "bytes": 1701
+        },
+        {
+          "lines": [
+            123,
+            142
+          ],
+          "raw_span_sha256": "aa1844af48f6063aa642c25888a2c2e686d3af682bcf82377ed97d0e9a4b54c6",
+          "bytes": 1499
+        },
+        {
+          "lines": [
+            143,
+            161
+          ],
+          "raw_span_sha256": "d73371ac55bc44e118ccf408089d12d32b4530d7c35b1e4d0057118a75c82cee",
+          "bytes": 1196
+        }
+      ],
+      "disposition": "scope/counterexample/proposal/authority boundaryの隣接概念を再導出の参考とする。UIL lifecycle/authority/outputを現行parent扱いしない。"
+    },
+    "legacy_uil_acceptance": {
+      "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "full_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "bytes": 4977,
+      "cited_raw_spans": [
+        {
+          "lines": [
+            20,
+            44
+          ],
+          "raw_span_sha256": "43ccc413c61792640094922873f47710fb40d661cb8e3f7265c0b23c663a73c7",
+          "bytes": 4308
+        }
+      ],
+      "disposition": "正例/反例をfield単位で分ける構造の類例のみ。旧受入仕様・実行方法を移さない。"
+    }
+  },
+  "six_body_inventory": {
+    "BR": {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "old_reviewed_body_sha256": "39fa84086d01f8dc38829c12edc37fef0bd3a9a54f354891938c501fd7f4778a",
+      "old_reviewed_bytes": 8587,
+      "current_main_body_sha256": "0f8ac8cd03c76c62492f9c5f4e3557eb7f84dc8e761e17186bac532fb5efff43",
+      "current_main_bytes": 32796,
+      "whole_body_equal": false,
+      "old_decision_pin_sha256": "39fa84086d01f8dc38829c12edc37fef0bd3a9a54f354891938c501fd7f4778a",
+      "old_sha_matches_historical_pin": true
+    },
+    "FR": {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "old_reviewed_body_sha256": "b60c459ec97aa71a2a014f9debd733a2d1adb1afadda6b1acc8a030d3490e071",
+      "old_reviewed_bytes": 251786,
+      "current_main_body_sha256": "8e8c46bab92d29d7237cca4bab27857113088f6e25c62c459d6392fe6be30360",
+      "current_main_bytes": 351942,
+      "whole_body_equal": false,
+      "old_decision_pin_sha256": "b60c459ec97aa71a2a014f9debd733a2d1adb1afadda6b1acc8a030d3490e071",
+      "old_sha_matches_historical_pin": true
+    },
+    "NFR": {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "old_reviewed_body_sha256": "9559a4dcff2a55d04458410cc15cdb7ef52525844a5624117d2acb0fcef3174e",
+      "old_reviewed_bytes": 56000,
+      "current_main_body_sha256": "7a0499403af9ddc7872f42ea1a09717390474384d5c19b28aac4fd2a60fc5d9d",
+      "current_main_bytes": 90566,
+      "whole_body_equal": false,
+      "old_decision_pin_sha256": "9559a4dcff2a55d04458410cc15cdb7ef52525844a5624117d2acb0fcef3174e",
+      "old_sha_matches_historical_pin": true
+    },
+    "BV": {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "old_reviewed_body_sha256": "a7ea1ff62ba6d2e52464ba5057c9e0044e09edc6f861ac3d33275e1114612007",
+      "old_reviewed_bytes": 7644,
+      "current_main_body_sha256": "bf240469ba0333665e9eabb49becb1443c8426e425f8c67e82c81baa4d0b1709",
+      "current_main_bytes": 31354,
+      "whole_body_equal": false,
+      "old_decision_pin_sha256": "a7ea1ff62ba6d2e52464ba5057c9e0044e09edc6f861ac3d33275e1114612007",
+      "old_sha_matches_historical_pin": true
+    },
+    "FV": {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "old_reviewed_body_sha256": "d9bb07d7e7d0ecbc9947c6b1b9b554fe6d2b950674e2e9dae961594215c8e9d7",
+      "old_reviewed_bytes": 287563,
+      "current_main_body_sha256": "df0d6cf5b76e44fae067cecba9a0086c08612884e3ddb4fb31224fb2c053f8ab",
+      "current_main_bytes": 685415,
+      "whole_body_equal": false,
+      "old_decision_pin_sha256": "d9bb07d7e7d0ecbc9947c6b1b9b554fe6d2b950674e2e9dae961594215c8e9d7",
+      "old_sha_matches_historical_pin": true
+    },
+    "NFRV": {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "old_reviewed_body_sha256": "6064e42c024db902bcbe7136bbd490265d6a3812aac75d431209b1642227a7f3",
+      "old_reviewed_bytes": 45678,
+      "current_main_body_sha256": "9a505e0b63d3f1ba791fee982ad7a9a7476259759b43e2f59b06516ac62ce598",
+      "current_main_bytes": 81538,
+      "whole_body_equal": false,
+      "old_decision_pin_sha256": "6064e42c024db902bcbe7136bbd490265d6a3812aac75d431209b1642227a7f3",
+      "old_sha_matches_historical_pin": true
+    }
+  },
+  "stage2b_scoped_sections": {
+    "BR::## Stage 2b — 残22親の業務境界": {
+      "header": "## Stage 2b — 残22親の業務境界",
+      "old_start_line": 27,
+      "current_start_line": 27,
+      "old_raw_sha256": "0db95329854a422275a8e281b62452b897515c5d405504b9434e6bcec72cf65b",
+      "old_raw_bytes": 4352,
+      "current_raw_sha256": "1842fa1d131dbc4cee873b441931cbfaa6ad8563fec936e76950ae8affc24e47",
+      "current_raw_bytes": 4353,
+      "raw_equal": false,
+      "raw_diff": {
+        "kind": "one terminal LF added only",
+        "added_bytes": 1,
+        "deleted_bytes": 0,
+        "added_lines": 0,
+        "deleted_lines": 0
+      },
+      "old_normalized_sha256": "6c749b71680062aab486a309c63baa88fba4034f265f0fd23babed75e55ed473",
+      "current_normalized_sha256": "6c749b71680062aab486a309c63baa88fba4034f265f0fd23babed75e55ed473",
+      "normalized_equal": true,
+      "normalized_diff": {
+        "added_lines": 0,
+        "deleted_lines": 0
+      }
+    },
+    "FR::## Stage 2b 接続・条件補足22件（部分草稿・未承認）": {
+      "header": "## Stage 2b 接続・条件補足22件（部分草稿・未承認）",
+      "old_start_line": 555,
+      "current_start_line": 555,
+      "old_raw_sha256": "ca287614775ea5a036c8470a0cdaa2931b3c2e9d594767a1b82bb50fead6f34a",
+      "old_raw_bytes": 17971,
+      "current_raw_sha256": "ca287614775ea5a036c8470a0cdaa2931b3c2e9d594767a1b82bb50fead6f34a",
+      "current_raw_bytes": 17971,
+      "raw_equal": true,
+      "raw_diff": {
+        "kind": "byte_identical",
+        "added_bytes": 0,
+        "deleted_bytes": 0,
+        "added_lines": 0,
+        "deleted_lines": 0
+      },
+      "old_normalized_sha256": "1b7a28a8884362a2fd728956092ddcfe8513df0843087034771b63c9e593c0a7",
+      "current_normalized_sha256": "1b7a28a8884362a2fd728956092ddcfe8513df0843087034771b63c9e593c0a7",
+      "normalized_equal": true,
+      "normalized_diff": {
+        "added_lines": 0,
+        "deleted_lines": 0
+      }
+    },
+    "FR::## Stage 2b — 独立case追補のFR/AC trace": {
+      "header": "## Stage 2b — 独立case追補のFR/AC trace",
+      "old_start_line": 1504,
+      "current_start_line": 1504,
+      "old_raw_sha256": "c8012bfa8e409b36339e5de4cf7b1865be8368f9a38093b984015cffd2f5187b",
+      "old_raw_bytes": 11090,
+      "current_raw_sha256": "3d5fe5979b38ca6fb8b58442c892d7604e53a32e12f59c36e9d45a6d0f39d75b",
+      "current_raw_bytes": 11091,
+      "raw_equal": false,
+      "raw_diff": {
+        "kind": "one terminal LF added only",
+        "added_bytes": 1,
+        "deleted_bytes": 0,
+        "added_lines": 0,
+        "deleted_lines": 0
+      },
+      "old_normalized_sha256": "b614a3e320d11e3326565b5eb354f06ce5527edbc6a3308984e2ff8bb71526bb",
+      "current_normalized_sha256": "b614a3e320d11e3326565b5eb354f06ce5527edbc6a3308984e2ff8bb71526bb",
+      "normalized_equal": true,
+      "normalized_diff": {
+        "added_lines": 0,
+        "deleted_lines": 0
+      }
+    },
+    "NFR::## Stage 2b — 残22親のNFR候補": {
+      "header": "## Stage 2b — 残22親のNFR候補",
+      "old_start_line": 101,
+      "current_start_line": 101,
+      "old_raw_sha256": "1c56783c1acbc051abb471731f9546d443da8e5e138494cd39720700a7058819",
+      "old_raw_bytes": 15820,
+      "current_raw_sha256": "1c56783c1acbc051abb471731f9546d443da8e5e138494cd39720700a7058819",
+      "current_raw_bytes": 15820,
+      "raw_equal": true,
+      "raw_diff": {
+        "kind": "byte_identical",
+        "added_bytes": 0,
+        "deleted_bytes": 0,
+        "added_lines": 0,
+        "deleted_lines": 0
+      },
+      "old_normalized_sha256": "ce3e7afab3b52c37c72c042ec46b445d3f1b5d89ebb0872188493b5e8240e81e",
+      "current_normalized_sha256": "ce3e7afab3b52c37c72c042ec46b445d3f1b5d89ebb0872188493b5e8240e81e",
+      "normalized_equal": true,
+      "normalized_diff": {
+        "added_lines": 0,
+        "deleted_lines": 0
+      }
+    },
+    "NFR::## Stage 2b — 過去追補のNFR索引（現在の個別fixture参照）": {
+      "header": "## Stage 2b — 過去追補のNFR索引（現在の個別fixture参照）",
+      "old_start_line": 132,
+      "current_start_line": 132,
+      "old_raw_sha256": "f9439efbd0411ea8944b13c30405284d8f5604742ed59c1b6f67c5314d3509b8",
+      "old_raw_bytes": 8901,
+      "current_raw_sha256": "b65880aa9d427caf9307bd8dea58858245091047a875a1d160fbbb94b9272401",
+      "current_raw_bytes": 8902,
+      "raw_equal": false,
+      "raw_diff": {
+        "kind": "one terminal LF added only",
+        "added_bytes": 1,
+        "deleted_bytes": 0,
+        "added_lines": 0,
+        "deleted_lines": 0
+      },
+      "old_normalized_sha256": "c7b1d3e7c1bda8293524259823ec9d158d21443d1ef5c23c2e99233ae5da8062",
+      "current_normalized_sha256": "c7b1d3e7c1bda8293524259823ec9d158d21443d1ef5c23c2e99233ae5da8062",
+      "normalized_equal": true,
+      "normalized_diff": {
+        "added_lines": 0,
+        "deleted_lines": 0
+      }
+    },
+    "BV::## Stage 2b — 残22親の業務境界": {
+      "header": "## Stage 2b — 残22親の業務境界",
+      "old_start_line": 25,
+      "current_start_line": 25,
+      "old_raw_sha256": "60d0fc92ad85c51bee4f096d792cc2b60b40ace6bc8402a2ed354fabe64796b5",
+      "old_raw_bytes": 4352,
+      "current_raw_sha256": "e1fe7ec0f5ea08cc812219f2d03ab369c1a5a421c9abe9471a238dcdf34c3947",
+      "current_raw_bytes": 4353,
+      "raw_equal": false,
+      "raw_diff": {
+        "kind": "one terminal LF added only",
+        "added_bytes": 1,
+        "deleted_bytes": 0,
+        "added_lines": 0,
+        "deleted_lines": 0
+      },
+      "old_normalized_sha256": "4ab395d38697d6f50a295c2972c50f3dfa2efbb7e9853fafa45f3fb3350e75a6",
+      "current_normalized_sha256": "4ab395d38697d6f50a295c2972c50f3dfa2efbb7e9853fafa45f3fb3350e75a6",
+      "normalized_equal": true,
+      "normalized_diff": {
+        "added_lines": 0,
+        "deleted_lines": 0
+      }
+    },
+    "FV::## Stage 2b 接続・条件補足22件（未承認・未実行）": {
+      "header": "## Stage 2b 接続・条件補足22件（未承認・未実行）",
+      "old_start_line": 561,
+      "current_start_line": 561,
+      "old_raw_sha256": "25a5375123d57d745d7f33ac258132ee9621c87aa46210c120a0d3b5589ff46c",
+      "old_raw_bytes": 50901,
+      "current_raw_sha256": "25a5375123d57d745d7f33ac258132ee9621c87aa46210c120a0d3b5589ff46c",
+      "current_raw_bytes": 50901,
+      "raw_equal": true,
+      "raw_diff": {
+        "kind": "byte_identical",
+        "added_bytes": 0,
+        "deleted_bytes": 0,
+        "added_lines": 0,
+        "deleted_lines": 0
+      },
+      "old_normalized_sha256": "12ad5f0bc6df4597a58f53f790c2703e92ded5075a0a3dcf3ca3628fc14878c1",
+      "current_normalized_sha256": "12ad5f0bc6df4597a58f53f790c2703e92ded5075a0a3dcf3ca3628fc14878c1",
+      "normalized_equal": true,
+      "normalized_diff": {
+        "added_lines": 0,
+        "deleted_lines": 0
+      }
+    },
+    "FV::## Stage 2b — 22親の独立反例fixture追補": {
+      "header": "## Stage 2b — 22親の独立反例fixture追補",
+      "old_start_line": 1207,
+      "current_start_line": 1207,
+      "old_raw_sha256": "bfc0b98a655397a20ba8a04b4d951d127c97878262246417640b3c495dcd736a",
+      "old_raw_bytes": 35787,
+      "current_raw_sha256": "bfc0b98a655397a20ba8a04b4d951d127c97878262246417640b3c495dcd736a",
+      "current_raw_bytes": 35787,
+      "raw_equal": true,
+      "raw_diff": {
+        "kind": "byte_identical",
+        "added_bytes": 0,
+        "deleted_bytes": 0,
+        "added_lines": 0,
+        "deleted_lines": 0
+      },
+      "old_normalized_sha256": "337b8e44e032487a2847a4666921a96c657da2f6039a7a055b32ba0dab180143",
+      "current_normalized_sha256": "337b8e44e032487a2847a4666921a96c657da2f6039a7a055b32ba0dab180143",
+      "normalized_equal": true,
+      "normalized_diff": {
+        "added_lines": 0,
+        "deleted_lines": 0
+      }
+    },
+    "NFRV::## Stage 2b — 残22親のNFR測定設計": {
+      "header": "## Stage 2b — 残22親のNFR測定設計",
+      "old_start_line": 86,
+      "current_start_line": 86,
+      "old_raw_sha256": "47988e1ee19ff5190a2333f36b9ffcd33182acb8c603f0de41cae7815b012b86",
+      "old_raw_bytes": 15878,
+      "current_raw_sha256": "59f984709b1c825730851ec4317fedca71e1643a752b4f2732fb3bb5cd9b519a",
+      "current_raw_bytes": 15879,
+      "raw_equal": false,
+      "raw_diff": {
+        "kind": "one terminal LF added only",
+        "added_bytes": 1,
+        "deleted_bytes": 0,
+        "added_lines": 0,
+        "deleted_lines": 0
+      },
+      "old_normalized_sha256": "6893a3c2e61fc0d1a0fb82c7568e9800b88d4456603a6fc0394a42f30af24ec1",
+      "current_normalized_sha256": "6893a3c2e61fc0d1a0fb82c7568e9800b88d4456603a6fc0394a42f30af24ec1",
+      "normalized_equal": true,
+      "normalized_diff": {
+        "added_lines": 0,
+        "deleted_lines": 0
+      }
+    }
+  },
+  "normalization_definition": "For normalized section comparison only: decode UTF-8, normalize CRLF/CR to LF, remove trailing spaces/tabs per line, and ignore terminal LF(s). No other content is normalized. Raw spans are compared byte-for-byte.",
+  "current_body_revision_status": "All six current-main full-body hashes differ from the old body revision. Even where remainder spans are raw-identical or differ only by terminal LF, the old review/decision does not transfer to the current full-body revision. Fresh exact-current six-body Opus/Fable review is needed.",
+  "static_verification": {
+    "old_full_hashes_match_historical_pin": true,
+    "all_22_fixed_L2_rows_found": true,
+    "all_22_fixed_L11_rows_found": true,
+    "all_22_PO_adoption_rows_found": true,
+    "all_22_register_rows_found": true,
+    "legacy_tests_or_runtime_executed": false,
+    "canonical_bodies_or_historical_records_modified": false,
+    "independent_review_of_current_revision": false
+  },
+  "worktree_branch": "codex/labo-stage2b-historical-attribution-inventory",
+  "base_revision": "c0dab045c9708f1eabde20407609cb3e5fb5734a",
+  "reference_audits": {
+    "harness_inventory_reference": "/home/tenni/.helix-worktrees/harness-stage2b-misattribution-inventory/docs/governance/audits/requirements-stage/harness-stage2b-remainder-main-integration-2026-10-08-4fdcd449.json",
+    "intelligence_stage4_reference": "/home/tenni/.helix-worktrees/intelligence-stage4-attribution-reaudit/docs/governance/audits/requirements-stage/l3-l10-intelligence-stage4-main-publication-2026-10-06.json",
+    "format_used": "six full-body SHA inventory; exact fixed L2/L11/PO pins; section raw span comparison separate from normalized content comparison; no authority effects."
+  },
+  "section_comparison_summary": {
+    "section_count": 9,
+    "normalized_identical_count": 9,
+    "raw_byte_identical_count": 4,
+    "raw_difference_terminal_LF_only_count": 5,
+    "fresh_current_full_body_review_required": true
+  }
+}
