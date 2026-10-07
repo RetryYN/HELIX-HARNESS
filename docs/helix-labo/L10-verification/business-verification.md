@@ -201,3 +201,19 @@
 固定L2/L11から独立のbusiness outcome/ownerは導かれないため、独立BV/AC/BCASEを追加しない。L2-066が定める同条件比較の成果を、L3 functional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` に従って [L10 functional verification](functional-verification.md) で照合する。
 
 `LABO-066-BV-01` は独立成果判定ではなく、同じ比較材料（misrepair_count/N、unresolved_count/N、L2-059由来の費用・時間・手戻り）が固定scopeとsource receiptに追跡可能なことを記録する参照項目である。計測結果から効果達成、採択、実装、run許可、業務完了を生成しない。L10検証は未実行。
+
+## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
+
+固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。
+
+独立した業務成果・採否・運用完了の判定は追加せず、FR-01の観測scorecard境界をbusiness viewから照合する。
+
+| 観測対象 | business-level oracle | 禁止する読替え |
+|---|---|---|
+| 4種duration | 各値は別のsource event境界・clock/unit・scopeに結ばれる。 | queue/review/Human/activeを推定按分または合算して059 wall-clockとする。 |
+| escaped defect | 既存oracle/revisionと、受入済対象への受入境界後verified eventを追跡する。 | 未確認findingをdefectにする、重大度/追加の観測window/合否thresholdを新設する。 |
+| rollback/Recovery | 観測済みevent/result receiptを表示する。 | 観測からtrigger・rollback/Recovery操作権限・rollback/Recovery実行を生成する。 |
+| overhead/freshness | overhead直接観測値とtask workを分け、freshness ageをsource時刻に束ねる。provenanceは各有効source receiptの実値と完全一致させる。 | unknown overhead=0、ageからexpiry/admissionを決める、provenance欠落/別値を受理する。 |
+| 067/068同時表示 | 各fieldが適用可能なら独立定義とreceiptを同時に示す。 | 換算・合算・代替、未採択値の採択推定。 |
+
+CASE-10/15/19は有効入力に対する070自身の出力誤りを拒否し、正常source/oracle/metricへ不足責務を返さない。CASE-85–93/96–98/102–109はFV主fixtureを参照し、固定親が禁じる各単独出力fieldの生成拒否と既存状態保持をbusiness viewから照合する。これらは業務成果や新しい採否/permissionを追加しない。CASE-01/99–101ではtarget revisionとsource identity/revisionをreceiptの実値と照合し、CASE-01/125/126ではprovenance実値を照合する。CASE-110–123はreview05表が示す不足14セル、CASE-124は時計不正を各単独で照合する。target revision出力欠落、target revision混在、入力source_revision欠落を別々に判定する。overhead直接計測receiptの不足は値をunknownにして既存source owner責務区分へ返し、個別identity unknownは分離する。

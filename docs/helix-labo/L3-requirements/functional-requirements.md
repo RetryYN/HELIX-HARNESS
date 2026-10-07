@@ -1934,3 +1934,43 @@ L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を�
 `LABO-066-AC-02`（未見・FR-01/02/03）：B0とは別の合成比較scopeで、未見caseを含むeligible set N1を結果閲覧前に固定する。同じpredicate/oracleを適用できる根拠があればN1のcaseとして数え、適用不能ならunknown/未評価を保ち、oracle適用性不足を既存HARNESSまたは要求ownerへ返す。A identity/conditionの不足ならその入力の既存sourceへ戻し、特定個体不明はunknownを保持してLABO評価義務を残す。既存B0のNは変更しない。unknownを含む合成正常対照では、理由と影響するcase identityが該当入力のoracle適用結果/receiptと一致して表示され、Nに当該caseを保持し、その比較が未評価/比較不能で率非出力となることを照合する。
 
 `LABO-066-AC-03`（異常・境界・FR-01/02/03）：単独field mutationとして、task/scope/target revision各欠落、A version競合、時間measurement receipt欠落・source receipt不一致・比較出力不一致、費用receipt不一致、結果閲覧後の共通cutoff変更、unknown除外、その他の条件不一致、stale/missing receipt、費用receiptの片側欠落・非対称、結果閲覧後のoracle/N変更を個別に与え、各当該比較の率を出さず比較不能/未評価へ分ける。固定L2-066:527の不足・不一致は原因ごとの既存責務ownerへ返す。oracle/acceptance/scorer適用性およびoracle/判定receiptはHARNESSまたは要求owner、task/scope/target revision・A identity・eligible-set等の入力recordはその入力を供給する既存sourceの責務、assignment/run receiptはOS、result/cost/time receiptは各receiptの既存供給元、comparison scope/measurement/comparison/evaluationはLABOへ返し、個別source/owner identity unknownは別に保持する。LABOの評価義務は返却先個体の特定有無で消えない。新しいownerや分類を作らない。評価結果から採択・効果達成・実験/run許可・repair permission/action・placement・admission・requirement_complete・Worker/修復器の選定・割当・起動・実行を生成しない。旧Bugbot候補の採択、Bugbot/修復器の実装要求・実装開始・実装自体を生成しない。
+
+## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
+
+固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。
+
+### LABO-070-FR-01 — 補助運用telemetryとAttempt scorecard併記
+
+HELIXLABO-L1-005をprimary、L1-011をcontextとして、旧source line 399から固定親が選択した9 atomに限るscope付きscorecardを候補として提示する。既存のL2-059比較basis、L2-006品質評価、L2-001 provenanceを置換しない。対象task/scope、対象revision、window、source identity/revision、eventまたはresult receiptを各値に結び、条件が揃わない値はunknown/未評価/unavailableとする。異なるscope/revisionを混ぜず、欠落を0や成功へ変換しない。
+
+1. **4種のduration**：queue wait、active time、review wait、Human waitを別々のfieldで提示する。各durationは適用sourceの開始・終了event、clock source、unit、occurred_at/observed_at、windowを保持する。境界が不明・無効ならunknown/invalidとする。重なる待ち時間を排他的と推定して按分せず、4値の合計でL2-059のend-to-end wall-clockを再定義しない。
+2. **escaped defects**：既存の要求/受入ownerが適用するquality oracleとrevisionを用い、そのscopeで受入済みの対象へ関係付けられた受入境界後の検証済みdefect eventだけを観測値として示す。oracle、受入境界、追加の観測window、重大度または合否thresholdを新設しない。oracle/event/relation/母数/追跡完全性が確かめられない場合は確定count/rateを出さずunknown/未評価とする。L2-006のquality結果と同一視しない。
+3. **rollback/Recovery**：許可済みsourceのevent identity、scope、発生/結果state、receiptのみを観測する。費用・時間はL2-059の同一event/receipt参照に従い二重算入しない。欠落は「発生なし」でなくunknown。観測結果からLABOがrollback triggerを生成したり、rollbackを開始/決定したり、実行・復旧操作権限・Recovery実行を作ったりしない。
+4. **observer overhead**：計測・観測に直接帰属する実測資源とsource receiptをtask workから分けて示し、sourceの定義・単位を保つ。根拠のない推計や換算、未観測値の0扱いをしない。L2-059費用への算入は同じreceipt参照で一度だけとする。
+5. **evidence freshness**：L2-001の既存source identity/revision/provenanceを保ち、sourceが持つeffective/occurred時刻とobserved時刻との差を観測値として示す。時刻欠落/不整合はage unknown/invalid。ageからfresh/stale状態、期限、適格性、採否、実験許可を作らない。
+6. **Attempt系との併記**：scopeに適用可能なら、L2-067のfirst-eligible resultと同一Attempt内repair rounds、L2-068のdistinct total Attempt countを同じscorecardに別fieldとして置く。各定義revision/grain/identity/scope/receiptを保ち、換算・合算・代替しない。対象候補またはreceipt不在・不採択・scope不一致なら理由付きunavailable/unknownとし、併記完了を主張しない。070から067/068の採択を生成しない。
+7. **既存指標境界**：telemetryを旧12指標へsilent renameせずidentity/version対応を割り当てない。coverage atomのtarget/denominator/oracle等、固定親が未解決としたatomはsource holdingに残す。
+
+### 受入条件候補
+
+- **LABO-070-AC-01 — 出典付きscorecard**：9 selected atomの適用可能な値を明示scope/revision/window/event-or-result receiptに結ぶ。各fieldの定義・単位・identityを保持し、出力値とsource receiptまたはsource-defined計算値の一致をL10正常fixtureで照合する。source identity/revisionに加え、各evidenceのprovenance出力は対応する有効source receiptのprovenance実値と一致させる。対象revisionとsource identity/revisionの一致はCASE-01およびCASE-99–101で確認する。
+- **LABO-070-AC-02 — 正常な異単位field**：source定義に一致する異なるunitのfieldは別fieldのまま表示し、相互換算・合算しない。
+- **LABO-070-AC-03 — 欠落・不一致の隔離**：必要event/clock/unit/time/source/revision/oracle/scope/relation/receiptが欠落・不明・矛盾・staleなら該当fieldだけunknown/invalid/unavailableとし、0・成功・不存在に置き換えない。他の根拠あるfieldは別に保持する。
+- **LABO-070-AC-04 — 固定親の境界保持**：4 durationは独立、escaped defectは既存oracleと受入済対象/受入境界後の検証済みrelationに限定、rollbackは観測だけ、overheadは直接測定だけ、freshnessはage観測だけ。追加の観測window/重大度/合否threshold/expiry/decisionを作らない。Recovery操作権限/実行、age由来fresh/stale/期限/適格性、LABO作成の受入境界/受入済み/escapedの単独field生成拒否はL10 CASE-102–109で確認する。
+- **LABO-070-AC-05 — Attempt co-presentation**：scope適用可能な067/068 fieldを元定義とreceiptどおり独立表示し、不在・不一致のfieldは理由付きunavailable/unknownにする。換算・合算・代替で完全scorecardに見せない。
+
+### 欠落・不一致と出典保持の照合
+
+固定L11-070「欠落・比較不能」が列挙するsource completeness、event identity、definition revision、単位、oracle、scope/window、対象とのrelation、receiptについて、不足/stale/矛盾の状態を既存CASEとCASE-110〜123で、固定L2-070 evidence freshnessの時計不正をCASE-124でCASE-01の正常入力に対する単独変異として照合する。該当する一つのreceipt/fieldだけを変え、他のbaseline値は保持する。欠落・stale・矛盾のfieldは確定値、0、成功へ変換せずunknown/invalid/unavailableとする。source event、scope/window、escaped-defectのquality母数/追跡完全性ではない一般source記録completeness、event identity、unit、時計、067/068 predicate/oracle/task定義ではない一般source/metric definition revision、およびescaped-defect relation receipt・quality母数/追跡完全性receiptではない一般source receiptの不足/stale/矛盾は既存source/event/observation責務区分へ無条件で返す。escaped-defect eventと受入済対象を結ぶrelation、escaped-defectのquality母数/追跡完全性またはそのreceipt、またはその受入oracleの不足/stale/矛盾は既存要求/受入責務区分へ無条件で返す。067/068 fieldのpredicate/oracle/task定義revisionの不足・不一致は固定親のtask/要求owner責務区分へ無条件で返す。個別責務主体のidentity unknownは責務区分の返却を消さず別fieldで保持する。
+
+CASE-01の正常oracleは、各evidenceのsource identity/revisionとともに、対応する有効source receiptのprovenance実値との完全一致を照合する。CASE-125/126は入力側receiptが有効なまま、LABO出力provenance fieldだけをそれぞれ欠落・別値にする単独反例であり、当該LABO出力を訂正して正常sourceへ責務を返さない。
+
+### 旧sourceとの対応・限界
+
+旧`LEGACY-ASSET-3A15E5645D2D2A59DFF5` の `execution-ticket-requirements.md:399`を意味再導出の起点とし、固定親が選んだ9 atomだけを保持する。旧runtime/storage/testをbyte再利用しない。sourceの別receiptにある067/068関連3 atom、source holdingの2 unresolved atom、行399の他3 atom・列挙外tail・隣接行・旧candidate全体のsuccessor/closureを主張しない。旧12指標、旧scorecard、旧severity/thresholdを現行へ移さない。
+
+### 責務区分と出力境界
+
+許可済みsource event/assignmentは既存source owner（OS等）の責務区分、quality/acceptance oracleは既存要求owner、data/execution permissionは適用されるSECURITY境界に従う。固定親が定める責務区分を保ち、individual source/owner identityが不明な場合はそのidentityだけをunknownとして別に保持する。observer overheadの直接計測資源またはreceiptが不足する場合、値はunknownとして、その資源・receiptを提供する既存source owner責務区分へ無条件で返す。個別source/owner identityが不明なら、そのidentityだけをunknownとして別に保持し、責務区分を消さず、新ownerも作らない。CASE-10/15/19のように入力が有効で070自身の出力が誤る場合、入力側sourceへ返却せず当該出力処理を訂正する。
+
+CASE-85–93、CASE-96–98およびCASE-102–109は、source event・oracle・threshold・計測許可・要求採択・実験/run許可・Worker assignment・rollback permission/execution・Recovery操作権限/実行・fresh/stale状態・evidence期限/適格性・受入境界/受入済み/escaped出力・L3承認・requirement completionの出力生成を一つずつ拒否し、他の根拠あるscorecard fieldと既存状態を保つ。これらのCASEは固定親が禁じる生成の確認であり、権限/decisionを新設しない。CASE-99–101はAC-01のrevision照合、CASE-102–109はAC-04のRecovery・age由来判定・受入境界および状態出力の拒否であり、固定親が禁じる単独field生成を確認する。
