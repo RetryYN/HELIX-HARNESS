@@ -6,7 +6,7 @@
 
 | 親L2 | 業務分類 | 機能正本 |
 |---|---|---|
-| `HELIXBRAIN-L2-007` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-007-FR-01` / `BRAIN-007-AC-01,AC-02` |
+| `HELIXBRAIN-L2-007` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-007-FR-01` / `BRAIN-007-AC-01,AC-02`、functional L10 C01–C10 |
 | `HELIXBRAIN-L2-008` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-008-FR-01` / `BRAIN-008-AC-01,AC-02` |
 | `HELIXBRAIN-L2-028` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-028-FR-01` / `BRAIN-028-AC-01,AC-02` |
 

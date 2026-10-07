@@ -4,7 +4,7 @@
 
 | 親L2 | 独立business判定 | L10参照 |
 |---|---|---|
-| `HELIXBRAIN-L2-007` | 固定親から独立business outcomeなし。 | `BRAIN-007-AC-01/02`を`functional-verification.md`のC01–C09で照合。 |
+| `HELIXBRAIN-L2-007` | 固定親から独立business outcomeなし。 | `BRAIN-007-AC-01/02`を`functional-verification.md`のC01–C10で照合。 |
 | `HELIXBRAIN-L2-008` | 固定親から独立business outcomeなし。 | `BRAIN-008-AC-01/02`を`functional-verification.md`のC01–C09で照合。 |
 | `HELIXBRAIN-L2-028` | 固定親から独立business outcomeなし。 | `BRAIN-028-AC-01/02`を`functional-verification.md`のC01–C08で照合。 |
 
