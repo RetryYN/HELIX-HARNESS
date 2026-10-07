@@ -1,0 +1,31 @@
+{
+  "base": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+  "integrated_head": "e84c38867b4e1652da894ea4fd881295dac5d3e7",
+  "six_body_pins": {
+    "docs/helix-os/L3-requirements/business-requirements.md": {
+      "bytes": 20414,
+      "sha256": "445218a88d3b2b59a4eedc78cd979e19042e821fe7863ac0b3b8cce570ba556d"
+    },
+    "docs/helix-os/L3-requirements/functional-requirements.md": {
+      "bytes": 202764,
+      "sha256": "a10b3ab1289cb82c321e4c13c873487ee9ac87eb52eef8db2c0f29b4695f80bd"
+    },
+    "docs/helix-os/L3-requirements/nfr-grade.md": {
+      "bytes": 34041,
+      "sha256": "b9ef3a28eabeb4db5e6b772e950532662fd61980401945261a049439825736c2"
+    },
+    "docs/helix-os/L10-verification/business-verification.md": {
+      "bytes": 17887,
+      "sha256": "7dcc791523511ae6ff00e6c164b02e555dffa0a0dc7abb7f1e70646095a893b0"
+    },
+    "docs/helix-os/L10-verification/functional-verification.md": {
+      "bytes": 245135,
+      "sha256": "af3220e7281245bfdfe139d71f9af2ed727bc59cba9d27a2f12408df4eb71ae1"
+    },
+    "docs/helix-os/L10-verification/nfr-verification.md": {
+      "bytes": 31405,
+      "sha256": "536612107e98849e91549e8c1a65dff09bfdcdc874435ad0b5af334e2bba2469"
+    }
+  },
+  "033_added_deleted_lines_equal": true
+}
