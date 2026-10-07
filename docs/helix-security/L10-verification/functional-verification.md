@@ -239,30 +239,45 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 - **対象AC**: `SECURITY-AC-033-01`
 - **fixture/oracle**: OS共通Worker契約のidentityだけをunknownにし、version/state、assignment、他のbinding条件は正常値に固定する。identityを推定せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
 
+- **owner分類の期待値**: OS（共通Worker契約の不足）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。
+
 ### SECURITY-CASE-033-03 — OS共通Worker契約version unknown
 
 - **対象AC**: `SECURITY-AC-033-01`
 - **fixture/oracle**: OS共通Worker契約のversionだけをunknownにし、identity/state、assignment、他のbinding条件は正常値に固定する。versionを推定せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+- **owner分類の期待値**: OS（共通Worker契約の不足）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。
 
 ### SECURITY-CASE-033-04 — OS共通Worker契約state unknown
 
 - **対象AC**: `SECURITY-AC-033-01`
 - **fixture/oracle**: OS共通Worker契約のstateだけをunknownにし、identity/version、assignment、他のbinding条件は正常値に固定する。stateを推定せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
 
+- **owner分類の期待値**: OS（共通Worker契約の不足）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。
+
 ### SECURITY-CASE-033-05 — 実行環境の適用観測契約identity unknown
 
 - **対象AC**: `SECURITY-AC-033-01`
+- **呼称の範囲**: 「適用観測契約」は固定L2-007の受渡し→適用証拠の対応を指すL3上の呼び名で、具体identity/versionの存在や版付き契約の実装を前提にしない。
 - **fixture/oracle**: 実行環境の適用観測契約identityだけをunknownにし、version/effective state、assignment、他のbinding条件は正常値に固定する。具体identityを補作せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+- **owner分類の期待値**: unknown（物理適用・観測の責務主体を固定sourceから確定しない）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。OS・SECURITYの不足へ読み替えず、観測済みの物理欠落を示さない限りINFRASTRUCTURE接続候補にも分類しない。
 
 ### SECURITY-CASE-033-06 — 実行環境の適用観測契約version unknown
 
 - **対象AC**: `SECURITY-AC-033-01`
+- **呼称の範囲**: 「適用観測契約」は固定L2-007の受渡し→適用証拠の対応を指すL3上の呼び名で、具体identity/versionの存在や版付き契約の実装を前提にしない。
 - **fixture/oracle**: 実行環境の適用観測契約versionだけをunknownにし、identity/effective state、assignment、他のbinding条件は正常値に固定する。versionを補作せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+- **owner分類の期待値**: unknown（物理適用・観測の責務主体を固定sourceから確定しない）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。OS・SECURITYの不足へ読み替えず、観測済みの物理欠落を示さない限りINFRASTRUCTURE接続候補にも分類しない。
 
 ### SECURITY-CASE-033-07 — 実行環境のeffective state未観測
 
 - **対象AC**: `SECURITY-AC-033-01`
+- **呼称の範囲**: 「適用観測契約」は固定L2-007の受渡し→適用証拠の対応を指すL3上の呼び名で、具体identity/versionの存在や版付き契約の実装を前提にしない。
 - **fixture/oracle**: 実行環境のeffective state観測だけをunknownにし、適用観測契約identity/version、assignment、他のbinding条件は正常値に固定する。適用済み・未適用のいずれも推定せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。観測がない状態から物理enforcement欠落を確定しない。
+
+- **owner分類の期待値**: unknown（物理適用・観測の責務主体を固定sourceから確定しない）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。OS・SECURITYの不足へ読み替えず、観測済みの物理欠落を示さない限りINFRASTRUCTURE接続候補にも分類しない。
 
 ### SECURITY-CASE-033-08 — OSがauthority/policyを決定
 
@@ -273,6 +288,8 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 
 - **対象AC**: `SECURITY-AC-033-01`
 - **fixture/oracle**: 他のbinding条件を正常値に固定し、Worker実行環境／INFRASTRUCTUREによる物理適用観測が存在する一方、SECURITYが既存authority/policyと照合した結果、制約が適用されていないと確認する状態だけを与える。dispatchを停止し、INFRASTRUCTURE接続を候補として示す。理由・対象revision・不足・候補戻し先を含む停止結果は既存OS assignmentへ返す。観測そのものがない状態はCASE-033-07のunknownとして扱い、欠落と同一視しない。
+
+- **前提と境界**: ここでいうnot-appliedは観測済みの照合結果であり、未観測からの推定ではない。INFRASTRUCTUREへの確定的なowner移動や戻し先循環を作らない。
 
 ### SECURITY-CASE-033-10 — SECURITYがassignmentを決定
 
@@ -287,17 +304,17 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 ### SECURITY-CASE-033-12 — OS契約receiptを物理適用証拠へ誤用
 
 - **対象AC**: `SECURITY-AC-033-01`
-- **fixture/oracle**: assignment、共通Worker契約identity/version/state、物理適用の他の条件を正常値に固定し、OSのassignment／共通契約receiptだけを物理enforcement/effective stateの証拠として扱う単独変異を拒否する。receiptから物理適用済みも物理欠落も推定せず、dispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+- **fixture/oracle**: assignment、共通Worker契約identity/version/stateと物理適用の他の条件を正常値に固定し、評価器への適用証拠入力を後記receiptだけへ差し替えて、OSのassignment／共通契約receiptだけを物理enforcement/effective stateの証拠として扱う単独変異を拒否する。receiptから物理適用済みも物理欠落も推定せず、dispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
 
 ### SECURITY-CASE-033-13 — SECURITY policy宣言だけを物理適用証拠へ誤用
 
 - **対象AC**: `SECURITY-AC-033-01`
-- **fixture/oracle**: 他のbinding項目・物理適用観測を正常値に固定し、SECURITY policy宣言だけをeffective enforcement evidenceとして扱う単独変異を拒否する。宣言だけから適用済みを推定せず、dispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+- **fixture/oracle**: 他のbinding項目を正常値に固定し、評価器へ渡す物理適用証拠は後記の宣言／自己申告だけへ差し替えて、SECURITY policy宣言だけをeffective enforcement evidenceとして扱う単独変異を拒否する。宣言だけから適用済みを推定せず、dispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
 
 ### SECURITY-CASE-033-14 — Worker自己申告をeffective state証拠へ誤用
 
 - **対象AC**: `SECURITY-AC-033-01`
-- **fixture/oracle**: 他のbinding項目・物理適用観測を正常値に固定し、Worker自身の自己申告だけをeffective state/effective enforcement evidenceとして扱う単独変異を拒否する。自己申告だけから適用済みを推定せず、dispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+- **fixture/oracle**: 他のbinding項目を正常値に固定し、評価器へ渡す物理適用証拠は後記の宣言／自己申告だけへ差し替えて、Worker自身の自己申告だけをeffective state/effective enforcement evidenceとして扱う単独変異を拒否する。自己申告だけから適用済みを推定せず、dispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
 
 ### SECURITY-CASE-033-15 — INFRASTRUCTUREがpolicy/authorityを決定
 
