@@ -69,7 +69,7 @@ POの発言7「いま提案しているもの1の段階でできるものだし�
 ### 5. 保つ境界
 
 - 全件CIやnightlyは復活しない（[HARNESS V字の判断記録](harness-v-valley-process-po-decisions-2026-09-26.md) 40〜58行：PR前のCIはticketとの関係で決め、merge直後の全件実行と夜間の補完はしない）。
-- Ticket非参照境界（[OSのL2](../../helix-os/L2-requirements/governance-requirements.md) 1190行、HELIXOS-L2-047）：ticketを依存graphのnodeにしない。
+- Ticket非参照境界（[OSのL2](../../helix-os/L2-requirements/governance-requirements.md) 1190行、HELIXOS-L2-047。PO確認済み）：ticket自体に他ticket・成果物への参照を付けて依存の結節点にしない。成果物からticketを要求根拠・実装部品として参照しない。根拠は要求・設計・契約の正本へ辿る。ticket本文の外で、ticketを依存graphのどこに置くかは、同じ1190行が「旧文・PO回答から一意に決まらない新規案」としており、本書でも決めない（下の「POへの問い」3.）。
 - 影響の状態は、既存の要求の状態語（affected、unaffected、unknown、stale）を保つ。HARNESS-L2-082（2026-10-03の[PO判断](po-decision-2026-10-03-later35.md) 39行で承認。版は未指定）の、選択scopeのchild receiptをすべてstaleにする条件と、missing/unknown/staleをunknown／未完として扱う条件を、unaffectedへ狭めない。
 - 検査をすり抜けた失敗の振り返りはLABO（上記HARNESS V字の判断記録）、後段のfailureと依存edgeの結び付けはHELIXOS-L2-031に残す。
 - 進行中のL3／L10の固定親の意味を変えない。HARNESS-L2-040、HELIXLABO-L2-069／070へ、コンパイラの指標や構造を混ぜない。
@@ -83,19 +83,21 @@ POの発言7「いま提案しているもの1の段階でできるものだし�
 |---|---|---|
 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/system-synthesis-requirements.md` SYN-R-01（44行、接続identity）、SYN-R-02（49行、決定的部分合成） | node／edgeをidentity・revision・digestで束縛し、同じ入力から決定的に再生成する。曖昧・欠落・unknownをLLMの推測で補わない | なし（1.0の部品コンパイラの性質としてそのまま保つ） |
 | 同 SYN-R-07（89行、影響profile） | 変更から、固定registryにある検査の集合を合成する | unknown／high-riskをfullへ倒し、main・nightlyでfull verificationを必須とする点は採らない。2026-09-26のPO判断（全件実行と夜間補完をしない）と、unknownを状態として保持する現行要求（HARNESS-L2-082）に従う |
-| 同 SYN-R-09（102行、shadow限定の全体計画）、SYN-R-10（108行、Development Modelの昇格条件）。保留したincremental resynthesis（同123行、roadmap #1037） | 保留の解除条件（規則ベースの基準線を上回る再現可能な比較、複数projectの実績、誤判定の分類、shadowが書き込まないことの検証、L3での人の確認）を、2.0以降へ進む条件として引き継ぐ | 保留の対象を、2.0〜5.0の段階として名前を付けて並べる |
+| 同 SYN-R-09（102〜106行、shadow限定の全体計画）、SYN-R-10（108〜111行、Development Modelの昇格条件）。保留したincremental resynthesis（同123行、roadmap #1037） | SYN-R-09：whole-system synthesis、incremental resynthesis等をshadow／parkedとし、現行authorityと並走して精度・反例・rollbackを測り、L3の人間承認まで自動変更を行わない。SYN-R-10：小型判断modelは、規則ベースの基準線を上回る再現可能なbenchmark、複数projectの実績、誤判定の分類、fallback、versioned receiptがそろった後だけ、別のL3要求として提案できる。どちらも、それぞれの対象（自動変更を伴う全体合成・差分再合成、小型判断model）に限った条件として保持する | 2.0〜5.0の段階に名前を付けて並べる。旧条件を、後続の版すべてに共通の進入条件へ広げない。後続の版で同じ対象の能力を要求にするときに、それぞれの起点として読む |
 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md` CIS-R-04（60行）〜CIS-R-15（121行） | 証明責務のidentityと、安全性の測定 | 検査範囲を決める元を変更の差分からticketへ移す（2026-09-26のPO判断） |
 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md`、`L5-detail/impact-ci-recovery.md` | 影響範囲だけを検査し、省いた検査を記録して黙って捨てない | 回収の場所を、merge直後の全件実行から合流先のticketへ移す（同上） |
-| `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md` HXT-FR-003／007／016 | ticketを作業指示として扱う | ticketを依存graphのnodeや実装部品として参照しない（Ticket非参照境界） |
+| `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md` HXT-FR-003／007／016 | ticketを作業指示として扱う。作業順序の制約は既存OSの計画・typed relation契約で扱う（HXT-FR-007、212〜214行） | ticket本文に参照を付けず、成果物からticketを要求根拠・実装部品として参照しない（PO確認済みの非参照境界）。旧文にgraph node membershipの禁止はなく、本書もgraph上の配置は決めない |
 
 新しく加わるのは、1.0〜5.0をコンパイラの段階として並べる名前と、2.0／3.0のフィードバックの元をHELIX-Webの製品開発とする点である。どちらもPOの発言3・4・6・7による。
 
 ## POへの問い（未決）
 
-次の2件は、本書では決めない。
+次の3件は、本書では決めない。
 
 1. `HELIXLABO-L2-WEB-001`（Web由来のepisodeの関連づけ）と`HELIXLABO-L2-WEB-012`（顧客固有の意味と汎用化できる構造の分離）の採否と版。両者は2.0／3.0のフィードバックの元になるが、現在は候補であり（[LABOのL2](../../helix-labo/L2-requirements/labo-requirements.md) 352・374行）、本書から採択を生成しない。`HELIXLABO-L2-WEB-002..014`は今回扱わない。
 2. LABOの候補文書の14節は、見出しを「HELIX-LABO内のHELIX-Benchに対する追加要求」としている。POの発言5（Benchはモデルの話）と、製品開発の問題を拾う流れを、同じ節の中でどう分けるか。
+
+3. ticket本文の外で、Development Compilerの依存graphにticketをどう置くか（置かないか）。HELIXOS-L2-047:1190はこれを未決の新規案としている。1.0の部品コンパイラのticket差分（keep／cancel／stale／create等）を設計するときに、この問いを先に決める必要がある。
 
 ## 本書から生成しないもの
 
