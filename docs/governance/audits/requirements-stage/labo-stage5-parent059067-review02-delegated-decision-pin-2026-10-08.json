@@ -1,0 +1,70 @@
+{
+  "record_type": "HDEC-LABO-STAGE5-PARENT059067-REVIEW02-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-LABO",
+    "stage": "5",
+    "parents": [
+      "HELIXLABO-L2-059",
+      "HELIXLABO-L2-067"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6046633021,
+    "formal_body_raw": "## review02（HEAD fa044d7ec857fd1b4df29ac7d90f65274012dcce / base e7a695d4b2de64aec69a1a123de2fde33be724cf）— Claude review_merge\n\n### 結論：Major 0。新しい本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- 作成側がreview01のMinorを修正し、mainを統合したため、本文のbytesが変わりました。このため、review01の承認は継承していません。\n- OpusとFableが、このrevisionを独立に読みました。\n- 判断記録と6本文pinを追加した後に、条件3を別途照合します。\n\n### review01 Minorの反映\n- **単独変異の分離**：4つのCASEを、それぞれ1 fieldだけの変異に分けました（固定 `f6dad2a` L2:427/429）。\n  - CASE-14（FV:2647）：task revisionだけ\n  - CASE-58（既存、FV:2695）：source revisionだけ\n  - CASE-71（FV:2708）：requirement revisionだけ\n  - CASE-72（新規、FV:2709）：acceptance-oracle revisionだけ\n- **戻し先**：L2:429の2区分の範囲内に収まっています。新しいowner、戻し先、閾値はありません。\n  - task/sourceの不一致 → OS／観測source\n  - requirement/oracleの不一致 → HARNESS／要求owner\n- **traceの更新**：FR:1618を `48–72` に、FR:1616（L2-059:425/427の行）を `14…71–72` にしました。\n- **監査JSON**：`latest_remote_main` と `merge_commit` を明示しています。\n\n### 照合\n- **件数**\n  - FVの059節で一意なIDは85件です。そこからcompound 1件（CASE-30）とindex 5件（22、33–36）を除くと、独立79件です。\n  - 追加は25件（48–72）で、そのうちnegativeが24件です。negativeの内訳は、入力fieldの変異11件と出力の変異13件です。\n  - これらの件数は、FR、NFR、NFRV、FVで一致しています。\n  - 旧値（83/77/84/78/48–70など）の残りはありません。\n- **main統合の保持**\n  - 親060の節は、baseとbyte単位で同一です（57件、正常2、negative 47、索引8）。\n  - 067の索引は、CASE39まで保持されています。CASE-39の定義行も変わっていません。\n- **SHA**：次の値が、すべて実bytesと一致しました。\n  - 新監査に記録された6本文のbeforeとafter\n  - review01 comment本文（5,645 bytes、`3e17f666…`）\n  - 固定059/067、旧source（bench、acceptance）\n- **旧監査**：変更されていません。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 32852 | `9f56b674…` |\n| FR | 354627 | `0f11b654…` |\n| NFR | 91404 | `d5838368…` |\n| BV | 31387 | `54e42a8a…` |\n| FV | 693873 | `304aebc0…` |\n| NFRV | 82275 | `922f8fcc…` |\n\n### 返さない所見（Minor。承認は止めず、解消済みとは扱いません）\n1. **CASE-72の「acceptance-oracle revision」**\n   - 固定L2:427は、「acceptance」と「oracle」を別の項目として挙げています。CASE-72は、この2つを1つのfieldとして扱っています。\n   - 戻し先は同じです。また、quality oracle revisionだけを変える変異は、既存のCASE-03bが持っています。\n   - 次に修正するときは、「受入oracle（L2:416の『受入』）のrevision」と明記してください。\n2. **旧監査JSONの件数**\n   - 旧監査JSONには「84/78」が残っていますが、時点記録なので修正は不要です。\n   - 判断記録側で、新しい監査（85/79）が現行であることを示してください。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 067のL2/L11の意味は、再読していません（pin SHAの一致だけを確認しました）。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 3883,
+    "formal_body_sha256": "97f80aeea1c2efe00b57738e7a06dce3a5a85645f85aa789a13c4a568f1ab974",
+    "reviewed_head": "fa044d7ec857fd1b4df29ac7d90f65274012dcce",
+    "review_base": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 32852,
+      "sha256": "9f56b674f11f9b666bc546a20e7a7492d1dfe377a24495d351392698c8389777"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 354627,
+      "sha256": "0f11b654be30baae1749800ce3c184a146ceb4bce22710f762ef368f5d40e536"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 91404,
+      "sha256": "d5838368f1ec9ee9e57cc143aa6e346ae1ff7f924d46c234880798098936b773"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 31387,
+      "sha256": "54e42a8af0d30f7eb1c2b75810b51fab6197558633ab3bac7a50b024e581445e"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 693873,
+      "sha256": "304aebc0edf618fd0eba2d73b745611b1d259ffd94429c0375df16ca58874bb4"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 82275,
+      "sha256": "922f8fccc63917178606dbb5edd165f5bdc6805de3753ead6d703b8342fdb8b7"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-labo-stage5-parent059067-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 2956,
+    "sha256": "17a4c07c153191a0fc83572696b1badf6c709b0d87d8944137d2f1ef56b71d92"
+  },
+  "minor_not_returned": [
+    "CASE72のacceptance-oracle revisionは固定L2のacceptanceとoracleの区別が明瞭でない。品質oracle単独変異は既存03bが保持する。",
+    "旧監査JSON84/78は時点記録として不変。現行85/79はreview01訂正監査と本判断記録に固定。",
+    "独立review02は067固定親の意味再読をせずpin SHA照合まで。作成側意味監査は別証拠として対応表で扱う。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}
