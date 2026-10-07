@@ -1,0 +1,350 @@
+{
+  "record_type": "HELIX-BRAIN Stage5 parent024 delegated decision pins",
+  "as_of": "2026-10-08",
+  "decision_status": "recorded_pending_condition3",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-BRAIN",
+    "stage": 5,
+    "fixed_parent": "HELIXBRAIN-L2-024",
+    "version_target": "1.0",
+    "excluded": [
+      "HELIXBRAIN-L2-025 and its separate approval",
+      "other parents/stages",
+      "L2 meaning changes",
+      "L10 execution/implementation/operation/release/issue closure"
+    ]
+  },
+  "reviewed_content": {
+    "exact_head": "3cf703d86166e82bbc31caff98766e744f613d22",
+    "exact_base": "c0dab045c9708f1eabde20407609cb3e5fb5734a",
+    "six_canonical_documents": [
+      {
+        "label": "L3-BR",
+        "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+        "sha256": "e3dfad1e76e4120d4a438e1b8145d5efc28f7cda0f039021b47339e4c264ccb8",
+        "bytes": 12755,
+        "head_bytes_match_worktree": true
+      },
+      {
+        "label": "L3-FR",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+        "sha256": "6cf8be0c095fcd5ad5e52b6ee99e607c18d1b26be6f0d2e625e727d868a33cdf",
+        "bytes": 174168,
+        "head_bytes_match_worktree": true
+      },
+      {
+        "label": "L3-NFR",
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+        "sha256": "07b6c0843cde302252228675088a3a74147672a540c4da5c63e30b2d51f85793",
+        "bytes": 38738,
+        "head_bytes_match_worktree": true
+      },
+      {
+        "label": "L10-BV",
+        "path": "docs/helix-brain/L10-verification/business-verification.md",
+        "sha256": "65fc061d4e78b7360cf77d83a396d4c303f4159c1ba047990b31fb6810992d6e",
+        "bytes": 10704,
+        "head_bytes_match_worktree": true
+      },
+      {
+        "label": "L10-FV",
+        "path": "docs/helix-brain/L10-verification/functional-verification.md",
+        "sha256": "866f1e1d852b272611d6233c725035d3138d8b013f932f539a9af02bbefeba6c",
+        "bytes": 235946,
+        "head_bytes_match_worktree": true
+      },
+      {
+        "label": "L10-NFR",
+        "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+        "sha256": "40fbd13f0a253a4686d8c127cf190d63c342ecc0e18aae3796b414eae33d5b70",
+        "bytes": 29199,
+        "head_bytes_match_worktree": true
+      }
+    ]
+  },
+  "formal_review_comment": {
+    "pr": 2668,
+    "comment_id": "6042118353",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2668#issuecomment-6042118353",
+    "created_at": "2026-10-07T16:23:55Z",
+    "author": "RetryYN",
+    "raw_utf8_bytes": 5636,
+    "raw_utf8_sha256": "54b4ab6844bedbbc892ea7335d5a5132f973143a288f955afe201c1d23817345",
+    "body": "## review02（independent review、HEAD 3cf703d86166e82bbc31caff98766e744f613d22、merge-base c0dab045c9708f1eabde20407609cb3e5fb5734a）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）\n- 条件1：Opus 5.5のブラインド照合と、reviewerの原文確認で判定した。\n- 条件2：Fable advisor（claude-fable-5-1）の見解。Fableは、6本文のHEAD全文、固定親 @f6dad2a33、PO判断row、委任規則、両方のdiffを読み直した。\n- 照合した固定親 @f6dad2a33：L2-024:454–463、L2-020:414–423、`HELIXBRAIN-L2-INFRA-017`:382–390（BRAIN側のPattern maturity）、L11:57/60/64\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新main `2b0d761e6` と衝突なし\n- 6本文の差分（base `c0dab045c` 比）は、すべて`HELIXBRAIN-L2-024`の行（範囲表・trace表・NFR行・FR依存段落・CASE）の中に収まっていた。\n\n### review01への対応\n- **M1は解消した。**\n  - C52（FV:883）とC53（:884）の期待oracleが、戻し先をLABOにした。他の宛先へ返したら不合格とする文も入った。\n  - 根拠は固定L2-024:461「評価はLABO」とL2-020:421「LABOへ評価を返す」で、ここから宛先がそのまま導ける。\n  - 旧文にあった保留と補完禁止は残っている。\n- **m2への対応として足されたC54：**\n  - L2-024:459「credentialを保存・所有しない」とL11:64から導ける。\n  - C33（valueの保存拒否）、C54（referenceの保存先の変更拒否）、C44（reference流入時の受領停止）は、照合する対象が別で、重複も矛盾もない。\n- **m1、m3〜m5も対応済み。**\n  - m1：C51がunknown保持を明記した。\n  - m3：C46をC01基準に固定した。\n  - m4：FRの重複段落を、依存段落（FR:718）へ統合した。中身は欠けていない。\n  - m5：C02とAC-01に、値が一致することを足した。\n- **旧文と新文の突き合わせ（類型5）：** C33、C47〜C49、C51〜C53、AC-01/02、FR依存段落、trace表のどれも、旧文の拒否・保留・補完禁止を残したうえで追記している。弱くなった条件はない。\n- **ID対応：**\n  - C01–C54は、4本の範囲表・trace表とそろっている。\n  - AC-01はC01/02/40/46/50、AC-02はC03–39、C41–45、C47–49、C51–54で、漏れも重複もない。\n\n### Major\nなし。\n\n### Minor（返却しない。次に触るときに直せばよい。誤った完了は通らない）\n- m6（Opus）：C51はstate欠落時の戻し先をunknownのまま置く。L2-INFRA-017:389「評価不足は候補に留め、採用を推定しない」と両立するが、書き方が017の「experimental/observed候補に留める」と違う。evidence欠落時のC52（LABOへ返す）とも扱いが分かれている。\n- m7（Opus）：C54の期待oracleは「Runtime owner側の境界を保つ」で止まっている。C33の「Runtime ownerへ返す」より書き方が弱い。\n- m8（Opus）：nfr-grade.md:122で、禁止項目の列挙が「各route/owner境界」にまとめられた。照合の本体はAC-02とCASEに残っている。\n- m9（Fable）：C50の「L2-020のcandidate/target revision=R0」と、基準C46（C01）のcandidate revision `r7` との関係が書かれていない。\n- m10（Fable）：BVの「C51 unknown owner」と、BR/NFR/NFRVの「C51 unknown保持」で語が揺れている（意味は同じ）。\n- 参考（Opus）：L11:64の「Runtime操作」はC04とC09が代わりに見ている。L2-INFRA-017:388の「1回だけの成功で昇格しない」は017自身の検証範囲である。\n\n### Fableの見解（同じHEADの6本文と固定親をFable自身が読んだもの）\n- 結論行は原文のまま：「承認してよい」\n- Majorはなし。Minorは上のm9・m10と、C51/C52の戻し先が分かれる理由の句がC51側にしかないこと（現状でよい、としている）。\n- 照合した対象revision：`3cf703d86`。6本文のSHA-256はFableが自分で計算し、下の値と統合再照合記録の値に一致した。\n- 未確認範囲：なし。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。Minorは返さないと判断した。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（`3cf703d86`）でそろった。\n- **条件3は未照合。** 判断記録の作成後に、6本文が次のSHA-256から変わっていないことを照合する。判断記録には、依存先が`HELIXBRAIN-L2-INFRA-017`（BRAIN側）であることを明記してほしい。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `e3dfad1e76e4120d4a438e1b8145d5efc28f7cda0f039021b47339e4c264ccb8` |\n| L3-FR | `6cf8be0c095fcd5ad5e52b6ee99e607c18d1b26be6f0d2e625e727d868a33cdf` |\n| L3-NFR | `07b6c0843cde302252228675088a3a74147672a540c4da5c63e30b2d51f85793` |\n| L10-BV | `65fc061d4e78b7360cf77d83a396d4c303f4159c1ba047990b31fb6810992d6e` |\n| L10-FV | `866f1e1d852b272611d6233c725035d3138d8b013f932f539a9af02bbefeba6c` |\n| L10-NFR | `40fbd13f0a253a4686d8c127cf190d63c342ecc0e18aae3796b414eae33d5b70` |\n\n### 未確認範囲\nなし。\n- 025は#2653で承認済みで、対象外である。\n- L2-019/022、L2-INFRA-009/010/012は依存の識別子として参照しているだけで、本節の固定親ではない。\n- Stage 5節より外の部分は、本PRで差分がない。\n\n本commentから、承認の効力、PO確認、merge admissionは生成しない。\n",
+    "conditions": {
+      "condition1": "Opus 5.5 no_findings; Major 0; unreviewed scope 0",
+      "condition2": "Fable conclusion verbatim: 承認してよい; same six-body revision and fixed parent personally read",
+      "condition3": "pending until independent post-record verification of six hashes, raw formal pin, fixed-source pins, delegation-policy pins, and decision-record pin"
+    }
+  },
+  "fixed_sources": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "L2_full": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "bytes": 71594,
+      "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03"
+    },
+    "L2_024": {
+      "lines_inclusive": [
+        454,
+        463
+      ],
+      "sha256": "c91976bfc0f128dd8628b8d3448ddac57af0e4531f8d54f996ed094cd3b018c3"
+    },
+    "L2_020": {
+      "lines_inclusive": [
+        414,
+        423
+      ],
+      "sha256": "28d2b53bfdd0db2353942c4e880a4cc9d48069d302ecffc0cded0f94cc08fbc6",
+      "conditional_clause_414_421_sha256": "bc967d34739ea1b7823241db0cd61ced49c71b7a362f2e9233563fab7660d069"
+    },
+    "HELIXBRAIN_L2_INFRA_017": {
+      "lines_inclusive": [
+        382,
+        390
+      ],
+      "sha256": "191b4c13d075cd3a9cfbd938bf5d0a961615936e30a9266a904dc633c28fa348",
+      "meaning": "BRAIN-side Pattern maturity dependency; it is not an Infrastructure mechanism parent."
+    },
+    "L11_full": {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "bytes": 23699,
+      "sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b"
+    },
+    "L11_rows": [
+      {
+        "line": 57,
+        "sha256": "9209db4b4e0810bad881e9a714120abaae22beb29bc0490e259d281423133420"
+      },
+      {
+        "line": 60,
+        "sha256": "a2e14b5a11026650f650dcc5d622fae8b5526342c7a198f7a80bb258ed45f3a4"
+      },
+      {
+        "line": 64,
+        "sha256": "aff2c5df94b1b823fa92d879ae7625c791d623f28eed0851ed7d4d585fa6f440"
+      }
+    ]
+  },
+  "po_adoption": {
+    "decision_path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+    "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "file_bytes": 11307,
+    "file_sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+    "row": {
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "file_sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+      "line": 83,
+      "raw_line_bytes": 75,
+      "raw_line_sha256": "a0da2a461bc34b5a4d16cb7eaba9326216c2d74b71ef4de2503300b5ad3aac7b",
+      "text": "| `HELIXBRAIN-L2-024` | `MPR-RC-HELIXBRAIN-L2-024-002` | composite / 1.0 |"
+    },
+    "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "register_source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "register_file_bytes": 2108075,
+    "register_file_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
+    "register_row": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "file_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
+      "line": 229,
+      "raw_line_bytes": 2830,
+      "raw_line_sha256": "ca28ca44d495d36d82b61843368da5d21bc85488fb9e48d6aa3e216a40411543",
+      "text": "{\"registration_id\":\"MPR-RC-HELIXBRAIN-L2-024-002\",\"supersedes_registration_id\":\"MPR-RC-HELIXBRAIN-L2-024-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXBRAIN-L2-024\",\"requirement_kind\":\"composite\",\"product_target\":\"HELIX-BRAIN\",\"candidate_source_path\":\"docs/helix-brain/L2-requirements/brain-requirements.md#helixbrain-l2-024\",\"candidate_semantic_digest\":\"sha256:95fb926670e7db28687782db8b0e373fbf3abf13519c42b20b0cb1c9e5315473\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@452ee66313c9f621f07af9ae575b92fffad7d1d6 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-brain/L1-planning/brain-intent.md@452ee66313c9f621f07af9ae575b92fffad7d1d6 sha256:2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json#HELIXBRAIN-L2-024\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行BRAIN L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:33:26+09:00\",\"evidence_refs\":[\"docs/helix-brain/L2-requirements/brain-requirements.md\",\"docs/helix-brain/L1-planning/brain-intent.md\",\"docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md\",\"docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md\",\"docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md\",\"docs/governance/decisions/brain-l1-idea-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json\"],\"correction_reason\":\"R2162-01: 一覧と節の親IDを一致させ、変換時に混入したL1-001と重複を除去。R2162-02: 未使用番号の理由・非予約を本文へ明記。\"}"
+    },
+    "adoption": "HELIXBRAIN-L2-024; MPR-RC-HELIXBRAIN-L2-024-002; composite / version_target 1.0 among 42 explicit BRAIN identities."
+  },
+  "delegation_basis": [
+    {
+      "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+      "source_revision": "3cf703d86166e82bbc31caff98766e744f613d22",
+      "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "source_revision": "3cf703d86166e82bbc31caff98766e744f613d22",
+      "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "full_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "lines_inclusive": [
+        37,
+        49
+      ],
+      "span_sha256": "c1526059c51f18c9b9ec274bfae1b8ecf4129d125ed930cc808aecc0b36c6d26",
+      "disposition": "RCLS-BR-004/006 proposal/evidence and no authority overwrite are semantically re-derived; cross-project/shadow/Mechanism promotion are not imported."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "full_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+      "lines_inclusive": [
+        24,
+        39
+      ],
+      "span_sha256": "4545bdcee36f412d5135b97fd1540859dbc7a9618971a7e1a634b5f3f29745aa",
+      "disposition": "Old paired-oracle comparison only: independent verification and no promotion by single evidence; no legacy schema/threshold/runtime reused."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "lines_inclusive": [
+        41,
+        41
+      ],
+      "span_sha256": "1c457ace3161002377923fbe293326f079020354829a5f0ed3d1b578aa42aef4",
+      "disposition": "Old HIL-07 supports raw/secret mixing and self-promotion as negative categories; memory/compaction/shadow mechanism is replaced."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "lines_inclusive": [
+        39,
+        39
+      ],
+      "span_sha256": "95a791c99b1d700b677a4628cca06754952dd18a0458763fb639925793149feb",
+      "disposition": "Paired HAT-HIL-07 negative-oracle semantic comparator; not executed; old case mechanics/thresholds not reused."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "lines_inclusive": [
+        148,
+        168
+      ],
+      "span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "disposition": "L3 functional/business/NFR plus AC structure only; no old G3/subgate authority."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "full_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "lines_inclusive": [
+        162,
+        170
+      ],
+      "span_sha256": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5",
+      "disposition": "L10 as downstream paired verification of L3 behavior; workflow/gate semantics not reused."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "full_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "lines_inclusive": [
+        16,
+        56
+      ],
+      "span_sha256": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+      "disposition": "Functional/business/NFR and paired AC organization format only; HARNESS-specific content not moved into BRAIN."
+    }
+  ],
+  "prior_immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/brain-stage5-parent024-current-six-body-audit-2026-10-08.json",
+      "sha256": "24ab51f9e8af99fecf8658a4a7e849c3e69d23aeb60778d2ff4d7dd776d59091",
+      "treatment": "read-only"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/brain-stage5-parent024-c33-infra017-repair-supplement-2026-10-08.json",
+      "sha256": "6582ce5d584c2da00a8d5779a05b710f8084ca743913d4a08fbadf943c6ee806",
+      "treatment": "read-only"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/brain-stage5-parent024-review01-repair-2026-10-08.json",
+      "sha256": "4b417348d421d1a5a965890a57a9c3a6189c3b267dc70fb1f54240a2c7243c76",
+      "treatment": "read-only"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/brain-stage5-parent024-main-integration-recheck-2026-10-08.json",
+      "sha256": "71223b70f20b9ded78e748dc981a5b7467c54f9709b284a50ed487d800fd783f",
+      "treatment": "read-only"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-stage5-l3-l10-po-decision-2026-10-06.md",
+      "sha256": "c8b795b8226db0512a63bef71a4d59c58dc1e4b33167a3b0c3e87c1f10c57a62",
+      "treatment": "historical combined decision; not reused for current revision"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-stage5-025-l3-l10-delegated-decision-2026-10-07.md",
+      "sha256": "85d058adf4427913bb3aed1c92e8a91dcf0c3d606bd6c0b7a15f04e3f4df41aa",
+      "treatment": "separate parent025 decision; not inherited"
+    }
+  ],
+  "minor_observations_unreturned_nonblocking": [
+    {
+      "id": "m6",
+      "source": "Opus",
+      "summary": "C51 unknown return destination differs in wording from L2-INFRA-017 candidate status."
+    },
+    {
+      "id": "m7",
+      "source": "Opus",
+      "summary": "C54 expected oracle wording is weaker than C33."
+    },
+    {
+      "id": "m8",
+      "source": "Opus",
+      "summary": "NFR line 122 groups prohibited categories under route/owner boundary wording."
+    },
+    {
+      "id": "m9",
+      "source": "Fable",
+      "summary": "C50 L2-020 candidate/target revision R0 relation to C46 C01 baseline candidate revision r7 is not explained."
+    },
+    {
+      "id": "m10",
+      "source": "Fable",
+      "summary": "BV “C51 unknown owner” wording differs from BR/NFR/NFRV “C51 unknown hold”; reported meaning is the same."
+    }
+  ],
+  "condition3_checklist": [
+    "re-fetch exact formal comment and verify raw UTF-8 bytes/SHA",
+    "recompute six current canonical body hashes against reviewed HEAD and this record",
+    "recompute fixed L2/L11/PO/register and delegation-policy pins",
+    "verify this decision record SHA against pin JSON",
+    "verify current base/admission before effect"
+  ],
+  "limitations": [
+    "Condition 3 has not been checked.",
+    "This record and pin JSON are drafts; no commit, push, main admission, or authority effect.",
+    "No approval or authority is inherited from parent025 or the 2026-10-06 combined BRAIN Stage5 decision.",
+    "No execution, implementation, operation, release, tag, cutover, distribution, or Issue closure permission is created."
+  ],
+  "verification": {
+    "six_head_body_vs_worktree": "pass",
+    "formal_api_full_body_sha": "pass",
+    "fixed_parent_f6dad_full_and_span_pins": "pass",
+    "PO_633_adoption_and_register_row_pins": "pass",
+    "legacy_source_pins_against_archive": "pass",
+    "condition3": "pending",
+    "commit_or_push": false,
+    "main_admission": false,
+    "legacy_runtime_or_test_executed": false
+  },
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-brain-stage5-parent024-l3-l10-delegated-decision-2026-10-08.md",
+    "source_revision": null,
+    "sha256": "201dc99826cf5a45118c8fd047f3526590f509aa230c991e9b798eb254a5e3be",
+    "bytes": 5616,
+    "revision_binding": "New decision record added after reviewed content; exact committed record bytes are bound by sha256 and PR content HEAD at condition3."
+  },
+  "decision_pin_json": {
+    "path": "docs/governance/audits/requirements-stage/brain-stage5-parent024-delegated-decision-pin-2026-10-08.json",
+    "self_sha256": "not_self_pinned; hash computed after serialization"
+  },
+  "additional_unreturned_observation": {
+    "source": "Fable",
+    "identifier": null,
+    "summary": "C51/C52 return-destination divergence rationale is stated only in C51; Fable reports current state acceptable. Kept as an unnumbered observation; no text return requested."
+  }
+}
