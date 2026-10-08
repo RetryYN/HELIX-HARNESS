@@ -4,7 +4,7 @@ status: draft
 owner: HELIX-HARNESS
 parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l5: ../L5-detail-design/common-kernel.md
-base: main `6ea16b1f45121c3171943cfee7057bfdf08fefcd`
+base: main `33bbe8cd5f080be9e400e9259db22645bc620eda`
 
 本書はK1/K2のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9を展開したものとする。K3〜K10は`not_designed`でL9の現行参照のみとする。以下のfixtureはすべて未実行であり、pass、実装完成、L10成立を示さない。
 
@@ -12,9 +12,11 @@ base: main `6ea16b1f45121c3171943cfee7057bfdf08fefcd`
 
 | 入力 | revision・scope | SHA-256 |
 |---|---|---|
-| Common Kernel L4 | PR base `6ea16b1f45121c3171943cfee7057bfdf08fefcd`を基準に本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3 | `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` |
-| Common Kernel L9 | PR base `6ea16b1f45121c3171943cfee7057bfdf08fefcd`を基準に本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` §2 K1/K2 | `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` |
-| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4 | SHA-256 `046d42e6a91e888f14b56805677185ce3452b3d0472b871fb7d3a7bfbd48b079` |
+| Common Kernel L4 | base `33bbe8cd5f080be9e400e9259db22645bc620eda`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3 | `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` |
+| Repository Layout L4 | base `33bbe8cd5f080be9e400e9259db22645bc620eda`の本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
+| Common Kernel L9 | base `33bbe8cd5f080be9e400e9259db22645bc620eda`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` §2 K1/K2、IV-LDG-01/02/04、IV-K5-22 | `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` |
+| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§7 | SHA-256 `6020c07fbe4fa0be0585a3c924ff238c63e17cc9279ec12f580c415e0293cc31` |
+| Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `ee9288c04710999cf1bd7463391319b240069766982f4c7e75374f64d27b57ed` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
 
 L9の各`IV-K1-*`/`IV-K2-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。
 
@@ -122,3 +124,9 @@ K2 `key_of`拒否の返却型と順序はL4/L9で確定しており、L5 `KeyOfR
 K3–K10はこのpairで`not_designed`。詳細API・fixtureを定義せず、L4本体§4–11、所有者補足§14（K10）、§15（K7）、§16（K3）、§17（K9）、§18（K8）およびL9の対応IV（K3 IV-K3-01–17とIV-K3-14a–j、K4 IV-K4-01–10、K5 IV-K5-01–26、K6 IV-K6-01–15、K7 IV-K7-01–15、K8 IV-K8-01–26、K9 IV-K9-01–15、K10 IV-K10-01–14）へ戻す。K1/K2 fixtureからK3–K10の実装・実行・合格を推測しない。
 
 検証したのは文書内traceとfixture期待の静的整合のみである。fixture runner、旧HELIX test/CI、runtime、外部provider、永続化writerは起動していない。fixtureの実行結果、性能値、環境依存値、L10合格は未確認であり、本書はそれらを主張しない。
+
+## 6. K1/K2 unit範囲と登録oracleの境界
+
+本書のK1/K2 fixture集合は既存のL9 IV-K1/IV-K2 oracleだけを展開する。unit suiteはpure semantic APIを対象とし、物理的な型番登録やK5 ledger appendを新しいfixtureやoracleとして定義しない。宣言項目・path・固定bytes・未登録版の配置照合は既存repository-layout RL-C1–7およびCommon Kernel L4/L9の`IV-LDG-01`/`IV-LDG-02`/`IV-LDG-04`へ、manifest segment開設後のwriter/run対応は既存`IV-K5-22`へ接続する。これらは別の統合境界にある既存oracleであり、このK1/K2 unit suiteがそれを実行・検証したとはしない。
+
+空ledgerからの初回manifest作成は現K5で定められていないため、本書では操作、result class、fixtureを追加しない。登録の正否やwriter enforcementは既存oracleに委ね、L5 §7の候補値から登録済み状態を導かない。L6 §9/L7 §6はK1/K2 pure function suiteの配置範囲を示す。

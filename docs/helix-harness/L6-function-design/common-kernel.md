@@ -5,7 +5,7 @@ owner: HELIX-HARNESS
 scope: K1/K2 only
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `7d48e458fcff7e03df18abc4f768981410685cf7`
+base: `main` at `33bbe8cd5f080be9e400e9259db22645bc620eda`
 
 本書は現行Common Kernel L4 K1/K2の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記すが、実装や実行結果は含まない。K3–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
 
@@ -14,10 +14,10 @@ base: `main` at `7d48e458fcff7e03df18abc4f768981410685cf7`
 | source | 対象revision / SHA-256 | 対象 |
 |---|---|---|
 | Stage 1 PO decision | `docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md`, `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e`; approved L3/L10 content revision `a77672513325aa9e79f3780af40455361b5d19a8` | HARNESS-L2-010/011/023 Stage 1 scope only |
-| L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md`, content SHA-256 `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) | K1 §2.1–2.6, K2 §3.1–3.5 |
-| L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, content SHA-256 `046d42e6a91e888f14b56805677185ce3452b3d0472b871fb7d3a7bfbd48b079` (本PRのcontent HEAD) | K1/K2 public types, signatures, owner boundary, old-source crosswalk |
-| L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) | IV-K1-01–13; IV-K2-01–21d; design oracle, not run here |
-| L5/L8 pair | L8 `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`, content SHA-256 `562de454d7bed21abfe9684808089ce44ea3b4090504974e152deeaba711acb7` (本PRのcontent HEAD) | fixture boundaries and paired L5 ref; no fixture executed |
+| L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md`, content SHA-256 `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) | K1 §2.1–2.6, K2 §3.1–3.5 |
+| Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`, content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) | RL-C1–7, RL-D1–5, RL-T1–3, RL-K1–3 |
+| L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, content SHA-256 `6020c07fbe4fa0be0585a3c924ff238c63e17cc9279ec12f580c415e0293cc31` (本PRのcontent HEAD) | K1/K2 public types, signatures, owner boundary, old-source crosswalk |
+| L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) | IV-K1-01–13; IV-K2-01–21d; design oracle, not run here |
 
 K1/K2はL4 §1.3の共通部品であり単一の親要求を置かない。HARNESS Stage 1の下流traceは固定されたL2-010/011/023に限る。各契約からの直接親はL4 K1 §2.1、K2 §3.1のcrosswalkに従い、契約境界上のK1-I6→K2、K2 record→K5参照は追加の親要求にしない。後続stageを含む現在文書全体のbytesをStage 1 approved inputと扱わない。
 
@@ -201,10 +201,18 @@ K3–K10は本書で`not_designed`。既存契約とoracleはCommon Kernel L4 §
 - L7で選択したCPython候補のinteger/finite-float表記（負のzeroを含む）を固定する。locale形式やpretty whitespaceを使わない。
 - raw source bytesはそのままhashする。source-content alias bytesにdecode、newline normalization、末尾LF追加、JSON canonicalizationをしない。
 
-## 9. Return境界union
+## 9. Unit packageと登録の接続点
+
+K1/K2は一つのHARNESS-owned unitとして配置する候補であり、L6は既存L5 declaration項目を埋める追加関数や新しいschema fieldを定義しない。候補pathは`helix/helix-harness/units/common-kernel/`、identity/version/maturity/owner候補はL5 §7.1の`common-kernel` / `0.1.0` / `development` / `core: HELIX-HARNESS-CORE`である。`src/`はpure K1/K2、`tests/`はL7 suite、`fixtures/`は合成入力だけとし、K3–K10、K5 physical writer、K6 production readerは含めない。unit declarationの唯一のsource of truthと登録の解釈はrepository-layout RL-C1–7およびCK L4 §15.4/15.5に従う。
+
+CPython 3.11+標準ライブラリ（`json`, `hashlib`, `dataclasses`, `enum`, `typing`）はL5/L6の実装候補、`unittest`はL7のrunner候補である。依存欄には登録済みHELIX pack依存を偽装して追加せず、標準library名を独立packageとして列挙しない。現declaration schemaにtoolchain専用fieldやroot設定を増やさない。pack dependencyが後に要る場合は、既存declared dependency type/identity/version欄の範囲で明示される。
+
+Unitの初回登録は、declared bytesを含むGit revisionを先に確定し、その`FixedRef`と宣言全bytesのdigestをHARNESS ownerの`VersionRegistered`へ束縛する既存K5手順に従う。event schema、manifest writer、`SegmentOpened`条件はCK L4 §9.3/§15.4–15.5とL9 IV-LDG-01/02/04、IV-K5-22を再利用し、L6関数として実装しない。空の台帳から最初のmanifest segmentを作る操作は既存契約内で確認できず、物理bootstrapの証拠は未定義のままにする。これはK1/K2関数設計を止めず、初期登録を実在・完了として扱わない局所境界である。
+
+## 10. Return境界union
 
 L4 K1-I6で呼出し元へ返すK1拒否を、ここでは`ApiBoundaryResult[T] = T | Rejected(missing_key)`として表す。これは既存K1 `Rejected`結果の外側に置く型alias候補で、新しいclassやreasonではない。K1の`combine`、`admit`、`disposition`とK2 `lookup`は各L5既存signatureおよび`ApiBoundaryResult`境界を保つ。K2 `key_of`は別の専用union `KeyOfResult = ResultKey | Rejected(missing_key | invalid_digest | duplicate_identity)`を返し、定められた順で検査する。`record`はL5/L4既存unionを維持し、Stale resultなら鍵の有無を問わず`Rejected(stale_not_recordable)`を優先し、非Stale resultのkey field欠落なら`Rejected(missing_key)`を返す。公開exception transportは追加しない。recordの入力はL5 §3.4に従うcanonical JSON表現可能なResultBodyを前提とし、encoding未解決・範囲外の生値を渡す経路はowner境界で止める。private codecの範囲外入力をrecordの新しい返却結果へ変換しない。その他の失敗は既存L4 outcomeを使う。
 
-## 10. 検証状態
+## 11. 検証状態
 
 本書は設計草稿である。L9 oracleは未実行。L6実装、unit test、serializer runtime、旧source/test/runtime、filesystem writerは実行していない。K5 append-order preconditionとK6 raw read behaviorは、後続の詳細設計およびL7 stubの境界としてのみ記述した。

@@ -6,7 +6,7 @@ scope: K1/K2 only
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: `main` at `7d48e458fcff7e03df18abc4f768981410685cf7`
+base: `main` at `33bbe8cd5f080be9e400e9259db22645bc620eda`
 
 本書はL6のK1/K2 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。fixtureは未実装・未実行であり、合格を主張しない。K3–K10は`not_designed`でfixtureを追加しない。
 
@@ -14,14 +14,14 @@ base: `main` at `7d48e458fcff7e03df18abc4f768981410685cf7`
 
 | 入力 | 対象revision / SHA |
 |---|---|
-| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) |
-| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; content SHA-256 `046d42e6a91e888f14b56805677185ce3452b3d0472b871fb7d3a7bfbd48b079` (本PRのcontent HEAD) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `d392341842b377af74ffbbb0fcfec86017e39766373579b272f9537c64a37cce` |
-| L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) |
-| L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; content SHA-256 `562de454d7bed21abfe9684808089ce44ea3b4090504974e152deeaba711acb7` (本PRのcontent HEAD) |
+| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
+| Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
+| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; content SHA-256 `6020c07fbe4fa0be0585a3c924ff238c63e17cc9279ec12f580c415e0293cc31` (本PRのcontent HEAD) |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `877f08520ea75306a6ff198ccebc74ff579b10a8a1e25c88e1fb80ba9321a756` |
+| L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
-L4/L9はmain `7d48e458fcff7e03df18abc4f768981410685cf7`、L5/L8は本PRのcontent HEADの固定content SHAを参照する。L9 IV-K1-01–13、IV-K2-01–21dが期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
+L4/L9はbase `33bbe8cd5f080be9e400e9259db22645bc620eda`の固定本文、L5/L6はこのpair内の上流content SHAを参照する。L9 IV-K1-01–13、IV-K2-01–21dが期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
 
 各fixture表の関数ID列で、K1表の`FN-xx`は`CK-K1-FN-xx`、K2表およびcodec表の`FN-xx`は`CK-K2-FN-xx`を指す。明示した`K2 FN-xx`も`CK-K2-FN-xx`である。UT IDの波括弧・suffixは各行の展開規則で個別fixtureへ展開し、複数変異を一件へまとめない。
 
@@ -131,7 +131,30 @@ UT-030–041の各vectorのliteral/expected bytesとdigestはL7 fixture inventor
 
 UT-036〜039はprivate `canonical_json_bytes`補助関数へ範囲外値を直接与える単体検査である。公開`record`の失敗caseではない。record fixtureはL5 §3.4/L6 §3.1の前提どおり、ownerの宣言encodingに適合したcanonical JSON表現可能なResultBodyを使い、未解決encodingや非JSON生値を公開APIへ渡さない。K1の一般値型Tと、記録時のInline/FixedRef表現を同一視しない。
 
-## 6. 旧source traceと技術差分の記録
+## 6. Unit suiteの配置と14関数の対応
+
+正式配置候補は`helix/helix-harness/units/common-kernel/tests/`である。L7本文は`docs/`を唯一の検証設計正本とし、各test methodは以下の既存UT IDを識別子として参照する。`test_k1.py`/`test_k2.py`、`unittest`、合成fixture保存場所`fixtures/`は実装時の候補であり、suiteが存在することや実行済みであることを意味しない。suffix展開、各UTの変異と期待は§3–5の行が正本である。
+
+| L6 function ID | L7 suite ID（§3–5の全行。suffixは各行の展開規則どおり） |
+|---|---|
+| `CK-K1-FN-01` | `CK-K1-UT-009-KEY-COMBINE-{CLASS}`, `CK-K1-UT-013-{FIELD}-{BOUNDARY}`, `CK-K1-UT-014-KEY-WHOLE`, `CK-K1-UT-014-KEY-{FIELD}` |
+| `CK-K1-FN-02` | `CK-K1-UT-001`, `002a/b/c`, `006`, `009-ACCEPT-COMBINE-{CLASS}`, `010-*`, `012-*` |
+| `CK-K1-FN-03` | `CK-K1-UT-001`, `002a/b/c`, `003`, `004`, `005a/b`, `006`, `007a/b/c`, `008a/b/c`, `009-ACCEPT-COMBINE-{CLASS}`, `009-KEY-COMBINE-{CLASS}`, `010-*`, `011`, `012-*`, `013-*` |
+| `CK-K1-FN-04` | `CK-K1-UT-001`–`005a/b`, `007a/b/c`, `011`, `014-*` |
+| `CK-K1-FN-05` | `CK-K1-UT-008-*` |
+| `CK-K2-FN-01` | `CK-K2-UT-015-ORDER`, `CK-K2-UT-030`–`039`, `CK-K2-UT-041` |
+| `CK-K2-FN-02` | `CK-K2-UT-021`, `CK-K2-UT-030`, `CK-K2-UT-040`–`041` |
+| `CK-K2-FN-03` | `CK-K2-UT-008-*`, `013-*`, `014`, `015-*`, `021a` |
+| `CK-K2-FN-04` | `CK-K2-UT-021`, `021a/b/d` |
+| `CK-K2-FN-05` | `CK-K1-UT-009-LOOKUP-*`, `009-STALE-LOOKUP`, `009-KEY-LOOKUP`; `CK-K2-UT-001`–`010`, `012`, `014`, `016`–`020`, `021d` |
+| `CK-K2-FN-06` | `CK-K2-UT-001`, `004`–`005`, `011a/b`, `016`, `019` |
+| `CK-K2-FN-07` | `CK-K2-UT-001`–`007`, `010`, `012`, `018`, `020`, `021d` |
+| `CK-K2-FN-08` | `CK-K1-UT-009-ACCEPT-RECORD-*`, `009-STALE-RECORD`, `009-KEY-RECORD`; `CK-K2-UT-011a/b/c` |
+| `CK-K2-FN-09` | `CK-K2-UT-021`, `021c` (K6 stub boundary only) |
+
+全テスト候補は§3–5のID行から導き、展開suffixを実fixture identityにする。L7のK1 rows 001–014、K2 rows 001–021dおよびcodec vectors 030–041は既存の意味と期待を保持する。pack外の`src/`実装、別test runner、repository root設定、K3–K10 suiteをこの表から追加しない。
+
+## 7. 旧source traceと技術差分の記録
 
 旧sourceのpathは`archive/legacy-generation-2026-09-14/root/`からの相対pathである。sourceは読み取ったが実行していない。
 
@@ -144,7 +167,7 @@ UT-036〜039はprivate `canonical_json_bytes`補助関数へ範囲外値を直�
 
 旧JS helperとのcodec差は意図した技術的再導出である。L4はcanonical dataの基本意味を固定し、HARNESS Stage 1ではPython semantic coreが実装候補となっているため、serializer optionとgolden vectorで具体化する。旧golden resultはencoded bytesが異なり得るため、暗黙に再利用しない。parameterごとの個別判断は人に求めない。byte behaviorが現行L4の意味を変える場合は、実装へ採用する前に上流へ返す。
 
-## 7. 静的coverageと対象外
+## 8. 静的coverageと対象外
 
 - `CK-K1-UT-*`はL4 K1-I1–I8およびIV-K1-01–13を`CK-K1-FN-*`とL5公開signatureへ対応づける。
 - `CK-K2-UT-001–021d`はK2 lookup/record/aliasのoracle IDへ対応づける。`key_of` rejection casesはL5 `KeyOfResult`とL4 §3.4の検査順に対応し、IV-K2-13/13a/13bは各invalid_digest条件、IV-K2-15はduplicate_identity条件を検証する。追加のpriority unit fixturesはL4既存順序を単一field mutationで確かめ、L9に新しいoracle IDを追加しない。`UT-030–041`はIV identityや期待契約の意味を変更せず、canonical bytesの技術vectorを追加する。

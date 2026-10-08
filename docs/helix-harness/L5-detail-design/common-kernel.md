@@ -4,15 +4,18 @@ status: draft
 owner: HELIX-HARNESS
 parent_requirement: なし（要素別にL4 §2.1／§3.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: main `6ea16b1f45121c3171943cfee7057bfdf08fefcd`
+base: main `33bbe8cd5f080be9e400e9259db22645bc620eda`
 
 本書は共通カーネルL4のK1「結果の多値型」とK2「identity・revision・digestによる鍵」だけをL5へ詳述する。L4の型、判定、鍵、失敗分類、alias意味を変えない。K3〜K10は本書では`not_designed`であり、対応する現行L4/L9への参照だけを残す。実装、L6 algorithm、実行、物理writer enforcementは定義しない。対のL8もfixtureを設計するだけで未実行である。
+
+本設計が想定する単一HARNESS unitの配置候補は`helix/helix-harness/units/common-kernel/`（`enc(helix-harness)=helix-harness`、`enc(common-kernel)=common-kernel`）で、宣言正本は同じフォルダの`declaration.json`とする。identity候補は`common-kernel`、pack version候補は文字列`0.1.0`、maturity候補は`development`、owner候補は既存の`core`種別と`HELIX-HARNESS-CORE`である。これらはHARNESS-L2-010/AC-HARNESS-L3-010-01の既存欄へ置く技術候補であり、登録値、製品版、release unitへの収載、将来版を確定しない。宣言項目の形はrepository-layout RL-C2が定める既存項目だけを使い、schema-version/kindの封筒以外にfieldを足さない。
 
 ## 1. 入力文書とtrace規則
 
 | 入力 | 固定対象 | SHA-256 |
 |---|---|---|
 | Common Kernel L4 | 本PRのcontent本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md`（§2、§3、とりわけ§2.1/2.5/2.6、§3.1–3.4.1） | `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` |
+| Repository Layout L4 | main `33bbe8cd5f080be9e400e9259db22645bc620eda` content pin：`docs/helix-harness/L4-basic-design/repository-layout.md`（§2–3、RL-C1–7、RL-D1–5、RL-T1–3、RL-K1–3、§6.1/§10） | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
 | Pair L9 | 本PRのcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（§2 K1/K2、IV-K1-01–13、IV-K2-01–21d。IV-K2-13a/bを含む） | `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` |
 | Stage 1 PO decision | `docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md`（§「対象revisionと本文SHA」「適用範囲」） | `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
@@ -34,6 +37,8 @@ L4はK1/K2を8機構共通部品として配置するが、単一の親要求を
 | `LEGACY-ASSET-310E87378AFE8095809C`／`archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/physical-data.md:22-42,101-114`／`a3064a3b705adcf0a5f76c3210aa431d87b7971aed2fe88f948a323a40c7772f` | source recordと派生projectionを区別 | K2の記録・lookupはL4のK5保存記録を入力するpure APIとして記す。旧SQLite/event schemaは**置換**し、本書で物理保存を選ばない |
 | `LEGACY-ASSET-73B5C6C7D281E28EC541`／`archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L8-integration-test-design.md:48-75,120-145,182-193`／`c8b287ee4e103255081f00439b7fb2f3dfd259e0fb35a2760b48ad583524fe15` | L5 operationとL8 fixtureのtrace、normal/negative分離 | 現行L9 IDをfixtureへ結ぶ方法だけ**再導出**。旧test runner、旧pass状態、G8を移さない |
 | `LEGACY-ASSET-829E9C1646D4883C8B99`／`archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L8-source-boundary-contracts.md:11-33`／`d0f7281b170a59d4ed26e618bee6b3c3c749c4f2ad1f1e2f8673ce0445f977f9` | 一件の変異と一つの期待結果を関連付ける観点 | L9で定義済みの期待値を単独fixtureへ分割する形を**再導出**。旧source boundaryのpolicyは移さない |
+| `LEGACY-ASSET-0327D0DF98618D3066FD`／`archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md:28-44,60-70`／`81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a` | unspecified dependencyをallowとせず、scope/source境界を明示する | RL-D1の宣言済み依存だけを使う契約へ**意味を再導出**。旧署名・旧policy schemaを移さない |
+| `LEGACY-ASSET-656F75AF81EE933415D9`／`archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/durability-boundaries.md:24-30,43-52`／`b6c4c6f58259b6c09f6cd52a64ab1fb7b04114a41d2b1089fdc5b9730f8666d5` | 同一directoryの一時file、原子的公開、writer直列化、曖昧な復旧を肯定しない | repository storeの追記はK5 manifest/segment/entry chainへ従い、旧atomic-file実装を持ち込まない。物理writer enforcementと初期bootstrapは本書から実装済みとしない |
 
 旧K2 analogは限定的である。`archive/legacy-generation-2026-09-14/root/src/shared/canonical-digest.ts`（`c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000`）と旧`tests/digest.test.ts`（`fef9cfe82f280fb79ff35b4516ee0e847965b57d479014bca32ff7ac8043a390:10-40,68-99,128-166`）はprefix付きdigest型、canonical bytes、golden consumer compatibilityの隣接根拠だが、現行K2のstale/conflict分類、ResultKey、role aliasとは同型ではない。型の区別と不正値を肯定しない点を保持し、Node `Buffer`/crypto、旧native `Error`、既存consumer digestは置換対象とする。`invalid_digest`／`duplicate_identity`は旧reasonの移植ではなく、現行L4 §3.4で定めたK2 `key_of`境界の検査条件と順序から再導出する。旧measurement evaluatorのdomain固有failure分類もK2へ移さない。旧`tests/measurement-evidence-evaluator.test.ts`（`cfe1051a4a8b1a0634744837d704ab558f8a8295ffedf0df9d54f94923ce1f92:157-185,258-279,323-355,404-448,507-517`）はunknown伝搬と全finding保持のsource consumer例として読むが、実行・合格証拠にはしない。
 
@@ -135,3 +140,35 @@ TypeScript/Nodeは旧HELIX実装例があるが、歴史上の選択にすぎず
 K2 `key_of`拒否unionと検査順はL4 §3.2/§3.4およびIV-K2-13/13a/13b/15で確定している。`KeyOfResult`はK2専用であり、K1 `ApiBoundaryResult<T>`、`UnknownReason`、`record`の返却unionへ新しいreasonを加えない。
 
 K3〜K10はすべて`not_designed`。既存契約とoracleはCommon Kernel L4 §4–11および追加所有者節§14（K10）、§15（K7）、§16（K3）、§17（K9）、§18（K8）と、Pair L9の対応IV項目（K3 IV-K3-01–17/14a–j、K4 IV-K4-01–10、K5 IV-K5-01–26、K6 IV-K6-01–15、K7 IV-K7-01–15、K8 IV-K8-01–26、K9 IV-K9-01–15、K10 IV-K10-01–14）を参照し、ここで型/APIやL6詳細を再記述しない。K1/K2のconsumer例も実装algorithm、永続化、時刻source、physical writer、approval/gateを定義しない。L3 semanticsの変更が必要な点はこの草稿で解決せず、その要求上流へ戻す。
+
+## 7. Unit配置・宣言・型番登録
+
+### 7.1 宣言候補と依存境界
+
+| 既存宣言項目 | K1/K2 semantic core候補 | 根拠・境界 |
+|---|---|---|
+| identity / version / maturity | `common-kernel` / `0.1.0` / `development` | 値は設計候補。pack versionは製品版・release versionではない。 |
+| owner種別 / identity | `core` / `HELIX-HARNESS-CORE` | 共通カーネルを所有するHARNESS coreを一つのownerとして表す。 |
+| input / output contract | K1 `Observed<T>`/`Combined<T>`/`Admitted`または`Withheld`、K2 `SubjectRef`/`ResultKey`/`KeyOfResult`/lookup・record結果。operationの入力は各API signatureとL6関数表を参照 | 契約本文はdocsに置き、declarationはidentity+digestで参照する。 |
+| dependency type / identity / version | 外部実行接続 / `CPython` / 互換範囲候補`>=3.11`。標準ライブラリの`json`, `hashlib`, `dataclasses`, `enum`, `typing`, `unittest`はこのruntime候補に含め、個別依存にはしない。 | HARNESS-L2-010とAC-HARNESS-L3-010-01が既に持つ「外部実行接続」の依存欄へ置く技術候補。HELIX pack依存は空集合で、dependency kindやfieldを増やさない。 |
+| verification scope / oracle | K1/K2のL6全14関数、L7の個別UT/suffix展開/vector、L8 fixture、L9 IV-K1/IV-K2。 | L7の設計IDと本文をdeclarationへ複製しない。 |
+| inclusion / exclusion | 内容範囲候補はHARNESS共通coreのK1/K2、除外はK3–K10と他機構の業務値型・reader/writer。 | これはunit内の機能範囲である。L3の収載/非収載欄はrelease-unit identity/versionごとの値であり、既存release-unit declarationから完全な候補集合を取得・照合するまで未確定とする。製品releaseへの収載を共通利用やpathから推定しない。 |
+
+宣言の具体的JSON field名と正規化規則はrepository-layout RL-C2および既存L3 declaration contractに従う。本表は既存項目への候補であり、別schemaを定義しない。HARNESS-L2-010とAC-HARNESS-L3-010-01は依存種別に外部実行接続を明記し、L6はCPython 3.11+をruntime/toolchain候補にしているため、これを既存欄の外部実行接続として表すのは意味変更ではなく値の具体化である。標準ライブラリのmodule名は独立依存として重ねない。`CPython`と互換範囲`>=3.11`はあくまで設計候補であり、実在する接続・登録済みruntime・実行環境を証明しない。宣言の固定時には既存依存欄へこの候補を明記し、実行側が宣言された範囲を満たすかを別途照合する。
+
+### 7.2 pack内容とsuite配置
+
+| 配置 | 役割 |
+|---|---|
+| `helix/helix-harness/units/common-kernel/declaration.json` | 上表の唯一のunit宣言正本。 |
+| `helix/helix-harness/units/common-kernel/src/` | K1/K2 pure semantic core。K5 filesystem/ledger writer、K6 source reader、各owner resolverを含めない。 |
+| `helix/helix-harness/units/common-kernel/tests/` | L7 IDを持つK1/K2 unit tests。`test_k1.py`と`test_k2.py`は配置候補で、IDを個別test名へ対応させる。 |
+| `helix/helix-harness/units/common-kernel/fixtures/` | L7に記す合成入力・期待値のみ。実案件データ、実ledger、実環境状態を置かない。 |
+
+検証設計の本文は`docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`にのみ置き、testsはdesign IDを参照する（RL-T1–3）。L5–L7の本文は実装・suite実在・実行passを主張しない。unit testsはK1/K2意味コアの範囲に限り、packの登録成立やK5 physical writerの証明とは区別する。
+
+### 7.3 型番台帳への登録手順とbootstrap境界
+
+登録対象の宣言bytesを先にpackの`declaration.json`へ固定し、そのbytesのSHA-256を計算する。次に既存K5 `model-number-ledger` の`LogDecl`・manifest・segment契約に従って、OSのmanifest writerがHARNESS owner segmentを`SegmentOpened`で登録した後、HARNESSのunit-owner segmentが`ModelNumberDeclared{kind:unit, identity:common-kernel, owner:HELIX-HARNESS-CORE}`と`VersionRegistered{identity, version, declaration:FixedRef, declaration_digest}`を追記する。`VersionRegistered.declaration`は宣言bytesを含む先行Git revisionと`declaration.json` pathへ固定し、event内へ宣言項目を複製しない。したがって宣言を含むGit commitを先に確定し、そのcommitをFixedRef revisionとしてから、台帳eventを後続commitへ記録する。宣言pathやfolderの存在だけでは登録済みにしない。`ledger_view`は登録行、FixedRefの実bytes、宣言digestと現在の評価revisionにおける宣言一致を確かめてからpackを利用可能とする（RL-C3–5、IV-LDG-01/02/04）。
+
+ただし、空のrepository storeで`LogDecl`を初めて固定し、manifest segment自身の最初の`SegmentOpened`をどう生成するかという初期bootstrap手順は、現K5 §9.3の既存append規則・IV-K5-22の既開設segment条件に定義がない。manifestがないと追記不可である一方、manifest初回生成の既存writer操作も記されていないため、AIが通常のappendだけで「初回登録eventを観測済み」とは宣言できない。ここは初回の物理bootstrapを局所保留とし、K1/K2の型・関数・fixture設計や既存event後の登録照合を止めない。新writer権限、bootstrap例外、承認gateは作らず、bootstrap出力は未観測として扱い、既存readerが実際に返した値型だけを保つ。実装前に現K5契約内の既存初期化経路を照合する。
