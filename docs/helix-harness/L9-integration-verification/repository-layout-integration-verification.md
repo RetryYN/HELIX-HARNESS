@@ -19,7 +19,7 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
 
 ## 2. 検証項目
 
-各項目は正常を一つ持ち、反例は一つの条件だけを変える。期待は一つの結果クラスで書く。
+各項目は正常を一つ持ち、反例は一つの条件だけを変える。期待は一つの結果クラスで書く。IV-RL-21と23は拒否を返す反例でなく、境界値での正常（出力が変わらないこと、符号化が成功すること）を確かめる項目である。
 
 | ID | 規則 | 正常 | 一点の変異 | 期待 |
 |---|---|---|---|---|
@@ -43,12 +43,12 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
 | `IV-RL-18` | RL-R8 | repositoryを置かない環境で、成果物ストアと宣言済みの依存だけから起動・復旧する | manifestの成果物の参照先の一つをrepository内のpathにする | `Unknown(conflict)`（証拠に`tree_reference`） |
 | `IV-RL-19` | RL-V2 | `fixtures/`の合成dataがsecret classifierを通る | fixtureに合成のcredential形式の値を一つ入れる | `Rejected`（SECURITYの分類器の判定） |
 | `IV-RL-20` | RL-V5 | `include`の閉包に除外の型番が無く、投影が成果物の集合を返す | 閉包にLABOの型番を一つ依存として加える | `Unknown(conflict)`（投影を止める） |
-| `IV-RL-21` | RL-V4 | 投影の出力は`include`の閉包のmanifestの成果物と一致する | 許可したパックのフォルダに、manifestに無いfileを一つ足す | 出力は変わらない（path globで拾わない） |
+| `IV-RL-21` | RL-V4 | 投影の出力は`include`の閉包のmanifestの成果物と一致する | 許可したパックのフォルダに、manifestに無いfileを一つ足す | 出力は変わらない（path globで拾わない）（境界値の正常） |
 | `IV-RL-22` | 6.1 | `Ab`と`ab`が`_41b`と`ab`になり、大文字小文字を区別しないFSでも別file | 入力をNFDの文字列にする | `Rejected(invalid_id)` |
-| `IV-RL-23` | 6.1 | `con`が`_63on`、80byteの結果はそのまま | 結果を81byteにする | `_h`＋64桁の形になり、内容から論理IDを戻せる |
+| `IV-RL-23` | 6.1 | `con`が`_63on`、80byteの結果はそのまま | 結果を81byteにする | `_h`＋64桁の形になり、内容から論理IDを戻せる（境界値の正常） |
 | `IV-RL-24` | RL-P1 | segmentのpathが内容の`enc(log_id)`・`enc(writer)`と一致する | segmentを別writerのdirectoryへ移す | `Unknown(conflict)` |
 | `IV-RL-25` | RL-P2 | 全pathの大文字小文字を畳んだ値が一意 | 大文字を小文字にそのまま写す（`_xx`にしない）`enc`の変異で`A`と`a`のlogを作る | `Unknown(conflict)`（新しい書込みは`Rejected`） |
-| `IV-RL-26` | RL-P3 | LFのままのsegmentを読める | 1行をCRLFへ変換する | `Unknown(unreadable)`（CK K5-I3(f)） |
+| `IV-RL-26` | RL-P3 | 各行の実bytesが`canonical_json(LogEntry)`＋LF一つと一致する | 1行の改行だけをCRLFへ変換する（解析後の値と`entry_digest`は変わらない） | `Unknown(unreadable)`（RL-P3の読取り条件。CK K5-I3(h)として反映予定） |
 | `IV-RL-27` | RL-P4 | base側のbytesがhead側の先頭と一致するcommit | 途中の行の1byteを変えるcommit | `Rejected` |
 | `IV-RL-28` | RL-P5 | 二つのbranchが別writerのsegmentへ追記し、両方が入る | 二つのbranchが同じsegmentへ`seq=n+1`を追記し、両方の行を残してmergeする | `Unknown(unreadable)`（CK K5-I3(d)の重複） |
 | `IV-RL-29` | RL-P6 | repo外に固定した`SegmentHead`で末尾までを確かめる | 履歴を書き換えて末尾の1行を消す | `Unknown(unreadable)`（CK K5-I3(g)）。固定したheadを持たない読み手では検出できないことも記録する |
@@ -60,6 +60,27 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
 | `IV-RL-35` | RL-D3 | `helix/`のコードは宣言を`FixedRef`の入力で受ける | 実行時に`docs/`のpathを一つ直接読む | `Negative` |
 | `IV-RL-36` | RL-D5 | 正式なパックの依存に`scaffold/`が無い | `scaffold/`の部品を一つ依存に加える | `Negative` |
 | `IV-RL-37` | RL-T1 | unit・connection・compositeの各`tests/`の結果が別に記録される | unitの`tests/`を除き、compositeの検証だけを通す | unitの義務は`Unobserved(not_run)`（上位の合格から導かない） |
+| `IV-RL-38` | RL-P3 | 各行の実bytesが`canonical_json(LogEntry)`＋LF一つと一致する | 1行のJSONのkeyの順だけをcanonicalでない順にする（値は同じ） | `Unknown(unreadable)` |
+| `IV-RL-39` | RL-C2〜C4 | OS所有のcompositeの`declaration.json`が封筒・識別項目（identity、版、owner＝OS）・構成項目だけを持ち、bytesのdigestが`VersionRegistered`と一致し、`helix/helix-os/composites/<enc(identity)>/`に置かれ、C2・C3・C4をすべて通る | 識別項目の`owner`だけを除く | `Unknown(missing_input)`（pathから補わない） |
+| `IV-RL-40` | RL-C2 | 同上 | 構成項目の`data format`だけを除く | `Unknown(missing_input)` |
+| `IV-RL-41` | RL-R2、G8-I5 | 全成分が肯定で`ReleaseEstablished`を追記できる | 新しいmanifestで一つの`ArtifactRef`の`revision`だけを替える（identity・digestは同じ） | `Rejected`（その成果物の検証のreceiptは`Stale`で、`eligibility`が`Positive`にならない） |
+| `IV-RL-42` | RL-R2、G8-I2 | 同上 | 一つの成果物を、bytesとdigestが自己整合した別identityの`ArtifactRef`に替える | `Rejected`（`build_chain`がそのbuildに項目の無い`Unobserved(not_run)`） |
+| `IV-RL-43` | RL-R2 | 読み手が導き直した`stage_key`が記録と一致する | 記録の`stage_key`の`subject`だけをcompositeの`SubjectRef`にする | `Unknown(conflict)` |
+| `IV-RL-44` | 4.1 stage_key | 宣言の役割とmanifestのfieldが一対一 | manifestから`rollback`だけを除く | `Unknown(missing_input)` |
+| `IV-RL-45` | RL-C7 | 宣言の参照するACのdigestが、指すrevisionの`docs/`のbytesと一致する | `docs/`の文書を1byte変え、宣言の参照digestは変えない | `Unknown(conflict)`（宣言の側の写しを使わない） |
+| `IV-RL-46` | RL-R7 | 現行の世代とrollback先の世代の成果物が成果物ストアにある | rollback先の世代の成果物を一つ消す | 保持の検査は`Unknown(missing_input)` |
+| `IV-RL-47` | RL-V3 | 分類記録のある資産は記録どおりの分類を返す | repo内の一つの資産の分類記録だけを除く | `Unknown(missing_input)`（publicとしない） |
+| `IV-RL-48` | RL-V6 | `include`の閉包の成果物だけが投影される | `include`を空にする（repoはpublicのまま） | `Unknown(missing_input)`（CK K1-I4。全体を投影しない） |
+| `IV-RL-49` | RL-T2 | `tests/`が参照する検証設計の項目IDが、指すrevisionの`docs/`にある | 参照する項目IDを`docs/`に無いIDへ替える | `Unknown(missing_input)` |
+| `IV-RL-50` | RL-K1 | rootのfileが9.2の一覧と理由の追記に一致する | 理由の追記の無いroot fileを一つ足す | `Negative` |
+| `IV-RL-51` | RL-K2 | 開発・実行・検証・配布のsurfaceにBunの参照が無い | 一つの設定にBunのlockまたはcommandを足す | `Negative`（`HELIXOS-L2-132`の003） |
+
+L4の規則のうち、次は独立の反例を置かず、対応を示す。
+
+- RL-V1：repositoryのvisibilityはGitHubの設定で、パックや記録の結合の境界ではない。本書は構成判断のとおり設定を変えず、観測もしないため範囲外とする。
+- RL-D4：影響範囲はCKのIV-K10-04〜08で検証する。循環を否定にしないことはIV-K10-03の期待のとおりで、本書は循環の反例を置かない。
+- RL-T3：fixtureの合成dataはIV-RL-19（secret classifier）で検証する。案件dataの混入の判定もSECURITYの同じ分類器による。
+- RL-K3：ツールチェーンがL5〜L6で未決であり、パックに閉じる設定がまだ無いため範囲外とする。設定が生じた層の対の検証で扱う。
 
 ## 3. 判定と戻し先
 

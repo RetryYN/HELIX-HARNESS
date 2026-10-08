@@ -23,12 +23,12 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した本文のSHA
 |---|---|---|
 | 2章の最上位構成 | 構成判断 判断1 | 直下に`docs/`・`declarations/`・`helix/`・`records/`、repo外に成果物ストア・段階の実行環境・instanceの状態・配布repo |
 | RL-C1〜C7（3章） | 方針6（`docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md:59-70`）、`AC-HARNESS-L3-010-01`・`010-04`（`docs/helix-harness/L3-requirements/functional-requirements.md:37,41`）、`AC-OS-014-04`・`014-09`（`docs/helix-os/L3-requirements/functional-requirements.md:24,29`）、構成判断 論点1 | 型番台帳が正本、pathは正本でない、項目はHARNESS-L2-010とHELIXOS-L2-014のものだけ、内部デプロイの状態は台帳に書かない |
-| RL-R1〜R8（4章） | `AC-OS-014-01`・`04`〜`08`（同:21,24-28）、`AC-HARNESS-L3-010-03`・`021-03`（HARNESS L3:39,483）、`INFRA-002-AC-01`（`docs/helix-infrastructure/L3-requirements/functional-requirements.md:109`）、`INFRA-005-AC-03`（同:287）、Concept原則9（`docs/concept/helix-concept.md:310`）・`:225`、方針1・3（`docs/governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md:38-61`）、構成判断 論点2 | releaseとdeploymentの分離、一組の保存、design／target／actualの分離、案件state・recordを巻き戻さない、開発中treeに依存しない |
+| RL-R1〜R8（4章） | `AC-OS-014-01`・`04`〜`08`（同:21,24-28）、`AC-HARNESS-L3-010-03`・`021-03`（HARNESS L3:39,483）、`INFRA-002-AC-01`（`docs/helix-infrastructure/L3-requirements/functional-requirements.md:109`）、`INFRA-005-AC-03`（同:287）、Concept原則9（`docs/concept/helix-concept.md:310`）・`:225`、方針1・3（`docs/governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md:38-61`）、`SECURITY-AC-013-01`（SECURITY L3:236）、CK 11.2〜11.3（G8-I2・I3・I5・I6）・15.2（K7-I3）、構成判断 論点2 | releaseとdeploymentの分離、一組の保存、build・検証済みと実行artifactの同じ鎖、design／target／actualの分離、案件state・recordを巻き戻さない、開発中treeに依存しない |
 | RL-V1〜V6（5章） | 構成判断 判断2・論点3、AGENTS.md「現在の境界」、`AC-OS-014-05`、`SECURITY-AC-005-01`（`docs/helix-security/L3-requirements/functional-requirements.md:124`）、`SECURITY-AC-015-01`・`FR-016-01`（同:264,268-270）、Concept `:276-279`、`docs/governance/decisions/commercial-license-po-decisions-2026-09-27.md:22-30` | 開発ソースはpublic、secret等はrepoへ入れない、配布はHELIX自身を育てる部分を同梱しない、配布先はprivate |
 | RL-P1〜P9（6章） | 構成判断 論点4、CK 9章（K5）・15.2（K7-I2）、`CONNECT-AC-005-01`（`docs/helix-connect/L3-requirements/functional-requirements.md:109`） | 論理IDはmanifest、物理pathは安全に符号化、Git履歴だけで追記専用性や真正性を主張しない |
-| RL-D1〜D6（7章） | `AC-HARNESS-L3-010-01`、`AC-OS-014-07`、CK 1.2・判断2（共通カーネルの所有）、構成判断「旧HELIXとの対応」3行目、AGENTS.md（scaffold・archive） | 宣言のない依存を実行時に使わない、機構をまたぐ結合はconnection、段階は開発中treeに依存しない |
+| RL-D1〜D5（7章） | `AC-HARNESS-L3-010-01`、`AC-OS-014-07`、CK 1.2・判断2（共通カーネルの所有）、構成判断「旧HELIXとの対応」3行目、AGENTS.md（scaffold・archive） | 宣言のない依存を実行時に使わない、機構をまたぐ結合はconnection、段階は開発中treeに依存しない |
 | RL-T1〜T3（9.1） | 構成判断 判断1「検証コードはパックの種類に対応させる」、`AC-HARNESS-L3-014-02`（HARNESS L3:177）、`AC-OS-014-05` | unit／connection／compositeの義務を別々に検証へ対応させる |
-| RL-K1〜K3（9.2） | 構成判断 判断1「root configは増やさない」・「旧HELIXとの対応」1行目 | root configの具体を旧から引き継がない |
+| RL-K1〜K3（9.2） | 構成判断 判断1「root configは増やさない」・「旧HELIXとの対応」1行目。RL-K2のBun不使用は`HELIXOS-L2-132`の`MPR-RC-HELIXOS-L2-132-003`（`docs/governance/decisions/po-decision-2026-10-03-pending4-bun.md:27,33`、2026-10-03のPO判断「今後のBun使用も禁止」） | root configの具体を旧から引き継がない。HELIXの開発・実行・検証・配布のsurfaceでBunを使わない |
 | 8章 保護のpath分類 | なし（**新規案**。11章へ） | — |
 
 各ACの承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による。開発repoの運用規則を製品の要求の根拠にしない（`docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md` 判断3）。本書の規則のうち開発repoそのものの構成（2章、8章、9.2）は構成判断を由来とし、製品の要求として扱わない。
@@ -56,9 +56,10 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した本文のSHA
 | 項目 | 唯一の正本 | 他所からの参照 |
 |---|---|---|
 | 要求・設計・検証設計の意味 | `docs/` | 宣言・実装は`(GitRevision, path)`とdigestで参照し、本文を写さない |
-| unit・connectionの宣言（identity、版と成熟度、入力・出力の契約、依存の種別・identity・版、検証範囲とoracle、ownerの種別とidentity、収載・非収載。`AC-HARNESS-L3-010-01`） | パックのフォルダの`declaration.json` | 台帳は`declaration_digest`で参照する |
-| compositeの宣言（packと依存のidentityと版、configuration、data format、対応環境、能力と制約、更新・rollbackの条件。`AC-OS-014-04`から受入の証拠を除いたもの） | 構成体のフォルダの`declaration.json` | 同上 |
-| compositeの「scope内の受入の証拠」と成果物のdigest | ReleaseManifest（4章） | 台帳・pointerはmanifestの`SubjectRef`で参照する |
+| unit・connectionの宣言。識別項目：identity、版と成熟度、ownerの種別とidentity。構成項目：入力・出力の契約、依存の種別・identity・版、検証範囲とoracle、収載・非収載（いずれも`AC-HARNESS-L3-010-01`） | パックのフォルダの`declaration.json` | 台帳は`declaration_digest`で参照する |
+| compositeの宣言。識別項目：identity（段階の型番。`AC-OS-014-01`のstage ID）、版、owner（`AC-OS-014-09`。OS）。構成項目：packと依存のidentityと版、configuration、data format、対応環境、能力と制約、更新・rollbackの条件（`AC-OS-014-04`から受入の証拠を除いたもの） | 構成体のフォルダの`declaration.json` | 同上 |
+| compositeの成果物の組（`ArtifactRef`。CK G8-I6） | ReleaseManifest（4章） | 台帳・pointerはmanifestの`SubjectRef`で参照する |
+| compositeの「scope内の受入の証拠」 | `ReleaseEstablished.eligibility`（4章。manifestから導いた鍵の結果） | — |
 | パックをまたぐ宣言 | `declarations/` | `FixedRef`（CK 9.3）で参照する |
 | 型番の登録の事実 | 型番台帳（CK 15.4のK5のlog `model-number-ledger`） | — |
 | 内部デプロイの状態 | どこにも書かない。CK 15.4のとおり`PointerLog`の`PointerMoved`と同じmoveの`MoveAuthorizationObserved`から導く | `ledger_view` |
@@ -67,8 +68,8 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した本文のSHA
 
 ### 3.2 規則
 
-- **RL-C1 一つの項目は一か所**：3.1の各項目を、表の正本以外に値として書かない。他所は識別子とdigestで参照する。同じ項目が二か所に値として現れれば、その項目は`Unknown(conflict)`とし、どちらも使わない。
-- **RL-C2 `declarations/`はパックをまたぐものだけ**：3.1の「unit・connectionの宣言」「compositeの宣言」の項目を`declarations/`に置かない。置かれていれば`Unknown(conflict)`。パックの宣言は3.1の項目と封筒（`schema_version`、`kind`）以外の項目を持たない。持てば`Unknown(unregistered)`（CK 15.4「新しい項目は足さない」、方針6）。内部デプロイの状態の項目を持つ宣言も同じ。
+- **RL-C1 一つの項目は一か所**：3.1の各項目を、表の正本以外に値として書かない。他所は識別子とdigestで参照する。識別項目（kind、identity、版、owner）は台帳と宣言を結ぶ鍵として両方に現れ、値の写しとは扱わない。両者が一致しなければ`Unknown(conflict)`とする。それ以外の同じ項目が二か所に値として現れれば、その項目は`Unknown(conflict)`とし、どちらも使わない。
+- **RL-C2 `declarations/`はパックをまたぐものだけ**：3.1の「unit・connectionの宣言」「compositeの宣言」の項目を`declarations/`に置かない。置かれていれば`Unknown(conflict)`。パックの宣言・compositeの宣言は、kindごとの3.1の識別項目・構成項目と封筒（`schema_version`、`kind`）以外の項目を持たない。識別項目は既存の型番・版・所有を表すもので、新しい要求項目ではない（CK 15.4の`ModelNumberDeclared{kind, identity, owner}`と同じ）。識別項目・構成項目が一つでも欠ければ`Unknown(missing_input)`。持てば`Unknown(unregistered)`（CK 15.4「新しい項目は足さない」、方針6）。内部デプロイの状態の項目を持つ宣言も同じ。
 - **RL-C3 登録して初めて使える**：台帳の行は`ModelNumberDeclared{kind, identity, owner}`と`VersionRegistered{identity, version, declaration: FixedRef, declaration_digest}`とする（CK 15.4の`VersionDeclared{identity, 項目}`を置き換える。10章）。パックの宣言は、評価するrevisionでの`declaration.json`のbytesのSHA-256が、同じ`(identity, version)`の`VersionRegistered`の`declaration_digest`と一致する場合だけ使える。登録が無ければ`Unknown(unregistered)`、同じ版でdigestが違えば`Unknown(conflict)`（CK K2-I2の2）。パックに型番を書いただけでは登録済みにしない（構成判断 論点1）。
 - **RL-C4 pathは正本でない**：identity、owner、kindは`declaration.json`の内容から読む。フォルダ名は照合だけに使い、`enc(identity)`・`enc(owner機構)`・kindのフォルダと一致しなければ`Unknown(conflict)`。フォルダの一覧をパックの一覧として扱わない（`AC-HARNESS-L3-010-04`）。同じidentityを宣言するフォルダが二つあれば`Unknown(conflict)`。
 - **RL-C5 欠落**：台帳に登録された型番のフォルダまたは`declaration.json`が評価するrevisionに無ければ`Unknown(missing_input)`。`declaration.json`の無いフォルダはパックとして数えない（`Unknown(missing_input)`の所見とする）。
@@ -82,29 +83,32 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した本文のSHA
 ```text
 ReleaseManifest = 成果物ストアの不変実体。identityはrelease_id、digestは全bytesのSHA-256
   { release_id, target: identity（段階の型番）, composite: SubjectRef（compositeのdeclaration.jsonの版とdigest）,
-    source_revision: GitRevision, artifacts: [{ identity, digest }],     # 成果物ストアのcontent address
+    source: SourceRef（CK 11.2。成果物を作ったsourceのrevisionとtreeのdigest）,
+    artifacts: [{ pack: SubjectRef（台帳のunit・connectionの版）, artifact: ArtifactRef }],  # CK 11.2の完全な参照
     environments: SubjectRef[]（compositeの宣言が挙げた環境のINFRASTRUCTURE宣言の版）,
-    evidence: { base_key: ResultKey（stage_verification）, verifier_set: SubjectRef },
     rollback: SubjectRef（compositeの宣言の更新・rollbackの条件の版） }
+ManifestRef     = SubjectRef{ kind: release_manifest, identity: release_id, revision, digest }
 ReleaseLog  = K5のlog（log_id: release:<target>、store: repository）。書くのはOSの一つのsegmentだけ
-  ReleaseEstablished { manifest: SubjectRef, eligibility: RequiredResult }
+  ReleaseEstablished { manifest: ManifestRef, stage_key: ResultKey, eligibility: RequiredResult }
 RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage）。書くのはINFRASTRUCTUREの観測者
   RuntimeObserved { move: entry_digest（PointerMoved）, generation, environment: SubjectRef,
                     observation: Observed<started | healthy | unhealthy>, evidence: FixedRef }
 ```
 
-`environments`と`rollback`はcompositeの宣言の項目への参照であり、値を写さない（RL-C1）。
+`environments`と`rollback`はcompositeの宣言の項目への参照であり、値を写さない（RL-C1）。manifestは検証の鍵・検証器の集合・結果を持たない（受入の証拠は`ReleaseEstablished`にだけ置く）。
+
+**stage_verificationの鍵**（OSがstage_verificationの`OperationDecl`を`declarations/helix-os/operations/`に宣言する）：`stage_key`＝`{operation: stage_verification, operation_version: 宣言の版, subject: ManifestRef, inputs: [composite, source, 各artifact.pack, 各artifact.artifact, 各environment, rollback], scope: 宣言のscope}`。`inputs`の役割の全集合は宣言が決め、manifestの各fieldと一対一に対応させる。manifestにあって宣言に無い役割、宣言にあってmanifestに無い役割は`Unknown(conflict)`・`Unknown(missing_input)`とする（CK K2-I1・I5）。
 
 ### 4.2 流れ
 
-1. `source_revision`から成果物を作り、成果物ストアへ置く。2. ReleaseManifestを固定する。3. `stage_verification`の受口でK6の`required`（CK 10.6）を行う。4. OSが`ReleaseEstablished`を追記する（release）。5. CK 15.2の`GenerationStaged`→`request_move`→K3（CK 16.4）→`apply_move`→`MoveAuthorizationObserved`（切替）。6. 実行環境が新しい世代を起動し、INFRASTRUCTUREが`RuntimeObserved`を追記する（実行）。
+1. `source`から成果物を作り（CK G8のbuild）、成果物ストアへ置く。2. ReleaseManifestを固定する。3. OSが`stage_key`を宣言とmanifestから導き、`release_eligibility`（RL-R2）を行う。4. OSが`ReleaseEstablished`を追記する（release）。5. CK 15.2の`GenerationStaged`→`request_move`→K3（CK 16.4）→`apply_move`→`MoveAuthorizationObserved`（切替）。6. 実行環境が新しい世代を起動し、INFRASTRUCTUREが`RuntimeObserved`を追記する（実行）。
 
 ### 4.3 規則
 
 - **RL-R1 不変**：ReleaseManifestは書き換えない。内容が変われば新しい`release_id`とする。同じ`release_id`で異なるdigestは`Unknown(conflict)`。
-- **RL-R2 releaseの成立**：`ReleaseEstablished`は、`eligibility`の`combined`が`Positive`の場合だけ追記できる。成立はpublic version・外部公開・1.0到達を意味しない（`AC-OS-014-01`、`014-08`）。
-- **RL-R3 成果物の再計算**：成果物を使うたびに（検証・起動・配布）bytesのSHA-256を再計算し、manifestと違えば`Unknown(conflict)`、読めなければ`Unknown(unreadable)`。実行物の検証はCK 11章（G8）に従う。同じ`source_revision`と宣言から同じdigestを得られることを再現の条件とする（`AC-HARNESS-L3-010-03`）。
-- **RL-R4 世代はreleaseを指す**：`GenerationStaged`は、`ReleaseEstablished`済みのmanifestを指し、そのmanifestの`composite`が世代の`composition`と一致する場合だけ追記できる（10章でCK 15.2へ反映する）。
+- **RL-R2 releaseの成立**：`release_eligibility(manifest_ref) -> RequiredResult`は、OSのcurrentのstage_verificationの`OperationDecl`と`VerifierSet`、build操作の所有者のcurrentのbuildの`OperationDecl`（CK G8-I2(a)）、manifestの本体だけから鍵を導き、呼出し側やreceiptから鍵・入力・結果を受け取らない。成分は次を一つの`combine`で合成する（識別付き。CK K6-I7と同じ展開）：(a)`stage_key`についてのK6の`required`、(b)各`artifact`についてbuild操作の所有者の宣言から導いた`build_key`での`build_chain`（CK G8-I2）、(c)各`artifact`の`admit_artifact_bytes`（G8-I3）、(d)各`artifact`を`subject`とする実行物の検証の`required`（G8-I5）。`ReleaseEstablished`は、OSがこの呼出しを自分で行い`combined`が`Positive`の場合だけ追記でき、`stage_key`とその結果を記録する。読み手は`stage_key`をmanifestと宣言から導き直し、記録と違えば`Unknown(conflict)`とする。成立はpublic version・外部公開・1.0到達を意味しない（`AC-OS-014-01`、`014-08`）。
+- **RL-R3 成果物の再計算**：成果物を使うたびに（検証・起動・配布）bytesのSHA-256を再計算し、manifestと違えば`Unknown(conflict)`、読めなければ`Unknown(unreadable)`。実行物の検証はCK 11章（G8）に従う。同じ`source`とbuild入力から同じdigestを得られることを再現の条件とする（CK G8-I4）（`AC-HARNESS-L3-010-03`）。
+- **RL-R4 世代はreleaseを指す**：`GenerationStaged`は、`ReleaseEstablished`済みのmanifestを指し、そのmanifestの`composite`が世代の`composition`と一致する場合だけ追記できる。K7-I3の適格性の`subject`は世代の`composition`でなく`ManifestRef`とし、成果物の参照が一つでも変われば別のmanifest（RL-R1）として旧い結果を流用しない（10章でCK 15.2へ反映する）。
 - **RL-R5 pointerと実行は別の事実**：`PointerMoved`は目標（target）、`RuntimeObserved`は実際（actual）である（`INFRA-002-AC-01`、Concept `:225`）。`ledger_view`は「release成立」「現行の世代」「実行の観測」を別fieldで返し、どれからも他を導かない。`PointerMoved`があって`RuntimeObserved`が無ければ実行は`Unobserved(not_run)`、`unhealthy`なら、OSは`RollbackRequired`を追記する（自動で戻さない。CK K7-I5）。`Unknown`は正常な起動として扱わず、そのまま保持する。
 - **RL-R6 rollbackは構成と成果物だけ**：rollbackは、かつて現行になった世代へのkind=rollbackのmove（CK K7-I3）であり、その世代のmanifestの成果物と構成へ戻す。案件のstate・recordは切替後の現在のidentity・value・historyを引き継ぎ、巻き戻さない（`AC-OS-014-06`）。移動先の`data format`が現在の案件dataを読めないと宣言・観測されれば`Rejected(not_eligible)`とし、案件dataを暗黙に逆移行しない（`INFRA-005-AC-03`）。rollbackでincidentを閉じない。
 - **RL-R7 保持**：現行の世代と、rollbackの移動先になりうる世代のmanifestと成果物を消さない（`AC-OS-014-06`「priorの構成・artifactを保持」）。それ以外の保持期間は決めない（11章）。
@@ -137,7 +141,7 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 
 - **RL-P1 論理IDは内容に持つ**：log_id・writer・segment_noは各`LogEntry.segment`（CK 9.3）とmanifestの`SegmentOpened`が持つ。読み手は内容から論理IDを得て、pathは`enc`の再計算と照合するだけとする。一致しなければそのsegmentを`Unknown(conflict)`とする。`_h`の形は内容からしか元に戻せない。
 - **RL-P2 衝突**：`records/`と`helix/`と`declarations/`の全pathについて、大文字小文字を畳んだ値が一意であること、異なる論理IDが同じpathにならないことを確かめる。衝突すれば両方を`Unknown(conflict)`とし、新しい書込みを`Rejected`とする。
-- **RL-P3 bytesを変えない**：`records/**`は改行の変換、filter、LFSの対象にしない（`.gitattributes`で`-text`。9.2）。各行はLFで終わる。末尾にLFの無い行はCK K5-I3(a)の解析できない行とする。
+- **RL-P3 bytesを変えない**：`records/**`は改行の変換、filter、LFSの対象にしない（`.gitattributes`で`-text`。9.2）。読取り条件として、各行の実bytesは、その行を解析した`LogEntry`の`canonical_json`（CK 3.2）＋LF（0x0a）一つとbyte単位で一致しなければならない。CRLF、末尾の空白、BOM、canonicalでない表記、末尾にLFの無い行はいずれもこの条件に当たり、そのsegmentを損傷とする（`Unknown(unreadable)`）。`entry_digest`は改行を含まない内容から計算するため、この条件が無いとCRLF化を検出できない（10章でCK K5-I3へ反映する）。
 - **RL-P4 純粋な追記だけ**：`records/`に触れる各commitで、各segment・manifestのbase側のbytesがhead側のbytesの先頭と一致すること（新規fileは`seq=1`から始まり、同じかそれより前のcommitでmanifestに`SegmentOpened`があること）を確かめる。変更・削除・rename・merge時の手での解決を含む差分は`Rejected`とする。
 - **RL-P5 同時のwriter**：一つのsegmentを書くのは一つのwriterである（CK 9.3）。writerは割当て・runの単位（CK 15.5）で、一つのprocessで順に追記する。別writerは別fileなので同時のbranchで衝突しない。同じsegmentへ二つのbranchが追記した場合、後から入るほうを手で解決せず、同じwriterが新しいbaseの末尾から追記し直す（K5-I2の`seq`と`prev_digest`は追記の時に計算する）。
 - **RL-P6 Git履歴に頼らない**：追記専用性はK5-I3の読取り時の検査と、repo外に保持した既知の`SegmentHead`との照合で確かめる。履歴の書換え（force push）や末尾の削除は、既知のheadを持たない読み手には検出できない（CK 9.7の1）。Gitのauthor・committer・署名をK5のwriterやK6の発行者の証拠にしない。repoへ書けるのはrepoの書込み権限を持つ全員であり、writerの真正性は`Unknown(unsupported)`のままとする（CK 10.5と同じ）。
@@ -150,7 +154,7 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 - **RL-D1 パックごとのdefault deny**：パックが使ってよい依存は`declaration.json`の依存（種別・identity・版）だけである。宣言の無い依存を実行時に使えば不合格（`AC-HARNESS-L3-010-01`）。空の依存宣言は「依存なし」であり、未宣言の許可ではない（旧source-boundary-architecture 53-57行の保持）。
 - **RL-D2 機構をまたぐ結合はconnection**：機構AのパックがBのunit・compositeを直接依存に持つことを禁じ、Bとの結合はconnectionのパックを介する（構成判断「旧HELIXとの対応」3行目）。例外は共通カーネルのパック（所有HARNESS。2026-10-08判断2）への依存だけとする。connectionのパックのownerは宣言の一つのownerであり、フォルダはそのowner機構の`connections/`に置く。
 - **RL-D3 docs・records・declarationsをpathで読まない**：`helix/`のコードは、実行時に`docs/`・`records/`・`declarations/`・`archive/`・`scaffold/`をpathで読まない。宣言と記録は、宣言した入力として`FixedRef`とdigestで受け取る（CK 9.3、16.2）。段階の起動・更新・復旧は開発中treeを使わない（`AC-OS-014-07`）。
-- **RL-D4 循環と影響**：依存のグラフはK10（CK 14章）で台帳と宣言から作り、循環と影響範囲をそこで判定する。本書はコードからedgeを抽出する方法を決めない（L5〜L6）。
+- **RL-D4 影響**：依存のグラフはK10（CK 14章）で台帳と宣言から作り、影響範囲をそこで判定する。循環は否定にしない（CK K10-I3。現行L3に循環禁止の由来は無い。13章）。本書はコードからedgeを抽出する方法を決めない（L5〜L6）。
 - **RL-D5 scaffoldとarchive**：正式なパックは`scaffold/`に依存しない（Scaffold Bindingの`check-replacement`→`retire`。AGENTS.md）。`archive/`は実行しない。
 
 ## 8. 保護のpath分類（新規案）
@@ -179,18 +183,19 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 ### 9.2 root config
 
 - **RL-K1 増やさない**：rootに置くのは`AGENTS.md`、`CLAUDE.md`、`README`、`LICENSE`、`.gitignore`、`.gitattributes`（RL-P3）と、L5〜L6で採用したツールチェーンが動作上rootを要する最小のfileだけとする。新しいroot fileを足すときは、本書のこの節へ理由を追記する。
-- **RL-K2 旧の具体を引き継がない**：旧のNode／TypeScript／Vitest／Biome／package.jsonの設定とlockは採らない（構成判断「旧HELIXとの対応」1行目）。Bunは使わない（旧ADR-009 73行「再activationしない」の保持）。
+- **RL-K2 旧の具体を引き継がない**：旧のNode／TypeScript／Vitest／Biome／package.jsonの設定とlockは採らない（構成判断「旧HELIXとの対応」1行目）。Bunは使わない。現行の由来は`HELIXOS-L2-132`の003（`docs/governance/decisions/po-decision-2026-10-03-pending4-bun.md:27,33`。開発・実行・検証・配布のsurfaceでBunを今後も使わず再導入しない）である。旧ADR-009 73行（旧runtimeでBunを再activationしない）は旧資産の対応として保持するが、新世代の技術選択の制約の根拠にはしない。
 - **RL-K3 ツールの設定はパックへ寄せる**：パックに閉じる設定はパックのフォルダに置き、rootへ上げない。
 
 ## 10. 共通カーネルへの反映事項
 
 本PRはCKを編集しない。CKの後続PR（Codex側のPR10）で次を揃える。
 
-1. **15.4 台帳の行**：`VersionDeclared{identity, 項目}`を`VersionRegistered{identity, version, declaration: FixedRef, declaration_digest}`へ置き換え、項目の値は`declaration.json`だけに置く（RL-C1、C3）。compositeの「scope内の受入の証拠」はReleaseManifestに置く（3.1）。L9 IV-LDG-01の期待を「宣言のdigestを参照する行だけが導かれる」へ揃える。
+1. **15.4 台帳の行**：`VersionDeclared{identity, 項目}`を`VersionRegistered{identity, version, declaration: FixedRef, declaration_digest}`へ置き換え、項目の値は`declaration.json`だけに置く（RL-C1、C3）。宣言の項目は識別項目と構成項目に分ける（RL-C2）。compositeの成果物の組はReleaseManifest、「scope内の受入の証拠」は`ReleaseEstablished.eligibility`に置く（3.1）。L9 IV-LDG-01の期待を「宣言のdigestを参照する行だけが導かれる」へ揃える。
 2. **15.5 配置の表**：`records/<log_id>/…`を`records/<enc(log_id)>/manifest.jsonl`、`records/<enc(log_id)>/segments/<enc(writer)>/<20桁>.jsonl`へ改め、`store: repository`のlogに限る（RL-P8）。`declarations/`と`helix/`のpath要素も`enc`とし、パックの宣言のfile名を`declaration.json`とする。フォルダ名と宣言の不一致を`Unknown(conflict)`に加える（RL-C4）。
 3. **9.3 `LogDecl`**：`store: repository | stage | instance`を加える（RL-P8）。`FixedRef`の所在を`{store, locator, digest}`へ広げる（RL-P9）。
-4. **15.2 `Generation`**：`GenerationStaged`が`ReleaseEstablished`済みのReleaseManifestを指す条件を加える（RL-R4）。`PointerLog`・`RequestLog`・`EpochLog`は`store: stage`とし、`append_if_head`の物理の前提をRL-P7で参照する。
+4. **15.2 `Generation`とK7-I3**：`GenerationStaged`が`ReleaseEstablished`済みのReleaseManifestを指す条件を加え、K7-I3の`stage_verification`の基底鍵を4.1の`stage_key`（`subject`＝`ManifestRef`）とRL-R2の成分へ揃える（RL-R4）。`PointerLog`・`RequestLog`・`EpochLog`は`store: stage`とし、`append_if_head`の物理の前提をRL-P7で参照する。
 5. **15.6 `ledger_view`**：release成立・現行の世代・実行の観測を別fieldで返す（RL-R5）。
+6. **9.4 K5-I3**：損傷の条件に「(h)行の実bytesが`canonical_json(LogEntry)`＋LF一つと一致しない」を加える（RL-P3）。対のL9へ、CRLF化・末尾空白・非canonical表記の各反例を加える。
 
 ## 11. L2へ戻す論点
 
@@ -216,7 +221,7 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 | `LEGACY-ASSET-A2F6A697D7FFFD490B57`／`docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md:54-58,82-93,110-115,123-127`／`336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c` | pathごとに一つの所有単位。release packetがsource SHA・artifact digest・受入・rollbackを束ねる。未信頼artifactのpath traversal・symlink・case collisionの静的検査。Release artifactの確定と環境のDeploymentを別stateにする | Module・Bundleをパックと型番台帳へ置き換え、所属をpathでなく宣言と台帳で決める。release packetをReleaseManifestへ縮め、独立review・SBOM・release noteは入れない（現行L3に由来が無い） | `semantic_rederive` |
 | `LEGACY-ASSET-9B7682EBDEA171005D45`／`docs/design/helix/L3-requirements/distribution-package-release-requirements.md:22-29,41-56,75-85`／`c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c` | 開発repoが唯一のsource authorityで、配布物を逆向きの正本にしない。typed allowlistからの決定的な投影。dogfood state・secret・absolute pathの除外。除外を全surfaceで強制する | Lite・`consumer_core_v1`・DevOS・standing authorizationは採らない。allowlistを型番で表す。配布先privateは2026-09-27判断 | `semantic_rederive` |
 | `LEGACY-ASSET-809B35B3C91567A97AF5`／`docs/design/harness/L5-detailed-design/source-boundary-architecture.md:11-18,47-57`／`6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610` | default denyと明示allow。EMPTYを暗黙の許可にしない（旧の失敗：32 moduleのうち29がEMPTY） | 宣言をパックの宣言へ置き、機構をまたぐ結合をconnectionに限る | `semantic_rederive` |
-| `LEGACY-ASSET-67B016392E3F7D58B053`／`docs/design/harness/L5-detailed-design/module-decomposition.md:27,88-92`／`da787dcfd95b0b4011dc1979df1b6652e990f75ffb71750c6ff9c24a2a24739a` | 循環の禁止、composition rootへ配線を限る | 依存の判定をK10へ移す | `semantic_rederive` |
+| `LEGACY-ASSET-67B016392E3F7D58B053`／`docs/design/harness/L5-detailed-design/module-decomposition.md:27,88-92`／`da787dcfd95b0b4011dc1979df1b6652e990f75ffb71750c6ff9c24a2a24739a` | composition rootへ配線を限る（27行） | 旧88-92行のimport循環の禁止は保持しない。旧はsource codeのimportグラフについての規則であり、現行のK10はパックと宣言の型付き依存グラフで、循環を否定にしない（CK K10-I3、14.7）。現行L3に循環禁止の由来が見つからないため、本書でも足さない。依存の判定はK10へ移す | `semantic_rederive` |
 | `LEGACY-ASSET-310E87378AFE8095809C`／`docs/design/harness/L5-detailed-design/physical-data.md:33-42`／`a3064a3b705adcf0a5f76c3210aa431d87b7971aed2fe88f948a323a40c7772f` | append-onlyのJSONLを監査の記録にする。runtime stateの大半をgitignoredにする | `.helix/`とISO時刻のfile名を採らず、`records/`と`enc`、segmentの番号にする | `replace`（物理配置） |
 | `LEGACY-ASSET-656F75AF81EE933415D9`／`docs/design/harness/L5-detailed-design/durability-boundaries.md:24-25,29-30,43-52`／`b6c4c6f58259b6c09f6cd52a64ab1fb7b04114a41d2b1089fdc5b9730f8666d5` | 同じdirectoryの一時file・fsync・renameによる原子的な公開。排他claimでwriterを直列化。同じpreviousから複数の候補があればconflict | `store: stage`の置き場の前提として保持する（RL-P7）。repo内では追記の検査に置き換える | `semantic_rederive` |
 | `LEGACY-ASSET-F54C515C9BB8965C1F4A`／`docs/design/helix/L6-function-design/node-runtime-cutover.md:49-52,109,149`／`50e5f918079220551310bb8aaf8431e640a91ce13fd83ccb1de480ba1b9b88c1` | 非現行の不変な世代を準備してからpointer一件のCASで切り替える。活性化の記録と監視・healthを別に結ぶ | 旧のrollback receiptはDBのstate revisionも戻したが、案件state・recordは巻き戻さない（`AC-OS-014-06`） | `semantic_rederive` |
@@ -245,3 +250,4 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 | `docs/helix-connect/L3-requirements/functional-requirements.md` | `b3e4a47c0f49978880fc9bae7697d9b67eeaf72a112f821fef167c230c9d2e4b` |
 | `docs/helix-harness/L4-basic-design/common-kernel.md` | `3849d2ef10c3f6af51aad3c0971c364f1f6e95a5a4d79a17961f3e194523077a` |
 | `AGENTS.md` | `386d30378d49b96c055d237ccaa88ed02f3e43359ccfe006e4fd9c96bf5a595c` |
+| `docs/governance/decisions/po-decision-2026-10-03-pending4-bun.md` | `50371dd5a2bb445aa23366790229b00a2731bf0ce0b3344a73d8ef289c4b5e92` |
