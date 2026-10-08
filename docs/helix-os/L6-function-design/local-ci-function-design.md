@@ -17,8 +17,8 @@ version_target: 1.0
 
 | 入力path | 本文SHA-256 |
 |---|---|
-| `docs/helix-os/L4-basic-design/local-ci.md` | `0e6856af312b25cc2bb0acbfd6b2965e25961dd5cbd91af97d337d28aaeddc88` |
-| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `477b22887e2fccc2e3f33a6ba95b9bbf6bc3419da2d846b721c8f3be2e1c2d60` |
+| `docs/helix-os/L4-basic-design/local-ci.md` | `3f407bbbc686ab90d4004e30e02fe635cd89c8074337443de3d28847cf453f07` |
+| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `78be559bd8b5e6b7c4c38175b9661ab1d9ff1a97a6eb9cf66edafaca0c0332cd` |
 | `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `b85919b686b0c4b94fd4523f8dfabbcdde89c329c806c4116fe0edf2cdaaf216` |
 | `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `eb0d80436c7ff5ad90d121a0d19ea6049b26954d5a141c3efc50830f905eb588` |
 
