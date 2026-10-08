@@ -61,6 +61,8 @@ version_target: 1.0
 
 `UT-LCI-02`は要求headとcheckout HEAD/treeの不一致を対象とし、既存K1外側`Stale`を返して`CiTarget` Valueを作らない。`UT-LCI-13`は全5 required step完了後の最終target/checker再照合だけでdriftを検出するcaseであり、外側K1 `Stale`、実行evidenceを診断artifactへ保持、`LocalCiReceipt`なし、aggregate foldなしを期待する。step完了前に検出するdriftは既存L4 run-level契約どおり、後続を止め、未開始stepをstale行としてreceiptに残してaggregateを`stale`へfoldする。
 
+### 単体oracle一覧
+
 | Test ID | 入力 | 一点の変異 | 期待する型付き結果 |
 |---|---|---|---|
 | `UT-LCI-01` | 合成base/head refが存在 | base refを削除 | `Rejected(missing_key)` |
