@@ -386,15 +386,15 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 
 | 運用規則（本書の節） | 今の守り方 | 移管先の要求（状態） | 移管時の差 |
 |---|---|---|---|
-| PRの原子性（「PRの原子性」） | 作成側の分割と、review側の範囲確認 | HELIXOS-L2-046（2026-09-29採択、Stage 4のL3承認済み）、HARNESS-L2-045（2026-09-29採択、L3は未承認） | なし |
+| PRの原子性（「PRの原子性」） | 作成側の分割と、review側の範囲確認 | HELIXOS-L2-046（2026-09-29採択、Stage 4のL3承認済み）、HARNESS-L2-045（2026-09-29保留、2026-10-03も保留を維持。L3は未承認） | HARNESS-L2-045は保留中であり、解除条件（値の決定責務、単位、未設定・参照不能・超過時の扱い）が確定するまで移管先にならない |
 | 作成とreviewの分離、明示merge、read-after（「作成側とレビュー対応側の責務」） | 両レーンの運用と、PR commentの記録 | HELIXOS-L2-046、HELIXOS-L2-035（2026-09-29採択、Stage 3のL3承認済み） | なし |
 | merge直前の`scfctl stale`の確認と、後続PRの再照合 | review側の手作業 | HELIXOS-L2-052（2026-09-29採択、Stage 4のL3承認済み）の「base driftの再照合」 | なし |
 | 通知と待受（「GUIレーンの運転と通知」） | scaffold（`SCF-B-0003`）と両レーンの運用 | `SCF-B-0003`のreplacementに記録された移管先（HELIX-OSのreview配送・応答照合。対象の要求は未特定） | 移管先の要求を特定していない |
 | 作業branchとworktreeの片付け（「作業branchとworktreeの片付け」） | 手作業と#2093への記録 | HELIXOS-L2-052の「merge後のlocal cleanup」「remote ref境界」 | HELIXOS-L2-052は、remote refの削除にrepository・ref・delete作用を明示した許可を要し、`delete_branch_on_merge`の設定を削除の許可として継承しない。本書は同設定を維持している。移管時に、同設定を許可として明示するか、削除を別の許可で行うかを決める |
-| IssueとFeature Ticketの投影、Issueのclose（「IssueとFeature Ticket」） | 作成側とreview側の手作業 | HARNESS-L2-059、HELIXOS-L2-102、HELIXOS-L2-054（いずれも未採択の候補） | 移管先が未採択 |
+| IssueとFeature Ticketの投影、Issueのclose（「IssueとFeature Ticket」） | 作成側とreview側の手作業 | HARNESS-L2-059、HELIXOS-L2-102、HELIXOS-L2-054（いずれも2026-09-30採択。059と102、および054はHARNESS-L2-057とのセット採択。L3の承認記録は見つかっていない） | 移管先のL3が未承認 |
 | L3／L10承認の委任（「L3／L10承認の委任」） | 別系統の独立reviewと判断記録 | 共通カーネルL4（`docs/helix-harness/L4-basic-design/common-kernel.md`）のPhase 1とK9 | 移管先は要求ではなく設計である。Phase 1の成立条件は、v0.1の条件の照合（`docs/governance/audits/stage1-preflight-criteria-comparison-2026-10-09.md`）でPO判断待ち |
 
-表の状態は、採択は`docs/governance/decisions/po-decision-2026-09-29-57candidates.md`、L3の承認は各機構のStageの判断記録から読んだ。L2本文の見出しや状態欄に「未採択」と残っている要求もあるが、表は判断記録を正とする。
+表の状態は、採択・保留は`docs/governance/decisions/po-decision-2026-09-29-57candidates.md`、`po-decision-2026-09-29-11candidates.md`、`po-decision-2026-09-30-live26.md`、`po-decision-2026-10-03-later35.md`の各行の処置から、L3の承認は各機構のStageの判断記録から読んだ。判断記録にIDが現れることを採択とみなさず、処置の欄を読む。L2本文の見出しや状態欄に「未採択」と残っている要求もあるが、表は判断記録を正とする。
 
 ### 旧HELIXとの対応
 
