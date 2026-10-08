@@ -44,7 +44,7 @@ GitHubのIssue、PR、label、checkを追いかけて要求を推定する運用
 | `discovery_evidence` | 一つの要求候補を比較する限定PoCまたはUI・動画prototype | 親判断論点、仮説、timebox、使い捨てscope、評価方法、返却先 | 再現可能な試作証拠と要求候補・premiseへのbackflow | production pathへの取込、要求採用、設計freeze、製品完成 |
 | `requirement` | 一つの要求identityと対になるL11。分割案はsuccessor候補を列挙できるが、別identityを同じPRで確定しない | 親Concept／L1 exact revision、source、対象product、要求kind | 判断記録に束縛した一要求revision | 他要求、設計方式、実装、CI、受入pass |
 | `design_verification` | 一つの承認要求に対するL3とL10、または後続の一つのV-pair。L3／L10は一つの機構の一つのStageに属する承認要求のpair群までを一つのPRにまとめてよい（「PRの原子性」） | 承認要求revision、適用template、risk、未解決 | 対象pairのfreeze可能な設計・検証契約 | 実装完了、利用者受入、運用成立 |
-| `implementation` | 一つのticketが指定する作業の成果と必要検証。実装へ進めるかは、ticketの状態ではなく親要求・設計の承認とfreezeの状態で判断する | Feature Ticket、親要求、設計、oracle、許可、HEAD | 対象成果と検証証拠 | 無関係な要求・設計の変更、release、deployment |
+| `implementation` | 一つのticketが指定する作業の成果と必要検証。実装へ進めるかは、ticketの状態ではなく親要求・設計の承認とfreezeの状態で判断する | 親要求、設計、oracle、許可、HEAD。Feature Ticketがあれば作業の指示として参照するが、無いことをreview・mergeの停止理由にしない | 対象成果と検証証拠 | 無関係な要求・設計の変更、release、deployment |
 | `operation_change` | GitHub、CI、Worker、配布等の一つの外部運用変更 | HELIX-OS要求、操作authority、backup、rollback、read-after | 許可scope内の外部状態変更 | 要求意味、人間承認、別操作の許可 |
 
 要求PRは原則として一つの要求identityだけを扱う。複数要求を一括変更しない。connection要求は接続そのもの、
@@ -191,7 +191,7 @@ POが差し戻すと判断した場合は、差し戻しの判断記録を作る
 - HARNESSが工程のnormative vocabulary、trigger、適用条件、各route内の順序、join、停止・差戻し・完了条件を所有する。単一の固定列ではなく、下記の条件付きrouteをHARNESS contractとして保持する。
 - 推進機構はHARNESS語彙を別定義せず、operational tag、versioned mapping、composition、workflow instance生成規則を所有し、管理から受けた目的・要求・制約をticket graphへ変換する。
 - 管理層は生成物を登録・統制する。HARNESSは個別ticket発行やworkflow instance生成を行わず、推進は入力に合うHARNESS routeとtriggerを評価し、必要なrouteだけを規定順で具体化する。
-- PRは対応するlocal ticketとIssueを参照する。Issue closeやPR mergeだけでticket完了を生成しない。
+- PRは、対応するlocal ticketやIssueがあれば参照する。ticketやIssueが無いこと、欠けたことを、review・mergeを止める理由にしない。Issue closeやPR mergeだけで作業の完了を生成しない。
 
 ### HARNESSの条件付き工程contract
 
