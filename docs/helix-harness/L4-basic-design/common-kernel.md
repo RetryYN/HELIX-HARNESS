@@ -892,11 +892,13 @@ Impact         = { changed: SubjectRef[], affected: identity[], possibly: identi
 ```text
 Generation  = { target: identity（段階の型番）, number: 符号なし整数, composition: SubjectRef（台帳の段階の版） }
 PointerLog  = K5のlog（log_id: generation:<target>）。PointerMovedを書くsegmentは、段階の所有者（OS）が
-              宣言した一つのpointer_writerのsegmentだけとする
+              宣言した一つのpointer_writerのsegment（pointer segment）だけとする
   GenerationStaged { generation }
-  MoveRequested    { expected_head, from, to, kind: promote | rollback | rebuild, authorization: SubjectRef,
-                     eligibility: RequiredResult }               # 記録だけ。現行を変えない
   PointerMoved     { request: entry_digest（MoveRequested）, from, to }   # 適用。現行を変える
+RequestLog  = K5のlog（log_id: move-request:<target>）。requesterごとのsegmentに書く
+  MoveRequested    { pointer_head: SegmentHead（request時のpointer segmentの末尾）, from, to,
+                     kind: promote | rollback | rebuild, authorization: SubjectRef,
+                     eligibility: RequiredResult, eligibility_heads: SegmentHead[] }  # 記録だけ。現行を変えない
   RollbackRequired { generation, evidence }                       # 観測。pointerを動かさない
   WriterHandoff    { from_segment_head: SegmentHead, to_segment }  # pointer_writerの交代
 EpochLog    = K5のlog（log_id: epoch:<scope>）。書くのは割当ての所有者（OS）の一つのsegmentだけ
@@ -905,8 +907,8 @@ EpochToken  = { scope, number, entry_digest（EpochIssuedの行） }
 ```
 
 - **K7-I1 一つの現行と順序**：`PointerMoved`の順序は、pointer_writerのsegmentの`seq`の順とし、pointer_writerが交代したときは、新しいsegmentの最初の行の`WriterHandoff`が指す旧segmentの末尾の後に続ける（K5-I7のsegmentの辞書順は使わない）。現行の世代は、この順で最後の`PointerMoved`の`to`とする。`WriterHandoff`の連鎖が途切れていれば、現行は`Unknown(missing_input)`とする。
-- **K7-I2 直列化とcommitの境界**：`move`は、読んだ時点のpointer_writerのsegmentの末尾を`expected_head`として持つ。追記はそのsegmentへの一行の追記をcommitの境界とし、追記の直前に、segmentの末尾が`expected_head`と一致すること、`from`が現行と一致すること、許可・適格性・`EpochToken`をcurrentの記録から読み直して変わっていないことを確かめる。どれかが違えば`Rejected(stale_head)`とし、何も追記しない（旧node-runtime-cutoverのsingle authority pointer CASとcommit前の再読）。
-- **K7-I3 適格性の入力**：移動先の世代の適格性は、操作`stage_verification`について、所有者が宣言したcurrentの`OperationDecl`から基底鍵（`subject`＝移動先の`composition`、`inputs`＝宣言の入力、`scope`＝宣言のscope）を作り、固定した`VerifierSet`と`input_heads`でK6-I7の手順（`restore`→`lookup`→`admit_receipt`→全成分の`combine`）を行った`RequiredResult`とする。`Positive`でなければ`Rejected(not_eligible)`とし、`RequiredResult`（`assurance`を含む）は`MoveRequested`に記録する。rollbackの移動先は保持している世代に限る（AC-OS-014-06、HARNESS-010-03、021-03）。
+- **K7-I2 二段と直列化**：`request_move`は、pointer segmentの末尾を`pointer_head`として読み、適格性を検査し（K7-I3）、`MoveRequested`を`RequestLog`へ追記する。pointer segmentへは書かないので、request自身の追記でpointer segmentの末尾は変わらない。`apply_move(request)`は、pointer segmentへの条件付き追記`append_if_head(pointer segment, expected_head = request.pointer_head, PointerMoved)`だけをcommitの境界とする。`append_if_head`は、segmentの末尾が`expected_head`と一致することの確認と一行の追記を、pointer_writerが一つの操作として行い、確認と追記の間に別の追記が入らない（K5の`append`の上に置くK7の受け口。旧node-runtime-cutoverのsingle authority pointer CAS）。一致しなければ`Rejected(stale_head)`とし、何も追記しない。requestの後に別の`PointerMoved`が一件でも入れば、そのrequestはstaleであり、新しい`pointer_head`へ付け替えて使わず、`request_move`をやり直す（旧node-runtime-cutoverのprepareとcommitの分離）。適格性・許可は`MoveRequested`の`eligibility_heads`と`authorization`の時点で固定され、その後の変化（取消し等）はG5とK7-I6の`Epoch`で扱う。
+- **K7-I3 適格性の入力**：移動先の世代の適格性は、操作`stage_verification`について、所有者が宣言したcurrentの`OperationDecl`から基底鍵（`subject`＝移動先の`composition`、`inputs`＝宣言の入力、`scope`＝宣言のscope）を作り、固定した`VerifierSet`と`input_heads`でK6-I7の手順（`restore`→`lookup`→`admit_receipt`→全成分の`combine`）を行った`RequiredResult`とする。`Positive`でなければ`Rejected(not_eligible)`とし、`RequiredResult`（`assurance`を含む）は`MoveRequested`に記録する。移動先は`kind`ごとに次を満たさなければ`Rejected(not_eligible)`とする。promote：`to`は、まだ現行になったことの無い新しい世代の`number`（`GenerationStaged`済み）。rebuild：`to`は新しい世代の`number`で、その`composition`が`from`の世代の`composition`とidentity・revision・digestまで一致する。rollback：`to`は保持している（`GenerationStaged`済みで、かつて現行になった）前の世代の`number`（AC-OS-014-06、HARNESS-010-03、021-03）。
 - **K7-I4 許可と適用の分離**：`MoveRequested`は記録だけであり、現行・内部デプロイの状態・G5-I6の待ちを変えない。`PointerMoved`を追記できるのは、`authorization`が対象と作用（その`target`、その`kind`）に一致する許可の記録として照合され、取り消されていない場合だけとする。照合はK3（8.2のPR7）で定める。K3が定まるまで、許可を照合できないため、`PointerMoved`は追記しない（`MoveRequested`はpendingのまま）。内部デプロイとcutoverは、対象と作用を明示したPOの許可を要する外部作用であり（AGENTS.md、内部デプロイの判断記録の方針1）、K7はその許可を生成しない。
 - **K7-I5 自動の切戻しをしない**：失敗を観測しても、pointerを動かさず`RollbackRequired`を追記するだけとする（旧ADR-009の保持）。自動の切戻しは、Phase 2へ移る判断で扱う（2026-10-08判断記録の判断3）。rollbackは構成だけを戻し、案件のstate・recordは現在のものを引き継ぐ（AC-OS-014-06）。rollbackでincidentを閉じない（INFRA-005-AC-03）。
 - **K7-I6 fencing（遅着作用の拒否）**：割当て・runのscopeごとに、現在の`EpochToken`は`EpochLog`の最後の`EpochIssued`とする。再割当て、取消し、失効で新しい`EpochIssued`を追記する。状態を変える作用（K5への追記、artifactの書込み、結果の`record`）は`EpochToken`を持ち、`admit_effect`は次の順で検査する。(1)`scope`、`number`、`entry_digest`が現在の`EpochToken`とすべて一致しなければ`Rejected(fenced)`（小さい値、大きい値、別のscope、同じnumberで別の行のいずれも拒否する）。(2)そのscopeが依存する許可の取消しについて`PropagationView`が`Positive`でなければ`Rejected(revocation_pending)`。(3)取り消された許可に代わる新しい許可の記録が無ければ`Rejected(missing_authorization)`。旧い`EpochToken`の観測（CI、review、費用）は、作用と別の`LateObservation`のeventとして元のepisodeへ結んで追記し、作用として適用しない（4章の「遅着観測」）。
@@ -917,12 +919,13 @@ EpochToken  = { scope, number, entry_digest（EpochIssuedの行） }
 Revocation      = { revoked: SubjectRef, record: SubjectRef（取消しの記録）, trigger }
 RecipientClass  = os_assignment | worker_run | connect | credential | artifact_access | approval_consumer | internal_deployment
 RecipientMap    = FixedRef。SECURITYが宣言する { nodeのkind -> RecipientClass }
-PropagationView = { revocation, recipients: { identity -> RecipientClass }, combined: Combined,
+RecipientDecl   = FixedRef。受け手の所有者が宣言する、currentの { identity -> SubjectRef }
+PropagationView = { revocation, recipients: { identity -> Set<RecipientClass> }, combined: Combined,
                     assurance: { (identity, verifier) -> { reverifiable, reproduction, issuer_authenticity } } }
 ```
 
-- **G5-I1 受け手の全集合**：`propagate`は、(1)K10の照会の二段で、currentの`GraphDecl`・`GraphRules`からグラフを得る（非`Value`なら、その結果を返す）。(2)`impact(changed = [revoked])`と、`review_set(impact, obligation_set_keys, decls)`を行う。(3)`affected`の各nodeは、そのnodeの`kind`を`RecipientMap`で写した`RecipientClass`の受け手とする（写せなければ`Unknown(unregistered)`の成分）。`review_set`の各記録は、その鍵の`subject`のidentityを、各義務は、その`target`のidentityを、`approval_consumer`の受け手とする。(4)`check_graph`・`impact`・`review_set`の否定・非`Value`・`set_reason`の成分は、`{graph, …}`・`{review, …}`の識別付きですべて`combined`へ入れる。受け手が0件なら`set_reason`。
-- **G5-I2 状態はreceiptから**：受け手`r`の状態は、操作`revocation_apply`について、`r`のcurrentの`OperationDecl`から作る基底鍵（`subject`＝`r`、`inputs`＝宣言の入力と`Revocation.record`、`scope`＝宣言のscope）で、固定した`VerifierSet`の`required_for[revocation_apply]`の検証器（受け手の適用を確かめる検証器）のreceiptを、K6-I7の手順で得る。receiptの`inner`の検査`applied`が肯定、`failed`が否定、`received`が`Unobserved(pending_receipt)`であり、`inner`の全成分と`set_reason`を`{r, verifier, 検査}`付きで`combined`へ入れる。照会や受入の非`Value`（receiptが無い`Unobserved(not_run)`、`Stale`、`Unknown(conflict)`、`Unknown(unreadable)`、`Unknown(missing_input)`）は`r`の成分とする。`assurance`は`{r, verifier}`ごとに返す。旧い取消しの`applied`のreceiptは、鍵の入力の取消しの記録が違うため、現在の取消しの照会に当たらない（`Unobserved(not_run)`）。
+- **G5-I1 受け手の全集合**：`propagate`は、(1)K10の照会の二段で、currentの`GraphDecl`・`GraphRules`からグラフを得る（非`Value`なら、その結果を返す）。(2)`impact(changed = [revoked])`と、`review_set(impact, obligation_set_keys, decls)`を行う。(3)`affected`の各nodeは、そのnodeの`kind`を`RecipientMap`で写した`RecipientClass`の受け手とする（写せなければ`Unknown(unregistered)`の成分）。`review_set`の各記録は、その鍵の`subject`のidentityを、各義務は、その`target`のidentityを、`approval_consumer`の受け手とする。同じidentityに複数の種類が導かれれば、すべての種類を保持し、種類ごとに成分を作る（後から導いた種類で上書きしない）。(4)`check_graph`・`impact`・`review_set`の否定・非`Value`・`set_reason`の成分は、`{graph, …}`・`{review, …}`の識別付きですべて`combined`へ入れる。受け手が0件なら`set_reason`。
+- **G5-I2 状態はreceiptから**：受け手`r`の現在の参照は、`r`の所有者が宣言した`RecipientDecl`の`SubjectRef`とし、receiptや旧い記録から採らない。`RecipientDecl`に`r`が無ければ`Unknown(missing_input)`、同じidentityで同じrevisionに二つのdigestがあれば`Unknown(conflict)`の成分とする。`r`の状態は、操作`revocation_apply`について、`r`のcurrentの`OperationDecl`から作る基底鍵（`subject`＝`r`の現在の`SubjectRef`、`inputs`＝宣言の入力と`Revocation.record`、`scope`＝宣言のscope）で、固定した`VerifierSet`の`required_for[revocation_apply]`の検証器（受け手の適用を確かめる検証器）のreceiptを、K6-I7の手順で得る。receiptの`inner`の検査`applied`が肯定、`failed`が否定、`received`が`Unobserved(pending_receipt)`であり、`inner`の全成分と`set_reason`を`{r, verifier, 検査}`付きで`combined`へ入れる。照会や受入の非`Value`（receiptが無い`Unobserved(not_run)`、`Stale`、`Unknown(conflict)`、`Unknown(unreadable)`、`Unknown(missing_input)`）は`r`の成分とする。`assurance`は`{r, verifier}`ごとに返す。旧い取消しの`applied`のreceiptは、鍵の入力の取消しの記録が違うため、現在の取消しの照会に当たらない（`Unobserved(not_run)`）。
 - **G5-I3 停止を続ける**：`PropagationView`が`Positive`になるまで、取り消された記録に依存するscopeの作用を、K7-I6の(2)で拒否する。
 - **G5-I4 取消しから許可を作らない**：取消しは承認・許可を生成しない。取消しを取り消して元へ戻す経路を置かず、再開には新しい許可の記録を要する（K7-I6の(3)）。
 - **G5-I5 承認の状態と記録**：取消しは新しい記録として追記し、取り消された記録や本文を書き換えない。承認の記録を入力に持つ結果は、K10-I7の見直しの対象になる。
@@ -950,10 +953,11 @@ PropagationView = { revocation, recipients: { identity -> RecipientClass }, comb
 
 ### 15.6 API境界
 
-- `request_move(target, expected_head, from, to, kind, authorization, decls, verifier_set, input_heads) -> Appended(MoveRequested) | Rejected(stale_head | not_eligible)`：K7-I2・I3に従う。
-- `apply_move(request) -> Appended(PointerMoved) | Rejected(stale_head | authorization_unverified | not_eligible)`：K7-I2・I4に従う。K3が定まるまでは`Rejected(authorization_unverified)`を返す。
+- `request_move(target, from, to, kind, authorization, decls, verifier_set, input_heads) -> Appended(MoveRequested) | Rejected(not_eligible)`：K7-I2・I3に従う。pointer segmentへは書かない。
+- `apply_move(request) -> Appended(PointerMoved) | Rejected(stale_head | authorization_unverified)`：K7-I2・I4に従い、`append_if_head`で追記する。K3が定まるまでは`Rejected(authorization_unverified)`を返す。
+- `append_if_head(segment, expected_head, entry) -> Appended | Rejected(stale_head)`：K7-I2の条件付き追記。
 - `admit_effect(effect, epoch_token, input_heads) -> Appended | Rejected(fenced | revocation_pending | missing_authorization)`：K7-I6に従う。
-- `propagate(revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, verifier_set, input_heads) -> Observed<PropagationView>`：G5-I1〜I3に従う。
+- `propagate(revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, recipient_decls, verifier_set, input_heads) -> Observed<PropagationView>`：G5-I1〜I3に従う。
 - `ledger_view(input_heads) -> Observed<Projection>`：15.4に従う。内部デプロイの状態は`PointerMoved`だけから導き、`MoveRequested`を使わない。
 
 ### 15.7 旧HELIXとの対応
@@ -982,7 +986,7 @@ PropagationView = { revocation, recipients: { identity -> RecipientClass }, comb
 
 ### 15.10 未決と試作で確かめること
 
-- 試作：小さな段階の世代を2つ作り、L9のIV-K7-01〜10、IV-G5-01〜08、IV-LDG-01〜04を動かす。
+- 試作：小さな段階の世代を2つ作り、L9のIV-K7-01〜11、IV-G5-01〜10、IV-LDG-01〜04を動かす。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
