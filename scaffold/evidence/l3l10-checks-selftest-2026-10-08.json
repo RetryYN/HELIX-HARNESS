@@ -1,0 +1,728 @@
+{
+ "record_type": "l3l10_checks_selftest",
+ "evidence_kind": "scaffold",
+ "authority_effect": "none",
+ "binding": "scaffold/bindings/SCF-B-0157.json",
+ "note": "仮の検証の記録。正式なCI／検証／受入の成立を意味しない。検出器の回帰確認であり、L3／L10の承認・合格・merge admissionを生成しない",
+ "source_commit": "db12a6c372a5081b63eb9b5d3bdc7a3dd89cd0c8",
+ "source_commit_note": "記録時のworktreeのHEAD。検査器自体の版はchecker_source_digests（各fileのSHA-256）で特定する",
+ "recorded_at": "2026-10-08T05:06:10.831406+00:00",
+ "checker_source_digests": {
+  "scaffold/l3l10-checks/README.md": "f5c751f7d2393cc6d844931b567cde82b39e06f364bd69db39dd96328b185b67",
+  "scaffold/l3l10-checks/l3l10check.py": "63c23624b42785b3dccec2e6e6ebbd91eff8d22d90fc6cc5ea7255eb56dda28e",
+  "scaffold/l3l10-checks/selftest.py": "a875c064f510ad40e27974597b3dd259fd55fba8aa0ae4293fd88c8d70cc6489",
+  "scaffold/l3l10-checks/corpus/major-corpus.json": "c5faea577776702c4fb6e04f54917dbf77fc133954cded37b665c6b767008b85"
+ },
+ "registered_checks": [
+  "pin_recompute",
+  "count_ids",
+  "fixed_quote",
+  "return_vocab",
+  "boundary_removed"
+ ],
+ "command": [
+  "python3",
+  "-B",
+  "scaffold/l3l10-checks/selftest.py",
+  "--record"
+ ],
+ "result": "ok",
+ "failures": [],
+ "tally": {
+  "corpus_items": 13,
+  "targeted": 10,
+  "detected_violation": 9,
+  "detected_advisory": 1,
+  "not_detected": 0,
+  "fixed_head_flagged_at_location": 0,
+  "excluded_difficult": 3,
+  "partial_scope": [
+   "2679 M1"
+  ],
+  "synthetic_cases": 14,
+  "synthetic_ok": 14
+ },
+ "corpus": [
+  {
+   "pr": 2674,
+   "major_id": "M1",
+   "types": [
+    "semantic_other"
+   ],
+   "path": "docs/helix-security/L10-verification/functional-verification.md",
+   "line": "354-355",
+   "bad_head": "e7853ba7c76858a2acd4d9a9e43e94cd5b1eb822",
+   "fixed_head": "d9e473d0cf36cb9869aec11ee00f8524c2eba4db",
+   "base": "786ee7c85c5454e3b2314c1d8ee3ca28f5178db1",
+   "corpus_detectability": "difficult",
+   "status": "excluded",
+   "reason": "機械検出困難（「固定親の禁止文ごとに対応する拒否CASEが存在するか」は意味対応であり字句では判定できない。禁止文の抽出とCASE対応の人手台帳があれば存在検査のみ可。）。対象外として記録し、passにしない"
+  },
+  {
+   "pr": 2676,
+   "major_id": "M1",
+   "types": [
+    "fixed_quote_altered"
+   ],
+   "path": "docs/helix-security/L10-verification/functional-verification.md",
+   "line": "160",
+   "bad_head": "b61cc0aa1541a951c0aefc37e4d52392e495d32b",
+   "fixed_head": "cb66a4d49b64420a103f9847a232964d2b2e36d9",
+   "base": "786ee7c85c5454e3b2314c1d8ee3ca28f5178db1",
+   "corpus_detectability": "feasible",
+   "check": "fixed_quote",
+   "mech": "helix-security",
+   "parent": "012",
+   "basis": "SECURITY-CASE-012-01／固定L11:36",
+   "fixed_rev": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+   "bad_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 1,
+    "hit_lines": [
+     160
+    ],
+    "hit_details": [
+     "固定L11受入oracleの文が固定L11 docs/helix-security/L11-acceptance/security-acceptance.md:36に逐語で含まれない"
+    ],
+    "violations_elsewhere_same_check": 1,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "fixed_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 0,
+    "hit_lines": [],
+    "hit_details": [],
+    "violations_elsewhere_same_check": 1,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "detected_on_bad_head": true,
+   "no_finding_at_location_on_fixed_head": true,
+   "detection_mode": "violation",
+   "status": "detected"
+  },
+  {
+   "pr": 2677,
+   "major_id": "M1",
+   "types": [
+    "fixed_quote_altered"
+   ],
+   "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+   "line": "25",
+   "bad_head": "f0985debaa903d9780a00350283eb62c4624e636",
+   "fixed_head": "617801a9e66fe6ff30bfddc8c1e72a3c43c2a722",
+   "base": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf",
+   "corpus_detectability": "feasible",
+   "check": "fixed_quote",
+   "mech": "helix-connect",
+   "parent": "001",
+   "basis": "HELIXCONNECT-L2-001の出力セル／固定L2:63",
+   "fixed_rev": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+   "bad_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 1,
+    "hit_lines": [
+     25
+    ],
+    "hit_details": [
+     "「出力」列が固定L2 docs/helix-connect/L2-requirements/connect-requirements.md:63の原文と一致しない"
+    ],
+    "violations_elsewhere_same_check": 1,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "fixed_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 0,
+    "hit_lines": [],
+    "hit_details": [],
+    "violations_elsewhere_same_check": 1,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "detected_on_bad_head": true,
+   "no_finding_at_location_on_fixed_head": true,
+   "detection_mode": "violation",
+   "status": "detected"
+  },
+  {
+   "pr": 2678,
+   "major_id": "M1",
+   "types": [
+    "semantic_other"
+   ],
+   "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+   "line": "66",
+   "bad_head": "006f2f29b3c7b3bec8b534e2149e14cee36c956d",
+   "fixed_head": "75777de4aa33d55bb5e4146b676532ec21a9ce6c",
+   "base": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+   "corpus_detectability": "difficult",
+   "status": "excluded",
+   "reason": "機械検出困難（意味の強弱（分母定義）の判断。「分母へ入れない」等の弱化語彙lintは可能だが偽陽性が多い。）。対象外として記録し、passにしない"
+  },
+  {
+   "pr": 2679,
+   "major_id": "M1",
+   "types": [
+    "count_mismatch",
+    "claim_overreach"
+   ],
+   "path": "docs/helix-harness/L10-verification/functional-verification.md",
+   "line": "1549-1555",
+   "bad_head": "9afad3c8b6016568f860f6f8e4faa0c82a48398a",
+   "fixed_head": "4171786737e594f5df21b162f1331c6c94191456",
+   "base": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+   "corpus_detectability": "partial",
+   "check": "count_ids",
+   "mech": "helix-harness",
+   "parent": "039",
+   "basis": "親039の「表の全143定義行」",
+   "fixed_rev": null,
+   "partial": "件数の部分（:1555）だけを対象にする。同じ指摘のclaim_overreach（M5節の古い現在形主張）は意味判断であり本検査器の対象外",
+   "bad_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 1,
+    "hit_lines": [
+     1555
+    ],
+    "hit_details": [
+     "件数記述 143 とFVの親039 unique CASE ID数 164 が不一致"
+    ],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "fixed_head_result": {
+    "check_result": "pass",
+    "hits_at_location": 0,
+    "hit_lines": [],
+    "hit_details": [],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "unknown"
+   },
+   "detected_on_bad_head": true,
+   "no_finding_at_location_on_fixed_head": true,
+   "detection_mode": "violation",
+   "status": "detected"
+  },
+  {
+   "pr": 2680,
+   "major_id": "M1",
+   "types": [
+    "boundary_removed"
+   ],
+   "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+   "line": "91",
+   "bad_head": "bb39e409d39755388de7cae93f13b6e4f189f2d6",
+   "fixed_head": "091624f2366a36c24ab0fb887375930821a028d5",
+   "base": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+   "corpus_detectability": "feasible",
+   "check": "boundary_removed",
+   "mech": "helix-os",
+   "parent": "036",
+   "basis": "base nfr-grade:91の「通常operationへ拡張しない。」の消失",
+   "fixed_rev": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+   "bad_head_result": {
+    "check_result": "advisory",
+    "hits_at_location": 2,
+    "hit_lines": [
+     "base:91",
+     "base:91"
+    ],
+    "hit_details": [
+     "baseの文がHEADに残っていない（境界語・IDを含む）。意図的な削除かをreviewで確かめる",
+     "baseの文がHEADに残っていない（境界語・IDを含む）。意図的な削除かをreviewで確かめる"
+    ],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "fixed_head_result": {
+    "check_result": "advisory",
+    "hits_at_location": 0,
+    "hit_lines": [],
+    "hit_details": [],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "unknown"
+   },
+   "detected_on_bad_head": true,
+   "no_finding_at_location_on_fixed_head": true,
+   "detection_mode": "advisory",
+   "status": "detected"
+  },
+  {
+   "pr": 2680,
+   "major_id": "M2",
+   "types": [
+    "return_destination_out_of_category"
+   ],
+   "path": "docs/helix-os/L10-verification/functional-verification.md",
+   "line": "696",
+   "bad_head": "bb39e409d39755388de7cae93f13b6e4f189f2d6",
+   "fixed_head": "091624f2366a36c24ab0fb887375930821a028d5",
+   "base": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+   "corpus_detectability": "feasible",
+   "check": "return_vocab",
+   "mech": "helix-os",
+   "parent": "036",
+   "basis": "CASE-OS-L10-036-08b／固定L2:1053",
+   "fixed_rev": "633bf12ea",
+   "bad_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 1,
+    "hit_lines": [
+     696
+    ],
+    "hit_details": [
+     "戻し先 ['policy owner'] が固定L2の親036の戻し先語彙の外"
+    ],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "fixed_head_result": {
+    "check_result": "unknown",
+    "hits_at_location": 0,
+    "hit_lines": [],
+    "hit_details": [],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "unknown"
+   },
+   "detected_on_bad_head": true,
+   "no_finding_at_location_on_fixed_head": true,
+   "detection_mode": "violation",
+   "status": "detected"
+  },
+  {
+   "pr": 2685,
+   "major_id": "M1",
+   "types": [
+    "count_mismatch"
+   ],
+   "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+   "line": "184",
+   "bad_head": "2e342982323f5b46d0a97828dcceda78ee9e7d40",
+   "fixed_head": "cf96099f8a566e54696383079f85a51bdcaecbd9",
+   "base": "e028e18c90e83295c84d77c4829702a349bce0dc",
+   "corpus_detectability": "feasible",
+   "check": "count_ids",
+   "mech": "helix-labo",
+   "parent": "060",
+   "basis": "HELIXLABO-L2-060節の「CASE定義IDは51件」",
+   "fixed_rev": null,
+   "bad_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 1,
+    "hit_lines": [
+     184
+    ],
+    "hit_details": [
+     "件数記述 51 とFVの親060 unique CASE ID数 57 が不一致"
+    ],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "fixed_head_result": {
+    "check_result": "pass",
+    "hits_at_location": 0,
+    "hit_lines": [],
+    "hit_details": [],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "unknown"
+   },
+   "detected_on_bad_head": true,
+   "no_finding_at_location_on_fixed_head": true,
+   "detection_mode": "violation",
+   "status": "detected"
+  },
+  {
+   "pr": 2688,
+   "major_id": "M1",
+   "types": [
+    "return_destination_out_of_category"
+   ],
+   "path": "docs/helix-os/L10-verification/functional-verification.md",
+   "line": "164-168",
+   "bad_head": "8634d28bf30f622a8733c4afe8ac19a1d95d8dad",
+   "fixed_head": "80f38b4d485edaebbb9b93ea34ef11974982040c",
+   "base": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+   "corpus_detectability": "feasible",
+   "check": "return_vocab",
+   "mech": "helix-os",
+   "parent": "029",
+   "basis": "CASE-OS-029-08a〜e／固定L2:876",
+   "fixed_rev": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+   "bad_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 5,
+    "hit_lines": [
+     164,
+     165,
+     166,
+     167,
+     168
+    ],
+    "hit_details": [
+     "戻し先 ['source owner'] が固定L2の親029の戻し先語彙の外",
+     "戻し先 ['source owner'] が固定L2の親029の戻し先語彙の外",
+     "戻し先 ['source owner'] が固定L2の親029の戻し先語彙の外"
+    ],
+    "violations_elsewhere_same_check": 3,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "fixed_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 0,
+    "hit_lines": [],
+    "hit_details": [],
+    "violations_elsewhere_same_check": 2,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "detected_on_bad_head": true,
+   "no_finding_at_location_on_fixed_head": true,
+   "detection_mode": "violation",
+   "status": "detected"
+  },
+  {
+   "pr": 2689,
+   "major_id": "M1",
+   "types": [
+    "fixed_quote_altered"
+   ],
+   "path": "docs/helix-security/L10-verification/functional-verification.md",
+   "line": "216",
+   "bad_head": "88d05678270230908ca0634cbe79e5364a19b1b9",
+   "fixed_head": "cea18391e3cad9af5df0fa9e3650fe136a885f46",
+   "base": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+   "corpus_detectability": "feasible",
+   "check": "fixed_quote",
+   "mech": "helix-security",
+   "parent": "028",
+   "basis": "SECURITY-CASE-028-01の括弧引用／固定L11:52",
+   "fixed_rev": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+   "bad_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 1,
+    "hit_lines": [
+     216
+    ],
+    "hit_details": [
+     "引用が固定L11 docs/helix-security/L11-acceptance/security-acceptance.md:52-52に逐語で含まれない"
+    ],
+    "violations_elsewhere_same_check": 1,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "fixed_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 0,
+    "hit_lines": [],
+    "hit_details": [],
+    "violations_elsewhere_same_check": 1,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "detected_on_bad_head": true,
+   "no_finding_at_location_on_fixed_head": true,
+   "detection_mode": "violation",
+   "status": "detected"
+  },
+  {
+   "pr": 2689,
+   "major_id": "M2",
+   "types": [
+    "return_destination_out_of_category"
+   ],
+   "path": "docs/helix-security/L10-verification/functional-verification.md",
+   "line": "220",
+   "bad_head": "88d05678270230908ca0634cbe79e5364a19b1b9",
+   "fixed_head": "cea18391e3cad9af5df0fa9e3650fe136a885f46",
+   "base": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+   "corpus_detectability": "feasible",
+   "check": "return_vocab",
+   "mech": "helix-security",
+   "parent": "028",
+   "basis": "SECURITY-CASE-028-01／固定L2:349",
+   "fixed_rev": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+   "bad_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 1,
+    "hit_lines": [
+     220
+    ],
+    "hit_details": [
+     "戻し先 ['artifact owner'] が固定L2の親028の戻し先語彙の外"
+    ],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "fixed_head_result": {
+    "check_result": "pass",
+    "hits_at_location": 0,
+    "hit_lines": [],
+    "hit_details": [],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "detected_on_bad_head": true,
+   "no_finding_at_location_on_fixed_head": true,
+   "detection_mode": "violation",
+   "status": "detected"
+  },
+  {
+   "pr": 2694,
+   "major_id": "M1",
+   "types": [
+    "count_mismatch"
+   ],
+   "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+   "line": "1756",
+   "bad_head": "838caee4f198a7dfe66c1137ac4c7a04ce8f512a",
+   "fixed_head": "dd0a6425a42673fe3a38208b4011ae001f0302b3",
+   "base": "ce70628e53ff5f78c1321accf57429c740ea585d",
+   "corpus_detectability": "feasible",
+   "check": "count_ids",
+   "mech": "helix-labo",
+   "parent": "063",
+   "basis": "L10-LABO-063の「L10の69件の定義」",
+   "fixed_rev": null,
+   "bad_head_result": {
+    "check_result": "violation",
+    "hits_at_location": 1,
+    "hit_lines": [
+     1756
+    ],
+    "hit_details": [
+     "件数記述 69 とFVの親063 unique CASE ID数 72 が不一致"
+    ],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "violation"
+   },
+   "fixed_head_result": {
+    "check_result": "pass",
+    "hits_at_location": 0,
+    "hit_lines": [],
+    "hit_details": [],
+    "violations_elsewhere_same_check": 0,
+    "registry_match": true,
+    "registered": 5,
+    "evaluated": 5,
+    "overall": "unknown"
+   },
+   "detected_on_bad_head": true,
+   "no_finding_at_location_on_fixed_head": true,
+   "detection_mode": "violation",
+   "status": "detected"
+  },
+  {
+   "pr": 2697,
+   "major_id": "M1",
+   "types": [
+    "claim_overreach"
+   ],
+   "path": "docs/governance/audits/requirements-stage/root-274-semantic-index-review-note-d8ba018-2026-10-08.md",
+   "line": "19",
+   "bad_head": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+   "fixed_head": "f95eab73fa3a979648732d6dc6ec80a07180c2f5",
+   "base": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+   "corpus_detectability": "difficult",
+   "status": "excluded",
+   "reason": "機械検出困難（同一PR内の別文書との主張の矛盾。「read-after済み」等の完了語にpinがあるかの存在検査は可能だが範囲の整合は意味判断。）。対象外として記録し、passにしない"
+  }
+ ],
+ "synthetic": [
+  {
+   "case": "pin_real_record_matches",
+   "check": "pin_recompute",
+   "expected": "pass",
+   "got": "pass",
+   "ok": true,
+   "registry_match": true,
+   "counts": {
+    "pass": 12,
+    "violation": 0,
+    "unknown": 0
+   }
+  },
+  {
+   "case": "pin_body_sha_altered",
+   "check": "pin_recompute",
+   "expected": "violation",
+   "got": "violation",
+   "ok": true,
+   "registry_match": true,
+   "counts": {
+    "pass": 11,
+    "violation": 1,
+    "unknown": 0
+   }
+  },
+  {
+   "case": "pin_body_bytes_altered",
+   "check": "pin_recompute",
+   "expected": "violation",
+   "got": "violation",
+   "ok": true,
+   "registry_match": true,
+   "counts": {
+    "pass": 11,
+    "violation": 1,
+    "unknown": 0
+   }
+  },
+  {
+   "case": "pin_span_sha_altered",
+   "check": "pin_recompute",
+   "expected": "violation",
+   "got": "violation",
+   "ok": true,
+   "registry_match": true,
+   "counts": {
+    "pass": 11,
+    "violation": 1,
+    "unknown": 0
+   }
+  },
+  {
+   "case": "formal_body_raw_altered",
+   "check": "pin_recompute",
+   "expected": "violation",
+   "got": "violation",
+   "ok": true,
+   "registry_match": true,
+   "counts": {
+    "pass": 11,
+    "violation": 1,
+    "unknown": 0
+   }
+  },
+  {
+   "case": "pin_unparsable_json",
+   "check": "pin_recompute",
+   "expected": "unknown",
+   "got": "unknown",
+   "ok": true,
+   "registry_match": true,
+   "counts": {
+    "pass": 0,
+    "violation": 0,
+    "unknown": 1
+   }
+  },
+  {
+   "case": "pin_without_any_pin",
+   "check": "pin_recompute",
+   "expected": "unknown",
+   "got": "unknown",
+   "ok": true,
+   "registry_match": true,
+   "counts": {
+    "pass": 0,
+    "violation": 0,
+    "unknown": 1
+   }
+  },
+  {
+   "case": "missing_inputs_pin_recompute",
+   "check": "pin_recompute",
+   "expected": "unknown",
+   "got": "unknown",
+   "ok": true
+  },
+  {
+   "case": "missing_inputs_count_ids",
+   "check": "count_ids",
+   "expected": "unknown",
+   "got": "unknown",
+   "ok": true
+  },
+  {
+   "case": "missing_inputs_fixed_quote",
+   "check": "fixed_quote",
+   "expected": "unknown",
+   "got": "unknown",
+   "ok": true
+  },
+  {
+   "case": "missing_inputs_return_vocab",
+   "check": "return_vocab",
+   "expected": "unknown",
+   "got": "unknown",
+   "ok": true
+  },
+  {
+   "case": "missing_inputs_boundary_removed",
+   "check": "boundary_removed",
+   "expected": "unknown",
+   "got": "unknown",
+   "ok": true
+  },
+  {
+   "case": "missing_inputs_overall",
+   "expected": "unknown",
+   "got": "unknown",
+   "ok": true
+  },
+  {
+   "case": "registry_partial_evaluation",
+   "expected": "overall unknown (registered 5, evaluated 1)",
+   "got": "unknown (registered 5, evaluated 1)",
+   "reason": "登録した検査 5件と評価した検査 1件が一致しない（未評価: ['boundary_removed', 'fixed_quote', 'pin_recompute', 'return_vocab']）",
+   "ok": true
+  }
+ ],
+ "limits": [
+  "fixed_headで同じ箇所に出ないことだけを確かめる。fixed_headの他の箇所に残る違反候補はviolations_elsewhere_same_checkに件数を記録した（既存の差分や検出器の誤検出を含みうる）",
+  "pin_sha_mismatch型のMajorはコーパスに0件のため、pin再計算は実在pinとその改変写しの合成caseで確かめた",
+  "#2680 M1（boundary_removed）は仕様によりadvisoryで検出する。violationとしては数えない"
+ ]
+}

@@ -1,0 +1,115 @@
+{
+ "schema_revision": 1,
+ "id": "SCF-B-0157",
+ "kind": "scaffold",
+ "title": "L3／L10本文PRの機械で検出できる違反の仮組み検出器（pin再計算、件数・ID、固定引用、戻し先語彙、境界の削除）",
+ "product": "HELIX-HARNESS",
+ "owner_candidate": "HELIX-HARNESS（HARNESS-CORE：V-pairの検証義務・対oracle・層間traceの検査）。formal owner未確定",
+ "state": "registered",
+ "reason": "L3／L10の対象revision承認は、2026-10-05のPO判断によりOpusとFableの見解の一致へ委任された。その独立reviewで返されたMajor（PR #2674〜#2697の13件）のうち、固定引用の改変、件数の食い違い、固定親の区分外の戻し先、境界文の消失は字句で検出できる型だった。正式な検査器（新世代CI、HARNESS-COREのV-pair／trace gate）は未構築であり、旧HELIXの検査器（gate-designのcount-matches、pin-chain-derivation、check-registry）は実行しない。その間、review側が使う違反の検出器を仮に置く。productをHELIX-HARNESSとするのは、検査対象がV-pair（L3とL10）の整合と固定L2／L11との対応であり、HARNESS-COREの検証と受入の契約・層間traceの領域に属するためである（PR運用の配送・admissionを担うHELIX-OSの役割ではない）。検出器は合格の十分条件ではなく、承認・合格・merge admissionを生成しない。",
+ "upstream": [
+  {
+   "path": "docs/governance/github-upstream-operating-model.md",
+   "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+   "note": "「L3／L10承認の委任」とreview_merge laneの独立review。検出器はreviewの入力に留まり、承認条件を変えない"
+  },
+  {
+   "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+   "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+   "note": "L3／L10承認のOpus・Fable一致への委任。検出器の結果から承認を生成しない"
+  },
+  {
+   "path": "docs/governance/candidates/scaffold-binding-requirements.md",
+   "sha256": "871c8c123934bd35fc6c5600400f587a9befc5824a3667975f852f583aa9fdbd",
+   "note": "仮組みの登録・証拠種別scaffold・置換と撤去の要求候補"
+  },
+  {
+   "path": "docs/governance/legacy-asset-reuse-control.md",
+   "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+   "note": "旧検査器（gate-design、pin-chain-derivation、check-registry、rule-drift）は意味の再導出だけを行い、codeを写さず実行しない。対応はscaffold/l3l10-checks/README.mdに記録"
+  }
+ ],
+ "role": "L3／L10本文PRについて、pin・SHAの再計算、親別CASE件数・ID、固定L2／L11引用の逐語照合、固定親の戻し先語彙、境界文の消失を検出し、receiptに残す違反検出器（review入力）",
+ "obligations": [
+  "各検査の結果をpass／violation／unknownの3値で返し、入力が空・欠損・解析不能ならunknownにする（passにしない）。境界の削除はadvisoryとし、violationにしない",
+  "登録した検査の一覧と実際に評価した検査の一覧を照合し、件数が食い違えば全体をunknownにする",
+  "1回の実行ごとに、検査器のsource digest、入力（repo、base、head、固定revision、対象file digest）、検査ごとの結果と根拠（path:line）をreceiptに記録する",
+  "receiptにauthority_effect: noneを記し、violation 0件から承認可・合格・merge可を出力しない",
+  "戻し先語彙は指定した親の固定L2の「失敗時／戻し先」行だけから作り、他の親の語彙を流用しない",
+  "GitHubへの照合は--onlineのときの読み取りだけとし、投稿・push・merge・Issue操作をしない",
+  "回帰コーパスのMajorについて、bad_headで同じ箇所を検出し、fixed_headで同じ箇所を検出しないことを自己検査し、検出できない要素は理由つきで記録する"
+ ],
+ "connections": {
+  "consumers": [
+   "review_merge laneの独立review（L3／L10本文PRのexact HEAD review）",
+   "作成側のReady化前の自己確認"
+  ],
+  "dependencies": [
+   "Python標準library",
+   "読み取り専用Git（cat-file、ls-tree、diff、rev-parse）",
+   "--online時のみgh apiの読み取り"
+  ],
+  "boundary": "scaffold/l3l10-checks/配下の検査器・自己検査・コーパス写しと、scaffold/evidence/の自己検査記録だけを書く。docs/配下の正本を読み取りだけで扱い、編集しない。旧HELIXのcode・scriptを実行もcopyもしない。"
+ },
+ "operations": {
+  "allowed": [
+   "python3 -B scaffold/l3l10-checks/l3l10check.py --head <rev> --base <rev> --fixed-rev <rev> --mech <dir> --parent <NNN> [--pin <path>] [--receipt <file>]",
+   "python3 -B scaffold/l3l10-checks/l3l10check.py --online（gh apiのcomment body読み取りだけ）",
+   "python3 -B scaffold/l3l10-checks/selftest.py [--record]",
+   "git fetch origin pull/<N>/head（回帰コーパスのgit object取得）",
+   "python3 -B scaffold/tools/scfctl.py validate|stale|residuals",
+   "git diff --check"
+  ],
+  "forbidden": [
+   "旧archiveは実行しない",
+   "旧HELIXのworkflow・CLI・hook・script・test・CIの実行、および旧codeのcopy",
+   "検査結果からL3／L10の承認、合格、merge admission、要求意味、工程完了を生成すること",
+   "GitHubへの投稿、push、merge、Issue操作",
+   "docs/配下の正本の編集、scaffold/外への書込み"
+  ]
+ },
+ "artifacts": [
+  "scaffold/l3l10-checks/README.md",
+  "scaffold/l3l10-checks/l3l10check.py",
+  "scaffold/l3l10-checks/selftest.py",
+  "scaffold/l3l10-checks/corpus/major-corpus.json",
+  "scaffold/evidence/l3l10-checks-selftest-2026-10-08.json",
+  "scaffold/bindings/SCF-B-0157.json"
+ ],
+ "verification": {
+  "evidence_kind": "scaffold",
+  "scope": [
+   "schema_interface",
+   "deterministic_behavior",
+   "negative_case",
+   "source_revision_stale",
+   "forbidden_write_scope"
+  ],
+  "oracles": [
+   "python3 -B scaffold/l3l10-checks/selftest.py（回帰コーパス10件のbad_head検出とfixed_headの同じ箇所の非検出、合成14件）",
+   "receiptのregistry.registered_countとevaluated_countの一致",
+   "python3 -B scaffold/tools/scfctl.py validate",
+   "python3 -B scaffold/tools/scfctl.py stale",
+   "git diff --check"
+  ],
+  "negative_cases": [
+   "pinのsha256・bytes・span_sha256・formal_body_rawの改変をviolationにする",
+   "解析できないpin、pinの無い入力、入力欠損をunknownにする（passにしない）",
+   "登録した検査の一部だけを評価した実行を全体unknownにする",
+   "violation 0件の実行から承認可・合格・merge可を出力しない",
+   "他の親の戻し先語彙を流用しない"
+  ]
+ },
+ "replacement": {
+  "role_target": "新世代CIまたはHARNESS-COREのV-pair／層間trace gate（例：HARNESS-L2-055／056／061の候補が採択・L3以下へ降りた場合の正式検査器）が、L3／L10本文の構造的整合（pin再計算、件数・ID、固定引用、戻し先語彙、境界削除の注意）を、登録した検査器の評価漏れ照合と実行receiptつきで担う",
+  "formal_artifacts": [],
+  "issue": 1866,
+  "status": "pending",
+  "transfer": null,
+  "target_revisions": {},
+  "confirmation_ref": null,
+  "confirmation_digest": null
+ },
+ "created": "2026-10-08",
+ "updated": "2026-10-08"
+}
