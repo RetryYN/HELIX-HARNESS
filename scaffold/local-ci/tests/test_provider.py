@@ -1,5 +1,6 @@
 """Provider boundary tests; all source data and execution outcomes are synthetic."""
 from pathlib import Path
+import io
 import json
 import sys
 import unittest
@@ -8,6 +9,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import provider
+import design_check
 from common import CHECK_IDS, Diagnostic
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
 
@@ -23,13 +25,15 @@ CONTRACT_PATH = "docs/helix-os/L4-basic-design/local-ci.md"
 
 class FakeReader:
     instances = []
+    manifest_data = MANIFEST
 
     def __init__(self, repo, executable, identity):
         self.calls = []
+        self.blob_calls = []
         self.sources = {path: ("synthetic:" + path).encode() for path in CHECKER_PATHS}
         self.sources["scaffold/local-ci/config.json"] = Path(
             provider.__file__).with_name("config.json").read_bytes()
-        self.sources[MANIFEST_PATH] = MANIFEST
+        self.sources[MANIFEST_PATH] = type(self).manifest_data
         self.sources[LEDGER_PATH] = b"synthetic ledger\n"
         self.sources[CONTRACT_PATH] = b"synthetic contract\n"
         self.instances.append(self)
@@ -38,6 +42,7 @@ class FakeReader:
         return {"synthetic": "tree"}
 
     def blob(self, entries, path):
+        self.blob_calls.append(path)
         return self.sources[path]
 
     def invoke(self, *argv):
@@ -48,16 +53,19 @@ class FakeReader:
 class ProviderTests(unittest.TestCase):
     def setUp(self):
         FakeReader.instances.clear()
+        FakeReader.manifest_data = MANIFEST
         self.reader_patch = patch("provider.GitReader", FakeReader)
         self.resolve_patch = patch("provider.resolve_target", return_value=TARGET)
         self.manifest_patch = patch("provider.verify_design_manifest",
                                     return_value={"structure_complete": True})
+        self.manifest_mock = self.manifest_patch.start()
+        self.addCleanup(self.manifest_patch.stop)
         self.receipt_patch = patch("provider.verify_receipt",
                                    return_value={"receipt_digest": "e" * 64,
                                                  "aggregate_state": "success"})
         self.receipt_mock = self.receipt_patch.start()
         self.addCleanup(self.receipt_patch.stop)
-        for active in (self.reader_patch, self.resolve_patch, self.manifest_patch):
+        for active in (self.reader_patch, self.resolve_patch):
             active.start()
             self.addCleanup(active.stop)
 
@@ -76,6 +84,38 @@ class ProviderTests(unittest.TestCase):
                 self.assertEqual((raised.exception.classification, raised.exception.reason),
                                  ("Unobserved", "not_run"))
                 self.assertEqual(FakeReader.instances, [])
+
+    def test_dispatch_character_limit_is_unobserved_only_above_65535(self):
+        raw = self.receipt_bytes()
+        at_limit = raw + b" " * (65_535 - len(raw))
+        self.assertEqual(len(at_limit), 65_535)
+        result = provider.run_merge_unit_verifier("unused", BASE, HEAD, at_limit)
+        self.assertTrue(result["positive"])
+        self.assertEqual(len(FakeReader.instances), 1)
+
+        FakeReader.instances.clear()
+        over_limit = at_limit + b" "
+        with self.assertRaises(Diagnostic) as raised:
+            provider.run_merge_unit_verifier("unused", BASE, HEAD, over_limit)
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Unobserved", "not_run"))
+        self.assertEqual(FakeReader.instances, [])
+
+    def test_malformed_json_and_invalid_utf8_are_unreadable_before_git_reader(self):
+        for data in (b'{"executions":[', b"\xff"):
+            with self.subTest(data=data):
+                with self.assertRaises(Diagnostic) as raised:
+                    provider.run_merge_unit_verifier("unused", BASE, HEAD, data)
+                self.assertEqual((raised.exception.classification, raised.exception.reason),
+                                 ("Unknown", "unreadable"))
+                self.assertEqual(FakeReader.instances, [])
+
+    def test_duplicate_envelope_key_remains_rejected_before_git_reader(self):
+        with self.assertRaises(Diagnostic) as raised:
+            provider.run_merge_unit_verifier("unused", BASE, HEAD, b'{"x":1,"x":2}')
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Rejected", "invalid_input"))
+        self.assertEqual(FakeReader.instances, [])
 
     def test_write_permission_is_rejected_before_reader(self):
         with self.assertRaises(Diagnostic) as raised:
@@ -106,6 +146,61 @@ class ProviderTests(unittest.TestCase):
         self.assertEqual((raised.exception.classification, raised.exception.reason),
                          ("Rejected", "invalid_input"))
         self.assertEqual(FakeReader.instances[-1].calls, [])
+
+    def test_malformed_manifest_rows_are_rejected_before_source_collection_or_diff(self):
+        for manifest in (
+            b'{"files":[1],"legacy_pins":[]}',
+            b'{"files":[],"legacy_pins":[{}]}',
+        ):
+            with self.subTest(manifest=manifest):
+                FakeReader.instances.clear()
+                FakeReader.manifest_data = manifest
+                self.manifest_mock.reset_mock()
+                with self.assertRaises(Diagnostic) as raised:
+                    provider.run_merge_unit_verifier("unused", BASE, HEAD, self.receipt_bytes())
+                self.assertEqual((raised.exception.classification, raised.exception.reason),
+                                 ("Rejected", "invalid_input"))
+                self.assertFalse(self.manifest_mock.called)
+                reader = FakeReader.instances[-1]
+                self.assertEqual(reader.calls, [])
+                self.assertEqual(reader.blob_calls, ["scaffold/local-ci/config.json", MANIFEST_PATH])
+
+    def test_design_check_malformed_manifest_returns_diagnostic_without_git_process(self):
+        malformed = b'{"files":[1],"legacy_pins":[]}'
+        readers = []
+
+        class DesignReader:
+            def __init__(self, *args):
+                self.blob_calls = []
+                readers.append(self)
+
+            def commit(self, _ref):
+                return HEAD
+
+            def tree(self, _commit):
+                return "tree"
+
+            def entries(self, _tree):
+                return {"synthetic": "tree"}
+
+            def blob(self, _entries, path):
+                self.blob_calls.append(path)
+                if path == MANIFEST_PATH:
+                    return malformed
+                raise AssertionError("source collection must stop at malformed manifest")
+
+        output = io.BytesIO()
+        with patch.object(design_check, "GitReader", DesignReader), \
+                patch.object(design_check, "verify_design_manifest") as verify, \
+                patch.object(design_check.sys, "stdout", SimpleNamespace(buffer=output)):
+            status = design_check.main()
+        self.assertEqual(status, 1)
+        self.assertEqual(json.loads(output.getvalue()), {
+            "classification": "Rejected", "reason": "invalid_input",
+            "detail": "manifest DesignFile path is malformed",
+        })
+        self.assertEqual(readers[0].blob_calls, [MANIFEST_PATH])
+        verify.assert_not_called()
 
     def test_success_path_executes_only_the_selected_diff(self):
         result = provider.run_merge_unit_verifier("unused", BASE, HEAD, self.receipt_bytes())
