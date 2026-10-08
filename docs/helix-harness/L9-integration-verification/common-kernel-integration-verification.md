@@ -1,11 +1,11 @@
-# HELIX 共通カーネル L9結合検証設計（K1・K2・K4・K5・K6・G3・G8・Phase 1）
+# HELIX 共通カーネル L9結合検証設計（K1・K2・K4・K5・K6・K10・G3・G8・Phase 1）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K4・K5・K6、G3、G8、Phase 1の条件と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
+本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K4・K5・K6・K10、G3、G8、Phase 1の条件と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作で実行する場合は`scaffold/`に置き、Scaffold Bindingへ登録する。
 
@@ -16,6 +16,7 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 - **機構の写像→カーネル**：各機構の状態語を`Observed<T>`へ写す関数（L4 2.5）。
 - **カーネル内の合成と判定**：`combine`、`admit`、`disposition`、`key_of`、`lookup`、`record`。
 - **正本とprojection**（K5、L4 9章）：`append`、`current_head`、`read`、`restore`、`project`、`verify`。K2の`record`はsegmentへの追記、`lookup`の記録集合はprojectionとして通す。
+- **依存グラフ**（K10、L4 14章）：`build_graph`、`check_graph`、`closure`、`impact`、`independent`。
 - **義務**（K4・G3、L4 13章）：`derive`、`evaluate`、`check_view`、`inherit`、`receive`。
 - **検証receipt**（K6、L4 10章）：`run`、`admit_receipt`、`reverify`、`required`。receiptはK2の記録としてK5のlogへ置き、`restore`→`lookup`を通して照会する。
 - **カーネル→消費側**：ある機構の結果を、別の機構の判定（gate、昇格、適格）が受け取る境界。
@@ -148,6 +149,22 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-P1-05` | P1-C4 | `Phase1Status` | 対象外の型が列挙されていればC4は肯定 | 列挙が無ければ`Unknown(missing_input)`の成分 |
 | `IV-P1-06` | 12.2：固定入力 | `Phase1Status` | 同じ固定入力（集合・`Corpus`・`Phase1Scope`・`observation_base`）からは同じ`Phase1Status` | (1)評価の時点で`prs`を検索し直して対象を増やす実装、(2)評価の時点で`partition`を計算し直す実装は不合格。(3)`Corpus`や`Phase1Scope`の新revisionでは旧結果は`Stale` |
 | `IV-P1-07` | 12.1：authority | `Phase1Status`の消費側 | — | `Positive`の`Phase1Status`から、v0.1の成立、内部デプロイ、gateの変更を出力する経路は`Rejected` |
+
+### K10
+
+各項目は、固定した`RelationVocab`と`GraphDecl`、確定edgeだけの整合したグラフを用意したうえで、一つの条件だけを変える。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-K10-01` | K10-I1：語彙と端点 | `check_graph` | 語彙の型で端点のそろったedgeだけなら`Positive` | (1)語彙に無い`relation`→そのedgeが`Unknown(unregistered)`、(2)`to`がnodeに無い→`Unknown(missing_input)`、(3)edgeが0件→`set_reason` |
+| `IV-K10-02` | K10-I2：候補と確定 | `build_graph`、`closure` | 承認済みの由来が宣言したedgeは`confirmed` | (1)LLMの提案のedge、(2)名称の類似だけのedge→いずれも`candidate`で、`confirmed`へ変える経路は`Rejected`。(3)`candidate`のedgeでだけつながる依存を`included`に入れる実装は不合格 |
+| `IV-K10-03` | K10-I3：性質 | `check_graph` | 性質を満たすグラフは`Positive` | (1)`symmetric`の型で逆向きのedgeが無い、(2)`inverse`の型で逆の型のedgeが無い、(3)同じ端点に`contradicts`の二つのedge→各々否定の成分。(4)循環の禁止が宣言されていない型の循環は否定にならない |
+| `IV-K10-04` | K10-I4：閉包の条件 | `closure` | `Always`と成立した条件と選択sourceのedgeの先が`included` | (1)条件の成否がunknown→`held`で`Unknown(missing_input)`、(2)選択されていない`SelectedSource`→`not_selected`で`Unobserved(not_selected)`、(3)`transitive`が偽の型を推移的にたどる実装は不合格 |
+| `IV-K10-05` | K10-I4：安全依存 | `closure` | 条件の成立した`safety`のedgeの先は`included` | 条件の成立した`safety`のedgeの先を外す実装は不合格（否定の成分） |
+| `IV-K10-06` | K10-I5：影響 | `impact` | 変わった対象から`propagates_change`の型を逆にたどった集合だけが`affected` | (1)`affected`に無い結果・義務を一律に保留する実装は不合格、(2)`candidate`のedgeでだけ到達するものは`possibly`で、`affected`に入らない、(3)端点がunknownで到達を決められない部分は`Unknown(missing_input)`で、「影響なし」にならない |
+| `IV-K10-07` | K10-I5とK2・K4の接続 | `impact`→`lookup`、`evaluate` | `affected`の対象を入力に持つK2の結果は`Stale`、K4の義務は評価し直しの集合に入る | (1)`affected`の対象を入力に持つ結果を`Value`のまま返す実装、(2)`affected`に無い対象だけを入力に持つ結果を`Stale`にする実装は不合格 |
+| `IV-K10-08` | K10-I6：独立復旧 | `independent` | 復旧の操作の閉包が`control_plane`を含まなければ`Positive` | (1)閉包が`control_plane`のnodeを1件含む→否定、(2)閉包に`held`がある→`Unknown(missing_input)`、(3)`control_plane`の宣言が無い→`Unknown(missing_input)` |
+| `IV-K10-09` | 14.2：グラフの鍵と宣言 | `restore`→`lookup` | 記録と同じ鍵の照会は`Value` | (1)edgeの由来のidentityを保った新revision（旧記録が`Value`）→`Stale`、(2)由来の同じrevisionでbytesだけ変更→`Unknown(conflict)`、(3)語彙の新revision（旧記録が`Value`）→`Stale`、(4)構築規則の版の更新と、由来のidentityの追加・削除→`Unobserved(not_run)`、(5)グラフや検査の結果の側から入力を採る実装は不合格 |
 
 ### K4・G3
 
