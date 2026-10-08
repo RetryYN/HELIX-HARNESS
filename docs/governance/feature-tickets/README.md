@@ -10,7 +10,9 @@ Feature Ticket本文へ、その本文を含むGit commit SHAをprojection revis
 commit、file SHA-256、remote revision、read-afterはappend-onlyのprojection receiptへ記録し、ticket frontmatterは
 `projection_receipt_ref`だけを持つ。これによりticket更新で内包SHAが必ずstaleになる自己参照を避ける。
 
-現在は要求整理中のため、全ticketを`proposed_upstream_waiting`とする。文書具体化以外の実装、runtime、DB、CIを起動しない。
+下表の既存11ticketは`proposed_upstream_waiting`を保持する。これらから実装、runtime、DB、CIの起動許可を生成しない。
+2026-10-09の[Stage 1実装・CI解禁判断](../decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md)判断2を受けた
+[FT-OS-LOCALCI-001](FT-OS-LOCALCI-001.md)は、開発repository専用CIの別作業契約である。既存11ticketの状態や製品要求の採否を変更しない。
 
 | 順序 | Ticket | 対象 | 状態 | GitHub projection |
 |---:|---|---|---|---|

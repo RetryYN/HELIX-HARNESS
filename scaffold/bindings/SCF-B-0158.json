@@ -5,7 +5,7 @@
   "title": "開発repository向け local CI driver",
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS local CI運転契約",
-  "state": "registered",
+  "state": "active",
   "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5のcontractとL6/L7のfunction/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。",
   "upstream": [
     {
@@ -159,7 +159,8 @@
   },
   "artifacts": [
     "scaffold/local-ci",
-    "scaffold/bindings/SCF-B-0158.json"
+    "scaffold/bindings/SCF-B-0158.json",
+    ".github/workflows/local-ci-merge-unit.yml"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -195,8 +196,8 @@
   "replacement": {
     "role_target": "HELIX-OS formal local CI driver unit at helix/helix-os/units/os-ci-runner/ after adapter dependency closure and transfer confirmation",
     "formal_artifacts": [],
-    "issue": 0,
-    "status": "pending",
+    "issue": 2730,
+    "status": "in_progress",
     "transfer": null,
     "target_revisions": {},
     "confirmation_ref": null,

@@ -10,8 +10,8 @@ parent_requirements: []
 depends_on: []
 scaffold_binding: SCF-B-0158
 github_projection:
-  issue: null
-  projection_receipt_ref: null
+  issue: 2730
+  projection_receipt_ref: docs/governance/audits/source-rebaseline/github-local-ci-projection-2026-10-09.md
 ---
 
 # FT-OS-LOCALCI-001
