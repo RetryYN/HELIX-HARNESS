@@ -14,7 +14,7 @@ base: main `6ea16b1f45121c3171943cfee7057bfdf08fefcd`
 |---|---|---|
 | Common Kernel L4 | PR base `6ea16b1f45121c3171943cfee7057bfdf08fefcd`を基準に本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3 | `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` |
 | Common Kernel L9 | PR base `6ea16b1f45121c3171943cfee7057bfdf08fefcd`を基準に本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` §2 K1/K2 | `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` |
-| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4 | SHA-256 `6af3bc6f937aa4175cde44cba7fe78eeeb375c1b079984bb7c7e2c558f56b219` |
+| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4 | SHA-256 `046d42e6a91e888f14b56805677185ce3452b3d0472b871fb7d3a7bfbd48b079` |
 
 L9の各`IV-K1-*`/`IV-K2-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。
 

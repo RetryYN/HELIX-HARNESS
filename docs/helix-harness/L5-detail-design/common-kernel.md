@@ -94,6 +94,8 @@ KeyOfResult  = ResultKey | Rejected(missing_key | invalid_digest | duplicate_ide
 | `lookup(records, query_key) -> Observed<T>` | K5 readerが復元した記録全体とcurrent key | L4 K2-I2順で判定。候補なし/identity-set変更は`Unobserved(not_run)`、同一identityのsame-revision digest差またはkind差は`Unknown(conflict)`、完全一致は保存class、旧Valueのみなら`Stale`、旧non-Valueのみならsuperseded付き`Unobserved(not_run)`。完全一致と競合候補が共存すれば競合を優先。lookupは入力記録を書き換えない。 |
 | `record(records, key, result, producer) -> Recorded \| NoOp \| Conflict \| Rejected(missing_key \| stale_not_recordable)` | 完全keyと記録可能な観測 | 同じkey+result digestは`NoOp`。同keyの異なるresult digestは双方を保持して`Conflict`。stale resultは鍵の有無と無関係に`Rejected(stale_not_recordable)`として拒否する（IV-K1-08/IV-K2-11）。非Stale resultの必須key欠落は`Rejected(missing_key)`。前recordを上書きしない。 |
 
+`record`の「記録可能な観測」は、L4 K5 §9.3の`ResultBody`としてcanonical JSONへ符号化可能な入力を意味する。`Value.value`とevidenceはownerの宣言済みencodingによる`Inline`または既存`FixedRef`で表し、任意のPython objectをそのまま渡さない。K1の一般値型`T`をJSON型へ制限するものではない。K2呼出し前にowner側がこの表現を構成し、宣言encoding未解決・範囲外値はK2 `record`を呼ばず該当encoding ownerへ返す。K2の公開unionへcodec例外や新reasonを追加しない。この入力前提はL4 §3.2/§9.3の具体化であり、K5のencoding選択・物理保存・FixedRef実読をK2が行う意味ではない。
+
 `lookup`の候補優先順はL4 §3.3を適用する。すなわちoperation/version/scopeとsubject identity、inputs identity集合で候補を選び、候補全体を同revision異digest／kind違いについて先に検査し、次に完全一致を選択し、最後に旧revision規則を適用する。候補0件はL4どおり`Unobserved(not_run)`である。K5側で必要な記録集合を完全に復元できない読取不全を、空集合の正常結果とみなさない。
 
 ### 3.5 role-bound input alias binding

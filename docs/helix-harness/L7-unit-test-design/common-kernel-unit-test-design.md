@@ -15,13 +15,13 @@ base: `main` at `7d48e458fcff7e03df18abc4f768981410685cf7`
 | 入力 | 対象revision / SHA |
 |---|---|
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) |
-| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; content SHA-256 `6af3bc6f937aa4175cde44cba7fe78eeeb375c1b079984bb7c7e2c558f56b219` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `6ce9131d7452a982bebbc7d825ee6d927076e417aa5ec546e43e0b52d38e0c57` |
+| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; content SHA-256 `046d42e6a91e888f14b56805677185ce3452b3d0472b871fb7d3a7bfbd48b079` (本PRのcontent HEAD) |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `707ad14729bfab165c3c9533749db405e9c1845e65579681553f8c5e5c81c0c5` |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) |
-| L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; content SHA-256 `de098db17681fd4ad94a7ee241b7b73d18ef884d1455f3732e96a92abfdb8c60` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) |
+| L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; content SHA-256 `0ea7ef941bae72df3cf21a0ba1b29ddc8f394192f267a2136cf9f6d88a640574` (本PRのcontent HEAD) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
-L4/L5/L8/L9はmain `7d48e458fcff7e03df18abc4f768981410685cf7`の固定content SHAを参照する。L9 IV-K1-01–13、IV-K2-01–21dが期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
+L4/L9はmain `7d48e458fcff7e03df18abc4f768981410685cf7`、L5/L8は本PRのcontent HEADの固定content SHAを参照する。L9 IV-K1-01–13、IV-K2-01–21dが期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
 
 各fixture表の関数ID列で、K1表の`FN-xx`は`CK-K1-FN-xx`、K2表およびcodec表の`FN-xx`は`CK-K2-FN-xx`を指す。明示した`K2 FN-xx`も`CK-K2-FN-xx`である。UT IDの波括弧・suffixは各行の展開規則で個別fixtureへ展開し、複数変異を一件へまとめない。
 
@@ -128,6 +128,8 @@ suffix展開はfixture identityの命名規則であり、L9 IDを再採番し�
 | `CK-K2-UT-041` | FN-01/02 | canonical JSON bytes digestと、同bytesにtrailing LFを追加したstorage-framed bytes digest | key/value canonical digestにはLFを含めない。K5 framing byteは別のdigest境界に属するため、両者を混同しない。 |
 
 UT-030–041の各vectorのliteral/expected bytesとdigestはL7 fixture inventoryに固定する。実行時にruntime outputをgoldenとして採取してはならない。golden値はsource-controlled expected literalとしてreview対象にする。L4にない数値formatの性質をcross-runtime保証へ拡張しない。
+
+UT-036〜039はprivate `canonical_json_bytes`補助関数へ範囲外値を直接与える単体検査である。公開`record`の失敗caseではない。record fixtureはL5 §3.4/L6 §3.1の前提どおり、ownerの宣言encodingに適合したcanonical JSON表現可能なResultBodyを使い、未解決encodingや非JSON生値を公開APIへ渡さない。K1の一般値型Tと、記録時のInline/FixedRef表現を同一視しない。
 
 ## 6. 旧source traceと技術差分の記録
 

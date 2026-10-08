@@ -15,9 +15,9 @@ base: `main` at `7d48e458fcff7e03df18abc4f768981410685cf7`
 |---|---|---|
 | Stage 1 PO decision | `docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md`, `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e`; approved L3/L10 content revision `a77672513325aa9e79f3780af40455361b5d19a8` | HARNESS-L2-010/011/023 Stage 1 scope only |
 | L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md`, content SHA-256 `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) | K1 §2.1–2.6, K2 §3.1–3.5 |
-| L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, content SHA-256 `6af3bc6f937aa4175cde44cba7fe78eeeb375c1b079984bb7c7e2c558f56b219` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) | K1/K2 public types, signatures, owner boundary, old-source crosswalk |
+| L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, content SHA-256 `046d42e6a91e888f14b56805677185ce3452b3d0472b871fb7d3a7bfbd48b079` (本PRのcontent HEAD) | K1/K2 public types, signatures, owner boundary, old-source crosswalk |
 | L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) | IV-K1-01–13; IV-K2-01–21d; design oracle, not run here |
-| L5/L8 pair | L8 `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`, content SHA-256 `de098db17681fd4ad94a7ee241b7b73d18ef884d1455f3732e96a92abfdb8c60` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) | fixture boundaries and paired L5 ref; no fixture executed |
+| L5/L8 pair | L8 `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`, content SHA-256 `0ea7ef941bae72df3cf21a0ba1b29ddc8f394192f267a2136cf9f6d88a640574` (本PRのcontent HEAD) | fixture boundaries and paired L5 ref; no fixture executed |
 
 K1/K2はL4 §1.3の共通部品であり単一の親要求を置かない。HARNESS Stage 1の下流traceは固定されたL2-010/011/023に限る。各契約からの直接親はL4 K1 §2.1、K2 §3.1のcrosswalkに従い、契約境界上のK1-I6→K2、K2 record→K5参照は追加の親要求にしない。後続stageを含む現在文書全体のbytesをStage 1 approved inputと扱わない。
 
@@ -100,7 +100,7 @@ def record(
 | `CK-K2-FN-05` | `candidate_records` / private lookup step | complete records, query key; candidate subsequence preserving append order | query key欠落fieldは`lookup`外側unionの既存Rejected(missing_key)。operation/version/scope一致、subject identity一致、input identity set一致のrecordだけcandidate。候補0件ならUnobserved(not_run)。候補外identity集合変更は別の問い。 | K2-I2 step 1; IV-K2-08–09,17 |
 | `CK-K2-FN-06` | `lookup_conflicts` / private lookup step | all candidates; conflict or continue | exact candidateの有無を先に選ばず、全candidateに対して同identity same-revision digest mismatch、またはkind mismatchを検査。どれかあればUnknown(conflict)。 | K2-I2 step 2; IV-K2-04–05,16,19 |
 | `CK-K2-FN-07` | `lookup_exact_or_prior` / private lookup step | conflict-free candidates, query key; Observed | 全field exact matchがあれば保存classを返す。複数exactでresult_digest相違はUnknown(conflict)。exactなしなら旧revision候補を扱い、ValueはStale、Unknown/Unobserved/NotApplicableはsuperseded付きUnobserved(not_run)。旧候補複数は入力sequence上最後＝K5 append-order recordを使う。 | K2-I1/I2/I2b/I5; IV-K2-01–03,06–10,12,18,20 |
-| `CK-K2-FN-08` | `record` / public pure decision | full records, key, `Observed` result, producer; Recorded/NoOp/Conflict/Rejected(missing_key \| stale_not_recordable) | `result`がStaleならkey検査より先に`Rejected(stale_not_recordable)`を返す（L5 K1-I6 / K2-I4）。非Stale resultのkeyを検査し、欠落は`Rejected(missing_key)`。正常な非Stale結果は構造化resultのcanonical bytesからresult_digestを得る。同key+同result_digestならNoOp。同key+異result_digestなら双方保持するConflict。物理append/rollback/lockはしない。 | K1-I6, K2-I4; IV-K1-08, IV-K2-10–11 |
+| `CK-K2-FN-08` | `record` / public pure decision | full records, key, `Observed` result, producer; Recorded/NoOp/Conflict/Rejected(missing_key \| stale_not_recordable) | `result`がStaleならkey検査より先に`Rejected(stale_not_recordable)`を返す（L5 K1-I6 / K2-I4）。非Stale resultのkeyを検査し、欠落は`Rejected(missing_key)`。正常な非Stale結果はownerが宣言encodingで構成済みのResultBodyのcanonical bytesからresult_digestを得る。同key+同result_digestならNoOp。同key+異result_digestなら双方保持するConflict。物理append/rollback/lockはしない。 | K1-I6, K2-I4; IV-K1-08, IV-K2-10–11 |
 | `CK-K2-FN-09` | alias read handoff / owner + K6 boundary | expected key inputs, binding bytes, each alias source observation | callerがowner resolverを上書きしない。K6 readerがbinding bytesとaliasごとのraw bytesを別々に読む。raw bytes digest不一致はK6 L9のUnknown(conflict)。read identityはL4 K6 §10.3のsubject＋non-verifier inputs集合に一致し、raw identityの別readを加えない。K2自体はread receiptを作らない。 | K2 §3.4.1, K6 §10.3; IV-K2-21c, IV-K6 |
 
 ### 3.1 Canonical JSON候補の技術的具体化
@@ -118,7 +118,7 @@ json.dumps(
 ).encode("utf-8", errors="strict")
 ```
 
-Codecの入力はJSON値モデルに限定し、辞書のkeyはすべて文字列であることをserialize前に確認する。Unicode normalizationは行わない。循環参照、nonfinite float、non-JSON Python object、孤立surrogateがあればcanonical bytesを出さず、内部codec failureとして上位へ返す。これはkey field missingではなく、K1 Observed resultにも自動変換しない。Public APIはL5の既存signatureに留め、内部例外名や新reason codeを公開しない。
+Codecの入力はJSON値モデルに限定し、辞書のkeyはすべて文字列であることをserialize前に確認する。Unicode normalizationは行わない。循環参照、nonfinite float、non-JSON Python object、孤立surrogateがあればcanonical bytesを出さず、内部codec failureとして上位へ返す。これはkey field missingではなく、K1 Observed resultにも自動変換しない。Public APIはL5の既存signatureに留め、内部例外名や新reason codeを公開しない。 `record`はL5 §3.4の入力前提どおり、ownerが宣言encodingで構成済みのcanonical JSON表現可能な`ResultBody`だけを受ける。範囲外の生の`T`から直接digestを求める公開経路を置かず、encoding未解決・範囲外値はowner境界で呼出しを保留する。private codecの拒否はその補助関数の単体入力検査であり、K2の返却unionや公開exception transportへ流さない。
 
 `json.dumps`は文字列を返すため、その結果をUTF-8 strictでencodeする。canonical digest bytesにLF/newlineを付けない。K5 JSONLが必要とするrecord framing newlineはK5 storage layerのbytesであり、K2 canonical data digestへ含めない。
 
@@ -203,7 +203,7 @@ K3–K10は本書で`not_designed`。既存契約とoracleはCommon Kernel L4 §
 
 ## 9. Return境界union
 
-L4 K1-I6で呼出し元へ返すK1拒否を、ここでは`ApiBoundaryResult[T] = T | Rejected(missing_key)`として表す。これは既存K1 `Rejected`結果の外側に置く型alias候補で、新しいclassやreasonではない。K1の`combine`、`admit`、`disposition`とK2 `lookup`は各L5既存signatureおよび`ApiBoundaryResult`境界を保つ。K2 `key_of`は別の専用union `KeyOfResult = ResultKey | Rejected(missing_key | invalid_digest | duplicate_identity)`を返し、定められた順で検査する。`record`はL5/L4既存unionを維持し、Stale resultなら鍵の有無を問わず`Rejected(stale_not_recordable)`を優先し、非Stale resultのkey field欠落なら`Rejected(missing_key)`を返す。公開exception transportは追加しない。その他の失敗は既存L4 outcomeを使う。
+L4 K1-I6で呼出し元へ返すK1拒否を、ここでは`ApiBoundaryResult[T] = T | Rejected(missing_key)`として表す。これは既存K1 `Rejected`結果の外側に置く型alias候補で、新しいclassやreasonではない。K1の`combine`、`admit`、`disposition`とK2 `lookup`は各L5既存signatureおよび`ApiBoundaryResult`境界を保つ。K2 `key_of`は別の専用union `KeyOfResult = ResultKey | Rejected(missing_key | invalid_digest | duplicate_identity)`を返し、定められた順で検査する。`record`はL5/L4既存unionを維持し、Stale resultなら鍵の有無を問わず`Rejected(stale_not_recordable)`を優先し、非Stale resultのkey field欠落なら`Rejected(missing_key)`を返す。公開exception transportは追加しない。recordの入力はL5 §3.4に従うcanonical JSON表現可能なResultBodyを前提とし、encoding未解決・範囲外の生値を渡す経路はowner境界で止める。private codecの範囲外入力をrecordの新しい返却結果へ変換しない。その他の失敗は既存L4 outcomeを使う。
 
 ## 10. 検証状態
 
