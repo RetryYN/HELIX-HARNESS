@@ -154,23 +154,26 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 
 ### K3
 
-各fixtureは既存sourceの一致する許可、currentのassignment/操作宣言、固定adapter/policy、全取消しprefix、期限内の時刻観測を用意し、一条件だけ変える。署名の無いK6 receiptの真正性を証明済みとしない。
+各fixtureは登録済みauthority sourceのcurrent prefix、current OS assignment、対象・環境のowner宣言、固定adapter/policy、全取消しprefix、期限内の時刻観測を用意する。queryは要求値として扱い、current宣言から再構成したcontextと一致するかを検査する。署名の無いK6 receiptの真正性を証明済みとしない。
 
 | ID | 対象 | 境界 | 正常 | 反例と期待 |
 |---|---|---|---|---|
-| `IV-K3-01` | K3-I1・I2：7軸 | `check_permission` | 11操作を各々独立fixtureで許可し、7軸の成分が全て肯定 | 各軸の欠落/unknown/確定不一致を一つずつ変異。欠落・unknownは非肯定、不一致は否定。project/環境/worktree/適用tenant越境も各々拒否 |
-| `IV-K3-02` | K3-I2：操作の分離 | `check_permission` | readは一致するreadだけに有効 | readから残り10操作への単独置換を各々拒否。Agent利用権だけからwrite/deployを作らない |
-| `IV-K3-03` | K3-I2・I4：版 | `check_permission` | 同identity/revision/digestのsourceと対象を照合 | 対象/source/policy/adapterを各々、(1)同identityの新revision、(2)同revisionの別digest、(3)別identityへ変更。旧肯定を使わず、(1)Staleまたは新鍵の未観測、(2)conflict、(3)別入力として再照合 |
-| `IV-K3-04` | 16.2：source | source adapter→K3 | 登録sourceの原記録を読み、issuerと全bindingを照合 | 自己発行plain object、登録外source、同名の別source、issuer不一致、raw署名検証失敗/不能を各々拒否。K6 receiptのPositiveで代用する実装は不合格 |
-| `IV-K3-05` | K3-I3：判断 | K3→消費側 | allowが全条件一致。constrainは既存制約の適用・観測を照合した狭いcontextだけ肯定 | deny、constrainの未適用/未観測/制約1件欠落、OS/Workerによる制約緩和は非肯定。reasonと全成分を残す |
-| `IV-K3-06` | K3-I3：再利用・非生成 | K3→OS | 同一の有効な既決許可を通常task反復に再利用できる | request/ACK/review/CI green/照合成功だけから許可発行する経路、通常taskごとに新human approveを要求する経路は不合格 |
+| `IV-K3-01` | K3-I1・I2：tupleとcontext再構成 | `resolve_authority_context`→`check_permission` | current assignmentがactor A、owner宣言がqueryのtarget/revision/environment/scopeと一致し、7軸の各成分が全て肯定 | 7軸の欠落/unknown/確定不一致を一つずつ変異。欠落・unknownは非肯定、不一致は否定。project/環境/worktree/適用tenant越境も各々拒否。assignmentがactor Bなのにqueryや偽造contextがactor Aを申告する場合、呼出し側contextを受理せずBとの不一致を否定。current owner declaration/assignment refが入力prefixにはあるが対象・actorを決定できない場合は`Unknown(unregistered/missing_input)`。K2 keyの必須identity/ref自体を特定できない場合は`PermissionCheckDiagnostic(missing_key)`で、K1/K2結果を作らない |
+| `IV-K3-02` | K3-I2：操作の分離 | `check_permission` | 11操作を各々独立fixtureで許可し、一致するoperationだけに有効 | readから残り10操作への単独置換を各々拒否。Agent利用権だけからwrite/deployを作らない |
+| `IV-K3-03` | K3-I2・I4：版とK2 lookup | `check_permission`、K2 lookup | 同identity/revision/digestをcurrent sourceと対象で照合 | fresh checkで同identityの新revisionを観測すると、その比較は新keyの否定`Value`。同revisionの別digestは`Unknown(conflict)`、別identityは別tupleとして再照合。以前保存したcheckのkeyが変わったlookupだけはK2の`Stale`（`prior`/`recorded_key`/`current_key`を持つ）であり、fresh checkの不一致へ`Stale`を返す実装は不合格 |
+| `IV-K3-04` | 16.2・K3-I3：sourceとcurrent effective decision | source adapter→K3 | 登録sourceの原記録と一意のcurrent effective decisionを読み、issuerと全bindingを照合 | 自己発行plain object、登録外source、同名の別source、issuer不一致、raw署名検証失敗/不能は非肯定。current allowの後に同tupleへのcurrent denyまたはconstrainがあるfixtureで、旧allow参照を指定しても旧allowを選ばず、current判断に従う。選択規則不明・競合候補複数は`Unknown(conflict/unregistered)`。K6 receiptのPositiveで代用する実装は不合格 |
+| `IV-K3-05` | K3-I3：constrainの実行前提と実行結果 | K3→Worker/K6 | 実行前に強制可能な既存制約が全て適用設定され、その前提証拠が肯定ならcheckは狭いcontextに限って肯定可能。実行中・後の効果receiptは別観測 | deny、実行前制約設定の欠落/未観測/制約1件欠落、OS/Workerによる制約緩和は非肯定。実行後receiptの未着を許可前提にする実装、または許可Positiveを実行成功として記録する実装は不合格 |
+| `IV-K3-06` | K3-I3：再利用・非生成 | K3→OS | 同一の有効なcurrent既決許可を通常task反復に再利用できる | request/ACK/review/CI green/照合成功だけから許可を発行する経路、通常taskごとに新human approveを要求する経路は不合格 |
 | `IV-K3-07` | K3-I4・I5：expiry | 使用直前の照合 | sourceの既存expiry契約に従う期限内の観測で肯定 | 期限切れ、時刻読取不能、expiry解釈不能は肯定にならない。新TTLや猶予の既定値で通す実装は不合格 |
-| `IV-K3-08` | K3-I4・I5：取消し | K3→G5→K7 | 有効な新記録と全再照合で再開候補 | revoke、必要segment欠落/読取失敗を各々非肯定。G5伝播完了だけで旧許可を復活、旧Epochの作用受理、無関係scopeまで停止する実装は不合格 |
-| `IV-K3-09` | K3-I6：連続性 | request→decision→assignment→effective scope | 同じtupleと各段の参照が連結される | 各段を一つずつ別actor/target/operation/revision/environment/scope/expiryにし拒否。許可の肯定だけでWorker実適用済みとする実装は不合格 |
-| `IV-K3-10` | K3-I7：独立操作入力 | K3→SECURITY | credential purposeとegress source/destination等の既存条件を別成分で照合 | purposeだけ、classificationだけ、destinationだけ、authority tupleだけを各々変異し拒否。旧sink enumやrisk要約で代用しない |
-| `IV-K3-11` | K7-I4接続 | `apply_move` | 正しいPO許可のtarget/to版/deploy/kind/from/to/pointer_headが一致し、適格性とCASも成立するとPointerMovedを追記 | target/to版/actor/環境/kind/from/to/pointer_headを各々変異し追記0。正しいK3でもstale_head/stale_eligibilityなら追記0 |
-| `IV-K3-12` | 16.4：直前・直後 | `apply_move`→G5 | 使用直前と直後の再照合が肯定 | preflight後・追記前のrevoke/expiry/driftは追記0。直前照合と追記の間の変更は直後に検出、成功とせず未完義務とRollbackRequired、G5/Epoch停止を残す。pointer自動rollbackは不合格 |
+| `IV-K3-08` | K3-I4・I5：取消し | K3→G5→K7 | 有効なcurrent判断と全再照合で再開候補 | revoke、必要segment欠落/読取失敗を各々非肯定。G5伝播完了だけで旧許可を復活、旧Epochの作用受理、無関係scopeまで停止する実装は不合格 |
+| `IV-K3-09` | K3-I6：段階の連続性 | request→decision→assignment→effective scope | 同じtupleと各段のowner参照が連結される | 各段を一つずつ別actor/target/operation/revision/environment/scope/expiryにし拒否。許可の肯定だけでWorker実適用済みとする実装は不合格 |
+| `IV-K3-10` | K3-I7：required operation inputs | K3→SECURITY | `required_inputs[operation]`とquery・PermissionRecordのkey集合と値がidentityごとに完全一致 | purpose、classification、source、destination等を一つずつ別refへ変異し非肯定。required keyの欠落、余分なkey、PermissionRecord側bindingの不一致も各々検出。authority tuple一致だけで代用しない。旧sink enumやrisk要約で代用しない |
+| `IV-K3-11` | 16.4・K7-I4：許可とpointer CASの分離 | `apply_move` | stage ownerのcurrent target declaration `SubjectRef`（tuple.targetとtuple.revisionは同じstage identity）および対象段階/`deploy`の許可が一致し、`to.composition`はK7-I3で適格、`append_if_head`も成功 | stage target declaration revisionはpointer末尾・選択generationと独立し、pointer moveだけで変わらない。stage declaration自体のcurrent revision変化はK3の新しい照合対象。`to.composition`、`kind/from/to`はK7の適格性/request入力として各々変異を拒否し、SECURITYのcurrent `required_inputs`/既存adapter policyが明示した入力だけはK3でもbindingする。未宣言のkind別許可、generation/CASごとのPO再許可は不合格。`pointer_head`はK3許可bindingに含めず、変異はK7-I2の`Rejected(stale_head)`で追記0 |
+| `IV-K3-12` | 16.4・K7-I4/G5-I6：使用前・使用後照合 | `apply_move`→G5 | 使用直前checkがpositiveなら追記し、pointer_writerが同じmoveの`MoveAuthorizationObserved`を直後に追記し、直後checkもpositiveなら通常結果 | 使用前revoke/expiry/driftは追記0と`Rejected(authorization_unverified, check)`。append後の直後checkがnegative/unknown、または観測欠落ならeventを保持して`AppliedUncertain`/未完義務とし、`RollbackRequired`・G5待ちを残す。`MoveAuthorizationObserved`の別moveへの流用、直後checkを使用前pre-authorizationと誤認する実装、自動rollbackは不合格 |
 | `IV-K3-13` | K3-I1・16.4：診断と真正性 | K3→消費側 | 全成分・reason・assuranceが残る | 一つのdenyで後続unknownを落とす、非肯定sourceを空集合の真にする、未証明issuer_authenticityを証明済みへ上げる、secret値を理由へ書く実装は不合格 |
+| `IV-K3-14` | K3-I4：K2 keyのquery/operation inputs/制約 | permission check保存→lookup | canonical `PermissionQueryRef`と全`operation_inputs`・全`pre_execution_constraints`のrole-bound refsをおよび内包する原SubjectRefをK2 keyへ含め、K6 readはwrapperと原source実bytes双方を照合し、同じkeyのときだけ保存結果を再利用 | queryの各値、operation inputの各値、制約参照の各々を一つずつ変異。旧Positiveを再利用する実装は不合格。完全一致の同一identity/refだけdedupし、同一identity異refのcollisionでは`Rejected(missing_key)`となり、keyなしUnknownをrecord/combineする実装は不合格 |
+| `IV-K3-15` | K3-I4：K2 keyのcurrent context | permission check保存→lookup | operation version、K3 code/config、current assignment、target/environment/各owner宣言、operation declaration、AuthorityDecl、policy、source current ref/adapterのrole-bound refsをkeyへ含める | 上記各参照を一つずつ変異。いずれかをkeyから省いて旧Positiveを再利用する実装は不合格 |
+| `IV-K3-16` | K3-I4：K2 keyの観測状態 | permission check保存→lookup | role-boundな固定時刻観測refと全取消しprefixの`HeadInputRef`をkeyへ含める | 時刻観測、取消しprefixの各々を一つずつ変異。旧Positiveを再利用する実装は不合格。raw時刻値/`SegmentHead`をK2 inputへ直接入れる実装は不合格。record不在は`Unknown(missing_input)`、実行後receipt未着だけはK6側の`Unobserved(pending_receipt)`であり両者を混同しない |
 
 ### K7・G5・型番台帳
 
@@ -198,12 +201,12 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-G5-05` | G5-I3：停止を続ける | `admit_effect` | — | `PropagationView`が`Positive`になる前に、取り消された記録に依存するscopeの作用を受理する実装は不合格（`Rejected(revocation_pending)`） |
 | `IV-G5-06` | G5-I4：許可を作らない | `propagate`の消費側 | — | (1)取消しから承認・許可を出力する経路、(2)取消しを取り消して元の許可を戻す経路は不合格 |
 | `IV-G5-07` | G5-I5：書き換えない | `propagate` | 取消しは新しい記録として追記され、承認の記録を入力に持つ結果は見直しの対象に入る | 取り消された記録や本文を書き換える実装は不合格 |
-| `IV-G5-08` | G5-I6：内部デプロイ | `propagate`、`apply_move` | — | 現行の世代の構成が取り消された記録に依存するとき、`RollbackRequired`が追記され、`internal_deployment`は、照合した`PointerMoved`まで`Unobserved(not_run)`。`MoveRequested`だけで待ちを解消する実装、pointerを自動で動かす実装は不合格 |
+| `IV-G5-08` | G5-I6：内部デプロイ | `propagate`、`apply_move` | — | 現行の世代の構成が取り消された記録に依存するとき、`RollbackRequired`が追記され、`internal_deployment`は、同じmoveの`MoveAuthorizationObserved`の直後checkが肯定でcurrent receiptが成立するまで`Unobserved(not_run)`。直後観測欠落、非肯定checkと`AppliedUncertain`の各fixtureでも待ちが残り、pointerの事実と未完診断が保持される。これらや`MoveRequested`だけで待ちを解消する実装、pointerを自動で動かす実装は不合格 |
 | `IV-G5-09` | G5-I1：一つのidentityに複数の種類 | `propagate` | `affected`のnode由来の種類（例：`worker_run`）と、`review_set`由来の`approval_consumer`が同じidentityに導かれると、両方の種類が保持され、種類ごとに成分ができる | 後から導いた種類で前の種類を上書きする実装は不合格 |
 | `IV-G5-10` | G5-I2：受け手の現在の参照 | `propagate` | `RecipientDecl`の`SubjectRef`を基底鍵の`subject`に使う | (1)受け手のrevisionだけを新しくした宣言（旧記録は`Value`）→`Stale`、(2)同じrevisionでdigestだけ違う二つの宣言→`Unknown(conflict)`、(3)`RecipientDecl`に受け手が無い→`Unknown(missing_input)`、(4)旧いreceiptの`subject`を現在の参照に使う実装は不合格 |
 | `IV-LDG-01` | 15.4：項目 | `ledger_view` | HARNESS-L2-010とHELIXOS-L2-014の項目だけを持つ行が導かれる | どちらにも無い項目を持つ行は`Unknown(unregistered)` |
 | `IV-LDG-02` | 15.4：書く主体 | `append` | — | unit・connectionの行をOSのsegmentへ、compositeの行をHARNESSのsegmentへ書く経路は`Rejected` |
-| `IV-LDG-03` | 15.4：内部デプロイの状態 | `ledger_view` | 内部デプロイの状態は`PointerLog`の`PointerMoved`だけから導かれる | 台帳に内部デプロイの状態を別に書いて、`PointerLog`と食い違う実装は不合格 |
+| `IV-LDG-03` | 15.4：内部デプロイの状態 | `ledger_view` | 現行世代は`PointerLog`の`PointerMoved`、直後check状態は同じmoveの`MoveAuthorizationObserved`から別fieldに導かれる | 台帳に内部デプロイの状態を別に書く、直後観測欠落やAppliedUncertainを通常の完了にする、前のmoveの肯定観測を後続moveへ流用する実装は不合格 |
 | `IV-LDG-04` | 15.5：pathを正本にしない | 配置の照合 | フォルダの宣言する型番と台帳が一致すれば通る | (1)台帳に無い型番のフォルダ→`Unknown(unregistered)`、(2)台帳にある型番のフォルダが無い→`Unknown(missing_input)`、(3)フォルダの名前から型番を決める実装は不合格 |
 
 ### K10
