@@ -152,19 +152,23 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 
 ### K10
 
-各項目は、固定した`RelationVocab`と`GraphDecl`、確定edgeだけの整合したグラフを用意したうえで、一つの条件だけを変える。
+各項目は、固定した`RelationVocab`・`GraphDecl`・`ConditionState`・`GraphRules`と、確定edgeだけの整合したグラフを用意したうえで、一つの条件だけを変える。
 
 | ID | 対象 | 境界 | 正常 | 反例と期待 |
 |---|---|---|---|---|
 | `IV-K10-01` | K10-I1：語彙と端点 | `check_graph` | 語彙の型で端点のそろったedgeだけなら`Positive` | (1)語彙に無い`relation`→そのedgeが`Unknown(unregistered)`、(2)`to`がnodeに無い→`Unknown(missing_input)`、(3)edgeが0件→`set_reason` |
-| `IV-K10-02` | K10-I2：候補と確定 | `build_graph`、`closure` | 承認済みの由来が宣言したedgeは`confirmed` | (1)LLMの提案のedge、(2)名称の類似だけのedge→いずれも`candidate`で、`confirmed`へ変える経路は`Rejected`。(3)`candidate`のedgeでだけつながる依存を`included`に入れる実装は不合格 |
-| `IV-K10-03` | K10-I3：性質 | `check_graph` | 性質を満たすグラフは`Positive` | (1)`symmetric`の型で逆向きのedgeが無い、(2)`inverse`の型で逆の型のedgeが無い、(3)同じ端点に`contradicts`の二つのedge→各々否定の成分。(4)循環の禁止が宣言されていない型の循環は否定にならない |
-| `IV-K10-04` | K10-I4：閉包の条件 | `closure` | `Always`と成立した条件と選択sourceのedgeの先が`included` | (1)条件の成否がunknown→`held`で`Unknown(missing_input)`、(2)選択されていない`SelectedSource`→`not_selected`で`Unobserved(not_selected)`、(3)`transitive`が偽の型を推移的にたどる実装は不合格 |
-| `IV-K10-05` | K10-I4：安全依存 | `closure` | 条件の成立した`safety`のedgeの先は`included` | 条件の成立した`safety`のedgeの先を外す実装は不合格（否定の成分） |
-| `IV-K10-06` | K10-I5：影響 | `impact` | 変わった対象から`propagates_change`の型を逆にたどった集合だけが`affected` | (1)`affected`に無い結果・義務を一律に保留する実装は不合格、(2)`candidate`のedgeでだけ到達するものは`possibly`で、`affected`に入らない、(3)端点がunknownで到達を決められない部分は`Unknown(missing_input)`で、「影響なし」にならない |
-| `IV-K10-07` | K10-I5とK2・K4の接続 | `impact`→`lookup`、`evaluate` | `affected`の対象を入力に持つK2の結果は`Stale`、K4の義務は評価し直しの集合に入る | (1)`affected`の対象を入力に持つ結果を`Value`のまま返す実装、(2)`affected`に無い対象だけを入力に持つ結果を`Stale`にする実装は不合格 |
-| `IV-K10-08` | K10-I6：独立復旧 | `independent` | 復旧の操作の閉包が`control_plane`を含まなければ`Positive` | (1)閉包が`control_plane`のnodeを1件含む→否定、(2)閉包に`held`がある→`Unknown(missing_input)`、(3)`control_plane`の宣言が無い→`Unknown(missing_input)` |
-| `IV-K10-09` | 14.2：グラフの鍵と宣言 | `restore`→`lookup` | 記録と同じ鍵の照会は`Value` | (1)edgeの由来のidentityを保った新revision（旧記録が`Value`）→`Stale`、(2)由来の同じrevisionでbytesだけ変更→`Unknown(conflict)`、(3)語彙の新revision（旧記録が`Value`）→`Stale`、(4)構築規則の版の更新と、由来のidentityの追加・削除→`Unobserved(not_run)`、(5)グラフや検査の結果の側から入力を採る実装は不合格 |
+| `IV-K10-02` | K10-I2：候補と確定 | `build_graph`、`closure` | 承認済みの由来が宣言したedgeは`confirmed` | (1)LLMの提案のedge、(2)名称の類似だけのedge→いずれも`candidate`で、`confirmed`へ変える経路は`Rejected`。(3)`candidate`のedgeでだけつながる依存を`effective`に入れる実装は不合格 |
+| `IV-K10-03` | K10-I3：性質 | `check_graph` | 性質を満たすグラフは`Positive` | (1)`symmetric`の型で逆向きのedgeが無い、(2)`inverse`の型で逆の型のedgeが無い、(3)同じ端点に`contradicts`の二つのedge→各々否定の成分。(4)循環は否定にならない |
+| `IV-K10-04` | K10-I4：有効な閉包と診断 | `closure` | 必須の依存Aが`effective`で、選択されていないsource Bの依存だけがある場合、`combined`は`Positive`で、Bは`diagnostics`に`not_selected`として残る | 同じedgeで一つずつ変える：(1)Bの選択を`unknown`→`held`で`Unknown(missing_input)`（`not_selected`へ読み替える実装は不合格）、(2)`operation_condition`を`false`→`diagnostics`の`condition_false`で、成分に入らない、(3)`reference_only`→たどらず`diagnostics`に残る、(4)`transitive`が偽の型を推移的にたどる実装は不合格 |
+| `IV-K10-05` | K10-I4：安全依存 | `closure` | 条件の成立した`safety`のedgeの先は`effective` | 条件の成立した`safety`のedgeの先を外す実装は不合格 |
+| `IV-K10-06` | K10-I5：伝播の向き | `impact` | `A depends_on B`（`against`）でBが変わるとAが`affected`、`A affects B`（`along`）でAが変わるとBが`affected` | (1)全ての型を逆向きにたどる実装は、`affects`のBを落として不合格、(2)全ての型を順向きにたどる実装は、`depends_on`のAを落として不合格、(3)`candidate`のedgeでだけ到達するnodeは`possibly`で`affected`に入らない、(4)`held`に当たる枝の先は`Unknown(missing_input)`で「影響なし」にならない |
+| `IV-K10-07` | K10-I5：条件の状態 | `impact` | — | 同じedgeの`operation_condition`を`true`／`false`／`unknown`に一つずつ変えると、先のnodeが各々`affected`／含まれない／`Unknown(missing_input)`になる |
+| `IV-K10-08` | K10-I7：見直す対象 | `impact`→`review_set`→`lookup`・`evaluate` | `affected`のidentityを持つ記録と義務のexact setが返る | currentの宣言を更新した後の照会で、(1)identityの集合を保った正当な新revisionで旧記録が`Value`→`Stale`、(2)同じrevisionでbytesだけ変更→`Unknown(conflict)`、(3)入力のidentityの集合の変更→`Unobserved(not_run)`、(4)旧記録が非`Value`→`Unobserved(not_run, superseded)`。(5)`affected`に無い記録を見直す実装、(6)`review_set`で記録のクラスを書き換える実装は不合格 |
+| `IV-K10-09` | K10-I6：独立復旧の正常 | `independent` | 整合したグラフで、`op`からの閉包が`control_plane`を含まなければ`Positive` | — |
+| `IV-K10-10` | K10-I6：グラフの不健全を引き継ぐ | `independent` | — | `control_plane`に到達しないグラフで、(1)`op`と無関係な所の未登録の`relation`、(2)欠けた端点、(3)edgeが0件、(4)`candidate`だけでつながるグラフ、の各々で、`independent`は`Positive`にならず、`check_graph`の成分（`{graph_check, …}`）が残る |
+| `IV-K10-11` | K10-I6：到達と保留の共存 | `independent` | — | 閉包が`control_plane`のnodeに到達し、別の枝が`held`の場合、`combined`は否定で、`reasons`に到達の否定と`held`の`Unknown(missing_input)`の両方が入る。(2)`op`のnodeが無い、(3)`control_plane`の宣言が無い→各々`Unknown(missing_input)`の成分 |
+| `IV-K10-12` | K10-I6：条件の状態 | `independent` | `op → R → control_plane`で、`R → control_plane`の`operation_condition`が`false`なら`Positive` | 同じedgeを`true`にすると否定、`unknown`にすると`Unknown(missing_input)` |
+| `IV-K10-13` | 14.2：鍵と固定入力 | `restore`→`lookup` | 記録と同じ鍵の照会は`Value` | (1)グラフを保ってseedだけを変えた`closure`、(2)グラフを保って`ConditionState`だけを新revisionにした`closure`は、各々別の問い（前者は`Unobserved(not_run)`、後者は旧記録が`Value`なら`Stale`）。(3)`check_graph`の結果の再照会は記録と同じクラス。(4)`GraphDecl`の同じrevisionでbytesだけ変更→`Unknown(conflict)`、(5)edgeの由来のidentityを保った新revision（旧記録が`Value`）→`Stale`、(6)由来のidentityの追加・削除、規則の版の更新→`Unobserved(not_run)`、(7)グラフや結果の側から入力を採る実装は不合格 |
 
 ### K4・G3
 
