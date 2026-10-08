@@ -43,7 +43,7 @@ base: main `66abf6bf158baebc6bfceb5ccf693d425aae41a9`
 | `IV-RL-16` | RL-R5 | 同上 | 観測を`unhealthy`にする | `Appended(RollbackRequired)`で、pointerは動かない |
 | `IV-RL-17` | RL-R6 | rollbackの前後で案件state・recordのdigestが同じで、成果物は移動先のmanifestのものになる | 移動先の`data format`を現在の案件dataと非互換と宣言する | `Rejected(not_eligible)` |
 | `IV-RL-18` | RL-R8 | repositoryを置かない環境で、成果物ストアと宣言済みの依存だけから起動・復旧する | manifestの成果物の参照先の一つをrepository内のpathにする | `Unknown(conflict)`（証拠に`tree_reference`） |
-| `IV-RL-19` | RL-V2 | `fixtures/`の合成dataがsecret classifierを通る | fixtureに合成のcredential形式の値を一つ入れる | `Rejected`（SECURITYの分類器の判定） |
+| `IV-RL-19` | RL-V2／RL-T3（secret-classifier境界のみ） | `fixtures/`の合成dataがsecret classifierを通る | fixtureに合成のcredential形式の値を一つ入れる | `Rejected`（SECURITYの分類器の判定） |
 | `IV-RL-20` | RL-V5 | `include`の閉包に除外の型番が無く、投影が成果物の集合を返す | 閉包にLABOの型番を一つ依存として加える | `Unknown(conflict)`（投影を止める） |
 | `IV-RL-21` | RL-V4 | 投影の出力は`include`の閉包のmanifestの成果物と一致する | 許可したパックのフォルダに、manifestに無いfileを一つ足す | 出力は変わらない（path globで拾わない）（境界値の正常） |
 | `IV-RL-22` | 6.1 | `Ab`と`ab`が`_41b`と`ab`になり、大文字小文字を区別しないFSでも別file | 入力をNFDの文字列にする | `Rejected(invalid_id)` |
@@ -77,15 +77,18 @@ base: main `66abf6bf158baebc6bfceb5ccf693d425aae41a9`
 | `IV-RL-52` | RL-T2（複製） | `tests/`は有効な項目IDだけを参照し、`check_design_copy`は全単位の成分と走査の完全性の成分が肯定で`Positive` | 有効なID参照を保ったまま、L9のある項目の表の行（正常・変異の欄）を正規化後に同じ文字列としてtestのコメントに加える | その単位の成分が否定の`Value`で、`check_design_copy`は`Negative` |
 | `IV-RL-53` | RL-T2（0件） | 同上 | `tests/`のコメント・文字列literalを0件にする（fileは残し、完全に走査できる） | `Positive`（境界値の正常。完全性の成分が肯定で、各単位は一致なし） |
 | `IV-RL-54` | RL-T2（走査） | 同上 | `tests/`の一つのfileを読めなくする | 完全性の成分が`Unknown(unreadable)`で、`check_design_copy`は`Undetermined` |
+| `IV-RL-56` | RL-D4／CK IV-K10-06 | 台帳に登録されたnode A・Bと、宣言から作った確定edge `A depends_on B` を入力し、`impact(B)`が`A`を`affected`に含む。source本文にedgeらしい記述があってもgraph入力には含めない | Aの宣言からこの依存edgeだけを除く。他の有効edgeは残し、台帳とsource本文は変えない | `impact(B)`は`Value`で、`A`は`affected`に含まれない（source本文からedgeを補わない） |
+| `IV-RL-57` | RL-D4／CK IV-K10-03 | 台帳と宣言が整合するedge `A depends_on B` のグラフは`check_graph`が`Positive`。語彙は当該関係を非symmetric・inverse無し・contradicts無しとする | 宣言へ逆向きedge `B depends_on A` だけを加え、循環を作る | `check_graph`は`Positive`（循環だけを理由に否定しない） |
+| `IV-RL-59` | RL-D4／CK IV-K10-01 | 台帳にnode A・Bが登録され、宣言edge `A depends_on B` の端点がそろう | 宣言edgeは保ち、台帳からnode Bの登録だけを除く | `check_graph`の当該端点成分は`Unknown(missing_input)` |
 | `IV-RL-50` | RL-K1 | rootのfileが9.2の一覧と理由の追記に一致する | 理由の追記の無いroot fileを一つ足す | `Negative` |
 | `IV-RL-51` | RL-K2 | 開発・実行・検証・配布のsurfaceにBunの参照が無い | 一つの設定にBunのlockまたはcommandを足す | `Negative`（`HELIXOS-L2-132`の003） |
 
-L4の規則のうち、次は独立の反例を置かず、対応を示す。
+L4の規則に対するcoverageの境界を次に示す。
 
-- RL-V1：repositoryのvisibilityはGitHubの設定で、パックや記録の結合の境界ではない。本書は構成判断のとおり設定を変えず、観測もしないため範囲外とする。
-- RL-D4：影響範囲はCKのIV-K10-04〜08で検証する。循環を否定にしないことはIV-K10-03の期待のとおりで、本書は循環の反例を置かない。
-- RL-T3：fixtureの合成dataはIV-RL-19（secret classifier）で検証する。案件dataの混入の判定もSECURITYの同じ分類器による。
-- RL-K3：ツールチェーンがL5〜L6で未決であり、パックに閉じる設定がまだ無いため範囲外とする。設定が生じた層の対の検証で扱う。
+- RL-V1：未検証（`not_exercised`）。L4は開発repoをpublicとする方針を定めるが、その検査の入力・所有者・受口・返却型を定義していない。visibilityの実設定観測は本pairの範囲外であり、合成snapshotのNegative判定を新設しない。public visibilityから資産の分類も導かない（RL-V3）。
+- RL-D4：IV-RL-56〜57・59は、台帳と宣言から作るgraphのimpact、欠けた端点、循環が否定にならないことをCK K10へ接続する。コードからedgeを抽出する方法はL4がL5〜L6へ送っており、本書でも定義・実装しない。IV-RL-56のsource本文はgraph入力として読まない。
+- RL-T3：IV-RL-19は合成credential形式の値をSECURITYのsecret classifierへ通す境界だけを検査する。classifierはdataがsyntheticであることを示さず、全`fixtures/`・`tests/`の値の合成由来を証明しない。L4に合成由来の判定根拠がないため、この全体条件は未被覆のままとする。
+- RL-K3：未検証（`not_exercised`）。L4は設定をpackへ寄せる方針のみを定め、検査の入力・所有者・受口・返却型を定義していない。設定を検査する実際のtool/config技術もL5〜L6で未選択のため、このpairで検査器や合成配置oracleを追加しない。
 
 ## 3. 判定と戻し先
 
