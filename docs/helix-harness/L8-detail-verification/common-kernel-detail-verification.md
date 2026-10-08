@@ -14,7 +14,7 @@ base: main `fe3332d6b8a2b2ff9bf0387b07c544b5bb45b464`
 |---|---|---|
 | Common Kernel L4 | `fe3332d6b8a2b2ff9bf0387b07c544b5bb45b464`上の`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3 | `4a2c4afcc2519df5d7bd58caf1a74a80b94b26fc85ef328ee7bb89f6f2e78187` |
 | Common Kernel L9 | 同revision上の`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` §2 K1/K2 | `e01fd7ff0b4a0a141d4958b6bc38ca00a2753866d1e6ea98103f503bd409aaf3` |
-| paired L5 | 本pairの`common-kernel.md` §3/§4 | SHA-256 `a152dd3c4d5ff5a2820f972b26e29fa332789fc734ecd5d562ae84b41fd620c0` |
+| paired L5 | 本pairの`common-kernel.md` §3/§4 | SHA-256 `1c8488412297cff204a15534faa0657a75912986221b8b019b52f8b5585d5bf7` |
 
 L9の各`IV-K1-*`/`IV-K2-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。
 
@@ -26,7 +26,7 @@ HARNESS Stage 1 PO decisionはHARNESS L3/L10の本文revision `a77672513325aa9e7
 - 入力のref、記録、expected outputをケースfixture内に固定する。alias fixtureではowner current resolverの完全mapping bytes、binding ref、raw source bytesを別々に示す。テストデータの準備は期待値を変える追加条件にしない。
 - 期待結果は型、class、reason、index、鍵差分または記録不変性で検査する。fixtureの成功から要求承認、実行許可、外部状態を導かない。
 - Fixture IDはこの詳細pair内だけの識別子で、L9 IDを改番しない。各IDからL5 API・L4 invariant・L9 oracle・L3 crosswalkへ双方向に戻れることを確認する。波括弧を含むIDは、直後に記すsuffix展開規則に従って個別fixture IDへ展開し、1 IDにつき1条件だけを変える。
-- case欄の`prefix-A/B/C`はsuffixごとに独立したIDを定義する展開記法（例:`L8-K1-07-REASON`, `L8-K1-07-AUTHORITY`, `L8-K1-07-REENTRY`）であり、斜線を含む一つのIDではない。各展開caseは一つの正常または一つの変異だけを持つ。 `L8-K1-08-ACCEPT-{CLASS}-{BOUNDARY}`はCLASS=Value/Unknown/Unobserved/NotApplicable、BOUNDARY=combine/record/lookupの直積12件、`L8-K1-08-STALE-{BOUNDARY}`はBOUNDARY=combine/lookupの2件、`L8-K1-08-KEY-{CLASS}-{BOUNDARY}`はCLASS=Value/Unknown/Unobserved/NotApplicable/Staleと同じBOUNDARYの直積15件へ展開する。`L8-K1-11-MAP-{WORD}`はL4 §2.4写像表の各語ごと、`L8-K1-12-KEY-{FIELD}-{BOUNDARY}`は13 field×3境界、`L8-K1-13-KEY-{FIELD}`は13 fieldへ展開する。各展開IDは独立fixtureである。
+- case欄の`prefix-A/B/C`はsuffixごとに独立したIDを定義する展開記法（例:`L8-K1-07-REASON`, `L8-K1-07-AUTHORITY`, `L8-K1-07-REENTRY`）であり、斜線を含む一つのIDではない。各展開caseは一つの正常または一つの変異だけを持つ。 `L8-K1-08-ACCEPT-COMBINE-{CLASS}`は5クラス、`L8-K1-08-ACCEPT-RECORD-{CLASS}`と`L8-K1-08-LOOKUP-{CLASS}`はStaleを除く4クラス、`L8-K1-08-KEY-COMBINE-{CLASS}`は5クラスへ展開する。record key欠落とlookup query_key欠落は各1件であり、keyにclassの直積を掛けない。`L8-K1-11-MAP-{WORD}`はL4 §2.4写像表の各語ごと、`L8-K1-12-KEY-{FIELD}-{BOUNDARY}`は13 field×3境界、`L8-K1-13-KEY-{FIELD}`は13 fieldへ展開する。各展開IDは独立fixtureである。
 
 ## 3. K1 fixtures
 
@@ -47,10 +47,14 @@ HARNESS Stage 1 PO decisionはHARNESS L3/L10の本文revision `a77672513325aa9e7
 | `L8-K1-06b` | IV-K1-06 | 同上 | 同上 | 基準から全成分をvalid NotApplicable 1件だけに置換。判定成分0として同じ期待。 |
 | `L8-K1-06c` | IV-K1-06 | 同上 | 同上 | 基準から全成分をvalid NotApplicable 3件だけに置換。判定成分0として同じ期待。 |
 | `L8-K1-07-REASON/AUTHORITY/REENTRY` | IV-K1-07 | `disposition`, `combine`; K1-I5 | direct: AC-HARNESS-L3-032-02、INFRA-001-AC-01 | 3つの個別fixture: reason、authority、reentry_triggerのうち一つずつ欠落。各々`Unknown(invalid_disposition)`でnon-value。3変異を一つのfixtureへ混在させない。 |
-| `L8-K1-08-ACCEPT-{CLASS}-{BOUNDARY}` | IV-K1-08 | `combine`, `record`, `lookup`; K1-I6/K2-I6 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | `{CLASS}`はValue/Unknown/Unobserved/NotApplicable、`{BOUNDARY}`はcombine/record/lookup。各組合せを独立正常fixtureとし、完全key付きの対象classを境界が受理する。 |
-| `L8-K1-08-STALE-{BOUNDARY}` | IV-K1-08 | `combine`, `lookup`; K1-I6/K2-I6 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | `{BOUNDARY}`はcombine/lookupへ展開し、完全key付きStaleをその境界が受理する。2個別fixture。 |
+| `L8-K1-08-ACCEPT-COMBINE-{CLASS}` | IV-K1-08 | `combine`; K1-I6/K2-I6 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | CLASS=Value/Unknown/Unobserved/NotApplicable/Stale。各完全key付き成分をcombineが受理する5独立fixture。 |
+| `L8-K1-08-ACCEPT-RECORD-{CLASS}` | IV-K1-08 | `record`; K1-I6/K2-I6 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | CLASS=Value/Unknown/Unobserved/NotApplicable。各完全keyとresultをrecordが受理する4独立fixture。 |
+| `L8-K1-08-LOOKUP-{CLASS}` | IV-K1-08 | `lookup`; K1-I6/K2-I6 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | CLASS=Value/Unknown/Unobserved/NotApplicable。完全一致keyの保存recordからlookupが同classを返す4独立fixture。 |
+| `L8-K1-08-STALE-LOOKUP` | IV-K1-08 / IV-K2-02 | `lookup`; K2-I2b | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | 完全keyの旧revision Value recordだけを置きcurrent queryでlookupする。返却値としてStaleを導出する。Staleをlookup入力に渡さない。 |
 | `L8-K1-08-STALE-RECORD` | IV-K1-08 / IV-K2-11 | `record`; K1-I6/K2-I4 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | 完全keyのrecord result classだけをStaleにする。`Rejected(stale_not_recordable)`。 |
-| `L8-K1-08-KEY-{CLASS}-{BOUNDARY}` | IV-K1-08 | `combine`, `record`, `lookup`; K1-I6/K2-I6 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | `{CLASS}`はValue/Unknown/Unobserved/NotApplicable/Stale、`{BOUNDARY}`はcombine/record/lookup。各組合せで鍵全体だけを欠かせ、`Rejected(missing_key)`。K1-I6の全体欠落とIV-K1-12の単field欠落を区別する。|
+| `L8-K1-08-KEY-COMBINE-{CLASS}` | IV-K1-08 | `combine`; K1-I6 | direct: BRAIN-008-AC-02 | CLASS=Value/Unknown/Unobserved/NotApplicable/Staleの各成分から鍵全体だけを欠かせる5独立fixture。`Rejected(missing_key)`。 |
+| `L8-K1-08-KEY-RECORD` | IV-K1-08 | `record`; K2-I6 | boundary: K2 §3.1 AC-HARNESS-L3-030-04 | 非StaleのValue resultを保持しrecord.keyだけを欠かせ、`Rejected(missing_key)`。 |
+| `L8-K1-08-KEY-LOOKUP` | IV-K1-08 | `lookup`; K2-I6 | boundary: K2 §3.1 AC-HARNESS-L3-030-04 | 完全record集合を保持しlookup.query_keyだけを欠かせ、`Rejected(missing_key)`。 |
 | `L8-K1-09-COMPLETE` | IV-K1-09 | owner observation→`Observed`; K1-I7 | AC-HARNESS-L3-022-02、INFRA-001-AC-01 | complete-scan evidence付き0件を与え、`Value`（0件）を返す。 |
 | `L8-K1-09-PARTIAL` | IV-K1-09 | owner observation→`Observed`; K1-I7 | 同上 | 走査範囲だけをpartialにする。`Value`（0件）を返さない。 |
 | `L8-K1-09-READ-FAIL` | IV-K1-09 | owner observation→`Observed`; K1-I7 | 同上 | complete-scan evidenceを持つ基準から読取結果だけを失敗へ変える。`Value`（0件）を返さない。 |
