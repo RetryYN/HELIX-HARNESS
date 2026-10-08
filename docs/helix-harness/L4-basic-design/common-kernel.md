@@ -695,44 +695,52 @@ K4とG3は一つのPRにした。G3のoracleの種別は義務の一つのfield�
 
 ```text
 OracleKind     = Mechanical | LlmJudgment | HumanInterface             # G3
-OracleRef      = { kind: OracleKind, verifier: identity?, human_record_owner: role? }
+OracleRef      = { kind: OracleKind, verifier: identity?,
+                   human: { adapter: identity, decision_kind, requires_positive: Bool }? }
 Disposition    = Required
                | NotApplicable(reason, authority, reentry_trigger)       # K1-I5と同じ
                | Deferred(target_point, owner, discharge_condition)
-Obligation     = { obligation_id, source: SubjectRef,                    # 由来（承認済みL3のAC、templateの義務等）
-                   target: SubjectRef, granularity: unit | connection | composite,
-                   pair: 層の対（例：L4↔L9）, operation, oracle: OracleRef, disposition }
-DerivationRule = VerifierRef と同じ形（identity、version、digest、deterministic）
+Obligation     = { obligation_id, source: SubjectRef, target: SubjectRef,
+                   granularity: unit | connection | composite, pair, operation, oracle: OracleRef, disposition }
+DerivationRule = { identity, version, digest }
 ObligationSet  = FixedRef。{ derived_from: SubjectRef[], rule: DerivationRule, obligations: Obligation[] }
-ObligationView = { set: ObligationSet, combined: Combined,               # 義務ごとの成分の合成（K1）
+OperationDecl  = FixedRef。操作の所有者が宣言する、操作ごとのcurrentの { operation, version, inputs: SubjectRef[], scope }
+HumanDecision  = { record: SubjectRef, target: SubjectRef, scope, decision_kind,
+                   decision: accepted | rejected | pending }    # adapterが既存authority sourceの記録から作る
+ObligationView = { set_key, combined: Combined,
+                   assurance: { (obligation_id, verifier) -> { reverifiable, reproduction, issuer_authenticity } },
                    inherited: { obligation_id -> 旧revisionの非Positiveの記録 } }
+Handoff        = FixedRef。{ from_view, to_set_key, unfinished: obligation_id[], inherited: { obligation_id -> 記録 } }
 ```
 
-- `ObligationSet`はK2の記録として残す。鍵は`operation: derive_obligations`、`subject`＝対象、`inputs`＝`derived_from`の全SubjectRefと`rule`、`scope`とする。由来や導出規則が変われば、K2-I2のとおり`Stale`、`Unknown(conflict)`、`Unobserved(not_run)`のいずれかになる。
+- **導出の鍵**：`ObligationSet`はK2の記録として残す。鍵は`operation: derive_obligations`、`operation_version`＝`rule.version`、`subject`＝対象、`inputs`＝`derived_from`の全SubjectRefと`{kind: derivation_rule, identity: rule.identity, revision: rule.version, digest: rule.digest}`、`scope`とする。したがって、規則の版の更新は`operation_version`が違うため`Unobserved(not_run)`、規則の同じ版でbytesだけの変更は`Unknown(conflict)`、由来のidentityを保った新revisionは旧記録が`Value`なら`Stale`、旧記録が非`Value`なら`Unobserved(not_run, superseded)`、由来のidentityの追加・削除は`Unobserved(not_run)`になる（K2-I2）。
+- **検証の基底鍵**：義務`b`の検証の基底鍵は、`b.operation`の`OperationDecl`から`{operation: b.operation, operation_version: decl.version, subject: b.target, inputs: decl.inputs, scope: decl.scope}`として作る。`OperationDecl`は操作の所有者が固定実体として宣言したcurrentの値を呼出し側が渡し、receiptの側から入力を採らない（11章の`build_key`と同じ考え方）。
 - 義務の`obligation_id`は、`source.identity`、`target.identity`、`granularity`、`pair`、`operation`から決まる値とし、revisionを含めない。版をまたいで同じ義務を辿るためである（K4-I5）。
 
 ### 13.3 不変条件
 
-- **K4-I1 導出された全集合**：評価する義務の集合は、`ObligationSet`の`obligations`と一致しなければならない。呼出し側が義務の集合を渡す経路を置かない。評価に渡された集合に、導出された義務が欠けていればその義務は`Unknown(missing_input)`の成分、導出されていない義務があれば`Unknown(unregistered)`の成分とする。`obligations`が0件なら`set_reason = Unknown(missing_input)`（K1-I4）。
+- **K4-I1 導出された全集合**：義務の集合は`ObligationSet`から読み、呼出し側から受け取らない。`evaluate`の出力の`combined`は、集合の各`obligation_id`の成分を必ず含む。消費側は`check_view`でこれを照合し、集合にある`obligation_id`の成分が無ければその義務を`Unknown(missing_input)`、集合に無い`obligation_id`の成分があれば`Unknown(unregistered)`とする。`obligations`が0件なら`set_reason = Unknown(missing_input)`（K1-I4）。
 - **K4-I2 粒度の分離**：composite・connectionの義務の成分は、その義務自身のoracleの結果だけから作る。下位（unit）の義務の結果から上位の義務の肯定を導かない（AC-014-02、021-02）。
 - **K4-I3 dispositionの成立**：`NotApplicable`は3fieldをすべて持つ場合だけ成立し、合成で除外される（K1-I5）。`Deferred`は3fieldをすべて持つ場合だけ成立し、成分は`Unobserved(pending_receipt)`とする（肯定にならず、合成から除外されない）。fieldが欠ければ、どちらも`Unknown(invalid_disposition)`の成分とする。`Required`・`Deferred`以外に「飛ばす」dispositionは置かない。
-- **K4-I4 義務と検証器**：操作`o`の`VerifierSet.required_for[o]`（10.3）の識別の集合は、`o`の`Required`の義務のうち`oracle.kind`が`Mechanical`か`LlmJudgment`のものが参照する`verifier`の集合と一致しなければならない（10.9の未決をここで決める）。一致しなければ`Unknown(conflict)`の成分とする。各義務の成分は、その義務の`verifier`のreceiptについて、K6-I7の(1)〜(4)の手順で得た受入の結果の`inner`の全成分を、`{obligation_id, verifier, 検査}`の識別を付けて展開したものとする。
-- **K4-I5 未完義務の継承**：対象の新しいrevisionで義務の集合を導き直したとき、旧revisionで成分が`Positive`でなかった義務と同じ`obligation_id`の義務は、新しいrevisionでも未完として`inherited`に旧の記録を結ぶ。新しいrevisionの成分は新しいreceiptから作り、旧の結果を流用しない（K2-I2）。旧revisionにあり新しい集合に無い未完の義務は、黙って消さず`inherited`に残し、その義務の`source`の所有者へ戻す。所有者の間で義務を渡すときは、`ObligationSet`の鍵と`inherited`を渡し、受け手は受けた集合が導出と一致することをK4-I1で確かめる。
+- **K4-I4 義務と検証器**：操作`o`の`VerifierSet.required_for[o]`（10.3）の識別の集合は、`o`の`Required`の義務のうち`oracle.kind`が`Mechanical`か`LlmJudgment`のものが参照する`verifier`の集合と一致しなければならない（10.9の未決をここで決める）。一致しなければ`Unknown(conflict)`の成分とする。各義務の成分は、13.2の基底鍵からK6-I7の(1)〜(4)の手順（K5の固定prefixでの`restore`→検証器ごとのreceipt鍵での`lookup`→`admit_receipt`）で得た受入の結果の`inner`の全成分（`set_reason`を含む）を、`{obligation_id, verifier, 検査}`の識別を付けて展開したものとする。受け入れた各receiptの`reverifiable`・`reproduction`・`issuer_authenticity`は、`{obligation_id, verifier}`ごとに`assurance`へ入れる。
+- **K4-I5 未完義務の継承と受渡し**：対象の新しいrevisionで義務の集合を導き直したとき、旧revisionで成分が`Positive`でなかった義務は、`obligation_id`で新しいviewの`inherited`へ旧の記録を結ぶ。新しいrevisionの成分は新しいreceiptから作り、旧の結果を流用しない（K2-I2）。旧revisionにあり新しい集合に無い未完の義務も`inherited`に残し、その義務の`source`の所有者へ戻す。所有者の間で渡すときは`Handoff`を固定実体として作る。受け手は`receive`で、`from_view`から「旧で`Positive`でなかった全`obligation_id`（新しい集合に無いものを含む）」を計算し直し、`Handoff`の`unfinished`と一致することを確かめる。欠けていればその義務を`Unknown(missing_input)`、余分なら`Unknown(unregistered)`とする。
 - **K4-I6 unknownは飛ばさない**：`Unknown`・`Unobserved`・`Stale`の成分は、合成でそのまま非`Value`として残る。成分が非`Value`の義務を「未適用」や「対象外」へ読み替えない。
 
 ### 13.4 G3 oracleの種別
 
 - **G3-I1 種別は義務ごとに固定**：`oracle.kind`は`ObligationSet`に固定し、評価の時点で変えない。種別を変えるのは新しいrevisionの`ObligationSet`である。
 - **G3-I2 機械判定**：`Mechanical`の義務を満たせるのは、集合で`deterministic`の検証器のreceiptだけとする。決定的でない検証器のreceiptは、その義務では`Unknown(unsupported)`の成分とする（SECURITY-AC-026-01：決定規則で強制できる条件をLLMへ委譲しない）。
-- **G3-I3 LLMの判断**：`LlmJudgment`の義務は、決定的でない検証器のreceiptで満たせる。その成分の`assurance`は`reproduction = Unknown(unsupported)`のまま消費側へ渡る（10.4のK6-I10）。判断不能（`Unknown`）は肯定にしない（SECURITY-AC-026-02）。
-- **G3-I4 人のIF**：`HumanInterface`の義務を満たせるのは、`human_record_owner`の既存のauthority sourceにある記録だけとする。記録は`kind: human_record`の`SubjectRef`として入力に結び、無ければ`Unobserved(pending_receipt)`。機械やLLMのreceiptから人の記録を作らない（AC-049-05、022-01・02）。`HumanInterface`を付けてよいのは、由来の承認済みL3が人の記録（利用者受入、人の文言判断等）を求める義務だけとする。それ以外の義務に人のIFを足すことは、新しい承認手続きにあたるので行わず、L2へ戻す論点にする。
+- **G3-I3 LLMの判断**：`LlmJudgment`の義務は、決定的でない検証器のreceiptで満たせる。その`assurance`は`reproduction = Unknown(unsupported)`のまま`ObligationView`で消費側へ返る。判断不能（`Unknown`）は肯定にしない（SECURITY-AC-026-02）。
+- **G3-I4 人のIF**：`HumanInterface`の義務を満たせるのは、`oracle.human.adapter`（集合に固定した決定的な検証器）が、既存のauthority sourceの記録から作った`HumanDecision`だけとする。新しい人の承認を求めず、既にある記録を読むだけである。写像は次の順で決め、最初に当たったものを成分とする。(1)`HumanDecision`が無い→`Unobserved(pending_receipt)`。(2)`target.identity`が義務の`target.identity`と違う、`scope`が違う、`decision_kind`が違う→`Unobserved(pending_receipt)`（その義務についての記録ではない）。(3)`target`のidentityが同じで`revision`が違う→旧revisionへの記録として`Stale`。同じ`revision`で`digest`が違う→`Unknown(conflict)`。(4)`decision`が`pending`→`Unobserved(pending_receipt)`。(5)`requires_positive`が真なら、`accepted`は肯定、`rejected`は否定。`requires_positive`が偽（記録があることだけを求める義務）なら、`accepted`・`rejected`のどちらも肯定とする。機械やLLMのreceiptから`HumanDecision`を作らない（AC-049-05、022-01・02）。`HumanInterface`を付けてよいのは、由来の承認済みL3が人の記録（利用者受入、人の文言判断等）を求める義務だけとする。
 - **G3-I5 割合は情報だけ**：`ObligationSet`から、種別ごとの義務の数を数えられる。この数は情報であり、合否や承認を生成しない。閾値は置かない。
 
 ### 13.5 API境界
 
 - `derive(sources, rule, target, scope) -> ResultRecorded | Rejected(reason)`：導出規則の側の受け口。由来と規則だけを受け取り、`ObligationSet`を作る。由来の承認済みL3が人の記録を求めていない義務に`HumanInterface`を付けた集合は拒否する（G3-I4）。
-- `evaluate(set_key, verifier_set) -> Observed<ObligationView>`：`restore`→`lookup`で`ObligationSet`を得て（非`Value`ならそれを返す）、K4-I1、I4（集合の一致）を検査した後、義務ごとに成分を作り（K4-I2〜I4、G3-I2〜I4）、全成分を一つの`combine`へ渡す。
-- `inherit(old_view, new_set_key) -> Observed<ObligationView>`：K4-I5に従う。
+- `evaluate(set_key, decls: {operation -> OperationDecl}, verifier_set, input_heads) -> Observed<ObligationView>`：K5の`restore`（`input_heads`の固定prefix、K5-I11の完全性）→`lookup`で`ObligationSet`を得て（非`Value`ならそれを返す）、K4-I4の集合の一致を検査した後、義務ごとに13.2の基底鍵から成分を作り（K4-I2〜I4、G3-I2〜I4）、全成分を一つの`combine`へ渡す。`decls`に義務の操作が無ければ、その義務を`Unknown(missing_input)`とする。
+- `check_view(view, set_key) -> Observed<ObligationView>`：消費側の受け口。K4-I1に従う。
+- `inherit(old_view, new_set_key, decls, verifier_set, input_heads) -> Observed<{view: ObligationView, handoff: Handoff}>`：新しい集合を`evaluate`し、K4-I5に従って`inherited`と`Handoff`を作る。
+- `receive(handoff, from_view) -> Observed<Handoff>`：受け手の受け口。K4-I5の照合を行う。
 
 ### 13.6 旧HELIXとの対応
 
@@ -747,7 +755,7 @@ ObligationView = { set: ObligationSet, combined: Combined,               # 義�
 | `LEGACY-ASSET-D68CEADABCBECF13EFCB`／`docs/skills/judgment-core.md:70-73`／`e0c0fc7c3c813ba59e434ea19dad3f54e90f2b7bd8e1b5151c572a06b3d3c1e8` | 機械で決まるものはlint・testに寄せ、LLMは程度の評価と盲点の発見に使う。決定的なgateをLLMの判断で代替しない | なし（G3-I2として再導出） | `semantic_rederive` |
 | `LEGACY-ASSET-98372FEE8A3AC8F9C299`／`docs/design/helix/L5-detail/design-template-json-authority.md:74`／`3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830` | verificationの欄に「required oracle class」を置いた | 値域を`Mechanical／LlmJudgment／HumanInterface`に定める | `semantic_rederive` |
 
-義務ごとにoracleの種別を値域つきの型として持つことと、人のIFを第三の種別とすることは、旧HELIXに対応が見つからない**新規案**である。旧は境界のformalizeを要件に掲げたが、型にしなかった。検索の範囲は`archive/legacy-generation-2026-09-14/root/`の全ファイル（`grep -rIl`、読取りだけ）で、`oracle_type` 0件、`oracleKind` 0件、`oracle_kind` 0件、`oracle class` 1件（上表の`design-template-json-authority.md:74`。値域は定めていない）だった。
+義務ごとにoracleの種別を値域つきの型として持つこと、人のIFを第三の種別とすること、既存の記録を`HumanDecision`へ写すadapterは、旧HELIXに対応が見つからない**新規案**である。旧は境界のformalizeを要件に掲げたが、型にしなかった。検索の範囲は`archive/legacy-generation-2026-09-14/root/`の全ファイル（`grep -rIl`、読取りだけ）で、`oracle_type` 0件、`oracleKind` 0件、`oracle_kind` 0件、`oracle class` 1件（上表の`design-template-json-authority.md:74`。値域は定めていない）だった。
 
 ### 13.7 L2へ戻す論点
 
@@ -757,7 +765,7 @@ ObligationView = { set: ObligationSet, combined: Combined,               # 義�
 ### 13.8 未決と試作で確かめること
 
 - 導出規則（`DerivationRule`）の具体（承認済みL3のACとtemplateから義務を作る規則）は、HARNESS-L2-014・041の設計（各機構のL4）で定める。本章は規則の型と、導いた集合の扱いだけを定める。
-- 試作：承認済みのL3の一つの親について義務の集合を手で導き、L9のIV-K4-01〜08とIV-G3-01〜05を動かす。
+- 試作：承認済みのL3の一つの親について義務の集合を手で導き、L9のIV-K4-01〜10とIV-G3-01〜05を動かす。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
