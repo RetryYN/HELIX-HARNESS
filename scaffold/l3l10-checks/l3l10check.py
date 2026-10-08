@@ -983,6 +983,40 @@ def build_receipt(ctx, registered, evaluated, results, overall, reason):
     }
 
 
+RECEIPT_DIRS = ("scaffold/l3l10-checks/receipts",)
+
+
+def resolve_receipt_path(repo_root, path):
+    """receiptの出力先を検査する。許可するのは --repo-root 配下の RECEIPT_DIRS の中の .json だけ。
+
+    相対pathは --repo-root を基準にする。symlink（出力先そのもの、または途中のdirectory）を経由して
+    許可先の外へ出るものと、既存の非regular fileは拒否する。拒否した場合は (None, 理由) を返す。
+    """
+    root = os.path.realpath(repo_root)
+    allowed = [os.path.join(root, d) for d in RECEIPT_DIRS]
+    cand = path if os.path.isabs(path) else os.path.join(root, path)
+    cand = os.path.normpath(cand)
+    if os.path.islink(cand):
+        return None, "出力先がsymlinkである"
+    real = os.path.realpath(cand)
+    if real != cand:
+        return None, "途中のdirectoryがsymlinkで、許可先の外へ解決されうる"
+    if not real.endswith(".json"):
+        return None, "出力先は .json に限る"
+    if not any(real.startswith(a + os.sep) for a in allowed):
+        return None, "出力先は %s の中に限る（scaffold/外への書込み禁止。SCF-B-0157）" % ", ".join(RECEIPT_DIRS)
+    if os.path.exists(real) and not os.path.isfile(real):
+        return None, "既存の出力先がregular fileでない"
+    return real, None
+
+
+def write_receipt(real, text):
+    os.makedirs(os.path.dirname(real), exist_ok=True)
+    fd = os.open(real, os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_NOFOLLOW", 0), 0o644)
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
+        f.write(text)
+
+
 def make_ctx(args, git):
     pins = []
     for p in args.pin or []:
@@ -1012,8 +1046,14 @@ def main(argv=None):
     ap.add_argument("--pin-rev", help="revisionを持たないpinの既定revision（省略時はHEAD）")
     ap.add_argument("--online", action="store_true", help="formal_body_rawをgh apiのcomment bodyと照合する（読み取りだけ）")
     ap.add_argument("--gh-repo", default="RetryYN/HELIX-HARNESS")
-    ap.add_argument("--receipt", help="receipt JSONの出力先（省略時は標準出力）")
+    ap.add_argument("--receipt", help="receipt JSONの出力先（省略時は標準出力）。--repo-root配下の %s の中の .json に限る。相対pathは --repo-root 基準" % RECEIPT_DIRS[0])
     args = ap.parse_args(argv)
+    receipt_path = None
+    if args.receipt:
+        receipt_path, why = resolve_receipt_path(args.repo_root, args.receipt)
+        if receipt_path is None:
+            print("E_INPUT: --receipt %s を拒否した：%s" % (args.receipt, why), file=sys.stderr)
+            return 2
     git = Git(args.repo_root)
     if args.head and not git.resolve(args.head):
         print("E_INPUT: --head %s を解決できない" % args.head, file=sys.stderr)
@@ -1022,14 +1062,13 @@ def main(argv=None):
     registered, evaluated, results, overall, reason = run_checks(ctx)
     receipt = build_receipt(ctx, registered, evaluated, results, overall, reason)
     out = json.dumps(receipt, ensure_ascii=False, indent=1, sort_keys=False)
-    if args.receipt:
-        with open(args.receipt, "w", encoding="utf-8") as f:
-            f.write(out + "\n")
+    if receipt_path:
+        write_receipt(receipt_path, out + "\n")
         for cid in evaluated:
             r = results[cid]
             print("%-17s %-9s %s" % (cid, r["result"], {k: sum(1 for f in r["findings"] if f["result"] == k) for k in ("violation", "unknown", "advisory")}))
         print("registered=%d evaluated=%d overall=%s（%s）" % (len(registered), len(evaluated), overall, reason))
-        print("receipt: %s sha256=%s" % (args.receipt, sha256b((out + "\n").encode("utf-8"))))
+        print("receipt: %s sha256=%s" % (os.path.relpath(receipt_path, os.path.realpath(args.repo_root)), sha256b((out + "\n").encode("utf-8"))))
     else:
         print(out)
     return {"pass": 0, "violation": 1, "unknown": 3}[overall]

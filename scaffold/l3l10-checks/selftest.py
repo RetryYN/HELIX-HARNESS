@@ -173,6 +173,40 @@ def synthetic_cases(git):
                 "got": "%s (registered %d, evaluated %d)" % (overall, len(reg), len(ev)), "reason": reason, "ok": ok})
     if not ok:
         fails.append("registry partial evaluation: %s" % overall)
+    # receiptの出力先：scaffold/外・symlink経由・.json以外を拒否し、許可先だけへ書く（SCF-B-0157の書込境界）
+    with tempfile.TemporaryDirectory() as tmp:
+        rdir = os.path.join(tmp, "scaffold", "l3l10-checks", "receipts")
+        os.makedirs(rdir)
+        os.makedirs(os.path.join(tmp, "docs"))
+        os.makedirs(os.path.join(tmp, "outside"))
+        os.symlink(os.path.join(tmp, "outside"), os.path.join(rdir, "linkdir"))
+        os.symlink(os.path.join(tmp, "docs", "x.json"), os.path.join(rdir, "link.json"))
+        rejects = {
+            "receipt_reject_outside_relative": "docs/x.json",
+            "receipt_reject_outside_absolute": os.path.join(tmp, "outside", "x.json"),
+            "receipt_reject_traversal": "scaffold/l3l10-checks/receipts/../../../docs/x.json",
+            "receipt_reject_symlink_dir": "scaffold/l3l10-checks/receipts/linkdir/x.json",
+            "receipt_reject_symlink_file": "scaffold/l3l10-checks/receipts/link.json",
+            "receipt_reject_non_json": "scaffold/l3l10-checks/receipts/x.txt",
+        }
+        for case, path in rejects.items():
+            real, why = C.resolve_receipt_path(tmp, path)
+            ok = real is None
+            out.append({"case": case, "expected": "rejected", "got": "rejected: %s" % why if real is None else real, "ok": ok})
+            if not ok:
+                fails.append("%s: accepted %s" % (case, real))
+        rc = C.main(["--repo-root", tmp, "--receipt", "docs/x.json"])
+        ok = rc == 2 and not os.path.exists(os.path.join(tmp, "docs", "x.json"))
+        out.append({"case": "receipt_reject_main_exit2_no_write", "expected": "exit 2, no file", "got": "exit %s" % rc, "ok": ok})
+        if not ok:
+            fails.append("main receipt outside: exit %s" % rc)
+        real, why = C.resolve_receipt_path(tmp, "scaffold/l3l10-checks/receipts/r.json")
+        if real:
+            C.write_receipt(real, "{}\n")
+        ok = real is not None and os.path.isfile(real)
+        out.append({"case": "receipt_accept_allowed", "expected": "written", "got": "written" if ok else "rejected: %s" % why, "ok": ok})
+        if not ok:
+            fails.append("receipt allowed path rejected: %s" % why)
     return out, fails
 
 

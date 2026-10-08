@@ -23,7 +23,7 @@ python3 -B scaffold/l3l10-checks/l3l10check.py \
   --head <PRのcontent HEAD> --base <PRのbase> --fixed-rev <固定L2／L11のrevision> \
   --mech helix-labo --parent 060 [--parent 061 ...] \
   [--pin docs/governance/audits/.../xxx-pin.json] [--pin-rev <revisionを持たないpinの既定revision>] \
-  [--online] --receipt /path/to/receipt.json
+  [--online] --receipt scaffold/l3l10-checks/receipts/<名前>.json
 
 # 自己検査（回帰コーパスと合成case）。--recordで scaffold/evidence/ に結果を書く
 python3 -B scaffold/l3l10-checks/selftest.py [--record]
@@ -32,6 +32,10 @@ python3 -B scaffold/l3l10-checks/selftest.py [--record]
 終了codeは、pass 0、violation 1、入力不正 2、unknown 3である。`--online`を付けた時だけ`gh api repos/<repo>/issues/comments/<id>`を
 読み取りで呼ぶ（既定はoffline）。gitは`cat-file`、`ls-tree`、`diff`、`rev-parse`の読み取りだけを使う。書き込みは`--receipt`の出力先と、
 selftestの`--record`が書く`scaffold/evidence/l3l10-checks-selftest-2026-10-08.json`だけである。
+
+`--receipt`の出力先は、`--repo-root`配下の`scaffold/l3l10-checks/receipts/`の中の`.json`に限る（相対pathは`--repo-root`基準）。
+範囲外、`..`による脱出、symlink（出力先そのもの・途中のdirectory）を経由するもの、既存の非regular fileは入力不正（終了code 2）として拒否し、何も書かない。
+書込みは`O_NOFOLLOW`で開く。これは`SCF-B-0157`の「`scaffold/`外への書込み禁止」を実装で守るためである（#2700 review01 M1）。
 
 `--mech`は`docs/`直下の機構directory名（`helix-labo`、`helix-os`等）、`--parent`は親の3桁番号である。6本文は
 `L3-requirements/{business-requirements,functional-requirements,nfr-grade}.md`と
