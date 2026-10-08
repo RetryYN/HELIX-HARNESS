@@ -190,6 +190,7 @@ ResultKey    = { operation, operation_version, subject: SubjectRef,
 KeyDigest    = Digest(canonical_json(ResultKey))
 ResultRecord = { key: ResultKey, key_digest: KeyDigest,
                  result: Observed<T>, result_digest: Digest, producer: ProducerRef }
+KeyOfResult  = ResultKey | Rejected(missing_key | invalid_digest | duplicate_identity)
 ```
 
 - `kind`は対象の種別（要求、要件、設計文書、pack、契約、oracle、成果物、構成等）。閉じた語彙とし、各機構のL4で値を足す。型番（方針6）の`unit`／`connection`／`composite`は`kind`の下位区分として持つ。
@@ -217,9 +218,13 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 ### 3.4 イベントとAPI境界
 
 - イベント：`ResultRecorded`（鍵、結果、`key_digest`、`result_digest`、`producer`）、`ResultConflictDetected(key_digest, result_digests[])`。各fieldの形式はK5（9.3）で定める。staleはイベントにしない（K2-I2）。保存はK5の追記専用JSONLで行い、置き場所は`LogDecl.store`（repository・stage・instance）に従う。stage/instanceの記録はrepositoryへ複製しない（5章、15.5）。
-- `key_of(operation, operation_version, subject, inputs, scope) -> ResultKey`：`inputs`を`identity`で整列し、重複した`identity`を拒否する。
+- `key_of(operation, operation_version, subject, inputs, scope) -> KeyOfResult`：API境界応答`Rejected(reason)`は`Observed<T>`のvariantではない。検査順を固定する。(1)必須key fieldが一つでも欠ける場合は`Rejected(missing_key)`。(2)`subject.digest`または各`input.digest`が存在するが`Digest`の正準形式（`sha256:`+64 lowercase hex）でない場合は`Rejected(invalid_digest)`。(3)これらを通過した後、`inputs`内に同じ`identity`が複数あれば`Rejected(duplicate_identity)`。正常時だけ`inputs`を`identity`で整列して`ResultKey`を返す。各段の拒否理由を後段へ読み替えない。
 - `lookup(records, query_key) -> Observed<T>`：K2-I1、I2、I2b、I5に従う純関数。`query_key`は照会時点の`subject`と`inputs`の`revision`・`digest`を持つ。
-- `record(records, key, result, producer) -> Recorded | NoOp | Conflict | Rejected(missing_key | stale_not_recordable)`：K1-I6とK2-I4に従う。
+- `record(records, key, result, producer) -> Recorded | NoOp | Conflict | Rejected(missing_key | stale_not_recordable)`：K1-I6とK2-I4に従う。`result`が`Stale`なら鍵fieldの欠落有無にかかわらず`Rejected(stale_not_recordable)`を優先し、非`Stale` resultのkey field欠落は`Rejected(missing_key)`とする。
+
+`key_of`の拒否順はAPI境界のclassを確定する技術的再導出であり、K1 `Observed<T>`／`UnknownReason`の閉じた語彙を変えない。`missing_key`は必須field欠落、`invalid_digest`は存在するdigest値の型・形式違反、`duplicate_identity`は`key_of`へ渡された`inputs`内のidentity重複に限る。role-bound alias正規化中に同一alias identityへ異なるraw refが集まる場合は、3.4.1どおり`key_of`前の`Rejected(missing_key)`のままである。
+
+拒否分類は`Rejected(invalid_input)`のような汎用reasonにまとめない。K2-I6がDigestとGitRevision／裸hex／短縮値を別型として扱い、IV-K2-13がDigest形式不一致を独立に検証する一方、IV-K2-15は入力identityの重複を別条件として検証するためである。`invalid_digest`と`duplicate_identity`はK2 `key_of`の外側API境界だけのreasonであり、K1 `UnknownReason`に加えない。検査順により、同じ入力に複数の不正がある場合も返す拒否を一つに定める。
 
 ### 3.4.1 role-bound input alias
 
@@ -254,6 +259,9 @@ RoleBoundInputBindingRef = SubjectRef{
 | `LEGACY-ASSET-130EFBE7012012FF9281`／`docs/design/helix/L6-function-design/layer-ledger-pair-gate.md:191,283,287`／`458c7a428c4ce9a19506cd4061568dda091bdf2674517fafec235fc374d720ad` | pair receiptが`derived_from_digest`・`snapshot_digest`・`verdict: verified\|failed\|stale`を持つ。変更の原因ごとに後段の段階をstaleにする | 層pairに限っていた鍵を、全機構の結果の鍵へ広げる。staleを記録へのイベントでなく照会時の導出にする | `semantic_rederive` |
 | `LEGACY-ASSET-28B47108797C610AE0BC`／`docs/design/helix/L6-function-design/engine-detector-execution.md:53,86,134`／`50262d5ab40b334db414b6d9502eb08559fa15ad35db0f93722ae6a778e3c805` | source・version・config・schemaの変化で証拠をstaleにする。入力digestの束（`FixedExecutionInputV1`） | 旧にもbackdatingは無い。本書もK2-I3で使わない（PO判断2） | `semantic_rederive` |
 | `LEGACY-ASSET-9A2C16ECB41E0E007EFF`／`docs/design/harness/L6-function-design/digest-canonicalization-authority.md:12-30`／`ac0dd11655279e0653726d4eeb06a90663c65663f36fc33a78be237f93f36b89` | `sha256:<64 lowercase hex>`と`canonicalJson`。bare・truncated・domain固有のdigestを混同しない | なし（K2-I6として再導出） | `semantic_rederive` |
+| `archive/legacy-generation-2026-09-14/root/src/shared/canonical-digest.ts:3-40`／`c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000` | `Sha256Digest`のprefix付き型、正準化不能な値の拒否、Digest種別の区別を保持する | 旧canonical JSON内のnative `Error`をAPIへ持ち込まず、現行K2 `key_of`にdigest field用`Rejected(invalid_digest)`を別途再導出する。旧sourceが同じclass/reasonを持つとは扱わない | `semantic_rederive` |
+| `archive/legacy-generation-2026-09-14/root/src/requirements/measurement-evidence-evaluator.ts:5-10,99-105,408-435`／`9289fd16738f152b7c40d562e67aa57cfa8369cda7aecbe3743249d9c87e2f8a` | 不正入力をdomain固有failure codeで型付き報告する形を保持する | 旧measurement固有codeを持ち込まず、Digest形式とidentity重複をK2 API境界の個別拒否reasonとして再導出 | `semantic_rederive` |
+| `archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/internal-processing.md:95-105`／`048755e3729a7deaaedc8259f3334859d408f0d99487e7459f9d1ed93b4e8072` | fail-close時に原因を明示する点を保持する | CLIの`Error`／exit code形式をAPIへ移さず、明示unionの`Rejected(reason)`へ置換 | `semantic_rederive` |
 | `LEGACY-ASSET-02319C2481B9E01698D5`／`docs/governance/helix-harness-requirements_v1.3.md:361`／`788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406` | 同じ`command_id`と同じdigestなら既存receiptを返し、異なるdigestはconflict。reviewは対象revisionとHEADに固定し、後の変更でstaleにする | なし（K2-I4として再導出） | `semantic_rederive` |
 | `LEGACY-ASSET-210D6B145CA997AE3CFA`／`docs/design/helix/L6-function-design/github-ci-status-head-binding.md:14-35`／`ada13578a51b0d9b154947a10b1aac1bcca6e211d9488d54c95ee4111a122526` | 別HEADの成功でgreenにしない。SHAが不正なら推測せずunavailable | 鍵をHEADだけから入力の組へ広げる | `semantic_rederive` |
 | `LEGACY-ASSET-A127DEC3EEE6ED63CF17`／`docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md:71`（UTW-005）／`bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872` | 失敗史：traceとreview証拠が最新HEADへ結び直されなかった | K2-I2（照会時の導出）の根拠 | 失敗史（区分なし） |
@@ -267,7 +275,7 @@ K2 aliasの役割分離自体は共通kernelの技術的再導出であり、旧
 - kind語彙とidentity形式は、各機構の既存L2/L3 identityに整合するL4契約で定める。共通K2は語彙を推測しない。
 - inputs全集合の宣言者は操作ownerである。K10の明示依存closureとK4の義務が参照するoracle/入力をoperation宣言へ照合する。宣言済み必須入力の欠落は鍵構成前に拒否し、未知の依存を推測で追加しない。宣言外依存の真偽まで検出できるとは保証しない。
 - 時間鮮度の閾値はK2に含めない。staleは版の不一致である。既存意味に新しい時間閾値を足す場合だけ6.2へ戻す。
-- 対のL9 IV-K2-01〜21（21a〜21dを含む）はrevision/digest、非Valueの旧記録、鍵各field、複数記録の集約、およびrole-bound aliasのsource digest・binding・重複境界を照合する設計であり、本書で実行済みとはしない。
+- 対のL9 IV-K2-01〜21（IV-K2-13a/b、IV-K2-21a〜21dを含む）はrevision/digest、非Valueの旧記録、鍵各field、単独のDigest型不正、duplicate identity、複数記録の集約、およびrole-bound aliasのsource digest・binding・重複境界を照合する設計であり、本書で実行済みとはしない。
 
 ## 4. 用語の区別
 

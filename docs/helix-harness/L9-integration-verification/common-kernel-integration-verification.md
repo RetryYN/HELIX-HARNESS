@@ -69,9 +69,11 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-K2-10` | K2-I2：記録を書き換えない | staleの判定前後で記録のbytesが同じ | staleを記録の上書きで付ける実装は不合格 |
 | `IV-K2-11` | K2-I4：冪等な記録 | 同じ鍵・同じ結果の2回目の`record`は`NoOp` | 同じ鍵・異なる結果の2回目は`Conflict`となり、両方の記録が残る。その鍵の照会は`Unknown(conflict)`。`Stale`の`record`は`Rejected(stale_not_recordable)` |
 | `IV-K2-12` | K2-I5：版の置換 | identityとrevision Rを指定した照会はRの記録を返す | 同じidentityの別revision R2の記録の値を返す実装は不合格（期待は`IV-K2-02`／`03`のとおり） |
-| `IV-K2-13` | K2-I6：digestの型 | `sha256:`付き64桁同士で比較する | prefix無しのhex、短縮形、40桁のgit commitを`Digest`と比較する入力は型の不一致で拒否される |
+| `IV-K2-13` | K2-I6 / §3.4：Digest prefix | `sha256:`付き64桁のDigestを受け入れる | 正常Digest一件のprefixだけを取り除く。`key_of`は`Rejected(invalid_digest)`。 |
+| `IV-K2-13a` | K2-I6 / §3.4：Digest長 | 正常な`sha256:`付き64桁のDigest | Digestのhex部分だけを短縮する。`key_of`は`Rejected(invalid_digest)`。 |
+| `IV-K2-13b` | K2-I6 / §3.4：Digest型 | 正常な`sha256:`付き64桁のDigest | Digest fieldだけを40桁の`GitRevision`値に置き換える。`key_of`は`Rejected(invalid_digest)`。 |
 | `IV-K2-14` | K2-I7：層を分けた版 | pack版の変更でrelease unit版・統合製品版・段階の版の照会は変わらない | packの昇格からrelease unitの版を昇格させる実装は不合格 |
-| `IV-K2-15` | `key_of`：入力の整列 | 入力の並び順が違っても同じ`KeyDigest` | 同じidentityを二重に含む入力は拒否される |
+| `IV-K2-15` | `key_of`：入力の整列と重複identity | 重複のない同じinput setを順序だけ変えた入力は同じ`KeyDigest` | 基準の正規Digest付きinputを保ち、`inputs`へ同一identityのrefを一件だけ複製する。`key_of`は`Rejected(duplicate_identity)`。 |
 | `IV-K2-16` | K2-I2の2(b)：`kind`の単独変更 | — | `subject`の`kind`だけを変えた照会と、入力1件の`kind`だけを変えた照会は、いずれも`Unknown(conflict)`。`kind`を比べずに記録の値を返す実装は不合格 |
 | `IV-K2-17` | K2-I2の1：`identity`の単独変更 | — | `subject`の`identity`だけを変えた照会と、入力の件数を保ったまま1件の`identity`を別のidentityへ置き換えた照会は、いずれも`Unobserved(not_run)` |
 | `IV-K2-18` | K2-I2の3：旧revision＋完全一致 | 旧R1の`Value`とR2の`Value`の2記録があり、照会がR2のとき、R2の`Value`を返す。旧R1の`Unknown`とR2の`Value`でも同じ | R1の`Stale`を返す実装、追記順だけで選ぶ実装は不合格 |
