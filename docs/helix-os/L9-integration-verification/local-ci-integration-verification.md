@@ -45,7 +45,7 @@ L4 `DesignScopeManifest`が列挙する現行4文書と今回6文書について
 | `IV-LCI-24` | provider input上限 | receipt JSONがGitHub input上限内 | compact payloadを65,536文字にする | `Unobserved(not_run)`、success禁止 |
 | `IV-LCI-25` | selected check parity | localとActionsの`LC-DIFF-001`が同じbase/head/contract/settingsを使う | local receiptのbaseだけ変更 | `Unknown(conflict)`、parityを主張しない |
 | `IV-LCI-26` | local-only selection | SCF validate/stale、GOV/design manifestをlocal-onlyとして選択 | Actionsがいずれかを実行済みとclaim | `Negative`、local-only結果を維持 |
-| `IV-LCI-27` | aggregate result | 全required local stepsがsuccess、manifest complete | selected required step一つのstateだけを`skipped`にする | `Rejected(invalid_input)`、schema不正をaggregate resultへ採用しない |
+| `IV-LCI-27` | aggregate result | 全required local stepsがsuccess、manifest complete | manifest structure completeだけをfalseにする | aggregate successなし、全step successだけでは構造不完全を肯定しない |
 | `IV-LCI-28` | no-secret persistence | stub stdoutにsynthetic credential-shaped valueがあるがreceiptはhashだけ保持 | raw stdout bytesをreceiptへ追加する | `Rejected(invalid_input)`。secret scanは要求しない |
 | `IV-LCI-29` | authority非昇格 | local/Actions successはCI evidenceとして出る | successからL3 acceptance/merge permissionを生成 | `Negative` |
 | `IV-LCI-30` | branch protection不変更 | actionがread-only verifier | workflowからrequired check/branch protection変更を発行 | L4 scope違反の`Negative` |
@@ -59,17 +59,18 @@ L4 `DesignScopeManifest`が列挙する現行4文書と今回6文書について
 | `IV-LCI-38` | OS-020 AC-01適用境界 | AC coverage tableに`not_exercised`と理由（generic HARNESS duty/profile selectionを実装しない）を記録 | AC-01 dispositionだけを`pass`へ変更 | `Negative`。local CI結果をAC-01の合格やOS-020完成にしない |
 | `IV-LCI-39` | OS-020 AC-03適用境界 | AC coverage tableに`not_exercised`と理由（未見一般diffのobligation selectionを実装しない）を記録 | AC-03 dispositionだけを`pass`へ変更 | `Negative`。固定5件をOS-020 generic stage count/AC-03正常と扱わない |
 | `IV-LCI-40` | 専用snapshot workspace | command cwdは必要blobs/minimal objectsとdeclared baseline ancestorsだけのself-contained snapshot。private Git configにremote/credential helperはなく、original checkout/`.git`/receipt dirはsandbox外 | sandbox mount listへoriginal `.git/config`を一つ追加する | `denied`、checkerを起動せずaggregate successなし |
-| `IV-LCI-41` | network isolation | sandbox profileはnetwork namespaceを無効にしhost networkを利用しない | network namespace設定だけを外す | `denied`、checkerを起動しない |
+| `IV-LCI-41` | network isolation | sandbox profileはnetworkを専用の空のnetwork namespaceへ分離しhost network namespaceを共有しない | network namespace設定だけを外す | `denied`、checkerを起動しない |
 | `IV-LCI-42` | private snapshot write boundary | required snapshot blobs/minimal objectsはread-onlyで、private scratchだけchecker-writable | snapshot mountだけをwritableにする | `denied`、checkerを起動しない |
 | `IV-LCI-43` | process monitor/timeout | step process groupを監視し、候補timeout前に正常終了する | 300秒候補timeoutだけを超過させる | `interrupted(reason=timeout)`、process tree終了/reap後に後続stepを続ける |
 | `IV-LCI-44` | selected required state | generic fold語彙にskippedはあるが、5件はselected requiredでreceipt schemaがskipを許さない | 一つのselected required rowだけを`skipped`でreceiptへ入れる | `Rejected(invalid_input)` before aggregate fold、general `CiState` vocabularyを変更しない |
 | `IV-LCI-45` | OS-020 AC-02全体claim境界 | AC-02は境界fixtureのみの限定照合で、AC-01/03は理由付き`not_exercised` | AC-02の限定照合dispositionだけをAC-02全体`pass`へ変更する | `Negative`。限定fixtureはAC-02全体passの根拠にならない |
-| `IV-LCI-46` | sandbox preflight | exact targetのprivate snapshot、read-only input、private scratch、network-disabled namespaceを起動前に確認 | namespace/mount能力を一つ外す | 5 execution `denied`、checker未起動、aggregate successなし |
+| `IV-LCI-46` | sandbox preflight | exact targetのprivate snapshot、read-only input、private scratch、専用の空のnetwork namespaceを起動前に確認 | namespace/mount能力を一つ外す | 5 execution `denied`、checker未起動、aggregate successなし |
 | `IV-LCI-47` | transitive checker binding | govcheck entrypointと`gen_rulebook.py` digestをcurrent refsへ含める | 子checker digestだけを別bytesへ変える | `Stale`、govcheck未起動 |
 | `IV-LCI-48` | fixed Python argv preflight | checker argvは設計固定の`python3 -B`を使う | argvから`-B`だけを除く | `Rejected(invalid_input)` before spawn。readonly境界の成立失敗とは推論しない |
 | `IV-LCI-49` | child process supervision | govcheckとその`--check`子processを同じ監視境界で追跡する | 子processだけをtimeout後も生存させる | 子processを停止・reap確認できるまで後続stepを開始せず`denied` |
 | `IV-LCI-50` | dispatch parse受口 | workflow開始後、dispatch envelopeをJSON parserで読める | envelope JSON構文だけを壊す | `Unknown(unreadable)` diagnostic、未照合をsuccessへしない |
 | `IV-LCI-51` | receipt write authority | checkerから書けるのはreceiptと分離したprivate scratchだけ。receipt/parent directoryはsandbox外で信頼側supervisorだけが書く | receipt parent directoryだけをchecker sandboxへmountする | `denied`、checkerを起動しない |
+| `IV-LCI-52` | run全体の中止要求 | supervisor外からの中止要求はなく、process監視と後続実行を継続する | run全体への中止要求だけを追加する | 起動中processの停止・reap確認後、未開始stepを`interrupted(reason=cancelled)`とする。停止確認不能なら未開始stepは`denied`、後続未起動 |
 
 GitHub input仕様の25 inputs/65,535 character上限はprovider-boundary fixtureであり製品要求のthresholdではない。容量超過なら省略してvalid化せず未照合で止める。
 
