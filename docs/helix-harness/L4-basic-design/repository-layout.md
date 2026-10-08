@@ -1,12 +1,14 @@
 # HELIX リポジトリ構成 L4基本設計（正本の一意化・release／切替／実行・公開範囲・recordsの物理配置）
 
-status: draft_for_l4_review
+status: design_pair_defined
 owner: HELIX-HARNESS（工程の標準と検証義務の所有。共通カーネル15.5の配置の具体化。各領域へ書く主体は2章の表のとおり機構ごとに分かれる）
 parent_requirement: なし（一つの親要求を定めず、規則ごとに承認済みL3のACまたは判断記録へtraceする。2026-10-08のPO判断の判断2。1.2を参照）
 paired_l9: ../L9-integration-verification/repository-layout-integration-verification.md
-base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した本文のSHA-256は付録A。起草時の`7fac0cbf`から`5665378b`までの変更は共通カーネル17章（K9）の追加と冒頭段落だけで、本書が引用する節は変わっていない）
+base: main `66abf6bf158baebc6bfceb5ccf693d425aae41a9`（付録Aは引用baseの固定bytesを示し、本文リンクはcurrent pairを相互参照する）
 
-本書は、2026-10-09のPO判断（`docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md`、以下「構成判断」）の判断1の基本案と「L4で具体化する論点」1〜4、および判断2（開発ソースの公開）を、L4の基本設計として具体化する下書きである。共通カーネル（`docs/helix-harness/L4-basic-design/common-kernel.md`、以下「CK」）の型と不変条件を参照し、重複して定義しない。CKを変える必要がある点は10章に列挙し、本PRではCKを編集しない。
+`design_pair_defined`はL4契約と対のoracleを定義した状態のみを表し、review済み・承認済み・実装済み・実行済み・合格とは同義でない。
+
+本書は、2026-10-09のPO判断（`docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md`、以下「構成判断」）の判断1の基本案と「L4で具体化する論点」1〜4、および判断2（開発ソースの公開）を、L4/L9 pairの基本設計として具体化する。共通カーネル（`docs/helix-harness/L4-basic-design/common-kernel.md`、以下「CK」）の型と不変条件を参照し、重複して定義しない。共通カーネルの対応契約は10章のcrosswalkからcurrent CK L4/L9へ接続する。
 
 本書は実装、ディレクトリ（`helix/`、`declarations/`、`records/`）や空の文書の作成、新世代CI、release、内部デプロイ、配布repoの作成・切替、visibility・LICENSE・branch protectionの変更、新しい承認手続きを生成しない（構成判断「本書から生成しないもの」）。
 
@@ -70,7 +72,7 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した本文のSHA
 
 - **RL-C1 一つの項目は一か所**：3.1の各項目を、表の正本以外に値として書かない。他所は識別子とdigestで参照する。識別項目（kind、identity、版、owner）は台帳と宣言を結ぶ鍵として両方に現れ、値の写しとは扱わない。両者が一致しなければ`Unknown(conflict)`とする。それ以外の同じ項目が二か所に値として現れれば、その項目は`Unknown(conflict)`とし、どちらも使わない。
 - **RL-C2 `declarations/`はパックをまたぐものだけ**：3.1の「unit・connectionの宣言」「compositeの宣言」の項目を`declarations/`に置かない。置かれていれば`Unknown(conflict)`。パックの宣言・compositeの宣言は、kindごとの3.1の識別項目・構成項目と封筒（`schema_version`、`kind`）以外の項目を持たない。識別項目は既存の型番・版・所有を表すもので、新しい要求項目ではない（CK 15.4の`ModelNumberDeclared{kind, identity, owner}`と同じ）。識別項目・構成項目が一つでも欠ければ`Unknown(missing_input)`。この判定は受口`check_decl_items(declaration, kind) -> Combined`が、項目ごとに`{C2, 項目名}`の識別付きの成分として出す（C3・C4の照合とは別の受口）。持てば`Unknown(unregistered)`（CK 15.4「新しい項目は足さない」、方針6）。内部デプロイの状態の項目を持つ宣言も同じ。
-- **RL-C3 登録して初めて使える**：台帳の行は`ModelNumberDeclared{kind, identity, owner}`と`VersionRegistered{identity, version, declaration: FixedRef, declaration_digest}`とする（CK 15.4の`VersionDeclared{identity, 項目}`を置き換える。10章）。パックの宣言は、評価するrevisionでの`declaration.json`のbytesのSHA-256が、同じ`(identity, version)`の`VersionRegistered`の`declaration_digest`と一致する場合だけ使える。登録が無ければ`Unknown(unregistered)`、同じ版でdigestが違えば`Unknown(conflict)`（CK K2-I2の2）。パックに型番を書いただけでは登録済みにしない（構成判断 論点1）。
+- **RL-C3 登録して初めて使える**：台帳の行は`ModelNumberDeclared{kind, identity, owner}`と`VersionRegistered{identity, version, declaration: FixedRef, declaration_digest}`とする（共通カーネルL4 §15.4の`VersionRegistered`。10章の対応表に記載）。パックの宣言は、評価するrevisionでの`declaration.json`のbytesのSHA-256が、同じ`(identity, version)`の`VersionRegistered`の`declaration_digest`と一致する場合だけ使える。登録が無ければ`Unknown(unregistered)`、同じ版でdigestが違えば`Unknown(conflict)`（CK K2-I2の2）。パックに型番を書いただけでは登録済みにしない（構成判断 論点1）。
 - **RL-C4 pathは正本でない**：identity、owner、kindは`declaration.json`の内容から読む。フォルダ名は照合だけに使い、`enc(identity)`・`enc(owner機構)`・kindのフォルダと一致しなければ`Unknown(conflict)`。フォルダの一覧をパックの一覧として扱わない（`AC-HARNESS-L3-010-04`）。同じidentityを宣言するフォルダが二つあれば`Unknown(conflict)`。
 - **RL-C5 欠落**：台帳に登録された型番のフォルダまたは`declaration.json`が評価するrevisionに無ければ`Unknown(missing_input)`。`declaration.json`の無いフォルダはパックとして数えない（`Unknown(missing_input)`の所見とする）。
 - **RL-C6 内部デプロイの状態**：CK 15.4の規則を保つ。台帳・宣言・ReleaseManifestに内部デプロイの状態を書かない。
@@ -108,7 +110,7 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 - **RL-R1 不変**：ReleaseManifestは書き換えない。内容が変われば新しい`release_id`とする。同じ`release_id`で異なるdigestは`Unknown(conflict)`。
 - **RL-R2 releaseの成立**：`release_eligibility(manifest_ref) -> RequiredResult`は、OSのcurrentのstage_verificationの`OperationDecl`と`VerifierSet`、build操作の所有者のcurrentのbuildの`OperationDecl`（CK G8-I2(a)）、manifestの本体だけから鍵を導き、呼出し側やreceiptから鍵・入力・結果を受け取らない。成分は次を一つの`combine`で合成する（識別付き。CK K6-I7と同じ展開）：(a)`stage_key`についてのK6の`required`、(b)各`artifact`についてbuild操作の所有者の宣言から導いた`build_key`での`build_chain`（CK G8-I2）、(c)各`artifact`の`admit_artifact_bytes`（G8-I3）、(d)各`artifact`を`subject`とする実行物の検証の`required`（G8-I5）。`ReleaseEstablished`は、OSがこの呼出しを自分で行い`combined`が`Positive`の場合だけ追記でき、`stage_key`とその結果を記録する。読み手は`stage_key`をmanifestと宣言から導き直し、記録と違えば`Unknown(conflict)`とする。成立はpublic version・外部公開・1.0到達を意味しない（`AC-OS-014-01`、`014-08`）。
 - **RL-R3 成果物の再計算**：成果物を使うたびに（検証・起動・配布）bytesのSHA-256を再計算し、manifestと違えば`Unknown(conflict)`、読めなければ`Unknown(unreadable)`。実行物の検証はCK 11章（G8）に従う。同じ`source`とbuild入力から同じdigestを得られることを再現の条件とする（CK G8-I4）（`AC-HARNESS-L3-010-03`）。
-- **RL-R4 世代はreleaseを指す**：`GenerationStaged`は、`ReleaseEstablished`済みのmanifestを指し、そのmanifestの`composite`が世代の`composition`と一致する場合だけ追記できる。K7-I3の適格性の`subject`は世代の`composition`でなく`ManifestRef`とし、成果物の参照が一つでも変われば別のmanifest（RL-R1）として旧い結果を流用しない（10章でCK 15.2へ反映する）。
+- **RL-R4 世代はreleaseを指す**：`GenerationStaged`は、`ReleaseEstablished`済みのmanifestを指し、そのmanifestの`target`が世代の`target`、`composite`が世代の`composition`とそれぞれ一致する場合だけ追記できる。K7-I3の適格性の`subject`は世代の`composition`でなく`ManifestRef`とし、成果物の参照が一つでも変われば別のmanifest（RL-R1）として旧い結果を流用しない（共通カーネルL4 §15.2および対のL9 IV-K7-03/14/15へ反映済み）。
 - **RL-R5 pointerと実行は別の事実**：`PointerMoved`は目標（target）、`RuntimeObserved`は実際（actual）である（`INFRA-002-AC-01`、Concept `:225`）。`ledger_view`は「release成立」「現行の世代」「実行の観測」を別fieldで返し、どれからも他を導かない。`PointerMoved`があって`RuntimeObserved`が無ければ実行は`Unobserved(not_run)`、`unhealthy`なら、OSは`RollbackRequired`を追記する（自動で戻さない。CK K7-I5）。`Unknown`は正常な起動として扱わず、そのまま保持する。
 - **RL-R6 rollbackは構成と成果物だけ**：rollbackは、かつて現行になった世代へのkind=rollbackのmove（CK K7-I3）であり、その世代のmanifestの成果物と構成へ戻す。案件のstate・recordは切替後の現在のidentity・value・historyを引き継ぎ、巻き戻さない（`AC-OS-014-06`）。移動先の`data format`が現在の案件dataを読めないと宣言・観測されれば`Rejected(not_eligible)`とし、案件dataを暗黙に逆移行しない（`INFRA-005-AC-03`）。rollbackでincidentを閉じない。
 - **RL-R7 保持**：現行の世代と、rollbackの移動先になりうる世代のmanifestと成果物を消さない（`AC-OS-014-06`「priorの構成・artifactを保持」）。それ以外の保持期間は決めない（11章）。
@@ -141,13 +143,13 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 
 - **RL-P1 論理IDは内容に持つ**：log_id・writer・segment_noは各`LogEntry.segment`（CK 9.3）とmanifestの`SegmentOpened`が持つ。読み手は内容から論理IDを得て、pathは`enc`の再計算と照合するだけとする。一致しなければそのsegmentを`Unknown(conflict)`とする。`_h`の形は内容からしか元に戻せない。
 - **RL-P2 衝突**：`records/`と`helix/`と`declarations/`の全pathについて、大文字小文字を畳んだ値が一意であること、異なる論理IDが同じpathにならないことを確かめる。衝突すれば両方を`Unknown(conflict)`とし、新しい書込みを`Rejected`とする。
-- **RL-P3 bytesを変えない**：`records/**`は改行の変換、filter、LFSの対象にしない（`.gitattributes`で`-text`。9.2）。読取り条件として、各行の実bytesは、その行を解析した`LogEntry`の`canonical_json`（CK 3.2）＋LF（0x0a）一つとbyte単位で一致しなければならない。CRLF、末尾の空白、BOM、canonicalでない表記、末尾にLFの無い行はいずれもこの条件に当たり、そのsegmentを損傷とする（`Unknown(unreadable)`）。`entry_digest`は改行を含まない内容から計算するため、この条件が無いとCRLF化を検出できない（10章でCK K5-I3へ反映する）。
+- **RL-P3 bytesを変えない**：`records/**`は改行の変換、filter、LFSの対象にしない（`.gitattributes`で`-text`。9.2）。読取り条件として、各行の実bytesは、その行を解析した`LogEntry`の`canonical_json`（CK 3.2）＋LF（0x0a）一つとbyte単位で一致しなければならない。CRLF、末尾の空白、BOM、canonicalでない表記、末尾にLFの無い行はいずれもこの条件に当たり、そのsegmentを損傷とする（`Unknown(unreadable)`）。`entry_digest`は改行を含まない内容から計算するため、この条件が無いとCRLF化を検出できない（CK L4 §9.4 K5-I3(h)、対の共通カーネルL9 IV-K5-24〜26へ反映済み）。
 - **RL-P4 純粋な追記だけ**：`records/`に触れる各commitで、各segment・manifestのbase側のbytesがhead側のbytesの先頭と一致すること（新規fileは`seq=1`から始まり、同じかそれより前のcommitでmanifestに`SegmentOpened`があること）を確かめる。変更・削除・rename・merge時の手での解決を含む差分は`Rejected`とする。
 - **RL-P5 同時のwriter**：一つのsegmentを書くのは一つのwriterである（CK 9.3）。writerは割当て・runの単位（CK 15.5）で、一つのprocessで順に追記する。別writerは別fileなので同時のbranchで衝突しない。同じsegmentへ二つのbranchが追記した場合、後から入るほうを手で解決せず、同じwriterが新しいbaseの末尾から追記し直す（K5-I2の`seq`と`prev_digest`は追記の時に計算する）。
 - **RL-P6 Git履歴に頼らない**：追記専用性はK5-I3の読取り時の検査と、repo外に保持した既知の`SegmentHead`との照合で確かめる。履歴の書換え（force push）や末尾の削除は、既知のheadを持たない読み手には検出できない（CK 9.7の1）。Gitのauthor・committer・署名をK5のwriterやK6の発行者の証拠にしない。repoへ書けるのはrepoの書込み権限を持つ全員であり、writerの真正性は`Unknown(unsupported)`のままとする（CK 10.5と同じ）。
 - **RL-P7 条件付き追記はrepoで行わない**：CK K7-I2の`append_if_head`（確認と追記を一つの操作にする）はGitのPRとmergeでは成り立たない。そのため`PointerLog`・`EpochLog`・`RequestLog`・`RuntimeLog`は`store: stage`とし、段階の実行環境の記録の置き場が、segmentごとの排他（一つのwriter processと排他claim、またはstorageのcompare-and-append）、同じdirectoryでの一時file・fsync・renameによる原子的な追記を提供する。これらを提供できない置き場には`store: stage`のlogを置かず、`apply_move`を行わない。
-- **RL-P8 repoへ置くlog**：`LogDecl`に`store: repository | stage | instance`を持たせる（10章）。`records/`に置けるのは`store: repository`のlogだけで、宣言の無いdirectoryは`Unknown(unregistered)`、書込みは`Rejected`とする。`store: repository`にできるのは、`Inline`の値型が機密を含まない型だけで、`FixedRef`がrepo内の実体だけを指すlogである。候補は`model-number-ledger`、`release:<target>`、開発repoのPRの検証receipt（CK 12章）である。
-- **RL-P9 store間の参照**：`store: stage`・`instance`のlogの`FixedRef`はrepoのpathを使えないので、`FixedRef`の所在を`{store, locator, digest}`へ広げる（10章）。digestが一致しなければ、所在によらず`Unknown(unreadable)`（CK 9.3と同じ）。
+- **RL-P8 repoへ置くlog**：`LogDecl`に`store: repository | stage | instance`を持たせる（共通カーネルL4 §15.5）。`records/`に置けるのは`store: repository`のlogだけで、宣言の無いdirectoryは`Unknown(unregistered)`、書込みは`Rejected`とする。`store: repository`にできるのは、`Inline`の値型が機密を含まない型だけで、`FixedRef`がrepo内の実体だけを指すlogである。候補は`model-number-ledger`、`release:<target>`、開発repoのPRの検証receipt（CK 12章）である。
+- **RL-P9 store間の参照**：`store: stage`・`instance`のlogの`FixedRef`はrepoのpathを使えないので、`FixedRef`の所在を`{store, locator, digest}`へ広げる（共通カーネルL4 §9.3）。digestが一致しなければ、所在によらず`Unknown(unreadable)`（CK 9.3と同じ）。
 
 ## 7. 依存の向き
 
@@ -188,7 +190,7 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 
 ## 10. 共通カーネルとの対応
 
-共通カーネルの対応する契約は、[共通カーネルL4](common-kernel.md)と[対の共通カーネルL9](../L9-integration-verification/common-kernel-integration-verification.md)に記載する。表のIV-LDG・IV-K・IV-Gは共通カーネルL9、IV-RLは本書と対の[リポジトリ構成L9](../L9-integration-verification/repository-layout-integration-verification.md)を参照する。ここでは契約本文を複製せず、リポジトリ構成規則から参照する受口を示す。
+共通カーネルの対応する契約は[共通カーネルL4](common-kernel.md)と[対の共通カーネルL9](../L9-integration-verification/common-kernel-integration-verification.md)に記載する。IV-LDG・IV-K・IV-Gは共通カーネルL9、IV-RLは配置L4に対する[リポジトリ構成L9](../L9-integration-verification/repository-layout-integration-verification.md)を参照する。ここでは契約本文を複製せず、リポジトリ構成規則から参照する受口を示す。
 
 | リポジトリ構成の規則 | 共通カーネルL4 | 対のL9参照 |
 |---|---|---|
@@ -236,7 +238,8 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 
 `enc`の具体（`_`＋16進、予約名、80byteと`_h`の形）と、`store`でlogの置き場を分けることは、旧HELIXに対応が見つからない**新規案**である。検索の範囲は`archive/legacy-generation-2026-09-14/root/docs/`（`grep -rIil`、読取りだけ）で、`path encoding` 0件、`reserved name` 0件、`MAX_PATH` 0件、`percent-encod` 6件（いずれも旧PSC sidecarのtraversal検出で、IDの符号化ではない）、`case collision` 2件（上のrelease-module-bundle-composition-requirements.mdと下のos-portabilityのtest設計）であった。旧は日本語file名の禁止（repository-structure.md:138）、artifactのcase collisionの拒否（release-module-bundle-composition-requirements.md:90-91）、OSごとのpath差の全件評価で同じ危険を扱っており、本書はそれを論理IDの側の符号化へ移した。
 
-## 付録A 引用した現行文書のSHA-256（base `5665378b`）
+## 付録A 引用した現行文書のSHA-256（base `66abf6bf158baebc6bfceb5ccf693d425aae41a9`）
+付録のSHAはmain baseの固定bytesを示すsnapshotであり、このPRで更新するL4/L9本文のcurrent cross-linkを示すものではない。current pairへの参照は本文のリンクを使う。
 
 | path | SHA-256 |
 |---|---|
@@ -251,6 +254,9 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 | `docs/helix-security/L3-requirements/functional-requirements.md` | `f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e` |
 | `docs/helix-infrastructure/L3-requirements/functional-requirements.md` | `425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d` |
 | `docs/helix-connect/L3-requirements/functional-requirements.md` | `b3e4a47c0f49978880fc9bae7697d9b67eeaf72a112f821fef167c230c9d2e4b` |
-| `docs/helix-harness/L4-basic-design/common-kernel.md` | `3849d2ef10c3f6af51aad3c0971c364f1f6e95a5a4d79a17961f3e194523077a` |
+| `docs/helix-harness/L4-basic-design/common-kernel.md` | `8079dc1852e2f7ea2d84e5311d2a34baff332e123e547de1ae8ca7003a9c8427` |
 | `AGENTS.md` | `386d30378d49b96c055d237ccaa88ed02f3e43359ccfe006e4fd9c96bf5a595c` |
 | `docs/governance/decisions/po-decision-2026-10-03-pending4-bun.md` | `50371dd5a2bb445aa23366790229b00a2731bf0ce0b3344a73d8ef289c4b5e92` |
+| `docs/helix-harness/L4-basic-design/repository-layout.md` | `d7392f86c0c5d1ef8fcbe845ac4940ee3816c5f0687234c0acbc4899dc2b0aa6` |
+| `docs/helix-harness/L9-integration-verification/repository-layout-integration-verification.md` | `74d3a76efea15ea048e69991fcada4b018d7a8e5da61405beb68ed78ae1db630` |
+| `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` | `a898c7cc15c749b86b60e0428f81b5b20e72f5cf99f7f80d519e01ea42a88ebc` |

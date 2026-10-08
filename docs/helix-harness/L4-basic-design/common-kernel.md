@@ -197,7 +197,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 - `revision`は対象の版の識別子。repository内の文書は`(GitRevision, path)`、登録の版は登録ID（例：`MPR-RC-…-002`）とする。
 - `digest`は対象の内容bytesのSHA-256。文書は本文全体のbytes（AGENTS.md「過去の本文を指すときは対象のcommitと本文のSHA-256」）。構造化データは`canonical_json`（object keyを辞書順、配列順は保持、非有限数を拒否）のbytesとする。
 - `inputs`は結果に影響する入力の全集合（oracle、契約、設定、依存、環境の版）。省いた入力は、その結果の鍵に含まれないため、変化しても検出できない。入力の全集合の宣言は各操作の所有者が持つ。
-- `producer`は結果を出した検証器・Workerの識別と版である。真正性はK6（receipt）とEで扱い、本PRでは参照の枠だけを置く。
+- `producer`は結果を出した検証器・Workerの識別と版である。真正性はK6（receipt）とEで扱い、この設計では参照の枠だけを置く。
 
 ### 3.3 不変条件
 
@@ -216,7 +216,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 
 ### 3.4 イベントとAPI境界
 
-- イベント：`ResultRecorded`（鍵、結果、`key_digest`、`result_digest`、`producer`）、`ResultConflictDetected(key_digest, result_digests[])`。各fieldの形式はK5（9.3）で定める。staleはイベントにしない（K2-I2）。保存はK5（repository内の追記専用JSONL。本書の設計判断。5章）で行い、本PRでは記録の形式だけを定める。
+- イベント：`ResultRecorded`（鍵、結果、`key_digest`、`result_digest`、`producer`）、`ResultConflictDetected(key_digest, result_digests[])`。各fieldの形式はK5（9.3）で定める。staleはイベントにしない（K2-I2）。保存はK5の追記専用JSONLで行い、置き場所は`LogDecl.store`（repository・stage・instance）に従う。stage/instanceの記録はrepositoryへ複製しない（5章、15.5）。
 - `key_of(operation, operation_version, subject, inputs, scope) -> ResultKey`：`inputs`を`identity`で整列し、重複した`identity`を拒否する。
 - `lookup(records, query_key) -> Observed<T>`：K2-I1、I2、I2b、I5に従う純関数。`query_key`は照会時点の`subject`と`inputs`の`revision`・`digest`を持つ。
 - `record(records, key, result, producer) -> Recorded | NoOp | Conflict | Rejected(missing_key | stale_not_recordable)`：K1-I6とK2-I4に従う。
@@ -258,10 +258,10 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 | 判断（出所） | 本書での適用 | 旧source（保持点・変更点） |
 |---|---|---|
 | 旧HELIX内の矛盾(a)は「L4以降は完全自動」に揃える（AIの設計判断） | 本書（L4）とL9に人の承認を置かない。独立reviewで確かめる | 旧charter §3（`LEGACY-ASSET-3B16BCFFAF353ADA813A`、`docs/design/helix/L0-charter/helix-charter_v0.1.md:18,22-30`、SHA-256 `8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8`）の「L4以降はAIが完全自動」を保持する。旧gate-design（`LEGACY-ASSET-2E09592A003B32C118C1`、`docs/governance/gate-design.md:23-40`、SHA-256 `d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726`）のG7・G11のPO sign-offは採らない（変更点）。理由：旧内部の矛盾を、現行の規則（AGENTS.md：人が持つ上流はConcept・L1・L2と、L3の承認）に揃える。G11（L11受入）の人の受入は、HARNESS-L2-022の利用者受入として別に残り、本判断で消えない |
-| 結果とeventの正本はrepository内の追記専用JSONL。SQLiteのprojection DBは置かない（AIの設計判断。K5で詳細化） | K2の記録の保存先（K5で定める） | 旧ADR-007（`LEGACY-ASSET-8771887517A619A2D501`、`docs/adr/ADR-007-harness-db-sqlite-projection.md:18-22`、SHA-256 `50c05a00872be6c23de531aaecd6a6cfd26abec264718e0223ac2630f739dcdf`）は、`harness.db`を「projectionでありauthoring sourceではない」とし、正本を「docs/YAML/JSON state/log」と「markdown/YAML」に置いた。一方、旧`CLAUDE.md:250`（`LEGACY-ASSET-6EBDB617A8104A7756D0`）はsession continuationについて「`harness.db`のevent/projectionを正本」としており、旧の内部で扱いが揃っていなかった。保持する点：projectionは再構築でき、正本ではない（ADR-007）。変更する点：(1)K2の結果とeventの正本を、種類の異なるJSON state・logから、一つの追記専用JSONLの形式に揃える、(2)正本を正規化して保持するDB（`harness.db`）を置かず、projectionは必要なときにJSONLから導く、(3)旧`CLAUDE.md:250`のDB正本の扱いは採らない。区分は`replace`（保存の形式）。理由は設計上の三点である。K2-I2とK2-I4は記録を上書きせず衝突を両方残すことを求め、追記専用の形式がこれを構造で満たす。repositoryの記録は各行がcommitと本文のSHA-256で固定でき、K2の`revision`・`digest`と同じ方法で参照できる（AGENTS.md「過去の本文を指すときは対象のcommitと本文のSHA-256」）。正本をrepositoryの一系統にすれば、Concept原則7（`docs/concept/helix-concept.md:308`「意味の正本、実行事実、表示、作業文脈を分けて保つ」）の再構築を、DBの復元なしにrepositoryだけで行える。規模と再構築の費用はK5の実装検証対象であり、未測定の性能を保証しない |
+| 結果とeventの正本はK5の追記専用JSONLとし、物理storeはLogDecl.storeで分ける。SQLiteのprojection DBは置かない | K2の記録形式と保存境界（K5・15.5で定める） | 旧ADR-007（`LEGACY-ASSET-8771887517A619A2D501`、`docs/adr/ADR-007-harness-db-sqlite-projection.md:18-22`、SHA-256 `50c05a00872be6c23de531aaecd6a6cfd26abec264718e0223ac2630f739dcdf`）は、`harness.db`を「projectionでありauthoring sourceではない」とし、正本を「docs/YAML/JSON state/log」と「markdown/YAML」に置いた。一方、旧`CLAUDE.md:250`（`LEGACY-ASSET-6EBDB617A8104A7756D0`）はsession continuationについて「`harness.db`のevent/projectionを正本」としており、旧の内部で扱いが揃っていなかった。保持する点：projectionは再構築でき、正本ではない（ADR-007）。変更する点：(1)K2の結果とeventの正本を、種類の異なるJSON state・logから、一つの追記専用JSONLの形式に揃える、(2)正本を正規化して保持するDB（`harness.db`）を置かず、projectionは必要なときにJSONLから導く、(3)旧`CLAUDE.md:250`のDB正本の扱いは採らない。区分は`replace`（保存の形式）。理由は設計上の三点である。K2-I2とK2-I4は記録を上書きせず衝突を両方残すことを求め、追記専用の形式がこれを構造で満たす。repository storeの行はcommitと本文のSHA-256で固定でき、stage/instance storeは宣言先の固定refとdigestで読む。各storeの正本からprojectionを再構築し、DBの復元を正本にしない。Concept原則7（`docs/concept/helix-concept.md:308`「意味の正本、実行事実、表示、作業文脈を分けて保つ」）の分離を保持する。規模と再構築の費用はK5の実装検証対象であり、未測定の性能を保証しない |
 | 信頼の根は、版とdigestで固定した検証器の集合をrepositoryで管理する。署名は後回し（AIの設計判断。K6・Eで詳細化） | K2の`producer`の枠（K6・Eで定める） | 旧closure-evidence-materialization（`LEGACY-ASSET-901EFEC93D536D3AA418`、`docs/design/harness/L6-function-design/closure-evidence-materialization.md:67-76`、SHA-256 `a8951a0cdd590da84612de8c6b6e5960ca5c32ad3b3d0c0d0511b9f5789c0264`）の「local hash単独では真正性を主張しない」を保持する。GitHub required-checkを信頼の根にする点は`replace`。理由：新世代CIは未構築で、旧CIは使えない |
 | 旧用語の衝突は定義を分ける（AIの設計判断） | 4章 | 上表のとおり |
-| 開発repoのreviewは、作成と別系統（別runtime・別model family）のクロスレビューを必須とする（PO判断：2026-10-08の委任判断記録の判断1。開発repoの運用規則） | 本PRの作成とreviewに適用する。製品K9の根拠にしない | 解禁判断記録の判断3（`docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md:57-61`）により、これは開発repo（本repository）の運用規則であり、製品（HELIX）の要求ではない。製品のK9はConcept:236（独立reviewはidentity・context・authority・review routeで行い、providerの同異では独立性を決めない）と承認済みL3から導く（17章、8.2のK9） |
+| 開発repoのreviewは、作成と別系統（別runtime・別model family）のクロスレビューを必須とする（PO判断：2026-10-08の委任判断記録の判断1。開発repoの運用規則） | 本repositoryの設計作成とreviewに適用する。製品K9の根拠にしない | 解禁判断記録の判断3（`docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md:57-61`）により、これは開発repo（本repository）の運用規則であり、製品（HELIX）の要求ではない。製品のK9はConcept:236（独立reviewはidentity・context・authority・review routeで行い、providerの同異では独立性を決めない）と承認済みL3から導く（17章、8.2のK9） |
 | G4はbytes変化＝意味変化（PO判断：2026-10-08判断記録の判断2） | K2-I3 | 2026-10-08判断記録の判断2 |
 
 2026-10-09構成判断とrepository-layout RL-P7〜P9により、上表のrepository正本という保存先の選択はstore=repositoryの非機密開発logに限定する。stage/instanceのevent正本は宣言したstoreの追記専用JSONLであり、Git repositoryへ複製しない。形式・K2/K5規則とprojection非正本は保持し、保存先だけをLogDecl.storeで分ける（9.3、15.5）。
@@ -321,13 +321,13 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 - Phase 1条件を誰がいつ確認するか、数値、条件成立後に承認手順を変えるか、v0.1成立を宣言するか、advisory検査をどう扱うかは12.5の既存列挙を維持する。P1-C1–C4の設計/測定は条件成立を表さない。
 - 自動rollbackをPhase 2で扱うか、段階を組み直さない部品・接続単独の内部deploymentを許すかは15.9の既存未決を維持する。ReleaseManifestの技術設計はそれ自体でrollback policyの新しい人判断を作らない。
 - 2026-10-09 PO判断で採用した構成基本案とpublic開発source範囲は再承認に送らない。四つのL4設計論点はAIの技術設計責務であり、PO待ちに置かない。
-- 2026-10-09判断はL4–L9を機構×層に配置しverification設計を`docs/`に置くことを採用済みとする。新規の一般rule fileは本PRで作らず、既存二文書の1.2/1.3に判断を正確に反映して独立reviewする。
+- 2026-10-09判断はL4–L9を機構×層に配置しverification設計を`docs/`に置くことを採用済みとする。新規の一般rule fileは作らず、既存二文書の1.2/1.3に判断を正確に反映して独立reviewで確認する。
 - 上記以外で既存L2/L3の要求意味・responsibility/authorityを変更する場合は、変更する意味と対象revisionを特定して既存authority経路へ戻す。技術detailの未決やmissingだけで人の判断を求めない。
 
 ### 7.2 許可済み外部作用の範囲
 
 - 内部deployment・cutover・release・tag・配布repo作成/切替などは既存の対象と作用を特定する許可の範囲に限る。K7は許可を発行せず、適用直前に既存許可を照合する。
-- public開発sourceの判断はpublic release、distribution allowlist、配布先visibility、LICENSE変更を含まない。配布先privateと配布対象allowlistの設計は開発sourceの閲覧範囲と別に扱う。判断記録が非対象とするvisibility/LICENSE変更、配布repo作成/切替、CI起動、directory作成を本PRから実行しない。
+- public開発sourceの判断はpublic release、distribution allowlist、配布先visibility、LICENSE変更を含まない。配布先privateと配布対象allowlistの設計は開発sourceの閲覧範囲と別に扱う。判断記録が非対象とするvisibility/LICENSE変更、配布repo作成/切替、CI起動、directory作成を本設計から実行しない。
 - `docs/`と実装directoryの配置記述はdirectoryを作らない。Records設計も、機密を含むinstance state/案件data/credentialsをpublic repoへ入れる許可にはならない。
 - missing source、owner contract、receipt、測定値は各要素の`Unknown`/`Unobserved`/`missing_input`等で保持し、非肯定の限界を示す。欠落から新しいPO許可やgateを生成しない。
 - Git mergeや文書statusは実行環境の起動、artifact deployment、rollback完了、instance state/historyの巻き戻し証拠にならない。
@@ -352,7 +352,7 @@ K1の型とK2の鍵を共通の前提とし、K3〜K10と組込要素が同じ�
 | K4 / G3 | §13 | IV-K4-01〜10、IV-G3-01〜05 | 義務集合・状態、oracle種別、導出・評価・継承・受領 | traceを充足とせず、新しいHumanInterfaceや機械判定割合を要求にしない |
 | K5 | §9 | IV-K5-01〜26 | append-only event、固定prefix、restore/project/replay、segment開設・停止 | 既知headなしの真の末尾削除、未測定の容量/圧縮/性能を保証しない |
 | K6 / E | §10 | IV-K6-01〜15 | receipt admission、再検証、issuer authenticityとreproductionの分離 | 登録sourceとの一致だけでは発行者・過去実行の真正性を証明しない |
-| K7 / G5 | §15.2〜15.3 | IV-K7-01〜13、IV-G5-01〜10、IV-K3-17 | request/apply、fencing、conditional append、受け手別取消しと回復診断 | 跨writer原子性、未指定の伝播上限、pointerから正常起動を保証しない |
+| K7 / G5 | §15.2〜15.3 | IV-K7-01〜15、IV-G5-01〜10、IV-K3-17 | request/apply、fencing、conditional append、受け手別取消しと回復診断 | 跨writer原子性、未指定の伝播上限、pointerから正常起動を保証しない |
 | K8 | §18 | IV-K8-01〜26 | SECURITY-AC-001-01にtraceした入力label分類、明示route検証、実作用観測、current key/record projectionを各々分離して結ぶ | untrustedを解除せず、K8から許可・実行・汎用taint意味を生成しない。K3/K6の非肯定とissuer真正性の限界を保持する |
 | K9 | §17 | IV-K9-01〜15 | creator inventory、四軸比較、role付きsource binding、current target照合と操作別鍵 | provider/modelで独立性を決めず、開発repo cross-runtime規則やLABO blind評価を製品K9の親にしない |
 | K10 | §14 | IV-K10-01〜14 | typed edge、graph、closure/impact、source/owner境界 | 宣言外edgeの真偽やruntime依存を推測せず、一律cycle拒否を要求にしない |
@@ -386,7 +386,7 @@ K5は本書と対のL9へ追記する。共通カーネルは一つの設計iden
 | LABO | `LABO-002-AC-03`（同:149）、`LABO-050-AC-02`（同:1579） | 訂正時に元eventを上書きしない。遅着の再観測は追加し、既存のsource recordを上書きしない |
 | HARNESS | `AC-HARNESS-L3-024-05`（`docs/helix-harness/L3-requirements/functional-requirements.md:442`） | 再開時は新eventを追記して影響差分を再評価する |
 
-承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による（CONNECT Stage 1：`docs/governance/decisions/helix-connect-stage1-l3-l10-po-decision-2026-10-05.md:22`、INTELLIGENCE Stage 3・Stage 5、LABO Stage 1・Stage 2b・Stage 5、HARNESS Stage 2b）。正本をrepository内の追記専用JSONLにすることはAIの設計判断である（5章）。
+承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による（CONNECT Stage 1：`docs/governance/decisions/helix-connect-stage1-l3-l10-po-decision-2026-10-05.md:22`、INTELLIGENCE Stage 3・Stage 5、LABO Stage 1・Stage 2b・Stage 5、HARNESS Stage 2b）。記録の正本はK5の追記専用JSONLとし、物理的な置き場所は`LogDecl.store`で分ける。stage/instanceの記録をrepositoryへ複製しない（5章、15.5）。
 
 ### 9.3 型
 
@@ -593,8 +593,8 @@ RequiredResult  = { combined: Combined, assurance: { identity -> AdmittedReceipt
 ### 10.9 所有と検証範囲
 
 - 各操作に必要な検証器（`required_for`）を誰がどう宣言するか。13章のK4-I4で決めた（義務が参照する検証器の集合と一致させる）。
-- `VerifierSet`の置き場所。15.5で決めた。
-- 試作：`scaffold/l3l10-checks/`のreceiptを本章の形へ写し、L9のIV-K6-01〜15を動かす。
+- `VerifierSet`は`declarations/helix-harness/verifier-sets/`に置く（15.5）。
+- 検証範囲：`scaffold/l3l10-checks/`のreceipt形を照合し、L9のIV-K6-01〜15で検証する。実行は未了であり、本書は合格を主張しない。
 
 ## 11. G8 実行物の検証
 
@@ -602,7 +602,7 @@ sourceを確かめた証拠と、配布・実行されるbytes（実行物）を
 
 ### 11.1 範囲と由来
 
-本PRはG8（11章）とPhase 1の条件の具体（12章）を扱う。どちらも10章のreceiptと検証器の集合だけを参照し、人が読む差分は二つ合わせて目安の範囲に収まるため、一つのPRにした。
+G8（11章）とPhase 1の条件（12章）は10章のreceiptと検証器の集合を参照する。両章の関係は同じ設計pair内で定義し、PR単位の作業履歴を設計条件にしない。
 
 | 由来 | 位置 | 要点 |
 |---|---|---|
@@ -722,7 +722,7 @@ P1Polarity   = 本書が定める版付きのPolarityOf（identity: phase1-polar
 
 ### 12.6 条件の検証範囲
 
-- 試作：仮組みの5検査とコーパスで、P1-C1〜C4を`Phase1Status`として計算し、L9のIV-G8-01〜07とIV-P1-01〜07を動かす。
+- 検証範囲：5検査とcorpusに対するP1-C1〜C4の`Phase1Status`計算をL9 IV-G8-01〜07、IV-P1-01〜07で定義する。実行は未了であり、未実行を合格に数えない。
 
 ## 13. K4 義務の一級化とG3 oracleの種別
 
@@ -820,7 +820,7 @@ Handoff        = FixedRef。{ from_view, to_set_key, unfinished: obligation_id[]
 ### 13.8 機構別導出と検証範囲
 
 - 導出規則（`DerivationRule`）の具体（承認済みL3のACとtemplateから義務を作る規則）は、HARNESS-L2-014・041の設計（各機構のL4）で定める。本章は規則の型と、導いた集合の扱いだけを定める。
-- 試作：承認済みのL3の一つの親について義務の集合を手で導き、L9のIV-K4-01〜10とIV-G3-01〜05を動かす。
+- 検証範囲：承認済みL3の親から義務集合を導く照合をL9 IV-K4-01〜10、IV-G3-01〜05で定義する。実行は未了であり、未実行を合格に数えない。
 
 ## 14. K10 型付き依存グラフ
 
@@ -920,8 +920,8 @@ Impact         = { changed: SubjectRef[], affected: identity[], possibly: identi
 ### 14.8 機構別語彙と検証範囲
 
 - 各機構の語彙（どの関係の型を置き、性質の値をどうするか）は、各機構のL4で承認済みL3の由来から宣言する。
-- `control_plane`の宣言の所有者は、15.5でINFRASTRUCTUREとした。
-- 試作：HARNESS-L2-023のpack依存を小さなグラフにし、L9のIV-K10-01〜14を動かす。
+- `control_plane`宣言の所有者はINFRASTRUCTUREである（INFRA-006-AC-01、15.5）。
+- 検証範囲：HARNESS-L2-023のpack依存をL9 IV-K10-01〜14で照合する。実行は未了であり、未実行を合格に数えない。
 
 ## 15. K7 世代pointerとfencing、G5 取消しの伝播、型番台帳と配置
 
@@ -954,8 +954,11 @@ RequestLog  = K5のlog（log_id: move-request:<target>、store: stage）。reque
   MoveRequested    { pointer_head: SegmentHead（request時のpointer segmentの末尾）, from, to,
                      kind: promote | rollback | rebuild, authorization: SubjectRef,
                      eligibility: RequiredResult（request時のcurrent照合結果。ReleaseEstablishedの固定受入証拠を複製しない）,
-                     eligibility_snapshot: { decl: SubjectRef（OperationDecl）, verifier_set: SubjectRef,
-                                             heads: SegmentHead[] } }   # 記録だけ。現行を変えない
+                     eligibility_snapshot: { operation_decls: K7SnapshotRef[], verifier_sets: K7SnapshotRef[],
+                                             fixed_refs: K7SnapshotRef[], heads: K7SnapshotHead[] } }   # 記録だけ。現行を変えない
+K7SnapshotRole = stage_operation_decl | build_operation_decl | stage_verifier_set | build_verifier_set | stage_input | build_input | artifact_bytes | artifact_verification
+K7SnapshotRef = { role: K7SnapshotRole, ref: SubjectRef }
+K7SnapshotHead = { role: K7SnapshotRole, head: SegmentHead }  # K7専用のrole wrapper。K2 alias規則とは独立。
   RollbackRequired { generation, evidence }                       # 観測。pointerを動かさない
 EpochLog    = K5のlog（log_id: epoch:<scope>、store: stage）。書くのは割当ての所有者（OS）の一つのsegmentだけ
   EpochIssued { scope, number }
@@ -968,9 +971,9 @@ MoveUnfinished = { move: entry_digest（PointerMoved）, check: PermissionCheck,
 `ManifestRef`、`stage_key`、`ReleaseLog`、`ReleaseEstablished`、`RuntimeLog`、`RuntimeObserved`の型はrepository-layout L4 §4.1（RL-R1〜R5）の定義を参照し、本節では再定義しない。
 
 - **K7-I1 一つの現行と順序**：`PointerMoved`の順序は、pointer_writerのsegmentの`seq`の順とし、pointer_writerが交代したときは、新しいsegmentの最初の行の`WriterHandoff`が指す旧segmentの末尾の後に続ける（K5-I7のsegmentの辞書順は使わない）。現行の世代は、この順で最後の`PointerMoved`の`to`とする。`WriterHandoff`の連鎖が途切れていれば、現行は`Unknown(missing_input)`とする。
-- **K7-I2 二段と直列化**：`request_move`は、pointer segmentの末尾を`pointer_head`として読み、その固定prefixからK7-I1で現行の世代を導き、`from`がそれと一致しなければ`Rejected(stale_from)`とする。次に適格性を検査し（K7-I3）、そのとき使ったcurrentの`OperationDecl`・`VerifierSet`の参照と、読んだlogの末尾を`eligibility_snapshot`に固定して、`MoveRequested`を`RequestLog`へ追記する。pointer segmentへは書かないので、request自身の追記でpointer segmentの末尾は変わらない。`apply_move(request)`は、pointer segmentへの条件付き追記`append_if_head(pointer segment, expected_head = request.pointer_head, PointerMoved)`だけをcommitの境界とする。`append_if_head`は、segmentの末尾が`expected_head`と一致することの確認と一行の追記を、pointer_writerが一つの操作として行い、確認と追記の間に別の追記が入らない（K5の`append`の上に置くK7の受け口。旧node-runtime-cutoverのsingle authority pointer CAS）。一致しなければ`Rejected(stale_head)`とし、何も追記しない。`expected_head`が`pointer_head`なので、追記が成功すれば、`from`と現行の一致もcommitまで保たれる。requestの後に別の`PointerMoved`が一件でも入れば、そのrequestはstaleであり、新しい`pointer_head`へ付け替えて使わず、`request_move`をやり直す（旧node-runtime-cutoverのprepareとcommitの分離）。実storeのcompare-and-append要件はrepository-layout L4 §6.2 RL-P7に従い、Git mergeを代用しない。
-- **K7-I2b 適格性の入力の再読**：`apply_move`は、追記の直前に、所有者のcurrentの`OperationDecl`・`VerifierSet`の参照と、`eligibility_snapshot.heads`の各segmentの末尾を読み直し、`eligibility_snapshot`と一致しなければ`Rejected(stale_eligibility)`として追記せず、`request_move`をやり直させる（旧node-runtime-cutoverのcommit直前の全staged digestの再読）。読み直したheadは`checked_heads`として`PointerMoved`に記録する。他のwriterのsegmentへの追記を、pointer_writerの一つの操作の中で止めることはできないので、読み直しと追記の間に入った変更は、追記の後で次のとおり検出する。`verify_current(target)`は、追記の後に、currentの`OperationDecl`のscopeが必要とする全segment（K5-I11）の`current_head`を取り直し、その新しい固定prefixで、現行の世代の適格性をK7-I3と同じ手順で求め直す。`checked_heads`は記録として残すが、検出の根拠には使わない。必要なsegmentの欠落や読取不能は`Unknown(missing_input)`・`Unknown(unreadable)`として`Positive`にしない。求め直した結果が`Positive`でなければ、その結果を観測として記録し、`RollbackRequired`を追記する（pointerは動かさない。K7-I5）。新しい鍵の正しいreceiptがあれば`Positive`になりうるので、変更があれば必ず非`Value`になるとは扱わない。他のwriterとの完全な原子性は与えず、読み直しと追記の間の変更は、この追記の後の再計算でだけ検出する。許可の変化（取消し等）はG5とK7-I6の`Epoch`で扱う。
-- **K7-I3 適格性の入力**：移動先の世代の適格性は、操作`stage_verification`について、currentの`OperationDecl`の版をoperation_versionとするRL-R2のstage_key（`subject`＝移動先の`ManifestRef`、`inputs`＝RL-R2のstage_keyに定めるmanifestのcomposite/source/artifact.pack/artifact.artifact/environment/rollback refs、`scope`＝current `OperationDecl`のscope）を作り、固定した`VerifierSet`と`input_heads`でK6-I7の手順（`restore`→`lookup`→`admit_receipt`→全成分の`combine`）に、RL-R2のbuild_chain・admit_artifact_bytes・artifact検証成分を加えて行った`RequiredResult`とする。`GenerationStaged`は、そのmanifestについて`ReleaseEstablished`があり、manifest.targetとgeneration.target、manifest.compositeとgeneration.compositionがそれぞれexact一致するときだけ記録できる（RL-R4）。`ReleaseEstablished.eligibility`がrelease成立の唯一の固定受入証拠であり、`MoveRequested.eligibility`は移動時にcurrent stage_keyで行うK2/K6再照合結果である。独立編集可能な受入値を複製しない。`Positive`でなければ`Rejected(not_eligible)`とし、request時の`RequiredResult`（`assurance`を含む）は`MoveRequested`に記録する。移動先は`kind`ごとに次を満たさなければ`Rejected(not_eligible)`とする。promote：`to`は、まだ現行になったことの無い新しい世代の`number`（`GenerationStaged`済み）。rebuild：`to`は新しい世代の`number`で、その`composition`が`from`の世代の`composition`とidentity・revision・digestまで一致する。rollback：`to`は保持している（`GenerationStaged`済みで、かつて現行になった）前の世代の`number`（AC-OS-014-06、HARNESS-010-03、021-03）。
+- **K7-I2 二段と直列化**：`request_move`は、pointer segmentの末尾を`pointer_head`として読み、その固定prefixからK7-I1で現行の世代を導き、`from`がそれと一致しなければ`Rejected(stale_from)`とする。次にK7-I3の適格性に必要なcurrent契約を各operation ownerから内部で再導出する。stage_verificationのOS ownerとbuild各artifactのbuild ownerについて、role付きのcurrent `OperationDecl`と`VerifierSet`、およびRL-R2(a)〜(d)が参照する全固定refと全segment末尾を`eligibility_snapshot`へ固定する。各固定refの実bytesを読みdigestを再計算してから適格性を照合し、`MoveRequested`を`RequestLog`へ追記する。callerの`input_heads`は期待値の提示に限り、ownerのcurrent参照やread headを選択・上書きしない。不一致は非肯定として旧prefixを使わない。pointer segmentへは書かないので、request自身の追記でpointer segmentの末尾は変わらない。`apply_move(request)`は、pointer segmentへの条件付き追記`append_if_head(pointer segment, expected_head = request.pointer_head, PointerMoved)`だけをcommitの境界とする。`append_if_head`は、segmentの末尾が`expected_head`と一致することの確認と一行の追記を、pointer_writerが一つの操作として行い、確認と追記の間に別の追記が入らない（K5の`append`の上に置くK7の受け口。旧node-runtime-cutoverのsingle authority pointer CAS）。一致しなければ`Rejected(stale_head)`とし、何も追記しない。`expected_head`が`pointer_head`なので、追記が成功すれば、`from`と現行の一致もcommitまで保たれる。requestの後に別の`PointerMoved`が一件でも入れば、そのrequestはstaleであり、新しい`pointer_head`へ付け替えて使わず、`request_move`をやり直す（旧node-runtime-cutoverのprepareとcommitの分離）。実storeのcompare-and-append要件はrepository-layout L4 §6.2 RL-P7に従い、Git mergeを代用しない。
+- **K7-I2b 適格性の入力の再読**：`apply_move`は、追記の直前にstage/build各operation ownerからcurrent `OperationDecl`と`VerifierSet`のrole付き集合を再導出し、`eligibility_snapshot`内の宣言集合・固定ref集合・全segment末尾を同じ出所から再導出し、各固定refの実bytesを読み直してdigestを再計算する。いずれかの集合、実bytes/digest、または末尾がsnapshotと一致しなければ`Rejected(stale_eligibility)`として追記せず、`request_move`をやり直させる（旧node-runtime-cutoverのcommit直前の全staged digest再読）。読み直した各headの`head`を`checked_heads: SegmentHead[]`へ投影して`PointerMoved`に記録する。他のwriterのsegmentへの追記を、pointer_writerの一つの操作の中で止めることはできないので、読み直しと追記の間に入った変更は、追記の後で次のとおり検出する。`verify_current(target)`はstage/build両ownerのcurrent宣言からRL-R2(a)〜(d)の同じ依存集合を再導出し、固定refの実bytes/digestと全segmentの`current_head`を再取得した固定prefixでK7-I3と同じ適格性を再計算する。`checked_heads`は記録として残すが、検出の根拠には使わない。必要なsegmentの欠落や読取不能は`Unknown(missing_input)`・`Unknown(unreadable)`として`Positive`にしない。求め直した結果が`Positive`でなければ、その結果を観測として記録し、`RollbackRequired`を追記する（pointerは動かさない。K7-I5）。新しい鍵の正しいreceiptがあれば`Positive`になりうるので、変更があれば必ず非`Value`になるとは扱わない。他のwriterとの完全な原子性は与えず、読み直しと追記の間の変更は、この追記の後の再計算でだけ検出する。許可の変化（取消し等）はG5とK7-I6の`Epoch`で扱う。
+- **K7-I3 適格性の入力**：移動先の世代の適格性は、RL-R2(a)〜(d)のcurrent owner契約から全成分を導く。stage_verificationはOS ownerのcurrent `OperationDecl`版をoperation_versionとし、stage_key（`subject`＝移動先の`ManifestRef`、`inputs`＝RL-R2に定めるmanifestのcomposite/source/artifact.pack/artifact.artifact/environment/rollback refs、`scope`＝current宣言のscope）を使い、OS ownerのcurrent `VerifierSet`でK6-I7を行う。(b)のbuild_chainは各artifactのbuild owner current `OperationDecl`・`VerifierSet`からbuild_keyと検証器集合を導き、(c)の`admit_artifact_bytes`と(d)のartifact検証も各ref・headを固定して同じ一つの`combine`へrole付き成分として加える。callerのdecls・verifier set・input_headsでowner、集合、固定ref、末尾を選択しない。`GenerationStaged`は、そのmanifestについて`ReleaseEstablished`があり、manifest.targetとgeneration.target、manifest.compositeとgeneration.compositionがそれぞれexact一致するときだけ記録できる（RL-R4）。`ReleaseEstablished.eligibility`がrelease成立の唯一の固定受入証拠であり、`MoveRequested.eligibility`は移動時にcurrent stage_keyで行うK2/K6再照合結果である。独立編集可能な受入値を複製しない。`Positive`でなければ`Rejected(not_eligible)`とし、request時の`RequiredResult`（`assurance`を含む）は`MoveRequested`に記録する。移動先は`kind`ごとに次を満たさなければ`Rejected(not_eligible)`とする。promote：`to`は、まだ現行になったことの無い新しい世代の`number`（`GenerationStaged`済み）。rebuild：`to`は新しい世代の`number`で、その`composition`が`from`の世代の`composition`とidentity・revision・digestまで一致する。rollback：`to`は保持している（`GenerationStaged`済みで、かつて現行になった）前の世代の`number`（AC-OS-014-06、HARNESS-010-03、021-03）。
 - **K7-I4 許可と適用の分離**：`MoveRequested`は記録だけであり、現行・内部デプロイの状態・G5-I6の待ちを変えない。`PointerMoved`を追記できるのは、`authorization`が対象段階・移動先`to.composition`の版・作用`deploy`とその`kind`に束縛された許可として照合され、取り消されていない場合だけとする。kindは16.4のMoveActionRefで照合し、別構成版・別kindを段階名とdeployだけで許可しない。`from/to`世代番号とpointer末尾はrequest/CAS・適格性の入力であり、許可へ新しい軸として加えない。明示された広い既存許可の再利用はK3-I1/I3の既存包含規則による。照合はK3（16章）で行う。currentの7軸・宣言されたoperation input・source・expiry・取消しの照合が全て肯定の場合だけ追記へ進み、照合できなければ`Rejected(authorization_unverified, check)`とする（`MoveRequested`はpendingのまま）。追記直後もcurrentの許可を再照合し、`MoveAuthorizationObserved`に当該moveとcheckを固定する。phase=immediateのcheckが肯定で観測時点も記録できるなら`Appended(PointerMoved)`、非肯定または時刻未観測なら追記済みpointerの事実を保持した`AppliedUncertain{event, check, unfinished: MoveUnfinished}`とし、`RollbackRequired`と未完の診断を残す。直後観測が欠ける間も完了ではない。回復は15.6の`recover_move_observation`による現在時点の再照合として記録し、欠落した直後の成功を捏造しない。内部デプロイとcutoverは、対象と作用を明示したPOの許可を要する外部作用であり（AGENTS.md、内部デプロイの判断記録の方針1）、K7はその許可を生成しない。
 - **K7-I4b 直後観測の位置**：phase=immediateは、参照するPointerMovedと同じpointer segmentにおけるseq+1の行に限る。project・ledger_view・G5はphaseの自己申告だけを受け入れず、この位置とmove digestを照合する。それ以外の位置・別segment・別moveのimmediateは`Unknown(conflict)`として通常完了やG5待ち解消へ使わない。observed_atは観測時点の記録であり、この順序検査を代用しない。停止後の再開では、次のseqが空いていても15.6の回復経路を使いphase=recoveryとする。ログから検査できるのは位置・segment・move digestまでである。他の行が無い停止・再開と遅い連続実行はログだけでは識別できず、再開後にseq+1へimmediateを偽装した履歴の検出は保証しない。再開時のrecovery経路は実装の制御フロー契約として、L9の停止注入で確かめる。writerの実行履歴の真正性をK6を超えて保証しない。
 - **K7-I5 自動の切戻しをしない**：失敗を観測しても、pointerを動かさず`RollbackRequired`を追記するだけとする（旧ADR-009の保持）。自動の切戻しは、Phase 2へ移る判断で扱う（2026-10-08判断記録の判断3）。rollbackは構成だけを戻し、案件のstate・recordは現在のものを引き継ぐ（AC-OS-014-06）。rollbackでincidentを閉じない（INFRA-005-AC-03）。
@@ -997,7 +1000,7 @@ PropagationView = { revocation, recipients: { identity -> Set<RecipientClass> },
 ### 15.4 型番台帳
 
 - **形式**：型番台帳は`LogDecl.store=repository`のK5 log（`log_id: model-number-ledger`）とし、manifestを書くのはOS（段階の登録と統制）、unit・connectionの行のsegmentを書くのはHARNESS（packの宣言）、compositeの行のsegmentを書くのはOSとする（AC-OS-014-09の所有の境界）。行は`DeclaredEvent`（9.3）とし、種類は`ModelNumberDeclared{kind: unit | connection | composite, identity, owner}`とRL-C3の`VersionRegistered{identity, version, declaration: FixedRef, declaration_digest}`である。`declaration_digest`は宣言の固定bytesのSHA-256であり、登録eventはpack/compositeの項目を複製しない。
-- **項目**：`ledger_view`は`VersionRegistered.declaration`の固定bytesを実読し、`declaration_digest`と一致する宣言だけから項目を導く。保存行は登録事実・version・FixedRef・digestだけを持ち、viewの項目を別の編集可能な値として保存しない。unit・connectionの宣言項目は、HARNESS-L2-010がpackに求める宣言（identity、版と成熟度、入力・出力の契約、依存の種別・identity・版、検証範囲とoracle、ownerの種別とidentity、収載・非収載。AC-HARNESS-L3-010-01）だけとする。composite viewの項目は、HELIXOS-L2-014の「一組として保存するもの」（packと依存のidentityと版、configuration、data format、対応環境、能力と制約、scope内の受入の証拠、更新・rollbackの条件。AC-OS-014-04）に限定する。declaration.jsonが持つのはRL-C2の識別項目・構成項目（受入の証拠を除く）であり、viewの受入fieldはReleaseManifestから導く`ReleaseEstablished.eligibility`を参照する。各declared項目の具体値は該当pack/composite declarationの固定参照で表し、台帳では登録事実とその参照を結ぶ（RL-C1〜C3）。同じ値の独立した編集源を二つ作らず、新しい要求項目は足さない。版はK2の`SubjectRef`、検証範囲はK4の`ObligationSet`、依存はK10のedge、scope内の受入の証拠はReleaseManifestから導く`ReleaseEstablished.eligibility`で表す（RL-R2）。`ReleaseEstablished.eligibility`は固定された唯一の受入証拠であり、後続`MoveRequested.eligibility`は既存K2/K6のcurrent照合結果として保持し、独立編集値として受入結果を再保存しない。これは項目の表し方であり、項目を足すものではない。
+- **項目**：`ledger_view`は`VersionRegistered.declaration`の固定bytesを実読し、`declaration_digest`と一致する宣言だけから項目を導く。保存行は登録事実・version・FixedRef・digestだけを持ち、viewの項目を別の編集可能な値として保存しない。unit・connectionの宣言項目は、HARNESS-L2-010がpackに求める宣言（identity、版と成熟度、入力・出力の契約、依存の種別・identity・版、検証範囲とoracle、ownerの種別とidentity、収載・非収載。AC-HARNESS-L3-010-01）だけとする。composite viewの項目は、HELIXOS-L2-014の「一組として保存するもの」（packと依存のidentityと版、configuration、data format、対応環境、能力と制約、scope内の受入の証拠、更新・rollbackの条件。AC-OS-014-04）に限定する。declaration.jsonが持つのはRL-C2の識別項目・構成項目（受入の証拠を除く）であり、viewの既存の受入fieldはReleaseLogの当該target/composite exact revision scopeをK5で全量復元し、存在する`ReleaseEstablished`を`ManifestRef.identity`（`release_id`）ごとのgroupにし、original full manifest refと各固定`eligibility`をentryとして保持する。scopeの復元不能は`Unknown(missing_input | unreadable)`とする。該当する`ReleaseEstablished`が0件なら`Unobserved(not_run)`とし、manifestの不存在・未成立までは主張しない。複数manifestのentryは全て個別に保持して一つを選ばず、別manifestの結果を混ぜない。同じ`release_id` groupに異なるrevision/digestまたは異なる受入結果の記録があれば`Unknown(conflict)`とし、全記録を保持する。各declared項目の具体値は該当pack/composite declarationの固定参照で表し、台帳では登録事実とその参照を結ぶ（RL-C1〜C3）。同じ値の独立した編集源を二つ作らず、新しい要求項目は足さない。版はK2の`SubjectRef`、検証範囲はK4の`ObligationSet`、依存はK10のedge、scope内の受入の証拠はReleaseManifestから導く`ReleaseEstablished.eligibility`で表す（RL-R2）。`ReleaseEstablished.eligibility`はmanifestごとに固定された受入証拠であり、同一`release_id` groupに矛盾する記録があればconflictとして保持し、後続`MoveRequested.eligibility`は既存K2/K6のcurrent照合結果として保持し、独立編集値として受入結果を再保存しない。これは項目の表し方であり、項目を足すものではない。
 - **内部デプロイの状態**：台帳に別に書かず、K7の`PointerLog`から導くprojectionとする（二つの正本を作らないため）。現行世代は`PointerMoved`、許可の直後照合状態は同じmoveのphase=immediateの`MoveAuthorizationObserved`から別fieldに導く。phase=recoveryは回復時点の診断として別に保持し、欠けたimmediateを埋めない。observed_at=nullも肯定完了にしない。観測欠落は`Unobserved(not_run)`、非肯定はそのcheck全成分を保持し、通常の完了と区別する。後続moveを前のmoveの肯定で補わず、許可のcurrent性は使用時にK3で再照合する。`MoveRequested`は現行や完了を変えない。位置の検査はK7-I4bに従う。停止・再開の区別はログでは保証せず、対のL9 IV-K3-17の停止注入で回復経路を確かめる。
 - **現行の台帳**：台帳の現在の内容は、K5の`project`で導く。台帳はK10のグラフの`sources`の一つになり、依存のedgeの由来になる。
 
@@ -1015,6 +1018,8 @@ PropagationView = { revocation, recipients: { identity -> Set<RecipientClass> },
 | stage/instance記録 | RL-P7〜P9。PointerLog/RequestLog/EpochLog/RuntimeLogはstore=stage。Git mergeをappend_if_headの代用にしない |
 | release/配布/実行 | ReleaseManifest/ReleaseEstablished/RuntimeObservedは§4、DistributionProfile/投影は§5。public開発sourceとprivate配布を混同しない |
 
+9.8・10.9・14.8の配置判断はここで固定する。K5のlogの置き場所は上表、segmentの`writer`はK7-I6の割当て・run単位、`VerifierSet`は`declarations/helix-harness/verifier-sets/`、K10の`control_plane`宣言の所有者はINFRASTRUCTURE（INFRA-006-AC-01）とする。
+
 フォルダと宣言のidentity/owner/kind不一致はRL-C4のUnknown(conflict)、台帳未登録はUnknown(unregistered)、登録済み実体欠落はUnknown(missing_input)を保持する。物理pathをK2のlogical identityへ代入しない。K5損傷検出とK7 current authorization/fencing/CASはそれぞれ既存境界で検査し、path符号化やGit履歴から真正性・書込み保護を生成しない。物理強制手段と新規案の採否はrepository-layout §8/11/12の範囲のままであり、本書から実施・採択を生成しない。
 
 #### 旧HELIXとの対応
@@ -1031,10 +1036,10 @@ PropagationView = { revocation, recipients: { identity -> Set<RecipientClass> },
 
 ### 15.6 API境界
 
-- `request_move(target, from, to, kind, authorization, decls, verifier_set, input_heads) -> Appended(MoveRequested) | Rejected(stale_from | not_eligible)`：K7-I2・I3に従う。pointer segmentへは書かない。
-- `apply_move(request, decls, verifier_set, input_heads) -> Appended(PointerMoved) | AppliedUncertain(event: entry_digest, check: PermissionCheck, unfinished: MoveUnfinished) | Rejected(stale_head | stale_eligibility) | Rejected(authorization_unverified, check: PermissionCheck)`：K7-I2・I2b・I4とK3（16.4）に従い、許可を使用直前に照合して`append_if_head`で追記する。`PermissionCheck`は通常checkまたは`PermissionCheckDiagnostic`を含み、K2 key自体が作れない場合も理由を返す。直後に許可変化を検出した場合は追記済みeventを保持して`AppliedUncertain`を返す。
-- `recover_move_observation(move_ref, decls, verifier_set, input_heads) -> Appended(MoveAuthorizationObserved) | Rejected(not_a_move | already_immediate)`：move_refがPointerMovedを指さなければnot_a_move、K7-I4bを満たすimmediate観測が既にあればalready_immediateとして追記しない。追記後・直後観測前に停止した場合、pointer_writerは元のPointerMoved/MoveRequestedを実読して同じquery・許可refをcurrent sourceで再照合する。`MoveAuthorizationObserved`に`phase: recovery`と実際の観測時点を記録し、過去の直後照合の代用にしない。checkがPermissionCheckDiagnosticまたは時刻未観測でも、check全成分とobserved_at=nullを保持したrecovery行を追記しAppendedで返す。このAppendedは診断行の保存成功だけを表す。後続moveが既にある場合も元moveの診断としてだけ追記し、現行を戻さず、後続moveの観測に流用しない。recoveryが肯定でも元moveの未確認区間は残り、G5-I6の待ちや通常完了を遡及成立させない。必要な切替は既存K7手順の新しい明示moveで行う。
-- `verify_current(target, decls, verifier_set) -> Observed<RequiredResult>`：K7-I2bの追記の後の検出。必要な全segmentの`current_head`を取り直して求め直し、`Positive`でなければ観測を記録して`RollbackRequired`を追記する。pointerは動かさない。
+- `request_move(target, from, to, kind, authorization, input_heads) -> Appended(MoveRequested) | Rejected(stale_from | not_eligible)`：K7-I2・I3に従う。契約・検証器は各ownerのcurrent宣言から内部導出し、callerのinput_headsは期待値として照合する。pointer segmentへは書かない。
+- `apply_move(request, input_heads) -> Appended(PointerMoved) | AppliedUncertain(event: entry_digest, check: PermissionCheck, unfinished: MoveUnfinished) | Rejected(stale_head | stale_eligibility) | Rejected(authorization_unverified, check: PermissionCheck)`：K7-I2・I2b・I4とK3（16.4）に従い、許可を使用直前に照合して`append_if_head`で追記する。`PermissionCheck`は通常checkまたは`PermissionCheckDiagnostic`を含み、K2 key自体が作れない場合も理由を返す。直後に許可変化を検出した場合は追記済みeventを保持して`AppliedUncertain`を返す。
+- `recover_move_observation(move_ref, input_heads) -> Appended(MoveAuthorizationObserved) | Rejected(not_a_move | already_immediate)`：move_refがPointerMovedを指さなければnot_a_move、K7-I4bを満たすimmediate観測が既にあればalready_immediateとして追記しない。追記後・直後観測前に停止した場合、pointer_writerは元のPointerMoved/MoveRequestedを実読して同じquery・許可refをcurrent sourceで再照合する。`MoveAuthorizationObserved`に`phase: recovery`と実際の観測時点を記録し、過去の直後照合の代用にしない。checkがPermissionCheckDiagnosticまたは時刻未観測でも、check全成分とobserved_at=nullを保持したrecovery行を追記しAppendedで返す。このAppendedは診断行の保存成功だけを表す。後続moveが既にある場合も元moveの診断としてだけ追記し、現行を戻さず、後続moveの観測に流用しない。recoveryが肯定でも元moveの未確認区間は残り、G5-I6の待ちや通常完了を遡及成立させない。必要な切替は既存K7手順の新しい明示moveで行う。
+- `verify_current(target) -> Observed<RequiredResult>`：K7-I2bの追記の後の検出。stage/build各ownerのcurrent契約からRL-R2(a)〜(d)の全ref・segmentを内部で再導出し、固定refの実bytes/digestと全`current_head`を取り直して求め直し、`Positive`でなければ観測を記録して`RollbackRequired`を追記する。pointerは動かさない。
 - `append_if_head(segment, expected_head, entry) -> Appended | Rejected(stale_head)`：K7-I2の条件付き追記。
 - `admit_effect(effect, epoch_token, input_heads) -> Appended | Rejected(fenced | revocation_pending | missing_authorization)`：K7-I6に従う。
 - `propagate(revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, recipient_decls, verifier_set, input_heads) -> Observed<PropagationView>`：G5-I1〜I3に従う。
@@ -1066,7 +1071,7 @@ PropagationView = { revocation, recipients: { identity -> Set<RecipientClass> },
 
 ### 15.10 検証範囲
 
-- 試作：小さな段階の世代を2つ作り、L9のIV-K7-01〜13、IV-G5-01〜10、IV-LDG-01〜04、repository-layout L9 IV-RL-01〜54を検証する設計とする。未実行の項目を合格に数えない。
+- 検証範囲：二つの段階世代を用いるケースをL9のIV-K7-01〜15、IV-G5-01〜10、IV-LDG-01〜04、repository-layout L9 IV-RL-01〜54で定義する。実行は未了であり、未実行の項目を合格に数えない。
 
 ## 16. K3 operation authority tupleと許可記録の照合
 
@@ -1154,7 +1159,7 @@ queryの`operation_inputs`も未信頼の要求値として扱い、ownerがcurr
 
 - `resolve_authority_context(query: PermissionQuery, input_heads) -> AuthorityContextResolution | PermissionCheckDiagnostic`：所有者のcurrent宣言と固定prefixからcontextを内部再構成する。resolverはowner登録済み読取り境界からK5 `current_head`を内部取得し、その末尾の固定prefixで再構成する。caller `input_heads`は期待値であって末尾を選ばず、内部取得したcurrentと不一致なら旧prefixを使わず非肯定とする。current宣言が読めない等、K2 keyが作れる不足は`Unresolved`にし、対応成分をK1 `Unknown(missing_input/unreadable/conflict)`として記録する。完全なK2 keyを作れない場合は`PermissionCheckDiagnostic(reason: missing_key)`を返し、K1 `Unknown`やK2 resultとして記録しない。caller-provided contextは受け付けない。
 - `check_permission(query: PermissionQuery, permission: SubjectRef, input_heads) -> PermissionCheck`：source adapterがcurrent prefixから有効判断を一意に解決し、`permission`参照がそのcurrent recordを指すこと、K3-I1〜I7、operation input binding、expiry、取消しを検査する読取り専用境界。contextが未解決でもcomplete K2 keyを構成できる不足はdiagnostic componentsとして保持し、record不在・current判断不在は`Unknown(missing_input)`、保存済みK6結果のreceipt未着とは区別する。読取失敗は`Unknown(unreadable)`をsource成分とする。各非肯定成分・`assurance`を残す。K2 keyを作れない入力ref collision等は`PermissionCheckDiagnostic(reason: missing_key)`で返し、結果を保存しない。これはK1 `Observed`ではなく、K1でcombineせずK2へrecordしないAPI診断である。`apply_move`の`Rejected(authorization_unverified, check)`はこの`PermissionCheck`（通常checkかAPI診断のいずれか）を保持する。作用callback、許可発行、pointer追記のportを受け取らない。
-- `apply_move(request, decls, verifier_set, input_heads)`：15.6と同じ引数契約とし、caller-provided contextは受けない。K7-I2・I2bの再読後、queryのtargetを対象段階identity、revisionを`to.composition`、operationを`deploy`とし、current台帳の段階/構成の対応とK7-I3適格性を照合する。actor/environment/scopeはcurrent owner宣言から得る。`kind`は固定の`MoveActionRef = SubjectRef{kind: move_action, identity: canonical_json({target, operation: deploy}), revision: kind, digest: sha256(canonical_json({target, kind}))}`としてK7のoperation declarationがrequired inputに宣言し、許可側の作用bindingと照合する。`kind/from/to`は引き続きK7のrequest/適格性で検査するが、`from`世代番号・`to`世代番号・`pointer_head`をPO許可の新しい必須軸にしない。`pointer_head`はCASだけに使う。同じ構成版とkindを既存の有効な許可範囲が含むときは再利用でき、広い許可の包含は16.3の既存adapter規則で明示的に証明する。段階名とdeployだけから未許可の構成版や別kindへ拡張しない。内部デプロイの切替は対象段階と作用を明示したPOの既存許可を読む（内部デプロイ判断記録:38–44）。これは旧node-runtime-cutoverのaction-binding approval/staged digestとADR-009の許可付き明示rollbackの保持（15.7）であり、通常の全操作への毎回の人間承認を追加しない。
+- `apply_move(request, input_heads)`：15.6と同じ引数契約とし、caller-provided contextは受けない。OperationDecl・VerifierSet・fixed refsは各ownerのcurrent契約から内部再導出し、callerのinput_headsは期待値として照合する。K7-I2・I2bの再読後、queryのtargetを対象段階identity、revisionを`to.composition`、operationを`deploy`とし、current台帳の段階/構成の対応とK7-I3適格性を照合する。actor/environment/scopeはcurrent owner宣言から得る。`kind`は固定の`MoveActionRef = SubjectRef{kind: move_action, identity: canonical_json({target, operation: deploy}), revision: kind, digest: sha256(canonical_json({target, kind}))}`としてK7のoperation declarationがrequired inputに宣言し、許可側の作用bindingと照合する。`kind/from/to`は引き続きK7のrequest/適格性で検査するが、`from`世代番号・`to`世代番号・`pointer_head`をPO許可の新しい必須軸にしない。`pointer_head`はCASだけに使う。同じ構成版とkindを既存の有効な許可範囲が含むときは再利用でき、広い許可の包含は16.3の既存adapter規則で明示的に証明する。段階名とdeployだけから未許可の構成版や別kindへ拡張しない。内部デプロイの切替は対象段階と作用を明示したPOの既存許可を読む（内部デプロイ判断記録:38–44）。これは旧node-runtime-cutoverのaction-binding approval/staged digestとADR-009の許可付き明示rollbackの保持（15.7）であり、通常の全操作への毎回の人間承認を追加しない。
 - current effective decisionを解決できずK3が非肯定なら、追記前は`Rejected(authorization_unverified, check)`で何も追記しない。肯定の場合だけ`append_if_head`へ進む。pointerへの条件付き追記は許可sourceをlockしない。追記直後、pointer_writerはcurrentの許可を再照合し、`MoveAuthorizationObserved{move: entry_digest, phase: immediate, check: FixedRef, observed_at}`をPointerLogへ追記する。直後checkが肯定でobserved_atも記録できるなら`Appended(PointerMoved)`。直後checkが非肯定、欠落、またはobserved_at=nullなら、追記済みpointerの事実を保持して`AppliedUncertain{event, check, unfinished: MoveUnfinished}`とし、`RollbackRequired`と未完の診断を残す。欠けた観測ではK7/G5の内部デプロイ待ちは解消しない。直後観測はpre-authorizationではなく使用後のcurrent性の観測である。自動でpointerを戻さず、完全な跨writer原子性や取消し前の作用の取り消しを保証しない。
 - 追記前に必要な制約は、その既存owner契約で実行前に設定・強制できる証拠を評価する。実行中・実行後の適用結果は別の結果観測であり、許可照合を成功させる材料として先取りしない。`MoveRequested`だけでは現行もG5-I6の待ちも変わらない。K3の肯定でも、stale_head/stale_eligibilityなら追記しない。許可照合を省略するfallbackは置かない。
 
@@ -1267,6 +1272,8 @@ ReviewIndependenceCheck = { result: Observed<ReviewIndependence>,
 
 実装上の完全性は、current OS assignment、選択された各source ownerのselection記録、actual content-producer graph、owner宣言のcurrent source closure、各source classの走査/対応付け証拠を照合して確かめる。完全性不足の単独条件は、定義済みschemaのsource closure未登録をUnknown(unregistered)、必須source ref欠落とselection unknownをそれぞれUnknown(missing_input)、走査契約はあるがgraph全量性を証明できない場合をUnknown(unsupported)、必要coverage evidence未着をUnknown(missing_input)とする。coverage未着は完全性判定の必須入力不足であり、このoperationではUnobserved(pending_receipt)へ写さない。caller参照とcurrent正本の確定不一致およびsource間の確定不一致はUnknown(conflict)をこれら5条件より先に扱う。conflictが無く複数の不足条件が同時にあれば上の列挙順の最初をinventoryの主reasonとし、全条件とsource診断をevidenceへ保持する。独立positiveを返さない。登録済みclosureの全量照合が観測できても、期待role集合とactual graphに参加者欠落/追加またはsource間不一致があれば`Unknown(conflict)`とし、source側の理由・全差分を保持する。NotIndependentは比較identityの確定collisionに限る。これは登録source集合のcoverage観測であり、発行者や実際のactorの真正性を証明しない。K6の`issuer_authenticity=Unknown(unsupported)`は別assuranceにそのまま残る。
 
+旧HELIXの対応を確認するため、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-independent-review.md`全体（特に20–32行）、同`docs/design/helix/L5-detail/worker-independent-review.md`全体（特に23–27行）、および`docs/test-design/helix/L9-worker-independent-review-system-test-design.md`全体（特に18–23行）を実読し、これらの3文書で`route`／`review route`／`reviewer route`を検索した。旧L4/L5/L9はidentity・session・contextの三軸を扱い、route軸の対応記述は見つからなかった。したがってroute owner/current schemaを使う四軸のroute判定はConcept:236と承認済み`AC-INTELLIGENCE-L3-072-08`からの**新規案**であり、旧route規則の再利用とは扱わない。
+
 contextとrouteのrefは必ずそれぞれのowner contractから解決する。contextは実行session/contextを所有するsourceがcurrent refと対応participantを示し、review対象自体は`ReviewTarget`で別に完全一致させる。routeはreview routeのownerがcurrent route identity/revision/digestを宣言する。Concept:236とAC-INTELLIGENCE-L3-072-08はroute軸自体を根拠付けるが、具体的owner/schemaは定義していない。route/contextの契約schema未定義はUnknown(unsupported)、schema定義済みでcurrent宣言が未登録ならUnknown(unregistered)である。routeの意味をprovider/runtime/model差へ置き換えない。authority refは既存SECURITY ownerの適用中recordから解決し、caller claimだけでは受け入れない。authority軸は独立性に用いる実行authority identityの比較であり、K3の許可可否ではない。SECURITYのcurrent owner contractがrecordとそのauthority identityの対応を示す場合だけ比較し、PermissionRecord/source ref・revision・tupleのoperation/targetが違うことだけではdistinctとしない。対応schemaが未定義ならUnknown(unsupported)を保つ。これはConceptと現L3のauthority軸をowner sourceへ結ぶ技術的再導出であり、旧三軸にauthorityの定義があったとは扱わない。
 
 ### 17.3 比較とK2鍵
@@ -1346,7 +1353,7 @@ LABOのblind評価はK9共通条件へ採らない。現LABO L3 Stage 5「HELIXL
 
 ## 18. K8 入力ラベルの観測と明示経路の遷移記録
 
-本節はPR9の下書きであり、SECURITYの入力分類・authority境界をカーネルで共有できる記録形にする。K8は汎用taint解析、データフロー伝播、policy語彙、権限判定を定義しない。K8が扱うのは、入力の出自と分類観測、およびSECURITYが明示済みとする昇格経路の参照と、そのauthority作用の観測を分けて表すことだけである。
+本節はSECURITYの入力分類・authority境界を共有する記録形の設計である。K8は汎用taint解析、データフロー伝播、policy語彙、権限判定を定義しない。K8が扱うのは、入力の出自と分類観測、およびSECURITYが明示済みとする昇格経路の参照と、そのauthority作用の観測を分けて表すことだけである。
 
 ### 18.1 由来とtrace
 

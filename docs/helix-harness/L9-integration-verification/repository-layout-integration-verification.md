@@ -1,11 +1,13 @@
 # HELIX リポジトリ構成 L9結合検証設計
 
-status: draft_for_l4_review
+status: design_pair_defined
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/repository-layout.md
-base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
+base: main `66abf6bf158baebc6bfceb5ccf693d425aae41a9`
 
-本書は[リポジトリ構成L4](../L4-basic-design/repository-layout.md)と対になる結合検証の設計の下書きである。検証項目はL4の規則（`RL-*`）と共通カーネル（CK）の受口を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務である。
+`design_pair_defined`はL4契約と対のoracleを定義した状態のみを表し、review済み・承認済み・実装済み・実行済み・合格とは同義でない。
+
+本書は[リポジトリ構成L4](../L4-basic-design/repository-layout.md)と対になる結合検証の設計である。検証項目はL4の規則（`RL-*`）と共通カーネル（CK）の受口を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務である。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作は`scaffold/`に置き、Scaffold Bindingへ登録する。ディレクトリ`helix/`・`declarations/`・`records/`は試作でも本repoに作らず、試作用の一時repositoryで組む。
 
