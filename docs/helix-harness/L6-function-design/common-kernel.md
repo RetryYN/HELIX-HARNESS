@@ -14,10 +14,10 @@ base: `main` at `33bbe8cd5f080be9e400e9259db22645bc620eda`
 | source | 対象revision / SHA-256 | 対象 |
 |---|---|---|
 | Stage 1 PO decision | `docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md`, `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e`; approved L3/L10 content revision `a77672513325aa9e79f3780af40455361b5d19a8` | HARNESS-L2-010/011/023 Stage 1 scope only |
-| L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md`, content SHA-256 `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) | K1 §2.1–2.6, K2 §3.1–3.5 |
+| L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md`, content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) | K1 §2.1–2.6, K2 §3.1–3.5 |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`, content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) | RL-C1–7, RL-D1–5, RL-T1–3, RL-K1–3 |
-| L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, content SHA-256 `6020c07fbe4fa0be0585a3c924ff238c63e17cc9279ec12f580c415e0293cc31` (本PRのcontent HEAD) | K1/K2 public types, signatures, owner boundary, old-source crosswalk |
-| L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) | IV-K1-01–13; IV-K2-01–21d; design oracle, not run here |
+| L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, content SHA-256 `30fb33b316b6116ccb3eb38240947b3fdde942b97df42bb23f45d8286d9d2285` (本PRのcontent HEAD) | K1/K2 public types, signatures, owner boundary, old-source crosswalk |
+| L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) | IV-K1-01–13; IV-K2-01–21d; design oracle, not run here |
 
 K1/K2はL4 §1.3の共通部品であり単一の親要求を置かない。HARNESS Stage 1の下流traceは固定されたL2-010/011/023に限る。各契約からの直接親はL4 K1 §2.1、K2 §3.1のcrosswalkに従い、契約境界上のK1-I6→K2、K2 record→K5参照は追加の親要求にしない。後続stageを含む現在文書全体のbytesをStage 1 approved inputと扱わない。
 
@@ -30,6 +30,12 @@ K1/K2はL4 §1.3の共通部品であり単一の親要求を置かない。HARN
 ```text
 ApiBoundaryResult<T> = T | existing Rejected(missing_key) case
 # generic type-alias notation; add no Rejected class or reason
+
+@dataclass(frozen=True)
+class PolarityMapping(Generic[T]):  # 既存PolarityOfのPython表現候補
+    identity: str
+    version: str
+    classify: Callable[[T], Polarity]
 
 @dataclass(frozen=True)
 class SubjectRef:
@@ -78,6 +84,8 @@ def record(
 
 `ApiBoundaryResult[T]`はL4が既に定める`Rejected(missing_key)`を外側return unionへ足す型alias候補であり、新しいRejected classやreasonを作らない。keyを検査しないpublic normal returnはL5既存signatureどおりである。`record`はL5既存unionを使い、`Stale` resultはkey fieldの有無にかかわらず先に`Rejected(stale_not_recordable)`とし、非Stale resultの必須key field欠落だけを`Rejected(missing_key)`とする。いずれもL4/L5既存契約の境界であり、新しい結果classではない。その他の入力classをUnknownへ変換しない。
 
+`PolarityMapping`はL4 §2.2/L5 §3.2が既に定める版付き`PolarityOf`の具体表現である。ownerがidentity/versionと値からPolarityへのcallableを明示し、`combine`はそのcallableを用い、`Combined.polarity`にはidentity/versionを保存する。異種入力は成分ごとのmetadata対応も保持する。関数名・qualnameからidentityを推測せず、版を補完しない。公開signatureのpolarity引数を増やさず、domain mappingをkernelへ追加しない。
+
 異種成分はL4 §2.5にある成分別`(Observed, PolarityOf)`入力形式を、同じ`combine`のoverloadとして表す。別の公開function名を作らず、同じ各成分対応を検査する。L5に書かれた`combine(components, polarity)`の公開境界は保持する。
 
 `lookup`に与える`records`列はK5 `restore`が完全性を確認した全記録をK5の追記順で復元したものに限る。`Sequence`の順序を尊重し、K2はtimestampや別のsortで「最後」を再定義しない。K5 restoreが`Unknown(missing_input)`/`Unknown(unreadable)`等を返した場合はK2 lookupを呼ばず、その非Valueをcallerへ返す（L4 K5 `restore` / K2 §3.4）。
@@ -90,7 +98,7 @@ def record(
 |---|---|---|---|---|
 | `CK-K1-FN-01` | `validate_result_key` / private | ResultKeyまたはObserved/Combinedに含まれる各key; valid/既存`Rejected(missing_key)` | L4 K1-I6が列挙するResultKey 5 field、SubjectRef 4 fieldを各受信境界で点検。欠落は呼出元へ既存`Rejected(missing_key)`として返し、成分として数えない。variant内domain value/evidence shapeをこの検査に混ぜない。 | K1-I6; IV-K1-08,12,13 |
 | `CK-K1-FN-02` | `prepare_polarity_input` / caller/owner境界 | owner値とcurrent polarity mapping、完全key; 既存Observed input | 値型ownerがmappingを解決する。mappingありならその明示mappingで値を渡す。必要mappingが不在なら元のdomain Valueを`combine`へ渡さず、完全key付き`Unknown(missing_input)`を既存Observedとして構成する。これはkernel公開関数でなく、K1既存契約の入力準備境界。 | K1 §2.2/2.5; IV-K1-05 |
-| `CK-K1-FN-03` | `combine` / public | 順序付き全components、単一polarity mappingまたはL4の各component `(Observed, PolarityOf)`; `ApiBoundaryResult[Combined]` | 各keyをFN-01で検査。欠落keyは外側unionの既存Rejected(missing_key)。正常時は全入力を順序のまま保持し、negative/non-value/excluded位置を全て蓄積する。否定が一つでもあればNegative、その他non-valueがあればUndetermined、全有効componentがpositiveならPositive。判定対象が0件ならUndetermined+whole `Unknown(missing_input)`。early-returnせず後続も蓄積する。 | K1-I1–I6; IV-K1-01–07,11 |
+| `CK-K1-FN-03` | `combine` / public | 順序付き全components、単一polarity mappingまたはL4の各component `(Observed, PolarityOf)`; `ApiBoundaryResult[Combined]` | 各keyをFN-01で検査。欠落keyは外側unionの既存Rejected(missing_key)。正常時は全入力を順序のまま保持し、negative/non-value/excluded位置を全て蓄積する。否定が一つでもあればNegative、その他non-valueがあればUndetermined、全有効componentがpositiveならPositive。判定対象が0件ならUndetermined+whole `Unknown(missing_input)`集合診断（class/reasonだけ。Observedではなくkeyなし）。component追加・key生成・成分key流用はしない。early-returnせず後続も蓄積する。 | K1-I1–I6; IV-K1-01–07,11 |
 | `CK-K1-FN-04` | `admit` / public | Combined; `ApiBoundaryResult[Admitted or Withheld(reasons)]` | Combinedの全component keyをFN-01で再検査。欠落keyは外側unionの既存Rejected(missing_key)。正常時PositiveだけAdmitted。他は全negative/non-value/whole-set reasonをL4定義順でWithheldに保持する。Observed単体を受けるshortcutは置かない。 | K1-I2/I6; IV-K1-02–04,08,10,12,13 |
 | `CK-K1-FN-05` | `disposition` / public | reason, authority, reentry_trigger, key; `ApiBoundaryResult[Observed]` | key欠落は外側unionの既存Rejected(missing_key)。keyが完全で3根拠がすべて成立した場合のみNotApplicableを返す。根拠欠落はL4既定のUnknown(invalid_disposition)。 | K1-I5/I6; IV-K1-07,12 |
 | `CK-K2-FN-01` | `canonical_json_bytes` / private codec | L4 canonical JSON data model; UTF-8 bytes | CPython 3.11+ `json.dumps(ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False, check_circular=True).encode('utf-8', errors='strict')`候補。object keyは文字列限定、array order保持、Unicode normalizationなし。非JSON型、循環、孤立surrogate、nonfiniteはcodec入力不適合として拒否し、K1 class/`missing_key`/肯定へ変換しない。出力末尾にLFを付けない。 | K2 §3.2 (`canonical_json`); IV-K2-13,15,21a–d |

@@ -89,8 +89,10 @@ Combined<T>  = { verdict: Verdict,
                  negatives: index[],             # 否定のValueの位置
                  non_values: index[],            # Unknown／Unobserved／Stale／無効なN/Aの位置
                  excluded: index[],              # 成立したNotApplicableの位置
-                 set_reason: Unknown? }          # 有効な判定成分が0件のときだけUnknown(missing_input)
+                 set_reason: { class: Unknown, reason: missing_input }? } # 集合診断。Observedではない
 ```
+
+`set_reason`の`Unknown(missing_input)`表記は、上の集合診断の略記であり、`Observed.Unknown`を構築する表記ではない。`Combined`は観測結果の一variantではなく合成の構造である。集合診断は`components`へ加えず、keyを持たず、単独の`Observed`として`record`へ渡せない。空集合には成分のkeyも無いため、架空のkeyや他の成分のkeyを流用しない。`admit`はこの診断を既存の`{index: whole, class: Unknown, reason: missing_input}`へ写す。K1-I6の全`Observed` variantと各受信成分のkey必須条件は変わらない。K6/K4等が集合診断を外側の観測成分へ展開するときは、そのownerの既存operation/componentの完全keyを持つ`Unknown(missing_input)`として構成する。keyを解決できなければ既存のkey不能境界へ返し、集合診断自体をkey付き観測と偽らない。
 
 `Value`の値を肯定・否定へ写す責務は、その値型を持つ機構が`PolarityOf<T>`として持つ（例：CONNECTの`compatible`→Positive、`incompatible`→Negative。HARNESSの`pass`→Positive、`fail`→Negative）。カーネルは写像を持たず、受け取った写像の識別と版を`Combined`に記録する。写像が無い値型は`combine`へ渡せない（`Unknown(missing_input)`）。
 
@@ -148,6 +150,8 @@ Combined<T>  = { verdict: Verdict,
 | `LEGACY-ASSET-63857110B2C14B808B15`／`docs/design/helix/L3-requirements/lifecycle-state-separation.md:150`／`a4077092ff5f268cfc58af2823573565f1144f3d88b696b9f59cf20112ff857b` | `unobserved`は証拠が一つも無い状態 | 運用観測の一entityから全機構の`Unobserved`へ広げる | `semantic_rederive` |
 | `LEGACY-ASSET-BC214D81DE9E77B8A804`／`docs/archive/cross-system-audit-2026-09-05/source/audit-report.md.txt:72-80`（F02）／`dcf0d4e0dcc4db772afac465df10f2412134cd65dcd019a18cb99c9fd39be53f` | 失敗史：必須集合を空にすると個別検査が消えた | K1-I4の根拠 | 失敗史（区分なし） |
 | `LEGACY-ASSET-85832C01812D05143691`／`docs/governance/rule-enforcement-gap-audit-2026-08-12.md:152-154`（ISSUE-22）／`da0331303c1766aea4e763d2d0ddee02e5cdbb0add900d0c779f0024a4886e7f` | 失敗史：fail-openのhookの失敗が握りつぶされた | 旧の意図的なfail-open（観測・表示）を既定から外し、K1-I8の明示宣言に限る | `replace`（既定値の変更） |
+
+集合診断の型の明確化も上表のmeasurement evaluatorの全finding保持と、F02の空の必須集合を肯定にしないfailureを起点にする。旧sourceに共通`Combined`型はないため、`semantic_rederive`として、観測成分と集合診断を型で分けた。変更理由は、空集合で存在しない結果keyを捏造せず既存のwhole理由を返すためである。合否、要求意味、公開signature、Observedのkey必須条件は保持する。
 
 旧HELIXには、不明の分類の共通定義が無い。G10の共通定義（2.2のクラス集合と2.4の写像表）は**新規案**である。調査の範囲と結果を次に記す（2026-10-08、本書の起草者が実施）。
 

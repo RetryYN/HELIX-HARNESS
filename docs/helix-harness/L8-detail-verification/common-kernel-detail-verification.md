@@ -12,11 +12,11 @@ base: main `33bbe8cd5f080be9e400e9259db22645bc620eda`
 
 | 入力 | revision・scope | SHA-256 |
 |---|---|---|
-| Common Kernel L4 | base `33bbe8cd5f080be9e400e9259db22645bc620eda`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3 | `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` |
-| Repository Layout L4 | base `33bbe8cd5f080be9e400e9259db22645bc620eda`の本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
-| Common Kernel L9 | base `33bbe8cd5f080be9e400e9259db22645bc620eda`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` §2 K1/K2、IV-LDG-01/02/04、IV-K5-22 | `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` |
-| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§7 | SHA-256 `6020c07fbe4fa0be0585a3c924ff238c63e17cc9279ec12f580c415e0293cc31` |
-| Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `ee9288c04710999cf1bd7463391319b240069766982f4c7e75374f64d27b57ed` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
+| Common Kernel L4 | 本PRのcontent本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
+| Repository Layout L4 | 本PRのcontent本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
+| Common Kernel L9 | 本PRのcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` §2 K1/K2、IV-LDG-01/02/04、IV-K5-22 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
+| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§7 | SHA-256 `30fb33b316b6116ccb3eb38240947b3fdde942b97df42bb23f45d8286d9d2285` |
+| Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `590d5badb685a127c71f7624d89ab1ed505196a93f3cb3946ba6037fc7a736ab` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
 
 L9の各`IV-K1-*`/`IV-K2-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。
 
@@ -45,9 +45,9 @@ HARNESS Stage 1 PO decisionはHARNESS L3/L10の本文revision `a77672513325aa9e7
 | `L8-K1-04-P` | IV-K1-04 | `combine`, `admit`; K1-I2/I3 | AC-HARNESS-L3-022-02、SECURITY-AC-001-01 | 3 positive valueで`Admitted`。 |
 | `L8-K1-04-N` | IV-K1-04 | `combine`, `admit`; K1-I2/I3 | 同上 | 基準の2成分目のValueだけをpositiveからnegativeに替える。`Negative`、1件のnonempty reason。 |
 | `L8-K1-05` | IV-K1-05 | owner/caller mapping resolution → `combine`; polarity ownership | CONNECT-AC-002-01、AC-HARNESS-L3-022-02 | 正常: owner/callerは各値型のmappingを解決してObservedを`combine`へ渡す。変異: 対象値型のmappingだけ解決不能にし、owner/callerが元のValueを渡さず、同Valueの完全keyを持つ既存`Unknown(missing_input)`を作って`combine`へ渡す。Combinedはその位置をnon-value indexに含め`Undetermined`。kernel内のdomain語推測は不合格。 |
-| `L8-K1-06a` | IV-K1-06 | `combine`, `admit`; K1-I4 | AC-HARNESS-L3-032-03、LABO-001-AC-02 | 基準は1 positive required component。変異はcomponent listを空にするだけ。`Undetermined`, `set_reason=Unknown(missing_input)`, whole reason 1件。 |
-| `L8-K1-06b` | IV-K1-06 | `combine`, `admit`; K1-I4 | 同上 | 基準から全成分をvalid NotApplicable 1件だけに置換。判定成分0として同じ期待。 |
-| `L8-K1-06c` | IV-K1-06 | `combine`, `admit`; K1-I4 | 同上 | 基準から全成分をvalid NotApplicable 3件だけに置換。判定成分0として同じ期待。 |
+| `L8-K1-06a` | IV-K1-06 | `combine`, `admit`; K1-I4 | AC-HARNESS-L3-032-03、LABO-001-AC-02 | 基準は1 positive required component。変異はcomponent listを空にするだけ。`Undetermined`, `set_reason=Unknown(missing_input)`, whole reason 1件。set_reasonはclass/reasonだけの集合診断であり、components追加・key生成・成分key流用はない。 |
+| `L8-K1-06b` | IV-K1-06 | `combine`, `admit`; K1-I4 | 同上 | 基準から全成分をvalid NotApplicable 1件だけに置換。判定成分0として06aと同じ集合診断。N/A keyを集合診断へ流用しない。 |
+| `L8-K1-06c` | IV-K1-06 | `combine`, `admit`; K1-I4 | 同上 | 基準から全成分をvalid NotApplicable 3件だけに置換。判定成分0として06aと同じ集合診断。N/A keyを集合診断へ流用しない。 |
 | `L8-K1-07-REASON/AUTHORITY/REENTRY` | IV-K1-07 | `disposition`, `combine`; K1-I5 | direct: AC-HARNESS-L3-032-02、INFRA-001-AC-01 | 3つの個別fixture: reason、authority、reentry_triggerのうち一つずつ欠落。各々`Unknown(invalid_disposition)`でnon-value。3変異を一つのfixtureへ混在させない。 |
 | `L8-K1-08-ACCEPT-COMBINE-{CLASS}` | IV-K1-08 | `combine`; K1-I6/K2-I6 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | CLASS=Value/Unknown/Unobserved/NotApplicable/Stale。各完全key付き成分をcombineが受理する5独立fixture。 |
 | `L8-K1-08-ACCEPT-RECORD-{CLASS}` | IV-K1-08 | `record`; K1-I6/K2-I6 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | CLASS=Value/Unknown/Unobserved/NotApplicable。各完全keyとresultをrecordが受理する4独立fixture。 |

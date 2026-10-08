@@ -45,7 +45,7 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/common-kernel.md",
-      "sha256": "7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b",
+      "sha256": "3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696",
       "note": "Current K1/K2 contracts referenced by the local CI design; no K1 Observed<T>/UnknownReason vocabulary extension (K2 key_of outer Rejected reasons remain outside that vocabulary)."
     },
     {
@@ -55,7 +55,7 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
-      "sha256": "62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b",
+      "sha256": "77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52",
       "note": "Current paired oracle reference only; no execution evidence."
     },
     {

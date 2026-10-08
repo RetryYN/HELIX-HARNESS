@@ -14,9 +14,9 @@ base: main `33bbe8cd5f080be9e400e9259db22645bc620eda`
 
 | 入力 | 固定対象 | SHA-256 |
 |---|---|---|
-| Common Kernel L4 | 本PRのcontent本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md`（§2、§3、とりわけ§2.1/2.5/2.6、§3.1–3.4.1） | `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` |
+| Common Kernel L4 | 本PRのcontent本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md`（§2、§3、とりわけ§2.1/2.5/2.6、§3.1–3.4.1） | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
 | Repository Layout L4 | main `33bbe8cd5f080be9e400e9259db22645bc620eda` content pin：`docs/helix-harness/L4-basic-design/repository-layout.md`（§2–3、RL-C1–7、RL-D1–5、RL-T1–3、RL-K1–3、§6.1/§10） | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
-| Pair L9 | 本PRのcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（§2 K1/K2、IV-K1-01–13、IV-K2-01–21d。IV-K2-13a/bを含む） | `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` |
+| Pair L9 | 本PRのcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（§2 K1/K2、IV-K1-01–13、IV-K2-01–21d。IV-K2-13a/bを含む） | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
 | Stage 1 PO decision | `docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md`（§「対象revisionと本文SHA」「適用範囲」） | `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
 L3 direct parentはL4各§のcrosswalk列記に限る。K1の直接由来は§2.1にあるHARNESS AC-HARNESS-L3-022-02、030-02、032-02/03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2の直接由来は§3.1にあるHARNESS AC-HARNESS-L3-010-01/03、022-05、030-04、031-05、032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6のkey必須条件からK2 §3.1のHARNESS 030-04/032-04へ、またK2記録/保存からK5 §9.3へつなぐ箇所は契約境界の相互参照であり、K1/K2それぞれの直接crosswalk親へ加えない。別のL3要求を追加せず、上記L4 crosswalk外へ親を拡張しない。HARNESS Stage 1の判断記録は対象本文revision `a77672513325aa9e79f3780af40455361b5d19a8`とL2-010/011/023に限るため、同判断を他機構または他親の承認根拠として流用しない。
@@ -73,6 +73,8 @@ Observed<T> =
 | `disposition(reason, authority, reentry_trigger, key) -> Observed<T>` | N/A候補の明示根拠と完全鍵 | 三根拠すべてがある場合だけ`NotApplicable`。どれか欠ければ`Unknown(invalid_disposition)`。 |
 
 **入力不変条件**: K1-I6で列挙されたK2 key fieldがすべて存在すること。これらのkey field欠落だけを`Rejected(missing_key)`とする。各Observed variant内部のdomain値/evidence等のshape妥当性は型で与えられる入力として扱い、K1-I6以上の欠落field/reason分類はここで定義しない。`Stale`はlookupで導出する読み取り結果であり、`record`可能な観測ではない。
+
+**集合診断の型**: `Combined.set_reason`はL4 §2.2の`{class: Unknown, reason: missing_input}`または不在であり、Observedではない。`Unknown(missing_input)`表記はこの欄だけの略記である。component数を増やさず、key生成・流用・単独recordをしない。admitでは既存whole理由へ展開する。外側のObservedへの展開には当該ownerの既存operation/component keyを用いる。
 
 **出力不変条件**: unknown・unobserved・staleをpositive valueへ変換しない。否定Valueとunknownを区別し、最初のnegativeで後続成分を落とさない。`NotApplicable`はpositiveではなく、その根拠付き成分だけ判定から除外できる。0件Valueを返す上位operationは完全走査証拠が入力にある場合に限る。
 
