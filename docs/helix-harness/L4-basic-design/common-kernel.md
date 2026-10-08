@@ -1329,7 +1329,7 @@ LABOのblind評価はK9共通条件へ採らない。現LABO L3 Stage 5「HELIXL
 | `LEGACY-ASSET-D65FB82C21C5EDBDFCE4`／`docs/design/helix/L5-detail/memory-learning-promotion.md:39-48,72-89,91-145,147-165`／`70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a` | 知識memoryとcontinuationの分離、raw log/progress/secret等の排除、findingからlearning stageへ進む旧案。 | raw evidence本文、進捗・continuationを知識・memoryと同じ意味で扱わない。読み取りや分類から永続化／学習への昇格を作らない。 | memory compaction、role分離、stage graph、サイズ上限、DB/JSONL transactionはK8の範囲外。現行ACにない旧authority・数値を持ち込まない。 |
 | `LEGACY-ASSET-256C9F8C3029B185B151`／`docs/design/helix/L6-function-design/memory-learning-promotion.md:31-60,72-148`／`e6e20a686ac0f9e019b9fd9803674c489b1e1674b7388efa20dfa3be648fb753` | 旧pure APIが候補分類、禁止内容検出、promotion stageを分けていた。 | 表示・分類・authority作用の責務を分ける形の参考にする。 | 旧API、HIL failure、promotionの認可や受入を移植しない。K8はauthority効果を生成しない。 |
 
-区分：P8 L2/L3と旧設計は歴史的根拠の意味を再導出する。既存資産を完全一致で再利用せず、現行SECURITY L3から分類記録のsemantic re-deriveを行う。旧sandbox、旧memory promotion、旧worker packet実行方式は今回置換対象でもなく、K8へ流用しない。旧資産ledgerの各sourceは`historical`または`source_snapshot_preservation`として登録されている。
+区分候補：P8 L2/L3と旧設計は歴史的根拠の意味を再導出する。既存資産を完全一致で再利用せず、現行SECURITY L3から分類記録のsemantic re-deriveを行う。旧sandbox、旧memory promotion、旧worker packet実行方式は今回置換対象でもなく、K8へ流用しない。旧資産ledgerの各sourceは`historical`または`source_snapshot_preservation`として登録されている。
 
 ### 18.3 型とAPI
 
@@ -1380,7 +1380,7 @@ LabelTransition      = { source_label: ObservedLabel,
 ### 18.4 K1/K2/K6との整合
 
 - **K1**：分類不能は`Unknown`、実作用をまだ読めない／読んでいない場合はその原因に応じた`Unknown`／`Unobserved`、実作用と検証済み遷移の矛盾は非肯定成分として両方を残す。いずれも`untrusted`を解除しない。
-- **K2**：分類keyは`operation=classify_input_label`、classifier/schema版を含む`operation_version`、`subject=input.source`、既存scopeを表す`scope`とする。`inputs`にはproject、SECURITY分類定義と分類operationに必要なcurrent declaration refなど、subjectと重複しない結果依存入力だけを含める。inputs内は共通SubjectRefをexact一致で一件にdedupする。同一identityでkind/revision/digestが異なるrefがあればK2 `key_of`へ渡す前に`Rejected(missing_key)`とし、どちらかを選ばない。分類operationにroute verifier・target owner・effect sourceを要求しない。route検証と実作用観測は別operation/keyであり、明示route、K3 permission check、effect source/effect observationとそれぞれのheadを含む。operationごとのrequired-input集合はSECURITY current declarationの対応sliceとK3 `AuthorityDecl.required_inputs`から読む。必須key field欠落は`Rejected(missing_key)`、同revisionのbytes差は`Unknown(conflict)`、revision＋digest更新後の旧`Value`は`Stale`、input identity集合変更は`Unobserved(not_run)`。
+- **K2**：分類keyは`operation=classify_input_label`、classifier/schema版を含む`operation_version`、`subject=input.source`、既存scopeを表す`scope`とする。`inputs`にはproject、SECURITY分類定義と分類operationに必要なcurrent declaration refなど、subjectと重複しない結果依存入力だけを含める。inputs内は共通SubjectRefをexact一致で一件にdedupする。同一identityでkind/revision/digestが異なるrefがあればK2 `key_of`へ渡す前に`Rejected(missing_key)`とし、どちらかを選ばない。分類operationにroute verifier・target owner・effect sourceを要求しない。route検証と実作用観測は別operation/keyであり、明示route、K3 permission check、effect source/effect observationとそれぞれのheadを含む。headはraw SegmentHeadではなく、16.2のHeadInputRefで固定prefix観測をSubjectRef化してinputsへ含める。operationごとのrequired-input集合はSECURITY current declarationの対応sliceとK3 `AuthorityDecl.required_inputs`から読む。必須key field欠落は`Rejected(missing_key)`、同revisionのbytes差は`Unknown(conflict)`、revision＋digest更新後の旧`Value`は`Stale`、input identity集合変更は`Unobserved(not_run)`。
 - **K6**：route検証receiptはK6 `ReceiptBody`に結び、実読したsource/project/revision、分類定義、route、K3 permission checkのdigestをread setへ含める。receiptの`authority_effect="none"`は維持し、K6 receiptは許可記録にも実作用sourceにもならない。実作用はK3の許可照合と別に、SECURITYが宣言したeffect sourceからそのownerのcurrent readerで観測する。
 
 ### 18.5 不変条件
