@@ -1,11 +1,11 @@
-# HELIX 共通カーネル L9結合検証設計（K1・K2・K5・K6・G8・Phase 1）
+# HELIX 共通カーネル L9結合検証設計（K1・K2・K4・K5・K6・G3・G8・Phase 1）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K5・K6、G8、Phase 1の条件と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
+本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K4・K5・K6、G3、G8、Phase 1の条件と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作で実行する場合は`scaffold/`に置き、Scaffold Bindingへ登録する。
 
@@ -16,6 +16,7 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 - **機構の写像→カーネル**：各機構の状態語を`Observed<T>`へ写す関数（L4 2.5）。
 - **カーネル内の合成と判定**：`combine`、`admit`、`disposition`、`key_of`、`lookup`、`record`。
 - **正本とprojection**（K5、L4 9章）：`append`、`current_head`、`read`、`restore`、`project`、`verify`。K2の`record`はsegmentへの追記、`lookup`の記録集合はprojectionとして通す。
+- **義務**（K4・G3、L4 13章）：`derive`、`evaluate`、`check_view`、`inherit`、`receive`。
 - **検証receipt**（K6、L4 10章）：`run`、`admit_receipt`、`reverify`、`required`。receiptはK2の記録としてK5のlogへ置き、`restore`→`lookup`を通して照会する。
 - **カーネル→消費側**：ある機構の結果を、別の機構の判定（gate、昇格、適格）が受け取る境界。
 
@@ -147,6 +148,28 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-P1-05` | P1-C4 | `Phase1Status` | 対象外の型が列挙されていればC4は肯定 | 列挙が無ければ`Unknown(missing_input)`の成分 |
 | `IV-P1-06` | 12.2：固定入力 | `Phase1Status` | 同じ固定入力（集合・`Corpus`・`Phase1Scope`・`observation_base`）からは同じ`Phase1Status` | (1)評価の時点で`prs`を検索し直して対象を増やす実装、(2)評価の時点で`partition`を計算し直す実装は不合格。(3)`Corpus`や`Phase1Scope`の新revisionでは旧結果は`Stale` |
 | `IV-P1-07` | 12.1：authority | `Phase1Status`の消費側 | — | `Positive`の`Phase1Status`から、v0.1の成立、内部デプロイ、gateの変更を出力する経路は`Rejected` |
+
+### K4・G3
+
+各項目は、固定した`ObligationSet`（unit・connection・compositeの義務、各種別のoracleを含む）、各操作の`OperationDecl`、各義務の正しいreceiptまたは人の記録を用意したうえで、一つの条件だけを変える。他の義務は肯定に保つ。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-K4-01` | K4-I1：全集合 | `check_view` | `evaluate`の出力が集合の全`obligation_id`の成分を含めば通る | (1)1義務の成分を落とした`ObligationView`（評価器の変異）→その義務が`Unknown(missing_input)`、(2)集合に無い`obligation_id`の成分を足した`ObligationView`→`Unknown(unregistered)`、(3)`obligations`が0件の集合→`set_reason`、(4)`evaluate`へ義務の集合を渡す経路は存在しない（引数に無い） |
+| `IV-K4-02` | 13.2：集合の鍵 | `restore`→`lookup` | 記録と同じ鍵の照会は`Value` | (1)由来のidentityを保った新revision（旧記録が`Value`）→`Stale`、(2)旧記録が非`Value`で(1)と同じ変更→`Unobserved(not_run, superseded)`、(3)由来の同じrevisionでbytesだけ変更→`Unknown(conflict)`、(4)規則の版の更新→`Unobserved(not_run)`、(5)規則の同じ版でbytesだけ変更→`Unknown(conflict)`、(6)由来のidentityの追加・削除→`Unobserved(not_run)` |
+| `IV-K4-03` | 13.2：検証の基底鍵 | `evaluate` | 入力とscopeの違う二つの操作の義務が、各々の`OperationDecl`の基底鍵で照会される | (1)集合・targetを保ったまま、ある操作の`OperationDecl`の依存のrevisionだけを新しくし、旧依存のreceiptだけがある→その義務の成分は`Stale`。receiptの側から入力を採る実装は不合格。(2)`decls`にその操作が無い→`Unknown(missing_input)` |
+| `IV-K4-04` | K4-I2：粒度の分離 | `evaluate` | — | unitの義務が全部肯定で、compositeの義務のreceiptが無い場合、compositeの成分は`Unobserved(not_run)`で、合成は`Positive`にならない |
+| `IV-K4-05` | K4-I3：disposition | `evaluate` | 3fieldのそろった`NotApplicable`は除外され、3fieldのそろった`Deferred`は`Unobserved(pending_receipt)` | (1)`NotApplicable`の1fieldの欠落（3通り）、(2)`Deferred`の1fieldの欠落（3通り）→いずれも`Unknown(invalid_disposition)`。(3)`Deferred`を除外して`Positive`にする実装は不合格 |
+| `IV-K4-06` | K4-I4：検証器との一致と展開 | `evaluate`→消費側 | `required_for[o]`と義務の検証器が一致すれば、義務ごとに展開される | (1)`required_for`にだけある検証器、(2)義務にだけある検証器→`Unknown(conflict)`の成分。(3)receiptの`inner`の否定と`Unknown`、(4)`inner`の`set_reason`が、いずれも`{obligation_id, verifier, 検査}`付きで消費側まで残る |
+| `IV-K4-07` | K4-I4：assurance | `evaluate`→`reverify_view`→消費側 | (1)`evaluate`の直後、決定的な検証器のreceiptは`reproduction = Unobserved(not_run)`、(2)`reverify_view`で一致→`Value`、(3)LLMの検証器→`evaluate`の直後も`reverify_view`の後も`Unknown(unsupported)`、（4）`reverify_view`で不一致→`Unknown(conflict)`が、いずれも`{obligation_id, verifier}`ごとに`assurance`へ入り、`issuer_authenticity`は`Unknown(unsupported)` | `assurance`を落として`combined`だけを返す実装、(1)〜(3)を同じに扱う実装は不合格 |
+| `IV-K4-08` | K4-I5：継承 | `inherit` | 旧revisionで`Positive`だった義務は継承せず、新しいreceiptから評価する | (1)旧で`Unobserved`の義務は`inherited`に結ばれ、新しいreceiptが無ければ`Unobserved(not_run)`、(2)旧の`Positive`を新revisionの肯定に流用する実装は不合格、(3)新しい集合に無い旧の未完の義務は`inherited`と`Handoff.unfinished`に残る |
+| `IV-K4-09` | K4-I5：受渡し | `receive` | `Handoff.unfinished`が`from_view`から計算した未完の全`obligation_id`と一致すれば通る | (1)新しい集合にある未完の義務を1件除いた`Handoff`、(2)新しい集合に無い旧の未完の義務を1件除いた`Handoff`→いずれもその義務が`Unknown(missing_input)`。(3)未完でない義務を足した`Handoff`→`Unknown(unregistered)`。(4)`unfinished`はそのままで、`inherited`の1件だけを削除→その義務が`Unknown(missing_input)`、(5)`unfinished`はそのままで、`inherited`の1件だけを`from_view`と違う記録へ置換→`Unknown(conflict)`。(4)(5)は、新しい集合にある義務と、新しい集合に無い旧の未完義務の各々で行う |
+| `IV-K4-10` | K4-I6：unknownは飛ばさない | `evaluate` | — | 1義務の成分が`Unknown`のとき、それを「対象外」として除外し`Positive`にする実装は不合格 |
+| `IV-G3-01` | G3-I1：種別の固定 | `evaluate` | — | 評価の時点で義務の`oracle.kind`を変える経路は無い。種別を変えた集合は新しいrevisionで、旧結果は`Stale` |
+| `IV-G3-02` | G3-I2：機械判定 | `evaluate` | 決定的な検証器のreceiptで`Mechanical`の義務を満たす | 決定的でない検証器のreceiptで満たそうとする→`Unknown(unsupported)` |
+| `IV-G3-03` | G3-I3：LLMの判断 | `evaluate`→消費側 | 決定的でない検証器のreceiptで`LlmJudgment`の義務を満たし、`assurance`に`reproduction = Unknown(unsupported)`が残る | LLMの判断が`Unknown`を返した場合、その成分は肯定にならない |
+| `IV-G3-04` | G3-I4：人のIF | `evaluate` | 受入を求める義務（`requires_positive`）で、同じtarget・revision・scope・判断種別の`accepted`の`HumanDecision`があれば肯定 | 一条件ずつ変える：(1)記録が無い、(2)別のtargetのidentity、(3)別のscope、(4)別の判断種別、(5)`pending`→いずれも`Unobserved(pending_receipt)`。(6)同じtargetの旧revision→`Stale`、(7)同じrevisionでdigestが違う→`Unknown(conflict)`、(8)`rejected`→否定。(9)記録だけを求める義務では`rejected`も肯定。ただし、その肯定から受入の状態を出力する経路は`Rejected`。(10)機械やLLMの`Positive`で`HumanDecision`を埋める実装は不合格、(11)由来のL3が人の記録を求めていない義務に`HumanInterface`を付けた集合は`derive`で拒否 |
+| `IV-G3-05` | G3-I5：割合は情報 | 消費側 | 種別ごとの義務の数を数えられる | その数から合否・承認を出力する経路は`Rejected` |
 
 ## 3. 判定と戻し先
 
