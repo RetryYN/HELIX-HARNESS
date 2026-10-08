@@ -23,14 +23,14 @@ version_target: 1.0
 |---|---|---|---|---|
 | `CASE-L8-LCI-01` | `resolve_target` | base/head commitとtreeが存在しclean | 必須head refを入力から欠落させる | `Rejected(missing_key)`、CI未実行 |
 | `CASE-L8-LCI-02` | `check_clean_checkout` | index/worktree/untracked変更なし | staged fileを一つ追加 | `Stale`、check未開始 |
-| `CASE-L8-LCI-03` | target比較 | 開始/終了時のHEAD/treeが一致 | 実行中にHEADを切替 | `Stale`、既実行のstepを保持 |
+| `CASE-L8-LCI-03` | target比較 | 開始/終了時のHEAD/treeが一致 | 未開始stepがある時点でHEADを切替 | 未開始stepをstale行として5行receiptに保持、既実行evidenceを残しaggregate `stale` |
 | `CASE-L8-LCI-04` | `compile_plan` | 固定5 step IDとargvが指定順にある | `LC-DESIGN-001`を削除 | `Unknown(missing_input)`、success不可 |
 | `CASE-L8-LCI-05` | `run_local_ci` | 5 fixed runnerすべてexit 0 | SCF validateをexit 1にする | SCF `fail`、他4 stepも実行、aggregate `fail` |
 | `CASE-L8-LCI-06` | 固定checker argv境界 | fixed configから作ったargv list、`shell=False`、repo cwd | 呼出側のchecker argv一項へ`; touch ...`相当を追加する | spawn前に`Rejected(invalid_input)`、shellもcheckerも起動しない |
 | `CASE-L8-LCI-07` | exit写像 | checkerがexit 0 | exit 2を返す | step `fail`、本文でなくstdout/stderr SHAを保存 |
 | `CASE-L8-LCI-08` | supervisor外run中止 | 2 step完了、3つ目processは中止要求後に停止・reapできる状態で、後続stepは未開始 | run全体へのcancel要求だけを加える | 起動中process停止/reap確認後、未開始stepを`state=interrupted, reason=cancelled`で残し後続を起動しない。aggregate successなし |
 | `CASE-L8-LCI-09` | current checker ref | scfctl/govcheck refがtree bytesと一致 | govcheck bytesを変更しdigest不一致にする | `Stale`、govcheckを起動しない |
-| `CASE-L8-LCI-10` | 実行前後のchecker束縛 | 開始/終了のchecker digestが一致 | 実行後digestだけを変える | `Stale` |
+| `CASE-L8-LCI-10` | 実行前後のchecker束縛 | 開始/終了のchecker digestが一致 | 最終step後にchecker digestだけを変える | 外側`Stale`、既実行evidenceは診断artifactへ保持、LocalCiReceiptを発行せずaggregateだけを上書きしない |
 | `CASE-L8-LCI-11` | `SourceSnapshotReader` | treeから宣言blobを読む | pathをsymlinkへ置換 | `Unknown(conflict)`、link先を辿らない |
 | `CASE-L8-LCI-12` | 固定corpus | 現行main 4文書と3 pair PR統合後の今回6文書が登録済み | current doc pathを一つ欠落 | `Unknown(missing_input)`、全量検査を主張しない。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-13` | definition parser | IDを定義domainに一度、参照domainに別記 | 参照domainだけにIDを置く | `Unknown(missing_input)`、定義を作らない。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
@@ -68,6 +68,13 @@ version_target: 1.0
 | `CASE-L8-LCI-59` | host-side Git reader command boundary | global/system config無効、fsmonitor/hook無効、external diff/textconv無効のfixed argvとallowlisted envでclean/source probeを行う | fixed argvから`-c core.fsmonitor=false`を一つ除く | `Rejected(invalid_input)` before Git probe。任意fsmonitor commandを起動しない |
 | `CASE-L8-LCI-60` | manifest/result整合 | receiptの`design_manifest_digest`が指すbytesの独立manifest検査が`structure_complete=true`で、`LC-DESIGN-001` execution rowはsuccess | receipt bodyを変えず、独立検査結果だけを`structure_complete=false`にする | 架空のreceipt fieldを要求せず、manifest digestで解決したbytesと検査結果を照合して`Rejected(invalid_input)` before aggregate fold。`Unknown`/aggregate failへ写さない |
 | `CASE-L8-LCI-61` | formal target descriptor revision | 保存済みValueのtarget descriptor revision/digestがcurrent targetと完全一致 | head commit/treeは維持しbase_commitだけを別の存在するbaseへ変更する。merge_baseとcanonical descriptor revision/digestは変更後baseから再計算 | 既存K2 lookupの`Stale`。正当なbase変更を同revision異digestの`Unknown(conflict)`にしない |
+| `CASE-L8-LCI-62` | bullet definition selector | 宣言range内に`- **K1-I1 label**`、range外と本文に参照tokenがある | range内の定義行だけを削除 | `Unknown(missing_input)`、本文やrange外から定義を補わずchecker/execution/receipt未作成 |
+| `CASE-L8-LCI-63` | edge identity | 各edge_idは一意でdispositionから同source edgeへ解決 | 一つのedge_idだけを既存IDへ重複させる | `Unknown(conflict)`、構造preflight不成立、checker/execution/receipt未作成 |
+| `CASE-L8-LCI-64` | disposition edge reference | edge_idsは実在する同source edgeを指す | 一つのedge_id参照だけを未登録IDへ変更 | `Unknown(missing_input)`、構造preflight不成立、checker/execution/receipt未作成 |
+| `CASE-L8-LCI-65` | outcome locator | verifier path/range/IDと非空期待値columnが一意に解決 | outcome_columnだけをtable列数の外へ変更 | `Unknown(missing_input)`、構造preflight不成立、checker/execution/receipt未作成。期待値を本文から推測しない |
+| `CASE-L8-LCI-66` | literal expansion | 略記literalにexact ID列の固定対応がある | そのliteralの対応表entryだけを削除 | `Unknown(missing_input)`、regexで補完せずchecker/execution/receipt未作成 |
+| `CASE-L8-LCI-67` | child bytecode環境 | fixed argv `python3 -B`に加え親子envに`PYTHONDONTWRITEBYTECODE=1`がある | 固定envからその一項だけを除く | spawn前`Rejected(invalid_input)`、親checker/childとも起動しない。envで`-B`を代替しない |
+| `CASE-L8-LCI-68` | section locator | exact_headingが既存見出し全文へ一意に戻り、section_locatorとして通常IDと分離される | 文書側の見出し一つだけを変更しmanifest literalを維持 | `Unknown(missing_input)`、番号やcode commentから合成IDを補わずchecker/execution/receipt未作成 |
 
 ## 3. GitHubのmerge単位fixture
 
