@@ -75,6 +75,11 @@ version_target: 1.0
 | `CASE-L8-LCI-66` | literal expansion | 略記literalにexact ID列の固定対応がある | そのliteralの対応表entryだけを削除 | `Unknown(missing_input)`、regexで補完せずchecker/execution/receipt未作成 |
 | `CASE-L8-LCI-67` | child bytecode環境 | fixed argv `python3 -B`に加え親子envに`PYTHONDONTWRITEBYTECODE=1`がある | 固定envからその一項だけを除く | spawn前`Rejected(invalid_input)`、親checker/childとも起動しない。envで`-B`を代替しない |
 | `CASE-L8-LCI-68` | section locator | exact_headingが既存見出し全文へ一意に戻り、section_locatorとして通常IDと分離される | 文書側の見出し一つだけを変更しmanifest literalを維持 | `Unknown(missing_input)`、番号やcode commentから合成IDを補わずchecker/execution/receipt未作成 |
+| `CASE-L8-LCI-69` | `heading_id` selector | range内の一意な見出しliteralとmanifestのexact `literal_expansions` entryが既存ID一件へ対応する。fenced code内の同文は無視する | 同じheading literalをrange内の通常Markdown headingとして一行だけ複製する | `Unknown(conflict)`、先頭/末尾の一方を選ばずchecker/execution/receipt未作成 |
+| `CASE-L8-LCI-70` | `heading_id` missing literal | manifestで要求したheading literalがrange内に一度だけ存在し、exact expansion entryもある | heading literalの行だけを削除する | `Unknown(missing_input)`、fenced codeやrange外から補わずchecker/execution/receipt未作成 |
+| `CASE-L8-LCI-71` | `heading_id` undeclared mapping | range内にheadingがあり、必要な固定IDと他の構造定義は揃う | そのheading literalの`literal_expansions` entryだけをmanifestから除く | `Unknown(missing_input)`、heading本文からIDを推測せずchecker/execution/receipt未作成 |
+| `CASE-L8-LCI-72` | `heading_id` empty expansion | manifest entryはあり、`ids`に必要な既存IDが一件ある | `ids`だけを空配列にする | `Unknown(missing_input)`、空集合を充足扱いせずchecker/execution/receipt未作成 |
+| `CASE-L8-LCI-73` | `heading_id` duplicate expansion | 各literalが一意で、展開先の既存IDも相互に異なる | 一つの既存IDだけを別entryの`ids`にも追加する | `Unknown(conflict)`、重複定義を一件へ縮約せずchecker/execution/receipt未作成 |
 
 ## 3. GitHubのmerge単位fixture
 
