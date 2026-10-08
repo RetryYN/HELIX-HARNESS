@@ -1,11 +1,11 @@
-# HELIX 共通カーネル L9結合検証設計（K1・K2・K5）
+# HELIX 共通カーネル L9結合検証設計（K1・K2・K5・K6）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K5と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
+本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K5・K6と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作で実行する場合は`scaffold/`に置き、Scaffold Bindingへ登録する。
 
@@ -16,6 +16,7 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 - **機構の写像→カーネル**：各機構の状態語を`Observed<T>`へ写す関数（L4 2.5）。
 - **カーネル内の合成と判定**：`combine`、`admit`、`disposition`、`key_of`、`lookup`、`record`。
 - **正本とprojection**（K5、L4 9章）：`append`、`current_head`、`read`、`restore`、`project`、`verify`。K2の`record`はsegmentへの追記、`lookup`の記録集合はprojectionとして通す。
+- **検証receipt**（K6、L4 10章）：`run`、`admit_receipt`、`reverify`、`required`。receiptはK2の記録としてK5のlogへ置き、`restore`→`lookup`を通して照会する。
 - **カーネル→消費側**：ある機構の結果を、別の機構の判定（gate、昇格、適格）が受け取る境界。
 
 ## 2. 検証項目
@@ -96,6 +97,28 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-K5-18` | K5-I12：projectionの鍵 | `lookup` | 同じ`projector`・`scope`・`input_heads`の照会は保存したprojectionを返す | (1)segmentへの1行の追記は`Stale`、(2)projectorの`version`の更新は`Unobserved(not_run)`、(3)同じ`version`で`projector.digest`だけを変えた照会は`Unknown(conflict)`、(4)影響を受けないsegmentだけを入力とするprojectionは`Value`のまま。(3)を(2)と同じに扱う実装は不合格 |
 | `IV-K5-19` | K5-I13：checkpoint | `verify` | `input_heads`がcheckpointの前方への延長で、`state_digest`が再計算と一致し、差分の結果が全量と一致すれば使える | (1)checkpointより短いhead、(2)checkpointの`seq`の行の`entry_digest`が違うhead、(3)`state`だけを改変し`state_digest`を据え置いたもの、(4)差分の結果が全量と違うもの、は各々`Unknown(conflict)`で使われない |
 | `IV-K5-20` | 9.5：`verify` | `verify` | 改変の無いprojectionは`Value` | (1)`output`だけを改変（`output_digest`は据置き）、(2)`output_digest`だけを改変、(3)`output`と`output_digest`を互いに整合させて改変（再構築とは違う）、は各々`Unknown(conflict)`。(1)と(2)は保存値の再計算で、(3)は再構築との比較で検出される |
+
+### K6
+
+各項目は、集合に登録した検証器と、その正しいreceiptを用意したうえで、一つの条件だけを変える。digestを変える変異では、変えた条件以外の検査が成り立つように、関係するdigest（本体の`FixedRef`、記録の`result_digest`、logの連鎖）を再計算する。`required`の項目は、必要な検証器をA・Bの二つとする。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-K6-01` | 10.3：receipt鍵の照会 | `restore`→`lookup` | 記録と同じreceipt鍵の照会は`Value` | (1)対象のidentityを保った新revision（旧記録は`Value`）は`Stale`、(2)対象の同じrevisionでdigestだけ変更は`Unknown(conflict)`、(3)集合の新revisionは`Stale`、(4)集合の同じrevisionでbytesだけ変更は`Unknown(conflict)`、(5)同じ版で検証器のbytesだけ変更は`Unknown(conflict)`、(6)検証器の版の更新は`Unobserved(not_run)`、(7)入力のidentityの追加・削除は`Unobserved(not_run)` |
+| `IV-K6-02` | K6-I1：発行者 | `run` | 基底鍵だけを渡すと、検証器が`ReceiptBody`を作る | 結果、exit、出力digestのいずれか一つを呼出し側から渡す経路（3fixture）は、いずれも`Rejected` |
+| `IV-K6-03` | K6-I2：集合への所属 | `admit_receipt` | 集合の`ref`と全fieldで一致する検証器のreceiptは`Value` | 集合に無い`identity`、`version`違い、`digest`違い（3fixture。鍵を再計算して整合させる）は、いずれも`Unknown(unregistered)` |
+| `IV-K6-04` | K6-I2：集合から導く項目 | `admit_receipt`→`required` | — | (1)決定的でない検証器のreceiptに`deterministic: true`の欄を足し、派生digestを再計算しても、`reverifiable`は`false`のまま。(2)receiptの側で検査の写像を肯定へ替えても、集合の`checks`の写像が使われる |
+| `IV-K6-05` | K6-I3：鍵と本体 | `admit_receipt` | — | (1)照会した鍵と違う記録の鍵のreceipt（旧対象revisionの正常なreceipt）を直接渡すと`Unknown(conflict)`、(2)別の入力のreceiptの本体を、`FixedRef`のdigestを合わせて差し替えたものは`Unknown(conflict)`、(3)本体の`verifier_set`だけを鍵と違えたものは`Unknown(conflict)` |
+| `IV-K6-06` | K6-I4：readの完全性 | `admit_receipt` | `read`が期待集合と一致し、digestも一致すれば通る | (1)`subject`の要素だけを削除、(2)oracleの入力の要素だけを削除、(3)`read`を空、（各々派生digestを再計算）は`Unknown(missing_input)`。(4)期待集合に無いidentityの追加は`Unknown(conflict)`。(5)一つのdigestだけを鍵と違えたものは`Unknown(conflict)` |
+| `IV-K6-07` | K6-I5：実体の再計算 | `admit_receipt` | `outputs`のbytesが記録したdigestと一致すれば通る | (1)出力のbytesだけを改変（digestは据置き）は`Unknown(conflict)`、(2)出力が無いものは`Unknown(unreadable)` |
+| `IV-K6-08` | K6-I6：登録と評価 | `admit_receipt` | 登録と評価が一致し全検査が肯定なら、再合成した`inner`は`Positive` | (1)記録した`inner`の`verdict`だけを`Positive`に書き換えたもの（本体のdigestは再計算）は`Unknown(conflict)`。(2)未登録の検査の結果を含むものは、再合成で`Unknown(unregistered)`の成分になる |
+| `IV-K6-09` | K6-I7：内部から外側への合成 | `admit_receipt`→`required`→`admit` | Aの全検査が肯定、Bの全検査が肯定なら、外側は`Positive`で`Admitted`、成分はA・Bの全検査 | (1)Aの1検査が否定・1検査が`Unknown`なら、外側は`Negative`で、`reasons`にAのその2成分が検証器と検査の識別付きで入る。(2)Aの1検査が未評価なら、外側は`Undetermined`で`Unobserved(not_run)`の成分を持つ（receiptがあることを肯定にしない）。(3)Aの`registered`が0件なら、外側に`Unknown(missing_input)`の成分。(4)Aの全検査が成立した`NotApplicable`なら、外側に`Unknown(missing_input)`の成分 |
+| `IV-K6-10` | K6-I7：照会の非Value | `required` | — | (1)Aのreceiptが無いと、Aの成分は`Unobserved(not_run)`。(2)Aは旧対象revisionのreceiptだけなら`Stale`。(3)Aに完全一致のreceiptと、対象の同じrevisionでdigestの違う記録があれば`Unknown(conflict)`。(4)Aに同じ鍵で異なるreceiptが2件あれば`Unknown(conflict)`。(5)scopeのsegmentが`input_heads`から欠ければ、A・Bの成分は`Unknown(missing_input)`。(6)AとBの版が違っても、各々の鍵で照会される。(7)必要でない検証器Cのreceiptで、欠けたAを埋める実装は不合格 |
+| `IV-K6-11` | K6-I8：再現の確認 | `reverify` | 決定的な検証器のreceiptは、再実行の`inner`のdigestが一致して`reproduction = Value` | (1)1検査の結果を書き換え、全digestを整合させた偽のreceiptは`reproduction = Unknown(conflict)`。(2)決定的でない検証器は`reproduction = Unknown(unsupported)` |
+| `IV-K6-12` | 10.5：再現できても実行は証明されない | `admit_receipt`→`reverify`→消費側 | — | (1)実行していないのに、再現と同じ`inner`と整合したdigestを持つreceipt、(2)`execution`の欄だけを整合したdigestで書き換えたreceiptは、どちらも`reproduction = Value`になりうる。消費側は`issuer_authenticity = Unknown(unsupported)`を保持し、このreceiptから「過去に実行された」「その時刻に実行された」を出力する実装は不合格 |
+| `IV-K6-13` | K6-I9：訂正の禁止 | `append` | — | receiptの記録を対象にする`Correction`は`Rejected`（K5-I8） |
+| `IV-K6-14` | 10.3：時刻を使わない | `restore`→`lookup` | — | `started`・`completed`だけが違う2つの旧revisionのreceiptがあるとき、`prior`の選択はK5-I7の順序のまま。時刻で選ぶ実装は不合格 |
+| `IV-K6-15` | K6-I10：authorityを作らない・保証の区別 | `required`の消費側 | — | (1)`Positive`の`RequiredResult`から、承認、merge可、受入、工程完了を出力する経路は`Rejected`。(2)`reproduction`が`Unknown(unsupported)`のA（決定的でない検証器）の成分を、`reproduction = Value`の成分と同じに扱う実装は不合格 |
 
 ## 3. 判定と戻し先
 
