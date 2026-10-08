@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `63936d9facfb201a4d268877d643d35d4082a7493074e40cf47fd8ab77214b14`である。
+固定入力は対のL5本文SHA-256 `b146588e10b23519ca9d903e40cd7ab978c7de570b62ae97ebf73837c68bd3c1`である。
 
 ## 1. Fixture規則
 
@@ -92,6 +92,8 @@ version_target: 1.0
 | `CASE-L8-LCI-81` | bwrap executable bytes | 提供環境binary bytesがtrusted profile digestと一致する | bytes digestだけをpinと不一致にする | `denied`、checker未起動、install/host/別binary fallbackなし |
 | `CASE-L8-LCI-82` | bwrap version literal | `--version`のliteral文字列がtrusted profile labelと一致する | version literalだけをpinと不一致にする | `denied`、checker未起動、semantic-version推論なし |
 | `CASE-L8-LCI-83` | bwrap binary availability | trusted host-local settingからprofile pinned binaryを解決できる | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし |
+| `CASE-L8-LCI-84` | 必須parent AC applicability記録 | `parent_ac_coverage`にOS-020-01/03が各一件あり、各state/reasonがL4 §1と一致 | `AC-OS-020-03` rowだけをlistから削除する | `Unknown(missing_input)`、LC-DESIGN-001非肯定、execution/receiptなし |
+| `CASE-L8-LCI-85` | parent ACの非昇格 | 必須2行のID/state/reasonがL4 §1と一致 | `AC-OS-020-01.state`だけを`pass`へ変える | `Rejected(invalid_input)`、parent ACをpassにせずexecution/receiptなし |
 
 ## 3. GitHubのmerge単位fixture
 

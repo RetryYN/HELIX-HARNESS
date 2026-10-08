@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `5f690c5ec94b2094e3cb6c430510fb1a30c692469ece68fb55eefd719a638211`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `7a62d2d7171e90e40322209f2ea5eb49096f7a33905ccfe8dcd2c5c86e116492`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -34,7 +34,7 @@ version_target: 1.0
 | `F-LCI-06 run_local_ci` | `UT-LCI-29` | `UT-LCI-12`, `UT-LCI-13`, `UT-LCI-22`, `UT-LCI-39`, `UT-LCI-49`, `UT-LCI-53`, `UT-LCI-54`, `UT-LCI-57`〜`UT-LCI-60`, `UT-LCI-62`〜`UT-LCI-64` | 5 step successとsupervisor生成の外部receipt `Observed<LocalCiReceipt>` | 途中fail継続 / target drift / required skip / receipt境界 / cancel reap失敗 / manifest preflight / target ref境界 / manifest schema不正 |
 | `F-LCI-07 verify_receipt` | `UT-LCI-30` | `UT-LCI-14`, `UT-LCI-15`, `UT-LCI-16`, `UT-LCI-38`, `UT-LCI-54`, `UT-LCI-55`, `UT-LCI-80` | current refsと一致するcanonical receiptの`Observed<ReceiptCheck>` | duplicate JSON keys / target stale / checker digest conflict / plan-execution混同 / manifest-result不整合 / base変更 / provider pin変更後の旧config digest |
 | `F-LCI-08 run_merge_unit_verifier` | `UT-LCI-31`, `UT-LCI-76` | `UT-LCI-17`, `UT-LCI-18`, `UT-LCI-37`, `UT-LCI-77`〜`UT-LCI-81` | exact dispatchと同一selected diff照合の`Observed<ProviderResult>` | dispatch欠落 / write permission / target不一致 / identity未採取・不一致 / 旧config digest / state parity不一致 |
-| `F-LCI-09a load_design_manifest` | `UT-LCI-32` | `UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75` | 固定corpus path/role/source-kindと全manifest fieldが揃うmanifest | required source欠落 / run-level structural preflight / manifest schema不正 |
+| `F-LCI-09a load_design_manifest` | `UT-LCI-32` | `UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-87`〜`UT-LCI-88` | 固定corpus path/role/source-kindと全manifest fieldが揃うmanifest | required source/parent AC欠落 / run-level structural preflight / manifest schema不正 |
 | `F-LCI-09b resolve_id_graph` | `UT-LCI-33` | `UT-LCI-23`, `UT-LCI-36`, `UT-LCI-58`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75` | 一意なdefinitionと解決済み参照のgraph | duplicate definition / unresolved reference / run-level structural conflict |
 | `F-LCI-09c verify_coverage_edges` | `UT-LCI-34` | `UT-LCI-20`, `UT-LCI-46`, `UT-LCI-47`, `UT-LCI-66`〜`UT-LCI-68` | mapped/partial sourceのedgeと理由付きnot_exercised sourceの空edge listを含むmixed manifest | required edge/disposition欠落 / destination曖昧 |
 | `F-LCI-09d verify_legacy_pins` | `UT-LCI-35` | `UT-LCI-21` | asset ID/path/full SHAとspan SHAを別々に計算 | span bytesとdigest不一致 |
@@ -43,7 +43,7 @@ version_target: 1.0
 
 ### `F-LCI-09a` — manifest読込oracle
 
-`UT-LCI-32`を正常baselineとし、`UT-LCI-19`、`UT-LCI-57`、`UT-LCI-63`〜`UT-LCI-64`、`UT-LCI-65`、`UT-LCI-69`〜`UT-LCI-75`でmanifestの必須source、run-level preflight、schema、unsupported dispositionを検査する。
+`UT-LCI-32`を正常baselineとし、`UT-LCI-19`、`UT-LCI-57`、`UT-LCI-63`〜`UT-LCI-64`、`UT-LCI-65`、`UT-LCI-69`〜`UT-LCI-75`、`UT-LCI-87`〜`UT-LCI-88`でmanifestの必須source、parent AC applicability記録、run-level preflight、schema、unsupported dispositionを検査する。親ACはL5 `parent_ac_coverage`の専用listだけで検査し、coverage edge/disposition graphには混ぜない。
 
 ### `F-LCI-09b` — ID graph解決oracle
 
@@ -151,5 +151,7 @@ version_target: 1.0
 | `UT-LCI-84` | 実`bwrap` bytes SHAがtrusted profile pinと一致 | bytes digestだけをpinと異ならせる | `denied`、checker未起動、install/host/別binary fallbackなし |
 | `UT-LCI-85` | 実`bwrap --version` literalがtrusted profile labelと一致 | version literalだけをpinと異ならせる | `denied`、checker未起動、semantic version比較なし |
 | `UT-LCI-86` | trusted host-local settingがprofile pinned `bwrap`を解決する | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし |
+| `UT-LCI-87` | manifestの`parent_ac_coverage`にOS-020-01/03が一件ずつあり、state/reasonはL4 §1と一致 | `AC-OS-020-03` rowだけを削除 | F09aは`Unknown(missing_input)`、LC-DESIGN-001非肯定、execution/receiptなし |
+| `UT-LCI-88` | 必須2 parent AC rowのID/state/reasonはL4 §1と一致 | `AC-OS-020-01.state`だけを`pass`へ変更 | F09aは`Rejected(invalid_input)`、OS-020 AC passを作らずexecution/receiptなし |
 
 result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子でありtestの実行証拠ではない。test passからL8/L9/L10承認やmerge/release許可を作らない。
