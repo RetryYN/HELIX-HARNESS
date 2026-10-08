@@ -23,7 +23,7 @@ python3 -B scaffold/l3l10-checks/l3l10check.py \
   --head <PRのcontent HEAD> --base <PRのbase> --fixed-rev <固定L2／L11のrevision> \
   --mech helix-labo --parent 060 [--parent 061 ...] \
   [--pin docs/governance/audits/.../xxx-pin.json] [--pin-rev <revisionを持たないpinの既定revision>] \
-  [--online] > receipt.json   # receiptは標準出力、要約は標準エラー
+  [--online]   # receiptは標準出力、要約は標準エラー。本検査器はfileへ書かない
 
 # 自己検査（回帰コーパスと合成case）。--recordで scaffold/evidence/ に結果を書く
 python3 -B scaffold/l3l10-checks/selftest.py [--record]
@@ -31,7 +31,7 @@ python3 -B scaffold/l3l10-checks/selftest.py [--record]
 
 終了codeは、pass 0、violation 1、入力不正 2、unknown 3である。`--online`を付けた時だけ`gh api repos/<repo>/issues/comments/<id>`を
 読み取りで呼ぶ（既定はoffline）。gitは`cat-file`、`ls-tree`、`diff`、`rev-parse`の読み取りだけを使う。
-**検査器はfileへ何も書かない。** receipt JSONは標準出力へ、要約は標準エラーへ出す。保存は呼び出し側のredirectで行う。
+**検査器はfileへ何も書かない。** receipt JSONは標準出力へ、要約は標準エラーへ出す。receiptを保存する場合は、呼び出し側が自分の権限と書込み方針の範囲で出力先を選ぶ。本bindingの許可操作は標準出力への出力までであり、保存先（`scaffold/`外を含む）への書込みを本bindingの操作に含めない。
 書き込むのは、selftestの`--record`が書く固定path`scaffold/evidence/l3l10-checks-selftest-2026-10-08.json`だけである。
 
 当初は`--receipt`で出力先を受け取り、`scaffold/`配下へ制限していた。#2700のreview01〜04で、範囲外のpath、ハードリンク、

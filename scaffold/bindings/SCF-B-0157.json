@@ -53,7 +53,7 @@
  },
  "operations": {
   "allowed": [
-   "python3 -B scaffold/l3l10-checks/l3l10check.py --head <rev> --base <rev> --fixed-rev <rev> --mech <dir> --parent <NNN> [--pin <path>] > <receipt.json>（検査器はfileへ書かない。receiptは標準出力）",
+   "python3 -B scaffold/l3l10-checks/l3l10check.py --head <rev> --base <rev> --fixed-rev <rev> --mech <dir> --parent <NNN> [--pin <path>]（receiptは標準出力。検査器はfileへ書かず、保存先への書込みは本bindingの操作に含めない）",
    "python3 -B scaffold/l3l10-checks/l3l10check.py --online（gh apiのcomment body読み取りだけ）",
    "python3 -B scaffold/l3l10-checks/selftest.py [--record]",
    "git fetch origin pull/<N>/head（回帰コーパスのgit object取得）",
