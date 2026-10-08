@@ -195,7 +195,7 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 | リポジトリ構成の規則 | 共通カーネルL4 | 対のL9参照 |
 |---|---|---|
 | RL-C1〜C4（宣言、`VersionRegistered`、識別・構成項目、宣言pathとの照合） | §15.4 | 共通カーネルL9 IV-LDG-01〜02 |
-| RL-R1〜R4（ReleaseManifest、`ReleaseEstablished`、`GenerationStaged`） | §15.2 | 共通カーネルL9 IV-K7-03／配置L9 IV-RL-11〜14、41〜44 |
+| RL-R1〜R4（ReleaseManifest、`ReleaseEstablished`、`GenerationStaged`） | §15.2 | 共通カーネルL9 IV-K7-03、14〜15／配置L9 IV-RL-11〜14、41〜44 |
 | RL-R5（成立・現行世代・実行観測の分離） | §15.6 | 共通カーネルL9 IV-LDG-03 |
 | RL-P1〜P9（`LogDecl`、`FixedRef`、保存先、segment配置） | §§9.3、15.5 | 共通カーネルL9 IV-LDG-04／配置L9 IV-RL-24〜32 |
 | RL-P3（canonical JSON bytesとLFの一致） | §9.4 K5-I3(h) | 配置L9 IV-RL-26、38／共通カーネルL9 IV-K5-24〜26 |

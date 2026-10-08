@@ -38,7 +38,7 @@ base: main `66abf6bf158baebc6bfceb5ccf693d425aae41a9`
 | `IV-RL-11` | RL-R1 | manifestの再読でdigestが一致する | 同じ`release_id`で`artifacts`の1件を変えたmanifestを置く | `Unknown(conflict)` |
 | `IV-RL-12` | RL-R2 | `eligibility.combined = Positive`で`ReleaseEstablished`を追記できる | 必要な検証器のreceiptを一つ除く | `Rejected`（追記されない） |
 | `IV-RL-13` | RL-R3 | 起動前の再計算で成果物のdigestが一致する | 成果物の1byteを変える | `Unknown(conflict)` |
-| `IV-RL-14` | RL-R4 | `ReleaseEstablished`済みのmanifestを指す`GenerationStaged`は追記できる | `ReleaseEstablished`の無いmanifestを指す | `Rejected(not_eligible)` |
+| `IV-RL-14` | RL-R4 | OSのpointer_writerによるCK `stage_generation`は`ReleaseEstablished`済みmanifestと一致する世代を追記できる | `ReleaseEstablished`の無いmanifestを指す | `Rejected(not_eligible)` |
 | `IV-RL-15` | RL-R5 | `PointerMoved`と`RuntimeObserved(healthy)`があれば三つのfieldがそれぞれ値を持つ | `RuntimeObserved`だけを除く | 実行のfieldは`Unobserved(not_run)`（現行の世代のfieldは変わらない） |
 | `IV-RL-16` | RL-R5 | 同上 | 観測を`unhealthy`にする | `Appended(RollbackRequired)`で、pointerは動かない |
 | `IV-RL-17` | RL-R6 | rollbackの前後で案件state・recordのdigestが同じで、成果物は移動先のmanifestのものになる | 移動先の`data format`を現在の案件dataと非互換と宣言する | `Rejected(not_eligible)` |
