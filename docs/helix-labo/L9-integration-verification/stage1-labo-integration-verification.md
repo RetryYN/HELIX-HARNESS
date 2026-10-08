@@ -2,11 +2,11 @@
 
 ## 1. 検証範囲と固定入力
 
-本書は [Stage 1基本設計](../L4-basic-design/stage1-labo.md) の対となる未実行のL9検証設計である。L4の本文SHA-256は `b5a0f984cf317a1aea7c6511c5d4ea1036df3e7dc1b9b05273a1ced6ea3d0062`。固定L3/L10対象は承認revision `8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7` の二親 `LABO-001` / `LABO-011` に限定する。L3機能ACは合計4件、L10機能caseは合計28件であり、全件を§3に個別定義する。実行済み・pass・製品成果を主張しない。
+本書は [Stage 1基本設計](../L4-basic-design/stage1-labo.md) の対となる未実行のL9検証設計である。L4の本文SHA-256は `61db9de063e65f25dc3ca5471e3b2d59072627f77fe2c5ad6bb893cbca347566`。固定L3/L10対象は承認revision `8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7` の二親 `LABO-001` / `LABO-011` に限定する。L3機能ACは合計4件、L10機能caseは合計28件であり、全件を§3に個別定義する。実行済み・pass・製品成果を主張しない。
 
 承認された6本文pinと権限連鎖は[L4 §1](../L4-basic-design/stage1-labo.md#1-範囲と正本)を参照する。六文書のSHAは順に、L3業務 `af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0`、L3機能 `6a2909c6163350025eadaa8fe028b9ab50376ebb07b6f2bd7666c17540261fb8`、L3 NFR `95faea76e433f4144bf8b255b6b83a602161084b625a0bc095bda39d4bd416e8`、L10業務 `603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37`、L10機能 `79a5e56ca68681136355c1f2d62bff8e9b8bb0b119565edeb4c75a71fad6e8d8`、L10 NFR `97545f30c540e63141e8cb53e27969b9f3d094d12580be03c99836086b7bc4eb`。
 
-対の共通kernelは [L4 common-kernel](../../helix-harness/L4-basic-design/common-kernel.md) SHA-256 `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` と [L9 common-kernel integration verification](../../helix-harness/L9-integration-verification/common-kernel-integration-verification.md) SHA-256 `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`。共通型・鍵・authorityの挙動は各IV-K契約を使い、このpairで再定義しない。
+対の共通kernelは [L4 common-kernel](../../helix-harness/L4-basic-design/common-kernel.md) SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` と [L9 common-kernel integration verification](../../helix-harness/L9-integration-verification/common-kernel-integration-verification.md) SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`。共通型・鍵・authorityの挙動は各IV-K契約を使い、このpairで再定義しない。
 
 ## 2. 共有入力、記録、判定
 
