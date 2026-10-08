@@ -113,6 +113,18 @@ class DriverTests(unittest.TestCase):
                 self.assertEqual((raised.exception.classification, raised.exception.reason),
                                  ("Rejected", "invalid_input"))
 
+    def test_malformed_supervisor_execution_is_rejected_without_followup_launch(self):
+        for row in (None, [], {}, {"check_id": CHECK_IDS[0], "state": "skipped"}):
+            with self.subTest(row=row):
+                self.calls = []
+                def step(spec):
+                    self.calls.append(spec["check_id"])
+                    return {"execution": row, "safe_to_continue": True}
+                with self.assertRaises(Diagnostic) as raised:
+                    execute_plan(self.plan, PORTABLE, step, lambda: None)
+                self.assertEqual(raised.exception.classification, "Rejected")
+                self.assertEqual(self.calls, [CHECK_IDS[0]])
+
     def test_external_cancel_before_first_launch(self):
         cancel = threading.Event()
         cancel.set()

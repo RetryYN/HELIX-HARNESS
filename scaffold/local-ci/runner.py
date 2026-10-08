@@ -35,7 +35,7 @@ _SANDBOX_KEYS = frozenset({
     "receipt_mount", "timeout_seconds", "term_grace_seconds", "mounts", "symlinks",
     "profile_digest",
 })
-_ENV = {
+_FIXED_ENV = {
     "PATH": "/usr/bin",
     "LANG": "C",
     "LC_ALL": "C",
@@ -45,6 +45,7 @@ _ENV = {
     "GIT_TERMINAL_PROMPT": "0",
     "GIT_OPTIONAL_LOCKS": "0",
 }
+_ENV = dict(_FIXED_ENV)
 _RESERVED_MOUNT_ROOTS = ("/work", "/tmp", "/proc", "/dev")
 _ALLOWED_RUNTIME_PREFIXES = ("/usr/", "/lib/", "/lib64/", "/opt/helix/runtime/")
 
@@ -70,6 +71,11 @@ def _canonical_digest(value: object, label: str) -> str:
     if not isinstance(value, str) or len(value) != 64 or any(c not in _HEX for c in value):
         _invalid(f"{label} must be lowercase SHA-256 hex")
     return value
+
+
+def _validate_fixed_environment() -> None:
+    if _ENV != _FIXED_ENV:
+        _invalid("fixed child environment differs from the local-CI contract")
 
 
 def tree_digest(root: Path) -> str:
@@ -154,6 +160,7 @@ def _validate_command(spec: object) -> tuple[list[str], str]:
 
 
 def _validate_config(host: object, portable: object) -> tuple[dict, dict, list[dict], list[dict]]:
+    _validate_fixed_environment()
     if not isinstance(host, dict) or set(host) != _HOST_KEYS:
         _invalid("host config must contain only python/git/bwrap and mount paths")
     if not isinstance(portable, dict) or set(portable) != {"executables", "sandbox"}:
@@ -205,13 +212,15 @@ def _validate_config(host: object, portable: object) -> tuple[dict, dict, list[d
         target = _safe_path(row["target"], absolute=True)
         digest = _canonical_digest(row["sha256"], "runtime mount sha256")
         kind = row["kind"]
-        if kind not in ("file", "tree") or key not in host_mounts or target in seen_targets:
+        if (not isinstance(key, str) or kind not in ("file", "tree")
+                or key not in host_mounts or target in seen_targets):
             _invalid("runtime mount kind, source key, or target is invalid")
-        if not target.startswith(_ALLOWED_RUNTIME_PREFIXES):
-            _invalid("runtime mount target is outside the fixed runtime roots")
         if any(target == root or target.startswith(root + "/") or root.startswith(target + "/")
                for root in _RESERVED_MOUNT_ROOTS):
-            _invalid("runtime mount overlaps a reserved sandbox path")
+            raise Diagnostic("denied", "sandbox_preflight_failed",
+                             "runtime mount would expose a reserved sandbox path")
+        if not target.startswith(_ALLOWED_RUNTIME_PREFIXES):
+            _invalid("runtime mount target is outside the fixed runtime roots")
         seen_targets.add(target)
         normalized_mounts.append({"host_key": key, "target": target, "sha256": digest, "kind": kind})
     normalized_mounts.sort(key=lambda row: (row["target"].count("/"), row["target"]))
@@ -230,6 +239,15 @@ def _validate_config(host: object, portable: object) -> tuple[dict, dict, list[d
         normalized_links.append({"target": target, "link": link})
     if not normalized_mounts:
         _invalid("at least one verified runtime mount is required")
+    for row in normalized_mounts:
+        source_path = Path(host_mounts[row["host_key"]])
+        try:
+            resolved_source = source_path.resolve(strict=False)
+        except OSError:
+            resolved_source = source_path
+        if ".git" in source_path.parts or ".git" in resolved_source.parts:
+            raise Diagnostic("denied", "sandbox_preflight_failed",
+                             "runtime mount would expose repository Git metadata")
     return host, portable, normalized_mounts, normalized_links
 
 
@@ -719,7 +737,18 @@ def run_step(snapshot_root: Path, spec: dict, host_config: dict, portable_config
              cancel: threading.Event | None = None) -> dict:
     """Run one fixed checker; internal safety fields are not part of receipt execution."""
     argv, executable_key = _validate_command(spec)
-    host, portable, _mounts, _symlinks = _validate_config(host_config, portable_config)
+    try:
+        host, portable, _mounts, _symlinks = _validate_config(host_config, portable_config)
+    except Diagnostic as exc:
+        if exc.classification != "denied":
+            raise
+        identity = portable_config["executables"][executable_key]
+        profile_digest = portable_config["sandbox"]["profile_digest"]
+        return {
+            "execution": _execution(spec, identity, "denied", None, None, None, profile_digest),
+            "safe_to_continue": False,
+            "diagnostic": exc.as_dict(),
+        }
     identity = portable["executables"][executable_key]
     profile_digest = portable["sandbox"]["profile_digest"]
     if not isinstance(snapshot_root, (str, os.PathLike)):

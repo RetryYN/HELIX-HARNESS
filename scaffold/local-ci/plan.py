@@ -1,5 +1,5 @@
 """The fixed five-check plan; callers cannot replace commands or selection."""
-from common import CHECK_IDS, canonical_bytes, sha256
+from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256
 from target import GIT_ENV, GIT_POLICY
 
 COMMAND_TEMPLATES = (
@@ -11,8 +11,14 @@ COMMAND_TEMPLATES = (
 )
 
 
+_FIXED_COMMAND_TEMPLATES = COMMAND_TEMPLATES
+
 def compile_plan(target: dict, portable_config: dict, manifest_digest: str,
                  manifest_version: str) -> dict:
+    if len(COMMAND_TEMPLATES) < len(CHECK_IDS):
+        raise Diagnostic("Unknown", "missing_input", "required fixed plan step absent")
+    if COMMAND_TEMPLATES != _FIXED_COMMAND_TEMPLATES:
+        raise Diagnostic("Rejected", "invalid_input", "fixed command plan cannot be overridden")
     config = {"version": "1", "commands": COMMAND_TEMPLATES,
               "selection": [{"required": True, "local": True, "merge_unit": i == 3}
                             for i in range(5)],

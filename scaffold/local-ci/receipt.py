@@ -144,10 +144,10 @@ def _validate_plan(plan_value: Any, target: dict, config_digest: str,
             _reject("invalid_input", "plan commands are not in fixed check order")
         if not isinstance(command["argv"], list) or not command["argv"] or not all(isinstance(x, str) for x in command["argv"]):
             _reject("invalid_input", "plan command argv is malformed")
-        if command["cwd_rel"] != "." or command["timeout_seconds"] != 300:
+        if command["cwd_rel"] != "." or type(command["timeout_seconds"]) is not int or command["timeout_seconds"] != 300:
             _reject("invalid_input", "plan command cwd or timeout differs from the fixed contract")
         selection = _object(command["selection"], {"required", "local", "merge_unit"}, f"plan.commands[{index}].selection")
-        if selection != {"required": True, "local": True, "merge_unit": index == 3}:
+        if any(type(value) is not bool for value in selection.values()) or selection != {"required": True, "local": True, "merge_unit": index == 3}:
             _reject("invalid_input", "plan command selection differs from the fixed contract")
     if plan_expected is not None:
         if not isinstance(plan_expected, dict):
@@ -188,7 +188,7 @@ def _validate_execution(value: Any, index: int, command: dict) -> dict:
         _reject("invalid_input", "execution argv is malformed")
     if execution["argv"] != command["argv"]:
         _reject("invalid_input", "execution argv differs from its fixed plan command")
-    if execution["cwd_rel"] != "." or execution["timeout_seconds"] != 300:
+    if execution["cwd_rel"] != "." or type(execution["timeout_seconds"]) is not int or execution["timeout_seconds"] != 300:
         _reject("invalid_input", "execution cwd or timeout differs from the fixed contract")
     for key in ("started_at", "finished_at"):
         if execution[key] is not None and not isinstance(execution[key], str):
@@ -213,12 +213,13 @@ def _fold(executions: list[dict]) -> str:
 
 def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
                      design_manifest_digest: str, checker_refs: Any, contract_ref: Any,
-                     structure_complete: bool, plan_expected: dict | None = None) -> dict:
+                     structure_complete: bool, plan_expected: dict | None = None,
+                     portable_config: dict | None = None) -> dict:
     """Validate receipt structure, current bindings, plan/execution separation, and fold."""
     if not isinstance(structure_complete, bool):
         _reject("invalid_input", "structure_complete must be a boolean")
     body = _object(receipt, _RECEIPT_FIELDS, "receipt")
-    if body["schema_version"] != 1 or isinstance(body["schema_version"], bool):
+    if type(body["schema_version"]) is not int or body["schema_version"] != 1:
         _reject("invalid_input", "receipt schema_version is unsupported")
     target = _target(body["target"], "receipt.target")
     current = _target(current_target, "current_target", current=True)
@@ -240,8 +241,20 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
         _unknown("Unknown", "conflict", "receipt contract or checker refs differ from current fixed refs")
 
     plan = _validate_plan(body["plan"], target, config_digest, design_manifest_digest, plan_expected)
-    if not isinstance(body["runtime_identity"], dict):
-        _reject("invalid_input", "runtime_identity must be an object")
+    if portable_config is None:
+        try:
+            portable_config = strict_json(Path(__file__).with_name("config.json").read_bytes())
+        except OSError as exc:
+            raise Diagnostic("Unknown", "unreadable", "trusted runtime configuration unavailable") from exc
+    runtime = _object(body["runtime_identity"], {"python", "git", "bwrap"}, "runtime_identity")
+    for name, identity in runtime.items():
+        identity = _object(identity, {"name", "version", "sha256"}, "runtime_identity." + name)
+        for field in ("name", "version"):
+            if not isinstance(identity[field], str) or not identity[field]:
+                _reject("invalid_input", "runtime identity name/version must be non-empty text")
+        _digest(identity["sha256"], "runtime identity digest")
+    if runtime != portable_config["executables"]:
+        _unknown("Unknown", "conflict", "receipt runtime identity differs from trusted config")
     if not isinstance(body["created_at"], str) or not body["created_at"]:
         _reject("invalid_input", "created_at must be a non-empty string")
 
@@ -249,6 +262,11 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
     if not isinstance(executions, list) or len(executions) != len(CHECK_IDS):
         _reject("invalid_input", "receipt must contain all five required execution rows")
     checked = [_validate_execution(item, index, plan["commands"][index]) for index, item in enumerate(executions)]
+    for index, execution in enumerate(checked):
+        key = "git" if CHECK_IDS[index] == "LC-DIFF-001" else "python"
+        if (execution["portable_executable_identity"] != portable_config["executables"][key]
+                or execution["sandbox_profile_digest"] != portable_config["sandbox"]["profile_digest"]):
+            _unknown("Unknown", "conflict", "execution runtime/profile differs from trusted config")
     aggregate = body["aggregate_state"]
     if aggregate not in _CI_STATES:
         _reject("invalid_input", "aggregate_state is outside the fixed CiState vocabulary")
@@ -267,7 +285,8 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
 
 def verify_receipt(data: bytes | str, current_target: Any, *, config_digest: str,
                    design_manifest_digest: str, checker_refs: Any, contract_ref: Any,
-                   structure_complete: bool, plan_expected: dict | None = None) -> dict:
+                   structure_complete: bool, plan_expected: dict | None = None,
+                     portable_config: dict | None = None) -> dict:
     """Parse canonical compact JSON and validate it against owner-recomputed refs."""
     if not isinstance(data, (bytes, str)):
         _reject("invalid_input", "receipt input must be UTF-8 JSON bytes or text")
@@ -290,7 +309,7 @@ def verify_receipt(data: bytes | str, current_target: Any, *, config_digest: str
         receipt, current_target, config_digest=config_digest,
         design_manifest_digest=design_manifest_digest, checker_refs=checker_refs,
         contract_ref=contract_ref, structure_complete=structure_complete,
-        plan_expected=plan_expected,
+        plan_expected=plan_expected, portable_config=portable_config,
     )
 
 

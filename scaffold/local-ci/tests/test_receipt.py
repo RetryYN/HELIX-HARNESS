@@ -17,6 +17,9 @@ from receipt import verify_receipt, write_receipt  # noqa: E402
 _HEX = "a" * 40
 _RAW_SHA = "b" * 64
 _TYPED_DIGEST = "sha256:" + _RAW_SHA
+_RUNTIME = {key: {"name": "python3", "version": "3.11", "sha256": _RAW_SHA}
+            for key in ("python", "git", "bwrap")}
+_PORTABLE = {"executables": _RUNTIME, "sandbox": {"profile_digest": _RAW_SHA}}
 
 
 def target() -> dict:
@@ -71,7 +74,7 @@ def receipt() -> dict:
         "config_digest": _RAW_SHA,
         "design_manifest_digest": _RAW_SHA,
         "checker_refs": [ref("scfctl"), ref("govcheck"), ref("gen_rulebook")],
-        "runtime_identity": {"name": "CPython", "version": "3.11"},
+        "runtime_identity": {key: dict(value) for key, value in _RUNTIME.items()},
         "plan": {
             "target": current,
             "contract_id": "OS-LOCAL-CI-001",
@@ -99,7 +102,7 @@ def verify(data: bytes | str, *, current: dict | None = None, refs=None,
         design_manifest_digest=_RAW_SHA,
         checker_refs=refs if refs is not None else body["checker_refs"],
         contract_ref=body["contract_ref"],
-        structure_complete=complete,
+        structure_complete=complete, portable_config=_PORTABLE,
     )
 
 
@@ -109,10 +112,47 @@ class VerifyReceiptTests(unittest.TestCase):
         result = verify_receipt(
             canonical_bytes(body), body["target"], config_digest=_RAW_SHA,
             design_manifest_digest=_RAW_SHA, checker_refs=body["checker_refs"],
-            contract_ref=body["contract_ref"], structure_complete=True,
+            contract_ref=body["contract_ref"], structure_complete=True, portable_config=_PORTABLE,
         )
         self.assertEqual(result["status"], "verified")
         self.assertEqual(result["aggregate_state"], "success")
+
+    def test_runtime_identity_extra_path_is_rejected(self):
+        body = receipt()
+        body["runtime_identity"]["git"]["path"] = "/synthetic/private/git"
+        with self.assertRaises(Diagnostic) as raised:
+            verify(canonical_bytes(body))
+        self.assertEqual(raised.exception.classification, "Rejected")
+
+    def test_execution_identity_and_profile_are_bound_to_trusted_config(self):
+        for field in ("portable_executable_identity", "sandbox_profile_digest"):
+            body = receipt()
+            if field == "portable_executable_identity":
+                body["executions"][0][field]["sha256"] = "f"*64
+            else:
+                body["executions"][0][field] = "f"*64
+            with self.subTest(field=field), self.assertRaises(Diagnostic) as raised:
+                verify(canonical_bytes(body))
+            self.assertEqual((raised.exception.classification, raised.exception.reason),
+                             ("Unknown", "conflict"))
+
+    def test_float_schema_and_timeout_are_rejected(self):
+        for location in ("schema", "plan", "execution"):
+            body = receipt()
+            if location == "schema": body["schema_version"] = 1.0
+            elif location == "plan": body["plan"]["commands"][0]["timeout_seconds"] = 300.0
+            else: body["executions"][0]["timeout_seconds"] = 300.0
+            with self.subTest(location=location), self.assertRaises(Diagnostic) as raised:
+                verify(canonical_bytes(body))
+            self.assertEqual(raised.exception.classification, "Rejected")
+
+    def test_selection_integer_is_not_boolean_true(self):
+        body = receipt()
+        body["plan"]["commands"][0]["selection"]["required"] = 1
+        with self.assertRaises(Diagnostic) as caught:
+            verify(canonical_bytes(body))
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Rejected", "invalid_input"))
 
     def test_ut_lci_14_duplicate_json_key_is_rejected(self):
         with self.assertRaises(Diagnostic) as caught:

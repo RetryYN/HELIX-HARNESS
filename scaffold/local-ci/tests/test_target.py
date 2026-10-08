@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from common import Diagnostic, sha256
+import target as target_module
 from target import GIT_ENV, GitReader, check_clean_checkout, resolve_target
 
 
@@ -39,6 +40,19 @@ class TargetTests(unittest.TestCase):
             fn(*args)
         self.assertEqual((raised.exception.classification, raised.exception.reason),
                          (classification, reason))
+
+    def test_missing_fsmonitor_policy_is_rejected_before_git_probe(self):
+        policy = list(target_module.GIT_POLICY)
+        index = policy.index("core.fsmonitor=false")
+        del policy[index-1:index+1]
+        with patch.object(target_module, "GIT_POLICY", tuple(policy)), patch("target.subprocess.run") as spawn:
+            self.diagnostic("Rejected", "invalid_input", GitReader, self.root, self.git, self.identity)
+            spawn.assert_not_called()
+
+    def test_unreadable_resolved_blob_is_unknown_unreadable(self):
+        entries = self.reader.entries(self.reader.tree(self.head))
+        with patch("target.subprocess.run", return_value=type("Failure", (), {"returncode": 1})()):
+            self.diagnostic("Unknown", "unreadable", self.reader.blob, entries, "source.md")
 
     def test_UT_LCI_24_26_clean_baseline(self):
         target = resolve_target(self.reader, self.head, self.head, "synthetic")

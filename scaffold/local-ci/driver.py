@@ -56,7 +56,12 @@ def execute_plan(plan, portable, step, recheck, cancel=None):
                                         portable["sandbox"]["profile_digest"], terminal[1]))
             continue
         outcome = step(spec)
-        executions.append(outcome["execution"])
+        row = outcome.get("execution") if isinstance(outcome, dict) else None
+        if (not isinstance(row, dict) or row.get("check_id") != spec["check_id"]
+                or row.get("state") not in ("stale", "interrupted", "denied", "fail", "success")
+                or not isinstance(outcome.get("safe_to_continue"), bool)):
+            raise Diagnostic("Rejected", "invalid_input", "invalid required execution result")
+        executions.append(row)
         if not outcome["safe_to_continue"]:
             terminal = ("denied", None)
         elif outcome["execution"].get("reason") == "cancelled":

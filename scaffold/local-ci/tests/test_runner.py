@@ -16,7 +16,8 @@ _LOCAL_CI = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_LOCAL_CI))
 
 import runner  # noqa: E402
-from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256  # noqa: E402
+from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256, strict_json  # noqa: E402
+from driver import execute_plan  # noqa: E402
 
 
 _HEX = "a" * 40
@@ -128,6 +129,18 @@ class _StubProcess:
             os.close(self._out_w)
             os.close(self._err_w)
 
+    def close(self):
+        for stream in (self.stdout, self.stderr):
+            try:
+                stream.close()
+            except OSError:
+                pass
+        for fd in (self._out_w, self._err_w):
+            try:
+                os.close(fd)
+            except OSError:
+                pass
+
 
 class RunnerTests(unittest.TestCase):
     def test_fixed_commands_cover_the_five_required_checks(self):
@@ -208,6 +221,8 @@ class RunnerTests(unittest.TestCase):
 
     def test_supervisor_can_return_ready_and_result_in_one_socket_read(self):
         class FakeProcess:
+            request_payload = None
+
             def __init__(self, args, **kwargs):
                 self.pid = 12345
                 self.returncode = None
@@ -218,6 +233,7 @@ class RunnerTests(unittest.TestCase):
                     request = bytearray()
                     while b"\n" not in request:
                         request.extend(channel.recv(65536))
+                    type(self).request_payload = strict_json(bytes(request).split(b"\n", 1)[0])
                     response = {
                         "execution": runner._execution(
                             _spec(), {"name": "python3", "version": "3.12.3", "sha256": "c" * 64},
@@ -247,6 +263,236 @@ class RunnerTests(unittest.TestCase):
                 result = runner.run_step(snapshot, _spec(), host, portable)
         self.assertEqual(result["execution"]["state"], "success")
         self.assertTrue(result["safe_to_continue"])
+        self.assertEqual(FakeProcess.request_payload["snapshot_root"], str(snapshot.resolve()))
+
+    def test_run_step_preserves_checker_exit_one_state_and_output_digests(self):
+        class FailedSupervisor:
+            def __init__(self, _args, **kwargs):
+                self.pid = 12346
+                self.returncode = None
+                fd = os.dup(kwargs["pass_fds"][0])
+
+                def serve():
+                    channel = socket.socket(fileno=fd)
+                    request = bytearray()
+                    while b"\n" not in request:
+                        request.extend(channel.recv(65536))
+                    response = {
+                        "execution": runner._execution(
+                            _spec(CHECK_IDS[1]),
+                            {"name": "python3", "version": "3.12.3", "sha256": "c" * 64},
+                            "fail", 1, "2026-10-09T00:00:00Z", "2026-10-09T00:00:01Z",
+                            "d" * 64, sha256(b"stale rows"), sha256(b"stale details"),
+                        ),
+                        "safe_to_continue": True,
+                        "diagnostic": None,
+                    }
+                    channel.sendall(b"READY\n" + canonical_bytes(response) + b"\n")
+                    channel.close()
+                    self.returncode = 0
+
+                self.thread = threading.Thread(target=serve)
+                self.thread.start()
+
+            def poll(self):
+                return self.returncode
+
+            def wait(self, timeout=None):
+                self.thread.join(timeout)
+                return self.returncode
+
+        with tempfile.TemporaryDirectory() as directory:
+            host, portable, snapshot = _fixture(Path(directory))
+            with patch.object(runner, "_verify_executable"), \
+                    patch.object(runner.subprocess, "Popen", FailedSupervisor):
+                result = runner.run_step(snapshot, _spec(CHECK_IDS[1]), host, portable)
+        self.assertEqual((result["execution"]["state"], result["execution"]["exit_code"]), ("fail", 1))
+        self.assertEqual(result["execution"]["stdout_sha256"], sha256(b"stale rows"))
+        self.assertEqual(result["execution"]["stderr_sha256"], sha256(b"stale details"))
+
+    def test_run_step_rejects_shell_tokens_and_missing_python_b_before_spawn(self):
+        mutations = (
+            (CHECK_IDS[0], lambda spec: spec["argv"].__setitem__(2, "validate; touch marker")),
+            (CHECK_IDS[0], lambda spec: spec["argv"].remove("-B")),
+        )
+        for check_id, mutate in mutations:
+            with self.subTest(check=check_id, mutation=mutate.__code__.co_firstlineno):
+                with tempfile.TemporaryDirectory() as directory:
+                    host, portable, snapshot = _fixture(Path(directory))
+                    spec = _spec(check_id)
+                    mutate(spec)
+                    with patch.object(runner, "_verify_executable") as verify, \
+                            patch.object(runner.subprocess, "Popen") as spawn:
+                        with self.assertRaises(Diagnostic) as raised:
+                            runner.run_step(snapshot, spec, host, portable)
+                self.assertEqual((raised.exception.classification, raised.exception.reason),
+                                 ("Rejected", "invalid_input"))
+                verify.assert_not_called()
+                spawn.assert_not_called()
+
+    def test_mutated_fixed_environment_is_rejected_before_supervisor_spawn(self):
+        with tempfile.TemporaryDirectory() as directory:
+            host, portable, snapshot = _fixture(Path(directory))
+            changed = dict(runner._ENV)
+            changed.pop("PYTHONDONTWRITEBYTECODE")
+            with patch.object(runner, "_ENV", changed), \
+                    patch.object(runner, "_verify_executable") as verify, \
+                    patch.object(runner.subprocess, "Popen") as spawn:
+                with self.assertRaises(Diagnostic) as raised:
+                    runner.run_step(snapshot, _spec(), host, portable)
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Rejected", "invalid_input"))
+        verify.assert_not_called()
+        spawn.assert_not_called()
+
+    def test_git_metadata_mount_and_receipt_parent_mount_are_rejected_before_spawn(self):
+        for mount_target, source_name in (("/usr/local/etc/gitconfig", ".git/config"),
+                                          ("/work/receipt-parent", "receipt-parent")):
+            with self.subTest(target=mount_target):
+                with tempfile.TemporaryDirectory() as directory:
+                    temp = Path(directory)
+                    host, portable, snapshot = _fixture(temp)
+                    source = temp / source_name
+                    source.parent.mkdir(parents=True, exist_ok=True)
+                    if source_name.endswith("config"):
+                        source.write_text("[core]\nrepositoryformatversion = 0\n")
+                        kind = "file"
+                        digest = sha256(source.read_bytes())
+                    else:
+                        source.mkdir()
+                        (source / "receipt.json").write_text("synthetic")
+                        kind = "tree"
+                        digest = runner.tree_digest(source)
+                    host["mounts"]["forbidden"] = str(source)
+                    portable["sandbox"]["mounts"].append({
+                        "host_key": "forbidden", "target": mount_target,
+                        "sha256": digest, "kind": kind,
+                    })
+                    portable["sandbox"]["profile_digest"] = sha256(canonical_bytes({
+                        key: value for key, value in portable["sandbox"].items()
+                        if key != "profile_digest"
+                    }))
+                    with patch.object(runner.subprocess, "Popen") as spawn:
+                        result = runner.run_step(snapshot, _spec(), host, portable)
+                self.assertEqual(result["execution"]["state"], "denied")
+                self.assertIsNone(result["execution"]["started_at"])
+                self.assertFalse(result["safe_to_continue"])
+                self.assertEqual((result["diagnostic"]["classification"], result["diagnostic"]["reason"]),
+                                 ("denied", "sandbox_preflight_failed"))
+                spawn.assert_not_called()
+
+    def test_unavailable_network_namespace_denies_before_checker_launch(self):
+        with tempfile.TemporaryDirectory() as directory:
+            host, portable, snapshot = _fixture(Path(directory))
+            payload = {"snapshot_root": str(snapshot), "spec": _spec(),
+                       "host_config": host, "portable_config": portable}
+            control, peer = socket.socketpair()
+            try:
+                with patch.object(runner, "_enable_subreaper"), \
+                    patch.object(runner, "_verify_executable"), \
+                    patch.object(runner.subprocess, "Popen", side_effect=OSError("namespace unavailable")) as spawn:
+                    result = runner._supervisor(payload, control)
+            finally:
+                control.close()
+                peer.close()
+        self.assertEqual(spawn.call_count, 1)  # only the synthetic sandbox probe was attempted
+        self.assertEqual(result["execution"]["state"], "denied")
+        self.assertEqual(result["diagnostic"]["reason"], "sandbox_preflight_failed")
+        self.assertIsNone(result["execution"]["started_at"])
+
+    def test_writable_snapshot_mount_probe_denies_without_checker_launch(self):
+        with tempfile.TemporaryDirectory() as directory:
+            host, portable, _snapshot = _fixture(Path(directory))
+            host, portable, mounts, symlinks = runner._validate_config(host, portable)
+            synthetic_process = _StubProcess(b"", b"", 1)
+            self.addCleanup(synthetic_process.close)
+            original_builder = runner._bwrap_base
+            captured = {}
+
+            def writable_snapshot_builder(*args, **kwargs):
+                argv = original_builder(*args, **kwargs)
+                bind_index = next(i for i, value in enumerate(argv[:-2])
+                                  if value == "--ro-bind" and argv[i + 2] == "/work")
+                argv[bind_index] = "--bind"
+                captured["argv"] = argv
+                return argv
+
+            with patch.object(runner, "_verify_executable"), \
+                    patch.object(runner, "_bwrap_base", side_effect=writable_snapshot_builder), \
+                    patch.object(runner.subprocess, "Popen", return_value=synthetic_process) as spawn, \
+                    patch.object(runner, "_settle_descendants", return_value=True), \
+                    patch.object(runner, "_descendants", return_value=set()):
+                with self.assertRaises(Diagnostic) as raised:
+                    runner._preflight(host, portable, mounts, symlinks)
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("denied", "sandbox_preflight_failed"))
+        self.assertEqual(spawn.call_count, 1)  # one synthetic probe; no checker process
+        self.assertIn("--bind", captured["argv"])
+        probe = runner._synthetic_probe_command(1)[-1]
+        self.assertIn("p.write_bytes(original + b'probe')", probe)
+        self.assertIn("snapshot mount is writable", probe)
+
+    def test_stale_check_exit_one_is_a_failed_execution_with_output_digests(self):
+        with tempfile.TemporaryDirectory() as directory:
+            host, portable, snapshot = _fixture(Path(directory))
+            spec = _spec(CHECK_IDS[1])
+            payload = {"snapshot_root": str(snapshot), "spec": spec,
+                       "host_config": host, "portable_config": portable}
+            process = _StubProcess(b"stale binding\n", b"diagnostic\n", 1)
+            self.addCleanup(process.close)
+            control, peer = socket.socketpair()
+            try:
+                with patch.object(runner, "_enable_subreaper"), \
+                    patch.object(runner, "_preflight"), \
+                    patch.object(runner.subprocess, "Popen", return_value=process), \
+                    patch.object(runner, "_settle_descendants", return_value=True), \
+                    patch.object(runner, "_descendants", return_value=set()):
+                    result = runner._supervisor(payload, control)
+            finally:
+                control.close()
+                peer.close()
+        execution = result["execution"]
+        self.assertEqual((execution["check_id"], execution["state"], execution["exit_code"]),
+                         (CHECK_IDS[1], "fail", 1))
+        self.assertEqual(execution["stdout_sha256"], sha256(b"stale binding\n"))
+        self.assertEqual(execution["stderr_sha256"], sha256(b"diagnostic\n"))
+
+    def test_unreaped_cancelled_run_propagates_denied_to_remaining_plan_rows(self):
+        with tempfile.TemporaryDirectory() as directory:
+            host, portable, snapshot = _fixture(Path(directory))
+            first = _spec(CHECK_IDS[0])
+            payload = {"snapshot_root": str(snapshot), "spec": first,
+                       "host_config": host, "portable_config": portable}
+            process = _StubProcess(b"partial", b"", None)
+            self.addCleanup(process.close)
+
+            def unreaped(*_args, **_kwargs):
+                process.stop(signal.SIGKILL)
+                return None, sha256(b"partial"), sha256(b""), None, False
+
+            commands = [_spec(check_id) for check_id in CHECK_IDS]
+            calls = []
+
+            def step(spec):
+                calls.append(spec["check_id"])
+                payload["spec"] = spec
+                control, peer = socket.socketpair()
+                try:
+                    return runner._supervisor(payload, control)
+                finally:
+                    control.close()
+                    peer.close()
+
+            with patch.object(runner, "_enable_subreaper"), \
+                    patch.object(runner, "_preflight"), \
+                    patch.object(runner.subprocess, "Popen", return_value=process), \
+                    patch.object(runner, "_drain_pipes", side_effect=unreaped):
+                executions, aggregate = execute_plan(
+                    {"commands": commands}, portable, step, lambda: None)
+        self.assertEqual(calls, [CHECK_IDS[0]])
+        self.assertEqual(aggregate, "denied")
+        self.assertEqual([row["state"] for row in executions], ["denied"] * len(CHECK_IDS))
+        self.assertTrue(all(row["started_at"] is None for row in executions[1:]))
 
     def test_profile_digest_or_mount_byte_change_is_denied_by_validation(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -264,6 +510,18 @@ class RunnerTests(unittest.TestCase):
                     raise Diagnostic("denied", "runtime_mount_mismatch", "runtime mount bytes differ from profile")
             self.assertEqual(raised.exception.reason, "runtime_mount_mismatch")
 
+    def test_mount_key_type_is_rejected_without_traceback_or_spawn(self):
+        with tempfile.TemporaryDirectory() as directory:
+            host, portable, snapshot = _fixture(Path(directory))
+            portable["sandbox"]["mounts"][0]["host_key"] = []
+            portable["sandbox"]["profile_digest"] = sha256(canonical_bytes({
+                k:v for k,v in portable["sandbox"].items() if k != "profile_digest"}))
+            with patch.object(runner.subprocess, "Popen") as spawn:
+                with self.assertRaises(Diagnostic) as raised:
+                    runner.run_step(snapshot, _spec(), host, portable)
+        self.assertEqual(raised.exception.classification, "Rejected")
+        spawn.assert_not_called()
+
     def test_public_config_validation_checks_shape_without_binary_preflight(self):
         with tempfile.TemporaryDirectory() as directory:
             host, portable, _snapshot = _fixture(Path(directory))
@@ -276,6 +534,7 @@ class RunnerTests(unittest.TestCase):
 
     def test_monitor_hashes_pipes_without_retaining_output_and_accepts_reaped_exit(self):
         process = _StubProcess(b"secret-looking stdout", b"private stderr", 0)
+        self.addCleanup(process.close)
         with patch.object(runner, "_reap_adopted", return_value=(True, set())), \
                 patch.object(runner, "_descendants", return_value=set()):
             code, out_hash, err_hash, reason, safe = runner._drain_pipes(
@@ -288,6 +547,7 @@ class RunnerTests(unittest.TestCase):
 
     def test_timeout_stops_wrapper_and_requires_reap_before_safe_continue(self):
         process = _StubProcess(b"partial", b"", None)
+        self.addCleanup(process.close)
         with patch.object(runner, "_signal_tree", side_effect=lambda _pid, sig: process.stop(sig)), \
                 patch.object(runner, "_descendants", return_value=set()), \
                 patch.object(runner, "_reap_adopted", return_value=(True, set())):
@@ -299,8 +559,56 @@ class RunnerTests(unittest.TestCase):
         self.assertTrue(safe)
         self.assertTrue(process.waited)
 
+    def test_configured_300_second_timeout_uses_monotonic_clock_and_stops_process(self):
+        process = _StubProcess(b"partial", b"", None)
+        self.addCleanup(process.close)
+        clock = iter((0.0, 301.0, 302.0, 303.0))
+        cancel_event = threading.Event()
+        with patch.object(runner, "_signal_tree", side_effect=lambda _pid, sig: process.stop(sig)) as stop, \
+                patch.object(runner, "_descendants", return_value=set()), \
+                patch.object(runner, "_settle_descendants", return_value=True), \
+                patch.object(runner.time, "monotonic", side_effect=lambda: next(clock)):
+            code, _out_hash, _err_hash, reason, safe = runner._drain_pipes(
+                process, runner.TIMEOUT_SECONDS, cancel_event)
+        self.assertEqual(code, -signal.SIGTERM)
+        self.assertEqual(reason, "timeout")
+        self.assertTrue(safe)
+        self.assertTrue(process.waited)
+        stop.assert_called_once_with(process.pid, signal.SIGTERM)
+
+    def test_active_cancel_stops_wrapper_then_confirms_reap(self):
+        process = _StubProcess(b"partial", b"", None)
+        self.addCleanup(process.close)
+        cancel_event = threading.Event()
+        cancel_event.set()
+        with patch.object(runner, "_signal_tree", side_effect=lambda _pid, sig: process.stop(sig)) as stop, \
+                patch.object(runner, "_descendants", return_value=set()), \
+                patch.object(runner, "_settle_descendants", return_value=True) as settle:
+            code, _out_hash, _err_hash, reason, safe = runner._drain_pipes(process, 300, cancel_event)
+        self.assertEqual(code, -signal.SIGTERM)
+        self.assertEqual(reason, "cancelled")
+        self.assertTrue(safe)
+        self.assertTrue(process.waited)
+        stop.assert_called_once_with(process.pid, signal.SIGTERM)
+        settle.assert_called_once()
+
+    def test_cancelled_run_with_failed_reap_is_unsafe(self):
+        process = _StubProcess(b"partial", b"", None)
+        self.addCleanup(process.close)
+        cancel_event = threading.Event()
+        cancel_event.set()
+        with patch.object(runner, "_signal_tree", side_effect=lambda _pid, sig: process.stop(sig)), \
+                patch.object(runner, "_descendants", return_value=set()), \
+                patch.object(runner, "_settle_descendants", return_value=False):
+            code, _out_hash, _err_hash, reason, safe = runner._drain_pipes(process, 300, cancel_event)
+        self.assertEqual(code, -signal.SIGTERM)
+        self.assertEqual(reason, "cancelled")
+        self.assertFalse(safe)
+        self.assertTrue(process.waited)
+
     def test_unreaped_descendant_blocks_safe_continuation(self):
         process = _StubProcess(b"", b"", 0)
+        self.addCleanup(process.close)
         with patch.object(runner, "_reap_adopted", return_value=(False, {12345})), \
                 patch.object(runner, "_descendants", return_value=set()), \
                 patch.object(runner, "_signal_tree"):

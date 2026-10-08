@@ -16,6 +16,9 @@ GIT_ENV = {"PATH": "/usr/bin:/bin", "LANG": "C.UTF-8", "LC_ALL": "C.UTF-8",
            "PYTHONDONTWRITEBYTECODE": "1"}
 
 
+_FIXED_GIT_POLICY = GIT_POLICY
+_FIXED_GIT_ENV = dict(GIT_ENV)
+
 def relative_path(value: str) -> str:
     if not isinstance(value, str) or not value or "\x00" in value or "\\" in value:
         raise Diagnostic("Rejected", "invalid_input", "invalid repository path")
@@ -27,6 +30,8 @@ def relative_path(value: str) -> str:
 
 class GitReader:
     def __init__(self, repo: Path, executable: str, identity: dict):
+        if GIT_POLICY != _FIXED_GIT_POLICY or GIT_ENV != _FIXED_GIT_ENV:
+            raise Diagnostic("Rejected", "invalid_input", "fixed Git policy cannot be overridden")
         self.repo = Path(repo).resolve()
         self.executable = str(Path(executable).resolve())
         self.identity = dict(identity)
