@@ -294,7 +294,7 @@ fixtureはK2 `ResultKey`を固定し、一項目ずつ変える。provider/model
 - 共有`SubjectRef`はK2 inputsでidentityごとに一件へcanonicalizeし、role-slotとsource-edgeの全対応は`ParticipantBindingSet` ref/digestへ入れる。refが同じcreator/reviewer slot間はkeyの重複入力で拒否せず、`same` comparisonとして負の結果を記録する。
 - K6-I1の実行起点receiptを使う場合も、K6-I10を維持する。issuer authenticityが未知なら実在actor/graphの真正性も未知のままである。構造上のsource closureを確認できないときはpositiveを作らない。
 - `k9_independence_polarity`の識別・版でIndependentはK1 combineのPositive、軸collisionのNotIndependentはNegativeとなりadmitへ進めない。UnknownはUndeterminedのまま。写像を欠落・逆転したfixtureは不合格。
-- caller提示assignment/selection/context契約/route契約のrefを一つずつ旧revisionへ変え、current prefixの正本を固定する。実読したcurrent refとの不一致はUnknown(conflict)で肯定しない。保存済み旧結果のlookupとは区別し、callerの古いrefを正本にする実装を検出する。
+- caller提示assignment/selection/context契約/route契約のrefを一つずつ旧revisionへ変え、current prefixの正本を固定する。実読したcurrent refとの不一致はUnknown(conflict)で肯定しない。保存済み旧結果のlookupとは区別し、callerの古いrefを正本にする実装を検出する。さらにcaller input_headsだけを取消し前／割当変更前の末尾に固定し、resolverの内部current_headとの差を非肯定にする。古いprefixを読むだけでpositiveにする実装は不合格。
 - route/context/authority owner contractが現在の入力に無いときは`Unknown`を返す。routeの存在をproviderやruntimeの同異で代替しない。
 
 旧L9 trace：`LEGACY-ASSET-50A93B0E753DC3840E03`／`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-worker-independent-review-system-test-design.md:18-27`／`fd1bf27704c12072d56491ae66d21f9858f7275ec8c3f1a5e50714fd235eb672`。ST-WRR-003/004/006/007のaxis collision、同provider/modelでも三軸独立なら正常、actor自己申告・copy/stale/finding spoofを保持し、四軸とcurrent L3に合わせて分解した。ST-WRR-001のsealed capability実装、ST-WRR-008のUbuntu/AppArmor/bubblewrap経路はK9製品検証へ持ち込まない。

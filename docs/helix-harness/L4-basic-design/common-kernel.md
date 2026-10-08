@@ -1254,7 +1254,7 @@ check_review_independence(
 ) -> ReviewIndependenceCheck | Rejected(missing_key, diagnostic)
 ```
 
-current参照はOSの対象task割当と各source ownerの登録済み宣言を固定prefixから実読して得る。API引数のrefは照会対象であり正本指定を上書きできない。宣言が無い場合は`Unknown(unregistered)`、caller参照と正本の不一致は`Unknown(conflict)`。
+current参照はresolverがOSと各ownerの登録済み読取り境界でK5 current_headを内部取得し、その固定prefixから実読して得る。caller input_headsは照会の期待値であって正本の末尾を選ばず、内部取得値と不一致なら非肯定として旧prefixを使わない。API引数のrefは照会対象であり正本指定を上書きできない。宣言が無い場合は`Unknown(unregistered)`、caller参照と正本の不一致は`Unknown(conflict)`。
 
 両APIはparticipant slot配列をcallerから受け取らず、OS assignment・content-producer graph・review execution recordとowner contract refsをcurrent sourceとしてK2 lookup/K6 receipt admissionで解決する。契約に登録されたsource closureと走査証拠で全量性を確認できなければ、`complete`をcallerのboolean claimから作らず非`Value`を返す。creator_inventoryはresolverのcurrent入力の全集合・K2鍵・K6 admissionへ照合し、callerが自作したinventoryを使わない。source inventoryが非`Value`ならその非`Value`をそのまま返す。complete inventoryと全owner refがある場合だけ比較し、`Value(Independent)`または失敗軸と理由付き`Value(NotIndependent)`を返す。K6 result receiptの`reproduction`と`issuer_authenticity`はAPI結果に併記するassuranceに別々に付ける。currentのowner contractがroute/context sourceを提供できない場合は未決を捏造で埋めない。
 
