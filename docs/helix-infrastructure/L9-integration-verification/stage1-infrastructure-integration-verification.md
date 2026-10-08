@@ -61,7 +61,7 @@ fixtureは合成・匿名入力で設計し、credential/PII/external serviceを
 固定L10のoperation identityとC01–C19を保つ。C02が列挙するoperation種・authority条件は個別変異であり、独立したnegativeをひとつずつ与える。bootstrap/health check/service stop/rollback/recoveryは5種類のみ。
 
 | L9 verifier ID | 固定L10 case参照 | L3 AC | 入力・単独変異 | 期待されるoracle / 戻し先 |
-|---|---|---|---|
+|---|---|---|---|---|
 | `IV-INFRA-006-01` | `L10-INFRA-006-C01` | INFRA-006-AC-01, INFRA-006-AC-02 | HELIX/OS停止中にbootstrapのtarget/action/revision/scope/別authority/expiryを一致させ、独立path証拠を与える。 | fixture上で6条件とpathを別々に照合し、bootstrapだけを限定判定する。 |
 | `IV-INFRA-006-02` | `L10-INFRA-006-C02` | INFRA-006-AC-01, INFRA-006-AC-02 | 5 operation各々について、authorityの欠落/unknown/expired/out-of-scope、target mismatch、revision mismatch、credential scope unknown、policy unknownを単独fixtureに分ける。 | 該当operation開始0。理由/ownerを保持し、authority・credential scope・policyを相互代替せず、通常authorityへfallbackしない。 |
 | `IV-INFRA-006-03` | `L10-INFRA-006-C03` | INFRA-006-AC-01, INFRA-006-AC-02 | 宣言済みrecovery resource内の未見個体、次にfixtureで未見の適用scope内revisionを分けて与える。 | 未見だけでは拒否しない。各resource/authorityを照合し、登録外やunknown authorityは利用可能と推定しない。 |
