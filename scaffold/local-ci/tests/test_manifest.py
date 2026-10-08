@@ -77,6 +77,15 @@ def _baseline():
                     expansions.append({"literal": literal, "ids": [ident]})
                 definitions[0]["literal_expansions"] = expansions
             sources[path] = ("\n".join(lines) + "\n").encode()
+            if path == "docs/helix-os/L4-basic-design/local-ci.md":
+                sources[path] += (
+                    "\n### 親ACの適用範囲\n"
+                    "| 承認済みAC | local CI driverでの扱い | 理由とclaim境界 |\n"
+                    "|---|---|---|\n"
+                    "| `AC-OS-020-01` | `not_exercised` | synthetic reason for AC-OS-020-01 |\n"
+                    "| `AC-OS-020-03` | `not_exercised` | synthetic reason for AC-OS-020-03 |\n"
+                    "\n## 2. local CI契約\n"
+                ).encode()
             references = []
         else:
             # Every verification document has one typed, nonempty outcome row.
@@ -104,6 +113,12 @@ def _baseline():
         "files": files,
         "coverage_edges": [],
         "coverage_dispositions": [],
+        "parent_ac_coverage": [
+            {"parent_ac_id": "AC-OS-020-01", "state": "not_exercised",
+             "reason": "synthetic reason for AC-OS-020-01"},
+            {"parent_ac_id": "AC-OS-020-03", "state": "not_exercised",
+             "reason": "synthetic reason for AC-OS-020-03"},
+        ],
         "source_scopeouts": [{
             "source_id": "RL-D4", "reason": "synthetic scopeout",
             "owner_ref": "repository-layout::RL-D4",
@@ -195,6 +210,78 @@ class DesignManifestTests(unittest.TestCase):
         doc, sources, _ = _baseline()
         loaded = manifest.load_design_manifest(_raw(doc), sources)
         self.assertEqual(len(loaded["files"]), 10)
+        self.assertEqual(
+            [row["parent_ac_id"] for row in loaded["parent_ac_coverage"]],
+            ["AC-OS-020-01", "AC-OS-020-03"],
+        )
+
+    def test_ut_lci_87_missing_parent_ac_row_is_unknown(self):
+        doc, sources, _ = _baseline()
+        doc["parent_ac_coverage"] = [doc["parent_ac_coverage"][0]]
+        _expect_diag(self, "Unknown", "missing_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_ut_lci_88_parent_ac_cannot_be_promoted_to_pass(self):
+        doc, sources, _ = _baseline()
+        doc["parent_ac_coverage"][0]["state"] = "pass"
+        _expect_diag(self, "Rejected", "invalid_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_missing_list_is_unknown(self):
+        doc, sources, _ = _baseline()
+        del doc["parent_ac_coverage"]
+        _expect_diag(self, "Unknown", "missing_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_empty_list_is_unknown(self):
+        doc, sources, _ = _baseline()
+        doc["parent_ac_coverage"] = []
+        _expect_diag(self, "Unknown", "missing_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_duplicate_id_is_conflict(self):
+        doc, sources, _ = _baseline()
+        doc["parent_ac_coverage"].append(copy.deepcopy(doc["parent_ac_coverage"][0]))
+        _expect_diag(self, "Unknown", "conflict", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_unknown_id_is_rejected(self):
+        doc, sources, _ = _baseline()
+        doc["parent_ac_coverage"][0]["parent_ac_id"] = "AC-OS-020-02"
+        _expect_diag(self, "Rejected", "invalid_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_reason_must_match_l4_literal(self):
+        doc, sources, _ = _baseline()
+        doc["parent_ac_coverage"][0]["reason"] += " changed"
+        _expect_diag(self, "Unknown", "conflict", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_wrong_type_is_rejected(self):
+        doc, sources, _ = _baseline()
+        doc["parent_ac_coverage"] = {"parent_ac_id": "AC-OS-020-01"}
+        _expect_diag(self, "Rejected", "invalid_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_row_field_type_is_rejected(self):
+        doc, sources, _ = _baseline()
+        doc["parent_ac_coverage"][0]["reason"] = None
+        _expect_diag(self, "Rejected", "invalid_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_unknown_row_field_is_rejected(self):
+        doc, sources, _ = _baseline()
+        doc["parent_ac_coverage"][0]["extra"] = "not allowed"
+        _expect_diag(self, "Rejected", "invalid_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_unknown_manifest_field_is_rejected(self):
+        doc, sources, _ = _baseline()
+        doc["unknown_field"] = True
+        _expect_diag(self, "Rejected", "invalid_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_l4_row_missing_is_unknown(self):
+        doc, sources, _ = _baseline()
+        path = "docs/helix-os/L4-basic-design/local-ci.md"
+        sources[path] = sources[path].replace(
+            b"| `AC-OS-020-03` | `not_exercised` | synthetic reason for AC-OS-020-03 |\n", b""
+        )
+        _expect_diag(self, "Unknown", "missing_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_parent_ac_coverage_missing_l4_source_is_unknown(self):
+        doc, sources, _ = _baseline()
+        del sources["docs/helix-os/L4-basic-design/local-ci.md"]
+        _expect_diag(self, "Unknown", "missing_input", manifest.load_design_manifest, _raw(doc), sources)
 
     def test_ut_lci_33_definitions_form_unique_graph(self):
         doc, sources, _ = _baseline()

@@ -62,7 +62,13 @@ _BULLET_RE = re.compile(r"^- \*\*([^\s*]+) [^*]+\*\*.*$")
 _SHA_RE = re.compile(r"^[0-9a-f]{64}$")
 _RANGE_KEYS = {"range_id", "start_heading", "end_heading", "grammar", "id_column", "literal_expansions"}
 _FILE_KEYS = {"path", "role", "source_kind", "expected_pair", "definition_ranges", "reference_ranges"}
-_MANIFEST_KEYS = {"version", "files", "coverage_edges", "coverage_dispositions", "source_scopeouts", "legacy_pins", "unsupported_items"}
+_PARENT_AC_COVERAGE_KEY = "parent_ac_coverage"
+_PARENT_AC_IDS = ("AC-OS-020-01", "AC-OS-020-03")
+_PARENT_AC_SOURCE_PATH = "docs/helix-os/L4-basic-design/local-ci.md"
+_PARENT_AC_START_HEADING = "### 親ACの適用範囲"
+_PARENT_AC_END_HEADING = "## 2. local CI契約"
+_MANIFEST_KEYS = {"version", "files", "coverage_edges", "coverage_dispositions", _PARENT_AC_COVERAGE_KEY, "source_scopeouts", "legacy_pins", "unsupported_items"}
+_MANIFEST_REQUIRED_KEYS = _MANIFEST_KEYS - {_PARENT_AC_COVERAGE_KEY}
 
 
 def _fail(classification: str, reason: str, detail: str = "") -> None:
@@ -234,7 +240,16 @@ def _validate_range(id_range, path, sources):
 
 
 def _validate_manifest_shape(manifest, sources):
-    _obj(manifest, _MANIFEST_KEYS, "DesignScopeManifest")
+    if not isinstance(manifest, dict):
+        _fail("Rejected", "invalid_input", "DesignScopeManifest object")
+    unknown_keys = set(manifest) - _MANIFEST_KEYS
+    if unknown_keys:
+        _fail("Rejected", "invalid_input", "DesignScopeManifest unknown fields")
+    missing_keys = _MANIFEST_REQUIRED_KEYS - set(manifest)
+    if missing_keys:
+        _fail("Rejected", "invalid_input", "DesignScopeManifest required fields")
+    if _PARENT_AC_COVERAGE_KEY not in manifest:
+        _fail("Unknown", "missing_input", "DesignScopeManifest parent_ac_coverage missing")
     _text(manifest["version"], "manifest version")
     files = _list(manifest["files"], "files")
     seen_paths = set()
@@ -263,7 +278,57 @@ def _validate_manifest_shape(manifest, sources):
         file_by_path[path] = item
     if seen_paths != EXPECTED_PATHS:
         _fail("Unknown", "missing_input", "fixed 10-document corpus incomplete")
+    _validate_parent_ac_coverage(manifest[_PARENT_AC_COVERAGE_KEY], sources)
     return file_by_path
+
+
+def _validate_parent_ac_coverage(rows, sources):
+    """Validate the fixed OS parent-AC applicability record against its L4 table."""
+    if not isinstance(rows, list):
+        _fail("Rejected", "invalid_input", "parent_ac_coverage list")
+
+    by_id = {}
+    for row in rows:
+        _obj(row, {"parent_ac_id", "state", "reason"}, "ParentAcCoverage")
+        parent_id = _text(row["parent_ac_id"], "parent_ac_id")
+        if parent_id not in _PARENT_AC_IDS:
+            _fail("Rejected", "invalid_input", "unsupported parent_ac_id: " + parent_id)
+        if row["state"] != "not_exercised":
+            _fail("Rejected", "invalid_input", "parent AC cannot pass or change state: " + parent_id)
+        reason = _text(row["reason"], "parent AC reason")
+        if not reason.strip():
+            _fail("Rejected", "invalid_input", "parent AC reason must be nonempty")
+        if parent_id in by_id:
+            _fail("Unknown", "conflict", "duplicate parent_ac_coverage row: " + parent_id)
+        by_id[parent_id] = reason
+
+    if set(by_id) != set(_PARENT_AC_IDS):
+        _fail("Unknown", "missing_input", "parent_ac_coverage fixed parent set incomplete")
+
+    locator = {
+        "start_heading": _PARENT_AC_START_HEADING,
+        "end_heading": _PARENT_AC_END_HEADING,
+    }
+    table_rows = _table_data_rows(_range_lines(_PARENT_AC_SOURCE_PATH, locator, sources))
+    source_by_id = {}
+    for line_no, cells in table_rows:
+        if not cells:
+            continue
+        parent_id = _cell_id(cells[0])
+        if parent_id not in _PARENT_AC_IDS:
+            continue
+        if parent_id in source_by_id:
+            _fail("Unknown", "conflict", "duplicate parent AC in L4 applicability table: " + parent_id)
+        if len(cells) < 3:
+            _fail("Unknown", "missing_input", "parent AC applicability columns missing at line " + str(line_no))
+        source_by_id[parent_id] = (cells[1], cells[2])
+
+    if set(source_by_id) != set(_PARENT_AC_IDS):
+        _fail("Unknown", "missing_input", "L4 parent AC applicability rows incomplete")
+    for parent_id in _PARENT_AC_IDS:
+        source_state, source_reason = source_by_id[parent_id]
+        if source_state != "`not_exercised`" or by_id[parent_id] != source_reason:
+            _fail("Unknown", "conflict", "parent AC applicability differs from L4 literal: " + parent_id)
 
 
 def _extract_ids(manifest, sources):
