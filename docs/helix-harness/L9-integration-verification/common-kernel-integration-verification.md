@@ -253,20 +253,6 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-G3-04` | G3-I4：人のIF | `evaluate` | 受入を求める義務（`requires_positive`）で、同じtarget・revision・scope・判断種別の`accepted`の`HumanDecision`があれば肯定 | 一条件ずつ変える：(1)記録が無い、(2)別のtargetのidentity、(3)別のscope、(4)別の判断種別、(5)`pending`→いずれも`Unobserved(pending_receipt)`。(6)同じtargetの旧revision→`Stale`、(7)同じrevisionでdigestが違う→`Unknown(conflict)`、(8)`rejected`→否定。(9)記録だけを求める義務では`rejected`も肯定。ただし、その肯定から受入の状態を出力する経路は`Rejected`。(10)機械やLLMの`Positive`で`HumanDecision`を埋める実装は不合格、(11)由来のL3が人の記録を求めていない義務に`HumanInterface`を付けた集合は`derive`で拒否 |
 | `IV-G3-05` | G3-I5：割合は情報 | 消費側 | 種別ごとの義務の数を数えられる | その数から合否・承認を出力する経路は`Rejected` |
 
-## 3. 判定と戻し先
-
-- 項目の判定はK1の型で記録する。検証器が未実装または未実行の項目は`Unobserved`であり、合格に数えない。
-- 反例が通った場合の戻し先は、L4の不変条件の誤りならL4（本書の対）、機構の写像関数の誤りなら当該機構のL4（未作成の間は当該機構のL3の所有者へ所見として返す）、L3のACと矛盾する場合はL3へ戻す（HARNESS-L2-003／004）。
-- 本書の項目数や合格数を、L3／L10の承認や品質の証拠にしない。
-
-## 4. 旧HELIXとの対応
-
-| 旧source（ID／path:行／SHA-256） | 保持する点 | 変更する点 | 区分候補 |
-|---|---|---|---|
-| `LEGACY-ASSET-84DA9FA82E710D0C5E6A`／`docs/test-design/harness/L9-integration-test-design.md:1-25`／`04e4a1473d483511c1724de7445bc8202e028e4a5c3eb749c0ccb74a98febe7a` | L9を結合のoracleの置き場とし、module・adapter・stateの境界を検証する | 旧L5境界から現行のL4↔L9へ対を合わせる。旧oracle ID・件数・実行手順は移さない（除外class `legacy_test_design_or_oracle`） | `semantic_rederive` |
-| `LEGACY-ASSET-2E09592A003B32C118C1`／`docs/governance/gate-design.md:35`／`d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726` | G9＝L4基本設計のoracleをL9で実行する対応 | 旧のsign-off（TL提案）は採らない（L4以降は自動。L4の5章） | `semantic_rederive` |
-| `LEGACY-ASSET-BB08D70A42B6445B2D1E`／`docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md:130-148`／`9e18d68b5e463192fb30b839eb164d79f7202a15374482f65181b238df8e513d` | L9の合否境界として、既存eventの書換え、同一event_idの異digest上書き、projectionとread-backの不一致、non-idempotent replay、全体scopeのdigestの流用を拒否する | causation・lane・GitHub Projectの項目は移さない。異digestは拒否でなくconflictとして両方を残す（L4 K5-I5） | `semantic_rederive` |
-
 ### K9 独立reviewのL9検証案
 
 fixtureはK2 `ResultKey`を固定し、一項目ずつ変える。provider/modelはK9 predicateと入力keyに含めない。negativeは`Value(ReviewIndependence{outcome: NotIndependent, failed_axes, reason_codes})`として明示し、入力不足・source不明は`Unknown`、review未実施は`Unobserved`と区別する。**本表は文書上のoracle案で未実行。** K6 receiptの`issuer_authenticity=Unknown(unsupported)`は別assuranceに残り、実reviewerや過去実行の真正性を証明しない。
@@ -298,3 +284,17 @@ fixtureはK2 `ResultKey`を固定し、一項目ずつ変える。provider/model
 - route/context/authority owner contractが現在の入力に無いときは`Unknown`を返す。routeの存在をproviderやruntimeの同異で代替しない。
 
 旧L9 trace：`LEGACY-ASSET-50A93B0E753DC3840E03`／`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-worker-independent-review-system-test-design.md:18-27`／`fd1bf27704c12072d56491ae66d21f9858f7275ec8c3f1a5e50714fd235eb672`。ST-WRR-003/004/006/007のaxis collision、同provider/modelでも三軸独立なら正常、actor自己申告・copy/stale/finding spoofを保持し、四軸とcurrent L3に合わせて分解した。ST-WRR-001のsealed capability実装、ST-WRR-008のUbuntu/AppArmor/bubblewrap経路はK9製品検証へ持ち込まない。
+
+## 3. 判定と戻し先
+
+- 項目の判定はK1の型で記録する。検証器が未実装または未実行の項目は`Unobserved`であり、合格に数えない。
+- 反例が通った場合の戻し先は、L4の不変条件の誤りならL4（本書の対）、機構の写像関数の誤りなら当該機構のL4（未作成の間は当該機構のL3の所有者へ所見として返す）、L3のACと矛盾する場合はL3へ戻す（HARNESS-L2-003／004）。
+- 本書の項目数や合格数を、L3／L10の承認や品質の証拠にしない。
+
+## 4. 旧HELIXとの対応
+
+| 旧source（ID／path:行／SHA-256） | 保持する点 | 変更する点 | 区分候補 |
+|---|---|---|---|
+| `LEGACY-ASSET-84DA9FA82E710D0C5E6A`／`docs/test-design/harness/L9-integration-test-design.md:1-25`／`04e4a1473d483511c1724de7445bc8202e028e4a5c3eb749c0ccb74a98febe7a` | L9を結合のoracleの置き場とし、module・adapter・stateの境界を検証する | 旧L5境界から現行のL4↔L9へ対を合わせる。旧oracle ID・件数・実行手順は移さない（除外class `legacy_test_design_or_oracle`） | `semantic_rederive` |
+| `LEGACY-ASSET-2E09592A003B32C118C1`／`docs/governance/gate-design.md:35`／`d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726` | G9＝L4基本設計のoracleをL9で実行する対応 | 旧のsign-off（TL提案）は採らない（L4以降は自動。L4の5章） | `semantic_rederive` |
+| `LEGACY-ASSET-BB08D70A42B6445B2D1E`／`docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md:130-148`／`9e18d68b5e463192fb30b839eb164d79f7202a15374482f65181b238df8e513d` | L9の合否境界として、既存eventの書換え、同一event_idの異digest上書き、projectionとread-backの不一致、non-idempotent replay、全体scopeのdigestの流用を拒否する | causation・lane・GitHub Projectの項目は移さない。異digestは拒否でなくconflictとして両方を残す（L4 K5-I5） | `semantic_rederive` |
