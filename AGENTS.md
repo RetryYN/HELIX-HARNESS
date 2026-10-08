@@ -12,6 +12,7 @@
 
 - 現行のHELIXは、旧HELIXと、旧HELIXの規律から派生して実際に運用された開発repository（前身harness `unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ProFine`、`RetryYN/HELIX-WP-THEME`、`RetryYN/HELIX-WP-HARNESS`、`RetryYN/HELIX-VIDEO-STUDIO`等）で起きた失敗の上に再編している。HELIXは失敗から学んで最適化するシステムであり、開発もその原則で進める（2026-10-09のPO判断、[判断記録](docs/governance/decisions/learn-from-failures-principle-po-decision-2026-10-09.md)）。
   規則、運用、設計を追加・変更・提案するときは、旧HELIXの対応箇所に加えて、同じ種類の失敗の事例（Issue、PR、監査記録）を確かめて起点にし、同じ失敗を繰り返さない形にする。事例のない予防の規則は足さず、機構が成立した運用規則は減らす（[GitHub上流運用モデル](docs/governance/github-upstream-operating-model.md)「運用規則の置き場と、機構への移管」）。
+  各機構は記録された失敗を防ぐ機構として読み、各機構の要求の意味は、その要求がどの失敗を防ぐかで確かめる（抜け漏れを防ぐ管理としてのHELIX-OS、それらの失敗を防ぐ機構としてのINTELLIGENCE）。失敗を防ぐ要求が見つからなければ、要求候補として人の判断へ送る。
   派生repositoryは旧HELIXの台帳資産ではない。事例はrepository、commit、Issue／PR番号で引き、その規則や本文を現行へ写さず、旧HELIXと同じく保持する点と変える点を記録する。
 - 規則、運用、工程、役割分担、承認手続き、要求、設計、仕組みを追加・変更・提案するときは、先に旧HELIX
   （`archive/legacy-generation-2026-09-14/`と[資産明細台帳](docs/governance/legacy-asset-disposition.jsonl)）の対応箇所を読み、それを起点にする。
