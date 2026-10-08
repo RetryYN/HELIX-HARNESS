@@ -1,14 +1,16 @@
-# HELIX 共通カーネル L4基本設計（K1・K2・K4・K5・K6・K7・K3・K10・G3・G5・G8・Phase 1）
+# HELIX 共通カーネル L4基本設計（K1〜K10・E・G3/G4/G5/G8/G10/G11・Phase 1・型番台帳/配置）
 
-status: draft_for_l4_review
+status: design_pair_defined
 owner: HELIX-HARNESS（工程の標準と検証義務の所有。2026-10-08のPO判断の判断2）
 parent_requirement: なし（一つの親要求を定めず、要素ごとに承認済みL3のACへtraceする。2026-10-08のPO判断の判断2。1.3を参照）
 paired_l9: ../L9-integration-verification/common-kernel-integration-verification.md
-base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
+base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した現行本文のSHA-256はL4付録A）
 
-本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）、PR3bはG8（11章）とPhase 1の条件の具体（12章）、PR4はK4とG3（13章）、PR5はK10（14章）、PR6はK7・G5・型番台帳と配置（15章）、PR7はK3（16章）、PR8はK9（17章）、PR9はK8（18章）を扱う。残りは8.2の「後続PRの計画」に置く。
+本書は、8機構が共通に使う結果の型・版の鍵・証拠・義務・依存・世代切替・操作権限・label遷移・独立性を扱う共通カーネルのL4基本設計であり、対のL9結合検証設計と一体で更新する。各要素は承認済みL3 ACと適用するConcept/L2へtraceし、由来のない意味を要求へ昇格させない。型番台帳と配置は2026-10-08/09の既存PO判断の範囲で設計する。
 
-本書は要求の意味、範囲、担当、版を作らない。各要素は承認済みL3のACを由来とし、由来の無い要素は「L2へ戻す論点」に分ける。本書は実装、実行、内部デプロイ、releaseの許可を含まない。本書の承認・merge・試作の合格から、L3以上の承認や完了を生成しない。
+`design_pair_defined`は契約とoracleの設計定義状態を表す。独立reviewの結果は対象PRのexact base/HEAD記録で追い、上流承認・実装・実行・合格の状態をこのstatusに混ぜない。設計、review、mergeからL3以上の承認、Phase 1成立、v0.1宣言、内部deployment、releaseまたは要求完了を生成しない。
+
+2026-10-09 PO判断が採用した構成基本案の四つの具体化事項を15.5に定める。判断記録が非対象とする実装、新世代CIの起動、release/deployment、visibility/LICENSE変更、配布repo作成/切替、directory作成、L2/Concept変更、新しい承認手続きは、本設計から許可として導かない。
 
 ## 1. 配置
 
@@ -23,12 +25,12 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 | 共通カーネルL4基本設計 | `docs/helix-harness/L4-basic-design/` | 共通カーネルを所有するHELIX-HARNESSのL4として、現行の`docs/<mechanism>/`機構×層配置に置く。 |
 | 共通カーネルL9結合検証 | `docs/helix-harness/L9-integration-verification/` | L4とのpairを保ち、V字各層のverification設計の正本を`docs/`に置く。 |
 
-2026-10-09 PO判断は、`docs/`の既存配置を維持し、L4〜L9も機構×層の同じ並びに置き、V字各層のverification設計を`docs/`に置くことを採用した。この節は既存配置を示すものであり、新しいdirectoryを作る許可ではない。L4とL9を対にする旧根拠は`LEGACY-ASSET-80FD1264A2C50E2E4AA4`（旧`docs/process/README.md:44-55`、SHA-256 `21a875ca5b46a8396485690a8405923ea197552fe4aa2302b1eaad6f7e650985`）。共通カーネルの所有者をHELIX-HARNESSとする根拠はConcept原則4/10と2026-10-08 PO判断2である。
+2026-10-09 PO判断（`docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md`）は、`docs/`の既存配置を維持し、L4〜L9も機構×層の同じ並びに置き、V字各層のverification設計を`docs/`に置くことを採用した。この節は既存配置を示すものであり、新しいdirectoryを作る許可ではない。L4とL9を対にする旧根拠は`LEGACY-ASSET-80FD1264A2C50E2E4AA4`（旧`docs/process/README.md:44-55`、SHA-256 `21a875ca5b46a8396485690a8405923ea197552fe4aa2302b1eaad6f7e650985`）。共通カーネルの所有者をHELIX-HARNESSとする根拠はConcept原則4/10と2026-10-08 PO判断2である。
 
 ### 1.3 境界と配置の扱い
 
 - **親要求**：本書は一つの親要求の下に置かず、要素ごとに承認済みL3 ACへ由来を辿る（2026-10-08 PO判断2）。HARNESS-L2-031の意味は「ログ・入力からの最小再現と回帰候補生成」であり、「031＝共通部品」は所属の確定であって本書の親要求化ではない。
-- **文書配置**：L4〜L9の機構×層配置とverification設計の`docs/`正本は2026-10-09 PO判断で採用済みである。ここから別のauthoring rule fileを追加したり、既存`l3-l10-authoring-layout.md`の適用範囲を変更したりしない。`docs/`のrepository-wideな再配置も行わない。
+- **文書配置**：L4〜L9の機構×層配置とverification設計の`docs/`正本は2026-10-09 PO判断で採用済みである。ここから別のauthoring rule fileを追加したり、既存`docs/governance/l3-l10-authoring-layout.md`の適用範囲を変更したりしない。`docs/`のrepository-wideな再配置も行わない。
 - **作業入口**：L4〜L6設計と対のverification設計は、承認済みL3/L10を親とする既存の作業入口条件に従う。
 - **新しい構成基本案**：15.5は、2026-10-09 PO判断が採用した構成の基本案と、そのL4具体化事項を表す。判断記録に列挙された実装・実行・release等の非対象は、配置記述から許可として導かない。
 
@@ -47,7 +49,7 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 | SECURITY | `SECURITY-AC-001-01`（`docs/helix-security/L3-requirements/functional-requirements.md:68`） | 分類不能はunknown／untrustedと判定する |
 | BRAIN | `BRAIN-008-AC-02`（`docs/helix-brain/L3-requirements/functional-requirements.md:85`） | unknown stateをcurrentへ暗黙に解決しない |
 
-引用した本文は、base `f88c96ce`の各ファイル（SHA-256は付録A）である。各ACの承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による。
+引用した現行本文は冒頭のbaseの各ファイル（SHA-256は付録A）である。各ACの承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による。
 
 各機構のACは、それぞれの状態語で同じ規則を述べている。K1はこれを一つの型にまとめる設計であり、各機構の状態語と意味を置き換えない（2.4の写像表）。
 
@@ -154,11 +156,11 @@ Combined<T>  = { verdict: Verdict,
 - `unobserved`の5件は`lifecycle-state-separation.md`とその対の受入設計、`src/`・`tests/`の実装であり、一つの機構（運用観測）の状態語である。`未観測`・`inconclusive`の該当（重複を除き29件）は、各行を読み、いずれも個別の機能（feedback lifecycle、impact CI、agent lifecycle、execution ticket、mechanism adequacy、V-model docgen等）の局所的な使用であった。機構横断のクラス集合を定める記述は無かった。
 - 旧の用語集`docs/design/helix/L3-requirements/glossary-ssot.md`（`LEGACY-ASSET-BE8CCE567342EAB19B1C`、SHA-256 `610c5dc6513c25c17d8a813e4685b46e4fda3d2a19c9472e62af70f08038abf5`、`status: placeholder`）は、`unknown`、`stale`、`not_applicable`、`未観測`、`不明`をいずれも含まない。
 
-### 2.7 未決と試作で確かめること
+### 2.7 状態語の写像と検証範囲
 
 - `Unknown`と`Unobserved`の境界を、各機構のL3の語で一件ずつ確かめる（例：HARNESSの「未評価」の二分）。境界がL3の意味に触れる場合は、L2へ戻す論点にする（6章）。
 - `UnknownReason`の語彙が、承認済みL3の否定fixtureをすべて表せるか。表せない語が出たら、語彙を足す前に`Value`の否定でないかを確かめる。
-- 試作（`scaffold/`、Scaffold Binding登録）：HARNESSの検証結果とCONNECTの互換結果を同じ`Observed`で保存し、`combine`と`admit`がL3の否定fixtureをすべて`Withheld`にすることを確かめる。
+- 対のL9 IV-K1-01〜13で、HARNESSの検証結果とCONNECTの互換結果の写像、`combine`/`admit`の成分保持と非肯定を確かめる設計とする。未実行の項目を合格に数えない。
 
 ## 3. K2 identity・revision・digestによる鍵
 
@@ -232,18 +234,18 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 
 旧HELIXには、意味が変わらなければ下流を無効にしない仕組み（backdating）が無い。本書もPO判断2により使わない。backdatingを入れる時点で、判定器の版とdigestの固定とともに**新規案**として示す。
 
-### 3.6 未決と試作で確かめること
+### 3.6 機構別契約と検証範囲
 
-- `kind`の語彙と、各機構の`identity`の形式（登録IDとpack identityの関係等）。各機構のL4で値を足す。
-- `inputs`の全集合を誰が宣言するか。各操作の所有者が宣言する設計にしたが、宣言漏れを検出する方法はK10（依存グラフ）とK4（義務）で扱う。
-- 時間による鮮度（観測の期限）はK2に含めない。K2のstaleは版の不一致だけである。時間の閾値はL2へ戻す論点とする（6章、G11）。
-- 試作：L9のIV-K2-01〜20を`scaffold/`（Scaffold Binding登録）で動かし、revisionの変更、同じrevisionのdigestの変更、非`Value`の旧記録、鍵の各fieldの単独変更、複数記録の集約が、それぞれ定義した返り値になることを確かめる。
+- kind語彙とidentity形式は、各機構の既存L2/L3 identityに整合するL4契約で定める。共通K2は語彙を推測しない。
+- inputs全集合の宣言者は操作ownerである。K10の明示依存closureとK4の義務が参照するoracle/入力をoperation宣言へ照合する。宣言済み必須入力の欠落は鍵構成前に拒否し、未知の依存を推測で追加しない。宣言外依存の真偽まで検出できるとは保証しない。
+- 時間鮮度の閾値はK2に含めない。staleは版の不一致である。既存意味に新しい時間閾値を足す場合だけ6.2へ戻す。
+- 対のL9 IV-K2-01〜20はrevision/digest、非Valueの旧記録、鍵各field、複数記録の集約を照合する設計であり、本書で実行済みとはしない。
 
 ## 4. 用語の区別
 
 旧HELIXと同じ語を使う場合、意味を次のように分ける（本書の設計判断。5章）。
 
-| 語 | 本書と後続PRでの意味 | 旧HELIXでの意味 |
+| 語 | 本書での意味 | 旧HELIXでの意味 |
 |---|---|---|
 | operation authority tuple | 操作の許可を束ねる組（actor、target、operation、revision、environment、scope、expiry等）。SECURITYのL3が使う語に合わせる。K3で定める | 「authority tuple」はregistryやIssue／PRのidentityの組を指した（`LEGACY-ASSET-40605F1E36A5DDCE0D84`、`docs/design/helix/L6-function-design/github-workflow-identity-contract.md:33`、SHA-256 `cf46f99a4d5ace7ba11be2d168820b3026365dd3f61bcb68ae49867c5cf54806`）。本書はこの意味を「registry identity tuple」と呼ぶ |
 | 遅着作用 | 失効した割当てやrunが後から返した、状態を変える作用。拒否する（K7で定める） | 旧HIL-FR-27「失効runのlate resultをcommitしない」（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:117`、SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`） |
@@ -256,10 +258,10 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 | 判断（出所） | 本書での適用 | 旧source（保持点・変更点） |
 |---|---|---|
 | 旧HELIX内の矛盾(a)は「L4以降は完全自動」に揃える（AIの設計判断） | 本書（L4）とL9に人の承認を置かない。独立reviewで確かめる | 旧charter §3（`LEGACY-ASSET-3B16BCFFAF353ADA813A`、`docs/design/helix/L0-charter/helix-charter_v0.1.md:18,22-30`、SHA-256 `8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8`）の「L4以降はAIが完全自動」を保持する。旧gate-design（`LEGACY-ASSET-2E09592A003B32C118C1`、`docs/governance/gate-design.md:23-40`、SHA-256 `d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726`）のG7・G11のPO sign-offは採らない（変更点）。理由：旧内部の矛盾を、現行の規則（AGENTS.md：人が持つ上流はConcept・L1・L2と、L3の承認）に揃える。G11（L11受入）の人の受入は、HARNESS-L2-022の利用者受入として別に残り、本判断で消えない |
-| 結果とeventの正本はrepository内の追記専用JSONL。SQLiteのprojection DBは置かない（AIの設計判断。K5で詳細化） | K2の記録の保存先（K5で定める） | 旧ADR-007（`LEGACY-ASSET-8771887517A619A2D501`、`docs/adr/ADR-007-harness-db-sqlite-projection.md:18-22`、SHA-256 `50c05a00872be6c23de531aaecd6a6cfd26abec264718e0223ac2630f739dcdf`）は、`harness.db`を「projectionでありauthoring sourceではない」とし、正本を「docs/YAML/JSON state/log」と「markdown/YAML」に置いた。一方、旧`CLAUDE.md:250`（`LEGACY-ASSET-6EBDB617A8104A7756D0`）はsession continuationについて「`harness.db`のevent/projectionを正本」としており、旧の内部で扱いが揃っていなかった。保持する点：projectionは再構築でき、正本ではない（ADR-007）。変更する点：(1)K2の結果とeventの正本を、種類の異なるJSON state・logから、一つの追記専用JSONLの形式に揃える、(2)正本を正規化して保持するDB（`harness.db`）を置かず、projectionは必要なときにJSONLから導く、(3)旧`CLAUDE.md:250`のDB正本の扱いは採らない。区分は`replace`（保存の形式）。理由は設計上の三点である。K2-I2とK2-I4は記録を上書きせず衝突を両方残すことを求め、追記専用の形式がこれを構造で満たす。repositoryの記録は各行がcommitと本文のSHA-256で固定でき、K2の`revision`・`digest`と同じ方法で参照できる（AGENTS.md「過去の本文を指すときは対象のcommitと本文のSHA-256」）。正本をrepositoryの一系統にすれば、Concept原則7（`docs/concept/helix-concept.md:308`「意味の正本、実行事実、表示、作業文脈を分けて保つ」）の再構築を、DBの復元なしにrepositoryだけで行える。規模と再構築の費用はK5の未決とする |
+| 結果とeventの正本はrepository内の追記専用JSONL。SQLiteのprojection DBは置かない（AIの設計判断。K5で詳細化） | K2の記録の保存先（K5で定める） | 旧ADR-007（`LEGACY-ASSET-8771887517A619A2D501`、`docs/adr/ADR-007-harness-db-sqlite-projection.md:18-22`、SHA-256 `50c05a00872be6c23de531aaecd6a6cfd26abec264718e0223ac2630f739dcdf`）は、`harness.db`を「projectionでありauthoring sourceではない」とし、正本を「docs/YAML/JSON state/log」と「markdown/YAML」に置いた。一方、旧`CLAUDE.md:250`（`LEGACY-ASSET-6EBDB617A8104A7756D0`）はsession continuationについて「`harness.db`のevent/projectionを正本」としており、旧の内部で扱いが揃っていなかった。保持する点：projectionは再構築でき、正本ではない（ADR-007）。変更する点：(1)K2の結果とeventの正本を、種類の異なるJSON state・logから、一つの追記専用JSONLの形式に揃える、(2)正本を正規化して保持するDB（`harness.db`）を置かず、projectionは必要なときにJSONLから導く、(3)旧`CLAUDE.md:250`のDB正本の扱いは採らない。区分は`replace`（保存の形式）。理由は設計上の三点である。K2-I2とK2-I4は記録を上書きせず衝突を両方残すことを求め、追記専用の形式がこれを構造で満たす。repositoryの記録は各行がcommitと本文のSHA-256で固定でき、K2の`revision`・`digest`と同じ方法で参照できる（AGENTS.md「過去の本文を指すときは対象のcommitと本文のSHA-256」）。正本をrepositoryの一系統にすれば、Concept原則7（`docs/concept/helix-concept.md:308`「意味の正本、実行事実、表示、作業文脈を分けて保つ」）の再構築を、DBの復元なしにrepositoryだけで行える。規模と再構築の費用はK5の実装検証対象であり、未測定の性能を保証しない |
 | 信頼の根は、版とdigestで固定した検証器の集合をrepositoryで管理する。署名は後回し（AIの設計判断。K6・Eで詳細化） | K2の`producer`の枠（K6・Eで定める） | 旧closure-evidence-materialization（`LEGACY-ASSET-901EFEC93D536D3AA418`、`docs/design/harness/L6-function-design/closure-evidence-materialization.md:67-76`、SHA-256 `a8951a0cdd590da84612de8c6b6e5960ca5c32ad3b3d0c0d0511b9f5789c0264`）の「local hash単独では真正性を主張しない」を保持する。GitHub required-checkを信頼の根にする点は`replace`。理由：新世代CIは未構築で、旧CIは使えない |
 | 旧用語の衝突は定義を分ける（AIの設計判断） | 4章 | 上表のとおり |
-| 開発repoのreviewは、作成と別系統（別runtime・別model family）のクロスレビューを必須とする（PO判断：2026-10-08の委任判断記録の判断1。開発repoの運用規則） | 本PRの作成とreviewに適用する。製品K9の根拠にしない | 解禁判断記録の判断3（`docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md:57-61`）により、これは開発repo（本repository）の運用規則であり、製品（HELIX）の要求ではない。製品のK9はConcept:236（独立reviewはidentity・context・authority・review routeで行い、providerの同異では独立性を決めない）と承認済みL3から導く（8.2のPR8） |
+| 開発repoのreviewは、作成と別系統（別runtime・別model family）のクロスレビューを必須とする（PO判断：2026-10-08の委任判断記録の判断1。開発repoの運用規則） | 本PRの作成とreviewに適用する。製品K9の根拠にしない | 解禁判断記録の判断3（`docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md:57-61`）により、これは開発repo（本repository）の運用規則であり、製品（HELIX）の要求ではない。製品のK9はConcept:236（独立reviewはidentity・context・authority・review routeで行い、providerの同異では独立性を決めない）と承認済みL3から導く（17章、8.2のK9） |
 | G4はbytes変化＝意味変化（PO判断：2026-10-08判断記録の判断2） | K2-I3 | 2026-10-08判断記録の判断2 |
 
 ## 6. 既存意味を保つ設計と意味変更時の上流
@@ -268,17 +270,19 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 
 ### 6.1 既存意味を保つ設計と残余限界
 
+本書のG11は時間・鮮度条件の整理用識別子である。5章で引用する旧gate-designのG11（L11受入gate）とは別であり、旧番号から時間条件や新しい人承認を導かない。
+
 | 対象 | L4で定める設計責務 | 保持する残余限界 |
 |---|---|---|
 | K1 / G10 | 2章に従って各機構の状態を`Observed<T>`へ写し、G10の肯定・否定・unknown等の成分を合成する。 | 各機構の語義を共通型の都合だけで統一・変更しない。missing、unknown、unobserved、staleを肯定へ縮退させない。 |
 | K2 / G4 | 3章のkey field、正準順、lookup、stale/conflictを設計する。bytesと意味revisionの境界は2026-10-08 PO判断2を維持する。 | 判定器ができるまではbytes変化を常に意味変化として扱い旧結果を使わない。同revisionの異digestはUnknown(conflict)、新revisionの旧ValueはStaleであり、現行鍵を捏造しない。 |
-| K3 | 16章の既存operation authority tupleとcurrent permission照合を、PR10の全体traceへ含める。 | 既存許可を生成・拡張せず、unknown/conflictを許可にしない。16章のexact契約をK8/K9統合の代わりに流用しない。 |
+| K3 | 16章のoperation authority tupleとcurrent permission照合、K7/G5受信側の接続を定める。 | 既存許可を生成・拡張せず、unknown/conflictを許可にしない。target identityとrevision subjectの対応はowner宣言で照合し、同一identityだと推測しない。 |
 | K4 / G3 | 13章の義務集合・状態・oracle種別・継承/受領を、承認済みACに沿って設計する。 | traceの存在だけで義務充足にしない。human-interface範囲や機械判定割合を新設しない。 |
 | K5 | 9章のappend、固定prefix、projection、restore/replay、conflict手順を設計する。 | 既知headなしに真の末尾削除を検出できると主張しない。未設計の保存容量・圧縮・外部archiveの保証を足さない。 |
 | K6 / E | 10章のreceipt admission、reproduction、issuer authenticityを分け、各assuranceを保持する。 | 現行sourceで証明できないissuer/過去実行の真正性を肯定しない。未知の真正性は別の許可待ちにしない。 |
 | K7 / G5 | 15章とOS/INFRA/HARNESS/SECURITY ACに沿ってrequest/apply、fencing、current permission照合、受け手ごとの取消し伝播を設計する。 | 跨writer原子性、既に実行された作用の取消し、数値で定められていない伝播上限を保証しない。pointer移動を正常起動の証拠にしない。 |
-| K8 | 統合後に§18へ置かれるK8の番号付き契約と対のL9検証を、最終integration HEADからtraceする。 | 最新統合前のmeaning、field、oracle、結果をここで補作しない。 |
-| K9 | 統合後に§17へ置かれるK9の番号付き契約と対のL9検証を、最終integration HEADからtraceする。 | 最新統合前のmeaning、field、oracle、結果をここで補作しない。 |
+| K8 | §18のK8-I1〜I8に従い、source/project/revisionとcurrent分類宣言から未信頼labelを観測し、明示routeのK6検証・K3 permission・実作用観測を別結果として結ぶ。current owner入力・operation key・保存結果・projectionの再照合、Unknown/Unobserved/Staleの保持を定める。 | K8は許可・route・作用を生成せず、汎用taint伝播や独自classification/target語彙を加えない。未証明issuer真正性、未観測作用、ACにないtargetの扱いを肯定へ補わない。 |
+| K9 | 17章のcreator inventory、四軸比較、current target binding、操作別K2鍵と非肯定の早期returnを定める。 | provider/modelの同異を独立性とせず、開発repoのcross-runtime規則を製品要求へ転用しない。K6の真正性限界を四軸比較で消さない。 |
 | K10 | 14章に従って承認済み依存closure/影響ACの範囲でtyped edgeとclosure/impactを設計する。 | 宣言外runtime依存やedgeの真偽を推測しない。L3にない一律cycle拒否を加えない。 |
 | E | 10章に従ってverification receiptのissuer/evidence boundaryとK6 admissionを設計する。 | receiptの有無や設計上のadmissionを実行済み/合格としない。 |
 | G3 | 13章に従ってoracle種別と義務単位の検証責務を設計する。 | coverageやtraceだけから人の判断・合格を生成しない。 |
@@ -328,44 +332,44 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 
 通常のL4/L9設計reviewに人間approveや別delivery receiptを追加しない。通常のGitHub作業の既存規則を保ち、不可逆な外部作用は既存の明示許可へ結びつける。
 
-## 8. PRの範囲と後続PRの計画
+## 8. 設計範囲と対の結合検証
 
-### 8.1 最初のPRの範囲と切り方の理由
+### 8.1 一つのL4／L9 pairとして扱う理由
 
-最初のPRは、配置の提案、K1、K2、用語の区別、対のL9（K1・K2の結合検証）に限る。
+K1の型とK2の鍵を共通の前提とし、K3〜K10と組込要素が同じ型・鍵・証拠を消費する。依存する共通契約を先に定め、各契約と対のL9 oracleを同時に更新する。L4だけを定めて検証設計を後回しにせず、L9だけから要求や合格を生成しない。所有者はHELIX-HARNESSであり、単一の親要求を作らず要素ごとに承認済みL3 ACへtraceする。
 
-- K1とK2は他のすべての要素の前提である（K3〜K10の結果はK1の型で返し、K2の鍵で保存する）。運用モデル「PRの原子性」の「対象PRが実際に参照する共通部品は先行PRで閉じる」に従い、先に閉じる。
-- K1とK2は一つの変更目的（結果を版の鍵で保存し、不明を縮退させない）を成す。K2のstaleはK1の`Stale`クラスとして返るため、分けると片方だけでは検証できない。
-- 運用モデルの`design_verification`は「後続の一つのV-pair」を扱うため、L4とL9を同じPRに置く。
-- 人が読む本文はL4とL9を合わせて約410行で、目安の上限をわずかに超える。超える理由は、review01・02で鍵の各fieldと複数記録の集約を検証項目として列挙する必要が生じたことと、K1・K2が8機構のACへの由来の表と旧sourceの対応表を要することである。K1とK2は上の理由で分けられない。
+### 8.2 設計範囲と残余限界
 
-### 8.2 後続PRの計画
+全行は本pairに定義した契約とoracleの位置を示す。実装・実行・合格・上流承認の状態ではない。各要素の由来、旧source、保持点・差分は参照章に固定する。既存意味内の技術詳細はAIの設計責務であり、既存意味を変える場合だけ6.2へ戻す。既存の人判断と外部作用は7章に従う。
 
-各PRはL4の節と対のL9を同じPRに置く。依存の順に並べる。
+| 対象 | L4位置 | L9位置 | 定義した責務 | 保持する限界 |
+|---|---|---|---|---|
+| K1 / G10 | §2 | IV-K1-01〜13 | `Observed<T>`、状態語の写像、全成分の保持、合成と非肯定 | 機構固有の語義を変更せず、不明を肯定へ縮退させない |
+| K2 / G4 | §3・§5 | IV-K2-01〜20 | ResultKey、正準順、record/lookup、revision変化とdigest競合 | 判定器ができるまでbytes変化は意味変化。旧結果を使わず、同revision異digestはUnknown(conflict)、新revisionの旧ValueはStale |
+| K3 | §16 | IV-K3-01〜17 | current authority tuple、operation別許可照合、K7とG5受信側 | 許可を生成せず、停止と遅いwriterの違いをlogだけでは保証しない |
+| K4 / G3 | §13 | IV-K4-01〜10、IV-G3-01〜05 | 義務集合・状態、oracle種別、導出・評価・継承・受領 | traceを充足とせず、新しいHumanInterfaceや機械判定割合を要求にしない |
+| K5 | §9 | IV-K5-01〜23 | append-only event、固定prefix、restore/project/replay、segment開設・停止 | 既知headなしの真の末尾削除、未測定の容量/圧縮/性能を保証しない |
+| K6 / E | §10 | IV-K6-01〜15 | receipt admission、再検証、issuer authenticityとreproductionの分離 | 登録sourceとの一致だけでは発行者・過去実行の真正性を証明しない |
+| K7 / G5 | §15.2〜15.3 | IV-K7-01〜13、IV-G5-01〜10、IV-K3-17 | request/apply、fencing、conditional append、受け手別取消しと回復診断 | 跨writer原子性、未指定の伝播上限、pointerから正常起動を保証しない |
+| K8 | §18 | IV-K8-01〜26 | SECURITY-AC-001-01にtraceした入力label分類、明示route検証、実作用観測、current key/record projectionを各々分離して結ぶ | untrustedを解除せず、K8から許可・実行・汎用taint意味を生成しない。K3/K6の非肯定とissuer真正性の限界を保持する |
+| K9 | §17 | IV-K9-01〜15 | creator inventory、四軸比較、role付きsource binding、current target照合と操作別鍵 | provider/modelで独立性を決めず、開発repo cross-runtime規則やLABO blind評価を製品K9の親にしない |
+| K10 | §14 | IV-K10-01〜14 | typed edge、graph、closure/impact、source/owner境界 | 宣言外edgeの真偽やruntime依存を推測せず、一律cycle拒否を要求にしない |
+| G8 | §11 | IV-G8-01〜07 | source/build/artifact/runの分離、artifact固定とreproduction | 固定artifactだけでは実行環境の真正性・正常起動を証明しない |
+| G11 | §§3.6、6、10.3、12、13、15.8 | IV-K6-14、IV-K3-07/16、IV-P1-01〜07、IV-G5-01〜10 | revision上のcurrent性と既存の観測/条件を各所有契約へ結ぶ | 新しい時間・割合・件数の閾値を置かず、既存expiryの照合を時計値による新しい適格性へ拡張しない |
+| Phase 1 | §12 | IV-P1-01〜07 | C1〜C4、固定Corpus/Scope、条件ごとの非肯定保持 | authority_effectはnone。測定設計から条件成立・gate変更・v0.1を生成しない |
+| 型番台帳・配置 | §§1.2〜1.3、15.4〜15.5 | IV-LDG-01〜16 | 登録事実と固定宣言、field owner、ReleaseManifest、public source/allowlist、encoded recordsと物理保護契約 | directory/CI/release/配布を実行せず、Git単独をappend-only/authenticityの証拠にしない。storage primitiveの実装詳細はL5で設計する |
 
-| PR | 範囲 | 主な由来の候補（承認済みL3） | 組み込むG・E | 主な旧source（旧ファイル名。各PRで旧資産ID・行・SHA-256を固定する） | 未決 |
-|---|---|---|---|---|---|
-| 2（9章で起草） | K5 状態は証拠から導出（追記専用JSONL＋projection） | CONNECT-AC-005-01（追記で訂正）、LABO-001-AC-02（source stateへwritebackしない） | — | event-projection-checkpoint-replay、ADR-007（置換）、handover-db-derivation | projectionの規模と再構築の費用（旧IMP-151、149） |
-| 3（10章で起草） | K6 provenance／receipt、E 検証receiptの真正性 | HARNESS-L2-022系のreceipt、032-05 | E | work-graph-receipt-acceptance、gate-evidence-substance、closure-evidence-materialization（置換）、check-registry（登録と実行の照合） | 署名を後回しにする間の改ざん検出の範囲。検証器の集合の配置 |
-| 3b（11・12章で起草） | G8 実行物の検証、Phase 1の条件の具体（2026-10-08判断3） | SECURITY-AC-012-01、SECURITY-AC-013-01（配布・実行artifactとbuild済みartifactの鎖） | G8 | release-module-bundle-composition、distribution-package-release、distribution-lite-consumer-canary、gate-design、check-registry | 版の宣言、内部デプロイ、人のゲートを外す判断はL2・POへ戻す |
-| 4（13章で起草） | K4 義務を一級データに | HARNESS-L2-022、030〜032、036 | G3（oracle種別：機械判定／LLM判断／人のIF） | descent-obligation、ci-deferred-obligation-recovery、ci-verification-plan、charter P3 | 未完義務の継承は新規案を含む |
-| 5（14章で起草） | K10 型付き依存グラフ | HARNESS-L2-023（依存閉包）、INFRA | — | ci-responsibility-registry、design-registry | 関係型の性質宣言は新規案 |
-| 6（15章で起草） | K7 世代pointer／fencing、型番の台帳形式とディレクトリ配置（方針6） | OS-014、INFRA | G5（取消しの伝播） | node-runtime-cutover、HIL-FR-27、ADR-009 | 自動切戻しとADR-009の差（Phase 2の判断時に扱う）。G5の統一伝播は新規案 |
-| 7（16章で起草） | K3 operation authority tuple | SECURITY-AC-006-01ほかSECURITY Stage 1 | G5の受信側 | authority-vocabulary、security-capability-broker、source-boundary-contracts | 旧の軸（data_classification、sink、impact）の採否 |
-| 8（17章で起草） | K9 独立性の記録（製品の要求） | Concept:236（identity・context・authority・review routeで独立性を決め、providerの同異では決めない）。承認済みL3の候補：AC-OS-029-03（`docs/helix-os/L3-requirements/functional-requirements.md:77`。current exact HEADのreview receipt）、AC-INTELLIGENCE-L3-072-08（`docs/helix-intelligence/L3-requirements/functional-requirements.md:564`。candidate生成と独立reviewの段階分離）。LABOのblind評価は候補から除外（17.5参照）。開発repoの運用規則（2026-10-08委任判断記録の判断1）は根拠にしない（解禁判断記録の判断3） | — | worker-independent-review（同provider／modelでもidentity・session・contextが独立なら受理）、producer-provenance-separation（PPS-R-03。開発repoの運用規則の起点であり、製品K9の要件としては採らない） | review routeの軸は新規案 |
-| 9（18章で起草） | K8 label遷移 | SECURITY-AC-001-01 | — | pillar P8、worker-context-authority、memory-learning-promotion | label伝播（taint型）は新規案 |
-
-G14（外部標準の版固定）はCONNECTのL4で扱い、共通カーネルに含めない。
+G14（外部標準の版固定）はCONNECTのL4で扱い、共通カーネルに含めない。各ownerは本契約を消費する機構別詳細を同じL4正本へ追補し、要求意味を変える場合だけ既存authority経路へ戻す。
 
 ## 9. K5 状態は証拠から導出（追記専用JSONLとprojection）
 
-本章はPR2で追加する。K1の型とK2の鍵の上に、記録の正本の形と、正本から状態を導くprojectionを定める。
+K1の型とK2の鍵の上に、記録の正本の形と、正本から状態を導くprojectionを定める。
 
 ### 9.1 置き場所と範囲
 
-K5は本書と対のL9へ追記する。共通カーネルは一つの設計identityであり、更新し続ける文書は同じファイルを更新する（AGENTS.md「再構築の原則」）。K5はK1の`Observed`、K2の`ResultKey`・K2-I2bの「追記順」・3.4のイベントを直接参照し、8章の計画と付録Aを共有するため、別ファイルに分けると参照と付録が二重になる。PRの範囲はK5の一つの変更目的（正本の記録形式と、projectionの導出の境界）に限り、人が読む差分は本章と対のL9で約155行（表の行が長いため、文字量では目安の上限に近い）である。
+K5は本書と対のL9へ追記する。共通カーネルは一つの設計identityであり、更新し続ける文書は同じファイルを更新する（AGENTS.md「再構築の原則」）。K5はK1の`Observed`、K2の`ResultKey`・K2-I2bの「追記順」・3.4のイベントを直接参照し、8章の設計範囲と付録Aを共有するため、別ファイルに分けると参照と付録が二重になる。K5は正本の記録形式とprojectionの導出境界を定める。
 
-ログの置き場所（ディレクトリ）は本章では決めない（15.5で決めた）。本章は記録の形式と規則だけを定める。
+ログの物理配置は15.5に定める。本章は記録の形式と規則だけを定める。
 
 ### 9.2 由来
 
@@ -464,25 +468,24 @@ writerごとにsegmentを分けることと、segmentをまたぐ順序を時間
 
 `manifest_writer`だけがsegmentを登録する規則（9.3、9.5）と、読めないsegmentがあるときに追記しない規則（K5-I5の`peer_unreadable`）は、AIの設計判断である。保持する点は、旧feedback-lifecycle（`feedback-lifecycle.md:94-104`）の、完全走査markerが揃う場合だけ不在を確定する考え方と、旧event-projection-checkpoint-replay（`event-projection-checkpoint-replay.md:38`）・旧infinity-loop（`infinity-loop-platform-basic-design.md:145-147`）の、同じidentityで異なるdigestを検出する考え方である。変更する点は、markerをsource tableごとの印からmanifest segmentへの追記で表し、登録する主体を一つに限ること、重複の照合で読めないsegmentがあれば追記しないことである。理由は二つある。manifest自体を複数のwriterが書くと、segmentと同じくgitのbranchで連鎖が壊れる（K5-I1・I2）。読めないsegmentに同じ鍵の異なる結果があるのに追記すると、K2-I4の競合の保持を見落とす。
 
-### 9.7 L2へ戻す論点
+### 9.7 保証限界と意味変更の境界
 
-1. **末尾の削除の検出**：既知の`SegmentHead`を持たない読み手は、segmentの末尾の削除を検出できない。repository外に末尾を固定するか（調査資料のG9）は、要求の意味に触れるため決めない。
-2. **保持期間と圧縮**：logが増え続ける。古い行を圧縮・退避してよいか、その場合に何を正本とするかを定める承認済みのACは見つからなかった。
+既知のSegmentHeadまたは外部anchorを持たない読み手は、真の末尾削除を検出できない。この限界を成功へ補完しない。保持期間・圧縮・外部archiveの保証は現行ACにないため本書は追加しない。既存契約内の方式設計はAIの責務であり、新しい完全削除検出、保持義務または外部固定を要求へ足す場合だけ6.2へ戻す。
 
-### 9.8 未決と試作で確かめること
+### 9.8 segmentの開設・停止と検証範囲
 
-- segmentの`writer`の粒度は、15.5で割当て・runの単位とした。segmentを閉じる条件は未決とする。
-- manifestへのsegmentの登録は`manifest_writer`だけが行うため、writerがsegmentを開くときの手順（OSの割当てとの接続）は未決とする。
-- K5-I5により、一つのsegmentが読めないとそのlogへの`ResultRecorded`の追記が止まる。安全側の選択だが、運用への影響を試作で確かめる。
-- 試作（`scaffold/`、Scaffold Binding登録）：L9のIV-K5-01〜21を動かす。あわせて、1万行・10万行のsegmentでの全量再構築とcheckpointからの差分の時間を測り、checkpointを必須にする規模の目安を得る。
+- writerはK7-I6のassignment/run単位とする。新assignment/runは別writer/segmentであり、取消しまたは失効したrunのsegmentを新runへ引き継いで追記しない。K3/K7のcurrent authority・fenceが非肯定になれば旧writerの追記を止める。ここで新しいSegmentClosedイベントや時刻による自動closeは加えない。正常終了という名称だけから新しいEpochIssued/revokeを生成しない。終了後の作用は既存OSのcurrent assignment/expiryとK7-I6の取消し・失効契約で照合する。遅着観測はcurrent writerがLateObservationとして元episodeへ結び、旧writerの作用を許す根拠にしない。過去segmentは固定prefixの読取り対象として残す。
+- segment開設は、manifest_writerがcurrent OS assignment/runとwriter対応を読み、K5の既存SegmentOpenedをmanifestへ追記してから当該writerが追記する。未登録segmentへの書込みを認めず、manifestが読めない/登録未確認なら開始しない。manifestの物理書込み権限とpointerの条件付き追記は15.5.4に従う。
+- K5-I5のpeer_unreadable時はResultRecordedを追記しない。可用性低下を成功扱いで回避せず、欠落segmentを修復したと推測しない。容量・checkpointの性能値は今後の実装検証対象で、保証値やPO待ちを本書で新設しない。
+- 対のL9 IV-K5-01〜23へ対応づける。1万/10万行等の測定案は実行済みでも要求閾値でもない。
 
 ## 10. K6 検証receiptとE その真正性
 
-本章はPR3で追加する。検証器が出す証拠（receipt）の形と、それを信じてよい条件を、K1の型、K2の鍵、K5のlogの上に定める。
+検証器が出す証拠（receipt）の形と、それを信じてよい条件を、K1の型、K2の鍵、K5のlogの上に定める。
 
-### 10.1 範囲と切り方
+### 10.1 範囲
 
-8.2の計画のPR3は、K6、E、G8（実行物の検証）、Phase 1の条件の具体を一つにしていた。本PRはK6とEに限り、G8とPhase 1の条件の具体は次のPR（8.2のPR3b）に分ける。理由は二つある。G8の「実行物を検証した証拠」とPhase 1の「検査器が配線され実行された証拠」は、どちらも本章のreceiptと検証器の集合を参照する。運用モデル「PRの原子性」の「参照する共通部品は先行PRで閉じる」に従い、先に閉じる。また、四つを一つのPRにすると、人が読む差分が目安の400行を大きく超える。
+本章はreceiptと検証器集合の共通契約を定める。11章のG8はsourceとartifactの鎖、12章のPhase 1は条件の測定を定め、いずれも本章のreceiptを消費する。これらの責務を一つの成功判定へ縮約しない。
 
 ### 10.2 由来
 
@@ -523,7 +526,7 @@ RequiredResult  = { combined: Combined, assurance: { identity -> AdmittedReceipt
 - **基底鍵とreceipt鍵**：操作の対象を表す鍵を基底鍵（`base_key`：`operation`、`subject`、`inputs`、`scope`）とする。集合の検証器`m`のreceipt鍵は、基底鍵の`operation_version`を`m.version`に置き、`inputs`へ`{kind: verifier, identity: m.identity, revision: m.version, digest: m.digest}`と`{kind: verifier_set, identity: set_id, revision, digest}`を加えたものとする。検証器ごとに鍵が違う。receiptはこの鍵でK2の記録（K5の`ResultRecorded`）として残し、結果の`Value`は`ReceiptBody`を指す`FixedRef`とする。
 - **K2による照会の結果**：receipt鍵の照会は、K2-I2の規則どおりである。旧記録が`Value`で、identityの集合を保ったまま正当なrevisionの更新（対象・入力・集合の新revision）があれば`Stale`。同じrevisionでdigestだけが違えば（対象・入力・検証器・集合のいずれでも）`Unknown(conflict)`。検証器の版の更新は`operation_version`が違うため`Unobserved(not_run)`。identityの集合の追加・削除・置換も`Unobserved(not_run)`。
 - **readの期待集合**：`read`のidentityの集合は、鍵の`subject`と、`inputs`のうち`kind`が`verifier`・`verifier_set`でないものの全identityと、ちょうど一致しなければならない。検証器と集合は「読んだ入力」でなく実行の主体であり、K6-I2で照合する。
-- `started`と`completed`は記録するだけで、順序や有効性の判定に使わない（時間の閾値はL2へ戻す論点。6章1）。
+- `started`と`completed`は記録するだけで、順序や有効性の判定に使わない（時間の閾値はL2へ戻す論点。§6.2／G11）。
 
 ### 10.4 不変条件
 
@@ -578,11 +581,11 @@ RequiredResult  = { combined: Combined, assurance: { identity -> AdmittedReceipt
 
 先行例として、現行の仮組み`scaffold/l3l10-checks/`（`SCF-B-0157`）のreceipt（`README.md`の「receiptの形」、SHA-256 `1112465d14bc6112509779ddff50148839469234a26d39faeff474ecf8ddff34`）を読んだ。検証器のsource digest、入力のrevisionとdigest、登録と評価の照合、検査ごとの3値、`authority_effect: none`を持つ。仮組みであり、本設計の正本や合格の証拠にしない。
 
-### 10.8 L2へ戻す論点
+### 10.8 issuer authenticityの保証限界
 
-1. **receiptの発行の真正性**：決定的な検証器でも、実行していないのに再現と同じ結果を持つreceiptや、`execution`の欄だけを書き換えたreceiptは、再現の確認では検出できない。決定的でない検証器（LLMの判断等）のreceiptは、結果も再現できない（10.5）。過去の実行と発行者の真正性を確かめるには、署名またはrepository外への固定（調査資料のG9）が要る。それを求めるかは要求の意味に触れるため決めない。本書は、消費側が`issuer_authenticity`と`reproduction`を区別して持つことまでを定める。
+再現一致でも、過去の実行と発行者の真正性は証明できない。実行していないreceiptやexecution欄の書換えを再現だけで検出したとはしない。非決定的検証器では結果の再現も保証しない（10.5）。issuer_authenticity、reproduction、evidence integrityを別assuranceとして保持し、未知をPO待ちや許可へ変換しない。既存契約の方式具体化はAIが設計する。署名・外部固定等の新しい真正性保証を製品要求へ追加する場合だけ6.2へ戻す。
 
-### 10.9 未決と試作で確かめること
+### 10.9 所有と検証範囲
 
 - 各操作に必要な検証器（`required_for`）を誰がどう宣言するか。13章のK4-I4で決めた（義務が参照する検証器の集合と一致させる）。
 - `VerifierSet`の置き場所。15.5で決めた。
@@ -590,7 +593,7 @@ RequiredResult  = { combined: Combined, assurance: { identity -> AdmittedReceipt
 
 ## 11. G8 実行物の検証
 
-本章と12章はPR3bで追加する。sourceを確かめた証拠と、配布・実行されるbytes（実行物）を確かめた証拠を分け、両者をbuildの記録で結ぶ。
+sourceを確かめた証拠と、配布・実行されるbytes（実行物）を確かめた証拠を分け、両者をbuildの記録で結ぶ。
 
 ### 11.1 範囲と由来
 
@@ -652,9 +655,9 @@ API：`build_chain(build_key, X, verifier_set) -> Observed<ChainResult>`は、G8
 
 検証器自身の配布物と論理の誤り（11.4の下2行）は、旧HELIXに記述が見つからない（旧design-catalog:838で署名・attestationはtodo）。本章はそれを扱えない範囲として記すだけで、新しい仕組みを足さない。
 
-### 11.6 L2へ戻す論点
+### 11.6 実行環境の保証限界
 
-1. **実行環境の真正性**：実行したprocessが固定したbytesを実行したことを確かめる仕組み（署名、attestation、実行環境の証明）を求めるか。調査資料のG6・G9に関わり、要求の意味に触れる。
+固定source/build/artifact bytesだけでは、実行processがそのbytesを実行したことや実行環境の真正性を証明しない。attestation等が未定義なら未知を保持し、新しい人判断やPR gateへ変換しない。G8の鎖と再現の設計はIV-G8-01〜07へ対応づける。既存ACにない環境真正性保証を新しい要求へ追加する場合だけ6.2へ戻す。
 
 ## 12. Phase 1の条件の具体
 
@@ -712,13 +715,13 @@ P1Polarity   = 本書が定める版付きのPolarityOf（identity: phase1-polar
 4. v0.1の成立の宣言と、内部デプロイ（内部デプロイの判断記録の方針1）。
 5. advisoryの検査（`boundary_removed`）の扱い。
 
-### 12.6 未決と試作で確かめること
+### 12.6 条件の検証範囲
 
 - 試作：仮組みの5検査とコーパスで、P1-C1〜C4を`Phase1Status`として計算し、L9のIV-G8-01〜07とIV-P1-01〜07を動かす。
 
 ## 13. K4 義務の一級化とG3 oracleの種別
 
-本章はPR4で追加する。検証義務を固定した集合として導き、義務ごとに状態と、合否を決めるoracleの種別を持たせる。
+検証義務を固定した集合として導き、義務ごとに状態と、合否を決めるoracleの種別を持たせる。
 
 ### 13.1 範囲と由来
 
@@ -769,7 +772,7 @@ Handoff        = FixedRef。{ from_view, to_set_key, unfinished: obligation_id[]
 - **K4-I1 導出された全集合**：義務の集合は`ObligationSet`から読み、呼出し側から受け取らない。`evaluate`の出力の`combined`は、集合の各`obligation_id`の成分を必ず含む。消費側は`check_view`でこれを照合し、集合にある`obligation_id`の成分が無ければその義務を`Unknown(missing_input)`、集合に無い`obligation_id`の成分があれば`Unknown(unregistered)`とする。`obligations`が0件なら`set_reason = Unknown(missing_input)`（K1-I4）。
 - **K4-I2 粒度の分離**：composite・connectionの義務の成分は、その義務自身のoracleの結果だけから作る。下位（unit）の義務の結果から上位の義務の肯定を導かない（AC-014-02、021-02）。
 - **K4-I3 dispositionの成立**：`NotApplicable`は3fieldをすべて持つ場合だけ成立し、合成で除外される（K1-I5）。`Deferred`は3fieldをすべて持つ場合だけ成立し、成分は`Unobserved(pending_receipt)`とする（肯定にならず、合成から除外されない）。fieldが欠ければ、どちらも`Unknown(invalid_disposition)`の成分とする。`Required`・`Deferred`以外に「飛ばす」dispositionは置かない。
-- **K4-I4 義務と検証器**：操作`o`の`VerifierSet.required_for[o]`（10.3）の識別の集合は、`o`の`Required`の義務のうち`oracle.kind`が`Mechanical`か`LlmJudgment`のものが参照する`verifier`の集合と一致しなければならない（10.9の未決をここで決める）。一致しなければ`Unknown(conflict)`の成分とする。各義務の成分は、13.2の基底鍵からK6-I7の(1)〜(4)の手順（K5の固定prefixでの`restore`→検証器ごとのreceipt鍵での`lookup`→`admit_receipt`）で得た受入の結果の`inner`の全成分（`set_reason`を含む）を、`{obligation_id, verifier, 検査}`の識別を付けて展開したものとする。受け入れた各receiptの`reverifiable`・`reproduction`・`issuer_authenticity`は、`{obligation_id, verifier}`ごとに`assurance`へ入れる。
+- **K4-I4 義務と検証器**：操作`o`の`VerifierSet.required_for[o]`（10.3）の識別の集合は、`o`の`Required`の義務のうち`oracle.kind`が`Mechanical`か`LlmJudgment`のものが参照する`verifier`の集合と一致しなければならない（10.9の所有責務を具体化する）。一致しなければ`Unknown(conflict)`の成分とする。各義務の成分は、13.2の基底鍵からK6-I7の(1)〜(4)の手順（K5の固定prefixでの`restore`→検証器ごとのreceipt鍵での`lookup`→`admit_receipt`）で得た受入の結果の`inner`の全成分（`set_reason`を含む）を、`{obligation_id, verifier, 検査}`の識別を付けて展開したものとする。受け入れた各receiptの`reverifiable`・`reproduction`・`issuer_authenticity`は、`{obligation_id, verifier}`ごとに`assurance`へ入れる。
 - **K4-I5 未完義務の継承と受渡し**：対象の新しいrevisionで義務の集合を導き直したとき、旧revisionで成分が`Positive`でなかった義務は、`obligation_id`で新しいviewの`inherited`へ旧の記録を結ぶ。新しいrevisionの成分は新しいreceiptから作り、旧の結果を流用しない（K2-I2）。旧revisionにあり新しい集合に無い未完の義務も`inherited`に残し、その義務の`source`の所有者へ戻す。所有者の間で渡すときは`Handoff`を固定実体として作る。受け手は`receive`で、`from_view`から「旧で`Positive`でなかった全`obligation_id`（新しい集合に無いものを含む）」とその各記録を計算し直し、`Handoff`と照合する。(1)`unfinished`のIDの集合が一致しなければ、欠けた義務を`Unknown(missing_input)`、余分な義務を`Unknown(unregistered)`とする。(2)`unfinished`の各IDについて、`Handoff.inherited`に記録があり、その記録（K2の`key_digest`と`result_digest`）が`from_view`の対応する記録と一致しなければならない。記録が無ければ`Unknown(missing_input)`、別の記録なら`Unknown(conflict)`とする。
 - **K4-I6 unknownは飛ばさない**：`Unknown`・`Unobserved`・`Stale`の成分は、合成でそのまま非`Value`として残る。成分が非`Value`の義務を「未適用」や「対象外」へ読み替えない。
 
@@ -795,7 +798,7 @@ Handoff        = FixedRef。{ from_view, to_set_key, unfinished: obligation_id[]
 | 旧source（ID／path:行／SHA-256） | 保持する点 | 変更する点 | 区分候補 |
 |---|---|---|---|
 | `LEGACY-ASSET-FEB591CA3369A4AF7729`／`docs/design/harness/L6-function-design/descent-obligation.md:20-24,66-69`／`8f6a5104bdb15790cd282414ef0e2b24976787097bce0245b5cff02ac3aaf984` | 上流から「在るべき下流」を生成し、不在をfail-closeする（absence-blindnessへの対策）。義務を`satisfied／deferred／unmet`に分け、deferに待ち先・解消条件・ownerを持たせる | 状態をK1の型で表す。義務に粒度、oracleの種別、由来のrevisionを足す | `semantic_rederive` |
-| `LEGACY-ASSET-E7AB06BE3282A7D4CBDA`／`docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md:17-35`／`077592139976a41d786141018c116e2c09393e41c8132adf0a259b86443083a9` | 延期した義務をexactly oneの回収先へ結ぶ。missing・duplicate・expired・cancelled・stale HEADを成功で相殺しない | CIに限らず全義務へ広げる。期限（時刻）は使わない（6章1） | `semantic_rederive` |
+| `LEGACY-ASSET-E7AB06BE3282A7D4CBDA`／`docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md:17-35`／`077592139976a41d786141018c116e2c09393e41c8132adf0a259b86443083a9` | 延期した義務をexactly oneの回収先へ結ぶ。missing・duplicate・expired・cancelled・stale HEADを成功で相殺しない | CIに限らず全義務へ広げる。期限（時刻）は使わない（§6.2／G11） | `semantic_rederive` |
 | `LEGACY-ASSET-E9998EF887555DBB2751`／`docs/design/helix/L6-function-design/ci-verification-plan.md:20-35`／`21e0b8a05b965d6c1ad27c55bf28ff2d711daa4112c96589da63075b02fc5841` | 上流が渡すrequired obligationのexact setを照合し、一件でも消えたら拒否する。pendingは未完として追跡する | 集合を呼出し側から受けず、固定した導出から得る（K4-I1） | `semantic_rederive` |
 | `LEGACY-ASSET-C35E93F2D36777CD7462`／`docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md:351,383`／`2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357` | `required／not_applicable／deferred`を明示し、deferredはfreezeをblockする。N/Aは理由・actor・再入を持つ | `Deferred`の成分を`Unobserved`とし、合成から除外しない | `semantic_rederive` |
 | `LEGACY-ASSET-BC214D81DE9E77B8A804`／`docs/archive/cross-system-audit-2026-09-05/source/audit-report.md.txt:72-80`（F02）／`dcf0d4e0dcc4db772afac465df10f2412134cd65dcd019a18cb99c9fd39be53f` | 失敗史：必須集合を呼出し側から空にすると個別検査が消えた | K4-I1の根拠 | 失敗史（区分なし） |
@@ -805,19 +808,18 @@ Handoff        = FixedRef。{ from_view, to_set_key, unfinished: obligation_id[]
 
 義務ごとにoracleの種別を値域つきの型として持つこと、人のIFを第三の種別とすること、既存の記録を`HumanDecision`へ写すadapterは、旧HELIXに対応が見つからない**新規案**である。旧は境界のformalizeを要件に掲げたが、型にしなかった。検索の範囲は`archive/legacy-generation-2026-09-14/root/`の全ファイル（`grep -rIl`、読取りだけ）で、`oracle_type` 0件、`oracleKind` 0件、`oracle_kind` 0件、`oracle class` 1件（上表の`design-template-json-authority.md:74`。値域は定めていない）だった。
 
-### 13.7 L2へ戻す論点
+### 13.7 意味変更時の境界
 
-1. **人のIFを置く義務の範囲**：由来の承認済みL3が人の記録を求めていない義務に、人のIFを付けたい場合（G3-I4）。新しい承認手続きにあたるため、L4では行わない。
-2. **機械判定の割合の目標**：G3-I5の割合に目標や閾値を置くか。数値の決定主体（調査資料のG11）に関わる。
+承認済みL3が人の記録を求めない義務へHumanInterfaceを新設する場合、または機械判定割合の新しい目標/閾値を要求へ足す場合だけ6.2へ戻す。既存ACからの義務型・oracle分類・導出/評価/継承/受領の具体化はAIのL4設計責務であり、技術上の不足をPO待ちにしない。
 
-### 13.8 未決と試作で確かめること
+### 13.8 機構別導出と検証範囲
 
 - 導出規則（`DerivationRule`）の具体（承認済みL3のACとtemplateから義務を作る規則）は、HARNESS-L2-014・041の設計（各機構のL4）で定める。本章は規則の型と、導いた集合の扱いだけを定める。
 - 試作：承認済みのL3の一つの親について義務の集合を手で導き、L9のIV-K4-01〜10とIV-G3-01〜05を動かす。
 
 ## 14. K10 型付き依存グラフ
 
-本章はPR5で追加する。対象どうしの関係を、型と性質を宣言した語彙のedgeとして持ち、整合・依存閉包・影響・独立復旧をグラフの規則として検査する。
+対象どうしの関係を、型と性質を宣言した語彙のedgeとして持ち、整合・依存閉包・影響・独立復旧をグラフの規則として検査する。
 
 ### 14.1 由来
 
@@ -906,11 +908,11 @@ Impact         = { changed: SubjectRef[], affected: identity[], possibly: identi
 
 関係の型ごとに推移性・対称性・逆関係・矛盾・変更の伝播の向きを値として宣言し、グラフの規則として検査する形は、旧HELIXに見つからない**新規案**である。旧には型の列挙と、Issueの関係での逆関係の対の照合（上表）だけがあった。検索の範囲は`archive/legacy-generation-2026-09-14/root/`の全ファイル（`grep -rIl`、読取りだけ）で、`transitive` 13件、`symmetric` 6件、`conflicts_with` 1件、`reflexive` 0件、`推移` 13件だった。`transitive`と`推移`の該当はpackageの推移依存（lock・SBOM・import）の意味、`symmetric`はroleの一覧とIssueの関係の照合、`conflicts_with`は旧PLANとの衝突のflagであり、関係の型の性質を宣言するものは無かった（`対称`は99件あり、抜き取りでは「非対称」（runtimeの間や記述の非対称、Issueの依存の非対称）の意味で、関係の型の性質の宣言ではなかった。全件は読んでいない）。
 
-### 14.7 L2へ戻す論点
+### 14.7 依存循環の境界
 
-1. **依存循環の拒否**：依存の循環を一律に拒否するかは、承認済みL3が導出していない（`FR-HARNESS-L3-010`の境界、HARNESS L3:33）。拒否を求める場合は、要求の意味に触れるためL2へ戻す。
+承認済みL3が導出していない一律cycle拒否は加えない。K10は宣言済み語彙と性質に従いclosure/impactを扱い、cycleの存在だけから拒否を推論しない。一律拒否を新しい要求へ追加する場合だけ6.2へ戻す。
 
-### 14.8 未決と試作で確かめること
+### 14.8 機構別語彙と検証範囲
 
 - 各機構の語彙（どの関係の型を置き、性質の値をどうするか）は、各機構のL4で承認済みL3の由来から宣言する。
 - `control_plane`の宣言の所有者は、15.5でINFRASTRUCTUREとした。
@@ -918,7 +920,7 @@ Impact         = { changed: SubjectRef[], affected: identity[], possibly: identi
 
 ## 15. K7 世代pointerとfencing、G5 取消しの伝播、型番台帳と配置
 
-本章はPR6で追加する。段階の現行の世代を指すpointerと遅着作用の拒否（K7）、取消しを依存する受け手へ伝える経路（G5）、内部デプロイ方針6の型番台帳の形式と実装のディレクトリ配置を定める。三つは同じ「段階（composite）の型番」を参照するため、一つのPRにした。差分は目安の範囲に収まる。
+段階の現行の世代を指すpointerと遅着作用の拒否（K7）、取消しを依存する受け手へ伝える経路（G5）、内部デプロイ方針6の型番台帳の形式と実装のディレクトリ配置を定める。三つは同じ「段階（composite）の型番」を参照する。
 
 ### 15.1 由来
 
@@ -987,23 +989,108 @@ PropagationView = { revocation, recipients: { identity -> Set<RecipientClass> },
 
 ### 15.4 型番台帳
 
-- **形式**：型番台帳はK5のlog（`log_id: model-number-ledger`）とし、manifestを書くのはOS（段階の登録と統制）、unit・connectionの行のsegmentを書くのはHARNESS（packの宣言）、compositeの行のsegmentを書くのはOSとする（AC-OS-014-09の所有の境界）。行は`DeclaredEvent`（9.3）とし、種類は`ModelNumberDeclared{kind: unit | connection | composite, identity, owner}`と`VersionDeclared{identity, 項目}`である。
-- **項目**：unit・connectionの`VersionDeclared`の項目は、HARNESS-L2-010がpackに求める宣言（identity、版と成熟度、入力・出力の契約、依存の種別・identity・版、検証範囲とoracle、ownerの種別とidentity、収載・非収載。AC-HARNESS-L3-010-01）だけとする。compositeの項目は、HELIXOS-L2-014の「一組として保存するもの」（packと依存のidentityと版、configuration、data format、対応環境、能力と制約、scope内の受入の証拠、更新・rollbackの条件。AC-OS-014-04）だけとする。新しい項目は足さない。版はK2の`SubjectRef`、検証範囲と受入の証拠はK4の`ObligationSet`とK6のreceiptの参照、依存はK10のedgeで表す。これは項目の表し方であり、項目を足すものではない。
+- **形式**：型番台帳はK5のlog（`log_id: model-number-ledger`）とし、manifestを書くのはOS（段階の登録と統制）、unit・connectionの行のsegmentを書くのはHARNESS（packの宣言）、compositeの行のsegmentを書くのはOSとする（AC-OS-014-09の所有の境界）。行は`DeclaredEvent`（9.3）とし、種類は`ModelNumberDeclared{kind: unit | connection | composite, identity, owner}`と`VersionDeclared{identity, declaration_ref: SubjectRef}`（pack/composite宣言の固定参照）である。
+- **項目**：`ledger_view`は`VersionDeclared.declaration_ref`の固定bytesを実読して項目を導く。保存行は参照だけを持ち、viewの項目を別の編集可能な値として保存しない。unit・connectionの宣言項目は、HARNESS-L2-010がpackに求める宣言（identity、版と成熟度、入力・出力の契約、依存の種別・identity・版、検証範囲とoracle、ownerの種別とidentity、収載・非収載。AC-HARNESS-L3-010-01）だけとする。compositeの項目は、HELIXOS-L2-014の「一組として保存するもの」（packと依存のidentityと版、configuration、data format、対応環境、能力と制約、scope内の受入の証拠、更新・rollbackの条件。AC-OS-014-04）だけとする。各項目の具体値は該当pack/composite declarationの固定revision参照で表し、台帳では登録事実とその参照を結ぶ（15.5.1）。同じ値の独立した編集源を二つ作らず、新しい要求項目は足さない。版はK2の`SubjectRef`、検証範囲と受入の証拠はK4の`ObligationSet`とK6のreceiptの参照、依存はK10のedgeで表す。これは項目の表し方であり、項目を足すものではない。
 - **内部デプロイの状態**：台帳に別に書かず、K7の`PointerLog`から導くprojectionとする（二つの正本を作らないため）。現行世代は`PointerMoved`、許可の直後照合状態は同じmoveのphase=immediateの`MoveAuthorizationObserved`から別fieldに導く。phase=recoveryは回復時点の診断として別に保持し、欠けたimmediateを埋めない。observed_at=nullも肯定完了にしない。観測欠落は`Unobserved(not_run)`、非肯定はそのcheck全成分を保持し、通常の完了と区別する。後続moveを前のmoveの肯定で補わず、許可のcurrent性は使用時にK3で再照合する。`MoveRequested`は現行や完了を変えない。位置の検査はK7-I4bに従う。停止・再開の区別はログでは保証せず、対のL9 IV-K3-17の停止注入で回復経路を確かめる。
 - **現行の台帳**：台帳の現在の内容は、K5の`project`で導く。台帳はK10のグラフの`sources`の一つになり、依存のedgeの由来になる。
 
-### 15.5 配置
+### 15.5 配置と構成の責務
 
-`docs/`の構成は変えない。以下は実装を始めるときの配置の規則であり、本PRではディレクトリを作らない。
+以下は2026-10-09 PO判断が採用したrepository構成の基本案を、このL4で表現するための設計である。本PRは既存directoryの作成・移動、root config、visibility、LICENSE、配布repoを変更しない。pathは型番や宣言の識別正本ではなく、所有・保護・変更範囲・依存方向を照合する位置である。
 
-| 対象 | 配置 |
-|---|---|
-| 実装のコードと設定 | `helix/<機構>/units/<型番>/`、`helix/<機構>/connections/<型番>/`、`helix/<機構>/composites/<型番>/` |
-| K5のlog | `records/<log_id>/manifest.jsonl`、`records/<log_id>/segments/<writer>/<segment_no>.jsonl` |
-| 固定の宣言（`VerifierSet`、`OperationDecl`、`GraphDecl`、`ConditionState`、`RelationVocab`等） | `declarations/<所有する機構>/<種類>/<identity>.json` |
+| 範囲 | 基本配置 | 責務境界 |
+|---|---|---|
+| 開発repository root | public開発repo。root configは増やさず、`docs/`、`scaffold/`、`archive/`、`.github/`は現行のまま | 内部実装を含む開発sourceの公開範囲を定める。ここからpublic distribution、LICENSE変更、CI起動を導かない。 |
+| pack実装・pack宣言・test | `helix/<機構>/units/<型番>/`、`helix/<機構>/connections/<型番>/`、`helix/<機構>/composites/<型番>/` | pack declaration、実装source、対応するtestを同じ型番folderに置く。型番文字列の存在だけでは登録済みとしない。 |
+| packをまたぐ機械可読宣言 | `declarations/<所有機構>/<種類>/<identity>.json` | `OperationDecl`、`VerifierSet`等、複数pack/機構から参照する宣言を置く。pack宣言と同じ意味項目を二重に正本化しない。 |
+| 型番登録と版 | 15.4の`model-number-ledger`（K5 log） | 台帳が登録の事実と版の記録を持つ。フォルダpathやpack declarationは台帳登録の代用にならない。内部deployment状態は台帳に別記せず、15.4のK7 `PointerMoved`および直後観測から導く。 |
+| 開発記録 | `records/<encoded-log-id>/manifest.jsonl`とそのsegment群 | manifestに論理`log_id`とwriter IDを保持し、物理pathは安全に符号化する。public repoには機密を含まない開発記録と許可された証拠だけを置く。 |
+| immutable artifact / execution / instance | repository外のimmutable artifact store、段階の実行環境、instance state | source repository内のtreeやGit historyをruntime/instance stateの正本にしない。instance dataと履歴をrepositoryに含めない。 |
+| distribution | 配布範囲を宣言し、その範囲を配布先へ投影する。配布先はprivate | development source visibilityとdistribution allowlist/viewer scopeを別にする。HELIX自身を育てる部分を配布物へ同梱しない。 |
 
-- フォルダのpathは識別子の正本にしない。各フォルダは自分の型番を宣言するfileを持ち、台帳との照合で、台帳に無い型番のフォルダは`Unknown(unregistered)`、台帳にある型番のフォルダが無ければ`Unknown(missing_input)`とする。
-- 9.8・10.9・14.8の未決をここで決める：K5のlogの置き場所は上表、segmentの`writer`はK7-I6の割当て・runの単位、`VerifierSet`は`declarations/helix-harness/verifier-sets/`、K10の`control_plane`の宣言の所有者はINFRASTRUCTURE（INFRA-006-AC-01の所有）とする。
+
+フォルダのpathは識別子の正本にしない。各フォルダの型番宣言と台帳を照合し、台帳に無い型番のフォルダは`Unknown(unregistered)`、台帳にある型番のフォルダが無ければ`Unknown(missing_input)`とする。
+
+横断宣言の既存配置はVerifierSetを`declarations/helix-harness/verifier-sets/`とする。K10 control_plane宣言の所有者はINFRASTRUCTURE（INFRA-006-AC-01）。segment writerはK7-I6のassignment/run単位とし、具体物理locatorは15.5.4で定める。
+
+#### 15.5.1 正本の責務
+
+各値の唯一の編集可能な正本を、意味の定義元と値の宣言元に分ける。L2/ACと`docs/`は意味・許容項目を定める。機械可読な具体値は当該ownerのdeclarationまたはpack declarationに一度だけ置き、他の文書・ledger・consumerでは固定参照（identity/revision/digest）または導出projectionとして扱う。参照・projectionを独立に編集できる別の値sourceにしない。
+
+| 情報 | 意味/許容項目の正本 | 値の編集可能な宣言元 | 台帳/consumerでの扱い |
+|---|---|---|---|
+| 機能・制約・受入意味 | 対象Concept/L2/L3 ACと既存`docs/`設計 | 機構別L4がACを具体化するowner declaration | `SubjectRef`等で固定参照。意味本文を複製しない |
+| pack identity・版・成熟度・I/O・依存・検証範囲・owner・収載範囲 | HARNESS-L2-010 / AC-HARNESS-L3-010-01のfield set | 対象pack declaration（unit/connection） | 台帳は登録eventと対象declarationの固定revisionを結ぶ。AC必須の登録項目は既存仕様どおり保持し、同じ可変値の二重編集源を作らない |
+| compositeのpack/依存、configuration、data format、対応環境、能力/制約、scope内受入証拠、更新/rollback条件 | HELIXOS-L2-014 / AC-OS-014-04 | composite declaration | 台帳はcomposite登録・版と宣言revisionを結び、状態を二重管理しない |
+| cross-pack OperationDecl、VerifierSet等 | owner機構の承認済みACと既存L4 | `declarations/<owner>/<kind>/<identity>.json` | ownerと固定revisionを参照。packへ複製しない |
+| 型番が登録済みである事実、owner、種別、版の登録順 | AC-HARNESS-L3-010-04、AC-OS-014-09とK5台帳規則 | K5 `model-number-ledger`。OSがmanifest、HARNESSがunit/connection segment、OSがcomposite segmentを記録 | ここを登録状態の正本とする。folder/pathやpack内ID単独から登録を推定しない |
+| 内部deployment/pointer状態 | K7 PointerLog契約 | K7 `PointerMoved`と同moveのauthorization observation | ledger内に二重記録せず、K7から別fieldのprojectionとして導く |
+
+参照が欠ける/競合する場合、consumerは登録や値を推測せず既存のUnknown/missing/conflictを保持する。台帳とdeclaration間の登録照合は既存K5/K7 semanticsの範囲で行い、新しい型番・要求field・人承認を追加しない。
+
+#### 15.5.2 release・切替・起動の分離
+
+ReleaseManifestは、既存のcomposite declarationとK5/K6/K7を消費するrevision固定のrelease関係記録とする。K5のDeclaredEventが固定宣言refを記録し、K7消費側が読む。manifest自体は許可またはdeployment stateではない。ReleaseManifestのownerはcomposite/段階を統制するOS、artifactのproducerは既存G8のbuilderであり、同じownerへ縮約しない。
+
+```text
+ReleaseManifestRef = SubjectRef{kind: release_manifest, identity, revision, digest}
+ReleaseManifest = {
+  composition: SubjectRef,             // 検証済みcomposite declaration revision
+  artifact: ArtifactRef,                // immutable artifact bytes
+  environment: SubjectRef,             // 対応環境宣言revision
+  verification: FixedRef[],            // manifestに依存しない先行K4/K6証拠refs
+  rollback_condition: FixedRef         // composite declarationの更新/rollback条件
+}
+```
+
+上記の値は一つのReleaseManifest revisionに結び、fieldが変われば新revision/digestとし、同revision異digestはK2のUnknown(conflict)として受け入れない。既存ACに存在しないverification rule、environment field、rollback criterionを作らず、必須fieldまたは参照の必須fieldが欠ければ構造診断として拒否し、manifest自身の鍵なしK1結果は作らない。構成・受入意味の正本は既存declaration/receiptのままで、manifestはそれらの値を複製しない。
+
+`PointerMoved`はK7が適用した構成世代の切替事実だけを表し、正常起動を表さない。`StartupObservation`は独立の保存resultではなく、runtime ownerの既存観測/receiptへの参照projectionとする。ownerのcurrent OperationDeclから各観測のcurrent ResultKeyを再構成し、K2 lookupとK6 admissionを通した各結果・assuranceを保持する。composition/generation/environmentとscopeの対応は当該ownerの既存oracleで照合し、別対象の観測を流用しない。未実行は当該鍵の`Unobserved(not_run)`、receipt未着は`Unobserved(pending_receipt)`、観測source読取不能は`Unknown(unreadable)`として既存結果に保持する。鍵が作れない場合は非保存の`Rejected(missing_key)`診断であり、鍵なしUnknownを作らない。pointerだけから観測・成功を生成せず、新しい起動合格条件、独立観測revision、集約鍵を追加しない。
+
+Rollbackは別の明示されたK7 moveとして、以前に保持されたcompositionとartifact digestへ戻す。K7の既存permission/current authorizationを再照合し、rollback条件と受入証拠を固定参照する。instance state、案件data、instance historyはrollback対象に含めず、書換え・巻戻しを行わない。Rollbackを自動実行するか等の既存人判断は§15.9のまま保持する。ReleaseManifestの保持先、append順序、K7のpointer CAS/`append_if_head`は既存K5/K7記録経路へ接続し、manifest自身を新しいdeployment authorityにしない。
+
+verificationにはmanifest作成前に固定した先行証拠だけを入れる。当該manifestまたはその消費結果を入力に持つreceiptは含めない。最終stage_verificationの`RequiredResult`はK7-I3どおり`MoveRequested`へ記録し、manifest外の既存RequestLogに保持する。manifest→先行証拠→manifestの循環を構造診断で拒否し、結果をmanifestへ書き戻さない。
+
+Manifestは型付き固定宣言であり、ここに新しいK1成功resultや鍵なしUnknownを保存しない。必須field欠落は構造不正として拒否し、参照不能は既存K6の鍵付き検証receiptの`Unknown(unreadable)`として保持する。K2 lookup、K6 admission、G8 build_chainは先に既存規則で評価し、Stale、Unknown(conflict)、Unobserved等をそのまま成分に残す。特にG8-I2の同identity artifactのrevision/digest差はUnknown(conflict)、項目不在はUnobserved(not_run)であり、否定Valueへ変換しない。これらのadmissionを通った固定値どうしで、manifestが要求するcomposition/environment/rollbackの意味対応だけが確定不一致となる場合は当該oracleの否定Value(fail)とする。K6の鍵/body/read不一致を意味比較の否定へ読み替えない。K7-I3の既存stage_verification OperationDeclがReleaseManifestRefを必須inputsへ宣言し、manifestと検証で実読する全参照closureを既存OperationDecl.inputsへ列挙し、そのcurrent基底鍵で実読する。K6-I4のread集合はこの鍵のsubject/inputs（verifier類を除く）のidentity集合と完全一致させ、manifestの存在だけで子参照を読んだことにしない。verificationの集合は既存K4 ObligationSetとK6 requiredのscope内必須証拠を覆う。必須証拠欠落・有効成分0件は既存Unknown(missing_input)/Undeterminedを保持し、空集合を受入済みにしない。G8 BuildManifest.outputとArtifactRefのidentity/revision/digest、composition/environmentとverificationのsubject/scope、rollback条件と同composite宣言の対応を既存K4/K6 oracleで再照合する。宣言があることだけで構成を検証済みにせず、K7の既存適格性検査を省かない。StartupObservationの参照projectionは上記の各観測鍵を保持し、過去の固定観測をcurrentへ昇格させない。
+
+#### 15.5.3 公開sourceと配布範囲
+
+開発repoの閲覧範囲はPO判断2によりpublicであり、内部implementationを含む開発source treeのvisibilityを表す。これはdistribution対象・配布先visibility・LICENSEではない。配布は既存の配布判断に従い、private destinationへ、明示されたdistribution allowlistから投影する。allowlistは解決済みの全配布pack/declaration/artifact refs（required dependency closureを含む）を表す設計上の表現として別revisionで固定し、allowlistに無いsourceは配布対象と推測しない。HELIX自身を育てる部分の除外はConceptの既存境界を適用し、CI都合のpublic development decisionからpublic releaseや全tree配布を導かない。
+
+```text
+PublicSourceView = repository visibility + tracked development source at revision
+DistributionAllowlist = explicit set of eligible SubjectRef/pack refs at revision
+DistributionProjection = allowlisted refs whose required dependency closure is also explicitly allowlisted, to the existing private destination
+```
+
+この集合表現はsource-boundaryのdefault-denyを再導出したAIの設計判断であり、各依存への新しい人承認を要求しない。配布範囲の宣言からclosureを解決して集合へ固定する設計工程と、固定後のprojectionを分ける。依存closureが解決できない・allowlist refが対応する固定source/declaration/artifactで解決できない場合、projection builderは非保存の構造診断`Rejected(unresolved_distribution_ref)`で出力を作らず、鍵なしUnknown/non-readyを保存しない。required dependencyが固定集合の外なら`Rejected(outside_distribution_scope)`で出力を作らず、closure計算を配布許可の追加に使わない。ここでLICENSE、public release、private repoの作成/切替、actual distributionを実施・許可しない。allowlistのowner・各product対象は既存のauthority/Conceptに従い、新しい配布可否要求や承認段階を作らない。
+
+#### 15.5.4 recordsの物理境界
+
+K5のlogical `log_id`とsegmentのlogical `writer_id`はmanifest/segment metadataにそのまま保持する。filesystem pathはidentity sourceではなく、各logical IDのUTF-8 bytesを可逆・単射なpath-component encodingで符号化した物理locatorとする。基本案としてUTF-8 bytesのlowercase hex encodingを採用する。encoding入力はK5で有効なlogical IDに限り、path separator、dot-segment、空IDを別解釈しない。writerはK5-I7の既存NFC canonicalization後のlogical IDをencoding入力とする。NFC/NFDの同じwriterは同じcanonical writer/pathを指す。encoding層で追加のnormalizationやcase foldingを行わず、canonicalization後の異なるlogical bytesを同一pathへ畳み込まない。decode(encode(id))がbyte一致しない、またはencode(a)==encode(b)かつa!=bとなる場合はpathを解決せず非保存の構造診断`Rejected(unsafe_locator)`とする。K1結果やK2 recordへ診断を混入しない。segment numberは既存のcanonical numeric fieldとして扱い、新しいidentity sourceにしない。
+
+```text
+physical log path:     records/<lowercase-hex(UTF8(log_id))>/
+physical manifest:     records/<encoded-log-id>/manifest.jsonl
+physical segment path: records/<encoded-log-id>/segments/<lowercase-hex(UTF8(NFC(writer_id)))>/<segment_no>.jsonl
+logical manifest fields: log_id, writer_id (and existing K5 segment/head fields)
+```
+
+物理backing contractは、(a) K3 existing authority contextでwriter operation/identityを照合して許可されたwriterだけが対象segmentを書ける、(b) 全state-changing K5 append（manifest_writerのSegmentOpenedを含む）でK7-I6の`admit_effect`を通し、current EpochToken全field一致、revocation propagation、必要な代替許可を照合し、K5が既存canonical event, digest, fixed-prefix, manifest/segment consistencyを検証して受け入れる、(c) K7 pointer writerは既存`append_if_head(expected_head)`でhead compareと一行appendを一つのcommit boundaryとして行う、を満たす。通常writerの許可は既存OS assignmentとownerが宣言したwrite operationの範囲から照合し、各行への新しいPO承認を要求しない。K3のpermission軸、K5のevent/key、K7のCAS意味を拡張せず、path encodingだけでwrite authorityやappend-only authenticityを主張しない。物理ストレージがrewrite/deleteを防ぐ具体方式、OS permission、transaction primitivesはL5 implementation detailであり、L4はこのcontractとfailure時non-affirming動作を定める。Git history単独はappend-only/issuer authenticityの証拠にならない。public `records/`へ入れるのは機密を含まない許可済み開発記録だけであり、instance state/案件data/credentialsは対象外。
+
+物理adapterはowner宣言が指定するstorage rootへlocatorを解決し、symlink/別rootへの逸脱、同locatorの別canonical logical ID、metadataのlog不一致またはNFC後writer不一致を`Rejected(unsafe_locator)`で拒否し追記しない。current writer/operationのauthority根拠が未登録または不明なら書込みを肯定しない。固定prefix検証を通らない既存bytesは上書き修復せず非肯定として保持する。書込み権限のOS primitiveとdurability/locking詳細はL5の設計対象であり、この契約を満たすと独立に確認されるまで物理保護済みとは主張しない。
+
+#### 旧HELIXとの対応
+
+| 旧source（asset ID / path:行 / SHA-256） | 保持する点 | 変更する点 |
+|---|---|---|
+| `LEGACY-ASSET-FDBA655B1CFF75DCDC0E` / `archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md:13-97,102-120,146-173` / `6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262` | canonical tree、意味の正本とgenerated/runtime/historyの区別、空folderを実装許可としない、root configを抑える | `src/tests/config/.helix`等の旧配置とtoolchainは採らず、現行のpack・宣言・record構成へ置換する。 |
+| `LEGACY-ASSET-A2F6A697D7FFFD490B57` / `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md:54-58,110-115,133-138` / `336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c` | path ownershipと変更箇所からverification範囲を決めること | 旧Module/Bundleを現行pack種別・台帳へ置換し、repo split/旧release waveは引き継がない。 |
+| `LEGACY-ASSET-809B35B3C91567A97AF5` / `archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/source-boundary-architecture.md:11-18,47-57` / `6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610` | owner分離、一方向依存、default-deny、empty/missing policyをallowとしない | 旧source-boundary実装/schemaは移さず、現行のowner契約へL4で接続する。 |
+| `LEGACY-ASSET-8195605FB59B8B837EFF` / `archive/legacy-generation-2026-09-14/root/docs/adr/ADR-005-distribution-model-and-central-ui.md:16-36` / `dc6f09d05556442518fb09dd7fa38536562b0ab60e6947d044593500e5d3f16f` | 開発repoと版付き配布物を分けること | 旧internal GitHub pull、npm、中央UI、pluginの主軸は採らない。現行判断のpublic development sourceとprivate distribution boundaryに合わせる。 |
+| `LEGACY-ASSET-80FD1264A2C50E2E4AA4` / `archive/legacy-generation-2026-09-14/root/docs/process/README.md:44-55` / `21a875ca5b46a8396485690a8405923ea197552fe4aa2302b1eaad6f7e650985` | L4基本設計とL9結合検証のpair | 現行の機構×層`docs/`配置へ置く。 |
+
+基本契約の結合oracleは対のL9 IV-LDG-05〜16へ置く。これらは設計上の期待であり、実装・実行・合格の証拠ではない。
 
 ### 15.6 API境界
 
@@ -1028,9 +1115,9 @@ PropagationView = { revocation, recipients: { identity -> Set<RecipientClass> },
 
 受け手の集合を依存グラフの影響から導き、取消しを統一の経路で伝えること（G5-I1）と、型番台帳をK5のlogとして持つ形は、旧HELIXに見つからない**新規案**である。旧には、driftやstaleを起点にした失効と、securityの候補要求のrevokeだけがあった。検索の範囲は`archive/legacy-generation-2026-09-14/root/`の全ファイル（`grep -rIl`、読取りだけ）で、`revocation propagation`、`approval revocation`、`rescind`、`型番`、`model number`はいずれも0件だった。
 
-### 15.8 L2へ戻す論点
+### 15.8 取消し伝播の保証限界
 
-1. **取消しの許容遅延**：受け手が`applied`になるまでの時間の上限を置くか（調査資料のG11）。L2は数値を新設しない方針である。
+受け手がappliedになるまでの時間上限は本書で新設しない。K7/G5は既存のrequest/apply/fencing/current permission/recipient伝播を設計し、未知の観測を保持する。既存L2/L3にない数値閾値を要求へ追加する場合だけ6.2へ戻す。
 
 ### 15.9 人の判断が要る点
 
@@ -1040,13 +1127,13 @@ PropagationView = { revocation, recipients: { identity -> Set<RecipientClass> },
 2. 自動の切戻しを使うか（Phase 2へ移る判断。2026-10-08判断記録の判断3）。
 3. 段階を組み直さずに部品・接続を単独で内部デプロイしてよいか（2026-10-08判断記録の未決4）。本章は段階を単位とする現行の扱いに従う。
 
-### 15.10 未決と試作で確かめること
+### 15.10 検証範囲
 
-- 試作：小さな段階の世代を2つ作り、L9のIV-K7-01〜13、IV-G5-01〜10、IV-LDG-01〜04を動かす。
+- 試作：小さな段階の世代を2つ作り、L9のIV-K7-01〜13、IV-G5-01〜10、IV-LDG-01〜16を検証する設計とする。未実行の項目を合格に数えない。
 
 ## 16. K3 operation authority tupleと許可記録の照合
 
-PR7は既存の許可を読む境界を定める。許可を発行する機能ではない。一つの親要求は置かず、以下のACへ要素ごとにtraceする。引用はmain `8d759ff9313252641154f386fe14c68e0a40e415`の本文（16.6でfull SHAを固定）である。
+K3は既存の許可を読む境界を定める。許可を発行する機能ではない。一つの親要求は置かず、以下のACへ要素ごとにtraceする。引用は冒頭のmain baseの本文（付録Aと16.6でfull SHAを固定）である。
 
 ### 16.1 由来と責務
 
@@ -1531,21 +1618,32 @@ observe_input_label/observe_authority_effectのfresh評価は、(1)必須key基�
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
+## 付録A 引用した現行文書のSHA-256（base `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`）
+
 | path | SHA-256 |
 |---|---|
+| `AGENTS.md` | `386d30378d49b96c055d237ccaa88ed02f3e43359ccfe006e4fd9c96bf5a595c` |
+| `CLAUDE.md` | `910635d193d29146e145b1543b8f1398e2b42bdf2bea412d57eddf88874f8d74` |
 | `docs/concept/helix-concept.md` | `bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715` |
-| `docs/helix-harness/L2-requirements/product-requirements.md` | `9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d` |
-| `docs/helix-harness/L3-requirements/functional-requirements.md` | `2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5` |
-| `docs/helix-connect/L3-requirements/functional-requirements.md` | `b3e4a47c0f49978880fc9bae7697d9b67eeaf72a112f821fef167c230c9d2e4b` |
-| `docs/helix-labo/L3-requirements/functional-requirements.md` | `362979fc4489c137d7641278a8ea8e55461f3592d56d802bb285ec34abc4a9b8` |
-| `docs/helix-security/L3-requirements/functional-requirements.md` | `f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e` |
-| `docs/helix-infrastructure/L3-requirements/functional-requirements.md` | `425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d` |
-| `docs/helix-brain/L3-requirements/functional-requirements.md` | `6cf8be0c095fcd5ad5e52b6ee99e607c18d1b26be6f0d2e625e727d868a33cdf` |
-| `docs/helix-os/L3-requirements/functional-requirements.md` | `666200db50ea9a2e7f0d67d57496a71368e497f2fdb6e3485d4838339000b393` |
-| `docs/helix-intelligence/L3-requirements/functional-requirements.md` | `35e936a6d83d7a83310cc2a1900e8f199c54923472df9e9b0d7a9bdeec059457` |
+| `docs/governance/decisions/helix-connect-stage1-l3-l10-po-decision-2026-10-05.md` | `30e854580cc45b9b5a5cc793446dc4af83494dba73c8e6c45fb1c6e4a975f9c8` |
 | `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md` | `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23` |
 | `docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md` | `27b51768cbf010d201ccc2aafe8e4c893ec5ccb2a9a0bce662af343ef87809ee` |
+| `docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md` | `2ff59b61c775b9e609832f1e93961a4e50c54a959208b9edbc66524e15f0d8f8` |
 | `docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md` | `a5061e7438c4be4ca9d14637ac9f5f04689fb00fd3b7cb7d9d59ae775f7a0571` |
-| `docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md`（base `3d2f78ce`で固定） | `2ff59b61c775b9e609832f1e93961a4e50c54a959208b9edbc66524e15f0d8f8` |
+| `docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md` | `2c700ffcbb89c034d9f0b43a7f69483e785abbef28bb07601857a1d0caa72030` |
+| `docs/governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md` | `b7bd5a34fb0c722be49f90a58ba917de65a1dc8d28db36ae9eb86336cbbea0cb` |
+| `docs/governance/github-upstream-operating-model.md` | `17168964783c6e8e164e10b653c9c91b16cabe84283d5dfeaa72621b454b69f2` |
+| `docs/governance/l3-l10-authoring-layout.md` | `d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca` |
+| `docs/governance/l3-l10-po-post-confirmation.md` | `8e44d6f001667ef11354f581833e0eab139dd3ef6c63438f71e539d15777d074` |
+| `docs/governance/new-generation-start-here.md` | `f77acc1ddf01bd42dddf536b02b7ff562723d2d19e49a937928f640aebe1f86b` |
+| `docs/helix-brain/L3-requirements/functional-requirements.md` | `6cf8be0c095fcd5ad5e52b6ee99e607c18d1b26be6f0d2e625e727d868a33cdf` |
+| `docs/helix-connect/L3-requirements/functional-requirements.md` | `b3e4a47c0f49978880fc9bae7697d9b67eeaf72a112f821fef167c230c9d2e4b` |
+| `docs/helix-harness/L2-requirements/product-requirements.md` | `9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d` |
+| `docs/helix-harness/L3-requirements/functional-requirements.md` | `2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5` |
+| `docs/helix-infrastructure/L3-requirements/functional-requirements.md` | `425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d` |
+| `docs/helix-intelligence/L3-requirements/functional-requirements.md` | `35e936a6d83d7a83310cc2a1900e8f199c54923472df9e9b0d7a9bdeec059457` |
+| `docs/helix-labo/L3-requirements/functional-requirements.md` | `362979fc4489c137d7641278a8ea8e55461f3592d56d802bb285ec34abc4a9b8` |
+| `docs/helix-os/L3-requirements/functional-requirements.md` | `666200db50ea9a2e7f0d67d57496a71368e497f2fdb6e3485d4838339000b393` |
+| `docs/helix-security/L3-requirements/functional-requirements.md` | `f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e` |
 
 旧sourceのpathは`archive/legacy-generation-2026-09-14/root/`からの相対pathである。旧sourceのSHA-256は本文bytesを再計算し、資産明細台帳の`source_sha256`と一致することを確かめた。旧資産の個別採否は、本書の区分候補を起点に、`docs/governance/legacy-asset-decisions.jsonl`の判断ログ契約に従って別に記録する。

@@ -1,11 +1,13 @@
-# HELIX 共通カーネル L9結合検証設計（K1・K2・K4・K5・K6・K7・K3・K10・G3・G5・G8・Phase 1）
+# HELIX 共通カーネル L9結合検証設計（K1〜K10・E・G3/G4/G5/G8/G10/G11・Phase 1・型番台帳/配置）
 
-status: draft_for_l4_review
+status: design_pair_defined
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
-base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
+base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した現行本文のSHA-256はL4付録A）
 
-本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K4・K5・K6・K7・K3・K10、G3、G5、G8、Phase 1の条件、型番台帳と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
+本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1〜K10、E、G3/G4/G5/G8/G10/G11、Phase 1の条件、型番台帳と配置に対する結合検証設計である。L9はL4の基本設計を機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の項目はL4の番号付き契約と不変条件を参照し、要求やACを作らない。L3 ACの総合検証はL10の責務である。
+
+`design_pair_defined`はL4契約と対のoracleを定義したことだけを表す。review済み・承認済み・実装済み・実行済み・合格とは同義でなく、独立reviewは対象PRのexact base/HEAD記録で追う。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作で実行する場合は`scaffold/`に置き、Scaffold Bindingへ登録する。
 
@@ -21,6 +23,8 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 - **依存グラフ**（K10、L4 14章）：`build_graph`、`check_graph`、`closure`、`impact`、`independent`。
 - **義務**（K4・G3、L4 13章）：`derive`、`evaluate`、`check_view`、`inherit`、`receive`。
 - **検証receipt**（K6、L4 10章）：`run`、`admit_receipt`、`reverify`、`required`。receiptはK2の記録としてK5のlogへ置き、`restore`→`lookup`を通して照会する。
+- **独立性**（K9、L4 17章）：creator inventory resolver→四軸comparison→K2/K6 admission。製品の独立性を開発repoのreview経路と混同しない。
+- **配置とconsumer記録**（L4 15.4〜15.5）：宣言→台帳view、ReleaseManifest→K4/K6/K7、既存起動観測→StartupObservation projection、配布範囲→固定集合→projection、logical ID→physical locator。物理storeの実装保証は文書上の照合から生成しない。
 - **カーネル→消費側**：ある機構の結果を、別の機構の判定（gate、昇格、適格）が受け取る境界。
 
 ## 2. 検証項目
@@ -101,6 +105,8 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-K5-18` | K5-I12：projectionの鍵 | `lookup` | 同じ`projector`・`scope`・`input_heads`の照会は保存したprojectionを返す | (1)segmentへの1行の追記は`Stale`、(2)projectorの`version`の更新は`Unobserved(not_run)`、(3)同じ`version`で`projector.digest`だけを変えた照会は`Unknown(conflict)`、(4)影響を受けないsegmentだけを入力とするprojectionは`Value`のまま。(3)を(2)と同じに扱う実装は不合格 |
 | `IV-K5-19` | K5-I13：checkpoint | `verify` | `input_heads`がcheckpointの前方への延長で、`state_digest`が再計算と一致し、差分の結果が全量と一致すれば使える | (1)checkpointより短いhead、(2)checkpointの`seq`の行の`entry_digest`が違うhead、(3)`state`だけを改変し`state_digest`を据え置いたもの、(4)差分の結果が全量と違うもの、は各々`Unknown(conflict)`で使われない |
 | `IV-K5-20` | 9.5：`verify` | `verify` | 改変の無いprojectionは`Value` | (1)`output`だけを改変（`output_digest`は据置き）、(2)`output_digest`だけを改変、(3)`output`と`output_digest`を互いに整合させて改変（再構築とは違う）、は各々`Unknown(conflict)`。(1)と(2)は保存値の再計算で、(3)は再構築との比較で検出される |
+| `IV-K5-22` | assignment/runとsegment開設 | `manifest_writer`→writer append | current assignment/runとwriterの対応があり、manifest_writerがSegmentOpenedを登録してからwriterが追記する | manifest未登録、manifest未読、別writer/runの各fixtureでは書込み0件。path名から登録を生成しない |
+| `IV-K5-23` | writer停止と過去prefix保持 | K3/K7 fence→writer append | assignment/run取消しまたは失効で旧writerの追記を止め、過去segmentを読取りに保つ | 新runへ旧writer/segmentを引き継いで追記するfixtureは不合格。current authority/fence非肯定、peer_unreadableでも追記0件。正常終了名だけから新しいEpochIssued/revokeを生成しない。遅着観測はcurrent writerのLateObservationに結び、旧writerの作用にしない。新SegmentClosedイベントや時刻閾値を要求しない |
 
 ### K6
 
@@ -205,7 +211,7 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-G5-08` | G5-I6：内部デプロイ | `propagate`、`apply_move` | — | 現行の世代の構成が取り消された記録に依存するとき、`RollbackRequired`が追記され、`internal_deployment`は、同じmoveの`MoveAuthorizationObserved`のphase=immediateの直後checkが肯定でobserved_atが記録されcurrent receiptが成立するまで`Unobserved(not_run)`。直後観測欠落、非肯定checkと`AppliedUncertain`の各fixtureでも待ちが残り、pointerの事実と未完診断が保持される。これらや`MoveRequested`だけで待ちを解消する実装、pointerを自動で動かす実装は不合格 |
 | `IV-G5-09` | G5-I1：一つのidentityに複数の種類 | `propagate` | `affected`のnode由来の種類（例：`worker_run`）と、`review_set`由来の`approval_consumer`が同じidentityに導かれると、両方の種類が保持され、種類ごとに成分ができる | 後から導いた種類で前の種類を上書きする実装は不合格 |
 | `IV-G5-10` | G5-I2：受け手の現在の参照 | `propagate` | `RecipientDecl`の`SubjectRef`を基底鍵の`subject`に使う | (1)受け手のrevisionだけを新しくした宣言（旧記録は`Value`）→`Stale`、(2)同じrevisionでdigestだけ違う二つの宣言→`Unknown(conflict)`、(3)`RecipientDecl`に受け手が無い→`Unknown(missing_input)`、(4)旧いreceiptの`subject`を現在の参照に使う実装は不合格 |
-| `IV-LDG-01` | 15.4：項目 | `ledger_view` | HARNESS-L2-010とHELIXOS-L2-014の項目だけを持つ行が導かれる | どちらにも無い項目を持つ行は`Unknown(unregistered)` |
+| `IV-LDG-01` | 15.4：項目 | `ledger_view` | VersionDeclaredの固定declaration_refを実読し、HARNESS-L2-010とHELIXOS-L2-014の項目だけを持つview行が導かれる（保存行は参照のみ） | どちらにも無い項目を持つ行は`Unknown(unregistered)` |
 | `IV-LDG-02` | 15.4：書く主体 | `append` | — | unit・connectionの行をOSのsegmentへ、compositeの行をHARNESSのsegmentへ書く経路は`Rejected` |
 | `IV-LDG-03` | 15.4：内部デプロイの状態 | `ledger_view` | 現行世代は`PointerLog`の`PointerMoved`、直後check状態は同じmoveの`MoveAuthorizationObserved`から別fieldに導かれる | 台帳に内部デプロイの状態を別に書く、直後観測欠落やAppliedUncertainを通常の完了にする、前のmoveの肯定観測を後続moveへ流用する実装は不合格 |
 | `IV-LDG-04` | 15.5：pathを正本にしない | 配置の照合 | フォルダの宣言する型番と台帳が一致すれば通る | (1)台帳に無い型番のフォルダ→`Unknown(unregistered)`、(2)台帳にある型番のフォルダが無い→`Unknown(missing_input)`、(3)フォルダの名前から型番を決める実装は不合格 |
@@ -323,6 +329,25 @@ copy output/finding payload偽装の真正性拒否は旧sealed brokerの保証�
 
 
 判定はL4 K8-I1〜I8と各ケースの可観測結果の一致で行う。`Unknown`／`Unobserved`／`Stale`を成功やuntrusted解除へ縮退させない。特に作用sourceの実読結果と`validated_transition`を別々に判定し、作用済みの観測を失敗扱いで消さない。K6 receiptとK3 PermissionCheckは既存の検証・許可照合であり、どちらも実作用観測の代替ではない。
+
+### 配置・宣言・release記録の境界（L4 15.5）
+
+次はPO採用基本案を具体化したL4契約の結合oracleで、文書上の未実行設計である。
+
+| ID | 対象と期待 |
+|---|---|
+| `IV-LDG-05` | **field owner collision**：fixtureに意味source、pack declaration、cross-pack declaration、ledger登録、consumer referenceを与える。意味/field-setと具体値のownerが表と一致し、consumerが固定refを使うとき通る。二つの独立編集可能sourceが同じfieldのcanonical ownerを名乗る場合、またはowner不明の場合は非肯定で不合格。 |
+| `IV-LDG-06` | **registration is ledger fact**：`ModelNumberDeclared`とversion declaration/固定refを照合する。pack declarationだけに型番があるケースを未登録、台帳に登録があるケースを登録済みとして扱う。path名からidentityを生成する実装は不合格。 |
+| `IV-LDG-07` | **projection/reference consistency**：ledger/consumerのdeclaration refがpack/cross-pack ownerの同じidentity+revision+digestを指す場合通る。別revision、別digest、required ref missingでconsumerが内容を再構成・推測する場合は非肯定として不合格。既存ACが求めるledger fieldは保持し、独立編集源化しない。 |
+| `IV-LDG-08` | **manifest binding**：(1)必須field欠落、またはmanifest自体/その消費結果を入力に持つreceiptをverificationへ含めた循環参照→非保存の構造拒否、(2)形が完全なFixedRefのbytes読取不能→stage_verification current基底鍵に結ぶ既存K6 receiptのUnknown(unreadable)、(3)K6 admission済み固定値どうしのcomposition/environment/rollback意味対応の確定不一致→当該oracleの否定Value(fail)、(4)同revision異digest→K2 Unknown(conflict)、(5)G8 BuildManifest同identity項目のartifact revision/digest差→G8-I2 Unknown(conflict)、項目不在→Unobserved(not_run)、(6)K6のreceipt key/body不一致→K6-I3 Unknown(conflict)、(7)既存K4/K6の必須証拠集合が欠落/空→Unknown(missing_input)成分を含むUndeterminedであり肯定しない。各々を独立変異し、既存K2/K6/G8の非Valueを意味比較のValueへ変換する実装は不合格。最終stage_verificationの`RequiredResult`はK7-I3どおり`MoveRequested`へ記録され、manifest外の既存RequestLogに保持する。manifest自身の鍵なし結果や独立mutable値を保存しない。 |
+| `IV-LDG-09` | **pointer versus startup**：PointerMovedだけから起動成功を出力しない。既存runtime ownerのcurrent鍵を再構成し、未実行はUnobserved(not_run)、receipt未着はUnobserved(pending_receipt)、source読取不能はUnknown(unreadable)。同identityでcomposition/environment revision更新後の旧ValueはK2 Stale、scopeまたはidentity集合が変わればUnobserved(not_run)、receipt body/key不一致はK6-I3 Unknown(conflict)であり流用しない。旧鍵だけでlookupしてcurrent Valueを生成する実装、独立StartupObservation resultを保存する実装、assuranceを落とす実装は不合格。鍵構成不能は非保存Rejected(missing_key)。 |
+| `IV-LDG-10` | **rollback scope**：rollback moveは保持済みcomposition/artifact refへ結び、instance state/history refsが同一で不変であるfixtureを通す。state/historyの巻戻し、K7 authorizationを飛ばすこと、ReleaseManifestが独立permissionを出すことは不合格。自動rollback policyの選択をoracleで決めない。 |
+| `IV-LDG-11` | **view/allowlist independence**：public source viewに内部開発packが存在し、distribution allowlistには含まれないfixtureを通す。repository visibilityから全itemをdistributionへ含める導出、allowlistからrepository visibilityを変更する導出は不合格。 |
+| `IV-LDG-12` | **explicit projection**：配布範囲からrequired closureを解決し全配布refsを固定集合へ一度記録する。projectionはその固定集合だけを出力する。未解決ref→非保存Rejected(unresolved_distribution_ref)、固定集合外dependency→非保存Rejected(outside_distribution_scope)、各々出力0件。新しい人承認を依存ごとに要求する実装、固定後に暗黙追加する実装は不合格。 |
+| `IV-LDG-13` | **no authority side effect**：static projectionがpublic release、LICENSE change、repo create/switch、実配布を生成せず、private destinationを参照する設計であることを照合する。CI/public developmentをdistribution permissionへ変換するfixtureは不合格。 |
+| `IV-LDG-14` | **reversible path encoding**：logical IDsの代表fixture（通常ASCII、slash/backslash、dot-like value、Unicode multi-byte）についてUTF-8 byte encodingが一つのpath componentとなり、roundtrip byte一致することを静的に照合する。writerはK5-I7のNFC後のbytesでroundtripし、NFC/NFDの同じwriterは同じpathを指す。canonicalization後の異なるIDのcollision、encoding層での追加normalization/case folding、path traversal解釈、logical IDをpathから逆算せず誤ってcanonical扱いする場合は不合格。 |
+| `IV-LDG-15` | **logical identity and writer authorization**：manifest/segment metadataにlogical log_id/writer_idが保持され、physical encoded pathをK5 key/identityの代わりにしない。K3 current permissionのwriter/operationと異なるwriterのappend、permission missing/unknownで成功するケースは不合格。K7-I6のadmit_effectも全appendへ適用する。EpochTokenのscope/number/entry_digestを各一つ変異するとRejected(fenced)、PropagationView非肯定はRejected(revocation_pending)、代替許可欠落はRejected(missing_authorization)で追記0件。manifest_writerのSegmentOpenedにも同じ反例を適用する。K5検証前に内容を受理するケースも不合格。 |
+| `IV-LDG-16` | **append boundary composition**：regular K5 event writeはK3 writer authorizationとK5 fixed-prefix/digest validationに従い、pointer writeはK7 `append_if_head(expected_head)`のhead mismatch時に追記0件、match時に単一commitとして1件追記する静的 fixtureを通す。Git history aloneをwrite protection/authenticity proofにするケース、CASをcompareとappendに分けるケースは不合格。これはcontract/model fixtureであり、物理storeの原子性を実証する試験ではない。root逸脱symlink、metadataとlog不一致/NFC後writer不一致、同locator別canonical IDは非保存Rejected(unsafe_locator)で追記0件。固定prefix不正bytesを上書き修復する実装も不合格。OS/storage implementationやruntime試験はこのIVで実行しない。 |
 
 ## 3. 判定と戻し先
 
