@@ -1,11 +1,13 @@
 # HELIX リポジトリ構成 L9結合検証設計
 
-status: draft_for_l4_review
+status: design_pair_defined
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/repository-layout.md
-base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
+base: main `66abf6bf158baebc6bfceb5ccf693d425aae41a9`
 
-本書は[リポジトリ構成L4](../L4-basic-design/repository-layout.md)と対になる結合検証の設計の下書きである。検証項目はL4の規則（`RL-*`）と共通カーネル（CK）の受口を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務である。
+`design_pair_defined`はL4契約と対のoracleを定義した状態のみを表し、review済み・承認済み・実装済み・実行済み・合格とは同義でない。
+
+本書は[リポジトリ構成L4](../L4-basic-design/repository-layout.md)と対になる結合検証の設計である。検証項目はL4の規則（`RL-*`）と共通カーネル（CK）の受口を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務である。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作は`scaffold/`に置き、Scaffold Bindingへ登録する。ディレクトリ`helix/`・`declarations/`・`records/`は試作でも本repoに作らず、試作用の一時repositoryで組む。
 
@@ -36,7 +38,7 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
 | `IV-RL-11` | RL-R1 | manifestの再読でdigestが一致する | 同じ`release_id`で`artifacts`の1件を変えたmanifestを置く | `Unknown(conflict)` |
 | `IV-RL-12` | RL-R2 | `eligibility.combined = Positive`で`ReleaseEstablished`を追記できる | 必要な検証器のreceiptを一つ除く | `Rejected`（追記されない） |
 | `IV-RL-13` | RL-R3 | 起動前の再計算で成果物のdigestが一致する | 成果物の1byteを変える | `Unknown(conflict)` |
-| `IV-RL-14` | RL-R4 | `ReleaseEstablished`済みのmanifestを指す`GenerationStaged`は追記できる | `ReleaseEstablished`の無いmanifestを指す | `Rejected(not_eligible)` |
+| `IV-RL-14` | RL-R4 | OSのpointer_writerによるCK `stage_generation`は`ReleaseEstablished`済みmanifestと一致する世代を追記できる | `ReleaseEstablished`の無いmanifestを指す | `Rejected(not_eligible)` |
 | `IV-RL-15` | RL-R5 | `PointerMoved`と`RuntimeObserved(healthy)`があれば三つのfieldがそれぞれ値を持つ | `RuntimeObserved`だけを除く | 実行のfieldは`Unobserved(not_run)`（現行の世代のfieldは変わらない） |
 | `IV-RL-16` | RL-R5 | 同上 | 観測を`unhealthy`にする | `Appended(RollbackRequired)`で、pointerは動かない |
 | `IV-RL-17` | RL-R6 | rollbackの前後で案件state・recordのdigestが同じで、成果物は移動先のmanifestのものになる | 移動先の`data format`を現在の案件dataと非互換と宣言する | `Rejected(not_eligible)` |
@@ -48,7 +50,7 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
 | `IV-RL-23` | 6.1 | `con`が`_63on`、80byteの結果はそのまま | 結果を81byteにする | `_h`＋64桁の形になり、内容から論理IDを戻せる（境界値の正常） |
 | `IV-RL-24` | RL-P1 | segmentのpathが内容の`enc(log_id)`・`enc(writer)`と一致する | segmentを別writerのdirectoryへ移す | `Unknown(conflict)` |
 | `IV-RL-25` | RL-P2 | 全pathの大文字小文字を畳んだ値が一意 | 大文字を小文字にそのまま写す（`_xx`にしない）`enc`の変異で`A`と`a`のlogを作る | `Unknown(conflict)`（新しい書込みは`Rejected`） |
-| `IV-RL-26` | RL-P3 | 各行の実bytesが`canonical_json(LogEntry)`＋LF一つと一致する | 1行の改行だけをCRLFへ変換する（解析後の値と`entry_digest`は変わらない） | `Unknown(unreadable)`（RL-P3の読取り条件。CK K5-I3(h)として反映予定） |
+| `IV-RL-26` | RL-P3 | 各行の実bytesが`canonical_json(LogEntry)`＋LF一つと一致する | 1行の改行だけをCRLFへ変換する（解析後の値と`entry_digest`は変わらない） | `Unknown(unreadable)`（RL-P3の読取り条件。CK K5-I3(h)に対応） |
 | `IV-RL-27` | RL-P4 | base側のbytesがhead側の先頭と一致するcommit | 途中の行の1byteを変えるcommit | `Rejected` |
 | `IV-RL-28` | RL-P5 | 二つのbranchが別writerのsegmentへ追記し、両方が入る | 二つのbranchが同じsegmentへ`seq=n+1`を追記し、両方の行を残してmergeする | `Unknown(unreadable)`（CK K5-I3(d)の重複） |
 | `IV-RL-29` | RL-P6 | repo外に固定した`SegmentHead`で末尾までを確かめる | 履歴を書き換えて末尾の1行を消す | `Unknown(unreadable)`（CK K5-I3(g)）。固定したheadを持たない読み手では検出できないことも記録する |
