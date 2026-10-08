@@ -29,7 +29,7 @@ L3／L10の配置規則（`docs/governance/l3-l10-authoring-layout.md:7-34`）�
 
 ### 1.3 未決（配置）
 
-- **親要求**：依頼では「HARNESS-L2-031（共通部品）の下に置く」とされた。しかしHARNESS-L2-031の意味は「ログ・入力からの最小再現と回帰候補生成」（`docs/helix-harness/L2-requirements/product-requirements.md:627-645`）であり、「031＝共通部品」は031の所属（HARNESS内のCOREか共通部品か）の確定である（`docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:19,66`）。Conceptの「1つの共通部品」はHELIX-CONNECTを指す（`docs/concept/helix-concept.md:115,228`）。031の意味からK1・K2は導けないため、本書は031を親としてtraceしない。各要素は、実際の由来である承認済みL3のACへ要素ごとにtraceする（2〜3章）。親要求の扱いは人の判断へ上げる（7章）。
+- **親要求**：起草の依頼時には、HARNESS-L2-031（共通部品）を親とする案が示された（AIの案であり、POの判断ではない）。しかしHARNESS-L2-031の意味は「ログ・入力からの最小再現と回帰候補生成」（`docs/helix-harness/L2-requirements/product-requirements.md:627-645`）であり、「031＝共通部品」は031の所属（HARNESS内のCOREか共通部品か）の確定である（`docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:19,66`）。Conceptの「1つの共通部品」はHELIX-CONNECTを指す（`docs/concept/helix-concept.md:115,228`）。031の意味からK1・K2は導けないため、本書は031を親としてtraceしない。各要素は、実際の由来である承認済みL3のACへ要素ごとにtraceする（2〜3章）。親要求の扱いは人の判断へ上げる（7章）。
 - **L4の配置規則の置き場**：L3／L10は`l3-l10-authoring-layout.md`が配置を定める。L4／L9の配置規則を同書へ追記するか、別に置くかは未決とする。本書の提案は、その規則が決まるまでの仮の配置である。
 - **作業入口との食い違い**：`docs/governance/new-generation-start-here.md:109`は「L3以降の正式な設計・実装」を停止中の作業に挙げる。2026-10-08の判断記録（`docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md:18,83`）はL4共通設計の起草を前提にしている。本書は下書きとして起草し、作業入口の更新は別PRとする（7章）。
 
@@ -211,7 +211,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 
 ## 4. 用語の区別
 
-旧HELIXと同じ語を使う場合、意味を次のように分ける（依頼時のPO判断）。
+旧HELIXと同じ語を使う場合、意味を次のように分ける（本書の設計判断。5章）。
 
 | 語 | 本書と後続PRでの意味 | 旧HELIXでの意味 |
 |---|---|---|
@@ -219,18 +219,18 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 | 遅着作用 | 失効した割当てやrunが後から返した、状態を変える作用。拒否する（K7で定める） | 旧HIL-FR-27「失効runのlate resultをcommitしない」（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:117`、SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`） |
 | 遅着観測 | 割当ての終了後に届いた観測（CI、review、費用）。追補する | 旧「遅着CI/review/costは追補する」（`LEGACY-ASSET-3A15E5645D2D2A59DFF5`、`docs/governance/candidates/execution-ticket-requirements.md:307`、SHA-256 `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b`） |
 
-## 5. 依頼時のPO判断の適用と、旧HELIXとの差
+## 5. 本書の設計判断と、旧HELIXとの差
 
-次は依頼者を通じて受けたPO判断である。2026-10-08の判断記録に入っているのはK9とG4だけで、残りは判断記録が無い（7章）。
+次の表のうち、上の4行はL4起草者（AI）の設計判断であり、POの判断ではない。L4以降の設計はAIが行う（旧charter §3、AGENTS.md「再構築の原則」）ため、本書に理由と旧sourceを記録し、独立reviewで確かめる。下の2行（K9、G4）は、2026-10-08のPO判断記録による。
 
-| PO判断 | 本書での適用 | 旧source（保持点・変更点） |
+| 判断（出所） | 本書での適用 | 旧source（保持点・変更点） |
 |---|---|---|
-| 旧HELIX内の矛盾(a)は「L4以降は完全自動」に揃える | 本書（L4）とL9に人の承認を置かない。独立reviewで確かめる | 旧charter §3（`LEGACY-ASSET-3B16BCFFAF353ADA813A`、`docs/design/helix/L0-charter/helix-charter_v0.1.md:18,22-30`、SHA-256 `8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8`）の「L4以降はAIが完全自動」を保持する。旧gate-design（`LEGACY-ASSET-2E09592A003B32C118C1`、`docs/governance/gate-design.md:23-40`、SHA-256 `d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726`）のG7・G11のPO sign-offは採らない（変更点）。理由：旧内部の矛盾を、現行の規則（AGENTS.md：人が持つ上流はConcept・L1・L2と、L3の承認）に揃える。G11（L11受入）の人の受入は、HARNESS-L2-022の利用者受入として別に残り、本判断で消えない |
-| event logの正本はrepository内の追記専用JSONL。旧harness.dbは採らない | K2の記録の保存先（K5で定める） | 旧ADR-007（`LEGACY-ASSET-8771887517A619A2D501`、`docs/adr/ADR-007-harness-db-sqlite-projection.md:18-30`、SHA-256 `50c05a00872be6c23de531aaecd6a6cfd26abec264718e0223ac2630f739dcdf`）の「projectionは再構築でき、authoring sourceではない」を保持する。harness.dbを正本にする点は`replace`。理由：現行は旧runtimeと`.helix/`を引き継がない |
-| 信頼の根は、版とdigestで固定した検証器の集合をrepositoryで管理する。署名は後回し | K2の`producer`の枠（K6・Eで定める） | 旧closure-evidence-materialization（`LEGACY-ASSET-901EFEC93D536D3AA418`、`docs/design/harness/L6-function-design/closure-evidence-materialization.md:67-76`、SHA-256 `a8951a0cdd590da84612de8c6b6e5960ca5c32ad3b3d0c0d0511b9f5789c0264`）の「local hash単独では真正性を主張しない」を保持する。GitHub required-checkを信頼の根にする点は`replace`。理由：新世代CIは未構築で、旧CIは使えない |
-| 旧用語の衝突は定義を分ける | 4章 | 上表のとおり |
-| K9独立性は作成と別runtime・別model family | K9で適用する | 2026-10-08判断記録の判断1と旧PPS-R-03に従う |
-| G4はbytes変化＝意味変化 | K2-I3 | 2026-10-08判断記録の判断2 |
+| 旧HELIX内の矛盾(a)は「L4以降は完全自動」に揃える（AIの設計判断） | 本書（L4）とL9に人の承認を置かない。独立reviewで確かめる | 旧charter §3（`LEGACY-ASSET-3B16BCFFAF353ADA813A`、`docs/design/helix/L0-charter/helix-charter_v0.1.md:18,22-30`、SHA-256 `8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8`）の「L4以降はAIが完全自動」を保持する。旧gate-design（`LEGACY-ASSET-2E09592A003B32C118C1`、`docs/governance/gate-design.md:23-40`、SHA-256 `d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726`）のG7・G11のPO sign-offは採らない（変更点）。理由：旧内部の矛盾を、現行の規則（AGENTS.md：人が持つ上流はConcept・L1・L2と、L3の承認）に揃える。G11（L11受入）の人の受入は、HARNESS-L2-022の利用者受入として別に残り、本判断で消えない |
+| event logの正本はrepository内の追記専用JSONL。旧harness.dbは採らない（AIの設計判断。K5で詳細化） | K2の記録の保存先（K5で定める） | 旧ADR-007（`LEGACY-ASSET-8771887517A619A2D501`、`docs/adr/ADR-007-harness-db-sqlite-projection.md:18-30`、SHA-256 `50c05a00872be6c23de531aaecd6a6cfd26abec264718e0223ac2630f739dcdf`）の「projectionは再構築でき、authoring sourceではない」を保持する。harness.dbを正本にする点は`replace`。理由：現行は旧runtimeと`.helix/`を引き継がない |
+| 信頼の根は、版とdigestで固定した検証器の集合をrepositoryで管理する。署名は後回し（AIの設計判断。K6・Eで詳細化） | K2の`producer`の枠（K6・Eで定める） | 旧closure-evidence-materialization（`LEGACY-ASSET-901EFEC93D536D3AA418`、`docs/design/harness/L6-function-design/closure-evidence-materialization.md:67-76`、SHA-256 `a8951a0cdd590da84612de8c6b6e5960ca5c32ad3b3d0c0d0511b9f5789c0264`）の「local hash単独では真正性を主張しない」を保持する。GitHub required-checkを信頼の根にする点は`replace`。理由：新世代CIは未構築で、旧CIは使えない |
+| 旧用語の衝突は定義を分ける（AIの設計判断） | 4章 | 上表のとおり |
+| K9独立性は作成と別runtime・別model family（PO判断：2026-10-08判断記録の判断1） | K9で適用する | 2026-10-08判断記録の判断1と旧PPS-R-03に従う |
+| G4はbytes変化＝意味変化（PO判断：2026-10-08判断記録の判断2） | K2-I3 | 2026-10-08判断記録の判断2 |
 
 ## 6. L2へ戻す論点
 
@@ -246,7 +246,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 
 1. 共通カーネルの親要求の扱い（1.3、6章1）。選択肢の例：(A)ぶら下げ先を別の承認済み要求（例：HARNESS-L2-022 検証と受入の契約）へ替える。ただしその要求の意味を広げることになり、031と同じ問題が残る。(B)L2へ戻して共通カーネルの要求を立てる。(C)要素ごとに承認済みL3のACを由来とし、一つの親を定めない。本書は判断が出るまで(C)の状態で起草し、判断記録が出たら親を追記する。
    POへの問い（案）：「共通カーネルは承認済み要求（031等）の意味を変えずにはその下に置けない。L2へ共通カーネルの要求を新設するか、親を定めず要素ごとのACへのtraceのまま進めるか。」
-2. 5章のうち判断記録が無い4件（矛盾(a)、event log、信頼の根、用語の区別）とHARNESS-L2-031の配置指示を、POの原文とともに判断記録にすること。
+2. L4／L9の正式な設計を、作業入口の「現在停止する作業」（`docs/governance/new-generation-start-here.md:109`「L3以降の正式な設計・実装」）から外すかどうか。本書は、その判断が記録されるまで下書きである。
 3. L4／L9の配置規則の置き場（1.3）と、作業入口の停止作業の記述の更新（1.3）。
 
 ## 8. PRの範囲と後続PRの計画
