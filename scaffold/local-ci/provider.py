@@ -10,10 +10,12 @@ from manifest import verify_design_manifest
 from plan import compile_plan
 from receipt import verify_receipt
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
-from target import GitReader, resolve_target
+from target import GitReader, observe_git_identity, resolve_target
 
 
 _MAX_DISPATCH_CHARS = 65_535
+# Trusted adapter setting; never supplied by dispatch or receipt. No PATH search.
+_PROVIDER_GIT_PATH = "/usr/bin/git"
 
 
 def _preflight_dispatch_json(data):
@@ -65,8 +67,24 @@ def _manifest_source_paths(manifest):
     return paths
 
 
+def _load_portable_config():
+    try:
+        portable = strict_json(Path(__file__).with_name("config.json").read_bytes())
+    except OSError as exc:
+        raise Diagnostic("Unknown", "unreadable", "trusted provider runtime config unavailable") from exc
+    if (not isinstance(portable, dict) or not isinstance(portable.get("executables"), dict)
+            or set(portable["executables"]) != {"python", "git", "bwrap", "provider_git"}):
+        raise Diagnostic("Rejected", "invalid_input", "trusted provider runtime config malformed")
+    identity = portable["executables"]["provider_git"]
+    if identity is not None and (not isinstance(identity, dict) or set(identity) != {"name", "version", "sha256"}
+            or identity["name"] != "git" or not isinstance(identity["version"], str) or not identity["version"]
+            or not isinstance(identity["sha256"], str) or not re.fullmatch(r"[0-9a-f]{64}", identity["sha256"])):
+        raise Diagnostic("Rejected", "invalid_input", "trusted provider Git pin malformed")
+    return portable
+
+
 def run_merge_unit_verifier(repo, base, head, data, *, event="workflow_dispatch",
-                            permission="read", git_path="/usr/bin/git"):
+                            permission="read", git_path=None):
     if event != "workflow_dispatch" or data is None or data == "" or data == b"":
         raise Diagnostic("Unobserved", "not_run", "dispatch or receipt input absent")
     if permission != "read":
@@ -76,8 +94,15 @@ def run_merge_unit_verifier(repo, base, head, data, *, event="workflow_dispatch"
         raise Diagnostic("Rejected", "invalid_input", "dispatch must supply exact full commit IDs")
     _preflight_dispatch_json(data)
     # Trusted config and code come from the default-branch checkout, never target.
-    portable = strict_json(Path(__file__).with_name("config.json").read_bytes())
-    reader = GitReader(Path(repo), git_path, portable["executables"]["git"])
+    portable = _load_portable_config()
+    git_path = _PROVIDER_GIT_PATH if git_path is None else git_path  # trusted Python test seam
+    provider_identity = portable["executables"]["provider_git"]
+    if provider_identity is None:
+        observed = observe_git_identity(git_path)
+        diagnostic = Diagnostic("Unobserved", "not_run", "provider Git pin is not yet observed in source config")
+        diagnostic.provider_git_identity = observed
+        raise diagnostic
+    reader = GitReader(Path(repo), git_path, provider_identity)
     target = resolve_target(reader, base, head, "RetryYN/HELIX-HARNESS")
     entries = reader.entries(target["head_tree"])
     raw_config = reader.blob(entries, "scaffold/local-ci/config.json")
@@ -113,6 +138,7 @@ def run_merge_unit_verifier(repo, base, head, data, *, event="workflow_dispatch"
     parity = state == diff_row["state"]
     return {"check_id": "LC-DIFF-001", "provider_state": state,
             "local_state": diff_row["state"], "selected_check_parity": parity,
+            "provider_git_identity": dict(reader.identity),
             "local_only_check_ids": [row["check_id"] for row in plan["commands"] if not row["selection"]["merge_unit"]],
             "receipt_digest": checked["receipt_digest"], "target": target,
             "positive": parity and state == "success" and checked["aggregate_state"] == "success"}
@@ -127,7 +153,10 @@ def main():
         sys.stdout.buffer.write(canonical_bytes(result) + b"\n")
         return 0 if result["positive"] else 1
     except Diagnostic as exc:
-        sys.stdout.buffer.write(canonical_bytes(exc.as_dict()) + b"\n")
+        diagnostic = exc.as_dict()
+        if hasattr(exc, "provider_git_identity"):
+            diagnostic["provider_git_identity"] = exc.provider_git_identity
+        sys.stdout.buffer.write(canonical_bytes(diagnostic) + b"\n")
         return 1
 
 

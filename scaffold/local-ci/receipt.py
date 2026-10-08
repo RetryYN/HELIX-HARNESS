@@ -253,7 +253,7 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
             if not isinstance(identity[field], str) or not identity[field]:
                 _reject("invalid_input", "runtime identity name/version must be non-empty text")
         _digest(identity["sha256"], "runtime identity digest")
-    if runtime != portable_config["executables"]:
+    if runtime != {key: portable_config["executables"][key] for key in ("python", "git", "bwrap")}:
         _unknown("Unknown", "conflict", "receipt runtime identity differs from trusted config")
     if not isinstance(body["created_at"], str) or not body["created_at"]:
         _reject("invalid_input", "created_at must be a non-empty string")

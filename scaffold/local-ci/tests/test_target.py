@@ -122,6 +122,14 @@ class TargetTests(unittest.TestCase):
         entries = self.reader.entries(self.reader.tree(self.head))
         self.diagnostic("Unknown", "missing_input", self.reader.blob, entries, "missing.md")
 
+    def test_UT_LCI_82_local_git_pin_mismatch_has_no_provider_fallback(self):
+        identity = {**self.identity, "sha256": "0" * 64}
+        probe = subprocess.CompletedProcess([], 0, ("git version " + self.identity["version"] + "\n").encode(), b"")
+        with patch("target.subprocess.run", return_value=probe) as run:
+            self.diagnostic("Unknown", "unsupported", GitReader, self.root, self.git, identity)
+        run.assert_called_once()
+        self.assertEqual(run.call_args.args[0], [self.git, "--version"])
+
     def test_UT_LCI_50_version_floor_before_other_probe(self):
         result = subprocess.CompletedProcess([], 0, b"git version 2.35.1\n", b"")
         with patch("target.subprocess.run", return_value=result) as run:

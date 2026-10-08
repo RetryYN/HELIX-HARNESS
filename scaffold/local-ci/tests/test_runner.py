@@ -68,6 +68,7 @@ def _fixture(temp: Path) -> tuple[dict, dict, Path]:
     sandbox["profile_digest"] = sha256(canonical_bytes(sandbox))
     portable = {
         "executables": {
+            "provider_git": None,
             "python": {"name": "python3", "version": "3.12.3", "sha256": sha256(b"python-bytes")},
             "git": {"name": "git", "version": "2.43.0", "sha256": sha256(b"git-bytes")},
             "bwrap": {"name": "bwrap", "version": "bubblewrap", "sha256": sha256(b"bwrap-bytes")},
@@ -143,6 +144,45 @@ class _StubProcess:
 
 
 class RunnerTests(unittest.TestCase):
+    def test_ut_lci_83_bwrap_opaque_version_and_bytes_identity_baseline(self):
+        with tempfile.TemporaryDirectory() as directory:
+            host, portable, _snapshot = _fixture(Path(directory))
+            Path(host["bwrap"]).chmod(0o700)
+            portable["executables"]["bwrap"]["version"] = "bubblewrap built for synthetic host"
+            probe = type("Probe", (), {"returncode": 0, "stdout": b"bubblewrap built for synthetic host\n", "stderr": b""})()
+            with patch.object(runner.subprocess, "run", return_value=probe) as version:
+                runner._verify_executable(host["bwrap"], portable["executables"]["bwrap"], "bwrap")
+            self.assertEqual(version.call_args.args[0], [host["bwrap"], "--version"])
+
+    def test_ut_lci_84_85_86_bwrap_pin_or_availability_failure_prevents_checker(self):
+        original_verify = runner._verify_executable
+        for mutation in ("bytes", "version", "availability"):
+            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as directory:
+                host, portable, snapshot = _fixture(Path(directory))
+                binary = Path(host["bwrap"])
+                binary.chmod(0o700)
+                if mutation == "bytes":
+                    binary.write_bytes(b"changed bwrap bytes")
+                elif mutation == "version":
+                    portable["executables"]["bwrap"]["version"] = "different opaque version"
+                else:
+                    binary.unlink()
+                def verify(path, identity, name):
+                    if name == "bwrap":
+                        original_verify(path, identity, name)
+                probe = type("Probe", (), {"returncode": 0, "stdout": b"bubblewrap\n", "stderr": b""})()
+                with patch.object(runner, "_enable_subreaper"), \
+                        patch.object(runner, "_verify_executable", side_effect=verify), \
+                        patch.object(runner.subprocess, "run", return_value=probe), \
+                        patch.object(runner.subprocess, "Popen") as checker:
+                    result = runner._supervisor({"host_config": host, "portable_config": portable,
+                                                 "snapshot_root": str(snapshot), "spec": _spec()}, None)
+                self.assertEqual(result["execution"]["state"], "denied")
+                self.assertIsNone(result["execution"]["started_at"])
+                self.assertFalse(result["safe_to_continue"])
+                checker.assert_not_called()
+
+
     def test_fixed_commands_cover_the_five_required_checks(self):
         for check_id in CHECK_IDS:
             argv, executable = runner._validate_command(_spec(check_id))

@@ -28,6 +28,23 @@ def relative_path(value: str) -> str:
     return value
 
 
+def observe_git_identity(executable: str) -> dict:
+    """Read only existing binary bytes/version; no repository operation or lookup."""
+    if GIT_POLICY != _FIXED_GIT_POLICY or GIT_ENV != _FIXED_GIT_ENV:
+        raise Diagnostic("Rejected", "invalid_input", "fixed Git policy cannot be overridden")
+    try:
+        digest = sha256(Path(executable).read_bytes())
+        probe = subprocess.run([str(executable), "--version"], env=GIT_ENV,
+                               capture_output=True, timeout=10, check=False)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise Diagnostic("Unknown", "unsupported", "Git identity unavailable") from exc
+    match = re.fullmatch(rb"git version (\d+)\.(\d+)\.(\d+)\n", probe.stdout)
+    if probe.returncode or not match or tuple(map(int, match.groups())) < (2, 35, 2):
+        raise Diagnostic("Unknown", "unsupported", "Git identity/version unsupported")
+    return {"name": "git", "version": probe.stdout.decode().strip().removeprefix("git version "),
+            "sha256": digest}
+
+
 class GitReader:
     def __init__(self, repo: Path, executable: str, identity: dict):
         if GIT_POLICY != _FIXED_GIT_POLICY or GIT_ENV != _FIXED_GIT_ENV:
@@ -35,16 +52,8 @@ class GitReader:
         self.repo = Path(repo).resolve()
         self.executable = str(Path(executable).resolve())
         self.identity = dict(identity)
-        try:
-            digest = sha256(Path(self.executable).read_bytes())
-            probe = subprocess.run([self.executable, "--version"], env=GIT_ENV,
-                                   capture_output=True, timeout=10, check=False)
-        except (OSError, subprocess.TimeoutExpired) as exc:
-            raise Diagnostic("Unknown", "unsupported", "Git identity unavailable") from exc
-        match = re.fullmatch(rb"git version (\d+)\.(\d+)\.(\d+)\n", probe.stdout)
-        if (probe.returncode or not match or tuple(map(int, match.groups())) < (2, 35, 2)
-                or identity.get("name") != "git" or digest != identity.get("sha256")
-                or probe.stdout.decode().strip().removeprefix("git version ") != identity.get("version")):
+        observed = observe_git_identity(self.executable)
+        if observed != identity:
             raise Diagnostic("Unknown", "unsupported", "Git identity/version mismatch")
         self._reject_unsafe_local_config()
 

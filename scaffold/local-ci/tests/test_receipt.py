@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+import copy
 import sys
 import tempfile
 import unittest
@@ -11,7 +12,8 @@ _LOCAL_CI = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_LOCAL_CI))
 
 from common import CHECK_IDS, Diagnostic, canonical_bytes  # noqa: E402
-from receipt import verify_receipt, write_receipt  # noqa: E402
+from receipt import verify_receipt, write_receipt
+from plan import compile_plan  # noqa: E402
 
 
 _HEX = "a" * 40
@@ -107,6 +109,31 @@ def verify(data: bytes | str, *, current: dict | None = None, refs=None,
 
 
 class VerifyReceiptTests(unittest.TestCase):
+    def test_ut_lci_76_80_shared_role_pins_bind_config_and_invalidate_old_receipt(self):
+        portable = copy.deepcopy(_PORTABLE)
+        portable["executables"]["provider_git"] = {"name": "git", "version": "2.55.0", "sha256": "f" * 64}
+        body = receipt()
+        original_plan = compile_plan(body["target"], portable, _RAW_SHA, "1")
+        body["plan"] = original_plan
+        body["config_digest"] = original_plan["config_digest"]
+        for row, spec in zip(body["executions"], original_plan["commands"]):
+            row["argv"] = spec["argv"]
+        kwargs = dict(design_manifest_digest=_RAW_SHA, checker_refs=body["checker_refs"],
+                      contract_ref=body["contract_ref"], structure_complete=True, portable_config=portable)
+        checked = verify_receipt(canonical_bytes(body), body["target"],
+                                 config_digest=original_plan["config_digest"], plan_expected=original_plan, **kwargs)
+        self.assertEqual(checked["status"], "verified")
+        self.assertEqual(set(body["runtime_identity"]), {"python", "git", "bwrap"})
+        portable["executables"]["provider_git"]["sha256"] = "e" * 64
+        new_plan = compile_plan(body["target"], portable, _RAW_SHA, "1")
+        self.assertNotEqual(original_plan["config_digest"], new_plan["config_digest"])
+        self.assertEqual(original_plan["commands"], new_plan["commands"])
+        with self.assertRaises(Diagnostic) as raised:
+            verify_receipt(canonical_bytes(body), body["target"],
+                           config_digest=new_plan["config_digest"], plan_expected=new_plan, **kwargs)
+        self.assertEqual((raised.exception.classification, raised.exception.reason), ("Unknown", "conflict"))
+
+
     def test_ut_lci_30_canonical_baseline_is_verified(self):
         body = receipt()
         result = verify_receipt(

@@ -167,8 +167,15 @@ def _validate_config(host: object, portable: object) -> tuple[dict, dict, list[d
         _invalid("portable config must contain executables and sandbox profile")
     executables = portable["executables"]
     sandbox = portable["sandbox"]
-    if not isinstance(executables, dict) or set(executables) != _EXEC_KEYS:
+    if not isinstance(executables, dict) or set(executables) != _EXEC_KEYS | {"provider_git"}:
         _invalid("portable executable identity set is incomplete")
+    provider_identity = executables["provider_git"]
+    if provider_identity is not None:
+        if (not isinstance(provider_identity, dict) or set(provider_identity) != {"name", "version", "sha256"}
+                or provider_identity["name"] != "git" or not isinstance(provider_identity["version"], str)
+                or not provider_identity["version"]):
+            _invalid("provider Git identity must be an exact identity or null")
+        _canonical_digest(provider_identity["sha256"], "executables.provider_git.sha256")
     if not isinstance(sandbox, dict) or set(sandbox) != _SANDBOX_KEYS:
         _invalid("sandbox profile fields differ from the fixed contract")
     mounts, symlinks = sandbox.get("mounts"), sandbox.get("symlinks")

@@ -123,7 +123,7 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
             recheck, cancel)
         receipt = {"schema_version": 1, "target": target, "contract_ref": contract_ref,
                    "config_digest": plan["config_digest"], "design_manifest_digest": manifest_digest,
-                   "checker_refs": checker_refs, "runtime_identity": portable["executables"],
+                   "checker_refs": checker_refs, "runtime_identity": {key: portable["executables"][key] for key in ("python", "git", "bwrap")},
                    "plan": plan, "executions": executions, "aggregate_state": aggregate,
                    "created_at": now()}
         validate_receipt(receipt, target, config_digest=plan["config_digest"],

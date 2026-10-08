@@ -9,8 +9,9 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import provider
+import target as target_module
 import design_check
-from common import CHECK_IDS, Diagnostic
+from common import CHECK_IDS, Diagnostic, canonical_bytes
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
 
 
@@ -26,13 +27,14 @@ CONTRACT_PATH = "docs/helix-os/L4-basic-design/local-ci.md"
 class FakeReader:
     instances = []
     manifest_data = MANIFEST
+    portable = None
 
     def __init__(self, repo, executable, identity):
+        self.identity = identity
         self.calls = []
         self.blob_calls = []
         self.sources = {path: ("synthetic:" + path).encode() for path in CHECKER_PATHS}
-        self.sources["scaffold/local-ci/config.json"] = Path(
-            provider.__file__).with_name("config.json").read_bytes()
+        self.sources["scaffold/local-ci/config.json"] = canonical_bytes(type(self).portable)
         self.sources[MANIFEST_PATH] = type(self).manifest_data
         self.sources[LEDGER_PATH] = b"synthetic ledger\n"
         self.sources[CONTRACT_PATH] = b"synthetic contract\n"
@@ -54,6 +56,13 @@ class ProviderTests(unittest.TestCase):
     def setUp(self):
         FakeReader.instances.clear()
         FakeReader.manifest_data = MANIFEST
+        self.portable = json.loads(Path(provider.__file__).with_name("config.json").read_bytes())
+        self.portable["executables"]["provider_git"] = {
+            "name": "git", "version": "2.55.0", "sha256": "f" * 64}
+        FakeReader.portable = self.portable
+        self.config_patch = patch.object(provider, "_load_portable_config", return_value=self.portable)
+        self.config_patch.start()
+        self.addCleanup(self.config_patch.stop)
         self.reader_patch = patch("provider.GitReader", FakeReader)
         self.resolve_patch = patch("provider.resolve_target", return_value=TARGET)
         self.manifest_patch = patch("provider.verify_design_manifest",
@@ -212,6 +221,44 @@ class ProviderTests(unittest.TestCase):
         self.assertEqual(result["provider_state"], "success")
         self.assertEqual(result["local_only_check_ids"], list(CHECK_IDS[:3]) + [CHECK_IDS[4]])
         self.assertTrue(result["positive"])
+        self.assertEqual(reader.identity, self.portable["executables"]["provider_git"])
+        self.assertNotEqual(reader.identity, self.portable["executables"]["git"])
+        self.assertEqual(result["provider_git_identity"], reader.identity)
+
+    def test_ut_lci_77_unpinned_provider_observes_identity_only(self):
+        self.portable["executables"]["provider_git"] = None
+        identity = {"name": "git", "version": "2.55.0", "sha256": "f" * 64}
+        with patch.object(provider, "observe_git_identity", return_value=identity) as observe:
+            with self.assertRaises(Diagnostic) as raised:
+                provider.run_merge_unit_verifier("unused", BASE, HEAD, self.receipt_bytes())
+        self.assertEqual((raised.exception.classification, raised.exception.reason), ("Unobserved", "not_run"))
+        self.assertEqual(raised.exception.provider_git_identity, identity)
+        observe.assert_called_once_with(provider._PROVIDER_GIT_PATH)
+        self.assertEqual(FakeReader.instances, [])
+        self.receipt_mock.assert_not_called()
+
+    def test_ut_lci_78_79_provider_pin_mismatch_stops_before_repository_probe(self):
+        actual = dict(self.portable["executables"]["git"])
+        for field, value in (("sha256", "0" * 64), ("version", "9.99.0")):
+            with self.subTest(field=field):
+                self.portable["executables"]["provider_git"] = {**actual, field: value}
+                probe = SimpleNamespace(returncode=0, stdout=("git version " + actual["version"] + "\n").encode())
+                with patch.object(provider, "GitReader", target_module.GitReader), \
+                        patch.object(target_module.subprocess, "run", return_value=probe) as spawn:
+                    with self.assertRaises(Diagnostic) as raised:
+                        provider.run_merge_unit_verifier("unused", BASE, HEAD, self.receipt_bytes())
+                self.assertEqual((raised.exception.classification, raised.exception.reason), ("Unknown", "unsupported"))
+                spawn.assert_called_once()
+                self.assertEqual(spawn.call_args.args[0], [provider._PROVIDER_GIT_PATH, "--version"])
+                self.assertEqual(FakeReader.instances, [])
+                self.receipt_mock.assert_not_called()
+
+    def test_ut_lci_81_provider_diff_state_divergence_remains_nonpositive(self):
+        with patch.object(FakeReader, "invoke", return_value=SimpleNamespace(returncode=2)):
+            result = provider.run_merge_unit_verifier("unused", BASE, HEAD, self.receipt_bytes())
+        self.assertEqual((result["local_state"], result["provider_state"]), ("success", "fail"))
+        self.assertFalse(result["selected_check_parity"])
+        self.assertFalse(result["positive"])
 
 
 if __name__ == "__main__":
