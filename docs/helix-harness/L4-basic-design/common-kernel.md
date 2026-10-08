@@ -16,22 +16,21 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 
 現行の層とpairは、Concept（`docs/concept/helix-concept.md:239`）とHARNESS-L2-001（`docs/helix-harness/L2-requirements/product-requirements.md:99`）が定める`L4↔L9`である。旧HELIXも`L4 基本設計 ↔ L9 結合テスト`を対にしていた（`LEGACY-ASSET-80FD1264A2C50E2E4AA4`、`archive/legacy-generation-2026-09-14/root/docs/process/README.md:44-55`、SHA-256 `21a875ca5b46a8396485690a8405923ea197552fe4aa2302b1eaad6f7e650985`）。L9は「interface、依存の向き、stateとdataの所有、transaction、失敗の伝わり方、retry、timeout、冪等性、結合度、責務の重複」を見る（HARNESS-L2-003／004、同L2:110）。本書と対になる検証設計はL9に置く。
 
-### 1.2 置き場所（提案）
+### 1.2 置き場所
 
-| 層 | 置き場所 | 名前の根拠 |
+| 対象 | 置き場所 | 根拠 |
 |---|---|---|
-| L4基本設計 | `docs/helix-harness/L4-basic-design/` | 旧`docs/design/<target>/L4-basic-design/`の層名を保持し、現行の対象別folder（`docs/<mechanism>/L3-requirements/`等）の下へ置き直す |
-| L9結合検証 | `docs/helix-harness/L9-integration-verification/` | 旧`docs/test-design/harness/L9-integration-test-design.md`の「結合」を保持し、現行L10の`L10-verification/`に合わせて「verification」とする |
+| 共通カーネルL4基本設計 | `docs/helix-harness/L4-basic-design/` | 共通カーネルを所有するHELIX-HARNESSのL4として、現行の`docs/<mechanism>/`機構×層配置に置く。 |
+| 共通カーネルL9結合検証 | `docs/helix-harness/L9-integration-verification/` | L4とのpairを保ち、V字各層のverification設計の正本を`docs/`に置く。 |
 
-L3／L10の配置規則（`docs/governance/l3-l10-authoring-layout.md:7-34`）を同じ考え方でL4／L9へ延ばした。文書（`docs/`）の構成を変える判断ではなく、既存の判断（`docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md:68`「`docs/`の構成は既存の判断のまま変えない」）に反しない範囲で、新しい層のfolderを足すだけである。旧`docs/design/`と`docs/test-design/`への分離は採らない。現行は機構ごとのfolderに要求から検証までを置くためである。
+2026-10-09 PO判断は、`docs/`の既存配置を維持し、L4〜L9も機構×層の同じ並びに置き、V字各層のverification設計を`docs/`に置くことを採用した。この節は既存配置を示すものであり、新しいdirectoryを作る許可ではない。L4とL9を対にする旧根拠は`LEGACY-ASSET-80FD1264A2C50E2E4AA4`（旧`docs/process/README.md:44-55`、SHA-256 `21a875ca5b46a8396485690a8405923ea197552fe4aa2302b1eaad6f7e650985`）。共通カーネルの所有者をHELIX-HARNESSとする根拠はConcept原則4/10と2026-10-08 PO判断2である。
 
-共通カーネルを`docs/helix-harness/`に置くのは、HARNESSが「工程の標準と検証義務」を持つ（Concept原則10、`docs/concept/helix-concept.md:311`）ためである。8機構が使う型であっても、所有を一つにする（Concept原則4）。
+### 1.3 境界と配置の扱い
 
-### 1.3 未決（配置）
-
-- **親要求**：一つの親要求の下に置かず、要素ごとに承認済みL3のACへ由来を辿る（2026-10-08のPO判断、`docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md` 判断2）。HARNESS-L2-031の意味は「ログ・入力からの最小再現と回帰候補生成」（`docs/helix-harness/L2-requirements/product-requirements.md:627-645`）であり、「031＝共通部品」は031の所属の確定である（`docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:19,66`）。そのため031を親としない。
-- **L4の配置規則の置き場**：L3／L10は`l3-l10-authoring-layout.md`が配置を定める。L4／L9の配置規則を同書へ追記するか、別に置くかは未決とする。本書の提案は、その規則が決まるまでの仮の配置である。
-- **作業入口**：L4〜L6の設計と対の検証設計は、2026-10-08のPO判断（同判断記録の判断1）で、承認済みL3／L10を親とする範囲に限り、作業入口の「現在停止する作業」から外れた。
+- **親要求**：本書は一つの親要求の下に置かず、要素ごとに承認済みL3 ACへ由来を辿る（2026-10-08 PO判断2）。HARNESS-L2-031の意味は「ログ・入力からの最小再現と回帰候補生成」であり、「031＝共通部品」は所属の確定であって本書の親要求化ではない。
+- **文書配置**：L4〜L9の機構×層配置とverification設計の`docs/`正本は2026-10-09 PO判断で採用済みである。ここから別のauthoring rule fileを追加したり、既存`l3-l10-authoring-layout.md`の適用範囲を変更したりしない。`docs/`のrepository-wideな再配置も行わない。
+- **作業入口**：L4〜L6設計と対のverification設計は、承認済みL3/L10を親とする既存の作業入口条件に従う。
+- **新しい構成基本案**：15.5は、2026-10-09 PO判断が採用した構成の基本案と、そのL4具体化事項を表す。判断記録に列挙された実装・実行・release等の非対象は、配置記述から許可として導かない。
 
 ## 2. K1 結果の多値型 `Observed<T>`
 
@@ -263,25 +262,71 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 | 開発repoのreviewは、作成と別系統（別runtime・別model family）のクロスレビューを必須とする（PO判断：2026-10-08の委任判断記録の判断1。開発repoの運用規則） | 本PRの作成とreviewに適用する。製品K9の根拠にしない | 解禁判断記録の判断3（`docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md:57-61`）により、これは開発repo（本repository）の運用規則であり、製品（HELIX）の要求ではない。製品のK9はConcept:236（独立reviewはidentity・context・authority・review routeで行い、providerの同異では独立性を決めない）と承認済みL3から導く（8.2のPR8） |
 | G4はbytes変化＝意味変化（PO判断：2026-10-08判断記録の判断2） | K2-I3 | 2026-10-08判断記録の判断2 |
 
-## 6. L2へ戻す論点
+## 6. 既存意味を保つ設計と意味変更時の上流
 
-本書で由来を見つけられず、要求の意味に触れるため、L4で決めないもの。
+各要素について、承認済みL3と適用する既存Concept/L2が定める範囲の型、API、参照、所有、順序、合成、診断、projectionをL4のAI設計として定め、対のL9と独立reviewで確かめる。未登録source、missing input、unknown authenticity、未着receipt、staleは各要素の型付き非肯定として保持する。それらを新しいPO待ちや承認gateへ変換しない。技術設計上の選択が残ることだけでも上流へ戻さない。
 
-1. **時間による鮮度の閾値**（G11）：観測の期限、失効の許容遅延をどの機構が持つか。L2は数値を新設しない方針である。
-2. **不明と未観測の境界の各機構での意味**（G10の一部）：LABOの「不明と未観測」、INFRAの鮮度、SECURITYのunknown／denyが、2.2の境界と異なる意味を持つ場合。
-3. K5（9章）の論点：末尾の削除の検出と、logの保持期間・圧縮（9.7）。
-4. K6・E（10章）の論点：receiptの発行の真正性（10.8）。
-5. G8（11章）の論点：実行環境の真正性（11.6）。
-6. K4・G3（13章）の論点：人のIFを置く義務の範囲、機械判定の割合の目標（13.7）。
-7. K10（14章）の論点：依存循環の拒否（14.7）。
-8. K7・G5（15章）の論点：取消しの許容遅延（15.8）。
+### 6.1 既存意味を保つ設計と残余限界
 
-## 7. 人の判断が要る点
+| 対象 | L4で定める設計責務 | 保持する残余限界 |
+|---|---|---|
+| K1 / G10 | 2章に従って各機構の状態を`Observed<T>`へ写し、G10の肯定・否定・unknown等の成分を合成する。 | 各機構の語義を共通型の都合だけで統一・変更しない。missing、unknown、unobserved、staleを肯定へ縮退させない。 |
+| K2 / G4 | 3章のkey field、正準順、lookup、stale/conflictを設計する。bytesと意味revisionの境界は2026-10-08 PO判断2を維持する。 | 判定器ができるまではbytes変化を常に意味変化として扱い旧結果を使わない。同revisionの異digestはUnknown(conflict)、新revisionの旧ValueはStaleであり、現行鍵を捏造しない。 |
+| K3 | 16章の既存operation authority tupleとcurrent permission照合を、PR10の全体traceへ含める。 | 既存許可を生成・拡張せず、unknown/conflictを許可にしない。16章のexact契約をK8/K9統合の代わりに流用しない。 |
+| K4 / G3 | 13章の義務集合・状態・oracle種別・継承/受領を、承認済みACに沿って設計する。 | traceの存在だけで義務充足にしない。human-interface範囲や機械判定割合を新設しない。 |
+| K5 | 9章のappend、固定prefix、projection、restore/replay、conflict手順を設計する。 | 既知headなしに真の末尾削除を検出できると主張しない。未設計の保存容量・圧縮・外部archiveの保証を足さない。 |
+| K6 / E | 10章のreceipt admission、reproduction、issuer authenticityを分け、各assuranceを保持する。 | 現行sourceで証明できないissuer/過去実行の真正性を肯定しない。未知の真正性は別の許可待ちにしない。 |
+| K7 / G5 | 15章とOS/INFRA/HARNESS/SECURITY ACに沿ってrequest/apply、fencing、current permission照合、受け手ごとの取消し伝播を設計する。 | 跨writer原子性、既に実行された作用の取消し、数値で定められていない伝播上限を保証しない。pointer移動を正常起動の証拠にしない。 |
+| K8 | 統合後に§18へ置かれるK8の番号付き契約と対のL9検証を、最終integration HEADからtraceする。 | 最新統合前のmeaning、field、oracle、結果をここで補作しない。 |
+| K9 | 統合後に§17へ置かれるK9の番号付き契約と対のL9検証を、最終integration HEADからtraceする。 | 最新統合前のmeaning、field、oracle、結果をここで補作しない。 |
+| K10 | 14章に従って承認済み依存closure/影響ACの範囲でtyped edgeとclosure/impactを設計する。 | 宣言外runtime依存やedgeの真偽を推測しない。L3にない一律cycle拒否を加えない。 |
+| E | 10章に従ってverification receiptのissuer/evidence boundaryとK6 admissionを設計する。 | receiptの有無や設計上のadmissionを実行済み/合格としない。 |
+| G3 | 13章に従ってoracle種別と義務単位の検証責務を設計する。 | coverageやtraceだけから人の判断・合格を生成しない。 |
+| G4 | 3章に従って既存bytes/meaning境界でkeyとmeaning revisionの対応を設計する。 | 新しい意味revision基準を加えない。 |
+| G5 | 15章に従ってK7とK10を使う取消し伝播の責務を設計する。 | 未指定の上限や受け手の意味を作らない。 |
+| G8 | 11章に従ってsource/build/artifact/run receiptとartifact reproductionを分ける。 | 固定bytesだけから実行環境や起動成功の真正性を肯定しない。 |
+| G10 | 2章に従って状態語の写像と複数成分の合成を設計する。 | unknown等を成功へ縮退させない。 |
+| G11 | 対象節の既存述語・観測値・非肯定結果を対応づける。 | 新しい時間・割合・件数の数値閾値は定めない。 |
+| Phase 1 | 12章のC1–C4、固定`Corpus`/`Phase1Scope`、`authority_effect: none`を保った条件構成を設計する。 | 測定設計は実行、合格、gate変更、v0.1宣言を意味しない。 |
+| 型番台帳 | 15.4に従いHARNESS-L2-010/HELIXOS-L2-014の既存項目をK5/K7の正本から導く。 | 新しい項目や第二の台帳を作らない。内部deployment状態を台帳へ二重記録しない。 |
+| 配置・source visibility | 1.2/1.3と15.5で、2026-10-09 PO判断の基本案を同一責務境界に写す。開発source、pack、cross-pack declarations、型番登録、records、repo外の実行/配布を区別する。 | 本文の設計からdirectory作成、visibility/LICENSE変更、release/deployを実行しない。詳細境界は15.5/8.2に列挙する。 |
 
-列挙だけであり、本書は新しい承認手続きを作らない。親要求の扱いと作業入口の停止は、2026-10-08のPO判断で決着した（1.3）。
+### 6.2 既存意味を追加・変更するとき
 
-1. L4／L9の配置規則の置き場（`l3-l10-authoring-layout.md`へ追記するか、別に置くか）。本書の配置は、その規則が決まるまでの提案である。人の上流の意味には触れないため、後続PRでAIが決め、独立reviewで確かめてよい。
-2. Phase 1の条件の確認者・時期、数値、条件がそろった後の手順の変更、v0.1の宣言と内部デプロイ、advisoryの検査の扱い（12.5）。
+次の場合だけ対象意味を所有する既存上流authorityへ戻す。missing source、未着receipt、unknown authenticity、実装がないこと、技術設計の選択肢が残ることは、それだけでは上流戻しの理由ではない。
+
+- G11その他に新しい時間・割合・件数の閾値を追加・変更する場合（freshness、取消し伝播、Phase 1対象数/割合等）。
+- 承認済み各機構のunknown/unobserved/denyの意味や責任主体を変える場合。
+- K4/G3で、承認済みACにない義務、HumanInterface、機械判定範囲を追加する場合。
+- K5/K6/E/G8で、既存ACにない保存・真正性・署名・外部固定・execution environment attestationを要求へ加える場合。
+- K10で、承認済みL3にない一律cycle拒否を要求へ加える場合。
+- 台帳へL2/OS L2が定めない項目を追加する場合、または段階単位の内部deploymentを部品・接続単独へ広げる場合。
+
+2026-10-09判断の四つのL4具体化事項（正本一意化、ReleaseManifest、開発source公開と配布範囲の分離、recordsの物理配置）は、既にL4へ割り当てられた技術設計であり、§6.2のPO待ちに分類しない。設計の結果として固定L2/L3の意味そのものを変える必要が判明した場合だけ、対象revisionと変更意味を特定し、既存authority経路を使う。
+
+## 7. 既存の人判断と許可済み外部作用
+
+本章は既存の人判断・外部作用境界を分類し、新しい承認手続き、PR gate、PO確認、delivery receiptを追加しない。L4/L9の技術設計判断はAIが記録し独立reviewで確かめる。`design_pair_defined`はpair本文に設計を定義したという事実のみを表し、review済み/承認済みと同義ではなく、実装・実行・release許可を意味しない。
+
+両文書のstatusは設計定義状態だけを表し、review/mergeから上流承認、Phase 1成立、v0.1宣言、実装・実行・deployment、完了を生成しない。独立reviewは別のexact PR/HEAD記録で判定する。
+
+### 7.1 既存の人判断
+
+- Phase 1条件を誰がいつ確認するか、数値、条件成立後に承認手順を変えるか、v0.1成立を宣言するか、advisory検査をどう扱うかは12.5の既存列挙を維持する。P1-C1–C4の設計/測定は条件成立を表さない。
+- 自動rollbackをPhase 2で扱うか、段階を組み直さない部品・接続単独の内部deploymentを許すかは15.9の既存未決を維持する。ReleaseManifestの技術設計はそれ自体でrollback policyの新しい人判断を作らない。
+- 2026-10-09 PO判断で採用した構成基本案とpublic開発source範囲は再承認に送らない。四つのL4設計論点はAIの技術設計責務であり、PO待ちに置かない。
+- 2026-10-09判断はL4–L9を機構×層に配置しverification設計を`docs/`に置くことを採用済みとする。新規の一般rule fileは本PRで作らず、既存二文書の1.2/1.3に判断を正確に反映して独立reviewする。
+- 上記以外で既存L2/L3の要求意味・responsibility/authorityを変更する場合は、変更する意味と対象revisionを特定して既存authority経路へ戻す。技術detailの未決やmissingだけで人の判断を求めない。
+
+### 7.2 許可済み外部作用の範囲
+
+- 内部deployment・cutover・release・tag・配布repo作成/切替などは既存の対象と作用を特定する許可の範囲に限る。K7は許可を発行せず、適用直前に既存許可を照合する。
+- public開発sourceの判断はpublic release、distribution allowlist、配布先visibility、LICENSE変更を含まない。配布先privateと配布対象allowlistの設計は開発sourceの閲覧範囲と別に扱う。判断記録が非対象とするvisibility/LICENSE変更、配布repo作成/切替、CI起動、directory作成を本PRから実行しない。
+- `docs/`と実装directoryの配置記述はdirectoryを作らない。Records設計も、機密を含むinstance state/案件data/credentialsをpublic repoへ入れる許可にはならない。
+- missing source、owner contract、receipt、測定値は各要素の`Unknown`/`Unobserved`/`missing_input`等で保持し、非肯定の限界を示す。欠落から新しいPO許可やgateを生成しない。
+- Git mergeや文書statusは実行環境の起動、artifact deployment、rollback完了、instance state/historyの巻き戻し証拠にならない。
+
+通常のL4/L9設計reviewに人間approveや別delivery receiptを追加しない。通常のGitHub作業の既存規則を保ち、不可逆な外部作用は既存の明示許可へ結びつける。
 
 ## 8. PRの範囲と後続PRの計画
 
