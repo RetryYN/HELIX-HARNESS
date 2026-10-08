@@ -66,13 +66,19 @@ Claudeがこの選択を「GitHub Actionsで構築する」と書き始めたと
 ## 判断2：新世代CIの解禁（ローカルCIを主とする）
 
 - 新世代CIを構築し、起動してよい。**主はローカルCI**とする。全量の検査はローカルCIで回し、GitHub Actionsの実行は減らす。
-- **ローカルCIを最初に作る。** これまでのmergeは、静的確認（`scfctl`、`govcheck`、`git diff --check`）と独立reviewだけで確かめてきた。ローカルCIができたら、まずmain上の既存の設計文書（共通カーネル、構成のL4↔L9等）に回し、見つかった不整合は修正PRで直す。そのあとStage 1の設計・実装を進める。
-- **ローカルとGitHub側は同じ検査契約を使う。** 同じ検査の内容・版・設定・対象revisionでローカルとGitHub側が結果を返し、片側だけの実行や別内容での実行を合格にしない（HARNESS-L2-036）。GitHub ActionsはCIの交換可能なprovider adapterの一つとする（HELIX-OS L2「新世代CIの再構築条件」）。
-- **GitHub Actionsで何を回すか**は、L5〜L6のCI設計で決め、独立reviewで確かめる。旧HELIXのとおり、mergeの単位を超えて回さず（毎commitでは回さない）、設計文書だけのPRはローカルだけで検査してよい。Actionsの役割は、ローカルCIの証跡を対象HEADへ結んで確かめることと、mergeの単位での軽い検証を基本とする。
+- **同じ検査を両側で回すときは、同じ契約で照合する。** 検査の編成でローカルとGitHub側の両方での実行が選ばれた検査は、同じ内容・版・設定・対象snapshotの結果を照合し、片側だけの実行や別内容での実行を合格にしない（HARNESS-L2-036の、選んだprofileと対象に応じた同一契約）。ローカルだけの編成を選んだ検査では、GitHub側で実行した、両側で照合した、と主張しない。これは開発repoの検査の編成であり、製品の要求であるHARNESS-L2-036の契約を書き換えず、新しいgateも加えない。GitHub ActionsはCIの交換可能なprovider adapterの一つとする（HELIX-OS L2「新世代CIの再構築条件」）。
+- **GitHub Actionsで何を回すか**は、L5〜L6のCI設計で決め、独立reviewで確かめる。旧HELIXと同じく、mergeの単位を超えて回さない（毎commitでは回さない）。旧は設計層のpair freezeをローカルだけで検査し、設計PLAN・hubの完了PRや、独立したAPI／Schemaの確定は別に扱っていた。どの設計PRをローカルだけにするかは、この区分を起点にL5〜L6で決める。Actionsの役割は、ローカルCIの証跡を対象HEADへ結んで確かめることと、mergeの単位での軽い検証を基本とする。
 - ローカルCIの結果だけで、作成側が自分の変更の合格を宣言しない。ローカルCIの証跡は、独立reviewと、GitHub側での照合の材料にする。
 - 旧CI（`archive/`内のworkflow）と旧hookは、従来どおり実行せず、fallbackにも合格の証拠にもしない。旧workflowと旧local gateは読んで起点にし、保持する点と変える点を記録する（AGENTS.md「再構築の原則」）。
 - CIにsecrets、credentialsを置かない。CIの合格から、要求の採否、承認、受入、完了を生成しない。
 - required checkの指定など、branch protectionの変更は本書に含めない。必要になった時点で、対象と作用を明示してPOの許可を得る。
+
+## 解禁を受けたAIの作業順序（POの判断ではない）
+
+次の順序は、POの「逆にCI作らずにいままでの怪しすぎるだろ。」を受けてClaudeが整理した作業順序であり、POが指定した着手条件ではない。2026-10-08の判断1が解禁した設計作業を止める条件にもしない。
+
+- ローカルCIを先に作る。これまでのmergeは、静的確認（`scfctl`、`govcheck`、`git diff --check`）と独立reviewだけで確かめてきた。ローカルCIができたら、main上の既存の設計文書（共通カーネル、構成のL4↔L9等）に回し、見つかった不整合は修正PRで直す。
+- そのうえでStage 1の設計・実装を進める。
 
 ## 旧HELIXとの対応
 
