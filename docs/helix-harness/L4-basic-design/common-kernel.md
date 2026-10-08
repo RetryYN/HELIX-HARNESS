@@ -1195,6 +1195,9 @@ ReviewAxisCheck = {
   axis: identity | context | authority | route,
   creator_ref: SubjectRef,
   reviewer_ref: SubjectRef,
+  comparison_contract: SubjectRef,
+  creator_axis_identity: identity,
+  reviewer_axis_identity: identity,
   relation: same | distinct
 }
 ReviewIndependence = {
@@ -1212,7 +1215,7 @@ ReviewIndependenceCheck = { result: Observed<ReviewIndependence>,
 
 実装上の完全性は、current OS assignment、選択された各source ownerのselection記録、actual content-producer graph、owner宣言のcurrent source closure、各source classの走査/対応付け証拠を照合して確かめる。source closureが未登録、必須sourceの欠落、selection unknown、coverage evidence未着、またはgraph全量性が未証明の場合は`Unknown(unregistered|missing_input|unsupported)`とし、独立positiveを返さない。登録済みclosureの全量照合が観測でき、期待role集合とactual graphの差が確定した場合は、理由付き`NotIndependent`（参加者欠落/追加またはsource間conflict）とする。これは登録source集合のcoverage観測であり、発行者や実際のactorの真正性を証明しない。K6の`issuer_authenticity=Unknown(unsupported)`は別assuranceにそのまま残る。
 
-contextとrouteのrefは必ずそれぞれのowner contractから解決する。contextは実行session/contextを所有するsourceがcurrent refと対応participantを示し、review対象自体は`ReviewTarget`で別に完全一致させる。routeはreview routeのownerがcurrent route identity/revision/digestを宣言する。Concept:236とAC-INTELLIGENCE-L3-072-08はroute軸自体を根拠付けるが、具体的owner/schemaは定義していない。所有者または契約が見つからないroute/contextは`Unknown(unsupported)`である。routeの意味をprovider/runtime/model差へ置き換えない。authority refは既存SECURITY ownerの適用中recordから解決し、caller claimだけでは受け入れない。
+contextとrouteのrefは必ずそれぞれのowner contractから解決する。contextは実行session/contextを所有するsourceがcurrent refと対応participantを示し、review対象自体は`ReviewTarget`で別に完全一致させる。routeはreview routeのownerがcurrent route identity/revision/digestを宣言する。Concept:236とAC-INTELLIGENCE-L3-072-08はroute軸自体を根拠付けるが、具体的owner/schemaは定義していない。所有者または契約が見つからないroute/contextは`Unknown(unsupported)`である。routeの意味をprovider/runtime/model差へ置き換えない。authority refは既存SECURITY ownerの適用中recordから解決し、caller claimだけでは受け入れない。authority軸は独立性に用いる実行authority identityの比較であり、K3の許可可否ではない。SECURITYのcurrent owner contractがrecordとそのauthority identityの対応を示す場合だけ比較し、PermissionRecord/source ref・revision・tupleのoperation/targetが違うことだけではdistinctとしない。対応schemaが未定義ならUnknown(unsupported)を保つ。これはConceptと現L3のauthority軸をowner sourceへ結ぶ技術的再導出であり、旧三軸にauthorityの定義があったとは扱わない。
 
 ### 17.3 比較とK2鍵
 
@@ -1220,7 +1223,7 @@ contextとrouteのrefは必ずそれぞれのowner contractから解決する。
 
 K2の基底鍵案：`operation = review_independence`、`operation_version = K9規則版`、`subject = ReviewTarget.artifact`、`inputs = current assignment、ContentProducerGraph/source closure/coverage evidence、owner contract refs、ReviewTargetのbase/scope/oracle/current_result/case、ParticipantBindingSetを固定したSubjectRef（canonical bytesのdigest・版付き）、適用Concept/L3 refs、各participant/route/context/authorityのSubjectRefをidentityで重複排除した集合`、`scope = task_scope`。binding digestにはslot ID、role、selection state、actor/origin/context/authority/route ref対応をすべてcanonical順で含める。完全に同一のSubjectRefだけをK2 inputsへ一件に畳む。同一identityでkind/revision/digestが異なる参照は、`key_of`前に`Rejected(missing_key, diagnostic: identity_ref_conflict)`とし、衝突する全refを診断へ残す。有効なResultKeyが無いため、この診断をK1のkey付き`Unknown`として記録しない。これにより、共有refをK2の入力集合で一度だけ表しつつ、比較する役割対応を鍵に固定する。role mappingだけが変わっても鍵は変わる。inputsはK2規則によりidentity順に整列する。
 
-`ReviewTarget`はcreator graphとreviewer receiptの双方で完全一致しなければならない。独立性の比較は、creator-side全slotに対してidentity/context/authority/routeを軸ごとに行う。全creator-side比較が`distinct`なら`Independent`、ひとつでも`same`なら他のaxis/roleの結果を保持したうえで`NotIndependent`とする。creator slotが0件の場合は空集合を全称肯定にせず、K1-I4により`Unknown(missing_input)`とする。負の比較は観測済み`Value(ReviewIndependence{outcome: NotIndependent,…})`として理由付きで保持し、HARNESS所有の写像`k9_independence_polarity`（版はK9 operation_versionと同じ）で`Independent -> Positive`、`NotIndependent -> Negative`とする。K1 `combine`へはこの識別・版を渡し、`Combined`にも保持する。source欠落/unknownはnegativeへ丸めず、非`Value`のままにする。
+`ReviewTarget`はcreator graphとreviewer receiptの双方で完全一致しなければならない。独立性の比較は、creator-side全slotに対してidentity/context/authority/routeを軸ごとに行う。各軸の比較identityは既存owner contractで解決し、参照bytesやrevisionの相違そのものをdistinctの根拠にしない。比較contractと両側の解決identityをReviewAxisCheckへ記録し、そのsource refsを鍵へ含める。対応が未定義・実読不能ならUnknown(unsupported|unreadable)であり、same/distinctを捏造しない。全creator-side比較が`distinct`なら`Independent`、ひとつでも`same`なら他のaxis/roleの結果を保持したうえで`NotIndependent`とする。creator slotが0件の場合は空集合を全称肯定にせず、K1-I4により`Unknown(missing_input)`とする。負の比較は観測済み`Value(ReviewIndependence{outcome: NotIndependent,…})`として理由付きで保持し、HARNESS所有の写像`k9_independence_polarity`（版はK9 operation_versionと同じ）で`Independent -> Positive`、`NotIndependent -> Negative`とする。K1 `combine`へはこの識別・版を渡し、`Combined`にも保持する。source欠落/unknownはnegativeへ丸めず、非`Value`のままにする。
 
 ### 17.4 不変条件とAPI案
 
@@ -1228,7 +1231,7 @@ K2の基底鍵案：`operation = review_independence`、`operation_version = K9�
 - **K9-I2 roster completeness**：assignmentからのexpected roster、selected source、actual content-producer graph、source closureがcurrent scope/revisionでそろうまで独立positiveを返さない。未登録source/未証明completeは`Unknown`。completeな登録source間でrole集合が食い違うなら`NotIndependent`のreasonを保持する。
 - **K9-I3 role bindingとdedup**：各slot/role/選択状態とref対応を`ParticipantBindingSet` digestへ入れる。K2 inputsはSubjectRef identityでdedupして共有refを一度だけ持つ。比較はslot間で行い、same identityをK2 duplicate rejectionへ逃がさず、理由付き`NotIndependent`にする。
 - **K9-I4 owner contract**：context・route・authority各refは当該ownerのcurrent contract/recordから解決する。特にroute owner/schemaが未定義なら`Unknown(unsupported)`とし、provider/model/runtime名で補わない。
-- **K9-I5 四軸と対象束縛**：identity/context/authority/routeを独立比較する。別contextは対象が違ってよい意味ではない。artifact HEAD/base/task scope/oracle/current resultは完全一致させる。どれか一つの軸で同じrefがあれば明示negative。
+- **K9-I5 四軸と対象束縛**：identity/context/authority/routeを独立比較する。別contextは対象が違ってよい意味ではない。artifact HEAD/base/task scope/oracle/current resultは完全一致させる。どれか一つの軸でowner contractが解決した比較identityが同じなら明示negative。ref差だけを独立性としない。
 - **K9-I6 empty creator拒否**：creator-sideのslot数0は`Unknown(missing_input)`。未選択を示す記録が無いoptional roleも空として扱わない。
 - **K9-I7 段階分離・再利用**：candidateはscope/sourceで作成でき、review未実施は`Unobserved(pending_receipt)`として後続義務へ残す。同じK2鍵のvalidなreview/shadow evidenceは再利用可能。毎回新Worker実験を要求しない。party/axis/route/targetに関わる鍵が変わればK2-I2どおり旧結果を使わない。
 - **K9-I8 authorityと真正性**：K9結果の`authority_effect`はnone。独立性positiveはfinding 0件やHARNESS段階、owner receipt、利用者acceptanceを作らない。K6 `issuer_authenticity = Unknown(unsupported)`は常に別assuranceとして残し、K9で真正性を主張しない。
