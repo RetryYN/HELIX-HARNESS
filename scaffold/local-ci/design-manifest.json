@@ -835,7 +835,19 @@
               ]
             },
             {
-              "literal": "K2-I6：digestの型",
+              "literal": "K2-I6 / §3.4：Digest prefix",
+              "ids": [
+                "K2-I6"
+              ]
+            },
+            {
+              "literal": "K2-I6 / §3.4：Digest長",
+              "ids": [
+                "K2-I6"
+              ]
+            },
+            {
+              "literal": "K2-I6 / §3.4：Digest型",
               "ids": [
                 "K2-I6"
               ]
@@ -1473,7 +1485,7 @@
               ]
             },
             {
-              "literal": "`key_of`：入力の整列",
+              "literal": "`key_of`：入力の整列と重複identity",
               "ids": [
                 "### 3.4 イベントとAPI境界"
               ]
@@ -3593,6 +3605,32 @@
         "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
         "range_id": "ck-l9-fixture-definitions",
         "verifier_id": "IV-K2-13",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.K2-I6.IV-K2-13a",
+      "source_id": "K2-I6",
+      "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
+      "verifier_id": "IV-K2-13a",
+      "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
+        "range_id": "ck-l9-fixture-definitions",
+        "verifier_id": "IV-K2-13a",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.K2-I6.IV-K2-13b",
+      "source_id": "K2-I6",
+      "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
+      "verifier_id": "IV-K2-13b",
+      "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
+        "range_id": "ck-l9-fixture-definitions",
+        "verifier_id": "IV-K2-13b",
         "outcome_column": 4
       }
     },
@@ -10465,7 +10503,9 @@
       "source_id": "K2-I6",
       "state": "mapped",
       "edge_ids": [
-        "edge.K2-I6.IV-K2-13"
+        "edge.K2-I6.IV-K2-13",
+        "edge.K2-I6.IV-K2-13a",
+        "edge.K2-I6.IV-K2-13b"
       ]
     },
     {

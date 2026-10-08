@@ -4,7 +4,7 @@ status: draft
 owner: HELIX-HARNESS
 parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l5: ../L5-detail-design/common-kernel.md
-base: main `fe3332d6b8a2b2ff9bf0387b07c544b5bb45b464`
+base: main `6ea16b1f45121c3171943cfee7057bfdf08fefcd`
 
 本書はK1/K2のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9を展開したものとする。K3〜K10は`not_designed`でL9の現行参照のみとする。以下のfixtureはすべて未実行であり、pass、実装完成、L10成立を示さない。
 
@@ -12,9 +12,9 @@ base: main `fe3332d6b8a2b2ff9bf0387b07c544b5bb45b464`
 
 | 入力 | revision・scope | SHA-256 |
 |---|---|---|
-| Common Kernel L4 | `fe3332d6b8a2b2ff9bf0387b07c544b5bb45b464`上の`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3 | `4a2c4afcc2519df5d7bd58caf1a74a80b94b26fc85ef328ee7bb89f6f2e78187` |
-| Common Kernel L9 | 同revision上の`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` §2 K1/K2 | `e01fd7ff0b4a0a141d4958b6bc38ca00a2753866d1e6ea98103f503bd409aaf3` |
-| paired L5 | 本pairの`common-kernel.md` §3/§4 | SHA-256 `1c8488412297cff204a15534faa0657a75912986221b8b019b52f8b5585d5bf7` |
+| Common Kernel L4 | PR base `6ea16b1f45121c3171943cfee7057bfdf08fefcd`を基準に本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3 | `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` |
+| Common Kernel L9 | PR base `6ea16b1f45121c3171943cfee7057bfdf08fefcd`を基準に本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` §2 K1/K2 | `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` |
+| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4 | SHA-256 `6af3bc6f937aa4175cde44cba7fe78eeeb375c1b079984bb7c7e2c558f56b219` |
 
 L9の各`IV-K1-*`/`IV-K2-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。
 
@@ -90,13 +90,13 @@ K2 expected classはL4 §3.3–3.4のlookup優先順と、L4 §3.4.1 alias bindi
 | `L8-K2-11-CONFLICT` | IV-K2-11 | `record`, `lookup`; K2-I4 | direct: AC-HARNESS-L3-010-01; boundary: K5 §9.3 record/event | 同key・別resultを2回目recordし、各resultのdigestを内容から求める。`Conflict`、双方保持、lookup `Unknown(conflict)`。 |
 | `L8-K2-11-STALE` | IV-K2-11 | `record`; K2-I4 | direct: AC-HARNESS-L3-010-01; boundary: K5 §9.3 record/event | record入力のresult classだけをStaleへ変更。`Rejected(stale_not_recordable)`。 |
 | `L8-K2-12` | IV-K2-12 | `lookup`; K2-I5 | BRAIN-008-AC-02、AC-HARNESS-L3-010-03 | 照会revision Rに対し同identity R2のValueだけを記録。R2の値をRへ返さない。 |
-| `L8-K2-13-VALID` | IV-K2-13 | `key_of`; K2-I6 | AC-OS-014-02、AC-INT-010-06 | `sha256:` prefix付き64 lowercase hexをDigestとして扱う。 |
-| `L8-K2-13-NO-PREFIX` | IV-K2-13 | `key_of`; K2-I6 | 同上 | prefixだけを取り除いたhexをDigestとして渡す。拒否する。拒否class/reasonはL4/L9未定義のため§5に未決として記録する。 |
-| `L8-K2-13-SHORT` | IV-K2-13 | `key_of`; K2-I6 | 同上 | Digestの長さだけを短縮する。拒否する。拒否class/reasonはL4/L9未定義のため§5に未決として記録する。 |
-| `L8-K2-13-GIT-REVISION` | IV-K2-13 | `key_of`; K2-I6 | 同上 | 40桁GitRevision型だけをDigestの位置へ渡す。拒否する。拒否class/reasonはL4/L9未定義のため§5に未決として記録する。 |
+| `L8-K2-13-VALID` | IV-K2-13 | `key_of`; K2-I6 | AC-OS-014-02、AC-INT-010-06 | `sha256:` prefix付き64 lowercase hexをDigestとして受け入れる。 |
+| `L8-K2-13-NO-PREFIX` | IV-K2-13 | `key_of`; K2-I6 | 同上 | 正常なDigestのprefixだけを除き、他fieldを固定する。`Rejected(invalid_digest)`。 |
+| `L8-K2-13-SHORT` | IV-K2-13a | `key_of`; K2-I6 | 同上 | 正常な`subject.digest`のhex部分だけを64桁から63桁へ短縮する。`Rejected(invalid_digest)`。 |
+| `L8-K2-13-GIT-REVISION` | IV-K2-13b | `key_of`; K2-I6 | 同上 | Digest fieldだけを40 lowercase hexの`GitRevision`値へ置き換える。`Rejected(invalid_digest)`。 |
 | `L8-K2-14` | IV-K2-14 | `key_of`, `lookup`; K2-I7 | AC-HARNESS-L3-010-03、AC-OS-014-02 | pack版だけを更新したkeyでrelease unit/integrated product/stage版を不変に保つ。pack更新から他版を昇格させる出力は不合格。 |
 | `L8-K2-15-ORDER` | IV-K2-15 | `key_of`; input canonicalization | AC-HARNESS-L3-010-01 | inputs順だけを変えた2 keyのKeyDigest一致。 |
-| `L8-K2-15-DUP` | IV-K2-15 | `key_of`; input canonicalization | 同上 | inputsに同じidentityだけを一件追加し拒否する。拒否class/reasonはL4/L9未定義のため§5に未決として記録し、`Rejected(missing_key)`へ読み替えない。 |
+| `L8-K2-15-DUP` | IV-K2-15 | `key_of`; input canonicalization | 同上 | 正常なDigestを持つinput refを基準に、そのrefと同じidentityのref一件だけを`inputs`へ複製する。`Rejected(duplicate_identity)`。 |
 | `L8-K2-16-subject-kind/input-kind` | IV-K2-16 | `lookup`; K2-I2(2b) | BRAIN-008-AC-02 | subject.kindだけ変更、input.kindだけ変更を別fixtureにする。各々`Unknown(conflict)`。 |
 | `L8-K2-17-subject-id/input-id` | IV-K2-17 | `lookup`; K2-I2(1) | AC-HARNESS-L3-010-01、AC-INT-010-06 | subject.identityだけ変更、input identity置換だけを別fixtureにする。各々候補なし`Unobserved(not_run)`。 |
 | `L8-K2-18-OLD-VALUE` | IV-K2-18 | `lookup`; K2-I2(3) | AC-HARNESS-L3-030-04 | 旧R1のValueと照会一致R2のValueを記録し、R2のValueを返す。 |
@@ -112,11 +112,11 @@ K2 expected classはL4 §3.3–3.4のlookup優先順と、L4 §3.4.1 alias bindi
 | `L8-K2-21d-K3` | IV-K2-21d | alias revision→`lookup`; §3.4.1 | AC-HARNESS-L3-010-01/03 | K3 ownerの決定的revision規則の下、raw source revisionを一つ更新し、その更新に従うbytes/digest/bindingを供給。lookup `Stale`。 |
 | `L8-K2-21d-K8/K9` | IV-K2-21d | alias revision→`lookup`; §3.4.1 | AC-HARNESS-L3-010-01/03、AC-OS-014-02 | 各owner-record revisionを一つ更新する独立fixture。その他同じでlookup `Stale`。 |
 
-K2逆trace: L5 `key_of`, `lookup`, `record`, alias binding clausesは表のL9 IDsに対応する。IV-K2-01–21dの各oracleからfixtureへ、さらにL5 API / K2-I invariantへ戻れる。L3 parentはこのpairの先頭に列挙したL4 §3.1 crosswalk要素に限る。
+K2逆trace: L5 `key_of`, `lookup`, `record`, alias binding clausesは表のL9 IDsに対応する。IV-K2-01–21d（IV-K2-13a/bを含む）の各oracleからfixtureへ、さらにL5 API / K2-I invariantへ戻れる。L3 parentはこのpairの先頭に列挙したL4 §3.1 crosswalk要素に限る。
 
 ## 5. K3–K10と未実施範囲
 
-L4/L9はK2 inputsのduplicate identityとDigest型不一致を拒否すると定めるが、その拒否class/reasonを定めていない。L5 §3.2の`ApiBoundaryResult<T>`が示す`Rejected(missing_key)`へ割り当てず、新reason/classも設けない。IV-K2-13とIV-K2-15は拒否期待のみを保持し、返却型と拒否分類はL4へ戻す未決事項である。
+K2 `key_of`拒否の返却型と順序はL4/L9で確定しており、L5 `KeyOfResult`へ対応する。Digest形式の不正は`Rejected(invalid_digest)`、inputs内identity重複は`Rejected(duplicate_identity)`であり、どちらもK1 `Unknown`ではない。K1 `ApiBoundaryResult<T>`、`UnknownReason`、`record`の返却unionは変更しない。
 
 K3–K10はこのpairで`not_designed`。詳細API・fixtureを定義せず、L4本体§4–11、所有者補足§14（K10）、§15（K7）、§16（K3）、§17（K9）、§18（K8）およびL9の対応IV（K3 IV-K3-01–17とIV-K3-14a–j、K4 IV-K4-01–10、K5 IV-K5-01–26、K6 IV-K6-01–15、K7 IV-K7-01–15、K8 IV-K8-01–26、K9 IV-K9-01–15、K10 IV-K10-01–14）へ戻す。K1/K2 fixtureからK3–K10の実装・実行・合格を推測しない。
 
