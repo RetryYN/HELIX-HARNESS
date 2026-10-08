@@ -57,18 +57,17 @@ source status `unknown`/`not_observed`は元sourceの値として残し、LABO p
 
 ## 4. NFR・業務境界の個別trace
 
-以下のL3 NFR source IDは要求側の項目名であり、L9 oracle IDではない。L10 NFRの対応行を別に示す。いずれも固定候補に対する計画であって、測定結果ではない。
+L3 NFR項目名と固定L3/L10 source locator、L9専用NFR oracle ID、既存functional oracle参照を別列に分ける。L3/L10本文のSHAは§1固定pinに従う。各行は固定候補に対する測定計画であり、測定結果ではない。
 
-| L3 NFR項目 / 行 | 適用親 | L10 NFR測定項目 / 行 | §3 oracle IDs | 期待する計測・negative |
-|---|---|---|---|---|
-| L3 NFR `HELIXLABO-L2-001` observation field coverage / `nfr-grade.md:7` | 001 | 20-field coverage / observed-status fidelity / `nfr-verification.md:7` | `IV-LABO-001-C01,C04,C08,C10,C11` | field 20件の各欠落を別変異にし、present/missingとfield別の補完0を記録。 |
-| L3 NFR `HELIXLABO-L2-001` status coverage and fidelity / `nfr-grade.md:8` | 001 | 20-field coverage / observed-status fidelity / `nfr-verification.md:7` | `IV-LABO-001-C01,C03,C08,C09,C11,C12,C13` | 7 statusの区別、非success脱落0、未発生status生成0、unknown/not_observed success coercion各0。 |
-| L3 NFR `HELIXLABO-L2-001` source authority leakage / `nfr-grade.md:9` | 001 | source isolation / partial failure / `nfr-verification.md:8` | `IV-LABO-001-C02,C05,C06,C14,C15` | source status writeback 0、source record保持、他source有効recordを保持。新しい分類機構なし。 |
-| L3 NFR `HELIXLABO-L2-011` roundtrip reference completeness / `nfr-grade.md:10` | 011 | reference roundtrip / `nfr-verification.md:10` | `IV-LABO-011-C01,C02,C04,C06,C07,C08,C09,C10,C11,C12,C13` | 元observation identity/source revision/missingnessの全ref往復。欠落と不一致を別集計。未指定のjoin/time-window/similarity値は置かない。 |
-| L3 NFR `HELIXLABO-L2-011` false causality / `nfr-grade.md:11` | 011 | false causality / `nfr-verification.md:11` | `IV-LABO-011-C03,C04,C05,C07` | evidence有/無と時間/pathだけのfixtureを区別し、L2-011 causal assertion 0。relation mismatchは固定Correlate routeのみ。 |
-| L3 NFR共通候補・測定注記 / `nfr-grade.md:13` | 001/011 | 共通の測定不能・未観測・未指定値の扱い / `nfr-verification.md:13` | 全case | 欠測/未観測を成功にせず、性能/容量/保持期間値は未指定のまま。必要になった場合も根拠付きL3/L10追補にし、parameterごとのPO gateを作らない。 |
+| L9 NFR oracle ID | 固定L3 NFR項目・source locator | 固定L10 NFR測定項目・source locator | functional oracle参照 | 測定入力・変異 | 記録する観測・適用限界 |
+|---|---|---|---|---|---|
+| `IV-LABO-NFR-001-01` | `HELIXLABO-L2-001` — observation field coverage（固定L3 `docs/helix-labo/L3-requirements/nfr-grade.md:7`） | `HELIXLABO-L2-001` — 20-field coverage / observed-status fidelity（固定L10 `docs/helix-labo/L10-verification/nfr-verification.md:7`） | `IV-LABO-001-C01`, `IV-LABO-001-C04`, `IV-LABO-001-C08`, `IV-LABO-001-C10`, `IV-LABO-001-C11` | 20 fieldを各1つずつ独立に欠落させ、present/missingを照合する。 | field coverageとfield別の補完0を記録。未提供fieldは元source statusを変更しない。 |
+| `IV-LABO-NFR-001-02` | `HELIXLABO-L2-001` — status coverage and fidelity（固定L3 `docs/helix-labo/L3-requirements/nfr-grade.md:8`） | `HELIXLABO-L2-001` — 20-field coverage / observed-status fidelity（固定L10 `docs/helix-labo/L10-verification/nfr-verification.md:7`） | `IV-LABO-001-C01`, `IV-LABO-001-C03`, `IV-LABO-001-C08`, `IV-LABO-001-C09`, `IV-LABO-001-C11`, `IV-LABO-001-C12`, `IV-LABO-001-C13` | 7 source statusを個別に照合し、unknown→successとnot_observed→successを別々に変異する。 | statusの区別、source上の非success event脱落0、未発生statusの捏造0、unknown/not_observedのsuccess coercion各0を記録する。 |
+| `IV-LABO-NFR-001-03` | `HELIXLABO-L2-001` — source authority leakage（固定L3 `docs/helix-labo/L3-requirements/nfr-grade.md:9`） | `HELIXLABO-L2-001` — source isolation / partial failure（固定L10 `docs/helix-labo/L10-verification/nfr-verification.md:8`） | `IV-LABO-001-C02`, `IV-LABO-001-C05`, `IV-LABO-001-C06`, `IV-LABO-001-C14`, `IV-LABO-001-C15` | 1 sourceだけcorrupt/unauthorized/secret/out-of-scopeとし、別sourceにはvalid recordを与える。identity混合、scope欠落、scope未許可は別変異とする。 | source status writeback 0、元source record保持、他sourceの有効record保持を記録する。新しい分類機構は設けない。 |
+| `IV-LABO-NFR-011-01` | `HELIXLABO-L2-011` — roundtrip reference completeness（固定L3 `docs/helix-labo/L3-requirements/nfr-grade.md:10`） | `HELIXLABO-L2-011` — reference roundtrip（固定L10 `docs/helix-labo/L10-verification/nfr-verification.md:10`） | `IV-LABO-011-C01`, `IV-LABO-011-C02`, `IV-LABO-011-C04`, `IV-LABO-011-C06`, `IV-LABO-011-C07`, `IV-LABO-011-C08`, `IV-LABO-011-C09`, `IV-LABO-011-C10`, `IV-LABO-011-C11`, `IV-LABO-011-C12`, `IV-LABO-011-C13` | 元observation/source identity/revisionをAggregateからCorrelate、episode candidateを経て元sourceへ往復し、missingnessを保持する。欠落と不一致は別変異にする。 | referenceの往復一致、source ID/revision、missingnessを記録し、欠落と不一致を別集計する。join key、time window、similarity値は置かない。 |
+| `IV-LABO-NFR-011-02` | `HELIXLABO-L2-011` — false causality（固定L3 `docs/helix-labo/L3-requirements/nfr-grade.md:11`） | `HELIXLABO-L2-011` — false causality（固定L10 `docs/helix-labo/L10-verification/nfr-verification.md:11`） | `IV-LABO-011-C03`, `IV-LABO-011-C04`, `IV-LABO-011-C05`, `IV-LABO-011-C07` | 因果らしく見えるevidenceを含む入力と、時刻/pathだけの入力を別々に与える。 | evidenceの有無にかかわらずL2-011 causal assertion 0を記録する。relation mismatchは固定Correlate routeのみ。新しい因果thresholdやalgorithmを置かない。 |
 
-Stage 1義務crosswalkのLABO/001行にはL10 NFR:10もlocatorとして含まれるが、固定本文の同じ行は親011のreference roundtripである。本書では固定本文の親列に従い011へ対応させ、001の独立NFR項目として数えない。索引の参照範囲から新しい要求を生成しない。
+固定L3 NFR `docs/helix-labo/L3-requirements/nfr-grade.md:13` と固定L10 NFR `docs/helix-labo/L10-verification/nfr-verification.md:13` は測定不能・未観測・未指定値を全caseで成功扱いしない共通注記であり、独立NFR項目や追加oracleではない。Stage 1義務crosswalkのLABO/001行にはL10 NFR:10もlocatorとして含まれるが、固定本文の同じ行は親011のreference roundtripである。本書では固定本文の親列に従い011へ対応させ、001の独立NFR項目として数えない。索引の参照範囲から新しい要求を生成しない。
 
 L10 NFR:9は001のWeb/WEB-OS scope boundaryを別途要求する。L3 NFRに独立の数値candidateはなく、L3 functionalのoptional source境界を`IV-LABO-001-C07`で照合し、未選択を任意/未構成として保持する。L3/L10業務本文は各2行（各文書:1–2）で独立outcomeなし、機能caseで業務境界を確認する。業務case/passを別に生成しない。
 
