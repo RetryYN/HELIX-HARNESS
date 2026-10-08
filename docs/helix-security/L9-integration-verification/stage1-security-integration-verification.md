@@ -1,12 +1,12 @@
 # HELIX-SECURITY Stage 1 結合検証設計
 
-対のL4 raw bytes SHA-256: `efa3757154ef0f54ed37259eb099dfa9323c10bc4879e9bff0aa5e879e9d01d2`。L9からL4への一方向pinであり、L4はL9のSHAを固定しない。
+対のL4 raw bytes SHA-256: `71504a3c76512e8aa9c249eb229f7ecb25c9c350219d8a4b221c29d753767f68`。L9からL4への一方向pinであり、L4はL9のSHAを固定しない。
 
 ## 1. 対象と判定の読み方
 
 本書はL4 [Stage 1基本設計](../L4-basic-design/stage1-security.md)の対であり、`HELIXSECURITY-L2-001`〜`016`、`020`、`028`、`033`の19親のみを扱う。Stage 2c `031`、後続Stage、Web/1.x sink enforcementは対象外である。合成fixtureを用いる未実行の設計で、実装、実行結果、L3/L10承認、配布許可を主張しない。
 
-各親の固定L3 ACとL10 CASEは次の対応で読む。機能・業務・NFR全6文書の親別pin、section span、decision authorityは[Stage 1義務crosswalk](../../governance/crosswalks/stage1-l3-l10-obligation-crosswalk.md)に従う。L3機能本文は固定全体SHA-256 `f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e`、L10機能本文は `0d81d49d2a16cb70b78b5ef7d0379e3b64632bbe18ac6fda9e3302f00c5bb40b`。L4/L9 common-kernelの固定設計にあるK3/K7/G5/K8/K6のAPIとIVを参照する。
+各親の固定L3 ACとL10 CASEは次の対応で読む。機能・業務・NFR全6文書の親別承認revisionとSHA-256はL4 §1の5組のpin表を参照し、section span、decision authority、個々の親へのpin割当は[Stage 1義務crosswalk](../../governance/crosswalks/stage1-l3-l10-obligation-crosswalk.md)に従う。共通の単一本文SHAを全親へ適用しない。L4/L9 common-kernelの固定設計にあるK3/K7/G5/K8/K6のAPIとIVを参照する。
 
 | 親 | 固定機能検証 | 主な既存共通kernel trace |
 |---|---|---|
