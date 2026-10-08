@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `fef656160d980e0048ad33173483ca8635760c1ecfbcc88a9b8610f5359cccb8`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `8fffcf94fc1cc05a26e17843023b8505eb176e3adaebd4a569339e3cd98b30f8`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -34,17 +34,37 @@ version_target: 1.0
 | `F-LCI-06 run_local_ci` | `UT-LCI-29` | `UT-LCI-12`, `UT-LCI-13`, `UT-LCI-22`, `UT-LCI-39`, `UT-LCI-49`, `UT-LCI-53`, `UT-LCI-54`, `UT-LCI-57`〜`UT-LCI-60`, `UT-LCI-62`〜`UT-LCI-64` | 5 step successとsupervisor生成の外部receipt `Observed<LocalCiReceipt>` | 途中fail継続 / target drift / required skip / receipt境界 / cancel reap失敗 / manifest preflight / target ref境界 / manifest schema不正 |
 | `F-LCI-07 verify_receipt` | `UT-LCI-30` | `UT-LCI-14`, `UT-LCI-15`, `UT-LCI-16`, `UT-LCI-38`, `UT-LCI-54`, `UT-LCI-55` | current refsと一致するcanonical receiptの`Observed<ReceiptCheck>` | duplicate JSON keys / target stale / checker digest conflict / plan-execution混同 / manifest-result不整合 / base変更 |
 | `F-LCI-08 run_merge_unit_verifier` | `UT-LCI-31` | `UT-LCI-17`, `UT-LCI-18`, `UT-LCI-37` | exact dispatchと同一selected diff照合の`Observed<ProviderResult>` | dispatch欠落 / write permission / target不一致 |
-| `F-LCI-09a load_design_manifest` | `UT-LCI-32` | `UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64` | 固定corpus path/role/source-kindと全manifest fieldが揃うmanifest | required source欠落 / run-level structural preflight / manifest schema不正 |
-| `F-LCI-09b resolve_id_graph` | `UT-LCI-33` | `UT-LCI-23`, `UT-LCI-36`, `UT-LCI-58` | 一意なdefinitionと解決済み参照のgraph | duplicate definition / unresolved reference / run-level structural conflict |
-| `F-LCI-09c verify_coverage_edges` | `UT-LCI-34` | `UT-LCI-20`, `UT-LCI-46`, `UT-LCI-47` | mapped/partial sourceのedgeと理由付きnot_exercised sourceの空edge listを含むmixed manifest | required edge/disposition欠落 / destination曖昧 |
+| `F-LCI-09a load_design_manifest` | `UT-LCI-32` | `UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75` | 固定corpus path/role/source-kindと全manifest fieldが揃うmanifest | required source欠落 / run-level structural preflight / manifest schema不正 |
+| `F-LCI-09b resolve_id_graph` | `UT-LCI-33` | `UT-LCI-23`, `UT-LCI-36`, `UT-LCI-58`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75` | 一意なdefinitionと解決済み参照のgraph | duplicate definition / unresolved reference / run-level structural conflict |
+| `F-LCI-09c verify_coverage_edges` | `UT-LCI-34` | `UT-LCI-20`, `UT-LCI-46`, `UT-LCI-47`, `UT-LCI-66`〜`UT-LCI-68` | mapped/partial sourceのedgeと理由付きnot_exercised sourceの空edge listを含むmixed manifest | required edge/disposition欠落 / destination曖昧 |
 | `F-LCI-09d verify_legacy_pins` | `UT-LCI-35` | `UT-LCI-21` | asset ID/path/full SHAとspan SHAを別々に計算 | span bytesとdigest不一致 |
 
 ## 3. 単体oracle詳細
 
+### `F-LCI-09a` — manifest読込oracle
+
+`UT-LCI-32`を正常baselineとし、`UT-LCI-19`、`UT-LCI-57`、`UT-LCI-63`〜`UT-LCI-64`、`UT-LCI-65`、`UT-LCI-69`〜`UT-LCI-75`でmanifestの必須source、run-level preflight、schema、unsupported dispositionを検査する。
+
+### `F-LCI-09b` — ID graph解決oracle
+
+`UT-LCI-33`を正常baselineとし、`UT-LCI-23`、`UT-LCI-36`、`UT-LCI-58`、`UT-LCI-65`、`UT-LCI-69`〜`UT-LCI-75`で重複定義と未解決参照を検査する。
+
+### `F-LCI-09c` — coverage edge検証oracle
+
+`UT-LCI-34`を正常baselineとし、`UT-LCI-20`、`UT-LCI-46`、`UT-LCI-47`、`UT-LCI-66`〜`UT-LCI-68`でrequired edge、partial、not_exercised、scopeoutの分離を検査する。
+
+### `F-LCI-09d` — 旧資産pin検証oracle
+
+`UT-LCI-35`を正常baselineとし、`UT-LCI-21`でasset ID/path/full SHAとspan bytesの不一致を検査する。
+
+### `F-LCI-01` / `F-LCI-06` — target一致とrun driftのoracle
+
+`UT-LCI-02`は要求headとcheckout HEAD/treeの不一致を対象とし、既存K1外側`Stale`を返して`CiTarget` Valueを作らない。`UT-LCI-13`は全5 required step完了後の最終target/checker再照合だけでdriftを検出するcaseであり、外側K1 `Stale`、実行evidenceを診断artifactへ保持、`LocalCiReceipt`なし、aggregate foldなしを期待する。step完了前に検出するdriftは既存L4 run-level契約どおり、後続を止め、未開始stepをstale行としてreceiptに残してaggregateを`stale`へfoldする。
+
 | Test ID | 入力 | 一点の変異 | 期待する型付き結果 |
 |---|---|---|---|
 | `UT-LCI-01` | 合成base/head refが存在 | base refを削除 | `Rejected(missing_key)` |
-| `UT-LCI-02` | HEADが要求headと一致 | 存在する別headを要求 | `Stale` |
+| `UT-LCI-02` | 要求headとcheckout HEAD/treeが一致 | 存在する別headを要求 | 既存K1外側`Stale`、`CiTarget` Valueなし |
 | `UT-LCI-03` | 宣言済みの通常Git blobが存在 | pathは維持してblob bytesを変更 | expected digest照合後`Unknown(conflict)` |
 | `UT-LCI-04` | source pathは通常blob | tree entryをsymlink modeへ変更 | `Unknown(conflict)`、link先を辿らない |
 | `UT-LCI-05` | clean index/worktree | add staged change | 外側K1 `Stale`、`CheckExecution.state`は生成しない |
@@ -55,7 +75,7 @@ version_target: 1.0
 | `UT-LCI-10` | checker argvは固定`python3 -B`とL4/L5 constantに一致 | fixed argv一項へshell metacharacterを加える | spawn前`Rejected(invalid_input)`、shell/checkerを起動しない |
 | `UT-LCI-11` | cancel要求なし、stub processが実行中で停止/reap可能 | supervisor外run全体cancel要求を一つ加える | process停止/reap確認後`state=interrupted, reason=cancelled`、exit 0を捏造しない |
 | `UT-LCI-12` | 5 checkがpass | SCF validateをnonzeroにする | SCF `fail`、残り4 stepも実行しaggregate `fail` |
-| `UT-LCI-13` | 開始/終了のtargetとchecker refsが一致 | 最後のstep後にhead treeを変える | step outcomeは保持しaggregate `stale` |
+| `UT-LCI-13` | 全5 required step後のtarget/checker再照合が一致 | 最終再照合でhead treeを変える | 既存K1外側`Stale`、実行evidenceを診断artifactへ保持、`LocalCiReceipt`なし、aggregate foldなし |
 | `UT-LCI-14` | keyを一意に持つcanonical JSON | `head_commit` keyを重複 | `Rejected(invalid_input)` |
 | `UT-LCI-15` | receipt targetがcurrent targetと一致 | `head_tree`だけを変える | `Stale` |
 | `UT-LCI-16` | receipt checker refsがcurrent refsと一致 | same targetのreceipt内govcheck digestだけを変更 | `Unknown(conflict)` |
@@ -107,5 +127,16 @@ version_target: 1.0
 | `UT-LCI-62` | target/source refsでkeyを構成済み、declared blobを通常tree entryとして解決できる | `git cat-file blob`相当のreaderをunreadableにする | `Unknown(unreadable)`。欠落OID field、未解決入力OID、target tree上のmissing pathとは区別 |
 | `UT-LCI-63` | 全必須`DesignScopeManifest` fieldが既定型で存在し、固定target/source refsを構成済み | top-level `unsupported_items` fieldを一つ欠落させる | `Rejected(invalid_input)`、schema不成立としてchecker実行前に止め、execution/receiptを作らない |
 | `UT-LCI-64` | 各`UnsupportedItem`は固定ID、reason、`disposition=non_pass`を持つ | 一件のdispositionだけを`pass`へ変える | `Rejected(invalid_input)`、未知のpass語彙を受け入れずchecker実行前に止める |
+| `UT-LCI-65` | 宣言range内のbullet定義とrange外/本文参照は別 | range内定義だけ削除 | F09a/bの構造preflightは`Unknown(missing_input)`、参照から定義を補わない |
+| `UT-LCI-66` | edge_id全体一意、同source dispositionへ結線済み | 一つのedge_idを重複 | F09cは`Unknown(conflict)`、checker/execution/receipt未作成 |
+| `UT-LCI-67` | disposition.edge_idsが同source実在edgeへ解決 | 一つのedge参照だけを未登録IDへ変更 | F09cは`Unknown(missing_input)`、checker/execution/receipt未作成 |
+| `UT-LCI-68` | typed OutcomeRefがverifier定義行の非空期待値cellへ解決 | outcome_columnだけを列数外へ変更 | F09cは`Unknown(missing_input)`、意味から期待値を補わない |
+| `UT-LCI-69` | 略記literalにexact ID列の固定展開表がある | 対応表entry一つを削除 | F09a/bは`Unknown(missing_input)`、regexで展開を推測しない |
+| `UT-LCI-70` | exact_headingのstart/end literalが一意、通常IDとsection_locatorを分離 | 文書側start見出しだけを変更 | F09a/bは`Unknown(missing_input)`、番号やcode commentから合成IDを生成しない |
+| `UT-LCI-71` | heading_idの見出しliteralがrange内で一意、fenced code内の同文は対象外 | 通常heading行として同literal一行を追加 | F09a/bは`Unknown(conflict)`、最初の一行へ縮約しない |
+| `UT-LCI-72` | heading_idの見出しliteralと展開entryが存在 | 見出し行だけを削除 | F09a/bは`Unknown(missing_input)`、fenced codeやrange外から補わない |
+| `UT-LCI-73` | 見出しliteralから必須IDへの固定entryがある | entryだけを削除 | F09a/bは`Unknown(missing_input)`、見出し内tokenからIDを推測しない |
+| `UT-LCI-74` | heading_idのentryは必須既存ID一件を展開 | idsだけを空配列へ変更 | F09a/bは`Unknown(missing_input)`、空集合を充足扱いしない |
+| `UT-LCI-75` | 見出しliteralと展開先IDが一意 | 一つのIDを別entryのidsにも追加 | F09a/bは`Unknown(conflict)`、重複IDをdedupしない |
 
 result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子でありtestの実行証拠ではない。test passからL8/L9/L10承認やmerge/release許可を作らない。
