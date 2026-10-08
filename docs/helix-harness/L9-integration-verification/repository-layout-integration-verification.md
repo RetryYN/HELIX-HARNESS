@@ -3,7 +3,7 @@
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/repository-layout.md
-base: main `7fac0cbf0b42532c08dbb08684f586c7481c05c0`
+base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
 
 本書は[リポジトリ構成L4](../L4-basic-design/repository-layout.md)と対になる結合検証の設計の下書きである。検証項目はL4の規則（`RL-*`）と共通カーネル（CK）の受口を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務である。
 

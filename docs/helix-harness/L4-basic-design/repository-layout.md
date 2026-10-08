@@ -4,7 +4,7 @@ status: draft_for_l4_review
 owner: HELIX-HARNESS（工程の標準と検証義務の所有。共通カーネル15.5の配置の具体化。各領域へ書く主体は2章の表のとおり機構ごとに分かれる）
 parent_requirement: なし（一つの親要求を定めず、規則ごとに承認済みL3のACまたは判断記録へtraceする。2026-10-08のPO判断の判断2。1.2を参照）
 paired_l9: ../L9-integration-verification/repository-layout-integration-verification.md
-base: main `7fac0cbf0b42532c08dbb08684f586c7481c05c0`（引用した本文のSHA-256は付録A）
+base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した本文のSHA-256は付録A。起草時の`7fac0cbf`から`5665378b`までの変更は共通カーネル17章（K9）の追加と冒頭段落だけで、本書が引用する節は変わっていない）
 
 本書は、2026-10-09のPO判断（`docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md`、以下「構成判断」）の判断1の基本案と「L4で具体化する論点」1〜4、および判断2（開発ソースの公開）を、L4の基本設計として具体化する下書きである。共通カーネル（`docs/helix-harness/L4-basic-design/common-kernel.md`、以下「CK」）の型と不変条件を参照し、重複して定義しない。CKを変える必要がある点は10章に列挙し、本PRではCKを編集しない。
 
@@ -228,7 +228,7 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 
 `enc`の具体（`_`＋16進、予約名、80byteと`_h`の形）と、`store`でlogの置き場を分けることは、旧HELIXに対応が見つからない**新規案**である。検索の範囲は`archive/legacy-generation-2026-09-14/root/docs/`（`grep -rIil`、読取りだけ）で、`path encoding` 0件、`reserved name` 0件、`MAX_PATH` 0件、`percent-encod` 6件（いずれも旧PSC sidecarのtraversal検出で、IDの符号化ではない）、`case collision` 2件（上のrelease-module-bundle-composition-requirements.mdと下のos-portabilityのtest設計）であった。旧は日本語file名の禁止（repository-structure.md:138）、artifactのcase collisionの拒否（release-module-bundle-composition-requirements.md:90-91）、OSごとのpath差の全件評価で同じ危険を扱っており、本書はそれを論理IDの側の符号化へ移した。
 
-## 付録A 引用した現行文書のSHA-256（base `7fac0cbf`）
+## 付録A 引用した現行文書のSHA-256（base `5665378b`）
 
 | path | SHA-256 |
 |---|---|
@@ -243,5 +243,5 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 | `docs/helix-security/L3-requirements/functional-requirements.md` | `f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e` |
 | `docs/helix-infrastructure/L3-requirements/functional-requirements.md` | `425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d` |
 | `docs/helix-connect/L3-requirements/functional-requirements.md` | `b3e4a47c0f49978880fc9bae7697d9b67eeaf72a112f821fef167c230c9d2e4b` |
-| `docs/helix-harness/L4-basic-design/common-kernel.md` | `561411e3c0e5acdb3fcda3af498ec0d08bb75e39c83d0d8202796f497d7dcac0` |
+| `docs/helix-harness/L4-basic-design/common-kernel.md` | `3849d2ef10c3f6af51aad3c0971c364f1f6e95a5a4d79a17961f3e194523077a` |
 | `AGENTS.md` | `386d30378d49b96c055d237ccaa88ed02f3e43359ccfe006e4fd9c96bf5a595c` |
