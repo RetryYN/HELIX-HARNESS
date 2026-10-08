@@ -365,6 +365,47 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 - **変更する点**：旧`git-command-guard`とoverride markerを、ここに書いた条件（未commitの変更なし、mainの祖先、process不在、事前のbundle）に置き換えること。
 - **変更の理由**：旧runtimeを起動しない現行の境界の下で、同じ保護を手順として保つためである。新しい承認手続きは加えていない。
 
+## 運用規則の置き場と、機構への移管
+
+新世代の機構ができるまで、開発repoの作業は本書の運用規則で守る。運用規則は機構ができるまでの仮の守り方であり、機構が成立したら本文を減らす。規則を足し続けて入口を重くしない。
+
+### 置き場
+
+- 開発repoの運用規則（PR、review、merge、通知、branch・worktree・Issueの扱い）の本文は本書に置く。現在の境界と停止条件は`AGENTS.md`と[作業入口](new-generation-start-here.md)に置く。
+- `CLAUDE.md`、利用者instructionの管理区間（`~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`）、PR／Issue template、scaffoldの説明は、本書の該当節を指すだけにし、規則の本文を複製しない。複製が見つかった場合は、本書の節を正として複製を指し示しへ置き換える。
+- 開発repoの運用規則は、製品（HELIX）の要求の根拠にしない。製品の要求で本書を書き換えない（2026-10-08の[判断記録](decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md)の判断3）。下の表の移管先は、機構ができたときに同じ守りを引き継ぐ要求であり、本書の規則を製品の要求にするものではない。
+
+### 規則を足す条件と、減らす条件
+
+- **足す条件**：規則を足すのは、同じ種類のトラブルが実際に起きたときに限る。足すときは、起きた事例（PR、Issue、comment等の参照）と、旧HELIXの対応箇所を記録する。事例のない予防の規則は足さない。
+- **移管先を記録する**：運用規則には、下の表に、今の守り方、移管先の要求、撤去の条件を記録する。移管先が未採択または未承認なら、その状態をそのまま書き、採択済みと書かない。移管先の要求が無い規則は「移管先なし」と書き、新しい要求を本書から作らない。
+- **減らす条件**：移管先の要求に従う機構がmainへ入り、その機構の検証が新世代CI（ローカルCIを主とする。2026-10-09の[判断記録](decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md)）で合格し、本書の運用規則と同じ守りを満たすことを独立reviewで確かめたら、本書の該当本文を機構への指し示しへ置き換える。指し示しへ置き換えた日と根拠を表に残す。機構ができても検証が合格していなければ、運用規則を残す。
+- **食い違いの記録**：移管先の要求が本書の運用と違う振る舞いを定めている場合は、表の「移管時の差」に書く。移管するまでは本書の運用を使い、移管の時点で差を解消する。
+
+### 移管の表
+
+| 運用規則（本書の節） | 今の守り方 | 移管先の要求（状態） | 移管時の差 |
+|---|---|---|---|
+| PRの原子性（「PRの原子性」） | 作成側の分割と、review側の範囲確認 | HELIXOS-L2-046（2026-09-29採択、Stage 4のL3承認済み）、HARNESS-L2-045（2026-09-29採択、L3は未承認） | なし |
+| 作成とreviewの分離、明示merge、read-after（「作成側とレビュー対応側の責務」） | 両レーンの運用と、PR commentの記録 | HELIXOS-L2-046、HELIXOS-L2-035（2026-09-29採択、Stage 3のL3承認済み） | なし |
+| merge直前の`scfctl stale`の確認と、後続PRの再照合 | review側の手作業 | HELIXOS-L2-052（2026-09-29採択、Stage 4のL3承認済み）の「base driftの再照合」 | なし |
+| 通知と待受（「GUIレーンの運転と通知」） | scaffold（`SCF-B-0003`）と両レーンの運用 | `SCF-B-0003`のreplacementに記録された移管先（HELIX-OSのreview配送・応答照合。対象の要求は未特定） | 移管先の要求を特定していない |
+| 作業branchとworktreeの片付け（「作業branchとworktreeの片付け」） | 手作業と#2093への記録 | HELIXOS-L2-052の「merge後のlocal cleanup」「remote ref境界」 | HELIXOS-L2-052は、remote refの削除にrepository・ref・delete作用を明示した許可を要し、`delete_branch_on_merge`の設定を削除の許可として継承しない。本書は同設定を維持している。移管時に、同設定を許可として明示するか、削除を別の許可で行うかを決める |
+| IssueとFeature Ticketの投影、Issueのclose（「IssueとFeature Ticket」） | 作成側とreview側の手作業 | HARNESS-L2-059、HELIXOS-L2-102、HELIXOS-L2-054（いずれも未採択の候補） | 移管先が未採択 |
+| L3／L10承認の委任（「L3／L10承認の委任」） | 別系統の独立reviewと判断記録 | 共通カーネルL4（`docs/helix-harness/L4-basic-design/common-kernel.md`）のPhase 1とK9 | 移管先は要求ではなく設計である。Phase 1の成立条件は、v0.1の条件の照合（`docs/governance/audits/stage1-preflight-criteria-comparison-2026-10-09.md`）でPO判断待ち |
+
+表の状態は、採択は`docs/governance/decisions/po-decision-2026-09-29-57candidates.md`、L3の承認は各機構のStageの判断記録から読んだ。L2本文の見出しや状態欄に「未採択」と残っている要求もあるが、表は判断記録を正とする。
+
+### 旧HELIXとの対応
+
+| 旧source | 保持する点 | 変える点 |
+|---|---|---|
+| `LEGACY-ASSET-B8D84651753481B5F2B9`／`archive/legacy-generation-2026-09-14/root/docs/governance/operations-rule-audit-2026-07-26.md`（3–6行の目的、38–39行のORA-005・ORA-006）／SHA-256 `d32bb1a780a36cd0710cbd58d575e900ac14c154a0e84f5dc92423b46c01466e` | 新しい統制を増やさず、既存の正本へ運用面を収束させること。adapterと正本の乖離を正本側へ寄せること（ORA-005）。正本と誤認される旧文書を参照用へ降格すること（ORA-006） | 旧の`rule-drift`のmarker照合は使わない。複製を見つけたら、本書を正として指し示しへ置き換える手順にする |
+| `LEGACY-ASSET-A127DEC3EEE6ED63CF17`／`archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md`（弱点ledger 65–101行）／SHA-256 `bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872` | 前身harness（`unison-ai-product/UT-TDD_AGENT-HARNESS`）で観測された弱点を持ち込まないこと。特にUTW-004（live policyと文書policyの乖離）、UTW-015（branch lifecycleが閉じない）、UTW-018（merge後のcleanupが閉じない）、UTW-025（docsの量による正本の認識負荷） | 旧の要件化（UTH-FR）は旧runtimeとDBを前提にしていたため、移管先は現行のOS・HARNESSの要求に置き換える |
+| `LEGACY-ASSET-C4B746501A6562E3F8B4`／`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md`（UTH-FR-013、UTH-FR-017〜019、44–50行）／SHA-256 `c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639` | branch lifecycleの単一policy、文書policyとlive設定の照合、merge後のcleanupを閉じること | 機構の実装を待つ間は、本書の運用規則で守る。運用規則を機構へ移したら本文を減らす |
+
+規則を足すのを事例のある場合に限ることと、移管したら本文を減らすことは、旧sourceに同じ手続きが無い。旧ORAの「統制を増やさない」目的を、規則の追加と撤去の条件へ具体化した新規案である。前身harnessでは、運用規律の再宣言と節の追加が続き、入口の文書が肥大した。2026-10-09に観測した同repositoryのmain（`68ea9de62701df39d0386e6cf0689c4dfc0e5875`）では、`CLAUDE.md`が約36KB、`AGENTS.md`が約24KBである。新しい承認手続きは加えない。
+
 ## 新世代CIへの接続
 
 新世代CIは、承認済み要求とfreeze済み設計・検証から必要oracleを導出できる段階で、HELIX-OSの
