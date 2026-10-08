@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `b85919b686b0c4b94fd4523f8dfabbcdde89c329c806c4116fe0edf2cdaaf216`である。
+固定入力は対のL5本文SHA-256 `d9684f7d72cc0f23c0144330f866cf9f23f01b94f02d22c157c75fb209dd1038`である。
 
 ## 1. Fixture規則
 

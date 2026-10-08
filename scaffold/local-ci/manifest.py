@@ -15,6 +15,8 @@ EXPECTED_FILES = (
     ("docs/helix-harness/L4-basic-design/common-kernel.md", "l4", "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md"),
     ("docs/helix-harness/L4-basic-design/repository-layout.md", "l4", "docs/helix-harness/L9-integration-verification/repository-layout-integration-verification.md"),
     ("docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md", "l9", "docs/helix-harness/L4-basic-design/common-kernel.md"),
+    ("docs/helix-harness/L5-detail-design/common-kernel.md", "l5", "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md"),
+    ("docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md", "l8", "docs/helix-harness/L5-detail-design/common-kernel.md"),
     ("docs/helix-harness/L9-integration-verification/repository-layout-integration-verification.md", "l9", "docs/helix-harness/L4-basic-design/repository-layout.md"),
     ("docs/helix-os/L4-basic-design/local-ci.md", "l4", "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md"),
     ("docs/helix-os/L9-integration-verification/local-ci-integration-verification.md", "l9", "docs/helix-os/L4-basic-design/local-ci.md"),
@@ -36,11 +38,197 @@ REQUIRED_SOURCE_IDS_BY_PATH = {
     "docs/helix-harness/L4-basic-design/repository-layout.md": frozenset((
         "RL-C1", "RL-C2", "RL-C3", "RL-C4", "RL-C5", "RL-C6", "RL-C7", "RL-R1", "RL-R2", "RL-R3", "RL-R4", "RL-R5", "RL-R6", "RL-R7", "RL-R8", "RL-V1", "RL-V2", "RL-V3", "RL-V4", "RL-V5", "RL-V6", "RL-P1", "RL-P2", "RL-P3", "RL-P4", "RL-P5", "RL-P6", "RL-P7", "RL-P8", "RL-P9", "RL-D1", "RL-D2", "RL-D3", "RL-D4", "RL-D5", "RL-T1", "RL-T2", "RL-T3", "RL-K1", "RL-K2", "RL-K3", "### 4.1 型", "### 6.1 符号化 `enc`",
     )),
+    "docs/helix-harness/L5-detail-design/common-kernel.md": frozenset((
+        "### 3.2 K1 API contract", "### 3.4 K2 API contract",
+    )),
     "docs/helix-os/L4-basic-design/local-ci.md": frozenset(("LC-SCF-001", "LC-SCF-002", "LC-GOV-001", "LC-DIFF-001", "LC-DESIGN-001", "#### 実行snapshotとprocess境界", "## 3. GitHub Actions provider境界", "## 4. 実装技術の選択")),
     "docs/helix-os/L5-detail-design/local-ci-detail-design.md": frozenset(("D-LCI-01", "D-LCI-02", "D-LCI-03", "D-LCI-04", "D-LCI-05")),
     "docs/helix-os/L6-function-design/local-ci-function-design.md": frozenset(("F-LCI-01", "F-LCI-02", "F-LCI-03", "F-LCI-04", "F-LCI-05", "F-LCI-06", "F-LCI-07", "F-LCI-08", "F-LCI-09a", "F-LCI-09b", "F-LCI-09c", "F-LCI-09d")),
 }
 REQUIRED_SOURCE_IDS = frozenset().union(*REQUIRED_SOURCE_IDS_BY_PATH.values())
+KNOWN_SECTION_LOCATORS = frozenset(ident for ident in REQUIRED_SOURCE_IDS if ident.startswith("#"))
+
+EXPECTED_CK_K1_K2_VERIFIER_IDS = frozenset((
+    "L8-K1-01-N",
+    "L8-K1-01-U",
+    "L8-K1-01-S",
+    "L8-K1-01-UNOBSERVED",
+    "L8-K1-02",
+    "L8-K1-03",
+    "L8-K1-04-P",
+    "L8-K1-04-N",
+    "L8-K1-05",
+    "L8-K1-06a",
+    "L8-K1-06b",
+    "L8-K1-06c",
+    "L8-K1-07-REASON",
+    "L8-K1-07-AUTHORITY",
+    "L8-K1-07-REENTRY",
+    "L8-K1-08-ACCEPT-COMBINE-CLASS-Value",
+    "L8-K1-08-ACCEPT-COMBINE-CLASS-Unknown",
+    "L8-K1-08-ACCEPT-COMBINE-CLASS-Unobserved",
+    "L8-K1-08-ACCEPT-COMBINE-CLASS-NotApplicable",
+    "L8-K1-08-ACCEPT-COMBINE-CLASS-Stale",
+    "L8-K1-08-ACCEPT-RECORD-CLASS-Value",
+    "L8-K1-08-ACCEPT-RECORD-CLASS-Unknown",
+    "L8-K1-08-ACCEPT-RECORD-CLASS-Unobserved",
+    "L8-K1-08-ACCEPT-RECORD-CLASS-NotApplicable",
+    "L8-K1-08-LOOKUP-CLASS-Value",
+    "L8-K1-08-LOOKUP-CLASS-Unknown",
+    "L8-K1-08-LOOKUP-CLASS-Unobserved",
+    "L8-K1-08-LOOKUP-CLASS-NotApplicable",
+    "L8-K1-08-STALE-LOOKUP",
+    "L8-K1-08-STALE-RECORD",
+    "L8-K1-08-KEY-COMBINE-CLASS-Value",
+    "L8-K1-08-KEY-COMBINE-CLASS-Unknown",
+    "L8-K1-08-KEY-COMBINE-CLASS-Unobserved",
+    "L8-K1-08-KEY-COMBINE-CLASS-NotApplicable",
+    "L8-K1-08-KEY-COMBINE-CLASS-Stale",
+    "L8-K1-08-KEY-RECORD",
+    "L8-K1-08-KEY-LOOKUP",
+    "L8-K1-09-COMPLETE",
+    "L8-K1-09-PARTIAL",
+    "L8-K1-09-READ-FAIL",
+    "L8-K1-10",
+    "L8-K1-11-MAP-AMBIGUOUS",
+    "L8-K1-11-MAP-UNSUPPORTED",
+    "L8-K1-11-MAP-MISMATCH",
+    "L8-K1-11-MAP-CONFLICT",
+    "L8-K1-11-MAP-ABSENT",
+    "L8-K1-11-MAP-EVALUATION-ERROR",
+    "L8-K1-11-MAP-INDETERMINATE",
+    "L8-K1-11-MAP-UNKNOWN",
+    "L8-K1-11-MAP-STALE",
+    "L8-K1-11-MAP-NOT-OBSERVED",
+    "L8-K1-11-MAP-NOT-EVALUATED",
+    "L8-K1-11-MAP-INCOMPATIBLE",
+    "L8-K1-11-MAP-NOT-APPLICABLE",
+    "L8-K1-11-WRONG-MISMATCH",
+    "L8-K1-11-WRONG-INCOMPATIBLE",
+    "L8-K1-11-WRONG-NOT-OBSERVED",
+    "L8-K1-11-UNREGISTERED",
+    "L8-K1-12-KEY-OPERATION-COMBINE",
+    "L8-K1-12-KEY-OPERATION-RECORD",
+    "L8-K1-12-KEY-OPERATION-LOOKUP",
+    "L8-K1-12-KEY-OPERATION-VERSION-COMBINE",
+    "L8-K1-12-KEY-OPERATION-VERSION-RECORD",
+    "L8-K1-12-KEY-OPERATION-VERSION-LOOKUP",
+    "L8-K1-12-KEY-SUBJECT-COMBINE",
+    "L8-K1-12-KEY-SUBJECT-RECORD",
+    "L8-K1-12-KEY-SUBJECT-LOOKUP",
+    "L8-K1-12-KEY-INPUTS-COMBINE",
+    "L8-K1-12-KEY-INPUTS-RECORD",
+    "L8-K1-12-KEY-INPUTS-LOOKUP",
+    "L8-K1-12-KEY-SCOPE-COMBINE",
+    "L8-K1-12-KEY-SCOPE-RECORD",
+    "L8-K1-12-KEY-SCOPE-LOOKUP",
+    "L8-K1-12-KEY-SUBJECT-KIND-COMBINE",
+    "L8-K1-12-KEY-SUBJECT-KIND-RECORD",
+    "L8-K1-12-KEY-SUBJECT-KIND-LOOKUP",
+    "L8-K1-12-KEY-SUBJECT-IDENTITY-COMBINE",
+    "L8-K1-12-KEY-SUBJECT-IDENTITY-RECORD",
+    "L8-K1-12-KEY-SUBJECT-IDENTITY-LOOKUP",
+    "L8-K1-12-KEY-SUBJECT-REVISION-COMBINE",
+    "L8-K1-12-KEY-SUBJECT-REVISION-RECORD",
+    "L8-K1-12-KEY-SUBJECT-REVISION-LOOKUP",
+    "L8-K1-12-KEY-SUBJECT-DIGEST-COMBINE",
+    "L8-K1-12-KEY-SUBJECT-DIGEST-RECORD",
+    "L8-K1-12-KEY-SUBJECT-DIGEST-LOOKUP",
+    "L8-K1-12-KEY-INPUT-KIND-COMBINE",
+    "L8-K1-12-KEY-INPUT-KIND-RECORD",
+    "L8-K1-12-KEY-INPUT-KIND-LOOKUP",
+    "L8-K1-12-KEY-INPUT-IDENTITY-COMBINE",
+    "L8-K1-12-KEY-INPUT-IDENTITY-RECORD",
+    "L8-K1-12-KEY-INPUT-IDENTITY-LOOKUP",
+    "L8-K1-12-KEY-INPUT-REVISION-COMBINE",
+    "L8-K1-12-KEY-INPUT-REVISION-RECORD",
+    "L8-K1-12-KEY-INPUT-REVISION-LOOKUP",
+    "L8-K1-12-KEY-INPUT-DIGEST-COMBINE",
+    "L8-K1-12-KEY-INPUT-DIGEST-RECORD",
+    "L8-K1-12-KEY-INPUT-DIGEST-LOOKUP",
+    "L8-K1-13-KEY-WHOLE",
+    "L8-K1-13-KEY-OPERATION",
+    "L8-K1-13-KEY-OPERATION-VERSION",
+    "L8-K1-13-KEY-SUBJECT",
+    "L8-K1-13-KEY-INPUTS",
+    "L8-K1-13-KEY-SCOPE",
+    "L8-K1-13-KEY-SUBJECT-KIND",
+    "L8-K1-13-KEY-SUBJECT-IDENTITY",
+    "L8-K1-13-KEY-SUBJECT-REVISION",
+    "L8-K1-13-KEY-SUBJECT-DIGEST",
+    "L8-K1-13-KEY-INPUT-KIND",
+    "L8-K1-13-KEY-INPUT-IDENTITY",
+    "L8-K1-13-KEY-INPUT-REVISION",
+    "L8-K1-13-KEY-INPUT-DIGEST",
+    "L8-K2-01-VALUE",
+    "L8-K2-01-UNKNOWN",
+    "L8-K2-01-UNOBSERVED",
+    "L8-K2-01-NOT-APPLICABLE",
+    "L8-K2-02-SUBJECT",
+    "L8-K2-02-ORACLE",
+    "L8-K2-02-CONTRACT",
+    "L8-K2-02-CONFIG",
+    "L8-K2-03-UNKNOWN",
+    "L8-K2-03-UNOBSERVED",
+    "L8-K2-03-NOT-APPLICABLE",
+    "L8-K2-04-SUBJECT",
+    "L8-K2-04-ORACLE",
+    "L8-K2-04-CONTRACT",
+    "L8-K2-04-CONFIG",
+    "L8-K2-05",
+    "L8-K2-06",
+    "L8-K2-07",
+    "L8-K2-08-OPERATION",
+    "L8-K2-08-VERSION",
+    "L8-K2-08-SCOPE",
+    "L8-K2-09-ADD",
+    "L8-K2-09-DELETE",
+    "L8-K2-10",
+    "L8-K2-11-NOOP",
+    "L8-K2-11-CONFLICT",
+    "L8-K2-11-STALE",
+    "L8-K2-12",
+    "L8-K2-13-VALID",
+    "L8-K2-13-NO-PREFIX",
+    "L8-K2-13-SHORT",
+    "L8-K2-13-GIT-REVISION",
+    "L8-K2-14",
+    "L8-K2-15-ORDER",
+    "L8-K2-15-DUP",
+    "L8-K2-16-SUBJECT-KIND",
+    "L8-K2-16-INPUT-KIND",
+    "L8-K2-17-SUBJECT-IDENTITY",
+    "L8-K2-17-INPUT-IDENTITY",
+    "L8-K2-18-OLD-VALUE",
+    "L8-K2-18-OLD-UNKNOWN",
+    "L8-K2-19",
+    "L8-K2-20-VALUE",
+    "L8-K2-20-NONVALUE",
+    "L8-K2-21-P",
+    "L8-K2-21-DEDUP",
+    "L8-K2-21-CROSS-ROLE",
+    "L8-K2-21a",
+    "L8-K2-21b",
+    "L8-K2-21c",
+    "L8-K2-21d-K3",
+    "L8-K2-21d-K8",
+    "L8-K2-21d-K9",
+))
+
+CK_L5_PATH = "docs/helix-harness/L5-detail-design/common-kernel.md"
+CK_L8_PATH = "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md"
+CK_L5_K1_LOCATOR = "### 3.2 K1 API contract"
+CK_L5_K2_LOCATOR = "### 3.4 K2 API contract"
+CK_L8_K1_RANGE = "ck-l8-k1-fixtures"
+CK_L8_K2_RANGE = "ck-l8-k2-fixtures"
+CK_L8_SOURCE_BY_RANGE = {
+    CK_L8_K1_RANGE: CK_L5_K1_LOCATOR,
+    CK_L8_K2_RANGE: CK_L5_K2_LOCATOR,
+}
+CK_L8_EXPECTED_IDS_BY_RANGE = {
+    CK_L8_K1_RANGE: frozenset(ident for ident in EXPECTED_CK_K1_K2_VERIFIER_IDS if ident.startswith("L8-K1-")),
+    CK_L8_K2_RANGE: frozenset(ident for ident in EXPECTED_CK_K1_K2_VERIFIER_IDS if ident.startswith("L8-K2-")),
+}
 EXPECTED_PARTIAL = frozenset(("RL-D4", "RL-T3"))
 EXPECTED_NOT_EXERCISED = frozenset(("RL-V1", "RL-K3"))
 EXPECTED_SCOPEOUTS = frozenset(("RL-D4",))
@@ -53,6 +241,14 @@ EXPECTED_LEGACY_ASSETS = frozenset((
     "LEGACY-ASSET-7AE45AD102EAB3B6D7E7",
     "LEGACY-ASSET-B62E49D2E156232B8C63",
     "LEGACY-ASSET-0327D0DF98618D3066FD",
+    "LEGACY-ASSET-5E2592D7BB50EC290C9B",
+    "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+    "LEGACY-ASSET-BC214D81DE9E77B8A804",
+    "LEGACY-ASSET-67B016392E3F7D58B053",
+    "LEGACY-ASSET-7873E44594456A8F925A",
+    "LEGACY-ASSET-310E87378AFE8095809C",
+    "LEGACY-ASSET-73B5C6C7D281E28EC541",
+    "LEGACY-ASSET-829E9C1646D4883C8B99",
 ))
 
 _ID_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+(?:[a-d])?$")
@@ -67,6 +263,20 @@ _PARENT_AC_IDS = ("AC-OS-020-01", "AC-OS-020-03")
 _PARENT_AC_SOURCE_PATH = "docs/helix-os/L4-basic-design/local-ci.md"
 _PARENT_AC_START_HEADING = "### 親ACの適用範囲"
 _PARENT_AC_END_HEADING = "## 2. local CI契約"
+CK_L5_RANGE_CONFIG = {
+    CK_L5_K1_LOCATOR: ("ck-l5-k1-api", "### 3.3 K2: reference and key records"),
+    CK_L5_K2_LOCATOR: ("ck-l5-k2-api", "### 3.5 role-bound input alias binding"),
+}
+CK_L8_DEFINITION_CONFIG = {
+    CK_L8_K1_RANGE: ("## 3. K1 fixtures", "## 4. K2 fixtures", 1),
+    CK_L8_K2_RANGE: ("## 4. K2 fixtures", "## 5. K3–K10と未実施範囲", 1),
+}
+CK_L8_REFERENCE_CONFIG = {
+    "ck-l8-k1-l9-oracles": ("## 3. K1 fixtures", "## 4. K2 fixtures", 2, CK_L8_K1_RANGE),
+    "ck-l8-k1-l4-l5-contracts": ("## 3. K1 fixtures", "## 4. K2 fixtures", 3, CK_L8_K1_RANGE),
+    "ck-l8-k2-l9-oracles": ("## 4. K2 fixtures", "## 5. K3–K10と未実施範囲", 2, CK_L8_K2_RANGE),
+    "ck-l8-k2-l4-l5-contracts": ("## 4. K2 fixtures", "## 5. K3–K10と未実施範囲", 3, CK_L8_K2_RANGE),
+}
 _MANIFEST_KEYS = {"version", "files", "coverage_edges", "coverage_dispositions", _PARENT_AC_COVERAGE_KEY, "source_scopeouts", "legacy_pins", "unsupported_items"}
 _MANIFEST_REQUIRED_KEYS = _MANIFEST_KEYS - {_PARENT_AC_COVERAGE_KEY}
 
@@ -200,8 +410,13 @@ def _contains_id_token(cell):
     tokens = re.findall(r"`([^`]+)`", cell)
     if any(_ID_RE.fullmatch(token) for token in tokens):
         return True
-    for ident in REQUIRED_SOURCE_IDS:
-        if re.search(r"(?<![A-Za-z0-9])" + re.escape(ident) + r"(?=\s|$|[,;:])", cell):
+    # This only detects that a reference-looking token lacks a declared
+    # literal expansion. It never turns a token found by regex into an ID.
+    for token in re.findall(r"(?<![A-Za-z0-9])[A-Z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+(?![A-Za-z0-9])", cell):
+        # A two-part prose label such as `OS-020` is not a contract ID; the
+        # corpus identifiers either carry an alphabetic suffix or another
+        # typed component (for example K1-I1, IV-K1-01, and AC-OS-020-01).
+        if token.count("-") >= 2 or re.search(r"[A-Za-z]", token.rsplit("-", 1)[1]):
             return True
     return False
 
@@ -229,7 +444,11 @@ def _validate_range(id_range, path, sources):
         _obj(item, {"literal", "ids"}, "literal expansion")
         literal = _text(item["literal"], "literal")
         ids = _list(item["ids"], "literal expansion ids")
-        if not ids or any(not isinstance(x, str) or not x for x in ids):
+        if not ids or any(
+            not isinstance(x, str) or
+            (not _ID_RE.fullmatch(x) and x not in KNOWN_SECTION_LOCATORS)
+            for x in ids
+        ):
             _fail("Unknown", "missing_input", "empty/invalid literal expansion")
         if len(ids) != len(set(ids)):
             _fail("Unknown", "conflict", "duplicate id in literal expansion")
@@ -277,9 +496,47 @@ def _validate_manifest_shape(manifest, sources):
                 all_range_ids.add(id_range["range_id"])
         file_by_path[path] = item
     if seen_paths != EXPECTED_PATHS:
-        _fail("Unknown", "missing_input", "fixed 10-document corpus incomplete")
+        _fail("Unknown", "missing_input", "fixed 12-document corpus incomplete")
+    _validate_ck_range_contracts(file_by_path)
     _validate_parent_ac_coverage(manifest[_PARENT_AC_COVERAGE_KEY], sources)
     return file_by_path
+
+
+def _validate_ck_range_contracts(file_by_path):
+    l5 = file_by_path[CK_L5_PATH]
+    expected_l5 = set(CK_L5_RANGE_CONFIG)
+    actual_l5 = {r["start_heading"] for r in l5["definition_ranges"] if r["grammar"] == "exact_heading"}
+    if (actual_l5 != expected_l5 or len(l5["definition_ranges"]) != 2 or l5["reference_ranges"]):
+        _fail("Unknown", "missing_input", "Common Kernel L5 must define exactly the two fixed section locators")
+    for heading, (range_id, end_heading) in CK_L5_RANGE_CONFIG.items():
+        matches = [r for r in l5["definition_ranges"] if r["range_id"] == range_id]
+        if len(matches) != 1:
+            _fail("Unknown", "missing_input", "Common Kernel L5 locator range missing: " + range_id)
+        row = matches[0]
+        if (row["grammar"], row["start_heading"], row["end_heading"], row["id_column"], row["literal_expansions"]) != (
+            "exact_heading", heading, end_heading, None, []
+        ):
+            _fail("Unknown", "conflict", "Common Kernel L5 locator range differs from fixed source contract: " + range_id)
+
+    l8 = file_by_path[CK_L8_PATH]
+    if {r["range_id"] for r in l8["definition_ranges"]} != set(CK_L8_DEFINITION_CONFIG):
+        _fail("Unknown", "missing_input", "Common Kernel L8 K1/K2 definition ranges incomplete")
+    if {r["range_id"] for r in l8["reference_ranges"]} != set(CK_L8_REFERENCE_CONFIG):
+        _fail("Unknown", "missing_input", "Common Kernel L8 typed reference ranges incomplete")
+    for range_id, (start, end, column) in CK_L8_DEFINITION_CONFIG.items():
+        row = next(r for r in l8["definition_ranges"] if r["range_id"] == range_id)
+        if (row["grammar"], row["start_heading"], row["end_heading"], row["id_column"]) != (
+            "table_column", start, end, column
+        ):
+            _fail("Unknown", "conflict", "Common Kernel L8 definition range differs from fixed source contract: " + range_id)
+    for range_id, (start, end, column, definition_range) in CK_L8_REFERENCE_CONFIG.items():
+        row = next(r for r in l8["reference_ranges"] if r["range_id"] == range_id)
+        if (row["grammar"], row["start_heading"], row["end_heading"], row["id_column"]) != (
+            "table_column", start, end, column
+        ):
+            _fail("Unknown", "conflict", "Common Kernel L8 reference range differs from fixed source contract: " + range_id)
+        if definition_range not in CK_L8_DEFINITION_CONFIG:
+            _fail("Rejected", "invalid_input", "Common Kernel L8 reference has unknown definition range: " + range_id)
 
 
 def _validate_parent_ac_coverage(rows, sources):
@@ -377,20 +634,32 @@ def _extract_ids(manifest, sources):
                         definitions.append({"id": ident, "path": path, "range_id": id_range["range_id"], "definition_kind": "bullet_id"})
                         def_ids_by_path[path].add(ident)
             elif grammar == "table_column":
+                used_literals = set()
                 for line_no, cells in _table_data_rows(lines):
                     column = id_range["id_column"] - 1
                     if column >= len(cells):
                         _fail("Unknown", "missing_input", "definition table column missing")
-                    ident = _cell_id(cells[column])
-                    if ident is None:
+                    literal = cells[column]
+                    expanded_ids = expansions.get(literal)
+                    if expanded_ids is None:
+                        ident = _cell_id(literal)
+                        expanded_ids = [ident] if ident is not None else None
+                    else:
+                        used_literals.add(literal)
+                    if expanded_ids is None:
                         _fail("Unknown", "missing_input", "definition table id cell unresolved at line " + str(line_no))
-                    if path in REQUIRED_SOURCE_IDS_BY_PATH and ident not in REQUIRED_SOURCE_IDS_BY_PATH[path]:
-                        if ident in REQUIRED_SOURCE_IDS:
-                            references.append({"id": ident, "path": path, "range_id": id_range["range_id"], "reference_kind": "table_column"})
-                            continue
-                        _fail("Unknown", "conflict", "unexpected table ID in definition range at line " + str(line_no))
-                    definitions.append({"id": ident, "path": path, "range_id": id_range["range_id"], "definition_kind": "table_column"})
-                    def_ids_by_path[path].add(ident)
+                    for ident in expanded_ids:
+                        if path in REQUIRED_SOURCE_IDS_BY_PATH and ident not in REQUIRED_SOURCE_IDS_BY_PATH[path]:
+                            if ident in REQUIRED_SOURCE_IDS:
+                                references.append({"id": ident, "path": path, "range_id": id_range["range_id"], "reference_kind": "table_column", "line_no": line_no, "column": column + 1})
+                                continue
+                            _fail("Unknown", "conflict", "unexpected table ID in definition range at line " + str(line_no))
+                        if path == CK_L8_PATH and ident not in CK_L8_EXPECTED_IDS_BY_RANGE.get(id_range["range_id"], frozenset()):
+                            _fail("Unknown", "conflict", "unexpected Common Kernel fixture ID: " + ident)
+                        definitions.append({"id": ident, "path": path, "range_id": id_range["range_id"], "definition_kind": "table_column", "line_no": line_no, "column": column + 1, "cells": cells})
+                        def_ids_by_path[path].add(ident)
+                if set(expansions) - used_literals:
+                    _fail("Unknown", "missing_input", "unused definition literal expansion")
         for id_range in file["reference_ranges"]:
             lines = _range_lines(path, id_range, sources)
             grammar = id_range["grammar"]
@@ -417,7 +686,7 @@ def _extract_ids(manifest, sources):
                     ids = [direct]
                 used_literals.add(literal)
                 for ident in ids:
-                    references.append({"id": ident, "path": path, "range_id": id_range["range_id"], "reference_kind": "table_column"})
+                    references.append({"id": ident, "path": path, "range_id": id_range["range_id"], "reference_kind": "table_column", "line_no": line_no, "column": column + 1})
             if set(expansions) - used_literals:
                 _fail("Unknown", "missing_input", "unused reference literal expansion")
     for path, expected_ids in REQUIRED_SOURCE_IDS_BY_PATH.items():
@@ -428,6 +697,13 @@ def _extract_ids(manifest, sources):
             _fail("Unknown", "missing_input", "required source IDs absent in " + path + ": " + ",".join(sorted(missing)))
         if extra:
             _fail("Unknown", "conflict", "unexpected source IDs in " + path + ": " + ",".join(sorted(extra)))
+    ck_actual = {d["id"] for d in definitions if d["path"] == CK_L8_PATH}
+    if ck_actual != EXPECTED_CK_K1_K2_VERIFIER_IDS:
+        missing = EXPECTED_CK_K1_K2_VERIFIER_IDS - ck_actual
+        extra = ck_actual - EXPECTED_CK_K1_K2_VERIFIER_IDS
+        if missing:
+            _fail("Unknown", "missing_input", "fixed Common Kernel verifier inventory incomplete: " + ",".join(sorted(missing)))
+        _fail("Unknown", "conflict", "unexpected Common Kernel verifier inventory: " + ",".join(sorted(extra)))
     return definitions, references
 
 
@@ -552,6 +828,10 @@ def resolve_id_graph(manifest: dict, sources: dict[str, bytes]) -> dict:
         _fail("Unknown", "missing_input", "unresolved reference: " + first["id"] + " at " + first["path"] + "::" + first["range_id"])
     table_rows = {}
     reference_pairs = set()
+    definition_rows = {
+        item["id"]: (item["path"], item["range_id"], item["line_no"], item["cells"])
+        for item in definitions if item["definition_kind"] == "table_column"
+    }
     for file in manifest["files"]:
         path = file["path"]
         for id_range in file["definition_ranges"] + file["reference_ranges"]:
@@ -562,7 +842,7 @@ def resolve_id_graph(manifest: dict, sources: dict[str, bytes]) -> dict:
                 continue
             column = id_range["id_column"] - 1
             expansions = {item["literal"]: item["ids"] for item in id_range["literal_expansions"]}
-            for _, cells in table_rows[(path, id_range["range_id"])]:
+            for line_no, cells in table_rows[(path, id_range["range_id"])]:
                 if not cells or column >= len(cells):
                     continue
                 literal = cells[column]
@@ -588,9 +868,24 @@ def resolve_id_graph(manifest: dict, sources: dict[str, bytes]) -> dict:
                             break
                     if source_id is not None:
                         reference_pairs.update((source_id, verifier_id) for verifier_id in target_ids)
+                elif (
+                    path == CK_L8_PATH and
+                    id_range["range_id"] in CK_L8_REFERENCE_CONFIG and
+                    id_range["id_column"] == 3
+                ):
+                    source_ids = [ident for ident in target_ids if ident in {CK_L5_K1_LOCATOR, CK_L5_K2_LOCATOR}]
+                    definition_range = CK_L8_REFERENCE_CONFIG[id_range["range_id"]][3]
+                    expected_source = CK_L8_SOURCE_BY_RANGE[definition_range]
+                    if len(source_ids) != 1 or source_ids[0] != expected_source:
+                        _fail("Unknown", "conflict", "Common Kernel L8 row source locator differs from its K1/K2 pair")
+                    row_ids = [ident for ident, (definition_path, definition_range, definition_line, _) in definition_rows.items()
+                               if definition_path == path and definition_range == CK_L8_REFERENCE_CONFIG[id_range["range_id"]][3] and definition_line == line_no]
+                    if not row_ids:
+                        _fail("Unknown", "missing_input", "Common Kernel L8 reference row has no fixture definition")
+                    reference_pairs.update((expected_source, verifier_id) for verifier_id in row_ids)
     return {"definitions": definitions, "references": references, "by_id": by_id,
             "file_by_path": file_by_path, "table_rows": table_rows,
-            "reference_pairs": reference_pairs}
+            "reference_pairs": reference_pairs, "definition_rows": definition_rows}
 
 
 def verify_coverage_edges(manifest: dict, graph: dict) -> dict:
@@ -619,6 +914,10 @@ def verify_coverage_edges(manifest: dict, graph: dict) -> dict:
             _fail("Unknown", "missing_input", "edge endpoint file missing")
         source_role = files[edge["source_path"]]["role"]
         verifier_role = files[edge["verifier_path"]]["role"]
+        if edge["verifier_path"] == CK_L8_PATH:
+            expected_source = CK_L8_SOURCE_BY_RANGE.get(verifier_def["range_id"])
+            if source_id not in {CK_L5_K1_LOCATOR, CK_L5_K2_LOCATOR} or source_id != expected_source:
+                _fail("Unknown", "conflict", "Common Kernel L8 edge source does not own this K1/K2 fixture")
         allowed = {"l4": {"l9"}, "l5": {"l8"}, "l6": {"l7"}}
         if verifier_role not in allowed.get(source_role, set()):
             _fail("Rejected", "invalid_input", "edge crosses an unsupported design pair")
@@ -643,14 +942,24 @@ def verify_coverage_edges(manifest: dict, graph: dict) -> dict:
         table_rows = graph.get("table_rows", {}).get((ref["verifier_path"], ref["range_id"]))
         if table_rows is None:
             _fail("Unknown", "missing_input", "OutcomeRef table rows unavailable")
-        id_column = definition_range["id_column"]
-        matches = [(line_no, cells) for line_no, cells in table_rows
-                   if len(cells) >= id_column and _cell_id(cells[id_column - 1]) == verifier_id]
+        binding = graph.get("definition_rows", {}).get(verifier_id)
+        matches = ([(binding[2], binding[3])] if binding is not None and
+                   binding[0] == ref["verifier_path"] and binding[1] == ref["range_id"]
+                   else [])
         if len(matches) != 1:
             _fail("Unknown", "missing_input", "OutcomeRef verifier definition row is absent or ambiguous")
         line_no, cells = matches[0]
+        id_column = definition_range["id_column"]
         if column == id_column or column > len(cells) or not cells[column - 1].strip():
             _fail("Unknown", "missing_input", "OutcomeRef outcome cell is empty at line " + str(line_no))
+        id_cell = cells[id_column - 1]
+        id_expansions = {item["literal"]: item["ids"] for item in definition_range["literal_expansions"]}
+        row_ids = id_expansions.get(id_cell)
+        if row_ids is None:
+            direct_id = _cell_id(id_cell)
+            row_ids = [direct_id] if direct_id is not None else []
+        if verifier_id not in row_ids:
+            _fail("Unknown", "conflict", "OutcomeRef verifier ID is not defined by its bound raw row")
         by_source[source_id].append(edge_id)
     dispositions = manifest["coverage_dispositions"]
     seen_dispositions = set()
@@ -676,6 +985,21 @@ def verify_coverage_edges(manifest: dict, graph: dict) -> dict:
     if missing_pairs:
         source_id, verifier_id = sorted(missing_pairs)[0]
         _fail("Unknown", "missing_input", "reference-declared coverage edge missing: " + source_id + " -> " + verifier_id)
+    expected_ck_pairs = {
+        (CK_L8_SOURCE_BY_RANGE[range_id], verifier_id)
+        for range_id, verifier_ids in CK_L8_EXPECTED_IDS_BY_RANGE.items()
+        for verifier_id in verifier_ids
+    }
+    actual_ck_pairs = {
+        (edge["source_id"], edge["verifier_id"])
+        for edge in edges if edge["verifier_path"] == CK_L8_PATH
+    }
+    if actual_ck_pairs != expected_ck_pairs:
+        missing_ck_pairs = expected_ck_pairs - actual_ck_pairs
+        if missing_ck_pairs:
+            source_id, verifier_id = sorted(missing_ck_pairs)[0]
+            _fail("Unknown", "missing_input", "fixed Common Kernel edge inventory incomplete: " + source_id + " -> " + verifier_id)
+        _fail("Unknown", "conflict", "unexpected Common Kernel edge inventory")
     nonpass = []
     for item in dispositions:
         if item["state"] != "mapped":

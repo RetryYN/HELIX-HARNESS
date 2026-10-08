@@ -2845,6 +2845,1148 @@
           ]
         }
       ]
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "role": "l5",
+      "source_kind": "current_contract",
+      "expected_pair": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "definition_ranges": [
+        {
+          "range_id": "ck-l5-k1-api",
+          "start_heading": "### 3.2 K1 API contract",
+          "end_heading": "### 3.3 K2: reference and key records",
+          "grammar": "exact_heading",
+          "id_column": null,
+          "literal_expansions": []
+        },
+        {
+          "range_id": "ck-l5-k2-api",
+          "start_heading": "### 3.4 K2 API contract",
+          "end_heading": "### 3.5 role-bound input alias binding",
+          "grammar": "exact_heading",
+          "id_column": null,
+          "literal_expansions": []
+        }
+      ],
+      "reference_ranges": []
+    },
+    {
+      "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "role": "l8",
+      "source_kind": "current_contract",
+      "expected_pair": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "definition_ranges": [
+        {
+          "range_id": "ck-l8-k1-fixtures",
+          "start_heading": "## 3. K1 fixtures",
+          "end_heading": "## 4. K2 fixtures",
+          "grammar": "table_column",
+          "id_column": 1,
+          "literal_expansions": [
+            {
+              "literal": "`L8-K1-01-N`",
+              "ids": [
+                "L8-K1-01-N"
+              ]
+            },
+            {
+              "literal": "`L8-K1-01-U`",
+              "ids": [
+                "L8-K1-01-U"
+              ]
+            },
+            {
+              "literal": "`L8-K1-01-S`",
+              "ids": [
+                "L8-K1-01-S"
+              ]
+            },
+            {
+              "literal": "`L8-K1-01-UNOBSERVED`",
+              "ids": [
+                "L8-K1-01-UNOBSERVED"
+              ]
+            },
+            {
+              "literal": "`L8-K1-02`",
+              "ids": [
+                "L8-K1-02"
+              ]
+            },
+            {
+              "literal": "`L8-K1-03`",
+              "ids": [
+                "L8-K1-03"
+              ]
+            },
+            {
+              "literal": "`L8-K1-04-P`",
+              "ids": [
+                "L8-K1-04-P"
+              ]
+            },
+            {
+              "literal": "`L8-K1-04-N`",
+              "ids": [
+                "L8-K1-04-N"
+              ]
+            },
+            {
+              "literal": "`L8-K1-05`",
+              "ids": [
+                "L8-K1-05"
+              ]
+            },
+            {
+              "literal": "`L8-K1-06a`",
+              "ids": [
+                "L8-K1-06a"
+              ]
+            },
+            {
+              "literal": "`L8-K1-06b`",
+              "ids": [
+                "L8-K1-06b"
+              ]
+            },
+            {
+              "literal": "`L8-K1-06c`",
+              "ids": [
+                "L8-K1-06c"
+              ]
+            },
+            {
+              "literal": "`L8-K1-07-REASON/AUTHORITY/REENTRY`",
+              "ids": [
+                "L8-K1-07-REASON",
+                "L8-K1-07-AUTHORITY",
+                "L8-K1-07-REENTRY"
+              ]
+            },
+            {
+              "literal": "`L8-K1-08-ACCEPT-COMBINE-{CLASS}`",
+              "ids": [
+                "L8-K1-08-ACCEPT-COMBINE-CLASS-Value",
+                "L8-K1-08-ACCEPT-COMBINE-CLASS-Unknown",
+                "L8-K1-08-ACCEPT-COMBINE-CLASS-Unobserved",
+                "L8-K1-08-ACCEPT-COMBINE-CLASS-NotApplicable",
+                "L8-K1-08-ACCEPT-COMBINE-CLASS-Stale"
+              ]
+            },
+            {
+              "literal": "`L8-K1-08-ACCEPT-RECORD-{CLASS}`",
+              "ids": [
+                "L8-K1-08-ACCEPT-RECORD-CLASS-Value",
+                "L8-K1-08-ACCEPT-RECORD-CLASS-Unknown",
+                "L8-K1-08-ACCEPT-RECORD-CLASS-Unobserved",
+                "L8-K1-08-ACCEPT-RECORD-CLASS-NotApplicable"
+              ]
+            },
+            {
+              "literal": "`L8-K1-08-LOOKUP-{CLASS}`",
+              "ids": [
+                "L8-K1-08-LOOKUP-CLASS-Value",
+                "L8-K1-08-LOOKUP-CLASS-Unknown",
+                "L8-K1-08-LOOKUP-CLASS-Unobserved",
+                "L8-K1-08-LOOKUP-CLASS-NotApplicable"
+              ]
+            },
+            {
+              "literal": "`L8-K1-08-STALE-LOOKUP`",
+              "ids": [
+                "L8-K1-08-STALE-LOOKUP"
+              ]
+            },
+            {
+              "literal": "`L8-K1-08-STALE-RECORD`",
+              "ids": [
+                "L8-K1-08-STALE-RECORD"
+              ]
+            },
+            {
+              "literal": "`L8-K1-08-KEY-COMBINE-{CLASS}`",
+              "ids": [
+                "L8-K1-08-KEY-COMBINE-CLASS-Value",
+                "L8-K1-08-KEY-COMBINE-CLASS-Unknown",
+                "L8-K1-08-KEY-COMBINE-CLASS-Unobserved",
+                "L8-K1-08-KEY-COMBINE-CLASS-NotApplicable",
+                "L8-K1-08-KEY-COMBINE-CLASS-Stale"
+              ]
+            },
+            {
+              "literal": "`L8-K1-08-KEY-RECORD`",
+              "ids": [
+                "L8-K1-08-KEY-RECORD"
+              ]
+            },
+            {
+              "literal": "`L8-K1-08-KEY-LOOKUP`",
+              "ids": [
+                "L8-K1-08-KEY-LOOKUP"
+              ]
+            },
+            {
+              "literal": "`L8-K1-09-COMPLETE`",
+              "ids": [
+                "L8-K1-09-COMPLETE"
+              ]
+            },
+            {
+              "literal": "`L8-K1-09-PARTIAL`",
+              "ids": [
+                "L8-K1-09-PARTIAL"
+              ]
+            },
+            {
+              "literal": "`L8-K1-09-READ-FAIL`",
+              "ids": [
+                "L8-K1-09-READ-FAIL"
+              ]
+            },
+            {
+              "literal": "`L8-K1-10`",
+              "ids": [
+                "L8-K1-10"
+              ]
+            },
+            {
+              "literal": "`L8-K1-11-MAP-{WORD}`",
+              "ids": [
+                "L8-K1-11-MAP-AMBIGUOUS",
+                "L8-K1-11-MAP-UNSUPPORTED",
+                "L8-K1-11-MAP-MISMATCH",
+                "L8-K1-11-MAP-CONFLICT",
+                "L8-K1-11-MAP-ABSENT",
+                "L8-K1-11-MAP-EVALUATION-ERROR",
+                "L8-K1-11-MAP-INDETERMINATE",
+                "L8-K1-11-MAP-UNKNOWN",
+                "L8-K1-11-MAP-STALE",
+                "L8-K1-11-MAP-NOT-OBSERVED",
+                "L8-K1-11-MAP-NOT-EVALUATED",
+                "L8-K1-11-MAP-INCOMPATIBLE",
+                "L8-K1-11-MAP-NOT-APPLICABLE"
+              ]
+            },
+            {
+              "literal": "`L8-K1-11-WRONG-MISMATCH`",
+              "ids": [
+                "L8-K1-11-WRONG-MISMATCH"
+              ]
+            },
+            {
+              "literal": "`L8-K1-11-WRONG-INCOMPATIBLE`",
+              "ids": [
+                "L8-K1-11-WRONG-INCOMPATIBLE"
+              ]
+            },
+            {
+              "literal": "`L8-K1-11-WRONG-NOT-OBSERVED`",
+              "ids": [
+                "L8-K1-11-WRONG-NOT-OBSERVED"
+              ]
+            },
+            {
+              "literal": "`L8-K1-11-UNREGISTERED`",
+              "ids": [
+                "L8-K1-11-UNREGISTERED"
+              ]
+            },
+            {
+              "literal": "`L8-K1-12-KEY-{FIELD}-{BOUNDARY}`",
+              "ids": [
+                "L8-K1-12-KEY-OPERATION-COMBINE",
+                "L8-K1-12-KEY-OPERATION-RECORD",
+                "L8-K1-12-KEY-OPERATION-LOOKUP",
+                "L8-K1-12-KEY-OPERATION-VERSION-COMBINE",
+                "L8-K1-12-KEY-OPERATION-VERSION-RECORD",
+                "L8-K1-12-KEY-OPERATION-VERSION-LOOKUP",
+                "L8-K1-12-KEY-SUBJECT-COMBINE",
+                "L8-K1-12-KEY-SUBJECT-RECORD",
+                "L8-K1-12-KEY-SUBJECT-LOOKUP",
+                "L8-K1-12-KEY-INPUTS-COMBINE",
+                "L8-K1-12-KEY-INPUTS-RECORD",
+                "L8-K1-12-KEY-INPUTS-LOOKUP",
+                "L8-K1-12-KEY-SCOPE-COMBINE",
+                "L8-K1-12-KEY-SCOPE-RECORD",
+                "L8-K1-12-KEY-SCOPE-LOOKUP",
+                "L8-K1-12-KEY-SUBJECT-KIND-COMBINE",
+                "L8-K1-12-KEY-SUBJECT-KIND-RECORD",
+                "L8-K1-12-KEY-SUBJECT-KIND-LOOKUP",
+                "L8-K1-12-KEY-SUBJECT-IDENTITY-COMBINE",
+                "L8-K1-12-KEY-SUBJECT-IDENTITY-RECORD",
+                "L8-K1-12-KEY-SUBJECT-IDENTITY-LOOKUP",
+                "L8-K1-12-KEY-SUBJECT-REVISION-COMBINE",
+                "L8-K1-12-KEY-SUBJECT-REVISION-RECORD",
+                "L8-K1-12-KEY-SUBJECT-REVISION-LOOKUP",
+                "L8-K1-12-KEY-SUBJECT-DIGEST-COMBINE",
+                "L8-K1-12-KEY-SUBJECT-DIGEST-RECORD",
+                "L8-K1-12-KEY-SUBJECT-DIGEST-LOOKUP",
+                "L8-K1-12-KEY-INPUT-KIND-COMBINE",
+                "L8-K1-12-KEY-INPUT-KIND-RECORD",
+                "L8-K1-12-KEY-INPUT-KIND-LOOKUP",
+                "L8-K1-12-KEY-INPUT-IDENTITY-COMBINE",
+                "L8-K1-12-KEY-INPUT-IDENTITY-RECORD",
+                "L8-K1-12-KEY-INPUT-IDENTITY-LOOKUP",
+                "L8-K1-12-KEY-INPUT-REVISION-COMBINE",
+                "L8-K1-12-KEY-INPUT-REVISION-RECORD",
+                "L8-K1-12-KEY-INPUT-REVISION-LOOKUP",
+                "L8-K1-12-KEY-INPUT-DIGEST-COMBINE",
+                "L8-K1-12-KEY-INPUT-DIGEST-RECORD",
+                "L8-K1-12-KEY-INPUT-DIGEST-LOOKUP"
+              ]
+            },
+            {
+              "literal": "`L8-K1-13-KEY-WHOLE`",
+              "ids": [
+                "L8-K1-13-KEY-WHOLE"
+              ]
+            },
+            {
+              "literal": "`L8-K1-13-KEY-{FIELD}`",
+              "ids": [
+                "L8-K1-13-KEY-OPERATION",
+                "L8-K1-13-KEY-OPERATION-VERSION",
+                "L8-K1-13-KEY-SUBJECT",
+                "L8-K1-13-KEY-INPUTS",
+                "L8-K1-13-KEY-SCOPE",
+                "L8-K1-13-KEY-SUBJECT-KIND",
+                "L8-K1-13-KEY-SUBJECT-IDENTITY",
+                "L8-K1-13-KEY-SUBJECT-REVISION",
+                "L8-K1-13-KEY-SUBJECT-DIGEST",
+                "L8-K1-13-KEY-INPUT-KIND",
+                "L8-K1-13-KEY-INPUT-IDENTITY",
+                "L8-K1-13-KEY-INPUT-REVISION",
+                "L8-K1-13-KEY-INPUT-DIGEST"
+              ]
+            }
+          ]
+        },
+        {
+          "range_id": "ck-l8-k2-fixtures",
+          "start_heading": "## 4. K2 fixtures",
+          "end_heading": "## 5. K3–K10と未実施範囲",
+          "grammar": "table_column",
+          "id_column": 1,
+          "literal_expansions": [
+            {
+              "literal": "`L8-K2-01-V/U/N/A`",
+              "ids": [
+                "L8-K2-01-VALUE",
+                "L8-K2-01-UNKNOWN",
+                "L8-K2-01-UNOBSERVED",
+                "L8-K2-01-NOT-APPLICABLE"
+              ]
+            },
+            {
+              "literal": "`L8-K2-02-S/O/C/D`",
+              "ids": [
+                "L8-K2-02-SUBJECT",
+                "L8-K2-02-ORACLE",
+                "L8-K2-02-CONTRACT",
+                "L8-K2-02-CONFIG"
+              ]
+            },
+            {
+              "literal": "`L8-K2-03-U/N/A`",
+              "ids": [
+                "L8-K2-03-UNKNOWN",
+                "L8-K2-03-UNOBSERVED",
+                "L8-K2-03-NOT-APPLICABLE"
+              ]
+            },
+            {
+              "literal": "`L8-K2-04-S/O/C/D`",
+              "ids": [
+                "L8-K2-04-SUBJECT",
+                "L8-K2-04-ORACLE",
+                "L8-K2-04-CONTRACT",
+                "L8-K2-04-CONFIG"
+              ]
+            },
+            {
+              "literal": "`L8-K2-05`",
+              "ids": [
+                "L8-K2-05"
+              ]
+            },
+            {
+              "literal": "`L8-K2-06`",
+              "ids": [
+                "L8-K2-06"
+              ]
+            },
+            {
+              "literal": "`L8-K2-07`",
+              "ids": [
+                "L8-K2-07"
+              ]
+            },
+            {
+              "literal": "`L8-K2-08-op/ver/scope`",
+              "ids": [
+                "L8-K2-08-OPERATION",
+                "L8-K2-08-VERSION",
+                "L8-K2-08-SCOPE"
+              ]
+            },
+            {
+              "literal": "`L8-K2-09-add/del`",
+              "ids": [
+                "L8-K2-09-ADD",
+                "L8-K2-09-DELETE"
+              ]
+            },
+            {
+              "literal": "`L8-K2-10`",
+              "ids": [
+                "L8-K2-10"
+              ]
+            },
+            {
+              "literal": "`L8-K2-11-NOOP`",
+              "ids": [
+                "L8-K2-11-NOOP"
+              ]
+            },
+            {
+              "literal": "`L8-K2-11-CONFLICT`",
+              "ids": [
+                "L8-K2-11-CONFLICT"
+              ]
+            },
+            {
+              "literal": "`L8-K2-11-STALE`",
+              "ids": [
+                "L8-K2-11-STALE"
+              ]
+            },
+            {
+              "literal": "`L8-K2-12`",
+              "ids": [
+                "L8-K2-12"
+              ]
+            },
+            {
+              "literal": "`L8-K2-13-VALID`",
+              "ids": [
+                "L8-K2-13-VALID"
+              ]
+            },
+            {
+              "literal": "`L8-K2-13-NO-PREFIX`",
+              "ids": [
+                "L8-K2-13-NO-PREFIX"
+              ]
+            },
+            {
+              "literal": "`L8-K2-13-SHORT`",
+              "ids": [
+                "L8-K2-13-SHORT"
+              ]
+            },
+            {
+              "literal": "`L8-K2-13-GIT-REVISION`",
+              "ids": [
+                "L8-K2-13-GIT-REVISION"
+              ]
+            },
+            {
+              "literal": "`L8-K2-14`",
+              "ids": [
+                "L8-K2-14"
+              ]
+            },
+            {
+              "literal": "`L8-K2-15-ORDER`",
+              "ids": [
+                "L8-K2-15-ORDER"
+              ]
+            },
+            {
+              "literal": "`L8-K2-15-DUP`",
+              "ids": [
+                "L8-K2-15-DUP"
+              ]
+            },
+            {
+              "literal": "`L8-K2-16-subject-kind/input-kind`",
+              "ids": [
+                "L8-K2-16-SUBJECT-KIND",
+                "L8-K2-16-INPUT-KIND"
+              ]
+            },
+            {
+              "literal": "`L8-K2-17-subject-id/input-id`",
+              "ids": [
+                "L8-K2-17-SUBJECT-IDENTITY",
+                "L8-K2-17-INPUT-IDENTITY"
+              ]
+            },
+            {
+              "literal": "`L8-K2-18-OLD-VALUE`",
+              "ids": [
+                "L8-K2-18-OLD-VALUE"
+              ]
+            },
+            {
+              "literal": "`L8-K2-18-OLD-UNKNOWN`",
+              "ids": [
+                "L8-K2-18-OLD-UNKNOWN"
+              ]
+            },
+            {
+              "literal": "`L8-K2-19`",
+              "ids": [
+                "L8-K2-19"
+              ]
+            },
+            {
+              "literal": "`L8-K2-20-value/nonvalue`",
+              "ids": [
+                "L8-K2-20-VALUE",
+                "L8-K2-20-NONVALUE"
+              ]
+            },
+            {
+              "literal": "`L8-K2-21-P`",
+              "ids": [
+                "L8-K2-21-P"
+              ]
+            },
+            {
+              "literal": "`L8-K2-21-DEDUP`",
+              "ids": [
+                "L8-K2-21-DEDUP"
+              ]
+            },
+            {
+              "literal": "`L8-K2-21-CROSS-ROLE`",
+              "ids": [
+                "L8-K2-21-CROSS-ROLE"
+              ]
+            },
+            {
+              "literal": "`L8-K2-21a`",
+              "ids": [
+                "L8-K2-21a"
+              ]
+            },
+            {
+              "literal": "`L8-K2-21b`",
+              "ids": [
+                "L8-K2-21b"
+              ]
+            },
+            {
+              "literal": "`L8-K2-21c`",
+              "ids": [
+                "L8-K2-21c"
+              ]
+            },
+            {
+              "literal": "`L8-K2-21d-K3`",
+              "ids": [
+                "L8-K2-21d-K3"
+              ]
+            },
+            {
+              "literal": "`L8-K2-21d-K8/K9`",
+              "ids": [
+                "L8-K2-21d-K8",
+                "L8-K2-21d-K9"
+              ]
+            }
+          ]
+        }
+      ],
+      "reference_ranges": [
+        {
+          "range_id": "ck-l8-k1-l9-oracles",
+          "start_heading": "## 3. K1 fixtures",
+          "end_heading": "## 4. K2 fixtures",
+          "grammar": "table_column",
+          "id_column": 2,
+          "literal_expansions": [
+            {
+              "literal": "IV-K1-01",
+              "ids": [
+                "IV-K1-01"
+              ]
+            },
+            {
+              "literal": "IV-K1-02",
+              "ids": [
+                "IV-K1-02"
+              ]
+            },
+            {
+              "literal": "IV-K1-03",
+              "ids": [
+                "IV-K1-03"
+              ]
+            },
+            {
+              "literal": "IV-K1-04",
+              "ids": [
+                "IV-K1-04"
+              ]
+            },
+            {
+              "literal": "IV-K1-05",
+              "ids": [
+                "IV-K1-05"
+              ]
+            },
+            {
+              "literal": "IV-K1-06",
+              "ids": [
+                "IV-K1-06"
+              ]
+            },
+            {
+              "literal": "IV-K1-07",
+              "ids": [
+                "IV-K1-07"
+              ]
+            },
+            {
+              "literal": "IV-K1-08",
+              "ids": [
+                "IV-K1-08"
+              ]
+            },
+            {
+              "literal": "IV-K1-08 / IV-K2-02",
+              "ids": [
+                "IV-K1-08",
+                "IV-K2-02"
+              ]
+            },
+            {
+              "literal": "IV-K1-08 / IV-K2-11",
+              "ids": [
+                "IV-K1-08",
+                "IV-K2-11"
+              ]
+            },
+            {
+              "literal": "IV-K1-09",
+              "ids": [
+                "IV-K1-09"
+              ]
+            },
+            {
+              "literal": "IV-K1-10",
+              "ids": [
+                "IV-K1-10"
+              ]
+            },
+            {
+              "literal": "IV-K1-11",
+              "ids": [
+                "IV-K1-11"
+              ]
+            },
+            {
+              "literal": "IV-K1-12",
+              "ids": [
+                "IV-K1-12"
+              ]
+            },
+            {
+              "literal": "IV-K1-13",
+              "ids": [
+                "IV-K1-13"
+              ]
+            }
+          ]
+        },
+        {
+          "range_id": "ck-l8-k1-l4-l5-contracts",
+          "start_heading": "## 3. K1 fixtures",
+          "end_heading": "## 4. K2 fixtures",
+          "grammar": "table_column",
+          "id_column": 3,
+          "literal_expansions": [
+            {
+              "literal": "`combine`, `admit`; K1-I1/I2",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I1",
+                "K1-I2"
+              ]
+            },
+            {
+              "literal": "`combine`, `admit`; K1-I3",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I3"
+              ]
+            },
+            {
+              "literal": "`combine`, `admit`; K1-I2/I3",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I2",
+                "K1-I3"
+              ]
+            },
+            {
+              "literal": "owner/caller mapping resolution → `combine`; polarity ownership",
+              "ids": [
+                "### 3.2 K1 API contract"
+              ]
+            },
+            {
+              "literal": "`combine`, `admit`; K1-I4",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I4"
+              ]
+            },
+            {
+              "literal": "`disposition`, `combine`; K1-I5",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I5"
+              ]
+            },
+            {
+              "literal": "`combine`; K1-I6/K2-I6",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I6",
+                "K2-I6"
+              ]
+            },
+            {
+              "literal": "`record`; K1-I6/K2-I6",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I6",
+                "K2-I6"
+              ]
+            },
+            {
+              "literal": "`lookup`; K1-I6/K2-I6",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I6",
+                "K2-I6"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2b",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K2-I2b"
+              ]
+            },
+            {
+              "literal": "`record`; K1-I6/K2-I4",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I6",
+                "K2-I4"
+              ]
+            },
+            {
+              "literal": "`combine`; K1-I6",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I6"
+              ]
+            },
+            {
+              "literal": "`record`; K2-I6",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K2-I6"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I6",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K2-I6"
+              ]
+            },
+            {
+              "literal": "owner observation→`Observed`; K1-I7",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I7"
+              ]
+            },
+            {
+              "literal": "display projection→`combine`; K1-I8",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I8"
+              ]
+            },
+            {
+              "literal": "mechanism mapping→`Observed`; §2.4 mapping table",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "### 2.4 写像表（G10：不明の共通分類）"
+              ]
+            },
+            {
+              "literal": "`combine`, `record`, `lookup`; K1-I6",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I6"
+              ]
+            },
+            {
+              "literal": "`admit`; K1-I6",
+              "ids": [
+                "### 3.2 K1 API contract",
+                "K1-I6"
+              ]
+            }
+          ]
+        },
+        {
+          "range_id": "ck-l8-k2-l9-oracles",
+          "start_heading": "## 4. K2 fixtures",
+          "end_heading": "## 5. K3–K10と未実施範囲",
+          "grammar": "table_column",
+          "id_column": 2,
+          "literal_expansions": [
+            {
+              "literal": "IV-K2-01",
+              "ids": [
+                "IV-K2-01"
+              ]
+            },
+            {
+              "literal": "IV-K2-02",
+              "ids": [
+                "IV-K2-02"
+              ]
+            },
+            {
+              "literal": "IV-K2-03",
+              "ids": [
+                "IV-K2-03"
+              ]
+            },
+            {
+              "literal": "IV-K2-04",
+              "ids": [
+                "IV-K2-04"
+              ]
+            },
+            {
+              "literal": "IV-K2-05",
+              "ids": [
+                "IV-K2-05"
+              ]
+            },
+            {
+              "literal": "IV-K2-06",
+              "ids": [
+                "IV-K2-06"
+              ]
+            },
+            {
+              "literal": "IV-K2-07",
+              "ids": [
+                "IV-K2-07"
+              ]
+            },
+            {
+              "literal": "IV-K2-08",
+              "ids": [
+                "IV-K2-08"
+              ]
+            },
+            {
+              "literal": "IV-K2-09",
+              "ids": [
+                "IV-K2-09"
+              ]
+            },
+            {
+              "literal": "IV-K2-10",
+              "ids": [
+                "IV-K2-10"
+              ]
+            },
+            {
+              "literal": "IV-K2-11",
+              "ids": [
+                "IV-K2-11"
+              ]
+            },
+            {
+              "literal": "IV-K2-12",
+              "ids": [
+                "IV-K2-12"
+              ]
+            },
+            {
+              "literal": "IV-K2-13",
+              "ids": [
+                "IV-K2-13"
+              ]
+            },
+            {
+              "literal": "IV-K2-13a",
+              "ids": [
+                "IV-K2-13a"
+              ]
+            },
+            {
+              "literal": "IV-K2-13b",
+              "ids": [
+                "IV-K2-13b"
+              ]
+            },
+            {
+              "literal": "IV-K2-14",
+              "ids": [
+                "IV-K2-14"
+              ]
+            },
+            {
+              "literal": "IV-K2-15",
+              "ids": [
+                "IV-K2-15"
+              ]
+            },
+            {
+              "literal": "IV-K2-16",
+              "ids": [
+                "IV-K2-16"
+              ]
+            },
+            {
+              "literal": "IV-K2-17",
+              "ids": [
+                "IV-K2-17"
+              ]
+            },
+            {
+              "literal": "IV-K2-18",
+              "ids": [
+                "IV-K2-18"
+              ]
+            },
+            {
+              "literal": "IV-K2-19",
+              "ids": [
+                "IV-K2-19"
+              ]
+            },
+            {
+              "literal": "IV-K2-20",
+              "ids": [
+                "IV-K2-20"
+              ]
+            },
+            {
+              "literal": "IV-K2-21",
+              "ids": [
+                "IV-K2-21"
+              ]
+            },
+            {
+              "literal": "IV-K2-21a",
+              "ids": [
+                "IV-K2-21a"
+              ]
+            },
+            {
+              "literal": "IV-K2-21b",
+              "ids": [
+                "IV-K2-21b"
+              ]
+            },
+            {
+              "literal": "IV-K2-21c",
+              "ids": [
+                "IV-K2-21c"
+              ]
+            },
+            {
+              "literal": "IV-K2-21d",
+              "ids": [
+                "IV-K2-21d"
+              ]
+            }
+          ]
+        },
+        {
+          "range_id": "ck-l8-k2-l4-l5-contracts",
+          "start_heading": "## 4. K2 fixtures",
+          "end_heading": "## 5. K3–K10と未実施範囲",
+          "grammar": "table_column",
+          "id_column": 3,
+          "literal_expansions": [
+            {
+              "literal": "`lookup`; K2-I1",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I1"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2/I2b",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I2",
+                "K2-I2b"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2b",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I2b"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2(2)",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I2"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2 precedence",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I2"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I3",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I3"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2(1)",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I2"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I2"
+              ]
+            },
+            {
+              "literal": "`record`; K2-I4",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I4"
+              ]
+            },
+            {
+              "literal": "`record`, `lookup`; K2-I4",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I4"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I5",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I5"
+              ]
+            },
+            {
+              "literal": "`key_of`; K2-I6",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I6"
+              ]
+            },
+            {
+              "literal": "`key_of`, `lookup`; K2-I7",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I7"
+              ]
+            },
+            {
+              "literal": "`key_of`; input canonicalization",
+              "ids": [
+                "### 3.4 K2 API contract"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2(2b)",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I2"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2(3)",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I2"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2(2) precedence",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I2"
+              ]
+            },
+            {
+              "literal": "`lookup`; K2-I2(4)/I2b",
+              "ids": [
+                "### 3.4 K2 API contract",
+                "K2-I2",
+                "K2-I2b"
+              ]
+            },
+            {
+              "literal": "owner alias binding→`key_of`/K6 read identity; §3.4.1",
+              "ids": [
+                "### 3.4 K2 API contract"
+              ]
+            },
+            {
+              "literal": "alias normalization→`key_of`; §3.4.1",
+              "ids": [
+                "### 3.4 K2 API contract"
+              ]
+            },
+            {
+              "literal": "`key_of`; §3.4.1",
+              "ids": [
+                "### 3.4 K2 API contract"
+              ]
+            },
+            {
+              "literal": "K6 source-read observation; §3.4.1",
+              "ids": [
+                "### 3.4 K2 API contract"
+              ]
+            },
+            {
+              "literal": "alias revision→`lookup`; §3.4.1",
+              "ids": [
+                "### 3.4 K2 API contract"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "coverage_edges": [
@@ -10452,6 +11594,2138 @@
         "verifier_id": "UT-LCI-95",
         "outcome_column": 4
       }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-01-N",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-01-N",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-01-N",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-01-U",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-01-U",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-01-U",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-01-S",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-01-S",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-01-S",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-01-UNOBSERVED",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-01-UNOBSERVED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-01-UNOBSERVED",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-02",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-02",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-02",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-03",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-03",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-03",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-04-P",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-04-P",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-04-P",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-04-N",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-04-N",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-04-N",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-05",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-05",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-05",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-06a",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-06a",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-06a",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-06b",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-06b",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-06b",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-06c",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-06c",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-06c",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-07-REASON",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-07-REASON",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-07-REASON",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-07-AUTHORITY",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-07-AUTHORITY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-07-AUTHORITY",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-07-REENTRY",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-07-REENTRY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-07-REENTRY",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-ACCEPT-COMBINE-CLASS-Value",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-ACCEPT-COMBINE-CLASS-Value",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-ACCEPT-COMBINE-CLASS-Value",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-ACCEPT-COMBINE-CLASS-Unknown",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-ACCEPT-COMBINE-CLASS-Unknown",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-ACCEPT-COMBINE-CLASS-Unknown",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-ACCEPT-COMBINE-CLASS-Unobserved",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-ACCEPT-COMBINE-CLASS-Unobserved",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-ACCEPT-COMBINE-CLASS-Unobserved",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-ACCEPT-COMBINE-CLASS-NotApplicable",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-ACCEPT-COMBINE-CLASS-NotApplicable",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-ACCEPT-COMBINE-CLASS-NotApplicable",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-ACCEPT-COMBINE-CLASS-Stale",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-ACCEPT-COMBINE-CLASS-Stale",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-ACCEPT-COMBINE-CLASS-Stale",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-ACCEPT-RECORD-CLASS-Value",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-ACCEPT-RECORD-CLASS-Value",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-ACCEPT-RECORD-CLASS-Value",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-ACCEPT-RECORD-CLASS-Unknown",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-ACCEPT-RECORD-CLASS-Unknown",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-ACCEPT-RECORD-CLASS-Unknown",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-ACCEPT-RECORD-CLASS-Unobserved",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-ACCEPT-RECORD-CLASS-Unobserved",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-ACCEPT-RECORD-CLASS-Unobserved",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-ACCEPT-RECORD-CLASS-NotApplicable",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-ACCEPT-RECORD-CLASS-NotApplicable",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-ACCEPT-RECORD-CLASS-NotApplicable",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-LOOKUP-CLASS-Value",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-LOOKUP-CLASS-Value",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-LOOKUP-CLASS-Value",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-LOOKUP-CLASS-Unknown",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-LOOKUP-CLASS-Unknown",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-LOOKUP-CLASS-Unknown",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-LOOKUP-CLASS-Unobserved",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-LOOKUP-CLASS-Unobserved",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-LOOKUP-CLASS-Unobserved",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-LOOKUP-CLASS-NotApplicable",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-LOOKUP-CLASS-NotApplicable",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-LOOKUP-CLASS-NotApplicable",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-STALE-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-STALE-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-STALE-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-STALE-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-STALE-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-STALE-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-KEY-COMBINE-CLASS-Value",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-KEY-COMBINE-CLASS-Value",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-KEY-COMBINE-CLASS-Value",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-KEY-COMBINE-CLASS-Unknown",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-KEY-COMBINE-CLASS-Unknown",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-KEY-COMBINE-CLASS-Unknown",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-KEY-COMBINE-CLASS-Unobserved",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-KEY-COMBINE-CLASS-Unobserved",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-KEY-COMBINE-CLASS-Unobserved",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-KEY-COMBINE-CLASS-NotApplicable",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-KEY-COMBINE-CLASS-NotApplicable",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-KEY-COMBINE-CLASS-NotApplicable",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-KEY-COMBINE-CLASS-Stale",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-KEY-COMBINE-CLASS-Stale",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-KEY-COMBINE-CLASS-Stale",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-KEY-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-KEY-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-KEY-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-08-KEY-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-08-KEY-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-08-KEY-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-09-COMPLETE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-09-COMPLETE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-09-COMPLETE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-09-PARTIAL",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-09-PARTIAL",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-09-PARTIAL",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-09-READ-FAIL",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-09-READ-FAIL",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-09-READ-FAIL",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-10",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-10",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-10",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-AMBIGUOUS",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-AMBIGUOUS",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-AMBIGUOUS",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-UNSUPPORTED",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-UNSUPPORTED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-UNSUPPORTED",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-MISMATCH",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-MISMATCH",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-MISMATCH",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-CONFLICT",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-CONFLICT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-CONFLICT",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-ABSENT",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-ABSENT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-ABSENT",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-EVALUATION-ERROR",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-EVALUATION-ERROR",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-EVALUATION-ERROR",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-INDETERMINATE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-INDETERMINATE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-INDETERMINATE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-UNKNOWN",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-UNKNOWN",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-UNKNOWN",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-STALE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-STALE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-STALE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-NOT-OBSERVED",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-NOT-OBSERVED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-NOT-OBSERVED",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-NOT-EVALUATED",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-NOT-EVALUATED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-NOT-EVALUATED",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-INCOMPATIBLE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-INCOMPATIBLE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-INCOMPATIBLE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-MAP-NOT-APPLICABLE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-MAP-NOT-APPLICABLE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-MAP-NOT-APPLICABLE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-WRONG-MISMATCH",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-WRONG-MISMATCH",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-WRONG-MISMATCH",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-WRONG-INCOMPATIBLE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-WRONG-INCOMPATIBLE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-WRONG-INCOMPATIBLE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-WRONG-NOT-OBSERVED",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-WRONG-NOT-OBSERVED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-WRONG-NOT-OBSERVED",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-11-UNREGISTERED",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-11-UNREGISTERED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-11-UNREGISTERED",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-OPERATION-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-OPERATION-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-OPERATION-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-OPERATION-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-OPERATION-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-OPERATION-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-OPERATION-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-OPERATION-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-OPERATION-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-OPERATION-VERSION-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-OPERATION-VERSION-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-OPERATION-VERSION-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-OPERATION-VERSION-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-OPERATION-VERSION-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-OPERATION-VERSION-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-OPERATION-VERSION-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-OPERATION-VERSION-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-OPERATION-VERSION-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUTS-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUTS-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUTS-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUTS-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUTS-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUTS-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUTS-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUTS-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUTS-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SCOPE-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SCOPE-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SCOPE-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SCOPE-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SCOPE-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SCOPE-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SCOPE-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SCOPE-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SCOPE-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-KIND-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-KIND-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-KIND-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-KIND-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-KIND-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-KIND-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-KIND-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-KIND-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-KIND-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-IDENTITY-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-IDENTITY-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-IDENTITY-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-IDENTITY-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-IDENTITY-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-IDENTITY-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-IDENTITY-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-IDENTITY-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-IDENTITY-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-REVISION-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-REVISION-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-REVISION-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-REVISION-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-REVISION-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-REVISION-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-REVISION-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-REVISION-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-REVISION-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-DIGEST-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-DIGEST-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-DIGEST-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-DIGEST-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-DIGEST-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-DIGEST-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-SUBJECT-DIGEST-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-SUBJECT-DIGEST-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-SUBJECT-DIGEST-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-KIND-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-KIND-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-KIND-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-KIND-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-KIND-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-KIND-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-KIND-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-KIND-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-KIND-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-IDENTITY-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-IDENTITY-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-IDENTITY-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-IDENTITY-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-IDENTITY-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-IDENTITY-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-IDENTITY-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-IDENTITY-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-IDENTITY-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-REVISION-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-REVISION-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-REVISION-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-REVISION-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-REVISION-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-REVISION-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-REVISION-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-REVISION-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-REVISION-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-DIGEST-COMBINE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-DIGEST-COMBINE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-DIGEST-COMBINE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-DIGEST-RECORD",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-DIGEST-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-DIGEST-RECORD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-12-KEY-INPUT-DIGEST-LOOKUP",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-12-KEY-INPUT-DIGEST-LOOKUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-12-KEY-INPUT-DIGEST-LOOKUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-WHOLE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-WHOLE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-WHOLE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-OPERATION",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-OPERATION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-OPERATION",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-OPERATION-VERSION",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-OPERATION-VERSION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-OPERATION-VERSION",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-SUBJECT",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-SUBJECT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-SUBJECT",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-INPUTS",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-INPUTS",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-INPUTS",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-SCOPE",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-SCOPE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-SCOPE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-SUBJECT-KIND",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-SUBJECT-KIND",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-SUBJECT-KIND",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-SUBJECT-IDENTITY",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-SUBJECT-IDENTITY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-SUBJECT-IDENTITY",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-SUBJECT-REVISION",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-SUBJECT-REVISION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-SUBJECT-REVISION",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-SUBJECT-DIGEST",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-SUBJECT-DIGEST",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-SUBJECT-DIGEST",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-INPUT-KIND",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-INPUT-KIND",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-INPUT-KIND",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-INPUT-IDENTITY",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-INPUT-IDENTITY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-INPUT-IDENTITY",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-INPUT-REVISION",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-INPUT-REVISION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-INPUT-REVISION",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k1.L8-K1-13-KEY-INPUT-DIGEST",
+      "source_id": "### 3.2 K1 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K1-13-KEY-INPUT-DIGEST",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k1-fixtures",
+        "verifier_id": "L8-K1-13-KEY-INPUT-DIGEST",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-01-VALUE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-01-VALUE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-01-VALUE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-01-UNKNOWN",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-01-UNKNOWN",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-01-UNKNOWN",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-01-UNOBSERVED",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-01-UNOBSERVED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-01-UNOBSERVED",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-01-NOT-APPLICABLE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-01-NOT-APPLICABLE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-01-NOT-APPLICABLE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-02-SUBJECT",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-02-SUBJECT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-02-SUBJECT",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-02-ORACLE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-02-ORACLE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-02-ORACLE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-02-CONTRACT",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-02-CONTRACT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-02-CONTRACT",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-02-CONFIG",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-02-CONFIG",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-02-CONFIG",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-03-UNKNOWN",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-03-UNKNOWN",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-03-UNKNOWN",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-03-UNOBSERVED",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-03-UNOBSERVED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-03-UNOBSERVED",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-03-NOT-APPLICABLE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-03-NOT-APPLICABLE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-03-NOT-APPLICABLE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-04-SUBJECT",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-04-SUBJECT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-04-SUBJECT",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-04-ORACLE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-04-ORACLE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-04-ORACLE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-04-CONTRACT",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-04-CONTRACT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-04-CONTRACT",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-04-CONFIG",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-04-CONFIG",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-04-CONFIG",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-05",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-05",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-05",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-06",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-06",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-06",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-07",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-07",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-07",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-08-OPERATION",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-08-OPERATION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-08-OPERATION",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-08-VERSION",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-08-VERSION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-08-VERSION",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-08-SCOPE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-08-SCOPE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-08-SCOPE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-09-ADD",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-09-ADD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-09-ADD",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-09-DELETE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-09-DELETE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-09-DELETE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-10",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-10",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-10",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-11-NOOP",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-11-NOOP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-11-NOOP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-11-CONFLICT",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-11-CONFLICT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-11-CONFLICT",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-11-STALE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-11-STALE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-11-STALE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-12",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-12",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-12",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-13-VALID",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-13-VALID",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-13-VALID",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-13-NO-PREFIX",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-13-NO-PREFIX",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-13-NO-PREFIX",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-13-SHORT",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-13-SHORT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-13-SHORT",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-13-GIT-REVISION",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-13-GIT-REVISION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-13-GIT-REVISION",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-14",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-14",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-14",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-15-ORDER",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-15-ORDER",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-15-ORDER",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-15-DUP",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-15-DUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-15-DUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-16-SUBJECT-KIND",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-16-SUBJECT-KIND",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-16-SUBJECT-KIND",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-16-INPUT-KIND",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-16-INPUT-KIND",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-16-INPUT-KIND",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-17-SUBJECT-IDENTITY",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-17-SUBJECT-IDENTITY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-17-SUBJECT-IDENTITY",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-17-INPUT-IDENTITY",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-17-INPUT-IDENTITY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-17-INPUT-IDENTITY",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-18-OLD-VALUE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-18-OLD-VALUE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-18-OLD-VALUE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-18-OLD-UNKNOWN",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-18-OLD-UNKNOWN",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-18-OLD-UNKNOWN",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-19",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-19",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-19",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-20-VALUE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-20-VALUE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-20-VALUE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-20-NONVALUE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-20-NONVALUE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-20-NONVALUE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-21-P",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-21-P",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-21-P",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-21-DEDUP",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-21-DEDUP",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-21-DEDUP",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-21-CROSS-ROLE",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-21-CROSS-ROLE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-21-CROSS-ROLE",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-21a",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-21a",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-21a",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-21b",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-21b",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-21b",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-21c",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-21c",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-21c",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-21d-K3",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-21d-K3",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-21d-K3",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-21d-K8",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-21d-K8",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-21d-K8",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.ck.k2.L8-K2-21d-K9",
+      "source_id": "### 3.4 K2 API contract",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K2-21d-K9",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k2-fixtures",
+        "verifier_id": "L8-K2-21d-K9",
+        "outcome_column": 5
+      }
     }
   ],
   "coverage_dispositions": [
@@ -12171,6 +15445,182 @@
         "edge.local.IV-LCI-48",
         "edge.local.IV-LCI-49"
       ]
+    },
+    {
+      "source_id": "### 3.2 K1 API contract",
+      "state": "mapped",
+      "edge_ids": [
+        "edge.ck.k1.L8-K1-01-N",
+        "edge.ck.k1.L8-K1-01-U",
+        "edge.ck.k1.L8-K1-01-S",
+        "edge.ck.k1.L8-K1-01-UNOBSERVED",
+        "edge.ck.k1.L8-K1-02",
+        "edge.ck.k1.L8-K1-03",
+        "edge.ck.k1.L8-K1-04-P",
+        "edge.ck.k1.L8-K1-04-N",
+        "edge.ck.k1.L8-K1-05",
+        "edge.ck.k1.L8-K1-06a",
+        "edge.ck.k1.L8-K1-06b",
+        "edge.ck.k1.L8-K1-06c",
+        "edge.ck.k1.L8-K1-07-REASON",
+        "edge.ck.k1.L8-K1-07-AUTHORITY",
+        "edge.ck.k1.L8-K1-07-REENTRY",
+        "edge.ck.k1.L8-K1-08-ACCEPT-COMBINE-CLASS-Value",
+        "edge.ck.k1.L8-K1-08-ACCEPT-COMBINE-CLASS-Unknown",
+        "edge.ck.k1.L8-K1-08-ACCEPT-COMBINE-CLASS-Unobserved",
+        "edge.ck.k1.L8-K1-08-ACCEPT-COMBINE-CLASS-NotApplicable",
+        "edge.ck.k1.L8-K1-08-ACCEPT-COMBINE-CLASS-Stale",
+        "edge.ck.k1.L8-K1-08-ACCEPT-RECORD-CLASS-Value",
+        "edge.ck.k1.L8-K1-08-ACCEPT-RECORD-CLASS-Unknown",
+        "edge.ck.k1.L8-K1-08-ACCEPT-RECORD-CLASS-Unobserved",
+        "edge.ck.k1.L8-K1-08-ACCEPT-RECORD-CLASS-NotApplicable",
+        "edge.ck.k1.L8-K1-08-LOOKUP-CLASS-Value",
+        "edge.ck.k1.L8-K1-08-LOOKUP-CLASS-Unknown",
+        "edge.ck.k1.L8-K1-08-LOOKUP-CLASS-Unobserved",
+        "edge.ck.k1.L8-K1-08-LOOKUP-CLASS-NotApplicable",
+        "edge.ck.k1.L8-K1-08-STALE-LOOKUP",
+        "edge.ck.k1.L8-K1-08-STALE-RECORD",
+        "edge.ck.k1.L8-K1-08-KEY-COMBINE-CLASS-Value",
+        "edge.ck.k1.L8-K1-08-KEY-COMBINE-CLASS-Unknown",
+        "edge.ck.k1.L8-K1-08-KEY-COMBINE-CLASS-Unobserved",
+        "edge.ck.k1.L8-K1-08-KEY-COMBINE-CLASS-NotApplicable",
+        "edge.ck.k1.L8-K1-08-KEY-COMBINE-CLASS-Stale",
+        "edge.ck.k1.L8-K1-08-KEY-RECORD",
+        "edge.ck.k1.L8-K1-08-KEY-LOOKUP",
+        "edge.ck.k1.L8-K1-09-COMPLETE",
+        "edge.ck.k1.L8-K1-09-PARTIAL",
+        "edge.ck.k1.L8-K1-09-READ-FAIL",
+        "edge.ck.k1.L8-K1-10",
+        "edge.ck.k1.L8-K1-11-MAP-AMBIGUOUS",
+        "edge.ck.k1.L8-K1-11-MAP-UNSUPPORTED",
+        "edge.ck.k1.L8-K1-11-MAP-MISMATCH",
+        "edge.ck.k1.L8-K1-11-MAP-CONFLICT",
+        "edge.ck.k1.L8-K1-11-MAP-ABSENT",
+        "edge.ck.k1.L8-K1-11-MAP-EVALUATION-ERROR",
+        "edge.ck.k1.L8-K1-11-MAP-INDETERMINATE",
+        "edge.ck.k1.L8-K1-11-MAP-UNKNOWN",
+        "edge.ck.k1.L8-K1-11-MAP-STALE",
+        "edge.ck.k1.L8-K1-11-MAP-NOT-OBSERVED",
+        "edge.ck.k1.L8-K1-11-MAP-NOT-EVALUATED",
+        "edge.ck.k1.L8-K1-11-MAP-INCOMPATIBLE",
+        "edge.ck.k1.L8-K1-11-MAP-NOT-APPLICABLE",
+        "edge.ck.k1.L8-K1-11-WRONG-MISMATCH",
+        "edge.ck.k1.L8-K1-11-WRONG-INCOMPATIBLE",
+        "edge.ck.k1.L8-K1-11-WRONG-NOT-OBSERVED",
+        "edge.ck.k1.L8-K1-11-UNREGISTERED",
+        "edge.ck.k1.L8-K1-12-KEY-OPERATION-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-OPERATION-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-OPERATION-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-OPERATION-VERSION-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-OPERATION-VERSION-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-OPERATION-VERSION-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-INPUTS-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-INPUTS-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-INPUTS-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-SCOPE-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-SCOPE-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-SCOPE-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-KIND-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-KIND-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-KIND-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-IDENTITY-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-IDENTITY-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-IDENTITY-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-REVISION-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-REVISION-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-REVISION-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-DIGEST-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-DIGEST-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-SUBJECT-DIGEST-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-KIND-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-KIND-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-KIND-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-IDENTITY-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-IDENTITY-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-IDENTITY-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-REVISION-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-REVISION-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-REVISION-LOOKUP",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-DIGEST-COMBINE",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-DIGEST-RECORD",
+        "edge.ck.k1.L8-K1-12-KEY-INPUT-DIGEST-LOOKUP",
+        "edge.ck.k1.L8-K1-13-KEY-WHOLE",
+        "edge.ck.k1.L8-K1-13-KEY-OPERATION",
+        "edge.ck.k1.L8-K1-13-KEY-OPERATION-VERSION",
+        "edge.ck.k1.L8-K1-13-KEY-SUBJECT",
+        "edge.ck.k1.L8-K1-13-KEY-INPUTS",
+        "edge.ck.k1.L8-K1-13-KEY-SCOPE",
+        "edge.ck.k1.L8-K1-13-KEY-SUBJECT-KIND",
+        "edge.ck.k1.L8-K1-13-KEY-SUBJECT-IDENTITY",
+        "edge.ck.k1.L8-K1-13-KEY-SUBJECT-REVISION",
+        "edge.ck.k1.L8-K1-13-KEY-SUBJECT-DIGEST",
+        "edge.ck.k1.L8-K1-13-KEY-INPUT-KIND",
+        "edge.ck.k1.L8-K1-13-KEY-INPUT-IDENTITY",
+        "edge.ck.k1.L8-K1-13-KEY-INPUT-REVISION",
+        "edge.ck.k1.L8-K1-13-KEY-INPUT-DIGEST"
+      ]
+    },
+    {
+      "source_id": "### 3.4 K2 API contract",
+      "state": "mapped",
+      "edge_ids": [
+        "edge.ck.k2.L8-K2-01-VALUE",
+        "edge.ck.k2.L8-K2-01-UNKNOWN",
+        "edge.ck.k2.L8-K2-01-UNOBSERVED",
+        "edge.ck.k2.L8-K2-01-NOT-APPLICABLE",
+        "edge.ck.k2.L8-K2-02-SUBJECT",
+        "edge.ck.k2.L8-K2-02-ORACLE",
+        "edge.ck.k2.L8-K2-02-CONTRACT",
+        "edge.ck.k2.L8-K2-02-CONFIG",
+        "edge.ck.k2.L8-K2-03-UNKNOWN",
+        "edge.ck.k2.L8-K2-03-UNOBSERVED",
+        "edge.ck.k2.L8-K2-03-NOT-APPLICABLE",
+        "edge.ck.k2.L8-K2-04-SUBJECT",
+        "edge.ck.k2.L8-K2-04-ORACLE",
+        "edge.ck.k2.L8-K2-04-CONTRACT",
+        "edge.ck.k2.L8-K2-04-CONFIG",
+        "edge.ck.k2.L8-K2-05",
+        "edge.ck.k2.L8-K2-06",
+        "edge.ck.k2.L8-K2-07",
+        "edge.ck.k2.L8-K2-08-OPERATION",
+        "edge.ck.k2.L8-K2-08-VERSION",
+        "edge.ck.k2.L8-K2-08-SCOPE",
+        "edge.ck.k2.L8-K2-09-ADD",
+        "edge.ck.k2.L8-K2-09-DELETE",
+        "edge.ck.k2.L8-K2-10",
+        "edge.ck.k2.L8-K2-11-NOOP",
+        "edge.ck.k2.L8-K2-11-CONFLICT",
+        "edge.ck.k2.L8-K2-11-STALE",
+        "edge.ck.k2.L8-K2-12",
+        "edge.ck.k2.L8-K2-13-VALID",
+        "edge.ck.k2.L8-K2-13-NO-PREFIX",
+        "edge.ck.k2.L8-K2-13-SHORT",
+        "edge.ck.k2.L8-K2-13-GIT-REVISION",
+        "edge.ck.k2.L8-K2-14",
+        "edge.ck.k2.L8-K2-15-ORDER",
+        "edge.ck.k2.L8-K2-15-DUP",
+        "edge.ck.k2.L8-K2-16-SUBJECT-KIND",
+        "edge.ck.k2.L8-K2-16-INPUT-KIND",
+        "edge.ck.k2.L8-K2-17-SUBJECT-IDENTITY",
+        "edge.ck.k2.L8-K2-17-INPUT-IDENTITY",
+        "edge.ck.k2.L8-K2-18-OLD-VALUE",
+        "edge.ck.k2.L8-K2-18-OLD-UNKNOWN",
+        "edge.ck.k2.L8-K2-19",
+        "edge.ck.k2.L8-K2-20-VALUE",
+        "edge.ck.k2.L8-K2-20-NONVALUE",
+        "edge.ck.k2.L8-K2-21-P",
+        "edge.ck.k2.L8-K2-21-DEDUP",
+        "edge.ck.k2.L8-K2-21-CROSS-ROLE",
+        "edge.ck.k2.L8-K2-21a",
+        "edge.ck.k2.L8-K2-21b",
+        "edge.ck.k2.L8-K2-21c",
+        "edge.ck.k2.L8-K2-21d-K3",
+        "edge.ck.k2.L8-K2-21d-K8",
+        "edge.ck.k2.L8-K2-21d-K9"
+      ]
     }
   ],
   "parent_ac_coverage": [
@@ -12252,6 +15702,70 @@
       "line_start": 28,
       "line_end": 42,
       "span_sha256": "33986f4f642ff04d6d1daa4aa59f74021bc1abceff5f18e6164644bf329104ca"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5E2592D7BB50EC290C9B",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/measurement-evidence-evaluator.md",
+      "full_file_sha256": "d446588a1fe6999e458a41f2c4683d34459ff7b12b28a057642cc2f6e15e6898",
+      "line_start": 22,
+      "line_end": 70,
+      "span_sha256": "7111fb95a8df64e4d95b6a81f7d07fb07b9847be2196b37feadbec8b41397c33"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "full_file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "line_start": 97,
+      "line_end": 99,
+      "span_sha256": "ef02d7122de64e46863d7b03f3814a5810715aa34b5e7681f1dae1997c5cf15d"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-BC214D81DE9E77B8A804",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/archive/cross-system-audit-2026-09-05/source/audit-report.md.txt",
+      "full_file_sha256": "dcf0d4e0dcc4db772afac465df10f2412134cd65dcd019a18cb99c9fd39be53f",
+      "line_start": 72,
+      "line_end": 80,
+      "span_sha256": "faa30d1cba448636cd5ab56919e144878aa096e50dd3891543dbf49380f34705"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-67B016392E3F7D58B053",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/module-decomposition.md",
+      "full_file_sha256": "da787dcfd95b0b4011dc1979df1b6652e990f75ffb71750c6ff9c24a2a24739a",
+      "line_start": 22,
+      "line_end": 93,
+      "span_sha256": "544c505311b46c9bb63923182e0c8221264ca654813898d39ab1adde0cc620ff"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7873E44594456A8F925A",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/internal-processing.md",
+      "full_file_sha256": "048755e3729a7deaaedc8259f3334859d408f0d99487e7459f9d1ed93b4e8072",
+      "line_start": 23,
+      "line_end": 105,
+      "span_sha256": "93ebba4fb406d1e6b6cf3e5daecacda5e125648c16b2ae02a610f11bd7f6c3c9"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-310E87378AFE8095809C",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/physical-data.md",
+      "full_file_sha256": "a3064a3b705adcf0a5f76c3210aa431d87b7971aed2fe88f948a323a40c7772f",
+      "line_start": 22,
+      "line_end": 114,
+      "span_sha256": "6c073f2a35581feba66e2fdec233313b3660ca14d7f1289b403cd36dcc6e20f2"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-73B5C6C7D281E28EC541",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L8-integration-test-design.md",
+      "full_file_sha256": "c8b287ee4e103255081f00439b7fb2f3dfd259e0fb35a2760b48ad583524fe15",
+      "line_start": 48,
+      "line_end": 193,
+      "span_sha256": "f1878786c5ef5e94bc02b27a01ec137c3a398c56c1095db8538c5543924a18ae"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-829E9C1646D4883C8B99",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L8-source-boundary-contracts.md",
+      "full_file_sha256": "d0f7281b170a59d4ed26e618bee6b3c3c749c4f2ad1f1e2f8673ce0445f977f9",
+      "line_start": 11,
+      "line_end": 33,
+      "span_sha256": "037a8562707a6f08b044f1e58e2343b25e3708726430493b09a3b7c5a4800172"
     }
   ],
   "unsupported_items": [

@@ -6,36 +6,36 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS local CI運転契約",
   "state": "active",
-  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5のcontractとL6/L7のfunction/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。 現行driverの10文書manifestによるsuccessはL4 §2.1の12文書corpus契約の構造完全性を示さず、同契約は実装同期まで未充足。後続PRでCK L5/L8・独立164 verifier inventory・共有row resolverと187 source/749 edge/15旧pinへ同期し追加単体検証とexact target CIを行う。",
+  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5のcontractとL6/L7のfunction/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。 固定12文書corpus・独立164 verifier inventory・共有row resolver・187 source/749 edge/15旧pinを同期対象とする。過去の10文書manifestのsuccessは12文書契約の構造完全性を示さない。同期の成立は追加単体検証とexact target CIのPR証拠で確認し、Binding自体から実装・合格を生成しない。",
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
-      "sha256": "3f407bbbc686ab90d4004e30e02fe635cd89c8074337443de3d28847cf453f07",
+      "sha256": "0576e1cf79f07bd9c167a1d073603f9226a6daf9af6e659e69c27f0475a23d3c",
       "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "78be559bd8b5e6b7c4c38175b9661ab1d9ff1a97a6eb9cf66edafaca0c0332cd",
+      "sha256": "058cb6c7dae852d723396830311441d6cefc13c242085082bfa6c98ebf0989c8",
       "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "b85919b686b0c4b94fd4523f8dfabbcdde89c329c806c4116fe0edf2cdaaf216",
+      "sha256": "d9684f7d72cc0f23c0144330f866cf9f23f01b94f02d22c157c75fb209dd1038",
       "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "eb0d80436c7ff5ad90d121a0d19ea6049b26954d5a141c3efc50830f905eb588",
+      "sha256": "9064f37dcc6fa54fbc44938292975979c629d8b21cd820554181e9b4c5798f5e",
       "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "f2037335f96124023c794c63aa60c61593d42519a72f464bfb9584be6ddab4d8",
+      "sha256": "96ed3b6da16f1e1bbf6262090d3cd6fa08347aa202ca3cc12a5865217ed75d61",
       "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "3a1cb17a9491f2db725e2fa03b2073b5ec0e83295d5b5ca747079a0cca3b005e",
+      "sha256": "dd52269750640eb2d5d36068ca7e7827a1a34f2eae9d79c0de1c08f4e7b43afc",
       "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
