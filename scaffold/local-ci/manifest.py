@@ -39,7 +39,7 @@ REQUIRED_SOURCE_IDS_BY_PATH = {
         "RL-C1", "RL-C2", "RL-C3", "RL-C4", "RL-C5", "RL-C6", "RL-C7", "RL-R1", "RL-R2", "RL-R3", "RL-R4", "RL-R5", "RL-R6", "RL-R7", "RL-R8", "RL-V1", "RL-V2", "RL-V3", "RL-V4", "RL-V5", "RL-V6", "RL-P1", "RL-P2", "RL-P3", "RL-P4", "RL-P5", "RL-P6", "RL-P7", "RL-P8", "RL-P9", "RL-D1", "RL-D2", "RL-D3", "RL-D4", "RL-D5", "RL-T1", "RL-T2", "RL-T3", "RL-K1", "RL-K2", "RL-K3", "### 4.1 型", "### 6.1 符号化 `enc`",
     )),
     "docs/helix-harness/L5-detail-design/common-kernel.md": frozenset((
-        "### 3.2 K1 API contract", "### 3.4 K2 API contract",
+        "### 3.2 K1 API contract", "### 3.4 K2 API contract", "#### 6.1.3 K3 function/API contract", "#### 6.2.2 公開関数とprivate helper",
     )),
     "docs/helix-os/L4-basic-design/local-ci.md": frozenset(("LC-SCF-001", "LC-SCF-002", "LC-GOV-001", "LC-DIFF-001", "LC-DESIGN-001", "#### 実行snapshotとprocess境界", "## 3. GitHub Actions provider境界", "## 4. 実装技術の選択")),
     "docs/helix-os/L5-detail-design/local-ci-detail-design.md": frozenset(("D-LCI-01", "D-LCI-02", "D-LCI-03", "D-LCI-04", "D-LCI-05")),
@@ -215,19 +215,308 @@ EXPECTED_CK_K1_K2_VERIFIER_IDS = frozenset((
     "L8-K2-21d-K9",
 ))
 
+EXPECTED_CK_K3_VERIFIER_IDS = frozenset((
+    "L8-K3-01-ASSIGNMENT",
+    "L8-K3-01-BASE",
+    "L8-K3-01-KEY-MISSING",
+    "L8-K3-01-OWNER-CONFLICT",
+    "L8-K3-01-OWNER-MISSING",
+    "L8-K3-01-OWNER-UNREGISTERED",
+    "L8-K3-01-SCOPE-ENVIRONMENT",
+    "L8-K3-01-SCOPE-PROJECT",
+    "L8-K3-01-SCOPE-TENANT",
+    "L8-K3-01-SCOPE-WORKTREE",
+    "L8-K3-01-actor-CONFLICT",
+    "L8-K3-01-actor-MISMATCH",
+    "L8-K3-01-actor-MISSING",
+    "L8-K3-01-actor-UNKNOWN",
+    "L8-K3-01-environment-CONFLICT",
+    "L8-K3-01-environment-MISMATCH",
+    "L8-K3-01-environment-MISSING",
+    "L8-K3-01-environment-UNKNOWN",
+    "L8-K3-01-expiry-CONFLICT",
+    "L8-K3-01-expiry-MISMATCH",
+    "L8-K3-01-expiry-MISSING",
+    "L8-K3-01-expiry-UNKNOWN",
+    "L8-K3-01-operation-CONFLICT",
+    "L8-K3-01-operation-MISMATCH",
+    "L8-K3-01-operation-MISSING",
+    "L8-K3-01-operation-UNKNOWN",
+    "L8-K3-01-revision-CONFLICT",
+    "L8-K3-01-revision-MISMATCH",
+    "L8-K3-01-revision-MISSING",
+    "L8-K3-01-revision-UNKNOWN",
+    "L8-K3-01-scope-CONFLICT",
+    "L8-K3-01-scope-MISMATCH",
+    "L8-K3-01-scope-MISSING",
+    "L8-K3-01-scope-UNKNOWN",
+    "L8-K3-01-target-CONFLICT",
+    "L8-K3-01-target-MISMATCH",
+    "L8-K3-01-target-MISSING",
+    "L8-K3-01-target-UNKNOWN",
+    "L8-K3-02-ALLOW-credential-use",
+    "L8-K3-02-ALLOW-delete",
+    "L8-K3-02-ALLOW-deploy",
+    "L8-K3-02-ALLOW-execute",
+    "L8-K3-02-ALLOW-install",
+    "L8-K3-02-ALLOW-merge",
+    "L8-K3-02-ALLOW-network",
+    "L8-K3-02-ALLOW-read",
+    "L8-K3-02-ALLOW-release",
+    "L8-K3-02-ALLOW-security-change",
+    "L8-K3-02-ALLOW-write",
+    "L8-K3-02-READ-AS-credential-use",
+    "L8-K3-02-READ-AS-delete",
+    "L8-K3-02-READ-AS-deploy",
+    "L8-K3-02-READ-AS-execute",
+    "L8-K3-02-READ-AS-install",
+    "L8-K3-02-READ-AS-merge",
+    "L8-K3-02-READ-AS-network",
+    "L8-K3-02-READ-AS-release",
+    "L8-K3-02-READ-AS-security-change",
+    "L8-K3-02-READ-AS-write",
+    "L8-K3-03-DIGEST",
+    "L8-K3-03-FRESH-REVISION",
+    "L8-K3-03-IDENTITY",
+    "L8-K3-03-LOOKUP-STALE",
+    "L8-K3-04-CURRENT-CONSTRAIN",
+    "L8-K3-04-CURRENT-DENY",
+    "L8-K3-04-ISSUER-MISMATCH",
+    "L8-K3-04-RECEIPT-SUBSTITUTE",
+    "L8-K3-04-SAME-NAME-DIFFERENT-SOURCE",
+    "L8-K3-04-SELECTION-CONFLICTING-CANDIDATES",
+    "L8-K3-04-SELECTION-UNKNOWN-RULE",
+    "L8-K3-04-SELF-ISSUED",
+    "L8-K3-04-SIGNATURE-INVALID",
+    "L8-K3-04-SIGNATURE-UNVERIFIABLE",
+    "L8-K3-04-UNREGISTERED-SOURCE",
+    "L8-K3-05-CONSTRAINT-EVIDENCE-MISSING",
+    "L8-K3-05-CONSTRAINT-RELAXED",
+    "L8-K3-05-CONSTRAINT-SETTING-MISSING",
+    "L8-K3-05-DENY",
+    "L8-K3-05-PRECONDITION-UNOBSERVED",
+    "L8-K3-06-ACK",
+    "L8-K3-06-CHECK-SUCCESS",
+    "L8-K3-06-CI-GREEN",
+    "L8-K3-06-REQUEST",
+    "L8-K3-06-REVIEW",
+    "L8-K3-07-EXPIRED",
+    "L8-K3-07-EXPIRY-UNPARSABLE",
+    "L8-K3-07-TIME-UNREADABLE",
+    "L8-K3-08-G5-ONLY",
+    "L8-K3-08-OLD-EPOCH-ACTION",
+    "L8-K3-08-OUT-OF-SCOPE-STOP",
+    "L8-K3-08-REVOKED",
+    "L8-K3-08-SEGMENT-MISSING",
+    "L8-K3-08-SEGMENT-UNREADABLE",
+    "L8-K3-09-BASE",
+    "L8-K3-09-assignment-actor",
+    "L8-K3-09-assignment-environment",
+    "L8-K3-09-assignment-expiry",
+    "L8-K3-09-assignment-operation",
+    "L8-K3-09-assignment-revision",
+    "L8-K3-09-assignment-scope",
+    "L8-K3-09-assignment-target",
+    "L8-K3-09-decision-actor",
+    "L8-K3-09-decision-environment",
+    "L8-K3-09-decision-expiry",
+    "L8-K3-09-decision-operation",
+    "L8-K3-09-decision-revision",
+    "L8-K3-09-decision-scope",
+    "L8-K3-09-decision-target",
+    "L8-K3-09-effective_scope-actor",
+    "L8-K3-09-effective_scope-environment",
+    "L8-K3-09-effective_scope-expiry",
+    "L8-K3-09-effective_scope-operation",
+    "L8-K3-09-effective_scope-revision",
+    "L8-K3-09-effective_scope-scope",
+    "L8-K3-09-effective_scope-target",
+    "L8-K3-09-request-actor",
+    "L8-K3-09-request-environment",
+    "L8-K3-09-request-expiry",
+    "L8-K3-09-request-operation",
+    "L8-K3-09-request-revision",
+    "L8-K3-09-request-scope",
+    "L8-K3-09-request-target",
+    "L8-K3-10-EXTRA-KEY",
+    "L8-K3-10-RECORD-BINDING-MISMATCH",
+    "L8-K3-10-REQUIRED-KEY-MISSING",
+    "L8-K3-10-classification",
+    "L8-K3-10-destination",
+    "L8-K3-10-purpose",
+    "L8-K3-10-source",
+    "L8-K3-11-MOVE-ACTION-KIND",
+    "L8-K3-11-TARGET-COMPOSITION",
+    "L8-K3-12-POST-NEGATIVE",
+    "L8-K3-12-POST-OBSERVATION-MISSING",
+    "L8-K3-12-POST-OBSERVED-AT-NULL",
+    "L8-K3-12-POST-UNKNOWN",
+    "L8-K3-12-PRE-DRIFT",
+    "L8-K3-12-PRE-EXPIRED",
+    "L8-K3-12-PRE-REVOKED",
+    "L8-K3-13-DENY-DROPS-UNKNOWN",
+    "L8-K3-13-EMPTY-TRUTH",
+    "L8-K3-13-ISSUER-UNPROVEN",
+    "L8-K3-13-SECRET-IN-REASON",
+    "L8-K3-14-BASE",
+    "L8-K3-14a",
+    "L8-K3-14b",
+    "L8-K3-14c",
+    "L8-K3-14d",
+    "L8-K3-14e",
+    "L8-K3-14f",
+    "L8-K3-14g",
+    "L8-K3-14h",
+    "L8-K3-14i",
+    "L8-K3-14j",
+    "L8-K3-15-ADAPTER",
+    "L8-K3-15-AUTHORITY-DECL",
+    "L8-K3-15-CURRENT-ASSIGNMENT",
+    "L8-K3-15-ENVIRONMENT-DECL",
+    "L8-K3-15-K3-CODE",
+    "L8-K3-15-K3-CONFIG",
+    "L8-K3-15-OPERATION-DECL",
+    "L8-K3-15-OPERATION-VERSION",
+    "L8-K3-15-OWNER-DECL",
+    "L8-K3-15-POLICY",
+    "L8-K3-15-SOURCE-CURRENT-REF",
+    "L8-K3-15-TARGET-DECL",
+    "L8-K3-16-CALLER-HEAD-DRIFT",
+    "L8-K3-16-REVOCATION-HEAD-A",
+    "L8-K3-16-REVOCATION-HEAD-B",
+    "L8-K3-16-TIME-OBSERVATION-REF",
+    "L8-K3-17-RECOVERY-AFTER-LATER-MOVE",
+    "L8-K3-17-RECOVERY-ALREADY-IMMEDIATE",
+    "L8-K3-17-RECOVERY-AUTO-MOVE",
+    "L8-K3-17-RECOVERY-NOT-A-MOVE",
+    "L8-K3-17-RECOVERY-POSTSTOP",
+    "L8-K3-17-RECOVERY-RESTART-CONTROL-FLOW",
+    "L8-K3-17-RECOVERY-SEQ-PLUS-ONE",
+    "L8-K3-17-RECOVERY-WRONG-MOVE",
+    "L8-K3-17-RECOVERY-WRONG-SEGMENT",
+))
+EXPECTED_CK_K5_VERIFIER_IDS = frozenset((
+    "L8-K5-01-DELETE",
+    "L8-K5-01-MUTATE",
+    "L8-K5-01-REORDER",
+    "L8-K5-02-PARSE",
+    "L8-K5-03-SCHEMA",
+    "L8-K5-04-SEQ-GAP",
+    "L8-K5-05-SEQ-DUP",
+    "L8-K5-06-PREV",
+    "L8-K5-07-ENTRY",
+    "L8-K5-08-HEAD-OTHER-CHAIN",
+    "L8-K5-08-HEAD-SHORT",
+    "L8-K5-09-CURRENT-HEAD",
+    "L8-K5-09-FIXED-HEAD",
+    "L8-K5-10-CONFLICT",
+    "L8-K5-10-NOOP",
+    "L8-K5-10-PEER-UNREADABLE",
+    "L8-K5-11-BAD-KEY-DIGEST",
+    "L8-K5-11-BAD-RESULT-DIGEST",
+    "L8-K5-11-CONFLICT-ONE-DIGEST",
+    "L8-K5-11-CONFLICT-UNKNOWN-DIGEST",
+    "L8-K5-11-CORRECT-RESULT",
+    "L8-K5-11-MISSING-KEY",
+    "L8-K5-11-NA-AUTHORITY",
+    "L8-K5-11-NA-REASON",
+    "L8-K5-11-NA-REENTRY-TRIGGER",
+    "L8-K5-11-SEGMENTOPENED-WRONG-WRITER",
+    "L8-K5-11-STALE",
+    "L8-K5-11-UNDECLARED-EVENT",
+    "L8-K5-11-UNDECLARED-INLINE",
+    "L8-K5-11-UNREGISTERED-SEGMENT",
+    "L8-K5-11-WRONG-LOG",
+    "L8-K5-11-WRONG-WRITER",
+    "L8-K5-12-FIXEDREF-DIGEST",
+    "L8-K5-12-FIXEDREF-MISSING",
+    "L8-K5-12-NOT-APPLICABLE",
+    "L8-K5-12-UNKNOWN",
+    "L8-K5-12-UNOBSERVED",
+    "L8-K5-12-VALUE-FIXEDREF",
+    "L8-K5-12-VALUE-INLINE",
+    "L8-K5-13-BRANCH",
+    "L8-K5-13-CHAIN",
+    "L8-K5-13-NEW-REVISION",
+    "L8-K5-13-NO-CORRECTION",
+    "L8-K5-13-RETRACTION",
+    "L8-K5-13-SAME-KEY",
+    "L8-K5-14-NO-WRITEBACK",
+    "L8-K5-15-ORDER-INDEPENDENT",
+    "L8-K5-16-NFC",
+    "L8-K5-16-NUMERIC-ORDER",
+    "L8-K5-17-CLOSED-PARTIAL-READ",
+    "L8-K5-17-COMPLETE",
+    "L8-K5-17-DAMAGED-B",
+    "L8-K5-17-EMPTY-SCOPE",
+    "L8-K5-17-MISSING-HEAD",
+    "L8-K5-17-SCOPE-A",
+    "L8-K5-18-APPEND",
+    "L8-K5-18-DIGEST",
+    "L8-K5-18-EXACT",
+    "L8-K5-18-UNAFFECTED",
+    "L8-K5-18-VERSION",
+    "L8-K5-19-ANCHOR",
+    "L8-K5-19-DIFF",
+    "L8-K5-19-EXTEND",
+    "L8-K5-19-SHORT",
+    "L8-K5-19-STATE",
+    "L8-K5-20-OUTPUT",
+    "L8-K5-20-OUTPUT-DIGEST",
+    "L8-K5-20-SELF-CONSISTENT-ALTER",
+    "L8-K5-21-COMPLETE",
+    "L8-K5-21-DAMAGE-B",
+    "L8-K5-21-DAMAGE-MANIFEST",
+    "L8-K5-21-EMPTY-SCOPE",
+    "L8-K5-21-MASKED-CONFLICT",
+    "L8-K5-21-MISSING-HEAD",
+    "L8-K5-21-SCOPE-A",
+    "L8-K5-22-MANIFEST-UNREADABLE",
+    "L8-K5-22-OPENED",
+    "L8-K5-22-UNREGISTERED",
+    "L8-K5-22-WRONG-ASSIGNMENT",
+    "L8-K5-23-CANCEL",
+    "L8-K5-23-COMPLETION",
+    "L8-K5-23-EXPIRED",
+    "L8-K5-23-FENCE",
+    "L8-K5-23-LATE",
+    "L8-K5-23-NEW-RUN",
+    "L8-K5-23-PEER",
+    "L8-K5-24-CRLF",
+    "L8-K5-25-TRAILING-SPACE",
+    "L8-K5-26-NONCANONICAL",
+))
+EXPECTED_CK_VERIFIER_IDS = EXPECTED_CK_K1_K2_VERIFIER_IDS | EXPECTED_CK_K3_VERIFIER_IDS | EXPECTED_CK_K5_VERIFIER_IDS
+
 CK_L5_PATH = "docs/helix-harness/L5-detail-design/common-kernel.md"
 CK_L8_PATH = "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md"
 CK_L5_K1_LOCATOR = "### 3.2 K1 API contract"
 CK_L5_K2_LOCATOR = "### 3.4 K2 API contract"
+CK_L5_K3_LOCATOR = "#### 6.1.3 K3 function/API contract"
+CK_L5_K5_LOCATOR = "#### 6.2.2 公開関数とprivate helper"
+CK_L5_LOCATOR_BY_RANGE = {
+    "ck-l8-k1-fixtures": CK_L5_K1_LOCATOR,
+    "ck-l8-k2-fixtures": CK_L5_K2_LOCATOR,
+    "ck-l8-k3-fixtures": CK_L5_K3_LOCATOR,
+    "ck-l8-k5-fixtures": CK_L5_K5_LOCATOR,
+}
+CK_L5_LOCATORS = frozenset(CK_L5_LOCATOR_BY_RANGE.values())
 CK_L8_K1_RANGE = "ck-l8-k1-fixtures"
 CK_L8_K2_RANGE = "ck-l8-k2-fixtures"
-CK_L8_SOURCE_BY_RANGE = {
-    CK_L8_K1_RANGE: CK_L5_K1_LOCATOR,
-    CK_L8_K2_RANGE: CK_L5_K2_LOCATOR,
-}
+CK_L8_K3_RANGE = "ck-l8-k3-fixtures"
+CK_L8_K5_RANGE = "ck-l8-k5-fixtures"
+CK_L8_SOURCE_BY_RANGE = CK_L5_LOCATOR_BY_RANGE
 CK_L8_EXPECTED_IDS_BY_RANGE = {
     CK_L8_K1_RANGE: frozenset(ident for ident in EXPECTED_CK_K1_K2_VERIFIER_IDS if ident.startswith("L8-K1-")),
     CK_L8_K2_RANGE: frozenset(ident for ident in EXPECTED_CK_K1_K2_VERIFIER_IDS if ident.startswith("L8-K2-")),
+    CK_L8_K3_RANGE: EXPECTED_CK_K3_VERIFIER_IDS,
+    CK_L8_K5_RANGE: EXPECTED_CK_K5_VERIFIER_IDS,
+}
+CK_L8_OUTCOME_COLUMN_BY_RANGE = {
+    CK_L8_K1_RANGE: 5,
+    CK_L8_K2_RANGE: 5,
+    CK_L8_K3_RANGE: 6,
+    CK_L8_K5_RANGE: 4,
 }
 EXPECTED_PARTIAL = frozenset(("RL-D4", "RL-T3"))
 EXPECTED_NOT_EXERCISED = frozenset(("RL-V1", "RL-K3"))
@@ -251,8 +540,8 @@ EXPECTED_LEGACY_ASSETS = frozenset((
     "LEGACY-ASSET-829E9C1646D4883C8B99",
 ))
 
-_ID_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+(?:[a-d])?$")
-_BACKTICK_ID_RE = re.compile(r"^`([A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+(?:[a-d])?)`$")
+_ID_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9_]+)+(?:[a-d])?$")
+_BACKTICK_ID_RE = re.compile(r"^`([A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9_]+)+(?:[a-d])?)`$")
 _HEADING_RE = re.compile(r"^#{1,6} .+$")
 _BULLET_RE = re.compile(r"^- \*\*([^\s*]+) [^*]+\*\*.*$")
 _SHA_RE = re.compile(r"^[0-9a-f]{64}$")
@@ -266,16 +555,24 @@ _PARENT_AC_END_HEADING = "## 2. local CI契約"
 CK_L5_RANGE_CONFIG = {
     CK_L5_K1_LOCATOR: ("ck-l5-k1-api", "### 3.3 K2: reference and key records"),
     CK_L5_K2_LOCATOR: ("ck-l5-k2-api", "### 3.5 role-bound input alias binding"),
+    CK_L5_K3_LOCATOR: ("ck-l5-k3-api", "#### 6.1.4 invariantからL5 functionへのtrace"),
+    CK_L5_K5_LOCATOR: ("ck-l5-k5-api", "#### 6.2.3 不変条件の分解"),
 }
 CK_L8_DEFINITION_CONFIG = {
     CK_L8_K1_RANGE: ("## 3. K1 fixtures", "## 4. K2 fixtures", 1),
     CK_L8_K2_RANGE: ("## 4. K2 fixtures", "## 5. K3–K10と未実施範囲", 1),
+    CK_L8_K3_RANGE: ("### 5.1 K3 fixtures", "#### 5.1.2 K3 reason mappingの未決", 1),
+    CK_L8_K5_RANGE: ("### 5.2 K5 fixtures", "## 6. K1/K2 unit範囲と登録oracleの境界", 1),
 }
 CK_L8_REFERENCE_CONFIG = {
     "ck-l8-k1-l9-oracles": ("## 3. K1 fixtures", "## 4. K2 fixtures", 2, CK_L8_K1_RANGE),
     "ck-l8-k1-l4-l5-contracts": ("## 3. K1 fixtures", "## 4. K2 fixtures", 3, CK_L8_K1_RANGE),
     "ck-l8-k2-l9-oracles": ("## 4. K2 fixtures", "## 5. K3–K10と未実施範囲", 2, CK_L8_K2_RANGE),
     "ck-l8-k2-l4-l5-contracts": ("## 4. K2 fixtures", "## 5. K3–K10と未実施範囲", 3, CK_L8_K2_RANGE),
+    "ck-l8-k3-l9-oracles": ("### 5.1 K3 fixtures", "#### 5.1.2 K3 reason mappingの未決", 2, CK_L8_K3_RANGE),
+    "ck-l8-k3-l4-l5-contracts": ("### 5.1 K3 fixtures", "#### 5.1.2 K3 reason mappingの未決", 3, CK_L8_K3_RANGE),
+    "ck-l8-k5-l9-oracles": ("### 5.2 K5 fixtures", "## 6. K1/K2 unit範囲と登録oracleの境界", 2, CK_L8_K5_RANGE),
+    "ck-l8-k5-l4-l5-contracts": ("### 5.2 K5 fixtures", "## 6. K1/K2 unit範囲と登録oracleの境界", 3, CK_L8_K5_RANGE),
 }
 _MANIFEST_KEYS = {"version", "files", "coverage_edges", "coverage_dispositions", _PARENT_AC_COVERAGE_KEY, "source_scopeouts", "legacy_pins", "unsupported_items"}
 _MANIFEST_REQUIRED_KEYS = _MANIFEST_KEYS - {_PARENT_AC_COVERAGE_KEY}
@@ -412,7 +709,7 @@ def _contains_id_token(cell):
         return True
     # This only detects that a reference-looking token lacks a declared
     # literal expansion. It never turns a token found by regex into an ID.
-    for token in re.findall(r"(?<![A-Za-z0-9])[A-Z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+(?![A-Za-z0-9])", cell):
+    for token in re.findall(r"(?<![A-Za-z0-9])[A-Z][A-Za-z0-9]*(?:-[A-Za-z0-9_]+)+(?![A-Za-z0-9])", cell):
         # A two-part prose label such as `OS-020` is not a contract ID; the
         # corpus identifiers either carry an alphabetic suffix or another
         # typed component (for example K1-I1, IV-K1-01, and AC-OS-020-01).
@@ -506,8 +803,8 @@ def _validate_ck_range_contracts(file_by_path):
     l5 = file_by_path[CK_L5_PATH]
     expected_l5 = set(CK_L5_RANGE_CONFIG)
     actual_l5 = {r["start_heading"] for r in l5["definition_ranges"] if r["grammar"] == "exact_heading"}
-    if (actual_l5 != expected_l5 or len(l5["definition_ranges"]) != 2 or l5["reference_ranges"]):
-        _fail("Unknown", "missing_input", "Common Kernel L5 must define exactly the two fixed section locators")
+    if (actual_l5 != expected_l5 or len(l5["definition_ranges"]) != 4 or l5["reference_ranges"]):
+        _fail("Unknown", "missing_input", "Common Kernel L5 must define exactly the four fixed section locators")
     for heading, (range_id, end_heading) in CK_L5_RANGE_CONFIG.items():
         matches = [r for r in l5["definition_ranges"] if r["range_id"] == range_id]
         if len(matches) != 1:
@@ -520,7 +817,7 @@ def _validate_ck_range_contracts(file_by_path):
 
     l8 = file_by_path[CK_L8_PATH]
     if {r["range_id"] for r in l8["definition_ranges"]} != set(CK_L8_DEFINITION_CONFIG):
-        _fail("Unknown", "missing_input", "Common Kernel L8 K1/K2 definition ranges incomplete")
+        _fail("Unknown", "missing_input", "Common Kernel L8 K1/K2/K3/K5 definition ranges incomplete")
     if {r["range_id"] for r in l8["reference_ranges"]} != set(CK_L8_REFERENCE_CONFIG):
         _fail("Unknown", "missing_input", "Common Kernel L8 typed reference ranges incomplete")
     for range_id, (start, end, column) in CK_L8_DEFINITION_CONFIG.items():
@@ -698,12 +995,16 @@ def _extract_ids(manifest, sources):
         if extra:
             _fail("Unknown", "conflict", "unexpected source IDs in " + path + ": " + ",".join(sorted(extra)))
     ck_actual = {d["id"] for d in definitions if d["path"] == CK_L8_PATH}
-    if ck_actual != EXPECTED_CK_K1_K2_VERIFIER_IDS:
-        missing = EXPECTED_CK_K1_K2_VERIFIER_IDS - ck_actual
-        extra = ck_actual - EXPECTED_CK_K1_K2_VERIFIER_IDS
+    for range_id, expected_ids in CK_L8_EXPECTED_IDS_BY_RANGE.items():
+        actual_ids = {d["id"] for d in definitions if d["path"] == CK_L8_PATH and d["range_id"] == range_id}
+        missing = expected_ids - actual_ids
+        extra = actual_ids - expected_ids
         if missing:
-            _fail("Unknown", "missing_input", "fixed Common Kernel verifier inventory incomplete: " + ",".join(sorted(missing)))
-        _fail("Unknown", "conflict", "unexpected Common Kernel verifier inventory: " + ",".join(sorted(extra)))
+            _fail("Unknown", "missing_input", "fixed Common Kernel verifier inventory incomplete in " + range_id + ": " + ",".join(sorted(missing)))
+        if extra:
+            _fail("Unknown", "conflict", "unexpected Common Kernel verifier inventory in " + range_id + ": " + ",".join(sorted(extra)))
+    if ck_actual != EXPECTED_CK_VERIFIER_IDS:
+        _fail("Unknown", "conflict", "Common Kernel component inventories do not match the fixed union")
     return definitions, references
 
 
@@ -862,7 +1163,7 @@ def resolve_id_graph(manifest: dict, sources: dict[str, bytes]) -> dict:
                 elif file["role"] == "l7":
                     source_id = None
                     for token in re.findall(r"`([^`]+)`", cells[0]):
-                        match = re.match(r"([A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+(?:[a-d])?)", token)
+                        match = re.match(r"([A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9_]+)+(?:[a-d])?)", token)
                         if match and match.group(1) in REQUIRED_SOURCE_IDS:
                             source_id = match.group(1)
                             break
@@ -873,11 +1174,11 @@ def resolve_id_graph(manifest: dict, sources: dict[str, bytes]) -> dict:
                     id_range["range_id"] in CK_L8_REFERENCE_CONFIG and
                     id_range["id_column"] == 3
                 ):
-                    source_ids = [ident for ident in target_ids if ident in {CK_L5_K1_LOCATOR, CK_L5_K2_LOCATOR}]
+                    source_ids = [ident for ident in target_ids if ident in CK_L5_LOCATORS]
                     definition_range = CK_L8_REFERENCE_CONFIG[id_range["range_id"]][3]
                     expected_source = CK_L8_SOURCE_BY_RANGE[definition_range]
                     if len(source_ids) != 1 or source_ids[0] != expected_source:
-                        _fail("Unknown", "conflict", "Common Kernel L8 row source locator differs from its K1/K2 pair")
+                        _fail("Unknown", "conflict", "Common Kernel L8 row source locator differs from its component pair")
                     row_ids = [ident for ident, (definition_path, definition_range, definition_line, _) in definition_rows.items()
                                if definition_path == path and definition_range == CK_L8_REFERENCE_CONFIG[id_range["range_id"]][3] and definition_line == line_no]
                     if not row_ids:
@@ -916,8 +1217,8 @@ def verify_coverage_edges(manifest: dict, graph: dict) -> dict:
         verifier_role = files[edge["verifier_path"]]["role"]
         if edge["verifier_path"] == CK_L8_PATH:
             expected_source = CK_L8_SOURCE_BY_RANGE.get(verifier_def["range_id"])
-            if source_id not in {CK_L5_K1_LOCATOR, CK_L5_K2_LOCATOR} or source_id != expected_source:
-                _fail("Unknown", "conflict", "Common Kernel L8 edge source does not own this K1/K2 fixture")
+            if source_id not in CK_L5_LOCATORS or source_id != expected_source:
+                _fail("Unknown", "conflict", "Common Kernel L8 edge source does not own this component fixture")
         allowed = {"l4": {"l9"}, "l5": {"l8"}, "l6": {"l7"}}
         if verifier_role not in allowed.get(source_role, set()):
             _fail("Rejected", "invalid_input", "edge crosses an unsupported design pair")
@@ -926,6 +1227,10 @@ def verify_coverage_edges(manifest: dict, graph: dict) -> dict:
             _fail("Unknown", "conflict", "OutcomeRef differs from edge destination")
         _text(ref["range_id"], "OutcomeRef.range_id")
         column = _integer(ref["outcome_column"], "OutcomeRef.outcome_column")
+        if edge["verifier_path"] == CK_L8_PATH:
+            expected_column = CK_L8_OUTCOME_COLUMN_BY_RANGE.get(verifier_def["range_id"])
+            if expected_column is None or column != expected_column:
+                _fail("Unknown", "conflict", "Common Kernel OutcomeRef column differs from its fixed component range")
         verifier_file = files.get(ref["verifier_path"])
         if verifier_file is None:
             _fail("Unknown", "missing_input", "OutcomeRef file missing")

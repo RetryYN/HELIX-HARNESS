@@ -13,14 +13,14 @@ version_target: 1.0
 
 ## 固定入力
 
-基準はmain `cb920c9dae9a4c2a7a023a361e654bddef4d4dd8`。L4/L5の旧source・採用済み親・変更理由のcrosswalkを継承し、実行結果を継承しない。
+基準はmain `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`。L4/L5の旧source・採用済み親・変更理由のcrosswalkを継承し、実行結果を継承しない。
 
 | 入力path | 本文SHA-256 |
 |---|---|
-| `docs/helix-os/L4-basic-design/local-ci.md` | `0576e1cf79f07bd9c167a1d073603f9226a6daf9af6e659e69c27f0475a23d3c` |
-| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `058cb6c7dae852d723396830311441d6cefc13c242085082bfa6c98ebf0989c8` |
-| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `d9684f7d72cc0f23c0144330f866cf9f23f01b94f02d22c157c75fb209dd1038` |
-| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `9064f37dcc6fa54fbc44938292975979c629d8b21cd820554181e9b4c5798f5e` |
+| `docs/helix-os/L4-basic-design/local-ci.md` | `951a97ce4454d10e277fab09d2d4eeb5c02d1ab6826d3f9f15e1d87066c4e396` |
+| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `c330e2ae36e89705d74d361ce6b3d5c3a8f8faa1edd4add781ec2f5ad5cc2b32` |
+| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `f141e57d0ea9c266f99f5d1212518a9782d6673bf874cdead694d19482d39dbf` |
+| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `56b9390aec699cddea678700f18e0a5e8f085a9fe83cfbe63c3e21fda8d317b2` |
 
 ## 1. 関数群
 
@@ -95,17 +95,17 @@ Receipt lifecycle:
 
 ### `F-LCI-09a` — `load_design_manifest(snapshot) -> CiApiResult<DesignScopeManifest>`
 
-全fieldと上記型、path+role+pair+source-kind、definition/reference range selector grammarと固定literal expansion表を確認する。heading_idはfence外の見出し構造行全文literalから固定対応表の既存IDだけを展開し、略記がなくても対応表を要求する。見出し/entry欠落・空展開はUnknown(missing_input)、見出しliteral/展開ID重複はUnknown(conflict)とする。bullet_idは宣言範囲の先頭IDだけ、exact_headingはstart_heading全文literal一件だけをsection_locatorとして読む。range外tokenや未登録略記から定義を補わず、exact_heading範囲内の子見出しを追加section_locatorにしない。必須field欠落・余分field・型不正・unsupported dispositionのpass化は`Rejected(invalid_input)`、固定corpus上のID/edge欠落は`Unknown(missing_input)`、重複/曖昧定義は`Unknown(conflict)`とする。固定corpusは12 path/role/pairを持ち、required source inventoryは187 ID（既存185とCommon Kernel L5の2 section locator）である。L8のexpanded fixture IDはverifier definitionsでありsource countには含めない。
+全fieldと上記型、path+role+pair+source-kind、definition/reference range selector grammarと固定literal expansion表を確認する。heading_idはfence外の見出し構造行全文literalから固定対応表の既存IDだけを展開し、略記がなくても対応表を要求する。見出し/entry欠落・空展開はUnknown(missing_input)、見出しliteral/展開ID重複はUnknown(conflict)とする。bullet_idは宣言範囲の先頭IDだけ、exact_headingはstart_heading全文literal一件だけをsection_locatorとして読む。range外tokenや未登録略記から定義を補わず、exact_heading範囲内の子見出しを追加section_locatorにしない。必須field欠落・余分field・型不正・unsupported dispositionのpass化は`Rejected(invalid_input)`、固定corpus上のID/edge欠落は`Unknown(missing_input)`、重複/曖昧定義は`Unknown(conflict)`とする。固定corpusは12 path/role/pairを持ち、required source inventoryは189 ID（既存185とCommon Kernel L5の4 section locator）である。L8のexpanded fixture IDはverifier definitionsでありsource countには含めない。
 
 `parent_ac_coverage`もmanifest schemaで検証する。一般必須field欠落の`Rejected(invalid_input)`に対する例外として、このlist自体またはOS-020-01/03の片方のrow欠落は`Unknown(missing_input)`とする。重複またはL4 §1との不一致は`Unknown(conflict)`、passへの変更・unknown field・型不正・空理由は`Rejected(invalid_input)`である。理由比較はL4表のreason cellとのliteral一致に限り、自然言語の意味推論をしない。この専用記録はF09cのcoverage graphへ取り込まない。
 
 ### `F-LCI-09b` — `resolve_id_graph(definitions, references) -> CiApiResult<IdGraph>`
 
-ID一意性・定義者・参照先を検査する。Common Kernel L8のK1/K2 fixture表ではcase列のexact cell literal展開を定義IDとし、同じexpanded IDをそのliteralが現れたraw table rowへ一意に結ぶ。L8第2列のL9 oracleと第3列に明記されたL4 invariantsはtyped referenceのまま保持し、fixture sourceへ昇格しない。展開IDが別rowに重複定義される場合は`Unknown(conflict)`、必要なliteral展開またはrow bindingがない場合は`Unknown(missing_input)`とする。
+ID一意性・定義者・参照先を検査する。Common Kernel L8のK1/K2/K3/K5 fixture表ではcase列のexact cell literal展開を定義IDとし、同じexpanded IDをそのliteralが現れたraw table rowへ一意に結ぶ。L8第2列のL9 oracleと第3列に明記されたL4 invariantsはtyped referenceのまま保持し、fixture sourceへ昇格しない。展開IDが別rowに重複定義される場合は`Unknown(conflict)`、必要なliteral展開またはrow bindingがない場合は`Unknown(missing_input)`とする。
 
 ### `F-LCI-09c` — `verify_coverage_edges(edges, id_graph) -> CiApiResult<CoverageReport>`
 
-L4→L9、L5→L8、L6→L7のcontract/fixtureの実在、edge_id全体一意性、dispositionから同source edgeへの解決を検査する。OutcomeRefのverifier_path/range_id/verifier_id/outcome_columnがedge先の一意な定義行の非空期待値cellへ戻ることを確かめる。Common Kernel L5→L8はK1/K2の2 source locatorそれぞれについて、当該L8 rangeのliteral expansionが列挙する全111/53 fixture IDへ一件ずつedgeを要求する。合計164 verifier IDの必須destination inventoryはversioned checker code configuration内の独立固定リストであり、manifestのK1/K2 range expansion、definition row、coverage edge、dispositionとの一致を照合する。manifest範囲・edge・dispositionを同時に削除しても独立リストとの不一致を検出する。同sourceに他edgeが残っていても一件のedgeと対応するdisposition referenceが同時に削除された欠落を検出する。各edgeのverifier ID、L5 source locator、raw-row binding、OutcomeRefは同じpair rangeと一致する。L8第2列のL9 IDや第3列のL4 IDを`source_id`へ置いたedge、K1/K2のlocator交差、expanded IDの別行への付替えは`Unknown(conflict)`とする。欠落edge/locator/outcome cellは`Unknown(missing_input)`であり、実行や意味被覆を推論しない。edge_id重複は`Unknown(conflict)`。`mapped`/`partial` sourceは一つ以上のedgeを要求し、`partial`には理由・既存owner ref・operational owner状況・return pathも必要とする。`not_exercised` sourceは`edge_ids=[]`と理由・既存owner ref・operational owner状況・return pathを要求し、edge先の一意解決を要求しない。設計対象外の抽出等はcoverage dispositionに混ぜず`source_scopeouts`で個別検査する。
+L4→L9、L5→L8、L6→L7のcontract/fixtureの実在、edge_id全体一意性、dispositionから同source edgeへの解決を検査する。OutcomeRefのverifier_path/range_id/verifier_id/outcome_columnがedge先の一意な定義行の非空期待値cellへ戻ることを確かめる。Common Kernel L5→L8は4つのL5 locatorそれぞれについて、対応するL8 rangeのliteral expansionが列挙する全fixture IDへ一件ずつedgeを要求する。versioned checker configuration内の独立固定inventoryはK1/K2=164、K3=178、K5=89を別集合で保持し、manifestのrange expansion、definition row、coverage edge、dispositionを集合ごと照合する。manifest範囲・edge・dispositionを同時に削除しても独立リストとの不一致を検出する。同sourceに他edgeが残っていても一件のedgeと対応するdisposition referenceが同時に削除された欠落を検出する。各edgeのverifier ID、L5 source locator、raw-row binding、OutcomeRefは同じpair rangeと一致する。L8第2列のL9 IDや第3列のL4 IDを`source_id`へ置いたedge、K1/K2/K3/K5のlocator交差、expanded IDの別行への付替えは`Unknown(conflict)`とする。欠落edge/locator/outcome cellは`Unknown(missing_input)`であり、実行や意味被覆を推論しない。edge_id重複は`Unknown(conflict)`。`mapped`/`partial` sourceは一つ以上のedgeを要求し、`partial`には理由・既存owner ref・operational owner状況・return pathも必要とする。`not_exercised` sourceは`edge_ids=[]`と理由・既存owner ref・operational owner状況・return pathを要求し、edge先の一意解決を要求しない。設計対象外の抽出等はcoverage dispositionに混ぜず`source_scopeouts`で個別検査する。
 
 ### `F-LCI-09d` — `verify_legacy_pins(pins) -> CiApiResult<PinReport>`
 
