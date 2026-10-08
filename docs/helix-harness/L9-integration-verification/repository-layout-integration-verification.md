@@ -19,7 +19,7 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
 
 ## 2. 検証項目
 
-各項目は正常を一つ持ち、反例は一つの条件だけを変える。期待は一つの結果クラスで書く。IV-RL-21と23は拒否を返す反例でなく、境界値での正常（出力が変わらないこと、符号化が成功すること）を確かめる項目である。
+各項目は正常を一つ持ち、反例は一つの条件だけを変える。期待は一つの結果クラスで書く。一点の変異が派生値（digest、release_id、鍵）を変える場合は、fixtureで派生値を整合させ、検査の対象の成分だけが変わるようにする。複数の成分を合成する受口では、外側の結果だけでなく、対象の成分の識別とクラスを必須の出力として照合する。IV-RL-21と23は拒否を返す反例でなく、境界値での正常（出力が変わらないこと、符号化が成功すること）を確かめる項目である。
 
 | ID | 規則 | 正常 | 一点の変異 | 期待 |
 |---|---|---|---|---|
@@ -61,10 +61,10 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
 | `IV-RL-36` | RL-D5 | 正式なパックの依存に`scaffold/`が無い | `scaffold/`の部品を一つ依存に加える | `Negative` |
 | `IV-RL-37` | RL-T1 | unit・connection・compositeの各`tests/`の結果が別に記録される | unitの`tests/`を除き、compositeの検証だけを通す | unitの義務は`Unobserved(not_run)`（上位の合格から導かない） |
 | `IV-RL-38` | RL-P3 | 各行の実bytesが`canonical_json(LogEntry)`＋LF一つと一致する | 1行のJSONのkeyの順だけをcanonicalでない順にする（値は同じ） | `Unknown(unreadable)` |
-| `IV-RL-39` | RL-C2〜C4 | OS所有のcompositeの`declaration.json`が封筒・識別項目（identity、版、owner＝OS）・構成項目だけを持ち、bytesのdigestが`VersionRegistered`と一致し、`helix/helix-os/composites/<enc(identity)>/`に置かれ、C2・C3・C4をすべて通る | 識別項目の`owner`だけを除く | `Unknown(missing_input)`（pathから補わない） |
-| `IV-RL-40` | RL-C2 | 同上 | 構成項目の`data format`だけを除く | `Unknown(missing_input)` |
-| `IV-RL-41` | RL-R2、G8-I5 | 全成分が肯定で`ReleaseEstablished`を追記できる | 新しいmanifestで一つの`ArtifactRef`の`revision`だけを替える（identity・digestは同じ） | `Rejected`（その成果物の検証のreceiptは`Stale`で、`eligibility`が`Positive`にならない） |
-| `IV-RL-42` | RL-R2、G8-I2 | 同上 | 一つの成果物を、bytesとdigestが自己整合した別identityの`ArtifactRef`に替える | `Rejected`（`build_chain`がそのbuildに項目の無い`Unobserved(not_run)`） |
+| `IV-RL-39` | RL-C2（C3・C4は通す） | OS所有のcompositeの`declaration.json`が封筒・識別項目（identity、版、owner＝OS）・構成項目だけを持ち、bytesのdigestが`VersionRegistered`と一致し、`helix/helix-os/composites/<enc(identity)>/`に置かれ、C2・C3・C4をすべて通る | 別fixtureとして、識別項目の`owner`だけを除いた宣言を作り、そのbytesのdigestで`VersionRegistered`を登録し直す（C3は一致したまま。登録digestを固定したままの変更の拒否はIV-RL-05で扱う） | `Unknown(missing_input)`（RL-C2。pathから補わない） |
+| `IV-RL-40` | RL-C2（C3・C4は通す） | 同上 | IV-RL-39と同じく、構成項目の`data format`だけを除いた宣言のbytesで登録し直す | `Unknown(missing_input)`（RL-C2） |
+| `IV-RL-41` | RL-R2(d)、G8-I5 | 変異後のmanifest M′について、(a)M′の`stage_key`のstage receipt、(b)変えた成果物X′の`build_chain`（X′と同じrevision・digestの項目を持つBuildManifestを用意）、(c)X′のbytesを、いずれも肯定にしたfixture。X′と同じidentityの旧revisionのXには、実行物の検証のreceiptだけがある | 成果物の`ArtifactRef`の`revision`だけを替える（identity・digestは同じ。release_id・`stage_key`の変化は派生として上のfixtureで整合させる） | `required`の出力で、成分`{d, X′}`が`Stale`、他の成分は肯定（外側の`ReleaseEstablished`は`Rejected`）。(d)を省く実装はこの成分を出せず不合格 |
+| `IV-RL-42` | RL-R2(b)、G8-I2 | 変異後のmanifest M″について、(a)stage receipt、(c)bytes、(d)別identityの成果物Yを`subject`とする実行物の検証のreceiptを、いずれも肯定にしたfixture | 一つの成果物を、bytesとdigestが自己整合した別identityの`ArtifactRef` Yに替える（Yを作ったbuildの項目は置かない） | `required`の出力で、成分`{b, Y}`が`Unobserved(not_run)`、他の成分は肯定（外側は`Rejected`）。(b)を省く実装は不合格 |
 | `IV-RL-43` | RL-R2 | 読み手が導き直した`stage_key`が記録と一致する | 記録の`stage_key`の`subject`だけをcompositeの`SubjectRef`にする | `Unknown(conflict)` |
 | `IV-RL-44` | 4.1 stage_key | 宣言の役割とmanifestのfieldが一対一 | manifestから`rollback`だけを除く | `Unknown(missing_input)` |
 | `IV-RL-45` | RL-C7 | 宣言の参照するACのdigestが、指すrevisionの`docs/`のbytesと一致する | `docs/`の文書を1byte変え、宣言の参照digestは変えない | `Unknown(conflict)`（宣言の側の写しを使わない） |
@@ -72,6 +72,7 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
 | `IV-RL-47` | RL-V3 | 分類記録のある資産は記録どおりの分類を返す | repo内の一つの資産の分類記録だけを除く | `Unknown(missing_input)`（publicとしない） |
 | `IV-RL-48` | RL-V6 | `include`の閉包の成果物だけが投影される | `include`を空にする（repoはpublicのまま） | `Unknown(missing_input)`（CK K1-I4。全体を投影しない） |
 | `IV-RL-49` | RL-T2 | `tests/`が参照する検証設計の項目IDが、指すrevisionの`docs/`にある | 参照する項目IDを`docs/`に無いIDへ替える | `Unknown(missing_input)` |
+| `IV-RL-52` | RL-T2（複製） | `tests/`は有効な項目IDだけを参照し、`check_design_copy`は肯定 | 有効なID参照を保ったまま、L9のある項目の表の行（正常・変異の欄）を正規化後に同じ文字列としてtestのコメントに加える | `check_design_copy`は`Negative` |
 | `IV-RL-50` | RL-K1 | rootのfileが9.2の一覧と理由の追記に一致する | 理由の追記の無いroot fileを一つ足す | `Negative` |
 | `IV-RL-51` | RL-K2 | 開発・実行・検証・配布のsurfaceにBunの参照が無い | 一つの設定にBunのlockまたはcommandを足す | `Negative`（`HELIXOS-L2-132`の003） |
 

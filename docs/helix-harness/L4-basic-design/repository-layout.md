@@ -177,7 +177,7 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 ### 9.1 検証コード
 
 - **RL-T1 種類に対応させる**：unitの`tests/`は単体の検証、connectionの`tests/`は接続の検証、compositeの`tests/`は構成全体の検証を置く（構成判断 判断1、`AC-HARNESS-L3-014-02`）。下位の検証の合格から上位の合格を導かない。
-- **RL-T2 設計の正本は`docs/`**：V字の各層の検証設計（L7〜L10）は`docs/<機構>/`に置く。`tests/`のコードは検証設計の項目IDを参照し、設計の本文を写さない（RL-C7）。
+- **RL-T2 設計の正本は`docs/`**：V字の各層の検証設計（L7〜L10）は`docs/<機構>/`に置く。`tests/`のコードは検証設計の項目IDを参照し、設計の本文を写さない（RL-C7）。検査`check_design_copy(pack, docs_revision) -> Combined`は、参照先revisionの検証設計（L7〜L10の対の文書）の段落、箇条、表の行、および表のID・規則・期待以外の欄を比較の単位とし、各単位と`tests/`の各コメント・文字列literalを同じ正規化（Unicode NFC、連続する空白を一つの空白へ、前後の空白を除く）で比べ、正規化後の文字列が一致する単位があれば、その単位ごとに否定の成分とする。言い換えた複製はこの検査では検出できず、独立reviewに残す。
 - **RL-T3 fixtureは合成data**：`fixtures/`と`tests/`は合成dataだけを使う（`AC-OS-014-05`、RL-V2）。
 
 ### 9.2 root config
