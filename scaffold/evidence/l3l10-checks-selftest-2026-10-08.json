@@ -4,11 +4,11 @@
  "authority_effect": "none",
  "binding": "scaffold/bindings/SCF-B-0157.json",
  "note": "仮の検証の記録。正式なCI／検証／受入の成立を意味しない。検出器の回帰確認であり、L3／L10の承認・合格・merge admissionを生成しない",
- "source_commit": "cdcbd5d1aa99e9cb9a27ca029e8daa43387ad0cb",
+ "source_commit": "37f0b6bb1254ed83cc4e055a81ce9333e4aa239b",
  "source_commit_note": "記録時のworktreeのHEAD。検査器自体の版はchecker_source_digests（各fileのSHA-256）で特定する",
- "recorded_at": "2026-10-08T05:23:52.059888+00:00",
+ "recorded_at": "2026-10-08T09:20:32.879894+00:00",
  "checker_source_digests": {
-  "scaffold/l3l10-checks/README.md": "77dc6bf807ed2b21aa0940afdfc92572fcc3ee26dcd5bb80cef69bcf79ed84f8",
+  "scaffold/l3l10-checks/README.md": "1112465d14bc6112509779ddff50148839469234a26d39faeff474ecf8ddff34",
   "scaffold/l3l10-checks/l3l10check.py": "9d190c0dd12fabb056c14ccfa40154a8d6098fcf6b9907d5b098080270c41f74",
   "scaffold/l3l10-checks/selftest.py": "aa68468def743c6ac94c4f7bef8142d779faa3640132787b3214c0259e91f8d8",
   "scaffold/l3l10-checks/corpus/major-corpus.json": "c5faea577776702c4fb6e04f54917dbf77fc133954cded37b665c6b767008b85"

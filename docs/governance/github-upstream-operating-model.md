@@ -115,27 +115,30 @@ PRの中でも要求identityごとにL3とL10の対を分けて書き、別の�
 ## L3／L10承認の委任
 
 2026-10-05のPO判断（[判断記録](decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md)）により、
-`design_verification` PRのL3／L10の対象revision承認は、Opus（Claudeの`review_merge` lane）とFable（Claudeのadvisor）の見解が一致した場合に成立する。
+`design_verification` PRのL3／L10の対象revision承認は、POからの委任で成立する。成立の条件は、2026-10-08のPO判断（[判断記録](decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md)）で、作成と別系統の独立reviewに改めた。
 委任はL3／L10に限る。Concept、企画（L1）、要求とprototype／非UIの合意（L2）は人が判断する。要求の意味・範囲・担当・版を変える必要が出た場合は、L2へ戻してPOへ上げる。
 
-### 見解の一致
+### 承認の成立
 
-次の三つが、同じ対象の本文revisionについてそろった場合だけ、見解が一致したとする。
+次の三つが、同じ対象の本文revisionについてそろった場合だけ、承認が成立する。
 
-1. Opusの独立reviewが、exact base／content HEADについてBlocker、Major、Minor、未確認範囲をすべて0としている（`no_findings`）。
-2. Fableが、同じ本文revisionの6文書と固定親を自分で読み、承認を止める問題がないと結論している。Fableには、review経過を入力として渡してよいが、結論は本文と固定親を読んだうえでFable自身が出す。
-3. 1と2の後で、6文書のbytesが変わっていない。
+1. 作成側（content producer）とは別のruntimeで、別のmodel familyに属するreview側が、exact base／content HEADを独立にreviewし、承認を止める問題がない（`no_findings`）と結論している。現行の運用では、Codex（OpenAI系）が作成した本文をClaude（Anthropic系）が、Claudeが作成した本文をCodexがreviewする。
+2. review commentに、作成側とreview側のruntime、model family、モデル名と版が記されている。同じ系統どうしのreviewは、1を満たさない。
+3. 1の後で、6文書のbytesが変わっていない。
 
-Fableが承認を止める問題を挙げた場合は、一致しない。Opusがその問題を固定親に照らして確かめ、妥当なら作成側へfindingとして返す。
-修正で本文revisionが変わった場合は、新しいrevisionについて1と2をやり直す。OpusとFableの判断が分かれたまま解けない場合は、両方の見解を添えてPOへ上げる。
-Fableが挙げたMinorだけの場合も、返すかどうかはOpusが固定親に照らして決める。返した場合は本文revisionが変わるので、1と2をやり直す。
+review側が承認を止める問題を挙げた場合は、作成側へfindingとして返す。修正で本文revisionが変わった場合は、新しいrevisionについて1と2をやり直す。
+
+Fable（Claudeのadvisor）は毎回のreviewに入れず、エスカレーション先とする。作成側とreview側の判断が分かれて解けない場合、review側が固定親との対応や要求の意味の判断に迷う場合、不可逆・高影響の操作の前に、Fableに相談する。Fableの結論は助言として記録する。Fableが承認を止める問題を挙げた場合は、review側が固定親に照らして確かめ、妥当なら作成側へ返す。それでも解けない場合は、両方の見解を添えてPOへ上げる。
+
+2026-10-08の判断記録がmainへ入る前に、OpusとFableの見解の一致で成立した承認は、そのまま有効である。
 
 ### 記録とmerge
 
-- Opusは、Fableの結論（承認可否、残る問題、照合した対象revision）を、Fableの本文から要約せずにPR commentへ記録する。Opusの`no_findings`も、従来どおりPR commentとmailboxで返す。
-- 作成側は、従来のPO判断記録と同じ形式で判断記録を加える。`decider_role`は`PO（委任：Opus・Fable一致）`とし、次を固定する。
-  - 本委任の判断記録
-  - Opusの`no_findings` commentとFableの結論commentのIDと、取得したbodyのSHA-256
+- review側は、承認の成否、残る問題、照合した対象revision、作成側とreview側の系統を、PR commentとmailboxで返す。利用できる場合は、`scaffold/l3l10-checks/`の検出器（`SCF-B-0157`）のreceiptの結果を添える。検出器は違反の検出器であり、合格条件ではない。
+- 作成側は、従来のPO判断記録と同じ形式で判断記録を加える。`decider_role`は`PO（委任：作成と別系統の独立review）`とし、次を固定する。
+  - 本委任の判断記録（2026-10-05と2026-10-08）
+  - 独立reviewの結論commentのIDと、取得したbodyのSHA-256
+  - 作成側とreview側の系統
   - 承認対象の本文revisionと、6文書のSHA-256
 - review側は、判断記録の引用と、6文書が承認対象から変わっていないことを照合する。照合の後は、従来どおり作成側がReady化し、review側がmerge admissionを再照合して明示mergeする。
 - 委任による承認は、POの承認を待たない。本委任より前に受けたPO承認は、そのまま有効である。
@@ -152,7 +155,7 @@ Fableが挙げたMinorだけの場合も、返すかどうかはOpusが固定親
 
 ### POの事後確認
 
-機構のStageについて委任による承認がまとまった時点で、review側はPOへ一覧を出す。一覧には、PR、承認対象の本文revision、判断記録、OpusとFableの結論commentを並べる。
+機構のStageについて委任による承認がまとまった時点で、review側はPOへ一覧を出す。一覧には、PR、承認対象の本文revision、判断記録、独立reviewの結論comment（2026-10-08より前の承認はOpusとFableの結論comment）を並べる。
 POが差し戻すと判断した場合は、差し戻しの判断記録を作る。対象revisionの承認は、その判断記録で取り消し、該当する本文を修正のPRへ戻す。事後確認の前にmergeした内容は、差し戻しの判断記録が入るまで有効とする。
 
 ### 旧HELIXとの対応
@@ -163,6 +166,7 @@ POが差し戻すと判断した場合は、差し戻しの判断記録を作る
 保持する点は三つある。Concept、企画、要求とprototype／非UIの合意は人が持つ。L3はAIが起草する。不可逆な外部作用は、対象と作用を明示した許可を要する。
 
 変更する点は、L3要件の承認を、人が毎回行う形から、POの委任によりOpusとFableの見解の一致で成立する形へ移し、POは機構×Stageの区切りで事後確認することである。
+2026-10-08のPO判断で、成立の条件を、OpusとFableの見解の一致から、作成と別系統の独立reviewへ改めた。旧`producer-provenance-separation-requirements.md` PPS-R-03（`LEGACY-ASSET-A04F169C5D514C5443D0`、28–34行）の「独立性はcontent producerのruntime／provider／model family／sessionとの関係で判定し、同一producer系統のreviewをterminal evidenceにしない」を起点にし、Fableはエスカレーション先とした。変更の理由と、旧`worker-independent-review.md`との食い違いの扱いは、同日の判断記録に記録した。
 旧195–197行は、POの明示承認により、人のapproveを異なるruntimeのreview証拠へ置き換えていた。本節はこの置換えを、PRのapproveからL3の対象revision承認へ広げる。
 
 あわせて、人の判断を求める機会を、一件ごとから、機構×Stageの事後確認にまとめる。旧HELIXの自律境界でも、人が直接関わるのは上流の判断に限られており、それ以外はAIが自走していた。本節はこれを、人の判断が要る場合の聞き方にも当てはめる。

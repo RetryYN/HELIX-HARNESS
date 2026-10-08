@@ -7,7 +7,7 @@ replacement_issue: GitHub Issue #1866（仮組み→本実装差し替え台帳�
 
 ## これは何か
 
-L3／L10本文PRのうち、**機械で検出できる違反**を拾う検出器である。L3／L10の承認はOpusとFableの見解の一致で成立し
+L3／L10本文PRのうち、**機械で検出できる違反**を拾う検出器である。L3／L10の承認は作成と別系統の独立reviewで成立し
 （[GitHub上流運用モデル](../../docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）、
 この検出器はそのreviewへの入力に留まる。
 
