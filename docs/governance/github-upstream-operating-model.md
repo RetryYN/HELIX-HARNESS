@@ -44,7 +44,7 @@ GitHubのIssue、PR、label、checkを追いかけて要求を推定する運用
 | `discovery_evidence` | 一つの要求候補を比較する限定PoCまたはUI・動画prototype | 親判断論点、仮説、timebox、使い捨てscope、評価方法、返却先 | 再現可能な試作証拠と要求候補・premiseへのbackflow | production pathへの取込、要求採用、設計freeze、製品完成 |
 | `requirement` | 一つの要求identityと対になるL11。分割案はsuccessor候補を列挙できるが、別identityを同じPRで確定しない | 親Concept／L1 exact revision、source、対象product、要求kind | 判断記録に束縛した一要求revision | 他要求、設計方式、実装、CI、受入pass |
 | `design_verification` | 一つの承認要求に対するL3とL10、または後続の一つのV-pair。L3／L10は一つの機構の一つのStageに属する承認要求のpair群までを一つのPRにまとめてよい（「PRの原子性」） | 承認要求revision、適用template、risk、未解決 | 対象pairのfreeze可能な設計・検証契約 | 実装完了、利用者受入、運用成立 |
-| `implementation` | 一つの承認・freeze済みticketが指定する成果と必要検証 | Feature Ticket、親要求、設計、oracle、許可、HEAD | 対象成果と検証証拠 | 無関係な要求・設計の変更、release、deployment |
+| `implementation` | 一つのticketが指定する作業の成果と必要検証。実装へ進めるかは、ticketの状態ではなく親要求・設計の承認とfreezeの状態で判断する | 親要求、設計、oracle、許可、HEAD。Feature Ticketがあれば作業の指示として参照するが、無いことをreview・mergeの停止理由にしない | 対象成果と検証証拠 | 無関係な要求・設計の変更、release、deployment |
 | `operation_change` | GitHub、CI、Worker、配布等の一つの外部運用変更 | HELIX-OS要求、操作authority、backup、rollback、read-after | 許可scope内の外部状態変更 | 要求意味、人間承認、別操作の許可 |
 
 要求PRは原則として一つの要求identityだけを扱う。複数要求を一括変更しない。connection要求は接続そのもの、
@@ -53,7 +53,7 @@ composite要求は組合せ固有の全体条件を一つのidentityとして扱
 `research_not_required`の理由・判断者・再評価条件を参照する。research結果は要求候補の根拠であり、採用authorityではない。
 premiseが承認済みConcept／Vision／L1と`conflict`または`stale`になった場合は、対象の`concept_revision`または`planning_revision`へbackflowしてから要求採否へ進む。`unknown`または`assumption`を残す場合は、影響範囲、判断者、再評価条件を記録する。PoC／prototypeは`discovery_evidence`としてproduction pathから隔離し、結果だけをpremiseまたは要求候補へ戻す。
 
-要求を降ろす順序は、単独で成立する`unit`、採用済みunit間の関係を定める`connection`、採用済みunit／connectionの集合に固有な結果を定める`composite`とする。後段要求は参照先のexact revisionを持ち、unitの成立からconnectionやcompositeの成立を推定しない。分割元の旧要求は、各successorを別PRで確定し、全意味atomの被覆を確認するまで`pending`を残す。要求revisionの承認後に管理が工程を推進へ渡し、推進がFeature Ticketを発行する。親要求、必要なconnection／composite、premise状態、HARNESS contract、停止条件のいずれかが未確定ならticketをReadyにしない。
+要求を降ろす順序は、単独で成立する`unit`、採用済みunit間の関係を定める`connection`、採用済みunit／connectionの集合に固有な結果を定める`composite`とする。後段要求は参照先のexact revisionを持ち、unitの成立からconnectionやcompositeの成立を推定しない。分割元の旧要求は、各successorを別PRで確定し、全意味atomの被覆を確認するまで`pending`を残す。要求revisionの承認後に管理が工程を推進へ渡し、推進がFeature Ticketを発行する。親要求、必要なconnection／composite、premise状態、HARNESS contract、停止条件のいずれかが未確定なら、その作業の実装へ進まない。これはticketの状態として表さず、上流のauthority状態で確かめる（開発repositoryのticketは状態を持たない。[開発repositoryのチケット方針](decisions/dev-repo-ticket-policy-po-decision-2026-10-09.md)）。
 
 ### PRの原子性
 
@@ -180,16 +180,18 @@ POが差し戻すと判断した場合は、差し戻しの判断記録を作る
 - GitHubで人が読むtitle、見出し、目的、判断、状態説明、停止理由は日本語を原則とする。ID、path、command、schema語彙、
   label等の機械識別子と一般的な開発用語は原語を保てるが、英語見出しだけで意味を判断させない。
 - `.github/PULL_REQUEST_TEMPLATE.md`と`.github/ISSUE_TEMPLATE/feature-ticket-projection.yml`は、ローカル正本をGitHubへ転記する補助surfaceであり、要求やticket意味の入力面ではない。templateが欠けても本書のauthorityは失われず、template入力だけで上流承認を生成しない。
-- Feature Ticketはlocal work authorityであり、親上流、対象product、scope、依存、停止条件、backflowを持つ。
+- Feature Ticketは作業種別と作業内容だけを持つ作業指示であり、要求・設計の正本ではない。正本は設計書（Conceptから下流の各層の文書と判断記録）に置き、ticketを破棄しても設計書から作業を再構成できる状態を保つ（2026-10-09の[開発repositoryのチケット方針](decisions/dev-repo-ticket-policy-po-decision-2026-10-09.md)）。
+- ticketは書き換えない。作業内容を変えるときは新しいticketを発行し、元のticketは残す。状態、PR番号、Issue番号、merge結果をticketへ書き戻さず、ticketとGitHubの対応はticketの外のappend-onlyのprojection receiptに置く。
+- ticketに依存関係を持たせず、ticketの依存や状態をCI・review・merge・作業開始の条件にしない。作業の順序と前提は設計書と判断記録の側で確かめ、ticketが一枚欠けてもCI・review・mergeを止めない。
 - IssueはFeature Ticketの協調projectionであり、Issue番号を要求IDやticket IDにしない。
 - Issue投影前にlocal ticketの存在、`source_revision`での内容、source digestを確認する。Issueの意味欄はlocal ticket本文からの転記に限定し、転記内容のdigest不一致はprojection失敗とする。
 - local ticketが存在しないIssue Form入力はwork authorityにしない。新規の人間指示を含む場合は入力を原eventとしてローカル登録へ戻し、要求採否と分けたprojection failure receiptを残してIssueを非実装状態で閉じる。入力を黙って捨てない。
 - `requirement` PRは[管理層の要求仮登録契約](management-provisional-requirement-registration.md)に従い、要求候補と旧source atomの無損失被覆をHELIX-OS管理層へ仮登録してからmerge admissionへ進む。GitHub Issue／PRは仮登録recordのprojectionであり、仮登録正本ではない。
-- 上流承認前に人間の明示指示から起票する場合は`proposed_upstream_waiting`に固定し、実装可能状態へ進めない。
+- 上流承認前に人間の明示指示から起票した作業も、実装へ進めるかはticketの記載ではなく、対象の上流のauthority状態（[上流authority状態モデル](authority-state-model.md)）で判断する。
 - HARNESSが工程のnormative vocabulary、trigger、適用条件、各route内の順序、join、停止・差戻し・完了条件を所有する。単一の固定列ではなく、下記の条件付きrouteをHARNESS contractとして保持する。
 - 推進機構はHARNESS語彙を別定義せず、operational tag、versioned mapping、composition、workflow instance生成規則を所有し、管理から受けた目的・要求・制約をticket graphへ変換する。
 - 管理層は生成物を登録・統制する。HARNESSは個別ticket発行やworkflow instance生成を行わず、推進は入力に合うHARNESS routeとtriggerを評価し、必要なrouteだけを規定順で具体化する。
-- PRは対応するlocal ticketとIssueを参照する。Issue closeやPR mergeだけでticket完了を生成しない。
+- PRは、対応するlocal ticketやIssueがあれば参照する。ticketやIssueが無いこと、欠けたことを、review・mergeを止める理由にしない。Issue closeやPR mergeだけで作業の完了を生成しない。
 
 ### HARNESSの条件付き工程contract
 
@@ -227,7 +229,7 @@ POが差し戻すと判断した場合は、差し戻しの判断記録を作る
 
 ### 自動投影実装前のbootstrap
 
-推進生成器と管理登録層が未実装の間は、repository maintainerが人間の明示指示を原文・時点・対象・source digest付き原eventとして登録し、その原文から意味を追加せず`proposed_upstream_waiting`のlocal ticketへ転記できる。曖昧さ、対象不明、依存不明は補完せず停止条件へ置く。repository maintainerは承認済み操作scope内で、存在確認済みlocal ticketをGitHubへ同一内容投影できる。投影前にticket ID、path、full source revision、source digestを記録し、投影後にIssue本文とlocal ticketの意味欄を再読して一致を確認する。このbootstrapは要求採否、workflow生成、実装許可を行わず、登録層と推進生成器が成立した時点で閉じる。
+推進生成器と管理登録層が未実装の間は、repository maintainerが人間の明示指示を原文・時点・対象・source digest付き原eventとして登録し、その原文から意味を追加せずlocal ticketへ転記できる。曖昧さ、対象不明、依存不明は補完せず停止条件へ置く。repository maintainerは承認済み操作scope内で、存在確認済みlocal ticketをGitHubへ同一内容投影できる。投影前にticket ID、path、full source revision、source digestを記録し、投影後にIssue本文とlocal ticketの意味欄を再読して一致を確認する。このbootstrapは要求採否、workflow生成、実装許可を行わず、登録層と推進生成器が成立した時点で閉じる。
 
 ## review、判断、merge admission
 

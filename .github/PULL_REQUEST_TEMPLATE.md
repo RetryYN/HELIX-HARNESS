@@ -14,7 +14,7 @@
 - 親Concept revision:
 - 親Vision／L1企画revision:
 - premise packetまたはresearch非適用判断:
-- 要求IDまたはFeature Ticket ID:
+- 要求ID（Feature Ticketがあれば、そのIDも）:
 - 正本path:
 - 対象HEAD:
 
@@ -22,7 +22,7 @@
 
 - このPRで変更するもの:
 - このPRでは変更しないもの:
-- 依存するPR／ticket:
+- 先にmergeが要るPR（ticketの依存は書かない）:
 - 後続へ渡すもの:
 
 ## 要求PRの場合

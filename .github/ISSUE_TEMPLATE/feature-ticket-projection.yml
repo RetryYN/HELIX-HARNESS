@@ -1,13 +1,11 @@
 name: 新世代Feature Ticketの投影
 description: ローカルFeature TicketをGitHub上の作業・共有用Issueへ投影します
 title: "[対象]: 日本語で作業目的を書く"
-labels:
-  - "state:proposed-upstream-waiting"
 body:
   - type: markdown
     attributes:
       value: |
-        このIssueは存在確認済みのローカルFeature Ticketを転記するprojectionです。要求、承認、完了の正本でも、新しい意味の入力面でもありません。以下の意味欄はローカルticket本文から転記してください。
+        このIssueは存在確認済みのローカルFeature Ticketを転記するprojectionです。要求、承認、完了の正本でも、新しい意味の入力面でもありません。ticketは作業種別と作業内容だけを持ちます（docs/governance/decisions/dev-repo-ticket-policy-po-decision-2026-10-09.md）。以下の欄はローカルticket本文から転記し、状態・依存・PR番号はticketへ書き戻しません。
   - type: input
     id: ticket_id
     attributes:
@@ -50,47 +48,25 @@ body:
         - HELIX-Web-OS
     validations:
       required: true
-  - type: textarea
-    id: upstream_sources
+  - type: input
+    id: work_kind
     attributes:
-      label: 親Concept・Vision・企画
-      description: ローカルticketに記載されたsource pathとexact revisionをそのまま転記してください
+      label: 作業種別
+      description: ローカルticketの作業種別をそのまま転記してください
     validations:
       required: true
   - type: textarea
-    id: premise_basis
+    id: work_content
     attributes:
-      label: 前提整理とresearch根拠
-      description: ローカルticketに記載されたpremise packet、未解決前提、またはresearch非適用判断をそのまま転記してください
+      label: 作業内容
+      description: ローカルticketの作業内容を意味変更せず転記してください
     validations:
       required: true
   - type: textarea
-    id: purpose
+    id: design_refs
     attributes:
-      label: 目的
-      description: ローカルticketの目的を意味変更せず転記してください
-    validations:
-      required: true
-  - type: textarea
-    id: boundary
-    attributes:
-      label: 境界と停止条件
-      description: ローカルticketの境界、停止条件、上流承認待ちを意味変更せず転記してください
-    validations:
-      required: true
-  - type: textarea
-    id: dependencies
-    attributes:
-      label: 実依存と実装順序
-      description: ローカルticketの依存とdelivery sequenceを意味変更せず転記してください
-    validations:
-      required: true
-  - type: textarea
-    id: legacy_requirement_carry_forward
-    attributes:
-      label: 旧要求carry-forward
-      description: 該当する原要求ID、原文digest、successor要求ID、未被覆atomを記載します。未被覆は削除せずpendingにします。
-      placeholder: 原要求ID / digest / successor / pending atom
+      label: 正本の設計書
+      description: ローカルticketが参照する設計書・判断記録のpathがあれば転記してください。正本は設計書であり、このIssueではありません
     validations:
       required: false
 
@@ -101,7 +77,7 @@ body:
       options:
         - label: Issueから要求意味・承認・完了を生成しない
           required: true
-        - label: local ticketの存在、source revision、digestを確認し、意味欄を同ticketから転記した
+        - label: local ticketの存在、source revision、digestを確認し、欄を同ticketから転記した
           required: true
-        - label: 上流承認前は設計・実装・Worker・CI・mergeへ進めない
+        - label: 実装へ進めるかはticketやIssueの状態ではなく、対象の上流のauthority状態で判断する
           required: true
