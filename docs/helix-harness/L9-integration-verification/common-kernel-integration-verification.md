@@ -1,7 +1,7 @@
 # HELIX 共通カーネル L9結合検証設計（K1・K2）
 
 status: draft_for_l4_review
-owner: HELIX-HARNESS（L4と同じ仮置き）
+owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
 base: main `f88c96cee71371fbf3742748a1c01afc1b9efa5d`
 

@@ -1,8 +1,8 @@
 # HELIX 共通カーネル L4基本設計（K1・K2）
 
 status: draft_for_l4_review
-owner: HELIX-HARNESS（工程の標準と検証義務の所有として仮置き）
-parent_requirement: 未決（人の判断待ち。HARNESS-L2-031を親とも暫定親ともしない。要素ごとに承認済みL3のACへtraceする。1.3を参照）
+owner: HELIX-HARNESS（工程の標準と検証義務の所有。2026-10-08のPO判断の判断2）
+parent_requirement: なし（一つの親要求を定めず、要素ごとに承認済みL3のACへtraceする。2026-10-08のPO判断の判断2。1.3を参照）
 paired_l9: ../L9-integration-verification/common-kernel-integration-verification.md
 base: main `f88c96cee71371fbf3742748a1c01afc1b9efa5d`
 
@@ -29,9 +29,9 @@ L3／L10の配置規則（`docs/governance/l3-l10-authoring-layout.md:7-34`）�
 
 ### 1.3 未決（配置）
 
-- **親要求**：起草の依頼時には、HARNESS-L2-031（共通部品）を親とする案が示された（AIの案であり、POの判断ではない）。しかしHARNESS-L2-031の意味は「ログ・入力からの最小再現と回帰候補生成」（`docs/helix-harness/L2-requirements/product-requirements.md:627-645`）であり、「031＝共通部品」は031の所属（HARNESS内のCOREか共通部品か）の確定である（`docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:19,66`）。Conceptの「1つの共通部品」はHELIX-CONNECTを指す（`docs/concept/helix-concept.md:115,228`）。031の意味からK1・K2は導けないため、本書は031を親としてtraceしない。各要素は、実際の由来である承認済みL3のACへ要素ごとにtraceする（2〜3章）。親要求の扱いは人の判断へ上げる（7章）。
+- **親要求**：一つの親要求の下に置かず、要素ごとに承認済みL3のACへ由来を辿る（2026-10-08のPO判断、`docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md` 判断2）。HARNESS-L2-031の意味は「ログ・入力からの最小再現と回帰候補生成」（`docs/helix-harness/L2-requirements/product-requirements.md:627-645`）であり、「031＝共通部品」は031の所属の確定である（`docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:19,66`）。そのため031を親としない。
 - **L4の配置規則の置き場**：L3／L10は`l3-l10-authoring-layout.md`が配置を定める。L4／L9の配置規則を同書へ追記するか、別に置くかは未決とする。本書の提案は、その規則が決まるまでの仮の配置である。
-- **作業入口との食い違い**：`docs/governance/new-generation-start-here.md:109`は「L3以降の正式な設計・実装」を停止中の作業に挙げる。2026-10-08の判断記録（`docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md:18,83`）はL4共通設計の起草を前提にしている。本書は下書きとして起草し、作業入口の更新は別PRとする（7章）。
+- **作業入口**：L4〜L6の設計と対の検証設計は、2026-10-08のPO判断（同判断記録の判断1）で、承認済みL3／L10を親とする範囲に限り、作業入口の「現在停止する作業」から外れた。
 
 ## 2. K1 結果の多値型 `Observed<T>`
 
@@ -236,18 +236,14 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 
 本書で由来を見つけられず、要求の意味に触れるため、L4で決めないもの。
 
-1. **共通カーネルの親要求**：K1・K2の規則は8機構のACに散らばって存在するが、「機構横断で一つの型を共有する」こと自体を定める承認済み要求は見つからなかった（HARNESS L2の見出し一覧、HARNESS-L2-001〜088を確認）。HARNESS-L2-031はこの意味を持たない（1.3）。
-2. **時間による鮮度の閾値**（G11）：観測の期限、失効の許容遅延をどの機構が持つか。L2は数値を新設しない方針である。
-3. **不明と未観測の境界の各機構での意味**（G10の一部）：LABOの「不明と未観測」、INFRAの鮮度、SECURITYのunknown／denyが、2.2の境界と異なる意味を持つ場合。
+1. **時間による鮮度の閾値**（G11）：観測の期限、失効の許容遅延をどの機構が持つか。L2は数値を新設しない方針である。
+2. **不明と未観測の境界の各機構での意味**（G10の一部）：LABOの「不明と未観測」、INFRAの鮮度、SECURITYのunknown／denyが、2.2の境界と異なる意味を持つ場合。
 
 ## 7. 人の判断が要る点
 
-列挙だけであり、本書は新しい承認手続きを作らない。
+列挙だけであり、本書は新しい承認手続きを作らない。親要求の扱いと作業入口の停止は、2026-10-08のPO判断で決着した（1.3）。
 
-1. 共通カーネルの親要求の扱い（1.3、6章1）。選択肢の例：(A)ぶら下げ先を別の承認済み要求（例：HARNESS-L2-022 検証と受入の契約）へ替える。ただしその要求の意味を広げることになり、031と同じ問題が残る。(B)L2へ戻して共通カーネルの要求を立てる。(C)要素ごとに承認済みL3のACを由来とし、一つの親を定めない。本書は判断が出るまで(C)の状態で起草し、判断記録が出たら親を追記する。
-   POへの問い（案）：「共通カーネルは承認済み要求（031等）の意味を変えずにはその下に置けない。L2へ共通カーネルの要求を新設するか、親を定めず要素ごとのACへのtraceのまま進めるか。」
-2. L4／L9の正式な設計を、作業入口の「現在停止する作業」（`docs/governance/new-generation-start-here.md:109`「L3以降の正式な設計・実装」）から外すかどうか。本書は、その判断が記録されるまで下書きである。
-3. L4／L9の配置規則の置き場（1.3）と、作業入口の停止作業の記述の更新（1.3）。
+1. L4／L9の配置規則の置き場（`l3-l10-authoring-layout.md`へ追記するか、別に置くか）。本書の配置は、その規則が決まるまでの提案である。人の上流の意味には触れないため、後続PRでAIが決め、独立reviewで確かめてよい。
 
 ## 8. PRの範囲と後続PRの計画
 
