@@ -71,10 +71,10 @@ L3 NFR項目名と固定L3/L10 source locator、L9専用NFR oracle ID、既存fu
 
 L10 NFR:9は001のWeb/WEB-OS scope boundaryを別途要求する。L3 NFRに独立の数値candidateはない。未選択側は`IV-LABO-001-C07`で任意/未構成として保持する。選択側は同じscope boundaryの次の独立した合成入力で照合し、固定functional C07の未選択caseを置き換えない。
 
-| scope boundaryの測定入力 | 単一期待 |
-|---|---|
-| Web/WEB-OS 031/032 sourceを選択し、accepted contract identity/revision/scopeと許可source観測を固定する | そのcontractの範囲だけで観測を保持する。他sourceや将来Web機能、1.0全体の必須依存へ広げない。合成contract入力から実際の採択・実通信を主張しない。 |
-| 上の選択済み基準からaccepted根拠だけを欠落させ、選択状態・source ref・scope・元recordは保持する | 取り込み成功を出さず、元recordを保持した非肯定とし該当source ownerへ返す。未選択へ読み替えず、他sourceの有効recordを消さない。 |
+| L9 oracle ID | 固定L10 NFR参照 | scope boundaryの測定入力 | 単一期待 |
+|---|---|---|---|
+| `IV-LABO-001-SCOPE-01` | `docs/helix-labo/L10-verification/nfr-verification.md:9`（固定revision `8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7`） | Web/WEB-OS 031/032 sourceを選択し、accepted contract identity/revision/scopeと許可source観測を固定する | そのcontractの範囲だけで観測を保持する。他sourceや将来Web機能、1.0全体の必須依存へ広げない。合成contract入力から実際の採択・実通信を主張しない。 |
+| `IV-LABO-001-SCOPE-02` | `docs/helix-labo/L10-verification/nfr-verification.md:9`（同固定revision） | 上の選択済み基準からaccepted根拠だけを欠落させ、選択状態・source ref・scope・元recordは保持する | 取り込み成功を出さず、元recordを保持した非肯定とし該当source ownerへ返す。未選択へ読み替えず、他sourceの有効recordを消さない。 |
 
 L3/L10業務本文は各2行（各文書:1–2）で独立outcomeなし、機能caseで業務境界を確認する。業務case/passを別に生成しない。
 
