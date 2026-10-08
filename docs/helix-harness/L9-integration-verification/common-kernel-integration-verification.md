@@ -1,11 +1,11 @@
-# HELIX 共通カーネル L9結合検証設計（K1・K2・K4・K5・K6・G3・G8・Phase 1）
+# HELIX 共通カーネル L9結合検証設計（K1・K2・K4・K5・K6・K10・G3・G8・Phase 1）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K4・K5・K6、G3、G8、Phase 1の条件と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
+本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K4・K5・K6・K10、G3、G8、Phase 1の条件と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作で実行する場合は`scaffold/`に置き、Scaffold Bindingへ登録する。
 
@@ -16,6 +16,7 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 - **機構の写像→カーネル**：各機構の状態語を`Observed<T>`へ写す関数（L4 2.5）。
 - **カーネル内の合成と判定**：`combine`、`admit`、`disposition`、`key_of`、`lookup`、`record`。
 - **正本とprojection**（K5、L4 9章）：`append`、`current_head`、`read`、`restore`、`project`、`verify`。K2の`record`はsegmentへの追記、`lookup`の記録集合はprojectionとして通す。
+- **依存グラフ**（K10、L4 14章）：`build_graph`、`check_graph`、`closure`、`impact`、`independent`。
 - **義務**（K4・G3、L4 13章）：`derive`、`evaluate`、`check_view`、`inherit`、`receive`。
 - **検証receipt**（K6、L4 10章）：`run`、`admit_receipt`、`reverify`、`required`。receiptはK2の記録としてK5のlogへ置き、`restore`→`lookup`を通して照会する。
 - **カーネル→消費側**：ある機構の結果を、別の機構の判定（gate、昇格、適格）が受け取る境界。
@@ -148,6 +149,27 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-P1-05` | P1-C4 | `Phase1Status` | 対象外の型が列挙されていればC4は肯定 | 列挙が無ければ`Unknown(missing_input)`の成分 |
 | `IV-P1-06` | 12.2：固定入力 | `Phase1Status` | 同じ固定入力（集合・`Corpus`・`Phase1Scope`・`observation_base`）からは同じ`Phase1Status` | (1)評価の時点で`prs`を検索し直して対象を増やす実装、(2)評価の時点で`partition`を計算し直す実装は不合格。(3)`Corpus`や`Phase1Scope`の新revisionでは旧結果は`Stale` |
 | `IV-P1-07` | 12.1：authority | `Phase1Status`の消費側 | — | `Positive`の`Phase1Status`から、v0.1の成立、内部デプロイ、gateの変更を出力する経路は`Rejected` |
+
+### K10
+
+各項目は、固定した`RelationVocab`・`GraphDecl`・`ConditionState`・`GraphRules`と、確定edgeだけの整合したグラフを用意したうえで、一つの条件だけを変える。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-K10-01` | K10-I1：語彙と端点 | `check_graph` | 語彙の型で端点のそろったedgeだけなら`Positive` | (1)語彙に無い`relation`→そのedgeが`Unknown(unregistered)`、(2)`to`がnodeに無い→`Unknown(missing_input)`、(3)edgeが0件→`set_reason` |
+| `IV-K10-02` | K10-I2：候補と確定 | `build_graph`、`closure` | 承認済みの由来が宣言したedgeは`confirmed` | (1)LLMの提案のedge、(2)名称の類似だけのedge→いずれも`candidate`で、`confirmed`へ変える経路は`Rejected`。(3)`candidate`のedgeでだけつながる依存を`effective`に入れる実装は不合格 |
+| `IV-K10-03` | K10-I3：性質 | `check_graph` | 性質を満たすグラフは`Positive` | (1)`symmetric`の型で逆向きのedgeが無い、(2)`inverse`の型で逆の型のedgeが無い、(3)同じ端点に`contradicts`の二つのedge→各々否定の成分。(4)循環は否定にならない |
+| `IV-K10-04` | K10-I4：有効な閉包と診断 | `closure` | 必須の依存Aが`effective`で、選択されていないsource Bの依存だけがある場合、`combined`は`Positive`で、Bは`diagnostics`に`not_selected`として残る | 同じedgeで一つずつ変える：(1)Bの選択を`unknown`→`held`で`Unknown(missing_input)`（`not_selected`へ読み替える実装は不合格）、(2)`operation_condition`を`false`→`diagnostics`の`condition_false`で、成分に入らない、(3)`reference_only`→たどらず`diagnostics`に残る、(4)`transitive`が偽の型を推移的にたどる実装は不合格 |
+| `IV-K10-05` | K10-I4：安全依存 | `closure` | 条件の成立した`safety`のedgeの先は`effective` | 条件の成立した`safety`のedgeの先を外す実装は不合格 |
+| `IV-K10-06` | K10-I5：伝播の向き | `impact` | `A depends_on B`（`against`）でBが変わるとAが`affected`、`A affects B`（`along`）でAが変わるとBが`affected` | (1)全ての型を逆向きにたどる実装は、`affects`のBを落として不合格、(2)全ての型を順向きにたどる実装は、`depends_on`のAを落として不合格、(3)`candidate`のedgeでだけ到達するnodeは`possibly`で`affected`に入らない、(4)`held`に当たる枝の先は`Unknown(missing_input)`で「影響なし」にならない |
+| `IV-K10-07` | K10-I5：条件の状態 | `impact` | — | 同じedgeの`operation_condition`を`true`／`false`／`unknown`に一つずつ変えると、先のnodeが各々`affected`／含まれない／`Unknown(missing_input)`になる |
+| `IV-K10-08` | K10-I7：見直す対象 | `impact`→`review_set`→`lookup`・`evaluate` | `affected`のidentityを持つ記録と義務のexact setが返る。義務のsource・targetにDが無くても、その操作の`OperationDecl.inputs`にDがあり、`affected = [D]`なら、その義務が入る。`inputs`にDの無い操作の義務は入らない | currentの宣言を更新した後の照会で、(1)identityの集合を保った正当な新revisionで旧記録が`Value`→`Stale`、(2)同じrevisionでbytesだけ変更→`Unknown(conflict)`、(3)入力のidentityの集合の変更→`Unobserved(not_run)`、(4)旧記録が非`Value`→`Unobserved(not_run, superseded)`。(5)`affected`に無い記録を見直す実装、(6)`review_set`で記録のクラスを書き換える実装は不合格 |
+| `IV-K10-09` | K10-I6：独立復旧の正常 | `independent` | 整合したグラフで、`op`からの閉包が`control_plane`を含まなければ`Positive` | — |
+| `IV-K10-10` | K10-I6：グラフの不健全を引き継ぐ | `independent` | — | `control_plane`に到達しないグラフで、(1)`op`と無関係な所の未登録の`relation`、(2)欠けた端点、(3)edgeが0件、(4)`candidate`だけでつながるグラフ、の各々で、`independent`は`Positive`にならず、`check_graph`の成分（`{graph_check, …}`）が残る |
+| `IV-K10-11` | K10-I6：到達と保留の共存 | `independent` | — | 閉包が`control_plane`のnodeに到達し、別の枝が`held`の場合、`combined`は否定で、`reasons`に到達の否定と`held`の`Unknown(missing_input)`の両方が入る。(2)`op`のnodeが無い、(3)`control_plane`の宣言が無い→各々`Unknown(missing_input)`の成分 |
+| `IV-K10-12` | K10-I6：条件の状態 | `independent` | `op → R → control_plane`で、`R → control_plane`の`operation_condition`が`false`なら`Positive` | 同じedgeを`true`にすると否定、`unknown`にすると`Unknown(missing_input)` |
+| `IV-K10-13` | 14.2：鍵と固定入力 | 照会の二段（`build_graph`の照会→`GraphRef`での下流の照会） | 記録と同じ鍵の照会は、両段とも`Value` | (1)グラフを保ってseedだけを変えた`closure`→下流の段で`Unobserved(not_run)`、(2)グラフを保って`ConditionState`だけを新revisionにした`closure`→下流の段で、旧記録が`Value`なら`Stale`。(3)`check_graph`の結果の再照会は記録と同じクラス。(4)`GraphDecl`の同じrevisionでbytesだけ変更→上流の段で`Unknown(conflict)`を返し、下流の段へ進まない、(5)edgeの由来のidentityを保った新revision（旧記録が`Value`）→上流の段で`Stale`を返し、下流へ進まない、(6)由来のidentityの追加・削除、build_graphの規則の版の更新→上流の段で`Unobserved(not_run)`、(7)上流が非`Value`なのに新しい`GraphRef`を作って下流を照会する実装は不合格、(8)グラフや結果の側から入力を採る実装は不合格 |
+| `IV-K10-14` | 14.2：使う規則の束縛 | 下流の照会 | — | `GraphRef`・`ConditionState`・操作自身の規則を保ったまま、(1)check_graphの規則だけを新しくした`closure`・`impact`・`independent`の照会、(2)closureの規則だけを新しくした`independent`の照会は、各々旧の肯定の記録と完全一致せず、旧の`Value`を返さない（入力のidentityを保った新revisionなら`Stale`、版の更新でidentityが変わるなら`Unobserved(not_run)`） |
 
 ### K4・G3
 

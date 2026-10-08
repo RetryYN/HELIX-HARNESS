@@ -1,4 +1,4 @@
-# HELIX 共通カーネル L4基本設計（K1・K2・K4・K5・K6・G3・G8・Phase 1）
+# HELIX 共通カーネル L4基本設計（K1・K2・K4・K5・K6・K10・G3・G8・Phase 1）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（工程の標準と検証義務の所有。2026-10-08のPO判断の判断2）
@@ -6,7 +6,7 @@ parent_requirement: なし（一つの親要求を定めず、要素ごとに承
 paired_l9: ../L9-integration-verification/common-kernel-integration-verification.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）、PR3bはG8（11章）とPhase 1の条件の具体（12章）、PR4はK4とG3（13章）を扱う。残りは8.2の「後続PRの計画」に置く。
+本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）、PR3bはG8（11章）とPhase 1の条件の具体（12章）、PR4はK4とG3（13章）、PR5はK10（14章）を扱う。残りは8.2の「後続PRの計画」に置く。
 
 本書は要求の意味、範囲、担当、版を作らない。各要素は承認済みL3のACを由来とし、由来の無い要素は「L2へ戻す論点」に分ける。本書は実装、実行、内部デプロイ、releaseの許可を含まない。本書の承認・merge・試作の合格から、L3以上の承認や完了を生成しない。
 
@@ -273,6 +273,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 4. K6・E（10章）の論点：receiptの発行の真正性（10.8）。
 5. G8（11章）の論点：実行環境の真正性（11.6）。
 6. K4・G3（13章）の論点：人のIFを置く義務の範囲、機械判定の割合の目標（13.7）。
+7. K10（14章）の論点：依存循環の拒否（14.7）。
 
 ## 7. 人の判断が要る点
 
@@ -302,7 +303,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 | 3（10章で起草） | K6 provenance／receipt、E 検証receiptの真正性 | HARNESS-L2-022系のreceipt、032-05 | E | work-graph-receipt-acceptance、gate-evidence-substance、closure-evidence-materialization（置換）、check-registry（登録と実行の照合） | 署名を後回しにする間の改ざん検出の範囲。検証器の集合の配置 |
 | 3b（11・12章で起草） | G8 実行物の検証、Phase 1の条件の具体（2026-10-08判断3） | SECURITY-AC-012-01、SECURITY-AC-013-01（配布・実行artifactとbuild済みartifactの鎖） | G8 | release-module-bundle-composition、distribution-package-release、distribution-lite-consumer-canary、gate-design、check-registry | 版の宣言、内部デプロイ、人のゲートを外す判断はL2・POへ戻す |
 | 4（13章で起草） | K4 義務を一級データに | HARNESS-L2-022、030〜032、036 | G3（oracle種別：機械判定／LLM判断／人のIF） | descent-obligation、ci-deferred-obligation-recovery、ci-verification-plan、charter P3 | 未完義務の継承は新規案を含む |
-| 5 | K10 型付き依存グラフ | HARNESS-L2-023（依存閉包）、INFRA | — | ci-responsibility-registry、design-registry | 関係型の性質宣言は新規案 |
+| 5（14章で起草） | K10 型付き依存グラフ | HARNESS-L2-023（依存閉包）、INFRA | — | ci-responsibility-registry、design-registry | 関係型の性質宣言は新規案 |
 | 6 | K7 世代pointer／fencing、型番の台帳形式とディレクトリ配置（方針6） | OS-014、INFRA | G5（取消しの伝播） | node-runtime-cutover、HIL-FR-27、ADR-009 | 自動切戻しとADR-009の差（Phase 2の判断時に扱う）。G5の統一伝播は新規案 |
 | 7 | K3 operation authority tuple | SECURITY-AC-006-01ほかSECURITY Stage 1 | G5の受信側 | authority-vocabulary、security-capability-broker、source-boundary-contracts | 旧の軸（data_classification、sink、impact）の採否 |
 | 8 | K9 独立性の記録（製品の要求） | Concept:236（identity・context・authority・review routeで独立性を決め、providerの同異では決めない）。承認済みL3の候補：AC-OS-029-03（`docs/helix-os/L3-requirements/functional-requirements.md:77`。current exact HEADのreview receipt）、AC-INTELLIGENCE-L3-072-08（`docs/helix-intelligence/L3-requirements/functional-requirements.md:564`。candidate生成と独立reviewの段階分離）、LABOのblind評価。開発repoの運用規則（2026-10-08委任判断記録の判断1）は根拠にしない（解禁判断記録の判断3） | — | worker-independent-review（同provider／modelでもidentity・session・contextが独立なら受理）、producer-provenance-separation（PPS-R-03。開発repoの運用規則の起点であり、製品K9の要件としては採らない） | review routeの軸は新規案 |
@@ -767,6 +768,107 @@ Handoff        = FixedRef。{ from_view, to_set_key, unfinished: obligation_id[]
 
 - 導出規則（`DerivationRule`）の具体（承認済みL3のACとtemplateから義務を作る規則）は、HARNESS-L2-014・041の設計（各機構のL4）で定める。本章は規則の型と、導いた集合の扱いだけを定める。
 - 試作：承認済みのL3の一つの親について義務の集合を手で導き、L9のIV-K4-01〜10とIV-G3-01〜05を動かす。
+
+## 14. K10 型付き依存グラフ
+
+本章はPR5で追加する。対象どうしの関係を、型と性質を宣言した語彙のedgeとして持ち、整合・依存閉包・影響・独立復旧をグラフの規則として検査する。
+
+### 14.1 由来
+
+| 由来 | 位置 | 要点 |
+|---|---|---|
+| HARNESS | `AC-HARNESS-L3-023-02`・`03`（`docs/helix-harness/L3-requirements/functional-requirements.md:80-81`） | 常時必須、成立したoperation条件、選択したsource条件の依存だけを有効なclosureに含める。条件不成立、未選択・未観測、参照のみ、unknown・staleを別状態にする。該当条件の安全依存は必須としてclosureに残し、unknownな条件は保留にする |
+| HARNESS | `FR-HARNESS-L3-010`の境界（同:33） | 固定L2-010から、依存循環の独立した拒否条件は導出しない。依存closureの条件は固定L2-023の範囲で扱う |
+| HARNESS | `AC-HARNESS-L3-014-04`（同:179）、`AC-HARNESS-L3-030-04`（同:256） | 変更の影響を照合する。影響を受けたものを新しいrevisionへtraceし直し、影響範囲の外まで一律に保留しない |
+| INTELLIGENCE | `AC-INTELLIGENCE-L3-078-04`（`docs/helix-intelligence/L3-requirements/functional-requirements.md:589`） | 影響を受けたもののexact setだけをstaleにし、影響を受けないprojectionを保つ |
+| OS | `AC-OS-014-07`（`docs/helix-os/L3-requirements/functional-requirements.md:27`） | 宣言済みのdependency graphと対応環境から、自己依存なしに起動・更新・復旧できることを確かめる。graph上の参照だけからruntimeの依存を推測しない |
+| INFRASTRUCTURE | `INFRA-006-AC-01`（`docs/helix-infrastructure/L3-requirements/functional-requirements.md:79`）、`INFRA-001-AC-03`（同:63） | 通常のControl Planeや停止中のサービスを経由しない独立の経路で復旧する。pathの方向と境界を欠いたものを既知・健全としない |
+| BRAIN | `BRAIN-005-AC-01`・`02`（`docs/helix-brain/L3-requirements/functional-requirements.md:499-500`）、`BRAIN-INFRA-014-AC-01`・`02`（同:347-348）、`BRAIN-INFRA-015-AC-02`（同:359） | edgeはsourceが宣言した関係の種類・方向・意味・端点を持つ。名称の類似だけのedgeや未確認の因果を確定しない。未定のedgeを確定edgeとして扱わない。「影響しうる」を根拠なく「原因」へ強めない |
+
+承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による（HARNESS Stage 1・2c・2b、INTELLIGENCE Stage 3、OS Stage 2b、INFRASTRUCTURE Stage 1、BRAIN Stage 2b）。性質を宣言する語彙と、グラフの規則としての検査の形は、AIの設計判断である。
+
+### 14.2 型
+
+```text
+RelationType   = { name, transitive: Bool, symmetric: Bool, inverse: name?, contradicts: name[],
+                   dependency: Bool, propagation: none | along | against }   # 性質の宣言
+                   # along：fromの変更がtoへ伝わる（例：A affects B）。against：toの変更がfromへ伝わる（例：A depends_on B）
+RelationVocab  = FixedRef。{ revision, types: RelationType[] }               # 閉じた語彙
+DepClass       = required | operation_condition(operation, predicate) | selected_source(source) | reference_only
+Edge           = { from: identity, to: identity, relation: name, source: SubjectRef,  # edgeを宣言した由来
+                   meaning, dep_class: DepClass, safety: Bool, state: candidate | confirmed | retired }
+GraphDecl      = FixedRef。操作の所有者が宣言する { scope, sources: SubjectRef[], vocab, control_plane: identity[]? }
+ConditionState = FixedRef。操作の所有者が宣言する、操作ごとのcurrentの
+                 { operation_conditions: {(operation, predicate) -> true | false | unknown},
+                   selected_sources: {source -> selected | not_selected | unknown} }
+GraphRules     = FixedRef。各操作（build_graph、check_graph、closure、impact、independent）の規則の { identity, version, digest }
+Closure        = { seed, effective: identity[], held: identity[],
+                   diagnostics: { identity -> condition_false | not_selected | reference_only },
+                   combined: Combined }
+Impact         = { changed: SubjectRef[], affected: identity[], possibly: identity[], combined: Combined }
+```
+
+**SubjectRefへの写像と鍵**：固定実体は`{kind, identity, revision, digest}`で表す。`RelationVocab`は`kind: relation_vocab`、`GraphDecl`は`kind: graph_decl`、`ConditionState`は`kind: condition_state`、`GraphRules`の各規則は`kind: graph_rule`とし、identity・revision・digestは各固定実体のものとする。各操作の結果はK2の記録とし、鍵を次のとおりとする（K2の`inputs`はSubjectRefの配列であり、鍵そのものを入れない）。
+
+| 操作 | operation_version | subject | inputs | scope |
+|---|---|---|---|---|
+| `build_graph` | 規則の版 | `GraphDecl` | `sources`の全SubjectRef、`vocab`、規則 | `GraphDecl.scope` |
+| `check_graph` | 規則の版 | `GraphRef` | 規則 | 同上 |
+| `closure` | 規則の版 | `GraphRef` | seedの各node（`kind: graph_node`）、`ConditionState`、closureの規則、check_graphの規則 | 同上 |
+| `impact` | 規則の版 | `GraphRef` | 変わった対象の各SubjectRef、`ConditionState`、impactの規則、check_graphの規則 | 同上 |
+| `independent` | 規則の版 | `GraphRef` | 復旧の操作（`kind: operation`）、`ConditionState`、independentの規則、check_graphの規則、closureの規則 | 同上 |
+
+`GraphRef`は`build_graph`の記録を指すSubjectRefで、`{kind: graph, identity: GraphDecl.identity, revision: build_graphの記録のkey_digest, digest: result_digest}`とする。各操作の`inputs`には、自分の規則に加えて、直接・間接に使う規則（`closure`・`impact`はcheck_graphの規則、`independent`はcheck_graphとclosureの規則）を入れる。したがって、使う規則のどれか一つが変われば、下流の結果は旧記録と完全一致しない。`GraphDecl`・`ConditionState`・`GraphRules`は、操作の所有者が固定実体として宣言したcurrentの値を呼出し側が渡し、edgeや結果の側から入力を採らない。同じグラフでもseedや条件の状態が違えば別の問いになる。
+
+**照会の二段**：下流の結果を照会するときは、(1)currentの`GraphDecl`・`sources`・`vocab`・build_graphの規則で`build_graph`の記録を照会し、(2)その結果が`Value`の場合だけ、得た記録から`GraphRef`を作って下流の結果を照会する。(1)が`Unknown(conflict)`や`Stale`、`Unobserved`等の非`Value`なら、その結果を返して(2)へ進まず、`GraphRef`の新しい版へ読み替えない。`GraphRef`の`revision`は`build_graph`の`key_digest`であり、元の宣言の変化の分類（K2-I2）は(1)の段で決まる。
+
+### 14.3 不変条件
+
+- **K10-I1 閉じた語彙と端点**：edgeの`relation`は`vocab`の名前でなければならない。無ければそのedgeは`Unknown(unregistered)`の成分とする。`from`・`to`はグラフのnodeでなければならず、欠ければ`Unknown(missing_input)`とする。方向の無いedgeは置かない。
+- **K10-I2 候補と確定**：`state`が`confirmed`になるのは、`source`が承認済みの固定実体で、そのedgeの種類・方向・意味・端点を宣言している場合だけとする。LLMの提案、名称の類似、pathの近さから作ったedgeは`candidate`にとどめ、整合・閉包・影響・独立の検査で肯定の根拠にしない。影響の検査では`possibly`として別に列挙する。
+- **K10-I3 性質の検査**：確定edgeについて、(a)`symmetric`の型で逆向きの確定edgeが無い、(b)`inverse`を持つ型で逆の型の確定edgeが無い、(c)同じ端点の組に`contradicts`の関係にある二つの確定edgeがある、の各々を否定の成分とする。成分はedgeまたはedgeの組ごとに作り、全成分を一つの`combine`で合成する。edgeが0件なら`set_reason`。現行の型は循環の禁止を表すfieldを持たず、K10は循環を否定にしない（14.7）。
+- **K10-I4 依存閉包**：`closure(seed)`は、`dependency`が真の型の確定edgeを、`transitive`が真の型についてだけ推移的にたどる。各edgeの`dep_class`と`ConditionState`で、行き先を次のとおり分ける。`required`、`true`の`operation_condition`、`selected`の`selected_source`は`effective`。`unknown`の`operation_condition`・`selected_source`は`held`。`false`の`operation_condition`は`diagnostics`の`condition_false`、`not_selected`の`selected_source`は`not_selected`、`reference_only`は`reference_only`とし、いずれもたどらない。`combined`の成分は、`effective`の各nodeへのedge（肯定）と`held`の各node（`Unknown(missing_input)`）とする。`diagnostics`は状態と根拠を残すが、有効な閉包の判定の成分には入れない（HARNESS-023-02：未選択sourceや条件不成立の依存を、有効な閉包や保留の条件に含めない）。`unknown`の選択を`not_selected`へ読み替えない。`safety`が真のedgeは、`effective`の条件を満たすとき外さない。
+- **K10-I5 影響**：`impact(changed)`は、変わった対象から、確定edgeを型の`propagation`の向きにたどる（`along`はfromからtoへ、`against`はtoからfromへ、`none`はたどらない）。`dep_class`の条件はK10-I4と同じく`ConditionState`で分け、`held`に当たる枝の先は`Unknown(missing_input)`の成分とし、「影響なし」にしない。`candidate`のedgeでだけ到達するnodeは`possibly`に入れる。`affected`は「見直す対象」を示すだけであり、記録のクラスを書き換えない（K10-I7）。
+- **K10-I6 独立復旧**：`independent(op)`は次の順に成分を作る。(1)同じ`GraphRef`の`check_graph`の結果の全成分（否定、非`Value`、`set_reason`）を`{graph_check, …}`の識別付きで入れる。(2)`op`のnodeがグラフに無ければ`Unknown(missing_input)`、`control_plane`の宣言が無ければ`Unknown(missing_input)`を入れる。(3)`op`からのK10-I4の閉包について、`effective`に入った`control_plane`のnodeごとに否定、`held`の各nodeに`Unknown(missing_input)`を入れる。(4)全成分を一つの`combine`で合成する。したがって、グラフの一部に未登録の関係や欠けた端点があれば、`control_plane`に到達しなくても`Positive`にならない。結果は「宣言したグラフの上で独立」だけを示す（14.5）。`closure`と`impact`も、(1)と同じく`check_graph`の非肯定の成分を入れる。
+- **K10-I7 影響と結果・義務**：`affected`の各nodeについて、(a)そのidentityを鍵の`subject`または`inputs`に持つK2の記録の集合と、(b)K4の義務のうち、そのidentityを`target`か`source`に持つもの、またはその義務の`operation`のcurrentの`OperationDecl`の`inputs`にそのidentityを持つもの（13.2の基底鍵の`subject`・`inputs`にそのidentityが入る義務）の集合を、K5の`restore`した記録と、呼出し側が渡すcurrentの`OperationDecl`（`decls`）から列挙する。これが見直す対象のexact setである。見直しは、各操作の所有者がcurrentの宣言（`OperationDecl`等）を更新した後に、そのcurrentの基底鍵でK2の`lookup`とK4の`evaluate`をやり直すことで行う。その結果のクラスはK2-I2のとおりであり、identityの集合を保った正当な新revisionで旧記録が`Value`なら`Stale`、同じrevisionでbytesだけ変われば`Unknown(conflict)`、入力のidentityの集合が変われば`Unobserved(not_run)`、旧記録が非`Value`なら`Unobserved(not_run, superseded)`となる。`affected`に無い記録と義務は見直さない（INTELLIGENCE-078-04、HARNESS-030-04）。
+
+### 14.4 API境界
+
+- `build_graph(decl, rules) -> ResultRecorded | Rejected(reason)`：宣言だけを受け取り、K10-I1・I2に従ってedgeを正規化する。`candidate`を`confirmed`へ変える経路は、`source`の承認済みの固定実体の宣言だけとする。
+- `check_graph(graph_ref, rules, input_heads) -> Observed<Combined>`：K5の`restore`（固定prefixと完全性）→`lookup`でグラフを得て（非`Value`ならそれを返す）、K10-I1・I3を検査する。
+- `closure(graph_ref, seed, condition_state, rules, input_heads) -> Observed<Closure>`、`impact(graph_ref, changed, condition_state, rules, input_heads) -> Observed<Impact>`、`independent(graph_ref, op, condition_state, rules, input_heads) -> Observed<Combined>`：同じくグラフを得てから、K10-I4〜I6に従う。
+- `review_set(impact, obligation_set_keys, decls, input_heads) -> Observed<{records, obligations}>`：K10-I7の見直す対象のexact setを返す。義務は`obligation_set_keys`の各集合から読み、`decls`は操作の所有者が宣言したcurrentの`OperationDecl`を呼出し側が渡す。`decls`に義務の操作が無ければ、その義務を`Unknown(missing_input)`として返す。記録のクラスは変えない。
+
+### 14.5 扱える範囲と扱えない範囲
+
+| 対象 | 扱い |
+|---|---|
+| 宣言したedgeの型・端点・性質の整合 | 扱える（K10-I1、I3） |
+| 宣言したグラフと条件の状態の上での依存閉包・影響・独立 | 扱える（K10-I4〜I6） |
+| 宣言されていない依存（隠れた自己依存、実行時だけの依存） | 扱えない。OS-014-07のとおり、段階を分けた起動・更新・復旧の観測で確かめる |
+| `candidate`のedgeの真偽 | 扱えない。`possibly`として列挙するだけで、確定は由来の宣言による |
+| `ConditionState`の値の正しさ | 扱えない。宣言した所有者の責任であり、K10は`unknown`を保留として扱うだけ |
+
+### 14.6 旧HELIXとの対応
+
+| 旧source（ID／path:行／SHA-256） | 保持する点 | 変更する点 | 区分候補 |
+|---|---|---|---|
+| `LEGACY-ASSET-D94F2C0530850989B5F4`／`docs/design/helix/L6-function-design/ci-responsibility-registry.md:26-36`／`1ec55190d3c6eb018fa4288f8fd91b47a94955afddc5c01d419ea4f9d5a1c144` | edgeは明示された型（`refines／implements／verifies／contains／consumes／depends_on`）だけを受理し、名称類似・path近接・LLM推測でedgeを足さない。seedから明示edgeの有向closureを計算する | 型を語彙として外に出し、性質を宣言する。旧はdependency cycleを一律に拒否したが、本章は承認済みL3に由来が無いため一律にしない（14.7） | `semantic_rederive` |
+| `LEGACY-ASSET-EBEF9C2559936172AD8F`／`docs/design/helix/L5-detail/design-registry.md:39-50,79`／`e57a1a119c4013a2282e31be8a6ebd1b898a158f3a581bd470f83f1850e4e4ed` | node・edge・version・authority・staleを結ぶ。edgeの状態を`shadow／canonical／stale／retired`に分ける | 状態を`candidate／confirmed／retired`にし、staleはK2の導出に任せる | `semantic_rederive` |
+| `LEGACY-ASSET-04F72C685179FF8BD977`／`src/runtime/issue-hierarchy.ts:800-812`／`c1238598e6b9dd9832b08e2e679328489c7e44f7a79bf3a54e42c742f47adace` | `depends_on`に逆の`blocks`が無ければfindingにする（逆関係の対の照合） | Issueの関係に限っていた照合を、語彙の`inverse`の性質として一般化する。srcは除外classのため参照だけ | `semantic_rederive`（参照のみ） |
+| `LEGACY-ASSET-6929C09B95A444D95B49`／`docs/improvement-backlog.md:17`（IMP-148）／`e6d327ff488860dcaa8d7a150ac893e5cf0940eb710396cdf7ae746f5689a9e2` | 失敗史：edgeの語彙が設計・DB・collector・影響分析の間で同期せず、残差が残った | 語彙を一つの固定実体（`RelationVocab`）にし、グラフの鍵に入れる | 失敗史（区分なし） |
+
+関係の型ごとに推移性・対称性・逆関係・矛盾・変更の伝播の向きを値として宣言し、グラフの規則として検査する形は、旧HELIXに見つからない**新規案**である。旧には型の列挙と、Issueの関係での逆関係の対の照合（上表）だけがあった。検索の範囲は`archive/legacy-generation-2026-09-14/root/`の全ファイル（`grep -rIl`、読取りだけ）で、`transitive` 13件、`symmetric` 6件、`conflicts_with` 1件、`reflexive` 0件、`推移` 13件だった。`transitive`と`推移`の該当はpackageの推移依存（lock・SBOM・import）の意味、`symmetric`はroleの一覧とIssueの関係の照合、`conflicts_with`は旧PLANとの衝突のflagであり、関係の型の性質を宣言するものは無かった（`対称`は99件あり、抜き取りでは「非対称」（runtimeの間や記述の非対称、Issueの依存の非対称）の意味で、関係の型の性質の宣言ではなかった。全件は読んでいない）。
+
+### 14.7 L2へ戻す論点
+
+1. **依存循環の拒否**：依存の循環を一律に拒否するかは、承認済みL3が導出していない（`FR-HARNESS-L3-010`の境界、HARNESS L3:33）。拒否を求める場合は、要求の意味に触れるためL2へ戻す。
+
+### 14.8 未決と試作で確かめること
+
+- 各機構の語彙（どの関係の型を置き、性質の値をどうするか）は、各機構のL4で承認済みL3の由来から宣言する。
+- `control_plane`の宣言の所有者は、INFRASTRUCTUREのL4（INFRA-006の所有）で決める。
+- 試作：HARNESS-L2-023のpack依存を小さなグラフにし、L9のIV-K10-01〜14を動かす。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
