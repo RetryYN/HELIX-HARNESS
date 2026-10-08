@@ -186,16 +186,19 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 - **RL-K2 旧の具体を引き継がない**：旧のNode／TypeScript／Vitest／Biome／package.jsonの設定とlockは採らない（構成判断「旧HELIXとの対応」1行目）。Bunは使わない。現行の由来は`HELIXOS-L2-132`の003（`docs/governance/decisions/po-decision-2026-10-03-pending4-bun.md:27,33`。開発・実行・検証・配布のsurfaceでBunを今後も使わず再導入しない）である。旧ADR-009 73行（旧runtimeでBunを再activationしない）は旧資産の対応として保持するが、新世代の技術選択の制約の根拠にはしない。
 - **RL-K3 ツールの設定はパックへ寄せる**：パックに閉じる設定はパックのフォルダに置き、rootへ上げない。
 
-## 10. 共通カーネルへの反映事項
+## 10. 共通カーネルとの対応
 
-本PRはCKを編集しない。CKの後続PR（Codex側のPR10）で次を揃える。
+共通カーネルの対応する契約は同じL4／L9の文書対に記載する。ここでは契約本文を複製せず、リポジトリ構成規則から参照する受口を示す。
 
-1. **15.4 台帳の行**：`VersionDeclared{identity, 項目}`を`VersionRegistered{identity, version, declaration: FixedRef, declaration_digest}`へ置き換え、項目の値は`declaration.json`だけに置く（RL-C1、C3）。宣言の項目は識別項目と構成項目に分ける（RL-C2）。compositeの成果物の組はReleaseManifest、「scope内の受入の証拠」は`ReleaseEstablished.eligibility`に置く（3.1）。L9 IV-LDG-01の期待を「宣言のdigestを参照する行だけが導かれる」へ揃える。
-2. **15.5 配置の表**：`records/<log_id>/…`を`records/<enc(log_id)>/manifest.jsonl`、`records/<enc(log_id)>/segments/<enc(writer)>/<20桁>.jsonl`へ改め、`store: repository`のlogに限る（RL-P8）。`declarations/`と`helix/`のpath要素も`enc`とし、パックの宣言のfile名を`declaration.json`とする。フォルダ名と宣言の不一致を`Unknown(conflict)`に加える（RL-C4）。
-3. **9.3 `LogDecl`**：`store: repository | stage | instance`を加える（RL-P8）。`FixedRef`の所在を`{store, locator, digest}`へ広げる（RL-P9）。
-4. **15.2 `Generation`とK7-I3**：`GenerationStaged`が`ReleaseEstablished`済みのReleaseManifestを指す条件を加え、K7-I3の`stage_verification`の基底鍵を4.1の`stage_key`（`subject`＝`ManifestRef`）とRL-R2の成分へ揃える（RL-R4）。`PointerLog`・`RequestLog`・`EpochLog`は`store: stage`とし、`append_if_head`の物理の前提をRL-P7で参照する。
-5. **15.6 `ledger_view`**：release成立・現行の世代・実行の観測を別fieldで返す（RL-R5）。
-6. **9.4 K5-I3**：損傷の条件に「(h)行の実bytesが`canonical_json(LogEntry)`＋LF一つと一致しない」を加える（RL-P3）。対のL9へ、CRLF化・末尾空白・非canonical表記の各反例を加える。
+| リポジトリ構成の規則 | 共通カーネルL4 | 共通カーネルL9 |
+|---|---|---|
+| RL-C1〜C4（宣言、`VersionRegistered`、識別・構成項目、宣言pathとの照合） | §15.4 | IV-LDG-01〜02 |
+| RL-R1〜R4（ReleaseManifest、`ReleaseEstablished`、`GenerationStaged`） | §15.2 | IV-K7-03、IV-RL-11〜14、41〜44 |
+| RL-R5（成立・現行世代・実行観測の分離） | §15.6 | IV-LDG-03 |
+| RL-P1〜P9（`LogDecl`、`FixedRef`、保存先、segment配置） | §§9.3、15.5 | IV-LDG-04、IV-RL-24〜32 |
+| RL-P3（canonical JSON bytesとLFの一致） | §9.4 K5-I3(h) | IV-RL-26、38 |
+
+物理保存先の境界やreleaseの型を含む詳細は、§§3.1、4.1、6.1および上表の共通カーネル受口を参照する。
 
 ## 11. L2へ戻す論点
 

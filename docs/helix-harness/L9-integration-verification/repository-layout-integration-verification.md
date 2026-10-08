@@ -48,7 +48,7 @@ base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`
 | `IV-RL-23` | 6.1 | `con`が`_63on`、80byteの結果はそのまま | 結果を81byteにする | `_h`＋64桁の形になり、内容から論理IDを戻せる（境界値の正常） |
 | `IV-RL-24` | RL-P1 | segmentのpathが内容の`enc(log_id)`・`enc(writer)`と一致する | segmentを別writerのdirectoryへ移す | `Unknown(conflict)` |
 | `IV-RL-25` | RL-P2 | 全pathの大文字小文字を畳んだ値が一意 | 大文字を小文字にそのまま写す（`_xx`にしない）`enc`の変異で`A`と`a`のlogを作る | `Unknown(conflict)`（新しい書込みは`Rejected`） |
-| `IV-RL-26` | RL-P3 | 各行の実bytesが`canonical_json(LogEntry)`＋LF一つと一致する | 1行の改行だけをCRLFへ変換する（解析後の値と`entry_digest`は変わらない） | `Unknown(unreadable)`（RL-P3の読取り条件。CK K5-I3(h)として反映予定） |
+| `IV-RL-26` | RL-P3 | 各行の実bytesが`canonical_json(LogEntry)`＋LF一つと一致する | 1行の改行だけをCRLFへ変換する（解析後の値と`entry_digest`は変わらない） | `Unknown(unreadable)`（RL-P3の読取り条件。CK K5-I3(h)に対応） |
 | `IV-RL-27` | RL-P4 | base側のbytesがhead側の先頭と一致するcommit | 途中の行の1byteを変えるcommit | `Rejected` |
 | `IV-RL-28` | RL-P5 | 二つのbranchが別writerのsegmentへ追記し、両方が入る | 二つのbranchが同じsegmentへ`seq=n+1`を追記し、両方の行を残してmergeする | `Unknown(unreadable)`（CK K5-I3(d)の重複） |
 | `IV-RL-29` | RL-P6 | repo外に固定した`SegmentHead`で末尾までを確かめる | 履歴を書き換えて末尾の1行を消す | `Unknown(unreadable)`（CK K5-I3(g)）。固定したheadを持たない読み手では検出できないことも記録する |
