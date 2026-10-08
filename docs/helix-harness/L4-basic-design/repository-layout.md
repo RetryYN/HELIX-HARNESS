@@ -188,15 +188,15 @@ RuntimeLog  = K5のlog（log_id: runtime:<target>:<environment>、store: stage�
 
 ## 10. 共通カーネルとの対応
 
-共通カーネルの対応する契約は同じL4／L9の文書対に記載する。ここでは契約本文を複製せず、リポジトリ構成規則から参照する受口を示す。
+共通カーネルの対応する契約は、[共通カーネルL4](common-kernel.md)と[対の共通カーネルL9](../L9-integration-verification/common-kernel-integration-verification.md)に記載する。表のIV-LDG・IV-K・IV-Gは共通カーネルL9、IV-RLは本書と対の[リポジトリ構成L9](../L9-integration-verification/repository-layout-integration-verification.md)を参照する。ここでは契約本文を複製せず、リポジトリ構成規則から参照する受口を示す。
 
-| リポジトリ構成の規則 | 共通カーネルL4 | 共通カーネルL9 |
+| リポジトリ構成の規則 | 共通カーネルL4 | 対のL9参照 |
 |---|---|---|
-| RL-C1〜C4（宣言、`VersionRegistered`、識別・構成項目、宣言pathとの照合） | §15.4 | IV-LDG-01〜02 |
-| RL-R1〜R4（ReleaseManifest、`ReleaseEstablished`、`GenerationStaged`） | §15.2 | IV-K7-03、IV-RL-11〜14、41〜44 |
-| RL-R5（成立・現行世代・実行観測の分離） | §15.6 | IV-LDG-03 |
-| RL-P1〜P9（`LogDecl`、`FixedRef`、保存先、segment配置） | §§9.3、15.5 | IV-LDG-04、IV-RL-24〜32 |
-| RL-P3（canonical JSON bytesとLFの一致） | §9.4 K5-I3(h) | IV-RL-26、38 |
+| RL-C1〜C4（宣言、`VersionRegistered`、識別・構成項目、宣言pathとの照合） | §15.4 | 共通カーネルL9 IV-LDG-01〜02 |
+| RL-R1〜R4（ReleaseManifest、`ReleaseEstablished`、`GenerationStaged`） | §15.2 | 共通カーネルL9 IV-K7-03／配置L9 IV-RL-11〜14、41〜44 |
+| RL-R5（成立・現行世代・実行観測の分離） | §15.6 | 共通カーネルL9 IV-LDG-03 |
+| RL-P1〜P9（`LogDecl`、`FixedRef`、保存先、segment配置） | §§9.3、15.5 | 共通カーネルL9 IV-LDG-04／配置L9 IV-RL-24〜32 |
+| RL-P3（canonical JSON bytesとLFの一致） | §9.4 K5-I3(h) | 配置L9 IV-RL-26、38／共通カーネルL9 IV-K5-24〜26 |
 
 物理保存先の境界やreleaseの型を含む詳細は、§§3.1、4.1、6.1および上表の共通カーネル受口を参照する。
 

@@ -3,7 +3,7 @@
 status: design_pair_defined
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
-base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した現行本文のSHA-256はL4付録A）
+base: main `66abf6bf158baebc6bfceb5ccf693d425aae41a9`（引用した現行本文のSHA-256はL4付録A）
 
 本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1〜K10、E、G3/G4/G5/G8/G10/G11、Phase 1の条件、型番台帳と配置に対する結合検証設計である。L9はL4の基本設計を機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の項目はL4の番号付き契約と不変条件を参照し、要求やACを作らない。L3 ACの総合検証はL10の責務である。
 

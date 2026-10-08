@@ -4,7 +4,7 @@ status: design_pair_defined
 owner: HELIX-HARNESS（工程の標準と検証義務の所有。2026-10-08のPO判断の判断2）
 parent_requirement: なし（一つの親要求を定めず、要素ごとに承認済みL3のACへtraceする。2026-10-08のPO判断の判断2。1.3を参照）
 paired_l9: ../L9-integration-verification/common-kernel-integration-verification.md
-base: main `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`（引用した現行本文のSHA-256はL4付録A）
+base: main `66abf6bf158baebc6bfceb5ccf693d425aae41a9`（引用した現行本文のSHA-256はL4付録A）
 
 本書は、8機構が共通に使う結果の型・版の鍵・証拠・義務・依存・世代切替・操作権限・label遷移・独立性を扱う共通カーネルのL4基本設計であり、対のL9結合検証設計と一体で更新する。各要素は承認済みL3 ACと適用するConcept/L2へtraceし、由来のない意味を要求へ昇格させない。型番台帳と配置は2026-10-08/09の既存PO判断の範囲で設計する。
 
@@ -1553,9 +1553,7 @@ observe_input_label/observe_authority_effectのfresh評価は、(1)必須key基�
 
 各operationは自身のrequired-input sliceだけを要求する。分類sliceのcurrent参照がmissing／unknown／staleならclassificationを肯定せず、route/effect sliceがmissing／unknown／staleならroute/effect/transitionを肯定しない。分類operationはroute verifier・target owner・effect source sliceが未登録でも続行する。必要sliceのsource/project/revision/digest/key必須field欠落は、K2 `key_of`前の`Rejected(missing_key)`とする。同一role-bound alias identity内にkind/revision/digestが異なる複数refが集まった場合もK2 keyを作らず、`Rejected(missing_key)`で診断する。異なるside/roleのalias間では保存済み/current参照を共存させ、raw identityの一致だけで拒否しない。これらはL4の読取り・参照・結合契約であり、新しい人間承認やL2要求を追加しない。
 
-## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
-
-## 付録A 引用した現行文書のSHA-256（base `5665378bd6328bd1a4b7a70fc91dd5a3632a2d11`）
+## 付録A 引用した現行文書のSHA-256（base `66abf6bf158baebc6bfceb5ccf693d425aae41a9`）
 
 | path | SHA-256 |
 |---|---|
@@ -1577,6 +1575,8 @@ observe_input_label/observe_authority_effectのfresh評価は、(1)必須key基�
 | `docs/helix-connect/L3-requirements/functional-requirements.md` | `b3e4a47c0f49978880fc9bae7697d9b67eeaf72a112f821fef167c230c9d2e4b` |
 | `docs/helix-harness/L2-requirements/product-requirements.md` | `9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d` |
 | `docs/helix-harness/L3-requirements/functional-requirements.md` | `2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5` |
+| `docs/helix-harness/L4-basic-design/repository-layout.md` | `d7392f86c0c5d1ef8fcbe845ac4940ee3816c5f0687234c0acbc4899dc2b0aa6` |
+| `docs/helix-harness/L9-integration-verification/repository-layout-integration-verification.md` | `74d3a76efea15ea048e69991fcada4b018d7a8e5da61405beb68ed78ae1db630` |
 | `docs/helix-infrastructure/L3-requirements/functional-requirements.md` | `425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d` |
 | `docs/helix-intelligence/L3-requirements/functional-requirements.md` | `35e936a6d83d7a83310cc2a1900e8f199c54923472df9e9b0d7a9bdeec059457` |
 | `docs/helix-labo/L3-requirements/functional-requirements.md` | `362979fc4489c137d7641278a8ea8e55461f3592d56d802bb285ec34abc4a9b8` |
