@@ -1015,29 +1015,53 @@ def resolve_receipt_path(repo_root, path):
     return real, None
 
 
-def write_receipt(real, text):
-    """既存のinodeを書き換えない。許可先directoryをsymlinkを辿らずに開き、同じdirectoryの新しい一時fileへ書いてから
-    原子的に置換する（rename）。既存fileがハードリンクでも、そのinode（許可先の外のfileを含む）は変わらない。"""
-    d = os.path.dirname(real)
-    os.makedirs(d, exist_ok=True)
-    dfd = os.open(d, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0))
+def write_receipt(real, text, repo_root):
+    """既存のinodeを書き換えず、途中のsymlinkも辿らずに書く。
+
+    --repo-root（信頼する起点）から許可先まで、各directoryを O_DIRECTORY|O_NOFOLLOW で dir_fd を使って1段ずつ開き、
+    最後に保持したdirectory fdの中で、新しい一時file（O_CREAT|O_EXCL|O_NOFOLLOW）へ書いて原子的に置換する。
+    検証の後で途中のdirectoryがsymlinkへ差し替わっても、そのsymlinkは辿らずに失敗する（OSError）。
+    既存の出力先がregular fileでない、またはlink数が2以上なら書かずに失敗する。"""
+    import stat as _stat
+    root = os.path.realpath(repo_root)
+    rel = os.path.relpath(real, root)
+    parts = rel.split(os.sep)
+    if not parts or parts[0] in ("..", "") or os.path.isabs(rel):
+        raise OSError("receiptの出力先が --repo-root の外にある")
+    dirs, name = parts[:-1], parts[-1]
+    flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
+    cur = os.open(root, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
     try:
-        tmp = ".%s.%d.tmp" % (os.path.basename(real), os.getpid())
-        fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0), 0o644, dir_fd=dfd)
+        for comp in dirs:
+            try:
+                nxt = os.open(comp, flags, dir_fd=cur)
+            except FileNotFoundError:
+                os.mkdir(comp, 0o755, dir_fd=cur)
+                nxt = os.open(comp, flags, dir_fd=cur)
+            os.close(cur)
+            cur = nxt
+        try:
+            st = os.stat(name, dir_fd=cur, follow_symlinks=False)
+            if not _stat.S_ISREG(st.st_mode) or st.st_nlink > 1:
+                raise OSError("既存のreceiptがregular fileでない、またはハードリンクである")
+        except FileNotFoundError:
+            pass
+        tmp = ".%s.%d.tmp" % (name, os.getpid())
+        fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0), 0o644, dir_fd=cur)
         try:
             with os.fdopen(fd, "w", encoding="utf-8") as f:
                 f.write(text)
                 f.flush()
                 os.fsync(f.fileno())
-            os.replace(tmp, os.path.basename(real), src_dir_fd=dfd, dst_dir_fd=dfd)
+            os.replace(tmp, name, src_dir_fd=cur, dst_dir_fd=cur)
         except BaseException:
             try:
-                os.unlink(tmp, dir_fd=dfd)
+                os.unlink(tmp, dir_fd=cur)
             except OSError:
                 pass
             raise
     finally:
-        os.close(dfd)
+        os.close(cur)
 
 
 def make_ctx(args, git):
@@ -1086,7 +1110,11 @@ def main(argv=None):
     receipt = build_receipt(ctx, registered, evaluated, results, overall, reason)
     out = json.dumps(receipt, ensure_ascii=False, indent=1, sort_keys=False)
     if receipt_path:
-        write_receipt(receipt_path, out + "\n")
+        try:
+            write_receipt(receipt_path, out + "\n", args.repo_root)
+        except OSError as ex:
+            print("E_INPUT: --receipt %s へ書かなかった：%s" % (args.receipt, ex), file=sys.stderr)
+            return 2
         for cid in evaluated:
             r = results[cid]
             print("%-17s %-9s %s" % (cid, r["result"], {k: sum(1 for f in r["findings"] if f["result"] == k) for k in ("violation", "unknown", "advisory")}))

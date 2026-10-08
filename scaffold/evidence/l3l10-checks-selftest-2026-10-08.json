@@ -4,13 +4,13 @@
  "authority_effect": "none",
  "binding": "scaffold/bindings/SCF-B-0157.json",
  "note": "仮の検証の記録。正式なCI／検証／受入の成立を意味しない。検出器の回帰確認であり、L3／L10の承認・合格・merge admissionを生成しない",
- "source_commit": "c58c097cf781073a634a51856dc944f0ac0fd48a",
+ "source_commit": "ebf7025b8640fc4b113bc7d771fcf5dc981cd7fc",
  "source_commit_note": "記録時のworktreeのHEAD。検査器自体の版はchecker_source_digests（各fileのSHA-256）で特定する",
- "recorded_at": "2026-10-08T05:13:35.282768+00:00",
+ "recorded_at": "2026-10-08T05:17:56.542451+00:00",
  "checker_source_digests": {
-  "scaffold/l3l10-checks/README.md": "16bfd968b721ceb509d03c1298c655d8ab7141da2bac6d0ab950566519dc9c62",
-  "scaffold/l3l10-checks/l3l10check.py": "f99ecdc2048408fac70d8be5c50a3f284663467a7a09560bd93d9098b47b8159",
-  "scaffold/l3l10-checks/selftest.py": "ed425e01befab8f255495e64eb440998bce808b3711d5d1039d6860d59941774",
+  "scaffold/l3l10-checks/README.md": "4eb843f72ef82c72ce38f342f84949bd14f0eebab3fe00335636de2380fae1a8",
+  "scaffold/l3l10-checks/l3l10check.py": "8d7bbd2701e4d771c2a49459a888a0cb5294a4f0e46376c520ff3600cee82ebc",
+  "scaffold/l3l10-checks/selftest.py": "48c5d189040f98761caaa2493a054f3c73de959862da7b4cd9e3fc87a42c53f2",
   "scaffold/l3l10-checks/corpus/major-corpus.json": "c5faea577776702c4fb6e04f54917dbf77fc133954cded37b665c6b767008b85"
  },
  "registered_checks": [
@@ -39,8 +39,8 @@
   "partial_scope": [
    "2679 M1"
   ],
-  "synthetic_cases": 24,
-  "synthetic_ok": 24
+  "synthetic_cases": 25,
+  "synthetic_ok": 25
  },
  "corpus": [
   {
@@ -762,9 +762,15 @@
    "ok": true
   },
   {
-   "case": "receipt_replace_does_not_touch_linked_inode",
-   "expected": "outside unchanged, target replaced",
-   "got": "outside='ORIGINAL\\n' target='NEW\\n'",
+   "case": "receipt_hardlink_after_resolve_not_written",
+   "expected": "OSError, outside unchanged",
+   "got": "raised=True outside='ORIGINAL\\n'",
+   "ok": true
+  },
+  {
+   "case": "receipt_intermediate_symlink_swap_after_resolve",
+   "expected": "OSError, nothing written outside",
+   "got": "raised=True leaked=False",
    "ok": true
   },
   {

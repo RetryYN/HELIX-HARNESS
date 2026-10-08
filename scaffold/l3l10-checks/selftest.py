@@ -206,16 +206,39 @@ def synthetic_cases(git):
                     "got": "rejected: %s" % why if real is None else real, "ok": ok})
         if not ok:
             fails.append("receipt hardlink accepted: %s" % real)
-        # 置換方式：解決後に誰かがハードリンクを作っても、書込みは新しいinodeへの置換で、範囲外fileは変わらない
+        # 解決の後にハードリンクが作られた場合：書込み時に再検査して書かず、範囲外fileは変わらない
         target = os.path.join(rdir, "race.json")
         real, why = C.resolve_receipt_path(tmp, "scaffold/l3l10-checks/receipts/race.json")
         os.link(outside, target)
-        C.write_receipt(real, "NEW\n")
-        ok = open(outside, encoding="utf-8").read() == "ORIGINAL\n" and open(target, encoding="utf-8").read() == "NEW\n"
-        out.append({"case": "receipt_replace_does_not_touch_linked_inode", "expected": "outside unchanged, target replaced",
-                    "got": "outside=%r target=%r" % (open(outside, encoding="utf-8").read(), open(target, encoding="utf-8").read()), "ok": ok})
+        raised = False
+        try:
+            C.write_receipt(real, "NEW\n", tmp)
+        except OSError:
+            raised = True
+        ok = raised and open(outside, encoding="utf-8").read() == "ORIGINAL\n"
+        out.append({"case": "receipt_hardlink_after_resolve_not_written", "expected": "OSError, outside unchanged",
+                    "got": "raised=%s outside=%r" % (raised, open(outside, encoding="utf-8").read()), "ok": ok})
         if not ok:
-            fails.append("receipt write modified a linked outside inode")
+            fails.append("receipt write after hardlink race: raised=%s" % raised)
+        # 検証の後で途中directoryをsymlinkへ差し替える競合 → 書かずに失敗し、範囲外には何も作らない
+        real, why = C.resolve_receipt_path(tmp, "scaffold/l3l10-checks/receipts/swap.json")
+        mid = os.path.join(tmp, "scaffold", "l3l10-checks")
+        os.rename(mid, mid + ".moved")
+        os.makedirs(os.path.join(tmp, "outside", "receipts"), exist_ok=True)
+        os.symlink(os.path.join(tmp, "outside"), mid)
+        raised = False
+        try:
+            C.write_receipt(real, "X\n", tmp)
+        except OSError:
+            raised = True
+        leaked = os.path.exists(os.path.join(tmp, "outside", "receipts", "swap.json"))
+        ok = real is not None and raised and not leaked
+        out.append({"case": "receipt_intermediate_symlink_swap_after_resolve", "expected": "OSError, nothing written outside",
+                    "got": "raised=%s leaked=%s" % (raised, leaked), "ok": ok})
+        if not ok:
+            fails.append("receipt intermediate symlink swap: raised=%s leaked=%s" % (raised, leaked))
+        os.unlink(mid)
+        os.rename(mid + ".moved", mid)
         rc = C.main(["--repo-root", tmp, "--receipt", "docs/x.json"])
         ok = rc == 2 and not os.path.exists(os.path.join(tmp, "docs", "x.json"))
         out.append({"case": "receipt_reject_main_exit2_no_write", "expected": "exit 2, no file", "got": "exit %s" % rc, "ok": ok})
@@ -223,7 +246,7 @@ def synthetic_cases(git):
             fails.append("main receipt outside: exit %s" % rc)
         real, why = C.resolve_receipt_path(tmp, "scaffold/l3l10-checks/receipts/r.json")
         if real:
-            C.write_receipt(real, "{}\n")
+            C.write_receipt(real, "{}\n", tmp)
         ok = real is not None and os.path.isfile(real)
         out.append({"case": "receipt_accept_allowed", "expected": "written", "got": "written" if ok else "rejected: %s" % why, "ok": ok})
         if not ok:

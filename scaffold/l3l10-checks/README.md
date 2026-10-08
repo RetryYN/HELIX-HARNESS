@@ -35,7 +35,7 @@ selftestの`--record`が書く`scaffold/evidence/l3l10-checks-selftest-2026-10-0
 
 `--receipt`の出力先は、`--repo-root`配下の`scaffold/l3l10-checks/receipts/`の中の`.json`に限る（相対pathは`--repo-root`基準）。
 範囲外、`..`による脱出、symlink（出力先そのもの・途中のdirectory）を経由するもの、既存の非regular fileは入力不正（終了code 2）として拒否し、何も書かない。
-既存の出力先がハードリンク（link数2以上）なら拒否する。書込みは、許可先directoryをsymlinkを辿らずに開き、同じdirectoryの新しい一時fileへ書いてから原子的に置換する（既存のinodeを書き換えない）。これは`SCF-B-0157`の「`scaffold/`外への書込み禁止」を実装で守るためである（#2700 review01・review02 M1）。
+既存の出力先がハードリンク（link数2以上）なら拒否する。書込みは、`--repo-root`から許可先まで各directoryを`O_DIRECTORY|O_NOFOLLOW`で`dir_fd`を使って1段ずつ開き、保持したdirectoryの中で新しい一時fileへ書いてから原子的に置換する（既存のinodeを書き換えない）。書込みの直前にも出力先を再検査する。検証の後で途中のdirectoryがsymlinkへ差し替わったり、ハードリンクが作られたりした場合は、書かずに失敗する（終了code 2）。これは`SCF-B-0157`の「`scaffold/`外への書込み禁止」を実装で守るためである（#2700 review01・review02のM1、review03のM2）。
 
 `--mech`は`docs/`直下の機構directory名（`helix-labo`、`helix-os`等）、`--parent`は親の3桁番号である。6本文は
 `L3-requirements/{business-requirements,functional-requirements,nfr-grade}.md`と
