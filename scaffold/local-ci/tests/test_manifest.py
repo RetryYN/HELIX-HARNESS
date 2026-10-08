@@ -218,27 +218,71 @@ class DesignManifestTests(unittest.TestCase):
         result = manifest.verify_legacy_pins(doc, sources, ledger)
         self.assertEqual(result["verified_count"], 7)
 
-    def test_ut_lci_36_unresolved_reference_is_retained_as_diagnostic(self):
+    def test_ut_lci_36_deleted_destination_definition_is_unresolved(self):
         doc, sources, _ = _baseline()
-        path = "docs/helix-os/L5-detail-design/local-ci-detail-design.md"
-        sources[path] += b"\n## Reference rows\n| Ref | Target |\n|---|---|\n| R1 | unknown target |\n"
-        file = next(item for item in doc["files"] if item["path"] == path)
+        destination = next(item["id"] for item in _graph(doc, sources)["definitions"]
+                           if item["definition_kind"] == "table_column")
+        verifier_file = next(item for item in doc["files"] if item["role"] == "l9" and
+                             item["path"] == next(definition["path"] for definition in _graph(doc, sources)["definitions"]
+                                                  if definition["id"] == destination))
+        l5_path = "docs/helix-os/L5-detail-design/local-ci-detail-design.md"
+        sources[l5_path] += ("\n## Reference rows\n| Ref | Target |\n|---|---|\n"
+                             f"| R1 | `{destination}` |\n").encode()
+        file = next(item for item in doc["files"] if item["path"] == l5_path)
         file["reference_ranges"].append({
             "range_id": "synthetic-reference", "start_heading": "## Reference rows",
             "end_heading": None, "grammar": "table_column", "id_column": 2,
-            "literal_expansions": [{"literal": "unknown target", "ids": ["MISSING-ID"]}],
+            "literal_expansions": [],
         })
-        _expect_diag(self, "Unknown", "missing_input", _graph, doc, sources)
+        self.assertIn(destination, _graph(doc, sources)["by_id"])
+        row = f"| `{destination}` | Value(accepted) |\n".encode()
+        self.assertIn(row, sources[verifier_file["path"]])
+        sources[verifier_file["path"]] = sources[verifier_file["path"]].replace(row, b"", 1)
+        with self.assertRaises(Diagnostic) as caught:
+            _graph(doc, sources)
+        self.assertEqual((caught.exception.classification, caught.exception.reason), ("Unknown", "missing_input"))
+        self.assertIn("unresolved reference: " + destination, caught.exception.detail)
 
-    def test_ut_lci_46_d4_partial_design_edge_is_required(self):
+    def test_ut_lci_46_removing_only_d4_iv_rl_57_edge_is_unknown(self):
         doc, sources, _ = _baseline()
+        source_path = next(path for path, ids in manifest.REQUIRED_SOURCE_IDS_BY_PATH.items() if "RL-D4" in ids)
+        verifier_path = next(row[2] for row in manifest.EXPECTED_FILES if row[0] == source_path)
+        verifier_file = next(item for item in doc["files"] if item["path"] == verifier_path)
+        verifier_ids = ["IV-RL-56", "IV-RL-57", "IV-RL-59"]
+        sources[verifier_path] += (
+            "".join(f"| `{ident}` | Value(accepted) |\n" for ident in verifier_ids)
+            + "\n## Source relations\n| Verifier | Source contract |\n|---|---|\n"
+            + "".join(f"| `{ident}` | RL-D4 |\n" for ident in verifier_ids)
+        ).encode()
+        next(item for item in verifier_file["definition_ranges"] if item["range_id"] == "oracle-rows")["end_heading"] = "## Source relations"
+        verifier_file["reference_ranges"].append({
+            "range_id": "source-relations", "start_heading": "## Source relations",
+            "end_heading": None, "grammar": "table_column", "id_column": 2,
+            "literal_expansions": [],
+        })
         doc["coverage_edges"] = [edge for edge in doc["coverage_edges"] if edge["source_id"] != "RL-D4"]
+        d4_edge_ids = []
+        for ident in verifier_ids:
+            edge_id = f"edge.RL-D4.{ident}"
+            d4_edge_ids.append(edge_id)
+            doc["coverage_edges"].append({
+                "edge_id": edge_id, "source_id": "RL-D4", "source_path": source_path,
+                "verifier_id": ident, "verifier_path": verifier_path,
+                "outcome_ref": {"verifier_path": verifier_path, "range_id": "oracle-rows",
+                                "verifier_id": ident, "outcome_column": 2},
+            })
+        disposition = next(item for item in doc["coverage_dispositions"] if item["source_id"] == "RL-D4")
+        disposition["edge_ids"] = d4_edge_ids
+        self.assertTrue(manifest.verify_coverage_edges(doc, _graph(doc, sources))["structure_complete"])
+        removed_id = "edge.RL-D4.IV-RL-57"
+        doc["coverage_edges"] = [edge for edge in doc["coverage_edges"] if edge["edge_id"] != removed_id]
+        disposition["edge_ids"].remove(removed_id)
         _expect_diag(self, "Unknown", "missing_input", manifest.verify_coverage_edges, doc, _graph(doc, sources))
 
-    def test_ut_lci_47_t3_cannot_be_promoted_to_mapped(self):
+    def test_ut_lci_47_t3_cannot_be_promoted_to_pass(self):
         doc, sources, _ = _baseline()
         disposition = next(item for item in doc["coverage_dispositions"] if item["source_id"] == "RL-T3")
-        disposition["state"] = "mapped"
+        disposition["state"] = "pass"
         _expect_diag(self, "Rejected", "invalid_input", manifest.load_design_manifest, _raw(doc), sources)
 
     def test_ut_lci_57_preflight_missing_edge_is_not_success(self):
@@ -358,8 +402,12 @@ class DesignManifestTests(unittest.TestCase):
 
     def test_ut_lci_70_exact_heading_locator_must_exist(self):
         doc, sources, _ = _baseline()
-        rng = next(r for f in doc["files"] for r in f["definition_ranges"] if r["grammar"] == "exact_heading")
-        rng["start_heading"] = "### 999 missing section"
+        file = next(f for f in doc["files"] for r in f["definition_ranges"] if r["grammar"] == "exact_heading")
+        rng = next(r for r in file["definition_ranges"] if r["grammar"] == "exact_heading")
+        original_heading = rng["start_heading"]
+        sources[file["path"]] = sources[file["path"]].replace(
+            (original_heading + "\n").encode(), (original_heading + " changed\n").encode(), 1)
+        self.assertEqual(rng["start_heading"], original_heading)
         _expect_diag(self, "Unknown", "missing_input", manifest.load_design_manifest, _raw(doc), sources)
 
     def test_ut_lci_71_duplicate_heading_id_outside_fence_conflicts(self):

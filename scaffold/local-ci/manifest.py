@@ -288,20 +288,18 @@ def _extract_ids(manifest, sources):
                     by_literal[line].append(line_no)
                 if not expansions:
                     _fail("Unknown", "missing_input", "heading_id requires explicit expansions")
+                mapped_ids = set()
                 for literal, ids in expansions.items():
                     if literal not in by_literal:
                         _fail("Unknown", "missing_input", "heading_id literal missing: " + literal)
                     if len(by_literal[literal]) != 1:
                         _fail("Unknown", "conflict", "heading_id literal duplicated: " + literal)
-                    marker = re.search(r"`([A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+(?:[a-d])?)`", literal)
-                    if not marker or ids != [marker.group(1)]:
-                        _fail("Unknown", "conflict", "heading_id must map its exact existing ID")
                     for ident in ids:
+                        if ident in mapped_ids:
+                            _fail("Unknown", "conflict", "heading_id maps an ID more than once: " + ident)
+                        mapped_ids.add(ident)
                         definitions.append({"id": ident, "path": path, "range_id": id_range["range_id"], "definition_kind": "heading_id"})
                         def_ids_by_path[path].add(ident)
-                for literal in by_literal:
-                    if re.search(r"`F-LCI-\d{2}[a-d]?`", literal) and literal not in expansions:
-                        _fail("Unknown", "missing_input", "unmapped function heading: " + literal)
                 if set(expansions) - set(by_literal):
                     _fail("Unknown", "missing_input", "unused heading_id expansion")
             elif grammar == "bullet_id":
