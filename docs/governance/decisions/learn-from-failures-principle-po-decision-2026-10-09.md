@@ -19,14 +19,16 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 
 ## 経緯
 
-Claudeは、運用モデルの改訂の材料として、POが示した開発repositoryを読み取りで調べた。読んだのは、前身harness `unison-ai-product/UT-TDD_AGENT-HARNESS` と、`RetryYN/ProFine`、`RetryYN/HELIX-WP-THEME`、`RetryYN/HELIX-WP-HARNESS`、`RetryYN/HELIX-VIDEO-STUDIO`である。いずれも、旧HELIXの規律から派生して実際に運用されたrepositoryで、HELIXの現行の作業で起きている失敗と同じ型の失敗が記録されていた。例えば次のものである。
+Claudeは、運用モデルの改訂の材料として、POが示した開発repositoryを読み取りで調べた。読んだのは、前身harness `unison-ai-product/UT-TDD_AGENT-HARNESS` と、`RetryYN/ProFine`、`RetryYN/HELIX-WP-THEME`、`RetryYN/HELIX-WP-HARNESS`、`RetryYN/HELIX-VIDEO-STUDIO`である。いずれも、旧HELIXの規律から派生して実際に運用されたrepositoryで、HELIXの現行の作業で起きている失敗と同じ型の失敗が記録されていた。例えば次のものである。読んだrevisionは、UT-TDD_AGENT-HARNESSが`68ea9de62701df39d0386e6cf0689c4dfc0e5875`、ProFineが`c5389d5763c7ef37f5522e8ee1280e194f2181ae`、HELIX-WP-THEMEが`edb49f623f3c437deb2ad503cbdf5ad903b8a798`である。
 
-- worktreeとbranchの放置
-- 通知の終端状態が無いことによる再起床
-- チケットの書き戻しと依存によるgateの肥大
-- 並行PRによる連番の取り合い
-- 検査がCIで起動していないこと
-- 規則の追加による入口文書の肥大
+- worktreeとbranchの放置：UT-TDD_AGENT-HARNESS Issue #232（worktree 118本中68本が終了済み）、#578（merge済みbranch 107本）
+- 通知の終端状態が無いことによる再起床：UT-TDD_AGENT-HARNESS Issue #444（184件滞留）
+- チケットの書き戻しと依存によるgateの肥大：ProFine `docs/tickets/GOV-0006-ticket-pr-number-writeback.md`、`docs/revisions/2026-10-07-ticket-independence-policy.md`
+- 並行PRによる連番の取り合い：ProFine `docs/tickets/GOV-0004-revision-memo-version-collision.md`、`docs/tickets/GOV-0029-proto-notes-per-file.md`
+- 検査がCIで起動していないこと：HELIX-WP-THEME Issue #206、#210
+- 規則の追加による入口文書の肥大：UT-TDD_AGENT-HARNESS の`CLAUDE.md`（36,647 bytes）と`AGENTS.md`（24,776 bytes）
+
+本書は上の例を原則の経緯として示すものであり、各事例をHELIXのどの機構・要求へ対応させるかは、本書とは別の監査記録で確かめる。
 
 POは、これらのrepositoryについて次のように述べた（原文）。
 
@@ -45,7 +47,7 @@ POは、これらのrepositoryについて次のように述べた（原文）�
 - 現行のHELIXは、旧HELIXと、旧HELIXの規律から派生して実際に運用された開発repositoryで起きた失敗の上に再編している。
 - HELIXは失敗から学んで最適化するシステムであり、開発もその原則で進める。規則、運用、設計を追加・変更・提案するときは、同じ種類の失敗の事例を確かめて起点にし、同じ失敗を繰り返さない形にする。
 - 事例のない予防の規則は足さない。機構が成立した運用規則は減らす。手順は[GitHub上流運用モデル](../github-upstream-operating-model.md)「運用規則の置き場と、機構への移管」による。
-- 各機構は、記録された失敗を防ぐ機構として読む。抜け漏れを防ぐために管理（HELIX-OSの管理・推進・検収）を置き、INTELLIGENCEはそれらの失敗を防ぐ機構である。各機構の要求の意味は、その要求がどの失敗を防ぐかで確かめる。これは要求の意味を変えるものではなく、読み方と確かめ方の原則である。失敗を防ぐ要求が見つからない場合は、要求候補として人の判断へ送り、本書や運用から要求を作らない。
+- 各機構は、記録された失敗を防ぐ機構として読む。抜け漏れを防ぐために管理（HELIX-OSの管理・推進・検収）を置き、INTELLIGENCEはそれらの失敗を防ぐ機構である。各機構の要求の意味は、その要求がどの失敗を防ぐかで確かめる。これは要求の意味を変えるものではなく、読み方と確かめ方の原則である。失敗は承認済みの要求の意味を照らして確かめる材料であり、開発repositoryの失敗や運用規則から製品の要求、要求の意味の変更、新しいgateを生成しない。失敗を防ぐ要求が見つからない場合は、要求候補として人の判断へ送り、本書や運用から要求を作らない。
 - 派生repositoryは、旧HELIXの台帳資産ではない。事例はrepository、commit、Issue／PR番号で引く。規則や本文を現行へ写さず、旧HELIXと同じく保持する点と変える点を記録する。
 
 [Concept](../../concept/helix-concept.md)の目標2「開発するほど賢くなる自己知能型改善システム」と「計測」（品質、費用、時間、再作業、失敗を測る）は、製品としてのHELIXの側の同じ方向の記述である。HELIX-OSの「管理」（要求・承認・予算・状態・証拠の登録と版の管理）と、HELIX-INTELLIGENCEの「HELIX全体の監査に寄せる」「バグbot」（Concept 220・223行）も同じ方向にある。本書は開発の進め方の原則を記録するものであり、Conceptを変えない。開発repositoryの運用規則を製品の要求の根拠にしない（2026-10-08の[判断記録](l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md)の判断3）。
