@@ -215,7 +215,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 
 ### 3.4 イベントとAPI境界
 
-- イベント：`ResultRecorded(key_digest, result_digest, producer)`、`ResultConflictDetected(key_digest, result_digests[])`。staleはイベントにしない（K2-I2）。保存はK5（repository内の追記専用JSONL。本書の設計判断。5章）で行い、本PRでは記録の形式だけを定める。
+- イベント：`ResultRecorded`（鍵、結果、`key_digest`、`result_digest`、`producer`）、`ResultConflictDetected(key_digest, result_digests[])`。各fieldの形式はK5（9.3）で定める。staleはイベントにしない（K2-I2）。保存はK5（repository内の追記専用JSONL。本書の設計判断。5章）で行い、本PRでは記録の形式だけを定める。
 - `key_of(operation, operation_version, subject, inputs, scope) -> ResultKey`：`inputs`を`identity`で整列し、重複した`identity`を拒否する。
 - `lookup(records, query_key) -> Observed<T>`：K2-I1、I2、I2b、I5に従う純関数。`query_key`は照会時点の`subject`と`inputs`の`revision`・`digest`を持つ。
 - `record(records, key, result, producer) -> Recorded | NoOp | Conflict | Rejected(missing_key | stale_not_recordable)`：K1-I6とK2-I4に従う。
@@ -311,7 +311,7 @@ G14（外部標準の版固定）はCONNECTのL4で扱い、共通カーネル�
 
 ### 9.1 置き場所と範囲
 
-K5は本書と対のL9へ追記する。共通カーネルは一つの設計identityであり、更新し続ける文書は同じファイルを更新する（AGENTS.md「再構築の原則」）。K5はK1の`Observed`、K2の`ResultKey`・K2-I2bの「追記順」・3.4のイベントを直接参照し、8章の計画と付録Aを共有するため、別ファイルに分けると参照と付録が二重になる。PRの範囲はK5の一つの変更目的（正本の記録形式と、projectionの導出の境界）に限り、人が読む差分は本章と対のL9で約130行（表の行が長いため、文字量では目安の範囲の中ほど）である。
+K5は本書と対のL9へ追記する。共通カーネルは一つの設計identityであり、更新し続ける文書は同じファイルを更新する（AGENTS.md「再構築の原則」）。K5はK1の`Observed`、K2の`ResultKey`・K2-I2bの「追記順」・3.4のイベントを直接参照し、8章の計画と付録Aを共有するため、別ファイルに分けると参照と付録が二重になる。PRの範囲はK5の一つの変更目的（正本の記録形式と、projectionの導出の境界）に限り、人が読む差分は本章と対のL9で約155行（表の行が長いため、文字量では目安の上限に近い）である。
 
 ログの置き場所（ディレクトリ）は決めない。方針6の具体的なディレクトリ配置とともに8.2のPR6で決める。本章は記録の形式と規則だけを定める。
 
@@ -328,67 +328,87 @@ K5は本書と対のL9へ追記する。共通カーネルは一つの設計iden
 | LABO | `LABO-002-AC-03`（同:149）、`LABO-050-AC-02`（同:1579） | 訂正時に元eventを上書きしない。遅着の再観測は追加し、既存のsource recordを上書きしない |
 | HARNESS | `AC-HARNESS-L3-024-05`（`docs/helix-harness/L3-requirements/functional-requirements.md:442`） | 再開時は新eventを追記して影響差分を再評価する |
 
-承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による（CONNECT Stage 5、INTELLIGENCE Stage 3・Stage 5、LABO Stage 1・Stage 2b・Stage 5、HARNESS Stage 2b）。正本をrepository内の追記専用JSONLにすることはAIの設計判断である（5章）。
+承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による（CONNECT Stage 1：`docs/governance/decisions/helix-connect-stage1-l3-l10-po-decision-2026-10-05.md:22`、INTELLIGENCE Stage 3・Stage 5、LABO Stage 1・Stage 2b・Stage 5、HARNESS Stage 2b）。正本をrepository内の追記専用JSONLにすることはAIの設計判断である（5章）。
 
 ### 9.3 型
 
 ```text
-LogId        = 版をまたいで変わらないログの識別子（pathを識別子にしない。方針6）
+LogDecl      = { log_id, owner, operations: Operation[], value_encodings, event_types, manifest_writer }
 SegmentId    = { log_id, writer, segment_no }      # 一つのsegmentに書くのは一つのwriterだけ
 LogEntry     = { schema_version, segment: SegmentId, seq, prev_digest, event, entry_digest }
-  seq          = 1から始まる連番（segmentごと）
+  seq          = 1から始まる符号なし整数（segmentごと）
   prev_digest  = 同じsegmentのseq-1のentry_digest。seq=1は"genesis"
   entry_digest = Digest(canonical_json({schema_version, segment, seq, prev_digest, event}))
-Event        = ResultRecorded | ResultConflictDetected | Correction
-  Correction   = { target: entry_digest, reason, replacement_event? }
-SegmentHead  = { segment, seq, entry_digest }      # 読んだ時点のsegmentの末尾
-Projector    = { identity, version, digest }        # projectionを作る純関数の識別と版
-Projection   = { projector, input_heads: SegmentHead[], output, output_digest }
-Checkpoint   = { projector, input_heads, state_digest }
+Event        = ResultRecorded | ResultConflictDetected | Correction | SegmentOpened | DeclaredEvent
+  ResultRecorded         = { key: ResultKey, key_digest, result: ResultBody, result_digest, producer }
+  ResultBody             = Observedのクラスとクラス別field（2.2）。Value.valueとevidenceは次のどちらか
+                             - Inline(value)：LogDeclのvalue_encodingsでinlineと宣言した値型だけ
+                             - FixedRef{ revision: (GitRevision, path), digest }：repository内の固定実体
+  result_digest          = Digest(canonical_json(ResultBody))   # FixedRefは参照のままdigestに入れる
+  ResultConflictDetected = { key_digest, result_digests[] }
+  Correction             = { target: entry_digest, reason, replacement: DeclaredEvent? }
+  SegmentOpened          = { segment }                # manifest segmentにだけ書く
+  DeclaredEvent          = { event_type, refs }       # 機構がLogDeclで宣言したevent
+SegmentHead  = { segment, seq, entry_digest }
+ScopeDecl    = { scope_id, revision, log_id, manifest_head: SegmentHead, segments: SegmentId[] }
+Projector    = { identity, version, digest }
+Projection   = { projector, scope: ScopeDecl, input_heads: SegmentHead[], output, output_digest }
+  output_digest = Digest(canonical_json(output))
+Checkpoint   = { projector, scope, input_heads, state, state_digest }
 ```
 
 - 1行に1つの`LogEntry`を`canonical_json`（3.2）で書き、改行で区切る。
-- `ResultRecorded`と`ResultConflictDetected`は3.4のイベントである。K2の`record`は、該当する`operation`のsegmentへの追記として実装する。K2の`lookup`の`records`は、segment群から導いたprojectionである。
-- `writer`は追記する主体（lane、Worker、検証器等）の識別である。並行して働くwriterは別のsegmentに書く。gitで二つのbranchが同じsegmentの末尾へ追記すると連鎖が壊れるためである。
-- 業務payload、secret、credentialの値をeventに入れない。eventは識別子とdigestで参照する（CONNECT-AC-005-01の「raw業務payload・secret・credential値を保存・複製しない」）。
+- **復元できる記録形式**（K2との接続）：`ResultRecorded`は`ResultKey`の全field（3.2）と`ResultBody`を持つ。logの行と、`FixedRef`が指すrepository内の固定実体だけから、K2の`ResultRecord`（3.2）を4クラス（`Value`、`Unknown`、`Unobserved`、`NotApplicable`）のまま復元できる。3.4の`ResultRecorded`・`ResultConflictDetected`のfieldは本節の定義で具体化する（3.4をこの範囲で更新した。K2の意味は変えない）。
+- **機微な値**：業務payload、secret、credentialの値をeventに入れない（CONNECT-AC-005-01）。`Inline`は、logの所有者が`LogDecl`で宣言した値型（例：pass／fail、compatible／incompatible）だけに使う。それ以外の値と証拠は`FixedRef`で参照する。
+- **`FixedRef`の解決**：`(GitRevision, path)`のbytesを読み、SHA-256が`digest`と一致すれば解決できる。読めない、または一致しない場合、その記録は`Unknown(unreadable)`として復元する（元のクラスへ戻さない）。`result_digest`は参照のまま計算するので、解決できない場合もK2の`record`の冪等・競合の判定は変わらない。
+- **manifest**：各logに一つ、`manifest_writer`だけが書くmanifest segmentを置き、`SegmentOpened`でそのlogのsegmentを列挙する。manifestのprefixが、ある時点のlogのsegmentの全集合である。
+- **scope**：`ScopeDecl`は、projectionが読むsegmentの集合を宣言する。`segments`はmanifestの`manifest_head`までに開いたsegmentの部分集合で、宣言は操作の所有者が持つ（3.2「入力の全集合の宣言は各操作の所有者が持つ」）。全体を読むscopeは、manifestの全segmentを列挙する。
 
 ### 9.4 不変条件
 
-- **K5-I1 追記専用**：書いた行のbytesを変えない。消さない。並べ替えない。追記は末尾だけとする。訂正は`Correction`の追記で表し、元の行を残す。
-- **K5-I2 連鎖**：segmentごとに`seq`は1から欠番・重複なく続き、各行の`prev_digest`は直前の行の`entry_digest`に等しく、各行の`entry_digest`は再計算と一致する。
-- **K5-I3 損傷の検出**：segmentを読むとき、次のいずれかがあれば、そのsegmentは損傷している：`entry_digest`の不一致、`prev_digest`の不一致、`seq`の欠番・重複、解析できない行、未知の`schema_version`、呼出し元が渡した既知の`SegmentHead`（以前に読んだ末尾）より短い、既知の`SegmentHead`と同じ`seq`で`entry_digest`が違う。損傷したsegmentの読取りは`Unknown(unreadable)`を返し、損傷の種類を`evidence`に入れる。損傷していない部分だけを読んで成功としない。
-- **K5-I4 冪等な追記**：同じK2の`key_digest`と同じ`result_digest`の`ResultRecorded`が、読める全segmentのどこかに既にあれば、追記しない（K2-I4の`NoOp`）。同じ`key_digest`で異なる`result_digest`なら、新しい`ResultRecorded`と`ResultConflictDetected`を追記し、前の行は残す（K2-I4の`Conflict`）。
-- **K5-I5 一つの問いは一つのlog**：K2の`ResultKey`の`operation`ごとに、記録先の`LogId`を一つだけ宣言する。同じ`operation`の結果を二つのlogへ記録しない。
-- **K5-I6 順序**：順序はsegmentの中の`seq`だけで定まる。segmentをまたぐ時刻の順序は定めない。K2-I2bの「追記順で最後」は、同じsegmentの中では`seq`の大きい方、segmentをまたぐ場合は`(segment, seq)`の辞書順で最後とする。後者は決定的にするための規則であり、時間の前後を意味しない（この選択は肯定の判定に影響しない。K2-I2b）。
-- **K5-I7 projectionは正本でない**：projectionの出力をlogへ書き戻さない。projectionの出力を`record`の入力にしない。projectionから新しいeventを作らない（状態を変えるのはeventの追記だけ）。
-- **K5-I8 決定的な再構築**：同じ`projector`と同じ`input_heads`からは、行の読込み順やsegmentの並び順によらず、同じ`output_digest`を得る（INTELLIGENCE-078-06）。
-- **K5-I9 全量の前提**：projectionが「無い」「0件」「閉じた」を出すのは、`input_heads`の全segmentを損傷なく末尾まで読んだ場合だけとする（K1-I7）。どれか一つが損傷・読取不能なら、そのprojectionは`Unknown(unreadable)`とする。
-- **K5-I10 projectionの鮮度**：projectionはK2の鍵で扱う。`operation`は`projector.identity`、`operation_version`は`projector.version`、`inputs`は`input_heads`の各segmentを`SubjectRef`（`kind=log_segment`、`revision=seq`、`digest=entry_digest`）としたものとする。したがって、segmentへの追記やprojectorの版の変更で、旧projectionはK2-I2によりstaleまたは未観測になる。影響を受けない`input_heads`のprojectionは変わらない（INTELLIGENCE-078-04）。
-- **K5-I11 checkpoint**：checkpointから差分を畳み込んだ結果は、同じ`input_heads`の全量の再構築と同じ`output_digest`でなければならない。一致しなければ、そのcheckpointを使わず`Unknown(conflict)`とする。
-- **K5-I12 ドリフト**：保存したprojectionの`output_digest`と、同じ`projector`・`input_heads`からの再構築の`output_digest`が違えば、そのprojectionは`Unknown(conflict)`とし、使わない。projectorの版が違う二つのprojectionの差はドリフトではなく、K5-I10の鍵の違い（別の問い）として扱う。
+- **K5-I1 追記専用**：書いた行のbytesを変えない。消さない。並べ替えない。追記は末尾だけとする。
+- **K5-I2 連鎖**：segmentごとに`seq`は1から欠番・重複なく続き、各行の`prev_digest`は直前の行の`entry_digest`に等しく、各行の`entry_digest`は再計算と一致する。`schema_version`は既知の値である。
+- **K5-I3 損傷の検出**：次の7条件は互いに独立に検査し、どれか一つでも当たればそのsegmentは損傷している：(a)解析できない行、(b)未知の`schema_version`、(c)`seq`の欠番、(d)`seq`の重複、(e)`prev_digest`の不一致、(f)`entry_digest`の再計算との不一致、(g)指定した`SegmentHead`の`seq`の行が無い、または同じ`seq`の行の`entry_digest`が違う。損傷したsegmentの読取りは`Unknown(unreadable)`とし、当たった条件を`evidence`に入れる。損傷していない部分だけを読んで成功としない。
+- **K5-I4 固定prefix**：`project`、`verify`、checkpointは、`input_heads`の各`SegmentHead`までのprefix（`seq`が1から`head.seq`までの行）だけを読む。それより後に追記された行は読まない。現在の末尾は`current_head`で別に取得し、新しい`input_heads`として渡す。
+- **K5-I5 冪等な追記**：`ResultRecorded`の追記の前に、logのmanifestが列挙する全segmentを読み、同じ`key_digest`の記録を探す。同じ`result_digest`があれば追記しない（`NoOp`）。異なる`result_digest`があれば、新しい`ResultRecorded`と`ResultConflictDetected`を追記し、前の行は残す（`Conflict`）。読めないsegmentが一つでもあれば、重複を判定できないので追記しない（`Rejected(peer_unreadable)`）。
+- **K5-I6 一つの問いは一つのlog**：`ResultKey`の`operation`ごとに、記録先のlogを`LogDecl.operations`で一つだけ宣言する。
+- **K5-I7 順序**：順序はsegmentの中の`seq`だけで定まる。K2-I2bの「追記順で最後」は、`(writer, segment_no, seq)`の順で比べて最後とする。`writer`はUnicode NFCに正規化したUTF-8のbyte列として比べ、`segment_no`と`seq`は符号なし整数として数値で比べる。これは決定的にするための規則であり、時間の前後を意味しない（肯定の判定に影響しない。K2-I2b）。
+- **K5-I8 訂正**：`Correction`は`DeclaredEvent`だけを対象にできる。`ResultRecorded`・`ResultConflictDetected`・`SegmentOpened`は訂正できない。結果を改めるには新しいrevisionの鍵で記録し、旧結果はK2-I2によりstaleになる。同じ鍵の異なる結果はK2-I4のconflictとして残す。対象の有効な内容は、対象を根とする訂正の木から次のとおり決める（segmentをまたいでも同じ。追記順は使わない）：訂正が無ければ元の内容。訂正の木が一本の鎖なら、鎖の末端の`replacement`。末端に`replacement`が無ければ「撤回」（元の行は残し、projectionの集計には入れない）。木が分岐していれば（同じ対象への訂正が二つ以上あり、どちらも他方を対象にしていない）、その対象は`Unknown(conflict)`とする。
+- **K5-I9 projectionは正本でない**：projectionの出力をlogへ書き戻さない。`record`の入力にしない。projectionからeventを作らない。
+- **K5-I10 決定的な再構築**：同じ`projector`、`scope`、`input_heads`からは、行の読込み順やsegmentの並び順によらず、同じ`output_digest`を得る（INTELLIGENCE-078-06）。
+- **K5-I11 全量の前提**：projectionは、`scope.manifest_head`までのmanifestを損傷なく読み、`scope.segments`が列挙する全segmentの`SegmentHead`が`input_heads`にあり、そのprefixを損傷なく読めた場合だけ`Value`とする。`input_heads`に欠けたsegmentがあれば`Unknown(missing_input)`、`scope.segments`が0件なら`Unknown(missing_input)`（K1-I4）、損傷・読取不能なら`Unknown(unreadable)`とする。scopeが一部のsegmentだけを宣言するprojectionの「0件」「閉じた」は、そのscopeについての値であり、log全体についての値として扱わない（`scope`は鍵に入る。K5-I12）。
+- **K5-I12 projectionの鍵**：projectionはK2の`ResultKey`で次のように扱う。`operation`＝`projector.identity`、`operation_version`＝`projector.version`、`subject`＝`{kind: projector, identity: projector.identity, revision: projector.version, digest: projector.digest}`、`inputs`＝manifestと各segmentの`SegmentHead`（`{kind: log_segment, identity: segmentの正規文字列, revision: seqの10進表記, digest: entry_digest}`）、`scope`＝`scope_id`と`revision`。したがって、segmentへの追記ではK2-I2の4により旧projectionは`Stale`、projectorの版の更新では`operation_version`が変わるためK2-I2の1により`Unobserved(not_run)`、同じ版のままprojectorのbytesだけが変わればK2-I2の2(a)により`Unknown(conflict)`になる。影響を受けないsegmentだけを`input_heads`とするprojectionは変わらない（INTELLIGENCE-078-04）。
+- **K5-I13 checkpoint**：checkpointは、その`scope`が同じで、各`input_heads`がcheckpointの`input_heads`を前方に延ばしたもの（同じsegment、checkpointの`seq`以上、checkpointの`seq`の行の`entry_digest`が一致）である場合だけ使える。checkpointの`state_digest`は保存した`state`から再計算して一致を確かめ、差分を畳み込んだ結果は全量の再構築と同じ`output_digest`でなければならない。どれかが成り立たなければ、そのcheckpointを使わず`Unknown(conflict)`とする。
 
 ### 9.5 API境界
 
 各受け口は、引数に応じて次を検査し、満たさなければ理由を付けて拒否する。拒否を`Value`へ読み替えない。
 
-- `append(segment, event, writer) -> Appended(SegmentHead) | NoOp | Conflict | Rejected(reason)`：`writer`がsegmentの`writer`と一致すること、`event`がK1-I6・K2の鍵の検査を通ること、`Correction`の`target`が同じlogに存在すること。K5-I1・I4・I5に従う。
-- `read(segment, known_heads) -> Observed<Entry[]>`：K5-I2・I3に従う。損傷なく末尾まで読めた場合だけ`Value`。
-- `project(projector, input_heads) -> Observed<Projection>`：`input_heads`の各segmentを`read`し、K5-I7〜I9に従う。
-- `verify(projection) -> Observed<Projection>`：K5-I11・I12に従い、再構築して比べる。
+- `append(segment, event, writer) -> Appended(SegmentHead) | NoOp | Conflict | Rejected(reason)`：共通に、`writer`がsegmentの`writer`と一致し、segmentがmanifestに列挙されていること。eventの種類別に次を検査する。
+  - `ResultRecorded`：`ResultKey`の13field（K1-I6）、`key_digest`と`result_digest`の再計算、`ResultBody`のクラス別field（`Stale`は拒否、`NotApplicable`は3field、`Unknown`・`Unobserved`は語彙）、`Inline`は宣言した値型だけ、`operation`の記録先がこのlog（K5-I6）。K5-I5に従う。
+  - `ResultConflictDetected`：`result_digests`が2件以上で、各々が同じ`key_digest`の`ResultRecorded`としてlogにあること。
+  - `Correction`：`target`が同じlogの`DeclaredEvent`または`Correction`であること（K5-I8）。
+  - `SegmentOpened`：manifest segmentへの追記であり、`writer`が`manifest_writer`であること。
+  - `DeclaredEvent`：`event_type`が`LogDecl.event_types`にあること。
+- `current_head(segment) -> Observed<SegmentHead>`：損傷なく読めた末尾。
+- `read(segment, head) -> Observed<LogEntry[]>`：`head`までのprefixをK5-I2・I3で検査する。
+- `restore(log, scope, input_heads) -> Observed<ResultRecord[]>`：prefixの`ResultRecorded`から`ResultRecord`を復元し、`FixedRef`を解決する（9.3）。K2の`lookup`の`records`はこの結果とする。
+- `project(projector, scope, input_heads) -> Observed<Projection>`：K5-I4、I8〜I11に従う。
+- `verify(projection, checkpoint?) -> Observed<Projection>`：(1)保存した`output`から`output_digest`を再計算して保存値と比べる、(2)`input_heads`のprefixから再構築した`output_digest`と比べる、(3)checkpointを使う場合はK5-I13を確かめる。どれかが一致しなければ`Unknown(conflict)`とし、そのprojectionを使わない。projectorの版やdigestが違う二つのprojectionの差はこの不一致ではなく、K5-I12の鍵の違いとして扱う。
 
 ### 9.6 旧HELIXとの対応
 
 | 旧source（ID／path:行／SHA-256） | 保持する点 | 変更する点 | 区分候補 |
 |---|---|---|---|
-| `LEGACY-ASSET-BB08D70A42B6445B2D1E`／`docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md:36-42,62-64,78-89,119-122`／`9e18d68b5e463192fb30b839eb164d79f7202a15374482f65181b238df8e513d` | append-onlyで訂正は追記だけ。同一event_idで同じdigestはno-op、異なるdigestは拒否。projectionはevent列から再構築する派生物で、編集を逆流させない。projectionとread-backの不一致はfail-close。全体scopeのdigestをlaneのcheckpointに流用すると無関係な追記で誤ってdriftになる | 旧27-30行は`harness.db`を計画・状態のauthorityとした。本書は正本をrepository内のJSONLに置き、DBを置かない（5章）。異なるdigestは拒否でなく両方を残してconflictにする（K2-I4）。laneのcheckpointをsegmentとprojectionの`input_heads`へ一般化する | `semantic_rederive` |
-| `LEGACY-ASSET-C35E93F2D36777CD7462`／`docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md:145-149`／`2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357` | append-only event→projection→checkpointの共通形。`event_seq`を一意かつ単調にし、`previous_event_digest`と`event_digest`で鎖状に結ぶ。canonical JSON Linesで追記する。同じoperation IDと同じdigestは重複として除き、異なるdigestはconflict | 連鎖の単位をaggregateからsegment（writerごと）へ替える。UPDATE/DELETE拒否triggerとDB transactionは置かず、K5-I3の読取り時の検査で代える | `semantic_rederive` |
+| `LEGACY-ASSET-BB08D70A42B6445B2D1E`／`docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md:36-42,62-64,78-89,119-122`／`9e18d68b5e463192fb30b839eb164d79f7202a15374482f65181b238df8e513d` | append-onlyで訂正は追記だけ。同一event_idで同じdigestはno-op、異なるdigestは拒否。projectionはevent列から再構築する派生物で、編集を逆流させない。projectionとread-backの不一致はfail-close。全体scopeのdigestをlaneのcheckpointに流用すると無関係な追記で誤ってdriftになる | 旧27-30行は`harness.db`を計画・状態のauthorityとした。本書は正本をrepository内のJSONLに置き、DBを置かない（5章）。異なるdigestは拒否でなく両方を残してconflictにする（K2-I4、K5-I5）。laneのcheckpointをsegmentとprojectionの`input_heads`へ一般化する | `semantic_rederive` |
+| `LEGACY-ASSET-C35E93F2D36777CD7462`／`docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md:145-153`／`2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357` | append-only event→projection→checkpointの共通形。`event_seq`を一意かつ単調にし、`previous_event_digest`と`event_digest`で鎖状に結ぶ。canonical JSON Linesで追記する。同じoperation IDと同じdigestは重複として除き、異なるdigestはconflict | 連鎖の単位をaggregateからsegment（writerごと）へ替える。UPDATE/DELETE拒否triggerとDB transactionは置かず、K5-I3の読取り時の検査で代える | `semantic_rederive` |
 | `LEGACY-ASSET-8771887517A619A2D501`／`docs/adr/ADR-007-harness-db-sqlite-projection.md:18-22`／`50c05a00872be6c23de531aaecd6a6cfd26abec264718e0223ac2630f739dcdf` | projectionは再構築でき、authoring sourceではない | 正本と保存の形式（5章のとおり） | `replace`（保存の形式） |
 | `LEGACY-ASSET-9EDE8332CF4F627105EA`／`docs/design/harness/L6-function-design/handover-db-derivation.md:35-38`／`e95e612c601ccb226b90e515eca633439745bb9a2266c889031ef7518c39d18d` | eventを先に追記し、event IDとpayload digestで冪等に投影する。append後・projection前はreplayする。同じsequenceで異なるpayloadはfail-close | 投影先をSQLiteからprojectionの純関数へ替える。同31行の「DBとmemoryが矛盾すればDB優先」は採らない（DBを置かない） | `semantic_rederive` |
-| `LEGACY-ASSET-F6E9EA3422A0EF1DF090`／`docs/design/harness/L6-function-design/feedback-lifecycle.md:76-93`／`2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655` | 終端（closed／superseded）は再投影で戻らない。新しい観測は新generationとして扱う | feedbackの状態機械を、K5-I7（eventだけが状態を変える）とK5-I9（全量の前提）、K2のrevisionへ一般化する | `semantic_rederive` |
-| `LEGACY-ASSET-F677F6D81EB9FCAE2E3F`／`docs/governance/handover-retirement-memory-audit-2026-07-11.md:34-35,56,81`／`93b4a0bd78ebc88266eb3d795ad29384169a1fa8698691acbb724984f462d8b4` | 失敗史：状態を保存するpointer（`CURRENT.json` 311,927 bytes）の肥大と、手書きmarkerのdriftを防衛機構で根絶できなかった。projectionがopenを再生成し、close済みのfeedbackが復活した（open=2010で飽和） | 状態を保存しない（K5-I7）。「閉じた」を全量の前提でだけ出す（K5-I9） | 失敗史（区分なし） |
-| `LEGACY-ASSET-6929C09B95A444D95B49`／`docs/improvement-backlog.md:258,260`（IMP-149、IMP-151）／`e6d327ff488860dcaa8d7a150ac893e5cf0940eb710396cdf7ae746f5689a9e2` | 失敗史：projectorの誤検出がrebuildの度に誤ったdriftを出した。470MBのDBの全件読取りで長時間停止した（独立検証では「不確実」） | projectorの版を鍵に入れ、projectorの修正を別の問いとして扱う（K5-I10・I12）。読む範囲を宣言した`input_heads`に限り、checkpointの等価性を検査する（K5-I11）。規模の数値は9.8の試作で測る | 失敗史（区分なし） |
+| `LEGACY-ASSET-F6E9EA3422A0EF1DF090`／`docs/design/harness/L6-function-design/feedback-lifecycle.md:76-104`／`2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655` | 終端（closed／superseded）は再投影で戻らない。新しい観測は新generationとして扱う。不在によるcloseは、canonical sourceの完全走査markerが揃う場合だけ | feedbackの状態機械を、K5-I9（eventだけが状態を変える）とK5-I11（全量の前提。完全走査markerをmanifestと`ScopeDecl`へ一般化する）、K2のrevisionへ一般化する | `semantic_rederive` |
+| `LEGACY-ASSET-F677F6D81EB9FCAE2E3F`／`docs/governance/handover-retirement-memory-audit-2026-07-11.md:34-35,56,81`／`93b4a0bd78ebc88266eb3d795ad29384169a1fa8698691acbb724984f462d8b4` | 失敗史：状態を保存するpointer（`CURRENT.json` 311,927 bytes）の肥大と、手書きmarkerのdriftを防衛機構で根絶できなかった。projectionがopenを再生成し、close済みのfeedbackが復活した（open=2010で飽和） | 状態を保存しない（K5-I9）。「閉じた」を全量の前提でだけ出す（K5-I11） | 失敗史（区分なし） |
+| `LEGACY-ASSET-6929C09B95A444D95B49`／`docs/improvement-backlog.md:258,260`（IMP-149、IMP-151）／`e6d327ff488860dcaa8d7a150ac893e5cf0940eb710396cdf7ae746f5689a9e2` | 失敗史：projectorの誤検出がrebuildの度に誤ったdriftを出した。470MBのDBの全件読取りで長時間停止した（独立検証では「不確実」） | projectorの版を鍵に入れ、projectorの修正を別の問いとして扱う（K5-I12、9.5の`verify`）。読む範囲を宣言した`input_heads`に限り、checkpointの等価性を検査する（K5-I13）。規模の数値は9.8の試作で測る | 失敗史（区分なし） |
 
-writerごとにsegmentを分けることと、segmentをまたぐ順序を時間の前後と結ばない規則（K5-I6）は、旧HELIXに対応が見つからない**新規案**である。旧は一つのaggregateの中の単調な`event_seq`を前提にしていた（`infinity-loop-platform-basic-design.md:145-149`、`handover-db-derivation.md:35-38`）。検索の範囲は`archive/legacy-generation-2026-09-14/root/docs/design/`配下（`grep -rIl`、読取りだけ）で、検索語と該当ファイル数は`segment` 14、`hash chain` 3、`hash-chain` 6、`previous_event_digest` 8、`prev_digest` 0、`writer別` 0である。`segment`の14件はpathの区切りやIDの区切りの意味であり、ログの分割の意味のものは無かった。連鎖の語の該当は、いずれも一つのaggregateまたは一つのinstanceの中の連鎖だった。
+writerごとにsegmentを分けることと、segmentをまたぐ順序を時間の前後と結ばない規則（K5-I7）は、旧HELIXに対応が見つからない**新規案**である。旧は一つのaggregateの中の単調な`event_seq`を前提にしていた（`infinity-loop-platform-basic-design.md:145-153`、`handover-db-derivation.md:35-38`）。検索の範囲は`archive/legacy-generation-2026-09-14/root/docs/design/`配下（`grep -rIl`、読取りだけ）で、検索語と該当ファイル数は`segment` 14、`hash chain` 3、`hash-chain` 6、`previous_event_digest` 8、`prev_digest` 0、`writer別` 0である。`segment`の14件はpathの区切りやIDの区切りの意味であり、ログの分割の意味のものは無かった。連鎖の語の該当は、いずれも一つのaggregateまたは一つのinstanceの中の連鎖だった。
 
 ### 9.7 L2へ戻す論点
 
@@ -398,7 +418,9 @@ writerごとにsegmentを分けることと、segmentをまたぐ順序を時間
 ### 9.8 未決と試作で確かめること
 
 - segmentの`writer`の粒度（lane、Worker、PRのいずれか）と、segmentを閉じる条件。8.2のPR6（ディレクトリ配置）と合わせて決める。
-- 試作（`scaffold/`、Scaffold Binding登録）：L9のIV-K5-01〜14を動かす。あわせて、1万行・10万行のsegmentでの全量再構築とcheckpointからの差分の時間を測り、checkpointを必須にする規模の目安を得る。
+- manifestへのsegmentの登録は`manifest_writer`だけが行うため、writerがsegmentを開くときの手順（OSの割当てとの接続）は未決とする。
+- K5-I5により、一つのsegmentが読めないとそのlogへの`ResultRecorded`の追記が止まる。安全側の選択だが、運用への影響を試作で確かめる。
+- 試作（`scaffold/`、Scaffold Binding登録）：L9のIV-K5-01〜20を動かす。あわせて、1万行・10万行のsegmentでの全量再構築とcheckpointからの差分の時間を測り、checkpointを必須にする規模の目安を得る。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
