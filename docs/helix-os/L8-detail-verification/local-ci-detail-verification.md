@@ -37,7 +37,7 @@ version_target: 1.0
 | `CASE-L8-LCI-14` | reference parser | referenceが一意なdefinitionへ解決 | definitionを二重化 | `Unknown(conflict)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-15` | 明示coverage | L4 invariant→L9 IV edgeとfixture定義がある | verifier IDの定義行を削除 | `Unknown(missing_input)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-16` | coverage意味 | L6 function→L7 oracle edgeが一意 | edge先IDを別fixtureへ差替え | `Unknown(conflict)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
-| `CASE-L8-LCI-17` | `U-LCI-01..04` unsupported disposition | 4件を理由付きscope外non-pass inventoryに記録 | `U-LCI-01`をpassへ変える | `Negative`。他3件も別fieldのnon-passで保持し、範囲外残余のみで固定5 stepをfailにしない |
+| `CASE-L8-LCI-17` | `U-LCI-01..04` unsupported disposition | 4件を理由付きscope外non-pass inventoryに記録 | `U-LCI-01`をpassへ変える | `Rejected(invalid_input)`。`pass`はUnsupportedItemの型にないためpreflightで拒否する。正常入力では他3件も別fieldのnon-passで保持し、範囲外残余のみで固定5 stepをfailにしない |
 | `CASE-L8-LCI-18` | HistoricalPin | full-file hashと指定line-span hashを再計算 | sourceの1行だけ変えfull digestを据置 | full pin `Unknown(conflict)` |
 | `CASE-L8-LCI-19` | HistoricalPin span照合 | 指定line bytesからspan digestを再計算 | partial line spanのdigestを全体file digestへ差替え | `Unknown(conflict)`、実際のspan bytesで判定 |
 | `CASE-L8-LCI-20` | source kind | archive pin/audit snapshotをhistoricalとして記録 | archive pathをcurrent linkに昇格 | `Unknown(unregistered)` |
