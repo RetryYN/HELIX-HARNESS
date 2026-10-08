@@ -82,12 +82,17 @@ repoの外：成果物ストア（immutable artifact）、段階の実行環境�
 
 | 旧source | 保持する点 | 変える点・理由 |
 |---|---|---|
-| `LEGACY-ASSET-FDBA655B1CFF75DCDC0E`／`archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md`（§1 13–97行、§2 102–120行、§6 146–150行、§7 152–159行、§8 161–173行）／SHA-256 `6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262` | 構成の正本を一つの文書に置くこと。正本、生成物、履歴の区別。空のフォルダを実装の許可と読まないこと。root configを増やさない原則 | `src/<domain>/`を`helix/<機構>/{units,connections,composites}/<型番>/`へ置き換える。旧の平置きの`tests/`はsrcとの対応が崩れたため、パックへ同居させる。平置きの`config/`は所有機構ごとの`declarations/`へ分ける。旧のtracked runtime state（`.helix/`）は採らず、開発記録だけを`records/`に置く。旧のroot configの具体（Node／TypeScript／Vitest、Bunのlock）は引き継がない |
+| `LEGACY-ASSET-FDBA655B1CFF75DCDC0E`／`archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md`（§1 13–97行、§2 102–120行、§6 146–150行、§7 152–159行、§8 161–173行）／SHA-256 `6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262` | 構成の正本を一つの文書に置くこと。正本、生成物、履歴の区別。空のフォルダを実装の許可と読まないこと。root configを増やさない原則 | `src/<domain>/`を`helix/<機構>/{units,connections,composites}/<型番>/`へ置き換える。旧の平置きの`tests/`はsrcとの対応が崩れたため、パックへ同居させる。平置きの`config/`は所有機構ごとの`declarations/`へ分ける。旧`.helix/`がruntime state（generated、gitignored）と監査証跡（tracked）を分けていた点を保持し、現行ではruntime stateをrepoの外へ、公開できる開発記録を`records/`へ置く。旧のroot configの具体（Node／TypeScript／Vitest、Bunのlock）は引き継がない |
 | `LEGACY-ASSET-A2F6A697D7FFFD490B57`／`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md`（54–58行 RLS-R-03、110–115行 RLS-R-11、133–135行）／SHA-256 `336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c` | 各pathがちょうど一つの所有単位に属すること。変更されたpathから所有単位、組合せ、検証の範囲を導くこと。同じrepoのまま分割しないこと | 所有単位を旧Module・Bundleから、現行のパック（unit、connection、composite）と型番台帳へ置き換える。所属はpath名でなくパックの宣言と台帳で決める（方針6） |
 | `LEGACY-ASSET-809B35B3C91567A97AF5`／`archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/source-boundary-architecture.md`（11–18行、47–57行）／SHA-256 `6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610` | 依存はdefault denyとし、許可した向きだけを明示する。空のpolicyを暗黙の許可にしない（旧の失敗：32 moduleのうち29がEMPTY） | 依存の宣言をパックの宣言へ置き、機構をまたぐ結合をconnectionに限る。具体はL4〜L5で決める |
 | `LEGACY-ASSET-8195605FB59B8B837EFF`／`archive/legacy-generation-2026-09-14/root/docs/adr/ADR-005-distribution-model-and-central-ui.md`（16–36行）／SHA-256 `dc6f09d05556442518fb09dd7fa38536562b0ab60e6947d044593500e5d3f16f` | 開発repoと配布物を分け、配布物を版で固定すること | 配布の運転はHELIX-OSが担い（Concept）、配布先はprivateとする（2026-09-27判断）。旧の配布repo名と中央Web UIの構成は採らない |
 
-旧HELIXの構成で記録された失敗は次のとおりである。層の定義を変えたのにpathを直さず、58文書がblockerになった。`src/`が41 domainの平置きになり、CLIは1.7万行になった。testsが平置きで、srcとの対応規約からずれた。本基本案は、層の名前を`docs/`の並びに限り、実装の構成をパックの単位に揃えることで、これらを避ける。
+旧HELIXの構成で記録された失敗と、Claudeの観測を分けて記す。
+
+- 記録された失敗：層の定義を切り替えたとき、物理pathのatomic renameは別のcutoverへ回し、legacy pathを読み替える規則を置いた。正規化の対象は58文書のblocker manifestになった（`LEGACY-ASSET-75E1420CE980CB881C48`／`archive/legacy-generation-2026-09-14/root/docs/governance/l3-progression-authority-rebaseline-2026-07-19.md` 4行、19–35行／SHA-256 `f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`）。58件はlayer・pair・runtime等のauthorityの正規化を含み、pathを直さなかったことだけが原因とは言えない。
+- Claudeの観測（2026-10-09、archiveの静的計数。旧の監査結果ではない）：`src/cli.ts`は17,133行、`src/`直下のdirectoryは37個、`tests/`直下の`.ts`は566個で、`tests/`はsrcの階層を写していない。
+
+本基本案は、層の名前を`docs/`の並びに限り、実装の構成をパックの単位に揃えることで、pathと意味のずれ、実装の平置きと巨大化を避けることを設計上のねらいとする。
 
 ## 本書から生成しないもの
 
