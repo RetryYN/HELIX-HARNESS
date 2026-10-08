@@ -546,7 +546,16 @@ for _name, _fn in (
 
 def _test_k2_015_order(self: K2UnitTests) -> None:
     a, b = ref("a"), ref("b")
-    self.assertEqual(key_of("op", "v1", ref("subject"), (a, b), "scope"), key_of("op", "v1", ref("subject"), (b, a), "scope"))
+    first = key_of("op", "v1", ref("subject"), (a, b), "scope")
+    reverse = key_of("op", "v1", ref("subject"), (b, a), "scope")
+    self.assertIsInstance(first, ResultKey)
+    self.assertIsInstance(reverse, ResultKey)
+    self.assertEqual(first, reverse)
+    first_record = record([], first, Value("same", first, {"evidence": "fixture"}), "p")
+    reverse_record = record([], reverse, Value("same", reverse, {"evidence": "fixture"}), "p")
+    self.assertIsInstance(first_record, Recorded)
+    self.assertIsInstance(reverse_record, Recorded)
+    self.assertEqual(first_record.record.key_digest, reverse_record.record.key_digest)
 
 
 def _test_k2_015_duplicate(self: K2UnitTests) -> None:
@@ -585,13 +594,17 @@ _add_l7_expansion("test_CK_K2_UT_017b", _test_k2_017_input_identity)
 def _test_k2_018_old_value(self: K2UnitTests) -> None:
     old, current = make_key(ref("subject", "r1", D1)), make_key(ref("subject", "r2", D2))
     exact = record_for(current, "current")
-    self.assertEqual(lookup([record_for(old, "old"), exact], current), exact.result)
+    prior = record_for(old, "old")
+    self.assertEqual(lookup([prior, exact], current), exact.result)
+    self.assertEqual(lookup([exact, prior], current), exact.result)
 
 
 def _test_k2_018_old_unknown(self: K2UnitTests) -> None:
     old, current = make_key(ref("subject", "r1", D1)), make_key(ref("subject", "r2", D2))
     exact = record_for(current, "current")
-    self.assertEqual(lookup([record_for(old, ("unknown", "unreadable")), exact], current), exact.result)
+    prior = record_for(old, ("unknown", "unreadable"))
+    self.assertEqual(lookup([prior, exact], current), exact.result)
+    self.assertEqual(lookup([exact, prior], current), exact.result)
 
 
 _add_l7_expansion("test_CK_K2_UT_018_OLD_VALUE", _test_k2_018_old_value)
