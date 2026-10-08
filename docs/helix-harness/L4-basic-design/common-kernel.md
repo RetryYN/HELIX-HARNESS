@@ -1204,6 +1204,8 @@ ReviewIndependence = {
   checks: ReviewAxisCheck[],
   outcome: Independent | NotIndependent(failed_axes[], reason_codes[])
 }
+ReviewIndependenceCheck = { result: Observed<ReviewIndependence>,
+                            assurance: K6の真正性3項目, authority_effect: "none" }
 ```
 
 `ParticipantSlot`はcallerが任意に作る入力ではない。K2 `ResultRecord.producer`はそのrecordの記録producerであり、content producerの根拠へ代用しない。resolverは、(1) OS ownerが宣言したcurrent assignmentから元Workerとtask/scopeを得る、(2)各ownerのcurrent selection recordで選択済みsupport/consult等を得る、(3)各実行・成果ownerが記録したactual producer/contributor graphから実際に参加した役割とorigin edgeを得る、(4)test authorなど別ownerのrole sourceを追加で照合する、の順に全creator-sideを作る。commit executor/publisher metadata、provider/model、reviewer自身の申告はparticipant sourceにしない。selectionが`not_selected`ならそのroleのparticipantを要求しない。`unknown`はparticipantなしへ読み替えない。
@@ -1216,9 +1218,9 @@ contextとrouteのrefは必ずそれぞれのowner contractから解決する。
 
 比較の単位はrole slotであり、K2 `inputs`の一意性制約をidentity衝突判定へ流用しない。creator-sideとreviewerに同じactor refがあっても、各role slotを`ParticipantBindingSet`に残し、比較を実施して`relation = same`の理由付きnegativeを作る。producerとtest_author等のcreator側roleでactor refが共有される場合も、refはK2 inputsへ一度だけ入れ、roleごとの起点・役割・比較相手はbinding setに全件保持する。共有refの重複はK2 duplicate identityとして拒否しない。
 
-K2の基底鍵案：`operation = review_independence`、`operation_version = K9規則版`、`subject = ReviewTarget.artifact`、`inputs = current assignment、ContentProducerGraph/source closure/coverage evidence、owner contract refs、ReviewTargetのbase/scope/oracle/current_result/case、ParticipantBindingSetを固定したSubjectRef（canonical bytesのdigest・版付き）、適用Concept/L3 refs、各participant/route/context/authorityのSubjectRefをidentityで重複排除した集合`、`scope = task_scope`。binding digestにはslot ID、role、selection state、actor/origin/context/authority/route ref対応をすべてcanonical順で含める。完全に同一のSubjectRefだけをK2 inputsへ一件に畳む。同一identityでkind/revision/digestが異なる参照は正規化で選ばず`Unknown(conflict)`にする。これにより、共有refをK2の入力集合で一度だけ表しつつ、比較する役割対応を鍵に固定する。role mappingだけが変わっても鍵は変わる。inputsはK2規則によりidentity順に整列する。
+K2の基底鍵案：`operation = review_independence`、`operation_version = K9規則版`、`subject = ReviewTarget.artifact`、`inputs = current assignment、ContentProducerGraph/source closure/coverage evidence、owner contract refs、ReviewTargetのbase/scope/oracle/current_result/case、ParticipantBindingSetを固定したSubjectRef（canonical bytesのdigest・版付き）、適用Concept/L3 refs、各participant/route/context/authorityのSubjectRefをidentityで重複排除した集合`、`scope = task_scope`。binding digestにはslot ID、role、selection state、actor/origin/context/authority/route ref対応をすべてcanonical順で含める。完全に同一のSubjectRefだけをK2 inputsへ一件に畳む。同一identityでkind/revision/digestが異なる参照は、`key_of`前に`Rejected(missing_key, diagnostic: identity_ref_conflict)`とし、衝突する全refを診断へ残す。有効なResultKeyが無いため、この診断をK1のkey付き`Unknown`として記録しない。これにより、共有refをK2の入力集合で一度だけ表しつつ、比較する役割対応を鍵に固定する。role mappingだけが変わっても鍵は変わる。inputsはK2規則によりidentity順に整列する。
 
-`ReviewTarget`はcreator graphとreviewer receiptの双方で完全一致しなければならない。独立性の比較は、creator-side全slotに対してidentity/context/authority/routeを軸ごとに行う。全creator-side比較が`distinct`なら`Independent`、ひとつでも`same`なら他のaxis/roleの結果を保持したうえで`NotIndependent`とする。creator slotが0件の場合は空集合を全称肯定にせず、K1-I4により`Unknown(missing_input)`とする。負の比較は観測済み`Value(ReviewIndependence{outcome: NotIndependent,…})`として理由付きで保持し、K1 `PolarityOf<ReviewIndependence>`で否定へ写す。source欠落/unknownはnegativeへ丸めず、非`Value`のままにする。
+`ReviewTarget`はcreator graphとreviewer receiptの双方で完全一致しなければならない。独立性の比較は、creator-side全slotに対してidentity/context/authority/routeを軸ごとに行う。全creator-side比較が`distinct`なら`Independent`、ひとつでも`same`なら他のaxis/roleの結果を保持したうえで`NotIndependent`とする。creator slotが0件の場合は空集合を全称肯定にせず、K1-I4により`Unknown(missing_input)`とする。負の比較は観測済み`Value(ReviewIndependence{outcome: NotIndependent,…})`として理由付きで保持し、HARNESS所有の写像`k9_independence_polarity`（版はK9 operation_versionと同じ）で`Independent -> Positive`、`NotIndependent -> Negative`とする。K1 `combine`へはこの識別・版を渡し、`Combined`にも保持する。source欠落/unknownはnegativeへ丸めず、非`Value`のままにする。
 
 ### 17.4 不変条件とAPI案
 
@@ -1249,8 +1251,10 @@ check_review_independence(
   authority_owner_record: SubjectRef,
   route_owner_contract: SubjectRef,
   input_heads: InputHeads
-) -> Observed<ReviewIndependence>
+) -> ReviewIndependenceCheck | Rejected(missing_key, diagnostic)
 ```
+
+current参照はOSの対象task割当と各source ownerの登録済み宣言を固定prefixから実読して得る。API引数のrefは照会対象であり正本指定を上書きできない。宣言が無い場合は`Unknown(unregistered)`、caller参照と正本の不一致は`Unknown(conflict)`。
 
 両APIはparticipant slot配列をcallerから受け取らず、OS assignment・content-producer graph・review execution recordとowner contract refsをcurrent sourceとしてK2 lookup/K6 receipt admissionで解決する。契約に登録されたsource closureと走査証拠で全量性を確認できなければ、`complete`をcallerのboolean claimから作らず非`Value`を返す。creator_inventoryはresolverのcurrent入力の全集合・K2鍵・K6 admissionへ照合し、callerが自作したinventoryを使わない。source inventoryが非`Value`ならその非`Value`をそのまま返す。complete inventoryと全owner refがある場合だけ比較し、`Value(Independent)`または失敗軸と理由付き`Value(NotIndependent)`を返す。K6 result receiptの`reproduction`と`issuer_authenticity`はAPI結果に併記するassuranceに別々に付ける。currentのowner contractがroute/context sourceを提供できない場合は未決を捏造で埋めない。
 
