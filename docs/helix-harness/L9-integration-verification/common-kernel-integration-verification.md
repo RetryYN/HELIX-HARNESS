@@ -1,11 +1,11 @@
-# HELIX 共通カーネル L9結合検証設計（K1・K2）
+# HELIX 共通カーネル L9結合検証設計（K1・K2・K5）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
+本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K5と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作で実行する場合は`scaffold/`に置き、Scaffold Bindingへ登録する。
 
@@ -15,6 +15,7 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 
 - **機構の写像→カーネル**：各機構の状態語を`Observed<T>`へ写す関数（L4 2.5）。
 - **カーネル内の合成と判定**：`combine`、`admit`、`disposition`、`key_of`、`lookup`、`record`。
+- **正本とprojection**（K5、L4 9章）：`append`、`current_head`、`read`、`restore`、`project`、`verify`。K2の`record`はsegmentへの追記、`lookup`の記録集合はprojectionとして通す。
 - **カーネル→消費側**：ある機構の結果を、別の機構の判定（gate、昇格、適格）が受け取る境界。
 
 ## 2. 検証項目
@@ -68,6 +69,34 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-K2-19` | K2-I2の2：完全一致＋同revision競合 | — | 照会と完全一致する`Value`の記録と、同じrevisionで`digest`の違う記録の2件があるとき、`Unknown(conflict)`。完全一致の`Value`を返す実装は不合格 |
 | `IV-K2-20` | K2-I2の4：旧revisionだけの複数記録 | — | 旧R0の`Value`と旧R1の`Value`だけがあり照会がR2のとき、追記順で最後の記録を`prior`とする`Stale`。旧R1が`Unknown`なら`Unobserved(not_run, superseded = R1の記録)` |
 
+### K5
+
+各項目は、損傷の無いsegmentを用意したうえで、一つの条件だけを変える。連鎖の検査（IV-K5-02〜08）では、対象の条件だけを破り、`entry_digest`と後続の行の`prev_digest`・`entry_digest`を必要に応じて再計算して、ほかの条件を成り立たせる。これにより、対象の検査だけを落とした実装がその項目で不合格になる。「境界」欄は変異を与える受け口である。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-K5-01` | K5-I1：既存行の変更 | `read` | 指定した`SegmentHead`と一致するprefixは`Value` | 既存の1行の改変、1行の削除、隣り合う2行の入替え（3fixture）は、いずれも`Unknown(unreadable)` |
+| `IV-K5-02` | K5-I3(a)：解析できない行 | `read` | — | 1行をJSONとして解析できないbytesにした入力は`Unknown(unreadable)`で、`evidence`は(a) |
+| `IV-K5-03` | K5-I3(b)：未知の`schema_version` | `read` | — | 1行の`schema_version`を未知の値にし、その行の`entry_digest`と後続の連鎖を再計算した入力は`Unknown(unreadable)`で、`evidence`は(b)だけ |
+| `IV-K5-04` | K5-I3(c)：`seq`の欠番 | `read` | — | 途中の行の`seq`を1つ飛ばし、`entry_digest`と後続の連鎖を再計算した入力は、`evidence`が(c)だけの`Unknown(unreadable)` |
+| `IV-K5-05` | K5-I3(d)：`seq`の重複 | `read` | — | 2行に同じ`seq`を付け、連鎖を再計算した入力は、`evidence`が(d)だけの`Unknown(unreadable)` |
+| `IV-K5-06` | K5-I3(e)：`prev_digest` | `read` | — | 1行の`prev_digest`を別の正しい形のdigestに替え、その行と後続の`entry_digest`を再計算した入力は、`evidence`が(e)だけの`Unknown(unreadable)` |
+| `IV-K5-07` | K5-I3(f)：`entry_digest` | `read` | — | 1行の`entry_digest`だけを替え、次の行の`prev_digest`をその値に合わせて後続を再計算した入力は、`evidence`が(f)だけの`Unknown(unreadable)` |
+| `IV-K5-08` | K5-I3(g)：指定したhead | `read` | — | 内部では連鎖の整ったsegmentで、(1)指定した`head.seq`より短いもの、(2)同じ`seq`の行の`entry_digest`が違うもの（別の連鎖で書き直したもの）は、いずれも`evidence`が(g)だけの`Unknown(unreadable)` |
+| `IV-K5-09` | K5-I4：固定prefix | `project`、`verify`、`lookup` | `seq=1`のheadでprojectionを保存した後にAへ`seq=2`を追記し、保存した`input_heads`で`verify`すると`Value`（`seq=2`を読まない） | 同じ状態で`current_head`（`seq=2`）を`input_heads`とした照会は、K2-I2の4により保存したprojectionを`Stale`として返す。旧headの再構築に`seq=2`を畳み込む実装は不合格 |
+| `IV-K5-10` | K5-I5：冪等な追記 | `append` | 同じ`key_digest`・同じ`result_digest`の2回目は`NoOp`、異なる`result_digest`は`Conflict`で両方の行が残る | manifestが列挙するsegment Bだけが読めない状態で`ResultRecorded`を追記すると`Rejected(peer_unreadable)`で、segmentは変わらない |
+| `IV-K5-11` | 9.5：eventの種類別の検査 | `append` | 各種類の正しいeventは`Appended` | 次を1fixtureずつ与え、いずれも`Rejected`でsegmentが変わらない：`ResultKey`の1field欠落、`key_digest`の不一致、`result_digest`の不一致、`Stale`の結果、3fieldの欠けた`NotApplicable`、宣言の無い値型の`Inline`、宣言と別のlogへの記録、`result_digests`が1件の`ResultConflictDetected`、logに無い`result_digest`を含む`ResultConflictDetected`、`ResultRecorded`を対象にする`Correction`、`manifest_writer`以外の`SegmentOpened`、未宣言の`event_type`、writerの不一致、manifestに無いsegment |
+| `IV-K5-12` | 9.3：logからの復元 | `restore`→`lookup` | JSONLと`FixedRef`の実体から、`Value`（`Inline`と`FixedRef`の各1件）、`Unknown`、`Unobserved`、`NotApplicable`の記録を復元し、完全一致の照会で各々が記録したクラスのまま返る | `FixedRef`の実体が無いもの、bytesのSHA-256が`digest`と違うものは、その記録が`Unknown(unreadable)`として復元され、`Value`にならない |
+| `IV-K5-13` | K5-I8：訂正 | `project` | (1)訂正の無い`DeclaredEvent`は元の内容、(2)Aで`DeclaredEvent` Dを対象にする`Correction` C1を`append`し（`Appended`）、Bで C1を対象にする`Correction` C2を`append`する（`Appended`）と、`project`はC2の`replacement`を返す、(3)末端に`replacement`の無い鎖は撤回（元の行は残り、集計に入らない） | (4)同じ対象への訂正がAとBに1件ずつあり、互いを対象にしない場合は、入力の並び順によらず`Unknown(conflict)`。追記順で後の訂正を採る実装は不合格。(5)同じ鍵で結果を改める2件目の`ResultRecorded`は、訂正ではなくK2-I4により`Unknown(conflict)`。(6)新しいrevisionの鍵で記録すると、旧結果はK2-I2により`Stale` |
+| `IV-K5-21` | 9.5：`restore`の完全性 | `restore`→`lookup` | `scope.segments`がA・Bで両方のprefixを読めれば、復元した集合で`lookup`する（Bに同じ鍵の異なる結果があれば`Unknown(conflict)`）。Aだけを宣言したscopeは、そのscopeの鍵の照会にだけ使われる | (1)`input_heads`からBを落とすと`Unknown(missing_input)`、(2)`scope.segments`が0件は`Unknown(missing_input)`、(3)manifestの損傷は`Unknown(unreadable)`、(4)Bの損傷は`Unknown(unreadable)`。いずれも`lookup`は呼ばれず、照会の結果はその非`Value`。(5)Aに完全一致の`Value`、Bに同じ鍵の異なる結果があり、全体のscopeのままBをhead一覧から落とした照会は`Unknown(missing_input)`で、Aの`Value`を返す実装は不合格 |
+| `IV-K5-14` | K5-I9：書き戻しの禁止 | `project`、`append` | — | projectionの出力をeventとして`append`する経路、`record`へ渡す経路は、いずれも`Rejected` |
+| `IV-K5-15` | K5-I10：決定的な再構築 | `project` | segment A・Bで、行の読込み順とsegmentの並び順を変えた3通りの入力が同じ`output_digest`になる | 読込み順でprojectionが変わる実装は不合格 |
+| `IV-K5-16` | K5-I7：segmentをまたぐ順序 | `restore`→`lookup` | 旧revisionの`Value`が同じwriterの`segment_no`=2と10にあり、照会が新revisionのとき、`prior`は10の記録（数値比較）。writerの表記がNFCとNFDで違う同じ名前は同じwriterとして比べる | `segment_no`を文字列として比べて2を選ぶ実装、時刻や読込み順で選ぶ実装は不合格 |
+| `IV-K5-17` | K5-I11：全量の前提 | `project` | `scope.segments`がA・Bで、両方のprefixを読めれば「0件」「閉じた」を出せる | (1)`input_heads`からBを落としAを読めた場合は`Unknown(missing_input)`、(2)`scope.segments`が0件は`Unknown(missing_input)`、(3)Bが損傷は`Unknown(unreadable)`、(4)Aだけを宣言したscopeのprojectionは`Value`だが、log全体のscopeでの照会には`Unobserved(not_run)`（scopeが鍵に入る）、(5)close済みの項目が部分読取りでopenに戻る実装は不合格 |
+| `IV-K5-18` | K5-I12：projectionの鍵 | `lookup` | 同じ`projector`・`scope`・`input_heads`の照会は保存したprojectionを返す | (1)segmentへの1行の追記は`Stale`、(2)projectorの`version`の更新は`Unobserved(not_run)`、(3)同じ`version`で`projector.digest`だけを変えた照会は`Unknown(conflict)`、(4)影響を受けないsegmentだけを入力とするprojectionは`Value`のまま。(3)を(2)と同じに扱う実装は不合格 |
+| `IV-K5-19` | K5-I13：checkpoint | `verify` | `input_heads`がcheckpointの前方への延長で、`state_digest`が再計算と一致し、差分の結果が全量と一致すれば使える | (1)checkpointより短いhead、(2)checkpointの`seq`の行の`entry_digest`が違うhead、(3)`state`だけを改変し`state_digest`を据え置いたもの、(4)差分の結果が全量と違うもの、は各々`Unknown(conflict)`で使われない |
+| `IV-K5-20` | 9.5：`verify` | `verify` | 改変の無いprojectionは`Value` | (1)`output`だけを改変（`output_digest`は据置き）、(2)`output_digest`だけを改変、(3)`output`と`output_digest`を互いに整合させて改変（再構築とは違う）、は各々`Unknown(conflict)`。(1)と(2)は保存値の再計算で、(3)は再構築との比較で検出される |
+
 ## 3. 判定と戻し先
 
 - 項目の判定はK1の型で記録する。検証器が未実装または未実行の項目は`Unobserved`であり、合格に数えない。
@@ -80,3 +109,4 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 |---|---|---|---|
 | `LEGACY-ASSET-84DA9FA82E710D0C5E6A`／`docs/test-design/harness/L9-integration-test-design.md:1-25`／`04e4a1473d483511c1724de7445bc8202e028e4a5c3eb749c0ccb74a98febe7a` | L9を結合のoracleの置き場とし、module・adapter・stateの境界を検証する | 旧L5境界から現行のL4↔L9へ対を合わせる。旧oracle ID・件数・実行手順は移さない（除外class `legacy_test_design_or_oracle`） | `semantic_rederive` |
 | `LEGACY-ASSET-2E09592A003B32C118C1`／`docs/governance/gate-design.md:35`／`d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726` | G9＝L4基本設計のoracleをL9で実行する対応 | 旧のsign-off（TL提案）は採らない（L4以降は自動。L4の5章） | `semantic_rederive` |
+| `LEGACY-ASSET-BB08D70A42B6445B2D1E`／`docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md:130-148`／`9e18d68b5e463192fb30b839eb164d79f7202a15374482f65181b238df8e513d` | L9の合否境界として、既存eventの書換え、同一event_idの異digest上書き、projectionとread-backの不一致、non-idempotent replay、全体scopeのdigestの流用を拒否する | causation・lane・GitHub Projectの項目は移さない。異digestは拒否でなくconflictとして両方を残す（L4 K5-I5） | `semantic_rederive` |
