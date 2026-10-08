@@ -32,6 +32,12 @@ ApiBoundaryResult<T> = T | existing Rejected(missing_key) case
 # generic type-alias notation; add no Rejected class or reason
 
 @dataclass(frozen=True)
+class PolarityMapping(Generic[T]):  # 既存PolarityOfのPython表現候補
+    identity: str
+    version: str
+    classify: Callable[[T], Polarity]
+
+@dataclass(frozen=True)
 class SubjectRef:
     kind: str
     identity: str
@@ -77,6 +83,8 @@ def record(
 ```
 
 `ApiBoundaryResult[T]`はL4が既に定める`Rejected(missing_key)`を外側return unionへ足す型alias候補であり、新しいRejected classやreasonを作らない。keyを検査しないpublic normal returnはL5既存signatureどおりである。`record`はL5既存unionを使い、`Stale` resultはkey fieldの有無にかかわらず先に`Rejected(stale_not_recordable)`とし、非Stale resultの必須key field欠落だけを`Rejected(missing_key)`とする。いずれもL4/L5既存契約の境界であり、新しい結果classではない。その他の入力classをUnknownへ変換しない。
+
+`PolarityMapping`はL4 §2.2/L5 §3.2が既に定める版付き`PolarityOf`の具体表現である。ownerがidentity/versionと値からPolarityへのcallableを明示し、`combine`はそのcallableを用い、`Combined.polarity`にはidentity/versionを保存する。異種入力は成分ごとのmetadata対応も保持する。関数名・qualnameからidentityを推測せず、版を補完しない。公開signatureのpolarity引数を増やさず、domain mappingをkernelへ追加しない。
 
 異種成分はL4 §2.5にある成分別`(Observed, PolarityOf)`入力形式を、同じ`combine`のoverloadとして表す。別の公開function名を作らず、同じ各成分対応を検査する。L5に書かれた`combine(components, polarity)`の公開境界は保持する。
 

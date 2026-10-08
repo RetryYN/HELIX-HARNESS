@@ -17,7 +17,7 @@ base: `main` at `33bbe8cd5f080be9e400e9259db22645bc620eda`
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; content SHA-256 `30fb33b316b6116ccb3eb38240947b3fdde942b97df42bb23f45d8286d9d2285` (本PRのcontent HEAD) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `619a13996d2ea507eb2743e1e82c5953544dce14e3ca2380ff83f204477530e8` |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `267fce6ecb47a0f17b8a9f4b06a8bcc4f6b2404067689a0399202fe8c28b7ae3` |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
@@ -38,7 +38,7 @@ L4/L9は本PRのcontent本文、L5/L6はこのpair内の上流content SHAを参�
 
 | UT ID | L6関数ID | L9 oracle | 基準fixture → 1変更fixture | 単一期待 |
 |---|---|---|---|---|
-| `CK-K1-UT-001` | FN-02/03/04 | IV-K1-01 | CONNECT compatibleとHARNESS passを各owner polarityに従って合成 | `Combined(Positive)`、`Admitted`。 |
+| `CK-K1-UT-001` | FN-02/03/04 | IV-K1-01 | CONNECT compatibleとHARNESS passを各owner polarityに従って合成 | `Combined(Positive)`、`Admitted`。ownerが明示する各mapping identity/versionを成分対応どおり保持し、callableのqualnameや既定版で代用しない。 |
 | `CK-K1-UT-002a/b/c` | FN-02/03/04 | IV-K1-01 | 001基底からCONNECT成分だけUnknown(incomparable)、Stale、Unobserved(not_selected)へ一つずつ変更 | 各々`Undetermined`、`Withheld`。reasonはその成分の位置/classを保持する。各suffixは別fixture IDとする。 |
 | `CK-K1-UT-003` | FN-03/04 | IV-K1-02 | `[Value(fail)]`基底へUnknown(unreadable)を一成分追加 | Negativeのまま、2成分を入力順保持、negative/non-valueの両方のindexを記録しWithheld理由2件。 |
 | `CK-K1-UT-004` | FN-03/04 | IV-K1-03 | Value(pass)へUnknown(conflict)、Unobserved(pending_receipt)、Staleを加える | Undetermined、3つの非Value位置をすべて保持し、Withheld理由を3件記録する。 |

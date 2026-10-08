@@ -16,7 +16,7 @@ base: main `33bbe8cd5f080be9e400e9259db22645bc620eda`
 | Repository Layout L4 | 本PRのcontent本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
 | Common Kernel L9 | 本PRのcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` §2 K1/K2、IV-LDG-01/02/04、IV-K5-22 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
 | paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§7 | SHA-256 `30fb33b316b6116ccb3eb38240947b3fdde942b97df42bb23f45d8286d9d2285` |
-| Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `fbf89387955a4bbeadb6cfbe0734237a3a59fd506ca2095362e6e0a2d701e047` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
+| Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `590d5badb685a127c71f7624d89ab1ed505196a93f3cb3946ba6037fc7a736ab` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
 
 L9の各`IV-K1-*`/`IV-K2-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。
 
