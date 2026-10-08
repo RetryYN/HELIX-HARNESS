@@ -15,7 +15,7 @@ version_target: 1.0
 |---|---|---|
 | `D-LCI-01` | target/snapshot/clean worktree束縛 | `CASE-L8-LCI-01`〜`-03`, `-11`, `-47`〜`-49`, `-52`, `-56`, `-58`〜`-59`, `-61` |
 | `D-LCI-02` | 5-step command plan/argv/継続/timeout | `CASE-L8-LCI-04`〜`-10`, `-41`, `-50`〜`-51`, `-67`, `-80`〜`-83` |
-| `D-LCI-03` | 明示design manifest、ID/coverage関係、過去source pin | `CASE-L8-LCI-12`〜`-20`, `-53`〜`-54`, `-62`〜`-66`, `-68`〜`-73` |
+| `D-LCI-03` | 明示design manifest、ID/coverage関係、過去source pin、parent AC適用記録 | `CASE-L8-LCI-12`〜`-20`, `-53`〜`-54`, `-62`〜`-66`, `-68`〜`-73`, `-84`〜`-85` |
 | `D-LCI-04` | 外部canonical receipt/privacy/aggregate/key境界 | `CASE-L8-LCI-21`〜`-28`, `-42`〜`-46`, `-57`, `-60` |
 | `D-LCI-05` | workflow_dispatch target/input/selected check parityとrole別Git identity | `CASE-L8-LCI-29`〜`-40`, `-55`, `-74`〜`-79` |
 
@@ -71,9 +71,12 @@ UnsupportedItem = {id: U-LCI-01|U-LCI-02|U-LCI-03|U-LCI-04,
 DesignScopeManifest = {version: str, files: list[DesignFile],
                         coverage_edges: list[CoverageEdge],
                         coverage_dispositions: list[CoverageDisposition],
+                        parent_ac_coverage: list[ParentAcCoverage],
                         source_scopeouts: list[SourceScopeout],
                         legacy_pins: list[LegacyPin],
                         unsupported_items: list[UnsupportedItem]}
+ParentAcCoverage = {parent_ac_id: AC-OS-020-01|AC-OS-020-03,
+                    state: not_exercised, reason: str}
 LegacyPin = {asset_id: str, archive_path: RepoRelativePath,
              full_file_sha256: Sha256, line_start: int, line_end: int,
              span_sha256: Sha256|null}
@@ -151,6 +154,8 @@ supervisorは各process groupの起動/終了を監視する。300秒は短い30
 
 `verify_design_manifest`は定義一意性、各参照の一意な定義への解決、定義と参照の分離、各L4 invariant/repository-layout機構契約からL9 verifierへの明示mapped/partial edgeまたは明示not_exercised disposition、各L5詳細契約からL8 case、各L6 functionからL7 unit oracleへのedge、edge先の定義域内実在を検査する。各sourceの`CoverageDisposition`は`mapped`/`partial`では設計edgeを、`partial`/`not_exercised`では理由・既存`owner_ref`・operational ownerの特定状況・return pathを明示する。設計edgeがある契約を、fixtureが未実行という理由で`not_exercised`へ変更しない。抽出機能等の設計scope外項目は`source_scopeouts`に別記し、coverage edge/dispositionや実行状態と混同しない。`RL-D4`は`IV-RL-56`/`IV-RL-57`/`IV-RL-59`への`partial`設計edgeを持ち、code-graph extraction自体をsource scopeoutとして記録する。個々のedge先IDは一意に解決すること。過去sourceは`LegacyPin`として読み、current source relationにしない。full file digestとoptional line-span digestは独立fieldである。
 
+`parent_ac_coverage`はL4 §1「親ACの適用範囲」が明示するOS親ACの適用記録であり、必須listとする。`AC-OS-020-01`と`AC-OS-020-03`を各一件だけ含め、各rowは`state=not_exercised`、空白以外の`reason`を持ち、ID・state・理由がL4の同表に記載された扱いと理由literalに一致する（理由文の意味推論はしない）。list全体または一方のrowが欠ける場合は`Unknown(missing_input)`、同じparent ACの重複またはL4記載との不一致は`Unknown(conflict)`、`pass`等への昇格・unknown field・型不正・空理由は`Rejected(invalid_input)`とする。一般必須field欠落の`Rejected(invalid_input)`規則に対するこのfieldの例外として、`parent_ac_coverage`自体の欠落も`Unknown(missing_input)`とする。`AC-OS-020-02`は境界fixtureで一部を照合するためこのlistへ含めず、HARNESS parent ACを追加しない。この親AC listは`coverage_dispositions`や`coverage_edges`の要素ではなく、そこへ混ぜたりgraph edgeへ変換したりしない。
+
 manifestには固定corpusのexact contract IDを入れ、regexから全意味の被覆を推測しない。scanが確かめるのはIDとrelationの整合性だけである。L4に登録した`RL-V1`/`RL-K3`/`RL-T3`/`RL-D4`等のknown `partial`/`not_exercised` contractを、必要edgeの欠落やscope外`unsupported_items`と別型のnon-pass dispositionで保持する。D4 code-graph extractionの設計scopeoutも`source_scopeouts`に別保持する。L4の4件のscope外`unsupported_items`も別inventory fieldに保持し、すべてのdispositionとscopeoutが構造的に明示されていれば固定5-step successを妨げない。required ID/pin/edgeが欠落またはunsupportedなら`LC-DESIGN-001`はsuccessにならない。文面の等価性、非構造化意味の完全性、oracleの正しさは証明せず、unknownはnon-passとする。
 
 ## 5. receipt配置とGitHub transport
@@ -167,6 +172,8 @@ required local checkは全件`success`を返す必要がある。stepの削除�
 
 ## 7. manifest契約の具体化理由
 
-現行L4 common-kernelのK1-I1等とrepository-layoutのRL-D4等は箇条書き定義であり、heading/tableだけのselectorでは既存契約を読み取れなかった。dispositionはedge IDを参照する一方でedge型に識別子がなく、期待値locatorも文字列のままだった。この不足をbullet selector、明示展開表、edge identity、table outcome locatorで閉じる。L4本文・要求意味・coverageの採否は変えず、旧sourceの再利用・再導出の記録はL4/L5既存crosswalkを維持する。型と参照の構造検査の具体化であり、新しい承認手続きや意味被覆の主張を作らない。
+現行L4 common-kernelのK1-I1等とrepository-layoutのRL-D4等は箇条書き定義であり、heading/tableだけのselectorでは既存契約を読み取れなかった。dispositionはedge IDを参照する一方でedge型に識別子がなく、期待値locatorも文字列のままだった。この不足をbullet selector、明示展開表、edge identity、table outcome locatorで閉じる。さらにL4 §1が既に求めるOS親AC別の未検証記録をmanifestへ保持する型がなかったため、`parent_ac_coverage`を独立必須fieldとして追加する。L4本文・要求意味・coverageの採否は変えず、旧sourceの再利用・再導出の記録はL4/L5既存crosswalkを維持する。型と参照の構造検査の具体化であり、新しい承認手続きや意味被覆の主張を作らない。
 
 再導出の確認範囲は旧 `helix-harness-requirements_v1.2.md:1446–1475`（L4固定asset `LEGACY-ASSET-BACB1FC117A09D20F273`）のlocal trace/doc-consistencyとmerge単位CI、および旧 `source-boundary-contracts.md:28–42`（`LEGACY-ASSET-0327D0DF98618D3066FD`、full SHA-256 `81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a`）のmissing pairを黙認しない・literalでないedgeをunknownとして残す契約である。旧workflowやoracle実装は移さず、明示manifestの構造検査へ再導出した。child bytecode補足は現行 `scaffold/governance/tools/govcheck.py:73` の実際の起動argvが根拠であり、旧runtimeを起動した結果ではない。
+
+`parent_ac_coverage`の保持点は旧asset `LEGACY-ASSET-BACB1FC117A09D20F273`（`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.2.md:1446–1475`、full SHA-256 `41b38c068e91a767f964ce5ce5d7d5568c1984b3b122b808f9eff61e5a0af401`）のlocal trace/doc-consistencyであり、L4が宣言する各親ACの適用範囲をmanifestにも別記する。旧asset `LEGACY-ASSET-0327D0DF98618D3066FD`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md:28–42`、full SHA-256 `81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a`）のmissing pairを黙認せずunknownへ残す保持点に沿い、親AC欠落もcoverage graphの空edgeで表さずmissing入力にする。変更はL4に存在する二つのOS-020 parent applicabilityを固定listで照合する技術表現に限り、新しい親・承認・coverage edgeは作らない。
