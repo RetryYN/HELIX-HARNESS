@@ -173,84 +173,49 @@ def synthetic_cases(git):
                 "got": "%s (registered %d, evaluated %d)" % (overall, len(reg), len(ev)), "reason": reason, "ok": ok})
     if not ok:
         fails.append("registry partial evaluation: %s" % overall)
-    # receiptの出力先：scaffold/外・symlink経由・.json以外を拒否し、許可先だけへ書く（SCF-B-0157の書込境界）
-    with tempfile.TemporaryDirectory() as tmp:
-        rdir = os.path.join(tmp, "scaffold", "l3l10-checks", "receipts")
-        os.makedirs(rdir)
-        os.makedirs(os.path.join(tmp, "docs"))
-        os.makedirs(os.path.join(tmp, "outside"))
-        os.symlink(os.path.join(tmp, "outside"), os.path.join(rdir, "linkdir"))
-        os.symlink(os.path.join(tmp, "docs", "x.json"), os.path.join(rdir, "link.json"))
-        rejects = {
-            "receipt_reject_outside_relative": "docs/x.json",
-            "receipt_reject_outside_absolute": os.path.join(tmp, "outside", "x.json"),
-            "receipt_reject_traversal": "scaffold/l3l10-checks/receipts/../../../docs/x.json",
-            "receipt_reject_symlink_dir": "scaffold/l3l10-checks/receipts/linkdir/x.json",
-            "receipt_reject_symlink_file": "scaffold/l3l10-checks/receipts/link.json",
-            "receipt_reject_non_json": "scaffold/l3l10-checks/receipts/x.txt",
-        }
-        for case, path in rejects.items():
-            real, why = C.resolve_receipt_path(tmp, path)
-            ok = real is None
-            out.append({"case": case, "expected": "rejected", "got": "rejected: %s" % why if real is None else real, "ok": ok})
-            if not ok:
-                fails.append("%s: accepted %s" % (case, real))
-        # ハードリンク：許可先のfileが範囲外fileと同じinode → 拒否し、範囲外fileは変わらない
-        outside = os.path.join(tmp, "outside", "victim.json")
-        with open(outside, "w", encoding="utf-8") as f:
-            f.write("ORIGINAL\n")
-        os.link(outside, os.path.join(rdir, "hard.json"))
-        real, why = C.resolve_receipt_path(tmp, "scaffold/l3l10-checks/receipts/hard.json")
-        ok = real is None and open(outside, encoding="utf-8").read() == "ORIGINAL\n"
-        out.append({"case": "receipt_reject_hardlink", "expected": "rejected, outside unchanged",
-                    "got": "rejected: %s" % why if real is None else real, "ok": ok})
-        if not ok:
-            fails.append("receipt hardlink accepted: %s" % real)
-        # 解決の後にハードリンクが作られた場合：書込み時に再検査して書かず、範囲外fileは変わらない
-        target = os.path.join(rdir, "race.json")
-        real, why = C.resolve_receipt_path(tmp, "scaffold/l3l10-checks/receipts/race.json")
-        os.link(outside, target)
-        raised = False
+    # 検査器はfileへ書かない（書込み境界を持たない）。main()の実行中に書込みmodeのopen／os.openが呼ばれないことを確かめる
+    import builtins, io, contextlib
+    calls = []
+    real_open, real_osopen = builtins.open, os.open
+    def guard_open(f, mode="r", *a, **k):
+        if any(c in mode for c in "wax+"):
+            calls.append(("open", str(f), mode))
+            raise PermissionError("selftest: write open blocked")
+        return real_open(f, mode, *a, **k)
+    def guard_osopen(f, flags, *a, **k):
+        if flags & (os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND):
+            calls.append(("os.open", str(f), flags))
+            raise PermissionError("selftest: write os.open blocked")
+        return real_osopen(f, flags, *a, **k)
+    it = json.load(open(CORPUS, encoding="utf-8"))
+    bad = [x for x in it if (x["pr"], x["major_id"]) == (2685, "M1")][0]
+    buf_out, buf_err = io.StringIO(), io.StringIO()
+    builtins.open, os.open = guard_open, guard_osopen
+    try:
+        with contextlib.redirect_stdout(buf_out), contextlib.redirect_stderr(buf_err):
+            rc = C.main(["--head", bad["bad_head"], "--base", bad["base"], "--mech", "helix-labo", "--parent", "060"])
+    finally:
+        builtins.open, os.open = real_open, real_osopen
+    try:
+        parsed = json.loads(buf_out.getvalue())
+        is_receipt = parsed.get("record_type") == "l3l10_violation_check_receipt" and parsed.get("authority_effect") == "none"
+    except ValueError:
+        is_receipt = False
+    ok = not calls and is_receipt and rc in (0, 1, 3)
+    out.append({"case": "checker_writes_no_files", "expected": "no write-mode open; receipt JSON on stdout",
+                "got": "write_calls=%s receipt_on_stdout=%s exit=%s" % (calls, is_receipt, rc), "ok": ok})
+    if not ok:
+        fails.append("checker opened a file for writing or did not print receipt: %s" % calls)
+    rc = None
+    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
         try:
-            C.write_receipt(real, "NEW\n", tmp)
-        except OSError:
-            raised = True
-        ok = raised and open(outside, encoding="utf-8").read() == "ORIGINAL\n"
-        out.append({"case": "receipt_hardlink_after_resolve_not_written", "expected": "OSError, outside unchanged",
-                    "got": "raised=%s outside=%r" % (raised, open(outside, encoding="utf-8").read()), "ok": ok})
-        if not ok:
-            fails.append("receipt write after hardlink race: raised=%s" % raised)
-        # 検証の後で途中directoryをsymlinkへ差し替える競合 → 書かずに失敗し、範囲外には何も作らない
-        real, why = C.resolve_receipt_path(tmp, "scaffold/l3l10-checks/receipts/swap.json")
-        mid = os.path.join(tmp, "scaffold", "l3l10-checks")
-        os.rename(mid, mid + ".moved")
-        os.makedirs(os.path.join(tmp, "outside", "receipts"), exist_ok=True)
-        os.symlink(os.path.join(tmp, "outside"), mid)
-        raised = False
-        try:
-            C.write_receipt(real, "X\n", tmp)
-        except OSError:
-            raised = True
-        leaked = os.path.exists(os.path.join(tmp, "outside", "receipts", "swap.json"))
-        ok = real is not None and raised and not leaked
-        out.append({"case": "receipt_intermediate_symlink_swap_after_resolve", "expected": "OSError, nothing written outside",
-                    "got": "raised=%s leaked=%s" % (raised, leaked), "ok": ok})
-        if not ok:
-            fails.append("receipt intermediate symlink swap: raised=%s leaked=%s" % (raised, leaked))
-        os.unlink(mid)
-        os.rename(mid + ".moved", mid)
-        rc = C.main(["--repo-root", tmp, "--receipt", "docs/x.json"])
-        ok = rc == 2 and not os.path.exists(os.path.join(tmp, "docs", "x.json"))
-        out.append({"case": "receipt_reject_main_exit2_no_write", "expected": "exit 2, no file", "got": "exit %s" % rc, "ok": ok})
-        if not ok:
-            fails.append("main receipt outside: exit %s" % rc)
-        real, why = C.resolve_receipt_path(tmp, "scaffold/l3l10-checks/receipts/r.json")
-        if real:
-            C.write_receipt(real, "{}\n", tmp)
-        ok = real is not None and os.path.isfile(real)
-        out.append({"case": "receipt_accept_allowed", "expected": "written", "got": "written" if ok else "rejected: %s" % why, "ok": ok})
-        if not ok:
-            fails.append("receipt allowed path rejected: %s" % why)
+            C.main(["--receipt", "x.json"])
+        except SystemExit as ex:
+            rc = ex.code
+    ok = rc == 2
+    out.append({"case": "receipt_option_removed", "expected": "argparse exit 2", "got": "exit %s" % rc, "ok": ok})
+    if not ok:
+        fails.append("--receipt option still accepted")
     return out, fails
 
 

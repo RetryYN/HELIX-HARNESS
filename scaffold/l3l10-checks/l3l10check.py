@@ -14,7 +14,7 @@ status: scaffold / authority_effect: none / binding: scaffold/bindings/SCF-B-015
   boundary_removed   base→HEADで消えた境界語・IDを含む文を列挙（advisory。violationにしない）
 
 Python標準libraryだけで動く。gitは読み取り（cat-file／ls-tree／diff／rev-parse）だけを使う。
-GitHubへは --online のときだけ `gh api` の読み取りを行う。書き込みは --receipt で指定したfileだけ。
+GitHubへは --online のときだけ `gh api` の読み取りを行う。fileへは何も書かない（receiptは標準出力、要約は標準エラー）。
 終了code: 0 pass、1 violation、2 入力不正、3 unknown。
 """
 import argparse, datetime, hashlib, json, os, re, subprocess, sys
@@ -983,86 +983,6 @@ def build_receipt(ctx, registered, evaluated, results, overall, reason):
     }
 
 
-RECEIPT_DIRS = ("scaffold/l3l10-checks/receipts",)
-
-
-def resolve_receipt_path(repo_root, path):
-    """receiptの出力先を検査する。許可するのは --repo-root 配下の RECEIPT_DIRS の中の .json だけ。
-
-    相対pathは --repo-root を基準にする。symlink（出力先そのもの、または途中のdirectory）を経由して
-    許可先の外へ出るものと、既存の非regular fileは拒否する。拒否した場合は (None, 理由) を返す。
-    """
-    root = os.path.realpath(repo_root)
-    allowed = [os.path.join(root, d) for d in RECEIPT_DIRS]
-    cand = path if os.path.isabs(path) else os.path.join(root, path)
-    cand = os.path.normpath(cand)
-    if os.path.islink(cand):
-        return None, "出力先がsymlinkである"
-    real = os.path.realpath(cand)
-    if real != cand:
-        return None, "途中のdirectoryがsymlinkで、許可先の外へ解決されうる"
-    if not real.endswith(".json"):
-        return None, "出力先は .json に限る"
-    if not any(real.startswith(a + os.sep) for a in allowed):
-        return None, "出力先は %s の中に限る（scaffold/外への書込み禁止。SCF-B-0157）" % ", ".join(RECEIPT_DIRS)
-    if os.path.lexists(real):
-        st = os.lstat(real)
-        import stat as _stat
-        if not _stat.S_ISREG(st.st_mode):
-            return None, "既存の出力先がregular fileでない"
-        if st.st_nlink > 1:
-            return None, "既存の出力先がハードリンク（link数%d）で、許可先の外のfileと同じinodeでありうる" % st.st_nlink
-    return real, None
-
-
-def write_receipt(real, text, repo_root):
-    """既存のinodeを書き換えず、途中のsymlinkも辿らずに書く。
-
-    --repo-root（信頼する起点）から許可先まで、各directoryを O_DIRECTORY|O_NOFOLLOW で dir_fd を使って1段ずつ開き、
-    最後に保持したdirectory fdの中で、新しい一時file（O_CREAT|O_EXCL|O_NOFOLLOW）へ書いて原子的に置換する。
-    検証の後で途中のdirectoryがsymlinkへ差し替わっても、そのsymlinkは辿らずに失敗する（OSError）。
-    既存の出力先がregular fileでない、またはlink数が2以上なら書かずに失敗する。"""
-    import stat as _stat
-    root = os.path.realpath(repo_root)
-    rel = os.path.relpath(real, root)
-    parts = rel.split(os.sep)
-    if not parts or parts[0] in ("..", "") or os.path.isabs(rel):
-        raise OSError("receiptの出力先が --repo-root の外にある")
-    dirs, name = parts[:-1], parts[-1]
-    flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
-    cur = os.open(root, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
-    try:
-        for comp in dirs:
-            try:
-                nxt = os.open(comp, flags, dir_fd=cur)
-            except FileNotFoundError:
-                os.mkdir(comp, 0o755, dir_fd=cur)
-                nxt = os.open(comp, flags, dir_fd=cur)
-            os.close(cur)
-            cur = nxt
-        try:
-            st = os.stat(name, dir_fd=cur, follow_symlinks=False)
-            if not _stat.S_ISREG(st.st_mode) or st.st_nlink > 1:
-                raise OSError("既存のreceiptがregular fileでない、またはハードリンクである")
-        except FileNotFoundError:
-            pass
-        tmp = ".%s.%d.tmp" % (name, os.getpid())
-        fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0), 0o644, dir_fd=cur)
-        try:
-            with os.fdopen(fd, "w", encoding="utf-8") as f:
-                f.write(text)
-                f.flush()
-                os.fsync(f.fileno())
-            os.replace(tmp, name, src_dir_fd=cur, dst_dir_fd=cur)
-        except BaseException:
-            try:
-                os.unlink(tmp, dir_fd=cur)
-            except OSError:
-                pass
-            raise
-    finally:
-        os.close(cur)
-
 
 def make_ctx(args, git):
     pins = []
@@ -1093,14 +1013,7 @@ def main(argv=None):
     ap.add_argument("--pin-rev", help="revisionを持たないpinの既定revision（省略時はHEAD）")
     ap.add_argument("--online", action="store_true", help="formal_body_rawをgh apiのcomment bodyと照合する（読み取りだけ）")
     ap.add_argument("--gh-repo", default="RetryYN/HELIX-HARNESS")
-    ap.add_argument("--receipt", help="receipt JSONの出力先（省略時は標準出力）。--repo-root配下の %s の中の .json に限る。相対pathは --repo-root 基準" % RECEIPT_DIRS[0])
     args = ap.parse_args(argv)
-    receipt_path = None
-    if args.receipt:
-        receipt_path, why = resolve_receipt_path(args.repo_root, args.receipt)
-        if receipt_path is None:
-            print("E_INPUT: --receipt %s を拒否した：%s" % (args.receipt, why), file=sys.stderr)
-            return 2
     git = Git(args.repo_root)
     if args.head and not git.resolve(args.head):
         print("E_INPUT: --head %s を解決できない" % args.head, file=sys.stderr)
@@ -1109,19 +1022,13 @@ def main(argv=None):
     registered, evaluated, results, overall, reason = run_checks(ctx)
     receipt = build_receipt(ctx, registered, evaluated, results, overall, reason)
     out = json.dumps(receipt, ensure_ascii=False, indent=1, sort_keys=False)
-    if receipt_path:
-        try:
-            write_receipt(receipt_path, out + "\n", args.repo_root)
-        except OSError as ex:
-            print("E_INPUT: --receipt %s へ書かなかった：%s" % (args.receipt, ex), file=sys.stderr)
-            return 2
-        for cid in evaluated:
-            r = results[cid]
-            print("%-17s %-9s %s" % (cid, r["result"], {k: sum(1 for f in r["findings"] if f["result"] == k) for k in ("violation", "unknown", "advisory")}))
-        print("registered=%d evaluated=%d overall=%s（%s）" % (len(registered), len(evaluated), overall, reason))
-        print("receipt: %s sha256=%s" % (os.path.relpath(receipt_path, os.path.realpath(args.repo_root)), sha256b((out + "\n").encode("utf-8"))))
-    else:
-        print(out)
+    # 検査器はfileへ書かない。receipt JSONは標準出力へ、要約は標準エラーへ出す。保存は呼び出し側のredirectで行う。
+    print(out)
+    for cid in evaluated:
+        r = results[cid]
+        print("%-17s %-9s %s" % (cid, r["result"], {k: sum(1 for f in r["findings"] if f["result"] == k) for k in ("violation", "unknown", "advisory")}), file=sys.stderr)
+    print("registered=%d evaluated=%d overall=%s（%s） receipt_sha256=%s" % (len(registered), len(evaluated), overall, reason,
+          sha256b((out + "\n").encode("utf-8"))), file=sys.stderr)
     return {"pass": 0, "violation": 1, "unknown": 3}[overall]
 
 

@@ -53,7 +53,7 @@
  },
  "operations": {
   "allowed": [
-   "python3 -B scaffold/l3l10-checks/l3l10check.py --head <rev> --base <rev> --fixed-rev <rev> --mech <dir> --parent <NNN> [--pin <path>] [--receipt <file>]",
+   "python3 -B scaffold/l3l10-checks/l3l10check.py --head <rev> --base <rev> --fixed-rev <rev> --mech <dir> --parent <NNN> [--pin <path>] > <receipt.json>（検査器はfileへ書かない。receiptは標準出力）",
    "python3 -B scaffold/l3l10-checks/l3l10check.py --online（gh apiのcomment body読み取りだけ）",
    "python3 -B scaffold/l3l10-checks/selftest.py [--record]",
    "git fetch origin pull/<N>/head（回帰コーパスのgit object取得）",
@@ -86,7 +86,7 @@
    "forbidden_write_scope"
   ],
   "oracles": [
-   "python3 -B scaffold/l3l10-checks/selftest.py（回帰コーパス10件のbad_head検出とfixed_headの同じ箇所の非検出、合成25件。receipt出力先の境界（範囲外・symlink・ハードリンク・検証後の差替え競合）を含む）",
+   "python3 -B scaffold/l3l10-checks/selftest.py（回帰コーパス10件のbad_head検出とfixed_headの同じ箇所の非検出、合成16件。検査器が書込みmodeでfileを開かないこと、--receiptが無いことを含む）",
    "receiptのregistry.registered_countとevaluated_countの一致",
    "python3 -B scaffold/tools/scfctl.py validate",
    "python3 -B scaffold/tools/scfctl.py stale",

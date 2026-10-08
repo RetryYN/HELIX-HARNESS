@@ -18,29 +18,27 @@ L3とL10の強弱の食い違い、別文書との主張の矛盾）は検出し
 ## 使い方
 
 ```
-# 1つのPRを検査する（receiptを書き、要約を表示する）
+# 1つのPRを検査する（receiptを標準出力へ、要約を標準エラーへ出す）
 python3 -B scaffold/l3l10-checks/l3l10check.py \
   --head <PRのcontent HEAD> --base <PRのbase> --fixed-rev <固定L2／L11のrevision> \
   --mech helix-labo --parent 060 [--parent 061 ...] \
   [--pin docs/governance/audits/.../xxx-pin.json] [--pin-rev <revisionを持たないpinの既定revision>] \
-  [--online] --receipt scaffold/l3l10-checks/receipts/<名前>.json
+  [--online] > receipt.json   # receiptは標準出力、要約は標準エラー
 
 # 自己検査（回帰コーパスと合成case）。--recordで scaffold/evidence/ に結果を書く
 python3 -B scaffold/l3l10-checks/selftest.py [--record]
 ```
 
 終了codeは、pass 0、violation 1、入力不正 2、unknown 3である。`--online`を付けた時だけ`gh api repos/<repo>/issues/comments/<id>`を
-読み取りで呼ぶ（既定はoffline）。gitは`cat-file`、`ls-tree`、`diff`、`rev-parse`の読み取りだけを使う。書き込みは`--receipt`の出力先と、
-selftestの`--record`が書く`scaffold/evidence/l3l10-checks-selftest-2026-10-08.json`だけである。
+読み取りで呼ぶ（既定はoffline）。gitは`cat-file`、`ls-tree`、`diff`、`rev-parse`の読み取りだけを使う。
+**検査器はfileへ何も書かない。** receipt JSONは標準出力へ、要約は標準エラーへ出す。保存は呼び出し側のredirectで行う。
+書き込むのは、selftestの`--record`が書く固定path`scaffold/evidence/l3l10-checks-selftest-2026-10-08.json`だけである。
 
-`--receipt`の出力先は、`--repo-root`配下の`scaffold/l3l10-checks/receipts/`の中の`.json`に限る（相対pathは`--repo-root`基準）。
-範囲外、`..`による脱出、symlink（出力先そのもの・途中のdirectory）を経由するもの、既存の非regular fileは入力不正（終了code 2）として拒否し、何も書かない。
-既存の出力先がハードリンク（link数2以上）なら拒否する。書込みは、`--repo-root`から許可先まで各directoryを`O_DIRECTORY|O_NOFOLLOW`で`dir_fd`を使って1段ずつ開き、保持したdirectoryの中で新しい一時fileへ書いてから原子的に置換する（既存のinodeを書き換えない）。書込みの直前にも出力先を再検査する。検証の後で途中のdirectoryがsymlinkへ差し替わったり、ハードリンクが作られたりした場合は、書かずに失敗する（終了code 2）。これは`SCF-B-0157`の「`scaffold/`外への書込み禁止」を実装で守るためである（#2700 review01・review02のM1、review03のM2）。
-
-`--mech`は`docs/`直下の機構directory名（`helix-labo`、`helix-os`等）、`--parent`は親の3桁番号である。6本文は
-`L3-requirements/{business-requirements,functional-requirements,nfr-grade}.md`と
-`L10-verification/{business-verification,functional-verification,nfr-verification}.md`、固定L2／L11は
-`L2-requirements/*.md`と`L11-acceptance/*.md`を、それぞれ`--head`と`--fixed-rev`で読む。
+当初は`--receipt`で出力先を受け取り、`scaffold/`配下へ制限していた。#2700のreview01〜04で、範囲外のpath、ハードリンク、
+検証後の途中directoryのsymlink差替え、directory fd取得後の親directoryの移動という順で抜け道が見つかった。
+同じUIDで並行してfilesystemを操作する相手に対して、path名による書込み範囲の制限はuser空間だけでは保証できない。
+そのため出力先を受け取る機能自体を削除し、書込み境界を持たない設計にした（`SCF-B-0157`の「`scaffold/`外への書込み禁止」を構造で満たす）。
+selftestの`--record`の固定pathも、同じUIDによる並行操作は脅威の範囲外とする。これは既存のscaffold tool（`scfctl selftest --record`等）と同じ前提である。
 
 ## 3値の扱い
 
