@@ -1,0 +1,207 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0158",
+  "kind": "scaffold",
+  "title": "開発repository向け local CI driver",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS local CI運転契約",
+  "state": "registered",
+  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5のcontractとL6/L7のfunction/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "sha256": "5400436e17b6973741101138f113b387384d1f42ab6da6b27f19d337042d6988",
+      "note": "main cb920c9dae9a4c2a7a023a361e654bddef4d4dd8上の固定設計入力。本文pinは実行・合格を表さない。"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "sha256": "fa260a0fa0135d97950df20841e9f996572afbe2a6ca979d09401266c6edf600",
+      "note": "main cb920c9dae9a4c2a7a023a361e654bddef4d4dd8上の固定設計入力。本文pinは実行・合格を表さない。"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "sha256": "07da9c7aa4aeda307d1280065e171a98bfb7eca04801945c5ccfe4705b444f9c",
+      "note": "main cb920c9dae9a4c2a7a023a361e654bddef4d4dd8上の固定設計入力。本文pinは実行・合格を表さない。"
+    },
+    {
+      "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "sha256": "09423809c60f3fdde0f6df98299fdb9639d17dec2e38a1b70456159702862b74",
+      "note": "main cb920c9dae9a4c2a7a023a361e654bddef4d4dd8上の固定設計入力。本文pinは実行・合格を表さない。"
+    },
+    {
+      "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "sha256": "8fffcf94fc1cc05a26e17843023b8505eb176e3adaebd4a569339e3cd98b30f8",
+      "note": "main cb920c9dae9a4c2a7a023a361e654bddef4d4dd8上の固定設計入力。本文pinは実行・合格を表さない。"
+    },
+    {
+      "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "sha256": "54bd0447061db2f562820d656e44930d5bf198701eed878904cbc387886b146d",
+      "note": "main cb920c9dae9a4c2a7a023a361e654bddef4d4dd8上の固定設計入力。本文pinは実行・合格を表さない。"
+    },
+    {
+      "path": "docs/governance/decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md",
+      "sha256": "8bd88041061415390bc4f844a8bc6f255067dd212e7e8e80cefa89e7e02949a6",
+      "note": "#2716 decision 2: local CI primary; does not add/approve L2 requirements, branch protection, or merge admission."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/common-kernel.md",
+      "sha256": "4a2c4afcc2519df5d7bd58caf1a74a80b94b26fc85ef328ee7bb89f6f2e78187",
+      "note": "Current K1/K2 contracts referenced by the local CI design; no result-class extension."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/repository-layout.md",
+      "sha256": "6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1",
+      "note": "Current path/placement contract; scaffold/local-ci is temporary and formal OS unit transfer remains pending."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
+      "sha256": "e01fd7ff0b4a0a141d4958b6bc38ca00a2753866d1e6ea98103f503bd409aaf3",
+      "note": "Current paired oracle reference only; no execution evidence."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/repository-layout-integration-verification.md",
+      "sha256": "41a04d330def28ea9ba0e9853d1f925a44beca4629f8d54ad1557f13c58d8fba",
+      "note": "Current paired path/placement oracle reference only; no fixture execution."
+    },
+    {
+      "path": "scaffold/tools/scfctl.py",
+      "sha256": "ff48b2949c92116fe29a1b5c9a690c1454db77929dff5b5b977b78f137425aed",
+      "note": "L4/L5 name this existing checker as a temporary adapter; pin is a current source revision, not a claim of formal OS unit transfer."
+    },
+    {
+      "path": "scaffold/governance/tools/govcheck.py",
+      "sha256": "678950a918fcaa4c38af9c01be5d1734cdd0bac32900aa26985825c391f06ef2",
+      "note": "L4/L5 name this existing checker as a temporary adapter; pin is a current source revision only."
+    },
+    {
+      "path": "scaffold/governance/tools/gen_rulebook.py",
+      "sha256": "dc58178f477874091808ec3f2c2a15e6a9c1f98b702064b7932c02d613cea9b5",
+      "note": "L4/L5 identify this as a transitive govcheck dependency; pin its bytes independently."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.2.md",
+      "sha256": "41b38c068e91a767f964ce5ce5d7d5568c1984b3b122b808f9eff61e5a0af401",
+      "note": "LEGACY-ASSET-BACB1FC117A09D20F273; lines 1446-1475 only. 静的read-only参照のみ。旧archiveは実行しない（旧source/runtime/test/hook/adapter/CIを実行せず）、local-first/merge-unit履歴の保持・変更理由を確認する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "note": "LEGACY-ASSET-96CCD05C4CCA06F50D3D; line 43 only. 静的read-only参照のみ。旧archiveは実行しない（旧source/runtime/test/hook/adapter/CIを実行せず）、local evidence→CI evidence orderingの歴史的根拠に限る。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+      "sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+      "note": "LEGACY-ASSET-99C939E249CAF40935CB; lines 186 and 223 only. 静的read-only参照のみ。旧archiveは実行しない（旧source/runtime/test/hook/adapter/CIを実行せず）、local gateと外部serviceの責務差を確認する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/github/common/harness-check.yml",
+      "sha256": "cdf434e070ffb0eb71a60fddcdbd13af5d1f4a4fd0f1823393d0169a9ee5035c",
+      "note": "LEGACY-ASSET-73D72E21D730270F3944; lines 1-37 only. 静的read-only参照のみ。旧archiveは実行しない（旧source/runtime/test/hook/adapter/CIを実行せず）、歴史的workflow構造を確認する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/package.json",
+      "sha256": "c7fb380791945b9c3d98f357a4ecccc8a983191adabe62ac7082a737ac6ed6ff",
+      "note": "LEGACY-ASSET-7AE45AD102EAB3B6D7E7; lines 14-27 only. 静的read-only参照のみ。旧archiveは実行しない（旧source/runtime/test/hook/adapter/CIを実行せず）、old local script entrypointsの履歴確認に限る。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "note": "LEGACY-ASSET-B62E49D2E156232B8C63; lines 90-95 only; raw span SHA-256 6a3c0d5e50efebc0406911e1f1c498e054faf4ca237a64964e04945cb209f509. 静的read-only参照のみ。旧archiveは実行しない（旧source/runtime/test/hook/adapter/CIを実行せず）、fallback拒否境界の歴史確認に限る。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md",
+      "sha256": "81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a",
+      "note": "LEGACY-ASSET-0327D0DF98618D3066FD; lines 28-42 only. 静的read-only参照のみ。旧archiveは実行しない（旧source/runtime/test/hook/adapter/CIを実行せず）、literalでないcoverage edgeをUnknownへ残す歴史的起点に限る。"
+    }
+  ],
+  "role": "開発repository向けlocal CI driverを固定target/snapshot上で運転し、local結果と選択済みmerge-unit照合の証拠を用意する。要求・承認・merge authorityは持たない。",
+  "obligations": [
+    "#2716とcurrent L4/L5 contractとL6/L7 pairが固定する開発repository local-CI contractだけを運転し、OS-020 generic profile compositionやHARNESS-036全義務を実装済みと主張しない",
+    "exact base/merge-base/head/treeとclean checkoutを確認し、fixed Git snapshotをread-onlyで扱う",
+    "固定順のLC-SCF-001、LC-SCF-002、LC-GOV-001、LC-DIFF-001、LC-DESIGN-001をlocalで試行し、固定targetに結ぶreceipt/evidenceを記録する",
+    "Actionsはworkflow_dispatchのmerge-unit verifierとし、選択済みLC-DIFF-001についてだけ同じtarget/contract/settingsのlocal evidenceを照合する。local-only checksをActions実行済みとしない",
+    "manifestのID/参照/edge/source-pinを明示的に照合し、自然言語全体の意味等価性は推測しない",
+    "scfctl/govcheck adapterとそのtransitive checkerを別々に固定し、dependency driftをnon-passとして残す",
+    "receiptとdiagnosticをtarget tree外に置き、tracked repositoryをCIから書き換えない",
+    "CI/check/receiptからrequirement adoption、approval、acceptance、merge admission、release、completionを生成しない",
+    "formal OS unitへの移管完了まではscaffold状態を保持し、transfer mappingに義務・consumer・oracle・negative caseを対応付ける"
+  ],
+  "connections": {
+    "consumers": [
+      "HELIX-HARNESS開発repositoryのcontributorsが行う全量local static CI",
+      "merge-unitのGitHub Actions workflow_dispatch verifier",
+      "対象PRを読む作成側・review側の開発者"
+    ],
+    "dependencies": [
+      "固定targetに対する読み取り専用Git snapshot",
+      "CPython standard library driver候補",
+      "scaffold/tools/scfctl.py temporary adapter",
+      "scaffold/governance/tools/govcheck.pyとgen_rulebook.py temporary adapters",
+      "HELIX-OS formal unit transfer contract (not yet transferred)"
+    ],
+    "boundary": "一時driverとreceipt準備はscaffold/local-ci/およびSCF-B-0158だけに置く。要求文書、binding、tracked source、GitHub Issue/PR state、branch protection/required checksを書き換えない。provider resultは固定targetの技術evidenceでありauthorityではない。正式OS unitはadapter依存閉包後に別artifactとして受け入れ、SCF-B-0158をreplacement手順でretireする。"
+  },
+  "operations": {
+    "allowed": [
+      "固定5-check contractに従うread-only local static CI運転",
+      "fixed target / clean checkout / source snapshot / manifest / historical pinの照合",
+      "external receiptと診断のcheckout外への出力",
+      "workflow_dispatchによる選択済みLC-DIFF-001のmerge-unit照合"
+    ],
+    "forbidden": [
+      "旧archiveは実行しない",
+      "repository requirements/design/bindingsの書換、commit、push、merge、Issue close、release、tag",
+      "branch protectionまたはrequired check設定の変更",
+      "Issue/PR/CI green/receiptから要求意味、承認、受入、完了、merge許可を生成する",
+      "CIからのGitHub write、外部provider API、credential/secretの読み取りまたはreceipt出力",
+      "CIの実行でbranch worktree、index、tracked source、target treeを書き換える"
+    ]
+  },
+  "artifacts": [
+    "scaffold/local-ci",
+    "scaffold/bindings/SCF-B-0158.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "stub_adapter_connection",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "docs/helix-os/L4-basic-design/local-ci.md §2.1, §2.2",
+      "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract",
+      "docs/helix-os/L5-detail-design/local-ci-detail-design.md D-LCI-01..05",
+      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..73",
+      "docs/helix-os/L6-function-design/local-ci-function-design.md F-LCI-01..08 / F-LCI-09a..09d",
+      "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI mapping (design only; not executed)",
+      "source-byte / target-tree digests and checkout-outside receipt location"
+    ],
+    "negative_cases": [
+      "dirty checkout or exact head/tree mismatch",
+      "fixed source/checker digest drift or unreadable source",
+      "manifest required ID/edge missing, duplicate, ambiguous, or unresolved",
+      "required checker returns nonzero but remaining independent local checks are skipped",
+      "sandbox preflight fails but checker still launches",
+      "Actions runs local-only SCF/GOV/design checks or does not compare selected LC-DIFF-001 against the exact local target",
+      "receipt/output is written into the tracked target tree",
+      "secret, credential, full stdout/stderr, or hidden source content appears in receipt",
+      "CI result creates requirement adoption, approval, acceptance, merge authority, or branch-protection change"
+    ]
+  },
+  "replacement": {
+    "role_target": "HELIX-OS formal local CI driver unit at helix/helix-os/units/os-ci-runner/ after adapter dependency closure and transfer confirmation",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-09",
+  "updated": "2026-10-09"
+}
