@@ -2,7 +2,7 @@
 
 ## 1. 検証範囲と固定入力
 
-本書は [Stage 1基本設計](../L4-basic-design/stage1-labo.md) の対となる未実行のL9検証設計である。L4の本文SHA-256は `61db9de063e65f25dc3ca5471e3b2d59072627f77fe2c5ad6bb893cbca347566`。固定L3/L10対象は承認revision `8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7` の二親 `LABO-001` / `LABO-011` に限定する。L3機能ACは合計4件、L10機能caseは合計28件であり、全件を§3に個別定義する。実行済み・pass・製品成果を主張しない。
+本書は [Stage 1基本設計](../L4-basic-design/stage1-labo.md) の対となる未実行のL9検証設計である。L4の本文SHA-256は `6ea7c6497e2349e63ed05a7a686e96e108a769a2ac864cf02295f174c00c6f1a`。固定L3/L10対象は承認revision `8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7` の二親 `LABO-001` / `LABO-011` に限定する。L3機能ACは合計4件、L10機能caseは合計28件であり、全件を§3に個別定義する。実行済み・pass・製品成果を主張しない。
 
 承認された6本文pinと権限連鎖は[L4 §1](../L4-basic-design/stage1-labo.md#1-範囲と正本)を参照する。六文書のSHAは順に、L3業務 `af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0`、L3機能 `6a2909c6163350025eadaa8fe028b9ab50376ebb07b6f2bd7666c17540261fb8`、L3 NFR `95faea76e433f4144bf8b255b6b83a602161084b625a0bc095bda39d4bd416e8`、L10業務 `603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37`、L10機能 `79a5e56ca68681136355c1f2d62bff8e9b8bb0b119565edeb4c75a71fad6e8d8`、L10 NFR `97545f30c540e63141e8cb53e27969b9f3d094d12580be03c99836086b7bc4eb`。
 
@@ -69,7 +69,14 @@ L3 NFR項目名と固定L3/L10 source locator、L9専用NFR oracle ID、既存fu
 
 固定L3 NFR `docs/helix-labo/L3-requirements/nfr-grade.md:13` と固定L10 NFR `docs/helix-labo/L10-verification/nfr-verification.md:13` は測定不能・未観測・未指定値を全caseで成功扱いしない共通注記であり、独立NFR項目や追加oracleではない。Stage 1義務crosswalkのLABO/001行にはL10 NFR:10もlocatorとして含まれるが、固定本文の同じ行は親011のreference roundtripである。本書では固定本文の親列に従い011へ対応させ、001の独立NFR項目として数えない。索引の参照範囲から新しい要求を生成しない。
 
-L10 NFR:9は001のWeb/WEB-OS scope boundaryを別途要求する。L3 NFRに独立の数値candidateはなく、L3 functionalのoptional source境界を`IV-LABO-001-C07`で照合し、未選択を任意/未構成として保持する。L3/L10業務本文は各2行（各文書:1–2）で独立outcomeなし、機能caseで業務境界を確認する。業務case/passを別に生成しない。
+L10 NFR:9は001のWeb/WEB-OS scope boundaryを別途要求する。L3 NFRに独立の数値candidateはない。未選択側は`IV-LABO-001-C07`で任意/未構成として保持する。選択側は同じscope boundaryの次の独立した合成入力で照合し、固定functional C07の未選択caseを置き換えない。
+
+| scope boundaryの測定入力 | 単一期待 |
+|---|---|
+| Web/WEB-OS 031/032 sourceを選択し、accepted contract identity/revision/scopeと許可source観測を固定する | そのcontractの範囲だけで観測を保持する。他sourceや将来Web機能、1.0全体の必須依存へ広げない。合成contract入力から実際の採択・実通信を主張しない。 |
+| 上の選択済み基準からaccepted根拠だけを欠落させ、選択状態・source ref・scope・元recordは保持する | 取り込み成功を出さず、元recordを保持した非肯定とし該当source ownerへ返す。未選択へ読み替えず、他sourceの有効recordを消さない。 |
+
+L3/L10業務本文は各2行（各文書:1–2）で独立outcomeなし、機能caseで業務境界を確認する。業務case/passを別に生成しない。
 
 ## 5. 旧HELIX source・consumer・failureとの照合
 

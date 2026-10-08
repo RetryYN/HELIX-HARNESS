@@ -38,6 +38,8 @@ L3/L10業務本文はこの二親に独立したbusiness outcome/ACを定めず�
 | K6 evidence（§10） | 既存の検証receiptがsource/contractの検証材料として使われる場合、保存鍵と実読した入力を照合する。 | receiptはsourceの真正性・実作用・実通信を証明しない。source ownerの原記録はsource readerで別に読む。 |
 | K10 dependency（§14） | 選択source contractと、その宣言が明示する必須依存を参照する。 | graph/declarationは実行済み証拠ではない。選択済み依存の欠落・unknown・staleは該当source/operationだけを止める。未選択の任意Web依存を必須化しない。 |
 
+Web/WEB-OS 031/032のsource contractは未選択ならoptional/unconfiguredであり、1.0必須依存にしない。選択した合成入力では、そのsource contractのaccepted identity/revision/scopeを固定し、その範囲だけで観測を扱う。選択状態を保ったままcontractのaccepted根拠だけを欠落させた入力は取り込み成功にせず、元recordを保持して該当source ownerへ返す。契約の実在・採択や将来Web機能をこの設計から生成しない。これは固定L10 NFR:9の選択側を具体化した条件分岐である。
+
 K4/K5/G3/K8/K9等はそれぞれの共通契約がLABO操作に適用される場合だけ使用する。無関係な契約の状態・authority・receiptを代用しない。K1/K2の値型、優先順位、鍵仕様をここで変更しない。
 
 ## 3. データ型と操作
