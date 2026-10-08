@@ -39,7 +39,7 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 | `IV-K1-10` | K1-I8：fail-openの限定 | 宣言付きの表示用投影は非`Value`を省略して表示してよい | その投影の出力を`combine`へ渡す経路は拒否される |
 | `IV-K1-11` | 写像表（L4 2.4） | 写像表の各語が、表のクラスへ一度ずつ写る | `mismatch`・`incompatible`を`Unknown`へ、`not_observed`を`Value`へ写す実装は不合格。表に無い語は`Unknown(unsupported)`になる |
 | `IV-K1-12` | K1-I6：鍵のfieldの単独欠落 | 全fieldのある鍵は受理される | `ResultKey`の`operation`、`operation_version`、`subject`、`inputs`、`scope`、`subject`の`kind`・`identity`・`revision`・`digest`、入力1件の`kind`・`identity`・`revision`・`digest`を一つずつ欠いた13fixtureを、`combine`の成分の鍵、`record`の`key`、`lookup`の`query_key`の3境界へ渡すと、いずれも`missing_key`で拒否される（13×3） |
-| `IV-K1-13` | K1-I6：`admit`境界の鍵検査 | `combine`が作った鍵の完全な`Combined`は`admit`で判定される | `combine`を経ずに作った`Combined`で、成分1件の鍵を欠いたものと、鍵の`scope`だけを欠いたものを`admit`へ渡すと、いずれも`missing_key`で拒否され、`Admitted`にも通常の`Withheld`にもならない |
+| `IV-K1-13` | K1-I6：`admit`境界の鍵検査 | `combine`が作った鍵の完全な`Combined`は`admit`で判定される | `combine`を経ずに作った判定`Positive`の`Combined`で、成分1件の鍵全体を欠いたものと、その成分の鍵からIV-K1-12と同じ13fieldを一つずつ欠いた13fixture（`scope`、`subject`の`digest`等を含む）を`admit`へ直接渡すと、いずれも`missing_key`で拒否され、`Admitted`にも通常の`Withheld`にもならない（1＋13） |
 
 ### K2
 
