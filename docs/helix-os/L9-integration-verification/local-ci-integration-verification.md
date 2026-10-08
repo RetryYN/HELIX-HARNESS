@@ -9,13 +9,13 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `442d9934378a2ae73ab85f9b0afb3f976891e40b18fdab7088f4964f8c1f67b6`である。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `3f407bbbc686ab90d4004e30e02fe635cd89c8074337443de3d28847cf453f07`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
 fixtureは合成Git tree・合成receipt・stub process resultだけを使う。checker実行fixtureはcommand adapterをstubし、archive source/runtimeを起動しない。各反例は対象受口を明記し一条件だけを変える。K1/OS-020状態語を使い、不明・未実行・失敗をsuccessへ縮退させない。
 
-L4 `DesignScopeManifest`が列挙する現行4文書と今回6文書について、定義域と参照域を分離したID解決、L4 invariant/contract→L9 IV edge、L5 contract→L8 case、L6 function→L7 test edgeを照合する。coverage entryの無い契約、孤児edge、fixture定義欠落は肯定しない。HistoricalPinはasset ID、archive path、full-file SHA、行範囲、optional span SHAをそれぞれの型で照合し、時点auditをcurrent-link対象へ混ぜない。
+L4 `DesignScopeManifest`が列挙するCommon Kernelとrepository-layoutの現行6文書、および今回のlocal-CI設計6文書について、定義域と参照域を分離したID解決、L4 invariant/contract→L9 IV edge、Common Kernel/local-CI L5 contract→L8 case、L6 function→L7 test edgeを照合する。Common Kernel L5の2つのexact-heading locatorから対のL8 K1/K2 table expansionへ各fixtureを対応付ける。L8第2列のL9 oracleと第3列のL4 invariantはtyped referenceとして保持し、coverage sourceへ誤変換しない。coverage entryの無い契約、孤児edge、fixture定義欠落は肯定しない。HistoricalPinはasset ID、archive path、full-file SHA、行範囲、optional span SHAをそれぞれの型で照合し、時点auditをcurrent-link対象へ混ぜない。
 
 | 検証ID | L4契約 | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
@@ -27,7 +27,7 @@ L4 `DesignScopeManifest`が列挙する現行4文書と今回6文書について
 | `IV-LCI-06` | LC-SCF-001 | adapterが全bindingをvalidateしexit 0 | validator executableを欠落させる | `denied`、success禁止 |
 | `IV-LCI-07` | LC-GOV-001 | rulebook全件checkerがexit 0 | candidate/source pinを一つ変えてgovcheckをnonzeroにする | `fail`、診断digestを保持 |
 | `IV-LCI-08` | LC-DIFF-001 | base/head間の全変更をcheck | diffにwhitespace errorを一つ加える | `fail` |
-| `IV-LCI-09` | DesignScopeManifest | 10文書をrole/pair/source-kindと`RL-V1`/`RL-K3` not_exercised、`RL-D4`の`IV-RL-56`/`IV-RL-57`/`IV-RL-59` partial edge、別fieldのD4 code-graph extraction scopeout、`RL-T3` partial dispositionを含めて一度列挙 | 一文書をscopeから除く | `Unknown(missing_input)`、全量検査を主張しない |
+| `IV-LCI-09` | DesignScopeManifest | 12文書をrole/pair/source-kindと`RL-V1`/`RL-K3` not_exercised、`RL-D4`の`IV-RL-56`/`IV-RL-57`/`IV-RL-59` partial edge、別fieldのD4 code-graph extraction scopeout、`RL-T3` partial dispositionを含めて一度列挙 | 一文書をscopeから除く | `Unknown(missing_input)`、全量検査を主張しない |
 | `IV-LCI-10` | ID定義/参照 | 定義IDが定義域に一度あり参照先を解決 | IDを参照域へ移し定義を削る | `Unknown(missing_input)` |
 | `IV-LCI-11` | 明示coverage dispositionとscopeout分離 | 各契約はmapped/partial edgeまたは理由・既存owner_ref・operational-owner状態・return path付きnot_exercisedを持ち、D4 code-graph extractionは別fieldのscopeoutに残す | `RL-D4`の`IV-RL-57` partial design edgeを削除する | `Unknown(missing_input)`、構造completeなし。non-pass dispositionを契約passにはしない |
 | `IV-LCI-12` | `U-LCI-01..04` unsupported inventory | 4件を理由付きscope外non-pass dispositionとして記録し、scope内required setと分離 | `U-LCI-01`をpassへ書き換える | `Negative`。scope外の未検証状態は別fieldに維持し、構造manifest completeなら固定5-step successを妨げない |
@@ -81,6 +81,13 @@ L4 `DesignScopeManifest`が列挙する現行4文書と今回6文書について
 | `IV-LCI-60` | bwrap bytes pin | 提供環境の既存binary bytesがprofile digestと一致する | bytes digestだけをpinと不一致にする | `denied`、checker未起動、install/host/別binary fallbackなし。 |
 | `IV-LCI-61` | bwrap opaque version label | 実`--version` literalがprofile labelと一致する | version literalだけをpinと不一致にする | `denied`、checker未起動。semantic version推論や別binary fallbackなし。 |
 | `IV-LCI-62` | bwrap binary availability | trusted host-local settingからprofile pinned binaryを解決できる | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし。 |
+| `IV-LCI-63` | Common Kernel corpus source | Common Kernel L4/L5/L8/L9とrepository-layout L4/L9の6 current pathが各role/pair/source-kindで登録される | CK L8 pathだけをcorpusから除く | `Unknown(missing_input)`、target snapshot/plan preflightでrun全体non-pass、checker/execution/receiptなし |
+| `IV-LCI-64` | Common Kernel L5→L8 pair binding | L5 K1/K2 exact_heading locatorは各一件、L8 K1/K2 rangeは対応するL5をexpected_pairとする | 一つのK1 rowの第3列literal expansionだけをK1 locatorからK2 locatorへ差し替える | `Unknown(conflict)`、fixture edgeを別pairへ結ばない |
+| `IV-LCI-65` | K1/K2 typed reference保全 | L8 case column expansionの各rowで第2列L9 oracle、第3列L4 invariant refsをtyped referenceとして解決し、coverage sourceは対応L5 locatorだけ | 一件のL9 IV referenceをsource_idに置く | `Unknown(conflict)`、L9/L4 referenceをL5→L8 sourceへ昇格しない |
+| `IV-LCI-66` | K1/K2 expanded fixture inventory | L8 K1/K2 table literal expansionが各111/53 IDをraw definition rowへ一意にbindする | K1 expansion中の一つのsuffix IDだけを固定対応表から削除 | `Unknown(missing_input)`、regex/隣接suffixで補完せず、checker/execution/receiptなし |
+| `IV-LCI-67` | Common Kernel L5→L8 edge inventory | 2 section locatorから164 expanded fixture destinationへ一件ずつedgeがあり、dispositionは全edge IDsを保持する | 一つのK2 edgeとそのdisposition referenceを同時に削除（同sourceの別edgeは残す） | `Unknown(missing_input)`。同sourceの他edgeで代替せず、Common Kernelの725-edge基準からrequired edge欠落を検出する。今回追加のlocal-CI traceを含む全候補は749 edge |
+| `IV-LCI-68` | Common Kernel OutcomeRef binding | 各expanded verifier IDは同じdefinition ID列セルを持つraw table rowの5列目期待値へ一意に戻る | 一つのexpanded IDのOutcomeRefだけを別raw rowへ結び替える | `Unknown(conflict)`、別fixtureのoutcomeを流用しない |
+| `IV-LCI-69` | L4 invariant reference separation | L8第3列に明記された`K1-I*`/`K2-I*`は既存L4 definitionへのtyped referenceとして解決され、L5→L8 sourceは対応L5 locatorだけ | 一件のL4 invariant referenceをcoverage `source_id`として使う | `Unknown(conflict)`、既存L4→L9 edgeをL5→L8 pair sourceへ転用しない |
 
 GitHub input仕様の25 inputs/65,535 character上限はprovider-boundary fixtureであり製品要求のthresholdではない。容量超過なら省略してvalid化せず未照合で止める。
 

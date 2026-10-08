@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `b146588e10b23519ca9d903e40cd7ab978c7de570b62ae97ebf73837c68bd3c1`である。
+固定入力は対のL5本文SHA-256 `b85919b686b0c4b94fd4523f8dfabbcdde89c329c806c4116fe0edf2cdaaf216`である。
 
 ## 1. Fixture規則
 
@@ -34,7 +34,7 @@ version_target: 1.0
 | `CASE-L8-LCI-09` | current checker ref | scfctl/govcheck refがtree bytesと一致 | govcheck bytesを変更しdigest不一致にする | `Stale`、govcheckを起動しない |
 | `CASE-L8-LCI-10` | 実行前後のchecker束縛 | 開始/終了のchecker digestが一致 | 最終step後にchecker digestだけを変える | 外側`Stale`、既実行evidenceは診断artifactへ保持、LocalCiReceiptを発行せずaggregateだけを上書きしない |
 | `CASE-L8-LCI-11` | `SourceSnapshotReader` | treeから宣言blobを読む | pathをsymlinkへ置換 | `Unknown(conflict)`、link先を辿らない |
-| `CASE-L8-LCI-12` | 固定corpus | 現行main 4文書と3 pair PR統合後の今回6文書が登録済み | current doc pathを一つ欠落 | `Unknown(missing_input)`、全量検査を主張しない。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
+| `CASE-L8-LCI-12` | 固定corpus | 現行mainのCommon Kernel 6文書と3 pair PR統合後のlocal-CI 6文書、計12文書が登録済み | current doc pathを一つ欠落 | `Unknown(missing_input)`、全量検査を主張しない。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-13` | definition parser | IDを定義domainに一度、参照domainに別記 | 参照domainだけにIDを置く | `Unknown(missing_input)`、定義を作らない。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-14` | reference parser | referenceが一意なdefinitionへ解決 | definitionを二重化 | `Unknown(conflict)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-15` | 明示coverage | L4 invariant→L9 IV edgeとfixture定義がある | verifier IDの定義行を削除 | `Unknown(missing_input)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
@@ -94,6 +94,12 @@ version_target: 1.0
 | `CASE-L8-LCI-83` | bwrap binary availability | trusted host-local settingからprofile pinned binaryを解決できる | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし |
 | `CASE-L8-LCI-84` | 必須parent AC applicability記録 | `parent_ac_coverage`にOS-020-01/03が各一件あり、各state/reasonがL4 §1と一致 | `AC-OS-020-03` rowだけをlistから削除する | `Unknown(missing_input)`、LC-DESIGN-001非肯定、execution/receiptなし |
 | `CASE-L8-LCI-85` | parent ACの非昇格 | 必須2行のID/state/reasonがL4 §1と一致 | `AC-OS-020-01.state`だけを`pass`へ変える | `Rejected(invalid_input)`、parent ACをpassにせずexecution/receiptなし |
+| `CASE-L8-LCI-86` | Common Kernel L5 source locator | `### 3.2 K1 API contract`と`### 3.4 K2 API contract`がexact_heading source locatorとして各一件あり、required source inventoryは既存185 IDと合わせ187件 | K2 locatorのdefinition rangeを一つ削除 | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、checker/execution/receiptなし。section locatorを意味上のAPI IDへ変換しない |
+| `CASE-L8-LCI-87` | Common Kernel L8 literal expansion | K1/K2のcase列literal expansionがそれぞれ111/53 fixture IDを定義し、各IDは同pairのraw rowへ一意に戻る | K1 expansionの一つの中間suffix IDだけを対応表から削除 | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、省略記法を推測せずchecker/execution/receiptなし |
+| `CASE-L8-LCI-88` | Common Kernel K1/K2 typed referencesとpair ownership | L8 K1/K2各rowの第2列L9 oracle、第3列L4 refsをtyped referenceに保ち、coverage sourceはexpected_pairの対応L5 locatorだけ | 一つのK1 rowの第3列展開先へK2 locatorを一つ指定 | snapshot/plan preflightでrun全体の外側`Unknown(conflict)`、L9/L4 referenceをL5 sourceへ昇格せずchecker/execution/receiptなし |
+| `CASE-L8-LCI-89` | Common Kernel L5→L8 required edges | 2 L5 locatorから164展開fixture IDへ各一件の明示edgeがありdispositionが全edgeを参照 | 一つのK2 destination edgeと同edge IDのdisposition referenceを同時削除（同sourceの別edgeは残す） | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、他edgeで代替せずchecker/execution/receiptなし |
+| `CASE-L8-LCI-90` | Common Kernel OutcomeRef | expanded fixture IDがL8 definition tableの同じID列セルを持つraw rowへ一意に束縛され、その5列目の非空cellを参照 | 一つのexpanded fixture IDのrow bindingだけを別raw rowへ変更 | snapshot/plan preflightでrun全体の外側`Unknown(conflict)`、期待結果を別行から流用せずchecker/execution/receiptなし |
+| `CASE-L8-LCI-91` | Common Kernel L8 column 3 L4 typed references | `K1-I*`/`K2-I*`等の明記されたL4 invariantはL4 definitionへのreferenceとして保持し、L5→L8 sourceはsection locatorだけ | 一つの明記L4 invariant IDをL5→L8 `source_id`として登録 | snapshot/plan preflightでrun全体の外側`Unknown(conflict)`、既存L4→L9 source relationと混同せずchecker/execution/receiptなし |
 
 ## 3. GitHubのmerge単位fixture
 
