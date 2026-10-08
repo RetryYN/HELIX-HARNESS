@@ -72,7 +72,7 @@ class TargetTests(unittest.TestCase):
     def test_absent_ref_is_missing_key(self):
         self.diagnostic("Rejected", "missing_key", self.reader.commit, None)
 
-    def test_UT_LCI_59_unresolved_oid(self):
+    def test_UT_LCI_60_unresolved_oid(self):
         self.diagnostic("Rejected", "invalid_input", resolve_target,
                         self.reader, "0" * 40, self.head, "synthetic")
 
