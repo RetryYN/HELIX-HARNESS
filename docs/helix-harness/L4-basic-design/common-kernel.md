@@ -270,7 +270,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 1. **時間による鮮度の閾値**（G11）：観測の期限、失効の許容遅延をどの機構が持つか。L2は数値を新設しない方針である。
 2. **不明と未観測の境界の各機構での意味**（G10の一部）：LABOの「不明と未観測」、INFRAの鮮度、SECURITYのunknown／denyが、2.2の境界と異なる意味を持つ場合。
 3. K5（9章）の論点：末尾の削除の検出と、logの保持期間・圧縮（9.7）。
-4. K6・E（10章）の論点：決定的でない検証器のreceiptの真正性（10.8）。
+4. K6・E（10章）の論点：receiptの発行の真正性（10.8）。
 
 ## 7. 人の判断が要る点
 
@@ -454,50 +454,60 @@ writerごとにsegmentを分けることと、segmentをまたぐ順序を時間
 ### 10.3 型
 
 ```text
-VerifierRef  = { identity, version, digest, deterministic: Bool }  # digestは検証器のcodeと設定の全bytes
-VerifierSet  = { set_id, revision, members: VerifierRef[], required_for: { operation -> identity[] } }
-               # repository内の固定実体（9.3のFixedRef）として置き、digestで固定する
-ReceiptBody  = { verifier: VerifierRef, verifier_set: SubjectRef, key: ResultKey,
-                 read: { input_identity -> Digest },                # 検証器が実際に読んだbytesのdigest
-                 execution: { argv_digest, exit, outputs: FixedRef[], started, completed },
-                 registry: { registered: CheckId[], evaluated: CheckId[] },
-                 results: { CheckId -> Observed<...> }, overall: Combined, authority_effect: "none" }
+VerifierRef   = { identity, version, digest }               # digestは検証器のcodeと設定の全bytes
+VerifierEntry = { ref: VerifierRef, deterministic: Bool, checks: { CheckId -> PolarityOfの識別と版 } }
+VerifierSet   = { set_id, revision, members: VerifierEntry[], required_for: { operation -> identity[] } }
+                # repository内の固定実体（9.3のFixedRef）として置き、digestで固定する
+ReceiptBody   = { verifier: VerifierRef, verifier_set: SubjectRef, key: ResultKey,
+                  read: { identity -> Digest },              # 検証器が実際に読んだbytesのdigest
+                  execution: { argv_digest, exit, outputs: FixedRef[], started, completed },
+                  registry: { registered: CheckId[], evaluated: CheckId[] },
+                  inner: Combined,                           # 検査ごとの成分の合成（K1）
+                  authority_effect: "none" }
+AdmittedReceipt = { body: ReceiptBody, reverifiable: Bool,   # reverifiableは集合のdeterministicから導く
+                    reproduction: Observed<...>,             # reverifyの結果。未実施はUnobserved(not_run)
+                    issuer_authenticity: Unknown(unsupported) }  # 署名が無い間は常にこの値（10.5）
+RequiredResult  = { combined: Combined, assurance: { identity -> AdmittedReceiptの真正性3項目 } }
 ```
 
-- receiptはK2の記録（K5の`ResultRecorded`）として残す。鍵は`operation`＝検証する操作、`operation_version`＝検証器の`version`、`subject`＝検証の対象、`inputs`＝対象の入力（oracle等）に、`{kind: verifier, identity, revision: version, digest}`と`{kind: verifier_set, identity: set_id, revision, digest}`を加えたもの、`scope`＝検証の範囲とする。結果の`Value`は`ReceiptBody`を指す`FixedRef`とする。
-- したがって、検証器のbytesだけが変われば同じ版でdigestが違うためK2-I2の2により`Unknown(conflict)`、検証器の版が変われば`operation_version`が違うため`Unobserved(not_run)`、検証器の集合の改訂や対象の入力の変更では`Stale`になる。
+- **基底鍵とreceipt鍵**：操作の対象を表す鍵を基底鍵（`base_key`：`operation`、`subject`、`inputs`、`scope`）とする。集合の検証器`m`のreceipt鍵は、基底鍵の`operation_version`を`m.version`に置き、`inputs`へ`{kind: verifier, identity: m.identity, revision: m.version, digest: m.digest}`と`{kind: verifier_set, identity: set_id, revision, digest}`を加えたものとする。検証器ごとに鍵が違う。receiptはこの鍵でK2の記録（K5の`ResultRecorded`）として残し、結果の`Value`は`ReceiptBody`を指す`FixedRef`とする。
+- **K2による照会の結果**：receipt鍵の照会は、K2-I2の規則どおりである。旧記録が`Value`で、identityの集合を保ったまま正当なrevisionの更新（対象・入力・集合の新revision）があれば`Stale`。同じrevisionでdigestだけが違えば（対象・入力・検証器・集合のいずれでも）`Unknown(conflict)`。検証器の版の更新は`operation_version`が違うため`Unobserved(not_run)`。identityの集合の追加・削除・置換も`Unobserved(not_run)`。
+- **readの期待集合**：`read`のidentityの集合は、鍵の`subject`と、`inputs`のうち`kind`が`verifier`・`verifier_set`でないものの全identityと、ちょうど一致しなければならない。検証器と集合は「読んだ入力」でなく実行の主体であり、K6-I2で照合する。
 - `started`と`completed`は記録するだけで、順序や有効性の判定に使わない（時間の閾値はL2へ戻す論点。6章1）。
 
 ### 10.4 不変条件
 
-- **K6-I1 発行者**：`ReceiptBody`の`execution`、`read`、`registry`、`results`は、検証器が自分の実行から作る。呼出し側が渡した値を入れない（`run`の受け口は鍵だけを受け取る）。
-- **K6-I2 集合への所属**：receiptを使えるのは、`verifier`が、鍵に入れた`verifier_set`の`members`に`identity`・`version`・`digest`の全部で一致する場合だけとする。一致しなければ`Unknown(unregistered)`とする。
-- **K6-I3 鍵と本体の一致**：`ReceiptBody.key`と`verifier`・`verifier_set`は、そのreceiptを記録したK2の鍵と一致しなければならない。`read`の各digestは、鍵の`subject`・`inputs`の`digest`と一致しなければならない。一致しなければ`Unknown(conflict)`とする（別の入力のreceiptの本体を差し替える流用を検出する）。
-- **K6-I4 実体の再計算**：`outputs`の各`FixedRef`は、bytesを読んでSHA-256を再計算し、記録したdigestと比べる。一致しなければ`Unknown(conflict)`、読めなければ`Unknown(unreadable)`とする。digestの一致は「そのbytesである」ことの証拠に限り、実行した証拠とは扱わない（実行の証拠はK6-I2・I5による）。
-- **K6-I5 登録と評価の照合**：`registry.registered`の各検査は`results`の成分になり、評価されていない検査は`Unobserved(not_run)`の成分とする。登録されていない検査の結果は`Unknown(unregistered)`の成分とする。`overall`はこれらをK1の`combine`で合成したものであり、記録した`overall`が再合成と違えば`Unknown(conflict)`とする。`registered`が0件なら`set_reason = Unknown(missing_input)`（K1-I4）。
-- **K6-I6 配線と実行の証拠**：ある操作について検査器が「配線され実行された」証拠は、その操作の`required_for`に挙げた各検証器について、対象の鍵のreceiptがK5のlogにあることだけとする。検証器のsourceがあること、単体testがgreenであること、集合に登録されていることは、実行の証拠にしない。必要な検証器のreceiptが無ければ、その成分は`Unobserved(not_run)`とし、別の検証器のreceiptで埋めない。
-- **K6-I7 再検証**：`deterministic`の検証器のreceiptは、同じ検証器（集合で固定した版とdigest）を同じ入力で再び実行し、`results`と`overall`のdigestが一致することを確かめられる（`reverify`）。一致しなければ`Unknown(conflict)`とする。`deterministic`でない検証器のreceiptは再検証できず、`reverify`は`Unknown(unsupported)`を返す。
-- **K6-I8 不変と訂正**：receiptは訂正できない（K5-I8）。誤ったreceiptは、同じ鍵の別の結果としてK2-I4のconflictに残るか、検証器の新しい版で記録し直す。
-- **K6-I9 authorityを作らない**：receiptの`overall`が`Positive`でも、承認、merge、受入、要求意味、工程の完了を生成しない（`authority_effect: "none"`）。それらを決めるのは各ownerであり、receiptはその入力に留まる。
+- **K6-I1 発行者**：`ReceiptBody`の`execution`、`read`、`registry`、`inner`は、検証器が自分の実行から作る。呼出し側が渡した値を入れない（`run`の受け口は鍵だけを受け取る）。
+- **K6-I2 集合への所属**：receiptを使えるのは、`verifier`が、鍵に入れた`verifier_set`の`members`の`ref`に`identity`・`version`・`digest`の全部で一致する場合だけとする。一致しなければ`Unknown(unregistered)`とする。`deterministic`と各検査の写像（`PolarityOf`）は集合の`VerifierEntry`から読み、receiptの側の申告を使わない。
+- **K6-I3 鍵と本体の一致**：`ReceiptBody.key`、`verifier`、`verifier_set`は、照会したreceipt鍵（10.3）と記録の鍵の両方に一致しなければならない。一致しなければ`Unknown(conflict)`とする。
+- **K6-I4 readの完全性**：`read`のidentityの集合が10.3の期待集合より少なければ（空を含む）`Unknown(missing_input)`、多ければ`Unknown(conflict)`、各digestが鍵の`digest`と違えば`Unknown(conflict)`とする。
+- **K6-I5 実体の再計算**：`outputs`の各`FixedRef`は、bytesを読んでSHA-256を再計算し、記録したdigestと比べる。一致しなければ`Unknown(conflict)`、読めなければ`Unknown(unreadable)`とする。digestの一致は「そのbytesである」ことの証拠に限る。
+- **K6-I6 登録と評価の照合**：`inner`の成分は、`registry.registered`の各検査を一つずつとし、評価されていない検査は`Unobserved(not_run)`、登録されていない検査の結果は`Unknown(unregistered)`の成分とする。各成分の`PolarityOf`は集合の`VerifierEntry.checks`のものを使う。`inner`は記録したものを使わず、成分と集合の写像からK1の`combine`で再合成し、記録と違えば`Unknown(conflict)`とする。`registered`が0件なら`set_reason = Unknown(missing_input)`（K1-I4）。
+- **K6-I7 必要な検証器と合成**：`required`は次の順で`RequiredResult`を作る。(1)K5の`restore`で操作のscopeの記録集合を得る。`Value`でなければ、必要な全検証器の成分をその非`Value`とする。(2)必要な各検証器`m`のreceipt鍵を10.3で導き、`lookup`する。(3)`Value`なら`admit_receipt`し、受け入れられたら、その`inner`の全成分（`set_reason`は`Unknown(missing_input)`の成分として）を、検証器`m`と検査の識別を付けて外側の成分に加える。(4)`lookup`や`admit_receipt`が`Value`でなければ、その非`Value`を`m`の成分とする。(5)全成分を、成分ごとの`PolarityOf`で一つの`combine`へ渡す。receiptが「ある」ことを肯定へ写さない。内部の否定・非`Value`・`set_reason`はすべて外側の成分に残り、内部が`Undetermined`なら外側も肯定にならない。必要でない検証器のreceiptは成分に入れない。
+- **K6-I8 再現の確認**：`reverifiable`（集合の`deterministic`）の検証器のreceiptは、同じ検証器を同じ入力で再び実行し、`inner`のdigestが一致することを確かめられる（`reverify`）。一致すれば`reproduction`は`Value`、しなければ`Unknown(conflict)`、`reverifiable`でなければ`Unknown(unsupported)`とする。`reverify`が保証するのは「固定した入力で同じ結果が再現する」ことだけであり、過去にその実行が行われたことや、receiptを書いたのが検証器であることは保証しない（10.5）。
+- **K6-I9 不変と訂正**：receiptは訂正できない（K5-I8）。誤ったreceiptは、同じ鍵の別の結果としてK2-I4のconflictに残るか、検証器の新しい版で記録し直す。
+- **K6-I10 authorityを作らない**：`RequiredResult`が肯定でも、承認、merge、受入、要求意味、工程の完了を生成しない（`authority_effect: "none"`）。消費側へは`combined`と`assurance`（`reverifiable`、`reproduction`、`issuer_authenticity`）を一緒に渡し、消費側は`reproduction`が`Value`でない成分や`issuer_authenticity`を、再現を確かめた成分と同じに扱わない。
 
 ### 10.5 E：署名が無い間に検出できること・できないこと
 
 | 改変・すり替え | 検出 | 規則 |
 |---|---|---|
-| 記録後のreceipt行・本体・出力の改変 | できる | K5-I3、K6-I4、`FixedRef`のdigest |
-| 別の入力に対するreceiptの流用・本体の差替え | できる | K2-I1、K6-I3 |
+| 記録後のreceipt行・本体・出力の改変 | できる | K5-I3、K6-I5、`FixedRef`のdigest |
+| 別の入力に対するreceiptの流用・本体の差替え・readの欠落 | できる | K2-I1、K6-I3、I4 |
 | 集合に無い検証器、bytesの違う検証器のreceipt | できる | K6-I2、K2-I2の2 |
-| 実行されていない検査を実行済みとする | できる（登録と評価の差として） | K6-I5、I6 |
-| 決定的な検証器について、整合したdigestを持つ偽のreceiptを書く | 再検証でできる | K6-I7 |
-| 決定的でない検証器（LLMの判断等）について、整合した偽のreceiptを書く | できない | 署名またはrepository外の固定が要る（10.7） |
-| repositoryの履歴ごとの書換え | できない | 同上 |
+| 必要な検証器のreceiptが無い、登録した検査が評価されていない | できる | K6-I6、I7 |
+| 決定的な検証器について、再現と違う結果を持つ偽のreceipt | 再現の確認でできる | K6-I8 |
+| 決定的な検証器について、実行していないのに、再現と同じ結果と整合したdigestを持つreceiptを書く | できない（結果は正しいが、過去の実行の事実は証明されない） | `issuer_authenticity`は常に`Unknown(unsupported)` |
+| `execution`の欄（argv、exit、時刻）だけを、整合したdigestで書き換える | できない（再現の確認は`inner`だけを比べる） | 同上 |
+| 決定的でない検証器（LLMの判断等）について、整合した偽のreceiptを書く | できない | 同上。`reproduction`も`Unknown(unsupported)` |
+| repositoryの履歴ごとの書換え | できない | 10.8 |
 
 ### 10.6 API境界
 
-- `run(verifier, key) -> ResultRecorded`：検証器の側の受け口。鍵だけを受け取り、K6-I1に従って`ReceiptBody`を作り、K5の`append`へ渡す。鍵以外の入力（結果、digest、exit等）を受け取る経路を置かない。
-- `admit_receipt(record, verifier_set) -> Observed<ReceiptBody>`：K6-I2、I3、I4、I5の順に検査し、最初に当たった規則の結果を返す（`Unknown(unregistered)`、`Unknown(conflict)`、`Unknown(unreadable)`、合成の結果）。当たった条件はすべて`evidence`に記す。
-- `reverify(record) -> Observed<ReceiptBody>`：K6-I7に従う。
-- `required(operation, key, verifier_set) -> Combined`：`required_for`の各検証器のreceiptを`admit_receipt`し、K1の`combine`で合成する（K6-I6）。
+- `run(verifier, base_key) -> ResultRecorded`：検証器の側の受け口。基底鍵だけを受け取り、receipt鍵を10.3で導き、K6-I1に従って`ReceiptBody`を作り、K5の`append`へ渡す。鍵以外の入力（結果、digest、exit等）を受け取る経路を置かない。
+- `admit_receipt(record, query_key, verifier_set) -> Observed<AdmittedReceipt>`：K6-I2、I3、I4、I5、I6の順に検査し、最初に当たった規則の結果を返す。当たった条件はすべて`evidence`に記す。全部を通れば`Value(AdmittedReceipt)`（`reproduction`は`Unobserved(not_run)`）。
+- `reverify(admitted) -> Observed<AdmittedReceipt>`：K6-I8に従い、`reproduction`を埋めて返す。
+- `required(operation, base_key, verifier_set, reverify: Bool) -> RequiredResult`：K6-I7に従う。`reverify`を指定した場合は、受け入れた各receiptに`reverify`を適用する。
 
 ### 10.7 旧HELIXとの対応
 
@@ -505,28 +515,28 @@ ReceiptBody  = { verifier: VerifierRef, verifier_set: SubjectRef, key: ResultKey
 |---|---|---|---|
 | `LEGACY-ASSET-8E9E06111D6FE1538308`／`docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md:17-35`／`db4eb979037a611e51edaab22fe31f774fd7038d7ffb72bcf26ece6fb9de8b42` | receiptを同じHEADへ束縛する。未来のreceiptの先書きと、自己承認を拒否する | 委譲→review→終了→受入の三段は本章で固定しない（K9とOSの設計で扱う）。束縛をHEADからK2の鍵へ広げる | `semantic_rederive` |
 | `LEGACY-ASSET-A4EAB5E3345E3C125C77`／`docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md:16-31`／`d39b3cdc2e7d9f72ad03d0d3db5571a6b0de579fadf0b147b8a6d4f90dc2ed2c` | 実行をhash-chainのeventとして残し、HEAD・出力・reviewを一つのreceiptへ束縛する。複写・未封印のreceiptを拒否する | 連鎖はK5のsegmentで持ち、receipt自身には持たせない | `semantic_rederive` |
-| `LEGACY-ASSET-78704C8347EBDD58FC52`／`docs/design/helix/L6-function-design/gate-evidence-substance.md:15-47`／`6f4a3cdbf5e66071525e6d4b76df2a8c9bedea355338321c5ea597cc1dd73ba6` | manifestの自己申告digestを実測とみなさず、bytesのSHA-256と照合する。digestの一致はbytesの一致の証拠に限り、実行の証拠と区別する。失敗史：保存済みの5commandのうち4件がdigest不一致で、5件ともtest sourceを参照していた | gateごとの照合を、全receiptの`outputs`の再計算（K6-I4）へ一般化する | `semantic_rederive` |
+| `LEGACY-ASSET-78704C8347EBDD58FC52`／`docs/design/helix/L6-function-design/gate-evidence-substance.md:15-47`／`6f4a3cdbf5e66071525e6d4b76df2a8c9bedea355338321c5ea597cc1dd73ba6` | manifestの自己申告digestを実測とみなさず、bytesのSHA-256と照合する。digestの一致はbytesの一致の証拠に限り、実行の証拠と区別する。失敗史：保存済みの5commandのうち4件がdigest不一致で、5件ともtest sourceを参照していた | gateごとの照合を、全receiptの`outputs`の再計算（K6-I5）へ一般化する | `semantic_rederive` |
 | `LEGACY-ASSET-901EFEC93D536D3AA418`／`docs/design/harness/L6-function-design/closure-evidence-materialization.md:13-15,56,67-76`／`a8951a0cdd590da84612de8c6b6e5960ca5c32ad3b3d0c0d0511b9f5789c0264` | 呼出し側の自己申告でない証跡。receiptのfieldはspawnしたprocessの実行から内部で作り、caller入力を禁止する。local hash単独では真正性を主張しない | 信頼の根をGitHub required-checkから、repositoryで固定した検証器の集合へ替える（5章の設計判断） | `replace`（信頼の根） |
 | `LEGACY-ASSET-C4B746501A6562E3F8B4`／`docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md:53`（UTH-FR-022）／`c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639` | 証拠はcommand、argv digest、scope、HEAD、exit、開始・終了、artifact digest、runnerを持ち、時刻・prose・自己申告だけを受理しない | HEADとscopeをK2の鍵で表す | `semantic_rederive` |
-| `LEGACY-ASSET-0327D0DF98618D3066FD`／`docs/design/harness/L6-function-design/source-boundary-contracts.md:65-66`／`81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a` | 固定したissuerだけを信頼し、自己発行のreceiptを拒否する | 署名の検証を後回しにし、集合への所属（K6-I2）と再検証（K6-I7）で代える。代えられない範囲を10.5に明記する | `semantic_rederive` |
+| `LEGACY-ASSET-0327D0DF98618D3066FD`／`docs/design/harness/L6-function-design/source-boundary-contracts.md:65-66`／`81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a` | 固定したissuerだけを信頼し、自己発行のreceiptを拒否する | 署名の検証を後回しにし、集合への所属（K6-I2）と再現の確認（K6-I8）で一部を代える。再現の確認は結果の再現だけを保証し、発行者の真正性は代えられない。代えられない範囲を10.5に明記し、`issuer_authenticity`として消費側へ渡す | `semantic_rederive` |
 | `LEGACY-ASSET-D107FD145A2588FAAD09`／`docs/design/helix/L4-basic-design/worker-independent-review.md:20`／`9fff293ed71c7a0be0e4dfcd7a5cca70eaacfdbf2cd553a605fd15510a3c99b3` | actorは実行の側から導き、receiptでの自己申告を受け付けない | なし（K6-I1として再導出） | `semantic_rederive` |
-| `LEGACY-ASSET-6CC1A5B9E9472F1100AF`／`src/doctor/check-registry.ts:20-40`／`07e52e804cb83b74ec3026a25baca593e35f8f2107c581adc8afdf6a93fbb581` | 登録したhardの検査の件数と評価した件数を別に数える | 件数でなく検査ごとの成分にし、未評価を`Unobserved`とする（K6-I5）。srcは除外classのため参照だけ | `semantic_rederive`（参照のみ） |
-| `LEGACY-ASSET-ED86DAA9D6A1511A591C`／`src/lint/pin-chain-derivation.ts:6-7`／`5f81fa005896bd34f66538084eabdf627b1df9025285a020bae4c0976fcaaca6` | 決定的なpinと意味のreviewのpinを分ける | 検証器の`deterministic`として持ち、再検証の可否を分ける（K6-I7）。srcは参照だけ | `semantic_rederive`（参照のみ） |
-| `LEGACY-ASSET-C0F9CE549442BA1D551E`／`docs/plans/PLAN-L7-428-enforcement-wiring-gap.md:87-110`／`dd527d30dfb5a601008656d4d38c0cdefcf44aa9cbe277bccc5fad4b8c81751c` | 失敗史：人のgateを外す根拠にした判定moduleが実行経路から到達できず、単体testだけがgreenだった | K6-I6の根拠。実行の証拠をreceiptの存在だけにする | 失敗史（区分なし） |
-| `LEGACY-ASSET-B8D84651753481B5F2B9`／`docs/governance/operations-rule-audit-2026-07-26.md:48`（ORA-015）／`d32bb1a780a36cd0710cbd58d575e900ac14c154a0e84f5dc92423b46c01466e` | 失敗史：全digestを再計算したと主張しながら、別HEADのdigestを載せていた | K6-I3の`read`（実際に読んだbytesのdigest）の根拠 | 失敗史（区分なし） |
+| `LEGACY-ASSET-6CC1A5B9E9472F1100AF`／`src/doctor/check-registry.ts:20-40`／`07e52e804cb83b74ec3026a25baca593e35f8f2107c581adc8afdf6a93fbb581` | 登録したhardの検査の件数と評価した件数を別に数える | 件数でなく検査ごとの成分にし、未評価を`Unobserved`とする（K6-I6）。srcは除外classのため参照だけ | `semantic_rederive`（参照のみ） |
+| `LEGACY-ASSET-ED86DAA9D6A1511A591C`／`src/lint/pin-chain-derivation.ts:6-7`／`5f81fa005896bd34f66538084eabdf627b1df9025285a020bae4c0976fcaaca6` | 決定的なpinと意味のreviewのpinを分ける | 集合の`deterministic`として持ち、再現の確認の可否を分ける（K6-I8）。srcは参照だけ | `semantic_rederive`（参照のみ） |
+| `LEGACY-ASSET-C0F9CE549442BA1D551E`／`docs/plans/PLAN-L7-428-enforcement-wiring-gap.md:87-110`／`dd527d30dfb5a601008656d4d38c0cdefcf44aa9cbe277bccc5fad4b8c81751c` | 失敗史：人のgateを外す根拠にした判定moduleが実行経路から到達できず、単体testだけがgreenだった | K6-I7の根拠。実行の証拠を必要な検証器ごとのreceiptにし、receiptの存在を肯定へ写さない | 失敗史（区分なし） |
+| `LEGACY-ASSET-B8D84651753481B5F2B9`／`docs/governance/operations-rule-audit-2026-07-26.md:48`（ORA-015）／`d32bb1a780a36cd0710cbd58d575e900ac14c154a0e84f5dc92423b46c01466e` | 失敗史：全digestを再計算したと主張しながら、別HEADのdigestを載せていた | K6-I4の`read`（実際に読んだbytesのdigest）の根拠 | 失敗史（区分なし） |
 | `LEGACY-ASSET-EC07511FF3E241F15359`／`docs/design/design-catalog.yaml:838`／`4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864` | 署名・attestationは旧でも未設計（todo）だった | 本書も後回しにし、検出できない範囲を10.5に記す | 記録のみ |
 
 先行例として、現行の仮組み`scaffold/l3l10-checks/`（`SCF-B-0157`）のreceipt（`README.md`の「receiptの形」、SHA-256 `1112465d14bc6112509779ddff50148839469234a26d39faeff474ecf8ddff34`）を読んだ。検証器のsource digest、入力のrevisionとdigest、登録と評価の照合、検査ごとの3値、`authority_effect: none`を持つ。仮組みであり、本設計の正本や合格の証拠にしない。
 
 ### 10.8 L2へ戻す論点
 
-1. **決定的でない検証器のreceiptの真正性**：LLMの判断等、再検証できない検証器のreceiptは、署名またはrepository外への固定（調査資料のG9）が無ければ偽造を検出できない（10.5）。署名や外部の固定を求めるかは、要求の意味に触れるため決めない。
+1. **receiptの発行の真正性**：決定的な検証器でも、実行していないのに再現と同じ結果を持つreceiptや、`execution`の欄だけを書き換えたreceiptは、再現の確認では検出できない。決定的でない検証器（LLMの判断等）のreceiptは、結果も再現できない（10.5）。過去の実行と発行者の真正性を確かめるには、署名またはrepository外への固定（調査資料のG9）が要る。それを求めるかは要求の意味に触れるため決めない。本書は、消費側が`issuer_authenticity`と`reproduction`を区別して持つことまでを定める。
 
 ### 10.9 未決と試作で確かめること
 
 - 各操作に必要な検証器（`required_for`）を誰がどう宣言するか。検証義務のK4（8.2のPR4）で決める。
 - `VerifierSet`の置き場所。ディレクトリ配置とともに8.2のPR6で決める。
-- 試作：`scaffold/l3l10-checks/`のreceiptを本章の形へ写し、L9のIV-K6-01〜12を動かす。
+- 試作：`scaffold/l3l10-checks/`のreceiptを本章の形へ写し、L9のIV-K6-01〜15を動かす。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
