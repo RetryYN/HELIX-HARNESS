@@ -9,7 +9,7 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `e00a9c1344044fa64c6d1706b0d192e69f7ebf69740abcc7655201aafa254d83`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
@@ -71,6 +71,16 @@ L4 `DesignScopeManifest`が列挙する現行4文書と今回6文書について
 | `IV-LCI-50` | dispatch parse受口 | workflow開始後、dispatch envelopeをJSON parserで読める | envelope JSON構文だけを壊す | `Unknown(unreadable)` diagnostic、未照合をsuccessへしない |
 | `IV-LCI-51` | receipt write authority | checkerから書けるのはreceiptと分離したprivate scratchだけ。receipt/parent directoryはsandbox外で信頼側supervisorだけが書く | receipt parent directoryだけをchecker sandboxへmountする | `denied`、checkerを起動しない |
 | `IV-LCI-52` | run全体の中止要求 | 中止要求後のprocess停止・reap確認が可能なprocess stubで、中止要求はまだなく後続実行を継続する | run全体への中止要求だけを追加する | 起動中processの停止・reap確認後、未開始stepは`interrupted(reason=cancelled)`、後続未起動 |
+| `IV-LCI-53` | role別Git identityと共通設定 | `executables.git`と`executables.provider_git`が各roleの合成binary identityに一致し、local/providerで同じtarget、contract、`config_digest`、DIFF argv、Git policy/environmentを使う | 変異なしの独立正常baseline | 両側が同じselected `LC-DIFF-001` successを照合し、receiptにはlocal identity、`ProviderResult`にはprovider identityを別々に保持する。binary identity同一性を要求しない。 |
+| `IV-LCI-54` | provider identity初回採取 | configの`executables.provider_git`がexact pin済みで、trusted preflightは既存`/usr/bin/git`のname/version/binary bytes SHAだけを得る | provider pinだけを`null`にする | `Unobserved(not_run)`。`--version`とbytes読取以外のGit target/source/status/diff操作なし、positive `ProviderResult`なし。 |
+| `IV-LCI-55` | provider Git digest束縛 | provider Git bytesはconfig pinと一致し、target/receiptは有効 | provider Git bytes digestだけを別値にする | `Unknown(unsupported)`、target/source/status/diff probe前に停止しlocal pinへfallbackしない。 |
+| `IV-LCI-56` | provider Git version束縛 | provider Git version/name/digestがpinと一致 | 実versionだけをpinと異ならせる | `Unknown(unsupported)`、target/source/status/diff probe前に停止。 |
+| `IV-LCI-57` | shared config digest | local receiptとproviderが同じrole pin mapを含むconfig digestで一致 | provider pin revisionだけが更新されたcurrent configで旧receiptを検証する | `Unknown(conflict)`、diffを起動せず、新configでlocal receiptを再生成するまでpositiveにしない。 |
+| `IV-LCI-58` | selected result parity | 共通settings・同一targetでprovider DIFF stateがlocal receipt stateと一致 | provider DIFF stateだけを`fail`へ変える | `selected_check_parity=false`、positive不可。stateをsuccess側へ補正しない。 |
+| `IV-LCI-59` | bwrap既存identity | trusted profileの`bwrap` name、opaque version literal、全bytes SHA-256が提供環境の既存binaryと一致する | 変異なしの独立正常baseline | sandbox preflight後にのみcheckerを起動し、OS package/upstream provenance保証を主張しない。 |
+| `IV-LCI-60` | bwrap bytes pin | 提供環境の既存binary bytesがprofile digestと一致する | bytes digestだけをpinと不一致にする | `denied`、checker未起動、install/host/別binary fallbackなし。 |
+| `IV-LCI-61` | bwrap opaque version label | 実`--version` literalがprofile labelと一致する | version literalだけをpinと不一致にする | `denied`、checker未起動。semantic version推論や別binary fallbackなし。 |
+| `IV-LCI-62` | bwrap binary availability | trusted host-local settingからprofile pinned binaryを解決できる | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし。 |
 
 GitHub input仕様の25 inputs/65,535 character上限はprovider-boundary fixtureであり製品要求のthresholdではない。容量超過なら省略してvalid化せず未照合で止める。
 
@@ -82,4 +92,4 @@ Local runはplanの固定5 required stepを実行する。planの選択根拠/co
 
 ## 3. 旧sourceからの保持と変更
 
-旧asset IDs、path、lines、full SHAと保持/変更理由はL4 §1をsource of truthとする。本書では旧sourceを再実行しない。保持はlocal-first・merge-unit・evidence bindingの意味に限る。旧workflow/hook/コスト数値・技術名をfixture oracleにしない。
+旧asset IDs、path、lines、full SHAと保持/変更理由はL4 §1をsource of truthとする。本書では旧sourceを再実行しない。保持はlocal-first・merge-unit・evidence binding・mismatch時のfallbackなしの意味に限る。旧workflow/hook/コスト数値・技術名をfixture oracleにしない。役割別runtime identityは同一settings/digest下での環境証跡として区別し、未採取・mismatch・旧receiptのいずれもpositiveへ読み替えない。旧sourceにbwrap/OS package pinはないため、提供環境に既存の実行binaryをliteral versionと全bytes SHAでpinする技術的再導出を保持する。versionはopaque labelであり、system package/upstream provenanceを主張せず、不在時にinstall/host fallbackしない。

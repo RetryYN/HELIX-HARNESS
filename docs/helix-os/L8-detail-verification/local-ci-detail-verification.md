@@ -11,6 +11,8 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
+固定入力は対のL5本文SHA-256 `e5209d64707ba14ec5be57702b10fb08c514a5437f2e6bb7e72bafccef5580b6`である。
+
 ## 1. Fixture規則
 
 全fixtureは一時Git repository、合成UTF-8文書、stub command結果を用いる。旧CLI/hook/runtime/test/CIはfixtureにも含めない。各行は一つの条件だけを変更し、派生値（tree OID、digest、receipt digest、base/head）は変異に合わせ再計算する。受口は期待型まで指定し、unknown/unobservedを合格に読み替えない。
@@ -80,6 +82,16 @@ version_target: 1.0
 | `CASE-L8-LCI-71` | `heading_id` undeclared mapping | range内にheadingがあり、必要な固定IDと他の構造定義は揃う | そのheading literalの`literal_expansions` entryだけをmanifestから除く | `Unknown(missing_input)`、heading本文からIDを推測せずchecker/execution/receipt未作成 |
 | `CASE-L8-LCI-72` | `heading_id` empty expansion | manifest entryはあり、`ids`に必要な既存IDが一件ある | `ids`だけを空配列にする | `Unknown(missing_input)`、空集合を充足扱いせずchecker/execution/receipt未作成 |
 | `CASE-L8-LCI-73` | `heading_id` duplicate expansion | 各literalが一意で、展開先の既存IDも相互に異なる | 一つの既存IDだけを別entryの`ids`にも追加する | `Unknown(conflict)`、重複定義を一件へ縮約せずchecker/execution/receipt未作成 |
+| `CASE-L8-LCI-74` | role別Git identityと共通設定 | local `executables.git`とprovider `executables.provider_git`が各々の合成binary bytes/versionと一致し、同じtarget/config digest/DIFF argv/Git policyでstate success | 変異なしの独立正常baseline | local receiptにlocal identity、provider resultにprovider identityを保持し、state parityがtrue。identity相互同一性は要求しない |
+| `CASE-L8-LCI-75` | provider Git初回identity preflight | trusted configの`provider_git`がexact pin済みで、既存`/usr/bin/git`のname/version/bytes SHAを読み取れる | provider pinだけを`null`にする | identity tupleだけを診断dataへ示す`Unobserved(not_run)`。target/source/status/diff Git operationなし、positive `ProviderResult`なし |
+| `CASE-L8-LCI-76` | provider Git digest pin | provider binary bytes digestがtrusted `provider_git` pinと一致し、target/receiptが有効 | provider binary digestだけをpinと異ならせる | `Unknown(unsupported)`、target/source/status/diff probe前に停止しlocal Gitへfallbackしない |
+| `CASE-L8-LCI-77` | provider Git version pin | provider binary name/version/digestがpinと一致 | provider versionだけをpinと異ならせる | `Unknown(unsupported)`、target/source/status/diff probe前に停止 |
+| `CASE-L8-LCI-78` | shared config digest pin | local receiptとprovider config digestが同じrole pin mapに基づく | current configのprovider pinだけを更新し、旧local receiptを渡す | `Unknown(conflict)`、diffを起動せず新configのlocal receiptを要求 |
+| `CASE-L8-LCI-79` | selected result parity | same config digest/target/argv/policyでlocalとproviderの`LC-DIFF-001` stateがsuccess | provider diff stateだけを`fail`にする | `selected_check_parity=false`、positive不可、stateを補正しない |
+| `CASE-L8-LCI-80` | bwrap profile identity | 提供環境の既存`bwrap`がprofileのname、opaque version literal、全bytes SHA-256と一致する | 変異なしの独立正常baseline | sandbox preflight後にのみcheckerを起動。system package/upstream provenance保証は含めない |
+| `CASE-L8-LCI-81` | bwrap executable bytes | 提供環境binary bytesがtrusted profile digestと一致する | bytes digestだけをpinと不一致にする | `denied`、checker未起動、install/host/別binary fallbackなし |
+| `CASE-L8-LCI-82` | bwrap version literal | `--version`のliteral文字列がtrusted profile labelと一致する | version literalだけをpinと不一致にする | `denied`、checker未起動、semantic-version推論なし |
+| `CASE-L8-LCI-83` | bwrap binary availability | trusted host-local settingからprofile pinned binaryを解決できる | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし |
 
 ## 3. GitHubのmerge単位fixture
 
