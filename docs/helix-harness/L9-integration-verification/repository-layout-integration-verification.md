@@ -77,20 +77,18 @@ base: main `66abf6bf158baebc6bfceb5ccf693d425aae41a9`
 | `IV-RL-52` | RL-T2（複製） | `tests/`は有効な項目IDだけを参照し、`check_design_copy`は全単位の成分と走査の完全性の成分が肯定で`Positive` | 有効なID参照を保ったまま、L9のある項目の表の行（正常・変異の欄）を正規化後に同じ文字列としてtestのコメントに加える | その単位の成分が否定の`Value`で、`check_design_copy`は`Negative` |
 | `IV-RL-53` | RL-T2（0件） | 同上 | `tests/`のコメント・文字列literalを0件にする（fileは残し、完全に走査できる） | `Positive`（境界値の正常。完全性の成分が肯定で、各単位は一致なし） |
 | `IV-RL-54` | RL-T2（走査） | 同上 | `tests/`の一つのfileを読めなくする | 完全性の成分が`Unknown(unreadable)`で、`check_design_copy`は`Undetermined` |
-| `IV-RL-55` | RL-V1 | 合成の読み取り専用repository設定snapshotの`visibility`が`public`。LICENSEのfieldと内容は変えない | 同じsnapshotの`visibility`だけを`private`にする | RL-V1の検査は`Negative`。これは合成snapshotのoracleであり、実repoのvisibilityは読まず、変更せず、資産の露出分類も導かない |
 | `IV-RL-56` | RL-D4／CK IV-K10-06 | 台帳に登録されたnode A・Bと、宣言から作った確定edge `A depends_on B` を入力し、`impact(B)`が`A`を`affected`に含む。source本文にedgeらしい記述があってもgraph入力には含めない | Aの宣言からこの依存edgeだけを除く。他の有効edgeは残し、台帳とsource本文は変えない | `impact(B)`は`Value`で、`A`は`affected`に含まれない（source本文からedgeを補わない） |
 | `IV-RL-57` | RL-D4／CK IV-K10-03 | 台帳と宣言が整合するedge `A depends_on B` のグラフは`check_graph`が`Positive`。語彙は当該関係を非symmetric・inverse無し・contradicts無しとする | 宣言へ逆向きedge `B depends_on A` だけを加え、循環を作る | `check_graph`は`Positive`（循環だけを理由に否定しない） |
-| `IV-RL-58` | RL-K3 | pack-scopedと明示した合成設定がpack Pのfolder内にあり、rootにはL4で許すfileだけがある | 同一bytesの設定をpack内からrepository rootへ移す | RL-K3の配置検査は`Negative`（このfixtureは特定のtoolchainや設定file名を選ばない） |
 | `IV-RL-59` | RL-D4／CK IV-K10-01 | 台帳にnode A・Bが登録され、宣言edge `A depends_on B` の端点がそろう | 宣言edgeは保ち、台帳からnode Bの登録だけを除く | `check_graph`の当該端点成分は`Unknown(missing_input)` |
 | `IV-RL-50` | RL-K1 | rootのfileが9.2の一覧と理由の追記に一致する | 理由の追記の無いroot fileを一つ足す | `Negative` |
 | `IV-RL-51` | RL-K2 | 開発・実行・検証・配布のsurfaceにBunの参照が無い | 一つの設定にBunのlockまたはcommandを足す | `Negative`（`HELIXOS-L2-132`の003） |
 
 L4の規則に対するcoverageの境界を次に示す。
 
-- RL-V1：IV-RL-55は合成の読み取り専用provider snapshotだけを判定し、実repoのvisibility設定変更・実設定の観測を行わない。public visibilityから資産の分類も導かない（RL-V3）。
+- RL-V1：未検証（`not_exercised`）。L4は開発repoをpublicとする方針を定めるが、その検査の入力・所有者・受口・返却型を定義していない。visibilityの実設定観測は本pairの範囲外であり、合成snapshotのNegative判定を新設しない。public visibilityから資産の分類も導かない（RL-V3）。
 - RL-D4：IV-RL-56〜57・59は、台帳と宣言から作るgraphのimpact、欠けた端点、循環が否定にならないことをCK K10へ接続する。コードからedgeを抽出する方法はL4がL5〜L6へ送っており、本書でも定義・実装しない。IV-RL-56のsource本文はgraph入力として読まない。
 - RL-T3：IV-RL-19は合成credential形式の値をSECURITYのsecret classifierへ通す境界だけを検査する。classifierはdataがsyntheticであることを示さず、全`fixtures/`・`tests/`の値の合成由来を証明しない。L4に合成由来の判定根拠がないため、この全体条件は未被覆のままとする。
-- RL-K3：IV-RL-58は特定toolchainを選ばず、合成fixture上のpack-scoped設定をrootへ移す一点だけを検査する。採用toolchainと実際の設定名はL5〜L6の決定後に対応する。
+- RL-K3：未検証（`not_exercised`）。L4は設定をpackへ寄せる方針のみを定め、検査の入力・所有者・受口・返却型を定義していない。設定を検査する実際のtool/config技術もL5〜L6で未選択のため、このpairで検査器や合成配置oracleを追加しない。
 
 ## 3. 判定と戻し先
 
