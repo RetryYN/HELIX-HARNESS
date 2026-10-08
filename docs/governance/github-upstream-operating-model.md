@@ -117,6 +117,7 @@ PRの中でも要求identityごとにL3とL10の対を分けて書き、別の�
 2026-10-05のPO判断（[判断記録](decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md)）により、
 `design_verification` PRのL3／L10の対象revision承認は、POからの委任で成立する。成立の条件は、2026-10-08のPO判断（[判断記録](decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md)）で、作成と別系統の独立reviewに改めた。
 委任はL3／L10に限る。Concept、企画（L1）、要求とprototype／非UIの合意（L2）は人が判断する。要求の意味・範囲・担当・版を変える必要が出た場合は、L2へ戻してPOへ上げる。
+この節は開発repo（本repository）の運用規則であり、開発repoではクロスレビューを必須とする。製品（リリース側）であるHELIXの独立reviewの要求（Conceptの「providerが同じか別かでは独立性を決めない」）とは対象が違い、両者を食い違いとして扱わない（2026-10-08のPO判断、[判断記録](decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md)）。
 
 ### 承認の成立
 

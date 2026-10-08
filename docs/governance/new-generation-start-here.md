@@ -106,7 +106,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 
 ## 現在停止する作業
 
-- L3以降の正式な設計・実装、新世代CIの実装・起動、release、deployment。`scaffold/`外に仮の物を置くこと。Scaffold Bindingに登録しない仮の物を置くこと。
+- 実装、新世代CIの実装・起動、release、deployment。`scaffold/`外に仮の物を置くこと。Scaffold Bindingに登録しない仮の物を置くこと。L4〜L6の設計と対の検証設計は、2026-10-08のPO判断（[判断記録](decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md)）で、承認済みのL3／L10を親とする範囲に限り解禁した。
 - 旧CI、旧runtime、旧hook、旧test、旧AI promptの実行またはfallback。
 - 旧CLI・旧hook・旧runtime・旧CIへのfallback。reviewer名だけから旧実行通路を起動すること。GitHub native auto-mergeと、作成側による自己merge。
 - PR、Issue、CI、DB、memory、会話からの要求採否・人間承認・受入の生成。
