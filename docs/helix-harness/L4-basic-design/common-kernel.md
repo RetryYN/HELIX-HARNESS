@@ -561,23 +561,27 @@ RequiredResult  = { combined: Combined, assurance: { identity -> AdmittedReceipt
 ### 11.2 型
 
 ```text
-ArtifactRef  = SubjectRef{ kind: artifact, identity, revision, digest }  # digestは配布・実行されるbytes全体
-SourceRef    = SubjectRef{ kind: source, ... }
-BuildReceipt = 10章のreceiptで、operation = build、subject = SourceRef、
-               inputs = build入力（依存、設定、toolchain）＋builder（kind: verifier）＋集合、
-               execution.outputs = 生成したartifactのFixedRef
+ArtifactRef   = SubjectRef{ kind: artifact, identity, revision, digest }  # digestは配布・実行されるbytes全体
+SourceRef     = SubjectRef{ kind: source, ... }
+BuildManifest = [{ artifact: ArtifactRef, output: FixedRef }]  # builderが作る。生成した各artifactの識別とbytesの対応
+BuildReceipt  = 10章のreceiptで、operation = build、subject = SourceRef、
+                inputs = build入力（依存、設定、toolchain）＋builder（kind: verifier）＋集合、
+                execution.outputs = [BuildManifestのFixedRef]＋各artifactのFixedRef
+ChainResult   = { build: AdmittedReceipt, artifact: ArtifactRef, artifact_reproduction: Observed<...> }
 ```
 
-builderは`VerifierSet`のmemberとして固定する（10.3）。実行物に対する検証（test、scan、review）のreceiptは、`subject`を`ArtifactRef`とする。
+builderは`VerifierSet`のmemberとして固定し、build操作の`required_for`に挙げる（10.3）。実行物に対する検証（test、scan、review）のreceiptは、`subject`を`ArtifactRef`とする。`BuildManifest`はK6-I5により他の出力と同じくbytesを再計算して確かめる。artifactの`identity`はsourceの`identity`と別の値にする（AIの設計判断。同じ値にすると、K2では`kind`の違いが`Unknown(conflict)`として現れる）。
 
 ### 11.3 不変条件
 
-- **G8-I1 対象の区別**：`subject`が`source`のreceiptは、`subject`が`artifact`の照会の候補にならない（K2-I2の1）。sourceのreviewやtestのreceiptを、実行物のreceiptとして数える写像を置かない。
-- **G8-I2 buildの鎖**：実行物が「sourceから作られた」と言えるのは、`admit_receipt`を通った`BuildReceipt`があり、その`outputs`に`ArtifactRef.digest`と同じdigestの`FixedRef`がある場合だけとする。`BuildReceipt`が無ければ`Unobserved(not_run)`、digestが違えば`Unknown(conflict)`、builderが集合に無ければ`Unknown(unregistered)`（K6-I2）。producerの欠落を他のfieldで補わない。
-- **G8-I3 使う直前の再計算**：実行物を配布・展開・実行する受け口は、その時点のbytesのSHA-256を再計算し、`ArtifactRef.digest`と比べる。違えば`Unknown(conflict)`とし、展開・実行しない。sourceと、sourceのreceiptが変わっていなくても、配布物だけが差し替えられればここで検出する。
-- **G8-I4 再現**：builderが集合で`deterministic`なら、同じ`SourceRef`とbuild入力から再びbuildし、artifactのdigestの一致を`reproduction`として確かめられる（K6-I8）。一致はsourceから同じbytesが作れることの証拠であり、配布されたbytesが過去にそのbuildで作られたことの証拠ではない（10.5）。
-- **G8-I5 合格は別の証拠**：buildの鎖とdigestの一致は、実行物の検証の合格を意味しない。実行物の合格は、`subject`が`artifact`の必要な検証器のreceiptを`required`で合成した結果だけによる（K6-I7）。
+- **G8-I1 対象の区別**：実行物の照会の鍵は`subject`が`ArtifactRef`である。sourceの`identity`と違えば、sourceのreceiptは候補にならず`Unobserved(not_run)`（K2-I2の1）。同じ`identity`で`kind`だけが違えば`Unknown(conflict)`（K2-I2の2(b)）。いずれの場合も、sourceのreview・testのreceiptを実行物の肯定へ写す写像を置かない。
+- **G8-I2 buildの鎖**：実行物`X`（`ArtifactRef`）がsource `S`から作られたと言えるのは、次の二つを別々に満たす場合だけとする。(a)**buildの受入**：`S`のcurrentの基底鍵からbuilderのreceipt鍵を導き（10.3）、`restore`→`lookup`→`admit_receipt`を通る。非`Value`ならその結果を返す（`Stale`、`Unknown(conflict)`、`Unobserved(not_run)`、`Unknown(unreadable)`等）。(b)**鎖の照合**：受け入れた`BuildManifest`に`artifact.identity`が`X.identity`の項目があり、その`artifact.revision`と`artifact.digest`が`X`と一致し、`output.digest`が`X.digest`と一致する。項目が無ければ`Unobserved(not_run)`（そのbuildは`X`を作っていない）、`revision`か`digest`が違えば`Unknown(conflict)`とする。producerは(a)のbuilderであり、builderの識別を欠くreceiptは(a)で拒否され、他のfieldで補わない。
+- **G8-I3 使う直前の再計算**：実行物を配布・展開・実行する受け口は、その時点のbytesのSHA-256を再計算し、`X.digest`と比べる。違えば`Unknown(conflict)`とし、展開・実行しない。sourceとsourceのreceiptが変わっていなくても、配布物だけが差し替えられればここで検出する。
+- **G8-I4 artifactの再現**：builderが集合で`deterministic`なら、同じ`S`とbuild入力で再びbuildし、新しい`BuildManifest`の`X.identity`の項目の`digest`を`X.digest`と比べ、`artifact_reproduction`とする（一致で`Value`、不一致で`Unknown(conflict)`、項目が無ければ`Unobserved(not_run)`、決定的でなければ`Unknown(unsupported)`）。これはK6-I8の`reproduction`（`inner`の再現）とは別の比較であり、両方を`ChainResult`と`AdmittedReceipt`に別々に持つ。どちらが一致しても、過去にそのbuildで配布物が作られたことは保証しない（`issuer_authenticity`は`Unknown(unsupported)`のまま。10.5）。
+- **G8-I5 合格は別の証拠**：buildの鎖とdigestの一致は、実行物の検証の合格を意味しない。実行物の合格は、`subject`が`X`の必要な検証器のreceiptを`required`で合成した結果だけによる（K6-I7）。
 - **G8-I6 段階の構成**：段階（v0.x）の記録は、含むpackの`ArtifactRef`の組を持ち、source tagやsource revisionだけで段階を表さない（AC-OS-014-04）。
+
+API：`build_chain(S, X, verifier_set) -> Observed<ChainResult>`は、G8-I2の(a)、(b)の順に検査し、最初に当たった結果を返す。`rebuild_compare(chain) -> Observed<ChainResult>`はG8-I4に従い`artifact_reproduction`を埋める。`admit_artifact_bytes(X, bytes) -> Observed<ArtifactRef>`はG8-I3に従う。
 
 ### 11.4 検証器自身の配布物：扱える範囲と扱えない範囲
 
@@ -585,7 +589,7 @@ builderは`VerifierSet`のmemberとして固定する（10.3）。実行物に�
 |---|---|
 | どのbytesの検証器を信じるか | 扱える。集合で`identity`・`version`・`digest`を固定し、receiptの鍵に入れる（K6-I2） |
 | 検証器のbytesが集合と違う | 扱える。同じ版でbytesが違えば`Unknown(conflict)`（10.3） |
-| 検証器が使うtoolchain（interpreter、library）の版 | 宣言した範囲で扱える。build入力・検証の入力に`kind: toolchain`として入れれば、変更で`Stale`になる。宣言しなければ検出しない |
+| 検証器が使うtoolchain（interpreter、library） | 宣言した範囲で扱える。`kind: toolchain`の入力として鍵に入れれば、K2-I2のとおり、identityを保った新revision（旧記録が`Value`）で`Stale`、同じrevisionでbytesだけの変更で`Unknown(conflict)`、toolchainのidentityの追加・削除で`Unobserved(not_run)`、旧記録が非`Value`なら`Unobserved(not_run, superseded)`になる。宣言しなければ検出しない |
 | 実行したprocessが、固定したbytesを本当に実行したか | 扱えない。署名やrepository外の固定、実行環境の証明が要る（10.5、11.6） |
 | 検証器の論理の誤り（不正な入力を合格にする欠陥） | digestの固定では扱えない。固定は「どのbytesか」を決めるだけで、そのbytesが正しく判定することを保証しない。回帰コーパス（12章）で既知の型だけを確かめる |
 
@@ -617,20 +621,29 @@ builderは`VerifierSet`のmemberとして固定する（10.3）。実行物に�
 ### 12.2 型
 
 ```text
-Phase1Scope  = { start_revision, pr_selector }       # 測る対象のPRの範囲（宣言。値は12.5）
-Corpus       = FixedRef。各要素 = { pr, review_comment_id, major_id, bad_head, fixed_head, base,
-                 path, line, types, in_scope: Bool, exclusion: NotApplicable? }
-Phase1Status = Combined（P1-C1〜C4の成分）。鍵の入力に、検証器の集合、Corpus、Phase1Scopeを入れる
+Phase1Scope  = FixedRef。{ observation_base: SegmentHead[],          # 測るときに読むlogの末尾（K5の固定prefix）
+                           prs: [{ pr, base: GitRevision, head: GitRevision }] }  # 確定したPRの集合
+Corpus       = FixedRef。{ frozen_at: GitRevision,
+                           elements: [{ pr, review_comment_id, major_id, bad_head, fixed_head, base, path, line,
+                                        types, partition: pre_freeze | post_freeze, in_scope: Bool,
+                                        exclusion: NotApplicable? }] }
+Phase1Status = Combined。鍵のinputsに、検証器の集合、Corpus、Phase1Scope、observation_baseを入れる
+P1Polarity   = 本書が定める版付きのPolarityOf（identity: phase1-polarity、version: 1）
 ```
+
+- `prs`と`partition`は、評価の時点で計算せず、固定実体に書いた値を使う。後でPRやMajorが増えても、同じ固定入力の`Phase1Status`は変わらない。増えたものは新しいrevisionの`Phase1Scope`・`Corpus`として測り、旧結果はK2により`Stale`になる。
+- L3／L10のPRの検査の操作を`l3l10_pr_check`とし、各PRの基底鍵を`{operation: l3l10_pr_check, subject: {kind: pr_head, identity: pr, revision: head, digest: headのtreeのdigest}, inputs: [{kind: pr_base, identity: pr, revision: base, digest}], scope}`とする（AIの設計判断）。
 
 ### 12.3 条件
 
-- **P1-C1 検証器の集合**：L3／L10の機械検査を行う`VerifierSet`（10.3）が固定実体としてあり、その全memberが`deterministic`である。先行例として、仮組み`scaffold/l3l10-checks/`（`SCF-B-0157`）の5検査（`pin_recompute`、`count_ids`、`fixed_quote`、`return_vocab`、`boundary_removed`）を、正式なmemberの候補とする。仮組みのままではmemberにしない（`scfctl check-replacement`→`retire`で置き換えたものだけ）。advisoryの検査（`boundary_removed`）は、否定の判定に数えず、別に列挙する。集合が無ければ`Unknown(missing_input)`、決定的でないmemberがあれば否定の`Value`。
-- **P1-C2 回帰コーパス**：`Corpus`の`in_scope`の各要素について、該当する型の検査のreceiptが、`bad_head`の同じ`path`・`line`で違反を出し、`fixed_head`の同じ箇所で出さない。各要素を一つの成分とし、検出しなければ否定、`fixed_head`で出せば否定、receiptが無ければ`Unobserved(not_run)`とする。`in_scope`でない要素は、理由・判断者・再入条件を持つ`NotApplicable`とし（K1-I5）、持たなければ`Unknown(invalid_disposition)`。コーパスを作るときに見た要素と、コーパスの版を固定した後に加わったMajorは別の成分の組として数え、前者の結果を未知のMajorの検出率とみなさない（先行例の`README.md`「抽出規則はコーパスを見ながら作った」）。
-- **P1-C3 配線と実行**：`Phase1Scope`の各PRについて、`required`（K6-I7）が集合の全memberのreceiptを持つ（`Unobserved(not_run)`の成分が無い）。各receiptで登録した検査と評価した検査が一致する（K6-I6）。
-- **P1-C4 機械で判定しない範囲の明示**：`Corpus`の`in_scope`でない要素の型（例：先行例の対象外3件の意味判断）が列挙され、LLMや人のreviewに残る範囲として記録されている。列挙が無ければ`Unknown(missing_input)`。
+各条件は、成分を作り、`P1Polarity`で肯定・否定へ写し、条件ごとにK1の`combine`で合成する。`Phase1Status`は、四つの条件の全成分を条件の識別を付けて外側へ展開し、各条件の`set_reason`を`{条件, Unknown(missing_input)}`の成分として加えて、一つの`combine`で合成する（K6-I7と同じ展開）。
 
-`Phase1Status`は、P1-C1〜C4の全成分をK1の`combine`で合成したものである。
+- **P1-C1 検証器の集合**：成分は集合の各memberで、`deterministic`なら肯定、でなければ否定とする。memberが0件なら`set_reason`。集合が無ければ`Unknown(missing_input)`の成分。先行例として、仮組み`scaffold/l3l10-checks/`（`SCF-B-0157`）の5検査（`pin_recompute`、`count_ids`、`fixed_quote`、`return_vocab`、`boundary_removed`）を、正式なmemberの候補とする。仮組みのままではmemberにしない（`scfctl check-replacement`→`retire`で置き換えたものだけ）。advisoryの検査（`boundary_removed`）はmemberとして数えるが、C2の検出の判定には使わない。
+- **P1-C2 回帰コーパス**：成分は`Corpus`の各要素で、`in_scope`なら、該当する型の検査のreceiptが`bad_head`の同じ`path`・`line`で違反を出し、`fixed_head`の同じ箇所で出さないとき肯定、どちらかが違えば否定、receiptが受け入れられなければその非`Value`とする。`in_scope`でない要素は、理由・判断者・再入条件を持つ`NotApplicable`とし（K1-I5）、持たなければ`Unknown(invalid_disposition)`。C2は`partition`ごとに二つの合成（`pre_freeze`、`post_freeze`）に分け、それぞれの要素が0件または全部が`NotApplicable`ならその合成の`set_reason`とする。`pre_freeze`の結果を`post_freeze`の検出とみなさない（先行例の`README.md`「抽出規則はコーパスを見ながら作った」）。
+- **P1-C3 配線と実行**：(1)`required_for[l3l10_pr_check]`の識別の集合が、集合の全memberの識別と一致する。一致しなければ`Unknown(conflict)`の成分。(2)`prs`の各PRについて、基底鍵で`required`（K6-I7）を呼び、member別の照会と受入の結果を得る。受入済み（`Value(AdmittedReceipt)`）なら、成分「実行済み」を肯定、成分「登録と評価の一致」を、`registry.registered`と`registry.evaluated`の一致で肯定・否定とする。照会や受入が非`Value`（`Stale`、`Unknown(conflict)`、`Unobserved(not_run)`、`Unknown(unreadable)`、`Unknown(missing_input)`）なら、その非`Value`をそのmemberの成分とする。C3は実行の有無だけを測り、検査が違反を返したか（`inner`の否定）は数えない。評価された検査が`Unknown`を返した場合も「評価済み」であり、「未実行」と同一視しない。`prs`が0件なら`set_reason`。
+- **P1-C4 機械で判定しない範囲の明示**：成分は`Corpus`の`in_scope`でない要素の型ごとの列挙で、列挙があれば肯定とする。列挙が無ければ`Unknown(missing_input)`の成分。
+
+測定値のうち、本書で決めない数値（12.5）は条件に入れない。宣言が無い測定値は肯定にしない。
 
 ### 12.4 旧HELIXとの対応
 
@@ -653,7 +666,7 @@ Phase1Status = Combined（P1-C1〜C4の成分）。鍵の入力に、検証器�
 
 ### 12.6 未決と試作で確かめること
 
-- 試作：仮組みの5検査とコーパスで、P1-C1〜C4を`Phase1Status`として計算し、L9のIV-G8-01〜07とIV-P1-01〜06を動かす。
+- 試作：仮組みの5検査とコーパスで、P1-C1〜C4を`Phase1Status`として計算し、L9のIV-G8-01〜07とIV-P1-01〜07を動かす。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
