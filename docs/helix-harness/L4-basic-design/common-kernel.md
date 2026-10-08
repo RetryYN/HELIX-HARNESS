@@ -814,11 +814,13 @@ Impact         = { changed: SubjectRef[], affected: identity[], possibly: identi
 |---|---|---|---|---|
 | `build_graph` | 規則の版 | `GraphDecl` | `sources`の全SubjectRef、`vocab`、規則 | `GraphDecl.scope` |
 | `check_graph` | 規則の版 | `GraphRef` | 規則 | 同上 |
-| `closure` | 規則の版 | `GraphRef` | seedの各node（`kind: graph_node`）、`ConditionState`、規則 | 同上 |
-| `impact` | 規則の版 | `GraphRef` | 変わった対象の各SubjectRef、`ConditionState`、規則 | 同上 |
-| `independent` | 規則の版 | `GraphRef` | 復旧の操作（`kind: operation`）、`ConditionState`、規則 | 同上 |
+| `closure` | 規則の版 | `GraphRef` | seedの各node（`kind: graph_node`）、`ConditionState`、closureの規則、check_graphの規則 | 同上 |
+| `impact` | 規則の版 | `GraphRef` | 変わった対象の各SubjectRef、`ConditionState`、impactの規則、check_graphの規則 | 同上 |
+| `independent` | 規則の版 | `GraphRef` | 復旧の操作（`kind: operation`）、`ConditionState`、independentの規則、check_graphの規則、closureの規則 | 同上 |
 
-`GraphRef`は`build_graph`の記録を指すSubjectRefで、`{kind: graph, identity: GraphDecl.identity, revision: build_graphの記録のkey_digest, digest: result_digest}`とする。`GraphDecl`・`ConditionState`・`GraphRules`は、操作の所有者が固定実体として宣言したcurrentの値を呼出し側が渡し、edgeや結果の側から入力を採らない。したがって、同じグラフでもseedや条件の状態が違えば別の問いになる。
+`GraphRef`は`build_graph`の記録を指すSubjectRefで、`{kind: graph, identity: GraphDecl.identity, revision: build_graphの記録のkey_digest, digest: result_digest}`とする。各操作の`inputs`には、自分の規則に加えて、直接・間接に使う規則（`closure`・`impact`はcheck_graphの規則、`independent`はcheck_graphとclosureの規則）を入れる。したがって、使う規則のどれか一つが変われば、下流の結果は旧記録と完全一致しない。`GraphDecl`・`ConditionState`・`GraphRules`は、操作の所有者が固定実体として宣言したcurrentの値を呼出し側が渡し、edgeや結果の側から入力を採らない。同じグラフでもseedや条件の状態が違えば別の問いになる。
+
+**照会の二段**：下流の結果を照会するときは、(1)currentの`GraphDecl`・`sources`・`vocab`・build_graphの規則で`build_graph`の記録を照会し、(2)その結果が`Value`の場合だけ、得た記録から`GraphRef`を作って下流の結果を照会する。(1)が`Unknown(conflict)`や`Stale`、`Unobserved`等の非`Value`なら、その結果を返して(2)へ進まず、`GraphRef`の新しい版へ読み替えない。`GraphRef`の`revision`は`build_graph`の`key_digest`であり、元の宣言の変化の分類（K2-I2）は(1)の段で決まる。
 
 ### 14.3 不変条件
 
@@ -828,14 +830,14 @@ Impact         = { changed: SubjectRef[], affected: identity[], possibly: identi
 - **K10-I4 依存閉包**：`closure(seed)`は、`dependency`が真の型の確定edgeを、`transitive`が真の型についてだけ推移的にたどる。各edgeの`dep_class`と`ConditionState`で、行き先を次のとおり分ける。`required`、`true`の`operation_condition`、`selected`の`selected_source`は`effective`。`unknown`の`operation_condition`・`selected_source`は`held`。`false`の`operation_condition`は`diagnostics`の`condition_false`、`not_selected`の`selected_source`は`not_selected`、`reference_only`は`reference_only`とし、いずれもたどらない。`combined`の成分は、`effective`の各nodeへのedge（肯定）と`held`の各node（`Unknown(missing_input)`）とする。`diagnostics`は状態と根拠を残すが、有効な閉包の判定の成分には入れない（HARNESS-023-02：未選択sourceや条件不成立の依存を、有効な閉包や保留の条件に含めない）。`unknown`の選択を`not_selected`へ読み替えない。`safety`が真のedgeは、`effective`の条件を満たすとき外さない。
 - **K10-I5 影響**：`impact(changed)`は、変わった対象から、確定edgeを型の`propagation`の向きにたどる（`along`はfromからtoへ、`against`はtoからfromへ、`none`はたどらない）。`dep_class`の条件はK10-I4と同じく`ConditionState`で分け、`held`に当たる枝の先は`Unknown(missing_input)`の成分とし、「影響なし」にしない。`candidate`のedgeでだけ到達するnodeは`possibly`に入れる。`affected`は「見直す対象」を示すだけであり、記録のクラスを書き換えない（K10-I7）。
 - **K10-I6 独立復旧**：`independent(op)`は次の順に成分を作る。(1)同じ`GraphRef`の`check_graph`の結果の全成分（否定、非`Value`、`set_reason`）を`{graph_check, …}`の識別付きで入れる。(2)`op`のnodeがグラフに無ければ`Unknown(missing_input)`、`control_plane`の宣言が無ければ`Unknown(missing_input)`を入れる。(3)`op`からのK10-I4の閉包について、`effective`に入った`control_plane`のnodeごとに否定、`held`の各nodeに`Unknown(missing_input)`を入れる。(4)全成分を一つの`combine`で合成する。したがって、グラフの一部に未登録の関係や欠けた端点があれば、`control_plane`に到達しなくても`Positive`にならない。結果は「宣言したグラフの上で独立」だけを示す（14.5）。`closure`と`impact`も、(1)と同じく`check_graph`の非肯定の成分を入れる。
-- **K10-I7 影響と結果・義務**：`affected`の各nodeについて、そのidentityを鍵の`subject`または`inputs`に持つK2の記録の集合と、そのidentityを`target`か`source`に持つK4の義務の集合を、K5の`restore`した記録から列挙する。これが見直す対象のexact setである。見直しは、各操作の所有者がcurrentの宣言（`OperationDecl`等）を更新した後に、そのcurrentの基底鍵でK2の`lookup`とK4の`evaluate`をやり直すことで行う。その結果のクラスはK2-I2のとおりであり、identityの集合を保った正当な新revisionで旧記録が`Value`なら`Stale`、同じrevisionでbytesだけ変われば`Unknown(conflict)`、入力のidentityの集合が変われば`Unobserved(not_run)`、旧記録が非`Value`なら`Unobserved(not_run, superseded)`となる。`affected`に無い記録と義務は見直さない（INTELLIGENCE-078-04、HARNESS-030-04）。
+- **K10-I7 影響と結果・義務**：`affected`の各nodeについて、(a)そのidentityを鍵の`subject`または`inputs`に持つK2の記録の集合と、(b)K4の義務のうち、そのidentityを`target`か`source`に持つもの、またはその義務の`operation`のcurrentの`OperationDecl`の`inputs`にそのidentityを持つもの（13.2の基底鍵の`subject`・`inputs`にそのidentityが入る義務）の集合を、K5の`restore`した記録と、呼出し側が渡すcurrentの`OperationDecl`（`decls`）から列挙する。これが見直す対象のexact setである。見直しは、各操作の所有者がcurrentの宣言（`OperationDecl`等）を更新した後に、そのcurrentの基底鍵でK2の`lookup`とK4の`evaluate`をやり直すことで行う。その結果のクラスはK2-I2のとおりであり、identityの集合を保った正当な新revisionで旧記録が`Value`なら`Stale`、同じrevisionでbytesだけ変われば`Unknown(conflict)`、入力のidentityの集合が変われば`Unobserved(not_run)`、旧記録が非`Value`なら`Unobserved(not_run, superseded)`となる。`affected`に無い記録と義務は見直さない（INTELLIGENCE-078-04、HARNESS-030-04）。
 
 ### 14.4 API境界
 
 - `build_graph(decl, rules) -> ResultRecorded | Rejected(reason)`：宣言だけを受け取り、K10-I1・I2に従ってedgeを正規化する。`candidate`を`confirmed`へ変える経路は、`source`の承認済みの固定実体の宣言だけとする。
 - `check_graph(graph_ref, rules, input_heads) -> Observed<Combined>`：K5の`restore`（固定prefixと完全性）→`lookup`でグラフを得て（非`Value`ならそれを返す）、K10-I1・I3を検査する。
 - `closure(graph_ref, seed, condition_state, rules, input_heads) -> Observed<Closure>`、`impact(graph_ref, changed, condition_state, rules, input_heads) -> Observed<Impact>`、`independent(graph_ref, op, condition_state, rules, input_heads) -> Observed<Combined>`：同じくグラフを得てから、K10-I4〜I6に従う。
-- `review_set(impact, input_heads) -> Observed<{records, obligations}>`：K10-I7の見直す対象のexact setを返す。記録のクラスは変えない。
+- `review_set(impact, obligation_set_keys, decls, input_heads) -> Observed<{records, obligations}>`：K10-I7の見直す対象のexact setを返す。義務は`obligation_set_keys`の各集合から読み、`decls`は操作の所有者が宣言したcurrentの`OperationDecl`を呼出し側が渡す。`decls`に義務の操作が無ければ、その義務を`Unknown(missing_input)`として返す。記録のクラスは変えない。
 
 ### 14.5 扱える範囲と扱えない範囲
 
@@ -866,7 +868,7 @@ Impact         = { changed: SubjectRef[], affected: identity[], possibly: identi
 
 - 各機構の語彙（どの関係の型を置き、性質の値をどうするか）は、各機構のL4で承認済みL3の由来から宣言する。
 - `control_plane`の宣言の所有者は、INFRASTRUCTUREのL4（INFRA-006の所有）で決める。
-- 試作：HARNESS-L2-023のpack依存を小さなグラフにし、L9のIV-K10-01〜13を動かす。
+- 試作：HARNESS-L2-023のpack依存を小さなグラフにし、L9のIV-K10-01〜14を動かす。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
