@@ -1,11 +1,11 @@
-# HELIX 共通カーネル L9結合検証設計（K1・K2・K5・K6）
+# HELIX 共通カーネル L9結合検証設計（K1・K2・K5・K6・G8・Phase 1）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K5・K6と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
+本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K5・K6、G8、Phase 1の条件と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作で実行する場合は`scaffold/`に置き、Scaffold Bindingへ登録する。
 
@@ -119,6 +119,33 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-K6-13` | K6-I9：訂正の禁止 | `append` | — | receiptの記録を対象にする`Correction`は`Rejected`（K5-I8） |
 | `IV-K6-14` | 10.3：時刻を使わない | `restore`→`lookup` | — | `started`・`completed`だけが違う2つの旧revisionのreceiptがあるとき、`prior`の選択はK5-I7の順序のまま。時刻で選ぶ実装は不合格 |
 | `IV-K6-15` | K6-I10：authorityを作らない・保証の区別 | `required`の消費側 | — | (1)`Positive`の`RequiredResult`から、承認、merge可、受入、工程完了を出力する経路は`Rejected`。(2)`reproduction`が`Unknown(unsupported)`のA（決定的でない検証器）の成分を、`reproduction = Value`の成分と同じに扱う実装は不合格 |
+
+### G8
+
+各項目は、builderと実行物の検証器を集合に登録し、正しい`BuildReceipt`と実行物のreceiptを用意したうえで、一つの条件だけを変える。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-G8-01` | G8-I1：対象の区別 | `required` | `subject`が`artifact`の必要な検証器のreceiptがそろえば、実行物の合成は`Positive` | sourceのreviewのreceiptだけがある場合、実行物の成分は`Unobserved(not_run)`。sourceのreceiptを実行物の成分として数える実装は不合格 |
+| `IV-G8-02` | G8-I2：buildの鎖 | `admit_receipt` | `outputs`のdigestが`ArtifactRef.digest`と一致すれば鎖が成り立つ | (1)`BuildReceipt`が無い→`Unobserved(not_run)`、(2)`outputs`のdigestが違う→`Unknown(conflict)`、(3)builderが集合に無い→`Unknown(unregistered)`、(4)builderの識別を欠く→拒否され、他のfieldで補われない |
+| `IV-G8-03` | G8-I3：配布物だけの差替え | 配布・展開・実行の受け口 | bytesの再計算が`ArtifactRef.digest`と一致すれば展開する | sourceとsourceのreceipt、`BuildReceipt`はそのままで、配布物のbytesだけを1byte変えた場合、`Unknown(conflict)`で展開・実行しない |
+| `IV-G8-04` | G8-I4：再現 | `reverify` | 決定的なbuilderで再buildのdigestが一致すれば`reproduction = Value` | (1)再buildのdigestが違えば`Unknown(conflict)`、(2)決定的でないbuilderは`Unknown(unsupported)`。いずれも`issuer_authenticity`は`Unknown(unsupported)`のまま |
+| `IV-G8-05` | G8-I5：合格は別の証拠 | `required` | — | buildの鎖とdigestの一致だけがあり、実行物の検証のreceiptが無い場合、合成は`Positive`にならない |
+| `IV-G8-06` | G8-I6：段階の構成 | 段階の記録 | 段階はpackの`ArtifactRef`の組を持つ | source tagまたはsource revisionだけで段階を表す記録は拒否される |
+| `IV-G8-07` | 11.4：toolchain | `restore`→`lookup` | — | 宣言したtoolchainの版を更新した照会は`Stale`。宣言していないtoolchainの変更は検出されないことを、消費側が`issuer_authenticity`の限界として持つ |
+
+### Phase 1
+
+各項目は、集合・`Corpus`・`Phase1Scope`を固定し、一つの条件だけを変える。`Phase1Status`は記録を書き換えずに導く。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-P1-01` | P1-C1 | `Phase1Status` | 決定的なmemberだけの集合が固定されていれば、C1は肯定 | (1)集合が無く仮組みだけ→`Unknown(missing_input)`、(2)決定的でないmemberを含む→否定、(3)advisoryの検査の違反は否定に数えない |
+| `IV-P1-02` | P1-C2 | `Phase1Status` | `in_scope`の全要素が`bad_head`で検出され`fixed_head`で検出されなければ、C2は肯定 | (1)1要素を`bad_head`で検出しない→否定、(2)1要素を`fixed_head`の同じ箇所で検出→否定、(3)1要素のreceiptが無い→`Unobserved(not_run)`、(4)理由の無い除外→`Unknown(invalid_disposition)` |
+| `IV-P1-03` | P1-C2：固定前と固定後 | `Phase1Status` | 固定前の要素と固定後に加わった要素が別の組として数えられる | 固定前の要素の結果を、固定後の要素の検出として数える実装は不合格 |
+| `IV-P1-04` | P1-C3 | `Phase1Status` | 範囲の全PRで全memberのreceiptがあり、登録と評価が一致すればC3は肯定 | (1)1PRで1memberのreceiptが無い→`Unobserved(not_run)`、(2)1receiptで登録と評価が違う→`Undetermined` |
+| `IV-P1-05` | P1-C4 | `Phase1Status` | 対象外の型が列挙されていればC4は肯定 | 列挙が無ければ`Unknown(missing_input)` |
+| `IV-P1-06` | 12.1：authorityと鮮度 | `Phase1Status`の消費側 | — | (1)`Positive`の`Phase1Status`から、v0.1の成立、内部デプロイ、gateの変更を出力する経路は`Rejected`、(2)`Corpus`や集合の新revisionでは`Stale`、`Phase1Scope`のidentityの変更では`Unobserved(not_run)` |
 
 ## 3. 判定と戻し先
 

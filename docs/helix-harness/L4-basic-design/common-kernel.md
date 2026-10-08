@@ -1,4 +1,4 @@
-# HELIX 共通カーネル L4基本設計（K1・K2・K5・K6）
+# HELIX 共通カーネル L4基本設計（K1・K2・K5・K6・G8・Phase 1）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（工程の標準と検証義務の所有。2026-10-08のPO判断の判断2）
@@ -6,7 +6,7 @@ parent_requirement: なし（一つの親要求を定めず、要素ごとに承
 paired_l9: ../L9-integration-verification/common-kernel-integration-verification.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）を扱う。残りは8.2の「後続PRの計画」に置く。
+本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）、PR3bはG8（11章）とPhase 1の条件の具体（12章）を扱う。残りは8.2の「後続PRの計画」に置く。
 
 本書は要求の意味、範囲、担当、版を作らない。各要素は承認済みL3のACを由来とし、由来の無い要素は「L2へ戻す論点」に分ける。本書は実装、実行、内部デプロイ、releaseの許可を含まない。本書の承認・merge・試作の合格から、L3以上の承認や完了を生成しない。
 
@@ -271,12 +271,14 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 2. **不明と未観測の境界の各機構での意味**（G10の一部）：LABOの「不明と未観測」、INFRAの鮮度、SECURITYのunknown／denyが、2.2の境界と異なる意味を持つ場合。
 3. K5（9章）の論点：末尾の削除の検出と、logの保持期間・圧縮（9.7）。
 4. K6・E（10章）の論点：receiptの発行の真正性（10.8）。
+5. G8（11章）の論点：実行環境の真正性（11.6）。
 
 ## 7. 人の判断が要る点
 
 列挙だけであり、本書は新しい承認手続きを作らない。親要求の扱いと作業入口の停止は、2026-10-08のPO判断で決着した（1.3）。
 
 1. L4／L9の配置規則の置き場（`l3-l10-authoring-layout.md`へ追記するか、別に置くか）。本書の配置は、その規則が決まるまでの提案である。人の上流の意味には触れないため、後続PRでAIが決め、独立reviewで確かめてよい。
+2. Phase 1の条件の確認者・時期、数値、条件がそろった後の手順の変更、v0.1の宣言と内部デプロイ、advisoryの検査の扱い（12.5）。
 
 ## 8. PRの範囲と後続PRの計画
 
@@ -297,7 +299,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 |---|---|---|---|---|---|
 | 2（9章で起草） | K5 状態は証拠から導出（追記専用JSONL＋projection） | CONNECT-AC-005-01（追記で訂正）、LABO-001-AC-02（source stateへwritebackしない） | — | event-projection-checkpoint-replay、ADR-007（置換）、handover-db-derivation | projectionの規模と再構築の費用（旧IMP-151、149） |
 | 3（10章で起草） | K6 provenance／receipt、E 検証receiptの真正性 | HARNESS-L2-022系のreceipt、032-05 | E | work-graph-receipt-acceptance、gate-evidence-substance、closure-evidence-materialization（置換）、check-registry（登録と実行の照合） | 署名を後回しにする間の改ざん検出の範囲。検証器の集合の配置 |
-| 3b | G8 実行物の検証、Phase 1の条件の具体（2026-10-08判断3） | SECURITY-AC-012-01、SECURITY-AC-013-01（配布・実行artifactとbuild済みartifactの鎖） | G8 | release-module-bundle-composition、distribution-package-release、distribution-lite-consumer-canary、gate-design、check-registry | 版の宣言、内部デプロイ、人のゲートを外す判断はL2・POへ戻す |
+| 3b（11・12章で起草） | G8 実行物の検証、Phase 1の条件の具体（2026-10-08判断3） | SECURITY-AC-012-01、SECURITY-AC-013-01（配布・実行artifactとbuild済みartifactの鎖） | G8 | release-module-bundle-composition、distribution-package-release、distribution-lite-consumer-canary、gate-design、check-registry | 版の宣言、内部デプロイ、人のゲートを外す判断はL2・POへ戻す |
 | 4 | K4 義務を一級データに | HARNESS-L2-022、030〜032、036 | G3（oracle種別：機械判定／LLM判断／人のIF） | descent-obligation、ci-deferred-obligation-recovery、ci-verification-plan、charter P3 | 未完義務の継承は新規案を含む |
 | 5 | K10 型付き依存グラフ | HARNESS-L2-023（依存閉包）、INFRA | — | ci-responsibility-registry、design-registry | 関係型の性質宣言は新規案 |
 | 6 | K7 世代pointer／fencing、型番の台帳形式とディレクトリ配置（方針6） | OS-014、INFRA | G5（取消しの伝播） | node-runtime-cutover、HIL-FR-27、ADR-009 | 自動切戻しとADR-009の差（Phase 2の判断時に扱う）。G5の統一伝播は新規案 |
@@ -537,6 +539,121 @@ RequiredResult  = { combined: Combined, assurance: { identity -> AdmittedReceipt
 - 各操作に必要な検証器（`required_for`）を誰がどう宣言するか。検証義務のK4（8.2のPR4）で決める。
 - `VerifierSet`の置き場所。ディレクトリ配置とともに8.2のPR6で決める。
 - 試作：`scaffold/l3l10-checks/`のreceiptを本章の形へ写し、L9のIV-K6-01〜15を動かす。
+
+## 11. G8 実行物の検証
+
+本章と12章はPR3bで追加する。sourceを確かめた証拠と、配布・実行されるbytes（実行物）を確かめた証拠を分け、両者をbuildの記録で結ぶ。
+
+### 11.1 範囲と由来
+
+本PRはG8（11章）とPhase 1の条件の具体（12章）を扱う。どちらも10章のreceiptと検証器の集合だけを参照し、人が読む差分は二つ合わせて目安の範囲に収まるため、一つのPRにした。
+
+| 由来 | 位置 | 要点 |
+|---|---|---|
+| SECURITY | `SECURITY-AC-013-01`（`docs/helix-security/L3-requirements/functional-requirements.md:236`） | build・検証済みartifactと配布・実行artifactのidentity・digest・provenance・producerが同じ鎖で一致する。producerの欠落を他のfieldで補完しない。digestの一致だけからsourceの信頼や検証の合格を推定しない |
+| SECURITY | `SECURITY-AC-012-01`（同:222）、`SECURITY-AC-010-01`（同:194） | source・producer・version・digest等の不明なfieldを列挙し、不明のままtrustedへ昇格させない。新しい実行物の出現を追う |
+| HARNESS | `AC-HARNESS-L3-010-03`（`docs/helix-harness/L3-requirements/functional-requirements.md:39`） | 同じ宣言入力とpackの版から同じ成果物を得る |
+| HARNESS | `AC-HARNESS-L3-017-02`、`017-03`（同:390-391） | 別revisionの証拠や成果物identityの不一致ではeligibleにしない。同一入力からのartifactの再現性を比べる |
+| OS | `AC-OS-014-04`（`docs/helix-os/L3-requirements/functional-requirements.md:24`） | 段階はpackの版、configuration等を同じrevisionの組へ結ぶ。source tagだけを段階としない |
+
+承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による（SECURITY Stage 1、HARNESS Stage 1・2b、OS Stage 2b）。
+
+### 11.2 型
+
+```text
+ArtifactRef  = SubjectRef{ kind: artifact, identity, revision, digest }  # digestは配布・実行されるbytes全体
+SourceRef    = SubjectRef{ kind: source, ... }
+BuildReceipt = 10章のreceiptで、operation = build、subject = SourceRef、
+               inputs = build入力（依存、設定、toolchain）＋builder（kind: verifier）＋集合、
+               execution.outputs = 生成したartifactのFixedRef
+```
+
+builderは`VerifierSet`のmemberとして固定する（10.3）。実行物に対する検証（test、scan、review）のreceiptは、`subject`を`ArtifactRef`とする。
+
+### 11.3 不変条件
+
+- **G8-I1 対象の区別**：`subject`が`source`のreceiptは、`subject`が`artifact`の照会の候補にならない（K2-I2の1）。sourceのreviewやtestのreceiptを、実行物のreceiptとして数える写像を置かない。
+- **G8-I2 buildの鎖**：実行物が「sourceから作られた」と言えるのは、`admit_receipt`を通った`BuildReceipt`があり、その`outputs`に`ArtifactRef.digest`と同じdigestの`FixedRef`がある場合だけとする。`BuildReceipt`が無ければ`Unobserved(not_run)`、digestが違えば`Unknown(conflict)`、builderが集合に無ければ`Unknown(unregistered)`（K6-I2）。producerの欠落を他のfieldで補わない。
+- **G8-I3 使う直前の再計算**：実行物を配布・展開・実行する受け口は、その時点のbytesのSHA-256を再計算し、`ArtifactRef.digest`と比べる。違えば`Unknown(conflict)`とし、展開・実行しない。sourceと、sourceのreceiptが変わっていなくても、配布物だけが差し替えられればここで検出する。
+- **G8-I4 再現**：builderが集合で`deterministic`なら、同じ`SourceRef`とbuild入力から再びbuildし、artifactのdigestの一致を`reproduction`として確かめられる（K6-I8）。一致はsourceから同じbytesが作れることの証拠であり、配布されたbytesが過去にそのbuildで作られたことの証拠ではない（10.5）。
+- **G8-I5 合格は別の証拠**：buildの鎖とdigestの一致は、実行物の検証の合格を意味しない。実行物の合格は、`subject`が`artifact`の必要な検証器のreceiptを`required`で合成した結果だけによる（K6-I7）。
+- **G8-I6 段階の構成**：段階（v0.x）の記録は、含むpackの`ArtifactRef`の組を持ち、source tagやsource revisionだけで段階を表さない（AC-OS-014-04）。
+
+### 11.4 検証器自身の配布物：扱える範囲と扱えない範囲
+
+| 対象 | 扱い |
+|---|---|
+| どのbytesの検証器を信じるか | 扱える。集合で`identity`・`version`・`digest`を固定し、receiptの鍵に入れる（K6-I2） |
+| 検証器のbytesが集合と違う | 扱える。同じ版でbytesが違えば`Unknown(conflict)`（10.3） |
+| 検証器が使うtoolchain（interpreter、library）の版 | 宣言した範囲で扱える。build入力・検証の入力に`kind: toolchain`として入れれば、変更で`Stale`になる。宣言しなければ検出しない |
+| 実行したprocessが、固定したbytesを本当に実行したか | 扱えない。署名やrepository外の固定、実行環境の証明が要る（10.5、11.6） |
+| 検証器の論理の誤り（不正な入力を合格にする欠陥） | digestの固定では扱えない。固定は「どのbytesか」を決めるだけで、そのbytesが正しく判定することを保証しない。回帰コーパス（12章）で既知の型だけを確かめる |
+
+### 11.5 旧HELIXとの対応
+
+| 旧source（ID／path:行／SHA-256） | 保持する点 | 変更する点 | 区分候補 |
+|---|---|---|---|
+| `LEGACY-ASSET-A2F6A697D7FFFD490B57`／`docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md:84-92`／`336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c` | 同じsource・registry・profile入力から同じartifactを作る。release packetはsourceのfull SHA、artifact digest等を束縛する。未信頼のartifactはcode実行前に検査し、static failureを実行のgreenで相殺しない | 旧Module／Bundleと配布repositoryを前提にしない。束縛をK2の鍵とbuild receiptで表す | `semantic_rederive` |
+| `LEGACY-ASSET-9B7682EBDEA171005D45`／`docs/design/helix/L3-requirements/distribution-package-release-requirements.md:24-26,55-64`／`c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c` | 入力はsource HEAD・要求digest・version等、出力はimmutable artifact。generated artifactを逆向きの正本にしない | 段階releaseの自走の承認条件（standing authorization）は本章で扱わない（release・cutoverは人の判断に残る） | `semantic_rederive` |
+| `LEGACY-ASSET-9FD4DE252D3C27F88915`／`docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md:21-32`／`05bcaccb027a0e7bd9e82444751c961de8ac2b3102867cb5c7ba3b6babd34230` | builder receiptを期待値とし、artifactのbytes digestを展開前に再計算する。1 byteの差替え・別HEADは展開・起動前にfail-closeする | Lite・Windowsの構成は移さない。G8-I3として全実行物へ一般化する | `semantic_rederive` |
+| `LEGACY-ASSET-70D2389B7A28A79D8B1D`／`docs/design/helix/L6-function-design/distribution-deterministic-archive.md:22-35`／`b621aa3c79f53b1ed81fdbf9084ead082d4b6c999e27e9d0575ae93eda9d3e60` | 同じ入力を2回packageしてbytesの一致を確かめる。署名・publishは責務外 | 再現をK6-I8の`reproduction`として持つ | `semantic_rederive` |
+
+検証器自身の配布物と論理の誤り（11.4の下2行）は、旧HELIXに記述が見つからない（旧design-catalog:838で署名・attestationはtodo）。本章はそれを扱えない範囲として記すだけで、新しい仕組みを足さない。
+
+### 11.6 L2へ戻す論点
+
+1. **実行環境の真正性**：実行したprocessが固定したbytesを実行したことを確かめる仕組み（署名、attestation、実行環境の証明）を求めるか。調査資料のG6・G9に関わり、要求の意味に触れる。
+
+## 12. Phase 1の条件の具体
+
+### 12.1 位置づけ
+
+2026-10-08のPO判断（`docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md:76-83`、判断3）は、Phase 1（L3／L10の承認で機械検査が主になる）の条件がそろった時点を段階リリースv0.1の成立とし、条件の具体をL4共通設計で定め、別に確認するとした。本章は、その条件を測れる述語として定める。
+
+- 本章の条件は、HELIX自身の開発（本repositoryのL3／L10のPR）について測る。開発repoの運用規則を製品の要求の根拠にしない（解禁判断記録の判断3）。段階リリースとしての製品側の由来は、`AC-OS-014-01`（段階のidentityと1.0到達を別状態にする）、`014-03`（限定範囲でも仕事が一周する）、`014-08`（段階・pack・1.0の判定を分ける）（`docs/helix-os/L3-requirements/functional-requirements.md:21,23,28`）である。
+- 本章は、v0.1の宣言、内部デプロイ、人のゲートを外す判断、数値の閾値、条件を誰がいつ確かめるかを決めない（12.5）。
+- 条件の結果はK1の型で表し、`authority_effect: "none"`とする。条件がそろっても、v0.1の成立やgateの変更を生成しない。
+
+### 12.2 型
+
+```text
+Phase1Scope  = { start_revision, pr_selector }       # 測る対象のPRの範囲（宣言。値は12.5）
+Corpus       = FixedRef。各要素 = { pr, review_comment_id, major_id, bad_head, fixed_head, base,
+                 path, line, types, in_scope: Bool, exclusion: NotApplicable? }
+Phase1Status = Combined（P1-C1〜C4の成分）。鍵の入力に、検証器の集合、Corpus、Phase1Scopeを入れる
+```
+
+### 12.3 条件
+
+- **P1-C1 検証器の集合**：L3／L10の機械検査を行う`VerifierSet`（10.3）が固定実体としてあり、その全memberが`deterministic`である。先行例として、仮組み`scaffold/l3l10-checks/`（`SCF-B-0157`）の5検査（`pin_recompute`、`count_ids`、`fixed_quote`、`return_vocab`、`boundary_removed`）を、正式なmemberの候補とする。仮組みのままではmemberにしない（`scfctl check-replacement`→`retire`で置き換えたものだけ）。advisoryの検査（`boundary_removed`）は、否定の判定に数えず、別に列挙する。集合が無ければ`Unknown(missing_input)`、決定的でないmemberがあれば否定の`Value`。
+- **P1-C2 回帰コーパス**：`Corpus`の`in_scope`の各要素について、該当する型の検査のreceiptが、`bad_head`の同じ`path`・`line`で違反を出し、`fixed_head`の同じ箇所で出さない。各要素を一つの成分とし、検出しなければ否定、`fixed_head`で出せば否定、receiptが無ければ`Unobserved(not_run)`とする。`in_scope`でない要素は、理由・判断者・再入条件を持つ`NotApplicable`とし（K1-I5）、持たなければ`Unknown(invalid_disposition)`。コーパスを作るときに見た要素と、コーパスの版を固定した後に加わったMajorは別の成分の組として数え、前者の結果を未知のMajorの検出率とみなさない（先行例の`README.md`「抽出規則はコーパスを見ながら作った」）。
+- **P1-C3 配線と実行**：`Phase1Scope`の各PRについて、`required`（K6-I7）が集合の全memberのreceiptを持つ（`Unobserved(not_run)`の成分が無い）。各receiptで登録した検査と評価した検査が一致する（K6-I6）。
+- **P1-C4 機械で判定しない範囲の明示**：`Corpus`の`in_scope`でない要素の型（例：先行例の対象外3件の意味判断）が列挙され、LLMや人のreviewに残る範囲として記録されている。列挙が無ければ`Unknown(missing_input)`。
+
+`Phase1Status`は、P1-C1〜C4の全成分をK1の`combine`で合成したものである。
+
+### 12.4 旧HELIXとの対応
+
+| 旧source（ID／path:行／SHA-256） | 保持する点 | 変更する点 | 区分候補 |
+|---|---|---|---|
+| `LEGACY-ASSET-2E09592A003B32C118C1`／`docs/governance/gate-design.md:11-13,116-127`／`d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726` | ゲート判定を再現可能にし、構造は機械（engine）、意味はreviewで分ける | 旧G1〜G12のsign-off表は採らない（5章）。機械の範囲をP1-C1・C4で表す | `semantic_rederive` |
+| `LEGACY-ASSET-59E7DCC3DF0FDD2DC7C0`／`docs/feedback-log.md:16`（FB-001）／`33255eca508d3cd01e8f0a4461aad3d8aca3a36e6c08e4bad91612a9fdc5886d` | 失敗史：件数・link存在を中身の証拠にした | 条件がそろっても承認や完了を生成しない（12.1） | 失敗史（区分なし） |
+
+旧HELIXで人の承認を減らした先例（旧`CLAUDE.md:195-197`、`LEGACY-ASSET-6EBDB617A8104A7756D0`、SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`。`docs/plans/PLAN-L7-418-github-self-driving-ops.md`、`LEGACY-ASSET-24186F25EB5E7A627309`、SHA-256 `2134f3066f0913018415e1ca5cad971d5e85589d8f21ceff7bf75534d05a0fa3`）と、その失敗（PLAN-L7-428。10.7）は、P1-C3（配線と実行の証拠）の根拠である。段階ごとに外したgateと置き換えた検査器を成立条件として持つ形は、旧HELIXに見つからない新規案である。検索の範囲は`archive/legacy-generation-2026-09-14/root/`の全ファイル（`grep -rIl`、読取りだけ）で、`staged autonomy`、`autonomy level`、`自律レベル`、`段階的自律`はいずれも0件だった。
+
+### 12.5 人の判断が要る点
+
+列挙だけであり、本書は新しい承認手続きを作らない。
+
+1. Phase 1の条件を誰がいつ確かめるか（判断3「別に確認する」）。
+2. 数値：`Phase1Scope`の開始revisionと対象PRの数、`in_scope`の割合、固定後に加わったMajorの件数の下限。
+3. 条件がそろった後に、L3／L10の承認の手順（委任の条件、POの事後確認）を変えるか。
+4. v0.1の成立の宣言と、内部デプロイ（内部デプロイの判断記録の方針1）。
+5. advisoryの検査（`boundary_removed`）の扱い。
+
+### 12.6 未決と試作で確かめること
+
+- 試作：仮組みの5検査とコーパスで、P1-C1〜C4を`Phase1Status`として計算し、L9のIV-G8-01〜07とIV-P1-01〜06を動かす。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
