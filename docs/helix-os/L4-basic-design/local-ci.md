@@ -69,7 +69,7 @@ Stage 1 CI実装・起動を解禁する別判断は`docs/governance/decisions/s
 
 実装時の固定design corpusは、mainのCommon Kernel設計6文書（`docs/helix-harness/L4-basic-design/{common-kernel.md,repository-layout.md}`、`docs/helix-harness/L5-detail-design/common-kernel.md`、`docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`、`docs/helix-harness/L9-integration-verification/{common-kernel-integration-verification.md,repository-layout-integration-verification.md}`）と、今回3つのV-pair PRでmainへ統合されるlocal-CI設計6文書である。12件すべてがcurrent target treeに揃うまでは`LC-DESIGN-001`をsuccessにしない。広いrepo本文をregexだけで走査して意味被覆を主張しない。scfctl/govcheckは各ツールの全既定scopeを検査し、diffcheckは指定base/head間の全差分を検査する。
 
-現行driverの実装同期は未完了であり、現在は10文書・185 source・585 edge・旧pin 7件のmanifestだけを検査する。この中間状態の`LC-DESIGN-001` successおよび`structure_complete=true`は、その10文書manifestの構造照合結果に限られ、本節の12文書corpus契約の充足・構造完全性を示さない。後続の実装PRでCommon Kernel L5/L8、独立164 verifier inventory、共有row resolver、187 source・749 edge・旧pin 15件へcheckerとmanifestを同期し、追加正常・負例の単体検証とexact target CIを行うまで、12文書契約は未充足として扱う。
+driverとmanifestの同期対象は、上記12文書、Common Kernel L5/L8の独立164 verifier inventory、共有raw definition row resolver、187 source・749 edge・旧pin 15件である。`LC-DESIGN-001` successと`structure_complete=true`は、この固定inventoryと明示されたnon-pass dispositionの構造照合に限る。過去の10文書manifestのsuccessを12文書契約の充足へ読み替えない。同期の検証結果は、追加正常・負例の単体検証と対象exact HEADのCI証拠としてPRごとに固定し、本文の存在だけから実装同期・実行合格を生成しない。
 
 ### 2.2 参照manifestとreader
 

@@ -35,17 +35,17 @@ HARNESS Stage 1 PO decisionはHARNESS L3/L10の本文revision `a77672513325aa9e7
 | L8 case | L9 oracle | L5 API / L4 contract | trace parent | Fixtureと単一変異、期待 |
 |---|---|---|---|---|
 | `L8-K1-01-N` | IV-K1-01 | `combine`, `admit`; K1-I1/I2 | AC-HARNESS-L3-030-02、CONNECT-AC-002-01/006-02 | CONNECT compatibleとHARNESS passをそれぞれowner polarityで与える。`Admitted`, `verdict=Positive`。 |
-| `L8-K1-01-U` | IV-K1-01 | 同上 | 同上 | 基準のCONNECT component一つだけを`Unknown(incomparable)`へ替える。`Undetermined`、`Withheld`にそのindex/class/reason。 |
-| `L8-K1-01-S` | IV-K1-01 | 同上 | 同上 | 基準の同一componentだけを`Stale`へ替える。`Undetermined`、`Withheld`にそのindex/class/reason。 |
-| `L8-K1-01-UNOBSERVED` | IV-K1-01 | 同上 | 同上 | 基準の同一componentだけを`Unobserved(not_selected)`へ替える。`Undetermined`、`Withheld`にそのindex/class/reason。 |
+| `L8-K1-01-U` | IV-K1-01 | `combine`, `admit`; K1-I1/I2 | 同上 | 基準のCONNECT component一つだけを`Unknown(incomparable)`へ替える。`Undetermined`、`Withheld`にそのindex/class/reason。 |
+| `L8-K1-01-S` | IV-K1-01 | `combine`, `admit`; K1-I1/I2 | 同上 | 基準の同一componentだけを`Stale`へ替える。`Undetermined`、`Withheld`にそのindex/class/reason。 |
+| `L8-K1-01-UNOBSERVED` | IV-K1-01 | `combine`, `admit`; K1-I1/I2 | 同上 | 基準の同一componentだけを`Unobserved(not_selected)`へ替える。`Undetermined`、`Withheld`にそのindex/class/reason。 |
 | `L8-K1-02` | IV-K1-02 | `combine`, `admit`; K1-I3 | AC-HARNESS-L3-030-02、CONNECT-AC-002-01 | L9の2成分を固定し、`Negative`、両componentを順序保持、negative/non-value indexと2 reasonsを全て返す。期待は相互作用oracleで、片方を単独に削らない。 |
-| `L8-K1-03` | IV-K1-03 | 同上 | AC-HARNESS-L3-032-02/03、LABO-001-AC-02 | L9のValue+Unknown+Unobserved+Stale基準で全non-valueを保持し`Undetermined`。各classのindex/reasonを検査する。 |
+| `L8-K1-03` | IV-K1-03 | `combine`, `admit`; K1-I3 | AC-HARNESS-L3-032-02/03、LABO-001-AC-02 | L9のValue+Unknown+Unobserved+Stale基準で全non-valueを保持し`Undetermined`。各classのindex/reasonを検査する。 |
 | `L8-K1-04-P` | IV-K1-04 | `combine`, `admit`; K1-I2/I3 | AC-HARNESS-L3-022-02、SECURITY-AC-001-01 | 3 positive valueで`Admitted`。 |
-| `L8-K1-04-N` | IV-K1-04 | 同上 | 同上 | 基準の2成分目のValueだけをpositiveからnegativeに替える。`Negative`、1件のnonempty reason。 |
+| `L8-K1-04-N` | IV-K1-04 | `combine`, `admit`; K1-I2/I3 | 同上 | 基準の2成分目のValueだけをpositiveからnegativeに替える。`Negative`、1件のnonempty reason。 |
 | `L8-K1-05` | IV-K1-05 | owner/caller mapping resolution → `combine`; polarity ownership | CONNECT-AC-002-01、AC-HARNESS-L3-022-02 | 正常: owner/callerは各値型のmappingを解決してObservedを`combine`へ渡す。変異: 対象値型のmappingだけ解決不能にし、owner/callerが元のValueを渡さず、同Valueの完全keyを持つ既存`Unknown(missing_input)`を作って`combine`へ渡す。Combinedはその位置をnon-value indexに含め`Undetermined`。kernel内のdomain語推測は不合格。 |
 | `L8-K1-06a` | IV-K1-06 | `combine`, `admit`; K1-I4 | AC-HARNESS-L3-032-03、LABO-001-AC-02 | 基準は1 positive required component。変異はcomponent listを空にするだけ。`Undetermined`, `set_reason=Unknown(missing_input)`, whole reason 1件。 |
-| `L8-K1-06b` | IV-K1-06 | 同上 | 同上 | 基準から全成分をvalid NotApplicable 1件だけに置換。判定成分0として同じ期待。 |
-| `L8-K1-06c` | IV-K1-06 | 同上 | 同上 | 基準から全成分をvalid NotApplicable 3件だけに置換。判定成分0として同じ期待。 |
+| `L8-K1-06b` | IV-K1-06 | `combine`, `admit`; K1-I4 | 同上 | 基準から全成分をvalid NotApplicable 1件だけに置換。判定成分0として同じ期待。 |
+| `L8-K1-06c` | IV-K1-06 | `combine`, `admit`; K1-I4 | 同上 | 基準から全成分をvalid NotApplicable 3件だけに置換。判定成分0として同じ期待。 |
 | `L8-K1-07-REASON/AUTHORITY/REENTRY` | IV-K1-07 | `disposition`, `combine`; K1-I5 | direct: AC-HARNESS-L3-032-02、INFRA-001-AC-01 | 3つの個別fixture: reason、authority、reentry_triggerのうち一つずつ欠落。各々`Unknown(invalid_disposition)`でnon-value。3変異を一つのfixtureへ混在させない。 |
 | `L8-K1-08-ACCEPT-COMBINE-{CLASS}` | IV-K1-08 | `combine`; K1-I6/K2-I6 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | CLASS=Value/Unknown/Unobserved/NotApplicable/Stale。各完全key付き成分をcombineが受理する5独立fixture。 |
 | `L8-K1-08-ACCEPT-RECORD-{CLASS}` | IV-K1-08 | `record`; K1-I6/K2-I6 | direct: BRAIN-008-AC-02; boundary: K2 §3.1 AC-HARNESS-L3-030-04 | CLASS=Value/Unknown/Unobserved/NotApplicable。各完全keyとresultをrecordが受理する4独立fixture。 |
@@ -69,6 +69,7 @@ HARNESS Stage 1 PO decisionはHARNESS L3/L10の本文revision `a77672513325aa9e7
 | `L8-K1-13-KEY-{FIELD}` | IV-K1-13 | `admit`; K1-I6 | 同上 | `{FIELD}`はIV-K1-12と同じ13 fieldへ展開する。各fixtureでcomponent keyの指定field一つだけを欠かせ、`Rejected(missing_key)`を返す。`Admitted`/通常Withheldへ変換しない。 |
 
 K1逆trace: L5 K1-I1–I8の各API clauseは上表のL9 IDで検証される。L9 IV-K1-01–13はこの節のcaseへ一つ以上戻り、各caseは上記direct L3 parent ACとL4 §2 crosswalkを介して要求意味に戻る。boundary linkはK2 key contractへの接続であり、K1の別親要求ではない。
+
 
 ## 4. K2 fixtures
 

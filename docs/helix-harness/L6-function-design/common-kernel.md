@@ -17,7 +17,7 @@ base: `main` at `7d48e458fcff7e03df18abc4f768981410685cf7`
 | L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md`, content SHA-256 `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) | K1 §2.1–2.6, K2 §3.1–3.5 |
 | L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, content SHA-256 `046d42e6a91e888f14b56805677185ce3452b3d0472b871fb7d3a7bfbd48b079` (本PRのcontent HEAD) | K1/K2 public types, signatures, owner boundary, old-source crosswalk |
 | L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b` (main `7d48e458fcff7e03df18abc4f768981410685cf7`) | IV-K1-01–13; IV-K2-01–21d; design oracle, not run here |
-| L5/L8 pair | L8 `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`, content SHA-256 `0ea7ef941bae72df3cf21a0ba1b29ddc8f394192f267a2136cf9f6d88a640574` (本PRのcontent HEAD) | fixture boundaries and paired L5 ref; no fixture executed |
+| L5/L8 pair | L8 `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`, content SHA-256 `562de454d7bed21abfe9684808089ce44ea3b4090504974e152deeaba711acb7` (本PRのcontent HEAD) | fixture boundaries and paired L5 ref; no fixture executed |
 
 K1/K2はL4 §1.3の共通部品であり単一の親要求を置かない。HARNESS Stage 1の下流traceは固定されたL2-010/011/023に限る。各契約からの直接親はL4 K1 §2.1、K2 §3.1のcrosswalkに従い、契約境界上のK1-I6→K2、K2 record→K5参照は追加の親要求にしない。後続stageを含む現在文書全体のbytesをStage 1 approved inputと扱わない。
 

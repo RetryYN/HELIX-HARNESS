@@ -9,7 +9,7 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `3f407bbbc686ab90d4004e30e02fe635cd89c8074337443de3d28847cf453f07`である。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `0576e1cf79f07bd9c167a1d073603f9226a6daf9af6e659e69c27f0475a23d3c`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
