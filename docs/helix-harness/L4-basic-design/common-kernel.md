@@ -235,12 +235,13 @@ RoleBoundInputAlias(context, role, ref) = SubjectRef{
 RoleBoundInputBindingRef = SubjectRef{
   kind: ownerが定めるinput-binding kind,
   identity: ownerが定めるbinding identity,
-  revision: current binding revision,
+  revision: owner記録の版、またはcanonical_json(sorted(
+    [{alias_identity, raw_revision}, ...]))  # digestは含めない
   digest: sha256(binding bytes)  # binding objectをcanonical_jsonで符号化した全bytes
 }
 ```
 
-- `context`はownerが必要とする既存のslot／axis／side等であり、実在しない区別を追加しない。raw `ref`全体（`kind`、`identity`、`revision`、`digest`）とaliasとの対応は、ownerのcurrent canonical binding bytesへ固定する。mapping配列はalias identity順とし、同一aliasの完全一致をdedupした後の全bytesを指す`RoleBoundInputBindingRef`も独立refとしてK2 `inputs`へ含める。
+- `context`はownerが必要とする既存のslot／axis／side等であり、実在しない区別を追加しない。raw `ref`全体（`kind`、`identity`、`revision`、`digest`）とaliasとの対応は、ownerのcurrent canonical binding bytesへ固定する。binding revisionはowner記録がある場合はその版を使い、ない場合はalias identity順の`{alias_identity, raw_revision}`配列から決定的に導出する（digestを含めない）。mapping配列はalias identity順とし、同一aliasの完全一致をdedupした後の全bytesを指す`RoleBoundInputBindingRef`も独立refとしてK2 `inputs`へ含める。K8/K9の既存owner binding revisionは維持する。
 - `owner_identity_fields`はowner契約で閉じて定義し、常にroleと全aliasing context及びraw identityを含む。§16 K3は既存の`{role, identity}`、§17 K9は`{slot,role,axis,side,source_kind,source_identity}`、§18 K8は`{side,role,ref_identity}`を維持する。三機構ともalias digestは原source content digestである。
 - readerはbinding bytesを実読し、そのmappingが指す各raw refの原source bytesをalias経由で実読して`ref.digest`と照合する。bindingを読んだだけではsource実読を満たさず、caller指定のraw refからcurrent owner bindingを上書きしない。K6 read identityは10.3の期待集合（subjectとnon-verifier inputs）に厳密一致させ、raw refの別identityを追加でreadしない。各source実読は対応alias identityの観測として記録する。
 - 同じalias identity内でraw ref全体が完全一致するものだけdedupする。同一alias identityにkind／revision／digest等の異なるraw refが複数あれば、K2 `key_of`前に`Rejected(missing_key)`とする。異なるrole／side／slot等のaliasは、raw identityが同じでも一律に拒否せず、各sourceを別々に実読してownerの比較・照合へ渡す。これにより、K2のidentity重複拒否をrole間の同一性判断へ流用しない。
@@ -266,7 +267,7 @@ K2 aliasの役割分離自体は共通kernelの技術的再導出であり、旧
 - kind語彙とidentity形式は、各機構の既存L2/L3 identityに整合するL4契約で定める。共通K2は語彙を推測しない。
 - inputs全集合の宣言者は操作ownerである。K10の明示依存closureとK4の義務が参照するoracle/入力をoperation宣言へ照合する。宣言済み必須入力の欠落は鍵構成前に拒否し、未知の依存を推測で追加しない。宣言外依存の真偽まで検出できるとは保証しない。
 - 時間鮮度の閾値はK2に含めない。staleは版の不一致である。既存意味に新しい時間閾値を足す場合だけ6.2へ戻す。
-- 対のL9 IV-K2-01〜21はrevision/digest、非Valueの旧記録、鍵各field、複数記録の集約、およびrole-bound aliasのsource digest・binding・重複境界を照合する設計であり、本書で実行済みとはしない。
+- 対のL9 IV-K2-01〜21（21a〜21dを含む）はrevision/digest、非Valueの旧記録、鍵各field、複数記録の集約、およびrole-bound aliasのsource digest・binding・重複境界を照合する設計であり、本書で実行済みとはしない。
 
 ## 4. 用語の区別
 
@@ -1132,9 +1133,13 @@ AuthorityInputRef(role, ref) = RoleBoundInputAlias(context:{}, role, ref)
 # identity=canonical_json({role, identity: ref.identity}),
 # revision=ref.revision, digest=ref.digest (source content)
 AuthorityInputBindingRef = SubjectRef{kind:k3_authority_input_binding,
-  identity: canonical_json({owner: SECURITY, operation: permission_check}),
-  revision: current binding revision,
-  digest: sha256(canonical_json(alias identity順に整列・完全一致dedupした全{role, raw SubjectRef} mappings))}
+  identity: canonical_json({owner: SECURITY, operation: permission_check,
+                            query: PermissionQueryRef.identity}),
+  revision: canonical_json(sorted(alias identity順に整列した
+    [{alias_identity, raw_revision}, ...])),  # raw digestは含めない
+  digest: sha256(binding_bytes)}
+# binding_bytes = K3 owner resolverが解決したcurrent {role, raw SubjectRef}全集合の
+# mappingをcanonical_jsonで符号化したimmutable buffer。callerのbinding bytes/refは採用しない。
 HeadInputRef(role, head) = SubjectRef{kind: k3_head_observation,
   identity: canonical_json({role, segment: head.segment}),
   revision: head.seqのUTF-8 decimal表記, digest: sha256(canonical_json(head))}
@@ -1183,7 +1188,7 @@ queryの`operation_inputs`も未信頼の要求値として扱い、ownerがcurr
 - **K3-I1 全軸**：7軸の単独欠落・unknown・衝突はその軸を`Unknown(missing_input/conflict)`とし、肯定にしない。`check_permission`は各軸とsource・status・追加操作入力の成分をすべて残しK1で合成する。scopeの文字列類似、名前の類似、上位scopeから一致を推測しない。`PermissionRecord`は7軸・outcome・issuer/source・必要なoperation input・constraintを欠かさず保持する。広い既存許可を使う場合は、既存source adapterが宣言する既存policyの包含規則でrequested tupleを許可する根拠を明示し、包含が未定義・不明なら非肯定とする。
 - **K3-I2 完全な束縛と版の意味**：現在のcontextと許可記録のtarget/revision/environment/actor/operation/scope/expiryおよび`operation_inputs`をidentityごとに照合する。fresh checkで同identity・別revisionが観測された場合は、その新しいkeyのrevision比較を否定の`Value`として記録し、K1 `Stale`にしない。K1 `Stale`は以前の保存結果があり、`prior`・`recorded_key`・`current_key`で旧結果の再利用を示す場合だけで、これはK2 lookupの結果である。同revision・別digestは`Unknown(conflict)`、他の確定不一致は否定の`Value`。readから他10操作の許可を生成しない。11操作は一つずつ判定する。
 - **K3-I3 既存記録だけ**：呼出し側が選んだ過去のrecordを単独で照合して有効としない。adapterはsourceのcurrent prefix全体から、queryに適用されるcurrent effective decisionをowner/sourceの既存選択規則で解決する。`effective_decision`成分は、その一意なcurrent record refと`permission`候補refの一致、および選択規則の結果を記録する。呼出し側候補がcurrent decisionでない場合は非肯定。広いrecordの適用可能性はsource adapterの既存包含規則だけで判定する。解決結果が一意でなく複数候補が競合する、または選択/包含規則・入力が未登録なら`Unknown(conflict/unregistered/missing_input)`。該当する現在判断が存在しなければ`Unknown(missing_input)`。古いallowより後の現在effectiveなdeny/constrainがある場合、古いallowは選択されず、denyは否定、constrainは以下の条件でのみ評価する。原記録が`allow`で全照合が肯定の場合、または`constrain`の既存owner宣言の制約を実行前に強制可能な狭いcontextと全前提証拠が肯定の場合だけ`combined = Positive`になりうる。実行時の制約履行・効果観測はWorker/INFRASTRUCTUREの別のK6結果であり、使用前許可を得る前提にしない。実行後receiptが未着ならその結果だけが`Unobserved(pending_receipt)`であり、permission record不在・current decision不在は`Unknown(missing_input)`とする。request、ACK、CI green、review、K6 receipt、K3照合成功から許可記録を発行しない。有効な既決許可は再利用し、新しい人間承認を要求しない。
-- **K3-I4 使用時の再照合**：保存する結果のK2鍵は`operation = permission_check`、改訂済みK3実装のUTF-8 `operation_version`、`subject = permission`、`inputs = [PermissionQueryRef, AuthorityInputBindingRef, K3 code/config/current assignment/target declaration/environment declaration/operation declaration/AuthorityDecl/policy/source current ref/adapter/required operation input/pre_execution_constraints/time observationの各source-content AuthorityInputRef, 取消しprefixの各HeadInputRef]`、`scope = 再構成したtuple.scope`とし、操作の所有者が宣言する全集合を使う。`AuthorityInputBindingRef`のcanonical bytesは全roleとraw `SubjectRef`（kind/identity/revision/digest）のmappingを固定する。K6 readはbinding ref bytesと各AuthorityInputRefが指す原source bytesを読み、原ref digestとの一致を対応するalias identityで観測する。K6-I4のread identity集合は10.3のsubjectとnon-verifier inputsのidentity集合に厳密一致し、raw `SubjectRef` identityを追加しない。したがって同一raw identityの異revisionが別roleにある場合も、別alias identityのsource readとして保持し、余分readやK2 duplicate拒否にしない。raw `PermissionQuery`、時刻値、`SegmentHead`もK2 `inputs`へ直接入れず、それぞれcanonical `PermissionQueryRef`、role-boundな固定の時刻観測参照、`HeadInputRef`で表す。HeadInputRefは実読したheadのcanonical bytesを指し、内包するentry_digestでK5の固定prefixを照合する。各alias内では完全一致refだけdedupし、同一alias identity内の異なるraw refはkey生成前に`Rejected(missing_key)`とし、その場合K1 componentの`Unknown`も記録・合成しない。queryとその全operation input値は`PermissionQueryRef`のdigestへ含める。source-content digestとbinding inputへの変更に伴いoperation_versionを新値へ改訂し、旧versionのPositiveをlookupで再利用しない。使用時には現在の宣言、sourceのcurrent参照、時刻、取消しの全必要segmentを読み直して鍵を作る。receiptや旧結果からcurrent入力を採らない。読取不能・必要segment欠落はunknownであり「取消しなし」としない。
+- **K3-I4 使用時の再照合**：保存する結果のK2鍵は`operation = permission_check`、改訂済みK3実装のUTF-8 `operation_version`、`subject = permission`、`inputs = [PermissionQueryRef, AuthorityInputBindingRef, K3 code/config/current assignment/target declaration/environment declaration/operation declaration/AuthorityDecl/policy/source current ref/adapter/required operation input/pre_execution_constraints/time observationの各source-content AuthorityInputRef, 取消しprefixの各HeadInputRef]`、`scope = 再構成したtuple.scope`とし、操作の所有者が宣言する全集合を使う。`AuthorityInputBindingRef`のidentityは`PermissionQueryRef.identity`を含みquery単位で固定する。revisionはalias identity順に並べた`{alias_identity, raw_revision}`だけからcanonical JSONで決定しdigestを含めない。K3 owner resolverがcurrent input集合からroleとraw `SubjectRef`（kind/identity/revision/digest）の全mappingを解決してimmutable canonical bufferを生成し、そのbufferのsha256をbinding digestにする。caller提供のbinding ref/bytesを使わない。K6 readはresolverが生成した同bufferと各AuthorityInputRefが指す原source bytesを読み、原ref digestとの一致を対応するalias identityで観測する。K6-I4のread identity集合は10.3のsubjectとnon-verifier inputsのidentity集合に厳密一致し、raw `SubjectRef` identityを追加しない。したがって同一raw identityの異revisionが別roleにある場合も、別alias identityのsource readとして保持し、余分readやK2 duplicate拒否にしない。raw `PermissionQuery`、時刻値、`SegmentHead`もK2 `inputs`へ直接入れず、それぞれcanonical `PermissionQueryRef`、role-boundな固定の時刻観測参照、`HeadInputRef`で表す。HeadInputRefは実読したheadのcanonical bytesを指し、内包するentry_digestでK5の固定prefixを照合する。各alias内では完全一致refだけdedupし、同一alias identity内の異なるraw refはkey生成前に`Rejected(missing_key)`とし、その場合K1 componentの`Unknown`も記録・合成しない。queryとその全operation input値は`PermissionQueryRef`のdigestへ含める。source-content digestとbinding inputへの変更に伴いoperation_versionを新値へ改訂し、旧versionのPositiveをlookupで再利用しない。使用時には現在の宣言、sourceのcurrent参照、時刻、取消しの全必要segmentを読み直して鍵を作る。receiptや旧結果からcurrent入力を採らない。読取不能・必要segment欠落はunknownであり「取消しなし」としない。
 - **K3-I5 失効**：期限切れ・revoke・確定scope driftは否定、expiryや取消し状態の不明は非`Value`とする。G5の伝播完了は新しい許可でなく、K7-I6のfencingも引き続き必要。再開には旧記録の書換えでなく、新しい有効なcurrent許可記録の参照と全照合を要する。停止は該当operation/risk scopeに限り、無関係な一般文書の意味unknownで全操作を止めない。
 - **K3-I6 段階の分離**：request、SECURITY判断、OS assignment、Worker適用の各参照を対応付け、tupleの連続性を照合する。SECURITYは許可判断と制約、OSはassignment/進行、Workerは制約の実適用、INFRASTRUCTUREは物理観測を持つ。許可の肯定は適用完了・成果の成功ではない。
 - **K3-I7 操作入力**：`AuthorityDecl.required_inputs`が既存policyから宣言する当該操作の入力集合を完全一致で照合する。credentialのpurposeやegressのdata classification・source/destination等は別成分とし、tuple一致で代用しない。入力集合の完全性を確認できなければ`Unknown(missing_input/unregistered)`。旧impact/risk要約、旧sink enum、Webの1.x sink enforcementを全操作の新必須条件にしない。
