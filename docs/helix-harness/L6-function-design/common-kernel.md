@@ -1,13 +1,13 @@
-# HELIX-HARNESS 共通カーネル L6関数設計（K1/K2）
+# HELIX-HARNESS 共通カーネル L6関数設計（K1/K2/K3）
 
 status: draft
 owner: HELIX-HARNESS
-scope: K1/K2 only
+scope: K1/K2/K3
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `33bbe8cd5f080be9e400e9259db22645bc620eda`
+base: `main` at `6727d7a10171940fcdb85ae9473f21d0a694c27f`
 
-本書は現行Common Kernel L4 K1/K2の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記すが、実装や実行結果は含まない。K3–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
+本書は現行Common Kernel L4 K1/K2/K3の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記すが、実装や実行結果は含まない。K4–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
 
 ## 1. 入力revisionと適用範囲
 
@@ -19,7 +19,7 @@ base: `main` at `33bbe8cd5f080be9e400e9259db22645bc620eda`
 | L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (main `b6463f2b9baa7df72703758f4e02afff9cbfac78`の対象本文) | K1/K2 public types, signatures, owner boundary, old-source crosswalk |
 | L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) | IV-K1-01–13; IV-K2-01–21d; design oracle, not run here |
 
-K1/K2はL4 §1.3の共通部品であり単一の親要求を置かない。HARNESS Stage 1の下流traceは固定されたL2-010/011/023に限る。各契約からの直接親はL4 K1 §2.1、K2 §3.1のcrosswalkに従い、契約境界上のK1-I6→K2、K2 record→K5参照は追加の親要求にしない。後続stageを含む現在文書全体のbytesをStage 1 approved inputと扱わない。
+K1/K2はL4 §1.3の共通部品、K3の直接親はL4 §16.1のcrosswalkであり、単一のまとめ親を置かない。HARNESS Stage 1の下流traceは固定されたL2-010/011/023に限る。各契約の親は対応するL4 crosswalkに従い、契約境界上のK1-I6→K2、K2 record→K5、K3→K5/K6/K7参照は追加の親要求にしない。後続stageを含む現在文書全体のbytesをStage 1 approved inputと扱わない。
 
 旧sourceは再構築原則に従って先に読んだ。旧measurement evaluator、canonical digest、result idempotencyの限定的隣接要素を下記§7に対応づける。旧source/test/runtime/CLI/CIは一切実行していない。旧fixtureの歴史的passは新しい実行根拠ではない。
 
@@ -177,7 +177,7 @@ Python 3.11+の標準`json` optionは一次仕様に記載される（[Python 3.
 
 K2 `key_of`はL5の専用`KeyOfResult`を返し、L4 §3.4が定める`missing_key`→`invalid_digest`→`duplicate_identity`の検査順を実装候補へ展開する。これらはK2 API境界の拒否であり、K1 `ApiBoundaryResult<T>`、`UnknownReason`、`record`の返却unionへ追加しない。役割内aliasの異なるraw refはL4 §3.4.1どおり`key_of`前に`Rejected(missing_key)`とする。
 
-K3–K10は本書で`not_designed`。既存契約とoracleはCommon Kernel L4 §4–11、追加所有者節§14 (K10)、§15 (K7)、§16 (K3)、§17 (K9)、§18 (K8)、ならびにPair L9の対応IVを参照する。本書ではそれらの型やalgorithmを再記述しない。K1/K2からK5/K6へ渡す境界は上記§3.2だけであり、K5 physical writer実装、K6 verifier runner、K3/K8/K9個別authority semanticsを追加しない。
+K3は§12で詳細化する。K4–K10は本書で`not_designed`。既存契約とoracleはCommon Kernel L4 §4–11、追加所有者節§14 (K10)、§15 (K7)、§17 (K9)、§18 (K8)、ならびにPair L9の対応IVを参照する。本書ではK4–K10の型やalgorithmを再記述しない。K1/K2からK5/K6へ渡す境界は§3.2、K3のK5/K6/K7境界は§12だけであり、physical writer、production verifier/reader、未定義owner責務を追加しない。
 
 ## 7. 旧HELIX source・保持点・差分理由
 
@@ -211,7 +211,7 @@ K3–K10は本書で`not_designed`。既存契約とoracleはCommon Kernel L4 §
 
 ## 9. Unit packageと登録の接続点
 
-K1/K2は一つのHARNESS-owned unitとして配置する候補であり、L6は既存L5 declaration項目を埋める追加関数や新しいschema fieldを定義しない。候補pathは`helix/helix-harness/units/common-kernel/`、identity/version/maturity/owner候補はL5 §7.1の`common-kernel` / `0.1.0` / `development` / `core: HELIX-HARNESS-CORE`である。`src/`はpure K1/K2、`tests/`はL7 suite、`fixtures/`は合成入力だけとし、K3–K10、K5 physical writer、K6 production readerは含めない。unit declarationの唯一のsource of truthと登録の解釈はrepository-layout RL-C1–7およびCK L4 §15.4/15.5に従う。
+K1/K2は一つのHARNESS-owned unitとして配置する候補であり、L6は既存L5 declaration項目を埋める追加関数や新しいschema fieldを定義しない。候補pathは`helix/helix-harness/units/common-kernel/`、identity/version/maturity/owner候補はL5 §7.1の`common-kernel` / `0.1.0` / `development` / `core: HELIX-HARNESS-CORE`である。`src/`はpure K1/K2、`tests/`はL7 suite、`fixtures/`は合成入力だけとし、K3–K10の実装、K5 physical writer、K6 production readerは含めない。K3の関数fixture草稿は§12にtraceするが、L5 declarationの配置・登録scopeやunit identityを変更しない。unit declarationの唯一のsource of truthと登録の解釈はrepository-layout RL-C1–7およびCK L4 §15.4/15.5に従う。
 
 CPython 3.11+標準ライブラリ（`json`, `hashlib`, `dataclasses`, `enum`, `typing`）はL5/L6の実装候補、`unittest`はL7のrunner候補である。依存欄には登録済みHELIX pack依存を偽装して追加せず、標準library名を独立packageとして列挙しない。現declaration schemaにtoolchain専用fieldやroot設定を増やさない。pack dependencyが後に要る場合は、既存declared dependency type/identity/version欄の範囲で明示される。
 
@@ -224,3 +224,71 @@ L4 K1-I6で呼出し元へ返すK1拒否を、ここでは`ApiBoundaryResult[T] 
 ## 11. 検証状態
 
 本書は設計草稿である。L9 oracleは未実行。L6実装、unit test、serializer runtime、旧source/test/runtime、filesystem writerは実行していない。K5 append-order preconditionとK6 raw read behaviorは、後続の詳細設計およびL7 stubの境界としてのみ記述した。
+
+
+## 12. K3関数設計
+
+本節はL4 §16の既存K3 API・不変条件を、L5/L8草稿d0687aae6の関数責務へ下ろす技術草稿である。L4/L9の意味、K3 `PermissionCheck` union、owner責務、K1/K2契約を変更しない。L5/L8の節locator・本文hashはK3/K5統合workerがL5 §6.1へ再配置中のため暫定固定であり、Root統合時に実bytesから同期する。
+
+| 参照元 | 本文SHA-256 / revision | 対象範囲とpin状態 |
+|---|---|---|
+| Common Kernel L4 | `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b`, main `6727d7a10171940fcdb85ae9473f21d0a694c27f` | §16.1–16.6、固定上流契約 |
+| Common Kernel L9 | `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`, main `6727d7a10171940fcdb85ae9473f21d0a694c27f` | IV-K3-01–17、IV-K3-14a–j、oracle未実行 |
+| K3 L5 detail draft | `750d1dabab23d15a52d612721ac422c739a1555e890082c2c9ca7265368ff783`, draft commit `d0687aae6ee339a3b5d47bac520f9cd26f8e8d78` | §6.1–6.4 locator暫定。統合時に再配置後の同一本文から再pin |
+| K3 L8 verification draft | `295d65795ad41ea1ca91b4c52a9bdaaa207e951a6085f305d66db3ded7801bb1`, draft commit `d0687aae6ee339a3b5d47bac520f9cd26f8e8d78` | §5と一意展開一覧locator暫定。統合時に同一IDの本文から再pin |
+
+L4 §16.2の`PermissionQuery`、`PermissionQueryRef`、`OperationAuthorityTuple`、`AuthorityInputRef`、`AuthorityInputBindingRef`、`HeadInputRef`、`PermissionCheckResult`、`PermissionCheckDiagnostic`、`PermissionCheck`をその型のまま使う。公開APIは既存の`resolve_authority_context(query, input_heads)`と`check_permission(query, permission, input_heads)`の二つだけである。入力の`PermissionQuery`、`PermissionRecord`、`Digest`およびowner参照はL4のtyped input前提を満たすものとする。runtime shape validator、shape不正のreturn class、追加reasonは定義しない。
+
+K3関数候補と責務境界は次のとおり。IDはL6 trace用で、新しい公開APIではない。
+
+| ID | 関数 / 可視性 | 責務と境界 | L4 invariant / L9 trace |
+|---|---|---|---|
+| `CK-K3-FN-01` | `derive_permission_query_ref` / private | typed `PermissionQuery`からL4式どおりidentity/revision/digestを決定的に導く。caller提供refで上書きしない。 | K3-I4; IV-K3-03/14f–h |
+| `CK-K3-FN-02` | `resolve_owner_mapping` / SECURITY等owner resolver境界 | owner current declarationsから全role-bound raw refsを解決し、完全mapping bytes・binding ref・source-content aliasesを得る。caller mappingはauthorityにしない。同一alias内の完全一致だけdedupし、同一alias異refはL4 `docs/helix-harness/L4-basic-design/common-kernel.md:251–252`で定めるとおりK2 `key_of`前に既存`Rejected(missing_key)`として返す。 | K3-I4/I6; IV-K3-14/14a–j |
+| `CK-K3-FN-03` | `construct_k3_key_inputs` / 内部合成 | query ref、binding ref、各namespaceのrole alias、current `HeadInputRef`、L4で列挙するoperation/code/config/declaration/source/adapter refsをowner宣言集合から組み立てる。role/kindを混同せず、raw refsを重複投入しない。K2 `key_of`専用拒否をK3 Diagnosticへ写す規則は未定義のまま保つ。 | K3-I4; IV-K3-03/14/15/16 |
+| `CK-K3-FN-04` | current context再構成 / K5内部境界 | OS assignment、target relation、INFRA environment、operation/SECURITY declarations、time observation、revocation headsをcurrent owner prefixから再構成する。K5 `current_head/read/restore`はstub境界で、caller `input_heads`は期待値照合だけに用いる。 | K3-I1/I4/I5/I6; IV-K3-01/08/09/15/16 |
+| `CK-K3-FN-05` | `resolve_current_effective_decision` / SECURITY source adapter境界 | registered source adapterの既存selection ruleとcurrent prefixを使う。selector/tie-break/expiry/signature policyを新設せず、adapterが返した既存`Observed`を保つ。 | K3-I3/I4; IV-K3-04/05/06 |
+| `CK-K3-FN-06` | `compare_tuple_axes` / private pure comparison | actor/target/operation/revision/environment/explicit scope/expiryの7軸を独立に比較し全componentを保持する。 | K3-I1/I2/I6; IV-K3-01/02/09 |
+| `CK-K3-FN-07` | `compare_required_operation_inputs` / private pure comparison | operation ownerが宣言したrequired-input identity集合とref値を完全比較する。owner declarationを生成しない。 | K3-I7; IV-K3-10 |
+| `CK-K3-FN-08` | expiry/revocation/source precondition composition / private | current owner observationsから確定deny・expiry・revocationや既存欠落/不明を各L4 componentとして構成し、既存意味を保つ。時間parse/TTL/selector policyは補わない。 | K3-I3/I5; IV-K3-04–08/12 |
+| `CK-K3-FN-09` | K1 component合成 / 既存K1 API境界 | 全K3 componentとK6の既存三assurance fieldを保持して既存K1 `combine`へ渡す。Observed語彙・reasonを増やさず、empty truthもL4既定どおり保持する。 | K3-I1–I7; IV-K3-05/10/13 |
+| `CK-K3-FN-10` | `resolve_authority_context` / public | current contextを再構成し、L4既存resolution/diagnostic unionを返す。保存・write effectなし。 | K3-I1/I4/I6; IV-K3-01/08/09/15/16 |
+| `CK-K3-FN-11` | `check_permission` / public | context、candidate、current decision、7軸、required inputs、expiry/revocation、K6 assuranceを再照合しread-only `PermissionCheck`を返す。 | K3-I1–I7; IV-K3-01–13 |
+| `CK-K3-FN-12` | K2 lookup / K5-K6-K7受け渡し / stub境界 | 既存consumerが保存結果を照会する場合に限り、fresh current keyと完全K5 restore列をK2 lookupへ渡す。K6へbinding bytes/raw aliasesを渡し、K7 consumerへresultを渡す境界も含む。新規lookup callerや保存ownerは作らず、L7のstubは実reader、writer、action、recoveryを実行しない。 | K3-I4/I5/I6; IV-K3-03/11/12/14/15/16/17 |
+
+### 12.1 invariantとoracleの対応
+
+| L4契約 | L6 function trace | L9 oracle |
+|---|---|---|
+| K3-I1/I2: 7軸と11 operationの分離、欠落/Unknown/確定不一致、全component保持 | FN-04/FN-06/FN-09/FN-10/FN-11 | IV-K3-01/02/09/13 |
+| K3-I3: 既存current decisionのみ、source ownerの既存制約 | FN-05/FN-08/FN-11 | IV-K3-04/05/06 |
+| K3-I4: 使用時current照合、完全K2 key、alias bindingとK6 read | FN-01/FN-02/FN-03/FN-12 | IV-K3-03/14/14a–j/15/16 |
+| K3-I5: expiry/revocation/scope driftを含む使用時再確認 | FN-04/FN-08/FN-11/FN-12 | IV-K3-07/08/12 |
+| K3-I6: request→decision→assignment→effective scopeのowner境界 | FN-04/FN-10/FN-11/FN-12 | IV-K3-09/11/12/17 |
+| K3-I7: required operation inputのexact identity/value | FN-07/FN-09/FN-11 | IV-K3-10 |
+
+### 12.2 rejection境界・未決
+
+K3 APIの既存diagnostic reasonは`missing_key | invalid_query`であり、`invalid_query` predicateはL4で定義されていない。したがってtyped query/refを受ける前提のままとし、`invalid_query`を発火させるvalidator/fixtureを作らない。L4で列挙された不一致、owner observation、K1 componentはそれぞれ既存のValue/Unknown/Unobservedとして扱い、新しいreasonへまとめない。
+
+K2 `key_of`の`invalid_digest`と`duplicate_identity`はK2専用`KeyOfResult`拒否である。正しいkind/role namespace、binding mapping、alias dedup、query/head refsの構成により、型付き正常経路から重複identityを作らない。異常なK2専用拒否をK3 diagnostic、`missing_key`、K1 Unknownへ変換する規則は現L4にないため、API transportを発明せず局所未決とする。`PermissionQuery`や`Digest`のruntime shape不正を新しいreturn classへ送らない。
+
+K5 prefix/read/restore、K6の実byte読取、K7 apply/recoveryはstubまたはconsumer受け渡し境界に限る。K6 stubはL4が指定するread identityとbinding/raw byte digest関係をfixture入力として照合するだけでproduction readを証明しない。L4 §16でK3結果を永続化するowner/LogDeclが示されないため、新writerや保存責務を追加しない。selector、expiry parsing、signature verification policyも既存source adapterの宣言を越えて補わない。
+
+### 12.3 旧source・台帳・consumer・failureの起点
+
+旧sourceは全文を読み、SHAを実bytesから再計算した。各assetはlegacy disposition ledger上Historical/unresolvedで`consumer_refs`が空である。対応の保持点と差分理由を記し、旧runtime/testは起動していない。
+
+| 旧asset / source pathと行 | 全文SHA-256・ledger | K3での扱いと差分理由 |
+|---|---|---|
+| `LEGACY-ASSET-17E4FD7C3DB0B3C82210`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md:27–47,55–60` | `cb97e7594b38cfada7d4fedb948937bab9e9d8f3e7c7123eca82a7ce6e8f8eb4`; row 792, Historical/unresolved, consumer_refs空 | request/decision分離とscope/revision/actor/provenance/expiry束縛を比較起点に再導出。旧provider/memory/approval規則は導入しない。 |
+| `LEGACY-ASSET-B62E49D2E156232B8C63`; `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md:24–55,108–151` | `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`; row 482, Historical/unresolved, consumer_refs空 | typed axis/current provenance/unknown非肯定を再導出。旧8軸、physical identity、sandbox、runtime gateを現行7軸とoperation inputsへ置換した根拠を保持する。 |
+| `LEGACY-ASSET-170112AB2FA2FFDBFEE9`; `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md:全59行` | `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`; row 2842, Historical/unresolved, consumer_refs空 | negative oracleとunknown保持を現L4/L9限定で再導出。旧physical/runtime acceptanceは継承しない。閲覧のみ、実行なし。 |
+| `LEGACY-ASSET-E92D9979D003D353DB99`; `archive/legacy-generation-2026-09-14/root/tests/security-capability-broker-authority-design.test.ts:全67行` | `ff1ee8fefaf8416cafb4a706301cb7a7d4afe549f04e31c5560a1cac4d88d31e`; row 3866, Historical/unresolved, consumer_refs空 | source本文照合のstatic artifactとしてのみ参照。歴史的passやruntime proofへ使わない。 |
+| `LEGACY-ASSET-0327D0DF98618D3066FD`; `archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md:20–53,60–70` | `81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a`; row 412, Historical/unresolved, consumer_refs空 | pure read/effect境界とdrift時の非肯定を比較起点にする。K3はread-onlyなので旧write port/receiptを追加しない。 |
+
+旧PLAN-L3-62（`archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-62-security-capability-broker-authority.md`、全148行、SHA `ab38056d506369c383dab4ade8ad8de0719c273216cecdbf002ee5756196d3af`）も全文読了。計画のfailure記録は比較資料であり、独立取得していないIssue #679本文の検証済み主張へ拡張しない。旧L10/test/runtime/CLI/CIは実行していない。
+
+### 12.4 対象外と検証状態
+
+K3は関数・fixture設計草稿であり、L6/L7から実装、実source reader、expiry/signature policy、永続化writer、action、recovery、K5/K6/K7の合格を主張しない。L7 caseはK3 L8の既存178個別IDを個別UTへ写す。fixture、旧test、旧CLI/hook/runtime/CIは起動していない。K4–K10詳細はnot_designedのままである。
