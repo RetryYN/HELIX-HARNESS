@@ -78,12 +78,29 @@ positive = PolarityMapping("test.positive", "1", positive_value)
 
 
 class K2UnitTests(unittest.TestCase):
-    def test_CK_K2_UT_001_all_recorded_classes(self) -> None:
-        for fixture in ("value", ("unknown", "unreadable"), ("not_observed", "not_run"), ("n_a",)):
-            with self.subTest(fixture=fixture):
-                k = make_key()
-                stored = record_for(k, fixture)
-                self.assertEqual(lookup([stored], k), stored.result)
+    def test_CK_K2_UT_001_VALUE(self) -> None:
+        k = make_key()
+        stored = record_for(k, "value")
+        self.assertEqual(lookup([stored], k), stored.result)
+        self.assertIsInstance(lookup([stored], k), Value)
+
+    def test_CK_K2_UT_001_UNKNOWN(self) -> None:
+        k = make_key()
+        stored = record_for(k, ("unknown", "unreadable"))
+        self.assertEqual(lookup([stored], k), stored.result)
+        self.assertIsInstance(lookup([stored], k), Unknown)
+
+    def test_CK_K2_UT_001_UNOBSERVED(self) -> None:
+        k = make_key()
+        stored = record_for(k, ("not_observed", "not_run"))
+        self.assertEqual(lookup([stored], k), stored.result)
+        self.assertIsInstance(lookup([stored], k), Unobserved)
+
+    def test_CK_K2_UT_001_NOT_APPLICABLE(self) -> None:
+        k = make_key()
+        stored = record_for(k, ("n_a",))
+        self.assertEqual(lookup([stored], k), stored.result)
+        self.assertIsInstance(lookup([stored], k), NotApplicable)
 
     def test_CK_K2_UT_002_old_value_revision_and_digest_updates(self) -> None:
         positions = [
