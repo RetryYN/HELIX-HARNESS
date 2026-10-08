@@ -3,7 +3,7 @@
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
-base: main `f88c96cee71371fbf3742748a1c01afc1b9efa5d`
+base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
 本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
 

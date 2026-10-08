@@ -4,7 +4,7 @@ status: draft_for_l4_review
 owner: HELIX-HARNESS（工程の標準と検証義務の所有。2026-10-08のPO判断の判断2）
 parent_requirement: なし（一つの親要求を定めず、要素ごとに承認済みL3のACへtraceする。2026-10-08のPO判断の判断2。1.3を参照）
 paired_l9: ../L9-integration-verification/common-kernel-integration-verification.md
-base: main `f88c96cee71371fbf3742748a1c01afc1b9efa5d`
+base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
 本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）に限る。K3〜K10は末尾の「後続PRの計画」に置く。
 
