@@ -19,8 +19,8 @@ version_target: 1.0
 |---|---|
 | `docs/helix-os/L4-basic-design/local-ci.md` | `442d9934378a2ae73ab85f9b0afb3f976891e40b18fdab7088f4964f8c1f67b6` |
 | `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `1db0e653929389831ccdf04ee9c4bc15450b1642f98f8fe0a3bb3dca19feae01` |
-| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `63936d9facfb201a4d268877d643d35d4082a7493074e40cf47fd8ab77214b14` |
-| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `c4666b235bf69a029aeff5e61f5997d7582ff92a54eb6e9a614e4ad136df25b0` |
+| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `b146588e10b23519ca9d903e40cd7ab978c7de570b62ae97ebf73837c68bd3c1` |
+| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `df06c5de7e7248f40c7aa4a8aba5ec9e2c5a61fca306a66fde44d244f5b51ede` |
 
 ## 1. 関数群
 
@@ -96,6 +96,8 @@ Receipt lifecycle:
 ### `F-LCI-09a` — `load_design_manifest(snapshot) -> CiApiResult<DesignScopeManifest>`
 
 全fieldと上記型、path+role+pair+source-kind、definition/reference range selector grammarと固定literal expansion表を確認する。heading_idはfence外の見出し構造行全文literalから固定対応表の既存IDだけを展開し、略記がなくても対応表を要求する。見出し/entry欠落・空展開はUnknown(missing_input)、見出しliteral/展開ID重複はUnknown(conflict)とする。bullet_idは宣言範囲の先頭IDだけ、exact_headingはstart_heading全文literal一件だけをsection_locatorとして読む。range外tokenや未登録略記から定義を補わず、exact_heading範囲内の子見出しを追加section_locatorにしない。必須field欠落・余分field・型不正・unsupported dispositionのpass化は`Rejected(invalid_input)`、固定corpus上のID/edge欠落は`Unknown(missing_input)`、重複/曖昧定義は`Unknown(conflict)`とする。
+
+`parent_ac_coverage`もmanifest schemaで検証する。一般必須field欠落の`Rejected(invalid_input)`に対する例外として、このlist自体またはOS-020-01/03の片方のrow欠落は`Unknown(missing_input)`とする。重複またはL4 §1との不一致は`Unknown(conflict)`、passへの変更・unknown field・型不正・空理由は`Rejected(invalid_input)`である。理由比較はL4表のreason cellとのliteral一致に限り、自然言語の意味推論をしない。この専用記録はF09cのcoverage graphへ取り込まない。
 
 ### `F-LCI-09b` — `resolve_id_graph(definitions, references) -> CiApiResult<IdGraph>`
 
