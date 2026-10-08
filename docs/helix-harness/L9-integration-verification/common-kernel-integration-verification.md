@@ -1,11 +1,11 @@
-# HELIX 共通カーネル L9結合検証設計（K1・K2・K5・K6）
+# HELIX 共通カーネル L9結合検証設計（K1・K2・K5・K6・G8・Phase 1）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K5・K6と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
+本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K5・K6、G8、Phase 1の条件と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作で実行する場合は`scaffold/`に置き、Scaffold Bindingへ登録する。
 
@@ -119,6 +119,34 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-K6-13` | K6-I9：訂正の禁止 | `append` | — | receiptの記録を対象にする`Correction`は`Rejected`（K5-I8） |
 | `IV-K6-14` | 10.3：時刻を使わない | `restore`→`lookup` | — | `started`・`completed`だけが違う2つの旧revisionのreceiptがあるとき、`prior`の選択はK5-I7の順序のまま。時刻で選ぶ実装は不合格 |
 | `IV-K6-15` | K6-I10：authorityを作らない・保証の区別 | `required`の消費側 | — | (1)`Positive`の`RequiredResult`から、承認、merge可、受入、工程完了を出力する経路は`Rejected`。(2)`reproduction`が`Unknown(unsupported)`のA（決定的でない検証器）の成分を、`reproduction = Value`の成分と同じに扱う実装は不合格 |
+
+### G8
+
+各項目は、builderと実行物の検証器を集合に登録し、正しい`BuildReceipt`（`BuildManifest`を含む）と実行物のreceiptを用意したうえで、一つの条件だけを変える。digestを変える変異では、関係する派生digest（`FixedRef`、`result_digest`、logの連鎖）を整合させ、一般的な`FixedRef`の破損の検査で対象の検査の欠落を隠さない。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-G8-01` | G8-I1：対象の区別 | `required` | `subject`が`X`の必要な検証器のreceiptがそろえば、実行物の合成は`Positive` | (1)sourceと`X`のidentityが違い、sourceのreceiptだけがある場合、`X`の成分は`Unobserved(not_run)`。(2)同じidentityで`kind`だけが違うreceiptがある場合は`Unknown(conflict)`。`kind`を比べずに値を返す実装、sourceのreceiptを`X`の肯定として数える実装は不合格 |
+| `IV-G8-02` | G8-I2：buildの受入と鎖 | `build_chain` | 受入を通り、`BuildManifest`の項目が`X`のidentity・revision・digestと一致すれば鎖が成り立つ | (a)の反例：(1)`BuildReceipt`が無い→`Unobserved(not_run)`、(2)sourceの旧revisionのreceiptだけ→`Stale`、(2')`S`と`X`を保ったまま、`build_key`のtoolchainのrevisionだけを新しくし、旧toolchainの自己整合したreceiptを渡す→`Stale`（receiptの側から鍵を採る実装は不合格）、(3)builderが集合に無い→`Unknown(unregistered)`、(4)builderの識別を欠く→拒否。(b)の反例：(5)同じbytesで`BuildManifest`の`artifact.identity`だけを替える→`Unobserved(not_run)`、(6)同じbytesで`artifact.revision`だけを替える→`Unknown(conflict)`、(7)別artifactの、自己整合した出力`FixedRef`を`X`の項目に入れる→`Unknown(conflict)` |
+| `IV-G8-03` | G8-I3：配布物だけの差替え | `admit_artifact_bytes` | bytesの再計算が`X.digest`と一致すれば受け入れる | sourceとsourceのreceipt、`BuildReceipt`はそのままで、配布物のbytesだけを1byte変えた場合、`Unknown(conflict)`で展開・実行しない |
+| `IV-G8-04` | G8-I4：artifactの再現 | `rebuild_compare`、`reverify` | 決定的なbuilderで再buildの`X`の項目のdigestが一致すれば`artifact_reproduction = Value` | (1)再buildの`inner`は一致するが`X`のdigestだけが違う場合、K6の`reproduction`は`Value`、`artifact_reproduction`は`Unknown(conflict)`。この比較だけを落とした実装は不合格。(2)決定的でないbuilderは`Unknown(unsupported)`。いずれも`issuer_authenticity`は`Unknown(unsupported)`のまま |
+| `IV-G8-05` | G8-I5：合格は別の証拠 | `required` | — | buildの鎖とdigestの一致だけがあり、実行物の検証のreceiptが無い場合、合成は`Positive`にならない |
+| `IV-G8-06` | G8-I6：段階の構成 | 段階の記録 | 段階はpackの`ArtifactRef`の組を持つ | source tagまたはsource revisionだけで段階を表す記録は拒否される |
+| `IV-G8-07` | 11.4：toolchain | `restore`→`lookup` | — | (1)toolchainのidentityを保った新revision（旧記録が`Value`）→`Stale`、(2)同じrevisionでbytesだけ変更→`Unknown(conflict)`、(3)toolchainのidentityの追加・削除→`Unobserved(not_run)`、(4)旧記録が非`Value`→`Unobserved(not_run, superseded)`。宣言していないtoolchainの変更は検出されないことを、消費側が限界として持つ |
+
+### Phase 1
+
+各項目は、集合・`Corpus`・`Phase1Scope`を固定し、一つの条件だけを変える。他の条件は肯定に保つ。`Phase1Status`は記録を書き換えずに導く。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-P1-01` | P1-C1 | `Phase1Status` | 決定的なmemberだけの集合が固定されていれば、C1は肯定 | (1)集合が無く仮組みだけ→`Unknown(missing_input)`の成分、(2)memberが0件→C1の`set_reason`、(3)決定的でないmemberを含む→否定。いずれも`Phase1Status`は`Positive`にならない |
+| `IV-P1-02` | P1-C2 | `Phase1Status` | `in_scope`の全要素が`bad_head`で検出され`fixed_head`で検出されなければ、C2は肯定 | (1)1要素を`bad_head`で検出しない→否定、(2)1要素を`fixed_head`の同じ箇所で検出→否定、(3)1要素のreceiptが無い→`Unobserved(not_run)`、(4)理由の無い除外→`Unknown(invalid_disposition)` |
+| `IV-P1-03` | P1-C2：空と全N/A、前後の区分 | `Phase1Status` | `pre_freeze`と`post_freeze`の全成分が`{C2, partition, 要素}`として外側に出る | (1)`post_freeze`が0件で`pre_freeze`が肯定、(2)`pre_freeze`の全要素が成立した`NotApplicable`で`post_freeze`が肯定、の各場合に、C1・C3・C4が肯定でも`Phase1Status`は`Positive`にならず、外側に`{C2, 該当partition, set_reason}`の`Unknown(missing_input)`が残る。(3)`pre_freeze`の結果を`post_freeze`の検出として数える実装は不合格 |
+| `IV-P1-04` | P1-C3：実行と非Value | `phase1_wiring`→`Phase1Status` | headとbaseのdigestが異なる通常のPRで、全memberのreceiptが受け入れられ（`read`に`<pr>#head`と`<pr>#base`の両方）、登録と評価が一致すればC3は肯定 | (1)`required_for`の識別の集合が全memberと違う→`Unknown(conflict)`の成分、(2)1PRで1memberのreceiptが無い→`Unobserved(not_run)`、(3)旧headのreceiptだけ→`Stale`、(4)同じ鍵で異なるreceipt→`Unknown(conflict)`、(5)`observation_base`のhead欠落→`Unknown(missing_input)`、(6)本体の`FixedRef`が読めない→`Unknown(unreadable)`、(7)登録と評価が違う→否定、(8)`prs`が0件→C3の`set_reason`。(9)評価済みの検査が`Unknown`や違反を返しても、C3の「実行済み」は肯定のまま |
+| `IV-P1-05` | P1-C4 | `Phase1Status` | 対象外の型が列挙されていればC4は肯定 | 列挙が無ければ`Unknown(missing_input)`の成分 |
+| `IV-P1-06` | 12.2：固定入力 | `Phase1Status` | 同じ固定入力（集合・`Corpus`・`Phase1Scope`・`observation_base`）からは同じ`Phase1Status` | (1)評価の時点で`prs`を検索し直して対象を増やす実装、(2)評価の時点で`partition`を計算し直す実装は不合格。(3)`Corpus`や`Phase1Scope`の新revisionでは旧結果は`Stale` |
+| `IV-P1-07` | 12.1：authority | `Phase1Status`の消費側 | — | `Positive`の`Phase1Status`から、v0.1の成立、内部デプロイ、gateの変更を出力する経路は`Rejected` |
 
 ## 3. 判定と戻し先
 
