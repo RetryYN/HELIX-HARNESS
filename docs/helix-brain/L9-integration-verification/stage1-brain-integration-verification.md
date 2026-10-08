@@ -66,17 +66,17 @@ functional ACは007/008/028各2件、計6件である。L3 functionalの適用�
 
 固定L3 businessの007/008/028各行と固定L10 businessの各行は、独立business outcomeがないと明記する。したがってbusiness AC、KPI、画面・集計条件、別business owner gateは作らず、同じfunctional AC traceを参照する。旧HARNESS business-detailの業務値はL4 §5のとおり適用しない。
 
-固定L3 NFR候補と固定L10 NFR測定設計は§1の6本文pinに固定される。以下はその既存測定義務を測る手順であり、候補値の採択・実測合格ではない。
+固定L3 NFR候補と固定L10 NFR測定設計は§1の6本文pinに固定される。以下は固定L3の6測定項目を7個の独立oracleへ対応づけた手順であり、候補値の採択・実測合格ではない。028のaxis separation項目はlifecycle責務境界と軸入替えを分けて測る。同じ固定項目の展開であり、7番目のNFR親を追加しない。NFR oracle IDと§3のfunctional oracle参照を分離する。行番号は各親について§1で固定したL3 revisionの本文を指す。
 
-| L9 test ID | 親 | 測定用入力／独立変異 | 記録する分母と観測 | 制限 |
-|---|---|---|---|---|
-| `IV-BRAIN-001`–`010` | 007 | 8group正常fixture、各group/atomic fieldのmissing・stale・wrong revision、false promotion、LABO target欠落/不一致、owner receipt単独を個別投入。 | 各field/groupのsource trace、candidate維持、accepted/mature誤遷移、LABO/OS/BRAIN/adoption state。coverage 8/8・false promotion 0は測定候補。 | source identity/revisionは一group内の二つのatomic field。実績件数/verifier人数や新しいpromotion thresholdを加えない。 |
-| `IV-BRAIN-001`–`010` | 007 | L10 NFRのfalse-promotion fixtureとしてAI生成のみ、成功一件のみ、counterexample/limitation欠落、LABO target mismatch、LABO/OS/BRAIN owner record単独を個別投入。 | 誤昇格とowner state代用を各変異別に記録し、欠落fieldとLABO target問題を区別する。 | 未実行の測定候補。新しいthresholdは加えない。 |
-| `IV-BRAIN-011`–`019` | 008 | 5 state、Core R pin後のR superseded/R2追加、R→R2返却、同revision内容書換えを個別投入。 | 各state識別、既存Core exact R、OS use履歴の保持、silent replacementの変異別結果とowner戻し。 | 遷移順、保存期間、semver grammarや追加stateを決めない。 |
-| `IV-BRAIN-011`–`019` | 008 | unknown identity/revision/state/conflict、actual version欠落、version_targetのactual代用を個別投入。 | currentへの暗黙解決なし、candidate use停止、BRAIN知識stateとOS project-useのwrite-backなし。 | 未知値を除外せず、未測定を成功扱いしない。 |
-| `IV-BRAIN-020`–`027` | 028 | descriptor/knowledge fieldを独立変異し、range内/外/欠落/解釈不能、actual versionとversion_targetを個別投入。 | 全fieldの一致/不一致、該当axis、適用可否/Unknown、BRAIN/HARNESS戻し先。誤受理0は技術候補。 | range grammar/comparator未定義の枝はUnknown/未評価とし、実測合格に数えない。fixture値は製品値でない。 |
-| `IV-BRAIN-020`–`027` | 028 | common exchange/update/rollback/unfinished-obligation義務をBRAINへ移す変異を個別投入。 | 共通lifecycle義務をHARNESSへ返し、BRAINで受理/再定義しないことを観測。 | BRAIN専用NFRを追加しない。 |
-| `IV-BRAIN-020`–`027` | 028 | identity、contract/artifact/dependency/knowledge version、knowledge revisionの各軸を入替える。 | 変異ごとの誤受理と該当field/戻し先を記録する。 | version構文や実測値を決めない。 |
+| L9 NFR oracle ID | 親・固定L3測定項目 | functional oracle参照 | 測定用入力／独立変異 | 記録する分母と観測 | 制限 |
+|---|---|---|---|---|---|
+| `IV-BRAIN-NFR-007-01` | 007 / `required provenance group coverage`（固定L3 `nfr-grade.md:9`） | `IV-BRAIN-001`–`010` | 8group正常fixture、各group/atomic fieldのmissing・stale・wrong revision、false promotion、LABO target欠落/不一致、owner receipt単独を個別投入。 | 各field/groupのsource trace、candidate維持、accepted/mature誤遷移、LABO/OS/BRAIN/adoption state。coverage 8/8・false promotion 0は測定候補。 | source identity/revisionは一group内の二つのatomic field。実績件数/verifier人数や新しいpromotion thresholdを加えない。 |
+| `IV-BRAIN-NFR-007-02` | 007 / `false promotion`（固定L3 `nfr-grade.md:10`） | `IV-BRAIN-001`–`010` | L10 NFRのfalse-promotion fixtureとしてAI生成のみ、成功一件のみ、counterexample/limitation欠落、LABO target mismatch、LABO/OS/BRAIN owner record単独を個別投入。 | 誤昇格とowner state代用を各変異別に記録し、欠落fieldとLABO target問題を区別する。 | 未実行の測定候補。新しいthresholdは加えない。 |
+| `IV-BRAIN-NFR-008-01` | 008 / `named state distinction and pin stability`（固定L3 `nfr-grade.md:11`） | `IV-BRAIN-011`–`019` | 5 state、Core R pin後のR superseded/R2追加、R→R2返却、同revision内容書換えを個別投入。 | 各state識別、既存Core exact R、OS use履歴の保持、silent replacementの変異別結果とowner戻し。 | 遷移順、保存期間、semver grammarや追加stateを決めない。 |
+| `IV-BRAIN-NFR-008-02` | 008 / `unknown handling`（固定L3 `nfr-grade.md:12`） | `IV-BRAIN-011`–`019` | unknown identity/revision/state/conflict、actual version欠落、version_targetのactual代用を個別投入。 | currentへの暗黙解決なし、candidate use停止、BRAIN知識stateとOS project-useのwrite-backなし。 | 未知値を除外せず、未測定を成功扱いしない。 |
+| `IV-BRAIN-NFR-028-01` | 028 / `declared compatibility match`（固定L3 `nfr-grade.md:13`） | `IV-BRAIN-020`–`027` | descriptor/knowledge fieldを独立変異し、range内/外/欠落/解釈不能、actual versionとversion_targetを個別投入。 | 全fieldの一致/不一致、該当axis、適用可否/Unknown、BRAIN/HARNESS戻し先。誤受理0は技術候補。 | range grammar/comparator未定義の枝はUnknown/未評価とし、実測合格に数えない。fixture値は製品値でない。 |
+| `IV-BRAIN-NFR-028-02` | 028 / `descriptor/knowledge axis separation`（固定L3 `nfr-grade.md:14`） | `IV-BRAIN-020`–`027` | common exchange/update/rollback/unfinished-obligation義務をBRAINへ移す変異を個別投入。 | 共通lifecycle義務をHARNESSへ返し、BRAINで受理/再定義しないことを観測。 | BRAIN専用NFRを追加しない。 |
+| `IV-BRAIN-NFR-028-03` | 028 / `descriptor/knowledge axis separation`（固定L3 `nfr-grade.md:14`） | `IV-BRAIN-020`–`027` | identity、contract/artifact/dependency/knowledge version、knowledge revisionの各軸を入替える。 | 変異ごとの誤受理と該当field/戻し先を記録する。 | version構文や実測値を決めない。 |
 
 分母、valid/failed/missing/censored、未測定、fixture不足を区別し、missingや未選択を成功分母から消さない。候補のcoverage率・誤受理0・誤昇格0は測定候補であり、採択済SLA、承認条件、PO確認要求ではない。固定L3の意味・範囲・ownerを変えない数値候補ごとに追加承認を作らない。
 
