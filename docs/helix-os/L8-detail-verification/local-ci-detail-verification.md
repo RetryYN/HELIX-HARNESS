@@ -68,6 +68,8 @@ version_target: 1.0
 | `CASE-L8-LCI-59` | host-side Git reader command boundary | global/system config無効、fsmonitor/hook無効、external diff/textconv無効のfixed argvとallowlisted envでclean/source probeを行う | fixed argvから`-c core.fsmonitor=false`を一つ除く | `Rejected(invalid_input)` before Git probe。任意fsmonitor commandを起動しない |
 | `CASE-L8-LCI-60` | manifest/result整合 | receiptの`design_manifest_digest`が指すbytesの独立manifest検査が`structure_complete=true`で、`LC-DESIGN-001` execution rowはsuccess | receipt bodyを変えず、独立検査結果だけを`structure_complete=false`にする | 架空のreceipt fieldを要求せず、manifest digestで解決したbytesと検査結果を照合して`Rejected(invalid_input)` before aggregate fold。`Unknown`/aggregate failへ写さない |
 
+| `CASE-L8-LCI-61` | formal target descriptor revision | 保存済みValueのtarget descriptor revision/digestがcurrent targetと完全一致 | head commit/treeは維持しbase_commitだけを別の存在するbaseへ変更する。merge_baseとcanonical descriptor revision/digestは変更後baseから再計算 | 既存K2 lookupの`Stale`。正当なbase変更を同revision異digestの`Unknown(conflict)`にしない |
+
 ## 3. GitHubのmerge単位fixture
 
 | ID | L5契約 | 正常入力 | 一点の変異 | 期待結果 |

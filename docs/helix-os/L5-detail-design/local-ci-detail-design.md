@@ -13,7 +13,7 @@ version_target: 1.0
 
 | 詳細契約ID | 範囲 | L8検証 |
 |---|---|---|
-| `D-LCI-01` | target/snapshot/clean worktree束縛 | `CASE-L8-LCI-01`〜`-03`, `-11`, `-47`〜`-49`, `-52`, `-56`, `-58`〜`-59` |
+| `D-LCI-01` | target/snapshot/clean worktree束縛 | `CASE-L8-LCI-01`〜`-03`, `-11`, `-47`〜`-49`, `-52`, `-56`, `-58`〜`-59`, `-61` |
 | `D-LCI-02` | 5-step command plan/argv/継続/timeout | `CASE-L8-LCI-04`〜`-10`, `-41`, `-50`〜`-51` |
 | `D-LCI-03` | 明示design manifest、ID/coverage関係、過去source pin | `CASE-L8-LCI-12`〜`-20`, `-53`〜`-54` |
 | `D-LCI-04` | 外部canonical receipt/privacy/aggregate/key境界 | `CASE-L8-LCI-21`〜`-28`, `-42`〜`-46`, `-57`, `-60` |
