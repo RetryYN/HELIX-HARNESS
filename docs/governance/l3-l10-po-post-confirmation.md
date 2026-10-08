@@ -34,6 +34,7 @@
 - Stage 1の直接PO判断記録は4ファイル。PO判断sourceとFable補足を分け、Opus/Fable委任経路と混ぜない。00298f79 snapshotは従来11 scopeの時点記録である。後続3 scopeを含む現行14 scopeの詳細pinsは、[final closure snapshot](audits/requirements-stage/l3-final-admission-closure-2026-10-08-911b896f.json)に固定した。
 - **POの事後確認**：2026-10-08、POはmain `786ee7c85c5454e3b2314c1d8ee3ca28f5178db1` の本一覧（確認基点 `911b896f`）で、274親の委任承認を事後確認し、差し戻す対象はないとした（[PO判断記録](decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md)）。確認基点より後に承認対象が変わったrevisionは含まない。記録path、formal locator、condition3、merge commentの記載から、PO事後確認や差戻しなしを生成しない。
 - **確認基点より後の限定事後確認**：2026-10-08、POはmain `26de6254ed2f27e225e8a7f87a696d7458b409bf` 時点で、ce706後の限定修正5件・6親（#2688 OS028/029、#2692 OS025、#2694 LABO063、#2695 OS036、#2696 LABO061）の対象本文revisionについて委任承認を事後確認し、差し戻す対象はないとした（[PO判断記録](decisions/po-l3-l10-post-confirmation-post-ce706-five-prs-2026-10-08.md)）。それ以外の確認基点後の委任判断記録（#2674〜#2693による記録、#2680のOS036記録を含む）は含まない。
+- **確認基点より後の限定事後確認（17件）**：2026-10-08、POはmain `26de6254ed2f27e225e8a7f87a696d7458b409bf` 時点の判断記録で、確認基点後の限定修正17件（#2674、#2676、#2677、#2678、#2679、#2680、#2681、#2682、#2683、#2684、#2685、#2686、#2687、#2689、#2690、#2691、#2693）の対象本文revisionについて委任承認を事後確認し、差し戻す対象はないとした（[PO判断記録](decisions/po-l3-l10-post-confirmation-post-911b-seventeen-prs-2026-10-08.md)）。OS023は#2686のreview03、SECURITY009／012は#2676のreview04の記録だけを対象とし、同じPRの古い記録を含まない。OS036の#2680は#2695の先行修正として扱い、互いの確認を流用しない。
 - 本一覧はL3要件の意味完了、L10 fixture実行・合格、下流実装完了を示さない。fixtureは未実施。
 - 35後続版親と保留5／現行版不採択5は、固定1.0の274親から分け、この一覧へ加えない。
 
