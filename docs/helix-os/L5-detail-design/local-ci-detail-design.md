@@ -47,8 +47,11 @@ CiTarget = {
   repository_id: str, base_commit: GitOid, merge_base: GitOid,
   head_commit: GitOid, head_tree: GitTreeOid, worktree_clean: true
 }
+IdRange = {range_id: str, start_heading: str, end_heading: str|null,
+           grammar: heading_id|table_column, id_column: int|null}
 DesignFile = {path: RepoRelativePath, role: l4|l9|l5|l8|l6|l7,
-              source_kind: current_contract, expected_pair: RepoRelativePath}
+              source_kind: current_contract, expected_pair: RepoRelativePath,
+              definition_ranges: list[IdRange], reference_ranges: list[IdRange]}
 IdDefinition = {id: str, path: RepoRelativePath, range_id: str, definition_kind: str}
 IdReference = {id: str, path: RepoRelativePath, range_id: str, reference_kind: str}
 CoverageEdge = {source_id: str, source_path: RepoRelativePath,
@@ -60,8 +63,14 @@ CoverageDisposition = {source_id: str, state: mapped, edge_ids: list[str]} |
                        owner_ref: ContractRef, operational_owner: {state: known, ref: ContractRef}|{state: unresolved}, return_path: str}
 SourceScopeout = {source_id: str, reason: str, owner_ref: ContractRef,
                   operational_owner: {state: known, ref: ContractRef}|{state: unresolved}, return_path: str}
-DesignScopeManifest = { ..., coverage_dispositions: list[CoverageDisposition],
-                        source_scopeouts: list[SourceScopeout], ... }
+UnsupportedItem = {id: U-LCI-01|U-LCI-02|U-LCI-03|U-LCI-04,
+                   reason: str, disposition: non_pass}
+DesignScopeManifest = {version: str, files: list[DesignFile],
+                        coverage_edges: list[CoverageEdge],
+                        coverage_dispositions: list[CoverageDisposition],
+                        source_scopeouts: list[SourceScopeout],
+                        legacy_pins: list[LegacyPin],
+                        unsupported_items: list[UnsupportedItem]}
 LegacyPin = {asset_id: str, archive_path: RepoRelativePath,
              full_file_sha256: Sha256, line_start: int, line_end: int,
              span_sha256: Sha256|null}
@@ -97,11 +106,13 @@ LocalCiReceipt = {schema_version: 1, target: CiTarget, contract_ref: SubjectRef,
                    created_at: str}
 ```
 
+`IdRange`のstart headingは範囲開始を含み、end headingは範囲終了を含まない（nullは文書末尾）。headingは対象文書内で一意に解決する。table_columnのid_columnは1始まりの列番号、heading_idではnull。range_idは同一file内で一意とし、`IdDefinition`/`IdReference`はpathとrange_idの組で定義域/参照域へ戻る。これらのselectorは固定manifestのcode constantであり、任意の自由本文を意味解析しない。
+
 `CiState`は既存の六値だけを取り、receiptの`aggregate_state`にも`Unknown`等を入れない。一般fold語彙に`skipped`があることと、このlocal schemaでrequired rowをskip可能なことは別であり、required `skipped`はfold前に拒否する。入力不足・非対応・未観測・stale・不正形式はK1/K2の既存外側結果型`Observed<T>`内のclassまたは`Rejected`として診断付きで返し、successに数えない。これらとcheck実行状態を混同しない。`LocalCiPlan.state=success`は開発repo用固定5件の計画作成だけを意味し、generic OS-020 profile/義務選択やexecution結果を意味しない。planは`selection_basis`、選択集合、plan用`config_digest`、manifest digestを保持し、`LocalCiReceipt.executions`の各実行stateやaggregateとは別fieldである。required selected checkの`skipped`はこのlocal contractでは許可しないschema-invalid値で、receipt validatorは`Rejected(invalid_input)`を返す。`CheckExecution.state=skipped`は既存語彙に残るが、この5件のselected-required receipt rowには使えない。receipt validatorはaggregation前に整合を検証する。受信receiptに`LC-DESIGN-001` executionがsuccessと記録されている場合、validatorはreceiptの`design_manifest_digest`で固定targetのmanifest bytesを解決し、manifest validatorの独立した構造検査結果を照合する。これはreceipt fieldではなく検証時に導出する結果であり、その結果が`structure_complete=false`なら`Rejected(invalid_input)`とする。これを`Unknown`やaggregate `fail`へ写さず、架空のreceipt fieldを要求しない。
 
 `LocalCiReceipt.executions`は5つのrequired check IDを固定順に各一度保持する。欠落・重複・順序違い、または一つでもsuccess以外のexecutionがあればaggregate successを作らない。receipt直下の`config_digest`は`plan.config_digest`と完全一致する。`CheckExecution.reason`は中断理由のoptional fieldであり、`state=interrupted`では`timeout|cancelled`のいずれかを必須とし、それ以外のstateでは省略する。
 
-supervisor外からrun全体への中止要求を受け、起動中process treeの停止・reapを確認できた場合は、未開始の残りstepを`state=interrupted, reason=cancelled, started_at=null, finished_at=null, exit_code=null`で列挙する。開始済みprocessの停止・reapを確認できない場合は未開始stepを`denied`とし、後続を起動しない。timeout後の`interrupted(reason=timeout)`は別条件であり、process treeの停止・reap確認を要する。sandbox preflight失敗時は各required executionを`denied`で記録する。receipt構成前、targetまたは必須source refが欠けてK2 keyを作れない場合は外側`Rejected(missing_key)`、key構成後のsource read failureは`Unknown(unreadable)`、bytesを読んだ後のID/edge欠落は`Unknown(missing_input)`として、receiptを捏造しない。aggregateは実行された各stepの状態を固定優先順`stale > interrupted > denied > fail > skipped > success`で畳み、全5件が`success`の場合だけ`success`とする。all required selected stepsの`skipped`はinvalid receiptなので集約しない。全step stateと診断は個別executionに残す。
+supervisor外からrun全体への中止要求を受け、起動中process treeの停止・reapを確認できた場合は、未開始の残りstepを`state=interrupted, reason=cancelled, started_at=null, finished_at=null, exit_code=null`で列挙する。開始済みprocessの停止・reapを確認できない場合は未開始stepを`denied`とし、後続を起動しない。timeout後の`interrupted(reason=timeout)`は別条件であり、process treeの停止・reap確認を要する。sandbox preflight失敗時は各required executionを`denied`で記録する。receipt構成前、targetまたは必須source refが欠けてK2 keyを作れない場合は外側`Rejected(missing_key)`、key構成後のsource read failureは`Unknown(unreadable)`、bytesを読んだ後のID/edge欠落はsnapshot/planの構造preflightで検出し、run全体の外側`Unknown(missing_input)`として返す。この時点ではcheckerを一つも起動せず、execution行もreceiptも作らない。重複定義等の構造競合も同じpreflight境界で外側`Unknown(conflict)`とする。構造preflightが成立した後に実際の`LC-DESIGN-001` checkerが非zeroを返す場合は、他checkerと同じexecution `fail`で5行receiptを作り、外側Unknownへ置換しない。aggregateは実行された各stepの状態を固定優先順`stale > interrupted > denied > fail > skipped > success`で畳み、全5件が`success`の場合だけ`success`とする。all required selected stepsの`skipped`はinvalid receiptなので集約しない。全step stateと診断は個別executionに残す。
 
 正準形式はUTF-8 JSON、key sort、不要な空白なし、NaN/Infinityなしとし、保存ファイルの末尾だけLFとする。`receipt_digest`は保存後の`sha256(canonical_bytes(receipt))`を別渡しし、`LocalCiReceipt`のfieldにしない。source/contract/checker参照は現行CKに従うK2 `SubjectRef`/`HeadInputRef`でrevision/digestを保持する。local receiptはrepo K5 logへのappendでない外部run artifactであり、それだけでK1/K2 acceptanceにならない。
 
@@ -119,7 +130,9 @@ supervisorは各process groupの起動/終了を監視する。300秒は短い30
 
 ## 4. source readerとdesign manifest
 
-`SourceSnapshotReader`とclean probeのhost-side Git plumbingは、固定argv/configを使い`GIT_CONFIG_NOSYSTEM=1`と`GIT_CONFIG_GLOBAL=/dev/null`でglobal/system Git configを無効化し、`-c core.fsmonitor=false`と`-c core.hooksPath=/dev/null`を固定する。Git公式[core.fsmonitor仕様](https://git-scm.com/docs/git-config#Documentation/git-config.txt-corefsmonitor)は、Git 2.35.1以前ではboolean値を認識せず`false`をhook pathnameとして起動する可能性を明記する（参照日2026-10-09）。その互換性境界に合わせ、reader用Gitの技術候補は2.35.2以降とする。host-local設定から解決した同一Git executableのbytes identityを取り、reader/source probe前に`git --version`だけを実行してversionとdigestを確認する。versionを安全にparseできない、2.35.2未満、または候補identity/digestと不一致なら`Unknown(unsupported)`を返し、status/source probe、checker、hookを起動しない。unsupported環境へinstallや別Gitへのfallbackはしない。diffを実行するcommandには`--no-ext-diff --no-textconv`を固定する。readerはallowlist外のhost環境変数（`GOVCHECK_ROOT`等を含む）を継承しない。任意hook/fsmonitor/external commandを起動しない。これらのGit argv/config/environment policyとreader Git version floorはversioned checker configurationへ含める。`SourceSnapshotReader`は宣言pathのbytesを`git ls-tree -r -z <head_tree>`と`git cat-file blob <blob_oid>`で解決する。current design documentに対するsymlink/non-blob入力を拒み、check前にpath/digestを照合する。runtime codeから`docs/` filesystem pathを直接読まない。current-document manifestには既存mainのL4/L9文書4件と今回のOS pair文書6件を明示する。各identifierのdefinition rangeとreference rangeを分け、parserは任意token検索ではなく明示column/range grammarからIDを読む。
+`resolve_target`は必須head/base ref自体が入力に無い場合だけ`Rejected(missing_key)`とする。入力済みOIDが存在するcommit objectへ解決できない場合は入力境界の`Rejected(invalid_input)`として返し、初期CLIでもref解決不能の非K1診断を残す。存在するcurrent target refでkey構成後のGit読取不能は`Unknown(unreadable)`であり、未解決OIDを架空refで埋めない。
+
+`SourceSnapshotReader`とclean probeのhost-side Git plumbingは、固定argv/configを使い`GIT_CONFIG_NOSYSTEM=1`と`GIT_CONFIG_GLOBAL=/dev/null`でglobal/system Git configを無効化し、`-c core.fsmonitor=false`と`-c core.hooksPath=/dev/null`を固定する。Git公式[core.fsmonitor仕様](https://git-scm.com/docs/git-config#Documentation/git-config.txt-corefsmonitor)は、Git 2.35.1以前ではboolean値を認識せず`false`をhook pathnameとして起動する可能性を明記する（参照日2026-10-09）。その互換性境界に合わせ、reader用Gitの技術候補は2.35.2以降とする。host-local設定から解決した同一Git executableのbytes identityを取り、reader/source probe前に`git --version`だけを実行してversionとdigestを確認する。versionを安全にparseできない、2.35.2未満、または候補identity/digestと不一致なら`Unknown(unsupported)`を返し、status/source probe、checker、hookを起動しない。unsupported環境へinstallや別Gitへのfallbackはしない。diffを実行するcommandには`--no-ext-diff --no-textconv`を固定する。readerはallowlist外のhost環境変数（`GOVCHECK_ROOT`等を含む）を継承しない。任意hook/fsmonitor/external commandを起動しない。これらのGit argv/config/environment policyとreader Git version floorはversioned checker configurationへ含める。`SourceSnapshotReader`は宣言pathのbytesを`git ls-tree -r -z <head_tree>`と`git cat-file blob <blob_oid>`で解決する。current design documentに対するsymlink/non-blob入力は`Unknown(conflict)`としてsource preflightで拒み、check前にpath/digestを照合する。runtime codeから`docs/` filesystem pathを直接読まない。current-document manifestには既存mainのL4/L9文書4件と今回のOS pair文書6件を明示する。各identifierのdefinition rangeとreference rangeを分け、parserは任意token検索ではなく明示column/range grammarからIDを読む。
 
 `verify_design_manifest`は定義一意性、各参照の一意な定義への解決、定義と参照の分離、各L4 invariant/repository-layout機構契約からL9 verifierへの明示mapped/partial edgeまたは明示not_exercised disposition、各L5詳細契約からL8 case、各L6 functionからL7 unit oracleへのedge、edge先の定義域内実在を検査する。各sourceの`CoverageDisposition`は`mapped`/`partial`では設計edgeを、`partial`/`not_exercised`では理由・既存`owner_ref`・operational ownerの特定状況・return pathを明示する。設計edgeがある契約を、fixtureが未実行という理由で`not_exercised`へ変更しない。抽出機能等の設計scope外項目は`source_scopeouts`に別記し、coverage edge/dispositionや実行状態と混同しない。`RL-D4`は`IV-RL-56`/`IV-RL-57`/`IV-RL-59`への`partial`設計edgeを持ち、code-graph extraction自体をsource scopeoutとして記録する。個々のedge先IDは一意に解決すること。過去sourceは`LegacyPin`として読み、current source relationにしない。full file digestとoptional line-span digestは独立fieldである。
 

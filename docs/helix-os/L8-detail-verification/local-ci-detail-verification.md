@@ -21,7 +21,7 @@ version_target: 1.0
 
 | ID | L5契約 | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
-| `CASE-L8-LCI-01` | `resolve_target` | base/head commitとtreeが存在しclean | head OIDを不存在値へ変更 | `Rejected(missing_key)`、CI未実行 |
+| `CASE-L8-LCI-01` | `resolve_target` | base/head commitとtreeが存在しclean | 必須head refを入力から欠落させる | `Rejected(missing_key)`、CI未実行 |
 | `CASE-L8-LCI-02` | `check_clean_checkout` | index/worktree/untracked変更なし | staged fileを一つ追加 | `Stale`、check未開始 |
 | `CASE-L8-LCI-03` | target比較 | 開始/終了時のHEAD/treeが一致 | 実行中にHEADを切替 | `Stale`、既実行のstepを保持 |
 | `CASE-L8-LCI-04` | `compile_plan` | 固定5 step IDとargvが指定順にある | `LC-DESIGN-001`を削除 | `Unknown(missing_input)`、success不可 |
@@ -32,11 +32,11 @@ version_target: 1.0
 | `CASE-L8-LCI-09` | current checker ref | scfctl/govcheck refがtree bytesと一致 | govcheck bytesを変更しdigest不一致にする | `Stale`、govcheckを起動しない |
 | `CASE-L8-LCI-10` | 実行前後のchecker束縛 | 開始/終了のchecker digestが一致 | 実行後digestだけを変える | `Stale` |
 | `CASE-L8-LCI-11` | `SourceSnapshotReader` | treeから宣言blobを読む | pathをsymlinkへ置換 | `Unknown(conflict)`、link先を辿らない |
-| `CASE-L8-LCI-12` | 固定corpus | 現行main 4文書と3 pair PR統合後の今回6文書が登録済み | current doc pathを一つ欠落 | `Unknown(missing_input)`、全量検査を主張しない |
-| `CASE-L8-LCI-13` | definition parser | IDを定義domainに一度、参照domainに別記 | 参照domainだけにIDを置く | `Unknown(missing_input)`、定義を作らない |
-| `CASE-L8-LCI-14` | reference parser | referenceが一意なdefinitionへ解決 | definitionを二重化 | `Unknown(conflict)` |
-| `CASE-L8-LCI-15` | 明示coverage | L4 invariant→L9 IV edgeとfixture定義がある | verifier IDの定義行を削除 | `Unknown(missing_input)` |
-| `CASE-L8-LCI-16` | coverage意味 | L6 function→L7 oracle edgeが一意 | edge先IDを別fixtureへ差替え | `Unknown(conflict)` |
+| `CASE-L8-LCI-12` | 固定corpus | 現行main 4文書と3 pair PR統合後の今回6文書が登録済み | current doc pathを一つ欠落 | `Unknown(missing_input)`、全量検査を主張しない。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
+| `CASE-L8-LCI-13` | definition parser | IDを定義domainに一度、参照domainに別記 | 参照domainだけにIDを置く | `Unknown(missing_input)`、定義を作らない。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
+| `CASE-L8-LCI-14` | reference parser | referenceが一意なdefinitionへ解決 | definitionを二重化 | `Unknown(conflict)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
+| `CASE-L8-LCI-15` | 明示coverage | L4 invariant→L9 IV edgeとfixture定義がある | verifier IDの定義行を削除 | `Unknown(missing_input)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
+| `CASE-L8-LCI-16` | coverage意味 | L6 function→L7 oracle edgeが一意 | edge先IDを別fixtureへ差替え | `Unknown(conflict)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-17` | `U-LCI-01..04` unsupported disposition | 4件を理由付きscope外non-pass inventoryに記録 | `U-LCI-01`をpassへ変える | `Negative`。他3件も別fieldのnon-passで保持し、範囲外残余のみで固定5 stepをfailにしない |
 | `CASE-L8-LCI-18` | HistoricalPin | full-file hashと指定line-span hashを再計算 | sourceの1行だけ変えfull digestを据置 | full pin `Unknown(conflict)` |
 | `CASE-L8-LCI-19` | HistoricalPin span照合 | 指定line bytesからspan digestを再計算 | partial line spanのdigestを全体file digestへ差替え | `Unknown(conflict)`、実際のspan bytesで判定 |
@@ -59,7 +59,7 @@ version_target: 1.0
 | `CASE-L8-LCI-50` | child process timeout supervision | govcheckと`gen_rulebook.py --check` childを同じgroupで監視 | timeout後childだけを生存させる | `denied`、child停止/reap確認まで後続stepを開始しない |
 | `CASE-L8-LCI-51` | timeout完了 | checkerが300秒候補timeout前に正常終了でき、process treeの停止・reapを確認する | fixed checkerをtimeout超過まで実行させる | `state=interrupted, reason=timeout`、process tree停止/reap後に後続stepを実行しdiagnosticを保持 |
 | `CASE-L8-LCI-52` | transitive checker ref | `govcheck.py`と`gen_rulebook.py`双方のdigestがcurrent targetと一致 | child checker bytesだけ変更 | `Stale`、govcheck未起動 |
-| `CASE-L8-LCI-53` | known non-pass disposition | manifestは`RL-V1`/`RL-K3` not_exercised、`RL-D4`から`IV-RL-56`/`IV-RL-57`/`IV-RL-59`へのpartial edge、別fieldのD4 code-graph extraction scopeout、`RL-T3` partial edgeを記録 | `RL-D4`の`IV-RL-57` edgeを欠落 | `Unknown(missing_input)`、structure completeとしない |
+| `CASE-L8-LCI-53` | known non-pass disposition | manifestは`RL-V1`/`RL-K3` not_exercised、`RL-D4`から`IV-RL-56`/`IV-RL-57`/`IV-RL-59`へのpartial edge、別fieldのD4 code-graph extraction scopeout、`RL-T3` partial edgeを記録 | `RL-D4`の`IV-RL-57` edgeを欠落 | `Unknown(missing_input)`、structure completeとしない。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-54` | non-pass保持 | `RL-V1`/`RL-K3`は`not_exercised`、`RL-D4`の3件の設計edgeは`partial`で抽出scopeoutは別field、`RL-T3`はclassifier edgeだけの`partial`、U-LCI残余は別inventory | `RL-T3` dispositionだけを`pass`へ変える | `Rejected(invalid_input)`、CI構造successから契約passを生成しない |
 | `CASE-L8-LCI-55` | dispatch envelope parse | workflow開始後、JSON envelope parserが構文を読める | envelope JSON構文だけを壊す | provider diagnostic `Unknown(unreadable)`、local receipt/aggregateを生成しない |
 | `CASE-L8-LCI-56` | private snapshot write boundary | snapshot/minimal objectsはread-only、checker-writableはreceiptと分離したscratchだけ | snapshot mountだけをwritableにする | `denied`、checkerを起動しない |
