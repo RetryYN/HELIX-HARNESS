@@ -57,7 +57,7 @@ Observed<T> =
 
 ### 3.2 K1 API contract
 
-公開APIの表の返却型は通常の返却型を示す。鍵を受ける境界では、既存L4 K1-I6／K2-I6の欠落拒否を外側union `ApiBoundaryResult<T> = T | Rejected(missing_key)` として返す。`combine`、`admit`、`disposition`、`key_of`、`lookup`に適用し、`record`は既存の返却unionに同じ拒否を含む。例外や新しいresult class・reasonは追加しない。
+公開API表の返却型は通常の返却型を示す。鍵を受ける境界で、既存L4 K1-I6／K2-I6が定める必須key field欠落は、外側union `ApiBoundaryResult<T> = T | Rejected(missing_key)`として返す。`combine`、`admit`、`disposition`、`key_of`、`lookup`に適用し、`record`は既存の返却unionに同じ拒否を含む。例外や新しいresult class・reasonは追加しない。K2 `key_of`のduplicate identity拒否と、IV-K2-13のDigest型不一致拒否はL4/L9に拒否のclass/reasonが定義されていない。これらを`Rejected(missing_key)`へ割り当てたり、新reasonを作ったりせず、API返却型を確定する前にL4へ戻す未決として§6に記録する。
 
 `PolarityOf<T>`は値型ownerが持つ版付き写像で、kernelがdomain値を解釈しない。heterogeneous成分はL4 §2.5の成分別写像表現を使う。owner/callerのmapping解決境界で必要な写像が得られない場合、元の`Value`を`combine`へ渡さず、既存の完全なkeyを持つ`Unknown(missing_input)`を構成して他の成分とともに既存`combine`へ渡す。これはK1 mapping contractに必要な入力準備であり、新しいK1 APIやObserved classではない。
 
@@ -89,7 +89,7 @@ ResultRecord = { key, key_digest, result: Observed<T>, result_digest, producer }
 
 | API | 入力・出力 | 契約と失敗 |
 |---|---|---|
-| `key_of(operation, operation_version, subject, inputs, scope) -> ResultKey` | ownerがcurrent宣言から再構成したref集合 | inputsをidentity順に並べる。同一identityの重複は拒否し、入力順に依存するkeyを作らない。必須key field欠落は`Rejected(missing_key)`。 |
+| `key_of(operation, operation_version, subject, inputs, scope) -> ResultKey`（正常時。拒否側unionは§3.2の未決事項） | ownerがcurrent宣言から再構成したref集合 | inputsをidentity順に並べる。同一identityの重複は拒否し、入力順に依存するkeyを作らない。必須key field欠落は`Rejected(missing_key)`。duplicate identityの拒否class/reasonはL4/L9で未定義のため、`missing_key`へ読み替えず§6の未決とする。 |
 | `lookup(records, query_key) -> Observed<T>` | K5 readerが復元した記録全体とcurrent key | L4 K2-I2順で判定。候補なし/identity-set変更は`Unobserved(not_run)`、同一identityのsame-revision digest差またはkind差は`Unknown(conflict)`、完全一致は保存class、旧Valueのみなら`Stale`、旧non-Valueのみならsuperseded付き`Unobserved(not_run)`。完全一致と競合候補が共存すれば競合を優先。lookupは入力記録を書き換えない。 |
 | `record(records, key, result, producer) -> Recorded \| NoOp \| Conflict \| Rejected(missing_key \| stale_not_recordable)` | 完全keyと記録可能な観測 | 同じkey+result digestは`NoOp`。同keyの異なるresult digestは双方を保持して`Conflict`。stale resultは拒否。前recordを上書きしない。 |
 
@@ -116,7 +116,7 @@ RoleBoundInputBindingRef -> SubjectRef
 |---|---|---|
 | K1値の構築 | 各機構が自身の値型・値から`Observed`と`PolarityOf`を作る | K1-I6が列挙するkey field欠落は`Rejected(missing_key)`。variant fieldのshape validation/reason mappingは本書で定義しない。分類不能は`Unknown`、未実行は対応する`Unobserved`。kernelが機構statusを書き戻さない。 |
 | K1合成・admit | kernel pure API／機構のoperation consumer | 否定は`Negative`、不明を含む肯定不能は`Undetermined`と全reasonで保持。N/A無効は`Unknown(invalid_disposition)`。 |
-| K2 key宣言 | operation ownerがcurrent subject/input/scope全集合を供給 | 欠落key fieldやalias衝突は`Rejected(missing_key)`。ownerはlookup記録からcurrent refsを逆算しない。 |
+| K2 key宣言 | operation ownerがcurrent subject/input/scope全集合を供給 | 欠落key field、およびL4 §3.4.1の同一alias内異refは`Rejected(missing_key)`。ResultKey inputsのduplicate identity拒否class/reasonは§6の未決とする。ownerはlookup記録からcurrent refsを逆算しない。 |
 | K2 read/lookup | K5 readerが全record bytesを復元しK2 pure lookupへ渡す | unavailability/corruptionはK5/K1の既存unknown classに保持。K2はpartial record listをcomplete扱いしない。 |
 | K2 record | operation ownerが結果を提供、K5が記録を所有 | duplicate exact resultはNoOp、同key異bodyはConflict、staleは`stale_not_recordable`。 |
 | role alias resolution | role/contextを宣言したownerがcurrent mapping bytesを供給、K6がsource readを確認 | caller mappingでowner resolverを上書きしない。binding/raw bytes不一致はsource observationとして肯定しない。 |
@@ -127,6 +127,8 @@ L5のpure K1/K2 APIの実装候補はPython標準ライブラリとする。HARN
 
 TypeScript/Nodeは旧HELIX実装例があるが、歴史上の選択にすぎず、現行repository-layout RL-K2は旧Node/TypeScript/Vitest/Biome/package構成を引き継がず、Bunを禁止している。Rust等は型表現能力があるものの、今回の対象L3から言語根拠は得られず、Python候補より必要な選択根拠を持たない。K2 canonical byte互換の正規化仕様、package構成、K5 I/OやK6 runnerは別のL6範囲で設計する。本候補は追加要求・承認・gateではなく、Stage 1の実装可能範囲を広げない。
 
-## 6. 今回の対象外
+## 6. 今回の対象外とL4へ戻す未決
+
+L4/L9はK2 inputsのduplicate identityとDigest型不一致を拒否すると定めるが、その拒否class/reasonとL5 APIの返却型は定めていない。現行の`ApiBoundaryResult<T>`はL4が明示する必須key field欠落の`Rejected(missing_key)`だけを表すため、上記二つをこのunionへ含めることはできない。新reason/classを推測せず、L4へ分類と境界型の対応を戻す。確認対象はIV-K2-13（prefix無しhex、短縮digest、GitRevision型）とIV-K2-15（duplicate identity）である。分類が定まるまでこの二拒否の具体的L5 return unionは未決であり、fixtureは拒否というL9期待のみを保持する。
 
 K3〜K10はすべて`not_designed`。既存契約とoracleはCommon Kernel L4 §4–11および追加所有者節§14（K10）、§15（K7）、§16（K3）、§17（K9）、§18（K8）と、Pair L9の対応IV項目（K3 IV-K3-01–17/14a–j、K4 IV-K4-01–10、K5 IV-K5-01–26、K6 IV-K6-01–15、K7 IV-K7-01–15、K8 IV-K8-01–26、K9 IV-K9-01–15、K10 IV-K10-01–14）を参照し、ここで型/APIやL6詳細を再記述しない。K1/K2のconsumer例も実装algorithm、永続化、時刻source、physical writer、approval/gateを定義しない。L3 semanticsの変更が必要な点はこの草稿で解決せず、その要求上流へ戻す。
