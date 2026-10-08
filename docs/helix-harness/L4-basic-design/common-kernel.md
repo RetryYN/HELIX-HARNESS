@@ -307,7 +307,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 | 5（14章で起草） | K10 型付き依存グラフ | HARNESS-L2-023（依存閉包）、INFRA | — | ci-responsibility-registry、design-registry | 関係型の性質宣言は新規案 |
 | 6（15章で起草） | K7 世代pointer／fencing、型番の台帳形式とディレクトリ配置（方針6） | OS-014、INFRA | G5（取消しの伝播） | node-runtime-cutover、HIL-FR-27、ADR-009 | 自動切戻しとADR-009の差（Phase 2の判断時に扱う）。G5の統一伝播は新規案 |
 | 7（16章で起草） | K3 operation authority tuple | SECURITY-AC-006-01ほかSECURITY Stage 1 | G5の受信側 | authority-vocabulary、security-capability-broker、source-boundary-contracts | 旧の軸（data_classification、sink、impact）の採否 |
-| 8 | K9 独立性の記録（製品の要求） | Concept:236（identity・context・authority・review routeで独立性を決め、providerの同異では決めない）。承認済みL3の候補：AC-OS-029-03（`docs/helix-os/L3-requirements/functional-requirements.md:77`。current exact HEADのreview receipt）、AC-INTELLIGENCE-L3-072-08（`docs/helix-intelligence/L3-requirements/functional-requirements.md:564`。candidate生成と独立reviewの段階分離）、LABOのblind評価。開発repoの運用規則（2026-10-08委任判断記録の判断1）は根拠にしない（解禁判断記録の判断3） | — | worker-independent-review（同provider／modelでもidentity・session・contextが独立なら受理）、producer-provenance-separation（PPS-R-03。開発repoの運用規則の起点であり、製品K9の要件としては採らない） | review routeの軸は新規案 |
+| 8（17章で起草） | K9 独立性の記録（製品の要求） | Concept:236（identity・context・authority・review routeで独立性を決め、providerの同異では決めない）。承認済みL3の候補：AC-OS-029-03（`docs/helix-os/L3-requirements/functional-requirements.md:77`。current exact HEADのreview receipt）、AC-INTELLIGENCE-L3-072-08（`docs/helix-intelligence/L3-requirements/functional-requirements.md:564`。candidate生成と独立reviewの段階分離）、LABOのblind評価。開発repoの運用規則（2026-10-08委任判断記録の判断1）は根拠にしない（解禁判断記録の判断3） | — | worker-independent-review（同provider／modelでもidentity・session・contextが独立なら受理）、producer-provenance-separation（PPS-R-03。開発repoの運用規則の起点であり、製品K9の要件としては採らない） | review routeの軸は新規案 |
 | 9 | K8 label遷移 | SECURITY-AC-001-01 | — | pillar P8、worker-context-authority、memory-learning-promotion | label伝播（taint型）は新規案 |
 
 G14（外部標準の版固定）はCONNECTのL4で扱い、共通カーネルに含めない。
@@ -1130,3 +1130,130 @@ queryの`operation_inputs`も未信頼の要求値として扱い、ownerがcurr
 | `docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md`（base `3d2f78ce`で固定） | `2ff59b61c775b9e609832f1e93961a4e50c54a959208b9edbc66524e15f0d8f8` |
 
 旧sourceのpathは`archive/legacy-generation-2026-09-14/root/`からの相対pathである。旧sourceのSHA-256は本文bytesを再計算し、資産明細台帳の`source_sha256`と一致することを確かめた。旧資産の個別採否は、本書の区分候補を起点に、`docs/governance/legacy-asset-decisions.jsonl`の判断ログ契約に従って別に記録する。
+
+## 17. K9 独立reviewの独立性記録
+
+### 17.1 由来と境界
+
+| 由来 | locator（対象本文のSHA-256） | 保持・再導出する意味 |
+|---|---|---|
+| Concept | `docs/concept/helix-concept.md:236` (`bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715`) | 作成Worker自身・そのSubagentのreviewを独立reviewに数えない。identity・context・authority・review routeを独立に照合し、provider同異では決めない。 |
+| OS L3 | `docs/helix-os/L3-requirements/functional-requirements.md:77` (`666200db50ea9a2e7f0d67d57496a71368e497f2fdb6e3485d4838339000b393`) `AC-OS-029-03` | reviewerは元Worker・支援者・test authorと別のidentity/context/authorityを持ち、receiptはcurrent exact HEAD/base/task scope/HARNESS oracle/current resultに束縛される。独立review passはVerified/Acceptedやcomposite完了を作らない。 |
+| INTELLIGENCE L3 | `docs/helix-intelligence/L3-requirements/functional-requirements.md:564` (`35e936a6d83d7a83310cc2a1900e8f199c54923472df9e9b0d7a9bdeec059457`) `AC-INTELLIGENCE-L3-072-08` | candidate生成とreviewを分離し、receipt未着は未完義務として保つ。review実施時はidentity/context/authority/routeを別々に照合し、どれか一つの一致で独立性を不成立にする。同一scope/revision/case/oracleに適用可能な既存証拠は再利用でき、毎回新しいWorker実験を要求しない。 |
+| 旧HELIX worker-independent-review L4 | `LEGACY-ASSET-D107FD145A2588FAAD09`／`archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-independent-review.md:18-33` (`9fff293ed71c7a0be0e4dfcd7a5cca70eaacfdbf2cd553a605fd15510a3c99b3`) | FR-05 sealed outputを入力とし、実行成功後のprocess-local originからactorを導く。receiptによるactor自己申告を受け付けない。同provider/model familyでもidentity/session/contextの三軸が独立なら受理。実行起点のactor導出・自己申告拒否・三軸分離を再導出し、旧sealed capability/brokerはコピーしない。 |
+| 旧HELIX worker-independent-review L9 | `LEGACY-ASSET-50A93B0E753DC3840E03`／`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-worker-independent-review-system-test-design.md:18-27` (`fd1bf27704c12072d56491ae66d21f9858f7275ec8c3f1a5e50714fd235eb672`) | 三軸collision、同provider/modelでも三軸独立なら正常、actor自己申告・copy/stale/finding偽装のnegativeを再導出する。旧broker/capability、sealed output、Ubuntu/AppArmor/bubblewrap経路は移さない。 |
+| 旧producer-provenance-separation request | `LEGACY-ASSET-FD3F979AF945CE3EC306`／`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md:12-33` (`dfda22022f1f9ced3f543ccadb91ff7de9335d7a6ea7aaff9efdd1702ecda2a1`) | producer・commit executor・PR publisher・reviewerの役割を分け、actor/metadataからproducerを推測しない点を参考にする。文書は`draft_candidate`で要求authorityではない。 |
+| 旧PPS要件candidate | `LEGACY-ASSET-A04F169C5D514C5443D0`／`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md:13-73` (`9f1e268986845f5f209517de24f57f2828e130f971a1429be96d0f88a5e9d59a`) | producer/executor/publisher/reviewerのrole分離、assignment/scope/成果digest/HEADの因果束縛、raw metadataからの推測拒否を参考にする。PPS-R-03:28-35のproducer runtime/provider/model family/session基準は、Conceptとcurrent L3に合わないため製品K9の判定へ採らない。 |
+| 旧PPS acceptance candidate | `LEGACY-ASSET-7AFB0C65E70ED4C0856E`／`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-acceptance.md:12-23` (`5b89153daa3ea4ea3d51c496b9c255ee881fb5ec9418a0540ac33bd68aef2411`) | role入替、assignment/scope/digest/HEAD変異、metadata spoofを独立反例にする形式を参考にする。PPS-AC-005のproducer runtime系統だけによる拒否はK9へ移さない。 |
+
+開発repository内の作成/review cross-runtime・別model-family規則は、本repositoryの開発運用であってHELIX製品要件ではない（`docs/helix-harness/L4-basic-design/common-kernel.md:263,310`、解禁判断記録の判断3）。K9の入力・判定に含めない。
+
+### 17.2 型と入力の完全性
+
+K9は独立性という関係の観測だけを行い、reviewerの採用権限、要求の採択、検証全体の合格、Verified/Acceptedを生成しない。K1の`Observed<T>`、K2の`ResultKey`、K6のreceipt/assuranceを使う。
+
+```text
+ParticipantSlot = {
+  slot: identity,                         # role位置の安定identity
+  role: producer | original_worker | helper | test_author | consultant | subagent | reviewer,
+  actor: SubjectRef,
+  origin: SubjectRef,                      # assignment / actual execution source edge
+  context: SubjectRef,
+  authority: SubjectRef,
+  route: SubjectRef
+}
+RoleSelection = {
+  role: role,
+  state: selected | not_selected | unknown,
+  source: SubjectRef                       # 選択ownerのcurrent記録
+}
+ContentProducerGraph = {
+  assignment: SubjectRef,
+  candidate: SubjectRef,
+  target: ReviewTarget,
+  selections: RoleSelection[],
+  slots: ParticipantSlot[],
+  source_closure: SubjectRef,                # ownerが宣言したcurrent source-class set
+  closure_evidence: SubjectRef[]             # 全source classの走査・対応付け記録
+}
+ParticipantBindingSet = {
+  creator_slots: ParticipantSlot[],
+  reviewer_slot: ParticipantSlot,
+  role_selection_digest: Digest
+}
+ReviewTarget = {
+  artifact: SubjectRef,                     # current exact candidate HEAD
+  base: SubjectRef,
+  task_scope: SubjectRef,
+  oracle: SubjectRef,
+  current_result: SubjectRef,
+  case: SubjectRef                          # 適用するcaseのidentityと版
+}
+ReviewAxisCheck = {
+  creator_slot: identity,
+  creator_role: role,
+  axis: identity | context | authority | route,
+  creator_ref: SubjectRef,
+  reviewer_ref: SubjectRef,
+  relation: same | distinct
+}
+ReviewIndependence = {
+  target: ReviewTarget,
+  binding_set: ParticipantBindingSet,
+  completeness: Value(complete) | Unknown(reason),
+  checks: ReviewAxisCheck[],
+  outcome: Independent | NotIndependent(failed_axes[], reason_codes[])
+}
+```
+
+`ParticipantSlot`はcallerが任意に作る入力ではない。K2 `ResultRecord.producer`はそのrecordの記録producerであり、content producerの根拠へ代用しない。resolverは、(1) OS ownerが宣言したcurrent assignmentから元Workerとtask/scopeを得る、(2)各ownerのcurrent selection recordで選択済みsupport/consult等を得る、(3)各実行・成果ownerが記録したactual producer/contributor graphから実際に参加した役割とorigin edgeを得る、(4)test authorなど別ownerのrole sourceを追加で照合する、の順に全creator-sideを作る。commit executor/publisher metadata、provider/model、reviewer自身の申告はparticipant sourceにしない。selectionが`not_selected`ならそのroleのparticipantを要求しない。`unknown`はparticipantなしへ読み替えない。
+
+実装上の完全性は、current OS assignment、選択された各source ownerのselection記録、actual content-producer graph、owner宣言のcurrent source closure、各source classの走査/対応付け証拠を照合して確かめる。source closureが未登録、必須sourceの欠落、selection unknown、coverage evidence未着、またはgraph全量性が未証明の場合は`Unknown(unregistered|missing_input|unsupported)`とし、独立positiveを返さない。登録済みclosureの全量照合が観測でき、期待role集合とactual graphの差が確定した場合は、理由付き`NotIndependent`（参加者欠落/追加またはsource間conflict）とする。これは登録source集合のcoverage観測であり、発行者や実際のactorの真正性を証明しない。K6の`issuer_authenticity=Unknown(unsupported)`は別assuranceにそのまま残る。
+
+contextとrouteのrefは必ずそれぞれのowner contractから解決する。contextは実行session/contextを所有するsourceがcurrent refと対応participantを示し、review対象自体は`ReviewTarget`で別に完全一致させる。routeはreview routeのownerがcurrent route identity/revision/digestを宣言する。Concept:236とAC-INTELLIGENCE-L3-072-08はroute軸自体を根拠付けるが、具体的owner/schemaは定義していない。所有者または契約が見つからないroute/contextは`Unknown(unsupported)`である。routeの意味をprovider/runtime/model差へ置き換えない。authority refは既存SECURITY ownerの適用中recordから解決し、caller claimだけでは受け入れない。
+
+### 17.3 比較とK2鍵
+
+比較の単位はrole slotであり、K2 `inputs`の一意性制約をidentity衝突判定へ流用しない。creator-sideとreviewerに同じactor refがあっても、各role slotを`ParticipantBindingSet`に残し、比較を実施して`relation = same`の理由付きnegativeを作る。producerとtest_author等のcreator側roleでactor refが共有される場合も、refはK2 inputsへ一度だけ入れ、roleごとの起点・役割・比較相手はbinding setに全件保持する。共有refの重複はK2 duplicate identityとして拒否しない。
+
+K2の基底鍵案：`operation = review_independence`、`operation_version = K9規則版`、`subject = ReviewTarget.artifact`、`inputs = current assignment、ContentProducerGraph/source closure/coverage evidence、owner contract refs、ReviewTargetのbase/scope/oracle/current_result/case、ParticipantBindingSetを固定したSubjectRef（canonical bytesのdigest・版付き）、適用Concept/L3 refs、各participant/route/context/authorityのSubjectRefをidentityで重複排除した集合`、`scope = task_scope`。binding digestにはslot ID、role、selection state、actor/origin/context/authority/route ref対応をすべてcanonical順で含める。完全に同一のSubjectRefだけをK2 inputsへ一件に畳む。同一identityでkind/revision/digestが異なる参照は正規化で選ばず`Unknown(conflict)`にする。これにより、共有refをK2の入力集合で一度だけ表しつつ、比較する役割対応を鍵に固定する。role mappingだけが変わっても鍵は変わる。inputsはK2規則によりidentity順に整列する。
+
+`ReviewTarget`はcreator graphとreviewer receiptの双方で完全一致しなければならない。独立性の比較は、creator-side全slotに対してidentity/context/authority/routeを軸ごとに行う。全creator-side比較が`distinct`なら`Independent`、ひとつでも`same`なら他のaxis/roleの結果を保持したうえで`NotIndependent`とする。creator slotが0件の場合は空集合を全称肯定にせず、K1-I4により`Unknown(missing_input)`とする。負の比較は観測済み`Value(ReviewIndependence{outcome: NotIndependent,…})`として理由付きで保持し、K1 `PolarityOf<ReviewIndependence>`で否定へ写す。source欠落/unknownはnegativeへ丸めず、非`Value`のままにする。
+
+### 17.4 不変条件とAPI案
+
+- **K9-I1 source-boundary**：参加者identityはOS assignment・source owner selection・actual content-producer graphから解決する。呼出し側のactor/role申告、commit metadata、publisher、provider/modelをproducer sourceとして受け入れない。K6の実行起点receiptを使う範囲でもissuer authenticity unknownを引き継ぐ。
+- **K9-I2 roster completeness**：assignmentからのexpected roster、selected source、actual content-producer graph、source closureがcurrent scope/revisionでそろうまで独立positiveを返さない。未登録source/未証明completeは`Unknown`。completeな登録source間でrole集合が食い違うなら`NotIndependent`のreasonを保持する。
+- **K9-I3 role bindingとdedup**：各slot/role/選択状態とref対応を`ParticipantBindingSet` digestへ入れる。K2 inputsはSubjectRef identityでdedupして共有refを一度だけ持つ。比較はslot間で行い、same identityをK2 duplicate rejectionへ逃がさず、理由付き`NotIndependent`にする。
+- **K9-I4 owner contract**：context・route・authority各refは当該ownerのcurrent contract/recordから解決する。特にroute owner/schemaが未定義なら`Unknown(unsupported)`とし、provider/model/runtime名で補わない。
+- **K9-I5 四軸と対象束縛**：identity/context/authority/routeを独立比較する。別contextは対象が違ってよい意味ではない。artifact HEAD/base/task scope/oracle/current resultは完全一致させる。どれか一つの軸で同じrefがあれば明示negative。
+- **K9-I6 empty creator拒否**：creator-sideのslot数0は`Unknown(missing_input)`。未選択を示す記録が無いoptional roleも空として扱わない。
+- **K9-I7 段階分離・再利用**：candidateはscope/sourceで作成でき、review未実施は`Unobserved(pending_receipt)`として後続義務へ残す。同じK2鍵のvalidなreview/shadow evidenceは再利用可能。毎回新Worker実験を要求しない。party/axis/route/targetに関わる鍵が変わればK2-I2どおり旧結果を使わない。
+- **K9-I8 authorityと真正性**：K9結果の`authority_effect`はnone。独立性positiveはfinding 0件やHARNESS段階、owner receipt、利用者acceptanceを作らない。K6 `issuer_authenticity = Unknown(unsupported)`は常に別assuranceとして残し、K9で真正性を主張しない。
+
+```text
+resolve_creator_inventory(
+  current_assignment: SubjectRef,
+  selected_source_records: SubjectRef[],
+  actual_content_producer_graph: SubjectRef,
+  owner_source_closure: SubjectRef[],
+  input_heads: InputHeads
+) -> Observed<{ slots: ParticipantSlot[], selections: RoleSelection[], complete: Bool }>
+
+check_review_independence(
+  target: ReviewTarget,
+  creator_inventory: SubjectRef,             # resolver結果の固定参照。plain caller objectを受けない
+  review_execution_record: SubjectRef,       # current review実行のowner source
+  reviewer_origin_contract: SubjectRef,      # 実行originからreviewer slotを導く契約
+  context_owner_contract: SubjectRef,
+  authority_owner_record: SubjectRef,
+  route_owner_contract: SubjectRef,
+  input_heads: InputHeads
+) -> Observed<ReviewIndependence>
+```
+
+両APIはparticipant slot配列をcallerから受け取らず、OS assignment・content-producer graph・review execution recordとowner contract refsをcurrent sourceとしてK2 lookup/K6 receipt admissionで解決する。契約に登録されたsource closureと走査証拠で全量性を確認できなければ、`complete`をcallerのboolean claimから作らず非`Value`を返す。creator_inventoryはresolverのcurrent入力の全集合・K2鍵・K6 admissionへ照合し、callerが自作したinventoryを使わない。source inventoryが非`Value`ならその非`Value`をそのまま返す。complete inventoryと全owner refがある場合だけ比較し、`Value(Independent)`または失敗軸と理由付き`Value(NotIndependent)`を返す。K6 result receiptの`reproduction`と`issuer_authenticity`はAPI結果に併記するassuranceに別々に付ける。currentのowner contractがroute/context sourceを提供できない場合は未決を捏造で埋めない。
+
+### 17.5 旧HELIXとの差
+
+保持するのは、実行起点のactor識別をreceiptの自己申告に頼らないこと、同一provider/modelを理由に独立reviewを拒否しないこと、複数軸を別々に比べること、HEADとreview対象を結ぶこと。変更するのは、旧worker reviewの三軸からConcept/承認済みL3のidentity/context/authority/route四軸へ広げ、OS current assignment・各source owner selection・actual content-producer graphを照合して参加者集合の完全性を扱うこと。PPSはproducer/executor/publisherの役割分離とmetadata推測拒否のみ参考にし、PPS-R-03のproducer runtime/provider/model family/session規則を製品K9へ移さない。開発repository専用のcross-runtime requirementは製品K9から明示的に除外する。
