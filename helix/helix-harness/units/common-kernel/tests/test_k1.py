@@ -101,6 +101,9 @@ class K1UnitTests(unittest.TestCase):
         result = combine([value("pass"), Unknown("incomparable", key())], positive)
         self.assertEqual(result.verdict, Verdict.UNDETERMINED)
         self.assertEqual(result.non_values, (1,))
+        self.assertEqual(
+            admit(result), Withheld((WithheldReason(1, "Unknown", "incomparable"),))
+        )
 
     def test_CK_K1_UT_002b(self) -> None:
         old = key(revision="r1")
@@ -108,11 +111,15 @@ class K1UnitTests(unittest.TestCase):
         result = combine([value("pass"), Stale(value("old", old), old, current)], positive)
         self.assertEqual(result.verdict, Verdict.UNDETERMINED)
         self.assertEqual(result.non_values, (1,))
+        self.assertEqual(admit(result), Withheld((WithheldReason(1, "Stale", "stale"),)))
 
     def test_CK_K1_UT_002c(self) -> None:
         result = combine([value("pass"), Unobserved(key(), "not_selected")], positive)
         self.assertEqual(result.verdict, Verdict.UNDETERMINED)
         self.assertEqual(result.non_values, (1,))
+        self.assertEqual(
+            admit(result), Withheld((WithheldReason(1, "Unobserved", "not_selected"),))
+        )
 
     def test_CK_K1_UT_004(self) -> None:
         components = [
@@ -127,17 +134,21 @@ class K1UnitTests(unittest.TestCase):
         self.assertEqual(combined.non_values, (1, 2, 3))
         self.assertEqual([r.index for r in admit(combined).reasons], [1, 2, 3])
 
-    def test_CK_K1_UT_005_baseline(self) -> None:
-        self.assertIsInstance(admit(combine([value("pass"), value("pass")], positive)), Admitted)
+    def test_CK_K1_UT_005a(self) -> None:
+        combined = combine([value("pass"), value("pass")], positive)
+        self.assertEqual(combined.verdict, Verdict.POSITIVE)
+        self.assertEqual(admit(combined), Admitted(combined))
 
-    def test_CK_K1_UT_005_negative(self) -> None:
+    def test_CK_K1_UT_005b(self) -> None:
         mixed = PolarityMapping(
             "test.mixed", "1",
             lambda item: Polarity.NEGATIVE if item == "fail" else Polarity.POSITIVE,
         )
         combined = combine([value("pass"), value("fail")], mixed)
         self.assertEqual(combined.verdict, Verdict.NEGATIVE)
-        self.assertTrue(admit(combined).reasons)
+        self.assertEqual(
+            admit(combined), Withheld((WithheldReason(1, "Value", "negative_value"),))
+        )
 
     def test_CK_K1_UT_006(self) -> None:
         prepared = prepare_polarity_input("source-value", key(), None)
@@ -267,9 +278,11 @@ class K1UnitTests(unittest.TestCase):
 
     def test_CK_K1_UT_009_STALE_RECORD(self) -> None:
         from common_kernel import record
-        old = key(revision="r1")
-        stale = Stale(value("old", old), old, key(revision="r2"))
-        self.assertEqual(record([], old, stale, "p"), Rejected("stale_not_recordable"))
+        complete_key = key(revision="r1")
+        stale = Stale(value("old", complete_key), complete_key, key(revision="r2"))
+        # The sole mutation is removal of the record key. Stale remains the
+        # first rejection condition, ahead of missing-key validation.
+        self.assertEqual(record([], None, stale, "p"), Rejected("stale_not_recordable"))
 
     def test_CK_K1_UT_009_KEY_COMBINE_Value(self) -> None:
         self.assertEqual(combine([replace(value("v"), key=None)], positive), Rejected("missing_key"))
@@ -295,18 +308,41 @@ class K1UnitTests(unittest.TestCase):
         from common_kernel import lookup
         self.assertEqual(lookup([], None), Rejected("missing_key"))
 
-    def test_CK_K1_UT_010_complete_scan_empty_is_value(self) -> None:
-        # Owner supplies a Value only after its complete-scan marker is checked.
-        combined = combine([value([])], positive)
+    def _owner_scan_stub(self, *, complete: bool, read_failed: bool, items: list[object]):
+        """Test-only owner boundary; K1 does not implement source scanning."""
+        result_key = key()
+
+        class OwnerScanStub:
+            def observe(self):
+                if read_failed:
+                    return Unknown("unreadable", result_key)
+                if not complete:
+                    return Unknown("unreadable", result_key)
+                return Value(tuple(items), result_key, {"complete_scan_marker": True})
+
+        return OwnerScanStub().observe()
+
+    def test_CK_K1_UT_010_COMPLETE(self) -> None:
+        observed = self._owner_scan_stub(complete=True, read_failed=False, items=[])
+        self.assertIsInstance(observed, Value)
+        self.assertEqual(observed.value, ())
+        self.assertEqual(observed.evidence, {"complete_scan_marker": True})
+        combined = combine([observed], positive)
         self.assertEqual(combined.verdict, Verdict.POSITIVE)
 
-    def test_CK_K1_UT_010_partial_scan_is_non_value(self) -> None:
-        combined = combine([Unknown("unreadable", key())], positive)
+    def test_CK_K1_UT_010_PARTIAL(self) -> None:
+        observed = self._owner_scan_stub(complete=False, read_failed=False, items=[])
+        self.assertEqual(observed, Unknown("unreadable", key()))
+        combined = combine([observed], positive)
         self.assertEqual(combined.verdict, Verdict.UNDETERMINED)
+        self.assertEqual(combined.non_values, (0,))
 
-    def test_CK_K1_UT_010_read_failure_is_non_value(self) -> None:
-        combined = combine([Unobserved(key(), "not_run")], positive)
+    def test_CK_K1_UT_010_READ_FAIL(self) -> None:
+        observed = self._owner_scan_stub(complete=True, read_failed=True, items=[])
+        self.assertEqual(observed, Unknown("unreadable", key()))
+        combined = combine([observed], positive)
         self.assertEqual(combined.verdict, Verdict.UNDETERMINED)
+        self.assertEqual(combined.non_values, (0,))
 
     def test_CK_K1_UT_011_projection_cannot_be_combined(self) -> None:
         projection = {"display": "green", "omitted": ["Unknown"]}
@@ -338,14 +374,24 @@ class K1UnitTests(unittest.TestCase):
 
     def test_CK_K1_UT_012_wrong_mapping_mismatch(self) -> None:
         correct = combine([value("mismatch")], negative)
-        wrong = combine([value("mismatch")], positive)
+        def wrong_owner_mapping(word: str):
+            return Unknown("unsupported", key()) if word == "mismatch" else value(word)
+
+        wrong = combine([wrong_owner_mapping("mismatch")], positive)
         self.assertEqual(correct.verdict, Verdict.NEGATIVE)
+        self.assertEqual(wrong.components[0], Unknown("unsupported", key()))
+        self.assertEqual(wrong.non_values, (0,))
         self.assertNotEqual(wrong.verdict, correct.verdict)
 
     def test_CK_K1_UT_012_wrong_mapping_incompatible(self) -> None:
         correct = combine([value("incompatible")], negative)
-        wrong = combine([value("incompatible")], positive)
+        def wrong_owner_mapping(word: str):
+            return Unknown("unsupported", key()) if word == "incompatible" else value(word)
+
+        wrong = combine([wrong_owner_mapping("incompatible")], positive)
         self.assertEqual(correct.verdict, Verdict.NEGATIVE)
+        self.assertEqual(wrong.components[0], Unknown("unsupported", key()))
+        self.assertEqual(wrong.non_values, (0,))
         self.assertNotEqual(wrong.verdict, correct.verdict)
 
     def test_CK_K1_UT_012_wrong_mapping_not_observed(self) -> None:
