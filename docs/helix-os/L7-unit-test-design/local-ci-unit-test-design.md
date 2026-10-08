@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `8fffcf94fc1cc05a26e17843023b8505eb176e3adaebd4a569339e3cd98b30f8`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `5f690c5ec94b2094e3cb6c430510fb1a30c692469ece68fb55eefd719a638211`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -26,14 +26,14 @@ version_target: 1.0
 
 | L6 function | 正常baseline oracle | 負例oracle | 正常baselineの期待 | 負例条件 |
 |---|---|---|---|---|
-| `F-LCI-01 resolve_target` | `UT-LCI-24` | `UT-LCI-01`, `UT-LCI-02`, `UT-LCI-50`, `UT-LCI-51` | base/head/merge-base確定の`Observed<CiTarget>` | base ref欠落 / 別head / Git unsupported / fixed argv不整合 |
+| `F-LCI-01 resolve_target` | `UT-LCI-24` | `UT-LCI-01`, `UT-LCI-02`, `UT-LCI-50`, `UT-LCI-51`, `UT-LCI-82` | base/head/merge-base確定の`Observed<CiTarget>` | base ref欠落 / 別head / local Git unsupported / fixed argv不整合 |
 | `F-LCI-02 read_fixed_snapshot` | `UT-LCI-25` | `UT-LCI-03`, `UT-LCI-04`, `UT-LCI-50`〜`UT-LCI-52`, `UT-LCI-62` | 宣言blob bytesとdigest一致の`Observed<SourceSnapshot>` | digest不一致 / symlink / Git unsupported / argv不整合 / declared path欠落 / blob読取失敗 |
 | `F-LCI-03 check_clean_checkout` | `UT-LCI-26` | `UT-LCI-05`, `UT-LCI-06`, `UT-LCI-50`, `UT-LCI-51` | clean index/worktree/untrackedの`Observed<CiTarget>` | staged / untracked変更 / Git unsupported / fixed argv不整合 |
 | `F-LCI-04 compile_plan` | `UT-LCI-27` | `UT-LCI-07`, `UT-LCI-08`, `UT-LCI-56`, `UT-LCI-63`〜`UT-LCI-64` | 固定5 step/argv/plan stateの`Observed<LocalCiPlan>` | 必須step欠落 / caller上書き / selection配属上書き / manifest schema不正 |
-| `F-LCI-05 run_step` | `UT-LCI-28` | `UT-LCI-09`〜`UT-LCI-11`, `UT-LCI-22`, `UT-LCI-40`〜`UT-LCI-45`, `UT-LCI-48`, `UT-LCI-53`, `UT-LCI-61` | isolated snapshot上exit 0とstdout/stderr hashの`Observed<CheckExecution>` | nonzero / fixed argv拒否 / cancel/timeout / isolation boundary / reap失敗 / child bytecode抑止env欠落 |
+| `F-LCI-05 run_step` | `UT-LCI-28`, `UT-LCI-83` | `UT-LCI-09`〜`UT-LCI-11`, `UT-LCI-22`, `UT-LCI-40`〜`UT-LCI-45`, `UT-LCI-48`, `UT-LCI-53`, `UT-LCI-61`, `UT-LCI-84`〜`UT-LCI-86` | isolated snapshot上exit 0とstdout/stderr hashの`Observed<CheckExecution>` | nonzero / fixed argv拒否 / cancel/timeout / isolation boundary / reap失敗 / child bytecode抑止env欠落 |
 | `F-LCI-06 run_local_ci` | `UT-LCI-29` | `UT-LCI-12`, `UT-LCI-13`, `UT-LCI-22`, `UT-LCI-39`, `UT-LCI-49`, `UT-LCI-53`, `UT-LCI-54`, `UT-LCI-57`〜`UT-LCI-60`, `UT-LCI-62`〜`UT-LCI-64` | 5 step successとsupervisor生成の外部receipt `Observed<LocalCiReceipt>` | 途中fail継続 / target drift / required skip / receipt境界 / cancel reap失敗 / manifest preflight / target ref境界 / manifest schema不正 |
-| `F-LCI-07 verify_receipt` | `UT-LCI-30` | `UT-LCI-14`, `UT-LCI-15`, `UT-LCI-16`, `UT-LCI-38`, `UT-LCI-54`, `UT-LCI-55` | current refsと一致するcanonical receiptの`Observed<ReceiptCheck>` | duplicate JSON keys / target stale / checker digest conflict / plan-execution混同 / manifest-result不整合 / base変更 |
-| `F-LCI-08 run_merge_unit_verifier` | `UT-LCI-31` | `UT-LCI-17`, `UT-LCI-18`, `UT-LCI-37` | exact dispatchと同一selected diff照合の`Observed<ProviderResult>` | dispatch欠落 / write permission / target不一致 |
+| `F-LCI-07 verify_receipt` | `UT-LCI-30` | `UT-LCI-14`, `UT-LCI-15`, `UT-LCI-16`, `UT-LCI-38`, `UT-LCI-54`, `UT-LCI-55`, `UT-LCI-80` | current refsと一致するcanonical receiptの`Observed<ReceiptCheck>` | duplicate JSON keys / target stale / checker digest conflict / plan-execution混同 / manifest-result不整合 / base変更 / provider pin変更後の旧config digest |
+| `F-LCI-08 run_merge_unit_verifier` | `UT-LCI-31`, `UT-LCI-76` | `UT-LCI-17`, `UT-LCI-18`, `UT-LCI-37`, `UT-LCI-77`〜`UT-LCI-81` | exact dispatchと同一selected diff照合の`Observed<ProviderResult>` | dispatch欠落 / write permission / target不一致 / identity未採取・不一致 / 旧config digest / state parity不一致 |
 | `F-LCI-09a load_design_manifest` | `UT-LCI-32` | `UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75` | 固定corpus path/role/source-kindと全manifest fieldが揃うmanifest | required source欠落 / run-level structural preflight / manifest schema不正 |
 | `F-LCI-09b resolve_id_graph` | `UT-LCI-33` | `UT-LCI-23`, `UT-LCI-36`, `UT-LCI-58`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75` | 一意なdefinitionと解決済み参照のgraph | duplicate definition / unresolved reference / run-level structural conflict |
 | `F-LCI-09c verify_coverage_edges` | `UT-LCI-34` | `UT-LCI-20`, `UT-LCI-46`, `UT-LCI-47`, `UT-LCI-66`〜`UT-LCI-68` | mapped/partial sourceのedgeと理由付きnot_exercised sourceの空edge listを含むmixed manifest | required edge/disposition欠落 / destination曖昧 |
@@ -140,5 +140,16 @@ version_target: 1.0
 | `UT-LCI-73` | 見出しliteralから必須IDへの固定entryがある | entryだけを削除 | F09a/bは`Unknown(missing_input)`、見出し内tokenからIDを推測しない |
 | `UT-LCI-74` | heading_idのentryは必須既存ID一件を展開 | idsだけを空配列へ変更 | F09a/bは`Unknown(missing_input)`、空集合を充足扱いしない |
 | `UT-LCI-75` | 見出しliteralと展開先IDが一意 | 一つのIDを別entryのidsにも追加 | F09a/bは`Unknown(conflict)`、重複IDをdedupしない |
+| `UT-LCI-76` | local `executables.git`とprovider `executables.provider_git`はそれぞれ合成binary identityと一致し、shared config/target/argv/policyは同じ | 正常baseline（変異なし） | local receiptにlocal実測identity、`ProviderResult`にprovider実測identityを記録し、同じselected DIFF stateを照合する。identity相互同一性を要求しない |
+| `UT-LCI-77` | trusted provider configにexact `provider_git` pinがある | `provider_git`だけを`null`へ変える | provider入口のtrusted固定設定が解決した既存Gitのname/version/bytes SHAだけをpreflight採取し、`Unobserved(not_run)`。target/source/status/diff未実行、positive resultなし |
+| `UT-LCI-78` | provider実行binary bytes SHAが`provider_git` pinと一致 | provider binary bytes SHAだけをpinと異ならせる | `Unknown(unsupported)` before target/source/status/diff probe。local pinを試さない |
+| `UT-LCI-79` | provider name/version/bytes SHAがpinと一致 | provider reported versionだけをpinと異ならせる | `Unknown(unsupported)` before target/source/status/diff probe |
+| `UT-LCI-80` | local receipt plan/config digestとcurrent shared role-pin configが一致 | current configの`provider_git` pinだけを更新し旧receiptは固定 | `Unknown(conflict)`、provider DIFF未実行。新configでlocal receiptを作り直す |
+| `UT-LCI-81` | 同じconfig digest/target/argv/policyでproviderとlocal DIFF stateが一致 | provider diff stateだけを`fail`へ変える | `selected_check_parity=false`、positive不可。既存stateを補正しない |
+| `UT-LCI-82` | local reader binary bytes/versionが`executables.git` pinと一致 | local Git bytes SHAだけをpinと異ならせる | `Unknown(unsupported)` before target/source/status probe。provider pinへのfallbackなし |
+| `UT-LCI-83` | 提供環境の既存`bwrap` name/version literal/full-byte SHAがprofileと一致しnormal sandbox preflightが成立 | 変異なし | checker起動前にidentityを照合し、provenanceをclaimしない |
+| `UT-LCI-84` | 実`bwrap` bytes SHAがtrusted profile pinと一致 | bytes digestだけをpinと異ならせる | `denied`、checker未起動、install/host/別binary fallbackなし |
+| `UT-LCI-85` | 実`bwrap --version` literalがtrusted profile labelと一致 | version literalだけをpinと異ならせる | `denied`、checker未起動、semantic version比較なし |
+| `UT-LCI-86` | trusted host-local settingがprofile pinned `bwrap`を解決する | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし |
 
 result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子でありtestの実行証拠ではない。test passからL8/L9/L10承認やmerge/release許可を作らない。
