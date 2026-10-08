@@ -883,7 +883,7 @@ Impact         = { changed: SubjectRef[], affected: identity[], possibly: identi
 | INFRASTRUCTURE | `INFRA-005-AC-03`（`docs/helix-infrastructure/L3-requirements/functional-requirements.md:287`）、`INFRA-006-AC-03`（同:91） | rollback先の適格性とreceiptを持ち、rollbackだけでincidentを閉じない。最後の適格revisionと未完の義務を追う |
 | HARNESS | `AC-HARNESS-L3-010-01`・`03`（`docs/helix-harness/L3-requirements/functional-requirements.md:37,39`）、`AC-HARNESS-L3-021-03`（同:483） | packのidentity・版・入出力・依存・検証範囲・owner・収載を宣言する。失敗時は直前の適格版へ戻す。rollbackの証拠が対象の版・scopeと一致するときだけ復元候補とする |
 | SECURITY | `SECURITY-AC-009-01`（`docs/helix-security/L3-requirements/functional-requirements.md:180`） | revoke等のtriggerを、OSの新規割当、Workerの実行と途中成果物、CONNECT、credential、artifact accessの全受け手へ伝え、受け手ごとに受領・適用・未達・未観測を区別する。停止を確認できないまま継続しない |
-| PO判断 | `docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md:170-179`（判断2：方針6の確定） | 部品・接続・システムを種別付きの型番で識別し、台帳で版・検証範囲・内部デプロイの状態を管理する。項目はHARNESS-L2-010とHELIXOS-L2-014のものをそのまま使う。コードの配置はアプリケーションの構造に合わせるが、フォルダのpathを識別子の正本にしない。`docs/`は変えない |
+| PO判断 | `docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md:59-70`（判断2：方針6の確定） | 部品・接続・システムを種別付きの型番で識別し、台帳で版・検証範囲・内部デプロイの状態を管理する。項目はHARNESS-L2-010とHELIXOS-L2-014のものをそのまま使う。コードの配置はアプリケーションの構造に合わせるが、フォルダのpathを識別子の正本にしない。`docs/`は変えない |
 
 承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による（OS Stage 2b、INFRASTRUCTURE Stage 1・2a、HARNESS Stage 1・5、SECURITY Stage 1）。開発repoの「差し戻しの判断記録」（運用モデル「POの事後確認」）は開発repoの運用規則であり、G5の根拠にしない（解禁判断記録の判断3）。
 
@@ -891,41 +891,48 @@ Impact         = { changed: SubjectRef[], affected: identity[], possibly: identi
 
 ```text
 Generation  = { target: identity（段階の型番）, number: 符号なし整数, composition: SubjectRef（台帳の段階の版） }
-PointerLog  = K5のlog（log_id: generation:<target>、manifest_writerは段階の所有者）
+PointerLog  = K5のlog（log_id: generation:<target>）。PointerMovedを書くsegmentは、段階の所有者（OS）が
+              宣言した一つのpointer_writerのsegmentだけとする
   GenerationStaged { generation }
-  PointerMoved     { from: number, to: number, kind: promote | rollback | rebuild, authorization: SubjectRef }
-  RollbackRequired { generation, evidence }                  # 観測。pointerは動かさない
-Epoch       = { scope: identity（割当て・run）, number: 符号なし整数 }
+  MoveRequested    { expected_head, from, to, kind: promote | rollback | rebuild, authorization: SubjectRef,
+                     eligibility: RequiredResult }               # 記録だけ。現行を変えない
+  PointerMoved     { request: entry_digest（MoveRequested）, from, to }   # 適用。現行を変える
+  RollbackRequired { generation, evidence }                       # 観測。pointerを動かさない
+  WriterHandoff    { from_segment_head: SegmentHead, to_segment }  # pointer_writerの交代
+EpochLog    = K5のlog（log_id: epoch:<scope>）。書くのは割当ての所有者（OS）の一つのsegmentだけ
+  EpochIssued { scope, number }
+EpochToken  = { scope, number, entry_digest（EpochIssuedの行） }
 ```
 
-- **K7-I1 一つの現行**：現行の世代は、固定prefixの`PointerLog`の最後の`PointerMoved`の`to`とする。`move(from, to)`は`from`が現行と一致する場合だけ追記でき、違えば`Rejected(stale_from)`とする。
-- **K7-I2 操作の代数**：昇格（promote）は新しい世代へ、rollbackは保持している前の世代へ、再構築（rebuild）は同じ`composition`から作り直した新しい世代へ、いずれも同じ`move`で動かす。移動先の世代は、その`composition`の検証の合成（K6の`required`）が`Positive`でなければならず、そうでなければ`Rejected(not_eligible)`。rollbackの移動先は保持している世代に限る（AC-OS-014-06、HARNESS-010-03、021-03）。
-- **K7-I3 許可を作らない**：`move`は`authorization`に、対象と作用を明示した既存の許可の記録の参照を要する。無ければ`Rejected(missing_authorization)`。内部デプロイとcutoverは、対象と作用を明示したPOの許可を要する外部作用であり（AGENTS.md、内部デプロイの判断記録の方針1）、K7はその許可を生成しない。許可の記録の正しさの照合はK3（8.2のPR7）で定める。K3が定まるまで、K7は`move`を記録できるが、許可を検証済みとは扱わない。
-- **K7-I4 自動の切戻しをしない**：失敗を観測しても、pointerを自動では動かさず、`RollbackRequired`を追記するだけとする。rollbackは許可を伴う明示の`move`で行う（旧ADR-009の保持）。自動の切戻しは、Phase 2へ移る判断で扱う（2026-10-08判断記録の判断3）。
-- **K7-I5 dataは戻さない**：rollbackは段階の構成だけを戻し、案件のstate・recordは現在のものを引き継ぐ（AC-OS-014-06）。rollbackでincidentを閉じない（INFRA-005-AC-03）。
-- **K7-I6 fencing（遅着作用の拒否）**：割当て・runごとに`Epoch`を持ち、再割当て、取消し、失効（G5）で`number`を一つ増やす。状態を変える作用（K5への追記、artifactの書込み、結果の`record`）は`Epoch`を持ち、現在より小さい`Epoch`の作用は、bytesが正しくても`Rejected(fenced)`とする。旧い`Epoch`の観測（CI、review、費用）は、作用として適用せず、元のepisodeへ結ぶ観測として追記する（4章の「遅着観測」）。
+- **K7-I1 一つの現行と順序**：`PointerMoved`の順序は、pointer_writerのsegmentの`seq`の順とし、pointer_writerが交代したときは、新しいsegmentの最初の行の`WriterHandoff`が指す旧segmentの末尾の後に続ける（K5-I7のsegmentの辞書順は使わない）。現行の世代は、この順で最後の`PointerMoved`の`to`とする。`WriterHandoff`の連鎖が途切れていれば、現行は`Unknown(missing_input)`とする。
+- **K7-I2 直列化とcommitの境界**：`move`は、読んだ時点のpointer_writerのsegmentの末尾を`expected_head`として持つ。追記はそのsegmentへの一行の追記をcommitの境界とし、追記の直前に、segmentの末尾が`expected_head`と一致すること、`from`が現行と一致すること、許可・適格性・`EpochToken`をcurrentの記録から読み直して変わっていないことを確かめる。どれかが違えば`Rejected(stale_head)`とし、何も追記しない（旧node-runtime-cutoverのsingle authority pointer CASとcommit前の再読）。
+- **K7-I3 適格性の入力**：移動先の世代の適格性は、操作`stage_verification`について、所有者が宣言したcurrentの`OperationDecl`から基底鍵（`subject`＝移動先の`composition`、`inputs`＝宣言の入力、`scope`＝宣言のscope）を作り、固定した`VerifierSet`と`input_heads`でK6-I7の手順（`restore`→`lookup`→`admit_receipt`→全成分の`combine`）を行った`RequiredResult`とする。`Positive`でなければ`Rejected(not_eligible)`とし、`RequiredResult`（`assurance`を含む）は`MoveRequested`に記録する。rollbackの移動先は保持している世代に限る（AC-OS-014-06、HARNESS-010-03、021-03）。
+- **K7-I4 許可と適用の分離**：`MoveRequested`は記録だけであり、現行・内部デプロイの状態・G5-I6の待ちを変えない。`PointerMoved`を追記できるのは、`authorization`が対象と作用（その`target`、その`kind`）に一致する許可の記録として照合され、取り消されていない場合だけとする。照合はK3（8.2のPR7）で定める。K3が定まるまで、許可を照合できないため、`PointerMoved`は追記しない（`MoveRequested`はpendingのまま）。内部デプロイとcutoverは、対象と作用を明示したPOの許可を要する外部作用であり（AGENTS.md、内部デプロイの判断記録の方針1）、K7はその許可を生成しない。
+- **K7-I5 自動の切戻しをしない**：失敗を観測しても、pointerを動かさず`RollbackRequired`を追記するだけとする（旧ADR-009の保持）。自動の切戻しは、Phase 2へ移る判断で扱う（2026-10-08判断記録の判断3）。rollbackは構成だけを戻し、案件のstate・recordは現在のものを引き継ぐ（AC-OS-014-06）。rollbackでincidentを閉じない（INFRA-005-AC-03）。
+- **K7-I6 fencing（遅着作用の拒否）**：割当て・runのscopeごとに、現在の`EpochToken`は`EpochLog`の最後の`EpochIssued`とする。再割当て、取消し、失効で新しい`EpochIssued`を追記する。状態を変える作用（K5への追記、artifactの書込み、結果の`record`）は`EpochToken`を持ち、`admit_effect`は次の順で検査する。(1)`scope`、`number`、`entry_digest`が現在の`EpochToken`とすべて一致しなければ`Rejected(fenced)`（小さい値、大きい値、別のscope、同じnumberで別の行のいずれも拒否する）。(2)そのscopeが依存する許可の取消しについて`PropagationView`が`Positive`でなければ`Rejected(revocation_pending)`。(3)取り消された許可に代わる新しい許可の記録が無ければ`Rejected(missing_authorization)`。旧い`EpochToken`の観測（CI、review、費用）は、作用と別の`LateObservation`のeventとして元のepisodeへ結んで追記し、作用として適用しない（4章の「遅着観測」）。
 
 ### 15.3 G5 取消しの伝播
 
 ```text
-Revocation      = { revoked: SubjectRef（取り消された承認・authority・許可の記録）, record: SubjectRef（取消しの記録）, trigger }
+Revocation      = { revoked: SubjectRef, record: SubjectRef（取消しの記録）, trigger }
 RecipientClass  = os_assignment | worker_run | connect | credential | artifact_access | approval_consumer | internal_deployment
-RecipientState  = received | applied | failed | unobserved
-PropagationView = { revocation, recipients: { identity -> (RecipientClass, RecipientState) }, combined: Combined }
+RecipientMap    = FixedRef。SECURITYが宣言する { nodeのkind -> RecipientClass }
+PropagationView = { revocation, recipients: { identity -> RecipientClass }, combined: Combined,
+                    assurance: { (identity, verifier) -> { reverifiable, reproduction, issuer_authenticity } } }
 ```
 
-- **G5-I1 受け手の全集合**：受け手の集合は、K10の`impact`で`revoked`から依存の関係を伝播の向きにたどった`affected`と、K10の`review_set`から導く。由来のACが挙げる受け手の種類（SECURITY-AC-009-01）ごとに、該当するidentityが列挙される。導いた集合に無い受け手の状態は使わず、導いた受け手の状態が無ければ`unobserved`とする。`held`の枝は`Unknown(missing_input)`の成分とする。
-- **G5-I2 状態はreceiptから**：各受け手の状態は、その受け手が出したK6のreceipt（K5のlog）からだけ読む。`applied`は肯定、`failed`は否定、`received`は`Unobserved(pending_receipt)`、`unobserved`は`Unobserved(not_run)`の成分とし、全成分を一つの`combine`で合成する。受け手が0件なら`set_reason`。
-- **G5-I3 停止を続ける**：`PropagationView`が`Positive`になるまで、取り消された記録に依存する作用を再開しない。各受け手の作用は、K7-I6の`Epoch`の増加により拒否される。
-- **G5-I4 取消しから許可を作らない**：取消しは承認・許可を生成しない。取消しを取り消して元へ戻す経路を置かず、再開には新しい許可の記録を要する。
-- **G5-I5 承認の状態と記録**：取消しは新しい記録として追記し、取り消された記録や本文を書き換えない。承認の記録を入力に持つK2の結果は、承認の状態の記録のrevisionが変わるため、K2-I2のとおり見直しの対象になる（K10-I7）。
-- **G5-I6 内部デプロイ**：現行の世代の`composition`が取り消された記録に依存する場合、`RollbackRequired`を追記し、受け手`internal_deployment`の状態は、許可を伴う`move`が適用されるまで`unobserved`とする（K7-I4）。
+- **G5-I1 受け手の全集合**：`propagate`は、(1)K10の照会の二段で、currentの`GraphDecl`・`GraphRules`からグラフを得る（非`Value`なら、その結果を返す）。(2)`impact(changed = [revoked])`と、`review_set(impact, obligation_set_keys, decls)`を行う。(3)`affected`の各nodeは、そのnodeの`kind`を`RecipientMap`で写した`RecipientClass`の受け手とする（写せなければ`Unknown(unregistered)`の成分）。`review_set`の各記録は、その鍵の`subject`のidentityを、各義務は、その`target`のidentityを、`approval_consumer`の受け手とする。(4)`check_graph`・`impact`・`review_set`の否定・非`Value`・`set_reason`の成分は、`{graph, …}`・`{review, …}`の識別付きですべて`combined`へ入れる。受け手が0件なら`set_reason`。
+- **G5-I2 状態はreceiptから**：受け手`r`の状態は、操作`revocation_apply`について、`r`のcurrentの`OperationDecl`から作る基底鍵（`subject`＝`r`、`inputs`＝宣言の入力と`Revocation.record`、`scope`＝宣言のscope）で、固定した`VerifierSet`の`required_for[revocation_apply]`の検証器（受け手の適用を確かめる検証器）のreceiptを、K6-I7の手順で得る。receiptの`inner`の検査`applied`が肯定、`failed`が否定、`received`が`Unobserved(pending_receipt)`であり、`inner`の全成分と`set_reason`を`{r, verifier, 検査}`付きで`combined`へ入れる。照会や受入の非`Value`（receiptが無い`Unobserved(not_run)`、`Stale`、`Unknown(conflict)`、`Unknown(unreadable)`、`Unknown(missing_input)`）は`r`の成分とする。`assurance`は`{r, verifier}`ごとに返す。旧い取消しの`applied`のreceiptは、鍵の入力の取消しの記録が違うため、現在の取消しの照会に当たらない（`Unobserved(not_run)`）。
+- **G5-I3 停止を続ける**：`PropagationView`が`Positive`になるまで、取り消された記録に依存するscopeの作用を、K7-I6の(2)で拒否する。
+- **G5-I4 取消しから許可を作らない**：取消しは承認・許可を生成しない。取消しを取り消して元へ戻す経路を置かず、再開には新しい許可の記録を要する（K7-I6の(3)）。
+- **G5-I5 承認の状態と記録**：取消しは新しい記録として追記し、取り消された記録や本文を書き換えない。承認の記録を入力に持つ結果は、K10-I7の見直しの対象になる。
+- **G5-I6 内部デプロイ**：現行の世代の`composition`が取り消された記録に依存する場合、`RollbackRequired`を追記し、受け手`internal_deployment`は、許可を照合した`PointerMoved`が適用されるまで`Unobserved(not_run)`とする。`MoveRequested`だけでは、この待ちを解消しない（K7-I4）。
 
 ### 15.4 型番台帳
 
 - **形式**：型番台帳はK5のlog（`log_id: model-number-ledger`）とし、manifestを書くのはOS（段階の登録と統制）、unit・connectionの行のsegmentを書くのはHARNESS（packの宣言）、compositeの行のsegmentを書くのはOSとする（AC-OS-014-09の所有の境界）。行は`DeclaredEvent`（9.3）とし、種類は`ModelNumberDeclared{kind: unit | connection | composite, identity, owner}`と`VersionDeclared{identity, 項目}`である。
 - **項目**：unit・connectionの`VersionDeclared`の項目は、HARNESS-L2-010がpackに求める宣言（identity、版と成熟度、入力・出力の契約、依存の種別・identity・版、検証範囲とoracle、ownerの種別とidentity、収載・非収載。AC-HARNESS-L3-010-01）だけとする。compositeの項目は、HELIXOS-L2-014の「一組として保存するもの」（packと依存のidentityと版、configuration、data format、対応環境、能力と制約、scope内の受入の証拠、更新・rollbackの条件。AC-OS-014-04）だけとする。新しい項目は足さない。版はK2の`SubjectRef`、検証範囲と受入の証拠はK4の`ObligationSet`とK6のreceiptの参照、依存はK10のedgeで表す。これは項目の表し方であり、項目を足すものではない。
-- **内部デプロイの状態**：台帳に別に書かず、K7の`PointerLog`から導くprojectionとする（二つの正本を作らないため）。
+- **内部デプロイの状態**：台帳に別に書かず、K7の`PointerLog`の`PointerMoved`だけから導くprojectionとする（二つの正本を作らないため）。`MoveRequested`は使わない。
 - **現行の台帳**：台帳の現在の内容は、K5の`project`で導く。台帳はK10のグラフの`sources`の一つになり、依存のedgeの由来になる。
 
 ### 15.5 配置
@@ -943,16 +950,17 @@ PropagationView = { revocation, recipients: { identity -> (RecipientClass, Recip
 
 ### 15.6 API境界
 
-- `move(target, from, to, kind, authorization) -> Appended | Rejected(stale_from | not_eligible | missing_authorization)`：K7-I1〜I4に従う。
-- `admit_effect(effect, epoch) -> Appended | Rejected(fenced)`：K7-I6に従う。
-- `propagate(revocation, graph_ref, condition_state, input_heads) -> Observed<PropagationView>`：G5-I1〜I3に従う。
-- `ledger_view(input_heads) -> Observed<Projection>`：15.4に従う。
+- `request_move(target, expected_head, from, to, kind, authorization, decls, verifier_set, input_heads) -> Appended(MoveRequested) | Rejected(stale_head | not_eligible)`：K7-I2・I3に従う。
+- `apply_move(request) -> Appended(PointerMoved) | Rejected(stale_head | authorization_unverified | not_eligible)`：K7-I2・I4に従う。K3が定まるまでは`Rejected(authorization_unverified)`を返す。
+- `admit_effect(effect, epoch_token, input_heads) -> Appended | Rejected(fenced | revocation_pending | missing_authorization)`：K7-I6に従う。
+- `propagate(revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, verifier_set, input_heads) -> Observed<PropagationView>`：G5-I1〜I3に従う。
+- `ledger_view(input_heads) -> Observed<Projection>`：15.4に従う。内部デプロイの状態は`PointerMoved`だけから導き、`MoveRequested`を使わない。
 
 ### 15.7 旧HELIXとの対応
 
 | 旧source（ID／path:行／SHA-256） | 保持する点 | 変更する点 | 区分候補 |
 |---|---|---|---|
-| `LEGACY-ASSET-B6DC14C1DA937E3AC96C`／`docs/design/helix/L5-detail/node-runtime-cutover.md:47-53,106-112`／`49f3e4c324b19e728f7c05787bbd698f841728a526eedc7cec3f756b3601e9f9` | 切替は承認・計画・commit・監視の状態機械で、rollbackは`rollback_required→rollback_approved→rolling_back`だけ。driftでreceiptをstaleにする | runtimeの切替に限っていたものを、段階の世代pointerの`move`へ一般化する | `semantic_rederive` |
+| `LEGACY-ASSET-B6DC14C1DA937E3AC96C`／`docs/design/helix/L5-detail/node-runtime-cutover.md:47-53,106-112,123-129`／`49f3e4c324b19e728f7c05787bbd698f841728a526eedc7cec3f756b3601e9f9` | 切替は承認・計画・commit・監視の状態機械で、rollbackは`rollback_required→rollback_approved→rolling_back`だけ。commit pointは`runtime generation current` pointer一件のCASに縮約し、commit直前に承認・writer epoch・lease/fence等を再読し、CASの敗者や古いepochは作用0とする | runtimeの切替に限っていたものを、段階の世代pointerの`move`へ一般化する | `semantic_rederive` |
 | `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`／`docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:117,198`／`db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` | 失効したrunの遅着の結果をcommitしない（HIL-FR-27）。lease失効後の作用をfencing tokenの不一致で拒否する（HIL-NFR-18） | `Epoch`をK5の追記・K2の記録にも適用する | `semantic_rederive` |
 | `LEGACY-ASSET-BC2275DCE9BFFCF813C8`／`docs/design/helix/L5-detail/python-worker-runtime.md:133-136`／`4c26544b5cf6e63ed226838ff5e04b3a669f6a9aa13456ffc5e5fb41fc755f8a` | cancel・timeout・再割当てでfence tokenを失効させ、その後の結果はbytesが正しくても拒否する。新しいownerは新しいrunから再開する | なし（K7-I6として再導出） | `semantic_rederive` |
 | `LEGACY-ASSET-1B413588CFF3B1360B49`／`docs/adr/ADR-009-node-python-linux-runtime.md:113-120`／`bdd1c9a00243b723342e42531ddeabbf2f7570594943c11226d5b0461769753c` | 切替はrollbackを持つ可逆なtransactionとし、自動のfallbackを禁止し、許可を伴う明示のrollbackだけを許す | なし（K7-I3・I4として保持）。自動の切戻しはPhase 2の判断へ残す | `semantic_rederive` |
@@ -974,7 +982,7 @@ PropagationView = { revocation, recipients: { identity -> (RecipientClass, Recip
 
 ### 15.10 未決と試作で確かめること
 
-- 試作：小さな段階の世代を2つ作り、L9のIV-K7-01〜07、IV-G5-01〜05、IV-LDG-01〜04を動かす。
+- 試作：小さな段階の世代を2つ作り、L9のIV-K7-01〜10、IV-G5-01〜08、IV-LDG-01〜04を動かす。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
