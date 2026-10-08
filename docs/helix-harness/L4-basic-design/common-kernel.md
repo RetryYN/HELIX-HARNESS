@@ -6,7 +6,7 @@ parent_requirement: なし（一つの親要求を定めず、要素ごとに承
 paired_l9: ../L9-integration-verification/common-kernel-integration-verification.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）、PR3bはG8（11章）とPhase 1の条件の具体（12章）、PR4はK4とG3（13章）、PR5はK10（14章）、PR6はK7・G5・型番台帳と配置（15章）、PR7はK3（16章）、PR8はK9（17章）を扱う。残りは8.2の「後続PRの計画」に置く。
+本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）、PR3bはG8（11章）とPhase 1の条件の具体（12章）、PR4はK4とG3（13章）、PR5はK10（14章）、PR6はK7・G5・型番台帳と配置（15章）、PR7はK3（16章）、PR8はK9（17章）、PR9はK8（18章）を扱う。残りは8.2の「後続PRの計画」に置く。
 
 本書は要求の意味、範囲、担当、版を作らない。各要素は承認済みL3のACを由来とし、由来の無い要素は「L2へ戻す論点」に分ける。本書は実装、実行、内部デプロイ、releaseの許可を含まない。本書の承認・merge・試作の合格から、L3以上の承認や完了を生成しない。
 
@@ -308,7 +308,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 | 6（15章で起草） | K7 世代pointer／fencing、型番の台帳形式とディレクトリ配置（方針6） | OS-014、INFRA | G5（取消しの伝播） | node-runtime-cutover、HIL-FR-27、ADR-009 | 自動切戻しとADR-009の差（Phase 2の判断時に扱う）。G5の統一伝播は新規案 |
 | 7（16章で起草） | K3 operation authority tuple | SECURITY-AC-006-01ほかSECURITY Stage 1 | G5の受信側 | authority-vocabulary、security-capability-broker、source-boundary-contracts | 旧の軸（data_classification、sink、impact）の採否 |
 | 8（17章で起草） | K9 独立性の記録（製品の要求） | Concept:236（identity・context・authority・review routeで独立性を決め、providerの同異では決めない）。承認済みL3の候補：AC-OS-029-03（`docs/helix-os/L3-requirements/functional-requirements.md:77`。current exact HEADのreview receipt）、AC-INTELLIGENCE-L3-072-08（`docs/helix-intelligence/L3-requirements/functional-requirements.md:564`。candidate生成と独立reviewの段階分離）。LABOのblind評価は候補から除外（17.5参照）。開発repoの運用規則（2026-10-08委任判断記録の判断1）は根拠にしない（解禁判断記録の判断3） | — | worker-independent-review（同provider／modelでもidentity・session・contextが独立なら受理）、producer-provenance-separation（PPS-R-03。開発repoの運用規則の起点であり、製品K9の要件としては採らない） | review routeの軸は新規案 |
-| 9 | K8 label遷移 | SECURITY-AC-001-01 | — | pillar P8、worker-context-authority、memory-learning-promotion | label伝播（taint型）は新規案 |
+| 9（18章で起草） | K8 label遷移 | SECURITY-AC-001-01 | — | pillar P8、worker-context-authority、memory-learning-promotion | label伝播（taint型）は新規案 |
 
 G14（外部標準の版固定）はCONNECTのL4で扱い、共通カーネルに含めない。
 
@@ -1274,6 +1274,215 @@ LABOのblind評価はK9共通条件へ採らない。現LABO L3 Stage 5「HELIXL
 | `LEGACY-ASSET-25EB3B29EA909B050987` / `docs/design/helix/L5-detail/worker-lifecycle-receipt.md:1–73` / `275fe7149c80d6abbc85aa59b50bfc4c00e1f55bfd783b6cd092557cd8c21ccc` | review capabilityを消費する後続lifecycleとproposal対応の責務を確認。K9 relationからlifecycle完了を生成しない。 |
 | `LEGACY-ASSET-D4CB3FE6A76F3A54FED1` / `docs/plans/PLAN-L3-1622-producer-provenance-separation.md:2–8,31–39,66–74` / `daea021e9f9aafe25837934bde4d10065676b76502fcd8e0523646ebaef95526` | draft/no_change/completion_claim_allowed=false、#539/#1605/lifecycle参照を確認。candidateであり承認の判断史へ昇格しない。 |
 | `LEGACY-ASSET-D6816E22DAF2E990410B` / `docs/design/helix/L5-detail/github-cross-review-admission.md:1–110` / `c0a5cf042f66d378bb20aa50c7b3fdd0aa633e6ef4cb2f8742952075f72b0b35` | mixed/dual-receipt/external互換を開発repo admissionのconsumerとして確認。製品K9の条件へ入れない。 |
+
+## 18. K8 入力ラベルの観測と明示経路の遷移記録
+
+本節はPR9の下書きであり、SECURITYの入力分類・authority境界をカーネルで共有できる記録形にする。K8は汎用taint解析、データフロー伝播、policy語彙、権限判定を定義しない。K8が扱うのは、入力の出自と分類観測、およびSECURITYが明示済みとする昇格経路の参照と、そのauthority作用の観測を分けて表すことだけである。
+
+### 18.1 由来とtrace
+
+引用はmain `8d759ff9313252641154f386fe14c68e0a40e415`の本文。Concept全体SHA-256は`bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715`、SECURITY L3全体は`f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e`で固定する。
+
+共通カーネルには親要求を置かず、K8の各要素を承認済み`SECURITY-AC-001-01`へ要素ごとにtraceする（2026-10-08 PO判断2）。K8から共通カーネル用のL2親や要求を作らない。HARNESSはConcept原則10に基づき共通の工程・検証契約を所有し、SECURITYの分類語彙や昇格権限を所有しない。
+
+| K8要素 | 現行Concept / 承認済みL3 | ここで保持する意味 |
+|---|---|---|
+| 入力の出自、project、revision、data classification | `SECURITY-AC-001-01`（`docs/helix-security/L3-requirements/functional-requirements.md:68`） | 全入力source種別でsource・project・revision・分類を関連づける。正本・実行事実・表示・作業文脈の分離はConcept原則7（Concept:308）、project等の暗黙共有禁止はConcept:319。 |
+| 未信頼状態と分類不能 | 同AC | 入力は未信頼として扱う。分類不能は`Unknown`のまま保持し、untrustedを解除しない。Concept:316の「不明を問題なしに読み替えない」と整合する。 |
+| 明示昇格経路・targetの記録 | 同AC、Concept原則8（Concept:309） | 経路が明示された正例では経路とtargetを記録する。学習・監査結果を上流正本へ直接反映しない。カーネルは経路を発行・承認しない。 |
+| read-only結果とauthority作用結果 | 同AC、Concept原則7・10（Concept:308、311） | 2結果を別field・別K1観測として返す。read-onlyからauthority作用を推定しない。SECURITYが制約とauthorityを所有する。 |
+| 各targetへのread-only negative | 同AC | instruction、要求、authority、永続化、学習への昇格をreadだけから許さない。個別fixtureとして扱うtargetはAC本文に列挙されたAgent instruction、Tool authority、memory、BRAIN、training data、security policyを含む。 |
+
+
+### 18.2 旧HELIXとの対応
+
+旧sourceは出自と再導出範囲を確認するために参照した。旧資産の状態は台帳どおりであり、いずれも現行仕様または実行根拠として昇格しない。
+
+| 旧source（asset ID／path:行／本文SHA-256） | 読み取った点 | 保持する点 | 変える点と理由 |
+|---|---|---|---|
+| `LEGACY-ASSET-18F7940E7994634D39A1`（revision 3）／`docs/design/helix/L1-requirements/pillar-requirements.md:43,57,66,77,81`／`7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc` | P8は外部参照・skill化に加え、外部dataの信頼境界、sandbox、不可逆作用を扱う旧要求の束だった。 | 外部dataとinstructionを混同しないsecurity境界を調べる起点。 | P8全体、旧sandbox方式・token・escalation表はK8へ持ち込まない。K8の範囲は承認済み`SECURITY-AC-001-01`の入力分類／明示経路に限定する。 |
+| `LEGACY-ASSET-EE5DBACC7F28F7D1F605`／`docs/design/helix/L3-requirements/pillar-functional-requirements.md:171,186`／`7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544` | P8-04はraw input・trusted metadata・executable instructionの分離、HR-NFR-P8-02はinjection/exfiltration誘導の検出・分類と処置を記した。 | 入力本文、metadata、実行可能な指示を同じ意味へ縮約しない。 | 旧IDや旧検出動作をK8へ移さない。現行ACのsource/project/revision/classificationと、明示された遷移経路へ再導出する。 |
+| `LEGACY-ASSET-8DA932B4A1012B9D8F00`／`docs/design/helix/L4-basic-design/worker-context-authority.md:19-24,30-53`／`aca532c939e34f2a4fb6b47f74254ff76a49dfaea1eeb56ff5edd7f3a181acec` | Worker起動時にcurrent authority/ruleやscopeをsealed contextへ結び、Issue本文やhistorical input自体をauthorityとみなさない旧境界。 | 出自・scope・authorityを曖昧な本文から推測しないという境界意識。 | Worker起動packet、sealed capability、sandbox／process境界はK8の責務ではなく、旧関数/APIは移植しない。 |
+| `LEGACY-ASSET-AD72C8353ACD8C676C5F`／`docs/design/helix/L5-detail/worker-context-authority.md:19-46`／`8818e7af133f2feb2268c6f2c8b04e509735ff330ab8510c2361086a242e6f12` | packet fieldとdigestの厳密照合、解決前のauthority固定、failureの閉じた集合。 | K2鍵とK1の非肯定状態を使い、出自の欠落を肯定へ縮退させない。 | 旧18-field packet、failure code、評価順はK8の仕様へ転用しない。 |
+| `LEGACY-ASSET-2A73DCD3E15EC9B529CF`／`docs/design/helix/L6-function-design/worker-context-authority.md:19-29`／`21406d2c7c72520f9928ce5e6ded143f8285c3975a3fb617293965661b01eff3` | 旧関数面はattest/reattest/compile/verify/launchを分け、同一process capabilityを署名やcross-process tokenと主張しなかった。 | K8も観測・照合APIとauthority作用を混同しない。 | 旧関数名・process launch・旧runtime authorityを採らず、現行L3から必要な純粋な分類・記録面を再導出する。 |
+| `LEGACY-ASSET-D65FB82C21C5EDBDFCE4`／`docs/design/helix/L5-detail/memory-learning-promotion.md:39-48,72-89,91-145,147-165`／`70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a` | 知識memoryとcontinuationの分離、raw log/progress/secret等の排除、findingからlearning stageへ進む旧案。 | raw evidence本文、進捗・continuationを知識・memoryと同じ意味で扱わない。読み取りや分類から永続化／学習への昇格を作らない。 | memory compaction、role分離、stage graph、サイズ上限、DB/JSONL transactionはK8の範囲外。現行ACにない旧authority・数値を持ち込まない。 |
+| `LEGACY-ASSET-256C9F8C3029B185B151`／`docs/design/helix/L6-function-design/memory-learning-promotion.md:31-60,72-148`／`e6e20a686ac0f9e019b9fd9803674c489b1e1674b7388efa20dfa3be648fb753` | 旧pure APIが候補分類、禁止内容検出、promotion stageを分けていた。 | 表示・分類・authority作用の責務を分ける形の参考にする。 | 旧API、HIL failure、promotionの認可や受入を移植しない。K8はauthority効果を生成しない。 |
+
+区分候補：P8 L2/L3と旧設計は歴史的根拠の意味を再導出する。既存資産を完全一致で再利用せず、現行SECURITY L3から分類記録のsemantic re-deriveを行う。旧sandbox、旧memory promotion、旧worker packet実行方式は今回置換対象でもなく、K8へ流用しない。台帳では`LEGACY-ASSET-18F7940E7994634D39A1`の`disposition=source_snapshot_preservation`で`authority_status`は無く、他6件は`authority_status=historical`かつ`disposition=unresolved`である。
+
+### 18.3 型とAPI
+
+分類語彙と昇格対象はSECURITYの既存ownerが持つ。K8は語彙を列挙しない。SECURITYが所有するcurrent declarationは、current分類定義、ACに現れる既存target identityごとのowner参照、経路を検証するK6 verifier、作用観測を読む既存sourceを束ねる。当該operationが必要とする宣言項目が欠落・unknown・staleなら、そのoperationの肯定結果を作らない。
+
+```text
+TargetOwnerRef       = { target: SubjectRef, owner: SubjectRef }
+ClassificationDecl   = SECURITY ownerのcurrent declaration。項目はoperation別に解決する。
+  { classification_definition: SubjectRef, classifier: SubjectRef,
+    route_slice: { target_owners: TargetOwnerRef[],
+                   route_verifier: VerifierRef } | absent,
+    effect_slice: { effect_source: SubjectRef } | absent }
+                      # route_verifierはcurrent K6 VerifierSet内のexact member。
+                      # effect_sourceはSECURITY ownerが宣言するcurrent作用source。
+InputSourceRef       = { source: SubjectRef, project: SubjectRef }
+                      # source SubjectRefが入力revisionとdata digestを持つ
+ClassificationRef    = SubjectRef        # SECURITY分類定義内の既存項目
+ObservedLabel        = { input: InputSourceRef, trust: "untrusted",
+                         classification: Observed<ClassificationRef>,
+                         key: ResultKey, evidence: EvidenceRef }
+InputLabelRef        = SubjectRef{kind: k8_input_label_observation,
+  identity: canonical_json({source_identity, classification_operation, scope}),
+  revision: saved ResultRecord.key_digest,
+  digest: sha256(canonical_json(saved K2 ResultRecord))}
+  # K2/K5に保存済み分類operation ResultRecordの参照。source SubjectRefとは別。
+ExplicitRouteRef     = { route: SubjectRef, target: SubjectRef,
+                         permission_check: SubjectRef }
+EffectObservation   = { source: SubjectRef, event: SubjectRef | null,
+                         outcome: "none" | "occurred",
+                         issuer: identity,
+                         binding: { input_label: SubjectRef | null, route: SubjectRef | null,
+                                    target: SubjectRef | null, permission_query: SubjectRef | null }
+                                   | null }
+EffectIssuerDiagnostic = non-K1, non-K2 projection diagnostic { state: match | mismatch | unavailable,
+  source: SubjectRef | null, declared_issuer: identity | null,
+  observed_issuer: identity | null,
+  reason: source_unregistered | source_unreadable | issuer_missing | null }
+EffectIssuerAssuranceDiagnostic = non-K1, non-K2 projection diagnostic { state: unproven,
+                                    reason: no_existing_signature_or_anchor }
+K8CaseInputBinding = { input_label: InputLabelRef, source: SubjectRef,
+  project: SubjectRef, task_scope: SubjectRef, selection: not_selected | selected,
+  route: SubjectRef | null, target: SubjectRef | null,
+  permission_query: SubjectRef | null, effect_observation: SubjectRef | null }
+K8CaseInputBindingRef = existing owner current ref with independent identity/revision/head for the input-only binding slice
+K8CaseResultPointers = { classification_key: ResultKey, effect_key: ResultKey,
+                         validation_key: ResultKey | null }
+K8CaseBindingRef(input_binding, owner_input_binding) = SubjectRef{
+  kind: k8_case_binding,
+  identity: canonical_json({owner_identity, case_identity}),
+  revision: owner_input_binding.revision,
+  digest: sha256(canonical_json(input_binding))}
+  # input_label経由の分類ResultKeyを含む。effect/validation ResultKeyは含めない。
+K8OperationVersion(operation, api_contract, owner_contracts) = UTF-8(canonical_json({
+  operation, api_contract, owner_contracts: SubjectRef identity順}))
+ExistingRequiredInputRole = identity from the existing owner declaration required-input set
+K8RoleBoundInputRef(side, role, ref) = SubjectRef{
+  kind: k8_role_input,
+  identity: canonical_json({side: "saved" | "current", role: ExistingRequiredInputRole, ref_identity: ref.identity}),
+  revision: ref.revision,
+  digest: ref.digest}
+  # aliasのrevision/digestは原refの実bytesを表す。side/role/refの対応はownerの固定required-input binding bytesとalias identityへ結ぶ。
+  # readerは原source bytesを実読してdigestを計算しalias identityへ記録する。wrapperだけを読むことはsource実読でない。
+  # 原SubjectRefはTransitionValidation.components.raw_read_refsに別保持する。
+TransitionCase = { input_binding_ref: K8CaseInputBindingRef,
+                   result_pointers: K8CaseResultPointers }
+                 # input-only bindingと結果pointer projectionは別source slice。
+                 # selectionはinput-only bindingだけから決める。pointerの有無は選択やcurrent key構成可否を決めない。
+MismatchField = input_label | route | target | revision_subject | permission_check | permission_query | effect_event
+  | binding.input_label | binding.route | binding.target | binding.permission_query
+  | issuer | current_classification_record
+TransitionOutcome = Validated | Mismatch{fields: nonempty MismatchField[]} | Denied{source: permission_check | route_verification}
+TransitionValidation = { result: Observed<TransitionOutcome> | KeyUnavailable,
+  components: { saved_input_label: Observed<ClassificationRef>,
+                current_classification: Observed<ClassificationRef>,
+                effect: Observed<EffectObservation>,
+                permission_check: PermissionCheck | KeyUnavailable,
+                route_verification: RequiredResult | KeyUnavailable,
+                issuer_source_match: EffectIssuerDiagnostic,
+                raw_read_refs: SubjectRef[] } | ValidationEvidenceUnavailable,
+  issuer_authenticity: EffectIssuerAssuranceDiagnostic }
+ValidationEvidenceUnavailable = non-K1 non-K2 diagnostic { state: evidence_unavailable,
+  evidence_ref: EvidenceRef, reason: unreadable }
+KeyUnavailable = { state: "key_unavailable", diagnostic: Rejected(missing_key) }
+LabelTransition      = { source_label: ObservedLabel,
+                         read_result: Observed<ClassificationRef>,
+                         observed_effect: Observed<EffectObservation>,
+                         validated_transition: TransitionValidation | NotSelected,
+                         pointer_diagnostics: non-K1 non-K2 diagnostic[] }
+NotSelected = { state: "not_selected" } # selection projection。validation queryを発行していないcaseで、K1結果・ResultKeyはなくcombineへ渡さない。
+# K1のUnobserved(not_selected)は完全なResultKeyを持つ操作照会の状態。本projectionは照会自体を発行しないowner selectionを表す差分である。
+```
+
+`target_owners.target`はAC本文が指す既存対象のidentity参照であり、新しいtarget語彙ではない。`ClassificationDecl.route_slice.route_verifier`はK6のcurrent `VerifierSet`にexact一致するmemberを指す。`effect_slice.effect_source`はSECURITY ownerが宣言するcurrent source identityであり、source ownerの既存current readerで実体を読む。K3 `AuthorityDecl.sources`の許可sourceとeffect sourceを同一視しない。これらはowner登録済みのcurrent declarationの項目であり、各APIはcallerからdeclaration・reader・verifier setを受け取らず、固定adapterが各owner読取り境界でK5 current_headを内部取得し、その固定prefixを再読して解決する。caller input_headsは期待値であり、内部取得した末尾と不一致なら旧prefixを選ばない。現行headからkeyを構成し、分類/effect/validationの新規評価は18.4のUnknown(missing_input)候補として期待headと実読headを証拠に残す。読取りprojectionではcurrent keyのK2 lookup結果を変換せず、head期待値の不一致をpointer_diagnosticsと同じ非K1診断へ保持する。classification operationはsource/project/classification definition/classifierだけを必須とし、optionalなroute/effect sliceの不在で分類結果まで止めない。route検証・実作用観測で必要なsliceがcurrent declarationに無い場合、absenceをcurrent declarationの固定bytesへ保持する。API/schema/current owner declaration/case binding等のkey基盤が解決できるときは、存在するrefだけを入力にし、未登録sliceの架空refを足さずUnknown(unregistered)を返す。そのkey基盤も欠ける場合はAPI Rejectedまたはselected KeyUnavailableである。optional sliceの不在を扱うoperation_versionは既知のAPI/owner contract refsだけから構成する。各operationの`operation_version`/inputsにもそのoperationに適用されるsliceだけを含める。
+
+`InputLabelRef`は`observe_input_label`がK2/K5既存方式で保存した分類operationの唯一のResultRecord（result: Observed<ClassificationRef>）の固定参照であり、K8固有authorityやsource refの別名ではない。identityは分類対象source identity・分類operation・既存scopeから作り、revision/digestは保存済みResultRecordのkey_digestとcanonical bytesから作る。利用側はsaved recordへInputLabelRefの全fieldを一致させる。current classification keyは別に再構成・lookupし、validation PositiveにはそのValueとsaved recordの全field一致を要する。ObservedLabelはこのrecordのkey.subject/input binding、result、evidenceから再構成するprojectionであり、同じ分類keyに別result=ObservedLabelのrecordを重ねて保存しない。再構成した`ObservedLabel.input.source`からsource/project/classification definitionを再読する。単なるsource SubjectRefを`InputLabelRef`の代用にしない。
+
+`K8CaseBindingRef`の`owner_identity`と`case_identity`は既存owner/case identity、`owner_input_binding`はcurrent prefixから実読した既存ownerのinput-only binding slice参照、`revision`はそのslice refのrevision、digestはcanonical `K8CaseInputBinding` bytesから求める。結果key pointerを保存するprojection／segmentは別source identity/headであり、input bindingのsource ref/revision/headに含めない。input-only sliceの固定revision/headを結果pointerの追記で進めない。両source identityを分けるのはbackdatingではなく、入力宣言と結果参照projectionの責務分離である。結果key pointerだけが更新されても`K8CaseBindingRef`のrevision/digest/HeadInputRefは変わらず、current input binding自体が変われば更新する。各refは実読したcanonical `SubjectRef`値とし、nullのfieldには架空refを作らない。`K8OperationVersion`の`api_contract`と`owner_contracts`は各operationに適用される既存current API/schema/contract参照であり、owner_contractsはidentity順に正準化する。classification/effect/validationすべてに同じ正準化規則を適用し、`operation`はそれぞれ`classify_input_label`、`observe_authority_effect`、`validate_label_transition`とする。該当current refが一意に解決できない場合はversionを推定せず、keyを作らない。current owner bindingを読めない場合はcase binding refを作らず、case APIのmissing-key診断へ進む。
+
+- `observe_input_label(input_ref, input_heads) -> ObservedLabel | Rejected(missing_key)`：固定adapterがSECURITY ownerのcurrent declarationとsource ownerのcurrent readerを固定prefixから再読する。分類operationに必要なsource／project／revision／digest／classification definition／classifier refが揃わなければ、K2 key作成前に`Rejected(missing_key)`とする。入力bytesを実読してdigestを再計算し、既存のcurrent分類評価で読む。評価境界が無い場合は`Unknown(unregistered)`。route/effect項目が未登録でも分類operation自体は妨げない。callerのclassification値・reader・declarationはcurrent根拠にしない。分類不能はK1 `Unknown`で、`trust="untrusted"`を保持する。
+- `observe_authority_effect(case_ref, effect_observation_ref, input_heads) -> Observed<EffectObservation> | Rejected(missing_key)`：固定adapterが渡された`case_ref`のowner current bindingを再読し、同じcaseに結合されたSECURITY ownerのcurrent effect-source登録とsource ownerのcurrent readerを固定prefixから再読する。case bindingは逆引きしない。原記録bytesのdigest・revision・issuerと実作用記録にあるinput label/route/target/permission queryのbindingを照合する。原記録に無いbindingを補わず、原source bytes上の`outcome="none"`、`event=null`、`binding=null`またはbinding内nullをそのまま観測値へ保持する。binding欠落を理由に、実読した作用事実までUnknown/Rejectedへ読み替えない。callerのsource reader、verifier set、declaration、keyやplain `outcome="occurred"`をcurrent根拠にしない。fresh評価のeffect source未登録はUnknown(unregistered)、実読不能はUnknown(unreadable)、未着はUnobserved(not_run)、caller期待headとの不一致はUnknown(missing_input)候補として後述の優先順で決める。Staleはcurrent keyの読取りlookupからだけ導き、fresh resultとして保存しない。
+- `validate_label_transition(case_ref, input_label_ref: InputLabelRef, route_ref, k3_permission_check_ref, effect_observation_ref, input_heads) -> TransitionValidation | Rejected(missing_key)`：not_selectedのcaseにも明示照会できる。この場合もcurrent validation keyの全必須refを必要とし、構成不能ならAPI Rejected(missing_key)、構成可能ならTransitionValidation.resultを鍵付きUnobserved(not_selected)としK2 record/lookupを通す。依存の読取り診断はcomponentsへ保持するがselected用のMismatch/Denied/Validated評価を行わない。record_label_transitionのquery未発行NotSelected projectionとはこの照会発行の有無で区別する。selectedなら以下を行う。固定adapterが渡された`case_ref`のcurrent case bindingを再読して参照を固定し、`input_label_ref`は旧分類ResultRecordの固定参照として保存済recordへ全field一致で実読解決し、ObservedLabel projectionを再構成する。別componentとしてcurrent classification keyを作りK2 lookupし、positive validationにはcurrent分類resultがValueかつそのResultRecordがsaved InputLabelRefの指すrecordと全field一致することを要する。APIの他ref引数はcurrent case bindingにあるrefとの照合値であり、固定adapterはowner current sourceからrefを読み直す。case bindingと引数refが全field一致しなければvalidationを肯定しない。その`ObservedLabel.input.source`からsource/project/classification definitionを再読し、current `ClassificationDecl`、K6 `VerifierSet`とroute verifier、target owner、K3既存`PermissionCheck`、effect observationも固定prefixから再読し、各lookup結果を`components`に保持する。permission参照は保存済み結果のK2 lookupがValue(PermissionCheckResult)となり、current queryで再照合できる場合だけ使う。PermissionCheckDiagnosticはkeyなし・非保存のためこの参照へ代用せず、Unknown/Unobserved/Staleもvalidationを肯定しない。ExplicitRouteRef.permission_checkとk3_permission_check_refは全field一致を要する。permission checkは現行tupleのactor/target/operation/revision/environment/scope/expiry等と、route target・実作用eventを同じ作用としてexact bindし、K3-I1〜I7に従い`combined=Positive`なら継続し、`Negative`は`Denied{source:permission_check}`とする。route_ref.target.identityは再構成query.targetおよびtuple.targetと一致させる。作用対象ownerのcurrent declarationが当該targetとrouteから解決したrevision_subjectはquery.revisionおよびtuple.revisionとidentity/revision/digestまで一致させる。target identityとrevision_subject.identityが同じとは仮定しない。対応宣言が不明ならUnknown(unsupported)で肯定しない。`EffectObservation.issuer`がcurrent effect-source registrationのdeclared issuerと一致すれば非K1 diagnosticの`issuer_source_match.state=match`、異なれば`state=mismatch`として`Mismatch{fields:[issuer]}`を返す。current registration/readerが取得できなければ`state=unavailable`で、元のeffect componentの非Valueを保つ。署名/anchorの真正性はこの一致から導かない。`EffectObservation.binding.input_label`は保存済み`InputLabelRef`、`binding.route`は`route_ref.route`、`binding.target`は`route_ref.target`、`binding.permission_query`は再照合したK3 checkの`query`とidentity/revision/digestまで各々一致させる。bindingがnullまたは一つでも不一致ならvalidatedにしない。route ref等のrequired key入力が存在しkey構成可能であれば、不一致・binding欠落は後述の判定表で保持する。required ref自体が無くK2 keyを構成できないselected caseは`KeyUnavailable(Rejected(missing_key))`とし、呼出側で補わない。さらに再読した`EffectObservation`が`Value(occurred)`で、event identityがroute/target/permission checkの作用tupleと一致し、K6 `RequiredResult.combined=Positive`およびK3 `PermissionCheckResult.combined=Positive`の場合だけresultを`Value(Validated)`にする。原記録の`outcome="none"`は選択済みvalidationに対する`Value(Mismatch{fields:[effect_event]})`である。この関数は許可・作用記録を作らず、K3の既存許可と既発生作用の記録を読む。
+- `record_label_transition(case_ref, input_heads) -> LabelTransition | Rejected(missing_key)`：固定adapterはownerのcurrent input-only binding sliceと別read viewのresult pointer projectionを読み、両方をcase identityで結合する。input bindingのfield欠落または不正selectionは`Rejected(missing_key)`とし、`selection=not_selected`を明示未選択として扱い、pointerの有無では変えない。callerが任意のkeyを指定しない。operationごとのcurrent K2 keyをowner declaration、input-only current refs、scopeから再構成してlookupし、caseに保存済みのclassification/effect/validation ResultKeyを照会keyに使わない。case内ResultKeyはcurrent再構成結果との比較用historical pointerに限る。historical pointerのrevision/digestが古いだけならcurrent lookupへ影響させない。pointerのoperation/subject/scope/case identityが対応operationと異なる、又はpointer field自体が欠落する場合は`pointer_diagnostics`へ`Rejected(missing_key)`と該当fieldを記録し、そのpointerを利用しない。この診断はK1/K2へ保存せず、current keyで得た分類・作用・validationを消さない。K2 lookupで分類結果、effect observation、transition validationを別fieldで返す。`TransitionValidation.components`が利用可能なら、そのeffectと`LabelTransition.observed_effect`は同じcurrent effect keyのlookup結果を全field一致で共有する。LabelTransitionはこれらを包む読取りprojectionであり、集約用のResultKeyを作らず、各nested結果の鍵を保持する。`selection=selected`ならpointerが非null/null/欠落のいずれでもinput-only bindingからcurrent validation keyを構成し、可能ならK2 lookupを返す。null/欠落pointerはpointer_diagnosticsへmissing_keyとして保持するだけであり、保存済みDenied/Mismatch/非Valueを置換しない。pointerが非nullでもrequired route/permission参照自体が無くcurrent keyを構成できなければ`TransitionValidation.result=KeyUnavailable`とし、利用可能な分類/effect/K3/K6 componentsを保持する。`selection=not_selected`ならpointerのnull/非nullを問わずNotSelectedを返し、非null pointerはselection不一致のpointer_diagnosticsへ記録する。このdiagnosticはK1結果ではなくK2にも保存せず、K1 combineにも渡さない。NotSelectedはownerが未選択を明示したselection projectionである。K1 2.2のUnobserved(not_selected)との差分は、K1が完全な鍵を持つ操作照会の結果であるのに対し、本projectionはvalidation queryを発行せずrequired route refsも要求しない点である。これはAC-HARNESS-L3-030-02の未選択を未観測に保つ意味を保持し、未選択を成功にしない。実際に完全な鍵を持つvalidation queryを未選択として照会する境界ではK1のUnobserved(not_selected)を使い、NotSelectedで代用しない。いずれも`read_result`から`observed_effect`または`validated_transition`を導かない。case binding自体を読めず分類/effectの基盤を解決できない場合に限りAPI全体をRejectedとしてよい。作用sourceの原記録bytesに`none`またはbinding fieldのnull/欠落があっても、原記録が作用を観測していれば`observed_effect`へ事実を保持し、validationは非肯定とする。
+
+入力labelは遷移の前後を通して`untrusted`のまま保持する。明示routeによるauthority作用が起きた事実の観測と、route・owner・K3既存許可の照合に成功した`validated_transition`は別状態である。作用sourceが実際の作用を観測したがroute bindingが欠落・不一致・未検証の場合、`observed_effect=Value({outcome:"occurred", ...})`を消さず、keyを構成できるvalidationは18.4の決定表に従い、確定不一致は否定Value、不明は対応する非Valueとして別に返す。selected validationのrequired ref欠落でK2 keyを構成できない場合は`KeyUnavailable(Rejected(missing_key))`をprojectionへ保持する。KeyUnavailableだけはK1結果ではなく、K2に保存せずcombineへ渡さない。この組はK7 `AppliedUncertain`と同じく「作用済みの事実をRejectedへ読み替えない」形だが、K8は新たな作用やrollbackを実行しない。
+
+### 18.4 K1/K2/K6との整合
+
+- **K1**：分類不能は`Unknown`、実作用をまだ読めない／読んでいない場合はその原因に応じた`Unknown`／`Unobserved`、実読値間の確定した矛盾は`Value(Mismatch{fields})`（Negative）として、K2 conflict等の未知は元の非Valueとして残す。`KeyUnavailable`はK1結果ではなくprojection診断で、combineへ渡さない。いずれも`untrusted`を解除しない。
+- **K2**：分類keyは`operation=classify_input_label`、classifier/schema版を含む`operation_version`、`subject=input.source`、既存scopeを表す`scope`とする。`inputs`にはproject、SECURITY分類定義、current classifier refと分類operationに必要なcurrent declaration refなど、subjectと重複しない結果依存入力だけを含める。inputs内は共通SubjectRefをexact一致で一件にdedupする。同一identityでkind/revision/digestが異なるrefがあればK2 `key_of`へ渡す前に`Rejected(missing_key)`とし、どちらかを選ばない。分類operationにroute verifier・target owner・effect sourceを要求しない。effect keyは`operation=observe_authority_effect`、`subject=effect_observation_ref`、validation keyは`operation=validate_label_transition`、`subject=InputLabelRef`とする。`InputLabelRef`は保存済み分類ResultRecordの固定参照で、ObservedLabel projectionを再構成し、source refでは代用しない。これらの`scope`はcurrent owner case bindingが指す既存case/task scopeを使う。各`operation_version`は`K8OperationVersion`規則に従い、operationごとにK8 API contractと当該operationで使う既存owner schema/contractのcurrent refsを`canonical_json`で正準化した文字列とする。classification keyは分類対象source/project/classification inputsと既存scopeだけから作り、K8CaseBindingRefをinputsに含めない。effect/validation keyはowner current declarationが定めるoperation別required-input全集合にK8CaseBindingRefとinput-only binding sliceのHeadInputRefを含める。result pointer projectionまたはその保存source identityのHeadInputRefはinputsへ入れない。effect keyにはSECURITY effect-source registration/source owner reader、原記録ref、case binding refs、存在するinput label/route/target/K3 query/event refsおよび各ownerの`HeadInputRef`を含める。validation keyには保存済み`InputLabelRef`が指す分類結果から再読したsource/project/classification定義、SECURITY target-owner/route slices、明示route/target、保存済みK3 `PermissionCheck`のResultKey依存SubjectRefと`PermissionQueryRef`、K6 `VerifierSet`/verifier contract/route receipt、effect observation/event、および各ownerの`HeadInputRef`を含める。K2 inputsでは各refから`K8RoleBoundInputRef(side,role,ref)`というK2 `SubjectRef`を作り、保存済みK3 query dependencyとK8 current owner refが同一identityで異なるrevision/digestでも別aliasとして共存させる。key前Rejectedはside/role/ref.identityで決まる同一alias identity内でkind/revision/digestが異なるrefが衝突した場合だけに限り、別aliasの不一致はcurrent K3 lookupの`Stale`等として残す。effect/validation K2 `inputs`には`K8CaseBindingRef`を含める。このrefのcanonical bytesはinput-only sliceである既存case identity、`InputLabelRef`、source/project/task scope、selection、route、target、permission query、effect observation refsを結び、分類ResultKeyはInputLabelRef経由で含み、結果pointerのclassification/effect/validation ResultKeyは含めない。分類ResultKeyはcase bindingに依存しない。case input bindingは分類ResultKeyから作ったInputLabelRefに依存するが、分類operationのkeyはcase input bindingに依存しない。effect/validation keyだけがcase input bindingに依存し、結果pointerやその保存source headはこれらのinputsから除外するため循環も自己無効化も生じない。subjectと重複するrefは除き、inputs全体はrole-bound `SubjectRef.identity`で整列し、完全一致refだけを同一alias内でdedupする。headはraw SegmentHeadでなく16.2のHeadInputRefで固定prefix観測をSubjectRef化して使う。operationごとのrequired-input集合はSECURITY current declarationの対応sliceとK3 `AuthorityDecl.required_inputs`から読む。必須key field欠落は`Rejected(missing_key)`、同revisionのbytes差は`Unknown(conflict)`、revision＋digest更新後の旧`Value`は`Stale`、input identity集合変更は`Unobserved(not_run)`。保存済みK3結果はcurrent keyでlookupし、その非肯定クラスと`assurance`を維持する。caseに保存された古いResultKeyはlookupへ使わず、current keyとの比較に限る。operation versionまたはscopeのcurrent根拠が欠落・unknown・staleならkeyを肯定しない。
+effect operationでは原記録のnone/event=null/binding=nullをK8CaseBindingRefと原source固定bytesへ保持し、存在するbinding/event参照だけをinputsへ含める。route/permission/eventがnullであること自体はeffect key構成の欠落ではない。validationは明示route/permissionなどのrequired参照を必要とし、その参照自体が無ければKeyUnavailable診断になる。issuerやrevision/digestのscalar値をSubjectRefとして投入せず、原記録SubjectRef/current owner契約と固定binding bytesへ束縛する。
+
+検証operationの値型は`TransitionOutcome = Validated | Mismatch{fields} | Denied{source}`であり、HARNESS所有の写像`k8_transition_polarity`（版はcurrent K8 validation API contract refのrevision/digest）で`Validated`はPositive、`Mismatch`と`Denied`はNegativeへ写し、合成のpolarityへこの識別と版を記録する。K3 `PermissionCheckResult.combined=Negative`は`Denied{source:permission_check}`、K6 `RequiredResult.combined=Negative`は`Denied{source:route_verification}`、保存されたroute/effect/target/query/event間の確定した不一致は該当field名を列挙した`Mismatch`とする。K2の`Unknown(conflict)`（同revision・異digest）は値の不一致ではなく、K2 lookup結果のまま残す。現在のInputLabelRefは固定saved record参照を解決して保持し、別のcurrent classification key lookupも実行する。current classification keyのStaleはcomponentのまま保持し、validation outcomeへ直接代入しない。`TransitionValidation.components`はK3 `PermissionCheck`（診断を含む）とK6 `RequiredResult`を元型のまま保持し、`result`がUnknown/Mismatch/Deniedでも各`assurance`と元診断を落とさない。`issuer_source_match`はcurrent source registrationのdeclared issuerと原記録issuerを比較する非K1/non-K2 diagnostic projectionであり、K2 ResultKeyやK1 `Observed`を追加しない。一致/不一致/未取得だけを示し、不一致は`Mismatch{fields:[issuer]}`、未取得は元のeffect componentのUnknown/Unobservedへ写す。署名/anchorの既存証拠は無いため`issuer_authenticity`も非K1/non-K2の`EffectIssuerAssuranceDiagnostic{state:unproven, reason:no_existing_signature_or_anchor}`とし、issuer一致から真正性を推論しない。
+
+`validate_label_transition`はcurrent入力から新しい評価を行い、下表でfresh outcomeを決める。`record_label_transition`は読取りprojectionであり、fresh評価や結果の追記を行わず、各operationのcurrent query keyでK2 lookupする。両者を混ぜない。fresh評価時のdependency Staleはcomponentへ原型で保持し、validation自身のStaleへ型違いで代入しない。
+
+| 判定順 | 条件 | fresh validationの結果 |
+|---|---|---|
+| 1 | source/case基盤を読めない、field欠落/不正selection、同一alias identity内の異ref、分類/effect keyの必須基盤ref欠落 | API Rejected(missing_key) |
+| 2 | validation keyの全必須refが揃わない | selectedはprojection内KeyUnavailable。not_selectedの明示照会はAPI Rejected(missing_key) |
+| 2a | key構成可能なnot_selectedの明示照会 | 鍵付きUnobserved(not_selected)。以下のselected評価へ進まない |
+| 3 | 実読値のroute/target/query/event/binding/issuer確定不一致、selectedのeffect=none、又はcurrent分類Valueのrecordとsaved InputLabelRefのrecordが確定不一致 | Value(Mismatch{fields})（Negative）。fieldsはMismatchFieldの列挙順で、確定した不一致だけを各一回保持 |
+| 4 | K3 combined=Negative | Value(Denied{source:permission_check})（Negative） |
+| 5 | K6 route combined=Negative | Value(Denied{source:route_verification})（Negative） |
+| 6 | 全componentと構造照合から集めたUnknown候補が一つ以上 | 下記の閉語彙順でUnknown(reason)。全候補と元result/assuranceを保持 |
+| 7 | Unknown候補なし、Unobserved候補あり | not_selected、not_run、pending_receiptの順でUnobserved(why)。全候補を保持 |
+| 8 | 全必須成分がValueで一致しK3/K6 combined=Positive | Value(Validated)（Positive） |
+
+Unknown候補は、dependency Unknownの元reason、dependency Stale→missing_input、required NotApplicable→missing_input、内容/binding欠落→missing_input、source読取不能→unreadable、未登録reader/declaration→unregistered、routeからrevision_subjectへの対応不明→unsupported、PermissionCheckDiagnosticのmissing_key→missing_input／invalid_query→missing_inputから集める。K3/K6 combined=Undeterminedは内側の全non-value成分とset_reasonを同じ規則で展開し、候補が得られない不正な空合成もmissing_inputとする。reasonの決定順はambiguous、unsupported、conflict、evaluation_error、indeterminate、unreadable、incomparable、unregistered、missing_input、invalid_dispositionで固定する。UnknownとUnobservedが同時ならUnknownを選び、最初の候補だけで他を捨てない。NotSelected/KeyUnavailable等の非K1診断を成分へ捏造しない。
+
+fresh評価をK2/K5へ保存するとき、唯一のvalidation ResultRecord.resultはObserved<TransitionOutcome>とし、components・raw read refs・各assuranceはそのevidenceが指す固定bytesへ保持する。evidenceには当該validation ResultKey/ResultRecord/result pointerを含めず、自己参照を作らない。TransitionValidation全体を別のresultとして同じ鍵へ二重保存しない。K2 record後はcurrent keyのlookupを通した結果をresultへ返す。同一鍵異bodyのConflictなら結果はK2 Unknown(conflict)であり、fresh候補をそのまま肯定出力せず、競合した両bodyとassuranceを証拠に残す。
+
+読取りprojectionはcurrent keyでのlookup結果をそのまま保持する。validation自身の旧ValueはStale<TransitionOutcome>、同revision異digestはUnknown(conflict)、operation version/scope/identity集合変更はUnobserved(not_run)、旧非ValueはK2-I2bのsuperseded付きUnobservedである。fresh評価を呼んでこれらを上書きしない。projectionのcomponentsはcurrent依存の読取り診断であり、旧resultの証拠をcurrentへ書き換えない。旧result.prior.evidenceもその固定参照のまま保つ。current Valueを再構成する場合は保存evidenceのcomponents/assuranceを実読して保持し、欠落を既定値で補わない。保存evidenceを読めなければcomponentsを非K1/non-K2のValidationEvidenceUnavailableにし、lookup結果自体とevidence参照は維持する。この診断からassuranceを肯定・補完せず、observed_effectの独立したcurrent lookup結果も消さない。
+
+MismatchFieldは型の列挙を閉語彙・順序とする。API引数とcase input-only bindingのref差はinput_label/route/target/permission_query/effect_event、作用bindingの差はbinding.*、作用eventのtuple差またはnoneはeffect_event、source issuer差はissuer、current分類Valueとsaved recordの全field差はcurrent_classification_recordへ対応づける。ExplicitRouteRef.permission_checkとAPI k3_permission_check_refの差はpermission_check、route_ref.targetとK3 query.target/tuple.targetの差はtarget、ownerが解決したrevision_subjectとK3 query.revision/tuple.revisionの差はrevision_subjectへ対応づける。一つの差を無関係なfieldへ展開せず、実際に照合でき不一致と確定したfieldだけを重複なく列挙する。nullで比較不能なfieldはMismatchへ足さずUnknown候補にする。
+
+observe_input_label/observe_authority_effectのfresh評価は、(1)必須key基盤欠落/同alias衝突はAPI Rejected、(2)全Unknown候補を収集し18.4のUnknownReason順で一つを選ぶ、(3)Unknownなしで未実施/未着ならUnobserved(not_run)、(4)全必須実読成立ならValue、の順とする。head不一致はmissing_input候補、読取不能はunreadable、未登録はunregistered、分類不能はindeterminateで、他の候補を捨てずevidenceへ保持する。保存後のK2 ConflictはlookupのUnknown(conflict)を返しfresh候補を上書き肯定しない。
+
+`observe_input_label`はclassifier宣言field欠落をAPI Rejected(missing_key)、宣言済みclassifierの登録不在をUnknown(unregistered)、source読取不能をUnknown(unreadable)、分類不能をUnknown(indeterminate)とする。`observe_authority_effect`のcurrent source実読成立は原記録のnone/occurredをValueにし、source登録不在はUnknown(unregistered)、読取不能はUnknown(unreadable)、未着はUnobserved(not_run)とする。両APIの新規結果もK2 record/lookupを通し、K2 Conflictを肯定へ変換しない。読取り時は各current keyのK2クラスを維持する。
+
+- **K6**：route検証receiptのbase keyは、operation=SECURITY current declarationが参照するK6 route verifierの既存operation、subject=明示route ref、scope=caseの既存scope、inputs=同operationのnon-verifier required refs（source/project/classification definition/targetとそのrevision_subject/K3 permission check refを含む。source/project等のrevision・digestは各SubjectRef内に保持し、revision scalarを別refとして作らない）で構成し、K6 `required(base_key, verifier_set, reverify)`へ渡す。receipt `read`はこのbase keyのsubjectとinputsからverifier類を除いた集合とidentity/revision/digestまで完全一致させる（K6-I4）。K6 `RequiredResult`の`combined`と`assurance`（`reverifiable`、`reproduction`、`issuer_authenticity`）、K3 `PermissionCheckResult.assurance`、実際に読んだraw SubjectRefは`TransitionValidation.components`に元result/refのまま別保持し、ValidationのresultがUnknown/Mismatch/Deniedでも捨てない。K6 receipt readはbase key inputsのrole-bound alias identityと原source実bytesのdigestへ完全一致させる。sideの割当規則はK8 API contract、role/ref対応はcurrent owner required-input bindingへ固定し、それらの契約refも鍵の入力へ保持する。aliasのidentityを見てwrapper bytesを読むのではなく、固定bindingが指す原sourceを実読し、ref.digestと再計算digestの一致を確認してalias identityへ記録する。bindingを読んだだけではこのsource実読を満たさない。issuer照合は登録済みsourceが申告するissuerとの一致だけを意味する。K6 receiptのissuer_authenticityは既存K6の鍵付きUnknown(unsupported)をそのまま保持する。effect source自身にはそのK6鍵を流用せず、非K1のEffectIssuerAssuranceDiagnostic{state:unproven, reason:no_existing_signature_or_anchor}で未証明を示す。登録issuer一致からどちらの真正性も肯定しない。receiptの`authority_effect="none"`は維持し、K6 receiptは許可記録にも実作用sourceにもならない。実作用はK3の許可照合と別に、SECURITYが宣言したeffect sourceからそのownerのcurrent readerで観測する。route/target欠落でK3 `PermissionQuery`を構成できない場合、`components.permission_check=KeyUnavailable`としK3 resultを捏造しない。
+
+### 18.5 不変条件
+
+- **K8-I1 出自の結合**：classification resultはsource、project、source revision、data classification、current `ClassificationDecl`に結び、別identityへ付け替えない。
+- **K8-I2 未信頼の維持**：入力labelは`untrusted`で始まり、分類・route照合・許可・作用のどの結果でも、K8はこれを解除または書換えしない。
+- **K8-I3 分類不能の保持**：分類不能はK1 `Unknown`のまま出力し、default classificationやtrustedへ穴埋めしない。
+- **K8-I4 read/作用の分離**：read-only observationは実作用観測・検証済み遷移と別field／別keyに記録する。read-only結果やK6 receiptからauthority effectを導かない。
+- **K8-I5 route検証**：遷移をvalidatedとするには、SECURITY current `ClassificationDecl`、target owner ref、K6 `RequiredResult.combined=Positive`となるcurrent route verifier receipt、exact K3 `PermissionCheck`の全てが揃い、targetと作用tupleが一致し、K3 checkが肯定であることを要する。K8は許可を生成せず、routeも実作用も実行しない。
+- **K8-I6 作用観測の保全**：effect sourceから実作用を読んだとき、route／permissionが欠けても`observed_effect`を保持する。同じ結果で`validated_transition`はPositiveにしない（確定不一致ならNegative Valueを許す）。selected validation keyを構成できない場合は`KeyUnavailable`をprojectionへ保持し、作用観測を全体Rejectedで消さない。これはK7 `AppliedUncertain`の失敗伝達の形に倣い、作用済みの観測をRejectedで消さない。
+- **K8-I7 target別negative**：ACに列挙された各targetについて、read-onlyだけからinstruction／要求／authority／永続化／学習への昇格が起きない。
+- **K8-I8 taint伝播の限定**：任意のsink graph、暗黙inheritance、label join/meet、declassification規則を定めない。K8は汎用taint伝播型を設計せず、必要な意味は新規要求として生成せず、既存分類宣言・target owner・明示境界の判断だけから扱う。
+
+#### 正常例
+
+外部文書のsourceとproject、revision、data digestを持つ参照をSECURITY current `ClassificationDecl`から分類する。検証器は参照sourceの実bytesを読みdigestを再計算し、現行分類定義に従い、`ObservedLabel{trust:"untrusted", classification:Value(...)}`を返す。read-onlyでは独立したeffect sourceの読取りが`none`を観測し、`validated_transition`はownerの明示した未選択を表す`NotSelected`となる。
+
+明示routeの正例では、target owner参照、current route verifierのK6 receipt、route targetと一致するcurrent K3 `PermissionCheck`、effect sourceから再読した`Value(occurred)`とそのeventのexact bindingが全て揃う。`observed_effect`と`validated_transition`はそれぞれ`Value`になるが、元のinput labelは`untrusted`を保つ。許可判断と作用観測は別の記録である。`observed_effect=Value(none)`、event欠落、またはevent/route/target/permission tuple不一致の場合、`validated_transition`は肯定しない。
+
+#### 反例
+
+- callerがclassificationをplain fieldで指定する、またはsource bytesを読まずにdigestを申告する → K8-I1/I3違反。既存のsource readerとdigest照合を通らず`Value`にしない。
+- classificationを決められないfixtureをdefault trusted／既定classificationにする → K8-I2/I3違反。
+- read-only結果をinstruction、requirement、authority、persistence、learningのいずれかへ変換する → K8-I4/I7違反。
+- callerのplain `outcome="occurred"`、K6 receipt、K3 permission checkだけから実作用を肯定する → K8-I4/I6違反。effect sourceの実読みに基づく観測と分ける。
+- effect sourceが作用eventを読んだがrouteまたはK3 permission refが欠ける → `observed_effect=Value(occurred)`を保持し、selected必須参照欠落なら`validated_transition.result=KeyUnavailable`、keyを構成できbinding内容が欠落する場合は`Unknown(missing_input)`。全体を成功、未作用、または単なる`Rejected`に縮退させない。
+- route targetが`target_owners`と異なる、current route verifierが不一致、K3 permission checkが別target/action/scope/revision、非肯定またはstale → `validated_transition`は肯定でない。K3既定の照合結果に従う。
+- 必須source/project/revision/digest/decl/keyが欠ける → K2 `Rejected(missing_key)`。K1 `Unknown`やdefault labelで代替しない。
+- この章から汎用taint graph、全sink伝播、全target共通の新認可条件を作る → K8-I8違反。意味を追加せず既存ownerの分類宣言／明示境界へ戻す。
+
+### 18.6 技術契約の閉鎖範囲
+
+次の技術契約はL4で固定する。SECURITY ownerがcurrent分類定義、AC対象ごとの既存owner ref、route verifier、effect sourceを`ClassificationDecl`で宣言し、固定adapterが`input_heads`に対するfixed prefixから必要sliceを再読する。分類だけのoperationは分類sliceを必須とし、route/effect sliceの未登録で止めない。route verifierはcurrent K6 `VerifierSet`へexact登録されている場合だけ使う。effect sourceはそのsource ownerの既存current readerで実読・digest照合できる場合だけ観測する。明示routeはtarget ownerとroute verifier、再読したoccurred eventを照合し、作用に必要な許可はroute target／実作用tupleへ束縛したK3既存`PermissionCheck`の参照で照合する。K3の許可sourceと実作用sourceは別参照のまま保持する。API callerからsource reader/verifier set/declaration/keyをcurrent rootとして受け取らない。これによりSECURITY分類語彙・target語彙・許可を増やさず、呼出側の自己申告をauthorityへ変換しない。
+
+各operationは自身のrequired-input sliceだけを要求する。分類sliceのcurrent参照がmissing／unknown／staleならclassificationを肯定せず、route/effect sliceがmissing／unknown／staleならroute/effect/transitionを肯定しない。分類operationはroute verifier・target owner・effect source sliceが未登録でも続行する。必要sliceのsource/project/revision/digest/key必須field欠落は、K2 `key_of`前の`Rejected(missing_key)`とする。同一role-bound alias identity内にkind/revision/digestが異なる複数refが集まった場合もK2 keyを作らず、`Rejected(missing_key)`で診断する。異なるside/roleのalias間では保存済み/current参照を共存させ、raw identityの一致だけで拒否しない。これらはL4の読取り・参照・結合契約であり、新しい人間承認やL2要求を追加しない。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
