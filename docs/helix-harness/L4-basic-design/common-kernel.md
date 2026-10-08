@@ -6,7 +6,7 @@ parent_requirement: なし（一つの親要求を定めず、要素ごとに承
 paired_l9: ../L9-integration-verification/common-kernel-integration-verification.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）、PR3bはG8（11章）とPhase 1の条件の具体（12章）、PR4はK4とG3（13章）、PR5はK10（14章）、PR6はK7・G5・型番台帳と配置（15章）、PR7はK3（16章）、PR8はK9（17章）を扱う。残りは8.2の「後続PRの計画」に置く。
+本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）、PR3bはG8（11章）とPhase 1の条件の具体（12章）、PR4はK4とG3（13章）、PR5はK10（14章）、PR6はK7・G5・型番台帳と配置（15章）、PR7はK3（16章）、PR8はK9（17章）、PR9はK8（18章）を扱う。残りは8.2の「後続PRの計画」に置く。
 
 本書は要求の意味、範囲、担当、版を作らない。各要素は承認済みL3のACを由来とし、由来の無い要素は「L2へ戻す論点」に分ける。本書は実装、実行、内部デプロイ、releaseの許可を含まない。本書の承認・merge・試作の合格から、L3以上の承認や完了を生成しない。
 
@@ -1275,27 +1275,6 @@ LABOのblind評価はK9共通条件へ採らない。現LABO L3 Stage 5「HELIXL
 | `LEGACY-ASSET-D4CB3FE6A76F3A54FED1` / `docs/plans/PLAN-L3-1622-producer-provenance-separation.md:2–8,31–39,66–74` / `daea021e9f9aafe25837934bde4d10065676b76502fcd8e0523646ebaef95526` | draft/no_change/completion_claim_allowed=false、#539/#1605/lifecycle参照を確認。candidateであり承認の判断史へ昇格しない。 |
 | `LEGACY-ASSET-D6816E22DAF2E990410B` / `docs/design/helix/L5-detail/github-cross-review-admission.md:1–110` / `c0a5cf042f66d378bb20aa50c7b3fdd0aa633e6ef4cb2f8742952075f72b0b35` | mixed/dual-receipt/external互換を開発repo admissionのconsumerとして確認。製品K9の条件へ入れない。 |
 
-## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
-
-| path | SHA-256 |
-|---|---|
-| `docs/concept/helix-concept.md` | `bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715` |
-| `docs/helix-harness/L2-requirements/product-requirements.md` | `9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d` |
-| `docs/helix-harness/L3-requirements/functional-requirements.md` | `2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5` |
-| `docs/helix-connect/L3-requirements/functional-requirements.md` | `b3e4a47c0f49978880fc9bae7697d9b67eeaf72a112f821fef167c230c9d2e4b` |
-| `docs/helix-labo/L3-requirements/functional-requirements.md` | `362979fc4489c137d7641278a8ea8e55461f3592d56d802bb285ec34abc4a9b8` |
-| `docs/helix-security/L3-requirements/functional-requirements.md` | `f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e` |
-| `docs/helix-infrastructure/L3-requirements/functional-requirements.md` | `425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d` |
-| `docs/helix-brain/L3-requirements/functional-requirements.md` | `6cf8be0c095fcd5ad5e52b6ee99e607c18d1b26be6f0d2e625e727d868a33cdf` |
-| `docs/helix-os/L3-requirements/functional-requirements.md` | `666200db50ea9a2e7f0d67d57496a71368e497f2fdb6e3485d4838339000b393` |
-| `docs/helix-intelligence/L3-requirements/functional-requirements.md` | `35e936a6d83d7a83310cc2a1900e8f199c54923472df9e9b0d7a9bdeec059457` |
-| `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md` | `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23` |
-| `docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md` | `27b51768cbf010d201ccc2aafe8e4c893ec5ccb2a9a0bce662af343ef87809ee` |
-| `docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md` | `a5061e7438c4be4ca9d14637ac9f5f04689fb00fd3b7cb7d9d59ae775f7a0571` |
-| `docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md`（base `3d2f78ce`で固定） | `2ff59b61c775b9e609832f1e93961a4e50c54a959208b9edbc66524e15f0d8f8` |
-
-旧sourceのpathは`archive/legacy-generation-2026-09-14/root/`からの相対pathである。旧sourceのSHA-256は本文bytesを再計算し、資産明細台帳の`source_sha256`と一致することを確かめた。旧資産の個別採否は、本書の区分候補を起点に、`docs/governance/legacy-asset-decisions.jsonl`の判断ログ契約に従って別に記録する。
-
 ## 18. K8 入力ラベルの観測と明示経路の遷移記録
 
 本節はPR9の下書きであり、SECURITYの入力分類・authority境界をカーネルで共有できる記録形にする。K8は汎用taint解析、データフロー伝播、policy語彙、権限判定を定義しない。K8が扱うのは、入力の出自と分類観測、およびSECURITYが明示済みとする昇格経路の参照と、そのauthority作用の観測を分けて表すことだけである。
@@ -1441,3 +1420,24 @@ effect operationでは原記録のnone/event=null/binding=nullをK8CaseBindingRe
 次の技術契約はL4で固定する。SECURITY ownerがcurrent分類定義、AC対象ごとの既存owner ref、route verifier、effect sourceを`ClassificationDecl`で宣言し、固定adapterが`input_heads`に対するfixed prefixから必要sliceを再読する。分類だけのoperationは分類sliceを必須とし、route/effect sliceの未登録で止めない。route verifierはcurrent K6 `VerifierSet`へexact登録されている場合だけ使う。effect sourceはそのsource ownerの既存current readerで実読・digest照合できる場合だけ観測する。明示routeはtarget ownerとroute verifier、再読したoccurred eventを照合し、作用に必要な許可はroute target／実作用tupleへ束縛したK3既存`PermissionCheck`の参照で照合する。K3の許可sourceと実作用sourceは別参照のまま保持する。API callerからsource reader/verifier set/declaration/keyをcurrent rootとして受け取らない。これによりSECURITY分類語彙・target語彙・許可を増やさず、呼出側の自己申告をauthorityへ変換しない。
 
 各operationは自身のrequired-input sliceだけを要求する。分類sliceのcurrent参照がmissing／unknown／staleならclassificationを肯定せず、route/effect sliceがmissing／unknown／staleならroute/effect/transitionを肯定しない。分類operationはroute verifier・target owner・effect source sliceが未登録でも続行する。必要sliceのsource/project/revision/digest/key必須field欠落は、K2 `key_of`前の`Rejected(missing_key)`とする。同一identityにkind/revision/digestが異なる複数refが集まった場合もK2 keyを作らず、`Rejected(missing_key)`で診断する。これらはL4の読取り・参照・結合契約であり、新しい人間承認やL2要求を追加しない。
+
+## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
+
+| path | SHA-256 |
+|---|---|
+| `docs/concept/helix-concept.md` | `bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715` |
+| `docs/helix-harness/L2-requirements/product-requirements.md` | `9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d` |
+| `docs/helix-harness/L3-requirements/functional-requirements.md` | `2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5` |
+| `docs/helix-connect/L3-requirements/functional-requirements.md` | `b3e4a47c0f49978880fc9bae7697d9b67eeaf72a112f821fef167c230c9d2e4b` |
+| `docs/helix-labo/L3-requirements/functional-requirements.md` | `362979fc4489c137d7641278a8ea8e55461f3592d56d802bb285ec34abc4a9b8` |
+| `docs/helix-security/L3-requirements/functional-requirements.md` | `f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e` |
+| `docs/helix-infrastructure/L3-requirements/functional-requirements.md` | `425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d` |
+| `docs/helix-brain/L3-requirements/functional-requirements.md` | `6cf8be0c095fcd5ad5e52b6ee99e607c18d1b26be6f0d2e625e727d868a33cdf` |
+| `docs/helix-os/L3-requirements/functional-requirements.md` | `666200db50ea9a2e7f0d67d57496a71368e497f2fdb6e3485d4838339000b393` |
+| `docs/helix-intelligence/L3-requirements/functional-requirements.md` | `35e936a6d83d7a83310cc2a1900e8f199c54923472df9e9b0d7a9bdeec059457` |
+| `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md` | `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23` |
+| `docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md` | `27b51768cbf010d201ccc2aafe8e4c893ec5ccb2a9a0bce662af343ef87809ee` |
+| `docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md` | `a5061e7438c4be4ca9d14637ac9f5f04689fb00fd3b7cb7d9d59ae775f7a0571` |
+| `docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md`（base `3d2f78ce`で固定） | `2ff59b61c775b9e609832f1e93961a4e50c54a959208b9edbc66524e15f0d8f8` |
+
+旧sourceのpathは`archive/legacy-generation-2026-09-14/root/`からの相対pathである。旧sourceのSHA-256は本文bytesを再計算し、資産明細台帳の`source_sha256`と一致することを確かめた。旧資産の個別採否は、本書の区分候補を起点に、`docs/governance/legacy-asset-decisions.jsonl`の判断ログ契約に従って別に記録する。
