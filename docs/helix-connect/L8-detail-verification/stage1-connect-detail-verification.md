@@ -4,7 +4,7 @@ layer: L8
 status: design_pair_defined
 owner: HELIX-CONNECT
 paired_l5: ../L5-detail-design/stage1-connect.md
-paired_l5_sha256: 5f0af32559f1aa370772f7d6246ea6b5d74f50a2f209b8dcc0dba2a08c74209b
+paired_l5_sha256: 466a85872043c78696832fada1a21632f340c6f9eec1fc9297f2e368e9664ba9
 base: main `13a2d6ec23e568edb35ffaa7532950fbfda3aafd`
 ---
 
@@ -72,4 +72,4 @@ Logical route fixtureはconnection identity、direction、scope、owner-declared
 
 固定NFRの5候補以外に数値要件を追加しない。候補値は根拠付きの設計値候補であり、承認済み実装値/実測値とは異なる。CON-NFR-001のNやCON-NFR-005のlatency/retentionは親契約が値を宣言しない限り未評価。L8設計上その値の不在は別の親や接続へ波及させない。
 
-次層が物理adapter/transport、外部接続方式、wire format/schema、保存方式、operation runtimeの具体化を必要とする場合、L5の論理境界を維持してL6へ責務を渡す。ここではその具体化、実作用、provider条件、permissionの追加を行わない。L8は全18 verifierを定義するが、実行・coverage・合格は未確認である。
+次層が物理adapter/transport、外部接続方式、wire format/schema、保存方式、operation runtimeの具体化を必要とする場合、L5の論理境界を維持してL6へ責務を渡す。ここではその具体化、実作用、provider条件、permissionの追加を行わない。L8は既存L9の全18 verifierについてfixture案を記述するが、実行・coverage・合格は未確認である。

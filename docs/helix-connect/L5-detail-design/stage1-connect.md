@@ -86,13 +86,13 @@ L3業務文書はこの5親へ独立business ACを定めない。L10業務文書
 
 ### 4.2 状態・証拠の保持
 
-既存K1結果とK2 keyを使う。接続結果はconnection identity、operation identity、scope、契約・依存の使用時revisionに結び付く。完全一致しないresultはcurrent resultに流用しない。L5 record候補はraw payloadを保持せず、必要な内容照合はcontent digest/referenceに限定し、その参照のauthorityと保存条件は元ownerの既存契約に従う。missing event/order/endpoint/receipt/handoffはpositive completionを作れない。K5のappend-only事実、K6の検証receipt、K7のoperation stateは異なる役割を保つ。
+既存K1結果とK2 keyを使う。接続結果はconnection identity、operation identity、scope、契約・依存の使用時revisionに結び付く。完全一致しないresultはcurrent resultに流用しない。L5 record候補はraw payloadを保持せず、必要な内容照合はcontent digest/referenceに限定し、その参照のauthorityと保存条件は元ownerの既存契約に従う。missing event/order/endpoint/receipt/handoffはpositive completionを作れない。K5のappend-only事実、K6の検証receipt、K7のgeneration pointer/fencing、OS ownerのoperation/attempt観測は異なる役割を保つ。
 
 ## 5. API前後条件と失敗の局所化
 
 1. `validate_connection_declaration`はsource/consumerのcurrent declarationを入力から欠落させず、登録可否を純粋に照合する。明示されたregistration-onlyはdeclared結果として扱えるが、永続登録や送信許可の発行ではない。矛盾・欠落は該当する宣言ownerへ返す。実登録は既存K5 writer/owner境界を特定できる場合だけ別操作で行い、その正本化が未観測ならUnknown/Unobserved。
 2. `compare_compatibility`は宣言済みscope内のrevision pairだけを比べる。登録時とcurrentを混同せず、current pairが読み取れない場合はUnknown/Unobserved/Staleを保つ。再照合前にsendを呼べないようL6で同一operation bindingへ渡す。
-3. `check_send_eligibility`はcompatibility checkの代替ではない。existing SECURITY/data-use参照が適用されるsend操作のみ呼び、適用性やauthority recordが不足ならその操作だけ非肯定とする。
+3. `check_send_eligibility`はcompatibility checkの代替ではない。existing SECURITY/data-use参照が適用されるsend操作のみ呼び、適用性やauthority recordが不足ならその操作だけ非肯定とする。 K3へ渡すqueryは既存`PermissionQuery{operation,target,revision,requested_scope,operation_inputs}`であり、actor/environmentをcaller contextから受理しない。上表の7軸は照合対象の所在を表し、actorはcurrent OS assignment、environmentはcurrent INFRA environment declarationからK3 `resolve_authority_context`が解決する。expiryは既存permission recordの値、authority refはSECURITY current permission sourceへの参照として扱う。各sourceが解決できない場合は既存K3診断を保持し、callerが不足軸を埋めない。
 4. endpoint bindingは一つのidentity/operation/contract revisionに対する2端点観測を独立に保持する。片端receiptのみ、結果不一致、contract外envelope、handoff欠落は端点のsuccess扱いをせず、該当端点owner/receiver business ownerへ戻す。
 5. retry assessmentは候補判定でありsend effectを持たない。実際のattemptは既存OS/CONNECT運転責任へ残し、L4にない上限・backoff・recovery operationを加えない。
 6. trace候補は既存event ref列を読み、完全性と順序だけを純粋に照合する。event提案はK5 writerへ渡す前のvalidationであり、このAPI候補自身はappend/writeしない。補正は新event refを提案し、既存K5 writerが記録したことを別に観測する。missing/out-of-order/未確認writerは記録済み完了にせず、unfinishedとしてoperation ownerへ戻す。
