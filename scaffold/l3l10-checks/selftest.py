@@ -195,6 +195,27 @@ def synthetic_cases(git):
             out.append({"case": case, "expected": "rejected", "got": "rejected: %s" % why if real is None else real, "ok": ok})
             if not ok:
                 fails.append("%s: accepted %s" % (case, real))
+        # ハードリンク：許可先のfileが範囲外fileと同じinode → 拒否し、範囲外fileは変わらない
+        outside = os.path.join(tmp, "outside", "victim.json")
+        with open(outside, "w", encoding="utf-8") as f:
+            f.write("ORIGINAL\n")
+        os.link(outside, os.path.join(rdir, "hard.json"))
+        real, why = C.resolve_receipt_path(tmp, "scaffold/l3l10-checks/receipts/hard.json")
+        ok = real is None and open(outside, encoding="utf-8").read() == "ORIGINAL\n"
+        out.append({"case": "receipt_reject_hardlink", "expected": "rejected, outside unchanged",
+                    "got": "rejected: %s" % why if real is None else real, "ok": ok})
+        if not ok:
+            fails.append("receipt hardlink accepted: %s" % real)
+        # 置換方式：解決後に誰かがハードリンクを作っても、書込みは新しいinodeへの置換で、範囲外fileは変わらない
+        target = os.path.join(rdir, "race.json")
+        real, why = C.resolve_receipt_path(tmp, "scaffold/l3l10-checks/receipts/race.json")
+        os.link(outside, target)
+        C.write_receipt(real, "NEW\n")
+        ok = open(outside, encoding="utf-8").read() == "ORIGINAL\n" and open(target, encoding="utf-8").read() == "NEW\n"
+        out.append({"case": "receipt_replace_does_not_touch_linked_inode", "expected": "outside unchanged, target replaced",
+                    "got": "outside=%r target=%r" % (open(outside, encoding="utf-8").read(), open(target, encoding="utf-8").read()), "ok": ok})
+        if not ok:
+            fails.append("receipt write modified a linked outside inode")
         rc = C.main(["--repo-root", tmp, "--receipt", "docs/x.json"])
         ok = rc == 2 and not os.path.exists(os.path.join(tmp, "docs", "x.json"))
         out.append({"case": "receipt_reject_main_exit2_no_write", "expected": "exit 2, no file", "got": "exit %s" % rc, "ok": ok})

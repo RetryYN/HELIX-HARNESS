@@ -1005,16 +1005,39 @@ def resolve_receipt_path(repo_root, path):
         return None, "出力先は .json に限る"
     if not any(real.startswith(a + os.sep) for a in allowed):
         return None, "出力先は %s の中に限る（scaffold/外への書込み禁止。SCF-B-0157）" % ", ".join(RECEIPT_DIRS)
-    if os.path.exists(real) and not os.path.isfile(real):
-        return None, "既存の出力先がregular fileでない"
+    if os.path.lexists(real):
+        st = os.lstat(real)
+        import stat as _stat
+        if not _stat.S_ISREG(st.st_mode):
+            return None, "既存の出力先がregular fileでない"
+        if st.st_nlink > 1:
+            return None, "既存の出力先がハードリンク（link数%d）で、許可先の外のfileと同じinodeでありうる" % st.st_nlink
     return real, None
 
 
 def write_receipt(real, text):
-    os.makedirs(os.path.dirname(real), exist_ok=True)
-    fd = os.open(real, os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_NOFOLLOW", 0), 0o644)
-    with os.fdopen(fd, "w", encoding="utf-8") as f:
-        f.write(text)
+    """既存のinodeを書き換えない。許可先directoryをsymlinkを辿らずに開き、同じdirectoryの新しい一時fileへ書いてから
+    原子的に置換する（rename）。既存fileがハードリンクでも、そのinode（許可先の外のfileを含む）は変わらない。"""
+    d = os.path.dirname(real)
+    os.makedirs(d, exist_ok=True)
+    dfd = os.open(d, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0))
+    try:
+        tmp = ".%s.%d.tmp" % (os.path.basename(real), os.getpid())
+        fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0), 0o644, dir_fd=dfd)
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                f.write(text)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(tmp, os.path.basename(real), src_dir_fd=dfd, dst_dir_fd=dfd)
+        except BaseException:
+            try:
+                os.unlink(tmp, dir_fd=dfd)
+            except OSError:
+                pass
+            raise
+    finally:
+        os.close(dfd)
 
 
 def make_ctx(args, git):

@@ -4,13 +4,13 @@
  "authority_effect": "none",
  "binding": "scaffold/bindings/SCF-B-0157.json",
  "note": "仮の検証の記録。正式なCI／検証／受入の成立を意味しない。検出器の回帰確認であり、L3／L10の承認・合格・merge admissionを生成しない",
- "source_commit": "0255392d05a2a4273edb6602c736b51404341343",
+ "source_commit": "c58c097cf781073a634a51856dc944f0ac0fd48a",
  "source_commit_note": "記録時のworktreeのHEAD。検査器自体の版はchecker_source_digests（各fileのSHA-256）で特定する",
- "recorded_at": "2026-10-08T05:10:45.929306+00:00",
+ "recorded_at": "2026-10-08T05:13:35.282768+00:00",
  "checker_source_digests": {
-  "scaffold/l3l10-checks/README.md": "052e8bba51f9892a068ee8f3a1594796fb2a6593ae878033c69ac0f415d05b13",
-  "scaffold/l3l10-checks/l3l10check.py": "bf632a2b74231a5d71b103657be892d9cf75226edd9cefa778bfcb0bea6d95ba",
-  "scaffold/l3l10-checks/selftest.py": "231eebe44b47c91fcf213710fc6f841aeef96a0a49c177f6d8d2377865842c38",
+  "scaffold/l3l10-checks/README.md": "16bfd968b721ceb509d03c1298c655d8ab7141da2bac6d0ab950566519dc9c62",
+  "scaffold/l3l10-checks/l3l10check.py": "f99ecdc2048408fac70d8be5c50a3f284663467a7a09560bd93d9098b47b8159",
+  "scaffold/l3l10-checks/selftest.py": "ed425e01befab8f255495e64eb440998bce808b3711d5d1039d6860d59941774",
   "scaffold/l3l10-checks/corpus/major-corpus.json": "c5faea577776702c4fb6e04f54917dbf77fc133954cded37b665c6b767008b85"
  },
  "registered_checks": [
@@ -39,8 +39,8 @@
   "partial_scope": [
    "2679 M1"
   ],
-  "synthetic_cases": 22,
-  "synthetic_ok": 22
+  "synthetic_cases": 24,
+  "synthetic_ok": 24
  },
  "corpus": [
   {
@@ -753,6 +753,18 @@
    "case": "receipt_reject_non_json",
    "expected": "rejected",
    "got": "rejected: 出力先は .json に限る",
+   "ok": true
+  },
+  {
+   "case": "receipt_reject_hardlink",
+   "expected": "rejected, outside unchanged",
+   "got": "rejected: 既存の出力先がハードリンク（link数2）で、許可先の外のfileと同じinodeでありうる",
+   "ok": true
+  },
+  {
+   "case": "receipt_replace_does_not_touch_linked_inode",
+   "expected": "outside unchanged, target replaced",
+   "got": "outside='ORIGINAL\\n' target='NEW\\n'",
    "ok": true
   },
   {

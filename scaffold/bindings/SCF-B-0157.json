@@ -86,7 +86,7 @@
    "forbidden_write_scope"
   ],
   "oracles": [
-   "python3 -B scaffold/l3l10-checks/selftest.py（回帰コーパス10件のbad_head検出とfixed_headの同じ箇所の非検出、合成14件）",
+   "python3 -B scaffold/l3l10-checks/selftest.py（回帰コーパス10件のbad_head検出とfixed_headの同じ箇所の非検出、合成24件。receipt出力先の境界（範囲外・symlink・ハードリンク・置換方式）を含む）",
    "receiptのregistry.registered_countとevaluated_countの一致",
    "python3 -B scaffold/tools/scfctl.py validate",
    "python3 -B scaffold/tools/scfctl.py stale",
