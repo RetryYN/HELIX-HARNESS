@@ -2254,6 +2254,48 @@
               "ids": [
                 "#### 実行snapshotとprocess境界"
               ]
+            },
+            {
+              "literal": "Common Kernel corpus source",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
+            },
+            {
+              "literal": "Common Kernel L5→L8 pair binding",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
+            },
+            {
+              "literal": "K1/K2 typed reference保全",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
+            },
+            {
+              "literal": "K1/K2 expanded fixture inventory",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
+            },
+            {
+              "literal": "Common Kernel L5→L8 edge inventory",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
+            },
+            {
+              "literal": "Common Kernel OutcomeRef binding",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
+            },
+            {
+              "literal": "L4 invariant reference separation",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
             }
           ]
         }
@@ -2300,7 +2342,7 @@
               ]
             },
             {
-              "literal": "`CASE-L8-LCI-12`〜`-20`, `-53`〜`-54`, `-62`〜`-66`, `-68`〜`-73`, `-84`〜`-85`",
+              "literal": "`CASE-L8-LCI-12`〜`-20`, `-53`〜`-54`, `-62`〜`-66`, `-68`〜`-73`, `-84`〜`-91`",
               "ids": [
                 "CASE-L8-LCI-12",
                 "CASE-L8-LCI-13",
@@ -2325,7 +2367,13 @@
                 "CASE-L8-LCI-72",
                 "CASE-L8-LCI-73",
                 "CASE-L8-LCI-84",
-                "CASE-L8-LCI-85"
+                "CASE-L8-LCI-85",
+                "CASE-L8-LCI-86",
+                "CASE-L8-LCI-87",
+                "CASE-L8-LCI-88",
+                "CASE-L8-LCI-89",
+                "CASE-L8-LCI-90",
+                "CASE-L8-LCI-91"
               ]
             },
             {
@@ -2580,9 +2628,10 @@
               ]
             },
             {
-              "literal": "`UT-LCI-32`",
+              "literal": "`UT-LCI-32`, `UT-LCI-89`",
               "ids": [
-                "UT-LCI-32"
+                "UT-LCI-32",
+                "UT-LCI-89"
               ]
             },
             {
@@ -2676,7 +2725,7 @@
               ]
             },
             {
-              "literal": "`UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-87`〜`UT-LCI-88`",
+              "literal": "`UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-87`〜`UT-LCI-88`, `UT-LCI-90`〜`UT-LCI-91`",
               "ids": [
                 "UT-LCI-19",
                 "UT-LCI-57",
@@ -2691,11 +2740,13 @@
                 "UT-LCI-74",
                 "UT-LCI-75",
                 "UT-LCI-87",
-                "UT-LCI-88"
+                "UT-LCI-88",
+                "UT-LCI-90",
+                "UT-LCI-91"
               ]
             },
             {
-              "literal": "`UT-LCI-23`, `UT-LCI-36`, `UT-LCI-58`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`",
+              "literal": "`UT-LCI-23`, `UT-LCI-36`, `UT-LCI-58`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-91`〜`UT-LCI-92`, `UT-LCI-94`〜`UT-LCI-95`",
               "ids": [
                 "UT-LCI-23",
                 "UT-LCI-36",
@@ -2707,18 +2758,26 @@
                 "UT-LCI-72",
                 "UT-LCI-73",
                 "UT-LCI-74",
-                "UT-LCI-75"
+                "UT-LCI-75",
+                "UT-LCI-91",
+                "UT-LCI-92",
+                "UT-LCI-94",
+                "UT-LCI-95"
               ]
             },
             {
-              "literal": "`UT-LCI-20`, `UT-LCI-46`, `UT-LCI-47`, `UT-LCI-66`〜`UT-LCI-68`",
+              "literal": "`UT-LCI-20`, `UT-LCI-46`, `UT-LCI-47`, `UT-LCI-66`〜`UT-LCI-68`, `UT-LCI-92`〜`UT-LCI-95`",
               "ids": [
                 "UT-LCI-20",
                 "UT-LCI-46",
                 "UT-LCI-47",
                 "UT-LCI-66",
                 "UT-LCI-67",
-                "UT-LCI-68"
+                "UT-LCI-68",
+                "UT-LCI-92",
+                "UT-LCI-93",
+                "UT-LCI-94",
+                "UT-LCI-95"
               ]
             },
             {
@@ -10081,6 +10140,318 @@
         "verifier_id": "UT-LCI-88",
         "outcome_column": 4
       }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-63",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-63",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-63",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-64",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-64",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-64",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-65",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-65",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-65",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-66",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-66",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-66",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-67",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-67",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-67",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-68",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-68",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-68",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-69",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-69",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-69",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-86",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-86",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-86",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-87",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-87",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-87",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-88",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-88",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-88",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-89",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-89",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-89",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-90",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-90",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-90",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-91",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-91",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-91",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09a.UT-LCI-89",
+      "source_id": "F-LCI-09a",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-89",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-89",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09a.UT-LCI-90",
+      "source_id": "F-LCI-09a",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-90",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-90",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09a.UT-LCI-91",
+      "source_id": "F-LCI-09a",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-91",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-91",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09b.UT-LCI-91",
+      "source_id": "F-LCI-09b",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-91",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-91",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09b.UT-LCI-92",
+      "source_id": "F-LCI-09b",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-92",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-92",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09b.UT-LCI-94",
+      "source_id": "F-LCI-09b",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-94",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-94",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09b.UT-LCI-95",
+      "source_id": "F-LCI-09b",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-95",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-95",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09c.UT-LCI-92",
+      "source_id": "F-LCI-09c",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-92",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-92",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09c.UT-LCI-93",
+      "source_id": "F-LCI-09c",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-93",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-93",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09c.UT-LCI-94",
+      "source_id": "F-LCI-09c",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-94",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-94",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09c.UT-LCI-95",
+      "source_id": "F-LCI-09c",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-95",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-95",
+        "outcome_column": 4
+      }
     }
   ],
   "coverage_dispositions": [
@@ -11406,7 +11777,14 @@
         "edge.local.LC-DESIGN-001.IV-LCI-12",
         "edge.local.LC-DESIGN-001.IV-LCI-13",
         "edge.local.LC-DESIGN-001.IV-LCI-14",
-        "edge.local.LC-DESIGN-001.IV-LCI-27"
+        "edge.local.LC-DESIGN-001.IV-LCI-27",
+        "edge.local.LC-DESIGN-001.IV-LCI-63",
+        "edge.local.LC-DESIGN-001.IV-LCI-64",
+        "edge.local.LC-DESIGN-001.IV-LCI-65",
+        "edge.local.LC-DESIGN-001.IV-LCI-66",
+        "edge.local.LC-DESIGN-001.IV-LCI-67",
+        "edge.local.LC-DESIGN-001.IV-LCI-68",
+        "edge.local.LC-DESIGN-001.IV-LCI-69"
       ]
     },
     {
@@ -11475,7 +11853,13 @@
         "edge.local.D-LCI-03.CASE-L8-LCI-72",
         "edge.local.D-LCI-03.CASE-L8-LCI-73",
         "edge.local.D-LCI-03.CASE-L8-LCI-84",
-        "edge.local.D-LCI-03.CASE-L8-LCI-85"
+        "edge.local.D-LCI-03.CASE-L8-LCI-85",
+        "edge.local.D-LCI-03.CASE-L8-LCI-86",
+        "edge.local.D-LCI-03.CASE-L8-LCI-87",
+        "edge.local.D-LCI-03.CASE-L8-LCI-88",
+        "edge.local.D-LCI-03.CASE-L8-LCI-89",
+        "edge.local.D-LCI-03.CASE-L8-LCI-90",
+        "edge.local.D-LCI-03.CASE-L8-LCI-91"
       ]
     },
     {
@@ -11665,7 +12049,10 @@
         "edge.local.F-LCI-09a.UT-LCI-74",
         "edge.local.F-LCI-09a.UT-LCI-75",
         "edge.local.F-LCI-09a.UT-LCI-87",
-        "edge.local.F-LCI-09a.UT-LCI-88"
+        "edge.local.F-LCI-09a.UT-LCI-88",
+        "edge.local.F-LCI-09a.UT-LCI-89",
+        "edge.local.F-LCI-09a.UT-LCI-90",
+        "edge.local.F-LCI-09a.UT-LCI-91"
       ]
     },
     {
@@ -11683,7 +12070,11 @@
         "edge.local.F-LCI-09b.UT-LCI-72",
         "edge.local.F-LCI-09b.UT-LCI-73",
         "edge.local.F-LCI-09b.UT-LCI-74",
-        "edge.local.F-LCI-09b.UT-LCI-75"
+        "edge.local.F-LCI-09b.UT-LCI-75",
+        "edge.local.F-LCI-09b.UT-LCI-91",
+        "edge.local.F-LCI-09b.UT-LCI-92",
+        "edge.local.F-LCI-09b.UT-LCI-94",
+        "edge.local.F-LCI-09b.UT-LCI-95"
       ]
     },
     {
@@ -11696,7 +12087,11 @@
         "edge.local.F-LCI-09c.UT-LCI-47",
         "edge.local.F-LCI-09c.UT-LCI-66",
         "edge.local.F-LCI-09c.UT-LCI-67",
-        "edge.local.F-LCI-09c.UT-LCI-68"
+        "edge.local.F-LCI-09c.UT-LCI-68",
+        "edge.local.F-LCI-09c.UT-LCI-92",
+        "edge.local.F-LCI-09c.UT-LCI-93",
+        "edge.local.F-LCI-09c.UT-LCI-94",
+        "edge.local.F-LCI-09c.UT-LCI-95"
       ]
     },
     {

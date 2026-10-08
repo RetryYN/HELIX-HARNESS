@@ -10,33 +10,33 @@
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
-      "sha256": "442d9934378a2ae73ab85f9b0afb3f976891e40b18fdab7088f4964f8c1f67b6",
-      "note": "main 95098766111063b7570962b58fff4d0513398f9e上の固定設計入力。role別Git identity・bwrap opaque version/full-byte pin・親AC applicability独立記録を含む。本文pinは実行・合格を表さない。"
+      "sha256": "0e6856af312b25cc2bb0acbfd6b2965e25961dd5cbd91af97d337d28aaeddc88",
+      "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "1db0e653929389831ccdf04ee9c4bc15450b1642f98f8fe0a3bb3dca19feae01",
-      "note": "main 95098766111063b7570962b58fff4d0513398f9e上の固定設計入力。role別Git identity・bwrap opaque version/full-byte pin・親AC applicability独立記録を含む。本文pinは実行・合格を表さない。"
+      "sha256": "477b22887e2fccc2e3f33a6ba95b9bbf6bc3419da2d846b721c8f3be2e1c2d60",
+      "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "b146588e10b23519ca9d903e40cd7ab978c7de570b62ae97ebf73837c68bd3c1",
-      "note": "main 95098766111063b7570962b58fff4d0513398f9e上の固定設計入力。role別Git identity・bwrap opaque version/full-byte pin・親AC applicability独立記録を含む。本文pinは実行・合格を表さない。"
+      "sha256": "b85919b686b0c4b94fd4523f8dfabbcdde89c329c806c4116fe0edf2cdaaf216",
+      "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "df06c5de7e7248f40c7aa4a8aba5ec9e2c5a61fca306a66fde44d244f5b51ede",
-      "note": "main 95098766111063b7570962b58fff4d0513398f9e上の固定設計入力。role別Git identity・bwrap opaque version/full-byte pin・親AC applicability独立記録を含む。本文pinは実行・合格を表さない。"
+      "sha256": "eb0d80436c7ff5ad90d121a0d19ea6049b26954d5a141c3efc50830f905eb588",
+      "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "7a62d2d7171e90e40322209f2ea5eb49096f7a33905ccfe8dcd2c5c86e116492",
-      "note": "main 95098766111063b7570962b58fff4d0513398f9e上の固定設計入力。role別Git identity・bwrap opaque version/full-byte pin・親AC applicability独立記録を含む。本文pinは実行・合格を表さない。"
+      "sha256": "17b9098302db1656320dad63e3dfa4d600fd2ab6108008f2eee363744aaf44f5",
+      "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "366b6dba20e349c7e239c1add51a77af3fc72f665012f8dfc4bf6013ed6582f9",
-      "note": "main 95098766111063b7570962b58fff4d0513398f9e上の固定設計入力。role別Git identity・bwrap opaque version/full-byte pin・親AC applicability独立記録を含む。本文pinは実行・合格を表さない。"
+      "sha256": "bc00657202e50a770e5e8d4c015a3f9d3300b8a380dba06cf247783d9cb090a6",
+      "note": "Current candidate document bytes based on #2738 main 7d48e458fcff7e03df18abc4f768981410685cf7; this pin is not execution, approval, or acceptance evidence."
     },
     {
       "path": "docs/governance/decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md",
@@ -177,7 +177,7 @@
       "docs/helix-os/L4-basic-design/local-ci.md §2.1, §2.2",
       "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract",
       "docs/helix-os/L5-detail-design/local-ci-detail-design.md D-LCI-01..05",
-      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..85",
+      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..91",
       "docs/helix-os/L6-function-design/local-ci-function-design.md F-LCI-01..08 / F-LCI-09a..09d",
       "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI mapping (design only; not executed)",
       "source-byte / target-tree digests and checkout-outside receipt location"
