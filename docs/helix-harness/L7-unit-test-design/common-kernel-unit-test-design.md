@@ -1,14 +1,14 @@
-# HELIX-HARNESS 共通カーネル L7単体試験設計（K1/K2/K3）
+# HELIX-HARNESS 共通カーネル L7単体試験設計（K1/K2/K3/K5）
 
 status: draft
 owner: HELIX-HARNESS
-scope: K1/K2/K3
+scope: K1/K2/K3/K5
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
 base: `main` at `6727d7a10171940fcdb85ae9473f21d0a694c27f`
 
-本書はL6のK1/K2/K3 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。fixtureは未実装・未実行であり、合格を主張しない。K4–K10は`not_designed`でfixtureを追加しない。
+本書はL6のK1/K2/K3/K5 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。fixtureは未実装・未実行であり、合格を主張しない。K4/K6–K10は`not_designed`でfixtureを追加しない。
 
 ## 1. 固定入力とtrace規則
 
@@ -111,7 +111,105 @@ L4/L9は本PRのcontent本文、L5/L6はこのpair内の上流content SHAを参�
 
 suffix展開はfixture identityの命名規則であり、L9 IDを再採番しない。各suffixを個別`unittest` caseとして作る候補であり、一つのfixtureが表中の複数変異を重ねない。precedence fixtureは基準状態を保った単一field mutationでL4 §3.4の検査順を確かめる。IV-K2-05はL9自身が二入力変化の優先順を期待する複合ケースであるため、契約を保つ明示的な例外とする。IV-K2-18–20も複数record集合を前提とするoracleであり、各record固有の変異を別caseで管理する。
 
-## 5. Canonical codecのgolden vector
+## 5.1 K5 fixture表
+
+本節はL8 §5の89個別K5 caseを、K5関数候補と観測点へ対応づける。case IDは`CK-K5-UT-001`から`CK-K5-UT-089`の連番で、各IDは対応するL8 IDを一件だけ参照する。fixture builderはL8が定める基準prefixと単独条件を構成し、storage/reader/FixedRef/current-assignment/K3/K7は明示stub boundaryとする。期待classificationはL8/L9の正本を参照し、ここでは複製しない。
+
+| UT ID | L6関数ID | L8 fixture | L9 oracle | Stub入力 | 呼出し後に観測する戻りfield / 境界 |
+|---|---|---|---|---|---|
+| `CK-K5-UT-001` | CK-K5-FN-16 | `L8-K5-01-MUTATE` | IV-K5-01 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-002` | CK-K5-FN-16 | `L8-K5-01-DELETE` | IV-K5-01 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-003` | CK-K5-FN-16 | `L8-K5-01-REORDER` | IV-K5-01 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-004` | CK-K5-FN-16 | `L8-K5-02-PARSE` | IV-K5-02 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-005` | CK-K5-FN-16 | `L8-K5-03-SCHEMA` | IV-K5-03 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-006` | CK-K5-FN-16 | `L8-K5-04-SEQ-GAP` | IV-K5-04 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-007` | CK-K5-FN-16 | `L8-K5-05-SEQ-DUP` | IV-K5-05 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-008` | CK-K5-FN-16 | `L8-K5-06-PREV` | IV-K5-06 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-009` | CK-K5-FN-16 | `L8-K5-07-ENTRY` | IV-K5-07 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-010` | CK-K5-FN-16 | `L8-K5-08-HEAD-SHORT` | IV-K5-08 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-011` | CK-K5-FN-16 | `L8-K5-08-HEAD-OTHER-CHAIN` | IV-K5-08 | L8指定の固定segment prefix/headに単独変異したraw line。外部store/authorityはstubのみ。 | readのObserved variant/reason/evidence、Value時の指定headと全entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-012` | CK-K5-FN-11/15/18/19 | `L8-K5-09-FIXED-HEAD` | IV-K5-09 | seq=1の保存Projectionとseq=2追記/current head、又は保存input_heads。外部store/authorityはstubのみ。 | Projection.input_heads/output/output_digestとverify/readのObserved variant/evidence。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-013` | CK-K5-FN-11/15/18/19; CK-K2-FN-05/07 | `L8-K5-09-CURRENT-HEAD` | IV-K5-09 | seq=1の保存Projectionとseq=2追記/current head、又は保存input_heads。外部store/authorityはstubのみ。 | Projection.input_heads/output/output_digestとverify/readのObserved variant/evidence。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-014` | CK-K5-FN-07/14 | `L8-K5-10-NOOP` | IV-K5-10 | 復元済みmanifest peer stubと同一/異result ResultRecorded又はpeer unreadable observation。外部store/authorityはstubのみ。 | append return variant/head、NoOp/Conflictの保存記録数、adapter呼出し数・bytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-015` | CK-K5-FN-07/14 | `L8-K5-10-CONFLICT` | IV-K5-10 | 復元済みmanifest peer stubと同一/異result ResultRecorded又はpeer unreadable observation。外部store/authorityはstubのみ。 | append return variant/head、NoOp/Conflictの保存記録数、adapter呼出し数・bytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-016` | CK-K5-FN-07/14 | `L8-K5-10-PEER-UNREADABLE` | IV-K5-10 | 復元済みmanifest peer stubと同一/異result ResultRecorded又はpeer unreadable observation。外部store/authorityはstubのみ。 | append return variant/head、NoOp/Conflictの保存記録数、adapter呼出し数・bytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-017` | CK-K5-FN-07/08/14 | `L8-K5-11-MISSING-KEY` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-018` | CK-K5-FN-07/08/14 | `L8-K5-11-BAD-KEY-DIGEST` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-019` | CK-K5-FN-07/08/14 | `L8-K5-11-BAD-RESULT-DIGEST` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-020` | CK-K5-FN-07/08/14 | `L8-K5-11-STALE` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-021` | CK-K5-FN-07/08/14 | `L8-K5-11-NA-REASON` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-022` | CK-K5-FN-07/08/14 | `L8-K5-11-NA-AUTHORITY` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-023` | CK-K5-FN-07/08/14 | `L8-K5-11-NA-REENTRY-TRIGGER` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-024` | CK-K5-FN-07/08/14 | `L8-K5-11-UNDECLARED-INLINE` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-025` | CK-K5-FN-07/08/14 | `L8-K5-11-WRONG-LOG` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-026` | CK-K5-FN-07/08/14 | `L8-K5-11-CONFLICT-ONE-DIGEST` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-027` | CK-K5-FN-07/08/14 | `L8-K5-11-CONFLICT-UNKNOWN-DIGEST` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-028` | CK-K5-FN-07/08/14 | `L8-K5-11-CORRECT-RESULT` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-029` | CK-K5-FN-07/08/14 | `L8-K5-11-SEGMENTOPENED-WRONG-WRITER` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-030` | CK-K5-FN-07/08/14 | `L8-K5-11-UNDECLARED-EVENT` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-031` | CK-K5-FN-07/08/14 | `L8-K5-11-WRONG-WRITER` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-032` | CK-K5-FN-07/08/14 | `L8-K5-11-UNREGISTERED-SEGMENT` | IV-K5-11 | 正常LogDecl/manifest/eventからL8指定field・event・writerだけを変えたappend request。外部store/authorityはstubのみ。 | append既存Rejected reason、adapter呼出数、headとbytes不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-033` | CK-K5-FN-06/17; CK-K2-FN-05/07 | `L8-K5-12-VALUE-INLINE` | IV-K5-12 | fixed prefix内にInlineのResultRecordedを置く。restoreがValue recordsを返した後、同じ完全一致queryでlookupする。外部store/authorityはstubのみ。 | restoreのObserved variantとrecords全体、lookupのObserved variant/reason/evidence、照合したResultKey、および保存ResultBody.classを観測する。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-034` | CK-K5-FN-06/17; CK-K2-FN-05/07 | `L8-K5-12-VALUE-FIXEDREF` | IV-K5-12 | fixed prefix内にFixedRefのResultRecordedを置き、bytes/digest一致のresolver stubを与える。restoreがValue recordsを返した後、同じ完全一致queryでlookupする。外部store/authorityはstubのみ。 | restoreのObserved variantとrecords全体、lookupのObserved variant/reason/evidence、照合したResultKey、および保存ResultBody.classを観測する。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-035` | CK-K5-FN-06/17; CK-K2-FN-05/07 | `L8-K5-12-UNKNOWN` | IV-K5-12 | fixed prefix内にUnknown ResultRecordedを置く。restoreがValue recordsを返した後、同じ完全一致queryでlookupする。外部store/authorityはstubのみ。 | restoreのObserved variantとrecords全体、lookupのObserved variant/reason/evidence、照合したResultKey、および保存ResultBody.classを観測する。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-036` | CK-K5-FN-06/17; CK-K2-FN-05/07 | `L8-K5-12-UNOBSERVED` | IV-K5-12 | fixed prefix内にUnobserved ResultRecordedを置く。restoreがValue recordsを返した後、同じ完全一致queryでlookupする。外部store/authorityはstubのみ。 | restoreのObserved variantとrecords全体、lookupのObserved variant/reason/evidence、照合したResultKey、および保存ResultBody.classを観測する。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-037` | CK-K5-FN-06/17; CK-K2-FN-05/07 | `L8-K5-12-NOT-APPLICABLE` | IV-K5-12 | fixed prefix内にNotApplicable ResultRecordedを置く。restoreがValue recordsを返した後、同じ完全一致queryでlookupする。外部store/authorityはstubのみ。 | restoreのObserved variantとrecords全体、lookupのObserved variant/reason/evidence、照合したResultKey、および保存ResultBody.classを観測する。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-038` | CK-K5-FN-06/17 | `L8-K5-12-FIXEDREF-MISSING` | IV-K5-12 | fixed prefix内のResultRecorded、Inline/FixedRef resolver stub、又は指定missing/digest mismatch。外部store/authorityはstubのみ。 | restoreのObserved variant/reason/evidenceとrecords全体。Value時はresult class/key_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-039` | CK-K5-FN-06/17 | `L8-K5-12-FIXEDREF-DIGEST` | IV-K5-12 | fixed prefix内のResultRecorded、Inline/FixedRef resolver stub、又は指定missing/digest mismatch。外部store/authorityはstubのみ。 | restoreのObserved variant/reason/evidenceとrecords全体。Value時はresult class/key_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-040` | CK-K5-FN-10/12/14/18 | `L8-K5-13-NO-CORRECTION` | IV-K5-13 | 固定DeclaredEvent/correction tree。append fixtureはappend stub、project fixtureは復元済みevent sequence。外部store/authorityはstubのみ。 | append既存結果、projection Observed variant/reasonとProjection.output/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-041` | CK-K5-FN-10/12/14/18 | `L8-K5-13-CHAIN` | IV-K5-13 | 固定DeclaredEvent/correction tree。append fixtureはappend stub、project fixtureは復元済みevent sequence。外部store/authorityはstubのみ。 | append既存結果、projection Observed variant/reasonとProjection.output/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-042` | CK-K5-FN-10/12/14/18 | `L8-K5-13-RETRACTION` | IV-K5-13 | 固定DeclaredEvent/correction tree。append fixtureはappend stub、project fixtureは復元済みevent sequence。外部store/authorityはstubのみ。 | append既存結果、projection Observed variant/reasonとProjection.output/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-043` | CK-K5-FN-10/12/14/18 | `L8-K5-13-BRANCH` | IV-K5-13 | 固定DeclaredEvent/correction tree。append fixtureはappend stub、project fixtureは復元済みevent sequence。外部store/authorityはstubのみ。 | append既存結果、projection Observed variant/reasonとProjection.output/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-044` | CK-K5-FN-10/12/14/18; CK-K2-FN-07/08 | `L8-K5-13-SAME-KEY` | IV-K5-13 | 固定DeclaredEvent/correction tree。append fixtureはappend stub、project fixtureは復元済みevent sequence。外部store/authorityはstubのみ。 | append既存結果、projection Observed variant/reasonとProjection.output/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-045` | CK-K5-FN-10/12/14/18; CK-K2-FN-07/08 | `L8-K5-13-NEW-REVISION` | IV-K5-13 | 固定DeclaredEvent/correction tree。append fixtureはappend stub、project fixtureは復元済みevent sequence。外部store/authorityはstubのみ。 | append既存結果、projection Observed variant/reasonとProjection.output/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-046` | CK-K5-FN-12/14/18 | `L8-K5-14-NO-WRITEBACK` | IV-K5-14 | 同一event集合の順序variant、又はProjectionからappend/recordへ接続しようとするstub。外部store/authorityはstubのみ。 | output_digest、write/append/record port呼出数、元event/record sequence不変。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-047` | CK-K5-FN-09/12/18 | `L8-K5-15-ORDER-INDEPENDENT` | IV-K5-15 | 同じprojector、scope、固定input_heads、全event集合を使い、projectへ渡すsegment/event列の入力順だけを変えた2 variantを作る。event/reader/storeはstub入力。 | 2回のproject Observed variant、Projection.outputとoutput_digestを観測し、両output_digestが一致することを比較する。restoreやwriter NFC/NFD/segment numeric orderingの観測で代用しない。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-048` | CK-K5-FN-09/17; CK-K2-FN-05/07 | `L8-K5-16-NUMERIC-ORDER` | IV-K5-16 | 複数writer/segment prefixと単一のL8指定順序/表記変異。外部store/authorityはstubのみ。 | restore sequence上のwriter/segment_no/seq。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-049` | CK-K5-FN-09/17; CK-K2-FN-05/07 | `L8-K5-16-NFC` | IV-K5-16 | 複数writer/segment prefixと単一のL8指定順序/表記変異。外部store/authorityはstubのみ。 | restore sequence上のwriter/segment_no/seq。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-050` | CK-K5-FN-05/11/12/18 | `L8-K5-17-COMPLETE` | IV-K5-17 | manifest・scope・A/B headsとprefix全量、又はL8指定head/scope/readだけ欠落・損傷。外部store/authorityはstubのみ。 | project Observed variant/reason/evidence、input_heads。非Value時K2 lookup呼出数=0。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-051` | CK-K5-FN-05/11/12/18 | `L8-K5-17-MISSING-HEAD` | IV-K5-17 | manifest・scope・A/B headsとprefix全量、又はL8指定head/scope/readだけ欠落・損傷。外部store/authorityはstubのみ。 | project Observed variant/reason/evidence、input_heads。非Value時K2 lookup呼出数=0。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-052` | CK-K5-FN-05/11/12/18 | `L8-K5-17-EMPTY-SCOPE` | IV-K5-17 | manifest・scope・A/B headsとprefix全量、又はL8指定head/scope/readだけ欠落・損傷。外部store/authorityはstubのみ。 | project Observed variant/reason/evidence、input_heads。非Value時K2 lookup呼出数=0。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-053` | CK-K5-FN-05/11/12/18 | `L8-K5-17-DAMAGED-B` | IV-K5-17 | manifest・scope・A/B headsとprefix全量、又はL8指定head/scope/readだけ欠落・損傷。外部store/authorityはstubのみ。 | project Observed variant/reason/evidence、input_heads。非Value時K2 lookup呼出数=0。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-054` | CK-K5-FN-05/11/12/18; CK-K2-FN-05/07 | `L8-K5-17-SCOPE-A` | IV-K5-17 | manifest・scope・A/B headsとprefix全量、又はL8指定head/scope/readだけ欠落・損傷。外部store/authorityはstubのみ。 | project Observed variant/reason/evidence、input_heads。非Value時K2 lookup呼出数=0。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-055` | CK-K5-FN-05/11/12/18 | `L8-K5-17-CLOSED-PARTIAL-READ` | IV-K5-17 | manifest・scope・A/B headsとprefix全量、又はL8指定head/scope/readだけ欠落・損傷。外部store/authorityはstubのみ。 | project Observed variant/reason/evidence、input_heads。非Value時K2 lookup呼出数=0。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-056` | CK-K5-FN-05/11/18/19; CK-K2-FN-05/07 | `L8-K5-18-EXACT` | IV-K5-18 | 一致projector/scope/headの保存Projection recordとL8指定の一つのappend/version/digest差。外部store/authorityはstubのみ。 | lookup Observed variant/reasonとStored ResultRecord key/prior、およびProjection input_heads/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-057` | CK-K5-FN-05/11/18/19; CK-K2-FN-05/07 | `L8-K5-18-APPEND` | IV-K5-18 | 一致projector/scope/headの保存Projection recordとL8指定の一つのappend/version/digest差。外部store/authorityはstubのみ。 | lookup Observed variant/reason/key/priorとProjection input_heads/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-058` | CK-K5-FN-05/11/18/19; CK-K2-FN-05/07 | `L8-K5-18-VERSION` | IV-K5-18 | 一致projector/scope/headの保存Projection recordとL8指定の一つのappend/version/digest差。外部store/authorityはstubのみ。 | lookup Observed variant/reason/key/priorとProjection input_heads/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-059` | CK-K5-FN-05/11/18/19; CK-K2-FN-05/07 | `L8-K5-18-DIGEST` | IV-K5-18 | 一致projector/scope/headの保存Projection recordとL8指定の一つのappend/version/digest差。外部store/authorityはstubのみ。 | lookup Observed variant/reason/key/priorとProjection input_heads/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-060` | CK-K5-FN-05/11/18/19; CK-K2-FN-05/07 | `L8-K5-18-UNAFFECTED` | IV-K5-18 | 一致projector/scope/headの保存Projection recordとL8指定の一つのappend/version/digest差。外部store/authorityはstubのみ。 | lookup Observed variant/reason/key/priorとProjection input_heads/output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-061` | CK-K5-FN-12/13/19 | `L8-K5-19-EXTEND` | IV-K5-19 | checkpoint/full rebuild基準とL8指定head/anchor/state/deltaを一条件だけ変える。外部store/authorityはstubのみ。 | verify Observed variant/reason/evidenceとProjection.output_digest、checkpoint helper stubの適用結果。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-062` | CK-K5-FN-12/13/19 | `L8-K5-19-SHORT` | IV-K5-19 | checkpoint/full rebuild基準とL8指定head/anchor/state/deltaを一条件だけ変える。外部store/authorityはstubのみ。 | verify Observed variant/reason/evidenceとProjection.output_digest、checkpoint helper stubの適用結果。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-063` | CK-K5-FN-12/13/19 | `L8-K5-19-ANCHOR` | IV-K5-19 | checkpoint/full rebuild基準とL8指定head/anchor/state/deltaを一条件だけ変える。外部store/authorityはstubのみ。 | verify Observed variant/reason/evidenceとProjection.output_digest、checkpoint helper stubの適用結果。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-064` | CK-K5-FN-12/13/19 | `L8-K5-19-STATE` | IV-K5-19 | checkpoint/full rebuild基準とL8指定head/anchor/state/deltaを一条件だけ変える。外部store/authorityはstubのみ。 | verify Observed variant/reason/evidenceとProjection.output_digest、checkpoint helper stubの適用結果。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-065` | CK-K5-FN-12/13/19 | `L8-K5-19-DIFF` | IV-K5-19 | checkpoint/full rebuild基準とL8指定head/anchor/state/deltaを一条件だけ変える。外部store/authorityはstubのみ。 | verify Observed variant/reason/evidenceとProjection.output_digest、checkpoint helper stubの適用結果。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-066` | CK-K5-FN-13/19 | `L8-K5-20-OUTPUT` | IV-K5-20 | 保存output/output_digestと固定入力からのrebuild値、L8指定の一方だけ改変。外部store/authorityはstubのみ。 | verify Observed variant/reason/evidenceと再構築output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-067` | CK-K5-FN-13/19 | `L8-K5-20-OUTPUT-DIGEST` | IV-K5-20 | 保存output/output_digestと固定入力からのrebuild値、L8指定の一方だけ改変。外部store/authorityはstubのみ。 | verify Observed variant/reason/evidenceと再構築output_digest。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-068` | CK-K5-FN-13/19 | `L8-K5-20-SELF-CONSISTENT-ALTER` | IV-K5-20 | 保存outputとoutput_digestの両方を相互に整合する一つのsemantic条件として改変し、固定入力からのrebuild値は変えない。外部store/authorityはstubのみ。 | verify Observed variant/reason/evidenceと再構築output_digestを観測し、保存output/digest間の自己整合だけで再構築一致としないことを確認する。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-069` | CK-K5-FN-04/05/06/17; CK-K2-FN-05/07 | `L8-K5-21-COMPLETE` | IV-K5-21 | manifestとscope A/Bの全head/prefix、又はL8指定で1 head/scope/manifest/prefixのみ欠落・破損。完全復元された2 caseだけL8指定のlookupを呼び、非Valueはlookupを呼ばない。外部store/authorityはstubのみ。 | restore Observed variant/reason/evidence。Value時records全件とL8指定のK2 lookup variant/keyを観測し、non-Value時lookup呼出数=0。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-070` | CK-K5-FN-04/05/06/17; CK-K2-FN-05/07 | `L8-K5-21-SCOPE-A` | IV-K5-21 | manifestとscope Aの全head/prefixをrestoreし、L8が指定するA-scope keyを完全一致queryにする。外部store/authorityはstubのみ。 | restoreのObserved variant/reason/evidenceと全recordsを観測し、完全復元時はK2 lookupのObserved variant/reason/evidence、query ResultKey、保存ResultBody.classも観測する。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-071` | CK-K5-FN-04/05/06/17 | `L8-K5-21-MISSING-HEAD` | IV-K5-21 | manifestとscope A/Bの全head/prefix、又はL8指定で1 head/scope/manifest/prefixのみ欠落・破損。外部store/authorityはstubのみ。 | restore Observed variant/reason/evidence。non-Value時lookup呼出数=0、Value時records全件。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-072` | CK-K5-FN-04/05/06/17 | `L8-K5-21-EMPTY-SCOPE` | IV-K5-21 | manifestとscope A/Bの全head/prefix、又はL8指定で1 head/scope/manifest/prefixのみ欠落・破損。外部store/authorityはstubのみ。 | restore Observed variant/reason/evidence。non-Value時lookup呼出数=0、Value時records全件。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-073` | CK-K5-FN-04/05/06/17 | `L8-K5-21-DAMAGE-MANIFEST` | IV-K5-21 | manifestとscope A/Bの全head/prefix、又はL8指定で1 head/scope/manifest/prefixのみ欠落・破損。外部store/authorityはstubのみ。 | restore Observed variant/reason/evidence。non-Value時lookup呼出数=0、Value時records全件。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-074` | CK-K5-FN-04/05/06/17 | `L8-K5-21-DAMAGE-B` | IV-K5-21 | manifestとscope A/Bの全head/prefix、又はL8指定で1 head/scope/manifest/prefixのみ欠落・破損。外部store/authorityはstubのみ。 | restore Observed variant/reason/evidence。non-Value時lookup呼出数=0、Value時records全件。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-075` | CK-K5-FN-04/05/06/17 | `L8-K5-21-MASKED-CONFLICT` | IV-K5-21 | manifestとscope A/Bの全head/prefix、又はL8指定で1 head/scope/manifest/prefixのみ欠落・破損。外部store/authorityはstubのみ。 | restore Observed variant/reason/evidence。non-Value時lookup呼出数=0、Value時records全件。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-076` | CK-K5-FN-07/14 | `L8-K5-22-OPENED` | IV-K5-22 | 事前登録済manifest/current assignment-runとK3/K7 stub、SegmentOpened/append requestのL8指定差。外部store/authorityはstubのみ。 | append既存return variant/SegmentHead、adapter/write count、bytes不変性。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-077` | CK-K5-FN-07/14 | `L8-K5-22-UNREGISTERED` | IV-K5-22 | 事前登録済manifest/current assignment-runとK3/K7 stub、SegmentOpened/append requestのL8指定差。外部store/authorityはstubのみ。 | append既存return variant/SegmentHead、adapter/write count、bytes不変性。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-078` | CK-K5-FN-07/14 | `L8-K5-22-MANIFEST-UNREADABLE` | IV-K5-22 | 事前登録済manifest/current assignment-runとK3/K7 stub、SegmentOpened/append requestのL8指定差。外部store/authorityはstubのみ。 | append既存return variant/SegmentHead、adapter/write count、bytes不変性。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-079` | CK-K5-FN-07/14 | `L8-K5-22-WRONG-ASSIGNMENT` | IV-K5-22 | 事前登録済manifest/current assignment-runとK3/K7 stub、SegmentOpened/append requestのL8指定差。外部store/authorityはstubのみ。 | append既存return variant/SegmentHead、adapter/write count、bytes不変性。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-080` | CK-K5-FN-07/14 | `L8-K5-23-CANCEL` | IV-K5-23 | 既存manifest/current assignment-runとK3/K7 fence/peer stub、cancel/expiry/run/fence/lateの各L8個別条件。外部store/authorityはstubのみ。 | append return variant、adapter/write count、past prefix不変、late event handoff先。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-081` | CK-K5-FN-07/14 | `L8-K5-23-EXPIRED` | IV-K5-23 | 既存manifest/current assignment-runとK3/K7 fence/peer stub、cancel/expiry/run/fence/lateの各L8個別条件。外部store/authorityはstubのみ。 | append return variant、adapter/write count、past prefix不変、late event handoff先。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-082` | CK-K5-FN-07/14 | `L8-K5-23-NEW-RUN` | IV-K5-23 | 既存manifest/current assignment-runとK3/K7 fence/peer stub、cancel/expiry/run/fence/lateの各L8個別条件。外部store/authorityはstubのみ。 | append return variant、adapter/write count、past prefix不変、late event handoff先。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-083` | CK-K5-FN-07/14 | `L8-K5-23-FENCE` | IV-K5-23 | 既存manifest/current assignment-runとK3/K7 fence/peer stub、cancel/expiry/run/fence/lateの各L8個別条件。外部store/authorityはstubのみ。 | append return variant、adapter/write count、past prefix不変、late event handoff先。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-084` | CK-K5-FN-07/14 | `L8-K5-23-PEER` | IV-K5-23 | 既存manifest/current assignment-runとK3/K7 fence/peer stub、cancel/expiry/run/fence/lateの各L8個別条件。外部store/authorityはstubのみ。 | append return variant、adapter/write count、past prefix不変、late event handoff先。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-085` | CK-K5-FN-07/14 | `L8-K5-23-COMPLETION` | IV-K5-23 | 既存manifest/current assignment-runとK3/K7 fence/peer stub、cancel/expiry/run/fence/lateの各L8個別条件。外部store/authorityはstubのみ。 | append return variant、adapter/write count、past prefix不変、late event handoff先。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-086` | CK-K5-FN-07/14 | `L8-K5-23-LATE` | IV-K5-23 | 既存manifest/current assignment-runとK3/K7 fence/peer stub、cancel/expiry/run/fence/lateの各L8個別条件。外部store/authorityはstubのみ。 | append return variant、adapter/write count、past prefix不変、late event handoff先。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-087` | CK-K5-FN-01/02/03/16 | `L8-K5-24-CRLF` | IV-K5-24 | 正規canonical JSON+LF prefixとL8指定のraw-line encoding単独変異。外部store/authorityはstubのみ。 | read Observed variant/reason/evidenceと指定head/entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-088` | CK-K5-FN-01/02/03/16 | `L8-K5-25-TRAILING-SPACE` | IV-K5-25 | 正規canonical JSON+LF prefixとL8指定のraw-line encoding単独変異。外部store/authorityはstubのみ。 | read Observed variant/reason/evidenceと指定head/entries。L8期待を複製せず、実行passも主張しない。 |
+| `CK-K5-UT-089` | CK-K5-FN-01/02/03/16 | `L8-K5-26-NONCANONICAL` | IV-K5-26 | 正規canonical JSON+LF prefixとL8指定のraw-line encoding単独変異。外部store/authorityはstubのみ。 | read Observed variant/reason/evidenceと指定head/entries。L8期待を複製せず、実行passも主張しない。 |
+
+K5 fixtureはL8の初期化済みmanifest/assignment前提を守る。K5-22/23でK3/K7 authority・fenceの意味を再実装せず、stubが返したcurrent observationとappend境界の接続だけを扱う。genesis、物理永続性、atomic append、実読、実fenceの合格を示さない。`verify`のcheckpoint比較は完全な再構築値と関数境界の返却を比較し、公開Projectionにないfieldを追加しない。
+
+## 5.2 Canonical codecのgolden vector
 
 これらはL6 codec候補のbyte contractを固定する候補であり、Node/RFC8785互換性試験ではない。各行は独立したvector/testである。UTF-8 output bytesとsha256 digestを記録し、non-finite等の拒否vectorにはdigestを作らない。
 
@@ -159,6 +257,8 @@ UT-036〜039はprivate `_canonical_json_bytes`補助関数へ範囲外値を直�
 
 ## 7. 旧source traceと技術差分の記録
 
+K5各fixtureはL6 §7.1の旧asset/path/line/full SHA一覧を起点とし、event追記・projection/checkpoint・full-scope failureの保持点を既存K5 oracleへ再導出する。旧SQLite/CLI/runtime/testや未承認候補をfixture authorityへ移さない。
+
 旧sourceのpathは`archive/legacy-generation-2026-09-14/root/`からの相対pathである。sourceは読み取ったが実行していない。
 
 | 旧source / asset / SHA | 再利用または再導出 | 差分 / 理由 |
@@ -174,10 +274,12 @@ UT-036〜039はprivate `_canonical_json_bytes`補助関数へ範囲外値を直�
 
 - `CK-K1-UT-*`はL4 K1-I1–I8およびIV-K1-01–13を`CK-K1-FN-*`とL5公開signatureへ対応づける。
 - `CK-K2-UT-001–021d`はK2 lookup/record/aliasのoracle IDへ対応づける。`key_of` rejection casesはL5 `KeyOfResult`とL4 §3.4の検査順に対応し、IV-K2-13/13a/13bは各invalid_digest条件、IV-K2-15はduplicate_identity条件を検証する。追加のpriority unit fixturesはL4既存順序を単一field mutationで確かめ、L9に新しいoracle IDを追加しない。`UT-030–041`はIV identityや期待契約の意味を変更せず、canonical bytesの技術vectorを追加する。
+- `CK-K5-UT-001–089`はK5 L8のIV-K5-01–26 89個別fixtureをL6 CK-K5-FN-01–20と戻り観測点へ一対一traceする。append/read/FixedRef/current assignment/K3/K7はstubであり、物理reader/writer合格を主張しない。
 - K1のmissing keyは`Rejected(missing_key)`のままとする。variant shapeは型付き入力のpreconditionであり、新しいshape reasonやgateを設計しない。
+- `ledger_view`の既存IV-LDG-01/02/04接続はL6 `CK-K5-FN-20`に記録した。K5 L8の89 fixtureには固有fixtureがないため、この範囲のL7対応は未被覆で新規IDを作らない。
 - K5 recordの順序はsequenceのpreconditionであり、物理writer実装は設計しない。K6 source readはstub境界のままとし、production verifier/readは設計しない。
 - fixtureは未実装・未実行である。L9の実合格、K5 append保証、K6 raw source観測、runtime/toolchain間の相互運用性を主張しない。
-- K3は§9で既存L8 oracleを個別fixture IDへtraceする。K3/K5統合中のL5/L8 locator/hashは暫定pinとして明示し、Root統合時に実bytesから同期する。K4–K10は`not_designed`のままであり、現行L4/L9の節はL6 §6を通じて参照する。
+- K3は§9で既存L8 oracleを個別fixture IDへtraceする。K3/K5統合中のL5/L8 locator/hashは暫定pinとして明示し、Root統合時に実bytesから同期する。K4/K6–K10は`not_designed`のままであり、現行L4/L9の節はL6 §6を通じて参照する。
 - L7 fixtureは設計草稿であり未実装・未実行である。`invalid_digest`/`duplicate_identity`はK2 `KeyOfResult`だけの境界結果で、K1 `ApiBoundaryResult`や`UnknownReason`への追加ではない。
 
 
