@@ -2,7 +2,9 @@
 from pathlib import Path
 import io
 import json
+import subprocess
 import sys
+import tempfile
 import unittest
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -224,6 +226,91 @@ class ProviderTests(unittest.TestCase):
         self.assertEqual(reader.identity, self.portable["executables"]["provider_git"])
         self.assertNotEqual(reader.identity, self.portable["executables"]["git"])
         self.assertEqual(result["provider_git_identity"], reader.identity)
+
+    def test_ut_lci_76_real_git_reader_binds_distinct_local_and_provider_roles(self):
+        real_git = "/usr/bin/git"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            local_log = root / "local-git-commands.log"
+            provider_log = root / "provider-git-commands.log"
+            local_git = root / "local-git"
+            provider_git = root / "provider-git"
+
+            def wrapper(path, marker, role):
+                path.write_text(
+                    "#!/bin/sh\n"
+                    f"# synthetic {role} identity\n"
+                    'if [ "$1" != "--version" ]; then '
+                    f"printf '%s\\n' \"$*\" >> {str(marker)!r}; fi\n"
+                    f"exec {real_git} \"$@\"\n",
+                    encoding="utf-8",
+                )
+                path.chmod(0o700)
+
+            wrapper(local_git, local_log, "local")
+            wrapper(provider_git, provider_log, "provider")
+            local_identity = target_module.observe_git_identity(str(local_git))
+            provider_identity = target_module.observe_git_identity(str(provider_git))
+            self.assertEqual(local_identity["version"], provider_identity["version"])
+            self.assertNotEqual(local_identity["sha256"], provider_identity["sha256"])
+
+            portable = json.loads(Path(provider.__file__).with_name("config.json").read_bytes())
+            portable["executables"]["git"] = local_identity
+            portable["executables"]["provider_git"] = provider_identity
+            self.portable.clear()
+            self.portable.update(portable)
+
+            repo = root / "target"
+            repo.mkdir()
+
+            def git(*args):
+                subprocess.run([real_git, *args], cwd=repo, check=True,
+                               env=target_module.GIT_ENV, stdout=subprocess.PIPE,
+                               stderr=subprocess.PIPE)
+
+            git("init", "-q")
+            git("config", "user.name", "Synthetic fixture")
+            git("config", "user.email", "fixture@example.invalid")
+            config_path = repo / "scaffold/local-ci/config.json"
+            config_path.parent.mkdir(parents=True)
+            config_path.write_bytes(canonical_bytes(portable))
+            manifest_path = repo / MANIFEST_PATH
+            manifest_path.parent.mkdir(parents=True, exist_ok=True)
+            manifest_path.write_bytes(canonical_bytes({"version": "1", "files": [], "legacy_pins": []}))
+            for path in (*CHECKER_PATHS, LEDGER_PATH, CONTRACT_PATH):
+                source = repo / path
+                source.parent.mkdir(parents=True, exist_ok=True)
+                if not source.exists():
+                    source.write_bytes(("synthetic source: " + path + "\n").encode())
+            tracked = repo / "tracked.txt"
+            tracked.write_text("base\n", encoding="utf-8")
+            git("add", ".")
+            git("commit", "-qm", "synthetic base")
+            base = subprocess.check_output([real_git, "rev-parse", "HEAD"], cwd=repo,
+                                           env=target_module.GIT_ENV).decode().strip()
+            tracked.write_text("head\n", encoding="utf-8")
+            git("add", "tracked.txt")
+            git("commit", "-qm", "synthetic head")
+            head = subprocess.check_output([real_git, "rev-parse", "HEAD"], cwd=repo,
+                                           env=target_module.GIT_ENV).decode().strip()
+
+            # Keep the GitReader, target resolution and diff real. Only the two
+            # source-contract validators are stubbed because this fixture tests
+            # role selection and identity binding, not manifest/receipt semantics.
+            self.reader_patch.stop()
+            self.resolve_patch.stop()
+            with patch.object(provider, "_PROVIDER_GIT_PATH", str(provider_git)):
+                result = provider.run_merge_unit_verifier(
+                    repo, base, head, self.receipt_bytes())
+
+            self.assertTrue(result["positive"])
+            self.assertEqual(result["provider_git_identity"], provider_identity)
+            self.assertNotEqual(result["provider_git_identity"], local_identity)
+            self.assertTrue(provider_log.exists())
+            provider_commands = provider_log.read_text(encoding="utf-8")
+            self.assertIn("config --null --list --no-includes", provider_commands)
+            self.assertIn("diff --check --no-ext-diff --no-textconv", provider_commands)
+            self.assertFalse(local_log.exists(), "provider must not fallback to local Git")
 
     def test_ut_lci_77_unpinned_provider_observes_identity_only(self):
         self.portable["executables"]["provider_git"] = None

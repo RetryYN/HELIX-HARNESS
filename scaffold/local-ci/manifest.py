@@ -31,12 +31,12 @@ EXPECTED_PATHS = frozenset(row[0] for row in EXPECTED_FILES)
 REQUIRED_SOURCE_IDS_BY_PATH = {
     "docs/helix-harness/L4-basic-design/common-kernel.md": frozenset((
         "K1-I1", "K1-I2", "K1-I3", "K1-I4", "K1-I5", "K1-I6", "K1-I7", "K1-I8", "K2-I1", "K2-I2", "K2-I2b", "K2-I3", "K2-I4", "K2-I5", "K2-I6", "K2-I7", "K5-I1", "K5-I2", "K5-I3", "K5-I4", "K5-I5", "K5-I6", "K5-I7", "K5-I8", "K5-I9", "K5-I10", "K5-I11", "K5-I12", "K5-I13", "K6-I1", "K6-I2", "K6-I3", "K6-I4", "K6-I5", "K6-I6", "K6-I7", "K6-I8", "K6-I9", "K6-I10", "G8-I1", "G8-I2", "G8-I3", "G8-I4", "G8-I5", "G8-I6", "P1-C1", "P1-C2", "P1-C3", "P1-C4", "K4-I1", "K4-I2", "K4-I3", "K4-I4", "K4-I5", "K4-I6", "G3-I1", "G3-I2", "G3-I3", "G3-I4", "G3-I5", "K10-I1", "K10-I2", "K10-I3", "K10-I4", "K10-I5", "K10-I6", "K10-I7", "K7-I1", "K7-I2", "K7-I2b", "K7-I3", "K7-I4", "K7-I4b", "K7-I5", "K7-I6", "G5-I1", "G5-I2", "G5-I3", "G5-I4", "G5-I5", "G5-I6", "K3-I1", "K3-I2", "K3-I3", "K3-I4", "K3-I5", "K3-I6", "K3-I7", "K9-I1", "K9-I2", "K9-I3", "K9-I4", "K9-I5", "K9-I6", "K9-I7", "K9-I8", "K8-I1", "K8-I2", "K8-I3", "K8-I4", "K8-I5", "K8-I6", "K8-I7", "K8-I8",
-        "### 11.4 検証器自身の配布物：扱える範囲と扱えない範囲", "### 2.4 写像表（G10：不明の共通分類）", "### 14.2 型", "### 3.4.1 role-bound input alias", "### 16.3 不変条件", "### 16.2 型と入力の所有", "### 13.2 型", "### 9.3 型", "### 9.5 API境界", "### 10.3 型", "## 12. Phase 1の条件の具体", "### 15.2 K7 世代pointerとfencing",
+        "### 11.4 検証器自身の配布物：扱える範囲と扱えない範囲", "### 2.4 写像表（G10：不明の共通分類）", "### 14.2 型", "### 3.4 イベントとAPI境界", "### 3.4.1 role-bound input alias", "### 16.3 不変条件", "### 16.2 型と入力の所有", "### 13.2 型", "### 9.3 型", "### 9.5 API境界", "### 10.3 型", "## 12. Phase 1の条件の具体", "### 15.2 K7 世代pointerとfencing",
     )),
     "docs/helix-harness/L4-basic-design/repository-layout.md": frozenset((
         "RL-C1", "RL-C2", "RL-C3", "RL-C4", "RL-C5", "RL-C6", "RL-C7", "RL-R1", "RL-R2", "RL-R3", "RL-R4", "RL-R5", "RL-R6", "RL-R7", "RL-R8", "RL-V1", "RL-V2", "RL-V3", "RL-V4", "RL-V5", "RL-V6", "RL-P1", "RL-P2", "RL-P3", "RL-P4", "RL-P5", "RL-P6", "RL-P7", "RL-P8", "RL-P9", "RL-D1", "RL-D2", "RL-D3", "RL-D4", "RL-D5", "RL-T1", "RL-T2", "RL-T3", "RL-K1", "RL-K2", "RL-K3", "### 4.1 型", "### 6.1 符号化 `enc`",
     )),
-    "docs/helix-os/L4-basic-design/local-ci.md": frozenset(("LC-SCF-001", "LC-SCF-002", "LC-GOV-001", "LC-DIFF-001", "LC-DESIGN-001")),
+    "docs/helix-os/L4-basic-design/local-ci.md": frozenset(("LC-SCF-001", "LC-SCF-002", "LC-GOV-001", "LC-DIFF-001", "LC-DESIGN-001", "#### 実行snapshotとprocess境界", "## 3. GitHub Actions provider境界", "## 4. 実装技術の選択")),
     "docs/helix-os/L5-detail-design/local-ci-detail-design.md": frozenset(("D-LCI-01", "D-LCI-02", "D-LCI-03", "D-LCI-04", "D-LCI-05")),
     "docs/helix-os/L6-function-design/local-ci-function-design.md": frozenset(("F-LCI-01", "F-LCI-02", "F-LCI-03", "F-LCI-04", "F-LCI-05", "F-LCI-06", "F-LCI-07", "F-LCI-08", "F-LCI-09a", "F-LCI-09b", "F-LCI-09c", "F-LCI-09d")),
 }

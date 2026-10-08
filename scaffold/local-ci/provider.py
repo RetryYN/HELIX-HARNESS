@@ -84,7 +84,7 @@ def _load_portable_config():
 
 
 def run_merge_unit_verifier(repo, base, head, data, *, event="workflow_dispatch",
-                            permission="read", git_path=None):
+                            permission="read"):
     if event != "workflow_dispatch" or data is None or data == "" or data == b"":
         raise Diagnostic("Unobserved", "not_run", "dispatch or receipt input absent")
     if permission != "read":
@@ -95,14 +95,13 @@ def run_merge_unit_verifier(repo, base, head, data, *, event="workflow_dispatch"
     _preflight_dispatch_json(data)
     # Trusted config and code come from the default-branch checkout, never target.
     portable = _load_portable_config()
-    git_path = _PROVIDER_GIT_PATH if git_path is None else git_path  # trusted Python test seam
     provider_identity = portable["executables"]["provider_git"]
     if provider_identity is None:
-        observed = observe_git_identity(git_path)
+        observed = observe_git_identity(_PROVIDER_GIT_PATH)
         diagnostic = Diagnostic("Unobserved", "not_run", "provider Git pin is not yet observed in source config")
         diagnostic.provider_git_identity = observed
         raise diagnostic
-    reader = GitReader(Path(repo), git_path, provider_identity)
+    reader = GitReader(Path(repo), _PROVIDER_GIT_PATH, provider_identity)
     target = resolve_target(reader, base, head, "RetryYN/HELIX-HARNESS")
     entries = reader.entries(target["head_tree"])
     raw_config = reader.blob(entries, "scaffold/local-ci/config.json")

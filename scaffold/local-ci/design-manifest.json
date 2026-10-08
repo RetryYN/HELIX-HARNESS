@@ -1,5 +1,5 @@
 {
-  "version": "local-ci-manifest-candidate-structure-v2",
+  "version": "local-ci-manifest-candidate-structure-v3",
   "files": [
     {
       "path": "docs/helix-harness/L4-basic-design/common-kernel.md",
@@ -214,6 +214,14 @@
           "grammar": "exact_heading",
           "id_column": null,
           "literal_expansions": []
+        },
+        {
+          "range_id": "ck-section-13",
+          "start_heading": "### 3.4 イベントとAPI境界",
+          "end_heading": "### 3.4.1 role-bound input alias",
+          "grammar": "exact_heading",
+          "id_column": null,
+          "literal_expansions": []
         }
       ],
       "reference_ranges": []
@@ -325,15 +333,13 @@
             {
               "literal": "10.3：receipt鍵の照会",
               "ids": [
-                "### 10.3 型",
-                "K6-I4"
+                "### 10.3 型"
               ]
             },
             {
               "literal": "10.3：時刻を使わない",
               "ids": [
-                "### 10.3 型",
-                "K6-I10"
+                "K5-I7"
               ]
             },
             {
@@ -347,7 +353,7 @@
               "literal": "11.4：toolchain",
               "ids": [
                 "### 11.4 検証器自身の配布物：扱える範囲と扱えない範囲",
-                "G8-I4"
+                "G8-I2"
               ]
             },
             {
@@ -379,15 +385,13 @@
             {
               "literal": "14.2：使う規則の束縛",
               "ids": [
-                "### 14.2 型",
-                "K10-I1"
+                "### 14.2 型"
               ]
             },
             {
               "literal": "14.2：鍵と固定入力",
               "ids": [
-                "### 14.2 型",
-                "K10-I1"
+                "### 14.2 型"
               ]
             },
             {
@@ -1471,7 +1475,7 @@
             {
               "literal": "`key_of`：入力の整列",
               "ids": [
-                "K2-I5"
+                "### 3.4 イベントとAPI境界"
               ]
             },
             {
@@ -1483,8 +1487,7 @@
             {
               "literal": "assignment/runとsegment開設",
               "ids": [
-                "### 9.3 型",
-                "K5-I2"
+                "### 9.5 API境界"
               ]
             },
             {
@@ -1557,7 +1560,7 @@
             {
               "literal": "issuer診断とK6真正性",
               "ids": [
-                "K8-I8"
+                "K8-I4"
               ]
             },
             {
@@ -1575,7 +1578,7 @@
             {
               "literal": "polarity識別と版",
               "ids": [
-                "K8-I8"
+                "K8-I6"
               ]
             },
             {
@@ -1629,8 +1632,7 @@
             {
               "literal": "writer停止と過去prefix保持",
               "ids": [
-                "### 9.3 型",
-                "K5-I4"
+                "K7-I4"
               ]
             },
             {
@@ -1642,14 +1644,13 @@
             {
               "literal": "写像の責務",
               "ids": [
-                "K1-I5"
+                "### 2.4 写像表（G10：不明の共通分類）"
               ]
             },
             {
               "literal": "写像表（L4 2.4）",
               "ids": [
-                "### 2.4 写像表（G10：不明の共通分類）",
-                "K1-I8"
+                "### 2.4 写像表（G10：不明の共通分類）"
               ]
             },
             {
@@ -1674,7 +1675,7 @@
             {
               "literal": "未選択projectionとK1照会の差分",
               "ids": [
-                "K8-I7"
+                "K8-I4"
               ]
             },
             {
@@ -2029,6 +2030,30 @@
           "grammar": "table_column",
           "id_column": 1,
           "literal_expansions": []
+        },
+        {
+          "range_id": "ci-l4-provider-boundary",
+          "start_heading": "## 3. GitHub Actions provider境界",
+          "end_heading": "## 4. 実装技術の選択",
+          "grammar": "exact_heading",
+          "id_column": null,
+          "literal_expansions": []
+        },
+        {
+          "range_id": "ci-l4-implementation-tech",
+          "start_heading": "## 4. 実装技術の選択",
+          "end_heading": "## 5. 旧source完全一致と差分",
+          "grammar": "exact_heading",
+          "id_column": null,
+          "literal_expansions": []
+        },
+        {
+          "range_id": "ci-l4-sandbox-boundary",
+          "start_heading": "#### 実行snapshotとprocess境界",
+          "end_heading": "## 3. GitHub Actions provider境界",
+          "grammar": "exact_heading",
+          "id_column": null,
+          "literal_expansions": []
         }
       ],
       "reference_ranges": []
@@ -2121,6 +2146,102 @@
               "ids": [
                 "LC-DESIGN-001"
               ]
+            },
+            {
+              "literal": "role別Git identityと共通設定",
+              "ids": [
+                "## 3. GitHub Actions provider境界"
+              ]
+            },
+            {
+              "literal": "provider identity初回採取",
+              "ids": [
+                "## 3. GitHub Actions provider境界"
+              ]
+            },
+            {
+              "literal": "provider Git digest束縛",
+              "ids": [
+                "## 3. GitHub Actions provider境界"
+              ]
+            },
+            {
+              "literal": "provider Git version束縛",
+              "ids": [
+                "## 3. GitHub Actions provider境界"
+              ]
+            },
+            {
+              "literal": "shared config digest",
+              "ids": [
+                "## 3. GitHub Actions provider境界"
+              ]
+            },
+            {
+              "literal": "selected result parity",
+              "ids": [
+                "## 3. GitHub Actions provider境界"
+              ]
+            },
+            {
+              "literal": "bwrap既存identity",
+              "ids": [
+                "## 4. 実装技術の選択"
+              ]
+            },
+            {
+              "literal": "bwrap bytes pin",
+              "ids": [
+                "## 4. 実装技術の選択"
+              ]
+            },
+            {
+              "literal": "bwrap opaque version label",
+              "ids": [
+                "## 4. 実装技術の選択"
+              ]
+            },
+            {
+              "literal": "bwrap binary availability",
+              "ids": [
+                "## 4. 実装技術の選択"
+              ]
+            },
+            {
+              "literal": "専用snapshot workspace",
+              "ids": [
+                "#### 実行snapshotとprocess境界"
+              ]
+            },
+            {
+              "literal": "network isolation",
+              "ids": [
+                "#### 実行snapshotとprocess境界"
+              ]
+            },
+            {
+              "literal": "private snapshot write boundary",
+              "ids": [
+                "#### 実行snapshotとprocess境界"
+              ]
+            },
+            {
+              "literal": "sandbox preflight",
+              "ids": [
+                "#### 実行snapshotとprocess境界"
+              ]
+            },
+            {
+              "literal": "fixed Python argv preflight",
+              "ids": [
+                "#### 実行snapshotとprocess境界"
+              ]
+            },
+            {
+              "literal": "child process supervision",
+              "ids": [
+                "#### 実行snapshotとprocess境界"
+              ]
             }
           ]
         }
@@ -2164,22 +2285,6 @@
                 "CASE-L8-LCI-58",
                 "CASE-L8-LCI-59",
                 "CASE-L8-LCI-61"
-              ]
-            },
-            {
-              "literal": "`CASE-L8-LCI-04`〜`-10`, `-41`, `-50`〜`-51`, `-67`",
-              "ids": [
-                "CASE-L8-LCI-04",
-                "CASE-L8-LCI-05",
-                "CASE-L8-LCI-06",
-                "CASE-L8-LCI-07",
-                "CASE-L8-LCI-08",
-                "CASE-L8-LCI-09",
-                "CASE-L8-LCI-10",
-                "CASE-L8-LCI-41",
-                "CASE-L8-LCI-50",
-                "CASE-L8-LCI-51",
-                "CASE-L8-LCI-67"
               ]
             },
             {
@@ -2230,7 +2335,27 @@
               ]
             },
             {
-              "literal": "`CASE-L8-LCI-29`〜`-40`, `-55`",
+              "literal": "`CASE-L8-LCI-04`〜`-10`, `-41`, `-50`〜`-51`, `-67`, `-80`〜`-83`",
+              "ids": [
+                "CASE-L8-LCI-04",
+                "CASE-L8-LCI-05",
+                "CASE-L8-LCI-06",
+                "CASE-L8-LCI-07",
+                "CASE-L8-LCI-08",
+                "CASE-L8-LCI-09",
+                "CASE-L8-LCI-10",
+                "CASE-L8-LCI-41",
+                "CASE-L8-LCI-50",
+                "CASE-L8-LCI-51",
+                "CASE-L8-LCI-67",
+                "CASE-L8-LCI-80",
+                "CASE-L8-LCI-81",
+                "CASE-L8-LCI-82",
+                "CASE-L8-LCI-83"
+              ]
+            },
+            {
+              "literal": "`CASE-L8-LCI-29`〜`-40`, `-55`, `-74`〜`-79`",
               "ids": [
                 "CASE-L8-LCI-29",
                 "CASE-L8-LCI-30",
@@ -2244,7 +2369,13 @@
                 "CASE-L8-LCI-38",
                 "CASE-L8-LCI-39",
                 "CASE-L8-LCI-40",
-                "CASE-L8-LCI-55"
+                "CASE-L8-LCI-55",
+                "CASE-L8-LCI-74",
+                "CASE-L8-LCI-75",
+                "CASE-L8-LCI-76",
+                "CASE-L8-LCI-77",
+                "CASE-L8-LCI-78",
+                "CASE-L8-LCI-79"
               ]
             }
           ]
@@ -2423,12 +2554,6 @@
               ]
             },
             {
-              "literal": "`UT-LCI-28`",
-              "ids": [
-                "UT-LCI-28"
-              ]
-            },
-            {
               "literal": "`UT-LCI-29`",
               "ids": [
                 "UT-LCI-29"
@@ -2438,12 +2563,6 @@
               "literal": "`UT-LCI-30`",
               "ids": [
                 "UT-LCI-30"
-              ]
-            },
-            {
-              "literal": "`UT-LCI-31`",
-              "ids": [
-                "UT-LCI-31"
               ]
             },
             {
@@ -2469,6 +2588,20 @@
               "ids": [
                 "UT-LCI-35"
               ]
+            },
+            {
+              "literal": "`UT-LCI-28`, `UT-LCI-83`",
+              "ids": [
+                "UT-LCI-28",
+                "UT-LCI-83"
+              ]
+            },
+            {
+              "literal": "`UT-LCI-31`, `UT-LCI-76`",
+              "ids": [
+                "UT-LCI-31",
+                "UT-LCI-76"
+              ]
             }
           ]
         },
@@ -2479,15 +2612,6 @@
           "grammar": "table_column",
           "id_column": 3,
           "literal_expansions": [
-            {
-              "literal": "`UT-LCI-01`, `UT-LCI-02`, `UT-LCI-50`, `UT-LCI-51`",
-              "ids": [
-                "UT-LCI-01",
-                "UT-LCI-02",
-                "UT-LCI-50",
-                "UT-LCI-51"
-              ]
-            },
             {
               "literal": "`UT-LCI-03`, `UT-LCI-04`, `UT-LCI-50`〜`UT-LCI-52`, `UT-LCI-62`",
               "ids": [
@@ -2519,24 +2643,6 @@
               ]
             },
             {
-              "literal": "`UT-LCI-09`〜`UT-LCI-11`, `UT-LCI-22`, `UT-LCI-40`〜`UT-LCI-45`, `UT-LCI-48`, `UT-LCI-53`, `UT-LCI-61`",
-              "ids": [
-                "UT-LCI-09",
-                "UT-LCI-10",
-                "UT-LCI-11",
-                "UT-LCI-22",
-                "UT-LCI-40",
-                "UT-LCI-41",
-                "UT-LCI-42",
-                "UT-LCI-43",
-                "UT-LCI-44",
-                "UT-LCI-45",
-                "UT-LCI-48",
-                "UT-LCI-53",
-                "UT-LCI-61"
-              ]
-            },
-            {
               "literal": "`UT-LCI-12`, `UT-LCI-13`, `UT-LCI-22`, `UT-LCI-39`, `UT-LCI-49`, `UT-LCI-53`, `UT-LCI-54`, `UT-LCI-57`〜`UT-LCI-60`, `UT-LCI-62`〜`UT-LCI-64`",
               "ids": [
                 "UT-LCI-12",
@@ -2553,25 +2659,6 @@
                 "UT-LCI-62",
                 "UT-LCI-63",
                 "UT-LCI-64"
-              ]
-            },
-            {
-              "literal": "`UT-LCI-14`, `UT-LCI-15`, `UT-LCI-16`, `UT-LCI-38`, `UT-LCI-54`, `UT-LCI-55`",
-              "ids": [
-                "UT-LCI-14",
-                "UT-LCI-15",
-                "UT-LCI-16",
-                "UT-LCI-38",
-                "UT-LCI-54",
-                "UT-LCI-55"
-              ]
-            },
-            {
-              "literal": "`UT-LCI-17`, `UT-LCI-18`, `UT-LCI-37`",
-              "ids": [
-                "UT-LCI-17",
-                "UT-LCI-18",
-                "UT-LCI-37"
               ]
             },
             {
@@ -2622,6 +2709,62 @@
               "literal": "`UT-LCI-21`",
               "ids": [
                 "UT-LCI-21"
+              ]
+            },
+            {
+              "literal": "`UT-LCI-01`, `UT-LCI-02`, `UT-LCI-50`, `UT-LCI-51`, `UT-LCI-82`",
+              "ids": [
+                "UT-LCI-01",
+                "UT-LCI-02",
+                "UT-LCI-50",
+                "UT-LCI-51",
+                "UT-LCI-82"
+              ]
+            },
+            {
+              "literal": "`UT-LCI-09`〜`UT-LCI-11`, `UT-LCI-22`, `UT-LCI-40`〜`UT-LCI-45`, `UT-LCI-48`, `UT-LCI-53`, `UT-LCI-61`, `UT-LCI-84`〜`UT-LCI-86`",
+              "ids": [
+                "UT-LCI-09",
+                "UT-LCI-10",
+                "UT-LCI-11",
+                "UT-LCI-22",
+                "UT-LCI-40",
+                "UT-LCI-41",
+                "UT-LCI-42",
+                "UT-LCI-43",
+                "UT-LCI-44",
+                "UT-LCI-45",
+                "UT-LCI-48",
+                "UT-LCI-53",
+                "UT-LCI-61",
+                "UT-LCI-84",
+                "UT-LCI-85",
+                "UT-LCI-86"
+              ]
+            },
+            {
+              "literal": "`UT-LCI-14`, `UT-LCI-15`, `UT-LCI-16`, `UT-LCI-38`, `UT-LCI-54`, `UT-LCI-55`, `UT-LCI-80`",
+              "ids": [
+                "UT-LCI-14",
+                "UT-LCI-15",
+                "UT-LCI-16",
+                "UT-LCI-38",
+                "UT-LCI-54",
+                "UT-LCI-55",
+                "UT-LCI-80"
+              ]
+            },
+            {
+              "literal": "`UT-LCI-17`, `UT-LCI-18`, `UT-LCI-37`, `UT-LCI-77`〜`UT-LCI-81`",
+              "ids": [
+                "UT-LCI-17",
+                "UT-LCI-18",
+                "UT-LCI-37",
+                "UT-LCI-77",
+                "UT-LCI-78",
+                "UT-LCI-79",
+                "UT-LCI-80",
+                "UT-LCI-81"
               ]
             }
           ]
@@ -2917,8 +3060,8 @@
       }
     },
     {
-      "edge_id": "edge.G8-I4.IV-G8-07",
-      "source_id": "G8-I4",
+      "edge_id": "edge.G8-I2.IV-G8-07",
+      "source_id": "G8-I2",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-G8-07",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -2982,8 +3125,8 @@
       }
     },
     {
-      "edge_id": "edge.K1-I5.IV-K1-05",
-      "source_id": "K1-I5",
+      "edge_id": "edge.2-4-mapping.IV-K1-05",
+      "source_id": "### 2.4 写像表（G10：不明の共通分類）",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K1-05",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -3062,19 +3205,6 @@
     {
       "edge_id": "edge.4-polarity.IV-K1-11",
       "source_id": "### 2.4 写像表（G10：不明の共通分類）",
-      "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
-      "verifier_id": "IV-K1-11",
-      "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
-      "outcome_ref": {
-        "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
-        "range_id": "ck-l9-fixture-definitions",
-        "verifier_id": "IV-K1-11",
-        "outcome_column": 4
-      }
-    },
-    {
-      "edge_id": "edge.K1-I8.IV-K1-11",
-      "source_id": "K1-I8",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K1-11",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -3281,34 +3411,8 @@
       }
     },
     {
-      "edge_id": "edge.K10-I1.IV-K10-13",
-      "source_id": "K10-I1",
-      "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
-      "verifier_id": "IV-K10-13",
-      "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
-      "outcome_ref": {
-        "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
-        "range_id": "ck-l9-fixture-definitions",
-        "verifier_id": "IV-K10-13",
-        "outcome_column": 5
-      }
-    },
-    {
       "edge_id": "edge.2-graph-types.IV-K10-14",
       "source_id": "### 14.2 型",
-      "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
-      "verifier_id": "IV-K10-14",
-      "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
-      "outcome_ref": {
-        "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
-        "range_id": "ck-l9-fixture-definitions",
-        "verifier_id": "IV-K10-14",
-        "outcome_column": 5
-      }
-    },
-    {
-      "edge_id": "edge.K10-I1.IV-K10-14",
-      "source_id": "K10-I1",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K10-14",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -3502,8 +3606,8 @@
       }
     },
     {
-      "edge_id": "edge.K2-I5.IV-K2-15",
-      "source_id": "K2-I5",
+      "edge_id": "edge.3-4-api.IV-K2-15",
+      "source_id": "### 3.4 イベントとAPI境界",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K2-15",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -4750,8 +4854,8 @@
       }
     },
     {
-      "edge_id": "edge.K5-I2.IV-K5-22",
-      "source_id": "K5-I2",
+      "edge_id": "edge.9-5-api.IV-K5-22",
+      "source_id": "### 9.5 API境界",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K5-22",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -4776,8 +4880,8 @@
       }
     },
     {
-      "edge_id": "edge.K5-I4.IV-K5-23",
-      "source_id": "K5-I4",
+      "edge_id": "edge.K7-I4.IV-K5-23",
+      "source_id": "K7-I4",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K5-23",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -4841,8 +4945,8 @@
       }
     },
     {
-      "edge_id": "edge.K6-I4.IV-K6-01",
-      "source_id": "K6-I4",
+      "edge_id": "edge.10-3-types.IV-K6-01",
+      "source_id": "### 10.3 型",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K6-01",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -5036,8 +5140,8 @@
       }
     },
     {
-      "edge_id": "edge.K6-I10.IV-K6-14",
-      "source_id": "K6-I10",
+      "edge_id": "edge.K5-I7.IV-K6-14",
+      "source_id": "K5-I7",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K6-14",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -5582,8 +5686,8 @@
       }
     },
     {
-      "edge_id": "edge.K8-I7.IV-K8-24",
-      "source_id": "K8-I7",
+      "edge_id": "edge.K8-I4.IV-K8-24",
+      "source_id": "K8-I4",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K8-24",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -5595,8 +5699,8 @@
       }
     },
     {
-      "edge_id": "edge.K8-I8.IV-K8-25",
-      "source_id": "K8-I8",
+      "edge_id": "edge.K8-I4.IV-K8-25",
+      "source_id": "K8-I4",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K8-25",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -5608,8 +5712,8 @@
       }
     },
     {
-      "edge_id": "edge.K8-I8.IV-K8-26",
-      "source_id": "K8-I8",
+      "edge_id": "edge.K8-I6.IV-K8-26",
+      "source_id": "K8-I6",
       "source_path": "docs/helix-harness/L4-basic-design/common-kernel.md",
       "verifier_id": "IV-K8-26",
       "verifier_path": "docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md",
@@ -9389,6 +9493,500 @@
         "verifier_id": "IV-RL-41",
         "outcome_column": 5
       }
+    },
+    {
+      "edge_id": "edge.F-LCI-01.UT-LCI-82",
+      "source_id": "F-LCI-01",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-82",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-82",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-05.UT-LCI-83",
+      "source_id": "F-LCI-05",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-83",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-83",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-05.UT-LCI-84",
+      "source_id": "F-LCI-05",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-84",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-84",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-05.UT-LCI-85",
+      "source_id": "F-LCI-05",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-85",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-85",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-05.UT-LCI-86",
+      "source_id": "F-LCI-05",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-86",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-86",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-07.UT-LCI-80",
+      "source_id": "F-LCI-07",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-80",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-80",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-08.UT-LCI-76",
+      "source_id": "F-LCI-08",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-76",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-76",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-08.UT-LCI-77",
+      "source_id": "F-LCI-08",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-77",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-77",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-08.UT-LCI-78",
+      "source_id": "F-LCI-08",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-78",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-78",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-08.UT-LCI-79",
+      "source_id": "F-LCI-08",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-79",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-79",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-08.UT-LCI-80",
+      "source_id": "F-LCI-08",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-80",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-80",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.F-LCI-08.UT-LCI-81",
+      "source_id": "F-LCI-08",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-81",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-81",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.D-LCI-02.CASE-L8-LCI-80",
+      "source_id": "D-LCI-02",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-80",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-80",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.D-LCI-02.CASE-L8-LCI-81",
+      "source_id": "D-LCI-02",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-81",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-81",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.D-LCI-02.CASE-L8-LCI-82",
+      "source_id": "D-LCI-02",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-82",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-82",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.D-LCI-02.CASE-L8-LCI-83",
+      "source_id": "D-LCI-02",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-83",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-83",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.D-LCI-05.CASE-L8-LCI-74",
+      "source_id": "D-LCI-05",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-74",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-74",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.D-LCI-05.CASE-L8-LCI-75",
+      "source_id": "D-LCI-05",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-75",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-75",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.D-LCI-05.CASE-L8-LCI-76",
+      "source_id": "D-LCI-05",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-76",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-76",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.D-LCI-05.CASE-L8-LCI-77",
+      "source_id": "D-LCI-05",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-77",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-77",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.D-LCI-05.CASE-L8-LCI-78",
+      "source_id": "D-LCI-05",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-78",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-78",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.D-LCI-05.CASE-L8-LCI-79",
+      "source_id": "D-LCI-05",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-79",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-api-cases",
+        "verifier_id": "CASE-L8-LCI-79",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.## 3. GitHub Actions provider境界.IV-LCI-53",
+      "source_id": "## 3. GitHub Actions provider境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-53",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-53",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.## 3. GitHub Actions provider境界.IV-LCI-54",
+      "source_id": "## 3. GitHub Actions provider境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-54",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-54",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.## 3. GitHub Actions provider境界.IV-LCI-55",
+      "source_id": "## 3. GitHub Actions provider境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-55",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-55",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.## 3. GitHub Actions provider境界.IV-LCI-56",
+      "source_id": "## 3. GitHub Actions provider境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-56",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-56",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.## 3. GitHub Actions provider境界.IV-LCI-57",
+      "source_id": "## 3. GitHub Actions provider境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-57",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-57",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.## 3. GitHub Actions provider境界.IV-LCI-58",
+      "source_id": "## 3. GitHub Actions provider境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-58",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-58",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.## 4. 実装技術の選択.IV-LCI-59",
+      "source_id": "## 4. 実装技術の選択",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-59",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-59",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.## 4. 実装技術の選択.IV-LCI-60",
+      "source_id": "## 4. 実装技術の選択",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-60",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-60",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.## 4. 実装技術の選択.IV-LCI-61",
+      "source_id": "## 4. 実装技術の選択",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-61",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-61",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.## 4. 実装技術の選択.IV-LCI-62",
+      "source_id": "## 4. 実装技術の選択",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-62",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-62",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.IV-LCI-40",
+      "source_id": "#### 実行snapshotとprocess境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-40",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-40",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.IV-LCI-41",
+      "source_id": "#### 実行snapshotとprocess境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-41",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-41",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.IV-LCI-42",
+      "source_id": "#### 実行snapshotとprocess境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-42",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-42",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.IV-LCI-46",
+      "source_id": "#### 実行snapshotとprocess境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-46",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-46",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.IV-LCI-48",
+      "source_id": "#### 実行snapshotとprocess境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-48",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-48",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.IV-LCI-49",
+      "source_id": "#### 実行snapshotとprocess境界",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-49",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-49",
+        "outcome_column": 5
+      }
     }
   ],
   "coverage_dispositions": [
@@ -9403,6 +10001,7 @@
       "source_id": "### 2.4 写像表（G10：不明の共通分類）",
       "state": "mapped",
       "edge_ids": [
+        "edge.2-4-mapping.IV-K1-05",
         "edge.4-polarity.IV-K1-11"
       ]
     },
@@ -9470,13 +10069,15 @@
       "edge_ids": [
         "edge.5-api-boundary.IV-K5-11",
         "edge.5-api-boundary.IV-K5-20",
-        "edge.5-api-boundary.IV-K5-21"
+        "edge.5-api-boundary.IV-K5-21",
+        "edge.9-5-api.IV-K5-22"
       ]
     },
     {
       "source_id": "### 10.3 型",
       "state": "mapped",
       "edge_ids": [
+        "edge.10-3-types.IV-K6-01",
         "edge.3-receipt-types.IV-K6-01",
         "edge.3-receipt-types.IV-K6-12",
         "edge.3-receipt-types.IV-K6-14"
@@ -9599,6 +10200,7 @@
       "state": "mapped",
       "edge_ids": [
         "edge.G8-I2.IV-G8-02",
+        "edge.G8-I2.IV-G8-07",
         "edge.G8-I2.IV-RL-42"
       ]
     },
@@ -9613,8 +10215,7 @@
       "source_id": "G8-I4",
       "state": "mapped",
       "edge_ids": [
-        "edge.G8-I4.IV-G8-04",
-        "edge.G8-I4.IV-G8-07"
+        "edge.G8-I4.IV-G8-04"
       ]
     },
     {
@@ -9643,8 +10244,8 @@
       "source_id": "K1-I2",
       "state": "mapped",
       "edge_ids": [
-        "edge.K1-I2.IV-K1-04",
-        "edge.K1-I2.IV-K1-01"
+        "edge.K1-I2.IV-K1-01",
+        "edge.K1-I2.IV-K1-04"
       ]
     },
     {
@@ -9667,7 +10268,6 @@
       "source_id": "K1-I5",
       "state": "mapped",
       "edge_ids": [
-        "edge.K1-I5.IV-K1-05",
         "edge.K1-I5.IV-K1-07"
       ]
     },
@@ -9691,8 +10291,7 @@
       "source_id": "K1-I8",
       "state": "mapped",
       "edge_ids": [
-        "edge.K1-I8.IV-K1-10",
-        "edge.K1-I8.IV-K1-11"
+        "edge.K1-I8.IV-K1-10"
       ]
     },
     {
@@ -9700,8 +10299,6 @@
       "state": "mapped",
       "edge_ids": [
         "edge.K10-I1.IV-K10-01",
-        "edge.K10-I1.IV-K10-13",
-        "edge.K10-I1.IV-K10-14",
         "edge.K10-I1.IV-RL-59"
       ]
     },
@@ -9782,8 +10379,8 @@
       "source_id": "K2-I2b",
       "state": "mapped",
       "edge_ids": [
-        "edge.K2-I2b.IV-K2-03",
-        "edge.K2-I2b.IV-K2-02"
+        "edge.K2-I2b.IV-K2-02",
+        "edge.K2-I2b.IV-K2-03"
       ]
     },
     {
@@ -9805,8 +10402,7 @@
       "source_id": "K2-I5",
       "state": "mapped",
       "edge_ids": [
-        "edge.K2-I5.IV-K2-12",
-        "edge.K2-I5.IV-K2-15"
+        "edge.K2-I5.IV-K2-12"
       ]
     },
     {
@@ -9835,9 +10431,9 @@
       "source_id": "K3-I2",
       "state": "mapped",
       "edge_ids": [
+        "edge.K3-I2.IV-K3-01",
         "edge.K3-I2.IV-K3-02",
-        "edge.K3-I2.IV-K3-03",
-        "edge.K3-I2.IV-K3-01"
+        "edge.K3-I2.IV-K3-03"
       ]
     },
     {
@@ -9853,6 +10449,7 @@
       "source_id": "K3-I4",
       "state": "mapped",
       "edge_ids": [
+        "edge.K3-I4.IV-K3-03",
         "edge.K3-I4.IV-K3-07",
         "edge.K3-I4.IV-K3-08",
         "edge.K3-I4.IV-K3-14",
@@ -9867,8 +10464,7 @@
         "edge.K3-I4.IV-K3-14i",
         "edge.K3-I4.IV-K3-14j",
         "edge.K3-I4.IV-K3-15",
-        "edge.K3-I4.IV-K3-16",
-        "edge.K3-I4.IV-K3-03"
+        "edge.K3-I4.IV-K3-16"
       ]
     },
     {
@@ -9987,8 +10583,7 @@
         "edge.K5-I2.IV-K5-05",
         "edge.K5-I2.IV-K5-06",
         "edge.K5-I2.IV-K5-07",
-        "edge.K5-I2.IV-K5-08",
-        "edge.K5-I2.IV-K5-22"
+        "edge.K5-I2.IV-K5-08"
       ]
     },
     {
@@ -10011,8 +10606,7 @@
       "source_id": "K5-I4",
       "state": "mapped",
       "edge_ids": [
-        "edge.K5-I4.IV-K5-09",
-        "edge.K5-I4.IV-K5-23"
+        "edge.K5-I4.IV-K5-09"
       ]
     },
     {
@@ -10033,7 +10627,8 @@
       "source_id": "K5-I7",
       "state": "mapped",
       "edge_ids": [
-        "edge.K5-I7.IV-K5-16"
+        "edge.K5-I7.IV-K5-16",
+        "edge.K5-I7.IV-K6-14"
       ]
     },
     {
@@ -10061,7 +10656,6 @@
       "source_id": "K6-I10",
       "state": "mapped",
       "edge_ids": [
-        "edge.K6-I10.IV-K6-14",
         "edge.K6-I10.IV-K6-15",
         "edge.K6-I10.IV-K8-09"
       ]
@@ -10085,7 +10679,6 @@
       "source_id": "K6-I4",
       "state": "mapped",
       "edge_ids": [
-        "edge.K6-I4.IV-K6-01",
         "edge.K6-I4.IV-K6-06"
       ]
     },
@@ -10166,6 +10759,7 @@
         "edge.K7-I4.IV-K3-11",
         "edge.K7-I4.IV-K3-12",
         "edge.K7-I4.IV-K3-17",
+        "edge.K7-I4.IV-K5-23",
         "edge.K7-I4.IV-K7-05"
       ]
     },
@@ -10230,7 +10824,9 @@
         "edge.K8-I4.IV-K8-17",
         "edge.K8-I4.IV-K8-18",
         "edge.K8-I4.IV-K8-19",
-        "edge.K8-I4.IV-K8-20"
+        "edge.K8-I4.IV-K8-20",
+        "edge.K8-I4.IV-K8-24",
+        "edge.K8-I4.IV-K8-25"
       ]
     },
     {
@@ -10245,27 +10841,25 @@
       "source_id": "K8-I6",
       "state": "mapped",
       "edge_ids": [
+        "edge.K8-I6.IV-K8-04",
         "edge.K8-I6.IV-K8-06",
         "edge.K8-I6.IV-K8-07",
         "edge.K8-I6.IV-K8-16",
-        "edge.K8-I6.IV-K8-04"
+        "edge.K8-I6.IV-K8-26"
       ]
     },
     {
       "source_id": "K8-I7",
       "state": "mapped",
       "edge_ids": [
-        "edge.K8-I7.IV-K8-08",
-        "edge.K8-I7.IV-K8-24"
+        "edge.K8-I7.IV-K8-08"
       ]
     },
     {
       "source_id": "K8-I8",
       "state": "mapped",
       "edge_ids": [
-        "edge.K8-I8.IV-K8-11",
-        "edge.K8-I8.IV-K8-25",
-        "edge.K8-I8.IV-K8-26"
+        "edge.K8-I8.IV-K8-11"
       ]
     },
     {
@@ -10551,9 +11145,9 @@
       "source_id": "RL-R4",
       "state": "mapped",
       "edge_ids": [
-        "edge.RL-R4.IV-RL-14",
+        "edge.RL-R4.IV-K7-14",
         "edge.RL-R4.IV-K7-15",
-        "edge.RL-R4.IV-K7-14"
+        "edge.RL-R4.IV-RL-14"
       ]
     },
     {
@@ -10741,6 +11335,10 @@
       "source_id": "D-LCI-02",
       "state": "mapped",
       "edge_ids": [
+        "edge.D-LCI-02.CASE-L8-LCI-80",
+        "edge.D-LCI-02.CASE-L8-LCI-81",
+        "edge.D-LCI-02.CASE-L8-LCI-82",
+        "edge.D-LCI-02.CASE-L8-LCI-83",
         "edge.local.D-LCI-02.CASE-L8-LCI-04",
         "edge.local.D-LCI-02.CASE-L8-LCI-05",
         "edge.local.D-LCI-02.CASE-L8-LCI-06",
@@ -10807,6 +11405,12 @@
       "source_id": "D-LCI-05",
       "state": "mapped",
       "edge_ids": [
+        "edge.D-LCI-05.CASE-L8-LCI-74",
+        "edge.D-LCI-05.CASE-L8-LCI-75",
+        "edge.D-LCI-05.CASE-L8-LCI-76",
+        "edge.D-LCI-05.CASE-L8-LCI-77",
+        "edge.D-LCI-05.CASE-L8-LCI-78",
+        "edge.D-LCI-05.CASE-L8-LCI-79",
         "edge.local.D-LCI-05.CASE-L8-LCI-29",
         "edge.local.D-LCI-05.CASE-L8-LCI-30",
         "edge.local.D-LCI-05.CASE-L8-LCI-31",
@@ -10826,9 +11430,10 @@
       "source_id": "F-LCI-01",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-01.UT-LCI-24",
+        "edge.F-LCI-01.UT-LCI-82",
         "edge.local.F-LCI-01.UT-LCI-01",
         "edge.local.F-LCI-01.UT-LCI-02",
+        "edge.local.F-LCI-01.UT-LCI-24",
         "edge.local.F-LCI-01.UT-LCI-50",
         "edge.local.F-LCI-01.UT-LCI-51"
       ]
@@ -10837,9 +11442,9 @@
       "source_id": "F-LCI-02",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-02.UT-LCI-25",
         "edge.local.F-LCI-02.UT-LCI-03",
         "edge.local.F-LCI-02.UT-LCI-04",
+        "edge.local.F-LCI-02.UT-LCI-25",
         "edge.local.F-LCI-02.UT-LCI-50",
         "edge.local.F-LCI-02.UT-LCI-51",
         "edge.local.F-LCI-02.UT-LCI-52",
@@ -10850,9 +11455,9 @@
       "source_id": "F-LCI-03",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-03.UT-LCI-26",
         "edge.local.F-LCI-03.UT-LCI-05",
         "edge.local.F-LCI-03.UT-LCI-06",
+        "edge.local.F-LCI-03.UT-LCI-26",
         "edge.local.F-LCI-03.UT-LCI-50",
         "edge.local.F-LCI-03.UT-LCI-51"
       ]
@@ -10861,9 +11466,9 @@
       "source_id": "F-LCI-04",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-04.UT-LCI-27",
         "edge.local.F-LCI-04.UT-LCI-07",
         "edge.local.F-LCI-04.UT-LCI-08",
+        "edge.local.F-LCI-04.UT-LCI-27",
         "edge.local.F-LCI-04.UT-LCI-56",
         "edge.local.F-LCI-04.UT-LCI-63",
         "edge.local.F-LCI-04.UT-LCI-64"
@@ -10873,11 +11478,15 @@
       "source_id": "F-LCI-05",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-05.UT-LCI-28",
+        "edge.F-LCI-05.UT-LCI-83",
+        "edge.F-LCI-05.UT-LCI-84",
+        "edge.F-LCI-05.UT-LCI-85",
+        "edge.F-LCI-05.UT-LCI-86",
         "edge.local.F-LCI-05.UT-LCI-09",
         "edge.local.F-LCI-05.UT-LCI-10",
         "edge.local.F-LCI-05.UT-LCI-11",
         "edge.local.F-LCI-05.UT-LCI-22",
+        "edge.local.F-LCI-05.UT-LCI-28",
         "edge.local.F-LCI-05.UT-LCI-40",
         "edge.local.F-LCI-05.UT-LCI-41",
         "edge.local.F-LCI-05.UT-LCI-42",
@@ -10893,10 +11502,10 @@
       "source_id": "F-LCI-06",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-06.UT-LCI-29",
         "edge.local.F-LCI-06.UT-LCI-12",
         "edge.local.F-LCI-06.UT-LCI-13",
         "edge.local.F-LCI-06.UT-LCI-22",
+        "edge.local.F-LCI-06.UT-LCI-29",
         "edge.local.F-LCI-06.UT-LCI-39",
         "edge.local.F-LCI-06.UT-LCI-49",
         "edge.local.F-LCI-06.UT-LCI-53",
@@ -10914,10 +11523,11 @@
       "source_id": "F-LCI-07",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-07.UT-LCI-30",
+        "edge.F-LCI-07.UT-LCI-80",
         "edge.local.F-LCI-07.UT-LCI-14",
         "edge.local.F-LCI-07.UT-LCI-15",
         "edge.local.F-LCI-07.UT-LCI-16",
+        "edge.local.F-LCI-07.UT-LCI-30",
         "edge.local.F-LCI-07.UT-LCI-38",
         "edge.local.F-LCI-07.UT-LCI-54",
         "edge.local.F-LCI-07.UT-LCI-55"
@@ -10927,9 +11537,15 @@
       "source_id": "F-LCI-08",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-08.UT-LCI-31",
+        "edge.F-LCI-08.UT-LCI-76",
+        "edge.F-LCI-08.UT-LCI-77",
+        "edge.F-LCI-08.UT-LCI-78",
+        "edge.F-LCI-08.UT-LCI-79",
+        "edge.F-LCI-08.UT-LCI-80",
+        "edge.F-LCI-08.UT-LCI-81",
         "edge.local.F-LCI-08.UT-LCI-17",
         "edge.local.F-LCI-08.UT-LCI-18",
+        "edge.local.F-LCI-08.UT-LCI-31",
         "edge.local.F-LCI-08.UT-LCI-37"
       ]
     },
@@ -10937,8 +11553,8 @@
       "source_id": "F-LCI-09a",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-09a.UT-LCI-32",
         "edge.local.F-LCI-09a.UT-LCI-19",
+        "edge.local.F-LCI-09a.UT-LCI-32",
         "edge.local.F-LCI-09a.UT-LCI-57",
         "edge.local.F-LCI-09a.UT-LCI-63",
         "edge.local.F-LCI-09a.UT-LCI-64",
@@ -10956,8 +11572,8 @@
       "source_id": "F-LCI-09b",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-09b.UT-LCI-33",
         "edge.local.F-LCI-09b.UT-LCI-23",
+        "edge.local.F-LCI-09b.UT-LCI-33",
         "edge.local.F-LCI-09b.UT-LCI-36",
         "edge.local.F-LCI-09b.UT-LCI-58",
         "edge.local.F-LCI-09b.UT-LCI-65",
@@ -10974,8 +11590,8 @@
       "source_id": "F-LCI-09c",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-09c.UT-LCI-34",
         "edge.local.F-LCI-09c.UT-LCI-20",
+        "edge.local.F-LCI-09c.UT-LCI-34",
         "edge.local.F-LCI-09c.UT-LCI-46",
         "edge.local.F-LCI-09c.UT-LCI-47",
         "edge.local.F-LCI-09c.UT-LCI-66",
@@ -10987,8 +11603,8 @@
       "source_id": "F-LCI-09d",
       "state": "mapped",
       "edge_ids": [
-        "edge.local.F-LCI-09d.UT-LCI-35",
-        "edge.local.F-LCI-09d.UT-LCI-21"
+        "edge.local.F-LCI-09d.UT-LCI-21",
+        "edge.local.F-LCI-09d.UT-LCI-35"
       ]
     },
     {
@@ -11018,6 +11634,47 @@
       "state": "mapped",
       "edge_ids": [
         "edge.P1-C4.IV-P1-05"
+      ]
+    },
+    {
+      "source_id": "## 3. GitHub Actions provider境界",
+      "state": "mapped",
+      "edge_ids": [
+        "edge.## 3. GitHub Actions provider境界.IV-LCI-53",
+        "edge.## 3. GitHub Actions provider境界.IV-LCI-54",
+        "edge.## 3. GitHub Actions provider境界.IV-LCI-55",
+        "edge.## 3. GitHub Actions provider境界.IV-LCI-56",
+        "edge.## 3. GitHub Actions provider境界.IV-LCI-57",
+        "edge.## 3. GitHub Actions provider境界.IV-LCI-58"
+      ]
+    },
+    {
+      "source_id": "## 4. 実装技術の選択",
+      "state": "mapped",
+      "edge_ids": [
+        "edge.## 4. 実装技術の選択.IV-LCI-59",
+        "edge.## 4. 実装技術の選択.IV-LCI-60",
+        "edge.## 4. 実装技術の選択.IV-LCI-61",
+        "edge.## 4. 実装技術の選択.IV-LCI-62"
+      ]
+    },
+    {
+      "source_id": "### 3.4 イベントとAPI境界",
+      "state": "mapped",
+      "edge_ids": [
+        "edge.3-4-api.IV-K2-15"
+      ]
+    },
+    {
+      "source_id": "#### 実行snapshotとprocess境界",
+      "state": "mapped",
+      "edge_ids": [
+        "edge.local.IV-LCI-40",
+        "edge.local.IV-LCI-41",
+        "edge.local.IV-LCI-42",
+        "edge.local.IV-LCI-46",
+        "edge.local.IV-LCI-48",
+        "edge.local.IV-LCI-49"
       ]
     }
   ],
