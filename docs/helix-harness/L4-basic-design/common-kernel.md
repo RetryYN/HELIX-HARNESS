@@ -1,4 +1,4 @@
-# HELIX 共通カーネル L4基本設計（K1・K2）
+# HELIX 共通カーネル L4基本設計（K1・K2・K5）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（工程の標準と検証義務の所有。2026-10-08のPO判断の判断2）
@@ -6,7 +6,7 @@ parent_requirement: なし（一つの親要求を定めず、要素ごとに承
 paired_l9: ../L9-integration-verification/common-kernel-integration-verification.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）に限る。K3〜K10は末尾の「後続PRの計画」に置く。
+本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）を扱う。残りは8.2の「後続PRの計画」に置く。
 
 本書は要求の意味、範囲、担当、版を作らない。各要素は承認済みL3のACを由来とし、由来の無い要素は「L2へ戻す論点」に分ける。本書は実装、実行、内部デプロイ、releaseの許可を含まない。本書の承認・merge・試作の合格から、L3以上の承認や完了を生成しない。
 
@@ -269,6 +269,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 
 1. **時間による鮮度の閾値**（G11）：観測の期限、失効の許容遅延をどの機構が持つか。L2は数値を新設しない方針である。
 2. **不明と未観測の境界の各機構での意味**（G10の一部）：LABOの「不明と未観測」、INFRAの鮮度、SECURITYのunknown／denyが、2.2の境界と異なる意味を持つ場合。
+3. K5（9章）の論点：末尾の削除の検出と、logの保持期間・圧縮（9.7）。
 
 ## 7. 人の判断が要る点
 
@@ -293,7 +294,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 
 | PR | 範囲 | 主な由来の候補（承認済みL3） | 組み込むG・E | 主な旧source（旧ファイル名。各PRで旧資産ID・行・SHA-256を固定する） | 未決 |
 |---|---|---|---|---|---|
-| 2 | K5 状態は証拠から導出（追記専用JSONL＋projection） | CONNECT-AC-005-01（追記で訂正）、LABO-001-AC-02（source stateへwritebackしない） | — | event-projection-checkpoint-replay、ADR-007（置換）、handover-db-derivation | projectionの規模と再構築の費用（旧IMP-151、149） |
+| 2（9章で起草） | K5 状態は証拠から導出（追記専用JSONL＋projection） | CONNECT-AC-005-01（追記で訂正）、LABO-001-AC-02（source stateへwritebackしない） | — | event-projection-checkpoint-replay、ADR-007（置換）、handover-db-derivation | projectionの規模と再構築の費用（旧IMP-151、149） |
 | 3 | K6 provenance／receipt、E 検証receiptの真正性、Phase 1の条件の具体（2026-10-08判断3） | HARNESS-L2-022系のreceipt、032-05 | E、G8（実行物の検証） | work-graph-receipt-acceptance、gate-evidence-substance、closure-evidence-materialization（置換）、check-registry（登録と実行の照合） | 署名を後回しにする間の改ざん検出の範囲。検証器の集合の配置 |
 | 4 | K4 義務を一級データに | HARNESS-L2-022、030〜032、036 | G3（oracle種別：機械判定／LLM判断／人のIF） | descent-obligation、ci-deferred-obligation-recovery、ci-verification-plan、charter P3 | 未完義務の継承は新規案を含む |
 | 5 | K10 型付き依存グラフ | HARNESS-L2-023（依存閉包）、INFRA | — | ci-responsibility-registry、design-registry | 関係型の性質宣言は新規案 |
@@ -303,6 +304,101 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 | 9 | K8 label遷移 | SECURITY-AC-001-01 | — | pillar P8、worker-context-authority、memory-learning-promotion | label伝播（taint型）は新規案 |
 
 G14（外部標準の版固定）はCONNECTのL4で扱い、共通カーネルに含めない。
+
+## 9. K5 状態は証拠から導出（追記専用JSONLとprojection）
+
+本章はPR2で追加する。K1の型とK2の鍵の上に、記録の正本の形と、正本から状態を導くprojectionを定める。
+
+### 9.1 置き場所と範囲
+
+K5は本書と対のL9へ追記する。共通カーネルは一つの設計identityであり、更新し続ける文書は同じファイルを更新する（AGENTS.md「再構築の原則」）。K5はK1の`Observed`、K2の`ResultKey`・K2-I2bの「追記順」・3.4のイベントを直接参照し、8章の計画と付録Aを共有するため、別ファイルに分けると参照と付録が二重になる。PRの範囲はK5の一つの変更目的（正本の記録形式と、projectionの導出の境界）に限り、人が読む差分は本章と対のL9で約130行（表の行が長いため、文字量では目安の範囲の中ほど）である。
+
+ログの置き場所（ディレクトリ）は決めない。方針6の具体的なディレクトリ配置とともに8.2のPR6で決める。本章は記録の形式と規則だけを定める。
+
+### 9.2 由来
+
+| 由来 | 位置 | 要点 |
+|---|---|---|
+| Concept | `docs/concept/helix-concept.md:308`（原則7） | 意味の正本、実行事実、表示、作業文脈を分けて保ち、再構築できる |
+| CONNECT | `CONNECT-AC-005-01`（`docs/helix-connect/L3-requirements/functional-requirements.md:109`） | 記録済みeventを上書き・削除・順序差替えせず、訂正を追記で表す。同identity同digestの重複と異digestの衝突を区別する |
+| INTELLIGENCE | `AC-INTELLIGENCE-L3-078-06`（`docs/helix-intelligence/L3-requirements/functional-requirements.md:591`） | repositoryのevent journalからprojectionを再構築する。同じevent集合の順序を変えてもexact setとdigestで比べる。DBを失っても同じjournalから同じprojection・digestを再構築する。DB種別・実装は固定しない |
+| INTELLIGENCE | `AC-INTELLIGENCE-L3-078-04`（同:589） | 影響を受けたprojectionのexact setだけをstaleにし、stale projectionの再利用を拒否する |
+| INTELLIGENCE | `AC-INT-063-03`（同:691） | 遅着・別順のhistorical outcomeは元のepisodeへ結び、current judgmentを上書きしない |
+| LABO | `LABO-001-AC-02`（`docs/helix-labo/L3-requirements/functional-requirements.md:45`） | success-only projectionで非successのeventを除去しない。LABOからsource stateへwritebackしない |
+| LABO | `LABO-002-AC-03`（同:149）、`LABO-050-AC-02`（同:1579） | 訂正時に元eventを上書きしない。遅着の再観測は追加し、既存のsource recordを上書きしない |
+| HARNESS | `AC-HARNESS-L3-024-05`（`docs/helix-harness/L3-requirements/functional-requirements.md:442`） | 再開時は新eventを追記して影響差分を再評価する |
+
+承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による（CONNECT Stage 5、INTELLIGENCE Stage 3・Stage 5、LABO Stage 1・Stage 2b・Stage 5、HARNESS Stage 2b）。正本をrepository内の追記専用JSONLにすることはAIの設計判断である（5章）。
+
+### 9.3 型
+
+```text
+LogId        = 版をまたいで変わらないログの識別子（pathを識別子にしない。方針6）
+SegmentId    = { log_id, writer, segment_no }      # 一つのsegmentに書くのは一つのwriterだけ
+LogEntry     = { schema_version, segment: SegmentId, seq, prev_digest, event, entry_digest }
+  seq          = 1から始まる連番（segmentごと）
+  prev_digest  = 同じsegmentのseq-1のentry_digest。seq=1は"genesis"
+  entry_digest = Digest(canonical_json({schema_version, segment, seq, prev_digest, event}))
+Event        = ResultRecorded | ResultConflictDetected | Correction
+  Correction   = { target: entry_digest, reason, replacement_event? }
+SegmentHead  = { segment, seq, entry_digest }      # 読んだ時点のsegmentの末尾
+Projector    = { identity, version, digest }        # projectionを作る純関数の識別と版
+Projection   = { projector, input_heads: SegmentHead[], output, output_digest }
+Checkpoint   = { projector, input_heads, state_digest }
+```
+
+- 1行に1つの`LogEntry`を`canonical_json`（3.2）で書き、改行で区切る。
+- `ResultRecorded`と`ResultConflictDetected`は3.4のイベントである。K2の`record`は、該当する`operation`のsegmentへの追記として実装する。K2の`lookup`の`records`は、segment群から導いたprojectionである。
+- `writer`は追記する主体（lane、Worker、検証器等）の識別である。並行して働くwriterは別のsegmentに書く。gitで二つのbranchが同じsegmentの末尾へ追記すると連鎖が壊れるためである。
+- 業務payload、secret、credentialの値をeventに入れない。eventは識別子とdigestで参照する（CONNECT-AC-005-01の「raw業務payload・secret・credential値を保存・複製しない」）。
+
+### 9.4 不変条件
+
+- **K5-I1 追記専用**：書いた行のbytesを変えない。消さない。並べ替えない。追記は末尾だけとする。訂正は`Correction`の追記で表し、元の行を残す。
+- **K5-I2 連鎖**：segmentごとに`seq`は1から欠番・重複なく続き、各行の`prev_digest`は直前の行の`entry_digest`に等しく、各行の`entry_digest`は再計算と一致する。
+- **K5-I3 損傷の検出**：segmentを読むとき、次のいずれかがあれば、そのsegmentは損傷している：`entry_digest`の不一致、`prev_digest`の不一致、`seq`の欠番・重複、解析できない行、未知の`schema_version`、呼出し元が渡した既知の`SegmentHead`（以前に読んだ末尾）より短い、既知の`SegmentHead`と同じ`seq`で`entry_digest`が違う。損傷したsegmentの読取りは`Unknown(unreadable)`を返し、損傷の種類を`evidence`に入れる。損傷していない部分だけを読んで成功としない。
+- **K5-I4 冪等な追記**：同じK2の`key_digest`と同じ`result_digest`の`ResultRecorded`が、読める全segmentのどこかに既にあれば、追記しない（K2-I4の`NoOp`）。同じ`key_digest`で異なる`result_digest`なら、新しい`ResultRecorded`と`ResultConflictDetected`を追記し、前の行は残す（K2-I4の`Conflict`）。
+- **K5-I5 一つの問いは一つのlog**：K2の`ResultKey`の`operation`ごとに、記録先の`LogId`を一つだけ宣言する。同じ`operation`の結果を二つのlogへ記録しない。
+- **K5-I6 順序**：順序はsegmentの中の`seq`だけで定まる。segmentをまたぐ時刻の順序は定めない。K2-I2bの「追記順で最後」は、同じsegmentの中では`seq`の大きい方、segmentをまたぐ場合は`(segment, seq)`の辞書順で最後とする。後者は決定的にするための規則であり、時間の前後を意味しない（この選択は肯定の判定に影響しない。K2-I2b）。
+- **K5-I7 projectionは正本でない**：projectionの出力をlogへ書き戻さない。projectionの出力を`record`の入力にしない。projectionから新しいeventを作らない（状態を変えるのはeventの追記だけ）。
+- **K5-I8 決定的な再構築**：同じ`projector`と同じ`input_heads`からは、行の読込み順やsegmentの並び順によらず、同じ`output_digest`を得る（INTELLIGENCE-078-06）。
+- **K5-I9 全量の前提**：projectionが「無い」「0件」「閉じた」を出すのは、`input_heads`の全segmentを損傷なく末尾まで読んだ場合だけとする（K1-I7）。どれか一つが損傷・読取不能なら、そのprojectionは`Unknown(unreadable)`とする。
+- **K5-I10 projectionの鮮度**：projectionはK2の鍵で扱う。`operation`は`projector.identity`、`operation_version`は`projector.version`、`inputs`は`input_heads`の各segmentを`SubjectRef`（`kind=log_segment`、`revision=seq`、`digest=entry_digest`）としたものとする。したがって、segmentへの追記やprojectorの版の変更で、旧projectionはK2-I2によりstaleまたは未観測になる。影響を受けない`input_heads`のprojectionは変わらない（INTELLIGENCE-078-04）。
+- **K5-I11 checkpoint**：checkpointから差分を畳み込んだ結果は、同じ`input_heads`の全量の再構築と同じ`output_digest`でなければならない。一致しなければ、そのcheckpointを使わず`Unknown(conflict)`とする。
+- **K5-I12 ドリフト**：保存したprojectionの`output_digest`と、同じ`projector`・`input_heads`からの再構築の`output_digest`が違えば、そのprojectionは`Unknown(conflict)`とし、使わない。projectorの版が違う二つのprojectionの差はドリフトではなく、K5-I10の鍵の違い（別の問い）として扱う。
+
+### 9.5 API境界
+
+各受け口は、引数に応じて次を検査し、満たさなければ理由を付けて拒否する。拒否を`Value`へ読み替えない。
+
+- `append(segment, event, writer) -> Appended(SegmentHead) | NoOp | Conflict | Rejected(reason)`：`writer`がsegmentの`writer`と一致すること、`event`がK1-I6・K2の鍵の検査を通ること、`Correction`の`target`が同じlogに存在すること。K5-I1・I4・I5に従う。
+- `read(segment, known_heads) -> Observed<Entry[]>`：K5-I2・I3に従う。損傷なく末尾まで読めた場合だけ`Value`。
+- `project(projector, input_heads) -> Observed<Projection>`：`input_heads`の各segmentを`read`し、K5-I7〜I9に従う。
+- `verify(projection) -> Observed<Projection>`：K5-I11・I12に従い、再構築して比べる。
+
+### 9.6 旧HELIXとの対応
+
+| 旧source（ID／path:行／SHA-256） | 保持する点 | 変更する点 | 区分候補 |
+|---|---|---|---|
+| `LEGACY-ASSET-BB08D70A42B6445B2D1E`／`docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md:36-42,62-64,78-89,119-122`／`9e18d68b5e463192fb30b839eb164d79f7202a15374482f65181b238df8e513d` | append-onlyで訂正は追記だけ。同一event_idで同じdigestはno-op、異なるdigestは拒否。projectionはevent列から再構築する派生物で、編集を逆流させない。projectionとread-backの不一致はfail-close。全体scopeのdigestをlaneのcheckpointに流用すると無関係な追記で誤ってdriftになる | 旧27-30行は`harness.db`を計画・状態のauthorityとした。本書は正本をrepository内のJSONLに置き、DBを置かない（5章）。異なるdigestは拒否でなく両方を残してconflictにする（K2-I4）。laneのcheckpointをsegmentとprojectionの`input_heads`へ一般化する | `semantic_rederive` |
+| `LEGACY-ASSET-C35E93F2D36777CD7462`／`docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md:145-149`／`2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357` | append-only event→projection→checkpointの共通形。`event_seq`を一意かつ単調にし、`previous_event_digest`と`event_digest`で鎖状に結ぶ。canonical JSON Linesで追記する。同じoperation IDと同じdigestは重複として除き、異なるdigestはconflict | 連鎖の単位をaggregateからsegment（writerごと）へ替える。UPDATE/DELETE拒否triggerとDB transactionは置かず、K5-I3の読取り時の検査で代える | `semantic_rederive` |
+| `LEGACY-ASSET-8771887517A619A2D501`／`docs/adr/ADR-007-harness-db-sqlite-projection.md:18-22`／`50c05a00872be6c23de531aaecd6a6cfd26abec264718e0223ac2630f739dcdf` | projectionは再構築でき、authoring sourceではない | 正本と保存の形式（5章のとおり） | `replace`（保存の形式） |
+| `LEGACY-ASSET-9EDE8332CF4F627105EA`／`docs/design/harness/L6-function-design/handover-db-derivation.md:35-38`／`e95e612c601ccb226b90e515eca633439745bb9a2266c889031ef7518c39d18d` | eventを先に追記し、event IDとpayload digestで冪等に投影する。append後・projection前はreplayする。同じsequenceで異なるpayloadはfail-close | 投影先をSQLiteからprojectionの純関数へ替える。同31行の「DBとmemoryが矛盾すればDB優先」は採らない（DBを置かない） | `semantic_rederive` |
+| `LEGACY-ASSET-F6E9EA3422A0EF1DF090`／`docs/design/harness/L6-function-design/feedback-lifecycle.md:76-93`／`2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655` | 終端（closed／superseded）は再投影で戻らない。新しい観測は新generationとして扱う | feedbackの状態機械を、K5-I7（eventだけが状態を変える）とK5-I9（全量の前提）、K2のrevisionへ一般化する | `semantic_rederive` |
+| `LEGACY-ASSET-F677F6D81EB9FCAE2E3F`／`docs/governance/handover-retirement-memory-audit-2026-07-11.md:34-35,56,81`／`93b4a0bd78ebc88266eb3d795ad29384169a1fa8698691acbb724984f462d8b4` | 失敗史：状態を保存するpointer（`CURRENT.json` 311,927 bytes）の肥大と、手書きmarkerのdriftを防衛機構で根絶できなかった。projectionがopenを再生成し、close済みのfeedbackが復活した（open=2010で飽和） | 状態を保存しない（K5-I7）。「閉じた」を全量の前提でだけ出す（K5-I9） | 失敗史（区分なし） |
+| `LEGACY-ASSET-6929C09B95A444D95B49`／`docs/improvement-backlog.md:258,260`（IMP-149、IMP-151）／`e6d327ff488860dcaa8d7a150ac893e5cf0940eb710396cdf7ae746f5689a9e2` | 失敗史：projectorの誤検出がrebuildの度に誤ったdriftを出した。470MBのDBの全件読取りで長時間停止した（独立検証では「不確実」） | projectorの版を鍵に入れ、projectorの修正を別の問いとして扱う（K5-I10・I12）。読む範囲を宣言した`input_heads`に限り、checkpointの等価性を検査する（K5-I11）。規模の数値は9.8の試作で測る | 失敗史（区分なし） |
+
+writerごとにsegmentを分けることと、segmentをまたぐ順序を時間の前後と結ばない規則（K5-I6）は、旧HELIXに対応が見つからない**新規案**である。旧は一つのaggregateの中の単調な`event_seq`を前提にしていた（`infinity-loop-platform-basic-design.md:145-149`、`handover-db-derivation.md:35-38`）。検索の範囲は`archive/legacy-generation-2026-09-14/root/docs/design/`配下（`grep -rIl`、読取りだけ）で、検索語と該当ファイル数は`segment` 14、`hash chain` 3、`hash-chain` 6、`previous_event_digest` 8、`prev_digest` 0、`writer別` 0である。`segment`の14件はpathの区切りやIDの区切りの意味であり、ログの分割の意味のものは無かった。連鎖の語の該当は、いずれも一つのaggregateまたは一つのinstanceの中の連鎖だった。
+
+### 9.7 L2へ戻す論点
+
+1. **末尾の削除の検出**：既知の`SegmentHead`を持たない読み手は、segmentの末尾の削除を検出できない。repository外に末尾を固定するか（調査資料のG9）は、要求の意味に触れるため決めない。
+2. **保持期間と圧縮**：logが増え続ける。古い行を圧縮・退避してよいか、その場合に何を正本とするかを定める承認済みのACは見つからなかった。
+
+### 9.8 未決と試作で確かめること
+
+- segmentの`writer`の粒度（lane、Worker、PRのいずれか）と、segmentを閉じる条件。8.2のPR6（ディレクトリ配置）と合わせて決める。
+- 試作（`scaffold/`、Scaffold Binding登録）：L9のIV-K5-01〜14を動かす。あわせて、1万行・10万行のsegmentでの全量再構築とcheckpointからの差分の時間を測り、checkpointを必須にする規模の目安を得る。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 

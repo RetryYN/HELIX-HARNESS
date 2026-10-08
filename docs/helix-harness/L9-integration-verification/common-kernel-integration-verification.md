@@ -1,11 +1,11 @@
-# HELIX 共通カーネル L9結合検証設計（K1・K2）
+# HELIX 共通カーネル L9結合検証設計（K1・K2・K5）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
+本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K5と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作で実行する場合は`scaffold/`に置き、Scaffold Bindingへ登録する。
 
@@ -15,6 +15,7 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 
 - **機構の写像→カーネル**：各機構の状態語を`Observed<T>`へ写す関数（L4 2.5）。
 - **カーネル内の合成と判定**：`combine`、`admit`、`disposition`、`key_of`、`lookup`、`record`。
+- **正本とprojection**（K5、L4 9章）：`append`、`read`、`project`、`verify`。K2の`record`はsegmentへの追記、`lookup`の記録集合はprojectionとして通す。
 - **カーネル→消費側**：ある機構の結果を、別の機構の判定（gate、昇格、適格）が受け取る境界。
 
 ## 2. 検証項目
@@ -68,6 +69,27 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-K2-19` | K2-I2の2：完全一致＋同revision競合 | — | 照会と完全一致する`Value`の記録と、同じrevisionで`digest`の違う記録の2件があるとき、`Unknown(conflict)`。完全一致の`Value`を返す実装は不合格 |
 | `IV-K2-20` | K2-I2の4：旧revisionだけの複数記録 | — | 旧R0の`Value`と旧R1の`Value`だけがあり照会がR2のとき、追記順で最後の記録を`prior`とする`Stale`。旧R1が`Unknown`なら`Unobserved(not_run, superseded = R1の記録)` |
 
+### K5
+
+各項目は、損傷の無いsegmentを用意したうえで、一か所だけを変える。「境界」欄は変異を与える受け口である。複数segmentの項目（IV-K5-09〜11）は、segmentの組を明記する。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-K5-01` | K5-I1：既存行の変更 | `read` | 既知の`SegmentHead`と一致するsegmentは`Value` | 既存の1行のbytesを1byte変えたもの、1行を削除したもの、隣り合う2行を入れ替えたもの（3fixture）は、いずれも`Unknown(unreadable)`で、損傷の種類が別々に記録される |
+| `IV-K5-02` | K5-I2：連鎖の各field | `read` | — | `seq`の欠番、`seq`の重複、`prev_digest`の不一致、`entry_digest`の不一致、解析できない行、未知の`schema_version`（6fixture）は、いずれも`Unknown(unreadable)`。損傷より前の行だけを返して`Value`にする実装は不合格 |
+| `IV-K5-03` | K5-I3：既知の末尾との比較 | `read` | 既知の末尾より長く、既知の末尾までが一致するsegmentは`Value` | 既知の末尾より短いsegmentと、既知の末尾と同じ`seq`で`entry_digest`が違うsegmentは、いずれも`Unknown(unreadable)` |
+| `IV-K5-04` | K5-I4：冪等な追記 | `append` | 同じ`key_digest`・同じ`result_digest`の2回目は`NoOp`で、segmentの行数が変わらない | 同じ`key_digest`・異なる`result_digest`の2回目は`Conflict`で、`ResultRecorded`と`ResultConflictDetected`が追記され、前の行のbytesが変わらない |
+| `IV-K5-05` | 9.5：追記の受け口 | `append` | writerが一致し、鍵の完全なeventは`Appended` | writerの不一致、K2の鍵のfieldを一つ欠いたevent、存在しない`target`を指す`Correction`（3fixture）は、いずれも`Rejected`で、segmentが変わらない |
+| `IV-K5-06` | K5-I1：訂正 | `append`→`project` | `Correction`を追記すると、元の行は残り、projectionは訂正後の値を返す | 元の行を書き換えて訂正する実装は、`IV-K5-01`の損傷として検出される |
+| `IV-K5-07` | K5-I5：一つの問いは一つのlog | `append` | 宣言したlogへの追記は受理される | 同じ`operation`の結果を、宣言と別のlogへ追記すると`Rejected` |
+| `IV-K5-08` | K5-I7：書き戻しの禁止 | `project`、`append` | — | projectionの出力をeventとして`append`する経路、projectionの出力を`record`へ渡す経路は、いずれも`Rejected` |
+| `IV-K5-09` | K5-I8：決定的な再構築 | `project` | segment A・Bの組で、行の読込み順とsegmentの並び順を変えた3通りの入力が、同じ`output_digest`になる | 読込み順でprojectionが変わる実装は不合格 |
+| `IV-K5-10` | K5-I6、K2-I2b：segmentをまたぐ順序 | `project`→`lookup` | 旧revisionの`Value`がsegment AとBに1件ずつあり、照会が新revisionのとき、`(segment, seq)`の辞書順で最後の記録を`prior`とする`Stale`が、入力の並び順によらず同じになる | 時刻のfieldや読込み順で`prior`を選ぶ実装は不合格 |
+| `IV-K5-11` | K5-I9：全量の前提 | `project` | segment A・Bを損傷なく読めた場合、「0件」「閉じた」を出せる | Bが損傷している場合と、Bが`input_heads`に含まれるのに読めない場合は、いずれもprojectionが`Unknown(unreadable)`で、Aだけから「0件」「閉じた」を出さない。close済みの項目が、部分読取りで再びopenとして出る実装は不合格 |
+| `IV-K5-12` | K5-I10：projectionの鮮度 | `lookup` | 同じ`input_heads`と`projector`の照会は保存したprojectionを返す | segmentに1行追記した照会、projectorの`version`を変えた照会は、K2-I2により`Stale`または`Unobserved(not_run)`。影響を受けないsegmentだけを`input_heads`とするprojectionは`Value`のまま |
+| `IV-K5-13` | K5-I11：checkpoint | `verify` | checkpointからの差分の畳込みが全量の再構築と同じ`output_digest`なら、checkpointを使える | 差分の畳込みが全量と違う`output_digest`を返すcheckpointは`Unknown(conflict)`で、使われない |
+| `IV-K5-14` | K5-I12：ドリフト | `verify` | 保存したprojectionが再構築と一致すれば`Value` | 保存したprojectionの`output`を1か所変えたものは`Unknown(conflict)`。projectorの版が違う二つのprojectionの差は`Unknown(conflict)`にならず、IV-K5-12の扱いになる |
+
 ## 3. 判定と戻し先
 
 - 項目の判定はK1の型で記録する。検証器が未実装または未実行の項目は`Unobserved`であり、合格に数えない。
@@ -80,3 +102,4 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 |---|---|---|---|
 | `LEGACY-ASSET-84DA9FA82E710D0C5E6A`／`docs/test-design/harness/L9-integration-test-design.md:1-25`／`04e4a1473d483511c1724de7445bc8202e028e4a5c3eb749c0ccb74a98febe7a` | L9を結合のoracleの置き場とし、module・adapter・stateの境界を検証する | 旧L5境界から現行のL4↔L9へ対を合わせる。旧oracle ID・件数・実行手順は移さない（除外class `legacy_test_design_or_oracle`） | `semantic_rederive` |
 | `LEGACY-ASSET-2E09592A003B32C118C1`／`docs/governance/gate-design.md:35`／`d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726` | G9＝L4基本設計のoracleをL9で実行する対応 | 旧のsign-off（TL提案）は採らない（L4以降は自動。L4の5章） | `semantic_rederive` |
+| `LEGACY-ASSET-BB08D70A42B6445B2D1E`／`docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md:130-148`／`9e18d68b5e463192fb30b839eb164d79f7202a15374482f65181b238df8e513d` | L9の合否境界として、既存eventの書換え、同一event_idの異digest上書き、projectionとread-backの不一致、non-idempotent replay、全体scopeのdigestの流用を拒否する | causation・lane・GitHub Projectの項目は移さない。異digestは拒否でなくconflictとして両方を残す（L4 K5-I4） | `semantic_rederive` |
