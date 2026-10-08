@@ -18,7 +18,7 @@
   完全一致再利用、意味の再導出、置換のいずれかを明示する。
 - 旧HELIXと異なる内容にするときは、旧source、保持する点、変更する点、変更理由を記録する。旧資産の不在、未完成、旧runtimeの存在だけを変更理由にしない。
   人の判断が要るのは、人が持つ上流の意味を変える場合と、[上流authority状態モデル](docs/governance/authority-state-model.md)が対象revisionの人間decision（対象revisionの承認、旧要求の意味変更・retire等）を求める場合に限る。
-  人が持つ上流は、旧HELIXの自律境界（旧`CLAUDE.md`「自律境界」：人は企画・要求・デザインモックを持ち、要件は承認のみ、要件の起草以下はAIが自走）を現行の層に対応させたもので、Concept、企画（L1）、要求とprototype／非UIの合意（L2）、要件の承認（L3）である。L3の承認は、2026-10-05のPO判断によりOpusとFableの見解の一致へ委任し、POは機構×Stageの区切りで事後確認する（[GitHub上流運用モデル](docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）。旧世代の層番号（L0企画・L1要求・L2デザインモック）をそのまま現行の層番号に当てない。
+  人が持つ上流は、旧HELIXの自律境界（旧`CLAUDE.md`「自律境界」：人は企画・要求・デザインモックを持ち、要件は承認のみ、要件の起草以下はAIが自走）を現行の層に対応させたもので、Concept、企画（L1）、要求とprototype／非UIの合意（L2）、要件の承認（L3）である。L3／L10の承認は、2026-10-08のPO判断により、作成側とは別runtime・別model familyの独立reviewがexact base／content HEADでno_findingsと結論し、作成・review両側の系統を記録し、その後6文書のbytesが変わっていない場合に成立する。Fableはエスカレーション先とし、POは機構×Stageの区切りで事後確認する（[GitHub上流運用モデル](docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）。判断記録がmainへ入る前の旧条件で成立した承認は引き続き有効とする。旧世代の層番号（L0企画・L1要求・L2デザインモック）をそのまま現行の層番号に当てない。
   それ以外の差分は、記録したうえでAIが進め、独立reviewで確かめる。差分の記録を理由に、新しい承認手続きを作らない。
 - 対応する旧記述が見つからない場合は、検索範囲と結果を記録し、新規案であることを明示して人に提示する。
 - 報告、review、指摘でも、旧HELIXとの対応を確認せずに現行の規則文言だけを根拠にしない。現行文言が旧HELIXと

@@ -8,7 +8,7 @@
 これらは実行せず、実行fallbackにもしないが、規則、運用、工程、役割分担、承認手続き、要求、設計を決めるときは
 必ず先に読み、起点にする。旧HELIXに根拠のない規則や手続きを推測で新設しない。旧HELIXと異なる内容にする場合は、
 旧source、保持点、変更点、理由を記録する。人の判断は、人が持つ上流（Concept、企画、要求とprototypeの合意、要件の承認）の意味を変える場合と、
-上流authority状態モデルが対象revisionの人間decisionを求める場合に限る。L3の承認は、POの委任によりOpusとFableの見解の一致で成立し、POは機構×Stageの区切りで事後確認する。
+上流authority状態モデルが対象revisionの人間decisionを求める場合に限る。L3／L10の承認は、[2026-10-08のPO判断](docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md)により、作成側とは別runtime・別model familyの独立reviewがexact base／content HEADでno_findingsと結論し、作成・review両側の系統を記録し、その後6文書のbytesが変わっていない場合に成立する。Fableはエスカレーション先とし、POは機構×Stageの区切りで事後確認する。判断記録がmainへ入る前の旧条件で成立した承認は引き続き有効とする。
 更新され続ける正本の文書は同じファイルを更新し、版ごとの別ファイルを作らない。判断記録や監査証拠は別に残す。
 詳細は[AGENTS.md](AGENTS.md)「再構築の原則」に従う。
 
