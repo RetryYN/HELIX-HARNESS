@@ -1,18 +1,17 @@
 # 新世代Feature Ticket
 
-このdirectoryは、上流から設計・実装へ降ろす機能単位のrepo-owned作業契約を保持する。人間の明示指示により
-上流承認前に具体化するticketは`proposed_upstream_waiting`とし、exactな親sourceと未承認条件を保持する。
-Feature Ticketは要求正本ではなく、親Concept／L1／L2、対受入、依存、許可、停止条件を参照する実行候補である。
-GitHub Issue／Projectへ同期する場合も本ticketへのprojectionとし、remote状態から要求、承認、完了を逆生成しない。
-`proposed_upstream_waiting`は設計・実装・Worker・CI・mergeを開始できず、親上流の承認と再導出後にだけreadyへ遷移できる。
+このdirectoryは、上流から設計・実装へ降ろす作業のFeature Ticketを置く。2026-10-09の[開発repositoryのチケット方針](../decisions/dev-repo-ticket-policy-po-decision-2026-10-09.md)により、ticketは次のとおり扱う。
 
-Feature Ticket本文へ、その本文を含むGit commit SHAをprojection revisionとして埋め込まない。GitHubへ送ったexact source
-commit、file SHA-256、remote revision、read-afterはappend-onlyのprojection receiptへ記録し、ticket frontmatterは
-`projection_receipt_ref`だけを持つ。これによりticket更新で内包SHAが必ずstaleになる自己参照を避ける。
+- ticketは作業種別と作業内容だけを持つ作業指示であり、要求・設計の正本ではない。正本は設計書と判断記録に置き、ticketを破棄しても設計書から作業を再構成できる状態を保つ。
+- ticketは書き換えない。作業内容を変えるときは新しいticketを発行する。状態、PR番号、Issue番号、merge結果をticketへ書き戻さない。
+- ticketに依存関係を持たせず、ticketの依存や状態をCI・review・merge・作業開始の条件にしない。実装へ進めるかは、対象の上流のauthority状態で判断する。
+- GitHub IssueはticketのGitHub上の写しであり、remote状態から要求、承認、完了を逆生成しない。
 
-現在は要求整理中のため、全ticketを`proposed_upstream_waiting`とする。文書具体化以外の実装、runtime、DB、CIを起動しない。
+GitHubへ送ったexact source commit、file SHA-256、remote revision、read-afterは、ticketの外のappend-onlyのprojection receiptへ記録する。ticket本文へ、その本文を含むGit commit SHAを埋め込まない。これにより、ticketの内包SHAが必ずstaleになる自己参照を避ける。
 
-| 順序 | Ticket | 対象 | 状態 | GitHub projection |
+下表の11件は方針の前に発行したticketである。書き換えず、各ticketの状態・依存の記載と表の「発行時の状態」は、発行時の記録として残す。これらの記載を、作業開始やmergeの条件として使わない。
+
+| 順序 | Ticket | 対象 | 発行時の状態 | GitHub projection |
 |---:|---|---|---|---|
 | 1 | [FT-OS-REQREG-001](FT-OS-REQREG-001.md) | HELIX-OS 要求候補自動登録 | proposed_upstream_waiting | [#1798](https://github.com/RetryYN/HELIX-HARNESS/issues/1798) |
 | 2 | [FT-HARNESS-SEMEXTRACT-001](FT-HARNESS-SEMEXTRACT-001.md) | 旧実装semantic atomのPython core抽出 | proposed_upstream_waiting | [#1801](https://github.com/RetryYN/HELIX-HARNESS/issues/1801) |

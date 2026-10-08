@@ -180,12 +180,14 @@ POが差し戻すと判断した場合は、差し戻しの判断記録を作る
 - GitHubで人が読むtitle、見出し、目的、判断、状態説明、停止理由は日本語を原則とする。ID、path、command、schema語彙、
   label等の機械識別子と一般的な開発用語は原語を保てるが、英語見出しだけで意味を判断させない。
 - `.github/PULL_REQUEST_TEMPLATE.md`と`.github/ISSUE_TEMPLATE/feature-ticket-projection.yml`は、ローカル正本をGitHubへ転記する補助surfaceであり、要求やticket意味の入力面ではない。templateが欠けても本書のauthorityは失われず、template入力だけで上流承認を生成しない。
-- Feature Ticketはlocal work authorityであり、親上流、対象product、scope、依存、停止条件、backflowを持つ。
+- Feature Ticketは作業種別と作業内容だけを持つ作業指示であり、要求・設計の正本ではない。正本は設計書（Conceptから下流の各層の文書と判断記録）に置き、ticketを破棄しても設計書から作業を再構成できる状態を保つ（2026-10-09の[開発repositoryのチケット方針](decisions/dev-repo-ticket-policy-po-decision-2026-10-09.md)）。
+- ticketは書き換えない。作業内容を変えるときは新しいticketを発行し、元のticketは残す。状態、PR番号、Issue番号、merge結果をticketへ書き戻さず、ticketとGitHubの対応はticketの外のappend-onlyのprojection receiptに置く。
+- ticketに依存関係を持たせず、ticketの依存や状態をCI・review・merge・作業開始の条件にしない。作業の順序と前提は設計書と判断記録の側で確かめ、ticketが一枚欠けてもCI・review・mergeを止めない。
 - IssueはFeature Ticketの協調projectionであり、Issue番号を要求IDやticket IDにしない。
 - Issue投影前にlocal ticketの存在、`source_revision`での内容、source digestを確認する。Issueの意味欄はlocal ticket本文からの転記に限定し、転記内容のdigest不一致はprojection失敗とする。
 - local ticketが存在しないIssue Form入力はwork authorityにしない。新規の人間指示を含む場合は入力を原eventとしてローカル登録へ戻し、要求採否と分けたprojection failure receiptを残してIssueを非実装状態で閉じる。入力を黙って捨てない。
 - `requirement` PRは[管理層の要求仮登録契約](management-provisional-requirement-registration.md)に従い、要求候補と旧source atomの無損失被覆をHELIX-OS管理層へ仮登録してからmerge admissionへ進む。GitHub Issue／PRは仮登録recordのprojectionであり、仮登録正本ではない。
-- 上流承認前に人間の明示指示から起票する場合は`proposed_upstream_waiting`に固定し、実装可能状態へ進めない。
+- 上流承認前に人間の明示指示から起票した作業も、実装へ進めるかはticketの記載ではなく、対象の上流のauthority状態（[上流authority状態モデル](authority-state-model.md)）で判断する。
 - HARNESSが工程のnormative vocabulary、trigger、適用条件、各route内の順序、join、停止・差戻し・完了条件を所有する。単一の固定列ではなく、下記の条件付きrouteをHARNESS contractとして保持する。
 - 推進機構はHARNESS語彙を別定義せず、operational tag、versioned mapping、composition、workflow instance生成規則を所有し、管理から受けた目的・要求・制約をticket graphへ変換する。
 - 管理層は生成物を登録・統制する。HARNESSは個別ticket発行やworkflow instance生成を行わず、推進は入力に合うHARNESS routeとtriggerを評価し、必要なrouteだけを規定順で具体化する。
@@ -227,7 +229,7 @@ POが差し戻すと判断した場合は、差し戻しの判断記録を作る
 
 ### 自動投影実装前のbootstrap
 
-推進生成器と管理登録層が未実装の間は、repository maintainerが人間の明示指示を原文・時点・対象・source digest付き原eventとして登録し、その原文から意味を追加せず`proposed_upstream_waiting`のlocal ticketへ転記できる。曖昧さ、対象不明、依存不明は補完せず停止条件へ置く。repository maintainerは承認済み操作scope内で、存在確認済みlocal ticketをGitHubへ同一内容投影できる。投影前にticket ID、path、full source revision、source digestを記録し、投影後にIssue本文とlocal ticketの意味欄を再読して一致を確認する。このbootstrapは要求採否、workflow生成、実装許可を行わず、登録層と推進生成器が成立した時点で閉じる。
+推進生成器と管理登録層が未実装の間は、repository maintainerが人間の明示指示を原文・時点・対象・source digest付き原eventとして登録し、その原文から意味を追加せずlocal ticketへ転記できる。曖昧さ、対象不明、依存不明は補完せず停止条件へ置く。repository maintainerは承認済み操作scope内で、存在確認済みlocal ticketをGitHubへ同一内容投影できる。投影前にticket ID、path、full source revision、source digestを記録し、投影後にIssue本文とlocal ticketの意味欄を再読して一致を確認する。このbootstrapは要求採否、workflow生成、実装許可を行わず、登録層と推進生成器が成立した時点で閉じる。
 
 ## review、判断、merge admission
 
