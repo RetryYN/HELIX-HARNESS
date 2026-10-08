@@ -1,11 +1,11 @@
-# HELIX 共通カーネル L9結合検証設計（K1・K2・K4・K5・K6・K10・G3・G8・Phase 1）
+# HELIX 共通カーネル L9結合検証設計（K1・K2・K4・K5・K6・K7・K10・G3・G5・G8・Phase 1）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（L4と同じ）
 paired_l4: ../L4-basic-design/common-kernel.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K4・K5・K6・K10、G3、G8、Phase 1の条件と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
+本書は[共通カーネルL4](../L4-basic-design/common-kernel.md)のK1・K2・K4・K5・K6・K7・K10、G3、G5、G8、Phase 1の条件、型番台帳と対になる結合検証の設計の下書きである。L9は、L4の基本設計を、機構の境界をまたぐ結合の範囲で照合する（HARNESS-L2-003／004、`docs/helix-harness/L2-requirements/product-requirements.md:110`）。本書の検証項目は、L4の不変条件（`K1-I*`、`K2-I*`）を参照し、要求やL3のACを新しく作らない。L3のACの総合検証はL10の責務であり、本書はL10の代わりにならない。
 
 本書は検証の設計であり、実行・合格の記録ではない。新世代CIは未構築であり、旧CI・旧testを実行せず、その合格を証拠にしない。試作で実行する場合は`scaffold/`に置き、Scaffold Bindingへ登録する。
 
@@ -16,6 +16,7 @@ base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA
 - **機構の写像→カーネル**：各機構の状態語を`Observed<T>`へ写す関数（L4 2.5）。
 - **カーネル内の合成と判定**：`combine`、`admit`、`disposition`、`key_of`、`lookup`、`record`。
 - **正本とprojection**（K5、L4 9章）：`append`、`current_head`、`read`、`restore`、`project`、`verify`。K2の`record`はsegmentへの追記、`lookup`の記録集合はprojectionとして通す。
+- **世代・取消し・台帳**（K7・G5、L4 15章）：`move`、`admit_effect`、`propagate`、`ledger_view`。
 - **依存グラフ**（K10、L4 14章）：`build_graph`、`check_graph`、`closure`、`impact`、`independent`。
 - **義務**（K4・G3、L4 13章）：`derive`、`evaluate`、`check_view`、`inherit`、`receive`。
 - **検証receipt**（K6、L4 10章）：`run`、`admit_receipt`、`reverify`、`required`。receiptはK2の記録としてK5のlogへ置き、`restore`→`lookup`を通して照会する。
@@ -149,6 +150,29 @@ IV-K2-01〜17は一つの記録を置いた後に照会の鍵を一か所だけ�
 | `IV-P1-05` | P1-C4 | `Phase1Status` | 対象外の型が列挙されていればC4は肯定 | 列挙が無ければ`Unknown(missing_input)`の成分 |
 | `IV-P1-06` | 12.2：固定入力 | `Phase1Status` | 同じ固定入力（集合・`Corpus`・`Phase1Scope`・`observation_base`）からは同じ`Phase1Status` | (1)評価の時点で`prs`を検索し直して対象を増やす実装、(2)評価の時点で`partition`を計算し直す実装は不合格。(3)`Corpus`や`Phase1Scope`の新revisionでは旧結果は`Stale` |
 | `IV-P1-07` | 12.1：authority | `Phase1Status`の消費側 | — | `Positive`の`Phase1Status`から、v0.1の成立、内部デプロイ、gateの変更を出力する経路は`Rejected` |
+
+### K7・G5・型番台帳
+
+各項目は、検証済みの世代を二つ持つ段階、固定した台帳と依存グラフ、各受け手の正しいreceiptを用意したうえで、一つの条件だけを変える。
+
+| ID | 対象 | 境界 | 正常 | 反例と期待 |
+|---|---|---|---|---|
+| `IV-K7-01` | K7-I1：一つの現行 | `move` | `from`が現行と一致すれば`Appended` | `from`が現行と違う→`Rejected(stale_from)`で、logは変わらない |
+| `IV-K7-02` | K7-I2：移動先の適格性 | `move` | 検証の合成が`Positive`の世代へのpromote、保持している前の世代へのrollback、同じ`composition`からのrebuildは`Appended` | (1)検証の合成が`Undetermined`の世代→`Rejected(not_eligible)`、(2)保持していない世代へのrollback→`Rejected(not_eligible)` |
+| `IV-K7-03` | K7-I3：許可を作らない | `move` | — | (1)`authorization`の無い`move`→`Rejected(missing_authorization)`、(2)`move`の結果から許可の記録を作る経路は無い |
+| `IV-K7-04` | K7-I4：自動の切戻しをしない | 失敗の観測 | 失敗を観測すると`RollbackRequired`が追記され、pointerは変わらない | 失敗の観測でpointerを自動で前の世代へ動かす実装は不合格 |
+| `IV-K7-05` | K7-I5：dataは戻さない | `move`（rollback） | rollbackの後も案件のstate・recordは現在のまま | rollbackで案件のstateを前の時点へ戻す実装、rollbackでincidentを閉じる実装は不合格 |
+| `IV-K7-06` | K7-I6：遅着作用 | `admit_effect` | 現在の`Epoch`の作用は`Appended` | 再割当て・取消し・失効の各後に、旧い`Epoch`の作用（K5への追記、artifactの書込み、結果の`record`の3種）は、bytesが正しくても`Rejected(fenced)` |
+| `IV-K7-07` | K7-I6：遅着観測 | `admit_effect` | 旧い`Epoch`のCI・review・費用の観測は、元のepisodeへ結ぶ観測として追記される | 旧い`Epoch`の観測を作用として適用する実装は不合格 |
+| `IV-G5-01` | G5-I1：受け手の全集合 | `propagate` | 依存グラフから導いた全受け手が`applied`なら`Positive` | (1)導いた受け手の1件の状態が無い→`Unobserved(not_run)`、(2)導いていない受け手の`applied`を数える実装は不合格、(3)`held`の枝→`Unknown(missing_input)`、(4)受け手が0件→`set_reason` |
+| `IV-G5-02` | G5-I2：状態の写像 | `propagate` | — | 1受け手ずつ`received`→`Unobserved(pending_receipt)`、`failed`→否定、`unobserved`→`Unobserved(not_run)`。receiptの無い状態を推測する実装は不合格 |
+| `IV-G5-03` | G5-I3：停止を続ける | `admit_effect` | — | `PropagationView`が`Positive`になる前に、取り消された記録に依存する作用を再開する実装は不合格（旧い`Epoch`で`Rejected(fenced)`） |
+| `IV-G5-04` | G5-I4・I5：許可を作らない、書き換えない | `propagate`の消費側 | — | (1)取消しから承認・許可を出力する経路、(2)取消しを取り消して元の許可を戻す経路、(3)取り消された記録や本文を書き換える実装は、いずれも不合格。承認の記録を入力に持つ結果は見直しの対象（K10-I7）に入る |
+| `IV-G5-05` | G5-I6：内部デプロイ | `propagate`、`move` | — | 現行の世代の構成が取り消された記録に依存するとき、`RollbackRequired`が追記され、`internal_deployment`の受け手は許可を伴う`move`まで`unobserved`。pointerを自動で動かす実装は不合格 |
+| `IV-LDG-01` | 15.4：項目 | `ledger_view` | HARNESS-L2-010とHELIXOS-L2-014の項目だけを持つ行が導かれる | どちらにも無い項目を持つ行は`Unknown(unregistered)` |
+| `IV-LDG-02` | 15.4：書く主体 | `append` | — | unit・connectionの行をOSのsegmentへ、compositeの行をHARNESSのsegmentへ書く経路は`Rejected` |
+| `IV-LDG-03` | 15.4：内部デプロイの状態 | `ledger_view` | 内部デプロイの状態は`PointerLog`から導かれる | 台帳に内部デプロイの状態を別に書いて、`PointerLog`と食い違う実装は不合格 |
+| `IV-LDG-04` | 15.5：pathを正本にしない | 配置の照合 | フォルダの宣言する型番と台帳が一致すれば通る | (1)台帳に無い型番のフォルダ→`Unknown(unregistered)`、(2)台帳にある型番のフォルダが無い→`Unknown(missing_input)`、(3)フォルダの名前から型番を決める実装は不合格 |
 
 ### K10
 

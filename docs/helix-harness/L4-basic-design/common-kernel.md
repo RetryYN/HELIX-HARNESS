@@ -1,4 +1,4 @@
-# HELIX 共通カーネル L4基本設計（K1・K2・K4・K5・K6・K10・G3・G8・Phase 1）
+# HELIX 共通カーネル L4基本設計（K1・K2・K4・K5・K6・K7・K10・G3・G5・G8・Phase 1）
 
 status: draft_for_l4_review
 owner: HELIX-HARNESS（工程の標準と検証義務の所有。2026-10-08のPO判断の判断2）
@@ -6,7 +6,7 @@ parent_requirement: なし（一つの親要求を定めず、要素ごとに承
 paired_l9: ../L9-integration-verification/common-kernel-integration-verification.md
 base: main `3d2f78ce4ed11fa07d987fffa3632b20b0f7c51d`（引用した本文のSHA-256は`f88c96ce`で固定した。付録A。`f88c96ce`から`3d2f78ce`までに引用した本文は変わっていない）
 
-本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）、PR3bはG8（11章）とPhase 1の条件の具体（12章）、PR4はK4とG3（13章）、PR5はK10（14章）を扱う。残りは8.2の「後続PRの計画」に置く。
+本書は、8機構が共通に使う結果の型と版の鍵（共通カーネル）のL4基本設計の下書きである。最初のPRはK1（結果の多値型）とK2（identity・revision・digestによる鍵）、PR2はK5（追記専用JSONLとprojection。9章）、PR3はK6とE（検証receiptとその真正性。10章）、PR3bはG8（11章）とPhase 1の条件の具体（12章）、PR4はK4とG3（13章）、PR5はK10（14章）、PR6はK7・G5・型番台帳と配置（15章）を扱う。残りは8.2の「後続PRの計画」に置く。
 
 本書は要求の意味、範囲、担当、版を作らない。各要素は承認済みL3のACを由来とし、由来の無い要素は「L2へ戻す論点」に分ける。本書は実装、実行、内部デプロイ、releaseの許可を含まない。本書の承認・merge・試作の合格から、L3以上の承認や完了を生成しない。
 
@@ -274,6 +274,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 5. G8（11章）の論点：実行環境の真正性（11.6）。
 6. K4・G3（13章）の論点：人のIFを置く義務の範囲、機械判定の割合の目標（13.7）。
 7. K10（14章）の論点：依存循環の拒否（14.7）。
+8. K7・G5（15章）の論点：取消しの許容遅延（15.8）。
 
 ## 7. 人の判断が要る点
 
@@ -304,7 +305,7 @@ ResultRecord = { key: ResultKey, key_digest: KeyDigest,
 | 3b（11・12章で起草） | G8 実行物の検証、Phase 1の条件の具体（2026-10-08判断3） | SECURITY-AC-012-01、SECURITY-AC-013-01（配布・実行artifactとbuild済みartifactの鎖） | G8 | release-module-bundle-composition、distribution-package-release、distribution-lite-consumer-canary、gate-design、check-registry | 版の宣言、内部デプロイ、人のゲートを外す判断はL2・POへ戻す |
 | 4（13章で起草） | K4 義務を一級データに | HARNESS-L2-022、030〜032、036 | G3（oracle種別：機械判定／LLM判断／人のIF） | descent-obligation、ci-deferred-obligation-recovery、ci-verification-plan、charter P3 | 未完義務の継承は新規案を含む |
 | 5（14章で起草） | K10 型付き依存グラフ | HARNESS-L2-023（依存閉包）、INFRA | — | ci-responsibility-registry、design-registry | 関係型の性質宣言は新規案 |
-| 6 | K7 世代pointer／fencing、型番の台帳形式とディレクトリ配置（方針6） | OS-014、INFRA | G5（取消しの伝播） | node-runtime-cutover、HIL-FR-27、ADR-009 | 自動切戻しとADR-009の差（Phase 2の判断時に扱う）。G5の統一伝播は新規案 |
+| 6（15章で起草） | K7 世代pointer／fencing、型番の台帳形式とディレクトリ配置（方針6） | OS-014、INFRA | G5（取消しの伝播） | node-runtime-cutover、HIL-FR-27、ADR-009 | 自動切戻しとADR-009の差（Phase 2の判断時に扱う）。G5の統一伝播は新規案 |
 | 7 | K3 operation authority tuple | SECURITY-AC-006-01ほかSECURITY Stage 1 | G5の受信側 | authority-vocabulary、security-capability-broker、source-boundary-contracts | 旧の軸（data_classification、sink、impact）の採否 |
 | 8 | K9 独立性の記録（製品の要求） | Concept:236（identity・context・authority・review routeで独立性を決め、providerの同異では決めない）。承認済みL3の候補：AC-OS-029-03（`docs/helix-os/L3-requirements/functional-requirements.md:77`。current exact HEADのreview receipt）、AC-INTELLIGENCE-L3-072-08（`docs/helix-intelligence/L3-requirements/functional-requirements.md:564`。candidate生成と独立reviewの段階分離）、LABOのblind評価。開発repoの運用規則（2026-10-08委任判断記録の判断1）は根拠にしない（解禁判断記録の判断3） | — | worker-independent-review（同provider／modelでもidentity・session・contextが独立なら受理）、producer-provenance-separation（PPS-R-03。開発repoの運用規則の起点であり、製品K9の要件としては採らない） | review routeの軸は新規案 |
 | 9 | K8 label遷移 | SECURITY-AC-001-01 | — | pillar P8、worker-context-authority、memory-learning-promotion | label伝播（taint型）は新規案 |
@@ -319,7 +320,7 @@ G14（外部標準の版固定）はCONNECTのL4で扱い、共通カーネル�
 
 K5は本書と対のL9へ追記する。共通カーネルは一つの設計identityであり、更新し続ける文書は同じファイルを更新する（AGENTS.md「再構築の原則」）。K5はK1の`Observed`、K2の`ResultKey`・K2-I2bの「追記順」・3.4のイベントを直接参照し、8章の計画と付録Aを共有するため、別ファイルに分けると参照と付録が二重になる。PRの範囲はK5の一つの変更目的（正本の記録形式と、projectionの導出の境界）に限り、人が読む差分は本章と対のL9で約155行（表の行が長いため、文字量では目安の上限に近い）である。
 
-ログの置き場所（ディレクトリ）は決めない。方針6の具体的なディレクトリ配置とともに8.2のPR6で決める。本章は記録の形式と規則だけを定める。
+ログの置き場所（ディレクトリ）は本章では決めない（15.5で決めた）。本章は記録の形式と規則だけを定める。
 
 ### 9.2 由来
 
@@ -425,7 +426,7 @@ writerごとにsegmentを分けることと、segmentをまたぐ順序を時間
 
 ### 9.8 未決と試作で確かめること
 
-- segmentの`writer`の粒度（lane、Worker、PRのいずれか）と、segmentを閉じる条件。8.2のPR6（ディレクトリ配置）と合わせて決める。
+- segmentの`writer`の粒度は、15.5で割当て・runの単位とした。segmentを閉じる条件は未決とする。
 - manifestへのsegmentの登録は`manifest_writer`だけが行うため、writerがsegmentを開くときの手順（OSの割当てとの接続）は未決とする。
 - K5-I5により、一つのsegmentが読めないとそのlogへの`ResultRecorded`の追記が止まる。安全側の選択だが、運用への影響を試作で確かめる。
 - 試作（`scaffold/`、Scaffold Binding登録）：L9のIV-K5-01〜21を動かす。あわせて、1万行・10万行のsegmentでの全量再構築とcheckpointからの差分の時間を測り、checkpointを必須にする規模の目安を得る。
@@ -539,7 +540,7 @@ RequiredResult  = { combined: Combined, assurance: { identity -> AdmittedReceipt
 ### 10.9 未決と試作で確かめること
 
 - 各操作に必要な検証器（`required_for`）を誰がどう宣言するか。13章のK4-I4で決めた（義務が参照する検証器の集合と一致させる）。
-- `VerifierSet`の置き場所。ディレクトリ配置とともに8.2のPR6で決める。
+- `VerifierSet`の置き場所。15.5で決めた。
 - 試作：`scaffold/l3l10-checks/`のreceiptを本章の形へ写し、L9のIV-K6-01〜15を動かす。
 
 ## 11. G8 実行物の検証
@@ -867,8 +868,113 @@ Impact         = { changed: SubjectRef[], affected: identity[], possibly: identi
 ### 14.8 未決と試作で確かめること
 
 - 各機構の語彙（どの関係の型を置き、性質の値をどうするか）は、各機構のL4で承認済みL3の由来から宣言する。
-- `control_plane`の宣言の所有者は、INFRASTRUCTUREのL4（INFRA-006の所有）で決める。
+- `control_plane`の宣言の所有者は、15.5でINFRASTRUCTUREとした。
 - 試作：HARNESS-L2-023のpack依存を小さなグラフにし、L9のIV-K10-01〜14を動かす。
+
+## 15. K7 世代pointerとfencing、G5 取消しの伝播、型番台帳と配置
+
+本章はPR6で追加する。段階の現行の世代を指すpointerと遅着作用の拒否（K7）、取消しを依存する受け手へ伝える経路（G5）、内部デプロイ方針6の型番台帳の形式と実装のディレクトリ配置を定める。三つは同じ「段階（composite）の型番」を参照するため、一つのPRにした。差分は目安の範囲に収まる。
+
+### 15.1 由来
+
+| 由来 | 位置 | 要点 |
+|---|---|---|
+| OS | `AC-OS-014-01`、`014-04`、`014-06`（`docs/helix-os/L3-requirements/functional-requirements.md:21,24,26`） | 段階のidentityを保ち、packの版・構成等を一組として保存する。前の段階の構成・artifactを保持して次を作り、問題があれば前の構成へ戻す。案件のstate・recordは戻さない |
+| INFRASTRUCTURE | `INFRA-005-AC-03`（`docs/helix-infrastructure/L3-requirements/functional-requirements.md:287`）、`INFRA-006-AC-03`（同:91） | rollback先の適格性とreceiptを持ち、rollbackだけでincidentを閉じない。最後の適格revisionと未完の義務を追う |
+| HARNESS | `AC-HARNESS-L3-010-01`・`03`（`docs/helix-harness/L3-requirements/functional-requirements.md:37,39`）、`AC-HARNESS-L3-021-03`（同:483） | packのidentity・版・入出力・依存・検証範囲・owner・収載を宣言する。失敗時は直前の適格版へ戻す。rollbackの証拠が対象の版・scopeと一致するときだけ復元候補とする |
+| SECURITY | `SECURITY-AC-009-01`（`docs/helix-security/L3-requirements/functional-requirements.md:180`） | revoke等のtriggerを、OSの新規割当、Workerの実行と途中成果物、CONNECT、credential、artifact accessの全受け手へ伝え、受け手ごとに受領・適用・未達・未観測を区別する。停止を確認できないまま継続しない |
+| PO判断 | `docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md:170-179`（判断2：方針6の確定） | 部品・接続・システムを種別付きの型番で識別し、台帳で版・検証範囲・内部デプロイの状態を管理する。項目はHARNESS-L2-010とHELIXOS-L2-014のものをそのまま使う。コードの配置はアプリケーションの構造に合わせるが、フォルダのpathを識別子の正本にしない。`docs/`は変えない |
+
+承認は`docs/governance/l3-l10-po-post-confirmation.md`の各行が示す判断記録による（OS Stage 2b、INFRASTRUCTURE Stage 1・2a、HARNESS Stage 1・5、SECURITY Stage 1）。開発repoの「差し戻しの判断記録」（運用モデル「POの事後確認」）は開発repoの運用規則であり、G5の根拠にしない（解禁判断記録の判断3）。
+
+### 15.2 K7 世代pointerとfencing
+
+```text
+Generation  = { target: identity（段階の型番）, number: 符号なし整数, composition: SubjectRef（台帳の段階の版） }
+PointerLog  = K5のlog（log_id: generation:<target>、manifest_writerは段階の所有者）
+  GenerationStaged { generation }
+  PointerMoved     { from: number, to: number, kind: promote | rollback | rebuild, authorization: SubjectRef }
+  RollbackRequired { generation, evidence }                  # 観測。pointerは動かさない
+Epoch       = { scope: identity（割当て・run）, number: 符号なし整数 }
+```
+
+- **K7-I1 一つの現行**：現行の世代は、固定prefixの`PointerLog`の最後の`PointerMoved`の`to`とする。`move(from, to)`は`from`が現行と一致する場合だけ追記でき、違えば`Rejected(stale_from)`とする。
+- **K7-I2 操作の代数**：昇格（promote）は新しい世代へ、rollbackは保持している前の世代へ、再構築（rebuild）は同じ`composition`から作り直した新しい世代へ、いずれも同じ`move`で動かす。移動先の世代は、その`composition`の検証の合成（K6の`required`）が`Positive`でなければならず、そうでなければ`Rejected(not_eligible)`。rollbackの移動先は保持している世代に限る（AC-OS-014-06、HARNESS-010-03、021-03）。
+- **K7-I3 許可を作らない**：`move`は`authorization`に、対象と作用を明示した既存の許可の記録の参照を要する。無ければ`Rejected(missing_authorization)`。内部デプロイとcutoverは、対象と作用を明示したPOの許可を要する外部作用であり（AGENTS.md、内部デプロイの判断記録の方針1）、K7はその許可を生成しない。許可の記録の正しさの照合はK3（8.2のPR7）で定める。K3が定まるまで、K7は`move`を記録できるが、許可を検証済みとは扱わない。
+- **K7-I4 自動の切戻しをしない**：失敗を観測しても、pointerを自動では動かさず、`RollbackRequired`を追記するだけとする。rollbackは許可を伴う明示の`move`で行う（旧ADR-009の保持）。自動の切戻しは、Phase 2へ移る判断で扱う（2026-10-08判断記録の判断3）。
+- **K7-I5 dataは戻さない**：rollbackは段階の構成だけを戻し、案件のstate・recordは現在のものを引き継ぐ（AC-OS-014-06）。rollbackでincidentを閉じない（INFRA-005-AC-03）。
+- **K7-I6 fencing（遅着作用の拒否）**：割当て・runごとに`Epoch`を持ち、再割当て、取消し、失効（G5）で`number`を一つ増やす。状態を変える作用（K5への追記、artifactの書込み、結果の`record`）は`Epoch`を持ち、現在より小さい`Epoch`の作用は、bytesが正しくても`Rejected(fenced)`とする。旧い`Epoch`の観測（CI、review、費用）は、作用として適用せず、元のepisodeへ結ぶ観測として追記する（4章の「遅着観測」）。
+
+### 15.3 G5 取消しの伝播
+
+```text
+Revocation      = { revoked: SubjectRef（取り消された承認・authority・許可の記録）, record: SubjectRef（取消しの記録）, trigger }
+RecipientClass  = os_assignment | worker_run | connect | credential | artifact_access | approval_consumer | internal_deployment
+RecipientState  = received | applied | failed | unobserved
+PropagationView = { revocation, recipients: { identity -> (RecipientClass, RecipientState) }, combined: Combined }
+```
+
+- **G5-I1 受け手の全集合**：受け手の集合は、K10の`impact`で`revoked`から依存の関係を伝播の向きにたどった`affected`と、K10の`review_set`から導く。由来のACが挙げる受け手の種類（SECURITY-AC-009-01）ごとに、該当するidentityが列挙される。導いた集合に無い受け手の状態は使わず、導いた受け手の状態が無ければ`unobserved`とする。`held`の枝は`Unknown(missing_input)`の成分とする。
+- **G5-I2 状態はreceiptから**：各受け手の状態は、その受け手が出したK6のreceipt（K5のlog）からだけ読む。`applied`は肯定、`failed`は否定、`received`は`Unobserved(pending_receipt)`、`unobserved`は`Unobserved(not_run)`の成分とし、全成分を一つの`combine`で合成する。受け手が0件なら`set_reason`。
+- **G5-I3 停止を続ける**：`PropagationView`が`Positive`になるまで、取り消された記録に依存する作用を再開しない。各受け手の作用は、K7-I6の`Epoch`の増加により拒否される。
+- **G5-I4 取消しから許可を作らない**：取消しは承認・許可を生成しない。取消しを取り消して元へ戻す経路を置かず、再開には新しい許可の記録を要する。
+- **G5-I5 承認の状態と記録**：取消しは新しい記録として追記し、取り消された記録や本文を書き換えない。承認の記録を入力に持つK2の結果は、承認の状態の記録のrevisionが変わるため、K2-I2のとおり見直しの対象になる（K10-I7）。
+- **G5-I6 内部デプロイ**：現行の世代の`composition`が取り消された記録に依存する場合、`RollbackRequired`を追記し、受け手`internal_deployment`の状態は、許可を伴う`move`が適用されるまで`unobserved`とする（K7-I4）。
+
+### 15.4 型番台帳
+
+- **形式**：型番台帳はK5のlog（`log_id: model-number-ledger`）とし、manifestを書くのはOS（段階の登録と統制）、unit・connectionの行のsegmentを書くのはHARNESS（packの宣言）、compositeの行のsegmentを書くのはOSとする（AC-OS-014-09の所有の境界）。行は`DeclaredEvent`（9.3）とし、種類は`ModelNumberDeclared{kind: unit | connection | composite, identity, owner}`と`VersionDeclared{identity, 項目}`である。
+- **項目**：unit・connectionの`VersionDeclared`の項目は、HARNESS-L2-010がpackに求める宣言（identity、版と成熟度、入力・出力の契約、依存の種別・identity・版、検証範囲とoracle、ownerの種別とidentity、収載・非収載。AC-HARNESS-L3-010-01）だけとする。compositeの項目は、HELIXOS-L2-014の「一組として保存するもの」（packと依存のidentityと版、configuration、data format、対応環境、能力と制約、scope内の受入の証拠、更新・rollbackの条件。AC-OS-014-04）だけとする。新しい項目は足さない。版はK2の`SubjectRef`、検証範囲と受入の証拠はK4の`ObligationSet`とK6のreceiptの参照、依存はK10のedgeで表す。これは項目の表し方であり、項目を足すものではない。
+- **内部デプロイの状態**：台帳に別に書かず、K7の`PointerLog`から導くprojectionとする（二つの正本を作らないため）。
+- **現行の台帳**：台帳の現在の内容は、K5の`project`で導く。台帳はK10のグラフの`sources`の一つになり、依存のedgeの由来になる。
+
+### 15.5 配置
+
+`docs/`の構成は変えない。以下は実装を始めるときの配置の規則であり、本PRではディレクトリを作らない。
+
+| 対象 | 配置 |
+|---|---|
+| 実装のコードと設定 | `helix/<機構>/units/<型番>/`、`helix/<機構>/connections/<型番>/`、`helix/<機構>/composites/<型番>/` |
+| K5のlog | `records/<log_id>/manifest.jsonl`、`records/<log_id>/segments/<writer>/<segment_no>.jsonl` |
+| 固定の宣言（`VerifierSet`、`OperationDecl`、`GraphDecl`、`ConditionState`、`RelationVocab`等） | `declarations/<所有する機構>/<種類>/<identity>.json` |
+
+- フォルダのpathは識別子の正本にしない。各フォルダは自分の型番を宣言するfileを持ち、台帳との照合で、台帳に無い型番のフォルダは`Unknown(unregistered)`、台帳にある型番のフォルダが無ければ`Unknown(missing_input)`とする。
+- 9.8・10.9・14.8の未決をここで決める：K5のlogの置き場所は上表、segmentの`writer`はK7-I6の割当て・runの単位、`VerifierSet`は`declarations/helix-harness/verifier-sets/`、K10の`control_plane`の宣言の所有者はINFRASTRUCTURE（INFRA-006-AC-01の所有）とする。
+
+### 15.6 API境界
+
+- `move(target, from, to, kind, authorization) -> Appended | Rejected(stale_from | not_eligible | missing_authorization)`：K7-I1〜I4に従う。
+- `admit_effect(effect, epoch) -> Appended | Rejected(fenced)`：K7-I6に従う。
+- `propagate(revocation, graph_ref, condition_state, input_heads) -> Observed<PropagationView>`：G5-I1〜I3に従う。
+- `ledger_view(input_heads) -> Observed<Projection>`：15.4に従う。
+
+### 15.7 旧HELIXとの対応
+
+| 旧source（ID／path:行／SHA-256） | 保持する点 | 変更する点 | 区分候補 |
+|---|---|---|---|
+| `LEGACY-ASSET-B6DC14C1DA937E3AC96C`／`docs/design/helix/L5-detail/node-runtime-cutover.md:47-53,106-112`／`49f3e4c324b19e728f7c05787bbd698f841728a526eedc7cec3f756b3601e9f9` | 切替は承認・計画・commit・監視の状態機械で、rollbackは`rollback_required→rollback_approved→rolling_back`だけ。driftでreceiptをstaleにする | runtimeの切替に限っていたものを、段階の世代pointerの`move`へ一般化する | `semantic_rederive` |
+| `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`／`docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:117,198`／`db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` | 失効したrunの遅着の結果をcommitしない（HIL-FR-27）。lease失効後の作用をfencing tokenの不一致で拒否する（HIL-NFR-18） | `Epoch`をK5の追記・K2の記録にも適用する | `semantic_rederive` |
+| `LEGACY-ASSET-BC2275DCE9BFFCF813C8`／`docs/design/helix/L5-detail/python-worker-runtime.md:133-136`／`4c26544b5cf6e63ed226838ff5e04b3a669f6a9aa13456ffc5e5fb41fc755f8a` | cancel・timeout・再割当てでfence tokenを失効させ、その後の結果はbytesが正しくても拒否する。新しいownerは新しいrunから再開する | なし（K7-I6として再導出） | `semantic_rederive` |
+| `LEGACY-ASSET-1B413588CFF3B1360B49`／`docs/adr/ADR-009-node-python-linux-runtime.md:113-120`／`bdd1c9a00243b723342e42531ddeabbf2f7570594943c11226d5b0461769753c` | 切替はrollbackを持つ可逆なtransactionとし、自動のfallbackを禁止し、許可を伴う明示のrollbackだけを許す | なし（K7-I3・I4として保持）。自動の切戻しはPhase 2の判断へ残す | `semantic_rederive` |
+| `LEGACY-ASSET-D461943347D372ECF6DA`／`docs/governance/candidates/security-engagement-authority-requirements.md:33,43`／`38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16` | revoke時に新規配車、in-flightのlease、credential、network、artifact accessを止める。revokeはin-flightまで伝播する | 受け手ごとの状態（SECURITY-AC-009-01）をK1の成分にし、受け手の集合をK10から導く | `semantic_rederive` |
+
+受け手の集合を依存グラフの影響から導き、取消しを統一の経路で伝えること（G5-I1）と、型番台帳をK5のlogとして持つ形は、旧HELIXに見つからない**新規案**である。旧には、driftやstaleを起点にした失効と、securityの候補要求のrevokeだけがあった。検索の範囲は`archive/legacy-generation-2026-09-14/root/`の全ファイル（`grep -rIl`、読取りだけ）で、`revocation propagation`、`approval revocation`、`rescind`、`型番`、`model number`はいずれも0件だった。
+
+### 15.8 L2へ戻す論点
+
+1. **取消しの許容遅延**：受け手が`applied`になるまでの時間の上限を置くか（調査資料のG11）。L2は数値を新設しない方針である。
+
+### 15.9 人の判断が要る点
+
+列挙だけであり、本書は新しい承認手続きを作らない。
+
+1. 内部デプロイとcutoverの実際の許可（既存の境界のとおり。K7はそれを生成しない）。
+2. 自動の切戻しを使うか（Phase 2へ移る判断。2026-10-08判断記録の判断3）。
+3. 段階を組み直さずに部品・接続を単独で内部デプロイしてよいか（2026-10-08判断記録の未決4）。本章は段階を単位とする現行の扱いに従う。
+
+### 15.10 未決と試作で確かめること
+
+- 試作：小さな段階の世代を2つ作り、L9のIV-K7-01〜07、IV-G5-01〜05、IV-LDG-01〜04を動かす。
 
 ## 付録A 引用した現行文書のSHA-256（base `f88c96ce`）
 
