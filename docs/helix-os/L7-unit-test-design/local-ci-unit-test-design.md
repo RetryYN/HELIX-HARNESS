@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `105e0ae568b6405628a3ac22e4dec9b3e5904e857e51f4b8196e335a4001777f`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `5f690c5ec94b2094e3cb6c430510fb1a30c692469ece68fb55eefd719a638211`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -141,7 +141,7 @@ version_target: 1.0
 | `UT-LCI-74` | heading_idのentryは必須既存ID一件を展開 | idsだけを空配列へ変更 | F09a/bは`Unknown(missing_input)`、空集合を充足扱いしない |
 | `UT-LCI-75` | 見出しliteralと展開先IDが一意 | 一つのIDを別entryのidsにも追加 | F09a/bは`Unknown(conflict)`、重複IDをdedupしない |
 | `UT-LCI-76` | local `executables.git`とprovider `executables.provider_git`はそれぞれ合成binary identityと一致し、shared config/target/argv/policyは同じ | 正常baseline（変異なし） | local receiptにlocal実測identity、`ProviderResult`にprovider実測identityを記録し、同じselected DIFF stateを照合する。identity相互同一性を要求しない |
-| `UT-LCI-77` | trusted provider configにexact `provider_git` pinがある | `provider_git`だけを`null`へ変える | 固定existing Gitのname/version/bytes SHAだけをpreflight採取し、`Unobserved(not_run)`。target/source/status/diff未実行、positive resultなし |
+| `UT-LCI-77` | trusted provider configにexact `provider_git` pinがある | `provider_git`だけを`null`へ変える | provider入口のtrusted固定設定が解決した既存Gitのname/version/bytes SHAだけをpreflight採取し、`Unobserved(not_run)`。target/source/status/diff未実行、positive resultなし |
 | `UT-LCI-78` | provider実行binary bytes SHAが`provider_git` pinと一致 | provider binary bytes SHAだけをpinと異ならせる | `Unknown(unsupported)` before target/source/status/diff probe。local pinを試さない |
 | `UT-LCI-79` | provider name/version/bytes SHAがpinと一致 | provider reported versionだけをpinと異ならせる | `Unknown(unsupported)` before target/source/status/diff probe |
 | `UT-LCI-80` | local receipt plan/config digestとcurrent shared role-pin configが一致 | current configの`provider_git` pinだけを更新し旧receiptは固定 | `Unknown(conflict)`、provider DIFF未実行。新configでlocal receiptを作り直す |

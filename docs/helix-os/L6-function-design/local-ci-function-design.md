@@ -17,10 +17,10 @@ version_target: 1.0
 
 | 入力path | 本文SHA-256 |
 |---|---|
-| `docs/helix-os/L4-basic-design/local-ci.md` | `e00a9c1344044fa64c6d1706b0d192e69f7ebf69740abcc7655201aafa254d83` |
-| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `8087c7b886952a1a27c28587daf618f30344332b54a4ca0a0a05cc69b6d76903` |
-| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `e5209d64707ba14ec5be57702b10fb08c514a5437f2e6bb7e72bafccef5580b6` |
-| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `28248e325262312a47b57bb0d11741f13b8bcd86dc16e8023246ceec91f32d52` |
+| `docs/helix-os/L4-basic-design/local-ci.md` | `442d9934378a2ae73ab85f9b0afb3f976891e40b18fdab7088f4964f8c1f67b6` |
+| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `1db0e653929389831ccdf04ee9c4bc15450b1642f98f8fe0a3bb3dca19feae01` |
+| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `63936d9facfb201a4d268877d643d35d4082a7493074e40cf47fd8ab77214b14` |
+| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `c4666b235bf69a029aeff5e61f5997d7582ff92a54eb6e9a614e4ad136df25b0` |
 
 ## 1. 関数群
 
@@ -71,7 +71,7 @@ version_target: 1.0
 
 ### `F-LCI-08` — `run_merge_unit_verifier(dispatch) -> CiApiResult<ProviderResult>`
 
-- **Pre**: workflowはworkflow_dispatch、input JSONはenv経由、readonly permission。trusted configの`executables.provider_git`が未採取`null`なら、固定`/usr/bin/git`からliteral name、`--version`、binary bytes SHA-256だけを採取するpreflightを行い、target/source/status/diff Git operationを行わず`Unobserved(not_run)`を返す。digestを埋めたplaceholderを作らず、`ProviderResult`/positiveを返さない。pinがある場合はprovider roleだけを検証し、identity/version不一致は`Unknown(unsupported)`としてtarget/source/status/diffの前に止め、local pinへのfallback/installをしない。
+- **Pre**: workflowはworkflow_dispatch、input JSONはenv経由、readonly permission。trusted configの`executables.provider_git`が未採取`null`なら、provider入口のtrusted固定設定が解決した既存Gitからliteral name、`--version`、binary bytes SHA-256だけを採取するpreflightを行い、target/source/status/diff Git operationを行わず`Unobserved(not_run)`を返す。digestを埋めたplaceholderを作らず、`ProviderResult`/positiveを返さない。pinがある場合はprovider roleだけを検証し、identity/version不一致は`Unknown(unsupported)`としてtarget/source/status/diffの前に止め、local pinへのfallback/installをしない。
 - **処理**: exact target headをcheckoutし、receiptを照合し、同じbase/head/contract/settingsで`LC-DIFF-001`を実行してlocal/Actions statusを比較する。`settings`はrole pin mapを含む同一shared config digest、fixed DIFF argv、同じGit policy/environment、selection、manifest version、timeoutを指す。local readerは`executables.git`、provider readerは`executables.provider_git`をそれぞれ入口で固定選択し、各実行identityは別々のevidenceとする。local/providerのbinary identity equalityはparity条件に追加せず、DIFF state parityも変更しない。version/bytes差がstate結果を変えた場合はparity=falseを保持しpositiveにしない。Actions側`ProviderResult.provider_git_identity`は照合した実測provider binary identityを示しauthorityではない。SCF validate/stale、GOV/design manifestはlocal-onlyでありActionsでは行わない。
 - **Post**: formal APIのdispatch targetとcheckout current targetが不一致なら既存K1外側`Stale`とし、`ProviderResult`を返さない。初期CLIは同じ不一致をK1 resultではなく診断へ記録する。successはmerge/branch protection authorityを持たない。
 

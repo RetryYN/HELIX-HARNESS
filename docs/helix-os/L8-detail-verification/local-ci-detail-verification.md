@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `e5209d64707ba14ec5be57702b10fb08c514a5437f2e6bb7e72bafccef5580b6`である。
+固定入力は対のL5本文SHA-256 `63936d9facfb201a4d268877d643d35d4082a7493074e40cf47fd8ab77214b14`である。
 
 ## 1. Fixture規則
 
@@ -83,7 +83,7 @@ version_target: 1.0
 | `CASE-L8-LCI-72` | `heading_id` empty expansion | manifest entryはあり、`ids`に必要な既存IDが一件ある | `ids`だけを空配列にする | `Unknown(missing_input)`、空集合を充足扱いせずchecker/execution/receipt未作成 |
 | `CASE-L8-LCI-73` | `heading_id` duplicate expansion | 各literalが一意で、展開先の既存IDも相互に異なる | 一つの既存IDだけを別entryの`ids`にも追加する | `Unknown(conflict)`、重複定義を一件へ縮約せずchecker/execution/receipt未作成 |
 | `CASE-L8-LCI-74` | role別Git identityと共通設定 | local `executables.git`とprovider `executables.provider_git`が各々の合成binary bytes/versionと一致し、同じtarget/config digest/DIFF argv/Git policyでstate success | 変異なしの独立正常baseline | local receiptにlocal identity、provider resultにprovider identityを保持し、state parityがtrue。identity相互同一性は要求しない |
-| `CASE-L8-LCI-75` | provider Git初回identity preflight | trusted configの`provider_git`がexact pin済みで、既存`/usr/bin/git`のname/version/bytes SHAを読み取れる | provider pinだけを`null`にする | identity tupleだけを診断dataへ示す`Unobserved(not_run)`。target/source/status/diff Git operationなし、positive `ProviderResult`なし |
+| `CASE-L8-LCI-75` | provider Git初回identity preflight | trusted configの`provider_git`がexact pin済みで、provider入口のtrusted固定設定が解決した既存Gitのname/version/bytes SHAを読み取れる | provider pinだけを`null`にする | identity tupleだけを診断dataへ示す`Unobserved(not_run)`。target/source/status/diff Git operationなし、positive `ProviderResult`なし |
 | `CASE-L8-LCI-76` | provider Git digest pin | provider binary bytes digestがtrusted `provider_git` pinと一致し、target/receiptが有効 | provider binary digestだけをpinと異ならせる | `Unknown(unsupported)`、target/source/status/diff probe前に停止しlocal Gitへfallbackしない |
 | `CASE-L8-LCI-77` | provider Git version pin | provider binary name/version/digestがpinと一致 | provider versionだけをpinと異ならせる | `Unknown(unsupported)`、target/source/status/diff probe前に停止 |
 | `CASE-L8-LCI-78` | shared config digest pin | local receiptとprovider config digestが同じrole pin mapに基づく | current configのprovider pinだけを更新し、旧local receiptを渡す | `Unknown(conflict)`、diffを起動せず新configのlocal receiptを要求 |

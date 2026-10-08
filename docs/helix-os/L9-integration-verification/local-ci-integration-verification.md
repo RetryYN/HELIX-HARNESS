@@ -9,7 +9,7 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `e00a9c1344044fa64c6d1706b0d192e69f7ebf69740abcc7655201aafa254d83`である。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `442d9934378a2ae73ab85f9b0afb3f976891e40b18fdab7088f4964f8c1f67b6`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
@@ -72,7 +72,7 @@ L4 `DesignScopeManifest`が列挙する現行4文書と今回6文書について
 | `IV-LCI-51` | receipt write authority | checkerから書けるのはreceiptと分離したprivate scratchだけ。receipt/parent directoryはsandbox外で信頼側supervisorだけが書く | receipt parent directoryだけをchecker sandboxへmountする | `denied`、checkerを起動しない |
 | `IV-LCI-52` | run全体の中止要求 | 中止要求後のprocess停止・reap確認が可能なprocess stubで、中止要求はまだなく後続実行を継続する | run全体への中止要求だけを追加する | 起動中processの停止・reap確認後、未開始stepは`interrupted(reason=cancelled)`、後続未起動 |
 | `IV-LCI-53` | role別Git identityと共通設定 | `executables.git`と`executables.provider_git`が各roleの合成binary identityに一致し、local/providerで同じtarget、contract、`config_digest`、DIFF argv、Git policy/environmentを使う | 変異なしの独立正常baseline | 両側が同じselected `LC-DIFF-001` successを照合し、receiptにはlocal identity、`ProviderResult`にはprovider identityを別々に保持する。binary identity同一性を要求しない。 |
-| `IV-LCI-54` | provider identity初回採取 | configの`executables.provider_git`がexact pin済みで、trusted preflightは既存`/usr/bin/git`のname/version/binary bytes SHAだけを得る | provider pinだけを`null`にする | `Unobserved(not_run)`。`--version`とbytes読取以外のGit target/source/status/diff操作なし、positive `ProviderResult`なし。 |
+| `IV-LCI-54` | provider identity初回採取 | configの`executables.provider_git`がexact pin済みで、trusted preflightはprovider入口のtrusted固定設定が解決した既存Gitのname/version/binary bytes SHAだけを得る | provider pinだけを`null`にする | `Unobserved(not_run)`。`--version`とbytes読取以外のGit target/source/status/diff操作なし、positive `ProviderResult`なし。 |
 | `IV-LCI-55` | provider Git digest束縛 | provider Git bytesはconfig pinと一致し、target/receiptは有効 | provider Git bytes digestだけを別値にする | `Unknown(unsupported)`、target/source/status/diff probe前に停止しlocal pinへfallbackしない。 |
 | `IV-LCI-56` | provider Git version束縛 | provider Git version/name/digestがpinと一致 | 実versionだけをpinと異ならせる | `Unknown(unsupported)`、target/source/status/diff probe前に停止。 |
 | `IV-LCI-57` | shared config digest | local receiptとproviderが同じrole pin mapを含むconfig digestで一致 | provider pin revisionだけが更新されたcurrent configで旧receiptを検証する | `Unknown(conflict)`、diffを起動せず、新configでlocal receiptを再生成するまでpositiveにしない。 |
