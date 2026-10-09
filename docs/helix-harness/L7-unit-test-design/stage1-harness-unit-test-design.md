@@ -18,7 +18,7 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 
 # HELIX-HARNESS Stage 1 L7単体試験設計
 
-本書はmain `d736f99edc4f43b6cd912b9db09d545a5e769e21`のL5/L8 Stage 1 productに対するL6関数候補と、既存L9 verifierを結ぶ269件のfixture設計である。§1の`7887...`表はこのpairが作られた時点の固定snapshotとして保持し、現在の入力source bytesを別途明示する。L6/L7の直接技術範囲はK1/K2/K3/K5であり、K6/K7の内部処理は不透明なowner境界として分離・保持するのみ、K4/G3は製品L5/L8参照にとどめる。これは設計・traceのみであり、テスト実装/実行、合格、coverage達成、製品登録、permission/effect、外部作用を意味しない。現main L8が入力・変異・主結果・構造assertionの正本であり、本表は全caseをL7 test IDとL6関数へ具体化して一対一に索引化する。FN01/FN04/FN10用の10 supplemental unit designはL8 traceとは分けて§4に置き、L8 fixture IDは追加しない。K6/K7 owner内部の実行や検証は含まない。
+本書はmain `d736f99edc4f43b6cd912b9db09d545a5e769e21`のL5/L8 Stage 1 productに対するL6関数候補と、既存L9 verifierを結ぶ269件のfixture設計である。§1の`7887...`表はこのpairが作られた時点の固定snapshotとして保持し、補助traceの入力source bytesは履歴snapshotと区別して別途記録する。L6/L7の直接技術範囲はK1/K2/K3/K5であり、K6/K7の内部処理は不透明なowner境界として分離・保持するのみ、K4/G3は製品L5/L8参照にとどめる。これは設計・traceのみであり、テスト実装/実行、合格、coverage達成、製品登録、permission/effect、外部作用を意味しない。現main L8が入力・変異・主結果・構造assertionの正本であり、本表は全caseをL7 test IDとL6関数へ具体化して一対一に索引化する。FN01/FN04/FN10用の10 supplemental unit designはL8 traceとは分けて§4に置き、L8 fixture IDは追加しない。K6/K7 owner内部の実行や検証は含まない。
 
 ## 1. 固定sourceとrevisionの区別
 
@@ -26,7 +26,7 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 |---|---|---|
 | Stage 1 L4 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `25fbd104fd47f39d22f542664e57fd44a440af8904e11b2f0b397ac6606b6cfb` | 7887時点の固定source snapshot。 |
 | Stage 1 L5 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `a0ed72f672606aee19e0124ee54ce47f6b409ab2e93b81cff1824f7c9cf7a92d` | 7887時点の固定source snapshot。 |
-| Stage 1 L6 | 本PR content HEADに含む対L6本文; SHA-256 `e7bc23b09ac9fea6e52eefa24452a4864c562b3fe454d61d821ff3b1d8c970d9` | 本pairの関数設計と§7.1の実装候補status記録。L7から一方向に固定参照する。 |
+| Stage 1 L6 | 本PR content HEADに含む対L6本文; SHA-256 `bee35f170c4b735edd8f4490fd2b5f415989ec6d22875bbc5ff76a3d07fc629c` | 本pairの関数設計と§7.1の実装候補status記録。L7から一方向に固定参照する。 |
 | Stage 1 L8 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `9eadffc05150c01114ff29ba0fb2d28449b927e06f5565fbb86510f59be89d26` | 7887時点の固定fixture snapshot。 |
 | Stage 1 L9 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `6cc4bc3ac56b8d1d94e05ddc4dda71c35df2941aab39e65fb9d43cda2deb36da` | 7887時点の固定verifier/case snapshot。 |
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | 7887時点の固定参照snapshot。 |
@@ -36,7 +36,7 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 | Common Kernel L8 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `6f598a9a9fd0ab58a30ec26bb290f958e2807a8ceb7fb7c368e0ecf4af1d876e` | 7887時点の固定参照snapshot。 |
 | Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 7887時点の固定参照snapshot。 |
 
-旧L7の236行snapshotが参照していたCommon Kernel revision `b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`および表中のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`は当時の履歴参照として保持し、現行入力には§1.1のmain `d736f99edc4f43b6cd912b9db09d545a5e769e21`を使う。既存UT `UT-HARNESS-001`〜`UT-HARNESS-236`はL8と一致するfixture IDの対応を維持し、33件の追加caseを`UT-HARNESS-237`〜`UT-HARNESS-269`としてL8表の出現順に索引化する。既存番号は振り直さない。旧test/runtime/CLI/CIは起動していない。
+旧L7の236行snapshotが参照していたCommon Kernel revision `b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`、表中のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`、および§1.1のd736 snapshotは履歴参照として保持する。今回の補助traceの作業起点とL5/L8入力SHAは§1.1末尾に記録する。既存UT `UT-HARNESS-001`〜`UT-HARNESS-236`はL8と一致するfixture IDの対応を維持し、33件の追加caseを`UT-HARNESS-237`〜`UT-HARNESS-269`としてL8表の出現順に索引化する。既存番号は振り直さない。旧test/runtime/CLI/CIは起動していない。
 
 ### 1.1 当時の入力source snapshot（main d736f99）
 
@@ -368,8 +368,8 @@ FN-HARNESS-10の補助行はL5が定める`candidate_id`、`fixture_evidence`、
 
 | 既存L7 ID | 入力・一変異 | 局所assertion | 範囲外/未接続 |
 |---|---|---|---|
-| `UT-HARNESS-SUP-003` | 完全な合成SubjectRef群、caller-supplied cause refs、`revision_relation=current`、比較factと宣言状態factを交互に含む元順tuple。変異なし。 | candidateの全declared/current/cause refsと`revision_relation`が入力値と一致し、`facts`全体が元tupleと同じ順序で保持される。`field_comparisons`等のread-only projectionは元順の該当factのみを示す。 | ref equalityからrelation/causeを推論せず、K2 lookupやeligibilityを呼ばない。L8の新CASEを作らない。 |
-| `UT-HARNESS-SUP-004` | SUP-003と同一の完全入力をbaselineとし、declared pack revision refだけを一つの別revisionへ置換する。対応する解決済みpayload inputの`revision_relation`を`stale`として渡す。 | payloadは変異後declared ref、caller-supplied `revision_relation=stale`、対象の既存`FieldFact`、他の全refs/facts順を保持する。ここで検査するrelationはconstructorが入力を保持することだけで、constructorによるref照合結果ではない。 | source/current-ownerがrelationを解決する経路、公開APIのValue mapping、K2 `Stale`/`Unknown(conflict)`への変換は実行しない。 |
+| `UT-HARNESS-SUP-003` | 完全な合成SubjectRef群、caller-supplied cause refs、比較factと宣言状態factを交互に含む元順tuple。基準caseは`revision_relation=current`で変異なし。別の保持subcaseでは解決済み入力`revision_relation=stale`を与え、他の入力は固定する。 | candidateの全declared/current/cause refs、入力された`revision_relation`、`facts`全体の元順を保持する。`field_comparisons`等のread-only projectionは元順tupleの該当factのみを示す。stale保持subcaseは単一変異試験ではなく、解決済み値の保持確認である。 | ref equalityからrelation/causeを推論せず、K2 lookupやeligibilityを呼ばない。L8の新CASEを作らない。 |
+| `UT-HARNESS-SUP-004` | `revision_relation=current`のSUP-003 baselineを使い、他のfactsとrefsを固定してdeclared pack refだけを別revisionへ置換する。 | payloadが変更後declared refと他入力を同値保持することを局所assertする。元SUP-004のpublic比較oracle全体は未充足。 | owner/read/Value mapping、mismatch計算、K2への変換は未接続。 |
 | `UT-HARNESS-SUP-005` | SUP-003のrefs/factsを保ち、既存source result位置の一つに既存K1 `Unknown(unreadable)`（同一evidence）を与える。 | 既存source-result helper/boundaryが同じclass/reason/evidenceを保持し、その入力をpure candidate constructorへ渡していないことを局所assertする。constructor自体の戻り値はpayload candidateのみで、union/non-Valueを生成しない。 | public `compare_pack_revision`入口、owner reader、K1 polarity/result mappingは未接続。unknownをconstructorの新return variantやL8追加CASEへ変換しない。 |
 
 SUP-003/004/005の各L7行は既存識別子の詳細traceであり、3件を新しいformal L8 fixtureや独立L9 verifierとして数えない。

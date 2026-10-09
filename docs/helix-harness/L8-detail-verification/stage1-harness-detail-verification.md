@@ -331,8 +331,8 @@ K1の`Unknown`はL4 Common Kernel §2.3の閉じた`UnknownReason`集合に従�
 
 | 既存L7補助ID | 既存L9 scope参照 | 既存L8 baseline/変異との対応 | 局所component assertion |
 |---|---|---|---|
-| `UT-HARNESS-SUP-003` | `IV-HARNESS-S1-F-010-02`, `IV-HARNESS-S1-F-010-03` | 010-02/03のpack revision refsと宣言field比較を使う。 | `PackRevisionComparison.facts`全体が受け取ったmixed fact tupleの順序を保ち、`field_comparisons`と宣言factのread-only projectionが同tuple由来であること。`revision_relation=current`、declared/current refs、cause refsは入力値を保持する。 |
-| `UT-HARNESS-SUP-004` | `IV-HARNESS-S1-F-010-02`, `IV-HARNESS-S1-F-010-03` | 既存L7 SUP-004の単一変異、declared pack revision refだけを変更する。 | owner/source境界から渡された`revision_relation=stale`をpayloadが保持し、変異対象factのmismatchと残りのrefs/factsを保持する。関係値はref全体のequal/differentをconstructorが再計算する値ではない。 |
+| `UT-HARNESS-SUP-003` | `IV-HARNESS-S1-F-010-02`, `IV-HARNESS-S1-F-010-03` | 010-02/03のpack revision refsと宣言field比較を使う。基準caseは`revision_relation=current`、変異なし。別の保持subcaseでは解決済み入力`revision_relation=stale`を与え、他入力を固定する。 | `PackRevisionComparison.facts`全体が受け取ったmixed fact tupleの順序を保ち、`field_comparisons`と宣言factのread-only projectionが同tuple由来であること。各subcaseでdeclared/current/cause refsとrelationを入力値どおり保持する。stale保持subcaseは単一変異試験ではなく、解決済み値の保持確認である。 |
+| `UT-HARNESS-SUP-004` | `IV-HARNESS-S1-F-010-02`, `IV-HARNESS-S1-F-010-03` | `revision_relation=current`のSUP-003 baselineを使い、他のfactsとrefsを固定してdeclared pack refだけを別revisionへ置換する。 | payloadが変更後declared refと他入力を同値保持することを局所assertする。元SUP-004のpublic比較oracle全体は未充足。owner/read/Value mapping、mismatch計算、K2への変換は未接続。 |
 | `UT-HARNESS-SUP-005` | `IV-HARNESS-S1-F-010-02`, `IV-HARNESS-S1-F-010-03` | SUP-003と同一ref集合のsource observation一つだけを既存`Unknown(unreadable)`にする。 | 既存non-Value source resultを同一class/reason/evidenceで既存helper境界に保持し、payload constructorには渡さない。公開APIの外側returnやowner resolverはこの局所traceの対象外。 |
 
 この対応はL9の期待oracleを拡張せず、L8の既存`compare_pack_replacement`/artifact fixturesを`compare_pack_revision`の実行証拠に読み替えない。SUP rowsに記録された純payload assertionの対応を補うだけで、L8 full case、owner/current read、L1–L3意味、K1 class/reason mapping、PackRevisionComparison public APIは未実装・未検証のままである。

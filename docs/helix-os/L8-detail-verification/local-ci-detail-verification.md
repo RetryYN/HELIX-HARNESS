@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `5b1abc88ebdb8e798cab1804db9d9de4ca1dfabf9d320d8348a8096ab930f019`である。
+固定入力は対のL5本文SHA-256 `b3fdc8dd45156a9c869a2f1b1cfbc131c5bf62090cf1ce157bc2e72fb7db035f`である。
 
 L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `004166092e6abc5c8a20ccc2d2f0b8cb9c49017c46de43c29eb03d887de1043a`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
 
