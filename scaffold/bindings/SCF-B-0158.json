@@ -10,32 +10,32 @@
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
-      "sha256": "a59f342197225ef74f2838f6555934633bf635aa57679204139bc6ee6f164a95",
+      "sha256": "e7cf8d12704b3d241aba1b6342a9873a7ae4be98f7e41fb90290844a527965ae",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "9fcc2d3b94de5dc676edf30c16cb067ff73de3f84e7dbfe19700f3b45cab70e7",
+      "sha256": "2ee043722ee9cb38aab768a95e0b1899be42bdc37ef3514e0d8f34da6fc8301d",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "f2b2d3765cf627abb8681ced923771c10b41c3d171ed993cd2b1988ec9057dff",
+      "sha256": "05ba206ce78eaecba0585dec3d08fa18e6dfb6b31e80423b5fea1455ca08a868",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "b1e624a593bdea71c1180e71f0391ddcdcd7f2125b84833880b3b6793816e6d6",
+      "sha256": "71dea62aa72e6dae7ea6cc5bee1377f06a04dc24f68eaf0712014d92aa767e73",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "0b7327dc3e8f55c12cf84d1d53ac283d2980bacd2f3776ccacf59ca535fabc7c",
+      "sha256": "de0551b77a0227d7da8fab90b1cdad610bc1c779672e10eb6d28000c9b316978",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "be4844038bb50816c8d0ac3a67e655145fab6d6ded9d12886a8fd70f2e85abe5",
+      "sha256": "91c20f0e0ac81dae1be8c744979290bd513feddd6f5f2135174852d0f50473ec",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -185,11 +185,11 @@
     ],
     "oracles": [
       "docs/helix-os/L4-basic-design/local-ci.md §2.1, §2.2",
-      "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract",
+      "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract including IV-LCI-100..110",
       "docs/helix-os/L5-detail-design/local-ci-detail-design.md D-LCI-01..06",
-      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, CASE-L8-LCI-118..130 (design IDs 113..117 are not suite fixtures)",
+      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, CASE-L8-LCI-118..141 (design IDs 113..117 are not suite fixtures)",
       "docs/helix-os/L6-function-design/local-ci-function-design.md F-LCI-01..08 / F-LCI-09a..09d / F-LCI-10",
-      "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI-01..113, UT-LCI-120..132 (design only; not executed)",
+      "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI-01..113, UT-LCI-120..143 (design only; not executed)",
       "source-byte / target-tree digests and checkout-outside receipt location"
     ],
     "negative_cases": [

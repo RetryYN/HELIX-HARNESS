@@ -588,13 +588,29 @@ LCI_L7_PATH = "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md"
 LCI_L8_PATH = "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md"
 LCI_L9_PATH = "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md"
 LCI_L7_SUITE_IDS = (frozenset(f"UT-LCI-{number}" for number in range(100, 114))
-                    | frozenset(f"UT-LCI-{number}" for number in range(120, 133)))
+                    | frozenset(f"UT-LCI-{number}" for number in range(120, 133))
+                    | frozenset(f"UT-LCI-{number}" for number in range(133, 144)))
 LCI_L8_SUITE_IDS = (frozenset(f"CASE-L8-LCI-{number}" for number in range(100, 113))
-                    | frozenset(f"CASE-L8-LCI-{number}" for number in range(118, 131)))
+                    | frozenset(f"CASE-L8-LCI-{number}" for number in range(118, 131))
+                    | frozenset(f"CASE-L8-LCI-{number}" for number in range(131, 142)))
 LCI_L8_DESIGN_IDS = frozenset(f"CASE-L8-LCI-{number}" for number in range(113, 118))
 LCI_L8_CASE_IDS = LCI_L8_SUITE_IDS | LCI_L8_DESIGN_IDS
 LCI_L9_SUITE_IDS = (frozenset(f"IV-LCI-{number}" for number in range(73, 87))
-                    | frozenset(f"IV-LCI-{number}" for number in range(92, 100)))
+                    | frozenset(f"IV-LCI-{number}" for number in range(92, 100))
+                    | frozenset(f"IV-LCI-{number}" for number in range(100, 111)))
+LCI_SUPPLEMENTAL_CASE_BY_IV = {
+    "IV-LCI-100": "CASE-L8-LCI-131",
+    "IV-LCI-101": "CASE-L8-LCI-132",
+    "IV-LCI-102": "CASE-L8-LCI-133",
+    "IV-LCI-103": "CASE-L8-LCI-134",
+    "IV-LCI-104": "CASE-L8-LCI-135",
+    "IV-LCI-105": "CASE-L8-LCI-136",
+    "IV-LCI-106": "CASE-L8-LCI-137",
+    "IV-LCI-107": "CASE-L8-LCI-138",
+    "IV-LCI-108": "CASE-L8-LCI-139",
+    "IV-LCI-109": "CASE-L8-LCI-140",
+    "IV-LCI-110": "CASE-L8-LCI-141",
+}
 LCI_L9_DESIGN_IDS = frozenset((*(f"IV-LCI-{number:02d}" for number in range(9, 15)), "IV-LCI-27", *(f"IV-LCI-{number}" for number in range(63, 73)), *(f"IV-LCI-{number}" for number in range(87, 92))))
 EXPECTED_LOCAL_CI_CASE_IDS = {
     (LCI_L7_PATH, "l7-suite-oracles"): LCI_L7_SUITE_IDS,
@@ -1450,6 +1466,24 @@ def verify_coverage_edges(manifest: dict, graph: dict) -> dict:
     }
     if actual_local_ci_suite_pairs != local_ci_suite_pairs:
         _fail("Unknown", "missing_input", "fixed local-CI suite coverage edges are incomplete or unexpected")
+    l9_suite_row_by_line = {
+        row[2]: _cell_id(row[3][0])
+        for row in graph.get("definition_rows", {}).values()
+        if row[0] == LCI_L9_PATH and row[1] == "ci-l9-suite-fixtures"
+    }
+    actual_supplemental_case_pairs = {
+        (l9_suite_row_by_line[ref["line_no"]], ref["id"])
+        for ref in graph.get("references", [])
+        if ref["path"] == LCI_L9_PATH
+        and ref["range_id"] == "ci-l9-suite-contract-refs"
+        and ref["id"].startswith("CASE-L8-LCI-")
+        and ref["line_no"] in l9_suite_row_by_line
+    }
+    expected_supplemental_case_pairs = set(LCI_SUPPLEMENTAL_CASE_BY_IV.items())
+    if actual_supplemental_case_pairs != expected_supplemental_case_pairs:
+        if actual_supplemental_case_pairs - expected_supplemental_case_pairs:
+            _fail("Unknown", "conflict", "supplemental L9 rows reference the wrong L8 case")
+        _fail("Unknown", "missing_input", "supplemental L9-to-L8 case references are incomplete")
     local_ci_manifest_pairs = {("D-LCI-03", ident) for ident in LCI_L8_DESIGN_IDS}
     actual_local_ci_manifest_pairs = {
         (edge["source_id"], edge["verifier_id"]) for edge in edges
