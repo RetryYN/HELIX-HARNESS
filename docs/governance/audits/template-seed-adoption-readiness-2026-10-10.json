@@ -1,0 +1,299 @@
+{
+  "audit_id": "TEMPLATE-SEED-ADOPTION-READINESS-2026-10-10",
+  "base_revision": "37a7a23ec130abd768fd1a9082156a48a332fc09",
+  "authority_effect": "none",
+  "scope": "採用済み032/009/002と候補seed26件の採用準備の区別。seed本文全atom化・採否や完成の監査ではない。",
+  "method": [
+    "既決decisionと採用反映PRを対応づける。",
+    "候補seed26件の現在bytesを先行auditのdigestへ照合する。候補の存在から採択を推定しない。",
+    "SDOP/VT READMEのJSONを正本としない理由を、候補保持と正式採用の意味正本の区別へ照合する。"
+  ],
+  "source_sha256": {
+    "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964",
+    "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c",
+    "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36",
+    "docs/helix-brain/L2-requirements/brain-requirements.md": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+    "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657",
+    "scaffold/research/design-template-seed-sdop-20260929/README.md": "3f2c49633949e8f60a586a7c3fb40e6b70c3c6dfe4e8d9fbade0f79fa8c4cf98",
+    "scaffold/verification-test-template-seed-20261001/README.md": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd",
+    "scaffold/research/design-template-seed-minimum-gap-20261004/README.md": "bb5f5912049d1b86ebdc3d42ce094f24b18b5bd9d9ac3dbb54057f41f766d14a",
+    "docs/governance/audits/template-condition-review-2026-10-10.json": "792cbda6594b20262440f70d75bcc057c2097a01a56b5aaa3def75b8dd9cf398"
+  },
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "lines": "20–40",
+      "use": "JSONの意味構造と表示/説明の分離を保持。旧schema/閉じた型/層/lifecycle/cutoverは採用しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "lines": "33–77",
+      "use": "JSONの意味構造と表示/説明の分離を保持。旧schema/閉じた型/層/lifecycle/cutoverは採用しない。"
+    }
+  ],
+  "adopted_requirements": [
+    {
+      "identity": "HELIXBRAIN-L2-032",
+      "decision": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "pr": 2851,
+      "merge_revision": "bf670396f21e5a9e6c072fa35ceeb29ccf964ecb",
+      "effect": "汎用15項目意味契約の提供"
+    },
+    {
+      "identity": "HARNESS-L2-009",
+      "decision": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "pr": 2853,
+      "merge_revision": "1754ffdbd2a8a8e7b253aec8f73d73168fa1dc2b",
+      "effect": "製品適用/不足/Backflow/意味影響の結合"
+    },
+    {
+      "identity": "HELIXOS-L2-002",
+      "decision": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "pr": 2855,
+      "merge_revision": "37a7a23ec130abd768fd1a9082156a48a332fc09",
+      "effect": "案件event/使用set/評価入力の結合"
+    }
+  ],
+  "seed_count": 26,
+  "seeds": [
+    {
+      "id": "DT-SDOP-001",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-001-logging.md",
+      "sha256": "a1ddab32214d79eac5f2b27afea43ac40934f9f7360e0fcc569152a5f740d69a",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-SDOP-002",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-002-nonfunctional.md",
+      "sha256": "d7a2bee9ffe95af2f2e30db1a31655fb4ee8a675cefb39f7e7eda8546b954275",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-SDOP-003",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-003-maintainability-runbook.md",
+      "sha256": "c15cba99bd2efa358a5c59aed1698592c0339b1107951012e57b61c950ac167d",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-SDOP-004",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-004-logic-design.md",
+      "sha256": "2fbc5a77e4700ccce0f6ce7100ed5f54559c1eb2ecc1c539ce492d6097054bf5",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-SDOP-005",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-005-dependencies.md",
+      "sha256": "7d047d46b0d35e4bc76fc4082fc7305aaf8205d6f906525a62db9868ee2170b3",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-SDOP-006",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-006-aws-foundation.md",
+      "sha256": "d64f285b0427ac8a5498b972c65953f8706a0c1d093ae85ca6933f6a0ab4f3fc",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-SDOP-007",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-007-design-review-quickcheck.md",
+      "sha256": "76cbcdd9d211e71ff16a99c25afc51754b97139e6463200b04e319a0366e4288",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-001",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-001-common-evidence.md",
+      "sha256": "cd70c910f7377f0de9eaf93076890d1250d1ef48300d18213c3bfc31de57ef3a",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-002",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-002-test-technique-cards.md",
+      "sha256": "b8f5be0fcc06eb612c7dc9e1ec0dee4f4925f060fd217ea2ce50c88ecf7bb4b5",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-003",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-003-technique-selection-proposal.md",
+      "sha256": "3e1f668323aa590e475ec71b62342200557ecded09d0fc064d6de81b16c64e72",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-004",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-004-verification-design.md",
+      "sha256": "c4ee5cbe21181be475210cfd3519d5fe147778be43b051386ba21e2d472250e0",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-005",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-005-screen-verification.md",
+      "sha256": "8b2fa19fd85d09d779e95e9c1a0aa5b187169193d50ce921ecc2b65528bad65a",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-006",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-006-poc-verification.md",
+      "sha256": "9da3c8ebf1611c04e5dc34e6ccc2010e8e1a66773439de43bc2fe2faa4f1726f",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-007",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-007-ai-output-verification.md",
+      "sha256": "bce9a5f05c92d69e3cae00c5b23c8826ec4862d784206be3ac44c00680772922",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-101",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-101-l1-l12-operation-value.md",
+      "sha256": "6c81fe0091d40008e7ef74777499838ac526d7fa3e16f205a968839e3cc8a41e",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-102",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-102-l2-l11-user-acceptance.md",
+      "sha256": "346d66f679b32caee2a960a270d163541dbf85ce9d37e127e32acd2cef3ec940",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-103",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-103-l3-l10-system-verification.md",
+      "sha256": "af53fa80653b0996680399460b07679af3db2688a3fce22ec782b7eea2696d76",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-104",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-104-l4-l9-integration.md",
+      "sha256": "c262496c20c7d52197fd377616b1a6720bac6d8257132257cc0cf531d0be9526",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-105",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-105-l5-l8-detail-conformance.md",
+      "sha256": "d1b0bc1a4d18b749dd67710ac9308551e56764a5770336920a67c5a8a58cbb1b",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-VT-106",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-106-l6-l7-tdd-closure.md",
+      "sha256": "dbbc0ab3a06676925670c509a421e30c751f3f9f77ec777013dc10e54a4dbbfa",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-MSG-001",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-001-connection-contract.md",
+      "sha256": "94cc4a2a3f795645bf274148e47f3a2e0622643f822a1815f4068fb2f3cbfa5c",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-MSG-002",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-002-data-migration-rollback.md",
+      "sha256": "1c7f487aab6acfe5a5583b74adb78ab77b56e1fa3f7bf772189b1384f4f33b6e",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-MSG-003",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-003-permission-privacy-external-interface.md",
+      "sha256": "fee0053840e1e63189cde0bb7f761cda9c04ead19c9794d0e79ce117b90e723e",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-MSG-004",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-MSG-005",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-005-composite-architecture.md",
+      "sha256": "678e71797043d48e0f9e19c588e41cab059034fd5fe9cf5994f9d6c51d011589",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    },
+    {
+      "id": "DT-MSG-006",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-006-design-testability.md",
+      "sha256": "ac09807696d823c9fcccb99b381458949493e8ab345ee1b3c71c7116f00c00c8",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material"
+    }
+  ],
+  "findings": [
+    {
+      "id": "SEEDREADY-001",
+      "state": "incomplete",
+      "source": "scaffold/research/design-template-seed-sdop-20260929/README.md:25; scaffold/verification-test-template-seed-20261001/README.md:29",
+      "observation": "JSONの正本とせずMarkdown表にする理由は、新世代schemaをL3以降で選ぶためと記録されている。",
+      "assessment": "未採択scaffoldの参考資料としての保持は有効。この記載から、正式採用するtemplateの意味正本もMarkdownでよいとは導けない。JSONの意味契約と下流schema/runtimeの決定を分ける。",
+      "next_action": "選択候補を032の15契約項目へ対応づけ、意味内容のJSON候補・source対応・説明/viewの役割を採用判断前に示す。schema/型/演算子/renderer/実装をこの作業で固定しない。"
+    },
+    {
+      "id": "SEEDREADY-002",
+      "state": "unresolved",
+      "observation": "26件は候補として保全され、最小選択setと各対象revision採否は未固定。",
+      "assessment": "032の提供要求、009の適用要求、002の記録要求の採用はseed26件の採用を含まない。",
+      "next_action": "要求例で必要なunit/connection/compositeと対検証、条件付き依存を比較して最小setを提案する。参照先をすべて一律requiredへせず、非選択候補をretireや正式N/Aへ変換しない。"
+    },
+    {
+      "id": "SEEDREADY-003",
+      "state": "unproven",
+      "observation": "先行auditは26件のdigest/適用条件所在を記録するが、各seed本文の完全atom化/JSON意味対応/成立を証明しない。",
+      "assessment": "この照合もその範囲を拡大しない。",
+      "next_action": "選択したseedの個々の意味と依存/限界/正常・負例/unknownを読み、既存要求条件・原sourceと対応づける。失われる意味、由来が異なる例、任意値、未決を区別する。"
+    }
+  ],
+  "limits": [
+    "本記録は既存要求の採択状況と候補材料の準備状況を分ける証拠。新しい要求/承認gateを追加しない。",
+    "候補26件の全意味/全旧sourceの被覆、正式seed/registry/schema/runtime/renderer成立、L3再開を主張しない。",
+    "旧sourceは参照のみ、旧test/CI/runtimeは実行しない。"
+  ]
+}
