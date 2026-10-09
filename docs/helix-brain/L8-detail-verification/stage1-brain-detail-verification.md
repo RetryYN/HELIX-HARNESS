@@ -3,10 +3,10 @@
 status: draft_for_independent_review
 owner: HELIX-BRAIN
 paired_l5: ../L5-detail-design/stage1-brain.md
-base: main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
+base: main `fcf00128a7503317fa1c779c38cc8df3877b4952`
 current_main_observed: origin/main `5c65aedbceab624cb6a5e276efb83519fd570461`（L5/L8先行分割時に観測）
 source_pair_base_candidate_commit: `eb3b52444093f0de6491d4f1b707132670afb9e4`（編集開始時の候補。編集開始時の比較基準）
-l5_sha256: `6a91d65e802cb1f4e294a63a4d5335d37308addb806633f989ff423a29fce6d2`
+l5_sha256: `c8ec934ef8d096c8fb4234b5d8ef81baff8a17b4119c4ec1b8435071737a643e`
 
 本書は対L5の公開関数境界について、固定L9の27 functional oracleと7 NFR oracleをfixtureとして具体化する。ここに記すfixtureは設計上の合成入力であり、テスト実行、L9合格、実装、owner recordの実在、sourceの真正性、adoption、releaseを主張しない。期待値は固定L4/L9にある範囲だけを使う。
 
@@ -14,7 +14,7 @@ l5_sha256: `6a91d65e802cb1f4e294a63a4d5335d37308addb806633f989ff423a29fce6d2`
 
 | 入力 | 固定対象 | SHA-256 |
 |---|---|---|
-| BRAIN L5 | `docs/helix-brain/L5-detail-design/stage1-brain.md`（本草稿HEAD bytes） | `3ec770ed252c47e3876e1716b34b037bd358b07ee6d29cebffdb96e8465688be` |
+| BRAIN L5 | `docs/helix-brain/L5-detail-design/stage1-brain.md`（本草稿HEAD bytes） | `c8ec934ef8d096c8fb4234b5d8ef81baff8a17b4119c4ec1b8435071737a643e` |
 | BRAIN L4 | `docs/helix-brain/L4-basic-design/stage1-brain.md` | `a981efc23ea0e85303a600f469d2d989b991b378a4b89ac94cf34bce004ccc9c` |
 | BRAIN L9 | `docs/helix-brain/L9-integration-verification/stage1-brain-integration-verification.md` | `2f61e7f4ff86db837b014f6500a143727df9611099106561aa74edca3e434787` |
 | L3/L10 authority | 007 revision `2919f7344f90ff8bde4db60ef7142b3c47bea0a8`; 008/028 revision `debb4e3d682c5ad4835dafed7dbcbf33f24e9c8f` | 6本文と承認chainはL4 §1の完全表を参照 |
