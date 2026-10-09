@@ -1,6 +1,6 @@
 # 要求整理のPO判断案
 
-現在の対象baseは`bf670396f21e5a9e6c072fa35ceeb29ccf964ecb`。提案正本は[差分JSON](requirements-resolution-packet.json)、SHA-256 `e70c26b8f127b924e4b9dfea34e8f01a9c620abd5783a63ad396c9b112b2d14a`。canonical L2/L11とMPRは未変更であり、提案の共有から採択・仮登録・実装許可を生成しない。
+現在の対象baseは`bf670396f21e5a9e6c072fa35ceeb29ccf964ecb`。提案正本は[差分JSON](requirements-resolution-packet.json)、SHA-256 `351154881abb10033aec7dfaa1f690faf19205684e6846169025994ff6bc444d`。canonical L2/L11とMPRは未変更であり、提案の共有から採択・仮登録・実装許可を生成しない。
 
 ## 現在の判断単位
 
@@ -8,7 +8,7 @@
 |---|---|---|
 | COREAPPLY（#2846） | 既存HARNESS-L2-009の製品template適用追補と対L11 | 適用exact set・判定/義務・不足/Backflow・旧新版の意味影響を同じrevision/scopeへ結ぶ |
 
-既決の`version_target: 1.0`は保持する。別identityを増やさず、009の既採択意味、3kind固有義務、4Backflow候補、根拠付きN/A、任意fallback拒否、局所影響/Unknown保持を新規要求として再承認しない。差分は、それらを選択した各template版・対象要求・製品scope・元field/義務と影響先へ結ぶことである。
+既決の`version_target: 1.0`は保持する。別identityを増やさず、009の既採択意味、3kind固有義務、4Backflow候補、理由付き非適用の区別、任意fallback拒否、局所影響/Unknown保持を新規要求として再承認しない。差分は、それらを選択した各template版・対象要求・製品scope・元field/義務と影響先へ結ぶことと、templateごとのN/A理由・判定者・対象revision・再評価条件を束縛することである。L2.5や性能/securityの限定文脈のN/Aを、全template判定の既存4属性保証へ広げない。
 
 BRAINは032の汎用意味契約とknowledge版/state、COREは製品適用のset/義務/質問/意味影響、OSは案件の選択・使用set/版・記録/運転を持つ。Pythonの意味処理にDB/Git/GitHub write、割当、実行、認可を与えない。041のsource要素抽出、025/026の具体設計・oracle構成を置換しない。
 
