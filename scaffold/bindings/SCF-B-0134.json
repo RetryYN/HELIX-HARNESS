@@ -265,17 +265,17 @@
     },
     {
       "path": "docs/governance/requirement-disposition-review-program.md",
-      "sha256": "161abbca4589d350df9e68f6bc48e455b51f5bd21692d34eaab7d01907376b4b",
+      "sha256": "4f818f7955ceb287364ff7ad7e856867749d81147efe4a8c7fc70fbd0d71b4d9",
       "note": "固定BASE bytes。静的研究入力のみ。authority effectなし [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59; 現receipt=36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb; 採否・authorityは不変。] [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/requirement-disposition-review-program.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb; 現receipt=161abbca4589d350df9e68f6bc48e455b51f5bd21692d34eaab7d01907376b4b; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/requirement-overlap-review-program.md",
-      "sha256": "101248967764f0b23bc2da8cb5bbfffa973b4918f96ff4c968de3caf4de18584",
+      "sha256": "4f57e3a17712de05220d201cda85de0c0a4896795931b6eb4e56c2ba470de054",
       "note": "固定BASE bytes。静的研究入力のみ。authority effectなし [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=8e8c3ef18ab263420bd6f01277dc20b7519b77c9c4f50051331de68aaf380380; 現receipt=101248967764f0b23bc2da8cb5bbfffa973b4918f96ff4c968de3caf4de18584; 採否・authorityは不変。]"
     },
     {
       "path": "docs/governance/requirement-technical-substitutability-review-program.md",
-      "sha256": "734a78b31ffc251637d35c90fc0eeefa7bf0b4a27766fae5850e91ae4442fb77",
+      "sha256": "3eb2703dd547032e172dd632b452ae5dacac3372153a6d12addc6d8b580a5abe",
       "note": "固定BASE bytes。静的研究入力のみ。authority effectなし [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=a116a505a52cc835a63448c81f9fc479f79110ebc48adb467548efdcfca22593; 現receipt=734a78b31ffc251637d35c90fc0eeefa7bf0b4a27766fae5850e91ae4442fb77; 採否・authorityは不変。]"
     },
     {
