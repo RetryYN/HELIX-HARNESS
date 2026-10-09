@@ -135,7 +135,7 @@ Fable（Claudeのadvisor）は毎回のreviewに入れず、エスカレーシ�
 
 ### 記録とmerge
 
-- review側は、承認の成否、残る問題、照合した対象revision、作成側とreview側の系統を、PR commentとmailboxで返す。利用できる場合は、`scaffold/l3l10-checks/`の検出器（`SCF-B-0157`）のreceiptの結果を添える。検出器は違反の検出器であり、合格条件ではない。
+- review側は、承認の成否、残る問題、照合した対象revision、作成側とreview側の系統を、PR commentとmailboxで返す。
 - 作成側は、従来のPO判断記録と同じ形式で判断記録を加える。`decider_role`は`PO（委任：作成と別系統の独立review）`とし、次を固定する。
   - 本委任の判断記録（2026-10-05と2026-10-08）
   - 独立reviewの結論commentのIDと、取得したbodyのSHA-256
@@ -394,7 +394,7 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 | 通知と待受（「GUIレーンの運転と通知」） | scaffold（`SCF-B-0003`）と両レーンの運用 | `SCF-B-0003`のreplacementに記録された移管先（HELIX-OSのreview配送・応答照合。対象の要求は未特定） | 移管先の要求を特定していない |
 | 作業branchとworktreeの片付け（「作業branchとworktreeの片付け」） | 手作業と#2093への記録 | HELIXOS-L2-052の「merge後のlocal cleanup」「remote ref境界」 | HELIXOS-L2-052は、remote refの削除にrepository・ref・delete作用を明示した許可を要し、`delete_branch_on_merge`の設定を削除の許可として継承しない。本書は同設定を維持している。移管時に、同設定を許可として明示するか、削除を別の許可で行うかを決める |
 | IssueとFeature Ticketの投影、Issueのclose（「IssueとFeature Ticket」） | 作成側とreview側の手作業 | HARNESS-L2-059、HELIXOS-L2-102、HELIXOS-L2-054（いずれも2026-09-30採択。059と102、および054はHARNESS-L2-057とのセット採択。L3の承認記録は見つかっていない） | 移管先のL3が未承認 |
-| L3／L10承認の委任（「L3／L10承認の委任」） | 別系統の独立reviewと判断記録 | 共通カーネルL4（`docs/helix-harness/L4-basic-design/common-kernel.md`）のPhase 1とK9 | 移管先は要求ではなく設計である。Phase 1の成立条件は、v0.1の条件の照合（`docs/governance/audits/stage1-preflight-criteria-comparison-2026-10-09.md`）でPO判断待ち |
+| L3／L10承認の委任（「L3／L10承認の委任」） | 別系統の独立reviewと判断記録 | 移管先の設計（共通カーネルL4のPhase 1とK9）は2026-10-10のPO判断（[巻き戻しの判断記録](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)）でカットした | 移管先は要求ではなく設計であり、L3再開後に改めて起草する。Phase 1の成立条件は、v0.1の条件の照合（`docs/governance/audits/stage1-preflight-criteria-comparison-2026-10-09.md`）でPO判断待ち |
 
 表の状態は、採択・保留は`docs/governance/decisions/po-decision-2026-09-29-57candidates.md`、`po-decision-2026-09-29-11candidates.md`、`po-decision-2026-09-30-live26.md`、`po-decision-2026-10-03-later35.md`の各行の処置から、L3の承認は各機構のStageの判断記録から読んだ。判断記録にIDが現れることを採択とみなさず、処置の欄を読む。L2本文の見出しや状態欄に「未採択」と残っている要求もあるが、表は判断記録を正とする。
 

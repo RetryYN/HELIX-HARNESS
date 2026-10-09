@@ -25,10 +25,4 @@ GitHubへ送ったexact source commit、file SHA-256、remote revision、read-af
 | 10 | [FT-OS-REQGUARD-001](FT-OS-REQGUARD-001.md) | HELIX-OS 要求登録bot・監査crawler・admission CI | proposed_upstream_waiting | [#1837](https://github.com/RetryYN/HELIX-HARNESS/issues/1837) |
 | 11 | [FT-OS-REVIEWHANDOFF-001](FT-OS-REVIEWHANDOFF-001.md) | 共通ルール参照とVS Code GUIレーン間通知 | proposed_upstream_waiting（仮組みは別identity SCF-B-0003） | [#1884](https://github.com/RetryYN/HELIX-HARNESS/issues/1884)、親 #1864。[投影receipt](../audits/source-rebaseline/github-review-handoff-projection-2026-09-20.md) |
 
-開発repository専用CIの[FT-OS-LOCALCI-001](FT-OS-LOCALCI-001.md)も発行時の本文を保持する。現在の作業内容・順序・前提の正本は[Stage 1実装・CI解禁判断](../decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md)とlocal CI設計であり、同ticketの発行時の状態や依存をgateにしない。
-
-[FT-OS-LOCALCI-002](FT-OS-LOCALCI-002.md)は、現行local CI設計に従う実装と検証の作業指示である。
-
-[FT-GOV-L3STATUS-001](FT-GOV-L3STATUS-001.md)は、L3／L10正本に残る起草時の状態表示を現行のauthority状態へ揃える作業指示である。
-
 [FT-GOV-AGENTREAD-001](FT-GOV-AGENTREAD-001.md)は、エージェント作業規則の入口にConcept・七大原則・JSON方針・テンプレートseedへの参照リンクを置く作業指示である。
