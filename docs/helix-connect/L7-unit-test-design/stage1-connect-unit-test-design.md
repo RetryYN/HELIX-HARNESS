@@ -4,8 +4,8 @@ layer: L7
 status: design_draft
 owner: HELIX-CONNECT
 paired_l6: ../L6-function-design/stage1-connect.md
-paired_l6_sha256: ba406e22c480bf277789048fcc8d567287e79bff522c8d2c883f7d5b1f3d2635
-base: main `b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`
+paired_l6_sha256: 94abe326623291a1e0e0678ea86f59546b745611ade28e41522f612cdb7c9c02
+base: main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
 ---
 
 # HELIX-CONNECT Stage 1 L7 単体検証設計
@@ -20,7 +20,7 @@ base: main `b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`
 | L5 `docs/helix-connect/L5-detail-design/stage1-connect.md` | `7e5bb8a0f0756e76feaa101939a1d73940cceaba62e5b46034584ba4820772a0` |
 | L8 `docs/helix-connect/L8-detail-verification/stage1-connect-detail-verification.md` | `8cf9f0326594629c64ade663e2df61bf7d382d238ae3f4ea958a331cb9699b62` |
 | L9 `docs/helix-connect/L9-integration-verification/stage1-connect-integration-verification.md` | `0e956080febe084fdf4747b6d9bd3f86ea6400a65e3ecc179d59566dabefc92a` |
-| 共通kernel L5 `docs/helix-harness/L5-detail-design/common-kernel.md` | `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` |
+| 共通kernel L5 `docs/helix-harness/L5-detail-design/common-kernel.md` | `81193f9be03af312da7e87915691b06f7d3e1777843708abab6efb040df1d6c9` |
 
 CPython 3.11以降の標準ライブラリと`unittest`はL6の技術候補であり、この文書は実行方法・合格・coverageを宣言しない。実通信、credential/provider、physical path、旧runtime/test/CIは使わない。K2 keyはcomplete `ResultKey`とcurrent candidate identity setを維持し、prior Valueのsame identity revision changeは`Stale`、candidate identity set不一致は`Unobserved(not_run)`とする。K7はgeneration pointer/EpochToken境界に限る。
 
