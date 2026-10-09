@@ -76,12 +76,13 @@ L5 APIの既存非Value（`Unknown`、`Unobserved`、`NotApplicable`など）は
 `DomainEvaluation`は実装候補のprivate pure helperであり、L5のpayloadを評価する途中状態として用いる。これはAPI戻り値でも保存型でもない。
 
 ```text
-FieldComparison = match | mismatch | missing | multiple
-FieldFact = { path, left_ref, right_ref, comparison }  # path はL5 FieldComparisonCandidate.field_refと同じfield identity
+FieldComparison = match | mismatch
+DeclaredFieldState = missing | multiple
+FieldFact = 比較可能な左右source refsとFieldComparison、または読取済みDeclaredFieldStateと既存candidate refsを保持するprivate内部値
 DomainEvaluation = { facts: tuple[FieldFact, ...], source_results: tuple[existing K1/K2/owner results, ...] }
 ```
 
-`FieldFact.path`は内部表示専用の別名ではなく、L5 `FieldComparisonCandidate.field_ref`と同一の既存宣言field参照を指す。pathを正規化・推測・別fieldへ読み替えず、各fixtureの変異対象と同じfield identityをpayloadの`field_ref`に渡す。比較payloadのdomain語彙はL5どおり`match | mismatch | missing | multiple`、`revision_relation=current | stale`、`declaration_relation=consistent | contradictory`、`selection_state=selected | not_selected`、`expiry_relation=before | equal | after`である。これらは完全に読めた入力のValue payload内の観測値で、K1/K2 result class/reasonではない。
+このmodelはL5 §3.2 `FieldComparisonCandidate`と宣言field状態の内部表現である。比較可能な場合の`FieldFact.path`はL5の`field_ref`、`left_ref/right_ref`はL5の比較した左右source ref、`comparison`は同じ`match | mismatch`に対応する。読取済みfield欠落・複数候補は別の`DeclaredFieldState`と既存candidate refsとして保持し、`FieldComparison`の列挙に混ぜない。公開API・payload fieldを追加しない。`FieldFact.path`は内部表示専用の別名ではなく、L5 `FieldComparisonCandidate.field_ref`と同一の既存宣言field参照を指す。pathを正規化・推測・別fieldへ読み替えず、各fixtureの変異対象と同じfield identityをpayloadの`field_ref`に渡す。比較結果はL5どおり`match | mismatch`、読取済み宣言状態は別の`missing | multiple`とし、その他のdomain語彙は`revision_relation=current | stale`、`declaration_relation=consistent | contradictory`、`selection_state=selected | not_selected`、`expiry_relation=before | equal | after`である。これらは完全に読めた入力のValue payload内の観測値で、K1/K2 result class/reasonではない。
 
 完全読取済みfieldの異同は`FieldComparisonCandidate`等L5指定payloadへ入れる。完全読取済み宣言のfield欠落/複数候補もL5どおりpayload内の`missing`/`multiple`比較factとする。sourceそのものが読めない、または入力が既存K1/K2の非Valueなら、既存結果を保持し比較payloadで包まない。Domain mismatchをK1 `Negative`やK2 conflictにしない。K2 `Stale`は既存ResultKeyでcurrent lookupした結果に限り、同じdomain packのfield差には使わない。
 
@@ -99,19 +100,21 @@ DomainEvaluation = { facts: tuple[FieldFact, ...], source_results: tuple[existin
 
 初回pack declarationを正本化する物理操作、初期`VersionRegistered`/`ModelNumberDeclared`/`LogDecl`/manifest sequence、writer/assignment authorityは固定L2/L3で指定されていない。L6は初回登録、bootstrap、assignment、物理reader/writerを生成しない。K7をgeneration pointer/`EpochToken`以外へ拡張しない。このpairはK7内部処理を検証せず、当該opaque境界を明記する。人間proxyとowner adapter mappingは局所未決のままL4 §4.4 ownerへ返却する。expiry等号ではA/Bいずれのpredicateも選択せず、両候補が保持するexpiry後success count=0のL9条件を記録するだけで実行・effect evidenceを作らない。この局所未定はpure compare/classificationと別であり、未定でない関数責務を止めない。
 
+製品L5 §5.1に記録した製品L4 §4.4/§5・L9 §5のK7割当てと共通Kernelのgeneration pointer/EpochToken責務の差は、同L4/L9 ownerへの未解決返却事項として保持する。L9のK7接合は未被覆であり、本pairの構造assertionで埋めない。
+
 ## 6. L4親と既存L9 verifierへの接続
 
-現mainのL5/L8は固定11 AC、5 NFR、3 business boundaryの既存L9 20 verifierへ対応する。L7 §2には各fixtureと既存verifierの具体対応をすべて載せる。ここでL9 verifierやACを新設・合格扱いしない。
+現mainのL5/L8は固定11 AC、5 NFR、3 business boundaryの既存L9 20 verifierへ対応する。L7 §3には各fixtureと既存verifierの具体対応をすべて載せる。ここでL9 verifierやACを新設・合格扱いしない。
 
 | 関数 | 主なL9既存verifier群 |
 |---|---|
-| `FN-HARNESS-01` / `FN-HARNESS-02` | `IV-HARNESS-S1-F-010-01`, `F-010-04` |
+| `FN-HARNESS-01` / `FN-HARNESS-02` | `IV-HARNESS-S1-F-010-01`, `F-010-04`, `B-010`（B-010の3 fixtureはFN-02に対応） |
 | `FN-HARNESS-03` | `IV-HARNESS-S1-F-023-01`, `F-023-02`, `F-023-03`, `N-023-01`, `B-023` |
 | `FN-HARNESS-04` / `FN-HARNESS-05` / `FN-HARNESS-06` | `IV-HARNESS-S1-F-010-02`, `F-010-03`, `N-010-01`, `N-010-02` |
 | `FN-HARNESS-07` | `IV-HARNESS-S1-F-011-01`, `F-011-02`, `F-011-05` |
 | `FN-HARNESS-08` | `IV-HARNESS-S1-F-011-04`, `N-011-01`, `N-011-02` |
 | `FN-HARNESS-09` | `IV-HARNESS-S1-F-011-03`, `B-011` |
-| `FN-HARNESS-10` | `IV-HARNESS-S1-N-010-01`, `N-010-02`, `N-011-01`, `N-011-02`, `N-023-01` |
+| `FN-HARNESS-10` | `IV-HARNESS-S1-N-010-01`, `N-010-02`, `N-011-01`, `N-011-02`, `N-023-01`。L7 §4 SUP-006〜010の補足設計だけがFN-10を担い、§3の269行にはFN-10を割り当てない。 |
 
 ## 7. 実装・検証状態
 
