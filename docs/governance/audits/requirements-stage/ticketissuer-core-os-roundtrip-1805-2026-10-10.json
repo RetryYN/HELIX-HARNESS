@@ -1,0 +1,498 @@
+{
+  "audit_kind": "requirements_static_roundtrip",
+  "authority_effect": "none",
+  "base_revision": "4537f4bdd0f3f036ab90d71a74c76d8563a39904",
+  "issue": 1805,
+  "issue_body": "<!-- HELIX:new-generation-feature-ticket-projection:v1 -->\n\n## ローカル正本\n\n- Feature Ticket: `FT-OS-TICKETISSUER-001`\n- Source: `docs/governance/feature-tickets/FT-OS-TICKETISSUER-001.md`\n- Source commit: `d7fb664c7d3c7cf152ccaa636ea63af550fa7dc0`\n- Source SHA-256: `fd5ea6d347752134f538cfc0344917e44d8032f8445bb0fe657ec1ce48aa15da`\n- 対象: `HELIX-OS`\n- 状態: `proposed_upstream_waiting`\n\n## 目的\n\n管理から目的・親要求・優先度・制約・許可・予算・期限・HARNESS版を受け、HELIX-OSの推進機構がHARNESSのtriggerと条件付きrouteを評価します。推進はoperational tag、HARNESS語彙へのversioned mapping、composition、workflow instance生成規則を所有し、PoC／UI prototype／Feature ticketとworkflow instanceを生成します。管理が登録・統制し、検収がHARNESS contractへの充足を独立確認します。\n\n## 境界\n\nHARNESSがnormative workflow vocabulary、意味、trigger、適用条件、route内順序、join、停止・差戻し・完了条件を所有します。推進はこれを再定義せず、入力に合うrouteを具体化します。GitHub labelはoperational tagのprojectionであり、remote label変更でactive workflowを変更しません。Issue発行は要求採用、実行許可、完了を生成しません。\n\n## 依存\n\n- 依存: #1798 / `FT-OS-REQREG-001`\n- 依存: #1800 / `FT-OS-REQCLASS-001`\n- 依存: #1804 / `FT-HARNESS-TICKETCONTRACT-001`\n- 後続: #1812 / `FT-OS-GITHUBSYNC-001`\n- Acceptance source: `docs/helix-os/L11-acceptance/governance-acceptance.md`\n",
+  "issue_body_sha256": "2808096a24396d7b1597c4d19fde57a97379f8c7683ea5f8d56c55ccdb086907",
+  "checklist_comment": {
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/1805#issuecomment-6089283281",
+    "body": "HARNESS-CORE→OSの作業具体化と結果Backflowを照合する\n\nユーザー指示（2026-10-10 Asia/Tokyo）:\n\n> これもイシュー化して。次はIntelligenceはOSと連携するの？\n\n指示の「これ」は、直前に説明したCOREの設計要素・義務・依存・影響をOSの案件作業へ具体化し、実行・検収結果をCORE／上流へ返す往復接続を指します。既存ticketの工程契約受領・route具体化・検収という作業scope内の照合項目として記録します。immutable ticketとIssue本文は変更しません。\n\n照合先: [HARNESS L2](https://github.com/RetryYN/HELIX-HARNESS/blob/af4a49e61413540a2f5c121b58b914b715c4bf88/docs/helix-harness/L2-requirements/product-requirements.md)のHARNESS-L2-002／008／009、HXT-CORE-01／02と対L11、[OS L2](https://github.com/RetryYN/HELIX-HARNESS/blob/af4a49e61413540a2f5c121b58b914b715c4bf88/docs/helix-os/L2-requirements/governance-requirements.md)の017／020／023、HXT-SYS-01と対L11、[9/26 handoff判断](https://github.com/RetryYN/HELIX-HARNESS/blob/af4a49e61413540a2f5c121b58b914b715c4bf88/docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md)。\n\n- [ ] COREの製品固有設計・義務・依存・意味差分と、HARNESSが提供する工程語彙・trigger／route・順序・join・停止／差戻し／完了条件を区別して入力へ結ぶ。\n- [ ] CORE→OSで、対象identity／revision／scope、選択template／knowledge版、設計義務、依存、変更影響、必要検証、未充足入力、戻し先を保持する受渡しを照合する。既存contractにないfieldの必須化は不足候補として正本へ返す。\n- [ ] OSが案件の現在状態・登録済み要求・許可・優先度・資源・予算・期限と受領した工程契約を合わせ、必要なroute・作業ticket／workflow・割当を具体化する正常例を示す。ticketの状態や依存を作業開始のauthorityにせず、現在の上流状態から可否を照合する。\n- [ ] OS→COREで、Worker結果・検収finding・未充足義務・変更／不足を元のrevision／scope／因果IDへ結び、適切な意味ownerへBackflowする往復例を示す。\n- [ ] stale版、別scope結果、未充足input、未解決依存、義務の脱落、単体成功からhandoff／構成体／完了を推定する負例を示す。\n- [ ] INTELLIGENCEとの連携を別の接続として照合する。OS→INTは現状・ticket・依存・証拠（INT-L2-031）、INT→OSは計画・配置・診断等の根拠付き候補（035）。OSが発行・割当、Workerが実行し、actor／scope付き結果をOS／INTへ返す（037）。候補だけで実行許可を生成せず、OS stateのownerはOSに保持する。\n- [ ] 1.0はHARNESS定義済み工程部品の規則的な組合せ・途中結果の差戻し、部品外の流れの生成は4.0という版境界を維持する。\n\n関連作業: #2842（COREの設計義務・Backflow）、#2843（exact set／版・適用結果・因果記録）、#1799（Python意味処理）、#1860（検収）。Pythonが意味導出を担うことからOSの運転・CONNECTの通信方式を自動確定しません。\n\n旧sourceは9/26判断記録のhandoff／Execution Ticket・HILの保持点と変更点へ戻して照合します。要求・候補の採否、L3以下の再開、schema／runtime／CIの実装はこのcommentから生成しません。\n",
+    "sha256": "913bfe1a92102fd48dce1038297d6cd61bdbdbb60c32cea58919da8f6e791792"
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "first_line": 315,
+      "last_line": 316,
+      "sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+      "span_sha256": "16cf8a7c1f1741907d327c80fb46a4079054f6248f9891c26dadfa1280845639",
+      "text": "| HXT-CORE-01 | 単体 | HARNESS-L2-002／HARNESS-L2-008 | 「ticket導出のためのコア」の工程契約全体。 | HARNESSが工程語彙・順序・停止・差戻し・完了条件と、層と対・成果物・oracle・人の判断箇所・戻し先を、HELIX-JSONの定義とPythonの意味導出コアとして提供する。開発方式が変わっても義務を落とさない。 | 人の判断を要する場所と要求・工程の適用根拠を入力する。意味未決をコアの自動推定だけで確定しない。 |\n| HXT-CORE-02 | 接続 | HARNESS-L2-002／HARNESS-L2-008 | HARNESSのコア提供からOSのticket発行・検収への接続。OS側の構成体はHXT-SYS-01。 | INTELLIGENCEはコアを判断材料にし、OSの推進がticket・動的ワークフローを導いて発行し、検収が必要検証を導く。HARNESS自身は発行しない。 | 計画・配置の案の根拠と人の判断を提供する。BRAINの汎用設計知識とINTELLIGENCEの稼働中の判断を分ける。 |\n",
+      "role": "工程意味とCORE→OS接続"
+    },
+    {
+      "id": "S02",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "first_line": 1594,
+      "last_line": 1604,
+      "sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+      "span_sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b",
+      "text": "### HARNESS-L2-009 製品template適用のexact set・義務・Backflow・影響の追補案（unit candidate）\n\n- **位置・親・版**：既存HARNESS-L2-009の製品適用能力を対象とする一identityの追補候補。未採択、`registered_proposal`／`authority_effect: none`。9/28固定HARNESS-L1-009とL1-004を親とし、009の既決`version_target: 1.0`を保持する。3kind固有義務、上流への不足差戻し、理由付き非適用の区別と任意fallback拒否を新規要求として再承認しない。\n- **受け取るもの**：対象要求identity/revision、kind、subject、relation、構成、risk、domain、適用layer/pair、製品scopeと工程契約版、候補templateのidentity/version/意味契約revision/source/利用状態、対象操作の選択根拠。BRAINの汎用契約はHELIXBRAIN-L2-032の項目、提供知識の受領は030、既存HARNESS009/023/026の依存区分を使う。Knowledgeの提供・受領と製品への適用選択を分ける。\n- **適用候補set**：上記入力の各axisとtemplate適用条件を照合し、検討対象のexact set、各要素の適用理由または不適用/未解決理由、比較対象の境界、対象要求/製品scope、参照知識・適用契約版へ束縛した結果候補を返す。set内のduplicate identity、別revision/製品scopeの混入、入力axis/候補母集合の欠落を黙って補わない。AI、言語、projectが変わっても、同じ意味の要求分類と適用契約・候補集合を与えた場合に、必要な論点を恣意的に増減させない。異なるscopeや未観測知識まで同一setへ固定しない。再現性の判断基準・同等性判定・選択algorithmは対要件/設計で導出する。\n- **適用判定と義務**：各templateのrequired/conditional/N/A/unresolvedを、根拠、判定者、対象revision/scope、条件、再評価条件とともに区別する。既存の理由付き非適用の区別を保持する。templateごとの判定に判定者・対象revision・再評価条件まで束縛する点は今回の追補差分であり、L2.5の003や性能/securityの限定文脈の既存N/Aを全templateへ承認済みとして広げない。判定不能をN/Aに丸めない。conditionalは条件と未充足状態を残す。unit/connection/composite固有義務、requirement→obligation→design→pairへのtraceを選択template版へ結ぶ。source要素からatom/proposal/gapを抽出する041、具体設計・oracleを構成する025/026の意味と処理を置換しない。\n- **不足とBackflow**：不足ごとにsource/template/requirement revision、fieldまたはobligation identity、定義欠落と値未決、根拠、影響scope、未完義務、返却先を持つ候補へ結ぶ。既存009の質問、矛盾、derived requirement candidate、N/A判断候補を区別し、分類未決は未解決のまま示す。field定義/knowledge版の不足はBRAIN、定義済みfieldの製品要求値未決は008の要求形成、製品適用contractの不整合はHARNESSへ返す。候補の返却から要求合意・採択やticket発行を生成しない。\n- **template変更と影響**：比較する旧新のtemplate identity/revisionと意味差分を、使用する要求・義務・設計artifact・対検証のidentity/revision/scopeへ結び、影響あり/なし/Unknownの根拠と再評価対象を返す。旧版参照と移管状態を識別し、影響不明をUnaffectedや移管完了へ変換しない。filename、schema/file digest、表示だけの更新を意味移管の完了根拠にせず、HARNESS004の局所影響と無関係な有効作業の保持を守る。実projectの使用版/state、event、stale記録の更新と未完義務の消込はOSへ残す。\n- **責務・依存**：HARNESS-COREのPython意味処理は、適用set、義務、不足質問、影響の材料を導く。BRAINは汎用知識の版/state、OSは案件の選択・使用set/版の登録/運転を所有する。意味処理の出力にDB/Git/GitHub write、割当、lease、実行、認可を与えない。常時必須は要求/製品scopeと工程・適用契約のidentity/revision。特定操作時は選択/差戻し/影響比較に必要な各入力、知識を選んだ入力ではそのknowledge全required fields/版/適用条件を照合する。非選択知識と旧例は参照資料であり、受渡し先の完了receiptや全seed採用を初回処理前の入力にしない。\n- **失敗・限界**：missing/conflict/unknown/staleを対象scopeの結果へ残し、別templateの成功で欠落を隠さない。候補setを作れたこと、template適用、041抽出成功、OS受領だけでは、要求合意、設計成立、pair検証成功、全project完了を生成しない。schema/型/演算子/通信/API/algorithm/閾値は固定しない。初期seedの選択/採否、OS event/評価母集団、shadow parity・renderer・pair/portfolioのbindingは別の残範囲とする。\n- **旧source**：旧L4 design-template-json-authority.md:38/39/42/47–60/81–92のexact set、applicabilityのfail-close、Backflow proposal、N/A根拠、trace/pair/revision照合を保持して現行ownerへ意味を再導出する。旧all/any/not/allowlistの具体型、旧layer番号、planner/cutover/runtimeは移植しない。未対応旧条件は保持し、この追補から旧atom全移管・formal successor・retire・L3再開を生成しない。\n",
+      "role": "CORE製品適用の採択追補"
+    },
+    {
+      "id": "S03",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "first_line": 1342,
+      "last_line": 1349,
+      "sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+      "span_sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5",
+      "text": "### HARNESS-L2-009 製品template適用追補の受入案\n\n- **正常・対象scope**：同じ意味の要求分類、候補母集合、適用contract/knowledge版、製品scopeを与え、unit/connection/composite別の候補set・理由、義務とpair traceを照合する。AIまたは言語を替えた同scope例でも必要な論点を保持し、違うdomain/risk/scopeの結果まで同じsetとしない。oracleは期待する適用集合・根拠・義務の意味を照合し、集合の件数やfieldの存在だけで合格にしない。\n- **axis/集合の負例**：kind/subject/relation/構成/risk/domain/layer/pair/製品scope/適用契約版の各入力を一つずつ欠かすか食い違わせる。duplicate template identity、別revision、別製品のtemplate、未提示知識への任意fallback、候補母集合未定を完全な適用setにしない。欠落と元revisionを示して未解決へ返す。\n- **適用・N/A**：required/conditional/N/A/unresolvedの例を与える。N/Aの理由・判定者・対象revision・再評価条件の各欠落、conditionalの条件未充足、判定不能を非適用へ丸める入力は成立にしない。下のunitの成功だけで接続/構成体の義務を閉じず、source/template→義務→設計→pairの別revisionや片方向traceを検出する。\n- **不足・4候補**：template必要inputについて、質問、矛盾、derived requirement candidate、N/A判断候補へ返す各例を示す。field定義自体の欠落と、定義済みfieldの製品要求値未決を混ぜず、source/field identity、元revision/scope、未完義務と返却先を保つ。分類不明、AIの補完、口頭のみの返却、別template成功での相殺は未解決とする。BRAIN受領可能な値unknownでも製品義務は未完、候補返却は人間合意やOS ticket発行ではない。\n- **変更・局所影響**：同じtemplateの旧新版について、適用条件/必須field/negative oracle/completionの意味変更、意味を変えないview更新、製品scope外の変更を与える。要求/義務/artifact/対検証の影響集合、旧版参照、再評価理由を期待oracleへ照合する。filename/digestだけ更新して移管完了、UnknownをUnaffected、無関係な有効scopeの一律失効は不合格。OSの使用版/stateをCOREが直接更新しない。\n- **未見・境界**：作成側に伏せた別domain/actorまたは同scopeの変更位置で、適用setと固有義務、不足の返却先、影響根拠を照合する。候補/受領から要求採択・設計成立・pair成功を生成した場合は不合格。scope外・oracle未定は未評価を保持し、全seed/全知識を観測済みにしない。schema/algorithm、実行fixture、旧source全移管、L3再開をこの静的案から成立させない。\n",
+      "role": "CORE適用対oracle"
+    },
+    {
+      "id": "S04",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 664,
+      "last_line": 673,
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "span_sha256": "1f74fdb3677c997071c80a618cd48d7c1f5f9cac2650efe61ecc197539f9f2f7",
+      "text": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）\n\n- **親L1**：HELIXOS-L1-009／010。\n- **入力**：管理が登録した目的・要求・制約・許可・優先度・依存・資源・予算・期限・停止条件・HARNESS版・接続状況、INTELLIGENCEの計画案、HARNESSの工程契約。\n- **提供**：対象・kind・親revision・scope・依存・受入義務・戻し先を結ぶticket graphと、適格性確認後のworkflow instance。\n- **保証**：推進はOSが担い、INTELLIGENCE案を無条件に採らず、HARNESSの工程語彙・順序・義務をOS内で再定義しない。1.0ではHARNESS定義済み工程部品の規則的な組合せと途中結果による差戻しを行う。部品にない流れまで組み立てる能力は`version_target: 4.0`として保持し、1.0の成立条件にしない。\n- **単独成立の依存**：L2-015／016、HARNESS工程契約、SECURITYのauthority制約、INTELLIGENCEの案とLABOの水準が提供される場合の評価材料。version_target: 1.0。\n- **失敗時の戻し先／未完義務**：入力不足・unknown・conflict・未解決依存・scope逸脱はticketを実行可能にせず、未解決の要求・許可・依存へ返す。再開時に元の要求revision、停止理由、未完義務、予算/期限制約を維持する。\n- **束ねる既存条件**：HELIXOS-L2-003／010／011、現行のticket意味・workflow・handoffを記すHXT-TYPE-01〜21／HXT-FLOW-01〜09／HXT-SYS-01、およびHELIXOS-L2-008／010／011の部品workflow・検収・統合計画条件。Execution Ticket旧候補の条件は旧source basisとして確認し、存在しない現行IDを作らない。旧mode名や一本道workflowを追加しない。\n\n",
+      "role": "ticket導出"
+    },
+    {
+      "id": "S05",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 694,
+      "last_line": 703,
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "span_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+      "text": "### HELIXOS-L2-020 検収・CI運転（単体候補）\n\n- **親L1**：HELIXOS-L1-004。\n- **入力**：ticket graph、承認済み要求/pair/oracle、HARNESS版と検証義務、実差分/base、runner/環境、必要なconnection/evidence。\n- **提供**：ticket/変更に必要なCI profileの組立、隔離実行、結果の回収・監視・再開。\n- **保証**：HARNESSが検証義務を定め、OS検収が実行を組み立て運転する。success/fail/denied/skipped/interrupted/staleを区別し、上流意味review・利用者受入・merge・releaseをCI結果へ統合しない。oracleをOS判断で追加・削除しない。\n- **単独成立の依存**：L2-016／017／019、HARNESS検証契約、SECURITY制約、INFRASTRUCTURE実行資源。version_target: 1.0。新世代CI未構築のため、旧CIを実行・代用しない。\n- **失敗時の戻し先／未完義務**：検証不足・oracle欠落・環境違いは未完としてHARNESS契約またはticketへ返す。中断・失敗では同じHEAD/義務/許可境界に束縛した未完状態を引き継ぐ。\n- **束ねる既存条件**：HELIXOS-L2-002／007／008／011、HBR-P3/P6およびHR-FR-HYB-010由来の動的検証・隔離・証拠・計画/実行責務分離。\n\n",
+      "role": "検収"
+    },
+    {
+      "id": "S06",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 724,
+      "last_line": 733,
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "span_sha256": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248",
+      "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）\n\n- **親L1**：HELIXOS-L1-001／002／003／004／009／010。\n- **入力**：L2-015/016のauthority・接続状況、L2-017のticket、L2-018のassignment/attempt、L2-020の検証義務と結果、L2-019のevidence。\n- **提供**：管理から推進、Worker、検収、管理への一連のhandoffを、対象revision/digest・因果ID・scope・未完義務・停止理由・証拠に束縛する。\n- **保証**：各単体、接続固有条件、構成体条件を別に確認する。単体成立からhandoffまたは次段受入・ticket完了を自動生成しない。管理/推進/検収/Workerの責務は交差してもauthorityを混同しない。\n- **単独成立の依存**：L2-015〜020の各必要unitとversioned interface、SECURITY/INFRASTRUCTUREとの対応する境界。version_target: 1.0。\n- **失敗時の戻し先／未完義務**：handoffのrevision/digest/authority/証拠不一致は接続を未成立として保持し、発生側の正本または管理へ返す。受信側が未完義務を受理した証拠が揃うまで元ticketを完了にしない。\n- **束ねる既存条件**：HELIXOS-L2-001〜004／007〜011、現行のticket詳細ID HXT-TYPE-01〜21／HXT-FLOW-01〜09／HXT-SYS-01／HXT-USE-01が示すticket graph・種類・flow・構成体・周辺job境界。\n\n",
+      "role": "handoff"
+    },
+    {
+      "id": "S07",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 1698,
+      "last_line": 1707,
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "span_sha256": "98dea2842f7a3a5b26c2ab2af302a6abbd025b7ecef50998b3557ede5d78764e",
+      "text": "### HELIXOS-L2-002 project template記録の因果・revision・評価入力追補案（unit candidate）\n\n- **位置・親・版**：既存HELIXOS-L2-002のproject追跡能力を対象とする一identityの追補候補。未採択、`registered_proposal`／`authority_effect: none`。9/28固定HELIXOS-L1-002／007／008を親とする。既存002の版と適用条件を変更せず、新しいversion_targetを指定しない。使用templateのexact set/版、適用・義務・N/A・Backflow・成果・finding・再作業・受入・運用結果の記録、任意fallback拒否、LABO評価とBRAIN採否の分離は既採択のまま保持する。\n- **受け取るもの**：対象project/製品scope、要求identity/revision、適用HARNESS契約版、CORE009の選択/判定/義務/不足/意味影響候補とその根拠、BRAINの参照template identity/version/意味契約revision/利用状態、実際の選択と使用set、発生元のevent・actor・source・相関参照・未完義務・操作/利用許可とdata class。提案set、案件が選択したset、実際に使用したsetを分け、各記録がどの集合に対するものかを示す。候補受領だけで使用済みへ変換しない。\n- **個々の記録の結合**：template適用、義務生成/消込、N/A、Backflow、設計成果、finding、再作業、受入、運用結果の各記録を、それぞれの発生元、project/scope、対象要求revision、選択/使用template版、関係する義務・成果・対検証のidentity/revisionと因果参照へ結ぶ。関係しない項目まで架空の値で埋めず、その不適用根拠または未解決を残す。別project、別template版、別義務の成果で欠落を埋めない。原eventと訂正・分類projectionを分け、訂正で旧失敗や旧scopeを消さない。\n- **判定・未完義務の記録**：CORE009のrequired/conditional/N/A/unresolved、根拠・判定者・対象revision・再評価条件をその出力参照へ結び、OSが適用規則やN/A判断を新設しない。conditionalの未充足、義務の未実施/不合格/未評価、Backflowの返却先・停止理由・未完義務・受領/解決証拠を分けて記録する。受領・ACKと意味判断/解決を区別し、元義務の消込には適用契約が求める対象revision/scopeの証拠を結ぶ。既存023の受信側による未完義務受理と元ticket完了の条件を保持し、記録の存在、文書生成、checkbox、他義務の成功から完了を生成しない。\n- **変更と履歴**：同じprojectの使用template旧新版と、COREが返す意味影響対象/理由を、再評価する要求・義務・成果・pairのrevision/scopeと結ぶ。旧版利用、stale、再評価待ち、影響Unknownを区別する。OSは意味影響を独自算出せず、filenameや表示更新だけで旧版使用履歴を現行化しない。無関係な有効scopeは既存契約どおり保持する。\n- **評価へ渡す追跡材料**：005/024を通じてLABOへ渡すtemplate利用結果には、選択された評価scopeに含まれるproject・要求revision・使用template版と期間、参照する原記録集合と抽出根拠、含めた/除外した対象と理由、重複/再送の対応、未接続・未観測・未回収・比較不能の範囲を結ぶ。不足・過剰要求・誤選定・再作業・欠陥流出のfinding候補は、発生元と対象義務/使用版/再作業/受入/運用記録を保持して渡し、因果未決は未決とする。LABOが指定または合意した評価範囲/必要入力が未決なら、不完全な入力として示し、OSが独自に評価母集団・測定定義・因果効果を決めない。未観測や観測期間不足を欠陥0・改善成功にせず、利用回数やAI自己評価でtemplateを昇格しない。これは評価入力の追跡材料であり、LABOの評価方法、接続成立、BRAINの採否を追加定義する要求ではない。\n- **責務・依存・停止範囲**：002は案件記録の追跡、001は合意/source、007/019はevidence/continuity、023は未完義務handoff、005/024/048は改善/評価/再発の既存接続を持つ。汎用知識の意味/版はBRAIN、製品適用/意味影響はCORE、効果/退行評価はLABO、操作とdata利用条件はSECURITYに従う。常時必要は記録対象project/scope、source/要求revisionと該当契約参照。特定templateを選択/使用する操作ではそのset/版/適用出力を、評価へ送る操作では選択評価scope/必要入力と利用許可を照合する。関係しない知識/全seedや、今回初めて生じる結果・受領証拠を開始前提にしない。不足/unknown/conflict/staleは該当記録または受渡しを未成立にして解消先へ返し、評価未観測だけで無関係な有効作業を止めない。未登録等での停止/Backflowとfallback拒否は既存条件を保持する。\n- **旧source・差分・限界**：旧L4 design-template-json-authority.md:24/36/47–58/83–92の選択template/requirement/obligation束縛、exact set、Backflow event、trace/pair/revisionと、旧pillar-requirements.md:54/56/58の改善循環・scope/記録責務分離・trace/driftを起点に意味を再導出する。追加は各案件記録の細粒度結合と評価入力範囲/欠落の追跡であり、旧sourceにこの全条件が既定だったと主張しない。旧DB/runtime/JSON schema/層番号/型/算法を移植せず、wire/API/event enum/計測値/閾値も固定しない。旧atom全移管、seed採用、現実のOS記録/接続成立、LABO評価済み、BRAIN採用、L3再開を生成しない。\n",
+      "role": "記録追補"
+    },
+    {
+      "id": "S08",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "first_line": 338,
+      "last_line": 344,
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "span_sha256": "b5a2d6f02bc5ab05df8d482b171cd4db0b005e23ddf2f54c463aeebff8555cf2",
+      "text": "### HELIXOS-L2-017 推進・ticket/workflowの受入\n\n- **入力・版**：同一の承認済み入力とHARNESS契約を再投入し、対象や依存が異なるcaseを比較する（1.0）。部品外flowは4.0の境界として確認する。\n- **成功条件**：同じ入力から対象・親revision・scope・依存・受入義務・戻し先を持つ同じticket候補が得られる。INTELLIGENCE案をHARNESS語彙、権限、budget、期限、依存に照らして適格性確認する。異なる対象はその差を保持する。1.0ではHARNESSの既定部品を規則どおり組合せ、途中結果から既定戻し先へ差し戻せる。\n- **反例**：部品にないflowを1.0で生成する、案を無条件でticket化する、OSがHARNESS工程を再定義する、入力不明/依存未解決をready化する、全案件へ同一固定列を当てる。\n- **失敗時・未完義務**：停止理由・元要求revision・未完義務・累積制約が残り、解決する入力または責務へ戻る。\n\n",
+      "role": "ticket対oracle"
+    },
+    {
+      "id": "S09",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "first_line": 359,
+      "last_line": 365,
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "span_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
+      "text": "### HELIXOS-L2-020 検収・CI運転の受入\n\n- **入力・版**：HARNESS契約/義務、要求/pair/oracle、ticket、change set/base、実行環境を与える（1.0）。現行の新世代CI未構築条件を保つ。\n- **成功条件**：必要profileが変更対象とHARNESS義務から導かれ、exact head・oracle・環境・run identityに束縛される。実行状態をsuccess/fail/denied/skipped/interrupted/staleに分け、隔離・回収・再開できる。計画側と実行側を別scopeで確認できる。\n- **反例**：全案件に固定段数を強制する、HARNESS oracleをOSが足す/外す、必要検証を抜く、旧CI greenまたは別HEAD greenを使う、CI成功でmeaning review/acceptance/releaseを代替する。\n- **失敗時・未完義務**：検証義務やrunnerが足りなければ未完状態でHARNESS契約・ticket・資源ownerへ返す。失敗を検査弱化で成功化せず、再開条件と義務を保持する。\n\n",
+      "role": "検収対oracle"
+    },
+    {
+      "id": "S10",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "first_line": 380,
+      "last_line": 386,
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "span_sha256": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d",
+      "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入\n\n- **入力・版**：L2-015〜020の関係する正本、ticket、assignment/attempt、検証義務/結果、evidenceを使う（1.0、版付きinterface）。\n- **成功条件**：handoffごとに対象revision/digest、因果ID、scope、未完義務、停止理由、evidenceの一致を確認する。unitごとの成功、handoffの成功、接続固有受入を別に確認する。\n- **反例**：あるunitのsuccessだけで接続・次段受入・ticket完了にする。作成主体が独立reviewを兼ねる。推進が検収義務を変更する、または検収が要求やticketを発行する。\n- **失敗時・未完義務**：受渡しの不一致でconnectionを未成立にし、発生側sourceまたは管理へ戻す。受信側が未完義務を受けた証拠が得られるまで元作業を完了にしない。\n\n",
+      "role": "handoff対oracle"
+    },
+    {
+      "id": "S11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "first_line": 1364,
+      "last_line": 1371,
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "span_sha256": "15fb77b844bf43cc4cf71db8458d7bd087eae7e4df9feaf850106b2f8465f293",
+      "text": "### HELIXOS-L2-002 project template記録追補の受入案\n\n- **正常・再構築**：同じ要求scopeで、候補/選択/使用set、template版、unit/connection/composite別義務と設計/pair、finding、再作業、受入、運用結果を与える。各記録の発生元・相関参照から対象project、要求revision、template版、義務と結果を再構築し、集合件数やfield存在だけで合格にしない。ある義務/単体の成功から別義務/接続/構成体の完了を生成しない。\n- **取り違え・不足**：project/scope/要求revision/template版/義務/成果/pairの各参照を一つずつ欠かすか別対象へ替える。候補受領を使用済み、別project成功で欠落消込、旧版成果を現行証拠へ転用、duplicate/再送を別利用へ水増しする例を拒否する。該当記録/受渡しの不足と解消先を保持し、無関係な有効scopeを失効させない。\n- **N/A・Backflow・消込**：CORE009の4判定と理由/判定者/revision/再評価条件を記録へ照合する。判断不能をN/A、ACKを解決、Backflow先の受理なしで元義務消込、文書生成/checkboxだけで設計完成とする負例は不合格。義務が未実施/不合格/未評価の例を区別し、原記録・訂正・旧失敗を保持する。OSの独自意味判定や要求採択を成功根拠にしない。\n- **旧新版と局所影響**：使用templateの意味変更と表示だけの更新を与え、COREが示した影響集合と各再評価履歴を照合する。影響UnknownをUnaffected、参照digest更新だけで使用履歴移管済みとする例を拒否し、別scopeの有効結果を保持する。\n- **評価入力の境界**：二つ以上のprojectと異なるtemplate版/期間を与え、選択評価scope、原記録集合、抽出/除外理由、未観測/未回収/比較不能、duplicateの扱いを照合する。不足/過剰要求/誤選定/再作業/欠陥流出の各候補を元義務と利用結果へ辿る。欠落した対象を黙示除外、未観測を欠陥0、異なる版/期間を無条件比較、件数やAI評価だけで改善/昇格を成立させる例は不合格。母集団/測定定義/効果をOSが新設せず、LABO必要入力が未決なら未決・不完全を保持する。評価入力未成立を無関係な工程の停止条件へ広げない。\n- **許可・未見・開始条件**：利用許可/data class/対象scope不一致では該当共有を止める既存条件を照合する。作成側に伏せた別project/actorまたは旧新版変更位置で同じ追跡を確認する。非選択sourceは未観測、義務/結果がまだ発生していない開始時は未発生を保持し、将来の結果receiptを初回記録の入力条件にしない。入力整合だけからhandoff成立、LABO評価、BRAIN採否、全seed/旧atom被覆、実行fixture成功、L3再開を生成しない。\n",
+      "role": "記録対oracle"
+    },
+    {
+      "id": "S12",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 217,
+      "last_line": 224,
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "272988a2285b77adee1566f7db2f1d41f50d755aa29662d634f112e753e0372c",
+      "text": "### HELIXINTELLIGENCE-L2-031 — HELIX-OS → Situation Model\n\n- 親：HELIXINTELLIGENCE-L1-003。\n- 入力：OSの許可されたticket/current state/dependency/evidence。\n- 出力：Situation ModelにOS revision付き情報。\n- 依存：各記載source/consumer ownerと専用HELIX-CONNECT connectorのadmitted contract。\n- 保証：OSがstate/authorityを所有する。\n- 失敗時戻し先：stale/unknownはOS sourceへ戻して再照合。`version_target: 1.0`。契約/成果物/依存版・compatibility・交換更新rollbackはHARNESS-L2-010/011共通pack contractを適用する。\n",
+      "role": "OS→INT"
+    },
+    {
+      "id": "S13",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 253,
+      "last_line": 260,
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "7f3ed0dee45d62139186fd365d80d9da0fe5773a457bc121f4c3f16a3d74eded",
+      "text": "### HELIXINTELLIGENCE-L2-035 — INTELLIGENCE → OS（計画・判断候補）\n\n- 親：HELIXINTELLIGENCE-L1-005, HELIXINTELLIGENCE-L1-006, HELIXINTELLIGENCE-L1-007, HELIXINTELLIGENCE-L1-008, HELIXINTELLIGENCE-L1-010, HELIXINTELLIGENCE-L1-016。\n- 入力：plan/placement/diagnosis/review/repair candidateと根拠・停止条件・依存。\n- 出力：OSが受け取れる候補。\n- 依存：各記載source/consumer ownerと専用HELIX-CONNECT connectorのadmitted contract。\n- 保証：ticket登録・割当・実行・進行はOS。\n- 失敗時戻し先：候補が不完全/staleならINTELLIGENCEへ戻し、ticket化しない。`version_target: 1.0`。契約/成果物/依存版・compatibility・交換更新rollbackはHARNESS-L2-010/011共通pack contractを適用する。\n",
+      "role": "INT→OS"
+    },
+    {
+      "id": "S14",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 271,
+      "last_line": 278,
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "4746ec003638a1235031def9fe6184bd089a7abc5741c54fa9ed114708bf4447",
+      "text": "### HELIXINTELLIGENCE-L2-037 — OS → Worker（INTELLIGENCE candidate実行）\n\n- 親：HELIXINTELLIGENCE-L1-005, HELIXINTELLIGENCE-L1-010, HELIXINTELLIGENCE-L1-016, HELIXINTELLIGENCE-L1-017。\n- 入力：OSが発行し割当したticket。\n- 出力：Workerのactor/scope付き実行結果をOS/INTELLIGENCEへ返す。\n- 依存：各記載source/consumer ownerと専用HELIX-CONNECT connectorのadmitted contract。\n- 保証：OSが発行/割当、Workerが実行する。\n- 失敗時戻し先：ticket/scope/assignment不明ならOSへ戻し実行しない。`version_target: 1.0`。契約/成果物/依存版・compatibility・交換更新rollbackはHARNESS-L2-010/011共通pack contractを適用する。\n",
+      "role": "OS→Worker"
+    },
+    {
+      "id": "S15",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "first_line": 94,
+      "last_line": 100,
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "1415ae5e2002de2a6278982bf3bba2a43f6f18b23208a78ae028ea4b592a00ff",
+      "text": "| HELIXINTELLIGENCE-L2-031 | OS ticket/state/dependency/evidenceをOS revision付きで渡す | Situation ModelからOS stateを書き換える | stale/unknownはOS sourceへ戻し再照合 |\n| HELIXINTELLIGENCE-L2-032 | BRAIN Pattern/Unit/Part/applicability/counterexampleを判断材料として受け取る | INTELLIGENCE判断でBRAIN正本を直接変更する | applicability/revision不明はBRAINへ戻す |\n| HELIXINTELLIGENCE-L2-033 | Product Core/HARNESS要求・設計・検証義務を各source revision付きで受け取る | 異なるownerの意味を黙って統合する | 矛盾/ revision不明は該当Product Core/HARNESS ownerへ戻す |\n| HELIXINTELLIGENCE-L2-034 | LABO評価/反例/Bench level/未評価状態をscope付きで受け取る | LABO historyから現在割当を直接更新する | 未評価/scope不明はLABOへ戻す |\n| HELIXINTELLIGENCE-L2-035 | 計画/配置/診断/Review/repair候補をOSへ返し、OSがticket化・進行する | INTELLIGENCEがOS ticket/assignmentを生成する | candidate不完全/staleはINTELLIGENCEへ戻しticket化しない |\n| HELIXINTELLIGENCE-L2-036 | 操作候補のSECURITY permission/constraint/revocationを照合し、authorityをSECURITYに残す | 許可を推測する、INTELLIGENCEからpermissionを変更する | permission欠落/失効/unknownはSECURITYへ戻し実行しない |\n| HELIXINTELLIGENCE-L2-037 | OS assignment済みticketがWorkerへ渡り、actor/scope/resultが区別される | INTELLIGENCEをWorkerにする、OS割当を飛ばす | ticket/scope/assignment不明はOSへ戻し実行しない |\n",
+      "role": "INT接続対oracle"
+    },
+    {
+      "id": "S16",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 610,
+      "last_line": 610,
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "span_sha256": "4906ded507764e3548bccfbd30be9fd92c6fb70b3d20018a4054c4873cb14b5e",
+      "text": "| HXT-SYS-01 | 構成体 | HELIXOS-L2-010／HELIXOS-L2-011／HELIXOS-L2-008／HELIXOS-L2-002 | HARNESSのコア→INTELLIGENCEの計画・配置案→OSの推進によるticket・動的ワークフローの導出と発行→検収の検証計画・CI組み立て。ticket節の共通条件全体。 | OSは計画又は事象から種類・対象・親要求と版・変更範囲を保って発行する。上流段階も登録済み要求とBackflowから発行する。周辺機構は発行せず、BRAINは汎用の設計知識を渡す。案は無条件に実行しない。開発方式をticket種類とせず、進め方をticket内に持つ。ticketを正、Issue／PRを映しとし、closeやmergeだけで完了にしない。1.0は定義済み部品の規則による組合せ・差戻しに限り、部品外の流れの生成は4.0とする。 | 人は既存のauthority境界に従って意味・予算・危険操作の境界を決める。運用は計画・事象・判断の根拠を入力する。システムへ吸収する条件と運用で補う判断を混同せず、未決は判断済みに補完しない。 |\n",
+      "role": "構成体"
+    },
+    {
+      "id": "S17",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "first_line": 308,
+      "last_line": 308,
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "span_sha256": "adc283397aa7af77fa2602d41f96aced8608b2a2964c0f469fb7773bf2a54299",
+      "text": "| HXT-SYS-01 | HELIXOS-L2-010／HELIXOS-L2-011／HELIXOS-L2-008／HELIXOS-L2-002 | 同じticketの親要求revisionから、HARNESS版、計画・配置の案、OSの適格性確認・発行、検収の計画・結果と投影まで追跡できる。 | BRAINに稼働判断を戻す／INTELLIGENCE・HARNESSがticket発行／PR mergeで完了／1.0で部品外の流れを生成する／開発方式をticketの種類にする／突発と計画を分けない。 |\n",
+      "role": "構成体対oracle"
+    },
+    {
+      "id": "S18",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "first_line": 157,
+      "last_line": 163,
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_sha256": "606768ac301e7d151e88955df2b683229bde31f461a2e4352168861b30bbb083",
+      "text": "### 6.4 ExperimentDefinition / MeasurementRequest（取込補足：実験定義と測定要求）\n\nExperimentDefinitionは、subject/task snapshot、control/treatments、変更するfactor、固定条件、repeat/seed、allocation method、評価基準、scorer/protocol、warmup/cache、予算、stop rule、汚染policyを実行前に固定する。\n\nMeasurementRequestは、trigger/event ref、subject snapshot、reason、requested mode、実験定義ref、scope/security eligibility、dedupe key、max attempts、予算予約ref、deadline、状態を持つ。ここから既存schedulerへ渡す際、新規実行が必要な場合だけ作業Ticket/Assignmentを合成する。\n\n**二つのTicketを混同しない。** 追加評価を独立した作業としてTicket化した場合、`execution_ticket_ref`は評価作業、`subject_ticket_ref`は評価対象の開発仕事である。別の責務を同じTicketへ足さず、評価作業の完了で対象Ticketをcloseしない。既存runnerへsubject bindingを渡すだけで足りる場合、新しいTicket種別を増やさない。\n",
+      "role": "旧source inventory-first照合"
+    },
+    {
+      "id": "S19",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "first_line": 280,
+      "last_line": 282,
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_sha256": "24db221545979b82b4ef54ca653635693c9822499f7e590cb14b70b3bcd11587",
+      "text": "### HXT-FR-024 Portfolio / Management接続\n\nREADY/blocked/active、lead time、retry、cost、coverage、measurement integrity、placementを別軸でprojectionする。管理側はreclassify/split/replan/backflow等のproposalを作成できるが、Ticketの意味を直接上書きしない。評価結果の利用可否・配車順は既存policyから説明可能に導出する。\n",
+      "role": "旧source inventory-first照合"
+    },
+    {
+      "id": "S20",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "first_line": 349,
+      "last_line": 351,
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_sha256": "00f21f452e8734c5fb2319dc5ddb953f19c16c772ea80aabc8e0927a99613e6e",
+      "text": "### HXB-FR-015 Capability / Routingへの証拠昇格\n\nBenchはobserved/scored/qualified/expired等の証拠状態と改善候補を返す。既存registry/admission ownerが、task/risk/profile/descriptor、標本数、重大failure、鮮度、独立性を検査し、#188が現在capacity等と合わせて配車を決める。適切に委譲済みpolicy内の評価・更新は自動化でき、人間に毎回順序決定を要求しない。Benchから直接model切替・権限拡大を行わない。aliasしか不明な過去結果を現行weightsの保証にしない。\n",
+      "role": "旧source inventory-first照合"
+    },
+    {
+      "id": "S21",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md",
+      "first_line": 190,
+      "last_line": 208,
+      "sha256": "1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74",
+      "span_sha256": "385d6af217e709a7aafcafdcfde34cc281809b576d4161ef8a2bd54322063387",
+      "text": "### 5.4 HELIX 4.0 — HELIX Intelligence\n\nチューニングしたモデル群を、HELIX自身の判断能力へ組み込む段階です。目的、現在のシステム、制約、不確実性、経験、利用可能な能力を読み、その案件に必要な**開発フローそのものを構築し、途中結果に応じて再計画する**ことを目指します。[U12][U13]\n\n```text\n目的・現状・制約・経験\n  → 必要な責務を推論\n  → Capability／Package・モデル・資源を選択\n  → 作業、依存、検証義務、人間判断点を構成\n  → 既存の権限・品質・安全・実行契約で適格性を確認\n  → 実行・観測\n  → 残りの仕事を再計画\n```\n\n違いは、単にDAGを生成できることではありません。既存の計画・配車・部分合成を土台に、HELIXデータで調整した知能が状況を解釈して開発方法を構成することです。既存の動的な仕組みが4.0以前に存在しない、という線引きにはしません。\n\n大規模公開モデルと小型専門モデルの組合せ、外部プロバイダーへの高難度作業の委譲などは実現案です。自前チューニングを中心方針に置きますが、外部モデルの利用を禁止したり、特定のモデル構成しか成立しないと断定したりしません。\n\n**到達確認案：** 未知の案件でも、必要義務を落とさない実行計画を作れる。計画の根拠・制約・停止条件を説明できる。再計画で以前の承認や検証を勝手に流用しない。推論が誤っても、権限・必須品質・安全の検査で実行を制限できる。\n",
+      "role": "旧source inventory-first照合"
+    },
+    {
+      "id": "S22",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "first_line": 121,
+      "last_line": 121,
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "span_sha256": "a67ee55596580d7817226b3ad9db5082e7636001bf309cd801848a256621acc0",
+      "text": "| **HIL-FR-31** | Upstream Redesign Re-entryはaffected layerがL1ならL1/L12 pairを、L2ならL2/L11 pairとscreen applicability/prototype agreementをstale化し、再承認前の実装claimとForward合流を拒否する。 | stale edge、re-entry task、re-freeze receipt |\n",
+      "role": "旧source inventory-first照合"
+    },
+    {
+      "id": "S23",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "first_line": 38,
+      "last_line": 46,
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "span_sha256": "eb027d92affbe0454e87375cbc05f5ba7f1df5102f13a6121b6abfea7dd24650",
+      "text": "| `TemplateShadowCompiler` | 既存template/canonical design inventory | shadow template候補、parity finding | 既存意味を新正本候補へ一方向変換 | 未分類、意味欠落、二重authority |\n| `GeneratedViewProjector` | validated template/instance/graph JSON | Markdown/HTML/Mermaid＋source digest | 決定論表示 | source digest不一致、直接編集 |\n| `DesignPortfolioPlanner` | Requirement JSON、Design Obligation Graph、registry | reuse/delta/new/N/A proposal | 最小portfolio提案 | uncovered、duplicate、fabricated ID |\n| `PairGraphBinder` | selected template/instance、V-pair oracle | L4↔L9、L5↔L8 graph | pair exact setとcompletionを束縛 | missing pair、別revision、stale oracle |\n\n本sliceはcomponent契約だけを定義する。schema/runtime、planner algorithm、instance生成、pair graph\nfreezeは後続L5/L6 episodeで実装する。\n\n## §3 主要data flow\n",
+      "role": "旧source inventory-first照合"
+    },
+    {
+      "id": "S24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "first_line": 47,
+      "last_line": 60,
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "span_sha256": "54f55cec69c714740dad03b863e14e9a25138a6683e48e6c770dab9568228298",
+      "text": "\n```text\nRequirement JSON\n  -> Design Obligation Graph\n  -> DesignPortfolioPlanner\n  -> selected Design Template JSON exact set\n  -> Design Instance JSON\n  -> pair graph / Test Design JSON\n  -> generated Markdown / HTML / Mermaid\n```\n\nback-propagationはfindingまたはproposal eventとしてRequirement Engine／template revisionへ戻す。\ngenerated viewや既存Markdownを読んでJSONを無断更新するreverse flowは禁止する。\n\n",
+      "role": "旧source inventory-first照合"
+    },
+    {
+      "id": "S25",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "first_line": 81,
+      "last_line": 92,
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "span_sha256": "f6063127b4a765d825c36acbe7c6f2e707bbf8454338ececdefdb76fe160b696",
+      "text": "evaluation errorとしてfail-closeする。N/Aはreason、authority、re-evaluation triggerを必須にする。\n\ntemplate completionは少なくとも次のexact setを持つ。\n\n- 必須section／fieldのcoverage\n- requirement/obligation trace\n- negative oracle\n- measurement/thresholdまたは根拠付きN/A\n- V-pair edge\n- unresolved item 0、またはowner/re-entryを持つ明示defer\n- source/template/instance revision digest一致\n\n",
+      "role": "旧source inventory-first照合"
+    },
+    {
+      "id": "S26",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 674,
+      "last_line": 683,
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "span_sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
+      "text": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）\n\n- **親L1**：HELIXOS-L1-003。\n- **入力**：L2-017のticket revision/digest、配置案、LABO/HELIX-Benchのモデルクラス水準、SECURITY制約、INFRASTRUCTUREの資源状態、レーンとWorkerの実行結果。\n- **提供**：assignmentとattemptの追跡、許可範囲内の割当・進行・停止・成果回収、および担当交代時のhandoff。\n- **保証**：ticket・要求revision・authority・Worker・呼出しレーン・scope・予算・期限・成果・証拠を辿る。assignmentは実行の制約/認可や実資源の正本を代行しない。作成Workerが自分の成果を承認または独立review済みに扱わない。provider名のみで独立性を判定しない。\n- **単独成立の依存**：L2-017、SECURITYの権限・制約、INFRASTRUCTUREの資源、LABOの水準とINTELLIGENCEの配置案。version_target: 1.0。\n- **失敗時の戻し先／未完義務**：権限・lease・capability・期限・予算・head等の不一致は実行を停止し、停止理由を記録して管理/推進へ返す。交代・失効後も累積制約と未完義務を引き継ぎ、二重作業を防ぐ。\n- **束ねる既存条件**：HELIXOS-L2-004／009、ticket詳細のassignment/attempt/recovery、resident-laneとthree-lane由来の委譲・handoff・自己承認防止条件。固定provider数や旧Runner/Sandbox主体を導入しない。\n\n",
+      "role": "Worker割当・実行統制"
+    }
+  ],
+  "checks": [
+    {
+      "check_id": "C01",
+      "source_item": "COREの製品固有設計・義務・依存・意味差分と、HARNESSが提供する工程語彙・trigger／route・順序・join・停止／差戻し／完了条件を区別して入力へ結ぶ。",
+      "title": "工程意味と製品設計",
+      "evidence_refs": [
+        "S01",
+        "S02",
+        "S04",
+        "S08"
+      ],
+      "normal_example": "COREの製品P・要求R@a・scope Uの選択template K@vから義務Dと影響候補を得る。工程契約W@wの語彙・順序・join・停止条件は別に参照し、OSはWを再定義せず受領する。",
+      "negative_example": "COREの設計義務DをOS独自の工程順序へ置換する、またはstyleをticket kindにする場合は不成立。",
+      "finding": "工程・製品適用・運転のownerを別に識別できる。",
+      "contract_status": "mapped_to_existing_requirements",
+      "execution_status": "not_run"
+    },
+    {
+      "check_id": "C02",
+      "source_item": "CORE→OSで、対象identity／revision／scope、選択template／knowledge版、設計義務、依存、変更影響、必要検証、未充足入力、戻し先を保持する受渡しを照合する。既存contractにないfieldの必須化は不足候補として正本へ返す。",
+      "title": "CORE→OS受渡し",
+      "evidence_refs": [
+        "S02",
+        "S03",
+        "S04",
+        "S06",
+        "S07",
+        "S11"
+      ],
+      "normal_example": "R@a/UとK@vの選択set、義務D、依存、意味影響候補、必要pair、未充足入力と戻し先を参照した受渡しを記録する。候補・選択・使用setを区別し、受領だけで実施済みにしない。",
+      "negative_example": "K@vを別版K@v2へ黙って差替え、R@bの義務でR@aの不足を埋める、knowledge定義欠落をCOREが補完する場合は不成立。",
+      "finding": "既採択009/002の参照で結ぶ。ここに新しいwire fieldを追加しない。",
+      "contract_status": "mapped_to_existing_requirements",
+      "execution_status": "not_run"
+    },
+    {
+      "check_id": "C03",
+      "source_item": "OSが案件の現在状態・登録済み要求・許可・優先度・資源・予算・期限と受領した工程契約を合わせ、必要なroute・作業ticket／workflow・割当を具体化する正常例を示す。ticketの状態や依存を作業開始のauthorityにせず、現在の上流状態から可否を照合する。",
+      "title": "OSのroute具体化",
+      "evidence_refs": [
+        "S04",
+        "S05",
+        "S08",
+        "S09",
+        "S16",
+        "S17",
+        "S26"
+      ],
+      "normal_example": "OSは登録R@a/U、現在状態、依存、既存authority、優先度、資源、budget/期限、W@wを照合し、適格な既定部品のticket graph候補を作る。同じ承認済み入力では同じ候補となる条件を照合する。 OSがassignmentを別に照合し、ticket・要求revision・Worker・呼出しレーン・authority・scope・予算・期限へ結ぶ条件は018から読む。",
+      "negative_example": "ticketが存在するだけで起動する、未解決依存をready化する、INT案を無検査でticket化する場合は不成立。",
+      "finding": "導出例の記述であり、現実にticketを発行・割当・実行していない。",
+      "contract_status": "mapped_to_existing_requirements",
+      "execution_status": "not_run"
+    },
+    {
+      "check_id": "C04",
+      "source_item": "OS→COREで、Worker結果・検収finding・未充足義務・変更／不足を元のrevision／scope／因果IDへ結び、適切な意味ownerへBackflowする往復例を示す。",
+      "title": "結果Backflowと未完義務",
+      "evidence_refs": [
+        "S02",
+        "S06",
+        "S07",
+        "S10",
+        "S11"
+      ],
+      "normal_example": "仮定したWorker結果Eは元ticket T、R@a/U、actor、因果参照と義務Dへ結ぶ。検収finding F（Dの必要oracle未充足）も同じT/R@a/U/Dへ結び、必要oracleの意味ownerへ返す。知識定義不足はBRAIN、製品要求値の未決はHARNESS008、適用契約不整合はHARNESSへ返す候補に分ける。OSは受信側の未完義務受理証拠が揃うまでTを完了にしない。",
+      "negative_example": "配送ACKだけでDを消込む、OSが適用判断を作る、失敗を訂正で消す、受領しただけのCOREに解決済み印を付ける場合は不成立。",
+      "finding": "Backflow候補の形成・発行・受理・意味解決を別に確認する。",
+      "contract_status": "mapped_to_existing_requirements",
+      "execution_status": "not_run"
+    },
+    {
+      "check_id": "C05",
+      "source_item": "stale版、別scope結果、未充足input、未解決依存、義務の脱落、単体成功からhandoff／構成体／完了を推定する負例を示す。",
+      "title": "stale・別scope・部分成功",
+      "evidence_refs": [
+        "S03",
+        "S06",
+        "S08",
+        "S10",
+        "S11",
+        "S17"
+      ],
+      "normal_example": "R@a/Uに束縛した有効な材料と未観測範囲を保持し、単体の成功、接続の受渡し、構成体固有条件を別々に照合する。",
+      "negative_example": "R@b、scope V、stale W、未充足input、未解決依存、義務D抜け、単体successだけの接続/構成体successを各一件ずつ混入したとき、元scopeの成立根拠にしない。",
+      "finding": "未観測をpass/N/A/欠陥0へ補完せず、元義務・scope・戻し先を残す。",
+      "contract_status": "mapped_to_existing_requirements",
+      "execution_status": "not_run"
+    },
+    {
+      "check_id": "C06",
+      "source_item": "INTELLIGENCEとの連携を別の接続として照合する。OS→INTは現状・ticket・依存・証拠（INT-L2-031）、INT→OSは計画・配置・診断等の根拠付き候補（035）。OSが発行・割当、Workerが実行し、actor／scope付き結果をOS／INTへ返す（037）。候補だけで実行許可を生成せず、OS stateのownerはOSに保持する。",
+      "title": "OS・INT・Worker往復",
+      "evidence_refs": [
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S04",
+        "S08"
+      ],
+      "normal_example": "OSの許可されたT/current state/dependency/evidenceをOS revision付きでINT031へ渡す。INT035は根拠・停止条件・依存付き計画/配置/診断候補をOSへ返す。OSが適格性と既存authorityを確認し、割当済みTをINT037のWorkerへ渡す。actor/scope付き結果をOS/INTへ返す。",
+      "negative_example": "INTがOS stateを書換える、candidateから直接実行する、OS割当を飛ばす、WorkerをINTと同一視する、専用CONNECT契約が不明でも接続済みにする場合は不成立。",
+      "finding": "CORE知識受渡しとINTの稼働中候補を別接続に保持する。CONNECT admitted contractの成立はこの静的例で証明しない。",
+      "contract_status": "mapped_to_existing_requirements",
+      "execution_status": "not_run"
+    },
+    {
+      "check_id": "C07",
+      "source_item": "1.0はHARNESS定義済み工程部品の規則的な組合せ・途中結果の差戻し、部品外の流れの生成は4.0という版境界を維持する。",
+      "title": "1.0／4.0境界",
+      "evidence_refs": [
+        "S04",
+        "S08",
+        "S16",
+        "S17"
+      ],
+      "normal_example": "1.0の例はW@wに定義済み部品の規則的組合せと既定戻し先への差戻しである。途中結果でも元R@aと未完義務を保持する。",
+      "negative_example": "部品にないflowの生成、元authority/oracleの無条件流用、4.0能力を1.0開始前提へ変える場合は不成立。",
+      "finding": "4.0の保持を1.0成立へ前倒ししない。",
+      "contract_status": "mapped_to_existing_requirements",
+      "execution_status": "not_run"
+    }
+  ],
+  "adoption_records": [
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    },
+    {
+      "path": "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
+      "sha256": "3f12d5a53b05dc478cc7138e362730d38c6aa835079b41b6124cb569f0fc6b9d"
+    }
+  ],
+  "adopted_section_comparison": [
+    {
+      "source_ref": "S04",
+      "adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "selected_text_unchanged": true
+    },
+    {
+      "source_ref": "S05",
+      "adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "selected_text_unchanged": true
+    },
+    {
+      "source_ref": "S06",
+      "adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "selected_text_unchanged": true
+    },
+    {
+      "source_ref": "S08",
+      "adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "selected_text_unchanged": true
+    },
+    {
+      "source_ref": "S09",
+      "adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "selected_text_unchanged": true
+    },
+    {
+      "source_ref": "S10",
+      "adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "selected_text_unchanged": true
+    },
+    {
+      "source_ref": "S12",
+      "adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "selected_text_unchanged": true
+    },
+    {
+      "source_ref": "S13",
+      "adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "selected_text_unchanged": true
+    },
+    {
+      "source_ref": "S14",
+      "adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "selected_text_unchanged": true
+    }
+  ],
+  "legacy_source_refs": [
+    "S18",
+    "S19",
+    "S20",
+    "S21",
+    "S22",
+    "S23",
+    "S24",
+    "S25"
+  ],
+  "legacy_comparison": {
+    "reuse_class": "existing_source_comparison",
+    "preserve": "旧template exact set/trace/pair/Backflow、ticket意味非上書き、Bench非配車、評価ticketとsubject ticket分離、再入staleと義務/権限保持。",
+    "change": "既存のPO判断が定めたCORE/BRAIN/OS/INT/LABOのownerと1.0/4.0区分を読む。監査例で新しい規則・field/schema・採択・formal successorを追加しない。",
+    "reason": "1805の七項目を一つの案件の要求接続と照合し、工程意味と稼働状態を混同しない。旧source全移管は未証明。"
+  },
+  "original_ticket_remaining": [
+    "推進生成器と管理登録の設計/実装/検収",
+    "PoC/UI prototype/Feature typed ticket・operational tagのversioned mappingとworkflow実生成の検証",
+    "label/remote driftからlocal authorityを上書きしない同期・read-after/idempotency/補償（1812）",
+    "依存1798/1804、CONNECT admitted interface・SECURITY/INFRASTRUCTUREの対象scope証拠",
+    "Worker/CI/handoff受理・接続固有/構成体の実結果"
+  ],
+  "completion": {
+    "requirements_checklist_items": 7,
+    "items_with_static_examples": 7,
+    "executed_examples": 0,
+    "issue_close_eligible": false,
+    "reason": "Issue本文は生成器・登録・検収・同期の実現を含む。七つの静的要求例と採択契約の一致はruntime/接続成立/Issue完了の証拠ではない。"
+  }
+}
