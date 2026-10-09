@@ -3,8 +3,8 @@
 status: draft_for_independent_review
 owner: HELIX-LABO
 paired_l5: ../L5-detail-design/stage1-labo.md
-base: main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
-l5_sha256: `f11b8db169bcc15d3ac80e8548f7da362f3c6d22a7e7ebf1d2f7ecb8c34766cf`
+base: main `fcf00128a7503317fa1c779c38cc8df3877b4952`
+l5_sha256: `3973e32c8f4646b144131bd5763438785cff53224771b5f1861d0b129c3bbab2`
 
 本書は固定L5の3 API境界をfixtureごとに検証設計へ下ろす。対象はL9に定義済みの28 functional oracle、5 NFR oracle、およびL10 NFR:9の2 scope oracle、合計35 IDである。fixtureは合成入力で、実source read、source owner permission、実CONNECT通信、L8/L10実行、合格、業務完了を示さない。期待は固定L4/L9の範囲だけから導く。
 
@@ -12,7 +12,7 @@ l5_sha256: `f11b8db169bcc15d3ac80e8548f7da362f3c6d22a7e7ebf1d2f7ecb8c34766cf`
 
 | 入力 | 固定対象 | SHA-256 |
 |---|---|---|
-| LABO L5 | `docs/helix-labo/L5-detail-design/stage1-labo.md`（本草稿bytes） | `21cb318d9eaaf414eda12f50ce684a0402fa590799dd00304e6985336d2137db` |
+| LABO L5 | `docs/helix-labo/L5-detail-design/stage1-labo.md`（本草稿bytes） | `3973e32c8f4646b144131bd5763438785cff53224771b5f1861d0b129c3bbab2` |
 | LABO L4 | `docs/helix-labo/L4-basic-design/stage1-labo.md` | `6ea7c6497e2349e63ed05a7a686e96e108a769a2ac864cf02295f174c00c6f1a` |
 | LABO L9 | `docs/helix-labo/L9-integration-verification/stage1-labo-integration-verification.md` | `a19f842cd6fe9576a0984651cd4aff554bb9355304c9b1f619480cd9d7867973` |
 | 固定L3/L10 | L3/L10 6文書、exact revision `8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7` | 各path/SHAはL4 §1 pinに従う |
