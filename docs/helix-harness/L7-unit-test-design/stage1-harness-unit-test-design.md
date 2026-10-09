@@ -12,8 +12,8 @@ paired_l5: ../L5-detail-design/stage1-harness.md
 paired_l6: ../L6-function-design/stage1-harness.md
 paired_l8: ../L8-detail-verification/stage1-harness-detail-verification.md
 paired_l9: ../L9-integration-verification/stage1-harness-integration-verification.md
-base: main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`
-upstream_detail_revision: main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`
+base: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
+upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 ---
 
 # HELIX-HARNESS Stage 1 L7単体試験設計
@@ -24,19 +24,19 @@ upstream_detail_revision: main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`
 
 | 参照文書 | revision / SHA-256 | 状態 |
 |---|---|---|
-| Stage 1 L4 | main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`, `25fbd104fd47f39d22f542664e57fd44a440af8904e11b2f0b397ac6606b6cfb` | 現mainの固定source。 |
-| Stage 1 L5 | main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`, `a0ed72f672606aee19e0124ee54ce47f6b409ab2e93b81cff1824f7c9cf7a92d` | 現mainの固定source。 |
-| Stage 1 L6 | 本PR content HEADに含む対L6本文; SHA-256 `279a82c000ad044a99e05dd70b10f51f8a4ed9045db35742a1346fd09f55cf5f` | 本pairの未実装・未実行の関数設計。L7から一方向に固定参照する。 |
-| Stage 1 L8 | main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`, `9eadffc05150c01114ff29ba0fb2d28449b927e06f5565fbb86510f59be89d26` | 現mainのfixture正本。 |
-| Stage 1 L9 | main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`, `6cc4bc3ac56b8d1d94e05ddc4dda71c35df2941aab39e65fb9d43cda2deb36da` | 既存verifier/case。 |
-| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`; `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
-| Common Kernel L5 | `docs/helix-harness/L5-detail-design/common-kernel.md`; main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`; `702a50b82fe7685198539f6a51f7203b72f2adef8edb08f8ce81f677b57a42f0` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
-| Common Kernel L6 | `docs/helix-harness/L6-function-design/common-kernel.md`; main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`; `0c11e55342f983d278a02ac4786178386bf8beefdcc824333ef0c5a93f5000b0` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
-| Common Kernel L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`; `89152ee3b58c291a88b7108fd0437c1349265eb85607c2da1f617d63ac3572c1` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
-| Common Kernel L8 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`; `6f598a9a9fd0ab58a30ec26bb290f958e2807a8ceb7fb7c368e0ecf4af1d876e` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
-| Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; main `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2`; `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
+| Stage 1 L4 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `25fbd104fd47f39d22f542664e57fd44a440af8904e11b2f0b397ac6606b6cfb` | 現mainの固定source。 |
+| Stage 1 L5 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `a0ed72f672606aee19e0124ee54ce47f6b409ab2e93b81cff1824f7c9cf7a92d` | 現mainの固定source。 |
+| Stage 1 L6 | 本PR content HEADに含む対L6本文; SHA-256 `11178c8c4b67ec8457a5d8eb403f0840ce9b7e7da272fdea2a88cf5491e83ec1` | 本pairの未実装・未実行の関数設計。L7から一方向に固定参照する。 |
+| Stage 1 L8 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `9eadffc05150c01114ff29ba0fb2d28449b927e06f5565fbb86510f59be89d26` | 現mainのfixture正本。 |
+| Stage 1 L9 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `6cc4bc3ac56b8d1d94e05ddc4dda71c35df2941aab39e65fb9d43cda2deb36da` | 既存verifier/case。 |
+| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
+| Common Kernel L5 | `docs/helix-harness/L5-detail-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `702a50b82fe7685198539f6a51f7203b72f2adef8edb08f8ce81f677b57a42f0` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
+| Common Kernel L6 | `docs/helix-harness/L6-function-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `0c11e55342f983d278a02ac4786178386bf8beefdcc824333ef0c5a93f5000b0` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
+| Common Kernel L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `89152ee3b58c291a88b7108fd0437c1349265eb85607c2da1f617d63ac3572c1` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
+| Common Kernel L8 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `6f598a9a9fd0ab58a30ec26bb290f958e2807a8ceb7fb7c368e0ecf4af1d876e` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
+| Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 共通Kernelの現行参照本文。直接のL6/L7対象はK1/K2/K3/K5。K6/K7の内部動作はopaque owner境界として分離・保持し、本pairで検証しない。K4/G3は製品L5/L8参照にとどめる。 |
 
-旧L7の236行snapshotが参照していたCommon Kernel revision `b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`はその当時の履歴参照であり、現行sourceとして使わない。現在のCommon Kernel本文は本表のmain `4aa18b23c9e3e208bbbd57def8e60a701e76f1f2` path別SHAに固定する。既存UT `UT-HARNESS-001`〜`UT-HARNESS-236`はL8と一致するfixture IDの対応を維持し、33件の追加caseを`UT-HARNESS-237`〜`UT-HARNESS-269`としてL8表の出現順に索引化する。既存番号は振り直さない。旧test/runtime/CLI/CIは起動していない。
+旧L7の236行snapshotが参照していたCommon Kernel revision `b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`はその当時の履歴参照であり、現行sourceとして使わない。現在のCommon Kernel本文は本表のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44` path別SHAに固定する。既存UT `UT-HARNESS-001`〜`UT-HARNESS-236`はL8と一致するfixture IDの対応を維持し、33件の追加caseを`UT-HARNESS-237`〜`UT-HARNESS-269`としてL8表の出現順に索引化する。既存番号は振り直さない。旧test/runtime/CLI/CIは起動していない。
 
 ## 2. Fixture規則と型付き期待
 
