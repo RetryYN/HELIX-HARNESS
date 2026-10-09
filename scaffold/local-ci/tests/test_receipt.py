@@ -72,10 +72,10 @@ def execution(check_id: str) -> dict:
         refs = suite_source_refs(current)
         result["result_complete"] = True
         result["suite_evidence"] = {
-            "suite_id": "common-kernel-k1-k2", "artifact_sha256": _RAW_SHA,
-            "artifact_bytes": 100, "mapping_sha256": "ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19",
-            "discovered_count": 199, "discovered_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
-            "executed_count": 199, "executed_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
+            "suite_id": "common-kernel-k1-k2-k3", "artifact_sha256": _RAW_SHA,
+            "artifact_bytes": 100, "mapping_sha256": "4ebc0422e2c5a3ab0ef853901009c8e077c247bcb632d93cd06291fc2bfd1f4f",
+            "discovered_count": 419, "discovered_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
+            "executed_count": 419, "executed_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
             "failure_count": 0, "error_count": 0, "skip_count": 0,
             "expected_failure_count": 0, "unexpected_success_count": 0,
             "source_refs": refs, "target": current,
@@ -352,7 +352,7 @@ class VerifyReceiptTests(unittest.TestCase):
     def test_suite_compact_evidence_rejects_outcome_counts_or_identity_digest_drift(self):
         mutations = []
         count_overflow = receipt()
-        count_overflow["executions"][-1]["suite_evidence"].update(failure_count=199, error_count=1)
+        count_overflow["executions"][-1]["suite_evidence"].update(failure_count=419, error_count=1)
         count_overflow["executions"][-1].update(state="fail", exit_code=1)
         count_overflow["aggregate_state"] = "fail"
         mutations.append(count_overflow)
@@ -380,7 +380,7 @@ class VerifyReceiptTests(unittest.TestCase):
 
         expected_failure_count_overflow = receipt()
         expected_failure_count_overflow["executions"][-1]["suite_evidence"].update(
-            executed_count=199, expected_failure_count=199, unexpected_success_count=1)
+            executed_count=419, expected_failure_count=419, unexpected_success_count=1)
         expected_failure_count_overflow["executions"][-1].update(state="fail", exit_code=1)
         expected_failure_count_overflow["aggregate_state"] = "fail"
         mutations.append(expected_failure_count_overflow)

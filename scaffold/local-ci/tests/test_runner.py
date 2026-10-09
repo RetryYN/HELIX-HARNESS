@@ -93,7 +93,7 @@ def _spec(check_id: str = CHECK_IDS[0]) -> dict:
     elif index == 4:
         argv = ["python3", "-B", "scaffold/local-ci/design_check.py"]
     else:
-        argv = ["python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2"]
+        argv = ["python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2-k3"]
     return {
         "check_id": check_id,
         "argv": argv,
