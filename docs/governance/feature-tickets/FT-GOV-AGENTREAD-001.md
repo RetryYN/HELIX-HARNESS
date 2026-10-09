@@ -18,6 +18,8 @@
 - 既存の設計・検証テンプレートseedも使っていなかった。
 - Concept「6. 証拠で閉じる」と七大原則「7. 確かな証拠と計測改善で品質を守れ」にも反していた。review側（Claude）は、件数とSHA-256の一致だけでmergeしていた。
 
+七大原則（2026-09-16作成、以後改訂）とConceptは、L2要求の合意（2026-09-28）とL3要件の作成（2026-10-05以降）より前からある。したがって違反は下流の設計・実装に限らず、要求の作成段階から原則を適用していなかったことにある。
+
 原因は二つある。第一に、セッションに毎回読み込まれる`AGENTS.md`と`CLAUDE.md`に、Concept・七大原則・JSON方針へのリンクが無かった。第二に、[新世代作業入口](../new-generation-start-here.md)の読込順では七大原則が「候補」と表記され、エージェントが適用を省いていた。
 
 旧HELIXとの対応: 旧`CLAUDE.md`（`archive/legacy-generation-2026-09-14/root/CLAUDE.md` 3–17行、SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）は、毎回読み込まれるfile自体に「Claude Code Read Order」として正本の直リンクを並べていた。
