@@ -1,10 +1,11 @@
-"""Fixed, source-bound Common Kernel K1/K2/K3/K5/K6 unittest runner.
+"""Fixed, source-bound Stage 1 local L7 unittest runner.
 
 The embedded inventory is reviewed configuration. This process runs only inside
 runner.py's sandbox; stdout is a bounded, untrusted result frame for the parent.
 """
 from __future__ import annotations
 import contextlib
+import ast
 import importlib.util
 import io
 import json
@@ -18,12 +19,144 @@ try:
 except ImportError:  # pragma: no cover - direct fixed argv entrypoint
     from common import Diagnostic, canonical_bytes, sha256
 
-SUITE_ID = "common-kernel-k1-k2-k3-k5-k6"
+SUITE_ID = "stage1-l7-source"
+CORE_SUITE_ID = "common-kernel-k1-k2-k3-k5-k6"
 CURRENT_DESIGN_PATHS = (
     "docs/helix-harness/L6-function-design/common-kernel.md",
     "docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md",
 )
 SOURCE_SHA256 = {'helix/helix-harness/units/common-kernel/src/common_kernel.py': 'ce9c7a87cd318c2ff5d12f68c71129f6ad99f0b78616f89c501ccdd2c4643178', 'helix/helix-harness/units/common-kernel/src/journal.py': '78dba87db2b55cb349ed8fbc5d0483cdb933a8cce4d45e910c5f9cbcaefeb907', 'helix/helix-harness/units/common-kernel/src/permission.py': '6a2f3b0d82dd38b03a4b27b2f98ed58217286eb9912c6a984a6a5549ac6c9f8b', 'helix/helix-harness/units/common-kernel/src/verification.py': '173c885b4b2400cf7479d7cabeabd14b65bfc8b2a025b6256d6463c52f5f958c', 'helix/helix-harness/units/common-kernel/tests/test_k1.py': 'da847ab19a9c3fa0df17c360bc489c9da2470f53d3ee6487ea0e822905e561ff', 'helix/helix-harness/units/common-kernel/tests/test_k2.py': '3b1a6ede6642292ef31e458ca519bc293917da5e4654f85eda9ccf4a350d1582', 'helix/helix-harness/units/common-kernel/tests/test_k3.py': '1dd8ff995c40e428e6952f607731f3215c3a44785a8b4f0b0ff6c7c340a2c62a', 'helix/helix-harness/units/common-kernel/tests/test_k5.py': 'c7d3dcedec9e63a1beb364147036135ae966c4330241f236f9842686e9134574', 'helix/helix-harness/units/common-kernel/tests/test_k6.py': '3d6e6a873cdc80ac7ba7810a5b94d6b104e2d54b8523a8e01da0c80cf6fdda86'}
+SUPPLEMENTAL_SOURCE_SHA256 = {
+    "helix/helix-brain/units/stage1-brain/src/brain.py": "b2b856c3073d7a51e594362de3eaff9af7b76b6e9af6633fd214d2f3e8a05cce",
+    "helix/helix-brain/units/stage1-brain/tests/test_brain.py": "18ebfeaedc496c37adc0f000f472e8eb00b83f774cc05504be5259feb177a42f",
+    "helix/helix-labo/units/stage1-labo/src/projection.py": "5c61fe620c35eeb2786b740ccd37086e0e81bdf797a95cbf9588c585537ab60a",
+    "helix/helix-labo/units/stage1-labo/tests/test_projection.py": "a60abe0042543a6bceedbff4f284356dc2d2c347343ba6469423e1dd26b9613c",
+    "helix/helix-harness/units/harness-stage1/src/stage1_pack.py": "2a6db3be14fe2d094a3947c36b4e911708d0ec95c6bcd59bec4ffd338e088c5d",
+    "helix/helix-harness/units/harness-stage1/tests/test_stage1_pack.py": "4ea1ee6a0056fba259298ce935f981dcfbef0dc00c296971b25cbc2806138d88",
+    "helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py": "7bd177a70a01edd1adb439df290ef0c7d7d37940bff2072532eee28bd8ac7ffd",
+    "helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py": "e24e83f6dedf47202962687a9e00c70a85f9328e2587838a9ef349242e5add21",
+}
+SUPPLEMENTAL_DESIGN_PATHS = (
+    "docs/helix-brain/L6-function-design/stage1-brain.md",
+    "docs/helix-brain/L7-unit-test-design/stage1-brain-unit-test-design.md",
+    "docs/helix-labo/L6-function-design/stage1-labo.md",
+    "docs/helix-labo/L7-unit-test-design/stage1-labo-unit-test-design.md",
+    "docs/helix-harness/L6-function-design/stage1-harness.md",
+    "docs/helix-harness/L7-unit-test-design/stage1-harness-unit-test-design.md",
+    "docs/helix-infrastructure/L6-function-design/stage1-infrastructure.md",
+    "docs/helix-infrastructure/L7-unit-test-design/stage1-infrastructure-unit-test-design.md",
+)
+
+# Fixed aliases are independent from the source module's importable name.
+SUPPLEMENTAL_MODULES = (
+    ("l7_sup_brain_test_brain", "helix/helix-brain/units/stage1-brain/tests/test_brain.py"),
+    ("l7_sup_labo_test_projection", "helix/helix-labo/units/stage1-labo/tests/test_projection.py"),
+    ("l7_sup_harness_test_stage1_pack", "helix/helix-harness/units/harness-stage1/tests/test_stage1_pack.py"),
+    ("l7_sup_infra_test_infrastructure", "helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py"),
+)
+FIXED_TEST_MODULES = (
+    ("test_k1", "helix/helix-harness/units/common-kernel/tests/test_k1.py"),
+    ("test_k2", "helix/helix-harness/units/common-kernel/tests/test_k2.py"),
+    ("test_k3", "helix/helix-harness/units/common-kernel/tests/test_k3.py"),
+    ("test_k5", "helix/helix-harness/units/common-kernel/tests/test_k5.py"),
+    ("test_k6", "helix/helix-harness/units/common-kernel/tests/test_k6.py"),
+    *SUPPLEMENTAL_MODULES,
+)
+SUPPLEMENTAL_IDENTITIES = (
+    ("SUP-BRAIN-001", "BRAIN", "l7_sup_brain_test_brain", "BrainProjectionTests.test_trace_source_projects_each_declared_field_and_keeps_owner_roles"),
+    ("SUP-BRAIN-002", "BRAIN", "l7_sup_brain_test_brain", "BrainProjectionTests.test_trace_source_preserves_k1_variants_without_reclassifying_other_fields"),
+    ("SUP-BRAIN-003", "BRAIN", "l7_sup_brain_test_brain", "BrainProjectionTests.test_trace_source_keeps_owner_observations_in_their_own_fields"),
+    ("SUP-BRAIN-004", "BRAIN", "l7_sup_brain_test_brain", "BrainKnowledgeLookupTests.test_read_knowledge_returns_exact_k2_lookup_value"),
+    ("SUP-BRAIN-005", "BRAIN", "l7_sup_brain_test_brain", "BrainKnowledgeLookupTests.test_read_knowledge_preserves_k2_no_match"),
+    ("SUP-BRAIN-006", "BRAIN", "l7_sup_brain_test_brain", "BrainKnowledgeLookupTests.test_read_knowledge_preserves_saved_unknown_observation"),
+    ("SUP-BRAIN-007", "BRAIN", "l7_sup_brain_test_brain", "BrainKnowledgeLookupTests.test_read_knowledge_keeps_nested_version_unknown_in_record_value"),
+    ("SUP-BRAIN-008", "BRAIN", "l7_sup_brain_test_brain", "BrainKnowledgeLookupTests.test_read_knowledge_keeps_nested_state_unknown_in_record_value"),
+    ("SUP-BRAIN-009", "BRAIN", "l7_sup_brain_test_brain", "BrainKnowledgeLookupTests.test_read_knowledge_keeps_each_declared_state_payload"),
+    ("SUP-BRAIN-010", "BRAIN", "l7_sup_brain_test_brain", "BrainKnowledgeLookupTests.test_read_knowledge_preserves_prior_value_as_k2_stale"),
+    ("SUP-BRAIN-011", "BRAIN", "l7_sup_brain_test_brain", "BrainKnowledgeLookupTests.test_read_knowledge_preserves_prior_nonvalue_as_k2_unobserved"),
+    ("SUP-BRAIN-012", "BRAIN", "l7_sup_brain_test_brain", "BrainKnowledgeLookupTests.test_read_knowledge_preserves_same_key_content_conflict"),
+    ("SUP-BRAIN-013", "BRAIN", "l7_sup_brain_test_brain", "BrainKnowledgeLookupTests.test_read_knowledge_does_not_mutate_restored_records"),
+    ("SUP-LABO-001", "LABO", "l7_sup_labo_test_projection", "PrivateProjectionTests.test_all_twenty_fields_are_retained_without_value_interpretation"),
+    ("SUP-LABO-002", "LABO", "l7_sup_labo_test_projection", "PrivateProjectionTests.test_each_single_missing_field_is_local_and_does_not_mutate_input"),
+    ("SUP-LABO-003", "LABO", "l7_sup_labo_test_projection", "PrivateProjectionTests.test_all_seven_declared_status_values_are_preserved_separately"),
+    ("SUP-LABO-004", "LABO", "l7_sup_labo_test_projection", "PrivateProjectionTests.test_episode_candidate_shape_retains_refs_and_relation_only"),
+    ("SUP-HARNESS-001", "HARNESS", "l7_sup_harness_test_stage1_pack", "PrivatePackComparisonTests.test_exact_ref_baseline_is_match_and_retains_all_refs"),
+    ("SUP-HARNESS-002", "HARNESS", "l7_sup_harness_test_stage1_pack", "PrivatePackComparisonTests.test_single_revision_mutation_is_domain_mismatch"),
+    ("SUP-HARNESS-003", "HARNESS", "l7_sup_harness_test_stage1_pack", "PrivatePackComparisonTests.test_explicit_fields_keep_order_and_detect_one_mutation"),
+    ("SUP-HARNESS-004", "HARNESS", "l7_sup_harness_test_stage1_pack", "PrivatePackComparisonTests.test_explicit_missing_and_multiple_states_are_not_inferred"),
+    ("SUP-HARNESS-005", "HARNESS", "l7_sup_harness_test_stage1_pack", "PrivatePackComparisonTests.test_existing_owner_nonvalue_is_returned_by_identity"),
+    ("SUP-INFRA-001", "INFRA", "l7_sup_infra_test_infrastructure", "TestImplementedProjections.test_resource_projection_subset_preserves_baseline_and_unreadable_mutation"),
+    ("SUP-INFRA-002", "INFRA", "l7_sup_infra_test_infrastructure", "TestImplementedProjections.test_resource_projection_subset_preserves_unseen_declared_role"),
+    ("SUP-INFRA-003", "INFRA", "l7_sup_infra_test_infrastructure", "TestImplementedProjections.test_axis_pair_retains_values_and_unknown_without_comparison_class"),
+    ("SUP-INFRA-004", "INFRA", "l7_sup_infra_test_infrastructure", "TestImplementedProjections.test_path_storage_projection_treats_owner_keys_as_opaque"),
+    ("SUP-INFRA-005", "INFRA", "l7_sup_infra_test_infrastructure", "TestImplementedProjections.test_nfr_helper_counts_supplied_states_and_keeps_missing_denominator"),
+)
+SUPPLEMENTAL_IDS = tuple(row[0] for row in SUPPLEMENTAL_IDENTITIES)
+SUPPLEMENTAL_IDS_SHA256 = "e5d71feabe981041144583fb0ee0f4754dd76d881e08fb44b48e5bf25d0b8239"
+COMPOSITE_DISCOVERY_COUNT = 613
+COMPOSITE_DISCOVERY_IDS_SHA256 = "739e4f7078047a1bd19eb3c77a723d9a85809cd82193c383d04bb365b4bce5de"
+SUPPLEMENTAL_SOURCE_REFS = {
+    "BRAIN": ("docs/helix-brain/L7-unit-test-design/stage1-brain-unit-test-design.md", 104, "UT-BRAIN-", (2,)),
+    "LABO": ("docs/helix-labo/L7-unit-test-design/stage1-labo-unit-test-design.md", 83, "LABO-UT-", (3,)),
+    "HARNESS": ("docs/helix-harness/L7-unit-test-design/stage1-harness-unit-test-design.md", 269, "UT-HARNESS-", (3,)),
+    "INFRA": ("docs/helix-infrastructure/L7-unit-test-design/stage1-infrastructure-unit-test-design.md", 40, "INFRA-L7-", (3, 4)),
+}
+_FORMAL_LOCATOR_SHA256 = {
+    "BRAIN": "6a464b3b832bbaa0ca149b8d1d9ecd96344ca5249dd3b5c1425e0fe8d30eede9",
+    "LABO": "9ba1c0e0af3fb12c3591f613106e6eeb836c6410a4dae428e578c5900766d72c",
+    "HARNESS": "e6adafc7253fca9021d752d32d40d93ee50b3cd7159f29e6e3b01c74e957e8e6",
+    "INFRA": "d5296e1c9a61c32ffee1702259a3605d048c234feb88b60906f065d1d6546c50",
+}
+_LABO_NFR_REUSE_IDS = frozenset(f"LABO-UT-{number:03d}" for number in range(75, 80))
+_LABO_NFR_ORACLE_IDS = frozenset({
+    "IV-LABO-NFR-001-01", "IV-LABO-NFR-001-02", "IV-LABO-NFR-001-03",
+    "IV-LABO-NFR-011-01", "IV-LABO-NFR-011-02",
+})
+_FIXED_L7_TABLE_HEADERS = {
+    "BRAIN": {2: ("UT ID", "L8定義ID", "固定L9 oracle ID", "assertion境界・局所状態")},
+    "LABO": {
+        3: ("L7 ID", "L8定義ID", "索引種別", "API / comparator / 索引先",
+            "L8 §5 coverage境界", "baseline・mutation・expectedの正本"),
+        4: ("L9 oracle ID", "L7 case IDs / reuse index", "L8定義ID"),
+    },
+    "HARNESS": {3: ("L7 test ID", "既存L9 verifier", "L6関数ID", "L8 fixture ID",
+                    "基準入力", "単一変異 / positive control", "型付き主結果",
+                    "構造 / owner境界assertion")},
+    "INFRA": {
+        3: ("L7 test ID", "L9 verifier / L10 case", "L6関数", "unit fixtureで照合するoracle境界"),
+        4: ("L7 test ID", "L9 verifier / L3 obligation", "L6関数", "unit fixtureで照合する範囲"),
+    },
+}
+_FIXED_STATUS_TABLES = {
+    "HARNESS": {
+        7: {"header": ("固定対象", "実status", "実行・assert範囲"),
+            "status_column": 1, "key_columns": (0,), "expected_rows": 3,
+            "expected_keys": ("UT-HARNESS-001`〜`UT-HARNESS-269`（対応するL8 formal fixture 269件）",
+                              "UT-HARNESS-SUP-001`〜`UT-HARNESS-SUP-010`（補助fixture 10件）",
+                              "test_stage1_pack.PrivatePackComparisonTests` 5件")},
+    },
+    "INFRA": {
+        5: {"header": ("L7 oracle ID", "L9 verifier", "L8 fixture ID",
+                        "L6 function candidate", "L8 baseline / mutation",
+                        "L8 expected result / field / owner", "実装候補区分（未実行）"),
+            "status_column": 6, "owner_column": 5, "key_columns": (0, 1, 2),
+            "expected_rows": 278},
+        9: {"header": ("L8 fixture ID", "coverage", "実検査範囲または未接続理由"),
+            "status_column": 1, "key_columns": (0,), "expected_rows": 248},
+    },
+}
+_FIXED_SOURCE_CONTEXT_SECTIONS = {
+    "BRAIN": (3, 6, 7), "LABO": (5, 6), "HARNESS": (5, 7),
+    "INFRA": (5, 7, 8, 9),
+}
+_FIXED_BOUNDARY_TABLES = {
+    "LABO": {3: {"header": _FIXED_L7_TABLE_HEADERS["LABO"][3], "column": 4,
+                 "kind": "coverage_boundary", "expected_rows": 88,
+                 "id_digest": "669ecaa27c434743fd348b8cb88f5340556a0419d54d2a80701ffe37dae4a270"}},
+    "HARNESS": {3: {"header": _FIXED_L7_TABLE_HEADERS["HARNESS"][3], "column": 7,
+                    "kind": "owner_boundary_assertion", "expected_rows": 269,
+                    "id_digest": _FORMAL_LOCATOR_SHA256["HARNESS"]}},
+}
 FORMAL_MAPPING = ({'callable_qualname': 'K1UnitTests.test_CK_K1_UT_001',
   'coverage_kind': 'primary_callable',
   'formal_l7_id': 'CK-K1-UT-001',
@@ -1579,6 +1712,11 @@ K6_DISCOVERY_IDS = tuple(sorted((*K6_FORMAL_DISCOVERY_IDS, *K6_REGRESSION_IDS)))
 FORMAL_MAPPING = FORMAL_MAPPING + K6_FORMAL_MAPPING
 FORMAL_MAPPING_SHA256 = "7473135901595324b2b6a42ac59b4af877398e5e1471950da54969b60059ea9c"
 EXPECTED_DISCOVERY_IDS = tuple(sorted((*EXPECTED_DISCOVERY_IDS, *K6_DISCOVERY_IDS)))
+CORE_EXPECTED_DISCOVERY_IDS = EXPECTED_DISCOVERY_IDS
+SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS = tuple(sorted(
+    alias + "." + qualname for _sid, _mechanism, alias, qualname in SUPPLEMENTAL_IDENTITIES))
+EXPECTED_DISCOVERY_IDS = tuple(sorted((*CORE_EXPECTED_DISCOVERY_IDS,
+                                        *SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS)))
 K3_FORMAL_MAPPING_SHA256 = "8c58deecd7739ba48a01e4281de6c93cf6ece107ad66fa3eaeac6d10f80323b0"
 K3_DISCOVERY_IDS_SHA256 = "a3de5d8fbe0daf3500441a1e7a96fc9c6b71409e38fea446d6185dd05c86b70c"
 K1_K2_FORMAL_MAPPING_SHA256 = "ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19"
@@ -1606,10 +1744,12 @@ K6_FORMAL_ID_CLOSURE = tuple(sorted(
     + [row["formal_l7_id"] for row in K6_UNEXECUTED_DISPOSITIONS]
 ))
 K6_DISCOVERY_COUNT = 52
-EXPECTED_DISCOVERY_COUNT = 586
-EXPECTED_DISCOVERY_IDS_SHA256 = "aca81abd7dd60c29512431c2d8223fd509d4c7a3a3fd7f1fc70847658ba0042d"
+CORE_EXPECTED_DISCOVERY_COUNT = 586
+EXPECTED_DISCOVERY_COUNT = COMPOSITE_DISCOVERY_COUNT
+CORE_EXPECTED_DISCOVERY_IDS_SHA256 = "aca81abd7dd60c29512431c2d8223fd509d4c7a3a3fd7f1fc70847658ba0042d"
+EXPECTED_DISCOVERY_IDS_SHA256 = COMPOSITE_DISCOVERY_IDS_SHA256
 K6_DISCOVERY_IDS_SHA256 = "52e558bc65de379093d9a3fa46ce7d59909f23a33a15e6a135d1fcf09cd4c857"
-RESULT_MAX_BYTES = 90514
+RESULT_MAX_BYTES = 99820
 MODULES = ("test_k1", "test_k2", "test_k3", "test_k5", "test_k6")
 
 # Literal values permitted by the current L7 expansion rules.  Keeping the
@@ -1650,8 +1790,18 @@ _L7_TEMPLATE_VALUES = {
 def inventory_value() -> dict:
     return {
         "suite_id": SUITE_ID,
+        "core_suite_id": CORE_SUITE_ID,
         "source_sha256": dict(sorted(SOURCE_SHA256.items())),
         "current_design_paths": list(CURRENT_DESIGN_PATHS),
+        "supplemental_source_sha256": dict(sorted(SUPPLEMENTAL_SOURCE_SHA256.items())),
+        "supplemental_design_paths": list(SUPPLEMENTAL_DESIGN_PATHS),
+        "supplemental_modules": [list(row) for row in SUPPLEMENTAL_MODULES],
+        "fixed_test_modules": [list(row) for row in FIXED_TEST_MODULES],
+        "supplemental_identities": [list(row) for row in SUPPLEMENTAL_IDENTITIES],
+        "supplemental_ids_sha256": SUPPLEMENTAL_IDS_SHA256,
+        "composite_discovery_count": COMPOSITE_DISCOVERY_COUNT,
+        "composite_discovery_ids_sha256": COMPOSITE_DISCOVERY_IDS_SHA256,
+        "mechanism_l7_sources": {key: list(value) for key, value in SUPPLEMENTAL_SOURCE_REFS.items()},
         "formal_mapping": list(FORMAL_MAPPING),
         "formal_mapping_sha256": FORMAL_MAPPING_SHA256,
         "formal_id_closure": list(FORMAL_ID_CLOSURE),
@@ -1720,6 +1870,592 @@ def l7_formal_ids_present(raw: bytes) -> bool:
     return True
 
 
+class _AstName:
+    """A name token used only while reading static AST constants."""
+
+    def __init__(self, value: str):
+        self.value = value
+
+
+_AST_UNKNOWN = object()
+
+
+def _ast_static_value(node, environment):
+    """Evaluate the small literal subset used by fixed unittest generators."""
+    if isinstance(node, ast.Constant):
+        return node.value
+    if isinstance(node, ast.Name):
+        return environment.get(node.id, _AstName(node.id))
+    if isinstance(node, (ast.Tuple, ast.List, ast.Set)):
+        values = []
+        for element in node.elts:
+            value = _ast_static_value(element.value if isinstance(element, ast.Starred) else element,
+                                      environment)
+            if value is _AST_UNKNOWN:
+                return _AST_UNKNOWN
+            if isinstance(element, ast.Starred):
+                if not isinstance(value, (tuple, list)):
+                    return _AST_UNKNOWN
+                values.extend(value)
+            else:
+                values.append(value)
+        return tuple(values) if isinstance(node, ast.Tuple) else values
+    if isinstance(node, ast.Call):
+        if isinstance(node.func, ast.Name) and node.func.id == "range":
+            args = [_ast_static_value(item, environment) for item in node.args]
+            if all(type(item) is int for item in args) and not node.keywords:
+                return tuple(range(*args))
+            return _AST_UNKNOWN
+        if isinstance(node.func, ast.Name) and node.func.id == "zip":
+            args = [_ast_static_value(item, environment) for item in node.args]
+            if all(isinstance(item, (tuple, list)) for item in args) and not node.keywords:
+                return tuple(zip(*args))
+            return _AST_UNKNOWN
+        if isinstance(node.func, ast.Attribute) and node.func.attr == "replace":
+            target = _ast_static_value(node.func.value, environment)
+            args = [_ast_static_value(item, environment) for item in node.args]
+            if (isinstance(target, str) and len(args) == 2
+                    and all(isinstance(item, str) for item in args) and not node.keywords):
+                return target.replace(*args)
+            return _AST_UNKNOWN
+        return _AST_UNKNOWN
+    if isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add):
+        left = _ast_static_value(node.left, environment)
+        right = _ast_static_value(node.right, environment)
+        if type(left) is type(right) and isinstance(left, (str, int, tuple, list)):
+            return left + right
+        return _AST_UNKNOWN
+    if isinstance(node, ast.JoinedStr):
+        output = []
+        for part in node.values:
+            if isinstance(part, ast.Constant):
+                output.append(str(part.value))
+                continue
+            if not isinstance(part, ast.FormattedValue):
+                return _AST_UNKNOWN
+            value = _ast_static_value(part.value, environment)
+            if value is _AST_UNKNOWN or isinstance(value, _AstName):
+                return _AST_UNKNOWN
+            if part.conversion == ord("r"):
+                value = repr(value)
+            elif part.conversion == ord("s"):
+                value = str(value)
+            elif part.conversion == ord("a"):
+                value = ascii(value)
+            if part.format_spec is not None:
+                spec_parts = []
+                for spec_part in part.format_spec.values:
+                    if not isinstance(spec_part, ast.Constant):
+                        return _AST_UNKNOWN
+                    spec_parts.append(str(spec_part.value))
+                try:
+                    value = format(value, "".join(spec_parts))
+                except (TypeError, ValueError):
+                    return _AST_UNKNOWN
+            output.append(str(value))
+        return "".join(output)
+    return _AST_UNKNOWN
+
+
+def _ast_assign_target(target, value, environment):
+    if isinstance(target, ast.Name):
+        environment[target.id] = value
+        return
+    if not isinstance(target, (ast.Tuple, ast.List)) or not isinstance(value, (tuple, list)):
+        return
+    star_index = next((index for index, item in enumerate(target.elts)
+                       if isinstance(item, ast.Starred)), None)
+    if star_index is None:
+        if len(target.elts) == len(value):
+            for child, item in zip(target.elts, value):
+                _ast_assign_target(child, item, environment)
+        return
+    before, after = target.elts[:star_index], target.elts[star_index + 1:]
+    if len(value) < len(before) + len(after):
+        return
+    for child, item in zip(before, value[:len(before)]):
+        _ast_assign_target(child, item, environment)
+    stop = len(value) - len(after) if after else len(value)
+    _ast_assign_target(target.elts[star_index].value,
+                       tuple(value[len(before):stop]), environment)
+    for child, item in zip(after, value[len(value) - len(after):]):
+        _ast_assign_target(child, item, environment)
+
+
+def _ast_helper_registration(function, *, nested_name=None):
+    """Read a fixed registration helper's class and generated-name template."""
+    class_names, name_templates = set(), []
+    if function is None:
+        return None, None
+    for node in ast.walk(function):
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "setattr":
+            if node.args and isinstance(node.args[0], ast.Name):
+                class_names.add(node.args[0].id)
+        if (nested_name is not None and isinstance(node, (ast.Assign, ast.AnnAssign))):
+            targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+            value = node.value
+            if any(isinstance(target, ast.Attribute) and target.attr == "__name__"
+                   and isinstance(target.value, ast.Name) and target.value.id == nested_name
+                   for target in targets):
+                name_templates.append(value)
+    if len(class_names) != 1 or len(name_templates) > 1:
+        return None, None
+    return next(iter(class_names)), (name_templates[0] if name_templates else None)
+
+
+def _ast_test_identities_for_module(alias, raw: bytes, expected_classes):
+    try:
+        text = raw.decode("utf-8", "strict")
+        tree = ast.parse(text, filename=alias)
+    except (UnicodeError, SyntaxError, ValueError) as exc:
+        raise Diagnostic("Unknown", "unreadable", "fixed test module cannot be parsed as UTF-8 AST") from exc
+
+    class_nodes = [node for node in tree.body if isinstance(node, ast.ClassDef)]
+    function_nodes = [node for node in tree.body
+                      if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))]
+    class_names = [node.name for node in class_nodes]
+    function_names = [node.name for node in function_nodes]
+    if len(class_names) != len(set(class_names)) or len(function_names) != len(set(function_names)):
+        raise Diagnostic("Unknown", "conflict", "fixed AST module has duplicate class or function names")
+    for class_node in class_nodes:
+        method_names = [node.name for node in class_node.body
+                        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+                        and node.name.startswith("test")]
+        if len(method_names) != len(set(method_names)):
+            raise Diagnostic("Unknown", "conflict", "fixed AST class has duplicate test method names")
+    classes = {node.name: node for node in class_nodes}
+    functions = {node.name: node for node in function_nodes}
+    absent = set(expected_classes) - set(classes)
+    if absent:
+        raise Diagnostic("Unknown", "missing_input", "fixed AST test class is absent")
+    if set(classes) - set(expected_classes):
+        raise Diagnostic("Unknown", "conflict", "fixed AST module has an unlisted test class")
+
+    actual = []
+    for class_name, class_node in classes.items():
+        for member in class_node.body:
+            if isinstance(member, (ast.FunctionDef, ast.AsyncFunctionDef)) and member.name.startswith("test"):
+                actual.append(f"{alias}.{class_name}.{member.name}")
+
+    add_class, _ = _ast_helper_registration(functions.get("_add_l7_expansion"))
+    if add_class is None and "_add_l7_expansion" in functions:
+        raise Diagnostic("Unknown", "conflict", "fixed AST expansion helper has ambiguous owner class")
+    install_class, install_template = _ast_helper_registration(
+        functions.get("_install_case"), nested_name="test_case")
+    if install_class is None and "_install_case" in functions:
+        raise Diagnostic("Unknown", "conflict", "fixed AST installer has ambiguous owner class")
+
+    def visit(statements, environment):
+        for statement in statements:
+            if isinstance(statement, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                continue
+            if isinstance(statement, (ast.Assign, ast.AnnAssign)):
+                value = _ast_static_value(statement.value, environment)
+                targets = statement.targets if isinstance(statement, ast.Assign) else [statement.target]
+                if value is not _AST_UNKNOWN:
+                    for target in targets:
+                        _ast_assign_target(target, value, environment)
+                continue
+            if isinstance(statement, ast.For):
+                values = _ast_static_value(statement.iter, environment)
+                if not isinstance(values, (tuple, list)):
+                    continue
+                for value in values:
+                    nested = dict(environment)
+                    _ast_assign_target(statement.target, value, nested)
+                    visit(statement.body, nested)
+                    visit(statement.orelse, nested)
+                continue
+            if isinstance(statement, ast.If):
+                visit(statement.body, dict(environment))
+                visit(statement.orelse, dict(environment))
+                continue
+            if not (isinstance(statement, ast.Expr) and isinstance(statement.value, ast.Call)):
+                continue
+            call = statement.value
+            if isinstance(call.func, ast.Name) and call.func.id == "setattr" and len(call.args) >= 2:
+                class_value = _ast_static_value(call.args[0], environment)
+                class_name = class_value.value if isinstance(class_value, _AstName) else class_value
+                method_name = _ast_static_value(call.args[1], environment)
+                if (method_name is _AST_UNKNOWN and isinstance(call.args[1], ast.Attribute)
+                        and call.args[1].attr == "__name__" and class_name == install_class
+                        and install_template is not None):
+                    method_name = _ast_static_value(install_template, environment)
+                if class_name in classes and method_name is _AST_UNKNOWN:
+                    raise Diagnostic("Unknown", "conflict", "fixed AST test method name is not statically resolvable")
+                if class_name in classes and isinstance(method_name, str) and method_name.startswith("test"):
+                    actual.append(f"{alias}.{class_name}.{method_name}")
+                continue
+            if isinstance(call.func, ast.Name) and call.func.id == "_add_l7_expansion":
+                method_name = _ast_static_value(call.args[0], environment) if call.args else _AST_UNKNOWN
+                if not isinstance(method_name, str) or add_class not in classes:
+                    raise Diagnostic("Unknown", "conflict", "fixed AST expansion identity is not statically resolvable")
+                actual.append(f"{alias}.{add_class}.{method_name}")
+                continue
+            if isinstance(call.func, ast.Name) and call.func.id == "_install_case":
+                number = _ast_static_value(call.args[1], environment) if len(call.args) > 1 else _AST_UNKNOWN
+                method_name = (_ast_static_value(install_template, {"ut_number": number})
+                               if type(number) is int and install_template is not None else _AST_UNKNOWN)
+                if not isinstance(method_name, str) or install_class not in classes:
+                    raise Diagnostic("Unknown", "conflict", "fixed AST installer identity is not statically resolvable")
+                actual.append(f"{alias}.{install_class}.{method_name}")
+
+    visit(tree.body, {})
+    return actual
+
+
+def validate_fixed_test_ast_inventory(source_bytes: dict[str, bytes]) -> None:
+    """Match nine fixed aliases' class/method identities using AST only; import occurs in sandbox."""
+    aliases = [alias for alias, _path in FIXED_TEST_MODULES]
+    paths = [path for _alias, path in FIXED_TEST_MODULES]
+    if (len(aliases) != 9 or len(set(aliases)) != 9 or len(set(paths)) != 9
+            or set(source_bytes) != set(paths)):
+        missing = set(paths) - set(source_bytes)
+        reason = "missing_input" if missing else "conflict"
+        raise Diagnostic("Unknown", reason, "fixed AST test module aliases or source paths differ")
+
+    expected = list(EXPECTED_DISCOVERY_IDS)
+    if (len(expected) != 613 or len(set(expected)) != 613
+            or any(len(identity.split(".")) != 3 for identity in expected)):
+        raise Diagnostic("Unknown", "conflict", "fixed AST expected identity inventory is malformed")
+    expected_by_alias = {alias: set() for alias in aliases}
+    for identity in expected:
+        alias, class_name, method_name = identity.split(".")
+        if alias not in expected_by_alias or not class_name or not method_name.startswith("test"):
+            raise Diagnostic("Unknown", "conflict", "fixed AST identity is outside the closed aliases")
+        expected_by_alias[alias].add(identity)
+
+    actual = []
+    for alias, path in FIXED_TEST_MODULES:
+        classes = {identity.split(".")[1] for identity in expected_by_alias[alias]}
+        actual.extend(_ast_test_identities_for_module(alias, source_bytes[path], classes))
+    if len(actual) != len(set(actual)) or set(actual) != set(expected):
+        raise Diagnostic("Unknown", "conflict", "AST test identities differ from the closed 613 identities")
+
+
+def _markdown_cells(line: str) -> list[str] | None:
+    """Split one markdown table row without treating escaped pipes as separators."""
+    stripped = line.strip()
+    if not stripped.startswith("|") or not stripped.endswith("|"):
+        return None
+    result, current = [], []
+    escaped = False
+    for char in stripped[1:-1]:
+        if char == "|" and not escaped:
+            result.append("".join(current).strip())
+            current = []
+        else:
+            current.append(char)
+        if char == "\\" and not escaped:
+            escaped = True
+        else:
+            escaped = False
+    result.append("".join(current).strip())
+    return result
+
+
+def collect_mechanism_l7_trace(source_bytes: dict[str, bytes]) -> dict[str, list[dict]]:
+    """Extract raw formal locators and separate indexes from fixed L7 tables."""
+    formal_traces, nfr_reuse_indexes, oracle_indexes = [], [], []
+    for mechanism, (path, formal_count, prefix, included_sections) in SUPPLEMENTAL_SOURCE_REFS.items():
+        raw = source_bytes.get(path)
+        if not isinstance(raw, bytes):
+            raise Diagnostic("Unknown", "missing_input", "fixed mechanism L7 source is unavailable")
+        try:
+            text = raw.decode("utf-8", "strict")
+        except UnicodeError as exc:
+            raise Diagnostic("Unknown", "unreadable", "mechanism L7 source is not UTF-8") from exc
+        rows, reuse_indexes, section_oracle_indexes = [], [], []
+        headers = None
+        heading = ""
+        section = None
+        for line_number, line in enumerate(text.splitlines(), 1):
+            if line.startswith("#"):
+                heading = line.strip()
+                match = re.match(r"^## (\d+)(?:\.|\s)", line)
+                if match:
+                    section = int(match.group(1))
+            cells = _markdown_cells(line)
+            if cells is None:
+                headers = None
+                continue
+            if all(re.fullmatch(r":?-{3,}:?", cell.replace(" ", "")) for cell in cells):
+                continue
+            first_tokens = re.findall(r"`([^`]+)`", cells[0]) if cells else []
+            if not first_tokens:
+                headers = cells
+                continue
+            identifier = first_tokens[0]
+            if (mechanism == "LABO" and section == 4
+                    and identifier.startswith("IV-LABO-NFR-")):
+                if tuple(headers or ()) != _FIXED_L7_TABLE_HEADERS["LABO"][4] or len(cells) != 3:
+                    raise Diagnostic("Unknown", "conflict", "LABO NFR oracle index schema is not fixed")
+                section_oracle_indexes.append(_source_trace_row(
+                    path, mechanism, identifier, line_number, heading, line, cells, headers,
+                    category="nfr_oracle_index"))
+                continue
+            if mechanism == "LABO" and section == 4 and identifier.startswith("IV-LABO-"):
+                # Preserve the fixed section-4 header while skipping non-NFR oracle rows.
+                continue
+            if not identifier.startswith(prefix):
+                headers = cells
+                continue
+            if mechanism == "INFRA" and not re.fullmatch(r"INFRA-L7-(?:NFR-)?\d{3}-\d{2}", identifier):
+                continue
+            if mechanism != "INFRA" and not re.fullmatch(re.escape(prefix) + r"\d{3}", identifier):
+                continue
+            if section not in included_sections:
+                headers = cells
+                continue
+            expected_header = _FIXED_L7_TABLE_HEADERS.get(mechanism, {}).get(section)
+            if expected_header is None or tuple(headers or ()) != expected_header:
+                raise Diagnostic("Unknown", "conflict", "mechanism L7 table header differs from the fixed schema")
+            if len(cells) != len(expected_header):
+                raise Diagnostic("Unknown", "conflict", "mechanism L7 formal row width differs from the fixed schema")
+            if mechanism == "LABO":
+                index_kind = cells[2].strip("`")
+                if index_kind == "nfr_reuse_index":
+                    reuse_indexes.append(_source_trace_row(
+                        path, mechanism, identifier, line_number, heading, line, cells, headers,
+                        category="nfr_reuse_index"))
+                    continue
+                if index_kind not in {"input_api_case", "output_oracle_self_test",
+                                      "input_api_case / partial_mapping"}:
+                    raise Diagnostic("Unknown", "conflict", "LABO L7 index kind is not recognized")
+            rows.append(_source_trace_row(path, mechanism, identifier, line_number,
+                                          heading, line, cells, headers,
+                                          category="formal_locator"))
+        if len(rows) != formal_count:
+            raise Diagnostic("Unknown", "missing_input", "mechanism L7 locator rows are incomplete")
+        ids = [row["source_id"] for row in rows]
+        if len(ids) != len(set(ids)):
+            raise Diagnostic("Unknown", "conflict", "mechanism L7 locator IDs are duplicated")
+        if sha256(("\n".join(sorted(ids)) + "\n").encode("utf-8")) != _FORMAL_LOCATOR_SHA256[mechanism]:
+            raise Diagnostic("Unknown", "conflict", "mechanism L7 formal locator set differs from its fixed set")
+        formal_traces.extend(rows)
+        nfr_reuse_indexes.extend(reuse_indexes)
+        oracle_indexes.extend(section_oracle_indexes)
+    infra_nfr_formal_count = sum(
+        row["mechanism"] == "INFRA" and row["source_id"].startswith("INFRA-L7-NFR-")
+        for row in formal_traces)
+    reuse_ids = [row["source_id"] for row in nfr_reuse_indexes]
+    oracle_ids = [row["source_id"] for row in oracle_indexes]
+    if (len(reuse_ids) != len(_LABO_NFR_REUSE_IDS)
+            or len(oracle_ids) != len(_LABO_NFR_ORACLE_IDS)
+            or infra_nfr_formal_count != 6):
+        raise Diagnostic("Unknown", "missing_input", "fixed mechanism L7 index rows are incomplete")
+    if (len(set(reuse_ids)) != len(reuse_ids) or set(reuse_ids) != _LABO_NFR_REUSE_IDS
+            or len(set(oracle_ids)) != len(oracle_ids) or set(oracle_ids) != _LABO_NFR_ORACLE_IDS):
+        raise Diagnostic("Unknown", "conflict", "fixed mechanism L7 index IDs differ from their closed sets")
+    status_cells, owner_cells, owner_boundaries, status_absent, owner_absent = (
+        _collect_status_owner_trace(source_bytes))
+    return {"formal_locators": formal_traces,
+            "nfr_reuse_indexes": nfr_reuse_indexes,
+            "oracle_index_rows": oracle_indexes,
+            "source_status_cells": status_cells,
+            "owner_return_cells": owner_cells,
+            "owner_boundary_cells": owner_boundaries,
+            "status_not_declared": status_absent,
+            "owner_return_not_declared": owner_absent,
+            "source_context_sections": _collect_source_context_sections(source_bytes)}
+
+
+def _collect_status_owner_trace(source_bytes: dict[str, bytes]) -> tuple[list[dict], list[dict], list[dict], list[dict], list[dict]]:
+    """Collect only cells from the exact fixed status/owner table schemas."""
+    status_cells, owner_cells, owner_boundaries = [], [], []
+    status_absent, owner_absent = [], []
+    for mechanism, (path, _formal_count, _prefix, _sections) in SUPPLEMENTAL_SOURCE_REFS.items():
+        raw = source_bytes.get(path)
+        if not isinstance(raw, bytes):
+            raise Diagnostic("Unknown", "missing_input", "fixed mechanism L7 source is unavailable")
+        try:
+            lines = raw.decode("utf-8", "strict").splitlines()
+        except UnicodeError as exc:
+            raise Diagnostic("Unknown", "unreadable", "mechanism L7 source is not UTF-8") from exc
+        current_section = 0
+        header = None
+        found_sections = set()
+        for line_number, line in enumerate(lines, 1):
+            if line.startswith("## "):
+                match = re.match(r"^## (\d+)(?:\.|\s)", line)
+                current_section = int(match.group(1)) if match else 0
+                header = None
+            cells = _markdown_cells(line)
+            if cells is None:
+                header = None
+                continue
+            if all(re.fullmatch(r":?-{3,}:?", cell.replace(" ", "")) for cell in cells):
+                continue
+            specs = _FIXED_STATUS_TABLES.get(mechanism, {})
+            spec = specs.get(current_section)
+            if spec is None:
+                if not any(re.fullmatch(r"`[^`]+`", cell) for cell in cells):
+                    header = cells
+                continue
+            if not any(re.fullmatch(r"`[^`]+`", cell) for cell in cells):
+                header = cells
+                continue
+            if tuple(header or ()) != spec["header"] or len(cells) != len(spec["header"]):
+                first_value = cells[0].strip("`") if cells else ""
+                is_fixed_row = ((mechanism == "INFRA" and current_section == 5
+                                and first_value.startswith("INFRA-L7-"))
+                                or (mechanism == "INFRA" and current_section == 9
+                                    and first_value.startswith("L8-INFRA-"))
+                                or (mechanism == "HARNESS" and current_section == 7
+                                    and first_value.startswith(("UT-HARNESS-", "test_stage1_pack."))))
+                if is_fixed_row:
+                    raise Diagnostic("Unknown", "conflict", "fixed status table header differs from its schema")
+                continue
+            row = _raw_status_row(path, mechanism, current_section, line_number,
+                                  cells, spec, line)
+            status_cells.append(row)
+            if "owner_column" in spec:
+                owner_cells.append({"mechanism": mechanism, "source_row_locator": row["source_row_locator"],
+                                    "row_key": row["row_key"], "cell_ref": row["owner_cell_ref"],
+                                    "header": spec["header"][spec["owner_column"]],
+                                    "raw_literal": cells[spec["owner_column"]]})
+            found_sections.add(current_section)
+        for section, spec in _FIXED_STATUS_TABLES.get(mechanism, {}).items():
+            section_rows = [row for row in status_cells
+                             if row["mechanism"] == mechanism and row["section"] == section]
+            keys = [tuple(row["row_key"]) for row in section_rows]
+            if len(keys) != len(set(keys)):
+                raise Diagnostic("Unknown", "conflict", "fixed status table row keys are duplicated")
+            if (len(section_rows) != spec["expected_rows"]
+                    or ("expected_keys" in spec
+                        and set(row["row_key"][0] for row in section_rows) != set(spec["expected_keys"]))):
+                raise Diagnostic("Unknown", "missing_input", "fixed mechanism status rows are incomplete")
+        if mechanism in ("BRAIN", "LABO"):
+            status_absent.append({"mechanism": mechanism, "source_ref": path,
+                                 "kind": "NotDeclaredBySource",
+                                 "scope": "fixed formal L7 locator table has no status column"})
+        if mechanism != "INFRA":
+            owner_absent.append({"mechanism": mechanism, "source_ref": path,
+                                 "kind": "NotDeclaredBySource",
+                                 "scope": "fixed L7 source table has no owner-return column"})
+        if mechanism == "LABO":
+            owner_boundaries.extend(_collect_fixed_table_cells(source_bytes[path], path, mechanism, 3))
+        elif mechanism == "HARNESS":
+            owner_boundaries.extend(_collect_fixed_table_cells(source_bytes[path], path, mechanism, 3))
+    return status_cells, owner_cells, owner_boundaries, status_absent, owner_absent
+
+
+def _collect_fixed_table_cells(raw: bytes, path: str, mechanism: str, section: int) -> list[dict]:
+    try:
+        lines = raw.decode("utf-8", "strict").splitlines()
+    except UnicodeError as exc:
+        raise Diagnostic("Unknown", "unreadable", "mechanism L7 source is not UTF-8") from exc
+    current_section = 0
+    header = None
+    result = []
+    spec = _FIXED_BOUNDARY_TABLES[mechanism][section]
+    for line_number, line in enumerate(lines, 1):
+        if line.startswith("## "):
+            match = re.match(r"^## (\d+)(?:\.|\s)", line)
+            current_section = int(match.group(1)) if match else 0
+            header = None
+        cells = _markdown_cells(line)
+        if cells is None:
+            header = None
+            continue
+        if all(re.fullmatch(r":?-{3,}:?", cell.replace(" ", "")) for cell in cells):
+            continue
+        if current_section != section:
+            continue
+        if not any(re.fullmatch(r"`[^`]+`", cell) for cell in cells):
+            header = cells
+            continue
+        first = cells[0].strip("`") if cells else ""
+        looks_fixed = first.startswith("LABO-UT-") if mechanism == "LABO" else first.startswith("UT-HARNESS-")
+        if tuple(header or ()) != spec["header"] or len(cells) != len(spec["header"]):
+            if looks_fixed:
+                raise Diagnostic("Unknown", "conflict", "fixed owner boundary table header differs from its schema")
+            continue
+        column = spec["column"]
+        if column >= len(cells):
+            raise Diagnostic("Unknown", "conflict", "fixed owner boundary cell is absent")
+        result.append({"mechanism": mechanism, "collection_kind": spec["kind"],
+                       "source_row_locator": f"{path}#L{line_number}",
+                       "row_key": first, "cell_ref": f"{path}#L{line_number}:C{column + 1}",
+                       "header": spec["header"][column], "raw_literal": cells[column],
+                       "raw_row": line})
+    row_keys = [row["row_key"] for row in result]
+    if len(result) != spec["expected_rows"] or len(row_keys) != len(set(row_keys)):
+        raise Diagnostic("Unknown", "conflict" if len(row_keys) != len(set(row_keys)) else "missing_input",
+                         "fixed owner boundary rows differ from their closed set")
+    if sha256(("\n".join(sorted(row_keys)) + "\n").encode("utf-8")) != spec["id_digest"]:
+        raise Diagnostic("Unknown", "conflict", "fixed owner boundary row keys differ from their closed set")
+    return result
+
+
+def _collect_source_context_sections(source_bytes: dict[str, bytes]) -> list[dict]:
+    """Keep exact section spans as source refs without interpreting their prose."""
+    sections = []
+    for mechanism, (path, _formal_count, _prefix, _included) in SUPPLEMENTAL_SOURCE_REFS.items():
+        raw = source_bytes.get(path)
+        if not isinstance(raw, bytes):
+            raise Diagnostic("Unknown", "missing_input", "fixed mechanism L7 source is unavailable")
+        try:
+            lines = raw.decode("utf-8", "strict").splitlines(keepends=True)
+        except UnicodeError as exc:
+            raise Diagnostic("Unknown", "unreadable", "mechanism L7 source is not UTF-8") from exc
+        found = {}
+        current = None
+        for line_number, line in enumerate(lines, 1):
+            if line.startswith("## "):
+                match = re.match(r"^## (\d+)(?:\.|\s)", line)
+                section_number = int(match.group(1)) if match else None
+                if current in found:
+                    found[current]["end_line"] = line_number - 1
+                if section_number in found:
+                    raise Diagnostic("Unknown", "conflict", "fixed source context section heading is duplicated")
+                current = section_number
+                if current in _FIXED_SOURCE_CONTEXT_SECTIONS[mechanism]:
+                    found[current] = {"mechanism": mechanism, "source_ref": path,
+                                      "section": current, "heading": line.strip(),
+                                      "start_line": line_number, "end_line": None,
+                                      "raw_bytes": bytearray()}
+            if current in found:
+                found[current]["raw_bytes"].extend(line.encode("utf-8"))
+        if current is not None and current in found:
+            found[current]["end_line"] = len(lines)
+        expected_sections = _FIXED_SOURCE_CONTEXT_SECTIONS[mechanism]
+        if set(found) != set(expected_sections):
+            raise Diagnostic("Unknown", "missing_input", "fixed source context sections are incomplete")
+        for section_number in expected_sections:
+            entry = found[section_number]
+            raw_section = bytes(entry.pop("raw_bytes"))
+            entry["byte_count"] = len(raw_section)
+            entry["section_sha256"] = sha256(raw_section)
+            sections.append(entry)
+    return sections
+
+
+def _raw_status_row(path, mechanism, section, line_number, cells, spec, line):
+    key_columns = spec["key_columns"]
+    row_key = [cells[index].strip("`") for index in key_columns]
+    if any(not value for value in row_key):
+        raise Diagnostic("Unknown", "conflict", "fixed status row has an empty key")
+    status_column = spec["status_column"]
+    return {"mechanism": mechanism, "section": section,
+            "source_row_locator": f"{path}#L{line_number}", "row_key": row_key,
+            "raw_row": line, "status_cell_ref": f"{path}#L{line_number}:C{status_column + 1}",
+            "status_header": spec["header"][status_column],
+            "status_raw_literal": cells[status_column],
+            **({"owner_cell_ref": f"{path}#L{line_number}:C{spec['owner_column'] + 1}"}
+               if "owner_column" in spec else {})}
+
+
+def _source_trace_row(path, mechanism, identifier, line_number, heading, line, cells,
+                      headers, *, category):
+    return {"mechanism": mechanism, "source_id": identifier, "source_kind": category,
+            "source_row_locator": f"{path}#L{line_number}",
+            "source_heading": heading, "header_cells": list(headers or ()),
+            "raw_cells": list(cells), "raw_row": line,
+            "l8_refs": sorted(set(re.findall(r"(?:CASE-)?L8-[A-Z0-9-]+", line))),
+            "l9_refs": sorted(set(re.findall(r"IV-[A-Z0-9-]+", line)))}
+
+
 def _ids(suite):
     for item in suite:
         if isinstance(item, unittest.TestSuite):
@@ -1729,10 +2465,9 @@ def _ids(suite):
 
 
 def _load_fixed_suite(root: Path):
-    test_dir = root / "helix/helix-harness/units/common-kernel/tests"
     modules = []
-    for module_name in MODULES:
-        source = test_dir / (module_name + ".py")
+    for module_name, relative_source in FIXED_TEST_MODULES:
+        source = root / relative_source
         spec = importlib.util.spec_from_file_location(module_name, source)
         if spec is None or spec.loader is None:
             raise Diagnostic("Unknown", "unreadable", "fixed suite module cannot be loaded")
@@ -1877,7 +2612,8 @@ def run_suite(root: Path) -> tuple[dict, int]:
             or EXPECTED_DISCOVERY_IDS != tuple(sorted(EXPECTED_DISCOVERY_IDS))
             or sha256(("\n".join(EXPECTED_DISCOVERY_IDS) + "\n").encode()) != EXPECTED_DISCOVERY_IDS_SHA256):
         raise Diagnostic("Unknown", "conflict", "fixed expected discovery identity inventory is inconsistent")
-    for relative, expected in SOURCE_SHA256.items():
+    all_source_sha256 = {**SOURCE_SHA256, **SUPPLEMENTAL_SOURCE_SHA256}
+    for relative, expected in all_source_sha256.items():
         source = root / relative
         try:
             actual = sha256(source.read_bytes())
@@ -1885,6 +2621,27 @@ def run_suite(root: Path) -> tuple[dict, int]:
             raise Diagnostic("Unknown", "missing_input", "fixed suite source is unavailable") from exc
         if actual != expected:
             raise Diagnostic("Unknown", "conflict", "fixed suite source bytes differ from inventory")
+    ast_test_sources = {}
+    for _alias, relative in FIXED_TEST_MODULES:
+        try:
+            ast_test_sources[relative] = (root / relative).read_bytes()
+        except OSError as exc:
+            raise Diagnostic("Unknown", "missing_input", "fixed AST test source is unavailable") from exc
+    validate_fixed_test_ast_inventory(ast_test_sources)
+    source_bytes = {}
+    for _mechanism, (relative, _minimum, _prefix, _sections) in SUPPLEMENTAL_SOURCE_REFS.items():
+        try:
+            source_bytes[relative] = (root / relative).read_bytes()
+        except OSError as exc:
+            raise Diagnostic("Unknown", "missing_input", "fixed mechanism L7 source is unavailable") from exc
+    trace = collect_mechanism_l7_trace(source_bytes)
+    if not trace:
+        raise Diagnostic("Unknown", "missing_input", "fixed mechanism L7 locator sources are empty")
+    for relative in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS):
+        try:
+            (root / relative).read_bytes()
+        except OSError as exc:
+            raise Diagnostic("Unknown", "missing_input", "fixed current L6/L7 target source is unavailable") from exc
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
         suite = _load_fixed_suite(root)
         return _run_discovered_suite(suite)

@@ -15,9 +15,15 @@ from plan import compile_plan
 from receipt import validate_receipt, write_private_artifact, write_receipt
 from runner import run_step, validate_runtime_config
 from source_l7_runner import (EXPECTED_DISCOVERY_COUNT, EXPECTED_DISCOVERY_IDS,
-                              EXPECTED_DISCOVERY_IDS_SHA256, FORMAL_MAPPING,
-                              FORMAL_MAPPING_SHA256, SOURCE_SHA256, CURRENT_DESIGN_PATHS, SUITE_ID,
-                              l7_formal_ids_present,
+                              EXPECTED_DISCOVERY_IDS_SHA256, CORE_EXPECTED_DISCOVERY_IDS,
+                              CORE_EXPECTED_DISCOVERY_COUNT, CORE_EXPECTED_DISCOVERY_IDS_SHA256,
+                              SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS, SUPPLEMENTAL_IDS,
+                              SUPPLEMENTAL_IDS_SHA256, SUPPLEMENTAL_SOURCE_SHA256,
+                              SUPPLEMENTAL_DESIGN_PATHS, SUPPLEMENTAL_SOURCE_REFS,
+                              FIXED_TEST_MODULES, validate_fixed_test_ast_inventory,
+                              FORMAL_MAPPING, FORMAL_MAPPING_SHA256, SOURCE_SHA256,
+                              CURRENT_DESIGN_PATHS, SUITE_ID, l7_formal_ids_present,
+                              collect_mechanism_l7_trace,
                               inventory_digest as source_inventory_digest)
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH, read_fixed_snapshot
 from target import GitReader, check_clean_checkout, resolve_target
@@ -47,7 +53,7 @@ def _partial_suite_artifact(target, source_refs, row, stdout_digest, reason, ext
     return value
 
 
-def _validate_suite_result(payload, target, source_refs, execution):
+def _validate_suite_result(payload, target, source_refs, execution, source_bytes):
     if not isinstance(payload, dict) or payload.get("schema_version") != 1 or payload.get("suite_id") != SUITE_ID:
         raise Diagnostic("Unknown", "conflict", "suite runner result schema is not recognized")
     required = {"schema_version", "suite_id", "complete", "discovered_test_ids", "executed_test_ids",
@@ -61,11 +67,20 @@ def _validate_suite_result(payload, target, source_refs, execution):
             or not isinstance(executed, list) or any(not isinstance(item, str) for item in executed)):
         raise Diagnostic("Unknown", "conflict", "suite identity arrays are malformed")
     if (len(discovered) != EXPECTED_DISCOVERY_COUNT or len(set(discovered)) != len(discovered)
-            or tuple(discovered) != EXPECTED_DISCOVERY_IDS):
+            or set(discovered) != set(EXPECTED_DISCOVERY_IDS)):
         raise Diagnostic("Unknown", "conflict", "discovered suite identities differ from the fixed inventory")
     if (len(executed) != EXPECTED_DISCOVERY_COUNT or len(set(executed)) != len(executed)
             or set(executed) != set(EXPECTED_DISCOVERY_IDS)):
         raise Diagnostic("Unknown", "conflict", "executed suite identities differ from the fixed inventory")
+    core_discovered = sorted(set(discovered) & set(CORE_EXPECTED_DISCOVERY_IDS))
+    supplemental_discovered = sorted(set(discovered) & set(SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS))
+    core_executed = sorted(set(executed) & set(CORE_EXPECTED_DISCOVERY_IDS))
+    supplemental_executed = sorted(set(executed) & set(SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS))
+    if (tuple(core_discovered) != CORE_EXPECTED_DISCOVERY_IDS
+            or tuple(core_executed) != CORE_EXPECTED_DISCOVERY_IDS
+            or len(supplemental_discovered) != len(SUPPLEMENTAL_IDS)
+            or len(supplemental_executed) != len(SUPPLEMENTAL_IDS)):
+        raise Diagnostic("Unknown", "conflict", "Core/supplemental partition identities are inconsistent")
     outcome_ids = []
     for count_key, ids_key in (("failure_count", "failed_ids"), ("error_count", "error_ids"),
                                ("skip_count", "skipped_ids"),
@@ -93,11 +108,35 @@ def _validate_suite_result(payload, target, source_refs, execution):
             or payload["state"] not in ("success", "fail")
             or payload["state"] != expected_state or payload["state"] != execution["state"]):
         raise Diagnostic("Unknown", "conflict", "suite runner result differs from supervised execution")
+    mechanism_l7_paths = {entry[0] for entry in SUPPLEMENTAL_SOURCE_REFS.values()}
+    mechanism_trace = collect_mechanism_l7_trace({ref["identity"]: source_bytes[ref["identity"]]
+                                                  for ref in source_refs
+                                                  if ref["identity"] in mechanism_l7_paths})
     artifact = {"schema_version": 1, "artifact_kind": "complete_l7_suite_identity",
                 "suite_id": SUITE_ID, "target": target, "source_refs": source_refs,
                 "mapping_sha256": FORMAL_MAPPING_SHA256,
                 "formal_mapping": list(FORMAL_MAPPING),
                 "discovered_test_ids": discovered, "executed_test_ids": executed,
+                "core_discovered_test_ids": core_discovered,
+                "core_executed_test_ids": core_executed,
+                "supplemental_ids": list(SUPPLEMENTAL_IDS),
+                "supplemental_discovered_test_ids": supplemental_discovered,
+                "supplemental_executed_test_ids": supplemental_executed,
+                "mechanism_l7_source_trace": mechanism_trace,
+                "partition_evidence": {
+                    "core": {"discovered_count": len(core_discovered),
+                             "discovered_ids_sha256": _identity_digest(core_discovered),
+                             "executed_count": len(core_executed),
+                             "executed_ids_sha256": _identity_digest(core_executed)},
+                    "supplemental": {"discovered_count": len(supplemental_discovered),
+                                     "discovered_ids_sha256": _identity_digest(supplemental_discovered),
+                                     "executed_count": len(supplemental_executed),
+                                     "executed_ids_sha256": _identity_digest(supplemental_executed)},
+                },
+                "core_discovery_count": CORE_EXPECTED_DISCOVERY_COUNT,
+                "core_discovery_ids_sha256": CORE_EXPECTED_DISCOVERY_IDS_SHA256,
+                "supplemental_expected_ids_sha256": SUPPLEMENTAL_IDS_SHA256,
+                "composite_discovery_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
                 "discovered_ids_sha256": _identity_digest(discovered),
                 "executed_ids_sha256": _identity_digest(executed),
                 "test_count": payload["test_count"],
@@ -214,6 +253,7 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
                 reader.blob(entries, source["path"], source["sha256"])
 
         suite_refs = []
+        completed_execution_rows = []
         def prepare_step(index, spec, executions):
             if spec["check_id"] != "LC-STAGE1-L7-001":
                 return
@@ -222,11 +262,20 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
             for source_path, expected_digest in sorted(SOURCE_SHA256.items()):
                 data = reader.blob(entries, source_path, expected_digest)
                 additions[source_path] = data
-            for source_path in CURRENT_DESIGN_PATHS:
+            for source_path, expected_digest in sorted(SUPPLEMENTAL_SOURCE_SHA256.items()):
+                data = reader.blob(entries, source_path, expected_digest)
+                additions[source_path] = data
+            validate_fixed_test_ast_inventory({path: additions[path]
+                                               for _alias, path in FIXED_TEST_MODULES})
+            for source_path in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS):
                 additions[source_path] = reader.blob(entries, source_path)
             l7_path = CURRENT_DESIGN_PATHS[1]
             if not l7_formal_ids_present(additions[l7_path]):
                 raise Diagnostic("Unknown", "conflict", "target L7 source does not represent every fixed formal ID")
+            trace = collect_mechanism_l7_trace({path: additions[path]
+                                                for path, *_ in SUPPLEMENTAL_SOURCE_REFS.values()})
+            if not trace:
+                raise Diagnostic("Unknown", "missing_input", "mechanism L7 source trace is empty")
             suite_refs.extend(subject_ref(path, target, data)
                               for path, data in sorted(additions.items()))
             for parent, _dirs, _files in os.walk(snapshot.root):
@@ -247,10 +296,12 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
         def run_spec(spec):
             outcome = run_step(snapshot.root, spec, host_config, portable, cancel)
             if spec["check_id"] != "LC-STAGE1-L7-001":
+                completed_execution_rows.append(outcome["execution"])
                 return outcome
             row = outcome["execution"]
             if row["started_at"] is None:
                 row["result_complete"] = False
+                completed_execution_rows.append(row)
                 return outcome
             stdout = outcome.get("suite_runner_stdout", b"")
             over_limit = outcome.get("suite_runner_stdout_overflow", False)
@@ -258,7 +309,7 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
                 if over_limit:
                     raise Diagnostic("Unknown", "conflict", "suite result exceeded bounded supervisor frame")
                 suite_payload = strict_json(stdout)
-                artifact = _validate_suite_result(suite_payload, target, suite_refs, row)
+                artifact = _validate_suite_result(suite_payload, target, suite_refs, row, snapshot.sources)
                 full_path, full_sha, full_bytes = write_private_artifact(artifact, repo)
                 del full_path
                 identities = suite_payload["discovered_test_ids"]
@@ -269,6 +320,7 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
                     "discovered_count": len(identities), "discovered_ids_sha256": _identity_digest(identities),
                     "executed_count": len(suite_payload["executed_test_ids"]),
                     "executed_ids_sha256": _identity_digest(suite_payload["executed_test_ids"]),
+                    "partition_evidence": artifact["partition_evidence"],
                     "failure_count": suite_payload["failure_count"],
                     "error_count": suite_payload["error_count"], "skip_count": suite_payload["skip_count"],
                     "expected_failure_count": suite_payload["expected_failure_count"],
@@ -286,9 +338,10 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
                 try:
                     _path, partial_sha, _size = write_private_artifact(diagnostic_artifact, repo)
                 except Diagnostic as store_exc:
-                    store_exc.evidence = executions + [row]
+                    store_exc.evidence = completed_execution_rows + [row]
                     raise
                 row["partial_diagnostic_sha256"] = partial_sha
+            completed_execution_rows.append(row)
             return outcome
 
         try:
@@ -322,7 +375,7 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
                          contract_ref=contract_ref, structure_complete=report["structure_complete"],
                          plan_expected=plan,
                          source_l7_refs=[ref for ref in suite_refs
-                                         if ref["identity"] in CURRENT_DESIGN_PATHS])
+                                         if ref["identity"] in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS)])
         write_receipt(receipt, receipt_path, repo)
         return receipt
     finally:
