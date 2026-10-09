@@ -4,7 +4,7 @@ layer: L7
 status: design_draft
 owner: HELIX-CONNECT
 paired_l6: ../L6-function-design/stage1-connect.md
-paired_l6_sha256: ea2a810a9cb956bfd76ac09dbc50511211f32f9511804cde26780f538eb476a3
+paired_l6_sha256: b48f9323c06458c34f6c614ea69c102ffc9b30c5988ba01aca24cec4277f7d1d
 base: main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`
 ---
 
@@ -13,6 +13,8 @@ base: main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`
 本書は固定L8に定義された152 fixtureを、L6の関数locatorと既存L9 verifierへ一対一で対応する。`UT-CONNECT-*`はこのL7内部のunit-test locatorであり、L9 oracle IDを定義しない。下表のbaseline、単一変異またはpositive control、期待値はL8から転記し、L8/L9の要求意味を変更しない。全fixtureは設計のみで未実行である。
 
 ## 1. 固定sourceと実行境界
+
+以下の固定入力5文書はmain `74c64308ff9fc3e7eeec22b9821e99e66d63c218`の本文bytesを参照する。front matterの`base`は起草開始時点であり、この入力snapshotや最新mainを表さない。後続mainで更新された共通kernel本文へ、この固定SHAを継承しない。
 
 | source | SHA-256 |
 |---|---|

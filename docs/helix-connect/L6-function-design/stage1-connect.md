@@ -21,6 +21,8 @@ base: main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`
 
 対象は承認済み`HELIXCONNECT-L2-001`〜`005`のStage 1、`version_target: 1.0`である。CONNECT-001の固定revisionは`617801a9e66fe6ff30bfddc8c1e72a3c43c2a722`、CONNECT-002〜005は`53fc2a1441b890b5bcd904e6d9805453c8c833d1`。L3/L10各文書bytesと親ごとの適用範囲は[L4 §1](../L4-basic-design/stage1-connect.md#1-対象範囲と固定source)および[義務crosswalk](../../governance/crosswalks/stage1-l3-l10-obligation-crosswalk.md)に従う。
 
+以下の固定入力5文書はmain `74c64308ff9fc3e7eeec22b9821e99e66d63c218`の本文bytesを参照する。front matterの`base`は起草開始時点であり、この入力snapshotや最新mainを表さない。後続mainで更新された共通kernel本文へ、この固定SHAを継承しない。
+
 | 固定入力文書 | SHA-256 |
 |---|---|
 | L4 `docs/helix-connect/L4-basic-design/stage1-connect.md` | `10711d9c3897f7351f6d8cc0535264d4b68f642a08177cf8373f030356741002` |
