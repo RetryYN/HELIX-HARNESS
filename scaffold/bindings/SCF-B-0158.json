@@ -55,7 +55,7 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/common-kernel.md",
-      "sha256": "3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696",
+      "sha256": "7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82",
       "note": "Current K1/K2 contracts referenced by the local CI design; no K1 Observed<T>/UnknownReason vocabulary extension (K2 key_of outer Rejected reasons remain outside that vocabulary)."
     },
     {
