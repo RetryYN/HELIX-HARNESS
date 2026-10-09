@@ -566,6 +566,10 @@ def _record_from_event(event: Mapping[str, Any], decl: LogDecl) -> ResultRecord 
     key_data = event.get("key")
     if not isinstance(key_data, Mapping):
         return None
+    # The persisted ResultKey is a closed five-field shape. Do not silently
+    # discard an unknown top-level field before recomputing its digest.
+    if set(key_data) != {"operation", "operation_version", "subject", "inputs", "scope"}:
+        return None
     try:
         subject_data = key_data["subject"]
         input_data = key_data["inputs"]

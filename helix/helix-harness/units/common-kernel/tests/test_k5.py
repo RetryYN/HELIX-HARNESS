@@ -627,8 +627,6 @@ class K5Fixtures(unittest.TestCase):
                 append_port.assert_not_called()
             return
         if 76 <= n <= 86:
-            if 77 <= n <= 83:
-                self.skipTest("K5 owner-bound manifest/assignment/K3-K7 binding is not connected; L8 outcome is not exercised")
             manifest = _segment("manifest", 0)
             writer_seg = _segment("current", 1)
             decl = _decl(manifest_writer="manifest")
@@ -647,7 +645,10 @@ class K5Fixtures(unittest.TestCase):
                 target = writer_seg; event = {"kind": "DeclaredEvent", "event_type": "open", "refs": {}}
                 context = k5._AppendContext(decl, frozenset({manifest, writer_seg}), (), True, False)
             elif 80 <= n <= 83:
-                target = writer_seg; event = {"kind": "DeclaredEvent", "event_type": "open", "refs": {"case": n}}
+                # These four L8 owner conditions do not enter this private
+                # helper's arguments. Keep the same local sentinel fixture;
+                # the distinct owner outcomes remain outside L7 coverage.
+                target = writer_seg; event = {"kind": "DeclaredEvent", "event_type": "open", "refs": {}}
                 context = k5._AppendContext(decl, frozenset({manifest, writer_seg}), (), True, False)
             elif n == 84:
                 target = writer_seg; event = _recorded_event()
@@ -657,15 +658,20 @@ class K5Fixtures(unittest.TestCase):
                 context = k5._AppendContext(decl, frozenset({manifest, writer_seg}), (), True, True)
             initial = _bytes(_chain(target, [_declared("old")]))
             with patch.object(k5, "_read_bytes", return_value=initial), patch.object(k5, "_append_bytes", return_value=k5.SegmentHead(target, 2, D2)) as append_port:
-                result = k5._append_with_context(target, event, target.writer, context)
+                if n in (77, 78):
+                    with self.assertRaises(NotImplementedError):
+                        k5._append_with_context(target, event, target.writer, context)
+                    result = None
+                else:
+                    result = k5._append_with_context(target, event, target.writer, context)
             if n in (77, 78, 79, 80, 81, 82, 83, 84):
                 append_port.assert_not_called()
-                if n == 77:
-                    self.assertIsInstance(result, Rejected)
-                elif n in (78, 84):
+                if n in (77, 78):
+                    self.assertIsNone(result)
+                elif n == 84:
                     self.assertIsInstance(result, Rejected); self.assertEqual(result.reason, "peer_unreadable")
                 else:
-                    self.assertIsNone(result, "unbound authority/assignment input has no public-class mapping in this private core")
+                    self.assertIsNone(result, "unbound owner input is not mapped by this private core")
             else:
                 append_port.assert_called_once()
                 self.assertIsInstance(result, k5.Appended)
@@ -1012,6 +1018,231 @@ class K5Fixtures(unittest.TestCase):
                 head_port.assert_not_called()
                 append_port.assert_not_called()
                 fixedref_port.assert_not_called()
+
+    def test_ck_k5_ut_112_restore_closed_key_shape_and_project_is_domain_only(self):
+        manifest, a, _, scope, me, _, _, mh, _, _ = _manifest_and_data((_segment("a", 2),))
+        key = _key()
+        projector = k5.Projector("p", "1", D1)
+        declared = _declared("projection-root")
+
+        def observe(record_event):
+            entries = _chain(a, [declared, record_event])
+            blobs = {manifest: _bytes(me), a: _bytes(entries)}
+            heads = [mh, _head(entries)]
+            with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+                restored = k5.restore(_decl(), scope, heads)
+                projected = k5.project(projector, scope, heads)
+            return restored, projected
+
+        # A complete known key is the baseline. project() folds only declared
+        # domain events; restore() is the separate ResultRecorded decoder.
+        baseline = _recorded_event(key, _result_body())
+        restored, projected = observe(baseline)
+        self.assertIsInstance(restored, Value)
+        self.assertEqual(len(restored.value), 1)
+        self.assertIsInstance(projected, Value)
+        self.assertEqual(projected.value.output, [declared])
+
+        extra_field = deepcopy(baseline)
+        extra_field["key"]["unexpected"] = "must-not-be-dropped-before-digest-check"
+        restored, projected = observe(extra_field)
+        self.assertIsInstance(restored, Unknown)
+        self.assertEqual(restored.reason, UnknownReason.UNREADABLE)
+        self.assertEqual(restored.evidence, ("result_body",))
+        self.assertIsInstance(projected, Value)
+        self.assertEqual(projected.value.output, [declared])
+
+        for field in ("key_digest", "result_digest"):
+            with self.subTest(tampered=field):
+                tampered = deepcopy(baseline)
+                tampered[field] = D2
+                restored, _ = observe(tampered)
+                self.assertIsInstance(restored, Unknown)
+                self.assertEqual(restored.reason, UnknownReason.UNREADABLE)
+                self.assertEqual(restored.evidence, ("result_body",))
+
+        malformed_body = _recorded_event(key, {"class": "outside-result-union"})
+        restored, projected = observe(malformed_body)
+        self.assertIsInstance(restored, Unknown)
+        self.assertEqual(restored.evidence, ("result_body",))
+        self.assertIsInstance(projected, Value)
+        self.assertEqual(projected.value.output, [declared])
+
+    def test_ck_k5_ut_113_fixed_read_and_correction_shape_branches(self):
+        seg = _segment("a", 2)
+        zero_head = k5.SegmentHead(seg, 0, D1)
+        with patch.object(k5, "_read_bytes", return_value=b""):
+            zero = k5.read(seg, zero_head)
+        self.assertIsInstance(zero, Unknown)
+        self.assertIn("(g)", zero.evidence)
+
+        foreign = _segment("foreign", 2)
+        foreign_entry = _entry(foreign, 1, "genesis", _declared("foreign"))
+        with patch.object(k5, "_read_bytes", return_value=_bytes([foreign_entry])):
+            foreign_read = k5.read(seg, k5.SegmentHead(seg, 1, foreign_entry.entry_digest))
+        self.assertIsInstance(foreign_read, Unknown)
+        self.assertIn("(h)", foreign_read.evidence)
+
+        bad_correction = _entry(seg, 1, "genesis", {
+            "kind": "Correction", "target": D1, "reason": "r",
+            "replacement": {"kind": "SegmentOpened", "segment": k5._plain(seg)},
+        })
+        with patch.object(k5, "_read_bytes", return_value=_bytes([bad_correction])):
+            correction_read = k5.read(seg, _head([bad_correction]))
+        self.assertIsInstance(correction_read, Unknown)
+        self.assertIn("event_shape", correction_read.evidence)
+
+        root = _entry(seg, 1, "genesis", _declared("root"))
+        first = _entry(seg, 2, root.entry_digest, {
+            "kind": "Correction", "target": root.entry_digest,
+            "reason": "r1", "replacement": _declared("first"),
+        })
+        second = _entry(seg, 3, first.entry_digest, {
+            "kind": "Correction", "target": first.entry_digest,
+            "reason": "r2", "replacement": _declared("second"),
+        })
+        self.assertEqual(k5._correction_projection([root, first, second], _key()), [_declared("second")])
+
+    def test_ck_k5_ut_114_append_scope_and_manifest_local_boundaries(self):
+        manifest = _segment("manifest", 0)
+        data = _segment("data", 1)
+        decl = _decl(manifest_writer="manifest")
+        context = k5._AppendContext(decl, frozenset({manifest, data}), (), True, True, manifest_segment=manifest)
+        opened = {"kind": "SegmentOpened", "segment": k5._plain(data)}
+
+        for label, target, writer, event, ctx in (
+            ("wrong-writer", manifest, "other", opened, context),
+            ("wrong-log", manifest, "manifest", {"kind": "SegmentOpened", "segment": k5._plain(_segment("data", 1, "other-log"))}, context),
+            ("decl-manifest-writer-mismatch", manifest, "manifest", opened,
+             k5._AppendContext(_decl(manifest_writer="other"), frozenset({manifest, data}), (), True, True, manifest_segment=manifest)),
+        ):
+            with self.subTest(append=label):
+                with patch.object(k5, "_read_bytes", side_effect=AssertionError("invalid append must stop before read")) as reader, \
+                     patch.object(k5, "_append_bytes") as writer_port:
+                    with self.assertRaises(NotImplementedError):
+                        k5._append_with_context(target, event, writer, ctx)
+                reader.assert_not_called(); writer_port.assert_not_called()
+
+        key = _key()
+        prior = [{"key_digest": _key_digest(key), "result_digest": D1}]
+        one_digest = {"kind": "ResultConflictDetected", "key_digest": _key_digest(key), "result_digests": [D1]}
+        with patch.object(k5, "_read_bytes", side_effect=AssertionError("invalid conflict must stop before read")), \
+             patch.object(k5, "_append_bytes") as writer_port:
+            with self.assertRaises(NotImplementedError):
+                k5._append_with_context(data, one_digest, data.writer,
+                    k5._AppendContext(decl, frozenset({manifest, data}), tuple(prior), True, True, manifest_segment=manifest))
+        writer_port.assert_not_called()
+
+        # Each required-key subfield remains the existing missing_key result
+        # at the append boundary; no new reason is introduced.
+        for label, mutate in (
+            ("operation", lambda raw: raw["key"].pop("operation")),
+            ("operation-version", lambda raw: raw["key"].pop("operation_version")),
+            ("subject", lambda raw: raw["key"].pop("subject")),
+            ("inputs", lambda raw: raw["key"].pop("inputs")),
+            ("scope", lambda raw: raw["key"].pop("scope")),
+        ):
+            with self.subTest(missing_key_field=label):
+                invalid = _recorded_event(key)
+                mutate(invalid)
+                with patch.object(k5, "_read_bytes", side_effect=AssertionError("missing key must stop before read")), \
+                     patch.object(k5, "_append_bytes") as writer_port:
+                    observed = k5._append_with_context(data, invalid, data.writer,
+                        k5._AppendContext(decl, frozenset({manifest, data}), (), True, True, manifest_segment=manifest))
+                self.assertIsInstance(observed, Rejected)
+                self.assertEqual(observed.reason, "missing_key")
+                writer_port.assert_not_called()
+        for ref_role in ("subject", "input"):
+            for field in ("kind", "identity", "revision", "digest"):
+                with self.subTest(missing_ref_field=(ref_role, field)):
+                    invalid_ref = _recorded_event(key)
+                    if ref_role == "subject":
+                        invalid_ref["key"]["subject"].pop(field)
+                    else:
+                        invalid_ref["key"]["inputs"] = [{
+                            "kind": "ref", "identity": "source", "revision": "r1", "digest": D1,
+                        }]
+                        invalid_ref["key"]["inputs"][0].pop(field)
+                    with patch.object(k5, "_read_bytes", side_effect=AssertionError("missing SubjectRef field must stop before read")), \
+                         patch.object(k5, "_append_bytes") as writer_port:
+                        missing_ref = k5._append_with_context(data, invalid_ref, data.writer,
+                            k5._AppendContext(decl, frozenset({manifest, data}), (), True, True, manifest_segment=manifest))
+                    self.assertIsInstance(missing_ref, Rejected)
+                    self.assertEqual(missing_ref.reason, "missing_key")
+                    writer_port.assert_not_called()
+
+        noop_event = _recorded_event(key, _result_body())
+        noop_records = ({"key_digest": noop_event["key_digest"], "result_digest": noop_event["result_digest"]},)
+        with patch.object(k5, "_read_bytes", side_effect=AssertionError("noop must not read")), \
+             patch.object(k5, "_append_bytes") as writer_port:
+            noop = k5._append_with_context(data, noop_event, data.writer,
+                k5._AppendContext(decl, frozenset({manifest, data}), noop_records, True, True, manifest_segment=manifest))
+        self.assertIsInstance(noop, NoOp); writer_port.assert_not_called()
+
+        # Missing manifest head and an unregistered declared scope segment
+        # are separate existing Unknown(missing_input) branches.
+        unopened_scope = k5.ScopeDecl("s", "r", "log", k5.SegmentHead(manifest, 0, "genesis"), (data,))
+        with patch.object(k5, "_read_bytes", side_effect=AssertionError("missing manifest head must stop before read")):
+            missing_manifest = k5._read_scope(unopened_scope, [])
+        self.assertIsInstance(missing_manifest, Unknown)
+        self.assertEqual(missing_manifest.reason, UnknownReason.MISSING_INPUT)
+        self.assertEqual(missing_manifest.evidence, {"manifest_head": "missing"})
+
+        empty_manifest_head = k5.SegmentHead(manifest, 0, "genesis")
+        opened_scope = k5.ScopeDecl("s", "r", "log", empty_manifest_head, (data,))
+        with patch.object(k5, "_read_bytes", return_value=b""):
+            unregistered = k5._read_scope(opened_scope, [empty_manifest_head, k5.SegmentHead(data, 0, "genesis")])
+        self.assertIsInstance(unregistered, Unknown)
+        self.assertEqual(unregistered.reason, UnknownReason.MISSING_INPUT)
+        self.assertEqual(unregistered.evidence, {"unregistered_scope_segment": True})
+
+        # Bootstrap is not inferred from an empty manifest: the private
+        # append preflight remains unmapped and performs no write.
+        bootstrap_context = k5._AppendContext(decl, frozenset({data}), (), True, True, manifest_segment=manifest)
+        with patch.object(k5, "_read_bytes", side_effect=AssertionError("bootstrap must stop before read")), \
+             patch.object(k5, "_append_bytes") as bootstrap_writer:
+            with self.assertRaises(NotImplementedError):
+                k5._append_with_context(manifest, opened, manifest.writer, bootstrap_context)
+        bootstrap_writer.assert_not_called()
+
+    def test_ck_k5_ut_115_checkpoint_conflicts_share_existing_diagnostic(self):
+        manifest, a, _, scope, me, _, _, mh, _, _ = _manifest_and_data((_segment("a", 2),))
+        first = _chain(a, [_declared("first")])
+        extended = _chain(a, [
+            _declared("first"),
+            {"kind": "Correction", "target": first[0].entry_digest,
+             "reason": "restate", "replacement": _declared("first")},
+        ])
+        projector = k5.Projector("p", "1", D1)
+        full_heads = (mh, _head(extended))
+        blobs = {manifest: _bytes(me), a: _bytes(extended)}
+        with patch.object(k5, "_read_bytes", side_effect=lambda segment: blobs.get(segment)):
+            current = k5.project(projector, scope, full_heads)
+        self.assertIsInstance(current, Value)
+        projection = current.value
+        good_checkpoint = k5.Checkpoint(projector, scope, full_heads, projection.output, projection.output_digest)
+
+        # An old read-set may be a valid subset of the current fixed read-set.
+        subset = replace(good_checkpoint, input_heads=(mh,))
+        with patch.object(k5, "_read_bytes", side_effect=lambda segment: blobs.get(segment)):
+            subset_result = k5.verify(projection, subset)
+        self.assertIsInstance(subset_result, Value)
+
+        bad_old = k5.SegmentHead(_segment("removed", 4), 1, D1)
+        same_seq_different_digest = replace(_head(extended), entry_digest=D2)
+        cases = (
+            ("scope", replace(good_checkpoint, scope=replace(scope, revision="other"))),
+            ("projector", replace(good_checkpoint, projector=replace(projector, version="2"))),
+            ("old-key-not-subset", replace(good_checkpoint, input_heads=(mh, bad_old))),
+            ("same-seq-digest", replace(good_checkpoint, input_heads=(mh, same_seq_different_digest))),
+        )
+        for label, checkpoint in cases:
+            with self.subTest(checkpoint=label):
+                with patch.object(k5, "_read_bytes", side_effect=lambda segment: blobs.get(segment)):
+                    result = k5.verify(projection, checkpoint)
+                self.assertIsInstance(result, Unknown)
+                self.assertEqual(result.reason, UnknownReason.CONFLICT)
+                self.assertEqual(result.evidence, {"checkpoint": "mismatch"})
 
 
 def _make_test(case_id):
