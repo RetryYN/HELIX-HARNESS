@@ -10,7 +10,7 @@ parents:
   - HELIXCONNECT-L2-004
   - HELIXCONNECT-L2-005
 paired_l8: ../L8-detail-verification/stage1-connect-detail-verification.md
-base: main `b6463f2b9baa7df72703758f4e02afff9cbfac78`
+base: main `f0ba62ce833463eb5f747ac4b95659ecea49928a`
 ---
 
 # HELIX-CONNECT Stage 1 L5 詳細設計
@@ -56,7 +56,7 @@ L3業務文書はこの5親へ独立business ACを定めない。L10業務文書
 | 両端owner | business意味・結果・入力・契約宣言とscopeを所有。受信結果から業務complete/承認/保存完了を生成しない。 |
 | HARNESS | fixture、検証scope、証拠契約。設計文書から検証実行済みを主張しない。 |
 
-共通kernelは既存契約を再利用し、CONNECT独自の結果型やUnknown理由を作らない。L4 §5はbase `7d48e458fcff7e03df18abc4f768981410685cf7`時点の歴史的固定snapshot（CK L4 SHA `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b`、CK L9 SHA `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`）を記録している。現base `b6463f2b9baa7df72703758f4e02afff9cbfac78`の現行本文はCK L4 SHA `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、CK L9 SHA `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`。このL5は現行の型・契約を参照するが、旧snapshot pinを現行と偽らず、L4/L9のsource recordも書き換えない。
+共通kernelは既存契約を再利用し、CONNECT独自の結果型やUnknown理由を作らない。L4 §5はbase `7d48e458fcff7e03df18abc4f768981410685cf7`時点の歴史的固定snapshot（CK L4 SHA `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b`、CK L9 SHA `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`）を記録している。現base `f0ba62ce833463eb5f747ac4b95659ecea49928a`の現行本文はCK L4 SHA `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、CK L9 SHA `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`。このL5は現行の型・契約を参照するが、旧snapshot pinを現行と偽らず、L4/L9のsource recordも書き換えない。
 
 - K1: `Observed<T>`/既存result classに従い、positiveを作る完全条件とUnknown/Unobserved/Staleを保持する。
 - K2: connection/operationごとのidentity/revision/input digestを既存key contractで束縛する。raw message・business payloadをK2 inputへ保存しない。使ったrevisionと登録時revisionを分ける。

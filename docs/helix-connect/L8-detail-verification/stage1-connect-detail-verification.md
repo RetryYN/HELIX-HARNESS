@@ -4,13 +4,13 @@ layer: L8
 status: design_pair_defined
 owner: HELIX-CONNECT
 paired_l5: ../L5-detail-design/stage1-connect.md
-paired_l5_sha256: 45b0752a67baabd163568805fda63c87ba8abdaeff553b1fef242103b736efaf
-base: main `b6463f2b9baa7df72703758f4e02afff9cbfac78`
+paired_l5_sha256: 7e5bb8a0f0756e76feaa101939a1d73940cceaba62e5b46034584ba4820772a0
+base: main `f0ba62ce833463eb5f747ac4b95659ecea49928a`
 ---
 
 # HELIX-CONNECT Stage 1 L8 詳細検証設計
 
-本書はbase `b6463f2b9baa7df72703758f4e02afff9cbfac78`上のL4 `../L4-basic-design/stage1-connect.md`（SHA-256 `10711d9c3897f7351f6d8cc0535264d4b68f642a08177cf8373f030356741002`）と既存L9 `../L9-integration-verification/stage1-connect-integration-verification.md`（SHA-256 `0e956080febe084fdf4747b6d9bd3f86ea6400a65e3ecc179d59566dabefc92a`）を固定sourceとし、[L5](../L5-detail-design/stage1-connect.md)の設計境界に沿って既存L9 verifierのfixture案を詳述する。設計済みfixtureであり、実行・pass・通信結果・実装成立を表さない。各fixtureは合成descriptor/revision/receipt/eventだけを使い、外部通信、credential/provider、物理network path、旧runtime/test/CIを使わない。期待値は既存kernelのK1〜K10型・責務に従い、CONNECT固有のUnknown/reason/result vocabularyを追加しない。
+本書はbase `f0ba62ce833463eb5f747ac4b95659ecea49928a`上のL4 `../L4-basic-design/stage1-connect.md`（SHA-256 `10711d9c3897f7351f6d8cc0535264d4b68f642a08177cf8373f030356741002`）と既存L9 `../L9-integration-verification/stage1-connect-integration-verification.md`（SHA-256 `0e956080febe084fdf4747b6d9bd3f86ea6400a65e3ecc179d59566dabefc92a`）を固定sourceとし、[L5](../L5-detail-design/stage1-connect.md)の設計境界に沿って既存L9 verifierのfixture案を詳述する。設計済みfixtureであり、実行・pass・通信結果・実装成立を表さない。各fixtureは合成descriptor/revision/receipt/eventだけを使い、外部通信、credential/provider、物理network path、旧runtime/test/CIを使わない。期待値は既存kernelのK1〜K10型・責務に従い、CONNECT固有のUnknown/reason/result vocabularyを追加しない。
 
 ## 1. 固定scopeとsource
 
