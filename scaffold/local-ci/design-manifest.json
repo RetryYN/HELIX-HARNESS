@@ -2558,7 +2558,7 @@
               ]
             },
             {
-              "literal": "helper103 identity完全性",
+              "literal": "固定expected set/digestと全required refを保持する",
               "ids": [
                 "LC-STAGE1-L7-001"
               ]
