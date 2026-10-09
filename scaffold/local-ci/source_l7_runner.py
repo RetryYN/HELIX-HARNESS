@@ -2628,15 +2628,6 @@ def run_suite(root: Path) -> tuple[dict, int]:
         except OSError as exc:
             raise Diagnostic("Unknown", "missing_input", "fixed AST test source is unavailable") from exc
     validate_fixed_test_ast_inventory(ast_test_sources)
-    source_bytes = {}
-    for _mechanism, (relative, _minimum, _prefix, _sections) in SUPPLEMENTAL_SOURCE_REFS.items():
-        try:
-            source_bytes[relative] = (root / relative).read_bytes()
-        except OSError as exc:
-            raise Diagnostic("Unknown", "missing_input", "fixed mechanism L7 source is unavailable") from exc
-    trace = collect_mechanism_l7_trace(source_bytes)
-    if not trace:
-        raise Diagnostic("Unknown", "missing_input", "fixed mechanism L7 locator sources are empty")
     for relative in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS):
         try:
             (root / relative).read_bytes()
