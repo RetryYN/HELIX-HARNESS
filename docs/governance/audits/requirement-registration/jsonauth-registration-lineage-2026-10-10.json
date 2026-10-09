@@ -1,0 +1,21 @@
+{
+  "authority_effect": "none",
+  "source_registration": "MPR-RC-HELIXOS-L2-053-002",
+  "current_registration": "MPR-RC-HELIXOS-L2-053-004",
+  "intermediate_registration": "MPR-RC-HELIXOS-L2-053-003",
+  "prior_revision_digest": "sha256:fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+  "base_section_digest": "sha256:06936aebbd5b68e13ffff8308d573eb3c04889402c1b42ff90ffbf33cb65efc1",
+  "target_digest": "sha256:744601cc3278f1de41347fdf5c847c5aab82d644bf06e8dd10cc13b0a54531b7",
+  "included_changes": [
+    {
+      "change": "10/10採用済みの053版行",
+      "decision_ref": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md"
+    },
+    {
+      "change": "JSONAUTH固定4置換",
+      "decision_ref": "docs/governance/decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md"
+    }
+  ],
+  "meaning_change_since_003": false,
+  "correction_reason": "review01 Minorの系譜補完。002→003のdigest差分は、10/10版判断で先行追加された053の版行と、今回採用したJSONAUTHの4差分を含む。003と004の要求・受入digestとsource集合は同じ。両PO判断への参照を明示する。"
+}
