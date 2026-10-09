@@ -594,11 +594,11 @@ K8の直接traceはL4 §18.1で明記されたSECURITY-AC-001-01の要素別cros
 | source | 対象・SHA-256 |
 |---|---|
 | L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md` §18; `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82` |
-| L5 Common Kernel | `docs/helix-harness/L5-detail-design/common-kernel.md` §11; `b6b2f2fe6d47d413a2d9e37d1ab26ea9017017d86a091ee2c8f5a144ac7cdc4a` |
+| L5 Common Kernel | `docs/helix-harness/L5-detail-design/common-kernel.md` §12; `b6b2f2fe6d47d413a2d9e37d1ab26ea9017017d86a091ee2c8f5a144ac7cdc4a` |
 | L9 Common Kernel | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` IV-K8-01–26; `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
 | source base | `main` `46cbf9297a11b7f23f561a57b5cab21768fe075c` |
 
-L5 §11.3の4公開signatureをそのまま保持する。下表はAPIの実装状態ではなく、L6責務境界を明示する。
+L5 §12.3の4公開signatureをそのまま保持する。下表はAPIの実装状態ではなく、L6責務境界を明示する。
 
 | 既存API | L5返却型 | L6の関数責務 / 未接続境界 |
 |---|---|---|
@@ -678,6 +678,6 @@ API全体の`Rejected(missing_key)`はL5/L4の既存必須key境界に限る。`
 | 01 | 5 | 02 | 3 | 03 | 4 | 04 | 9 | 05 | 5 | 06 | 8 | 07 | 3 |
 | 08 | 11 | 09 | 3 | 10 | 5 | 11 | 5 | 12 | 4 | 13 | 7 | 14 | 2 |
 | 15 | 15 | 16 | 20 | 17 | 4 | 18 | 2 | 19 | 6 | 20 | 17 | 21 | 2 |
-| 22 | 3 | 23 | 3 | 24 | 3 | 25 | 4 | 26 | 4 |  |  |  |
+| 22 | 3 | 23 | 3 | 24 | 3 | 25 | 4 | 26 | 4 |  |  |  |  |
 
 K8の実owner reader、K3/K6 source current read、K5 evidence roundtrip、production API、CI manifest登録、fixture実行は未実施である。L7はL8のbaseline/mutation/expectedを逐語的に索引し、private candidate/structural-only/owner-unconnectedを区別する。fixture design inventoryをcoverage/passへ昇格させない。
