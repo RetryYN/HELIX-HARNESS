@@ -17,10 +17,10 @@ version_target: 1.0
 
 | 入力path | 本文SHA-256 |
 |---|---|
-| `docs/helix-os/L4-basic-design/local-ci.md` | `263f43cf049a68e845bea735a985c47434cf0b74e9fad4dbbad993172378434b` |
-| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `eb1e474a94cb21d3f7b4f6e8898d0a09adb5840a4f58b1945953d33d5218d56a` |
-| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `c0c37d452efdf0b01d05c054ced449474f9dd9120cf84c81a870445001d51eb5` |
-| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `ceb223801836305672a2f1e818f590782426b6754698558103b0b7c96bb5dc2e` |
+| `docs/helix-os/L4-basic-design/local-ci.md` | `0f92649310a7d8ae7a1838dc6161bb2528a218ab3570149506de90c4f7144a31` |
+| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `94d5cec276646a58f3a95eb5a2c0c15972480faf4aa12fe61552deb4c2e4b507` |
+| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `3a58979a611c140c66f7d01159048026605c2406cc0048c7d5605f26c1d05ca6` |
+| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `96d8dc1214c3bdb4a7a9df4b3c2f3abd39b2d038bd26b5c7ddbd5d64bf51539f` |
 
 ## 1. 関数群
 
@@ -97,17 +97,17 @@ Receipt lifecycle:
 
 ### `F-LCI-09a` — `load_design_manifest(snapshot) -> CiApiResult<DesignScopeManifest>`
 
-全fieldと上記型、path+role+pair+source-kind、definition/reference range selector grammarと固定literal expansion表を確認する。heading_idはfence外の見出し構造行全文literalから固定対応表の既存IDだけを展開し、略記がなくても対応表を要求する。見出し/entry欠落・空展開はUnknown(missing_input)、見出しliteral/展開ID重複はUnknown(conflict)とする。bullet_idは宣言範囲の先頭IDだけ、exact_headingはstart_heading全文literal一件だけをsection_locatorとして読む。range外tokenや未登録略記から定義を補わず、exact_heading範囲内の子見出しを追加section_locatorにしない。必須field欠落・余分field・型不正・unsupported dispositionのpass化は`Rejected(invalid_input)`、固定corpus上のID/edge欠落は`Unknown(missing_input)`、重複/曖昧定義は`Unknown(conflict)`とする。固定corpusは12 path/role/pairを持つ。main基準のrequired source inventory 189 IDへ、source-only suiteの3 source ID（L4 `LC-STAGE1-L7-001`、L5 `D-LCI-06`、L6 `F-LCI-10`）を加えたcandidateは192 IDである。Common Kernel L5の4 section locatorは既存source inventoryの内数である。L8のexpanded fixture IDはverifier definitionsでありsource countには含めない。
+全fieldと上記型、path+role+pair+source-kind、definition/reference range selector grammarと固定literal expansion表を確認する。heading_idはfence外の見出し構造行全文literalから固定対応表の既存IDだけを展開し、略記がなくても対応表を要求する。見出し/entry欠落・空展開はUnknown(missing_input)、見出しliteral/展開ID重複はUnknown(conflict)とする。bullet_idは宣言範囲の先頭IDだけ、exact_headingはstart_heading全文literal一件だけをsection_locatorとして読む。range外tokenや未登録略記から定義を補わず、exact_heading範囲内の子見出しを追加section_locatorにしない。必須field欠落・余分field・型不正・unsupported dispositionのpass化は`Rejected(invalid_input)`、固定corpus上のID/edge欠落は`Unknown(missing_input)`、重複/曖昧定義は`Unknown(conflict)`とする。固定corpusは12 path/role/pairを持つ。main基準のrequired source inventory 189 IDへ、source-only suiteの3 source ID（L4 `LC-STAGE1-L7-001`、L5 `D-LCI-06`、L6 `F-LCI-10`）を加えたcandidateは192 IDである。さらにCommon Kernel L5のK4/G3 exact-heading locator 1件を加えたinventoryは193 source IDとなる。L8のK4/G3 fixture 73件（K4=51/G3=22）はverifier definitionsでありsource countには含めない。L8のexpanded fixture IDはverifier definitionsでありsource countには含めない。
 
 `parent_ac_coverage`もmanifest schemaで検証する。一般必須field欠落の`Rejected(invalid_input)`に対する例外として、このlist自体またはOS-020-01/03の片方のrow欠落は`Unknown(missing_input)`とする。重複またはL4 §1との不一致は`Unknown(conflict)`、passへの変更・unknown field・型不正・空理由は`Rejected(invalid_input)`である。理由比較はL4表のreason cellとのliteral一致に限り、自然言語の意味推論をしない。この専用記録はF09cのcoverage graphへ取り込まない。
 
 ### `F-LCI-09b` — `resolve_id_graph(definitions, references) -> CiApiResult<IdGraph>`
 
-ID一意性・定義者・参照先を検査する。Common Kernel L8のK1/K2/K3/K5 fixture表ではcase列のexact cell literal展開を定義IDとし、同じexpanded IDをそのliteralが現れたraw table rowへ一意に結ぶ。L8第2列のL9 oracleと第3列に明記されたL4 invariantsはtyped referenceのまま保持し、fixture sourceへ昇格しない。展開IDが別rowに重複定義される場合は`Unknown(conflict)`、必要なliteral展開またはrow bindingがない場合は`Unknown(missing_input)`とする。
+ID一意性・定義者・参照先を検査する。Common Kernel L8のK1/K2/K3/K5/K4-G3 fixture表ではcase列のexact cell literal展開を定義IDとし、同じexpanded IDをそのliteralが現れたraw table rowへ一意に結ぶ。L8第2列のL9 oracleと第3列に明記されたL4 invariantsはtyped referenceのまま保持し、fixture sourceへ昇格しない。展開IDが別rowに重複定義される場合は`Unknown(conflict)`、必要なliteral展開またはrow bindingがない場合は`Unknown(missing_input)`とする。
 
 ### `F-LCI-09c` — `verify_coverage_edges(edges, id_graph) -> CiApiResult<CoverageReport>`
 
-L4→L9、L5→L8、L6→L7のcontract/fixtureの実在、edge_id全体一意性、dispositionから同source edgeへの解決を検査する。OutcomeRefのverifier_path/range_id/verifier_id/outcome_columnがedge先の一意な定義行の非空期待値cellへ戻ることを確かめる。Common Kernel L5→L8は4つのL5 locatorそれぞれについて、対応するL8 rangeのliteral expansionが列挙する全fixture IDへ一件ずつedgeを要求する。versioned checker configuration内の独立固定inventoryはK1/K2=164、K3=194、K5=91を別集合で保持し、manifestのrange expansion、definition row、coverage edge、dispositionを集合ごと照合する。manifest範囲・edge・dispositionを同時に削除しても独立リストとの不一致を検出する。同sourceに他edgeが残っていても一件のedgeと対応するdisposition referenceが同時に削除された欠落を検出する。各edgeのverifier ID、L5 source locator、raw-row binding、OutcomeRefは同じpair rangeと一致する。L8第2列のL9 IDや第3列のL4 IDを`source_id`へ置いたedge、K1/K2/K3/K5のlocator交差、expanded IDの別行への付替えは`Unknown(conflict)`とする。欠落edge/locator/outcome cellは`Unknown(missing_input)`であり、実行や意味被覆を推論しない。edge_id重複は`Unknown(conflict)`。`mapped`/`partial` sourceは一つ以上のedgeを要求し、`partial`には理由・既存owner ref・operational owner状況・return pathも必要とする。`not_exercised` sourceは`edge_ids=[]`と理由・既存owner ref・operational owner状況・return pathを要求し、edge先の一意解決を要求しない。設計対象外の抽出等はcoverage dispositionに混ぜず`source_scopeouts`で個別検査する。
+L4→L9、L5→L8、L6→L7のcontract/fixtureの実在、edge_id全体一意性、dispositionから同source edgeへの解決を検査する。OutcomeRefのverifier_path/range_id/verifier_id/outcome_columnがedge先の一意な定義行の非空期待値cellへ戻ることを確かめる。Common Kernel L5→L8は5つのL5 locatorそれぞれについて、対応するL8 rangeのliteral expansionが列挙する全fixture IDへ一件ずつedgeを要求する。K4/G3は固定73 destination（K4=51、G3=22）で、各raw rowの第2列L9 oracleと第3列のL4 invariantはtyped referenceのまま保持する。versioned checker configuration内の独立固定inventoryはK1/K2=164、K3=194、K5=91、K4/G3=73（K4=51/G3=22）を別集合で保持し、manifestのrange expansion、definition row、coverage edge、dispositionを集合ごと照合する。manifest範囲・edge・dispositionを同時に削除しても独立リストとの不一致を検出する。同sourceに他edgeが残っていても一件のedgeと対応するdisposition referenceが同時に削除された欠落を検出する。各edgeのverifier ID、L5 source locator、raw-row binding、OutcomeRefは同じpair rangeと一致する。L8第2列のL9 IDや第3列のL4 IDを`source_id`へ置いたedge、K1/K2/K3/K5/K4-G3のlocator交差、expanded IDの別行への付替えは`Unknown(conflict)`とする。欠落edge/locator/outcome cellは`Unknown(missing_input)`であり、実行や意味被覆を推論しない。edge_id重複は`Unknown(conflict)`。`mapped`/`partial` sourceは一つ以上のedgeを要求し、`partial`には理由・既存owner ref・operational owner状況・return pathも必要とする。`not_exercised` sourceは`edge_ids=[]`と理由・既存owner ref・operational owner状況・return pathを要求し、edge先の一意解決を要求しない。設計対象外の抽出等はcoverage dispositionに混ぜず`source_scopeouts`で個別検査する。
 
 ### `F-LCI-09d` — `verify_legacy_pins(pins) -> CiApiResult<PinReport>`
 

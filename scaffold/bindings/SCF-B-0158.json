@@ -6,36 +6,36 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS local CI運転契約",
   "state": "active",
-  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernel K1/K2/K3/K5 verifier inventory、共有raw-row resolver、suite traceを含む現在のsource/definition/reference/edge/旧pin inventoryを同期対象とし、旧10文書manifestのsuccessを12文書構造完全性へ読み替えない。Common Kernel K4/G3 L5/L8本文もsource inputとしてpinし、その73 fixture IDはCI inventory未登録として扱う（別PRで登録し、ここではCI coverageを主張しない）。K1/K2 source-only suiteは165 formal mappings（139 primary/26 stub）と199 discovery identitiesを固定し、実装/test 3 blobsをSHA pin、L6/L7文書はtargetから実読する。同期の成立は単体検証とexact target CI証拠で確認し、Bindingから実装・合格を生成しない。",
+  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernel K1/K2/K3/K5 verifier inventory、共有raw-row resolver、suite traceを含む現在のsource/definition/reference/edge/旧pin inventoryを同期対象とし、旧10文書manifestのsuccessを12文書構造完全性へ読み替えない。Common Kernel K4/G3 L5/L8本文もsource inputとしてpinし、その73 fixture IDは構造inventoryへ登録してraw row/locator/edge/dispositionの照合対象とする。登録はfixture実行、意味被覆、CI実行合格またはapprovalを主張しない。K1/K2 source-only suiteは165 formal mappings（139 primary/26 stub）と199 discovery identitiesを固定し、実装/test 3 blobsをSHA pin、L6/L7文書はtargetから実読する。同期の成立は単体検証とexact target CI証拠で確認し、Bindingから実装・合格を生成しない。",
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
-      "sha256": "10fbd1f922ba257bd0ab762383fa5cdf4599edf8f995a398d2cf3868e12569da",
+      "sha256": "0f92649310a7d8ae7a1838dc6161bb2528a218ab3570149506de90c4f7144a31",
       "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "c54ece95c0b28c2b4deef9c5898d0f1f43780dc09e6bc64c79667511b3f8dcf7",
+      "sha256": "94d5cec276646a58f3a95eb5a2c0c15972480faf4aa12fe61552deb4c2e4b507",
       "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "80f837eec451a0308445b33f0a8842ab6871b202a577ab222615906210184a49",
+      "sha256": "3a58979a611c140c66f7d01159048026605c2406cc0048c7d5605f26c1d05ca6",
       "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "6cd8676cbf7d34d15211453fe8bbdd3d6174541741205e2462245fc6d24c4cdc",
+      "sha256": "96d8dc1214c3bdb4a7a9df4b3c2f3abd39b2d038bd26b5c7ddbd5d64bf51539f",
       "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "644d6e8a7f2232a650d104d90b6c21819b99a1732990ece841266aff371a91fd",
+      "sha256": "1faad6c1433da3bb46542463883e2bb56757f3021fbce0ff846b2328d4afd6c7",
       "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "f3b50ea0f65abe4834a32b25a6b1108a81f4969e8f87c486c4e3ed1c808b4c84",
+      "sha256": "6ef12d8cf39a0b202e53039292d65f3deb674cf994c62c23169f30d6d34db99e",
       "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
@@ -51,7 +51,7 @@
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
       "sha256": "6f598a9a9fd0ab58a30ec26bb290f958e2807a8ceb7fb7c368e0ecf4af1d876e",
-      "note": "Common Kernel K1/K2/K3/K4/K5/G3 verifier table/range。K1/K2/K3/K5 inventoryとraw-row参照を構造照合し、K4/G3の73 fixture IDは未登録・未実行であり、fixture実行やCI coverageを示さない。"
+      "note": "Common Kernel K1/K2/K3/K4/K5/G3 verifier table/range。K1/K2/K3/K5 inventoryとraw-row参照に加え、K4/G3の73 fixture IDも構造inventoryとしてraw row/locator/edge/dispositionを照合する。登録・構造照合はfixture実行やCI coverageを示さない。"
     },
     {
       "path": "docs/helix-harness/L4-basic-design/common-kernel.md",
