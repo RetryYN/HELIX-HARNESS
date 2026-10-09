@@ -428,6 +428,6 @@ K4 direct L3 parent: HARNESS AC-HARNESS-L3-014-01–04/021-02/036-04/041-02、OS
 | `L8-G3-04-MACHINE-NOT-HUMAN` | IV-G3-04 | `evaluate`; G3-I4 | HumanDecision source recordが無く`Unobserved(pending_receipt)`となる基準入力へ、machine Positive receipt一件だけを加える。人記録の欠落は`Unobserved(pending_receipt)`のまま。 |
 | `L8-G3-04-UNAUTHORIZED-KIND` | IV-G3-04 | `derive`; G3-I4 | 人の記録を求めない固定source/ruleでHumanInterface義務を導出しようとする。L4どおり`Rejected`。 |
 | `L8-G3-05-COUNTS-ONLY` | IV-G3-05 | consumer projection; G3-I5 | oracle kind別の義務数を情報として表示し、合否や承認を加えない。 |
-| `L8-G3-05-NO-THRESHOLD` | IV-G3-05 | consumer projection; G3-I5 | 比率に閾値を適用して合否/承認を出す変異は`Rejected`。 |
+| `L8-G3-05-NO-THRESHOLD` | IV-G3-05 | consumer projection; G3-I5 | 比率に閾値を適用して合否/承認を出す変異を、consumer出力に合否・承認fieldが追加されない構造assertionで検出する。公開APIの`Rejected`結果は新設しない。 |
 
 G3-I4のaccepted/mismatch fixtureは既存authority source recordを既存adapterが読む契約のcase分割であり、`HumanDecision`を公開APIへ直接渡す入力ではない。source/adapterの具体的identityが既存文書で未確定な部分は、本fixture設計から補わない。上表の正常source fixtureは設計入力例に留まり、製品sourceの実在を主張しない。
