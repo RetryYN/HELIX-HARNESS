@@ -15,6 +15,8 @@ paired_l7: ../L7-unit-test-design/stage1-security-unit-test-design.md
 
 ## 1. 固定sourceとscope
 
+下表のSECURITY L4/L5/L8/L9およびCommon Kernel L4/L6/L7/L9は、main `d5bb3455526c816b3af965db239c4b56207a884f` の歴史的固定snapshotである。最新mainの全文SHAとは扱わない。L7→L6のみ本PR content HEAD内の本文SHAを指す。
+
 | source | 固定revision / SHA-256 | この文書で使う範囲 |
 |---|---|---|
 | SECURITY L4 `../L4-basic-design/stage1-security.md` | `71504a3c76512e8aa9c249eb229f7ecb25c9c350219d8a4b221c29d753767f68` | 19親・owner境界・既存kernel trace |

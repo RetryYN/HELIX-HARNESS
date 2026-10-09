@@ -6,7 +6,7 @@ owner: HELIX-SECURITY
 scope: SECURITY Stage 1 adapters / K3-K6-K7/G5-K8 projections
 base: `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
 paired_l6: ../L6-function-design/stage1-security.md
-paired_l6_sha256: `90294c1a7958c347cc202c6d2de5236d06734db24dd2572a0153e0a26271e60b`
+paired_l6_sha256: `833541166a69c48e19fd173dbba4d265fa5ae5ca89e12469ce7f97db52a3b7f5`
 paired_l8: ../L8-detail-verification/stage1-security-detail-verification.md
 paired_l8_sha256: `e2d55fdd753484c6bfac260719aa8290b8defa910aab348cad88da5fa5ea463a`
 paired_l9: ../L9-integration-verification/stage1-security-integration-verification.md
@@ -18,6 +18,8 @@ paired_l9_sha256: `41c23cd12c9717f2479e40017c62f1221efe55525507c6d2e48a56f06bb6e
 本書はL6関数の単体fixture設計であり、未実装・未実行である。L4/L5/L8/L9の意味、result class/reason、owner、authority、候補NFR値を変更しない。テスト合格、物理適用、実credential/network access、保存、L3/L10 approvalを主張しない。
 
 ## 1. 固定sourceとinventory
+
+下表のSECURITY L4/L5/L8/L9およびCommon Kernel L4/L6/L7/L9は、main `d5bb3455526c816b3af965db239c4b56207a884f` の歴史的固定snapshotである。最新mainの全文SHAとは扱わない。L7→L6のみ本PR content HEAD内の本文SHAを指す。
 
 | source | revision / SHA-256 | 使用範囲 |
 |---|---|---|
