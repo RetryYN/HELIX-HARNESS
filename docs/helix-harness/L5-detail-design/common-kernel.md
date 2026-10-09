@@ -551,7 +551,7 @@ Receipt keyのinputsはbase key inputsの全体にverifier refとVerifierSet Fix
 | Common Kernel L9 | 同baseの`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` IV-K8-01〜26 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
 | SECURITY AC | L4 §18.1が固定するSECURITY L3 revision `8d759ff9313252641154f386fe14c68e0a40e415`、`docs/helix-security/L3-requirements/functional-requirements.md:68` | 全体SHA-256 `f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e` |
 
-L4 §18.2の7旧assetは次のとおり。各source SHAは§18.2表の正しい値を用いる。§18.2末尾散文にあるWCA L4 SHAの1文字誤記は転記せず、L4 §18.2の表値・archive bytes実算値`aca532c939e34f2a4fb6b47f74254ff76a49dfaea1eeb56ff5edd7f3a181acec`を使う。L4は編集しない。
+L4 §18.2の7旧assetは次のとおり。各source SHAは§18.2表の正しい値を用いる。起点base `f75199749888f7261772ba26e9feb58a33d9a04f` の§18.2末尾散文にあったWCA L4 SHAの1文字誤記は転記せず、L4 §18.2の表値・archive bytes実算値`aca532c939e34f2a4fb6b47f74254ff76a49dfaea1eeb56ff5edd7f3a181acec`を使う。L4は本詳細pairで編集しない。現行mainではPR #2779が誤記を修正済みであり、上表の起点commitと旧本文SHAは歴史的固定として保持する。
 
 | Asset / archive source span / SHA-256 | 保持・変更 |
 |---|---|
