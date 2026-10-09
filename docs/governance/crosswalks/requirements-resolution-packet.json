@@ -1,0 +1,95 @@
+{
+  "packet_kind": "po_requirement_resolution_proposal",
+  "base_revision": "5f8d7f1251f15fe4a91314e26c20bf9b4856a9d5",
+  "authority_effect": "none",
+  "decision_required": "未判断。以下の変更は提案であり、canonical L2/L11には未反映。",
+  "source_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "4d73cd921119e2e8592045bb7c2e0043fc33629baebcd6e92eb84c51d08bd7b5",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "efc605d5fa41c339995f1113c267771dd470403be826adcadb2372d96135c1d8",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997"
+  },
+  "units": [
+    {
+      "id": "JSONAUTH",
+      "issue": 2825,
+      "proposal": "JSON正本方針に合わせ、OS053と対L11の意味正本をJSONに訂正する。部分current拒否・CAS・rollback・owner境界は保持する。",
+      "edits": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "before": "Markdown上のcanonical本文／asset revision",
+          "after": "JSON意味正本／asset revision",
+          "expected_occurrences": 1
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "before": "Markdown／canonical revision",
+          "after": "JSON意味正本／canonical revision",
+          "expected_occurrences": 1
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "before": "全base revision、Markdown／asset revision",
+          "after": "全base revision、JSON意味正本／asset revision",
+          "expected_occurrences": 1
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "before": "- **unknown・receipt欠落例**：write対象owner、base、必須projection、receipt link、failure位置または復旧先を欠落・不一致にする。全成功・rollback成功・再試行安全性を推測せず、currentを成立表示しない。receiptが書けないfailureでは別の既存証拠経路を参照できない限りunknownを返す。",
+          "after": "- **unknown・receipt欠落例**：write対象owner、base、必須projection、receipt link、failure位置または復旧先を欠落・不一致にする。全成功・rollback成功・再試行安全性を推測せず、currentを成立表示しない。receiptが書けないfailureでは別の既存証拠経路を参照できない限りunknownを返す。\n- **正本・投影の負例**：生成Markdown／HTMLだけを編集し、JSON意味正本と一致しないfixtureを与える。表示viewの編集から意味正本の更新や新canonical revisionを成立させず、正本・projectionの不一致を返す。JSON意味正本の確定に伴う生成viewはprojectionとして同じoperationの対象revisionへ結び、生成viewを意味ownerの判断の代替にしない。",
+          "expected_occurrences": 1
+        }
+      ]
+    },
+    {
+      "id": "TDDORDER",
+      "issue": 2832,
+      "proposal": "実装前にtest/oracleを定義・凍結し、実装後のRedは意図した欠陥の検出、Greenは最小実装と明示する。凍結済みの対の検証を入力とする意味を保持し、後付けoracleを拒否する。",
+      "edits": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "before": "設計の契約→実装→Red→Green",
+          "after": "設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（最小実装）",
+          "expected_occurrences": 2
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "before": "凍結済みの設計からRed→Green→局所のRefactor",
+          "after": "実装前に凍結した設計と対のtest／oracleから、意図した欠陥を検出するRed→最小実装のGreen→局所のRefactor",
+          "expected_occurrences": 1
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "before": "④だけの出力をIntegrated以上の状態とする／原子CIの合格",
+          "after": "実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格",
+          "expected_occurrences": 1
+        }
+      ]
+    },
+    {
+      "id": "VERSIONJOIN",
+      "issue": 2826,
+      "proposal": "HARNESS052とOS102を1.0に指定し、既に1.0のOS053とHARNESS059の接続全体を成立対象に揃える。その他25件の版未指定を変更しない。",
+      "edits": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "before": "### HARNESS-L2-052 canonical commandの意味identityと再送判定（HELIX-HARNESS単体候補、未採択）\n",
+          "after": "### HARNESS-L2-052 canonical commandの意味identityと再送判定（HELIX-HARNESS単体候補、未採択）\n\n**版の整理**：HARNESS-L2-052は`version_target: 1.0`とする。本文の版未指定・採否状態の記載は判断前の固定記述として保持する。既採択の意味範囲を拡張せず、接続先と同じ1.0でその操作・保証を成立させる。\n",
+          "expected_occurrences": 1
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "before": "### HELIXOS-L2-102 HARNESS Issue contractのdurable intake・projection・handoff候補（connection候補、未採択）\n",
+          "after": "### HELIXOS-L2-102 HARNESS Issue contractのdurable intake・projection・handoff候補（connection候補、未採択）\n\n**版の整理**：HELIXOS-L2-102は`version_target: 1.0`とする。本文の版未指定・採否状態の記載は判断前の固定記述として保持する。既採択の意味範囲を拡張せず、接続先と同じ1.0でその操作・保証を成立させる。\n",
+          "expected_occurrences": 1
+        }
+      ]
+    }
+  ],
+  "legacy_sources": [
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:19–29",
+    "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md:21–24",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:93,142"
+  ],
+  "limits": "L3再開、実装・CI・release、旧要求formal successor/retire、新しいgate・schema・runtimeを承認しない。各unitを別PRで反映し、新revisionの仮登録・無損失照合・独立reviewを行う。"
+}
