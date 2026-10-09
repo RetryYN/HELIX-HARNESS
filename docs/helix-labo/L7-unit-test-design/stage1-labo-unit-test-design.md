@@ -19,7 +19,7 @@ paired_l5_sha256: `0311794cd1fdb73673449de96bf3ea50d981ce6ed701443ff71292e266e4c
 |---|---|---|---|
 | LABO L4 | main `7f95f61fc1e1ae1dd790fa46581aba34921d73c0` | `6ea7c6497e2349e63ed05a7a686e96e108a769a2ac864cf02295f174c00c6f1a` | L4 §1–5 |
 | LABO L5 | 同上 | `0311794cd1fdb73673449de96bf3ea50d981ce6ed701443ff71292e266e4cc97` | 3 API signatureとpayload |
-| LABO L6（本pair） | 同上 | `58eb09d698b64f7e21230ae18e9f781ca53b223e2f0e525062e401d751943070` | 関数とprivate helper境界 |
+| LABO L6（本pair） | 本PRのcontent HEAD | `58eb09d698b64f7e21230ae18e9f781ca53b223e2f0e525062e401d751943070` | 関数とprivate helper境界 |
 | LABO L8 | 同上 | `1d5d8e6b8046c8776493cf7ba0019efa1f33d8c2f14064557906d513f0e00d7a` | baseline・単一変異・期待の正本 |
 | LABO L9 | 同上 | `a19f842cd6fe9576a0984651cd4aff554bb9355304c9b1f619480cd9d7867973` | 35 verifier oracle |
 | Common Kernel L4 | 同上 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | K1/K2結果とkey境界 |
