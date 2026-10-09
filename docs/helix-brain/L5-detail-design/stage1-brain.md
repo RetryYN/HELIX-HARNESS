@@ -3,9 +3,9 @@
 status: draft_for_independent_review
 owner: HELIX-BRAIN
 paired_l8: ../L8-detail-verification/stage1-brain-detail-verification.md
-base: main `fc95f868ba6be60323e1c448429e0812c1c1b7cf`
-current_main_observed: origin/main `fc95f868ba6be60323e1c448429e0812c1c1b7cf`（fc95統合時に再照合）
-source_pair_base_candidate_commit: `eb3b52444093f0de6491d4f1b707132670afb9e4`（編集開始時の候補。編集開始時の比較基準）
+base: review対象のmain `d5bb3455526c816b3af965db239c4b56207a884f`
+current_main_observed: origin/main `d5bb3455526c816b3af965db239c4b56207a884f`（#2777 review01対象base）
+source_pair_base_candidate_commit: `eb3b52444093f0de6491d4f1b707132670afb9e4`（履歴上の編集開始時候補。現baseではない）
 
 本書は固定Stage 1親007/008/028の6 ACに対するL4のデータ境界を、L6へ渡せる関数境界と型へ具体化する。要件の意味、owner、state、拒否理由、依存、版を追加・変更しない。対象はBRAIN知識source trace、knowledge record照会、descriptor/knowledge compatibility照合に限る。製品への書込み・送信・採用操作を実装する契約ではない。
 
@@ -15,7 +15,7 @@ source_pair_base_candidate_commit: `eb3b52444093f0de6491d4f1b707132670afb9e4`（
 |---|---|---|
 | BRAIN L4 | `docs/helix-brain/L4-basic-design/stage1-brain.md`（§1–6） | `a981efc23ea0e85303a600f469d2d989b991b378a4b89ac94cf34bce004ccc9c` |
 | BRAIN L9 | `docs/helix-brain/L9-integration-verification/stage1-brain-integration-verification.md`（§1–6） | `2f61e7f4ff86db837b014f6500a143727df9611099106561aa74edca3e434787` |
-| 共通カーネルL4/L9 | BRAIN L4 §4に固定されたK1–K10契約 | 同節の固定SHAを参照し、ここで再定義しない |
+| 共通カーネルL4/L9 | BRAIN L4 §4が固定したK1–K10の歴史snapshot | BRAIN L4 §4の固定SHAを参照し、current sourceとの不一致はL4 ownerへ返す |
 
 親本文はBRAIN L4 §1の6文書pinに固定する。対象revisionは007 `2919f7344f90ff8bde4db60ef7142b3c47bea0a8`、008/028 `debb4e3d682c5ad4835dafed7dbcbf33f24e9c8f`。007の委任formal/condition-3/main read-after chainと008/028の直接PO判断はL4 §1の範囲に限る。L3/L10本文全体の新しい承認状態は本書から生成しない。
 
@@ -30,7 +30,7 @@ source_pair_base_candidate_commit: `eb3b52444093f0de6491d4f1b707132670afb9e4`（
 
 ## 2. 共通の型・呼出し境界
 
-以下はL4にある型の公開形を保つ詳細設計候補である。`SubjectRef`、`Observed<T>`、`ResultKey`、K2 `ResultRecord`、`EvidenceRef`、`UnknownReason`、`Applicable`、`BrainKnowledgeState`は共通カーネルまたはBRAIN L4の既存型を参照する。`ResultRecord`はK5 `restore`が復元する保存結果型であり、ここでrecord key/digest shapeを再定義しない。新しい結果class/reasonは定義しない。外部owner recordの読取はcaller側の読み取りsnapshotとして渡し、このpure evaluatorがowner権限やrecordの真正性を作らない。
+以下はL4にある型の公開形を保つ詳細設計候補である。`SubjectRef`、`Observed<T>`、`ResultKey`、K2 `ResultRecord`、`EvidenceRef`、`UnknownReason`、`BrainKnowledgeState`は共通カーネルまたはBRAIN L4の既存型を参照する。`Applicable`はBRAIN L4 §2の`DescriptorCompatibilityQuery.result: Observed<Applicable>`に現れる結果型名であり、共通カーネルの型とは扱わない。payloadの定義・生成ownerは固定L4に未記載のため、本L5で形を補わない。`ResultRecord`はK5 `restore`が復元する保存結果型であり、ここでrecord key/digest shapeを再定義しない。新しい結果class/reasonは定義しない。外部owner recordの読取はcaller側の読み取りsnapshotとして渡し、このpure evaluatorがowner権限やrecordの真正性を作らない。
 
 ```text
 BrainSourceTraceInput = {
@@ -56,12 +56,11 @@ DescriptorCompatibilityInput = {
   descriptor_fields: Observed<DescriptorFieldSet>,
   requested_compatibility: Observed<VersionRef>,
   knowledge: SubjectRef,
-  knowledge_state: Observed<BrainKnowledgeState>,
-  declared_dependencies: OwnerDeclaredDependencySnapshot
+  knowledge_state: Observed<BrainKnowledgeState>
 }
 ```
 
-`OwnerDeclaredDependencySnapshot`はL4固定親に列挙されたHARNESS L2-010/011およびBRAIN側のexact refsを、各ownerが読み取り可能な形で供給する境界名である。新しいregistry、authority source、dependency discovery algorithmを意味しない。実装言語上のclass/record表現、field ordering、serializationはL6で候補を選ぶ。runtime shape不正の分類は本書で新設しない。
+`DescriptorFieldSet`は固定L3 BRAIN-028が列挙するdescriptor identity/kind、contract version、artifact version、dependency identity/version、compatibility range、verification scopeの意味要素を指す。L8の一変異fixtureは、変異対象を識別するためにこれらの意味要素をprivateな試験projectionとして個別表示する技術候補である。これは既存L4の`descriptor_fields` 1 fieldの意味を展開する設計記述であり、public member名、wire schema、要素型、要素ごとのreaderが確定したことを意味しない。missing/uninterpretable memberの独立観測はL4 ownerとHARNESS descriptor ownerへ返す。`knowledge`のidentity/revisionは`SubjectRef`、version/stateは既存`BrainKnowledgeRecord`のfieldであり、`knowledge_version`等の別入力fieldは追加しない。HARNESS L2-010/011の依存はL4が指定する参照のままとし、新しい依存snapshot型、registry、authority source、discovery algorithmを設けない。runtime shape不正の分類は本書で新設しない。
 
 | 公開関数候補 | 入力 → 戻り値 | 所有と副作用境界 | L4/L9 trace |
 |---|---|---|---|
@@ -81,7 +80,7 @@ DescriptorCompatibilityInput = {
 
 ### 3.2 `read_knowledge`
 
-引数`query_key`は、K2 `key_of`が`ResultKey`として返したexact keyであり、その`subject`が照会するknowledge `SubjectRef`である。必須key field欠落、Digest形式不正、inputs identity重複でK2が`Rejected`を返した場合は、呼出し元がその拒否をそのまま伝搬し、本関数を呼ばない。拒否をK1 `Observed`へ変換するtransportは置かない。record入力はK5 `restore`から得たK2既存型`ResultRecord[]`で、各recordが`key`、`key_digest`、`result`、`result_digest`、`producer`を持つ。関数は独自のrecord key/digestを合成せず、この集合と`query_key`をK2 `lookup(records, query_key)`へ渡す。旧revision Rのrecordを照会R2へ返さず、同revision content conflictを上書きしない。OS project-use履歴はこのrecordに格納・更新せず、OS ownerの別recordのまま扱う。
+引数`query_key`は、K2 `key_of`が`ResultKey`として返したexact keyであり、その`subject`が照会するknowledge `SubjectRef`である。必須key field欠落、Digest形式不正、inputs identity重複でK2が`Rejected`を返した場合は、呼出し元がその拒否をそのまま伝搬し、本関数を呼ばない。拒否をK1 `Observed`へ変換するtransportは置かない。record入力はK5 `restore`から得たK2既存型`ResultRecord[]`で、各recordが`key`、`key_digest`、`result`、`result_digest`、`producer`を持つ。`restore`が非Value（Unknown/Unobserved/Stale）を返す場合は呼出し側でそのObservedをそのまま返し、`read_knowledge`および`lookup`を呼ばない。空record集合や部分成功へ置換しない。`read_knowledge`の`records`引数は`restore`のValue payloadだけであり、その場合に限りK2 `lookup(records, query_key)`へ渡す。関数は独自のrecord key/digestを合成しない。旧revision Rのrecordを照会R2へ返さず、同revision content conflictを上書きしない。OS project-use履歴はこのrecordに格納・更新せず、OS ownerの別recordのまま扱う。
 
 5状態 `current | superseded | deprecated | experimental | retired`は列挙値をそのまま保持し、別の優先順・利用可能性・遷移順を定めない。K2 lookupが返すK1 `Observed` class/stateは保存結果のものを維持する。K2 `Rejected(missing_key|invalid_digest|duplicate_identity)`はK2 `key_of`境界から呼出し元へ返し、`read_knowledge`へ入力せずK1 `Observed`にも変換しない。`version_target`はactual versionを満たさない。
 
@@ -118,9 +117,30 @@ descriptor側のidentity/kind、contract/artifact version、dependency identity/
 | `LEGACY-ASSET-9114D4E463E95B67DD0C` row 10、`LEGACY-ASSET-C6ADB99F1353965C5449` row 11 | descriptor/schema境界、version/schema mismatch | descriptorとknowledge軸の分離および単独field oracleへ再導出。WCC schema/packetは置換。 |
 | `LEGACY-ASSET-F542125805B777D8A56A`、`LEGACY-ASSET-34DF3B535879CC73FA86`、`LEGACY-ASSET-9A772391C7FB1298D45F` L4 §5末段 | 旧L3/L10層・functional/business/NFR分離、system verificationへのtrace | 文書分離と要求→oracle traceだけ保持。旧層番号、gate、runtime、business/NFR値を移さない。 |
 
+### 3.6 L9期待のowner返却・部分被覆
+
+以下はL9の期待を削る表ではない。L8の局所fixtureで確認できるfield保持と、既存のL5公開関数・owner sourceがまだ接続していない振舞いを分離し、後者を責務ownerへ返す。L9のIV ID、正常期待、失敗期待はそのまま維持する。
+
+| L9期待 | L8で確かめられる範囲 | 未接続分の返却先と根拠 |
+|---|---|---|
+| IV-002 source identity/revisionのatomic field | `ProvenanceRef`全体の入力Observedを保持すること。source subfieldの値・K1分類はfixture化しない。 | BRAIN L4 owner。L4 §2はProvenanceRef内のmember名を定めていない。 |
+| IV-002 LABO未評価を評価済みと扱わない | `trace_source`へ渡されたLABO target/recordのObserved保持のみ。LABO評価・評価済み判定は実行しない。 | LABO/BRAIN ownerへevaluation result mappingを返す。L4 §2はtrace input/field保持を定めるが、評価実行や未評価を評価済みへ写すreader/resultを定めていない。 |
+| IV-012 identity/revision/state unknown | 必須SubjectRef identity/revisionを欠くkeyはK2 `Rejected(missing_key)`、recordのstateは既存`Observed<BrainKnowledgeState>`として保持する。 | BRAIN ownerへ、完全なreferenceを持つがowner resolutionがunknownな場合のreader/result mappingを返す。L5にはそのreaderがない。 |
+| IV-004 adoption誤昇格防止 | `trace_source`へ渡されたowner fieldをそのまま保持する構造だけ。adoption操作/判定なし。 | BRAIN adoption owner。L4 §2の公開関数にadoption operationがない。 |
+| IV-007 OS registration/routing | `owner_records.os_registration`の受信値保持だけ。routing操作なし。 | OS owner。L4 §2のowner_recordsに振分けfield/APIがない。 |
+| IV-014 BRAIN state更新 / IV-015 OS project-use更新 | 既存snapshotの別々のread projection。update操作なし。 | BRAIN state owner / OS project-use owner。L4 §2-3はreadのみ。 |
+| IV-020 compatibility positive | L8は完全descriptor/knowledge入力を基準として用意するが、`Applicable`結果を生成・assertしない。 | HARNESS descriptor/contract owner。L4 §3にrange comparatorと結果供給元がない。 |
+| IV-021–024 descriptor/knowledge field比較 | L8は既存field・Observedを保持し、K2 read resultを正確に伝搬する。field比較結果は生成しない。 | HARNESS owner（descriptor/range）とBRAIN owner（knowledge version/state）。具体比較器/外側Observedへの写像はL4 §3にない。 |
+| IV-022/023/027の`DescriptorFieldSet`意味要素 | L3 BRAIN-028列挙の意味要素をL8のprivate試験projection候補として識別する。要素ごとのAPI入力や独立読取は行わない。 | BRAIN L4 descriptor ownerへmember encoding/readerを返す。L4は`descriptor_fields: Observed<DescriptorFieldSet>`のみを定め、各memberのpublic形を定めない。HARNESS descriptor ownerの比較器も未接続である。 |
+| IV-024 `version_target`候補 | actual versionが欠けた状態で別candidateを識別するL8のprivate試験projection候補。candidateをactualへ置換せず、既存API入力にも加えない。 | BRAIN L4 descriptor/knowledge ownerとHARNESS comparator ownerへcandidate fieldのencoding/比較mappingを返す。L4に当該member/reader/comparatorがない。 |
+| IV-025 common lifecycle duties | L8でBRAIN inputにない交換・更新・rollback・unfinished obligationを渡さない構造のみ。 | HARNESS common lifecycle owner。L4 §2のDescriptorCompatibilityQueryに該当fieldがない。 |
+| L4 §4 common-kernel pins | 本L5/L8は固定BRAIN L4 §4を正本参照する。 | BRAIN L4 ownerへcurrent common-kernel pin再照合を返す。BRAIN固定L4 snapshotはこのPRから書換えない。 |
+
+L8のK2 key rejection行は、BRAIN L9 §5が参照する共通kernel key construction/lookup境界のfixtureであり、`read_knowledge`の呼出しではない。K5 `restore`が非Valueなら呼出し側で同じ非Valueを保持し、§3.2のとおり`read_knowledge`とlookupを呼ばない。
+
 ## 4. L6への受渡しと未決境界
 
-L6は上記3関数の候補signatureと型を保ち、pure input projection、K1/K2結果伝搬、owner snapshotとの境界、固定fieldの一変異をunit境界へ下ろす。`read_knowledge`はK2 key成功後とK5 `restore`の`ResultRecord[]`を受け、recordのkey/result digestを独自に構成しない。compatibilityのowner comparator供給元とUnknownのreason mappingは未決であり、解決までApplicable positiveを実装済みとして扱わない。物理reader/writer、database、adoption writer、LABO実行、OS操作、descriptor registry、permission transportは本設計から実装対象に昇格しない。fixture値は合成入力であり製品設定ではない。
+L6は上記3関数の候補signatureと型を保ち、pure input projection、K1/K2結果伝搬、owner snapshotとの境界、固定fieldの一変異をunit境界へ下ろす。`read_knowledge`はK2 key成功後とK5 `restore`の`ResultRecord[]`を受け、recordのkey/result digestを独自に構成しない。compatibilityのowner comparator供給元と`Applicable` payloadは未接続であり、解決までpositiveを実装済みとして扱わない。既知の入力Unknown/Unobserved/Staleはその同じ観測として保持し、未接続の比較結果を新reasonへ写像しない。物理reader/writer、database、adoption writer、LABO実行、OS操作、descriptor registry、permission transportは本設計から実装対象に昇格しない。fixture値は合成入力であり製品設定ではない。
 
 | 未決事項 | 影響範囲 | 現在の扱い |
 |---|---|---|
