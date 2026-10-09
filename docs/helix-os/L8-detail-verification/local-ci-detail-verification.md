@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `c0c37d452efdf0b01d05c054ced449474f9dd9120cf84c81a870445001d51eb5`である。
+固定入力は対のL5本文SHA-256 `3a58979a611c140c66f7d01159048026605c2406cc0048c7d5605f26c1d05ca6`である。
 
 ## 1. Fixture規則
 
@@ -94,7 +94,7 @@ version_target: 1.0
 | `CASE-L8-LCI-83` | bwrap binary availability | trusted host-local settingからprofile pinned binaryを解決できる | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし |
 | `CASE-L8-LCI-84` | 必須parent AC applicability記録 | `parent_ac_coverage`にOS-020-01/03が各一件あり、各state/reasonがL4 §1と一致 | `AC-OS-020-03` rowだけをlistから削除する | `Unknown(missing_input)`、LC-DESIGN-001非肯定、execution/receiptなし |
 | `CASE-L8-LCI-85` | parent ACの非昇格 | 必須2行のID/state/reasonがL4 §1と一致 | `AC-OS-020-01.state`だけを`pass`へ変える | `Rejected(invalid_input)`、parent ACをpassにせずexecution/receiptなし |
-| `CASE-L8-LCI-86` | Common Kernel L5 source locator | K1/K2/K3/K5の4 exact_heading locatorが各一件あり、required source inventoryはsuite trace追加後192件 | K2 locatorのdefinition rangeを一つ削除 | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、checker/execution/receiptなし。section locatorを意味上のAPI IDへ変換しない |
+| `CASE-L8-LCI-86` | Common Kernel L5 source locator | K1/K2/K3/K5/K4-G3の5 exact_heading locatorが各一件あり、required source inventoryは193件 | K2 locatorのdefinition rangeを一つ削除 | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、checker/execution/receiptなし。section locatorを意味上のAPI IDへ変換しない |
 | `CASE-L8-LCI-87` | Common Kernel L8 literal expansion | K1/K2のcase列literal expansionがそれぞれ111/53 fixture IDを定義し、各IDは同pairのraw rowへ一意に戻る | K1 expansionの一つの中間suffix IDだけを対応表から削除 | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、省略記法を推測せずchecker/execution/receiptなし |
 | `CASE-L8-LCI-88` | Common Kernel K1/K2 typed referencesとpair ownership | L8 K1/K2各rowの第2列L9 oracle、第3列L4 refsをtyped referenceに保ち、coverage sourceはexpected_pairの対応L5 locatorだけ | 一つのK1 rowの第3列展開先へK2 locatorを一つ指定 | snapshot/plan preflightでrun全体の外側`Unknown(conflict)`、L9/L4 referenceをL5 sourceへ昇格せずchecker/execution/receiptなし |
 | `CASE-L8-LCI-89` | Common Kernel L5→L8 required edges | 2 L5 locatorから164展開fixture IDへ各一件の明示edgeがありdispositionが全edgeを参照 | 一つのK2 destination edgeと同edge IDのdisposition referenceを同時削除（同sourceの別edgeは残す） | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、他edgeで代替せずchecker/execution/receiptなし |
@@ -148,5 +148,10 @@ Local receiptは作成側の報告ではなく、独立reviewとActions receipt 
 | CASE-L8-LCI-110 | current-source missing | suite rowは固定formal IDsを参照、先行5 check evidenceを外部diagnosticに保持 | target treeからtest_k2.pyを欠落させる | run_local_ci外側Unknown(missing_input)、先行5件をdiagnosticへ保持、suite row/receiptなし、runner未起動、cbce/branch/host sourceを使わない |
 | CASE-L8-LCI-111 | compact suite summary | receipt summaryはartifact SHA、discovery/execution count+ID-set digest、mapping digest、target/source refsを持つ | executed ID-set digest fieldだけを削除 | Rejected(invalid_input)、compact provider input不完全、positive不可 |
 | CASE-L8-LCI-112 | full execution identity artifact | external artifactが実discovered/executed ID arraysとtarget/source/mapping refsを保持 | executed_test_ids配列だけを保存前payloadから除く | Unknown(conflict)、full evidence不完全、success receiptなし。F05はsuite step fail、compact summaryなし、partial diagnosticを保持する。providerは保存後artifactを再取得しない。 |
+| CASE-L8-LCI-113 | K4/G3 fixed destination inventory | K4=51/G3=22の73 IDがraw L8 rowとK4/G3 L5 locator edgeへ一対一に結び付く | `L8-G3-04-RECORD-ONLY-NO-ACCEPTANCE-OUTPUT`のraw rowだけを除く | `Unknown(missing_input)`、隣接IDで補わずsuite実行/receiptなし。IV-LCI-87と同じdesign-manifest境界 |
+| CASE-L8-LCI-114 | K4/G3 extra ID拒否 | raw definition setは固定73件と一致する | `L8-K4-EXTRA`行だけを追加 | `Unknown(conflict)`、固定inventory外IDを受け入れない。IV-LCI-88と同じdesign-manifest境界 |
+| CASE-L8-LCI-115 | K4/G3 duplicate row拒否 | 各K4/G3 IDは一意なraw rowへbindする | `L8-K4-01-COMPLETE` raw rowだけを複製 | `Unknown(conflict)`、rowを選び分けない。IV-LCI-89と同じdesign-manifest境界 |
+| CASE-L8-LCI-116 | K4/G3 edge pair ownership | edge sourceはK4/G3 locator、outcomeは同raw row第4列 | `L8-K4-01-COMPLETE` edge sourceだけをK5 locatorへ替える | `Unknown(conflict)`、他componentのedgeで代替しない。IV-LCI-90と同じdesign-manifest境界 |
+| CASE-L8-LCI-117 | K4/G3 L5 locator/range completeness | K4/G3 locator、definition/reference ranges、73 edgesとdispositionが固定inventoryに一致 | K4/G3 L5 definition rangeだけをmanifestから除く | `Unknown(missing_input)`、suite実行/receiptなし。IV-LCI-91と同じdesign-manifest境界 |
 
 CASE-L8-LCI-105/106のoutcome変異はerror、expected failure、unexpected successも個別に含む。full artifactに5 outcome組のID配列を保持し、compactには各countだけを保持する。CASE-L8-LCI-103/104はbool count、extra field、count/ID矛盾、過大frame、不正JSON、未開始結果、5 outcome空の非zero exitも個別に拒む。CASE-L8-LCI-102は未知placeholder値/余分なsuffixの拒否を含む。CASE-L8-LCI-108/112は作成前payloadの検証を対象とし、mode不正、symlink ancestor、repo内path、digest名collision、atomic link失敗は保存失敗としてpositiveを出さない。XDG未設定時はuid別固定private rootへ保存する。CASE-L8-LCI-101/110では準備段階のconflict/missing_input双方が先行5件のpartial diagnosticを保持し、suite行/receiptを生成しない。
