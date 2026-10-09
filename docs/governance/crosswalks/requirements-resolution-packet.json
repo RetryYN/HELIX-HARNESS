@@ -1,385 +1,1804 @@
 {
-  "packet_kind": "requirements_resolution_proposal",
-  "base_revision": "1754ffdbd2a8a8e7b253aec8f73d73168fa1dc2b",
+  "packet_kind": "template_seed_meaning_proposal",
+  "base_revision": "8eccdd645288a5cea1eebdb49c93edcde5dae9da",
   "authority_effect": "none",
   "decision_required": [
-    "OSTRACEの既存002追補と対L11の対象revision採否。既存版/適用条件は保持し、版指定を追加しない。"
+    "最小setと選択seedの意味対応/不足を詰めた後、採用対象revisionを提示する。現在の2候補を採用案として扱わない。"
   ],
   "source_sha256": {
-    "docs/concept/helix-concept.md": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
-    "docs/helix-os/L1-planning/system-intent.md": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
-    "docs/helix-os/L2-requirements/governance-requirements.md": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be",
-    "docs/helix-os/L11-acceptance/governance-acceptance.md": "50c8bd186c2f75d44a29f9c37415a19e4b31c083c1a1aec07e33fe80f975d005",
-    "docs/helix-harness/L2-requirements/product-requirements.md": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+    "scaffold/verification-test-template-seed-20261001/templates/DT-VT-001-common-evidence.md": "cd70c910f7377f0de9eaf93076890d1250d1ef48300d18213c3bfc31de57ef3a",
+    "scaffold/verification-test-template-seed-20261001/templates/DT-VT-102-l2-l11-user-acceptance.md": "346d66f679b32caee2a960a270d163541dbf85ce9d37e127e32acd2cef3ec940",
     "docs/helix-brain/L2-requirements/brain-requirements.md": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
-    "docs/helix-labo/L2-requirements/labo-requirements.md": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
-    "docs/helix-brain/candidates/design-template-system-requirements.md": "113cb18db8fd99a05842b0c78539af06156c984a7821cb4710b3f458a1a78013",
-    "docs/governance/audits/template-condition-review-2026-10-10.json": "792cbda6594b20262440f70d75bcc057c2097a01a56b5aaa3def75b8dd9cf398",
-    "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c",
-    "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964",
+    "docs/governance/audits/template-seed-adoption-readiness-2026-10-10.json": "2e02f7f8af7d38926f63b3e44f891a75e1397857a1ee8281b0800526af7a1679"
   },
   "units": [
     {
-      "id": "OSTRACE",
+      "id": "SEEDFIRST",
       "issue": 2846,
-      "requirement_identity": "HELIXOS-L2-002",
-      "kind": "unit",
-      "version_effect": "既存版/適用条件を保持し、version_targetを新設しない。",
-      "proposal": "案件templateの候補/選択/使用set、各eventと義務/結果、評価へ渡す追跡材料をsource/要求revision/scopeへ結ぶ追補。",
-      "parent_planning_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-      "parent_planning_ids": [
-        "HELIXOS-L1-002",
-        "HELIXOS-L1-007",
-        "HELIXOS-L1-008"
-      ],
-      "parent_planning_decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
-      "edits": [
+      "kind": "seed_meaning_preparation",
+      "scope": "要求/利用者受入で参照する共通証拠とL2/L11の2seedを先にJSON候補へ対応づける。全機構/全V-pairの最小seedをこの2件へ縮めない。",
+      "seed_candidates": [
         {
-          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-          "before": "- **限界**：候補の起草・仮登録はPO判断記録に代わる採択、要求successor割当、migration実施、実行・配布許可、完了判定を生成しない。\n",
-          "after": "- **限界**：候補の起草・仮登録はPO判断記録に代わる採択、要求successor割当、migration実施、実行・配布許可、完了判定を生成しない。\n\n### HELIXOS-L2-002 project template記録の因果・revision・評価入力追補案（unit candidate）\n\n- **位置・親・版**：既存HELIXOS-L2-002のproject追跡能力を対象とする一identityの追補候補。未採択、`registered_proposal`／`authority_effect: none`。9/28固定HELIXOS-L1-002／007／008を親とする。既存002の版と適用条件を変更せず、新しいversion_targetを指定しない。使用templateのexact set/版、適用・義務・N/A・Backflow・成果・finding・再作業・受入・運用結果の記録、任意fallback拒否、LABO評価とBRAIN採否の分離は既採択のまま保持する。\n- **受け取るもの**：対象project/製品scope、要求identity/revision、適用HARNESS契約版、CORE009の選択/判定/義務/不足/意味影響候補とその根拠、BRAINの参照template identity/version/意味契約revision/利用状態、実際の選択と使用set、発生元のevent・actor・source・相関参照・未完義務・操作/利用許可とdata class。提案set、案件が選択したset、実際に使用したsetを分け、各記録がどの集合に対するものかを示す。候補受領だけで使用済みへ変換しない。\n- **個々の記録の結合**：template適用、義務生成/消込、N/A、Backflow、設計成果、finding、再作業、受入、運用結果の各記録を、それぞれの発生元、project/scope、対象要求revision、選択/使用template版、関係する義務・成果・対検証のidentity/revisionと因果参照へ結ぶ。関係しない項目まで架空の値で埋めず、その不適用根拠または未解決を残す。別project、別template版、別義務の成果で欠落を埋めない。原eventと訂正・分類projectionを分け、訂正で旧失敗や旧scopeを消さない。\n- **判定・未完義務の記録**：CORE009のrequired/conditional/N/A/unresolved、根拠・判定者・対象revision・再評価条件をその出力参照へ結び、OSが適用規則やN/A判断を新設しない。conditionalの未充足、義務の未実施/不合格/未評価、Backflowの返却先・停止理由・未完義務・受領/解決証拠を分けて記録する。受領・ACKと意味判断/解決を区別し、元義務の消込には適用契約が求める対象revision/scopeの証拠を結ぶ。既存023の受信側による未完義務受理と元ticket完了の条件を保持し、記録の存在、文書生成、checkbox、他義務の成功から完了を生成しない。\n- **変更と履歴**：同じprojectの使用template旧新版と、COREが返す意味影響対象/理由を、再評価する要求・義務・成果・pairのrevision/scopeと結ぶ。旧版利用、stale、再評価待ち、影響Unknownを区別する。OSは意味影響を独自算出せず、filenameや表示更新だけで旧版使用履歴を現行化しない。無関係な有効scopeは既存契約どおり保持する。\n- **評価へ渡す追跡材料**：005/024を通じてLABOへ渡すtemplate利用結果には、選択された評価scopeに含まれるproject・要求revision・使用template版と期間、参照する原記録集合と抽出根拠、含めた/除外した対象と理由、重複/再送の対応、未接続・未観測・未回収・比較不能の範囲を結ぶ。不足・過剰要求・誤選定・再作業・欠陥流出のfinding候補は、発生元と対象義務/使用版/再作業/受入/運用記録を保持して渡し、因果未決は未決とする。LABOが指定または合意した評価範囲/必要入力が未決なら、不完全な入力として示し、OSが独自に評価母集団・測定定義・因果効果を決めない。未観測や観測期間不足を欠陥0・改善成功にせず、利用回数やAI自己評価でtemplateを昇格しない。これは評価入力の追跡材料であり、LABOの評価方法、接続成立、BRAINの採否を追加定義する要求ではない。\n- **責務・依存・停止範囲**：002は案件記録の追跡、001は合意/source、007/019はevidence/continuity、023は未完義務handoff、005/024/048は改善/評価/再発の既存接続を持つ。汎用知識の意味/版はBRAIN、製品適用/意味影響はCORE、効果/退行評価はLABO、操作とdata利用条件はSECURITYに従う。常時必要は記録対象project/scope、source/要求revisionと該当契約参照。特定templateを選択/使用する操作ではそのset/版/適用出力を、評価へ送る操作では選択評価scope/必要入力と利用許可を照合する。関係しない知識/全seedや、今回初めて生じる結果・受領証拠を開始前提にしない。不足/unknown/conflict/staleは該当記録または受渡しを未成立にして解消先へ返し、評価未観測だけで無関係な有効作業を止めない。未登録等での停止/Backflowとfallback拒否は既存条件を保持する。\n- **旧source・差分・限界**：旧L4 design-template-json-authority.md:24/36/47–58/83–92の選択template/requirement/obligation束縛、exact set、Backflow event、trace/pair/revisionと、旧pillar-requirements.md:54/56/58の改善循環・scope/記録責務分離・trace/driftを起点に意味を再導出する。追加は各案件記録の細粒度結合と評価入力範囲/欠落の追跡であり、旧sourceにこの全条件が既定だったと主張しない。旧DB/runtime/JSON schema/層番号/型/算法を移植せず、wire/API/event enum/計測値/閾値も固定しない。旧atom全移管、seed採用、現実のOS記録/接続成立、LABO評価済み、BRAIN採用、L3再開を生成しない。\n",
-          "expected_occurrences": 1,
-          "proposed_section_sha256": "98dea2842f7a3a5b26c2ab2af302a6abbd025b7ecef50998b3557ede5d78764e"
+          "template_identity": "DT-VT-001",
+          "candidate_version": "0.1.0-seed-candidate",
+          "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-001-common-evidence.md",
+          "source_sha256": "cd70c910f7377f0de9eaf93076890d1250d1ef48300d18213c3bfc31de57ef3a",
+          "authority_effect": "none",
+          "state": "incomplete_meaning_candidate_not_adopted",
+          "semantic_descriptors": {
+            "identity": {
+              "value": "DT-VT-001",
+              "source_line": 1
+            },
+            "version": {
+              "value": "`DT-VT-001`／`0.1.0-seed-candidate`",
+              "source_line": 7
+            },
+            "layer_pair": {
+              "value": "全6組。組ごとの差はDT-VT-101〜106",
+              "source_line": 14
+            },
+            "applicability": {
+              "value": "DT-VT-002の技法カード、DT-VT-101〜106の検証方法を使って証拠を残すすべての場合。本templateだけを単独で使う場面はない",
+              "source_line": 10
+            },
+            "required_input": {
+              "value": "対象要求のIDとrevision、成果物の識別（pathまたはIDとdigest）、V字の対、oracle ID。欠けたら証拠を作らず、欠けた入力を未解決として戻す（DST-HARNESS-004）",
+              "source_line": 12
+            },
+            "required_section": {
+              "source_section_refs": [
+                {
+                  "source_heading": "1. 共通の証拠欄",
+                  "source_line": 40
+                },
+                {
+                  "source_heading": "DT-VT-001 検証・テストの共通証拠欄と非適用の記録",
+                  "source_line": 1
+                },
+                {
+                  "source_heading": "2. 非適用の記録",
+                  "source_line": 63
+                }
+              ],
+              "state": "candidate_mapping_not_exhaustive_requiredness"
+            },
+            "required_field": {
+              "source_section_refs": [
+                {
+                  "source_heading": "1. 共通の証拠欄",
+                  "source_line": 40
+                },
+                {
+                  "source_heading": "DT-VT-001 検証・テストの共通証拠欄と非適用の記録",
+                  "source_line": 1
+                },
+                {
+                  "source_heading": "2. 非適用の記録",
+                  "source_line": 63
+                }
+              ],
+              "state": "candidate_field_meaning_refs_not_runtime_schema"
+            },
+            "relation": {
+              "value": "DT-VT-002（各カードは本templateの欄に固有の欄だけを足す）、DT-VT-003（選び方の案）、DT-VT-101〜106（対ごとの検証方法）、既存seed `DT-SDOP-002`（非機能の値ごとの測定方法）、`DT-SDOP-004` §7（表の行・マスを検証へ結ぶ）",
+              "source_line": 13
+            },
+            "meaning_owner": {
+              "value": "HELIX-BRAIN（汎用の欄の構造）。製品への適用と検証義務の導出はHELIX-HARNESS-CORE（HARNESS-L2-005、HARNESS-L2-022）。実行・保存・運転はHELIX-OS",
+              "source_line": 9
+            },
+            "trace": {
+              "source_section_refs": [
+                {
+                  "source_heading": "1. 共通の証拠欄",
+                  "source_line": 40
+                }
+              ],
+              "state": "candidate_mapping"
+            },
+            "negative_oracle": {
+              "source_section_refs": [
+                {
+                  "source_heading": "不成立例（negative oracle）",
+                  "source_line": 20
+                },
+                {
+                  "source_heading": "正例と境界の負例",
+                  "source_line": 29
+                }
+              ]
+            },
+            "measurement": {
+              "state": "definition_missing",
+              "reason": "source契約表に独立descriptorなし。採用前に対応を確かめる。"
+            },
+            "completion": {
+              "source_section_refs": [
+                {
+                  "source_heading": "完了条件",
+                  "source_line": 34
+                }
+              ]
+            },
+            "downstream_kind": {
+              "state": "definition_missing",
+              "reason": "検証記録/非適用記録/Backflowのsourceはあるがdownstream kindの独立descriptorは未確定。"
+            },
+            "supersession": {
+              "value": "正式な証拠schemaが入ったら、本templateは`superseded`とし、各欄の行き先を`check-replacement`で対応づける。旧版で作った証拠は、旧版のまま読めるようにする",
+              "source_line": 18
+            }
+          },
+          "source_sections": [
+            {
+              "source_heading": "DT-VT-001 検証・テストの共通証拠欄と非適用の記録",
+              "heading_level": 1,
+              "source_line": 1,
+              "entries": []
+            },
+            {
+              "source_heading": "契約（seed候補）",
+              "heading_level": 2,
+              "source_line": 3,
+              "entries": [
+                {
+                  "source_line": 5,
+                  "source_line_sha256": "abe10613bcd6b8b66768d73fbe72d7cf81a56e9085e88f056fe30e9edaf3b445",
+                  "kind": "table_row",
+                  "cells": [
+                    "項目",
+                    "内容"
+                  ]
+                },
+                {
+                  "source_line": 6,
+                  "source_line_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06",
+                  "kind": "table_row",
+                  "cells": [
+                    "---",
+                    "---"
+                  ]
+                },
+                {
+                  "source_line": 7,
+                  "source_line_sha256": "0ebce0a13a2033b93fa7d6935550977da9595b905bb205a29413f9cb325c3e35",
+                  "kind": "table_row",
+                  "cells": [
+                    "template ID／版",
+                    "`DT-VT-001`／`0.1.0-seed-candidate`"
+                  ]
+                },
+                {
+                  "source_line": 8,
+                  "source_line_sha256": "9777e8155f8d30001ea6dd1f37c66a381d454cba85b503d8d5d97399ed39ade6",
+                  "kind": "table_row",
+                  "cells": [
+                    "状態",
+                    "seed候補。採否なし（DST-HARNESS-005は未採択の要求候補）"
+                  ]
+                },
+                {
+                  "source_line": 9,
+                  "source_line_sha256": "c59cc2802ca0dc2ad35575bc333127c4a794b01560bccacf6f101f7dd926f36b",
+                  "kind": "table_row",
+                  "cells": [
+                    "想定する持ち主",
+                    "HELIX-BRAIN（汎用の欄の構造）。製品への適用と検証義務の導出はHELIX-HARNESS-CORE（HARNESS-L2-005、HARNESS-L2-022）。実行・保存・運転はHELIX-OS"
+                  ]
+                },
+                {
+                  "source_line": 10,
+                  "source_line_sha256": "1f0c9bbd20dcaa80d7e99f2a41955e685df32e728be696ec9cafed92ff2511b9",
+                  "kind": "table_row",
+                  "cells": [
+                    "適用条件",
+                    "DT-VT-002の技法カード、DT-VT-101〜106の検証方法を使って証拠を残すすべての場合。本templateだけを単独で使う場面はない"
+                  ]
+                },
+                {
+                  "source_line": 11,
+                  "source_line_sha256": "a217b2e5aec0658863c743163e39b1bc42dcfe8873fb7f2e799ecbfd2295bf4a",
+                  "kind": "table_row",
+                  "cells": [
+                    "適用判定の記録",
+                    "下の「非適用の記録」の形で、required／conditional／informational／N/Aと、理由・判断者・対象revision・要求への影響・再評価条件を残す"
+                  ]
+                },
+                {
+                  "source_line": 12,
+                  "source_line_sha256": "847c85ff6366344cd5fcc1d4d331d5778d73702cb47d595c9f4605a3c4ae3174",
+                  "kind": "table_row",
+                  "cells": [
+                    "必須入力",
+                    "対象要求のIDとrevision、成果物の識別（pathまたはIDとdigest）、V字の対、oracle ID。欠けたら証拠を作らず、欠けた入力を未解決として戻す（DST-HARNESS-004）"
+                  ]
+                },
+                {
+                  "source_line": 13,
+                  "source_line_sha256": "9e40d65d2976ff8ba5f7b18ffde6d0f898068853deadb6035dfa7742e0c87ced",
+                  "kind": "table_row",
+                  "cells": [
+                    "関係",
+                    "DT-VT-002（各カードは本templateの欄に固有の欄だけを足す）、DT-VT-003（選び方の案）、DT-VT-101〜106（対ごとの検証方法）、既存seed `DT-SDOP-002`（非機能の値ごとの測定方法）、`DT-SDOP-004` §7（表の行・マスを検証へ結ぶ）"
+                  ]
+                },
+                {
+                  "source_line": 14,
+                  "source_line_sha256": "a8d9589768e86721886e408e18cb272fbce3fff99cd0c6ad7608ba81dbf45c3a",
+                  "kind": "table_row",
+                  "cells": [
+                    "対（V-pair）",
+                    "全6組。組ごとの差はDT-VT-101〜106"
+                  ]
+                },
+                {
+                  "source_line": 15,
+                  "source_line_sha256": "e1aedc2ba03a5f58ab18746a8e877c3b20bfcc596d92a1debe7a20620c64c64e",
+                  "kind": "table_row",
+                  "cells": [
+                    "区分",
+                    "unit・connection・compositeを問わない。区分ごとの差はDT-VT-101〜106"
+                  ]
+                },
+                {
+                  "source_line": 16,
+                  "source_line_sha256": "3fbf59faebce54feddbb9ae6a7681e44a90511a16b1783ad9e5233ee7cc38261",
+                  "kind": "table_row",
+                  "cells": [
+                    "出典",
+                    "HARNESS-L2-005（対象revision、oracle、expected failure、証拠、有効期限、差戻し先、省いた検査の回収）、HARNESS-L2-003（L2.5の非適用記録の6項目）、HARNESS-L2-034（再測定trigger、別環境・別revisionで相殺しない）、HARNESS-L2-036（ローカルとCIの同一契約）、HARNESS-L2-056（設計側と検証側のoracle identityの一致）。旧 `docs/design/helix/L5-detail/design-template-json-authority.md` 74–77（verification／measurement欄）、旧 `docs/skills/verification.md` 87–91（artifactの欠落は中立でなく違反）"
+                  ]
+                },
+                {
+                  "source_line": 17,
+                  "source_line_sha256": "aa8977f6c9dce82e12c9a069228a32fd1173796e29cb05baabe1f88546fd19b8",
+                  "kind": "table_row",
+                  "cells": [
+                    "限界",
+                    "欄の名前と形は材料であり、正式なschemaではない（schemaはL3以降で選ぶ）。欄を全部埋めたことは、検証が正しいことを示さない"
+                  ]
+                },
+                {
+                  "source_line": 18,
+                  "source_line_sha256": "278cb07a40dcfa76ba13271ad24aefb04db8728a37ecaa2c024da8ae797831fb",
+                  "kind": "table_row",
+                  "cells": [
+                    "置き換え",
+                    "正式な証拠schemaが入ったら、本templateは`superseded`とし、各欄の行き先を`check-replacement`で対応づける。旧版で作った証拠は、旧版のまま読めるようにする"
+                  ]
+                }
+              ]
+            },
+            {
+              "source_heading": "不成立例（negative oracle）",
+              "heading_level": 3,
+              "source_line": 20,
+              "entries": [
+                {
+                  "source_line": 22,
+                  "source_line_sha256": "a3e311b311737206f364e5f198f7e658f4ba5692057761146b7b93ad7231052a",
+                  "kind": "list_item",
+                  "meaning": "結果が分からない（unknown）のに、pass、N/A、0件のいずれかにする。"
+                },
+                {
+                  "source_line": 23,
+                  "source_line_sha256": "3d29794acbe0a83eca6bcb590ad652ca0cb6bd111bf48ef8662ad22ff4f9ee0f",
+                  "kind": "list_item",
+                  "meaning": "N/Aに理由だけを書き、判断者・対象revision・再評価条件を書かない。"
+                },
+                {
+                  "source_line": 24,
+                  "source_line_sha256": "c122d54ec1ec59e6615339cf0144832703b14f932f7c334b65ffbd033e3167f9",
+                  "kind": "list_item",
+                  "meaning": "別のrevision・別の環境・別のscopeで取った結果を、今回の対象の証拠にする。"
+                },
+                {
+                  "source_line": 25,
+                  "source_line_sha256": "8c6627654dfb6ba2dfbf049c3d425f4b2d7f78f9479a17a7bf036ba4fcc485c1",
+                  "kind": "list_item",
+                  "meaning": "期待する失敗（Red）を観測していない検証を、振る舞いを確かめた証拠にする。"
+                },
+                {
+                  "source_line": 26,
+                  "source_line_sha256": "7cd77410a75881da1ef215a8f084b24222a10fc1b6d6f15ca6e4b640c40885a3",
+                  "kind": "list_item",
+                  "meaning": "省いた検査を記録せず、回収先のticketも書かない。"
+                },
+                {
+                  "source_line": 27,
+                  "source_line_sha256": "76701e009628b3f53853828721c7da8d99efdf5a5c582b24820183a1a7e73a71",
+                  "kind": "list_item",
+                  "meaning": "ローカルとCIで設定が違うのに、同じ結果として扱う。"
+                }
+              ]
+            },
+            {
+              "source_heading": "正例と境界の負例",
+              "heading_level": 3,
+              "source_line": 29,
+              "entries": [
+                {
+                  "source_line": 31,
+                  "source_line_sha256": "c93f7df665295c5f16892b04d39e18a66533fb068af9ac02423eca294df5bb5c",
+                  "kind": "list_item",
+                  "meaning": "正例：対象要求`X`のrevision `r1`について、oracle `O-1`をDT-VT-105（L5↔L8）で実行し、Redを観測してからGreenを得た。設定のdigestがローカルとCIで一致し、有効期限（`r1`の変更まで）と差戻し先（L5）が書かれている。"
+                },
+                {
+                  "source_line": 32,
+                  "source_line_sha256": "4b6d737e88bac1880462719dde8623e6ab03076a2b9c33d1ca8715d5f3f58d83",
+                  "kind": "list_item",
+                  "meaning": "境界の負例：同じ記録で、oracleの結果が取得できなかった（timeout）。`actual_result: unknown`とし、passにしない。対象要求の成立を主張しない。"
+                }
+              ]
+            },
+            {
+              "source_heading": "完了条件",
+              "heading_level": 3,
+              "source_line": 34,
+              "entries": [
+                {
+                  "source_line": 36,
+                  "source_line_sha256": "f82a65af8ee2fafb830652dff42fee302f2d314d8ee99c801a3b3534e6c24139",
+                  "kind": "source_explanation_or_example",
+                  "text": "共通欄の必須項目が埋まっている、または理由付きのN/Aである。unknownがpass・N/A・0件へ変わっていない。省いた検査には回収先がある。**完了条件を満たしても、検証の合格・工程の完了・受入を意味しない。**"
+                }
+              ]
+            },
+            {
+              "source_heading": "本体",
+              "heading_level": 2,
+              "source_line": 38,
+              "entries": []
+            },
+            {
+              "source_heading": "1. 共通の証拠欄",
+              "heading_level": 3,
+              "source_line": 40,
+              "entries": [
+                {
+                  "source_line": 42,
+                  "source_line_sha256": "64efd4925991d0e181ca9d7550b4bf3a922be127ab3ecda84efc7d9af5c654dc",
+                  "kind": "source_explanation_or_example",
+                  "text": "各カード・各検証方法は、次の欄を共通に持ち、固有の欄だけを足す。形は材料であり、schemaの確定ではない。"
+                },
+                {
+                  "source_line": 44,
+                  "source_line_sha256": "f5eca1918a28c163a48907ee72b47cddf4ff96c0daa15a2f1a3132d33d09cce9",
+                  "kind": "source_explanation_or_example",
+                  "text": "```yaml"
+                },
+                {
+                  "source_line": 45,
+                  "source_line_sha256": "6f8b7115da7b4054c162650311c413cd75df7adf8332e0f3d78c631a94798261",
+                  "kind": "source_explanation_or_example",
+                  "text": "evidence_common:"
+                },
+                {
+                  "source_line": 46,
+                  "source_line_sha256": "3b158a0365b93e94c2d86cedfd6ef26c6304a081f3fd7991c5683c1fab874467",
+                  "kind": "source_explanation_or_example",
+                  "text": "  target_requirement_ids_and_revisions: [...]   # HARNESS-L2-005"
+                },
+                {
+                  "source_line": 47,
+                  "source_line_sha256": "7a25724d04bbb6aab6eee782ccb92501242f3b6175dc4520b6adba43736d05ab",
+                  "kind": "source_explanation_or_example",
+                  "text": "  artifact_ref: {path_or_id, content_digest}     # 成果物の識別"
+                },
+                {
+                  "source_line": 48,
+                  "source_line_sha256": "26a4919c05e56659d7efc28a3d438d01f69e2138d108f52dbee75a34c6f41b06",
+                  "kind": "source_explanation_or_example",
+                  "text": "  vpair: P1..P6                                  # 対。P1=L1↔L12 … P6=L6↔L7"
+                },
+                {
+                  "source_line": 49,
+                  "source_line_sha256": "ca54434daf6308a59ca0e4fc5eae7f0b65494b7c27403c1d1ced8560c5886b82",
+                  "kind": "source_explanation_or_example",
+                  "text": "  oracle_id: ...                                 # 設計側と検証側で同じであること（HARNESS-L2-056）"
+                },
+                {
+                  "source_line": 50,
+                  "source_line_sha256": "e30c24d4b8820c5d2724bb47d6459b42e19b8bd8796235ef49ccd2cb453e85d7",
+                  "kind": "source_explanation_or_example",
+                  "text": "  oracle_kind: specified|derived|implicit|human|model-graded"
+                },
+                {
+                  "source_line": 51,
+                  "source_line_sha256": "eaf4379c2c817e261209ec4d0cff83ade67ce4061a9b739d1e72f2486e09a98b",
+                  "kind": "source_explanation_or_example",
+                  "text": "  inputs_ref: {fixture_ids, data_digest, env_id}"
+                },
+                {
+                  "source_line": 52,
+                  "source_line_sha256": "4c31c80fc7b6c55cdfbdd4a70d2de914ae10113f8121601a516222bb12ca592e",
+                  "kind": "source_explanation_or_example",
+                  "text": "  expected_failure: {description, observed_red: true|false, red_evidence_ref}"
+                },
+                {
+                  "source_line": 53,
+                  "source_line_sha256": "4d364974aec307df081b1332b5f82b80b5568eaf51fb456d9bdeff1e3c686832",
+                  "kind": "source_explanation_or_example",
+                  "text": "  actual_result: pass|fail|warning|unknown       # unknownをpassやN/Aにしない"
+                },
+                {
+                  "source_line": 54,
+                  "source_line_sha256": "9c5e8bc6b9a1fc0eb413c7370955c25c2296bccc8315200e4512d17ce797cd61",
+                  "kind": "source_explanation_or_example",
+                  "text": "  applicability: required|conditional|informational|N/A"
+                },
+                {
+                  "source_line": 55,
+                  "source_line_sha256": "f27413fbf46a2f4ddd0dc049651820cc16832335f6149fefcb545ee85ba4b6e4",
+                  "kind": "source_explanation_or_example",
+                  "text": "  na_record: {...}                               # N/Aのとき必須。下の2節"
+                },
+                {
+                  "source_line": 56,
+                  "source_line_sha256": "9560c8bd5bcf1c45727cdfe6f3216f46d66ea811373838ca0fc133d45adabe4b",
+                  "kind": "source_explanation_or_example",
+                  "text": "  tool: {name, version, config_digest}           # ローカルとCIの同一契約の照合（HARNESS-L2-036）"
+                },
+                {
+                  "source_line": 57,
+                  "source_line_sha256": "b58828b18d32ef0f55498d91089cc275f2223cf7005a1cf2cfe98dda0d56e763",
+                  "kind": "source_explanation_or_example",
+                  "text": "  run: {executor: local|ci|human, started_at, head_sha, scope}"
+                },
+                {
+                  "source_line": 58,
+                  "source_line_sha256": "28ac4c65430ee164fd255b147aa416a540558e126346558861f93632e90ec3e5",
+                  "kind": "source_explanation_or_example",
+                  "text": "  valid_until_or_invalidation_trigger: ...       # 有効期限・再測定trigger（HARNESS-L2-034）"
+                },
+                {
+                  "source_line": 59,
+                  "source_line_sha256": "63dc511df9013d896c0fc380720041e7ff0d2a9fe253b40c6c9cc9d38c0f2ce9",
+                  "kind": "source_explanation_or_example",
+                  "text": "  backflow_target: L1..L5|same-stage-refactor    # 差戻し先（HARNESS-L2-022）"
+                },
+                {
+                  "source_line": 60,
+                  "source_line_sha256": "f7c01534c4eae29aae373695e53e2c344e0c92da5b2117d0d3eeae36db7f6cc1",
+                  "kind": "source_explanation_or_example",
+                  "text": "  omitted_checks: [{check_id, reason, recovery_ticket}]  # 省いた検査と回収先（HARNESS-L2-005）"
+                },
+                {
+                  "source_line": 61,
+                  "source_line_sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+                  "kind": "source_explanation_or_example",
+                  "text": "```"
+                }
+              ]
+            },
+            {
+              "source_heading": "2. 非適用の記録",
+              "heading_level": 3,
+              "source_line": 63,
+              "entries": [
+                {
+                  "source_line": 65,
+                  "source_line_sha256": "59395b5fa85b5641b8fbc0a945450a1953cd24b2aece168c8700798cb3e69929",
+                  "kind": "source_explanation_or_example",
+                  "text": "HARNESS-L2-003がL2.5の非適用に求める6項目（非適用、理由、判定者、HEAD、要求への影響、再評価条件）を、他の技法・検証方法にも同じ形で使う。"
+                },
+                {
+                  "source_line": 67,
+                  "source_line_sha256": "f5eca1918a28c163a48907ee72b47cddf4ff96c0daa15a2f1a3132d33d09cce9",
+                  "kind": "source_explanation_or_example",
+                  "text": "```yaml"
+                },
+                {
+                  "source_line": 68,
+                  "source_line_sha256": "13a0fba973d4868ecb08366b47820e89f4bd167271bb800b94d94971f1b9fae7",
+                  "kind": "list_item",
+                  "meaning": "card: DT-VT-002/C22"
+                },
+                {
+                  "source_line": 69,
+                  "source_line_sha256": "6e4a6ed5e70ca7bd9b421ffbe7be0a98740b2bb139398a7180bd03423439c686",
+                  "kind": "source_explanation_or_example",
+                  "text": "  applicability: N/A"
+                },
+                {
+                  "source_line": 70,
+                  "source_line_sha256": "63dd0051f46a9db93a2856b65b861e3be2994e9c25e0732171cae8bf2577d3fa",
+                  "kind": "source_explanation_or_example",
+                  "text": "  reason: \"非画面と判定（判定記録 ref: ...）\""
+                },
+                {
+                  "source_line": 71,
+                  "source_line_sha256": "2252a0d23fd816e84538574538f7dc3a1c0dee0a2388f5ce34ae16c77ab59e82",
+                  "kind": "source_explanation_or_example",
+                  "text": "  decided_by: <role>"
+                },
+                {
+                  "source_line": 72,
+                  "source_line_sha256": "4932bfe11acd56c6d5bc5ce3633e125d9d8cf2bfaa52e19c7bfaeb3bfb9e32be",
+                  "kind": "source_explanation_or_example",
+                  "text": "  head_sha: <sha>"
+                },
+                {
+                  "source_line": 73,
+                  "source_line_sha256": "8035adb3adc51bdb4310d081b9a1b6f9f2b9557d0866bf0f7f97a96745291efe",
+                  "kind": "source_explanation_or_example",
+                  "text": "  impact_on_requirements: none"
+                },
+                {
+                  "source_line": 74,
+                  "source_line_sha256": "a3ac912cb5d156eb736b943a4e6cbf07be09294802e0901eef0ab61423ec95b4",
+                  "kind": "source_explanation_or_example",
+                  "text": "  reevaluate_when: \"画面を持つscopeが追加されたとき\""
+                },
+                {
+                  "source_line": 75,
+                  "source_line_sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+                  "kind": "source_explanation_or_example",
+                  "text": "```"
+                },
+                {
+                  "source_line": 77,
+                  "source_line_sha256": "f1c1479a3d58fa77bfb99aac0004875717d6c783ac95339579d81c3a109906d6",
+                  "kind": "source_explanation_or_example",
+                  "text": "空欄を黙ってskipにしない。「要求がない」（例：性能要求がない）と「分からない」は別に書く。"
+                }
+              ]
+            },
+            {
+              "source_heading": "3. oracleが外れる5つの型",
+              "heading_level": 3,
+              "source_line": 79,
+              "entries": [
+                {
+                  "source_line": 81,
+                  "source_line_sha256": "9bbe898759cdbb53623d222a58c0456285a5ae854a8cf3171b335b60cfc4450b",
+                  "kind": "source_explanation_or_example",
+                  "text": "各カードの「負のoracle」欄は、次の型で書く。"
+                },
+                {
+                  "source_line": 83,
+                  "source_line_sha256": "e765a59a15ca1a268e9530ecf9d6a41f575738800478d89a3c6bca89581634f7",
+                  "kind": "table_row",
+                  "cells": [
+                    "型",
+                    "意味",
+                    "例"
+                  ]
+                },
+                {
+                  "source_line": 84,
+                  "source_line_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+                  "kind": "table_row",
+                  "cells": [
+                    "---",
+                    "---",
+                    "---"
+                  ]
+                },
+                {
+                  "source_line": 85,
+                  "source_line_sha256": "a20368957f47663cd3b06b050856100cc27485c05e97b573aa745c0ba43e7d56",
+                  "kind": "table_row",
+                  "cells": [
+                    "FN（見逃し）",
+                    "oracleが弱く、欠陥があってもpassする",
+                    "assertionなし、snapshotの丸呑み"
+                  ]
+                },
+                {
+                  "source_line": 86,
+                  "source_line_sha256": "9d79342627097b08afa89aa8050893f19882186fdbe0906e7570b5507e92e3dc",
+                  "kind": "table_row",
+                  "cells": [
+                    "FP（誤検出）",
+                    "正しいものをfailにする。FPが多いと無視・一括更新が常態化してFNになる",
+                    "flaky、過剰に具体的なtest"
+                  ]
+                },
+                {
+                  "source_line": 87,
+                  "source_line_sha256": "ba6fbc4be53f5b0b5938ab73b9836df42d77db99bd98c379b731e5cb1cac42bf",
+                  "kind": "table_row",
+                  "cells": [
+                    "代理化（proxy）",
+                    "測りやすい量を目的と取り違える",
+                    "coverage%、CI green、pass@1だけ"
+                  ]
+                },
+                {
+                  "source_line": 88,
+                  "source_line_sha256": "97a9604c62292c64bddca01fc31792642dbf7f8eddda69f65533269f3947dc24",
+                  "kind": "table_row",
+                  "cells": [
+                    "同源化（common-mode）",
+                    "oracleと実装が同じ誤解から作られる",
+                    "AIが実装とtestを同時に作る、実装から期待値を写す"
+                  ]
+                },
+                {
+                  "source_line": 89,
+                  "source_line_sha256": "a1532dda5c3430279ed024e72ca6e5bf1b952ae30b3366a3b226c422e03b64da",
+                  "kind": "table_row",
+                  "cells": [
+                    "scope外推（extrapolation）",
+                    "別revision・別環境・別scopeの結果を流用する",
+                    "HARNESS-L2-034「別環境・別revisionで相殺しない」"
+                  ]
+                }
+              ]
+            },
+            {
+              "source_heading": "4. 旧HELIXとの対応",
+              "heading_level": 3,
+              "source_line": 91,
+              "entries": [
+                {
+                  "source_line": 93,
+                  "source_line_sha256": "4aa5732c2a64e40477ca1ba950379f52a43aa450591d8371539c51ecc292a041",
+                  "kind": "table_row",
+                  "cells": [
+                    "旧source",
+                    "保持する点",
+                    "変更する点",
+                    "理由"
+                  ]
+                },
+                {
+                  "source_line": 94,
+                  "source_line_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832",
+                  "kind": "table_row",
+                  "cells": [
+                    "---",
+                    "---",
+                    "---",
+                    "---"
+                  ]
+                },
+                {
+                  "source_line": 95,
+                  "source_line_sha256": "f9605c20b229379619bed77006d9758043ed3e4b46f590bce8558248e1cc8ecc",
+                  "kind": "table_row",
+                  "cells": [
+                    "旧 `docs/design/helix/L5-detail/design-template-json-authority.md` 74–77",
+                    "templateがverification（対のtemplate ID、必要なoracle class、negative oracle、stale条件）とmeasurement（metric ID、unit、threshold、またはauthority付きN/A）を持つこと",
+                    "JSON Schemaの欄名・`helix-design-*.v1`のschema IDは持ち込まず、Markdownの表とYAMLの形の材料にとどめる",
+                    "新世代のschemaはL3以降で選ぶ（`docs/helix-brain/candidates/design-template-system-requirements.md`末尾）"
+                  ]
+                },
+                {
+                  "source_line": 96,
+                  "source_line_sha256": "76ece0081a99f232c4cd09eded6613bbb0fae205f20f2983df8e828bf4d37e61",
+                  "kind": "table_row",
+                  "cells": [
+                    "旧 `docs/skills/verification.md` 87–91",
+                    "必要なartifactの欠落を中立でなく違反として扱う",
+                    "旧`helix vmodel lint`等の検査順と`.helix/audit/`の置き場は持ち込まない",
+                    "旧CLI・旧runtimeを起動しない（AGENTS.md）"
+                  ]
+                },
+                {
+                  "source_line": 97,
+                  "source_line_sha256": "c1991d8903a765b04787c4e99b30bac6128fdbd89fb03ada4c48e1054a166d2b",
+                  "kind": "table_row",
+                  "cells": [
+                    "旧 `docs/design/helix/L6-function-design/ci-verification-plan.md` 24–32",
+                    "local／boundary／global invariant／deferred obligationを別の欄に分け、省いた義務を回収する考え方",
+                    "旧の「main／nightlyで回収」「full fallback」は採らず、`omitted_checks`の回収先ticketにする",
+                    "現行HARNESS-L2-005が「省いた検査を記録し、合流先のticketで回収する」に置き換えている"
+                  ]
+                }
+              ]
+            }
+          ],
+          "referenced_template_ids": [
+            "DT-SDOP-002",
+            "DT-SDOP-004",
+            "DT-VT-002",
+            "DT-VT-003",
+            "DT-VT-101",
+            "DT-VT-105"
+          ],
+          "reference_effect": "参照はrequired依存や採用を意味しない。技法/適用条件は別に照合する。",
+          "unresolved": [
+            "required section/fieldの個々の識別と要否、例の値/型の分離は未完。",
+            "downstream kindの定義と15項目の完全性を未確認。",
+            "既存tableの想定持ち主は汎用ownerと製品適用責務を記述する。fieldごとの意味ownerは未完。",
+            "参照するVT002/003の技法/選択意味と適用条件の照合は未完。最小setが成立したとはしない。"
+          ]
         },
         {
-          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-          "before": "- **採択境界**：本節と仮登録は採択内容を生成せず、受入実行、source retire、migration実施または実行・配布許可を意味しない。採択内容は対象revisionを固定したPO判断記録に従う。\n",
-          "after": "- **採択境界**：本節と仮登録は採択内容を生成せず、受入実行、source retire、migration実施または実行・配布許可を意味しない。採択内容は対象revisionを固定したPO判断記録に従う。\n\n### HELIXOS-L2-002 project template記録追補の受入案\n\n- **正常・再構築**：同じ要求scopeで、候補/選択/使用set、template版、unit/connection/composite別義務と設計/pair、finding、再作業、受入、運用結果を与える。各記録の発生元・相関参照から対象project、要求revision、template版、義務と結果を再構築し、集合件数やfield存在だけで合格にしない。ある義務/単体の成功から別義務/接続/構成体の完了を生成しない。\n- **取り違え・不足**：project/scope/要求revision/template版/義務/成果/pairの各参照を一つずつ欠かすか別対象へ替える。候補受領を使用済み、別project成功で欠落消込、旧版成果を現行証拠へ転用、duplicate/再送を別利用へ水増しする例を拒否する。該当記録/受渡しの不足と解消先を保持し、無関係な有効scopeを失効させない。\n- **N/A・Backflow・消込**：CORE009の4判定と理由/判定者/revision/再評価条件を記録へ照合する。判断不能をN/A、ACKを解決、Backflow先の受理なしで元義務消込、文書生成/checkboxだけで設計完成とする負例は不合格。義務が未実施/不合格/未評価の例を区別し、原記録・訂正・旧失敗を保持する。OSの独自意味判定や要求採択を成功根拠にしない。\n- **旧新版と局所影響**：使用templateの意味変更と表示だけの更新を与え、COREが示した影響集合と各再評価履歴を照合する。影響UnknownをUnaffected、参照digest更新だけで使用履歴移管済みとする例を拒否し、別scopeの有効結果を保持する。\n- **評価入力の境界**：二つ以上のprojectと異なるtemplate版/期間を与え、選択評価scope、原記録集合、抽出/除外理由、未観測/未回収/比較不能、duplicateの扱いを照合する。不足/過剰要求/誤選定/再作業/欠陥流出の各候補を元義務と利用結果へ辿る。欠落した対象を黙示除外、未観測を欠陥0、異なる版/期間を無条件比較、件数やAI評価だけで改善/昇格を成立させる例は不合格。母集団/測定定義/効果をOSが新設せず、LABO必要入力が未決なら未決・不完全を保持する。評価入力未成立を無関係な工程の停止条件へ広げない。\n- **許可・未見・開始条件**：利用許可/data class/対象scope不一致では該当共有を止める既存条件を照合する。作成側に伏せた別project/actorまたは旧新版変更位置で同じ追跡を確認する。非選択sourceは未観測、義務/結果がまだ発生していない開始時は未発生を保持し、将来の結果receiptを初回記録の入力条件にしない。入力整合だけからhandoff成立、LABO評価、BRAIN採否、全seed/旧atom被覆、実行fixture成功、L3再開を生成しない。\n",
-          "expected_occurrences": 1,
-          "proposed_section_sha256": "15fb77b844bf43cc4cf71db8458d7bd087eae7e4df9feaf850106b2f8465f293"
+          "template_identity": "DT-VT-102",
+          "candidate_version": "0.1.0-seed-candidate",
+          "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-102-l2-l11-user-acceptance.md",
+          "source_sha256": "346d66f679b32caee2a960a270d163541dbf85ce9d37e127e32acd2cef3ec940",
+          "authority_effect": "none",
+          "state": "incomplete_meaning_candidate_not_adopted",
+          "semantic_descriptors": {
+            "identity": {
+              "value": "DT-VT-102",
+              "source_line": 1
+            },
+            "version": {
+              "value": "`DT-VT-102`／`0.1.0-seed-candidate`",
+              "source_line": 7
+            },
+            "layer_pair": {
+              "value": "P2：L2 要求 ↔ L11 利用者受入（HARNESS-L2-040の6組）。適用されたL2.5のPrototype／PoC成果と要求への反映revisionは、該当する受入条件の入力として結ぶ",
+              "source_line": 15
+            },
+            "applicability": {
+              "value": "L2 要求（L2.5のPrototype・PoCを含む）の成果物に対の検証を行うとき。全件の実行を既定にせず、HARNESS-L2-005の規則（Forwardの大きさ、risk、触るコネクタ）で要否を決める",
+              "source_line": 10
+            },
+            "required_input": {
+              "value": "合意済みのL2要求とrevision、L11受入の条件（成功条件と反例）、HARNESS-L2-003に従ってPrototypeとPoCを別々に判定したL2.5適用記録。Prototype適用時は合意済みprototypeのrevisionと合意記録、PoC適用時は検証結果と要求へのBackflow先・反映revisionを含める。各々の非適用時は根拠付きN/A記録を含める。適用がunknown、または適用時の成果が欠ける場合、その成果に依存する受入条件をunknownとして成立を主張しない。",
+              "source_line": 12
+            },
+            "required_section": {
+              "source_section_refs": [
+                {
+                  "source_heading": "1. 照合の観点",
+                  "source_line": 57
+                },
+                {
+                  "source_heading": "3. 必須の証拠（共通欄に足す）",
+                  "source_line": 73
+                },
+                {
+                  "source_heading": "4. 差戻しの記録",
+                  "source_line": 80
+                },
+                {
+                  "source_heading": "DT-VT-102 検証方法：L2 要求（該当時はL2.5の結果を反映） ↔ L11 利用者受入（P2）",
+                  "source_line": 1
+                },
+                {
+                  "source_heading": "L2.5（Prototype・PoC）の適用記録とtest basis",
+                  "source_line": 46
+                }
+              ],
+              "state": "candidate_mapping_not_exhaustive_requiredness"
+            },
+            "required_field": {
+              "source_section_refs": [
+                {
+                  "source_heading": "3. 必須の証拠（共通欄に足す）",
+                  "source_line": 73
+                }
+              ],
+              "state": "candidate_field_meaning_refs_not_runtime_schema"
+            },
+            "relation": {
+              "value": "DT-VT-001（共通欄）、DT-VT-002（技法カード）、DT-VT-003（選び方の案）、HARNESS-L2-022、HARNESS-L2-056（対ごとのgate結果）",
+              "source_line": 17
+            },
+            "meaning_owner": {
+              "value": "HELIX-HARNESS-CORE（段階ごとの検証の契約と状態の遷移、HARNESS-L2-022）。汎用の型はHELIX-BRAIN。テストとCIの運転、ticketの発行、検収はHELIX-OS",
+              "source_line": 9
+            },
+            "trace": {
+              "source_section_refs": [
+                {
+                  "source_heading": "1. 照合の観点",
+                  "source_line": 57
+                },
+                {
+                  "source_heading": "3. 必須の証拠（共通欄に足す）",
+                  "source_line": 73
+                }
+              ],
+              "state": "candidate_mapping"
+            },
+            "negative_oracle": {
+              "source_section_refs": [
+                {
+                  "source_heading": "不成立例（negative oracle）",
+                  "source_line": 25
+                },
+                {
+                  "source_heading": "正例と境界の負例",
+                  "source_line": 35
+                }
+              ]
+            },
+            "measurement": {
+              "value": "数値の閾値は置かない。測る場合はHARNESS-L2-034の14項目に従い、値はL3で根拠付きで導く",
+              "source_line": 19
+            },
+            "completion": {
+              "source_section_refs": [
+                {
+                  "source_heading": "完了条件",
+                  "source_line": 40
+                }
+              ]
+            },
+            "downstream_kind": {
+              "state": "definition_missing",
+              "reason": "検証記録/非適用記録/Backflowのsourceはあるがdownstream kindの独立descriptorは未確定。"
+            },
+            "supersession": {
+              "value": "正式な検証契約（HARNESS-L2-022の具体化）が入ったら`superseded`とし、観点・証拠・差戻し先の行き先を対応づける",
+              "source_line": 23
+            }
+          },
+          "source_sections": [
+            {
+              "source_heading": "DT-VT-102 検証方法：L2 要求（該当時はL2.5の結果を反映） ↔ L11 利用者受入（P2）",
+              "heading_level": 1,
+              "source_line": 1,
+              "entries": []
+            },
+            {
+              "source_heading": "契約（seed候補）",
+              "heading_level": 2,
+              "source_line": 3,
+              "entries": [
+                {
+                  "source_line": 5,
+                  "source_line_sha256": "abe10613bcd6b8b66768d73fbe72d7cf81a56e9085e88f056fe30e9edaf3b445",
+                  "kind": "table_row",
+                  "cells": [
+                    "項目",
+                    "内容"
+                  ]
+                },
+                {
+                  "source_line": 6,
+                  "source_line_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06",
+                  "kind": "table_row",
+                  "cells": [
+                    "---",
+                    "---"
+                  ]
+                },
+                {
+                  "source_line": 7,
+                  "source_line_sha256": "fdc3ab521fb3eb3f5275f36c130a0d3fcf2338c02bcdce6951011e87530a3620",
+                  "kind": "table_row",
+                  "cells": [
+                    "template ID／版",
+                    "`DT-VT-102`／`0.1.0-seed-candidate`"
+                  ]
+                },
+                {
+                  "source_line": 8,
+                  "source_line_sha256": "9777e8155f8d30001ea6dd1f37c66a381d454cba85b503d8d5d97399ed39ade6",
+                  "kind": "table_row",
+                  "cells": [
+                    "状態",
+                    "seed候補。採否なし（DST-HARNESS-005は未採択の要求候補）"
+                  ]
+                },
+                {
+                  "source_line": 9,
+                  "source_line_sha256": "1c5ef3439bedc411600d3a13136ba52d54fdcb4c242d207ee76a75aa1f755a1d",
+                  "kind": "table_row",
+                  "cells": [
+                    "想定する持ち主",
+                    "HELIX-HARNESS-CORE（段階ごとの検証の契約と状態の遷移、HARNESS-L2-022）。汎用の型はHELIX-BRAIN。テストとCIの運転、ticketの発行、検収はHELIX-OS"
+                  ]
+                },
+                {
+                  "source_line": 10,
+                  "source_line_sha256": "4823a70187376ed368ce92193e98dd209a5cef82e75f7a421809cfbddc18d819",
+                  "kind": "table_row",
+                  "cells": [
+                    "適用条件",
+                    "L2 要求（L2.5のPrototype・PoCを含む）の成果物に対の検証を行うとき。全件の実行を既定にせず、HARNESS-L2-005の規則（Forwardの大きさ、risk、触るコネクタ）で要否を決める"
+                  ]
+                },
+                {
+                  "source_line": 11,
+                  "source_line_sha256": "7235ba4424ae711dc27d11008b114830df24080668d284e4fe64152603a1b5ba",
+                  "kind": "table_row",
+                  "cells": [
+                    "適用判定の記録",
+                    "DT-VT-001 §2（非適用、理由、判断者、HEAD、要求への影響、再評価条件）"
+                  ]
+                },
+                {
+                  "source_line": 12,
+                  "source_line_sha256": "e1bd9d3f9cd5dbf242de40a81cd4cc45d8fb20f46c7b3894501c464fdb736395",
+                  "kind": "table_row",
+                  "cells": [
+                    "必須入力（左腕のtest basis）",
+                    "合意済みのL2要求とrevision、L11受入の条件（成功条件と反例）、HARNESS-L2-003に従ってPrototypeとPoCを別々に判定したL2.5適用記録。Prototype適用時は合意済みprototypeのrevisionと合意記録、PoC適用時は検証結果と要求へのBackflow先・反映revisionを含める。各々の非適用時は根拠付きN/A記録を含める。適用がunknown、または適用時の成果が欠ける場合、その成果に依存する受入条件をunknownとして成立を主張しない。"
+                  ]
+                },
+                {
+                  "source_line": 13,
+                  "source_line_sha256": "2895629d481d9177c36da0e49a6d27c5fe8a742e14b76010fec0244b041eb3ac",
+                  "kind": "table_row",
+                  "cells": [
+                    "右腕のtest condition",
+                    "利用者が、合意した成功条件を満たし、反例が起きないと確かめられるか"
+                  ]
+                },
+                {
+                  "source_line": 14,
+                  "source_line_sha256": "df2e3b515d26c73677a7a2fa8813d3e6c44bef82f33acfadf59f7113a0ef875a",
+                  "kind": "table_row",
+                  "cells": [
+                    "成果物の状態",
+                    "Verified→Accepted（HARNESS-L2-022。L10の合格でL11を合格にしない）"
+                  ]
+                },
+                {
+                  "source_line": 15,
+                  "source_line_sha256": "7dd8c295c5b0f5d1512f62b777dd766a699cdc9e5d24e949663ca4c8c42e3745",
+                  "kind": "table_row",
+                  "cells": [
+                    "対（V-pair）",
+                    "P2：L2 要求 ↔ L11 利用者受入（HARNESS-L2-040の6組）。適用されたL2.5のPrototype／PoC成果と要求への反映revisionは、該当する受入条件の入力として結ぶ"
+                  ]
+                },
+                {
+                  "source_line": 16,
+                  "source_line_sha256": "43e9b72fbecee7ed1c63f475f5c4ddea0a499d6e084edcc58eb02c4ca77b36ed",
+                  "kind": "table_row",
+                  "cells": [
+                    "区分",
+                    "composite（利用者が触る成果）"
+                  ]
+                },
+                {
+                  "source_line": 17,
+                  "source_line_sha256": "9235ef179d0c20a91910be8a4749cceece22b27da403c5a37051f2243c0fb62f",
+                  "kind": "table_row",
+                  "cells": [
+                    "関係",
+                    "DT-VT-001（共通欄）、DT-VT-002（技法カード）、DT-VT-003（選び方の案）、HARNESS-L2-022、HARNESS-L2-056（対ごとのgate結果）"
+                  ]
+                },
+                {
+                  "source_line": 18,
+                  "source_line_sha256": "aa0fba0ec737e7eaa54e94cf0c721e82786dd87e094188d7cf3921c2fb90d5e1",
+                  "kind": "table_row",
+                  "cells": [
+                    "差戻し先",
+                    "意味の変更が要る不一致は、見つけた検証層で戻し先を固定しない。意味が変わる左側の層へBackflowする（詳細の契約はL5、architectureや境界はL4、要求や受入はL3／L2、製品の価値はL1。HARNESS-L2-022、HARNESS-L2-003／004）。振る舞い・契約・要求を保てる不一致は、右側でRefactorして同じ段階の検証をやり直す。右側が左側のauthorityを黙って書き換えない"
+                  ]
+                },
+                {
+                  "source_line": 19,
+                  "source_line_sha256": "0a09d3030c66af04d5dc32627f2748ebc9c4d6638d1d753abee902e30686fd9c",
+                  "kind": "table_row",
+                  "cells": [
+                    "計測",
+                    "数値の閾値は置かない。測る場合はHARNESS-L2-034の14項目に従い、値はL3で根拠付きで導く"
+                  ]
+                },
+                {
+                  "source_line": 20,
+                  "source_line_sha256": "d8e1c3bd95fd7509931e7621a07c0280662ffcf854cd1987c45fdcf2597573f8",
+                  "kind": "table_row",
+                  "cells": [
+                    "1.0の境界",
+                    "—（1.0の範囲。Web展開後の本番利用者の観測はL12で扱う）"
+                  ]
+                },
+                {
+                  "source_line": 21,
+                  "source_line_sha256": "b42dcd666aa5681799bff2915f87b67fc054ff7e885cefd699c381922393f8aa",
+                  "kind": "table_row",
+                  "cells": [
+                    "出典",
+                    "HARNESS-L2-003、HARNESS-L2-005、HARNESS-L2-022、HARNESS-L2-040、HARNESS-L2-056。旧資産は下の「旧HELIXとの対応」"
+                  ]
+                },
+                {
+                  "source_line": 22,
+                  "source_line_sha256": "6ff496869b4825aee802411f77e6ccedfa5883e80d723a8889d80dbefe94ea52",
+                  "kind": "table_row",
+                  "cells": [
+                    "限界",
+                    "対ごとの観点と技法の組合せは材料であり、正式な検証義務ではない。検証義務はHARNESS-L2-005の規則からL3で導く"
+                  ]
+                },
+                {
+                  "source_line": 23,
+                  "source_line_sha256": "ebe7a4147658e5a062c683e689a05c9a7b34d5d489a844a7a461a6bbe074a785",
+                  "kind": "table_row",
+                  "cells": [
+                    "置き換え",
+                    "正式な検証契約（HARNESS-L2-022の具体化）が入ったら`superseded`とし、観点・証拠・差戻し先の行き先を対応づける"
+                  ]
+                }
+              ]
+            },
+            {
+              "source_heading": "不成立例（negative oracle）",
+              "heading_level": 3,
+              "source_line": 25,
+              "entries": [
+                {
+                  "source_line": 27,
+                  "source_line_sha256": "d10ab3390d445db502c30e422f1f2fe64c899b44f0ac028c3b93f6c72b76cf52",
+                  "kind": "list_item",
+                  "meaning": "L10のsystem testの合格を、L11の受入とする。"
+                },
+                {
+                  "source_line": 28,
+                  "source_line_sha256": "7bb4f2b0d02532b6404812afd833cba077fcd2eb65d4edf6a111c5150f52f07b",
+                  "kind": "list_item",
+                  "meaning": "AIの模擬利用や機械の判定から、受入や合意を作る（HARNESS-L2-049）。"
+                },
+                {
+                  "source_line": 29,
+                  "source_line_sha256": "d3b864335980b18533f7df25eee1304e9bd1ffdebf4731fdaa2a5b2baea68bf9",
+                  "kind": "list_item",
+                  "meaning": "Gherkinを書いたこと、画素の一致を、受入の完了とする。"
+                },
+                {
+                  "source_line": 30,
+                  "source_line_sha256": "971e3ab71bbc0f45c7d1cd65b5705b1420a1665aad51f506b7008e52de85e8c1",
+                  "kind": "list_item",
+                  "meaning": "画面も技術的不確実性もない対象でPrototype／PoCを一律必須にする、または必要な活動を根拠なくN/Aにする。"
+                },
+                {
+                  "source_line": 31,
+                  "source_line_sha256": "15f2ba9be300a7cc76ae0916151d1b4654f6794264a3e8adde826d9d6d78ad3b",
+                  "kind": "list_item",
+                  "meaning": "適用されたPrototypeの合意revisionやPoCの結果・要求への反映を欠いたまま、関連する受入観点を成立とする。"
+                },
+                {
+                  "source_line": 32,
+                  "source_line_sha256": "8d86a263d34f152d7fd6a03e4f450b4ade7389612301a0a7d2c622452248d00d",
+                  "kind": "list_item",
+                  "meaning": "設計側と検証側のoracle identityが一致しないのに、対を成立とする（HARNESS-L2-056）。"
+                },
+                {
+                  "source_line": 33,
+                  "source_line_sha256": "7b6765cdcacf2673d03fef7436e3ceeebb783d2947d4bdcf6ddc196ee777d89b",
+                  "kind": "list_item",
+                  "meaning": "対の片側（設計の義務または検証の証拠）が欠けているのに、greenとする。"
+                }
+              ]
+            },
+            {
+              "source_heading": "正例と境界の負例",
+              "heading_level": 3,
+              "source_line": 35,
+              "entries": [
+                {
+                  "source_line": 37,
+                  "source_line_sha256": "c6e9b0a005d901e8053d9d313c39f9603862da82b18babe83bc2c356eec19c14",
+                  "kind": "list_item",
+                  "meaning": "正例：画面がなく技術的不確実性もない対象で、PrototypeとPoCを別々にN/Aとし、それぞれL2-003の根拠付き記録を残した。L11では要求Aの成功条件と反例「CI greenだけで受入を主張する」を利用者が確かめ、受入の記録を人が残した。"
+                },
+                {
+                  "source_line": 38,
+                  "source_line_sha256": "8b6958b038dc0a12432e3b7f1b8ac6fa25b4263851048ae14bf831ce0654e5a2",
+                  "kind": "list_item",
+                  "meaning": "境界の負例：画面を持たないと判定した対象。5軸を理由付きのN/Aにできる。画面を持つ対象では5軸をN/Aにしない。"
+                }
+              ]
+            },
+            {
+              "source_heading": "完了条件",
+              "heading_level": 3,
+              "source_line": 40,
+              "entries": [
+                {
+                  "source_line": 42,
+                  "source_line_sha256": "3916e652950db170b30aebb0aebc18c1497b1e4aaca41baf6fbb0ceda81364a2",
+                  "kind": "source_explanation_or_example",
+                  "text": "照合の観点ごとに、DT-VT-001の共通欄と下の必須証拠があるか、理由付きのN/Aである。oracle identityが両側で一致している。unknownを成立にしていない。**本templateの完了条件を満たしても、成果物の状態を上げる判定は別の契約（HARNESS-L2-022）による。**"
+                }
+              ]
+            },
+            {
+              "source_heading": "本体",
+              "heading_level": 2,
+              "source_line": 44,
+              "entries": []
+            },
+            {
+              "source_heading": "L2.5（Prototype・PoC）の適用記録とtest basis",
+              "heading_level": 3,
+              "source_line": 46,
+              "entries": [
+                {
+                  "source_line": 48,
+                  "source_line_sha256": "88875921b184f4a9fd6e1f6bf254c37ac03d985d62080502639809890dc25993",
+                  "kind": "source_explanation_or_example",
+                  "text": "画面の有無で判定するPrototypeと、画面の有無にかかわらず技術的成立性の不確実さで判定するPoCを、別々に記録する（HARNESS-L2-003）。片方の適用判定を他方へ流用しない。"
+                },
+                {
+                  "source_line": 50,
+                  "source_line_sha256": "577197aea68b8598dbf88926afa3c0c634739d70e6735cc89ddf8267ba60498b",
+                  "kind": "table_row",
+                  "cells": [
+                    "L2.5活動",
+                    "適用時にtest basisへ含めるもの",
+                    "非適用時"
+                  ]
+                },
+                {
+                  "source_line": 51,
+                  "source_line_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+                  "kind": "table_row",
+                  "cells": [
+                    "---",
+                    "---",
+                    "---"
+                  ]
+                },
+                {
+                  "source_line": 52,
+                  "source_line_sha256": "33bfc5b7ce32568d9b51f182f2e7f95f6d82b37cff8af597148396ba10263db7",
+                  "kind": "table_row",
+                  "cells": [
+                    "Prototype（画面の有無で判定）",
+                    "利用者が合意したprototypeのexact revisionと合意記録。Prototypeで確認した条件に依存するL11観点を対応づける。",
+                    "HARNESS-L2-003所定の非適用・理由・判定者・HEAD・要求への影響・再評価条件を持つN/A記録。"
+                  ]
+                },
+                {
+                  "source_line": 53,
+                  "source_line_sha256": "73dd332c60666a7e17fd8ff91e45fde47f92893edea0a6993f2e92e725732399",
+                  "kind": "table_row",
+                  "cells": [
+                    "PoC（技術的成立性の不確実さで判定）",
+                    "仮説と事前の成功条件、結果（成立・不成立・未確認）、要求へのBackflow結果、Backflow後のL2要求revision（変更なしの場合も明記）。関連するL11観点へ結果を対応づける。",
+                    "HARNESS-L2-003所定の非適用・理由・判定者・HEAD・要求への影響・再評価条件を持つN/A記録。"
+                  ]
+                },
+                {
+                  "source_line": 55,
+                  "source_line_sha256": "fdbcfc0fff0cc9ac73e1792c417f16685e0c6c981c72175291109b6a873122de",
+                  "kind": "source_explanation_or_example",
+                  "text": "適用判定がunknownならN/Aに置き換えず未解決として記録する。適用された活動のrevision・結果が欠けるときは、それに依存するL11観点の成立を主張しない。適用がunknownまたは根拠付きN/Aであることだけを理由に、他の独立した受入観点を一律に止めない。L2.5の成果は受入の入力であり、それ自体がL11の受入やL3凍結を生成しない。"
+                }
+              ]
+            },
+            {
+              "source_heading": "1. 照合の観点",
+              "heading_level": 3,
+              "source_line": 57,
+              "entries": [
+                {
+                  "source_line": 59,
+                  "source_line_sha256": "5a6dc3b97a305dabf8ea17145b7ffe27bf3a586d75384f5ba145ab11d2201c3e",
+                  "kind": "table_row",
+                  "cells": [
+                    "観点",
+                    "使う技法（DT-VT-002）",
+                    "結果",
+                    "証拠のref",
+                    "N/Aの理由"
+                  ]
+                },
+                {
+                  "source_line": 60,
+                  "source_line_sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430",
+                  "kind": "table_row",
+                  "cells": [
+                    "---",
+                    "---",
+                    "---",
+                    "---",
+                    "---"
+                  ]
+                },
+                {
+                  "source_line": 61,
+                  "source_line_sha256": "5e1595162c7bea5dc06c3964218755247e41fcc390183036158f4442791e11b0",
+                  "kind": "table_row",
+                  "cells": [
+                    "受入の条件ごとの成功と反例の観測",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "source_line": 62,
+                  "source_line_sha256": "e1ed53ade77eb6709b13c93fc6c6a1f8a8f703c9e995a5f8014217ae03870717",
+                  "kind": "table_row",
+                  "cells": [
+                    "画面を持つ対象では5軸（mock-promotion、design-token-drift、a11y-regression、visual-regression、state-transition-drift。HARNESS-L2-036）と表示計測（HARNESS-L2-049）",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "source_line": 63,
+                  "source_line_sha256": "9db9e7412e4e2fd7435e262fd979d80ef7f0ac4423889888a1cbf19715230e9f",
+                  "kind": "table_row",
+                  "cells": [
+                    "意味の差を見つけたら、コードを直して合わせずにBackflowで要求へ戻す",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "source_heading": "2. 技法の早見（DT-VT-003 §1の抜き出し）",
+              "heading_level": 3,
+              "source_line": 65,
+              "entries": [
+                {
+                  "source_line": 67,
+                  "source_line_sha256": "830803b030809912189145ff44fdc064ea9cc6c4fce50ff7c71212d02e7a61e8",
+                  "kind": "table_row",
+                  "cells": [
+                    "主力（oracleを与える）",
+                    "補助（oracleの強さを測る・変化を検出する）",
+                    "1.0で任意・後続"
+                  ]
+                },
+                {
+                  "source_line": 68,
+                  "source_line_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+                  "kind": "table_row",
+                  "cells": [
+                    "---",
+                    "---",
+                    "---"
+                  ]
+                },
+                {
+                  "source_line": 69,
+                  "source_line_sha256": "3c9e4654edbfe775fb50532e82e7b2b531144d8b4297504d6f8bb7c8d2ea5c87",
+                  "kind": "table_row",
+                  "cells": [
+                    "C08、C22、C23、C24、C26",
+                    "C25、C18（ARIA）、C38",
+                    "—"
+                  ]
+                },
+                {
+                  "source_line": 71,
+                  "source_line_sha256": "ca78623f9cefb02eb7b5bb670c7f91fe8a0c7491d16d9cffe4570b4986799bb6",
+                  "kind": "source_explanation_or_example",
+                  "text": "全pairに共通して、C01（review）、C02（trace）、C36（独立review）を使う。"
+                }
+              ]
+            },
+            {
+              "source_heading": "3. 必須の証拠（共通欄に足す）",
+              "heading_level": 3,
+              "source_line": 73,
+              "entries": [
+                {
+                  "source_line": 75,
+                  "source_line_sha256": "b68787a716be47d7eea49d6be64fe9f15f4280f034cc0e1d015dcc5c86bcdb53",
+                  "kind": "list_item",
+                  "meaning": "`scenario_ids`、`counterexamples_tested`"
+                },
+                {
+                  "source_line": 76,
+                  "source_line_sha256": "d06d15e723042175f02166853c7ea1060a299908c2dc7120efb0e05a1d3162ab",
+                  "kind": "list_item",
+                  "meaning": "`acceptance_record_ref`（人の受入の記録を指す。本templateは受入を作らない）"
+                },
+                {
+                  "source_line": 77,
+                  "source_line_sha256": "a3d8d6527f4d10d8eb644bfc77e01da572254583d85e333e59a8e3044606ae10",
+                  "kind": "list_item",
+                  "meaning": "Prototype／PoCそれぞれの適用記録refと、適用時は前節のrevision・合意または結果・要求への反映revision。非適用時は6項目を持つN/A記録ref"
+                },
+                {
+                  "source_line": 78,
+                  "source_line_sha256": "b7e114101f1d71f891e99bd33d3f86a3c7d499a9f6b8005f6103b0243c379380",
+                  "kind": "list_item",
+                  "meaning": "`semantic_gaps`とそのBackflow先"
+                }
+              ]
+            },
+            {
+              "source_heading": "4. 差戻しの記録",
+              "heading_level": 3,
+              "source_line": 80,
+              "entries": [
+                {
+                  "source_line": 82,
+                  "source_line_sha256": "e421456a4cba92b359d88edcd47a7172bfe6d491eb033b57600033d131a217a0",
+                  "kind": "table_row",
+                  "cells": [
+                    "finding",
+                    "意味の変更が要るか",
+                    "戻し先（L1〜L5、または同じ段階のRefactor）",
+                    "根拠"
+                  ]
+                },
+                {
+                  "source_line": 83,
+                  "source_line_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832",
+                  "kind": "table_row",
+                  "cells": [
+                    "---",
+                    "---",
+                    "---",
+                    "---"
+                  ]
+                },
+                {
+                  "source_line": 84,
+                  "source_line_sha256": "187596b1145648c2017a2da0d07418ac82c20f1b272e619937ef73d6c2c7dc6b",
+                  "kind": "table_row",
+                  "cells": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "source_heading": "5. 旧HELIXとの対応",
+              "heading_level": 3,
+              "source_line": 86,
+              "entries": [
+                {
+                  "source_line": 88,
+                  "source_line_sha256": "4aa5732c2a64e40477ca1ba950379f52a43aa450591d8371539c51ecc292a041",
+                  "kind": "table_row",
+                  "cells": [
+                    "旧source",
+                    "保持する点",
+                    "変更する点",
+                    "理由"
+                  ]
+                },
+                {
+                  "source_line": 89,
+                  "source_line_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832",
+                  "kind": "table_row",
+                  "cells": [
+                    "---",
+                    "---",
+                    "---",
+                    "---"
+                  ]
+                },
+                {
+                  "source_line": 90,
+                  "source_line_sha256": "b7fff7c7e1c95e3d54580bd80e07ca4415ba184b70c6ba923fd017680f80953d",
+                  "kind": "table_row",
+                  "cells": [
+                    "旧 `L08-L14-verification-phase.md` 34（G11：要求・人間受入）・78（UAT decision record、未処理feedbackを拒否）・204、旧 `docs/test-design/helix/L2-screen-ux-test-design.md` 26–35、旧 `docs/skills/acceptance-criteria-thinking.md` 45–76",
+                    "人の受入の記録を要し、未処理のfeedbackを残したまま受入にしないこと。受入観点の表（ID、対応AC、観点、合格条件）。「Doneの偽装」のカタログ",
+                    "旧S3／S4の結線、旧`review_evidence`の欄は持ち込まない",
+                    "現行はL2.5の合意を経てL3へ進み、L11はVerified→Acceptedの段階として扱う（HARNESS-L2-003、HARNESS-L2-022）"
+                  ]
+                },
+                {
+                  "source_line": 92,
+                  "source_line_sha256": "e09b9f8e3f270762a08d6647d2653932eba0e43beed41f42e888ebf7b7f457c4",
+                  "kind": "source_explanation_or_example",
+                  "text": "旧 `L08-L14-verification-phase.md` 39–40・207・213–220（対の凍結前のテスト設計を後付けしない、品質観点の不足は既存のテスト設計を書き換えずに追加のテスト設計として分ける）は、全pairで保持する候補とする。旧のpathと旧の工程名（add-design／add-impl）は持ち込まない。"
+                }
+              ]
+            }
+          ],
+          "referenced_template_ids": [
+            "DT-VT-001",
+            "DT-VT-002",
+            "DT-VT-003"
+          ],
+          "reference_effect": "参照はrequired依存や採用を意味しない。技法/適用条件は別に照合する。",
+          "unresolved": [
+            "required section/fieldの個々の識別と要否、例の値/型の分離は未完。",
+            "downstream kindの定義と15項目の完全性を未確認。",
+            "既存tableの想定持ち主は汎用ownerと製品適用責務を記述する。fieldごとの意味ownerは未完。",
+            "参照するVT002/003の技法/選択意味と適用条件の照合は未完。最小setが成立したとはしない。"
+          ]
         }
       ],
-      "existing_guarantees_retained": [
-        "project使用template exact set/版と既存event記録",
-        "未接続/未合意/未実装/未検証の区別、部分成功から全体完了を生成しない",
-        "原event/projection、evidence/continuity、未完義務の受信側受理",
-        "fallback拒否とLABO評価/BRAIN採否/許可の責務境界"
-      ],
-      "added_binding": [
-        "候補/選択/使用setの区別と各記録の要求/template/義務/revision/scope/因果参照",
-        "CORE009判定/理由/判定者/revision/再評価条件と未完義務/消込証拠の参照",
-        "評価scopeの原記録集合/抽出・除外理由/重複/未観測範囲とfinding候補の元記録"
-      ],
       "remaining_scope": [
-        "seed採否/全旧atom移管",
-        "LABO評価方法とBRAIN採否、接続の成立確認",
-        "安全/資源/計測、内部更新/復旧・支援/改善循環",
-        "schema/実装/CI/L3再開"
+        "VT002/003の技法・選択、必要なunit/connection/compositeと対検証seedの比較",
+        "15契約項目の全意味/field identity/owner/必要条件とsource対応",
+        "最小seed exact setと各revision採否、非選択26候補の保全"
       ]
     }
   ],
-  "legacy_sources": [
-    {
-      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
-      "lines": "24/36/47–58/83–92",
-      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
-    },
-    {
-      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
-      "lines": "54/56/58",
-      "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc"
-    },
-    {
-      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L4-design-template-json-authority-system-test-design.md",
-      "lines": "18–25",
-      "sha256": "383a24892ba865ac5dc53729cf3e9fc49073aafa7dbabc3b17ee0408f3ed559a"
-    }
-  ],
-  "legacy_comparison": {
-    "reuse_class": "semantic_rederivation",
-    "preserve": "exact set/instance束縛/Backflow/trace-pair-revision、scope/記録責務分離と改善循環",
-    "change": "各案件eventの細粒度結合と評価入力の範囲/欠落追跡。評価方法/判断authorityをOSへ移さない。",
-    "reason": "固定条件照合DST-OS-003/004の未結合条件とCORE009の採択済み出力を対応づけ、記録の取り違え/欠落/件数からの誤成立を防ぐ。"
-  },
   "resolved_packet": {
-    "status": "COREAPPLYの009追補はPR #2853で採用反映済み。前packetと内包する既決packetを再承認/再適用しない。",
-    "fixed_proposal_commit": "db6fedb183ba041676defac677df77593c958b65",
+    "status": "OSTRACEはPR #2855/decisionで採用反映済み。過去packetを再承認/再適用しない。",
+    "fixed_proposal_commit": "8b6017ab30f09d3a111a8d8a14435729129ac8d8",
     "decision_refs": [
-      "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md"
+      "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md"
     ],
     "packet": {
       "packet_kind": "requirements_resolution_proposal",
-      "base_revision": "bf670396f21e5a9e6c072fa35ceeb29ccf964ecb",
+      "base_revision": "1754ffdbd2a8a8e7b253aec8f73d73168fa1dc2b",
       "authority_effect": "none",
       "decision_required": [
-        "COREAPPLYの009追補と対L11の対象revision採否。既決1.0は保持し再承認を求めない。"
+        "OSTRACEの既存002追補と対L11の対象revision採否。既存版/適用条件は保持し、版指定を追加しない。"
       ],
       "source_sha256": {
         "docs/concept/helix-concept.md": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
-        "docs/helix-harness/L1-planning/product-intent.md": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
-        "docs/helix-harness/L2-requirements/product-requirements.md": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1",
-        "docs/helix-harness/L11-acceptance/product-acceptance.md": "c22df0429af7743eccfdeff8a404bd48bce4275d326e79f242d77af58c0b4bf5",
-        "docs/helix-brain/candidates/design-template-system-requirements.md": "113cb18db8fd99a05842b0c78539af06156c984a7821cb4710b3f458a1a78013",
+        "docs/helix-os/L1-planning/system-intent.md": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+        "docs/helix-os/L2-requirements/governance-requirements.md": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md": "50c8bd186c2f75d44a29f9c37415a19e4b31c083c1a1aec07e33fe80f975d005",
+        "docs/helix-harness/L2-requirements/product-requirements.md": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
         "docs/helix-brain/L2-requirements/brain-requirements.md": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
-        "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964",
-        "docs/governance/audits/template-condition-review-2026-10-10.json": "792cbda6594b20262440f70d75bcc057c2097a01a56b5aaa3def75b8dd9cf398"
+        "docs/helix-labo/L2-requirements/labo-requirements.md": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "docs/helix-brain/candidates/design-template-system-requirements.md": "113cb18db8fd99a05842b0c78539af06156c984a7821cb4710b3f458a1a78013",
+        "docs/governance/audits/template-condition-review-2026-10-10.json": "792cbda6594b20262440f70d75bcc057c2097a01a56b5aaa3def75b8dd9cf398",
+        "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
       },
       "units": [
         {
-          "id": "COREAPPLY",
+          "id": "OSTRACE",
           "issue": 2846,
-          "requirement_identity": "HARNESS-L2-009",
+          "requirement_identity": "HELIXOS-L2-002",
           "kind": "unit",
-          "version_target": "1.0",
-          "version_effect": "既決1.0を保持する。版変更ではない。",
-          "proposal": "既存009の製品template適用をexact set・各適用判定/義務/不足/意味影響へ同じrevision/scopeで束縛する追補。",
+          "version_effect": "既存版/適用条件を保持し、version_targetを新設しない。",
+          "proposal": "案件templateの候補/選択/使用set、各eventと義務/結果、評価へ渡す追跡材料をsource/要求revision/scopeへ結ぶ追補。",
           "parent_planning_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
           "parent_planning_ids": [
-            "HARNESS-L1-009",
-            "HARNESS-L1-004"
+            "HELIXOS-L1-002",
+            "HELIXOS-L1-007",
+            "HELIXOS-L1-008"
           ],
-          "parent_planning_decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "parent_planning_decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
           "edits": [
             {
-              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-              "before": "**共有consumer／旧設計境界**：旧crosswalk `docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:24` はHIL-FR-15をOSへ置くhistorical routing assessmentで、後続correction row3はHARNESS変換／OS記録の分割を提案する。両方ともauthority effectのない未確定記録である。旧HST-CASE-008-10は固定ZIP snapshotとmappingからmetadata等をprovenance付きHELIX契約にし、不完全時`HIL_HYBRID_INGESTION_INCOMPLETE`を返すconsumer/oracle contextとして対応させる。HST-CASE-008-01とHIL-FR-25のversioned capability・build engine run・artifact/digest/exit statusは別identityの境界であり、本候補へrun義務として加えない。旧consumer/testはsource atomにも現行実行証拠にも数えない。\n",
-              "after": "**共有consumer／旧設計境界**：旧crosswalk `docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:24` はHIL-FR-15をOSへ置くhistorical routing assessmentで、後続correction row3はHARNESS変換／OS記録の分割を提案する。両方ともauthority effectのない未確定記録である。旧HST-CASE-008-10は固定ZIP snapshotとmappingからmetadata等をprovenance付きHELIX契約にし、不完全時`HIL_HYBRID_INGESTION_INCOMPLETE`を返すconsumer/oracle contextとして対応させる。HST-CASE-008-01とHIL-FR-25のversioned capability・build engine run・artifact/digest/exit statusは別identityの境界であり、本候補へrun義務として加えない。旧consumer/testはsource atomにも現行実行証拠にも数えない。\n\n### HARNESS-L2-009 製品template適用のexact set・義務・Backflow・影響の追補案（unit candidate）\n\n- **位置・親・版**：既存HARNESS-L2-009の製品適用能力を対象とする一identityの追補候補。未採択、`registered_proposal`／`authority_effect: none`。9/28固定HARNESS-L1-009とL1-004を親とし、009の既決`version_target: 1.0`を保持する。3kind固有義務、上流への不足差戻し、理由付き非適用の区別と任意fallback拒否を新規要求として再承認しない。\n- **受け取るもの**：対象要求identity/revision、kind、subject、relation、構成、risk、domain、適用layer/pair、製品scopeと工程契約版、候補templateのidentity/version/意味契約revision/source/利用状態、対象操作の選択根拠。BRAINの汎用契約はHELIXBRAIN-L2-032の項目、提供知識の受領は030、既存HARNESS009/023/026の依存区分を使う。Knowledgeの提供・受領と製品への適用選択を分ける。\n- **適用候補set**：上記入力の各axisとtemplate適用条件を照合し、検討対象のexact set、各要素の適用理由または不適用/未解決理由、比較対象の境界、対象要求/製品scope、参照知識・適用契約版へ束縛した結果候補を返す。set内のduplicate identity、別revision/製品scopeの混入、入力axis/候補母集合の欠落を黙って補わない。AI、言語、projectが変わっても、同じ意味の要求分類と適用契約・候補集合を与えた場合に、必要な論点を恣意的に増減させない。異なるscopeや未観測知識まで同一setへ固定しない。再現性の判断基準・同等性判定・選択algorithmは対要件/設計で導出する。\n- **適用判定と義務**：各templateのrequired/conditional/N/A/unresolvedを、根拠、判定者、対象revision/scope、条件、再評価条件とともに区別する。既存の理由付き非適用の区別を保持する。templateごとの判定に判定者・対象revision・再評価条件まで束縛する点は今回の追補差分であり、L2.5の003や性能/securityの限定文脈の既存N/Aを全templateへ承認済みとして広げない。判定不能をN/Aに丸めない。conditionalは条件と未充足状態を残す。unit/connection/composite固有義務、requirement→obligation→design→pairへのtraceを選択template版へ結ぶ。source要素からatom/proposal/gapを抽出する041、具体設計・oracleを構成する025/026の意味と処理を置換しない。\n- **不足とBackflow**：不足ごとにsource/template/requirement revision、fieldまたはobligation identity、定義欠落と値未決、根拠、影響scope、未完義務、返却先を持つ候補へ結ぶ。既存009の質問、矛盾、derived requirement candidate、N/A判断候補を区別し、分類未決は未解決のまま示す。field定義/knowledge版の不足はBRAIN、定義済みfieldの製品要求値未決は008の要求形成、製品適用contractの不整合はHARNESSへ返す。候補の返却から要求合意・採択やticket発行を生成しない。\n- **template変更と影響**：比較する旧新のtemplate identity/revisionと意味差分を、使用する要求・義務・設計artifact・対検証のidentity/revision/scopeへ結び、影響あり/なし/Unknownの根拠と再評価対象を返す。旧版参照と移管状態を識別し、影響不明をUnaffectedや移管完了へ変換しない。filename、schema/file digest、表示だけの更新を意味移管の完了根拠にせず、HARNESS004の局所影響と無関係な有効作業の保持を守る。実projectの使用版/state、event、stale記録の更新と未完義務の消込はOSへ残す。\n- **責務・依存**：HARNESS-COREのPython意味処理は、適用set、義務、不足質問、影響の材料を導く。BRAINは汎用知識の版/state、OSは案件の選択・使用set/版の登録/運転を所有する。意味処理の出力にDB/Git/GitHub write、割当、lease、実行、認可を与えない。常時必須は要求/製品scopeと工程・適用契約のidentity/revision。特定操作時は選択/差戻し/影響比較に必要な各入力、知識を選んだ入力ではそのknowledge全required fields/版/適用条件を照合する。非選択知識と旧例は参照資料であり、受渡し先の完了receiptや全seed採用を初回処理前の入力にしない。\n- **失敗・限界**：missing/conflict/unknown/staleを対象scopeの結果へ残し、別templateの成功で欠落を隠さない。候補setを作れたこと、template適用、041抽出成功、OS受領だけでは、要求合意、設計成立、pair検証成功、全project完了を生成しない。schema/型/演算子/通信/API/algorithm/閾値は固定しない。初期seedの選択/採否、OS event/評価母集団、shadow parity・renderer・pair/portfolioのbindingは別の残範囲とする。\n- **旧source**：旧L4 design-template-json-authority.md:38/39/42/47–60/81–92のexact set、applicabilityのfail-close、Backflow proposal、N/A根拠、trace/pair/revision照合を保持して現行ownerへ意味を再導出する。旧all/any/not/allowlistの具体型、旧layer番号、planner/cutover/runtimeは移植しない。未対応旧条件は保持し、この追補から旧atom全移管・formal successor・retire・L3再開を生成しない。\n",
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "before": "- **限界**：候補の起草・仮登録はPO判断記録に代わる採択、要求successor割当、migration実施、実行・配布許可、完了判定を生成しない。\n",
+              "after": "- **限界**：候補の起草・仮登録はPO判断記録に代わる採択、要求successor割当、migration実施、実行・配布許可、完了判定を生成しない。\n\n### HELIXOS-L2-002 project template記録の因果・revision・評価入力追補案（unit candidate）\n\n- **位置・親・版**：既存HELIXOS-L2-002のproject追跡能力を対象とする一identityの追補候補。未採択、`registered_proposal`／`authority_effect: none`。9/28固定HELIXOS-L1-002／007／008を親とする。既存002の版と適用条件を変更せず、新しいversion_targetを指定しない。使用templateのexact set/版、適用・義務・N/A・Backflow・成果・finding・再作業・受入・運用結果の記録、任意fallback拒否、LABO評価とBRAIN採否の分離は既採択のまま保持する。\n- **受け取るもの**：対象project/製品scope、要求identity/revision、適用HARNESS契約版、CORE009の選択/判定/義務/不足/意味影響候補とその根拠、BRAINの参照template identity/version/意味契約revision/利用状態、実際の選択と使用set、発生元のevent・actor・source・相関参照・未完義務・操作/利用許可とdata class。提案set、案件が選択したset、実際に使用したsetを分け、各記録がどの集合に対するものかを示す。候補受領だけで使用済みへ変換しない。\n- **個々の記録の結合**：template適用、義務生成/消込、N/A、Backflow、設計成果、finding、再作業、受入、運用結果の各記録を、それぞれの発生元、project/scope、対象要求revision、選択/使用template版、関係する義務・成果・対検証のidentity/revisionと因果参照へ結ぶ。関係しない項目まで架空の値で埋めず、その不適用根拠または未解決を残す。別project、別template版、別義務の成果で欠落を埋めない。原eventと訂正・分類projectionを分け、訂正で旧失敗や旧scopeを消さない。\n- **判定・未完義務の記録**：CORE009のrequired/conditional/N/A/unresolved、根拠・判定者・対象revision・再評価条件をその出力参照へ結び、OSが適用規則やN/A判断を新設しない。conditionalの未充足、義務の未実施/不合格/未評価、Backflowの返却先・停止理由・未完義務・受領/解決証拠を分けて記録する。受領・ACKと意味判断/解決を区別し、元義務の消込には適用契約が求める対象revision/scopeの証拠を結ぶ。既存023の受信側による未完義務受理と元ticket完了の条件を保持し、記録の存在、文書生成、checkbox、他義務の成功から完了を生成しない。\n- **変更と履歴**：同じprojectの使用template旧新版と、COREが返す意味影響対象/理由を、再評価する要求・義務・成果・pairのrevision/scopeと結ぶ。旧版利用、stale、再評価待ち、影響Unknownを区別する。OSは意味影響を独自算出せず、filenameや表示更新だけで旧版使用履歴を現行化しない。無関係な有効scopeは既存契約どおり保持する。\n- **評価へ渡す追跡材料**：005/024を通じてLABOへ渡すtemplate利用結果には、選択された評価scopeに含まれるproject・要求revision・使用template版と期間、参照する原記録集合と抽出根拠、含めた/除外した対象と理由、重複/再送の対応、未接続・未観測・未回収・比較不能の範囲を結ぶ。不足・過剰要求・誤選定・再作業・欠陥流出のfinding候補は、発生元と対象義務/使用版/再作業/受入/運用記録を保持して渡し、因果未決は未決とする。LABOが指定または合意した評価範囲/必要入力が未決なら、不完全な入力として示し、OSが独自に評価母集団・測定定義・因果効果を決めない。未観測や観測期間不足を欠陥0・改善成功にせず、利用回数やAI自己評価でtemplateを昇格しない。これは評価入力の追跡材料であり、LABOの評価方法、接続成立、BRAINの採否を追加定義する要求ではない。\n- **責務・依存・停止範囲**：002は案件記録の追跡、001は合意/source、007/019はevidence/continuity、023は未完義務handoff、005/024/048は改善/評価/再発の既存接続を持つ。汎用知識の意味/版はBRAIN、製品適用/意味影響はCORE、効果/退行評価はLABO、操作とdata利用条件はSECURITYに従う。常時必要は記録対象project/scope、source/要求revisionと該当契約参照。特定templateを選択/使用する操作ではそのset/版/適用出力を、評価へ送る操作では選択評価scope/必要入力と利用許可を照合する。関係しない知識/全seedや、今回初めて生じる結果・受領証拠を開始前提にしない。不足/unknown/conflict/staleは該当記録または受渡しを未成立にして解消先へ返し、評価未観測だけで無関係な有効作業を止めない。未登録等での停止/Backflowとfallback拒否は既存条件を保持する。\n- **旧source・差分・限界**：旧L4 design-template-json-authority.md:24/36/47–58/83–92の選択template/requirement/obligation束縛、exact set、Backflow event、trace/pair/revisionと、旧pillar-requirements.md:54/56/58の改善循環・scope/記録責務分離・trace/driftを起点に意味を再導出する。追加は各案件記録の細粒度結合と評価入力範囲/欠落の追跡であり、旧sourceにこの全条件が既定だったと主張しない。旧DB/runtime/JSON schema/層番号/型/算法を移植せず、wire/API/event enum/計測値/閾値も固定しない。旧atom全移管、seed採用、現実のOS記録/接続成立、LABO評価済み、BRAIN採用、L3再開を生成しない。\n",
               "expected_occurrences": 1,
-              "proposed_section_sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b"
+              "proposed_section_sha256": "98dea2842f7a3a5b26c2ab2af302a6abbd025b7ecef50998b3557ede5d78764e"
             },
             {
-              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-              "before": "- **旧consumer pins**：HST-CASE-008-10のline 373（旧system-assertion-cases file SHA-256 `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8`、row SHA-256 including LF `6730eb0367123265f30fe4d8e94c3eed05262445a96d7ee7c915d49eb257bcc9`）はmetadata等のprovenance付き変換と`HIL_HYBRID_INGESTION_INCOMPLETE`を示す設計contextとして保持する。HST-CASE-008-01 line 78（同file SHA、row SHA-256 including LF `f231a05e565b9f3e489315a474356f32e1c0a86b88a3639c1ed412c390f9f64d`）はHIL-FR-25 build-engine run/artifact manifestの別境界であり、実行しない。HIL-FR-25 versioned-capability条件は別identityのまま。\n",
-              "after": "- **旧consumer pins**：HST-CASE-008-10のline 373（旧system-assertion-cases file SHA-256 `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8`、row SHA-256 including LF `6730eb0367123265f30fe4d8e94c3eed05262445a96d7ee7c915d49eb257bcc9`）はmetadata等のprovenance付き変換と`HIL_HYBRID_INGESTION_INCOMPLETE`を示す設計contextとして保持する。HST-CASE-008-01 line 78（同file SHA、row SHA-256 including LF `f231a05e565b9f3e489315a474356f32e1c0a86b88a3639c1ed412c390f9f64d`）はHIL-FR-25 build-engine run/artifact manifestの別境界であり、実行しない。HIL-FR-25 versioned-capability条件は別identityのまま。\n\n### HARNESS-L2-009 製品template適用追補の受入案\n\n- **正常・対象scope**：同じ意味の要求分類、候補母集合、適用contract/knowledge版、製品scopeを与え、unit/connection/composite別の候補set・理由、義務とpair traceを照合する。AIまたは言語を替えた同scope例でも必要な論点を保持し、違うdomain/risk/scopeの結果まで同じsetとしない。oracleは期待する適用集合・根拠・義務の意味を照合し、集合の件数やfieldの存在だけで合格にしない。\n- **axis/集合の負例**：kind/subject/relation/構成/risk/domain/layer/pair/製品scope/適用契約版の各入力を一つずつ欠かすか食い違わせる。duplicate template identity、別revision、別製品のtemplate、未提示知識への任意fallback、候補母集合未定を完全な適用setにしない。欠落と元revisionを示して未解決へ返す。\n- **適用・N/A**：required/conditional/N/A/unresolvedの例を与える。N/Aの理由・判定者・対象revision・再評価条件の各欠落、conditionalの条件未充足、判定不能を非適用へ丸める入力は成立にしない。下のunitの成功だけで接続/構成体の義務を閉じず、source/template→義務→設計→pairの別revisionや片方向traceを検出する。\n- **不足・4候補**：template必要inputについて、質問、矛盾、derived requirement candidate、N/A判断候補へ返す各例を示す。field定義自体の欠落と、定義済みfieldの製品要求値未決を混ぜず、source/field identity、元revision/scope、未完義務と返却先を保つ。分類不明、AIの補完、口頭のみの返却、別template成功での相殺は未解決とする。BRAIN受領可能な値unknownでも製品義務は未完、候補返却は人間合意やOS ticket発行ではない。\n- **変更・局所影響**：同じtemplateの旧新版について、適用条件/必須field/negative oracle/completionの意味変更、意味を変えないview更新、製品scope外の変更を与える。要求/義務/artifact/対検証の影響集合、旧版参照、再評価理由を期待oracleへ照合する。filename/digestだけ更新して移管完了、UnknownをUnaffected、無関係な有効scopeの一律失効は不合格。OSの使用版/stateをCOREが直接更新しない。\n- **未見・境界**：作成側に伏せた別domain/actorまたは同scopeの変更位置で、適用setと固有義務、不足の返却先、影響根拠を照合する。候補/受領から要求採択・設計成立・pair成功を生成した場合は不合格。scope外・oracle未定は未評価を保持し、全seed/全知識を観測済みにしない。schema/algorithm、実行fixture、旧source全移管、L3再開をこの静的案から成立させない。\n",
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "before": "- **採択境界**：本節と仮登録は採択内容を生成せず、受入実行、source retire、migration実施または実行・配布許可を意味しない。採択内容は対象revisionを固定したPO判断記録に従う。\n",
+              "after": "- **採択境界**：本節と仮登録は採択内容を生成せず、受入実行、source retire、migration実施または実行・配布許可を意味しない。採択内容は対象revisionを固定したPO判断記録に従う。\n\n### HELIXOS-L2-002 project template記録追補の受入案\n\n- **正常・再構築**：同じ要求scopeで、候補/選択/使用set、template版、unit/connection/composite別義務と設計/pair、finding、再作業、受入、運用結果を与える。各記録の発生元・相関参照から対象project、要求revision、template版、義務と結果を再構築し、集合件数やfield存在だけで合格にしない。ある義務/単体の成功から別義務/接続/構成体の完了を生成しない。\n- **取り違え・不足**：project/scope/要求revision/template版/義務/成果/pairの各参照を一つずつ欠かすか別対象へ替える。候補受領を使用済み、別project成功で欠落消込、旧版成果を現行証拠へ転用、duplicate/再送を別利用へ水増しする例を拒否する。該当記録/受渡しの不足と解消先を保持し、無関係な有効scopeを失効させない。\n- **N/A・Backflow・消込**：CORE009の4判定と理由/判定者/revision/再評価条件を記録へ照合する。判断不能をN/A、ACKを解決、Backflow先の受理なしで元義務消込、文書生成/checkboxだけで設計完成とする負例は不合格。義務が未実施/不合格/未評価の例を区別し、原記録・訂正・旧失敗を保持する。OSの独自意味判定や要求採択を成功根拠にしない。\n- **旧新版と局所影響**：使用templateの意味変更と表示だけの更新を与え、COREが示した影響集合と各再評価履歴を照合する。影響UnknownをUnaffected、参照digest更新だけで使用履歴移管済みとする例を拒否し、別scopeの有効結果を保持する。\n- **評価入力の境界**：二つ以上のprojectと異なるtemplate版/期間を与え、選択評価scope、原記録集合、抽出/除外理由、未観測/未回収/比較不能、duplicateの扱いを照合する。不足/過剰要求/誤選定/再作業/欠陥流出の各候補を元義務と利用結果へ辿る。欠落した対象を黙示除外、未観測を欠陥0、異なる版/期間を無条件比較、件数やAI評価だけで改善/昇格を成立させる例は不合格。母集団/測定定義/効果をOSが新設せず、LABO必要入力が未決なら未決・不完全を保持する。評価入力未成立を無関係な工程の停止条件へ広げない。\n- **許可・未見・開始条件**：利用許可/data class/対象scope不一致では該当共有を止める既存条件を照合する。作成側に伏せた別project/actorまたは旧新版変更位置で同じ追跡を確認する。非選択sourceは未観測、義務/結果がまだ発生していない開始時は未発生を保持し、将来の結果receiptを初回記録の入力条件にしない。入力整合だけからhandoff成立、LABO評価、BRAIN採否、全seed/旧atom被覆、実行fixture成功、L3再開を生成しない。\n",
               "expected_occurrences": 1,
-              "proposed_section_sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5"
+              "proposed_section_sha256": "15fb77b844bf43cc4cf71db8458d7bd087eae7e4df9feaf850106b2f8465f293"
             }
           ],
           "existing_guarantees_retained": [
-            "3kind固有義務と下位成功から上位成立を生成しない保証",
-            "質問/矛盾/derived requirement candidate/N-A判断候補への上流返却",
-            "根拠なしN/A拒否・理由付き非適用の区別（template全体の4属性保証ではない）",
-            "任意fallback/AI補完拒否と局所影響/Unknown保持",
-            "041はsource要素抽出、025/026は設計構成の別能力"
+            "project使用template exact set/版と既存event記録",
+            "未接続/未合意/未実装/未検証の区別、部分成功から全体完了を生成しない",
+            "原event/projection、evidence/continuity、未完義務の受信側受理",
+            "fallback拒否とLABO評価/BRAIN採否/許可の責務境界"
           ],
           "added_binding": [
-            "各入力axis/候補母集合と適用exact setの根拠を固定",
-            "templateごとのN/A理由/判定者/対象revision/再評価条件を適用判定へ束縛する。L2.5や性能/securityの限定oracleをtemplate全体の既存保証にしない。",
-            "4適用判定を各選択template版/revision/scopeと義務へ結ぶ",
-            "不足の定義欠落/値未決と4Backflow候補を元field/義務・返却先へ結ぶ",
-            "旧新版意味差分を使用要求/義務/artifact/対検証と再評価対象へ結ぶ"
+            "候補/選択/使用setの区別と各記録の要求/template/義務/revision/scope/因果参照",
+            "CORE009判定/理由/判定者/revision/再評価条件と未完義務/消込証拠の参照",
+            "評価scopeの原記録集合/抽出・除外理由/重複/未観測範囲とfinding候補の元記録"
           ],
           "remaining_scope": [
-            "最小seed setと26seedの採否",
-            "OS project exact set/event/評価母集団と未完義務受理",
-            "安全/資源/計測、内部更新/復旧、支援/改善循環の要求照合",
-            "shadow parity/renderer/pair/portfolioのbindingとschema/runtime",
-            "他要求Issueと旧source/identityの未完移管"
+            "seed採否/全旧atom移管",
+            "LABO評価方法とBRAIN採否、接続の成立確認",
+            "安全/資源/計測、内部更新/復旧・支援/改善循環",
+            "schema/実装/CI/L3再開"
           ]
         }
       ],
       "legacy_sources": [
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
-          "lines": "38/39/42/47–60/81–92",
+          "lines": "24/36/47–58/83–92",
           "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
         },
         {
-          "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
-          "lines": "49–63/82–85",
-          "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb"
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+          "lines": "54/56/58",
+          "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L4-design-template-json-authority-system-test-design.md",
+          "lines": "18–25",
+          "sha256": "383a24892ba865ac5dc53729cf3e9fc49073aafa7dbabc3b17ee0408f3ed559a"
         }
       ],
       "legacy_comparison": {
         "reuse_class": "semantic_rederivation",
-        "preserve": "exact set/適用fail-close/Backflow proposal/N-A根拠/trace-pair-revision",
-        "change": "汎用knowledgeはBRAIN、製品適用はCORE、project記録はOS。旧型/算法/層/runtimeは実装入力へ移植しない。",
-        "reason": "固定条件照合で、既存一般保証と製品template固有bindingの差分を確認したため。未実装・不在を追加理由にしない。"
+        "preserve": "exact set/instance束縛/Backflow/trace-pair-revision、scope/記録責務分離と改善循環",
+        "change": "各案件eventの細粒度結合と評価入力の範囲/欠落追跡。評価方法/判断authorityをOSへ移さない。",
+        "reason": "固定条件照合DST-OS-003/004の未結合条件とCORE009の採択済み出力を対応づけ、記録の取り違え/欠落/件数からの誤成立を防ぐ。"
       },
       "resolved_packet": {
-        "status": "032は採用反映済み。この過去packetを現行差分として適用/再承認しない。内包JSONAUTH/TDDORDER/VERSIONJOINも既決。",
-        "fixed_proposal_commit": "5624705c0f98e22b646860a61c6512ee12598170",
+        "status": "COREAPPLYの009追補はPR #2853で採用反映済み。前packetと内包する既決packetを再承認/再適用しない。",
+        "fixed_proposal_commit": "db6fedb183ba041676defac677df77593c958b65",
         "decision_refs": [
-          "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md"
+          "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md"
         ],
         "packet": {
-          "packet_kind": "po_requirement_resolution_proposal",
-          "base_revision": "7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822",
+          "packet_kind": "requirements_resolution_proposal",
+          "base_revision": "bf670396f21e5a9e6c072fa35ceeb29ccf964ecb",
           "authority_effect": "none",
-          "decision_required": "TEMPLATECONTRACTだけ未判断。032の意味とversion_target 1.0の採否を対象revisionで確認する。既決3単位は再承認しない。",
+          "decision_required": [
+            "COREAPPLYの009追補と対L11の対象revision採否。既決1.0は保持し再承認を求めない。"
+          ],
           "source_sha256": {
             "docs/concept/helix-concept.md": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
-            "docs/helix-brain/L1-planning/brain-intent.md": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
-            "docs/helix-brain/L2-requirements/brain-requirements.md": "f2995068051d92d0f0b399503668bf2a7db2a667ac4798fdd370d3ba4ad56692",
-            "docs/helix-brain/L11-acceptance/brain-acceptance.md": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+            "docs/helix-harness/L1-planning/product-intent.md": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+            "docs/helix-harness/L2-requirements/product-requirements.md": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1",
+            "docs/helix-harness/L11-acceptance/product-acceptance.md": "c22df0429af7743eccfdeff8a404bd48bce4275d326e79f242d77af58c0b4bf5",
             "docs/helix-brain/candidates/design-template-system-requirements.md": "113cb18db8fd99a05842b0c78539af06156c984a7821cb4710b3f458a1a78013",
+            "docs/helix-brain/L2-requirements/brain-requirements.md": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+            "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964",
             "docs/governance/audits/template-condition-review-2026-10-10.json": "792cbda6594b20262440f70d75bcc057c2097a01a56b5aaa3def75b8dd9cf398"
           },
           "units": [
             {
-              "id": "TEMPLATECONTRACT",
+              "id": "COREAPPLY",
               "issue": 2846,
-              "requirement_identity": "HELIXBRAIN-L2-032",
+              "requirement_identity": "HARNESS-L2-009",
               "kind": "unit",
-              "proposed_version_target": "1.0",
-              "proposal": "汎用templateの全意味契約項目をBRAINが候補として提供し、提供側の不足とCORE適用義務を分ける。",
-              "parent_planning_decision": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+              "version_target": "1.0",
+              "version_effect": "既決1.0を保持する。版変更ではない。",
+              "proposal": "既存009の製品template適用をexact set・各適用判定/義務/不足/意味影響へ同じrevision/scopeで束縛する追補。",
               "parent_planning_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+              "parent_planning_ids": [
+                "HARNESS-L1-009",
+                "HARNESS-L1-004"
+              ],
+              "parent_planning_decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
               "edits": [
                 {
-                  "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-                  "before": "- **出所**：BRAIN固有のlegacy requirement atomを今回の直接入力にはせず、BRAIN L1からの新規導出候補として扱う。旧role語彙はHARNESS候補の限定source inputであり、本BRAIN candidateでは参照のみ。\n",
-                  "after": "- **出所**：BRAIN固有のlegacy requirement atomを今回の直接入力にはせず、BRAIN L1からの新規導出候補として扱う。旧role語彙はHARNESS候補の限定source inputであり、本BRAIN candidateでは参照のみ。\n\n### HELIXBRAIN-L2-032 汎用Design Templateの意味契約候補を提供する（unit candidate）\n\n- **状態・親**：新規の未採択候補。`registered_proposal`／`authority_effect: none`。親は9/28に固定したHELIXBRAIN-L1-003/005/007/008/011/012の適用条件、relation、出所、版、製品固有意味の分離、候補提供の範囲。HARNESS-L1-009はconsumer contextであり、製品固有の意味をBRAINへ移す根拠にしない。\n- **対象・版**：製品をまたぐ汎用Design Templateの意味契約を提供する単体候補。`version_target: 1.0`を提案する。全Domainや全seedの完成、全template採用、registry/schema/runtimeの成立は範囲に含めない。\n- **受け取るもの**：template候補のsource/provenance、knowledge identity/revision/state、適用する汎用の問題・条件、契約項目とその根拠。製品固有の要求値、設計instance、project適用結果は汎用templateの値へ取り込まない。\n- **提供するもの**：versioned JSON意味契約候補として、template identity、version、layer/pair、applicability、required input、required section、required field、relation、意味owner、trace、negative oracle、measurement、completion、downstream kind、supersessionをそれぞれ識別・比較できるdescriptorと、未定義・値未決・不整合の一覧を返す。出所・評価範囲・限界・採用状態はBRAIN007/008/025の知識記録へ結ぶ。JSON key、型、演算子、serialization、wire formatはここで固定しない。\n- **契約の意味**：required input/section/fieldはtemplate適用先が満たす内容を、layer/pair/downstream kindは義務の適用と受渡し対象を示す。measurementは適用義務の計測観点・根拠とoracleへの関係、completionは適用義務を満たしたと確認する条件と対oracleへの関係を示す。固定閾値や具体的な製品値を新設しない。内容が非適用の場合の根拠と、意味・値が未決の場合を分ける。項目の定義欠落を値未決や非適用で補わない。\n- **保証すること**：filename、画像、Markdown、tool node IDだけでtemplateの意味identity/版を決めない。同じidentity/revisionの契約を項目ごとに比較でき、項目欠落・未定義・矛盾を完全な契約として返さない。定義されたfieldの値がunknownの場合はfield identityと未決理由を保持し、BRAIN030の受領可能な知識receiptと、未完の製品設計義務を区別する。契約候補の生成はBRAIN知識の採用、製品templateの選択、設計完成、project義務消込を生成しない。\n- **正本・責務**：JSONの意味契約と生成Markdown/HTML等のview、説明・理由を分ける。生成viewだけの変更を新しい意味契約へ昇格させない。汎用契約とknowledge版/stateはBRAIN、製品要求への適用・設計義務・不足質問・semantic impactはHARNESS-CORE、project使用set/版・記録/運転はOSへ残す。completionの定義を持つことと、実projectの義務成立を裁定することを混同しない。layer/pair・設計義務・oracle参照は対応するHARNESS契約に従い、BRAINが層・V-pair・設計完了規則を新設または再定義しない。\n- **依存区分**：常時必須はBRAIN003/005/007/008/028の条件・relation・出所・identity/版/state・pack互換契約。COREへ知識を返す操作ではBRAIN019/022/030の版付き受渡しを照合する。CORE由来候補またはLABO評価を選んだ入力ではBRAIN018/020/025の該当source/scope/evaluation条件を使い、未選択sourceは未観測。旧template/seed/設計例は参照材料であり、authorityや必須項目の代替にしない。受渡し先の完了receiptを候補提供前の入力にしない。\n- **失敗・戻し先**：汎用項目の定義/版/関係が不明ならBRAINの該当knowledge ownerへ返す。定義済みinputの製品要求値が未決ならCOREへ未充足材料として返し、COREから既存の要求形成へ戻す。project参照版・記録不整合はOSへ戻す。別templateの成功や任意fallbackで欠落を隠さない。\n- **旧sourceと限界**：旧design-template-json-authority.md:19–30の項目・意味正本/view分離・identityを比較起点とし、DST-HARNESS-002と旧6surface/componentの照合結果を使う。意味の再導出案であり、旧schema/runtimeをcopyしない。旧pair freezeからcanonical authorityを継承せず、知識の採否は既存BRAIN007/025へ残す。旧atomの全移管・formal successor・retireは本案から生成しない。既存BRAIN003/008/028/030とHARNESS009/041の固定採択範囲は変更しない。\n",
+                  "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                  "before": "**共有consumer／旧設計境界**：旧crosswalk `docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:24` はHIL-FR-15をOSへ置くhistorical routing assessmentで、後続correction row3はHARNESS変換／OS記録の分割を提案する。両方ともauthority effectのない未確定記録である。旧HST-CASE-008-10は固定ZIP snapshotとmappingからmetadata等をprovenance付きHELIX契約にし、不完全時`HIL_HYBRID_INGESTION_INCOMPLETE`を返すconsumer/oracle contextとして対応させる。HST-CASE-008-01とHIL-FR-25のversioned capability・build engine run・artifact/digest/exit statusは別identityの境界であり、本候補へrun義務として加えない。旧consumer/testはsource atomにも現行実行証拠にも数えない。\n",
+                  "after": "**共有consumer／旧設計境界**：旧crosswalk `docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:24` はHIL-FR-15をOSへ置くhistorical routing assessmentで、後続correction row3はHARNESS変換／OS記録の分割を提案する。両方ともauthority effectのない未確定記録である。旧HST-CASE-008-10は固定ZIP snapshotとmappingからmetadata等をprovenance付きHELIX契約にし、不完全時`HIL_HYBRID_INGESTION_INCOMPLETE`を返すconsumer/oracle contextとして対応させる。HST-CASE-008-01とHIL-FR-25のversioned capability・build engine run・artifact/digest/exit statusは別identityの境界であり、本候補へrun義務として加えない。旧consumer/testはsource atomにも現行実行証拠にも数えない。\n\n### HARNESS-L2-009 製品template適用のexact set・義務・Backflow・影響の追補案（unit candidate）\n\n- **位置・親・版**：既存HARNESS-L2-009の製品適用能力を対象とする一identityの追補候補。未採択、`registered_proposal`／`authority_effect: none`。9/28固定HARNESS-L1-009とL1-004を親とし、009の既決`version_target: 1.0`を保持する。3kind固有義務、上流への不足差戻し、理由付き非適用の区別と任意fallback拒否を新規要求として再承認しない。\n- **受け取るもの**：対象要求identity/revision、kind、subject、relation、構成、risk、domain、適用layer/pair、製品scopeと工程契約版、候補templateのidentity/version/意味契約revision/source/利用状態、対象操作の選択根拠。BRAINの汎用契約はHELIXBRAIN-L2-032の項目、提供知識の受領は030、既存HARNESS009/023/026の依存区分を使う。Knowledgeの提供・受領と製品への適用選択を分ける。\n- **適用候補set**：上記入力の各axisとtemplate適用条件を照合し、検討対象のexact set、各要素の適用理由または不適用/未解決理由、比較対象の境界、対象要求/製品scope、参照知識・適用契約版へ束縛した結果候補を返す。set内のduplicate identity、別revision/製品scopeの混入、入力axis/候補母集合の欠落を黙って補わない。AI、言語、projectが変わっても、同じ意味の要求分類と適用契約・候補集合を与えた場合に、必要な論点を恣意的に増減させない。異なるscopeや未観測知識まで同一setへ固定しない。再現性の判断基準・同等性判定・選択algorithmは対要件/設計で導出する。\n- **適用判定と義務**：各templateのrequired/conditional/N/A/unresolvedを、根拠、判定者、対象revision/scope、条件、再評価条件とともに区別する。既存の理由付き非適用の区別を保持する。templateごとの判定に判定者・対象revision・再評価条件まで束縛する点は今回の追補差分であり、L2.5の003や性能/securityの限定文脈の既存N/Aを全templateへ承認済みとして広げない。判定不能をN/Aに丸めない。conditionalは条件と未充足状態を残す。unit/connection/composite固有義務、requirement→obligation→design→pairへのtraceを選択template版へ結ぶ。source要素からatom/proposal/gapを抽出する041、具体設計・oracleを構成する025/026の意味と処理を置換しない。\n- **不足とBackflow**：不足ごとにsource/template/requirement revision、fieldまたはobligation identity、定義欠落と値未決、根拠、影響scope、未完義務、返却先を持つ候補へ結ぶ。既存009の質問、矛盾、derived requirement candidate、N/A判断候補を区別し、分類未決は未解決のまま示す。field定義/knowledge版の不足はBRAIN、定義済みfieldの製品要求値未決は008の要求形成、製品適用contractの不整合はHARNESSへ返す。候補の返却から要求合意・採択やticket発行を生成しない。\n- **template変更と影響**：比較する旧新のtemplate identity/revisionと意味差分を、使用する要求・義務・設計artifact・対検証のidentity/revision/scopeへ結び、影響あり/なし/Unknownの根拠と再評価対象を返す。旧版参照と移管状態を識別し、影響不明をUnaffectedや移管完了へ変換しない。filename、schema/file digest、表示だけの更新を意味移管の完了根拠にせず、HARNESS004の局所影響と無関係な有効作業の保持を守る。実projectの使用版/state、event、stale記録の更新と未完義務の消込はOSへ残す。\n- **責務・依存**：HARNESS-COREのPython意味処理は、適用set、義務、不足質問、影響の材料を導く。BRAINは汎用知識の版/state、OSは案件の選択・使用set/版の登録/運転を所有する。意味処理の出力にDB/Git/GitHub write、割当、lease、実行、認可を与えない。常時必須は要求/製品scopeと工程・適用契約のidentity/revision。特定操作時は選択/差戻し/影響比較に必要な各入力、知識を選んだ入力ではそのknowledge全required fields/版/適用条件を照合する。非選択知識と旧例は参照資料であり、受渡し先の完了receiptや全seed採用を初回処理前の入力にしない。\n- **失敗・限界**：missing/conflict/unknown/staleを対象scopeの結果へ残し、別templateの成功で欠落を隠さない。候補setを作れたこと、template適用、041抽出成功、OS受領だけでは、要求合意、設計成立、pair検証成功、全project完了を生成しない。schema/型/演算子/通信/API/algorithm/閾値は固定しない。初期seedの選択/採否、OS event/評価母集団、shadow parity・renderer・pair/portfolioのbindingは別の残範囲とする。\n- **旧source**：旧L4 design-template-json-authority.md:38/39/42/47–60/81–92のexact set、applicabilityのfail-close、Backflow proposal、N/A根拠、trace/pair/revision照合を保持して現行ownerへ意味を再導出する。旧all/any/not/allowlistの具体型、旧layer番号、planner/cutover/runtimeは移植しない。未対応旧条件は保持し、この追補から旧atom全移管・formal successor・retire・L3再開を生成しない。\n",
                   "expected_occurrences": 1,
-                  "proposed_section_sha256": "f096552717f3b648477433e01df5533788e2ca2ead6bfdb5e24d32d364ac3e48"
+                  "proposed_section_sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b"
                 },
                 {
-                  "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
-                  "before": "- **HARNESS境界**：返却されたrole knowledgeを使っても、HARNESSのcanonical name、例外、rename、consumer/oracle mappingは別途のHARNESS判断とする。BRAINが採用名を決めたりコード変更を行ったら不合格。\n",
-                  "after": "- **HARNESS境界**：返却されたrole knowledgeを使っても、HARNESSのcanonical name、例外、rename、consumer/oracle mappingは別途のHARNESS判断とする。BRAINが採用名を決めたりコード変更を行ったら不合格。\n\n### HELIXBRAIN-L2-032 汎用Design Template意味契約の受入候補\n\n- **正常例**：同じsource/knowledge revisionに結ぶtemplate候補に、identity、version、layer/pair、applicability、required input/section/field、relation、意味owner、trace、negative oracle、measurement、completion、downstream kind、supersessionを与える。各項目と根拠を個別に比較でき、measurement/completionが適用義務と対oracleへ結ばれ、知識採否やproject適用結果とは別に識別できることを確認する。単体・接続・構成体で必要になる項目内容の違いは保持し、一つの製品設計値を共通の正解にしない。\n- **項目欠落の反例**：上記15項目を一つずつ欠落・未定義にした入力は、不足項目と元revisionを示し、完全なtemplate契約として返さない。required section/fieldの定義がないものを、別のPatternのrequired inputだけで補完しない。意味owner、measurement、completionの意味が不明なものを文書の生成成功で閉じない。\n- **値未決・非適用**：required fieldの定義があり、その製品要求値だけが未設定なら、field identity・未決理由・元knowledge版を残す。BRAIN030の受領は可能でも設計義務は未完のままCOREへ返す。根拠を示す非適用と、適用条件がunknownの場合を区別し、unknownを非適用や完全な契約へ読み替えない。\n- **identity/viewの反例**：同じfilenameの異なるtemplate identity/版、別revisionのoracle、生成Markdown/HTMLだけの変更を入力する。filename一致・表示の更新だけでJSON意味契約の一致/更新を成立させず、具体的な不一致を返す。source/版/scopeが欠落した場合は未評価を保持する。\n- **責務と未見例**：未提示の別domainまたはactorを加えた材料に、製品固有のscreen/API/permission/state、projectの採用値、単一の成功結果を混入する。汎用契約と製品固有値を区別し、BRAINが製品template選択・要求合意・設計完成・project義務消込を決定したら不合格。BRAIN候補、LABO評価、OS受領だけでaccepted/matureにしない。\n- **範囲**：これは032の内容oracle案であり、実行済みfixture、全seed採択、formal successor移管、L3承認を示さない。具体schema/判定algorithm/runtime、実際の計測値・閾値、全seedの選択・採否は別に導出する。\n",
+                  "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                  "before": "- **旧consumer pins**：HST-CASE-008-10のline 373（旧system-assertion-cases file SHA-256 `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8`、row SHA-256 including LF `6730eb0367123265f30fe4d8e94c3eed05262445a96d7ee7c915d49eb257bcc9`）はmetadata等のprovenance付き変換と`HIL_HYBRID_INGESTION_INCOMPLETE`を示す設計contextとして保持する。HST-CASE-008-01 line 78（同file SHA、row SHA-256 including LF `f231a05e565b9f3e489315a474356f32e1c0a86b88a3639c1ed412c390f9f64d`）はHIL-FR-25 build-engine run/artifact manifestの別境界であり、実行しない。HIL-FR-25 versioned-capability条件は別identityのまま。\n",
+                  "after": "- **旧consumer pins**：HST-CASE-008-10のline 373（旧system-assertion-cases file SHA-256 `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8`、row SHA-256 including LF `6730eb0367123265f30fe4d8e94c3eed05262445a96d7ee7c915d49eb257bcc9`）はmetadata等のprovenance付き変換と`HIL_HYBRID_INGESTION_INCOMPLETE`を示す設計contextとして保持する。HST-CASE-008-01 line 78（同file SHA、row SHA-256 including LF `f231a05e565b9f3e489315a474356f32e1c0a86b88a3639c1ed412c390f9f64d`）はHIL-FR-25 build-engine run/artifact manifestの別境界であり、実行しない。HIL-FR-25 versioned-capability条件は別identityのまま。\n\n### HARNESS-L2-009 製品template適用追補の受入案\n\n- **正常・対象scope**：同じ意味の要求分類、候補母集合、適用contract/knowledge版、製品scopeを与え、unit/connection/composite別の候補set・理由、義務とpair traceを照合する。AIまたは言語を替えた同scope例でも必要な論点を保持し、違うdomain/risk/scopeの結果まで同じsetとしない。oracleは期待する適用集合・根拠・義務の意味を照合し、集合の件数やfieldの存在だけで合格にしない。\n- **axis/集合の負例**：kind/subject/relation/構成/risk/domain/layer/pair/製品scope/適用契約版の各入力を一つずつ欠かすか食い違わせる。duplicate template identity、別revision、別製品のtemplate、未提示知識への任意fallback、候補母集合未定を完全な適用setにしない。欠落と元revisionを示して未解決へ返す。\n- **適用・N/A**：required/conditional/N/A/unresolvedの例を与える。N/Aの理由・判定者・対象revision・再評価条件の各欠落、conditionalの条件未充足、判定不能を非適用へ丸める入力は成立にしない。下のunitの成功だけで接続/構成体の義務を閉じず、source/template→義務→設計→pairの別revisionや片方向traceを検出する。\n- **不足・4候補**：template必要inputについて、質問、矛盾、derived requirement candidate、N/A判断候補へ返す各例を示す。field定義自体の欠落と、定義済みfieldの製品要求値未決を混ぜず、source/field identity、元revision/scope、未完義務と返却先を保つ。分類不明、AIの補完、口頭のみの返却、別template成功での相殺は未解決とする。BRAIN受領可能な値unknownでも製品義務は未完、候補返却は人間合意やOS ticket発行ではない。\n- **変更・局所影響**：同じtemplateの旧新版について、適用条件/必須field/negative oracle/completionの意味変更、意味を変えないview更新、製品scope外の変更を与える。要求/義務/artifact/対検証の影響集合、旧版参照、再評価理由を期待oracleへ照合する。filename/digestだけ更新して移管完了、UnknownをUnaffected、無関係な有効scopeの一律失効は不合格。OSの使用版/stateをCOREが直接更新しない。\n- **未見・境界**：作成側に伏せた別domain/actorまたは同scopeの変更位置で、適用setと固有義務、不足の返却先、影響根拠を照合する。候補/受領から要求採択・設計成立・pair成功を生成した場合は不合格。scope外・oracle未定は未評価を保持し、全seed/全知識を観測済みにしない。schema/algorithm、実行fixture、旧source全移管、L3再開をこの静的案から成立させない。\n",
                   "expected_occurrences": 1,
-                  "proposed_section_sha256": "bc0a4ea0e6f282fbb0aac884d1e6ff9d86b279d32c5fbd9cc3180260d4c29429"
+                  "proposed_section_sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5"
                 }
               ],
-              "remaining_scope": [
-                "最小seed setと26seedの個別採否",
-                "CORE適用判定/Backflow/semantic impactの固有差分",
-                "project exact set/event binding/評価母集団",
-                "shadow parity/renderer/pair/portfolioの固有bindingとschema/runtime",
-                "他の要求Issueと旧source/identityの未完移管"
+              "existing_guarantees_retained": [
+                "3kind固有義務と下位成功から上位成立を生成しない保証",
+                "質問/矛盾/derived requirement candidate/N-A判断候補への上流返却",
+                "根拠なしN/A拒否・理由付き非適用の区別（template全体の4属性保証ではない）",
+                "任意fallback/AI補完拒否と局所影響/Unknown保持",
+                "041はsource要素抽出、025/026は設計構成の別能力"
               ],
-              "contract_items": [
-                "identity",
-                "version",
-                "layer/pair",
-                "applicability",
-                "required input",
-                "required section",
-                "required field",
-                "relation",
-                "meaning owner",
-                "trace",
-                "negative oracle",
-                "measurement",
-                "completion",
-                "downstream kind",
-                "supersession"
+              "added_binding": [
+                "各入力axis/候補母集合と適用exact setの根拠を固定",
+                "templateごとのN/A理由/判定者/対象revision/再評価条件を適用判定へ束縛する。L2.5や性能/securityの限定oracleをtemplate全体の既存保証にしない。",
+                "4適用判定を各選択template版/revision/scopeと義務へ結ぶ",
+                "不足の定義欠落/値未決と4Backflow候補を元field/義務・返却先へ結ぶ",
+                "旧新版意味差分を使用要求/義務/artifact/対検証と再評価対象へ結ぶ"
+              ],
+              "remaining_scope": [
+                "最小seed setと26seedの採否",
+                "OS project exact set/event/評価母集団と未完義務受理",
+                "安全/資源/計測、内部更新/復旧、支援/改善循環の要求照合",
+                "shadow parity/renderer/pair/portfolioのbindingとschema/runtime",
+                "他要求Issueと旧source/identityの未完移管"
               ]
             }
           ],
           "legacy_sources": [
-            "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:19–46",
-            "archive/legacy-generation-2026-09-14/root/CLAUDE.md:49–63"
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+              "lines": "38/39/42/47–60/81–92",
+              "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+              "lines": "49–63/82–85",
+              "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb"
+            }
           ],
           "legacy_comparison": {
-            "retained": "意味契約項目、JSON意味正本と生成view分離、ID/版、必要input、負例/計測/completionの区別。",
-            "changed": "旧HARNESS一括構成を9/25既決の汎用BRAIN/製品CORE/案件OSへ対応付け、template提供側の条件を一identityへ具体化する。旧pair freezeは知識採否authorityへ継承しない。",
-            "reason": "#2849の条件照合で提供側の全項目を既存消費側041だけでは保証できないと分かったため。未実装を追加理由にしない。"
+            "reuse_class": "semantic_rederivation",
+            "preserve": "exact set/適用fail-close/Backflow proposal/N-A根拠/trace-pair-revision",
+            "change": "汎用knowledgeはBRAIN、製品適用はCORE、project記録はOS。旧型/算法/層/runtimeは実装入力へ移植しない。",
+            "reason": "固定条件照合で、既存一般保証と製品template固有bindingの差分を確認したため。未実装・不在を追加理由にしない。"
           },
           "resolved_packet": {
-            "status": "JSONAUTH/TDDORDER/VERSIONJOINは既決・反映済み。下記は当時の提案をそのまま保持する履歴案内であり、現行差分として適用しない。",
+            "status": "032は採用反映済み。この過去packetを現行差分として適用/再承認しない。内包JSONAUTH/TDDORDER/VERSIONJOINも既決。",
+            "fixed_proposal_commit": "5624705c0f98e22b646860a61c6512ee12598170",
             "decision_refs": [
-              "docs/governance/decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md",
-              "docs/governance/decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md",
-              "docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md"
+              "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md"
             ],
             "packet": {
               "packet_kind": "po_requirement_resolution_proposal",
-              "base_revision": "5f8d7f1251f15fe4a91314e26c20bf9b4856a9d5",
+              "base_revision": "7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822",
               "authority_effect": "none",
-              "decision_required": "未判断。以下の変更は提案であり、canonical L2/L11には未反映。",
+              "decision_required": "TEMPLATECONTRACTだけ未判断。032の意味とversion_target 1.0の採否を対象revisionで確認する。既決3単位は再承認しない。",
               "source_sha256": {
-                "docs/helix-harness/L2-requirements/product-requirements.md": "4d73cd921119e2e8592045bb7c2e0043fc33629baebcd6e92eb84c51d08bd7b5",
-                "docs/helix-harness/L11-acceptance/product-acceptance.md": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
-                "docs/helix-os/L2-requirements/governance-requirements.md": "efc605d5fa41c339995f1113c267771dd470403be826adcadb2372d96135c1d8",
-                "docs/helix-os/L11-acceptance/governance-acceptance.md": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997"
+                "docs/concept/helix-concept.md": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
+                "docs/helix-brain/L1-planning/brain-intent.md": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+                "docs/helix-brain/L2-requirements/brain-requirements.md": "f2995068051d92d0f0b399503668bf2a7db2a667ac4798fdd370d3ba4ad56692",
+                "docs/helix-brain/L11-acceptance/brain-acceptance.md": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+                "docs/helix-brain/candidates/design-template-system-requirements.md": "113cb18db8fd99a05842b0c78539af06156c984a7821cb4710b3f458a1a78013",
+                "docs/governance/audits/template-condition-review-2026-10-10.json": "792cbda6594b20262440f70d75bcc057c2097a01a56b5aaa3def75b8dd9cf398"
               },
               "units": [
                 {
-                  "id": "JSONAUTH",
-                  "issue": 2825,
-                  "proposal": "JSON正本方針に合わせ、OS053と対L11の意味正本をJSONに訂正する。部分current拒否・CAS・rollback・owner境界は保持する。",
+                  "id": "TEMPLATECONTRACT",
+                  "issue": 2846,
+                  "requirement_identity": "HELIXBRAIN-L2-032",
+                  "kind": "unit",
+                  "proposed_version_target": "1.0",
+                  "proposal": "汎用templateの全意味契約項目をBRAINが候補として提供し、提供側の不足とCORE適用義務を分ける。",
+                  "parent_planning_decision": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+                  "parent_planning_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
                   "edits": [
                     {
-                      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-                      "before": "Markdown上のcanonical本文／asset revision",
-                      "after": "JSON意味正本／asset revision",
-                      "expected_occurrences": 1
+                      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+                      "before": "- **出所**：BRAIN固有のlegacy requirement atomを今回の直接入力にはせず、BRAIN L1からの新規導出候補として扱う。旧role語彙はHARNESS候補の限定source inputであり、本BRAIN candidateでは参照のみ。\n",
+                      "after": "- **出所**：BRAIN固有のlegacy requirement atomを今回の直接入力にはせず、BRAIN L1からの新規導出候補として扱う。旧role語彙はHARNESS候補の限定source inputであり、本BRAIN candidateでは参照のみ。\n\n### HELIXBRAIN-L2-032 汎用Design Templateの意味契約候補を提供する（unit candidate）\n\n- **状態・親**：新規の未採択候補。`registered_proposal`／`authority_effect: none`。親は9/28に固定したHELIXBRAIN-L1-003/005/007/008/011/012の適用条件、relation、出所、版、製品固有意味の分離、候補提供の範囲。HARNESS-L1-009はconsumer contextであり、製品固有の意味をBRAINへ移す根拠にしない。\n- **対象・版**：製品をまたぐ汎用Design Templateの意味契約を提供する単体候補。`version_target: 1.0`を提案する。全Domainや全seedの完成、全template採用、registry/schema/runtimeの成立は範囲に含めない。\n- **受け取るもの**：template候補のsource/provenance、knowledge identity/revision/state、適用する汎用の問題・条件、契約項目とその根拠。製品固有の要求値、設計instance、project適用結果は汎用templateの値へ取り込まない。\n- **提供するもの**：versioned JSON意味契約候補として、template identity、version、layer/pair、applicability、required input、required section、required field、relation、意味owner、trace、negative oracle、measurement、completion、downstream kind、supersessionをそれぞれ識別・比較できるdescriptorと、未定義・値未決・不整合の一覧を返す。出所・評価範囲・限界・採用状態はBRAIN007/008/025の知識記録へ結ぶ。JSON key、型、演算子、serialization、wire formatはここで固定しない。\n- **契約の意味**：required input/section/fieldはtemplate適用先が満たす内容を、layer/pair/downstream kindは義務の適用と受渡し対象を示す。measurementは適用義務の計測観点・根拠とoracleへの関係、completionは適用義務を満たしたと確認する条件と対oracleへの関係を示す。固定閾値や具体的な製品値を新設しない。内容が非適用の場合の根拠と、意味・値が未決の場合を分ける。項目の定義欠落を値未決や非適用で補わない。\n- **保証すること**：filename、画像、Markdown、tool node IDだけでtemplateの意味identity/版を決めない。同じidentity/revisionの契約を項目ごとに比較でき、項目欠落・未定義・矛盾を完全な契約として返さない。定義されたfieldの値がunknownの場合はfield identityと未決理由を保持し、BRAIN030の受領可能な知識receiptと、未完の製品設計義務を区別する。契約候補の生成はBRAIN知識の採用、製品templateの選択、設計完成、project義務消込を生成しない。\n- **正本・責務**：JSONの意味契約と生成Markdown/HTML等のview、説明・理由を分ける。生成viewだけの変更を新しい意味契約へ昇格させない。汎用契約とknowledge版/stateはBRAIN、製品要求への適用・設計義務・不足質問・semantic impactはHARNESS-CORE、project使用set/版・記録/運転はOSへ残す。completionの定義を持つことと、実projectの義務成立を裁定することを混同しない。layer/pair・設計義務・oracle参照は対応するHARNESS契約に従い、BRAINが層・V-pair・設計完了規則を新設または再定義しない。\n- **依存区分**：常時必須はBRAIN003/005/007/008/028の条件・relation・出所・identity/版/state・pack互換契約。COREへ知識を返す操作ではBRAIN019/022/030の版付き受渡しを照合する。CORE由来候補またはLABO評価を選んだ入力ではBRAIN018/020/025の該当source/scope/evaluation条件を使い、未選択sourceは未観測。旧template/seed/設計例は参照材料であり、authorityや必須項目の代替にしない。受渡し先の完了receiptを候補提供前の入力にしない。\n- **失敗・戻し先**：汎用項目の定義/版/関係が不明ならBRAINの該当knowledge ownerへ返す。定義済みinputの製品要求値が未決ならCOREへ未充足材料として返し、COREから既存の要求形成へ戻す。project参照版・記録不整合はOSへ戻す。別templateの成功や任意fallbackで欠落を隠さない。\n- **旧sourceと限界**：旧design-template-json-authority.md:19–30の項目・意味正本/view分離・identityを比較起点とし、DST-HARNESS-002と旧6surface/componentの照合結果を使う。意味の再導出案であり、旧schema/runtimeをcopyしない。旧pair freezeからcanonical authorityを継承せず、知識の採否は既存BRAIN007/025へ残す。旧atomの全移管・formal successor・retireは本案から生成しない。既存BRAIN003/008/028/030とHARNESS009/041の固定採択範囲は変更しない。\n",
+                      "expected_occurrences": 1,
+                      "proposed_section_sha256": "f096552717f3b648477433e01df5533788e2ca2ead6bfdb5e24d32d364ac3e48"
                     },
                     {
-                      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-                      "before": "Markdown／canonical revision",
-                      "after": "JSON意味正本／canonical revision",
-                      "expected_occurrences": 1
-                    },
-                    {
-                      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-                      "before": "全base revision、Markdown／asset revision",
-                      "after": "全base revision、JSON意味正本／asset revision",
-                      "expected_occurrences": 1
-                    },
-                    {
-                      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-                      "before": "- **unknown・receipt欠落例**：write対象owner、base、必須projection、receipt link、failure位置または復旧先を欠落・不一致にする。全成功・rollback成功・再試行安全性を推測せず、currentを成立表示しない。receiptが書けないfailureでは別の既存証拠経路を参照できない限りunknownを返す。",
-                      "after": "- **unknown・receipt欠落例**：write対象owner、base、必須projection、receipt link、failure位置または復旧先を欠落・不一致にする。全成功・rollback成功・再試行安全性を推測せず、currentを成立表示しない。receiptが書けないfailureでは別の既存証拠経路を参照できない限りunknownを返す。\n- **正本・投影の負例**：生成Markdown／HTMLだけを編集し、JSON意味正本と一致しないfixtureを与える。表示viewの編集から意味正本の更新や新canonical revisionを成立させず、正本・projectionの不一致を返す。JSON意味正本の確定に伴う生成viewはprojectionとして同じoperationの対象revisionへ結び、生成viewを意味ownerの判断の代替にしない。",
-                      "expected_occurrences": 1
+                      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+                      "before": "- **HARNESS境界**：返却されたrole knowledgeを使っても、HARNESSのcanonical name、例外、rename、consumer/oracle mappingは別途のHARNESS判断とする。BRAINが採用名を決めたりコード変更を行ったら不合格。\n",
+                      "after": "- **HARNESS境界**：返却されたrole knowledgeを使っても、HARNESSのcanonical name、例外、rename、consumer/oracle mappingは別途のHARNESS判断とする。BRAINが採用名を決めたりコード変更を行ったら不合格。\n\n### HELIXBRAIN-L2-032 汎用Design Template意味契約の受入候補\n\n- **正常例**：同じsource/knowledge revisionに結ぶtemplate候補に、identity、version、layer/pair、applicability、required input/section/field、relation、意味owner、trace、negative oracle、measurement、completion、downstream kind、supersessionを与える。各項目と根拠を個別に比較でき、measurement/completionが適用義務と対oracleへ結ばれ、知識採否やproject適用結果とは別に識別できることを確認する。単体・接続・構成体で必要になる項目内容の違いは保持し、一つの製品設計値を共通の正解にしない。\n- **項目欠落の反例**：上記15項目を一つずつ欠落・未定義にした入力は、不足項目と元revisionを示し、完全なtemplate契約として返さない。required section/fieldの定義がないものを、別のPatternのrequired inputだけで補完しない。意味owner、measurement、completionの意味が不明なものを文書の生成成功で閉じない。\n- **値未決・非適用**：required fieldの定義があり、その製品要求値だけが未設定なら、field identity・未決理由・元knowledge版を残す。BRAIN030の受領は可能でも設計義務は未完のままCOREへ返す。根拠を示す非適用と、適用条件がunknownの場合を区別し、unknownを非適用や完全な契約へ読み替えない。\n- **identity/viewの反例**：同じfilenameの異なるtemplate identity/版、別revisionのoracle、生成Markdown/HTMLだけの変更を入力する。filename一致・表示の更新だけでJSON意味契約の一致/更新を成立させず、具体的な不一致を返す。source/版/scopeが欠落した場合は未評価を保持する。\n- **責務と未見例**：未提示の別domainまたはactorを加えた材料に、製品固有のscreen/API/permission/state、projectの採用値、単一の成功結果を混入する。汎用契約と製品固有値を区別し、BRAINが製品template選択・要求合意・設計完成・project義務消込を決定したら不合格。BRAIN候補、LABO評価、OS受領だけでaccepted/matureにしない。\n- **範囲**：これは032の内容oracle案であり、実行済みfixture、全seed採択、formal successor移管、L3承認を示さない。具体schema/判定algorithm/runtime、実際の計測値・閾値、全seedの選択・採否は別に導出する。\n",
+                      "expected_occurrences": 1,
+                      "proposed_section_sha256": "bc0a4ea0e6f282fbb0aac884d1e6ff9d86b279d32c5fbd9cc3180260d4c29429"
                     }
-                  ]
-                },
-                {
-                  "id": "TDDORDER",
-                  "issue": 2832,
-                  "proposal": "実装前にtest/oracleを定義・凍結し、実装後のRedは意図した欠陥の検出、Greenは凍結したoracleを最小の実装で満たした証拠と明示する。凍結済みの対の検証を入力とする意味を保持し、後付けoracleを拒否する。",
-                  "edits": [
-                    {
-                      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-                      "before": "設計の契約→実装→Red→Green",
-                      "after": "設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（凍結したoracleを最小の実装で満たした証拠）",
-                      "expected_occurrences": 2
-                    },
-                    {
-                      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-                      "before": "凍結済みの設計からRed→Green→局所のRefactor",
-                      "after": "実装前に凍結した設計と対のtest／oracleから、意図した欠陥を検出するRed→凍結したoracleを最小の実装で満たしたGreenの証拠→局所のRefactor",
-                      "expected_occurrences": 1
-                    },
-                    {
-                      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-                      "before": "④だけの出力をIntegrated以上の状態とする／原子CIの合格",
-                      "after": "実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格",
-                      "expected_occurrences": 1
-                    }
-                  ]
-                },
-                {
-                  "id": "VERSIONJOIN",
-                  "issue": 2826,
-                  "proposal": "HARNESS052とOS102を1.0に指定し、既に1.0のOS053とHARNESS059の接続全体を成立対象に揃える。その他25件の版未指定を変更しない。",
-                  "edits": [
-                    {
-                      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-                      "before": "### HARNESS-L2-052 canonical commandの意味identityと再送判定（HELIX-HARNESS単体候補、未採択）\n",
-                      "after": "### HARNESS-L2-052 canonical commandの意味identityと再送判定（HELIX-HARNESS単体候補、未採択）\n\n**版の整理**：HARNESS-L2-052は`version_target: 1.0`とする。本文の版未指定・採否状態の記載は判断前の固定記述として保持する。既採択の意味範囲を拡張せず、接続先と同じ1.0でその操作・保証を成立させる。\n",
-                      "expected_occurrences": 1
-                    },
-                    {
-                      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-                      "before": "### HELIXOS-L2-102 HARNESS Issue contractのdurable intake・projection・handoff候補（connection候補、未採択）\n",
-                      "after": "### HELIXOS-L2-102 HARNESS Issue contractのdurable intake・projection・handoff候補（connection候補、未採択）\n\n**版の整理**：HELIXOS-L2-102は`version_target: 1.0`とする。本文の版未指定・採否状態の記載は判断前の固定記述として保持する。既採択の意味範囲を拡張せず、接続先と同じ1.0でその操作・保証を成立させる。\n",
-                      "expected_occurrences": 1
-                    }
+                  ],
+                  "remaining_scope": [
+                    "最小seed setと26seedの個別採否",
+                    "CORE適用判定/Backflow/semantic impactの固有差分",
+                    "project exact set/event binding/評価母集団",
+                    "shadow parity/renderer/pair/portfolioの固有bindingとschema/runtime",
+                    "他の要求Issueと旧source/identityの未完移管"
+                  ],
+                  "contract_items": [
+                    "identity",
+                    "version",
+                    "layer/pair",
+                    "applicability",
+                    "required input",
+                    "required section",
+                    "required field",
+                    "relation",
+                    "meaning owner",
+                    "trace",
+                    "negative oracle",
+                    "measurement",
+                    "completion",
+                    "downstream kind",
+                    "supersession"
                   ]
                 }
               ],
               "legacy_sources": [
-                "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:19–29",
-                "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md:21–24",
-                "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:93,142"
+                "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:19–46",
+                "archive/legacy-generation-2026-09-14/root/CLAUDE.md:49–63"
               ],
-              "limits": "L3再開、実装・CI・release、旧要求formal successor/retire、新しいgate・schema・runtimeを承認しない。各unitを別PRで反映し、新revisionの仮登録・無損失照合・独立reviewを行う。"
+              "legacy_comparison": {
+                "retained": "意味契約項目、JSON意味正本と生成view分離、ID/版、必要input、負例/計測/completionの区別。",
+                "changed": "旧HARNESS一括構成を9/25既決の汎用BRAIN/製品CORE/案件OSへ対応付け、template提供側の条件を一identityへ具体化する。旧pair freezeは知識採否authorityへ継承しない。",
+                "reason": "#2849の条件照合で提供側の全項目を既存消費側041だけでは保証できないと分かったため。未実装を追加理由にしない。"
+              },
+              "resolved_packet": {
+                "status": "JSONAUTH/TDDORDER/VERSIONJOINは既決・反映済み。下記は当時の提案をそのまま保持する履歴案内であり、現行差分として適用しない。",
+                "decision_refs": [
+                  "docs/governance/decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md",
+                  "docs/governance/decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md",
+                  "docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md"
+                ],
+                "packet": {
+                  "packet_kind": "po_requirement_resolution_proposal",
+                  "base_revision": "5f8d7f1251f15fe4a91314e26c20bf9b4856a9d5",
+                  "authority_effect": "none",
+                  "decision_required": "未判断。以下の変更は提案であり、canonical L2/L11には未反映。",
+                  "source_sha256": {
+                    "docs/helix-harness/L2-requirements/product-requirements.md": "4d73cd921119e2e8592045bb7c2e0043fc33629baebcd6e92eb84c51d08bd7b5",
+                    "docs/helix-harness/L11-acceptance/product-acceptance.md": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+                    "docs/helix-os/L2-requirements/governance-requirements.md": "efc605d5fa41c339995f1113c267771dd470403be826adcadb2372d96135c1d8",
+                    "docs/helix-os/L11-acceptance/governance-acceptance.md": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997"
+                  },
+                  "units": [
+                    {
+                      "id": "JSONAUTH",
+                      "issue": 2825,
+                      "proposal": "JSON正本方針に合わせ、OS053と対L11の意味正本をJSONに訂正する。部分current拒否・CAS・rollback・owner境界は保持する。",
+                      "edits": [
+                        {
+                          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+                          "before": "Markdown上のcanonical本文／asset revision",
+                          "after": "JSON意味正本／asset revision",
+                          "expected_occurrences": 1
+                        },
+                        {
+                          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+                          "before": "Markdown／canonical revision",
+                          "after": "JSON意味正本／canonical revision",
+                          "expected_occurrences": 1
+                        },
+                        {
+                          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+                          "before": "全base revision、Markdown／asset revision",
+                          "after": "全base revision、JSON意味正本／asset revision",
+                          "expected_occurrences": 1
+                        },
+                        {
+                          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+                          "before": "- **unknown・receipt欠落例**：write対象owner、base、必須projection、receipt link、failure位置または復旧先を欠落・不一致にする。全成功・rollback成功・再試行安全性を推測せず、currentを成立表示しない。receiptが書けないfailureでは別の既存証拠経路を参照できない限りunknownを返す。",
+                          "after": "- **unknown・receipt欠落例**：write対象owner、base、必須projection、receipt link、failure位置または復旧先を欠落・不一致にする。全成功・rollback成功・再試行安全性を推測せず、currentを成立表示しない。receiptが書けないfailureでは別の既存証拠経路を参照できない限りunknownを返す。\n- **正本・投影の負例**：生成Markdown／HTMLだけを編集し、JSON意味正本と一致しないfixtureを与える。表示viewの編集から意味正本の更新や新canonical revisionを成立させず、正本・projectionの不一致を返す。JSON意味正本の確定に伴う生成viewはprojectionとして同じoperationの対象revisionへ結び、生成viewを意味ownerの判断の代替にしない。",
+                          "expected_occurrences": 1
+                        }
+                      ]
+                    },
+                    {
+                      "id": "TDDORDER",
+                      "issue": 2832,
+                      "proposal": "実装前にtest/oracleを定義・凍結し、実装後のRedは意図した欠陥の検出、Greenは凍結したoracleを最小の実装で満たした証拠と明示する。凍結済みの対の検証を入力とする意味を保持し、後付けoracleを拒否する。",
+                      "edits": [
+                        {
+                          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                          "before": "設計の契約→実装→Red→Green",
+                          "after": "設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（凍結したoracleを最小の実装で満たした証拠）",
+                          "expected_occurrences": 2
+                        },
+                        {
+                          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                          "before": "凍結済みの設計からRed→Green→局所のRefactor",
+                          "after": "実装前に凍結した設計と対のtest／oracleから、意図した欠陥を検出するRed→凍結したoracleを最小の実装で満たしたGreenの証拠→局所のRefactor",
+                          "expected_occurrences": 1
+                        },
+                        {
+                          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                          "before": "④だけの出力をIntegrated以上の状態とする／原子CIの合格",
+                          "after": "実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格",
+                          "expected_occurrences": 1
+                        }
+                      ]
+                    },
+                    {
+                      "id": "VERSIONJOIN",
+                      "issue": 2826,
+                      "proposal": "HARNESS052とOS102を1.0に指定し、既に1.0のOS053とHARNESS059の接続全体を成立対象に揃える。その他25件の版未指定を変更しない。",
+                      "edits": [
+                        {
+                          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                          "before": "### HARNESS-L2-052 canonical commandの意味identityと再送判定（HELIX-HARNESS単体候補、未採択）\n",
+                          "after": "### HARNESS-L2-052 canonical commandの意味identityと再送判定（HELIX-HARNESS単体候補、未採択）\n\n**版の整理**：HARNESS-L2-052は`version_target: 1.0`とする。本文の版未指定・採否状態の記載は判断前の固定記述として保持する。既採択の意味範囲を拡張せず、接続先と同じ1.0でその操作・保証を成立させる。\n",
+                          "expected_occurrences": 1
+                        },
+                        {
+                          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+                          "before": "### HELIXOS-L2-102 HARNESS Issue contractのdurable intake・projection・handoff候補（connection候補、未採択）\n",
+                          "after": "### HELIXOS-L2-102 HARNESS Issue contractのdurable intake・projection・handoff候補（connection候補、未採択）\n\n**版の整理**：HELIXOS-L2-102は`version_target: 1.0`とする。本文の版未指定・採否状態の記載は判断前の固定記述として保持する。既採択の意味範囲を拡張せず、接続先と同じ1.0でその操作・保証を成立させる。\n",
+                          "expected_occurrences": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "legacy_sources": [
+                    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:19–29",
+                    "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md:21–24",
+                    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:93,142"
+                  ],
+                  "limits": "L3再開、実装・CI・release、旧要求formal successor/retire、新しいgate・schema・runtimeを承認しない。各unitを別PRで反映し、新revisionの仮登録・無損失照合・独立reviewを行う。"
+                }
+              },
+              "limits": "本packetは正本L2/L11とMPRを変更せず、要求採択/仮登録/no_lossを生成しない。採用後の一identity反映PRでcandidate digest・source集合/無損失receipt・MPR・対L11・独立reviewを結ぶ。L3再開、全seed採用、schema/registry/runtime/新gate、実装・CI・release、旧source formal successor/retire、他要求採否は判断対象外。"
             }
           },
-          "limits": "本packetは正本L2/L11とMPRを変更せず、要求採択/仮登録/no_lossを生成しない。採用後の一identity反映PRでcandidate digest・source集合/無損失receipt・MPR・対L11・独立reviewを結ぶ。L3再開、全seed採用、schema/registry/runtime/新gate、実装・CI・release、旧source formal successor/retire、他要求採否は判断対象外。"
+          "limits": [
+            "正本L2/L11/MPRは未変更。反映は人間decision後に別の一identity要求PRで行う。",
+            "旧source全移管/formal successor/retire、seed採用、OS記録成立、L3再開、schema/runtime/CI/deploy許可を生成しない。"
+          ]
         }
       },
       "limits": [
-        "正本L2/L11/MPRは未変更。反映は人間decision後に別の一identity要求PRで行う。",
-        "旧source全移管/formal successor/retire、seed採用、OS記録成立、L3再開、schema/runtime/CI/deploy許可を生成しない。"
+        "canonical L2/L11/MPRは未変更。採択後に別の一identity要求PRへ反映する。",
+        "seed/旧source全移管/実記録/接続/評価/採否/L3再開/実装許可を生成しない。"
       ]
     }
   },
   "limits": [
-    "canonical L2/L11/MPRは未変更。採択後に別の一identity要求PRへ反映する。",
-    "seed/旧source全移管/実記録/接続/評価/採否/L3再開/実装許可を生成しない。"
+    "これは意味対応を起草する判断用資料。正本L2/L11/MPR、26seed本文/Bindingを変更しない。",
+    "source_sectionsは原文の構造/由来保存。descriptorの完全性、正式schema、runtime/rendererや実検証の成立証拠ではない。",
+    "旧source/schema/enum/toolを採用せず、例値を製品要求値にしない。seed採否/要求合意/受入/Issueclose/L3再開を生成しない。"
   ]
 }
