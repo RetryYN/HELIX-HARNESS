@@ -9,7 +9,17 @@
 - [JSONを正本とする方針](../decisions/brain-helix-core-po-intent-2026-09-25.md)
 - 設計・検証テンプレートseed（DT-MSG、DT-SDOP、DT-VT）
 
-本文の`status`欄に残る「候補」表記を理由に適用を省かないことも、同じ箇所に書く。各正本の本文、規則、要求は変更しない。
+本文の`status`欄に残る「候補」表記を理由に読むことを省かないことも、同じ箇所に書く。読むことと採用することは分ける。Conceptと既決のPO方針は適用する。七大原則とテンプレートseedは、各文書が示すauthority状態と適用条件に従い、作業を照合する材料として使う。各正本の本文、規則、要求、authority状態は変更しない。
+
+七大原則の本文は独立のauthority承認を受けていない（`docs/concept/helix-principles.md`のfrontmatter `authority_status: awaiting_human_approval`、[Concept v4.1と4本のL1承認の判断記録](../decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md) 64行）。テンプレートseedは`authority_effect: none`の候補である。本チケットはこれらを承認せず、採否を生成しない。
+
+POの指示（2026-10-10、Claude作業session（lane `review_merge`）での発言の原文）：
+
+> TDDとDDDはエージェント向けの原則で入ってる。
+
+> あと用語一覧も。てか、テンプレあるよな？なんでそれを使わないで勝手なことやってんの？
+
+> なんで原則をエージェントが読んでないの？参照リンクつけろよ。
 
 経緯: 2026-10-10、POの指摘で次のことが分かった。
 
