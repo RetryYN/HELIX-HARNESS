@@ -107,6 +107,8 @@ def ledger_view(input_heads: list[SegmentHead]) -> Observed[LedgerView]: ...
 
 K5 model types (`LogDecl`, `SegmentId`, `FixedRef`, `LogEntry`, `SegmentHead`, `ScopeDecl`, `Projector`, `Projection`, `Checkpoint`, event union)は固定L5親の§6.2.1のとおり使う。`LedgerView` fieldと既存Rejected理由はL4/L5で定義された形に限り、本書で追加しない。
 
+本候補実装の`schema_version="1"`はcodec試験を動かすための局所候補値であり、登録済みschema versionやowner宣言値ではない。公開appendと`ledger_view(input_heads)`のowner source resolverは未接続である。appendのprivate coreは既存K3/K7の実観測結果またはL5で定義された既存拒否だけを扱い、未束縛時の結果を仮の`None`/`Rejected`や例外として公開しない。台帳のpure field assemblyも、既に観測された4 fieldをK5 projection keyの下へ保持するprivate helperまでで、owner/sourceの解決・読取完了は主張しない。K2が同じSegmentIdへの異なるhead refsを`Rejected(duplicate_identity)`とした場合、K5の外側結果への写像は固定されていない。この実装では該当する公開関数を未接続のままとし、`NotImplementedError`は局所実装placeholderとしてのみ投げる。これは公開K5 union、API例外transport、設計済みclassificationではなく、対応fixtureはcoverage/passへ数えない。保存`ResultBody`の未知/欠落class fieldや語彙はdecoderが受理せず、`restore`既存の`Unknown(unreadable, evidence=result_body)`経路へ送る。`ScopeDecl.log_id`と`LogDecl.log_id`/manifest・各segmentの`log_id`不一致の戻り分類は固定されていないため、該当する公開処理は局所`NotImplementedError`placeholderで肯定を止める。これはK5 result unionやAPI例外transportではなく、L7 coverage/passへ数えない。
+
 ## 3. 関数と内部algorithm
 
 関数IDはL6内のtrace識別子であり、新しいL4契約ID、public endpoint、approval/gateではない。各行は該当L4 invariantとL9 oracleを指し、L7 fixtureはこれらのIDを使う。
@@ -136,22 +138,22 @@ K5 model types (`LogDecl`, `SegmentId`, `FixedRef`, `LogEntry`, `SegmentHead`, `
 | `CK-K5-FN-02` | `validate_entry_schema` / private pure | decoded entryと`LogDecl`; valid entryまたは既存のread非Value | 宣言済みevent shape、schema_version、event-to-log対応とK1/K2 ResultBody/key/digest条件を照合する。新しい拒否reason/Observed分類を作らない。 | K5-I2/I3/I5/I6; IV-K5-03/11 |
 | `CK-K5-FN-03` | `validate_segment_prefix` / private pure | entry sequence、指定`SegmentHead`; `Observed[LogEntry[]]`相当 | seq連続、prev/entry digest、canonical line、固定headを検査し、部分prefixをValueへしない。 | K5-I1–I4; IV-K5-01–08/24–26 |
 | `CK-K5-FN-04` | `validate_manifest_prefix` / private pure | manifest entries、manifest head; valid prefixまたは既存非Value | manifest自身の固定prefixを同じentry/segment規則で検査する。bootstrap/genesis作成手順は扱わない。 | K5-I3/I11; IV-K5-21/22 |
-| `CK-K5-FN-05` | `validate_scope_heads` / private pure | `ScopeDecl`, manifest prefix, 全`input_heads`; complete scopeか既存`Unknown` | manifest headまでの登録segmentとscope全segment/headの対応を照合し、空/欠落scopeやdamaged prefixを完全読取とみなさない。 | K5-I4/I11; IV-K5-17/21 |
+| `CK-K5-FN-05` | `validate_scope_heads` / private pure | `ScopeDecl`, manifest prefix, 全`input_heads`; complete scopeか既存`Unknown` | manifest headまでの登録segmentとscope全segment/headの対応を照合し、空/欠落scopeやdamaged prefixを完全読取とみなさない。 | K5-I4/I11; IV-K5-12/17/21 |
 | `CK-K5-FN-06` | `resolve_fixed_ref` / private boundary helper | `FixedRef`と明示store observation `{bytes, observed_digest}`; decoded valueまたは既存unreadable observation | resolver側の実bytes観測はadapter stub入力。宣言storeとdigestが合う場合だけ呼出側へbytesを渡し、欠落/不一致はL5/L9既存`Unknown(unreadable)`を保つ。I/Oやstore実在を本書で実装しない。 | K5-I3/I11; IV-K5-12/21 |
 | `CK-K5-FN-07` | `validate_event_for_log` / private pure | `LogDecl`, writer/segment, event, restored manifest/peer observations; append前判定 | writer/segment/log/event型、登録済みsegment、必要な全manifest peerの健全性を照合する。K3 current authority/K7 assignment・fenceはstub境界とし、非肯定を越えてappend adapterを呼ばない。 | K5-I5/I6/I8; IV-K5-10/11/22/23 |
-| `CK-K5-FN-08` | `validate_result_key_and_body` / private pure | `ResultRecorded` body, `LogDecl`; valid eventまたはL5既存Rejected | ResultKey必須field、key/result digest、class別ResultBody/encoding、operationの登録logを照合。`Stale`や未宣言Inline等はL5/L9の既存Rejectedを保つ。 | K5-I5/I6; IV-K5-11 |
+| `CK-K5-FN-08` | `validate_result_key_and_body` / private pure | `ResultRecorded` body, `LogDecl`; valid eventまたはL5既存Rejected | `_record_from_event`で保存ResultKeyを既存K2 `key_of`へ渡し、必須field・digest・input identity重複を検証する。`key_of`拒否や不正ResultBodyはrecord化せずprivate `None`を返す。ResultKey/result digest、class別ResultBody/encoding、operationの登録logを照合し、`Stale`や未宣言Inline等はL5/L9既存Rejectedを保つ。 | K5-I5/I6; IV-K5-11/12補助 |
 | `CK-K5-FN-09` | `order_segment_heads` / private pure | segment heads/entries; ordered sequence | `(writer NFC UTF-8 bytes, segment_no numeric, seq numeric)`のL4順を使い、時刻や読込順から因果順を作らない。 | K5-I7; IV-K5-16 |
-| `CK-K5-FN-10` | `resolve_correction_tree` / private pure | `DeclaredEvent` rootsとCorrection event列; corrected projection candidatesまたはK1既存Unknown | same-log対象のtreeだけを展開し、一本鎖/retraction/branchをL4の既存結果へ投影する。順不同branchを追記順で選ばない。 | K5-I8; IV-K5-13 |
+| `CK-K5-FN-10` | `resolve_correction_tree` / private pure | `DeclaredEvent` roots、Correction event列、構築済みprojection `ResultKey`; corrected projection candidatesまたはK1既存Unknown | same-log対象のtreeだけを展開し、一本鎖/retraction/branchをL4の既存結果へ投影する。順不同branchを追記順で選ばない。branch/cycleの`Unknown(conflict)`は既に構築されたprojection keyを保持する。 | K5-I8; IV-K5-13 |
 | `CK-K5-FN-11` | `build_projection_key` / private pure | `Projector`, `ScopeDecl`, exact `input_heads`; `ResultKey` | projector/version/digest、manifestとsegment head inputs、scopeをL4 K5-I12どおりkeyへ束縛する。current headを暗黙取得して保存headを差し替えない。 | K5-I4/I12; IV-K5-09/18 |
-| `CK-K5-FN-12` | `fold_events` / private pure | ordered complete `LogEntry[]`, projector/scope; projection output+digest | event列から決定的にprojectし、同じprojector/scope/headの出力digestを返す。projectionはsource/eventへ逆流しない。 | K5-I8–I11; IV-K5-13–17 |
+| `CK-K5-FN-12` | `fold_events` / private pure | ordered complete `LogEntry[]`, projector/scope, complete projection key; projection output+digest or key-bearing existing `Unknown` | event列から決定的にprojectし、同じprojector/scope/headの出力digestを返す。K1 `Observed`のkey必須条件を守り、projectionで構築済みの完全keyを訂正競合診断へ渡す。projectionはsource/eventへ逆流しない。 | K5-I8–I11; IV-K5-13–17 |
 | `CK-K5-FN-13` | `verify_checkpoint_extension` / private pure | checkpoint, current fixed heads, full rebuild state and candidate incremental state; existing verify observation | same scope/forward extension/anchor/state digest/incremental-vs-full一致のL4条件を照合する。外部checkpoint authorityや新reasonを作らない。 | K5-I13; IV-K5-19/20 |
-| `CK-K5-FN-14` | `append` / public store adapter boundary | segment/event/writerとrestore/read/authority stub observations; L5既存`Appended \| NoOp \| Conflict \| Rejected` | pure preflightでL5条件を照合し、物理append portはstubとして扱う。ResultRecordedの全manifest peer照合後だけ既存adapter handoffを構成する。rollback/lock/fsync/atomicityを実装・証明しない。 | K5-I1/I5/I6/I8; IV-K5-10–11/22–23 |
+| `CK-K5-FN-14` | `_append_with_context` / private preflight and existing-result handoff | segment/event/writer、復元済みpeer、実際のK3/K7結果; 既存L5 append resultまたはK7既存Rejected | pure preflightは実装候補として分離する。物理append portとowner resolverは未接続なので公開append実装・正常append完了を主張しない。K7から実際に返った`Rejected(fenced \| revocation_pending \| missing_authorization)`はそのまま保持できるが、未束縛をこれらへ推定しない。 | K5-I1/I5/I6/I8; IV-K5-10–11/22–23 |
 | `CK-K5-FN-15` | `current_head` / public store observation | segmentとreader stub; `Observed[SegmentHead]` | segment全体の健全性を前提に、観測された現在末尾をそのclass/evidenceで返す。projectへ暗黙注入しない。 | K5-I2/I4; IV-K5-09 |
 | `CK-K5-FN-16` | `read` / public store observation | segment bytes/head observation; `Observed[LogEntry[]]` | raw prefix bytesをheadまで固定して復元し、FN-01–03でchainを検査する。partial prefixを成功扱いしない。 | K5-I1–I4; IV-K5-01–08/24–26 |
-| `CK-K5-FN-17` | `restore` / public store adapter boundary | log/scope/input headsとmanifest/segment/FixedRef observation stubs; `Observed[ResultRecord[]]` | FN-04–06のすべてが揃った後だけ全recordsを返す。非Valueではpartial recordsをK2 lookupへ渡さない。実reader/FixedRef storeの作用はstub。 | K5-I3/I4/I11; IV-K5-12/16/21 |
+| `CK-K5-FN-17` | `restore` / public store adapter boundary | log/scope/input headsとmanifest/segment/FixedRef observation stubs; `Observed[ResultRecord[]]` | FN-04–06のscope/head/FixedRef検証後、各`ResultRecorded`をFN-08相当の`_record_from_event`で復元する。保存keyのK2検証またはbody復元に失敗した場合はprivate `None`を経由し、全体を既存`Unknown(unreadable, evidence=result_body)`で返す。非Valueではpartial recordsをK2 lookupへ渡さない。実reader/FixedRef storeの作用はstub。 | K5-I3/I4/I11; IV-K5-12/16/21 |
 | `CK-K5-FN-18` | `project` / public pure projection | projector/scope/fixed heads and complete entries; `Observed[Projection]` | FN-09–12の順序/訂正/foldを使い、Projection key/output/digestを生成する。head discoveryやevent writeを行わない。 | K5-I4/I8–I12; IV-K5-09/13–18 |
 | `CK-K5-FN-19` | `verify` / public verify composition | saved projection, optional checkpoint and fixed complete inputs; `Observed[Projection]` | 保存output/digestと再構築値を照合し、checkpointはFN-13条件が全て成立するときだけ用いる。不一致はL4既存`Unknown(conflict)`を保つ。 | K5-I10/I13; IV-K5-19/20 |
-| `CK-K5-FN-20` | `ledger_view` / public projection over existing observations | fixed input headsとregistration/release/pointer/runtime observations; `Observed[LedgerView]` | 既存L4台帳の登録事実、成立、target/immediate/recovery、actualを別fieldへ投影する。台帳への独立write pathを作らず、raw source authorityを推測しない。 | K5 §9.6; IV-LDG-01/02/04; IV-K5-21 |
+| `CK-K5-FN-20` | `_project_ledger_view` / private pure field assembly | `Projector`, `ScopeDecl`, exact input heads、rows/release/generation/immediate/recovery/actualの各既存観測; `Value[LedgerView]`または実K2 key diagnostic | 既存L4の4 field（`rows`, `release`, `target`, `actual`）を別々に保持し、target内のgeneration/immediate/recoveryを混ぜない。K5-I12 keyを付ける。owner宣言からのfield解決、FixedRef読取、field別非肯定の生成は未接続で、ここでは観測値を変換しない。 | K5-I12; IV-LDG-01/03（補助UTで純projection部分だけ） |
 
 ### K5 appendの事前条件と担当関数
 
@@ -235,7 +237,7 @@ Python 3.11+の標準`json` optionは一次仕様に記載される（[Python 3.
 | IV-K5-16 | `CK-K5-FN-09/17` |
 | IV-K5-18 | `CK-K5-FN-11/18/19` |
 | IV-K5-19–20 | `CK-K5-FN-12/13/19` |
-| IV-LDG-01/02/04 | `CK-K5-FN-20`（L9 ledger projection oracle） |
+| IV-LDG-01/03 | `CK-K5-FN-20`（純projection部分のみ。source resolverは未接続） |
 
 ## 6. 今回の対象外
 
@@ -306,6 +308,8 @@ K1/K2は一つのHARNESS-owned unitとして配置する候補であり、L6は�
 CPython 3.11+標準ライブラリ（`json`, `hashlib`, `dataclasses`, `enum`, `typing`）はL5/L6の実装候補、`unittest`はL7のrunner候補である。依存欄には登録済みHELIX pack依存を偽装して追加せず、標準library名を独立packageとして列挙しない。現declaration schemaにtoolchain専用fieldやroot設定を増やさない。pack dependencyが後に要る場合は、既存declared dependency type/identity/version欄の範囲で明示される。
 
 Unitの初回登録は、declared bytesを含むGit revisionを先に確定し、その`FixedRef`と宣言全bytesのdigestをHARNESS ownerの`VersionRegistered`へ束縛する既存K5手順に従う。event schema、manifest writer、`SegmentOpened`条件はCK L4 §9.3/§15.4–15.5とL9 IV-LDG-01/02/04、IV-K5-22を再利用し、L6関数として実装しない。空の台帳から最初のmanifest segmentを作る操作は既存契約内で確認できず、物理bootstrapの証拠は未定義のままにする。これはK1/K2関数設計を止めず、初期登録を実在・完了として扱わない局所境界である。
+
+現在の`read`, `current_head`, `restore`, `project`, `verify`候補は公開関数を直接呼ぶfixtureで照合する。`current_head`は空でない実stream全体のseq/chainを検査し、seq=0 tailをgenesisへ読み替えない。異なるhead refsでK2が`Rejected(duplicate_identity)`を返す経路はK5外側への対応が未定義のため`NotImplementedError`で停止し、K5 API resultとして扱わない。`read`のhead.segment不一致はK5-I3(g)の指定head不成立として`Unknown(unreadable)`にする。`ScopeDecl.log_id`、`LogDecl.log_id`、manifest/segmentのlog identity不一致は、既存分類が定まらないため局所placeholderで停止する。`append`と`ledger_view`の公開owner adapterは未実装であり、private core/helperの単体確認を公開API実装・実読・追記の合格へ数えない。
 
 ## 10. Return境界union
 
