@@ -45,12 +45,12 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/common-kernel.md",
-      "sha256": "b6b2f2fe6d47d413a2d9e37d1ab26ea9017017d86a091ee2c8f5a144ac7cdc4a",
+      "sha256": "1fb52363e169d6210b197b678e68881b49c87cecbf6e79e1767282996549b90a",
       "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5/K9 contract bytes。固定構造corpusの入力として照合する。K4/G3の73 fixture ID以外のfixture登録・CI coverage、semantic approvalや実装成立を示さない。 K8の設計追補を含む。K8 fixture inventoryは未登録であり、実行・coverageを示さない。"
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "ba6e4127ace2a230e2313155f2126815adc062ca0f93c31f89df6b2de251d884",
+      "sha256": "37671734f8beceb6b277d10971d42c8876f64eee4b10b78a2d495a2a49ac9451",
       "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5/K9 verifier table/range。K1/K2/K3/K5 inventory、K4/G3の73 fixture ID構造照合対象を維持する。K6/K7/G5/K9 fixture inventoryは未登録であり、本pinはfixture実行・CI coverageを示さない。 K8の設計追補を含む。K8 fixture inventoryは未登録であり、実行・coverageを示さない。"
     },
     {

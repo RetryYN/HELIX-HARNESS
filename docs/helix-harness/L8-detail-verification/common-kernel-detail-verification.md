@@ -1,4 +1,4 @@
-# HELIX-HARNESS 共通カーネル L8詳細検証設計（K1/K2/K3/K4/K5/K6/K7/K8/K9/G3/G5）
+# HELIX-HARNESS 共通カーネル L8詳細検証設計（K1/K2/K3/K4/K5/K6/K7/K8/K9/K10/G3/G5）
 
 status: draft
 owner: HELIX-HARNESS
@@ -6,7 +6,7 @@ parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1／§9.2�
 paired_l5: ../L5-detail-design/common-kernel.md
 base: main `d5bb3455526c816b3af965db239c4b56207a884f`
 
-本書はK1/K2/K3/K4/K5/K6/K7/K8/K9/G3/G5のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9の既存項目を展開したものとする。K9は§9でL4 §17/L9 IV-K9-01–15を、K7/G5は§10で既存K7/G5 oracleを下位化する。K8は§11でL4 §18/L9 IV-K8-01–26を下位化する。K10は`not_designed`で現行参照のみとする。すべて未実行であり、pass、実装完成、L10成立を示さない。
+本書はK1/K2/K3/K4/K5/K6/K7/K8/K9/K10/G3/G5のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9の既存項目を展開したものとする。K9は§9でL4 §17/L9 IV-K9-01–15を、K7/G5は§10で既存K7/G5 oracleを下位化する。K8は§11でL4 §18/L9 IV-K8-01–26を下位化する。K10は§12でL4 §14/L9 IV-K10-01–14を下位化する。すべて未実行であり、pass、実装完成、L10成立を示さない。
 
 ## 1. 固定入力とtrace
 
@@ -15,7 +15,7 @@ base: main `d5bb3455526c816b3af965db239c4b56207a884f`
 | Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3/§9/§10/§13/§15/§16/§17/§18 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
 | Repository Layout L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
 | Common Kernel L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7-01–15、IV-G5-01–10、IV-LDG関連行、IV-K9-01–15、IV-K8-01–26 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
-| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9/§10/§11/§12 | SHA-256 `b6b2f2fe6d47d413a2d9e37d1ab26ea9017017d86a091ee2c8f5a144ac7cdc4a` |
+| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9/§10/§11/§12/§13 | SHA-256 `1fb52363e169d6210b197b678e68881b49c87cecbf6e79e1767282996549b90a` |
 | Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `388e0164e556dd1ac1ae16aa7059dc28c749614ec6b5a8f5be91b15a83ae76b2` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
 
 L9の各`IV-K1-*`/`IV-K2-*`/`IV-K3-*`/`IV-K5-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。 K5 §9.2の直接由来はConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。K3の直接L3 traceはL4 §16.1のSECURITY ACに限定し、OS-014-04/-06はK7との境界参照のまま扱う。K5を共通kernelとして配置すること自体から、単一親要求やHARNESS-L2-031を追加しない。
@@ -121,7 +121,7 @@ K2逆trace: L5 `key_of`, `lookup`, `record`, alias binding clausesは表のL9 ID
 
 ## 5. K3–K10と未実施範囲
 
-K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K7/G5は§10で既存L4/L9契約を下位化し、K10はこのpairで`not_designed`として既存L4/L9の該当契約へ戻す。K9は§9、K8は§11で設計する。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。K9の直接親はL4 §17.1のConcept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08である。K9 fixtureの設計はL7 mappingや実行を意味しない。
+K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K7/G5は§10で既存L4/L9契約を下位化し、K10は§12で既存L4/L9契約を下位化する。K9は§9、K8は§11で設計する。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。K9の直接親はL4 §17.1のConcept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08である。K9 fixtureの設計はL7 mappingや実行を意味しない。
 
 ### 5.1 K3 fixtures
 
@@ -1128,3 +1128,79 @@ KeyUnavailableとMismatch/K3/K6/Unknown/Unobservedの同時条件はfixture化�
 上表の26 IVは既存L9 oracleへの対応fixtureであり、L9定義を再発行しない。特にIV-K8-08の11 target、IV-K8-15のfield語彙、IV-K8-16/23の優先順位、IV-K8-20の保存evidence保全を一つのまとめcaseへ潰さず、個別fixture IDへ分けた。K8のAPI field、reason、schema、route/authority、sink対象を新設していない。追加したfixture IDのmanifest登録、実装、実行、CI coverageは主張しない。
 
 L4はK6 `RequiredResult`とK3 `PermissionCheck`をK8 result componentとして明示する。この文書はその既存型境界しか参照しない。起点baseで未統合だったK6/K7 L5/L8の詳細は借用せず、K7 AppliedUncertainをK8 API型として導入しない。起点baseのL4 §18.2本文末尾にあったWCA L4旧SHA typoはmain #2779で修正済みであり、このpairでは歴史snapshotを保持してL4を編集・再転記しない。
+
+## 12. K10 fixture表
+
+本節はL4 §14.1–14.8とL9 IV-K10-01–14を各fixtureへ展開する。全fixtureは未実行であり、設計上の期待値であってL10成立・実装pass・owner source接続を示さない。K10の直接L3 traceはL4 §14.1に限る。列挙ACは`AC-HARNESS-L3-023-02/-03`、`FR-HARNESS-L3-010`境界、`AC-HARNESS-L3-014-04`/`AC-HARNESS-L3-030-04`、`AC-INTELLIGENCE-L3-078-04`、`AC-OS-014-07`、`INFRA-006-AC-01`/`INFRA-001-AC-03`、`BRAIN-005-AC-01/-02`、`BRAIN-INFRA-014-AC-01/-02`、`BRAIN-INFRA-015-AC-02`であり、新しい親やgateを作らない。正常基準から各一条件だけ変える。複合oracleと明記するIV-K10-11は単一scenarioの中で指定された複数componentを全てassertし、caseを分割して期待の一部を失わない。
+
+| L8 fixture ID | L9 / L4 trace | 対象API・入力変異 | 期待する単一結果・観測 |
+|---|---|---|---|
+| `L8-K10-01-BASE` | IV-K10-01 / K10-I1 | `check_graph`; registered relation、全node endpoint、非空edge | `Combined.verdict=Positive`、各edge componentを保持 |
+| `L8-K10-01-UNREGISTERED-RELATION` | 同上 | baselineのedgeでrelationだけをvocab外へ | 該当edge component `Unknown(unregistered)` |
+| `L8-K10-01-MISSING-ENDPOINT` | 同上 | `to` endpointだけをGraphDecl node集合から外す | 該当edge component `Unknown(missing_input)` |
+| `L8-K10-01-EMPTY-EDGES` | 同上 | edge集合のみ空にする | `Combined.set_reason`を保持。新reasonを作らない |
+| `L8-K10-02-BASE` | IV-K10-02 / K10-I2 | `build_graph`; 固定sourceが宣言するedge一つ | `state=confirmed`。肯定は宣言graph内に限る |
+| `L8-K10-02-LLM-CANDIDATE` | 同上 | source一条件だけをLLM提案へ替える | `state=candidate`、confirmedにしない |
+| `L8-K10-02-NAME-SIMILARITY-CANDIDATE` | 同上 | source一条件だけを名称類似根拠に替える | `state=candidate`、confirmedにしない |
+| `L8-K10-02-CANDIDATE-PROMOTION-ATTEMPT` | 同上 | test projection候補では完全な`GraphDecl`/`GraphRules` refsとsource-owner宣言baselineを固定し、source宣言内のedge `state`だけを`candidate`から`confirmed`へ変える。`GraphDecl`へ`Edge`を直接注入しない。source→member mapping/readerは未定義のためfixtureは未接続・local hold | L9が定める`Rejected` classを期待するが、実reader未接続なので実行可能な判定境界ではない。reasonはL4で特定されないため追加しない。新APIや昇格APIを作らない |
+| `L8-K10-02-CANDIDATE-NOT-EFFECTIVE` | 同上 | closure graphにcandidate dependencyのみを置く | candidate edgeは`effective`へ入らない |
+| `L8-K10-03-BASE` | IV-K10-03 / K10-I3 | `check_graph`; declared propertiesを満たす複数edge | `Positive` |
+| `L8-K10-03-SYMMETRIC-REVERSE-MISSING` | 同上 | symmetric edgeのreverse edgeだけを除く | 違反edge component `Negative` |
+| `L8-K10-03-INVERSE-EDGE-MISSING` | 同上 | inverse型の対応reverse relation edgeだけを除く | 違反edge component `Negative` |
+| `L8-K10-03-CONTRADICTS-PAIR` | 同上 | 同端点のcontradicts pairだけを成立させる | pair component `Negative` |
+| `L8-K10-03-CYCLE-ONLY` | 同上 | property違反なしでcycleだけを加える | cycleを理由にNegative/Rejectedにしない。既存判定結果を保持 |
+| `L8-K10-04-BASE` | IV-K10-04 / K10-I4 | `closure`; required effective edgeとnot_selected source edge | required node `effective`、source node `diagnostics=not_selected`、combined Positive |
+| `L8-K10-04-SELECTION-UNKNOWN` | 同上 | selection stateのみunknownへ変更 | 当該node `held`、component `Unknown(missing_input)` |
+| `L8-K10-04-CONDITION-FALSE` | 同上 | operation_conditionのみfalseへ変更 | `diagnostics=condition_false`、有効成分には入らない |
+| `L8-K10-04-REFERENCE-ONLY` | 同上 | edge dep_classのみreference_onlyへ変更 | 先へ辿らずdiagnosticsに保持 |
+| `L8-K10-04-TRANSITIVE-FALSE` | 同上 | 一段目edgeのtransitiveだけfalse、先に二段目edgeを置く | 直接到達先のみ処理し二段目へ進まない。訪問済み集合をcycle拒否へ流用しない |
+| `L8-K10-05-BASE` | IV-K10-05 / K10-I4 | `closure`; 条件成立のsafety dependency | safety先はeffective |
+| `L8-K10-05-SAFETY-DROPPED` | 同上 | mutant実装がeffective safety先を除外するケースを適用 | oracleはsafety先`effective`をassertし、除外された出力は不一致 |
+| `L8-K10-06-DEPENDS-ON-AGAINST` | IV-K10-06 / K10-I5 | `impact`; A depends_on B、changed=[B] | Aがaffected |
+| `L8-K10-06-AFFECTS-ALONG` | 同上 | A affects B、changed=[A] | Bがaffected |
+| `L8-K10-06-UNIFORM-FORWARD-MUTATION` | 同上 | mutant実装でagainstもfrom→toとして扱う | oracleはdepends_onのAをaffectedにassertし、落ちた出力は不一致 |
+| `L8-K10-06-UNIFORM-REVERSE-MUTATION` | 同上 | mutant実装でalongもto→fromとして扱う | oracleはaffectsのBをaffectedにassertし、落ちた出力は不一致 |
+| `L8-K10-06-CANDIDATE-POSSIBLY` | 同上 | candidate edgeだけで到達可能なnodeを加える | nodeはpossiblyに入りaffectedには入らない |
+| `L8-K10-06-HELD-BRANCH` | 同上 | traversed branch conditionをunknownへ変更 | branch先Unknown(missing_input)を保持し「影響なし」にしない |
+| `L8-K10-07-OPERATION-TRUE` | IV-K10-07 / K10-I5 | `impact`; operation_condition=true | 到達nodeはaffected |
+| `L8-K10-07-OPERATION-FALSE` | 同上 | true baselineからconditionだけfalseへ | nodeはaffectedから外れcondition_false diagnostic |
+| `L8-K10-07-OPERATION-UNKNOWN` | 同上 | true baselineからconditionだけunknownへ | nodeはheldとなりUnknown(missing_input) |
+| `L8-K10-08-BASE` | IV-K10-08 / K10-I7 | `impact`→`review_set`; records, obligations, declarationsを固定 | affected identityのK2/K4 exact setのみ返す |
+| `L8-K10-08-OPERATION-INPUT-INCLUDES` | 同上 | affected node Dはobligation source/targetに無く、current OperationDecl.inputsにDだけ含める | 義務をexact setに含める |
+| `L8-K10-08-OPERATION-INPUT-EXCLUDES` | 同上 | 同一操作のinputsからDだけを除く | 該当義務を含めない |
+| `L8-K10-08-RECORD-NEW-REVISION` | 同上 | input identity集合を保ち一ref revisionだけ正当に更新 | 旧Value lookupはStale |
+| `L8-K10-08-RECORD-SAME-REV-DIGEST` | 同上 | 同一identity/revision refのdigest/bytesだけ不整合へ | lookup `Unknown(conflict)` |
+| `L8-K10-08-RECORD-INPUT-IDENTITY` | 同上 | input identity集合だけ変更 | lookup `Unobserved(not_run)` |
+| `L8-K10-08-RECORD-PRIOR-NONVALUE` | 同上 | baselineの保存recordは旧revisionの非Value。exact queryのsubject/operation/input identity setを固定し、current queryの一つのSubjectRefだけを同identityの新revisionへ更新 | lookup `Unobserved(not_run, superseded=<prior.key_digest>)`。K2-I2bの旧non-Value扱いを照合 |
+| `L8-K10-08-AFFECTED-OUTSIDE-RECORD` | 同上 | 変更対象をaffected外record一件だけにする | recordを見直し対象に含めない |
+| `L8-K10-08-CLASS-PRESERVED` | 同上 | 入力変異なしのcontrol。baseline exact queryとrecordをそのまま用いる | `review_set`のrecord entryは保存済みclass/valueを保つ。stale/non-value lookup変異とは別のcontrol |
+| `L8-K10-09-DECLARED-GRAPH-ONLY` | IV-K10-09 / K10-I6 | `independent`; graph整合、op node/CP宣言あり、CPへ到達しないdeclared closure | `Positive`はdeclared graph内だけの結果 |
+| `L8-K10-10-UNREGISTERED-UNRELATED-EDGE` | IV-K10-10 / K10-I6 | CP非到達グラフで無関係edge relationだけvocab外 | `graph_check` componentが残りindependentはPositiveでない |
+| `L8-K10-10-MISSING-UNRELATED-ENDPOINT` | 同上 | CP非到達グラフの無関係edge endpointだけ欠落 | `graph_check` Unknown(missing_input) componentを保持 |
+| `L8-K10-10-EMPTY-GRAPH` | 同上 | edge集合のみ空 | `graph_check` set_reasonを保持しindependentをPositiveにしない |
+| `L8-K10-10-CANDIDATE-ONLY` | 同上 | candidate edgeだけならCPへ届くdeclared graphを与え、candidate状態を維持 | L9 IV-K10-10のとおり`independent`は`Positive`でなく、`check_graph` componentsを`{graph_check, …}`識別付きで保持。candidate-only pathを有効到達にしない |
+| `L8-K10-11-CONTROL-PLANE-AND-HELD` | IV-K10-11 / K10-I6 | `independent`; opからCPへのeffective pathに加え別branchをheldにする複合oracle | 同一scenarioの`combined.verdict=Negative`をassertし、`reasons`へCP到達のNegativeとheldの`Unknown(missing_input)`の両componentを識別付きで保持 |
+| `L8-K10-11-OP-NODE-MISSING` | 同上 | op nodeだけgraphから欠落 | Unknown(missing_input) component |
+| `L8-K10-11-CONTROL-PLANE-UNDECLARED` | 同上 | control_plane declarationだけ欠落 | Unknown(missing_input) component |
+| `L8-K10-12-CONDITION-FALSE` | IV-K10-12 / K10-I6 | `op→R→control_plane`; final edge condition false | independent Positive |
+| `L8-K10-12-CONDITION-TRUE` | 同上 | false baselineからconditionのみtrueへ | independent Negative |
+| `L8-K10-12-CONDITION-UNKNOWN` | 同上 | false baselineからconditionのみunknownへ | independent Unknown(missing_input) |
+| `L8-K10-13-TWO-STAGE-BASE` | IV-K10-13 / L4 §14.2 | lower query with same recorded refs | both graph-build and downstream query Value |
+| `L8-K10-13-SEED-IDENTITY` | 同上 | graph固定、closure seed identityだけ変更 | downstream `Unobserved(not_run)` |
+| `L8-K10-13-CONDITION-REVISION` | 同上 | graph固定、ConditionState same identity/new revision、prior Value | downstream `Stale` |
+| `L8-K10-13-CHECK-REQUERY` | 同上 | check_graphのsame exact keyを再照会 | 記録のclassを保つ |
+| `L8-K10-13-GRAPH-SAME-REV-DIGEST` | 同上 | GraphDecl identity/revisionを固定しbytes/digestだけ不一致 | 上流 `Unknown(conflict)`、下流lookupは起動しない |
+| `L8-K10-13-SOURCE-NEW-REVISION` | 同上 | source identity固定で正当なrevisionを更新、prior Value | 上流 `Stale`、下流lookupは起動しない |
+| `L8-K10-13-SOURCE-IDENTITY-ADD` | 同上 | GraphDecl.sourcesへ新identity一つ追加 | 上流 `Unobserved(not_run)`、下流lookupなし |
+| `L8-K10-13-SOURCE-IDENTITY-REMOVE` | 同上 | GraphDecl.sourcesから一identityだけ除く | 上流 `Unobserved(not_run)`、下流lookupなし |
+| `L8-K10-13-RULE-VERSION` | 同上 | build rule versionだけ更新 | 上流 `Unobserved(not_run)`、下流lookupなし |
+| `L8-K10-13-NONVALUE-NO-GRAPHREF` | 同上 | 上流build resultを非Valueにする | 同じ非Valueを返しGraphRefを作らない |
+| `L8-K10-13-NO-REVERSE-INPUT` | 同上 | edge/result側の情報からinputを逆算しようとする実装変異 | current declared inputsが元のままというoracleを保持 |
+| `L8-K10-14-CHECK-RULE-CLOSURE-REVISION` | IV-K10-14 / L4 §14.2 | GraphRef/ConditionState/closure own rules固定、check_graph ruleは同identityの新revisionだけ更新 | old Valueを返さず`Stale` |
+| `L8-K10-14-CHECK-RULE-CLOSURE-IDENTITY` | 同上 | それ以外を固定し、check_graph rule version updateでidentityだけ変える | old Valueを返さず`Unobserved(not_run)` |
+| `L8-K10-14-CHECK-RULE-IMPACT-REVISION` | 同上 | GraphRef/ConditionState/impact own rules固定、check_graph ruleは同identityの新revisionだけ更新 | old Valueを返さず`Stale` |
+| `L8-K10-14-CHECK-RULE-IMPACT-IDENTITY` | 同上 | それ以外を固定し、check_graph rule version updateでidentityだけ変える | old Valueを返さず`Unobserved(not_run)` |
+| `L8-K10-14-CHECK-RULE-INDEPENDENT-REVISION` | 同上 | GraphRef/ConditionState/independent own rules固定、check_graph ruleは同identityの新revisionだけ更新 | old Valueを返さず`Stale` |
+| `L8-K10-14-CHECK-RULE-INDEPENDENT-IDENTITY` | 同上 | それ以外を固定し、check_graph rule version updateでidentityだけ変える | old Valueを返さず`Unobserved(not_run)` |
+| `L8-K10-14-CLOSURE-RULE-INDEPENDENT-REVISION` | 同上 | independent/graph inputs固定、closure ruleは同identityの新revisionだけ更新 | old Valueを返さず`Stale` |
+| `L8-K10-14-CLOSURE-RULE-INDEPENDENT-IDENTITY` | 同上 | それ以外を固定し、closure rule version updateでidentityだけ変える | old Valueを返さず`Unobserved(not_run)` |
