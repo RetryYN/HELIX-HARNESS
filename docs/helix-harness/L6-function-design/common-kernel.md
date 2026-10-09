@@ -5,7 +5,7 @@ owner: HELIX-HARNESS
 scope: K1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `79020598e03fd7234cfa00306f6f6d3a5bd82fd0` (current integration base; prior bases `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
+base: `main` at `40e5467dc7d67a990ff12323d40974a2e480f339` (current integration base; prior bases `79020598e03fd7234cfa00306f6f6d3a5bd82fd0`, `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
 
 本書は現行Common Kernel L4 K1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/G3は本書§14、K6は§13で既存L5/L8設計を関数責務へ下ろす。K9は§16で詳細化する。K8は§17でL4 §18/L9 IV-K8-01–26を4つの既存L5 API境界へtraceする設計追補であり、owner接続・L9実行は未了。K10は§18でL4 §14/L9 IV-K10-01–14を既存L5/L8契約に沿って関数・fixtureへ展開し、実行・owner接続は未了。
 
@@ -940,7 +940,7 @@ K10の公開API、owner read/write、L8 fixture execution、L9 verification、CI
 
 `helix/helix-harness/units/common-kernel/src/_k10_graph.py` はL4 §14.2の既存`RelationType`、`RelationVocab`、`Edge`、`GraphDecl`、`ConditionState`、`GraphRules`、`Closure`、`Impact`をfield単位で写したprivate projection候補である。`GraphDecl`のidentityはpayloadへ加えず、既存のFixedRef/SubjectRef metadata側に残す。`Impact`へ`held` fieldを追加せず、held identityは後段合成前のprivate中間値としてだけ保持する。`DepClass`は既存の単一variantを一件ずつ評価し、複数variantを束ねるOR規則を設けない。
 
-実装したのは宣言済みrelationの一意参照・edge relation/既解決endpointとの比較、対称・逆関係・contradictsのedge比較、単一`DepClass`と明示済みcondition値の分類、確定edgeのclosure投影、propagation方向とcandidate/confirmedのimpact field投影である。到達に必要なrelation宣言が無い場合、relation名が曖昧な場合、必要condition entryが無い場合はhelperが`None`を返し、既存K1 class/reasonへ変換しない。retired edgeはclosure対象から除外する。`safety`はそのedge自身の既存条件がeffectiveである場合にその到達先を保持し、別条件やOR判定を作らない。
+実装したのは宣言済みrelationの一意参照・edge relation/既解決endpointとの比較、対称・逆関係・contradictsのedge比較、単一`DepClass`と明示済みcondition値の分類、確定edgeのclosure投影、propagation方向とcandidate/confirmedのimpact field投影である。到達に必要なrelation宣言が無い場合、relation名が曖昧な場合、必要condition entryが無い場合はhelperが`None`を返し、既存K1 class/reasonへ変換しない。同じtarget identityへ異なるdiagnostic stateが併存する場合も、どれかを選ばずclosure helperは`None`を返す。retired edgeはclosure対象から除外する。`safety`はそのedge自身の既存条件がeffectiveである場合にその到達先を保持し、別条件やOR判定を作らない。
 
 このmoduleには公開K10 API、`Observed`/`Combined`のcomponent polarity mapping、source/owner reader、K2二段lookup、K5 restore/append、K4 obligation、current `GraphRules`解決を実装していない。比較用入力はすでに解決済みのtyped valueとして渡す。従ってlocal positiveはsourceの真正性やownerの現在値を示さない。
 
