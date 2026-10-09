@@ -749,3 +749,10 @@ L9逆trace: 上記fixture IDの各々は列挙された一つの`IV-K9-*`へ戻�
 ### 9.17 未接続・保証されない範囲
 
 現L4/L9でowner schema/read adapterが定義されていないため、K9 actual source traversal、OS assignmentからのcomplete producer roster構築、context/route/SECURITY authority identityの実測比較は実行可能とは主張しない。 また、ReviewTarget六要素のfresh mismatchはL4が`Unknown(conflict)`を定めるが、`K9IndependenceComponent` unionにはtarget binding factがないため、結果class/reason以外のcomponent/combined投影を新設せず局所未接続にする。上表のValue baselineとnegative比較はL4の型付きoracleを個別化した合成設計であり、owner bindingの実在を示さない。該当sourceまたはcomparison identityが無い場合は固定したL4結果だけを返し、未定義mappingを新API/reason/ownerへ埋めず、当該caseだけを未接続とする。K6 issuer authenticity未証明、開発repository cross-runtime規則、要求採択、外部review/merge動作は本fixtureの対象外である。
+
+K9 L4/L9 ownerへの追加返却事項は次のとおり。これは対象oracleの未達を記録し、K6/K4の既存診断をK9全体の結果へ昇格しない。
+
+| 対象 | 未接続範囲 | 返却先と保持する期待 |
+|---|---|---|
+| `L8-K9-05-BINDING-BYTES-DRIFT` / `RAW-SOURCE-BYTES-DRIFT`、IV-K9-05 | K6 admissionの`Unknown(conflict)`からK9 result/components/combinedへの投影が未定義。 | K9 L4 §17 / L9 IV-K9-05 ownerへ返す。K6 source診断を独立して保持し、K9 assuranceへ混入せずK9 oracle充足を主張しない。 |
+| `L8-K9-11-PENDING-REVIEW`、IV-K9-11 | K4 Deferred fixtureの再利用は既存義務成分だけを確認する。K9 candidate/sourceとreview段階を結ぶAPI・projectionは未接続。 | K9 L4 §17 / L9 IV-K9-11 ownerへ返す。IV-K9-11の期待全体をK4 aliasへ縮約せず、K9側の段階分離の未達を保持する。 |
