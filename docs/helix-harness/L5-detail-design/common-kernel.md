@@ -357,7 +357,7 @@ L5/L8で個別fixture設計へ展開するのはIV-K5-01–26である。IV-K7-0
 
 ### 6.3 今回の対象外
 
-K7/K8/K10は本対で`not_designed`であり、既存のCommon Kernel L4各契約節とPair L9の対応oracleへ戻す。K1/K2/K3/K4/K5/K6/K9/K10/G3の設計は実装、実行、物理writer enforcement、approval/gateを意味しない。L3 semanticsの変更が必要な点は本書で解決せず、要求上流へ返す。
+K7/K8は本対で`not_designed`であり、既存のCommon Kernel L4各契約節とPair L9の対応oracleへ戻す。K1/K2/K3/K4/K5/K6/K9/K10/G3の設計は実装、実行、物理writer enforcement、approval/gateを意味しない。L3 semanticsの変更が必要な点は本書で解決せず、要求上流へ返す。
 
 ## 7. Unit配置・宣言・型番登録
 
