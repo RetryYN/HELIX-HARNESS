@@ -9,14 +9,20 @@ from pathlib import Path
 from typing import Any
 try:  # support both direct script-path imports and namespace-package imports
     from .common import CHECK_IDS, Diagnostic, canonical_bytes, sha256, strict_json
-    from .source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_COUNT,
-                                   EXPECTED_DISCOVERY_IDS_SHA256, FORMAL_MAPPING_SHA256,
+    from .source_l7_runner import (CURRENT_DESIGN_PATHS, SUPPLEMENTAL_DESIGN_PATHS,
+                                   SUPPLEMENTAL_SOURCE_SHA256, EXPECTED_DISCOVERY_COUNT,
+                                   EXPECTED_DISCOVERY_IDS_SHA256, CORE_EXPECTED_DISCOVERY_COUNT,
+                                   CORE_EXPECTED_DISCOVERY_IDS_SHA256, SUPPLEMENTAL_IDS_SHA256,
+                                   SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS, FORMAL_MAPPING_SHA256,
                                    SOURCE_SHA256, SUITE_ID,
                                    inventory_digest as current_source_l7_inventory_digest)
 except ImportError:  # pragma: no cover - exercised by the provisional CLI entrypoint
     from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256, strict_json
-    from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_COUNT,
-                                  EXPECTED_DISCOVERY_IDS_SHA256, FORMAL_MAPPING_SHA256,
+    from source_l7_runner import (CURRENT_DESIGN_PATHS, SUPPLEMENTAL_DESIGN_PATHS,
+                                  SUPPLEMENTAL_SOURCE_SHA256, EXPECTED_DISCOVERY_COUNT,
+                                  EXPECTED_DISCOVERY_IDS_SHA256, CORE_EXPECTED_DISCOVERY_COUNT,
+                                  CORE_EXPECTED_DISCOVERY_IDS_SHA256, SUPPLEMENTAL_IDS_SHA256,
+                                  SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS, FORMAL_MAPPING_SHA256,
                                   SOURCE_SHA256, SUITE_ID,
                                   inventory_digest as current_source_l7_inventory_digest)
 
@@ -256,7 +262,8 @@ def _validate_suite_evidence(value: Any) -> dict:
     fields = {"suite_id", "artifact_sha256", "artifact_bytes", "mapping_sha256",
               "discovered_count", "discovered_ids_sha256", "executed_count",
               "executed_ids_sha256", "failure_count", "error_count", "skip_count",
-              "expected_failure_count", "unexpected_success_count", "source_refs", "target"}
+              "expected_failure_count", "unexpected_success_count", "source_refs", "target",
+              "partition_evidence"}
     evidence = _object(value, fields, "suite_evidence")
     if evidence["suite_id"] != SUITE_ID:
         _reject("invalid_input", "suite evidence identity is unsupported")
@@ -279,11 +286,27 @@ def _validate_suite_evidence(value: Any) -> dict:
     if evidence["mapping_sha256"] != FORMAL_MAPPING_SHA256:
         _unknown("Unknown", "conflict", "suite evidence formal mapping differs from fixed inventory")
     refs = evidence["source_refs"]
-    if not isinstance(refs, list) or len(refs) != len(SOURCE_SHA256) + len(CURRENT_DESIGN_PATHS):
-        _reject("invalid_input", "suite evidence requires the fixed nine code/test refs and two design refs")
+    if not isinstance(refs, list) or len(refs) != (len(SOURCE_SHA256) + len(SUPPLEMENTAL_SOURCE_SHA256)
+                                                   + len(CURRENT_DESIGN_PATHS) + len(SUPPLEMENTAL_DESIGN_PATHS)):
+        _reject("invalid_input", "suite evidence requires the fixed 17 code/test refs and ten design refs")
     for index, ref in enumerate(refs):
         _subject_ref(ref, f"suite_evidence.source_refs[{index}]")
     _target(evidence["target"], "suite_evidence.target")
+    partitions = _object(evidence["partition_evidence"], {"core", "supplemental"},
+                         "suite_evidence.partition_evidence")
+    for name, expected_count, expected_digest in (
+            ("core", CORE_EXPECTED_DISCOVERY_COUNT, CORE_EXPECTED_DISCOVERY_IDS_SHA256),
+            ("supplemental", len(SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS), SUPPLEMENTAL_IDS_SHA256)):
+        partition = _object(partitions[name], {"discovered_count", "discovered_ids_sha256",
+                                               "executed_count", "executed_ids_sha256"},
+                            "suite_evidence.partition_evidence." + name)
+        for key in ("discovered_count", "executed_count"):
+            if type(partition[key]) is not int or partition[key] != expected_count:
+                _reject("invalid_input", "suite partition count differs from the fixed inventory")
+        for key in ("discovered_ids_sha256", "executed_ids_sha256"):
+            _digest(partition[key], "suite_evidence.partition_evidence." + name + "." + key)
+            if partition[key] != expected_digest:
+                _unknown("Unknown", "conflict", "suite partition digest differs from fixed inventory")
     return evidence
 
 
@@ -362,13 +385,14 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
         current_suite_refs = _current_ref_set(source_l7_refs, "current suite design refs", required=True)
         expected_refs = [{"kind": "source", "identity": path, "revision": target["head_commit"],
                           "digest": "sha256:" + digest}
-                         for path, digest in sorted(SOURCE_SHA256.items())]
+                         for path, digest in sorted({**SOURCE_SHA256, **SUPPLEMENTAL_SOURCE_SHA256}.items())]
         design_ref_map = {ref["identity"]: ref for ref in current_suite_refs}
-        if (len(current_suite_refs) != len(CURRENT_DESIGN_PATHS)
+        all_design_paths = (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS)
+        if (len(current_suite_refs) != len(all_design_paths)
                 or len(design_ref_map) != len(current_suite_refs)
-                or set(design_ref_map) != set(CURRENT_DESIGN_PATHS)):
+                or set(design_ref_map) != set(all_design_paths)):
             _reject("invalid_input", "current suite design refs do not match the fixed L6/L7 paths")
-        for path in CURRENT_DESIGN_PATHS:
+        for path in all_design_paths:
             ref = design_ref_map[path]
             if ref["revision"] != target["head_commit"]:
                 _unknown("Unknown", "conflict", "current suite design ref is not from the target revision")

@@ -11,9 +11,9 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `05ba206ce78eaecba0585dec3d08fa18e6dfb6b31e80423b5fea1455ca08a868`である。
+固定入力は対のL5本文SHA-256 `5b1abc88ebdb8e798cab1804db9d9de4ca1dfabf9d320d8348a8096ab930f019`である。
 
-L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `91c20f0e0ac81dae1be8c744979290bd513feddd6f5f2135174852d0f50473ec`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
+L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `004166092e6abc5c8a20ccc2d2f0b8cb9c49017c46de43c29eb03d887de1043a`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
 
 ## 1. Fixture規則
 
@@ -157,7 +157,7 @@ Local receiptは作成側の報告ではなく、独立reviewとActions receipt 
 | CASE-L8-LCI-122 | K3 mapping uniqueness | K3 formal IDは一意なmapping rowへ結び付く | 一rowのformal_l7_idだけを別rowと重複させ、mutation側mapping digestを再計算 | runner起動後のfixed inventory検査がUnknown(conflict)。unittest discovery/execution前のnoncomplete診断をF05がstep fail/partial diagnosticとして保持し、complete evidenceなし |
 | CASE-L8-LCI-123 | K3 discovery closure | fixed expected setに586件、うちK3が220件 | actual discoveryからK3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを除く | Unknown(conflict)診断をF05がsuite step failへ写し、full/compact complete evidenceなしのpartial diagnosticを保持 |
 | CASE-L8-LCI-124 | discovery identity uniqueness | actual discovery identity setは一意 | K3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを重複させる | Unknown(conflict)、重複をdedupせずsuite step fail、complete evidenceなし |
-| CASE-L8-LCI-125 | 結果frameの上限 | Core 586件だけの比較値はbody/capture/helper 90,514/90,515/121,474 bytes。現在の合成613 identities（Core 586＋補助27）を5つの排他的outcome familyへ分けた最大合法値は99,820/99,821/133,870 bytes。1/3/5 family形を比較する | 613件の最大合法bodyに1 byteを加え99,821 bytesにする | `Unknown(conflict)`の部分diagnosticを保持し、切詰め/overflowからcomplete artifact/compact suite evidenceを作らない。設計候補上限は99,820/99,821/134,000 bytes。現行runtimeの`source_l7_runner.py`/`runner.py`上限は未変更で、body/capture/helperは90,514/90,515/122,000 bytes |
+| CASE-L8-LCI-125 | 結果frameの上限 | Core 586件だけの比較値はbody/capture/helper 90,514/90,515/121,474 bytes。現在の合成613 identities（Core 586＋補助27）を5つの排他的outcome familyへ分けた最大合法値は99,820/99,821/133,870 bytes。1/3/5 family形を比較する | 613件の最大合法bodyに1 byteを加え99,821 bytesにする | `Unknown(conflict)`の部分diagnosticを保持し、切詰め/overflowからcomplete artifact/compact suite evidenceを作らない。現在のscaffold runtime上限は`source_l7_runner.py` body 99,820 bytes、`runner.py` LF付きcapture 99,821 bytes、supervisor frame 134,000 bytes。586 Core-only比較時点の90,514/90,515/122,000 bytesは履歴値として保持する |
 | CASE-L8-LCI-126 | K5 implementation source completeness | exact target treeに`journal.py` refがあり、固定SHA-256と一致 | `journal.py` blobだけをsource refsから除く | `Unknown(missing_input)`、先行5 check diagnosticを保持してsuite spawn前に停止。IV-LCI-86のmissing source境界に対応 |
 | CASE-L8-LCI-127 | K5 test module completeness | exact target treeに`test_k5.py` refがあり、固定SHA-256と一致 | `test_k5.py` blobだけをsource refsから除く | `Unknown(missing_input)`、他moduleで代替せずsuite spawn前に停止。IV-LCI-86のmissing source境界に対応 |
 | CASE-L8-LCI-128 | target L7 K5 formal ID completeness | target L7本文に固定K5 formal IDs 91件が存在 | `CK-K5-UT-001`の定義行だけをtarget L7から除く | `Unknown(conflict)`、target L7と固定inventoryの不一致。IV-LCI-94のK3 oracleをK5へ適用した同型確認 |
@@ -173,7 +173,7 @@ CASE-L8-LCI-105/106のoutcome変異はerror、expected failure、unexpected succ
 
 ### 5.1 4機構 supplemental identity partition cases
 
-次のcasesは既存LC-STAGE1-L7-001内の補助partitionを検証する。Core 586 identities、505 formal IDs、495 mapping、10 K6 dispositionとそのdigestは既存契約のまま固定される。Supplemental identitiesはL5 §8.1の27件だけである。main `4a40597efbf867b6b5b5640060b2cac81de56de0`時点のSECURITY 10件、CONNECT 4件、Common Kernel K4/G3 14件は未登録集合として除外する。機構formal ID trace/status/owner-return locatorは実行IDやformal mappingとは別のsource-reference objectである。
+次のcasesは既存LC-STAGE1-L7-001内の補助partitionを検証する。Core 586 identities、505 formal IDs、495 mapping、10 K6 dispositionとそのdigestは既存契約のまま固定される。Supplemental identitiesはL5 §8.1の27件だけである。main `691ab36b9832c585fb77373899533165733b443b`時点のSECURITY 10件、CONNECT 4件、Common Kernel K4/G3 14件は未登録集合として除外する。機構formal ID trace/status/owner-return locatorは実行IDやformal mappingとは別のsource-reference objectである。
 
 | Case ID | 契約 | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|

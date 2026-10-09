@@ -12,12 +12,15 @@ from unittest.mock import patch
 _LOCAL_CI = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_LOCAL_CI))
 
-from common import CHECK_IDS, Diagnostic, canonical_bytes  # noqa: E402
+from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256  # noqa: E402
 from receipt import (_validate_suite_evidence, verify_receipt, write_private_artifact,
                      write_receipt)
 from plan import compile_plan  # noqa: E402
-from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_COUNT,
-                              EXPECTED_DISCOVERY_IDS_SHA256, FORMAL_MAPPING_SHA256,
+from source_l7_runner import (CURRENT_DESIGN_PATHS, SUPPLEMENTAL_DESIGN_PATHS,
+                              SUPPLEMENTAL_SOURCE_SHA256, EXPECTED_DISCOVERY_COUNT,
+                              EXPECTED_DISCOVERY_IDS_SHA256, CORE_EXPECTED_DISCOVERY_COUNT,
+                              CORE_EXPECTED_DISCOVERY_IDS_SHA256, SUPPLEMENTAL_IDS_SHA256,
+                              SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS, FORMAL_MAPPING_SHA256,
                               SOURCE_SHA256, SUITE_ID, inventory_digest)  # noqa: E402
 
 
@@ -78,6 +81,16 @@ def execution(check_id: str) -> dict:
             "artifact_bytes": 100, "mapping_sha256": FORMAL_MAPPING_SHA256,
             "discovered_count": EXPECTED_DISCOVERY_COUNT, "discovered_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
             "executed_count": EXPECTED_DISCOVERY_COUNT, "executed_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
+            "partition_evidence": {
+                "core": {"discovered_count": CORE_EXPECTED_DISCOVERY_COUNT,
+                         "discovered_ids_sha256": CORE_EXPECTED_DISCOVERY_IDS_SHA256,
+                         "executed_count": CORE_EXPECTED_DISCOVERY_COUNT,
+                         "executed_ids_sha256": CORE_EXPECTED_DISCOVERY_IDS_SHA256},
+                "supplemental": {"discovered_count": len(SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS),
+                                 "discovered_ids_sha256": SUPPLEMENTAL_IDS_SHA256,
+                                 "executed_count": len(SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS),
+                                 "executed_ids_sha256": SUPPLEMENTAL_IDS_SHA256},
+            },
             "failure_count": 0, "error_count": 0, "skip_count": 0,
             "expected_failure_count": 0, "unexpected_success_count": 0,
             "source_refs": refs, "target": current,
@@ -87,9 +100,11 @@ def execution(check_id: str) -> dict:
 
 def suite_source_refs(current: dict) -> list[dict]:
     refs = [{"kind": "source", "identity": path, "revision": current["head_commit"],
-             "digest": "sha256:" + digest} for path, digest in SOURCE_SHA256.items()]
+             "digest": "sha256:" + digest}
+            for path, digest in {**SOURCE_SHA256, **SUPPLEMENTAL_SOURCE_SHA256}.items()]
+    all_design_paths = (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS)
     refs.extend({"kind": "source", "identity": path, "revision": current["head_commit"],
-                 "digest": _TYPED_DIGEST} for path in CURRENT_DESIGN_PATHS)
+                 "digest": _TYPED_DIGEST} for path in all_design_paths)
     return sorted(refs, key=lambda item: item["identity"])
 
 
@@ -135,7 +150,7 @@ def verify(data: bytes | str, *, current: dict | None = None, refs=None,
         contract_ref=body["contract_ref"],
         structure_complete=complete, portable_config=_PORTABLE,
         source_l7_refs=[ref for ref in suite_source_refs(current or body["target"])
-                        if ref["identity"] in CURRENT_DESIGN_PATHS],
+                        if ref["identity"] in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS)],
     )
 
 
@@ -160,6 +175,20 @@ class VerifyReceiptTests(unittest.TestCase):
         changed_refs["source_refs"].pop()
         with self.assertRaises(Diagnostic) as caught:
             _validate_suite_evidence(changed_refs)
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Rejected", "invalid_input"))
+
+        changed_partition_digest = copy.deepcopy(valid)
+        changed_partition_digest["partition_evidence"]["supplemental"]["executed_ids_sha256"] = "0" * 64
+        with self.assertRaises(Diagnostic) as caught:
+            _validate_suite_evidence(changed_partition_digest)
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "conflict"))
+
+        changed_partition = copy.deepcopy(valid)
+        changed_partition["partition_evidence"]["supplemental"]["executed_count"] = 26
+        with self.assertRaises(Diagnostic) as caught:
+            _validate_suite_evidence(changed_partition)
         self.assertEqual((caught.exception.classification, caught.exception.reason),
                          ("Rejected", "invalid_input"))
 
@@ -195,7 +224,7 @@ class VerifyReceiptTests(unittest.TestCase):
         kwargs = dict(design_manifest_digest=_RAW_SHA, checker_refs=body["checker_refs"],
                       contract_ref=body["contract_ref"], structure_complete=True, portable_config=portable,
                       source_l7_refs=[ref for ref in suite_source_refs(body["target"])
-                                      if ref["identity"] in CURRENT_DESIGN_PATHS])
+                                      if ref["identity"] in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS)])
         checked = verify_receipt(canonical_bytes(body), body["target"],
                                  config_digest=original_plan["config_digest"], plan_expected=original_plan, **kwargs)
         self.assertEqual(checked["status"], "verified")
@@ -217,7 +246,7 @@ class VerifyReceiptTests(unittest.TestCase):
             design_manifest_digest=_RAW_SHA, checker_refs=body["checker_refs"],
             contract_ref=body["contract_ref"], structure_complete=True, portable_config=_PORTABLE,
             source_l7_refs=[ref for ref in suite_source_refs(body["target"])
-                            if ref["identity"] in CURRENT_DESIGN_PATHS],
+                            if ref["identity"] in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS)],
         )
         self.assertEqual(result["status"], "verified")
         self.assertEqual(result["aggregate_state"], "success")

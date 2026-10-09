@@ -18,7 +18,8 @@ from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
 from plan import compile_plan, COMMAND_TEMPLATES
 from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS,
-                              FORMAL_ID_CLOSURE, FORMAL_MAPPING, SOURCE_SHA256, SUITE_ID)
+                              FORMAL_ID_CLOSURE, FORMAL_MAPPING, SOURCE_SHA256,
+                              SUPPLEMENTAL_SOURCE_REFS, SUPPLEMENTAL_SOURCE_SHA256, SUITE_ID)
 
 TARGET = {"repository_id": "RetryYN/HELIX-HARNESS", "base_commit": "a"*40,
           "merge_base": "a"*40, "head_commit": "b"*40, "head_tree": "c"*40,
@@ -113,20 +114,21 @@ class RunIntegrationTests(unittest.TestCase):
         self.assertEqual((raised.exception.classification, raised.exception.reason),
                          ("Rejected", "invalid_input"))
 
-    def test_k1_k2_k3_k5_k6_suite_plan_literal_matches_supervisor_command_and_rejects_legacy_id(self):
+    def test_stage1_l7_suite_plan_literal_matches_supervisor_command_and_rejects_legacy_id(self):
         expected = ("python3", "-B", "scaffold/local-ci/source_l7_runner.py",
-                    "--suite", "common-kernel-k1-k2-k3-k5-k6")
+                    "--suite", "stage1-l7-source")
         self.assertEqual(COMMAND_TEMPLATES[5], expected)
         compiled = compile_plan(TARGET, self.portable, "d" * 64, "1")
         suite_spec = compiled["commands"][5]
         self.assertEqual(tuple(suite_spec["argv"]), expected)
         self.assertEqual(runner._validate_command(suite_spec)[0], list(expected))
 
-        legacy_spec = dict(suite_spec, argv=[*suite_spec["argv"][:-1], "common-kernel-k1-k2"])
-        with self.assertRaises(Diagnostic) as caught:
-            runner._validate_command(legacy_spec)
-        self.assertEqual((caught.exception.classification, caught.exception.reason),
-                         ("Rejected", "invalid_input"))
+        for legacy_id in ("common-kernel-k1-k2", "common-kernel-k1-k2-k3-k5-k6"):
+            legacy_spec = dict(suite_spec, argv=[*suite_spec["argv"][:-1], legacy_id])
+            with self.subTest(legacy_id=legacy_id), self.assertRaises(Diagnostic) as caught:
+                runner._validate_command(legacy_spec)
+            self.assertEqual((caught.exception.classification, caught.exception.reason),
+                             ("Rejected", "invalid_input"))
 
     def test_full_run_constructs_and_validates_all_six_rows_before_write(self):
         receipt = self.run_ci()
@@ -260,6 +262,19 @@ class RunIntegrationTests(unittest.TestCase):
             self.assertEqual(full[count_key], 1)
             self.assertEqual(full[ids_key], [ident])
 
+    def test_l7_artifact_write_failure_never_emits_positive_receipt(self):
+        self.mocks["write_private_artifact"].side_effect = Diagnostic(
+            "Unknown", "unreadable", "synthetic artifact storage failure")
+        with self.assertRaises(Diagnostic) as raised:
+            self.run_ci()
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Unknown", "unreadable"))
+        self.mocks["write_receipt"].assert_not_called()
+        self.assertEqual(len(raised.exception.evidence), 6)
+        self.assertEqual(raised.exception.evidence[-1]["check_id"], CHECK_IDS[-1])
+        self.assertEqual(raised.exception.evidence[-1]["state"], "fail")
+        self.assertFalse(raised.exception.evidence[-1]["result_complete"])
+
     def test_bad_supervisor_frames_overflow_and_json_create_partial_not_complete_evidence(self):
         ids = list(EXPECTED_DISCOVERY_IDS)
         base = {"schema_version": 1, "suite_id": SUITE_ID, "complete": True,
@@ -327,7 +342,10 @@ class RunIntegrationTests(unittest.TestCase):
                    "unexpected_success_count": 0, "unexpected_success_ids": [],
                    "exit_code": 0, "state": "success"}
         row = {"exit_code": 0, "state": "success"}
-        valid = driver._validate_suite_result(payload, TARGET, [], row)
+        source_refs = [{"identity": path} for path, *_ in SUPPLEMENTAL_SOURCE_REFS.values()]
+        source_bytes = {path: Path(_LOCAL_CI.parent.parent, path).read_bytes()
+                        for path, *_ in SUPPLEMENTAL_SOURCE_REFS.values()}
+        valid = driver._validate_suite_result(payload, TARGET, source_refs, row, source_bytes)
         self.assertEqual(valid["state"], "success")
         self.assertIn("expected_failure_ids", valid)
 
@@ -347,7 +365,7 @@ class RunIntegrationTests(unittest.TestCase):
             with self.subTest(frame=frame):
                 execution = {"exit_code": frame["exit_code"], "state": frame["state"]}
                 with self.assertRaises(Diagnostic) as raised:
-                    driver._validate_suite_result(frame, TARGET, [], execution)
+                    driver._validate_suite_result(frame, TARGET, source_refs, execution, source_bytes)
                 self.assertEqual((raised.exception.classification, raised.exception.reason),
                                  ("Unknown", "conflict"))
 
@@ -362,7 +380,7 @@ class RunIntegrationTests(unittest.TestCase):
                     def missing(_entries, path, _expected=None):
                         if path == CURRENT_DESIGN_PATHS[1]:
                             raise Diagnostic("Unknown", "missing_input", "synthetic absent L7 source")
-                        return b"synthetic source"
+                        return self._target_blob(_entries, path, _expected)
                     reader.blob.side_effect = missing
                 else:
                     def conflict(_entries, path, _expected=None):
@@ -371,7 +389,7 @@ class RunIntegrationTests(unittest.TestCase):
                                 ("`" + row["formal_l7_id"] + "`").encode()
                                 for row in FORMAL_MAPPING
                                 if row["formal_l7_id"] != "CK-K3-UT-001")
-                        return b"synthetic source"
+                        return self._target_blob(_entries, path, _expected)
                     reader.blob.side_effect = conflict
                 with self.assertRaises(Diagnostic) as raised:
                     self.run_ci()
@@ -447,6 +465,35 @@ class RunIntegrationTests(unittest.TestCase):
                 self.assertNotIn(CHECK_IDS[5], [row["check_id"] for row in partial["completed_executions"]])
                 self.mocks["write_receipt"].assert_not_called()
                 reader.blob.side_effect = self._target_blob
+
+    def test_ast_identity_mismatch_stops_before_suite_spawn_and_keeps_prior_diagnostics(self):
+        path = "helix/helix-brain/units/stage1-brain/tests/test_brain.py"
+        original = self._target_blob({}, path)
+        old_name = b"test_trace_source_projects_each_declared_field_and_keeps_owner_roles"
+        changed = original.replace(old_name, b"test_removed_source_method", 1)
+        self.assertNotEqual(changed, original)
+        expected = dict(SUPPLEMENTAL_SOURCE_SHA256)
+        expected[path] = sha256(changed)
+
+        def mutated_target_blob(_entries, source_path, _expected=None):
+            if source_path == path:
+                return changed
+            return self._target_blob(_entries, source_path, _expected)
+
+        reader = self.mocks["GitReader"].return_value
+        reader.blob.side_effect = mutated_target_blob
+        with patch.object(driver, "SUPPLEMENTAL_SOURCE_SHA256", expected):
+            with self.assertRaises(Diagnostic) as raised:
+                self.run_ci()
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Unknown", "conflict"))
+        self.assertEqual(self.calls, list(CHECK_IDS[:5]))
+        partial = self.mocks["write_private_artifact"].call_args.args[0]
+        self.assertEqual(partial["artifact_kind"], "partial_local_ci_diagnostic")
+        self.assertEqual(len(partial["completed_executions"]), 5)
+        self.assertNotIn(CHECK_IDS[5], [row["check_id"] for row in partial["completed_executions"]])
+        self.mocks["write_receipt"].assert_not_called()
+        reader.blob.side_effect = self._target_blob
 
     def test_structural_missing_edge_and_duplicate_stop_before_any_step_or_receipt(self):
         for reason in ("missing_input", "conflict"):
