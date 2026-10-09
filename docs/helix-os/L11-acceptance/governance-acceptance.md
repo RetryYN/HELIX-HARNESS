@@ -1360,3 +1360,12 @@ Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corro
 - **未完として確認すること**：開発はBunなしで行えるが実行・検証・配布surfaceのいずれかがBunを使う／要求する場合、対象surfaceが未列挙の場合、またはactive/historicalの分類が未確定の場合、利用者は移行完了を受け入れない。継続保証に反する新規または再導入も適合としない。未解決の範囲と理由を確認できるようにする。
 - **確認材料の境界**：Node.jsの採用、個別tool/command、runtime/API、lockfile、CI、distribution手順、test fixtureおよび実行証跡はmigration receiptに記録する。個別方式を本候補で指定しない。
 - **採択境界**：本節と仮登録は採択内容を生成せず、受入実行、source retire、migration実施または実行・配布許可を意味しない。採択内容は対象revisionを固定したPO判断記録に従う。
+
+### HELIXOS-L2-002 project template記録追補の受入案
+
+- **正常・再構築**：同じ要求scopeで、候補/選択/使用set、template版、unit/connection/composite別義務と設計/pair、finding、再作業、受入、運用結果を与える。各記録の発生元・相関参照から対象project、要求revision、template版、義務と結果を再構築し、集合件数やfield存在だけで合格にしない。ある義務/単体の成功から別義務/接続/構成体の完了を生成しない。
+- **取り違え・不足**：project/scope/要求revision/template版/義務/成果/pairの各参照を一つずつ欠かすか別対象へ替える。候補受領を使用済み、別project成功で欠落消込、旧版成果を現行証拠へ転用、duplicate/再送を別利用へ水増しする例を拒否する。該当記録/受渡しの不足と解消先を保持し、無関係な有効scopeを失効させない。
+- **N/A・Backflow・消込**：CORE009の4判定と理由/判定者/revision/再評価条件を記録へ照合する。判断不能をN/A、ACKを解決、Backflow先の受理なしで元義務消込、文書生成/checkboxだけで設計完成とする負例は不合格。義務が未実施/不合格/未評価の例を区別し、原記録・訂正・旧失敗を保持する。OSの独自意味判定や要求採択を成功根拠にしない。
+- **旧新版と局所影響**：使用templateの意味変更と表示だけの更新を与え、COREが示した影響集合と各再評価履歴を照合する。影響UnknownをUnaffected、参照digest更新だけで使用履歴移管済みとする例を拒否し、別scopeの有効結果を保持する。
+- **評価入力の境界**：二つ以上のprojectと異なるtemplate版/期間を与え、選択評価scope、原記録集合、抽出/除外理由、未観測/未回収/比較不能、duplicateの扱いを照合する。不足/過剰要求/誤選定/再作業/欠陥流出の各候補を元義務と利用結果へ辿る。欠落した対象を黙示除外、未観測を欠陥0、異なる版/期間を無条件比較、件数やAI評価だけで改善/昇格を成立させる例は不合格。母集団/測定定義/効果をOSが新設せず、LABO必要入力が未決なら未決・不完全を保持する。評価入力未成立を無関係な工程の停止条件へ広げない。
+- **許可・未見・開始条件**：利用許可/data class/対象scope不一致では該当共有を止める既存条件を照合する。作成側に伏せた別project/actorまたは旧新版変更位置で同じ追跡を確認する。非選択sourceは未観測、義務/結果がまだ発生していない開始時は未発生を保持し、将来の結果receiptを初回記録の入力条件にしない。入力整合だけからhandoff成立、LABO評価、BRAIN採否、全seed/旧atom被覆、実行fixture成功、L3再開を生成しない。
