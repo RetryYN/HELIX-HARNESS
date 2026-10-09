@@ -129,3 +129,22 @@ C01〜C40は26件とは別の内訳であり、40個の必須templateではな�
 要求・候補の具体化を進めるときは、既決意味への追随と追加/意味変更を切り分けて一要求identityずつ扱う。人が持つ意味やauthorityモデルが要求する採否は、その差分の対象revisionを示す。今回の対応表を理由に追加承認手続きや下流再開gateを作らない。
 
 旧sourceの生成view/意味契約・portfolio・pairの役割を保持し、[旧ddd-tdd-rules 21〜24行](../../archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md)の契約先行・欠陥検出としてのRedも、現行003/015と対L11の実装前oracle凍結へ照合する。seedの時系列例だけで要求の意味を変更しない。DT-MSGの束ね方は各seedが記録する新規案、SDOP/VTの外部資料やZIPは参照材料のまま保ち、旧資産の完全一致再利用や正式移管の証拠とはしない。
+
+## 条件照合の結果と要求側の未完範囲
+
+確認baseは`9e39ff8f83105f70cb58fb3b940596428e3f0b71`。[条件照合記録](audits/template-condition-review-2026-10-10.json)にDST12件の要求・確認結果を44の条件群として保存し、各候補の正常・負例・unknown、比較先L2/L11、既存保証と固有の未確認範囲を記録した。26seedは本文digest・適用条件の所在・候補状態・保全理由へ結んだ。これは全seed本文の完全atom化や採用、全旧sourceの移管監査ではない。
+
+MPRと判断記録を照合した結果、DST identityそのものの仮登録・対象revision付き採否は確認できなかった。BRAIN-L1の判断にあるDST-HARNESS-002/DST-OS-001への言及は企画の根拠であり、DSTのL2採否ではない。比較先の採択済み要求はその対象decisionのまま保持し、DSTが未採択であることを理由に未採択へ戻さない。
+
+| 比較した条件 | 現行の保証 | まだ確定していないもの |
+|---|---|---|
+| 汎用意味契約と版 | BRAIN003/007/008/028は条件・反例・由来・版/状態・互換、005はrelationを持つ。HARNESS010/011はpack境界。041はactive templateのfield/done-when等を漏れなく候補化する | DST-HARNESS-002の全契約項目の提供と、template固有section/field・owner・measurement/completionの対応。041の消費側契約だけで提供側の全fieldを定義済みとはしない |
+| 初期seed | 26件は来歴・適用・限界・負例を持つ`0.1.0-seed-candidate`として保全。BRAIN007/020/025は評価・登録・独立検証・採否を区別する | DST-HARNESS-005と各seedの採用対象revision、最小選択set。全26件を採用せず、現在の保全理由は「未採択の調達材料」であり、正式除外・retireの理由ではない |
+| 製品への適用と戻し | HARNESS009/025/026は固有義務と双方向trace、BRAIN022/030はinputと知識receipt、HARNESS023/043はunknown/N-A/無断fallbackを区別する | DST-HARNESS-001/004/006/007とDST-OS-005の固有条件の採否・binding。L2.5の非適用receiptを全templateへ広げず、4種類のBackflow候補・判定者/revision/再評価条件を全件被覆したとはしない |
+| 案件記録・選択・改善接続 | OS017/019/023はrevision/scope/因果・未完・受理までの非完了、INT032/033/035は版付き判断材料とOSへの候補、OS005/022/024とBRAIN020/025は評価・振分・独立採否を分ける | DST-OS-001〜004のtemplate固有exact set、適用event binding、利用の評価母集団。一般episode記録だけでtemplateの全event・実利用setを登録済みとしない |
+
+[最初の要求例](requirements-first-roadmap.md#一つの要求例による初回の接続照合)は、申請の承認後編集拒否について知識→設計単体/構成体→ticket→Worker→検収→Backflowの経路と戻し先を示す。各候補の正常・負例・unknownは上記監査の比較例へ結ぶ。いずれも静的な意味照合であり、実在案件のL3承認、選択template、実行receiptを供給したことにはしない。
+
+要求側の未完範囲は既存ロードマップ#2846へ保持する。次はこの4行の未確定部分を、既存採択で保持できる条件、追加・具体化の候補、採否対象と版が必要な差分へ分け、一要求identityずつ対象revisionへ結ぶ。DST12件を無条件にまとめて採用する案、schema/runtime/registryの新設、L3再開は本照合から生成しない。
+
+#2841〜#2843のimmutable ticketは要求整理・比較・不足の区別を指示しており、候補/seedの正式昇格を含まない。これらのcloseは、独立review側がticket本文の全作業と本照合の不足保全を確認した場合に限る。closeした場合も上記未完範囲、#2846、候補状態とScaffold Bindingは残り、要求段階全体の完了にはしない。確認が不足していれば元IssueをOPENのまま保つ。

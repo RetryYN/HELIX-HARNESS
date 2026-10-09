@@ -1,0 +1,760 @@
+{
+  "audit_id": "TEMPLATE-CONDITION-REVIEW-2026-10-10",
+  "base_revision": "9e39ff8f83105f70cb58fb3b940596428e3f0b71",
+  "authority_effect": "none",
+  "scope": "DST12候補の全条件と、26seedの候補状態/保全。全旧source atom移管・seed全条件の採用・実行を主張しない。",
+  "method": "各候補の要求と確認結果を条件集合として保存し、現行L2と対L11の保証を比較。一般保証・隣接契約からtemplate固有の全被覆/採否を推定しない。",
+  "source_files": [
+    {
+      "path": "docs/helix-brain/candidates/design-template-system-requirements.md",
+      "sha256": "113cb18db8fd99a05842b0c78539af06156c984a7821cb4710b3f458a1a78013"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "sha256": "f2995068051d92d0f0b399503668bf2a7db2a667ac4798fdd370d3ba4ad56692"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "sha256": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "c22df0429af7743eccfdeff8a404bd48bce4275d326e79f242d77af58c0b4bf5"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "50c8bd186c2f75d44a29f9c37415a19e4b31c083c1a1aec07e33fe80f975d005"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    }
+  ],
+  "legacy_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "lines": [
+      19,
+      46
+    ],
+    "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+    "retained": "意味契約・生成view分離・ID/版・適用/portfolio/pair",
+    "changed": "汎用BRAIN/製品適用CORE/案件運転OSへ既決判断どおり対応付ける。旧schema/runtimeを再利用しない。",
+    "reason": "製品を跨ぐ再利用構造と製品固有意味/実行事実の責務分離。"
+  },
+  "candidate_count": 12,
+  "condition_group_count": 44,
+  "rows": [
+    {
+      "candidate_id": "DST-HARNESS-001",
+      "owner": "CORE",
+      "source_line": 56,
+      "source_line_sha256": "8ae0b9a87adf49b3a61ede8c6d16ebaf55bfd0f663e8f75844bfbaddbfda1f1f",
+      "conditions": [
+        "kind/subject/relation/risk/domain/layer/pair",
+        "applicable exact set",
+        "AI/language/projectを跨ぐ論点の再現性"
+      ],
+      "l2_l11_comparison_targets": [
+        "HARNESS009",
+        "HARNESS023",
+        "BRAIN019",
+        "BRAIN022",
+        "BRAIN030"
+      ],
+      "comparison": "選択材料と依存閉包はあるが、template選択exact setの全axis・再現性を束縛した固有採否は未記録。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "同じ分類・scope・契約版で候補setを比較する",
+        "negative": "risk/domainまたはpairが違う候補を無条件に同じsetへ入れる",
+        "unknown": "relation/layer/適用条件未定は選択未確定を保持",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-HARNESS-002",
+      "owner": "BRAIN",
+      "source_line": 57,
+      "source_line_sha256": "0e193a06164e8f41e78d3ff9d4b16319274fb81758d6d6c90db36edb5da8f128",
+      "conditions": [
+        "ID",
+        "version",
+        "applicability",
+        "required input/section/field",
+        "relation",
+        "owner",
+        "negative oracle",
+        "measurement",
+        "completion",
+        "supersession",
+        "見た目やfilenameに依存しない意味比較"
+      ],
+      "l2_l11_comparison_targets": [
+        "BRAIN003",
+        "BRAIN005",
+        "BRAIN007",
+        "BRAIN008",
+        "BRAIN028",
+        "HARNESS010",
+        "HARNESS011",
+        "HARNESS041"
+      ],
+      "comparison": "Patternの条件・版・relationとpack境界は既存保証。041はtemplate field/done-whenを消費する契約であり、汎用templateの全field提供・completion/measurementを定義した保証とは別。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "identity/versionと列挙契約項目を別々に比較する",
+        "negative": "filename一致だけで版/意味一致とする",
+        "unknown": "completion/measurement/section定義が未固定なら不足として返す",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-HARNESS-003",
+      "owner": "CORE",
+      "source_line": 58,
+      "source_line_sha256": "17267dff6296239675e31144367fc40ee8aed792631daa183a3cdb4c6b2818e4",
+      "conditions": [
+        "unit/connection/composite固有義務",
+        "requirement→obligation→design→pair trace",
+        "unitだけで上位を成立扱いしない"
+      ],
+      "l2_l11_comparison_targets": [
+        "HARNESS009",
+        "HARNESS025",
+        "HARNESS026",
+        "HARNESS040",
+        "HARNESS056"
+      ],
+      "comparison": "固有義務と双方向trace、pairの非推定は既存要求に明示。DST identityの採択や旧source全移管を生成しない。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "既存申請例のstate/API/permission/dataと対oracleをつなぐ",
+        "negative": "unit成功だけで接続/構成体を成立とする",
+        "unknown": "構成体oracle未定は025/022へ戻す",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-HARNESS-004",
+      "owner": "CORE",
+      "source_line": 59,
+      "source_line_sha256": "45d70414fa2cdd97b1580c60febc56836c908d5035c6cdd21dd7161b51b9ea03",
+      "conditions": [
+        "必須input不足を質問/矛盾/要求/N-A候補へ返す",
+        "field定義欠落と値未決を区別",
+        "AI補完で意味判断を代行しない"
+      ],
+      "l2_l11_comparison_targets": [
+        "HARNESS008",
+        "HARNESS009",
+        "BRAIN022",
+        "BRAIN030"
+      ],
+      "comparison": "不足inputと値未定・未充足、authority非上書きは既存保証。4種類のtemplate Backflow候補のexact contractを採択済みとは確認できない。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "定義済みrequired fieldの値未決をreceiptと未完義務へ結ぶ",
+        "negative": "AIが未決値を採択済みとして埋める",
+        "unknown": "field定義欠落はBRAIN、製品要求値未決はCOREから上流へ",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-HARNESS-005",
+      "owner": "BRAIN",
+      "source_line": 60,
+      "source_line_sha256": "d840eeec8e3d4cd16789692efcb131403b59393f382d942999a2216d807a4981",
+      "conditions": [
+        "最小seed pack提供",
+        "source/adoption/scope/limitation/negative case",
+        "無template自由設計とseed絶対視を防ぐ"
+      ],
+      "l2_l11_comparison_targets": [
+        "BRAIN007",
+        "BRAIN008",
+        "BRAIN018",
+        "BRAIN019",
+        "BRAIN020",
+        "BRAIN025",
+        "HARNESS009"
+      ],
+      "comparison": "source/評価/独立検証/採否は既存保証。26seedは未採択材料であり初期seed packの選択集合と採用対象revisionは未固定。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "26seedを来歴/限界/反例付き未採択材料として保持する",
+        "negative": "存在/JSON化だけでseedを採用済みにする",
+        "unknown": "最小採用set/対象revision未固定を未決のまま残す",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-HARNESS-006",
+      "owner": "CORE",
+      "source_line": 61,
+      "source_line_sha256": "55bcb6ea73b5163c0eca20fc15238c40d5c5aa4bfd33da68e596b8ad7d120ee2",
+      "conditions": [
+        "required/conditional/N-A/unresolved",
+        "理由/判断者/revision/再評価条件",
+        "全template強制と根拠なしskipの双方を防ぐ"
+      ],
+      "l2_l11_comparison_targets": [
+        "HARNESS003",
+        "HARNESS009",
+        "HARNESS023",
+        "HARNESS043"
+      ],
+      "comparison": "依存の4区分とunknown保留、根拠なしN-A拒否は既存保証。L2.5の非適用receiptを全template判定の全項目保証へ広げない。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "条件と理由付きN-Aを判定不能から分ける",
+        "negative": "L2.5非適用だけで全templateをskipする",
+        "unknown": "判断者/revision/再評価条件不足を適用完了にしない",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-HARNESS-007",
+      "owner": "CORE/OS",
+      "source_line": 62,
+      "source_line_sha256": "e45fcc1ca56c64c015bd98d86f812cbcde349276cf85bb2490f5e10b05f3e532",
+      "conditions": [
+        "template変更のrequirement/obligation/artifact/verification semantic impact",
+        "旧版利用のstale識別",
+        "filename/schema digest更新だけで移管完了にしない"
+      ],
+      "l2_l11_comparison_targets": [
+        "HARNESS004",
+        "HARNESS009",
+        "HARNESS010",
+        "HARNESS011",
+        "OS002",
+        "OS019"
+      ],
+      "comparison": "変更影響/Unknownと成立状態の分離、版/証拠の照合は既存保証。汎用templateの更新とproject適用の固有binding全体の採否は未固定。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "変更relationから影響義務と対検証を辿る",
+        "negative": "filename/digestだけ更新して移管完了とする",
+        "unknown": "影響不明はUnknownを保ちUnaffectedにしない",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-OS-001",
+      "owner": "BRAIN/OS",
+      "source_line": 34,
+      "source_line_sha256": "6156dec7ebda21cb41fb070a0607e5bf4f8ff02bb1aede7f2b561ec61cdfed6e",
+      "conditions": [
+        "approved/seed/candidate/retired registry区別",
+        "project exact set/使用版",
+        "archive/未承認/別productをcurrentにしない"
+      ],
+      "l2_l11_comparison_targets": [
+        "BRAIN008",
+        "BRAIN028",
+        "HARNESS010",
+        "HARNESS011",
+        "OS001",
+        "OS002",
+        "OS007",
+        "OS019"
+      ],
+      "comparison": "知識状態/実利用状態のowner分離、exact revision、provenanceは既存保証。template registry固有集合/採否とproject使用setの全条件を登録台帳の存在で代替しない。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "知識状態はBRAIN、project使用版はOSへ別に結ぶ",
+        "negative": "未承認/別product/retired版をcurrentとして選ぶ",
+        "unknown": "実利用set/版未固定を最新知識版で補わない",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-OS-002",
+      "owner": "CORE/BRAIN/INTELLIGENCE/OS",
+      "source_line": 38,
+      "source_line_sha256": "037693612ef0d7e4fd146a901229a57ced805c0fe5f1032b6a8dfcf0c5a1c1f0",
+      "conditions": [
+        "要求分類/applicabilityに従う候補選択",
+        "unknown/conflict保持",
+        "OSが要求意味/適用規則を新設しない"
+      ],
+      "l2_l11_comparison_targets": [
+        "HARNESS008",
+        "HARNESS009",
+        "HARNESS023",
+        "BRAIN019",
+        "BRAIN022",
+        "BRAIN030",
+        "OS017",
+        "OS023",
+        "INT019",
+        "INT032",
+        "INT033",
+        "INT035"
+      ],
+      "comparison": "候補・意味導出・稼働判断・ticket運転の接続とauthority境界を保持。単一機構へ選択意味を移さず、知識receiptだけで適用成功にしない。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "BRAIN知識・CORE意味・INT案をsource版付きでOSへ結ぶ",
+        "negative": "OSが新しいapplicability規則を作る",
+        "unknown": "unknown/conflictは既存ownerへ返しticket readyにしない",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-OS-003",
+      "owner": "OS",
+      "source_line": 35,
+      "source_line_sha256": "47668cac325014eaf91c9676a565a8759c06301d594544402c4223498ff79e4c",
+      "conditions": [
+        "適用/義務生成・消込/N-A/Backflow/artifact/finding/rework/acceptance/operation記録",
+        "同一因果/revision/scope",
+        "生成文書/checkboxで義務完了にしない"
+      ],
+      "l2_l11_comparison_targets": [
+        "OS002",
+        "OS007",
+        "OS019",
+        "OS023",
+        "HARNESS004",
+        "HARNESS009"
+      ],
+      "comparison": "episode原証拠・未完義務・handoff受理までの非完了は既存保証。template各eventへのexact bindingは固有採否/適用材料として未固定。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "同じ因果/revision/scopeで義務と結果を辿る",
+        "negative": "checkbox/文書生成または別scope成功で未完義務を閉じる",
+        "unknown": "受信側未ack/証拠欠落なら元義務を未完に保つ",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-OS-004",
+      "owner": "OS/LABO/BRAIN",
+      "source_line": 36,
+      "source_line_sha256": "5cdf4352c1d8f0d54596523e23c5fdd1fda0897f76c8dcd530e0891b9a953265",
+      "conditions": [
+        "複数projectの不足/過剰/誤選定/再作業/欠陥流出を候補へ",
+        "OS登録・振分→LABO効果/退行→BRAIN独立検証/採否",
+        "利用数/AI自己評価/受領のみで昇格しない"
+      ],
+      "l2_l11_comparison_targets": [
+        "OS005",
+        "OS022",
+        "OS024",
+        "BRAIN007",
+        "BRAIN018",
+        "BRAIN020",
+        "BRAIN025",
+        "LABO022",
+        "LABO034",
+        "LABO037"
+      ],
+      "comparison": "独立評価/登録/採否の分離は既存保証。template利用の評価母集団と各finding分類を件数一致だけで確認済みにしない。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "観測→LABO評価→OS振分→BRAIN独立検証/採否を分ける",
+        "negative": "登録数/自己評価/受領から知識をacceptedにする",
+        "unknown": "評価対象revision/母集団不足は未評価を保持",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    },
+    {
+      "candidate_id": "DST-OS-005",
+      "owner": "CORE/OS",
+      "source_line": 37,
+      "source_line_sha256": "c190bc5ac35c6552b619e3421441a145e99dfa5f2a20f46cbb94336bf984f0bf",
+      "conditions": [
+        "未登録/非適用/stale/conflict/input欠落の停止・Backflow",
+        "任意templateへのfallback禁止",
+        "理由と解消先を保持"
+      ],
+      "l2_l11_comparison_targets": [
+        "HARNESS003",
+        "HARNESS008",
+        "HARNESS009",
+        "HARNESS023",
+        "OS004",
+        "OS017",
+        "OS023"
+      ],
+      "comparison": "unknown/stale・未完依存の保留と無断fallback禁止は既存保証。非適用の理由付きN-Aと適用不明を区別し、全caseを単一の工程完了条件に畳まない。",
+      "candidate_identity_adoption": "not_recorded",
+      "assessment": "existing_guarantees_and_template_specific_pending_scope_distinguished",
+      "residual_issue": 2846,
+      "static_comparison_examples": {
+        "normal": "原因/解消先/未完義務を保った停止・Backflowを示す",
+        "negative": "任意templateへfallbackして成功にする",
+        "unknown": "非適用理由のあるN-Aと適用unknownを分ける",
+        "evidence_kind": "要求本文と対L11の静的比較用。実行済みfixture/採択済み追加oracleではない。"
+      }
+    }
+  ],
+  "seed_count": 26,
+  "seeds": [
+    {
+      "id": "DT-SDOP-001",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-001-logging.md",
+      "sha256": "a1ddab32214d79eac5f2b27afea43ac40934f9f7360e0fcc569152a5f740d69a",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-SDOP-002",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-002-nonfunctional.md",
+      "sha256": "d7a2bee9ffe95af2f2e30db1a31655fb4ee8a675cefb39f7e7eda8546b954275",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-SDOP-003",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-003-maintainability-runbook.md",
+      "sha256": "c15cba99bd2efa358a5c59aed1698592c0339b1107951012e57b61c950ac167d",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-SDOP-004",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-004-logic-design.md",
+      "sha256": "2fbc5a77e4700ccce0f6ce7100ed5f54559c1eb2ecc1c539ce492d6097054bf5",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-SDOP-005",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-005-dependencies.md",
+      "sha256": "7d047d46b0d35e4bc76fc4082fc7305aaf8205d6f906525a62db9868ee2170b3",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-SDOP-006",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-006-aws-foundation.md",
+      "sha256": "d64f285b0427ac8a5498b972c65953f8706a0c1d093ae85ca6933f6a0ab4f3fc",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-SDOP-007",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-007-design-review-quickcheck.md",
+      "sha256": "76cbcdd9d211e71ff16a99c25afc51754b97139e6463200b04e319a0366e4288",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-001",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-001-common-evidence.md",
+      "sha256": "cd70c910f7377f0de9eaf93076890d1250d1ef48300d18213c3bfc31de57ef3a",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-002",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-002-test-technique-cards.md",
+      "sha256": "b8f5be0fcc06eb612c7dc9e1ec0dee4f4925f060fd217ea2ce50c88ecf7bb4b5",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-003",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-003-technique-selection-proposal.md",
+      "sha256": "3e1f668323aa590e475ec71b62342200557ecded09d0fc064d6de81b16c64e72",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-004",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-004-verification-design.md",
+      "sha256": "c4ee5cbe21181be475210cfd3519d5fe147778be43b051386ba21e2d472250e0",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-005",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-005-screen-verification.md",
+      "sha256": "8b2fa19fd85d09d779e95e9c1a0aa5b187169193d50ce921ecc2b65528bad65a",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-006",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-006-poc-verification.md",
+      "sha256": "9da3c8ebf1611c04e5dc34e6ccc2010e8e1a66773439de43bc2fe2faa4f1726f",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-007",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-007-ai-output-verification.md",
+      "sha256": "bce9a5f05c92d69e3cae00c5b23c8826ec4862d784206be3ac44c00680772922",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-101",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-101-l1-l12-operation-value.md",
+      "sha256": "6c81fe0091d40008e7ef74777499838ac526d7fa3e16f205a968839e3cc8a41e",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-102",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-102-l2-l11-user-acceptance.md",
+      "sha256": "346d66f679b32caee2a960a270d163541dbf85ce9d37e127e32acd2cef3ec940",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-103",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-103-l3-l10-system-verification.md",
+      "sha256": "af53fa80653b0996680399460b07679af3db2688a3fce22ec782b7eea2696d76",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-104",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-104-l4-l9-integration.md",
+      "sha256": "c262496c20c7d52197fd377616b1a6720bac6d8257132257cc0cf531d0be9526",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-105",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-105-l5-l8-detail-conformance.md",
+      "sha256": "d1b0bc1a4d18b749dd67710ac9308551e56764a5770336920a67c5a8a58cbb1b",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-VT-106",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-106-l6-l7-tdd-closure.md",
+      "sha256": "dbbc0ab3a06676925670c509a421e30c751f3f9f77ec777013dc10e54a4dbbfa",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        10
+      ]
+    },
+    {
+      "id": "DT-MSG-001",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-001-connection-contract.md",
+      "sha256": "94cc4a2a3f795645bf274148e47f3a2e0622643f822a1815f4068fb2f3cbfa5c",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        13
+      ]
+    },
+    {
+      "id": "DT-MSG-002",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-002-data-migration-rollback.md",
+      "sha256": "1c7f487aab6acfe5a5583b74adb78ab77b56e1fa3f7bf772189b1384f4f33b6e",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        13
+      ]
+    },
+    {
+      "id": "DT-MSG-003",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-003-permission-privacy-external-interface.md",
+      "sha256": "fee0053840e1e63189cde0bb7f761cda9c04ead19c9794d0e79ce117b90e723e",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        13
+      ]
+    },
+    {
+      "id": "DT-MSG-004",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        13,
+        120
+      ]
+    },
+    {
+      "id": "DT-MSG-005",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-005-composite-architecture.md",
+      "sha256": "678e71797043d48e0f9e19c588e41cab059034fd5fe9cf5994f9d6c51d011589",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        13
+      ]
+    },
+    {
+      "id": "DT-MSG-006",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-006-design-testability.md",
+      "sha256": "ac09807696d823c9fcccb99b381458949493e8ab345ee1b3c71c7116f00c00c8",
+      "version": "0.1.0-seed-candidate",
+      "adoption": "not_recorded",
+      "disposition": "retain_candidate_material",
+      "reason": "source/適用条件/限界/負例を持つ候補材料。採用対象revisionと選択exact setが未固定のため正式採用・retireへ進めない。",
+      "applicability_source_lines": [
+        13
+      ]
+    }
+  ],
+  "limits": [
+    "採否未記録はDST identityとしての状態であり、比較先の採択済みL2/L11を未採択に戻さない。",
+    "全条件の意味被覆/正式successor/registry/schemaの成立を主張しない。",
+    "seedの機械的候補保全は採否ではなく、採用対象revision・選択集合・適用の不足は#2846に保持する。",
+    "Issue closeは本監査とimmutable ticketの完了条件を独立に確認して判断する。監査のmergeから自動生成しない。"
+  ]
+}
