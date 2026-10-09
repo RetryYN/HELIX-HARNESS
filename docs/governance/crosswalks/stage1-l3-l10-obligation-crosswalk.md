@@ -224,14 +224,14 @@ Stage 1の他のclosure owner sourceは34親表の既存固定pinで追跡でき
 - 依存契約：sourceであるL3/L10 caseと既存のCK K3/K7/K10を参照する。OS IDが直接記載されていないことを依存不存在へ読み替えない。
 - この索引は更新される現行mapである。判断記録、監査snapshot、source revisionは変更しない証拠として保持し、日付付きまたは版番号付きの複製を作らない。
 
-## 共通kernelのsource pin再照合の返却事項
+## 共通kernelのsource pin再照合記録
 
-PR #2779は旧asset `LEGACY-ASSET-8DA932B4A1012B9D8F00` の全文SHA誤記1文字を直す。旧sourceの実bytesは変えず、現行CK L4の全文SHAは `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` から `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82` へ変わる。review01 m01（PR comment #6076846990）が見つけた次の参照は基準commitなしで旧CK L4 bytesを指すため、各既存ownerへ再照合事項として返す。型/API/要求意味は変わらず、参照の成立や被覆をこの記録から生成しない。
+PR #2779で旧asset `LEGACY-ASSET-8DA932B4A1012B9D8F00` の説明にある全文SHA誤記1文字を修正した。旧source bytes自体は変わっていない。現CK L4 SHA-256 `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82` はmain `79013543184a6e47f99bc2ded1bb7a2e7f85737e` のblobである。旧CK L4 SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` はmain `467004440805a27461f280ae0f3d5707b7f72cbd` のblobである。両blobは1行だけ異なり、異なる文字列は当該旧asset SHAの誤記1文字だけだった。旧archive bytes、資産台帳、現CK L4のasset表は正しいSHA `aca532c939e34f2a4fb6b47f74254ff76a49dfaea1eeb56ff5edd7f3a181acec` で一致する。これは参照pinの訂正であり、K8の型/API/意味を変更しない。
 
-| 返却先 | 対象locator | 未解決事項と保持する境界 |
-|---|---|---|
-| LABO L4 owner | `docs/helix-labo/L4-basic-design/stage1-labo.md:31` | CK L4旧SHAの基準revisionを確定し歴史的source pinと明記するか、current kernelとの対応を再照合する。未照合のまま現行全文一致を主張しない。 |
-| LABO L9 owner | `docs/helix-labo/L9-integration-verification/stage1-labo-integration-verification.md:9` | L4 ownerと対でkernel pinの基準を再照合する。既存35 oracleと4ACの期待を縮約しない。 |
-| SECURITY L5 owner | `docs/helix-security/L5-detail-design/stage1-security.md:42` | 「main fixed bytes」の基準commitを確定し歴史的pinを明記するか、current kernelとの対応を再照合する。既存421定義IDの期待を変えない。 |
+| owner / 対象locator | 照合結果と保持境界 |
+|---|---|
+| LABO L4 owner / `docs/helix-labo/L4-basic-design/stage1-labo.md:31` | 現行CK L4をmain `79013543184a6e47f99bc2ded1bb7a2e7f85737e` + SHA `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82` へ更新。対応するCK L9 SHAは変わらない。L9本文line 5のpaired L4 SHAも更新し、LABO L5/L8はmain `d5bb3455526c816b3af965db239c4b56207a884f`時点のL4/L9固定snapshotとして明記した。4 AC/35 oracleは変更しない。 |
+| LABO L9 owner / `docs/helix-labo/L9-integration-verification/stage1-labo-integration-verification.md:9` | LABO L4と同一のcurrent CK L4 pinへ更新し、CK L9 SHA `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` を保持。L9のpaired L4 SHAは更新後のL4本文SHAへ同期した。4 AC/35 oracleは変更しない。 |
+| SECURITY L5 owner / `docs/helix-security/L5-detail-design/stage1-security.md:42` | 「main fixed bytes」をmain `79013543184a6e47f99bc2ded1bb7a2e7f85737e` のcurrent CK L4 pinへ更新。旧 `3f7245…` は歴史commit `467004440805a27461f280ae0f3d5707b7f72cbd` へ明示的に限定。SECURITY L8の`paired_l5_sha256`を更新後のL5本文SHAへ同期した。421定義ID/owner契約は変更しない。 |
 
-この表は技術的参照の局所未照合を記録する。要求承認・追加gate・機構全体の停止を作らず、各ownerが既存pair内で対応を記録する。基準commit付きの他の旧SHA参照は時点固定として保持する。
+この照合記録は技術的参照を解決する索引であり、要求承認・追加gate・機構全体の停止を作らず、参照の成立や被覆を新たに生成しない。基準commit付きの他の旧SHA参照は時点固定として保持する。
