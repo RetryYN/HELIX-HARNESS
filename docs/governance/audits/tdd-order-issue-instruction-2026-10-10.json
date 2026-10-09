@@ -1,0 +1,10 @@
+{
+  "record_kind": "human_instruction_event",
+  "date": "2026-10-10",
+  "user_instruction": "イシューにしてくれ",
+  "user_instruction_sha256": "abfac1d49e02438ea63421f870f1aa1558f2c9a209c972d500694b448dfa5c06",
+  "context": "Concept・エージェント原則の確認結果をIssue化する。JSON正本の不整合は既存Issueで追跡済み。TDD順序の曖昧さを照合する作業を新規投影する。",
+  "examined_main": "5f8d7f1251f15fe4a91314e26c20bf9b4856a9d5",
+  "authority_effect": "none",
+  "ticket_path": "docs/governance/feature-tickets/FT-GOV-TDDORDER-001.md"
+}

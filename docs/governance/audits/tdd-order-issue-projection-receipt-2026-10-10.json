@@ -1,0 +1,14 @@
+{
+  "source_revision": "ed5ca3c4bb78239d7c707a6fe22209b5d15ded92",
+  "source_path": "docs/governance/feature-tickets/FT-GOV-TDDORDER-001.md",
+  "source_sha256": "bc0758c525a850739c4f7af8ff0472ea62dd79c1a3972d256a2bd90938e0b080",
+  "issue_body_sha256": "d586bd3ea2260289de8037cd496763ed4c307bade1e91e0b93bd29f93fb55ec3",
+  "record_kind": "issue_projection_receipt",
+  "issue_number": 2832,
+  "issue_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2832",
+  "issue_title": "FT-GOV-TDDORDER-001: TDDの検証定義・実装・Redの順序と対L11を照合する",
+  "read_after_body_sha256": "d586bd3ea2260289de8037cd496763ed4c307bade1e91e0b93bd29f93fb55ec3",
+  "meaning_match": true,
+  "authority_effect": "none",
+  "read_after_state": "OPEN"
+}
