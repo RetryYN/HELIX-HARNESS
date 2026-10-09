@@ -1,14 +1,14 @@
 # template seedの意味対応案
 
-base `8eccdd645288a5cea1eebdb49c93edcde5dae9da`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `9a490ecc4616b20ea1ec954513a60691e22b760fa3f16ae246a10487f55faaa0`。canonical L2/L11/MPRとseed26件は未変更。現在の候補は採用判断に出せる完成状態ではない。
+base `5643121bea60acdd4f6177730aa7a7f266073d18`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `c9926d8a9db74095b0792cb134ac59e6374519acf94e1a1045a29076e7d55897`。canonical L2/L11/MPRとseed26件は未変更。非画面の要求/受入知識sliceについて独立review後に対象revisionの採否を問う。全体の最小seed packはまだ未確定。
 
 ## 作業単位
 
-SEEDFIRST（#2846）はDT-VT-001（共通証拠）とDT-VT-102（L2/L11）をBRAIN032の15descriptorへ対応づける最初の起草である。全機構/全V-pairに必要な最小seedをこの2件に縮めない。採用対象set/版/適用規則を今回決定しない。
+SEEDFIRST（#2846）はVT001共通証拠・VT102 L2/L11と、VT002のC01/C02/C08/C26の技法意味を、非画面・技術的不確実性なしの要求/受入知識sliceとして提案する。2templateと4cardの選択理由をJSONへ記録した。全機構/全V-pairの最小setをこのsliceへ縮めない。
 
-sourceの契約表・見出し・table行・listをJSON上で分け、各記載を元line/hashへ戻れるようにした。元のYAML/例値は説明材料のままであり、新しいschema/型/enumにしない。required input、negative oracle、completion等はsource参照で識別する。必須section/fieldの全identity・要否と意味owner、downstream kind、measurementの定義は不足/未確認を保持し、完全な意味契約として返さない。
+VT001の15共通field、VT102の5固有fieldと共通欄継承を識別し、意味・source行・要否とowner境界へ結ぶ。measurementは実施契約のprofile/環境・設定digest・有効期限/再測定条件を参照し数値を新設しない。downstreamは共通/観点別証拠・N/A記録・省略義務/Backflow参照を識別する。field定義と案件値/実行結果の未決を区別し、初回記録前に将来の受入receiptを要求しない。
 
-VT102が参照するVT002/003の技法・選択条件と、unit/connection/compositeのseed比較は残る。参照があるだけで依存や全カード必須を生成せず、Prototype/PoCを別々に判定し、unknownと根拠付きN/Aを分ける。成果物の状態・合否と人の受入は既存HARNESS契約に残す。
+Prototype/PoCは別々に根拠付きN/A/適用を扱う。VT001のnegative oracleを原文L22–27の項目単位へ分け、L25のRed負例もVT001-F007と同じ適用契約条件へ限定した。旧検証phase L28–34/73–79のunit/TDDと人間受入の区別を根拠とする。Redは適用契約が要求する場合に照合し、静的reviewや人の判断のすべてへRed実行を追加しない。未実行/unknownをN/Aへ変換しない。C01/C02はreview/trace、C08は合意例と反例、C26は利用者接点のある成果での人の受入を持つ。tool名・cost・HELIX例は参考のまま。C36の旧cardのモデル/共通context条件、VT003の選択matrix、画面技法早見は採用せず、独立性と検証義務は正本のConcept/HARNESSと開発repo運用を区別する。
 
 旧sourceのarchive path・asset ID・行範囲・全体SHAはJSONの`legacy_sources`へ固定した。
 
@@ -21,9 +21,9 @@ VT102が参照するVT002/003の技法・選択条件と、unit/connection/compo
 
 `legacy_comparison`に保持/変更/理由を分ける。旧CLI/層/schema/固定差戻し/回収先方式は移植せず、全旧source移管を主張しない。source行hashは、UTF-8の一行にLF一つを加えたbytesのSHA-256（空行は対象外）。見出しはline/text/levelへ対応づける。
 
-## 続ける作業
+## 採否と残り
 
-選択seedの個々の意味・field/owner/要否・限界とsource対応を詰め、技法・unit/connection/composite・対検証の条件付き依存を比較して最小setを提案する。その対象revisionが固定できてから採用判断へ送る。未選択候補は保全し、正式N/A/retireへ変換しない。今回のJSON化から採用・実装/CI・受入・Issue完了・L3再開を生成しない。
+独立reviewでscope・15descriptor・各field/技法の意味とsource対応・未完境界を確認してから、この知識sliceの対象revision採否を問う。採用だけで案件の合意/受入・実行を生成しない。画面/PoC・他pair・unit/connection/compositeのseed比較と全体最小setは残り、26候補と未選択cardを保全する。正式schema/runtime/実装・L3再開は別。
 
 ## 既決packet
 
