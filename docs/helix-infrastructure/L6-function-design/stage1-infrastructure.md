@@ -143,8 +143,8 @@ L7は本書の関数IDと現L9の全40 oracle IDに1対1の設計fixture locator
 | 対象 | 候補 locator / 入力 | source-selectionで行う照合 | 設計範囲外 |
 |---|---|---|---|
 | unit declaration | `helix/helix-infrastructure/units/infrastructure-stage1/declaration.json`。source selection側は既存`SubjectRef`（`kind`、`identity`、`revision`、`digest`）と、repository tree内の別locator/path、およびそこから解決されたimmutable bytesを受ける。 | locatorのrevision/pathからbytesを解決し、そのSHA-256を`SubjectRef.digest`と照合する。宣言本文の既存`identity`を正本として読み、repository-layout L4 §6.1の`enc(identity)`を再計算して、対象path要素と一致するかを見る。 | 新declaration field/schema、宣言値の補完、K5 registration/owner/bootstrap処理。 |
-| source module | `helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py` | declaration refから決まる同一unit root配下だけをmodule locatorとする。固定bytesまたはidentity/path不一致ならmoduleをimportしない。 | root走査によるmodule discovery、runtime時の`docs/`/`declarations/`読み、別pathへのfallback、実source実装。 |
-| unit tests | `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py` と同rootの`fixtures/` | L7 fixture locatorはunit root内の固定test pathへ解決する。fixture dataは合成入力とし、test identityを既存L7/L8 IDへ対応させる。 | pack directory一覧からのsuite inventoring、L9 verifier追加、test実行・CI成功・owner integrationの主張。 |
+| source module | `helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py` と `src/_private_resource_projection.py` | declaration refから決まる同一unit root配下だけをmodule locatorとする。固定bytesまたはidentity/path不一致ならmoduleをimportしない。後者はFN-02のsource-field保持subset用private module候補。 | root走査によるmodule discovery、runtime時の`docs/`/`declarations/`読み、別pathへのfallback、実source実装。 |
+| unit tests | `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py`、`tests/test_resource_projection.py`、同rootの`fixtures/` | L7 fixture locatorはunit root内の固定test pathへ解決する。追加した`test_resource_projection.py`はFN-02のprivate source-only subset testであり、formal suite inventoryの追加ではない。fixture dataは合成入力とし、test identityを既存L7/L8 IDへ対応させる。 | pack directory一覧からのsuite inventoring、L9 verifier追加、test実行・CI成功・owner integrationの主張。 |
 
 source locator導出はCI/設計検証側の入力解決手順であり、`helix/`製品コードの公開関数ではない。候補内部helperは、既存`SubjectRef`と別locator/path、解決済みimmutable bytesを受ける純粋照合とし、出力は候補pathまたは未選択に留める。ここで`SubjectRef`は`kind`/`identity`/`revision`/`digest`でsourceを束縛し、pathはtree locatorとして別に保持する。Common Kernel K5 `FixedRef`（`store`/`locator`/`digest`）は別の保存・証拠参照型であり、source identityへ読み替えない。これはdeclaration全項目の妥当性、登録、usable判定ではなく、moduleをimport/testを実行する指示でもない。K1 `Observed`、新規diagnostic/reason、pack登録状態へ変換しない。digest不一致は`SubjectRef.digest`とresolved bytesの不一致として既存K6 read boundaryへ戻し、宣言identityとpathの不一致はrepository-layout RL-C4、宣言欠落はRL-C5第2文の宣言がないfolderをpackとして数えないmissing_input所見へ戻す。台帳登録済み型番を前提とする第1文は本候補の未選択登録状態へ適用しない。treeに別directoryがあっても、参照されたdeclarationから定まらないmodule/testを自動選択しない。実行時の製品sourceが宣言/記録をpathから読むことはRL-D3に反するため、ここで述べるref解決は設計/CI入力準備に限定する。
 
@@ -153,16 +153,16 @@ source locator導出はCI/設計検証側の入力解決手順であり、`helix
 
 ## 7. 局所実装候補の状態
 
-この節はbase `ea7f650904963234d69b0f27f9b5edfcf17e5861`のL6設計契約とは別の、作業tree内候補実装の状態記録である。§2の正式な型、6公開API、引数対応、処理順は変更しない。
+この節はL6設計契約と作業tree内候補実装の状態を区別する。設計契約の歴史的起点`ea7f650904963234d69b0f27f9b5edfcf17e5861`に対し、本追補の候補source/testはmain `c31215cca7b1275f02bad87a99631fe4f0b04d1d`から作った作業tree上の別bytesである。§2の正式な型、6公開API、引数対応、処理順は変更しない。
 
 | FN | 局所候補の状態 | formal契約に対する範囲 |
 |---|---|---|
 | FN-01 `bind_inventory_inputs` | 未実装 | K2 operation/version/subjectのowner binding未接続。K2 resultを代用しない。 |
-| FN-02 `project_resource_observation` | private subset helperのみ。formal FN-02実装とは扱わない | `_project_resource_observation_subset`は`_ResourceProjectionSubset`を返す。formal `ResourceProjection` shape（`fields: Mapping[ResourceField, SourceObservation[ExistingDomainValue]]`）と一致しない。局所テストは限定的な合成source observation保持だけを確認する。 |
+| FN-02 `project_resource_observation` | 新しいprivate source-only subset実装 | `src/_private_resource_projection.py`の凍結record `_ResourceProjection(identity, fields)`は既存`ResultKey.subject`からidentityを取り、`Mapping[str, SourceObservation]`として渡されたsource-qualified field mappingをcopyして読み取り専用に保持する。これはL6候補の`ResourceField`を閉じたenumとして実装することではない。field keyは既存source observationの文字列をそのまま保持し、閉じた6-key schemaとして検証しない。テストbaselineではL8名の`role`、`environment`、`location`、`version`、`dependency`、`lifecycle`を使い、後二つはL5 §3.1の`dependencies`、`lifecycle state`属性に対応する。各`SourceObservation`とそのK1 `Value`/`Unknown`/`Unobserved`/`Stale`/`NotApplicable`、source/owner refはそのまま保持し、入力にないfieldは補わない。L5/L6に未定義のdomain absence encoding、owner/polarity mapping、complete-scope scanは実装しない。 |
 | FN-03 `compare_environment_axes` | 公開API未実装、private pair-helperのみ | 左右のsource observation保持まで。8軸比較、domain Value/polarity、formal `EnvironmentComparison`は実装していない。 |
 | FN-04 `project_path_and_storage` | 公開API未実装、private retain-helperのみ | opaque observation保持まで。formal `PathProjection`/`StorageProjection`、role/axis割当は実装していない。 |
 | FN-05 `prepare_operation_check` | 未実装 | 既存OperationDecl action bindingとK3 current-owner resolver接続がない。kind→action等を推定しない。 |
 | FN-06 `record_operation_observation` | 未実装 | OS operation/attempt owner sourceとformal outer result typeの接続がない。raw ref/`None`で代用しない。 |
 | FN-07 `summarize_nfr_observations` | private集計helperのみ | 渡された合成Observedの集計補助に限る。L5 §7母集団の解決やNFR測定は行わない。 |
 
-公開L5 APIのformal適合実装は0件である。5件の局所unitはprivate helperの限定subsetを確認するもので、L8正式oracleの合格、source/owner reader接続、宣言、登録、CI統合を証明しない。詳しいfixture別範囲と局所実行証拠はL7 §9を参照する。
+公開L5 APIのformal適合実装は0件である。FN-02の局所実装は、旧`LEGACY-ASSET-17C4BF78919578FEBB18`で分離されていたresource identity/source観測と、`LEGACY-ASSET-F46AB11BD14F2C0469F4`のnegativeなidentity境界を再導出し、既存K1観測とK2 identityを損なわず写す部分に限る。`LEGACY-ASSET-F542125805B777D8A56A`の要求/検証対応、`LEGACY-ASSET-653A097F9C9EE51F6FDD`の旧topology、`LEGACY-ASSET-235F57A4DC453383E6C7`の資源制約値を実装・domain判定へ持ち込まない。局所unitはsource-qualified field projectionのsubsetだけを確認し、L8正式oracleの全実行、source/owner reader接続、宣言、登録、CI統合を証明しない。詳細なfixture別範囲と実行bytesはL7 §9を参照する。
