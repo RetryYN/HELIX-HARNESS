@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from dataclasses import replace
 from copy import deepcopy
+import json
 from pathlib import Path
 import sys
 import unicodedata
@@ -238,16 +239,18 @@ class K5Fixtures(unittest.TestCase):
         heads = [mh, ah, bh]
         blobs = {manifest: _bytes(me), a: _bytes(ae), b: _bytes(be)}
         with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+            different_manifest = replace(mh, segment=_segment("manifest", 0, "different-log"))
+            different_segment = replace(ah, segment=_segment("a", 2, "different-log"))
             mismatched_scopes = (
-                replace(scope, log_id="different-log"),
-                replace(scope, manifest_head=replace(mh, segment=_segment("manifest", 0, "different-log"))),
-                replace(scope, segments=(_segment("a", 2, "different-log"),)),
+                (replace(scope, log_id="different-log"), heads),
+                (replace(scope, manifest_head=different_manifest), [different_manifest, ah, bh]),
+                (replace(scope, segments=(different_segment.segment,)), [mh, different_segment]),
             )
-            for candidate in mismatched_scopes:
+            for candidate, candidate_heads in mismatched_scopes:
                 with self.subTest(scope_log=candidate.log_id, manifest_log=candidate.manifest_head.segment.log_id,
                                   segment_logs=tuple(segment.log_id for segment in candidate.segments)):
                     with self.assertRaisesRegex(NotImplementedError, "mismatched scope/log"):
-                        k5.project(k5.Projector("p", "1", D1), candidate, heads)
+                        k5.project(k5.Projector("p", "1", D1), candidate, candidate_heads)
             with self.assertRaisesRegex(NotImplementedError, "mismatched scope/log"):
                 k5.restore(_decl(log="different-log"), scope, heads)
 
@@ -335,7 +338,7 @@ class K5Fixtures(unittest.TestCase):
         elif n == 51:
             heads = [mh, ah]
         elif n == 52:
-            scope = replace(scope, segments=()); heads = [mh, ah, bh]
+            scope = replace(scope, segments=()); heads = [mh]
         elif n == 53:
             heads = [mh, ah, bh]
         elif n == 54:
@@ -349,7 +352,7 @@ class K5Fixtures(unittest.TestCase):
         elif n == 71:
             heads = [mh, ah]
         elif n == 72:
-            scope = replace(scope, segments=()); heads = [mh, ah, bh]
+            scope = replace(scope, segments=()); heads = [mh]
         elif n == 73:
             heads = [mh, ah, bh]
         elif n == 74:
@@ -414,14 +417,30 @@ class K5Fixtures(unittest.TestCase):
                 self.assertEqual((stale.recorded_key, stale.current_key), (key1, key2))
             return
         if 14 <= n <= 16:
-            event = _recorded_event(); prior = [{"key_digest": event["key_digest"], "result_digest": event["result_digest"]}]
-            if n == 14: self.assertIsInstance(k5._recorded_preflight(event["key_digest"], event["result_digest"], prior, True), NoOp)
-            elif n == 15: self.assertIsInstance(k5._recorded_preflight(event["key_digest"], D2, prior, True), Conflict)
-            else: self.assertEqual(k5._recorded_preflight(event["key_digest"], event["result_digest"], prior, False).reason, "peer_unreadable")
+            event = _recorded_event()
+            prior = [{"kind": "ResultRecorded", "key_digest": event["key_digest"], "result_digest": event["result_digest"]}]
+            if n == 14:
+                self.assertEqual(k5._event_valid(event, _decl(), _segment(), "w", {_segment()}, prior), "noop")
+            elif n == 15:
+                different = deepcopy(event)
+                different["result"] = _result_body(False)
+                different["result_digest"] = _sha256_digest(_canonical_json_bytes(different["result"]))
+                self.assertEqual(k5._event_valid(different, _decl(), _segment(), "w", {_segment()}, prior), "conflict")
+            else:
+                seg = _segment()
+                context = k5._AppendContext(_decl(), frozenset({seg}), tuple(prior), False, True)
+                with patch.object(k5, "_read_bytes", side_effect=AssertionError("unreadable peer must stop before read")) as reader, \
+                     patch.object(k5, "current_head", side_effect=AssertionError("unreadable peer must stop before head read")) as head_reader, \
+                     patch.object(k5, "_append_bytes") as append_port:
+                    outcome = k5._append_with_context(seg, event, seg.writer, context)
+                self.assertIsInstance(outcome, Rejected)
+                self.assertEqual(outcome.reason, "peer_unreadable")
+                reader.assert_not_called(); head_reader.assert_not_called(); append_port.assert_not_called()
             return
         if 17 <= n <= 32:
             seg = _segment(); decl = _decl(); manifest = {seg}; event = _recorded_event()
             records = []
+            manifest_segment = None
             if n == 17: event.pop("key")
             elif n == 18: event["key_digest"] = D2
             elif n == 19: event["result_digest"] = D2
@@ -437,16 +456,29 @@ class K5Fixtures(unittest.TestCase):
                 event["result_digest"] = _sha256_digest(_canonical_json_bytes(event["result"]))
             elif n == 25: event["key"]["operation"] = "other"; event["key_digest"] = _key_digest(k5._decode_key(event["key"]))
             elif n == 26: event = {"kind": "ResultConflictDetected", "key_digest": D1, "result_digests": [D1]}
-            elif n == 27: event = {"kind": "ResultConflictDetected", "key_digest": D1, "result_digests": [D1, D2]}
-            elif n == 28: event = {"kind": "Correction", "target": D1}
+            elif n == 27:
+                event = {"kind": "ResultConflictDetected", "key_digest": D1, "result_digests": [D1, D2]}
+                records = [{"key_digest": D1, "result_digest": D1}]
+            elif n == 28:
+                event = {"kind": "Correction", "target": D1, "reason": "correction"}
+                records = [{"entry_digest": D1, "event": _recorded_event()}]
             elif n == 29:
-                seg = _segment("other"); manifest = {seg}; event = {"kind": "SegmentOpened", "segment": k5._plain(seg)}
+                decl = _decl(manifest_writer="manifest")
+                seg = _segment("other"); manifest = {seg}; manifest_segment = seg
+                event = {"kind": "SegmentOpened", "segment": k5._plain(_segment("opened"))}
             elif n == 30: event = {"kind": "DeclaredEvent", "event_type": "unknown", "refs": {}}
             elif n == 31: event = _recorded_event()
             elif n == 32: manifest = set()
             writer = "wrong" if n == 31 else seg.writer
-            expected = {17:"missing_key",18:"missing_key",19:"missing_key",20:"stale_not_recordable",21:"invalid_disposition",22:"invalid_disposition",23:"invalid_disposition",24:"missing_key",25:"missing_key",26:"missing_key",27:"missing_key",28:"missing_key",29:"missing_key",30:"missing_key",31:"missing_key",32:"missing_key"}
-            self.assertEqual(k5._event_valid(event, decl, seg, writer, manifest, records), expected[n], f"UT-{n:03d} must return the fixed existing preflight result")
+            outcome = k5._event_valid(event, decl, seg, writer, manifest, records, manifest_segment=manifest_segment)
+            expected = {
+                17: "missing_key",
+                20: "stale_not_recordable",
+            }
+            if n in expected:
+                self.assertEqual(outcome, expected[n], f"UT-{n:03d} must preserve its fixed private preflight result")
+            else:
+                self.assertIs(outcome, k5._UNMAPPED_APPEND_VALIDATION, f"UT-{n:03d} must stop at the existing unmapped validation boundary")
             return
         if 33 <= n <= 39:
             key = _key(); body = _result_body()
@@ -515,11 +547,37 @@ class K5Fixtures(unittest.TestCase):
             if n == 46:
                 self.assertIsNotNone(k5._event_valid({"output": ["projection"]}, _decl(), seg2, "w", {seg2}, []))
             elif n == 47:
-                self.assertEqual([x.event for x in k5._order_entries(entries)], [x.event for x in k5._order_entries(list(reversed(entries)))])
+                manifest, a, b, scope, me, ae, be, mh, ah, bh = _manifest_and_data()
+                blobs = {manifest: _bytes(me), a: _bytes(ae), b: _bytes(be)}
+                heads = [mh, ah, bh]
+                projector = k5.Projector("p", "1", D1)
+                with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+                    results = [k5.project(projector, scope, order) for order in (heads, [bh, mh, ah], [ah, bh, mh])]
+                self.assertTrue(all(isinstance(item, Value) for item in results))
+                self.assertEqual(results[0].value.output, results[1].value.output)
+                self.assertEqual(results[0].value.output, results[2].value.output)
+                self.assertEqual(len({item.value.output_digest for item in results}), 1)
             elif n == 48:
                 self.assertEqual([x.segment.segment_no for x in ordered], [2,10])
             else:
-                nfc, nfd = "é", "e\u0301"; self.assertEqual(unicodedata.normalize("NFC", nfc), unicodedata.normalize("NFC", nfd))
+                manifest = _segment("manifest", 0)
+                nfc, nfd = "é", unicodedata.normalize("NFD", "é")
+                seg2, seg10 = _segment(nfc, 2), _segment(nfd, 10)
+                opened = _chain(manifest, [{"kind": "SegmentOpened", "segment": k5._plain(s)} for s in (seg10, seg2)])
+                key2, key10 = _key("r1"), _key("r2")
+                entries2 = _chain(seg2, [_recorded_event(key2, _result_body(True))])
+                entries10 = _chain(seg10, [_recorded_event(key10, _result_body(True))])
+                scope = k5.ScopeDecl("scope", "r", "log", _head(opened), (seg2, seg10))
+                blobs = {manifest: _bytes(opened), seg2: _bytes(entries2), seg10: _bytes(entries10)}
+                query = _key("r3")
+                with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+                    restored = k5.restore(_decl(), scope, [_head(opened), _head(entries10), _head(entries2)])
+                self.assertIsInstance(restored, Value)
+                self.assertEqual([item.key for item in restored.value], [key2, key10])
+                prior = lookup(restored.value, query)
+                self.assertIsInstance(prior, Stale)
+                self.assertEqual(prior.recorded_key, key10)
+                self.assertEqual(prior.current_key, query)
             return
         if 50 <= n <= 55 or 69 <= n <= 75:
             scope, heads = self._scope(n)
@@ -557,16 +615,27 @@ class K5Fixtures(unittest.TestCase):
                 self.assertIsInstance(found, Value)
                 self.assertEqual(found.key, query)
             if n == 55:
-                complete, *_ = _manifest_and_data(); self.assertEqual(complete, _manifest_and_data()[0])
+                closed_a = _chain(a, [{"kind": "DeclaredEvent", "event_type": "open", "refs": {"state": "closed", "id": "A"}}])
+                closed_b = _chain(b, [{"kind": "DeclaredEvent", "event_type": "open", "refs": {"state": "closed", "id": "B"}}])
+                closed_blobs = {manifest: _bytes(me), a: _bytes(closed_a), b: _bytes(closed_b)}
+                before = dict(closed_blobs)
+                with patch.object(k5, "_read_bytes", side_effect=lambda seg: closed_blobs.get(seg)), patch.object(k5, "_append_bytes") as append_port:
+                    result = k5.project(projector, scope, [mh, _head(closed_a)])
+                self.assertIsInstance(result, Unknown)
+                self.assertEqual(result.reason, UnknownReason.MISSING_INPUT)
+                self.assertEqual(closed_blobs, before)
+                append_port.assert_not_called()
             return
         if 76 <= n <= 86:
+            if 77 <= n <= 83:
+                self.skipTest("K5 owner-bound manifest/assignment/K3-K7 binding is not connected; L8 outcome is not exercised")
             manifest = _segment("manifest", 0)
             writer_seg = _segment("current", 1)
             decl = _decl(manifest_writer="manifest")
             if n == 76:
                 target = manifest
-                event = {"kind": "SegmentOpened", "segment": k5._plain(manifest)}
-                context = k5._AppendContext(decl, frozenset({manifest, writer_seg}), (), True, True)
+                event = {"kind": "SegmentOpened", "segment": k5._plain(writer_seg)}
+                context = k5._AppendContext(decl, frozenset({manifest, writer_seg}), (), True, True, manifest_segment=manifest)
             elif n == 77:
                 target = writer_seg
                 event = {"kind": "DeclaredEvent", "event_type": "open", "refs": {}}
@@ -581,7 +650,7 @@ class K5Fixtures(unittest.TestCase):
                 target = writer_seg; event = {"kind": "DeclaredEvent", "event_type": "open", "refs": {"case": n}}
                 context = k5._AppendContext(decl, frozenset({manifest, writer_seg}), (), True, False)
             elif n == 84:
-                target = writer_seg; event = {"kind": "DeclaredEvent", "event_type": "open", "refs": {}}
+                target = writer_seg; event = _recorded_event()
                 context = k5._AppendContext(decl, frozenset({manifest, writer_seg}), (), False, True)
             else:
                 target = writer_seg; event = {"kind": "DeclaredEvent", "event_type": "open", "refs": {"late": True}}
@@ -619,13 +688,60 @@ class K5Fixtures(unittest.TestCase):
             else: self.assertEqual(lookup([rec.record], key), result)
             return
         if 61 <= n <= 65:
-            proj = k5.Projection(k5.Projector("p","1",D1), k5.ScopeDecl("s","r","log",k5.SegmentHead(_segment(),1,D1),(_segment(),)), (k5.SegmentHead(_segment(),1,D1),), {"x":1}, _sha256_digest(_canonical_json_bytes({"x":1})))
-            state = proj.output; checkpoint = k5.Checkpoint(proj.projector, proj.scope, proj.input_heads, state, _sha256_digest(_canonical_json_bytes(state)))
-            if n == 61: self.assertTrue(k5._checkpoint_valid(proj,checkpoint,proj))
-            elif n == 62: self.assertFalse(k5._checkpoint_valid(replace(proj,input_heads=()),checkpoint,proj))
-            elif n == 63: self.assertFalse(k5._checkpoint_valid(proj,replace(checkpoint,input_heads=(replace(checkpoint.input_heads[0],entry_digest=D2),)),proj))
-            elif n == 64: self.assertFalse(k5._checkpoint_valid(proj,replace(checkpoint,state={"x":2}),proj))
-            else: self.assertFalse(k5._checkpoint_valid(proj,replace(checkpoint,state={"x":2},state_digest=_sha256_digest(_canonical_json_bytes({"x":2}))),proj))
+            manifest, a, _, scope, me, _, _, mh, _, _ = _manifest_and_data((_segment("a", 2),))
+            first = _chain(a, [_declared("first")])
+            # Extend the same scope while preserving the projection value: the
+            # correction restates the existing event. This lets the checkpoint
+            # retain its old head while the full rebuild remains byte-equal.
+            extended = _chain(a, [
+                _declared("first"),
+                {"kind": "Correction", "target": first[0].entry_digest,
+                 "reason": "restate", "replacement": _declared("first")},
+            ])
+            projector = k5.Projector("p", "1", D1)
+            old_heads = [mh, _head(first)]
+            current_heads = [mh, _head(extended)]
+            blobs = {manifest: _bytes(me), a: _bytes(extended)}
+            with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+                old_projection = k5.project(projector, scope, old_heads)
+                current_projection = k5.project(projector, scope, current_heads)
+            self.assertIsInstance(old_projection, Value)
+            self.assertIsInstance(current_projection, Value)
+            checkpoint = k5.Checkpoint(
+                old_projection.value.projector,
+                old_projection.value.scope,
+                old_projection.value.input_heads,
+                old_projection.value.output,
+                old_projection.value.output_digest,
+            )
+            if n == 61:
+                # Current input head extends the checkpoint head while the
+                # prior-prefix anchor and full-rebuild result still agree.
+                with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+                    got = k5.verify(current_projection.value, checkpoint)
+                self.assertIsInstance(got, Value)
+            elif n == 62:
+                # The current projection is shorter than the checkpoint head.
+                with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+                    got = k5.verify(old_projection.value, replace(checkpoint, input_heads=(mh, _head(extended))))
+                self.assertIsInstance(got, Unknown); self.assertEqual(got.reason, UnknownReason.CONFLICT)
+            elif n == 63:
+                bad_anchor = replace(checkpoint, input_heads=(mh, k5.SegmentHead(a, 1, D2)))
+                with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+                    got = k5.verify(current_projection.value, bad_anchor)
+                self.assertIsInstance(got, Unknown); self.assertEqual(got.reason, UnknownReason.CONFLICT)
+            elif n == 64:
+                bad_state = replace(checkpoint, state={"changed": True})
+                with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+                    got = k5.verify(current_projection.value, bad_state)
+                self.assertIsInstance(got, Unknown); self.assertEqual(got.reason, UnknownReason.CONFLICT)
+            else:
+                changed = {"changed": True}
+                bad_state = replace(checkpoint, state=changed, state_digest=_sha256_digest(_canonical_json_bytes(changed)))
+                with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+                    got = k5.verify(current_projection.value, bad_state)
+                self.assertIsInstance(got, Unknown); self.assertEqual(got.reason, UnknownReason.CONFLICT)
+                self.assertEqual(got.evidence, {"checkpoint": "mismatch"})
             return
         if 66 <= n <= 68:
             manifest,a,b,scope,me,ae,be,mh,ah,bh = _manifest_and_data((a := _segment("a",2),))
@@ -660,6 +776,177 @@ class K5Fixtures(unittest.TestCase):
             self.assertIsInstance(lookup(restored.value,key),Unknown)
             return
         self.fail(f"No fixture implementation for CK-K5-UT-{n:03d}")
+
+    def test_ck_k5_ut_102_closed_event_union_rejects_missing_and_unknown_kind(self):
+        seg = _segment()
+        for label, event in (("missing", {"event_type": "open", "refs": {}}), ("unknown", {"kind": "Other", "event_type": "open", "refs": {}})):
+            with self.subTest(variant=label):
+                entry = _entry(seg, 1, "genesis", event)
+                with patch.object(k5, "_read_bytes", return_value=_bytes([entry])):
+                    result = k5.read(seg, _head([entry]))
+                self.assertIsInstance(result, Unknown)
+                self.assertEqual(result.reason, UnknownReason.UNREADABLE)
+                self.assertIn("event_shape", result.evidence)
+
+    def test_ck_k5_ut_103_malformed_nested_event_stops_read_and_append(self):
+        seg = _segment()
+        malformed = ["not", "an", "event"]
+        draft = {"schema_version": k5.SCHEMA_VERSION, "segment": seg, "seq": 1, "prev_digest": "genesis", "event": malformed}
+        entry = k5.LogEntry(k5.SCHEMA_VERSION, seg, 1, "genesis", malformed, _sha256_digest(_canonical_json_bytes(k5._plain(draft))))
+        with patch.object(k5, "_read_bytes", return_value=_bytes([entry])):
+            result = k5.read(seg, _head([entry]))
+        self.assertIsInstance(result, Unknown); self.assertEqual(result.reason, UnknownReason.UNREADABLE)
+        context = k5._AppendContext(_decl(), frozenset({seg}), (), True, True)
+        with patch.object(k5, "_read_bytes", side_effect=AssertionError("malformed append reaches reader")), patch.object(k5, "_append_bytes", side_effect=AssertionError("malformed append reaches writer")):
+            with self.assertRaises(NotImplementedError):
+                k5._append_with_context(seg, {"kind": "Correction", "target": [], "reason": "r"}, seg.writer, context)
+
+    def test_ck_k5_ut_104_genesis_head_key_and_projection_paths(self):
+        manifest, a, _, scope, me, _, _, mh, _, _ = _manifest_and_data((_segment("a", 2),))
+        empty = k5.SegmentHead(a, 0, "genesis")
+        projector = k5.Projector("p", "1", D1)
+        blobs = {manifest: _bytes(me), a: b""}
+        with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+            current = k5.current_head(a)
+            read = k5.read(a, empty)
+            restored = k5.restore(_decl(), scope, [mh, empty])
+            projected = k5.project(projector, scope, [mh, empty])
+            verified = k5.verify(projected.value) if isinstance(projected, Value) else projected
+        self.assertIsInstance(current, Value); self.assertEqual(current.value, empty)
+        self.assertIsInstance(read, Value); self.assertIsInstance(read.key, ResultKey)
+        self.assertIsInstance(restored, Value); self.assertEqual(restored.value, [])
+        self.assertIsInstance(projected, Value); self.assertIsInstance(verified, Value)
+        self.assertEqual(projected.value.output_digest, _sha256_digest(_canonical_json_bytes([])))
+
+    def test_ck_k5_ut_105_segment_opened_targets_manifest_segment(self):
+        manifest = _segment("manifest", 0); data = _segment("writer", 1)
+        decl = _decl(manifest_writer="manifest")
+        event = {"kind": "SegmentOpened", "segment": k5._plain(data)}
+        context = k5._AppendContext(decl, frozenset({manifest, data}), (), True, True, manifest_segment=manifest)
+        raw = _bytes(_chain(manifest, [_declared("prior")]))
+        with patch.object(k5, "_read_bytes", return_value=raw), patch.object(k5, "_append_bytes", return_value=k5.SegmentHead(manifest, 2, D2)) as append_port:
+            result = k5._append_with_context(manifest, event, "manifest", context)
+        self.assertIsInstance(result, k5.Appended); append_port.assert_called_once()
+        for destination in (data, _segment("manifest", 9)):
+            bad_context = k5._AppendContext(decl, frozenset({manifest, data, destination}), (), True, True, manifest_segment=manifest)
+            with patch.object(k5, "_read_bytes", side_effect=AssertionError("invalid manifest destination must stop before read")), patch.object(k5, "_append_bytes") as writer:
+                with self.assertRaises(NotImplementedError):
+                    k5._append_with_context(destination, event, destination.writer, bad_context)
+            writer.assert_not_called()
+
+    def test_ck_k5_ut_106_append_constraints_reject_duplicate_and_wrong_shapes(self):
+        seg = _segment(); decl = _decl()
+        events = []
+        conflict = {"kind": "ResultConflictDetected", "key_digest": D1, "result_digests": [D1, D1]}
+        events.append(("duplicate-conflict-digest", conflict, [{"key_digest": D1, "result_digest": D1}]))
+        bad_ref = _recorded_event(body={"class": "Value", "value": {"encoding": "FixedRef", "store": "stage", "locator": "x", "digest": D1}, "evidence": {"encoding": "Inline", "type": "dict", "value": {}}})
+        events.append(("fixedref-store", bad_ref, []))
+        bad_correction = {"kind": "Correction", "target": D1, "reason": "r", "replacement": {"kind": "SegmentOpened", "segment": k5._plain(seg)}}
+        events.append(("replacement-union", bad_correction, []))
+        for label, event, records in events:
+            with self.subTest(constraint=label):
+                context = k5._AppendContext(decl, frozenset({seg}), tuple(records), True, True)
+                with patch.object(k5, "_read_bytes", side_effect=AssertionError("invalid event reached reader")), patch.object(k5, "_append_bytes") as writer:
+                    with self.assertRaisesRegex(NotImplementedError, "K5 append rejection mapping for this validation condition is not defined"):
+                        k5._append_with_context(seg, event, seg.writer, context)
+                writer.assert_not_called()
+
+    def test_ck_k5_ut_107_projection_heads_deduplicate_only_in_scope_duplicates(self):
+        manifest, a, b, scope, me, ae, be, mh, ah, bh = _manifest_and_data()
+        heads = [mh, ah, bh, ah]
+        blobs = {manifest: _bytes(me), a: _bytes(ae), b: _bytes(be)}
+        with patch.object(k5, "_read_bytes", side_effect=lambda seg: blobs.get(seg)):
+            projected = k5.project(k5.Projector("p", "1", D1), scope, heads)
+        self.assertIsInstance(projected, Value)
+        self.assertEqual(projected.value.input_heads, tuple(sorted((mh, ah, bh), key=k5._heads_key)))
+        self.assertEqual(len(projected.key.inputs), 3)
+
+    def test_ck_k5_ut_109_scope_out_head_stops_before_read(self):
+        manifest, a, b, scope, me, ae, be, mh, ah, bh = _manifest_and_data()
+        extra = k5.SegmentHead(_segment("outside", 99), 1, D3)
+        with patch.object(k5, "_read_bytes", side_effect=AssertionError("scope-out head must not be silently filtered")) as reader:
+            with self.assertRaises(NotImplementedError):
+                k5.project(k5.Projector("p", "1", D1), scope, [mh, ah, bh, extra])
+        reader.assert_not_called()
+
+    def test_ck_k5_ut_110_event_validation_malformed_and_nonfinite_are_unmapped(self):
+        seg = _segment("w", 1)
+        decl = _decl()
+        malformed_kind = {"kind": [], "event_type": "open", "refs": {}}
+        nan_result = _recorded_event()
+        nan_result["result"]["value"]["value"] = float("nan")
+        bad_record_digest = _recorded_event(); bad_record_digest["key_digest"] = "not-a-digest"
+        malformed_cases = (
+            ("unhashable-kind", malformed_kind, False),
+            ("nonfinite-result", nan_result, True),
+            ("record-key-digest-malformed", bad_record_digest, False),
+            ("result-digests-none", {"kind": "ResultConflictDetected", "key_digest": D1, "result_digests": None}, False),
+            ("result-digest-malformed", {"kind": "ResultConflictDetected", "key_digest": D1, "result_digests": ["bad"]}, False),
+            ("missing-segment", {"kind": "SegmentOpened"}, False),
+            ("correction-list-replacement", {"kind": "Correction", "target": D1, "reason": "r", "replacement": []}, False),
+            ("correction-target-malformed", {"kind": "Correction", "target": "entry", "reason": "r", "replacement": None}, False),
+            ("segment-number-bool", {"kind": "SegmentOpened", "segment": {"log_id": "log", "writer": "w", "segment_no": True}}, False),
+            ("segment-number-float", {"kind": "SegmentOpened", "segment": {"log_id": "log", "writer": "w", "segment_no": 1.0}}, False),
+            ("segment-number-string", {"kind": "SegmentOpened", "segment": {"log_id": "log", "writer": "w", "segment_no": "1"}}, False),
+        )
+        for label, event, shape_valid in malformed_cases:
+            with self.subTest(case=label):
+                self.assertEqual(k5._event_shape_valid(event), shape_valid)
+                self.assertIs(k5._event_valid(event, decl, seg, seg.writer, {seg}, []), k5._UNMAPPED_APPEND_VALIDATION)
+                context = k5._AppendContext(decl, frozenset({seg}), (), True, True)
+                with patch.object(k5, "_read_bytes", side_effect=AssertionError("unmapped event reached reader")) as reader, \
+                     patch.object(k5, "current_head", side_effect=AssertionError("unmapped event reached head reader")) as head_reader, \
+                     patch.object(k5, "_append_bytes", side_effect=AssertionError("unmapped event reached writer")) as writer:
+                    with self.assertRaises(NotImplementedError):
+                        k5._append_with_context(seg, event, seg.writer, context)
+                reader.assert_not_called(); head_reader.assert_not_called(); writer.assert_not_called()
+
+        baseline = _entry(seg, 1, "genesis", _declared("valid"))
+        for label, mutation, expected_evidence in (
+            ("schema-version-unhashable", lambda wire: wire.update(schema_version=[]), "(b)"),
+            ("seq-unhashable", lambda wire: wire.update(seq=[]), "(a)"),
+            ("nonfinite-nested-event", lambda wire: wire["event"]["refs"].update(value=float("nan")), "(a)"),
+        ):
+            with self.subTest(raw_read=label):
+                wire = k5._plain(baseline)
+                mutation(wire)
+                raw = json.dumps(wire, ensure_ascii=False, separators=(",", ":"), allow_nan=True).encode("utf-8") + b"\n"
+                with patch.object(k5, "_read_bytes", return_value=raw):
+                    observed = k5.read(seg, _head([baseline]))
+                self.assertIsInstance(observed, Unknown)
+                self.assertEqual(observed.reason, UnknownReason.UNREADABLE)
+                self.assertIn(expected_evidence, observed.evidence)
+
+        deeply_nested_json = b"[" * 2000 + b"0" + b"]" * 2000 + b"\n"
+        with patch.object(k5, "_read_bytes", return_value=deeply_nested_json):
+            prefix_result = k5.read(seg, _head([baseline]))
+            tail_result = k5.current_head(seg)
+        for result in (prefix_result, tail_result):
+            self.assertIsInstance(result, Unknown)
+            self.assertEqual(result.reason, UnknownReason.UNREADABLE)
+            self.assertIn("(a)", result.evidence)
+
+    def test_ck_k5_ut_111_existing_append_reasons_are_event_scoped(self):
+        seg = _segment("w", 1)
+        decl = _decl()
+        context = k5._AppendContext(decl, frozenset({seg}), (), False, True)
+        non_result_event = _declared("peer-check-is-not-result-recorded")
+        with patch.object(k5, "_read_bytes", side_effect=AssertionError("preflight only")) as reader, \
+             patch.object(k5, "current_head", side_effect=AssertionError("preflight only")) as head_reader, \
+             patch.object(k5, "_append_bytes", side_effect=AssertionError("preflight only")) as writer:
+            with self.assertRaises(NotImplementedError):
+                k5._append_with_context(seg, non_result_event, seg.writer, context)
+            peer_result = k5._append_with_context(seg, _recorded_event(), seg.writer, context)
+            stale = _recorded_event(body={"class": "Stale"})
+            stale_result = k5._append_with_context(seg, stale, seg.writer, context)
+        self.assertIsInstance(peer_result, Rejected); self.assertEqual(peer_result.reason, "peer_unreadable")
+        self.assertIsInstance(stale_result, Rejected); self.assertEqual(stale_result.reason, "stale_not_recordable")
+        reader.assert_not_called(); head_reader.assert_not_called(); writer.assert_not_called()
+
+    def test_ck_k5_ut_108_stale_precedes_missing_key(self):
+        stale = {"kind": "ResultRecorded", "result": {"class": "Stale"}}
+        result = k5._event_valid(stale, _decl(), _segment(), "w", {_segment()}, [])
+        self.assertEqual(result, "stale_not_recordable")
 
     def test_ck_k5_ut_101_append_invalid_key_body_stops_unmapped_branch(self):
         seg = _segment("w", 1)

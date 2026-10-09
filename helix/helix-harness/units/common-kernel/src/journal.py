@@ -161,6 +161,7 @@ class _AppendContext:
     restored_records: tuple[Mapping[str, Any], ...]
     peers_readable: bool
     effect_ready: bool
+    manifest_segment: SegmentId | None = None
 
 
 def _plain(value: Any) -> Any:
@@ -181,8 +182,6 @@ def _segment_identity(segment: SegmentId) -> str:
 
 def _observation_key(operation: str, subject: SubjectRef, inputs: Sequence[SubjectRef], scope: str) -> ResultKey | Rejected:
     """Build a complete internal K5 observation key from declared inputs."""
-    from common_kernel import key_of
-
     return key_of(operation, SCHEMA_VERSION, subject, tuple(inputs), scope)
 
 
@@ -193,7 +192,8 @@ def _key_for_read(segment: SegmentId, head: SegmentHead) -> ResultKey:
 
 
 def _head_ref(head: SegmentHead) -> SubjectRef:
-    return SubjectRef("log_segment", _segment_identity(head.segment), str(head.seq), head.entry_digest)
+    digest = head.entry_digest if head.entry_digest.startswith("sha256:") else _sha256_digest(b"genesis")
+    return SubjectRef("log_segment", _segment_identity(head.segment), str(head.seq), digest)
 
 
 def _unique_heads(heads: Sequence[SegmentHead]) -> tuple[SegmentHead, ...]:
@@ -205,8 +205,17 @@ def _key_for_restore(log: LogDecl, scope: ScopeDecl, heads: Sequence[SegmentHead
     manifest = scope.manifest_head
     subject = SubjectRef("log", log.log_id, scope.revision, _sha256_digest(_canonical_json_bytes(_plain(log))))
     refs = [_head_ref(manifest)]
-    refs.extend(_head_ref(h) for h in _unique_heads(heads) if h != manifest)
+    refs.extend(_head_ref(h) for h in _scope_input_heads(scope, heads) if h != manifest)
     return _observation_key("k5.restore", subject, refs, _scope_identity(scope))
+
+
+def _scope_input_heads(scope: ScopeDecl, heads: Sequence[SegmentHead]) -> tuple[SegmentHead, ...]:
+    allowed = set(scope.segments) | {scope.manifest_head.segment}
+    if any(head.segment not in allowed for head in heads):
+        # No K5 result mapping is fixed for caller-supplied heads outside the
+        # declared scope. Never erase them and return a successful projection.
+        raise NotImplementedError("scope-out input-head mapping is not defined")
+    return _unique_heads(tuple(heads))
 
 
 def _scope_identity(scope: ScopeDecl) -> str:
@@ -258,7 +267,7 @@ def _encode_entry(entry: LogEntry) -> bytes:
 def _validate_segment_prefix(raw: bytes, segment: SegmentId, head: SegmentHead) -> _Prefix:
     """Validate only the immutable prefix named by head; evidence uses L4 (a)-(h)."""
     evidence: list[str] = []
-    if not isinstance(raw, bytes) or not isinstance(head.seq, int) or head.seq < 0:
+    if not isinstance(raw, bytes) or type(head.seq) is not int or head.seq < 0:
         return _Prefix((), ("(a)",))
     if head.segment != segment:
         # The supplied fixed head names a different segment, so its requested
@@ -278,14 +287,32 @@ def _validate_segment_prefix(raw: bytes, segment: SegmentId, head: SegmentHead) 
         try:
             item = json.loads(line.decode("utf-8", errors="strict"))
             entry = _decode_entry(item)
-        except (UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError, ValueError):
+        except (UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError, ValueError, OverflowError, RecursionError):
+            evidence.append("(a)")
+            continue
+        if (
+            not isinstance(entry.segment, SegmentId)
+            or not isinstance(entry.segment.log_id, str)
+            or not isinstance(entry.segment.writer, str)
+            or type(entry.segment.segment_no) is not int
+            or entry.segment.segment_no < 0
+            or type(entry.seq) is not int
+            or entry.seq < 0
+        ):
             evidence.append("(a)")
             continue
         parsed.append(entry)
-        if entry.schema_version not in _KNOWN_SCHEMA_VERSIONS:
+        if not _event_shape_valid(entry.event):
+            evidence.append("event_shape")
+        if not isinstance(entry.schema_version, str) or entry.schema_version not in _KNOWN_SCHEMA_VERSIONS:
             evidence.append("(b)")
-        if not line.endswith(b"\n") or line != _canonical_json_bytes(_entry_to_dict(entry)) + b"\n":
-            evidence.append("(h)")
+        try:
+            canonical_line = _canonical_json_bytes(_entry_to_dict(entry)) + b"\n"
+        except (TypeError, ValueError, OverflowError, RecursionError):
+            evidence.append("(a)")
+        else:
+            if not line.endswith(b"\n") or line != canonical_line:
+                evidence.append("(h)")
     if len(lines) < head.seq:
         evidence.append("(g)")
     seqs = [entry.seq for entry in parsed]
@@ -293,16 +320,23 @@ def _validate_segment_prefix(raw: bytes, segment: SegmentId, head: SegmentHead) 
         evidence.append("(d)")
     if len(parsed) == head.seq and len(seqs) == len(set(seqs)) and seqs != list(range(1, head.seq + 1)):
         evidence.append("(c)")
-    if "(a)" not in evidence:
-        expected_prev = "genesis"
-        for entry in parsed:
-            if entry.segment != segment:
-                evidence.append("(h)")
+    for index, entry in enumerate(parsed):
+        if entry.segment != segment:
+            evidence.append("(h)")
+        if entry.seq == 1:
+            expected_prev = "genesis"
+        elif index > 0 and parsed[index - 1].seq == entry.seq - 1:
+            expected_prev = parsed[index - 1].entry_digest
+        else:
+            expected_prev = None
+        if expected_prev is not None:
             if entry.prev_digest != expected_prev:
                 evidence.append("(e)")
+        try:
             if entry.entry_digest != _entry_digest(entry):
                 evidence.append("(f)")
-            expected_prev = entry.entry_digest
+        except (TypeError, ValueError, OverflowError, RecursionError):
+            evidence.append("(a)")
     matching = [entry for entry in parsed if entry.seq == head.seq]
     if not matching or matching[-1].entry_digest != head.entry_digest:
         evidence.append("(g)")
@@ -347,7 +381,7 @@ def current_head(segment: SegmentId) -> K5Observed:
     # validated before the observed head is returned.
     try:
         tail = _decode_entry(json.loads(lines[-1].decode("utf-8")))
-    except (UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError, ValueError):
+    except (UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError, ValueError, OverflowError, RecursionError):
         return _unknown(key, ("(a)",))
     head = SegmentHead(segment, tail.seq, tail.entry_digest)
     prefix = _validate_segment_prefix(raw, segment, head)
@@ -388,6 +422,7 @@ def _result_body_shape_valid(body: Mapping[str, Any], decl: LogDecl) -> bool:
             elif encoding == "FixedRef":
                 if (
                     not all(name in item for name in ("store", "locator", "digest"))
+                    or item.get("store") != decl.store
                     or not _valid_digest(item.get("digest"))
                 ):
                     return False
@@ -414,6 +449,46 @@ def _result_body_shape_valid(body: Mapping[str, Any], decl: LogDecl) -> bool:
             and isinstance(body["reentry_trigger"], str)
         )
     return False
+
+
+_EVENT_VARIANTS = frozenset({"ResultRecorded", "ResultConflictDetected", "Correction", "SegmentOpened", "DeclaredEvent"})
+
+
+def _event_shape_valid(event: Any) -> bool:
+    """Validate the local Python Event-union encoding without owner policy."""
+    try:
+        if not isinstance(event, Mapping):
+            return False
+        kind = event.get("kind")
+        if not isinstance(kind, str) or kind not in _EVENT_VARIANTS:
+            return False
+        if kind == "ResultRecorded":
+            return (
+                isinstance(event.get("key"), Mapping)
+                and _valid_digest(event.get("key_digest"))
+                and isinstance(event.get("result"), Mapping)
+                and _valid_digest(event.get("result_digest"))
+                and "producer" in event
+            )
+        if kind == "ResultConflictDetected":
+            values = event.get("result_digests")
+            return _valid_digest(event.get("key_digest")) and isinstance(values, (list, tuple)) and all(_valid_digest(x) for x in values)
+        if kind == "Correction":
+            replacement = event.get("replacement")
+            return (
+                _valid_digest(event.get("target"))
+                and isinstance(event.get("reason"), str)
+                and (replacement is None or _event_shape_valid(replacement))
+                and (replacement is None or replacement.get("kind") == "DeclaredEvent")
+            )
+        if kind == "SegmentOpened":
+            item = _decode_segment(event.get("segment"))
+            return isinstance(item.log_id, str) and isinstance(item.writer, str) and type(item.segment_no) is int and item.segment_no >= 0
+        if kind == "DeclaredEvent":
+            return isinstance(event.get("event_type"), str) and bool(event.get("event_type")) and isinstance(event.get("refs"), Mapping)
+        return False
+    except (AttributeError, KeyError, TypeError, ValueError, OverflowError, RecursionError):
+        return False
 
 
 def _decode_result_body(body: Mapping[str, Any], decl: LogDecl) -> Mapping[str, Any] | None:
@@ -532,10 +607,11 @@ def _read_scope(scope: ScopeDecl, input_heads: Sequence[SegmentHead]):
     # are left to K2's real duplicate-identity diagnostic; never choose one by
     # dictionary insertion order.
     unique_heads = _unique_heads(input_heads)
-    scope_key = _scope_key(scope, unique_heads)
+    scope_heads = _scope_input_heads(scope, unique_heads)
+    scope_key = _scope_key(scope, scope_heads)
     if isinstance(scope_key, Rejected):
         raise NotImplementedError("K5 mapping for conflicting refs with one SegmentId is not defined")
-    heads = {head.segment: head for head in unique_heads}
+    heads = {head.segment: head for head in scope_heads}
     if not scope.segments:
         return Unknown(UnknownReason.MISSING_INPUT, scope_key, {"scope_segments": "empty"})
     if heads.get(scope.manifest_head.segment) != scope.manifest_head:
@@ -544,13 +620,15 @@ def _read_scope(scope: ScopeDecl, input_heads: Sequence[SegmentHead]):
     if not isinstance(manifest_obs, Value):
         return manifest_obs
     opened = [entry.event.get("segment") for entry in manifest_obs.value if _variant(entry.event) == "SegmentOpened"]
-    opened_segments = {_decode_segment(item) for item in opened if isinstance(item, Mapping)}
+    try:
+        opened_segments = {_decode_segment(item) for item in opened}
+    except (KeyError, TypeError, ValueError):
+        return Unknown(UnknownReason.UNREADABLE, scope_key, {"manifest_event": "invalid_shape"})
     entries: list[LogEntry] = []
     if any(segment not in opened_segments for segment in scope.segments):
         return Unknown(UnknownReason.MISSING_INPUT, scope_key, {"unregistered_scope_segment": True})
-    expected_segments = set(scope.segments) | {scope.manifest_head.segment}
-    if set(heads) != expected_segments:
-        return Unknown(UnknownReason.MISSING_INPUT, scope_key, {"scope_heads": "incomplete_or_extra"})
+    # The declared scope defines the read set. Exact duplicate refs are removed
+    # above; scope-out caller heads were already stopped by _scope_input_heads.
     for segment in scope.segments:
         head = heads.get(segment)
         if head is None:
@@ -565,7 +643,7 @@ def _read_scope(scope: ScopeDecl, input_heads: Sequence[SegmentHead]):
 def _scope_key(scope: ScopeDecl, heads: Sequence[SegmentHead]) -> ResultKey | Rejected:
     subject = SubjectRef("scope", scope.scope_id, scope.revision, _sha256_digest(_canonical_json_bytes(_plain(scope))))
     refs = [_head_ref(scope.manifest_head)]
-    refs.extend(_head_ref(head) for head in _unique_heads(heads) if head != scope.manifest_head)
+    refs.extend(_head_ref(head) for head in _scope_input_heads(scope, heads) if head != scope.manifest_head)
     return _observation_key("k5.scope", subject, refs, _scope_identity(scope))
 
 
@@ -578,13 +656,10 @@ def _heads_key(head: SegmentHead):
 
 
 def _variant(event: Mapping[str, Any]) -> str | None:
-    value = event.get("kind", event.get("type"))
-    if value is not None:
-        return value
-    tag = event.get("event_type")
-    if tag in {"ResultRecorded", "ResultConflictDetected", "Correction", "SegmentOpened", "DeclaredEvent"}:
-        return tag
-    return "DeclaredEvent" if tag is not None else None
+    if not isinstance(event, Mapping):
+        return None
+    value = event.get("kind")
+    return value if isinstance(value, str) and value in _EVENT_VARIANTS else None
 
 
 def restore(log: LogDecl, scope: ScopeDecl, input_heads: Sequence[SegmentHead]) -> K5Observed:
@@ -610,12 +685,10 @@ def restore(log: LogDecl, scope: ScopeDecl, input_heads: Sequence[SegmentHead]) 
 
 
 def _build_projection_key(projector: Projector, scope: ScopeDecl, input_heads: Sequence[SegmentHead]) -> ResultKey | Rejected:
-    from common_kernel import key_of
-
     subject = SubjectRef("projector", projector.identity, projector.version, projector.digest)
     manifest = scope.manifest_head
     refs = [_head_ref(manifest)]
-    refs.extend(_head_ref(h) for h in _unique_heads(input_heads) if h != manifest)
+    refs.extend(_head_ref(h) for h in _scope_input_heads(scope, input_heads) if h != manifest)
     key = key_of(projector.identity, projector.version, subject, refs, _scope_identity(scope))
     # Preserve K2's actual diagnostic. Retrying through another constructor
     # would mask duplicate identities and fabricate a usable observation key.
@@ -667,7 +740,7 @@ def project(projector: Projector, scope: ScopeDecl, input_heads: Sequence[Segmen
     if isinstance(output, Unknown):
         return Unknown(output.reason, key, output.evidence)
     output_digest = _sha256_digest(_canonical_json_bytes(_plain(output)))
-    projection = Projection(projector, scope, tuple(sorted(input_heads, key=_heads_key)), output, output_digest)
+    projection = Projection(projector, scope, tuple(sorted(_scope_input_heads(scope, input_heads), key=_heads_key)), output, output_digest)
     return Value(projection, key, {"entry_count": len(observed.value)})
 
 
@@ -751,15 +824,23 @@ def _append_bytes(segment: SegmentId, data: bytes) -> SegmentHead | None:
 
 def _append_with_context(segment: SegmentId, event: Mapping[str, Any], writer: str, context: _AppendContext):
     """Private preflight/adapter handoff used by the owner-bound public API."""
-    if not context.peers_readable:
-        return Rejected("peer_unreadable")
     if not context.effect_ready:
         # K3/K7 observations are owned by their existing adapters. This seam
         # refuses the effect without inventing a K5 authority result/reason.
         return None
-    issue = _event_valid(event, context.declaration, segment, writer, set(context.manifest_segments), context.restored_records)
+    issue = _event_valid(
+        event, context.declaration, segment, writer, set(context.manifest_segments),
+        context.restored_records, manifest_segment=context.manifest_segment,
+    )
+    if issue == "stale_not_recordable":
+        return Rejected("stale_not_recordable")
+    if not context.peers_readable:
+        if _variant(event) == "ResultRecorded":
+            # K5-I5 fixes this reason for unreadable ResultRecorded peers only.
+            return Rejected("peer_unreadable")
+        raise NotImplementedError("peer-read failure mapping for this event kind is not defined")
     if issue is _UNMAPPED_APPEND_VALIDATION:
-        raise NotImplementedError("K5 append rejection mapping for malformed key/body is not defined")
+        raise NotImplementedError("K5 append rejection mapping for this validation condition is not defined")
     if issue == "noop":
         return NoOp(next(item for item in context.restored_records if item.get("key_digest") == event.get("key_digest") and item.get("result_digest") == event.get("result_digest")))
     if issue == "conflict":
@@ -784,23 +865,75 @@ def _event_valid(
     writer: str,
     manifest: set[SegmentId],
     records: Sequence[Mapping[str, Any]],
+    *,
+    manifest_segment: SegmentId | None = None,
 ) -> str | _UnmappedAppendValidation | None:
+    try:
+        return _event_valid_impl(event, decl, segment, writer, manifest, records, manifest_segment=manifest_segment)
+    except (AttributeError, KeyError, TypeError, ValueError, OverflowError, RecursionError):
+        # Canonicalization and malformed nested data have no general K5
+        # rejection reason in the fixed L4/L5 contract.
+        return _UNMAPPED_APPEND_VALIDATION
+
+
+def _event_valid_impl(
+    event: Mapping[str, Any],
+    decl: LogDecl,
+    segment: SegmentId,
+    writer: str,
+    manifest: set[SegmentId],
+    records: Sequence[Mapping[str, Any]],
+    *,
+    manifest_segment: SegmentId | None = None,
+) -> str | _UnmappedAppendValidation | None:
+    if not isinstance(event, Mapping):
+        return _UNMAPPED_APPEND_VALIDATION
     kind = _variant(event)
-    if writer != segment.writer or segment not in manifest:
+    if kind == "ResultRecorded" and isinstance(event.get("result"), Mapping) and event["result"].get("class") == "Stale":
+        return "stale_not_recordable"
+    if kind == "ResultRecorded" and "key" not in event:
         return "missing_key"
-    if kind == "SegmentOpened":
-        opened = event.get("segment")
-        if writer != decl.manifest_writer or segment.writer != decl.manifest_writer or _decode_segment(opened) != segment:
+    if kind == "ResultRecorded" and isinstance(event.get("key"), Mapping):
+        key_data = event["key"]
+        required_key_fields = {"operation", "operation_version", "subject", "inputs", "scope"}
+        required_subject_fields = {"kind", "identity", "revision", "digest"}
+        if not required_key_fields.issubset(key_data):
             return "missing_key"
+        subject_data = key_data.get("subject")
+        if isinstance(subject_data, Mapping) and not required_subject_fields.issubset(subject_data):
+            return "missing_key"
+        input_data = key_data.get("inputs")
+        if isinstance(input_data, (list, tuple)) and any(
+            isinstance(item, Mapping) and not required_subject_fields.issubset(item)
+            for item in input_data
+        ):
+            return "missing_key"
+    if kind is None or not _event_shape_valid(event):
+        return _UNMAPPED_APPEND_VALIDATION
+    if writer != segment.writer or segment not in manifest:
+        return _UNMAPPED_APPEND_VALIDATION
+    if kind == "SegmentOpened":
+        try:
+            opened = _decode_segment(event.get("segment"))
+        except (KeyError, TypeError, ValueError):
+            return _UNMAPPED_APPEND_VALIDATION
+        if (
+            manifest_segment is None
+            or segment != manifest_segment
+            or writer != decl.manifest_writer
+            or segment.writer != decl.manifest_writer
+            or opened.log_id != decl.log_id
+        ):
+            return _UNMAPPED_APPEND_VALIDATION
     elif kind == "DeclaredEvent":
         if event.get("event_type") not in decl.event_types:
-            return "missing_key"
+            return _UNMAPPED_APPEND_VALIDATION
     elif kind == "ResultRecorded":
         key = event.get("key", {})
         try:
             decoded_key = _decode_key(key)
         except (KeyError, TypeError, ValueError):
-            return "missing_key"
+            return _UNMAPPED_APPEND_VALIDATION
         try:
             validated_key = key_of(
                 decoded_key.operation,
@@ -819,14 +952,14 @@ def _event_valid(
             # K2-only reason through the K5 boundary.
             return _UNMAPPED_APPEND_VALIDATION
         if event.get("key_digest") != _key_digest(decoded_key):
-            return "missing_key"
+            return _UNMAPPED_APPEND_VALIDATION
         body = event.get("result", {})
-        if not isinstance(body, Mapping) or event.get("result_digest") != _sha256_digest(_canonical_json_bytes(_plain(body))):
-            return "missing_key"
-        if body.get("class") == "Stale":
-            return "stale_not_recordable"
+        if not isinstance(body, Mapping):
+            return _UNMAPPED_APPEND_VALIDATION
+        if event.get("result_digest") != _sha256_digest(_canonical_json_bytes(_plain(body))):
+            return _UNMAPPED_APPEND_VALIDATION
         if body.get("class") == "NotApplicable" and not all(body.get(name) is not None for name in ("reason", "authority", "reentry_trigger")):
-            return "invalid_disposition"
+            return _UNMAPPED_APPEND_VALIDATION
         if (
             body.get("class") == "Value"
             and any(
@@ -837,13 +970,13 @@ def _event_valid(
                 for field_name in ("value", "evidence")
             )
         ):
-            return "missing_key"
+            return _UNMAPPED_APPEND_VALIDATION
         if not _result_body_shape_valid(body, decl):
             # The append API's outer Rejected reason for these additional
             # malformed ResultBody shapes is not fixed by the current oracle.
             return _UNMAPPED_APPEND_VALIDATION
         if decoded_key.operation not in decl.operations:
-            return "missing_key"
+            return _UNMAPPED_APPEND_VALIDATION
         digests = [record.get("result_digest") for record in records if record.get("key_digest") == event.get("key_digest")]
         if digests:
             if event.get("result_digest") in digests:
@@ -851,9 +984,12 @@ def _event_valid(
             return "conflict"
     elif kind == "ResultConflictDetected":
         digests = event.get("result_digests", [])
-        if len(digests) < 2 or not all(any(item.get("key_digest") == event.get("key_digest") and item.get("result_digest") == digest for item in records) for digest in digests):
-            return "missing_key"
+        if len(digests) < 2 or len(set(digests)) != len(digests) or not all(any(item.get("key_digest") == event.get("key_digest") and item.get("result_digest") == digest for item in records) for digest in digests):
+            return _UNMAPPED_APPEND_VALIDATION
     elif kind == "Correction":
+        replacement = event.get("replacement")
+        if replacement is not None and (not _event_shape_valid(replacement) or _variant(replacement) != "DeclaredEvent"):
+            return _UNMAPPED_APPEND_VALIDATION
         target = event.get("target")
         allowed = {item.get("entry_digest") for item in records if _variant(item.get("event", {})) == "DeclaredEvent"}
         changed = True
@@ -864,9 +1000,9 @@ def _event_valid(
                     allowed.add(item.get("entry_digest"))
                     changed = True
         if target not in allowed:
-            return "missing_key"
+            return _UNMAPPED_APPEND_VALIDATION
     elif kind not in {"SegmentOpened", "DeclaredEvent", "ResultRecorded", "ResultConflictDetected", "Correction"}:
-        return "missing_key"
+        return _UNMAPPED_APPEND_VALIDATION
     return None
 
 
