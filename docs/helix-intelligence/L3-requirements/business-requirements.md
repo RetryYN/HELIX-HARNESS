@@ -1,6 +1,6 @@
-# HELIX-INTELLIGENCE L3 業務要件（Stage 2a）
+# HELIX-INTELLIGENCE L3 業務要件
 
-状態: PO L3承認前の起草候補。機構固有の業務要件のみを固定採択L2の意味から整理し、実装済み・業務成果成立とは扱わない。
+状態: 承認済みのL3要件。機構固有の業務要件のみを固定採択L2の意味から整理し、実装済み・業務成果成立とは扱わない。
 
 旧HELIXの3 sub-doc分離（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:16-28`、LEGACY-ASSET-9A772391C7FB1298D45F）と業務詳細を機能詳細から分けた形（`business-detail.md:21-39,84-104`、LEGACY-ASSET-A6E2C7F0565E5F804F06）を起点にする。再導出するのは、業務目的・評価owner・責任境界を明示し機能要件と重複しない形式である。旧HARNESSのLearning Engine、PLAN単位評価、旧KPI/score/自動適用や承認動作はINTELLIGENCEへ移さない。
 
@@ -23,9 +23,9 @@ Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT
 
 ## Stage 2c — 068/075の起草範囲とsource
 
-状態: 以下のStage 2c追補はL3未承認の起草候補・未実行の検証設計である。上のStage 2a本文とその承認範囲を変更しない。対象は採択済みHELIXINTELLIGENCE-L2-068/075に限る。旧source起点・項目別の再導出/置換は各項目と時点監査に記録する。
+状態: 以下のStage 2c追補は承認済みのL3要件・未実行の検証設計である。上のStage 2a本文とその承認範囲を変更しない。対象は採択済みHELIXINTELLIGENCE-L2-068/075に限る。旧source起点・項目別の再導出/置換は各項目と時点監査に記録する。
 
-状態: L3未承認（委任承認前）の起草候補。機構固有の業務要件のみを固定採択L2の意味から整理し、実装済み・業務成果成立とは扱わない。
+状態: 承認済みのL3要件。機構固有の業務要件のみを固定採択L2の意味から整理し、実装済み・業務成果成立とは扱わない。
 
 旧HELIXの3 sub-doc分離（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:16-28`、LEGACY-ASSET-9A772391C7FB1298D45F）と業務詳細を機能詳細から分けた形（`business-detail.md:21-39,84-104`、LEGACY-ASSET-A6E2C7F0565E5F804F06）を起点にする。再導出するのは、業務目的・評価owner・責任境界を明示し機能要件と重複しない形式である。旧HARNESSのLearning Engine、PLAN単位評価、旧KPI/score/自動適用や承認動作はINTELLIGENCEへ移さない。
 
@@ -98,7 +98,7 @@ Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT
 review08追補およびStage 3再照合の005/007/011/016/067/072/078各機能fixtureは対応ACへtraceする。独立business基準や業務成果の承認は追加せず、比較成立・候補成立・修復結果照合からownerの業務判断を生成しない。
 ## Stage 5 — business outcome範囲（INTELLIGENCE 9親）
 
-状態: L3未承認の起草候補。旧L3のbusiness-detail分離形を起点とし、固定L2/L11が独立のbusiness outcome owner/metricを置く場合だけBR化する。今回の9親はfunction/acceptance/evidence ownershipを定めるが、独立事業KPIや成果閾値を定めないため新しいBR・business metric・Business CASEを追加しない。
+状態: 承認済みのL3要件。旧L3のbusiness-detail分離形を起点とし、固定L2/L11が独立のbusiness outcome owner/metricを置く場合だけBR化する。今回の9親はfunction/acceptance/evidence ownershipを定めるが、独立事業KPIや成果閾値を定めないため新しいBR・business metric・Business CASEを追加しない。
 
 | 固定親 | 機能上の対象 | BR/business CASE | 正本trace |
 |---|---|---|---|

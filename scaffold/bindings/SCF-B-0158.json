@@ -25,17 +25,17 @@
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "b571a3253e6b7d0b9853d4762c2624dca1a089a2116e550261f29aa49a8466c7",
+      "sha256": "f656baed7f0c1616ee6f654098212341f2574cc4a80aa4a97fde8c1bdaf84ac2",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "2062d5ce0c0043b776841f2d22459fca9dfe63dfa3719fdbb54fcddc072303b2",
+      "sha256": "a4deac6d73a81bc84ca9d23613c8e11979a1c15e4af192f50b8471977bec62eb",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "443a4a8bd4df137d6ec7f8e0684a9def988907e1511a8b13fde86b1c4cccbdb7",
+      "sha256": "9c69ece956c58c94cd344c8774e02cccb42d2561f86610d97f4f5e36865055c4",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {

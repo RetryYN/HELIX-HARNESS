@@ -13,7 +13,7 @@ version_target: 1.0
 
 固定入力は対のL5本文SHA-256 `c52d39cfc4ad2bc7469725284db76ed300a9d78806bb05ebafe7ce171a622753`である。
 
-L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `004166092e6abc5c8a20ccc2d2f0b8cb9c49017c46de43c29eb03d887de1043a`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
+L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `9c69ece956c58c94cd344c8774e02cccb42d2561f86610d97f4f5e36865055c4`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
 
 ## 1. Fixture規則
 

@@ -53,6 +53,71 @@ def _partial_suite_artifact(target, source_refs, row, stdout_digest, reason, ext
     return value
 
 
+def _merge_snapshot_sources(snapshot, additions):
+    """Add fixed suite inputs without rewriting or repairing existing snapshot files."""
+    references = {}
+    for ref in snapshot.source_refs:
+        path = ref.get("path")
+        digest = ref.get("sha256")
+        if not isinstance(path, str) or not isinstance(digest, str) or path in references:
+            raise Diagnostic("Unknown", "conflict", "snapshot source references are ambiguous")
+        references[path] = digest
+
+    prepared = []
+    for source_path, data in additions.items():
+        if not isinstance(source_path, str):
+            raise Diagnostic("Rejected", "invalid_input", "invalid fixed snapshot source path")
+        relative = Path(source_path)
+        if (relative.is_absolute()
+                or not relative.parts or any(part in ("", ".", "..") for part in relative.parts)):
+            raise Diagnostic("Rejected", "invalid_input", "invalid fixed snapshot source path")
+        destination = snapshot.root.joinpath(*relative.parts)
+        current = snapshot.root
+        for part in relative.parts:
+            current = current / part
+            if current.is_symlink():
+                raise Diagnostic("Unknown", "conflict", "snapshot source path is a symlink: " + source_path)
+
+        prior_data = snapshot.sources.get(source_path)
+        prior_digest = references.get(source_path)
+        if source_path in snapshot.sources or source_path in references:
+            if prior_data is None or prior_digest is None:
+                raise Diagnostic("Unknown", "missing_input", "snapshot source identity is incomplete: " + source_path)
+            if sha256(prior_data) != prior_digest or prior_data != data:
+                raise Diagnostic("Unknown", "conflict", "snapshot source bytes differ: " + source_path)
+            if not destination.exists():
+                raise Diagnostic("Unknown", "missing_input", "snapshot source file is missing: " + source_path)
+            if not destination.is_file():
+                raise Diagnostic("Unknown", "conflict", "snapshot source path is not a regular file: " + source_path)
+            try:
+                existing = destination.read_bytes()
+            except OSError as exc:
+                raise Diagnostic("Unknown", "unreadable", "snapshot source file cannot be read: " + source_path) from exc
+            if existing != prior_data:
+                raise Diagnostic("Unknown", "conflict", "snapshot source bytes differ: " + source_path)
+        elif destination.exists():
+            if not destination.is_file():
+                raise Diagnostic("Unknown", "conflict", "snapshot source path is not a regular file: " + source_path)
+            try:
+                existing = destination.read_bytes()
+            except OSError as exc:
+                raise Diagnostic("Unknown", "unreadable", "snapshot source file cannot be read: " + source_path) from exc
+            if existing != data:
+                raise Diagnostic("Unknown", "conflict", "snapshot source bytes differ: " + source_path)
+        else:
+            prepared.append((source_path, data, destination))
+
+    for source_path, data, destination in prepared:
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(data)
+    for source_path, data in additions.items():
+        if source_path not in snapshot.sources:
+            snapshot.sources[source_path] = data
+        if source_path not in references:
+            snapshot.source_refs.append({"path": source_path, "sha256": sha256(data)})
+            references[source_path] = sha256(data)
+
+
 def _validate_suite_result(payload, target, source_refs, execution, source_bytes):
     if not isinstance(payload, dict) or payload.get("schema_version") != 1 or payload.get("suite_id") != SUITE_ID:
         raise Diagnostic("Unknown", "conflict", "suite runner result schema is not recognized")
@@ -276,22 +341,16 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
                                                 for path, *_ in SUPPLEMENTAL_SOURCE_REFS.values()})
             if not trace:
                 raise Diagnostic("Unknown", "missing_input", "mechanism L7 source trace is empty")
-            suite_refs.extend(subject_ref(path, target, data)
-                              for path, data in sorted(additions.items()))
             for parent, _dirs, _files in os.walk(snapshot.root):
                 Path(parent).chmod(0o700)
-            for source_path, data in additions.items():
-                destination = snapshot.root / source_path
-                destination.parent.mkdir(parents=True, exist_ok=True)
-                destination.write_bytes(data)
-                snapshot.sources[source_path] = data
+            _merge_snapshot_sources(snapshot, additions)
             # The source closure is added only after the first five checks completed.
             for parent, dirs, files in os.walk(snapshot.root):
                 for filename in files:
                     (Path(parent) / filename).chmod(0o444)
                 Path(parent).chmod(0o555)
-            snapshot.source_refs.extend({"path": path, "sha256": sha256(data)}
-                                        for path, data in sorted(additions.items()))
+            suite_refs.extend(subject_ref(path, target, data)
+                              for path, data in sorted(additions.items()))
 
         def run_spec(spec):
             outcome = run_step(snapshot.root, spec, host_config, portable, cancel)

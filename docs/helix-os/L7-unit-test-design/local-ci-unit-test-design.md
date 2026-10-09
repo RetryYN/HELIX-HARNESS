@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `2062d5ce0c0043b776841f2d22459fca9dfe63dfa3719fdbb54fcddc072303b2`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `a4deac6d73a81bc84ca9d23613c8e11979a1c15e4af192f50b8471977bec62eb`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -244,3 +244,5 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 これらのoracleは三partitionの固定inventoryとrunner resultのidentity境界だけを検査し、機構の正式L7 fixture/pass・L8/L9 oracle・製品登録/owner接続を生成しない。`UT-LCI-144`の716は設計上の期待集合で、eeb6 runtimeのdiscovery/execution結果ではない。現在runtimeで照合される613はCore586＋製品補助27のprefixである。L5 §8.1の27行ごとのmethod assertion内容は各製品source/test bytesに属し、本書で再分類しない。実装時の非formal回帰では、trusted側AST preflightが設計候補の固定17 alias/path（Core 5、製品補助4、機構helper8）からclass/method identityを照合し、test moduleをimportしないこと、重複class/function/methodや欠落・余分identityを既存diagnosticで止めることを確認する。これは716候補の構造照合であり、現行mainの613 identity inventoryにはhelper partitionを含まず、新たなformal fixture、coverage mapping、製品L7合格ではない。実test moduleのimport/discoveryはsandbox内runnerで引き続き照合する。
 
 既存oracleの負例内訳: UT-LCI-105/106はerror、expected failure、unexpected successも個別に変異させ、各該当ID/countを保持したfailを確かめる。UT-LCI-107は5 outcomeが空の非zero exit、bool count、余分なfield、count/ID不一致、過大frame、不正JSON、未開始結果を各々拒む。UT-LCI-103はplaceholder未知値/余分なsuffixを個別に拒む。UT-LCI-111/113は作成前payload検証の境界であり、保存後のartifactをproviderが取得・再検証する意味ではない。同oracleでartifact root/file mode不正、symlink ancestor、repo内path、digest名collision、atomic link失敗も個別に拒み、XDG未設定時はuid別固定rootからexact bytesを再読できることを確認する。UT-LCI-101/102にはmissing_inputとconflict双方で先行5件のpartial diagnosticが残りsuite行/receiptが無いことを含める。
+
+F-LCI-10のsnapshot merge実装にはformal IDを増やさない局所回帰を置く。既存read-only source fileと同一bytesの再投入は再書込みせずsource/source-refを重複追加しない。既存identityの異bytesは`Unknown(conflict)`、identityがあるのにfileが欠ける場合は`Unknown(missing_input)`、symlinkは`Unknown(conflict)`とし、snapshotを修復・followしない。この回帰はUT-LCI-100..143のformal inventoryやcoverage mappingに加えず、L6 F-LCI-10のreadonly snapshot条件を実装上保つ。

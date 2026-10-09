@@ -1,12 +1,16 @@
 """Run-level state boundaries using fixed synthetic execution outcomes."""
 from pathlib import Path
+import stat
+from types import SimpleNamespace
+import tempfile
 import sys
 import threading
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from common import CHECK_IDS, Diagnostic
-from driver import execute_plan, unstarted
+from common import CHECK_IDS, Diagnostic, sha256
+from driver import _merge_snapshot_sources, execute_plan, unstarted
 from plan import compile_plan
 
 
@@ -132,6 +136,143 @@ class DriverTests(unittest.TestCase):
         self.assertEqual(self.calls, [])
         self.assertEqual(aggregate, "interrupted")
         self.assertTrue(all(r["started_at"] is None and r["reason"] == "cancelled" for r in rows))
+
+    def test_snapshot_merge_reuses_identical_readonly_source_without_duplicate_refs(self):
+        source_path = "units/common-kernel/src/common_kernel.py"
+        source_bytes = b"fixed target source\n"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            destination = root / source_path
+            destination.parent.mkdir(parents=True)
+            destination.write_bytes(source_bytes)
+            destination.chmod(0o444)
+            snapshot = SimpleNamespace(
+                root=root,
+                sources={source_path: source_bytes},
+                source_refs=[{"path": source_path, "sha256": sha256(source_bytes)}],
+            )
+            with patch.object(Path, "write_bytes") as write_bytes:
+                _merge_snapshot_sources(snapshot, {source_path: source_bytes})
+            write_bytes.assert_not_called()
+            self.assertEqual(destination.read_bytes(), source_bytes)
+            self.assertEqual(snapshot.sources[source_path], source_bytes)
+            self.assertEqual(snapshot.source_refs, [{"path": source_path, "sha256": sha256(source_bytes)}])
+
+    def test_snapshot_merge_rejects_different_bytes_without_overwriting_readonly_source(self):
+        source_path = "units/common-kernel/src/common_kernel.py"
+        original = b"fixed target source\n"
+        different = b"different bytes\n"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            destination = root / source_path
+            destination.parent.mkdir(parents=True)
+            destination.write_bytes(original)
+            destination.chmod(0o444)
+            snapshot = SimpleNamespace(
+                root=root,
+                sources={source_path: original},
+                source_refs=[{"path": source_path, "sha256": sha256(original)}],
+            )
+            with patch.object(Path, "write_bytes") as write_bytes:
+                with self.assertRaises(Diagnostic) as raised:
+                    _merge_snapshot_sources(snapshot, {source_path: different})
+            self.assertEqual((raised.exception.classification, raised.exception.reason), ("Unknown", "conflict"))
+            write_bytes.assert_not_called()
+            self.assertEqual(destination.read_bytes(), original)
+            self.assertEqual(snapshot.source_refs, [{"path": source_path, "sha256": sha256(original)}])
+
+    def test_snapshot_merge_detects_changed_readonly_file_bytes(self):
+        source_path = "units/common-kernel/src/common_kernel.py"
+        expected = b"fixed target source\n"
+        changed = b"modified snapshot bytes\n"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            destination = root / source_path
+            destination.parent.mkdir(parents=True)
+            destination.write_bytes(changed)
+            destination.chmod(0o444)
+            snapshot = SimpleNamespace(
+                root=root,
+                sources={source_path: expected},
+                source_refs=[{"path": source_path, "sha256": sha256(expected)}],
+            )
+            with patch.object(Path, "write_bytes") as write_bytes:
+                with self.assertRaises(Diagnostic) as raised:
+                    _merge_snapshot_sources(snapshot, {source_path: expected})
+            self.assertEqual((raised.exception.classification, raised.exception.reason), ("Unknown", "conflict"))
+            write_bytes.assert_not_called()
+            self.assertEqual(destination.read_bytes(), changed)
+
+    def test_snapshot_merge_does_not_repair_missing_known_source(self):
+        source_path = "units/common-kernel/src/common_kernel.py"
+        source_bytes = b"fixed target source\n"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            snapshot = SimpleNamespace(
+                root=root,
+                sources={source_path: source_bytes},
+                source_refs=[{"path": source_path, "sha256": sha256(source_bytes)}],
+            )
+            with self.assertRaises(Diagnostic) as raised:
+                _merge_snapshot_sources(snapshot, {source_path: source_bytes})
+            self.assertEqual((raised.exception.classification, raised.exception.reason), ("Unknown", "missing_input"))
+            self.assertFalse((root / source_path).exists())
+
+    def test_snapshot_merge_rejects_symlink_instead_of_following_it(self):
+        source_path = "units/common-kernel/src/common_kernel.py"
+        source_bytes = b"fixed target source\n"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            destination = root / source_path
+            destination.parent.mkdir(parents=True)
+            outside = root.parent / (root.name + "-outside-source")
+            outside.write_bytes(source_bytes)
+            destination.symlink_to(outside)
+            snapshot = SimpleNamespace(root=root, sources={}, source_refs=[])
+            try:
+                with self.assertRaises(Diagnostic) as raised:
+                    _merge_snapshot_sources(snapshot, {source_path: source_bytes})
+                self.assertEqual((raised.exception.classification, raised.exception.reason), ("Unknown", "conflict"))
+                self.assertEqual(outside.read_bytes(), source_bytes)
+                self.assertEqual(snapshot.source_refs, [])
+            finally:
+                outside.unlink(missing_ok=True)
+
+    def test_snapshot_merge_adds_new_source_and_reuses_both_readonly_paths(self):
+        existing_path = "units/common-kernel/src/common_kernel.py"
+        new_path = "units/common-kernel/src/new_fixed_source.py"
+        existing_bytes = b"existing fixed source\n"
+        new_bytes = b"new fixed source\n"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            existing = root / existing_path
+            existing.parent.mkdir(parents=True)
+            existing.write_bytes(existing_bytes)
+            existing.chmod(0o444)
+            snapshot = SimpleNamespace(
+                root=root,
+                sources={existing_path: existing_bytes},
+                source_refs=[{"path": existing_path, "sha256": sha256(existing_bytes)}],
+            )
+            additions = {existing_path: existing_bytes, new_path: new_bytes}
+
+            _merge_snapshot_sources(snapshot, additions)
+            added = root / new_path
+            self.assertEqual(existing.read_bytes(), existing_bytes)
+            self.assertEqual(added.read_bytes(), new_bytes)
+            self.assertEqual(stat.S_IMODE(existing.stat().st_mode), 0o444)
+            self.assertEqual(len(snapshot.source_refs), 2)
+            self.assertEqual({row["path"] for row in snapshot.source_refs}, {existing_path, new_path})
+            self.assertEqual(snapshot.sources, additions)
+
+            added.chmod(0o444)
+            with patch.object(Path, "write_bytes") as write_bytes:
+                _merge_snapshot_sources(snapshot, additions)
+            write_bytes.assert_not_called()
+            self.assertEqual(stat.S_IMODE(existing.stat().st_mode), 0o444)
+            self.assertEqual(stat.S_IMODE(added.stat().st_mode), 0o444)
+            self.assertEqual(len(snapshot.source_refs), 2)
+            self.assertEqual(snapshot.sources, additions)
 
 
 if __name__ == "__main__":
