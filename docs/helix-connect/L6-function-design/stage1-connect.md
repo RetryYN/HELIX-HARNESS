@@ -10,7 +10,7 @@ parents:
   - HELIXCONNECT-L2-004
   - HELIXCONNECT-L2-005
 paired_l7: ../L7-unit-test-design/stage1-connect-unit-test-design.md
-base: main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
+base: main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`
 ---
 
 # HELIX-CONNECT Stage 1 L6 関数設計
@@ -27,7 +27,7 @@ base: main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
 | L5 `docs/helix-connect/L5-detail-design/stage1-connect.md` | `7e5bb8a0f0756e76feaa101939a1d73940cceaba62e5b46034584ba4820772a0` |
 | L8 `docs/helix-connect/L8-detail-verification/stage1-connect-detail-verification.md` | `8cf9f0326594629c64ade663e2df61bf7d382d238ae3f4ea958a331cb9699b62` |
 | 既存L9 `docs/helix-connect/L9-integration-verification/stage1-connect-integration-verification.md` | `0e956080febe084fdf4747b6d9bd3f86ea6400a65e3ecc179d59566dabefc92a` |
-| 共通kernel L5 `docs/helix-harness/L5-detail-design/common-kernel.md` | `81193f9be03af312da7e87915691b06f7d3e1777843708abab6efb040df1d6c9` |
+| 共通kernel L5 `docs/helix-harness/L5-detail-design/common-kernel.md` | `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69` |
 
 これらの値はこの設計候補の入力固定値であり、承認や実装の証明ではない。L9が定義済みの18件の`IV-CONNECT-*`を参照する。L6/L7は既存verifier IDを再定義・再採番しない。L7の`UT-CONNECT-*`はこの文書対内部のfixture locatorで、要求AC・L9 oracle IDではない。
 
