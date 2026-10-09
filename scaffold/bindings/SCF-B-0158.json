@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS local CI運転契約",
   "state": "active",
-  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernelの固定Core inventoryとBRAIN/LABO/HARNESS/INFRAの製品補助partitionを保持する。レビュー対象base 0b402daのruntimeはCore586＋製品補助27の613 identitiesを対象とし、そのidentity集合はeeb6ae7から不変である。L5 §8.2の機構helper103とunion716は設計追補候補で、runtimeには未登録・未実行である。manifestはhelper IDsの構造定義とsource/literal/reference/edge/dispositionだけを照合し、正式fixture pass、owner接続、登録、L8/L9合格を生成しない。同期の成立は個別の文書・参照・実装証拠で再検証し、Bindingから実装・合格を生成しない。",
+  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernel K1/K2/K3/K5/K6 verifier inventoryとBRAIN/LABO/HARNESS/INFRAの固定source-only補助partition、共有raw-row resolver、suite traceを含む現在のsource/definition/reference/edge/旧pin inventoryを同期対象とし、旧10文書manifestのsuccessを12文書構造完全性へ読み替えない。Common Kernel K4/G3 L5/L8本文もsource inputとしてpinし、その73 fixture IDは構造inventoryへ登録してraw row/locator/edge/dispositionの照合対象とする。Common Kernel K6 L5/L8本文もsource inputとしてpinする。K6の55 L8 fixture IDsはDesignScopeManifestへ未登録なので構造照合・L8 fixture実行を主張しない。一方、source-only K1/K2/K3/K5/K6 suiteは505 formal IDsを固定し、495 callable mapping（441 primary/52 stub/2 partial）と10 K6 not-exercised dispositionへ分ける。586 discovery identitiesを束縛し、K6は45 formal mappings（43 primary/2 partial callable）、10別disposition、7非formal regression identitiesである。K1/K2既存165 mappings（139 primary/26 stub）と199 identitiesを保持する。K5内訳は41 public API、24 helper、2 K2 lookupのprimaryと24 stubであり、local behavior 65とK2依存2を区別する。Core implementation/test refs 9件と4機構のsource/test refs 8件をそれぞれ固定inventoryのSHAで照合し、L6/L7文書はtargetから実読する。補助27 unittest identitiesはCore 586 identitiesと別partitionに保ち、composite discovery 613件として検査する。formal mapping、status/owner trace、L8/L9 oracleを補助testへ結ばない。同期の成立は単体検証とexact target CI証拠で確認し、Bindingから実装・合格を生成しない。",
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
@@ -15,27 +15,27 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "b7808a05292ac9f6cf2b7403fde426731fefa4750d0fee1e925ab0b174c9ed9a",
+      "sha256": "33aebc7f03da4fe9be8530c51c884b7170e73a6232d2cfcccb7460c5e0393c4c",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "303bd6325d5ceb1aa1d1abd716a8bac2c343f7c8d0eb7fe96139482bd933e37b",
+      "sha256": "e4903d46f35c224de14e17e0645e98ab760507f87f25cf6691b8e2887534714d",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "2515fc8c2fcaef66d53ff4e550777534a080875f148aa8acc97726c98e741387",
+      "sha256": "3c2cb03141d6c142a4571505677a4f8eaac91d5e111f78885092130e80f057e7",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "201dd7b8b2f84db20f0766b1a0bb4f7839ad856a9ccb4c2bb596fa7a1ee825d6",
+      "sha256": "a00f6054c5d9e3c5bfc46d159ebe2d43b4cfcc22b1db788252d6061336a8a233",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "716efb68df195f37889b94815690500b5007d4334ce54bce197b25773fcd0842",
+      "sha256": "68556cdbce8a480a076aae231c2e7c27eb457d5d10a2c5803ffe96da79525db8",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -122,241 +122,6 @@
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md",
       "sha256": "81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a",
       "note": "LEGACY-ASSET-0327D0DF98618D3066FD; lines 28-42 only. 静的read-only参照のみ。旧archiveは実行しない（旧source/runtime/test/hook/adapter/CIを実行せず）、literalでないcoverage edgeをUnknownへ残す歴史的起点に限る。"
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/src/common_kernel.py",
-      "sha256": "ce9c7a87cd318c2ff5d12f68c71129f6ad99f0b78616f89c501ccdd2c4643178",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/src/journal.py",
-      "sha256": "78dba87db2b55cb349ed8fbc5d0483cdb933a8cce4d45e910c5f9cbcaefeb907",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/src/permission.py",
-      "sha256": "6a2f3b0d82dd38b03a4b27b2f98ed58217286eb9912c6a984a6a5549ac6c9f8b",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/src/verification.py",
-      "sha256": "173c885b4b2400cf7479d7cabeabd14b65bfc8b2a025b6256d6463c52f5f958c",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/tests/test_k1.py",
-      "sha256": "da847ab19a9c3fa0df17c360bc489c9da2470f53d3ee6487ea0e822905e561ff",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/tests/test_k2.py",
-      "sha256": "3b1a6ede6642292ef31e458ca519bc293917da5e4654f85eda9ccf4a350d1582",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/tests/test_k3.py",
-      "sha256": "1dd8ff995c40e428e6952f607731f3215c3a44785a8b4f0b0ff6c7c340a2c62a",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/tests/test_k5.py",
-      "sha256": "c7d3dcedec9e63a1beb364147036135ae966c4330241f236f9842686e9134574",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/tests/test_k6.py",
-      "sha256": "3d6e6a873cdc80ac7ba7810a5b94d6b104e2d54b8523a8e01da0c80cf6fdda86",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "docs/helix-harness/L6-function-design/common-kernel.md",
-      "sha256": "10fb772fa3eef84a8b198848cf818bf8632046b04d4c4a8ba6198c91415e9596",
-      "note": "Paired L6/L7 source ref for helper candidate inventory; pin does not claim formal fixture execution or acceptance."
-    },
-    {
-      "path": "docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md",
-      "sha256": "dd14e9bf4440e376a38070537d69bd1cde1e31138a636ac4aa5f69402c1a72ce",
-      "note": "Paired L6/L7 source ref for helper candidate inventory; pin does not claim formal fixture execution or acceptance."
-    },
-    {
-      "path": "helix/helix-brain/units/stage1-brain/src/brain.py",
-      "sha256": "b2b856c3073d7a51e594362de3eaff9af7b76b6e9af6633fd214d2f3e8a05cce",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-brain/units/stage1-brain/tests/test_brain.py",
-      "sha256": "18ebfeaedc496c37adc0f000f472e8eb00b83f774cc05504be5259feb177a42f",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "docs/helix-brain/L6-function-design/stage1-brain.md",
-      "sha256": "31e32f042f896dce387376cce7134690b32d1d77d92e1f8319ba5edce5587930",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "docs/helix-brain/L7-unit-test-design/stage1-brain-unit-test-design.md",
-      "sha256": "e45e5d320cb975c2c4cf3072a439b98d7da8d45f8ce2c43c562427bfefc9178e",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-labo/units/stage1-labo/src/projection.py",
-      "sha256": "5c61fe620c35eeb2786b740ccd37086e0e81bdf797a95cbf9588c585537ab60a",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-labo/units/stage1-labo/tests/test_projection.py",
-      "sha256": "a60abe0042543a6bceedbff4f284356dc2d2c347343ba6469423e1dd26b9613c",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "docs/helix-labo/L6-function-design/stage1-labo.md",
-      "sha256": "2e50852c9abeacb5096fb3ccd0050d4209bb8fd4788a66e819fb6bb5fce1cb2d",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "docs/helix-labo/L7-unit-test-design/stage1-labo-unit-test-design.md",
-      "sha256": "1e7e31010138b1e40799d8dbaa3bd3a2b357fb2c6fd5eb1853ece6326632815a",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-harness/units/harness-stage1/src/stage1_pack.py",
-      "sha256": "2a6db3be14fe2d094a3947c36b4e911708d0ec95c6bcd59bec4ffd338e088c5d",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-harness/units/harness-stage1/tests/test_stage1_pack.py",
-      "sha256": "4ea1ee6a0056fba259298ce935f981dcfbef0dc00c296971b25cbc2806138d88",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "docs/helix-harness/L6-function-design/stage1-harness.md",
-      "sha256": "1c0dd36fe8f0b3fd75251e686776c0188f3764b5b2293121fd2906eaa4772dca",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "docs/helix-harness/L7-unit-test-design/stage1-harness-unit-test-design.md",
-      "sha256": "4b39169b65544a65dac246703dec0bbf57963a4ce23e45f1891418af4114a34d",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py",
-      "sha256": "7bd177a70a01edd1adb439df290ef0c7d7d37940bff2072532eee28bd8ac7ffd",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py",
-      "sha256": "e24e83f6dedf47202962687a9e00c70a85f9328e2587838a9ef349242e5add21",
-      "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
-    },
-    {
-      "path": "docs/helix-infrastructure/L6-function-design/stage1-infrastructure.md",
-      "sha256": "0e6f25978dd67e7cb09c7c6097def7be93e8851ac75476c4fa591ecb87b25564",
-      "note": "Paired L6/L7 source ref for helper candidate inventory; pin does not claim formal fixture execution or acceptance."
-    },
-    {
-      "path": "docs/helix-infrastructure/L7-unit-test-design/stage1-infrastructure-unit-test-design.md",
-      "sha256": "ae28caf95df4ede573f3e83dd53bc25401cf08e60351cad9d2157f11f613a0b0",
-      "note": "Paired L6/L7 source ref for helper candidate inventory; pin does not claim formal fixture execution or acceptance."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/src/_k4_g3.py",
-      "sha256": "693b8a22b92f57f9a3427e8550f5cf039258e902c5a6fb2020b46926a7b08a8a",
-      "note": "Pinned helper source bytes for the design-only candidate partition; not formal L7 coverage or product acceptance."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/tests/test_k4_g3_private_helpers.py",
-      "sha256": "13b502cc5de90df3a16c53225ef40e4243a28a704bd04e9a9d769f768bf8bf1a",
-      "note": "Pinned helper test bytes for the design-only candidate partition; no execution claim."
-    },
-    {
-      "path": "helix/helix-security/units/stage1-security/src/projection.py",
-      "sha256": "250f7318c73f2e3133aa60f77643fba983dfad9bec262a62065c4cc11811d799",
-      "note": "Pinned helper source bytes for the design-only candidate partition; not formal L7 coverage or product acceptance."
-    },
-    {
-      "path": "helix/helix-security/units/stage1-security/tests/test_projection.py",
-      "sha256": "45797b347d6edde5a87c6525bc30d5cf5cf21faae145a5ca5ddfe4581e12f8d1",
-      "note": "Pinned helper test bytes for the design-only candidate partition; no execution claim."
-    },
-    {
-      "path": "docs/helix-security/L6-function-design/stage1-security.md",
-      "sha256": "72ab26d0c949c95622903b5f91fea133cf1571f2143c32a4f8675926de362310",
-      "note": "Paired L6/L7 source ref for helper candidate inventory; pin does not claim formal fixture execution or acceptance."
-    },
-    {
-      "path": "docs/helix-security/L7-unit-test-design/stage1-security-unit-test-design.md",
-      "sha256": "4ef8d47fb98219d2bcc755b3b3b86e1756b06b171f2d0e50f4a9be41002828da",
-      "note": "Paired L6/L7 source ref for helper candidate inventory; pin does not claim formal fixture execution or acceptance."
-    },
-    {
-      "path": "helix/helix-connect/units/connect-stage1/src/connection_contract.py",
-      "sha256": "e98e09c1eaa2b20c17891dfa0c2c1d1fb7510eeef3d53880847cfd02c3dcbd72",
-      "note": "Pinned helper source bytes for the design-only candidate partition; not formal L7 coverage or product acceptance."
-    },
-    {
-      "path": "helix/helix-connect/units/connect-stage1/tests/test_connection_contract.py",
-      "sha256": "19f9efdba21ca5965f78a30ae43ed08e29adccfb98d673fe96a150bbb119a04e",
-      "note": "Pinned helper test bytes for the design-only candidate partition; no execution claim."
-    },
-    {
-      "path": "docs/helix-connect/L6-function-design/stage1-connect.md",
-      "sha256": "86966d4a5553ea8613d3c3546d57272d186fe656250d474ae494fbcd50d80d6d",
-      "note": "Paired L6/L7 source ref for helper candidate inventory; pin does not claim formal fixture execution or acceptance."
-    },
-    {
-      "path": "docs/helix-connect/L7-unit-test-design/stage1-connect-unit-test-design.md",
-      "sha256": "3d1134a2e8e745a3926e59d8799fab9f5eefc910107a953d659035e0f5541d44",
-      "note": "Paired L6/L7 source ref for helper candidate inventory; pin does not claim formal fixture execution or acceptance."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/src/_k7_g5_private.py",
-      "sha256": "e13bff0ec554ab8a244949e3f318c86c00e88556ca9286fca51bd409c9b5917c",
-      "note": "Pinned helper source bytes for the design-only candidate partition; not formal L7 coverage or product acceptance."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/tests/test_k7_g5_private.py",
-      "sha256": "32aebb1851310f7938dd5cbf056f0041f5caafd26a2db8b1737fe5fb6f200ff9",
-      "note": "Pinned helper test bytes for the design-only candidate partition; no execution claim."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/src/_k9_private.py",
-      "sha256": "0dfa4865ce839727aa77bcd96d638b850bc91cb484b0c6e4d32539d947157be2",
-      "note": "Pinned helper source bytes for the design-only candidate partition; not formal L7 coverage or product acceptance."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/tests/test_k9_private.py",
-      "sha256": "4250bf09434833b5e317a513f7ccd70ab3e4d6a9aabf6d551f1845be2c802415",
-      "note": "Pinned helper test bytes for the design-only candidate partition; no execution claim."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/src/_k10_graph.py",
-      "sha256": "fe48cb7f1ada152d96420c7264300f8533a68682e330e9c8578bc84d32250bfc",
-      "note": "Pinned helper source bytes for the design-only candidate partition; not formal L7 coverage or product acceptance."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/tests/test_k10_graph.py",
-      "sha256": "f58048ca009c390dcc33efa3e7202165fa48100dba52906114f85a1e5102414c",
-      "note": "Pinned helper test bytes for the design-only candidate partition; no execution claim."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/src/_k8_label.py",
-      "sha256": "eb0cf6439172ede0164be6e68679eb500e3ae9445c34e5a01b0fce9c18f867ac",
-      "note": "Pinned helper source bytes for the design-only candidate partition; not formal L7 coverage or product acceptance."
-    },
-    {
-      "path": "helix/helix-harness/units/common-kernel/tests/test_k8_label.py",
-      "sha256": "6804c46a277e6d57fa7682cdadd94ed52107e3089db7a61d318cca6bcd07b842",
-      "note": "Pinned helper test bytes for the design-only candidate partition; no execution claim."
-    },
-    {
-      "path": "helix/helix-infrastructure/units/infrastructure-stage1/src/_private_resource_projection.py",
-      "sha256": "f06c193f403cda7478e2195d36d1c0b7e97600bbef8a44565ced883a65c039bb",
-      "note": "Pinned helper source bytes for the design-only candidate partition; not formal L7 coverage or product acceptance."
-    },
-    {
-      "path": "helix/helix-infrastructure/units/infrastructure-stage1/tests/test_resource_projection.py",
-      "sha256": "c57ef11a6c32d226880d7fc9e44de553cdd38410cacd3fd19812000deeebc768",
-      "note": "Pinned helper test bytes for the design-only candidate partition; no execution claim."
     }
   ],
   "role": "開発repository向けlocal CI driverを固定target/snapshot上で運転し、local結果と選択済みmerge-unit照合の証拠を用意する。要求・承認・merge authorityは持たない。",
@@ -420,9 +185,9 @@
     ],
     "oracles": [
       "docs/helix-os/L4-basic-design/local-ci.md §2.1, §2.2",
-      "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract including IV-LCI-100..121",
+      "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract including IV-LCI-100..110",
       "docs/helix-os/L5-detail-design/local-ci-detail-design.md D-LCI-01..06",
-      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, CASE-L8-LCI-118..152 (design IDs 113..117 are not suite fixtures)",
+      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, CASE-L8-LCI-118..141, CASE-L8-LCI-142..152 (design IDs 113..117 are not suite fixtures)",
       "docs/helix-os/L6-function-design/local-ci-function-design.md F-LCI-01..08 / F-LCI-09a..09d / F-LCI-10",
       "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI-01..113, UT-LCI-120..154 (design only; not executed)",
       "source-byte / target-tree digests and checkout-outside receipt location"

@@ -150,7 +150,7 @@ IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそ�
 
 ### 5.1 3 partition identity oracles
 
-以下は同一`LC-STAGE1-L7-001`内のCore586、product supplemental27、mechanism helper103 partitionを別々に照合する設計oracleである。505 formal IDs、495 mapping、K6 10 dispositionsは不変。機構formal locator/status/owner returnは別source referenceであり、helper identitiesへ対応付けない。既存IV-LCI-100〜110は更新済みL8 casesを参照し、IV-LCI-111〜120をCASE142〜151へ、IV-LCI-121をCASE152へ一対一で追加する。helper partitionを含む期待716は、レビュー対象base `0b402da`のruntime実行結果ではない（613 identity集合は`eeb6ae7`から不変）。
+以下は同一`LC-STAGE1-L7-001`内のCore586、product supplemental27、mechanism helper103 partitionを別々に照合する設計oracleである。505 formal IDs、495 mapping、K6 10 dispositionsは不変。機構formal locator/status/owner returnは別source referenceであり、helper identitiesへ対応付けない。既存IV-LCI-100〜110は更新済みL8 casesを参照し、IV-LCI-111〜120をCASE142〜151へ、IV-LCI-121をCASE152へ一対一で追加する。helper partitionを含む期待716は、レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`のruntime実行結果ではない（613 identity集合は`eeb6ae7`から不変）。
 
 | Oracle ID | L4/L5/L6 contract | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
@@ -175,6 +175,6 @@ IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそ�
 | `IV-LCI-118` | helper result完全性 | 全partitionでdiscovery/execution IDs/count/digestが一致する | helper executed ID一件だけを除く（L8 `CASE-L8-LCI-149`） | `Unknown(conflict)`、complete summary/receiptなし |
 | `IV-LCI-119` | 716結果frame上限 | body/capture/frameの最大合法値は134,755/134,756/180,450 bytes、候補上限は134,755/134,756/180,580 bytes | bodyだけを134,756 bytesへ1 byte超過させる（L8 `CASE-L8-LCI-150`） | `Unknown(conflict)`、切詰めcomplete artifactなし |
 | `IV-LCI-120` | helper source path固定 | 各familyは宣言済みsource/test pathを使う | K4/G3 test alias pathだけを変更する（L8 `CASE-L8-LCI-151`） | `Unknown(conflict)`、別path解決なし |
-| `IV-LCI-121` | basename衝突時のmodule alias隔離 | LABO/SECURITY各test import直前に各source pathの`projection`だけを一時bindingし、test globalsへ束縛後に同entryだけを復元する（L8 `CASE-L8-LCI-152`） | SECURITY test load前の一時置換を省き、LABOの`projection` entryをそのまま使う（L8 `CASE-L8-LCI-152`） | F-LCI-10 suite内のimport errorとしてstep fail。complete artifact/positive receiptなし。L7 `UT-LCI-154`がsuite failure/entry restorationを検査するが、機構formal ID/mappingは作らない |
+| `IV-LCI-121` | basename衝突時のmodule alias隔離 | LABO/SECURITY各test import直前に各source pathの`projection`だけを一時bindingし、test globalsへ束縛後にmodule load/test executionの例外時も含め`finally`で同entryだけを復元する（L8 `CASE-L8-LCI-152`） | SECURITY test load前の一時置換を省き、LABOの`projection` entryをそのまま使う（L8 `CASE-L8-LCI-152`） | F-LCI-10 suite内のimport errorとしてstep fail。complete artifact/positive receiptなし。L7 `UT-LCI-154`がsuite failure/entry restorationを検査するが、機構formal ID/mappingは作らない |
 
-これらはinventory/source bindingの設計oracleであり、27補助methodの未実行・部分実行をformal fixture pass、機構L7合格、owner接続、登録、製品全体coverageへ読み替えない。レビュー対象base `0b402da`のruntimeが対象とするCore＋製品補助の613 identitiesは実discovery/execution対象数であり、そのidentity集合は`eeb6ae7`から不変である。機構helper 103を加えた716 identitiesは設計候補であり、runtimeは未更新のため実discovery/execution件数ではない。
+これらはinventory/source bindingの設計oracleであり、27補助methodの未実行・部分実行をformal fixture pass、機構L7合格、owner接続、登録、製品全体coverageへ読み替えない。レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`のruntimeが対象とするCore＋製品補助の613 identitiesは実discovery/execution対象数であり、そのidentity集合は`eeb6ae7`から不変である。機構helper 103を加えた716 identitiesは設計候補であり、runtimeは未更新のため実discovery/execution件数ではない。

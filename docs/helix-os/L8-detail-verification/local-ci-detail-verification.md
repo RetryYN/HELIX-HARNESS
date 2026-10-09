@@ -11,9 +11,9 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `c52d39cfc4ad2bc7469725284db76ed300a9d78806bb05ebafe7ce171a622753`である。
+固定入力は対のL5本文SHA-256 `e4903d46f35c224de14e17e0645e98ab760507f87f25cf6691b8e2887534714d`である。
 
-L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `9c69ece956c58c94cd344c8774e02cccb42d2561f86610d97f4f5e36865055c4`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
+L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `68556cdbce8a480a076aae231c2e7c27eb457d5d10a2c5803ffe96da79525db8`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
 
 ## 1. Fixture規則
 
@@ -199,7 +199,7 @@ CASE-L8-LCI-105/106のoutcome変異はerror、expected failure、unexpected succ
 | `CASE-L8-LCI-149` | complete result identity closure | expected/discovered/executed ID setは各partitionで一致する | helper executed ID arrayから一件だけを落とす | `Unknown(conflict)`、complete summary/positive receiptなし |
 | `CASE-L8-LCI-150` | bounded 716 result frame | 最大合法body/capture/frameは134,755/134,756/180,450 bytes、候補上限は134,755/134,756/180,580 bytes | bodyだけを134,756 bytesへ1 byte増やす | `Unknown(conflict)`、truncated complete artifactなし |
 | `CASE-L8-LCI-151` | fixed source paths | 8 helper familiesは16 source/test refsとcorpus全体で14 unique L6/L7 pathsで固定される | K4/G3 test path aliasだけを別module pathへ差し替える | `Unknown(conflict)`、unlisted pathを受け入れない |
-| `CASE-L8-LCI-152` | basename collision isolation | LABO testはLABO固定sourceの`projection`をimportし、SECURITY testはSECURITY固定sourceの`projection`をimportする。loaderは各test import直前に対応source moduleだけを`sys.modules["projection"]`へ一時bindingし、test globalsへ束縛後に以前の当該entryだけを復元する | SECURITY test import時だけLABO source moduleを`sys.modules["projection"]`に残す | runner内module load/importが既存のF-LCI-10 suite executionでerrorになる。complete artifact/positive receiptなし。L7 `UT-LCI-154`はこのsuite failureとentry restorationを検査し、機構formal ID/mappingは作らない |
+| `CASE-L8-LCI-152` | basename collision isolation | LABO testはLABO固定sourceの`projection`をimportし、SECURITY testはSECURITY固定sourceの`projection`をimportする。loaderは各test import直前に対応source moduleだけを`sys.modules["projection"]`へ一時bindingし、test globalsへ束縛後にmodule load/test executionの成功・例外を問わず`finally`で以前の当該entryだけを復元する | SECURITY test import時だけLABO source moduleを`sys.modules["projection"]`に残す | runner内module load/importが既存のF-LCI-10 suite executionでerrorになる。complete artifact/positive receiptなし。正常baselineはsentinel entryとentry不在の両方を含み、module load/test execution例外後の`finally`復元と無関係entry不変も確認する。L7 `UT-LCI-154`はこのsuite failureとentry restorationを検査し、機構formal ID/mappingは作らない |
 
 
 各caseは固定inventoryの構造・source bindingだけを扱い、補助methodの実行成功から機構L7 formal fixtureの充足、owner接続、登録、L8/L9/L10合格を作らない。CASE-L8-LCI-131の716は候補期待集合であり、実discovery/execution結果ではない。CASE-L8-LCI-152は同じloader契約のintegration oracleであり、helper identityは増やさない。
