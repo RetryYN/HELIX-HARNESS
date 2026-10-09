@@ -434,11 +434,11 @@ reverify(admitted) -> Observed<AdmittedReceipt>
 required(operation, base_key, verifier_set, reverify: Bool) -> RequiredResult
 ```
 
-関数IDはこのL6内部trace用であり、新しい公開API、返却class/reason、owner portではない。
+関数IDはこのL6内部trace用であり、新しい公開API、返却class/reason、owner portではない。12 FNは公開入口3件（FN-01/FN-09/FN-10）とprivate責務9件である。第4の公開API `admit_receipt` はFN-04–08の照合鎖を束ねる既存入口として保持する。FN-03はL5 §9.3の`required`行のrestore→lookupという内部手順に対応し、`admit_receipt`の公開引数や前処理にlookupを追加しない。
 
 | L6 ID | 境界 / 可視性 | 関数責務 | 結果・接続 |
 |---|---|---|---|
-| `CK-K6-FN-01` | `run` / public | `base_key`からK6の既存receipt keyを導き、登録された検証器実行側が`ReceiptBody`を構成する。caller由来のresult/exit/output/read/registry/innerを受け入れず、既存2引数signatureの境界を維持する。 | K5 append境界へ既存`ResultRecorded`を返す。実行環境・writer実接続はこの設計から実在を主張しない。 |
+| `CK-K6-FN-01` | `run` / public | `base_key`からK6の既存receipt keyを導き、登録された検証器実行側が`ReceiptBody`を構成する。caller由来のresult/exit/output/read/registry/innerを受け入れず、既存2引数signatureの境界を維持する。 | 既存2引数signatureを満たす呼出しはK5 append境界へ既存`ResultRecorded`を返す。caller result/exit/output等を追加したsignature不適合attemptの`Rejected`はL9の既存期待を指し、`ResultRecorded`のvariantや追加公開引数を定義しない。実行環境・writer実接続はこの設計から実在を主張しない。 |
 | `CK-K6-FN-02` | `derive_receipt_key` / private pure | L4 §10.3に従いbase keyのoperation versionを`VerifierRef.version`にし、verifierとVerifierSetのSubjectRefをK2 inputsへ追加する。 | ResultKeyだけを生成する。receipt lookup結果の`Value`/`Stale`等は生成せず、後続K5 restore/K2 lookupへ渡す。 |
 | `CK-K6-FN-03` | receipt lookup preparation / private orchestration | K5 `restore`から固定prefixのrecord sequenceを得て、検証器ごとのFN-02 keyでK2 `lookup`を行う。timestampで並べ替えず、K5 append順とK2 exact/prior規則を保つ。 | restoreが非Valueなら同じ非Valueを当該componentへ伝播し、partial record lookupを実施しない。K2のStale/Unknown/UnobservedをK6新reasonへ変換しない。 |
 | `CK-K6-FN-04` | `match_verifier_entry` / private owner boundary | K4-owned current VerifierSetにあるmemberのidentity/version/digest全fieldとreceipt verifier refを照合し、`deterministic`とchecks mappingは一致したentryからだけ得る。 | member不一致は既存`Unknown(unregistered)`。VerifierSetのcurrent読取・登録をK6が創作しない。 |
@@ -446,12 +446,12 @@ required(operation, base_key, verifier_set, reverify: Bool) -> RequiredResult
 | `CK-K6-FN-06` | `validate_read_set` / private pure | `read` identity/digest集合をsubjectとnon-verifier inputsから作る期待集合と比較する。verifier/set refsをreadに追加しない。 | 期待read不足は`Unknown(missing_input)`、余分/違うdigestは`Unknown(conflict)`。実bytesの真正性はK6 reader owner境界に依存する。 |
 | `CK-K6-FN-07` | `verify_fixed_outputs` / private owner reader boundary | 各`FixedRef`を既存reader境界で読み、receiptが記録するdigestを実bytesから再計算した値と比べる。 | digest不一致は`Unknown(conflict)`、読取不能は`Unknown(unreadable)`。この草稿はreader実装・物理sourceを作らない。 |
 | `CK-K6-FN-08` | `rebuild_inner` / private pure | VerifierEntryの登録済みchecksとreceiptのevaluated/resultsをcheck identityごとに照合し、登録済みPolarityOfとK1既存combineへ全成分を渡す。保存innerと再合成値を比較する。 | 未評価は既存`Unobserved(not_run)`、未登録checkは`Unknown(unregistered)`、保存inner不一致は`Unknown(conflict)`。全componentとK1 diagnosticsを保持する。 |
-| `CK-K6-FN-09` | `required` / public orchestration | K4 `required_for[operation]` member集合を読み、各verifierについてrestore→key lookup→receipt admissionを行い、全必要check成分をK1 combineへ渡す。非required verifierで欠落memberを置換しない。 | APIは`RequiredResult{combined, assurance}`。`combined`にはK1 `Combined`のverdict/components/polarity/negatives/non_values/excluded/set_reason、`assurance`にはidentityごとの三項目を保持する。restoreが非Valueならそのcomponentへ保持する。 |
+| `CK-K6-FN-09` | `required` / public orchestration | K4 `required_for[operation]` member集合を読み、各verifierについてrestore→key lookup→receipt admissionを行い、全必要check成分をK1 combineへ渡す。非required verifierで欠落memberを置換しない。`reverify: Bool=true`なら受け入れた各receiptをFN-10の既存`reverify`へ渡し、返却されたreproductionと他assuranceを保持する。falseなら再実行せず既存の未実施/unsupported境界を保持する。 | APIは`RequiredResult{combined, assurance}`。`combined`にはK1 `Combined`のverdict/components/polarity/negatives/non_values/excluded/set_reason、`assurance`にはidentityごとの三項目を保持する。restoreが非Valueならそのcomponentへ保持する。 |
 | `CK-K6-FN-10` | `reverify` / public orchestration | deterministic entryだけ同じ固定入力で再実行し、保存innerとの再現を照合する。 | deterministic mismatch=`Unknown(conflict)`、非deterministic=`Unknown(unsupported)`。reproductionは過去実行・issuer authenticityの証拠へ拡張しない。 |
 | `CK-K6-FN-11` | K5 append/correction / private integration boundary | FN-01のrecordを既存K5 append境界へ渡し、既存immutable/correction拒否を保つ。 | L8-K6-13の既存K5 `Rejected`をそのまま伝える。K5 writer/append operationをK6で新設しない。IV-K6-14はK5 append sequenceとK2 prior lookupを接続し時刻を選択に使わない。 |
 | `CK-K6-FN-12` | consumer handoff / private boundary | `RequiredResult.combined`と`assurance`を別fieldとして保持し、`authority_effect="none"`、`issuer_authenticity=Unknown(unsupported)`を消費側へ渡す。 | IV-K6-15(1)のconsumer `Rejected`はL4にconsumer API/return typeがないため未接続。構造照合をconsumer拒否の実装/達成として主張しない。 |
 
-処理鎖は`run`ではFN-02→FN-01→検証器側body構成→FN-11、admissionではFN-03→FN-04→FN-05→FN-06→FN-07→FN-08、requiredではFN-03→FN-04–08を各memberに適用→K1合成、reverifyではFN-10である。これは責務順の候補であり、署名や検証器実行主体を新たに決めない。K2 lookupでprior Valueが返る場合は既存K2のStaleを維持し、別identity候補の非選択はUnobserved(not_run)のままとする。
+処理鎖は`run`ではFN-02→FN-01→検証器側body構成→FN-11、`admit_receipt`ではFN-04→FN-05→FN-06→FN-07→FN-08、requiredではFN-03→FN-04–08を各memberに適用→`reverify=true`の場合だけ受け入れた各receiptをFN-09からFN-10へ渡す→K1合成、reverifyではFN-10である。これは責務順の候補であり、署名や検証器実行主体を新たに決めない。K2 lookupでprior Valueが返る場合は既存K2のStaleを維持し、別identity候補の非選択はUnobserved(not_run)のままとする。
 
 ### 13.3 既存oracleとの一対一trace
 
