@@ -10,7 +10,7 @@ parents:
   - HELIXCONNECT-L2-004
   - HELIXCONNECT-L2-005
 paired_l8: ../L8-detail-verification/stage1-connect-detail-verification.md
-base: main `13a2d6ec23e568edb35ffaa7532950fbfda3aafd`
+base: main `b6463f2b9baa7df72703758f4e02afff9cbfac78`
 ---
 
 # HELIX-CONNECT Stage 1 L5 詳細設計
@@ -56,13 +56,13 @@ L3業務文書はこの5親へ独立business ACを定めない。L10業務文書
 | 両端owner | business意味・結果・入力・契約宣言とscopeを所有。受信結果から業務complete/承認/保存完了を生成しない。 |
 | HARNESS | fixture、検証scope、証拠契約。設計文書から検証実行済みを主張しない。 |
 
-共通kernelは既存契約を再利用し、CONNECT独自の結果型やUnknown理由を作らない。L4 §5はbase `7d48e458fcff7e03df18abc4f768981410685cf7`時点の歴史的固定snapshot（CK L4 SHA `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b`、CK L9 SHA `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`）を記録している。現base `13a2d6ec23e568edb35ffaa7532950fbfda3aafd`の現行本文はCK L4 SHA `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、CK L9 SHA `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`。このL5は現行の型・契約を参照するが、旧snapshot pinを現行と偽らず、L4/L9のsource recordも書き換えない。
+共通kernelは既存契約を再利用し、CONNECT独自の結果型やUnknown理由を作らない。L4 §5はbase `7d48e458fcff7e03df18abc4f768981410685cf7`時点の歴史的固定snapshot（CK L4 SHA `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b`、CK L9 SHA `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`）を記録している。現base `b6463f2b9baa7df72703758f4e02afff9cbfac78`の現行本文はCK L4 SHA `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、CK L9 SHA `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`。このL5は現行の型・契約を参照するが、旧snapshot pinを現行と偽らず、L4/L9のsource recordも書き換えない。
 
 - K1: `Observed<T>`/既存result classに従い、positiveを作る完全条件とUnknown/Unobserved/Staleを保持する。
 - K2: connection/operationごとのidentity/revision/input digestを既存key contractで束縛する。raw message・business payloadをK2 inputへ保存しない。使ったrevisionと登録時revisionを分ける。
 - K3: 既存operationについてだけ既存permission checkを参照し、compatibilityをauthorityへ混ぜない。
 - K4/K5/K6: unfinished obligation、append evidence、receipt/provenanceの各既存契約を使用する。receipt単体を真性証明やbusiness completionにしない。
-- K7: revision/fencing/current-operation契約を適用する。CONNECTがpointer・assignmentを所有しない。
+- K7: generation pointerとEpochTokenのfencing契約を適用する。operation/attempt状態は既存OS/CONNECT ownerの記録を参照し、CONNECTがpointer・assignmentを所有しない。
 - K8: label observationは既存型/契約に従い、labelから物理routeやsend permissionを推定しない。
 - K9/K10: independent review/dependency declarationを既存の範囲で参照する。
 
@@ -74,10 +74,10 @@ L3業務文書はこの5親へ独立business ACを定めない。L10業務文書
 |---|---|---|
 | `validate_connection_declaration(declaration_refs)` | connection identity; source/consumer SubjectRefとowner宣言; direction/scope; semantic contract、adapter/transport、artifact/dependency SubjectRef; compatibility range; 適用される既存SECURITY/data-use/classification識別子とowner宣言。適用識別子なしはownerの明示宣言でのみ表す。 | K1/K2に沿う純粋な宣言適合観測。missing/unknown/conflictの必須宣言はusableでない。endpoint共有は別identityなら許す。これは永続登録/receipt発行ではなく、送信eligibility/許可でもない。実保存を要する場合は既存K5 writerへ別操作として渡し、writer/owner未確認なら保存済みと扱わない。 |
 | `compare_compatibility(connection_ref, declared_revision_refs, current_revision_refs, read_scope_ref)` | 登録receipt、登録時・実使用時の端点/意味契約/adapter・transport/依存revision、宣言範囲、既存read scope。登録とcurrentを別fieldで保持。 | compatible/incompatible/unknown/staleの既存kernel結果と原因revision参照。read-onlyではsend eligibility `not_evaluated`、attempt 0。scope/access不明はpositiveへしない。 |
-| `check_send_eligibility(connection_ref, operation_ref, current_refs, existing_authority_refs)` | actor/target/operation/environment/revision/scope/expiryと適用される既存authority/data-use条件。これはsend判定操作に限る入力でありregistration/compatibilityの必須前提ではない。 | 既存K3結果と互換照合を別々に保持。いずれか非肯定ならsend/retry attempt 0。新許可やpolicyは作らない。 |
-| `bind_endpoint_observations(connection_ref, operation_ref, envelope_ref, compat_receipt_ref)` | 一つのconnection、operation identity/correlation/idempotency、contract revision、compatibility receipt、両端の契約入力。両端がschema identity/revisionを宣言した場合だけその既存SubjectRefを入力に含める。 | 各端点の技術観測/receipt、相関、未完義務とrecovery参照。異identity・revision・scopeの混合、片端欠落、必要handoff欠落はcompleteにしない。wire schemaは定めない。 |
+| `check_send_eligibility(connection_ref, operation_ref, current_refs, existing_authority_refs)` | ownerが現在宣言から解決するactor/target/operation/environment/revision/scope/expiryと適用される既存authority/data-use条件。API callerはactor/environment/current contextを渡さない。これはsend判定操作に限る入力で、registration/compatibility照合の必須前提ではない。 | 既存K3 `PermissionCheckResult`または`PermissionCheckDiagnostic`と互換照合結果を別々に保持。いずれか非肯定ならsend/retry attempt 0。新許可やpolicyは作らない。 |
+| `bind_endpoint_observations(connection_ref, operation_ref, envelope_ref, compat_receipt_ref)` | 一つのconnection、operation identity/correlation ID/idempotency key、contract revision、compatibility receipt、両端の契約入力。L10が定めるcapability name、artifact/dependency revision、scope、expiry、result stateを既存ownerの宣言/refで束縛し、両端がschema identity/revisionを宣言した場合だけその既存SubjectRefを入力に含める。 | 各端点の技術観測/receipt、相関、未完義務とrecovery参照。異identity・revision・scopeの混合、片端欠落、必要handoff欠落はcompleteにしない。wire schemaは定めない。 |
 | `assess_retry(operation_ref, prior_attempt_ref, failure_class_ref, contract_ref, current_authority_ref)` | 同一operation identity/content digest、単一契約revision、直前attempt/ACK/result、契約に宣言されたretryable分類/上限、元scope/expiry/authority参照。 | 契約上retryableかつ境界内の場合の候補判定と未完状態。実送信しない。same ID+digestの効果は増やさず、異digest・上限超過・business result・missing/unknown分類・authority失効は追加attempt 0。 |
-| `validate_trace_append(event_ref, prior_trace_refs)` | event種別、connection/operation/revision/attempt参照、観測端点、既存data-use識別子、K5/K6証拠ref。raw payload/secret/credentialは禁止。 | K5へ提案するeventの純粋な順序/field整合観測とunfinished/terminal projection。実際のappend/writeは行わない。書込は既存K5 writer/ownerの契約のみを利用し、writer未確認なら記録済みと主張しない。 |
+| `validate_trace_append(event_ref, prior_trace_refs)` | K5 `DeclaredEvent{event_type, refs}`の固定参照、接続/operation/使用revision/attemptを含むL10既存event/evidence refs、source ownerのdata-use識別子とK5/K6参照。`event_type`はcurrent `LogDecl.event_types`に宣言された値を使い、raw payload/secret/credentialは含めない。 | K5へ渡すevent候補の純粋なref完全性とorder情報の観測。欠落した既存required refはK1 `Unknown(missing_input)`として保持する。K5 append拒否`Rejected(reason)`は別境界の返却で、K1 `Unknown`へ写さない。append/writeは呼ばず、記録済みとは主張しない。 |
 | `measure_connection_nfr(candidate_ref, fixture_evidence_refs)` | 固定NFR ID、契約値または根拠付き候補、測定方法/条件/境界、L8合成fixture evidence. | candidate-specific measurement record. 候補を実装値/承認値/common SLAへ昇格させない。 |
 
 ### 4.1 論理routeと物理path
@@ -88,14 +88,18 @@ L3業務文書はこの5親へ独立business ACを定めない。L10業務文書
 
 既存K1結果とK2 keyを使う。接続結果はconnection identity、operation identity、scope、契約・依存の使用時revisionに結び付く。完全一致しないresultはcurrent resultに流用しない。L5 record候補はraw payloadを保持せず、必要な内容照合はcontent digest/referenceに限定し、その参照のauthorityと保存条件は元ownerの既存契約に従う。missing event/order/endpoint/receipt/handoffはpositive completionを作れない。K5のappend-only事実、K6の検証receipt、K7のgeneration pointer/fencing、OS ownerのoperation/attempt観測は異なる役割を保つ。
 
+### 4.3 既存結果classへの写像
+
+K1の外側result classだけを既存`Observed<T>`の値として使う。完全なResultKeyを構成でき、参照先の読み取れたcurrent sourceに必須宣言、event/evidence refまたは測定根拠が存在しない場合は`Unknown(missing_input)`、同一identity・revisionの固定bytesが矛盾する場合は`Unknown(conflict)`、current owner登録にないrevisionは`Unknown(unregistered)`とする。ResultKeyの必須identity/ref自体を構成できない場合は既存K1/K2 key boundaryの`Rejected(missing_key)`とし、架空SubjectRefやK1 Unknownを作らない。既存sourceが`Unknown`を返した場合はそのreasonとevidenceを変えずに保持する。以前保存した`Value`のrevisionをcurrent照会で使う場合だけ既存K2 lookupが`Stale`を導出する。単にread-only照合でsend queryを呼んでいない状態は別projection `send_eligibility=not_evaluated`でありK1 resultではない。送信attemptが実際に開始されていないときはattempt 0を保持する。K3 permission denialは`PermissionCheckResult.combined`の否定として保持し、K3 diagnosticsは`PermissionCheck`のunionのまま扱う。新しいK1/K3 reason・domain result型を追加しない。
+
 ## 5. API前後条件と失敗の局所化
 
 1. `validate_connection_declaration`はsource/consumerのcurrent declarationを入力から欠落させず、登録可否を純粋に照合する。明示されたregistration-onlyはdeclared結果として扱えるが、永続登録や送信許可の発行ではない。矛盾・欠落は該当する宣言ownerへ返す。実登録は既存K5 writer/owner境界を特定できる場合だけ別操作で行い、その正本化が未観測ならUnknown/Unobserved。
 2. `compare_compatibility`は宣言済みscope内のrevision pairだけを比べる。登録時とcurrentを混同せず、current pairが読み取れない場合はUnknown/Unobserved/Staleを保つ。再照合前にsendを呼べないようL6で同一operation bindingへ渡す。
-3. `check_send_eligibility`はcompatibility checkの代替ではない。existing SECURITY/data-use参照が適用されるsend操作のみ呼び、適用性やauthority recordが不足ならその操作だけ非肯定とする。 K3へ渡すqueryは既存`PermissionQuery{operation,target,revision,requested_scope,operation_inputs}`であり、actor/environmentをcaller contextから受理しない。上表の7軸は照合対象の所在を表し、actorはcurrent OS assignment、environmentはcurrent INFRA environment declarationからK3 `resolve_authority_context`が解決する。expiryは既存permission recordの値、authority refはSECURITY current permission sourceへの参照として扱う。各sourceが解決できない場合は既存K3診断を保持し、callerが不足軸を埋めない。
+3. `check_send_eligibility`はcompatibility checkの代替ではない。既存ownerがcurrent `OperationDecl`として宣言したsend operationが解決できる場合だけ呼び、CONNECTからoperation kindやOperationDeclを新設しない。該当するowner宣言がないoperationはその操作だけ局所未決とし、queryを構成しない。既存SECURITY/data-use参照が適用されるsend操作のみ照合し、authority recordが不足ならその操作だけ非肯定とする。K3へ渡すqueryは既存`PermissionQuery{operation,target,revision,requested_scope,operation_inputs}`であり、callerから申告されたoperation値だけで宣言を代用せず、actor/environmentもcaller contextから受理しない。上表の7軸は照合対象の所在を表し、actorはcurrent OS assignment、environmentはcurrent INFRA environment declarationからK3 `resolve_authority_context`が解決する。expiryは既存permission recordの値、authority refはSECURITY current permission sourceへの参照として扱う。各sourceが解決できない場合は既存K3診断を保持し、callerが不足軸を埋めない。
 4. endpoint bindingは一つのidentity/operation/contract revisionに対する2端点観測を独立に保持する。片端receiptのみ、結果不一致、contract外envelope、handoff欠落は端点のsuccess扱いをせず、該当端点owner/receiver business ownerへ戻す。
 5. retry assessmentは候補判定でありsend effectを持たない。実際のattemptは既存OS/CONNECT運転責任へ残し、L4にない上限・backoff・recovery operationを加えない。
-6. trace候補は既存event ref列を読み、完全性と順序だけを純粋に照合する。event提案はK5 writerへ渡す前のvalidationであり、このAPI候補自身はappend/writeしない。補正は新event refを提案し、既存K5 writerが記録したことを別に観測する。missing/out-of-order/未確認writerは記録済み完了にせず、unfinishedとしてoperation ownerへ戻す。
+6. trace候補は既存K5 `DeclaredEvent{event_type,refs}` ref列を読み、`event_type`がownerのcurrent `LogDecl.event_types`に含まれることと入力ref完全性を純粋に照合する。訂正の対象は既存K5 §9.4 K5-I8のとおり`DeclaredEvent`またはそれを根とする`Correction`の木だけであり、`ResultRecorded`を訂正対象へしない。event提案はK5 writerへ渡す前の照合であり、このAPI候補自身はappend/writeしない。K5 appendの`Rejected(reason)`をK1 resultへ変換しない。missing required inputはK1 `Unknown(missing_input)`、一意に順序比較できない場合は既存K1理由を保持し、記録済み完了にせずunfinishedとしてoperation ownerへ戻す。
 
 未登録source/owner、未知physical route、未観測permission、未証明receipt provenanceはそれぞれ該当操作の入力観測をUnknown/Unobservedとする。別軸のpositive、他接続のrecord、技術receiptで補わない。全operationを一律停止するgateにはしない。
 
