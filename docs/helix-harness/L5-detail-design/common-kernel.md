@@ -1,12 +1,12 @@
-# HELIX-HARNESS 共通カーネル L5詳細設計（K1/K2/K3/K4/K5/K6/K9/K10/G3）
+# HELIX-HARNESS 共通カーネル L5詳細設計（K1/K2/K3/K4/K5/K6/K7/K9/K10/G3/G5）
 
 status: draft
 owner: HELIX-HARNESS
-parent_requirement: なし（要素別にL4 §2.1／§3.1／§9.2／§10.2／§13.1／§14.1／§16.1／§17.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
+parent_requirement: なし（要素別にL4 §2.1／§3.1／§9.2／§10.2／§13.1／§15.1／§16.1／§17.1／§14.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
 base: main `d5bb3455526c816b3af965db239c4b56207a884f`
 
-本書は共通カーネルL4のK1/K2/K3/K4/K5/K6/K9/K10/G3を詳述する。L4の型、判定、鍵、失敗分類、alias意味、authority境界を変えない。K9は§10でL4 §17を詳細化し、K10は§11でL4 §14/L9 IV-K10-01–14を詳細化し、K7/K8は`not_designed`で現行L4/L9参照だけを残す。実装、L6 algorithm、実行、物理writer enforcementは定義しない。対のL8 fixtureも未実行である。
+本書は共通カーネルL4のK1/K2/K3/K4/K5/K6/K7/K9/K10/G3/G5を詳述する。L4の型、判定、鍵、失敗分類、alias意味、authority境界を変えない。K9は§10でL4 §17を、K7/G5は§11で既存K7/G5契約を詳細化する。K10は§12でL4 §14を詳細化する。K8は`not_designed`で現行L4/L9参照だけを残す。実装、L6 algorithm、実行、物理writer enforcementは定義しない。対のL8 fixtureも未実行である。
 
 本設計が想定する単一HARNESS unitの配置候補は`helix/helix-harness/units/common-kernel/`（`enc(helix-harness)=helix-harness`、`enc(common-kernel)=common-kernel`）で、宣言正本は同じフォルダの`declaration.json`とする。identity候補は`common-kernel`、pack version候補は文字列`0.1.0`、maturity候補は`development`、owner候補は既存の`core`種別と`HELIX-HARNESS-CORE`である。これらはHARNESS-L2-010/AC-HARNESS-L3-010-01の既存欄へ置く技術候補であり、登録値、製品版、release unitへの収載、将来版を確定しない。宣言項目の形はrepository-layout RL-C2が定める既存項目だけを使い、schema-version/kindの封筒以外にfieldを足さない。
 
@@ -14,9 +14,9 @@ base: main `d5bb3455526c816b3af965db239c4b56207a884f`
 
 | 入力 | 固定対象 | SHA-256 |
 |---|---|---|
-| Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`のcontent本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md`（K1/K2: §2/§3、とりわけ§2.1/2.5/2.6、§3.1–3.4.1。K3: §16全体。K4/G3: §13全体。K5: §9全体と§15.4–15.6の境界接続。K6: §10全体。K9: §17全体。K10: §14全体） | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
+| Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`のcontent本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md`（K1/K2: §2/§3、とりわけ§2.1/2.5/2.6、§3.1–3.4.1。K3: §16全体。K4/G3: §13全体。K5: §9全体と§15.4–15.6の境界接続。K6: §10全体。K7/G5: §15全体。K9: §17全体。K10: §14全体） | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
 | Repository Layout L4 | main `3961daac08d032ad512026e8365fafd9eae831c5` content pin：`docs/helix-harness/L4-basic-design/repository-layout.md`（§2–3、RL-C1–7、RL-D1–5、RL-T1–3、RL-K1–3、§6.1/§10） | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
-| Pair L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`のcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7/IV-LDG関連行、IV-K9-01–15、IV-K10-01–14） | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
+| Pair L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`のcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7-01–15、IV-G5-01–10、IV-LDG関連行、IV-K9-01–15、IV-K10-01–14） | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
 | Stage 1 PO decision | `docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md`（§「対象revisionと本文SHA」「適用範囲」） | `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
 L3 direct parentはL4各§のcrosswalk列記に限る。K6 §10.2の直接由来はConcept（原則6）、AC-HARNESS-L3-022-02/031-02/032-05/036-02、SECURITY-FR-031-03、SECURITY-AC-012-01、OS AC-OS-018-01/023-02/029-03であり、後続ownerやconsumer参照を直接親へ加えない。K1の直接由来は§2.1にあるHARNESS AC-HARNESS-L3-022-02、030-02、032-02/03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2の直接由来は§3.1にあるHARNESS AC-HARNESS-L3-010-01/03、022-05、030-04、031-05、032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6のkey必須条件からK2 §3.1のHARNESS 030-04/032-04へ、またK2記録/保存からK5 §9.3へつなぐ箇所は契約境界の相互参照であり、K1/K2それぞれの直接crosswalk親へ加えない。K3の直接親はL4 §16.1が列記するSECURITY-AC-008-01、022-01/02/03、009-01、003-01、005-01、006-01に限る。AC-OS-014-04/-06はK7接続の境界参照でありK3親へ加えない。K5の直接由来はL4 §9.2のConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。§15 K7/台帳との接続は同じL4 §15.1の既存AC/PO判断を参照し、K5へ別の親要求を追加しない。別のL3要求を追加せず、各L4 crosswalk外へ親を拡張しない。HARNESS Stage 1の判断記録は対象本文revision `a77672513325aa9e79f3780af40455361b5d19a8`とL2-010/011/023に限るため、同判断を他機構または他親の承認根拠として流用しない。
@@ -357,7 +357,7 @@ L5/L8で個別fixture設計へ展開するのはIV-K5-01–26である。IV-K7-0
 
 ### 6.3 今回の対象外
 
-K7/K8は本対で`not_designed`であり、既存のCommon Kernel L4各契約節とPair L9の対応oracleへ戻す。K1/K2/K3/K4/K5/K6/K9/K10/G3の設計は実装、実行、物理writer enforcement、approval/gateを意味しない。L3 semanticsの変更が必要な点は本書で解決せず、要求上流へ返す。
+K8は本対で`not_designed`であり、既存のCommon Kernel L4各契約節とPair L9の対応oracleへ戻す。K7/G5は§11で既存L4/L9契約を詳述する。K1/K2/K3/K4/K5/K6/K7/K9/K10/G3/G5の設計は実装、実行、物理writer enforcement、approval/gateを意味しない。L3 semanticsの変更が必要な点は本書で解決せず、要求上流へ返す。
 
 ## 7. Unit配置・宣言・型番登録
 
@@ -650,11 +650,78 @@ K1 `combine`は各componentのPolarityOf mappingと完全keyを用い、same=Neg
 
 このL5詳細設計から、owner roster/current schema/read adapter、actual producer graph全量性、route/context/authority comparatorが既に登録・実装されているとは言えない。K6 receipt authenticityも未証明ならactorやsourceの真正性は未証明のまま残る。設計候補は同じConcept/L3/L4要求の下流を具体化するだけで、新しい承認、runtime要件、CI gate、provider条件を作らない。
 
-## 11. K10 型付き依存グラフ
+## 11. K7世代pointer・fencingとG5取消し伝播
+
+### 11.1 固定入力と旧source
+
+K7/G5はL4 §15の既存契約を詳細化する。直接由来は同節§15.1のAC-OS-014-01/04/06、INFRA-005-AC-03/INFRA-006-AC-03、AC-HARNESS-L3-010-01/03・021-03、SECURITY-AC-009-01、2026-10-08方針6のPO判断に限る。K3 IV-K3-11/12/17、K5 event、K6 receipt、K10 graphは境界参照であり、K7/G5の新しい親要求へ昇格させない。
+
+| source | 固定位置 | SHA-256 |
+|---|---|---|
+| Common Kernel L4 | main `fcf00128a7503317fa1c779c38cc8df3877b4952`、`docs/helix-harness/L4-basic-design/common-kernel.md` §15 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
+| Common Kernel L9 | 同main、`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` IV-K7-01–15・IV-G5-01–10・IV-LDG-01–04 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
+
+| 旧source（asset／archive path:行／全文SHA-256） | 台帳・consumer・failure | 保持と差分 |
+|---|---|---|
+| `LEGACY-ASSET-B6DC14C1DA937E3AC96C`／`archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/node-runtime-cutover.md:47–53,106–112,123–129`／`49f3e4c324b19e728f7c05787bbd698f841728a526eedc7cec3f756b3601e9f9` | ledger row 570、Historical/unresolved、consumer_refs空。 | commit前の再読、pointer一件CAS、CAS敗者と旧fenceの作用0を保持し、runtime切替を段階世代pointerへ再導出する。旧workflow/state machineやruntimeは移さない。 |
+| `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`／`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:117,198`／`db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` | ledger row 424、RequirementSourceSnapshot、consumer_refs=`requirement-carry-forward-ledgers`,`requirement-atomization-review`。sourceはdraft、read-only snapshot。 | 失効runの遅着結果を適用しない点だけを歴史的根拠として保持する。snapshot自身を現行要求・authorityへ昇格しない。 |
+| `LEGACY-ASSET-BC2275DCE9BFFCF813C8`／`archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/python-worker-runtime.md:133–136`／`4c26544b5cf6e63ed226838ff5e04b3a669f6a9aa13456ffc5e5fb41fc755f8a` | ledger row 577、Historical/unresolved、consumer_refs空。 | cancel/timeout/reassignment後の旧fence結果拒否と新ownerの新run/checkpoint再開をK7-I6へ再導出する。旧runtimeを実行・移植しない。 |
+| `LEGACY-ASSET-1B413588CFF3B1360B49`／`archive/legacy-generation-2026-09-14/root/docs/adr/ADR-009-node-python-linux-runtime.md:113–120`／`bdd1c9a00243b723342e42531ddeabbf2f7570594943c11226d5b0461769753c` | ledger row 266、Historical/unresolved、consumer_refs空。 | 可逆な切替、明示許可のrollback、自動fallback禁止をK7-I3/I4/I5へ保持する。旧Node/Bun決定は採らない。 |
+| `LEGACY-ASSET-D461943347D372ECF6DA`／`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md:33,43`／`38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16` | ledger row 869、Historical/unresolved、consumer_refs空。未承認security candidate。 | revokeがin-flight作業へ及ぶ歴史的論点だけ保持する。受け手集合・状態の現行意味はSECURITY-AC-009-01とL4 G5から導き、候補を要求根拠にしない。 |
+
+上記5 assetの実ファイルSHAは台帳`source_sha256`と一致した。旧本文、旧test、旧runtimeは実行していない。K7 pointer/CAS/fencingは旧概念からの意味再導出、K10依存グラフから全集合を導くG5とK5 model-number-ledger接続はL4 §15.7が明示する新規案であり、旧HELIXの完全一致再利用とは扱わない。
+
+### 11.2 型、owner境界、非公開処理
+
+公開型、field、variant、9関数の引数・返却型はL4 §15.2–15.6の定義をそのまま使う。`Generation`、`PointerLog`、`RequestLog`、`EpochLog`、`EpochToken`、`MoveRequested`、`PointerMoved`、`MoveAuthorizationObserved`、`RollbackRequired`、`MoveUnfinished`、`Revocation`、`RecipientClass`、`RecipientMap`、`RecipientDecl`、`PropagationView`、`LedgerView`を別形で定義しない。K1 `Observed`/`Combined`/`PolarityOf`、K2 key/lookup、K3 `PermissionCheck`、K5 append/restore/project、K6 assurance、K10 graph/query結果は各ownerの型と既存fieldのまま受け渡す。
+
+privateな責務候補は、pointer prefix順序とhandoffの読取、stage/build ownerからのcurrent declaration/ref/head導出、stage_key及びbuild keyの導出、K3 permission再照合、K5 `append_if_head`受口、same-pointer-segment `seq+1`/move digest検証、recipient集合のK10導出、recipientごとのK6 receipt受口、ledgerのfield別projectionである。これらは公開APIではない。`input_heads`はcallerが所有者のcurrent refやheadを選ぶ値ではなく、current owner readとの照合用期待値である。K7SnapshotRole/K7SnapshotHeadのrole wrapperとK2 alias入力を混ぜず、K6 assurance・K10 `set_reason`を落とさない。
+
+### 11.3 公開APIと処理境界
+
+次表のAPI名、signature、返却型はL4 §15.6と同一である。右列は責務分割であり、別の引数、失敗理由、作用権限を追加しない。
+
+| 既存API | L4契約を保つ処理 | 接続境界 |
+|---|---|---|
+| `stage_generation(generation)` | ReleaseLog prefixと固定manifest bytesを読み、ReleaseEstablished、target、compositeの各exact一致を検査してGenerationStagedだけをpointer writerへ渡す。既存型の`Rejected(not_eligible)`なら追記0。 | RL-R4/K5 readerとOS pointer-writer owner。manifestの欠落・損傷診断を消さない。 |
+| `request_move(target, from, to, kind, authorization, input_heads)` | pointer segmentの固定prefixからcurrentを求め、fromを照合。stage/build ownerのOperationDecl・VerifierSet・RL-R2固定ref・headsを内部で導出し、RequiredResultをMoveRequestedに記録する。PointerLogは不変。 | OS/build current-source reader、K3 current authorization、K5 RequestLog append。callerのheadsは期待値に限る。 |
+| `apply_move(request, input_heads)` | 追記直前にowner declarations/ref/head/bytesを再読し、許可をK3で再照合。pointer_headを`append_if_head`へ渡し、成功時だけPointerMovedを追記。追記後の即時checkは同move・同pointer segmentのseq+1・同move digestへ束縛する。 | K5 CAS受口。post-append非肯定はeventとcheckを保持するAppliedUncertain、rollback診断を残し、自動切戻ししない。 |
+| `recover_move_observation(move_ref, input_heads)` | 対象moveとcurrent sourceを再読し、phase=recoveryの診断行を追記する。欠落したimmediate成功や停止区間を埋めない。 | recoveryのAppendedは診断行保存だけを示す。immediateとrecoveryを同一視しない。 |
+| `verify_current(target)` | stage/build両ownerのcurrent宣言から依存集合・固定bytes/headを新たに導き、K7-I3適格性を再計算する。Positiveでなければ観測とRollbackRequiredを保持しpointerを動かさない。 | `checked_heads`履歴をcurrent入力として再利用しない。各Observed variantとassuranceを保持。 |
+| `append_if_head(segment, expected_head, entry)` | L4の条件付き一件追記受口。head不一致は既存`Rejected(stale_head)`で追記0。 | 物理compare-and-appendはRL-P7 ownerの実装境界であり、設計fixtureから原子性の実在を主張しない。 |
+| `admit_effect(effect, epoch_token, input_heads)` | scope/number/entry_digestの現行EpochToken完全一致、PropagationView Positive、新しい許可の順にK7-I6を適用する。 | 既存結果`Rejected(fenced | revocation_pending | missing_authorization)`だけを使い、作用のあるproducerを追加しない。 |
+| `propagate(revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, recipient_decls, verifier_set, input_heads)` | K10 current graph→impact→review_setから全recipient identity/classを導き、RecipientDecl current refとK6 required receiptを照合し、graph/review/recipient成分・set_reason・assuranceをPropagationViewへ保持する。 | K10、SECURITY RecipientMap、各owner RecipientDecl、K6 receipt readerの境界。入力の候補参照からcurrent sourceを勝手に作らない。 |
+| `ledger_view(input_heads)` | 既存model-number-ledger rows、ReleaseLog由来release、PointerLog由来target（generation/immediate_check/recovery_diagnostics）、RuntimeLog由来actualをfield別に投影する。 | K5 reader/project facadeを使い、新しいwriter/ledger ownerを設けない。actualをpointer/checkから推定しない。 |
+
+### 11.4 K7 invariant trace
+
+| L4 invariant | 詳細設計上の検査点 | L9 / L8 trace |
+|---|---|---|
+| K7-I1 | pointer_writer segment内seqとWriterHandoff連鎖でcurrentを導出。辞書順やRequestLogのhandoffを使わない。 | IV-K7-01 / L8-K7-01-* |
+| K7-I2 | requestは読み取りとRequestLog記録のみ。applyはpointer_headをexpected_headにしたCASで、敗者・旧prefixは追記0。 | IV-K7-02/11/12 / L8-K7-02-*, 11-*, 12-* |
+| K7-I3 | stage_keyのManifestRef subject、RL-R2全inputs、stage/build current ownerのRequiredResult、release・kind別generation条件を再導出。 | IV-K7-03/04/14/15 / L8-K7-03-*, 04-*, 14-*, 15-* |
+| K7-I4/I4b | K3許可は対象・to.composition・deploy・kindに束縛し使用時と直後に再照合。immediateは同pointer segment seq+1かつmove digest exact。recoveryは別の現在時点診断で、過去immediateを埋めない。 | IV-K7-05・IV-K3-11/12/17 / L8-K7-05-*、L8-K7-RECOVERY-*。K3 oracle自体を再定義しない。 |
+| K7-I5 | failure後RollbackRequiredのみ。pointer、案件state、incidentを自動変更/終結しない。 | IV-K7-06 / L8-K7-06-* |
+| K7-I6 | scope/number/entry_digest完全一致→Propagation Positive→既存の新許可記録。旧tokenの観測はLateObservation。 | IV-K7-07–10 / L8-K7-07-*〜10-* |
+
+### 11.5 G5 invariant traceと非肯定保持
+
+| L4 invariant | 詳細設計上の検査点 | L9 / L8 trace |
+|---|---|---|
+| G5-I1 | current GraphDecl/GraphRulesでK10を照会し、affectedとreview_setから全identity/classを集合化。未知relation、unmapped kind、empty set_reasonを落とさない。 | IV-G5-01/02/09 / L8-G5-01-*, 02-*, 09-* |
+| G5-I2 | identityのcurrent RecipientDeclをsubjectとし、revocation_apply keyとrequired verifier receiptをK6で照会。received/failed/applied、全inner、set_reason、assuranceをidentity・verifier・check付きで保持。 | IV-G5-03/04/10 / L8-G5-03-*, 04-*, 10-* |
+| G5-I3/I4 | 伝播PositiveまでK7作用を止め、取消しから許可を発行/復元しない。 | IV-G5-05/06 / L8-G5-05/06-* |
+| G5-I5 | 取消しは新記録で、旧承認record/bodyを書き換えず、K10見直し対象に残す。 | IV-G5-07 / L8-G5-07-* |
+| G5-I6 | internal_deploymentは同move immediate Positive+observed_at+current receiptまでUnobserved(not_run)。MoveRequested/recovery/AppliedUncertainは待ちを解消しない。 | IV-G5-08 / L8-G5-08-*。物理deploy fixtureは作らない。 |
+| 型番台帳とfield別projection | `ledger_view`は既存model-number-ledger rowsとrelease/target/actualを各正本から分けて投影する。actualはRuntimeObservedのみから導く。 | IV-LDG-03 / L8-K7-LEDGER-*。台帳writerや実際の登録を新設しない。 |
+
+G5で取消しから新しい許可、実作用、真正性、受け手のowner refを生成しない。RecipientMap、RecipientDecl、K10 query、K6 receiptのcurrent owner bindingが不在または非肯定なら、L4既存class/reasonと元診断をそのまま保持する。L4/L9が細分類を指定しない境界の結果値を新設せず、該当owner接続の局所未接続として残す。K3 IV-K3-11/12/17はK7接続oracleであり、本pairで実行済みとは主張しない。
+
+## 12. K10 型付き依存グラフ
 
 この節はL4 §14.1–14.8をL5の型・関数境界へ展開する。直接trace対象はL4 §14.1で列挙されたHARNESS-023-02、HARNESS-010の境界、HARNESS-014-04、HARNESS-030-04、INTELLIGENCE-078-04、OS-014-07、INFRA-006-01/INFRA-001-03、BRAIN-005-01/02・BRAIN-INFRA-014-01/02・BRAIN-INFRA-015-02である。これらを一つの親要求へまとめない。
 
-### 11.1 型と返却値
+### 12.1 型と返却値
 
 L4 §14.2の型をそのまま使い、K10固有のpublic type、field、reasonを増やさない。`RelationType`/`RelationVocab`、`Edge`/`DepClass`、`GraphDecl`、`ConditionState`、`GraphRules`、`Closure`、`Impact`、`GraphRef`は同節のshapeを参照する。固定実体の`SubjectRef`とtree locatorを混同せず、current source readerは各ownerから渡されたcurrent固定実体を解決する境界に限る。
 
@@ -669,7 +736,7 @@ L4 §14.2の型をそのまま使い、K10固有のpublic type、field、reason�
 
 下流照会はL4 §14.2の二段を守る。まずowner-current `GraphDecl`、そのsources、vocab、build規則を使いK2 `key_of`/`lookup`/K5 `restore`経由でbuild記録を解決する。Valueのときだけそのrecordから`GraphRef`を作り、次のK2照会に進む。上流がStale、Unknown、Unobserved、NotApplicable等なら同じ非Valueを返し、下流を呼ばず、結果やedgeからcurrent入力を逆算しない。GraphRefのrevisionはbuild recordの`key_digest`、digestはその`result_digest`。closure/impact/independentのkeyはL4 §14.2のoperation_version、subject、inputs、scopeを使い、seed/changed/ConditionState/current Rulesを落とさない。各操作のrules inputsにはL4が列挙する直接・間接利用規則を全て含める。
 
-### 11.2 private function境界
+### 12.2 private function境界
 
 次は6公開APIを実現する内部の分解候補であり、新しい公開APIではない。
 
@@ -684,7 +751,7 @@ L4 §14.2の型をそのまま使い、K10固有のpublic type、field、reason�
 | `_enumerate_review_set` | K5-restored records、restored obligations、owner-current OperationDecl inputsをidentity単位で比較して対象集合を作る | K4/K5 readerの実在やowner registryを作らない。義務参照が無い/未解決ならL4既定の当該義務Unknownを保持する。 |
 | `_combine_independence` | check_graphの全components/set_reasonを`graph_check`識別付きで保持し、op node、control_plane、closure componentsをK1 combineへ渡す | graph健全性が未肯定でもcontrol_plane非到達だけをPositiveにしない。 |
 
-### 11.3 依存閉包、影響、独立判定
+### 12.3 依存閉包、影響、独立判定
 
 `closure`はL4 K10-I4どおり、`DepClass`の三つの代替条件をORで扱う。すなわち、`required`である場合、`operation_condition`でありconditionがtrueの場合、または`selected_source`でありselectionがselectedの場合に限りeffectiveへ入れる。どれにも該当しないedgeはeffectiveへ入れない。unknown condition/selectionはheldと`Unknown(missing_input)`、false condition、not_selected、reference_onlyはそれぞれ既定diagnosticだけに残し、合成componentsへ入れない。`safety=true`は条件がeffectiveであるとき外さない。
 
@@ -694,7 +761,7 @@ transitive=falseは当該edgeを一段だけ評価し、その到達先をeffect
 
 `independent`の合成にはcheck_graphで確認された全成分（否定、Unknown等の非Value、set_reason）を捨てず、`graph_check`役割で識別可能に保つ。さらにop node欠落、control_plane宣言欠落、effective control-plane到達否定、held Unknownをそれぞれ既存K1 componentとして加え、一度のcombineで判定する。到達＋別held枝を持つ複合oracleは、否定成分とUnknown成分の両方を保持する。Positiveが示す範囲は宣言graph上だけで、runtime依存や実環境復旧を示さない。
 
-### 11.4 K10 invariantと旧source対応
+### 12.4 K10 invariantと旧source対応
 
 | L4 invariant | L5関数境界 | L9 oracle |
 |---|---|---|
@@ -716,7 +783,7 @@ transitive=falseは当該edgeを一段だけ評価し、その到達先をeffect
 
 各assetはledger上Historical/unresolvedで、各source SHAはledgerとarchive実bytesが一致する。consumer_refsは空であり、記載したconsumer/failureはsource本文/IMP記載からの確認である。archive sourceの実行はしていない。
 
-### 11.5 局所未確定と保証限界
+### 12.5 局所未確定と保証限界
 
 L4 §14.5/14.8で未宣言のものを推測で補わない。`GraphDecl`はsourcesとvocab等を参照するshapeであり、`Edge.state`はそのsourceが宣言するedge実体に属する。各機構の実RelationVocab、GraphDecl/source current reader、sourceからmemberへのmapping/reader、edge provenanceを確定するowner、ConditionState/GraphRulesのcurrent declaration mapping、control_planeの具体identity/ref、K2 resultとK4 obligationを復元する具体store/head、K1 componentの各relation polarity mappingは、このpairで新設しない。control_planeのownerがINFRASTRUCTUREである点だけはL4 §14.8に固定されている。未確定sourceが関係するAPI/componentだけをholdし、別の明確な純粋projection/edge property checkの設計を止めない。
 
