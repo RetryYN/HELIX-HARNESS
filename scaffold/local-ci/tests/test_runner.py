@@ -201,7 +201,7 @@ class RunnerTests(unittest.TestCase):
         base = {"execution": None, "safe_to_continue": False,
                 "diagnostic": {"reason": "synthetic", "detail": ""}}
         prefix_size = len(canonical_bytes(base))
-        for frame_size, expected_reason in ((120000, "synthetic"), (120001, "supervisor_protocol_invalid")):
+        for frame_size, expected_reason in ((122000, "synthetic"), (122001, "supervisor_protocol_invalid")):
             with self.subTest(frame_size=frame_size), tempfile.TemporaryDirectory() as directory:
                 ready_received.clear()
                 FakeProcess.response_body = canonical_bytes({
@@ -242,7 +242,7 @@ class RunnerTests(unittest.TestCase):
         self.assertFalse(result["suite_stdout_overflow"])
         self.assertEqual(drain.call_args.kwargs["capture_stdout_limit"], runner.SUITE_STDOUT_CAPTURE_LIMIT)
 
-    def test_real_pipe_suite_capture_distinguishes_82001_from_82002_bytes(self):
+    def test_real_pipe_suite_capture_distinguishes_90515_from_90516_bytes(self):
         class PipeProcess:
             def __init__(self, payload: bytes):
                 out_read, out_write = os.pipe()
@@ -275,7 +275,7 @@ class RunnerTests(unittest.TestCase):
                 self.returncode = 0 if not self.thread.is_alive() else None
                 return self.returncode
 
-        for size, overflow in ((82001, False), (82002, True)):
+        for size, overflow in ((90515, False), (90516, True)):
             with self.subTest(size=size):
                 process = PipeProcess(b"x" * size)
                 with patch.object(runner, "_reap_adopted", return_value=(True, set())), \
@@ -329,7 +329,7 @@ class RunnerTests(unittest.TestCase):
                 checker.assert_not_called()
 
 
-    def test_fixed_commands_cover_the_five_required_checks(self):
+    def test_fixed_commands_cover_the_six_required_checks(self):
         for check_id in CHECK_IDS:
             argv, executable = runner._validate_command(_spec(check_id))
             self.assertEqual(argv[0], "python3" if executable == "python" else "git")
