@@ -40,7 +40,7 @@
     },
     {
       "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
-      "sha256": "a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072",
+      "sha256": "18c6da98da8d544b43fcfcd725ebea63c413c19bf82bc6f932a5a94f78f73ad8",
       "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a95be78b2341d3934e2b9c6cef66428387d7862c94b60e9145f27ca92d9ff85; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0a00b2e120c71151d990af56224e1ad0b54b23b56522003500c70086861a2628; 旧意味の採否・authorityは変更しない。] [2026-10-03 Web docs/配置統合 read-after（PO判断記録 docs/governance/decisions/helix-web-docs-consolidation-po-decisions-2026-10-03.md）: current path docs/governance/audits/source-rebaseline/l2-source-register.md (unchanged); current upstream SHA-256 a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072 → 265508afef0d0de39cc7dee70e1ded3fb4666215133e787f3315402b89ffbb69. 現行locatorまたは文書内リンク・path記述の追随のみを反映し、要求意味、ID、classification、authority、版、承認状態とBindingのrole・obligations・connections・replacement・artifactは変更しない。2026-09-26の配置判断とreceiptは当時の履歴として保持する。このBindingの採否・authorityは変更しない。] [2026-10-03 Web docs統合後read-after: current locator内のWeb相対link追随のみ。前SHA-256=265508afef0d0de39cc7dee70e1ded3fb4666215133e787f3315402b89ffbb69; current SHA-256=a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072; meaning・classification・authority・版は不変。]"
     },
     {

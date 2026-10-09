@@ -84,7 +84,9 @@ fieldと永続化schemaは、要求分類と管理登録のL3で確定する。�
 
 ## 現在の停止条件
 
-旧Concept v4.1と旧4対象L1の承認は2026-09-17 decisionに記録されたexact SHAだけに有効である。現行Conceptを親とする4対象L1本文は未承認候補で、対象別L2／L11も未採否である。product routingと重複候補clusterは
+本体8対象の固定L1とL2／L11の採択状態は、[現行作業入口](new-generation-start-here.md)が列挙する対象revisionのPO判断と後続の個別採否判断から読む。本文の旧candidate metadataや旧4対象の状態を現在の採否へ転用しない。採択済み対象から未採択候補や旧source全体へ採用を広げない。L3以下は[2026-10-10の巻き戻し判断](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)でカットされ、旧L3／L10承認は失効した。L3再開の順序・範囲はPOの指示に従う。
+
+旧sourceのproduct routingと重複候補clusterは
 旧Requirement IR 153件について候補登録済みである。候補targetとrouting shapeを使ってclusterを作成できるが、
 最終relation、successor統合、要求削除は決定しない。
 現在は比較対象、relation語彙、記録項目、Issue境界を固定する。L3、実装、DB、CI、archiveの物理削除へ進まない。

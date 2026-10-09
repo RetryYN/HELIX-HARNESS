@@ -91,7 +91,9 @@ GitHub Issueは本programの進行と未決論点を共有するprojectionに限
 
 ## 現在の停止条件
 
-旧Concept v4.1と旧4対象L1の承認は2026-09-17 decision recordのexact SHAだけに有効である。現行Conceptを親とする4対象L1本文は未承認候補である。現在は旧要求を全件保持したまま、
+本体8対象の固定L1とL2／L11の採択状態は、[現行作業入口](new-generation-start-here.md)が列挙する対象revisionのPO判断と後続の個別採否判断から読む。本文の旧candidate metadataや旧4対象の状態を現在の採否へ転用しない。採択済み対象から未採択候補や旧source全体へ採用を広げない。L3以下は[2026-10-10の巻き戻し判断](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)でカットされ、旧L3／L10承認は失効した。L3再開の順序・範囲はPOの指示に従う。
+
+現在も旧要求を全件保持する。旧sourceの製品責務分類については、
 管理分類登録の第1層で旧Requirement IR 153件すべての対象製品候補を登録し、独立reviewとmain read-afterを完了した。
 完了証拠と次の入口は[製品責務分類第1層の完了とL2採否入口](audits/source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md)に固定した。
 `L2D-S1-01 authority-vocabulary`は[人間判断packet v2](audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)に、
