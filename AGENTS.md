@@ -10,7 +10,8 @@
 [JSONを正本とする方針](docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md)、
 設計・検証テンプレートseed（[DT-MSG](scaffold/research/design-template-seed-minimum-gap-20261004/README.md)、
 [DT-SDOP](scaffold/research/design-template-seed-sdop-20260929/README.md)、[DT-VT](scaffold/verification-test-template-seed-20261001/README.md)）。
-Conceptと既決のPO方針は適用する。七大原則とテンプレートseedは、各文書が示すauthority状態と適用条件に従い、作業を照合する材料として使う
+Concept、七大原則（POの指令。[判断記録](docs/governance/decisions/principles-are-po-directive-po-decision-2026-10-10.md)）、既決のPO方針は適用する。
+テンプレートseedは、各文書が示すauthority状態と適用条件に従い、作業を照合する材料として使う
 （経緯とPOの指示の原文は[FT-GOV-AGENTREAD-001](docs/governance/feature-tickets/FT-GOV-AGENTREAD-001.md)）。
 
 ## 再構築の原則

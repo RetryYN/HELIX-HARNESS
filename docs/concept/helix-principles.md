@@ -1,19 +1,15 @@
 ---
 document_id: HELIX-AGENT-PRINCIPLES-V0.1
-principles_version: "0.1-candidate"
-status: draft_candidate
-authority_status: awaiting_human_approval
+status: in_effect
+authority_status: po_directive
 source_basis: PO direction 2026-09-16
 source_quote_record: docs/concept/helix-principles.md#PO提示原文
+authority_decision: docs/governance/decisions/principles-are-po-directive-po-decision-2026-10-10.md
 derived_from:
   - docs/concept/helix-concept.md
-canonical_promotion: pending
-approval_scope: exact_body_revision_pending
-approved_body_sha256: pending_human_decision
-authority_effect_before_approval: none
 ---
 
-# HELIXエージェントの七大原則候補
+# HELIXエージェントの七大原則
 
 ## 位置づけ
 
@@ -26,8 +22,9 @@ system invariantは[HELIX Concept](helix-concept.md)に置き、本書はその�
 行動基準を示す。どちらもConceptに従属し、目標または原則だけから要求、責務、workflow、実装を直接生成しない。
 統合後の読込順はConcept／製品責務境界→5大目標→七大原則→対象別L1とする。
 
-本書は現行Conceptの子であり、それ自体から別のauthorityを生成しない。七大原則の独立authorityは未承認で、Conceptへの入力接続だけに旧decisionがある。PRの作成・review・merge、Issueの状態、CI結果から
-承認を生成しない。承認後も、対象作業では承認済みConcept、企画、要求、設計、権限、停止条件を先に適用する。
+七大原則は、POが2026-09-16に出した指令である。承認の対象ではなく、指令を出した時点から効力を持つ
+（[判断記録](../governance/decisions/principles-are-po-directive-po-decision-2026-10-10.md)）。本書の具体化本文は、Conceptと同じく人の指示をAIが反映して
+同じファイルを更新し、PO提示原文と食い違う場合は原文を優先する。本書は現行Conceptの子であり、対象作業では承認済みConcept、企画、要求、設計、権限、停止条件と併せて適用する。
 HARNESSが対象作業に適用するProduction、Discovery／PoC、Research、UI prototype等のrouteとroute内順序を所有し、
 七大原則は独自の固定workflowを作らず、そのroute内の判断規律として働く。
 
@@ -118,7 +115,7 @@ AIの自己申告、Issue close、PR merge、CI greenから要求authority、受
 
 ## PO提示原文
 
-2026-09-16のPO指示を、表記を変えずに本候補のsourceとして保持する。
+2026-09-16のPO指示を、表記を変えずに本書のsourceとして保持する。
 
 > HELIXエージェントの七大原則
 > ①リサーチ＆検証ファースト
@@ -141,5 +138,5 @@ AIの自己申告、Issue close、PR merge、CI greenから要求authority、受
 | 6 | 責務/依存分離で変更耐性を最適化 | Product Separation、exactly-one owner、relationとimpact管理 |
 | 7 | 確かな証拠と計測改善で品質を守れ | Evidence Closure、Controlled Adaptation、authorityへの直接write禁止 |
 
-本書はPOが提示した七大原則を行動判断へ具体化した候補である。既存Concept、対象別要求、V-model contract、authority状態、
+本書はPOが提示した七大原則を行動判断へ具体化したものである。既存Concept、対象別要求、V-model contract、authority状態、
 停止条件を省略または上書きしない。
