@@ -779,7 +779,7 @@ OS assignment/selection/content-producer graph/source closureのcurrent reader�
 
 これはL5公開API `resolve_creator_inventory`/`check_review_independence`の実装ではない。OS assignment、selection、producer graph、source closure、execution origin、current context/authority/route owner、K6 read/admissionの接続、inventory non-Value時の公開結果/component projection、K2 current key lookupは未接続である。private `_compare_axes_after_inventory_value`は既存inventory observationがnon-Valueならaxis comparatorへ入らず、callerがその観測を保持する制御境界だけを実装する。公開K9 result/componentへの写像やowner early-return orchestrationを実装したとは主張しない。製品のcurrent truth・K6 assurance・L9/L8 fixture実行を主張しない。
 
-局所検証は`helix/helix-harness/units/common-kernel/tests/test_k9_private.py`の17テストに限定する。具体的なmethod-to-fixture範囲はL7 §13.5に記録する。これはL8 formal 87 fixtureの実行、L9 oracle coverage、unit pack登録、CI登録、owner接続を意味しない。
+局所検証は`helix/helix-harness/units/common-kernel/tests/test_k9_private.py`の17テストに限定する。 実行コマンドは`python3 -B -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p test_k9_private.py`。実行対象source SHA-256は`0dfa4865ce839727aa77bcd96d638b850bc91cb484b0c6e4d32539d947157be2`、test SHA-256は`4250bf09434833b5e317a513f7ccd70ab3e4d6a9aabf6d551f1845be2c802415`であり、この17件の記録は当該bytesに限定する。具体的なmethod-to-fixture範囲はL7 §13.5に記録する。これはL8 formal 87 fixtureの実行、L9 oracle coverage、unit pack登録、CI登録、owner接続を意味しない。
 
 
 ## 17. K8: input labelとauthority-effect observationの境界
