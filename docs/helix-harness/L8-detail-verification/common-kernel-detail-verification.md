@@ -119,7 +119,7 @@ K2 expected classはL4 §3.3–3.4のlookup優先順と、L4 §3.4.1 alias bindi
 
 K2逆trace: L5 `key_of`, `lookup`, `record`, alias binding clausesは表のL9 IDsに対応する。IV-K2-01–21d（IV-K2-13a/bを含む）の各oracleからfixtureへ、さらにL5 API / K2-I invariantへ戻れる。L3 parentはこのpairの先頭に列挙したL4 §3.1 crosswalk要素に限る。
 
-## 5. K3、K5–K10と未実施範囲
+## 5. K3–K10と未実施範囲
 
 K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K6〜K10はこのpairで`not_designed`で、既存L4/L9の該当契約へ戻す。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。
 
