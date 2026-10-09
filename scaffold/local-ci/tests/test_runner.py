@@ -10,6 +10,7 @@ import tempfile
 import threading
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 _LOCAL_CI = Path(__file__).resolve().parents[1]
@@ -146,6 +147,72 @@ class _StubProcess:
 
 
 class RunnerTests(unittest.TestCase):
+    def test_supervisor_passes_literal_suite_capture_limit_to_production_drain_call(self):
+        with tempfile.TemporaryDirectory() as directory:
+            temp = Path(directory)
+            host, portable, snapshot = _fixture(temp)
+            spec = _spec(CHECK_IDS[5])
+            process = SimpleNamespace(pid=12348, stdout=None, stderr=None)
+            drained = (0, sha256(b""), sha256(b""), None, True, b"{}\n", False)
+            with patch.object(runner, "_enable_subreaper"), \
+                    patch.object(runner, "_preflight"), \
+                    patch.object(runner.subprocess, "Popen", return_value=process), \
+                    patch.object(runner, "_drain_pipes", return_value=drained) as drain:
+                result = runner._supervisor({"host_config": host, "portable_config": portable,
+                                             "snapshot_root": str(snapshot), "spec": spec}, None)
+        self.assertTrue(result["safe_to_continue"])
+        self.assertEqual(result["suite_stdout_b64"], "e30K")
+        self.assertFalse(result["suite_stdout_overflow"])
+        self.assertEqual(drain.call_args.kwargs["capture_stdout_limit"], 70001)
+
+    def test_real_pipe_suite_capture_distinguishes_70001_from_70002_bytes(self):
+        class PipeProcess:
+            def __init__(self, payload: bytes):
+                out_read, out_write = os.pipe()
+                err_read, err_write = os.pipe()
+                self.stdout = os.fdopen(out_read, "rb", buffering=0)
+                self.stderr = os.fdopen(err_read, "rb", buffering=0)
+                self.pid = 12349
+                self.returncode = None
+                self._done = threading.Event()
+
+                def writer():
+                    with os.fdopen(out_write, "wb", buffering=0) as stream:
+                        view = memoryview(payload)
+                        while view:
+                            written = stream.write(view[:8192])
+                            view = view[written:]
+                    os.close(err_write)
+                    self._done.set()
+
+                self.thread = threading.Thread(target=writer)
+                self.thread.start()
+
+            def poll(self):
+                if self._done.is_set():
+                    self.returncode = 0
+                return self.returncode
+
+            def wait(self, timeout=None):
+                self.thread.join(timeout)
+                self.returncode = 0 if not self.thread.is_alive() else None
+                return self.returncode
+
+        for size, overflow in ((70001, False), (70002, True)):
+            with self.subTest(size=size):
+                process = PipeProcess(b"x" * size)
+                with patch.object(runner, "_reap_adopted", return_value=(True, set())), \
+                        patch.object(runner, "_descendants", return_value=set()), \
+                        patch.object(runner, "_settle_descendants", return_value=True):
+                    drained = runner._drain_pipes(process, 5, threading.Event(),
+                                                  capture_stdout_limit=70001)
+                process.thread.join(2)
+                self.assertEqual(drained[0], 0)
+                self.assertTrue(drained[4])
+                self.assertEqual(len(drained[5]), 70001)
+                self.assertEqual(drained[6], overflow)
+                self.assertEqual(drained[1], sha256(b"x" * size))
+
     def test_ut_lci_83_bwrap_opaque_version_and_bytes_identity_baseline(self):
         with tempfile.TemporaryDirectory() as directory:
             host, portable, _snapshot = _fixture(Path(directory))

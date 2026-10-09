@@ -13,6 +13,7 @@ _LOCAL_CI = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_LOCAL_CI))
 import driver
 import plan
+import runner
 from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
 from plan import compile_plan, COMMAND_TEMPLATES
@@ -110,6 +111,21 @@ class RunIntegrationTests(unittest.TestCase):
             with self.assertRaises(Diagnostic) as raised:
                 compile_plan(TARGET, self.portable, "d"*64, "1")
         self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Rejected", "invalid_input"))
+
+    def test_k3_suite_plan_literal_matches_supervisor_command_and_rejects_legacy_id(self):
+        expected = ("python3", "-B", "scaffold/local-ci/source_l7_runner.py",
+                    "--suite", "common-kernel-k1-k2-k3")
+        self.assertEqual(COMMAND_TEMPLATES[5], expected)
+        compiled = compile_plan(TARGET, self.portable, "d" * 64, "1")
+        suite_spec = compiled["commands"][5]
+        self.assertEqual(tuple(suite_spec["argv"]), expected)
+        self.assertEqual(runner._validate_command(suite_spec)[0], list(expected))
+
+        legacy_spec = dict(suite_spec, argv=[*suite_spec["argv"][:-1], "common-kernel-k1-k2"])
+        with self.assertRaises(Diagnostic) as caught:
+            runner._validate_command(legacy_spec)
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
                          ("Rejected", "invalid_input"))
 
     def test_full_run_constructs_and_validates_all_six_rows_before_write(self):

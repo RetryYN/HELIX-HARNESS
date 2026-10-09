@@ -3,7 +3,9 @@ from __future__ import annotations
 import ast
 import base64
 import io
+import shutil
 import sys
+import tempfile
 import unittest
 from types import SimpleNamespace
 from pathlib import Path
@@ -14,7 +16,7 @@ sys.path.insert(0, str(_LOCAL_CI))
 
 import source_l7_runner as suite_runner  # noqa: E402
 import runner  # noqa: E402
-from common import canonical_bytes, sha256  # noqa: E402
+from common import Diagnostic, canonical_bytes, sha256  # noqa: E402
 
 
 class SourceL7RunnerTests(unittest.TestCase):
@@ -52,6 +54,39 @@ class SourceL7RunnerTests(unittest.TestCase):
         self.assertEqual(len(suite_runner.K3_DISCOVERY_IDS), 220)
         self.assertEqual(sum(ident in suite_runner.K3_DISCOVERY_IDS
                              for ident in (row["unittest_identity"] for row in rows)), 194)
+
+    def test_fixed_suite_source_missing_or_mutated_is_rejected_before_test_loading(self):
+        cases = (("missing", "helix/helix-harness/units/common-kernel/src/permission.py"),
+                 ("mutated", "helix/helix-harness/units/common-kernel/src/permission.py"))
+        source_root = _LOCAL_CI.parent.parent
+        for mutation, changed_path in cases:
+            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                for relative in suite_runner.SOURCE_SHA256:
+                    destination = root / relative
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(source_root / relative, destination)
+                changed = root / changed_path
+                if mutation == "missing":
+                    changed.unlink()
+                    expected = ("Unknown", "missing_input")
+                else:
+                    original = changed.read_bytes()
+                    changed.write_bytes(original[:-1] + bytes((original[-1] ^ 1,)))
+                    expected = ("Unknown", "conflict")
+                with patch.object(suite_runner, "_load_fixed_suite") as load_suite:
+                    with self.assertRaises(Diagnostic) as caught:
+                        suite_runner.run_suite(root)
+                self.assertEqual((caught.exception.classification, caught.exception.reason), expected)
+                load_suite.assert_not_called()
+
+    def test_current_fixed_suite_runs_all_419_identities_on_actual_tree(self):
+        payload, code = suite_runner.run_suite(_LOCAL_CI.parent.parent)
+        self.assertEqual(code, 0)
+        self.assertTrue(payload["complete"])
+        self.assertEqual(payload["test_count"], 419)
+        self.assertEqual(payload["discovered_test_ids"], list(suite_runner.EXPECTED_DISCOVERY_IDS))
+        self.assertEqual(payload["executed_test_ids"], list(suite_runner.EXPECTED_DISCOVERY_IDS))
 
     def test_mapping_unknown_identity_and_duplicate_formal_id_conflict_before_discovery(self):
         cases = ("unknown_identity", "duplicate_formal_id")
@@ -117,7 +152,7 @@ class SourceL7RunnerTests(unittest.TestCase):
                  "test_count": len(ids), **outcome_fields, "exit_code": 1, "state": "fail"}
         frame = canonical_bytes(worst) + b"\n"
         self.assertGreater(len(frame), 32768)
-        self.assertLessEqual(len(frame) - 1, suite_runner.RESULT_MAX_BYTES)
+        self.assertLessEqual(len(frame) - 1, 70000)
         self.assertLessEqual(len(frame), 70001)
 
         spec = {"check_id": "LC-STAGE1-L7-001",
@@ -153,15 +188,16 @@ class SourceL7RunnerTests(unittest.TestCase):
                          {"classification": "Unknown", "reason": "conflict"})
 
     def test_result_body_limit_accepts_exact_body_and_rejects_plus_one(self):
+        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 70000)
         exact = {"padding": ""}
-        padding_len = suite_runner.RESULT_MAX_BYTES - len(canonical_bytes(exact))
+        padding_len = 70000 - len(canonical_bytes(exact))
         exact["padding"] = "x" * padding_len
-        self.assertEqual(len(canonical_bytes(exact)), suite_runner.RESULT_MAX_BYTES)
+        self.assertEqual(len(canonical_bytes(exact)), 70000)
 
-        for body_size in (suite_runner.RESULT_MAX_BYTES, suite_runner.RESULT_MAX_BYTES + 1):
+        for body_size in (70000, 70001):
             with self.subTest(body_size=body_size):
                 payload = dict(exact)
-                if body_size == suite_runner.RESULT_MAX_BYTES + 1:
+                if body_size == 70001:
                     payload["padding"] += "x"
                 output = io.BytesIO()
                 with patch.object(suite_runner, "run_suite", return_value=(payload, 0)), \
@@ -169,10 +205,10 @@ class SourceL7RunnerTests(unittest.TestCase):
                     code = suite_runner.main(["--suite", suite_runner.SUITE_ID])
                 raw = output.getvalue()
                 self.assertTrue(raw.endswith(b"\n"))
-                self.assertLessEqual(len(raw), suite_runner.RESULT_MAX_BYTES + 1)
-                if body_size == suite_runner.RESULT_MAX_BYTES:
+                self.assertLessEqual(len(raw), 70001)
+                if body_size == 70000:
                     self.assertEqual(code, 0)
-                    self.assertEqual(len(raw), suite_runner.RESULT_MAX_BYTES + 1)
+                    self.assertEqual(len(raw), 70001)
                     self.assertEqual(suite_runner.json.loads(raw), payload)
                 else:
                     self.assertEqual(code, 2)

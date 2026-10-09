@@ -1700,7 +1700,6 @@ def run_suite(root: Path) -> tuple[dict, int]:
         raise Diagnostic("Unknown", "conflict", "formal mapping identities are not unique members of the fixed discovery set")
     if (len(K3_DISCOVERY_IDS) != 220 or len(set(K3_DISCOVERY_IDS)) != 220
             or sha256(("\n".join(K3_DISCOVERY_IDS) + "\n").encode()) != K3_DISCOVERY_IDS_SHA256
-            or not set(K1_K2_DISCOVERY_IDS) <= set(EXPECTED_DISCOVERY_IDS)
             or not set(K3_DISCOVERY_IDS) <= set(EXPECTED_DISCOVERY_IDS)):
         raise Diagnostic("Unknown", "conflict", "fixed K3 discovery inventory is inconsistent")
     if (len(EXPECTED_DISCOVERY_IDS) != EXPECTED_DISCOVERY_COUNT

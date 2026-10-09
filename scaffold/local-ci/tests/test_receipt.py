@@ -13,10 +13,11 @@ _LOCAL_CI = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_LOCAL_CI))
 
 from common import CHECK_IDS, Diagnostic, canonical_bytes  # noqa: E402
-from receipt import verify_receipt, write_private_artifact, write_receipt
+from receipt import (_validate_suite_evidence, verify_receipt, write_private_artifact,
+                     write_receipt)
 from plan import compile_plan  # noqa: E402
 from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS_SHA256,
-                              SOURCE_SHA256, inventory_digest)  # noqa: E402
+                              SOURCE_SHA256, SUITE_ID, inventory_digest)  # noqa: E402
 
 
 _HEX = "a" * 40
@@ -138,6 +139,47 @@ def verify(data: bytes | str, *, current: dict | None = None, refs=None,
 
 
 class VerifyReceiptTests(unittest.TestCase):
+    def test_suite_evidence_guards_reject_one_field_mutation_each(self):
+        valid = execution("LC-STAGE1-L7-001")["suite_evidence"]
+        mutations = (
+            ("suite_id", "other-suite", "Rejected", "invalid_input"),
+            ("mapping_sha256", "0" * 64, "Unknown", "conflict"),
+            ("executed_count", 418, "Rejected", "invalid_input"),
+        )
+        for field, replacement, classification, reason in mutations:
+            with self.subTest(field=field):
+                changed = copy.deepcopy(valid)
+                changed[field] = replacement
+                with self.assertRaises(Diagnostic) as caught:
+                    _validate_suite_evidence(changed)
+                self.assertEqual((caught.exception.classification, caught.exception.reason),
+                                 (classification, reason))
+
+        changed_refs = copy.deepcopy(valid)
+        changed_refs["source_refs"].pop()
+        with self.assertRaises(Diagnostic) as caught:
+            _validate_suite_evidence(changed_refs)
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Rejected", "invalid_input"))
+
+    def test_legacy_k1_k2_suite_and_inventory_receipts_are_not_current_evidence(self):
+        valid = execution("LC-STAGE1-L7-001")["suite_evidence"]
+        legacy_suite = copy.deepcopy(valid)
+        legacy_suite["suite_id"] = "common-kernel-k1-k2"
+        with self.assertRaises(Diagnostic) as caught:
+            _validate_suite_evidence(legacy_suite)
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Rejected", "invalid_input"))
+
+        legacy_mapping = copy.deepcopy(receipt())
+        old_inventory_digest = "9d8cb22dc211a572a67ac493df44436752e27c5e62633ae50ecd9f967b756ba0"
+        legacy_mapping["source_l7_inventory_digest"] = old_inventory_digest
+        legacy_mapping["plan"]["source_l7_inventory_digest"] = old_inventory_digest
+        with self.assertRaises(Diagnostic) as caught:
+            verify(canonical_bytes(legacy_mapping))
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "conflict"))
+
     def test_ut_lci_76_80_shared_role_pins_bind_config_and_invalidate_old_receipt(self):
         portable = copy.deepcopy(_PORTABLE)
         portable["executables"]["provider_git"] = {"name": "git", "version": "2.55.0", "sha256": "f" * 64}
