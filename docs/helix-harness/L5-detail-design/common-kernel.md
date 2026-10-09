@@ -619,15 +619,17 @@ K1 `combine`は各componentのPolarityOf mappingと完全keyを用い、same=Neg
 
 | 条件 | 固定する外側結果 | 局所境界 |
 |---|---|---|
-| APIの必要K2 key構成不能 | 公開APIの既存`Rejected(missing_key, diagnostic)` | K2の診断をK1 Unknownへ変換しない。 |
+| `check_review_independence`の必要K2 key構成不能 | 同APIの既存外側型にある`Rejected(missing_key, diagnostic)` | K2診断をK1 `Unknown`へ変換しない。 |
+| `resolve_creator_inventory`のAPI参照は完全な`SubjectRef`だが、current assignment等のowner sourceに必要なfieldがない | `Observed<Unknown(missing_input)>` | API refの欠落とは分ける。L4 §17.2/§17.3のowner-source欠落として扱い、field名やschemaを追加しない。 |
+| `resolve_creator_inventory`の引数自体を完全な`SubjectRef`として構成できない | このsignatureに外側`Rejected` variantは定義されていないため、返却値を推定しない | L8 fixtureは完全なAPI refsを保ち、owner sourceの不足だけを扱う。型付きAPI入力を構成できない状態をこのAPIの`Rejected`として一般化しない。 |
 | schema未定義 | `Unknown(unsupported)` | route/context/authority owner schemaを作らない。 |
 | schema既定義だがowner/current source未登録 | `Unknown(unregistered)` | 必須sourceが存在しない状態を不明なschemaと混ぜない。 |
-| 必須ref/coverage evidence/selection input欠落 | L4既定`Unknown(missing_input)` | missing source identityを`not_selected`にしない。 |
+| 完全なAPI refsを通じて観測したrequired owner-source ref/coverage evidence/selection dataの欠落 | L4既定`Unknown(missing_input)` | API SubjectRef自体を構成できないことへの返却型は、各signatureに定義された場合だけ使う。missing source identityを`not_selected`にしない。 |
 | current prefixが読めない | K5/K1既存`Unknown(unreadable)` | unavailable/corruptをowner mismatchへ推測しない。 |
 | caller ref/current owner refまたは完全source間の確定不一致 | L4指定`Unknown(conflict)` | collision `NotIndependent`はowner comparison identityがsameと解決した場合だけ。 |
 | owner contractによる比較identity対応未定義 | `Unknown(unsupported)` | bytes/revision/operation/target差だけでdistinctとしない。 |
 | ReviewTarget不一致のcomponent表現 | `Unknown(conflict)`はL4 §17.3で固定 | 現`K9IndependenceComponent` unionにtarget-binding factがないため、結果class/reason以外の投影は局所未接続。新componentを作らない。 |
-| receipt未着 | `Unobserved(pending_receipt)` | candidate作成・独立性比較の前倒しgateにしない。 |
+| K4 `ObligationSet`の`Deferred`義務に対応するreceipt未着 | K4 `evaluate(set_key, decls, verifier_set, input_heads)`が返す`ObligationView`の該当成分`Unobserved(pending_receipt)` | K9の`ReviewIndependenceCheck`にはこの返却fieldがない。K4義務評価をK9 candidate作成・独立性結果へ投影する対応は定義せず、前倒しgateにもしない。 |
 
 比較identityをowner contractがどう表すか、OS assignmentと各source ownerのactual producer closureをどの具体schema/readerで得るかは現在のL4/L9に名前付きreader/typeがない。該当sourceのcurrent対応が得られないoperationだけを非肯定とし、API結果型・reasonを追加しない。
 
