@@ -35,6 +35,8 @@ SECURITYは既存のoperation-specific authorityとpolicyの読取り照合を�
 
 L3業務の独立business identity/ACはない。SECURITY判定、receipt、分類、assignment、transport、verificationをbusiness success、approval、canonical save、LABO評価、BRAIN登録、実行完了へ変換しない。L3/L10のNFR数値・比較・coverageは根拠付き検証用技術候補であり、採択済み実装値・実測値・SLOではない。候補なしの親へlatency、retention、quota、timeout値を補わない。
 
+「未評価」は独自classにせず、必要な検証receiptの未着なら`Unobserved(pending_receipt)`、oracle・scope等の必要入力不足なら`Unknown(missing_input)`（kernel §2.4）とする。未登録sourceは`Unknown(unregistered)`と区別する。
+
 ## 3. 共通kernelとの接続
 
 このL5はmain fixed bytesのcommon-kernel L4 `docs/helix-harness/L4-basic-design/common-kernel.md`（SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`）とL9 `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`）の既存契約へ接続する。SECURITY L4 §3のcommon-kernel参照は旧固定設計bytesを指す歴史的source pinであり、現在契約の上書き定義ではない。利用時の型/APIはこの節で固定したcurrent main bytesを読む。
@@ -44,7 +46,7 @@ L3業務の独立business identity/ACはない。SECURITY判定、receipt、分�
 | K1/K2 | 各既存APIの型付き結果、完全なcurrent key、Stale/Unknown/Unobserved/Rejectedを保持する。 | API別の結果を架空wrapperやSECURITY独自のcombinedへ変えない。 |
 | K3 §16、IV-K3-01…17・IV-K3-14a…14j | `resolve_authority_context`と`check_permission`へquery、expected input heads、permission SubjectRefを渡し、`PermissionCheck`（`PermissionCheckResult | PermissionCheckDiagnostic`）を元型で保持する。current declaration/sourceから一意に解決された有効決定だけを利用する。 | grant/record発行、context偽造、7軸拡張、欠落input補完、同じtarget identityとrevision identityの強制、K6 receiptからの許可生成。 |
 | K6 §10 | `required`/`admit_receipt`/`reverify`の既存read-set、assurance、diagnosticを照合する。必要source refsはcurrent owner宣言から導く。 | receiptの存在・digest・再現をissuer authenticity、過去の実行、物理enforcementの証明と扱う。`issuer_authenticity=Unknown(unsupported)`を保つ。 |
-| K7/G5 §15 | `RecipientMap`/`RecipientDecl`、K10 graph/impact/review、K6 receipt由来のrecipient状態はG5 owner契約に属する。`propagate(revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, recipient_decls, verifier_set, input_heads) -> Observed<PropagationView>`を読み取り導出として呼ぶ。 | G5の状態をSECURITYが変更すること、`propagate`のObserved projectionをeffectful appendと扱うこと、global stop/autofallback、未観測を欠落確認にすること。recipient stateはG5の戻り値を保持し、新read APIやsourceを設けない。 |
+| K7/G5 §15 | `RecipientMap`はSECURITYが宣言し、`RecipientDecl`は各受け手ownerが宣言する（kernel §15.3）。K10 graph/impact/review、K6 receipt由来のrecipient状態はG5契約に従う。`propagate(revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, recipient_decls, verifier_set, input_heads) -> Observed<PropagationView>`を読み取り導出として呼ぶ。 | G5の状態をSECURITYが変更すること、`propagate`のObserved projectionをeffectful appendと扱うこと、global stop/autofallback、未観測を欠落確認にすること。recipient stateはG5の戻り値を保持し、新read APIやsourceを設けない。 |
 | K8 §18 | 001/002の外部入力label/effect/transition分離に`observe_input_label`、`observe_authority_effect`、`validate_label_transition`を適用する。 | 汎用K8 input-label APIを015/016 asset identity/classification readerとみなさない。asset側はowner-declared current sourceとK6 refsを使う未具体化adapterに留める。 |
 
 L4 §3.1の`ResolvedSecurityCase`、`SecurityCaseProjection`、`ProjectionNotApplicable`はSECURITY adapter内部のprojection値である。`resolve_security_stage1_case`の戻り値は`Observed<ResolvedSecurityCase> | Rejected(missing_key)`であり、既存診断型を新しいunionで包まず、slice単位のUnknown/UnobservedはObserved payload側に保つ。`ProjectionNotApplicable`は固定caseでAPIが非適用と確定した場合だけの内部sentinelで、適用不明には使わず、K1/K2へ合成しない。K1合成を将来必要とする場合はK1 §2.5のcurrent完全keyと成分別`PolarityOf`で既存combineを使い、API診断やsentinelを成分として捏造しない。
@@ -94,6 +96,7 @@ SECURITYのcase action名とK3 operationの対応は、このL5が新しい対�
 | `resolve_security_case(parent_ref, case_ref, input_heads)` | `Observed<ResolvedSecurityCase> | Rejected(missing_key)` | 固定parent/caseから必要な既存owner refsを解決する。sliceのUnknown/UnobservedはObserved payload側に保持する。caller refsは期待値で、owner current refsを選択しない。 |
 | `project_permission(resolved, query, permission_ref, input_heads)` | `PermissionCheck` (= `PermissionCheckResult | PermissionCheckDiagnostic`) | K3 current declaration/effective decisionを一度照合し、全components/assurance/diagnosticを保持する。許可を発行しない。 |
 | `project_external_label(resolved, source_ref)` | `ObservedLabel | Rejected(missing_key)` | K8 generic input labelをL2-001/002の外部入力用に読む。asset classificationへ流用しない。 |
+| `project_label_transition(resolved, case_ref, input_label_ref, route_ref, k3_permission_check_ref, effect_observation_ref, input_heads)` | `TransitionValidation | Rejected(missing_key)` | K8 `validate_label_transition`へ同じ引数を渡す読取り境界。current owner bindingを再読し、selected validationとquery未発行のNotSelected記録projectionを分離する。作用や許可を生成しない。 |
 | `project_effect(resolved, effect_ref)` | `Observed<EffectObservation> | Rejected(missing_key)` | 既存effect observationを読む。`authority_effect=none`を許可/実適用へ変換しない。 |
 | `project_verification(resolved, operation, base_key, verifier_set, reverify)` | `RequiredResult` | K6の`required(operation, base_key, verifier_set, reverify)`を呼び、既存required verificationとassuranceを保持する。 |
 | `project_propagation(resolved, revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, recipient_decls, verifier_set, input_heads)` | `Observed<PropagationView>` | G5 `propagate`の全引数と戻り値をそのまま接続するread-derived projection。recipient/obligation stateを更新せず、K7 `admit_effect`とは別APIである。 |
@@ -107,8 +110,11 @@ SECURITYのcase action名とK3 operationの対応は、このL5が新しい対�
 | L5 adapter名 | 対応するL4名・形 | 差分の扱い |
 |---|---|---|
 | `resolve_security_case(parent_ref, case_ref, input_heads)` | `resolve_security_stage1_case(parent, case, input_heads)` | L5の短縮名。戻り値はL4どおり`Observed<ResolvedSecurityCase> | Rejected(missing_key)`。 |
-| `evaluate_security_case(resolved)` | `evaluate_security_stage1_case(resolved)` | L5の短縮名。戻り値`SecurityInputProjection`はL4 `SecurityCaseProjection`と同じslots/typesを保持する。 |
+| `evaluate_security_case(resolved)` | `evaluate_security_stage1_case(resolved)` | L5の短縮名。戻り値`SecurityInputProjection`はL4 `SecurityCaseProjection`の既存slots/typesを以下の名称対応で保持し、case/source参照をadapter内部で添える。 |
 | `project_permission` | `SecurityCaseProjection.authority`を構成するK3 `resolve_authority_context` / `check_permission` adapter | 既存K3 `PermissionCheck` unionを保持し、新fieldを`PermissionQuery`へ追加しない。 |
+| `SecurityInputProjection.permission` | L4 `SecurityCaseProjection.authority` | 型は同じ`PermissionCheck | ProjectionNotApplicable`。authorityをpermissionへ短縮した内部slot名で、意味の変更ではない。 |
+| `SecurityInputProjection.case_ref` / `.input_refs` | resolverのparent/caseとowner source refs | caseと入力sourceの追跡用の内部参照。新しい判定成分・authorityではない。 |
+| `project_label_transition` | K8 `validate_label_transition(case_ref, input_label_ref, route_ref, k3_permission_check_ref, effect_observation_ref, input_heads)` | 既存戻り型を保持する。未選択記録projectionは照会せずNotSelected、明示照会はK8契約の鍵付き結果。 |
 | `project_external_label` | `.label`のK8 `observe_input_label` | `ObservedLabel | Rejected(missing_key)`を保持する。 |
 | `project_effect` | `.effect`のK8 `observe_authority_effect` | `Observed<EffectObservation> | Rejected(missing_key)`を保持する。 |
 | `project_verification` | `.verification`のK6 `required(operation, base_key, verifier_set, reverify)` | 既存`RequiredResult`、assurance、diagnosticを保持する。 |
@@ -181,6 +187,6 @@ fresh K3 checkで同identity・別revisionを観測した場合はK3の新しい
 
 ## 9. 未解決境界
 
-SECURITY asset identity/classification adapter、owner producer graph、OS assignment source、physical enforcement observation source、G5 recipient declarationがcurrent owner sourceから結べない箇所は未解決のままにする。missingが実読で確認された場合とsourceへアクセスできずunobservedの場合を区別する。各Unknown/holdは影響operationまたはrecipientだけに適用し、19親全体を止めない。policy意味・scope・owner・版の変更が必要な場合だけ固定L2へ戻し、技術的な不足を新しい承認gateへ変えない。
+SECURITY asset identity/classification adapter、owner producer graph、OS assignment source、physical enforcement observation source、SECURITYのRecipientMapと各受け手ownerのRecipientDeclがcurrent owner sourceから結べない箇所は未解決のままにする。missingが実読で確認された場合とsourceへアクセスできずunobservedの場合を区別する。各Unknown/holdは影響operationまたはrecipientだけに適用し、19親全体を止めない。policy意味・scope・owner・版の変更が必要な場合だけ固定L2へ戻し、技術的な不足を新しい承認gateへ変えない。
 
 この文書は設計草稿で、実装・fixture実行・物理enforcement・署名/receipt真正性を検証していない。
