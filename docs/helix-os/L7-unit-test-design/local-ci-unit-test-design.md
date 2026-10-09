@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `8d6d60a056e116083690a4255dd2e272361a7d1f69b50f479ff889347ceb76e6`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `7fbec380a4cf97e624bec494a80110922046206ce57a6160b32d938ffc34c2ea`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -233,7 +233,7 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 | `UT-LCI-145` | 固定expected set/digestを保持し、AST validatorへ渡す合成target bytesがhelper `SUP-CK-K9-001` callableを含む | 合成target bytesから当該callableだけを除く（full source pin付き経路のsource bytesは変更しない） | AST validator関数境界で`Unknown(missing_input)`。固定metadata自体の欠落/不正とfull source bytesのpin不一致は別境界の`Unknown(conflict)`であり、subset execution/artifact/positive receiptは作らない |
 | `UT-LCI-146` | helper IDsは一意でproduct/Coreともdisjoint | helper `SUP-CK-K10-001` rowだけを重複させる | `Unknown(conflict)`、deduplicateしない |
 | `UT-LCI-147` | 三partition identity setsは相互にdisjoint | helper `unittest_identity`一件だけをCore identityと一致させる | `Unknown(conflict)`、片側を選ばず実行しない |
-| `UT-LCI-148` | helper tableは103の固定alias/callableのみを列挙する | 固定module alias内に未宣言のclass.method identityを一件追加する | `Unknown(conflict)`、scan/importによる自動追加なし |
+| `UT-LCI-148` | helper tableは103の固定alias/callableのみを列挙する。17固定moduleのASTには、SECURITY alias `l7_sup_security_test_projection`のnon-test `_CaseRef`だけを許可し、base/keywordなし・`@dataclass(frozen=True)`・test名methodなしの形に限る | 各一点変異を独立に検査する: BRAIN aliasへ未宣言の空classを追加、同aliasへ`BrainProjectionTests`継承classを追加、SECURITY `_CaseRef`へ`unittest.TestCase` baseを追加、`metaclass` keywordを追加、`test_*` methodを追加 | すべて`Unknown(conflict)`をtest module import/spawn前に返す。`_CaseRef` allowlistはこの固定alias/class/形だけで、未宣言classや継承からidentityを自動追加しない |
 | `UT-LCI-149` | helper source/test refsのbytesはL5 §8.2 SHAと一致する | `_private_resource_projection.py` bytesだけを別内容へ置換する | `Unknown(conflict)`、suite spawn前に停止 |
 | `UT-LCI-150` | helperの8 unique L6/L7 pathsは全てtarget treeから読み込める | SECURITY L7 refだけをrequired helper refsから欠落させる | `Unknown(missing_input)`、helper subset実行なし |
 | `UT-LCI-151` | `MechanismHelperIdentity`の閉じたfield setにformal ID fieldはない | helper identity一行に`formal_l7_id`だけを追加する | `Rejected(invalid_input)`、formal mappingを生成しない |
@@ -242,7 +242,7 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 | `UT-LCI-154` | 正常baselineでは各module loadの前後に既存sentinel entryとentry不在の両方を検査し、LABO/SECURITY固定sourceを一時bindingしてtest globalsへ束縛する。module load/test executionの成功・例外を問わず`finally`で元entryを同一object（元々不在なら不在）へ戻し、無関係なmodule entryを変えない | SECURITY test loadだけLABOの`projection` entryを残して一時置換を省く | SECURITY import errorをF-LCI-10の起動後suite失敗として保持し、`CheckExecution.state=fail`、完全なsuite artifact/positive receiptなし。例外終了後も一時binding前のentryだけを復元し、無関係なmodule entryは不変。機構formal ID/mappingは作らない |
 
 
-これらのoracleは三partitionの固定inventoryとrunner resultのidentity境界だけを検査し、機構の正式L7 fixture/pass・L8/L9 oracle・製品登録/owner接続を生成しない。`UT-LCI-144`の716は設計上の期待集合であり、このL7設計書自体は実行結果ではない。レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`のruntimeで照合された613（Core586＋製品補助27）は履歴であり、そのidentity集合は`eeb6ae7`から不変である。現在のsource_l7_runner.pyはCore586、製品補助27、helper103の固定716 inventoryを照合・実行する。L5 §8.1の27行ごとのmethod assertion内容は各製品source/test bytesに属し、本書で再分類しない。trusted側AST preflightは固定17 alias/path（Core 5、製品補助4、機構helper8）からclass/method identityを照合し、test moduleをimportしない。実test moduleのimport/discoveryはsandbox内runnerの責務である。runtime実装、L7 fixture設計、個別runの結果は別々に扱い、run結果はexact target receiptでのみ確認する。
+これらのoracleは三partitionの固定inventoryとrunner resultのidentity境界だけを検査し、機構の正式L7 fixture/pass・L8/L9 oracle・製品登録/owner接続を生成しない。`UT-LCI-144`の716は設計上の期待集合であり、このL7設計書自体は実行結果ではない。レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`のruntimeで照合された613（Core586＋製品補助27）は履歴であり、そのidentity集合は`eeb6ae7`から不変である。現在のsource_l7_runner.pyはCore586、製品補助27、helper103の固定716 inventoryを照合・実行する。L5 §8.1の27行ごとのmethod assertion内容は各製品source/test bytesに属し、本書で再分類しない。trusted側AST preflightは固定17 alias/path（Core 5、製品補助4、機構helper8）内のclass/method identityを照合する。classは閉じたinventoryとし、expected test classは直接`unittest.TestCase`を継承し、non-test classは`UT-LCI-148`記載の固定`_CaseRef`のみ許可する。許可外class、base、metaclass keyword、test methodはimport/spawn前に拒否する。test moduleのimport/discoveryはsandbox内runnerの責務である。runtime実装、L7 fixture設計、個別runの結果は別々に扱い、run結果はexact target receiptでのみ確認する。
 
 既存oracleの負例内訳: UT-LCI-105/106はerror、expected failure、unexpected successも個別に変異させ、各該当ID/countを保持したfailを確かめる。UT-LCI-107は5 outcomeが空の非zero exit、bool count、余分なfield、count/ID不一致、過大frame、不正JSON、未開始結果を各々拒む。UT-LCI-103はplaceholder未知値/余分なsuffixを個別に拒む。UT-LCI-111/113は作成前payload検証の境界であり、保存後のartifactをproviderが取得・再検証する意味ではない。同oracleでartifact root/file mode不正、symlink ancestor、repo内path、digest名collision、atomic link失敗も個別に拒み、XDG未設定時はuid別固定rootからexact bytesを再読できることを確認する。UT-LCI-101/102にはmissing_inputとconflict双方で先行5件のpartial diagnosticが残りsuite行/receiptが無いことを含める。
 

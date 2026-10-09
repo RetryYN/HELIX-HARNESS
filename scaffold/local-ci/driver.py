@@ -153,7 +153,8 @@ def _validate_suite_result(payload, target, source_refs, execution, source_bytes
             or len(supplemental_executed) != len(SUPPLEMENTAL_IDS)
             or tuple(helper_discovered) != MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS
             or tuple(helper_executed) != MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS):
-        raise Diagnostic("Unknown", "conflict", "Core/supplemental partition identities are inconsistent")
+        raise Diagnostic("Unknown", "conflict",
+                         "Core/product-supplemental/mechanism-helper partition identities are inconsistent")
     outcome_ids = []
     for count_key, ids_key in (("failure_count", "failed_ids"), ("error_count", "error_ids"),
                                ("skip_count", "skipped_ids"),
