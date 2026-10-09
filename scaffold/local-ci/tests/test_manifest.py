@@ -43,53 +43,63 @@ def _baseline():
     source_to_path = {ident: path for path, ids in manifest.REQUIRED_SOURCE_IDS_BY_PATH.items() for ident in ids}
     for index, (path, role, pair) in enumerate(manifest.EXPECTED_FILES, 1):
         if path == manifest.CK_L5_PATH:
-            sources[path] = (
-                "# Synthetic Common Kernel L5\n"
-                "### 3.2 K1 API contract\nK1 API synthetic.\n"
-                "### 3.3 K2: reference and key records\nK1 range end.\n"
-                "### 3.4 K2 API contract\nK2 API synthetic.\n"
-                "### 3.5 role-bound input alias binding\nK2 range end.\n"
-            ).encode()
+            lines = [
+                "# Synthetic Common Kernel L5",
+                "### 3.2 K1 API contract", "K1 API synthetic.",
+                "### 3.3 K2: reference and key records", "K1 range end.",
+                "### 3.4 K2 API contract", "K2 API synthetic.",
+                "### 3.5 role-bound input alias binding", "K2 range end.",
+                "#### 6.1.3 K3 function/API contract", "K3 API synthetic.",
+                "#### 6.1.4 invariantからL5 functionへのtrace", "K3 range end.",
+                "#### 6.2.2 公開関数とprivate helper", "K5 API synthetic.",
+                "#### 6.2.3 不変条件の分解", "K5 range end.",
+            ]
+            sources[path] = ("\n".join(lines) + "\n").encode()
             definitions = [
-                {"range_id": "ck-l5-k1-api", "start_heading": manifest.CK_L5_K1_LOCATOR,
-                 "end_heading": "### 3.3 K2: reference and key records", "grammar": "exact_heading",
-                 "id_column": None, "literal_expansions": []},
-                {"range_id": "ck-l5-k2-api", "start_heading": manifest.CK_L5_K2_LOCATOR,
-                 "end_heading": "### 3.5 role-bound input alias binding", "grammar": "exact_heading",
-                 "id_column": None, "literal_expansions": []},
+                {"range_id": rid, "start_heading": heading, "end_heading": end,
+                 "grammar": "exact_heading", "id_column": None, "literal_expansions": []}
+                for heading, (rid, end) in manifest.CK_L5_RANGE_CONFIG.items()
             ]
             references = []
         elif path == manifest.CK_L8_PATH:
             lines = ["# Synthetic Common Kernel L8"]
             definitions, references = [], []
-            for key, start, end, range_id, source_locator, l4_id in (
-                ("k1", "## 3. K1 fixtures", "## 4. K2 fixtures", manifest.CK_L8_K1_RANGE,
-                 manifest.CK_L5_K1_LOCATOR, "K1-I1"),
-                ("k2", "## 4. K2 fixtures", "## 5. K3–K10と未実施範囲", manifest.CK_L8_K2_RANGE,
-                 manifest.CK_L5_K2_LOCATOR, "K2-I1"),
-            ):
+            for range_id, (start, end, _) in manifest.CK_L8_DEFINITION_CONFIG.items():
                 if lines[-1] != start:
                     lines.append(start)
+                source_locator = manifest.CK_L5_LOCATOR_BY_RANGE[range_id]
+                suffix = range_id.removeprefix("ck-l8-").removesuffix("-fixtures")
                 fixture_ids = sorted(manifest.CK_L8_EXPECTED_IDS_BY_RANGE[range_id])
-                grouped_ids = fixture_ids[:3] if key == "k1" else []
-                row_ids = ([grouped_ids[0]] + fixture_ids[3:]) if grouped_ids else fixture_ids
+                grouped_ids = fixture_ids[:3] if range_id == manifest.CK_L8_K1_RANGE else []
+                expansion = ([{"literal": "group-k1", "ids": grouped_ids}] if grouped_ids else [])
+                contract_expansions = []
                 for fixture_id in fixture_ids:
                     if grouped_ids and fixture_id in grouped_ids[1:]:
                         continue
-                    raw_literal = f"group-{key}" if grouped_ids and fixture_id == grouped_ids[0] else f"`{fixture_id}`"
-                    lines.append(f"| {raw_literal} | `IV-SYNTH-03` | contract-{key}-{fixture_id} | trace | Value(accepted) |")
+                    raw_literal = "group-k1" if grouped_ids and fixture_id == grouped_ids[0] else f"`{fixture_id}`"
+                    contract_literal = f"contract-{suffix}-{fixture_id}"
+                    outcome_column = manifest.CK_L8_OUTCOME_COLUMN_BY_RANGE[range_id]
+                    cells = [raw_literal, "`IV-SYNTH-03`", contract_literal]
+                    if outcome_column == 6:
+                        cells.append("`AC-SYNTH-01`")
+                        cells.append("synthetic boundary")
+                    elif outcome_column == 5:
+                        cells.append("synthetic trace")
+                    lines.append("| " + " | ".join(cells + ["Value(accepted)"]) + " |")
+                    if not grouped_ids or fixture_id not in grouped_ids[1:]:
+                        if not (grouped_ids and fixture_id == grouped_ids[0]):
+                            expansion.append({"literal": raw_literal, "ids": [fixture_id]})
+                        contract_expansions.append({"literal": contract_literal, "ids": [source_locator, "K1-I1"]})
                 lines.append(end)
-                definition_expansions = ([{"literal": f"group-{key}", "ids": grouped_ids}] if grouped_ids else [])
                 definitions.append({"range_id": range_id, "start_heading": start, "end_heading": end,
                                     "grammar": "table_column", "id_column": 1,
-                                    "literal_expansions": definition_expansions})
+                                    "literal_expansions": expansion})
                 references.extend([
-                    {"range_id": f"ck-l8-{key}-l9-oracles", "start_heading": start, "end_heading": end,
+                    {"range_id": f"ck-l8-{suffix}-l9-oracles", "start_heading": start, "end_heading": end,
                      "grammar": "table_column", "id_column": 2, "literal_expansions": []},
-                    {"range_id": f"ck-l8-{key}-l4-l5-contracts", "start_heading": start, "end_heading": end,
+                    {"range_id": f"ck-l8-{suffix}-l4-l5-contracts", "start_heading": start, "end_heading": end,
                      "grammar": "table_column", "id_column": 3,
-                     "literal_expansions": [{"literal": f"contract-{key}-{fixture_id}",
-                                             "ids": [source_locator, l4_id]} for fixture_id in row_ids]},
+                     "literal_expansions": contract_expansions},
                 ])
             sources[path] = ("\n".join(lines) + "\n").encode()
         elif path in manifest.REQUIRED_SOURCE_IDS_BY_PATH:
@@ -188,19 +198,19 @@ def _baseline():
         if state != "not_exercised":
             verifier_path = next(row[2] for row in manifest.EXPECTED_FILES if row[0] == source_path)
             if verifier_path == manifest.CK_L8_PATH:
-                ck_ids = manifest.CK_L8_EXPECTED_IDS_BY_RANGE[
-                    manifest.CK_L8_K1_RANGE if source_id == manifest.CK_L5_K1_LOCATOR else manifest.CK_L8_K2_RANGE
-                ]
+                range_id = next(rid for rid, locator in manifest.CK_L5_LOCATOR_BY_RANGE.items()
+                                if source_id == locator)
+                ck_ids = manifest.CK_L8_EXPECTED_IDS_BY_RANGE[range_id]
                 for ck_verifier_id in sorted(ck_ids):
-                    range_id = manifest.CK_L8_K1_RANGE if ck_verifier_id.startswith("L8-K1-") else manifest.CK_L8_K2_RANGE
-                    edge_id = f"edge.ck.synthetic.{ck_verifier_id}"
+                    edge_id = f"edge.ck.synthetic.{range_id}.{ck_verifier_id}"
                     edge_ids.append(edge_id)
                     doc["coverage_edges"].append({
                         "edge_id": edge_id, "source_id": source_id,
                         "source_path": source_path, "verifier_id": ck_verifier_id,
                         "verifier_path": verifier_path,
                         "outcome_ref": {"verifier_path": verifier_path, "range_id": range_id,
-                                        "verifier_id": ck_verifier_id, "outcome_column": 5},
+                                        "verifier_id": ck_verifier_id,
+                                        "outcome_column": manifest.CK_L8_OUTCOME_COLUMN_BY_RANGE[range_id]},
                     })
             else:
                 verifier_id = verifier_ids[verifier_path]
@@ -291,22 +301,25 @@ class DesignManifestTests(unittest.TestCase):
         doc["parent_ac_coverage"][0]["state"] = "pass"
         _expect_diag(self, "Rejected", "invalid_input", manifest.load_design_manifest, _raw(doc), sources)
 
-    def test_ut_lci_89_common_kernel_pair_baseline_has_164_expanded_verifiers(self):
+    def test_ut_lci_89_common_kernel_component_inventories_are_independent(self):
         doc, sources, _ = _baseline()
         loaded = manifest.load_design_manifest(_raw(doc), sources)
         graph = _graph(loaded, sources)
         self.assertEqual(len(loaded["files"]), 12)
-        self.assertEqual(len(manifest.REQUIRED_SOURCE_IDS), 187)
+        self.assertEqual(len(manifest.REQUIRED_SOURCE_IDS), 189)
         self.assertEqual(len(manifest.EXPECTED_CK_K1_K2_VERIFIER_IDS), 164)
-        self.assertEqual(
-            len([item for item in graph["definitions"] if item["path"] == manifest.CK_L8_PATH]),
-            164,
-        )
+        self.assertEqual(len(manifest.EXPECTED_CK_K3_VERIFIER_IDS), 194)
+        self.assertEqual(len(manifest.EXPECTED_CK_K5_VERIFIER_IDS), 91)
+        self.assertEqual(len([item for item in graph["definitions"] if item["path"] == manifest.CK_L8_PATH]), 449)
         grouped = [row for row in graph["definition_rows"].values()
                    if row[0] == manifest.CK_L8_PATH and row[1] == manifest.CK_L8_K1_RANGE
                    and row[3][0] == "group-k1"]
         self.assertEqual(len(grouped), 3)
         self.assertEqual(len({row[2] for row in grouped}), 1)
+        for range_id, expected in manifest.CK_L8_EXPECTED_IDS_BY_RANGE.items():
+            actual = {item["id"] for item in graph["definitions"]
+                      if item["path"] == manifest.CK_L8_PATH and item["range_id"] == range_id}
+            self.assertEqual(actual, expected)
 
     def test_ut_lci_90_missing_k2_l5_locator_is_unknown(self):
         doc, sources, _ = _baseline()
@@ -351,6 +364,65 @@ class DesignManifestTests(unittest.TestCase):
         edge = next(item for item in doc["coverage_edges"] if item["verifier_id"] == "L8-K1-01-N")
         edge["source_id"] = "K1-I1"
         edge["source_path"] = next(path for path, ids in manifest.REQUIRED_SOURCE_IDS_BY_PATH.items() if "K1-I1" in ids)
+        _expect_diag(self, "Unknown", "conflict", manifest.verify_coverage_edges, doc, _graph(doc, sources))
+
+    def test_ut_lci_96_k3_locator_range_id_collision_is_conflict(self):
+        doc, sources, _ = _baseline()
+        l5 = next(f for f in doc["files"] if f["path"] == manifest.CK_L5_PATH)
+        k3_locator = next(
+            r for r in l5["definition_ranges"]
+            if r["start_heading"] == manifest.CK_L5_K3_LOCATOR
+        )
+        k3_locator["range_id"] = manifest.CK_L5_RANGE_CONFIG[manifest.CK_L5_K5_LOCATOR][0]
+        _expect_diag(self, "Unknown", "conflict", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_deleted_common_kernel_definition_range_remains_missing_input(self):
+        doc, sources, _ = _baseline()
+        l8 = next(f for f in doc["files"] if f["path"] == manifest.CK_L8_PATH)
+        l8["definition_ranges"] = [r for r in l8["definition_ranges"]
+                                  if r["range_id"] != manifest.CK_L8_K3_RANGE]
+        _expect_diag(self, "Unknown", "missing_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_ut_lci_97_joint_k5_raw_row_edge_disposition_removal_is_unknown(self):
+        doc, sources, _ = _baseline()
+        verifier_id = "L8-K5-17-CLOSED-PARTIAL-READ"
+        # Keep the checker inventory fixed while removing the matching raw
+        # table row, edge, and disposition reference.
+        original = sources[manifest.CK_L8_PATH].decode()
+        sources[manifest.CK_L8_PATH] = ("\n".join(
+            line for line in original.splitlines() if not line.startswith(f"| `{verifier_id}` |")
+        ) + "\n").encode()
+        edge = next(item for item in doc["coverage_edges"] if item["verifier_id"] == verifier_id)
+        doc["coverage_edges"].remove(edge)
+        disposition = next(item for item in doc["coverage_dispositions"] if item["source_id"] == edge["source_id"])
+        disposition["edge_ids"].remove(edge["edge_id"])
+        _expect_diag(self, "Unknown", "missing_input", _graph, doc, sources)
+
+    def test_ut_lci_99_joint_k3_id_expansion_edge_disposition_removal_is_unknown(self):
+        doc, sources, _ = _baseline()
+        verifier_id = "L8-K3-14-ROLE-ALIAS-COEXISTS"
+        original = sources[manifest.CK_L8_PATH].decode()
+        sources[manifest.CK_L8_PATH] = ("\n".join(
+            line for line in original.splitlines() if not line.startswith(f"| `{verifier_id}` |")
+        ) + "\n").encode()
+        ck_file = next(f for f in doc["files"] if f["path"] == manifest.CK_L8_PATH)
+        expansion = next(r for r in ck_file["definition_ranges"]
+                         if r["range_id"] == manifest.CK_L8_K3_RANGE)["literal_expansions"]
+        expansion[:] = [entry for entry in expansion if verifier_id not in entry["ids"]]
+        edge = next(item for item in doc["coverage_edges"] if item["verifier_id"] == verifier_id)
+        doc["coverage_edges"].remove(edge)
+        disposition = next(item for item in doc["coverage_dispositions"] if item["source_id"] == edge["source_id"])
+        disposition["edge_ids"].remove(edge["edge_id"])
+        _expect_diag(self, "Unknown", "missing_input", _graph, doc, sources)
+
+    def test_ut_lci_98_component_edge_source_and_outcome_column_are_fixed(self):
+        doc, sources, _ = _baseline()
+        edge = next(item for item in doc["coverage_edges"] if item["verifier_id"] in manifest.EXPECTED_CK_K3_VERIFIER_IDS)
+        edge["source_id"] = manifest.CK_L5_K5_LOCATOR
+        _expect_diag(self, "Unknown", "conflict", manifest.verify_coverage_edges, doc, _graph(doc, sources))
+        doc, sources, _ = _baseline()
+        edge = next(item for item in doc["coverage_edges"] if item["verifier_id"] in manifest.EXPECTED_CK_K3_VERIFIER_IDS)
+        edge["outcome_ref"]["outcome_column"] = 5
         _expect_diag(self, "Unknown", "conflict", manifest.verify_coverage_edges, doc, _graph(doc, sources))
 
     def test_parent_ac_coverage_missing_list_is_unknown(self):
@@ -414,11 +486,14 @@ class DesignManifestTests(unittest.TestCase):
     def test_ut_lci_33_definitions_form_unique_graph(self):
         doc, sources, _ = _baseline()
         graph = _graph(doc, sources)
-        self.assertEqual(len(graph["by_id"]), len(manifest.REQUIRED_SOURCE_IDS) + 5 + len(manifest.EXPECTED_CK_K1_K2_VERIFIER_IDS))
+        self.assertEqual(len(graph["by_id"]), len(manifest.REQUIRED_SOURCE_IDS) + 5 + len(manifest.EXPECTED_CK_VERIFIER_IDS))
         ck_refs = [ref for ref in graph["references"] if ref["path"] == manifest.CK_L8_PATH]
-        self.assertEqual(len(ck_refs), 162 * 3)
-        self.assertEqual(sum(ref["column"] == 2 for ref in ck_refs), 162)
-        self.assertEqual(sum(ref["column"] == 3 for ref in ck_refs), 162 * 2)
+        # The first three K1 verifier IDs intentionally share one raw row;
+        # table references are observed once per raw row, not copied per ID.
+        raw_rows = 449 - 2
+        self.assertEqual(len(ck_refs), raw_rows * 3)
+        self.assertEqual(sum(ref["column"] == 2 for ref in ck_refs), raw_rows)
+        self.assertEqual(sum(ref["column"] == 3 for ref in ck_refs), raw_rows * 2)
 
     def test_ut_lci_34_mixed_nonpass_dispositions_remain_visible(self):
         doc, sources, _ = _baseline()
