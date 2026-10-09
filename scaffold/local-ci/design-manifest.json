@@ -2644,7 +2644,7 @@
         {
           "range_id": "l7-unit-oracles",
           "start_heading": "### 単体oracle一覧",
-          "end_heading": null,
+          "end_heading": "## 4. 開発source L7 suite runnerの単体oracle",
           "grammar": "table_column",
           "id_column": 1,
           "literal_expansions": []
