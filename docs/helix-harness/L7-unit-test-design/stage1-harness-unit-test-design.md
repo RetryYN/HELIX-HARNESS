@@ -432,3 +432,22 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s helix/helix-harness/un
 L8の局所保留19件は、以下すべてに`CASE-HARNESS-L8-`を付けたIDであり、すべて未実行である：`F010-02-INVALID-TARGET`、`F010-03-HIDE-QUALIFIED`、`F010-03-UNEXCHANGEABLE`、`F011-02-AUTH-MISSING`、`F011-02-UNPASSED-AUTHORITY`、`F023-03-HUMAN-DELEGATION-VALID`、`F023-03-HUMAN-ORAL-ONLY`、`F023-03-HUMAN-ACTOR-MISSING`、`F023-03-HUMAN-SOURCE-MISSING`、`F023-03-HUMAN-REVISION-MISSING`、`F023-03-HUMAN-SCOPE-MISSING`、`F023-03-HUMAN-RECEIPT-MISSING`、`F023-03-HUMAN-VERIFICATION-RECEIPT-MISSING`、`N011-01-INTERRUPT-NO-EFFECT`、`N011-01-REDELIVERY-ONCE`、`N011-01-DUPLICATE-EFFECT`、`N011-02-DISPATCH-AFTER-UNCERTAIN`、`N011-02-START-BEFORE-FINISH-AFTER`、`N023-01-HUMAN-RECEIPT-MISSING`。主結果・owner戻し先はL8各rowの記載を保つ。これらをhelper passや`Unknown`合成で緑化しない。
 
 5 helper testはsource helperに対する小さな局所assertionであり、K1 ResultKey/PolarityMappingを必要とする`Observed<T>`製品APIを実装した証拠ではない。正式fixtureで要求される基準入力・単一変異・型付き主結果・構造assertionの実行はなく、L8/L9、実owner接続、登録、効果、coverageの合格を主張しない。旧runtime/test/CLI/CIは起動していない。
+
+## 8. PackRevisionComparisonの局所実装assertion
+
+この追補はmain `8ab8d50f1c70fc3f42490f6cc0ce6d0ece7f8fcb`上のL6 §9に対応する、実装済みprivate helperの局所確認記録である。L6 SHA-256は`7aff92b54a51bc0997fb23ec2591f76b3ba55a9b13d12259368eec45f69691dd`、新source `helix/helix-harness/units/harness-stage1/src/pack_revision_projection.py` SHA-256は`1be6f0a58d82ebffd8ded44ab936fbefd48a65994eaba7f1a85e91ec3c430e63`、新test `helix/helix-harness/units/harness-stage1/tests/test_pack_revision_projection.py` SHA-256は`8c9db18475ed2c7886c535bbee6684cc29fa321ab1ded8bb6b6d6d0c1f631363`である。test moduleは`unittest`の4 methodから成り、以下のlocal aliasは後続CIの候補参照名である。aliasは新しいformal fixture ID、L8 CASE、L9 IV、SUP-00x設計行、実行登録を作らない。
+
+| local alias | 実test method | 参照する既存SUP | 入力とassertion範囲 |
+|---|---|---|---|
+| `SUP-HARNESS-REVISION-001` | `test_sup_harness_revision_001_current_baseline_retains_refs_and_mixed_fact_order` | SUP-003 | `revision_relation=current`の合成基準。8種のdeclared/current/cause ref群、mixed `facts` tupleの順序・要素identity、field/declaration read-only projectionを確認する。 |
+| `SUP-HARNESS-REVISION-002` | `test_sup_harness_revision_002_stale_relation_is_retained_as_supplied` | SUP-003のstale保持subcase | refs/factsを固定し、解決済み入力`revision_relation=stale`をそのまま保持する。relationをref比較から導出しない。 |
+| `SUP-HARNESS-REVISION-003` | `test_sup_harness_revision_003_declared_pack_ref_only_mutation_preserves_other_inputs` | SUP-004 | SUP-003基準からdeclared pack refだけを別revisionへ変える。mutation対象ref以外の7 ref groups、全facts、`revision_relation=current`を保持する。mismatch計算やstale決定は期待しない。 |
+| `SUP-HARNESS-REVISION-004` | `test_sup_harness_revision_004_existing_unknown_is_preserved_outside_payload` | SUP-005 | 既存source-result helperへ既存`Unknown(unreadable)`を渡し、同じobject、reason、evidence identityが保持されることを確認する。payload constructorや公開return mappingは呼ばず、その機能を実装したとは扱わない。 |
+
+4 methodは4 aliasへ一対一に対応する。`unittest` assertion実行は合計32回（method 001のref-group loopを含む）であり、formal 269 fixtureおよびL8 CASEの実行数は0である。既存L7 §3の269行、§4のSUP-001〜005行、L8の269 fixture bytes/ID、L9 verifierは変更していない。SUP-003/004/005は参照元の部分oracleのままで、SUP-004のpublic mismatch/current mappingとSUP-005のpublic non-Value routingは未充足である。
+
+実行した局所commandは次のとおりで、4 methodがすべて成功した。この結果はpure payload保持helperの単体検証であり、L5公開API、reader/owner、K1 `Observed` mapping、pack registration、L8/L9全体、正式fixture coverage、CI registrationや製品合格を示さない。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s helix/helix-harness/units/harness-stage1/tests -p 'test_pack_revision_projection.py' -v
+```
