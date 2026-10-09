@@ -4,13 +4,13 @@ layer: L8
 status: design_pair_defined
 owner: HELIX-HARNESS
 paired_l5: ../L5-detail-design/stage1-harness.md
-paired_l5_sha256: a0ed72f672606aee19e0124ee54ce47f6b409ab2e93b81cff1824f7c9cf7a92d
+paired_l5_sha256: dc647e429ee99e6232509837cb89aa6ed451f566922dd19428ecb3f9c21851db
 base: main `f75199749888f7261772ba26e9feb58a33d9a04f`
 ---
 
 # HELIX-HARNESS Stage 1 L8詳細検証設計
 
-本書は[L5](../L5-detail-design/stage1-harness.md)の製品契約を固定L10の12 functional case、5 NFR case、親別business boundary 3件の計20件へ展開する。下の`IV-HARNESS-*`は既存L9で定義済みのverifier IDであり、L8が再定義・再採番するIDではない。L8は各verifierが使うfixture候補とfield単位の変異方法を詳述する。設計状態であり、実行、pass、実装、CI、releaseを示さない。
+本書は[L5](../L5-detail-design/stage1-harness.md)の製品契約を固定L10の12 functional case、5 NFR case、親別business boundary 3件の計20件へ展開する。下の`IV-HARNESS-*`は既存L9で定義済みのverifier IDであり、L8が再定義・再採番するIDではない。L8は各verifierが使うfixture候補とfield単位の変異方法を詳述する。後段に分けて記録するunit locator setup照合はこの20 verifier・269 fixture分母へ含めず、製品oracle・登録検査にも数えない。設計状態であり、実行、pass、実装、CI、releaseを示さない。
 
 fixtureは合成pack declaration、dependency refs、caller input、version、authority ref、saved state、event/evidenceだけを使用する。実ネットワーク、実credential、provider、release/deployment、旧runtime/test/CIを起動しない。L9の期待oracle、既存K1–K10の型/key/reason契約、固定L3/L10以外の状態語を新設しない。未知・未観測・比較不能は影響する当該operationだけ非肯定とし、全製品や全Stageを停止する新gateを作らない。
 
@@ -313,6 +313,17 @@ K1の`Unknown`はL4 Common Kernel §2.3の閉じた`UnknownReason`集合に従�
 | `CASE-HARNESS-L8-B023-BOUNDARY` | `IV-HARNESS-S1-B-023` | `resolve_dependency_closure` | 既存4 class positive fixture (`F023-01-CLASS-ALWAYS/CLASS-OPERATION/CLASS-SELECTED-SOURCE/CLASS-REFERENCE-ONLY`)（固定L10 `CASE-HARNESS-L10-023-01`、L3 `AC-HARNESS-L3-023-01`）のbaseline result集合を使用する。 | test harnessはB023 baseline inputの`Value<ClosureObservationCandidate>`を固定して比較する。比較用candidateへの利用方針field追加だけを変異する。 | API入力固定時の`Value<ClosureObservationCandidate>`。 | test-harness専用probeに`usage_policy`だけを加える。API closure/payloadへ新利用方針を生成しない。API payloadをclosed schemaとみなさない。 |
 | `CASE-HARNESS-L8-B023-OWNER-BOUNDARY` | `IV-HARNESS-S1-B-023` | `resolve_dependency_closure` | B023-BOUNDARYと同じ4 class positive fixture result集合／固定L10 `CASE-HARNESS-L10-023-01`／L3 `AC-HARNESS-L3-023-01`。 | test harnessはB023 baseline inputの`Value<ClosureObservationCandidate>`を固定して比較する。比較用candidateへの新owner決定field追加だけを変異する。 | API入力固定時の`Value<ClosureObservationCandidate>`。 | probeに`new_owner_decision`だけを加える。既存owner refsを保持し、新owner decisionをAPIへ加えない。API payloadをclosed schemaとみなさない。 |
 
+### 2.1 unit配置setup照合（分母外）
+
+次の2件はL5 §7のcandidate locator/役割分担だけを静的に照合するsetup候補であり、既存L9 verifierやL10 oracleではない。269 fixture、20 verifier、11 AC、5 NFRを増やさない。返却class/reason、登録/usable判定、L7実行を期待しない。
+
+| setup ID | baseline / 単一条件 | 静的assertion | 境界 |
+|---|---|---|---|
+| `SETUP-HARNESS-UNIT-LOCATOR` | mutationなし。candidate rootを`helix/helix-harness/units/harness-stage1/`とする。 | L4のunit path patternのもとにcandidate `declaration.json`、`src/stage1_pack.py`、`tests/test_stage1_pack.py`、`fixtures/`を同じrootの子locatorとして組み立てる。 | locator候補の文字列整合だけを確かめる。treeに実体がある、identity/type numberが確定、declarationが成立、台帳登録済み、pack usableとは主張しない。 |
+| `SETUP-HARNESS-UNIT-LOCATOR-MISMATCH` | baselineの4候補pathと役割を固定し、unit rootの最後のpath componentだけを`harness-other`へ置き換える。 | source/test/fixtures/declaration候補pathは同一rootを共有し、candidate rootの照合結果は不一致となる。 | 構造上のlocator mismatchだけをassertする。製品APIを呼ばず、新K1 result、L9 failure、registration gateを追加しない。 |
+
+このsetupはrepository-layout L4 §2–3とL5 §7のpath候補を照合する補助である。登録有無を照合する入力も判定関数も持たず、candidate pathから登録や使用可能性を導かない。旧assetの保持・置換根拠はL5 §2/§7に記録する。
+
 ## 5. 製品と共通kernelの結合範囲
 
 このL8はHELIX-HARNESS製品のStage 1 fixture設計であり、共通kernel詳細設計/単体suiteではない。`OperationResultEnvelopeCandidate`はprogress/result/evidenceの読取比較だけを表し、実保存・表示・業務完了を行わない。共通kernel参照は本pairのbase `f75199749888f7261772ba26e9feb58a33d9a04f`でcurrentだった本文SHAに固定し、過去snapshot pinをcurrent sourceとして扱わない。現行kernelのL4/L9が定義するK1–K10を、product scope内で参照する。
@@ -333,4 +344,4 @@ K1の`Unknown`はL4 Common Kernel §2.3の閉じた`UnknownReason`集合に従�
 
 初回pack declaration/VersionRegistered/ModelNumberDeclared/LogDecl/manifest segment、OS assignment/runのproducerはこのStage 1固定sourceから特定できず、L5で創作していない。L8 synthetic fixtureに登録済みidentityがあるとしても初回正本化の証拠ではない。該当operationだけをnon-positive/未観測として扱い、他のpure descriptor validation, version separation, typed classificationの設計まで止めない。
 
-NFR候補値は要求に即した技術測定候補であって、実装値・実測値・PO承認値ではない。等号expiry候補は同一fixtureで比較するが、既存contractが未定義ならその未確定を保つ。実外部操作、test/runtime/CI、物理dispatch、releaseは行わない。本書の20件は既存L9 verifierの識別数であり、表のfixture案とは異なる。既存236 fixture IDを保持し、追加33件を含むfixtureは計269件である。これらは、実行coverage/pass/設計全体完了を意味しない。
+NFR候補値は要求に即した技術測定候補であって、実装値・実測値・PO承認値ではない。等号expiry候補は同一fixtureで比較するが、既存contractが未定義ならその未確定を保つ。実外部操作、test/runtime/CI、物理dispatch、releaseは行わない。本書の20件は既存L9 verifierの識別数であり、表のfixture案とは異なる。既存236 fixture IDを保持し、追加33件を含むfixtureは計269件である。§2.1の2 setup IDは別の配置locator照合であり、このfixture/verifier/AC/NFR分母へ含めない。いずれも実行coverage/pass/設計全体完了を意味しない。
