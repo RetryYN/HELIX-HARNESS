@@ -1,0 +1,21 @@
+{
+  "issue": 2827,
+  "base_revision": "5f8d7f1251f15fe4a91314e26c20bf9b4856a9d5",
+  "authority_effect": "none",
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "lines": "70–88,631–633",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+    }
+  ],
+  "kept": "trigger適用、Discovery/PoCを開発styleと混同しないこと、共通上流と品質・V-pairを省略しないこと。",
+  "changed": "三方式の排他選択から四方式合成へ。旧S4直接L3合流からPoC→Backflow→L2二次形成→Decideへ。",
+  "reason": "9/25・9/26のPO判断後も運用表に旧工程列が残り、同じ入口で新旧の相反する指示を読めた。",
+  "decision_sources": [
+    "docs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md",
+    "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md"
+  ],
+  "before_sha256": "ae38b96b071f830e0b1f4ccc6d54070cb12adc21135bfab2842a11ad88d498f1",
+  "after_sha256": "57cf2c290a5b770db2fe98a05601e28b23dd7a5e57963a4783ae2d21f6804b17"
+}

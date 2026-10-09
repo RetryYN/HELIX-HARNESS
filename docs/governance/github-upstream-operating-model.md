@@ -197,11 +197,13 @@ POが差し戻すと判断した場合は、差し戻しの判断記録を作る
 
 | contract | 旧source identity | trigger／選択 | 保持する順序と合流 |
 |---|---|---|---|
-| 開発style | requirements v1.3 §4（`docs/governance/requirements-source/helix-requirements_v1.3.md:71-75,83-85`）、HARNESS-L2-002の移管元 | Full V／Production Scrum／V設計＋Scrum実装Hybridの三方式から適用可能な一つを選択する。未選択、複数選択、適用不能はfail-closeする | 選択styleの工程を進める。Discovery／PoCを第四の排他的styleにしない |
-| case-driven Discovery／PoC | `HR-FR-HYB-003`、`FR-L1-15`、`HIL-BR-28`、起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:631` | `requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`のいずれか | `S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`。S4は人間が判断し、採択結果だけをL3機能要件へ合流する |
+| 開発style | requirements v1.3 §4（旧三方式）と[9/25 PO判断](decisions/po-optimal-draft-po-decisions-2026-09-25.md#開発方式の定義) | Vモデル・スクラム・ハイブリッド・リリースカンバンを製品特性に合わせて選択・合成する。駆動（ticket種類）とは別に扱う | 方式によらずL3までは一律共通。組み合わせてもL1–L3・要件承認・V-pair・品質条件を落とさない。Scrum Reverseはスクラムで進める部分へ適用する |
+| Discovery／PoC | `HR-FR-HYB-003`、`FR-L1-15`、`HIL-BR-28`、旧requirements v1.3 §9.2と[9/25 PO判断](decisions/po-optimal-draft-po-decisions-2026-09-25.md)・[9/26 PO判断](decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | 既存の不確定要素のtriggerを使う。Discoveryは途中の検証・範囲確認、PoCは技術成立性の計画検証として区別する | Discoveryは発行元の作業へ戻る。PoCは非production検証の結果をBackflow→L2の2次形成→Decideへ戻し、その裁定前にL3・productionへ昇格しない。旧S4で直接L3へ合流する列を使わない |
 | Research | `FR-L1-27`、起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:632` | `tech_decision_required`、`option_comparison_needed`、`adr_required`のいずれか | research memoとADRを生成し、ADR参照点／L4基本設計（`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md:123`）へ合流する。成立性実験が必要ならDiscovery／PoCへ切り替える |
 | UI prototype | `HIL-BR-13`、requirements v1.3のScreen Applicability／agreement条件 | 画面対象で要求理解・操作・状態・failureの合意が必要 | 独立phaseにせず`L2要求 ↔ prototype`を反復する。agreement receiptなしにL3をfreezeしない。画面非対象は理由・判定者・入力digest・再entry triggerを持つskip receiptを要求する |
 | Scrum Reverse | requirements v1.3 §4.1（L94、L96-108）、§4.2（L112-119）、§10（L642-643） | sprint review前、release candidate合流前、public contract／DB schema／主要dependency／NFR budget変更、trace欠落、finding再発・性能退行・障害・手動回避 | `SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`。v1.3 L104に従い4 entityを単一進捗値へ縮退せず、SR4 receiptなしにrelease-readyへ進めず、findingを4種の修正routeのexactly oneへ送る |
+
+旧三方式の排他選択と旧Hybrid（V設計＋Scrum実装）は、9/25 PO判断による四方式の合成へ変更された。旧の狙いである品質条件の維持は、合成しても共通上流・要件承認・V-pairを落とさない条件として保持する。旧Discovery／PoCの一列S0〜S4と直接L3合流は、Discovery・PoC・Backflow・Decideの役割分離とL2再形成へ改める。これらは既決差分への追随であり、本書から製品要求や新たなgateを追加しない。製品契約の本文は[HARNESS-L2-002/012](../helix-harness/L2-requirements/product-requirements.md)、運転側の役割は[OSのticket種類](../helix-os/L2-requirements/governance-requirements.md#ticketの種類)を参照する。上表の旧source列を現在の規範として実行しない。
 
 `premise organization`／`premise research`は上流候補sourceから保持したGitHub運用上の証拠整理語彙であり、上記のHARNESS route候補と同じauthorityへ自動昇格させない。推進はrouteを無条件に全適用せず、triggerを満たすrouteを選び、その内部順序・human gate・joinを保持してworkflow instanceを生成する。
 

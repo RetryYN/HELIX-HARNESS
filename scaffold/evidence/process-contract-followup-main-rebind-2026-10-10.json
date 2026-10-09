@@ -1,0 +1,26 @@
+{
+  "new_base_revision": "261566b7ce3eae52bdfe6e32fcea7bcbb85961ea",
+  "previous_content_revision": "59d69b0b3326b93d67a8d5675ff7f38ea0753310",
+  "authority_effect": "none",
+  "reason": "2833/2834合流後の現在案内と工程表を同一mainへ合成。両bindingの意味field一致を確認し、最新main側の無関係upstreamを保持して変更対象digestのみ再照合した。元の固定証拠は保持する。",
+  "rebindings": [
+    {
+      "binding": "SCF-B-0003",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "before_sha256": "eef460161247f5da3bcabc2a9aa77bc3e48379aa15d68b837ed3b00b8b035ae3",
+      "after_sha256": "f5d5a2bc3bdbacb8578dcd3266f788a8f7778ba99fb3bdcdecc13a535671eb5e"
+    },
+    {
+      "binding": "SCF-B-0046",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "before_sha256": "eef460161247f5da3bcabc2a9aa77bc3e48379aa15d68b837ed3b00b8b035ae3",
+      "after_sha256": "f5d5a2bc3bdbacb8578dcd3266f788a8f7778ba99fb3bdcdecc13a535671eb5e"
+    },
+    {
+      "binding": "SCF-B-0046",
+      "path": "scaffold/bindings/SCF-B-0003.json",
+      "before_sha256": "f883692da58581255ce043985e79cb307605f63db8ced21a2609fdd2935b70c6",
+      "after_sha256": "70f8a224242551a915398094acf0dc3ce41224abceb5b054df9708b05e5e226a"
+    }
+  ]
+}

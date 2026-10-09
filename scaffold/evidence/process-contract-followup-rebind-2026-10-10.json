@@ -1,0 +1,24 @@
+{
+  "authority_effect": "none",
+  "reason": "既決工程への運用表追随のread-after。仮組みのrole、obligations、artifact、replacementを変更せず、更新した参照digestだけ再束縛する。",
+  "rebindings": [
+    {
+      "binding": "SCF-B-0003",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "before_sha256": "ae38b96b071f830e0b1f4ccc6d54070cb12adc21135bfab2842a11ad88d498f1",
+      "after_sha256": "57cf2c290a5b770db2fe98a05601e28b23dd7a5e57963a4783ae2d21f6804b17"
+    },
+    {
+      "binding": "SCF-B-0046",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "before_sha256": "ae38b96b071f830e0b1f4ccc6d54070cb12adc21135bfab2842a11ad88d498f1",
+      "after_sha256": "57cf2c290a5b770db2fe98a05601e28b23dd7a5e57963a4783ae2d21f6804b17"
+    },
+    {
+      "binding": "SCF-B-0046",
+      "path": "scaffold/bindings/SCF-B-0003.json",
+      "before_sha256": "61a2019d9497cd4c9ca7867a4ca7749ec998b738e4ded48585a5f50528d31015",
+      "after_sha256": "3b58489fff01f8a57f88e0eca85c898a116f262cce6a6defe46a594a83a7ef7f"
+    }
+  ]
+}
