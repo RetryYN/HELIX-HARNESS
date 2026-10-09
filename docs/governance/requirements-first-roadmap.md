@@ -50,6 +50,36 @@ schema・通信方式・実装配置・具体値は、この整理から確定�
 
 既存Issueの作業を重複発行・完了扱いにせず、このロードマップへ対応付ける。ロードマップIssueは作業projectionであり、各要求・接続の採否や成立は上記正本と対象decisionで読む。
 
+## 一つの要求例による初回の接続照合
+
+照合baseは`ae317cb5000ba8dc7a45a85e8fc535ae8ce2433a`。例は既存HARNESS-L2-026/025の「申請は承認後に編集できない」をそのまま使う。実在案件の承認済みL3、知識の実利用版、templateの採用済みexact set、実行結果はまだ与えていない。以下は要求段階の対応表であり、設計値・schema・API・実装・実行receiptを作った証拠ではない。現行のL3停止中に実行しない。
+
+表のBRAIN番号は`HELIXBRAIN-L2-`、OS番号は`HELIXOS-L2-`、HARNESS番号は`HARNESS-L2-`を示す。各行の確認は、それぞれの対象L11にある同じ要求identityの対oracleへ戻す。対象の採否は上記判断記録の対象revisionで確認し、この表から承認状態を生成しない。
+
+| 接続・対象kind | 入力と引き継ぐもの | 出力・正常条件 | 負例・unknownと戻し先 | 要求と対L11の照合先 |
+|---|---|---|---|---|
+| BRAINの知識単体 | 選択候補のidentity/version/source、問題、前提、required input、relation、反例 | 複数のPattern候補と条件を比較できる。採用先の製品stateやpermissionは決めない | 前提未入力を適用可能にしない。field定義が未定ならBRAIN、定義済みfieldに必要な製品要求値がないならCOREの要求形成へ戻す | BRAIN003/004/005/007/008 |
+| BRAIN→CORE接続 | query/scope、connection contract版・互換、選択した知識の全required fields | 選択知識の版・由来・未充足input・relationを保持するreceipt材料 | 未対応版、別scope、欠落field、Pattern間の矛盾を別の成功知識で補わない。知識側の不足はBRAIN、receiver契約はHARNESSへ | BRAIN030、HARNESS009/026 |
+| COREの設計単体 | 対象要求と対L11、再開後の承認済みL3、適用template/工程/CORE/connector版、scope | 承認state・編集commandのprecondition・actorのpermission・data更新不変条件と対oracleを双方向に結ぶ | 画面だけ編集不可でAPIが更新可能な候補は不整合。要求意味は008、L3変更は該当authority owner、設計・pairは026/022へ | HARNESS009/014/026/041 |
+| COREの設計構成体 | 同一revision/scopeの設計要素、選択Pattern receipt、画面/API/data/state/permissionとoracle | 申請作成→承認→編集要求→拒否を端から端で辿り、各要素の成功とは別に横断不変条件を確認する | 承認と編集の競合で更新が通る、片方向trace、未定oracle、別revisionの組合せは成立にしない | HARNESS025/026/022 |
+| CORE／HARNESS→OSの工程具体化 | 工程・検証契約、対象kind・親revision・scope・義務・戻し先。管理の許可・依存・資源・予算・期限・停止条件 | 1.0の既定工程部品を組み合わせるticket graph候補へ結ぶ。設計成立・実行可能・割当・検収を別状態にする | 意味未決・許可不明・未完依存は実行可能にしない。OSが工程やoracleを再定義しない | HARNESS002/008/005、OS017/023 |
+| OS→Worker接続・実行単体 | ticket revision/digest、assignment/attempt、必要なauthority/隔離・capability・資源・累積制約 | 作成者、対象HEAD/scope、実作業と証拠を追跡し、交代時にも未完義務を引き継ぐ | lease失効・HEAD差・権限/資源不足は停止。作成Workerの自己承認を独立reviewにしない | OS018/019/023 |
+| 対検証artifact→OS検収接続 | 実装前に凍結するtest/oracleと対象revision/scope。caseを生成する場合はそのartifact・契約版・consumer schema | COREの意味義務を保つrun入力へ結ぶ。初回runの結果は後続出力として回収する | 送信receiptをtest passとせず、未定oracleやconsumer版不一致は032/022またはconsumer ownerへ返す | HARNESS015/022/030/032、OS020 |
+| OS検収→COREのBackflow接続 | 同じ因果ID/revision/scopeの差分、検証結果、failed/denied/skipped/interrupted/stale、未完義務と発生元 | 不成立義務を元の契約・ticketへ戻す。受取側が未完義務を受理した証拠まで元ticketを完了にしない | 欠落証拠・別HEAD結果・部分成功を完了にしない。oracle不備はHARNESS、handoff/記録不備はOS、要求意味差は上流へ | HARNESS008/022、OS019/020/023 |
+
+この例のPythonは意味処理の経路を指す。HARNESSの工程契約から設計義務・不足質問・差分を導き、OSへ材料を返す。DB/Git/GitHub write、割当、lease、実行、認可をPythonへ移さない。根拠は旧`CLAUDE.md:61–63`と[Pythonコア候補](../helix-harness/candidates/requirement-engine-python-core-requirements.md)。Python候補の全条件が採択済み・実装済みだとは扱わず、#1799/#1801で意味sourceと候補採否を照合する。
+
+### この例から残った要求整理
+
+| 残る確認 | 完了を証明する材料 | 作業先 |
+|---|---|---|
+| 汎用template契約と具体知識の選択 | DST12件の条件単位の比較、出所・採用範囲・反例、選択知識のidentity/version/required input。既存Pattern一般契約だけでtemplate固有completion等を満たしたとしない | #2841 |
+| templateからの義務とN/A・不足質問 | この例で用いるseedの適用条件・source span、単体/接続/構成体固有義務、対oracle、N/A理由・判定者・revision・再評価条件。field定義欠落と値未決を分けた戻し先 | #2842 |
+| 案件で使う版と往復の接続 | project exact set/使用版、query→設計義務→ticket→attempt→検収→Backflowの同一revision/scopeと未完義務の対応。不足は業務意味と記録運転を分けて提示する | #2843/#1805 |
+| 安全・資源・測定の選択閉包 | 選択した各操作のSECURITY/CONNECT/INFRASTRUCTURE契約と対oracle、利用区分、失敗・復旧先。既存要求の該当条件と不足を一つずつ照合する | #2846 |
+
+上の材料は未完であり、初回対応表だけで#2841–#2843や#2846を閉じない。実行fixture、内部更新・復旧、支援・評価還流までの要求照合は引き続き本ロードマップの範囲である。現在の証拠は既存要求の意味経路の照合に限り、全条件の被覆・形式的successor移管・要求整理完了は主張しない。
+
 ## 内部デプロイと旧sourceの対応
 
 [段階リリース・内部デプロイ方針](decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md)と[10/10巻き戻し判断](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)を保持する。部品更新は新しい段階構成として組み、検証と内部利用開始を分けて追う。段階を組み直さない部品・接続単独の内部デプロイは未決のまま保持し、「随時更新」からその許可を生成しない。実際のrelease／cutover等の扱いは既存方針に従う。
