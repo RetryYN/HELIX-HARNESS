@@ -240,7 +240,7 @@ K3逆trace: L5 §6.1.4のK3-I1–I7各API clauseから本節の個別caseを経�
 
 ### 5.2 K5 fixtures
 
-本節はL5 §6.2のK5受け口とL4 K5-I1–I13を、Pair L9の既存IV-K5-01–26へ90個の一意なL8 caseとして展開する。K5 fixtureは初期化済みの固定`LogDecl`/manifest/prefixを入力に使う。IV-K5-22の正常fixtureは既に存在するmanifestとcurrent OS assignment/runの対応を前提にした通常segment開設であり、初回manifestのgenesis作成や初回OS assignment/runの生成を検査・証明しない。未定義のbootstrap API/例外はfixtureへ足さない。すべて未実行である。
+本節はL5 §6.2のK5受け口とL4 K5-I1–I13を、Pair L9の既存IV-K5-01–26へ91個の一意なL8 caseとして展開する。K5 fixtureは初期化済みの固定`LogDecl`/manifest/prefixを入力に使う。IV-K5-22の正常fixtureは既に存在するmanifestとcurrent OS assignment/runの対応を前提にした通常segment開設であり、初回manifestのgenesis作成や初回OS assignment/runの生成を検査・証明しない。未定義のbootstrap API/例外はfixtureへ足さない。すべて未実行である。
 
 | L8 case | L9 oracle | L5 API / invariant | Fixtureと期待 |
 |---|---|---|---|
