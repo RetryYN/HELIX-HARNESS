@@ -17,10 +17,10 @@ version_target: 1.0
 
 | 入力path | 本文SHA-256 |
 |---|---|
-| `docs/helix-os/L4-basic-design/local-ci.md` | `951a97ce4454d10e277fab09d2d4eeb5c02d1ab6826d3f9f15e1d87066c4e396` |
-| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `c330e2ae36e89705d74d361ce6b3d5c3a8f8faa1edd4add781ec2f5ad5cc2b32` |
-| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `f141e57d0ea9c266f99f5d1212518a9782d6673bf874cdead694d19482d39dbf` |
-| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `56b9390aec699cddea678700f18e0a5e8f085a9fe83cfbe63c3e21fda8d317b2` |
+| `docs/helix-os/L4-basic-design/local-ci.md` | `198931da35f7e6c23b801fbb8a651f836bdafdcb216643c316a38f3953f827e6` |
+| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `6b927d26513b8e6e2afe68caa885f943e9e14540d5d6a672bc4e870f892e5f42` |
+| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `aeccc87fd41c5dde8ec08483defc45d1285f6857921c58793b2d32506278f6b3` |
+| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `f8d4cefd9497a36bcd86651baf6c5a789da796a93d88486026c1c0ece3157099` |
 
 ## 1. 関数群
 
@@ -105,7 +105,7 @@ ID一意性・定義者・参照先を検査する。Common Kernel L8のK1/K2/K3
 
 ### `F-LCI-09c` — `verify_coverage_edges(edges, id_graph) -> CiApiResult<CoverageReport>`
 
-L4→L9、L5→L8、L6→L7のcontract/fixtureの実在、edge_id全体一意性、dispositionから同source edgeへの解決を検査する。OutcomeRefのverifier_path/range_id/verifier_id/outcome_columnがedge先の一意な定義行の非空期待値cellへ戻ることを確かめる。Common Kernel L5→L8は4つのL5 locatorそれぞれについて、対応するL8 rangeのliteral expansionが列挙する全fixture IDへ一件ずつedgeを要求する。versioned checker configuration内の独立固定inventoryはK1/K2=164、K3=178、K5=89を別集合で保持し、manifestのrange expansion、definition row、coverage edge、dispositionを集合ごと照合する。manifest範囲・edge・dispositionを同時に削除しても独立リストとの不一致を検出する。同sourceに他edgeが残っていても一件のedgeと対応するdisposition referenceが同時に削除された欠落を検出する。各edgeのverifier ID、L5 source locator、raw-row binding、OutcomeRefは同じpair rangeと一致する。L8第2列のL9 IDや第3列のL4 IDを`source_id`へ置いたedge、K1/K2/K3/K5のlocator交差、expanded IDの別行への付替えは`Unknown(conflict)`とする。欠落edge/locator/outcome cellは`Unknown(missing_input)`であり、実行や意味被覆を推論しない。edge_id重複は`Unknown(conflict)`。`mapped`/`partial` sourceは一つ以上のedgeを要求し、`partial`には理由・既存owner ref・operational owner状況・return pathも必要とする。`not_exercised` sourceは`edge_ids=[]`と理由・既存owner ref・operational owner状況・return pathを要求し、edge先の一意解決を要求しない。設計対象外の抽出等はcoverage dispositionに混ぜず`source_scopeouts`で個別検査する。
+L4→L9、L5→L8、L6→L7のcontract/fixtureの実在、edge_id全体一意性、dispositionから同source edgeへの解決を検査する。OutcomeRefのverifier_path/range_id/verifier_id/outcome_columnがedge先の一意な定義行の非空期待値cellへ戻ることを確かめる。Common Kernel L5→L8は4つのL5 locatorそれぞれについて、対応するL8 rangeのliteral expansionが列挙する全fixture IDへ一件ずつedgeを要求する。versioned checker configuration内の独立固定inventoryはK1/K2=164、K3=194、K5=91を別集合で保持し、manifestのrange expansion、definition row、coverage edge、dispositionを集合ごと照合する。manifest範囲・edge・dispositionを同時に削除しても独立リストとの不一致を検出する。同sourceに他edgeが残っていても一件のedgeと対応するdisposition referenceが同時に削除された欠落を検出する。各edgeのverifier ID、L5 source locator、raw-row binding、OutcomeRefは同じpair rangeと一致する。L8第2列のL9 IDや第3列のL4 IDを`source_id`へ置いたedge、K1/K2/K3/K5のlocator交差、expanded IDの別行への付替えは`Unknown(conflict)`とする。欠落edge/locator/outcome cellは`Unknown(missing_input)`であり、実行や意味被覆を推論しない。edge_id重複は`Unknown(conflict)`。`mapped`/`partial` sourceは一つ以上のedgeを要求し、`partial`には理由・既存owner ref・operational owner状況・return pathも必要とする。`not_exercised` sourceは`edge_ids=[]`と理由・既存owner ref・operational owner状況・return pathを要求し、edge先の一意解決を要求しない。設計対象外の抽出等はcoverage dispositionに混ぜず`source_scopeouts`で個別検査する。
 
 ### `F-LCI-09d` — `verify_legacy_pins(pins) -> CiApiResult<PinReport>`
 

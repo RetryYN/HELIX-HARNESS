@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `f141e57d0ea9c266f99f5d1212518a9782d6673bf874cdead694d19482d39dbf`である。
+固定入力は対のL5本文SHA-256 `aeccc87fd41c5dde8ec08483defc45d1285f6857921c58793b2d32506278f6b3`である。
 
 ## 1. Fixture規則
 
@@ -100,9 +100,10 @@ version_target: 1.0
 | `CASE-L8-LCI-89` | Common Kernel L5→L8 required edges | 2 L5 locatorから164展開fixture IDへ各一件の明示edgeがありdispositionが全edgeを参照 | 一つのK2 destination edgeと同edge IDのdisposition referenceを同時削除（同sourceの別edgeは残す） | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、他edgeで代替せずchecker/execution/receiptなし |
 | `CASE-L8-LCI-90` | Common Kernel OutcomeRef | expanded fixture IDがL8 definition tableの同じID列セルを持つraw rowへ一意に束縛され、K1/K2は5列目、K3は6列目、K5は4列目の非空cellを参照 | 一つのexpanded fixture IDのrow bindingだけを別raw rowへ変更 | snapshot/plan preflightでrun全体の外側`Unknown(conflict)`、期待結果を別行から流用せずchecker/execution/receiptなし |
 | `CASE-L8-LCI-91` | Common Kernel L8 column 3 L4 typed references | `K1-I*`/`K2-I*`等の明記されたL4 invariantはL4 definitionへのreferenceとして保持し、L5→L8 sourceはsection locatorだけ | 一つの明記L4 invariant IDをL5→L8 `source_id`として登録 | snapshot/plan preflightでrun全体の外側`Unknown(conflict)`、既存L4→L9 source relationと混同せずchecker/execution/receiptなし |
-| `CASE-L8-LCI-92` | K3/K5 locatorと固定inventory | K1/K2の164 IDを維持し、K3 locator/range/178 IDs、K5 locator/range/89 IDsを別々に宣言 | L5 K3 locatorの`range_id`だけを既存K5 locatorの`range_id`へ変更する | `Unknown(conflict)`、既存の一般重複range検査でrun-level preflight停止、execution/receiptなし。独立range削除は別負例で`Unknown(missing_input)`とする |
-| `CASE-L8-LCI-93` | K3/K5 verifier IDの独立保持 | 各K3/K5 IDがraw L8 row、literal expansion、独立固定inventoryに一致する | K5の一つのrequired IDをmanifest literal expansionから除き、対応raw row、coverage edge、disposition edge参照も同時に削除する。独立固定inventoryは変更しない | `Unknown(missing_input)`、独立K5 inventoryとの差としてrun-level preflightで停止 |
+| `CASE-L8-LCI-92` | K3/K5 locatorと固定inventory | K1/K2の164 IDを維持し、K3 locator/range/194 IDs、K5 locator/range/91 IDsを別々に宣言 | L5 K3 locatorの`range_id`だけを既存K5 locatorの`range_id`へ変更する | `Unknown(conflict)`、既存の一般重複range検査でrun-level preflight停止、execution/receiptなし。独立range削除は別負例で`Unknown(missing_input)`とする |
+| `CASE-L8-LCI-93` | K3/K5 verifier IDの独立保持 | 各K3/K5 IDがraw L8 rowと独立固定inventoryに一致する | `L8-K5-17-CLOSED-PARTIAL-READ`のraw table row、対応coverage edge、disposition edge参照を同時に削除する。独立固定K5 inventoryは変更しない。K5のraw IDセルは全件直書きでliteral expansionはない | `Unknown(missing_input)`、独立K5 inventoryとの差としてrun-level preflightで停止 |
 | `CASE-L8-LCI-94` | K3/K5 edge・typed reference・OutcomeRef | 各fixtureへ正しいL5 locatorのedgeがあり、第2/3列はtyped reference、OutcomeRefはrange固有の期待値列（K1/K2は5列目、K3は6列目、K5は4列目） | 一つのK3 fixture edgeのsource locatorだけをK5 locatorへ変更する | `Unknown(conflict)`、checker/execution/receiptなし。別pairやrowから補わない |
+| `CASE-L8-LCI-95` | K3/K5 verifier IDの独立保持 | K3/K5全IDがraw L8 row、literal expansion、独立固定inventoryへ結び付く | `L8-K3-14-ROLE-ALIAS-COEXISTS`をmanifest literal expansionから除き、対応raw row、coverage edge、disposition edge参照も同時に削除する。独立固定K3 inventoryは変更しない | `Unknown(missing_input)`、独立K3 inventoryとの差としてrun-level preflightで停止 |
 
 ## 3. GitHubのmerge単位fixture
 

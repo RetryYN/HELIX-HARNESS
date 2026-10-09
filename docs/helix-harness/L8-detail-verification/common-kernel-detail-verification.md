@@ -123,35 +123,59 @@ K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。
 
 ### 5.1 K3 fixtures
 
-K3ケースの直接L3 traceはL4 §16.1のSECURITY ACだけに限定し、OS-014-04/-06はK7との境界列へ分ける。L9のK3識別子は原文で27件（IV-K3-01–17とIV-K3-14a–j）あり、以下で全件を列挙する。IDの範囲・波括弧は直後の展開規則に従う個別fixtureを表し、L9 ID自体を改番しない。各変異fixtureは正常基準から一条件だけを変える。複数の異なる反例がL9に列挙される場合は、同一L9 oracleに複数の独立L8 caseを対応させる。scope、selector、required-inputの概要説明は直後の具体的case行と一意展開一覧へ統合し、重複する未展開templateをfixture definitionとして数えない。
+K3ケースの直接L3 traceはL4 §16.1のSECURITY ACだけに限定し、OS-014-04/-06はK7との境界列へ分ける。L9のK3識別子は原文で27件（IV-K3-01–17とIV-K3-14a–j）あり、以下で全件を列挙する。IDの範囲・波括弧は直後の展開規則に従う個別fixtureを表し、L9 ID自体を改番しない。各変異fixtureは同じ節の明示した正常基準IDから一条件だけを変える。複数の異なる反例がL9に列挙される場合は、同一L9 oracleに複数の独立L8 caseを対応させる。scope、selector、required-inputの概要説明は直後の具体的case行と一意展開一覧へ統合し、重複する未展開templateをfixture definitionとして数えない。
 
 | L8 case | L9 oracle | L5 API / L4 contract | direct L3 AC | 別契約境界 | Fixtureと単一変異、期待 |
 |---|---|---|---|---|---|
 | `L8-K3-01-BASE` | IV-K3-01 | `resolve_authority_context`, `check_permission`; K3-I1/I2 | SECURITY-AC-008-01 | — | current assignment・target/revision・environment・scopeが一致する基準を用意し、7軸それぞれの状態を保持する。 |
-| `L8-K3-01-{AXIS}-{STATE}` | IV-K3-01 | 同上 | SECURITY-AC-008-01 | — | 軸欠落は`Unknown(missing_input)`、source読取不能で置く既存unknownは`Unknown(unreadable)`、確定競合は`Unknown(conflict)`、確定不一致は`Value(Negative)`。AXIS×STATEを一条件ずつ変える。 |
+| `L8-K3-01-SCOPE-PROJECT` | IV-K3-01 | `check_permission`; K3-I1 | SECURITY-AC-008-01 | scope owner | project scopeだけを越境させ、他fieldを固定し`Value(Negative)`。 |
+| `L8-K3-01-SCOPE-ENVIRONMENT` | IV-K3-01 | `check_permission`; K3-I1 | SECURITY-AC-008-01 | scope owner | environment scopeだけを越境させ、他fieldを固定し`Value(Negative)`。 |
+| `L8-K3-01-SCOPE-WORKTREE` | IV-K3-01 | `check_permission`; K3-I1 | SECURITY-AC-008-01 | scope owner | worktree scopeだけを越境させ、他fieldを固定し`Value(Negative)`。 |
+| `L8-K3-01-SCOPE-TENANT` | IV-K3-01 | `check_permission`; K3-I1 | SECURITY-AC-008-01 | scope owner | tenant scopeが既存にあるfixtureだけでtenant identityを越境させ、他fieldを固定し`Value(Negative)`。tenantのない環境へtenantを追加しない。 |
+| `L8-K3-01-{AXIS}-{STATE}` | IV-K3-01 | 同上 | SECURITY-AC-008-01 | — | AXISの欠落またはunknownは`Unknown(missing_input)`、確定競合は`Unknown(conflict)`、確定不一致は`Value(Negative)`。source読取失敗はこの軸状態templateへ含めない。AXIS×STATEを一条件ずつ変える。 |
 | `L8-K3-01-ASSIGNMENT` | IV-K3-01 | `resolve_authority_context`; K3-I1/I2 | SECURITY-AC-008-01 | OS assignment owner | owner current assignmentのactorだけをBへ変更し、query/contextはAに固定する。期待は`Value(Negative)`。 |
 | `L8-K3-01-OWNER-{STATE}` | IV-K3-01 | `resolve_authority_context`; K3-I1/I2 | SECURITY-AC-008-01 | target/assignment owner | `{STATE}`=MISSING/UNREGISTERED/CONFLICTの各fixtureで、対応する`Unknown(missing_input)`/`Unknown(unregistered)`/`Unknown(conflict)`を返す。 |
 | `L8-K3-01-KEY-MISSING` | IV-K3-01 | `resolve_authority_context`; K3-I1 | SECURITY-AC-008-01 | K2 key boundary | 必須identity/refを一つ欠き、既存`PermissionCheckDiagnostic(missing_key)`。K1/K2結果へ写さない。 |
-| `L8-K3-02-ALLOW-{OP}` | IV-K3-02 | `check_permission`; K3-I2 | SECURITY-AC-008-01 | — | OPはL4の11 operation値それぞれへ展開。queryとrecordの同一operationだけを許可する11基準fixture。 |
+| `L8-K3-02-ALLOW-{OP}` | IV-K3-02 | `check_permission`; K3-I2 | SECURITY-AC-008-01 | — | OPはL4の11 operation値それぞれへ展開。queryとrecordの同一operationだけを許可する11基準fixtureでありIV-K3-02のPositive control。 |
 | `L8-K3-02-READ-AS-{OP}` | IV-K3-02 | `check_permission`; K3-I2 | SECURITY-AC-008-01 | — | read基準からoperationだけを他の10値へ一つずつ置換し拒否。Agent利用権のみからwrite/deployを導かない。 |
-| `L8-K3-03-FRESH-REVISION` | IV-K3-03 | `check_permission`; K3-I2 | SECURITY-AC-008-01 | — | current source revisionだけを更新し、fresh checkの確定revision不一致を`Value(Negative)`として返す。 |
+| `L8-K3-03-BASE` | IV-K3-03 | `check_permission`; K3-I2 | SECURITY-AC-008-01 | — | current sourceとPermissionRecordのrevisionが一致するfresh checkは`Value(Positive)`。 |
+| `L8-K3-03-FRESH-REVISION` | IV-K3-03 | `check_permission`; K3-I2 | SECURITY-AC-008-01 | — | `L8-K3-03-BASE`からcurrent source revisionだけを更新し、fresh checkの確定revision不一致を`Value(Negative)`として返す。 |
 | `L8-K3-03-LOOKUP-STALE` | IV-K3-03 | K2 `lookup`; K3-I4 | SECURITY-AC-008-01 | K2 lookup | 保存済みcheckのkeyだけ旧revisionにし、lookupは`Stale`を返す。fresh checkの不一致をStaleへ写さない。 |
 | `L8-K3-03-DIGEST` | IV-K3-03 | K2 `lookup`; K3-I4 | SECURITY-AC-008-01 | K2 lookup | 同一identity/revisionのdigestだけを変更し`Unknown(conflict)`。 |
 | `L8-K3-03-IDENTITY` | IV-K3-03 | K2 `lookup`; K3-I4 | SECURITY-AC-008-01 | K2 lookup | source identityだけを変更し別のinputs identity集合にする。該当keyのrecordが無いため`Unobserved(not_run)`。 |
-| `L8-K3-04-{SOURCE-CASE}` | IV-K3-04 | `resolve_current_effective_decision`, `check_permission`; K3-I3 | SECURITY-AC-022-01 | source adapter/K6 | SOURCE-CASEを表の6独立fixtureへ展開する。全て許可Positiveにせず、具体的なK1 class/reasonのうちL4が決めていない対応は下の「K3 reason mappingの未決」に分離する。署名verificationは登録adapterが既に宣言する場合だけ。 |
+| `L8-K3-04-BASE` | IV-K3-04 | `resolve_current_effective_decision`, `check_permission`; K3-I3 | SECURITY-AC-022-01 | source adapter/K6 | 登録source原記録から一意なcurrent allowを解決し、全binding一致なら`Value(Positive)`。 |
+| `L8-K3-04-SELF-ISSUED` | IV-K3-04 | 同上 | SECURITY-AC-022-01 | source adapter/K6 | `L8-K3-04-BASE`からcandidateだけをcaller plain objectへ置換し`Unknown(unregistered)`。 |
+| `L8-K3-04-UNREGISTERED-SOURCE` | IV-K3-04 | 同上 | SECURITY-AC-022-01 | source adapter/K6 | source identityだけを未登録値へ替え`Unknown(unregistered)`。 |
+| `L8-K3-04-SAME-NAME-DIFFERENT-SOURCE` | IV-K3-04 | 同上 | SECURITY-AC-022-01 | source adapter/K6 | 同名の別source refだけを与え`Unknown(conflict)`。 |
+| `L8-K3-04-ISSUER-MISMATCH` | IV-K3-04 | 同上 | SECURITY-AC-022-01 | source adapter/K6 | 登録sourceは保ち原記録issuerだけを宣言issuerと異ならせ、確定不一致として`Value(Negative)`。 |
+| `L8-K3-04-SIGNATURE-INVALID` | IV-K3-04 | 同上 | SECURITY-AC-022-01 | source adapter/K6 | 登録adapterが署名検証を宣言するsourceに限り署名bytesだけを無効化する。期待class=`Unknown`、reasonは表5.1.2の未決行。 |
+| `L8-K3-04-SIGNATURE-UNVERIFIABLE` | IV-K3-04 | 同上 | SECURITY-AC-022-01 | source adapter/K6 | 登録adapterが署名検証を宣言するsourceに限り検証入力だけを読めなくする。期待class=`Unknown`、reasonは表5.1.2の未決行。 |
+| `L8-K3-04-SELECTION-UNKNOWN-RULE` | IV-K3-04 | `resolve_current_effective_decision`; K3-I3 | SECURITY-AC-022-01 | source selector owner | `L8-K3-04-BASE`から選択規則refだけを登録外へ替え、`Unknown(unregistered)`。current decisionを推測しない。 |
+| `L8-K3-04-SELECTION-CONFLICTING-CANDIDATES` | IV-K3-04 | `resolve_current_effective_decision`; K3-I3 | SECURITY-AC-022-01 | source selector owner | `L8-K3-04-BASE`に同じqueryへ適用される相反candidateを一件追加し、`Unknown(conflict)`。順序で一件を選ばない。 |
 | `L8-K3-04-CURRENT-{DECISION}` | IV-K3-04 | `resolve_current_effective_decision`; K3-I3 | SECURITY-AC-022-01 | source selector owner | current allow後に同tupleのdenyを追記するfixtureは`Value(Negative)`、constrainを追記するfixtureはcurrent constrain refを選び、その既存制約と前提のcomponentsを保持する。古いallow refを選ばない。 |
 | `L8-K3-04-RECEIPT-SUBSTITUTE` | IV-K3-04 | `check_permission`; K3-I3 | SECURITY-AC-022-01 | K6 assurance | permission source recordを未観測にし、K6 receiptだけをPositiveに置換する。K3のcurrent decisionは`Unknown(missing_input)`を保ち、receiptからpermission decisionを補わない。 |
-| `L8-K3-05-{PRECONDITION}` | IV-K3-05 | `check_permission`; K3-I3 | SECURITY-AC-022-01 | Worker/K6 effect evidence | `DENY`と`CONSTRAINT-RELAXED`は別々の`Value(Negative)` fixture。必須制約設定・前提証拠の欠落は各々`Unknown(missing_input)`、既存Unknownの入力は同class/reasonを保持する。許可Positiveを実行成功と記録しない。 |
-| `L8-K3-06-{TRIGGER}` | IV-K3-06 | `check_permission`; K3-I3 | SECURITY-AC-022-01 | task/review/CI consumer | 各IDはrequest、ACK、review、CI green、照合成功をそれぞれ一つだけ与える。K3の`authority_effect="none"`と許可sourceの不変を確認し、新しい許可recordを作らない。通常反復では同一有効current既決許可を再利用できる。 |
-| `L8-K3-07-{EXPIRY}` | IV-K3-07 | `check_permission`; K3-I4/I5 | SECURITY-AC-022-02、SECURITY-AC-009-01 | time observation owner | `EXPIRED`は`Value(Negative)`、`TIME-UNREADABLE`と`EXPIRY-UNPARSABLE`は`Unknown`（reason対応は未決表へ）。新TTLや猶予値を追加しない。 |
-| `L8-K3-08-{REVOCATION}` | IV-K3-08 | `check_permission`; K3-I4/I5 | SECURITY-AC-022-02、SECURITY-AC-009-01 | G5/K7 | revokeと旧Epoch作用受理は`Value(Negative)`、必要segment欠落は`Unknown(missing_input)`、読取失敗は`Unknown(unreadable)`。scope外は停止しない。G5伝播だけでは旧許可を再有効化しない。`OUT-OF-SCOPE-STOP`では無関係scopeの現行permission checkが`Value(Positive)`のまま、停止対象を拡張しない。 |
+| `L8-K3-05-BASE` | IV-K3-05 | `check_permission`; K3-I3 | SECURITY-AC-022-01 | Worker/K6 effect evidence | 全既存制約が実行前に適用され前提証拠も肯定なら狭いcontextのcheckは`Value(Positive)`。 |
+| `L8-K3-05-{PRECONDITION}` | IV-K3-05 | 同上 | SECURITY-AC-022-01 | Worker/K6 effect evidence | `L8-K3-05-BASE`から一条件ずつ変える。`DENY`と`CONSTRAINT-RELAXED`は別々の`Value(Negative)`。必須制約設定・前提証拠の欠落は各々`Unknown(missing_input)`、既存Unknownはclass/reasonを保持する。許可Positiveを実行成功と記録しない。 |
+| `L8-K3-06-BASE` | IV-K3-06 | `check_permission`; K3-I3 | SECURITY-AC-022-01 | task/review/CI consumer | 既存current許可を再利用する通常checkは`Value(Positive)`、sourceは不変。 |
+| `L8-K3-06-{TRIGGER}` | IV-K3-06 | `check_permission`; K3-I3 | SECURITY-AC-022-01 | task/review/CI consumer | request、ACK、review、CI green、照合成功を各一つだけ与え、`BASE`からtriggerだけを変える。`authority_effect="none"`と許可sourceの不変を確認し、新しい許可recordを作らない。 |
+| `L8-K3-07-BASE` | IV-K3-07 | `check_permission`; K3-I4/I5 | SECURITY-AC-022-02、SECURITY-AC-009-01 | time observation owner | 有効期間内expiryと時刻の一致は`Value(Positive)`。 |
+| `L8-K3-07-{EXPIRY}` | IV-K3-07 | `check_permission`; K3-I4/I5 | SECURITY-AC-022-02、SECURITY-AC-009-01 | time observation owner | `BASE`から時刻/expiryの一条件だけを変える。`EXPIRED`は`Value(Negative)`、`TIME-UNREADABLE`と`EXPIRY-UNPARSABLE`は`Unknown`（reasonは未決表）。新TTLや猶予値を追加しない。 |
+| `L8-K3-08-BASE` | IV-K3-08 | `check_permission`; K3-I4/I5 | SECURITY-AC-022-02、SECURITY-AC-009-01 | G5/K7 | current authorityと取消しprefix一致、revokeなしのcheckは`Value(Positive)`。 |
+| `L8-K3-08-{REVOCATION}` | IV-K3-08 | 同上 | SECURITY-AC-022-02、SECURITY-AC-009-01 | G5/K7 | revokeは`REVOKED`だけ`Value(Negative)`、必要segment欠落は`Unknown(missing_input)`、読取失敗は`Unknown(unreadable)`。`OLD-EPOCH-ACTION`ではK3 checkのPositiveを作用許可とせず、K7 `admit_effect`がIV-K7-07–10どおり`Rejected(fenced)`とする。scope外は停止しない。`OUT-OF-SCOPE-STOP`では無関係scopeのpermission checkは`Value(Positive)`。 |
 | `L8-K3-09-BASE` | IV-K3-09 | `resolve_authority_context`; K3-I6 | SECURITY-AC-022-03、SECURITY-AC-003-01 | — | request→decision→assignment→effective scopeが同一tupleとowner refsで連結する基準。check Positiveは実適用済みを示さない。 |
 | `L8-K3-09-{PHASE}-{AXIS}` | IV-K3-09 | `resolve_authority_context`; K3-I6 | SECURITY-AC-022-03、SECURITY-AC-003-01 | 各段のowner | PHASE=request/decision/assignment/effective_scope、AXIS=actor/target/operation/revision/environment/scope/expiryへ展開。各fixtureでその段の指定軸だけを異なる確定値へ変え、`Value(Negative)`を返す。 |
-| `L8-K3-10-{SET-CASE}` | IV-K3-10 | `compare_required_operation_inputs`; K3-I7 | SECURITY-AC-005-01、SECURITY-AC-006-01 | SECURITY required-input owner | required key欠落は`Unknown(missing_input)`、余分keyとPermissionRecord binding mismatchは`Value(Negative)`。各一条件のfixture。旧sink enum/risk要約を使わない。 |
-| `L8-K3-11-{CASE}` | IV-K3-11 | K3 `check_permission` consumer boundary | SECURITY-AC-008-01、SECURITY-AC-022-01 | K7 `apply_move`/CAS | `TARGET-COMPOSITION`と`MOVE-ACTION-KIND`は別fixture。各々の確定不一致でK3側は`Value(Negative)`、K7側の追記は0。CAS/head変異を同じfixtureへ混ぜない。 |
-| `L8-K3-12-{CASE}` | IV-K3-12 | K3 pre/post check consumer boundary | SECURITY-AC-022-02、SECURITY-AC-009-01 | K7 writer/G5 | `PRE-REVOKED`/`PRE-EXPIRED`はcheckの`Value(Negative)`から`Rejected(authorization_unverified, check)`となりappend 0。`PRE-DRIFT`はowner/current head不一致を検出し、checkをPositiveにせず同じRejected・append 0。append後のnegative/unknown/missing observation/null observed_atは各々`AppliedUncertain`でeventを保持し`RollbackRequired`/未完診断を残す。自動rollbackしない。 |
-| `L8-K3-13-{DIAGNOSTIC}` | IV-K3-13 | `check_permission`; K3-I1/§16.4 | SECURITY-AC-008-01 | K6 assurance/consumer | 4 fixture: denyがあっても後続unknown componentを全て保持し`Combined.verdict=Negative`、空の判定成分集合は`Combined.verdict=Undetermined`かつ`set_reason=Unknown(missing_input)`、未証明issuer authenticityは`Unknown(unsupported)`のまま保持、secret値はreasonに含めない。 |
-| `L8-K3-14-BASE` | IV-K3-14 | `resolve_owner_mapping`, K2 `key_of`/`lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K2 alias binding/K6 read | PermissionQueryRef、全operation input/constraint aliases、owner mapping binding bytes/refとraw bytesを固定。K6 read identityはsubject＋non-verifier inputsと一致し、余分readなし。 |
+| `L8-K3-10-BASE` | IV-K3-10 | `compare_required_operation_inputs`; K3-I7 | SECURITY-AC-005-01、SECURITY-AC-006-01 | SECURITY required-input owner | query/record input identity集合とrefがowner-required setに一致し`Value(Positive)`。 |
+| `L8-K3-10-{SET-CASE}` | IV-K3-10 | 同上 | SECURITY-AC-005-01、SECURITY-AC-006-01 | SECURITY required-input owner | `BASE`から一条件だけを変える。required key欠落は`Unknown(missing_input)`、余分keyとrecord binding mismatchは`Value(Negative)`。旧sink enum/risk要約を使わない。 |
+| `L8-K3-11-BASE` | IV-K3-11 | K3 `check_permission` consumer boundary | SECURITY-AC-008-01、SECURITY-AC-022-01 | K7 `apply_move`/CAS | current authorization tupleとrequested target/composition/kindが一致しK3 checkは`Value(Positive)`。 |
+| `L8-K3-11-{CASE}` | IV-K3-11 | 同上 | SECURITY-AC-008-01、SECURITY-AC-022-01 | K7 `apply_move`/CAS | `BASE`から一条件だけを変える。`TARGET-COMPOSITION`と`MOVE-ACTION-KIND`は別fixture。各確定不一致でK3は`Value(Negative)`、K7追記0。CAS/head変異を混ぜない。 |
+| `L8-K3-12-BASE` | IV-K3-12 | K3 pre/post check consumer boundary | SECURITY-AC-022-02、SECURITY-AC-009-01 | K7 writer/G5 | pre/post current checkが肯定でauthorizationとeffect observationが束縛された正常control。 |
+| `L8-K3-12-{CASE}` | IV-K3-12 | 同上 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K7 writer/G5 | `BASE`から一条件だけを変える。`PRE-REVOKED`/`PRE-EXPIRED`は`Value(Negative)`から`Rejected(authorization_unverified, check)`・append 0。`PRE-DRIFT`も同じ拒否。append後のnegative/unknown/missing/null observationは各々`AppliedUncertain`でeventと`RollbackRequired`を保持する。自動rollbackしない。 |
+| `L8-K3-13-BASE` | IV-K3-13 | `check_permission`; K3-I1/§16.4 | SECURITY-AC-008-01 | K6 assurance/consumer | 全判定成分肯定の`Combined.verdict=Positive`。 |
+| `L8-K3-13-{DIAGNOSTIC}` | IV-K3-13 | 同上 | SECURITY-AC-008-01 | K6 assurance/consumer | 4 fixture: denyがあっても後続unknownを全て保持し`Negative`、空集合は`Undetermined`かつ`set_reason=Unknown(missing_input)`、未証明issuer authenticityは`Unknown(unsupported)`のまま保持、secret値はreasonに含めない。 |
+| `L8-K3-14-BASE` | IV-K3-14 | `resolve_owner_mapping`, K2 `key_of`/`lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K2 alias binding/K6 read | PermissionQueryRef、全operation input/constraint aliases、owner binding bytes/refとraw bytesを固定。K6 readはsubject＋non-verifier inputsと一致し余分readなし。 |
+| `L8-K3-14-ROLE-ALIAS-COEXISTS` | IV-K3-14 | `resolve_owner_mapping`, K2 `key_of`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K2 alias binding/K6 read | 異roleの同raw identity・異revision二aliasをdistinct role-bound inputsとして保持し、`L8-K3-14-BASE`と同じPositive resultを返す。 |
+| `L8-K3-14-CALLER-BINDING-REJECTED` | IV-K3-14 | `resolve_owner_mapping`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | owner resolver | 公開API signatureにcaller mapping引数が存在しないことを確認する構造negative。追加引数を渡すAPI呼出しを構成せず、K1/K2診断・result classを期待しない。 |
+| `L8-K3-14-EXTRA-RAW-READ` | IV-K3-14 | K6 source read; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K6 read | baseのexact read setへ同一raw refの余分read一件を加え、K6 read identity mismatchとして`Unknown(conflict)`。 |
 | `L8-K3-14a` | IV-K3-14a | owner mapping→K2 `key_of`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K2 key boundary | required binding refだけ欠落。`Rejected(missing_key)`。 |
 | `L8-K3-14b` | IV-K3-14b | owner mapping→K2 `key_of`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K2 alias normalization | 同一alias identityへ異raw refを1件だけ追加。`Rejected(missing_key)`。 |
 | `L8-K3-14c` | IV-K3-14c | K6 source read; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K6 bytes/digest | 他を固定しsource bytesとraw ref digestだけ不一致にし、K6 `Unknown(conflict)`。 |
@@ -162,31 +186,34 @@ K3ケースの直接L3 traceはL4 §16.1のSECURITY ACだけに限定し、OS-01
 | `L8-K3-14f` | IV-K3-14f | K2 `lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K2 lookup | PermissionQueryRef identityだけを変え、他query/refを固定。`Unobserved(not_run)`。 |
 | `L8-K3-14g` | IV-K3-14g | K2 `lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K2 lookup | PermissionQueryRef revisionだけを変更し、`Stale`。 |
 | `L8-K3-14h` | IV-K3-14h | K2 `lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K2 lookup | PermissionQueryRef digestだけを変更し、`Unknown(conflict)`。 |
-| `L8-K3-15-{REF}` | IV-K3-15 | K2 `lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | current context refs | REFは表の12 literal IDsへ展開する。operation versionだけを新値に変えたlookupは`Unobserved(not_run)`。各参照fixtureは当該参照のrevisionだけを更新し、bytes/digest/bindingを新revisionへ整合させ、旧Valueを`Stale`にする。 |
-| `L8-K3-16-{OBSERVATION}` | IV-K3-16 | K2 `lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K5 current head/K6 receipt | 時刻観測refまたは取消しprefixの変更は個別にK2 lookupの新keyへ反映。caller input_headsだけがowner current_headと違うcaseはL4所定の非Positive checkを保持し、旧prefixを選ばない。record不在は`Unknown(missing_input)`、pending receiptは`Unobserved(pending_receipt)`。raw時刻値/SegmentHeadをinputsへ直入れしない。 |
-| `L8-K3-17-{RECOVERY}` | IV-K3-17 | K3 check consumer boundary | SECURITY-AC-022-03、SECURITY-AC-003-01 | K7 recovery/ledger/G5 | stop後欠落観測を同moveにphase=recoveryとして追記し、成功・通常完了・G5待ち解消へしない。後続move/別segment/別moveへの観測流用、seq+1偽装、非move参照、有効immediate既存、自動moveをそれぞれ独立に検査する。停止注入の再起動制御flowもログ単独判定とは分離する。 |
+| `L8-K3-15-BASE` | IV-K3-15 | K2 `lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | current context refs | current全ref/versionが一致する完全key lookupは`Value(Positive)`。 |
+| `L8-K3-15-{REF}` | IV-K3-15 | K2 `lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | current context refs | REFは表の12 literal IDsへ展開する。各々`BASE`から一参照だけ変更。operation version変更は`Unobserved(not_run)`、同identityのrevision更新とbytes/digest整合は旧Valueへの`Stale`。 |
+| `L8-K3-16-BASE` | IV-K3-16 | K2 `lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K5 current head/K6 receipt | resolver current heads/time observationとcaller expected headsが一致するcheckは`Value(Positive)`。 |
+| `L8-K3-16-{OBSERVATION}` | IV-K3-16 | K2 `lookup`; K3-I4 | SECURITY-AC-022-02、SECURITY-AC-009-01 | K5 current head/K6 receipt | `BASE`から一観測refだけ変える。caller input_headsだけがowner current_headと違う場合はL4所定の非Positive checkを保持し旧prefixを選ばない。record不在は`Unknown(missing_input)`、pending receiptは`Unobserved(pending_receipt)`。raw時刻値/SegmentHeadをinputsへ直入れしない。 |
+| `L8-K3-17-BASE` | IV-K3-17 | K3 check consumer boundary | SECURITY-AC-022-03、SECURITY-AC-003-01 | K7 recovery/ledger/G5 | current K3 checkは`Value(Positive)`で、通常apply_move後に同move直後観測がありrecovery不要のcontrol。 |
+| `L8-K3-17-{RECOVERY}` | IV-K3-17 | K3 check consumer boundary | SECURITY-AC-022-03、SECURITY-AC-003-01 | K7 recovery/ledger/G5 | `BASE`から指定された一条件だけを変える。`AFTER-LATER-MOVE`/`WRONG-SEGMENT`/`WRONG-MOVE`は`Unknown(conflict)`で待ちを解消しない。POSTSTOPは同moveへphase=recoveryの診断を追記して成功を作らない。SEQ-PLUS-ONE偽装、非move参照、有効immediate既存、自動moveも独立に検査する。停止注入の再起動control flowはlog単独判定と分離する。 |
 
 #### 5.1.1 K3 fixture IDの一意展開一覧
 
-表中のtemplateは、次の列挙済みIDに一対一で展開する。各IDは独立fixtureで、正常基準から変える条件は一つだけである。axis/state・phase・caseの組合せは下記178個の一意な実IDを全列挙し、実行時に新しいsuffixを生成しない。IV-K3-14a–jは各suffixを一件ずつ固定している。
+表中のtemplateは、次の列挙済みIDに一対一で展開する。各IDは独立fixtureで、正常基準から変える条件は一つだけである。axis/state・phase・caseの組合せは下記194個の一意な実IDを全列挙し、実行時に新しいsuffixを生成しない。IV-K3-14a–jは各suffixを一件ずつ固定している。
 
-- IV-K3-01: `L8-K3-01-BASE`, `L8-K3-01-actor-MISSING`, `L8-K3-01-actor-UNKNOWN`, `L8-K3-01-actor-CONFLICT`, `L8-K3-01-actor-MISMATCH`, `L8-K3-01-target-MISSING`, `L8-K3-01-target-UNKNOWN`, `L8-K3-01-target-CONFLICT`, `L8-K3-01-target-MISMATCH`, `L8-K3-01-operation-MISSING`, `L8-K3-01-operation-UNKNOWN`, `L8-K3-01-operation-CONFLICT`, `L8-K3-01-operation-MISMATCH`, `L8-K3-01-revision-MISSING`, `L8-K3-01-revision-UNKNOWN`, `L8-K3-01-revision-CONFLICT`, `L8-K3-01-revision-MISMATCH`, `L8-K3-01-environment-MISSING`, `L8-K3-01-environment-UNKNOWN`, `L8-K3-01-environment-CONFLICT`, `L8-K3-01-environment-MISMATCH`, `L8-K3-01-scope-MISSING`, `L8-K3-01-scope-UNKNOWN`, `L8-K3-01-scope-CONFLICT`, `L8-K3-01-scope-MISMATCH`, `L8-K3-01-expiry-MISSING`, `L8-K3-01-expiry-UNKNOWN`, `L8-K3-01-expiry-CONFLICT`, `L8-K3-01-expiry-MISMATCH`, `L8-K3-01-SCOPE-PROJECT`, `L8-K3-01-SCOPE-ENVIRONMENT`, `L8-K3-01-SCOPE-WORKTREE`, `L8-K3-01-SCOPE-TENANT`, `L8-K3-01-OWNER-MISSING`, `L8-K3-01-OWNER-UNREGISTERED`, `L8-K3-01-OWNER-CONFLICT`, `L8-K3-01-ASSIGNMENT`, `L8-K3-01-KEY-MISSING`.
+- IV-K3-01: `L8-K3-01-BASE`, `L8-K3-01-SCOPE-PROJECT`, `L8-K3-01-SCOPE-ENVIRONMENT`, `L8-K3-01-SCOPE-WORKTREE`, `L8-K3-01-SCOPE-TENANT`, `L8-K3-01-actor-MISSING`, `L8-K3-01-actor-UNKNOWN`, `L8-K3-01-actor-CONFLICT`, `L8-K3-01-actor-MISMATCH`, `L8-K3-01-target-MISSING`, `L8-K3-01-target-UNKNOWN`, `L8-K3-01-target-CONFLICT`, `L8-K3-01-target-MISMATCH`, `L8-K3-01-operation-MISSING`, `L8-K3-01-operation-UNKNOWN`, `L8-K3-01-operation-CONFLICT`, `L8-K3-01-operation-MISMATCH`, `L8-K3-01-revision-MISSING`, `L8-K3-01-revision-UNKNOWN`, `L8-K3-01-revision-CONFLICT`, `L8-K3-01-revision-MISMATCH`, `L8-K3-01-environment-MISSING`, `L8-K3-01-environment-UNKNOWN`, `L8-K3-01-environment-CONFLICT`, `L8-K3-01-environment-MISMATCH`, `L8-K3-01-scope-MISSING`, `L8-K3-01-scope-UNKNOWN`, `L8-K3-01-scope-CONFLICT`, `L8-K3-01-scope-MISMATCH`, `L8-K3-01-expiry-MISSING`, `L8-K3-01-expiry-UNKNOWN`, `L8-K3-01-expiry-CONFLICT`, `L8-K3-01-expiry-MISMATCH`, `L8-K3-01-OWNER-MISSING`, `L8-K3-01-OWNER-UNREGISTERED`, `L8-K3-01-OWNER-CONFLICT`, `L8-K3-01-ASSIGNMENT`, `L8-K3-01-KEY-MISSING`.
 - IV-K3-02: `L8-K3-02-ALLOW-read`, `L8-K3-02-ALLOW-write`, `L8-K3-02-ALLOW-execute`, `L8-K3-02-ALLOW-network`, `L8-K3-02-ALLOW-install`, `L8-K3-02-ALLOW-delete`, `L8-K3-02-ALLOW-merge`, `L8-K3-02-ALLOW-release`, `L8-K3-02-ALLOW-deploy`, `L8-K3-02-ALLOW-credential-use`, `L8-K3-02-ALLOW-security-change`, `L8-K3-02-READ-AS-write`, `L8-K3-02-READ-AS-execute`, `L8-K3-02-READ-AS-network`, `L8-K3-02-READ-AS-install`, `L8-K3-02-READ-AS-delete`, `L8-K3-02-READ-AS-merge`, `L8-K3-02-READ-AS-release`, `L8-K3-02-READ-AS-deploy`, `L8-K3-02-READ-AS-credential-use`, `L8-K3-02-READ-AS-security-change`.
-- IV-K3-03: `L8-K3-03-FRESH-REVISION`, `L8-K3-03-LOOKUP-STALE`, `L8-K3-03-DIGEST`, `L8-K3-03-IDENTITY`.
-- IV-K3-04: `L8-K3-04-SELF-ISSUED`, `L8-K3-04-UNREGISTERED-SOURCE`, `L8-K3-04-SAME-NAME-DIFFERENT-SOURCE`, `L8-K3-04-ISSUER-MISMATCH`, `L8-K3-04-SIGNATURE-INVALID`, `L8-K3-04-SIGNATURE-UNVERIFIABLE`, `L8-K3-04-CURRENT-DENY`, `L8-K3-04-CURRENT-CONSTRAIN`, `L8-K3-04-SELECTION-UNKNOWN-RULE`, `L8-K3-04-SELECTION-CONFLICTING-CANDIDATES`, `L8-K3-04-RECEIPT-SUBSTITUTE`.
-- IV-K3-05: `L8-K3-05-DENY`, `L8-K3-05-CONSTRAINT-SETTING-MISSING`, `L8-K3-05-PRECONDITION-UNOBSERVED`, `L8-K3-05-CONSTRAINT-EVIDENCE-MISSING`, `L8-K3-05-CONSTRAINT-RELAXED`.
-- IV-K3-06: `L8-K3-06-REQUEST`, `L8-K3-06-ACK`, `L8-K3-06-REVIEW`, `L8-K3-06-CI-GREEN`, `L8-K3-06-CHECK-SUCCESS`.
-- IV-K3-07: `L8-K3-07-EXPIRED`, `L8-K3-07-TIME-UNREADABLE`, `L8-K3-07-EXPIRY-UNPARSABLE`.
-- IV-K3-08: `L8-K3-08-REVOKED`, `L8-K3-08-SEGMENT-MISSING`, `L8-K3-08-SEGMENT-UNREADABLE`, `L8-K3-08-OLD-EPOCH-ACTION`, `L8-K3-08-OUT-OF-SCOPE-STOP`, `L8-K3-08-G5-ONLY`.
+- IV-K3-03: `L8-K3-03-BASE`, `L8-K3-03-FRESH-REVISION`, `L8-K3-03-LOOKUP-STALE`, `L8-K3-03-DIGEST`, `L8-K3-03-IDENTITY`.
+- IV-K3-04: `L8-K3-04-BASE`, `L8-K3-04-SELF-ISSUED`, `L8-K3-04-UNREGISTERED-SOURCE`, `L8-K3-04-SAME-NAME-DIFFERENT-SOURCE`, `L8-K3-04-ISSUER-MISMATCH`, `L8-K3-04-SIGNATURE-INVALID`, `L8-K3-04-SIGNATURE-UNVERIFIABLE`, `L8-K3-04-CURRENT-DENY`, `L8-K3-04-CURRENT-CONSTRAIN`, `L8-K3-04-SELECTION-UNKNOWN-RULE`, `L8-K3-04-SELECTION-CONFLICTING-CANDIDATES`, `L8-K3-04-RECEIPT-SUBSTITUTE`.
+- IV-K3-05: `L8-K3-05-BASE`, `L8-K3-05-DENY`, `L8-K3-05-CONSTRAINT-SETTING-MISSING`, `L8-K3-05-PRECONDITION-UNOBSERVED`, `L8-K3-05-CONSTRAINT-EVIDENCE-MISSING`, `L8-K3-05-CONSTRAINT-RELAXED`.
+- IV-K3-06: `L8-K3-06-BASE`, `L8-K3-06-REQUEST`, `L8-K3-06-ACK`, `L8-K3-06-REVIEW`, `L8-K3-06-CI-GREEN`, `L8-K3-06-CHECK-SUCCESS`.
+- IV-K3-07: `L8-K3-07-BASE`, `L8-K3-07-EXPIRED`, `L8-K3-07-TIME-UNREADABLE`, `L8-K3-07-EXPIRY-UNPARSABLE`.
+- IV-K3-08: `L8-K3-08-BASE`, `L8-K3-08-REVOKED`, `L8-K3-08-SEGMENT-MISSING`, `L8-K3-08-SEGMENT-UNREADABLE`, `L8-K3-08-OLD-EPOCH-ACTION`, `L8-K3-08-OUT-OF-SCOPE-STOP`, `L8-K3-08-G5-ONLY`.
 - IV-K3-09: `L8-K3-09-BASE`, `L8-K3-09-request-actor`, `L8-K3-09-request-target`, `L8-K3-09-request-operation`, `L8-K3-09-request-revision`, `L8-K3-09-request-environment`, `L8-K3-09-request-scope`, `L8-K3-09-request-expiry`, `L8-K3-09-decision-actor`, `L8-K3-09-decision-target`, `L8-K3-09-decision-operation`, `L8-K3-09-decision-revision`, `L8-K3-09-decision-environment`, `L8-K3-09-decision-scope`, `L8-K3-09-decision-expiry`, `L8-K3-09-assignment-actor`, `L8-K3-09-assignment-target`, `L8-K3-09-assignment-operation`, `L8-K3-09-assignment-revision`, `L8-K3-09-assignment-environment`, `L8-K3-09-assignment-scope`, `L8-K3-09-assignment-expiry`, `L8-K3-09-effective_scope-actor`, `L8-K3-09-effective_scope-target`, `L8-K3-09-effective_scope-operation`, `L8-K3-09-effective_scope-revision`, `L8-K3-09-effective_scope-environment`, `L8-K3-09-effective_scope-scope`, `L8-K3-09-effective_scope-expiry`.
-- IV-K3-10: `L8-K3-10-purpose`, `L8-K3-10-classification`, `L8-K3-10-source`, `L8-K3-10-destination`, `L8-K3-10-REQUIRED-KEY-MISSING`, `L8-K3-10-EXTRA-KEY`, `L8-K3-10-RECORD-BINDING-MISMATCH`.
-- IV-K3-11: `L8-K3-11-TARGET-COMPOSITION`, `L8-K3-11-MOVE-ACTION-KIND`.
-- IV-K3-12: `L8-K3-12-PRE-REVOKED`, `L8-K3-12-PRE-EXPIRED`, `L8-K3-12-PRE-DRIFT`, `L8-K3-12-POST-NEGATIVE`, `L8-K3-12-POST-UNKNOWN`, `L8-K3-12-POST-OBSERVATION-MISSING`, `L8-K3-12-POST-OBSERVED-AT-NULL`.
-- IV-K3-13: `L8-K3-13-DENY-DROPS-UNKNOWN`, `L8-K3-13-EMPTY-TRUTH`, `L8-K3-13-ISSUER-UNPROVEN`, `L8-K3-13-SECRET-IN-REASON`.
-- IV-K3-14: `L8-K3-14-BASE`, `L8-K3-14a`, `L8-K3-14b`, `L8-K3-14c`, `L8-K3-14d`, `L8-K3-14e`, `L8-K3-14f`, `L8-K3-14g`, `L8-K3-14h`, `L8-K3-14i`, `L8-K3-14j`.
-- IV-K3-15: `L8-K3-15-OPERATION-VERSION`, `L8-K3-15-K3-CODE`, `L8-K3-15-K3-CONFIG`, `L8-K3-15-CURRENT-ASSIGNMENT`, `L8-K3-15-TARGET-DECL`, `L8-K3-15-ENVIRONMENT-DECL`, `L8-K3-15-OWNER-DECL`, `L8-K3-15-OPERATION-DECL`, `L8-K3-15-AUTHORITY-DECL`, `L8-K3-15-POLICY`, `L8-K3-15-SOURCE-CURRENT-REF`, `L8-K3-15-ADAPTER`.
-- IV-K3-16: `L8-K3-16-TIME-OBSERVATION-REF`, `L8-K3-16-REVOCATION-HEAD-A`, `L8-K3-16-REVOCATION-HEAD-B`, `L8-K3-16-CALLER-HEAD-DRIFT`.
-- IV-K3-17: `L8-K3-17-RECOVERY-POSTSTOP`, `L8-K3-17-RECOVERY-AFTER-LATER-MOVE`, `L8-K3-17-RECOVERY-WRONG-SEGMENT`, `L8-K3-17-RECOVERY-WRONG-MOVE`, `L8-K3-17-RECOVERY-SEQ-PLUS-ONE`, `L8-K3-17-RECOVERY-NOT-A-MOVE`, `L8-K3-17-RECOVERY-ALREADY-IMMEDIATE`, `L8-K3-17-RECOVERY-AUTO-MOVE`, `L8-K3-17-RECOVERY-RESTART-CONTROL-FLOW`.
+- IV-K3-10: `L8-K3-10-BASE`, `L8-K3-10-purpose`, `L8-K3-10-classification`, `L8-K3-10-source`, `L8-K3-10-destination`, `L8-K3-10-REQUIRED-KEY-MISSING`, `L8-K3-10-EXTRA-KEY`, `L8-K3-10-RECORD-BINDING-MISMATCH`.
+- IV-K3-11: `L8-K3-11-BASE`, `L8-K3-11-TARGET-COMPOSITION`, `L8-K3-11-MOVE-ACTION-KIND`.
+- IV-K3-12: `L8-K3-12-BASE`, `L8-K3-12-PRE-REVOKED`, `L8-K3-12-PRE-EXPIRED`, `L8-K3-12-PRE-DRIFT`, `L8-K3-12-POST-NEGATIVE`, `L8-K3-12-POST-UNKNOWN`, `L8-K3-12-POST-OBSERVATION-MISSING`, `L8-K3-12-POST-OBSERVED-AT-NULL`.
+- IV-K3-13: `L8-K3-13-BASE`, `L8-K3-13-DENY-DROPS-UNKNOWN`, `L8-K3-13-EMPTY-TRUTH`, `L8-K3-13-ISSUER-UNPROVEN`, `L8-K3-13-SECRET-IN-REASON`.
+- IV-K3-14: `L8-K3-14-BASE`, `L8-K3-14-ROLE-ALIAS-COEXISTS`, `L8-K3-14-CALLER-BINDING-REJECTED`, `L8-K3-14-EXTRA-RAW-READ`, `L8-K3-14a`, `L8-K3-14b`, `L8-K3-14c`, `L8-K3-14d`, `L8-K3-14e`, `L8-K3-14f`, `L8-K3-14g`, `L8-K3-14h`, `L8-K3-14i`, `L8-K3-14j`.
+- IV-K3-15: `L8-K3-15-BASE`, `L8-K3-15-OPERATION-VERSION`, `L8-K3-15-K3-CODE`, `L8-K3-15-K3-CONFIG`, `L8-K3-15-CURRENT-ASSIGNMENT`, `L8-K3-15-TARGET-DECL`, `L8-K3-15-ENVIRONMENT-DECL`, `L8-K3-15-OWNER-DECL`, `L8-K3-15-OPERATION-DECL`, `L8-K3-15-AUTHORITY-DECL`, `L8-K3-15-POLICY`, `L8-K3-15-SOURCE-CURRENT-REF`, `L8-K3-15-ADAPTER`.
+- IV-K3-16: `L8-K3-16-BASE`, `L8-K3-16-TIME-OBSERVATION-REF`, `L8-K3-16-REVOCATION-HEAD-A`, `L8-K3-16-REVOCATION-HEAD-B`, `L8-K3-16-CALLER-HEAD-DRIFT`.
+- IV-K3-17: `L8-K3-17-BASE`, `L8-K3-17-RECOVERY-POSTSTOP`, `L8-K3-17-RECOVERY-AFTER-LATER-MOVE`, `L8-K3-17-RECOVERY-WRONG-SEGMENT`, `L8-K3-17-RECOVERY-WRONG-MOVE`, `L8-K3-17-RECOVERY-SEQ-PLUS-ONE`, `L8-K3-17-RECOVERY-NOT-A-MOVE`, `L8-K3-17-RECOVERY-ALREADY-IMMEDIATE`, `L8-K3-17-RECOVERY-AUTO-MOVE`, `L8-K3-17-RECOVERY-RESTART-CONTROL-FLOW`.
 
 #### 5.1.2 K3 reason mappingの未決
 
@@ -194,7 +221,7 @@ K3ケースの直接L3 traceはL4 §16.1のSECURITY ACだけに限定し、OS-01
 |---|---|---|
 | K3-I1 missing / existing unknown | 欠落=`Unknown(missing_input)`、source read failure=`Unknown(unreadable)`、確定競合=`Unknown(conflict)`。既存Unknown componentはclass/reasonを保持する。 | ownerごとの任意観測失敗の分類。fixtureはこの3つの既定値を個別に用い、新reasonへ写さない。 |
 | IV-K3-01 owner resolution | 未登録は`Unknown(unregistered)`、未充足refは`Unknown(missing_input)`、確定競合は`Unknown(conflict)`。 | 解決不能のowner artifactをどの状況で未登録/欠落/conflictと診断するか。3状態を別々に入力して混ぜない。 |
-| IV-K3-04 source authenticity | caller plain objectやsource不一致を許可扱いしない。selector未登録=`Unknown(unregistered)`、候補競合=`Unknown(conflict)`。 | self-issued/issuer mismatch/signature invalid/unverifiableが具体的にNegative/Unknownのどのreasonへなるか。新reasonを作らず、現行adapterが返す既存結果を保持する。 |
+| IV-K3-04 source authenticity（`L8-K3-04-SIGNATURE-INVALID`／`...-SIGNATURE-UNVERIFIABLE`） | self-issued/未登録source=`Unknown(unregistered)`、同名別source=`Unknown(conflict)`、issuerの確定不一致=`Value(Negative)`、宣言adapterでのsignature invalid/unverifiable=`Unknown`。 | signature invalid/unverifiableのK1 reasonだけL4が固定していない。該当fixtureはreasonを発明せず既存adapter結果を保持する。 |
 | IV-K3-05/07/08 evidence | 確定deny/expiry/revokeは`Value(Negative)`。必要入力欠落は`Unknown(missing_input)`、read failureは`Unknown(unreadable)`。 | expiryのparse failure等のreason対応。class `Unknown`までをfixture oracleにし、reason mappingを増やさない。 |
 | IV-K3-10 required inputs | 確定ref mismatch/余分keyは`Value(Negative)`、必須入力欠落は`Unknown(missing_input)`。 | required-input schema未登録とrequired entry欠落のどちらを返すか。入力を別fixtureとしL4 existing owner statusをそのまま期待する。 |
 
@@ -206,14 +233,14 @@ K3ケースの直接L3 traceはL4 §16.1のSECURITY ACだけに限定し、OS-01
 | IV-K3-12 pre/post cases | 使用前revoke/expiryはcheck `Value(Negative)`から`Rejected(authorization_unverified, check)`かつ追記0。使用前caller/current driftはcheckをPositiveにせず同じRejected。使用後negative/unknown/欠落/null時刻は`AppliedUncertain`でeventを保持し`RollbackRequired`を残す。 | driftのcheck class/reason mappingはL4/L9が指定しないため、原check診断を保持し新reasonへ写さない。 |
 | IV-K3-13 empty components | 0判定成分は`Combined.verdict=Undetermined`かつ`set_reason=Unknown(missing_input)`。 | なし。 |
 | IV-K3-15/16 key changes | `operation_version`変更は`Unobserved(not_run)`。他の同一identity refsはrevision更新とbytes/digest追随で`Stale`。time/head refも同じK2 revision規則で扱う。caller/current head mismatchは非Positive checkを保持するが、そのclass/reasonはL4/L9に指定がない。 | L9が列挙する各source roleの具体的ref数はowner declarationが決める。ここでは各listed roleを1 refとするfixture baselineで個々のmutationを定義し、実データ上の同role全量を証明したとは主張しない。取消しprefixのA/Bは異なる2つのsynthetic segment identityで、各headを一つずつ変える。 |
-| IV-K3-17 recovery | `RECOVERY-NOT-A-MOVE`=`Rejected(not_a_move)`、`RECOVERY-ALREADY-IMMEDIATE`=`Rejected(already_immediate)`、wrong segment/move association=`Unknown(conflict)`。POSTSTOP/AFTER-LATER-MOVEは同一moveへのdiagnostic追記に留まり、success/通常完了/G5待ち解消を出さない。 | 停止・再起動の注入はcontrol-flow fixtureであり、既存ログ型だけから停止を推定しない。SEQ-PLUS-ONEはrecovery pathを通り、immediate偽装をしない。AUTO-MOVEは追記/移動を行わない。 |
+| IV-K3-17 recovery | `RECOVERY-NOT-A-MOVE`=`Rejected(not_a_move)`、`RECOVERY-ALREADY-IMMEDIATE`=`Rejected(already_immediate)`、wrong segment/move association=`Unknown(conflict)`。POSTSTOPは同一moveへのphase=recovery診断追記に留まり、success/通常完了/G5待ち解消を出さない。AFTER-LATER-MOVEは`Unknown(conflict)`で待ちを解消しない。 | 停止・再起動の注入はcontrol-flow fixtureであり、既存ログ型だけから停止を推定しない。SEQ-PLUS-ONEはrecovery pathを通り、immediate偽装をしない。AUTO-MOVEは追記/移動を行わない。 |
 
 K3逆trace: L5 §6.1.4のK3-I1–I7各API clauseから本節の個別caseを経由し、L9 IV-K3-01–17および14a–jへ戻る。L3 direct parentはCommon Kernel L4 §16.1に列挙されたSECURITY ACに限定し、K7/OSのACは境界参照としてのみ扱う。fixtureは未実行である。
 
 
 ### 5.2 K5 fixtures
 
-本節はL5 §6.2のK5受け口とL4 K5-I1–I13を、Pair L9の既存IV-K5-01–26へ展開する。K5 fixtureは初期化済みの固定`LogDecl`/manifest/prefixを入力に使う。IV-K5-22の正常fixtureは既に存在するmanifestとcurrent OS assignment/runの対応を前提にした通常segment開設であり、初回manifestのgenesis作成や初回OS assignment/runの生成を検査・証明しない。未定義のbootstrap API/例外はfixtureへ足さない。すべて未実行である。
+本節はL5 §6.2のK5受け口とL4 K5-I1–I13を、Pair L9の既存IV-K5-01–26へ90個の一意なL8 caseとして展開する。K5 fixtureは初期化済みの固定`LogDecl`/manifest/prefixを入力に使う。IV-K5-22の正常fixtureは既に存在するmanifestとcurrent OS assignment/runの対応を前提にした通常segment開設であり、初回manifestのgenesis作成や初回OS assignment/runの生成を検査・証明しない。未定義のbootstrap API/例外はfixtureへ足さない。すべて未実行である。
 
 | L8 case | L9 oracle | L5 API / invariant | Fixtureと期待 |
 |---|---|---|---|
@@ -233,22 +260,22 @@ K3逆trace: L5 §6.1.4のK3-I1–I7各API clauseから本節の個別caseを経�
 | `L8-K5-10-NOOP` | IV-K5-10 | `append`; K5-I5 | 同key_digest・同result_digestの再記録は`NoOp`。 |
 | `L8-K5-10-CONFLICT` | IV-K5-10 | `append`; K5-I5 | 同key_digest・異result_digestの再記録は双方とConflict eventを保持して`Conflict`。 |
 | `L8-K5-10-PEER-UNREADABLE` | IV-K5-10 | `append`; K5-I5 | manifest列挙peer segmentの読取不能では`Rejected(peer_unreadable)`、write 0、bytes不変。 |
-| `L8-K5-11-MISSING-KEY` | IV-K5-11 | `append`; K5-I5 | ResultKeyの必須fieldを1つ欠落。`Rejected`、bytes不変。 |
-| `L8-K5-11-BAD-KEY-DIGEST` | IV-K5-11 | `append`; K5-I5 | key_digestだけ不一致。`Rejected`、bytes不変。 |
-| `L8-K5-11-BAD-RESULT-DIGEST` | IV-K5-11 | `append`; K5-I5 | result_digestだけ不一致。`Rejected`、bytes不変。 |
-| `L8-K5-11-STALE` | IV-K5-11 | `append`; K5-I5 | 結果classだけStaleへ変更。`Rejected`、bytes不変。 |
-| `L8-K5-11-NA-REASON` | IV-K5-11 | `append`; K5-I5 | NotApplicableの`reason`だけ欠落。`Rejected`、bytes不変。 |
-| `L8-K5-11-NA-AUTHORITY` | IV-K5-11 | `append`; K5-I5 | NotApplicableの`authority`だけ欠落。`Rejected`、bytes不変。 |
-| `L8-K5-11-NA-REENTRY-TRIGGER` | IV-K5-11 | `append`; K5-I5 | NotApplicableの`reentry_trigger`だけ欠落。`Rejected`、bytes不変。 |
-| `L8-K5-11-UNDECLARED-INLINE` | IV-K5-11 | `append`; K5-I5 | value type InlineをLogDeclに未宣言のまま入力。`Rejected`、bytes不変。 |
-| `L8-K5-11-WRONG-LOG` | IV-K5-11 | `append`; K5-I5/I6 | declared operationを別logへ記録。`Rejected`、bytes不変。 |
-| `L8-K5-11-CONFLICT-ONE-DIGEST` | IV-K5-11 | `append`; K5-I5 | `result_digests`が1件だけのResultConflictDetected。`Rejected`、bytes不変。 |
-| `L8-K5-11-CONFLICT-UNKNOWN-DIGEST` | IV-K5-11 | `append`; K5-I5 | logに無いresult_digestを含むResultConflictDetected。`Rejected`、bytes不変。 |
-| `L8-K5-11-CORRECT-RESULT` | IV-K5-11 | `append`; K5-I8 | ResultRecordedを対象とするCorrection。`Rejected`、bytes不変。 |
-| `L8-K5-11-SEGMENTOPENED-WRONG-WRITER` | IV-K5-11 | `append`; K5-I6 | manifest_writer以外がSegmentOpenedを記録。`Rejected`、bytes不変。 |
-| `L8-K5-11-UNDECLARED-EVENT` | IV-K5-11 | `append`; K5-I5 | LogDeclに無いevent_type。`Rejected`、bytes不変。 |
-| `L8-K5-11-WRONG-WRITER` | IV-K5-11 | `append`; K5-I6 | declared writerと異なるwriterで追記。`Rejected`、bytes不変。 |
-| `L8-K5-11-UNREGISTERED-SEGMENT` | IV-K5-11 | `append`; K5-I6 | manifestに登録されていないsegmentへ追記。`Rejected`、bytes不変。 |
+| `L8-K5-11-MISSING-KEY` | IV-K5-11 | `append`; K5-I5・L4 §9.5 | ResultKeyの必須fieldを1つ欠落。`Rejected`、bytes不変。 |
+| `L8-K5-11-BAD-KEY-DIGEST` | IV-K5-11 | `append`; K5-I5・L4 §9.5 | key_digestだけ不一致。`Rejected`、bytes不変。 |
+| `L8-K5-11-BAD-RESULT-DIGEST` | IV-K5-11 | `append`; K5-I5・L4 §9.5 | result_digestだけ不一致。`Rejected`、bytes不変。 |
+| `L8-K5-11-STALE` | IV-K5-11 | `append`; K5-I5・L4 §9.5 | 結果classだけStaleへ変更。`Rejected`、bytes不変。 |
+| `L8-K5-11-NA-REASON` | IV-K5-11 | `append`; K5-I5・L4 §9.5 | NotApplicableの`reason`だけ欠落。`Rejected`、bytes不変。 |
+| `L8-K5-11-NA-AUTHORITY` | IV-K5-11 | `append`; K5-I5・L4 §9.5 | NotApplicableの`authority`だけ欠落。`Rejected`、bytes不変。 |
+| `L8-K5-11-NA-REENTRY-TRIGGER` | IV-K5-11 | `append`; K5-I5・L4 §9.5 | NotApplicableの`reentry_trigger`だけ欠落。`Rejected`、bytes不変。 |
+| `L8-K5-11-UNDECLARED-INLINE` | IV-K5-11 | `append`; K5-I5・L4 §9.5 | value type InlineをLogDeclに未宣言のまま入力。`Rejected`、bytes不変。 |
+| `L8-K5-11-WRONG-LOG` | IV-K5-11 | `append`; K5-I6・L4 §9.5 | declared operationを別logへ記録。`Rejected`、bytes不変。 |
+| `L8-K5-11-CONFLICT-ONE-DIGEST` | IV-K5-11 | `append`; K5-I5・L4 §9.5 | `result_digests`が1件だけのResultConflictDetected。`Rejected`、bytes不変。 |
+| `L8-K5-11-CONFLICT-UNKNOWN-DIGEST` | IV-K5-11 | `append`; K5-I5・L4 §9.5 | logに無いresult_digestを含むResultConflictDetected。`Rejected`、bytes不変。 |
+| `L8-K5-11-CORRECT-RESULT` | IV-K5-11 | `append`; K5-I8・L4 §9.5 | ResultRecordedを対象とするCorrection。`Rejected`、bytes不変。 |
+| `L8-K5-11-SEGMENTOPENED-WRONG-WRITER` | IV-K5-11 | `append`; L4 §9.5 SegmentOpened writer precondition | manifest_writer以外がSegmentOpenedを記録。`Rejected`、bytes不変。 |
+| `L8-K5-11-UNDECLARED-EVENT` | IV-K5-11 | `append`; L4 §9.5 LogDecl validation | LogDeclに無いevent_type。`Rejected`、bytes不変。 |
+| `L8-K5-11-WRONG-WRITER` | IV-K5-11 | `append`; L4 §9.5 writer precondition | declared writerと異なるwriterで追記。`Rejected`、bytes不変。 |
+| `L8-K5-11-UNREGISTERED-SEGMENT` | IV-K5-11 | `append`; L4 §9.5 manifest registration precondition | manifestに登録されていないsegmentへ追記。`Rejected`、bytes不変。 |
 | `L8-K5-12-VALUE-INLINE` | IV-K5-12 | `restore`→`lookup` | Inline ValueをJSONLから復元し完全一致queryでValueのまま返す。 |
 | `L8-K5-12-VALUE-FIXEDREF` | IV-K5-12 | `restore`→`lookup` | FixedRef Valueをbytesから復元し完全一致queryでValueのまま返す。 |
 | `L8-K5-12-UNKNOWN` | IV-K5-12 | `restore`→`lookup` | Unknown resultを復元しUnknown classを保持する。 |
@@ -270,8 +297,9 @@ K3逆trace: L5 §6.1.4のK3-I1–I7各API clauseから本節の個別caseを経�
 | `L8-K5-17-MISSING-HEAD` | IV-K5-17 | `project`; K5-I11 | Aを読めてもB headをinput_headsから落とすと`Unknown(missing_input)`。 |
 | `L8-K5-17-EMPTY-SCOPE` | IV-K5-17 | `project`; K5-I11 | scope.segmentsが空なら`Unknown(missing_input)`。 |
 | `L8-K5-17-DAMAGED-B` | IV-K5-17 | `project`; K5-I11 | B prefix損傷は`Unknown(unreadable)`。 |
-| `L8-K5-17-SCOPE-A` | IV-K5-17 | `project`/`lookup`; K5-I11 | AだけのscopeのprojectionはValue。A/B log全体scopeのqueryは別scope keyであり、記録が無ければ`Unobserved(not_run)`。 |
-| `L8-K5-17-CLOSED-PARTIAL-READ` | IV-K5-17 | `project`; K5-I11 | close済みevent/recordを上書きせず、open eventも再生成しない。固定全体scopeで必要headが欠ければK5-I11どおり`Unknown(missing_input)`とし、それをclosed/current `Value`で補完しない。 |
+| `L8-K5-17-SCOPE-A` | IV-K5-17 | `project`; K5-I11 | Aだけのscopeのprojectionは`Value`。 |
+| `L8-K5-17-SCOPE-WHOLE-UNOBSERVED` | IV-K5-17 | `lookup`; K5-I11 | Aだけのscope keyをA/B log全体scopeで照会し、scope key不一致により`Unobserved(not_run)`。 |
+| `L8-K5-17-CLOSED-PARTIAL-READ` | IV-K5-17 | `project`; K5-I11 | 既存closed eventを含む完全A/B fixed-scope基準から、必要なB prefix/headだけを欠かせる。`Unknown(missing_input)`を返し、既存closed原記録を変更せずopenを再生成しない。`MISSING-HEAD`と同じ欠落変異・classで、closed-state保全だけを追加assertする。 |
 | `L8-K5-18-EXACT` | IV-K5-18 | `lookup`; K5-I12 | exact keyは保存projectionを返す。 |
 | `L8-K5-18-APPEND` | IV-K5-18 | `lookup`; K5-I12 | input segment追記後、旧projectionは`Stale`。 |
 | `L8-K5-18-VERSION` | IV-K5-18 | `lookup`; K5-I12 | projector version変更は`Unobserved(not_run)`。 |
@@ -285,8 +313,9 @@ K3逆trace: L5 §6.1.4のK3-I1–I7各API clauseから本節の個別caseを経�
 | `L8-K5-20-OUTPUT` | IV-K5-20 | `verify` | `output` fieldだけを改変し、`output_digest`は据え置く。再計算不一致として`Unknown(conflict)`。 |
 | `L8-K5-20-OUTPUT-DIGEST` | IV-K5-20 | `verify` | output_digestだけを変更し、`Unknown(conflict)`。 |
 | `L8-K5-20-SELF-CONSISTENT-ALTER` | IV-K5-20 | `verify` | outputとdigestを相互に整合する形で改変しても、入力からの再構築値と違えば`Unknown(conflict)`。 |
-| `L8-K5-21-COMPLETE` | IV-K5-21 | `restore`→`lookup`; K5-I11 | A/B両prefixをrestoreし、その集合でlookupする。Bに同key異resultがあれば`Unknown(conflict)`。 |
-| `L8-K5-21-SCOPE-A` | IV-K5-21 | `restore`→`lookup`; K5-I11 | Aだけを宣言したscopeのkeyにだけ使用する。 |
+| `L8-K5-21-COMPLETE` | IV-K5-21 | `restore`→`lookup`; K5-I11 | 損傷なしのA/B両prefixをrestoreしlookupする。照会対象が一意なら`Value`。 |
+| `L8-K5-21-CONFLICT-B` | IV-K5-21 | `restore`→`lookup`; K5-I11 | `COMPLETE`からB prefixだけ同key異resultにし、全体scope lookupは`Unknown(conflict)`。 |
+| `L8-K5-21-SCOPE-A` | IV-K5-21 | `restore`→`lookup`; K5-I11 | Aだけを宣言したscopeのkeyに対するlookupは`Value`。 |
 | `L8-K5-21-MISSING-HEAD` | IV-K5-21 | `restore`→`lookup`; K5-I11 | input_headsからBを落とすと`Unknown(missing_input)`、lookup未呼出し。 |
 | `L8-K5-21-EMPTY-SCOPE` | IV-K5-21 | `restore`→`lookup`; K5-I11 | scope.segmentsが0件なら`Unknown(missing_input)`、lookup未呼出し。 |
 | `L8-K5-21-DAMAGE-MANIFEST` | IV-K5-21 | `restore`→`lookup`; K5-I11 | manifest損傷は`Unknown(unreadable)`、lookup未呼出し。 |
@@ -307,7 +336,7 @@ K3逆trace: L5 §6.1.4のK3-I1–I7各API clauseから本節の個別caseを経�
 | `L8-K5-25-TRAILING-SPACE` | IV-K5-25 | `read`; K5-I3(h) | LF前にASCII space一つを追加。他条件は有効、evidence(h)のUnknown(unreadable)。 |
 | `L8-K5-26-NONCANONICAL` | IV-K5-26 | `read`; K5-I3(h) | JSON key順等を非canonicalに変更し、解析値とentry digestは維持。他条件は有効、evidence(h)のUnknown(unreadable)。 |
 
-K5 trace: L5 §6.2.3のI1–I13は上表のIV-K5 rowsへそれぞれ戻る。writer/assignment・fenceはIV-K5-22/23とIV-K7-07–10、台帳はIV-LDG-01/02/04、physical path/storeはrepository-layout IV-RL-24–32へ参照する。これらの接続はK5 contractの再利用であり、K7/OSの初回assignment、physical enforcement、IV実行、L10 acceptanceを新設・主張しない。
+K5 trace: L5 §6.2.3のI1–I13は上表のIV-K5 rowsへそれぞれ戻る。`ledger_view`（L5 §6.2.2 FN-20）は既存のIV-LDG/IV-K7接続だけを参照し、本書のIV-K5 fixtureで個別に検査したとはしない。writer/assignment・fenceはIV-K5-22/23とIV-K7-07–10、台帳はIV-LDG-01/02/04、physical path/storeはrepository-layout IV-RL-24–32へ参照する。これらの接続はK5 contractの再利用であり、K7/OSの初回assignment、physical enforcement、IV実行、L10 acceptanceを新設・主張しない。
 
 
 ## 6. K1/K2 unit範囲と登録oracleの境界

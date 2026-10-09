@@ -158,11 +158,11 @@ TypeScript/Nodeは旧HELIX実装例があるが、歴史上の選択にすぎず
 
 ### 6.1 K3 既存operation authority照合
 
-本節はL4 §16の型とread-only判定境界を詳細化する。許可を発行・拡張したり、実作用や保存writerを持つAPIは追加しない。直接L3 parentとK7境界参照は§1.1のとおりで、fixture oracleはL9のK3識別子27件すべてへ対応する。
+本節はL4 §16の型とread-only判定境界を詳細化する。許可を発行・拡張したり、実作用や保存writerを持つAPIは追加しない。直接L3 parentとK7境界参照は§1.1のとおりで、L8 fixtureはL9のK3識別子27件すべてへ対応する。
 
 #### 6.1.1 旧source・台帳・consumer・failureとの対応
 
-旧sourceはL4 §16.5と前回のK3調査を起点に再読した。台帳行はいずれもhistorical/unresolvedでconsumer_refsは空。旧本文を現行authorityへ昇格・copyせず、保持点だけを現行K3契約から再導出する。
+旧sourceはL4 §16.5と、PR #2751固定親commit `6e0564e8793a531c9c7f45d3b1c17fa482846774`の本書§6.1.1を再現可能な前回K3調査記録として起点に再読した。台帳行はいずれもhistorical/unresolvedでconsumer_refsは空。旧本文を現行authorityへ昇格・copyせず、保持点だけを現行K3契約から再導出する。
 
 | 旧asset / source path:行 / 全文SHA-256 | ledger row・consumer / failure | K3で保持する点と変更理由 |
 |---|---|---|
@@ -172,7 +172,7 @@ TypeScript/Nodeは旧HELIX実装例があるが、歴史上の選択にすぎず
 | `LEGACY-ASSET-E92D9979D003D353DB99` — `archive/legacy-generation-2026-09-14/root/tests/security-capability-broker-authority-design.test.ts:全67行` — `ff1ee8fefaf8416cafb4a706301cb7a7d4afe549f04e31c5560a1cac4d88d31e` | row 3866、Historical/unresolved、consumer_refs空。読んだのは3文書のstatic design testで、runtime safetyを主張しない。 | artifact pairing/status traceの比較資料に限る。testは起動せず、passやruntime behaviorを根拠にしない。 |
 | `LEGACY-ASSET-0327D0DF98618D3066FD` — `archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md:28–40,60–70` — `81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a` | row 412、Historical/unresolved、consumer_refs空。旧analyzerはwrite/child-process authorityを持たない。 | read-only判定と作用を分離し、dispatch前driftを肯定しない・後driftをuncertainに残す境界を再導出。旧署名必須receipt、Node port、CAS/filesystem条件は移さない。 |
 
-旧PLAN-L3-62（全148行、`archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-62-security-capability-broker-authority.md`、SHA-256 `ab38056d506369c383dab4ade8ad8de0719c273216cecdbf002ee5756196d3af`）の§0/受入118–148行は、physical identity/provenance/sink/sandbox/runtime coverageのfailure gapを記録する。#679本文は本設計で独立再取得していないため、Planの記載をIssue本文の独立再検証済み事実としては扱わない。旧L10の10 acceptance項目はK3既存oracleを越える根拠にしない。
+旧PLAN-L3-62（`LEGACY-ASSET-AE2D8BC488A4A87E9728`、全148行、`archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-62-security-capability-broker-authority.md`、SHA-256 `ab38056d506369c383dab4ade8ad8de0719c273216cecdbf002ee5756196d3af`）の§0/受入118–148行は、physical identity/provenance/sink/sandbox/runtime coverageのfailure gapを記録する。#679本文は本設計で独立再取得していないため、Planの記載をIssue本文の独立再検証済み事実としては扱わない。旧L10の10 acceptance項目はK3既存oracleを越える根拠にしない。
 
 #### 6.1.2 L4型とowner境界
 
@@ -185,30 +185,32 @@ PermissionQueryRef = SubjectRef{kind: permission_query,
   identity: canonical_json({kind, operation, target, revision_identity, sorted_operation_input_identities}),
   revision: canonical_json({revision.revision, operation_input revisions}),
   digest: sha256(canonical_json(PermissionQuery))}
-OperationAuthorityTuple = { actor, target, operation, revision,
-  environment, normalized_explicit_scope, existing_expiry }
-AuthorityInputRef = RoleBoundInputAlias(context:{}, role, raw_ref)
-AuthorityInputBindingRef = SubjectRef{kind: k3_authority_input_binding,
-  identity: canonical_json({owner: SECURITY, operation: permission_check,
-                            query: PermissionQueryRef.identity}),
-  revision: canonical_json(sorted([{alias_identity, raw_revision}, ...])),
-  digest: sha256(binding_bytes)}
-HeadInputRef = SubjectRef{kind: k3_head_observation,
-  identity: canonical_json({role, segment}), revision: seq_decimal,
-  digest: sha256(canonical_json(head))}
-PermissionRecord = { ref, tuple: OperationAuthorityTuple, operation_inputs,
-  outcome: allow | deny | constrain, redacted_reason, source, issuer, constraints }
-AuthorityDecl = SECURITY-owned FixedRef { sources/current/adapters/issuer,
-  rules, required_inputs }
-AuthorityContext = { tuple, operation_inputs, current_assignment(OS),
-  target_owner_decl, environment_decl(INFRASTRUCTURE), operation_decl,
-  authority_decl(SECURITY), policy, source_current, observed_at, revocation_heads,
-  pre_execution_constraints }
-PermissionCheckResult = { query, context, permission_candidate,
-  effective_decision, components, combined: Combined, assurance: K6_three_fields,
-  authority_effect: "none" }
-PermissionCheckDiagnostic = { query?: PermissionQueryRef,
-  reason: missing_key | invalid_query, available_refs, missing_identities }
+OperationAuthorityTuple = { actor: identity, target: identity,
+  operation: read | write | execute | network | install | delete | merge | release | deploy | credential-use | security-change,
+  revision: SubjectRef, environment: SubjectRef, scope: normalized explicit scope,
+  expiry: existing permission expiry }
+PermissionRecord = { ref: SubjectRef, tuple: OperationAuthorityTuple,
+  operation_inputs: { identity -> SubjectRef }, outcome: allow | deny | constrain,
+  reason: redacted explanation, source: SubjectRef, issuer: identity,
+  constraints: SubjectRef[] }
+AuthorityDecl = FixedRef。SECURITYが所有するcurrent宣言。
+  { sources: { source identity -> { current: SubjectRef, adapter: VerifierRef, issuer: identity } },
+    rules: SubjectRef, required_inputs: { operation -> identity[] } }
+AuthorityContext = { tuple: OperationAuthorityTuple,
+  operation_inputs: { identity -> SubjectRef }, current_assignment: SubjectRef（OS所有）, target_owner_decl: SubjectRef,
+  environment_decl: SubjectRef（INFRASTRUCTURE所有）, operation_decl: SubjectRef,
+  authority_decl: SubjectRef（SECURITY所有）, policy: SubjectRef,
+  source_current: { source identity -> SubjectRef }, observed_at: 時刻観測の固定参照,
+  revocation_heads: SegmentHead[], pre_execution_constraints: SubjectRef[] }
+ResolutionDiagnostic = { reason, available_refs: SubjectRef[], missing_identities: identity[] }
+AuthorityContextResolution = Resolved(AuthorityContext)
+  | Unresolved(ResolutionDiagnostic)
+PermissionCheckResult = { query: PermissionQueryRef,
+  context: AuthorityContextResolution, permission: SubjectRef（呼出し側の候補ref）,
+  effective_decision: Observed<SubjectRef>（current選択refと候補refの一致を含む）, components: Component[],
+  combined: Combined, assurance: K6の真正性3項目, authority_effect: "none" }
+PermissionCheckDiagnostic = { query: PermissionQueryRef?, reason: missing_key | invalid_query,
+  available_refs: SubjectRef[], missing_identities: identity[] }
 PermissionCheck = PermissionCheckResult | PermissionCheckDiagnostic
 ~~~
 
@@ -233,7 +235,7 @@ PermissionCheck = PermissionCheckResult | PermissionCheckDiagnostic
 | `resolve_authority_context(query, input_heads)` | `AuthorityContextResolution | PermissionCheckDiagnostic` | current OS assignment、target/revision relation、INFRA environment、SECURITY AuthorityDecl/policy/source current refs、operation declaration、時刻、revoke headsからcontextを再構成。caller context/refの受け口なし。K2 complete key不能は既存Diagnostic `missing_key`、context不足は`Unresolved`と各K1 componentを返す。 |
 | `check_permission(query, permission, input_heads)` | `PermissionCheck` | source候補refを受け、current context/source decision、K3-I1–I7、expiry/revocation、K6 assuranceを再照合するread-only API。非肯定componentsを保持し`Combined`へ渡す。permissionを発行せず、callback/write portを受け取らない。 |
 
-K2 `key_of`が返すK2専用`Rejected(invalid_digest|duplicate_identity)`をK3 `PermissionCheckDiagnostic`へ写す変換はL4 §16.2/§16.4に定義されていない。K3のrole-bound typed refsと同一alias異refのL4前置拒否は個別に守るが、残る到達可能性・写像が必要になった場合は意味を推測せずL4境界の未決として残す。`invalid_query`のpredicateもL4に列挙がないため、新しいvalidation ruleとして使わない。typed Queryを前提にし、既存query validatorが無い異常入力へreasonを増やさない。
+K2 `key_of`が返す`Rejected(invalid_digest|duplicate_identity)`は、L4 §16.4の「完全なK2 keyを作れない場合」に従いK3 API境界で`PermissionCheckDiagnostic(reason: missing_key)`へ写し、K1 `Unknown`やK2 resultへ変換しない。K3の同一alias内異refもL4 §16.3/§16.4の明示規則により同じ診断になる。この写像はK3のkey構成境界に限る。`invalid_query`のpredicateもL4に列挙がないため、新しいvalidation ruleとして使わない。typed Queryを前提にし、既存query validatorが無い異常入力へreasonを増やさない。
 
 `check_permission`はread-only resultを返す。K3用resultを保存する具体caller/LogDeclはL4 §16に指定されていないため、新しいwriter/ownerを発明しない。既存operation ownerがK2 `record`とK5の保存境界を使う場合、その責務は既存宣言から与えられる。保存済みK6 `Unobserved(pending_receipt)`はrecord/source不在`Unknown(missing_input)`と混同しない。
 
@@ -343,32 +345,12 @@ segment writerはK5 §9.8のassignment/run単位である。K3のcurrent authori
 
 #### 6.2.6 旧HELIX source・failure・consumer
 
-旧source本文と`docs/governance/legacy-asset-disposition.jsonl`を再読し、asset ID、source line、inventory row、宣言SHAとarchive blob SHAを確認した。K5 semanticの保持/変更は以下の通り。旧CLI/runtime/testは実行せず、旧SQLiteや旧schemaをコピーしない。
-
-| 旧asset / archive source（inventory row） | source line / SHA-256 | 保持点と変更理由 |
-|---|---|---|
-| `LEGACY-ASSET-BB08D70A42B6445B2D1E` (510) `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md` | `36-42,62-64,78-89,119-122`; `9e18d68b5e463192fb30b839eb164d79f7202a15374482f65181b238df8e513d` | append-only、訂正追記、event→projection、readback不一致fail-closeを保持。旧harness.dbを計画/状態authorityとした形は置換。異digestを拒否から両記録を保持するK2/K5 conflictへ改める。 |
-| `LEGACY-ASSET-C35E93F2D36777CD7462` (513) `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md` | `145-153`; `2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357` | append event→projection→checkpoint、seq/hash chain、canonical JSONLを保持。aggregate/DB transactionをwriter別segmentとread時検査へ再導出。 |
-| `LEGACY-ASSET-8771887517A619A2D501` (264) `archive/legacy-generation-2026-09-14/root/docs/adr/ADR-007-harness-db-sqlite-projection.md` | `18-22`; `50c05a00872be6c23de531aaecd6a6cfd26abec264718e0223ac2630f739dcdf` | projectionがrebuild可能でauthoring sourceでない点を保持。保存方式はK5 JSONLへ置換。 |
-| `LEGACY-ASSET-9EDE8332CF4F627105EA` (392) `archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/handover-db-derivation.md` | `35-38`; `e95e612c601ccb226b90e515eca633439745bb9a2266c889031ef7518c39d18d` | event先行、idempotent projection、append後/projection前replayを保持。SQLiteとDB優先規則を置換。 |
-| `LEGACY-ASSET-F6E9EA3422A0EF1DF090` (386) `archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md` | `76-104`; `2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655` | terminal stateを再投影で戻さない、新generationを分ける、absence closeにはfull-scan markerを要す点をK5-I9/I11とK2 revisionへ再導出。 |
-| `LEGACY-ASSET-F677F6D81EB9FCAE2E3F` (913) `archive/legacy-generation-2026-09-14/root/docs/governance/handover-retirement-memory-audit-2026-07-11.md` | `34-35,56,81`; `93b4a0bd78ebc88266eb3d795ad29384169a1fa8698691acbb724984f462d8b4` | consumer failure: 311,927-byte CURRENT.json、手書きmarker drift、防衛追加後もclosed feedback復活/open=2010飽和。state pointerを正本にせず、全scopeなしのcloseを禁止。 |
-| `LEGACY-ASSET-6929C09B95A444D95B49` (1023) `archive/legacy-generation-2026-09-14/root/docs/improvement-backlog.md` | `258,260` (IMP-149/151); `e6d327ff488860dcaa8d7a150ac893e5cf0940eb710396cdf7ae746f5689a9e2` | false projector driftの反復と470MB全件読取りの遅さ（独立検証不確実）を保持。projector key/checkpointへ再導出。閾値は設けず、性能は後続測定。 |
-| `LEGACY-ASSET-67B016392E3F7D58B053` (362) `archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/module-decomposition.md` | `22-45,74-93`; `da787dcfd95b0b4011dc1979df1b6652e990f75ffb71750c6ff9c24a2a24739a` | owner境界、公開IF、依存方向を各受け口の契約へ再導出。旧module/path graphは再利用しない。 |
-| `LEGACY-ASSET-310E87378AFE8095809C` (363) `archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/physical-data.md` | `22-42,101-114`; `a3064a3b705adcf0a5f76c3210aa431d87b7971aed2fe88f948a323a40c7772f` | source recordとprojectionの分離、append journalの監査性を保持。旧`.helix/`/SQLite/event schemaは置換。 |
-| `LEGACY-ASSET-0327D0DF98618D3066FD` (412) `archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md` | `28-44,60-70`; `81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a` | 未宣言依存をallowしない境界をRL-D1へ再導出。path名からwriter/registrationを生成しない。 |
-| `LEGACY-ASSET-656F75AF81EE933415D9` (359) `archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/durability-boundaries.md` | `24-30,43-52`; `b6c4c6f58259b6c09f6cd52a64ab1fb7b04114a41d2b1089fdc5b9730f8666d5` | atomic publish・writer serialization・曖昧復旧を肯定しない点を保持。repository pure appendとstage RL-P7 compare-and-appendへ置換。 |
-| `LEGACY-ASSET-B6DC14C1DA937E3AC96C` (570) `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/node-runtime-cutover.md` | `47-53,106-112,123-129`; `49f3e4c324b19e728f7c05787bbd698f841728a526eedc7cec3f756b3601e9f9` | commit pointをpointer CAS一件にし、commit前にauthorization/writer epoch/leaseを再読、古いepoch/CAS敗者は作用0という点をK7へ一般化。 |
-| `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` (424) `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | `117,198`; `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` | 旧HIL-FR-27のpreserved source snapshotは文脈資料としてのみ保持し、current K7-I6（独立review済み現行L4 sourceが定めるfencing）をK5 append/K2 recordへ接続する。旧snapshot自身を新しい要求/authorityにしない。 |
-| `LEGACY-ASSET-BC2275DCE9BFFCF813C8` (577) `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/python-worker-runtime.md` | `133-136`; `4c26544b5cf6e63ed226838ff5e04b3a669f6a9aa13456ffc5e5fb41fc755f8a` | cancel/timeout/reassignment後は正しいbytesでもold run resultを拒否し、新ownerは新run/checkpointから再開する。 |
-| `LEGACY-ASSET-1B413588CFF3B1360B49` (266) `archive/legacy-generation-2026-09-14/root/docs/adr/ADR-009-node-python-linux-runtime.md` | `113-120`; `bdd1c9a00243b723342e42531ddeabbf2f7570594943c11226d5b0461769753c` | 可逆transaction、explicit authorized rollback、自動fallback禁止をK7-I3/I4/I5へ保持。 |
-| `LEGACY-ASSET-D461943347D372ECF6DA` (869) `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md` | `33,43`; `38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16` | 旧security候補sourceのrevoke論点は歴史的なfailure/contextとして保持し、現K5 appendは既存K3/K7/G5 contractの非肯定を越えない。候補本文を新しい要求/authorityにしない。 |
+K5旧source・asset ID・inventory row・source行・full SHA-256および保持/変更理由は§2の共通旧source表を正本とする（K5関連はLEGACY-ASSET-BB08D70A42B6445B2D1E、C35E93F2D36777CD7462、8771887517A619A2D501、9EDE8332CF4F627105EA、F6E9EA3422A0EF1DF090、F677F6D81EB9FCAE2E3F、6929C09B95A444D95B49、67B016392E3F7D58B053、310E87378AFE8095809C、0327D0DF98618D3066FD、656F75AF81EE933415D9、B6DC14C1DA937E3AC96C、719D5EC9C06FC4AAD0FF、BC2275DCE9BFFCF813C8、1B413588CFF3B1360B49、D461943347D372ECF6DA）。この§は、event/projection/checkpointの保持点とK5の変更境界だけを要約し、別のsource inventoryやasset tableを重複定義しない。旧CLI/runtime/testを実行せず、旧SQLiteや旧schemaをコピーしない。
 
 K5旧sourceが述べるevent/projection/checkpoint境界は保持し、DB authoring authority、手書きmarker、aggregate一つのsequence、DB transactionは置換する。writer別segmentとtime-independent orderingは現L4で新たに定義されたため、旧sourceの一致再利用とは主張しない。
-
 #### 6.2.7 検証範囲・保証限界
 
-L5/L8はIV-K5-01–26、IV-K7-07–10/11–15、IV-LDG-01/02/04、repository-layout L9 IV-RL-24–32等を直接実行せずfixture設計へ展開する。これらの設計は登録後のrecord semantics、通常writer authority/fence、物理配置/compare-and-appendの責務を結ぶ。bootstrap genesisが実在することは示さない。既知SegmentHeadまたは外部anchorが無い読み手はtail deletionを検出できない。保持期間・外部archiveは追加しない。10k/100k行はL4 §9.8の計測案で、acceptance thresholdや実測性能ではない。
+L5/L8で個別fixture設計へ展開するのはIV-K5-01–26である。IV-K7-07–10/11–15、IV-LDG-01/02/04、repository-layout L9 IV-RL-24–32は接続先として参照するだけで、本書のfixture suiteへ展開・実行しない。これらの設計は登録後のrecord semantics、通常writer authority/fence、物理配置/compare-and-appendの責務を結ぶ。bootstrap genesisが実在することは示さない。既知SegmentHeadまたは外部anchorが無い読み手はtail deletionを検出できない。保持期間・外部archiveは追加しない。10k/100k行はL4 §9.8の計測案で、acceptance thresholdや実測性能ではない。
 
 
 ### 6.3 今回の対象外

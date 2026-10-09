@@ -308,9 +308,9 @@ class DesignManifestTests(unittest.TestCase):
         self.assertEqual(len(loaded["files"]), 12)
         self.assertEqual(len(manifest.REQUIRED_SOURCE_IDS), 189)
         self.assertEqual(len(manifest.EXPECTED_CK_K1_K2_VERIFIER_IDS), 164)
-        self.assertEqual(len(manifest.EXPECTED_CK_K3_VERIFIER_IDS), 178)
-        self.assertEqual(len(manifest.EXPECTED_CK_K5_VERIFIER_IDS), 89)
-        self.assertEqual(len([item for item in graph["definitions"] if item["path"] == manifest.CK_L8_PATH]), 431)
+        self.assertEqual(len(manifest.EXPECTED_CK_K3_VERIFIER_IDS), 194)
+        self.assertEqual(len(manifest.EXPECTED_CK_K5_VERIFIER_IDS), 91)
+        self.assertEqual(len([item for item in graph["definitions"] if item["path"] == manifest.CK_L8_PATH]), 449)
         grouped = [row for row in graph["definition_rows"].values()
                    if row[0] == manifest.CK_L8_PATH and row[1] == manifest.CK_L8_K1_RANGE
                    and row[3][0] == "group-k1"]
@@ -383,18 +383,31 @@ class DesignManifestTests(unittest.TestCase):
                                   if r["range_id"] != manifest.CK_L8_K3_RANGE]
         _expect_diag(self, "Unknown", "missing_input", manifest.load_design_manifest, _raw(doc), sources)
 
-    def test_ut_lci_97_joint_k5_id_expansion_edge_disposition_removal_is_unknown(self):
+    def test_ut_lci_97_joint_k5_raw_row_edge_disposition_removal_is_unknown(self):
         doc, sources, _ = _baseline()
-        verifier_id = sorted(manifest.EXPECTED_CK_K5_VERIFIER_IDS)[0]
-        # Keep the checker inventory fixed while removing the matching manifest
-        # expansion, raw definition row, edge, and disposition reference.
+        verifier_id = "L8-K5-17-CLOSED-PARTIAL-READ"
+        # Keep the checker inventory fixed while removing the matching raw
+        # table row, edge, and disposition reference.
+        original = sources[manifest.CK_L8_PATH].decode()
+        sources[manifest.CK_L8_PATH] = ("\n".join(
+            line for line in original.splitlines() if not line.startswith(f"| `{verifier_id}` |")
+        ) + "\n").encode()
+        edge = next(item for item in doc["coverage_edges"] if item["verifier_id"] == verifier_id)
+        doc["coverage_edges"].remove(edge)
+        disposition = next(item for item in doc["coverage_dispositions"] if item["source_id"] == edge["source_id"])
+        disposition["edge_ids"].remove(edge["edge_id"])
+        _expect_diag(self, "Unknown", "missing_input", _graph, doc, sources)
+
+    def test_ut_lci_99_joint_k3_id_expansion_edge_disposition_removal_is_unknown(self):
+        doc, sources, _ = _baseline()
+        verifier_id = "L8-K3-14-ROLE-ALIAS-COEXISTS"
         original = sources[manifest.CK_L8_PATH].decode()
         sources[manifest.CK_L8_PATH] = ("\n".join(
             line for line in original.splitlines() if not line.startswith(f"| `{verifier_id}` |")
         ) + "\n").encode()
         ck_file = next(f for f in doc["files"] if f["path"] == manifest.CK_L8_PATH)
         expansion = next(r for r in ck_file["definition_ranges"]
-                         if r["range_id"] == manifest.CK_L8_K5_RANGE)["literal_expansions"]
+                         if r["range_id"] == manifest.CK_L8_K3_RANGE)["literal_expansions"]
         expansion[:] = [entry for entry in expansion if verifier_id not in entry["ids"]]
         edge = next(item for item in doc["coverage_edges"] if item["verifier_id"] == verifier_id)
         doc["coverage_edges"].remove(edge)
@@ -477,7 +490,7 @@ class DesignManifestTests(unittest.TestCase):
         ck_refs = [ref for ref in graph["references"] if ref["path"] == manifest.CK_L8_PATH]
         # The first three K1 verifier IDs intentionally share one raw row;
         # table references are observed once per raw row, not copied per ID.
-        raw_rows = 431 - 2
+        raw_rows = 449 - 2
         self.assertEqual(len(ck_refs), raw_rows * 3)
         self.assertEqual(sum(ref["column"] == 2 for ref in ck_refs), raw_rows)
         self.assertEqual(sum(ref["column"] == 3 for ref in ck_refs), raw_rows * 2)
