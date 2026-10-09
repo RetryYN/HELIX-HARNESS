@@ -513,7 +513,7 @@ L8に固定済みの194 caseをL7で一つずつ追跡する。各`CK-K3-UT-NNN`
 
 ### 9.1 194 formal fixture外の回帰確認
 
-次の17 method IDはformal K3 UT/L8 mappingへ加算しないfocused regression testである。case suffixを持つ行は各suffixを独立fixtureとして展開し、各入力では記載した一条件だけを変える。1行内のbaselineと変異は別subTestで実行する。owner/K5/K6境界はsynthetic stubのままとする。test methodとfixture IDは`CK-K3-REG-<ID>`から`test_CK_K3_REG_<ID>`へハイフンをunderscoreへ置換して対応させる。
+既存17件に今回の9件を追加した下記26 method IDはformal K3 UT/L8 mappingへ加算しないfocused regression testである。case suffixを持つ行は各suffixを独立fixtureとして展開し、各入力では記載した一条件だけを変える。1行内のbaselineと変異は別subTestで実行する。owner/K5/K6境界はsynthetic stubのままとする。test methodとfixture IDは`CK-K3-REG-<ID>`から`test_CK_K3_REG_<ID>`へハイフンをunderscoreへ置換して対応させる。
 
 | Test ID | 基準と一変異 | 呼出し | 固定する観測 |
 |---|---|---|---|
@@ -534,16 +534,25 @@ L8に固定済みの194 caseをL7で一つずつ追跡する。各`CK-K3-UT-NNN`
 | `CK-K3-REG-QUERY-REF-FIELDS` | 9個の独立subTest: `OPERATION`はoperationのみ、`TARGET`はtargetのみ、`REVISION-IDENTITY/REVISION-VERSION/REVISION-DIGEST`は該当revision fieldのみ、`SCOPE`はrequested_scopeのみ、`INPUT-IDENTITY`はoperation input keyのみ、`INPUT-REVISION/INPUT-DIGEST`は該当ref fieldのみ変更。 | `_query_ref`（FN-01） | 全caseでdigestが変わる。operation/target/revision identity/input identityではidentityも変わる。他caseではidentity不変。revision field変更caseだけrevisionも変わる。 |
 | `CK-K3-REG-QUERY-CONTEXT-TARGET` | Positive基準からquery.targetだけを変え、他のquery-ref関連bindingは同じqueryに再束縛する。 | `check_permission`（FN-01/07/11） | `target=Value(MISMATCH)`、combined=`Negative`。 |
 | `CK-K3-REG-RESOLVE-CONTEXT-OUTCOMES` | 同じbaselineからowner context観測を3つの個別subTestで返す: 完全context、expected input headだけのdrift、owner contextだけ`unreadable`。 | `resolve_authority_context`（FN-10） | それぞれ`Resolved`、`Unresolved(conflict)`、`Unresolved(unreadable)`。 |
+| `CK-K3-REG-REVOCATION-ENTRY-DIGEST-ONLY-CONFLICT` | baselineのcurrent/snapshot headでsegmentとseqを同じにし、snapshot entry_digestだけを変更する。 | `check_permission`（FN-08/11） | `revocation=Unknown(conflict)`、combined=`Undetermined`。 |
+| `CK-K3-REG-DECLARED-ISSUER-MISMATCH` | Positive基準からowner-declared issuerだけを別identityへ変える。record.issuerは固定する。 | `check_permission`（FN-05/11） | `issuer=Value(MISMATCH)`、combined=`Negative`。 |
+| `CK-K3-REG-CURRENT-REF-DIFFERS-FROM-PERMISSION` | owner-selected current permission refを維持し、APIのrequested `permission` refだけ別refへ変える。派生observationsは新しいResultKeyへ再束縛する。 | `check_permission`（FN-05/11） | `effective_decision`はcurrent refをValueとして保持し、そのpolarityとcombinedが`Negative`になる。 |
+| `CK-K3-REG-QUERY-SCOPE-MISMATCH` | Positive基準からquery.requested_scopeだけを変え、owner context/current record scopeは固定する。query-derived binding/keyは新queryから再構成する。 | `check_permission`（FN-06/11） | `scope=Value(MISMATCH)`、combined=`Negative`。 |
+| `CK-K3-REG-CONSTRAINT-DECLARATION-MISMATCH` | matching `constrain` baselineからowner `pre_execution_constraints` declarationだけを別refへ変える。 | `check_permission`（FN-05/11） | `source_outcome=Unknown(missing_input)`、combined=`Undetermined`。 |
+| `CK-K3-REG-EMPTY-CONSTRAINT-SET-IS-NONPOSITIVE` | valid nonempty `constrain` baselineからPermissionRecord.constraintsだけを空集合へ変える。 | `check_permission`（FN-05/11） | `source_outcome=Unknown(missing_input)`、combined=`Undetermined`。 |
+| `CK-K3-REG-RESOLVE-WITH-EMPTY-CALLER-INPUT-HEADS` | 正常queryとowner-current contextを固定し、caller expected `input_heads`を空sequenceにする。 | `resolve_authority_context`（FN-10） | owner current contextから`Resolved`を返し、空caller期待値をcurrent authorityとして使わない。 |
+| `CK-K3-REG-OPERATION-INPUT-SAME-REVISION-DIGEST-CONFLICT` | query/owner-current operation inputは同一refのまま、saved record refのdigestだけを変える（identity/revisionは固定）。 | `check_permission`（FN-07/11） | `operation_input:purpose=Unknown(conflict)`、combined=`Undetermined`。 |
+| `CK-K3-REG-ALLOW-WITH-CONSTRAINTS-UNSUPPORTED` | allow baselineからPermissionRecord.constraintsだけを非空にし、他のcomponentとconstraint observationはpositiveに固定する。 | `check_permission`（FN-05/11） | `source_outcome=Unknown(unsupported)`、combined=`Undetermined`。 |
 
 ### 9.2 候補実装・実行記録
 
-`helix/helix-harness/units/common-kernel/src/permission.py`と`tests/test_k3.py`にK3候補を置き、上表194 IDを個別の静的unittest methodで実行した。さらに§9.1の17 regression methodを別IDで実行した。query-ref field rowは一つのmethod内の9個の独立`subTest`として実行する。
+`helix/helix-harness/units/common-kernel/src/permission.py`と`tests/test_k3.py`にK3候補を置き、上表194 IDを個別の静的unittest methodで実行した。さらに§9.1の26 regression methodを別IDで実行した。query-ref field rowは一つのmethod内の9個の独立`subTest`として実行する。
 
 | 検証 | 結果 |
 |---|---|
-| `python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k3.py'` | 211 tests, OK（formal 194 + regression 17）。query-ref field rowは9独立subTestを含む。 |
+| `python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k3.py'` | 220 tests, OK（formal 194 + regression 26）。query-ref field rowは9独立subTestを含む。 |
 | `python3 -m py_compile helix/helix-harness/units/common-kernel/src/permission.py helix/helix-harness/units/common-kernel/tests/test_k3.py` | 成功。 |
 
 テストはowner mapping/context/source、K6 assuranceをprivate module境界の合成stubで与える。ownerの実読、K5/K6/K7実装、L9 oracle、CI登録、製品動作、外部作用を証明しない。実行時の変更理由・対象コード・境界はL6 §12.4に記録し、test fixtureから新しい要求や受入gateを作らない。
 
-K3単体fixtureは純粋な関数境界と固定入力を対象とする。K5 prefix/read/restore、K6 binding/raw byte実読、owner source adapter、K7 apply/recoveryはstubまたはconsumer handoffであり、この単体fixtureから製品動作、外部作用、実読、合格を主張しない。L4 §16.2で列挙したoperation closed union外の入力は既存`invalid_query`で両API入口から返し、owner portを呼ばない。11個の列挙値は同じ入口検査で拒否されないことを個別subTestで確認する。これはruntimeのtyped-query境界であり、汎用shape validatorを追加しない。K2 `invalid_digest`/`duplicate_identity`はK2専用拒否であり、K3のkey構成境界ではL4 §16.4と固定L5 §6.1.3どおり`PermissionCheckDiagnostic(reason: missing_key)`へ写す。K1 Unknownへ変換せず、K1でcombine/K2へrecordしない。正しいnamespaceとalias構成を通る正常K3 keyではduplicate identityを作らない。`allow`と`constraints`同時存在時のsource outcome mappingはL4で未定義なのでfixtureや新拒否を作らず、typed owner adapter境界の局所未決として残す。K3結果の保存ownerがL4で指定されない範囲では保存writerを作らず、保存callerの指定を待つ。旧source crosswalkと保持/変更理由はL6 §12.3に記録した。
+K3単体fixtureは純粋な関数境界と固定入力を対象とする。K5 prefix/read/restore、K6 binding/raw byte実読、owner source adapter、K7 apply/recoveryはstubまたはconsumer handoffであり、この単体fixtureから製品動作、外部作用、実読、合格を主張しない。L4 §16.2で列挙したoperation closed union外の入力は既存`invalid_query`で両API入口から返し、owner portを呼ばない。11個の列挙値は同じ入口検査で拒否されないことを個別subTestで確認する。これはruntimeのtyped-query境界であり、汎用shape validatorを追加しない。K2 `invalid_digest`/`duplicate_identity`はK2専用拒否であり、K3のkey構成境界ではL4 §16.4と固定L5 §6.1.3どおり`PermissionCheckDiagnostic(reason: missing_key)`へ写す。K1 Unknownへ変換せず、K1でcombine/K2へrecordしない。正しいnamespaceとalias構成を通る正常K3 keyではduplicate identityを作らない。`allow`と非空`constraints`の同時存在はL4/L5にmappingがなく、回帰fixtureは既存`Unknown(unsupported)`を保持して肯定を防ぐ。新しい拒否、reason、authority policyは加えず、domain mappingの未決は局所に残す。K3結果の保存ownerがL4で指定されない範囲では保存writerを作らず、保存callerの指定を待つ。旧source crosswalkと保持/変更理由はL6 §12.3に記録した。

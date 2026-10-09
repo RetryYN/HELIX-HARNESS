@@ -758,7 +758,23 @@ def check_permission(
         if outcome == "deny":
             components.append(Component("source_outcome", _value(result_key, False, {"outcome": "deny"})))
         elif outcome == "allow":
-            components.append(Component("source_outcome", _value(result_key, True, {"outcome": "allow"})))
+            if record.constraints:
+                # L4 does not define a positive mapping for an allow record
+                # carrying separate constraints. Preserve the existing K1
+                # unsupported classification instead of treating the extra
+                # constraint payload as inert.
+                components.append(
+                    Component(
+                        "source_outcome",
+                        _unknown(
+                            result_key,
+                            UnknownReason.UNSUPPORTED.value,
+                            {"outcome": "allow", "constraints": "unresolved_mapping"},
+                        ),
+                    )
+                )
+            else:
+                components.append(Component("source_outcome", _value(result_key, True, {"outcome": "allow"})))
         elif outcome == "constrain":
             # The owner adapter must provide positive pre-execution evidence for
             # every declared constraint. The core preserves those observations;
