@@ -6,7 +6,7 @@ owner: HELIX-SECURITY
 scope: SECURITY Stage 1 adapters / K3-K6-K7/G5-K8 projections
 base: main `d5bb3455526c816b3af965db239c4b56207a884f`（固定source snapshot）
 paired_l6: ../L6-function-design/stage1-security.md
-paired_l6_sha256: `421136cc37ab6f87a9797aeb9ba5600bebd5f2ed5670f26693300f620279ea2c`
+paired_l6_sha256: `72ab26d0c949c95622903b5f91fea133cf1571f2143c32a4f8675926de362310`
 paired_l8: ../L8-detail-verification/stage1-security-detail-verification.md
 paired_l8_sha256: `e2d55fdd753484c6bfac260719aa8290b8defa910aab348cad88da5fa5ea463a`
 paired_l9: ../L9-integration-verification/stage1-security-integration-verification.md
@@ -3500,3 +3500,22 @@ Fixture countとauthority scopeは別々に保つ。L9 verifier IDは33 function
 - §2 + §3のL9 verifier集合が既存43 IDに一致し、19 parent/33 CASE/NFR 10 traceがL9固定範囲内。
 - paired source SHAと一方向pinを再計算。内容変更時は下位pinを同期するが、L4/L5/L8/L9の意味をこのpairから変えない。
 - Markdown/headings/duplicate IDs/table columns/alias targetsを静的確認する。実test/CI/旧test/旧runtimeは、このL7設計段階では実行しない。
+
+## 8. 局所source-only helperの合成test記録
+
+L6 §9の実装候補は、L5既存slotを使うprivate slot-preserving projectionと、明示refの全field比較に限る。下表の10件は新たなL7 domain oracleではなく、`projection.py`の私有helperに対する局所unit testである。421 canonical L8 definitionsは未実行のままであり、17 aliasはcanonical参照で別testではない。
+
+| 局所test | 対象とassertion | 範囲外 |
+|---|---|---|
+| `test_projection_preserves_existing_result_objects_and_all_slots` | L5のslot並びを持つprivate containerを複製し、各slotのobject identityを保持する。K3 `PermissionCheckDiagnostic.reason`、K6 `RequiredResult.assurance`、K1 `Unknown`/`Unobserved`のclassとidentityも保持する。 | L5公開API呼出し、source/owner resolver、formal L8 fixtureではない。 |
+| `test_subject_ref_all_fields_equal` | `SubjectRef`のkind/identity/revision/digestが全て一致する。 | currentness判定やbytes readではない。 |
+| `test_subject_ref_kind_mismatch` | kindだけ異なる。結果は不一致。 | conflict reasonへ写さない。 |
+| `test_subject_ref_identity_mismatch` | identityだけ異なる。結果は不一致。 | owner/source選択をしない。 |
+| `test_subject_ref_revision_mismatch` | revisionだけ異なる。結果は不一致。 | Staleを生成しない。 |
+| `test_subject_ref_digest_mismatch` | digestだけ異なる。結果は不一致。 | digest再計算をしない。 |
+| `test_fixed_ref_all_fields_equal` | `FixedRef`のstore/locator/digestが全て一致する。 | 参照先をreadしない。 |
+| `test_fixed_ref_store_mismatch` | storeだけ異なる。結果は不一致。 | unreadable等の結果を生成しない。 |
+| `test_fixed_ref_locator_mismatch` | locatorだけ異なる。結果は不一致。 | locatorのpath解決をしない。 |
+| `test_fixed_ref_digest_mismatch` | digestだけ異なる。結果は不一致。 | digestを信頼/検証するものではない。 |
+
+CPython 3.12の`python3 -m unittest discover -s helix/helix-security/units/stage1-security/tests -v`で10件が成功した。実行対象はこの局所test fileだけである。これはL8の421 canonical definition、17 alias、L9 verifier、owner result、実ソースの現行性・内容、physical enforcement、NFR、formal pack登録、SECURITY Stage 1全体の実行・合格を示さない。source bytesとtest bytesのSHA-256はL6 §9に固定し、本書の一方向`paired_l6_sha256`はL6本文の現在bytesを指す。

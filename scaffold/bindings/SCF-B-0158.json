@@ -6,36 +6,36 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS local CI運転契約",
   "state": "active",
-  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernel K1/K2/K3/K5 verifier inventory、共有raw-row resolver、suite traceを含む現在のsource/definition/reference/edge/旧pin inventoryを同期対象とし、旧10文書manifestのsuccessを12文書構造完全性へ読み替えない。Common Kernel K4/G3 L5/L8本文もsource inputとしてpinし、その73 fixture IDは構造inventoryへ登録してraw row/locator/edge/dispositionの照合対象とする。Common Kernel K6 L5/L8本文もsource inputとしてpinする。K6の55 L8 fixture IDsはDesignScopeManifestへ未登録なので構造照合・L8 fixture実行を主張しない。一方、source-only K1/K2/K3/K5/K6 suiteは505 formal IDsを固定し、495 callable mapping（441 primary/52 stub/2 partial）と10 K6 not-exercised dispositionへ分ける。586 discovery identitiesを束縛し、K6は45 formal mappings（43 primary/2 partial callable）、10別disposition、7非formal regression identitiesである。K1/K2既存165 mappings（139 primary/26 stub）と199 identitiesを保持する。K5内訳は41 public API、24 helper、2 K2 lookupのprimaryと24 stubであり、local behavior 65とK2依存2を区別する。実装/test refsは9件をSHA pinし、L6/L7文書はtargetから実読する。同期の成立は単体検証とexact target CI証拠で確認し、Bindingから実装・合格を生成しない。",
+  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernel K1/K2/K3/K5 verifier inventory、共有raw-row resolver、suite traceを含む現在のsource/definition/reference/edge/旧pin inventoryを同期対象とし、旧10文書manifestのsuccessを12文書構造完全性へ読み替えない。Common Kernel K4/G3 L5/L8本文もsource inputとしてpinし、その73 fixture IDは構造inventoryへ登録してraw row/locator/edge/dispositionの照合対象とする。Common Kernel K6 L5/L8本文もsource inputとしてpinする。K6の55 L8 fixture IDsはDesignScopeManifestへ未登録なので構造照合・L8 fixture実行を主張しない。一方、source-only K1/K2/K3/K5/K6 suiteは505 formal IDsを固定し、495 callable mapping（441 primary/52 stub/2 partial）と10 K6 not-exercised dispositionへ分ける。586 discovery identitiesを束縛し、K6は45 formal mappings（43 primary/2 partial callable）、10別disposition、7非formal regression identitiesである。K1/K2既存165 mappings（139 primary/26 stub）と199 identitiesを保持する。K5内訳は41 public API、24 helper、2 K2 lookupのprimaryと24 stubであり、local behavior 65とK2依存2を区別する。Coreの実装/test refs 9件、Core L6/L7文書2件は従来どおり保持する。別partitionとしてBRAIN/LABO/HARNESS/INFRAの実装/test refs 8件とL6/L7 refs 8件をSHA pinし、正式ID/status/owner-return locatorsは製品L7原文の閉じたsource-reference型で保持する。source-only supplemental identities 27件は正式mappingに含めず、Core 586 identities/digestとK6 dispositionを変更しない。同期の成立は単体検証とexact target CI証拠で確認し、Bindingから実装・合格を生成しない。 main `30e957ee900da7735b6c691bdb63b55cae7a0c95`時点のSECURITY 10件、CONNECT 4件、Common Kernel K4/G3 14件はsource-suite inventory未登録のまま除外し、自動scanで実行集合へ加えない。",
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
-      "sha256": "a59f342197225ef74f2838f6555934633bf635aa57679204139bc6ee6f164a95",
+      "sha256": "a490867226596a35a6c62f39bf14bcb4fa14b70032dfed8f76684c07b11e7d82",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "9fcc2d3b94de5dc676edf30c16cb067ff73de3f84e7dbfe19700f3b45cab70e7",
+      "sha256": "dee6cc5fb567a8d1433ea39c807ed60efaafb1517cf81264f1c8aa800def82fd",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "f2b2d3765cf627abb8681ced923771c10b41c3d171ed993cd2b1988ec9057dff",
+      "sha256": "0349a9cfb7bee7ec1e27f574a839cbb8b77e848e1230e2fda0b89ff02af517d7",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "b1e624a593bdea71c1180e71f0391ddcdcd7f2125b84833880b3b6793816e6d6",
+      "sha256": "2ec2a6deb0046a4aec4d0af166c5a8dcdf4a3f42f18ef07bb5b93a43ff2bf3d4",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "0b7327dc3e8f55c12cf84d1d53ac283d2980bacd2f3776ccacf59ca535fabc7c",
+      "sha256": "e4f3f96d120fb853d67f6b5badebbf1d5f505ffed3d13a672ba719c3a69815a0",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "be4844038bb50816c8d0ac3a67e655145fab6d6ded9d12886a8fd70f2e85abe5",
+      "sha256": "e6e57307511a906f3c60b6791d00a6aa31fd9d1eb92430fc74e9f037f049483b",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -45,13 +45,13 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/common-kernel.md",
-      "sha256": "1310b538c268532a4aa15d3b47048bcdf592e6a6a85af88c2fb9fa08986a43a7",
-      "note": "Common Kernel K1/K2/K3/K4/K5/G3 contract locator。固定構造corpusの入力bytesとして照合し、K4/G3のfixture登録・CI coverage、semantic approvalや実装成立を示さない。"
+      "sha256": "445c564a7b5678d7609daf4142090a26a3df73ce76522a29771a6dad5cdce3f2",
+      "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5/K9 contract bytes。固定構造corpusの入力として照合する。K4/G3の73 fixture ID以外のfixture登録・CI coverage、semantic approvalや実装成立を示さない。"
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "369d5b98989aa9647a23fca03e04e274cd0a2db0ddb00d3677e571a812a517d5",
-      "note": "Common Kernel K1/K2/K3/K4/K5/G3 verifier table/range。K1/K2/K3/K5 inventoryとraw-row参照に加え、K4/G3の73 fixture IDも構造inventoryとしてraw row/locator/edge/dispositionを照合する。登録・構造照合はfixture実行やCI coverageを示さない。"
+      "sha256": "95f11077ab8a6ca43462bc085aad60366b48b0b7c26a171f80e59363ec56f3ea",
+      "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5/K9 verifier table/range。K1/K2/K3/K5 inventory、K4/G3の73 fixture ID構造照合対象を維持する。K6/K7/G5/K9 fixture inventoryは未登録であり、本pinはfixture実行・CI coverageを示さない。"
     },
     {
       "path": "docs/helix-harness/L4-basic-design/common-kernel.md",
@@ -122,6 +122,86 @@
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md",
       "sha256": "81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a",
       "note": "LEGACY-ASSET-0327D0DF98618D3066FD; lines 28-42 only. 静的read-only参照のみ。旧archiveは実行しない（旧source/runtime/test/hook/adapter/CIを実行せず）、literalでないcoverage edgeをUnknownへ残す歴史的起点に限る。"
+    },
+    {
+      "path": "docs/helix-brain/L6-function-design/stage1-brain.md",
+      "sha256": "31e32f042f896dce387376cce7134690b32d1d77d92e1f8319ba5edce5587930",
+      "note": "L6 design source reference; not proof of implementation or formal coverage."
+    },
+    {
+      "path": "docs/helix-brain/L7-unit-test-design/stage1-brain-unit-test-design.md",
+      "sha256": "e45e5d320cb975c2c4cf3072a439b98d7da8d45f8ce2c43c562427bfefc9178e",
+      "note": "L7 status/source-locator reference; source-only supplemental identities remain separate."
+    },
+    {
+      "path": "helix/helix-brain/units/stage1-brain/src/brain.py",
+      "sha256": "b2b856c3073d7a51e594362de3eaff9af7b76b6e9af6633fd214d2f3e8a05cce",
+      "note": "Exact source bytes selected by SUP-BRAIN identities; no formal L7 mapping."
+    },
+    {
+      "path": "helix/helix-brain/units/stage1-brain/tests/test_brain.py",
+      "sha256": "18ebfeaedc496c37adc0f000f472e8eb00b83f774cc05504be5259feb177a42f",
+      "note": "Exact test bytes selected by SUP-BRAIN identities; no formal L7 mapping."
+    },
+    {
+      "path": "docs/helix-labo/L6-function-design/stage1-labo.md",
+      "sha256": "fd934bc04801e8dd9a9f0ec4c4df6756540cb80af691b6509b568795a52376ed",
+      "note": "L6 design source reference; not proof of implementation or formal coverage."
+    },
+    {
+      "path": "docs/helix-labo/L7-unit-test-design/stage1-labo-unit-test-design.md",
+      "sha256": "20075960c97f4cd3f995f35b4f06cb00e0a7a60c1e3c6a586b8f4834585b11d8",
+      "note": "L7 status/source-locator reference; NFR reuse indexes are not tests."
+    },
+    {
+      "path": "helix/helix-labo/units/stage1-labo/src/projection.py",
+      "sha256": "5c61fe620c35eeb2786b740ccd37086e0e81bdf797a95cbf9588c585537ab60a",
+      "note": "Exact source bytes selected by SUP-LABO identities; no formal L7 mapping."
+    },
+    {
+      "path": "helix/helix-labo/units/stage1-labo/tests/test_projection.py",
+      "sha256": "a60abe0042543a6bceedbff4f284356dc2d2c347343ba6469423e1dd26b9613c",
+      "note": "Exact test bytes selected by SUP-LABO identities; no formal L7 mapping."
+    },
+    {
+      "path": "docs/helix-harness/L6-function-design/stage1-harness.md",
+      "sha256": "c92560cdc05e96a177b581614dced64fb368ced6a106483048bb5a22564bac36",
+      "note": "L6 design source reference; formal design locators stay separate."
+    },
+    {
+      "path": "docs/helix-harness/L7-unit-test-design/stage1-harness-unit-test-design.md",
+      "sha256": "42f9cfcbd64dcc9206138c0a45173e1ccea86d6274d90aaf9445251cf9fc212f",
+      "note": "L7 formal status/source-locator reference; SUP identities are not formal IDs."
+    },
+    {
+      "path": "helix/helix-harness/units/harness-stage1/src/stage1_pack.py",
+      "sha256": "2a6db3be14fe2d094a3947c36b4e911708d0ec95c6bcd59bec4ffd338e088c5d",
+      "note": "Exact source bytes selected by SUP-HARNESS identities; no formal L7 mapping."
+    },
+    {
+      "path": "helix/helix-harness/units/harness-stage1/tests/test_stage1_pack.py",
+      "sha256": "4ea1ee6a0056fba259298ce935f981dcfbef0dc00c296971b25cbc2806138d88",
+      "note": "Exact test bytes selected by SUP-HARNESS identities; no formal L7 mapping."
+    },
+    {
+      "path": "docs/helix-infrastructure/L6-function-design/stage1-infrastructure.md",
+      "sha256": "e4e469a840df0101fb0abea1e541a33b039ca2c1203bf5abcf3199447babf023",
+      "note": "L6 design source reference; not proof of owner connection."
+    },
+    {
+      "path": "docs/helix-infrastructure/L7-unit-test-design/stage1-infrastructure-unit-test-design.md",
+      "sha256": "d9187ba26891363e9bcc116cbe20c79b74cf23bafcf5476b682784b9040ede21",
+      "note": "L7 formal status/owner-return source-locator reference; setup rows remain separate."
+    },
+    {
+      "path": "helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py",
+      "sha256": "7bd177a70a01edd1adb439df290ef0c7d7d37940bff2072532eee28bd8ac7ffd",
+      "note": "Exact source bytes selected by SUP-INFRA identities; no formal L7 mapping."
+    },
+    {
+      "path": "helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py",
+      "sha256": "e24e83f6dedf47202962687a9e00c70a85f9328e2587838a9ef349242e5add21",
+      "note": "Exact test bytes selected by SUP-INFRA identities; no formal L7 mapping."
     }
   ],
   "role": "開発repository向けlocal CI driverを固定target/snapshot上で運転し、local結果と選択済みmerge-unit照合の証拠を用意する。要求・承認・merge authorityは持たない。",
@@ -187,9 +267,9 @@
       "docs/helix-os/L4-basic-design/local-ci.md §2.1, §2.2",
       "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract",
       "docs/helix-os/L5-detail-design/local-ci-detail-design.md D-LCI-01..06",
-      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, CASE-L8-LCI-118..130 (design IDs 113..117 are not suite fixtures)",
+      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, 118..130, 131..141 (design IDs 113..117 are not suite fixtures)",
       "docs/helix-os/L6-function-design/local-ci-function-design.md F-LCI-01..08 / F-LCI-09a..09d / F-LCI-10",
-      "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI-01..113, UT-LCI-120..132 (design only; not executed)",
+      "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI-01..113, 120..132, 133..143 (design only; not executed)",
       "source-byte / target-tree digests and checkout-outside receipt location"
     ],
     "negative_cases": [
