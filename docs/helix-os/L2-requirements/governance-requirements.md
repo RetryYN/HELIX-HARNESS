@@ -514,6 +514,8 @@ HARNESSの工程・提供条件に関係するRFA／DGH／FRS等は、OSの実�
 
 ## 要求正本を更新する管理条件
 
+**版**：HELIXOS-L2-001（`MPR-RC-HELIXOS-L2-001-001`、HIL-NFR-32の6条件）は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 HELIXOS-L2-001／002／007／009を、指定JSONのHIL-BR-26、HIL-FR-51..53、HIL-NFR-30..32と
 HR-FR-HIL-19から具体化する。原文は[JSON正本](../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)、
 [契約](../../../archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json)を参照する。新しいAdmission Engineや要求DBの追加ではない。
@@ -1241,6 +1243,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 ### HELIXOS-L2-053 canonicalization artifact群の原子的確定と失敗隔離（単体候補、未採択）
 
+**版**：HELIXOS-L2-053は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **authority／状態**：新規の未採択候補。`registered_proposal`／`authority_effect: none`。2026-09-29の57候補PO判断の明示集合に含まれず、採択・実装・実行許可、旧要求の正式後継割当を生成しない。`version_target`は旧HIL-FR-52に指定がないため付けない。
 - **親L1と責務**：`HELIXOS-L1-003/004/008/009`へ接続する。特にL1-008のauthority/design/verification/runtime projection不整合の検出と原情報からの再構築を受け、L1-003の継続・安全な再開、L1-004の承認済みHARNESS契約に従う証拠収集、L1-009の管理責務分離を保つ。HARNESSが持つcanonical意味・command semantic identity・要求採否をOSが再解釈しない。現行採択済みOS-L2/L11-001〜029の固定対象revisionと権限境界は変更しない。
 - **対象操作とartifact境界**：既存の有効なauthorityとHARNESSのcanonicalization意味契約に従う単一更新operationを入力とする。対象base revision、変更対象、ownerごとの書込義務を開始前に固定し、Markdown上のcanonical本文／asset revision、event ledger、trace、impact、stale propagation状態、projection、operation receiptの前後revisionと所有先を列挙する。HARNESSおよびその他の意味ownerが持つartifactの内容をOSが作成・承認せず、OSはそれらの変更を記録・永続化・運転する。
@@ -1252,6 +1256,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 ### HELIXOS-L2-054 Closure Gate証拠照合・close運転のHARNESS handoff候補（connection候補、未採択）
 
+**版**：HELIXOS-L2-054は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **authority／状態**：未採択候補、`registered_proposal`／`authority_effect: none`。2026-09-29の57候補判断に含まれず、採択、L3承認、実装／実行許可、Issue close authority、HIL-FR-07のformal successor割当を生成しない。旧sourceに`version_target`はないため付けない。
 - **親・接続**：採択済みHELIXOS-L1-001/003/004/008/009およびL2-017/019/023の管理・推進・continuity・handoff責務へ接続する。HARNESS-L2-057候補が定める候補対象条件の評価結果を受け取り、OSはPR、CI、独立audit、選択済みstyleへのmerge、子Issue状態等の運転上の証拠を照合・記録する。OSはclosure条件、oracleの意味または要求採否を再解釈しない。
 - **evidence handoff**：一つのIssue／closure scopeと対象revisionを保ち、HARNESSの候補対象条件の成立／不成立／unknown結果、参照されたevidenceのscope・revision・観測結果、未完条件を対応付ける。OSは各証拠を別個に受け取り、missing／stale／unknown／conflictを保ったままHARNESSへ戻す。PR、CI、audit、merge、child Issueの状態を互いの代理証拠にしない。CIは新世代で未構築のため、必要なCI証拠がなければunknownとして運転を保留し、旧CIで補わない。
@@ -1262,6 +1268,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 ### HELIXOS-L2-055 ready Issue claimと実装開始前の工程照合（単体候補、未採択）
 
+**版**：HELIXOS-L2-055は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **authority／状態**：新規の未採択候補。`registered_proposal`／`authority_effect: none`。2026-09-28のHELIX-OS候補採用集合に含まれず、要求採択、ticket発行、assignment実行、実装tool起動の許可、または旧要求の正式後継割当を生成しない。
 - **親L1と責務**：HELIXOS-L1-003／009に接続する。OSはticket・assignment authority、ready状態の参照、Workerへの割当とclaim lease、停止理由の記録を担う。Workerは割当の範囲内で作業する主体であり、OSの代わりにauthorityやreadyを決めない。LABOの水準、INTELLIGENCEの配置案、SECURITYの実行制約は各ownerの既存契約に従う。
 - **claim条件**：既存ticket／assignment authorityとIssue projectionの対応が有効で、対象revision・scopeが一致し、既存OS契約上readyな作業だけをclaim対象とする。leaseは既存のWorker assignment／lease契約へ結び、assignment、対象revision、scope、開始・期限、結果を追跡する。Issue表示やstatusだけからticket、assignment、authority、完了を生成しない。
@@ -1271,6 +1279,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **旧sourceとの対応と限界**：HIL-FR-08 line 98のready Issue claim、適用確定済み工程の未完了時のtool起動抑止、claim lease、blocked reasonを保持し、assertion HST-CASE-002-10のnegative oracleを参照する。工程適用性のscope化は明示した意味差分であり、旧一律gate atomはholdingへ保全し、未採択の条件付き案から旧FR-08全体closureを主張しない。leaseのduration、renewal、競合解決の詳細は既存OS Worker契約へ委ね、この候補で新設しない。旧assertionは設計oracle参照であり、旧runtime／testを実行しない。source atom receiptは選択したFR-08 atomに限られ、IR全体や隣接要求のclosureを主張しない。
 
 ### HELIXOS-L2-101 PR finding dispositionの証拠receiptと異議連結候補（単体候補、未採択）
+
+**版**：HELIXOS-L2-101は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **親L1候補**：`HELIXOS-L1-001`（判断source・revision管理）、`HELIXOS-L1-002`（作業・検証・提供・運用の追跡）、`HELIXOS-L1-008`（authority／projection不整合の検出・再構築）。親の意味を変更しない。
 - **種別・版**：HELIX-OS単体unit候補、未採択。旧HIL-FR-09は対象versionを指定していないため、この候補からversion scopeを追加しない。起票元main `26e547515d620bb53036c2f085cfc3f0293888d4`のrequirement/L11本文と仮登録には`HELIXOS-L2-101`が未定義。`ticket-id-connection-audit-2026-09-25.md:115`のHELIXOS-L2-056はDECIDE ticketの非採用routeという歴史的mappingであり、同監査はID 100までのmappingを含む。衝突を避けて101を選び、歴史的mappingは変更しない。
@@ -1325,6 +1335,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 ### HELIXOS-L2-106 authority binding参照先の再帰検査候補（単体候補、未採択）
 
+**版**：HELIXOS-L2-106は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・authority**：HELIX-OSの未採択候補。`registered_proposal`／`authority_effect: none`。本候補の記載、登録、静的確認は要求採択、権限の成立、scanner/runtimeの実装・実行または受入を生成しない。
 - **親L1・owner候補**：採択済みHELIXOS-L1-001／008に接続する候補。HELIX-OS管理はL2-015で管理するauthority記録の対象となる参照関係の提示と未解決状態の保持を担う。これは旧要求のowner移管または本候補の採択を確定しない。
 - **対象条件**：既存のauthority binding recordが参照するtargetについて、recordの参照先を再帰的に確認し、既存のtarget ownerが当該targetを失効・互換・履歴状態として示す場合、そのtargetへのcurrent edgeを有効なauthority参照として扱わない。判定対象は入力として特定されたbinding/reference chainとその参照先に限る。
@@ -1356,6 +1368,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 ### HELIXOS-L2-109 source-to-consumer provenance chain候補（単体候補、未採択）
 
+**版**：HELIXOS-L2-109は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・authority**：HELIX-OSの未採択候補。`registered_proposal`／`authority_effect: none`。候補本文、登録、静的確認は要求採択、source authority、生成実行、consumer起動または受入完了を生成しない。
 - **親L1・責務**：採択済み`HELIXOS-L1-001`／`HELIXOS-L1-008`へ接続する候補。OS管理は、入力として選ばれた一つのsource-to-consumer provenance chainのidentity/revision/digestと各関係を同一chain上で追跡できるようにする。sourceの意味とgeneratorの動作はそれぞれの既存ownerが持つ。
 - **chain条件**：入力は対象HEADと選択scopeを明示し、source identity/revision/digest、generator identity/revision、generated artifact identity/revision/content digest、およびconsumer identity/revisionを関係付きで特定する。各edgeの両端identityとrevisionがchain内で一致し、同じ生成artifactを同じconsumer relationへ辿れることを記録する。入力に欠けた要素や開いたscopeは`unknown`として残す。
@@ -1366,6 +1380,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **version_target**：未指定。旧source identityが記す版を現行適用版へ読み替えない。
 
 ### HELIXOS-L2-110 semantic epoch変更後のactive consumer digest pin差分候補（単体候補、未採択）
+
+**版**：HELIXOS-L2-110は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **状態・authority**：HELIX-OSの未採択候補。`registered_proposal`／`authority_effect: none`。本文、登録、静的fixtureは要求採択、実装、scanner実行、finding発生または受入を示さない。
 - **親L1・責務候補**：採択済み`HELIXOS-L1-001`／`HELIXOS-L1-008`に接続する管理・整合projection候補。OSは、明示された対象revisionとactive consumerの参照を並べ、提供されたsemantic epoch evidenceに照らして一致・差分・unknownを記録する。source内容とepochの意味は当該source ownerが示し、consumerのactive性と参照関係は既存ownerが提示する。本候補はsourceまたはconsumer ownerの移管を決めない。
@@ -1378,6 +1394,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **version_target**：旧DAC sourceのversion 1.0を参照情報として記録する。現行適用版と候補採択は未確定。
 
 ### HELIXOS-L2-111 三つの独立receiptのAND結合候補（未採択）
+
+**版**：HELIXOS-L2-111は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **状態・authority**：HELIX-OSの未採択候補。仮登録は`registered_proposal`／`authority_effect: none`。候補本文と静的receipt案は、要求採択、実装、receipt発行、Census完了、または受入を示さない。
 - **親L1・責務候補**：採択済み`HELIXOS-L1-001`、`HELIXOS-L1-004`、`HELIXOS-L1-008`に接続する管理上の結合候補。各receiptの意味、生成者、scope、authority、証拠はそれぞれの既存ownerが持ち、この候補はownerや責務を移さない。
@@ -1405,6 +1423,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 
 ### HELIXOS-L2-113 GitHub監査の決定的規則・semantic finding境界候補（connection候補、未採択）
+
+**版**：HELIXOS-L2-113は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **authority／状態**：HELIX-OSを提案targetとする未採択candidate。仮登録は`registered_proposal`／`authority_effect: none`。本候補、register、receipt、静的acceptance案は要求採択、source ownerの移管、実装・実行許可、GitHub操作または受入を生成しない。現行ownerは未決のまま保持する。
 - **親L1・提案責務**：POが対象revisionを確定・採択した`HELIXOS-L1-001`／`HELIXOS-L1-008`に接続する、既存HELIX機構をまたぐ決定的監査とsemantic findingの責務境界候補。現行system-intent.mdの`authority_status: draft_candidate` metadataは本文revision採否の正本ではなく、2026-09-28 PO decisionが固定SHA `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`を確定・採択している。OSは三つの境界を接続する要求候補の提案targetであり、GitHub監査の全能力、各gate、model評価、laneまたはproviderの現在ownerを主張しない。
@@ -1538,6 +1558,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 ### HELIXOS-L2-124 旧五機能の判定結果・failure code・provenance接続候補（未採択）
 
+**版**：HELIXOS-L2-124は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・権限**：HELIX-OSの未採択connection候補、`registered_proposal`／`authority_effect: none`。候補、fixture、仮登録は要求採択、L3承認、実装・実行、既存操作authorityの拡張を生まない。
 - **親と責務境界**：採択済みHELIXOS-L1-004／008の、検証証拠の収集と原情報からの再構築へ接続する。HARNESSまたは既存の機能ownerは各機能の意味・適用条件・oracleを持ち、HELIX-OSはその契約に基づく選択機能の結果と既存provenanceの連結・記録だけを行う。ここでowner、現在の実装identity、機能scope、run方式を推定しない。sourceで名指された「PR監査」「Issue Gate」「agent registry」「memory compaction」「ZIP detector」は五つの別々のsource roleとして保持するが、旧名を現行runtime/tool/APIの固定名にしない。
 - **保証候補**：対象scopeで五つのsource roleに対応する機能を一つずつ特定し、各機能の選択された処理結果を、当該機能の適用契約・oracleが定める構造化結果へ結ぶ。失敗なら、その機能の契約が出す機械可読failure codeと処理対象のprovenanceを共に記録する。成功結果も対象機能・入力source/対象revision・評価scope・適用oracle・観測結果のprovenanceと結び、説明文だけを合格根拠にしない。機能別のidentity対応、必要結果、failure codeまたはprovenanceが欠ける、あるいは判定根拠がunknown/stale/conflictなら該当roleを未完またはunknownのままにし、五機能全体の成立を示さない。機能の意味、個別failure code taxonomy、物理schema、保存先、実行技術は定めない。
@@ -1587,6 +1609,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **PO判断材料（revision -003候補）**：A（推奨・旧原文の「対象変更で失効」に忠実）は、既存要求/profile/policy適用条件で比較が適用される場合、または既存入力自体がtarget差を明示する場合、当該旧quarantineを新targetへ適用せず通常failure/保留とする。同じpolicy scope内の再評価だけではeligibleにしない。Bはこの対象変更時の効果を決めず、sourceをholdingに残す。Cは変更targetへの旧receipt流用を拒否するが、同じpolicy scope内なら既存policy条件で新targetを再評価してeligibleになり得る意味変更である。A/Cともcurrent run HEAD/treeだけの差をtarget変更とせず、target入力も既存条件上の比較適用もないrunは採択032の判定のままとする。既存条件上比較が適用されるのにtarget identity根拠が欠落・競合する場合は、いずれも対象変更の判定をunknown/保留とする。別個の比較要求flagがないことだけでは、既存入力に明示されたtarget差を無視しない。旧sourceの「期限切れ、対象変更、fingerprint変化で失効」の並列条件、FR-29のbaseline SHA限定、HR-FR-HIL-06の同一SHA/tree lineageを踏まえ、Aは識別済みtarget変更でquarantine適用を失効させ、Cはscope内再評価で再eligibleを許す点が原文からの意味差である。032の`policy baseline`と`current run HEAD/tree`の区別・032正常例は変更しない。影響は既存条件上の比較適用または入力が明示するtarget差に対する128判定に限り、通常032 runへ新gateを追加せず、policy全体のrevoke、既開始操作のcancel/rollback、OS実装や旧runtime/testも変更しない。別解釈Dとして全run HEAD/treeをtargetとみなすとcommit/tree差ごとにquarantineが失効し、採択032のbaselineとrun provenanceを分ける通常eligible例を狭める。この解釈は旧sourceが定義せず、採用済みの意味として扱わない。
 
 ### HELIXOS-L2-127 選択されたCI依存段間のreceipt lineage（単体候補）
+
+**版**：HELIXOS-L2-127は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **親L1**：`HELIXOS-L1-004`（CI・検証結果の運転）。親L1の採択・意味を変更しない。
 - **状態**：要求候補。旧sourceは`version_target`を指定しないため、この候補も指定しない。採択・実装・運転完了は主張しない。
