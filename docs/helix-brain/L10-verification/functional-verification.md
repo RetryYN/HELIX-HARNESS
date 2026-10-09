@@ -1,6 +1,6 @@
 # HELIX-BRAIN L10 機能総合検証
 
-**状態：委任承認済み・L10未実行。** 下記は`../L3-requirements/functional-requirements.md`のAC候補に対するsystem-level fixture/oracle設計であり、runtime実行結果・合格・実装許可を意味しない。対象は`HELIXBRAIN-L2-007/008/028`のみ。旧L10定義は `LEGACY-ASSET-34DF3B535879CC73FA86`（`archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`、SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）の要件挙動をsystem-levelで照合する意味を保持する。旧case ID・閾値・runtimeは移さず実行しない。
+**状態：承認済み・L10未実行。** 下記は`../L3-requirements/functional-requirements.md`のAC候補に対するsystem-level fixture/oracle設計であり、runtime実行結果・合格・実装許可を意味しない。対象は`HELIXBRAIN-L2-007/008/028`のみ。旧L10定義は `LEGACY-ASSET-34DF3B535879CC73FA86`（`archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`、SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）の要件挙動をsystem-levelで照合する意味を保持する。旧case ID・閾値・runtimeは移さず実行しない。
 
 旧L3定義 `LEGACY-ASSET-F542125805B777D8A56A`（`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`、SHA-256 `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`）にあるFR/AC↔検証の関係を起点とする。fixed/candidate source pinと旧asset対照は対応する静的監査記録に収録する。
 
@@ -89,7 +89,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 ## Stage 2b — HELIX-BRAIN INFRA L10 総合検証候補（001–017）
 
-**状態：委任承認済み・L10未実行。** CASEは対応ACを親ごとに照合し、独立review/POのL3承認や実測を生成しない。通常のL3承認を超えるsub-gateを作らない。
+**状態：承認済み・L10未実行。** CASEは対応ACを親ごとに照合し、独立review/POのL3承認や実測を生成しない。通常のL3承認を超えるsub-gateを作らない。
 
 ### `HELIXBRAIN-L2-INFRA-001` — BRAIN-INFRA-001-FR-01 / AC-01, AC-02
 
@@ -267,9 +267,8 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - **L10-BRAIN-INFRA-017-C07（個別例／AC-01）**：別fixtureで、複数条件のLABO評価inputを与える。**期待oracle**：評価入力・対象revisionを保持し、成功/成熟状態への遷移値は固定親に無いため推定しない。
 - **L10-BRAIN-INFRA-017-C08（個別pair／AC-01/02）**：通常fixtureではfailure発見inputだけを与える。**AC-01期待oracle**：failureを対象revisionへ結び、C06/C07の入力と混合せず保持する。独立した一変異fixtureではfailureを隠すか成功inputへ変換する。**AC-02期待oracle**：failure隠蔽・success変換を不成立として検出し、maturity昇格を推定しない。
 
-## Stage 2b追補 — 採択済み001〜006の部分草稿
-
-**状態：委任承認済み。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
+## Stage 2b追補 — 採択済み001〜006
+**状態：承認済み。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
 
 ### HELIXBRAIN-L2-001 — BRAIN-001-FR-01との対
 
@@ -418,7 +417,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 ## Stage 2b追補 — 採択済み009/010/011/012/029との対
 
-**状態：委任承認済み。** 各caseは対象親の固定L2/L11に限り、入力source、親revision、選択scope、独立oracle、実際の出力/不足、ownerを記録する。CASEの存在だけでは合格でない。値はfixtureであり製品schema/runtime/採用結果を確定しない。親はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`に限定する。後続版/Web/hold/rejectを含めず、前Stageの一括完了gateも加えない。
+**状態：承認済み。** 各caseは対象親の固定L2/L11に限り、入力source、親revision、選択scope、独立oracle、実際の出力/不足、ownerを記録する。CASEの存在だけでは合格でない。値はfixtureであり製品schema/runtime/採用結果を確定しない。親はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`に限定する。後続版/Web/hold/rejectを含めず、前Stageの一括完了gateも加えない。
 
 ### HELIXBRAIN-L2-009 — BRAIN-009-FR-01との対
 
@@ -551,7 +550,7 @@ L2-029の常時必須・操作時のみ・入力元に応じて必須・参照�
 
 ## Stage 4 — 採択済み親018/019/020/021/022/023/030のL10候補
 
-**状態：委任承認済み・未実行。** 固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`とmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択登録を対象とし、Stage 4の7親だけを照合する。全caseは宣言済み合成fixtureで、製品値を決定しない。旧test/runtime/CIを実行せず、旧case ID・閾値を移植しない。source / full-span pinsは本追補の時点監査へ記録する。
+**状態：承認済み・未実行。** 固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`とmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択登録を対象とし、Stage 4の7親だけを照合する。全caseは宣言済み合成fixtureで、製品値を決定しない。旧test/runtime/CIを実行せず、旧case ID・閾値を移植しない。source / full-span pinsは本追補の時点監査へ記録する。
 
 
 ### 固定親句からAC/CASEへの対応
@@ -821,7 +820,7 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 
 ## Stage 5 — HELIXBRAIN-L2-024/025 総合検証候補
 
-**状態：委任承認済み・未実行の検証設計。** 索引C10/C15（024）およびC25/C34（025）を除く各caseは独立fixtureとし、成功は記述された入力・revision・契約に限る。G0 Stage 5は順序分類で、全Stage完了gate、追加承認、実装・実行許可を作らない。旧RCLS paired acceptanceはoracle分類の意味を比較するために読み、旧schema、runtime、shadow、cross-project人承認は持ち込まない。
+**状態：承認済み・未実行の検証設計。** 索引C10/C15（024）およびC25/C34（025）を除く各caseは独立fixtureとし、成功は記述された入力・revision・契約に限る。G0 Stage 5は順序分類で、全Stage完了gate、追加承認、実装・実行許可を作らない。旧RCLS paired acceptanceはoracle分類の意味を比較するために読み、旧schema、runtime、shadow、cross-project人承認は持ち込まない。
 
 ### `HELIXBRAIN-L2-024` — `BRAIN-024-FR-01`, `BRAIN-024-AC-01/02`
 

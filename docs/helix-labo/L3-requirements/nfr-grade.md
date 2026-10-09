@@ -15,7 +15,7 @@
 旧NFR起点は `LEGACY-ASSET-8CC5ABFC98C0D00183CA`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md:1–73`、全文SHA `ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3` と、`LEGACY-ASSET-DB669724249A14A665F0`、`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21–34,58–74`、全文SHA `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`。測定・根拠・対の観測へ結ぶ形式を再導出し、IPA grade、memory/timeout/confidence値、旧承認・CIを移さない。現行5測定項目は固定LABO L2/L11のfield/status/owner/往復参照を根拠とする。
 
 
-状態：委任承認済みのL3/L10。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定する。
+状態：承認済みのL3/L10。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定する。
 
 ## Stage 2b — 002/003/004/005 の技術候補（1.0、一括L3承認対象）
 
@@ -35,7 +35,7 @@
 
 ## Stage 2b — HELIXLABO-L2-006/007/008/009/010 技術候補
 
-以下は固定L2/L11の列挙field・状態を照合する測定候補であり、実測・承認・実装・SLA値ではない。通常の一括L3承認候補に含み、parameterごとのPO質問や追加gateを設けない。固定親の意味、scope、owner、versionは変えない。
+以下は固定L2/L11の列挙field・状態を照合する測定候補であり、実測・承認・実装・SLA値ではない。承認済みの一括L3に含み、parameterごとのPO質問や追加gateを設けない。固定親の意味、scope、owner、versionは変えない。
 
 | 対象 | 根拠付き候補 | 比較・測定方法 | 適用限界 |
 |---|---|---|---|
@@ -254,7 +254,7 @@ L10は旧公開69 IDと追補CASE-66〜68を含む72個の完全ID定義を持�
 
 旧sourceの数値を引き継がない。技術parameterが必要になった場合は候補値・比較根拠・測定方法を対で記録するが、ここで閾値を新設しない。
 
-### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
+### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0）
 
 **固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。
 
@@ -276,7 +276,7 @@ L10は旧公開69 IDと追補CASE-66〜68を含む72個の完全ID定義を持�
 
 候補技術値は固定L2/L11の観測単位・unknown動作から導いた提案で、実測根拠や採択済み閾値ではない。対象母集団・期間・cutoffは呼出し側が既に選択したscope/receiptから受け取り、この親で新設しない。実行・performance測定は未実施。
 
-### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0、起草候補）
+### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0）
 
 **採択済み固定親とPO根拠**：PO判断記録 `3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a` の `docs/governance/decisions/po-decision-2026-09-30-live26.md:50` は `HELIXLABO-L2-071` を通常採択22件に含むものとして承認し、L2節digest `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f` とL11節digest `029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0` に固定する。決定の`source_repository_revision`は `ea6f756f96a7370de78e412d737c7a7ed472114a`、`decision_basis_revision`は `81d1f35f9c5793c5312be4ae52526c96b609c254`。この二つを同一revisionと扱わない。
 
@@ -302,7 +302,7 @@ L10は旧公開69 IDと追補CASE-66〜68を含む72個の完全ID定義を持�
 
 ### HELIXLABO-L2-066 — A比較における誤修復・未解消数の測定可能性
 
-状態：委任承認済みのL3。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+状態：承認済みのL3。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本節からL3承認・実装・比較run・実測合格を生成しない。
 
 `LABO-066-NG-01` 候補：比較結果はA/candidate identityとversion、eligible set identity/revision、task/scope/target revision、oracle/scorer revision、protocol/toolchain/environment/cutoff、両群のresultとoracle receipt、unknown理由、2指標の分子/分母を追跡可能にする。
 

@@ -1,10 +1,10 @@
 # HELIX-OS L3 機能要件
 
-状態: L3委任承認済み／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
+状態: L3承認済み／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
 
 ## Stage 2b — HELIXOS-L2-014 HELIX自身の段階リリース
 
-状態: 固定L2/L11を詳細化するL3候補。親 `HELIXOS-L2-014`、`version_target: 1.0`。POの2026-09-27段階リリース判断と2026-09-28の固定L2/L11採択はsource pinに記録する。これはL3承認、実装・配布許可ではない。現行のMPR metadataや登録状態から追加authorityを作らない。G0ではStage 2b、prerequisiteなしに配置されており、先行Stage完了gateを加えない。
+状態: 固定L2/L11を詳細化する承認済みのL3要件。親 `HELIXOS-L2-014`、`version_target: 1.0`。POの2026-09-27段階リリース判断と2026-09-28の固定L2/L11採択はsource pinに記録する。これはL3承認、実装・配布許可ではない。現行のMPR metadataや登録状態から追加authorityを作らない。G0ではStage 2b、prerequisiteなしに配置されており、先行Stage完了gateを加えない。
 
 ### FR-OS-014 — HELIX段階の構成、再現、検証と切戻し
 
@@ -92,7 +92,7 @@ OSは、固定L2-014の内部段階releaseについて、stage identityと範囲
 
 ## Stage 2a — 8親の機能要件（015/016/017/018/019/020/023/027）
 
-状態: 委任承認済みのL3要件。固定採択L2/L11の対象revisionを詳細化する。本文、PR、review、運用結果からL3承認、実装・実行許可、人間判断を生成しない。
+状態: 承認済みのL3要件。固定採択L2/L11の対象revisionを詳細化する。本文、PR、review、運用結果からL3承認、実装・実行許可、人間判断を生成しない。
 
 ### sourceと旧HELIX対応
 
@@ -223,7 +223,7 @@ L2意味・適用scope・owner・versionの変更が必要と判明した場合�
 | OS-023 | `LEGACY-ASSET-50CA1C554747F12266D3` same resident-lane L3 above; `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` acceptance above | scope付きhandoff、receiver duties、誤ったactorまたはstale receiptの扱いを再導出する。旧lane実装は置換し、現行親のownerを維持する。 |
 | OS-027 | `LEGACY-ASSET-50CA1C554747F12266D3` `resident-lane-orchestration-requirements.md:663-666` SHA `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd`; `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` `resident-lane-orchestration-acceptance.md:43` SHA `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707` | RLO-FR-040の未評価を明示しscore単独でauthorityを変えない意味、およびRLO-AC-030の反例を保持する。technology-environment-reconciliation（`LEGACY-ASSET-7F8960532611D89D03E1`）はこの親の未評価/score意味の根拠ではない。resident-lane runtimeは置換する。現行の6適格条件とowner境界は固定L2/L11からのみ再導出する。 |
 
-## Stage 3：HELIX-OS 15項目（部分草稿、承認未取得）
+## Stage 3：HELIX-OS 15項目（承認済み）
 
 対象は採択済みHELIXOS-L2-032/033/034/035/036/037/038/040/041/042/043/044/049/050/051と対L11。FR IDは親identityと別にし、L10は同じACを参照する。対象のversion_targetは1.0であり、実装・運転・releaseを意味しない。OSは登録・進行・記録・受渡しを担い、HARNESS oracle、SECURITY authority、INFRASTRUCTURE資源、LABO評価、INTELLIGENCE提案、source ownerの意味判定を代行しない。
 
@@ -351,7 +351,7 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 - AC-OS-L3-051-08：要求・設計以外のtaskにClaude優先を適用する変異、通知/ACK/reviewer名だけでassignmentまたはreview receiptを成立させる変異、適性提案だけでscope・branch・budget・authorityを変更する変異をそれぞれ拒否する。
 - AC-OS-L3-051-09：task適性、authority、evidence、runtime/context、reviewer read-only finding、作成側へのreturn、新HEAD再reviewを同一task/change lineageで保持する。provider名だけから独立性を導かない。
 
-## Stage 3: 15項目の固定親・旧source crosswalk（部分草稿）
+## Stage 3: 15項目の固定親・旧source crosswalk（承認済み）
 
 親L2とL11はmain `633bf12`の固定bytes。PO decision rowが採択 authorityであり、register metadata successorや本文中の旧状態表現からauthorityを推測しない。表のL2/L11 raw span SHAは各sourceの物理行末を含む。PO decision/register row SHAは登録台帳に記録されたLFを含まない行内容hashを使う。旧L3/testは読み取り済みの意味起点またはfailure/oracle consumerであり、実行していない。
 
@@ -441,7 +441,7 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 | HELIXOS-L2-051 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md:65-68` | `a93b167c1b115e7b292ebb800e9db4af1adcddb482462fdc39d25fd77a1ca229` |
 | HELIXOS-L2-051 | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/codex-native-worker-routing-acceptance.md:20,39` | `7a40908348500949e274480fcd63ff601d08c923d4933d34981f6a947cb0b827` |
 
-## Stage 4 — HELIXOS-L2-021/022/024/046/048/052（部分草稿）
+## Stage 4 — HELIXOS-L2-021/022/024/046/048/052（承認済み）
 
 この追補は各PO採択済みL2 identityの1.0 target候補をL3設計へ具体化する。L3承認・実装・実行・外部作用の許可は生成しない。`HELIXOS-L2-021`はHARNESS構成のproject別配布、`HELIXOS-L2-014`はHELIX自身の全機構段階稼働であり、別identity・別判定として保つ。
 
@@ -535,11 +535,11 @@ ticket返却、検証不能、oracle/input不足のfindingを、finding identity
 固定親の参照範囲はL2 `governance-requirements.md` 702–711、712–721、732–741、1177–1184、1195–1204、1231–1241と、L11 `governance-acceptance.md` 366–371、373–378、387–392、794–800、812–819、847–854である。登録revision・採択履歴・各raw-byte span hashはStage4新規監査に個別pinする。旧READMEのL3→L12と旧processのL3↔L10等の層対応表記は現行層の権威にせず、現行6 canonical構成で意味を再配置する。
 
 
-## Stage 5追補 — HELIXOS-L2-025/026/031/047（起草候補）
+## Stage 5追補 — HELIXOS-L2-025/026/031/047
 
-この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する承認済みの追補である。先頭のstatusは先行scopeの状態を示す。
 
-この4件はL3候補であり、実装・実行・merge・配布を許可しない。G0は36件をversion_class 1.0／Stage 5へ割り当てる順序判断だが、Stage 5全件の完了を各親の単独成立や操作の新規前提にしない。固定L2/L11のrevisionとPO行、G0配置、管理registerの `registered_proposal` / `authority_effect=none`、各L2本文の `candidate`／`未採択`／`version_target` 表示は別の情報として保持する。特に025/026のregisterは旧atom 0件を示すだけで意味全体の移管・closureを示さない。031は旧source atom 51件、047は選択5 atomのreceipt範囲のみを保持する。
+この4件は承認済みのL3要件であり、実装・実行・merge・配布を許可しない。G0は36件をversion_class 1.0／Stage 5へ割り当てる順序判断だが、Stage 5全件の完了を各親の単独成立や操作の新規前提にしない。固定L2/L11のrevisionとPO行、G0配置、管理registerの `registered_proposal` / `authority_effect=none`、各L2本文の `candidate`／`未採択`／`version_target` 表示は別の情報として保持する。特に025/026のregisterは旧atom 0件を示すだけで意味全体の移管・closureを示さない。031は旧source atom 51件、047は選択5 atomのreceipt範囲のみを保持する。
 
 ### `FR-OS-L3-025` — `HELIXOS-L2-025` 統合運転構成体
 

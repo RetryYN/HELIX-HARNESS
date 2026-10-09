@@ -76,7 +76,7 @@ input observation identity/source revision；episode candidate identityとrelati
 親ごとの正常・否定・未見正常は同じAC条件で評価し、未観測を実績0件や成功へ写像しない。
 
 
-状態：委任承認済みのL3/L10。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定する。
+状態：承認済みのL3/L10。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定する。
 
 ## Stage 2b — HELIXLABO-L2-002/003/004/005 のシステム検証候補
 
@@ -558,7 +558,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-054-CASE-22` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：INTELLIGENCE専用接続へ別接続のconnectorを代用する。 | 固有connector不一致を拒否し同scopeの受渡しを成立させない。 | 誤判定：別connectorで専用接続を成立させる。 |
 | `L10-LABO-054-CASE-23` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：INTELLIGENCE専用接続の片側だけ成功する。 | 全体受渡しを成功扱いせず未完義務を保持する。 | 誤判定：片側成功だけで全体受渡しを成立させる。 |
 
-## Stage 2b 接続・条件補足22件（未承認・未実行）
+## Stage 2b 接続・条件補足22件（承認済み・未実行）
 
 固定L2 parent revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、PO basis `633bf12`、L2 full SHA `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`。L11共通pinは同ファイルのStage2b基本エンジン表を参照する。以下は設計fixtureでありruntime testや実装許可ではない。
 
@@ -2932,7 +2932,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 
 ## Stage 5 — HELIXLABO-L2-063 修復再発評価と予防候補
 
-状態: `MPR-RC-HELIXLABO-L2-063-001` のPO判断で親063は採択済み、`version_target: 1.0`。以下はL3/L10の機能候補で、実行・修復・採用・実運用の許可や結果を生成しない。CASE行は旧公開本文から保持した設計fixtureであり、単一点性・独立性・完全性は別途意味検収を要する。
+状態: `MPR-RC-HELIXLABO-L2-063-001` のPO判断で親063は採択済み、`version_target: 1.0`。以下は承認済みのL3/L10の機能で、実行・修復・採用・実運用の許可や結果を生成しない。CASE行は旧公開本文から保持した設計fixtureであり、単一点性・独立性・完全性は別途意味検収を要する。
 
 ### LABO-063-AC-01 — 修復知識と同一episodeの再発評価
 
@@ -3121,13 +3121,13 @@ L10定義の単独変異候補を固定sourceへ照合する。cause/applicabili
 
 CASE-41–44では原因fieldと既知責務区分を保ち、個別owner identity不明を別のunknownとして残す。oracle/fixture/rubric/acceptanceはHARNESSまたは要求owner、scorer/quality/cost/measurementは固定L2-065:514の評価契約または該当source責務、task/attempt/assignment/resultはOS/観測source、blind/context分離はevaluation scope ownerへ戻す。親が定めない個別identityは推測しない。全normal/negative/unknown observationは固定L2/L11の母集団定義に従い、normalを分母から外す新ルールを作らない。
 
-各CASEは未実行・未承認。ID数、文字列ラベル、行数は意味完全性やcoverage証明ではない。旧source full file、全66 literal/raw-LF SHA-256、review05 rawとfinding処置は別添JSONに保持する。
+各CASEは未実行・承認済み。ID数、文字列ラベル、行数は意味完全性やcoverage証明ではない。旧source full file、全66 literal/raw-LF SHA-256、review05 rawとfinding処置は別添JSONに保持する。
 
 
 
 ## Stage 5 — HELIXLABO-L2-064 Worker比較評価の候補名遮蔽と再現条件
 
-状態: 親064はPO採択済み、対象版1.0。下記は委任承認済みのL3/L10設計であり、比較実行、judge任命、Worker起動、qualification、assignment/admissionを生成しない。全CASEは合成入力で、実測・実比較の証拠ではない。 実際に比較runを行う場合は、既存OS assignmentと適用されるSECURITY許可を入力条件として用いる。
+状態: 親064はPO採択済み、対象版1.0。下記は承認済みのL3/L10設計であり、比較実行、judge任命、Worker起動、qualification、assignment/admissionを生成しない。全CASEは合成入力で、実測・実比較の証拠ではない。 実際に比較runを行う場合は、既存OS assignmentと適用されるSECURITY許可を入力条件として用いる。
 
 **共通正常基準 B0**: selected scope `S0`、run `R0`、記録側runtime/model identity `I0` と版 `V0`、有効なmapping `M0→I0`、judge-visible資料 `D0` と可視scope（candidate nameなし）、fixture `F0`/revision `Fv0`、rubric `R0b`、judge `J0`、sample identity `Q0`、retry condition `T0` を比較前に固定する。元identityは記録側に保持し、judgeへの提示資料と分ける。記号は合成fixture値で、sample/retry数や閾値を定めない。各negative行はこの基準からmutation欄の一fieldだけを変える。入力不変の行はoracle欄の誤出力だけを評価する。索引行はfixture入力を持たない。
 
@@ -3187,7 +3187,7 @@ CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行�
 
 ## Stage 5 — HELIXLABO-L2-067 first-eligible candidateと同一Attempt内修復
 
-状態: 委任承認済みのL3/L10設計。PO row 82のD1条件付き親採択はこのL3 candidateの承認、fixture実行、資格/assignment/permission/completion/Worker起動を生成しない。
+状態: 承認済みのL3/L10設計。PO row 82のD1条件付き親採択はこのL3 candidateの承認、fixture実行、資格/assignment/permission/completion/Worker起動を生成しない。
 
 **共通正常基準 B0（合成fixture）**: 合成B0: task=T0/scope=S0/revision=V0。既存task contractが事前に定めたeligibility predicate=P0/revision=P0rとoracle=O0/revision=O0rを候補結果前に入力。OS assignment=ASG0、AttemptID=AT0は既存・current・同一scope。比較実施に必要な既存SECURITY許可=SEC0もcurrent/適用scope一致。candidate/event identity・digest・order・eligibility判定receipt・変更receipt・oracle receiptは全て合成値で揃う。このfixtureではcandidate identity/digestを含む実行event観測sourceをSRC0、既知責務区分をOS event/record sourceとし、具体的個体owner IDはunknownのままにする。入力identity/digest欠落時もSRC0/OS観測source責務へ不足を返し、個体IDの不明を戻し先欠落に変えない。C0はP0でineligible、次のC1が最初のeligible candidateでO0結果fail、同じAT0内のrepair event E1でC1→C2、C2の既存O0結果passとして最終提出する。LABOはこの既存receiptを観測するだけ。これは設計用fixtureで、実比較・実権限・実承認・実完了ではない。 すべてsynthetic値で実績ではない。既存30 definitionsはIDと意味を保持しており、raw source literal/hashをauthoring companion JSONに全件収録する。fixture/owner/data valuesは新規authorityではない。
 
@@ -3307,7 +3307,7 @@ FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではな
 
 同一source/revision/scopeでの比較条件、resultごとの成立/不成立/未評価、元closureの不変、evidence-backed relationの根拠、route roleとsource個別identityの別々の記録、評価出力によるticket/authority状態変更の有無を観測する。合格・実行結果は未取得である。本表はfixture候補であり、その行数やID保持から完全性・実行合格を推論しない。
 
-### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
+### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0）
 
 **固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。
 
@@ -3385,7 +3385,7 @@ FR本文で定義した `LABO-068-AC-01`（選択scope正常）、`LABO-068-AC-0
 
 **実行・受入状態**：全fixtureは未実行の設計候補。旧source runtime/test/CIは実行していない。L10実測、oracle実装検証、Fable見解、独立review、L3委任承認、Ready/mergeはこのsuffixから生成しない。
 
-### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0、起草候補）
+### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0）
 
 **採択済み固定親とPO根拠**：PO判断記録 `3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a` の `docs/governance/decisions/po-decision-2026-09-30-live26.md:50` は `HELIXLABO-L2-071` を通常採択22件に含むものとして承認し、L2節digest `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f` とL11節digest `029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0` に固定する。決定の`source_repository_revision`は `ea6f756f96a7370de78e412d737c7a7ed472114a`、`decision_basis_revision`は `81d1f35f9c5793c5312be4ae52526c96b609c254`。この二つを同一revisionと扱わない。
 
@@ -3475,7 +3475,7 @@ CASE-09/11/13/15/18は旧literal上も索引であり、各主fixtureへ直接�
 
 ### HELIXLABO-L2-066 — 同条件比較のfunctional verification / 86 CASE
 
-状態：委任承認済みのL10。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+状態：承認済みのL10。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本節からL3承認・実装・比較run・実測合格を生成しない。
 
 **状態と起点**：未実行の合成fixture/oracle候補。固定L2/L11が定める条件をfunctional ACへ対応させる。旧L10 `docs/helix-labo/L10-verification/functional-verification.md` のrevision `a4a365dcdfe824ebb28d040c8bc3bc924556efad`、file SHA-256 `7a6c7dc1f88c77bbd628a1320c0393f0ad6c14b76d5a30db0c4cda27d22b9d16` にある旧47 CASE IDは順序・IDで保持する。旧本文literalは監査用JSONの `legacy_case_matrix` に行番号・line SHAとともに保全し、下表のbaseline/mutation/oracleはL2/L11から再導出した候補条件である。旧本文byteをcanonical要件として複製する意味ではない。
 

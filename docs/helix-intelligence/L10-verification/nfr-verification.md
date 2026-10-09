@@ -29,7 +29,7 @@ CASEごとにfixture/input digest、対象親の固定PO/L2/L11 revision、metri
 
 ## Stage 2c — 068/075の起草範囲とsource
 
-状態: 以下のStage 2c追補は委任承認済みのL3要件・未実行の検証設計である。上のStage 2a本文とその承認範囲を変更しない。対象は採択済みHELIXINTELLIGENCE-L2-068/075に限る。旧source起点・項目別の再導出/置換は各項目と時点監査に記録する。
+状態: 以下のStage 2c追補は承認済みのL3要件・未実行の検証設計である。上のStage 2a本文とその承認範囲を変更しない。対象は採択済みHELIXINTELLIGENCE-L2-068/075に限る。旧source起点・項目別の再導出/置換は各項目と時点監査に記録する。
 
 状態: NFR技術候補に対する検証設計。数値cutoffの採択、runtime計測、PO承認を示さない。L3 `nfr-grade.md`の候補を、固定L2が指定する測定次元と対にする。
 

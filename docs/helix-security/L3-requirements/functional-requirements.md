@@ -1,6 +1,6 @@
 # HELIX-SECURITY L3 機能要件
 
-> 状態：L3要件の起草候補。L3承認、実装方式確定、実行・配布許可、受入結果を表さない。Stage 1節はHELIXSECURITY-L2-001〜016、020、028、033の19 identityを対象とし、Stage 2cのHELIXSECURITY-L2-031と後続Stageは各独立節で扱う。
+> 状態：承認済みのL3要件。実装方式確定、実行・配布許可、受入結果を表さない。Stage 1節はHELIXSECURITY-L2-001〜016、020、028、033の19 identityを対象とし、Stage 2cのHELIXSECURITY-L2-031と後続Stageは各独立節で扱う。
 
 ## 適用・authority・版境界
 
@@ -366,7 +366,7 @@ runtimeはassignment-bound isolated working copy/sandbox内でのみ動作し、
 
 ## Stage 3 — 選択operationのruntime・profile安全境界
 
-本節は採択済み1.0の029、030、032、034、035を親とする未承認草稿である。固定親の本文中の候補状態表示は、その後の対象revision付きPO判断と組で読む。035はPOが**scope A（追加runtimeだけ）・配置A（SECURITY policy、Worker強制、OS運転）**を選択済みであり、未決として再質問しない。032のdeny優先は主Workerと追加runtime双方に適用する。草稿は実runtime使用、bypass、MCP起動の許可を生成しない。
+本節は採択済み1.0の029、030、032、034、035を親とする承認済みのL3である。固定親の本文中の候補状態表示は、その後の対象revision付きPO判断と組で読む。035はPOが**scope A（追加runtimeだけ）・配置A（SECURITY policy、Worker強制、OS運転）**を選択済みであり、未決として再質問しない。032のdeny優先は主Workerと追加runtime双方に適用する。本節は実runtime使用、bypass、MCP起動の許可を生成しない。
 
 ### `SECURITY-FR-029-01` — 追加runtimeの委譲分類と型別ローカル証拠
 
@@ -464,9 +464,9 @@ L11全文SHAは`e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0
 
 旧IR `requirements.json#/HIL-NFR-37`（5971–5992行）と `#/HIL-NFR-39`（6067–6088行、LEGACY-ASSET-A60CF91DD2AF6693E6F9）を規範sourceとして保持する。旧L1 217/219行は同文のcorroborationであり別atomに数えない。BR-32は追加runtime区分、HR/HAC/HAT-HIL-23は共有consumer/oracle contextである。consumer全条件のclosureを029だけで生成しない。既存034のcatalog/typed/probe意味はそのownerに保持し、旧source holdingをL3起草で終端化しない。
 
-## Stage 4 — 接続・構成体の境界（5親、候補）
+## Stage 4 — 接続・構成体の境界（5親）
 
-> 状態：採択済みL2候補から導出したL3/L10候補であり、承認・実装・実行・promotionを許可しない。対象はHELIXSECURITY-L2-021/022/023/024/026のみ。021は1.0の境界で対象別能力に従い、022–024は1.0、026はGuard/Bot境界を1.0に含む。semantic probing/exfiltration実利用やBot runtimeは後続版のまま。
+> 状態：採択済みL2候補から導出した承認済みのL3/L10であり、実装・実行・promotionを許可しない。対象はHELIXSECURITY-L2-021/022/023/024/026のみ。021は1.0の境界で対象別能力に従い、022–024は1.0、026はGuard/Bot境界を1.0に含む。semantic probing/exfiltration実利用やBot runtimeは後続版のまま。
 
 ### 親、PO採択、旧HELIXの起点
 
@@ -551,7 +551,7 @@ SECURITY policy/authorityとINFRASTRUCTUREが保持する実資源・runtime res
 
 ## Stage 5 — 永続化promotion構成体（HELIXSECURITY-L2-027）
 
-未承認のL3/L10対候補。採択済み親027、1.0に限る。固定L2:332–341、paired L11:51、PO採択記録:65、現行MPR-RC-HELIXSECURITY-L2-027-002。要求基準633bf12、固定親/登録/旧sourceのfull SHA・raw-LF pinは時点監査へ記録する。Stage 5を全Stage完了gateへ変換しない。
+承認済みのL3/L10対。採択済み親027、1.0に限る。固定L2:332–341、paired L11:51、PO採択記録:65、現行MPR-RC-HELIXSECURITY-L2-027-002。要求基準633bf12、固定親/登録/旧sourceのfull SHA・raw-LF pinは時点監査へ記録する。Stage 5を全Stage完了gateへ変換しない。
 
 ### SECURITY-FR-027-01 — 三つの独立永続化境界
 

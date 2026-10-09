@@ -1,6 +1,6 @@
 # HELIX-OS L3 NFR・技術候補
 
-状態: L3委任承認済み／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
+状態: L3承認済み／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
 
 ## Stage 2b — NFR-OS-014 測定候補
 
@@ -38,7 +38,7 @@
 
 ## Stage 2a — 8親のNFR候補（015/016/017/018/019/020/023/027）
 
-状態: 委任承認済みの根拠付き測定候補。固定L2/L11にない値を採択値、運用既定、pass閾値として追加しない。旧NFRの「測定特性→evidence→判定」形式を再導出する（旧 `LEGACY-ASSET-DB669724249A14A665F0` `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21-34,58-74`、全体SHA `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`）。旧IPA grade、placeholder値、CI/runtime、旧pass値は使わない。
+状態: 承認済みの根拠付き測定候補。固定L2/L11にない値を採択値、運用既定、pass閾値として追加しない。旧NFRの「測定特性→evidence→判定」形式を再導出する（旧 `LEGACY-ASSET-DB669724249A14A665F0` `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21-34,58-74`、全体SHA `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`）。旧IPA grade、placeholder値、CI/runtime、旧pass値は使わない。
 
 各候補は同一parent revision・scope・sourceで分布や欠落数を比較する設計である。必要field/obligation欠落の0期待だけは固定L2/L11の必須条件をfield単位で照合する契約oracleであり、任意の業務KPIではない。標本数、期間、latency/budget limit等を新設せず、実在母集団のnと限界を報告する。割合は対象母集団と分子/分母、単位、scope/revisionを明示し、分母0/missingは値なしとして件数を別記する。unknown/未判定を成功扱いまたは分母へ黙って算入しない。p50/p95は同じ定義・単位の有効な時間標本だけで算出し、n_validとfailed/missing/censoredの各件数を分けて報告する。欠測やcensoredを0へ置換しない。n_valid=0なら分位値なしとし、failed/missing/censored等の観測件数を保持する。実測自体がない場合だけ未実測とする。これらは記録と比較の形式であり、SLA、threshold、pass gateを新設しない。根拠のない値を理由にPO per-parameter確認待ちにはしない。
 
@@ -78,9 +78,9 @@
 
 候補の測定値は比較・反証可能性とscopeを付けL10に記録する。L2のmeaning、scope、owner、versionを変えなければ成立しないときだけ上流へ戻し、数値parameterごとのPO確認や新gateを作らない。
 
-## Stage 3：非機能要件候補と技術値案
+## Stage 3：非機能要件（承認済み）と技術値案
 
-以下は通常のL3候補であり、値ごとのPO承認gateではない。sourceが数値を指定しない点は旧値の無根拠流用を許さないが、比較可能な技術候補を起草することは妨げない。採用候補は設計・L10 fixtureで測定し、固定L2の意味・owner・版を変えない。
+以下は承認済みの通常のL3要件であり、値ごとのPO承認gateではない。sourceが数値を指定しない点は旧値の無根拠流用を許さないが、比較可能な技術候補を起草することは妨げない。採用候補は設計・L10 fixtureで測定し、固定L2の意味・owner・版を変えない。
 
 | NFR ID / 親 / FR trace | 候補値・根拠 | 比較案と限界 | L10計測 |
 |---|---|---|---|
@@ -116,9 +116,9 @@
 
 ## Stage 5 — HELIXOS-L2-025/026/031/047 非機能候補
 
-この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する承認済みの追補である。先頭のstatusは先行scopeの状態を示す。
 
-以下はL3候補の観測量であり、運用SLO、approval gate、CI pass条件ではない。固定sourceに根拠がない技術値・母集団・回数は追加しない。
+以下は承認済みのL3要件の観測量であり、運用SLO、approval gate、CI pass条件ではない。固定sourceに根拠がない技術値・母集団・回数は追加しない。
 
 | NFR候補 | 親・AC | 観測候補 | 保持する境界 |
 |---|---|---|---|

@@ -1,6 +1,6 @@
 # HELIX-OS L3 業務要件
 
-状態: L3委任承認済み／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
+状態: L3承認済み／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
 
 ## Stage 2b — HELIXOS-L2-014 business境界
 
@@ -12,7 +12,7 @@
 
 ## Stage 2a — 8親の業務要件（015/016/017/018/019/020/023/027）
 
-状態: 委任承認済みのL3要件。ここでいうbusinessはOS機構の管理・推進・記録上の成果であり、外部提供製品の成果ではない。新しいowner、事業KPI、PO確認gate、候補完了判断を作らない。
+状態: 承認済みのL3要件。ここでいうbusinessはOS機構の管理・推進・記録上の成果であり、外部提供製品の成果ではない。新しいowner、事業KPI、PO確認gate、候補完了判断を作らない。
 
 旧HELIXのfunctional/business/NFR三分離（`LEGACY-ASSET-9A772391C7FB1298D45F`、`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:16-56`）とbusiness concernを機能詳細から分ける形式（`LEGACY-ASSET-A6E2C7F0565E5F804F06`、`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21-39,84-104`）を起点にする。旧BR-21/Learning Engine、plan metrics、approval behaviorをOSへ移さず、各ownerは採択L2の意味に従って再導出する。旧READMEのL3→L12と旧L10 processのL3↔L10は層対応が異なるため不一致を記録し、いずれの旧mappingも現行の正本とはしない。三文書への分離形式だけを参考にし、現在の配置は現行6 canonical文書のL3/L10構成に従う。
 
@@ -52,7 +52,7 @@
 
 業務evidenceは `../L10-verification/business-verification.md` に記し、機能oracleは `../L10-verification/functional-verification.md` に記す。項目を別ownerへ移す必要があるほどmeaning/scope/owner/versionが変わる場合のみL2へ戻しPO判断に上げる。技術候補値ごとの判断を聞かず、追加gateを設けない。
 
-## Stage 3：business分類（15件、部分草稿）
+## Stage 3：business分類（15件、承認済み）
 
 この対象15件については、運用上の効果を別のbusiness acceptanceへ二重定義しない。採択済みL2の機能境界をfunctional FR/ACへtraceし、独立の事業owner・KPI・金額閾値を追加しない。実績評価はLABO、OSはregistration/state/handoffを担う。
 
@@ -76,7 +76,7 @@
 
 独立business criterionを必要とする上流意味はここで補作せず対応するL2/L1 ownerへ戻す。HELIXOS-L2-039はH045とのhold scopeとして対象外のままである。
 
-## Stage 4：business分類（6件、部分草稿）
+## Stage 4：business分類（6件、承認済み）
 
 この6件に独立したbusiness value、KPI、金額閾値は導出しない。各parentの業務判断は固定L2/L1 ownerに残し、機能ACに対するpaired L10でstateと責務境界のみを照合する。
 
@@ -90,11 +90,11 @@
 | `HELIXOS-L2-052` | 機能要件のみ。 | local cleanupと後続PR再照合を分け、Issue/要求完了や生産性を主張しない。 |
 
 
-## Stage 5追補 — HELIXOS-L2-025/026/031/047 のbusiness境界候補
+## Stage 5追補 — HELIXOS-L2-025/026/031/047 のbusiness境界（承認済み）
 
-この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する承認済みの追補である。先頭のstatusは先行scopeの状態を示す。
 
-この追補はHELIX-OSの4親をL3/L10へ対形成する候補であり、独立したbusiness outcome、business owner、KPI、承認者を追加しない。G0のStage 5は実装順序・version intentの記録で、Stage5全親の完了を個別作業や単独成立の前提にしない。対象revision・scope・owner・状態は各機能要件と固定L2/L11を参照する。
+この追補はHELIX-OSの4親をL3/L10へ対形成する承認済みの追補であり、独立したbusiness outcome、business owner、KPI、承認者を追加しない。G0のStage 5は実装順序・version intentの記録で、Stage5全親の完了を個別作業や単独成立の前提にしない。対象revision・scope・owner・状態は各機能要件と固定L2/L11を参照する。
 
 | 親 | business扱い | L10で照合する境界 |
 |---|---|---|

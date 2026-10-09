@@ -5,15 +5,14 @@ canonical_layer: L10
 canonical_pair: L3
 layer: L10
 kind: verification
-status: delegated_approved
-authority_status: delegated_approved
+status: approved
+authority_status: approved
 freeze_blocking: true
 pair_artifact: docs/helix-infrastructure/L3-requirements/functional-requirements.md
 stage: 1
 ---
 
-# HELIX-INFRASTRUCTURE Stage 1 機能総合検証候補
-
+# HELIX-INFRASTRUCTURE 機能総合検証
 本書は[機能要件候補](../L3-requirements/functional-requirements.md)と対になる設計検証である。L3の承認、実装試験、実際のenvironment健全性・復旧完了を示さない。各caseは入力source/revision、対象environment、観測地点、期待結果、失敗時ownerを記録する。業務完了・incident close・authorityはこの検証から生成しない。
 
 ## source pin
@@ -80,11 +79,11 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 
 ## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 機能総合検証
 
-状態：委任承認済み。対象は採択済み HELIXINFRASTRUCTURE-L2-002/007、version_target 1.0。固定L2/L11が要求意味のauthority、PO決定は親identity/revision/versionの採択登録、G0は実装順序のみを記録する。このL3/L10本文は委任承認済み・未実行であり、実装・実行・配布の許可を生成しない。対象範囲とsource pinsは[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)に固定する。
+状態：承認済み。対象は採択済み HELIXINFRASTRUCTURE-L2-002/007、version_target 1.0。固定L2/L11が要求意味のauthority、PO決定は親identity/revision/versionの採択登録、G0は実装順序のみを記録する。このL3/L10本文は承認済み・未実行であり、実装・実行・配布の許可を生成しない。対象範囲とsource pinsは[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)に固定する。
 
 ### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007
 
-対象は採択済みHELIXINFRASTRUCTURE-L2-002/007のみ、version_target 1.0。固定L2/L11の意味・scope・担当・版を保持する。本cutoutはこの2親だけを対象とし、他の親やstageを追加しない。候補草稿・未承認・未実行。
+対象は採択済みHELIXINFRASTRUCTURE-L2-002/007のみ、version_target 1.0。固定L2/L11の意味・scope・担当・版を保持する。本cutoutはこの2親だけを対象とし、他の親やstageを追加しない。承認済み・未実行。
 
 ## HELIXINFRASTRUCTURE-L2-002 — L10 oracle（対応 `INFRA-002-FR-01`）
 
@@ -238,7 +237,7 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 
 ## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025
 
-この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。
+この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0追記であり、承認済みである。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。
 
 ### Stage 4 fixtureとoracle
 

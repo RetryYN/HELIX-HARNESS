@@ -5,16 +5,15 @@ canonical_layer: L3
 canonical_pair: L10
 layer: L3
 kind: requirement
-status: delegated_approved
-authority_status: delegated_approved
+status: approved
+authority_status: approved
 freeze_blocking: true
 pair_artifact: docs/helix-infrastructure/L10-verification/functional-verification.md
 stage: 1
 ---
 
-# HELIX-INFRASTRUCTURE Stage 1 機能要件候補
-
-本書は採択済みの `HELIXINFRASTRUCTURE-L2-001` と `HELIXINFRASTRUCTURE-L2-006` を親にしたL3候補である。対象はこの2 identityのみ。各要件は親L2の意味・scope・owner・`version_target: 1.0`を保ち、実装方式や技術製品を確定しない。検証設計は対となる[機能検証](../L10-verification/functional-verification.md)に置く。
+# HELIX-INFRASTRUCTURE 機能要件
+本書は採択済みの `HELIXINFRASTRUCTURE-L2-001` と `HELIXINFRASTRUCTURE-L2-006` を親にしたL3要件であり、承認済みである。対象はこの2 identityのみ。各要件は親L2の意味・scope・owner・`version_target: 1.0`を保ち、実装方式や技術製品を確定しない。検証設計は対となる[機能検証](../L10-verification/functional-verification.md)に置く。
 
 ## authorityと固定親
 
@@ -96,11 +95,11 @@ operationごとに開始条件、対象、使用したauthority identity/revisio
 
 ## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 機能要件
 
-状態：委任承認済み。対象は採択済み HELIXINFRASTRUCTURE-L2-002/007、version_target 1.0。固定L2/L11が要求意味のauthority、PO決定は親identity/revision/versionの採択登録、G0は実装順序のみを記録する。このL3/L10本文は委任承認済み・未実行であり、実装・実行・配布の許可を生成しない。対象範囲とsource pinsは[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)に固定する。
+状態：承認済み。対象は採択済み HELIXINFRASTRUCTURE-L2-002/007、version_target 1.0。固定L2/L11が要求意味のauthority、PO決定は親identity/revision/versionの採択登録、G0は実装順序のみを記録する。このL3/L10本文は承認済み・未実行であり、実装・実行・配布の許可を生成しない。対象範囲とsource pinsは[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)に固定する。
 
 ### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007
 
-対象は採択済みHELIXINFRASTRUCTURE-L2-002/007のみ、version_target 1.0。固定L2/L11の意味・scope・担当・版を保持する。本cutoutはこの2親だけを対象とし、他の親やstageを追加しない。候補草稿・未承認・未実行。
+対象は採択済みHELIXINFRASTRUCTURE-L2-002/007のみ、version_target 1.0。固定L2/L11の意味・scope・担当・版を保持する。本cutoutはこの2親だけを対象とし、他の親やstageを追加しない。承認済み・未実行。
 
 ## INFRA-002-FR-01 — HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift
 
@@ -162,7 +161,7 @@ operationごとに開始条件、対象、使用したauthority identity/revisio
 
 ## Stage 2a 追加範囲 — L2-003/004/005/009/010
 
-この付記は、固定PO採択済みL2のStage 2a範囲だけを起草する局所候補である。親L2/L11は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択根拠はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のPO決定に固定する。承認済みStage 1とStage 2bの6文書prefixはbytesそのまま保持するが、その承認を今回のStage 2a候補revisionへ継承しない。今回直接の親対象は003/004/005/009/010の5 identityだけ。005はStage 2aの採択済み直接親であり、Stage 1の006への依存入力とは役割が異なる。006等ほかのStage/親を本追記へ加えない。
+この付記は、固定PO採択済みL2のStage 2a範囲だけを対象とする承認済みの局所付記である。親L2/L11は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択根拠はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のPO決定に固定する。承認済みStage 1とStage 2bの6文書prefixはbytesそのまま保持するが、その承認を今回のStage 2a候補revisionへ継承しない。今回直接の親対象は003/004/005/009/010の5 identityだけ。005はStage 2aの採択済み直接親であり、Stage 1の006への依存入力とは役割が異なる。006等ほかのStage/親を本追記へ加えない。
 
 ### 旧source起点・項目別処置
 
@@ -340,7 +339,7 @@ Authority、credential scope、target、revisionの不一致は実行前に拒�
 
 ## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025
 
-この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。
+この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0追記であり、承認済みである。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。
 
 ### 固定親と旧資産の処置
 

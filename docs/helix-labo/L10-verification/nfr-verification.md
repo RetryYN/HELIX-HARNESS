@@ -1,6 +1,6 @@
 # HELIX-LABO L10 NFR測定設計
 
-[L3 NFR候補](../L3-requirements/nfr-grade.md)と同じ合成入力・scope・revisionで測定する。未実行、未承認。
+[L3 NFR候補](../L3-requirements/nfr-grade.md)と同じ合成入力・scope・revisionで測定する。未実行、承認済み。
 
 | 親L2 | 測定項目 | 入力・変異 | 判定材料 |
 |---|---|---|---|
@@ -13,11 +13,11 @@
 測定不能・未観測は成功扱いせずsource statusを改変しない。許可source/observation ID/source revisionの欠落は依存L2-001 L2:73のsource責務へ、relation不一致はL2-011に従いCorrelateへ返す。source revision不一致やconnector代用のように固定parentに戻し先がない場合は元recordを保ってhold/unknownで停止し、新routeを作らない。性能・容量・保持期間の候補が必要になった場合はL3で根拠付き比較案と対の測定を起草し、個別parameterのPO gateを作らない。
 
 
-状態：委任承認済みのL3/L10。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[repair04の不変source/pair記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定し、NFR traceの最新case-set訂正は[repair05の不変追補](../../governance/audits/requirement-registration/labo-stage2b-002-010-nfr-trace-reconciliation-repair05-2026-10-05.json)に記録する。repair04の13/13一致の記述は旧時点記録として保持し、repair05と今回の本文照合で訂正経緯を辿る。
+状態：承認済みのL3/L10。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[repair04の不変source/pair記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定し、NFR traceの最新case-set訂正は[repair05の不変追補](../../governance/audits/requirement-registration/labo-stage2b-002-010-nfr-trace-reconciliation-repair05-2026-10-05.json)に記録する。repair04の13/13一致の記述は旧時点記録として保持し、repair05と今回の本文照合で訂正経緯を辿る。
 
 ## Stage 2b — 002/003/004/005 の技術候補測定
 
-[L3 NFR candidates](../L3-requirements/nfr-grade.md)と同じ合成fixture、固定parent revisionおよびscopeで測定する。未実行・未承認で、実operation許可を示さない。全IDはfunctional ACの完全IDを使う。
+[L3 NFR candidates](../L3-requirements/nfr-grade.md)と同じ合成fixture、固定parent revisionおよびscopeで測定する。未実行・承認済みで、実operation許可を示さない。全IDはfunctional ACの完全IDを使う。
 
 | NFR候補 | 測定項目 | 入力・変異 | 判定材料 |
 |---|---|---|---|
@@ -194,7 +194,7 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 
 固定数値threshold、severity分類、観測期間の値、性能目標は測定案に含めない。測定不能/未観測は失敗0または成功ではなくunknown/未評価のままにする。
 
-### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
+### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0）
 
 **固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。
 
@@ -216,7 +216,7 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 
 候補の技術的なunknown条件は固定L2/L11に根拠を置く提案で、実測閾値・期間・完全性率は設定しない。選択scopeの外へ一般化せず、過去eventから欠落分を推計しない。実行/測定は未実施。
 
-### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0、起草候補）
+### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0）
 
 **採択済み固定親とPO根拠**：PO判断記録 `3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a` の `docs/governance/decisions/po-decision-2026-09-30-live26.md:50` は `HELIXLABO-L2-071` を通常採択22件に含むものとして承認し、L2節digest `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f` とL11節digest `029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0` に固定する。決定の`source_repository_revision`は `ea6f756f96a7370de78e412d737c7a7ed472114a`、`decision_basis_revision`は `81d1f35f9c5793c5312be4ae52526c96b609c254`。この二つを同一revisionと扱わない。
 
@@ -245,7 +245,7 @@ L3の `NFR-LABO-071-01` binding候補を、選択scopeの証跡で静的照合�
 
 ### HELIXLABO-L2-066 — 同条件比較NFR測定候補
 
-状態：委任承認済みのL10。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+状態：承認済みのL10。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本節からL3承認・実装・比較run・実測合格を生成しない。
 
 `LABO-066-NV-01` 測定設計：L3の `LABO-066-NG-01` と同一のB0/N1、scope、revision、oracle/scorer、両群receiptを用い、raw receiptから `misrepair_count/N` と `unresolved_count/N` を別々に再構成できるか記録する。両指標の重なりを維持し、unknown caseがcase ledgerとNの扱いに残り、unknownを0にせず、事後N/oracle/cutoff変更で割合を作らないことを合成単独変異で確認する。
 

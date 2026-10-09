@@ -1,12 +1,12 @@
 # HELIX-HARNESS L3 機能要件
 
-status: delegated_approved
-approval: delegated_approved（[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)）
+status: approved
+approval: approved（[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)）
 scope: Stage 1（HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023）を起点とし、後続Stageの節を追補。各節の対象親は[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)を正とする
 owner: HELIX-HARNESS
 paired_l10: ../L10-verification/functional-verification.md
 
-この文書は固定されたStage 1の3親に対応する部分草稿である。対のL10総合検証は[functional-verification.md](../L10-verification/functional-verification.md)に置き、AC IDを共通にする。L3要件は未承認であり、実装・実行・releaseの許可を表さない。親の要求意味、範囲、owner、個別version_targetを変更しない。
+この文書は固定されたStage 1の3親に対応する承認済みの部分要件である。対のL10総合検証は[functional-verification.md](../L10-verification/functional-verification.md)に置き、AC IDを共通にする。L3要件は承認済みだが、実装・実行・releaseの許可を表さない。親の要求意味、範囲、owner、個別version_targetを変更しない。
 
 ## 親要求revision
 
@@ -18,7 +18,7 @@ paired_l10: ../L10-verification/functional-verification.md
 | `HARNESS-L2-011` | #L40 / `MPR-RC-HARNESS-L2-011-001` | 352–362 / `65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090` | 206 / `483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188` | 個別印なし |
 | `HARNESS-L2-023` | #L52 / `MPR-RC-HARNESS-L2-023-002` | 463–498 / `cacb50daf962d62f6454da1ecff7a8fd7a7ec41f0eda17eadc1c0d7edf845fc9` | 219–233 / `f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47` | `1.0` |
 
-この一覧は親のidentityと固定revisionを特定する。PO判断記録上の登録提案metadataを独立した承認状態として解釈せず、L3本文の承認状態はこの文書headerのとおり未承認である。
+この一覧は親のidentityと固定revisionを特定する。PO判断記録上の登録提案metadataを独立した承認状態として解釈せず、L3本文の承認状態はこの文書headerのとおり承認済みである。
 
 ## 要件とAC
 
@@ -203,7 +203,7 @@ RDJ-FR-003/007とAC-003/007の質問priority・固定iteration詳細は、親L2-
 | `AC-HARNESS-L3-016-04` | Performance Refactorでは測定条件と全ての該当回帰oracleを事前固定し、プロファイル対象の比較可能な前後結果を示す。比較不能、予算違反、回帰または測定不能な改善主張は成功扱いしない。 |
 ## Stage 2a suffix — HARNESS-L2-022（1.0対象）
 
-この追補はStage 2aで選択されたHARNESS-L2-022一親に限る。固定L2/L11とPO採択対象revisionを親とし、Stage 1の本文・ID・意味を変更しない。L3草稿は未承認であり、実装・実行・releaseを許可しない。Stage 1の承認記録は既存010/011/023の対象revisionに限り、本022の承認を生成しない。
+この追補はStage 2aで選択されたHARNESS-L2-022一親に限る。固定L2/L11とPO採択対象revisionを親とし、Stage 1の本文・ID・意味を変更しない。L3本文は承認済みだが、実装・実行・releaseを許可しない。Stage 1の承認記録は既存010/011/023の対象revisionに限り、本022の承認を生成しない。
 
 ### `FR-HARNESS-L3-022` — コアの検証・受入契約
 
@@ -235,7 +235,7 @@ RDJ-FR-003/007とAC-003/007の質問priority・固定iteration詳細は、親L2-
 - **`AC-HARNESS-L3-022-06` ④非依存と未見適用（FR-HARNESS-L3-022）**：④を使わないCORE traceと対設計による構成でも契約を適用できる。既存fixtureにない同scope artifactまたは外部持込を使い、revision/scope bindingと段階別oracleを再適用する。未宣言の新要求・owner・OS依存を加えない。
 ## Stage 2c suffix — HARNESS-L2-030/031/032（1.0対象候補）
 
-この追補は固定親030/031/032のみを対象にし、最新mainの承認済みStage 1/2b/Stage 2a HARNESS-L2-022本文とIDをprefixとして保持する。それらの承認は本Stage 2c候補へ継承しない。3親はいずれもPO採択対象だが、`1.0`はversion_targetでありrelease収載を意味しない。固定L2はmain `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の同文書（全文SHA-256 `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a`）607–689行、固定L11は同main（全文SHA-256 `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4`）404–461行である。G18共通前置きと027〜033所属・利用境界を含む。PO採択の意味とversion_targetは採択記録main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の決定記録59–61行および所属決定66行に固定される（本文SHA-256 `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23`）。PO登録metadata自体は別のauthorityを作らず、本L3も未承認草稿である。
+この追補は固定親030/031/032のみを対象にし、最新mainの承認済みStage 1/2b/Stage 2a HARNESS-L2-022本文とIDをprefixとして保持する。それらの承認は本Stage 2c候補へ継承しない。3親はいずれもPO採択対象だが、`1.0`はversion_targetでありrelease収載を意味しない。固定L2はmain `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の同文書（全文SHA-256 `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a`）607–689行、固定L11は同main（全文SHA-256 `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4`）404–461行である。G18共通前置きと027〜033所属・利用境界を含む。PO採択の意味とversion_targetは採択記録main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の決定記録59–61行および所属決定66行に固定される（本文SHA-256 `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23`）。PO登録metadata自体は別のauthorityを作らず、本L3は承認済みである。
 
 G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、030/031/032を支援・候補生成として扱う。G0のStage 2c全版対象は10件、うち1.0 subsetは8件であり、案Bの最初の1.0組6件（HARNESS 030/031/032、INTELLIGENCE 068、OS 028/029）から本追補はHARNESSの3親だけを扱う。別枠の1.0追加2親（INTELLIGENCE 075、SECURITY 031）を本対象へ加えない。030は010/014/022をStage prerequisiteとして記録し、031は010/022を記録する。032にG0のStage prerequisite IDはないため追加しない。これらstage prerequisiteと、各親の固定L2 operation時依存は別である。前stage全件完了、独立review、または未選択操作の実行を新たなgateにしない。承認済みStage 1の010/011/023本文、Stage 2b本文、Stage 2a HARNESS-L2-022本文は各承認済み固定revisionの範囲でprefixに保持するが、その承認だけで本Stage 2c候補全体を承認済みとはしない。Stage 2bおよび022の義務を本Stage 2cの対象へ追加しない。022承認済みsuffixはprefixの一部としてbyte単位で保持し、本追補の対象にはしない。
 
@@ -291,7 +291,7 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 
 ## Stage 4 suffix — HARNESS-L2-026/027/028/029（1.0対象）
 
-このsuffixはmainの承認済みStage本文へ追記する、POが1.0対象として登録した4親のL3候補である。候補登録はL3承認、実装、releaseを許可しない。PO判断記録（main 633bf12、decision 19/66）が採択した所属は027/028が共通component、029がCOREであり、これらの意味・担当・版を変更しない。登録メタデータは `MPR-RC-HARNESS-L2-026-003`（`docs/governance/audits/requirement-registration/r2289-02-candidate-locator-correction-2026-10-03.json:1914–1921`）へ更新され、candidate semantic digest `d797f5d29526059783ea6e469f762b6d51373dbece7223f2941894130c73b880` は旧 `-002` と同一である。PO所属判断のdecision行19/66とPO登録表の対象candidate行55–58は異なる記録であり混同しない。027/028/029のcurrent登録-004（register:922–924）は採択-003と同semantic digestのmetadata後継であり、この更新から採択や承認を生成しない。Stage 4への配属は `docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md:58–61`（source revision `59336627f11475456038db80ce6232ee39bbfa8f`）の順序記録に従うが、順序記録は採択根拠ではない。POの所属判断はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:19,66` から読む。登録IDは別の管理metadataで確認する。各FRは対象product・parent revision・requirement revision・selected scopeを束縛し、unknownを成功や不存在へ読み替えない。
+このsuffixはmainの承認済みStage本文へ追記する、POが1.0対象として登録した4親の承認済みL3要件である。候補登録はL3承認、実装、releaseを許可しない。PO判断記録（main 633bf12、decision 19/66）が採択した所属は027/028が共通component、029がCOREであり、これらの意味・担当・版を変更しない。登録メタデータは `MPR-RC-HARNESS-L2-026-003`（`docs/governance/audits/requirement-registration/r2289-02-candidate-locator-correction-2026-10-03.json:1914–1921`）へ更新され、candidate semantic digest `d797f5d29526059783ea6e469f762b6d51373dbece7223f2941894130c73b880` は旧 `-002` と同一である。PO所属判断のdecision行19/66とPO登録表の対象candidate行55–58は異なる記録であり混同しない。027/028/029のcurrent登録-004（register:922–924）は採択-003と同semantic digestのmetadata後継であり、この更新から採択や承認を生成しない。Stage 4への配属は `docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md:58–61`（source revision `59336627f11475456038db80ce6232ee39bbfa8f`）の順序記録に従うが、順序記録は採択根拠ではない。POの所属判断はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:19,66` から読む。登録IDは別の管理metadataで確認する。各FRは対象product・parent revision・requirement revision・selected scopeを束縛し、unknownを成功や不存在へ読み替えない。
 
 ### 旧HELIX項目別起点
 
@@ -360,11 +360,11 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 
 ## Stage 2b 残件追補 — HARNESS-L2-017/018/019/020/024
 
-status: delegated_approved
-approval: delegated_approved（[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)）
+status: approved
+approval: approved（[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)）
 scope: 本追補5親のみ / G0 version_class 1.0
 
-本追補は未承認の5親のL3／L10起草である。先行する承認済み本文は変更しない。旧部分草稿revision `6b40b4c607396ca6bccd4d1286a5a1ff112cf491`の対応節を起点に、確定親の未被覆条件を再導出した。掲載順から実装順序や下流許可を生成しない。
+本追補は5親の承認済みL3／L10である。先行する承認済み本文は変更しない。旧部分草稿revision `6b40b4c607396ca6bccd4d1286a5a1ff112cf491`の対応節を起点に、確定親の未被覆条件を再導出した。掲載順から実装順序や下流許可を生成しない。
 
 ### 固定親と採択記録
 
@@ -456,7 +456,7 @@ scope: 本追補5親のみ / G0 version_class 1.0
 
 ## Stage 5 suffix — HARNESS-L2-021/025/033/035/037（1.0対象）
 
-この追補は固定された5親の1.0対象に対応する未承認L3草稿であり、既存本文を置換しない。L2/L11、PO判断と実装順序台帳が定める親identity・scope・owner・version_targetを維持する。対の検証は[functional-verification.md](../L10-verification/functional-verification.md)の同一AC IDで行う。ここに記すcandidate、fixture、戻し先はL3承認、実装・実行許可、CI結果、L11受入を生成しない。Web条件付き・後続版の要求を1.0へ移さず、旧runtime/CLI/CIは起動しない。
+この追補は固定された5親の1.0対象に対応する承認済みL3であり、既存本文を置換しない。L2/L11、PO判断と実装順序台帳が定める親identity・scope・owner・version_targetを維持する。対の検証は[functional-verification.md](../L10-verification/functional-verification.md)の同一AC IDで行う。ここに記すcandidate、fixture、戻し先はL3承認、実装・実行許可、CI結果、L11受入を生成しない。Web条件付き・後続版の要求を1.0へ移さず、旧runtime/CLI/CIは起動しない。
 
 ### 固定親と旧sourceの適用範囲
 
@@ -589,7 +589,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 ### 固定親と出所
 
-本候補はHELIX-HARNESS-COREの単体要件で、`version_target: 1.0`。2026-09-29 PO採択表41行は`HARNESS-L2-036`、`MPR-RC-HARNESS-L2-036-002`、L2 digest `7a18c20e22c0cf65e8edcd3b3ca7eca7996d72c0358c874591407d77dbba4bbb`、L11 digest `80e87d6469c45baa056fbc7415871725c3358f7392a87308c809d6bfe87f0ba4`を採択した。固定本文は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`のL2:730–775/L11:493–525。9/28の「未採択」記述は当時の時点文であり、PO採択行に従う。仮登録metadataの`authority_effect=none`は採択済み固定revisionを覆さない。L3本文は未承認候補であり、実装・実行・CI・release許可を生成しない。
+本節はHELIX-HARNESS-COREの単体要件で、`version_target: 1.0`。2026-09-29 PO採択表41行は`HARNESS-L2-036`、`MPR-RC-HARNESS-L2-036-002`、L2 digest `7a18c20e22c0cf65e8edcd3b3ca7eca7996d72c0358c874591407d77dbba4bbb`、L11 digest `80e87d6469c45baa056fbc7415871725c3358f7392a87308c809d6bfe87f0ba4`を採択した。固定本文は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`のL2:730–775/L11:493–525。9/28の「未採択」記述は当時の時点文であり、PO採択行に従う。仮登録metadataの`authority_effect=none`は採択済み固定revisionを覆さない。L3本文は承認済みであり、実装・実行・CI・release許可を生成しない。
 
 ### `FR-HARNESS-L3-036` — 選択scopeの検証完全性とgate契約
 
@@ -712,7 +712,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 ### FR-HARNESS-L3-042 — Design Refactor判定とepisode分離
 
-**対象とauthority**：HARNESS-L2-042はPO採択済み（`MPR-RC-HARNESS-L2-042-001`）。本L3本文はその採択scopeを要件へ具体化する候補で、L3承認前である。親L1はHARNESS-L1-003/004/005/007、version_targetは親に固定された1.0を継承する。要求意味、scope、担当、版を変更しない。
+**対象とauthority**：HARNESS-L2-042はPO採択済み（`MPR-RC-HARNESS-L2-042-001`）。本L3本文はその採択scopeを要件へ具体化するもので、承認済みである。親L1はHARNESS-L1-003/004/005/007、version_targetは親に固定された1.0を継承する。要求意味、scope、担当、版を変更しない。
 
 **由来と処置**：旧requirements v1.3 §4.2 L119（`REQSRC-SUP-00089`）、同内容のbaseline `V13-BASE-6FAB-L0104`、旧L3 042/AC表とそのpaired consumerを起点にする。保持するのはDesign Refactorで意味・consumer・oracle・dependency graphを比較すること、名称だけで統合しないこと、変更前後の要求/契約/振舞いを保持すること、機能追加episodeの分離、対象scope/revisionの限定。Performance Refactorのbaseline/budget/workload/profile/statistical condition/regression oracleは採択済みHARNESS-L2-016に委譲し、この要件に複製しない。旧runtime/schema/workflowや数値閾値は移植しない。旧36 CASEの各literalとraw digestはこの候補監査source inventoryへ保持し、本文では意味を再導出する。名前一致だけの完全再利用とは扱わない。
 
@@ -777,7 +777,7 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 
 ### FR-HARNESS-L3-047 — 専門Workerの必要性判断とruntime-neutral契約生成
 
-**Authority・版**：HARNESS-L2-047はPO決定 `MPR-RC-HARNESS-L2-047-001` により条件付き採択、HARNESSが契約生成規範を所有するA配置である。L2/L11本文内の旧candidate metadata「PO未決／未採択」と配置Bの比較案は時点記録として残すが、現行状態はPO row 52を読む。親L1はHARNESS-L1-001/002/004、version_targetは固定親の1.0を継承する。本L3本文は候補であり、L3承認は生成しない。
+**Authority・版**：HARNESS-L2-047はPO決定 `MPR-RC-HARNESS-L2-047-001` により条件付き採択、HARNESSが契約生成規範を所有するA配置である。L2/L11本文内の旧candidate metadata「PO未決／未採択」と配置Bの比較案は時点記録として残すが、現行状態はPO row 52を読む。親L1はHARNESS-L1-001/002/004、version_targetは固定親の1.0を継承する。本L3本文は承認済みである。
 
 **旧根拠と再導出**：旧HIL-BR-09/30、HIL-FR-59/60（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`のsource line 61/82/149/150）とHR-FR-HIL-21、HAT-HIL-21、HOT-HIL-52/53を起点とする。保持する意味はtask/process/verificationに結んだ契約生成、専門化の測定可能なtask benefit、既存role十分性の比較、worker/verifierと権限分離、最小context、生成guard、停止/中断の追跡である。旧runtime固有schemaやprovider定義、旧W-agent team数は移植しない。担当境界は現行L2-047に沿ってHARNESS/OS/SECURITY/INTELLIGENCE/LABOへ分ける。
 
@@ -837,9 +837,9 @@ HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrende
 - **現行意味から再導出**：採択L2-049-003と訂正L11に合わせ、scope/revisionごとのrender measurement、精度fixture、profile根拠の文言finding、unknown条件をL3/AC/L10へ割り当てる。screen IDの入力identityと発行履歴を区別する。device/view/localeの観測・合格は単一output単位で扱い、requirement acceptanceの責務は既存上流authorityへ残す。
 - **置換/不移植**：旧G3/L12の実行構成、旧211-file intake、sub-check、DB/runtime、hook/CLI、旧採番を移植しない。`VDH-FR-005`のPattern Contract span（source holding `MPR-SH-VDH-O10-001`）は049の入力scopeへ昇格しない。prototype生成、Pattern選択、screen ID発行、requirement acceptanceを049から生成する旧テスト期待は個別出力拒否へ再導出し、各項目を一行の複合mutationへ束ねない。
 
-### HELIX-HARNESS L2-044 — 機能要件（Stage 3、version_target: 1.0、起草候補）
+### HELIX-HARNESS L2-044 — 機能要件（Stage 3、version_target: 1.0）
 
-起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
+承認済み。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。本節は実装・実行・個別部品配置・設計成立を表さない。
 
 **固定親・判断根拠**：L2親は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1002–1014`、全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、span SHA-256 `b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d`。 L11対は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:735–745`、全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8`。 PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49`、SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、line SHA-256 `212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b`、registration `MPR-RC-HARNESS-L2-044-002`。POはB route / Design Contract Portfolioを条件付き採択し、採択済み025/026へ無断追記しない。
 
@@ -867,7 +867,7 @@ HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrende
 
 ### FR-HARNESS-L3-043 — active templateのrule／branch別例coverage
 
-**authorityと範囲**：HARNESS-L2-043はPO decision `MPR-RC-HARNESS-L2-043-002`で条件付き採択されたBルート、所属HARNESS-COREである。L2本文と旧source checkpointに残る「配置はPO未決」の記述は当時のcandidate metadataとして保持し、現在のauthorityはPO decision行から読む。親L1はHARNESS-L1-001/004/009、version_targetはL2-043の1.0を保持する。本L3本文はその固定scopeを具体化する候補で、L3承認前である。POの採択を再生成・拡張しない。
+**authorityと範囲**：HARNESS-L2-043はPO decision `MPR-RC-HARNESS-L2-043-002`で条件付き採択されたBルート、所属HARNESS-COREである。L2本文と旧source checkpointに残る「配置はPO未決」の記述は当時のcandidate metadataとして保持し、現在のauthorityはPO decision行から読む。親L1はHARNESS-L1-001/004/009、version_targetはL2-043の1.0を保持する。本L3本文はその固定scopeを具体化するもので、承認済みである。POの採択を再生成・拡張しない。
 
 **由来と処置**：旧HIL-FR-55（Template Example Calibrator）、旧L3 HR-FR-HIL-20/HAC-HIL-20a/b/c、およびHAT-HIL-20/HOT-HIL-50を起点とする。保持する意味は選択されたactive templateに適用される各validation rule/applicability branchへcanonical positiveとboundary negativeを結び、対象scopeのrisk分析で未被覆と示された状態遷移、failure、security、migration、multi-runtime差異などに限り追加例を求め、件数のみで十分性を判定しないこと。名前や旧IDが同じだけでは同じ意味とせず、旧28 CASEの原文/raw digestを監査source inventoryへ残し、内容oracleを固定親の意味へ再導出する。旧schema/runtime/workflow/実装経路は移植しない。
 
@@ -888,7 +888,7 @@ HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrende
 
 ## Stage 3 親046の機能要件候補
 
-起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
+承認済み。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
 
 **固定親とPO根拠**：親L2は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1025–1035`（全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、対象span SHA-256 `47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e`）。対L11は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:759–771`（全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f`）。PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:51`、file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、row SHA-256 `60fb90a139b313760ad5a259e2362e3c406e071aa1dfba8ed6d21d0cb9fb55a4`。POは`HARNESS-L2-046`を採択し、registrationは`MPR-RC-HARNESS-L2-046-001`。隣接row 52の`HARNESS-L2-047`は046へ混ぜない。
 
@@ -912,7 +912,7 @@ HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrende
 
 **AC-HARNESS-L3-046-04 — authority出力の単独拒否**：採択、要求合意、要件承認、OS ticket、OS workflow instance、OS保存state、OS runtime、実行結果、release許可、利用者受入の10種の出力を個別fixtureで一つずつ生成させる変異を拒否し、他output fieldおよび既存OS-owned state/runtimeは変えない。これら10種とは別に、coverage結果からSR4 pair-freeze receiptを生成・置換しない。
 
-## Stage 3 親054の機能要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
+## Stage 3 親054の機能要件：専門Worker判定・契約のOS割当handoff（version_target: 1.0）
 
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
 
