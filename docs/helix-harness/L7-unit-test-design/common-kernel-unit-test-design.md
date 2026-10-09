@@ -940,8 +940,6 @@ G3-I4 (`HumanInterface`) の全caseは既存authority source/adapterのexact bin
 | `CK-G5-UT-040` | `L8-G5-10-DECL-MISSING` | `CK-K7G5-FN-11` | IV-G5-10 | BASEからRecipientDeclの対象identityだけを欠く。 | `Unknown(missing_input)`。 | 設計・未実行。K2/K6 lookup projection候補のみ。current RecipientDecl/OperationDecl/VerifierSet/K5 restore/K6 receipt owner未接続。 |
 | `CK-G5-UT-041` | `L8-G5-10-OLD-RECEIPT-SUBJECT` | `CK-K7G5-FN-11` | IV-G5-10 | current RecipientDeclから作るquery keyを固定し、同じidentityの旧revisionに対するotherwise-valid Value receiptだけを記録集合へ置く。 | K2 lookup `Stale`。old receipt SubjectRefをcurrent declaration refへ置換・流用しない。 | 設計・未実行。K2/K6 lookup projection候補のみ。current RecipientDecl/OperationDecl/VerifierSet/K5 restore/K6 receipt owner未接続。 |
 
-上表の入力・期待fieldはL8 §10の各行へ対応する。`L9 oracle`列では`IV-K3-17`と`IV-LDG-03`をK7/G5の25 oracleから分けた境界参照として記録した。各baselineと変異は独立したlocatorであり、owner観測をstub作成の`Value`/`Positive`へ置き換えない。owner入力が未接続の公開APIについてL8期待値は設計assertionに限り、実行・合格・owner接続を主張しない。
-
 ### 12.5 private helperの限定実行記録
 
 `helix/helix-harness/units/common-kernel/tests/test_k7_g5_private.py`で、既存型の値だけを受けるprivate比較helperを5件実行した。対象は`CK-K7-UT-006`（既存`SegmentHead`の一致／entry identity差）、`CK-K7-UT-033`（明示済みtarget identityの一致／不一致）、`CK-K7-UT-035`（既存`SubjectRef`完全一致／identity差）、`CK-G5-UT-035`（一identityに二つのclassを保持）、`CK-G5-UT-036`（一class欠落を集合差として検出）である。各検査はhelperのboolまたは`frozenset`だけを確認し、L8の公開API・owner・source入力・期待return全体を実行していない。
