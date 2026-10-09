@@ -8,7 +8,7 @@
 - 各判断記録は、該当機構×Stageの親集合に対するL3業務・機能・NFRとL10業務・機能・NFRの**6文書全体のpin**を対象にする。親sectionの位置は検索用であり、承認範囲を機能sectionだけに狭めない。
 - 対象revisionと6つのSHA-256は「対象bytes」の記録である。PO出典、委任条件3、main反映とread-after、PO事後確認は別の「権限連鎖」表に記録する。frontmatterのdraft/candidate/pending値は固定bytes内の当時metadataであり、承認状態の根拠ではない。後続の条件成立を反映し、旧snapshotの当時値はその時点の記録として残す。
 - 現行sourceの変更はtarget pinと分けて比較する。AC行が一致しているだけで、節全体、隣接文、例外、業務/NFR/L10全体が同一だとは認定しない。
-- mainにはBRAIN、SECURITY、INFRASTRUCTURE、CONNECT、HARNESS、LABOのStage 1機構別L4/L9 pairが存在し、下表と各親行に参照先・L9 oracle ID・merge revisionを記録する。各pairは設計上のoracleを定義するもので、検証実行・合格の証拠ではない。以降の進捗は `7d4ed840d96b43ea91f10c314b85dfdaf7a6242b` 時点のmainに限り、比較基準と現行source SHA表は下記 `9a443f32` の記録を保持する。別scopeの共通カーネルK1/K2 source実装とunit corpus、K3/K5 L6/L7設計、およびOS local-CIは、6機構のStage 1製品進捗に含めない。INFRASTRUCTURE/CONNECT/SECURITYのStage 1製品L5/L8とINFRASTRUCTUREのL6/L7設計はmain到達した。他3機構の製品L5–L7と全6機構の製品実装・fixture実行はmain未到達である。34親の業務/NFR/L10全義務traceも未完であり、該当段階の設計・実装参照とowner根拠が追記されるまでは `covered` としない。
+- mainにはBRAIN、SECURITY、INFRASTRUCTURE、CONNECT、HARNESS、LABOのStage 1機構別L4/L9 pairが存在し、下表と各親行に参照先・L9 oracle ID・merge revisionを記録する。各pairは設計上のoracleを定義するもので、検証実行・合格の証拠ではない。以降の進捗は `f75199749888f7261772ba26e9feb58a33d9a04f` 時点のmainに限り、比較基準と現行source SHA表は下記 `9a443f32` の記録を保持する。別scopeの共通カーネルK1/K2 source実装とunit corpus、K3/K5 L6/L7設計、およびOS local-CIは、6機構のStage 1製品進捗に含めない。INFRASTRUCTURE/CONNECT/SECURITYのStage 1製品L5/L8とINFRASTRUCTUREのL6/L7設計はmain到達した。他3機構の製品L5–L7と全6機構の製品実装・fixture実行はmain未到達である。34親の業務/NFR/L10全義務traceも未完であり、該当段階の設計・実装参照とowner根拠が追記されるまでは `covered` としない。
 
 ## 対象親・AC・責務の追跡
 
@@ -189,7 +189,7 @@ Stage 1の他のclosure owner sourceは34親表の既存固定pinで追跡でき
 
 ## 6機構のL3/L10対象と下流進捗
 
-6機構のL3/L10承認対象revisionは権限表で確認する。以下のmain進捗は `7d4ed840d96b43ea91f10c314b85dfdaf7a6242b` 時点であり、line 3および「現行origin/mainのsource bytes」表が固定する `9a443f32` 比較基準とは別に扱う。L4共通カーネル設計（[common-kernel.md §§2–17](../../helix-harness/L4-basic-design/common-kernel.md) と対応する[L9のIV](../../helix-harness/L9-integration-verification/common-kernel-integration-verification.md)）と一部の下流設計・実装は存在し、K1–K10等の一部はACへtraceされている。一方、この索引で扱う全親の業務/NFR/L10義務に対する完全な下流trace・coverageは未完である。HELIX-OSのローカルCI（[L4](../../helix-os/L4-basic-design/local-ci.md) / [L9](../../helix-os/L9-integration-verification/local-ci-integration-verification.md)）は開発repository専用の別scopeであり、Stage 1製品義務の完了や全体coverageを意味しない。次の別scope進捗は六機構の製品行へ転記しない。
+6機構のL3/L10承認対象revisionは権限表で確認する。以下のmain進捗は `f75199749888f7261772ba26e9feb58a33d9a04f` 時点であり、line 3および「現行origin/mainのsource bytes」表が固定する `9a443f32` 比較基準とは別に扱う。L4共通カーネル設計（[common-kernel.md §§2–17](../../helix-harness/L4-basic-design/common-kernel.md) と対応する[L9のIV](../../helix-harness/L9-integration-verification/common-kernel-integration-verification.md)）と一部の下流設計・実装は存在し、K1–K10等の一部はACへtraceされている。一方、この索引で扱う全親の業務/NFR/L10義務に対する完全な下流trace・coverageは未完である。HELIX-OSのローカルCI（[L4](../../helix-os/L4-basic-design/local-ci.md) / [L9](../../helix-os/L9-integration-verification/local-ci-integration-verification.md)）は開発repository専用の別scopeであり、Stage 1製品義務の完了や全体coverageを意味しない。次の別scope進捗は六機構の製品行へ転記しない。
 
 ### 6機構の製品設計とは別scopeのmain進捗
 
@@ -197,6 +197,8 @@ Stage 1の他のclosure owner sourceは34親表の既存固定pinで追跡でき
 |---|---|---|
 | Common Kernel K1/K2 | #2753 `f0ba62ce833463eb5f747ac4b95659ecea49928a` | sourceは3ファイル（`helix/helix-harness/units/common-kernel/src/common_kernel.py`、`helix/helix-harness/units/common-kernel/tests/test_k1.py`、`helix/helix-harness/units/common-kernel/tests/test_k2.py`）。199件はunittest identitiesの実行件数、165件は [`scaffold/local-ci/design-manifest.json`](../../../scaffold/local-ci/design-manifest.json) のformal L7 mapping rows（139 primary / 26 stub）であり、実行identity数とは異なる単位である。これを6機構のStage 1製品義務traceやcoverageへ読み替えない。 |
 | Common Kernel K3/K5 | #2756 `b95f9706bbf27a6d9b09041890ef0f0602bbdcb3` | [L6](../../helix-harness/L6-function-design/common-kernel.md) / [L7](../../helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md)のK3/K5設計追補がmain到達。製品別のL5/L8やK3/K5実装の到達を意味しない。 |
+| Common Kernel K3実装 | #2760 `08eb37bd8168f97566ac06d88424adaddb7815c1` | [permission.py](../../../helix/helix-harness/units/common-kernel/src/permission.py) / [test_k3.py](../../../helix/helix-harness/units/common-kernel/tests/test_k3.py)とL6/L7の追補がmain到達。220 unittest identities（194 formal fixture、26 regression）のローカル成功を対象HEADへ記録。owner/K5/K6/K7は合成stubで、current owner実接続・L9結合合格を意味しない。local CI第6検査へのK3 suite登録は未到達であり、main CIに束縛したK3 L7合格とは扱わない。 |
+| Common Kernel K4/G3詳細設計 | #2761 `f75199749888f7261772ba26e9feb58a33d9a04f` | L5/L8の6 API・15 IV・73 fixture（K4 51 / G3 22）設計がmain到達。fixture未実行、CI inventory未登録。L9 IV-G3-04(9)後半/IV-G3-05のRejected経路とL4公開APIの不一致、およびHumanInterface/K6読取接合は局所未解決として保持する。構造assertをL9期待の合格へ代用しない。 |
 | HELIX-OS local-CI | #2757 `107a648842673ed9b0b02fd440aa68594dd201f6` | [L6](../../helix-os/L6-function-design/local-ci-function-design.md)を含むlocal-CIのL4–L9本文とscaffold実装・manifest・testsがmain到達。開発repository向けscopeであり、六機構のStage 1製品L6/L7や実行成功の証拠にはしない。 |
 
 | 機構 | L3/L10対象revisionと判断 | L4設計 | L5 | L6 | L7 | 実装 | `covered` とする条件 |
