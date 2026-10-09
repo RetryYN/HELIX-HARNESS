@@ -3,8 +3,8 @@
 status: draft_for_independent_review
 owner: HELIX-BRAIN
 paired_l8: ../L8-detail-verification/stage1-brain-detail-verification.md
-base: main `7d4ed840d96b43ea91f10c314b85dfdaf7a6242b`
-current_main_observed: origin/main `7d4ed840d96b43ea91f10c314b85dfdaf7a6242b`（L5/L8先行分割時に観測）
+base: main `5c65aedbceab624cb6a5e276efb83519fd570461`
+current_main_observed: origin/main `5c65aedbceab624cb6a5e276efb83519fd570461`（L5/L8先行分割時に観測）
 source_pair_base_candidate_commit: `eb3b52444093f0de6491d4f1b707132670afb9e4`（編集開始時の候補。編集開始時の比較基準）
 
 本書は固定Stage 1親007/008/028の6 ACに対するL4のデータ境界を、L6へ渡せる関数境界と型へ具体化する。要件の意味、owner、state、拒否理由、依存、版を追加・変更しない。対象はBRAIN知識source trace、knowledge record照会、descriptor/knowledge compatibility照合に限る。製品への書込み・送信・採用操作を実装する契約ではない。
