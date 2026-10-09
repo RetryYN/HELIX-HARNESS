@@ -15,12 +15,12 @@ base: main `3961daac08d032ad512026e8365fafd9eae831c5`
 | Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3/§9/§10/§13/§16 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
 | Repository Layout L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
 | Common Kernel L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7/IV-LDG関連行 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
-| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9 | SHA-256 `f3db945db32ba3bdcbb7335c8bc88d09af330460d38f1bde73bb9b9c6573e01c` |
+| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9 | SHA-256 `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69` |
 | Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `89152ee3b58c291a88b7108fd0437c1349265eb85607c2da1f617d63ac3572c1` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
 
 L9の各`IV-K1-*`/`IV-K2-*`/`IV-K3-*`/`IV-K5-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。 K5 §9.2の直接由来はConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。K3の直接L3 traceはL4 §16.1のSECURITY ACに限定し、OS-014-04/-06はK7との境界参照のまま扱う。K5を共通kernelとして配置すること自体から、単一親要求やHARNESS-L2-031を追加しない。
 
-K4/G3の直接親はL4 §13.1のHARNESS AC-HARNESS-L3-014-01〜04、021-02、036-04、041-02、OS AC-OS-018-01/023-02、CONNECT CONNECT-AC-006-03、INFRASTRUCTURE INFRA-005-AC-04、HARNESS AC-HARNESS-L3-049-05/022-01/02、SECURITY SECURITY-AC-026-01/02に限る。K4からK5/K6への接続はboundary linkであり直接親を追加しない。K4/G3の固定入力は既存L4 §13全体とL9 IV-K4-01〜10/IV-G3-01〜05である。K6はL4 §10.2 crosswalk記載の直接親に限り、L9 IV-K6-01〜15へ対応する。
+K4/G3の直接親はL4 §13.1のHARNESS AC-HARNESS-L3-014-01〜04、021-02、036-04、041-02、OS AC-OS-018-01/023-02、CONNECT CONNECT-AC-006-03、INFRASTRUCTURE INFRA-005-AC-04、HARNESS AC-HARNESS-L3-049-05/022-01/02、SECURITY SECURITY-AC-026-01/02に限る。K4からK5/K6への接続はboundary linkであり直接親を追加しない。K4/G3の固定入力は既存L4 §13全体とL9 IV-K4-01〜10/IV-G3-01〜05である。K6はL4 §10.2 crosswalk記載の直接親に限り、L9 IV-K6-01〜15へ対応する。直接親にはOS AC-OS-018-01、AC-OS-023-02、AC-OS-029-03も含む。後続owner/consumerは直接親へ加えない。
 
 HARNESS Stage 1 PO decisionはHARNESS L3/L10の本文revision `a77672513325aa9e79f3780af40455361b5d19a8`、親HARNESS-L2-010/011/023だけを承認対象とする。本書はその判断を他機構・他親へ転用しない。K1/K2それぞれの複数L3親関係はL4 crosswalkに従い、HARNESS-L2-031をまとめ親として新設しない。
 
@@ -121,7 +121,7 @@ K2逆trace: L5 `key_of`, `lookup`, `record`, alias binding clausesは表のL9 ID
 
 ## 5. K3–K10と未実施範囲
 
-K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K6〜K10はこのpairで`not_designed`で、既存L4/L9の該当契約へ戻す。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。
+K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K7〜K10はこのpairで`not_designed`で、既存L4/L9の該当契約へ戻す。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。
 
 ### 5.1 K3 fixtures
 
@@ -462,8 +462,8 @@ G3-I4のaccepted/mismatch fixtureは既存authority source recordを既存adapte
 | `L8-K6-03-UNREGISTERED-IDENTITY` | `match_verifier_entry` / I2 | IV-K6-03 | identityだけを未登録値へ変更し、receipt keyとdigestは再計算 | `Unknown(unregistered)`。 |
 | `L8-K6-03-UNREGISTERED-VERSION` | `match_verifier_entry` / I2 | IV-K6-03 | versionだけを登録値と異なる値へ変更しkeyを再計算 | `Unknown(unregistered)`。 |
 | `L8-K6-03-UNREGISTERED-DIGEST` | `match_verifier_entry` / I2 | IV-K6-03 | digestだけを登録値と異なる値へ変更しkeyを再計算 | `Unknown(unregistered)`。 |
-| `L8-K6-04-DETERMINISTIC-CLAIM` | `admit_receipt`→`match_verifier_entry` / I2 | IV-K6-04 | VerifierEntry.deterministic=falseの基準。ReceiptBodyにdeterministic fieldはないため、別のcaller claimを追加してもK6 typed inputにはならない。 | actual member entryから導く`reverifiable=false`を保持する。新field/decoder policyは作らず、この型外 claim attempt自体に新result classは割り当てない。 |
-| `L8-K6-04-CHECK-MAPPING-CLAIM` | `admit_receipt`→`rebuild_inner` / I2/I6 | IV-K6-04 | ReceiptBodyにmapping fieldは無い。実在する`inner` componentsとowner `VerifierEntry.checks`を固定し、保存`inner.verdict`だけをreceipt側で誤った肯定mappingを使った場合の`Positive` claimへ変える。body bytes/result digestをその変更に整合させる。 | owner mappingとcomponentsからの再合成とclaimが違うため、既存`Unknown(conflict)`。新field・unknown-field parser policyを作らない。 |
+| `L8-K6-04-DETERMINISTIC-CLAIM` | `admit_receipt`→`match_verifier_entry` / I2 | IV-K6-04 | VerifierEntry.deterministic=falseの基準。ReceiptBodyにdeterministic fieldはないため、別のcaller claimを追加してもK6 typed inputにはならない。 | これは型外claimの構造fixtureであり、actual member entryから導く`reverifiable=false`を保持する確認に限る。新field/decoder policy/result classは定めず、L9 IV-K6-04(1)全体の充足とは数えない（§8.3）。 |
+| `L8-K6-04-CHECK-MAPPING-CLAIM` | `admit_receipt`→`rebuild_inner` / I2/I6 | IV-K6-04 | ReceiptBodyにmapping fieldは無い。実在する`inner` componentsとowner `VerifierEntry.checks`を固定し、保存`inner.verdict`だけをreceipt側で誤った肯定mappingを使った場合の`Positive` claimへ変える。body bytes/result digestをその変更に整合させる。 | owner `VerifierEntry.checks`が各`PolarityOf`の出所であることを構造比較する。保存inner claimと再合成`Combined`が不一致なら、L4 K6-I6どおり`Unknown(conflict)`を保持する。ただしL9 IV-K6-04(2)が求めるmapping-source assertionの全範囲をfixtureで閉じたとはせず、部分被覆として扱う（§8.3）。新field・unknown-field parser policyを作らない。 |
 | `L8-K6-05-OLD-QUERY-RECEIPT` | `validate_receipt_key_body` / I3 | IV-K6-05 | query keyを維持し、対象旧revisionのotherwise-valid receiptを渡す | `Unknown(conflict)`。 |
 | `L8-K6-05-INPUT-BODY` | `validate_receipt_key_body` / I3 | IV-K6-05 | `ReceiptBody`に独立したinputs fieldは置かない。query keyは固定し、`body.key.inputs`のref一つだけを差し替える。record keyとbody keyの他fieldを固定し、変更後のbody bytesからFixedRefのdigest、記録のresult_digestとlog連鎖を再計算する | query keyとのkey/body不一致により`Unknown(conflict)`。 |
 | `L8-K6-05-VERIFIER-SET-BODY` | `validate_receipt_key_body` / I3 | IV-K6-05 | body.verifier_setだけをkeyと異なるrefへ変更 | `Unknown(conflict)`。 |
@@ -479,7 +479,7 @@ G3-I4のaccepted/mismatch fixtureは既存authority source recordを既存adapte
 | `L8-K6-08-BASE` | `rebuild_inner` / I6 | IV-K6-08 | registered/evaluated checksとVerifierEntry mappingが一致し、各checkをK1で合成 | 再合成inner `Positive`。 |
 | `L8-K6-08-STORED-INNER-VERDICT` | `rebuild_inner` / I6 | IV-K6-08 | registered/evaluated checksから正常に再合成されるinnerを`Negative`にした整合基準を作る。check結果・mapping・他body fieldを固定し、保存inner verdictだけ`Positive`へ変更してbody digestを新bytesから再計算する | 保存innerと再合成innerが異なるため`Unknown(conflict)`。 |
 | `L8-K6-08-UNREGISTERED-CHECK` | `rebuild_inner` / I6 | IV-K6-08 | registered setに無いcheck result一つを含める | `Unknown(unregistered)` componentを保持する。 |
-| `L8-K6-09-BASE` | `required` / I7 | IV-K6-09 | A/B各registered check全件が肯定 | outer `Positive`かつ`Admitted`。全検査成分を保持する。 |
+| `L8-K6-09-BASE` | `required` / I7 | IV-K6-09 | A/B各registered check全件が肯定 | `required`の`RequiredResult.combined.verdict=Positive`で、A/B全check成分を含む。A/Bごとの三assurance fieldは`RequiredResult.assurance`にidentity別で保持する。`admit_receipt`の`Observed<AdmittedReceipt>`はmember単位の中間結果であり、`RequiredResult`のfieldではない。 |
 | `L8-K6-09-NEGATIVE-AND-UNKNOWN` | `required` / I7 | IV-K6-09 | Aの一検査をNegative、一検査をUnknownにするL9指定の複合状態 | outer `Negative`。A両成分をverifier/check ID付きでreasonsへ保持する。 |
 | `L8-K6-09-UNEVALUATED` | `required` / I7 | IV-K6-09 | Aのregistered check一つを未評価にする | outer `Undetermined`、`Unobserved(not_run)` component。receipt存在で肯定しない。 |
 | `L8-K6-09-REGISTERED-ZERO` | `required` / I7 | IV-K6-09 | Aのregistered checksを0件にする | outer `Unknown(missing_input)` component。 |
@@ -488,17 +488,17 @@ G3-I4のaccepted/mismatch fixtureは既存authority source recordを既存adapte
 | `L8-K6-10-A-OLD-REVISION` | `required` / I7 | IV-K6-10 | Aの旧対象revision receiptだけを残す | A component `Stale`。 |
 | `L8-K6-10-EXACT-PLUS-DIGEST-CONFLICT` | `required` / I7 | IV-K6-10 | A exact receiptと同identity/revision異digest receiptを共存させる | A component `Unknown(conflict)`。 |
 | `L8-K6-10-SAME-KEY-RESULT-CONFLICT` | `required` / I7 | IV-K6-10 | Aの同一keyに異なるreceipt resultを2件置く | A component `Unknown(conflict)`。 |
-| `L8-K6-10-SEGMENT-MISSING` | `required` / I7 | IV-K6-10 | operation scopeのsegment refをinput_headsから除く | A/B各component `Unknown(missing_input)`。 |
+| `L8-K6-10-SEGMENT-MISSING` | `required` / I7 | IV-K6-10 | operation scopeのsegment refをinput_headsから除く | A/B各componentへK5 restoreが返した同一の`Unknown(missing_input)`を伝播する。部分record lookupは行わない。 |
 | `L8-K6-10-VERIFIER-VERSIONS-DIFFER` | `required` / I7 | IV-K6-10 | A/Bのregistered verifier versionを異なる値にする | 各verifier固有receipt keyで独立照会する。 |
 | `L8-K6-10-C-NOT-SUBSTITUTE` | `required` / I7 | IV-K6-10 | Aを欠落させCのreceiptだけを追加する | Aは`Unobserved(not_run)`のまま。CでAを埋めない。 |
 | `L8-K6-11-REPRODUCTION-MATCH` | `reverify` / I8 | IV-K6-11 | deterministic verifier同一入力で再実行したinner digestが一致 | `reproduction=Value`。 |
 | `L8-K6-11-FORGED-INNER` | `reverify` / I8 | IV-K6-11 | receiptの一検査結果だけを変更し、関連digestを整合させる | `reproduction=Unknown(conflict)`。 |
 | `L8-K6-11-NONDETERMINISTIC` | `reverify` / I8 | IV-K6-11 | non-deterministic entryを再現確認へ渡す | `reproduction=Unknown(unsupported)`。 |
-| `L8-K6-12-NO-PAST-EXECUTION` | `reverify`→consumer / I8 | IV-K6-12 | 過去実行なしに同じinnerと整合digestを持つreceipt | `reproduction=Value`になり得るが`issuer_authenticity=Unknown(unsupported)`。過去実行/時刻を出力しない。 |
-| `L8-K6-12-EXECUTION-FIELDS-REWRITTEN` | `reverify`→consumer / I8 | IV-K6-12 | execution欄だけを整合digestで書き換える | `reproduction=Value`になり得るが`issuer_authenticity=Unknown(unsupported)`。execution欄から過去実行を出力しない。 |
+| `L8-K6-12-NO-PAST-EXECUTION` | `reverify`→consumer / I8 | IV-K6-12 | 過去実行なしに同じinnerと整合digestを持つreceipt | 再検証が`Value`を返す場合に限り、その`reproduction=Value`を記録する。どの結果でも`issuer_authenticity=Unknown(unsupported)`を保持し、過去実行/時刻は出力しない。 |
+| `L8-K6-12-EXECUTION-FIELDS-REWRITTEN` | `reverify`→consumer / I8 | IV-K6-12 | execution欄だけを整合digestで書き換える | 再検証が`Value`を返す場合に限り、その`reproduction=Value`を記録する。どの結果でも`issuer_authenticity=Unknown(unsupported)`を保持し、execution欄から過去実行を出力しない。 |
 | `L8-K6-13-CORRECTION` | K5 append boundary / I9 | IV-K6-13 | receipt bodyを保持する既存`ResultRecorded`を対象にCorrectionを要求 | `Rejected`（K5-I8）。 |
 | `L8-K6-14-TIME-ORDER` | K5 `restore`→K2 `lookup` / I9 | IV-K6-14 | 同一subject identityの異なる旧revisionに対する有効なprior Value receiptsを複数記録し、各key/body/result_digestを整合する。timestamp順とK5 append sequence順を逆にする。 | prior選択はK5-I7 sequence order。timestampで選ばない。K2 same-key異body conflictは作らない。 |
-| `L8-K6-15-NO-AUTHORITY` | `required` result structure / I10 | IV-K6-15 | 既存`RequiredResult`は`combined`と`assurance`だけを持つこと、各receipt bodyの`authority_effect="none"`、L4 §10 API surfaceにauthority effect/approval/merge/acceptance/completion outputが無いことを構造確認する。RequiredResultへauthority_effect fieldを追加しない。 | L9のconsumer `Rejected`経路はL4にAPI/return typeがなく未接続。この構造assertionはそのRejected oracleを満たしたことにしない。新API/reasonを足さない。 |
+| `L8-K6-15-NO-AUTHORITY` | `required` result structure / I10 | IV-K6-15 | 既存`RequiredResult`は`combined`と`assurance`だけを持つこと、各receipt bodyの`authority_effect="none"`、L4 §10 API surfaceにauthority effect/approval/merge/acceptance/completion outputが無いことを構造確認する。RequiredResultへauthority_effect fieldを追加しない。 | これは構造fixtureであり、L9のconsumer `Rejected`経路はL4にAPI/return typeがなく未接続。このassertionはIV-K6-15(1)を満たしたことにせず、L4/L9 ownerへ返す（§8.3）。新API/reasonを足さない。 |
 | `L8-K6-15-ASSURANCE-SEPARATE` | `required` result structure / I10 | IV-K6-15 | same fixed `RequiredResult`でreproduction=`Unknown(unsupported)`のAとreproduction=`Value`のBをassurance identity別に保持する。 | combinedからassuranceを消さず、異なる値を同等化しない。consumer rejectionは別の未接続oracleであり、このcaseの期待ではない。 |
 
 各fixtureは独立したIDであり、`A/B/C`はIV-K6-09/10で指定されたverifier identityを表す。IV-K6-02のcaller field variantsは`run(verifier, base_key)`に対する型付きsignature-incompatible attemptであり、動的validator/reasonの実装は期待しない。正常基準に必要な他verifier・registered checks・scope inputsは固定し、指定した変異以外を変えない。`Rejected`はL9が理由を指定していないため、新reasonを加えない。
@@ -510,7 +510,7 @@ G3-I4のaccepted/mismatch fixtureは既存authority source recordを既存adapte
 | IV-K6-01 | K6-I3 | `derive_receipt_key` (private preflight), K5 `restore`→K2 `lookup` | `L8-K6-01-*` |
 | IV-K6-02 | K6-I1 | `run` | `L8-K6-02-*` |
 | IV-K6-03 | K6-I2 | `match_verifier_entry`, `admit_receipt` | `L8-K6-03-*` |
-| IV-K6-04 | K6-I2 | `match_verifier_entry`, `rebuild_inner` | `L8-K6-04-*` |
+| IV-K6-04 | K6-I2 | `match_verifier_entry`, `rebuild_inner` | `L8-K6-04-*`（L9の一部範囲は§8.3の部分被覆） |
 | IV-K6-05 | K6-I3 | `validate_receipt_key_body` | `L8-K6-05-*` |
 | IV-K6-06 | K6-I4 | `validate_read_set` | `L8-K6-06-*` |
 | IV-K6-07 | K6-I5 | `verify_fixed_outputs` | `L8-K6-07-*` |
@@ -521,10 +521,10 @@ G3-I4のaccepted/mismatch fixtureは既存authority source recordを既存adapte
 | IV-K6-12 | K6-I8 / E authenticity limit | `reverify`, consumer handoff | `L8-K6-12-*` |
 | IV-K6-13 | K6-I9 | K5 append/correction boundary | `L8-K6-13-*` |
 | IV-K6-14 | K6-I9 / K5-I7 order | K5 `restore`, K2 `lookup` | `L8-K6-14-*` |
-| IV-K6-15 | K6-I10 | consumer handoff | `L8-K6-15-*` |
+| IV-K6-15 | K6-I10 | consumer handoff | `L8-K6-15-*`（構造assertionのみ。consumer `Rejected`は未接続、§8.3） |
 
 ### 8.3 保証限界と未決事項
 
 `reproduction`, `issuer_authenticity`, `evidence integrity`は別項目である。再実行一致は同じ入力で結果が再現することだけを確かめ、過去実行、実行時刻、receipt issuerの真正性を証明しない。署名・attestation・外部固定が無い間は`issuer_authenticity=Unknown(unsupported)`を維持する。再現はできないdeterministic=false entryなら`reproduction=Unknown(unsupported)`である。これらを同一のpositiveへ縮約しない。
 
-K6の`required_for`値と義務に対する必要verifier集合はK4-I4 owner declarationから読む。L5/L8は検証器名・集合値・operation policyを新たに決めない。K4 declarationの読取失敗/未登録時の詳細reasonがL4/L9で特定されない箇所は、ownerから来る既存non-valueを保持し、分類を追加しない。IV-K6-04のdeterministic claimはReceiptBodyにfieldがなく、ここでは新fieldやdecoder behaviorを足さず、VerifierEntryから得る`reverifiable=false`の照合だけを記す。型外claimの拒否を既存APIの返却classとしては定義しない。K3のpermissionやauthorityをK6へ追加しない。
+K6の`required_for`値と義務に対する必要verifier集合はK4-I4 owner declarationから読む。L5/L8は検証器名・集合値・operation policyを新たに決めない。K4 declarationの読取失敗/未登録時の詳細reasonがL4/L9で特定されない箇所は、ownerから来る既存non-valueを保持し、分類を追加しない。IV-K6-04(1)は`ReceiptBody`に`deterministic` fieldが無いため、L8構造fixtureが確認する`VerifierEntry`由来の`reverifiable=false`までを部分被覆とし、型外claimのparser結果はL4/L9 ownerへ返す。IV-K6-04(2)はL9 oracleがいう再合成と保存claimの照合について、L4のK6-I6が明記する既存`Unknown(conflict)`の範囲を超えて分類を追加しない。IV-K6-15(1) consumer `Rejected`はL4 §10にconsumer API/返却型がないため未接続であり、`L8-K6-15-NO-AUTHORITY`の構造確認をoracle充足として数えずL4/L9 ownerへ返す。K3のpermissionやauthorityをK6へ追加しない。
