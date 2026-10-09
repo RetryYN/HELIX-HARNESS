@@ -1,12 +1,12 @@
-# HELIX-HARNESS 共通カーネル L8詳細検証設計（K1/K2/K3/K5）
+# HELIX-HARNESS 共通カーネル L8詳細検証設計（K1/K2/K3/K4/K5/G3）
 
 status: draft
 owner: HELIX-HARNESS
-parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1／§9.2／§16.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
+parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1／§9.2／§13.1／§16.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l5: ../L5-detail-design/common-kernel.md
-base: main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`
+base: main `dc803dacfbbe56f6daf7724832b1bfa238ff2087`
 
-本書はK1/K2/K3/K5のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9の既存項目を展開したものとする。K4/K6〜K10は`not_designed`でL9の現行参照のみとする。以下のfixtureはすべて未実行であり、pass、実装完成、L10成立を示さない。
+本書はK1/K2/K3/K4/K5/G3のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9の既存項目を展開したものとする。K6〜K10は`not_designed`でL9の現行参照のみとする。以下のfixtureはすべて未実行であり、pass、実装完成、L10成立を示さない。
 
 ## 1. 固定入力とtrace
 
@@ -15,10 +15,12 @@ base: main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`
 | Common Kernel L4 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3/§9/§16 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
 | Repository Layout L4 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`の本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
 | Common Kernel L9 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` K1/K2、IV-K3全27識別子、IV-K5-01–26、IV-K7/IV-LDG関連行 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
-| paired L5 | current main `b6463f2b9baa7df72703758f4e02afff9cbfac78`の本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7 | SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` |
+| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8 | SHA-256 `a49d992c5a9f0119e15c43d8bbb023ad13c92174ce43703926ad127d92d24146` |
 | Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `f60a67b2fb18cce4ed17c715dddf1049d6bdcd5a49ea04bf1b4ec52cb6d191a8` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
 
 L9の各`IV-K1-*`/`IV-K2-*`/`IV-K3-*`/`IV-K5-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。 K5 §9.2の直接由来はConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。K3の直接L3 traceはL4 §16.1のSECURITY ACに限定し、OS-014-04/-06はK7との境界参照のまま扱う。K5を共通kernelとして配置すること自体から、単一親要求やHARNESS-L2-031を追加しない。
+
+K4/G3の直接親はL4 §13.1のHARNESS AC-HARNESS-L3-014-01〜04、021-02、036-04、041-02、OS AC-OS-018-01/023-02、CONNECT CONNECT-AC-006-03、INFRASTRUCTURE INFRA-005-AC-04、HARNESS AC-HARNESS-L3-049-05/022-01/02、SECURITY SECURITY-AC-026-01/02に限る。K4からK5/K6への接続はboundary linkであり直接親を追加しない。K4/G3の固定入力は既存L4 §13全体とL9 IV-K4-01〜10/IV-G3-01〜05である。
 
 HARNESS Stage 1 PO decisionはHARNESS L3/L10の本文revision `a77672513325aa9e79f3780af40455361b5d19a8`、親HARNESS-L2-010/011/023だけを承認対象とする。本書はその判断を他機構・他親へ転用しない。K1/K2それぞれの複数L3親関係はL4 crosswalkに従い、HARNESS-L2-031をまとめ親として新設しない。
 
@@ -117,9 +119,9 @@ K2 expected classはL4 §3.3–3.4のlookup優先順と、L4 §3.4.1 alias bindi
 
 K2逆trace: L5 `key_of`, `lookup`, `record`, alias binding clausesは表のL9 IDsに対応する。IV-K2-01–21d（IV-K2-13a/bを含む）の各oracleからfixtureへ、さらにL5 API / K2-I invariantへ戻れる。L3 parentはこのpairの先頭に列挙したL4 §3.1 crosswalk要素に限る。
 
-## 5. K3–K10と未実施範囲
+## 5. K3、K5–K10と未実施範囲
 
-K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K4/K6〜K10はこのpairで`not_designed`で、既存L4/L9の該当契約へ戻す。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。
+K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K6〜K10はこのpairで`not_designed`で、既存L4/L9の該当契約へ戻す。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。
 
 ### 5.1 K3 fixtures
 
@@ -344,3 +346,88 @@ K5 trace: L5 §6.2.3のI1–I13は上表のIV-K5 rowsへそれぞれ戻る。`le
 本書のK1/K2 fixture集合は既存のL9 IV-K1/IV-K2 oracleだけを展開する。unit suiteはpure semantic APIを対象とし、物理的な型番登録やK5 ledger appendを新しいfixtureやoracleとして定義しない。宣言項目・path・固定bytes・未登録版の配置照合は既存repository-layout RL-C1–7およびCommon Kernel L4/L9の`IV-LDG-01`/`IV-LDG-02`/`IV-LDG-04`へ、manifest segment開設後のwriter/run対応は既存`IV-K5-22`へ接続する。これらは別の統合境界にある既存oracleであり、このK1/K2 unit suiteがそれを実行・検証したとはしない。
 
 空ledgerからの初回manifest作成は現K5で定められていないため、本書では操作、result class、fixtureを追加しない。登録の正否やwriter enforcementは既存oracleに委ね、L5 §7の候補値から登録済み状態を導かない。L6 §9/L7 §6はK1/K2 pure function suiteの配置範囲を示す。
+
+## 7. K4/G3 fixtures
+
+K4/G3 casesはL4 §13のK4不変条件6件とG3不変条件5件を、既存L9のK4 oracle 10件・G3 oracle 5件から個別に展開する。各fixtureは固定`ObligationSet`とそれぞれのoperation ownerの`OperationDecl`を前提とし、基準では他義務を肯定にする。L9が複合oracleとして明示する優先・受渡し集合はその全内容を保ち、ケースをまとめて一つの期待値にしない。
+
+K4 APIを通るfixtureは、`input_heads`が指す固定K5 prefix内の`ResultRecorded`と固定参照からK5 `restore`、K2 `lookup`、K6 `required`/`admit_receipt`を通す。`evaluate`へreceipt、`inner`、`required_for`のcaller-made resultを直接注入しない。`VerifierSet`と`OperationDecl`は各ownerが固定したcurrent declarationとして準備し、変異時もsource revision/digestを整合させる。test fixtureは境界の設計例であり、K5/K6の実読・実行やowner登録の証拠ではない。`HumanInterface`についてはL4で指定された既存authority sourceを読むadapterのexact source/ownerが未決であるため、caller製`HumanDecision`を使うcaseへ置き換えない。未決の接合は型/API追加なしで保持する。
+
+K4 direct L3 parent: HARNESS AC-HARNESS-L3-014-01–04/021-02/036-04/041-02、OS AC-OS-018-01/023-02、CONNECT CONNECT-AC-006-03、INFRASTRUCTURE INFRA-005-AC-04。G3 direct L3 parent: HARNESS AC-HARNESS-L3-049-05/022-01/02、SECURITY SECURITY-AC-026-01/02。各行のL9 IDは既存IVだけを指し、新しいoracleやIDを作らない。
+
+| L8 case | L9 oracle | L5 API / L4 invariant | Fixtureと単一変異、期待 |
+|---|---|---|---|
+| `L8-K4-01-COMPLETE` | IV-K4-01 | `check_view`; K4-I1 | 固定ObligationSetの全obligation_idに対応する成分だけを持つviewを照合し、集合を通過させる。 |
+| `L8-K4-01-MISSING` | IV-K4-01 | `check_view`; K4-I1 | 完全なsetの1義務の成分だけをviewから除く。該当IDは`Unknown(missing_input)`。 |
+| `L8-K4-01-EXTRA` | IV-K4-01 | `check_view`; K4-I1 | 正常viewへsetに無いobligation_id成分だけを足す。`Unknown(unregistered)`。 |
+| `L8-K4-01-EMPTY-SET` | IV-K4-01 | `evaluate`; K4-I1 / K1-I4 | `obligations=[]`の有効なsetをrestoreする。空義務をpositive扱いせず`set_reason=Unknown(missing_input)`。 |
+| `L8-K4-01-NO-CALLER-SET` | IV-K4-01 | `evaluate`; K4-I1 | 公開signatureがsetのobligationsをcaller引数に持たず、set_keyから復元することを照合する。set injectionの引数を加える実装は不適合。 |
+| `L8-K4-02-EXACT` | IV-K4-02 | `evaluate`; K2-I1 | 同じsource/rule/set keyを照会し、復元した`ObligationSet`を`Value`として使う。 |
+| `L8-K4-02-SOURCE-REV-VALUE` | IV-K4-02 | `evaluate`; K2-I2 | 同identity sourceのrevisionだけを更新し旧記録をValueのまま残す。`Stale`。 |
+| `L8-K4-02-SOURCE-REV-NONVALUE` | IV-K4-02 | `evaluate`; K2-I2 | L8-K4-02-SOURCE-REV-VALUEの旧record classだけを非Valueへ替える。`Unobserved(not_run,superseded)`。 |
+| `L8-K4-02-SOURCE-SAME-REV-DIGEST` | IV-K4-02 | `evaluate`; K2-I2 | source revisionを固定してbytes/digestだけを変える。`Unknown(conflict)`。 |
+| `L8-K4-02-RULE-VERSION` | IV-K4-02 | `evaluate`; K2-I2 | rule identityを固定しversionだけを更新する。`Unobserved(not_run)`。 |
+| `L8-K4-02-RULE-SAME-VERSION-DIGEST` | IV-K4-02 | `evaluate`; K2-I2 | rule versionを固定しdigestだけを変える。`Unknown(conflict)`。 |
+| `L8-K4-02-SOURCE-IDENTITY-ADD` | IV-K4-02 | `evaluate`; K2-I2 | derived_fromへsource identityを一件追加する。候補なし`Unobserved(not_run)`。 |
+| `L8-K4-02-SOURCE-IDENTITY-REMOVE` | IV-K4-02 | `evaluate`; K2-I2 | derived_fromからsource identityを一件除く。候補なし`Unobserved(not_run)`。 |
+| `L8-K4-03-OPERATION-BASE-KEYS` | IV-K4-03 | `evaluate`; K4-I4 | inputsとscopeが異なる二つのoperationの義務へ、それぞれ所有者のdeclから作った基底keyを使う。 |
+| `L8-K4-03-DECL-REVISION` | IV-K4-03 | `evaluate`; K4-I4 / K2-I2 | set/target固定でOperationDeclのdependency revisionだけ更新し旧receiptのみ残す。該当義務は`Stale`。receipt側inputsを採る実装は不適合。 |
+| `L8-K4-03-MISSING-DECL` | IV-K4-03 | `evaluate`; K4-I4 | 義務operationのdeclだけをcurrent mappingから欠く。該当成分は`Unknown(missing_input)`。 |
+| `L8-K4-04-UNIT-POSITIVE-COMPOSITE-MISSING` | IV-K4-04 | `evaluate`; K4-I2 | unit義務receiptをすべて肯定にしcomposite義務のreceiptだけ欠く。compositeは`Unobserved(not_run)`で、全体`Positive`ではない。 |
+| `L8-K4-04-OWN-RECEIPTS` | IV-K4-04 | `evaluate`; K4-I2 | unitとcompositeそれぞれの義務に対応する肯定receiptを用意する。各成分はそれぞれの義務自身のoracleから評価される。 |
+| `L8-K4-05-NA-VALID` | IV-K4-05 | `evaluate`; K4-I3 / K1-I5 | reason/authority/reentry_triggerの揃ったNotApplicable義務を除外する。 |
+| `L8-K4-05-DEFERRED-VALID` | IV-K4-05 | `evaluate`; K4-I3 | target_point/owner/discharge_conditionの揃ったDeferred義務は`Unobserved(pending_receipt)`として残す。 |
+| `L8-K4-05-NA-MISSING-REASON` | IV-K4-05 | `evaluate`; K4-I3 | NotApplicableのreasonだけ欠く。`Unknown(invalid_disposition)`。 |
+| `L8-K4-05-NA-MISSING-AUTHORITY` | IV-K4-05 | `evaluate`; K4-I3 | NotApplicableのauthorityだけ欠く。`Unknown(invalid_disposition)`。 |
+| `L8-K4-05-NA-MISSING-REENTRY` | IV-K4-05 | `evaluate`; K4-I3 | NotApplicableのreentry_triggerだけ欠く。`Unknown(invalid_disposition)`。 |
+| `L8-K4-05-DEFERRED-MISSING-TARGET` | IV-K4-05 | `evaluate`; K4-I3 | Deferredのtarget_pointだけ欠く。`Unknown(invalid_disposition)`。 |
+| `L8-K4-05-DEFERRED-MISSING-OWNER` | IV-K4-05 | `evaluate`; K4-I3 | Deferredのownerだけ欠く。`Unknown(invalid_disposition)`。 |
+| `L8-K4-05-DEFERRED-MISSING-DISCHARGE` | IV-K4-05 | `evaluate`; K4-I3 | Deferredのdischarge_conditionだけ欠く。`Unknown(invalid_disposition)`。 |
+| `L8-K4-05-DEFERRED-DROPPED` | IV-K4-05 | `evaluate`; K4-I3 | 基準のDeferred成分だけを合成前に除く実装変異。期待`Unobserved(pending_receipt)`が失われるため不合格。 |
+| `L8-K4-06-VERIFIERS-MATCH` | IV-K4-06 | `evaluate`; K4-I4 | required_for[o]とRequired機械/LLM義務が参照するverifier集合が一致し、各義務をID別に展開する。 |
+| `L8-K4-06-REQUIRED-FOR-EXTRA` | IV-K4-06 | `evaluate`; K4-I4 | required_forだけにverifier identityを一つ追加する。該当成分は`Unknown(conflict)`。 |
+| `L8-K4-06-OBLIGATION-EXTRA` | IV-K4-06 | `evaluate`; K4-I4 | 義務側だけにverifier identityを一つ追加する。該当成分は`Unknown(conflict)`。 |
+| `L8-K4-06-INNER-NEGATIVE` | IV-K4-06 | `evaluate`; K4-I4/K6-I6 | receipt内の一検査のresultだけをnegativeにする。`{obligation_id, verifier, check}`を保ちconsumerまで否定を残す。 |
+| `L8-K4-06-INNER-UNKNOWN` | IV-K4-06 | `evaluate`; K4-I4/K6-I6 | receipt内の一検査のresultだけをUnknownにする。同識別でnon-Valueを残す。 |
+| `L8-K4-06-INNER-SET-REASON` | IV-K4-06 | `evaluate`; K4-I4/K6-I6/K1-I4 | receipt innerにset_reasonがある基準を用い、それを検査識別とともに消費側へ保持する。 |
+| `L8-K4-07-DETERMINISTIC-NOT-REVERIFIED` | IV-K4-07 | `evaluate`; K4-I4/G3-I2 | deterministic receiptをK6経由で受け入れ、evaluate直後のassurance.reproductionは`Unobserved(not_run)`。issuer_authenticityは`Unknown(unsupported)`。 |
+| `L8-K4-07-REVERIFY-MATCH` | IV-K4-07 | `reverify_view`; K4-I4/G3-I2 | 同じadmitted deterministic receiptを再検証し、reproductionは`Value`。assuranceをobligation/verifier別に保持する。 |
+| `L8-K4-07-LLM-EVALUATE` | IV-K4-07 | `evaluate`; G3-I3 | non-deterministic LLM verifierのreceiptを受け入れ、reproductionは`Unknown(unsupported)`。 |
+| `L8-K4-07-LLM-REVERIFY` | IV-K4-07 | `reverify_view`; G3-I3 | LLM receiptを対象に再検証を要求してもreproductionは`Unknown(unsupported)`。 |
+| `L8-K4-07-REVERIFY-MISMATCH` | IV-K4-07 | `reverify_view`; K4-I4 | deterministic receipt再実行のinner digestだけを不一致にする。reproductionは`Unknown(conflict)`。 |
+| `L8-K4-07-ASSURANCE-PRESERVED` | IV-K4-07 | `evaluate`/`reverify_view`; K4-I4/K6-I10 | 複数obligation/verifierのviewをconsumerへ返す際、各assurance項目とcombinedを同時に保持する。combinedだけ返す変異は不適合。 |
+| `L8-K4-08-INHERIT-UNOBSERVED` | IV-K4-08 | `inherit`; K4-I5 | 旧revisionのUnobserved義務をinheritedへ結び、新revision receipt無しで新成分を`Unobserved(not_run)`にする。 |
+| `L8-K4-08-POSITIVE-NOT-INHERITED` | IV-K4-08 | `inherit`; K4-I5/K2-I2 | 旧Positive記録だけを与え、新revision receiptを欠く。旧Positiveを流用せず新成分は肯定でない。 |
+| `L8-K4-08-OLD-ABSENT-UNFINISHED` | IV-K4-08 | `inherit`; K4-I5 | 旧未完義務を新setから除いた基準変異。新view.inheritedとHandoff.unfinishedに旧義務を残す。 |
+| `L8-K4-09-RECEIVE-MATCH` | IV-K4-09 | `receive`; K4-I5 | from_viewから再計算した全unfinished/inheritedと一致するhandoffを受理する。 |
+| `L8-K4-09-MISSING-NEW-UNFINISHED` | IV-K4-09 | `receive`; K4-I5 | Handoff.unfinishedから新setに属する旧未完義務一件だけを落とす。該当義務は`Unknown(missing_input)`。 |
+| `L8-K4-09-MISSING-OLD-UNFINISHED` | IV-K4-09 | `receive`; K4-I5 | Handoff.unfinishedから新setに無い旧未完義務一件だけを落とす。該当義務は`Unknown(missing_input)`。 |
+| `L8-K4-09-EXTRA-UNFINISHED` | IV-K4-09 | `receive`; K4-I5 | Handoff.unfinishedへ完了済み義務一件だけを加える。`Unknown(unregistered)`。 |
+| `L8-K4-09-MISSING-NEW-INHERITED` | IV-K4-09 | `receive`; K4-I5 | unfinishedを保ち、新setに属する一件のinherited recordだけを除く。`Unknown(missing_input)`。 |
+| `L8-K4-09-MISSING-OLD-INHERITED` | IV-K4-09 | `receive`; K4-I5 | unfinishedを保ち、新setに無い旧一件のinherited recordだけを除く。`Unknown(missing_input)`。 |
+| `L8-K4-09-MISMATCH-NEW-INHERITED` | IV-K4-09 | `receive`; K4-I5 | unfinishedを保ち、新setに属する一件のinherited recordだけをfrom_viewの別記録へ替える。`Unknown(conflict)`。 |
+| `L8-K4-09-MISMATCH-OLD-INHERITED` | IV-K4-09 | `receive`; K4-I5 | unfinishedを保ち、新setに無い旧一件のinherited recordだけをfrom_viewの別記録へ替える。`Unknown(conflict)`。 |
+| `L8-K4-10-UNKNOWN-RETAINED` | IV-K4-10 | `evaluate`; K4-I6 | 一義務のreceipt resultだけをUnknownにする。非Value成分を除外してPositiveへしない。 |
+| `L8-G3-01-KIND-FIXED` | IV-G3-01 | `evaluate`; G3-I1 | 固定setのoracle.kindを評価時に変更できる引数が無いことを確認し、固定kindの義務を評価する。 |
+| `L8-G3-01-NEW-REVISION` | IV-G3-01 | `evaluate`; G3-I1/K2-I2 | `oracle.kind`を変えた新revisionのObligationSetをcurrent keyで照会し、旧revisionのValueだけが保存されていれば`Stale`。評価呼出し中にkindを差し替える入力経路は設けない。 |
+| `L8-G3-01-KIND-REVISION` | IV-G3-01 | `evaluate`; G3-I1/K2-I2 | oracle.kindを含むsetの新revisionを基準とし旧set結果だけを照会する。旧Valueは`Stale`。 |
+| `L8-G3-02-MECHANICAL-DETERMINISTIC` | IV-G3-02 | `evaluate`; G3-I2 | Mechanical義務に固定VerifierSetでdeterministicと宣言された正しいreceiptを使い、所定の機械検査結果を得る。 |
+| `L8-G3-02-MECHANICAL-NONDETERMINISTIC` | IV-G3-02 | `evaluate`; G3-I2 | 同じMechanical義務のreceiptをnondeterministic verifier由来にする。`Unknown(unsupported)`。 |
+| `L8-G3-03-LLM-ASSURANCE` | IV-G3-03 | `evaluate`; G3-I3 | LlmJudgment義務にnondeterministic verifierのreceiptを使い、assurance.reproduction=`Unknown(unsupported)`を残す。 |
+| `L8-G3-03-LLM-UNKNOWN` | IV-G3-03 | `evaluate`; G3-I3 | LLMのinner結果だけをUnknownにする。該当義務を肯定にしない。 |
+| `L8-G3-04-ACCEPTED-MATCH` | IV-G3-04 | `evaluate`; G3-I4 | 同target/revision/scope/decision_kindのaccepted source recordを既存adapterが対応づけた前提で、requires_positive義務を肯定する。人への追加依頼を行わない。 |
+| `L8-G3-04-NO-RECORD` | IV-G3-04 | `evaluate`; G3-I4 | 対象HumanDecision source recordを一件除く。`Unobserved(pending_receipt)`。 |
+| `L8-G3-04-TARGET-IDENTITY` | IV-G3-04 | `evaluate`; G3-I4 | source recordのtarget identityだけを別値にする。`Unobserved(pending_receipt)`。 |
+| `L8-G3-04-SCOPE` | IV-G3-04 | `evaluate`; G3-I4 | source recordのscopeだけを別値にする。`Unobserved(pending_receipt)`。 |
+| `L8-G3-04-DECISION-KIND` | IV-G3-04 | `evaluate`; G3-I4 | source recordのdecision_kindだけを別値にする。`Unobserved(pending_receipt)`。 |
+| `L8-G3-04-PENDING` | IV-G3-04 | `evaluate`; G3-I4 | decisionだけをpendingへ変える。`Unobserved(pending_receipt)`。 |
+| `L8-G3-04-OLD-REVISION` | IV-G3-04 | `evaluate`; G3-I4/K2-I2 | HumanDecision.target.identityを保ち、target.revisionだけを義務のtargetとは異なる旧値にする。record自身のrevisionとの混同なし。`Stale`。 |
+| `L8-G3-04-SAME-REV-DIGEST` | IV-G3-04 | `evaluate`; G3-I4/K2-I2 | HumanDecision.targetのidentity/revisionを義務と同じに保ち、target.digestだけを義務のtarget.digestと異ならせる。record自身のdigestとの混同なし。`Unknown(conflict)`。 |
+| `L8-G3-04-REJECTED-REQUIRES-POSITIVE` | IV-G3-04 | `evaluate`; G3-I4 | requires_positive=trueの義務でdecisionだけをrejectedにする。否定結果。 |
+| `L8-G3-04-REJECTED-RECORD-ONLY` | IV-G3-04 | `evaluate`; G3-I4 | requires_positive=falseの記録存在義務でdecisionだけをrejectedにする。義務記録自体は肯定、受入状態は出力しない。 |
+| `L8-G3-04-MACHINE-NOT-HUMAN` | IV-G3-04 | `evaluate`; G3-I4 | HumanDecision source recordが無く`Unobserved(pending_receipt)`となる基準入力へ、machine Positive receipt一件だけを加える。人記録の欠落は`Unobserved(pending_receipt)`のまま。 |
+| `L8-G3-04-UNAUTHORIZED-KIND` | IV-G3-04 | `derive`; G3-I4 | 人の記録を求めない固定source/ruleでHumanInterface義務を導出しようとする。L4どおり`Rejected`。 |
+| `L8-G3-05-COUNTS-ONLY` | IV-G3-05 | consumer projection; G3-I5 | oracle kind別の義務数を情報として表示し、合否や承認を加えない。 |
+| `L8-G3-05-NO-THRESHOLD` | IV-G3-05 | consumer projection; G3-I5 | 比率に閾値を適用して合否/承認を出す変異は`Rejected`。 |
+
+G3-I4のaccepted/mismatch fixtureは既存authority source recordを既存adapterが読む契約のcase分割であり、`HumanDecision`を公開APIへ直接渡す入力ではない。source/adapterの具体的identityが既存文書で未確定な部分は、本fixture設計から補わない。上表の正常source fixtureは設計入力例に留まり、製品sourceの実在を主張しない。
