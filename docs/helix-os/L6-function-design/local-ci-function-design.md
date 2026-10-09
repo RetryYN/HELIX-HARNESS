@@ -17,10 +17,10 @@ version_target: 1.0
 
 | 入力path | 本文SHA-256 |
 |---|---|
-| `docs/helix-os/L4-basic-design/local-ci.md` | `e7cf8d12704b3d241aba1b6342a9873a7ae4be98f7e41fb90290844a527965ae` |
-| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `2c30c82701758525a13822b69329cff67b8fd5485d3d5fc4dc1f6e285c63a7e1` |
-| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `05ba206ce78eaecba0585dec3d08fa18e6dfb6b31e80423b5fea1455ca08a868` |
-| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `8f19d4ead8729255bf9dc6efcbf83d1c3d41e46a9c46e7f3558f240037f1681b` |
+| `docs/helix-os/L4-basic-design/local-ci.md` | `67335ec320763485dc1d7c015b99a77d13d39e18ade31c0f35625ab68f0a23c4` |
+| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `ec07073b37c92af059d6ba6e4fbc3ec5db333ac1c9e109ffa928b0ec3ae3cfc7` |
+| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `6bdd7d498805a05b9950e415304b55568b5a1de9a3a1630b8eb2ab1026d6410f` |
+| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `2cbf810dd30ad8335b546535a0047f110781002e6543e55d2d3d255258cfd1c5` |
 
 ## 1. 関数群
 
@@ -155,6 +155,6 @@ K6の45 formal mapping rowsは43 primary callableと2 partial callable（UT-035/
 
 ### F-LCI-10の機構helper partition候補
 
-L5 §8.2で閉じる候補109 alias identitiesと20 implementation/test refs、helperの8 source-L6/L7 unique pathsを、既存F-LCI-10の第三partitionとして扱う。Core 586、製品補助27、helper 109のexpected sets/digestsを別々に再計算し、同一target tree内の722 unionにも一意性を検査する。Core 505 formal closure/495 mapping/10 dispositionと製品補助27は変更しない。helper identitiesはformal mappingや機構fixture coverageへ結ばない。
+L5 §8.2で閉じる候補109 alias identitiesと20 implementation/test refs、helperの12 source-L6/L7 unique pathsを、既存F-LCI-10の第三partitionとして扱う。Core 586、製品補助27、helper 109のexpected sets/digestsを別々に再計算し、同一target tree内の722 unionにも一意性を検査する。Core 505 formal closure/495 mapping/10 dispositionと製品補助27は変更しない。helper identitiesはformal mappingや機構fixture coverageへ結ばない。
 
-Trusted preflightは固定alias/pathとsource bytes digest、paired L6/L7 refsを確認し、ASTから列挙したclass/method identity集合をL5のliteral表と照合する。directory scan、任意module import、test名推測、formal ID生成はしない。欠落ref/identityは既存`Unknown(missing_input)`、duplicate/extra/cross-partition collision/digest mismatchは既存`Unknown(conflict)`、閉じたhelper metadataへの余分fieldは既存`Rejected(invalid_input)`としてsource suite境界へ保持する。これは設計候補であり、レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`のruntime runnerにはhelper109 source closureがまだ反映されていない。design manifestには本設計追補の固定identity/source closureが反映されているが、runtime runnerの更新やhelper partitionの実行を主張しない。
+Trusted preflightは固定alias/pathとsource bytes digest、paired L6/L7 refsを確認し、ASTから列挙したclass/method identity集合をL5のliteral表と照合する。directory scan、任意module import、test名推測、formal ID生成はしない。欠落ref/identityは既存`Unknown(missing_input)`、duplicate/extra/cross-partition collision/digest mismatchは既存`Unknown(conflict)`、閉じたhelper metadataへの余分fieldは既存`Rejected(invalid_input)`としてsource suite境界へ保持する。これは設計候補であり、レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`のruntime runnerにはhelper109 source closureがまだ反映されていない。L5のliteral identity表とSCF-B-0158のupstream source pinsが固定109 identities/20 source-test refsを保持する。design manifestは既存の設計ID・locator・edge構造を検証し、helper identity/source closureは持たない。runtime runnerの更新やhelper partitionの実行は主張しない。

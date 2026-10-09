@@ -9,7 +9,7 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `e6f459047ba99dd6a2f103658d5b370830abda2b183e2f7616b22cc08887fb16`である。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `67335ec320763485dc1d7c015b99a77d13d39e18ade31c0f35625ab68f0a23c4`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
@@ -165,7 +165,7 @@ IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそ�
 | `IV-LCI-108` | required supplemental source closure | 20 helper implementation/test refsとcorpus全体で14 unique L6/L7 pathsをtarget treeから読める | `test_resource_projection.py` helper refだけを欠落（L8 `CASE-L8-LCI-139`） | 既存pre-spawn `Unknown(missing_input)`、subset実行・receiptなし |
 | `IV-LCI-109` | 固定supplemental setは4機構27件で、CONNECTの未宣言methodを含めない | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにあり、CONNECTの未宣言class.method identityはない | 既存CONNECT module内の未宣言class.method identity一件だけを固定setへ追加（L8 `CASE-L8-LCI-140`） | `Unknown(conflict)`、未宣言CONNECT methodをscan/登録しない |
 | `IV-LCI-110` | 固定supplemental setは4機構27件で、Common Kernel K4/G3の未宣言methodを含めない | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにあり、K4/G3の未宣言class.method identityはない | 既存K4/G3 module内の未宣言class.method identity一件だけを固定setへ追加（L8 `CASE-L8-LCI-141`） | `Unknown(conflict)`、未宣言K4/G3 methodをscan/登録しない |
-| `IV-LCI-111` | helper109 identity完全性 | L5のhelper固定ID/digestと全required refがtargetにある | helper `SUP-CK-K9-001` callable一件だけを欠落させる（L8 `CASE-L8-LCI-142`） | `Unknown(missing_input)`、subset実行・complete artifactなし |
+| `IV-LCI-111` | helper109 identity完全性 | L5のhelper固定ID/digestと全required refがtargetにある | 固定expected set/digestは保持し、target source ASTから`SUP-CK-K9-001`に対応するcallable methodだけを欠落させる（L8 `CASE-L8-LCI-142`） | `Unknown(missing_input)`、subset実行・complete artifactなし |
 | `IV-LCI-112` | helper source bytesの固定 | `_private_resource_projection.py`のbytes digestが固定値と一致 | source bytesだけを変更する（L8 `CASE-L8-LCI-143`） | `Unknown(conflict)`、spawn前停止 |
 | `IV-LCI-113` | helper paired-document closure | corpus全体で14 unique L6/L7 pathsがtargetで解決する | SECURITY L7 refだけを欠落させる（L8 `CASE-L8-LCI-144`） | `Unknown(missing_input)`、helper suite未開始 |
 | `IV-LCI-114` | helper identity一意性 | 各helper identityは一度だけ存在する | K10 helper identity一件だけを重複させる（L8 `CASE-L8-LCI-145`） | `Unknown(conflict)`、deduplicateしない |

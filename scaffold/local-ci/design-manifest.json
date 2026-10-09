@@ -2423,7 +2423,7 @@
               ]
             },
             {
-              "literal": "helper `SUP-CK-K9-001` callable一件だけを欠落させる（L8 `CASE-L8-LCI-142`）",
+              "literal": "固定expected set/digestは保持し、target source ASTから`SUP-CK-K9-001`に対応するcallable methodだけを欠落させる（L8 `CASE-L8-LCI-142`）",
               "ids": [
                 "CASE-L8-LCI-142"
               ]
@@ -2471,7 +2471,7 @@
               ]
             },
             {
-              "literal": "bodyだけを134,756 bytesへ1 byte超過させる（L8 `CASE-L8-LCI-150`）",
+              "literal": "bodyだけを137,402 bytesへ1 byte超過させる（L8 `CASE-L8-LCI-150`）",
               "ids": [
                 "CASE-L8-LCI-150"
               ]
@@ -2558,7 +2558,7 @@
               ]
             },
             {
-              "literal": "helper103 identity完全性",
+              "literal": "helper109 identity完全性",
               "ids": [
                 "LC-STAGE1-L7-001"
               ]
@@ -2606,7 +2606,7 @@
               ]
             },
             {
-              "literal": "716結果frame上限",
+              "literal": "722結果frame上限",
               "ids": [
                 "LC-STAGE1-L7-001"
               ]

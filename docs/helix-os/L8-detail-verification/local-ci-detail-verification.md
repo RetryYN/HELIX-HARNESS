@@ -11,9 +11,9 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `f42a978ef80bdbfcbb90163479429b373cf9c04da19bdaca1955b7e20bfaabce`である。
+固定入力は対のL5本文SHA-256 `6bdd7d498805a05b9950e415304b55568b5a1de9a3a1630b8eb2ab1026d6410f`である。
 
-L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `989b24f583885d21422ad56e710395d75abce06efd7ced6a0b4d72fb225a3f8f`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
+L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `e6da449c1bb8bac3fe0994b131d1b46934f8f263305b34b2340debe724f1e172`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
 
 ## 1. Fixture規則
 
@@ -189,7 +189,7 @@ CASE-L8-LCI-105/106のoutcome変異はerror、expected failure、unexpected succ
 | `CASE-L8-LCI-140` | closed supplemental target setは4機構27件で、CONNECTの4件を含めない | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにある | 既存CONNECT module内の未宣言class.method identityを一件だけ固定setへ追加する | `Unknown(conflict)`、未宣言CONNECT methodをscan/登録しない |
 | `CASE-L8-LCI-141` | closed supplemental target setは4機構27件で、Common Kernel K4/G3の14件を含めない | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにある | 既存K4/G3 module内の未宣言class.method identityを一件だけ固定setへ追加する | `Unknown(conflict)`、未宣言K4/G3 methodをscan/登録しない |
 
-| `CASE-L8-LCI-142` | helper109 identity completeness | Core586・製品補助27・helper109の固定set/digestがtarget bytesと一致する | helper `SUP-CK-K9-001` callable一件だけをinventoryから欠落させる | `Unknown(missing_input)`、subset execution/complete artifactなし |
+| `CASE-L8-LCI-142` | helper109 identity completeness | Core586・製品補助27・helper109の固定set/digestがtarget bytesと一致する | 固定expected set/digestは保持し、target source ASTから`SUP-CK-K9-001`に対応するcallable methodだけを欠落させる | `Unknown(missing_input)`、subset execution/complete artifactなし |
 | `CASE-L8-LCI-143` | helper source/test bytes binding | 20 helper source/test refsが固定SHAと一致する | `_private_resource_projection.py`のbytesだけを変更する | `Unknown(conflict)`、suite spawn前に停止 |
 | `CASE-L8-LCI-144` | paired document closure | SECURITYを含む14 unique L6/L7 pathsがtarget treeにある | SECURITY L7 paired refだけをrequired refsから除く | `Unknown(missing_input)`、helper partitionを実行しない |
 | `CASE-L8-LCI-145` | helper identity uniqueness | helper identity setは一意である | `SUP-CK-K10-001` identity rowだけを二重にする | `Unknown(conflict)`、deduplicateなし |

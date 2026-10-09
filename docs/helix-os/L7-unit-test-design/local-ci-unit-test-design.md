@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `e6029e1078ea459b163f6a582395d5db722447df8b167fb3648922f904425522`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `1e35ef0d3fd129c7bc83d64f6e993047868c8122fab66b5530ecf073d046c4be`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -230,12 +230,12 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 | `UT-LCI-143` | UT-LCI-133の完全なsource/test inventory。Common Kernel K4/G3の14件は固定supplemental setに含まれない | 既存K4/G3 module内に未宣言class.method identityを一件だけ追加する | `Unknown(conflict)`、未宣言methodをscan/登録せず、27件のsupplemental setを維持する |
 
 | `UT-LCI-144` | Core586、製品補助27、helper109の固定identity setsと各digest、37 code/test refsと14 unique L6/L7 document refs、計51 refsを固定する | 変異なし | 三partition別count/digestとdisjoint union 722を照合。formal 505/495/10とproduct27 digestは不変。これは設計集合照合であり実行成功ではない |
-| `UT-LCI-145` | helper109固定identity setがtarget source bytesに全て存在する | helper `SUP-CK-K9-001` identityだけを期待setから欠落させる | pre-spawn `Unknown(missing_input)`、subset execution/artifact/positive receiptなし |
+| `UT-LCI-145` | helper109固定identity setがtarget source bytesに全て存在する | 固定expected set/digestは保持し、target source ASTから`SUP-CK-K9-001`に対応するcallable methodだけを欠落させる | pre-spawn `Unknown(missing_input)`、subset execution/artifact/positive receiptなし |
 | `UT-LCI-146` | helper IDsは一意でproduct/Coreともdisjoint | helper `SUP-CK-K10-001` rowだけを重複させる | `Unknown(conflict)`、deduplicateしない |
 | `UT-LCI-147` | 三partition identity setsは相互にdisjoint | helper `unittest_identity`一件だけをCore identityと一致させる | `Unknown(conflict)`、片側を選ばず実行しない |
 | `UT-LCI-148` | helper tableは109の固定alias/callableのみを列挙する | 固定module alias内に未宣言のclass.method identityを一件追加する | `Unknown(conflict)`、scan/importによる自動追加なし |
 | `UT-LCI-149` | helper source/test refsのbytesはL5 §8.2 SHAと一致する | `_private_resource_projection.py` bytesだけを別内容へ置換する | `Unknown(conflict)`、suite spawn前に停止 |
-| `UT-LCI-150` | helperの8 unique L6/L7 pathsは全てtarget treeから読み込める | SECURITY L7 refだけをrequired helper refsから欠落させる | `Unknown(missing_input)`、helper subset実行なし |
+| `UT-LCI-150` | helperの12 unique L6/L7 pathsは全てtarget treeから読み込める | SECURITY L7 refだけをrequired helper refsから欠落させる | `Unknown(missing_input)`、helper subset実行なし |
 | `UT-LCI-151` | `MechanismHelperIdentity`の閉じたfield setにformal ID fieldはない | helper identity一行に`formal_l7_id`だけを追加する | `Rejected(invalid_input)`、formal mappingを生成しない |
 | `UT-LCI-152` | discovered/executed helper IDsは109件・digest一致し、5 outcome groupsと整合する | helper executed IDsから一件だけを落とす | `Unknown(conflict)`のnoncomplete diagnostic。complete summary/positive receiptなし |
 | `UT-LCI-153` | 722 identitiesの5-family maximum body/capture/frameは137,401/137,402/183,978 bytes、候補boundは137,401/137,402/184,108 | runner bodyだけを137,402 bytesへ1 byte超過させる | `Unknown(conflict)`、切詰めからcomplete artifact/receiptを作らない |

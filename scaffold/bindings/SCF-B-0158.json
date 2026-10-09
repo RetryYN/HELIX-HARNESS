@@ -10,32 +10,32 @@
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
-      "sha256": "e6f459047ba99dd6a2f103658d5b370830abda2b183e2f7616b22cc08887fb16",
+      "sha256": "67335ec320763485dc1d7c015b99a77d13d39e18ade31c0f35625ab68f0a23c4",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "5a685849d727d1463bd23f001c1284199fa9a91e25eac04da91de2ca6c0b39bb",
+      "sha256": "ec07073b37c92af059d6ba6e4fbc3ec5db333ac1c9e109ffa928b0ec3ae3cfc7",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "f42a978ef80bdbfcbb90163479429b373cf9c04da19bdaca1955b7e20bfaabce",
+      "sha256": "6bdd7d498805a05b9950e415304b55568b5a1de9a3a1630b8eb2ab1026d6410f",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "84a97096bed3e717cabc41c41a7853e3e3090511b5ee429a13933dbcd3d82887",
+      "sha256": "3816963e7db801ee98735fa6a47d824ca78ad2e9d4df13a1b7857a9b228c79e0",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "e6029e1078ea459b163f6a582395d5db722447df8b167fb3648922f904425522",
+      "sha256": "1e35ef0d3fd129c7bc83d64f6e993047868c8122fab66b5530ecf073d046c4be",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "989b24f583885d21422ad56e710395d75abce06efd7ced6a0b4d72fb225a3f8f",
+      "sha256": "e6da449c1bb8bac3fe0994b131d1b46934f8f263305b34b2340debe724f1e172",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
