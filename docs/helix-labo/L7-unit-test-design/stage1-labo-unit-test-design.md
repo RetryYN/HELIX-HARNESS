@@ -7,12 +7,12 @@ paired_l6: ../L6-function-design/stage1-labo.md
 paired_l8: ../L8-detail-verification/stage1-labo-detail-verification.md
 base: main `7f95f61fc1e1ae1dd790fa46581aba34921d73c0`
 paired_l5_sha256: `0311794cd1fdb73673449de96bf3ea50d981ce6ed701443ff71292e266e4cc97`
-paired_l6_sha256: `fd934bc04801e8dd9a9f0ec4c4df6756540cb80af691b6509b568795a52376ed`
+paired_l6_sha256: `2e50852c9abeacb5096fb3ccd0050d4209bb8fd4788a66e819fb6bb5fce1cb2d`
 ---
 
 # HELIX-LABO Stage 1（001／011）単体テスト設計
 
-本書はL5/L6候補に対する単体fixtureの設計索引である。対象L8 bytesの88定義IDを全件保持する。内訳は83個のfunctional/status/scope variantと5個のNFR再利用索引であり、再利用索引は実fixtureでも測定実行でもない。L9の35 oracle ID（28 functional、5 NFR、2 scope）との対応は後段の表で全件列挙する。L8正式fixture・L9 oracle・source reader・接続は未実行であり、§6の合成private-helper検査だけを別に記録する。合格、実source read、実CONNECT通信、NFR実測を主張しない。
+本書はL5/L6候補に対する単体fixtureの設計索引である。対象L8 bytesの88定義IDを全件保持する。内訳は83個のfunctional/status/scope variantと5個のNFR再利用索引であり、再利用索引は実fixtureでも測定実行でもない。L9の35 oracle ID（28 functional、5 NFR、2 scope）との対応は後段の表で全件列挙する。L8正式fixture・L9 oracle・source reader・接続は未実行であり、§6–7の合成private-helper検査だけを別に記録する。合格、実source read、実CONNECT通信、NFR実測を主張しない。
 
 ## 1. 固定本文と対応境界
 
@@ -184,7 +184,7 @@ L9 oracleごとにL8の明示参照を集約した。表のL8 ID集合はL8各�
 
 ## 5. 実行状態・検証境界
 
-L8正式fixtureは実行していない。L6/L8/L9と88定義ID/35 oracle IDの文書上の対応を静的に保持するものであり、L3/L10 acceptance、source permission、K2 store/lookupの実動作、CONNECT owner、NFR測定、production owner mappingを証明しない。§6の合成テストは当該private projection helperの局所shapeだけを検査する。K8 typo PR #2779 crosswalkの3 pinはmain `590054d60cddfefc9f709c3221ccc954c67b0e75`固定snapshotで照合済みであり、旧revision `79013543184a6e47f99bc2ded1bb7a2e7f85737e`時点の未照合記録を現在の未解決事項として扱わない。
+L8正式fixtureは実行していない。L6/L8/L9と88定義ID/35 oracle IDの文書上の対応を静的に保持するものであり、L3/L10 acceptance、source permission、K2 store/lookupの実動作、CONNECT owner、NFR測定、production owner mappingを証明しない。§6–7の合成テストは各private helperの局所shapeだけを検査する。K8 typo PR #2779 crosswalkの3 pinはmain `590054d60cddfefc9f709c3221ccc954c67b0e75`固定snapshotで照合済みであり、旧revision `79013543184a6e47f99bc2ded1bb7a2e7f85737e`時点の未照合記録を現在の未解決事項として扱わない。
 
 ## 6. Source-only private projection候補の補助単体検査
 
@@ -199,6 +199,21 @@ L8正式fixtureは実行していない。L6/L8/L9と88定義ID/35 oracle IDの�
 
 L6§6の候補コードは正式packではなく、L7本文上の88定義ID／35 oracle索引にも追加していない。補助検査の成功をowner/API接続や、L8/L9の実fixture実行証拠に数えない。現行sourceの欠落mapping、`lab_processing`、K2、CONNECT、因果性、NFR測定は既存L8§5のpartial/hold/uncovered区分を維持する。
 
-### 実行記録
+### §6の実行記録（384c741時点）
 
 実行したのは上記4件のprivate-helper合成単体検査だけである。コマンドは`PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s helix/helix-labo/units/stage1-labo/tests -v`。結果は4 tests、4 pass、0 fail。実行対象source SHA-256は`5c61fe620c35eeb2786b740ccd37086e0e81bdf797a95cbf9588c585537ab60a`、test SHA-256は`a60abe0042543a6bceedbff4f284356dc2d2c347343ba6469423e1dd26b9613c`。この結果はL8正式fixtureやL9 oracleの実行ではない。実行時の入力文書はL4 `b55d062fbdbe39c3af7ae8364f4e84316518af80496687985952285b425977e6`、L5 `2619a557507258a79630c1bdc06aea72aad0c64aa27202dba04a4083080f5148`、L8 `b0ec0fa261b7899bda1384c75467bee4a3ea057b6fbffde380234ea31ffe1193`、L9 `1a17b42a96d53abfbc59c5b0f65805662234162d9bd0d12667238749c2d65d7e`。
+
+## 7. AggregateObservation private assemblerの補助単体検査
+
+以下2件はL6 §7の`_assemble_aggregate_observation`だけを対象とする合成補助検査であり、L7の83 formal definition、5 NFR reuse index、L9の35 oracleには追加しない。既存L6 §6の4 test名とsource/test bytesは変えない。inputはowner readerから得た結果ではなく、既存shapeの保持だけを確かめる合成値である。
+
+| 補助test | baseline | 単一変異・観測 | 局所期待 | formal coverage境界 |
+|---|---|---|---|---|
+| `test_assembles_exact_five_fields_and_retains_all_existing_k1_variants` | 全20 fieldが存在するSourceObservation field mapping、2つの別SubjectRef、source status、既存K1 `Observed`を入力する。`lab_processing`は`Value`/`Unknown`（nested evidence含む）/`Unobserved`/`Stale`/`NotApplicable`を一度ずつ与える。 | 変異なし。5種類の既存K1 objectを各subtestに単独で与える。 | 出力dataclassのfield集合はL5の5 fieldと完全一致。2 refs/source status/各K1 objectを同一instanceで保持し、20 field valuesも各元objectを保持。nested Unknown evidenceを変更しない。 | private assemblyのみ。K1生成、公開aggregate API、L8 fixture classの合格を主張しない。 |
+| `test_one_missing_field_and_present_falsy_values_are_local_and_inputs_unchanged` | 20 field mappingを使い、`time=0`, `artifact=""`, `result=False`を設定した入力を保持する。加えて2つのSubjectRef、source status、既存K1 observationを入力する。 | `deployment`の1 field keyだけを除く。 | `deployment`だけ既存Missing sentinel、残る19 fieldはPresent。`0`, 空文字, `False`をMissingへ変換せず、入力mapping不変、2 refs/status/lab_processingを同一instanceで保持。 | field assemblerの局所検査。L8の20個の正式API変異を実行したことにはならない。 |
+
+この2件は既存L7 formal table・NFR reuse索引・L9 oracle表へ追加せず、K2/C14 mappingやL8 §5のpartial/hold/uncoveredを解消しない。
+
+### 実行記録
+
+実行したのはLabo stage1 unit directory内の既存4 private projection testsと本節2 assembler testsである。コマンドは`PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s helix/helix-labo/units/stage1-labo/tests -v`。source filesは`projection.py` SHA-256 `5c61fe620c35eeb2786b740ccd37086e0e81bdf797a95cbf9588c585537ab60a`と`_private_aggregate_assembly.py` SHA-256 `685b867b90844827e6a1639c29206cadfa4d086352698b5a86ab32aafb586d49`、test filesは`test_projection.py` SHA-256 `a60abe0042543a6bceedbff4f284356dc2d2c347343ba6469423e1dd26b9613c`と`test_aggregate_assembly.py` SHA-256 `1b4d54aaea45fb80799495fdaab5f00e3e5a986fb4f7817ae533d3a6bdc850a1`。結果は6 tests、6 pass、0 fail。これは補助private-helper検査でありL8正式fixture/L9 oracleの実行結果ではない。
