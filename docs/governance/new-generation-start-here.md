@@ -37,7 +37,7 @@ HARNESS-L2-029＝CORE、031＝共通部品、032＝CORE。SECURITYは全操作�
 2. [Concept本文](../concept/helix-concept.md)と[製品責務境界](../concept/product-boundary.md)
    - 旧4対象（HARNESS、OS、Web、WEB-OS）のL1の承認は[2026-09-17 decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)に記録されている
 3. [HELIX自体の5大目標候補](../concept/helix-five-goals.md)
-4. [HELIXエージェントの七大原則候補](../concept/helix-principles.md)
+4. [HELIXエージェントの七大原則](../concept/helix-principles.md)（POの指令。[判断記録](decisions/principles-are-po-directive-po-decision-2026-10-10.md)）
 5. 対象機構のL1
    - [HELIX-HARNESS](../helix-harness/L1-planning/product-intent.md)
    - [HELIX-OS](../helix-os/L1-planning/system-intent.md)
@@ -68,8 +68,8 @@ HARNESS-L2-029＝CORE、031＝共通部品、032＝CORE。SECURITYは全操作�
    個別採否時は[判断ログ契約](legacy-asset-decision-log.md)に従う
 
 repository foundation、5大目標候補、七大原則候補の順に物理統合し、
-Concept／製品責務境界→5大目標→七大原則→対象別L1の読込順へ収束させる。5大目標と七大原則の内容判断は、
-各候補PRのmerge admissionと独立したまま扱う。repository foundationは構造整理の証拠だけで統合済みである。
+Concept／製品責務境界→5大目標→七大原則→対象別L1の読込順へ収束させる。5大目標の内容判断は、
+候補PRのmerge admissionと独立したまま扱う。七大原則はPOの指令であり、承認の対象ではない。repository foundationは構造整理の証拠だけで統合済みである。
 Conceptは[1ファイル](../concept/helix-concept.md)をその場で改訂する。版ごとのファイル、改訂ごとの承認記録、昇格手続きは置かない。
 改訂は人の指示をAIが反映し、変更の履歴はgitに残す。版ごとのファイルは残さない。v4.1／v4.2のファイルは下位文書の親付替えと同時に削除済みで、過去の本文はgitの履歴で辿る。
 Conceptの改訂に紐づく下位文書は見直し対象として示し、作業全体を止めない。v4.3への改訂（2026-09-24）の見直し対象は、
