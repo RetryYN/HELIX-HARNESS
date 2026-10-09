@@ -1,13 +1,13 @@
-# HELIX-HARNESS 共通カーネル L6関数設計（K1/K2/K3/K4/G3/K5/K6）
+# HELIX-HARNESS 共通カーネル L6関数設計（K1/K2/K3/K4/G3/K5/K6/K7/G5）
 
 status: draft
 owner: HELIX-HARNESS
-scope: K1/K2/K3/K4/G3/K5/K6
+scope: K1/K2/K3/K4/G3/K5/K6/K7/G5
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `d5bb3455526c816b3af965db239c4b56207a884f` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7` and intermediate base `f75199749888f7261772ba26e9feb58a33d9a04f` retained as history)
+base: `main` at `30e957ee900da7735b6c691bdb63b55cae7a0c95` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7` and intermediate base `f75199749888f7261772ba26e9feb58a33d9a04f` retained as history)
 
-本書は現行Common Kernel L4 K1/K2/K3/K4/G3/K5/K6の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/G3は本書§14、K6は§13で既存L5/L8設計を関数責務へ下ろす。K7–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
+本書は現行Common Kernel L4 K1/K2/K3/K4/G3/K5/K6/K7/G5の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/G3は本書§14、K6は§13で既存L5/L8設計を関数責務へ下ろす。K8–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
 
 ## 1. 入力revisionと適用範囲
 
@@ -248,7 +248,7 @@ Python 3.11+の標準`json` optionは一次仕様に記載される（[Python 3.
 
 K2 `key_of`はL5の専用`KeyOfResult`を返し、L4 §3.4が定める`missing_key`→`invalid_digest`→`duplicate_identity`の検査順を実装候補へ展開する。これらはK2 API境界の拒否であり、K1 `ApiBoundaryResult<T>`、`UnknownReason`、`record`の返却unionへ追加しない。役割内aliasの異なるraw refはL4 §3.4.1どおり`key_of`前に`Rejected(missing_key)`とする。
 
-K3は§12、K6は§13で詳細化する。K7–K10は本書で`not_designed`。既存契約とoracleはCommon Kernel L4 §4–11、追加所有者節§14 (K10)、§15 (K7)、§17 (K9)、§18 (K8)、ならびにPair L9の対応IVを参照する。本書ではK7–K10の型やalgorithmを再記述しない。K1/K2からK5/K6へ渡す境界は§3.2、K3のK5/K6/K7境界は§12、K6のK5/K2接続は§13であり、physical writer、production verifier/reader、未定義owner責務を追加しない。
+K3は§12、K6は§13で詳細化する。K8–K10は本書で`not_designed`。既存契約とoracleはCommon Kernel L4 §4–11、追加所有者節§14 (K10)、§15 (K7)、§17 (K9)、§18 (K8)、ならびにPair L9の対応IVを参照する。本書ではK8–K10の型やalgorithmを再記述しない。K1/K2からK5/K6へ渡す境界は§3.2、K3のK5/K6/K7境界は§12、K6のK5/K2接続は§13であり、physical writer、production verifier/reader、未定義owner責務を追加しない。
 
 ## 7. 旧HELIX source・保持点・差分理由
 
@@ -407,7 +407,7 @@ K3 L8の194個別fixtureに一つずつ対応する`tests/test_k3.py`の静的un
 | `python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k3.py'` | CK-K3-UT-001–194とCK-K3-REG-* 26件 | 220 tests, OK。formal 194件と回帰26件を区別し、owner/K5/K6/K7境界は合成stub。 |
 | `python3 -m py_compile helix/helix-harness/units/common-kernel/src/permission.py helix/helix-harness/units/common-kernel/tests/test_k3.py` | K3候補moduleと単体test | 成功。 |
 
-この結果はK3 pure projection/case behaviorの候補単体検証に限る。private owner-port stubはsynthetic typed inputだけを与え、実source reader/登録確認/署名真正性、expiry/signature policy、K5 prefix/read/restore、K6 binding/raw byte実読、K7 apply/recovery、L9 oracle、CIへのK3登録、製品動作、外部作用の証拠ではない。revocation回帰はhead setの順序非依存・exact重複dedupとowner observation key/evidence保持を確認するが、K5実読を証明しない。`allow`と非空`constraints`の同時存在mappingはL4/L5で未決のままであり、既存Unknown(unsupported)を用いた非肯定回帰だけを加えた。K3実行記録やowner接続をmain上の完了として扱わない。K7–K10詳細は`not_designed`のままであり、K4/G3は§14、K5は§2–5/§7、K6は§13に記載する。
+この結果はK3 pure projection/case behaviorの候補単体検証に限る。private owner-port stubはsynthetic typed inputだけを与え、実source reader/登録確認/署名真正性、expiry/signature policy、K5 prefix/read/restore、K6 binding/raw byte実読、K7 apply/recovery、L9 oracle、CIへのK3登録、製品動作、外部作用の証拠ではない。revocation回帰はhead setの順序非依存・exact重複dedupとowner observation key/evidence保持を確認するが、K5実読を証明しない。`allow`と非空`constraints`の同時存在mappingはL4/L5で未決のままであり、既存Unknown(unsupported)を用いた非肯定回帰だけを加えた。K3実行記録やowner接続をmain上の完了として扱わない。K8–K10詳細は`not_designed`のままであり、K4/G3は§14、K5は§2–5/§7、K6は§13に記載する。
 
 ## 13. K6 関数設計
 
@@ -584,3 +584,86 @@ L4 §13.6/L5 §8.1の9旧assetについて、archiveの指定spanを実読し、
 対応するunitは`tests/test_k4_g3_private_helpers.py`に限定し、fixture入力境界から先のhelper assertionを検査する。この候補でprivate helper assertionを実行したL8 IDは`L8-K4-01-COMPLETE/MISSING/EXTRA/EMPTY-SET`、`L8-K4-05-NA-VALID/DEFERRED-VALID/NA-MISSING-REASON/NA-MISSING-AUTHORITY/NA-MISSING-REENTRY/DEFERRED-MISSING-TARGET/DEFERRED-MISSING-OWNER/DEFERRED-MISSING-DISCHARGE`、`L8-K4-09-RECEIVE-MATCH/MISSING-NEW-UNFINISHED/MISSING-OLD-UNFINISHED/EXTRA-UNFINISHED/MISSING-NEW-INHERITED/MISSING-OLD-INHERITED/MISMATCH-NEW-INHERITED/MISMATCH-OLD-INHERITED`の20件である。ID対応はhelperの比較範囲だけを示し、L8ケース全体やL9 oracleの実行ではない。`EMPTY-SET`の既存K1 whole `set_reason`確認は既存`combine([])`を直接使い、新しい診断を作らない。
 
 実装状態は以下のとおり。73 fixture全体は未実行であり、20件はhelper-level assertionのみ、残り53件は未実装/未実施である。`CK-K4-UT-005`（公開API signature）と`CK-K4-UT-027`（Deferredを合成で落とさない）はこのhelperで扱わない。既存K2 lookup、K5 restore、K6 required/admit/reverify、OperationDecl/VerifierSet current source reader、K4 6 public APIは未接続であり、typed observation 36件はpartial実装と数えない。G3-I4 13件とG3-I5 2件はL4/L5 owner/API未接続のholdのまま、missing sourceを`Unobserved`へ写さない。K4/G3設計はCI登録、L9合格、owner source接続、製品動作を意味しない。
+
+## 15. K7/G5 関数設計
+
+本節はmain `4eefaafd153d1fe48f52d29cfc4eab14b1fb55df`にある既存Common Kernel L4 §15、L5 §11、L8 §10、L9 `IV-K7-01–15` / `IV-G5-01–10`の契約を、内部関数責務へ対応づける。これらは設計入力であり、fixture実行、owner接続、物理writer、内部デプロイの合格を示さない。既存K1/K2/K3/K4/G3/K5/K6 API、結果型、reason、K7/G5の9公開APIを変更しない。
+
+直接由来はL4 §15.1のAC-OS-014-01/04/06、INFRA-005-AC-03/INFRA-006-AC-03、AC-HARNESS-L3-010-01/03・021-03、SECURITY-AC-009-01、2026-10-08方針6のPO判断に限る。K3 IV-K3-11/12/17、K5 event、K6 receipt、K10 graphは境界参照であり、新しい親へ昇格させない。
+
+### 15.1 固定入力と旧source
+
+| source | 現行固定revisionとcontent SHA-256 | 対象 |
+|---|---|---|
+| Common Kernel L4 | main `4eefaafd153d1fe48f52d29cfc4eab14b1fb55df`; `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82` | §15.1–15.10（型、K7/G5不変条件、9 API、保証限界） |
+| Common Kernel L5 | main `4eefaafd153d1fe48f52d29cfc4eab14b1fb55df`; `445c564a7b5678d7609daf4142090a26a3df73ce76522a29771a6dad5cdce3f2` | §11.1–11.5（9 API、型、invariant trace、owner境界） |
+| Common Kernel L8 | main `4eefaafd153d1fe48f52d29cfc4eab14b1fb55df`; `9c895a423071749a8af067736f83efd4c42c56375bff3fd653e907b361f2ea7a` | §10.1–10.3（115個別fixture ID、K3-17/LDG-03境界） |
+| Common Kernel L9 | main `4eefaafd153d1fe48f52d29cfc4eab14b1fb55df`; `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | IV-K7-01–15、IV-G5-01–10、IV-LDG-01–04。K3-17は接続境界。 |
+
+L4 §15.1/15.7に記録された旧source指定spanを読み、archive full-file SHA-256とledgerの`source_sha256`を照合した。旧source、CLI、runtime、test、CIは読取のみで、実行していない。
+
+| asset / 旧source path:行 / full-file SHA-256 | 台帳 | 保持点 | 現行での差分と理由 |
+|---|---|---|---|
+| `LEGACY-ASSET-B6DC14C1DA937E3AC96C` / `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/node-runtime-cutover.md:47–53,106–112,123–129` / `49f3e4c324b19e728f7c05787bbd698f841728a526eedc7cec3f756b3601e9f9` | row 570; Historical/unresolved | pointer一件CAS、commit直前のauthority/writer epoch/lease再読、CAS敗者と古いfenceの作用0。 | runtime切替の状態機械やwriterは複製せず、L4 K7の段階世代pointer契約へ意味再導出。 |
+| `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` / `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:117,198` / `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` | row 424; RequirementSourceSnapshot; consumer_refs `requirement-carry-forward-ledgers`, `requirement-atomization-review` | 失効runの遅着結果をcommitせず、lease失効後の作用をfence不一致で拒否する歴史。 | source snapshotをcurrent要求やauthorityへ昇格しない。現行期待は承認済みL4 K7-I6に従う。 |
+| `LEGACY-ASSET-BC2275DCE9BFFCF813C8` / `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/python-worker-runtime.md:133–136` / `4c26544b5cf6e63ed226838ff5e04b3a669f6a9aa13456ffc5e5fb41fc755f8a` | row 577; Historical/unresolved | cancel/timeout/reassignment後の古いfenceによるlate result拒否、新ownerは新しいrun/checkpointから再開。 | 旧runtimeを起動・移植せず、K7-I6の既存EpochToken比較へ再導出。 |
+| `LEGACY-ASSET-1B413588CFF3B1360B49` / `archive/legacy-generation-2026-09-14/root/docs/adr/ADR-009-node-python-linux-runtime.md:113–120` / `bdd1c9a00243b723342e42531ddeabbf2f7570594943c11226d5b0461769753c` | row 266; Historical/unresolved | 可逆切替、明示許可rollback、自動fallback禁止。 | Node/Bun選択・自動切戻しは採らず、既存K7-I3/I4/I5とPhase 2判断境界を保持。 |
+| `LEGACY-ASSET-D461943347D372ECF6DA` / `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md:33,43` / `38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16` | row 869; Historical/unresolved; 未承認candidate | revokeを新規処理だけでなくin-flight lease/credential/artifact accessへ伝える歴史的候補。 | 未承認candidateから要求や受け手一覧を作らない。現行recipient/class集合はL4 G5と承認済SECURITY-AC-009-01から得る。 |
+
+受け手の全集合を依存グラフの影響から導くG5と、型番台帳をK5 logとして表す提案は旧sourceに同じ契約を確認できず、L4 §15.7が新規案と記録している。既存L4/L9より意味を広げず、物理writer、K3許可、K5 append/read、K6 receipt、K10 graph、SECURITY recipient owner、runtime observationをここで実装したことにしない。
+
+### 15.2 9公開APIとprivate function境界
+
+公開APIのsignatureと返却unionはL4 §15.6/L5 §11.3のまま用いる。次のprivate helper番号はL7 traceのための設計locatorであり、公開API、owner callback、例外/reason、保存形式を追加しない。`input_heads`は呼出側がownerのcurrent ref/headを選ぶ入力ではなく、current owner readとの照合用期待値に限る。`K7SnapshotRole`/`K7SnapshotHead`はK2 aliasとは独立したK7 role wrapperである。
+
+| helper候補 | 接続する既存API | 担当する既存契約・戻りfield locator | owner/physical boundaryと状態 |
+|---|---|---|---|
+| `CK-K7G5-FN-01 pointer_current` | `request_move`, `ledger_view` | PointerLogのpointer_writer segment内seqと先行segmentへのWriterHandoff連鎖からcurrent `Generation`を読む。`LedgerView.target.generation`へ同じprojectionを供給。 | K5 restore/current-head・PointerLog ownerが未接続。指定prefixを渡したpure order projection候補のみ。欠損をValue化せずL4既存`Unknown(missing_input)`保持。 |
+| `CK-K7G5-FN-02 stage_eligibility` | `stage_generation`, `request_move` | Generationのtarget/composition・ReleaseEstablished・ManifestRef exact照合、kind別new/current/held条件、stage_key由来条件を比較。`GenerationStaged`または`MoveRequested.eligibility`の既存field位置へ対応。 | ReleaseLog/manifest/K5 reader、OS/build current OperationDecl・VerifierSet、K6 receipt未接続。public結果はL4の`Appended`/`Rejected(not_eligible)`の範囲であり、helperから追記しない。 |
+| `CK-K7G5-FN-03 move_snapshot` | `request_move`, `apply_move`, `verify_current` | current stage/build OperationDecl・VerifierSet・RL-R2(a)–(d) refs/headsをrole付きK7 snapshot集合として照合。`MoveRequested.eligibility_snapshot`と`PointerMoved.checked_heads`を別fieldに投影。 | OS/build declaration/ref/head resolver未接続。callerが渡す期待headsをcurrent sourceにしない。 |
+| `CK-K7G5-FN-04 apply_precondition` | `apply_move`, `append_if_head` | `request.pointer_head`、from/current、eligibility snapshot、K3 current permissionをcommit境界前に照合し、head一致時の一行append条件へ渡す。head不一致の既存`Rejected(stale_head)`とeligibility driftの`Rejected(stale_eligibility)`を区別。 | K3 permission ownerおよびK5 atomic compare-and-append未接続。純粋な入力比較候補で、追記や原子性を主張しない。 |
+| `CK-K7G5-FN-05 verify_current_inputs` | `verify_current` | checked_headsを履歴として保ちつつ、current owner declarationsから同じ依存集合を新導出し、全fixed refsのbytes/digestとcurrent headsを再取得した結果で適格性を再計算。`Observed<RequiredResult>`と必要時の`RollbackRequired`位置を維持。 | current owner source、fixed bytes reader、K6 receipt、K5 writer未接続。既定readerで`Observed`を合成しない。 |
+| `CK-K7G5-FN-06 immediate_recovery_position` | `recover_move_observation`, `ledger_view` | `MoveAuthorizationObserved`を同じPointerLog segmentのPointerMoved seq+1、同じmove digest、phase、observed_atで分ける。recovery診断は`LedgerView.target.recovery_diagnostics`に保持し、欠けたimmediateを補わない。 | K5 segment reader/writerとK3 permission current-source未接続。停止注入・実ログは設計のみ。既存`Rejected(not_a_move | already_immediate)`以外のreasonを追加しない。 |
+| `CK-K7G5-FN-07 failure_state_projection` | `apply_move`, `ledger_view`, `propagate` | failure後のRollbackRequired、pointer不変、case state/incident不変を別source/fieldに保持し、自動切戻しを出力しない。 | K5 append/store・実failure producer未接続。局所immutability projection/assertion候補だけであり、public actionを実施しない。 |
+| `CK-K7G5-FN-08 effect_fence` | `admit_effect`, `apply_move` | scope/number/entry_digestのEpochToken一致→Propagation Positive→新しい許可記録の既存順序を照合し、old-token observationをLateObservationに分ける。 | EpochLog/current permission/propagation readerと作用consumer未接続。既存`Rejected(fenced | revocation_pending | missing_authorization)`だけを保ち、作用0を設計期待とする。 |
+| `CK-K7G5-FN-09 ledger_projection` | `ledger_view` | 台帳rows、ReleaseLog release、PointerLog target `{generation, immediate_check, recovery_diagnostics}`、RuntimeLog actualをfield別に投影し、互いを補完に使わない。 | 各K5 source reader/project未接続。raw sourceを与えたpure separation assertion候補。K5保存・registry・登録は追加しない。 |
+| `CK-K7G5-FN-10 recipient_set_projection` | `propagate` | current GraphDecl/GraphRulesからK10照会→impact→review_setで得るaffected/review義務identityをRecipientMap classへ写し、同一identityの全class、全graph/review component、empty set_reasonを保持。 | K10 current graph/rules query、SECURITY RecipientMap、review-set owner未接続。候補値からcurrent owner sourceを生成せず、unmapped kindは既存`Unknown(unregistered)`を保持。 |
+| `CK-K7G5-FN-11 recipient_status_projection` | `propagate` | 各recipient current RecipientDecl SubjectRefでrevocation_apply keyを作る既存L5境界に接続し、K2 lookup/K6 required receiptから全inner、`set_reason`、`assurance`をidentity/verifier/check別に保つ。 | RecipientDecl/OperationDecl/VerifierSet current owner、K5 sequence restore、K6 reader未接続。receipt受領・適用・実作用や署名真正性を合成しない。 |
+
+9つの公開APIへの結線は次表の範囲に限る。`append_if_head`はK5 owner受口でありL6候補はhead比較とhandoff境界までである。
+
+| 既存公開API | L6 private function候補 | 既存戻りの観測位置・接続保留 |
+|---|---|---|
+| `stage_generation(generation)` | FN-02 | `Appended(GenerationStaged)` / `Rejected(not_eligible)`。ReleaseLog・固定manifest readerとOS pointer writer未接続。 |
+| `request_move(target, from, to, kind, authorization, input_heads)` | FN-01/02/03 | `Appended(MoveRequested)` / `Rejected(stale_from | not_eligible)`。current stage/build owner、K3、RequestLog append未接続。 |
+| `apply_move(request, input_heads)` | FN-03/04/05/06 | `Appended(PointerMoved)`、`AppliedUncertain(event, check, unfinished)`、既存`Rejected(stale_head | stale_eligibility | authorization_unverified, check)`。K3 current auth、K5 CAS、post-append observer未接続。 |
+| `recover_move_observation(move_ref, input_heads)` | FN-06 | `Appended(MoveAuthorizationObserved)` / `Rejected(not_a_move | already_immediate)`。回復は診断行保存であり即時成功ではない。K5 append未接続。 |
+| `verify_current(target)` | FN-03/05/07 | `Observed<RequiredResult>`とRollbackRequired field。fresh current readがなければ公開観測を作らずowner接続保留。 |
+| `append_if_head(segment, expected_head, entry)` | FN-04 | `Appended` / `Rejected(stale_head)`。物理atomicityはrepository-layout RL-P7 owner。 |
+| `admit_effect(effect, epoch_token, input_heads)` | FN-08 | `Appended` / 既存`Rejected(fenced | revocation_pending | missing_authorization)`。実作用・authorization producerなし。 |
+| `propagate(revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, recipient_decls, verifier_set, input_heads)` | FN-10/11 | `Observed<PropagationView>`の`recipients`/`combined`/`assurance`と元K10/K6診断。owner current sourceなしにPositiveやrecipient refを合成しない。 |
+| `ledger_view(input_heads)` | FN-01/06/09 | `Observed<LedgerView>`の`rows`/`release`/`target`/`actual`。PointerLogからactual、RuntimeLogからtarget、requestからどちらも導かない。各K5 reader未接続。 |
+
+### 15.3 invariantからL9 oracleへのtraceと設計限界
+
+| L4 invariant | L6 helper候補 | L9 oracle | L8 fixture family |
+|---|---|---|---|
+| K7-I1 | FN-01 | IV-K7-01 | L8-K7-01-* |
+| K7-I2 | FN-03/04 | IV-K7-02/11/12 | L8-K7-02-*, 11-*, 12-* |
+| K7-I2b | FN-03/04/05 | IV-K7-13 | L8-K7-13-* |
+| K7-I3 | FN-02/03 | IV-K7-03/04/14/15 | L8-K7-03-*, 04-*, 14-*, 15-* |
+| K7-I4/I4b | FN-04/06 | IV-K7-05; K3 IV-K3-11/12/17 boundary | L8-K7-05-* and RECOVERY-* |
+| K7-I5 | FN-07 | IV-K7-06 | L8-K7-06-* |
+| K7-I6 | FN-08 | IV-K7-07–10 | L8-K7-07-*–10-* |
+| G5-I1 | FN-10 | IV-G5-01/02/09 | L8-G5-01/02/09-* |
+| G5-I2 | FN-11 | IV-G5-03/04/10 | L8-G5-03/04/10-* |
+| G5-I3/I4 | FN-08/10 | IV-G5-05/06 | L8-G5-05/06-* |
+| G5-I5 | FN-07/10 | IV-G5-07 | L8-G5-07-* |
+| G5-I6 | FN-06/08/09/11 | IV-G5-08; K3 IV-K3-17 boundary | L8-G5-08-* |
+| 台帳release/target/actual分離 | FN-09 | IV-LDG-03 | L8-K7-LEDGER-* |
+
+K3 IV-K3-17とIV-LDG-03はK7/G5境界の既存traceであり、K7/G5 oracle数へ加えない。IV-LDG-01/02/04は同じ§15にある接続参照で、L8 §10の115 fixture集合へ含めない。L7はL8 §10の115 IDを個別に参照し、L9のK7 15件/G5 10件を持つ既存oracle mapへtraceする。
+
+純粋な候補処理は、明示的に与えられたtyped snapshotの順序、ref identity/digest、集合の重複保持、projection field分離、非肯定の全component保持を比較する範囲である。これらを実行する局所fixtureはK5/K10/K3/K6 ownerのsourceを読んだことや公開APIが接続されたことを示さない。明示source readerがない場合に`Value`、`Positive`、`Observed`を作る既定portは置かない。K5のread/append/restore/project、K3 current permission、K4/current verifier set、K6 receipt、K10 current graph/review_set、SECURITY RecipientMap/RecipientDecl、OS/build declarations、EpochLog、RuntimeLog、物理CAS、internal deploymentの各実owner境界は未接続である。L4/L5/L8/L9にないowner mappingや戻りreasonを新設せず、該当経路の実装・実行はowner返却としてholdする。
+
+K7/G5は本節で関数責務へ下ろした設計候補であり、L6 source実装、L7 unit実行、L9 pass、K7/G5 CI inventory登録、製品のcurrent reader/writer、実deployment、L10達成を示さない。
