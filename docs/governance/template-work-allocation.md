@@ -136,15 +136,19 @@ C01〜C40は26件とは別の内訳であり、40個の必須templateではな�
 
 MPRと判断記録を照合した結果、DST identityそのものの仮登録・対象revision付き採否は確認できなかった。BRAIN-L1の判断にあるDST-HARNESS-002/DST-OS-001への言及は企画の根拠であり、DSTのL2採否ではない。比較先の採択済み要求はその対象decisionのまま保持し、DSTが未採択であることを理由に未採択へ戻さない。
 
-| 比較した条件 | 現行の保証 | まだ確定していないもの |
+| 比較した条件 | 現行の保証と追加採用 | 要求・候補側に残るもの |
 |---|---|---|
-| 汎用意味契約と版 | BRAIN003/007/008/028は条件・反例・由来・版/状態・互換、005はrelationを持つ。HARNESS010/011はpack境界。041はactive templateのfield/done-when等を漏れなく候補化する | DST-HARNESS-002の全契約項目の提供と、template固有section/field・owner・measurement/completionの対応。041の消費側契約だけで提供側の全fieldを定義済みとはしない |
-| 初期seed | 26件は来歴・適用・限界・負例を持つ`0.1.0-seed-candidate`として保全。BRAIN007/020/025は評価・登録・独立検証・採否を区別する | DST-HARNESS-005と各seedの採用対象revision、最小選択set。全26件を採用せず、現在の保全理由は「未採択の調達材料」であり、正式除外・retireの理由ではない |
-| 製品への適用と戻し | HARNESS009/025/026は固有義務と双方向trace、BRAIN022/030はinputと知識receipt、HARNESS023/043はunknown/N-A/無断fallbackを区別する | DST-HARNESS-001/004/006/007とDST-OS-005の固有条件の採否・binding。L2.5の非適用receiptを全templateへ広げず、4種類のBackflow候補・判定者/revision/再評価条件を全件被覆したとはしない |
-| 案件記録・選択・改善接続 | OS017/019/023はrevision/scope/因果・未完・受理までの非完了、INT032/033/035は版付き判断材料とOSへの候補、OS005/022/024とBRAIN020/025は評価・振分・独立採否を分ける | DST-OS-001〜004のtemplate固有exact set、適用event binding、利用の評価母集団。一般episode記録だけでtemplateの全event・実利用setを登録済みとしない |
+| 汎用意味契約と版 | BRAIN003/005/007/008/028に加え、032の15項目意味契約を[10/10判断](decisions/brain-template-contract-032-po-decision-2026-10-10.md)で採用（PR #2851）。041の消費側契約だけで提供側を代替しない | 各seedの具体的section/field/owner/measurement/completionと汎用契約の対応、seed対象revisionと採否。032の採用は全seed完成ではない |
+| 初期seed | 26件の`0.1.0-seed-candidate`を保全。BRAIN007/020/025は評価・登録・独立検証・採否を区別する | 最小選択set、選択seedのJSON意味契約候補とsource対応、各対象revision採否。未採択の保持理由を正式除外/retireへ変換しない |
+| 製品への適用と戻し | 009のexact set/各判定と義務/不足/意味影響・templateごとのN/A4属性を[10/10追補判断](decisions/core-template-009-supplement-po-decision-2026-10-10.md)で採用（PR #2853）。008/025/026等の責務と既決1.0を保持 | 選択seedと製品値の対応、判定/義務の実際の成立証拠。旧型/algorithmやpair/portfolio/renderer固有bindingの全移管は別。要求採用から実行済みにしない |
+| 案件記録・選択・改善接続 | 002の候補/選択/使用set、各eventの要求revision/scope/義務への結合、LABOへの評価入力範囲/未観測追跡を[10/10追補判断](decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md)で採用（PR #2855）。評価方法/母集団/測定定義はLABOのまま | 実案件の使用版/原記録と未完義務受理・接続成立、LABO評価/BRAIN採否。記録の要求採用だけで実利用/評価成立を生成しない |
+
+現在の採用準備は[seed照合記録](audits/template-seed-adoption-readiness-2026-10-10.json)（base `37a7a23ec130abd768fd1a9082156a48a332fc09`）に分けた。上の先行auditは当時の証拠として変更しない。DST identityそのものをまとめて採用したことにはせず、032/009/002の各decisionが固定した差分だけを採用済みとして読む。
+
+SDOP/VTのREADMEは未採択seedをMarkdownで持つ理由を「schemaはL3以降で選ぶ」としている。参考資料の保持には適用できるが、正式採用するtemplateの意味正本までMarkdownにする根拠にはしない。既決のJSON正本方針と032に従い、意味内容のJSON候補とsource対応を整理し、schema/型/演算子/renderer/runtimeの下流選定を分ける。具体的なJSON構造やseed集合を本書で決定しない。
 
 [最初の要求例](requirements-first-roadmap.md#一つの要求例による初回の接続照合)は、申請の承認後編集拒否について知識→設計単体/構成体→ticket→Worker→検収→Backflowの経路と戻し先を示す。各候補の正常・負例・unknownは上記監査の比較例へ結ぶ。いずれも静的な意味照合であり、実在案件のL3承認、選択template、実行receiptを供給したことにはしない。
 
-要求側の未完範囲は既存ロードマップ#2846へ保持する。次はこの4行の未確定部分を、既存採択で保持できる条件、追加・具体化の候補、採否対象と版が必要な差分へ分け、一要求identityずつ対象revisionへ結ぶ。DST12件を無条件にまとめて採用する案、schema/runtime/registryの新設、L3再開は本照合から生成しない。
+要求側の未完範囲は既存ロードマップ#2846へ保持する。次はseedの最小選択setと、選択した意味内容のJSON候補/source対応・対象revision採否を具体化する。安全/資源/計測、内部更新/復旧・支援/改善循環の要求照合は#2846へ残す。実記録・接続・評価の成立確認を、要求段階の採用や終了から生成しない。DST12件を無条件にまとめて採用する案、schema/runtime/registryの新設、L3再開は本照合から生成しない。
 
 #2841〜#2843のimmutable ticketは要求整理・比較・不足の区別を指示しており、候補/seedの正式昇格を含まない。closeはticket本文の全作業と本照合の不足保全を、review結果・mergeとは別に確認して判断する。担当の扱いは[現行運用](github-upstream-operating-model.md#review判断merge-admission)の作成側のclose制限と、対応Issueの完了条件を別に確認する条項に従う。本照合から担当の変更や新しいclose手続きは作らない。closeした場合も上記未完範囲、#2846、候補状態とScaffold Bindingは残り、要求段階全体の完了にはしない。確認が不足していれば元IssueをOPENのまま保つ。
