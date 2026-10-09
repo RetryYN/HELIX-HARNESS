@@ -14,7 +14,7 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 
 # HELIX-HARNESS Stage 1 L6関数設計
 
-本書は固定3親のStage 1 L4契約に対するL5技術候補を、関数境界と内部評価へ具体化する。L5/L8はmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`の現行本文である。固定した本文bytesのSHA-256はL5 `a0ed72f672606aee19e0124ee54ce47f6b409ab2e93b81cff1824f7c9cf7a92d`、L8 `9eadffc05150c01114ff29ba0fb2d28449b927e06f5565fbb86510f59be89d26`。このL6/L7草稿は未実装・未実行で、製品登録、実運用、外部作用、合格を主張しない。
+本書は固定3親のStage 1 L4契約に対するL5技術候補を、関数境界と内部評価へ具体化する。下表のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`とpath別SHAは、このL6草稿が作られた時点の固定source snapshotとして保持する。現行main `d736f99edc4f43b6cd912b9db09d545a5e769e21`でこのpairが読むsourceは、続く「現在の入力source」に別記する。このL6/L7草稿は未実装・未実行で、製品登録、実運用、外部作用、合格を主張しない。
 
 ## 1. 固定sourceと境界
 
@@ -22,16 +22,33 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 |---|---|---|
 | Stage 1 L4 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `25fbd104fd47f39d22f542664e57fd44a440af8904e11b2f0b397ac6606b6cfb` | 固定3親のL4契約。 |
 | Stage 1 L5 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `a0ed72f672606aee19e0124ee54ce47f6b409ab2e93b81cff1824f7c9cf7a92d` | 10 API候補とpayloadの固定source。 |
-| Stage 1 L8 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `9eadffc05150c01114ff29ba0fb2d28449b927e06f5565fbb86510f59be89d26` | 現mainの269合成fixtureの入力・変異・期待値正本。 |
+| Stage 1 L8 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `9eadffc05150c01114ff29ba0fb2d28449b927e06f5565fbb86510f59be89d26` | 7887時点の269合成fixture snapshot。 |
 | Stage 1 L9 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `6cc4bc3ac56b8d1d94e05ddc4dda71c35df2941aab39e65fb9d43cda2deb36da` | 既存20 verifier/caseの範囲。 |
-| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | 共通Kernelの現行参照本文。Stage 1 L6/L7が直接扱う範囲はK1/K2/K3/K5である。K6/K7の内部動作は本pairの詳細設計・検証対象ではなく、既存owner型との分離と保持だけを扱う。K4/G3は製品L5/L8が参照するが本pairの詳細範囲外。 |
-| Common Kernel L5 | `docs/helix-harness/L5-detail-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `702a50b82fe7685198539f6a51f7203b72f2adef8edb08f8ce81f677b57a42f0` | 共通Kernelの現行参照本文。Stage 1 L6/L7が直接扱う範囲はK1/K2/K3/K5である。K6/K7の内部動作は本pairの詳細設計・検証対象ではなく、既存owner型との分離と保持だけを扱う。K4/G3は製品L5/L8が参照するが本pairの詳細範囲外。 |
-| Common Kernel L6 | `docs/helix-harness/L6-function-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `0c11e55342f983d278a02ac4786178386bf8beefdcc824333ef0c5a93f5000b0` | 共通Kernelの現行参照本文。Stage 1 L6/L7が直接扱う範囲はK1/K2/K3/K5である。K6/K7の内部動作は本pairの詳細設計・検証対象ではなく、既存owner型との分離と保持だけを扱う。K4/G3は製品L5/L8が参照するが本pairの詳細範囲外。 |
-| Common Kernel L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `89152ee3b58c291a88b7108fd0437c1349265eb85607c2da1f617d63ac3572c1` | 共通Kernelの現行参照本文。Stage 1 L6/L7が直接扱う範囲はK1/K2/K3/K5である。K6/K7の内部動作は本pairの詳細設計・検証対象ではなく、既存owner型との分離と保持だけを扱う。K4/G3は製品L5/L8が参照するが本pairの詳細範囲外。 |
-| Common Kernel L8 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `6f598a9a9fd0ab58a30ec26bb290f958e2807a8ceb7fb7c368e0ecf4af1d876e` | 共通Kernelの現行参照本文。Stage 1 L6/L7が直接扱う範囲はK1/K2/K3/K5である。K6/K7の内部動作は本pairの詳細設計・検証対象ではなく、既存owner型との分離と保持だけを扱う。K4/G3は製品L5/L8が参照するが本pairの詳細範囲外。 |
-| Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 共通Kernelの現行参照本文。Stage 1 L6/L7が直接扱う範囲はK1/K2/K3/K5である。K6/K7の内部動作は本pairの詳細設計・検証対象ではなく、既存owner型との分離と保持だけを扱う。K4/G3は製品L5/L8が参照するが本pairの詳細範囲外。 |
+| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | 7887時点の固定参照snapshot。K1/K2/K3/K5等の意味は§1.1の現行sourceで再確認する。 |
+| Common Kernel L5 | `docs/helix-harness/L5-detail-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `702a50b82fe7685198539f6a51f7203b72f2adef8edb08f8ce81f677b57a42f0` | 7887時点の固定参照snapshot。 |
+| Common Kernel L6 | `docs/helix-harness/L6-function-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `0c11e55342f983d278a02ac4786178386bf8beefdcc824333ef0c5a93f5000b0` | 7887時点の固定参照snapshot。 |
+| Common Kernel L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `89152ee3b58c291a88b7108fd0437c1349265eb85607c2da1f617d63ac3572c1` | 7887時点の固定参照snapshot。 |
+| Common Kernel L8 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `6f598a9a9fd0ab58a30ec26bb290f958e2807a8ceb7fb7c368e0ecf4af1d876e` | 7887時点の固定参照snapshot。 |
+| Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 7887時点の固定参照snapshot。 |
 
-旧L7 snapshotにある`b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`等のCommon Kernel revisionは当時の履歴参照であり、現在sourceとして再利用しない。現在のCommon Kernel本文は表にあるmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`のpath別SHAで固定する。Stage 1 product L5/L8とcommon-kernel L5/L8は別文書である。各参照はpath別SHAで固定する。L6/L7の直接技術範囲はK1/K2/K3/K5の既存契約に限る。K6/K7は不透明なowner境界として結果型を区別して保持し、内部処理を実装・検証したとは主張しない。K4/G3の製品層参照も本pairへ詳細化しない。旧HELIX資産の12行はL5 §2と原台帳を起点に照合し、台帳のconsumer/failureを推測していない。
+旧L7 snapshotにある`b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`等のCommon Kernel revisionと上表のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`は当時の履歴参照として保持し、現在sourceとして再利用しない。現在のCommon Kernel本文は§1.1のpath別SHAで固定する。Stage 1 product L5/L8とcommon-kernel L5/L8は別文書である。各参照はpath別SHAで固定する。L6/L7の直接技術範囲はK1/K2/K3/K5の既存契約に限る。K6/K7は不透明なowner境界として結果型を区別して保持し、内部処理を実装・検証したとは主張しない。K4/G3の製品層参照も本pairへ詳細化しない。旧HELIX資産の12行はL5 §2と原台帳を起点に照合し、台帳のconsumer/failureを推測していない。
+
+### 1.1 現在の入力source（main d736f99）
+
+次表は本追補の基準点main `d736f99edc4f43b6cd912b9db09d545a5e769e21`で再計算した入力bytesであり、上表の7887 snapshot値を上書きしない。L4/L5/L8/L9は製品pairの現行境界、Common Kernel各層は既存共通契約の現行参照である。
+
+| 入力source | main d736f99のSHA-256 | L6で読む範囲 |
+|---|---|---|
+| Stage 1 L4 `../L4-basic-design/stage1-harness.md` | `25fbd104fd47f39d22f542664e57fd44a440af8904e11b2f0b397ac6606b6cfb` | 親AC、unit path、owner/operation境界。 |
+| Stage 1 L5 `../L5-detail-design/stage1-harness.md` | `dc647e429ee99e6232509837cb89aa6ed451f566922dd19428ecb3f9c21851db` | 10 API候補と配置候補。 |
+| Stage 1 L8 `../L8-detail-verification/stage1-harness-detail-verification.md` | `00bdb7d745e7688ccea43c5d11c9681c7d41fc7cbfeb96fa03ff00728a5bd166` | 269 fixtureの変異・主結果・構造assertion、配置setup 2件。 |
+| Stage 1 L9 `../L9-integration-verification/stage1-harness-integration-verification.md` | `6cc4bc3ac56b8d1d94e05ddc4dda71c35df2941aab39e65fb9d43cda2deb36da` | 既存20 verifier ID。 |
+| Common Kernel L4 `../L4-basic-design/common-kernel.md` | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | K1/K2/K3/K5の公開契約。 |
+| Common Kernel L5 `../L5-detail-design/common-kernel.md` | `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69` | APIと値型の境界。 |
+| Common Kernel L6 `../L6-function-design/common-kernel.md` | `0127f51bde5ac82c64d34e62ada27f1030c173ad03cfa228ac031702ec57dddd` | Python 3.11+標準ライブラリ候補と現行関数設計。 |
+| Common Kernel L7 `../L7-unit-test-design/common-kernel-unit-test-design.md` | `dbe64de862709f2b4a5a4088b593fc86f02d0de76aab01dc169feb9d6c247895` | `unittest`候補と既存test配置の先例。 |
+| Common Kernel L8 `../L8-detail-verification/common-kernel-detail-verification.md` | `3d42cdd5ca45174e68cb5786052c2a33f1036198493bca38274c2488f925fa8f` | 既存K1/K2/K3/K5 fixture oracleの境界。 |
+| Common Kernel L9 `../L9-integration-verification/common-kernel-integration-verification.md` | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 既存Common Kernel oracle参照。 |
 
 ## 2. 旧HELIX由来の保持・変更
 
@@ -118,4 +135,33 @@ DomainEvaluation = { facts: tuple[FieldFact, ...], source_results: tuple[existin
 
 ## 7. 実装・検証状態
 
-関数、fixture、実行結果は未実装・未実行である。このpair内で旧runtime/CLI/hook/test/CIを実行しない。L7はテスト設計のみを示し、unit suite実行、L8/L9 integration、製品pack登録、owner/effect実証を主張しない。L5/L8引用はmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`のpath別SHAで固定する。本L6/L7の未実装・未実行状態は、上流sourceがmainにあることから変わらない。
+関数、fixture、実行結果は未実装・未実行である。このpair内で旧runtime/CLI/hook/test/CIを実行しない。L7はテスト設計のみを示し、unit suite実行、L8/L9 integration、製品pack登録、owner/effect実証を主張しない。本書の現行入力sourceは§1.1のmain `d736f99edc4f43b6cd912b9db09d545a5e769e21` path別SHAで固定し、§1のmain `7887...` snapshotは履歴値として保持する。本L6/L7の未実装・未実行状態は、上流sourceがmainにあることから変わらない。
+
+## 8. source配置と関数所有の候補
+
+L5 §7のunit候補rootとfile locatorをそのまま使い、API候補10件のsource所在を次のように具体化する。ここでの配置はL6関数設計上の候補で、実ファイル作成、unit宣言、pack identity/type number、型番台帳登録、import可能性、実reader/current-owner接続を意味しない。
+
+| L6関数 | L5 API候補 | 候補source locator | 配置責務と境界 |
+|---|---|---|---|
+| `FN-HARNESS-01` | `read_pack_declaration(ref)` | `helix/helix-harness/units/harness-stage1/src/stage1_pack.py` | API入口候補はこのmoduleに置く。実宣言source readerのowner bindingが固定L4/L5にないため、実reader接続は未決のままにし、directory/catalogから宣言を合成しない。 |
+| `FN-HARNESS-02` | `validate_pack_contract(declaration, invocation_context)` | 同上 | 宣言済みfieldの純比較候補。contract・owner・scope等の新schema、eligibility決定、登録は追加しない。 |
+| `FN-HARNESS-03` | `resolve_dependency_closure(declaration, operation, selected_sources)` | 同上 | 既存4分類と明示入力を比較する候補。選択sourceのfallback、cycle policy、外部source readerは追加しない。 |
+| `FN-HARNESS-04` | `compare_pack_revision(current, declared_range)` | 同上 | 宣言ref間の比較候補。domain revision差をK2 key/resultへ変換しない。 |
+| `FN-HARNESS-05` | `build_pack_artifact_descriptor(input_refs, pack_revision)` | 同上 | 宣言された入力ref/descriptorの組立候補。artifact生成、hash方式、保存、署名は行わない。 |
+| `FN-HARNESS-06` | `compare_pack_replacement(before, after, target_pack)` | 同上 | before/afterのfield比較候補。replacement/rollback/writeは行わない。 |
+| `FN-HARNESS-07` | `prepare_pack_invocation(pack, caller_input, scope, authority_candidate_refs)` | 同上 | caller入力と既存K3結果を分離した比較候補。permission発行、current ownerの代行解決、dispatchを行わない。 |
+| `FN-HARNESS-08` | `resume_invocation(invocation_ref, saved_state_ref, caller_key)` | 同上 | 保存状態/key/expiry等のfield比較候補。resume eligibilityや再dispatchを決めない。 |
+| `FN-HARNESS-09` | `return_operation_result(invocation_ref, progress_ref, result_ref, evidence_refs)` | 同上 | result/evidence refsのcorrelation比較候補。保存、表示、業務完了、K5 appendを行わない。 |
+| `FN-HARNESS-10` | `measure_declared_nfr(candidate_id, fixture_evidence)` | 同上 | 合成evidence refの測定候補を整える。実測・SLO達成・承認を生成しない。 |
+
+10 API候補は同じ製品source moduleの公開境界候補であり、比較途中の`DomainEvaluation`等は当該module内のprivate helperに留める。L5にない公開helper、別owner module、外部adapter、runtime entrypointを追加しない。`declaration.json`はL5 §7の別locator候補であり、source moduleが宣言やowner状態を書き換える場所ではない。
+
+| 候補path | 責務 |
+|---|---|
+| `helix/helix-harness/units/harness-stage1/declaration.json` | L4で既に定めるunit declaration項目の候補locator。具体schema値、identity/type number、owner、初回ledger event順は本pairで決めない。 |
+| `helix/helix-harness/units/harness-stage1/tests/test_stage1_pack.py` | L7のfixture IDを`stage1_pack.py`候補APIへ結ぶ単体test module候補。 |
+| `helix/helix-harness/units/harness-stage1/fixtures/` | 合成入力の候補置場。ファイル形式・命名schema・実pack dataは本pairで定義せず、実案件/credential/実行recordを置かない。 |
+
+配置の保持点は旧`repository-structure.md` §2 (asset `LEGACY-ASSET-FDBA655B1CFF75DCDC0E`, lines 102–120 and §3 lines 122–131, SHA-256 `6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262`) のsource/test配置とV-model artifact分離、およびrelease composition RLS-R-03 (asset `LEGACY-ASSET-A2F6A697D7FFFD490B57`, lines 54–58, SHA-256 `336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c`) のpathごとのsingle primary ownerである。旧asset ledgerは両件とも`unresolved`、`consumer_refs=[]`で、`failure_refs` fieldを持たないため、旧実装consumerやfailureを推定しない。旧root layout・Node/TypeScript/Vitest指定は置換し、L5が現行repository-layoutとCommon Kernelから再導出したunit root、Python標準lib候補へ接続する。
+
+言語/runtime/test候補はL5 §7に従いCPython 3.11+標準libraryとする。根拠は、現行Common Kernel L6のPython 3.11+候補および現行source `helix/helix-harness/units/common-kernel/src/common_kernel.py`のfrozen dataclass/type annotation使用、Common Kernel L7 §2の`unittest`候補と`tests/test_k1.py`のtest module precedentである。HARNESSは型付き値の純比較を記述し、外部packageなしに既存K1/K2/K3/K5契約を参照するためこの候補を継承する。これは実行環境やpack dependencyの登録ではなく、Bun/旧Vitest実行を行わない。L6ではmodule/package wiringをまだ確定せず、L7で候補importとtest locationを具体化する。

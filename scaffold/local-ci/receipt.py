@@ -280,7 +280,7 @@ def _validate_suite_evidence(value: Any) -> dict:
         _unknown("Unknown", "conflict", "suite evidence formal mapping differs from fixed inventory")
     refs = evidence["source_refs"]
     if not isinstance(refs, list) or len(refs) != len(SOURCE_SHA256) + len(CURRENT_DESIGN_PATHS):
-        _reject("invalid_input", "suite evidence requires the fixed five code/test refs and two design refs")
+        _reject("invalid_input", "suite evidence requires the fixed seven code/test refs and two design refs")
     for index, ref in enumerate(refs):
         _subject_ref(ref, f"suite_evidence.source_refs[{index}]")
     _target(evidence["target"], "suite_evidence.target")
