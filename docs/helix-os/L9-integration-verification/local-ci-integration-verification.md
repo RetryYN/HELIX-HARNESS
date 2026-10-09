@@ -9,7 +9,7 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `a59f342197225ef74f2838f6555934633bf635aa57679204139bc6ee6f164a95`である。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `e7cf8d12704b3d241aba1b6342a9873a7ae4be98f7e41fb90290844a527965ae`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
@@ -17,7 +17,7 @@ fixtureは合成Git tree・合成receipt・stub process resultだけを使う。
 
 L4 `DesignScopeManifest`が列挙するCommon Kernelとrepository-layoutの現行6文書、および今回のlocal-CI設計6文書について、定義域と参照域を分離したID解決、L4 invariant/contract→L9 IV edge、Common Kernel/local-CI L5 contract→L8 case、L6 function→L7 test edgeを照合する。Common Kernel L5の5つのexact-heading locatorから対のL8 K1/K2/K3/K5/K4-G3 table expansionへ各fixtureを対応付ける。K1/K2=164、K3=194、K5=91、K4/G3=73（K4=51/G3=22）の固定inventoryはそれぞれ別に照合する。L8第2列のL9 oracleと第3列のL4 invariantはtyped referenceとして保持し、coverage sourceへ誤変換しない。coverage entryの無い契約、孤児edge、fixture定義欠落は肯定しない。HistoricalPinはasset ID、archive path、full-file SHA、行範囲、optional span SHAをそれぞれの型で照合し、時点auditをcurrent-link対象へ混ぜない。
 
-IV-LCI-72とIV-LCI-87〜91は`LC-DESIGN-001`に対応するdesign-manifest構造oracleであり、suite runnerの実行oracleではない。`LC-STAGE1-L7-001`に対応するsuite runner oracleはIV-LCI-73〜86およびIV-LCI-92〜99である。
+IV-LCI-72とIV-LCI-87〜91は`LC-DESIGN-001`に対応するdesign-manifest構造oracleであり、suite runnerの実行oracleではない。`LC-STAGE1-L7-001`に対応するsuite runner oracleはIV-LCI-73〜86、IV-LCI-92〜99およびIV-LCI-100〜110である。
 
 | 検証ID | L4契約 | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
@@ -87,7 +87,7 @@ IV-LCI-72とIV-LCI-87〜91は`LC-DESIGN-001`に対応するdesign-manifest構造
 | `IV-LCI-64` | Common Kernel L5→L8 pair binding | L5 K1/K2/K3/K5/K4-G3 exact_heading locatorは各一件、L8各rangeは対応するL5をexpected_pairとする | 一つのK1 rowの第3列literal expansionだけをK1 locatorからK2 locatorへ差し替える | `Unknown(conflict)`、fixture edgeを別pairへ結ばない |
 | `IV-LCI-65` | K1/K2 typed reference保全 | L8 case column expansionの各rowで第2列L9 oracle、第3列L4 invariant refsをtyped referenceとして解決し、coverage sourceは対応L5 locatorだけ | 一件のL9 IV referenceをsource_idに置く | `Unknown(conflict)`、L9/L4 referenceをL5→L8 sourceへ昇格しない |
 | `IV-LCI-66` | K1/K2 expanded fixture inventory | L8 K1/K2 table literal expansionが各111/53 IDをraw definition rowへ一意にbindする | K1 expansion中の一つのsuffix IDだけを固定対応表から削除 | `Unknown(missing_input)`、regex/隣接suffixで補完せず、checker/execution/receiptなし |
-| `IV-LCI-67` | Common Kernel L5→L8 edge inventory | 5 section locatorから522 expanded fixture destination（K1/K2=164、K3=194、K5=91、K4/G3=73）へ一件ずつedgeがあり、dispositionは全edge IDsを保持する | 一つのK2 edgeとそのdisposition referenceを同時に削除（同sourceの別edgeは残す） | `Unknown(missing_input)`。同sourceの他edgeで代替しない。完全な現行manifestではCommon Kernel L5→L8に522 destination edge、12文書全体に1,201 edgeがあり、同じ固定inventoryで欠落を検出する |
+| `IV-LCI-67` | Common Kernel L5→L8 edge inventory | 5 section locatorから522 expanded fixture destination（K1/K2=164、K3=194、K5=91、K4/G3=73）へ一件ずつedgeがあり、dispositionは全edge IDsを保持する | 一つのK2 edgeとそのdisposition referenceを同時に削除（同sourceの別edgeは残す） | `Unknown(missing_input)`。同sourceの他edgeで代替しない。manifestの既存edge rowは実測1,211件で、L9の旧記載1,201件とは一致しない。今回追加するL4/L9・L5/L8・L6/L7各11件、計33 edgeを加えた固定manifestは1,244件となる。既存1,211 edgeを全保持したまま固定inventoryで欠落を検出する |
 | `IV-LCI-68` | Common Kernel OutcomeRef binding | 各expanded verifier IDは同じdefinition ID列セルを持つraw table rowの対応する期待値列へ一意に戻る（K1/K2は5列目、K3は6列目、K5/K4-G3は4列目） | 一つのexpanded IDのOutcomeRefだけを別raw rowへ結び替える | `Unknown(conflict)`、別fixtureのoutcomeを流用しない |
 | `IV-LCI-69` | L4 invariant reference separation | L8第3列に明記されたL4 invariantは既存L4 definitionへのtyped referenceとして解決され、L5→L8 sourceは対応L5 locatorだけ | 一件のL4 invariant referenceをcoverage `source_id`として使う | `Unknown(conflict)`、既存L4→L9 edgeをL5→L8 pair sourceへ転用しない |
 | `IV-LCI-70` | K3/K5 locator・range所有 | K1/K2既存locatorとrangeを維持し、K3 `#### 6.1.3 K3 function/API contract`、K5 `#### 6.2.2 公開関数とprivate helper`を各一件のL5 locatorとしてL8のK3/K5 rangeへ一対一に結ぶ | K3 locatorをK5 rangeへ結ぶ | `Unknown(conflict)`。新locatorをK1/K2 locatorやK1/K2 rangeへ混ぜない |
@@ -120,7 +120,7 @@ Local runはplanの固定6 required stepを実行する。planの選択根拠/co
 | Verifier ID | L4/L5 contract | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
 | IV-LCI-73 | 6件fixed plan | 6 check IDを順序どおり選びrequired IDsは各一度 | LC-STAGE1-L7-001 rowだけをplanから除く | Unknown(missing_input)、receipt successなし |
-| IV-LCI-74 | registration境界分離 | exact target tree source/test refsとformal closureが揃い、registration/declaration inputなし | 変異なし | suiteをK1/K2/K3/K5/K6 candidate runとして示す。pack登録/usableとは示さない |
+| IV-LCI-74 | registration境界分離 | exact target tree source/test refsとformal closureが揃い、registration/declaration inputなし | 変異なし | Core K1/K2/K3/K5/K6 candidateと固定4機構のsupplemental partitionを同一check内で走らせる。pack登録/usableとは示さない |
 | IV-LCI-75 | exact target source closure | implementation/test refsはcurrent head tree内、reader digest一致 | test source refだけをhead tree外のcbce refへ差替 | Unknown(conflict)、runner未起動、baseline fallbackなし |
 | IV-LCI-76 | formal L7 identity coverage | K1/K2 165、K3 194、K5 91、K6 55の計505 formal IDsは495 callable mappings（441 primary/52 stub/2 partial）とK6の10別not-exercised dispositionsへ全量対応する。stub/partialはprimary behavior coverage claimから除外する | formal closureからK6 disposition一件だけを欠落 | `Unknown(missing_input)`、spawn前inventory preflight停止、suite row successなし |
 | IV-LCI-77 | unittest discovery identities | current inventory expected identity set/count/sorted-ID digestがexact source closureに束縛され、runner discovery IDsと一致 | runner後のdiscovered ID一件だけを変更 | `Unknown(conflict)`診断を保持しF05がsuite `CheckExecution.state=fail`へ写す。complete resultを回収できずcompact `suite_evidence`なしで部分diagnosticを残す。outer Unknown receiptにしない。count一致だけで通さない |
@@ -139,11 +139,31 @@ Local runはplanの固定6 required stepを実行する。planの選択根拠/co
 | `IV-LCI-95` | K3 formal mapping value binding | K3 mappingの全identity値は固定inventoryと一致する | 一rowのunittest identityだけをunknown値へ置換し、mutation側mapping digestを再計算 | runner起動後のfixed inventory検査がUnknown(conflict)。discovery/execution前のnoncomplete診断をF05がstep fail/partial diagnosticとして保持し、complete evidenceなし |
 | `IV-LCI-96` | K3 mapping uniqueness | 各K3 formal IDは一意なmapping rowへ結び付く | 一formal IDだけを別rowと重複させ、mutation側mapping digestを再計算 | runner起動後のfixed inventory検査がUnknown(conflict)。discovery/execution前のnoncomplete診断をF05がstep fail/partial diagnosticとして保持し、complete evidenceなし |
 | `IV-LCI-97` | K3 discovery completeness | fixed K3 discovery setは220 identitiesを含む | runner discovery結果からK3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを除く | Unknown(conflict)診断をF05がsuite step failへ写し、partial diagnosticのみを残す |
-| IV-LCI-98 | suite discovery uniqueness | actual discovery IDsは586件で一意 | K6 identity `test_k6.K6ImplementedFixtures.test_ck_k6_ut_001`だけを二重に返す | Unknown(conflict)、重複をdedupせずsuite step fail、complete evidenceなし |
-| IV-LCI-99 | bounded suite frame | 586 identitiesを互いに素な5 outcome familyへ分ける最大合法complete frameは90,514-byte body、90,515-byte LF capture、121,474-byte helper response frameの実測に対しboundは90,514/90,515/122,000 bytes。single-family 90,510/90,511と3-family 90,512/90,513を比較する | 最大合法runner bodyのbound 90,514を超える90,515 bytesへ増やす | Unknown(conflict) partial diagnostic、truncated frameからcomplete artifact/receiptを作らない |
+| IV-LCI-98 | suite discovery uniqueness | current composite discovery IDsは613件で一意（Core 586 digestは固定、supplemental 27は別digest） | SUP identity `l7_sup_infra_test_infrastructure.TestImplementedProjections.test_nfr_helper_counts_supplied_states_and_keeps_missing_denominator`だけを二重に返す | Unknown(conflict)、重複をdedupせずsuite step fail、complete evidenceなし |
+| IV-LCI-99 | bounded suite frame | Core-only 586比較値は90,514-byte body/90,515-byte LF capture/121,474-byte helper response。current composite 613 identitiesを5つの互いに素なoutcome familyへ分ける最大合法complete frameは99,820-byte body、99,821-byte LF capture、133,870-byte helper response。single-family 99,816/99,817/133,866とthree-family 99,818/99,819/133,866を含む。設計候補boundsは99,820/99,821/134,000 bytes。実runtimeの`source_l7_runner.py`/`runner.py`上限90,514/90,515/122,000 bytesは未変更 | 最大合法613 runner bodyのbound 99,820を超える99,821 bytesへ増やす | Unknown(conflict) partial diagnostic、truncated frameからcomplete artifact/receiptを作らない |
 
-K3拡張時点の履歴記録では、419 discovery IDs、70,000-byte body、70,001-byte LF capture、100,000-byte helper response envelopeをIV-LCI-98/99の基準としていた。K5追加後の固定時点は534 IDs、82,000-byte body、82,001-byte LF capture、120,000-byte helper responseだった。K6追加では同じ一意性・完全frame oracleを維持し、5つの互いに素なoutcome familyへ全586 identitiesを割り当てる最大合法形（90,514-byte body、90,515-byte LF capture、121,474-byte helper response）に合わせcurrent body/capture上限を90,514/90,515 bytesへ同期し、supervisor response上限122,000 bytes内で完全回収する。単一family（90,510/90,511/121,470）と3-family（90,512/90,513）の比較も保持する。以前の値は各固定時点の履歴または比較caseであり、current上限ではない。
+K3拡張時点の履歴記録では、419 discovery IDs、70,000-byte body、70,001-byte LF capture、100,000-byte helper response envelopeをIV-LCI-98/99の基準としていた。K5追加後の固定時点は534 IDs、82,000-byte body、82,001-byte LF capture、120,000-byte helper responseだった。K6時点ではCore 586 identitiesの最大合法形（90,514-byte body/90,515-byte LF capture/121,474-byte helper response）に合わせていた。今回、固定補助27 identitiesを加えた613 identitiesの最大合法形を5 outcome familyで静的算出すると99,820-byte body/99,821-byte capture/133,870-byte helper responseとなるため、同じ完全結果回収契約を維持する設計上のcurrent候補boundsを99,820/99,821/134,000 bytesとする。実runtime上限90,514/90,515/122,000 bytesはまだ変更されていない。613-frameのsingle-family（99,816/99,817/133,866）とthree-family（99,818/99,819/133,866）を比較caseとして保つ。従前の419/534/586時点値は各固定時点の履歴でありcurrent上限ではない。
 
 source欠落は第6 checkのspawn前にUnknown(missing_input)となる。先行5 checkのevidenceはfull external partial diagnostic artifactに残し、未起動suite rowとLocalCiReceiptを作らない。UnknownをCheckExecution有限語彙へ写さず、compact provider inputでも実行済みと偽装しない。providerはfull identity artifactを取得せず、compact summaryとcurrent refs/digest/countのみを検証する。現targetにsource/test refsが無い場合はIV-LCI-86の非肯定を適用する。
 
 IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそれぞれ単独変異にする。5 outcomeのいずれかが非zeroならfail、ID配列はfull artifactだけ、countsはcompactへ保持する。source準備のmissing_inputとconflictはともにIV-LCI-86の先行5件partial保存・suite行/receiptなしの境界を使う。placeholderは現行L7の固定許可値へ完全一致で展開する。XDG未設定時のartifactはuid別固定private system-temp rootに保存する。
+
+### 5.1 4機構 supplemental identity partition oracles
+
+以下は既存`LC-STAGE1-L7-001`の同一check内でCore inventoryと補助identity partitionを分離照合する。Core 586 discovery identities、505 formal IDs、495 mapping、K6の10 dispositionは不変。4機構の27補助identityとformal L7 status/owner-return locatorは別の固定入力であり、formal IDやowner解決を新たに生成しない。各L9行は対応するL8 caseを変異欄に明記し、意味を一行ずつ照合する。対応はIV-LCI-100→CASE-L8-LCI-131（baseline）、101→132（BRAIN欠落）、102→133（SECURITY追加）、103→134（LABO重複）、104→135（Coreとのidentity衝突）、105→136（status locator差替）、106→137（owner-return locator差替）、107→138（formal field追加）、108→139（required source ref欠落）、109→140（CONNECT追加）、110→141（K4/G3追加）である。L7 testsは`UT-LCI-133..143`である。SECURITY 10件、CONNECT 4件、Common Kernel K4/G3 14件はmain `4a40597efbf867b6b5b5640060b2cac81de56de0`時点で存在する未登録集合として除外し、これらを追加する一変異ごとの拒否をIV-LCI-109〜110で照合する。
+
+| Oracle ID | L4/L5/L6 contract | 正常入力 | 一点の変異 | 期待結果 |
+|---|---|---|---|---|
+| `IV-LCI-100` | Core/supplemental partition baseline | exact target treeのCore inventory 586件と、L5 §8.1の4 source/test pair・8 paired L6/L7 refs・27 supplemental identities。formal status/owner-return refsは各source L7 raw cell。Core 586/Supplemental 27/union 613のsorted-ID digestsはL5 §8.1の固定値 | 変異なし（L8 `CASE-L8-LCI-131`） | Core count/digestと505/495/K6 dispositionsは従前値を保ち、supplemental setは27件の独立identity/digestとして保持。両setのcomposite期待は613。新しいformal mappingなし |
+| `IV-LCI-101` | supplemental completeness | 27件全てが固定inventoryに存在 | `SUP-BRAIN-001`のみ除外（L8 `CASE-L8-LCI-132`） | `Unknown(missing_input)`、subset実行・complete evidenceなし |
+| `IV-LCI-102` | closed supplemental target set | BRAIN/LABO/HARNESS/INFRAの27件のみ | `SUP-SECURITY-001`を1件追加（L8 `CASE-L8-LCI-133`） | `Unknown(conflict)`、未登録機構をscan・自動追加しない |
+| `IV-LCI-103` | supplemental identity uniqueness | 27 IDsは一意 | `SUP-LABO-001`を1行重複（L8 `CASE-L8-LCI-134`） | `Unknown(conflict)`、deduplicateしない |
+| `IV-LCI-104` | Core/supplemental identity separation | 二partitionはdisjoint | `SUP-INFRA-001`の`unittest_identity`だけをCore identity一件と一致（L8 `CASE-L8-LCI-135`） | `Unknown(conflict)`、同一identityを二度実行せず黙って片側選択もしない |
+| `IV-LCI-105` | source L7 status locator binding | formal locatorとstatus cellは固定L7 rowを指す | BRAIN formal locator一件のstatus refだけを別rowへ差替（L8 `CASE-L8-LCI-136`） | `Unknown(conflict)`、raw statusを正規化せずsupplementへedgeを作らない |
+| `IV-LCI-106` | owner return locator preservation | 明記されたowner returnはexact cell ref、非記載は`NotDeclaredBySource` | 一件のdeclared owner return refだけを別L7 rowへ差替（L8 `CASE-L8-LCI-137`） | `Unknown(conflict)`、owner不明を解消済みにせずraw source referenceを保つ |
+| `IV-LCI-107` | formal/supplemental type separation | supplemental identityの閉じたfield setにformal ID fieldなし | `SUP-HARNESS-001`へ`formal_l7_id`だけを追加（L8 `CASE-L8-LCI-138`） | `Rejected(invalid_input)`、新規formal bindingなし |
+| `IV-LCI-108` | required supplemental source closure | 8 implementation/test refsと8 paired L6/L7 refsをtarget treeから読める | `test_infrastructure.py` refだけを欠落（L8 `CASE-L8-LCI-139`） | 既存pre-spawn `Unknown(missing_input)`、subset実行・receiptなし |
+| `IV-LCI-109` | closed supplemental target set excludes CONNECT 4 identities | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにある | `SUP-CONNECT-001` ID-shaped rowだけを追加（L8 `CASE-L8-LCI-140`） | `Unknown(conflict)`、追加sourceをscan/登録せず27件を保つ |
+| `IV-LCI-110` | closed supplemental target set excludes Common Kernel K4/G3 14 identities | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにある | `SUP-CK-K4-001` ID-shaped rowだけを追加（L8 `CASE-L8-LCI-141`） | `Unknown(conflict)`、追加sourceをscan/登録せず27件を保つ |
+
+これらはinventory/source bindingの設計oracleであり、27補助methodの未実行・部分実行をformal fixture pass、機構L7合格、owner接続、登録、製品全体coverageへ読み替えない。613は設計上の合成期待数で、実discovery/execution件数ではない。

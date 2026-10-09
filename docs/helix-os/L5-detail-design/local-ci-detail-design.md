@@ -18,7 +18,7 @@ version_target: 1.0
 | `D-LCI-03` | 明示design manifest、ID/coverage関係、過去source pin、parent AC適用記録 | `CASE-L8-LCI-12`〜`-20`, `-53`〜`-54`, `-62`〜`-66`, `-68`〜`-73`, `-84`〜`-95`, `-113`〜`-117` |
 | `D-LCI-04` | 外部canonical receipt/privacy/aggregate/key境界 | `CASE-L8-LCI-21`〜`-28`, `-42`〜`-46`, `-57`, `-60` |
 | `D-LCI-05` | workflow_dispatch target/input/selected check parityとrole別Git identity | `CASE-L8-LCI-29`〜`-40`, `-55`, `-74`〜`-79` |
-| `D-LCI-06` | 開発source L7 suite inventory/discovery/execution evidence | `CASE-L8-LCI-100`〜`-112`, `-118`〜`-130` |
+| `D-LCI-06` | 開発source L7 suite inventory/discovery/execution evidence | `CASE-L8-LCI-100`〜`-112`, `-118`〜`-130`, `-131`〜`-141` |
 
 ## 1. 実行API
 
@@ -204,16 +204,118 @@ Common Kernel L8 K1表の第3列で同じ`同上`が異なるL4 invariantを指�
 ## 8. 開発source L7 suiteのdetail contract
 
 LC-STAGE1-L7-001の入力は、pack宣言/登録台帳とは独立したSourceL7SuiteInventoryである。inventoryにはsuite ID、親・依存trace、L6/L7文書refs、formal IDとdiscovery identityの対応、実装/test refs、runner/toolchain profileを固定する。親・依存関係は対象L6/L7設計の宣言範囲に限って記録し、別revisionや登録済みpackから補わない。runner profileは既存Common Kernel候補に合わせたCPython 3.11+と標準ライブラリに固定し、runner/toolchain identityもtarget/source refsへ束縛する。`FormalL7CallableMapping={formal_l7_id, module_path, callable_qualname, coverage_kind, unittest_identity}`は実行可能な495行で、formal ID集合とmapping digestをdiscovery集合とは別に照合する。coverage kindは`primary_callable`、`owner_or_fixture_stub`、`partial_callable`を区別する。さらに`FormalL7NotExercisedDisposition={formal_l7_id, disposition}`の10行をcallable/unittest identityなしで同じformal ID closureに含める。K1/K2は165、K3は194、K5は91、K6は55である。全体は505 formal IDs（495 mapping rowsと10 disposition）、441 primary/52 stub/2 partial callableであり、10 not-exercisedはK6の2 partial_designと8 owner_unconnectedに限る。K6 mappingは43 primary/2 partial callableの45行で、7非formal regression identitiesはdiscoveryへ含めるがformal mappingへ数えない。K5の67 primaryは公開API直呼び41、private helper直呼び24、K2 lookup依存2から成り、直接のK5挙動は65件である。K5の24 stubは既存のsentinel/未写像/owner未接続21件とUT-046/085/086を含み、同mappingから未被覆条件の充足を主張しない。K3 UT-189/190も既存stub分類のまま保持する。
-Current suite inventoryは9つのcode/test refsと2つのtarget内L6/L7 document refsを持つ。従来7 refsは`common_kernel.py` SHA-256 `ce9c7a87cd318c2ff5d12f68c71129f6ad99f0b78616f89c501ccdd2c4643178`、`permission.py` `6a2f3b0d82dd38b03a4b27b2f98ed58217286eb9912c6a984a6a5549ac6c9f8b`、`journal.py` `78dba87db2b55cb349ed8fbc5d0483cdb933a8cce4d45e910c5f9cbcaefeb907`、`test_k1.py` `da847ab19a9c3fa0df17c360bc489c9da2470f53d3ee6487ea0e822905e561ff`、`test_k2.py` `3b1a6ede6642292ef31e458ca519bc293917da5e4654f85eda9ccf4a350d1582`、`test_k3.py` `1dd8ff995c40e428e6952f607731f3215c3a44785a8b4f0b0ff6c7c340a2c62a`、`test_k5.py` `c7d3dcedec9e63a1beb364147036135ae966c4330241f236f9842686e9134574`のままで、K6は`verification.py` SHA-256 `173c885b4b2400cf7479d7cabeabd14b65bfc8b2a025b6256d6463c52f5f958c`と`test_k6.py` `3d6e6a873cdc80ac7ba7810a5b94d6b104e2d54b8523a8e01da0c80cf6fdda86`を加える。495-row callable mapping SHA-256は`7473135901595324b2b6a42ac59b4af877398e5e1471950da54969b60059ea9c`。K6 callable mappingは45行（43 primary/2 partial）、SHA-256 `12e75e7a54064d6f1bc9d5a7fbd2225b9bec4b04c6fa18a643e81ca035c194fd`。10 dispositionのSHA-256は`886884b4168945fd2d510f6ed787e46160821ebbb0292a6f82941434a8ef4e7d`。K1/K2 165行の既存SHA `ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19`と199 identities SHA `2203c7ba4c3064940792d0cd19b8e0e5e6b0123ed0f5ad302472213b1be3c874`は同じprefixのまま、K3 194行とK5 91行も固定値のまま保持する。
-Expected discovery setは586件、sorted-ID SHA-256 `aca81abd7dd60c29512431c2d8223fd509d4c7a3a3fd7f1fc70847658ba0042d`。K5の115 discovery identitiesのSHA-256は`fd8edf4364fe9eac9e707ffe18852f249ea3f82e26ffe8780343c15672e25715`、K6の52 identities SHA-256は`52e558bc65de379093d9a3fa46ce7d59909f23a33a15e6a135d1fcf09cd4c857`。suite IDは`common-kernel-k1-k2-k3-k5-k6`。固定 inventory digestは`950dc37c36bdc9ac65a497ee09f07e1ee81c3444fa205491cd228a8c3bdc03b5`で、mapping、formal ID closure/dispositions、source refs、expected identitiesを含む。pack declaration、ModelNumberDeclared、VersionRegistered、usable stateを型に含めず、inventoryをdirectory scanから作らない。旧baseline 162/196、359/419およびK5時点534は履歴比較値でありcurrent期待値に流用しない。L6/L7 document refsはtargetから都度実読し、そのrevision/digestをsuite evidenceへ束縛する。
+Current Core suite inventoryは9つのcode/test refsと2つのtarget内L6/L7 document refsを持つ。追加の4機構source refs/docsは§8.1の別partitionに固定する。従来7 refsは`common_kernel.py` SHA-256 `ce9c7a87cd318c2ff5d12f68c71129f6ad99f0b78616f89c501ccdd2c4643178`、`permission.py` `6a2f3b0d82dd38b03a4b27b2f98ed58217286eb9912c6a984a6a5549ac6c9f8b`、`journal.py` `78dba87db2b55cb349ed8fbc5d0483cdb933a8cce4d45e910c5f9cbcaefeb907`、`test_k1.py` `da847ab19a9c3fa0df17c360bc489c9da2470f53d3ee6487ea0e822905e561ff`、`test_k2.py` `3b1a6ede6642292ef31e458ca519bc293917da5e4654f85eda9ccf4a350d1582`、`test_k3.py` `1dd8ff995c40e428e6952f607731f3215c3a44785a8b4f0b0ff6c7c340a2c62a`、`test_k5.py` `c7d3dcedec9e63a1beb364147036135ae966c4330241f236f9842686e9134574`のままで、K6は`verification.py` SHA-256 `173c885b4b2400cf7479d7cabeabd14b65bfc8b2a025b6256d6463c52f5f958c`と`test_k6.py` `3d6e6a873cdc80ac7ba7810a5b94d6b104e2d54b8523a8e01da0c80cf6fdda86`を加える。495-row callable mapping SHA-256は`7473135901595324b2b6a42ac59b4af877398e5e1471950da54969b60059ea9c`。K6 callable mappingは45行（43 primary/2 partial）、SHA-256 `12e75e7a54064d6f1bc9d5a7fbd2225b9bec4b04c6fa18a643e81ca035c194fd`。10 dispositionのSHA-256は`886884b4168945fd2d510f6ed787e46160821ebbb0292a6f82941434a8ef4e7d`。K1/K2 165行の既存SHA `ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19`と199 identities SHA `2203c7ba4c3064940792d0cd19b8e0e5e6b0123ed0f5ad302472213b1be3c874`は同じprefixのまま、K3 194行とK5 91行も固定値のまま保持する。
+Expected discovery setは586件、sorted-ID SHA-256 `aca81abd7dd60c29512431c2d8223fd509d4c7a3a3fd7f1fc70847658ba0042d`。K5の115 discovery identitiesのSHA-256は`fd8edf4364fe9eac9e707ffe18852f249ea3f82e26ffe8780343c15672e25715`、K6の52 identities SHA-256は`52e558bc65de379093d9a3fa46ce7d59909f23a33a15e6a135d1fcf09cd4c857`。suite IDは`common-kernel-k1-k2-k3-k5-k6`。Core固定inventory digestは`950dc37c36bdc9ac65a497ee09f07e1ee81c3444fa205491cd228a8c3bdc03b5`であり、従来のmapping、formal ID closure/dispositions、9 Core source refs、586 Core expected identitiesを含む。pack declaration、ModelNumberDeclared、VersionRegistered、usable stateを型に含めず、inventoryをdirectory scanから作らない。旧baseline 162/196、359/419およびK5時点534は履歴比較値でありcurrent期待値に流用しない。L6/L7 document refsはtargetから都度実読し、そのrevision/digestをsuite evidenceへ束縛する。
 SuiteSourceRefは既存SubjectRefの`{kind:"source", identity:path, revision:target.head_commit, digest:"sha256:"+bytes_sha256}`で保持し、target head treeは同artifact/summaryの`target.head_tree`へ結ぶ。Git readerはtree entryのblob OIDからbytesを解決するが、blob OIDをreceiptの別fieldには複製しない。全implementation/test/runner refsをtarget treeから解決する。cbce baseline SHAはL4 §2.1のsource history/crosswalkにある設計根拠であり、current targetの欠落を補う入力ではない。candidate source/testが対象treeに存在しない場合、suite resolverは既存Unknown(missing_input)を返しprocessを起動しない。exact source refsが同一targetにある場合はpack registration statusに関係なくsuiteを実行できる。
 
-L7SuiteIdentityArtifactはschema/kind、suite ID、target、source refs、495 callable mappingのdigestとrows、discovered/executed ID arraysと各sorted-ID digest、test/failure/error/skip/expected-failure/unexpected-success countsおよび各ID arrays、exit code、stateを持つfull external evidenceである。artifact digestは保存されたcanonical UTF-8 JSON+LF bytesのSHA-256とし、receipt body digest（canonical body、LFなし）と区別する。artifactは`$XDG_CACHE_HOME/helix/local-ci/artifacts/`または`tempfile.gettempdir()/helix-local-ci-artifacts-<uid>/`配下へcheckout外保存し、root directory 0700、artifact 0600、atomic/no-overwriteとする。既存rootがsymlink、他owner、またはprivate mode不適合なら拒否し、無関係な既存directoryをchmodしない。同じdigestの既存artifactはno-followでowner/mode/regular-fileを再検証してexact bytes一致時だけ再利用し、異なるbytesはconflictとする。IDsは実runnerからunittest.TestCase.id()として取得し、artifact bytesとtarget/source refsを照合する。10 not-exercised dispositionsはsource_l7_inventory_digestで固定し、実行mappingやtest結果へ含めない。旧baselineで観測した196は履歴上のdiscovery countであり、505 formal-ID closure数やPython test method定義数とも別である。current expected discoveryは586件（sorted-ID SHA-256 `aca81abd7dd60c29512431c2d8223fd509d4c7a3a3fd7f1fc70847658ba0042d`）で固定する。
+L7SuiteIdentityArtifactはschema/kind、suite ID、target、Core/supplemental source refs、Core 495 callable mappingのdigestとrows、Core 586およびsupplemental 27のinventory/discovery subdigest、合成613件のdiscovered/executed ID arraysとsorted-ID digest、test/failure/error/skip/expected-failure/unexpected-success countsおよび各結果ID arrays、exit code、stateを持つfull external evidenceである。Core mapping/dispositionは従前どおりであり、補助IDsにmapping rowsを作らない。artifact digestは保存されたcanonical UTF-8 JSON+LF bytesのSHA-256とし、receipt body digest（canonical body、LFなし）と区別する。artifactは`$XDG_CACHE_HOME/helix/local-ci/artifacts/`または`tempfile.gettempdir()/helix-local-ci-artifacts-<uid>/`配下へcheckout外保存し、root directory 0700、artifact 0600、atomic/no-overwriteとする。既存rootがsymlink、他owner、またはprivate mode不適合なら拒否し、無関係な既存directoryをchmodしない。同じdigestの既存artifactはno-followでowner/mode/regular-fileを再検証してexact bytes一致時だけ再利用し、異なるbytesはconflictとする。IDsは実runnerからunittest.TestCase.id()として取得し、artifact bytesとtarget/source refsを照合する。10 not-exercised dispositionsはsource_l7_inventory_digestで固定し、実行mappingやtest結果へ含めない。旧baselineで観測した196は履歴上のdiscovery countであり、505 formal-ID closure数やPython test method定義数とも別である。current expected discoveryは586件（sorted-ID SHA-256 `aca81abd7dd60c29512431c2d8223fd509d4c7a3a3fd7f1fc70847658ba0042d`）で固定する。
 
-`L7SuiteEvidence`はcompact summaryであり、suite ID、保存artifact SHA-256/byte count、discovered/executed countと各sorted-ID digest、formal mapping digest、target/source refs、failure/error/skip/expected-failure/unexpected-success countsを持つ。実際の`CheckExecution.state`とexit codeは同rowに保持し、compact summaryへ重複させない。full identity arraysを`LocalCiReceipt`や65,535文字上限のdispatch inputへ複製しない。`CheckExecution.suite_evidence`は`LC-STAGE1-L7-001`の`result_complete=true`に限り保持し、incomplete rowは`result_complete=false`および起動済みなら`partial_diagnostic_sha256`で部分artifactを指す。other five rowsではsuite専用fieldを省略する。dispatch側はcompact summaryのschema・target/source/config refs・digest/count/outcome consistencyだけを照合し、full artifactを再取得せず、実IDsやL7実行を再証明しない。artifactが作成側で得られない場合はlocal positive receiptを出さない。LocalCiPlan/LocalCiReceiptのsource_l7_inventory_digestは固定inventory bytes digestとする。
+`L7SuiteEvidence`はcompact summaryであり、suite ID、保存artifact SHA-256/byte count、合成discovered/executed countとdigest、Core/supplemental各partitionのcount/digest、Core formal mapping digest、target/source refs、failure/error/skip/expected-failure/unexpected-success countsを持つ。実際の`CheckExecution.state`とexit codeは同rowに保持し、compact summaryへ重複させない。full identity arraysを`LocalCiReceipt`や65,535文字上限のdispatch inputへ複製しない。`CheckExecution.suite_evidence`は`LC-STAGE1-L7-001`の`result_complete=true`に限り保持し、incomplete rowは`result_complete=false`および起動済みなら`partial_diagnostic_sha256`で部分artifactを指す。other five rowsではsuite専用fieldを省略する。dispatch側はcompact summaryのschema・target/source/config refs・digest/count/outcome consistencyだけを照合し、full artifactを再取得せず、実IDsやL7実行を再証明しない。artifactが作成側で得られない場合はlocal positive receiptを出さない。LocalCiPlan/LocalCiReceiptの`source_l7_inventory_digest`は閉じた複合SourceL7SuiteInventoryのbytes digestとし、その中のCore fixed inventory digest `950dc...03b5`は別の保護されたcomponent digestとして照合する。
 
-固定runner argvはpython3 -B scaffold/local-ci/source_l7_runner.py --suite common-kernel-k1-k2-k3-k5-k6。runnerはtarget snapshotの明示suite rowに限ってtest_k1.py、test_k2.py、test_k3.py、test_k5.py、test_k6.pyをloadし、discovery setを照合後にその同一setを一度ずつ実行する。runner自身とtoolchain identityもtarget/config refsへ固定し、shell/glob/任意plugin discoveryを介さない。CPython 3.11+は既存CK L6の技術候補をこの候補suiteへ限定したもので、他機構runtimeを定めない。
+固定runner argvは`python3 -B scaffold/local-ci/source_l7_runner.py --suite stage1-l7-source`とする。runnerはtarget snapshot内の明示されたsuite inventoryだけをloadし、Common Kernel Core partitionとL5 §8.1の4機構補助partitionを個別に照合する。Core discovery setは既存586 identitiesのまま、supplemental setは固定27 identitiesとして別digestを照合し、同じtarget内でのcomposite discoveryだけを613件として導出する。両partitionのexpected IDsが一意であることを検査してから各identityを一度ずつ実行する。formal mappingは既存Coreの495行のみで、補助test identityをformal mappingへ加えない。runner自身とtoolchain identityもtarget/config refsへ固定し、shell/glob/任意plugin discoveryを介さない。CPython 3.11+と標準ライブラリの技術候補はこのlocal suite runnerに限り、製品runtimeを定めない。
 
-6-check固定集合はplan/receiptの必要構造である。source suiteが未登録packであることだけではexecutionを止めない一方、現対象treeからsource/testを読めない場合の非肯定は維持する。suite execution successはこの候補のK1/K2/K3/K5/K6 L7 runだけであり、他Stage 1 unitsがpartial/not_exercisedである状態を変更せず、Stage 1全体L7 coverageのsuccessを意味しない。
+6-check固定集合はplan/receiptの必要構造である。source suiteが未登録packであることだけではexecutionを止めない一方、現対象treeからrequired source/testを読めない場合の非肯定は維持する。613件全件が同一targetで各一度実行された結果だけをsuite execution successとする（Core 586 identity partitionと固定4機構の補助27 identity partitionを別に照合する）。機構のformal locator、元status、owner returnは実行対象外のsource traceであり、formal L7 mappingやcoverage edgeにはしない。その他のStage 1機構のstateは変えず、Stage 1全体L7 coverage、各L8/L9 oracle、OS-020/HARNESS適合を意味しない。
 
 runner outcomeの5組は`failure_count/failed_ids`、`error_count/error_ids`、`skip_count/skipped_ids`、`expected_failure_count/expected_failure_ids`、`unexpected_success_count/unexpected_success_ids`である。全組のcountとunique ID集合を照合し、ID配列はfull artifactだけに保持する。expected failureもこの固定suiteでは許容せず、5 countのいずれかが非zeroならstep failとする。runner exitが非zeroなのに5組すべて空なら結果の矛盾としてcomplete evidenceを発行しない。XDG未設定時のartifact rootは上記のuid別固定pathであり、保存先を失う一時directoryを毎回作らない。source準備が`Unknown(missing_input)`または`Unknown(conflict)`で停止した場合は、両方とも先行5件の外部partial diagnosticを保持し、suite行とreceiptを作らない。formal ID照合は現行CK L7に明記されたplaceholder値の明示展開だけを許し、任意文字列regexからIDを合成しない。
+
+### 8.1 4機構の補助test partition
+
+`LC-STAGE1-L7-001`は同一checkのまま、既存Common Kernel suiteを不変の`core_partition`とし、以下の4機構のsource-only unittestを`mechanism_supplemental_partition`として追加する。呼出しは`python3 -B scaffold/local-ci/source_l7_runner.py --suite stage1-l7-source`とし、`check_id`は引き続き`LC-STAGE1-L7-001`、固定6 step、local-only、`merge_unit=false`である。`common-kernel-k1-k2-k3-k5-k6`はCore partitionの歴史的識別子として保持する。新しいcheck、L7 requirement、formal mapping, owner registration, product acceptanceを作らない。
+
+Core側の固定値は変更しない。`formal_id_closure={505}`, `FormalL7CallableMapping=495`, `FormalL7NotExercisedDisposition=10`, Core discovery identities `586`とその既存digestは従来どおり別に検証する。supplemental expected setは27 identitiesで独自のsorted-ID SHA-256 `e5d71feabe981041144583fb0ee0f4754dd76d881e08fb44b48e5bf25d0b8239`を持つ。Core 586件とのdisjoint union 613件のsorted-ID SHA-256は`739e4f7078047a1bd19eb3c77a723d9a85809cd82193c383d04bb365b4bce5de`である。完全なtarget treeに両partitionがあるときだけ、composite discoveryは`586 + 27 = 613` identitiesとなる。composite digestを算出してもCore 586 digestを置換しない。10件のK6 dispositionはCore側に限り、機構別の原statusをK6語彙へ写さない。
+
+```text
+MechanismFormalLocator = {
+  mechanism: BRAIN|LABO|HARNESS|INFRA,
+  formal_id: SourceL7FormalId,
+  source_l7_ref: SuiteSourceRef,
+  source_row_locator: SourceCellRef,
+  l8_refs: list[SourceCellRef],
+  l9_refs: list[SourceCellRef]
+}
+MechanismOriginalNonexecutionStatus = {
+  formal_locator_ref: MechanismFormalLocatorRef,
+  status_cell_ref: SourceCellRef,
+  raw_status_literal: str
+}
+MechanismOwnerReturnTrace = {
+  formal_locator_ref: MechanismFormalLocatorRef,
+  owner_return_ref: DeclaredOwnerReturnRef | NotDeclaredBySource
+}
+SupplementalTestId = one of the 27 IDs in the fixed table below
+SupplementalTestIdentity = {
+  supplemental_id: SupplementalTestId,
+  mechanism: BRAIN|LABO|HARNESS|INFRA,
+  source_ref: SuiteSourceRef,
+  test_source_ref: SuiteSourceRef,
+  module_key: fixed alias,
+  callable_qualname: str,
+  unittest_identity: fixed module_key + class + method
+}
+MechanismSupplementalPartition = {
+  mechanism_l6_refs: list[SuiteSourceRef],
+  mechanism_l7_refs: list[SuiteSourceRef],
+  formal_locators: list[MechanismFormalLocator],
+  original_nonexecution_statuses: list[MechanismOriginalNonexecutionStatus],
+  owner_return_traces: list[MechanismOwnerReturnTrace],
+  supplemental_tests: list[SupplementalTestIdentity]
+}
+SourceL7SuiteInventory = {
+  core_partition: existing fixed Core inventory,
+  mechanism_supplemental_partition: exactly four fixed MechanismSupplementalPartition entries
+}
+```
+
+`MechanismFormalLocator`は各機構L7が定義する正式IDを、元L7行・対応L8/L9 locatorとともに記録する参照型で、`FormalL7CallableMapping`ではない。`MechanismOriginalNonexecutionStatus`はL7がpartial/hold/not-exercised等の非実行状態を記すformal rowだけを対象に、raw status cellとliteralを保持する。`MechanismOwnerReturnTrace`はowner返却locatorを明記した場合はそのcellを、明記しない場合は`NotDeclaredBySource`を保持する。両traceはformal locatorとは別の閉じたsource-reference typeであり、status語彙を正規化したりK6 dispositionへ変換したりしない。owner return locatorの不在を接続・合格へ読み替えない。formal identityとsupplemental identityの間にedgeや暗黙対応を置かない。
+
+機構別formal locator sourceは次表の固定L7 bytes/rangeで閉じる。対象範囲に現れるsource-specific formal ID、元status、owner return referenceはL7原文から行単位で読み、そのsource ref digestへ束縛する。別機構のID、後続機構、repository scanで集合を広げない。
+
+| 機構 | L6/L7 source bytes | formal locator範囲と個数 | 原status・owner returnの保存箇所 | 非formal index/setupの扱い |
+|---|---|---|---|---|
+| BRAIN | L6 `31e32f042f896dce387376cce7134690b32d1d77d92e1f8319ba5edce5587930`、L7 `e45e5d320cb975c2c4cf3072a439b98d7da8d45f8ce2c43c562427bfefc9178e` | L7 §2の104 `UT-BRAIN-*` locator rows | L7 §2のassertion/status cellと§6–§7の局所hold・未実行・返却境界。各status/owner locatorを原文参照で保持 | L7 NFR locatorも元種別を保つ。既存holdを補助testへ昇格しない |
+| LABO | L6 `fd934bc04801e8dd9a9f0ec4c4df6756540cb80af691b6509b568795a52376ed`、L7 `20075960c97f4cd3f995f35b4f06cb00e0a7a60c1e3c6a586b8f4834585b11d8` | L7 §3の83 functional/status/scope `LABO-UT-*` locator rows | L7 §3の状態列、§5の返却/未被覆区分。各rowに記録された原statusとowner locatorを保持 | §3の5 `nfr_reuse_index` rowsは別参照indexであり、formal test identityでも実行identityでもない |
+| HARNESS | L6 `c92560cdc05e96a177b581614dced64fb368ced6a106483048bb5a22564bac36`、L7 `42f9cfcbd64dcc9206138c0a45173e1ccea86d6274d90aaf9445251cf9fc212f` | L7 §3の269 `UT-HARNESS-*` formal rows | L7 §3の対応行、§5のscope外/未実施区分。status・owner return locatorは各L7原文へ戻す | §4の既存10 `UT-HARNESS-SUP-*` locator設計はL7にある別設計参照。5 local unittestへ正式結合しない |
+| INFRA | L6 `e4e469a840df0101fb0abea1e541a33b039ca2c1203bf5abcf3199447babf023`、L7 `d9187ba26891363e9bcc116cbe20c79b74cf23bafcf5476b682784b9040ede21` | L7 §3–§4の40 functional/NFR `INFRA-L7-*` oracle rows | L7 §5の248 fixture対応と§9.1の各fixture別実装status/hold/return text。正式IDへstatusを推定せずL7 row referencesを保持 | §6の5 `INFRA-L7-SETUP-*`はL9 oracle由来formal IDではなく、source/test locator setup候補のためformal closure外 |
+
+補助test inventoryは次の27件のみを許す。`module_key`は各fileを一度だけロードする固定runner aliasであり、`unittest_identity`はそのalias・class・methodの連結で照合する。`formal_id`、`coverage_kind`、`L8/L9` pass edgeはsupplemental rowに存在しない。
+
+| supplemental ID | mechanism | source/test ref | module key / callable qualname |
+|---|---|---|---|
+| `SUP-BRAIN-001` | BRAIN | `helix/helix-brain/units/stage1-brain/src/brain.py` / `helix/helix-brain/units/stage1-brain/tests/test_brain.py` | `l7_sup_brain_test_brain` / `BrainProjectionTests.test_trace_source_projects_each_declared_field_and_keeps_owner_roles` |
+| `SUP-BRAIN-002` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainProjectionTests.test_trace_source_preserves_k1_variants_without_reclassifying_other_fields` |
+| `SUP-BRAIN-003` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainProjectionTests.test_trace_source_keeps_owner_observations_in_their_own_fields` |
+| `SUP-BRAIN-004` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainKnowledgeLookupTests.test_read_knowledge_returns_exact_k2_lookup_value` |
+| `SUP-BRAIN-005` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainKnowledgeLookupTests.test_read_knowledge_preserves_k2_no_match` |
+| `SUP-BRAIN-006` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainKnowledgeLookupTests.test_read_knowledge_preserves_saved_unknown_observation` |
+| `SUP-BRAIN-007` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainKnowledgeLookupTests.test_read_knowledge_keeps_nested_version_unknown_in_record_value` |
+| `SUP-BRAIN-008` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainKnowledgeLookupTests.test_read_knowledge_keeps_nested_state_unknown_in_record_value` |
+| `SUP-BRAIN-009` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainKnowledgeLookupTests.test_read_knowledge_keeps_each_declared_state_payload` |
+| `SUP-BRAIN-010` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainKnowledgeLookupTests.test_read_knowledge_preserves_prior_value_as_k2_stale` |
+| `SUP-BRAIN-011` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainKnowledgeLookupTests.test_read_knowledge_preserves_prior_nonvalue_as_k2_unobserved` |
+| `SUP-BRAIN-012` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainKnowledgeLookupTests.test_read_knowledge_preserves_same_key_content_conflict` |
+| `SUP-BRAIN-013` | BRAIN | same | `l7_sup_brain_test_brain` / `BrainKnowledgeLookupTests.test_read_knowledge_does_not_mutate_restored_records` |
+| `SUP-LABO-001` | LABO | `helix/helix-labo/units/stage1-labo/src/projection.py` / `helix/helix-labo/units/stage1-labo/tests/test_projection.py` | `l7_sup_labo_test_projection` / `PrivateProjectionTests.test_all_twenty_fields_are_retained_without_value_interpretation` |
+| `SUP-LABO-002` | LABO | same | `l7_sup_labo_test_projection` / `PrivateProjectionTests.test_each_single_missing_field_is_local_and_does_not_mutate_input` |
+| `SUP-LABO-003` | LABO | same | `l7_sup_labo_test_projection` / `PrivateProjectionTests.test_all_seven_declared_status_values_are_preserved_separately` |
+| `SUP-LABO-004` | LABO | same | `l7_sup_labo_test_projection` / `PrivateProjectionTests.test_episode_candidate_shape_retains_refs_and_relation_only` |
+| `SUP-HARNESS-001` | HARNESS | `helix/helix-harness/units/harness-stage1/src/stage1_pack.py` / `helix/helix-harness/units/harness-stage1/tests/test_stage1_pack.py` | `l7_sup_harness_test_stage1_pack` / `PrivatePackComparisonTests.test_exact_ref_baseline_is_match_and_retains_all_refs` |
+| `SUP-HARNESS-002` | HARNESS | same | `l7_sup_harness_test_stage1_pack` / `PrivatePackComparisonTests.test_single_revision_mutation_is_domain_mismatch` |
+| `SUP-HARNESS-003` | HARNESS | same | `l7_sup_harness_test_stage1_pack` / `PrivatePackComparisonTests.test_explicit_fields_keep_order_and_detect_one_mutation` |
+| `SUP-HARNESS-004` | HARNESS | same | `l7_sup_harness_test_stage1_pack` / `PrivatePackComparisonTests.test_explicit_missing_and_multiple_states_are_not_inferred` |
+| `SUP-HARNESS-005` | HARNESS | same | `l7_sup_harness_test_stage1_pack` / `PrivatePackComparisonTests.test_existing_owner_nonvalue_is_returned_by_identity` |
+| `SUP-INFRA-001` | INFRA | `helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py` / `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py` | `l7_sup_infra_test_infrastructure` / `TestImplementedProjections.test_resource_projection_subset_preserves_baseline_and_unreadable_mutation` |
+| `SUP-INFRA-002` | INFRA | same | `l7_sup_infra_test_infrastructure` / `TestImplementedProjections.test_resource_projection_subset_preserves_unseen_declared_role` |
+| `SUP-INFRA-003` | INFRA | same | `l7_sup_infra_test_infrastructure` / `TestImplementedProjections.test_axis_pair_retains_values_and_unknown_without_comparison_class` |
+| `SUP-INFRA-004` | INFRA | same | `l7_sup_infra_test_infrastructure` / `TestImplementedProjections.test_path_storage_projection_treats_owner_keys_as_opaque` |
+| `SUP-INFRA-005` | INFRA | same | `l7_sup_infra_test_infrastructure` / `TestImplementedProjections.test_nfr_helper_counts_supplied_states_and_keeps_missing_denominator` |
+
+固定補助source/test bytesのSHA-256は次のとおり。L6/L7 document refsと実装/test refsは別roleで保持し、path存在・directory scanから集合を増やさない。
+
+| mechanism | L6 SHA-256 | L7 SHA-256 | implementation source SHA-256 | test source SHA-256 |
+|---|---|---|---|---|
+| BRAIN | `31e32f042f896dce387376cce7134690b32d1d77d92e1f8319ba5edce5587930` | `e45e5d320cb975c2c4cf3072a439b98d7da8d45f8ce2c43c562427bfefc9178e` | `b2b856c3073d7a51e594362de3eaff9af7b76b6e9af6633fd214d2f3e8a05cce` | `18ebfeaedc496c37adc0f000f472e8eb00b83f774cc05504be5259feb177a42f` |
+| LABO | `fd934bc04801e8dd9a9f0ec4c4df6756540cb80af691b6509b568795a52376ed` | `20075960c97f4cd3f995f35b4f06cb00e0a7a60c1e3c6a586b8f4834585b11d8` | `5c61fe620c35eeb2786b740ccd37086e0e81bdf797a95cbf9588c585537ab60a` | `a60abe0042543a6bceedbff4f284356dc2d2c347343ba6469423e1dd26b9613c` |
+| HARNESS | `c92560cdc05e96a177b581614dced64fb368ced6a106483048bb5a22564bac36` | `42f9cfcbd64dcc9206138c0a45173e1ccea86d6274d90aaf9445251cf9fc212f` | `2a6db3be14fe2d094a3947c36b4e911708d0ec95c6bcd59bec4ffd338e088c5d` | `4ea1ee6a0056fba259298ce935f981dcfbef0dc00c296971b25cbc2806138d88` |
+| INFRA | `e4e469a840df0101fb0abea1e541a33b039ca2c1203bf5abcf3199447babf023` | `d9187ba26891363e9bcc116cbe20c79b74cf23bafcf5476b682784b9040ede21` | `7bd177a70a01edd1adb439df290ef0c7d7d37940bff2072532eee28bd8ac7ffd` | `e24e83f6dedf47202962687a9e00c70a85f9328e2587838a9ef349242e5add21` |
+
+ID集合は上表のSupplementalTestId 27件（BRAIN 13、LABO 4、HARNESS 5、INFRA 5）だけで閉じる。current main `4a40597efbf867b6b5b5640060b2cac81de56de0` 時点で存在するSECURITYの10件、CONNECTの4件、Common Kernel K4/G3の14件はこのsource-suite inventoryへ登録しない。これらは今回のsupplemental set、Core inventory、formal mappingのいずれにも含めず、directory/test scanから追加しない。機構L7の新規locator、隣接test file、test method scan結果も自動で取り込まない。missing source/refは既存pre-spawn `Unknown(missing_input)`境界、digest mismatchは既存`Unknown(conflict)`/Stale境界へ戻し、部分集合へ縮退して実行・positive artifactを作らない。27 identitiesはformal mappingに含まれないため、495 mapping、505 closure、K6の10 disposition、Core 586 expected identities/digestは不変である。full external artifactはCore/Supplementalを別array・別digestで保持し、compact summaryも両partitionのcount/digestを別fieldで示す。formal locator・原non-execution status・owner-return refsは各閉じたsource-reference typeのまま複合inventory digestに含めるが、実行結果へstatusやownerを投影しない。
