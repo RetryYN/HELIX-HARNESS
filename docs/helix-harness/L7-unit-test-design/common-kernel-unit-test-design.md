@@ -6,24 +6,24 @@ scope: K1/K2/K3/K4/G3/K5/K6
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: `main` at `f13373132758fce43ebb3cd1ffe9fdc60523a23a` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7` and intermediate base `f75199749888f7261772ba26e9feb58a33d9a04f` retained as history)
+base: `main` at `d5bb3455526c816b3af965db239c4b56207a884f` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7` and intermediate base `f75199749888f7261772ba26e9feb58a33d9a04f` retained as history)
 
-本書はL6のK1/K2/K3/K4/G3/K5/K6公開APIと内部関数を単体fixtureへ対応づけ、現行L4/L9の意味、失敗分類、fixture期待を変更せずL5/L8とのtraceを追加する。K3は194 formal fixtureと26件の別ID回帰method、K4/G3は§11の73 fixture、K5は91 formal IDと24件の補助ID、K6は§10の55個別設計fixtureを記録する。K5-22/23のowner未接続fixture 7件はlocal private-boundary assertionだけを実行し、L8 coverageには含めない。ローカルunit結果はL9合格、owner source接続、製品動作を示さない。K7–K10は`not_designed`でfixtureを追加しない。K6はfixture設計のみで、実装・実行・CI登録は未了である。
+本書はL6のK1/K2/K3/K4/G3/K5/K6公開APIと内部関数を単体fixtureへ対応づけ、現行L4/L9の意味、失敗分類、fixture期待を変更せずL5/L8とのtraceを追加する。K3は194 formal fixtureと26件の別ID回帰method、K4/G3は§11の73 fixture、K5は91 formal IDと24件の補助ID、K6は§10の55個別設計fixtureを記録する。K5-22/23のowner未接続fixture 7件はlocal private-boundary assertionだけを実行し、L8 coverageには含めない。ローカルunit結果はL9合格、owner source接続、製品動作を示さない。K7–K10は`not_designed`でfixtureを追加しない。K6のprivate候補実装と52件の単体実行は§10.1に記録する。43件の局所assertion、2件の部分被覆、10件の未実行fixture ID、7件の別ID回帰を区別し、公開API・owner接続・CI登録は未了である。
 
 ## 1. 固定入力とtrace規則
 
 | 入力 | 対象revision / SHA |
 |---|---|
-| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `f13373132758fce43ebb3cd1ffe9fdc60523a23a`) |
-| Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `f13373132758fce43ebb3cd1ffe9fdc60523a23a`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
-| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; current main source at `f13373132758fce43ebb3cd1ffe9fdc60523a23a`, content SHA-256 `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `340fc3b5f263d82bbc9c4d0b8e5a7d93ef4447781b8ef988a1e7e7919a04b7ae`（L7→L6一方向。L6にL7 SHAは置かない） |
+| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
+| Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `d5bb3455526c816b3af965db239c4b56207a884f`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
+| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; current main source at `d5bb3455526c816b3af965db239c4b56207a884f`, content SHA-256 `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `076d2d72907ed4f6c3266cdf312f4b7937145949d1ce12124c02d541341d655e`（L7→L6一方向。L6にL7 SHAは置かない） |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `fcf00128a7503317fa1c779c38cc8df3877b4952`, content SHA-256 `bdac36e29b8cd0a5cec34cedce6d419f5d5ecc8daea70cba851067bcc308dfac`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L8 K4/G3 fixed snapshot | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`, content SHA-256 `9d441f69221eb2800182f08e49c159c271a77eccc482bdbfb45bc960d2b48753`; K4/G3 §7; 73 fixture IDs; historical design input, not run here |
-| L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `f13373132758fce43ebb3cd1ffe9fdc60523a23a`) |
+| L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
-L4/L5/L9のcurrent sourceは§1記載のmain `f13373132758fce43ebb3cd1ffe9fdc60523a23a`に固定したcontent SHAを参照する。L8はK3/K5/K6とK4/G3の各節について§1に示した固定snapshotを参照し、current mainのL8 SHAとは扱わない。L6はこのpair内の上流content SHAを参照する。K3/K5 fixtureの歴史的PR #2751 source pinは後続本文のcurrent pinと区別して保持する。mergeから上流の承認を生成しない。L9 IV-K1-01–13、IV-K2-01–21d、IV-K6-01–15が各節の期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
+L4/L5/L9のcurrent sourceは§1記載のmain `d5bb3455526c816b3af965db239c4b56207a884f`に固定したcontent SHAを参照する。L8はK3/K5/K6とK4/G3の各節について§1に示した固定snapshotを参照し、current mainのL8 SHAとは扱わない。L6はこのpair内の上流content SHAを参照する。K3/K5 fixtureの歴史的PR #2751 source pinは後続本文のcurrent pinと区別して保持する。mergeから上流の承認を生成しない。L9 IV-K1-01–13、IV-K2-01–21d、IV-K6-01–15が各節の期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
 
 各fixture表の関数ID列で、K1表の`FN-xx`は`CK-K1-FN-xx`、K2表およびcodec表の`FN-xx`は`CK-K2-FN-xx`を指す。明示した`K2 FN-xx`も`CK-K2-FN-xx`である。UT IDの波括弧・suffixは各行の展開規則で個別fixtureへ展開し、複数変異を一件へまとめない。
 
@@ -624,7 +624,7 @@ K3単体fixtureは純粋な関数境界と固定入力を対象とする。K5 pr
 | `CK-K6-UT-019` | `L8-K6-04-CHECK-MAPPING-CLAIM` / IV-K6-04 | CK-K6-FN-04/FN-08 | ReceiptBodyにmapping fieldは無い。実在する`inner` componentsとowner `VerifierEntry.checks`を固定し、保存`inner.verdict`だけをreceipt側で誤った肯定mappingを使った場合の`Positive` claimへ変える。body bytes/result digestをその変更に整合させる。 | owner `VerifierEntry.checks`が各`PolarityOf`の出所であることを構造比較する。保存inner claimと再合成`Combined`が不一致なら、L4 K6-I6どおり`Unknown(conflict)`を保持する。ただしL9 IV-K6-04(2)が求めるmapping-source assertionの全範囲をfixtureで閉じたとはせず、部分被覆として扱う（L8 §8.3）。新field・unknown-field parser policyを作らない。 | 部分被覆: L4/L9 owner return。構造assertのみでoracle達成扱いにしない。 |
 | `CK-K6-UT-020` | `L8-K6-05-OLD-QUERY-RECEIPT` / IV-K6-05 | CK-K6-FN-05 | query keyを維持し、対象旧revisionのotherwise-valid receiptを渡す | `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
 | `CK-K6-UT-021` | `L8-K6-05-INPUT-BODY` / IV-K6-05 | CK-K6-FN-05 | `ReceiptBody`に独立したinputs fieldは置かない。query keyは固定し、`body.key.inputs`のref一つだけを差し替える。record keyとbody keyの他fieldを固定し、変更後のbody bytesからFixedRefのdigest、記録のresult_digestとlog連鎖を再計算する | query keyとのkey/body不一致により`Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
-| `CK-K6-UT-022` | `L8-K6-05-VERIFIER-SET-BODY` / IV-K6-05 | CK-K6-FN-05 | body.verifier_setだけをkeyと異なるrefへ変更 | `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-022` | `L8-K6-05-VERIFIER-SET-BODY` / IV-K6-05 | CK-K6-FN-05 | 基準keyのinputsへowner由来の`verifier_set`とは異なる固定refを含め、bodyはowner由来refを保持する。唯一の変異は`body.verifier_set`をその別refへ差し替えること。 | 再導出したkeyの`verifier_set`との不一致を検出し`Unknown(conflict)`。単なる「keyに含まれる別input」へのmembership一致では通過しない。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
 | `CK-K6-UT-023` | `L8-K6-06-BASE` / IV-K6-06 | CK-K6-FN-06 | read identity集合がsubject＋non-verifier inputsと一致し、各digestも一致 | admission境界を通る。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
 | `CK-K6-UT-024` | `L8-K6-06-SUBJECT-MISSING` / IV-K6-06 | CK-K6-FN-06 | expected readからsubject identityだけ除去し派生digestを再計算 | `Unknown(missing_input)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
 | `CK-K6-UT-025` | `L8-K6-06-INPUT-MISSING` / IV-K6-06 | CK-K6-FN-06 | expected readからoracle input identityだけ除去し派生digestを再計算 | `Unknown(missing_input)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
@@ -659,7 +659,39 @@ K3単体fixtureは純粋な関数境界と固定入力を対象とする。K5 pr
 | `CK-K6-UT-054` | `L8-K6-15-NO-AUTHORITY` / IV-K6-15 | CK-K6-FN-12 | 既存`RequiredResult`は`combined`と`assurance`だけを持つこと、各receipt bodyの`authority_effect="none"`、L4 §10 API surfaceにauthority effect/approval/merge/acceptance/completion outputが無いことを構造確認する。RequiredResultへauthority_effect fieldを追加しない。 | これは構造fixtureであり、L9のconsumer `Rejected`経路はL4にAPI/return typeがなく未接続。このassertionはIV-K6-15(1)を満たしたことにせず、L4/L9 ownerへ返す（L8 §8.3）。新API/reasonを足さない。 | 部分被覆: L4/L9 owner return。構造assertのみでoracle達成扱いにしない。 |
 | `CK-K6-UT-055` | `L8-K6-15-ASSURANCE-SEPARATE` / IV-K6-15 | CK-K6-FN-12 | same fixed `RequiredResult`でreproduction=`Unknown(unsupported)`のAとreproduction=`Value`のBをassurance identity別に保持する。 | combinedからassuranceを消さず、異なる値を同等化しない。consumer rejectionは別の未接続oracleであり、このcaseの期待ではない。 | fixture設計のみ・未実行。assurance分離の既存期待を保持し、IV-K6-15(1) consumer拒否の部分被覆とは分ける。 |
 
-L8のAPI観測とL7の内部assertionを混同しない。K1 polarityや`RequiredResult.combined`は`Combined.verdict`等のfieldを検査し、`Observed<AdmittedReceipt>`はmember単位の中間値である。K2 `Stale`/`Unknown`/`Unobserved`はlookupが返す結果として扱い、K6が新しく合成しない。IV-K6-04(1)/(2)とIV-K6-15(1)はL8 §8.3記載の部分被覆/owner returnを維持する。各UT IDはfixture設計IDであり、K6実装、実K4/K5 reader/writer、K6 source execution、L9 execution、CI inventory登録、製品coverageの証拠ではない。
+L8のAPI観測とL7の内部assertionを混同しない。K1 polarityや`RequiredResult.combined`は`Combined.verdict`等のfieldを検査し、`Observed<AdmittedReceipt>`はmember単位の中間値である。K2 `Stale`/`Unknown`/`Unobserved`はlookupが返す結果として扱い、K6が新しく合成しない。IV-K6-04(1)/(2)とIV-K6-15(1)はL8 §8.3記載の部分被覆/owner returnを維持する。K1 `Combined.components`はverifier×check識別の専用fieldを持たないため、UT-035/036の候補methodはflat componentと集計を実行確認するが、L8の識別付き保持oracleを満たしたとは数えない。`RequiredResult.assurance`のverifier identityはassuranceに限られ、component namespaceの代替ではない。各UT IDはfixture設計IDであり、K6実装、実K4/K5 reader/writer、K6 source execution、L9 execution、CI inventory登録、製品coverageの証拠ではない。
+
+### 10.1 K6 候補実装のtraceと実行境界
+
+
+L8 §8.1の55 fixture行と直前の`CK-K6-UT-001`–`055`の定義は変更しない。候補実装`helix/helix-harness/units/common-kernel/src/verification.py`では、45 fixture methodを実行し、そのうち43件は候補helper assertion、`CK-K6-UT-035/036`の2件は部分実行である。別に未実行の10 IDがあり、そのうち`CK-K6-UT-018/019`は部分設計、残る8件は未接続である。実行結果と設計上の部分対応を同じ件数へ足さない。
+
+| L8 fixture IDs | L7 method IDs | 実行対象の関数境界と被覆範囲 |
+|---|---|---|
+| `L8-K6-01-*`（9件） | `CK-K6-UT-001`–`009` | `derive_receipt_key` / K2 `lookup` |
+| `L8-K6-03-*`（4件） | `CK-K6-UT-014`–`017` | current memberとの全field一致（synthetic VerifierSet） |
+| `L8-K6-05-*`（3件） | `CK-K6-UT-020`–`022` | receipt key/bodyの一致 |
+| `L8-K6-06-*`（6件） | `CK-K6-UT-023`–`028` | read-set projection |
+| `L8-K6-07-*`（3件） | `CK-K6-UT-029`–`031` | FixedRef bytes/digest private reader seam |
+| `L8-K6-08-*`（3件） | `CK-K6-UT-032`–`034` | K1 inner再合成 |
+| `L8-K6-09-BASE` | `CK-K6-UT-035` | required foldのverdict/assurance/flat componentを確認。verifier×check識別付き保持は未達の部分対応。 |
+| `L8-K6-09-NEGATIVE-AND-UNKNOWN` | `CK-K6-UT-036` | negative/Unknown indexを確認。verifier×check識別付き保持は未達の部分対応。 |
+| `L8-K6-09-UNEVALUATED`, `REGISTERED-ZERO`, `ALL-NOT-APPLICABLE` | `CK-K6-UT-037`–`039` | required fold（synthetic owner/restore/reader seams） |
+| `L8-K6-10-*`（7件） | `CK-K6-UT-040`–`046` | K2 lookup / required fold（synthetic owner/restore seam） |
+| `L8-K6-11-*`（3件） | `CK-K6-UT-047`–`049` | deterministic reproduction（synthetic executor observation） |
+| `L8-K6-14-TIME-ORDER` | `CK-K6-UT-053` | K5順序を保ったsequenceに対するK2 prior lookup |
+| `L8-K6-15-ASSURANCE-SEPARATE` | `CK-K6-UT-055` | reproductionとissuer authenticityのverifier identity別保持 |
+
+実行した部分methodは`CK-K6-UT-035/036`（verifier×check識別付き保持のcarrier未定義）である。未実行の10 IDのうち`CK-K6-UT-018/019`はL4/L9 owner-returnの部分設計、残る8件は`010`–`013`（`run` signature rejectionを返す既存transport未接続）、`050`–`052`（issuer authenticity/過去実行assertionのowner境界、K5 Correction rejection mapping未接続）、`054`（consumer rejection return未接続）である。`CK-K6-UT-055`は既存のassurance分離期待をsynthetic typed observationsで実行し、`IV-K6-15(1)` consumer rejectionの部分被覆とは分ける。保留methodを空test、`skip`, `NotImplemented`, または成功placeholderとして作らない。
+
+| 検証 | 実測・限定 |
+|---|---|
+| K6 formal fixture methods | 45 methodを実行（43件は候補helper assertion、UT-035/036の2件は部分実行）。未実行10 IDはUT-018/019の部分設計2件と8件の未接続に分かれる。 |
+| K6 non-formal regression | 7 method pass。K5 restored original `ResultRecord.result_digest`と`producer`の保持、record digest mutation拒否、未接続public owner APIを公開しない境界、owner polarity mapping欠落時のkey保持・非肯定、同一check identityのverifier namespace欠如、別登録済みverifierへのbody差替えを導出元member不一致として拒否する境界、`-O`でもFixedRefの読取観測欠落を非肯定とする境界を確認。formal 55件へ加算しない。 |
+| Private seams | K4 current VerifierSet、K5 complete restore/ordered sequence、FixedRef reader、verifier executorはsynthetic test input。production reader/writer/executorの接続を証明しない。 |
+| 保留・外部境界 | K6-02 caller-field拒否、K6-04 owner returns、K6-12 issuer authenticity、K6-13 K5 Correction、K6-15 consumer rejection returnは実行済みと数えない。Assurance分離caseは別途実行する。 |
+
+実行コマンドは`python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k6.py' -v`（52 pass）、`python3 -O -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k6.py' -v`（52 pass）、および`python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests`（586 pass、0 failure、0 skip）である。変更した`verification.py`のSHA-256は`173c885b4b2400cf7479d7cabeabd14b65bfc8b2a025b6256d6463c52f5f958c`、`test_k6.py`は`3d6e6a873cdc80ac7ba7810a5b94d6b104e2d54b8523a8e01da0c80cf6fdda86`。保護した7 source/test blobsの実SHAはL6 §13.6に固定し、この実行で変更していない。K6公開API `run`/`admit_receipt`/`required`/`reverify`はowner境界が未接続のため本moduleに実装していない。private helperは型付きK4 current-set、K5 restore sequence、FixedRef bytes、executor result observationを明示入力として受け取り、観測のない未接続状態を既存`Unobserved`や`Unknown`へ偽装しない。単体成功からL9 oracle pass、CI inventory登録、K4/K5実owner、実読・書込、検証器実行または製品coverageを導かない。
 
 ## 11. K4/G3 個別fixture設計
 
