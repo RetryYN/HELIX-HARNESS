@@ -3,14 +3,20 @@ from __future__ import annotations
 
 import os
 import re
+import stat
 import tempfile
 from pathlib import Path
 from typing import Any
-
 try:  # support both direct script-path imports and namespace-package imports
     from .common import CHECK_IDS, Diagnostic, canonical_bytes, sha256, strict_json
+    from .source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS_SHA256,
+                                   SOURCE_SHA256,
+                                   inventory_digest as current_source_l7_inventory_digest)
 except ImportError:  # pragma: no cover - exercised by the provisional CLI entrypoint
     from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256, strict_json
+    from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS_SHA256,
+                                  SOURCE_SHA256,
+                                  inventory_digest as current_source_l7_inventory_digest)
 
 
 _RAW_SHA256 = re.compile(r"^[0-9a-f]{64}$")
@@ -22,7 +28,7 @@ _FOLD_PRECEDENCE = ("stale", "interrupted", "denied", "fail", "skipped", "succes
 _RECEIPT_FIELDS = {
     "schema_version", "target", "contract_ref", "config_digest",
     "design_manifest_digest", "checker_refs", "runtime_identity", "plan",
-    "executions", "aggregate_state", "created_at",
+    "source_l7_inventory_digest", "executions", "aggregate_state", "created_at",
 }
 _TARGET_FIELDS = {
     "repository_id", "base_commit", "merge_base", "head_commit", "head_tree",
@@ -31,7 +37,7 @@ _TARGET_FIELDS = {
 _SUBJECT_REF_FIELDS = {"kind", "identity", "revision", "digest"}
 _PLAN_FIELDS = {
     "target", "contract_id", "contract_version", "selected_check_ids",
-    "selection_basis", "config_digest", "design_manifest_digest", "commands", "state",
+    "selection_basis", "config_digest", "design_manifest_digest", "source_l7_inventory_digest", "commands", "state",
 }
 _COMMAND_FIELDS = {"check_id", "argv", "cwd_rel", "selection", "timeout_seconds"}
 _EXECUTION_FIELDS = {
@@ -39,7 +45,7 @@ _EXECUTION_FIELDS = {
     "cwd_rel", "started_at", "finished_at", "timeout_seconds",
     "sandbox_profile_digest", "stdout_sha256", "stderr_sha256",
 }
-_EXECUTION_OPTIONAL_FIELDS = {"reason"}
+_EXECUTION_OPTIONAL_FIELDS = {"reason", "result_complete", "suite_evidence", "partial_diagnostic_sha256"}
 
 
 def _reject(reason: str, detail: str) -> None:
@@ -134,6 +140,9 @@ def _validate_plan(plan_value: Any, target: dict, config_digest: str,
         _unknown("Unknown", "conflict", "plan config digest differs from current fixed config")
     if plan["design_manifest_digest"] != design_manifest_digest:
         _unknown("Unknown", "conflict", "plan design manifest digest differs from current fixed manifest")
+    _digest(plan["source_l7_inventory_digest"], "plan.source_l7_inventory_digest")
+    if plan["source_l7_inventory_digest"] != current_source_l7_inventory_digest():
+        _unknown("Unknown", "conflict", "plan source-L7 inventory differs from current fixed mapping")
 
     commands = plan["commands"]
     if not isinstance(commands, list) or len(commands) != len(CHECK_IDS):
@@ -203,7 +212,76 @@ def _validate_execution(value: Any, index: int, command: dict) -> dict:
     if state == "stale" or (state in ("denied", "interrupted") and execution["started_at"] is None):
         if any(execution[key] is not None for key in ("started_at", "finished_at", "exit_code")):
             _reject("invalid_input", f"unstarted {state} execution must have null time and exit fields")
+    is_suite = execution["check_id"] == "LC-STAGE1-L7-001"
+    if is_suite:
+        if type(execution.get("result_complete")) is not bool:
+            _reject("invalid_input", "suite execution requires a boolean result_complete")
+        complete = execution["result_complete"]
+        has_evidence = "suite_evidence" in execution
+        has_partial = "partial_diagnostic_sha256" in execution
+        if complete:
+            if not has_evidence or has_partial:
+                _reject("invalid_input", "complete suite result requires evidence and forbids partial diagnostic ref")
+            evidence = _validate_suite_evidence(execution["suite_evidence"])
+            total_outcomes = (evidence["failure_count"] + evidence["error_count"]
+                              + evidence["skip_count"] + evidence["expected_failure_count"]
+                              + evidence["unexpected_success_count"])
+            if total_outcomes > evidence["executed_count"]:
+                _reject("invalid_input", "suite outcome counts exceed executed identities")
+            if state == "success" and total_outcomes != 0:
+                _reject("invalid_input", "successful suite cannot report any non-success outcome")
+            if state == "fail" and total_outcomes == 0:
+                _reject("invalid_input", "failed complete suite must report a non-success outcome identity")
+            if state not in ("success", "fail"):
+                _reject("invalid_input", "complete suite evidence requires a finished success/fail execution")
+        else:
+            if has_evidence:
+                _reject("invalid_input", "incomplete suite row must not carry compact suite evidence")
+            if state == "success":
+                _reject("invalid_input", "suite success requires a complete result")
+            if execution["started_at"] is not None:
+                if not has_partial:
+                    _reject("invalid_input", "started incomplete suite row requires a partial diagnostic ref")
+                _digest(execution["partial_diagnostic_sha256"], "partial_diagnostic_sha256")
+            elif has_partial:
+                _reject("invalid_input", "unstarted suite row cannot reference a partial diagnostic")
+    elif any(key in execution for key in ("result_complete", "suite_evidence", "partial_diagnostic_sha256")):
+        _reject("invalid_input", "suite-only evidence fields are forbidden on other checks")
     return execution
+
+
+def _validate_suite_evidence(value: Any) -> dict:
+    fields = {"suite_id", "artifact_sha256", "artifact_bytes", "mapping_sha256",
+              "discovered_count", "discovered_ids_sha256", "executed_count",
+              "executed_ids_sha256", "failure_count", "error_count", "skip_count",
+              "expected_failure_count", "unexpected_success_count", "source_refs", "target"}
+    evidence = _object(value, fields, "suite_evidence")
+    if evidence["suite_id"] != "common-kernel-k1-k2":
+        _reject("invalid_input", "suite evidence identity is unsupported")
+    for key in ("artifact_sha256", "mapping_sha256", "discovered_ids_sha256", "executed_ids_sha256"):
+        _digest(evidence[key], "suite_evidence." + key)
+    for key in ("artifact_bytes", "discovered_count", "executed_count", "failure_count", "error_count",
+                "skip_count", "expected_failure_count", "unexpected_success_count"):
+        if type(evidence[key]) is not int or evidence[key] < 0:
+            _reject("invalid_input", "suite evidence count/size must be a non-negative integer")
+    if evidence["discovered_count"] != 199 or evidence["executed_count"] != 199:
+        _reject("invalid_input", "suite evidence identity counts differ from the fixed inventory")
+    if (evidence["failure_count"] + evidence["error_count"] + evidence["skip_count"]
+            + evidence["expected_failure_count"] + evidence["unexpected_success_count"]
+            > evidence["executed_count"]):
+        _reject("invalid_input", "suite outcome counts exceed executed identities")
+    if (evidence["discovered_ids_sha256"] != EXPECTED_DISCOVERY_IDS_SHA256
+            or evidence["executed_ids_sha256"] != EXPECTED_DISCOVERY_IDS_SHA256):
+        _unknown("Unknown", "conflict", "suite evidence identity digest differs from the fixed inventory")
+    if evidence["mapping_sha256"] != "ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19":
+        _unknown("Unknown", "conflict", "suite evidence formal mapping differs from fixed inventory")
+    refs = evidence["source_refs"]
+    if not isinstance(refs, list) or len(refs) != len(SOURCE_SHA256) + len(CURRENT_DESIGN_PATHS):
+        _reject("invalid_input", "suite evidence requires the fixed five source refs")
+    for index, ref in enumerate(refs):
+        _subject_ref(ref, f"suite_evidence.source_refs[{index}]")
+    _target(evidence["target"], "suite_evidence.target")
+    return evidence
 
 
 def _fold(executions: list[dict]) -> str:
@@ -214,7 +292,8 @@ def _fold(executions: list[dict]) -> str:
 def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
                      design_manifest_digest: str, checker_refs: Any, contract_ref: Any,
                      structure_complete: bool, plan_expected: dict | None = None,
-                     portable_config: dict | None = None) -> dict:
+                     portable_config: dict | None = None,
+                     source_l7_refs: Any = None) -> dict:
     """Validate receipt structure, current bindings, plan/execution separation, and fold."""
     if not isinstance(structure_complete, bool):
         _reject("invalid_input", "structure_complete must be a boolean")
@@ -230,6 +309,7 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
     _digest(design_manifest_digest, "current design_manifest_digest")
     _digest(body["config_digest"], "receipt.config_digest")
     _digest(body["design_manifest_digest"], "receipt.design_manifest_digest")
+    _digest(body["source_l7_inventory_digest"], "receipt.source_l7_inventory_digest")
     current_contract = _subject_ref(contract_ref, "current contract_ref", current=True)
     receipt_contract = _subject_ref(body["contract_ref"], "receipt.contract_ref")
     expected_checkers = _current_ref_set(checker_refs, "checker refs", required=True)
@@ -237,14 +317,18 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
 
     if body["config_digest"] != config_digest or body["design_manifest_digest"] != design_manifest_digest:
         _unknown("Unknown", "conflict", "receipt config or manifest digest differs from current fixed bytes")
+    if body["source_l7_inventory_digest"] != current_source_l7_inventory_digest():
+        _unknown("Unknown", "conflict", "receipt source-L7 inventory differs from current fixed mapping")
     if receipt_contract != current_contract or actual_checkers != expected_checkers:
         _unknown("Unknown", "conflict", "receipt contract or checker refs differ from current fixed refs")
 
     plan = _validate_plan(body["plan"], target, config_digest, design_manifest_digest, plan_expected)
+    if body["source_l7_inventory_digest"] != plan["source_l7_inventory_digest"]:
+        _unknown("Unknown", "conflict", "receipt and plan L7 inventory digests differ")
     if portable_config is None:
         try:
             portable_config = strict_json(Path(__file__).with_name("config.json").read_bytes())
-        except OSError as exc:
+        except (OSError, RuntimeError) as exc:
             raise Diagnostic("Unknown", "unreadable", "trusted runtime configuration unavailable") from exc
     runtime = _object(body["runtime_identity"], {"python", "git", "bwrap"}, "runtime_identity")
     for name, identity in runtime.items():
@@ -260,13 +344,35 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
 
     executions = body["executions"]
     if not isinstance(executions, list) or len(executions) != len(CHECK_IDS):
-        _reject("invalid_input", "receipt must contain all five required execution rows")
+        _reject("invalid_input", "receipt must contain all six required execution rows")
     checked = [_validate_execution(item, index, plan["commands"][index]) for index, item in enumerate(executions)]
     for index, execution in enumerate(checked):
         key = "git" if CHECK_IDS[index] == "LC-DIFF-001" else "python"
         if (execution["portable_executable_identity"] != portable_config["executables"][key]
                 or execution["sandbox_profile_digest"] != portable_config["sandbox"]["profile_digest"]):
             _unknown("Unknown", "conflict", "execution runtime/profile differs from trusted config")
+    suite_row = next(item for item in checked if item["check_id"] == "LC-STAGE1-L7-001")
+    if suite_row.get("result_complete") is True:
+        evidence = suite_row["suite_evidence"]
+        if evidence["target"] != target:
+            _unknown("Unknown", "conflict", "suite artifact target differs from receipt target")
+        current_suite_refs = _current_ref_set(source_l7_refs, "current suite design refs", required=True)
+        expected_refs = [{"kind": "source", "identity": path, "revision": target["head_commit"],
+                          "digest": "sha256:" + digest}
+                         for path, digest in sorted(SOURCE_SHA256.items())]
+        design_ref_map = {ref["identity"]: ref for ref in current_suite_refs}
+        if (len(current_suite_refs) != len(CURRENT_DESIGN_PATHS)
+                or len(design_ref_map) != len(current_suite_refs)
+                or set(design_ref_map) != set(CURRENT_DESIGN_PATHS)):
+            _reject("invalid_input", "current suite design refs do not match the fixed L6/L7 paths")
+        for path in CURRENT_DESIGN_PATHS:
+            ref = design_ref_map[path]
+            if ref["revision"] != target["head_commit"]:
+                _unknown("Unknown", "conflict", "current suite design ref is not from the target revision")
+            expected_refs.append(ref)
+        expected_refs.sort(key=lambda item: item["identity"])
+        if evidence["source_refs"] != expected_refs:
+            _unknown("Unknown", "conflict", "suite evidence source refs differ from fixed target closure")
     aggregate = body["aggregate_state"]
     if aggregate not in _CI_STATES:
         _reject("invalid_input", "aggregate_state is outside the fixed CiState vocabulary")
@@ -286,7 +392,8 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
 def verify_receipt(data: bytes | str, current_target: Any, *, config_digest: str,
                    design_manifest_digest: str, checker_refs: Any, contract_ref: Any,
                    structure_complete: bool, plan_expected: dict | None = None,
-                     portable_config: dict | None = None) -> dict:
+                     portable_config: dict | None = None,
+                   source_l7_refs: Any = None) -> dict:
     """Parse canonical compact JSON and validate it against owner-recomputed refs."""
     if not isinstance(data, (bytes, str)):
         _reject("invalid_input", "receipt input must be UTF-8 JSON bytes or text")
@@ -310,6 +417,7 @@ def verify_receipt(data: bytes | str, current_target: Any, *, config_digest: str
         design_manifest_digest=design_manifest_digest, checker_refs=checker_refs,
         contract_ref=contract_ref, structure_complete=structure_complete,
         plan_expected=plan_expected, portable_config=portable_config,
+        source_l7_refs=source_l7_refs,
     )
 
 
@@ -365,3 +473,105 @@ def write_receipt(receipt: dict, path: str | os.PathLike[str],
         raise
     except (OSError, ValueError, TypeError) as exc:
         raise Diagnostic("Unknown", "unreadable", "receipt could not be written atomically") from exc
+
+
+def write_private_artifact(value: dict, repo_root: str | os.PathLike[str]) -> tuple[Path, str, int]:
+    """Store canonical full evidence outside the checkout in an owned 0700/0600 area."""
+    if not isinstance(value, dict):
+        _reject("invalid_input", "artifact must be an object")
+    try:
+        repo = Path(repo_root).resolve(strict=True)
+        xdg = os.environ.get("XDG_CACHE_HOME")
+        if xdg:
+            base = Path(xdg).expanduser()
+            if not base.is_absolute():
+                _reject("invalid_input", "XDG_CACHE_HOME must be absolute")
+            root = base / "helix" / "local-ci" / "artifacts"
+        else:
+            root = Path(tempfile.gettempdir()) / f"helix-local-ci-artifacts-{os.getuid()}"
+        try:
+            prospective_root = root.resolve(strict=False)
+        except (OSError, RuntimeError) as exc:
+            raise Diagnostic("Rejected", "invalid_input", "artifact store path cannot be resolved") from exc
+        if prospective_root == repo or repo in prospective_root.parents:
+            _reject("invalid_input", "artifact store must be outside repository")
+        # Check each existing component before creating descendants; never follow aliases.
+        current = Path(root.anchor)
+        for part in root.parts[1:]:
+            current = current / part
+            if os.path.lexists(current):
+                info = current.lstat()
+                if stat.S_ISLNK(info.st_mode):
+                    raise Diagnostic("Rejected", "invalid_input", "artifact store path contains a symlink")
+                if not stat.S_ISDIR(info.st_mode):
+                    raise Diagnostic("Rejected", "invalid_input", "artifact store path component is not a directory")
+            else:
+                current.mkdir(mode=0o700)
+        info = root.lstat()
+        if (stat.S_ISLNK(info.st_mode) or not stat.S_ISDIR(info.st_mode)
+                or info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) != 0o700):
+            raise Diagnostic("Rejected", "invalid_input", "artifact store root is not an owned private directory")
+        resolved_root = root.resolve(strict=True)
+        if resolved_root == repo or repo in resolved_root.parents:
+            raise Diagnostic("Rejected", "invalid_input", "artifact store must be outside repository")
+
+        body = canonical_bytes(value)
+        payload = body + b"\n"
+        digest = sha256(payload)  # Full artifact bytes include the stored LF framing.
+        destination = root / (digest + ".json")
+        if os.path.lexists(destination):
+            _verify_existing_private_artifact(destination, payload)
+            return destination, digest, len(payload)
+        fd, temp_name = tempfile.mkstemp(prefix=".artifact-", dir=root)
+        temporary = Path(temp_name)
+        try:
+            os.fchmod(fd, 0o600)
+            with os.fdopen(fd, "wb") as stream:
+                stream.write(payload)
+                stream.flush()
+                os.fsync(stream.fileno())
+            try:
+                os.link(temporary, destination, follow_symlinks=False)
+            except FileExistsError:
+                _verify_existing_private_artifact(destination, payload)
+            temporary.unlink(missing_ok=True)
+            dir_fd = os.open(root, os.O_RDONLY)
+            try:
+                os.fsync(dir_fd)
+            finally:
+                os.close(dir_fd)
+        except BaseException:
+            temporary.unlink(missing_ok=True)
+            raise
+        return destination, digest, len(payload)
+    except Diagnostic:
+        raise
+    except (OSError, ValueError, TypeError) as exc:
+        raise Diagnostic("Unknown", "unreadable", "private artifact could not be written") from exc
+
+
+def _verify_existing_private_artifact(path: Path, payload: bytes) -> None:
+    """Apply the same no-follow ownership/mode checks to ordinary and raced files."""
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        fd = os.open(path, flags)
+    except OSError as exc:
+        raise Diagnostic("Rejected", "invalid_input", "existing artifact is not a private regular file") from exc
+    try:
+        info = os.fstat(fd)
+        if (not stat.S_ISREG(info.st_mode) or info.st_uid != os.getuid()
+                or stat.S_IMODE(info.st_mode) != 0o600):
+            raise Diagnostic("Rejected", "invalid_input", "existing artifact is not a private regular file")
+        chunks = []
+        remaining = len(payload) + 1
+        while remaining:
+            block = os.read(fd, min(65536, remaining))
+            if not block:
+                break
+            chunks.append(block)
+            remaining -= len(block)
+        existing = b"".join(chunks)
+        if existing != payload:
+            raise Diagnostic("Unknown", "conflict", "content-addressed artifact bytes conflict")
+    finally:
+        os.close(fd)

@@ -14,6 +14,7 @@ LEDGER_PATH = "docs/governance/legacy-asset-disposition.jsonl"
 CHECKER_PATHS = ("scaffold/tools/scfctl.py", "scaffold/governance/tools/govcheck.py",
                  "scaffold/governance/tools/gen_rulebook.py", "scaffold/local-ci/design_check.py",
                  "scaffold/local-ci/manifest.py", "scaffold/local-ci/common.py",
+                 "scaffold/local-ci/source_l7_runner.py",
                  "scaffold/local-ci/target.py", "scaffold/local-ci/config.json")
 GOV_INPUTS = ("docs/governance/candidates/legacy-rule-derived-requirements.md",
               "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",

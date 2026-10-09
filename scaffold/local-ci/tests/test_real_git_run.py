@@ -86,7 +86,7 @@ class RealGitRunTests(TargetTests):
             receipt = self.run_ci()
         self.assertEqual(calls, list(CHECK_IDS[:2]))
         self.assertEqual(receipt["aggregate_state"], "stale")
-        self.assertEqual([r["state"] for r in receipt["executions"]], ["success", "success", "stale", "stale", "stale"])
+        self.assertEqual([r["state"] for r in receipt["executions"]], ["success", "success", "stale", "stale", "stale", "stale"])
         writer.assert_called_once()
 
 for _name in tuple(n for n in dir(TargetTests) if n.startswith("test_")):

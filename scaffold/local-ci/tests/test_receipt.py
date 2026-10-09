@@ -7,13 +7,16 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 _LOCAL_CI = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_LOCAL_CI))
 
 from common import CHECK_IDS, Diagnostic, canonical_bytes  # noqa: E402
-from receipt import verify_receipt, write_receipt
+from receipt import verify_receipt, write_private_artifact, write_receipt
 from plan import compile_plan  # noqa: E402
+from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS_SHA256,
+                              SOURCE_SHA256, inventory_digest)  # noqa: E402
 
 
 _HEX = "a" * 40
@@ -50,7 +53,7 @@ def command(check_id: str, merge_unit: bool) -> dict:
 
 
 def execution(check_id: str) -> dict:
-    return {
+    result = {
         "check_id": check_id,
         "portable_executable_identity": {"name": "python3", "version": "3.11", "sha256": _RAW_SHA},
         "state": "success",
@@ -64,6 +67,28 @@ def execution(check_id: str) -> dict:
         "stdout_sha256": _RAW_SHA,
         "stderr_sha256": _RAW_SHA,
     }
+    if check_id == "LC-STAGE1-L7-001":
+        current = target()
+        refs = suite_source_refs(current)
+        result["result_complete"] = True
+        result["suite_evidence"] = {
+            "suite_id": "common-kernel-k1-k2", "artifact_sha256": _RAW_SHA,
+            "artifact_bytes": 100, "mapping_sha256": "ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19",
+            "discovered_count": 199, "discovered_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
+            "executed_count": 199, "executed_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
+            "failure_count": 0, "error_count": 0, "skip_count": 0,
+            "expected_failure_count": 0, "unexpected_success_count": 0,
+            "source_refs": refs, "target": current,
+        }
+    return result
+
+
+def suite_source_refs(current: dict) -> list[dict]:
+    refs = [{"kind": "source", "identity": path, "revision": current["head_commit"],
+             "digest": "sha256:" + digest} for path, digest in SOURCE_SHA256.items()]
+    refs.extend({"kind": "source", "identity": path, "revision": current["head_commit"],
+                 "digest": _TYPED_DIGEST} for path in CURRENT_DESIGN_PATHS)
+    return sorted(refs, key=lambda item: item["identity"])
 
 
 def receipt() -> dict:
@@ -75,6 +100,7 @@ def receipt() -> dict:
         "contract_ref": ref(),
         "config_digest": _RAW_SHA,
         "design_manifest_digest": _RAW_SHA,
+        "source_l7_inventory_digest": inventory_digest(),
         "checker_refs": [ref("scfctl"), ref("govcheck"), ref("gen_rulebook")],
         "runtime_identity": {key: dict(value) for key, value in _RUNTIME.items()},
         "plan": {
@@ -85,6 +111,7 @@ def receipt() -> dict:
             "selection_basis": "fixed_local_ci_contract",
             "config_digest": _RAW_SHA,
             "design_manifest_digest": _RAW_SHA,
+            "source_l7_inventory_digest": inventory_digest(),
             "commands": commands,
             "state": "success",
         },
@@ -105,6 +132,8 @@ def verify(data: bytes | str, *, current: dict | None = None, refs=None,
         checker_refs=refs if refs is not None else body["checker_refs"],
         contract_ref=body["contract_ref"],
         structure_complete=complete, portable_config=_PORTABLE,
+        source_l7_refs=[ref for ref in suite_source_refs(current or body["target"])
+                        if ref["identity"] in CURRENT_DESIGN_PATHS],
     )
 
 
@@ -119,7 +148,9 @@ class VerifyReceiptTests(unittest.TestCase):
         for row, spec in zip(body["executions"], original_plan["commands"]):
             row["argv"] = spec["argv"]
         kwargs = dict(design_manifest_digest=_RAW_SHA, checker_refs=body["checker_refs"],
-                      contract_ref=body["contract_ref"], structure_complete=True, portable_config=portable)
+                      contract_ref=body["contract_ref"], structure_complete=True, portable_config=portable,
+                      source_l7_refs=[ref for ref in suite_source_refs(body["target"])
+                                      if ref["identity"] in CURRENT_DESIGN_PATHS])
         checked = verify_receipt(canonical_bytes(body), body["target"],
                                  config_digest=original_plan["config_digest"], plan_expected=original_plan, **kwargs)
         self.assertEqual(checked["status"], "verified")
@@ -140,6 +171,8 @@ class VerifyReceiptTests(unittest.TestCase):
             canonical_bytes(body), body["target"], config_digest=_RAW_SHA,
             design_manifest_digest=_RAW_SHA, checker_refs=body["checker_refs"],
             contract_ref=body["contract_ref"], structure_complete=True, portable_config=_PORTABLE,
+            source_l7_refs=[ref for ref in suite_source_refs(body["target"])
+                            if ref["identity"] in CURRENT_DESIGN_PATHS],
         )
         self.assertEqual(result["status"], "verified")
         self.assertEqual(result["aggregate_state"], "success")
@@ -281,6 +314,81 @@ class VerifyReceiptTests(unittest.TestCase):
             verify(canonical_bytes(body))
         self.assertEqual(caught.exception.reason, "invalid_input")
 
+    def test_suite_result_complete_and_partial_diagnostic_are_disjoint_states(self):
+        incomplete = receipt()
+        row = incomplete["executions"][-1]
+        row["result_complete"] = False
+        row.pop("suite_evidence")
+        row["partial_diagnostic_sha256"] = _RAW_SHA
+        row["state"] = "fail"
+        row["exit_code"] = 2
+        incomplete["aggregate_state"] = "fail"
+        verify(canonical_bytes(incomplete))
+
+        unstarted = receipt()
+        row = unstarted["executions"][-1]
+        row["result_complete"] = False
+        row.pop("suite_evidence")
+        row.update(state="denied", exit_code=None, started_at=None, finished_at=None,
+                   stdout_sha256=None, stderr_sha256=None)
+        unstarted["aggregate_state"] = "denied"
+        verify(canonical_bytes(unstarted))
+
+        mutations = []
+        success_without_result = copy.deepcopy(incomplete)
+        success_without_result["executions"][-1].update(state="success", exit_code=0)
+        mutations.append(success_without_result)
+        evidence_on_partial = copy.deepcopy(incomplete)
+        evidence_on_partial["executions"][-1]["suite_evidence"] = execution("LC-STAGE1-L7-001")["suite_evidence"]
+        mutations.append(evidence_on_partial)
+        partial_on_complete = receipt()
+        partial_on_complete["executions"][-1]["partial_diagnostic_sha256"] = _RAW_SHA
+        mutations.append(partial_on_complete)
+        for body in mutations:
+            with self.subTest(body=body), self.assertRaises(Diagnostic) as caught:
+                verify(canonical_bytes(body))
+            self.assertEqual(caught.exception.reason, "invalid_input")
+
+    def test_suite_compact_evidence_rejects_outcome_counts_or_identity_digest_drift(self):
+        mutations = []
+        count_overflow = receipt()
+        count_overflow["executions"][-1]["suite_evidence"].update(failure_count=199, error_count=1)
+        count_overflow["executions"][-1].update(state="fail", exit_code=1)
+        count_overflow["aggregate_state"] = "fail"
+        mutations.append(count_overflow)
+
+        success_with_failure = receipt()
+        success_with_failure["executions"][-1]["suite_evidence"]["failure_count"] = 1
+        mutations.append(success_with_failure)
+
+        failed_without_outcome = receipt()
+        failed_without_outcome["executions"][-1].update(state="fail", exit_code=1)
+        failed_without_outcome["aggregate_state"] = "fail"
+        mutations.append(failed_without_outcome)
+
+        identity_digest_drift = receipt()
+        identity_digest_drift["executions"][-1]["suite_evidence"]["executed_ids_sha256"] = "f" * 64
+        mutations.append(identity_digest_drift)
+
+        success_with_expected_failure = receipt()
+        success_with_expected_failure["executions"][-1]["suite_evidence"]["expected_failure_count"] = 1
+        mutations.append(success_with_expected_failure)
+
+        success_with_unexpected_success = receipt()
+        success_with_unexpected_success["executions"][-1]["suite_evidence"]["unexpected_success_count"] = 1
+        mutations.append(success_with_unexpected_success)
+
+        expected_failure_count_overflow = receipt()
+        expected_failure_count_overflow["executions"][-1]["suite_evidence"].update(
+            executed_count=199, expected_failure_count=199, unexpected_success_count=1)
+        expected_failure_count_overflow["executions"][-1].update(state="fail", exit_code=1)
+        expected_failure_count_overflow["aggregate_state"] = "fail"
+        mutations.append(expected_failure_count_overflow)
+
+        for body in mutations:
+            with self.subTest(body=body), self.assertRaises(Diagnostic):
+                verify(canonical_bytes(body))
+
     def test_success_execution_requires_timestamps_and_output_digests(self):
         body = receipt()
         body["executions"][0]["stdout_sha256"] = None
@@ -347,6 +455,116 @@ class WriteReceiptTests(unittest.TestCase):
             with self.assertRaises(Diagnostic) as caught:
                 write_receipt(receipt(), alias / "new.json", root)
             self.assertEqual((caught.exception.classification, caught.exception.reason), ("Rejected", "invalid_input"))
+
+    def test_private_artifact_content_address_reuses_exact_bytes_only(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cache = Path(tmp) / "cache"
+            cache.mkdir(mode=0o700)
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            value = {"artifact_kind": "fixture", "ids": ["a", "b"]}
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(cache)}):
+                path, digest, size = write_private_artifact(value, repo)
+                same_path, same_digest, same_size = write_private_artifact(value, repo)
+            self.assertEqual((same_path, same_digest, same_size), (path, digest, size))
+            self.assertEqual(path.read_bytes(), canonical_bytes(value) + b"\n")
+            self.assertEqual(os.stat(path).st_mode & 0o777, 0o600)
+
+    def test_private_artifact_raced_destination_rechecks_no_follow_private_file(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as tmp:
+            cache = Path(tmp) / "cache"
+            cache.mkdir(mode=0o700)
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            outside = Path(tmp) / "outside"
+            outside.write_bytes(b"not an artifact")
+            value = {"artifact_kind": "race"}
+            payload = canonical_bytes(value) + b"\n"
+            destination = cache / "helix/local-ci/artifacts" / (hashlib.sha256(payload).hexdigest() + ".json")
+            destination.parent.mkdir(parents=True, mode=0o700)
+
+            def race_link(_source, target, **_kwargs):
+                Path(target).symlink_to(outside)
+                raise FileExistsError("simulated concurrent destination")
+
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(cache)}), \
+                    patch("receipt.os.link", side_effect=race_link):
+                with self.assertRaises(Diagnostic) as caught:
+                    write_private_artifact(value, repo)
+            self.assertEqual((caught.exception.classification, caught.exception.reason),
+                             ("Rejected", "invalid_input"))
+
+    def test_unset_xdg_uses_deterministic_uid_private_root(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            cache_tmp = Path(tmp) / "system-tmp"
+            cache_tmp.mkdir(mode=0o700)
+            expected_root = cache_tmp / f"helix-local-ci-artifacts-{os.getuid()}"
+            with patch.dict(os.environ, {}, clear=True), patch("receipt.tempfile.gettempdir", return_value=str(cache_tmp)):
+                first = write_private_artifact({"artifact_kind": "deterministic"}, repo)
+                second = write_private_artifact({"artifact_kind": "deterministic"}, repo)
+            self.assertEqual(first, second)
+            self.assertEqual(first[0].parent, expected_root)
+            self.assertEqual(os.stat(expected_root).st_mode & 0o777, 0o700)
+
+    def test_private_artifact_rejects_insecure_root_and_repository_aliases(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            repo = root / "repo"
+            repo.mkdir()
+            value = {"artifact_kind": "negative"}
+
+            insecure = root / "insecure"
+            (insecure / "helix" / "local-ci").mkdir(parents=True)
+            (insecure / "helix" / "local-ci" / "artifacts").mkdir(mode=0o755)
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(insecure)}), self.assertRaises(Diagnostic) as bad_mode:
+                write_private_artifact(value, repo)
+            self.assertEqual((bad_mode.exception.classification, bad_mode.exception.reason),
+                             ("Rejected", "invalid_input"))
+
+            symlink_base = root / "cache-link"
+            real_cache = root / "real-cache"
+            real_cache.mkdir(mode=0o700)
+            symlink_base.symlink_to(real_cache, target_is_directory=True)
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(symlink_base)}), self.assertRaises(Diagnostic) as symlink:
+                write_private_artifact(value, repo)
+            self.assertEqual((symlink.exception.classification, symlink.exception.reason),
+                             ("Rejected", "invalid_input"))
+
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(repo)}), self.assertRaises(Diagnostic) as inside_repo:
+                write_private_artifact(value, repo)
+            self.assertEqual((inside_repo.exception.classification, inside_repo.exception.reason),
+                             ("Rejected", "invalid_input"))
+            self.assertFalse((repo / "helix").exists(), "repository-contained rejection must precede directory creation")
+
+    def test_private_artifact_rejects_conflicting_bytes_and_link_failure(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cache = Path(tmp) / "cache"
+            cache.mkdir(mode=0o700)
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            value = {"artifact_kind": "conflict"}
+            payload = canonical_bytes(value) + b"\n"
+            import hashlib
+            digest = hashlib.sha256(payload).hexdigest()
+            destination = cache / "helix/local-ci/artifacts" / (digest + ".json")
+            destination.parent.mkdir(parents=True, mode=0o700)
+            destination.write_bytes(b"different bytes")
+            destination.chmod(0o600)
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(cache)}), self.assertRaises(Diagnostic) as conflict:
+                write_private_artifact(value, repo)
+            self.assertEqual((conflict.exception.classification, conflict.exception.reason),
+                             ("Unknown", "conflict"))
+
+            destination.unlink()
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(cache)}), \
+                    patch("receipt.os.link", side_effect=OSError("synthetic link failure")), \
+                    self.assertRaises(Diagnostic) as link_failure:
+                write_private_artifact(value, repo)
+            self.assertEqual((link_failure.exception.classification, link_failure.exception.reason),
+                             ("Unknown", "unreadable"))
 
 
 if __name__ == "__main__":

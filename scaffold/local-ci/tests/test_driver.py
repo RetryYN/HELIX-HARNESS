@@ -34,9 +34,9 @@ class DriverTests(unittest.TestCase):
         rows, aggregate = execute_plan(self.plan, PORTABLE, self.success, lambda: None)
         self.assertEqual(self.calls, list(CHECK_IDS))
         self.assertEqual(aggregate, "success")
-        self.assertEqual(len(rows), 5)
+        self.assertEqual(len(rows), 6)
         self.assertEqual([c["selection"]["merge_unit"] for c in self.plan["commands"]],
-                         [False, False, False, True, False])
+                         [False, False, False, True, False, False])
 
     def test_UT_LCI_12_failed_step_still_runs_remaining(self):
         def step(spec):
@@ -51,11 +51,11 @@ class DriverTests(unittest.TestCase):
 
     def test_UT_LCI_13_final_drift_keeps_evidence_without_fold(self):
         def recheck():
-            if len(self.calls) == 5:
+            if len(self.calls) == len(CHECK_IDS):
                 raise Diagnostic("Stale", "target_changed")
         with self.assertRaises(Diagnostic) as raised:
             execute_plan(self.plan, PORTABLE, self.success, recheck)
-        self.assertEqual(len(raised.exception.evidence), 5)
+        self.assertEqual(len(raised.exception.evidence), 6)
         self.assertTrue(all(row["state"] == "success" for row in raised.exception.evidence))
 
     def test_midrun_drift_preserves_done_rows_and_marks_only_unstarted(self):
@@ -64,7 +64,7 @@ class DriverTests(unittest.TestCase):
                 raise Diagnostic("Stale", "target_changed")
         rows, aggregate = execute_plan(self.plan, PORTABLE, self.success, recheck)
         self.assertEqual(self.calls, [CHECK_IDS[0]])
-        self.assertEqual([r["state"] for r in rows], ["success"] + ["stale"] * 4)
+        self.assertEqual([r["state"] for r in rows], ["success"] + ["stale"] * 5)
         self.assertEqual(aggregate, "stale")
         self.assertTrue(all(r["started_at"] is None for r in rows[1:]))
 
@@ -85,7 +85,7 @@ class DriverTests(unittest.TestCase):
                         result["execution"].update(state="interrupted", reason=reason, exit_code=-15)
                     return result
                 rows, aggregate = execute_plan(self.plan, PORTABLE, step, lambda: None)
-                self.assertEqual(len(self.calls), 5 if reason == "timeout" else 1)
+                self.assertEqual(len(self.calls), len(CHECK_IDS) if reason == "timeout" else 1)
                 self.assertEqual(aggregate, "interrupted")
                 if reason == "cancelled":
                     self.assertTrue(all(r.get("reason") == "cancelled" for r in rows))
@@ -98,7 +98,7 @@ class DriverTests(unittest.TestCase):
             return result
         rows, aggregate = execute_plan(self.plan, PORTABLE, step, lambda: None)
         self.assertEqual(len(self.calls), 1)
-        self.assertEqual([r["state"] for r in rows], ["denied"] * 5)
+        self.assertEqual([r["state"] for r in rows], ["denied"] * len(CHECK_IDS))
         self.assertEqual(aggregate, "denied")
 
     def test_required_skip_and_unknown_state_are_rejected_before_fold(self):

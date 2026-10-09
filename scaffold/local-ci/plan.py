@@ -1,6 +1,7 @@
-"""The fixed five-check plan; callers cannot replace commands or selection."""
+"""The fixed six-check plan; callers cannot replace commands or selection."""
 from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256
 from target import GIT_ENV, GIT_POLICY
+from source_l7_runner import inventory_digest
 
 COMMAND_TEMPLATES = (
     ("python3", "-B", "scaffold/tools/scfctl.py", "validate"),
@@ -8,6 +9,7 @@ COMMAND_TEMPLATES = (
     ("python3", "-B", "scaffold/governance/tools/govcheck.py"),
     ("git", "diff", "--check", "--no-ext-diff", "--no-textconv", "{merge_base}", "{head_commit}", "--"),
     ("python3", "-B", "scaffold/local-ci/design_check.py"),
+    ("python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2"),
 )
 
 
@@ -21,8 +23,9 @@ def compile_plan(target: dict, portable_config: dict, manifest_digest: str,
         raise Diagnostic("Rejected", "invalid_input", "fixed command plan cannot be overridden")
     config = {"version": "1", "commands": COMMAND_TEMPLATES,
               "selection": [{"required": True, "local": True, "merge_unit": i == 3}
-                            for i in range(5)],
-              "manifest_version": manifest_version, "timeout_seconds": 300,
+                            for i in range(len(CHECK_IDS))],
+              "manifest_version": manifest_version,
+              "source_l7_inventory_digest": inventory_digest(), "timeout_seconds": 300,
               "term_grace_seconds": 5, "runtime": portable_config,
               "git_policy": GIT_POLICY, "git_environment": GIT_ENV}
     commands = []
@@ -34,4 +37,6 @@ def compile_plan(target: dict, portable_config: dict, manifest_digest: str,
     return {"target": target, "contract_id": "OS-LOCAL-CI-001", "contract_version": "1",
             "selected_check_ids": list(CHECK_IDS), "selection_basis": "fixed_local_ci_contract",
             "config_digest": sha256(canonical_bytes(config)),
-            "design_manifest_digest": manifest_digest, "commands": commands, "state": "success"}
+            "design_manifest_digest": manifest_digest,
+            "source_l7_inventory_digest": inventory_digest(),
+            "commands": commands, "state": "success"}

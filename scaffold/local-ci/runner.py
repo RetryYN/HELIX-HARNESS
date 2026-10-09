@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import ctypes
+import base64
 import errno
 import hashlib
 import json
@@ -148,6 +149,7 @@ def _validate_command(spec: object) -> tuple[list[str], str]:
         CHECK_IDS[1]: ["python3", "-B", "scaffold/tools/scfctl.py", "stale"],
         CHECK_IDS[2]: ["python3", "-B", "scaffold/governance/tools/govcheck.py"],
         CHECK_IDS[4]: ["python3", "-B", "scaffold/local-ci/design_check.py"],
+        CHECK_IDS[5]: ["python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2"],
     }
     if index == 3:
         if (len(argv) != 8 or argv[:4] != ["git", "diff", "--check", "--no-ext-diff"]
@@ -469,11 +471,14 @@ def _settle_descendants(root_pid: int, *, grace: float, signal_leftovers: bool) 
 
 
 def _drain_pipes(process: subprocess.Popen, timeout: int, cancel_event: threading.Event,
-                 control: socket.socket | None = None) -> tuple[int | None, str, str, str | None, bool]:
+                 control: socket.socket | None = None,
+                 capture_stdout_limit: int = 0) -> tuple[int | None, str, str, str | None, bool, bytes, bool]:
     assert process.stdout is not None and process.stderr is not None
     selector = selectors.DefaultSelector()
     stdout_fd, stderr_fd = process.stdout.fileno(), process.stderr.fileno()
     hashes = {stdout_fd: hashlib.sha256(), stderr_fd: hashlib.sha256()}
+    captured_stdout = bytearray()
+    stdout_overflow = False
     for stream in (process.stdout, process.stderr):
         os.set_blocking(stream.fileno(), False)
         selector.register(stream, selectors.EVENT_READ)
@@ -495,7 +500,10 @@ def _drain_pipes(process: subprocess.Popen, timeout: int, cancel_event: threadin
                 safe = process.returncode is not None and _settle_descendants(
                     process.pid, grace=0.25, signal_leftovers=True)
                 selector.close()
-                return process.returncode, hashes[stdout_fd].hexdigest(), hashes[stderr_fd].hexdigest(), None, safe
+                base = (process.returncode, hashes[stdout_fd].hexdigest(), hashes[stderr_fd].hexdigest(), None, safe)
+                if capture_stdout_limit:
+                    return base + (bytes(captured_stdout), stdout_overflow)
+                return base
         for key, _ in selector.select(0.05):
             if key.data == "control":
                 try:
@@ -516,6 +524,12 @@ def _drain_pipes(process: subprocess.Popen, timeout: int, cancel_event: threadin
                 continue
             if chunk:
                 hashes[stream.fileno()].update(chunk)
+                if stream.fileno() == stdout_fd and capture_stdout_limit:
+                    remaining = capture_stdout_limit - len(captured_stdout)
+                    if remaining > 0:
+                        captured_stdout.extend(chunk[:remaining])
+                    if len(chunk) > remaining:
+                        stdout_overflow = True
             else:
                 selector.unregister(stream)
                 stream.close()
@@ -567,8 +581,10 @@ def _drain_pipes(process: subprocess.Popen, timeout: int, cancel_event: threadin
     selector.close()
     safe = process.poll() is not None and _settle_descendants(
         process.pid, grace=TERM_GRACE_SECONDS, signal_leftovers=True)
-    return (process.returncode, hashes[stdout_fd].hexdigest(),
-            hashes[stderr_fd].hexdigest(), interrupted, safe)
+    base = (process.returncode, hashes[stdout_fd].hexdigest(), hashes[stderr_fd].hexdigest(), interrupted, safe)
+    if capture_stdout_limit:
+        return base + (bytes(captured_stdout), stdout_overflow)
+    return base
 
 
 def _preflight(host: dict, portable: dict, mounts: list[dict], symlinks: list[dict],
@@ -690,8 +706,11 @@ def _supervisor(payload: dict, control: socket.socket) -> dict:
         cancel_event.set()
     previous = signal.signal(signal.SIGUSR1, request_cancel)
     try:
-        code, stdout_digest, stderr_digest, interrupted, safe = _drain_pipes(
-            process, TIMEOUT_SECONDS, cancel_event, control=control)
+        is_suite = spec["check_id"] == "LC-STAGE1-L7-001"
+        drained = _drain_pipes(process, TIMEOUT_SECONDS, cancel_event, control=control,
+                                capture_stdout_limit=40000 if is_suite else 0)
+        code, stdout_digest, stderr_digest, interrupted, safe = drained[:5]
+        captured_stdout, stdout_overflow = drained[5:] if is_suite else (b"", False)
     finally:
         signal.signal(signal.SIGUSR1, previous)
     if not safe:
@@ -704,9 +723,13 @@ def _supervisor(payload: dict, control: socket.socket) -> dict:
                                stdout_digest, stderr_digest, interrupted)
         return {"execution": execution, "safe_to_continue": True, "diagnostic": None}
     state = "success" if code == 0 else "fail"
-    return {"execution": _execution(spec, identity, state, code, start, _now(), profile_digest,
-                                     stdout_digest, stderr_digest),
-            "safe_to_continue": True, "diagnostic": None}
+    result = {"execution": _execution(spec, identity, state, code, start, _now(), profile_digest,
+                                       stdout_digest, stderr_digest),
+              "safe_to_continue": True, "diagnostic": None}
+    if is_suite:
+        result["suite_stdout_b64"] = base64.b64encode(captured_stdout).decode("ascii")
+        result["suite_stdout_overflow"] = stdout_overflow
+    return result
 
 
 def _child_main(control_fd: int) -> int:
@@ -859,8 +882,14 @@ def run_step(snapshot_root: Path, spec: dict, host_config: dict, portable_config
                     except Diagnostic:
                         protocol_error = Diagnostic("denied", "supervisor_protocol_invalid", "supervisor result frame is invalid")
                         break
+                    required_keys = {"execution", "safe_to_continue", "diagnostic"}
+                    allowed_keys = set(required_keys)
+                    if spec["check_id"] == "LC-STAGE1-L7-001":
+                        allowed_keys |= {"suite_stdout_b64", "suite_stdout_overflow"}
                     if (not isinstance(decoded, dict)
-                            or set(decoded) != {"execution", "safe_to_continue", "diagnostic"}
+                            or not required_keys <= decoded.keys()
+                            or decoded.keys() - allowed_keys
+                            or ("suite_stdout_b64" in decoded) != ("suite_stdout_overflow" in decoded)
                             or not isinstance(decoded["safe_to_continue"], bool)):
                         protocol_error = Diagnostic("denied", "supervisor_protocol_invalid", "supervisor response shape is invalid")
                         break
@@ -899,6 +928,15 @@ def run_step(snapshot_root: Path, spec: dict, host_config: dict, portable_config
             }
         else:
             result_obj = response
+            if spec["check_id"] == "LC-STAGE1-L7-001" and "suite_stdout_b64" in response:
+                try:
+                    result_obj["suite_runner_stdout"] = base64.b64decode(
+                        response["suite_stdout_b64"], validate=True)
+                except (ValueError, TypeError) as exc:
+                    raise Diagnostic("denied", "supervisor_protocol_invalid", "suite output frame is malformed") from exc
+                if not isinstance(response["suite_stdout_overflow"], bool):
+                    raise Diagnostic("denied", "supervisor_protocol_invalid", "suite output overflow marker is malformed")
+                result_obj["suite_runner_stdout_overflow"] = response["suite_stdout_overflow"]
     except (OSError, ValueError, subprocess.SubprocessError) as exc:
         diagnostic = Diagnostic("denied", "supervisor_failed", "supervisor process failed closed")
         result_obj = {
