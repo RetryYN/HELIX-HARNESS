@@ -1,0 +1,58 @@
+{
+  "receipt_id": "RCPT-HARNESS-TDDORDER-2026-10-10",
+  "authority_effect": "none",
+  "candidate_digest_rule": "対象###見出しから次の###直前、末尾空白を除きLF一つ。受入・対応表行はLFなし。",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-015",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        389,
+        396
+      ],
+      "candidate_semantic_digest": "sha256:6174e604534021aa08addda5911e0fd2d68eafcd3e5855fa3b714beb82059e0e",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "sha256:c22df0429af7743eccfdeff8a404bd48bce4275d326e79f242d77af58c0b4bf5",
+        "row_identity": "HARNESS-L2-015",
+        "row_sha256": "sha256:276967897079de3adc98153444e6a82db3303393946f39985c11182bf6e5db48"
+      },
+      "previous_registration_id": "MPR-RC-HARNESS-L2-015-005"
+    }
+  ],
+  "prior_receipts": [
+    {
+      "path": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27-r2.json",
+      "sha256": "sha256:61109ea2098b1fe6552287489cf61e9a8bf79d585173ce05d3c710f636d32f0e",
+      "relation": "015だけを訂正。既存の空source atom集合と元の意味・被覆を保持。別候補のrevisionを更新しない。"
+    }
+  ],
+  "human_decision_disposition_refs": [
+    "docs/governance/decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md"
+  ],
+  "routing_row": {
+    "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+    "identity": "HARNESS-L2-003",
+    "row_sha256": "sha256:dee278f2a45aa936f2bd0d3cef179c43c36f005168b857d7a6ef8519037c05f6"
+  },
+  "legacy_reference": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+    "lines": [
+      21,
+      24
+    ],
+    "sha256": "sha256:9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+    "use": "静的意味比較。旧source atom移管や旧test実行を主張しない。"
+  },
+  "candidate_l2_file_sha256": "sha256:35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+  "paired_acceptance_file_sha256": "sha256:c22df0429af7743eccfdeff8a404bd48bce4275d326e79f242d77af58c0b4bf5",
+  "fixed_proposal_unit": "TDDORDER",
+  "coverage_result": "no_loss",
+  "unaccounted_atom_refs": []
+}
