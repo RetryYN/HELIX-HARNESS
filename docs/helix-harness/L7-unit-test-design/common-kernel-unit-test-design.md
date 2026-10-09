@@ -949,7 +949,7 @@ G3-I4 (`HumanInterface`) の全caseは既存authority source/adapterのexact bin
 | source | path / scope | SHA-256 |
 |---|---|---|
 | L4 | `docs/helix-harness/L4-basic-design/common-kernel.md` §18 | `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82` |
-| L5 | `docs/helix-harness/L5-detail-design/common-kernel.md` §11 | `b6b2f2fe6d47d413a2d9e37d1ab26ea9017017d86a091ee2c8f5a144ac7cdc4a` |
+| L5 | `docs/helix-harness/L5-detail-design/common-kernel.md` §12 | `b6b2f2fe6d47d413a2d9e37d1ab26ea9017017d86a091ee2c8f5a144ac7cdc4a` |
 | L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` IV-K8-01–26 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
 | Design base | main `46cbf9297a11b7f23f561a57b5cab21768fe075c` | K8追補のcurrent integration base |
 
