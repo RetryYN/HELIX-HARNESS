@@ -4,7 +4,7 @@ layer: L6
 status: draft
 owner: HELIX-SECURITY
 scope: SECURITY Stage 1 L5 adapters, K3/K6/K7-G5/K8 read projections
-base: `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
+base: main `d5bb3455526c816b3af965db239c4b56207a884f`（固定source snapshot）
 paired_l5: ../L5-detail-design/stage1-security.md
 paired_l7: ../L7-unit-test-design/stage1-security-unit-test-design.md
 ---
@@ -198,4 +198,4 @@ Ledger recordsは`docs/governance/legacy-asset-disposition.jsonl`の対象asset_
 
 ## 8. 設計状態
 
-本書と対のL7はf211f91を基点とした起草であり、実装・test execution・CI・承認・releaseを表さない。L7はL8の421 canonical definitionsを一対一のunit oracleへ写し、17 aliasesをcanonical link assertionだけにする。Static proofはL7 §1/§2と`/tmp/security-l6-l7-static-proof.json`に保持し、fixture mappingが固定source bytesから再現できることだけを示す。
+本書と対のL7は§1とfront matterに明記したmain `d5bb3455526c816b3af965db239c4b56207a884f`の固定sourceを基準とする起草であり、実装・test execution・承認・releaseを表さない。L7はL8の421 canonical definitionsを一対一のunit oracleへ写し、17 aliasesをcanonical link assertionだけにする。再照合の手順と結果はL7 §7へ記録し、fixture mappingが固定source bytesから再現できることだけを示す。

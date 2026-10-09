@@ -4,9 +4,9 @@ layer: L7
 status: draft
 owner: HELIX-SECURITY
 scope: SECURITY Stage 1 adapters / K3-K6-K7/G5-K8 projections
-base: `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
+base: main `d5bb3455526c816b3af965db239c4b56207a884f`（固定source snapshot）
 paired_l6: ../L6-function-design/stage1-security.md
-paired_l6_sha256: `833541166a69c48e19fd173dbba4d265fa5ae5ca89e12469ce7f97db52a3b7f5`
+paired_l6_sha256: `421136cc37ab6f87a9797aeb9ba5600bebd5f2ed5670f26693300f620279ea2c`
 paired_l8: ../L8-detail-verification/stage1-security-detail-verification.md
 paired_l8_sha256: `e2d55fdd753484c6bfac260719aa8290b8defa910aab348cad88da5fa5ea463a`
 paired_l9: ../L9-integration-verification/stage1-security-integration-verification.md
@@ -3493,7 +3493,7 @@ Fixture countとauthority scopeは別々に保つ。L9 verifier IDは33 function
 
 ## 7. 静的照合と未実行状態
 
-本pairは未実装・未実行設計である。静的proof `/tmp/security-l6-l7-static-proof.json`は対象固定文書のSHAとID集合・本文セルの機械照合を記録し、unit test executionを示さない。将来の照合では次を確認する。
+本pairは未実装・未実行設計である。照合対象sourceは§1のmain `d5bb3455526c816b3af965db239c4b56207a884f`固定snapshotである。各pathを `git show <固定revision>:<path>` で読み、そのbytesのSHA-256を§1と照合する。L8 §5.1/§5.2/§5.2.1の定義行を抽出し、§5.3の17 aliasを分離してL7 §2の421節へfixture IDで対応させ、baseline・変異・expected・verifierの各cellを全文比較する。独立review01（PR #2785 comment 6077700038）では8 source pin一致、438 IDの一意性、421 canonical行の全cell一致、17 alias一致、43 verifier集合一致を確認した。これは静的照合でありunit test executionを示さない。再照合では次を確認する。
 
 - L8 §5の438 definition IDs = L7 canonical 421 + alias 17。§2とL8 canonical集合が一対一で、§4 alias targetがcanonicalである。
 - 各canonical rowにL9 verifier(s)、L5 API、baseline、one mutation、exact expectedが非空で保存される。
