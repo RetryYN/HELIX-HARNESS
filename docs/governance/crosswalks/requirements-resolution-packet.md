@@ -1,13 +1,13 @@
 # 要求整理のPO判断案
 
-対象base: `5f8d7f1251f15fe4a91314e26c20bf9b4856a9d5`。候補本文: [差分JSON](requirements-resolution-packet.json)、SHA-256 `e7faed90737bb32f2af42e7c8c6cf4449c2377435350b000ee2e8e8a175f2753`。
+対象base: `5f8d7f1251f15fe4a91314e26c20bf9b4856a9d5`。候補本文: [差分JSON](requirements-resolution-packet.json)、SHA-256 `64b673cd69579bbbb3a978119ecf3f30fa450cc3cc21420e1457549ec1976d38`。
 
 Issue #2825・#2826・#2832の要求意味・版の整理案であり、要求の採択や意味変更をこのpacketから生成しない。JSONには対象path、変更前後の全文字列、適用箇所数、元file SHAを固定した。canonical L2/L11本文はまだ変更していない。
 
 | 判断単位 | 提案 | 保持する点 |
 |---|---|---|
 | JSONAUTH（#2825） | OS053と対L11の正本をJSONへ訂正。生成Markdown/HTMLだけの編集ではcanonical更新にしない負例を加える | owner分離、原子的確定、部分current拒否、CAS、再送、rollback、receipt |
-| TDDORDER（#2832） | test/oracleの実装前定義・凍結と、Redの欠陥検出、Greenの最小実装を明示し、後付け検証を拒否する | 015の凍結済み設計と対の検証の入力、Provisional、局所Refactorの意味保持、CIと受入の区別 |
+| TDDORDER（#2832） | test/oracleの実装前定義・凍結と、Redの欠陥検出、Greenを「凍結したoracleを最小の実装で満たした証拠」と明示し、後付け検証を拒否する | 015の凍結済み設計と対の検証の入力、Provisional、局所Refactorの意味保持、CIと受入の区別 |
 | VERSIONJOIN（#2826） | HARNESS052とOS102を1.0に指定し、OS053とHARNESS059の同版接続を成立対象へ揃える | 9/29・9/30の既採択意味、各owner、11 field、同revision/digest、不確実状態の保留。その他25件の版未指定は保持 |
 
 根拠: [エージェント原則3](../../concept/helix-principles.md)、[JSON正本のPO判断](../decisions/brain-helix-core-po-intent-2026-09-25.md)、[9/26 Vの谷の判断](../decisions/harness-v-valley-process-po-decisions-2026-09-26.md)、[9/29の11候補判断](../decisions/po-decision-2026-09-29-11candidates.md)、[9/30のセット採択](../decisions/po-decision-2026-09-30-live26.md)、[10/10の版判断](../decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)。10/10はJSON矛盾を別の意味修正へ残し、052・102は版指定対象外としたため、今回の対象revisionに必要な判断を分ける。

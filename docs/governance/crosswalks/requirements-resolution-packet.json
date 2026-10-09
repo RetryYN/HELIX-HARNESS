@@ -44,18 +44,18 @@
     {
       "id": "TDDORDER",
       "issue": 2832,
-      "proposal": "実装前にtest/oracleを定義・凍結し、実装後のRedは意図した欠陥の検出、Greenは最小実装と明示する。凍結済みの対の検証を入力とする意味を保持し、後付けoracleを拒否する。",
+      "proposal": "実装前にtest/oracleを定義・凍結し、実装後のRedは意図した欠陥の検出、Greenは凍結したoracleを最小の実装で満たした証拠と明示する。凍結済みの対の検証を入力とする意味を保持し、後付けoracleを拒否する。",
       "edits": [
         {
           "path": "docs/helix-harness/L2-requirements/product-requirements.md",
           "before": "設計の契約→実装→Red→Green",
-          "after": "設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（最小実装）",
+          "after": "設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（凍結したoracleを最小の実装で満たした証拠）",
           "expected_occurrences": 2
         },
         {
           "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
           "before": "凍結済みの設計からRed→Green→局所のRefactor",
-          "after": "実装前に凍結した設計と対のtest／oracleから、意図した欠陥を検出するRed→最小実装のGreen→局所のRefactor",
+          "after": "実装前に凍結した設計と対のtest／oracleから、意図した欠陥を検出するRed→凍結したoracleを最小の実装で満たしたGreenの証拠→局所のRefactor",
           "expected_occurrences": 1
         },
         {
