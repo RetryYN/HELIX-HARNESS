@@ -104,7 +104,7 @@ DomainEvaluation = { facts: tuple[FieldFact, ...], source_results: tuple[existin
 
 ### 4.1 FN-HARNESS-04 `PackRevisionComparison`の局所構成
 
-この追補はmain `f020c04f2fb219e319bcc13478f14b41eb881701`を作業基準とする。§1/§1.1の7887/d736時点source記録は過去snapshotとして保持し、今回の入力L5 SHA-256は`76fa0e803cb71adc74303322fc4ed00eeccc7b43bad6d8eb5a7718b058f95da1`、入力L8 SHA-256は`1cfb517421bcdeb6c3522061004ca0dd5f1fe1adc4ae95b941518a09aa36c73e`である。旧assetの対応表とfull SHAは§2を正本とする。
+この追補はmain `f020c04f2fb219e319bcc13478f14b41eb881701`を作業基準とする。§1/§1.1の7887/d736時点source記録は過去snapshotとして保持し、今回の入力は本PRの追補後bytesであり、入力L5 SHA-256は`76fa0e803cb71adc74303322fc4ed00eeccc7b43bad6d8eb5a7718b058f95da1`、入力L8 SHA-256は`36337c13910ce635fa2e94f71d068813d4e6e71b7ca657ac0cbfe10331c9e657`である。旧assetの対応表とfull SHAは§2を正本とする。
 
 FN-HARNESS-04のprivate pure constructorは、L5 §3.3の候補recordに列挙されたdeclared/current refs、caller-supplied cause refs、`revision_relation`、および元順序の全`facts` tupleを受けて候補payloadを組み立てる。`revision_relation`はこのconstructorへ渡された解決済み値を保持し、constructorはref equalityからそれを算出しない。cause refsも比較差分から推論しない。L5 `FieldComparisonCandidate`と同じshapeを持つ比較factは`facts`内に保持し、宣言欠落/複数factとの混在順序を崩さない。`field_comparisons`と宣言factの読み取りprojectionはこのtupleを順にfilterするだけであり、元のtupleを分割・再結合して順序を失う処理はしない。
 

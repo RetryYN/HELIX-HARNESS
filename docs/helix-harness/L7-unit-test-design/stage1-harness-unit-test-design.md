@@ -26,7 +26,7 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 |---|---|---|
 | Stage 1 L4 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `25fbd104fd47f39d22f542664e57fd44a440af8904e11b2f0b397ac6606b6cfb` | 7887時点の固定source snapshot。 |
 | Stage 1 L5 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `a0ed72f672606aee19e0124ee54ce47f6b409ab2e93b81cff1824f7c9cf7a92d` | 7887時点の固定source snapshot。 |
-| Stage 1 L6 | 本PR content HEADに含む対L6本文; SHA-256 `bee35f170c4b735edd8f4490fd2b5f415989ec6d22875bbc5ff76a3d07fc629c` | 本pairの関数設計と§7.1の実装候補status記録。L7から一方向に固定参照する。 |
+| Stage 1 L6 | 本PR content HEADに含む対L6本文; SHA-256 `1c0dd36fe8f0b3fd75251e686776c0188f3764b5b2293121fd2906eaa4772dca` | 本pairの関数設計と§7.1の実装候補status記録。L7から一方向に固定参照する。 |
 | Stage 1 L8 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `9eadffc05150c01114ff29ba0fb2d28449b927e06f5565fbb86510f59be89d26` | 7887時点の固定fixture snapshot。 |
 | Stage 1 L9 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `6cc4bc3ac56b8d1d94e05ddc4dda71c35df2941aab39e65fb9d43cda2deb36da` | 7887時点の固定verifier/case snapshot。 |
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | 7887時点の固定参照snapshot。 |
@@ -40,7 +40,7 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 
 ### 1.1 当時の入力source snapshot（main d736f99）
 
-次表は旧追補作成時点main `d736f99edc4f43b6cd912b9db09d545a5e769e21`で固定した入力bytesの履歴である。§1の7887表の各値も当時記録として変えない。今回の補助trace追補はmain `f020c04f2fb219e319bcc13478f14b41eb881701`を作業基準とし、追補入力のL5 SHA-256は`76fa0e803cb71adc74303322fc4ed00eeccc7b43bad6d8eb5a7718b058f95da1`、L8 SHA-256は`1cfb517421bcdeb6c3522061004ca0dd5f1fe1adc4ae95b941518a09aa36c73e`である。
+次表は旧追補作成時点main `d736f99edc4f43b6cd912b9db09d545a5e769e21`で固定した入力bytesの履歴である。§1の7887表の各値も当時記録として変えない。今回の補助trace追補はmain `f020c04f2fb219e319bcc13478f14b41eb881701`を作業基準とし、追補入力は本PRの追補後bytesであり、L5 SHA-256は`76fa0e803cb71adc74303322fc4ed00eeccc7b43bad6d8eb5a7718b058f95da1`、L8 SHA-256は`36337c13910ce635fa2e94f71d068813d4e6e71b7ca657ac0cbfe10331c9e657`である。
 
 | 参照文書 | SHA-256 | L7で読む範囲 |
 |---|---|---|
