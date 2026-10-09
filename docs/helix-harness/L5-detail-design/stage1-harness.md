@@ -8,7 +8,7 @@ parents:
   - HARNESS-L2-011
   - HARNESS-L2-023
 paired_l8: ../L8-detail-verification/stage1-harness-detail-verification.md
-base: main `08eb37bd8168f97566ac06d88424adaddb7815c1`
+base: main `f75199749888f7261772ba26e9feb58a33d9a04f`
 ---
 
 # HELIX-HARNESS Stage 1 L5詳細設計

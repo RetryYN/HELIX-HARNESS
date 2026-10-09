@@ -4,8 +4,8 @@ layer: L8
 status: design_pair_defined
 owner: HELIX-HARNESS
 paired_l5: ../L5-detail-design/stage1-harness.md
-paired_l5_sha256: cdd29a02a3a6e814014814f164aa2355cadd60bb3d86a2a4b7f8a387005fdd46
-base: main `08eb37bd8168f97566ac06d88424adaddb7815c1`
+paired_l5_sha256: 6233d10a74c0f355ba3aba3134d75067210ab0743200f4c70ef6699514c08d59
+base: main `f75199749888f7261772ba26e9feb58a33d9a04f`
 ---
 
 # HELIX-HARNESS Stage 1 L8詳細検証設計
@@ -300,7 +300,7 @@ fixtureは合成pack declaration、dependency refs、caller input、version、au
 
 ## 5. 製品と共通kernelの結合範囲
 
-このL8はHELIX-HARNESS製品のStage 1 fixture設計であり、共通kernel詳細設計/単体suiteではない。`OperationResultEnvelopeCandidate`はprogress/result/evidenceの読取比較だけを表し、実保存・表示・業務完了を行わない。共通kernel参照は本pairのbase `08eb37bd8168f97566ac06d88424adaddb7815c1`でcurrentだった本文SHAに固定し、過去snapshot pinをcurrent sourceとして扱わない。現行kernelのL4/L9が定義するK1–K10を、product scope内で参照する。
+このL8はHELIX-HARNESS製品のStage 1 fixture設計であり、共通kernel詳細設計/単体suiteではない。`OperationResultEnvelopeCandidate`はprogress/result/evidenceの読取比較だけを表し、実保存・表示・業務完了を行わない。共通kernel参照は本pairのbase `f75199749888f7261772ba26e9feb58a33d9a04f`でcurrentだった本文SHAに固定し、過去snapshot pinをcurrent sourceとして扱わない。現行kernelのL4/L9が定義するK1–K10を、product scope内で参照する。
 
 | Kernel | HARNESS product fixture boundary |
 |---|---|
@@ -312,7 +312,7 @@ fixtureは合成pack declaration、dependency refs、caller input、version、au
 | K9 | review結果をL3承認、release eligibility、実装許可へ読み替えない。 |
 | K10 | 023の固定typed dependency/class/conditionを使い、未宣言 dependencyを加えない。 |
 
-共通kernelのcurrent本文SHA（base `08eb37bd8168f97566ac06d88424adaddb7815c1`）はL4 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、L9 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`、K1/K2 L5 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4`、K1/K2 L8 `6ba6ee3928bf657b2bd7be6b8cf13f0b5565e271d7bff64567bc5de0dc2ca588`、L6 current（K1/K2保持を含む）`0c11e55342f983d278a02ac4786178386bf8beefdcc824333ef0c5a93f5000b0`、L7 current（K1/K2保持を含む）`89152ee3b58c291a88b7108fd0437c1349265eb85607c2da1f617d63ac3572c1`。これらは共通kernel参照でありHARNESS親、登録済み事実、bootstrap procedure、実装/実行証拠ではない。
+共通kernelのcurrent本文SHA（base `f75199749888f7261772ba26e9feb58a33d9a04f`）はL4 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、L9 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`、L5 current（K1/K2/K3/K4/K5/G3）`702a50b82fe7685198539f6a51f7203b72f2adef8edb08f8ce81f677b57a42f0`、L8 current（K1/K2/K3/K4/K5/G3）`6f598a9a9fd0ab58a30ec26bb290f958e2807a8ceb7fb7c368e0ecf4af1d876e`、L6 current（K1/K2保持を含む）`0c11e55342f983d278a02ac4786178386bf8beefdcc824333ef0c5a93f5000b0`、L7 current（K1/K2保持を含む）`89152ee3b58c291a88b7108fd0437c1349265eb85607c2da1f617d63ac3572c1`。これらは共通kernel参照でありHARNESS親、登録済み事実、bootstrap procedure、実装/実行証拠ではない。
 
 ## 6. 未確定・未実行範囲
 
