@@ -137,6 +137,12 @@ DomainEvaluation = { facts: tuple[FieldFact, ...], source_results: tuple[existin
 
 関数、fixture、実行結果は未実装・未実行である。このpair内で旧runtime/CLI/hook/test/CIを実行しない。L7はテスト設計のみを示し、unit suite実行、L8/L9 integration、製品pack登録、owner/effect実証を主張しない。本書の現行入力sourceは§1.1のmain `d736f99edc4f43b6cd912b9db09d545a5e769e21` path別SHAで固定し、§1のmain `7887...` snapshotは履歴値として保持する。本L6/L7の未実装・未実行状態は、上流sourceがmainにあることから変わらない。
 
+### 7.1 実装候補の観測状態（worktree `codex/harness-stage1-local-implementation`, base `d5bb3455526c816b3af965db239c4b56207a884f`）
+
+この追補は実装候補の実際の状態を記録する。上段の「未実装・未実行」はこのL6/L7設計作成時点の記録として保持する。現候補source `helix/helix-harness/units/harness-stage1/src/stage1_pack.py`には、L6 §4のprivate field-ref comparison fact、明示された`missing | multiple` declaration fact、およびsource result保持を行うprivate `DomainEvaluation` modelだけがある。source/current-owner reader、L5公開API、K1 `Observed` wrapper、K1 ResultKey/PolarityMapping binding、declaration/registration、K3 owner接続、dispatch/effect、永続化は実装していない。5件のprivate helper testはpayload helperに限られ、正式L7 fixtureやL9 verifierへ対応付けていない。
+
+全L8 formal fixture 269件（UT-HARNESS-001〜269）と補助fixture 10件（UT-HARNESS-SUP-001〜010）の実装statusは、L7 §7のstatus表のとおりすべて`not_exercised`である。これは計画分類（pure/private/hold）や5 helper testの件数を実装・合格へ読み替えないための記録であり、L8の19局所保留を変更しない。Observed wrapperの操作key/version/scopeおよびPolarityMappingは固定L5/L6に結び付けがないため、合成せず公開API経路を未達のままとする。L7 fixture単位のbaseline/single mutation/assertionを満たす実行はなく、coverage、L8/L9合格、owner接続、pack登録は未確認である。
+
 ## 8. source配置と関数所有の候補
 
 L5 §7のunit候補rootとfile locatorをそのまま使い、API候補10件のsource所在を次のように具体化する。ここでの配置はL6関数設計上の候補で、実ファイル作成、unit宣言、pack identity/type number、型番台帳登録、import可能性、実reader/current-owner接続を意味しない。

@@ -149,3 +149,20 @@ L7は本書の関数IDと現L9の全40 oracle IDに1対1の設計fixture locator
 source locator導出はCI/設計検証側の入力解決手順であり、`helix/`製品コードの公開関数ではない。候補内部helperは、既存`SubjectRef`と別locator/path、解決済みimmutable bytesを受ける純粋照合とし、出力は候補pathまたは未選択に留める。ここで`SubjectRef`は`kind`/`identity`/`revision`/`digest`でsourceを束縛し、pathはtree locatorとして別に保持する。Common Kernel K5 `FixedRef`（`store`/`locator`/`digest`）は別の保存・証拠参照型であり、source identityへ読み替えない。これはdeclaration全項目の妥当性、登録、usable判定ではなく、moduleをimport/testを実行する指示でもない。K1 `Observed`、新規diagnostic/reason、pack登録状態へ変換しない。digest不一致は`SubjectRef.digest`とresolved bytesの不一致として既存K6 read boundaryへ戻し、宣言identityとpathの不一致はrepository-layout RL-C4、宣言欠落はRL-C5第2文の宣言がないfolderをpackとして数えないmissing_input所見へ戻す。台帳登録済み型番を前提とする第1文は本候補の未選択登録状態へ適用しない。treeに別directoryがあっても、参照されたdeclarationから定まらないmodule/testを自動選択しない。実行時の製品sourceが宣言/記録をpathから読むことはRL-D3に反するため、ここで述べるref解決は設計/CI入力準備に限定する。
 
 固定宣言のexact `SubjectRef`と独立tree locator/pathは現在存在しないため、本候補L6は数値pinを作らない。declaration bytesが後続の実装候補として用意されたとき、そのsource referenceとlocatorを同一対象revisionへ固定し、L7がそのbytes/path照合とL8 locator expectationsを確認する。unit testのfixture successとCommon Kernel K5型番台帳の`ModelNumberDeclared`/`VersionRegistered`は別の証拠である。registration未解決はunit source/testのpure設計候補を妨げないが、pack usability/収載をpositiveにしない。
+
+
+## 7. 局所実装候補の状態
+
+この節はbase `ea7f650904963234d69b0f27f9b5edfcf17e5861`のL6設計契約とは別の、作業tree内候補実装の状態記録である。§2の正式な型、6公開API、引数対応、処理順は変更しない。
+
+| FN | 局所候補の状態 | formal契約に対する範囲 |
+|---|---|---|
+| FN-01 `bind_inventory_inputs` | 未実装 | K2 operation/version/subjectのowner binding未接続。K2 resultを代用しない。 |
+| FN-02 `project_resource_observation` | private subset helperのみ。formal FN-02実装とは扱わない | `_project_resource_observation_subset`は`_ResourceProjectionSubset`を返す。formal `ResourceProjection` shape（`fields: Mapping[ResourceField, SourceObservation[ExistingDomainValue]]`）と一致しない。局所テストは限定的な合成source observation保持だけを確認する。 |
+| FN-03 `compare_environment_axes` | 公開API未実装、private pair-helperのみ | 左右のsource observation保持まで。8軸比較、domain Value/polarity、formal `EnvironmentComparison`は実装していない。 |
+| FN-04 `project_path_and_storage` | 公開API未実装、private retain-helperのみ | opaque observation保持まで。formal `PathProjection`/`StorageProjection`、role/axis割当は実装していない。 |
+| FN-05 `prepare_operation_check` | 未実装 | 既存OperationDecl action bindingとK3 current-owner resolver接続がない。kind→action等を推定しない。 |
+| FN-06 `record_operation_observation` | 未実装 | OS operation/attempt owner sourceとformal outer result typeの接続がない。raw ref/`None`で代用しない。 |
+| FN-07 `summarize_nfr_observations` | private集計helperのみ | 渡された合成Observedの集計補助に限る。L5 §7母集団の解決やNFR測定は行わない。 |
+
+公開L5 APIのformal適合実装は0件である。5件の局所unitはprivate helperの限定subsetを確認するもので、L8正式oracleの合格、source/owner reader接続、宣言、登録、CI統合を証明しない。詳しいfixture別範囲と局所実行証拠はL7 §9を参照する。
