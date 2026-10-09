@@ -403,23 +403,23 @@ class DesignManifestTests(unittest.TestCase):
         result = manifest.verify_coverage_edges(doc, graph)
         self.assertTrue(result["structure_complete"])
         self.assertEqual(len(doc["coverage_dispositions"]), 193)
-        self.assertEqual(len(manifest.LCI_L9_SUITE_IDS), 33)
-        self.assertEqual(len(manifest.LCI_L8_SUITE_IDS), 37)
-        self.assertEqual(len(manifest.LCI_L7_SUITE_IDS), 38)
+        self.assertEqual(len(manifest.LCI_L9_SUITE_IDS), 44)
+        self.assertEqual(len(manifest.LCI_L8_SUITE_IDS), 48)
+        self.assertEqual(len(manifest.LCI_L7_SUITE_IDS), 48)
         self.assertEqual(set(manifest.LCI_SUPPLEMENTAL_CASE_BY_IV),
-                         {f"IV-LCI-{n}" for n in range(100, 111)})
+                         ({f"IV-LCI-{n}" for n in range(100, 111)} | {f"IV-LCI-{n}" for n in range(111, 122)}))
         self.assertEqual(set(manifest.LCI_SUPPLEMENTAL_CASE_BY_IV.values()),
-                         {f"CASE-L8-LCI-{n}" for n in range(131, 142)})
+                         ({f"CASE-L8-LCI-{n}" for n in range(131, 142)} | {f"CASE-L8-LCI-{n}" for n in range(142, 153)}))
         self.assertFalse(any(ident.startswith("SUP-") for ident in manifest.REQUIRED_SOURCE_IDS))
         self.assertEqual(len([edge for edge in doc["coverage_edges"]
-                              if edge["source_id"] == "LC-STAGE1-L7-001"]), 33)
+                              if edge["source_id"] == "LC-STAGE1-L7-001"]), 44)
         self.assertEqual(len([edge for edge in doc["coverage_edges"]
-                              if edge["source_id"] == "D-LCI-06"]), 37)
+                              if edge["source_id"] == "D-LCI-06"]), 48)
         self.assertEqual(len([edge for edge in doc["coverage_edges"]
-                              if edge["source_id"] == "F-LCI-10"]), 38)
+                              if edge["source_id"] == "F-LCI-10"]), 48)
         local_edges = [edge for edge in doc["coverage_edges"]
                        if edge["source_id"] in {"LC-STAGE1-L7-001", "D-LCI-06", "F-LCI-10"}]
-        self.assertEqual(len(local_edges), 108)
+        self.assertEqual(len(local_edges), 140)
 
     def test_supplemental_l9_case_reference_cannot_be_crosswired(self):
         doc, sources, _ = _baseline()

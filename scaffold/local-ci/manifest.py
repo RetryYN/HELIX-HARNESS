@@ -589,15 +589,15 @@ LCI_L8_PATH = "docs/helix-os/L8-detail-verification/local-ci-detail-verification
 LCI_L9_PATH = "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md"
 LCI_L7_SUITE_IDS = (frozenset(f"UT-LCI-{number}" for number in range(100, 114))
                     | frozenset(f"UT-LCI-{number}" for number in range(120, 133))
-                    | frozenset(f"UT-LCI-{number}" for number in range(133, 144)))
+                    | frozenset(f"UT-LCI-{number}" for number in range(133, 154)))
 LCI_L8_SUITE_IDS = (frozenset(f"CASE-L8-LCI-{number}" for number in range(100, 113))
                     | frozenset(f"CASE-L8-LCI-{number}" for number in range(118, 131))
-                    | frozenset(f"CASE-L8-LCI-{number}" for number in range(131, 142)))
+                    | frozenset(f"CASE-L8-LCI-{number}" for number in range(131, 153)))
 LCI_L8_DESIGN_IDS = frozenset(f"CASE-L8-LCI-{number}" for number in range(113, 118))
 LCI_L8_CASE_IDS = LCI_L8_SUITE_IDS | LCI_L8_DESIGN_IDS
 LCI_L9_SUITE_IDS = (frozenset(f"IV-LCI-{number}" for number in range(73, 87))
                     | frozenset(f"IV-LCI-{number}" for number in range(92, 100))
-                    | frozenset(f"IV-LCI-{number}" for number in range(100, 111)))
+                    | frozenset(f"IV-LCI-{number}" for number in range(100, 122)))
 LCI_SUPPLEMENTAL_CASE_BY_IV = {
     "IV-LCI-100": "CASE-L8-LCI-131",
     "IV-LCI-101": "CASE-L8-LCI-132",
@@ -610,6 +610,17 @@ LCI_SUPPLEMENTAL_CASE_BY_IV = {
     "IV-LCI-108": "CASE-L8-LCI-139",
     "IV-LCI-109": "CASE-L8-LCI-140",
     "IV-LCI-110": "CASE-L8-LCI-141",
+    "IV-LCI-111": "CASE-L8-LCI-142",
+    "IV-LCI-112": "CASE-L8-LCI-143",
+    "IV-LCI-113": "CASE-L8-LCI-144",
+    "IV-LCI-114": "CASE-L8-LCI-145",
+    "IV-LCI-115": "CASE-L8-LCI-146",
+    "IV-LCI-116": "CASE-L8-LCI-147",
+    "IV-LCI-117": "CASE-L8-LCI-148",
+    "IV-LCI-118": "CASE-L8-LCI-149",
+    "IV-LCI-119": "CASE-L8-LCI-150",
+    "IV-LCI-120": "CASE-L8-LCI-151",
+    "IV-LCI-121": "CASE-L8-LCI-152",
 }
 LCI_L9_DESIGN_IDS = frozenset((*(f"IV-LCI-{number:02d}" for number in range(9, 15)), "IV-LCI-27", *(f"IV-LCI-{number}" for number in range(63, 73)), *(f"IV-LCI-{number}" for number in range(87, 92))))
 EXPECTED_LOCAL_CI_CASE_IDS = {
