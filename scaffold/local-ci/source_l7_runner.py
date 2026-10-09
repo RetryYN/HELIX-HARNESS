@@ -64,12 +64,24 @@ HELPER_SOURCE_SHA256 = {
     'helix/helix-harness/units/common-kernel/tests/test_k10_graph.py': 'f58048ca009c390dcc33efa3e7202165fa48100dba52906114f85a1e5102414c',
     'helix/helix-harness/units/common-kernel/tests/test_k8_label.py': '6804c46a277e6d57fa7682cdadd94ed52107e3089db7a61d318cca6bcd07b842',
     'helix/helix-infrastructure/units/infrastructure-stage1/tests/test_resource_projection.py': 'c57ef11a6c32d226880d7fc9e44de553cdd38410cacd3fd19812000deeebc768',
+    'helix/helix-labo/units/stage1-labo/src/_private_aggregate_assembly.py': '685b867b90844827e6a1639c29206cadfa4d086352698b5a86ab32aafb586d49',
+    'helix/helix-labo/units/stage1-labo/tests/test_aggregate_assembly.py': '1b4d54aaea45fb80799495fdaab5f00e3e5a986fb4f7817ae533d3a6bdc850a1',
+    'helix/helix-harness/units/harness-stage1/src/pack_revision_projection.py': '1be6f0a58d82ebffd8ded44ab936fbefd48a65994eaba7f1a85e91ec3c430e63',
+    'helix/helix-harness/units/harness-stage1/tests/test_pack_revision_projection.py': '8c9db18475ed2c7886c535bbee6684cc29fa321ab1ded8bb6b6d6d0c1f631363',
 }
 HELPER_DESIGN_PATHS = (
+    "docs/helix-harness/L6-function-design/common-kernel.md",
+    "docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md",
     "docs/helix-security/L6-function-design/stage1-security.md",
     "docs/helix-security/L7-unit-test-design/stage1-security-unit-test-design.md",
     "docs/helix-connect/L6-function-design/stage1-connect.md",
     "docs/helix-connect/L7-unit-test-design/stage1-connect-unit-test-design.md",
+    "docs/helix-labo/L6-function-design/stage1-labo.md",
+    "docs/helix-labo/L7-unit-test-design/stage1-labo-unit-test-design.md",
+    "docs/helix-harness/L6-function-design/stage1-harness.md",
+    "docs/helix-harness/L7-unit-test-design/stage1-harness-unit-test-design.md",
+    "docs/helix-infrastructure/L6-function-design/stage1-infrastructure.md",
+    "docs/helix-infrastructure/L7-unit-test-design/stage1-infrastructure-unit-test-design.md",
 )
 
 # Fixed aliases are independent from the source module's importable name.
@@ -88,10 +100,13 @@ MECHANISM_HELPER_MODULES = (
     ('l7_sup_ck_test_k10_graph', 'helix/helix-harness/units/common-kernel/tests/test_k10_graph.py'),
     ('l7_sup_ck_test_k8_label', 'helix/helix-harness/units/common-kernel/tests/test_k8_label.py'),
     ('l7_sup_infra_test_resource_projection', 'helix/helix-infrastructure/units/infrastructure-stage1/tests/test_resource_projection.py'),
+    ('l7_sup_labo_test_aggregate_assembly', 'helix/helix-labo/units/stage1-labo/tests/test_aggregate_assembly.py'),
+    ('l7_sup_harness_test_pack_revision_projection', 'helix/helix-harness/units/harness-stage1/tests/test_pack_revision_projection.py'),
 )
 HELPER_PROJECTION_SOURCES = {
     "l7_sup_labo_test_projection": "helix/helix-labo/units/stage1-labo/src/projection.py",
     "l7_sup_security_test_projection": "helix/helix-security/units/stage1-security/src/projection.py",
+    "l7_sup_labo_test_aggregate_assembly": "helix/helix-labo/units/stage1-labo/src/projection.py",
 }
 FIXED_TEST_MODULES = (
     ("test_k1", "helix/helix-harness/units/common-kernel/tests/test_k1.py"),
@@ -235,14 +250,20 @@ MECHANISM_HELPER_IDENTITIES = (
     ('SUP-INFRA-RESOURCE-004', 'l7_sup_infra_test_resource_projection.TestPrivateResourceProjection.test_absent_mapping_field_is_not_filled_or_called_domain_absence'),
     ('SUP-INFRA-RESOURCE-005', 'l7_sup_infra_test_resource_projection.TestPrivateResourceProjection.test_same_display_different_subject_refs_remain_distinct'),
     ('SUP-INFRA-RESOURCE-006', 'l7_sup_infra_test_resource_projection.TestPrivateResourceProjection.test_projection_does_not_mutate_input_mapping_or_observations'),
+    ('SUP-LABO-AGGREGATE-001', 'l7_sup_labo_test_aggregate_assembly.AggregateAssemblyTests.test_assembles_exact_five_fields_and_retains_all_existing_k1_variants'),
+    ('SUP-LABO-AGGREGATE-002', 'l7_sup_labo_test_aggregate_assembly.AggregateAssemblyTests.test_one_missing_field_and_present_falsy_values_are_local_and_inputs_unchanged'),
+    ('SUP-HARNESS-REVISION-001', 'l7_sup_harness_test_pack_revision_projection.PackRevisionProjectionTests.test_sup_harness_revision_001_current_baseline_retains_refs_and_mixed_fact_order'),
+    ('SUP-HARNESS-REVISION-002', 'l7_sup_harness_test_pack_revision_projection.PackRevisionProjectionTests.test_sup_harness_revision_002_stale_relation_is_retained_as_supplied'),
+    ('SUP-HARNESS-REVISION-003', 'l7_sup_harness_test_pack_revision_projection.PackRevisionProjectionTests.test_sup_harness_revision_003_declared_pack_ref_only_mutation_preserves_other_inputs'),
+    ('SUP-HARNESS-REVISION-004', 'l7_sup_harness_test_pack_revision_projection.PackRevisionProjectionTests.test_sup_harness_revision_004_existing_unknown_is_preserved_outside_payload'),
 )
 MECHANISM_HELPER_IDS = tuple(row[0] for row in MECHANISM_HELPER_IDENTITIES)
-MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256 = "017eaa7ad0ed602e16d4c0a11678337d0100b55b97bcc17ecba93a3ef72ce39a"
+MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256 = "32041c445808a29c7c36058c91aa2ae28fb157b4bf2efc6e36301462bfcad7ae"
 MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS = tuple(sorted(identity for _sid, identity in MECHANISM_HELPER_IDENTITIES))
 SUPPLEMENTAL_IDS = tuple(row[0] for row in SUPPLEMENTAL_IDENTITIES)
 SUPPLEMENTAL_IDS_SHA256 = "e5d71feabe981041144583fb0ee0f4754dd76d881e08fb44b48e5bf25d0b8239"
-COMPOSITE_DISCOVERY_COUNT = 716
-COMPOSITE_DISCOVERY_IDS_SHA256 = "a673e0343f8f2b91f78bc1c13785b5d2d44f7efb6c8dbdbf65cd4af5ae34cad4"
+COMPOSITE_DISCOVERY_COUNT = 722
+COMPOSITE_DISCOVERY_IDS_SHA256 = "3ba31bbcb1221b2da8b3269bfb6573012635f82e8b1375b81da80a534782b1c0"
 SUPPLEMENTAL_SOURCE_REFS = {
     "BRAIN": ("docs/helix-brain/L7-unit-test-design/stage1-brain-unit-test-design.md", 104, "UT-BRAIN-", (2,)),
     "LABO": ("docs/helix-labo/L7-unit-test-design/stage1-labo-unit-test-design.md", 83, "LABO-UT-", (3,)),
@@ -1902,7 +1923,7 @@ EXPECTED_DISCOVERY_COUNT = COMPOSITE_DISCOVERY_COUNT
 CORE_EXPECTED_DISCOVERY_IDS_SHA256 = "aca81abd7dd60c29512431c2d8223fd509d4c7a3a3fd7f1fc70847658ba0042d"
 EXPECTED_DISCOVERY_IDS_SHA256 = COMPOSITE_DISCOVERY_IDS_SHA256
 K6_DISCOVERY_IDS_SHA256 = "52e558bc65de379093d9a3fa46ce7d59909f23a33a15e6a135d1fcf09cd4c857"
-RESULT_MAX_BYTES = 134755
+RESULT_MAX_BYTES = 137401
 MODULES = ("test_k1", "test_k2", "test_k3", "test_k5", "test_k6")
 
 # Literal values permitted by the current L7 expansion rules.  Keeping the
@@ -2060,7 +2081,7 @@ class _AstName:
 
 _AST_UNKNOWN = object()
 
-# Only this fixed non-test class is part of the 17-module AST inventory.
+# Only this fixed non-test class is part of the 19-module AST inventory.
 # Its exact shape is checked below; arbitrary classes are never ignored.
 _FIXED_NONTEST_CLASS_ALLOWLIST = {
     "l7_sup_security_test_projection": frozenset({"_CaseRef"}),
@@ -2310,17 +2331,17 @@ def _ast_test_identities_for_module(alias, raw: bytes, expected_classes):
 
 
 def validate_fixed_test_ast_inventory(source_bytes: dict[str, bytes]) -> None:
-    """Match seventeen fixed aliases' class/method identities using AST only; import occurs in sandbox."""
+    """Match nineteen fixed aliases' class/method identities using AST only; import occurs in sandbox."""
     aliases = [alias for alias, _path in FIXED_TEST_MODULES]
     paths = [path for _alias, path in FIXED_TEST_MODULES]
-    if (len(aliases) != 17 or len(set(aliases)) != 17 or len(set(paths)) != 17
+    if (len(aliases) != 19 or len(set(aliases)) != 19 or len(set(paths)) != 19
             or set(source_bytes) != set(paths)):
         missing = set(paths) - set(source_bytes)
         reason = "missing_input" if missing else "conflict"
         raise Diagnostic("Unknown", reason, "fixed AST test module aliases or source paths differ")
 
     expected = list(EXPECTED_DISCOVERY_IDS)
-    if (len(expected) != 716 or len(set(expected)) != 716
+    if (len(expected) != 722 or len(set(expected)) != 722
             or any(len(identity.split(".")) != 3 for identity in expected)):
         raise Diagnostic("Unknown", "conflict", "fixed AST expected identity inventory is malformed")
     expected_by_alias = {alias: set() for alias in aliases}
@@ -2335,13 +2356,13 @@ def validate_fixed_test_ast_inventory(source_bytes: dict[str, bytes]) -> None:
         classes = {identity.split(".")[1] for identity in expected_by_alias[alias]}
         actual.extend(_ast_test_identities_for_module(alias, source_bytes[path], classes))
     if len(actual) != len(set(actual)):
-        raise Diagnostic("Unknown", "conflict", "AST test identities differ from the closed 716 identities")
+        raise Diagnostic("Unknown", "conflict", "AST test identities differ from the closed 722 identities")
     missing = set(expected) - set(actual)
     extra = set(actual) - set(expected)
     if missing and not extra:
         raise Diagnostic("Unknown", "missing_input", "a fixed target test callable is absent")
     if extra:
-        raise Diagnostic("Unknown", "conflict", "AST test identities differ from the closed 716 identities")
+        raise Diagnostic("Unknown", "conflict", "AST test identities differ from the closed 722 identities")
 
 
 def _markdown_cells(line: str) -> list[str] | None:
@@ -2854,9 +2875,9 @@ def run_suite(root: Path) -> tuple[dict, int]:
             or len(set(K6_DISCOVERY_IDS)) != K6_DISCOVERY_COUNT
             or sha256(("\n".join(K6_DISCOVERY_IDS) + "\n").encode()) != K6_DISCOVERY_IDS_SHA256):
         raise Diagnostic("Unknown", "conflict", "fixed K6 discovery inventory is inconsistent")
-    if (len(MECHANISM_HELPER_IDENTITIES) != 103
-            or len(set(MECHANISM_HELPER_IDS)) != 103
-            or len(set(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS)) != 103
+    if (len(MECHANISM_HELPER_IDENTITIES) != 109
+            or len(set(MECHANISM_HELPER_IDS)) != 109
+            or len(set(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS)) != 109
             or MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS != tuple(sorted(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS))
             or sha256(("\n".join(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS) + "\n").encode())
             != MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256):

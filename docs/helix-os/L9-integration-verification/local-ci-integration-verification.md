@@ -9,7 +9,7 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `825594d2dd2a00ec3739dfe82428fee75f5aa95e949815f01c7405270f94e560`である。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `5e355ceeb374f85a3817c1429408dfa23b7394aaee33cc6308be7cd4a1609482`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
@@ -120,7 +120,7 @@ Local runはplanの固定6 required stepを実行する。planの選択根拠/co
 | Verifier ID | L4/L5 contract | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
 | IV-LCI-73 | 6件fixed plan | 6 check IDを順序どおり選びrequired IDsは各一度 | LC-STAGE1-L7-001 rowだけをplanから除く | Unknown(missing_input)、receipt successなし |
-| IV-LCI-74 | registration境界分離 | exact target tree source/test refsとformal closureが揃い、registration/declaration inputなし | 変異なし | runtime source inventoryはCore586、製品補助27、機構helper103の三partitionを同一check内で扱う。source inventoryが揃うことはpack登録/usableを意味せず、registration/declaration inputが無いこのfixtureからRL-C3状態を生成しない |
+| IV-LCI-74 | registration境界分離 | exact target tree source/test refsとformal closureが揃い、registration/declaration inputなし | 変異なし | runtime source inventoryはCore586、製品補助27、機構helper109の三partitionを同一check内で扱う。source inventoryが揃うことはpack登録/usableを意味せず、registration/declaration inputが無いこのfixtureからRL-C3状態を生成しない |
 | IV-LCI-75 | exact target source closure | implementation/test refsはcurrent head tree内、reader digest一致 | test source refだけをhead tree外のcbce refへ差替 | Unknown(conflict)、runner未起動、baseline fallbackなし |
 | IV-LCI-76 | formal L7 identity coverage | K1/K2 165、K3 194、K5 91、K6 55の計505 formal IDsは495 callable mappings（441 primary/52 stub/2 partial）とK6の10別not-exercised dispositionsへ全量対応する。stub/partialはprimary behavior coverage claimから除外する | formal closureからK6 disposition一件だけを欠落 | `Unknown(missing_input)`、spawn前inventory preflight停止、suite row successなし |
 | IV-LCI-77 | unittest discovery identities | current inventory expected identity set/count/sorted-ID digestがexact source closureに束縛され、runner discovery IDsと一致 | runner後のdiscovered ID一件だけを変更 | `Unknown(conflict)`診断を保持しF05がsuite `CheckExecution.state=fail`へ写す。complete resultを回収できずcompact `suite_evidence`なしで部分diagnosticを残す。outer Unknown receiptにしない。count一致だけで通さない |
@@ -139,10 +139,10 @@ Local runはplanの固定6 required stepを実行する。planの選択根拠/co
 | `IV-LCI-95` | K3 formal mapping value binding | K3 mappingの全identity値は固定inventoryと一致する | 一rowのunittest identityだけをunknown値へ置換し、mutation側mapping digestを再計算 | runner起動後のfixed inventory検査がUnknown(conflict)。discovery/execution前のnoncomplete診断をF05がstep fail/partial diagnosticとして保持し、complete evidenceなし |
 | `IV-LCI-96` | K3 mapping uniqueness | 各K3 formal IDは一意なmapping rowへ結び付く | 一formal IDだけを別rowと重複させ、mutation側mapping digestを再計算 | runner起動後のfixed inventory検査がUnknown(conflict)。discovery/execution前のnoncomplete診断をF05がstep fail/partial diagnosticとして保持し、complete evidenceなし |
 | `IV-LCI-97` | K3 discovery completeness | fixed K3 discovery setは220 identitiesを含む | runner discovery結果からK3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを除く | Unknown(conflict)診断をF05がsuite step failへ写し、partial diagnosticのみを残す |
-| IV-LCI-98 | suite discovery uniqueness | current three-partition composite discovery IDsは716件で一意（Core 586、product supplemental 27、mechanism helper 103を別digestで固定） | helper identity `l7_sup_ck_test_k10_graph.K10RelationComparisonTests.test_unregistered_relation_and_resolved_endpoint_membership`だけを二重に返す | Unknown(conflict)、重複をdedupせずsuite step fail、complete evidenceなし |
-| IV-LCI-99 | bounded suite frame | Core-only 586比較値は90,514-byte body/90,515-byte LF capture/121,474-byte helper response。旧Core+製品補助613 identitiesの最大合法frameは99,820/99,821/133,870 bytesという履歴値である。current 716 identitiesを5 outcome familyへ分ける静的最大合法frameは134,755-byte body/134,756-byte LF capture/180,450-byte helper response。現在のruntime上限は`source_l7_runner.py` body 134,755 bytes、`runner.py` LF付きcapture 134,756 bytes、supervisor frame 180,580 bytes | 最大合法716 runner bodyのbound 134,755を超える134,756 bytesへ増やす | Unknown(conflict) partial diagnostic、truncated frameからcomplete artifact/receiptを作らない |
+| IV-LCI-98 | suite discovery uniqueness | current three-partition composite discovery IDsは722件で一意（Core 586、product supplemental 27、mechanism helper 109を別digestで固定） | helper identity `l7_sup_ck_test_k10_graph.K10RelationComparisonTests.test_unregistered_relation_and_resolved_endpoint_membership`だけを二重に返す | Unknown(conflict)、重複をdedupせずsuite step fail、complete evidenceなし |
+| IV-LCI-99 | bounded suite frame | Core-only 586比較値は90,514-byte body/90,515-byte LF capture/121,474-byte helper response。旧Core+製品補助613 identitiesの最大合法frameは99,820/99,821/133,870 bytesという履歴値である。current 722 identitiesを5 outcome familyへ分ける静的最大合法frameは137,401-byte body/137,402-byte LF capture/183,978-byte helper response。現在のruntime上限は`source_l7_runner.py` body 137,401 bytes、`runner.py` LF付きcapture 137,402 bytes、supervisor frame 184,108 bytes | 最大合法722 runner bodyのbound 137,401を超える137,402 bytesへ増やす | Unknown(conflict) partial diagnostic、truncated frameからcomplete artifact/receiptを作らない |
 
-K3拡張時点の419 discovery IDs/70,000-byte body/70,001-byte LF capture/100,000-byte helper response、K5追加後の534 IDs/82,000/82,001/120,000 bytes、K6時点のCore586最大合法形90,514/90,515/121,474 bytes、旧Core+製品補助613の99,820/99,821/134,000-byte boundはそれぞれ履歴値として保持する。現行runtime716 identitiesの静的最大合法body/capture/responseは134,755/134,756/180,450 bytes、runtime上限は134,755/134,756/180,580 bytesである。L5 §8.2候補722 identitiesは別の設計候補で、静的最大合法body/capture/responseは137,401/137,402/183,978 bytes、候補上限は137,401/137,402/184,108 bytesであり、現行runtime値へ読み替えない。これらの最大値は静的計算であって実行測定ではない。個別実行はexact target receiptで確認する。
+K3拡張時点の419 discovery IDs/70,000-byte body/70,001-byte LF capture/100,000-byte helper response、K5追加後の534 IDs/82,000/82,001/120,000 bytes、K6時点のCore586最大合法形90,514/90,515/121,474 bytes、旧Core+製品補助613の99,820/99,821/134,000-byte boundはそれぞれ履歴値として保持する。現行runtime722 identitiesの静的最大合法body/capture/responseは137,401/137,402/183,978 bytes、runtime上限は137,401/137,402/184,108 bytesである。これらの最大値は静的計算であって実行測定ではない。個別実行はexact target receiptで確認する。
 
 source欠落は第6 checkのspawn前にUnknown(missing_input)となる。先行5 checkのevidenceはfull external partial diagnostic artifactに残し、未起動suite rowとLocalCiReceiptを作らない。UnknownをCheckExecution有限語彙へ写さず、compact provider inputでも実行済みと偽装しない。providerはfull identity artifactを取得せず、compact summaryとcurrent refs/digest/countのみを検証する。現targetにsource/test refsが無い場合はIV-LCI-86の非肯定を適用する。
 
@@ -150,7 +150,7 @@ IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそ�
 
 ### 5.1 3 partition identity oracles
 
-以下は同一`LC-STAGE1-L7-001`内のCore586、product supplemental27、mechanism helper109 candidate partitionを別々に照合する設計oracleである。505 formal IDs、495 mapping、K6 10 dispositionsは不変。機構formal locator/status/owner returnは別source referenceであり、helper identitiesへ対応付けない。既存IV-LCI-100〜110は更新済みL8 casesを参照し、IV-LCI-111〜120をCASE142〜151へ、IV-LCI-121をCASE152へ一対一で追加する。レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`ではhelper partition未反映の613 identity集合が対象だったという履歴を保持する。現行runtime inventoryは716/103であるが、本設計fixtureの109/722候補は実行記録ではなく、run結果はexact target receiptでのみ確認する。
+以下は同一`LC-STAGE1-L7-001`内のCore586、product supplemental27、mechanism helper109 fixed partitionを別々に照合する固定inventoryの照合oracleである。505 formal IDs、495 mapping、K6 10 dispositionsは不変。機構formal locator/status/owner returnは別source referenceであり、helper identitiesへ対応付けない。既存IV-LCI-100〜110は更新済みL8 casesを参照し、IV-LCI-111〜120をCASE142〜151へ、IV-LCI-121をCASE152へ一対一で追加する。レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`ではhelper partition未反映の613 identity集合が対象だったという履歴を保持する。現行runtime inventoryは109/722であり、これは実行記録ではなく、run結果はexact target receiptでのみ確認する。
 
 | Oracle ID | L4/L5/L6 contract | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
@@ -170,11 +170,11 @@ IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそ�
 | `IV-LCI-113` | helper paired-document closure | corpus全体で14 unique L6/L7 pathsがtargetで解決する | SECURITY L7 refだけを欠落させる（L8 `CASE-L8-LCI-144`） | `Unknown(missing_input)`、helper suite未開始 |
 | `IV-LCI-114` | helper identity一意性 | 各helper identityは一度だけ存在する | K10 helper identity一件だけを重複させる（L8 `CASE-L8-LCI-145`） | `Unknown(conflict)`、deduplicateしない |
 | `IV-LCI-115` | 三partitionの分離 | Core/product/helper identity setsは相互にdisjointである | helper identity一件だけをCore identityと一致させる（L8 `CASE-L8-LCI-146`） | `Unknown(conflict)`、partition collision |
-| `IV-LCI-116` | helper alias inventoryの閉包 | 109 fixed candidate callable identitiesだけがある | K8 moduleから未宣言method一件が返る（L8 `CASE-L8-LCI-147`） | `Unknown(conflict)`、scanによる追加なし |
+| `IV-LCI-116` | helper alias inventoryの閉包 | 109 fixed callable identitiesだけがある | K8 moduleから未宣言method一件が返る（L8 `CASE-L8-LCI-147`） | `Unknown(conflict)`、scanによる追加なし |
 | `IV-LCI-117` | helper/formal型の分離 | helper identityにformal ID fieldはない | `formal_l7_id`だけを追加する（L8 `CASE-L8-LCI-148`） | `Rejected(invalid_input)`、formal mappingなし |
 | `IV-LCI-118` | helper result完全性 | 全partitionでdiscovery/execution IDs/count/digestが一致する | helper executed ID一件だけを除く（L8 `CASE-L8-LCI-149`） | `Unknown(conflict)`、complete summary/receiptなし |
-| `IV-LCI-119` | 722結果frame上限 | body/capture/frameの最大合法値は137,401/137,402/183,978 bytes、候補上限は137,401/137,402/184,108 bytes | bodyだけを137,402 bytesへ1 byte超過させる（L8 `CASE-L8-LCI-150`） | `Unknown(conflict)`、切詰めcomplete artifactなし |
+| `IV-LCI-119` | 722結果frame上限 | body/capture/frameの最大合法値は137,401/137,402/183,978 bytes、runtime上限は137,401/137,402/184,108 bytes | bodyだけを137,402 bytesへ1 byte超過させる（L8 `CASE-L8-LCI-150`） | `Unknown(conflict)`、切詰めcomplete artifactなし |
 | `IV-LCI-120` | helper source path固定 | 各familyは宣言済みsource/test pathを使う | K4/G3 test alias pathだけを変更する（L8 `CASE-L8-LCI-151`） | `Unknown(conflict)`、別path解決なし |
 | `IV-LCI-121` | basename衝突時のmodule alias隔離 | LABO既存補助・LABO aggregate・SECURITY各test import直前に各source pathの`projection`だけを一時bindingし、正常baselineではsentinel entryとentry不在の両方を通す。追加2 module aliases（LABO aggregate、HARNESS revision）と4追加source/test refsは固定mappingで照合し、test globalsへ束縛後にmodule load/test executionの例外時も含め`finally`で同entryだけを復元する（L8 `CASE-L8-LCI-152`） | SECURITY test load前の一時置換を省き、LABOの`projection` entryをそのまま使う（L8 `CASE-L8-LCI-152`） | F-LCI-10 suite内のimport errorとしてstep fail。complete artifact/positive receiptなし。L7 `UT-LCI-154`がsuite failure/entry restorationを検査するが、機構formal ID/mappingは作らない |
 
-これらはinventory/source bindingの設計oracleであり、27補助methodの未実行・部分実行をformal fixture pass、機構L7合格、owner接続、登録、製品全体coverageへ読み替えない。レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`でCore＋製品補助の613 identitiesが対象だったこと、その集合が`eeb6ae7`から不変だったことは履歴である。現在のsource_l7_runner.pyはhelper103を含む固定716 inventoryを扱うが、この設計記述から実discovery/executionを主張しない。個別runの状態はexact target receiptでのみ確認する。
+これらはinventory/source bindingの設計oracleであり、27補助methodの未実行・部分実行をformal fixture pass、機構L7合格、owner接続、登録、製品全体coverageへ読み替えない。レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`でCore＋製品補助の613 identitiesが対象だったこと、その集合が`eeb6ae7`から不変だったことは履歴である。現在のsource_l7_runner.pyはhelper109を含む固定722 inventoryを扱うが、この設計記述から実discovery/executionを主張しない。個別runの状態はexact target receiptでのみ確認する。

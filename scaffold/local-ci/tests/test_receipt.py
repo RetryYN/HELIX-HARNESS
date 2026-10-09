@@ -110,7 +110,8 @@ def suite_source_refs(current: dict) -> list[dict]:
              "digest": "sha256:" + digest}
             for path, digest in {**SOURCE_SHA256, **SUPPLEMENTAL_SOURCE_SHA256,
                                  **HELPER_SOURCE_SHA256}.items()]
-    all_design_paths = (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS, *HELPER_DESIGN_PATHS)
+    all_design_paths = sorted(set((
+        *CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS, *HELPER_DESIGN_PATHS)))
     refs.extend({"kind": "source", "identity": path, "revision": current["head_commit"],
                  "digest": _TYPED_DIGEST} for path in all_design_paths)
     return sorted(refs, key=lambda item: item["identity"])
@@ -166,6 +167,12 @@ def verify(data: bytes | str, *, current: dict | None = None, refs=None,
 class VerifyReceiptTests(unittest.TestCase):
     def test_suite_evidence_guards_reject_one_field_mutation_each(self):
         valid = execution("LC-STAGE1-L7-001")["suite_evidence"]
+        self.assertEqual(len({**SOURCE_SHA256, **SUPPLEMENTAL_SOURCE_SHA256,
+                              **HELPER_SOURCE_SHA256}), 37)
+        self.assertEqual(len(set((*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS,
+                                  *HELPER_DESIGN_PATHS))), 14)
+        self.assertEqual(len(valid["source_refs"]), 51)
+        self.assertEqual(len({row["identity"] for row in valid["source_refs"]}), 51)
         mutations = (
             ("suite_id", "other-suite", "Rejected", "invalid_input"),
             ("mapping_sha256", "0" * 64, "Unknown", "conflict"),
@@ -184,6 +191,13 @@ class VerifyReceiptTests(unittest.TestCase):
         changed_refs["source_refs"].pop()
         with self.assertRaises(Diagnostic) as caught:
             _validate_suite_evidence(changed_refs)
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Rejected", "invalid_input"))
+
+        duplicate_ref = copy.deepcopy(valid)
+        duplicate_ref["source_refs"][-1] = copy.deepcopy(duplicate_ref["source_refs"][0])
+        with self.assertRaises(Diagnostic) as caught:
+            _validate_suite_evidence(duplicate_ref)
         self.assertEqual((caught.exception.classification, caught.exception.reason),
                          ("Rejected", "invalid_input"))
 

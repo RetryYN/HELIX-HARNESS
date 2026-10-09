@@ -134,9 +134,9 @@ def run_merge_unit_verifier(repo, base, head, data, *, event="workflow_dispatch"
                              checker_refs=[ref(p) for p in sorted(CHECKER_PATHS)],
                              contract_ref=ref(contract_path),
                              structure_complete=report["structure_complete"], plan_expected=plan,
-                             source_l7_refs=[ref(p) for p in (*CURRENT_DESIGN_PATHS,
-                                                              *SUPPLEMENTAL_DESIGN_PATHS,
-                                                              *HELPER_DESIGN_PATHS)])
+                             source_l7_refs=[ref(p) for p in sorted(set((
+                                 *CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS,
+                                 *HELPER_DESIGN_PATHS)))])
     receipt = strict_json(data)
     diff_row = receipt["executions"][3]
     # Only the selected DIFF check runs on this provider.

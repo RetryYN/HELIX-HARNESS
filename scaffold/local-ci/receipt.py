@@ -40,6 +40,10 @@ _TYPED_DIGEST = re.compile(r"^sha256:[0-9a-f]{64}$")
 _GIT_OID = re.compile(r"^[0-9a-f]{40}$")
 _CI_STATES = ("success", "fail", "denied", "skipped", "interrupted", "stale")
 _FOLD_PRECEDENCE = ("stale", "interrupted", "denied", "fail", "skipped", "success")
+_FIXED_SUITE_CODE_PATHS = frozenset(
+    (*SOURCE_SHA256, *SUPPLEMENTAL_SOURCE_SHA256, *HELPER_SOURCE_SHA256))
+_FIXED_SUITE_DESIGN_PATHS = tuple(sorted(set((
+    *CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS, *HELPER_DESIGN_PATHS))))
 
 _RECEIPT_FIELDS = {
     "schema_version", "target", "contract_ref", "config_digest",
@@ -294,12 +298,14 @@ def _validate_suite_evidence(value: Any) -> dict:
     if evidence["mapping_sha256"] != FORMAL_MAPPING_SHA256:
         _unknown("Unknown", "conflict", "suite evidence formal mapping differs from fixed inventory")
     refs = evidence["source_refs"]
-    if not isinstance(refs, list) or len(refs) != (len(SOURCE_SHA256) + len(SUPPLEMENTAL_SOURCE_SHA256)
-                                                   + len(HELPER_SOURCE_SHA256) + len(CURRENT_DESIGN_PATHS)
-                                                   + len(SUPPLEMENTAL_DESIGN_PATHS) + len(HELPER_DESIGN_PATHS)):
-        _reject("invalid_input", "suite evidence requires the fixed 33 code/test refs and fourteen design refs")
-    for index, ref in enumerate(refs):
-        _subject_ref(ref, f"suite_evidence.source_refs[{index}]")
+    expected_ref_count = len(_FIXED_SUITE_CODE_PATHS) + len(_FIXED_SUITE_DESIGN_PATHS)
+    if not isinstance(refs, list) or len(refs) != expected_ref_count:
+        _reject("invalid_input", "suite evidence requires the fixed unique code/test and L6/L7 refs")
+    checked_refs = [_subject_ref(ref, f"suite_evidence.source_refs[{index}]")
+                    for index, ref in enumerate(refs)]
+    identities = [ref["identity"] for ref in checked_refs]
+    if len(set(identities)) != len(identities):
+        _reject("invalid_input", "suite evidence source refs must have unique identities")
     _target(evidence["target"], "suite_evidence.target")
     partitions = _object(evidence["partition_evidence"],
                          {"core", "product_supplemental", "mechanism_helper"},
@@ -400,7 +406,7 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
                          for path, digest in sorted({**SOURCE_SHA256, **SUPPLEMENTAL_SOURCE_SHA256,
                                                      **HELPER_SOURCE_SHA256}.items())]
         design_ref_map = {ref["identity"]: ref for ref in current_suite_refs}
-        all_design_paths = (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS, *HELPER_DESIGN_PATHS)
+        all_design_paths = _FIXED_SUITE_DESIGN_PATHS
         if (len(current_suite_refs) != len(all_design_paths)
                 or len(design_ref_map) != len(current_suite_refs)
                 or set(design_ref_map) != set(all_design_paths)):

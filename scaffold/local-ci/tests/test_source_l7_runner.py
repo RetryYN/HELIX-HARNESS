@@ -26,13 +26,13 @@ class SourceL7RunnerTests(unittest.TestCase):
         return {path: (source_root / path).read_bytes()
                 for _alias, path in suite_runner.FIXED_TEST_MODULES}
 
-    def test_trusted_ast_inventory_resolves_all_seventeen_aliases_without_loading_modules(self):
+    def test_trusted_ast_inventory_resolves_all_nineteen_aliases_without_loading_modules(self):
         source_bytes = self._fixed_ast_test_sources()
         with patch.object(suite_runner.importlib.util, "spec_from_file_location",
                           side_effect=AssertionError("trusted AST preflight imported a test module")):
             suite_runner.validate_fixed_test_ast_inventory(source_bytes)
-        self.assertEqual(len(suite_runner.FIXED_TEST_MODULES), 17)
-        self.assertEqual(len(suite_runner.EXPECTED_DISCOVERY_IDS), 716)
+        self.assertEqual(len(suite_runner.FIXED_TEST_MODULES), 19)
+        self.assertEqual(len(suite_runner.EXPECTED_DISCOVERY_IDS), 722)
 
     def test_ast_allowlist_accepts_only_security_case_ref_non_test_shape(self):
         baseline = self._fixed_ast_test_sources()
@@ -65,6 +65,22 @@ class SourceL7RunnerTests(unittest.TestCase):
                     suite_runner.validate_fixed_test_ast_inventory(candidate)
                 self.assertEqual((raised.exception.classification, raised.exception.reason),
                                  ("Unknown", "conflict"))
+
+        # UT-LCI-148 also fixes the callable-absence boundary separately from
+        # the allowlist-conflict mutations above.
+        security_tree = ast.parse(security.decode("utf-8"))
+        case_ref = next(node for node in security_tree.body
+                        if isinstance(node, ast.ClassDef) and node.name == "_CaseRef")
+        lines = security.splitlines(keepends=True)
+        decorator_start = min((decorator.lineno for decorator in case_ref.decorator_list),
+                              default=case_ref.lineno)
+        missing_case_ref = b"".join(lines[:decorator_start - 1] + lines[case_ref.end_lineno:])
+        candidate = dict(baseline)
+        candidate[security_path] = missing_case_ref
+        with self.assertRaises(Diagnostic) as raised:
+            suite_runner.validate_fixed_test_ast_inventory(candidate)
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Unknown", "missing_input"))
 
     def test_projection_binding_restores_only_the_fixed_entry_even_after_exception(self):
         key = "projection"
@@ -113,6 +129,80 @@ class SourceL7RunnerTests(unittest.TestCase):
         sys.modules[unrelated_key] = unrelated
         try:
             original_spec = suite_runner.importlib.util.spec_from_file_location
+
+            expected_bindings = {
+                str((root / "helix/helix-labo/units/stage1-labo/tests/test_projection.py").resolve()):
+                    ("l7_sup_labo_test_projection",
+                     root / "helix/helix-labo/units/stage1-labo/src/projection.py"),
+                str((root / "helix/helix-labo/units/stage1-labo/tests/test_aggregate_assembly.py").resolve()):
+                    ("l7_sup_labo_test_aggregate_assembly",
+                     root / "helix/helix-labo/units/stage1-labo/src/projection.py"),
+                str((root / "helix/helix-security/units/stage1-security/tests/test_projection.py").resolve()):
+                    ("l7_sup_security_test_projection", security_source),
+                str((root / "helix/helix-harness/units/harness-stage1/tests/test_pack_revision_projection.py").resolve()):
+                    ("l7_sup_harness_test_pack_revision_projection", None),
+            }
+            observed_bindings = {}
+
+            class BindingCheckingLoader:
+                def __init__(self, wrapped, path):
+                    self.wrapped = wrapped
+                    self.path = path
+
+                def create_module(self, spec):
+                    create = getattr(self.wrapped, "create_module", None)
+                    return create(spec) if create else None
+
+                def exec_module(self, module):
+                    expected = expected_bindings.get(str(self.path))
+                    if expected is not None:
+                        self.assert_alias(module.__name__, expected[0])
+                        if expected[1] is None:
+                            observed_bindings[str(self.path)] = "no-projection-binding"
+                            self.wrapped.exec_module(module)
+                            return
+                        bound = sys.modules[key]
+                        self.assert_binding(bound, expected[1])
+                        observed_bindings[str(self.path)] = str(Path(bound.__file__).resolve())
+                    self.wrapped.exec_module(module)
+
+                @staticmethod
+                def assert_alias(actual, expected):
+                    if actual != expected:
+                        raise AssertionError(f"fixed test module alias differs: {actual!r}")
+
+                @staticmethod
+                def assert_binding(bound, expected_path):
+                    if Path(bound.__file__).resolve() != expected_path.resolve():
+                        raise AssertionError("fixed test module used the wrong projection source")
+
+            def spec_with_binding_check(name, location, *args, **kwargs):
+                spec = original_spec(name, location, *args, **kwargs)
+                if str(Path(location).resolve()) in expected_bindings:
+                    spec.loader = BindingCheckingLoader(spec.loader, Path(location).resolve())
+                return spec
+
+            def load_suite_and_assert_projection_restoration(expected_prior):
+                observed_bindings.clear()
+                with patch.object(suite_runner.importlib.util, "spec_from_file_location",
+                                  side_effect=spec_with_binding_check):
+                    suite_runner._load_fixed_suite(root)
+                self.assertEqual(set(observed_bindings), set(expected_bindings))
+                for path, (_alias, expected_source) in expected_bindings.items():
+                    if expected_source is not None:
+                        self.assertEqual(observed_bindings[path], str(expected_source.resolve()))
+                    else:
+                        self.assertEqual(observed_bindings[path], "no-projection-binding")
+                if expected_prior is None:
+                    self.assertNotIn(key, sys.modules)
+                else:
+                    self.assertIs(sys.modules[key], expected_prior)
+                self.assertIs(sys.modules[unrelated_key], unrelated)
+
+            load_suite_and_assert_projection_restoration(prior)
+            del sys.modules[key]
+            load_suite_and_assert_projection_restoration(None)
+            sys.modules[key] = prior
 
             class FailingLoader:
                 def __init__(self, wrapped):
@@ -267,7 +357,7 @@ class SourceL7RunnerTests(unittest.TestCase):
         self.assertEqual((raised.exception.classification, raised.exception.reason),
                          ("Unknown", "missing_input"))
 
-    def test_inventory_digest_keeps_core_586_product_27_and_helper_103_partitions(self):
+    def test_inventory_digest_keeps_core_586_product_27_and_helper_109_partitions(self):
         value = suite_runner.inventory_value()
         self.assertEqual(len(value["formal_mapping"]), 495)
         self.assertEqual(len({row["formal_l7_id"] for row in value["formal_mapping"]}), 495)
@@ -277,13 +367,13 @@ class SourceL7RunnerTests(unittest.TestCase):
         self.assertEqual(value["formal_inventory_count"], 505)
         self.assertEqual(len(value["formal_id_closure"]), 505)
         self.assertEqual(len(value["k6_unexecuted_dispositions"]), 10)
-        self.assertEqual(value["expected_discovery_count"], 716)
-        self.assertEqual(len(value["expected_discovery_ids"]), 716)
+        self.assertEqual(value["expected_discovery_count"], 722)
+        self.assertEqual(len(value["expected_discovery_ids"]), 722)
         self.assertEqual(len(suite_runner.CORE_EXPECTED_DISCOVERY_IDS), 586)
         self.assertEqual(len(suite_runner.SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS), 27)
-        self.assertEqual(len(suite_runner.MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS), 103)
+        self.assertEqual(len(suite_runner.MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS), 109)
         self.assertEqual(suite_runner.MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256,
-                         "017eaa7ad0ed602e16d4c0a11678337d0100b55b97bcc17ecba93a3ef72ce39a")
+                         "32041c445808a29c7c36058c91aa2ae28fb157b4bf2efc6e36301462bfcad7ae")
         self.assertFalse(set(suite_runner.CORE_EXPECTED_DISCOVERY_IDS)
                          & set(suite_runner.SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS))
         self.assertFalse(set(suite_runner.CORE_EXPECTED_DISCOVERY_IDS)
@@ -292,14 +382,24 @@ class SourceL7RunnerTests(unittest.TestCase):
                          & set(suite_runner.MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS))
         self.assertEqual(value["core_suite_id"], "common-kernel-k1-k2-k3-k5-k6")
         self.assertEqual(value["fixed_test_modules"], [list(row) for row in suite_runner.FIXED_TEST_MODULES])
-        self.assertEqual(len(value["fixed_test_modules"]), 17)
+        self.assertEqual(len(value["fixed_test_modules"]), 19)
+        self.assertEqual(len(value["helper_source_sha256"]), 20)
         self.assertEqual(set(value["core_partition"]), {
             "source_sha256", "design_paths", "test_modules", "discovery_count",
             "discovery_ids_sha256"})
         self.assertEqual(value["core_partition"]["discovery_count"], 586)
         self.assertEqual(value["product_supplemental_partition"]["discovery_count"], 27)
-        self.assertEqual(value["mechanism_helper_partition"]["discovery_count"], 103)
-        self.assertEqual(len(value["mechanism_helper_partition"]["design_paths"]), 4)
+        self.assertEqual(value["mechanism_helper_partition"]["discovery_count"], 109)
+        self.assertEqual(len(value["mechanism_helper_partition"]["design_paths"]), 12)
+        prefix_ids = tuple(sorted(identity for _sid, identity
+                                  in suite_runner.MECHANISM_HELPER_IDENTITIES[:103]))
+        self.assertEqual(sha256(("\n".join(prefix_ids) + "\n").encode()),
+                         "017eaa7ad0ed602e16d4c0a11678337d0100b55b97bcc17ecba93a3ef72ce39a")
+        self.assertEqual(suite_runner.MECHANISM_HELPER_IDS[-6:], (
+            "SUP-LABO-AGGREGATE-001", "SUP-LABO-AGGREGATE-002",
+            "SUP-HARNESS-REVISION-001", "SUP-HARNESS-REVISION-002",
+            "SUP-HARNESS-REVISION-003", "SUP-HARNESS-REVISION-004",
+        ))
         self.assertEqual(value["expected_discovery_ids_sha256"],
                          sha256(("\n".join(value["expected_discovery_ids"]) + "\n").encode()))
         self.assertEqual(suite_runner.inventory_digest(), sha256(canonical_bytes(value)))
@@ -432,7 +532,7 @@ class SourceL7RunnerTests(unittest.TestCase):
                                  ("Unknown", "conflict"))
                 load_suite.assert_not_called()
 
-    def test_current_fixed_suite_runs_all_716_identities_on_actual_tree_and_stdout_stays_closed(self):
+    def test_current_fixed_suite_runs_all_722_identities_on_actual_tree_and_stdout_stays_closed(self):
         key = "projection"
         previous = sys.modules.get(key)
         existed = key in sys.modules
@@ -448,7 +548,7 @@ class SourceL7RunnerTests(unittest.TestCase):
                 sys.modules.pop(key, None)
         self.assertEqual(code, 0)
         self.assertTrue(payload["complete"])
-        self.assertEqual(payload["test_count"], 716)
+        self.assertEqual(payload["test_count"], 722)
         self.assertEqual(set(payload["discovered_test_ids"]), set(suite_runner.EXPECTED_DISCOVERY_IDS))
         self.assertEqual(set(payload["executed_test_ids"]), set(suite_runner.EXPECTED_DISCOVERY_IDS))
         self.assertEqual(len(payload["discovered_test_ids"]), len(set(payload["discovered_test_ids"])))
@@ -717,11 +817,11 @@ class SourceL7RunnerTests(unittest.TestCase):
                     ("unexpected_success_count", "unexpected_success_ids"))
         # A valid complete result assigns each executed identity to exactly one
         # outcome family. Exercise one-, three-, and five-family shapes; the
-        # last has five nonempty arrays and three-digit counts (716 total).
+        # last has five nonempty arrays and three-digit counts (722 total).
         measured = {}
-        for label, sizes in (("one", (716, 0, 0, 0, 0)),
-                             ("three", (238, 239, 239, 0, 0)),
-                             ("five", (144, 143, 143, 143, 143))):
+        for label, sizes in (("one", (722, 0, 0, 0, 0)),
+                             ("three", (240, 241, 241, 0, 0)),
+                             ("five", (145, 144, 144, 144, 145))):
             self.assertEqual(sum(sizes), len(ids))
             self.assertEqual(sum(size > 0 for size in sizes),
                              {"one": 1, "three": 3, "five": 5}[label])
@@ -745,7 +845,7 @@ class SourceL7RunnerTests(unittest.TestCase):
                          **outcome_fields, "exit_code": 1, "state": "fail"}
             candidate_frame = canonical_bytes(candidate) + b"\n"
             measured[label] = (candidate, candidate_frame)
-        self.assertEqual((len(measured["five"][1]) - 1, len(measured["five"][1])), (134755, 134756))
+        self.assertEqual((len(measured["five"][1]) - 1, len(measured["five"][1])), (137401, 137402))
         worst, frame = measured["five"]
         self.assertGreater(len(frame), 32768)
         self.assertLess(len(measured["one"][1]), len(measured["three"][1]))
@@ -769,18 +869,18 @@ class SourceL7RunnerTests(unittest.TestCase):
                         "suite_stdout_b64": base64.b64encode(candidate_frame).decode("ascii"),
                         "suite_stdout_overflow": False}
             helper_frames[label] = canonical_bytes(response) + b"\n"
-        self.assertEqual(len(helper_frames["five"]), 180450)
+        self.assertEqual(len(helper_frames["five"]), 183978)
         helper_frame = helper_frames["five"]
         response = {"execution": execution,
                     "safe_to_continue": True, "diagnostic": None,
                     "suite_stdout_b64": base64.b64encode(frame).decode("ascii"),
                     "suite_stdout_overflow": False}
         self.assertLessEqual(len(helper_frame), runner.SUPERVISOR_FRAME_MAX_BYTES)
-        self.assertEqual(runner.SUITE_STDOUT_CAPTURE_LIMIT, 134756)
-        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 134755)
-        self.assertEqual(runner.SUPERVISOR_FRAME_MAX_BYTES, 180580)
+        self.assertEqual(runner.SUITE_STDOUT_CAPTURE_LIMIT, 137402)
+        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 137401)
+        self.assertEqual(runner.SUPERVISOR_FRAME_MAX_BYTES, 184108)
         max_capture_response = dict(response,
-                                    suite_stdout_b64=base64.b64encode(b"x" * 134756).decode("ascii"))
+                                    suite_stdout_b64=base64.b64encode(b"x" * 137402).decode("ascii"))
         self.assertLessEqual(len(canonical_bytes(max_capture_response) + b"\n"),
                              runner.SUPERVISOR_FRAME_MAX_BYTES)
 
@@ -801,16 +901,16 @@ class SourceL7RunnerTests(unittest.TestCase):
                          {"classification": "Unknown", "reason": "conflict"})
 
     def test_result_body_limit_accepts_exact_body_and_rejects_plus_one(self):
-        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 134755)
+        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 137401)
         exact = {"padding": ""}
         padding_len = suite_runner.RESULT_MAX_BYTES - len(canonical_bytes(exact))
         exact["padding"] = "x" * padding_len
-        self.assertEqual(len(canonical_bytes(exact)), 134755)
+        self.assertEqual(len(canonical_bytes(exact)), 137401)
 
-        for body_size in (134755, 134756):
+        for body_size in (137401, 137402):
             with self.subTest(body_size=body_size):
                 payload = dict(exact)
-                if body_size == 134756:
+                if body_size == 137402:
                     payload["padding"] += "x"
                 output = io.BytesIO()
                 with patch.object(suite_runner, "run_suite", return_value=(payload, 0)), \
@@ -818,10 +918,10 @@ class SourceL7RunnerTests(unittest.TestCase):
                     code = suite_runner.main(["--suite", suite_runner.SUITE_ID])
                 raw = output.getvalue()
                 self.assertTrue(raw.endswith(b"\n"))
-                self.assertLessEqual(len(raw), 134756)
-                if body_size == 134755:
+                self.assertLessEqual(len(raw), 137402)
+                if body_size == 137401:
                     self.assertEqual(code, 0)
-                    self.assertEqual(len(raw), 134756)
+                    self.assertEqual(len(raw), 137402)
                     self.assertEqual(suite_runner.json.loads(raw), payload)
                 else:
                     self.assertEqual(code, 2)
