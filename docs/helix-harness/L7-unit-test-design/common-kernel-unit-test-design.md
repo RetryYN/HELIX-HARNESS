@@ -6,7 +6,7 @@ scope: K1/K2/K3/K5
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: `main` at `f0ba62ce833463eb5f747ac4b95659ecea49928a`
+base: `main` at `7715e7025212ea1a778ab9711e2f43241f7999c7`
 
 本書はL6のK1/K2/K3/K5 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。fixtureは未実装・未実行であり、合格を主張しない。K4/K6–K10は`not_designed`でfixtureを追加しない。
 
@@ -17,7 +17,7 @@ base: `main` at `f0ba62ce833463eb5f747ac4b95659ecea49928a`
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `26eedceeb2aa333cfb3e18fc207402a702641dcdc24ede9ff5fb889d8e0717f9` |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `804094e9b38e78a0982db89f79bed027a36c03be5b6fa69708598018e82de955` |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
