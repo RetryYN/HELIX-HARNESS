@@ -4,7 +4,7 @@ status: draft
 owner: HELIX-HARNESS
 parent_requirement: なし（要素別にL4 §2.1／§3.1／§9.2／§13.1／§16.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: main `dc803dacfbbe56f6daf7724832b1bfa238ff2087`
+base: main `7d4ed840d96b43ea91f10c314b85dfdaf7a6242b`
 
 本書は共通カーネルL4のK1「結果の多値型」、K2「identity・revision・digestによる鍵」、K3「既存operation authorityのread-only照合」、K5「正本記録とprojection」、K4「義務の一級化」、G3「oracleの種別」を詳述する。L4の型、判定、鍵、失敗分類、alias意味、authority境界を変えない。K6〜K10は本書では`not_designed`であり、対応する現行L4/L9への参照だけを残す。実装、L6 algorithm、実行、物理writer enforcementは定義しない。対のL8もfixtureを設計するだけで未実行である。
 
