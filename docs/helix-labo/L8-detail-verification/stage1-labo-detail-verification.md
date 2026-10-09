@@ -5,7 +5,7 @@ owner: HELIX-LABO
 paired_l5: ../L5-detail-design/stage1-labo.md
 base: main `d5bb3455526c816b3af965db239c4b56207a884f`
 current_main_observed: origin/main `d5bb3455526c816b3af965db239c4b56207a884f`
-paired_l5_sha256: `0311794cd1fdb73673449de96bf3ea50d981ce6ed701443ff71292e266e4cc97`
+paired_l5_sha256: `2619a557507258a79630c1bdc06aea72aad0c64aa27202dba04a4083080f5148`
 
 本書は固定L5の3 API境界をfixtureごとに検証設計へ下ろす。対象はL9に定義済みの28 functional oracle、5 NFR oracle、およびL10 NFR:9の2 scope oracle、合計35 oracle IDである。現行索引は88個の定義ID（83個のfunctional/status/scope fixture variantと5個のNFR再利用索引）で構成し、再利用索引を実fixture数へ加算しない。fixtureは合成入力で、実source read、source owner permission、実CONNECT通信、L8/L10実行、合格、業務完了を示さない。期待は固定L4/L9の範囲だけから導く。
 
@@ -13,9 +13,9 @@ paired_l5_sha256: `0311794cd1fdb73673449de96bf3ea50d981ce6ed701443ff71292e266e4c
 
 | 入力 | 固定対象 | SHA-256 |
 |---|---|---|
-| LABO L5 | `docs/helix-labo/L5-detail-design/stage1-labo.md`（本草稿bytes） | `0311794cd1fdb73673449de96bf3ea50d981ce6ed701443ff71292e266e4cc97` |
-| LABO L4 | `docs/helix-labo/L4-basic-design/stage1-labo.md` | `6ea7c6497e2349e63ed05a7a686e96e108a769a2ac864cf02295f174c00c6f1a` |
-| LABO L9 | `docs/helix-labo/L9-integration-verification/stage1-labo-integration-verification.md` | `a19f842cd6fe9576a0984651cd4aff554bb9355304c9b1f619480cd9d7867973` |
+| LABO L5 | `docs/helix-labo/L5-detail-design/stage1-labo.md`（この対のbytes。正確なSHAはfront matterの`paired_l5_sha256`） | `2619a557507258a79630c1bdc06aea72aad0c64aa27202dba04a4083080f5148` |
+| LABO L4 | `docs/helix-labo/L4-basic-design/stage1-labo.md`（main `d5bb3455526c816b3af965db239c4b56207a884f`の固定snapshot） | `6ea7c6497e2349e63ed05a7a686e96e108a769a2ac864cf02295f174c00c6f1a` |
+| LABO L9 | `docs/helix-labo/L9-integration-verification/stage1-labo-integration-verification.md`（main `d5bb3455526c816b3af965db239c4b56207a884f`の固定snapshot） | `a19f842cd6fe9576a0984651cd4aff554bb9355304c9b1f619480cd9d7867973` |
 | 固定L3/L10 | L3/L10 6文書、exact revision `8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7` | 各path/SHAはL4 §1 pinに従う |
 
 SHA pinはL8→L5の一方向であり、L5はL8のpathだけを参照してL8のSHAを持たない。L9 oracle IDは変更・統合しない。各oracleのfixture variantを別行にし、複数変異を同じfixtureへ混ぜない。L9が同一変異を別oracleから参照する場合はfixtureを共有して重複作成せず、L9 oracle ID自体は増やさない。
