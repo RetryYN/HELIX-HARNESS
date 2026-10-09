@@ -706,7 +706,8 @@
             "downstream kindの定義と15項目の完全性を未確認。",
             "既存tableの想定持ち主は汎用ownerと製品適用責務を記述する。fieldごとの意味ownerは未完。",
             "参照するVT002/003の技法/選択意味と適用条件の照合は未完。最小setが成立したとはしない。"
-          ]
+          ],
+          "source_line_sha256_rule": "原文UTF-8の1行（改行を除いた文字列）にLF一つを加えたbytesのSHA-256。空行は対象外。見出しはline/text/levelを対応づける。"
         },
         {
           "template_identity": "DT-VT-102",
@@ -1394,7 +1395,8 @@
             "downstream kindの定義と15項目の完全性を未確認。",
             "既存tableの想定持ち主は汎用ownerと製品適用責務を記述する。fieldごとの意味ownerは未完。",
             "参照するVT002/003の技法/選択意味と適用条件の照合は未完。最小setが成立したとはしない。"
-          ]
+          ],
+          "source_line_sha256_rule": "原文UTF-8の1行（改行を除いた文字列）にLF一つを加えたbytesのSHA-256。空行は対象外。見出しはline/text/levelを対応づける。"
         }
       ],
       "remaining_scope": [
@@ -1800,5 +1802,55 @@
     "これは意味対応を起草する判断用資料。正本L2/L11/MPR、26seed本文/Bindingを変更しない。",
     "source_sectionsは原文の構造/由来保存。descriptorの完全性、正式schema、runtime/rendererや実検証の成立証拠ではない。",
     "旧source/schema/enum/toolを採用せず、例値を製品要求値にしない。seed採否/要求合意/受入/Issueclose/L3再開を生成しない。"
-  ]
+  ],
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "lines": "74–77",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "use": "意味構造/verification/measurementと説明を分離"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/skills/verification.md",
+      "asset_id": "LEGACY-ASSET-B3E589D465867A5A1A1B",
+      "lines": "87–91",
+      "sha256": "fb714da2cc6f729b0a3add7465cad2606c47ed111b35be79ab9c26158e04a404",
+      "use": "必要artifactの欠落を中立へ変換しない"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/ci-verification-plan.md",
+      "asset_id": "LEGACY-ASSET-E9998EF887555DBB2751",
+      "lines": "24–32",
+      "sha256": "21e0b8a05b965d6c1ad27c55bf28ff2d711daa4112c96589da63075b02fc5841",
+      "use": "検証義務の区別と延期義務の回収"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "lines": "28–40/73–79/197–220",
+      "sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "use": "対/test basis、人の受入、未処理feedback、追加oracleの分離"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L2-screen-ux-test-design.md",
+      "asset_id": "LEGACY-ASSET-73C1830CFD650CEFDCF3",
+      "lines": "26–35",
+      "sha256": "2e49643f70e3837fc110f72aff2cce0ea607c7c462b8ac372bd8a1ccd4091de7",
+      "use": "受入観点と要求revision/実操作/人の証拠"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/skills/acceptance-criteria-thinking.md",
+      "asset_id": "LEGACY-ASSET-877A4CD3025063075BFE",
+      "lines": "45–76",
+      "sha256": "0523237a9575c2ca14231aba73d717e6c8b972295006fd4ff731c05e53ac744b",
+      "use": "観測可能AC、偽完了拒否、判定不能を未決保持"
+    }
+  ],
+  "legacy_comparison": {
+    "reuse_class": "semantic_rederivation",
+    "preserve": "JSON意味/説明分離、trace/欠落/人の受入/未完義務と判定不能の保持。sourceの各契約/表/例を参照できる。",
+    "change": "032の15descriptorとsource sectionを分けて候補へ対応づける。旧schema/型/層/固定差戻し/回収先/CLIを移植せず、source不足を未定義のまま残す。",
+    "reason": "前turnの採用準備照合で、Markdown候補の保持理由と正式意味JSONを区別し、選択seedの意味/source対応が未完と確認したため。"
+  }
 }
