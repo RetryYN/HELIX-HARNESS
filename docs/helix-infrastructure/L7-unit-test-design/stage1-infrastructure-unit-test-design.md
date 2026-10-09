@@ -9,7 +9,7 @@ status: draft_candidate
 authority_status: draft_candidate
 stage: 1
 paired_l6: ../L6-function-design/stage1-infrastructure.md
-paired_l6_sha256: fafcf3029da8e1221d2cb1f9e79432a3ad0980d3800d3dba74341c26bcc01e2c
+paired_l6_sha256: 088916915f2cc5e0250075a614e92672598dccd28536dda8eedce21da82cdc2b
 ---
 
 # HELIX-INFRASTRUCTURE Stage 1 単体テスト設計
@@ -22,12 +22,12 @@ paired_l6_sha256: fafcf3029da8e1221d2cb1f9e79432a3ad0980d3800d3dba74341c26bcc01e
 |---|---|---|
 | L4 INFRA | `84756e019c04744ede7825518e4a153f1373260df1b972c5651ade7824ab9dec` | origin/mainの固定本文 |
 | L9 INFRA | `b83eee2452ec0b41ef23ffd6a3aea3e1374f82dbffc3e8c7bb54908b01ae9d8b` | origin/mainの固定本文。40 verifier IDを固定参照 |
-| L5 INFRA | `40b96764707a666d5d6dd39f3709857e58a67df564a2a4dbc7c98a1379737300` | d4df mainの#2752 bytesを基にこのWTで配置候補を追補した本文 |
-| L8 INFRA | `e1ab1329d1de3d61062a32c422c435863c0a2055eb4ef207623966b0bdb17f14` | 上記L5を参照し、このWTで配置fixtureを追補した本文 |
-| L6 INFRA | `fafcf3029da8e1221d2cb1f9e79432a3ad0980d3800d3dba74341c26bcc01e2c` | このL7が参照する、配置と固定ref選択を追補した候補本文 |
+| L5 INFRA | `40b96764707a666d5d6dd39f3709857e58a67df564a2a4dbc7c98a1379737300` | PR #2770がmain `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`へ統合した配置候補の固定本文 |
+| L8 INFRA | `e1ab1329d1de3d61062a32c422c435863c0a2055eb4ef207623966b0bdb17f14` | 同main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`の配置fixture本文、上記L5を参照 |
+| L6 INFRA | `088916915f2cc5e0250075a614e92672598dccd28536dda8eedce21da82cdc2b` | このL7が参照する、配置と固定ref選択を追補した候補本文 |
 | Common Kernel L4/L9 | origin/main `107a648842673ed9b0b02fd440aa68594dd201f6`の各本文 | 現行契約の読取参照。L6 §1のhash表参照 |
 
-L2/L11の親はL4/L5が固定する採択済み2親であり、L2-005は006に適用される場合だけの入力依存である。L5/L8の固定base bytesはorigin/main d4df293にあり、このWTではその後段候補として配置・locator detailを追補している。ここに記したhashは追補後candidate bytesであり、現在mainのbytesではない。テストsuite、fixture実体、test runnerは本書では作成・起動しない。
+L2/L11の親はL4/L5が固定する採択済み2親であり、L2-005は006に適用される場合だけの入力依存である。L5/L8の配置・locator detailはPR #2770によりmain `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`へ統合済みであり、ここに記したhashは同mainの本文bytesと一致する。登録・実行・承認をmergeから生成しない。テストsuite、fixture実体、test runnerは本書では作成・起動しない。
 
 ## 2. Fixture規約と共通baseline
 
@@ -454,7 +454,7 @@ K3関係fixtureでは`PermissionQuery`を5 field（`operation`, target identity,
 
 L5 §8に記録されたL4 §3 K9の誤参照はL4 ownerへの返却事項のまま未解決である。K9をpath観測に使わないことは、L4記述を修正したことを意味しない。
 
-L6/L7本文は設計候補であり、実装、suite配置、実行、CI統合、合格を示さない。L5/L8のbase bytesはmain d4dfに固定されているが、本書が参照するものは配置detailを追補した未公開candidate bytesである。Common Kernelとlocal-CIの既存文書は技術候補選定の根拠として読むに限り、INFRA固有unitが登録済み・実行済みとはしない。実装開始・外部operation・物理状態変更にauthorityを付与しない。
+L6/L7本文は設計候補であり、実装、suite配置、実行、CI統合、合格を示さない。L5/L8の配置detail参照はPR #2770のmain `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`本文に固定する。Common Kernelとlocal-CIの既存文書は技術候補選定の根拠として読むに限り、INFRA固有unitが登録済み・実行済みとはしない。実装開始・外部operation・物理状態変更にauthorityを付与しない。
 
 ## 8. 単体module・test locatorの準備照合（候補）
 

@@ -23,12 +23,12 @@ paired_l7: ../L7-unit-test-design/stage1-infrastructure-unit-test-design.md
 |---|---|---|
 | L4 INFRA | `docs/helix-infrastructure/L4-basic-design/stage1-infrastructure.md` | `84756e019c04744ede7825518e4a153f1373260df1b972c5651ade7824ab9dec`、origin/mainの固定本文 |
 | L9 INFRA | `docs/helix-infrastructure/L9-integration-verification/stage1-infrastructure-integration-verification.md` | `b83eee2452ec0b41ef23ffd6a3aea3e1374f82dbffc3e8c7bb54908b01ae9d8b`、origin/mainの固定本文 |
-| L5 INFRA | `docs/helix-infrastructure/L5-detail-design/stage1-infrastructure.md` | `40b96764707a666d5d6dd39f3709857e58a67df564a2a4dbc7c98a1379737300`、このWTで配置候補を追補したL5 bytes |
-| L8 INFRA | `docs/helix-infrastructure/L8-detail-verification/stage1-infrastructure-detail-verification.md` | `e1ab1329d1de3d61062a32c422c435863c0a2055eb4ef207623966b0bdb17f14`、このWTで配置fixtureを追補し上記L5を参照するbytes |
+| L5 INFRA | `docs/helix-infrastructure/L5-detail-design/stage1-infrastructure.md` | `40b96764707a666d5d6dd39f3709857e58a67df564a2a4dbc7c98a1379737300`、PR #2770がmain `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`へ統合した配置候補の固定bytes |
+| L8 INFRA | `docs/helix-infrastructure/L8-detail-verification/stage1-infrastructure-detail-verification.md` | `e1ab1329d1de3d61062a32c422c435863c0a2055eb4ef207623966b0bdb17f14`、同main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`の配置fixture bytes、上記L5を参照 |
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md` | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、fixed main `107a648842673ed9b0b02fd440aa68594dd201f6` |
 | Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`、同main |
 
-L5/L8のbase bytesは#2752でmainへ統合されたexact bytesであり、採択済み親L2-001/L2-006の詳細化とL2-005の適用範囲を保持する。本WTの上記hashは配置detailを追補したcandidate bytesで、origin/mainの現行hashではない。L4/L9の固定本文が変わった場合、この候補の対応は再照合が必要となる。固定親の詳細とL3/L10全体pinはL4/L5/L8を参照し、ここではfunctional AC/caseだけへ承認scopeを狭めない。
+L5/L8のbase bytesは#2752でmainへ統合されたexact bytesであり、採択済み親L2-001/L2-006の詳細化とL2-005の適用範囲を保持する。配置detail追補後の上記L5/L8 hashは、PR #2770のmain `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`の本文bytesに一致する。候補の登録・実行成立をmergeから生成しない。L4/L9の固定本文が変わった場合、この候補の対応は再照合が必要となる。固定親の詳細とL3/L10全体pinはL4/L5/L8を参照し、ここではfunctional AC/caseだけへ承認scopeを狭めない。
 
 現Common Kernel参照は上記mainのbytesに固定する。K1 `Observed<T>`とpolarity、K2 `SubjectRef`/`ResultKey`、K3の既存5-field `PermissionQuery`とcurrent owner resolver、K5 evidence projection、K6 read receipt、K7 generation pointer/EpochToken fencing、K10 dependency closureを既存型のまま利用する。K7 pointer/fencingをOS operation/attempt stateとして扱わない。L5の歴史的Common Kernel pinsはL5が記録する履歴snapshotであり、現在mainのbytesと混同しない。
 
