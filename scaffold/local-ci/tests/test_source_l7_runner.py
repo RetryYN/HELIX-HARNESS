@@ -3,6 +3,7 @@ from __future__ import annotations
 import ast
 import base64
 import io
+import json
 import shutil
 import sys
 import tempfile
@@ -64,6 +65,110 @@ class SourceL7RunnerTests(unittest.TestCase):
             else:
                 sys.modules.pop(key, None)
 
+    def test_fixed_suite_loader_restores_projection_on_import_and_test_failures(self):
+        key = "projection"
+        unrelated_key = "_local_ci_unrelated_module_sentinel"
+        root = _LOCAL_CI.parent.parent
+        security_test = root / "helix/helix-security/units/stage1-security/tests/test_projection.py"
+        security_source = root / "helix/helix-security/units/stage1-security/src/projection.py"
+        prior = object()
+        unrelated = object()
+        old_projection = sys.modules.get(key)
+        had_projection = key in sys.modules
+        old_unrelated = sys.modules.get(unrelated_key)
+        had_unrelated = unrelated_key in sys.modules
+        sys.modules[key] = prior
+        sys.modules[unrelated_key] = unrelated
+        try:
+            original_spec = suite_runner.importlib.util.spec_from_file_location
+
+            class FailingLoader:
+                def __init__(self, wrapped):
+                    self.wrapped = wrapped
+
+                def create_module(self, spec):
+                    create = getattr(self.wrapped, "create_module", None)
+                    return create(spec) if create else None
+
+                def exec_module(self, module):
+                    bound = sys.modules[key]
+                    self.assert_security_binding(bound, security_source)
+                    raise ImportError("synthetic fixed security import failure")
+
+                @staticmethod
+                def assert_security_binding(bound, expected_path):
+                    if Path(bound.__file__).resolve() != expected_path.resolve():
+                        raise AssertionError(
+                            f"fixed SECURITY source was not bound for its test import: {bound.__file__}")
+
+            def spec_with_security_failure(name, location, *args, **kwargs):
+                spec = original_spec(name, location, *args, **kwargs)
+                if Path(location).resolve() == security_test.resolve():
+                    spec.loader = FailingLoader(spec.loader)
+                return spec
+
+            with patch.object(suite_runner.importlib.util, "spec_from_file_location",
+                              side_effect=spec_with_security_failure):
+                with self.assertRaisesRegex(ImportError, "synthetic fixed security import failure"):
+                    suite_runner._load_fixed_suite(root)
+            self.assertIs(sys.modules[key], prior)
+            self.assertIs(sys.modules[unrelated_key], unrelated)
+
+            def run_main_with_import_failure():
+                output = io.BytesIO()
+                with patch.object(suite_runner.importlib.util, "spec_from_file_location",
+                                  side_effect=spec_with_security_failure), \
+                        patch.object(suite_runner.Path, "cwd", return_value=root), \
+                        patch.object(sys, "stdout", SimpleNamespace(buffer=output)):
+                    code = suite_runner.main(["--suite", suite_runner.SUITE_ID])
+                return code, json.loads(output.getvalue())
+
+            code, payload = run_main_with_import_failure()
+            self.assertEqual(code, 2)
+            self.assertFalse(payload["complete"])
+            self.assertEqual(payload["diagnostic"]["classification"], "Unknown")
+            self.assertEqual(payload["diagnostic"]["reason"], "unreadable")
+            self.assertNotIn("artifact", payload)
+            self.assertIs(sys.modules[key], prior)
+            self.assertIs(sys.modules[unrelated_key], unrelated)
+
+            del sys.modules[key]
+            code, payload = run_main_with_import_failure()
+            self.assertEqual(code, 2)
+            self.assertFalse(payload["complete"])
+            self.assertNotIn(key, sys.modules)
+            self.assertIs(sys.modules[unrelated_key], unrelated)
+
+            failing = unittest.FunctionTestCase(
+                lambda: (_ for _ in ()).throw(RuntimeError("synthetic wrapped test failure")))
+            wrapped = suite_runner._ProjectionBoundSuite(unittest.TestSuite([failing]), object())
+            result = unittest.TestResult()
+            sys.modules[key] = prior
+            wrapped.run(result)
+            self.assertEqual(len(result.errors), 1)
+            self.assertIs(sys.modules[key], prior)
+            self.assertIs(sys.modules[unrelated_key], unrelated)
+
+            del sys.modules[key]
+            failing_without_prior = unittest.FunctionTestCase(
+                lambda: (_ for _ in ()).throw(RuntimeError("synthetic wrapped test failure")))
+            wrapped_without_prior = suite_runner._ProjectionBoundSuite(
+                unittest.TestSuite([failing_without_prior]), object())
+            result_without_prior = unittest.TestResult()
+            wrapped_without_prior.run(result_without_prior)
+            self.assertEqual(len(result_without_prior.errors), 1)
+            self.assertNotIn(key, sys.modules)
+            self.assertIs(sys.modules[unrelated_key], unrelated)
+        finally:
+            if had_projection:
+                sys.modules[key] = old_projection
+            else:
+                sys.modules.pop(key, None)
+            if had_unrelated:
+                sys.modules[unrelated_key] = old_unrelated
+            else:
+                sys.modules.pop(unrelated_key, None)
+
     def test_trusted_ast_inventory_rejects_single_missing_extra_duplicate_and_unreadable_mutations(self):
         baseline = self._fixed_ast_test_sources()
         brain_path = "helix/helix-brain/units/stage1-brain/tests/test_brain.py"
@@ -71,8 +176,8 @@ class SourceL7RunnerTests(unittest.TestCase):
         method = b"test_trace_source_projects_each_declared_field_and_keeps_owner_roles"
         self.assertIn(method, brain)
         cases = (
-            ("missing method", brain.replace(method, b"test_removed_source_method", 1),
-             "conflict"),
+            ("missing method", brain.replace(method, b"removed_source_method", 1),
+             "missing_input"),
             ("extra method", brain.replace(
                 b"class BrainProjectionTests(unittest.TestCase):",
                 b"class BrainProjectionTests(unittest.TestCase):\n"
@@ -96,6 +201,13 @@ class SourceL7RunnerTests(unittest.TestCase):
                     suite_runner.validate_fixed_test_ast_inventory(candidate)
                 self.assertEqual((raised.exception.classification, raised.exception.reason),
                                  ("Unknown", reason))
+
+        with patch.object(suite_runner, "EXPECTED_DISCOVERY_IDS",
+                          suite_runner.EXPECTED_DISCOVERY_IDS[:-1]):
+            with self.assertRaises(Diagnostic) as raised:
+                suite_runner.validate_fixed_test_ast_inventory(baseline)
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Unknown", "conflict"))
 
         duplicate_function = dict(baseline)
         duplicate_function[brain_path] = brain + b"\ndef _duplicated_helper():\n    pass\n\ndef _duplicated_helper():\n    pass\n"
@@ -121,7 +233,7 @@ class SourceL7RunnerTests(unittest.TestCase):
         with self.assertRaises(Diagnostic) as raised:
             suite_runner.validate_fixed_test_ast_inventory(changed)
         self.assertEqual((raised.exception.classification, raised.exception.reason),
-                         ("Unknown", "conflict"))
+                         ("Unknown", "missing_input"))
 
     def test_inventory_digest_keeps_core_586_product_27_and_helper_103_partitions(self):
         value = suite_runner.inventory_value()

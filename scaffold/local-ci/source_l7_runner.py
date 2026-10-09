@@ -2313,7 +2313,13 @@ def validate_fixed_test_ast_inventory(source_bytes: dict[str, bytes]) -> None:
     for alias, path in FIXED_TEST_MODULES:
         classes = {identity.split(".")[1] for identity in expected_by_alias[alias]}
         actual.extend(_ast_test_identities_for_module(alias, source_bytes[path], classes))
-    if len(actual) != len(set(actual)) or set(actual) != set(expected):
+    if len(actual) != len(set(actual)):
+        raise Diagnostic("Unknown", "conflict", "AST test identities differ from the closed 716 identities")
+    missing = set(expected) - set(actual)
+    extra = set(actual) - set(expected)
+    if missing and not extra:
+        raise Diagnostic("Unknown", "missing_input", "a fixed target test callable is absent")
+    if extra:
         raise Diagnostic("Unknown", "conflict", "AST test identities differ from the closed 716 identities")
 
 
@@ -2886,7 +2892,12 @@ def run_suite(root: Path) -> tuple[dict, int]:
         except OSError as exc:
             raise Diagnostic("Unknown", "missing_input", "fixed current L6/L7 target source is unavailable") from exc
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-        suite = _load_fixed_suite(root)
+        try:
+            suite = _load_fixed_suite(root)
+        except Diagnostic:
+            raise
+        except (ImportError, ModuleNotFoundError, OSError, SyntaxError) as exc:
+            raise Diagnostic("Unknown", "unreadable", "fixed suite module could not be loaded") from exc
         return _run_discovered_suite(suite)
 
 
