@@ -661,6 +661,71 @@ class K5Fixtures(unittest.TestCase):
             return
         self.fail(f"No fixture implementation for CK-K5-UT-{n:03d}")
 
+    def test_ck_k5_ut_101_append_invalid_key_body_stops_unmapped_branch(self):
+        seg = _segment("w", 1)
+        manifest = _segment("manifest", 0)
+        decl = _decl()
+        context = k5._AppendContext(decl, frozenset({manifest, seg}), (), True, True)
+
+        invalid_digest = _recorded_event()
+        invalid_digest["key"]["subject"]["digest"] = "not-a-digest"
+        invalid_digest["key_digest"] = _key_digest(k5._decode_key(invalid_digest["key"]))
+
+        duplicate_identity = _recorded_event()
+        duplicate_identity["key"]["inputs"] = [
+            {"kind": "ref", "identity": "same", "revision": "r1", "digest": D1},
+            {"kind": "ref", "identity": "same", "revision": "r2", "digest": D2},
+        ]
+        duplicate_identity["key_digest"] = _key_digest(k5._decode_key(duplicate_identity["key"]))
+
+        unhashable_identity = _recorded_event()
+        unhashable_identity["key"]["inputs"] = [
+            {"kind": "ref", "identity": ["not", "text"], "revision": "r1", "digest": D1},
+        ]
+        unhashable_identity["key_digest"] = _key_digest(k5._decode_key(unhashable_identity["key"]))
+
+        bad_unknown_reason = _recorded_event(body={"class": "Unknown", "reason": "not-a-reason", "evidence": {}})
+        missing_unknown_reason = _recorded_event(body={"class": "Unknown", "evidence": {}})
+        bad_unobserved_why = _recorded_event(body={"class": "Unobserved", "why": "not-a-why"})
+        missing_value_evidence = _recorded_event(body={
+            "class": "Value",
+            "value": {"encoding": "Inline", "type": "bool", "value": True},
+        })
+        bad_fixedref_digest = _recorded_event(body={
+            "class": "Value",
+            "value": {"encoding": "FixedRef", "store": "repository", "locator": {"path": "x"}, "digest": "bad"},
+            "evidence": {"encoding": "Inline", "type": "dict", "value": {}},
+        })
+        nonstring_inline_type = _recorded_event(body={
+            "class": "Value",
+            "value": {"encoding": "Inline", "type": ["bool"], "value": True},
+            "evidence": {"encoding": "Inline", "type": "dict", "value": {}},
+        })
+
+        unresolved_cases = (
+            ("invalid_digest", invalid_digest),
+            ("duplicate_input_identity", duplicate_identity),
+            ("unhashable_input_identity", unhashable_identity),
+            ("unknown_reason", bad_unknown_reason),
+            ("unknown_reason_missing", missing_unknown_reason),
+            ("unobserved_why", bad_unobserved_why),
+            ("value_evidence_missing", missing_value_evidence),
+            ("fixedref_digest_invalid", bad_fixedref_digest),
+            ("inline_type_nonstring", nonstring_inline_type),
+        )
+        for label, event in unresolved_cases:
+            with self.subTest(case=label):
+                with patch.object(k5, "_read_bytes", return_value=b"old bytes") as read_port, \
+                     patch.object(k5, "current_head", return_value=Value(k5.SegmentHead(seg, 1, D1), _key(), {})) as head_port, \
+                     patch.object(k5, "_append_bytes", return_value=k5.SegmentHead(seg, 2, D2)) as append_port, \
+                     patch.object(k5, "_fixed_ref_bytes", return_value=b"must-not-read") as fixedref_port:
+                    with self.assertRaises(NotImplementedError):
+                        k5._append_with_context(seg, event, seg.writer, context)
+                read_port.assert_not_called()
+                head_port.assert_not_called()
+                append_port.assert_not_called()
+                fixedref_port.assert_not_called()
+
 
 def _make_test(case_id):
     def test(self):

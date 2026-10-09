@@ -8,7 +8,7 @@ paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
 base: `main` at `7715e7025212ea1a778ab9711e2f43241f7999c7`
 
-本書はL6のK1/K2/K3/K5 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。K5候補はこのWTで91 formal fixtureと9補助caseを実装し、ローカルunit実行結果をL9合格やowner source接続へ読み替えない。K4/K6–K10は`not_designed`でfixtureを追加しない。
+本書はL6のK1/K2/K3/K5 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。K5候補はこのWTで91 formal fixtureと10補助caseを実装し、ローカルunit実行結果をL9合格やowner source接続へ読み替えない。K4/K6–K10は`not_designed`でfixtureを追加しない。
 
 ## 1. 固定入力とtrace規則
 
@@ -17,7 +17,7 @@ base: `main` at `7715e7025212ea1a778ab9711e2f43241f7999c7`
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `5cb6b22a5a58b7be2b0d1bf9eb57f79bb56d6c434412a1af5ebf7c03344d5752` |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `cb129cd241e5df56f30220d316ce8286a993cee1685128caeb986d669c72ace7` |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
@@ -220,6 +220,7 @@ suffix展開はfixture identityの命名規則であり、L9 IDを再採番し�
 | `CK-K5-UT-098-RESULT-BODY-CLASS-FIELDS` | CK-K5-FN-08/17 | K5 9.3/9.5; IV-K5-12補助 | IV-K5-12 | `restore`へ渡す`ResultRecorded`のResultBodyを、Unknown/Unobservedのreason/whyの欠落・null・未知語彙、NotApplicableの各必須field欠落/null、Valueのvalue/evidence欠落/null・不正encoding/未宣言・非文字列inline typeへ個別に変異する。 | 各変異を単独で与え、`restore`は部分recordを返さず`Unknown(unreadable)`、evidence `result_body`とする。nullとkey不存在を別subtestで確認する。 |
 | `CK-K5-UT-099-SCOPE-LOG-IDENTITY` | CK-K5-FN-05/10/18 | K5-I6/9.3; IV-K5-12/17補助 | IV-K5-12 / IV-K5-17 | 正常log/scope/headを基準に、scope.log_id、manifest segment.log_id、scope segment.log_id、またはrestoreのLogDecl.log_idのいずれか一つを不一致にする。 | 既存L4/L5/L9に分類写像が固定されていないため、局所`NotImplementedError`で肯定値を止める。これは公開result分類・例外transport・L7 coverage/passではない。 |
 | `CK-K5-UT-100-RESTORE-KEY-VALIDATION` | CK-K5-FN-08/17 | K5 9.3/9.5; IV-K5-12補助 | IV-K5-12 | `ResultRecorded.key`の5 top-level field、subject/input refの各4 field、digest形式、重複input identityを一項目ずつ変異する。 | 既存K2 `key_of`が`Rejected`となる保存keyはrecord化せず、restoreは`Unknown(unreadable)`、evidence `result_body`を返す。K5公開Rejectedを追加しない。 |
+| `CK-K5-UT-101-APPEND-UNMAPPED-KEY-BODY` | CK-K5-FN-08/14 | IV-K5-11補助、L8個別fixtureのcoverageではない | IV-K5-11 | 正常ResultRecordedを基準に、K2 invalid_digest/duplicate_identity、Unknown reason欠落/未知語彙、Unobserved why未知語彙、Value evidence欠落、FixedRef digest不正、Inline typeの非文字列を個別変異。 | K5外側Rejected reasonがL5/L8で固定されない変異はprivate local `NotImplementedError`で止め、read/head/append/FixedRef portを0回とする。既存reasonが固定されたStale/NA条件は既存試験の期待を維持。これはL8の`Rejected`期待を満たす実装・coverage/passに数えない。 |
 
 K5 fixtureはL8の初期化済みmanifest/assignment前提を守る。K5-22/23でK3/K7 authority・fenceの意味を再実装せず、stubが返したcurrent observationとappend境界の接続だけを扱う。genesis、物理永続性、atomic append、実読、実fenceの合格を示さない。`verify`のcheckpoint比較は完全な再構築値と関数境界の返却を比較し、公開Projectionにないfieldを追加しない。
 
@@ -293,13 +294,14 @@ K5各fixtureはL6 §7.1の旧asset/path/line/full SHA一覧を起点とし、eve
 - `CK-K5-UT-094-HEAD-REFS`はkey境界のplaceholder確認で、完全同一head refだけをdedupする。異なるrefを持つ同一identityのK5外側分類はL4/L5で固定されていない。テストはK2診断をK5 resultへ変換せず、公開分岐を未接続として停止する実装状態だけを確認するため、設計coverage/passに数えない。
 - `CK-K5-UT-095/096`は`current_head`が物理tail全体を検査し、seq=0行やduplicate sequenceをgenesis/current `Value`へ昇格させないことを補助確認する。期待class/evidenceはK5-I2/I3既存規定を使う。
 - `CK-K5-UT-097`は固定headのsegment identityと要求segmentの不一致をK5-I3(g)の指定head不成立として扱う。
-- `CK-K5-UT-098`はL4 K5 9.3/9.5の4 classとclass別field/vocabularyを復元時にも検証し、不正recordを`Unknown(unreadable, evidence=result_body)`の既存経路へ送る。
+- `CK-K5-UT-098`はL4 K5 9.3/9.5の4 classとclass別field/vocabularyを復元時にも検証し、不正recordを`Unknown(unreadable, evidence=result_body)`の既存経路へ送る。appendもFixedRef実読を行わない同じpure shape validatorを事前に使う。
 - `CK-K5-UT-099`はScopeDecl/LogDecl/segment identityの不一致を検出するが、既存のK5外側分類が固定されていない分岐を局所placeholderで止めるため、設計coverage/passには数えない。
 - `CK-K5-UT-100`は保存ResultKeyをK2 `key_of`で検証し、既存K2 rejectionがprivate decoderからrestoreの既存unreadable経路へ流れることを確認する。
+- `CK-K5-UT-101`は型外append key/bodyが既存K5外側reason未定義のためprivate placeholderで停止し、adapter handoffをしない実装境界を補助確認する。L8個別fixtureが期待する`Rejected`を満たさず、設計coverage/passへ数えない。
 - K1のmissing keyは`Rejected(missing_key)`のままとする。variant shapeは型付き入力のpreconditionであり、新しいshape reasonやgateを設計しない。
 - IV-LDG-02/04、IV-LDG-01のFixedRef/registration oracle全体はowner/source resolver未接続のため未被覆。補助UT-092/093は純projectionのfield保全だけを確認する。
 - K5 recordの順序はsequenceのpreconditionであり、物理writer実装は設計しない。K6 source readはstub境界のままとし、production verifier/readは設計しない。
-- このWTでは`test_k5.py`の91 formal fixtureとUT-092–100の補助caseを実装し、ローカル`unittest`で100件を実行した。UT-094/099の未接続placeholder確認はL7 coverageに含めない。これは設計候補のunit結果だけであり、L9の結合oracle合格、公開append実装、K6 raw source観測、runtime/toolchain間の相互運用性を主張しない。
+- このWTでは`test_k5.py`の91 formal fixtureとUT-092–101の補助caseを実装し、ローカル`unittest`で101件を実行した。UT-094/099/101の未接続placeholder確認はL7 coverageに含めない。これは設計候補のunit結果だけであり、L9の結合oracle合格、公開append実装、K6 raw source観測、runtime/toolchain間の相互運用性を主張しない。
 - K3は§9で固定L8 oracleを個別fixture IDへtraceする。L5/L8はPR #2751候補の固定commit/content SHAを参照し、main統合済みの固定設計本文として扱う。K4/K6–K10は`not_designed`のままであり、現行L4/L9の節はL6 §6を通じて参照する。
 - L7 fixtureは設計草稿であり未実装・未実行である。`invalid_digest`/`duplicate_identity`はK2 `KeyOfResult`だけの境界結果で、K1 `ApiBoundaryResult`や`UnknownReason`への追加ではない。
 

@@ -45,6 +45,13 @@ SCHEMA_VERSION = "1"
 _KNOWN_SCHEMA_VERSIONS = frozenset({SCHEMA_VERSION})
 
 
+class _UnmappedAppendValidation:
+    __slots__ = ()
+
+
+_UNMAPPED_APPEND_VALIDATION = _UnmappedAppendValidation()
+
+
 @dataclass(frozen=True)
 class SegmentId:
     log_id: str
@@ -362,7 +369,56 @@ def _fixed_ref_bytes(ref: FixedRef) -> bytes | None:
     return None
 
 
+def _result_body_shape_valid(body: Mapping[str, Any], decl: LogDecl) -> bool:
+    """Check stored ResultBody structure without resolving any FixedRef bytes."""
+    cls = body.get("class")
+    if cls == "Value":
+        for field_name in ("value", "evidence"):
+            item = body.get(field_name)
+            if not isinstance(item, Mapping):
+                return False
+            encoding = item.get("encoding")
+            if encoding == "Inline":
+                if (
+                    "value" not in item
+                    or not isinstance(item.get("type"), str)
+                    or decl.value_encodings.get(item["type"]) != "inline"
+                ):
+                    return False
+            elif encoding == "FixedRef":
+                if (
+                    not all(name in item for name in ("store", "locator", "digest"))
+                    or not _valid_digest(item.get("digest"))
+                ):
+                    return False
+            else:
+                return False
+        return True
+    if cls == "Unknown":
+        try:
+            UnknownReason(body["reason"])
+        except (KeyError, TypeError, ValueError):
+            return False
+        return True
+    if cls == "Unobserved":
+        try:
+            UnobservedWhy(body["why"])
+        except (KeyError, TypeError, ValueError):
+            return False
+        superseded = body.get("superseded")
+        return superseded is None or _valid_digest(superseded)
+    if cls == "NotApplicable":
+        return (
+            all(name in body and body[name] is not None for name in ("reason", "authority", "reentry_trigger"))
+            and isinstance(body["reason"], str)
+            and isinstance(body["reentry_trigger"], str)
+        )
+    return False
+
+
 def _decode_result_body(body: Mapping[str, Any], decl: LogDecl) -> Mapping[str, Any] | None:
+    if not _result_body_shape_valid(body, decl):
+        return None
     cls = body.get("class")
     payload = dict(body)
     if cls == "Value":
@@ -702,6 +758,8 @@ def _append_with_context(segment: SegmentId, event: Mapping[str, Any], writer: s
         # refuses the effect without inventing a K5 authority result/reason.
         return None
     issue = _event_valid(event, context.declaration, segment, writer, set(context.manifest_segments), context.restored_records)
+    if issue is _UNMAPPED_APPEND_VALIDATION:
+        raise NotImplementedError("K5 append rejection mapping for malformed key/body is not defined")
     if issue == "noop":
         return NoOp(next(item for item in context.restored_records if item.get("key_digest") == event.get("key_digest") and item.get("result_digest") == event.get("result_digest")))
     if issue == "conflict":
@@ -719,7 +777,14 @@ def _append_with_context(segment: SegmentId, event: Mapping[str, Any], writer: s
     return Appended(appended) if isinstance(appended, SegmentHead) else appended
 
 
-def _event_valid(event: Mapping[str, Any], decl: LogDecl, segment: SegmentId, writer: str, manifest: set[SegmentId], records: Sequence[Mapping[str, Any]]) -> str | None:
+def _event_valid(
+    event: Mapping[str, Any],
+    decl: LogDecl,
+    segment: SegmentId,
+    writer: str,
+    manifest: set[SegmentId],
+    records: Sequence[Mapping[str, Any]],
+) -> str | _UnmappedAppendValidation | None:
     kind = _variant(event)
     if writer != segment.writer or segment not in manifest:
         return "missing_key"
@@ -736,6 +801,23 @@ def _event_valid(event: Mapping[str, Any], decl: LogDecl, segment: SegmentId, wr
             decoded_key = _decode_key(key)
         except (KeyError, TypeError, ValueError):
             return "missing_key"
+        try:
+            validated_key = key_of(
+                decoded_key.operation,
+                decoded_key.operation_version,
+                decoded_key.subject,
+                decoded_key.inputs,
+                decoded_key.scope,
+            )
+        except (TypeError, ValueError):
+            return _UNMAPPED_APPEND_VALIDATION
+        if isinstance(validated_key, Rejected):
+            if validated_key.reason == "missing_key":
+                return "missing_key"
+            # K2 has a precise rejection here, but L5/L8 do not define the
+            # corresponding K5 append reason. Stop locally without exposing a
+            # K2-only reason through the K5 boundary.
+            return _UNMAPPED_APPEND_VALIDATION
         if event.get("key_digest") != _key_digest(decoded_key):
             return "missing_key"
         body = event.get("result", {})
@@ -745,11 +827,21 @@ def _event_valid(event: Mapping[str, Any], decl: LogDecl, segment: SegmentId, wr
             return "stale_not_recordable"
         if body.get("class") == "NotApplicable" and not all(body.get(name) is not None for name in ("reason", "authority", "reentry_trigger")):
             return "invalid_disposition"
-        if body.get("class") == "Value":
-            for field_name in ("value", "evidence"):
-                item = body.get(field_name)
-                if isinstance(item, Mapping) and item.get("encoding") == "Inline" and item.get("type") not in decl.value_encodings:
-                    return "missing_key"
+        if (
+            body.get("class") == "Value"
+            and any(
+                isinstance(body.get(field_name), Mapping)
+                and body[field_name].get("encoding") == "Inline"
+                and isinstance(body[field_name].get("type"), str)
+                and body[field_name].get("type") not in decl.value_encodings
+                for field_name in ("value", "evidence")
+            )
+        ):
+            return "missing_key"
+        if not _result_body_shape_valid(body, decl):
+            # The append API's outer Rejected reason for these additional
+            # malformed ResultBody shapes is not fixed by the current oracle.
+            return _UNMAPPED_APPEND_VALIDATION
         if decoded_key.operation not in decl.operations:
             return "missing_key"
         digests = [record.get("result_digest") for record in records if record.get("key_digest") == event.get("key_digest")]
