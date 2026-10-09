@@ -1296,6 +1296,8 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 ### HELIXOS-L2-102 HARNESS Issue contractのdurable intake・projection・handoff候補（connection候補、未採択）
 
+**版の整理**：HELIXOS-L2-102は`version_target: 1.0`とする。本文の版未指定・採否状態の記載は判断前の固定記述として保持する。既採択の意味範囲を拡張せず、接続先と同じ1.0でその操作・保証を成立させる。
+
 - **状態・接続**：未採択候補、`registered_proposal`／`authority_effect: none`。HARNESS-L2-059の意味contractを消費し、HELIXOS-L1-001/003/004/008/009の正本revision、intake、projection、assignment/handoff責務へ接続する。HARNESS-L2-059の採択や上流authorityを前提・生成しない。
 - **耐久projection**：既存のOS intake/provenance/projection責務の範囲で、対象Issue source identityとHARNESS contractの同一revision、11 fieldのfield identity、version、digestを対応付けてdurableに保持・参照できる。projectionはHARNESSの意味fieldをrename、merge、drop、default補完またはrequiredness変更せず、contract revision/digestがsource/intake/handoff間で一致するかを識別する。OSは値の意味、schema、field applicability、digestの意味・計算法を定義しない。
 - **intakeと不確実状態**：source identity、contract revisionまたはdigestが欠落・不一致・重複競合・staleで、既存OS contractから有効な参照先が確定しない場合、その不確実状態を保ったまま該当handoffを完了扱いしない。新しい拒否コード、再試行回数、追加approval、永続化schemaや具体routing規則は本候補で定めず、既存OS契約へ委ねる。
