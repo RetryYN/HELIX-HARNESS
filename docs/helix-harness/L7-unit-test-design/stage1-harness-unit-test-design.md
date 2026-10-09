@@ -26,7 +26,7 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 |---|---|---|
 | Stage 1 L4 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `25fbd104fd47f39d22f542664e57fd44a440af8904e11b2f0b397ac6606b6cfb` | 7887時点の固定source snapshot。 |
 | Stage 1 L5 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `a0ed72f672606aee19e0124ee54ce47f6b409ab2e93b81cff1824f7c9cf7a92d` | 7887時点の固定source snapshot。 |
-| Stage 1 L6 | 本PR content HEADに含む対L6本文; SHA-256 `ab6bea9be57a07ad40f831a7576aa3d148d29c9c10789b239cd7cf726144df6d` | 本pairの未実装・未実行の関数設計。L7から一方向に固定参照する。 |
+| Stage 1 L6 | 本PR content HEADに含む対L6本文; SHA-256 `c92560cdc05e96a177b581614dced64fb368ced6a106483048bb5a22564bac36` | 本pairの関数設計と§7.1の実装候補status記録。L7から一方向に固定参照する。 |
 | Stage 1 L8 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `9eadffc05150c01114ff29ba0fb2d28449b927e06f5565fbb86510f59be89d26` | 7887時点の固定fixture snapshot。 |
 | Stage 1 L9 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `6cc4bc3ac56b8d1d94e05ddc4dda71c35df2941aab39e65fb9d43cda2deb36da` | 7887時点の固定verifier/case snapshot。 |
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | 7887時点の固定参照snapshot。 |
@@ -399,3 +399,23 @@ formal fixtureと関数境界の配置索引は、既存L7 §3のUT行を唯一�
 CPython 3.11+標準libraryの`unittest`候補はL5 §7、Common Kernel L7 §2と同じである。test moduleのimport候補は既存`helix/helix-harness/units/common-kernel/tests/test_k1.py`が使う`Path(__file__).resolve()`から同unitの`src`を検索pathへ加える方式に合わせ、HARNESS unit内で`stage1_pack`をimportする。これはmodule locatorとstdlibだけの技術候補であり、登録済みunit package、runtime dependency、実行workflowを生成しない。テスト値は固定L8のsynthetic inputを使い、実reader/current-owner source、実案件record、credential、dispatch/effectを呼ばない。旧Vitest/test/runtime/CIは起動しない。
 
 旧配置sourceと比較理由はL6 §8に記した2 assetの原文span/full SHAとledger情報を参照する。旧repository structureのsource/test配置と設計・test artifactの分離、およびRLS-R-03のsingle primary path ownerは保持し、旧Node/TypeScript/Vitestのファイル名・runner・実行結果は置換する。既存source/testのpathは単一候補rootの下に対を置く構造の根拠であり、旧assetに実consumerやfailure linkがあるとは主張しない。
+
+## 7. 実装候補のfixture別状態
+
+対象はworktree `codex/harness-stage1-local-implementation`（base `d5bb3455526c816b3af965db239c4b56207a884f`）での局所観測である。ここに示すstatusは固定L8 fixtureごとの現状であり、設計上の実装分類やcase数から生成していない。
+
+| 固定対象 | 実status | 実行・assert範囲 |
+|---|---|---|
+| `UT-HARNESS-001`〜`UT-HARNESS-269`（対応するL8 formal fixture 269件） | `not_exercised` | 各fixtureの固定baseline、単一変異、主結果、構造assertionを製品候補APIへ適用した実行なし。 |
+| `UT-HARNESS-SUP-001`〜`UT-HARNESS-SUP-010`（補助fixture 10件） | `not_exercised` | SUPのreader/non-Value保持、revision comparison、NFR evidence projectionをL5 API候補で実行したtestなし。 |
+| `test_stage1_pack.PrivatePackComparisonTests` 5件 | `helper_only` | `_compare_field_refs`の同一ref基準・revision一変異、複数field内一変異、明示された`missing`/`multiple`保持、および既存owner `Unknown` objectのidentity保持だけ。正式UT/SUPへ対応付けず、API return shapeやL8期待を検証しない。 |
+
+この状態記録の実装source SHA-256は`stage1_pack.py`=`2a6db3be14fe2d094a3947c36b4e911708d0ec95c6bcd59bec4ffd338e088c5d`、test SHA-256は`test_stage1_pack.py`=`9846c526c7b1a0e03a5ce5fb6abf3fd30440f34a7e0f6794bbc8489519b380b4`である。5件の実行commandは次のとおり。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s helix/helix-harness/units/harness-stage1/tests -p 'test_*.py' -v
+```
+
+L8の局所保留19件は、以下すべてに`CASE-HARNESS-L8-`を付けたIDであり、すべて未実行である：`F010-02-INVALID-TARGET`、`F010-03-HIDE-QUALIFIED`、`F010-03-UNEXCHANGEABLE`、`F011-02-AUTH-MISSING`、`F011-02-UNPASSED-AUTHORITY`、`F023-03-HUMAN-DELEGATION-VALID`、`F023-03-HUMAN-ORAL-ONLY`、`F023-03-HUMAN-ACTOR-MISSING`、`F023-03-HUMAN-SOURCE-MISSING`、`F023-03-HUMAN-REVISION-MISSING`、`F023-03-HUMAN-SCOPE-MISSING`、`F023-03-HUMAN-RECEIPT-MISSING`、`F023-03-HUMAN-VERIFICATION-RECEIPT-MISSING`、`N011-01-INTERRUPT-NO-EFFECT`、`N011-01-REDELIVERY-ONCE`、`N011-01-DUPLICATE-EFFECT`、`N011-02-DISPATCH-AFTER-UNCERTAIN`、`N011-02-START-BEFORE-FINISH-AFTER`、`N023-01-HUMAN-RECEIPT-MISSING`。主結果・owner戻し先はL8各rowの記載を保つ。これらをhelper passや`Unknown`合成で緑化しない。
+
+5 helper testはsource helperに対する小さな局所assertionであり、K1 ResultKey/PolarityMappingを必要とする`Observed<T>`製品APIを実装した証拠ではない。正式fixtureで要求される基準入力・単一変異・型付き主結果・構造assertionの実行はなく、L8/L9、実owner接続、登録、効果、coverageの合格を主張しない。旧runtime/test/CLI/CIは起動していない。
