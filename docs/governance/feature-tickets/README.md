@@ -24,3 +24,5 @@ GitHubへ送ったexact source commit、file SHA-256、remote revision、read-af
 | 9 | [FT-OS-GITHUBSYNC-001](FT-OS-GITHUBSYNC-001.md) | HELIX-OS GitHub一方向projection・read-after同期adapter | proposed_upstream_waiting | [#1812](https://github.com/RetryYN/HELIX-HARNESS/issues/1812) |
 | 10 | [FT-OS-REQGUARD-001](FT-OS-REQGUARD-001.md) | HELIX-OS 要求登録bot・監査crawler・admission CI | proposed_upstream_waiting | [#1837](https://github.com/RetryYN/HELIX-HARNESS/issues/1837) |
 | 11 | [FT-OS-REVIEWHANDOFF-001](FT-OS-REVIEWHANDOFF-001.md) | 共通ルール参照とVS Code GUIレーン間通知 | proposed_upstream_waiting（仮組みは別identity SCF-B-0003） | [#1884](https://github.com/RetryYN/HELIX-HARNESS/issues/1884)、親 #1864。[投影receipt](../audits/source-rebaseline/github-review-handoff-projection-2026-09-20.md) |
+
+[FT-GOV-AGENTREAD-001](FT-GOV-AGENTREAD-001.md)は、エージェント作業規則の入口にConcept・七大原則・JSON方針・テンプレートseedへの参照リンクを置く作業指示である。

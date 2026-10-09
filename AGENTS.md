@@ -5,6 +5,14 @@
 作業前に[新世代作業入口](docs/governance/new-generation-start-here.md)を読み、対象機構・共通部品と製品属性、authority状態、
 現在の層、許可された操作、停止条件を確認する。
 
+設計・実装・review・文書作成の前に、次を直接読む（本文の「候補」表記を理由に読むことを省かない）：
+[HELIX Concept](docs/concept/helix-concept.md)、[HELIXエージェントの七大原則](docs/concept/helix-principles.md)、
+[JSONを正本とする方針](docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md)、
+設計・検証テンプレートseed（[DT-MSG](scaffold/research/design-template-seed-minimum-gap-20261004/README.md)、
+[DT-SDOP](scaffold/research/design-template-seed-sdop-20260929/README.md)、[DT-VT](scaffold/verification-test-template-seed-20261001/README.md)）。
+Conceptと既決のPO方針は適用する。七大原則とテンプレートseedは、各文書が示すauthority状態と適用条件に従い、作業を照合する材料として使う
+（経緯とPOの指示の原文は[FT-GOV-AGENTREAD-001](docs/governance/feature-tickets/FT-GOV-AGENTREAD-001.md)）。
+
 ## 再構築の原則
 
 本repositoryは旧HELIXの再構築であり、新構築ではない。旧HELIXの「inventory-first」規則
