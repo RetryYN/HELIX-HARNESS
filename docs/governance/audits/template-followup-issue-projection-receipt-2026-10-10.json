@@ -1,0 +1,51 @@
+{
+  "record_kind": "template_followup_issue_projection_receipt",
+  "authority_effect": "none",
+  "authorization_basis": "2026-10-10ユーザー指示「残数はイシューにして、イシュー自体も整理してくれ」「イシューにしてくれ」。PR2837で発行した3作業指示をIssueへ投影する。",
+  "scope_limit": "要求整理の残作業を共有する。候補採択・版承認・L3以下の再開・seed昇格を生成しない。",
+  "body_projection_rule": "発行済みticket本文を保持し、相対Markdown linkを同じsource revisionのGitHub絶対linkへ解決する。source/Issue/read-after SHAは本receiptへ分離。",
+  "records": [
+    {
+      "record_kind": "issue_projection_receipt",
+      "source_revision": "a5b4c32bb13b7af6f7d5abc730ee909438aa1e28",
+      "source_path": "docs/governance/feature-tickets/FT-BRAIN-TEMPLATE-REVIEW-001.md",
+      "source_sha256": "13e2d5e27a5b13589bbd210f2689ff24353e3e784c4f0944e468084e06b67a26",
+      "issue_body_sha256": "279bec0425d6a7c16a160c45b1059ebe1041defef8a03cff77a28b485091a404",
+      "issue_number": 2841,
+      "issue_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2841",
+      "issue_title": "FT-BRAIN-TEMPLATE-REVIEW-001: BRAINの汎用テンプレート要求を照合する",
+      "read_after_body_sha256": "279bec0425d6a7c16a160c45b1059ebe1041defef8a03cff77a28b485091a404",
+      "read_after_state": "OPEN",
+      "meaning_match": true,
+      "authority_effect": "none"
+    },
+    {
+      "record_kind": "issue_projection_receipt",
+      "source_revision": "a5b4c32bb13b7af6f7d5abc730ee909438aa1e28",
+      "source_path": "docs/governance/feature-tickets/FT-HARNESS-TEMPLATE-REVIEW-001.md",
+      "source_sha256": "3e2391f48061753ddbc1c92eda5538ceba2922e1e569a74360e8db8756b4b147",
+      "issue_body_sha256": "8f047ff22417cbeab351412e2ce32aa397c5704e49d9afba0af2a94d52dae44e",
+      "issue_number": 2842,
+      "issue_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2842",
+      "issue_title": "FT-HARNESS-TEMPLATE-REVIEW-001: HARNESS COREの適用・設計義務・Backflowを照合する",
+      "read_after_body_sha256": "8f047ff22417cbeab351412e2ce32aa397c5704e49d9afba0af2a94d52dae44e",
+      "read_after_state": "OPEN",
+      "meaning_match": true,
+      "authority_effect": "none"
+    },
+    {
+      "record_kind": "issue_projection_receipt",
+      "source_revision": "a5b4c32bb13b7af6f7d5abc730ee909438aa1e28",
+      "source_path": "docs/governance/feature-tickets/FT-OS-TEMPLATE-REVIEW-001.md",
+      "source_sha256": "2da2d821bec7d0bad20574881d211b4b5c3b5bdc29b589f5d6caac16c5e6edcd",
+      "issue_body_sha256": "3d1cf3a850af27f3cf2871fd812b24fddca74189731bd16a84c097f11aaedbf7",
+      "issue_number": 2843,
+      "issue_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2843",
+      "issue_title": "FT-OS-TEMPLATE-REVIEW-001: OSの版・適用結果・改善接続を照合する",
+      "read_after_body_sha256": "3d1cf3a850af27f3cf2871fd812b24fddca74189731bd16a84c097f11aaedbf7",
+      "read_after_state": "OPEN",
+      "meaning_match": true,
+      "authority_effect": "none"
+    }
+  ]
+}
