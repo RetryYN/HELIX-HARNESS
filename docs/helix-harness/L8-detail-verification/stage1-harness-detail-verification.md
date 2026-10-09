@@ -4,8 +4,8 @@ layer: L8
 status: design_pair_defined
 owner: HELIX-HARNESS
 paired_l5: ../L5-detail-design/stage1-harness.md
-paired_l5_sha256: 60afa0e521ef7b8d717b30cb61fb8f120af1127f7107c93a8fb7fc8d21c0d8ad
-base: main `13a2d6ec23e568edb35ffaa7532950fbfda3aafd`
+paired_l5_sha256: cb0877b26b44f673708072ee382bfca999c6e65a83cfadfd5fa27061f19f4f0d
+base: main `f0ba62ce833463eb5f747ac4b95659ecea49928a`
 ---
 
 # HELIX-HARNESS Stage 1 L8詳細検証設計
@@ -279,7 +279,7 @@ fixtureは合成pack declaration、dependency refs、caller input、version、au
 | K9 | review結果をL3承認、release eligibility、実装許可へ読み替えない。 |
 | K10 | 023の固定typed dependency/class/conditionを使い、未宣言 dependencyを加えない。 |
 
-共通kernel本文のL4/L9歴史snapshotはL4 §4.4のbase `7d48e458fcff7e03df18abc4f768981410685cf7`上にあり、L4 SHA `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b`、L9 SHA `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`。現base `13a2d6ec23e568edb35ffaa7532950fbfda3aafd`のkernel L4/L9本文SHAはそれぞれ`3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、`77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`。K1/K2 detail pairはmain `33bbe8cd5f080be9e400e9259db22645bc620eda`へ統合済みで、L5 SHA `30fb33b316b6116ccb3eb38240947b3fdde942b97df42bb23f45d8286d9d2285`、L8 SHA `431eee7726606ec6c6d9b6941f2d176610cd53d459132bce08f0ef7ce3c4769d`。これらは既存kernelの型/契約参照であってHARNESS製品親、registration事実、bootstrap procedure、実装/実行証拠にはならない。kernel内のformal/structural checkをHARNESS product release/coverageへ読み替えない。
+共通kernel本文のL4/L9歴史snapshotはL4 §4.4のbase `7d48e458fcff7e03df18abc4f768981410685cf7`上にあり、L4 SHA `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b`、L9 SHA `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`。現base `f0ba62ce833463eb5f747ac4b95659ecea49928a`のkernel L4/L9本文SHAはそれぞれ`3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、`77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`。K1/K2 detail pairはmain `33bbe8cd5f080be9e400e9259db22645bc620eda`へ統合済みで、L5 SHA `30fb33b316b6116ccb3eb38240947b3fdde942b97df42bb23f45d8286d9d2285`、L8 SHA `431eee7726606ec6c6d9b6941f2d176610cd53d459132bce08f0ef7ce3c4769d`。これらは既存kernelの型/契約参照であってHARNESS製品親、registration事実、bootstrap procedure、実装/実行証拠にはならない。kernel内のformal/structural checkをHARNESS product release/coverageへ読み替えない。
 
 ## 6. 未確定・未実行範囲
 
