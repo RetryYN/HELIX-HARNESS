@@ -1,13 +1,13 @@
-# HELIX-HARNESS 共通カーネル L6関数設計（K1/K2/K3/K4/G3/K5/K6/K7/G5）
+# HELIX-HARNESS 共通カーネル L6関数設計（K1/K2/K3/K4/G3/K5/K6/K7/G5/K9/K8）
 
 status: draft
 owner: HELIX-HARNESS
-scope: K1/K2/K3/K4/G3/K5/K6/K7/G5
+scope: K1/K2/K3/K4/G3/K5/K6/K7/G5/K9/K8
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `30e957ee900da7735b6c691bdb63b55cae7a0c95` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7` and intermediate base `f75199749888f7261772ba26e9feb58a33d9a04f` retained as history)
+base: `main` at `4a40597efbf867b6b5b5640060b2cac81de56de0` (current integration base; prior bases `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
 
-本書は現行Common Kernel L4 K1/K2/K3/K4/G3/K5/K6/K7/G5の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/G3は本書§14、K6は§13で既存L5/L8設計を関数責務へ下ろす。K8–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
+本書は現行Common Kernel L4 K1/K2/K3/K4/G3/K5/K6/K7/G5/K9の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/G3は本書§14、K6は§13で既存L5/L8設計を関数責務へ下ろす。K9は§16で詳細化する。K8は§17でL4 §18/L9 IV-K8-01–26を4つの既存L5 API境界へtraceする設計追補であり、owner接続・L9実行は未了。K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
 
 ## 1. 入力revisionと適用範囲
 
@@ -248,7 +248,7 @@ Python 3.11+の標準`json` optionは一次仕様に記載される（[Python 3.
 
 K2 `key_of`はL5の専用`KeyOfResult`を返し、L4 §3.4が定める`missing_key`→`invalid_digest`→`duplicate_identity`の検査順を実装候補へ展開する。これらはK2 API境界の拒否であり、K1 `ApiBoundaryResult<T>`、`UnknownReason`、`record`の返却unionへ追加しない。役割内aliasの異なるraw refはL4 §3.4.1どおり`key_of`前に`Rejected(missing_key)`とする。
 
-K3は§12、K6は§13で詳細化する。K8–K10は本書で`not_designed`。既存契約とoracleはCommon Kernel L4 §4–11、追加所有者節§14 (K10)、§15 (K7)、§17 (K9)、§18 (K8)、ならびにPair L9の対応IVを参照する。本書ではK8–K10の型やalgorithmを再記述しない。K1/K2からK5/K6へ渡す境界は§3.2、K3のK5/K6/K7境界は§12、K6のK5/K2接続は§13であり、physical writer、production verifier/reader、未定義owner責務を追加しない。
+K3は§12、K6は§13で詳細化する。K8/K10は本書で`not_designed`。既存契約とoracleはCommon Kernel L4 §4–11、追加所有者節§14 (K10)、§15 (K7)、§17 (K9)、§18 (K8)、ならびにPair L9の対応IVを参照する。本書ではK8/K10の型やalgorithmを再記述しない。K1/K2からK5/K6へ渡す境界は§3.2、K3のK5/K6/K7境界は§12、K6のK5/K2接続は§13であり、physical writer、production verifier/reader、未定義owner責務を追加しない。
 
 ## 7. 旧HELIX source・保持点・差分理由
 
@@ -407,7 +407,7 @@ K3 L8の194個別fixtureに一つずつ対応する`tests/test_k3.py`の静的un
 | `python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k3.py'` | CK-K3-UT-001–194とCK-K3-REG-* 26件 | 220 tests, OK。formal 194件と回帰26件を区別し、owner/K5/K6/K7境界は合成stub。 |
 | `python3 -m py_compile helix/helix-harness/units/common-kernel/src/permission.py helix/helix-harness/units/common-kernel/tests/test_k3.py` | K3候補moduleと単体test | 成功。 |
 
-この結果はK3 pure projection/case behaviorの候補単体検証に限る。private owner-port stubはsynthetic typed inputだけを与え、実source reader/登録確認/署名真正性、expiry/signature policy、K5 prefix/read/restore、K6 binding/raw byte実読、K7 apply/recovery、L9 oracle、CIへのK3登録、製品動作、外部作用の証拠ではない。revocation回帰はhead setの順序非依存・exact重複dedupとowner observation key/evidence保持を確認するが、K5実読を証明しない。`allow`と非空`constraints`の同時存在mappingはL4/L5で未決のままであり、既存Unknown(unsupported)を用いた非肯定回帰だけを加えた。K3実行記録やowner接続をmain上の完了として扱わない。K8–K10詳細は`not_designed`のままであり、K4/G3は§14、K5は§2–5/§7、K6は§13に記載する。
+この結果はK3 pure projection/case behaviorの候補単体検証に限る。private owner-port stubはsynthetic typed inputだけを与え、実source reader/登録確認/署名真正性、expiry/signature policy、K5 prefix/read/restore、K6 binding/raw byte実読、K7 apply/recovery、L9 oracle、CIへのK3登録、製品動作、外部作用の証拠ではない。revocation回帰はhead setの順序非依存・exact重複dedupとowner observation key/evidence保持を確認するが、K5実読を証明しない。`allow`と非空`constraints`の同時存在mappingはL4/L5で未決のままであり、既存Unknown(unsupported)を用いた非肯定回帰だけを加えた。K3実行記録やowner接続をmain上の完了として扱わない。K8/K10詳細は`not_designed`のままであり、K4/G3は§14、K5は§2–5/§7、K6は§13に記載する。
 
 ## 13. K6 関数設計
 
@@ -666,4 +666,204 @@ K3 IV-K3-17とIV-LDG-03はK7/G5境界の既存traceであり、K7/G5 oracle数�
 
 純粋な候補処理は、明示的に与えられたtyped snapshotの順序、ref identity/digest、集合の重複保持、projection field分離、非肯定の全component保持を比較する範囲である。これらを実行する局所fixtureはK5/K10/K3/K6 ownerのsourceを読んだことや公開APIが接続されたことを示さない。明示source readerがない場合に`Value`、`Positive`、`Observed`を作る既定portは置かない。K5のread/append/restore/project、K3 current permission、K4/current verifier set、K6 receipt、K10 current graph/review_set、SECURITY RecipientMap/RecipientDecl、OS/build declarations、EpochLog、RuntimeLog、物理CAS、internal deploymentの各実owner境界は未接続である。L4/L5/L8/L9にないowner mappingや戻りreasonを新設せず、該当経路の実装・実行はowner返却としてholdする。
 
-K7/G5は本節で関数責務へ下ろした設計候補であり、L6 source実装、L7 unit実行、L9 pass、K7/G5 CI inventory登録、製品のcurrent reader/writer、実deployment、L10達成を示さない。
+K7/G5は本節で関数責務へ下ろした設計候補であり、§15.4に記録したhelper-level部分実装以外のL6実装、115 formal fixtureのL7実行、L9 pass、K7/G5 CI inventory登録、製品のcurrent reader/writer、実deployment、L10達成を示さない。
+
+### 15.4 private helperの限定実装・実行記録
+
+main `27707fe9f1506afaa3ab88b665f655b7212233f9`から分離した候補実装で、`helix/helix-harness/units/common-kernel/src/_k7_g5_private.py`に既存`SegmentHead`/`SubjectRef`とPythonの`str`/`tuple`/`frozenset`だけを比較・保持するprivate helperを置いた。moduleの`__all__`は空であり、公開API、Generation/Epoch/Pointer/RecipientMap等のdomain型、return union、keyless `Unknown`、owner port、外部reader/writer、append/CAS、fence作用は追加していない。
+
+`helix/helix-harness/units/common-kernel/tests/test_k7_g5_private.py`の5件は、L7 §12.5に列挙した3個のK7局所比較（UT-006/033/035）と、既存入力からのG5 identity/class集合保持・一class欠落比較（UT-035/036）を検査する。`python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k7_g5_private.py' -v`は5件成功した。これはL8 formal fixture全体の実行ではなく、115 fixtureはすべて未実行である。helperの実装・test SHA-256はそれぞれ`e13bff0ec554ab8a244949e3f318c86c00e88556ca9286fca51bd409c9b5917c`、`32aebb1851310f7938dd5cbf056f0041f5caafd26a2db8b1737fe5fb6f200ff9`である。
+
+この部分実装は9公開API、K5 source復元・current owner、K3 permission、K4 verifier set、K6 receipt、K10 graph/review set、OS/build declaration、SECURITY recipient source、physical append/CAS、internal deploymentを実装・接続していない。115 L8 formal fixture/L9 oracleの達成、製品動作、L10成立を主張しない。K7/G5 helper suiteは現行CI inventoryに未登録であり、local CIの586 Core discovery identityへ含めない。
+
+## 16. K9 独立review関数設計
+
+本節は、現行main `30e957ee900da7735b6c691bdb63b55cae7a0c95`に含まれるCommon Kernel L4 §17、L5 §10、L8 §9、L9 IV-K9-01–15を関数責務へ接続する設計である。参照本文のSHA-256はL4 `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82`、L5 `445c564a7b5678d7609daf4142090a26a3df73ce76522a29771a6dad5cdce3f2`、L9 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`である。L8のK9 fixture locatorは`docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md` §9であり、L7から一方向に参照する。L8 fixtureの実行、owner接続、K9合格を意味しない。
+
+直接親はL4 §17.1のConcept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08である。個別要素はL4 §17.1のcrosswalkからそれぞれtraceし、単一のまとめ親を置かない。K9-I1–I8と型はL4 §17、K9公開APIと詳細候補はL5 §10、oracleはL9 IV-K9-01–15を正本とする。L6はAPI/型/UnknownReason/K2優先順位を変更せず、K9が要求採択、reviewer採用、検証合格、Verified/Accepted、completion、authorityを生成しない境界を保つ。
+
+### 16.1 公開API・型境界
+
+公開面はL4 §17.4/L5 §10.3の次の2 APIだけである。Python候補実装はCPython 3.11+標準ライブラリに限定できるが、この技術候補はowner readやproduction connectionの実装を示さない。
+
+```text
+resolve_creator_inventory(
+  current_assignment: SubjectRef,
+  selected_source_records: SubjectRef[],
+  actual_content_producer_graph: SubjectRef,
+  owner_source_closure: SubjectRef[],
+  input_heads: InputHeads
+) -> Observed<{slots: ParticipantSlot[], selections: RoleSelection[], complete: Bool}>
+
+check_review_independence(
+  target: ReviewTarget,
+  creator_inventory: SubjectRef,
+  review_execution_record: SubjectRef,
+  reviewer_origin_contract: SubjectRef,
+  context_owner_contract: SubjectRef,
+  authority_owner_record: SubjectRef,
+  route_owner_contract: SubjectRef,
+  input_heads: InputHeads
+) -> ReviewIndependenceCheck | Rejected(missing_key, diagnostic)
+```
+
+`ParticipantSlot`、`RoleSelection`、`ContentProducerGraph`、`ParticipantBindingSet`、`ReviewTarget`、`ReviewAxisCheck`、`ReviewIndependence`、`K9IndependenceComponent`、`ReviewIndependenceCheck`の全fieldはL4 §17.2の既存shapeを使う。K9へ型・reason・API引数を追加しない。`resolve_creator_inventory`の戻りには外側Rejectedを追加しない。`check_review_independence`の外側Rejectedは既存signatureの`missing_key`に限る。APIが要求するSubjectRef全体の必須field欠落と、完全なrefが指すowner source内のdata欠落を混同しない。
+
+### 16.2 関数責務候補
+
+以下の`CK-K9-FN-*`はL6内trace IDで、private helper候補または既存APIの責務境界を示す。新しい公開関数ではない。ownerのcurrent declaration/source resolverやK6 readerを呼出し側の値で代替しない。
+
+| L6 ID | 責務/visibility | 入出力と責務 | 失敗境界・L4/L9 trace |
+|---|---|---|---|
+| `CK-K9-FN-01` | `resolve_creator_inventory` API orchestration | 既存API refsと`input_heads`を受け、OS assignment、選択記録、actual content-producer graph、source closure/coverageの各owner-current観測を既存owner境界から取得する順序を束ねる。 | resolver/schema/read adapterが未登録の条件を実読済みと扱わず、各L4既定non-valueを保持する。K9-I1/I2; IV-K9-01/02。 |
+| `CK-K9-FN-02` | private `_check_inventory_inputs` | 解決済みtyped observationsのref/source completeness、current-head一致、明示`not_selected`と欠落を区別し、I1–I3に沿って完全なroster候補を照合する。 | caller slot/complete claimを採らない。欠落=`Unknown(missing_input)`、closure未登録=`Unknown(unregistered)`、確定source間不一致=`Unknown(conflict)`、全量性未証明=`Unknown(unsupported)`。K9-I1–I3; IV-K9-01–04。 |
+| `CK-K9-FN-03` | private `_fold_creator_inventory` | owner-resolved `ParticipantSlot[]`/`RoleSelection[]`/graph/closure observationsを純粋に照合し、既存`Observed<{slots,selections,complete}>`のshapeへ整える。 | source readをしないpure helper候補。空creatorは`Unknown(missing_input)`。未知selectionをnot_selectedへ変えない。K9-I2/I6; IV-K9-02/03/04。 |
+| `CK-K9-FN-04` | `check_review_independence` API orchestration | exact ReviewTargetと各owner refをcurrent read境界へ渡し、creator inventory result/key、review execution origin、context/authority/route owner valuesを統合する。 | required key構成不能だけが既存外側`Rejected(missing_key, diagnostic)`。owner schema/data absenceはL4既定Observed result/componentとして保持し、新reasonを作らない。K9-I4/I5/I7; IV-K9-05–15。 |
+| `CK-K9-FN-05` | private `_bind_review_target` | L4 ReviewTargetのartifact/base/task_scope/oracle/current_result/caseの6 refをowner-current bindingとfieldごとに比較する。 | fresh確定不一致の外側`Unknown(conflict)`はL4で固定。component/combinedへのtarget mismatch投影は既存unionに無く未接続であり、新componentを作らない。K9-I5; IV-K9-07。 |
+| `CK-K9-FN-06` | private `_compare_resolved_axes` | owner contractから既に解決したidentity/context/authority/route比較identityをslot単位で比較し、既存`ReviewAxisCheck`のcreator/reviewer refs・comparison contract・identity fields・relationへ保持する。 | raw ref/revision/operation/target/source/provider/modelだけからdistinctを導かない。context/route schema未定義=`Unknown(unsupported)`、定義済みcurrent declaration未登録=`Unknown(unregistered)`。K9-I4/I5; IV-K9-06/08/09/10。 |
+| `CK-K9-FN-07` | private `_combine_review_components` | L4指定のcomponent順でnonempty、roster completeness、slot×identity/context/authority/routeを保持し、既存K1 `combine`/owner `PolarityOf`を使う。 | sameがあればK1 Negativeと全non_valuesを併存保持。未知があればUndetermined。非empty/completeと全distinctが確認済みの時だけIndependent/Positive。mappingを推測しない。K9-I5/I6; IV-K9-04/06/08/09/10/15。 |
+| `CK-K9-FN-08` | private `_lookup_current_k9_key` | 既存K2 `key_of`/`lookup`境界で、L5に定めるoperation/version/subject/inputs/scopeと完全current refsからK9保存結果を照合する。fresh evaluationからsaved lookupを分離する。 | same identity旧revisionのprior Value=`Stale`、同revision異digest=`Unknown(conflict)`、inputs identity set差=`Unobserved(not_run)`。prior non-ValueはK2分類のまま保持する。K9-I7; IV-K9-07/12/13/15。 |
+| `CK-K9-FN-09` | private `_preserve_k6_assurance` | `ReviewIndependenceCheck.assurance`へ、既存K6のreproduction/issuer_authenticity等3項目を別欄のまま保持する。 | K6 authenticity/reproduction non-valueをK9 axis/result/authorityへ写さない。K9は`authority_effect="none"`を維持しacceptance/completionを返さない。K9-I8; IV-K9-05/14。 |
+
+### 16.3 呼出し順、key、非Value
+
+`resolve_creator_inventory`はrefs/key preflight、current owner heads/source reads、K5/K6の既存read/admission、owner source間のselection/graph/closure fold、K2 record/lookupの順で構成する候補である。`check_review_independence`はAPI key境界、inventory fixed refのcurrent照合、ReviewTarget 6 refのfresh一致、review originとowner axis sources、slot×4軸比較、K1 component combine、K2 saved result lookupの順である。L6は各owner resolverの登録・実装を主張しない。`input_heads`は期待headでありcurrent正本の指定ではない。
+
+source inventoryの非ValueはL4 §17.3早期returnに従い、四軸比較へ進まない。完全なK9 refsを使ってreview keyを構成できる場合だけ、そのoperation自身の既存`Unknown` result/component/combinedを型どおり保持する。必要なtarget/owner/binding refsが欠けreview keyが構成できない場合は既存外側`Rejected(missing_key)`であり、inventory keyをreview keyへ流用しない。`resolve_creator_inventory`に外側Rejectedを新設しない。API key不可と、完全API ref配下でowner source fieldが欠ける`Unknown(missing_input)`も分ける。
+
+四軸比較単位はrole slotであり、同raw refの重複をK2 duplicate identityとして拒否しない。L4 §17.3の`source_content` RoleBoundSourceRef aliasとParticipantBindingSet canonical bytesを使う。role/side/axis別aliasは保持し、binding bytes読取とK6が行うaliasごとの原source bytes実読を別にする。同じalias identity内で異なるraw refsは既存K2 key境界の`Rejected(missing_key)`であり、異なるrole/side間の同一raw refは衝突として保持する。
+
+fresh owner-source mismatchはL4どおり`Unknown(conflict)`で、保存済みValueのStaleで代用しない。K2 prior lookupはcurrent keyを再導出した後にのみ行う。K4 `Deferred` receipt未着のK4 `ObligationView`は既存L8-K4-05 trace reuseの範囲に留め、K9 candidate/review段階へのprojectionは未接続。K6 binding/source read failureはK6自身の結果を保持し、K9 result/components/combinedへのmappingがない2 fixtureはK9 oracle充足へ数えない。
+
+### 16.4 L4 invariant・L9 oracle trace
+
+| L4 invariant | 関数 | L9 oracle |
+|---|---|---|
+| K9-I1 source-boundary | FN-01/FN-02 | IV-K9-01 |
+| K9-I2 roster completeness | FN-01/FN-02/FN-03 | IV-K9-02 |
+| K9-I3 role binding/dedup | FN-02/FN-04/FN-06/FN-08 | IV-K9-05 |
+| K9-I4 owner contract | FN-04/FN-06 | IV-K9-08/09 |
+| K9-I5 four axes/target | FN-05/FN-06/FN-07 | IV-K9-06/07/10 |
+| K9-I6 empty creator rejection | FN-02/FN-03/FN-07 | IV-K9-04 |
+| K9-I7 stage separation/reuse | FN-04/FN-08 | IV-K9-11/12/13/15 |
+| K9-I8 no authority/assurance separation | FN-09 | IV-K9-14 |
+
+K9 L9の15 oracleはL9 IV-K9-01–15のままであり、API/function IDsは新しいrequirementsやoraclesではない。L8のK9 §9.17に明記された返却事項（IV-K9-05 K6→K9投影、IV-K9-11 K4→K9段階接続、ReviewTarget mismatch component表現）を未接続のまま保ち、API/union/reasonを増やさない。
+
+### 16.5 旧HELIX source・保持点・差分理由
+
+旧assetのsource span、full-file SHA-256、台帳状態とconsumer照合はL5 §10.2の11行を正本とする。全11 assetは`Historical`/`unresolved`で`consumer_refs=[]`として台帳にあり、runtime/test/CLI/CIを起動していない。L6は以下の役割で旧根拠を再導出し、旧APIや過去の合格を再利用しない。
+
+| L5 §10.2 asset | 保持するfailure/意図 | 現K9への対応と変更理由 |
+|---|---|---|
+| `LEGACY-ASSET-D107FD145A2588FAAD09` | actor自己申告でなくexecution originから導く | K9-I1/K6 origin source境界。sealed broker/保証は未接続。 |
+| `LEGACY-ASSET-50A93B0E753DC3840E03` | 同provider/modelでも独立し得る正常系、三軸collision | 四軸L4 owner valuesから再導出。旧sandbox条件は不採用。 |
+| `LEGACY-ASSET-FD3F979AF945CE3EC306` / `A04F169C5D514C5443D0` | producer/executor/publisher分離、scope/source binding | metadata/provider/runtimeを製品判定軸にしない。候補要求をauthorityへ昇格しない。 |
+| `LEGACY-ASSET-7AFB0C65E70ED4C0856E` | role入替、wrong assignment/HEAD、spoof/staleを分ける | L8で一条件ごとに再導出。runtime-family rejectionは除外。 |
+| `LEGACY-ASSET-0F15A8439F925AA1CB08` / `D4CB3FE6A76F3A54FED1` | L4/L9 pair、draft/no completion claim、後続lifecycle分離 | K9 observationがacceptance/completion/lifecycleを作らない。 |
+| `LEGACY-ASSET-0449CFE6165EF25515B7` / `E8B32F8D6519FFCED39A` | strict receipt/origin、旧function flow・identity/session/context照合 | L4の2 API/4軸とK6 assuranceへ再導出。旧function名/brokerを移植しない。 |
+| `LEGACY-ASSET-25EB3B29EA909B050987` | receiptを消費する後続lifecycle | K9は後続terminal stateを生成しない。 |
+| `LEGACY-ASSET-D6816E22DAF2E990410B` | GitHub cross-review admissionのmixed/external条件 | 開発運用consumer固有であり製品K9へ持ち込まない。 |
+
+旧source保持点は役割分離、actor自己申告拒否、collision/同provider-model正常例の分離、missing/unknown/stale非昇格、後続lifecycle分離である。変更は旧三軸・sealed broker/runtime-family条件を現Concept/L3の四軸とowner source境界へ再導出する点に限る。L5 §10.2の個別path/span/fullSHAがこの表のasset IDごとのsource locatorである。
+
+### 16.6 確認できない範囲
+
+OS assignment/selection/content-producer graph/source closureのcurrent reader、reviewer execution origin、context/route schema、SECURITY authority identity mapping、K6 read resultからK9結果へのprojectionは現L4/L5に具体owner adapterとして接続されていない。これらを推測で追加せず、各fixtureのowner未接続をL8 §9.17の返却先へ戻す。L7 unit designはL8の期待をtraceする設計であり、L8 fixture実行、K9 end-to-end実装、K6 authenticity、L9統合、登録済みunit packまたは製品動作を主張しない。
+
+## 17. K8: input labelとauthority-effect observationの境界
+
+### 17.1 固定入力とAPI境界
+
+K8の直接traceはL4 §18.1で明記されたSECURITY-AC-001-01の要素別crosswalkに限る。K8専用の共通kernel親、分類語彙、target語彙、taint伝播、許可、作用実行を追加しない。L4/L9とL5/L8は下表source baseの固定snapshot本文である。現在mainの全本文SHAとは区別し、K8節の既存fixture本文を保持する。
+
+| source | 対象・SHA-256 |
+|---|---|
+| L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md` §18; `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82` |
+| L5 Common Kernel | `docs/helix-harness/L5-detail-design/common-kernel.md` §12; `b6b2f2fe6d47d413a2d9e37d1ab26ea9017017d86a091ee2c8f5a144ac7cdc4a` |
+| L9 Common Kernel | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` IV-K8-01–26; `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
+| source base | `main` `46cbf9297a11b7f23f561a57b5cab21768fe075c` |
+
+L5 §12.3の4公開signatureをそのまま保持する。下表はAPIの実装状態ではなく、L6責務境界を明示する。
+
+| 既存API | L5返却型 | L6の関数責務 / 未接続境界 |
+|---|---|---|
+| `observe_input_label(input_ref, input_heads)` | `ObservedLabel | Rejected(missing_key)` | owner declaration/source readerのcurrent再読は未接続。入力`Observed`/trustを変換しない純projection候補のみ。 |
+| `observe_authority_effect(case_ref, effect_observation_ref, input_heads)` | `Observed<EffectObservation> | Rejected(missing_key)` | case/effect-source readerは未接続。raw `none`/null/event/bindingの保持候補のみ。作用を生成しない。 |
+| `validate_label_transition(case_ref, input_label_ref, route_ref, k3_permission_check_ref, effect_observation_ref, input_heads)` | `TransitionValidation | Rejected(missing_key)` | K3/K6 current owner readerとK5 evidence read/writeは未接続。既にtypedな入力間のL4 precedence・field比較だけがprivate純関数候補。 |
+| `record_label_transition(case_ref, input_heads)` | `LabelTransition | Rejected(missing_key)` | owner binding/result-pointer source readと各current K2 key再構成/lookupは未接続。lookup結果を混ぜず配置する純projection候補のみ。 |
+
+L4 K8-I1–I8とIV-K8 oracleの対応は次のとおり。L7 §14.2は162 fixture IDを各一度定義し、5 BASEと157 variantを分ける。`not run`/owner未接続を成功扱いしない。
+
+| L9 oracle | L4 invariant | L5 API / boundary | L8 variant数 | L6責務と状態 |
+|---|---|---|---:|---|
+| `IV-K8-01` | K8-I1：入力出自とK2 key | `observe_input_label` / K2 `key_of`, `lookup` | 5 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | K2 key/lookup候補。owner current reader未接続のためL8全体は未実行 |
+| `IV-K8-02` | K8-I2/I3：分類不能とuntrusted保持 | `observe_input_label` | 3 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | 既存Observedのclass/reason/trust保持候補。source reader未接続 |
+| `IV-K8-03` | K8-I1：SECURITY declarationのoperation別current参照 | `observe_input_label`, `observe_authority_effect`, `validate_label_transition` | 4 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | operation別required sliceの構造候補。current declaration/reader未接続 |
+| `IV-K8-04` | K8-I5/I6：fresh validationのroute・permission・作用照合 | `validate_label_transition` / private component evaluator | 9 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | typed component precedence・MismatchField順序のprivate純関数候補。K3/K6 reader未接続 |
+| `IV-K8-05` | K8-I4：selectionと照会結果の分離 | `record_label_transition` | 5 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | pointerとNotSelected/KeyUnavailable projectionの境界。current lookup未接続 |
+| `IV-K8-06` | K8-I6：effect sourceのcurrent再読 | `observe_authority_effect` / `record_label_transition` | 8 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | 原EffectObservation保持候補。effect source current reader未接続 |
+| `IV-K8-07` | K8-I6：作用済み・未検証の保全 | `validate_label_transition`, `record_label_transition` | 3 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | effect事実とvalidation lookupの分離。owner source/K2 lookup未接続 |
+| `IV-K8-08` | K8-I7：ACのread-only target別negative | consumer boundary / surface only | 11 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | consumer surfaceの構造照合のみ。外部target作用は未実施 |
+| `IV-K8-09` | K6：receiptはauthority/effectを作らない | `validate_label_transition` / K6 result boundary | 3 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | 既存K6型の保持候補。K6 verifier/source未接続 |
+| `IV-K8-10` | K2：revision/digestとidentity重複 | K2 `key_of` / `lookup` | 5 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | K2 key_of/lookup候補とalias入力形状。current owner refs未接続 |
+| `IV-K8-11` | K8-I8：汎用taint機能を追加しない | public surface structure only | 5 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | 4 APIのsurface構造照合のみ。禁止API/語彙を追加しない |
+| `IV-K8-12` | TransitionCaseとeffect binding | record projection / pointer diagnostics | 4 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | pointer diagnosticsとcurrent resultの分離。owner projection未接続 |
+| `IV-K8-13` | K8 operation別K2 keyの正準形 | K2 operation-key lookup | 7 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | K2 lookup分類候補。operation current refs未接続 |
+| `IV-K8-14` | K8CaseBindingRefの非循環case結合 | input-only binding canonical projection | 2 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | input-only binding bytesとresult pointersの非循環比較候補。owner binding未接続 |
+| `IV-K8-15` | 確定不一致fieldの閉語彙 | private mismatch evaluator | 15 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | typed mismatch field比較・列順のprivate純関数候補。source exact read未接続 |
+| `IV-K8-16` | fresh validationの単一結果と優先順 | private fresh precedence evaluator | 20 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | fresh precedenceのprivate純関数候補。API全体・K3/K6 owner reader未接続 |
+| `IV-K8-17` | role aliasとsource実読 | role alias / raw-source reader boundary | 4 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | role aliasとraw source readの境界。raw source reader未接続 |
+| `IV-K8-18` | case bindingの明示選択 | case binding reader boundary | 2 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | 明示case bindingの形状比較。current case resolver未接続 |
+| `IV-K8-19` | current key再構成後のrecord lookup | record projection / K2 `lookup` | 6 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | K2 current lookup候補。current key再構成・pointer reader未接続 |
+| `IV-K8-20` | K3/K6 assuranceとvalidation record evidence | saved evidence read/restore boundary | 17 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | evidence保存/復元・assurance保持はowner/K5未接続のため未実行 |
+| `IV-K8-21` | classification keyの間接結合と非循環性 | input-only binding canonical projection | 2 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | input-only binding非循環性のcanonical bytes比較候補。owner binding未接続 |
+| `IV-K8-22` | classification operation versionの正準化 | classification key builder / K2 `lookup` | 3 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | classification operation key比較候補。current classifier refs未接続 |
+| `IV-K8-23` | observerの複合条件と主理由 | observer priority boundary | 3 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | 既定priorityの純粋候補。source reader/API境界未接続 |
+| `IV-K8-24` | 未選択projectionとK1照会の差分 | explicit validation query / record projection | 3 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | NotSelected projectionとexplicit keyed queryの境界。current lookup未接続 |
+| `IV-K8-25` | issuer診断とK6真正性 | issuer diagnostic / K6 result retention | 4 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | issuer診断/既存K6 result保持の構造候補。current issuer source未接続 |
+| `IV-K8-26` | polarity識別と版 | K1 `PolarityOf` structure | 4 variant ID。L7 §14で個別ID・baseline・変異・expectedを固定。 | 既存PolarityOf identity/versionの構造照合。owner mapping未接続 |
+
+### 17.2 L6 private候補と停止境界
+
+次のpure candidateは既存L4/L5型で与えられた入力の保持・比較・順序処理だけを対象とする。新しい公開関数、domain語彙、reason、owner authority、current-source readerは作らない。
+
+| private候補 | 既存型に対する局所責務 | 未接続境界 |
+|---|---|---|
+| `_retain_classification_observation` | 既存classification resultのclass/reason/source refと`trust="untrusted"`をそのまま保持する。 | SECURITY ClassificationDecl/current classifier/source reader、bytes/digest実読、K2/K5保存とlookup。 |
+| `_retain_effect_observation` | typed `EffectObservation`内の`none`、event/binding nullと原refを落とさず保持する。 | case binding・effect source登録・source owner current readerと実読による`occurred`観測。caller申告を肯定化しない。 |
+| `_compare_transition_fields` | L4 §18.4既定のfield集合・MismatchField列順と、完全値の比較を行う候補。比較不能な既存non-valueは保持し、Mismatchにしない。 | current source取得、K3/K6結果の生成・読取、保存evidenceの再構成。 |
+| `_evaluate_fresh_components` | 既にtypedなK3/K6/effect/classification componentsのL4優先順を評価する候補。Observed effectとvalidated resultを分ける。 | API基盤key、current heads、K3 PermissionCheck/K6 RequiredResult reader、K2 record/evidence。 |
+| `_project_current_lookups` | 各既存K2 lookup resultを別fieldへ配置し、NotSelected/KeyUnavailable/pointer diagnosticsを既存shapeのまま保つ。 | current case binding/result pointersのread、各operation keyの再構成とK2 lookup。 |
+| `_check_polarity_mapping_shape` | 既存`k8_transition_polarity` identity/versionとpayloadの対応を構造照合する。 | owner mapping source解決と本番K1 combine接続。 |
+
+API全体の`Rejected(missing_key)`はL5/L4の既存必須key境界に限る。`KeyUnavailable`, `NotSelected`, K1/K2 result, K3 `PermissionCheck`, K6 `RequiredResult`は異なる既存境界として保つ。K2 lookup Staleはrecord projectionの結果であり、fresh validation outcomeへ代入しない。作用が観測済みでもroute/binding欠落でvalidationを肯定しない。K7 `AppliedUncertain`等、他節の型や規則をここへ導入しない。
+
+### 17.3 旧HELIX source・保持点・差分
+
+旧sourceの指定span・asset ID・full-file SHAをL4 §18.2および台帳で照合した。保持するのは信頼境界、出自と作用の分離、未信頼入力の保持であり、旧runtimeや旧実装は再利用・実行しない。
+
+| 旧asset | source locator / full-file SHA-256 | 保持点 | 変更点と理由 |
+|---|---|---|---|
+| `LEGACY-ASSET-18F7940E7994634D39A1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md:43,57,66,77,81` (source_snapshot_preservation) / `7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc` | 外部dataとinstructionを混同しないsource境界を調査起点として保持する。 | P8全体、旧sandbox/token/escalationは移さず、SECURITY-AC-001-01の限定traceへ再導出する。 |
+| `LEGACY-ASSET-EE5DBACC7F28F7D1F605` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:171,186` (historical/unresolved) / `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544` | raw input、trusted metadata、executable instructionの分離を保持する。 | 旧injection/exfiltrationの検出・処置動作は移さない。 |
+| `LEGACY-ASSET-8DA932B4A1012B9D8F00` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-context-authority.md:19–24,30–53` (historical/unresolved) / `aca532c939e34f2a4fb6b47f74254ff76a49dfaea1eeb56ff5edd7f3a181acec` | current authority/scopeとhistorical inputを混同しない。 | 旧worker packet、launch/sandboxを移さない。 |
+| `LEGACY-ASSET-AD72C8353ACD8C676C5F` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-context-authority.md:19–46` (historical/unresolved) / `8818e7af133f2feb2268c6f2c8b04e509735ff330ab8510c2361086a242e6f12` | field/digest結合の厳密さを調査起点として保持する。 | 旧18-field schema/failure listは採用しない。 |
+| `LEGACY-ASSET-2A73DCD3E15EC9B529CF` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-context-authority.md:19–29` (historical/unresolved) / `21406d2c7c72520f9928ce5e6ded143f8285c3975a3fb617293965661b01eff3` | 観測とauthority actionを分離する。 | attest/compile/launch APIや旧runtime authorityを移さない。 |
+| `LEGACY-ASSET-D65FB82C21C5EDBDFCE4` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md:39–48,72–89,91–145,147–165` (historical/unresolved) / `70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a` | raw evidence/progressとknowledge promotionを分離する。 | memory stages/threshold/DBは持ち込まない。 |
+| `LEGACY-ASSET-256C9F8C3029B185B151` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/memory-learning-promotion.md:31–60,72–148` (historical/unresolved) / `e6e20a686ac0f9e019b9fd9803674c489b1e1674b7388efa20dfa3be648fb753` | pure read/classificationとcommit portの分離を調査起点とする。 | HIL taxonomy/promotion authorizationを移さない。 |
+
+対象7 assetは旧本文の参照・判断史を起点にした意味再導出であり、旧runtime/test/CLI/CIの実行証拠ではない。consumer refsまたはfailure historyはL4 §18.2に記録された区分のまま保ち、現行のowner readerやK8動作として推定しない。
+
+### 17.4 L9 oracleと検証範囲
+
+本節は設計traceのみである。162 L8 fixture IDの内訳はBASE 5、variant 157。IV-K8-01–26ごとのvariant数は次の通りで合計157である。BASEは期待状態を示すが、実行methodやL9合格件数に数えない。
+
+| IV | variants | IV | variants | IV | variants | IV | variants | IV | variants | IV | variants | IV | variants |
+|---|---:|---|---:|---|---:|---|---:|---|---:|---|---:|---|---:|
+| 01 | 5 | 02 | 3 | 03 | 4 | 04 | 9 | 05 | 5 | 06 | 8 | 07 | 3 |
+| 08 | 11 | 09 | 3 | 10 | 5 | 11 | 5 | 12 | 4 | 13 | 7 | 14 | 2 |
+| 15 | 15 | 16 | 20 | 17 | 4 | 18 | 2 | 19 | 6 | 20 | 17 | 21 | 2 |
+| 22 | 3 | 23 | 3 | 24 | 3 | 25 | 4 | 26 | 4 |  |  |  |  |
+
+K8の実owner reader、K3/K6 source current read、K5 evidence roundtrip、production API、CI manifest登録、fixture実行は未実施である。L7はL8のbaseline/mutation/expectedを逐語的に索引し、private candidate/structural-only/owner-unconnectedを区別する。fixture design inventoryをcoverage/passへ昇格させない。
