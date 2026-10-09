@@ -54,6 +54,7 @@ def _baseline():
                 "#### 6.2.2 公開関数とprivate helper", "K5 API synthetic.",
                 "#### 6.2.3 不変条件の分解", "K5 range end.",
                 "## 8. K4/G3 義務評価API", "K4/G3 synthetic API.",
+                "## K4/G3 API 範囲終端",
             ]
             sources[path] = ("\n".join(lines) + "\n").encode()
             definitions = [
@@ -428,14 +429,17 @@ class DesignManifestTests(unittest.TestCase):
     def test_ut_lci_116_extra_k4_g3_fixture_is_conflict(self):
         doc, sources, _ = _baseline()
         path = manifest.CK_L8_PATH
-        sources[path] += b"\n| `L8-K4-EXTRA` | `IV-K4-01` | `contract-k4-L8-K4-EXTRA` | Value(accepted) |\n"
+        end_heading = (manifest.CK_L8_DEFINITION_CONFIG[manifest.CK_L8_K4_G3_RANGE][1] + "\n").encode()
+        row = b"| `L8-K4-EXTRA` | `IV-K4-01` | `contract-k4-L8-K4-EXTRA` | Value(accepted) |\n"
+        sources[path] = sources[path].replace(end_heading, row + end_heading, 1)
         _expect_diag(self, "Unknown", "conflict", _graph, doc, sources)
 
     def test_ut_lci_117_duplicate_k4_g3_fixture_is_conflict(self):
         doc, sources, _ = _baseline()
         path = manifest.CK_L8_PATH
         original = next(line for line in sources[path].splitlines() if b"L8-K4-01-COMPLETE" in line)
-        sources[path] += b"\n" + original + b"\n"
+        end_heading = (manifest.CK_L8_DEFINITION_CONFIG[manifest.CK_L8_K4_G3_RANGE][1] + "\n").encode()
+        sources[path] = sources[path].replace(end_heading, original + b"\n" + end_heading, 1)
         _expect_diag(self, "Unknown", "conflict", _graph, doc, sources)
 
     def test_ut_lci_118_k4_g3_bad_edge_owner_is_conflict(self):
@@ -466,6 +470,20 @@ class DesignManifestTests(unittest.TestCase):
             actual = {item["id"] for item in graph["definitions"]
                       if item["path"] == manifest.CK_L8_PATH and item["range_id"] == range_id}
             self.assertEqual(actual, expected)
+
+    def test_k4_g3_ranges_stop_before_trailing_k6_shaped_rows(self):
+        doc, sources, _ = _baseline()
+        sources[manifest.CK_L8_PATH] += (
+            b"\n| `L8-K6-SYNTHETIC-01` | `IV-K6-SYNTHETIC-01` | `K6 synthetic contract` | Value(accepted) |\n"
+        )
+        loaded = manifest.load_design_manifest(_raw(doc), sources)
+        graph = _graph(loaded, sources)
+        actual = {item["id"] for item in graph["definitions"]
+                  if item["path"] == manifest.CK_L8_PATH
+                  and item["range_id"] == manifest.CK_L8_K4_G3_RANGE}
+        self.assertEqual(actual, manifest.EXPECTED_CK_K4_G3_VERIFIER_IDS)
+        self.assertEqual(len(actual), 73)
+        self.assertNotIn("L8-K6-SYNTHETIC-01", actual)
 
     def test_ut_lci_90_missing_k2_l5_locator_is_unknown(self):
         doc, sources, _ = _baseline()
