@@ -1,0 +1,48 @@
+{
+  "issue": 2828,
+  "base_revision": "5f8d7f1251f15fe4a91314e26c20bf9b4856a9d5",
+  "purpose": "既決採否と10/10巻き戻しへの現在状態案内の追随",
+  "authority_effect": "none",
+  "decision_sources": [
+    "docs/governance/new-generation-start-here.md",
+    "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md"
+  ],
+  "legacy_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/operations-rule-audit-2026-07-26.md",
+    "lines": "3–6,38–39",
+    "sha256": "d32bb1a780a36cd0710cbd58d575e900ac14c154a0e84f5dc92423b46c01466e",
+    "kept": "統制追加でなく既存正本へ運用面を収束する。正本と誤認される旧資料を参照用へ分離する。",
+    "changed": "旧marker/runtimeによらず、現在の案内を既決decisionへ更新し、過去の固定記録を保持する。",
+    "reason": "10/10巻き戻し後にもL3承認済み表示と旧4対象・未採否案内が残り、失効した状態を現在の作業入力にできる不整合があった。"
+  },
+  "files": {
+    "docs/governance/github-upstream-operating-model.md": {
+      "before_sha256": "ae38b96b071f830e0b1f4ccc6d54070cb12adc21135bfab2842a11ad88d498f1",
+      "after_sha256": "eef460161247f5da3bcabc2a9aa77bc3e48379aa15d68b837ed3b00b8b035ae3"
+    },
+    "docs/governance/audits/source-rebaseline/l2-source-register.md": {
+      "before_sha256": "a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072",
+      "after_sha256": "18c6da98da8d544b43fcfcd725ebea63c413c19bf82bc6f932a5a94f78f73ad8"
+    },
+    "docs/governance/requirement-disposition-review-program.md": {
+      "before_sha256": "161abbca4589d350df9e68f6bc48e455b51f5bd21692d34eaab7d01907376b4b",
+      "after_sha256": "4f818f7955ceb287364ff7ad7e856867749d81147efe4a8c7fc70fbd0d71b4d9"
+    },
+    "docs/governance/requirement-overlap-review-program.md": {
+      "before_sha256": "101248967764f0b23bc2da8cb5bbfffa973b4918f96ff4c968de3caf4de18584",
+      "after_sha256": "4f57e3a17712de05220d201cda85de0c0a4896795931b6eb4e56c2ba470de054"
+    },
+    "docs/governance/requirement-technical-substitutability-review-program.md": {
+      "before_sha256": "734a78b31ffc251637d35c90fc0eeefa7bf0b4a27766fae5850e91ae4442fb77",
+      "after_sha256": "3eb2703dd547032e172dd632b452ae5dacac3372153a6d12addc6d8b580a5abe"
+    }
+  },
+  "checks": [
+    "新規相対ファイル参照の存在",
+    "移管表のL3承認済み表示を撤去",
+    "RDP-001〜003の停止条件に10/10失効と現行入口を表示",
+    "8対象のL2/L11入口の実在",
+    "要求本文・判断記録・immutable ticketを変更しない"
+  ],
+  "limits": "旧sourceの全移管完了、L3再開、実装・受入・機構移管完了を生成しない。"
+}
