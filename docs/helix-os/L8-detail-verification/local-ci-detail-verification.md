@@ -11,9 +11,9 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `481a9e58859facec4b2a10334b4609f6e127629371bcb7451ccab5cff8b25aa4`である。
+固定入力は対のL5本文SHA-256 `91cd83856d5951af5a5a967805fe359ef4bd3d52286420a00339f560cc56d784`である。
 
-L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `218fcc901b8d3baafe9c501ecff0252071713831f84c3a3449b978292f0977d7`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
+L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `16a009ce2f7ff7bb1fd7ae90973c836cc6478733ac5e0db740fdd63c21c844a5`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
 
 ## 1. Fixture規則
 
@@ -173,11 +173,11 @@ CASE-L8-LCI-105/106のoutcome変異はerror、expected failure、unexpected succ
 
 ### 5.1 3 partition identity cases
 
-次のcasesは既存LC-STAGE1-L7-001内の補助partitionを検証する。Core 586 identities、505 formal IDs、495 mapping、10 K6 dispositionとそのdigestは既存契約のまま固定される。Supplemental identitiesはL5 §8.1の27件である。現在のsource-only inventoryでは、機構helper 103件を第3 partitionへ置く。これらはformal fixture pass、owner接続、pack登録を意味しない。機構formal ID trace/status/owner-return locatorは実行IDやformal mappingとは別のsource-reference objectである。
+次のcasesは既存LC-STAGE1-L7-001内の補助partitionを検証する。Core 586 identities、505 formal IDs、495 mapping、10 K6 dispositionとそのdigestは既存契約のまま固定される。Supplemental identitiesはL5 §8.1の27件である。L5 §8.2の設計候補では機構helper 109件を第3 partitionへ置く。現runtimeはhelper103の固定716 identitiesであり、候補109/722とは別である。これらはformal fixture pass、owner接続、pack登録を意味しない。機構formal ID trace/status/owner-return locatorは実行IDやformal mappingとは別のsource-reference objectである。
 
 | Case ID | 契約 | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
-| `CASE-L8-LCI-131` | Core/product/helper 3 partition baseline | exact target treeにCore 9 code/test refs+2 L6/L7 refs、product supplement 8 code/test refs+8 L6/L7 refsとhelper16 code/test refs+corpus全体で14 unique L6/L7 pathsがあり、Core586、product27、helper103が別digest/namespaceで固定される。三者のdisjoint unionは716件・SHA-256 `a673e0343f8f2b91f78bc1c13785b5d2d44f7efb6c8dbdbf65cd4af5ae34cad4`。formal locator・元status cell・owner return locatorは各機構L7の原文refsとして保持される | 変異なし | Core 586、製品補助27、機構helper103を別set/digestで照合し、三者のdisjoint union 716 identitiesを期待する。505 closure/495 mapping/K6 10 dispositionsと既存product27 digestは不変。formal L7 mappingの増加なし。これは静的設計oracleであり実行成功ではない |
+| `CASE-L8-LCI-131` | Core/product/helper 3 partition baseline | exact target treeにCore 9 code/test refs+2 L6/L7 refs、product supplement 8 code/test refs+8 L6/L7 refsとhelper20 code/test refs+corpus全体で14 unique L6/L7 pathsがあり、Core586、product27、helper109が別digest/namespaceで固定される。三者のdisjoint unionは722件・SHA-256 `3ba31bbcb1221b2da8b3269bfb6573012635f82e8b1375b81da80a534782b1c0`。formal locator・元status cell・owner return locatorは各機構L7の原文refsとして保持される | 変異なし | Core 586、製品補助27、機構helper109を別set/digestで照合し、三者のdisjoint union 722 identitiesを期待する。505 closure/495 mapping/K6 10 dispositionsと既存product27 digestは不変。formal L7 mappingの増加なし。これは設計候補であり実行成功ではない |
 | `CASE-L8-LCI-132` | supplemental identity completeness | 上記27 supplement IDsがすべて一意 | `SUP-BRAIN-001`だけを固定expected setから除く | `Unknown(missing_input)`、機構を部分subsetへ縮退せず、suiteをcomplete/positiveとしない |
 | `CASE-L8-LCI-133` | fixed supplemental closure | fixed setはBRAIN/LABO/HARNESS/INFRAの27件 | 既存SECURITY module内の未宣言class.method identityを一件だけ追加 | `Unknown(conflict)`、未登録mechanismをscan・自動追加しない |
 | `CASE-L8-LCI-134` | supplement ID uniqueness | 各supplemental IDは一意 | `SUP-LABO-001` identity rowだけを重複させる | `Unknown(conflict)`、duplicateをdeduplicateして実行しない |
@@ -185,21 +185,21 @@ CASE-L8-LCI-105/106のoutcome変異はerror、expected failure、unexpected succ
 | `CASE-L8-LCI-136` | mechanism formal locator/status source binding | mechanism formal IDとその元L7 status cell refは固定source L7 rowを指す | BRAIN formal locator一件のstatus cell refだけを別rowへ差し替える | `Unknown(conflict)`、raw status/status literalを合成・正規化せず、formal IDから補助IDへのedgeを作らない |
 | `CASE-L8-LCI-137` | owner return locator preservation | source L7 rowがowner return locatorを明記する場合、そのexact source cell refを保持する。明記しないrowは`NotDeclaredBySource`を保持する | 一件のdeclared owner return refだけを別L7 rowのlocatorへ差し替える | `Unknown(conflict)`、owner不明を解消済みへ変換せず、source refを固定する |
 | `CASE-L8-LCI-138` | formal/supplemental type separation | SupplementalTestIdentityはL5 §8.1の閉じたfield setを持ち、formal IDは持たない | `SUP-HARNESS-001` rowへ`formal_l7_id` fieldだけを追加する | `Rejected(invalid_input)`、正式bindingを新設しない |
-| `CASE-L8-LCI-139` | required supplemental source refs | helper16 implementation/test refsと14 unique L6/L7 pathsをexact target treeから読める | `test_resource_projection.py` helper refだけをtarget source setから除く | 既存pre-spawn `Unknown(missing_input)`、subset実行・suite row success・positive receiptなし |
+| `CASE-L8-LCI-139` | required supplemental source refs | helper20 implementation/test refsと14 unique L6/L7 pathsをexact target treeから読める | `test_resource_projection.py` helper refだけをtarget source setから除く | 既存pre-spawn `Unknown(missing_input)`、subset実行・suite row success・positive receiptなし |
 | `CASE-L8-LCI-140` | closed supplemental target setは4機構27件で、CONNECTの4件を含めない | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにある | 既存CONNECT module内の未宣言class.method identityを一件だけ固定setへ追加する | `Unknown(conflict)`、未宣言CONNECT methodをscan/登録しない |
 | `CASE-L8-LCI-141` | closed supplemental target setは4機構27件で、Common Kernel K4/G3の14件を含めない | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにある | 既存K4/G3 module内の未宣言class.method identityを一件だけ固定setへ追加する | `Unknown(conflict)`、未宣言K4/G3 methodをscan/登録しない |
 
-| `CASE-L8-LCI-142` | helper103 identity完全性 | 固定expected set/digestを保持し、AST validatorへ渡す合成target bytesにhelper `SUP-CK-K9-001` callableが存在する | 合成target bytesから当該callableだけを除く（full source pin付き経路のsource bytesは変更しない） | AST validator関数境界で`Unknown(missing_input)`。固定metadata欠落/不正とfull source bytesのpin不一致は`Unknown(conflict)`の別境界であり、subset execution/complete artifactなし |
-| `CASE-L8-LCI-143` | helper source/test bytes binding | 16 helper source/test refsが固定SHAと一致する | `_private_resource_projection.py`のbytesだけを変更する | `Unknown(conflict)`、suite spawn前に停止 |
+| `CASE-L8-LCI-142` | helper109 identity completeness | 固定109 expected set/digestとfull source refsを保持し、AST validatorへ渡す合成target bytesに`SUP-CK-K9-001` callableがある | 合成target bytesから当該callableだけを除く（full source pin付きtarget bytesは変更しない） | AST validator関数境界で`Unknown(missing_input)`。固定metadata不正とfull source SHA不一致は別境界の`Unknown(conflict)`。subset execution/complete artifactなし |
+| `CASE-L8-LCI-143` | helper source/test bytes binding | 20 helper source/test refsが固定SHAと一致する | `_private_resource_projection.py`のbytesだけを変更する | `Unknown(conflict)`、suite spawn前に停止 |
 | `CASE-L8-LCI-144` | paired document closure | SECURITYを含む14 unique L6/L7 pathsがtarget treeにある | SECURITY L7 paired refだけをrequired refsから除く | `Unknown(missing_input)`、helper partitionを実行しない |
 | `CASE-L8-LCI-145` | helper identity uniqueness | helper identity setは一意である | `SUP-CK-K10-001` identity rowだけを二重にする | `Unknown(conflict)`、deduplicateなし |
-| `CASE-L8-LCI-146` | partition disjointness | Core586・製品補助27・helper103のsetは相互にdisjointである | helper identity一件だけをCore identityと同じ値にする | `Unknown(conflict)`、partition collisionとして停止 |
-| `CASE-L8-LCI-147` | closed helper alias set | helper alias inventoryは103件で閉じている | K8 fixed moduleに未宣言method identityを一件だけ追加する | `Unknown(conflict)`、自動scanなし |
+| `CASE-L8-LCI-146` | partition disjointness | Core586・製品補助27・helper109のsetは相互にdisjointである | helper identity一件だけをCore identityと同じ値にする | `Unknown(conflict)`、partition collisionとして停止 |
+| `CASE-L8-LCI-147` | closed helper alias set | helper alias inventoryは109件で閉じている | K8 fixed moduleに未宣言method identityを一件だけ追加する | `Unknown(conflict)`、自動scanなし |
 | `CASE-L8-LCI-148` | helper/formal type separation | helper identity schemaにformal ID fieldはない | `SUP-CK-K8-001`へ`formal_l7_id`だけを追加する | `Rejected(invalid_input)`、formal mappingなし |
 | `CASE-L8-LCI-149` | complete result identity closure | expected/discovered/executed ID setは各partitionで一致する | helper executed ID arrayから一件だけを落とす | `Unknown(conflict)`、complete summary/positive receiptなし |
-| `CASE-L8-LCI-150` | bounded 716 result frame | 最大合法body/capture/frameは134,755/134,756/180,450 bytes、候補上限は134,755/134,756/180,580 bytes | bodyだけを134,756 bytesへ1 byte増やす | `Unknown(conflict)`、truncated complete artifactなし |
-| `CASE-L8-LCI-151` | fixed source paths | 8 helper familiesは16 source/test refsとcorpus全体で14 unique L6/L7 pathsで固定される | K4/G3 test path aliasだけを別module pathへ差し替える | `Unknown(conflict)`、unlisted pathを受け入れない |
-| `CASE-L8-LCI-152` | basename collision isolation | LABO testはLABO固定sourceの`projection`をimportし、SECURITY testはSECURITY固定sourceの`projection`をimportする。loaderは各test import直前に対応source moduleだけを`sys.modules["projection"]`へ一時bindingし、test globalsへ束縛後にmodule load/test executionの成功・例外を問わず`finally`で以前の当該entryだけを復元する | SECURITY test import時だけLABO source moduleを`sys.modules["projection"]`に残す | runner内module load/importが既存のF-LCI-10 suite executionでerrorになる。complete artifact/positive receiptなし。正常baselineはsentinel entryとentry不在の両方を含み、module load/test execution例外後の`finally`復元と無関係entry不変も確認する。L7 `UT-LCI-154`はこのsuite failureとentry restorationを検査し、機構formal ID/mappingは作らない |
+| `CASE-L8-LCI-150` | bounded 722 result frame | 最大合法body/capture/frameは137,401/137,402/183,978 bytes、候補上限は137,401/137,402/184,108 bytes | bodyだけを137,402 bytesへ1 byte増やす | `Unknown(conflict)`、truncated complete artifactなし |
+| `CASE-L8-LCI-151` | fixed source paths | 10 helper familiesは20 source/test refsとcorpus全体で14 unique L6/L7 pathsで固定される | K4/G3 test path aliasだけを別module pathへ差し替える | `Unknown(conflict)`、unlisted pathを受け入れない |
+| `CASE-L8-LCI-152` | basename collision isolation | LABOの既存補助testとaggregate helperはLABO固定sourceの`projection`をimportし、SECURITY testはSECURITY固定sourceの`projection`をimportする。HARNESS revision aliasは専用`pack_revision_projection` sourceに対応する。正常baselineではこの2つの追加aliasと4つのsource/test refsも固定mappingに一致させる。loaderは各test import直前に対応source moduleだけを`sys.modules["projection"]`へ一時bindingし、test globalsへ束縛後にmodule load/test executionの成功・例外を問わず`finally`で以前の当該entryだけを復元する | SECURITY test import時だけLABO source moduleを`sys.modules["projection"]`に残す | runner内module load/importが既存のF-LCI-10 suite executionでerrorになる。complete artifact/positive receiptなし。正常baselineはsentinel entryとentry不在の両方を含み、module load/test execution例外後の`finally`復元と無関係entry不変も確認する。L7 `UT-LCI-154`はこのsuite failureとentry restorationを検査し、機構formal ID/mappingは作らない |
 
 
-各caseは固定inventoryの構造・source bindingだけを扱い、補助methodの実行成功から機構L7 formal fixtureの充足、owner接続、登録、L8/L9/L10合格を作らない。CASE-L8-LCI-131の716は設計上の期待集合であり、このoracle本文は実discovery/execution結果を記録しない。個別runはexact target receiptで確認する。CASE-L8-LCI-152は同じloader契約のintegration oracleであり、helper identityは増やさない。
+各caseは固定inventoryの構造・source bindingだけを扱い、補助methodの実行成功から機構L7 formal fixtureの充足、owner接続、登録、L8/L9/L10合格を作らない。CASE-L8-LCI-131の722は設計上の候補期待集合であり、このoracle本文は実discovery/execution結果を記録しない。現行runtimeの716/103は別の実行時値である。個別runはexact target receiptで確認する。CASE-L8-LCI-152は同じloader契約のintegration oracleであり、helper identityは増やさない。

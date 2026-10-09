@@ -2060,6 +2060,12 @@ class _AstName:
 
 _AST_UNKNOWN = object()
 
+# Only this fixed non-test class is part of the 17-module AST inventory.
+# Its exact shape is checked below; arbitrary classes are never ignored.
+_FIXED_NONTEST_CLASS_ALLOWLIST = {
+    "l7_sup_security_test_projection": frozenset({"_CaseRef"}),
+}
+
 
 def _ast_static_value(node, environment):
     """Evaluate the small literal subset used by fixed unittest generators."""
@@ -2209,11 +2215,26 @@ def _ast_test_identities_for_module(alias, raw: bytes, expected_classes):
     absent = set(expected_classes) - set(classes)
     if absent:
         raise Diagnostic("Unknown", "missing_input", "fixed AST test class is absent")
-    unlisted_classes = set(classes) - set(expected_classes)
-    if any(any(isinstance(member, (ast.FunctionDef, ast.AsyncFunctionDef))
-               and member.name.startswith("test") for member in classes[name].body)
-           for name in unlisted_classes):
-        raise Diagnostic("Unknown", "conflict", "fixed AST module has an unlisted test class")
+    allowed_non_test_classes = _FIXED_NONTEST_CLASS_ALLOWLIST.get(alias, frozenset())
+    if set(expected_classes) & allowed_non_test_classes:
+        raise Diagnostic("Unknown", "conflict", "fixed AST class is both test and non-test inventory")
+    if not allowed_non_test_classes <= set(classes):
+        raise Diagnostic("Unknown", "missing_input", "fixed AST non-test helper class is absent")
+    unlisted_classes = set(classes) - set(expected_classes) - allowed_non_test_classes
+    if unlisted_classes:
+        raise Diagnostic("Unknown", "conflict", "fixed AST module has an unlisted class")
+    for class_name in expected_classes:
+        class_node = classes[class_name]
+        bases = [ast.unparse(base) for base in class_node.bases]
+        if bases != ["unittest.TestCase"] or class_node.keywords:
+            raise Diagnostic("Unknown", "conflict", "fixed AST test class has an unlisted base or metaclass")
+    for class_name in allowed_non_test_classes:
+        class_node = classes[class_name]
+        decorators = [ast.unparse(decorator) for decorator in class_node.decorator_list]
+        if (class_node.bases or class_node.keywords or decorators != ["dataclass(frozen=True)"]
+                or any(isinstance(member, (ast.FunctionDef, ast.AsyncFunctionDef))
+                       and member.name.startswith("test") for member in class_node.body)):
+            raise Diagnostic("Unknown", "conflict", "fixed AST non-test helper has an unlisted test shape")
 
     actual = []
     for class_name, class_node in classes.items():
