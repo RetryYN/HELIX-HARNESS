@@ -8,6 +8,7 @@ from __future__ import annotations
 from dataclasses import replace
 from pathlib import Path
 import sys
+import subprocess
 import unittest
 from unittest.mock import patch
 
@@ -28,7 +29,8 @@ def _ref(identity: str, revision: str = "r1", digest: str = D1, kind: str = "con
 
 def _base_key(*, subject: k1.SubjectRef | None = None, inputs: tuple[k1.SubjectRef, ...] | None = None):
     value = k1.key_of("op", "base-v1", subject or _ref("subject"), inputs if inputs is not None else (_ref("input", kind="input"),), "scope")
-    assert isinstance(value, k1.ResultKey)
+    if not isinstance(value, k1.ResultKey):
+        raise TypeError("fixture base key must satisfy existing K2 key preconditions")
     return value
 
 
@@ -50,7 +52,8 @@ def _set_ref(revision: str = "r1", digest: str = D1):
 
 def _check_key(base: k1.ResultKey, check_id: str):
     result = k1.key_of("check", "v1", _ref(check_id, kind="check"), (), base.scope)
-    assert isinstance(result, k1.ResultKey)
+    if not isinstance(result, k1.ResultKey):
+        raise TypeError("fixture check key must satisfy existing K2 key preconditions")
     return result
 
 
@@ -79,7 +82,8 @@ def _body(
     outputs=(),
 ):
     receipt_key = k6._derive_receipt_key(base, entry.ref, set_ref)
-    assert isinstance(receipt_key, k1.ResultKey)
+    if not isinstance(receipt_key, k1.ResultKey):
+        raise TypeError("fixture receipt key must satisfy existing K2 key preconditions")
     registered = tuple(entry.checks) if registered is None else tuple(registered)
     evaluated = registered if evaluated is None else tuple(evaluated)
     results = dict(results or {})
@@ -98,7 +102,8 @@ def _body(
             key = _check_key(base, check_id)
             observations.append(k1.Unknown(k1.UnknownReason.UNREGISTERED, key, {"check": check_id}))
     inner = k1.combine(observations)
-    assert isinstance(inner, k1.Combined)
+    if not isinstance(inner, k1.Combined):
+        raise TypeError("fixture observations must satisfy existing K1 combine preconditions")
     read = {base.subject.identity: base.subject.digest}
     read.update({ref.identity: ref.digest for ref in base.inputs if ref.kind not in {"verifier", "verifier_set"}})
     return k6.ReceiptBody(
@@ -115,7 +120,8 @@ def _body(
 def _record(key: k1.ResultKey, body_or_value):
     observation = k1.Value(body_or_value, key, {"fixture": True})
     recorded = k1.record((), key, observation, "synthetic-k5-restored")
-    assert isinstance(recorded, k1.Recorded)
+    if not isinstance(recorded, k1.Recorded):
+        raise TypeError("fixture observation must satisfy existing K1 record preconditions")
     return recorded.record
 
 
@@ -129,10 +135,13 @@ def _fixture(entry=None, base=None, set_ref=None, **body_kwargs):
     return base, entry, set_ref, body, record, snapshot
 
 
-def _admit(body, record, base, snapshot, set_ref):
+def _admit(body, record, base, snapshot, set_ref, expected_verifier=None):
     current = k1.Value(snapshot, base, {"synthetic_owner_observation": True})
     reads = tuple(k1.Value(b"output", body.key, {"synthetic_reader_observation": True}) for _ in body.execution.outputs)
-    return k6._admit_receipt_with_owner_observations(record, body.key, set_ref, current, reads)
+    return k6._admit_receipt_with_owner_observations(
+        record, body.key, base, expected_verifier or body.verifier,
+        set_ref, current, reads
+    )
 
 
 IMPLEMENTED_L8_CASES = (
@@ -263,16 +272,22 @@ class K6ImplementedFixtures(unittest.TestCase):
         if case.endswith("OLD-QUERY-RECEIPT"):
             newer = _base_key(subject=replace(base.subject, revision="r2"))
             query = k6._derive_receipt_key(newer, entry.ref, set_ref)
-            self.assertIsInstance(query, k1.ResultKey)
+            if not isinstance(query, k1.ResultKey):
+                raise TypeError("fixture query must satisfy existing K2 key preconditions")
             result = k6._admit_receipt_with_owner_observations(
-                rec, query, set_ref, k1.Value(snapshot, query, {"synthetic_owner_observation": True}), ()
+                rec, query, newer, entry.ref, set_ref,
+                k1.Value(snapshot, query, {"synthetic_owner_observation": True}), ()
             )
         elif case.endswith("INPUT-BODY"):
             body_key = replace(body.key, inputs=tuple(ref for ref in body.key.inputs if ref.kind != "input") + (_ref("other-input", kind="input"),))
             changed = replace(body, key=body_key)
             result = _admit(changed, _record(body.key, changed), base, snapshot, set_ref)
         else:
-            changed = replace(body, verifier_set=replace(set_ref, revision="r2"))
+            alternate_set = _ref("alternate-set", kind="verifier_set", digest=D2)
+            base, entry, set_ref, body, _, snapshot = _fixture(
+                base=_base_key(inputs=(_ref("input", kind="input"), alternate_set))
+            )
+            changed = replace(body, verifier_set=alternate_set)
             result = _admit(changed, _record(body.key, changed), base, snapshot, set_ref)
         self.assertIsInstance(result, k1.Unknown)
         self.assertEqual(result.reason, k1.UnknownReason.CONFLICT)
@@ -603,9 +618,12 @@ class K6ImplementedFixtures(unittest.TestCase):
         original = k6._admit_receipt_with_owner_observations
         seen = []
 
-        def capture(record, query_key, verifier_set, current_set, fixed_output_reads):
+        def capture(record, query_key, base_key, expected_verifier, verifier_set, current_set, fixed_output_reads):
             seen.append(record)
-            return original(record, query_key, verifier_set, current_set, fixed_output_reads)
+            return original(
+                record, query_key, base_key, expected_verifier,
+                verifier_set, current_set, fixed_output_reads
+            )
 
         with patch.object(k6, "_admit_receipt_with_owner_observations", side_effect=capture):
             result = self._required_call(base, snapshot, records)
@@ -642,6 +660,53 @@ class K6ImplementedFixtures(unittest.TestCase):
         self.assertFalse(hasattr(first, "verifier"))
         self.assertFalse(hasattr(first, "check_id"))
 
+    def test_receipt_verifier_must_match_derived_member_not_any_base_input(self):
+        """Non-formal regression: a different registered member in base inputs is not the receipt issuer."""
+        expected = _entry("A")
+        alternate = _entry("B")
+        base = _base_key(inputs=(
+            _ref("input", kind="input"), alternate.ref.as_subject_ref(),
+        ))
+        set_ref = _set_ref()
+        body = _body(base, expected, set_ref)
+        changed = replace(body, verifier=alternate.ref)
+        record = _record(body.key, changed)
+        snapshot = _snapshot(expected, alternate, ref=set_ref)
+
+        result = _admit(changed, record, base, snapshot, set_ref, expected_verifier=expected.ref)
+        self.assertIsInstance(result, k1.Unknown)
+        self.assertEqual(result.reason, k1.UnknownReason.CONFLICT)
+
+    def test_optimized_missing_fixed_output_observation_is_nonpositive(self):
+        """Run the real admission path under -O so assert removal cannot hide an unread output."""
+        test_dir = str(Path(__file__).resolve().parent)
+        source_dir = str(Path(__file__).resolve().parents[1] / "src")
+        code = f'''\
+import sys
+sys.path.insert(0, {source_dir!r})
+sys.path.insert(0, {test_dir!r})
+import common_kernel as k1
+import journal as k5
+import test_k6
+import verification as k6
+fixed = k5.FixedRef("repository", "output/0", k1._sha256_digest(b"output"))
+base, entry, set_ref, body, record, snapshot = test_k6._fixture(outputs=(fixed,))
+current = k1.Value(snapshot, base, {{"synthetic_owner_observation": True}})
+result = k6._admit_receipt_with_owner_observations(
+    record, body.key, base, entry.ref, set_ref, current, ()
+)
+if not isinstance(result, k1.Unknown) or result.reason != k1.UnknownReason.MISSING_INPUT:
+    raise SystemExit("optimized admission accepted a fixed output without a read")
+'''
+        completed = subprocess.run(
+            [sys.executable, "-O", "-c", code],
+            cwd=Path(__file__).resolve().parents[5],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr or completed.stdout)
+
 
 def _install_case(case_id: str, ut_number: int):
     def test_case(self):
@@ -658,7 +723,8 @@ IMPLEMENTED_UT_NUMBERS = (
     53,
     55,
 )
-assert len(IMPLEMENTED_L8_CASES) == len(IMPLEMENTED_UT_NUMBERS) == 45
+if len(IMPLEMENTED_L8_CASES) != 45 or len(IMPLEMENTED_UT_NUMBERS) != 45:
+    raise RuntimeError("fixed K6 executable fixture inventory changed")
 
 for _case_id, _ut_number in zip(IMPLEMENTED_L8_CASES, IMPLEMENTED_UT_NUMBERS):
     _install_case(_case_id, _ut_number)

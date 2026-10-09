@@ -123,13 +123,22 @@ def _match_verifier_entry(
 
 
 def _validate_receipt_key_body(
-    record: k1.ResultRecord[Any], query_key: k1.ResultKey, body: ReceiptBody
+    record: k1.ResultRecord[Any],
+    query_key: k1.ResultKey,
+    body: ReceiptBody,
+    base_key: k1.ResultKey,
+    expected_verifier: VerifierRef,
+    expected_verifier_set: k1.SubjectRef,
 ) -> k1.Observed[bool]:
+    derived_key = _derive_receipt_key(base_key, expected_verifier, expected_verifier_set)
+    if isinstance(derived_key, k1.Rejected):
+        raise TypeError("typed K6 admission inputs must satisfy existing K2 key preconditions")
+    if derived_key != query_key:
+        return k1.Unknown(k1.UnknownReason.CONFLICT, query_key, {"field": "derived_key"})
     if record.key != query_key or record.result.key != record.key or body.key != query_key:
         return k1.Unknown(k1.UnknownReason.CONFLICT, query_key, {"field": "key"})
-    expected_verifier = body.verifier.as_subject_ref()
-    if expected_verifier not in query_key.inputs or body.verifier_set not in query_key.inputs:
-        return k1.Unknown(k1.UnknownReason.CONFLICT, query_key, {"field": "verifier_inputs"})
+    if body.verifier != expected_verifier or body.verifier_set != expected_verifier_set:
+        return k1.Unknown(k1.UnknownReason.CONFLICT, query_key, {"field": "verifier_binding"})
     if body.authority_effect != "none":
         return k1.Unknown(k1.UnknownReason.CONFLICT, query_key, {"field": "authority_effect"})
     return k1.Value(True, query_key, {"key_body_consistent": True})
@@ -177,8 +186,14 @@ def _verify_fixed_outputs(
     key: k1.ResultKey,
     read_results: Sequence[k1.Observed[bytes]],
 ) -> k1.Observed[tuple[k5.FixedRef, ...]]:
-    # Owner boundary precondition: one real read observation per ordered ref.
-    assert len(outputs) == len(read_results)
+    # Missing observations must never disappear through zip truncation (which
+    # also occurs when Python is run with optimization enabled).
+    if len(outputs) != len(read_results):
+        reason = (k1.UnknownReason.MISSING_INPUT if len(read_results) < len(outputs)
+                  else k1.UnknownReason.CONFLICT)
+        return k1.Unknown(reason, key, {
+            "output_count": len(outputs), "read_count": len(read_results),
+        })
     for ref, read in zip(outputs, read_results):
         if not isinstance(read, k1.Value):
             return read
@@ -242,6 +257,8 @@ def _rebuild_inner(
 def _admit_receipt_with_owner_observations(
     record: k1.ResultRecord[Any],
     query_key: k1.ResultKey,
+    base_key: k1.ResultKey,
+    expected_verifier: VerifierRef,
     verifier_set: k1.SubjectRef,
     current_set: k1.Value[VerifierSet],
     fixed_output_reads: Sequence[k1.Observed[bytes]],
@@ -256,7 +273,8 @@ def _admit_receipt_with_owner_observations(
     body = record.result.value
     # ReceiptBody and K1 ResultRecord are typed API inputs. A malformed
     # runtime shape is outside this contract rather than a new K6 reason.
-    assert isinstance(body, ReceiptBody)
+    if not isinstance(body, ReceiptBody):
+        raise TypeError("typed K6 admission requires ReceiptBody")
     if record.result.key != record.key:
         return k1.Unknown(k1.UnknownReason.CONFLICT, query_key, {"field": "record_result_key"})
     if current_set.value.ref != verifier_set:
@@ -265,11 +283,13 @@ def _admit_receipt_with_owner_observations(
     digest = _validate_record_digest(record, query_key)
     if not isinstance(digest, k1.Value):
         return digest
-    member = _match_verifier_entry(body.verifier, current_set.value, query_key)
+    member = _match_verifier_entry(expected_verifier, current_set.value, query_key)
     if not isinstance(member, k1.Value):
         return member
     for check in (
-        lambda: _validate_receipt_key_body(record, query_key, body),
+        lambda: _validate_receipt_key_body(
+            record, query_key, body, base_key, expected_verifier, verifier_set
+        ),
         lambda: _validate_read_set(body, query_key),
         lambda: _verify_fixed_outputs(body.execution.outputs, query_key, fixed_output_reads),
         lambda: _rebuild_inner(body.registry, body.inner, member.value, query_key),
@@ -329,7 +349,8 @@ def _required_from_owner_observations(
     required_ids = snapshot.required_for.get(operation, ())
     if not required_ids:
         empty = k1.combine([])
-        assert isinstance(empty, k1.Combined)
+        if not isinstance(empty, k1.Combined):
+            raise TypeError("K1 combine([]) must return its existing Combined value")
         return RequiredResult(empty, {})
 
     components: list[Any] = []
@@ -343,9 +364,11 @@ def _required_from_owner_observations(
                 components.append(k1.Unknown(k1.UnknownReason.UNREGISTERED, base_key, {"verifier": verifier_id}))
                 continue
             query_key = _derive_receipt_key(base_key, entry.ref, verifier_set)
-            assert isinstance(query_key, k1.ResultKey), "typed K6 key inputs must satisfy existing K2 key preconditions"
+            if not isinstance(query_key, k1.ResultKey):
+                raise TypeError("typed K6 key inputs must satisfy existing K2 key preconditions")
             observed = _lookup_receipt(restored.value, query_key)
-            assert not isinstance(observed, k1.Rejected), "typed K6 query must satisfy existing K2 lookup preconditions"
+            if isinstance(observed, k1.Rejected):
+                raise TypeError("typed K6 query must satisfy existing K2 lookup preconditions")
             if not isinstance(observed, k1.Value):
                 components.append(observed)
                 continue
@@ -356,6 +379,8 @@ def _required_from_owner_observations(
             admitted = _admit_receipt_with_owner_observations(
                 source_record.value,
                 query_key,
+                base_key,
+                entry.ref,
                 verifier_set,
                 current_set,
                 fixed_output_reads[verifier_id],
@@ -373,7 +398,8 @@ def _required_from_owner_observations(
             components.extend(_inner_components(receipt, entry, query_key))
 
     combined = k1.combine(components)
-    assert isinstance(combined, k1.Combined)
+    if not isinstance(combined, k1.Combined):
+        raise TypeError("typed K6 components must satisfy existing K1 combine preconditions")
     return RequiredResult(combined, assurances)
 
 
