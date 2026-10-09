@@ -25,13 +25,44 @@ class SourceL7RunnerTests(unittest.TestCase):
         return {path: (source_root / path).read_bytes()
                 for _alias, path in suite_runner.FIXED_TEST_MODULES}
 
-    def test_trusted_ast_inventory_resolves_all_nine_aliases_without_loading_modules(self):
+    def test_trusted_ast_inventory_resolves_all_seventeen_aliases_without_loading_modules(self):
         source_bytes = self._fixed_ast_test_sources()
         with patch.object(suite_runner.importlib.util, "spec_from_file_location",
                           side_effect=AssertionError("trusted AST preflight imported a test module")):
             suite_runner.validate_fixed_test_ast_inventory(source_bytes)
-        self.assertEqual(len(suite_runner.FIXED_TEST_MODULES), 9)
-        self.assertEqual(len(suite_runner.EXPECTED_DISCOVERY_IDS), 613)
+        self.assertEqual(len(suite_runner.FIXED_TEST_MODULES), 17)
+        self.assertEqual(len(suite_runner.EXPECTED_DISCOVERY_IDS), 716)
+
+    def test_projection_binding_restores_only_the_fixed_entry_even_after_exception(self):
+        key = "projection"
+        unrelated_key = "_local_ci_unrelated_module_sentinel"
+        prior = sys.modules.get(key)
+        had_prior = key in sys.modules
+        unrelated = object()
+        sys.modules[unrelated_key] = unrelated
+        self.addCleanup(sys.modules.pop, unrelated_key, None)
+        sentinel = object()
+        replacement = object()
+        sys.modules[key] = sentinel
+        try:
+            with suite_runner._temporary_projection_binding(replacement):
+                self.assertIs(sys.modules[key], replacement)
+                self.assertIs(sys.modules[unrelated_key], unrelated)
+            self.assertIs(sys.modules[key], sentinel)
+            with self.assertRaisesRegex(RuntimeError, "synthetic execution failure"):
+                with suite_runner._temporary_projection_binding(replacement):
+                    raise RuntimeError("synthetic execution failure")
+            self.assertIs(sys.modules[key], sentinel)
+            self.assertIs(sys.modules[unrelated_key], unrelated)
+            del sys.modules[key]
+            with suite_runner._temporary_projection_binding(replacement):
+                self.assertIs(sys.modules[key], replacement)
+            self.assertNotIn(key, sys.modules)
+        finally:
+            if had_prior:
+                sys.modules[key] = prior
+            else:
+                sys.modules.pop(key, None)
 
     def test_trusted_ast_inventory_rejects_single_missing_extra_duplicate_and_unreadable_mutations(self):
         baseline = self._fixed_ast_test_sources()
@@ -53,7 +84,8 @@ class SourceL7RunnerTests(unittest.TestCase):
             ("duplicate class", brain.replace(
                 b"class BrainKnowledgeLookupTests(unittest.TestCase):",
                 b"class BrainProjectionTests(unittest.TestCase):", 1), "conflict"),
-            ("extra class", brain + b"\nclass UnlistedEmptyCase:\n    pass\n", "conflict"),
+            ("extra class", brain + b"\nclass UnlistedTestCase(unittest.TestCase):\n"
+             b"    def test_unlisted(self):\n        pass\n", "conflict"),
             ("syntax error", b"class broken(:\n", "unreadable"),
         )
         for label, changed, reason in cases:
@@ -91,7 +123,7 @@ class SourceL7RunnerTests(unittest.TestCase):
         self.assertEqual((raised.exception.classification, raised.exception.reason),
                          ("Unknown", "conflict"))
 
-    def test_inventory_digest_keeps_core_586_and_binds_composite_613_identities(self):
+    def test_inventory_digest_keeps_core_586_product_27_and_helper_103_partitions(self):
         value = suite_runner.inventory_value()
         self.assertEqual(len(value["formal_mapping"]), 495)
         self.assertEqual(len({row["formal_l7_id"] for row in value["formal_mapping"]}), 495)
@@ -101,15 +133,29 @@ class SourceL7RunnerTests(unittest.TestCase):
         self.assertEqual(value["formal_inventory_count"], 505)
         self.assertEqual(len(value["formal_id_closure"]), 505)
         self.assertEqual(len(value["k6_unexecuted_dispositions"]), 10)
-        self.assertEqual(value["expected_discovery_count"], 613)
-        self.assertEqual(len(value["expected_discovery_ids"]), 613)
+        self.assertEqual(value["expected_discovery_count"], 716)
+        self.assertEqual(len(value["expected_discovery_ids"]), 716)
         self.assertEqual(len(suite_runner.CORE_EXPECTED_DISCOVERY_IDS), 586)
         self.assertEqual(len(suite_runner.SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS), 27)
+        self.assertEqual(len(suite_runner.MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS), 103)
+        self.assertEqual(suite_runner.MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256,
+                         "017eaa7ad0ed602e16d4c0a11678337d0100b55b97bcc17ecba93a3ef72ce39a")
         self.assertFalse(set(suite_runner.CORE_EXPECTED_DISCOVERY_IDS)
                          & set(suite_runner.SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS))
+        self.assertFalse(set(suite_runner.CORE_EXPECTED_DISCOVERY_IDS)
+                         & set(suite_runner.MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS))
+        self.assertFalse(set(suite_runner.SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS)
+                         & set(suite_runner.MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS))
         self.assertEqual(value["core_suite_id"], "common-kernel-k1-k2-k3-k5-k6")
         self.assertEqual(value["fixed_test_modules"], [list(row) for row in suite_runner.FIXED_TEST_MODULES])
-        self.assertEqual(len(value["fixed_test_modules"]), 9)
+        self.assertEqual(len(value["fixed_test_modules"]), 17)
+        self.assertEqual(set(value["core_partition"]), {
+            "source_sha256", "design_paths", "test_modules", "discovery_count",
+            "discovery_ids_sha256"})
+        self.assertEqual(value["core_partition"]["discovery_count"], 586)
+        self.assertEqual(value["product_supplemental_partition"]["discovery_count"], 27)
+        self.assertEqual(value["mechanism_helper_partition"]["discovery_count"], 103)
+        self.assertEqual(len(value["mechanism_helper_partition"]["design_paths"]), 4)
         self.assertEqual(value["expected_discovery_ids_sha256"],
                          sha256(("\n".join(value["expected_discovery_ids"]) + "\n").encode()))
         self.assertEqual(suite_runner.inventory_digest(), sha256(canonical_bytes(value)))
@@ -183,13 +229,15 @@ class SourceL7RunnerTests(unittest.TestCase):
             with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as directory:
                 root = Path(directory)
                 all_source_hashes = {**suite_runner.SOURCE_SHA256,
-                                     **suite_runner.SUPPLEMENTAL_SOURCE_SHA256}
+                                     **suite_runner.SUPPLEMENTAL_SOURCE_SHA256,
+                                     **suite_runner.HELPER_SOURCE_SHA256}
                 for relative in all_source_hashes:
                     destination = root / relative
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copyfile(source_root / relative, destination)
                 for relative in (*suite_runner.CURRENT_DESIGN_PATHS,
-                                 *suite_runner.SUPPLEMENTAL_DESIGN_PATHS):
+                                 *suite_runner.SUPPLEMENTAL_DESIGN_PATHS,
+                                 *suite_runner.HELPER_DESIGN_PATHS):
                     destination = root / relative
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copyfile(source_root / relative, destination)
@@ -240,11 +288,23 @@ class SourceL7RunnerTests(unittest.TestCase):
                                  ("Unknown", "conflict"))
                 load_suite.assert_not_called()
 
-    def test_current_fixed_suite_runs_all_613_identities_on_actual_tree_and_stdout_stays_closed(self):
-        payload, code = suite_runner.run_suite(_LOCAL_CI.parent.parent)
+    def test_current_fixed_suite_runs_all_716_identities_on_actual_tree_and_stdout_stays_closed(self):
+        key = "projection"
+        previous = sys.modules.get(key)
+        existed = key in sys.modules
+        sentinel = object()
+        sys.modules[key] = sentinel
+        try:
+            payload, code = suite_runner.run_suite(_LOCAL_CI.parent.parent)
+            self.assertIs(sys.modules.get(key), sentinel)
+        finally:
+            if existed:
+                sys.modules[key] = previous
+            else:
+                sys.modules.pop(key, None)
         self.assertEqual(code, 0)
         self.assertTrue(payload["complete"])
-        self.assertEqual(payload["test_count"], 613)
+        self.assertEqual(payload["test_count"], 716)
         self.assertEqual(set(payload["discovered_test_ids"]), set(suite_runner.EXPECTED_DISCOVERY_IDS))
         self.assertEqual(set(payload["executed_test_ids"]), set(suite_runner.EXPECTED_DISCOVERY_IDS))
         self.assertEqual(len(payload["discovered_test_ids"]), len(set(payload["discovered_test_ids"])))
@@ -512,13 +572,12 @@ class SourceL7RunnerTests(unittest.TestCase):
                     ("expected_failure_count", "expected_failure_ids"),
                     ("unexpected_success_count", "unexpected_success_ids"))
         # A valid complete result assigns each executed identity to exactly one
-        # outcome family.  Exercise the one-, three-, and five-family shapes;
-        # the last is maximal because five nonempty arrays minimize separators
-        # and five three-digit counts maximize count digits (586 total).
+        # outcome family. Exercise one-, three-, and five-family shapes; the
+        # last has five nonempty arrays and three-digit counts (716 total).
         measured = {}
-        for label, sizes in (("one", (613, 0, 0, 0, 0)),
-                             ("three", (204, 205, 204, 0, 0)),
-                             ("five", (123, 123, 123, 122, 122))):
+        for label, sizes in (("one", (716, 0, 0, 0, 0)),
+                             ("three", (238, 239, 239, 0, 0)),
+                             ("five", (144, 143, 143, 143, 143))):
             self.assertEqual(sum(sizes), len(ids))
             self.assertEqual(sum(size > 0 for size in sizes),
                              {"one": 1, "three": 3, "five": 5}[label])
@@ -542,7 +601,7 @@ class SourceL7RunnerTests(unittest.TestCase):
                          **outcome_fields, "exit_code": 1, "state": "fail"}
             candidate_frame = canonical_bytes(candidate) + b"\n"
             measured[label] = (candidate, candidate_frame)
-        self.assertEqual((len(measured["five"][1]) - 1, len(measured["five"][1])), (99820, 99821))
+        self.assertEqual((len(measured["five"][1]) - 1, len(measured["five"][1])), (134755, 134756))
         worst, frame = measured["five"]
         self.assertGreater(len(frame), 32768)
         self.assertLess(len(measured["one"][1]), len(measured["three"][1]))
@@ -566,18 +625,18 @@ class SourceL7RunnerTests(unittest.TestCase):
                         "suite_stdout_b64": base64.b64encode(candidate_frame).decode("ascii"),
                         "suite_stdout_overflow": False}
             helper_frames[label] = canonical_bytes(response) + b"\n"
-        self.assertEqual(len(helper_frames["five"]), 133870)
+        self.assertEqual(len(helper_frames["five"]), 180450)
         helper_frame = helper_frames["five"]
         response = {"execution": execution,
                     "safe_to_continue": True, "diagnostic": None,
                     "suite_stdout_b64": base64.b64encode(frame).decode("ascii"),
                     "suite_stdout_overflow": False}
         self.assertLessEqual(len(helper_frame), runner.SUPERVISOR_FRAME_MAX_BYTES)
-        self.assertEqual(runner.SUITE_STDOUT_CAPTURE_LIMIT, 99821)
-        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 99820)
-        self.assertEqual(runner.SUPERVISOR_FRAME_MAX_BYTES, 134000)
+        self.assertEqual(runner.SUITE_STDOUT_CAPTURE_LIMIT, 134756)
+        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 134755)
+        self.assertEqual(runner.SUPERVISOR_FRAME_MAX_BYTES, 180580)
         max_capture_response = dict(response,
-                                    suite_stdout_b64=base64.b64encode(b"x" * 99821).decode("ascii"))
+                                    suite_stdout_b64=base64.b64encode(b"x" * 134756).decode("ascii"))
         self.assertLessEqual(len(canonical_bytes(max_capture_response) + b"\n"),
                              runner.SUPERVISOR_FRAME_MAX_BYTES)
 
@@ -598,16 +657,16 @@ class SourceL7RunnerTests(unittest.TestCase):
                          {"classification": "Unknown", "reason": "conflict"})
 
     def test_result_body_limit_accepts_exact_body_and_rejects_plus_one(self):
-        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 99820)
+        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 134755)
         exact = {"padding": ""}
         padding_len = suite_runner.RESULT_MAX_BYTES - len(canonical_bytes(exact))
         exact["padding"] = "x" * padding_len
-        self.assertEqual(len(canonical_bytes(exact)), 99820)
+        self.assertEqual(len(canonical_bytes(exact)), 134755)
 
-        for body_size in (99820, 99821):
+        for body_size in (134755, 134756):
             with self.subTest(body_size=body_size):
                 payload = dict(exact)
-                if body_size == 99821:
+                if body_size == 134756:
                     payload["padding"] += "x"
                 output = io.BytesIO()
                 with patch.object(suite_runner, "run_suite", return_value=(payload, 0)), \
@@ -615,10 +674,10 @@ class SourceL7RunnerTests(unittest.TestCase):
                     code = suite_runner.main(["--suite", suite_runner.SUITE_ID])
                 raw = output.getvalue()
                 self.assertTrue(raw.endswith(b"\n"))
-                self.assertLessEqual(len(raw), 99821)
-                if body_size == 99820:
+                self.assertLessEqual(len(raw), 134756)
+                if body_size == 134755:
                     self.assertEqual(code, 0)
-                    self.assertEqual(len(raw), 99821)
+                    self.assertEqual(len(raw), 134756)
                     self.assertEqual(suite_runner.json.loads(raw), payload)
                 else:
                     self.assertEqual(code, 2)

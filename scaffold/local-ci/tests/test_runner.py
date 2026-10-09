@@ -201,7 +201,7 @@ class RunnerTests(unittest.TestCase):
         base = {"execution": None, "safe_to_continue": False,
                 "diagnostic": {"reason": "synthetic", "detail": ""}}
         prefix_size = len(canonical_bytes(base))
-        for frame_size, expected_reason in ((134000, "synthetic"), (134001, "supervisor_protocol_invalid")):
+        for frame_size, expected_reason in ((180580, "synthetic"), (180581, "supervisor_protocol_invalid")):
             with self.subTest(frame_size=frame_size), tempfile.TemporaryDirectory() as directory:
                 ready_received.clear()
                 FakeProcess.response_body = canonical_bytes({
@@ -242,7 +242,7 @@ class RunnerTests(unittest.TestCase):
         self.assertFalse(result["suite_stdout_overflow"])
         self.assertEqual(drain.call_args.kwargs["capture_stdout_limit"], runner.SUITE_STDOUT_CAPTURE_LIMIT)
 
-    def test_real_pipe_suite_capture_distinguishes_99821_from_99822_bytes(self):
+    def test_real_pipe_suite_capture_distinguishes_134756_from_134757_bytes(self):
         class PipeProcess:
             def __init__(self, payload: bytes):
                 out_read, out_write = os.pipe()
@@ -275,7 +275,7 @@ class RunnerTests(unittest.TestCase):
                 self.returncode = 0 if not self.thread.is_alive() else None
                 return self.returncode
 
-        for size, overflow in ((99821, False), (99822, True)):
+        for size, overflow in ((134756, False), (134757, True)):
             with self.subTest(size=size):
                 process = PipeProcess(b"x" * size)
                 with patch.object(runner, "_reap_adopted", return_value=(True, set())), \

@@ -17,9 +17,11 @@ import runner
 from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
 from plan import compile_plan, COMMAND_TEMPLATES
-from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS,
+from source_l7_runner import (CURRENT_DESIGN_PATHS, SUPPLEMENTAL_DESIGN_PATHS, HELPER_DESIGN_PATHS,
+                              EXPECTED_DISCOVERY_IDS,
                               FORMAL_ID_CLOSURE, FORMAL_MAPPING, SOURCE_SHA256,
-                              SUPPLEMENTAL_SOURCE_REFS, SUPPLEMENTAL_SOURCE_SHA256, SUITE_ID)
+                              SUPPLEMENTAL_SOURCE_REFS, SUPPLEMENTAL_SOURCE_SHA256,
+                              HELPER_SOURCE_SHA256, SUITE_ID)
 
 TARGET = {"repository_id": "RetryYN/HELIX-HARNESS", "base_commit": "a"*40,
           "merge_base": "a"*40, "head_commit": "b"*40, "head_tree": "c"*40,

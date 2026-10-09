@@ -28,8 +28,8 @@ except ImportError:  # pragma: no cover - direct script entrypoint
 TIMEOUT_SECONDS = 300
 TERM_GRACE_SECONDS = 5
 SUPERVISOR_TIMEOUT_SECONDS = 330
-SUITE_STDOUT_CAPTURE_LIMIT = 99821
-SUPERVISOR_FRAME_MAX_BYTES = 134000
+SUITE_STDOUT_CAPTURE_LIMIT = 134756
+SUPERVISOR_FRAME_MAX_BYTES = 180580
 _HEX = frozenset("0123456789abcdef")
 _HOST_KEYS = frozenset({"python", "git", "bwrap", "mounts"})
 _EXEC_KEYS = frozenset({"python", "git", "bwrap"})
