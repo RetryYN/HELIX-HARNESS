@@ -5,7 +5,7 @@ owner: HELIX-HARNESS
 scope: K1/K2/K3/K5
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `d4df293cbcdaf9dd357e3349c22057ea392f6fad` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7` and intermediate base `f75199749888f7261772ba26e9feb58a33d9a04f` retained as history)
+base: `main` at `3961daac08d032ad512026e8365fafd9eae831c5` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7` and intermediate base `f75199749888f7261772ba26e9feb58a33d9a04f` retained as history)
 
 本書は現行Common Kernel L4 K1/K2/K3/K5の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/K6–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
 
@@ -14,17 +14,17 @@ base: `main` at `d4df293cbcdaf9dd357e3349c22057ea392f6fad` (current integration 
 | source | 対象revision / SHA-256 | 対象 |
 |---|---|---|
 | Stage 1 PO decision | `docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md`, `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e`; approved L3/L10 content revision `a77672513325aa9e79f3780af40455361b5d19a8` | HARNESS-L2-010/011/023 Stage 1 scope only |
-| L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md`, content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`) | K1 §2.1–2.6, K2 §3.1–3.5, K3 §16, K5 §9.1–9.8 |
-| Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`, content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) | RL-C1–7, RL-D1–5, RL-T1–3, RL-K1–3 |
-| L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, current main source at `d4df293cbcdaf9dd357e3349c22057ea392f6fad`, content SHA-256 `81193f9be03af312da7e87915691b06f7d3e1777843708abab6efb040df1d6c9`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) | K1/K2 §3; K3 §6.1.1–6.1.5; K5 §6.2.1–6.2.7 |
-| L8 detail verification | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`, current main source at `d4df293cbcdaf9dd357e3349c22057ea392f6fad`, content SHA-256 `fefaa022cf64fae78552719a29def9155a3bbb93a8f3acb338cedc66d4c7c383`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) | K3 §5.1; K5 §5.2; fixtures are design inputs, not executed here |
-| L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`) | IV-K1-01–13; IV-K2-01–21d; IV-K3; IV-K5-01–26 and ledger oracles; design oracle, not run here |
+| L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md`, content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `3961daac08d032ad512026e8365fafd9eae831c5`) | K1 §2.1–2.6, K2 §3.1–3.5, K3 §16, K5 §9.1–9.8 |
+| Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`, content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `3961daac08d032ad512026e8365fafd9eae831c5`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) | RL-C1–7, RL-D1–5, RL-T1–3, RL-K1–3 |
+| L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, current main source at `3961daac08d032ad512026e8365fafd9eae831c5`, content SHA-256 `81193f9be03af312da7e87915691b06f7d3e1777843708abab6efb040df1d6c9`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) | K1/K2 §3; K3 §6.1.1–6.1.5; K5 §6.2.1–6.2.7 |
+| L8 detail verification | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`, current main source at `3961daac08d032ad512026e8365fafd9eae831c5`, content SHA-256 `fefaa022cf64fae78552719a29def9155a3bbb93a8f3acb338cedc66d4c7c383`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) | K3 §5.1; K5 §5.2; fixtures are design inputs, not executed here |
+| L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `3961daac08d032ad512026e8365fafd9eae831c5`) | IV-K1-01–13; IV-K2-01–21d; IV-K3; IV-K5-01–26 and ledger oracles; design oracle, not run here |
 
 K1/K2はL4 §1.3の共通部品、K3の直接親はL4 §16.1、K5の直接親は§9.2のcrosswalkであり、単一のまとめ親を置かない。HARNESS Stage 1の下流traceは固定されたL2-010/011/023に限る。各契約の親は対応するL4 crosswalkに従い、契約境界上のK1-I6→K2、K2 record→K5、K3→K5/K6/K7参照は追加の親要求にしない。後続stageを含む現在文書全体のbytesをStage 1 approved inputと扱わない。
 
 旧sourceは再構築原則に従って先に読んだ。旧measurement evaluator/canonical digestに加え、K5のevent/projection/checkpoint source・failure・consumerを下記§7/§7.1に対応づける。旧source/test/runtime/CLI/CIは一切実行していない。旧fixtureの歴史的passは新しい実行根拠ではない。
 
-L5/L8のcurrent sourceは§1記載のmain `d4df293cbcdaf9dd357e3349c22057ea392f6fad`のcontent SHAを参照する。K3/K5の歴史的fixture参照にはPR #2751固定commit/blobのSHAも併記して保持し、current pinと混同しない。L8のPaired L7 pinはL8→L7の一方向固定であり、このL6変更はL8を更新しない。
+L5/L8のcurrent sourceは§1記載のmain `3961daac08d032ad512026e8365fafd9eae831c5`のcontent SHAを参照する。K3/K5の歴史的fixture参照にはPR #2751固定commit/blobのSHAも併記して保持し、current pinと混同しない。L8のPaired L7 pinはL8→L7の一方向固定であり、このL6変更はL8を更新しない。
 
 ## 2. 公開型と関数signature
 
@@ -326,10 +326,10 @@ L4 K1-I6で呼出し元へ返すK1拒否を、ここでは`ApiBoundaryResult[T] 
 
 | 参照元 | 本文SHA-256 / revision | 対象範囲とpin状態 |
 |---|---|---|
-| Common Kernel L4 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`, main `d4df293cbcdaf9dd357e3349c22057ea392f6fad` | §16.1–16.6、固定上流契約 |
-| Common Kernel L9 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`, main `d4df293cbcdaf9dd357e3349c22057ea392f6fad` | IV-K3-01–17、IV-K3-14a–j、oracle未実行 |
-| K3 L5 parent | current §1 L5 blob at `d4df293cbcdaf9dd357e3349c22057ea392f6fad`, SHA-256 `81193f9be03af312da7e87915691b06f7d3e1777843708abab6efb040df1d6c9`; historical PR #2751 commit/SHA is retained in §1 | §6.1.1–6.1.5 |
-| K3 L8 parent | current §1 L8 blob at `d4df293cbcdaf9dd357e3349c22057ea392f6fad`, SHA-256 `fefaa022cf64fae78552719a29def9155a3bbb93a8f3acb338cedc66d4c7c383`; historical PR #2751 commit/SHA is retained in §1 | §5.1–5.1.2 |
+| Common Kernel L4 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`, main `3961daac08d032ad512026e8365fafd9eae831c5` | §16.1–16.6、固定上流契約 |
+| Common Kernel L9 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`, main `3961daac08d032ad512026e8365fafd9eae831c5` | IV-K3-01–17、IV-K3-14a–j、oracle未実行 |
+| K3 L5 parent | current §1 L5 blob at `3961daac08d032ad512026e8365fafd9eae831c5`, SHA-256 `81193f9be03af312da7e87915691b06f7d3e1777843708abab6efb040df1d6c9`; historical PR #2751 commit/SHA is retained in §1 | §6.1.1–6.1.5 |
+| K3 L8 parent | current §1 L8 blob at `3961daac08d032ad512026e8365fafd9eae831c5`, SHA-256 `fefaa022cf64fae78552719a29def9155a3bbb93a8f3acb338cedc66d4c7c383`; historical PR #2751 commit/SHA is retained in §1 | §5.1–5.1.2 |
 
 L4 §16.2の`PermissionQuery`、`PermissionQueryRef`、`OperationAuthorityTuple`、`AuthorityInputRef`、`AuthorityInputBindingRef`、`HeadInputRef`、`PermissionCheckResult`、`PermissionCheckDiagnostic`、`PermissionCheck`をその型のまま使う。公開APIは既存の`resolve_authority_context(query, input_heads)`と`check_permission(query, permission, input_heads)`の二つだけである。入力の`PermissionQuery`、`PermissionRecord`、`Digest`およびowner参照はL4のtyped input前提を満たすものとする。runtime shape validator、shape不正のreturn class、追加reasonは定義しない。
 
