@@ -50,7 +50,7 @@
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "3aaf91f57024e007a70d4ff3b63df07693a40a2a31c26f95400188142b54a601",
+      "sha256": "3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee",
       "note": "Common KernelのK1/K2/K3/K5 verifier table/range。独立inventoryとraw-row参照を構造照合し、fixture実行を示さない。"
     },
     {
