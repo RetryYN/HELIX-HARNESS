@@ -6,9 +6,9 @@ scope: K1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: `main` at `79020598e03fd7234cfa00306f6f6d3a5bd82fd0` (current integration base; prior bases `4a40597efbf867b6b5b5640060b2cac81de56de0`, `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
+base: `main` at `40e5467dc7d67a990ff12323d40974a2e480f339` (current integration base; prior bases `79020598e03fd7234cfa00306f6f6d3a5bd82fd0`, `4a40597efbf867b6b5b5640060b2cac81de56de0`, `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
 
-本書はL6のK1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10公開APIと内部関数を単体fixtureへ対応づけ、現行L4/L9の意味、失敗分類、fixture期待を変更せずL5/L8とのtraceを追加する。K3は194 formal fixtureと26件の別ID回帰method、K4/G3は§11の73 fixture、K5は91 formal IDと24件の補助ID、K6は§10の55個別設計fixtureを記録する。K5-22/23のowner未接続fixture 7件はlocal private-boundary assertionだけを実行し、L8 coverageには含めない。ローカルunit結果はL9合格、owner source接続、製品動作を示さない。K9は§13で87 unique fixtureをtraceする。K8は§14の162個別fixture索引、K10は§15の69個別fixture traceを記録し、いずれも未実行。K6のprivate候補実装と52件の単体実行は§10.1に記録する。43件の局所assertion、2件の部分被覆、10件の未実行fixture ID、7件の別ID回帰を区別し、公開API・owner接続・CI登録は未了である。
+本書はL6のK1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10公開APIと内部関数を単体fixtureへ対応づけ、現行L4/L9の意味、失敗分類、fixture期待を変更せずL5/L8とのtraceを追加する。K3は194 formal fixtureと26件の別ID回帰method、K4/G3は§11の73 fixture、K5は91 formal IDと24件の補助ID、K6は§10の55個別設計fixtureを記録する。K5-22/23のowner未接続fixture 7件はlocal private-boundary assertionだけを実行し、L8 coverageには含めない。ローカルunit結果はL9合格、owner source接続、製品動作を示さない。K9は§13で87 unique fixtureをtraceする。K8は§14の162個別fixture索引、K10は§15で69個別fixtureをtraceし、局所helper 18件を§15.2に別記する。69 fixture locatorの全実行、公開API・owner接続・CI登録は未了である。K6のprivate候補実装と52件の単体実行は§10.1に記録する。43件の局所assertion、2件の部分被覆、10件の未実行fixture ID、7件の別ID回帰を区別する。
 
 ## 1. 固定入力とtrace規則
 
@@ -17,7 +17,7 @@ base: `main` at `79020598e03fd7234cfa00306f6f6d3a5bd82fd0` (current integration 
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `d5bb3455526c816b3af965db239c4b56207a884f`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; current main source at `d5bb3455526c816b3af965db239c4b56207a884f`, content SHA-256 `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `6270b0d9df663307a32aa1eb588f5b8a2ddee35fd2edc7f42ed4b8d972ab09fe`（L7→L6一方向。L6にL7 SHAは置かない） |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `1155c9ab7ecb50a6b5a2187236fb117f8cdd4111ab6aad3a8ab932be4ed34b5d`（L7→L6一方向。L6にL7 SHAは置かない） |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `fcf00128a7503317fa1c779c38cc8df3877b4952`, content SHA-256 `bdac36e29b8cd0a5cec34cedce6d419f5d5ecc8daea70cba851067bcc308dfac`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L8 K4/G3 fixed snapshot | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`, content SHA-256 `9d441f69221eb2800182f08e49c159c271a77eccc482bdbfb45bc960d2b48753`; K4/G3 §7; 73 fixture IDs; historical design input, not run here |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
@@ -1375,3 +1375,30 @@ K8はmain local-CI fixed manifestへ未登録である。L7 fixture一覧、文�
 | L4 §14.2 two-stage key/current refs/rules | all read APIs / `_resolve_current_graph_inputs`, `_build_record_and_graph_ref` | IV-K10-13/14 | CK-K10-UT-051–069 |
 
 各L8 IDは上表の1行だけに割り当てる。L8-K10-11は複合oracleの単一fixtureであり、同じscenarioのNegative verdictとNegative/Unknown components両方を一つのunit locatorで確認する。その他のケースはL8に明記された単一変異と単一期待を維持する。`owner current`の正当性、source/member mapping、実保存/復元、全Observed polarityは本fixture設計だけから成立しない。本文は69 locatorの設計追補であり、実装・実行・正式登録・CI coverageを主張しない。
+
+### 15.2 private helperの局所実行記録
+
+以下は`test_k10_graph.py`の18 local unittest methodと、そのmethodが実際に比較する入力・fieldの索引である。括弧内のL8 IDは入力形状を選ぶ根拠locatorであり、当該L8 fixtureそのものを公開API経由で実行したことや、L8/L9 oracle全体を満たしたことを意味しない。合成helper実行はowner/current-source未接続であり、69の正式fixtureはすべて未実行として保持する。
+
+| local unittest method | 入力根拠locator / 局所regression | 実際にassertするfield | 限界 |
+|---|---|---|---|
+| `test_shape_fields_match_l4_and_graphdecl_identity_stays_outside_payload` | L4 §14.2の既存shape | TypedDict field集合。GraphDecl payloadにidentityが無く、Impactにheld fieldを足さない | 構造assertionのみ。domain fixtureではない |
+| `test_scope_and_meaning_are_retained_without_normalization` | L8-K10-01-BASEのGraphDecl/Edge shape | scope/meaning objectが正規化・再解釈されず保持される | 意味妥当性、owner由来、K1結果を検証しない |
+| `test_unregistered_relation_and_resolved_endpoint_membership` | L8-K10-01-BASE、`-UNREGISTERED-RELATION`、`-MISSING-ENDPOINT` | 未登録relation edgeの抽出、既解決node集合に対するfrom/to membership | L8期待のK1 `Unknown` polarity/reasonへ写像しない |
+| `test_symmetric_relation_requires_confirmed_reverse_edge` | L8-K10-03-BASE、`-SYMMETRIC-REVERSE-MISSING` | candidate reverseを除外し、confirmed reverseの有無をfield比較 | K1 Negative component生成は未実装 |
+| `test_inverse_relation_uses_reverse_endpoints_and_declared_inverse_name` | L8-K10-03-BASE、`-INVERSE-EDGE-MISSING` | reverse endpointsとdeclared inverse relation名 | K1 Negative component生成は未実装 |
+| `test_contradicts_pair_is_reported_without_a_k1_classification` | L8-K10-03-`CONTRADICTS-PAIR` | 同じ順序付き端点のdeclared contradicts関係のpair | polarity/Negative mappingを作らない |
+| `test_duplicate_relation_declaration_is_left_unresolved` | 局所ambiguity regression（69 formal fixture外） | 重複vocab declarationではproperty選択をせず`None` | 新reject class/reasonではない |
+| `test_each_depclass_variant_uses_its_own_condition_state` | L8-K10-04-BASE、`-SELECTION-UNKNOWN`、`-CONDITION-FALSE`、`-REFERENCE-ONLY` | 各単一variantのeffective/held/diagnostic field | owner field resolutionやCombined polarityを検査しない。safety保持は次のclosure methodが別scenarioでassertする |
+| `test_missing_condition_entry_is_not_relabelled_as_unknown` | 局所incomplete-input regression（69 formal fixture外） | map entry不在時に既存`Unknown`へ偽変換せず`None` | L4/L9のK1 result mapping未決を維持 |
+| `test_closure_fields_keep_effective_held_diagnostics_and_safety_separate` | L8-K10-04-BASEとselection/false/reference variants、L8-K10-05-BASE/`-SAFETY-DROPPED`、L8-K10-02-`CANDIDATE-NOT-EFFECTIVE` | effective、held、diagnostics、nontransitive stopping、candidate exclusion、条件成立safety target | 一つのlocal method中で複数の独立synthetic subcaseを比較。formal 1-ID/1-mutant mappingではない |
+| `test_retired_edges_do_not_participate_in_closure` | retired-state局所regression（69 formal fixture外） | retired edgeはeffective/held/diagnosticsへ入らない | K1/Combined classは生成しない |
+| `test_false_reference_and_held_edges_do_not_expand_to_children` | L8-K10-04-`CONDITION-FALSE`、`-REFERENCE-ONLY`、`-SELECTION-UNKNOWN`を基にした子edge追加regression | false/reference/held nodeは保持し、各nodeの子へ展開しない | 子edge追加は局所回帰拡張でありL8 fixture定義を変更しない |
+| `test_transitive_true_expands_and_cycle_only_does_not_reject` | L8-K10-03-`CYCLE-ONLY`とL8-K10-04-BASE | transitive=trueの二段先field、cycle走査の停止と既訪問field | cycleを拒否する判定は作らない |
+| `test_unknown_relation_on_reachable_walk_stays_unresolved` | L8-K10-01-`UNREGISTERED-RELATION`のrelation差分をwalk経路へ置く局所regression | active walk中に一意宣言できないrelationで`None`となる | 新分類を返さず、L8全体class mappingを代替しない |
+| `test_transitive_property_single_field_change_controls_expansion` | L8-K10-04-`TRANSITIVE-FALSE`と同一edge baseline | vocabのtransitive fieldだけがtrue/falseの二値で、二段到達fieldが変わる | ownerの現行rules readではない |
+| `test_propagation_candidate_and_held_fields_are_separate` | L8-K10-06-`DEPENDS-ON-AGAINST`、`-AFFECTS-ALONG`、`-CANDIDATE-POSSIBLY`、`-HELD-BRANCH`、L8-K10-07 true/false/unknown | along/against方向、affected/possibly/held internal projection | `Observed<Impact>`/K1合成は未実装 |
+| `test_confirmed_path_removes_node_from_candidate_only_possibly` | L8-K10-06-`CANDIDATE-POSSIBLY`を元にしたconfirmed-path局所regression | confirmed経路からも届くnodeはaffectedへ入り、possibly集合から除かれる | 経路のowner真偽やGraphDecl出所を検証しない |
+| `test_candidate_path_cascade_is_reclassified_when_confirmed_path_reaches_node` | L8-K10-06-`CANDIDATE-POSSIBLY`を元にcandidate cascadeとconfirmed cascadeを併置した局所regression | confirmed経路が後続nodeへ届く場合にaffectedへ移し、possiblyから除く | 合成経路比較のみ。L8 oracle全体の実行ではない |
+
+この18件はローカルhelper実行数であり、69 formal locator数へ足さない。IV-K10-01の語彙/端点field、IV-K10-03のrelation property比較、IV-K10-04/05のclosure field、IV-K10-06/07のdirection/condition fieldに関係する部分assertionを実行する。IV-K10-02のsource宣言から`candidate`/`confirmed`を構築する処理、IV-K10-08のK2/K4/K5 exact review set、IV-K10-09–12の全graph componentとK1 polarityの合成、IV-K10-13/14のK2二段lookup/K5 restore/current rulesは未実装である。L8の固定69 fixture入力・期待は変更せず、これらの全fixtureは未実行のまま残す。local実行だけからL9 pass、owner接続、正式CI登録、製品graph判定を導かない。
