@@ -3,8 +3,8 @@
 status: draft_for_independent_review
 owner: HELIX-LABO
 paired_l8: ../L8-detail-verification/stage1-labo-detail-verification.md
-base: main `fc95f868ba6be60323e1c448429e0812c1c1b7cf`
-current_main_observed: origin/main `fc95f868ba6be60323e1c448429e0812c1c1b7cf`（統合時に再照合）
+base: main `d5bb3455526c816b3af965db239c4b56207a884f`
+current_main_observed: origin/main `d5bb3455526c816b3af965db239c4b56207a884f`（#2778 review修正対象の基点。固定L3/L10 bytesは不変）
 
 本書は固定Stage 1親001/011の4 ACを、既存L4契約の型・API境界としてL6へ渡せる粒度に具体化する。対象は許可sourceのobservation読取、Aggregate、Correlate候補のreference保持だけである。要求、source authority、scope、connection owner、status語彙、戻し先、因果の意味を変更しない。物理store、実source読取、実通信、実sourceへのwritebackを定義しない。
 
@@ -90,7 +90,7 @@ EpisodeCandidate = {
 | `aggregate_observations(selected_sources, input_heads) -> Sequence<AggregateObservation>` | 選択済みsource observationsと固定contract refs → source別aggregate record | 20 fieldごとのpresence/value、source declared status、source identity/revisionとLABO処理結果を分離する。source一件の欠損・破損を他sourceへ伝播させない。 | 001 AC-01/02; `IV-LABO-001-C01`–`C15`; NFR-001-01/02/03 |
 | `correlate_observations(aggregate_refs, selected_connection, input_heads) -> Observed<EpisodeCandidate>` | Aggregate refs、実選択CONNECT connection identity、accepted contract revision/scope/schema/provenance refs、relation input → episode candidate | Aggregate単体成功と接続成功を分け、source/observation refsを往復可能に保持する。relationは相関候補で、`causal_assertion=false`を保つ。要求parent ID `HELIXLABO-L2-011`はconnection identityに使わない。 | 011 AC-01/02; `IV-LABO-011-C01`–`C13`; NFR-011-01/02 |
 
-入力sequenceの順序、物理記録形式、retry/transaction、join key、time window、similarity score、correlation algorithmは本親に定めがないため決めない。K2 keyはL4 §2どおりsource/operation/input refsの完全集合から作る。K2 `Rejected(missing_key|invalid_digest|duplicate_identity)`をK1 `Observed`へ変換しない。K3は既存許可が要求される既存operationに限る。read/compare全体へ新しいpermission gateを追加しない。
+入力sequenceの順序、物理記録形式、retry/transaction、join key、time window、similarity score、correlation algorithmは本親に定めがないため決めない。K2 keyはL4 §2どおりsource/operation/input refsの完全集合から作り、K2 `Rejected(missing_key|invalid_digest|duplicate_identity)`をK1 `Observed`へ変換しない。`aggregate_observations`の戻りはL4の公開APIどおり`Sequence<AggregateObservation>`であり、各要素内の`lab_processing: Observed<LabProcessingDisposition>`を持つ。これは関数の集約projectionで、`Sequence`全体をK1 resultや成功へ写す追加wrapperではない。K2の保存/lookup境界と各sourceのK1 processing resultは別に扱い、各recordの`lab_processing`がどのK1 classを保持するかは、owner由来の各source resultを含む具体入力が得られた範囲だけで判定する。K3は既存許可が要求される既存operationに限る。read/compare全体へ新しいpermission gateを追加しない。
 
 ### 3.1 欠測、status、owner return
 
@@ -112,7 +112,7 @@ NFRの5項目は各親の既存候補だけを測る。性能・容量・保持�
 | `IV-LABO-NFR-001-02` | 7 source status fidelity、non-success event脱落、未発生status生成、unknown/not_observed coercion。 | source valueとLABO dispositionは別field。 |
 | `IV-LABO-NFR-001-03` | source authority leakage、partial failure、unrelated valid record保持、scope boundary。 | 新しい分類機構なし。 |
 | `IV-LABO-NFR-011-01` | episode→observation/source identity/revision roundtripとmissingness。 | join/time-window/similarity未指定。 |
-| `IV-LABO-NFR-011-02` | evidenceあり/時刻・pathのみの入力でcausal assertionを検査。 | causal threshold/algorithm未指定。 |
+| `IV-LABO-NFR-011-02` | evidenceあり/時刻・pathのみの入力でcausal assertionを検査。固定L4/L5型で表現できる合成inputの範囲だけを対象にする。 | causal threshold/algorithm未指定。time/path-onlyのpath所在を固定L5型またはaccepted source contractが定めない範囲は未被覆として保持し、path fieldを新設しない。 |
 
 L4 §4に記録された旧9資産と台帳のfull asset ID/path/line/full SHAは、本L5の下流入力として同節の固定bytesを参照する（L4 lines 125–129）。確認したconsumer/failureと再利用区分を以下へ対応する。台帳9行は`Historical/unresolved/implementation_status=unknown/consumer_refs=[]`であり、空consumer_refsをconsumer不在証明や再利用許可へ変えない。
 
@@ -124,9 +124,11 @@ L4 §4に記録された旧9資産と台帳のfull asset ID/path/line/full SHA�
 | `LEGACY-ASSET-44DD86E3DEC09E65EF51`（L4 §4 row 4、旧pillar HAT） | old test designのoracle/異常境界例。現行親への直接一致なし。 | case別failure分離のみ再導出。旧case/value/fixture/runtimeは置換。 |
 | `LEGACY-ASSET-8CC5ABFC98C0D00183CA`, `LEGACY-ASSET-DB669724249A14A665F0`（L4 §4 row 5、旧HELIX/HARNESS NFR） | IPA grade、memory/timeout/confidence、旧acceptance consumer。 | 根拠付き測定と対oracleの構造だけ再導出。旧値・承認・CIは移さない。 |
 
+旧NFRの保持・置換は、固定L3 NFR `nfr-grade.md:11`と固定L10 NFR `nfr-verification.md:11`が分けて求める「因果らしいevidenceあり」と「時刻/pathのみ」の二入力に従う。現行20 fieldには`time`と`artifact`があるが、`path`値の型・所在・source mappingは固定L4/L5で定義されていない。旧HAT等のpath/classifierを流用せず、time/path-only inputの具体形とそのAPI結果は、そのsource contractに表現が現れるまで未確定とする。これはL9 NFR-011-02の実行被覆を主張しない局所範囲であり、新field、threshold、因果判定を追加しない。
+
 ## 4. L6への受渡しと局所未決
 
-L6はこの3 APIのsignature候補、source snapshotとcaller inputの境界、K1/K2 result伝搬、20 field presence、7 source status、source별 failure isolation、episode roundtripを個別caseへ下ろす。実reader/physical store/CONNECT transport/owner permission/実通信/因果解釈は本設計で実装可能と断定しない。
+L6はこの3 APIのsignature候補、source snapshotとcaller inputの境界、K1/K2 result伝搬、20 field presence、7 source status、source別failure isolation、episode roundtripを個別caseへ下ろす。実reader/physical store/CONNECT transport/owner permission/実通信/因果解釈は本設計で実装可能と断定しない。
 
 | 未決事項 | 影響 | 現在の扱い |
 |---|---|---|
@@ -134,6 +136,7 @@ L6はこの3 APIのsignature候補、source snapshotとcaller inputの境界、K
 | Web/WEB-OS 031/032 accepted contractの実在・scope | 001 optional scope | 未選択はoptional/unconfigured。選択fixtureは合成refだけで、実採択・実読を示さない。 |
 | CONNECT operationの実permission、transport、receipt | `correlate_observations` | 採択済みCONNECT契約が与える範囲だけをstubで受ける。実通信許可は生成しない。 |
 | relationの意味、join、correlation方法 | 011 | unresolved relationを保持。因果/algorithmを追加しない。 |
+| `selected_connection`・receipt/scopeとK2 subject/input key構成の対応 | `correlate_observations`、connection/ref変異 | L4はこれらを別fieldとして保持するが、subjectとinput refsのどちらに各値を束縛するかを固定していない。従ってその構成に依存する`Stale`/`Unobserved(not_run)`をこの草稿で予測せず、L9のconnection binding期待を局所holdとして記録する。 |
 | 未指定K1/K2 mapping reason | 全API | 現行L4/L9の既存語彙を用い、原因が確定しない時は局所Unknown/hold。reasonを新設しない。 |
 
 本書とL8は草稿である。fixture未実行、実装なし。本文・ID・pinの静的整合はL3承認、L10 pass、採否、実source status/authority、接続成立、因果確定、製品完了を意味しない。
