@@ -8,7 +8,7 @@ paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
 base: `main` at `7715e7025212ea1a778ab9711e2f43241f7999c7`
 
-本書はL6のK1/K2/K3/K5 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。fixtureは未実装・未実行であり、合格を主張しない。K4/K6–K10は`not_designed`でfixtureを追加しない。
+本書はL6のK1/K2/K3/K5 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。K3の194 formal fixtureは専用候補実装と単体実行を持ち、formal mapping外の三つの回帰確認を別IDで持つが、owner接続、L9統合検証、製品動作の合格を主張しない（実行記録は§9.2）。他のcase群の実装・実行はこの状態記録から推定しない。K4/K6–K10は`not_designed`でfixtureを追加しない。
 
 ## 1. 固定入力とtrace規則
 
@@ -17,7 +17,7 @@ base: `main` at `7715e7025212ea1a778ab9711e2f43241f7999c7`
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `a7139003fa07f0b34b2d4a2e90496721c483ae8b07e5944cc460de8dc5bf5dba` |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `7142c39d9e4db3ae0ea1eac9ff04832d7af2c60d4bbf60895e4129468fc06e9c`（本作業候補、L7→L6一方向。L6にL7 SHAは置かない） |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
@@ -283,9 +283,9 @@ K5各fixtureはL6 §7.1の旧asset/path/line/full SHA一覧を起点とし、eve
 - K1のmissing keyは`Rejected(missing_key)`のままとする。variant shapeは型付き入力のpreconditionであり、新しいshape reasonやgateを設計しない。
 - `ledger_view`の既存IV-LDG-01/02/04接続はL6 `CK-K5-FN-20`に記録した。K5 L8の91 fixtureには固有fixtureがないため、この範囲のL7対応は未被覆で新規IDを作らない。
 - K5 recordの順序はsequenceのpreconditionであり、物理writer実装は設計しない。K6 source readはstub境界のままとし、production verifier/readは設計しない。
-- fixtureは未実装・未実行である。L9の実合格、K5 append保証、K6 raw source観測、runtime/toolchain間の相互運用性を主張しない。
+- K3以外のfixture群の実装・実行状態は、このK3検証から主張しない。L9の実合格、K5 append保証、K6 raw source観測、runtime/toolchain間の相互運用性を主張しない。
 - K3は§9で固定L8 oracleを個別fixture IDへtraceする。L5/L8はPR #2751候補の固定commit/content SHAを参照し、main統合済みの固定設計本文として扱う。K4/K6–K10は`not_designed`のままであり、現行L4/L9の節はL6 §6を通じて参照する。
-- L7 fixtureは設計草稿であり未実装・未実行である。`invalid_digest`/`duplicate_identity`はK2 `KeyOfResult`だけの境界結果で、K1 `ApiBoundaryResult`や`UnknownReason`への追加ではない。
+- L7全体は設計草稿であり、K3以外のfixture実行を主張しない。K3 194個別fixtureとformal mapping外の三回帰確認の候補実装・実行範囲は§9.2に限る。`invalid_digest`/`duplicate_identity`はK2 `KeyOfResult`だけの境界結果で、K1 `ApiBoundaryResult`や`UnknownReason`への追加ではない。
 
 
 ## 9. K3単体fixture
@@ -510,5 +510,26 @@ L8に固定済みの194 caseをL7で一つずつ追跡する。各`CK-K3-UT-NNN`
 | `CK-K3-UT-192` | `CK-K3-FN-01/FN-03/FN-12` | `IV-K3-15` | `L8-K3-15-BASE` | current refs/versionが一致する完全key lookupのValue(Positive)を比較する。 K5/K6/K7の実動作はstub境界とし、L8候補の期待class/reasonを独立に増やさない。 |
 | `CK-K3-UT-193` | `CK-K3-FN-04/FN-10/FN-11/FN-12` | `IV-K3-16` | `L8-K3-16-BASE` | owner current heads/time観測とcaller expected heads一致時のPositive checkと全refsを比較する。 K5/K6/K7の実動作はstub境界とし、L8候補の期待class/reasonを独立に増やさない。 |
 | `CK-K3-UT-194` | `CK-K3-FN-11/FN-12` | `IV-K3-17` | `L8-K3-17-BASE` | 通常apply_move後の同move直後観測を持つ基準controlでPositive K3 checkとhandoff refを比較する。 K5/K6/K7の実動作はstub境界とし、L8候補の期待class/reasonを独立に増やさない。 |
+
+### 9.1 194 formal fixture外の回帰確認
+
+次の三つはformal K3 UT/L8 mappingへ加算しないfocused regression testである。いずれもL4 existing contractの実装漏れを防ぎ、owner/K5/K6境界はsynthetic stubのままとする。
+
+| Test ID | 基準と一変異 | 呼出し | 固定する観測 |
+|---|---|---|---|
+| `CK-K3-REG-CURRENT-INPUT-REF` | queryとsaved recordは同一の旧`purpose` refを持つ。owner current `AuthorityContext.operation_inputs["purpose"]`だけrevisionと整合digestを更新する。 | `check_permission`（FN-07/09/11） | query/saved recordは一致しowner currentだけ異なるため`operation_input:purpose=Value(MISMATCH)`、全体`Negative`。queryとrecordの相互一致だけでPositiveにしない。 |
+| `CK-K3-REG-PARTIAL-CONTEXT-OWNER-SCOPE` | context本文/permission current readだけ未取得。owner境界が別途current tuple scopeを解決済みで、読取結果は`unreadable`。 | `check_permission`（FN-03/04/11） | owner scopeから完全keyを作り、`PermissionCheckResult.context=Unresolved`、effective decision `Unknown(unreadable)`、combined `Undetermined`を保持する。query `requested_scope`でkeyを作らない。 |
+| `CK-K3-REG-PARTIAL-CONTEXT-NO-SCOPE` | 同じcontext未取得だがowner current tuple scopeも未解決。 | `check_permission`（FN-03/04） | `PermissionCheckDiagnostic(missing_key)`と`current_tuple_scope`欠落を返し、caller scopeから補完しない。 |
+
+### 9.2 候補実装・実行記録
+
+`helix/helix-harness/units/common-kernel/src/permission.py`と`tests/test_k3.py`にK3候補を置き、上表194 IDを個別の静的unittest methodで実行した。さらに§9.1の3 regression testを別IDで実行した。
+
+| 検証 | 結果 |
+|---|---|
+| `python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k3.py'` | 197 tests, OK（formal 194 + regression 3）。 |
+| `python3 -m py_compile helix/helix-harness/units/common-kernel/src/permission.py helix/helix-harness/units/common-kernel/tests/test_k3.py` | 成功。 |
+
+テストはowner mapping/context/source、K6 assuranceをprivate module境界の合成stubで与える。ownerの実読、K5/K6/K7実装、L9 oracle、CI登録、製品動作、外部作用を証明しない。実行時の変更理由・対象コード・境界はL6 §12.4に記録し、test fixtureから新しい要求や受入gateを作らない。
 
 K3単体fixtureは純粋な関数境界と固定入力を対象とする。K5 prefix/read/restore、K6 binding/raw byte実読、owner source adapter、K7 apply/recoveryはstubまたはconsumer handoffであり、この単体fixtureから製品動作、外部作用、実読、合格を主張しない。L8の`invalid_query`発生predicateは未定義なので期待値として追加しない。K2 `invalid_digest`/`duplicate_identity`はK2専用拒否であり、K3のkey構成境界ではL4 §16.4と固定L5 §6.1.3どおり`PermissionCheckDiagnostic(reason: missing_key)`へ写す。K1 Unknownへ変換せず、K1でcombine/K2へrecordしない。正しいnamespaceとalias構成を通る正常K3 keyではduplicate identityを作らない。K3結果の保存ownerがL4で指定されない範囲では保存writerを作らず、保存callerの指定を待つ。旧source crosswalkと保持/変更理由はL6 §12.3に記録した。

@@ -7,7 +7,7 @@ paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
 base: `main` at `7715e7025212ea1a778ab9711e2f43241f7999c7`
 
-本書は現行Common Kernel L4 K1/K2/K3/K5の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記すが、実装や実行結果は含まない。K4/K6–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
+本書は現行Common Kernel L4 K1/K2/K3/K5の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/K6–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
 
 ## 1. 入力revisionと適用範囲
 
@@ -313,7 +313,7 @@ L4 K1-I6で呼出し元へ返すK1拒否を、ここでは`ApiBoundaryResult[T] 
 
 ## 11. 検証状態
 
-本書は設計草稿である。L9 oracleは未実行。L6実装、unit test、serializer runtime、旧source/test/runtime、filesystem writerは実行していない。K5 append-order preconditionとK6 raw read behaviorは、後続の詳細設計およびL7 stubの境界としてのみ記述した。
+本書は設計草稿である。L9 oracleは未実行。K3専用候補実装とその194個別L7 fixtureの実行範囲・結果・限界は§12.4に記録した。K1/K2/K5 suite、serializer runtime、旧source/test/runtime、filesystem writerはこのK3作業では実行していない。K5 append-order preconditionとK6 raw read behaviorは、後続の詳細設計およびL7 stubの境界としてのみ記述した。
 
 
 ## 12. K3関数設計
@@ -341,7 +341,7 @@ K3関数候補と責務境界は次のとおり。IDはL6 trace用で、新し�
 | `CK-K3-FN-04` | current context再構成 / K5内部境界 | OS assignment、target relation、INFRA environment、operation/SECURITY declarations、time observation、revocation headsをcurrent owner prefixから再構成する。K5 `current_head/read/restore`はstub境界で、caller `input_heads`は期待値照合だけに用いる。 | K3-I1/I4/I5/I6; IV-K3-01/08/09/15/16 |
 | `CK-K3-FN-05` | `resolve_current_effective_decision` / SECURITY source adapter境界 | registered source adapterの既存selection ruleとcurrent prefixを使う。selector/tie-break/expiry/signature policyを新設せず、adapterが返した既存`Observed`を保つ。 | K3-I3/I4; IV-K3-04/05/06 |
 | `CK-K3-FN-06` | `compare_tuple_axes` / private pure comparison | actor/target/operation/revision/environment/explicit scope/expiryの7軸を独立に比較し全componentを保持する。 | K3-I1/I2/I6; IV-K3-01/02/09 |
-| `CK-K3-FN-07` | `compare_required_operation_inputs` / private pure comparison | operation ownerが宣言したrequired-input identity集合とref値を完全比較する。owner declarationを生成しない。 | K3-I7; IV-K3-10 |
+| `CK-K3-FN-07` | `compare_required_operation_inputs` / private pure comparison | query、保存済み`PermissionRecord.operation_inputs`、owner current `AuthorityContext.operation_inputs`をidentity和集合で照合する。各identityについて三側のrefが揃い、`SubjectRef`全体（kind/identity/revision/digest）が一致した場合だけmatch。queryと保存値が互いに一致していても、owner current refとの一致を省略しない。owner declaration/required setを生成しない。 | K3-I7; IV-K3-10 |
 | `CK-K3-FN-08` | expiry/revocation/source precondition composition / private | current owner observationsから確定deny・expiry・revocationや既存欠落/不明を各L4 componentとして構成し、既存意味を保つ。時間parse/TTL/selector policyは補わない。 | K3-I3/I5; IV-K3-04–08/12 |
 | `CK-K3-FN-09` | K1 component合成 / 既存K1 API境界 | 全K3 componentとK6の既存三assurance fieldを保持して既存K1 `combine`へ渡す。Observed語彙・reasonを増やさず、empty truthもL4既定どおり保持する。 | K3-I1–I7; IV-K3-05/10/13 |
 | `CK-K3-FN-10` | `resolve_authority_context` / public | current contextを再構成し、L4既存resolution/diagnostic unionを返す。保存・write effectなし。 | K3-I1/I4/I6; IV-K3-01/08/09/15/16 |
@@ -365,6 +365,10 @@ K3 APIの既存diagnostic reasonは`missing_key | invalid_query`であり、`inv
 
 K2 `key_of`の`invalid_digest`と`duplicate_identity`はK2専用`KeyOfResult`拒否である。正しいkind/role namespace、binding mapping、alias dedup、query/head refsの構成により、型付き正常経路から重複identityを作らない。完全なK2 keyを構成できないこれらの拒否はL4 §16.4と固定L5 §6.1.3に従い、K3 API境界で`PermissionCheckDiagnostic(reason: missing_key)`へ写す。K2専用reasonをK3へ追加せず、K1 Unknownへ変換・combine・recordしない。`PermissionQuery`や`Digest`のruntime shape不正を新しいreturn classへ送らない。
 
+owner contextの読み取りが完了しなくても、current tuple scopeがowner境界で解決済みなら内部`OwnerContextData.key_scope`へその値を保持する。これは公開APIやcaller指定値ではない。完全K2 keyをこのowner scopeから構成し、未読のcurrent context/decisionを既存`Unknown`としてcomponentsに残し、`Unresolved` contextを含む`PermissionCheckResult`を返す。scope自体が解決できないときは従来どおり`PermissionCheckDiagnostic(missing_key)`を返す。queryの`requested_scope`からscopeを補わず、owner scopeの欠落を読取失敗へ読み替えない。この内部表現はL4 §16.4の「key可能なら診断成分を保持、key不能ならmissing_key」を下流で形にする候補であり、要求や返却分類の追加ではない。
+
+L8 IV-K3-15は`TARGET-DECL`と`OWNER-DECL`を別のlisted roleとして列挙し、L5 §6.1.4はowner resolverがcurrent `{role, raw SubjectRef}`全mappingを束縛すると定める。そのためfixture baselineにも`target_decl`と別のsynthetic `owner_decl` role/refを置き、各role aliasを個別に変異する。これは既存role mapping境界の合成入力であり、実owner declarationの保存場所、production owner/sourceの存在、または新しいAuthorityContext fieldを決めない。
+
 K5 prefix/read/restore、K6の実byte読取、K7 apply/recoveryはstubまたはconsumer受け渡し境界に限る。K6 stubはL4が指定するread identityとbinding/raw byte digest関係をfixture入力として照合するだけでproduction readを証明しない。L4 §16でK3結果を永続化するowner/LogDeclが示されないため、新writerや保存責務を追加しない。selector、expiry parsing、signature verification policyも既存source adapterの宣言を越えて補わない。
 
 ### 12.3 旧source・台帳・consumer・failureの起点
@@ -383,4 +387,13 @@ K5 prefix/read/restore、K6の実byte読取、K7 apply/recoveryはstubまたはc
 
 ### 12.4 対象外と検証状態
 
-K3は関数・fixture設計草稿であり、L6/L7から実装、実source reader、expiry/signature policy、永続化writer、action、recovery、K5/K6/K7の合格を主張しない。L7 caseはK3 L8の固定194個別IDを個別UTへ写す。fixture、旧test、旧CLI/hook/runtime/CIは起動していない。K4/K6–K10詳細は`not_designed`のままであり、K5詳細は本書§2–5/§7に記載する。
+K3の候補実装は`helix/helix-harness/units/common-kernel/src/permission.py`に置き、L4公開signatureの`resolve_authority_context(query, input_heads)`と`check_permission(query, permission, input_heads)`を維持する。`_owner_mapping`、`_owner_context`、`_permission_source`、`_k6_assurance`はowner責務のprivate module境界であり、初期実装はsourceを取得せず既存型の非肯定結果を返す。unit testは`unittest.mock.patch`でこのprivate境界だけを置換する。呼出し側からmapping/callback/contextを注入する公開parameter、registry、global設定は設けない。L4 §16.4およびL5 §6.1.3の禁止はcaller-provided mappingをauthorityにしないことであり、試験内のprivate boundary stubはproduction owner接続を表さない。
+
+K3 L8の194個別fixtureに一つずつ対応する`tests/test_k3.py`の静的unittest methodを維持し、親検収で見つかった三つの独立回帰条件をformal fixtureとは別IDで追加した。K1/K2のcore module/test sourceは変更していない。実測値は再検証後に記録する。
+
+| 検証 | 対象 | 結果 |
+|---|---|---|
+| `python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k3.py'` | CK-K3-UT-001–194とCK-K3-REG-* 3件 | 197 tests, OK。formal 194件と回帰3件を区別し、owner/K5/K6/K7境界は合成stub。 |
+| `python3 -m py_compile helix/helix-harness/units/common-kernel/src/permission.py helix/helix-harness/units/common-kernel/tests/test_k3.py` | K3候補moduleと単体test | 成功。 |
+
+この結果はK3 pure projection/case behaviorの候補単体検証に限る。実source reader、expiry/signature policy、K5 prefix/read/restore、K6 binding/raw byte実読、K7 apply/recovery、L9 oracle、CIへのK3登録、製品動作、外部作用の証拠ではない。K3実行記録やowner接続をmain上の完了として扱わない。K4/K6–K10詳細は`not_designed`のままであり、K5詳細は本書§2–5/§7に記載する。
