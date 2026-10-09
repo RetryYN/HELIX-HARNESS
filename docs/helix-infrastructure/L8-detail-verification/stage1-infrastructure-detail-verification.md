@@ -188,7 +188,7 @@ INFRA operation `kind`はK3 `PermissionQuery.operation`と別項目であり、K
 | `IV-INFRA-006-04` | `project_path_and_storage` | `L8-INFRA-006-04-PATH-OWNER-UNKNOWN` | `L8-INFRA-006-04-BASE`からindependent path owner refだけを既存Unknownへ置換 | path/owner componentだけ既存Unknownを保持し対象operationを非肯定。K1 reasonがsourceで特定されなければ理由選択未決としてpath ownerへ戻す。 |
 | `IV-INFRA-006-04` | `prepare_operation_check` | `L8-INFRA-006-04-AUTHORITY-OWNER-UNKNOWN` | `L8-INFRA-006-04-BASE`からauthority owner refだけを既存Unknownへ置換 | authority componentだけ非肯定。ownerを自己解決せずSECURITY authority ownerへ戻す。 |
 | `IV-INFRA-006-05` | `project_resource_observation` | `L8-INFRA-006-05-BASE` | mutationなしの正常baseline。health-check kindとread-only resource observation refを与え、変更requestを含めないbaselineから単独変異なし | 観測値だけ保持し、state-changing request/service-wide healthを生成しない。 |
-| `IV-INFRA-006-06` | `prepare_operation_check` | `L8-INFRA-006-06-BASE` | mutationなしの正常baseline。service-stop kind、target/scope、既存別authority ref、前提/result refが揃うbaselineから単独変異なし。停止中OS唯一route条件は含めない | 完全current queryのpermission結果だけを照合。実停止なし。停止中OS routeはIV-006-16で別判定。 |
+| `IV-INFRA-006-06` | `prepare_operation_check` | `L8-INFRA-006-06-BASE` | mutationなしの正常baseline。service-stop kind、target/scope、既存別authority ref、前提/result refが揃うbaselineから単独変異なし。停止中OS唯一route条件は含めない | 完全current queryのpermission結果だけを照合。実停止なし。停止中OS routeは`IV-INFRA-006-16`で別判定。 |
 | `IV-INFRA-006-07` | `prepare_operation_check` | `L8-INFRA-006-07-BASE` | mutationなしの正常baseline。rollback kind、適用L2-005 duty、target revision、別authority refが揃うbaselineから単独変異なし | rollback前提照合のみ。duty unknown/unmetはIV-006-15へ分離し、他kindへ拡張しない。 |
 | `IV-INFRA-006-07` | `record_operation_observation` | `L8-INFRA-006-07-OBLIGATION-REFS` | `L8-INFRA-006-07-BASE`からK5 evidenceに結ぶresult/duty refsだけを記録側へ渡す | 既存K5 evidenceとOS owner refsがある範囲で結び、K7にないoperation/attempt stateを生成しない。duty owner未解決はその参照だけ未決。 |
 | `IV-INFRA-006-08` | `record_operation_observation` | `L8-INFRA-006-08-BASE` | mutationなしの正常baseline。recovery kindと適用L2-005 duty/ref、結果ref、unfinished-duty refを揃える | recovery result/duty refsをoperation identityへ結ぶ。実recoveryなし。K7型未定義のoperation resultはOS/K5 owner参照に限定する。 |
@@ -337,21 +337,22 @@ INFRA operation `kind`はK3 `PermissionQuery.operation`と別項目であり、K
 
 | L9 verifier ID / L10 case | 正常fixtureと単独変異 | 期待oracle・責務境界 |
 |---|---|---|
-| `IV-INFRA-001-01` / `L10-INFRA-001-C01` | environment別の複数機構resourceとWorker/Model Runtime、database/queue/artifact/evidence/log/metric storeを別identityで与える。各resourceのrole/environment/location/version/dependency/lifecycle stateを一度に一属性ずつ欠落させる。 | 各identityと7属性のvalue-or-unknown、source/revisionが保たれる。重複/不明identityを補完しない。Model/Worker能力、ticket、SECURITY policyはINFRA projectionに入らない。 |
-| `IV-INFRA-001-02` / `L10-INFRA-001-C02` | stagingとproductionに同表示名・異identityのresourceを置く。cross-environment結合を単一変異とし、scope/authority/source/config/network/credential scope/dataの8軸の不一致およびlocation/version/dependency欠落は一つずつ別fixtureにする。 | identityをまたぐ結合は不成立。軸ごとのunknown/mismatchを保持し、他environmentをcurrent成功にしない。CORE設計またはresource source ownerへ戻す。 |
-| `IV-INFRA-001-03` / `L10-INFRA-001-C03` | 宣言scopeに契約適合する未見resource role、続いて未見recovery environmentを個別に追加する。 | 未見だけでは拒否せず宣言された7属性/source/environmentを扱う。固定role fallbackや既定値なし。 |
-| `IV-INFRA-001-04` / `L10-INFRA-001-C04` | owner/location/dependencyがunknownなresourceを与え、返却owner既知とowner自体unknownを分ける。 | owner既知なら該当resource source/CORE設計ownerへの返却を保持。返却先不明はunknownと未完範囲のまま。利用可能へ昇格しない。 |
-| `IV-INFRA-001-05` / `L10-INFRA-001-C05` | CONNECT logical identityと一つのphysical pathを別refとして与え、source/destination/protocol/endpoint/direction/purpose/security boundary/dependencyを持たせる。 | 8 path軸とlogical refが別々に追跡される。logical IDからphysical routeを合成しない。 |
-| `IV-INFRA-001-06` / `L10-INFRA-001-C06` | 8 path軸それぞれの正常fixtureを用意し、各fixtureで一軸だけを欠落。logical IDだけの入力も独立fixtureにする。 | 該当軸または実pathはunknown。残りの軸を保持し、logical IDで穴埋めしない。CONNECT/宣言source ownerへ戻す。 |
-| `IV-INFRA-001-07` / `L10-INFRA-001-C07` | 正常baselineから`L8-INFRA-001-07-PROTOCOL`ではprotocol値だけを未見値へ変える。`L8-INFRA-001-07-MULTI-PATH`では既知protocolを保ちphysical path数だけを2にする。 | protocol fixtureは値を保持し新allowlist/通信許可を作らない。multi-path fixtureは各path identityと8軸を分離して保持し、logical connectionへ併合しない。 |
-| `IV-INFRA-001-08` / `L10-INFRA-001-C08` | CONNECT宣言にないroute、security boundary ownerの不一致をそれぞれ独立に与える。 | 観測値と不一致を保持し、routeの論理契約はCONNECT、security boundaryはSECURITY、実体sourceは宣言ownerへ戻す。 |
-| `IV-INFRA-001-09` / `L10-INFRA-001-C09` | persistent database/evidence storeとtemporary cache/queueを分離し、owner/durability/backup/retention/environment/confidentiality、recovery ref、対象resource/runtime属性をsource付きで与える。 | persistent/temporary identityとstorage 6属性/recovery refを別々に保持。scope内resource/runtimeだけをsource/revisionへ結ぶ。能力・ticket・authorityを生成しない。 |
-| `IV-INFRA-001-10` / `L10-INFRA-001-C10` | temporary/persistent混同、retention欠落、owner欠落、confidentiality欠落、runtime version/endpoint欠落を個別fixtureにする。 | 各欠落をunknownとして保持。temporaryをpersistent backup/recoveryとみなさず、runtime値も補完しない。該当ownerへ返す。 |
-| `IV-INFRA-001-11` / `L10-INFRA-001-C11` | Model Runtimeを含まない宣言scopeと、新しいModel Runtimeを含むscopeをそれぞれ完全読取のfixtureとして与える。 | scope外runtimeを仮定しない。scope内では列挙fieldとunknownを列挙し、実runtime稼働を宣言から肯定しない。 |
-| `IV-INFRA-001-12` / `L10-INFRA-001-C12` | SECURITY classificationとstorage observationの不一致、OS ticketとresource stateの不一致を別fixtureにする。 | INFRAはclassification/ticketを裁定しない。不一致を各SECURITY/OS ownerへ返し、resource observationを上書きしない。 |
-| `IV-INFRA-001-13` / `L10-INFRA-001-C13` | `prod-green-02`/`resource-green-02`、7属性、`inventory-fixture-02` revision `rev-02`を揃え、stagingには同名異identityのresourceを置く。 | production側source/revisionとの一致だけを記録し、stagingの値を結合しない。 |
-| `IV-INFRA-001-14` / `L10-INFRA-001-C14` | 既知値に対するlocation読取不能、version読取不能、部分更新中断をそれぞれ単独発生させる。 | 以前の観測は古いsource/revisionとして残しcurrent値へしない。読取不能/未完範囲を示すK1非肯定となる。 |
-| `IV-INFRA-001-15` / `L10-INFRA-001-C15` | `lifecycle=ready`だけを持つ入力と`environment=production`だけを持つ入力を別々に与え、両方ともauthority/operation許可への射影を試すfixtureとする。 | どちらからもauthority/許可が作られない。観測stateのみ保持し、authority条件は別sourceのまま。 |
+| `IV-INFRA-001-01` / `L10-INFRA-001-C01` | §2.1の`L8-INFRA-001-01-BASE`と`L8-INFRA-001-01-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-02` / `L10-INFRA-001-C02` | §2.1の`L8-INFRA-001-02-BASE`と`L8-INFRA-001-02-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-03` / `L10-INFRA-001-C03` | §2.1の`L8-INFRA-001-03-BASE`と`L8-INFRA-001-03-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-04` / `L10-INFRA-001-C04` | §2.1の`L8-INFRA-001-04-BASE`と`L8-INFRA-001-04-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-05` / `L10-INFRA-001-C05` | §2.1の`L8-INFRA-001-05-BASE`と`L8-INFRA-001-05-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-06` / `L10-INFRA-001-C06` | §2.1の`L8-INFRA-001-06-BASE`と`L8-INFRA-001-06-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-07` / `L10-INFRA-001-C07` | §2.1の`L8-INFRA-001-07-BASE`と`L8-INFRA-001-07-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-08` / `L10-INFRA-001-C08` | §2.1の`L8-INFRA-001-08-BASE`と`L8-INFRA-001-08-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-09` / `L10-INFRA-001-C09` | §2.1の`L8-INFRA-001-09-BASE`と`L8-INFRA-001-09-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-10` / `L10-INFRA-001-C10` | §2.1の`L8-INFRA-001-10-BASE`と`L8-INFRA-001-10-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-11` / `L10-INFRA-001-C11` | §2.1の`L8-INFRA-001-11-BASE`と`L8-INFRA-001-11-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-12` / `L10-INFRA-001-C12` | §2.1の`L8-INFRA-001-12-BASE`と`L8-INFRA-001-12-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-13` / `L10-INFRA-001-C13` | §2.1の`L8-INFRA-001-13-BASE`と`L8-INFRA-001-13-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-14` / `L10-INFRA-001-C14` | §2.1の`L8-INFRA-001-14-BASE`と`L8-INFRA-001-14-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+| `IV-INFRA-001-15` / `L10-INFRA-001-C15` | §2.1の`L8-INFRA-001-15-BASE`と`L8-INFRA-001-15-*`の個別fixtureを参照し、入力・単独変異は参照先に従う。 | 各fixtureの期待値・未決のmapping・owner戻し先は§2.1の対応行に従う。本表から別の期待値を定義しない。 |
+
 
 ## 4. INFRA-006 fixture展開（19 verifier）
 
