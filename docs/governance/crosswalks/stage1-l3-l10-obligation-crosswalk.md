@@ -223,3 +223,15 @@ Stage 1の他のclosure owner sourceは34親表の既存固定pinで追跡でき
 - 権限と事後確認：[l3-l10-po-post-confirmation.md](../l3-l10-po-post-confirmation.md)、各初期/後続判断記録と上表の権限連鎖を参照する。
 - 依存契約：sourceであるL3/L10 caseと既存のCK K3/K7/K10を参照する。OS IDが直接記載されていないことを依存不存在へ読み替えない。
 - この索引は更新される現行mapである。判断記録、監査snapshot、source revisionは変更しない証拠として保持し、日付付きまたは版番号付きの複製を作らない。
+
+## 共通kernelのsource pin再照合の返却事項
+
+PR #2779は旧asset `LEGACY-ASSET-8DA932B4A1012B9D8F00` の全文SHA誤記1文字を直す。旧sourceの実bytesは変えず、現行CK L4の全文SHAは `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` から `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82` へ変わる。review01 m01（PR comment #6076846990）が見つけた次の参照は基準commitなしで旧CK L4 bytesを指すため、各既存ownerへ再照合事項として返す。型/API/要求意味は変わらず、参照の成立や被覆をこの記録から生成しない。
+
+| 返却先 | 対象locator | 未解決事項と保持する境界 |
+|---|---|---|
+| LABO L4 owner | `docs/helix-labo/L4-basic-design/stage1-labo.md:31` | CK L4旧SHAの基準revisionを確定し歴史的source pinと明記するか、current kernelとの対応を再照合する。未照合のまま現行全文一致を主張しない。 |
+| LABO L9 owner | `docs/helix-labo/L9-integration-verification/stage1-labo-integration-verification.md:9` | L4 ownerと対でkernel pinの基準を再照合する。既存35 oracleと4ACの期待を縮約しない。 |
+| SECURITY L5 owner | `docs/helix-security/L5-detail-design/stage1-security.md:42` | 「main fixed bytes」の基準commitを確定し歴史的pinを明記するか、current kernelとの対応を再照合する。既存421定義IDの期待を変えない。 |
+
+この表は技術的参照の局所未照合を記録する。要求承認・追加gate・機構全体の停止を作らず、各ownerが既存pair内で対応を記録する。基準commit付きの他の旧SHA参照は時点固定として保持する。
