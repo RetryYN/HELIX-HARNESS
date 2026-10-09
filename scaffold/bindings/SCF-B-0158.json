@@ -20,22 +20,22 @@
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "aa008b0d2357a52c3673141b4e8e75b3ff643351375b46ce5d6f0aae2feb28f0",
+      "sha256": "c0c37d452efdf0b01d05c054ced449474f9dd9120cf84c81a870445001d51eb5",
       "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "c51459270a662b39f47a1ada1e2006f616ebe7a7a6cc756cc389087328714c42",
+      "sha256": "ceb223801836305672a2f1e818f590782426b6754698558103b0b7c96bb5dc2e",
       "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "1c9b8492e4d7905ac69f329f58ed0b89a061d542ad5d595033376eb6e36d46fe",
+      "sha256": "66d862030ffa0140a2d9d2b579f04169b56e4e16e98f4ee319cde2821fb3aea9",
       "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "aebc3f6dbf8cd800d39e4b6a9ecae84c935aacb63cd5d19dbb6910e5f459b373",
+      "sha256": "524a1bc92e33f56d37b897a2db537dac85f2418c87a49f262ab9f1957b33c072",
       "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {

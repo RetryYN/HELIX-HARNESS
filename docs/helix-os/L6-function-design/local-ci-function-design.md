@@ -19,8 +19,8 @@ version_target: 1.0
 |---|---|
 | `docs/helix-os/L4-basic-design/local-ci.md` | `263f43cf049a68e845bea735a985c47434cf0b74e9fad4dbbad993172378434b` |
 | `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `eb1e474a94cb21d3f7b4f6e8898d0a09adb5840a4f58b1945953d33d5218d56a` |
-| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `aa008b0d2357a52c3673141b4e8e75b3ff643351375b46ce5d6f0aae2feb28f0` |
-| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `c51459270a662b39f47a1ada1e2006f616ebe7a7a6cc756cc389087328714c42` |
+| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `c0c37d452efdf0b01d05c054ced449474f9dd9120cf84c81a870445001d51eb5` |
+| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `ceb223801836305672a2f1e818f590782426b6754698558103b0b7c96bb5dc2e` |
 
 ## 1. 関数群
 
