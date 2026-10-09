@@ -45,12 +45,12 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/common-kernel.md",
-      "sha256": "76ef6e037f1ee64424167626392e080eacc2d3e2fb1925362bbe9cd0820d2359",
+      "sha256": "af4b1dbad4eb3da512f1ba62154bec8883654d70c3b994f9dacb375c2021e562",
       "note": "Common Kernel K1/K2/K3/K4/K5/K6/K7/G3/G5 contract bytes。固定構造corpusの入力として照合する。K4/G3 fixture inventory以外のfixture登録・CI coverage、semantic approvalや実装成立を示さない。"
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "b8dc258f333c31b63ccd45e4a2d04a7eff3189648b17fe82501387c64c0b5edd",
+      "sha256": "169771497843928b8475d014ac177e87a6a12abacf26c48f04a24c9e0c4b5db0",
       "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5 verifier source bytes。既存K1/K2/K3/K5 inventoryおよびK4/G3の73 fixture IDの構造照合対象。K6/K7/G5 fixtureはlocal CI inventoryへ未登録で、本pinは登録・実行・CI coverageを示さない。"
     },
     {

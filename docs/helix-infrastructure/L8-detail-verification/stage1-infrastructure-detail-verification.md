@@ -9,7 +9,7 @@ status: draft_candidate
 authority_status: approved_parent_design_candidate
 freeze_blocking: true
 paired_l5: ../L5-detail-design/stage1-infrastructure.md
-paired_l5_sha256: ccf2c64f9312bb9c90ab46500bbb02373c87868af2dc5a7eb5be9b5f65de9f1a
+paired_l5_sha256: 40b96764707a666d5d6dd39f3709857e58a67df564a2a4dbc7c98a1379737300
 stage: 1
 ---
 
@@ -411,3 +411,19 @@ L5 §2で全文SHA-256、asset ID、読取行、旧consumer/failure、保持・�
 | read evidence/ledgerが部分的・損傷 | source owner、共通K5/K6の既存契約 | missingとunreadable/unknownを区別し、部分読取を完全走査にしない |
 
 L4/L9、固定L3/L10、L5/L8は設計物であり、これらのcaseのfixtureは未実行である。未解決owner/source/authorityは影響するoperation/ACだけに残し、Stage全体を止めたりowner/gateを追加したりしない。要求の意味、scope、owner、versionの変更が必要なときだけ既存L2へ戻す。
+
+## 7. unit配置・固定参照の設計fixture
+
+以下はL5 §9のcandidate unit pathと既存repository-layout RL-C2–C5 / RL-T1–T3を、後続のunit source/test locator導出時にどう照合するかを示す技術fixture候補である。新しいL3/L4要求、L9 verifier、pack registration oracleではなく、既存layout契約のtrace detailである。既存の34 functional verifier、6 NFR verifier、248 concrete functional/NFR fixture countは不変であり、次のlocator casesはその数へ含めない。実装・tree・宣言・型番台帳が現targetで確認済みとはしない。
+
+候補identityはL5 §9.1の`infrastructure-stage1`、候補rootは`helix/helix-infrastructure/units/infrastructure-stage1/`である。`enc`はrepository-layout L4 §6.1の規則をそのまま用いる。fixtureはsource `SubjectRef`（`kind`/`identity`/`revision`/`digest`）と別tree locator/pathが束縛するbytes内identityから候補locatorを導出する範囲だけを扱い、declaration全体の妥当性を検証したり未決のowner/version/maturity/dependency/inclusion/exclusionへ値を与えたりしない。locator導出はunitを登録・usableにせず、module/testをimport・実行しない。Common Kernel K5 `FixedRef`（`store`/`locator`/`digest`）は別の保存・証拠参照型であり、source `SubjectRef`の代替ではない。以下のassertionはsource referenceと独立path locatorの整合だけを対象にし、K1 `Observed`や新しいfailure classを返さない。digest不一致は同じrevisionのsource参照とresolved bytesの矛盾として既存K2-I2/RL-C3の`Unknown(conflict)`という所見に対応させる。RL-C3の登録済みpack利用を認定するものではない。identity/path不一致はRL-C4の既存`Unknown(conflict)`、declaration欠落はRL-C5第2文の「宣言がないfolderはpackとして数えない」という既存`Unknown(missing_input)`の所見に限る。RL-C5第1文の台帳登録済み型番という前提は本候補では未確認である。
+
+| fixture ID | baselineからの単一条件 | 照合する事実 | 期待と限界 |
+|---|---|---|---|
+| `L8-INFRA-PACK-LOCATOR-BASE` | mutationなし。source `SubjectRef`と別tree locator/pathがdeclaration bytesを指し、同じbytesから得たidentityを`enc`した候補rootが一致する | source `SubjectRef`のtupleとlocatorのrevision/pathを保ち、resolved bytesのSHA-256を`SubjectRef.digest`と照合し、identityから`src/`と`tests/`の候補pathを導出する。 | candidate path導出の整合だけをassertする。owner・declaration全項目の妥当性・registration・収載・unit usability・API executionはassertしない。 |
+| `L8-INFRA-PACK-LOCATOR-DIGEST-MISMATCH` | baselineから参照bytesのdigestだけを`SubjectRef.digest`と異ならせる | resolved bytes digestがsource `SubjectRef.digest`と異なるときmodule/testを選択・importしない。 | 同revisionの固定source参照とresolved bytesの矛盾は既存`Unknown(conflict)`の所見とする（K2-I2/RL-C3の比較境界）。helperのK1返却やpack登録成立を作らず、module/testは未選択のまま。 |
+| `L8-INFRA-PACK-LOCATOR-PATH-CONFLICT` | baselineからdirectory locatorだけを`enc(identity)`以外へ変える | identityは宣言bytesから読み、pathはRL-C4に従う照合値として比較する。 | identity/path不一致は既存`Unknown(conflict)`として扱い、directory名からidentityを上書きしない。 |
+| `L8-INFRA-PACK-LOCATOR-UNREFERENCED-DIR` | baselineへsource `SubjectRef`および別tree locator/pathが指さない追加unit directoryだけを置く | source/test選択が参照されたdeclaration以外をtree scanで拾わない。 | RL-C4の「folder一覧をpack一覧として扱わない」に対応し、参照外directoryをinventory/登録済みpackとして数えない。このfixture単体から同一identity重複不存在やregistrationを主張しない。 |
+| `L8-INFRA-PACK-DECLARATION-MISSING` | baselineから別tree locator/pathが指すdeclaration bytesだけを対象revision内で欠落させる | module/test選択を開始せず、declaration欠落を既存RL-C5へ対応させる。 | RL-C5第2文の宣言のないfolderをpackとして数えない所見（既存`Unknown(missing_input)`）に限る。第1文の台帳登録済み型番を前提にせず、登録照合や実行結果を作らない。 |
+
+本表のIDはL8内の詳細設計locatorで、L9の`IV-INFRA-*` IDではない。これらをL9 parent/oracle、release acceptance、CI実行済み結果として数えず、既存L9に新しい検証義務を足さない。後続L6/L7 pairで同じ候補fixtureをsetup checkへ対応させる予定であり、このPRではL6/L7を変更しない。既存248 L8 fixtureや40 verifierとの対応は変更しない。

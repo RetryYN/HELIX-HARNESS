@@ -113,3 +113,42 @@ L2の意味/scope/owner/versionを変える必要があるときだけ固定要�
 ### L4への返却事項
 
 L4 §3「現行共通型と責務境界」のK9行は、K9をindependent path依存閉包・物理観測へ結び付けている。現行common-kernel §17のK9は独立reviewの独立性記録であり、path observation/依存閉包の型ではない。L5では意味を黙って書き換えず、K10を依存closure、K6/K5をsource observation/evidenceの参照先とした。このL4記述の修正はL4 ownerへ返す。L5/L8の設計からL4の誤参照が修正済みとは扱わない。
+
+## 9. Stage 1 unit配置と宣言の候補
+
+本節はrepository-layout L4 §2、§3.1–3.2（RL-C2–C5）、§7（RL-D1–D5）、§9.1（RL-T1–T3）と、Common Kernel L5 §7の配置・宣言・型番登録の分離をINFRA Stage 1へ技術的に具体化する。旧HELIX資産の保持・再導出・置換は§2の5資産表のままである。F542とF46のtrace/negativeの形、17C4のresource identityとowner分離は意味の起点だが、これらの旧sourceは現行unit identityやmodule pathを定めていない。したがって配置は旧pathの再利用ではなく、既存layout契約からの候補再導出であり、L2の要求意味を変更しない。
+
+### 9.1 宣言項目への候補対応
+
+既存declarationの項目だけを使う。次の値はunit候補を識別して後続設計を具体化するための案であり、現在mainに宣言・登録済みのunit、owner、依存、収載を意味しない。
+
+| 既存 declaration 項目 | INFRA Stage 1候補 | 状態と境界 |
+|---|---|---|
+| `kind` / `identity` | `unit` / `infrastructure-stage1` | identity候補。小文字ASCIIとハイフンだけのため、既存`enc(identity)`で`infrastructure-stage1`になる。採用済み・登録済みのidentityではない。 |
+| `version` / `maturity` | 未選択 | 実装対象revisionを決めていないため値を作らない。製品版・Stage番号から推測しない。 |
+| `owner kind` / `owner identity` | 未選択 | L4の責務境界に対応する宣言ownerが未確定。機構名だけからowner identityを作らない。 |
+| `input` / `output` contract | 本書§4の既存6 APIと、L6が固定するfunction境界への参照候補 | fieldの意味をdeclarationへ複製しない。`bind_inventory_inputs`のK2 `operation` / `operation_version` / `subject`選択、FN-05のINFRA `kind`から既存`OperationDecl` actionへのbindingは未決のままとする。 |
+| `dependency type` / `identity` / `version` | CPython標準実行環境 `>=3.11` を外部実行接続欄へ置く技術候補 | L6のPython 3.11+候補を既存dependency項目で表すだけで、親要求・確定toolchain・登録runtimeではない。個別標準libraryや新しいdependency typeを追加しない。HELIX pack依存は未選択。 |
+| `verification scope` / `oracle` | 本書§4、L6/L7の対象API・test locatorと、既存L8/L9参照候補 | L3/L10の固定範囲を参照する。declarationへfixture本文を複製せず、実行・合格を主張しない。 |
+| `inclusion` / `exclusion` | 未選択 | 2親のStage 1範囲と、packとしての収載範囲は別である。release-unit declarationの候補集合とowner宣言が解決するまで値を作らない。 |
+
+上表はrepository-layout L4 §3.1に既に列挙されたdeclaration項目の対応案であり、JSON field、schema、registration ruleを追加しない。Common Kernel L5 §7.1の候補値記述、§7.2のunit/source/tests/fixtures配置、§7.3の宣言bytesとledger registrationの区別を参照し、CKのidentity/version/owner値やK5 `ModelNumberDeclared` / `VersionRegistered`をINFRAへ流用しない。
+
+### 9.2 source・test配置候補
+
+unit候補のidentityを上記のとおり仮置きした場合、`enc(infrastructure-stage1)`の配下へ次を置く案とする。これはpath selectionを具体化する候補であり、treeに当該物が存在するという主張ではない。
+
+| 候補locator | 役割 | 固定する範囲 |
+|---|---|---|
+| `helix/helix-infrastructure/units/infrastructure-stage1/declaration.json` | unit宣言の唯一の候補正本 | 既存宣言項目だけ。本文/field未選択は未確定のまま。 |
+| `helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py` | FN-01–07候補のsource module | pure projection/照合候補。source reader、OS/SECURITY/CONNECT adapter、K5 writer、physical operationを置かない。 |
+| `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py` | L7の個別unit test候補 | 合成入力のunit tests。moduleと同じ宣言済みunit root配下へ限定する。 |
+| `helix/helix-infrastructure/units/infrastructure-stage1/fixtures/` | L8が参照するsynthetic input候補 | 合成dataのみ。実resource、credential、実行recordを置かない。 |
+
+配置根拠はrepository-layout L4 §2/§3.1のmechanism/unit pathとdeclaration source-of-truth、Common Kernel L5 §7.2のpack/source/tests/fixtures分離である。`helix/helix-infrastructure`は既存機構名に対応する候補の親directoryであり、`infrastructure-stage1`はこの候補単位のidentityである。対象main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`にINFRA unit、declaration、root `declarations/`またはmodel-number registration bytesは存在しない。ディレクトリ一覧からinventory・owner・登録・usableを生成しない。
+
+### 9.3 固定参照とregistrationの境界
+
+実装対象declarationのsource identityは既存`SubjectRef`（`kind`、`identity`、`revision`、`digest`）で固定し、repository tree内のpathは別のlocatorとして扱う。L6/L7側は対象revisionのtreeからlocator先bytesを読み、bytesのSHA-256を`SubjectRef.digest`と照合した後にのみ、宣言内identityと`enc(identity)`で求めたunit directoryの一致を確認する。pathは`SubjectRef`のfieldではなくrepository-layout RL-C4どおり照合用locatorに限る。Common Kernel K5の`FixedRef`（`store`、`locator`、`digest`）は保存・証拠参照の型であり、このsource `SubjectRef`とは別の契約である。moduleやtestをtree走査で選ばない。bytes digest不一致または宣言identityとlocatorの不一致を、path名だけで補正しない。
+
+この`SubjectRef`＋独立tree locatorはsource selection用のbytes bindingであり、型番台帳の登録証拠ではない。declaration候補の内容とpathを対応づけても、K5のmodel-number-ledgerへの登録・packでの使用可能性は導かれない。登録有無、`ModelNumberDeclared` / `VersionRegistered`のowner segment、version、宣言owner、収載範囲は未解決であり、Common Kernel L5 §7.3のbootstrap/registration手順をINFRAの実在手続きとして扱わない。宣言bytesと登録事実が固定されるまでは、unitはcandidateのまま、pack usabilityは未判定である。既存L4のRL-C2–C5だけを適用し、L9へ新しいparent/verifier/gateを追加しない。
