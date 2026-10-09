@@ -9,7 +9,7 @@ status: draft_candidate
 authority_status: draft_candidate
 stage: 1
 paired_l6: ../L6-function-design/stage1-brain.md
-paired_l6_sha256: b2c8d9d5a819bfa95638ef6fc838a3a189d5d3853de1f29c4c5f3ddd7f55dec7
+paired_l6_sha256: 824c12c6d6559203ac98e4df99a0bd8aa532607c9e7fc3c1b15abd09532f03df
 paired_l8: ../L8-detail-verification/stage1-brain-detail-verification.md
 paired_l8_sha256: 7f1e074b5bd53f3bb41b8114a4d65265cf85e3bd47bb7bd8f23aa027951a8afa
 ---
@@ -190,4 +190,24 @@ L8 §2.1の3組は同一fixture mutationを複数L9 oracleへ参照する。104�
 
 ## 6. 実行状態と未解決
 
-104 locator行はL8定義への設計traceであり、104個の独立mutationや実行test数ではなく、全て未実行。projection 21件とlookup保持候補25件も、現行実装やL9合格を意味しない。source member 6、adoption 2、comparator 12、descriptor member 19、API不在構造4は局所hold、NFR 7は未測定である。K2拒否とK1結果分類は既存CK契約へ戻し、BRAIN独自分類を作らない。新しい承認、gate、owner、API、reasonを追加しない。旧CLI、archive内runtime/test/CI、Bunは実行していない。
+104 locator行はL8定義への設計traceであり、104個の独立mutationや実行test数ではない。以下のsource-only候補について13件の`unittest` methodを実行したが、L8/L9 fixture全体、production reader、L9 oracleは実行していない。projection 21件とlookup保持候補25件の正式分類は変更しない。source member 6、adoption 2、comparator 12、descriptor member 19、API不在構造4は局所hold、NFR 7は未測定である。K2拒否とK1結果分類は既存CK契約へ戻し、BRAIN独自分類を作らない。新しい承認、gate、owner、API、reasonを追加しない。旧CLI、archive内runtime/test/CI、Bunは実行していない。
+
+## 7. 局所source候補の実行trace
+
+次の試験は`helix/helix-brain/units/stage1-brain/tests/test_brain.py`にあるsource-only候補の合成unit testである。正式UT locator IDはL8への既存traceであり、ここへの対応は当該L8 oracle全体の充足・L9 pass・owner接続を意味しない。1つのPython test内のsubTestはformal IDや独立実行数へ加算しない。
+
+| 実行method | L7 formal locator / L8定義との部分trace | 実際にassertすること | formal oracleに残る未実施事項 |
+|---|---|---|---|
+| `test_trace_source_projects_each_declared_field_and_keeps_owner_roles` | `UT-BRAIN-001`。field保持の部分候補 | baselineの8 top-level fieldが一致し、4 owner observationがroleを保つ。 | L8正常条件全体、owner sourceのcurrentness/真正性、source truthやadoptionは未検査。 |
+| `test_trace_source_preserves_k1_variants_without_reclassifying_other_fields` | `UT-BRAIN-008`–`018`、`UT-BRAIN-021`–`029`へのfield projection部分trace | 7 top-level Observed fieldごとにValue/Unknown/Unobserved/NotApplicable/Staleを入力し、対象fieldのobjectと他fieldが変わらず保持される。 | 各L8のdomain-specific mutation/owner判断、ProvenanceRef内source identity/revision member 6件、descriptor memberの意味比較は未検査。 |
+| `test_trace_source_keeps_owner_observations_in_their_own_fields` | `UT-BRAIN-023`–`026`へのowner-field保持部分trace | 4 owner fieldそれぞれへK1 variantを与え、同名fieldに保持し他owner fieldを差し替えない。 | owner recordの実読、正当性、routing、採用判定は未検査。 |
+| `test_read_knowledge_returns_exact_k2_lookup_value` / `test_read_knowledge_keeps_each_declared_state_payload` | `UT-BRAIN-030`、`042`–`045`、`048`–`056`へのlookup payload部分trace | exact K2 keyで保存Valueを得た場合のK2戻り値保持。列挙された5 stateはrecord payload内で不変である。 | OS project-use、BRAIN state遷移、current owner reader、および各L8の別要件は未検査。 |
+| `test_read_knowledge_preserves_k2_no_match` | `UT-BRAIN-034` | K2の`Unobserved(not_run)`をそのまま返す。 | 保存sourceの完全読取やK5 caller接続は未検査。 |
+| `test_read_knowledge_preserves_saved_unknown_observation` / `test_read_knowledge_keeps_nested_version_unknown_in_record_value` / `test_read_knowledge_keeps_nested_state_unknown_in_record_value` | `UT-BRAIN-035`–`036`、`048`–`049`への結果保持部分trace | 保存結果のUnknownとValue payload内のversion/state UnknownをK2 lookup経由で保持する。 | Unknownのsource別reason mappingやcurrent owner resolutionは未検査。 |
+| `test_read_knowledge_preserves_same_key_content_conflict` | `UT-BRAIN-038` | exact同一keyで異なる結果digestを持つK2 recordsの`Unknown(conflict)`を保持する。 | BRAIN固有のconflict policyやsource内容の真正性は未検査。 |
+| `test_read_knowledge_preserves_prior_value_as_k2_stale` / `test_read_knowledge_does_not_mutate_restored_records` | `UT-BRAIN-039` | prior revisionのValueに対するK2 `Stale`とrecord bytes不変を保持する。 | current reader、K5 restore、product-side更新動作は未検査。 |
+| `test_read_knowledge_preserves_prior_nonvalue_as_k2_unobserved` | `UT-BRAIN-041` | prior revisionのUnknown recordからK2が返す`Unobserved(not_run, superseded=key_digest)`を保持する。 | K5 restore非Valueを受けたcallerの短絡は未検査。 |
+
+次のlocatorはこのsource候補から実行していない。K2 `key_of`拒否は既存K2所有のため重複実装しない（`UT-BRAIN-031`–`033`、`046`–`047`、`059`）。K5 restore非Valueのcaller短絡はBRAIN production call site未接続のためholdする（`UT-BRAIN-037`、`040`）。`compare_compatibility`、adoption、descriptor member、lifecycle no-call oracleは引き続きowner返却または構造hold（`UT-BRAIN-019`–`020`、`057`–`097`）。NFR locator `UT-BRAIN-098`–`104`は未測定である。
+
+試験コマンドは`PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s helix/helix-brain/units/stage1-brain/tests -v`。実行時点で13 test methodsが通過した。source-only candidateの配置には`declaration.json`、型番、version、owner登録がなく、正式pack、登録済み依存、production接続として数えない。

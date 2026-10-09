@@ -122,4 +122,19 @@ NFR数値・coverage値はL3/L10のcandidate measurementであり、このL6にt
 - `compare_compatibility`のcomparator/result producer、descriptor member reader/encoding、Applicable payloadとK1 result mappingは局所未決。これらを埋めるまでcompare結果のunit oracleはhold。
 - 製品module path/declaration/owner bootstrapはこのpairで確定しない。後続実装に登録済みidentityやL10 test executionを仮定しない。
 
-このL6は関数設計案であり、実装、source owner connection、test run、L9/L10合格、L3再承認を示さない。
+このL6の設計statusはdraft_candidateのままである。以下は局所source候補の実装のみを示し、source owner connection、正式L8/L9/L10合格、L3再承認を示さない。
+
+## 7. 局所source候補の実装状態
+
+次のsource-only候補はL5で定めた公開関数のうち、既存観測のfieldwise保持と既存K2 lookupへの委譲だけを実装する。これは登録済みpackではない。`declaration.json`、型番、version、owner登録、依存登録は無く、repository-layout RL-C3を満たした利用可能packとも数えない。現owner reader、source currentness/truth、採用判断、descriptor comparatorは接続していない。
+
+| 候補path | 実装した契約 | 未接続境界 |
+|---|---|---|
+| `helix/helix-brain/units/stage1-brain/src/brain.py` | L5 `BrainSourceTraceInput`と`BrainSourceTrace`の既存field shapeを局所dataclassで表現し、`trace_source`は各入力Observedを対応fieldへそのまま投影する。`read_knowledge`は渡されたexact `ResultKey`とK5 restore済みrecord列をCommon Kernelの既存`lookup`へ渡し、その戻り値をそのまま返す。 | 入力の生成元、owner declaration/current reader、K2 `key_of`・K5 `restore`のproduction caller、K3 permissionやK6 receiptは未接続。`compare_compatibility`は実装せず、公開API結果を生成しない。 |
+| `helix/helix-brain/units/stage1-brain/tests/test_brain.py` | 合成入力に限り、field/owner別のObserved保持とK2 lookupのValue/Unknown/Unobserved/Stale結果保持を検査する。 | L8 formal fixture一式、production reader、descriptor comparator、adoption、NFR測定の実行ではない。 |
+
+この実装候補の固定source bytesは`brain.py` SHA-256 `b2b856c3073d7a51e594362de3eaff9af7b76b6e9af6633fd214d2f3e8a05cce`、test bytesは`test_brain.py` SHA-256 `7d31e48e27ba5e680d39ff9266beb08fc9327c7a04aee5b7b4de71a321d4bf48`である。L7 §7に記したunit commandの実行はこのcandidate bytesだけを対象にし、L8/L9 system fixtureを実行したものではない。
+
+CPython 3.11+標準ライブラリと`unittest`を用いる。既存Common Kernel sourceへのimportはこの未登録source候補をローカルで確かめるためだけのもので、pack dependency declaration/registrationが存在することを意味しない。実装とtestは合成のK1/K2値を使い、旧source/runtimeは実行しない。
+
+実際に検査できた局所候補の範囲は対L7 §7に記録する。`trace_source`は値の投影であり、sourceを実読したこと、ProvenanceRef memberの解釈、owner recordの真正性、adoptionの可否をassertしない。`read_knowledge`はK2の結果を変更しないlookup委譲であり、照会keyの生成、K5 restore非Valueのcaller短絡、保存sourceの実読をassertしない。L8/L9の正式oracleの充足状態は更新しない。
