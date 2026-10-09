@@ -3,7 +3,7 @@
 status: draft_for_independent_review
 owner: HELIX-BRAIN
 paired_l8: ../L8-detail-verification/stage1-brain-detail-verification.md
-base: main `5c65aedbceab624cb6a5e276efb83519fd570461`
+base: main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
 current_main_observed: origin/main `5c65aedbceab624cb6a5e276efb83519fd570461`（L5/L8先行分割時に観測）
 source_pair_base_candidate_commit: `eb3b52444093f0de6491d4f1b707132670afb9e4`（編集開始時の候補。編集開始時の比較基準）
 
