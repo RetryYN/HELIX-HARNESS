@@ -2423,7 +2423,7 @@
               ]
             },
             {
-              "literal": "helper `SUP-CK-K9-001` callable一件だけを欠落させる（L8 `CASE-L8-LCI-142`）",
+              "literal": "合成target bytesから当該callableだけを除く（full source pin付き経路のsource bytesは変更しない）（L8 `CASE-L8-LCI-142`）",
               "ids": [
                 "CASE-L8-LCI-142"
               ]
@@ -2558,7 +2558,7 @@
               ]
             },
             {
-              "literal": "helper103 identity完全性",
+              "literal": "固定expected set/digestと全required refを保持する",
               "ids": [
                 "LC-STAGE1-L7-001"
               ]

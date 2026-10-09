@@ -15,7 +15,9 @@ import target as target_module
 import design_check
 from common import CHECK_IDS, Diagnostic, canonical_bytes
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
-from source_l7_runner import CURRENT_DESIGN_PATHS
+from source_l7_runner import (CURRENT_DESIGN_PATHS, SUPPLEMENTAL_DESIGN_PATHS, HELPER_DESIGN_PATHS,
+                              SOURCE_SHA256, SUPPLEMENTAL_SOURCE_SHA256, HELPER_SOURCE_SHA256)
+from common import sha256
 
 
 BASE = "a" * 40
@@ -31,13 +33,19 @@ class FakeReader:
     instances = []
     manifest_data = MANIFEST
     portable = None
+    corrupt_path = None
 
     def __init__(self, repo, executable, identity):
         self.identity = identity
         self.calls = []
         self.blob_calls = []
         self.sources = {path: ("synthetic:" + path).encode() for path in CHECKER_PATHS}
-        self.sources.update({path: ("synthetic:" + path).encode() for path in CURRENT_DESIGN_PATHS})
+        self.sources.update({path: ("synthetic:" + path).encode()
+                             for path in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS,
+                                          *HELPER_DESIGN_PATHS)})
+        repository = Path(provider.__file__).resolve().parents[2]
+        for path in {**SOURCE_SHA256, **SUPPLEMENTAL_SOURCE_SHA256, **HELPER_SOURCE_SHA256}:
+            self.sources[path] = (repository / path).read_bytes()
         self.sources["scaffold/local-ci/config.json"] = canonical_bytes(type(self).portable)
         self.sources[MANIFEST_PATH] = type(self).manifest_data
         self.sources[LEDGER_PATH] = b"synthetic ledger\n"
@@ -47,9 +55,14 @@ class FakeReader:
     def entries(self, tree):
         return {"synthetic": "tree"}
 
-    def blob(self, entries, path):
+    def blob(self, entries, path, expected=None):
         self.blob_calls.append(path)
-        return self.sources[path]
+        value = self.sources[path]
+        if path == type(self).corrupt_path:
+            value = value + b"corrupt"
+        if expected is not None and sha256(value) != expected:
+            raise Diagnostic("Unknown", "conflict", "synthetic fixed blob digest mismatch")
+        return value
 
     def invoke(self, *argv):
         self.calls.append(argv)
@@ -60,6 +73,7 @@ class ProviderTests(unittest.TestCase):
     def setUp(self):
         FakeReader.instances.clear()
         FakeReader.manifest_data = MANIFEST
+        FakeReader.corrupt_path = None
         self.portable = json.loads(Path(provider.__file__).with_name("config.json").read_bytes())
         self.portable["executables"]["provider_git"] = {
             "name": "git", "version": "2.55.0", "sha256": "f" * 64}
@@ -159,6 +173,17 @@ class ProviderTests(unittest.TestCase):
         self.assertEqual((raised.exception.classification, raised.exception.reason),
                          ("Rejected", "invalid_input"))
         self.assertEqual(FakeReader.instances[-1].calls, [])
+
+    def test_fixed_code_or_test_blob_drift_is_rejected_before_diff(self):
+        path = next(iter(HELPER_SOURCE_SHA256))
+        FakeReader.corrupt_path = path
+        with self.assertRaises(Diagnostic) as raised:
+            provider.run_merge_unit_verifier("unused", BASE, HEAD, self.receipt_bytes())
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Unknown", "conflict"))
+        reader = FakeReader.instances[-1]
+        self.assertIn(path, reader.blob_calls)
+        self.assertEqual(reader.calls, [])
 
     def test_malformed_manifest_rows_are_rejected_before_source_collection_or_diff(self):
         for manifest in (
@@ -279,11 +304,18 @@ class ProviderTests(unittest.TestCase):
             manifest_path = repo / MANIFEST_PATH
             manifest_path.parent.mkdir(parents=True, exist_ok=True)
             manifest_path.write_bytes(canonical_bytes({"version": "1", "files": [], "legacy_pins": []}))
-            for path in (*CHECKER_PATHS, *CURRENT_DESIGN_PATHS, LEDGER_PATH, CONTRACT_PATH):
+            for path in (*CHECKER_PATHS, *CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS,
+                         *HELPER_DESIGN_PATHS, LEDGER_PATH, CONTRACT_PATH):
                 source = repo / path
                 source.parent.mkdir(parents=True, exist_ok=True)
                 if not source.exists():
                     source.write_bytes(("synthetic source: " + path + "\n").encode())
+            source_root = Path(provider.__file__).resolve().parents[2]
+            for path in {**SOURCE_SHA256, **SUPPLEMENTAL_SOURCE_SHA256,
+                         **HELPER_SOURCE_SHA256}:
+                source = repo / path
+                source.parent.mkdir(parents=True, exist_ok=True)
+                source.write_bytes((source_root / path).read_bytes())
             tracked = repo / "tracked.txt"
             tracked.write_text("base\n", encoding="utf-8")
             git("add", ".")

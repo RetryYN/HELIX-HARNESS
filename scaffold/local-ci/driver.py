@@ -17,9 +17,13 @@ from runner import run_step, validate_runtime_config
 from source_l7_runner import (EXPECTED_DISCOVERY_COUNT, EXPECTED_DISCOVERY_IDS,
                               EXPECTED_DISCOVERY_IDS_SHA256, CORE_EXPECTED_DISCOVERY_IDS,
                               CORE_EXPECTED_DISCOVERY_COUNT, CORE_EXPECTED_DISCOVERY_IDS_SHA256,
+                              MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS,
+                              MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256,
+                              MECHANISM_HELPER_IDENTITIES,
                               SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS, SUPPLEMENTAL_IDS,
                               SUPPLEMENTAL_IDS_SHA256, SUPPLEMENTAL_SOURCE_SHA256,
                               SUPPLEMENTAL_DESIGN_PATHS, SUPPLEMENTAL_SOURCE_REFS,
+                              HELPER_SOURCE_SHA256, HELPER_DESIGN_PATHS,
                               FIXED_TEST_MODULES, validate_fixed_test_ast_inventory,
                               FORMAL_MAPPING, FORMAL_MAPPING_SHA256, SOURCE_SHA256,
                               CURRENT_DESIGN_PATHS, SUITE_ID, l7_formal_ids_present,
@@ -139,13 +143,18 @@ def _validate_suite_result(payload, target, source_refs, execution, source_bytes
         raise Diagnostic("Unknown", "conflict", "executed suite identities differ from the fixed inventory")
     core_discovered = sorted(set(discovered) & set(CORE_EXPECTED_DISCOVERY_IDS))
     supplemental_discovered = sorted(set(discovered) & set(SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS))
+    helper_discovered = sorted(set(discovered) & set(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS))
     core_executed = sorted(set(executed) & set(CORE_EXPECTED_DISCOVERY_IDS))
     supplemental_executed = sorted(set(executed) & set(SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS))
+    helper_executed = sorted(set(executed) & set(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS))
     if (tuple(core_discovered) != CORE_EXPECTED_DISCOVERY_IDS
             or tuple(core_executed) != CORE_EXPECTED_DISCOVERY_IDS
             or len(supplemental_discovered) != len(SUPPLEMENTAL_IDS)
-            or len(supplemental_executed) != len(SUPPLEMENTAL_IDS)):
-        raise Diagnostic("Unknown", "conflict", "Core/supplemental partition identities are inconsistent")
+            or len(supplemental_executed) != len(SUPPLEMENTAL_IDS)
+            or tuple(helper_discovered) != MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS
+            or tuple(helper_executed) != MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS):
+        raise Diagnostic("Unknown", "conflict",
+                         "Core/product-supplemental/mechanism-helper partition identities are inconsistent")
     outcome_ids = []
     for count_key, ids_key in (("failure_count", "failed_ids"), ("error_count", "error_ids"),
                                ("skip_count", "skipped_ids"),
@@ -184,23 +193,31 @@ def _validate_suite_result(payload, target, source_refs, execution, source_bytes
                 "discovered_test_ids": discovered, "executed_test_ids": executed,
                 "core_discovered_test_ids": core_discovered,
                 "core_executed_test_ids": core_executed,
-                "supplemental_ids": list(SUPPLEMENTAL_IDS),
-                "supplemental_discovered_test_ids": supplemental_discovered,
-                "supplemental_executed_test_ids": supplemental_executed,
+                "product_supplemental_ids": list(SUPPLEMENTAL_IDS),
+                "product_supplemental_discovered_test_ids": supplemental_discovered,
+                "product_supplemental_executed_test_ids": supplemental_executed,
+                "mechanism_helper_ids": [row[0] for row in MECHANISM_HELPER_IDENTITIES],
+                "mechanism_helper_discovered_test_ids": helper_discovered,
+                "mechanism_helper_executed_test_ids": helper_executed,
                 "mechanism_l7_source_trace": mechanism_trace,
                 "partition_evidence": {
                     "core": {"discovered_count": len(core_discovered),
                              "discovered_ids_sha256": _identity_digest(core_discovered),
                              "executed_count": len(core_executed),
                              "executed_ids_sha256": _identity_digest(core_executed)},
-                    "supplemental": {"discovered_count": len(supplemental_discovered),
-                                     "discovered_ids_sha256": _identity_digest(supplemental_discovered),
-                                     "executed_count": len(supplemental_executed),
-                                     "executed_ids_sha256": _identity_digest(supplemental_executed)},
+                    "product_supplemental": {"discovered_count": len(supplemental_discovered),
+                                             "discovered_ids_sha256": _identity_digest(supplemental_discovered),
+                                             "executed_count": len(supplemental_executed),
+                                             "executed_ids_sha256": _identity_digest(supplemental_executed)},
+                    "mechanism_helper": {"discovered_count": len(helper_discovered),
+                                         "discovered_ids_sha256": _identity_digest(helper_discovered),
+                                         "executed_count": len(helper_executed),
+                                         "executed_ids_sha256": _identity_digest(helper_executed)},
                 },
                 "core_discovery_count": CORE_EXPECTED_DISCOVERY_COUNT,
                 "core_discovery_ids_sha256": CORE_EXPECTED_DISCOVERY_IDS_SHA256,
                 "supplemental_expected_ids_sha256": SUPPLEMENTAL_IDS_SHA256,
+                "mechanism_helper_expected_discovery_ids_sha256": MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256,
                 "composite_discovery_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
                 "discovered_ids_sha256": _identity_digest(discovered),
                 "executed_ids_sha256": _identity_digest(executed),
@@ -330,9 +347,12 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
             for source_path, expected_digest in sorted(SUPPLEMENTAL_SOURCE_SHA256.items()):
                 data = reader.blob(entries, source_path, expected_digest)
                 additions[source_path] = data
+            for source_path, expected_digest in sorted(HELPER_SOURCE_SHA256.items()):
+                data = reader.blob(entries, source_path, expected_digest)
+                additions[source_path] = data
             validate_fixed_test_ast_inventory({path: additions[path]
                                                for _alias, path in FIXED_TEST_MODULES})
-            for source_path in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS):
+            for source_path in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS, *HELPER_DESIGN_PATHS):
                 additions[source_path] = reader.blob(entries, source_path)
             l7_path = CURRENT_DESIGN_PATHS[1]
             if not l7_formal_ids_present(additions[l7_path]):
@@ -434,7 +454,8 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
                          contract_ref=contract_ref, structure_complete=report["structure_complete"],
                          plan_expected=plan,
                          source_l7_refs=[ref for ref in suite_refs
-                                         if ref["identity"] in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS)])
+                                         if ref["identity"] in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS,
+                                                                 *HELPER_DESIGN_PATHS)])
         write_receipt(receipt, receipt_path, repo)
         return receipt
     finally:

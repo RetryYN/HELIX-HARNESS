@@ -6,6 +6,7 @@ runner.py's sandbox; stdout is a bounded, untrusted result frame for the parent.
 from __future__ import annotations
 import contextlib
 import ast
+from contextlib import contextmanager
 import importlib.util
 import io
 import json
@@ -46,6 +47,30 @@ SUPPLEMENTAL_DESIGN_PATHS = (
     "docs/helix-infrastructure/L6-function-design/stage1-infrastructure.md",
     "docs/helix-infrastructure/L7-unit-test-design/stage1-infrastructure-unit-test-design.md",
 )
+HELPER_SOURCE_SHA256 = {
+    'helix/helix-harness/units/common-kernel/src/_k4_g3.py': '693b8a22b92f57f9a3427e8550f5cf039258e902c5a6fb2020b46926a7b08a8a',
+    'helix/helix-security/units/stage1-security/src/projection.py': '250f7318c73f2e3133aa60f77643fba983dfad9bec262a62065c4cc11811d799',
+    'helix/helix-connect/units/connect-stage1/src/connection_contract.py': 'e98e09c1eaa2b20c17891dfa0c2c1d1fb7510eeef3d53880847cfd02c3dcbd72',
+    'helix/helix-harness/units/common-kernel/src/_k7_g5_private.py': 'e13bff0ec554ab8a244949e3f318c86c00e88556ca9286fca51bd409c9b5917c',
+    'helix/helix-harness/units/common-kernel/src/_k9_private.py': '0dfa4865ce839727aa77bcd96d638b850bc91cb484b0c6e4d32539d947157be2',
+    'helix/helix-harness/units/common-kernel/src/_k10_graph.py': 'fe48cb7f1ada152d96420c7264300f8533a68682e330e9c8578bc84d32250bfc',
+    'helix/helix-harness/units/common-kernel/src/_k8_label.py': 'eb0cf6439172ede0164be6e68679eb500e3ae9445c34e5a01b0fce9c18f867ac',
+    'helix/helix-infrastructure/units/infrastructure-stage1/src/_private_resource_projection.py': 'f06c193f403cda7478e2195d36d1c0b7e97600bbef8a44565ced883a65c039bb',
+    'helix/helix-harness/units/common-kernel/tests/test_k4_g3_private_helpers.py': '13b502cc5de90df3a16c53225ef40e4243a28a704bd04e9a9d769f768bf8bf1a',
+    'helix/helix-security/units/stage1-security/tests/test_projection.py': '45797b347d6edde5a87c6525bc30d5cf5cf21faae145a5ca5ddfe4581e12f8d1',
+    'helix/helix-connect/units/connect-stage1/tests/test_connection_contract.py': '19f9efdba21ca5965f78a30ae43ed08e29adccfb98d673fe96a150bbb119a04e',
+    'helix/helix-harness/units/common-kernel/tests/test_k7_g5_private.py': '32aebb1851310f7938dd5cbf056f0041f5caafd26a2db8b1737fe5fb6f200ff9',
+    'helix/helix-harness/units/common-kernel/tests/test_k9_private.py': '4250bf09434833b5e317a513f7ccd70ab3e4d6a9aabf6d551f1845be2c802415',
+    'helix/helix-harness/units/common-kernel/tests/test_k10_graph.py': 'f58048ca009c390dcc33efa3e7202165fa48100dba52906114f85a1e5102414c',
+    'helix/helix-harness/units/common-kernel/tests/test_k8_label.py': '6804c46a277e6d57fa7682cdadd94ed52107e3089db7a61d318cca6bcd07b842',
+    'helix/helix-infrastructure/units/infrastructure-stage1/tests/test_resource_projection.py': 'c57ef11a6c32d226880d7fc9e44de553cdd38410cacd3fd19812000deeebc768',
+}
+HELPER_DESIGN_PATHS = (
+    "docs/helix-security/L6-function-design/stage1-security.md",
+    "docs/helix-security/L7-unit-test-design/stage1-security-unit-test-design.md",
+    "docs/helix-connect/L6-function-design/stage1-connect.md",
+    "docs/helix-connect/L7-unit-test-design/stage1-connect-unit-test-design.md",
+)
 
 # Fixed aliases are independent from the source module's importable name.
 SUPPLEMENTAL_MODULES = (
@@ -54,6 +79,20 @@ SUPPLEMENTAL_MODULES = (
     ("l7_sup_harness_test_stage1_pack", "helix/helix-harness/units/harness-stage1/tests/test_stage1_pack.py"),
     ("l7_sup_infra_test_infrastructure", "helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py"),
 )
+MECHANISM_HELPER_MODULES = (
+    ('l7_sup_ck_test_k4_g3_private_helpers', 'helix/helix-harness/units/common-kernel/tests/test_k4_g3_private_helpers.py'),
+    ('l7_sup_security_test_projection', 'helix/helix-security/units/stage1-security/tests/test_projection.py'),
+    ('l7_sup_connect_test_connection_contract', 'helix/helix-connect/units/connect-stage1/tests/test_connection_contract.py'),
+    ('l7_sup_ck_test_k7_g5_private', 'helix/helix-harness/units/common-kernel/tests/test_k7_g5_private.py'),
+    ('l7_sup_ck_test_k9_private', 'helix/helix-harness/units/common-kernel/tests/test_k9_private.py'),
+    ('l7_sup_ck_test_k10_graph', 'helix/helix-harness/units/common-kernel/tests/test_k10_graph.py'),
+    ('l7_sup_ck_test_k8_label', 'helix/helix-harness/units/common-kernel/tests/test_k8_label.py'),
+    ('l7_sup_infra_test_resource_projection', 'helix/helix-infrastructure/units/infrastructure-stage1/tests/test_resource_projection.py'),
+)
+HELPER_PROJECTION_SOURCES = {
+    "l7_sup_labo_test_projection": "helix/helix-labo/units/stage1-labo/src/projection.py",
+    "l7_sup_security_test_projection": "helix/helix-security/units/stage1-security/src/projection.py",
+}
 FIXED_TEST_MODULES = (
     ("test_k1", "helix/helix-harness/units/common-kernel/tests/test_k1.py"),
     ("test_k2", "helix/helix-harness/units/common-kernel/tests/test_k2.py"),
@@ -61,6 +100,7 @@ FIXED_TEST_MODULES = (
     ("test_k5", "helix/helix-harness/units/common-kernel/tests/test_k5.py"),
     ("test_k6", "helix/helix-harness/units/common-kernel/tests/test_k6.py"),
     *SUPPLEMENTAL_MODULES,
+    *MECHANISM_HELPER_MODULES,
 )
 SUPPLEMENTAL_IDENTITIES = (
     ("SUP-BRAIN-001", "BRAIN", "l7_sup_brain_test_brain", "BrainProjectionTests.test_trace_source_projects_each_declared_field_and_keeps_owner_roles"),
@@ -91,10 +131,118 @@ SUPPLEMENTAL_IDENTITIES = (
     ("SUP-INFRA-004", "INFRA", "l7_sup_infra_test_infrastructure", "TestImplementedProjections.test_path_storage_projection_treats_owner_keys_as_opaque"),
     ("SUP-INFRA-005", "INFRA", "l7_sup_infra_test_infrastructure", "TestImplementedProjections.test_nfr_helper_counts_supplied_states_and_keeps_missing_denominator"),
 )
+MECHANISM_HELPER_IDENTITIES = (
+    ('SUP-CK-K4-G3-001', 'l7_sup_ck_test_k4_g3_private_helpers.DispositionCompletenessTests.test_deferred_requires_each_existing_field'),
+    ('SUP-CK-K4-G3-002', 'l7_sup_ck_test_k4_g3_private_helpers.DispositionCompletenessTests.test_not_applicable_requires_each_existing_field'),
+    ('SUP-CK-K4-G3-003', 'l7_sup_ck_test_k4_g3_private_helpers.HandoffDeltaTests.test_extra_completed_id_is_unregistered_delta'),
+    ('SUP-CK-K4-G3-004', 'l7_sup_ck_test_k4_g3_private_helpers.HandoffDeltaTests.test_matching_unfinished_and_digest_pairs'),
+    ('SUP-CK-K4-G3-005', 'l7_sup_ck_test_k4_g3_private_helpers.HandoffDeltaTests.test_missing_new_set_inherited_record'),
+    ('SUP-CK-K4-G3-006', 'l7_sup_ck_test_k4_g3_private_helpers.HandoffDeltaTests.test_missing_new_set_unfinished_id'),
+    ('SUP-CK-K4-G3-007', 'l7_sup_ck_test_k4_g3_private_helpers.HandoffDeltaTests.test_missing_old_set_inherited_record'),
+    ('SUP-CK-K4-G3-008', 'l7_sup_ck_test_k4_g3_private_helpers.HandoffDeltaTests.test_missing_old_set_unfinished_id'),
+    ('SUP-CK-K4-G3-009', 'l7_sup_ck_test_k4_g3_private_helpers.HandoffDeltaTests.test_new_set_record_digest_pair_mismatch'),
+    ('SUP-CK-K4-G3-010', 'l7_sup_ck_test_k4_g3_private_helpers.HandoffDeltaTests.test_old_set_record_digest_pair_mismatch'),
+    ('SUP-CK-K4-G3-011', 'l7_sup_ck_test_k4_g3_private_helpers.ObligationIdDeltaTests.test_empty_set_does_not_get_a_private_positive_result'),
+    ('SUP-CK-K4-G3-012', 'l7_sup_ck_test_k4_g3_private_helpers.ObligationIdDeltaTests.test_exact_set_has_no_delta'),
+    ('SUP-CK-K4-G3-013', 'l7_sup_ck_test_k4_g3_private_helpers.ObligationIdDeltaTests.test_missing_set_member_is_reported_without_fabricating_result'),
+    ('SUP-CK-K4-G3-014', 'l7_sup_ck_test_k4_g3_private_helpers.ObligationIdDeltaTests.test_unregistered_view_member_is_reported'),
+    ('SUP-SECURITY-001', 'l7_sup_security_test_projection.ExplicitReferenceComparisonTests.test_fixed_ref_all_fields_equal'),
+    ('SUP-SECURITY-002', 'l7_sup_security_test_projection.ExplicitReferenceComparisonTests.test_fixed_ref_digest_mismatch'),
+    ('SUP-SECURITY-003', 'l7_sup_security_test_projection.ExplicitReferenceComparisonTests.test_fixed_ref_locator_mismatch'),
+    ('SUP-SECURITY-004', 'l7_sup_security_test_projection.ExplicitReferenceComparisonTests.test_fixed_ref_store_mismatch'),
+    ('SUP-SECURITY-005', 'l7_sup_security_test_projection.ExplicitReferenceComparisonTests.test_subject_ref_all_fields_equal'),
+    ('SUP-SECURITY-006', 'l7_sup_security_test_projection.ExplicitReferenceComparisonTests.test_subject_ref_digest_mismatch'),
+    ('SUP-SECURITY-007', 'l7_sup_security_test_projection.ExplicitReferenceComparisonTests.test_subject_ref_identity_mismatch'),
+    ('SUP-SECURITY-008', 'l7_sup_security_test_projection.ExplicitReferenceComparisonTests.test_subject_ref_kind_mismatch'),
+    ('SUP-SECURITY-009', 'l7_sup_security_test_projection.ExplicitReferenceComparisonTests.test_subject_ref_revision_mismatch'),
+    ('SUP-SECURITY-010', 'l7_sup_security_test_projection.ProjectionPreservationTests.test_projection_preserves_existing_result_objects_and_all_slots'),
+    ('SUP-CONNECT-001', 'l7_sup_connect_test_connection_contract.ObservationSlotProjectionTests.test_all_existing_k1_nonvalues_remain_opaque_slots'),
+    ('SUP-CONNECT-002', 'l7_sup_connect_test_connection_contract.ObservationSlotProjectionTests.test_existing_unknown_mutation_is_retained_without_classification'),
+    ('SUP-CONNECT-003', 'l7_sup_connect_test_connection_contract.ObservationSlotProjectionTests.test_private_helper_rejects_malformed_python_rows'),
+    ('SUP-CONNECT-004', 'l7_sup_connect_test_connection_contract.ObservationSlotProjectionTests.test_synthetic_declaration_slots_keep_explicit_order_and_objects'),
+    ('SUP-CK-K7-G5-001', 'l7_sup_ck_test_k7_g5_private.K7G5PrivatePartialTests.test_ck_g5_ut_035_keeps_two_classes_for_one_identity'),
+    ('SUP-CK-K7-G5-002', 'l7_sup_ck_test_k7_g5_private.K7G5PrivatePartialTests.test_ck_g5_ut_036_single_missing_class_is_detected'),
+    ('SUP-CK-K7-G5-003', 'l7_sup_ck_test_k7_g5_private.K7G5PrivatePartialTests.test_ck_k7_ut_006_explicit_head_mismatch_is_only_a_bool'),
+    ('SUP-CK-K7-G5-004', 'l7_sup_ck_test_k7_g5_private.K7G5PrivatePartialTests.test_ck_k7_ut_033_target_identity_mismatch_is_only_a_bool'),
+    ('SUP-CK-K7-G5-005', 'l7_sup_ck_test_k7_g5_private.K7G5PrivatePartialTests.test_ck_k7_ut_035_composition_ref_mismatch_is_only_a_bool'),
+    ('SUP-CK-K9-001', 'l7_sup_ck_test_k9_private.K9PolarityDelegationTests.test_distinct_complete_nonempty_are_positive_through_existing_k1_fold'),
+    ('SUP-CK-K9-002', 'l7_sup_ck_test_k9_private.K9PolarityDelegationTests.test_empty_component_set_uses_k1_existing_missing_input_set_diagnostic'),
+    ('SUP-CK-K9-003', 'l7_sup_ck_test_k9_private.K9PolarityDelegationTests.test_nonaffirmative_facts_are_not_fabricated_as_negative_or_positive_values'),
+    ('SUP-CK-K9-004', 'l7_sup_ck_test_k9_private.K9PolarityDelegationTests.test_resolved_rule_version_is_bound_into_combined_polarity_refs'),
+    ('SUP-CK-K9-005', 'l7_sup_ck_test_k9_private.K9PolarityDelegationTests.test_same_is_negative_and_all_nonvalues_survive_the_existing_k1_fold'),
+    ('SUP-CK-K9-006', 'l7_sup_ck_test_k9_private.K9ShapeProjectionTests.test_private_shapes_preserve_l4_field_order_and_names'),
+    ('SUP-CK-K9-007', 'l7_sup_ck_test_k9_private.RoleBoundSourceAliasTests.test_exact_alias_duplicate_deduplicates_through_common_k2_helper'),
+    ('SUP-CK-K9-008', 'l7_sup_ck_test_k9_private.RoleBoundSourceAliasTests.test_exact_k9_alias_uses_raw_content_digest_and_context_fields'),
+    ('SUP-CK-K9-009', 'l7_sup_ck_test_k9_private.RoleBoundSourceAliasTests.test_nullable_source_is_not_replaced_with_a_fabricated_ref'),
+    ('SUP-CK-K9-010', 'l7_sup_ck_test_k9_private.RoleBoundSourceAliasTests.test_same_alias_identity_with_different_raw_revision_is_rejected_by_k2_helper'),
+    ('SUP-CK-K9-011', 'l7_sup_ck_test_k9_private.RoleBoundSourceAliasTests.test_same_raw_ref_on_creator_and_reviewer_sides_keeps_both_aliases'),
+    ('SUP-CK-K9-012', 'l7_sup_ck_test_k9_private.TargetAndAxisComparisonTests.test_all_six_review_target_fields_compare_in_fixed_order'),
+    ('SUP-CK-K9-013', 'l7_sup_ck_test_k9_private.TargetAndAxisComparisonTests.test_axis_comparison_retains_every_slot_and_axis_after_a_collision'),
+    ('SUP-CK-K9-014', 'l7_sup_ck_test_k9_private.TargetAndAxisComparisonTests.test_nonvalue_inventory_short_circuits_before_axis_comparison'),
+    ('SUP-CK-K9-015', 'l7_sup_ck_test_k9_private.TargetAndAxisComparisonTests.test_resolved_axis_requires_existing_key_and_unresolved_relation'),
+    ('SUP-CK-K9-016', 'l7_sup_ck_test_k9_private.TargetAndAxisComparisonTests.test_unresolved_axis_preserves_the_existing_nonvalue_and_does_not_compare'),
+    ('SUP-CK-K9-017', 'l7_sup_ck_test_k9_private.TargetAndAxisComparisonTests.test_value_inventory_allows_axis_comparison_to_proceed'),
+    ('SUP-CK-K10-001', 'l7_sup_ck_test_k10_graph.K10ConditionAndClosureTests.test_closure_fields_keep_effective_held_diagnostics_and_safety_separate'),
+    ('SUP-CK-K10-002', 'l7_sup_ck_test_k10_graph.K10ConditionAndClosureTests.test_each_depclass_variant_uses_its_own_condition_state'),
+    ('SUP-CK-K10-003', 'l7_sup_ck_test_k10_graph.K10ConditionAndClosureTests.test_false_reference_and_held_edges_do_not_expand_to_children'),
+    ('SUP-CK-K10-004', 'l7_sup_ck_test_k10_graph.K10ConditionAndClosureTests.test_missing_condition_entry_is_not_relabelled_as_unknown'),
+    ('SUP-CK-K10-005', 'l7_sup_ck_test_k10_graph.K10ConditionAndClosureTests.test_retired_edges_do_not_participate_in_closure'),
+    ('SUP-CK-K10-006', 'l7_sup_ck_test_k10_graph.K10ConditionAndClosureTests.test_transitive_property_single_field_change_controls_expansion'),
+    ('SUP-CK-K10-007', 'l7_sup_ck_test_k10_graph.K10ConditionAndClosureTests.test_transitive_true_expands_and_cycle_only_does_not_reject'),
+    ('SUP-CK-K10-008', 'l7_sup_ck_test_k10_graph.K10ConditionAndClosureTests.test_unknown_relation_on_reachable_walk_stays_unresolved'),
+    ('SUP-CK-K10-009', 'l7_sup_ck_test_k10_graph.K10ExistingShapeTests.test_scope_and_meaning_are_retained_without_normalization'),
+    ('SUP-CK-K10-010', 'l7_sup_ck_test_k10_graph.K10ExistingShapeTests.test_shape_fields_match_l4_and_graphdecl_identity_stays_outside_payload'),
+    ('SUP-CK-K10-011', 'l7_sup_ck_test_k10_graph.K10ImpactTests.test_candidate_path_cascade_is_reclassified_when_confirmed_path_reaches_node'),
+    ('SUP-CK-K10-012', 'l7_sup_ck_test_k10_graph.K10ImpactTests.test_confirmed_path_removes_node_from_candidate_only_possibly'),
+    ('SUP-CK-K10-013', 'l7_sup_ck_test_k10_graph.K10ImpactTests.test_propagation_candidate_and_held_fields_are_separate'),
+    ('SUP-CK-K10-014', 'l7_sup_ck_test_k10_graph.K10RelationComparisonTests.test_contradicts_pair_is_reported_without_a_k1_classification'),
+    ('SUP-CK-K10-015', 'l7_sup_ck_test_k10_graph.K10RelationComparisonTests.test_duplicate_relation_declaration_is_left_unresolved'),
+    ('SUP-CK-K10-016', 'l7_sup_ck_test_k10_graph.K10RelationComparisonTests.test_inverse_relation_uses_reverse_endpoints_and_declared_inverse_name'),
+    ('SUP-CK-K10-017', 'l7_sup_ck_test_k10_graph.K10RelationComparisonTests.test_symmetric_relation_requires_confirmed_reverse_edge'),
+    ('SUP-CK-K10-018', 'l7_sup_ck_test_k10_graph.K10RelationComparisonTests.test_unregistered_relation_and_resolved_endpoint_membership'),
+    ('SUP-CK-K8-001', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_case_binding_ref_excludes_result_pointers'),
+    ('SUP-CK-K8-002', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_closed_outcome_and_selector_inputs_reject_invalid_shapes'),
+    ('SUP-CK-K8-003', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_effect_event_and_binding_refs_missing_are_unknown'),
+    ('SUP-CK-K8-004', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_effect_none_is_confirmed_mismatch_before_unknown'),
+    ('SUP-CK-K8-005', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_fresh_selector_k3_denial_precedes_unknown'),
+    ('SUP-CK-K8-006', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_fresh_selector_precedence_mismatch_before_denial_and_unknown'),
+    ('SUP-CK-K8-007', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_k3_denial_precedes_k6_denial'),
+    ('SUP-CK-K8-008', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_k3_k6_unknowns_retain_every_component_candidate'),
+    ('SUP-CK-K8-009', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_k6_denial_precedes_unknown'),
+    ('SUP-CK-K8-010', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_label_transition_projection_does_not_erase_stale'),
+    ('SUP-CK-K8-011', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_mismatch_fields_use_closed_contract_order'),
+    ('SUP-CK-K8-012', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_missing_key_boundary_is_keyunavailable_only_when_selected'),
+    ('SUP-CK-K8-013', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_null_comparison_is_unknown_not_mismatch'),
+    ('SUP-CK-K8-014', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_observer_priority_maps_stale_and_notapplicable_exactly'),
+    ('SUP-CK-K8-015', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_observer_priority_retains_every_unknown_candidate'),
+    ('SUP-CK-K8-016', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_operation_version_is_ref_order_independent_and_revision_bound'),
+    ('SUP-CK-K8-017', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_polarity_mapping_is_versioned_by_resolved_api_ref'),
+    ('SUP-CK-K8-018', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_pure_effect_projection_keeps_none_and_nulls'),
+    ('SUP-CK-K8-019', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_pure_observed_label_preserves_nonvalue_and_untrusted'),
+    ('SUP-CK-K8-020', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_required_not_applicable_and_fresh_stale_map_to_missing_input'),
+    ('SUP-CK-K8-021', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_role_aliases_preserve_roles_and_exact_dedupe'),
+    ('SUP-CK-K8-022', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_role_bound_key_collision_rejects_before_k2_key_of'),
+    ('SUP-CK-K8-023', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_same_alias_any_different_ref_is_prekey_rejection'),
+    ('SUP-CK-K8-024', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_transition_validation_retains_components_and_assurance_by_identity'),
+    ('SUP-CK-K8-025', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_unknown_priority_and_all_candidate_retention'),
+    ('SUP-CK-K8-026', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_unobserved_priority_and_not_selected_boundary'),
+    ('SUP-CK-K8-027', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_untyped_dependency_object_is_not_treated_as_a_valid_result'),
+    ('SUP-CK-K8-028', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_valid_k1_disposition_is_not_a_nonvalue_candidate'),
+    ('SUP-CK-K8-029', 'l7_sup_ck_test_k8_label.K8PrivateProjectionTests.test_ck_k8_validated_positive_requires_all_existing_dependencies'),
+    ('SUP-INFRA-RESOURCE-001', 'l7_sup_infra_test_resource_projection.TestPrivateResourceProjection.test_six_source_qualified_fields_baseline_has_identity_and_fields_only'),
+    ('SUP-INFRA-RESOURCE-002', 'l7_sup_infra_test_resource_projection.TestPrivateResourceProjection.test_single_version_unknown_keeps_its_source_and_owner'),
+    ('SUP-INFRA-RESOURCE-003', 'l7_sup_infra_test_resource_projection.TestPrivateResourceProjection.test_unknown_unobserved_stale_and_not_applicable_are_retained'),
+    ('SUP-INFRA-RESOURCE-004', 'l7_sup_infra_test_resource_projection.TestPrivateResourceProjection.test_absent_mapping_field_is_not_filled_or_called_domain_absence'),
+    ('SUP-INFRA-RESOURCE-005', 'l7_sup_infra_test_resource_projection.TestPrivateResourceProjection.test_same_display_different_subject_refs_remain_distinct'),
+    ('SUP-INFRA-RESOURCE-006', 'l7_sup_infra_test_resource_projection.TestPrivateResourceProjection.test_projection_does_not_mutate_input_mapping_or_observations'),
+)
+MECHANISM_HELPER_IDS = tuple(row[0] for row in MECHANISM_HELPER_IDENTITIES)
+MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256 = "017eaa7ad0ed602e16d4c0a11678337d0100b55b97bcc17ecba93a3ef72ce39a"
+MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS = tuple(sorted(identity for _sid, identity in MECHANISM_HELPER_IDENTITIES))
 SUPPLEMENTAL_IDS = tuple(row[0] for row in SUPPLEMENTAL_IDENTITIES)
 SUPPLEMENTAL_IDS_SHA256 = "e5d71feabe981041144583fb0ee0f4754dd76d881e08fb44b48e5bf25d0b8239"
-COMPOSITE_DISCOVERY_COUNT = 613
-COMPOSITE_DISCOVERY_IDS_SHA256 = "739e4f7078047a1bd19eb3c77a723d9a85809cd82193c383d04bb365b4bce5de"
+COMPOSITE_DISCOVERY_COUNT = 716
+COMPOSITE_DISCOVERY_IDS_SHA256 = "a673e0343f8f2b91f78bc1c13785b5d2d44f7efb6c8dbdbf65cd4af5ae34cad4"
 SUPPLEMENTAL_SOURCE_REFS = {
     "BRAIN": ("docs/helix-brain/L7-unit-test-design/stage1-brain-unit-test-design.md", 104, "UT-BRAIN-", (2,)),
     "LABO": ("docs/helix-labo/L7-unit-test-design/stage1-labo-unit-test-design.md", 83, "LABO-UT-", (3,)),
@@ -1717,6 +1865,11 @@ SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS = tuple(sorted(
     alias + "." + qualname for _sid, _mechanism, alias, qualname in SUPPLEMENTAL_IDENTITIES))
 EXPECTED_DISCOVERY_IDS = tuple(sorted((*CORE_EXPECTED_DISCOVERY_IDS,
                                         *SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS)))
+if (set(CORE_EXPECTED_DISCOVERY_IDS) & set(SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS)
+        or set(CORE_EXPECTED_DISCOVERY_IDS) & set(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS)
+        or set(SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS) & set(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS)):
+    raise RuntimeError("fixed L7 partitions overlap")
+EXPECTED_DISCOVERY_IDS = tuple(sorted((*EXPECTED_DISCOVERY_IDS, *MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS)))
 K3_FORMAL_MAPPING_SHA256 = "8c58deecd7739ba48a01e4281de6c93cf6ece107ad66fa3eaeac6d10f80323b0"
 K3_DISCOVERY_IDS_SHA256 = "a3de5d8fbe0daf3500441a1e7a96fc9c6b71409e38fea446d6185dd05c86b70c"
 K1_K2_FORMAL_MAPPING_SHA256 = "ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19"
@@ -1749,7 +1902,7 @@ EXPECTED_DISCOVERY_COUNT = COMPOSITE_DISCOVERY_COUNT
 CORE_EXPECTED_DISCOVERY_IDS_SHA256 = "aca81abd7dd60c29512431c2d8223fd509d4c7a3a3fd7f1fc70847658ba0042d"
 EXPECTED_DISCOVERY_IDS_SHA256 = COMPOSITE_DISCOVERY_IDS_SHA256
 K6_DISCOVERY_IDS_SHA256 = "52e558bc65de379093d9a3fa46ce7d59909f23a33a15e6a135d1fcf09cd4c857"
-RESULT_MAX_BYTES = 99820
+RESULT_MAX_BYTES = 134755
 MODULES = ("test_k1", "test_k2", "test_k3", "test_k5", "test_k6")
 
 # Literal values permitted by the current L7 expansion rules.  Keeping the
@@ -1791,10 +1944,38 @@ def inventory_value() -> dict:
     return {
         "suite_id": SUITE_ID,
         "core_suite_id": CORE_SUITE_ID,
+        "core_partition": {
+            "source_sha256": dict(sorted(SOURCE_SHA256.items())),
+            "design_paths": list(CURRENT_DESIGN_PATHS),
+            "test_modules": [list(row) for row in FIXED_TEST_MODULES[:5]],
+            "discovery_count": len(CORE_EXPECTED_DISCOVERY_IDS),
+            "discovery_ids_sha256": CORE_EXPECTED_DISCOVERY_IDS_SHA256,
+        },
+        "product_supplemental_partition": {
+            "source_sha256": dict(sorted(SUPPLEMENTAL_SOURCE_SHA256.items())),
+            "design_paths": list(SUPPLEMENTAL_DESIGN_PATHS),
+            "test_modules": [list(row) for row in SUPPLEMENTAL_MODULES],
+            "identities": [list(row) for row in SUPPLEMENTAL_IDENTITIES],
+            "discovery_count": len(SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS),
+            "discovery_ids_sha256": SUPPLEMENTAL_IDS_SHA256,
+        },
+        "mechanism_helper_partition": {
+            "source_sha256": dict(sorted(HELPER_SOURCE_SHA256.items())),
+            "design_paths": list(HELPER_DESIGN_PATHS),
+            "test_modules": [list(row) for row in MECHANISM_HELPER_MODULES],
+            "identities": [list(row) for row in MECHANISM_HELPER_IDENTITIES],
+            "discovery_count": len(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS),
+            "discovery_ids_sha256": MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256,
+        },
         "source_sha256": dict(sorted(SOURCE_SHA256.items())),
         "current_design_paths": list(CURRENT_DESIGN_PATHS),
         "supplemental_source_sha256": dict(sorted(SUPPLEMENTAL_SOURCE_SHA256.items())),
         "supplemental_design_paths": list(SUPPLEMENTAL_DESIGN_PATHS),
+        "helper_source_sha256": dict(sorted(HELPER_SOURCE_SHA256.items())),
+        "helper_design_paths": list(HELPER_DESIGN_PATHS),
+        "mechanism_helper_modules": [list(row) for row in MECHANISM_HELPER_MODULES],
+        "mechanism_helper_identities": [list(row) for row in MECHANISM_HELPER_IDENTITIES],
+        "mechanism_helper_expected_discovery_ids_sha256": MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256,
         "supplemental_modules": [list(row) for row in SUPPLEMENTAL_MODULES],
         "fixed_test_modules": [list(row) for row in FIXED_TEST_MODULES],
         "supplemental_identities": [list(row) for row in SUPPLEMENTAL_IDENTITIES],
@@ -1878,6 +2059,12 @@ class _AstName:
 
 
 _AST_UNKNOWN = object()
+
+# Only this fixed non-test class is part of the 17-module AST inventory.
+# Its exact shape is checked below; arbitrary classes are never ignored.
+_FIXED_NONTEST_CLASS_ALLOWLIST = {
+    "l7_sup_security_test_projection": frozenset({"_CaseRef"}),
+}
 
 
 def _ast_static_value(node, environment):
@@ -2028,8 +2215,26 @@ def _ast_test_identities_for_module(alias, raw: bytes, expected_classes):
     absent = set(expected_classes) - set(classes)
     if absent:
         raise Diagnostic("Unknown", "missing_input", "fixed AST test class is absent")
-    if set(classes) - set(expected_classes):
-        raise Diagnostic("Unknown", "conflict", "fixed AST module has an unlisted test class")
+    allowed_non_test_classes = _FIXED_NONTEST_CLASS_ALLOWLIST.get(alias, frozenset())
+    if set(expected_classes) & allowed_non_test_classes:
+        raise Diagnostic("Unknown", "conflict", "fixed AST class is both test and non-test inventory")
+    if not allowed_non_test_classes <= set(classes):
+        raise Diagnostic("Unknown", "missing_input", "fixed AST non-test helper class is absent")
+    unlisted_classes = set(classes) - set(expected_classes) - allowed_non_test_classes
+    if unlisted_classes:
+        raise Diagnostic("Unknown", "conflict", "fixed AST module has an unlisted class")
+    for class_name in expected_classes:
+        class_node = classes[class_name]
+        bases = [ast.unparse(base) for base in class_node.bases]
+        if bases != ["unittest.TestCase"] or class_node.keywords:
+            raise Diagnostic("Unknown", "conflict", "fixed AST test class has an unlisted base or metaclass")
+    for class_name in allowed_non_test_classes:
+        class_node = classes[class_name]
+        decorators = [ast.unparse(decorator) for decorator in class_node.decorator_list]
+        if (class_node.bases or class_node.keywords or decorators != ["dataclass(frozen=True)"]
+                or any(isinstance(member, (ast.FunctionDef, ast.AsyncFunctionDef))
+                       and member.name.startswith("test") for member in class_node.body)):
+            raise Diagnostic("Unknown", "conflict", "fixed AST non-test helper has an unlisted test shape")
 
     actual = []
     for class_name, class_node in classes.items():
@@ -2105,17 +2310,17 @@ def _ast_test_identities_for_module(alias, raw: bytes, expected_classes):
 
 
 def validate_fixed_test_ast_inventory(source_bytes: dict[str, bytes]) -> None:
-    """Match nine fixed aliases' class/method identities using AST only; import occurs in sandbox."""
+    """Match seventeen fixed aliases' class/method identities using AST only; import occurs in sandbox."""
     aliases = [alias for alias, _path in FIXED_TEST_MODULES]
     paths = [path for _alias, path in FIXED_TEST_MODULES]
-    if (len(aliases) != 9 or len(set(aliases)) != 9 or len(set(paths)) != 9
+    if (len(aliases) != 17 or len(set(aliases)) != 17 or len(set(paths)) != 17
             or set(source_bytes) != set(paths)):
         missing = set(paths) - set(source_bytes)
         reason = "missing_input" if missing else "conflict"
         raise Diagnostic("Unknown", reason, "fixed AST test module aliases or source paths differ")
 
     expected = list(EXPECTED_DISCOVERY_IDS)
-    if (len(expected) != 613 or len(set(expected)) != 613
+    if (len(expected) != 716 or len(set(expected)) != 716
             or any(len(identity.split(".")) != 3 for identity in expected)):
         raise Diagnostic("Unknown", "conflict", "fixed AST expected identity inventory is malformed")
     expected_by_alias = {alias: set() for alias in aliases}
@@ -2129,8 +2334,14 @@ def validate_fixed_test_ast_inventory(source_bytes: dict[str, bytes]) -> None:
     for alias, path in FIXED_TEST_MODULES:
         classes = {identity.split(".")[1] for identity in expected_by_alias[alias]}
         actual.extend(_ast_test_identities_for_module(alias, source_bytes[path], classes))
-    if len(actual) != len(set(actual)) or set(actual) != set(expected):
-        raise Diagnostic("Unknown", "conflict", "AST test identities differ from the closed 613 identities")
+    if len(actual) != len(set(actual)):
+        raise Diagnostic("Unknown", "conflict", "AST test identities differ from the closed 716 identities")
+    missing = set(expected) - set(actual)
+    extra = set(actual) - set(expected)
+    if missing and not extra:
+        raise Diagnostic("Unknown", "missing_input", "a fixed target test callable is absent")
+    if extra:
+        raise Diagnostic("Unknown", "conflict", "AST test identities differ from the closed 716 identities")
 
 
 def _markdown_cells(line: str) -> list[str] | None:
@@ -2464,8 +2675,65 @@ def _ids(suite):
             yield item.id()
 
 
+@contextmanager
+def _temporary_projection_binding(module):
+    """Temporarily bind only the fixed legacy import name and restore it exactly."""
+    key = "projection"
+    existed = key in sys.modules
+    previous = sys.modules.get(key)
+    sys.modules[key] = module
+    try:
+        yield
+    finally:
+        if existed:
+            sys.modules[key] = previous
+        else:
+            sys.modules.pop(key, None)
+
+
+def _load_fixed_projection(root: Path, relative_source: str, slot: str):
+    source = root / relative_source
+    spec = importlib.util.spec_from_file_location(slot, source)
+    if spec is None or spec.loader is None:
+        raise Diagnostic("Unknown", "unreadable", "fixed helper projection source cannot be loaded")
+    module = importlib.util.module_from_spec(spec)
+    previous = sys.modules.get(slot)
+    existed = slot in sys.modules
+    sys.modules[slot] = module
+    try:
+        spec.loader.exec_module(module)
+    except BaseException:
+        if existed:
+            sys.modules[slot] = previous
+        else:
+            sys.modules.pop(slot, None)
+        raise
+    if existed:
+        sys.modules[slot] = previous
+    else:
+        sys.modules.pop(slot, None)
+    return module
+
+
+class _ProjectionBoundSuite(unittest.TestSuite):
+    def __init__(self, suite, projection_module):
+        super().__init__([suite])
+        self._projection_module = projection_module
+
+    def run(self, result, debug=False):
+        with _temporary_projection_binding(self._projection_module):
+            return super().run(result, debug)
+
+
 def _load_fixed_suite(root: Path):
     modules = []
+    projection_modules = {}
+    for alias, relative_source in HELPER_PROJECTION_SOURCES.items():
+        slot = "_local_ci_fixed_projection_" + ("labo" if "labo" in relative_source else "security")
+        projection_modules[alias] = _load_fixed_projection(root, relative_source, slot)
+
+    loader = unittest.TestLoader()
+    suites = []
     for module_name, relative_source in FIXED_TEST_MODULES:
         source = root / relative_source
         spec = importlib.util.spec_from_file_location(module_name, source)
@@ -2473,12 +2741,16 @@ def _load_fixed_suite(root: Path):
             raise Diagnostic("Unknown", "unreadable", "fixed suite module cannot be loaded")
         module = importlib.util.module_from_spec(spec)
         sys.modules[module_name] = module
-        spec.loader.exec_module(module)
-        modules.append(module)
-    loader = unittest.TestLoader()
-    suites = [loader.loadTestsFromModule(module) for module in modules]
-    combined = unittest.TestSuite(suites)
-    return combined
+        projection_module = projection_modules.get(module_name)
+        if projection_module is None:
+            spec.loader.exec_module(module)
+        else:
+            with _temporary_projection_binding(projection_module):
+                spec.loader.exec_module(module)
+        suite = loader.loadTestsFromModule(module)
+        suites.append(_ProjectionBoundSuite(suite, projection_module)
+                      if projection_module is not None else suite)
+    return unittest.TestSuite(suites)
 
 
 class _IdentityResult(unittest.TextTestResult):
@@ -2582,6 +2854,13 @@ def run_suite(root: Path) -> tuple[dict, int]:
             or len(set(K6_DISCOVERY_IDS)) != K6_DISCOVERY_COUNT
             or sha256(("\n".join(K6_DISCOVERY_IDS) + "\n").encode()) != K6_DISCOVERY_IDS_SHA256):
         raise Diagnostic("Unknown", "conflict", "fixed K6 discovery inventory is inconsistent")
+    if (len(MECHANISM_HELPER_IDENTITIES) != 103
+            or len(set(MECHANISM_HELPER_IDS)) != 103
+            or len(set(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS)) != 103
+            or MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS != tuple(sorted(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS))
+            or sha256(("\n".join(MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS) + "\n").encode())
+            != MECHANISM_HELPER_EXPECTED_DISCOVERY_IDS_SHA256):
+        raise Diagnostic("Unknown", "conflict", "fixed mechanism-helper identity inventory is inconsistent")
     if (len(FORMAL_ID_CLOSURE) != FORMAL_INVENTORY_COUNT
             or len(set(FORMAL_ID_CLOSURE)) != FORMAL_INVENTORY_COUNT
             or FORMAL_ID_CLOSURE != tuple(sorted(FORMAL_ID_CLOSURE))):
@@ -2612,7 +2891,7 @@ def run_suite(root: Path) -> tuple[dict, int]:
             or EXPECTED_DISCOVERY_IDS != tuple(sorted(EXPECTED_DISCOVERY_IDS))
             or sha256(("\n".join(EXPECTED_DISCOVERY_IDS) + "\n").encode()) != EXPECTED_DISCOVERY_IDS_SHA256):
         raise Diagnostic("Unknown", "conflict", "fixed expected discovery identity inventory is inconsistent")
-    all_source_sha256 = {**SOURCE_SHA256, **SUPPLEMENTAL_SOURCE_SHA256}
+    all_source_sha256 = {**SOURCE_SHA256, **SUPPLEMENTAL_SOURCE_SHA256, **HELPER_SOURCE_SHA256}
     for relative, expected in all_source_sha256.items():
         source = root / relative
         try:
@@ -2628,13 +2907,18 @@ def run_suite(root: Path) -> tuple[dict, int]:
         except OSError as exc:
             raise Diagnostic("Unknown", "missing_input", "fixed AST test source is unavailable") from exc
     validate_fixed_test_ast_inventory(ast_test_sources)
-    for relative in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS):
+    for relative in (*CURRENT_DESIGN_PATHS, *SUPPLEMENTAL_DESIGN_PATHS, *HELPER_DESIGN_PATHS):
         try:
             (root / relative).read_bytes()
         except OSError as exc:
             raise Diagnostic("Unknown", "missing_input", "fixed current L6/L7 target source is unavailable") from exc
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-        suite = _load_fixed_suite(root)
+        try:
+            suite = _load_fixed_suite(root)
+        except Diagnostic:
+            raise
+        except (ImportError, ModuleNotFoundError, OSError, SyntaxError) as exc:
+            raise Diagnostic("Unknown", "unreadable", "fixed suite module could not be loaded") from exc
         return _run_discovered_suite(suite)
 
 
