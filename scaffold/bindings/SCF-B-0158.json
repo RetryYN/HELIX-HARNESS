@@ -20,12 +20,12 @@
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "82d2e60531383aa27aa388672247866c0fd729a9ebb426185351be257156071e",
+      "sha256": "d84cbe58ab4fe58178e4487188d448d89ebe84c932828c01b037955e6f4c8fa8",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "c3f894acb1f33c913b61043825f78f1c0d8c6254e95d375fee5cd87675d93bb8",
+      "sha256": "95505207b165397eb7e9e360a1ca07c897eced8a5fc95713e86741eaa5311c79",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -210,12 +210,12 @@
     },
     {
       "path": "docs/helix-labo/L6-function-design/stage1-labo.md",
-      "sha256": "fd934bc04801e8dd9a9f0ec4c4df6756540cb80af691b6509b568795a52376ed",
+      "sha256": "2e50852c9abeacb5096fb3ccd0050d4209bb8fd4788a66e819fb6bb5fce1cb2d",
       "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
     },
     {
       "path": "docs/helix-labo/L7-unit-test-design/stage1-labo-unit-test-design.md",
-      "sha256": "20075960c97f4cd3f995f35b4f06cb00e0a7a60c1e3c6a586b8f4834585b11d8",
+      "sha256": "1e7e31010138b1e40799d8dbaa3bd3a2b357fb2c6fd5eb1853ece6326632815a",
       "note": "Fixed target-tree source ref for the local source-only candidate; pin is not execution or acceptance evidence."
     },
     {
