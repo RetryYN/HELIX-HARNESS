@@ -586,6 +586,8 @@ ZIP source catalogはscratchpad記載の201件/22分類と保持ZIP内の179件/
 
 ### HELIXBRAIN-L2-031 役割型の再利用知識候補（unit candidate）
 
+**版**：HELIXBRAIN-L2-031は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **authority／状態**：未採択候補。`registered_proposal`／`authority_effect: none`。HARNESS命名の決定や特定製品での採用を決めない。
 - **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-002`、`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-005`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`、`HELIXBRAIN-L1-011`、`HELIXBRAIN-L1-012`。設計知識の領域・階層、Patternの意味、関係、出所・版、製品固有意味の分離、提供候補と採用判断の区別を親にする。
 - **対象・版**：設計objectの役割語彙の意味・一般例・適用条件・反例をPattern/Design Unit/Partとして参照可能にする候補。PO原文とL1にversion target指定がないので版を推定しない。

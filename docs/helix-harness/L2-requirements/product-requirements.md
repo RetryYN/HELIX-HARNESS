@@ -59,6 +59,8 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 | HARNESS-L2-008 | 要求エンジンは、設計パターンと接続して選択するための質問を投げる。Concept／企画L1、利用者指示と根拠から1次要求を形成し、L2.5のPrototype・PoCの結果をBackflowで還流して2次形成する。単体・接続・構成体の対象粒度を分け、要求化漏れ・企画外追加・矛盾・重複・過剰解釈・対象違い・scope／non-goal逸脱・変更影響を提示して、人間の訂正と合意により要求へ収束できる | [2026-09-15 PO発言記録](../../concept/product-boundary.md)、旧Requirement Engine／ADR-010、2026-09-24 PO判断 | 意味導出の基盤は、HELIX-JSONの各JSONの間の意味をつなぐPythonコアとし、複数製品へ適用できる（HELIX-JSONの構築とPythonコアは改善要求として扱う）。機能A、A→Bの接続、A–Cから成るシステムAの要求と成立を混同せず、出力を承認済み要求や操作権限へ自動昇格させない |
 | HARNESS-L2-009 | 要求kind、対象、構成、risk、domainに合うversioned Design Templateから必要な設計義務を導き、templateが必要とする要求入力の不足を質問・要求候補としてBackflow ticketで上流へ戻せる | 2026-09-15 PO指示、旧Design Template Registry、2026-09-24 PO判断 | 初期seedを参照して設計の恣意性を抑え、templateから要求意味を自動決定せず、unit・connection・composite固有の設計と検証へ接続できる |
 
+**版**：HARNESS-L2-001〜005、007〜009は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。HARNESS-L2-006の版は変えない。要求の意味と合意した内容は変えない。
+
 ## Design Templateと要求backflow
 
 [設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)のうち、製品の要求へtemplateを適用して
@@ -1054,6 +1056,8 @@ scope拡張候補の受入寄与・最小性を照合するとき、追加機能
 
 ### HARNESS-L2-048 役割型と対象による命名・安全なrename候補（unit candidate）
 
+**版**：HARNESS-L2-048は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **authority／状態**：未採択の要求候補。`registered_proposal`／`authority_effect: none`。旧要求全体の移管完了、L3承認、実装・CI起動を主張しない。
 - **親L1**：`HARNESS-L1-001`、`HARNESS-L1-003`、`HARNESS-L1-004`。V-model成果物とoracleの対応、変更影響、検証義務を候補化する。
 - **対象・版**：設計object、文書上の責務名、module/class/function等のimplementation symbolに対する命名規律。O9の原文にversion targetの指定がないため、版は未指定のままPO判断に残す。
@@ -1094,6 +1098,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-050 レイヤ台帳リファクタリング証跡候補（HELIX-HARNESS単体、未採択）
 
+**版**：HARNESS-L2-050は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 **authority／状態**：`registered_proposal`、`authority_effect: none`。これはPOが採択した要求ではなく、2026-09-29の57候補判断にも含まれない新候補である。候補登録は要求採択、L3承認、実装・実行許可、旧要求の正式後継割当を生成しない。`version_target`は旧HIL-FR-50に指定がないため付けない。
 
 **親L1**：`HARNESS-L1-001/003/004`。対象layer ledgerの要求・設計・検証pair、変更影響、検証義務とevidenceを結ぶ。対象revisionのConcept/L1親のauthorityはそれぞれの固定revisionに従い、本候補の登録から親の変更・採択を推定しない。
@@ -1110,6 +1116,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 
 ### HARNESS-L2-051 工程終了 evidence の対応候補（HELIX-HARNESS単体、未採択）
+
+**版**：HARNESS-L2-051は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 **authority／状態**：`registered_proposal`、`authority_effect: none`。本候補はPHCAP-08全体のclosureでも、要求採択・L3承認・実装／実行許可でもない。2026-09-29の57候補判断に含まれず、その判断から採択を継承しない。`version_target`は旧sourceにも今回の対象revisionにも指定がないため付けない。
 
@@ -1138,6 +1146,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-053 意味revisionとpath非依存asset identityの候補（HELIX-HARNESS単体、未採択）
 
+**版**：HARNESS-L2-053は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 **要求候補**：Semantic Revision and Asset Identityは、path・名称の変更から独立したimmutable asset IDとrevision履歴を保持する。意味変更を新revisionとして記録し、rename、move、split、merge、supersedeに伴うidentity/location履歴、authority、acceptance oracle、typed edgeの欠落を識別できることを求める。
 
 **対象と境界**：要求・設計・資産のidentityと意味revisionを扱うHARNESS側の候補である。identityの具体的な符号化、採番方式、永続化方式、split/merge時のauthority裁定手順はこの候補で決めない。旧assetの実体や配置場所の変更だけから意味変更やauthority移転を推定しない。
@@ -1163,6 +1173,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-055 隣接層の双方向trace gate結果候補（HARNESS-CORE unit候補、未採択）
 
+**版**：HARNESS-L2-055は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・親**：未採択候補、`registered_proposal`／`authority_effect: none`。親候補はHARNESS-L1-001/003/004（固定本文はConcept/L1判断記録を参照）。この候補からL1の意味や採否を作らない。
 - **要求候補**：HARNESSは指定scopeの隣接layer間について、上位義務が下位へ追跡され、下位で得た発見が上位へ戻る双方向の関係を照合し、scopeごとの未解決 descent と backflow を別に見える結果として提示できる。隣接関係でないedge、親より粗いchild obligation、個別義務を一括aggregateで覆う関係は、その理由を識別できる不成立結果とする。正常、各方向の欠落、粒度・隣接性の不一致を区別する意味契約までを候補とし、評価アルゴリズム、ledger schema、receipt形式、永続化手段はL3以降の設計へ残す。
 - **適合・不明時**：対象scopeの隣接layer、row、source revisionまたは必要な関係が確定しない場合はunknown/未完とし、gate成立を示さない。一方向だけ成立しても双方向の成立へ推定しない。stale revision、semantic revision差、snapshot差の判定はNFR-29のcross-conditionとして別holdingに残し、本候補のcoverageへ混ぜない。
@@ -1171,6 +1183,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-056 canonical V-pair gate結果とfeedback候補（HARNESS-CORE composite候補、未採択）
 
+**版**：HARNESS-L2-056は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・親**：未採択候補、`registered_proposal`／`authority_effect: none`。親候補はHARNESS-L1-001/003/004。L0 charterは層外の既存authority anchorとしてのみ参照する。
 - **要求候補**：HARNESSはcanonicalな6つのV-pair（L1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7）をpairごとのatomic oracle対応で照合し、成立したpairと欠落・不一致のpairを局所化して提示できる。L12運用feedbackはL1企画と層外L0 charterの両方へ戻る関係を識別する。pairの片側設計義務または検証証拠がない、設計側と検証側のoracle identityが一致しない、もしくは必要なoracleの実行結果がない場合、該当pairを完了・green扱いにしない。具体的なjoinアルゴリズム、証拠schema、保存・実行機構は後続設計へ残し、L0を第7のpairへ加えない。
 - **適合・不明時**：pair定義、対応するatomic oracle、適用scope、feedback先または結果証拠が不明・欠落している範囲はunknownまたは未完として残し、成立範囲を超えて全6組のgate完了としない。異snapshot・stale revisionのcross-conditionはNFR-29 holdingに分離し、この候補のsource atomとして数えない。
@@ -1178,6 +1192,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **差分**：旧HIL-FR-49 line 139とassertion 032-01〜08/10/11/13から、canonical pair単位の結果、L12→L1/L0 feedback、片側欠落と未実行oracleの不成立意味を限定再導出する。assertionの`design-defined`/`not-implemented`は結果意味の参考であり旧test実行実績ではない。
 
 ### HARNESS-L2-057 closure gate意味条件候補（HARNESS-CORE unit候補、未採択）
+
+**版**：HARNESS-L2-057は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **authority／状態**：未採択候補、`registered_proposal`／`authority_effect: none`。2026-09-29の57候補判断が固定した集合に含まれず、採択・L3承認・実装／実行許可・HIL-FR-07のformal successor割当を生成しない。旧sourceに`version_target`はないため付けない。
 - **責務**：HARNESSは今回候補へ移したClosure Gate条件の意味と成立判定oracleを所有する。旧要求全体のclose可否は保留条件を含む別判定として残す。今回候補へ移したPR、CI、独立audit、選択済みstyleへのmerge、oracle、子Issue状態は互いに別の入力・証拠として識別し、一つの状態から他を推測しない。memory compactionは未移管の旧source条件として別項目に表示する。証拠の収集・保存・Issue状態更新とclose操作の運転はHELIX-OS側の候補契約へ渡し、HARNESS自身は実行主体やclose authorityを定めない。
@@ -1188,6 +1204,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **差分と保留**：旧HIL-FR-07の七つの検査対象と二つの出力欄のうち、今回候補へ移した8 atomだけを意味入力として扱い、memory compactionの1 atomはholdingへ残す。IR45に従い、oracle／verification／acceptance段階の証拠は各ownerで分離し、一つのclosure receiptへ意味を集約しない。旧assertionは欠落時の反例oracle参照として使う。選択styleの具体的定義、旧memory compactionと現行continuityの対応、CI未構築下での対象別適用、各evidenceのcurrent判定の詳細は本候補で新設せず保留する。旧HIL-FR-07のIR行は`preserved_pending_rehome`のまま保持し、本候補登録からIR全体のclosureを主張しない。
 
 ### HARNESS-L2-058 PR findingの六分類とcurrent/successor判定意味候補（HARNESS-CORE unit候補、未採択）
+
+**版**：HARNESS-L2-058は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **親L1**：`HARNESS-L1-004`（検証義務・反例・証拠・差戻し条件）を主親とし、`HARNESS-L1-003`（変更影響の追跡）へ接続する候補。親の意味は変更しない。
 - **候補状態**：新identityの意味再導出候補。未採択であり、PR audit、Issue発行、修正、merge、要求受入を実行・許可しない。
@@ -1203,6 +1221,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-059 Issue contractの意味fieldと必須存在候補（unit候補、未採択）
 
+**版**：HARNESS-L2-059は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・親**：未採択候補、`registered_proposal`／`authority_effect: none`。HARNESS-L1-001/002/003/004/008に接続する。source lineにない`version_target`、field default、適用条件を追加しない。
 - **要求候補**：HARNESSはIssue contractの意味を所有し、以下の11項目をそれぞれ独立した名前付きfieldとして保持する：`objective`、`acceptance oracle`、`development style`、`case-driven activation`、`specialist capabilities`、`runtime mode`、`affected layers`、`style target`、`risk`、`scope budget`、`digest`。各項目をfieldとして識別でき、他fieldへ結合・省略されていないことを契約revision上で確認できる。出力はversioned issue contractとそのdigestであり、OSの投影や受領によってfield名・意味・requirednessを再定義しない。
 - **必須存在の境界**：旧source assertionは11 fieldそれぞれを一つずつ省略した場合の拒否をoracle条件としている。本候補も個別field omissionを不成立とするが、各fieldの型、値域、生成方法、field間依存、適用対象の選び方、値そのものの妥当性規則は定義しない。旧contractの具体的なschema/version/digest encodingは未解決として残す。
@@ -1211,6 +1231,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 
 ### HARNESS-L2-060 工程入力revisionと段階証拠の対応候補（単体、未採択）
+
+**版**：HARNESS-L2-060は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **状態・親**：`registered_proposal`、`authority_effect: none`。未採択候補で、採択済みHARNESS-L1-001/003/004の現行本文を候補親として参照する。2026-09-28 PO判断の採択集合外であり、その判断から採択を継承しない。
 - **提供**：現行の適用契約または対象ticketで定まる工程stageについて、そのstageの入力source/revision/digestとstage結果・参照evidenceを対応付ける。結果は対象scopeと入力revisionが一致する場合に限って当該stageの証拠として解釈できる。V-pair、stageの開始・終了・freeze・Backflow・再開・完了意味、適用oracleは既存HARNESS契約が所有する。
@@ -1229,6 +1251,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-062 baseline debtと新規debt ratchet候補（HARNESS-CORE単体、未採択）
 
+**版**：HARNESS-L2-062は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・親**：未採択の要求意味候補、`registered_proposal`／`authority_effect: none`。主親は`HARNESS-L1-004`（対象revisionとriskに合う検証義務・反例・証拠・差戻し条件）。既存のHARNESS-L2-004/005とL11は変更しない。
 - **候補条件**：適用可能な既存authorityが与えるbaseline debt集合と、同一scope・比較対象のcurrent debt集合を照合し、baselineに含まれるdebtとbaselineに含まれないnew debtを結果上で区別する。new debtが比較で得られた場合、ratchet結果を成立/passとして返さない（fail-close）。baseline debtの存在だけから許容・免除・解消を推定しない。
 - **未確定入力**：baselineのauthority、identity/revision、適用scope、鮮度、current debt集合、両集合に共通して適用するdebt分類基準、baseline更新規則または比較に必要な入力が欠落・unknown・stale・conflictなら、比較結果はunknown/未評価として保持し、ratchet成立を示さない。これらの値や決定者を本候補で新設せず、上流または適用ownerの既存契約へ戻す。閾値やdebt種別も追加しない。
@@ -1236,6 +1260,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **差分と保留**：旧DAC-FR-007 line 54のbaseline/new debt分離とnew-debt fail-closeを限定して再導出する。旧要求はbaseline定義、baseline選定権限、分類閾値、更新条件を指定しないため本候補も定義しない。候補は比較結果の意味だけであり、censusの実装・全repo scope・許可、既存debtの受容、旧source全体のformal successor、採択、実装・実行を主張しない。
 
 ### HARNESS-L2-063 source-authority binding and freeze closure (HARNESS-CORE unit candidate)
+
+**版**：HARNESS-L2-063は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **状態・親**：新規候補。親は固定済みHELIX-HARNESS L1の`HARNESS-L1-001`（V-pairと成果物trace）、`HARNESS-L1-003`（変更影響・stale）、`HARNESS-L1-004`（対象revisionに応じた検証義務・反例・証拠・差戻し）、`HARNESS-L1-009`（template適用と設計義務）である。対象L1の固定は親意味の確定であり、本候補の製品版・1.0収載を決めない。候補本文、仮登録、receiptはL1/L2の合意、L3承認、実装・実行許可を生成しない。
 - **対象残差**：旧`HR-FR-HIL-17`のうち、原sourceとauthorityを個々のatomへ結び、challenge/dispositionと全atomのrevisionが揃うまで対象revisionをactiveにしない意味、同一freeze対象の全typed edgeとacceptance oracleの閉包、change/stale receipt、template gapの独立review前active禁止をHARNESS契約へ再導出する。入力source atomはreceiptが固定する3つの意味スライスだけである。旧契約に列挙された全要求ID、旧IR、HAC/HAT全体のformal successor・全量被覆は主張しない。
@@ -1291,6 +1317,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-068 Design Refactorの独立変換計画と実施前rollback根拠候補（unit）
 
+**版**：HARNESS-L2-068は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 **状態・所属**：新規の未採択HARNESS-CORE候補。既存のRefactor判定と実行前提に対し、選択されたDesign Refactor変換を単位ごとに計画し、対・consumer・rollback根拠を揃える条件を追加する。実際の変換方式、rollback手順、tool、schema、CIは定めない。
 
 **版**：旧HIL-FR-39 line129にversion target指定はなく、固定L1親も候補の製品版を決めない。対象版は未指定で、1.0自動収載を示さない。
@@ -1317,6 +1345,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-077 source条件からdesign-obligation graphを閉じる候補（HARNESS-CORE単体、未採択）
 
+**版**：HARNESS-L2-077は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・親**：`registered_proposal`、`authority_effect: none`。親は固定済みHARNESS-L1-001/003/004/009。親L1固定はこの候補の採択、対象scope、製品版または`version_target`を決めない。要求候補、receipt、MPR登録からL3承認・実装・pair freezeを生成しない。
 - **対象source条件**：旧`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`のHIL-FR-42 line 132にあるsource/directive→requirement atom→capability/service→domain object→API/data/state/event/failure/security/observability/lifecycle/operation/test oracle/gateの双方向relationと、必須義務の閉包・pair-freeze拒否を一つのsource atomとして扱い、normative whole-IR identity atom HIL-NFR-26を第二の入力atomとして加える。対応する旧L1 line 206はcorroborationで追加atomではなく、HR-FR-HIL-17全体と関連HAC/HATはconsumer/oracle contextに限る。11層・8出力の一般化や隣接source行はcandidate inputではない。
 - **入力・結果**：選択済みsource scopeとauthority revision、各source/directive atomと対応requirement atom、そのrequirementからcapabilityまたはservice、domain object、選択scopeで該当する上記11観点へのtyped relation、適用する設計pair/template契約とL11 oracleを与える。obligation graphは各適用関係から必要なdesign obligationを導き、対応するL11 oracleへ結ぶ。結果は同一scope/revision上のobligation graph、atom/義務ごとのdischarge receipt、coverage receipt、未消込findingとして表し、双方向経路、観点ごとの適用性と根拠、未消込・孤児・placeholder・N/A根拠・aggregate dischargeを個別表示する。非適用観点は理由と根拠を明示し、適用性unknownはN/Aへ変換しない。
@@ -1337,6 +1367,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-078 typed requirement definition・active-scope binding・変更receiptの条件候補（HARNESS-CORE単体、未採択）
 
+**版**：HARNESS-L2-078は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・親**：`registered_proposal`、`authority_effect: none`。親は固定済みHARNESS-L1-001/003/004/009。親L1固定から本候補の採択、対象scope、製品版または`version_target`を推定しない。要求候補とMPR登録からL3承認・実装許可を生成しない。
 - **対象source条件**：旧`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`のHIL-FR-45 line 135と、IR `#/HIL-NFR-28` identity全体の2入力atomを扱う。NFR-28の旧L1 line 208はIR statement文言のcorroborationとして別pinし、第三のatomにしない。requirement definitionにはstable requirement ID、immutable revision、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationの13 field群を、値と意味型が分かる形で保持し、適用する対象・relationをtyped edgeで結ぶ。
 - **意味上のfield契約**：13 field群は各対象requirement revision上に残り、それぞれの値・意味型とtyped edgeを欠落なく保存する。NFR-28が明示する例外は`service/capabilityまたは根拠付き非該当`である。`capability/service` fieldを残し、その非該当値、理由、対象scope/revision、根拠authority/applicabilityを当該requirementへ結ぶ。理由・根拠がmissing/unknown/stale、値を暗黙にN/A扱いする、fieldまたはrelationを削除する場合はcompleteにしない。今回の二つのsourceは他の12 fieldに対するfield-value非該当許容を定めないため、その意味と必要値を保持し、N/A値を一般許可しない。別の明示的なfield固有根拠が示された場合も、その値の根拠と適用範囲を個別に記録し、owner/source/oracle等の関係fieldを省略・免除してgreenにしない。capability/serviceのfield値としての根拠付き非該当は、後述するrequirement change operationとしての`N/A`とは別であり、それだけでchange operationは発生しない。requirement自体へchange operation `N/A`を適用する場合は完全な変更receiptを必須とする。固定物理schema、field名、DB、JSON layout、特定storage/APIは規定しない。複数recordを参照する方式も、同じ対象revisionへ13項目すべてとrelationが確実に結び付く場合は排除しない。
@@ -1348,6 +1380,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **意味差・方式の境界**：保持するのはFR-45の13 field意味、typed relation、列挙6操作の完全receipt条件、NFR-28のactive scope分母と6 bindingを個別に結ぶ条件である。NFR-28はservice/capability欄の根拠付き非該当値を明示的に許容する。FR-45 line 135は全field意味・relationを保持し、要求変更operationとしてのN/Aにreceiptを求めるが、同行だけでは個々のfield valueの非該当を一律に許可も禁止もしない。今回の候補はNFR-28が明示するservice/capability値だけを根拠付きで許容し、他12 fieldへは許容を一般化しない。明示根拠のないfield値、暗黙の省略、receiptのないchange operationを許さない。PO材料にはservice/capabilityの根拠付き非該当値を認める案と、NFR-28 clauseの意味選択を保留する案を残し、原文にない一律のfield-value N/A禁止をFR-45へ帰属させない。source holding `MPR-SH-IR-003#HIL-FR-45`および`#HIL-NFR-28`は生存し、正式successor、source owner移管、全IR/HR条件closure、採択、実装・実行は主張しない。旧runtime/schema/test/CIを移植・実行しない。
 
 ### HARNESS-L2-072 選択pairのstale revision・異snapshot・deferred非green候補（HARNESS-CORE unit、未採択）
+
+**版**：HARNESS-L2-072は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **状態・親**：未採択の新規候補、`registered_proposal`／`authority_effect: none`。親は固定済みHARNESS-L1-001（V-pair/trace）、L1-003（変更影響・stale）、L1-004（対象revisionの検証義務・反例・証拠）。候補から親の意味・authorityを変更しない。source crosswalk line 57–58の旧target assessment `HARNESS／OS`は未決のまま保持し、この候補のHELIX-HARNESS配置は旧source全体のowner確定・移管を意味しない。version_targetは旧sourceと固定親に指定がないため付けず、版・1.0収載を推定しない。
 - **限定source**：旧HIL-FR-48 line 138の`stale revision`拒否と、旧HIL-FR-49 line 139の`異なるsnapshot`拒否の選択sliceに加え、Requirement IR `#/HIL-NFR-29`のidentity全体をsource atomとして選択する。NFR-29から今回この候補が具体化するのは、選択scope内で`deferred`となったpairをgreenにしない条件である。source snapshotはFR48/49の全物理行とNFR-29 IR record全体を保存し、選択した条件範囲と各未選択句の行き先をreceiptに区別して記録する。FR48の他条件、FR49のcanonical pair構成・feedback・片側欠落・未実行oracle、およびNFR-29全体のformal successor・closureを主張しない。既存055/056/063の採択本文・選択atom・意味は変更せず、この候補を既存pairの追補・正式なIR移管としない。
@@ -1372,6 +1406,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-080 agent adapterをHARNESS registryから再生成する候補（単体、未採択）
 
+**版**：HARNESS-L2-080は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・親**：本節は未採択候補で、`registered_proposal`／`authority_effect: none`。親対応の判断根拠は、9/28 PO判断が固定したL1対象revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`（L1 file SHA-256 `238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f`）である。同revisionのHARNESS-L1-005（line SHA-256 `3cebaa9a4f570a103b3ac506c1a7fa19ffe654b41f1f12735a4d4e454096a586`）は「HELIX内部の管理機構を暗黙の依存にせず、明示された版・構成・条件でHARNESSを利用できる」意味を持ち、HARNESS-L2-006へ接続する。HIL-NFR-10のregistryを明示sourceとしruntime固有memory/rule siloを正本化しない条件は、この親の明示依存境界をagent adapter再生成へ具体化する候補である。旧sourceがHARNESS-L1 itemを名指ししていないことや現行file metadataがdraftであることを理由に親を否定しない。親revisionの採択と本候補の採択は別であり、本候補からL3承認、実装・実行許可、正式successorを生成しない。
 - **選択した旧source**：選択atomは `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-10` のIR identity 1件（statement semantic digest `sha256:da761c1a808418620dacdb8aa7a586ef28a33082df7ebed30b683218493bb093`）。`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`のL1 line 190（line SHA-256 `b5f21b312520ad6a56e1e40efe8c79ccc49645eccad8cddb723094ac2cf35a36`）は同じ文言を示すcorroborationで、別atomではない。条件は、agent adapterが削除されても残るHARNESS registryから再生成できること、およびruntime固有agent memory/rule siloを正本にしないこと。旧HR-FR-HIL-08、HAC-HIL-08a/b/c、HST-CASE-006-21とL5 agent lifecycle記述は条件の解釈と受入oracleの背景として読む。これらを追加source atomや旧runtime実行条件へ数えない。
 - **再生成の意味**：選択されたHARNESS registry sourceが利用可能な状態で対象agent adapterが欠落しているfixtureを与える。既存のHARNESS registry内容からその対象adapterを再生成できることを要求する。同じregistry identity/revision/digest、選択対象、明示された適用条件・依存入力を使う再生成では、旧consumerの「同一digest」oracleに照らし同じadapter digestを再現する。registryを使わず、別runtimeのmemory/rule、手編集adapter、前回生成物だけから再生成した扱いにしない。特定runtime、adapter path、registry schema、generator実装、digest方式は固定しない。
@@ -1385,6 +1421,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-081 source coverageの全量性と判断trace候補（HARNESS単体、未採択）
 
+**版**：HARNESS-L2-081は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・対象source**：未採択、`authority_effect: none`。選択atomは旧IR `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-12/statement/text` の一件（statement digest `sha256:a85de817bf5698825a759488e16ad07868c18cfe03a62d7b6fe478e3e422391e`）。HIL-NFR-12は`specified`／`frozen`だが現行successorは未割当で、source holdingを保持する。旧L1のline 192は同じ移行要求の原文 corroborationであり、第二atomには数えない。HR-FR-HIL-09、HAC-HIL-09a/b/c、HAT-HIL-09はconsumer/oracle contextでありsource atomには追加しない。HATは`designed_not_implemented`で実行証拠ではない。HIL-NFR-11/22等の隣接条件を混ぜない。
 - **親L1との意味接続**：親target revisionは2026-09-28 PO decisionがf6dad2aのbytesで固定したHARNESS-L1-004（「対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる」）。HIL-NFR-12が示すfull-source completeness oracle、四つの偽完全性証拠の拒否、判断ごとの由来traceは、このL1 itemの検証義務・反例・証拠の具体化案としてHARNESS-L2/L11-081へ接続する。これは固定L1 bytesに対する提案関係であり、L1本文/tableを改変せず、この候補の採択も継承しない。**version_targetは旧IR/L1および固定判断に明示されていないため未指定のままにする。**
 - **規範条件 — 全量列挙**：coverageの完全性を主張する選択source scopeでは、宣言した母集団のすべてのsource pathとentryを列挙し、列挙集合と母集団の差を識別する。文書名だけ、代表fixture、検索結果0件、単一包括requirementだけを100%の根拠にしない。scope/母集団境界またはentry差が未解決なら、その範囲は`unknown`／未完としcompleteにしない。固定件数、全repository走査、定期再走査、旧repository名は要求しない。
@@ -1396,6 +1434,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **限界**：候補は一IR atomの静的oracle案。全legacy資産の走査、source全体の実完成、PO採択、L3承認、実装/実行を主張しない。
 
 ### HARNESS-L2-082 選択source scope全child receiptのstale化候補（単体、未採択）
+
+**版**：HARNESS-L2-082は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 - **状態・親**：未採択のHARNESS要求候補。親は9/28に固定されたHARNESS-L1-001/003/004/008のrevisionであり、候補から親の意味やauthorityを変更しない。旧crosswalkとcarry-forwardの対象 assessmentはHARNESS／OS、旧NFR-22のsuccessorは未割当のまま。HARNESSにあるのは規範候補の置き場であり、source custody、extractorの運転、結果の登録・推進・検収の正式ownerを決めない。`version_target`は旧IR sourceにも固定L1にも指定がないため未指定とし、1.0自動収載を示さない。
 - **選択source・対象条件**：IR identity `HIL-NFR-22`一atomのsource assetは`LEGACY-ASSET-A60CF91DD2AF6693E6F9`（旧`requirements-ir/requirements.json`、SHA-256 `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`）。旧L1 line 202は`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`（旧`infinity-loop-platform-requirements.md`、SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`）にある同statementのcorroborationで、別atomではない。条件は、extractor revisionの変更、または選択source snapshot内のsource差分が生じたとき、その選択scopeに含まれる全child receiptをstaleとして扱うことである。どのchildの直接source spanが変わったかにかかわらず、同じ選択scopeのprior child receiptをcurrentなcoverage evidenceとして再利用しない。この節はNFR-22原文の全child invalidation条件だけを具体化する。
@@ -1409,6 +1449,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-083 Domain Objectの不変条件と依存方向候補（単体、未採択）
 
+**版**：HARNESS-L2-083は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・親**：本候補は`registered_proposal`、`authority_effect: none`、未採択である。親は2026-09-28 PO判断が固定した`f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHARNESS-L1-004（「利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる」）。この候補はDomain Objectの設計義務と対応oracleを提案し、L1や採択済み候補を変更しない。`version_target`は旧sourceにも固定L1にもないため未指定とする。
 - **選択旧sourceと適用範囲の根拠**：対象は旧IR `requirements.json#/HIL-NFR-25`の一atom（`LEGACY-ASSET-A60CF91DD2AF6693E6F9`、file SHA-256 `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`、statement semantic digest `a8e7e11e262e12aa53009f37e6c288213c1175b2853491cb0f998ac122c09b8d`）。旧L1 `infinity-loop-platform-requirements.md:205`（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）は同じ文のcorroborationで、別atomに数えない。旧IR文そのものは適用scopeを限定していない一方、既存の適用範囲評価は一律の全consumer必須化を避け、対象設計方式と根拠の照合を求める。`docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md:34`（file SHA-256 `89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8`、line SHA-256 without LF `887aa532fda75f30118a62daaa241524f3e070f57ec5181472fa2c849ec6a333`）および`docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl:127`の`PRC-HIL-NFR-25-001`（file SHA-256 `c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1`、line SHA-256 without LF `35cb90b93effb2e873ad2097ae7051da018290df129f7aa1703a928f80edc6db`）を併せて根拠とする。旧IRのconsumer/oracle contextは受入解釈用であり、現行authorityや実行証拠ではない。
 - **役割を宣言した設計scopeでの六条件**：対象design scopeの設計方式がどのDomain Object役割を使うかを明示する。Entity/Aggregateを使う場合は(1) class化自体を目的にせず、identity/invariant/lifecycle/authorityの意味根拠がないpayloadをEntity/Aggregateにしない。(2) Value Objectを使う場合はimmutableに扱う。(3) Aggregateと更新operationを使う場合はroot境界内transactionに限る。(4) Query operationを使う場合はside-effectを持たせない。(5) Domain Eventを使う場合は完了した事実を過去形で表す。(6) domainからAdapter境界へ依存する設計役割を使う場合はPortを介す。設計方式が特定の役割を明示的に使わないと宣言した場合、その役割に結び付く条件は当該scopeの対象外とし、unknown／未完にしない。設計方式またはrole-use宣言自体が不明・欠落・矛盾する場合に限りscopeの適用性をunknown／未完とする。適用対象となる各条件は独立に判定し、他条件の根拠で補わない。
@@ -1420,6 +1462,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-084 Requirement TranslatorとTemplate Improvement Loopの原文・確信度・未解決ambiguity候補（単体、未採択）
 
+**版**：HARNESS-L2-084は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+
 - **状態・親**：未採択のHARNESS-CORE要求候補、`registered_proposal`／`authority_effect: none`。親は2026-09-28 PO判断で固定されたHELIX-HARNESS L1のうち`HARNESS-L1-001/003/004/009`。この候補、登録、receiptから要求採択、L3承認、実装・実行許可を生成しない。`version_target`は旧原文に指定がないため未指定とする。
 - **適用する二機能と選択sourceの原文保持**：旧IRの`HIL-NFR-27` identity全体を1 atomとして扱う。原文の主語はRequirement TranslatorとTemplate Improvement Loopの両方である。Translatorが選択sourceを翻訳するとき、source identity、authority参照、revision/digest、選択spanと原文を翻訳結果へ結び、原文を失わず再読できるようにする。Loopがその翻訳済み要求をtemplateと照合しgapや改善候補を扱うときも、同じ原sourceへの参照と翻訳confidence・未解決ambiguityを対応づけて保持・提示し、Loopのgap/候補表現からそれらを落とさない。sourceの意味を変える翻訳、原文の上書き、原文が見えない状態での確定を許さない。旧L1 line 207は同じstatementのcorroborationであり追加atomではない。
 - **確信度とambiguity**：Translatorは翻訳案の確信度と未解決ambiguityを見える形で返す。Loopは受け取った翻訳案を扱う間、そのconfidenceと未解決ambiguityを原sourceへ結んで見える状態に保つ。Loopによるtemplate照合は、既存sourceが示す未解決ambiguityを黙って解消したり、別のconfidenceを根拠なく補ったりしない。旧sourceは尺度、数値、閾値、分類enumを指定していないため本候補でも新設しない。評価方法、入力、またはLoopが引き継いだ値が不明ならconfidenceを`unknown`、ambiguityを未解決として保持し、確定済み要求やgap closureへ変換しない。
@@ -1430,6 +1474,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **旧sourceとの差分・配置のPO判断材料**：旧`HIL-NFR-27`全体の原文保持、TranslatorとTemplate Improvement Loop双方へのconfidence/ambiguity表示、subagentによる削除・統合・終端化の禁止を候補として保つ。旧assertion contextの条件別分類はL11とreceiptに根拠付きで記録し、source statementにない条件を084へ追加しない。未監査template active禁止は既存採択063のexact selected scope内だけで重ねず、scope外をholdingに残す。配置選択肢は次の通りで、候補起草・独立reviewの前提ではない。A（推奨）＝HARNESSがTranslator/Loopのsource retention・confidence/ambiguity・canonical requirement変更境界という意味契約を持ち、OSは既存責務内でsource/operation/evidence・template監査/active化の記録と運転証拠を持つ。これは旧crosswalkのOS記録を消さず、要求意味のownerと運転記録を分ける案である。B＝OSがTranslator/Loopの要求意味契約とtemplate採用管理の両方を持ち、HARNESSはその契約を使う側とする。これは本HARNESS候補の配置と旧IRの主語を移す意味上の再配置で、現行採択済みとは扱わない。C＝意味を分け、HARNESSがTranslatorの原文・confidence/ambiguity・subagent境界を持ち、OSがLoopのtemplate監査/active化運転・記録を持つ。原文statementを落とさず、双方の出力間でsource・authority・revision・confidence・ambiguityを結ぶ具体的責務境界を提示する必要があり、未解決部分はholdingへ残す。どの案も旧`split_required`を既決定扱いせず、採択済み063のscopeを広げない。source atom全体を保留してcandidate closureを主張しない選択も可能だが、これは配置案とは別のcoverage状態である。責務を削る／変える意味案は、除外・変更条件とNFR-27残余を特定して人へ提示する。影響対象はHARNESS-L2-024/063/084と対L11、HELIX-OSの既存記録/監査契約、および要求source/authorityから接続する下流pairである。版は未指定。採否と意味変更のみ既存authorityへ残す。
 
 ### HARNESS-L2-085 重複contract/exampleのcontext cost・drift risk finding候補（単体、version未指定）
+
+**版**：HARNESS-L2-085は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
 
 **状態・親**：未採択のHARNESS単体要求候補であり、`registered_proposal`／`authority_effect: none`。親はPOが固定したConcept revisionとHARNESS-L1-001/003/004/009で、親要求やL1の意味・本文は変更しない。旧HIL-NFR-33に`version_target`指定はなく、本候補も版を指定しない。
 

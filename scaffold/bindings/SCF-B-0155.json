@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-      "sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+      "sha256": "f2995068051d92d0f0b399503668bf2a7db2a667ac4798fdd370d3ba4ad56692",
       "note": "HELIXBRAIN-L2-001の初期10領域と、知識の由来・scope・評価根拠・限界・版・状態の属性。採否なし"
     },
     {
