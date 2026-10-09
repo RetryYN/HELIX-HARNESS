@@ -5,7 +5,7 @@ owner: HELIX-HARNESS
 scope: K1/K2/K3/K5
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `08eb37bd8168f97566ac06d88424adaddb7815c1` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7`)
+base: `main` at `f75199749888f7261772ba26e9feb58a33d9a04f` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7`)
 
 本書は現行Common Kernel L4 K1/K2/K3/K5の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/K6–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
 
