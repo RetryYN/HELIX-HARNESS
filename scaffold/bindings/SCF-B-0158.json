@@ -50,7 +50,7 @@
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "7c7485d1df1a788b453456529a1a704face5a2a6dae6b0e92fd546ac5390a361",
+      "sha256": "9a04f25b0574023676409df46abdd9a0025ada6ffe2010d9da582206dd6f7989",
       "note": "Common Kernel K1/K2/K3/K4/K5/G3 verifier table/range。K8 L8 §10のsource bytesもpinするが、K8 fixture IDはlocal-CI inventoryへ登録せず実行・coverageを主張しない。K1/K2/K3/K5 inventoryとraw-row参照に加え、K4/G3の73 fixture IDも構造inventoryとしてraw row/locator/edge/dispositionを照合する。登録・構造照合はfixture実行やCI coverageを示さない。"
     },
     {

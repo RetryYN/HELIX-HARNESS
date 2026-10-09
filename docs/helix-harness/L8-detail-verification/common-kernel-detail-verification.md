@@ -987,4 +987,4 @@ KeyUnavailableとMismatch/K3/K6/Unknown/Unobservedの同時条件はfixture化�
 
 上表の26 IVは既存L9 oracleへの対応fixtureであり、L9定義を再発行しない。特にIV-K8-08の11 target、IV-K8-15のfield語彙、IV-K8-16/23の優先順位、IV-K8-20の保存evidence保全を一つのまとめcaseへ潰さず、個別fixture IDへ分けた。K8のAPI field、reason、schema、route/authority、sink対象を新設していない。追加したfixture IDのmanifest登録、実装、実行、CI coverageは主張しない。
 
-L4はK6 `RequiredResult`とK3 `PermissionCheck`をK8 result componentとして明示する。この文書はその既存型境界しか参照しない。K6/K7 L5/L8未統合の詳細は借用せず、K7 AppliedUncertainをK8 API型として導入しない。L4 §18.2本文末尾のWCA L4旧SHA typoは別途L4 correction対象で、このpairでは修正・再転記しない。
+L4はK6 `RequiredResult`とK3 `PermissionCheck`をK8 result componentとして明示する。この文書はその既存型境界しか参照しない。起点baseで未統合だったK6/K7 L5/L8の詳細は借用せず、K7 AppliedUncertainをK8 API型として導入しない。起点baseのL4 §18.2本文末尾にあったWCA L4旧SHA typoはmain #2779で修正済みであり、このpairでは歴史snapshotを保持してL4を編集・再転記しない。
