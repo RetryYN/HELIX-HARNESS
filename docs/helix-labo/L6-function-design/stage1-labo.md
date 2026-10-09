@@ -10,7 +10,7 @@ base: main `7f95f61fc1e1ae1dd790fa46581aba34921d73c0`
 
 # HELIX-LABO Stage 1（001／011）関数設計
 
-本書は固定Stage 1 L4契約とLABO L5 API候補を関数境界へ写す設計草稿である。L5公開API、owner/source接続、正式fixture実行、製品登録、業務完了は実装済みと主張しない。局所source-only private helper候補の実装記録は§6に限定して記す。
+本書は固定Stage 1 L4契約とLABO L5 API候補を関数境界へ写す設計草稿である。L5公開API、owner/source接続、正式fixture実行、製品登録、業務完了は実装済みと主張しない。局所source-only private helper候補の実装記録は§6–7に限定して記す。
 
 ## 1. 固定入力と参照境界
 
@@ -98,8 +98,27 @@ L8 C07の既存2状態（`Unobserved(not_run)`またはsource ownerが既に明�
 
 この節は上記設計本文を変更せず、main `384c7411831649b9c4ed9db9b5922591c22286dc` 上で作成した局所source-only候補の実装範囲を記録する。参照した現行入力はLABO L4 `b55d062fbdbe39c3af7ae8364f4e84316518af80496687985952285b425977e6`、L5 `2619a557507258a79630c1bdc06aea72aad0c64aa27202dba04a4083080f5148`、L8 `b0ec0fa261b7899bda1384c75467bee4a3ea057b6fbffde380234ea31ffe1193`、L9 `1a17b42a96d53abfbc59c5b0f65805662234162d9bd0d12667238749c2d65d7e` である。旧HELIXとの保持・変更根拠は本書§2の旧9資産表およびL4/L5のcrosswalkに限り、旧runtime等は実行していない。
 
-`helix/helix-labo/units/stage1-labo/src/projection.py` は、L5既存20 fieldの存在／欠落と7種source宣言statusを、意味解釈せず保持するprivate projection候補を含む。また、既に与えられたEpisodeCandidate refs/relationを保持し、`causal_assertion=false`を保つprivate shape projectionを含む。候補はL5の3公開APIを実装せず、`__all__`も空である。source reader、current owner/sourceの解決、K1 `lab_processing`生成、K2保存/key、connection resolver、episode correlation、因果判定には接続しない。特に`AggregateObservation.lab_processing`を作らないため、完成したAggregateObservationや`aggregate_observations`の実装を主張しない。`observe_source`と`correlate_observations`も未実装である。
+`helix/helix-labo/units/stage1-labo/src/projection.py` は、L5既存20 fieldの存在／欠落と7種source宣言statusを、意味解釈せず保持するprivate projection候補を含む。また、既に与えられたEpisodeCandidate refs/relationを保持し、`causal_assertion=false`を保つprivate shape projectionを含む。384c741時点のこのfield-only候補は`AggregateObservation.lab_processing`生成とowner/source接続を持たない。後続の§7は既存refとK1結果を受け取る5-field assembler候補を追加するが、owner/source接続とK1 result生成は引き続き未実装である。どちらの候補もL5の3公開APIを実装せず、`__all__`も空である。K2保存/key、connection resolver、episode correlation、因果判定にも接続しない。`observe_source`と`correlate_observations`は未実装である。
 
 本候補はdeclaration、型番、版、owner登録、正式pack登録を持たない。正式packとして数えず、repository-layout RL-C3の成立、owner接続、L8/L9合格を主張しない。既存API境界とowner返却事項は変えず、L8§5に残る未解決を本実装で閉じない。
 
 補助検査の対応表と合成検査実行記録は対のL7 §6にある。実装sourceは`helix/helix-labo/units/stage1-labo/src/projection.py`、合成testは`helix/helix-labo/units/stage1-labo/tests/test_projection.py`であり、いずれも本unit配下の未登録source-only候補である。
+
+## 7. AggregateObservationのprivate shape assembly候補
+
+本節はmain `f020c04f2fb219e319bcc13478f14b41eb881701`を基準に、L5の既存`AggregateObservation` shapeをすでに与えられた入力から組み立てるprivate helper候補の局所実装範囲を記録する。L4 §3.1 / L5 §2 / L6 §3の5 fieldをそのまま保持する。
+
+旧`LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:137–145`、full SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`）のinvocation_log破損時に対象sourceだけを分離し、他sourceの有効集計を保持するfailure classを保持する。旧assetは旧dashboardのconsumer例で、現行Aggregateのshapeを定義しないため、20 fieldと5 output fieldは現行固定L4/L5のshapeをそのまま再利用する。差分は、旧4 source/dashboard処理を移植せず、既存20-field projectionへ2つの既存SubjectRefと呼出し元が持つK1 `Observed`を結ぶprivate assemblerに限定する点である。
+
+| 対象 | 内容 |
+|---|---|
+| source | `helix/helix-labo/units/stage1-labo/src/_private_aggregate_assembly.py`、SHA-256 `685b867b90844827e6a1639c29206cadfa4d086352698b5a86ab32aafb586d49` |
+| test | `helix/helix-labo/units/stage1-labo/tests/test_aggregate_assembly.py`、SHA-256 `1b4d54aaea45fb80799495fdaab5f00e3e5a986fb4f7817ae533d3a6bdc850a1` |
+| private helper | `_assemble_aggregate_observation(source_observation_ref, exact_source, source_fields, source_status, lab_processing)` |
+| 既存helper利用 | `projection._project_aggregate_fields`の20 field順、`Present/Missing`表現、source status保持を再利用する。 |
+
+結果のprivate dataclassは`source_observation_ref`, `exact_source`, `source_status`, `field_presence`, `lab_processing`の5 fieldだけを持つ。2つの`SubjectRef`、source status、呼び出し元から渡されたK1 `Observed` objectを同一instanceのまま保持する。K1 `Value`/`Unknown`/`Unobserved`/`Stale`/`NotApplicable`を作らず、`Unknown`内のkey/evidenceも読み替えない。field値は既存projection helperのpresence判定に委ね、falsy値もPresentとして保持する。
+
+これは公開`aggregate_observations(selected_sources, input_heads) -> Sequence<AggregateObservation>`を実装しない。複数source走査、owner/current source解決、raw read、source authority、K1 `lab_processing`生成、K2 key/save/lookup、C14 duplicate identityのsequenceへの写像は未接続のまま残る。moduleの`__all__`は空で、正式pack/CI inventory/83 formal L7 definition/5 NFR reuse index/35 L9 oracleへ追加していない。
+
+対のL7 §7に記録した2件の合成testはcomplete five-field baselineで全5 K1 classを個別入力し、各object保持を確認する。また、1 field missingとpresent falsy valuesを一入力で独立して確認する。実source、owner、L8/L9 fixtureの実行証拠とは扱わない。
