@@ -587,11 +587,14 @@ LCI_L6_PATH = "docs/helix-os/L6-function-design/local-ci-function-design.md"
 LCI_L7_PATH = "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md"
 LCI_L8_PATH = "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md"
 LCI_L9_PATH = "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md"
-LCI_L7_SUITE_IDS = frozenset(f"UT-LCI-{number}" for number in range(100, 114))
-LCI_L8_SUITE_IDS = frozenset(f"CASE-L8-LCI-{number}" for number in range(100, 113))
+LCI_L7_SUITE_IDS = (frozenset(f"UT-LCI-{number}" for number in range(100, 114))
+                    | frozenset(f"UT-LCI-{number}" for number in range(120, 128)))
+LCI_L8_SUITE_IDS = (frozenset(f"CASE-L8-LCI-{number}" for number in range(100, 113))
+                    | frozenset(f"CASE-L8-LCI-{number}" for number in range(118, 126)))
 LCI_L8_DESIGN_IDS = frozenset(f"CASE-L8-LCI-{number}" for number in range(113, 118))
 LCI_L8_CASE_IDS = LCI_L8_SUITE_IDS | LCI_L8_DESIGN_IDS
-LCI_L9_SUITE_IDS = frozenset(f"IV-LCI-{number}" for number in range(73, 87))
+LCI_L9_SUITE_IDS = (frozenset(f"IV-LCI-{number}" for number in range(73, 87))
+                    | frozenset(f"IV-LCI-{number}" for number in range(92, 100)))
 LCI_L9_DESIGN_IDS = frozenset((*(f"IV-LCI-{number:02d}" for number in range(9, 15)), "IV-LCI-27", *(f"IV-LCI-{number}" for number in range(63, 73)), *(f"IV-LCI-{number}" for number in range(87, 92))))
 EXPECTED_LOCAL_CI_CASE_IDS = {
     (LCI_L7_PATH, "l7-suite-oracles"): LCI_L7_SUITE_IDS,
