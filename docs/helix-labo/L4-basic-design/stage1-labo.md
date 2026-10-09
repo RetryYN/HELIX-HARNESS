@@ -28,7 +28,7 @@ L3/L10業務本文はこの二親に独立したbusiness outcome/ACを定めず�
 
 ## 2. 共通カーネルとの接続
 
-本書は共通カーネルL4 [`common-kernel.md`](../../helix-harness/L4-basic-design/common-kernel.md)（SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`）の型/APIを再利用する。対の既存L9 [`common-kernel-integration-verification.md`](../../helix-harness/L9-integration-verification/common-kernel-integration-verification.md)（SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`）が定める検証契約と別に、ここではLABO固有のデータ境界を定める。
+本書はmain `79013543184a6e47f99bc2ded1bb7a2e7f85737e`の共通カーネルL4 [`common-kernel.md`](../../helix-harness/L4-basic-design/common-kernel.md)（SHA-256 `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82`）の型/APIを再利用する。対の既存L9 [`common-kernel-integration-verification.md`](../../helix-harness/L9-integration-verification/common-kernel-integration-verification.md)（同mainのSHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`）が定める検証契約と別に、ここではLABO固有のデータ境界を定める。
 
 | 既存契約 | LABOでの用途 | 保持する境界 |
 |---|---|---|
