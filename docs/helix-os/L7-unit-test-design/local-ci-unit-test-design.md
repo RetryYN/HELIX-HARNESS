@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `adc4b29717d9e564e076f0e0772a9b6f7de7f48fd7c6d4ab137d851bdfc73935`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `de0551b77a0227d7da8fab90b1cdad610bc1c779672e10eb6d28000c9b316978`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -202,7 +202,7 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 | UT-LCI-124 | K3 formal IDsは一意なmapping rowへ結び付く | K3 mappingの一つの`formal_l7_id`だけを重複させ、mutation側mapping digestを再計算する | runner起動後のfixed inventory検査がUnknown(conflict)。unittest discovery/execution前にnoncomplete診断を返し、F05はstep fail/partial diagnosticとして保持。complete evidenceは作らない |
 | UT-LCI-125 | K3の220 expected discovery identitiesを含む586個のfixed identity set | actual discoveryからK3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを除く | Unknown(conflict)をspawn後partial diagnosticへ残し、F05はsuite step fail。count/formal rowsだけで補完せずcompact suite evidenceを作らない |
 | UT-LCI-126 | actual discovery identitiesはfixed 586件で一意 | discovery結果にK3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを重複追加 | Unknown(conflict)をspawn後partial diagnosticへ残し、F05はsuite step fail。重複をdedupして肯定しない |
-| UT-LCI-127 | Core 586件だけを5 outcome familyへ互いに素に割り当てた比較値はbody/capture/helperが90,514/90,515/121,474 bytes。現在の613件（Core 586＋補助27）の最大合法complete frameは99,820-byte body、99,821-byte LF capture、133,870-byte helper responseであり、1/3/5 familyの形を比較する | 最大合法613件frameのbodyだけを99,821 bytesへ1 byte増やす | runnerはcomplete artifactを出さず`Unknown(conflict)`の部分diagnosticを返す。切詰め結果からcomplete summaryやpositive receiptを作らない。現在の上限は99,820/99,821/134,000 bytes
+| UT-LCI-127 | Core 586件だけを5 outcome familyへ互いに素に割り当てた比較値はbody/capture/helperが90,514/90,515/121,474 bytes。現在の613件（Core 586＋補助27）の最大合法complete frameは99,820-byte body、99,821-byte LF capture、133,870-byte helper responseであり、1/3/5 familyの形を比較する | 最大合法613件frameのbodyだけを99,821 bytesへ1 byte増やす | runnerはcomplete artifactを出さず`Unknown(conflict)`の部分diagnosticを返す。切詰め結果からcomplete summaryやpositive receiptを作らない。設計候補上限は99,820/99,821/134,000 bytes。現行runtimeの`source_l7_runner.py`/`runner.py`上限は未変更で、body/capture/helperは90,514/90,515/122,000 bytes
 | UT-LCI-128 | current source suiteの9 code/test refsがtarget treeに揃う | `journal.py` blobだけをcurrent target source refsから欠落させる | `Unknown(missing_input)`、先行5 checkのpartial diagnosticを保持して第6 check spawn前に停止 |
 | UT-LCI-129 | UT-LCI-128の他条件 | `test_k5.py` blobだけをcurrent target source refsから欠落させる | `Unknown(missing_input)`、K1/K2/K3 modulesだけへ縮退せずrunner未起動 |
 | UT-LCI-130 | target L7は505個の固定formal IDsをすべて含む | target L7本文からK6 disposition `CK-K6-UT-010`の行だけを除く | `Unknown(conflict)`、target L7とfixed inventoryの不一致としてrunner起動前に停止 |
@@ -213,7 +213,7 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 
 ## 5. 4機構 supplemental identity partition oracle
 
-この節はL5 §8.1で固定した4機構の27 source-only unittest identitiesを、既存`F-LCI-10`の同じLC-STAGE1-L7-001 suiteへ加える構造・実行集合oracleである。下表のSUP identityは機構L7のformal UT IDではない。機構formal locator/status/owner-return refsはL5の別型で保持し、Core 505 formal IDs・495 mapping・586 discovery setへ足さない。`SUP` listはBRAIN 13、LABO 4、HARNESS 5、INFRA 5で閉じる。main `30e957ee900da7735b6c691bdb63b55cae7a0c95`時点のSECURITY 10件、CONNECT 4件、Common Kernel K4/G3 14件は未登録のまま除外し、後続対象をscanから追加しない。
+この節はL5 §8.1で固定した4機構の27 source-only unittest identitiesを、既存`F-LCI-10`の同じLC-STAGE1-L7-001 suiteへ加える構造・実行集合oracleである。下表のSUP identityは機構L7のformal UT IDではない。機構formal locator/status/owner-return refsはL5の別型で保持し、Core 505 formal IDs・495 mapping・586 discovery setへ足さない。`SUP` listはBRAIN 13、LABO 4、HARNESS 5、INFRA 5で閉じる。main `4a40597efbf867b6b5b5640060b2cac81de56de0`時点のSECURITY 10件、CONNECT 4件、Common Kernel K4/G3 14件は未登録のまま除外し、後続対象をscanから追加しない。
 
 | Unit test ID | 正常前提 | 一点の変異／観測 | 期待 |
 |---|---|---|---|

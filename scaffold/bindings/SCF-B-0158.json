@@ -10,32 +10,32 @@
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
-      "sha256": "4e1ffe61bc593c4f705e7c0527948b9834d49f68016077813eebcb2da9b138ec",
+      "sha256": "e7cf8d12704b3d241aba1b6342a9873a7ae4be98f7e41fb90290844a527965ae",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "06f70bb7b19b077f500f7eb1c9e9ce4c9691079e8ffd5a0d43f5f8782606476e",
+      "sha256": "2c30c82701758525a13822b69329cff67b8fd5485d3d5fc4dc1f6e285c63a7e1",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "0349a9cfb7bee7ec1e27f574a839cbb8b77e848e1230e2fda0b89ff02af517d7",
+      "sha256": "05ba206ce78eaecba0585dec3d08fa18e6dfb6b31e80423b5fea1455ca08a868",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "3ffdffcfeda47b28193251dab8176917868deaab3917d28f3fe6b8d09234689a",
+      "sha256": "8f19d4ead8729255bf9dc6efcbf83d1c3d41e46a9c46e7f3558f240037f1681b",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "adc4b29717d9e564e076f0e0772a9b6f7de7f48fd7c6d4ab137d851bdfc73935",
+      "sha256": "de0551b77a0227d7da8fab90b1cdad610bc1c779672e10eb6d28000c9b316978",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "a37167624292b35c7bcf7498a3a03f4bfeaaec69c33c86c8d48a9e376ba2fcb8",
+      "sha256": "ff247742552ef5cb8a2e866cb599786b237bdc8333644980472753ba26a9bb10",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -45,13 +45,13 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/common-kernel.md",
-      "sha256": "445c564a7b5678d7609daf4142090a26a3df73ce76522a29771a6dad5cdce3f2",
-      "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5/K9 contract bytes。固定構造corpusの入力として照合する。K4/G3の73 fixture ID以外のfixture登録・CI coverage、semantic approvalや実装成立を示さない。"
+      "sha256": "1fb52363e169d6210b197b678e68881b49c87cecbf6e79e1767282996549b90a",
+      "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5/K9 contract bytes。固定構造corpusの入力として照合する。K4/G3の73 fixture ID以外のfixture登録・CI coverage、semantic approvalや実装成立を示さない。 K8の設計追補を含む。K8 fixture inventoryは未登録であり、実行・coverageを示さない。"
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "95f11077ab8a6ca43462bc085aad60366b48b0b7c26a171f80e59363ec56f3ea",
-      "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5/K9 verifier table/range。K1/K2/K3/K5 inventory、K4/G3の73 fixture ID構造照合対象を維持する。K6/K7/G5/K9 fixture inventoryは未登録であり、本pinはfixture実行・CI coverageを示さない。"
+      "sha256": "37671734f8beceb6b277d10971d42c8876f64eee4b10b78a2d495a2a49ac9451",
+      "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5/K9 verifier table/range。K1/K2/K3/K5 inventory、K4/G3の73 fixture ID構造照合対象を維持する。K6/K7/G5/K9 fixture inventoryは未登録であり、本pinはfixture実行・CI coverageを示さない。 K8の設計追補を含む。K8 fixture inventoryは未登録であり、実行・coverageを示さない。"
     },
     {
       "path": "docs/helix-harness/L4-basic-design/common-kernel.md",

@@ -9,7 +9,7 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `4e1ffe61bc593c4f705e7c0527948b9834d49f68016077813eebcb2da9b138ec`である。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `e7cf8d12704b3d241aba1b6342a9873a7ae4be98f7e41fb90290844a527965ae`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
@@ -140,9 +140,9 @@ Local runはplanの固定6 required stepを実行する。planの選択根拠/co
 | `IV-LCI-96` | K3 mapping uniqueness | 各K3 formal IDは一意なmapping rowへ結び付く | 一formal IDだけを別rowと重複させ、mutation側mapping digestを再計算 | runner起動後のfixed inventory検査がUnknown(conflict)。discovery/execution前のnoncomplete診断をF05がstep fail/partial diagnosticとして保持し、complete evidenceなし |
 | `IV-LCI-97` | K3 discovery completeness | fixed K3 discovery setは220 identitiesを含む | runner discovery結果からK3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを除く | Unknown(conflict)診断をF05がsuite step failへ写し、partial diagnosticのみを残す |
 | IV-LCI-98 | suite discovery uniqueness | current composite discovery IDsは613件で一意（Core 586 digestは固定、supplemental 27は別digest） | SUP identity `l7_sup_infra_test_infrastructure.TestImplementedProjections.test_nfr_helper_counts_supplied_states_and_keeps_missing_denominator`だけを二重に返す | Unknown(conflict)、重複をdedupせずsuite step fail、complete evidenceなし |
-| IV-LCI-99 | bounded suite frame | Core-only 586比較値は90,514-byte body/90,515-byte LF capture/121,474-byte helper response。current composite 613 identitiesを5つの互いに素なoutcome familyへ分ける最大合法complete frameは99,820-byte body、99,821-byte LF capture、133,870-byte helper response。single-family 99,816/99,817/133,866とthree-family 99,818/99,819/133,866を含む。current boundsは99,820/99,821/134,000 bytes | 最大合法613 runner bodyのbound 99,820を超える99,821 bytesへ増やす | Unknown(conflict) partial diagnostic、truncated frameからcomplete artifact/receiptを作らない |
+| IV-LCI-99 | bounded suite frame | Core-only 586比較値は90,514-byte body/90,515-byte LF capture/121,474-byte helper response。current composite 613 identitiesを5つの互いに素なoutcome familyへ分ける最大合法complete frameは99,820-byte body、99,821-byte LF capture、133,870-byte helper response。single-family 99,816/99,817/133,866とthree-family 99,818/99,819/133,866を含む。設計候補boundsは99,820/99,821/134,000 bytes。実runtimeの`source_l7_runner.py`/`runner.py`上限90,514/90,515/122,000 bytesは未変更 | 最大合法613 runner bodyのbound 99,820を超える99,821 bytesへ増やす | Unknown(conflict) partial diagnostic、truncated frameからcomplete artifact/receiptを作らない |
 
-K3拡張時点の履歴記録では、419 discovery IDs、70,000-byte body、70,001-byte LF capture、100,000-byte helper response envelopeをIV-LCI-98/99の基準としていた。K5追加後の固定時点は534 IDs、82,000-byte body、82,001-byte LF capture、120,000-byte helper responseだった。K6時点ではCore 586 identitiesの最大合法形（90,514-byte body/90,515-byte LF capture/121,474-byte helper response）に合わせていた。今回、固定補助27 identitiesを加えた613 identitiesの最大合法形を5 outcome familyで静的算出すると99,820-byte body/99,821-byte capture/133,870-byte helper responseとなるため、同じ完全結果回収契約を維持したままcurrent上限を99,820/99,821/134,000 bytesへ同期する。613-frameのsingle-family（99,816/99,817/133,866）とthree-family（99,818/99,819/133,866）を比較caseとして保つ。従前の419/534/586時点値は各固定時点の履歴でありcurrent上限ではない。
+K3拡張時点の履歴記録では、419 discovery IDs、70,000-byte body、70,001-byte LF capture、100,000-byte helper response envelopeをIV-LCI-98/99の基準としていた。K5追加後の固定時点は534 IDs、82,000-byte body、82,001-byte LF capture、120,000-byte helper responseだった。K6時点ではCore 586 identitiesの最大合法形（90,514-byte body/90,515-byte LF capture/121,474-byte helper response）に合わせていた。今回、固定補助27 identitiesを加えた613 identitiesの最大合法形を5 outcome familyで静的算出すると99,820-byte body/99,821-byte capture/133,870-byte helper responseとなるため、同じ完全結果回収契約を維持する設計上のcurrent候補boundsを99,820/99,821/134,000 bytesとする。実runtime上限90,514/90,515/122,000 bytesはまだ変更されていない。613-frameのsingle-family（99,816/99,817/133,866）とthree-family（99,818/99,819/133,866）を比較caseとして保つ。従前の419/534/586時点値は各固定時点の履歴でありcurrent上限ではない。
 
 source欠落は第6 checkのspawn前にUnknown(missing_input)となる。先行5 checkのevidenceはfull external partial diagnostic artifactに残し、未起動suite rowとLocalCiReceiptを作らない。UnknownをCheckExecution有限語彙へ写さず、compact provider inputでも実行済みと偽装しない。providerはfull identity artifactを取得せず、compact summaryとcurrent refs/digest/countのみを検証する。現targetにsource/test refsが無い場合はIV-LCI-86の非肯定を適用する。
 
@@ -150,7 +150,7 @@ IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそ�
 
 ### 5.1 4機構 supplemental identity partition oracles
 
-以下は既存`LC-STAGE1-L7-001`の同一check内でCore inventoryと補助identity partitionを分離照合する。Core 586 discovery identities、505 formal IDs、495 mapping、K6の10 dispositionは不変。4機構の27補助identityとformal L7 status/owner-return locatorは別の固定入力であり、formal IDやowner解決を新たに生成しない。対応するL8 casesは`CASE-L8-LCI-131..141`、L7 testsは`UT-LCI-133..143`である。SECURITY 10件、CONNECT 4件、Common Kernel K4/G3 14件はmain `30e957ee900da7735b6c691bdb63b55cae7a0c95`時点で存在する未登録集合として除外し、これらを追加する一変異ごとの拒否をIV-LCI-109〜110で照合する。
+以下は既存`LC-STAGE1-L7-001`の同一check内でCore inventoryと補助identity partitionを分離照合する。Core 586 discovery identities、505 formal IDs、495 mapping、K6の10 dispositionは不変。4機構の27補助identityとformal L7 status/owner-return locatorは別の固定入力であり、formal IDやowner解決を新たに生成しない。対応するL8 casesは`CASE-L8-LCI-131..141`、L7 testsは`UT-LCI-133..143`である。SECURITY 10件、CONNECT 4件、Common Kernel K4/G3 14件はmain `4a40597efbf867b6b5b5640060b2cac81de56de0`時点で存在する未登録集合として除外し、これらを追加する一変異ごとの拒否をIV-LCI-109〜110で照合する。
 
 | Oracle ID | L4/L5/L6 contract | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|

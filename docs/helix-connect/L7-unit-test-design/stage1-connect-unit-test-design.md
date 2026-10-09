@@ -4,13 +4,13 @@ layer: L7
 status: design_draft
 owner: HELIX-CONNECT
 paired_l6: ../L6-function-design/stage1-connect.md
-paired_l6_sha256: b48f9323c06458c34f6c614ea69c102ffc9b30c5988ba01aca24cec4277f7d1d
+paired_l6_sha256: 86966d4a5553ea8613d3c3546d57272d186fe656250d474ae494fbcd50d80d6d
 base: main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`
 ---
 
 # HELIX-CONNECT Stage 1 L7 単体検証設計
 
-本書は固定L8に定義された152 fixtureを、L6の関数locatorと既存L9 verifierへ一対一で対応する。`UT-CONNECT-*`はこのL7内部のunit-test locatorであり、L9 oracle IDを定義しない。下表のbaseline、単一変異またはpositive control、期待値はL8から転記し、L8/L9の要求意味を変更しない。全fixtureは設計のみで未実行である。
+本書は固定L8に定義された152 fixtureを、L6の関数locatorと既存L9 verifierへ一対一で対応する。`UT-CONNECT-*`はこのL7内部のunit-test locatorであり、L9 oracle IDを定義しない。下表のbaseline、単一変異またはpositive control、期待値はL8から転記し、L8/L9の要求意味を変更しない。152件のformal fixtureは設計のみで未実行である。別節のprivate helper probeはformal fixtureの実行・合格を意味しない。
 
 ## 1. 固定sourceと実行境界
 
@@ -194,4 +194,17 @@ CPython 3.11以降の標準ライブラリと`unittest`はL6の技術候補で�
 
 L8にある既存asset、旧source span、ledger状態、保持/再導出/除外理由は[L6 §1.1](../L6-function-design/stage1-connect.md#11-旧helix-source保持と変更)を参照する。設計fixtureとassertionは合成値だけを扱い、実owner source/receipt/通信を読まない。どのAPIでもK1 `Unknown`/K2 `Unobserved`/`Stale`を成功に変換しない。K3 `PermissionCheckResult | PermissionCheckDiagnostic`、K5 append `Rejected(reason)`とK1 observationも混同しない。
 
-この表はテスト設計の索引で、テストコード、実行証拠、pass、L8〜L10 completionを意味しない。実装・実行・独立reviewは別工程の記録がない限り未着手/未確認である。
+この表はテスト設計の索引で、正式fixtureの実行証拠、pass、L8〜L10 completionを意味しない。補助helper probeは別境界で実施した。
+
+## 5. ローカルhelper検証状況
+
+main `4b647b837d5fe1f873611907fca373ac8239a928`上のsource-only候補 `helix/helix-connect/units/connect-stage1/src/connection_contract.py` はprivate `_retain_observation_slots`だけを含む。対象は明示されたslot名・既存`SubjectRef`・既存K1 `Observed`の三つ組を、入力順・重複・各観測objectのまま保持することに限る。formal L5 API、owner reader、K2 key binding、K3 authority query、endpoint compatibility/binding判定、K5 trace/append、retry、NFR measurementは実装していない。
+
+| supplemental test | 合成入力の関係先 | 実際にassertするもの | formal coverage status |
+|---|---|---|---|
+| `test_synthetic_declaration_slots_keep_explicit_order_and_objects` | `UT-CONNECT-001` / `L8-CONNECT-001-01-POS` の入力field形だけ | source/consumerの既存`Value`、refs、指定順を保持する。declaration適合のK1 Valueを生成したとはassertしない。 | partial helper probe。formal `UT-CONNECT-001`未実行。 |
+| `test_existing_unknown_mutation_is_retained_without_classification` | `UT-CONNECT-005` / `L8-CONNECT-001-01-SOURCE-UNKNOWN` の既存Unknown保持だけ | source slotの既存Unknown reason/evidenceとconsumerのValueをそのまま保持する。overall declaration resultを生成したとはassertしない。 | partial helper probe。formal `UT-CONNECT-005`未実行。 |
+| `test_all_existing_k1_nonvalues_remain_opaque_slots` | K1 observed class保持境界 | Unknown/Unobserved/Stale/NotApplicableを同一objectのまま返す。比較やreason写像をしない。 | supplemental K1 shape probe。152 formal locatorのいずれも完了扱いしない。 |
+| `test_private_helper_rejects_malformed_python_rows` | private function call-shapeのみ | malformed Python rowをTypeErrorで拒否する。これはK1/CONNECT RejectedやL8 oracleではない。 | supplemental precondition probe。formal coverage外。 |
+
+上記4 testは次のscopeで実行した: `PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s helix/helix-connect/units/connect-stage1/tests -v`。結果は4 tests, 4 passed。実行source SHA-256は`e98e09c1eaa2b20c17891dfa0c2c1d1fb7510eeef3d53880847cfd02c3dcbd72`、test SHA-256は`19f9efdba21ca5965f78a30ae43ed08e29adccfb98d673fe96a150bbb119a04e`である。formal 152 rows、18 L9 verifier、L8/L9 integrationは未実行・未検証のままである。

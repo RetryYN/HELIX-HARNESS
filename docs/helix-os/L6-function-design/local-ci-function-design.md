@@ -17,10 +17,10 @@ version_target: 1.0
 
 | 入力path | 本文SHA-256 |
 |---|---|
-| `docs/helix-os/L4-basic-design/local-ci.md` | `4e1ffe61bc593c4f705e7c0527948b9834d49f68016077813eebcb2da9b138ec` |
-| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `06f70bb7b19b077f500f7eb1c9e9ce4c9691079e8ffd5a0d43f5f8782606476e` |
-| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `0349a9cfb7bee7ec1e27f574a839cbb8b77e848e1230e2fda0b89ff02af517d7` |
-| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `3ffdffcfeda47b28193251dab8176917868deaab3917d28f3fe6b8d09234689a` |
+| `docs/helix-os/L4-basic-design/local-ci.md` | `e7cf8d12704b3d241aba1b6342a9873a7ae4be98f7e41fb90290844a527965ae` |
+| `docs/helix-os/L9-integration-verification/local-ci-integration-verification.md` | `2c30c82701758525a13822b69329cff67b8fd5485d3d5fc4dc1f6e285c63a7e1` |
+| `docs/helix-os/L5-detail-design/local-ci-detail-design.md` | `05ba206ce78eaecba0585dec3d08fa18e6dfb6b31e80423b5fea1455ca08a868` |
+| `docs/helix-os/L8-detail-verification/local-ci-detail-verification.md` | `8f19d4ead8729255bf9dc6efcbf83d1c3d41e46a9c46e7f3558f240037f1681b` |
 
 ## 1. 関数群
 
@@ -138,11 +138,11 @@ F10は5 outcome組のcounts/IDs/exitの整合を検証する。expected failure�
 
 次の追補は同じ`F-LCI-10 run_source_l7_suite`の入力集合を明示し、別関数・check・実行stepを作らない。上記のCore契約は保護prefixとして維持し、Core `586` identities、`505` formal ID closure、`495` callable mapping、K6の10 dispositionと各digestを変更しない。追加partitionはL5 §8.1の27補助identityだけであり、実 target treeから読んだBRAIN/LABO/HARNESS/INFRAのimplementation/test各2 refsと各L6/L7 refsに固定する。
 
-処理前にrunnerはsource ref全16件（補助code/test 8件、paired L6/L7文書8件）を同じ`CiTarget.head_tree`から読み、期待digestと照合する。欠落は既存`Unknown(missing_input)`、入力済refの内容不一致・formal locator/status/owner-return raw cellの不一致・supplemental IDの重複/余分/欠落は既存inventory conflictとして扱い、欠けた機構を飛ばして縮退実行しない。解決は`LC-STAGE1-L7-001`の既存pre-spawn/noncomplete境界を使い、新しいK1 reason・receipt status・owner判定を作らない。
+runner起動前にtrusted driver/preflightが、同じ`CiTarget.head_tree`からCoreと補助のsource refs全27件（implementation/test 17件、L6/L7文書10件）を読み、期待digestと照合する。同preflightは機構別formal locator、原non-execution status cell、owner-return locatorの独立source trace集合も固定L7 bytesから解決する。欠落は既存`Unknown(missing_input)`、入力済ref/traceの内容不一致、supplemental IDの重複/余分/欠落は既存inventory conflictとして扱い、欠けた機構を飛ばして縮退実行しない。解決は`LC-STAGE1-L7-001`の既存pre-spawn/noncomplete境界を使い、新しいK1 reason・receipt status・owner判定を作らない。runnerには検証済みの固定module inventoryだけを渡す。runnerはTestCase IDsとoutcomeを採取し、source refsやformal/status/owner traceを読まずstdoutにも含めない。
 
-runnerはL5 §8.1の固定aliasで補助4 test modulesをCoreの5 modulesとともに一度ずつロードする。`SupplementalTestIdentity`の27 identitiesとCoreの586 identitiesは異なるpartition field/ID namespaceで保持し、union側でも重複を検査してから613件を実行する。Core discovery digestは従前の586件のまま別に検査する。最大合法complete resultは613件を5つのoutcome familyへ互いに素に割り当てた99,820-byte body/99,821-byte LF capture/133,870-byte helper frameであり、固定上限は99,820/99,821/134,000 bytesである。586 Core-only測定値90,514/90,515/121,474は比較履歴として保持する。Core 495 mappingと補助27 identityの間にformal-ID mapping/coverage edgeを作らない。
+runnerはL5 §8.1の固定aliasで補助4 test modulesをCoreの5 modulesとともに一度ずつロードする。`SupplementalTestIdentity`の27 identitiesとCoreの586 identitiesは異なるpartition field/ID namespaceで保持し、union側でも重複を検査してから613件を実行する。Core discovery digestは従前の586件のまま別に検査する。設計上の最大合法complete resultは613件を5つのoutcome familyへ互いに素に割り当てた99,820-byte body/99,821-byte LF capture/133,870-byte helper frameであり、候補上限は99,820/99,821/134,000 bytesである。現行runtimeの`source_l7_runner.py`/`runner.py`上限90,514/90,515/122,000 bytesは未変更で、実装能力を示さない。586 Core-only測定値90,514/90,515/121,474は比較履歴として保持する。Core 495 mappingと補助27 identityの間にformal-ID mapping/coverage edgeを作らない。
 
-各機構L7 formal locator、L7 original status cell、owner return locatorは`MechanismFormalLocator`、`MechanismOriginalNonexecutionStatus`、`MechanismOwnerReturnTrace`としてfull external evidenceのinventory traceへ含める。これらはsource bytesの一意なlocator情報であり、formal mappingや実行結果ではない。`NotDeclaredBySource`は原L7にowner return locatorがないことを表すsource observationであり、ownerが存在しない、判定済み、許可済みという意味を持たない。status cell内容の正規化・統合・K6 dispositionへの変換をしない。
+trusted sideは機構別L7 formal locator、L7 original status cell、owner return locatorを`MechanismFormalLocator`、`MechanismOriginalNonexecutionStatus`、`MechanismOwnerReturnTrace`としてfull external evidenceの独立inventory trace集合へ含める。trace集合はsupplemental test identityと1対1・行単位に結び付けない。これらはsource bytesの一意なlocator情報であり、formal mappingや実行結果ではない。`NotDeclaredBySource`は原L7にowner return locatorがないことを表すsource observationであり、ownerが存在しない、判定済み、許可済みという意味を持たない。status cell内容の正規化・統合・K6 dispositionへの変換をしない。
 
 補助moduleのpassはそのmethodの局所assertionだけを示す。BRAINの既存K1/K2 payload保持候補、LABOのprivate projection helper、HARNESSのprivate comparison helper、INFRAのprivate projection/aggregation helperの結果を各製品formal L7 binding、source/owner authenticity、K3 permission、K5 restore、NFR測定、L8/L9/L10 passへ昇格しない。target-tree L6/L7 docsはsource refsとして固定されるが、それらの正式IDや未実施statusをsupplemental test identityへ自動変換しない。
 

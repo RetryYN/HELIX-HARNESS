@@ -94,4 +94,31 @@ L6/L7実装候補はCPython 3.11以降と標準ライブラリ、`unittest`と�
 
 ## 5. 未決と検証範囲
 
-物理path/transport、実operation owner mapping、ownerが保持する外部receiptの真性、永続writer実装、実送受信・retry実行、measurement sourceの実在は本書から確定しない。未解決なら影響するoperation/fixtureのみ非肯定またはL9既存holdにする。全Stage/全接続の停止、追加owner/gate、L2要求変更は作らない。L7は固定L8 fixture/期待を構造的に対応させる設計であり未実行である。独立review、実装、CI、coverage、運転結果を主張しない。
+物理path/transport、実operation owner mapping、ownerが保持する外部receiptの真性、永続writer実装、実送受信・retry実行、measurement sourceの実在は本書から確定しない。未解決なら影響するoperation/fixtureのみ非肯定またはL9既存holdにする。全Stage/全接続の停止、追加owner/gate、L2要求変更は作らない。formal L7 fixtureは設計のみで未実行である。§6のprivate helper実装・補助testは範囲限定のsource候補であり、正式L5 API、formal coverage、独立review、CI、L8/L9適合、運転結果を主張しない。
+
+## 6. ローカルsource候補の実装範囲
+
+次の記録はmain `4b647b837d5fe1f873611907fca373ac8239a928`上のローカルsource-only候補である。正式pack、declaration、型番・版・owner登録、L5公開API実装、owner reader接続、L8/L9適合、運転・配布を意味しない。§1の共通kernel L5 pin `3f3867…`は当時の固定入力snapshotとして残す。下表の現行実装参照は後続mainの設計/実装時点を別に示す。
+
+| 参照 | 現行main 4bのSHA-256 | この候補での使い方 |
+|---|---|---|
+| `docs/helix-harness/L5-detail-design/common-kernel.md` | `1310b538c268532a4aa15d3b47048bcdf592e6a6a85af88c2fb9fa08986a43a7` | `Observed<T>`とK1各classの既存形を確認する現行設計参照。 |
+| `helix/helix-harness/units/common-kernel/src/common_kernel.py` | `ce9c7a87cd318c2ff5d12f68c71129f6ad99f0b78616f89c501ccdd2c4643178` | private helperが型検査する既存`Value`/`Unknown`/`Unobserved`/`Stale`/`NotApplicable`と`SubjectRef`の実装参照。 |
+| `helix/helix-connect/units/connect-stage1/src/connection_contract.py` | `e98e09c1eaa2b20c17891dfa0c2c1d1fb7510eeef3d53880847cfd02c3dcbd72` | 既存`SubjectRef`とK1 `Observed`を明示slot順で保持するprivate helperのみ。 |
+| `helix/helix-connect/units/connect-stage1/tests/test_connection_contract.py` | `19f9efdba21ca5965f78a30ae43ed08e29adccfb98d673fe96a150bbb119a04e` | synthetic helper probes。正式L7 fixtureの完了証拠ではない。 |
+
+この実装はL5公開APIを一つも実装しない。private `_retain_observation_slots`は`(slot name, existing SubjectRef, existing K1 Observed)`行を与えられた順で返し、重複除去、順序判定、field選択、意味比較、K1 class/reason選択、K2 key作成、owner current-source読取をしない。helperのPython call-shape `TypeError`はCONNECT/K1のresultや診断ではない。
+
+| L6 locator / L5 API | 状態と未接続境界 |
+|---|---|
+| `CONNECT-FN-01` / `validate_connection_declaration` | 未実装。current source/consumer declaration reader、K2 key binding、宣言妥当性の結果mappingが未接続。 |
+| `CONNECT-FN-02` / `compare_compatibility` | 未実装。登録/current revision readerと完全key lookupを結ぶowner境界が未接続。 |
+| `CONNECT-FN-03` / `check_send_eligibility` | 未実装。current `OperationDecl`/actor/environment resolverと既存K3 query/resultのowner compositionが未接続。caller authority/queryは受け取らない。 |
+| `CONNECT-FN-04` / `bind_endpoint_observations` | 公開APIは未実装。private slot helperは既に与えられたendpoint observationsの保持のみを検査し、同一性・相関・required ref・期待classを判定しない。 |
+| `CONNECT-FN-05` / `assess_retry` | 未実装。failure/authority/expiryのowner observationと実operation attempt境界は未接続。retry/sendは行わない。 |
+| `CONNECT-FN-06` / `validate_trace_append` | 未実装。current K5 prefix/LogDecl readerとの結合がなく、event order/append判定も行わない。append/writeは行わない。 |
+| `CONNECT-FN-07` / `measure_connection_nfr` | 未実装。measurement source/method/evidenceが未接続。実測や達成判定をしない。 |
+| `CONNECT-NFR-OBSERVATION-HOLD` / `UT-CONNECT-088` | L9既存局所holdのまま。receiver effect observation APIを作らない。 |
+| `CONNECT-BIZ-BOUNDARY` / `UT-CONNECT-090–137` | business-result APIを作らない。正式L7 negative fixtureの実行/不在検証を主張しない。 |
+
+正式L7の152 locatorは全て未実行の設計fixtureのままであり、4件のsupplemental helper testをformal locatorへ割り当てない。実行範囲、具体的test method、expected resultの区別は対の[L7 §5](../L7-unit-test-design/stage1-connect-unit-test-design.md#5-ローカルhelper検証状況)に記録する。
