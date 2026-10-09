@@ -1,4 +1,4 @@
-"""Fixed, source-bound Common Kernel K1/K2/K3/K5 unittest runner.
+"""Fixed, source-bound Common Kernel K1/K2/K3/K5/K6 unittest runner.
 
 The embedded inventory is reviewed configuration. This process runs only inside
 runner.py's sandbox; stdout is a bounded, untrusted result frame for the parent.
@@ -18,12 +18,12 @@ try:
 except ImportError:  # pragma: no cover - direct fixed argv entrypoint
     from common import Diagnostic, canonical_bytes, sha256
 
-SUITE_ID = "common-kernel-k1-k2-k3-k5"
+SUITE_ID = "common-kernel-k1-k2-k3-k5-k6"
 CURRENT_DESIGN_PATHS = (
     "docs/helix-harness/L6-function-design/common-kernel.md",
     "docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md",
 )
-SOURCE_SHA256 = {'helix/helix-harness/units/common-kernel/src/common_kernel.py': 'ce9c7a87cd318c2ff5d12f68c71129f6ad99f0b78616f89c501ccdd2c4643178', 'helix/helix-harness/units/common-kernel/src/journal.py': '78dba87db2b55cb349ed8fbc5d0483cdb933a8cce4d45e910c5f9cbcaefeb907', 'helix/helix-harness/units/common-kernel/src/permission.py': '6a2f3b0d82dd38b03a4b27b2f98ed58217286eb9912c6a984a6a5549ac6c9f8b', 'helix/helix-harness/units/common-kernel/tests/test_k1.py': 'da847ab19a9c3fa0df17c360bc489c9da2470f53d3ee6487ea0e822905e561ff', 'helix/helix-harness/units/common-kernel/tests/test_k2.py': '3b1a6ede6642292ef31e458ca519bc293917da5e4654f85eda9ccf4a350d1582', 'helix/helix-harness/units/common-kernel/tests/test_k3.py': '1dd8ff995c40e428e6952f607731f3215c3a44785a8b4f0b0ff6c7c340a2c62a', 'helix/helix-harness/units/common-kernel/tests/test_k5.py': 'c7d3dcedec9e63a1beb364147036135ae966c4330241f236f9842686e9134574'}
+SOURCE_SHA256 = {'helix/helix-harness/units/common-kernel/src/common_kernel.py': 'ce9c7a87cd318c2ff5d12f68c71129f6ad99f0b78616f89c501ccdd2c4643178', 'helix/helix-harness/units/common-kernel/src/journal.py': '78dba87db2b55cb349ed8fbc5d0483cdb933a8cce4d45e910c5f9cbcaefeb907', 'helix/helix-harness/units/common-kernel/src/permission.py': '6a2f3b0d82dd38b03a4b27b2f98ed58217286eb9912c6a984a6a5549ac6c9f8b', 'helix/helix-harness/units/common-kernel/src/verification.py': '173c885b4b2400cf7479d7cabeabd14b65bfc8b2a025b6256d6463c52f5f958c', 'helix/helix-harness/units/common-kernel/tests/test_k1.py': 'da847ab19a9c3fa0df17c360bc489c9da2470f53d3ee6487ea0e822905e561ff', 'helix/helix-harness/units/common-kernel/tests/test_k2.py': '3b1a6ede6642292ef31e458ca519bc293917da5e4654f85eda9ccf4a350d1582', 'helix/helix-harness/units/common-kernel/tests/test_k3.py': '1dd8ff995c40e428e6952f607731f3215c3a44785a8b4f0b0ff6c7c340a2c62a', 'helix/helix-harness/units/common-kernel/tests/test_k5.py': 'c7d3dcedec9e63a1beb364147036135ae966c4330241f236f9842686e9134574', 'helix/helix-harness/units/common-kernel/tests/test_k6.py': '3d6e6a873cdc80ac7ba7810a5b94d6b104e2d54b8523a8e01da0c80cf6fdda86'}
 FORMAL_MAPPING = ({'callable_qualname': 'K1UnitTests.test_CK_K1_UT_001',
   'coverage_kind': 'primary_callable',
   'formal_l7_id': 'CK-K1-UT-001',
@@ -1306,9 +1306,8 @@ K5_DISCOVERY_IDS = tuple(
 )
 EXPECTED_DISCOVERY_IDS = tuple(sorted(EXPECTED_DISCOVERY_IDS + K5_DISCOVERY_IDS))
 
-EXPECTED_DISCOVERY_COUNT = 534
 K5_DISCOVERY_IDS_SHA256 = "fd8edf4364fe9eac9e707ffe18852f249ea3f82e26ffe8780343c15672e25715"
-EXPECTED_DISCOVERY_IDS_SHA256 = "45fe38adc541d60538ae4a2393c6f33116e9cebadba5c2629ecf7f85ee962d8e"
+EXPECTED_DISCOVERY_IDS_SHA256 = "aca81abd7dd60c29512431c2d8223fd509d4c7a3a3fd7f1fc70847658ba0042d"
 
 # K3 formal IDs map one-to-one to the individually listed L7 UTs.
 K3_FORMAL_MAPPING = (
@@ -1524,7 +1523,62 @@ K5_FORMAL_MAPPING_SHA256 = "9e25d170dc5dc5bb48af57dd487fdc2939715f71f7c0679b8400
 K5_FORMAL_MAPPING_COUNT = 91
 K5_PRIMARY_COUNT = 67
 K5_STUB_COUNT = 24
-FORMAL_MAPPING_SHA256 = "439370e5a305949919fa959b9ee1c2d49f507ef2ed68457e4ba24947867c97cb"
+BASE_FORMAL_MAPPING = FORMAL_MAPPING
+BASE_FORMAL_MAPPING_COUNT = 450
+BASE_FORMAL_MAPPING_SHA256 = "439370e5a305949919fa959b9ee1c2d49f507ef2ed68457e4ba24947867c97cb"
+BASE_PRIMARY_COUNT = 398
+BASE_STUB_COUNT = 52
+BASE_EXPECTED_DISCOVERY_IDS = EXPECTED_DISCOVERY_IDS
+BASE_EXPECTED_DISCOVERY_COUNT = 534
+BASE_EXPECTED_DISCOVERY_IDS_SHA256 = "45fe38adc541d60538ae4a2393c6f33116e9cebadba5c2629ecf7f85ee962d8e"
+
+# K6 has 55 formal design IDs, but only 45 executable formal methods. Two
+# executable methods are partial assertions; ten IDs have no callable and
+# remain explicit, non-executable dispositions. Do not represent those ten
+# IDs as unittest identities or fixture stubs.
+K6_EXECUTABLE_UT_NUMBERS = (*range(1, 10), *range(14, 18), *range(20, 50), 53, 55)
+K6_PARTIAL_UT_NUMBERS = frozenset((35, 36))
+K6_FORMAL_MAPPING = tuple(
+    {
+        "callable_qualname": f"K6ImplementedFixtures.test_ck_k6_ut_{number:03d}",
+        "coverage_kind": "partial_callable" if number in K6_PARTIAL_UT_NUMBERS else "primary_callable",
+        "formal_l7_id": f"CK-K6-UT-{number:03d}",
+        "module_path": "helix/helix-harness/units/common-kernel/tests/test_k6.py",
+        "unittest_identity": f"test_k6.K6ImplementedFixtures.test_ck_k6_ut_{number:03d}",
+    }
+    for number in K6_EXECUTABLE_UT_NUMBERS
+)
+K6_UNEXECUTED_DISPOSITIONS = (
+    {"formal_l7_id": "CK-K6-UT-010", "disposition": "owner_unconnected"},
+    {"formal_l7_id": "CK-K6-UT-011", "disposition": "owner_unconnected"},
+    {"formal_l7_id": "CK-K6-UT-012", "disposition": "owner_unconnected"},
+    {"formal_l7_id": "CK-K6-UT-013", "disposition": "owner_unconnected"},
+    {"formal_l7_id": "CK-K6-UT-018", "disposition": "partial_design"},
+    {"formal_l7_id": "CK-K6-UT-019", "disposition": "partial_design"},
+    {"formal_l7_id": "CK-K6-UT-050", "disposition": "owner_unconnected"},
+    {"formal_l7_id": "CK-K6-UT-051", "disposition": "owner_unconnected"},
+    {"formal_l7_id": "CK-K6-UT-052", "disposition": "owner_unconnected"},
+    {"formal_l7_id": "CK-K6-UT-054", "disposition": "owner_unconnected"},
+)
+K6_FORMAL_COUNT = 55
+K6_EXECUTABLE_FORMAL_COUNT = 45
+K6_PRIMARY_COUNT = 43
+K6_PARTIAL_COUNT = 2
+K6_UNEXECUTED_COUNT = 10
+K6_REGRESSION_IDS = (
+    "test_k6.K6ImplementedFixtures.test_missing_owner_polarity_keeps_component_key_and_nonpositive",
+    "test_k6.K6ImplementedFixtures.test_restored_record_metadata_is_not_synthesized",
+    "test_k6.K6ImplementedFixtures.test_result_record_digest_mutation_is_rejected_as_conflict",
+    "test_k6.K6ImplementedFixtures.test_unconnected_public_owner_bound_apis_are_not_exposed",
+    "test_k6.K6ImplementedFixtures.test_same_check_identity_across_verifiers_has_no_namespace_carrier",
+    "test_k6.K6ImplementedFixtures.test_receipt_verifier_must_match_derived_member_not_any_base_input",
+    "test_k6.K6ImplementedFixtures.test_optimized_missing_fixed_output_observation_is_nonpositive",
+)
+K6_FORMAL_DISCOVERY_IDS = tuple(row["unittest_identity"] for row in K6_FORMAL_MAPPING)
+K6_DISCOVERY_IDS = tuple(sorted((*K6_FORMAL_DISCOVERY_IDS, *K6_REGRESSION_IDS)))
+FORMAL_MAPPING = FORMAL_MAPPING + K6_FORMAL_MAPPING
+FORMAL_MAPPING_SHA256 = "7473135901595324b2b6a42ac59b4af877398e5e1471950da54969b60059ea9c"
+EXPECTED_DISCOVERY_IDS = tuple(sorted((*EXPECTED_DISCOVERY_IDS, *K6_DISCOVERY_IDS)))
 K3_FORMAL_MAPPING_SHA256 = "8c58deecd7739ba48a01e4281de6c93cf6ece107ad66fa3eaeac6d10f80323b0"
 K3_DISCOVERY_IDS_SHA256 = "a3de5d8fbe0daf3500441a1e7a96fc9c6b71409e38fea446d6185dd05c86b70c"
 K1_K2_FORMAL_MAPPING_SHA256 = "ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19"
@@ -1534,11 +1588,29 @@ K1_K2_STUB_COUNT = 26
 K3_FORMAL_MAPPING_COUNT = 194
 K3_PRIMARY_COUNT = 192
 K3_STUB_COUNT = 2
-FORMAL_MAPPING_COUNT = K1_K2_FORMAL_MAPPING_COUNT + K3_FORMAL_MAPPING_COUNT + K5_FORMAL_MAPPING_COUNT
-PRIMARY_MAPPING_COUNT = K1_K2_PRIMARY_COUNT + K3_PRIMARY_COUNT + K5_PRIMARY_COUNT
+K6_FORMAL_MAPPING_SHA256 = "12e75e7a54064d6f1bc9d5a7fbd2225b9bec4b04c6fa18a643e81ca035c194fd"
+K6_DISPOSITION_SHA256 = "886884b4168945fd2d510f6ed787e46160821ebbb0292a6f82941434a8ef4e7d"
+K6_FORMAL_CLOSURE_SHA256 = "476f65aecf6647fd11bd0e2850e972bec18b0f825e3761aa43fbbc934d657cb7"
+FORMAL_MAPPING_COUNT = K1_K2_FORMAL_MAPPING_COUNT + K3_FORMAL_MAPPING_COUNT + K5_FORMAL_MAPPING_COUNT + K6_EXECUTABLE_FORMAL_COUNT
+FORMAL_INVENTORY_COUNT = FORMAL_MAPPING_COUNT + K6_UNEXECUTED_COUNT
+PRIMARY_MAPPING_COUNT = K1_K2_PRIMARY_COUNT + K3_PRIMARY_COUNT + K5_PRIMARY_COUNT + K6_PRIMARY_COUNT
 STUB_MAPPING_COUNT = K1_K2_STUB_COUNT + K3_STUB_COUNT + K5_STUB_COUNT
-RESULT_MAX_BYTES = 82000
-MODULES = ("test_k1", "test_k2", "test_k3", "test_k5")
+PARTIAL_MAPPING_COUNT = K6_PARTIAL_COUNT
+UNEXECUTED_FORMAL_COUNT = K6_UNEXECUTED_COUNT
+FORMAL_ID_CLOSURE = tuple(sorted(
+    [row["formal_l7_id"] for row in FORMAL_MAPPING]
+    + [row["formal_l7_id"] for row in K6_UNEXECUTED_DISPOSITIONS]
+))
+K6_FORMAL_ID_CLOSURE = tuple(sorted(
+    [row["formal_l7_id"] for row in K6_FORMAL_MAPPING]
+    + [row["formal_l7_id"] for row in K6_UNEXECUTED_DISPOSITIONS]
+))
+K6_DISCOVERY_COUNT = 52
+EXPECTED_DISCOVERY_COUNT = 586
+EXPECTED_DISCOVERY_IDS_SHA256 = "aca81abd7dd60c29512431c2d8223fd509d4c7a3a3fd7f1fc70847658ba0042d"
+K6_DISCOVERY_IDS_SHA256 = "52e558bc65de379093d9a3fa46ce7d59909f23a33a15e6a135d1fcf09cd4c857"
+RESULT_MAX_BYTES = 90514
+MODULES = ("test_k1", "test_k2", "test_k3", "test_k5", "test_k6")
 
 # Literal values permitted by the current L7 expansion rules.  Keeping the
 # template-to-domain mapping explicit prevents arbitrary regex captures from
@@ -1582,6 +1654,10 @@ def inventory_value() -> dict:
         "current_design_paths": list(CURRENT_DESIGN_PATHS),
         "formal_mapping": list(FORMAL_MAPPING),
         "formal_mapping_sha256": FORMAL_MAPPING_SHA256,
+        "formal_id_closure": list(FORMAL_ID_CLOSURE),
+        "formal_inventory_count": FORMAL_INVENTORY_COUNT,
+        "k6_unexecuted_dispositions": list(K6_UNEXECUTED_DISPOSITIONS),
+        "k6_unexecuted_disposition_sha256": K6_DISPOSITION_SHA256,
         "expected_discovery_ids": list(EXPECTED_DISCOVERY_IDS),
         "expected_discovery_count": EXPECTED_DISCOVERY_COUNT,
         "expected_discovery_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
@@ -1601,8 +1677,7 @@ def l7_formal_ids_present(raw: bytes) -> bool:
         return False
     tokens = re.findall(r"`([^`]+)`", text)
     templates = [token for token in tokens if token in _L7_TEMPLATE_VALUES]
-    for row in FORMAL_MAPPING:
-        ident = row["formal_l7_id"]
+    for ident in FORMAL_ID_CLOSURE:
         if ident in tokens:
             continue
         matched = False
@@ -1726,11 +1801,17 @@ def _run_discovered_suite(suite):
 
 
 def run_suite(root: Path) -> tuple[dict, int]:
+    if (len(BASE_FORMAL_MAPPING) != BASE_FORMAL_MAPPING_COUNT
+            or sha256(canonical_bytes(list(BASE_FORMAL_MAPPING))) != BASE_FORMAL_MAPPING_SHA256
+            or len(BASE_EXPECTED_DISCOVERY_IDS) != BASE_EXPECTED_DISCOVERY_COUNT
+            or sha256(("\n".join(BASE_EXPECTED_DISCOVERY_IDS) + "\n").encode()) != BASE_EXPECTED_DISCOVERY_IDS_SHA256):
+        raise Diagnostic("Unknown", "conflict", "protected K1/K2/K3/K5 inventory changed")
     if len(FORMAL_MAPPING) != FORMAL_MAPPING_COUNT or len({row["formal_l7_id"] for row in FORMAL_MAPPING}) != FORMAL_MAPPING_COUNT:
         raise Diagnostic("Unknown", "conflict", "fixed formal mapping inventory is inconsistent")
     if (sum(row["coverage_kind"] == "primary_callable" for row in FORMAL_MAPPING) != PRIMARY_MAPPING_COUNT
-            or sum(row["coverage_kind"] == "owner_or_fixture_stub" for row in FORMAL_MAPPING) != STUB_MAPPING_COUNT):
-        raise Diagnostic("Unknown", "conflict", "fixed primary/stub mapping counts are inconsistent")
+            or sum(row["coverage_kind"] == "owner_or_fixture_stub" for row in FORMAL_MAPPING) != STUB_MAPPING_COUNT
+            or sum(row["coverage_kind"] == "partial_callable" for row in FORMAL_MAPPING) != PARTIAL_MAPPING_COUNT):
+        raise Diagnostic("Unknown", "conflict", "fixed primary/stub/partial mapping counts are inconsistent")
     if sha256(canonical_bytes(list(FORMAL_MAPPING[:K1_K2_FORMAL_MAPPING_COUNT]))) != K1_K2_FORMAL_MAPPING_SHA256:
         raise Diagnostic("Unknown", "conflict", "protected K1/K2 formal mapping bytes changed")
     if (len(K3_FORMAL_MAPPING) != K3_FORMAL_MAPPING_COUNT
@@ -1743,6 +1824,33 @@ def run_suite(root: Path) -> tuple[dict, int]:
             or sum(row["coverage_kind"] == "owner_or_fixture_stub" for row in K5_FORMAL_MAPPING) != K5_STUB_COUNT
             or sha256(canonical_bytes(list(K5_FORMAL_MAPPING))) != K5_FORMAL_MAPPING_SHA256):
         raise Diagnostic("Unknown", "conflict", "fixed K5 mapping inventory is inconsistent")
+    if (len(K6_FORMAL_MAPPING) != K6_EXECUTABLE_FORMAL_COUNT
+            or sum(row["coverage_kind"] == "primary_callable" for row in K6_FORMAL_MAPPING) != K6_PRIMARY_COUNT
+            or sum(row["coverage_kind"] == "partial_callable" for row in K6_FORMAL_MAPPING) != K6_PARTIAL_COUNT
+            or sha256(canonical_bytes(list(K6_FORMAL_MAPPING))) != K6_FORMAL_MAPPING_SHA256):
+        raise Diagnostic("Unknown", "conflict", "fixed K6 callable mapping inventory is inconsistent")
+    disposition_ids = [row.get("formal_l7_id") for row in K6_UNEXECUTED_DISPOSITIONS]
+    if (len(K6_UNEXECUTED_DISPOSITIONS) != K6_UNEXECUTED_COUNT
+            or len(set(disposition_ids)) != K6_UNEXECUTED_COUNT
+            or set(disposition_ids) & {row["formal_l7_id"] for row in K6_FORMAL_MAPPING}
+            or any(set(row) != {"formal_l7_id", "disposition"}
+                   or row["disposition"] not in {"partial_design", "owner_unconnected"}
+                   for row in K6_UNEXECUTED_DISPOSITIONS)
+            or sha256(canonical_bytes(list(K6_UNEXECUTED_DISPOSITIONS))) != K6_DISPOSITION_SHA256):
+        raise Diagnostic("Unknown", "conflict", "fixed K6 unexecuted disposition inventory is inconsistent")
+    if (len(K6_FORMAL_ID_CLOSURE) != K6_FORMAL_COUNT
+            or len(set(K6_FORMAL_ID_CLOSURE)) != K6_FORMAL_COUNT
+            or K6_FORMAL_ID_CLOSURE != tuple(f"CK-K6-UT-{number:03d}" for number in range(1, 56))
+            or sha256(canonical_bytes(list(K6_FORMAL_ID_CLOSURE))) != K6_FORMAL_CLOSURE_SHA256):
+        raise Diagnostic("Unknown", "conflict", "fixed K6 formal ID closure is incomplete")
+    if (len(K6_DISCOVERY_IDS) != K6_DISCOVERY_COUNT
+            or len(set(K6_DISCOVERY_IDS)) != K6_DISCOVERY_COUNT
+            or sha256(("\n".join(K6_DISCOVERY_IDS) + "\n").encode()) != K6_DISCOVERY_IDS_SHA256):
+        raise Diagnostic("Unknown", "conflict", "fixed K6 discovery inventory is inconsistent")
+    if (len(FORMAL_ID_CLOSURE) != FORMAL_INVENTORY_COUNT
+            or len(set(FORMAL_ID_CLOSURE)) != FORMAL_INVENTORY_COUNT
+            or FORMAL_ID_CLOSURE != tuple(sorted(FORMAL_ID_CLOSURE))):
+        raise Diagnostic("Unknown", "conflict", "fixed formal ID closure is incomplete or duplicated")
     if sha256(canonical_bytes(list(FORMAL_MAPPING))) != FORMAL_MAPPING_SHA256:
         raise Diagnostic("Unknown", "conflict", "fixed formal mapping bytes differ from its digest")
     if (len(K1_K2_DISCOVERY_IDS) != 199
@@ -1760,6 +1868,10 @@ def run_suite(root: Path) -> tuple[dict, int]:
             or sha256(("\n".join(K5_DISCOVERY_IDS) + "\n").encode()) != K5_DISCOVERY_IDS_SHA256
             or not set(K5_DISCOVERY_IDS) <= set(EXPECTED_DISCOVERY_IDS)):
         raise Diagnostic("Unknown", "conflict", "fixed K5 discovery inventory is inconsistent")
+    if (not set(K6_FORMAL_DISCOVERY_IDS) <= set(K6_DISCOVERY_IDS)
+            or not set(K6_REGRESSION_IDS) <= set(K6_DISCOVERY_IDS)
+            or not set(K6_DISCOVERY_IDS) <= set(EXPECTED_DISCOVERY_IDS)):
+        raise Diagnostic("Unknown", "conflict", "K6 callable identities are not bound to the fixed suite")
     if (len(EXPECTED_DISCOVERY_IDS) != EXPECTED_DISCOVERY_COUNT
             or len(set(EXPECTED_DISCOVERY_IDS)) != EXPECTED_DISCOVERY_COUNT
             or EXPECTED_DISCOVERY_IDS != tuple(sorted(EXPECTED_DISCOVERY_IDS))
