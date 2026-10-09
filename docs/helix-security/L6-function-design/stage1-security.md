@@ -70,7 +70,7 @@ current K3 checkで現在の入力に対する確定mismatchまたはDeniedが�
 
 ### 4.1 `resolve_security_case`
 
-**呼出:** `resolve_security_case(parent_ref, case_ref, input_heads)`  
+**呼出:** `resolve_security_case(parent_ref, case_ref, input_heads)`
 **戻り値:** `Observed<ResolvedSecurityCase> | Rejected(missing_key)`
 
 固定parent/caseをL4 §1のscopeに照合し、L5 §4のowner input refsをcurrent owner declarationから解決する。`input_heads`は解決済みhead/binding期待の照合にだけ使う。owner source refをcaller入力から選ばない。入力key/refが構成不能なら`Rejected(missing_key)`で終了する。構成済みsourceのvalue/reasonがUnknownまたはUnobservedならcase resolver全体を拒否せずpayload内の該当sliceへ残す。owner declarationやsource reader自体が未確定の014–016は、該当sliceだけを既存Unknown/未解決adapterとして保持する。
@@ -79,7 +79,7 @@ current K3 checkで現在の入力に対する確定mismatchまたはDeniedが�
 
 ### 4.2 `project_permission`
 
-**呼出:** `project_permission(resolved, query, permission_ref, input_heads)`  
+**呼出:** `project_permission(resolved, query, permission_ref, input_heads)`
 **戻り値:** `PermissionCheckResult | PermissionCheckDiagnostic`
 
 K3 §16の`resolve_authority_context`と`check_permission`既存contractを使う。`PermissionQuery`は既存の5 field（`operation`、`target`、`revision`、`requested_scope`、`operation_inputs`）を維持し、target identityとrevision `SubjectRef` identityを同一だと仮定しない。actor/environment等の7軸はowner resolverが作る`AuthorityContext`のtuple側で照合し、PermissionQueryのfieldとして扱わない。OS assignment/INFRA environment/current SECURITY `OperationDecl`から解決したfieldを各既存所有fieldへ束縛する。11 operationを独立照合する。purpose、egress endpoint/class/bytes等は既存operation-specific inputのまま7軸へ移さない。
@@ -88,14 +88,14 @@ K3結果unionをそのまま返す。known domain mismatchは型付き`Value(pay
 
 ### 4.3 `project_external_label`
 
-**呼出:** `project_external_label(resolved, source_ref)`  
+**呼出:** `project_external_label(resolved, source_ref)`
 **戻り値:** `ObservedLabel | Rejected(missing_key)`
 
 K8 `observe_input_label`をL2-001/002のexternal input sourceに限って使い、K8 current owner source/classificationとの照合結果を返す。必要source/refが構成不能ならK8既存`Rejected(missing_key)`を保持する。source/classificationがunknownなら`ObservedLabel`内部classification Unknownと`trust=untrusted`を保つ。分類不能をpublic、permission、instruction、requirement、persistence、learningへ昇格しない。L2-015/016のasset classification readerに流用しない。
 
 ### 4.4 `project_label_transition`
 
-**呼出:** `project_label_transition(resolved, case_ref, input_label_ref, route_ref, k3_permission_check_ref, effect_observation_ref, input_heads)`  
+**呼出:** `project_label_transition(resolved, case_ref, input_label_ref, route_ref, k3_permission_check_ref, effect_observation_ref, input_heads)`
 **戻り値:** `TransitionValidation | Rejected(missing_key)`
 
 K8 `validate_label_transition`の引数・戻り型を維持し、current case, saved InputLabelRef, route/target, K3 PermissionCheck ref, effect observation refを既存K8 bindingで再読する。selected validationとselection=`not_selected`のprojectionは別々に扱い、NotSelectedではvalidation queryを発行しない。case/current bindingなどAPIのkey基盤を読めず分類/effectの基盤も解決できない場合はL5 signatureどおり外側の`Rejected(missing_key)`とする。基盤が解決済みでselected caseの必須route/permission ref自体が無くvalidation keyを構成できない場合は、既存`TransitionValidation.result=KeyUnavailable{diagnostic: Rejected(missing_key)}`を返し、利用可能なcomponentsと観測済みeffectを保持する。route/target/resultが読めた後のknown mismatchはK8 `TransitionValidation`の既存typed outcomeとpolarityで表す。source/key conflictやUnknownは各既存K8/K2型を保持する。
@@ -104,14 +104,14 @@ K8 `validate_label_transition`の引数・戻り型を維持し、current case, 
 
 ### 4.5 `project_effect`
 
-**呼出:** `project_effect(resolved, effect_ref)`  
+**呼出:** `project_effect(resolved, effect_ref)`
 **戻り値:** `Observed<EffectObservation> | Rejected(missing_key)`
 
 K8 `observe_authority_effect`で既存観測だけを読む。raw observation refと記録bytes/owner bindingのK8現行規則を保持し、`none`は原記録の値として保存するが、作用が存在しなかったという事実へ解釈しない。許可や未観測とも混同しない。effect observation自体が未登録/未読ならK8/K1既存reasonを保持する。実action/writer/read secretを呼ばない。
 
 ### 4.6 `project_verification`
 
-**呼出:** `project_verification(resolved, operation, base_key, verifier_set, reverify)`  
+**呼出:** `project_verification(resolved, operation, base_key, verifier_set, reverify)`
 **戻り値:** K6 `RequiredResult`
 
 K6 `required`へL5既存引数を渡し、返されたRequiredResult全体を保持する。`reverify`は既存K6が定義する同じdeterministic verifierの再評価条件であり、new verifierやissuer authenticity proofではない。K6 components内のK2 lookup Stale/conflict/Unknown/Unobserved、negative typed payload、assuranceを削除しない。raw secretsをcomponent/evidenceに入れず、classification/source bytesはowner/K6 boundaryで参照する。
@@ -120,7 +120,7 @@ AC-004/015/016のcomplete-read source domain field absenceについては、L5 �
 
 ### 4.7 `project_propagation`
 
-**呼出:** `project_propagation(resolved, revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, recipient_decls, verifier_set, input_heads)`  
+**呼出:** `project_propagation(resolved, revocation, graph_decl, graph_rules, condition_state, obligation_set_keys, decls, recipient_decls, verifier_set, input_heads)`
 **戻り値:** G5 `Observed<PropagationView>`
 
 既存G5 `propagate`へ同じ引数を渡す。SECURITYが所有するcurrent RecipientMap/trigger declarationと、各recipient ownerが所有するRecipientDecl/current stateを区別する。G5 returned `PropagationView`のrecipient state・combined・assurance・diagnosticsを変更せず返す。G5 IVで定義されたno receipt=`Unobserved(not_run)`、received/pending=`Unobserved(pending_receipt)`、failed=`Value(payload)`/owner Negative、unmapped recipient=`Unknown(unregistered)`、same-revision digest conflict=`Unknown(conflict)`、required segment missing=`Unknown(missing_input)`を保つ。
@@ -129,14 +129,14 @@ AC-004/015/016のcomplete-read source domain field absenceについては、L5 �
 
 ### 4.8 `evaluate_security_case`
 
-**呼出:** `evaluate_security_case(resolved)`  
+**呼出:** `evaluate_security_case(resolved)`
 **戻り値:** L5 `SecurityInputProjection`
 
 各APIから得た値をL5 §4 projection slotへそれぞれの既存型で配置し、input refs/source refsを保持する。APIを再呼出しして同一fixtureを二重評価しない。`ProjectionNotApplicable`はL5の内部slot sentinelでありK1 inputでない。API diagnosticをpayloadへ押し込む、UnknownをPositiveへdefault、raw secretを結果へ転載することはしない。SECURITY固有の横断`Combined`を作らない。
 
 ### 4.9 `project_parent_obligations`
 
-**呼出:** `project_parent_obligations(parent_ref, projection)`  
+**呼出:** `project_parent_obligations(parent_ref, projection)`
 **戻り値:** L5が示す内部`SecurityCaseProjection`相当
 
 19親/AC/CASE/L9 verifier/各component owner/source/unknownの戻り先をL5の既存mappingへ結び付けるtrace projectionに限る。L3/L10の測定結果、authority、承認、事業成功、完了は算出しない。033の15 caseは一括一値にせずcase IDとsource/ownerを個別保持する。NFR IDsは該当functional canonical inputを参照し、NFR helperが同じcanonical caseを二度呼ばない。

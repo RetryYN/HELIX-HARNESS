@@ -6,7 +6,7 @@ owner: HELIX-SECURITY
 scope: SECURITY Stage 1 adapters / K3-K6-K7/G5-K8 projections
 base: `7d4ed840d96b43ea91f10c314b85dfdaf7a6242b`
 paired_l6: ../L6-function-design/stage1-security.md
-paired_l6_sha256: `0545e61fff4fc948770f5ef1e48ac8309864ae65e55919607b0f24ec304cb468`
+paired_l6_sha256: `d5e1f7ad9b9f7010917951d5c02a7b2af0f834136b90b581f3c09a6b076046bc`
 paired_l8: ../L8-detail-verification/stage1-security-detail-verification.md
 paired_l8_sha256: `e2d55fdd753484c6bfac260719aa8290b8defa910aab348cad88da5fa5ea463a`
 paired_l9: ../L9-integration-verification/stage1-security-integration-verification.md
