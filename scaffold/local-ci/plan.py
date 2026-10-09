@@ -9,7 +9,7 @@ COMMAND_TEMPLATES = (
     ("python3", "-B", "scaffold/governance/tools/govcheck.py"),
     ("git", "diff", "--check", "--no-ext-diff", "--no-textconv", "{merge_base}", "{head_commit}", "--"),
     ("python3", "-B", "scaffold/local-ci/design_check.py"),
-    ("python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2"),
+    ("python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2-k3-k5"),
 )
 
 

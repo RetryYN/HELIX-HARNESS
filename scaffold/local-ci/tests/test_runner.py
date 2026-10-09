@@ -10,12 +10,14 @@ import tempfile
 import threading
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 _LOCAL_CI = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_LOCAL_CI))
 
 import runner  # noqa: E402
+import source_l7_runner  # noqa: E402
 from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256, strict_json  # noqa: E402
 from driver import execute_plan  # noqa: E402
 
@@ -93,7 +95,7 @@ def _spec(check_id: str = CHECK_IDS[0]) -> dict:
     elif index == 4:
         argv = ["python3", "-B", "scaffold/local-ci/design_check.py"]
     else:
-        argv = ["python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2"]
+        argv = ["python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", source_l7_runner.SUITE_ID]
     return {
         "check_id": check_id,
         "argv": argv,
@@ -146,6 +148,148 @@ class _StubProcess:
 
 
 class RunnerTests(unittest.TestCase):
+    def test_run_step_enforces_real_supervisor_response_frame_limit(self):
+        ready_received = threading.Event()
+
+        class ReadySignalingSocket:
+            def __init__(self, wrapped):
+                self.wrapped = wrapped
+
+            def fileno(self):
+                return self.wrapped.fileno()
+
+            def recv(self, *args, **kwargs):
+                data = self.wrapped.recv(*args, **kwargs)
+                if b"READY\n" in data:
+                    ready_received.set()
+                return data
+
+            def __getattr__(self, name):
+                return getattr(self.wrapped, name)
+
+        class FakeProcess:
+            response_body = b""
+
+            def __init__(self, _args, **kwargs):
+                self.pid = 12347
+                self.returncode = None
+                fd = os.dup(kwargs["pass_fds"][0])
+
+                def serve():
+                    channel = socket.socket(fileno=fd)
+                    request = bytearray()
+                    while b"\n" not in request:
+                        request.extend(channel.recv(65536))
+                    channel.sendall(b"READY\n")
+                    if not ready_received.wait(2):
+                        channel.close()
+                        return
+                    channel.sendall(type(self).response_body + b"\n")
+                    channel.close()
+                    self.returncode = 0
+
+                self.thread = threading.Thread(target=serve)
+                self.thread.start()
+
+            def poll(self):
+                return self.returncode
+
+            def wait(self, timeout=None):
+                self.thread.join(timeout)
+                return self.returncode
+
+        base = {"execution": None, "safe_to_continue": False,
+                "diagnostic": {"reason": "synthetic", "detail": ""}}
+        prefix_size = len(canonical_bytes(base))
+        for frame_size, expected_reason in ((120000, "synthetic"), (120001, "supervisor_protocol_invalid")):
+            with self.subTest(frame_size=frame_size), tempfile.TemporaryDirectory() as directory:
+                ready_received.clear()
+                FakeProcess.response_body = canonical_bytes({
+                    **base,
+                    "diagnostic": {"reason": "synthetic", "detail": "x" * (frame_size - 1 - prefix_size)},
+                })
+                self.assertEqual(len(FakeProcess.response_body) + 1, frame_size)
+                host, portable, snapshot = _fixture(Path(directory))
+                socketpair = socket.socketpair
+
+                def controlled_socketpair():
+                    parent, child = socketpair()
+                    return ReadySignalingSocket(parent), child
+
+                with patch.object(runner, "_verify_executable"), \
+                     patch.object(runner.socket, "socketpair", controlled_socketpair), \
+                     patch.object(runner.subprocess, "Popen", FakeProcess):
+                    result = runner.run_step(snapshot, _spec(), host, portable)
+                self.assertEqual(result["execution"]["state"], "denied")
+                self.assertFalse(result["safe_to_continue"])
+                self.assertEqual(result["diagnostic"]["reason"], expected_reason)
+
+    def test_supervisor_passes_literal_suite_capture_limit_to_production_drain_call(self):
+        with tempfile.TemporaryDirectory() as directory:
+            temp = Path(directory)
+            host, portable, snapshot = _fixture(temp)
+            spec = _spec(CHECK_IDS[5])
+            process = SimpleNamespace(pid=12348, stdout=None, stderr=None)
+            drained = (0, sha256(b""), sha256(b""), None, True, b"{}\n", False)
+            with patch.object(runner, "_enable_subreaper"), \
+                    patch.object(runner, "_preflight"), \
+                    patch.object(runner.subprocess, "Popen", return_value=process), \
+                    patch.object(runner, "_drain_pipes", return_value=drained) as drain:
+                result = runner._supervisor({"host_config": host, "portable_config": portable,
+                                             "snapshot_root": str(snapshot), "spec": spec}, None)
+        self.assertTrue(result["safe_to_continue"])
+        self.assertEqual(result["suite_stdout_b64"], "e30K")
+        self.assertFalse(result["suite_stdout_overflow"])
+        self.assertEqual(drain.call_args.kwargs["capture_stdout_limit"], runner.SUITE_STDOUT_CAPTURE_LIMIT)
+
+    def test_real_pipe_suite_capture_distinguishes_82001_from_82002_bytes(self):
+        class PipeProcess:
+            def __init__(self, payload: bytes):
+                out_read, out_write = os.pipe()
+                err_read, err_write = os.pipe()
+                self.stdout = os.fdopen(out_read, "rb", buffering=0)
+                self.stderr = os.fdopen(err_read, "rb", buffering=0)
+                self.pid = 12349
+                self.returncode = None
+                self._done = threading.Event()
+
+                def writer():
+                    with os.fdopen(out_write, "wb", buffering=0) as stream:
+                        view = memoryview(payload)
+                        while view:
+                            written = stream.write(view[:8192])
+                            view = view[written:]
+                    os.close(err_write)
+                    self._done.set()
+
+                self.thread = threading.Thread(target=writer)
+                self.thread.start()
+
+            def poll(self):
+                if self._done.is_set():
+                    self.returncode = 0
+                return self.returncode
+
+            def wait(self, timeout=None):
+                self.thread.join(timeout)
+                self.returncode = 0 if not self.thread.is_alive() else None
+                return self.returncode
+
+        for size, overflow in ((82001, False), (82002, True)):
+            with self.subTest(size=size):
+                process = PipeProcess(b"x" * size)
+                with patch.object(runner, "_reap_adopted", return_value=(True, set())), \
+                        patch.object(runner, "_descendants", return_value=set()), \
+                        patch.object(runner, "_settle_descendants", return_value=True):
+                    drained = runner._drain_pipes(process, 5, threading.Event(),
+                                                  capture_stdout_limit=runner.SUITE_STDOUT_CAPTURE_LIMIT)
+                process.thread.join(2)
+                self.assertEqual(drained[0], 0)
+                self.assertTrue(drained[4])
+                self.assertEqual(len(drained[5]), runner.SUITE_STDOUT_CAPTURE_LIMIT)
+                self.assertEqual(drained[6], overflow)
+                self.assertEqual(drained[1], sha256(b"x" * size))
+
     def test_ut_lci_83_bwrap_opaque_version_and_bytes_identity_baseline(self):
         with tempfile.TemporaryDirectory() as directory:
             host, portable, _snapshot = _fixture(Path(directory))

@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `66d862030ffa0140a2d9d2b579f04169b56e4e16e98f4ee319cde2821fb3aea9`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `9e2fef8f6766aa641acb5ebee021a32f51068512c3b544c7542115abf6546fd0`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -34,25 +34,25 @@ version_target: 1.0
 | `F-LCI-06 run_local_ci` | `UT-LCI-29` | `UT-LCI-12`, `UT-LCI-13`, `UT-LCI-22`, `UT-LCI-39`, `UT-LCI-49`, `UT-LCI-53`, `UT-LCI-54`, `UT-LCI-57`〜`UT-LCI-60`, `UT-LCI-62`〜`UT-LCI-64` | 6 step successとsupervisor生成の外部receipt `Observed<LocalCiReceipt>` | 途中fail継続 / target drift / required skip / receipt境界 / cancel reap失敗 / manifest preflight / target ref境界 / manifest schema不正 |
 | `F-LCI-07 verify_receipt` | `UT-LCI-30` | `UT-LCI-14`, `UT-LCI-15`, `UT-LCI-16`, `UT-LCI-38`, `UT-LCI-54`, `UT-LCI-55`, `UT-LCI-80` | current refsと一致するcanonical receiptの`Observed<ReceiptCheck>` | duplicate JSON keys / target stale / checker digest conflict / plan-execution混同 / manifest-result不整合 / base変更 / provider pin変更後の旧config digest |
 | `F-LCI-08 run_merge_unit_verifier` | `UT-LCI-31`, `UT-LCI-76` | `UT-LCI-17`, `UT-LCI-18`, `UT-LCI-37`, `UT-LCI-77`〜`UT-LCI-81` | exact dispatchと同一selected diff照合の`Observed<ProviderResult>` | dispatch欠落 / write permission / target不一致 / identity未採取・不一致 / 旧config digest / state parity不一致 |
-| `F-LCI-09a load_design_manifest` | `UT-LCI-32`, `UT-LCI-89` | `UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-87`〜`UT-LCI-88`, `UT-LCI-90`〜`UT-LCI-91`, `UT-LCI-96`〜`UT-LCI-97`, `UT-LCI-99` | 12文書とsuite追補後required source 192 IDを含む全manifest fieldが揃うmanifest | required source/parent AC欠落 / Common Kernel locator・fixture展開欠落 / run-level structural preflight / manifest schema不正 |
-| `F-LCI-09b resolve_id_graph` | `UT-LCI-33` | `UT-LCI-23`, `UT-LCI-36`, `UT-LCI-58`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-91`〜`UT-LCI-92`, `UT-LCI-94`〜`UT-LCI-95`, `UT-LCI-98` | 12文書の一意なdefinitionと解決済みtyped reference/fixture-row graph | duplicate definition / unresolved reference / pair不整合 / expanded fixture row曖昧 |
-| `F-LCI-09c verify_coverage_edges` | `UT-LCI-34` | `UT-LCI-20`, `UT-LCI-46`, `UT-LCI-47`, `UT-LCI-66`〜`UT-LCI-68`, `UT-LCI-92`〜`UT-LCI-95`, `UT-LCI-97`〜`UT-LCI-99` | main dc803dac baselineにsuite trace 41 edgeを加えた1,089 edge候補（manifest再計数が必要）、mapped/partial sourceと理由付きnot_exercised sourceを持つmixed manifest | required edge/disposition欠落 / wrong pair / OutcomeRef row曖昧 |
+| `F-LCI-09a load_design_manifest` | `UT-LCI-32`, `UT-LCI-89` | `UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-87`〜`UT-LCI-88`, `UT-LCI-90`〜`UT-LCI-91`, `UT-LCI-96`〜`UT-LCI-97`, `UT-LCI-99`, `UT-LCI-115`, `UT-LCI-119` | 12文書とK4/G3 locator追補後required source 193 IDを含む全manifest fieldが揃うmanifest | required source/parent AC欠落 / Common Kernel locator・fixture展開欠落 / run-level structural preflight / manifest schema不正 |
+| `F-LCI-09b resolve_id_graph` | `UT-LCI-33` | `UT-LCI-23`, `UT-LCI-36`, `UT-LCI-58`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-91`〜`UT-LCI-92`, `UT-LCI-94`〜`UT-LCI-95`, `UT-LCI-98`, `UT-LCI-116`〜`UT-LCI-117` | 12文書の一意なdefinitionと解決済みtyped reference/fixture-row graph | duplicate definition / unresolved reference / pair不整合 / expanded fixture row曖昧 |
+| `F-LCI-09c verify_coverage_edges` | `UT-LCI-34` | `UT-LCI-20`, `UT-LCI-46`, `UT-LCI-47`, `UT-LCI-66`〜`UT-LCI-68`, `UT-LCI-92`〜`UT-LCI-95`, `UT-LCI-97`〜`UT-LCI-99`, `UT-LCI-118` | current inventoryのrequired 1,211 edge（K4/G3 design-oracle追加後）、mapped/partial sourceと理由付きnot_exercised sourceを持つmixed manifest | required edge/disposition欠落 / wrong pair / OutcomeRef row曖昧 |
 | `F-LCI-09d verify_legacy_pins` | `UT-LCI-35` | `UT-LCI-21` | asset ID/path/full SHAとspan SHAを別々に計算 | span bytesとdigest不一致 |
-| `F-LCI-10 run_source_l7_suite` | `UT-LCI-100` | `UT-LCI-101`〜`UT-LCI-113` | exact target source suiteのinventory-bound identitiesを持つfull external artifactとcompact summaryを束縛した`Observed<L7SuiteEvidence>` | source/test欠落 / mapping/discovery不一致 / skip/fail / runner mismatch / target drift / receipt ID欠落 |
+| `F-LCI-10 run_source_l7_suite` | `UT-LCI-100` | `UT-LCI-101`〜`UT-LCI-113`, `UT-LCI-120`〜`UT-LCI-132` | exact target source suiteのinventory-bound identitiesを持つfull external artifactとcompact summaryを束縛した`Observed<L7SuiteEvidence>` | K1/K2/K3/K5 source欠落 / mapping/discovery不一致 / skip/fail / runner mismatch / target drift / bounded frame / receipt suite ID欠落 |
 
 ## 3. 単体oracle詳細
 
 ### `F-LCI-09a` — manifest読込oracle
 
-`UT-LCI-32`を正常baselineとし、`UT-LCI-19`、`UT-LCI-57`、`UT-LCI-63`〜`UT-LCI-64`、`UT-LCI-65`、`UT-LCI-69`〜`UT-LCI-75`、`UT-LCI-87`〜`UT-LCI-88`でmanifestの必須source、parent AC applicability記録、run-level preflight、schema、unsupported dispositionを検査する。親ACはL5 `parent_ac_coverage`の専用listだけで検査し、coverage edge/disposition graphには混ぜない。
+`UT-LCI-32`を正常baselineとし、`UT-LCI-19`、`UT-LCI-57`、`UT-LCI-63`〜`UT-LCI-64`、`UT-LCI-65`、`UT-LCI-69`〜`UT-LCI-75`、`UT-LCI-87`〜`UT-LCI-88`, `UT-LCI-115`, `UT-LCI-119`でmanifestの必須source、parent AC applicability記録、run-level preflight、schema、unsupported dispositionを検査する。親ACはL5 `parent_ac_coverage`の専用listだけで検査し、coverage edge/disposition graphには混ぜない。
 
 ### `F-LCI-09b` — ID graph解決oracle
 
-`UT-LCI-33`を正常baselineとし、`UT-LCI-23`、`UT-LCI-36`、`UT-LCI-58`、`UT-LCI-65`、`UT-LCI-69`〜`UT-LCI-75`で重複定義と未解決参照を検査する。
+`UT-LCI-33`を正常baselineとし、`UT-LCI-23`、`UT-LCI-36`、`UT-LCI-58`、`UT-LCI-65`、`UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-116`〜`UT-LCI-117`で重複定義と未解決参照を検査する。
 
 ### `F-LCI-09c` — coverage edge検証oracle
 
-`UT-LCI-34`を正常baselineとし、`UT-LCI-20`、`UT-LCI-46`、`UT-LCI-47`、`UT-LCI-66`〜`UT-LCI-68`でrequired edge、partial、not_exercised、scopeoutの分離を検査する。
+`UT-LCI-34`を正常baselineとし、`UT-LCI-20`、`UT-LCI-46`、`UT-LCI-47`、`UT-LCI-66`〜`UT-LCI-68`, `UT-LCI-118`でrequired edge、partial、not_exercised、scopeoutの分離を検査する。
 
 ### `F-LCI-09d` — 旧資産pin検証oracle
 
@@ -84,7 +84,7 @@ version_target: 1.0
 | `UT-LCI-16` | receipt checker refsがcurrent refsと一致 | same targetのreceipt内govcheck digestだけを変更 | `Unknown(conflict)` |
 | `UT-LCI-17` | dispatch inputとexact checkoutが存在 | compact receipt inputを削除 | `Unobserved(not_run)` |
 | `UT-LCI-18` | permissionsはread-onlyでdiffだけ選択 | write scopeを加える | write前に`Rejected(invalid_input)` |
-| `UT-LCI-19` | manifestに全12 corpus path/role/source-kindがあり、K1/K2/K3/K5 locatorと全expanded fixture IDを含む | required source rowを一つ削除 | `Unknown(missing_input)`、corpus不完全 |
+| `UT-LCI-19` | manifestに全12 corpus path/role/source-kindがあり、K1/K2/K3/K5/K4-G3 locatorと全expanded fixture IDを含む | required source rowを一つ削除 | `Unknown(missing_input)`、corpus不完全 |
 | `UT-LCI-20` | mapped/partial sourceに既存verifierへの一意な明示edgeがある | mapped/partial sourceのrequired L4→L9 edgeを削除 | coverage `Unknown(missing_input)`。理由付き`not_exercised` sourceは空edge listのまま許容 |
 | `UT-LCI-21` | asset ID/path/full digestと別計算のspan digest | 指定line span bytesと不一致のdigestに変える | `Unknown(conflict)` |
 | `UT-LCI-22` | `LC-SCF-002`が`scfctl.py stale`をread-onlyで実行し、stale bindingなしでzeroを返す | stubがstale bindingを1件報告 | `run_step`のexecution `fail`、後続stepを継続して`run_local_ci` aggregateは`success`にならない |
@@ -154,28 +154,34 @@ version_target: 1.0
 | `UT-LCI-86` | trusted host-local settingがprofile pinned `bwrap`を解決する | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし |
 | `UT-LCI-87` | manifestの`parent_ac_coverage`にOS-020-01/03が一件ずつあり、state/reasonはL4 §1と一致 | `AC-OS-020-03` rowだけを削除 | F09aは`Unknown(missing_input)`、LC-DESIGN-001非肯定、execution/receiptなし |
 | `UT-LCI-88` | 必須2 parent AC rowのID/state/reasonはL4 §1と一致 | `AC-OS-020-01.state`だけを`pass`へ変更 | F09aは`Rejected(invalid_input)`、OS-020 AC passを作らずexecution/receiptなし |
-| `UT-LCI-89` | 12 path/role/pair/source-kind、suite追補後192 required source ID、K1/K2/K3/K5の4 exact_heading locator、およびK1/K2=164、K3=194、K5=91のexpanded fixture definitionsが揃う | `load_design_manifest`専用正常baseline | `Observed<DesignScopeManifest>`、source count 192。section locatorとexpanded verifier IDを区別する |
-| `UT-LCI-90` | CK L5のK1/K2/K3/K5 exact-heading locatorが各一つ定義される | K2 locatorのrequired source rowだけを削除 | F09aは`Unknown(missing_input)`、run-level preflight、checker/execution/receiptなし |
-| `UT-LCI-91` | K1 111/K2 53/K3 194/K5 91 literal-expansion IDが各一つずつraw L8 fixture rowへ結び付く | K1 expansionの中間suffix IDを一件だけ対応表から削除 | F09a/bは`Unknown(missing_input)`、regexや隣接IDから補わない |
-| `UT-LCI-92` | K1/K2/K3/K5 L8 rowの第2列L9 oracle・第3列L4 refsはtyped reference、coverage sourceはexpected_pair一致のL5 locator | 一つのK1 rowへK2 locatorをsource referenceとして割当 | F09b/cは`Unknown(conflict)`、L9/L4 refsをL5 sourceへ昇格しない |
-| `UT-LCI-93` | 各expanded K1/K2/K3/K5 verifier IDへ一件のrequired edgeがあり、dispositionが全edgeを参照する | 一つのK2 edgeとそのedge IDのdisposition referenceを同時に削除（同sourceの別edgeは維持） | F09cは`Unknown(missing_input)`、K1/K2=164、K3=194、K5=91の必須destination inventoryの不足として検出 |
-| `UT-LCI-94` | expanded verifier IDはID列セルを持つ同じraw rowの対応するOutcomeRef列（K1/K2は5、K3は6、K5は4）へ一意に結合 | 一つのexpanded IDのOutcomeRef row bindingだけを別raw rowへ変更 | F09b/cは`Unknown(conflict)`、別rowの期待値を流用しない |
-| `UT-LCI-95` | K1/K2/K3/K5 table column 3のL4 invariant IDはL4 typed referenceとして解決し、L5→L8 sourceはpair locatorだけ | 一つの`K1-I*`/`K2-I*` refをcoverage `source_id`として登録 | F09b/cは`Unknown(conflict)`、既存L4→L9 source edgeをL5→L8へ流用しない |
-| `UT-LCI-96` | CK L5のK1/K2/K3/K5 exact-heading locator range IDが各一件存在する | L5 K3 locatorの`range_id`だけを既存K5 locatorの`range_id`へ変更する | F09aは既存の一般重複range検査により`Unknown(conflict)`、run-level preflight、execution/receiptなし。range削除は別負例で`Unknown(missing_input)` |
-| `UT-LCI-97` | K3=194/K5=91の各IDが独立inventory、raw definition rowへ一致（L9 IV-LCI-71） | `L8-K5-17-CLOSED-PARTIAL-READ`のraw table row、対応edge/disposition referenceを同時に削除し、独立K5 inventoryは維持。K5 rangeは全IDをraw table cellで直接定義しliteral expansionがないため、expansion削除は含めない | F09a/cは`Unknown(missing_input)`、checker/execution/receiptなし |
+| `UT-LCI-89` | 12 path/role/pair/source-kind、suiteおよびK4/G3 locator追補後193 required source ID、K1/K2/K3/K5/K4-G3の5 exact_heading locator、およびK1/K2=164、K3=194、K5=91、K4/G3=73（K4=51/G3=22）のexpanded fixture definitionsが揃う | `load_design_manifest`専用正常baseline | `Observed<DesignScopeManifest>`、source count 193。section locatorとexpanded verifier IDを区別する |
+| `UT-LCI-90` | CK L5のK1/K2/K3/K5/K4-G3 exact-heading locatorが各一つ定義される | K2 locatorのrequired source rowだけを削除 | F09aは`Unknown(missing_input)`、run-level preflight、checker/execution/receiptなし |
+| `UT-LCI-91` | K1 111/K2 53/K3 194/K5 91/K4-G3 73 literal-expansion IDが各一つずつraw L8 fixture rowへ結び付く | K1 expansionの中間suffix IDを一件だけ対応表から削除 | F09a/bは`Unknown(missing_input)`、regexや隣接IDから補わない |
+| `UT-LCI-92` | K1/K2/K3/K5/K4-G3 L8 rowの第2列L9 oracle・第3列L4 refsはtyped reference、coverage sourceはexpected_pair一致のL5 locator | 一つのK1 rowへK2 locatorをsource referenceとして割当 | F09b/cは`Unknown(conflict)`、L9/L4 refsをL5 sourceへ昇格しない |
+| `UT-LCI-93` | 各expanded K1/K2/K3/K5/K4-G3 verifier IDへ一件のrequired edgeがあり、dispositionが全edgeを参照する | 一つのK2 edgeとそのedge IDのdisposition referenceを同時に削除（同sourceの別edgeは維持） | F09cは`Unknown(missing_input)`、K1/K2=164、K3=194、K5=91、K4/G3=73（K4=51/G3=22）の必須destination inventoryの不足として検出 |
+| `UT-LCI-94` | expanded verifier IDはID列セルを持つ同じraw rowの対応するOutcomeRef列（K1/K2は5、K3は6、K5/K4-G3は4）へ一意に結合 | 一つのexpanded IDのOutcomeRef row bindingだけを別raw rowへ変更 | F09b/cは`Unknown(conflict)`、別rowの期待値を流用しない |
+| `UT-LCI-95` | K1/K2/K3/K5/K4-G3 table column 3のL4 invariant IDはL4 typed referenceとして解決し、L5→L8 sourceはpair locatorだけ | 一つの`K1-I*`/`K2-I*` refをcoverage `source_id`として登録 | F09b/cは`Unknown(conflict)`、既存L4→L9 source edgeをL5→L8へ流用しない |
+| `UT-LCI-96` | CK L5のK1/K2/K3/K5/K4-G3 exact-heading locator range IDが各一件存在する | L5 K3 locatorの`range_id`だけを既存K5 locatorの`range_id`へ変更する | F09aは既存の一般重複range検査により`Unknown(conflict)`、run-level preflight、execution/receiptなし。range削除は別負例で`Unknown(missing_input)` |
+| `UT-LCI-97` | K3=194/K5=91/K4-G3=73の各IDが独立inventory、raw definition rowへ一致（L9 IV-LCI-71） | `L8-K5-17-CLOSED-PARTIAL-READ`のraw table row、対応edge/disposition referenceを同時に削除し、独立K5 inventoryは維持。K5 rangeは全IDをraw table cellで直接定義しliteral expansionがないため、expansion削除は含めない | F09a/cは`Unknown(missing_input)`、checker/execution/receiptなし |
 | `UT-LCI-98` | K3/K5第2/3列typed refsとedge source、OutcomeRefが同じrowを指す | 一つのK3 edgeのsource locatorだけをK5 locatorへ変更 | F09b/cは`Unknown(conflict)`、別pair/期待値の流用なし |
-| `UT-LCI-99` | K3=194/K5=91の各IDが独立inventory、literal expansion、raw definition rowへ一致（L9 IV-LCI-71） | `L8-K3-14-ROLE-ALIAS-COEXISTS`をmanifest literal expansion、raw definition row、対応edge/disposition referenceから同時に削除し、独立K3 inventoryは維持 | F09a/cは`Unknown(missing_input)`、checker/execution/receiptなし |
+| `UT-LCI-99` | K3=194/K5=91/K4-G3=73の各IDが独立inventory、literal expansion、raw definition rowへ一致（L9 IV-LCI-71） | `L8-K3-14-ROLE-ALIAS-COEXISTS`をmanifest literal expansion、raw definition row、対応edge/disposition referenceから同時に削除し、独立K3 inventoryは維持 | F09a/cは`Unknown(missing_input)`、checker/execution/receiptなし |
+| `UT-LCI-114` | Common Kernel K4/G3 raw inventoryはK4 51件/G3 22件を別集合として73 unique IDで保持 | `test_ut_lci_89_common_kernel_component_inventories_are_independent`の同じcurrent fixture baseline | 既存UT89のbaseline assertionで73件の定義を固定inventoryと照合し、L5→L8 edge先へ含める（追加test methodは作らない） |
+| `UT-LCI-115` | K4/G3固定73 IDが各一つのraw rowへ結び付く | `L8-G3-04-RECORD-ONLY-NO-ACCEPTANCE-OUTPUT`のrowだけ削除 | F09a/bは`Unknown(missing_input)`、他rowや参照で補わない |
+| `UT-LCI-116` | K4/G3 raw tableは固定inventory外のIDを含まない | `L8-K4-EXTRA`の定義行だけ追加 | F09a/bは`Unknown(conflict)` |
+| `UT-LCI-117` | 各K4/G3 fixture IDはraw definition rowに一度だけ現れる | `L8-K4-01-COMPLETE` rowを一度複製 | F09bは`Unknown(conflict)`、一意なrow bindingなし |
+| `UT-LCI-118` | K4/G3各fixture edgeのsourceはK4/G3 L5 locator、outcomeは同row第4列 | `L8-K4-01-COMPLETE` edgeのsource locatorだけをK5 locatorへ差替 | F09cは`Unknown(conflict)`、別component sourceへ流用しない |
+| `UT-LCI-119` | Common Kernel L5 K4/G3 exact-heading locatorのdefinition rangeがmanifestに一件存在する | K4/G3 L5 locatorのdefinition rangeだけをmanifestから削除する | F09aは`Unknown(missing_input)`、L5 locatorが必須sourceとして未定義となりrun-level preflightで停止。IV-LCI-91に対応するdesign-manifest検査であり、suite runner/receiptは作らない |
 
 result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子でありtestの実行証拠ではない。test passからL8/L9/L10承認やmerge/release許可を作らない。
 
 
 ## 4. 開発source L7 suite runnerの単体oracle
 
-以下は候補suite boundaryを検査する。formal L7 ID 165個とPython unittest discovery identitiesは異なる集合である。旧baselineで観測された196件は履歴値である。current expected discovery setは199件、sorted-ID SHA-256 `2203c7ba4c3064940792d0cd19b8e0e5e6b0123ed0f5ad302472213b1be3c874`としてsource inventoryへ固定し、exact target L6/L7 refsとともに照合する。
+以下は候補suite boundaryを検査する。formal L7 ID 450個とPython unittest discovery identitiesは異なる集合である。current expected discovery setは534件、sorted-ID SHA-256 `45fe38adc541d60538ae4a2393c6f33116e9cebadba5c2629ecf7f85ee962d8e`としてsource inventoryへ固定し、exact target L6/L7 refsとともに照合する。K1/K2既存の165-row mappingと199 identitiesは個別の保護済みprefixである。K5は91 formal IDs、67 primary（41 public API、24 helper、2 K2 lookup）と24 stub。UT-046/085/086の局所assertion範囲はL4 §2.1に記した未被覆境界を維持する。canonical suite inventory SHA-256は`b05642a174a5368815b37124b61c4e8d8ea7c61fcf17c535c3206f6fad52b941`。
 
 | Unit test ID | 正常前提 | 一点の変異／観測 | 期待 |
 |---|---|---|---|
-| UT-LCI-100 | target treeにsource/test refs、formal mapping、current inventory-bound expected discovery set、runnerが揃い、registration/declaration/usable packは入力されない。165 formal IDsがfull mappingへ対応し、primary-callableとowner/stub境界のcoverage kindを区別した上で199 expected IDsがすべてpass | 変異なしbaseline | 165-row formal mapping（139 primary/26 stub）と一致するdiscovery/execution ID arraysを持つfull external identity artifactとcompact summary、failure/error/skip/expected-failure/unexpected-success=0。expected sorted-ID SHA-256は`2203c7ba4c3064940792d0cd19b8e0e5e6b0123ed0f5ad302472213b1be3c874`。pack状態を照会しない。旧baselineの196件を流用しない |
+| UT-LCI-100 | target treeにsource/test refs、formal mapping、current inventory-bound expected discovery set、runnerが揃い、registration/declaration/usable packは入力されない。450 formal IDsがfull mappingへ対応し、coverage kindを区別した上で534 expected identitiesがすべてpass | 変異なしbaseline | 450-row formal mapping（398 primary/52 stub）と一致するdiscovery/execution ID arraysを持つfull external identity artifactとcompact summary、failure/error/skip/expected-failure/unexpected-success=0。expected sorted-ID SHA-256は`45fe38adc541d60538ae4a2393c6f33116e9cebadba5c2629ecf7f85ee962d8e`。pack状態を照会しない。旧baselineの196件/count digestをcurrent expected値へ流用しない |
 | UT-LCI-101 | UT-LCI-100の他条件 | implementation source blob refを一件だけinventoryから除く | Unknown(missing_input)、runner未起動 |
 | UT-LCI-102 | UT-LCI-100の他条件 | test_k2.py blob refだけを欠落させる | Unknown(missing_input)、K1だけを実行しない |
 | UT-LCI-103 | exact source refsとcurrent inventory expected identities | coverage kind付きformal ID mappingからK2の一IDを除く | Unknown(missing_input)、spawn前inventory preflightで停止し、coverage欠落を実行済みとしない |
@@ -189,6 +195,19 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 | UT-LCI-111 | full identity artifactにactual discovery/execution IDs、formal mapping digest、target/source refsがある | discovered_test_idsだけを保存前payloadから除く | Unknown(conflict)、count/digestだけではfull evidenceとしない。F05はsuite step fail、compact summaryなし、partial diagnosticを保持する。providerは保存後artifactを再取得しない。 |
 | UT-LCI-112 | compact receiptにartifact digest、discovery/execution count+ID-set digest、formal mapping digest、target/source refsがある | executed_ids_sha256だけをcompact summaryから除く | Rejected(invalid_input)、provider compact schema不完全でpositive不可 |
 | UT-LCI-113 | full identity artifactに実discovered/executed ID arrays、mapping digest、target/source refsがある | executed_test_ids配列だけを保存前payloadから除く | Unknown(conflict)、full evidence不完全、success receiptなし。F05はsuite step fail、compact summaryなし、partial diagnosticを保持する。providerは保存後artifactを再取得しない。 |
+| UT-LCI-120 | K3 implementation ref集合に`permission.py`のcurrent target bytesが一つある | exact target treeから`permission.py` blobだけを読めなくする | Unknown(missing_input)、先行5 checkのpartial diagnosticを保持して第6 runner spawn前に停止。K1/K2 source refsだけで縮退しない |
+| UT-LCI-121 | `test_k3.py`がfixed test module refsに一件含まれる | exact target treeから`test_k3.py` blobだけを読めなくする | Unknown(missing_input)、先行5 checkのpartial diagnosticを保持してrunner spawn前停止。K1/K2 modulesだけへ縮退しない |
+| UT-LCI-122 | target L7はfixed K3 formal IDsを全て表す | target L7本文から`CK-K3-UT-001`の行だけを除く | Unknown(conflict)、target L7と固定inventoryの不一致としてsuite spawn前に停止する。固定inventory自体の欠落は別境界 |
+| UT-LCI-123 | K3の194 formal mapping identitiesはfixed mappingと一致する | K3 mappingの一つの`unittest_identity`だけをunknown identityへ差し替え、mutation側mapping digestを再計算する | runner起動後のfixed inventory検査がUnknown(conflict)。unittest discovery/execution前にnoncomplete診断を返し、F05はstep fail/partial diagnosticとして保持。complete evidenceは作らない |
+| UT-LCI-124 | K3 formal IDsは一意なmapping rowへ結び付く | K3 mappingの一つの`formal_l7_id`だけを重複させ、mutation側mapping digestを再計算する | runner起動後のfixed inventory検査がUnknown(conflict)。unittest discovery/execution前にnoncomplete診断を返し、F05はstep fail/partial diagnosticとして保持。complete evidenceは作らない |
+| UT-LCI-125 | K3の220 expected discovery identitiesを含む534個のfixed identity set | actual discoveryからK3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを除く | Unknown(conflict)をspawn後partial diagnosticへ残し、F05はsuite step fail。count/formal rowsだけで補完せずcompact suite evidenceを作らない |
+| UT-LCI-126 | actual discovery identitiesはfixed 534件で一意 | discovery結果にK3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを重複追加 | Unknown(conflict)をspawn後partial diagnosticへ残し、F05はsuite step fail。重複をdedupして肯定しない |
+| UT-LCI-127 | 534 identitiesと5 outcome familyを含む最大complete result frameはcanonical JSON body 82,000 bytes以内に収まり、LF込みsupervisor captureは82,001 bytes以内、helper response envelopeは120,000 bytes以内 | 最大の単一outcome-family payloadをcapture上限超過まで増やす | runnerはcomplete success/failure artifactを出さず、`Unknown(conflict)` partial frameを返す。truncated outputをcomplete summaryやpositive receiptへ昇格しない |
+| UT-LCI-128 | 450行のformal mappingに対応する7 source/test refsがtarget treeに揃う | `journal.py` blobだけをcurrent target source refsから欠落させる | `Unknown(missing_input)`、先行5 checkのpartial diagnosticを保持して第6 check spawn前に停止 |
+| UT-LCI-129 | UT-LCI-128の他条件 | `test_k5.py` blobだけをcurrent target source refsから欠落させる | `Unknown(missing_input)`、K1/K2/K3 modulesだけへ縮退せずrunner未起動 |
+| UT-LCI-130 | target L7は450個の固定formal IDsをすべて含む | target L7本文から`CK-K5-UT-001`の行だけを除く | `Unknown(conflict)`、target L7とfixed inventoryの不一致としてrunner起動前に停止 |
+| UT-LCI-131 | K5の91 mapping rowsはformal ID、callable、module、coverage kind、unittest identityの全固定値に一致 | `CK-K5-UT-001.coverage_kind`だけを`owner_or_fixture_stub`へ変更し、mutation側K5/full mapping digestを再計算 | runner discovery前の`Unknown(conflict)`、K5 mapping固定値との差をnoncomplete diagnosticへ残す |
+| UT-LCI-132 | compact suite summaryの`suite_id`は`common-kernel-k1-k2-k3-k5` | summaryの`suite_id`だけを旧値`common-kernel-k1-k2-k3`へ戻す | `Rejected(invalid_input)`、旧summaryをcurrent K5 suite evidenceとして受理しない |
 
 他Stage 1 unitsの未実装/partial/not_exercised coverageはこの候補suite executionとは別に残し、Stage 1全L7 successを主張しない。
 

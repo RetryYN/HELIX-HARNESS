@@ -1,12 +1,12 @@
-# HELIX-HARNESS 共通カーネル L5詳細設計（K1/K2/K3/K4/K5/G3/K8）
+# HELIX-HARNESS 共通カーネル L5詳細設計（K1/K2/K3/K4/K5/K6/G3/K8）
 
 status: draft
 owner: HELIX-HARNESS
-parent_requirement: なし（要素別にL4 §2.1／§3.1／§9.2／§13.1／§16.1／§18.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
+parent_requirement: なし（要素別にL4 §2.1／§3.1／§9.2／§10.2／§13.1／§16.1／§18.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: main `f75199749888f7261772ba26e9feb58a33d9a04f`
+base: main `3961daac08d032ad512026e8365fafd9eae831c5`
 
-本書は共通カーネルL4のK1/K2/K3/K4/K5/G3に加え、§9でK8の入力label・明示経路の記録設計を詳述する。L4の型、判定、鍵、失敗分類、alias意味、authority境界を変えない。K6/K7/K9/K10は本書では`not_designed`であり、対応する現行L4/L9への参照だけを残す。実装、L6 algorithm、実行、物理writer enforcementは定義しない。対のL8もfixtureを設計するだけで未実行である。
+本書は共通カーネルL4のK1「結果の多値型」、K2「identity・revision・digestによる鍵」、K3「既存operation authorityのread-only照合」、K5「正本記録とprojection」、K4「義務の一級化」、K6「検証receiptとissuer authenticity」、G3「oracleの種別」、K8「入力label・明示経路の記録」を詳述する。L4の型、判定、鍵、失敗分類、alias意味、authority境界を変えない。K7/K9/K10は本書では`not_designed`であり、対応する現行L4/L9への参照だけを残す。実装、L6 algorithm、実行、物理writer enforcementは定義しない。対のL8もfixtureを設計するだけで未実行である。
 
 本設計が想定する単一HARNESS unitの配置候補は`helix/helix-harness/units/common-kernel/`（`enc(helix-harness)=helix-harness`、`enc(common-kernel)=common-kernel`）で、宣言正本は同じフォルダの`declaration.json`とする。identity候補は`common-kernel`、pack version候補は文字列`0.1.0`、maturity候補は`development`、owner候補は既存の`core`種別と`HELIX-HARNESS-CORE`である。これらはHARNESS-L2-010/AC-HARNESS-L3-010-01の既存欄へ置く技術候補であり、登録値、製品版、release unitへの収載、将来版を確定しない。宣言項目の形はrepository-layout RL-C2が定める既存項目だけを使い、schema-version/kindの封筒以外にfieldを足さない。
 
@@ -14,12 +14,12 @@ base: main `f75199749888f7261772ba26e9feb58a33d9a04f`
 
 | 入力 | 固定対象 | SHA-256 |
 |---|---|---|
-| Common Kernel L4 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`のcontent本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md`（K1/K2: §2/§3、とりわけ§2.1/2.5/2.6、§3.1–3.4.1。K3: §16全体。K4/G3: §13全体。K5: §9全体と§15.4–15.6の境界接続） | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
-| Repository Layout L4 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40` content pin：`docs/helix-harness/L4-basic-design/repository-layout.md`（§2–3、RL-C1–7、RL-D1–5、RL-T1–3、RL-K1–3、§6.1/§10） | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
-| Pair L9 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`のcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K7/IV-LDG関連行） | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
+| Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`のcontent本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md`（K1/K2: §2/§3、とりわけ§2.1/2.5/2.6、§3.1–3.4.1。K3: §16全体。K4/G3: §13全体。K5: §9全体と§15.4–15.6の境界接続。K6: §10全体） | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
+| Repository Layout L4 | main `3961daac08d032ad512026e8365fafd9eae831c5` content pin：`docs/helix-harness/L4-basic-design/repository-layout.md`（§2–3、RL-C1–7、RL-D1–5、RL-T1–3、RL-K1–3、§6.1/§10） | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
+| Pair L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`のcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7/IV-LDG関連行） | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
 | Stage 1 PO decision | `docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md`（§「対象revisionと本文SHA」「適用範囲」） | `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
-L3 direct parentはL4各§のcrosswalk列記に限る。K1の直接由来は§2.1にあるHARNESS AC-HARNESS-L3-022-02、030-02、032-02/03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2の直接由来は§3.1にあるHARNESS AC-HARNESS-L3-010-01/03、022-05、030-04、031-05、032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6のkey必須条件からK2 §3.1のHARNESS 030-04/032-04へ、またK2記録/保存からK5 §9.3へつなぐ箇所は契約境界の相互参照であり、K1/K2それぞれの直接crosswalk親へ加えない。K3の直接親はL4 §16.1が列記するSECURITY-AC-008-01、022-01/02/03、009-01、003-01、005-01、006-01に限る。AC-OS-014-04/-06はK7接続の境界参照でありK3親へ加えない。K5の直接由来はL4 §9.2のConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。§15 K7/台帳との接続は同じL4 §15.1の既存AC/PO判断を参照し、K5へ別の親要求を追加しない。別のL3要求を追加せず、各L4 crosswalk外へ親を拡張しない。HARNESS Stage 1の判断記録は対象本文revision `a77672513325aa9e79f3780af40455361b5d19a8`とL2-010/011/023に限るため、同判断を他機構または他親の承認根拠として流用しない。
+L3 direct parentはL4各§のcrosswalk列記に限る。K6 §10.2の直接由来はConcept（原則6）、AC-HARNESS-L3-022-02/031-02/032-05/036-02、SECURITY-FR-031-03、SECURITY-AC-012-01、OS AC-OS-018-01/023-02/029-03であり、後続ownerやconsumer参照を直接親へ加えない。K1の直接由来は§2.1にあるHARNESS AC-HARNESS-L3-022-02、030-02、032-02/03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2の直接由来は§3.1にあるHARNESS AC-HARNESS-L3-010-01/03、022-05、030-04、031-05、032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6のkey必須条件からK2 §3.1のHARNESS 030-04/032-04へ、またK2記録/保存からK5 §9.3へつなぐ箇所は契約境界の相互参照であり、K1/K2それぞれの直接crosswalk親へ加えない。K3の直接親はL4 §16.1が列記するSECURITY-AC-008-01、022-01/02/03、009-01、003-01、005-01、006-01に限る。AC-OS-014-04/-06はK7接続の境界参照でありK3親へ加えない。K5の直接由来はL4 §9.2のConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。§15 K7/台帳との接続は同じL4 §15.1の既存AC/PO判断を参照し、K5へ別の親要求を追加しない。別のL3要求を追加せず、各L4 crosswalk外へ親を拡張しない。HARNESS Stage 1の判断記録は対象本文revision `a77672513325aa9e79f3780af40455361b5d19a8`とL2-010/011/023に限るため、同判断を他機構または他親の承認根拠として流用しない。
 
 K4/G3の直接親はL4 §13.1のHARNESS AC-HARNESS-L3-014-01〜04、021-02、036-04、041-02、OS AC-OS-018-01/023-02、CONNECT CONNECT-AC-006-03、INFRASTRUCTURE INFRA-005-AC-04、HARNESS AC-HARNESS-L3-049-05/022-01/02、SECURITY SECURITY-AC-026-01/02に限る。K4からK5/K6への接続はboundary linkであり直接親を追加しない。K4/G3の固定入力は既存L4 §13全体とL9 IV-K4-01〜10/IV-G3-01〜05である。
 
@@ -357,7 +357,7 @@ L5/L8で個別fixture設計へ展開するのはIV-K5-01–26である。IV-K7-0
 
 ### 6.3 今回の対象外
 
-K6/K7/K9/K10は本対で`not_designed`であり、既存のCommon Kernel L4各契約節とPair L9の対応oracleへ戻す。K1/K2/K3/K4/K5/G3/K8の設計は実装、実行、物理writer enforcement、approval/gateを意味しない。L3 semanticsの変更が必要な点は本書で解決せず、要求上流へ返す。
+K7/K9/K10は本対で`not_designed`であり、既存のCommon Kernel L4各契約節とPair L9の対応oracleへ戻す。K1/K2/K3/K4/K5/K6/G3の設計は実装、実行、物理writer enforcement、approval/gateを意味しない。L3 semanticsの変更が必要な点は本書で解決せず、要求上流へ返す。
 
 ## 7. Unit配置・宣言・型番登録
 
@@ -441,11 +441,109 @@ L9 IV-G3-04(9)後半とIV-G3-05はconsumer経路が`Rejected`となる期待を�
 
 既存K1/K2 L5 §5のCPython 3.11+標準library候補を、K4の型付きview、決定的ID集合比較、状態variantへの適用にも使える候補として維持する。K4はK5 restoreとK6 receipt境界を使うため、pure coreだけの実装だとは主張しない。K5 segment reader、K6 verifier execution、HARNESS 014/041 owner ruleの存在・登録・実装をこの言語選択から導かない。既存L4のauthority source、K6/K5 entrypoint、各ownerが未確定の箇所は未決のまま保つ。
 
-## 9. K8 入力label・明示経路の記録設計
+## K4/G3 API 範囲終端
 
-本節はL4 §18のK8契約を詳細化する。K8に親要求はなく、要素別trace先はSECURITY-AC-001-01だけである。K8は分類語彙・target語彙・権限・effect・汎用taint機能を作らない。L4 K8-I1〜I8、型、失敗順、K2 key構成を変更しない。K6/K7の詳細設計・実装はこのbaseでは未統合のため借用せず、L4がK8の型として直接参照するK3 `PermissionCheck`、K6 `RequiredResult`と既存K2/K5 source contractだけを使用する。K8-I6がL4でK7 AppliedUncertainの失敗伝達に「倣う」とする記述は、その非消去意味だけを保持し、K7型/APIへの依存を追加しない。
+この見出しは、manifestが定めるK4/G3 API抽出範囲の終端であり、K4/G3契約項目はここより前に置く。
 
-### 9.1 固定sourceと旧HELIX対応
+## 9. K6 検証receiptとissuer authenticity
+
+本節はCommon Kernel L4 §10とL9 IV-K6-01〜15をL5の既存型・API境界へ詳細化する。直接親はL4 §10.2のcrosswalkに記されたACだけであり、K6自体から追加親や単一の新しいgateを作らない。receiptは検証結果の証拠であり、K6は承認、merge、受入、要求意味、工程完了を作らない。K3 permission/authorityの発行や照合を新設しない。実装・実行・物理writer enforcementは定義しない。
+
+### 9.1 旧source・台帳・consumer・failureとの対応
+
+asset IDは`docs/governance/legacy-asset-disposition.jsonl`の該当行。以下の旧sourceはarchive root相対pathで読み、全体SHA-256を台帳値および前段の調査値と照合した。全行で`consumer_refs`は空のため、consumer/failureはsource本文の参照記載から確かめた。旧test/runtime/CLI/CIは起動しない。
+
+| 旧asset / source path:行 / 全文SHA-256 | ledger row・consumer/failureの根拠 | 保持・再導出・置換 |
+|---|---|---|
+| `LEGACY-ASSET-8E9E06111D6FE1538308` — `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md:17–35` — `db4eb979037a611e51edaab22fe31f774fd7038d7ffb72bcf26ece6fb9de8b42` | row 528、Historical、consumer_refs空。旧WorkGraphはdelegation→review→terminal→acceptanceをsame HEAD/orderedに束縛し、future receiptとworker self-acceptanceを拒否する。 | 同一対象版と先書き拒否の観点をK2 keyとreceiptへ再導出。三段workflowと独立receipt engine/ledgerはK9/OSの責務でありK6に追加しない。 |
+| `LEGACY-ASSET-A4EAB5E3345E3C125C77` — `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md:16–31` — `d39b3cdc2e7d9f72ad03d0d3db5571a6b0de579fadf0b147b8a6d4f90dc2ed2c` | row 535、Historical、consumer_refs空。旧isolation broker/lifecycle projectorがspawn由来receiptとhash-chain eventを作り、copy/unsealed receiptを拒否する。 | execution由来fieldをcallerから注入させない点をK6-I1へ再導出。event chainはK5 segmentへ置き、K6 receiptに旧lifecycleやwriterを複製しない。 |
+| `LEGACY-ASSET-78704C8347EBDD58FC52` — `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/gate-evidence-substance.md:15–47` — `6f4a3cdbf5e66071525e6d4b76df2a8c9bedea355338321c5ea597cc1dd73ba6` | row 657、Historical、consumer_refs空。Issue #1430 G8/G9/G10 consumer。failure:保存済み5 command中4件digest不一致、全5件test sourceを実行出力として参照し、digest一致の1件も実行証明でなかった。 | digestをmanifest申告として信じず実読bytesで再計算する点をK6-I4/I5へ再導出。gate固有readerやruntime証明を一般化せず、digest一致はbytes一致に限る。 |
+| `LEGACY-ASSET-901EFEC93D536D3AA418` — `archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/closure-evidence-materialization.md:13–15,56–76` — `a8951a0cdd590da84612de8c6b6e5960ca5c32ad3b3d0c0d0511b9f5789c0264` | row 373、Historical、consumer_refs空。closure auto-approve consumerはprocess実行からreceiptを内部生成する一方、SQLite/JSONL/filesystem間のatomicityを主張せずrecoveryを扱う。 | caller自己申告を受けない点をI1へ再導出。L5の旧source読取範囲はL4に記した`13–15,56,67–76`から`56–76`へ広げた。process receiptの生成主体に加え、保存/recoveryの非原子境界とconsumer影響を同じmaterialization資料内で確認するためであり、L4本文のscopeは変更しない。GitHub required-check trust rootを現L4のrepository固定VerifierSetへ置換する判断はL4 §5/10.2に既に記録済み。K6にstorage transactionを追加しない。 |
+| `LEGACY-ASSET-C4B746501A6562E3F8B4` — `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md:53` (UTH-FR-022) — `c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639` | row 473、Historical、consumer_refs空。completion/review/green evidenceはcommand/argv/scope/HEAD/exit/time/artifact/runnerを束縛しproseやtimestamp単独を拒否する。 | 現L4のbase/receipt key、execution、outputsへ要素を分けて再導出。old schemaをcopyしない。 |
+| `LEGACY-ASSET-0327D0DF98618D3066FD` — `archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md:60–70` — `81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a` | row 412、Historical、consumer_refs空。旧source-boundaryはtrusted issuer署名、exact scope/revocation、pre/during/post reobservation、dispatch後driftをuncertainとして保持する。 | read-only verificationとaction effectの分離を保持する。L5の旧source読取範囲はL4に記した`65–66`から`60–70`へ広げた。scope/source境界に加えpre/during/post reobservationとdispatch後driftを確認するためであり、L4本文のscopeは変更しない。旧署名・旧policy schemaは移さない。署名/外部固定が無い現K6は`issuer_authenticity=Unknown(unsupported)`であり、reproductionへ真正性を代替させない。署名付きauthorizationをK6へ移さない。 |
+| `LEGACY-ASSET-D107FD145A2588FAAD09` — `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-independent-review.md:20` — `9fff293ed71c7a0be0e4dfcd7a5cca70eaacfdbf2cd553a605fd15510a3c99b3` | row 532、Historical、consumer_refs空。actorは実行側から導き、receiptのactor自己申告を受けない。 | 実行側がfieldを生成する根拠としてI1へ再導出。K6はactor authorityやreviewer identityを新設しない。 |
+| `LEGACY-ASSET-6CC1A5B9E9472F1100AF` — `archive/legacy-generation-2026-09-14/root/src/doctor/check-registry.ts:20–40` — `07e52e804cb83b74ec3026a25baca593e35f8f2107c581adc8afdf6a93fbb581` | row 2917、Historical、consumer_refs空。consumerは旧doctorのregistered hard checksとevaluated/failing checksを別に数える。 | 件数比較を検査IDごとの成分と未評価`Unobserved(not_run)`へ再導出する。sourceは参照のみ、実行しない。 |
+| `LEGACY-ASSET-ED86DAA9D6A1511A591C` — `archive/legacy-generation-2026-09-14/root/src/lint/pin-chain-derivation.ts:6–10` — `5f81fa005896bd34f66538084eabdf627b1df9025285a020bae4c0976fcaaca6` | row 3021、Historical、consumer_refs空。旧lintはdeterministic pinとsemantic-review pinを別型にする。 | `VerifierEntry.deterministic`を再現可否の入力とする。L5の旧source読取範囲はL4に記した`6–7`から`6–10`へ広げた。semantic-review pinと区別される`PinChainFinding`型定義まで確認するためであり、L4本文のscopeは変更しない。旧lintを実行/移植せず、署名やsemantic approvalを追加しない。 |
+| `LEGACY-ASSET-C0F9CE549442BA1D551E` — `archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-428-enforcement-wiring-gap.md:87–110` — `dd527d30dfb5a601008656d4d38c0cdefcf44aa9cbe277bccc5fad4b8c81751c` | row 1683、Historical、consumer_refs空。3判定moduleが実行経路に未接続でもunit testsとartifact-existence検査がgreenとなり、branch protection auto-merge判断を誤って支えたfailure。 | required verifierごとにreceiptを照合しreceipt存在だけで肯定しないI7のfailure起点。旧auto-merge policy/閾値は移植しない。 |
+| `LEGACY-ASSET-B8D84651753481B5F2B9` — `archive/legacy-generation-2026-09-14/root/docs/governance/operations-rule-audit-2026-07-26.md:48` (ORA-015) — `d32bb1a780a36cd0710cbd58d575e900ac14c154a0e84f5dc92423b46c01466e` | row 996、Historical、consumer_refs空。freeze packetが全digest再計算を主張したが別HEADのdigestを載せた。 | current key/read集合と実読digestの照合へ再導出。snapshot bytesと別HEADを混ぜない。 |
+| `LEGACY-ASSET-EC07511FF3E241F15359` — `archive/legacy-generation-2026-09-14/root/docs/design/design-catalog.yaml:838` — `4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864` | row 328、Historical、consumer_refs空。旧design catalogも署名・attestation/provenanceを未設計todoとしていた。 | 現K6の限界明示の比較根拠。署名やattestationを新規要求にしない。 |
+
+これらは完全一致実装資産としてcopyせず、L4 §10が選んだ固定VerifierSetとK1/K2/K5の既存契約へ意味を再導出する。物理execution provenance/署名なしに保証できない過去実行・issuer authenticityは未保証のままとする。
+
+### 9.2 型とowner境界
+
+L4 §10.3のfieldとunionをそのまま使用し、新しい型fieldやreasonを増やさない。
+
+```text
+VerifierRef   = { identity, version, digest }               # codeと設定の全bytes
+VerifierEntry = { ref: VerifierRef, deterministic: Bool, checks: { CheckId -> PolarityOfの識別と版 } }
+VerifierSet   = { set_id, revision, members: VerifierEntry[], required_for: { operation -> identity[] } }
+                # repository内の固定実体（9.3のFixedRef）として置き、digestで固定する
+ReceiptBody   = { verifier: VerifierRef, verifier_set: SubjectRef, key: ResultKey,
+                  read: { identity -> Digest },              # 検証器が実際に読んだbytesのdigest
+                  execution: { argv_digest, exit, outputs: FixedRef[], started, completed },
+                  registry: { registered: CheckId[], evaluated: CheckId[] },
+                  inner: Combined,                           # 検査ごとの成分の合成（K1）
+                  authority_effect: "none" }
+AdmittedReceipt = { body: ReceiptBody, reverifiable: Bool,   # reverifiableは集合のdeterministicから導く
+                    reproduction: Observed<...>,             # reverifyの結果。未実施はUnobserved(not_run)
+                    issuer_authenticity: Unknown(unsupported) }  # 署名が無い間は常にこの値（L4 §10.5）
+RequiredResult  = { combined: Combined, assurance: { identity -> AdmittedReceiptの真正性3項目 } }
+```
+
+VerifierSetはL4 §10.9/K4-I4の指定どおり`declarations/helix-harness/verifier-sets/`のrepository-owned FixedRef。`required_for`と各memberの`checks`/`deterministic`はK4 ownerの宣言値であり、K6、呼出し側、receiptの申告から作らない。API引数`verifier_set`はその現在のK4 FixedRefを指す参照であり、呼出し側が集合、member、`required_for`を差し替える権限を与えない。VerifierRef digestは検証器code/config全bytesのdigest。`ReceiptBody`のexecution/read/registry/innerは`run`した検証器の側で生成する。result、exit、output digest、read、registered/evaluated、inner、issuer authenticityを呼出し側が注入するAPIはない。
+
+K6はK1 `Observed`/`Combined`/`PolarityOf`、K2 `ResultKey`/`key_of`/`lookup`/`record`、K5 `restore`/`append`を既存契約として利用する。K6はK3 authority/check APIを持たず、permissionや認可を生成しない。VerifierSetの正本はK4 owner、receipt logとFixedRefの保存・訂正禁止はK5、key照合はK2、component合成はK1に残る。
+
+### 9.3 K6 APIと関数境界
+
+公開signatureはL4 §10.6どおりで、private helperは責務分解のtrace名である。追加公開API・新reasonは作らない。
+
+| 関数 / boundary | 入力→出力 | 詳細責務・失敗境界 | L4/L9 trace |
+|---|---|---|---|
+| `run(verifier, base_key)` | K4が現在選んだ検証器実行主体への参照とbase key → K5 `ResultRecorded` | L4の2引数signatureを維持する。`verifier`は呼出し側が任意に選ぶ実行/data sourceではなく、既存current VerifierSet member bindingが選択する実行主体参照として解釈する。receipt keyを§10.3から導き、登録済み検証器自身の実行から`ReceiptBody`を構成してK5 appendへ渡す。callerにexecution/output等を渡させない。具体的なprocess/issuer authenticity機構を定義しない。 | K6-I1; IV-K6-02 |
+| `derive_receipt_key(base_key, verifier_ref, verifier_set_ref)` private | base key＋VerifierRef＋set ref → ResultKey | base keyのoperation_versionをverifier.versionにし、K2 inputsへverifierとverifier_setのrefsを追加する。各verifierで別鍵となる。このhelperは鍵だけを返す。IV-K6-01の`Value`/`Stale`/`Unknown`/`Unobserved` oracleはK5 `restore`→K2 `lookup`の返却を観測する。 | §10.3; IV-K6-01 |
+| `admit_receipt(record, query_key, verifier_set)` | K5-restored record/query key/set → `Observed<AdmittedReceipt>` | K6-I2→I3→I4→I5→I6順に確認する。各拒否根拠をevidenceへ残す。全て通ればValueだがreproductionは`Unobserved(not_run)`、issuer_authenticityは常に`Unknown(unsupported)`。 | K6-I2–I6; IV-K6-03–08/12 |
+| `match_verifier_entry(receipt_ref, verifier_set)` private | receipt VerifierRefとK4-owned set → entry | identity/version/digestの全fieldをmember refと照合。`deterministic`とcheck mappingはentryからのみ採る。不一致はL4既定`Unknown(unregistered)`。 | K6-I2; IV-K6-03/04 |
+| `validate_receipt_key_body(record, query_key)` private | recorded key/body/query → consistency evidence | query/record/body.key/body.verifier/body.verifier_setが導出鍵と整合するかを確認。不一致は`Unknown(conflict)`。 | K6-I3; IV-K6-05 |
+| `validate_read_set(receipt_body, expected_key)` private | read mappingとreceipt key → read result | read identitiesがsubject+non-verifier/non-verifier_set inputsと完全一致すること、各digestがref digestと一致することを確認。不足は`Unknown(missing_input)`、余分/digest矛盾は`Unknown(conflict)`。 | K6-I4; IV-K6-06 |
+| `verify_fixed_outputs(outputs)` private / K5 FixedRef reader boundary | outputs FixedRef → observed bytes-integrity components | 各bytesを読みSHA-256再計算し記録digestと照合。不一致`Unknown(conflict)`、読取不能`Unknown(unreadable)`。digest一致はbytes同一性のみを示しexecution proofではない。 | K6-I5; IV-K6-07 |
+| `rebuild_inner(registry, evaluated, entry.checks)` private | registered/evaluated idsとK4-owned registered check mapping → K1 Combined | registered各checkにcomponentを一つずつ作る。未評価は`Unobserved(not_run)`、未登録結果は`Unknown(unregistered)`。receipt内inner componentsをowner mappingでK1 combineし、保存`inner` claimと異なる場合`Unknown(conflict)`。`ReceiptBody`にmapping fieldは追加しない。IV-K6-04のmapping-claim fixtureは実在するinner componentsとVerifierEntry.checksを固定し、保存済みCombined verdictだけを、誤ったreceipt側mappingなら得られるPositiveへ改変する。再合成との差を既存`Unknown(conflict)`として検査する。registered 0件は`set_reason=Unknown(missing_input)`。 | K6-I6; IV-K6-08/09/04 |
+| `required(operation, base_key, verifier_set, reverify)` | operation、base key、K4-set、再検証指定 → `RequiredResult` | K5 restoreがValueなら`required_for[operation]`に列挙されたverifierごとにreceipt keyを導出、K2 lookupし、Valueのみadmit。restoreが非Valueなら、その同じ非Valueを必要な各verifier成分へ伝播し、部分recordをlookupしない。admitted inner全component/set_reasonをverifier/check識別付きで外側へ追加。lookup/admitの非Valueも当該verifier成分として残す。各checkのPolarityOfでK1 combine。未登録・空required setは勝手に補わない。 | K6-I7; IV-K6-09/10 |
+| `reverify(admitted)` | admitted receipt → `Observed<AdmittedReceipt>` | entryのdeterministic=trueの場合に限り同一入力で再実行しinner digestを比較。一致でreproduction Value、不一致`Unknown(conflict)`、非決定的`Unknown(unsupported)`。issuer_authenticityは変えない。 | K6-I8; IV-K6-11/12 |
+| K5 append/restore boundary | `ResultRecorded`/scope records → persisted/restored receipts | append-only receipt記録。correction禁止。lookup順序はK5 append order。K6はtimestampでprior選択を変えない。IV-K6-14 fixtureでは同一subject identityの異なる旧revisionの有効Value receiptを複数置き、各key/body/result_digestを整合させる。timestamp順とK5 append sequence順を逆にし、K5-I7のsequence順で選ばれるpriorをassertする。同一keyの異bodyを二つ並べるK2 conflictは作らない。 | K6-I9; IV-K6-13/14 |
+| consumer handoff | RequiredResult → existing owner consumer | `combined`と三assurance項目を分離したまま渡し、肯定からauthority effectを出さない。`reproduction`や`issuer_authenticity`が非Value/unsupportedの項目を、再現Valueと同じ扱いにしない。L4 §10にK6 consumer API/拒否variantが定義されていないため、L9 IV-K6-15のforbidden consumer `Rejected`経路はこの対で実装・充足したとしない。`authority_effect="none"`とassurance field保持だけを構造照合する。 | K6-I10; IV-K6-15 |
+
+Receipt keyのinputsはbase key inputsの全体にverifier refとVerifierSet FixedRefを加える。`read`期待集合はkeyのsubject identityと`kind`がverifier/verifier_set以外の全inputs identityと一致し、各digestはそのkey refsに一致する。VerifierRef/VerifierSetは読んだsource bytesではなく、I2登録照合に使う。`started`/`completed`は保存するが順序、有効性、expiry、prior選択の値に使わない。`run`の`verifier`引数はL4 §10.3/§10.6を整合させて、既存current VerifierSet member bindingにより選択される実行主体参照と読む。署名変更、任意callback、caller提供registry/read/execution/resultの受け口は作らない。余分なcaller fieldはL9 IV-K6-02の型付きsignature-incompatible attemptであり、動的validatorや新しいRejected reasonを追加しない。
+
+### 9.4 K6 invariantからL5関数・L8 oracleへのtrace
+
+| L4 invariant | L5 boundary/function | L9 oracle / L8 case family |
+|---|---|---|
+| K6-I1 発行者 | `run`; execution/read/registry/innerは検証器自身が作る | IV-K6-02 / `L8-K6-02-*` |
+| K6-I2 set所属とset由来項目 | `match_verifier_entry`; member全ref一致、setのchecks/deterministicを採用 | IV-K6-03/04 / `L8-K6-03-*`, `04-*` |
+| K6-I3 key/body一致 | `derive_receipt_key`, `validate_receipt_key_body` | IV-K6-01/05 / `L8-K6-01-*`, `05-*` |
+| K6-I4 read完全性 | `validate_read_set` | IV-K6-06 / `L8-K6-06-*` |
+| K6-I5 output FixedRef実体 | `verify_fixed_outputs` | IV-K6-07 / `L8-K6-07-*` |
+| K6-I6 registered/evaluatedとinner再合成 | `rebuild_inner` | IV-K6-08/09 / `L8-K6-08-*`, `09-*` |
+| K6-I7 required集合の外側合成 | `required`; K4宣言、K5 restore、K2 lookup、K1 combine | IV-K6-09/10 / `L8-K6-09-*`, `10-*` |
+| K6-I8 reproduction | `reverify` | IV-K6-11/12 / `L8-K6-11-*`, `12-*` |
+| K6-I9 immutable correction | K5 append boundary/K2 same-key conflict | IV-K6-13/14 / `L8-K6-13/14-*` |
+| K6-I10 no authority + assurance分離 | consumer handoff | IV-K6-15 / `L8-K6-15-*` |
+
+### 9.5 失敗分類・保証限界
+
+- L4/L9に明記されたclass/reasonだけを使う。K2 lookupの`Stale`、同revision digest/key/body conflictの`Unknown(conflict)`、欠落`Unknown(missing_input)`、読めないFixedRef `Unknown(unreadable)`、非member `Unknown(unregistered)`、non-deterministic reproduction `Unknown(unsupported)`、未実行`Unobserved(not_run)`を別成分で保持する。
+- IV-K6-02のcaller-supplied result/exit/output digestは、既存`run(verifier, base_key)`に対する型付きsignature-incompatible attemptとしてL9が`Rejected`を期待する。動的引数validatorや新reasonは設けない。
+- `reproduction`、`issuer_authenticity`、evidence integrityは別assuranceである。reproduction Valueは固定入力で結果が再現することだけを示し、過去にreceipt記載のexecutionが行われたこと、時刻、issuerを証明しない。署名/attestation/外部固定を追加しない。必要な製品保証を追加する場合だけL4 §6.2の境界へ戻す。
+- L4 §10.9の`required_for`はK4-I4の義務参照verifier集合との一致を保持し、K6や消費側で検証器を追加/省略しない。K4 declarationが読めない・未登録のときの新しいreason mappingは置かず、既存owner observationを保持する。L9 IV-K6-04(1)の`deterministic:true` claimはL4 `ReceiptBody`にfieldがなく、L5/L8ではVerifierEntryから得る`reverifiable=false`の構造照合までを部分被覆とする。IV-K6-04(2)は、L4 K6-I6の既存再合成結果とL9が要求するowner `checks`利用の照合範囲を区別し、oracleの拡張解釈が必要な範囲をL4/L9 ownerへ返す。L9 IV-K6-15(1)はconsumer `Rejected`を要求するが、L4にconsumer APIまたはRejected返却型がないため未接続であり、L5/L8の構造確認を充足と数えずL4/L9 ownerへ返す。K6側ではauthority_effectが`none`であることとassurance項目の区別を保持する。
+- K3 authorityはこのL5 scope外。receiptのpositiveからoperation permission/checkやauthorizationを出さない。
+
+## 10. K8 入力label・明示経路の記録設計
+
+本節はL4 §18のK8契約を詳細化する。K8に親要求はなく、要素別trace先はSECURITY-AC-001-01だけである。K8は分類語彙・target語彙・権限・effect・汎用taint機能を作らない。L4 K8-I1〜I8、型、失敗順、K2 key構成を変更しない。K6/K7の詳細設計・実装は本節の歴史的起点baseでは未統合だった。統合後も、本節はそれらの実装成立を仮定せず、L4がK8の型として直接参照するK3 `PermissionCheck`、K6 `RequiredResult`と既存K2/K5 source contractだけを使用する。K8-I6がL4でK7 AppliedUncertainの失敗伝達に「倣う」とする記述は、その非消去意味だけを保持し、K7型/APIへの依存を追加しない。
+
+### 10.1 固定sourceと旧HELIX対応
 
 | 入力 | 固定対象 | SHA-256 |
 |---|---|---|
@@ -467,7 +565,7 @@ L4 §18.2の7旧assetは次のとおり。各source SHAは§18.2表の正しい�
 
 台帳状態・consumer/failureの詳細sourceは現L4 §18.2の正本表を参照する。source内に記載された旧failureは歴史資料であり、実際のconsumer稼働やK8の現行失敗観測とは主張しない。保持するのは境界の調査起点だけで、旧方式は完全一致再利用せず、SECURITY-AC-001-01と現K1/K2/K3/K5/K6境界から再導出する。
 
-### 9.2 型・owner境界
+### 10.2 型・owner境界
 
 L4 §18.3の型定義をそのまま使用し、field・公開型・reasonを追加しない。中心となる形は以下である。
 
@@ -502,7 +600,7 @@ NotSelected = { state: "not_selected" }
 
 この抜粋はL4のfield定義の再掲であり、`InputLabelRef`、`K8CaseBindingRef`、`K8RoleBoundInputRef`、`K8OperationVersion`、`KeyUnavailable`、`ValidationEvidenceUnavailable`等もL4 §18.3の定義そのままを使う。分類・route/effect source・target owner・current readerのauthorityはSECURITY/各既存ownerに残る。K3 permission sourceとeffect sourceを同一視しない。K6 verifierはL4が要求するcurrent `VerifierSet`のexact memberに限る。K6の詳細実装契約、K7 API/recordは本節から借りない。
 
-### 9.3 公開API契約と読取順
+### 10.3 公開API契約と読取順
 
 | L4公開API（signature不変） | current読取・処理 | 返却境界 |
 |---|---|---|
@@ -511,7 +609,7 @@ NotSelected = { state: "not_selected" }
 | `validate_label_transition(case_ref, input_label_ref, route_ref, k3_permission_check_ref, effect_observation_ref, input_heads) -> TransitionValidation | Rejected(missing_key)` | current input binding、保存済み分類ResultRecord、別個のcurrent classification key、target-owner/route declaration、K3 PermissionCheck record、K6 verifier receipt、effect source recordを各ownerのcurrent prefixから読む。全fieldをexact compareし、route-target/permission tuple/event bindingを照合。 | componentsはL4型のまま保持。K3/K6 componentの診断・assuranceを変換せず保持し、issuer comparison/assuranceはL4の非K1非K2診断を用いる。freshの判定と優先順はL4 §18.4だけに従う。 |
 | `record_label_transition(case_ref, input_heads) -> LabelTransition | Rejected(missing_key)` | owner current input-only bindingと別のresult-pointer projectionを読み、各operation keyを現行inputから再構成しK2 lookupする。保存pointerをcurrent keyとして使わない。 | selected pointer不在時もcurrent key lookupを保持し、pointer diagnosticに混ぜない。not_selectedは`NotSelected` projectionでK1結果/keyを作らず、explicit keyed queryの`Unobserved(not_selected)`と混同しない。 |
 
-### 9.4 K2/K5 binding・keyの構成
+### 10.4 K2/K5 binding・keyの構成
 
 - operation versionは各API operation、既存API contract、当該operationに使うcurrent owner contract refsをL4 `K8OperationVersion`のcanonical formで構成する。必須refを解決できないときversionを推定しない。
 - K2 keyは各operationのL4 subject/scope/required-inputだけで作る。sourceはsubjectとして一回だけ、inputsに重複させない。共有refはexact refでdedup。identity集合変更・revision/digest変更・同revision異digestはK2既存classのまま保持する。
@@ -519,7 +617,7 @@ NotSelected = { state: "not_selected" }
 - K8RoleBoundInputRefはL4 §3.4.1の既存`RoleBoundInputAlias`規則を使う。side/role/ref identityはK2 key内で区別するが、revision/digestは元source refのrevisionとraw content digestをそのまま使う。binding bytesと原sourceは別に実読し、raw SubjectRefは`TransitionValidation.components.raw_read_refs`にも残す。wrapper bytesだけではsource readにならない。同一alias内異refはAPI入口で既存`Rejected(missing_key)`、異なるside/roleでは同一raw identityがあっても併存させ、K2 duplicate rejectionへ誤転送しない。
 - `InputLabelRef`は分類operationの唯一ResultRecordへ全field一致し、source refで代用しない。current classification lookupは保存済みlabelとは別に行い、双方のK2結果を保つ。
 
-### 9.5 validation result・projection・polarity
+### 10.5 validation result・projection・polarity
 
 fresh `validate_label_transition`はL4 §18.4の順位（API Rejected、selected KeyUnavailable/key可能not_selected照会、Mismatch、K3 Denied、K6 Denied、Unknown、Unobserved、Validated）をそのまま使う。複合条件では全componentと全候補・assuranceを保持し、決定理由のみL4閉語彙順で選ぶ。`record_label_transition`はfresh validationを呼ばず、K2 current lookup結果を保持する。record Stale/Conflict/Unobservedをfresh outcomeへ移さない。
 
@@ -527,8 +625,8 @@ K3の`PermissionCheck`とK6の`RequiredResult`はcomponentsにそれぞれ既存
 
 K1 combineへの極性写像はL4で既に定義されたHARNESS所有`k8_transition_polarity`とcurrent K8 validation contract refの組を使う。`Validated`だけPositive、`Mismatch`/`Denied`はNegative。Unknown/Unobserved/KeyUnavailable/NotSelected/issuer diagnosticsは新たなK1 resultやpolarityにしない。new K1 reason、公開API、API return field、authority、consumer stateを追加しない。
 
-### 9.6 不変条件と限界
+### 10.6 不変条件と限界
 
 L5 API/componentへのtraceはL4 §18.5–18.6およびL9 IV-K8-01–26を参照する。維持対象はK8-I1出自結合、I2 untrusted維持、I3分類不能保持、I4 read/effect分離、I5 route検証、I6作用観測保全、I7 target別negative、I8汎用taint非導入である。classification slice・route slice・effect sliceはoperation別に必要性を判定する。未登録・unknown・stale・unreadableは該当operationの既存型/reasonに限定し、他operationを一律停止しない。
 
-K6とK7の細部がbaseに存在しないことを理由に、L4の明示的な型・oracleを新設/置換しない。K6 `RequiredResult`はL4の既存型としての値境界だけ参照し、詳細 verifier生成実装は扱わない。K7 API、operation fencing、AppliedUncertainを本pairへ取り込まない。ここに書いたのは設計候補であり、実source registration、current reader、receipt、implementation、実行、coverageを証明しない。
+K6とK7の細部が起点baseに存在しなかったことを理由に、L4の明示的な型・oracleを新設/置換しない。K6 `RequiredResult`はL4の既存型としての値境界だけ参照し、詳細 verifier生成実装は扱わない。K7 API、operation fencing、AppliedUncertainを本pairへ取り込まない。ここに書いたのは設計候補であり、実source registration、current reader、receipt、implementation、実行、coverageを証明しない。

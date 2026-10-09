@@ -1,4 +1,4 @@
-"""Fixed, source-bound Common Kernel K1/K2 unittest runner.
+"""Fixed, source-bound Common Kernel K1/K2/K3/K5 unittest runner.
 
 The embedded inventory is reviewed configuration. This process runs only inside
 runner.py's sandbox; stdout is a bounded, untrusted result frame for the parent.
@@ -18,14 +18,12 @@ try:
 except ImportError:  # pragma: no cover - direct fixed argv entrypoint
     from common import Diagnostic, canonical_bytes, sha256
 
-SUITE_ID = "common-kernel-k1-k2"
+SUITE_ID = "common-kernel-k1-k2-k3-k5"
 CURRENT_DESIGN_PATHS = (
     "docs/helix-harness/L6-function-design/common-kernel.md",
     "docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md",
 )
-SOURCE_SHA256 = {'helix/helix-harness/units/common-kernel/src/common_kernel.py': 'ce9c7a87cd318c2ff5d12f68c71129f6ad99f0b78616f89c501ccdd2c4643178',
- 'helix/helix-harness/units/common-kernel/tests/test_k1.py': 'da847ab19a9c3fa0df17c360bc489c9da2470f53d3ee6487ea0e822905e561ff',
- 'helix/helix-harness/units/common-kernel/tests/test_k2.py': '3b1a6ede6642292ef31e458ca519bc293917da5e4654f85eda9ccf4a350d1582'}
+SOURCE_SHA256 = {'helix/helix-harness/units/common-kernel/src/common_kernel.py': 'ce9c7a87cd318c2ff5d12f68c71129f6ad99f0b78616f89c501ccdd2c4643178', 'helix/helix-harness/units/common-kernel/src/journal.py': '78dba87db2b55cb349ed8fbc5d0483cdb933a8cce4d45e910c5f9cbcaefeb907', 'helix/helix-harness/units/common-kernel/src/permission.py': '6a2f3b0d82dd38b03a4b27b2f98ed58217286eb9912c6a984a6a5549ac6c9f8b', 'helix/helix-harness/units/common-kernel/tests/test_k1.py': 'da847ab19a9c3fa0df17c360bc489c9da2470f53d3ee6487ea0e822905e561ff', 'helix/helix-harness/units/common-kernel/tests/test_k2.py': '3b1a6ede6642292ef31e458ca519bc293917da5e4654f85eda9ccf4a350d1582', 'helix/helix-harness/units/common-kernel/tests/test_k3.py': '1dd8ff995c40e428e6952f607731f3215c3a44785a8b4f0b0ff6c7c340a2c62a', 'helix/helix-harness/units/common-kernel/tests/test_k5.py': 'c7d3dcedec9e63a1beb364147036135ae966c4330241f236f9842686e9134574'}
 FORMAL_MAPPING = ({'callable_qualname': 'K1UnitTests.test_CK_K1_UT_001',
   'coverage_kind': 'primary_callable',
   'formal_l7_id': 'CK-K1-UT-001',
@@ -1050,11 +1048,497 @@ EXPECTED_DISCOVERY_IDS = ('test_k1.K1UnitTests.test_CK_K1_UT_001',
  'test_k2.K2UnitTests.test_CK_K2_UT_039_lone_surrogate_rejected_by_codec',
  'test_k2.K2UnitTests.test_CK_K2_UT_040_raw_source_digest',
  'test_k2.K2UnitTests.test_CK_K2_UT_041_canonical_bytes_do_not_include_storage_lf')
-EXPECTED_DISCOVERY_COUNT = 199
-EXPECTED_DISCOVERY_IDS_SHA256 = "2203c7ba4c3064940792d0cd19b8e0e5e6b0123ed0f5ad302472213b1be3c874"
-FORMAL_MAPPING_SHA256 = "ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19"
-RESULT_MAX_BYTES = 40000
-MODULES = ("test_k1", "test_k2")
+K1_K2_DISCOVERY_IDS = EXPECTED_DISCOVERY_IDS
+K1_K2_DISCOVERY_IDS_SHA256 = "2203c7ba4c3064940792d0cd19b8e0e5e6b0123ed0f5ad302472213b1be3c874"
+K3_DISCOVERY_IDS = (
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_ALLOW_WITH_CONSTRAINTS_UNSUPPORTED',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_CONSTRAINT_DECLARATION_MISMATCH',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_CURRENT_INPUT_REF',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_CURRENT_REF_DIFFERS_FROM_PERMISSION',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_DECLARED_ISSUER_MISMATCH',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_EMPTY_CONSTRAINT_SET_IS_NONPOSITIVE',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_ISSUER_DECL_MISSING',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_OPERATION_INPUT_SAME_REVISION_DIGEST_CONFLICT',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_OPERATION_INVALID',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_OUTCOME_CASE_EXACT',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_PARTIAL_CONTEXT_NO_SCOPE',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_PARTIAL_CONTEXT_OWNER_SCOPE',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_QUERY_CONTEXT_TARGET',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_QUERY_REF_FIELDS',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_QUERY_SCOPE_MISMATCH',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_RECORD_MISSING_SELECTOR_POSITIVE',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_RECORD_REF_STALE',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_RECORD_SOURCE_DIGEST_CONFLICT',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_RECORD_SOURCE_UNREGISTERED',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_RESOLVE_CONTEXT_OUTCOMES',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_RESOLVE_WITH_EMPTY_CALLER_INPUT_HEADS',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_REVOCATION_ENTRY_DIGEST_ONLY_CONFLICT',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_REVOCATION_HEAD_MISSING',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_REVOCATION_HEAD_SET_CONFLICT',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_REVOCATION_HEAD_SET_ORDER_AND_EXACT_DUPLICATES',
+    'test_k3.K3FormalFixtures.test_CK_K3_REG_REVOCATION_OBSERVATION_KEY_PRESERVED',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_001',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_002',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_003',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_004',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_005',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_006',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_007',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_008',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_009',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_010',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_011',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_012',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_013',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_014',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_015',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_016',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_017',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_018',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_019',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_020',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_021',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_022',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_023',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_024',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_025',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_026',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_027',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_028',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_029',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_030',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_031',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_032',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_033',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_034',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_035',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_036',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_037',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_038',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_039',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_040',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_041',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_042',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_043',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_044',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_045',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_046',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_047',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_048',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_049',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_050',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_051',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_052',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_053',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_054',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_055',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_056',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_057',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_058',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_059',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_060',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_061',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_062',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_063',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_064',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_065',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_066',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_067',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_068',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_069',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_070',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_071',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_072',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_073',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_074',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_075',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_076',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_077',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_078',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_079',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_080',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_081',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_082',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_083',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_084',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_085',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_086',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_087',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_088',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_089',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_090',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_091',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_092',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_093',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_094',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_095',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_096',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_097',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_098',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_099',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_100',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_101',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_102',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_103',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_104',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_105',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_106',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_107',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_108',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_109',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_110',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_111',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_112',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_113',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_114',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_115',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_116',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_117',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_118',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_119',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_120',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_121',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_122',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_123',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_124',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_125',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_126',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_127',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_128',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_129',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_130',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_131',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_132',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_133',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_134',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_135',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_136',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_137',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_138',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_139',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_140',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_141',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_142',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_143',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_144',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_145',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_146',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_147',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_148',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_149',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_150',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_151',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_152',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_153',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_154',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_155',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_156',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_157',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_158',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_159',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_160',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_161',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_162',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_163',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_164',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_165',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_166',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_167',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_168',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_169',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_170',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_171',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_172',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_173',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_174',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_175',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_176',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_177',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_178',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_179',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_180',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_181',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_182',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_183',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_184',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_185',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_186',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_187',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_188',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_189',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_190',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_191',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_192',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_193',
+    'test_k3.K3FormalFixtures.test_CK_K3_UT_194',
+)
+EXPECTED_DISCOVERY_IDS = tuple(sorted(EXPECTED_DISCOVERY_IDS + K3_DISCOVERY_IDS))
+K5_DISCOVERY_IDS = tuple(
+    sorted(
+        [f"test_k5.K5Fixtures.test_ck_k5_ut_{number:03d}" for number in range(1, 92)]
+        + [
+            "test_k5.K5Fixtures.test_ck_k5_ut_092_ledger_rows",
+            "test_k5.K5Fixtures.test_ck_k5_ut_093_ledger_fields",
+            "test_k5.K5Fixtures.test_ck_k5_ut_094_head_refs",
+            "test_k5.K5Fixtures.test_ck_k5_ut_095_current_head_rejects_seq_zero_tail",
+            "test_k5.K5Fixtures.test_ck_k5_ut_096_current_head_rejects_duplicate_tail_seq",
+            "test_k5.K5Fixtures.test_ck_k5_ut_097_read_rejects_foreign_genesis_head",
+            "test_k5.K5Fixtures.test_ck_k5_ut_098_restore_rejects_malformed_result_body",
+            "test_k5.K5Fixtures.test_ck_k5_ut_099_scope_log_mismatch_stops_unmapped_branch",
+            "test_k5.K5Fixtures.test_ck_k5_ut_100_restore_rejects_invalid_result_key",
+            "test_k5.K5Fixtures.test_ck_k5_ut_101_append_invalid_key_body_stops_unmapped_branch",
+            "test_k5.K5Fixtures.test_ck_k5_ut_102_closed_event_union_rejects_missing_and_unknown_kind",
+            "test_k5.K5Fixtures.test_ck_k5_ut_103_malformed_nested_event_stops_read_and_append",
+            "test_k5.K5Fixtures.test_ck_k5_ut_104_genesis_head_key_and_projection_paths",
+            "test_k5.K5Fixtures.test_ck_k5_ut_105_segment_opened_targets_manifest_segment",
+            "test_k5.K5Fixtures.test_ck_k5_ut_106_append_constraints_reject_duplicate_and_wrong_shapes",
+            "test_k5.K5Fixtures.test_ck_k5_ut_107_projection_heads_deduplicate_only_in_scope_duplicates",
+            "test_k5.K5Fixtures.test_ck_k5_ut_108_stale_precedes_missing_key",
+            "test_k5.K5Fixtures.test_ck_k5_ut_109_scope_out_head_stops_before_read",
+            "test_k5.K5Fixtures.test_ck_k5_ut_110_event_validation_malformed_and_nonfinite_are_unmapped",
+            "test_k5.K5Fixtures.test_ck_k5_ut_111_existing_append_reasons_are_event_scoped",
+            "test_k5.K5Fixtures.test_ck_k5_ut_112_restore_closed_key_shape_and_project_is_domain_only",
+            "test_k5.K5Fixtures.test_ck_k5_ut_113_fixed_read_and_correction_shape_branches",
+            "test_k5.K5Fixtures.test_ck_k5_ut_114_append_scope_and_manifest_local_boundaries",
+            "test_k5.K5Fixtures.test_ck_k5_ut_115_checkpoint_conflicts_share_existing_diagnostic",
+        ]
+    )
+)
+EXPECTED_DISCOVERY_IDS = tuple(sorted(EXPECTED_DISCOVERY_IDS + K5_DISCOVERY_IDS))
+
+EXPECTED_DISCOVERY_COUNT = 534
+K5_DISCOVERY_IDS_SHA256 = "fd8edf4364fe9eac9e707ffe18852f249ea3f82e26ffe8780343c15672e25715"
+EXPECTED_DISCOVERY_IDS_SHA256 = "45fe38adc541d60538ae4a2393c6f33116e9cebadba5c2629ecf7f85ee962d8e"
+
+# K3 formal IDs map one-to-one to the individually listed L7 UTs.
+K3_FORMAL_MAPPING = (
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_001', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-001', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_001'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_002', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-002', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_002'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_003', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-003', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_003'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_004', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-004', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_004'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_005', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-005', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_005'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_006', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-006', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_006'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_007', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-007', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_007'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_008', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-008', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_008'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_009', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-009', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_009'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_010', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-010', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_010'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_011', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-011', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_011'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_012', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-012', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_012'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_013', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-013', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_013'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_014', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-014', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_014'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_015', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-015', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_015'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_016', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-016', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_016'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_017', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-017', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_017'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_018', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-018', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_018'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_019', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-019', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_019'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_020', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-020', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_020'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_021', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-021', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_021'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_022', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-022', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_022'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_023', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-023', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_023'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_024', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-024', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_024'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_025', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-025', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_025'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_026', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-026', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_026'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_027', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-027', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_027'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_028', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-028', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_028'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_029', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-029', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_029'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_030', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-030', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_030'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_031', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-031', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_031'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_032', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-032', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_032'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_033', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-033', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_033'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_034', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-034', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_034'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_035', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-035', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_035'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_036', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-036', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_036'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_037', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-037', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_037'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_038', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-038', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_038'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_039', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-039', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_039'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_040', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-040', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_040'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_041', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-041', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_041'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_042', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-042', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_042'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_043', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-043', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_043'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_044', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-044', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_044'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_045', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-045', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_045'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_046', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-046', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_046'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_047', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-047', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_047'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_048', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-048', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_048'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_049', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-049', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_049'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_050', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-050', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_050'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_051', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-051', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_051'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_052', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-052', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_052'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_053', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-053', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_053'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_054', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-054', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_054'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_055', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-055', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_055'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_056', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-056', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_056'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_057', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-057', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_057'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_058', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-058', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_058'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_059', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-059', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_059'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_060', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-060', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_060'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_061', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-061', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_061'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_062', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-062', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_062'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_063', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-063', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_063'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_064', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-064', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_064'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_065', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-065', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_065'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_066', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-066', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_066'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_067', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-067', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_067'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_068', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-068', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_068'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_069', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-069', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_069'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_070', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-070', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_070'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_071', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-071', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_071'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_072', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-072', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_072'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_073', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-073', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_073'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_074', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-074', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_074'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_075', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-075', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_075'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_076', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-076', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_076'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_077', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-077', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_077'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_078', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-078', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_078'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_079', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-079', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_079'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_080', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-080', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_080'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_081', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-081', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_081'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_082', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-082', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_082'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_083', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-083', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_083'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_084', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-084', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_084'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_085', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-085', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_085'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_086', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-086', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_086'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_087', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-087', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_087'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_088', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-088', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_088'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_089', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-089', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_089'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_090', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-090', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_090'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_091', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-091', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_091'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_092', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-092', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_092'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_093', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-093', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_093'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_094', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-094', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_094'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_095', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-095', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_095'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_096', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-096', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_096'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_097', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-097', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_097'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_098', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-098', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_098'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_099', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-099', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_099'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_100', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-100', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_100'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_101', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-101', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_101'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_102', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-102', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_102'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_103', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-103', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_103'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_104', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-104', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_104'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_105', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-105', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_105'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_106', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-106', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_106'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_107', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-107', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_107'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_108', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-108', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_108'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_109', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-109', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_109'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_110', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-110', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_110'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_111', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-111', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_111'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_112', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-112', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_112'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_113', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-113', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_113'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_114', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-114', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_114'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_115', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-115', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_115'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_116', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-116', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_116'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_117', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-117', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_117'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_118', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-118', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_118'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_119', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-119', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_119'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_120', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-120', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_120'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_121', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-121', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_121'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_122', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-122', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_122'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_123', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-123', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_123'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_124', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-124', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_124'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_125', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-125', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_125'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_126', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-126', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_126'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_127', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-127', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_127'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_128', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-128', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_128'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_129', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-129', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_129'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_130', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-130', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_130'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_131', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-131', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_131'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_132', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-132', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_132'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_133', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-133', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_133'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_134', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-134', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_134'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_135', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-135', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_135'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_136', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-136', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_136'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_137', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-137', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_137'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_138', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-138', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_138'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_139', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-139', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_139'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_140', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-140', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_140'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_141', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-141', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_141'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_142', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-142', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_142'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_143', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-143', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_143'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_144', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-144', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_144'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_145', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-145', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_145'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_146', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-146', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_146'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_147', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-147', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_147'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_148', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-148', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_148'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_149', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-149', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_149'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_150', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-150', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_150'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_151', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-151', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_151'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_152', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-152', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_152'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_153', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-153', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_153'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_154', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-154', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_154'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_155', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-155', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_155'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_156', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-156', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_156'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_157', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-157', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_157'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_158', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-158', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_158'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_159', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-159', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_159'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_160', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-160', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_160'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_161', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-161', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_161'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_162', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-162', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_162'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_163', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-163', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_163'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_164', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-164', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_164'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_165', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-165', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_165'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_166', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-166', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_166'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_167', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-167', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_167'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_168', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-168', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_168'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_169', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-169', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_169'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_170', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-170', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_170'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_171', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-171', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_171'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_172', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-172', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_172'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_173', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-173', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_173'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_174', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-174', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_174'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_175', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-175', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_175'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_176', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-176', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_176'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_177', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-177', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_177'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_178', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-178', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_178'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_179', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-179', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_179'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_180', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-180', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_180'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_181', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-181', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_181'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_182', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-182', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_182'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_183', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-183', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_183'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_184', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-184', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_184'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_185', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-185', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_185'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_186', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-186', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_186'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_187', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-187', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_187'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_188', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-188', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_188'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_189', 'coverage_kind': 'owner_or_fixture_stub', 'formal_l7_id': 'CK-K3-UT-189', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_189'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_190', 'coverage_kind': 'owner_or_fixture_stub', 'formal_l7_id': 'CK-K3-UT-190', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_190'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_191', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-191', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_191'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_192', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-192', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_192'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_193', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-193', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_193'},
+    {'callable_qualname': 'K3FormalFixtures.test_CK_K3_UT_194', 'coverage_kind': 'primary_callable', 'formal_l7_id': 'CK-K3-UT-194', 'module_path': 'helix/helix-harness/units/common-kernel/tests/test_k3.py', 'unittest_identity': 'test_k3.K3FormalFixtures.test_CK_K3_UT_194'},
+)
+FORMAL_MAPPING = FORMAL_MAPPING + K3_FORMAL_MAPPING
+K5_STUB_IDS = frozenset((18, 19, *range(21, 33), *range(77, 84), 46, 85, 86))
+K5_FORMAL_MAPPING = tuple(
+    {
+        "callable_qualname": f"K5Fixtures.test_ck_k5_ut_{number:03d}",
+        "coverage_kind": "owner_or_fixture_stub" if number in K5_STUB_IDS else "primary_callable",
+        "formal_l7_id": f"CK-K5-UT-{number:03d}",
+        "module_path": "helix/helix-harness/units/common-kernel/tests/test_k5.py",
+        "unittest_identity": f"test_k5.K5Fixtures.test_ck_k5_ut_{number:03d}",
+    }
+    for number in range(1, 92)
+)
+FORMAL_MAPPING = FORMAL_MAPPING + K5_FORMAL_MAPPING
+K5_FORMAL_MAPPING_SHA256 = "9e25d170dc5dc5bb48af57dd487fdc2939715f71f7c0679b84005e5aeb341acc"
+K5_FORMAL_MAPPING_COUNT = 91
+K5_PRIMARY_COUNT = 67
+K5_STUB_COUNT = 24
+FORMAL_MAPPING_SHA256 = "439370e5a305949919fa959b9ee1c2d49f507ef2ed68457e4ba24947867c97cb"
+K3_FORMAL_MAPPING_SHA256 = "8c58deecd7739ba48a01e4281de6c93cf6ece107ad66fa3eaeac6d10f80323b0"
+K3_DISCOVERY_IDS_SHA256 = "a3de5d8fbe0daf3500441a1e7a96fc9c6b71409e38fea446d6185dd05c86b70c"
+K1_K2_FORMAL_MAPPING_SHA256 = "ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19"
+K1_K2_FORMAL_MAPPING_COUNT = 165
+K1_K2_PRIMARY_COUNT = 139
+K1_K2_STUB_COUNT = 26
+K3_FORMAL_MAPPING_COUNT = 194
+K3_PRIMARY_COUNT = 192
+K3_STUB_COUNT = 2
+FORMAL_MAPPING_COUNT = K1_K2_FORMAL_MAPPING_COUNT + K3_FORMAL_MAPPING_COUNT + K5_FORMAL_MAPPING_COUNT
+PRIMARY_MAPPING_COUNT = K1_K2_PRIMARY_COUNT + K3_PRIMARY_COUNT + K5_PRIMARY_COUNT
+STUB_MAPPING_COUNT = K1_K2_STUB_COUNT + K3_STUB_COUNT + K5_STUB_COUNT
+RESULT_MAX_BYTES = 82000
+MODULES = ("test_k1", "test_k2", "test_k3", "test_k5")
 
 # Literal values permitted by the current L7 expansion rules.  Keeping the
 # template-to-domain mapping explicit prevents arbitrary regex captures from
@@ -1242,17 +1726,40 @@ def _run_discovered_suite(suite):
 
 
 def run_suite(root: Path) -> tuple[dict, int]:
-    if len(FORMAL_MAPPING) != 165 or len({row["formal_l7_id"] for row in FORMAL_MAPPING}) != 165:
+    if len(FORMAL_MAPPING) != FORMAL_MAPPING_COUNT or len({row["formal_l7_id"] for row in FORMAL_MAPPING}) != FORMAL_MAPPING_COUNT:
         raise Diagnostic("Unknown", "conflict", "fixed formal mapping inventory is inconsistent")
-    if sum(row["coverage_kind"] == "primary_callable" for row in FORMAL_MAPPING) != 139:
-        raise Diagnostic("Unknown", "conflict", "fixed primary mapping count is inconsistent")
-    if sum(row["coverage_kind"] == "owner_or_fixture_stub" for row in FORMAL_MAPPING) != 26:
-        raise Diagnostic("Unknown", "conflict", "fixed owner/stub mapping count is inconsistent")
+    if (sum(row["coverage_kind"] == "primary_callable" for row in FORMAL_MAPPING) != PRIMARY_MAPPING_COUNT
+            or sum(row["coverage_kind"] == "owner_or_fixture_stub" for row in FORMAL_MAPPING) != STUB_MAPPING_COUNT):
+        raise Diagnostic("Unknown", "conflict", "fixed primary/stub mapping counts are inconsistent")
+    if sha256(canonical_bytes(list(FORMAL_MAPPING[:K1_K2_FORMAL_MAPPING_COUNT]))) != K1_K2_FORMAL_MAPPING_SHA256:
+        raise Diagnostic("Unknown", "conflict", "protected K1/K2 formal mapping bytes changed")
+    if (len(K3_FORMAL_MAPPING) != K3_FORMAL_MAPPING_COUNT
+            or sum(row["coverage_kind"] == "primary_callable" for row in K3_FORMAL_MAPPING) != K3_PRIMARY_COUNT
+            or sum(row["coverage_kind"] == "owner_or_fixture_stub" for row in K3_FORMAL_MAPPING) != K3_STUB_COUNT
+            or sha256(canonical_bytes(list(K3_FORMAL_MAPPING))) != K3_FORMAL_MAPPING_SHA256):
+        raise Diagnostic("Unknown", "conflict", "fixed K3 mapping inventory is inconsistent")
+    if (len(K5_FORMAL_MAPPING) != K5_FORMAL_MAPPING_COUNT
+            or sum(row["coverage_kind"] == "primary_callable" for row in K5_FORMAL_MAPPING) != K5_PRIMARY_COUNT
+            or sum(row["coverage_kind"] == "owner_or_fixture_stub" for row in K5_FORMAL_MAPPING) != K5_STUB_COUNT
+            or sha256(canonical_bytes(list(K5_FORMAL_MAPPING))) != K5_FORMAL_MAPPING_SHA256):
+        raise Diagnostic("Unknown", "conflict", "fixed K5 mapping inventory is inconsistent")
     if sha256(canonical_bytes(list(FORMAL_MAPPING))) != FORMAL_MAPPING_SHA256:
         raise Diagnostic("Unknown", "conflict", "fixed formal mapping bytes differ from its digest")
+    if (len(K1_K2_DISCOVERY_IDS) != 199
+            or sha256(("\n".join(K1_K2_DISCOVERY_IDS) + "\n").encode()) != K1_K2_DISCOVERY_IDS_SHA256
+            or not set(K1_K2_DISCOVERY_IDS) <= set(EXPECTED_DISCOVERY_IDS)):
+        raise Diagnostic("Unknown", "conflict", "protected K1/K2 discovery inventory changed")
     mapping_ids = [row["unittest_identity"] for row in FORMAL_MAPPING]
     if len(set(mapping_ids)) != len(mapping_ids) or not set(mapping_ids) <= set(EXPECTED_DISCOVERY_IDS):
         raise Diagnostic("Unknown", "conflict", "formal mapping identities are not unique members of the fixed discovery set")
+    if (len(K3_DISCOVERY_IDS) != 220 or len(set(K3_DISCOVERY_IDS)) != 220
+            or sha256(("\n".join(K3_DISCOVERY_IDS) + "\n").encode()) != K3_DISCOVERY_IDS_SHA256
+            or not set(K3_DISCOVERY_IDS) <= set(EXPECTED_DISCOVERY_IDS)):
+        raise Diagnostic("Unknown", "conflict", "fixed K3 discovery inventory is inconsistent")
+    if (len(K5_DISCOVERY_IDS) != 115 or len(set(K5_DISCOVERY_IDS)) != 115
+            or sha256(("\n".join(K5_DISCOVERY_IDS) + "\n").encode()) != K5_DISCOVERY_IDS_SHA256
+            or not set(K5_DISCOVERY_IDS) <= set(EXPECTED_DISCOVERY_IDS)):
+        raise Diagnostic("Unknown", "conflict", "fixed K5 discovery inventory is inconsistent")
     if (len(EXPECTED_DISCOVERY_IDS) != EXPECTED_DISCOVERY_COUNT
             or len(set(EXPECTED_DISCOVERY_IDS)) != EXPECTED_DISCOVERY_COUNT
             or EXPECTED_DISCOVERY_IDS != tuple(sorted(EXPECTED_DISCOVERY_IDS))

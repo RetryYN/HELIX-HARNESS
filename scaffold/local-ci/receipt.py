@@ -9,13 +9,15 @@ from pathlib import Path
 from typing import Any
 try:  # support both direct script-path imports and namespace-package imports
     from .common import CHECK_IDS, Diagnostic, canonical_bytes, sha256, strict_json
-    from .source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS_SHA256,
-                                   SOURCE_SHA256,
+    from .source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_COUNT,
+                                   EXPECTED_DISCOVERY_IDS_SHA256, FORMAL_MAPPING_SHA256,
+                                   SOURCE_SHA256, SUITE_ID,
                                    inventory_digest as current_source_l7_inventory_digest)
 except ImportError:  # pragma: no cover - exercised by the provisional CLI entrypoint
     from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256, strict_json
-    from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS_SHA256,
-                                  SOURCE_SHA256,
+    from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_COUNT,
+                                  EXPECTED_DISCOVERY_IDS_SHA256, FORMAL_MAPPING_SHA256,
+                                  SOURCE_SHA256, SUITE_ID,
                                   inventory_digest as current_source_l7_inventory_digest)
 
 
@@ -256,7 +258,7 @@ def _validate_suite_evidence(value: Any) -> dict:
               "executed_ids_sha256", "failure_count", "error_count", "skip_count",
               "expected_failure_count", "unexpected_success_count", "source_refs", "target"}
     evidence = _object(value, fields, "suite_evidence")
-    if evidence["suite_id"] != "common-kernel-k1-k2":
+    if evidence["suite_id"] != SUITE_ID:
         _reject("invalid_input", "suite evidence identity is unsupported")
     for key in ("artifact_sha256", "mapping_sha256", "discovered_ids_sha256", "executed_ids_sha256"):
         _digest(evidence[key], "suite_evidence." + key)
@@ -264,7 +266,8 @@ def _validate_suite_evidence(value: Any) -> dict:
                 "skip_count", "expected_failure_count", "unexpected_success_count"):
         if type(evidence[key]) is not int or evidence[key] < 0:
             _reject("invalid_input", "suite evidence count/size must be a non-negative integer")
-    if evidence["discovered_count"] != 199 or evidence["executed_count"] != 199:
+    if (evidence["discovered_count"] != EXPECTED_DISCOVERY_COUNT
+            or evidence["executed_count"] != EXPECTED_DISCOVERY_COUNT):
         _reject("invalid_input", "suite evidence identity counts differ from the fixed inventory")
     if (evidence["failure_count"] + evidence["error_count"] + evidence["skip_count"]
             + evidence["expected_failure_count"] + evidence["unexpected_success_count"]
@@ -273,11 +276,11 @@ def _validate_suite_evidence(value: Any) -> dict:
     if (evidence["discovered_ids_sha256"] != EXPECTED_DISCOVERY_IDS_SHA256
             or evidence["executed_ids_sha256"] != EXPECTED_DISCOVERY_IDS_SHA256):
         _unknown("Unknown", "conflict", "suite evidence identity digest differs from the fixed inventory")
-    if evidence["mapping_sha256"] != "ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e19c7d11f19":
+    if evidence["mapping_sha256"] != FORMAL_MAPPING_SHA256:
         _unknown("Unknown", "conflict", "suite evidence formal mapping differs from fixed inventory")
     refs = evidence["source_refs"]
     if not isinstance(refs, list) or len(refs) != len(SOURCE_SHA256) + len(CURRENT_DESIGN_PATHS):
-        _reject("invalid_input", "suite evidence requires the fixed five source refs")
+        _reject("invalid_input", "suite evidence requires the fixed seven code/test refs and two design refs")
     for index, ref in enumerate(refs):
         _subject_ref(ref, f"suite_evidence.source_refs[{index}]")
     _target(evidence["target"], "suite_evidence.target")
