@@ -1,6 +1,6 @@
 # template seedの意味対応案
 
-base `5643121bea60acdd4f6177730aa7a7f266073d18`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `912d9377dc693bddaba47b15730079c88cb9b121eae57fafead7eaf0c8ed6fee`。canonical L2/L11/MPRとseed26件は未変更。非画面の要求/受入知識sliceについて独立review後に対象revisionの採否を問う。全体の最小seed packはまだ未確定。
+base `5643121bea60acdd4f6177730aa7a7f266073d18`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `6f2929c04f0ab6c8e88675fcf99ef022029ae920325c613127c8ab131717f483`。canonical L2/L11/MPRとseed26件は未変更。非画面の要求/受入知識sliceについて独立review後に対象revisionの採否を問う。全体の最小seed packはまだ未確定。
 
 ## 作業単位
 
@@ -8,7 +8,7 @@ SEEDFIRST（#2846）はVT001共通証拠・VT102 L2/L11と、VT002のC01/C02/C08
 
 VT001の15共通field、VT102の5固有fieldと共通欄継承を識別し、意味・source行・要否とowner境界へ結ぶ。measurementは実施契約のprofile/環境・設定digest・有効期限/再測定条件を参照し数値を新設しない。downstreamは共通/観点別証拠・N/A記録・省略義務/Backflow参照を識別する。field定義と案件値/実行結果の未決を区別し、初回記録前に将来の受入receiptを要求しない。
 
-Prototype/PoCは別々に根拠付きN/A/適用を扱う。Redは適用契約が要求する場合に照合し、静的reviewや人の判断のすべてへRed実行を追加しない。未実行/unknownをN/Aへ変換しない。C01/C02はreview/trace、C08は合意例と反例、C26は利用者接点のある成果での人の受入を持つ。tool名・cost・HELIX例は参考のまま。C36の旧cardのモデル/共通context条件、VT003の選択matrix、画面技法早見は採用せず、独立性と検証義務は正本のConcept/HARNESSと開発repo運用を区別する。
+Prototype/PoCは別々に根拠付きN/A/適用を扱う。VT001のnegative oracleを原文L21–26の項目単位へ分け、L24のRed負例もVT001-F007と同じ適用契約条件へ限定した。旧検証phase L28–34/73–79のunit/TDDと人間受入の区別を根拠とする。Redは適用契約が要求する場合に照合し、静的reviewや人の判断のすべてへRed実行を追加しない。未実行/unknownをN/Aへ変換しない。C01/C02はreview/trace、C08は合意例と反例、C26は利用者接点のある成果での人の受入を持つ。tool名・cost・HELIX例は参考のまま。C36の旧cardのモデル/共通context条件、VT003の選択matrix、画面技法早見は採用せず、独立性と検証義務は正本のConcept/HARNESSと開発repo運用を区別する。
 
 旧sourceのarchive path・asset ID・行範囲・全体SHAはJSONの`legacy_sources`へ固定した。
 

@@ -213,16 +213,56 @@
               "state": "candidate_mapping"
             },
             "negative_oracle": {
-              "source_section_refs": [
+              "items": [
                 {
-                  "source_heading": "不成立例（negative oracle）",
-                  "source_line": 20
+                  "source_line": 21,
+                  "source_text": "",
+                  "source_line_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                  "meaning": ""
                 },
                 {
-                  "source_heading": "正例と境界の負例",
-                  "source_line": 29
+                  "source_line": 22,
+                  "source_text": "- 結果が分からない（unknown）のに、pass、N/A、0件のいずれかにする。",
+                  "source_line_sha256": "a3e311b311737206f364e5f198f7e658f4ba5692057761146b7b93ad7231052a",
+                  "meaning": "結果が分からない（unknown）のに、pass、N/A、0件のいずれかにする。"
+                },
+                {
+                  "source_line": 23,
+                  "source_text": "- N/Aに理由だけを書き、判断者・対象revision・再評価条件を書かない。",
+                  "source_line_sha256": "3d29794acbe0a83eca6bcb590ad652ca0cb6bd111bf48ef8662ad22ff4f9ee0f",
+                  "meaning": "N/Aに理由だけを書き、判断者・対象revision・再評価条件を書かない。"
+                },
+                {
+                  "source_line": 24,
+                  "source_text": "- 別のrevision・別の環境・別のscopeで取った結果を、今回の対象の証拠にする。",
+                  "source_line_sha256": "c122d54ec1ec59e6615339cf0144832703b14f932f7c334b65ffbd033e3167f9",
+                  "meaning": "適用契約が期待する失敗（Red）の観測を要求する検証で、その観測なしに振る舞いを確かめた証拠にする。静的reviewや人の判断へ、この項目からRed実行義務を追加しない。"
+                },
+                {
+                  "source_line": 25,
+                  "source_text": "- 期待する失敗（Red）を観測していない検証を、振る舞いを確かめた証拠にする。",
+                  "source_line_sha256": "8c6627654dfb6ba2dfbf049c3d425f4b2d7f78f9479a17a7bf036ba4fcc485c1",
+                  "meaning": "期待する失敗（Red）を観測していない検証を、振る舞いを確かめた証拠にする。"
+                },
+                {
+                  "source_line": 26,
+                  "source_text": "- 省いた検査を記録せず、回収先のticketも書かない。",
+                  "source_line_sha256": "7cd77410a75881da1ef215a8f084b24222a10fc1b6d6f15ca6e4b640c40885a3",
+                  "meaning": "省いた検査を記録せず、回収先のticketも書かない。"
                 }
-              ]
+              ],
+              "boundary_examples": [
+                {
+                  "source_line": 31,
+                  "meaning": "結果未取得のtimeoutはunknownとして保持し、passや要求成立を主張しない。"
+                }
+              ],
+              "scope_interpretation": {
+                "source_line": 24,
+                "meaning": "原文のRed負例をVT001-F007と同じ適用契約条件へ限定する。",
+                "basis": "旧L08-L14-verification-phase.md L28–34はunit/TDDと要求/人間受入を区別し、L73–79のG11はUAT decision recordとfeedback dispositionを証拠にする。欄の定義から全技法共通のRed実行gateを生成しない。"
+              },
+              "definition_state": "defined_for_proposed_scope"
             },
             "measurement": {
               "meaning": "実施結果の測定は適用契約が要求するmetric/profile/環境とその根拠を入力として保持。共通seedは実行情報、設定digest、有効期限/再測定triggerを結ぶ。数値や成功閾値を生成しない。値未決/未観測は未決のまま。",
@@ -2205,7 +2245,7 @@
           }
         }
       ],
-      "proposal_state": "for_independent_meananing_review_then_PO_scope_decision",
+      "proposal_state": "for_independent_meaning_review_then_PO_scope_decision",
       "selection_reason": {
         "DT-VT-001": "参照する対/技法へ共通証拠を結ぶ",
         "DT-VT-102": "要求revisionと成功/反例/人の受入への結合",
