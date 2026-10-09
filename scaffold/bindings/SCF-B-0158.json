@@ -15,7 +15,7 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "2c30c82701758525a13822b69329cff67b8fd5485d3d5fc4dc1f6e285c63a7e1",
+      "sha256": "2ee043722ee9cb38aab768a95e0b1899be42bdc37ef3514e0d8f34da6fc8301d",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -25,7 +25,7 @@
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "8f19d4ead8729255bf9dc6efcbf83d1c3d41e46a9c46e7f3558f240037f1681b",
+      "sha256": "71dea62aa72e6dae7ea6cc5bee1377f06a04dc24f68eaf0712014d92aa767e73",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "ff247742552ef5cb8a2e866cb599786b237bdc8333644980472753ba26a9bb10",
+      "sha256": "91c20f0e0ac81dae1be8c744979290bd513feddd6f5f2135174852d0f50473ec",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -50,7 +50,7 @@
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "5ea91de64df7fb49f778f577e77cd2e07611b9907fd39cd169c954b203a69ad3",
+      "sha256": "c5a4b12d027d1a53e2b293497970ee1aedfcafc20d6dcee920f274b135feefce",
       "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5/K9 verifier table/range。K1/K2/K3/K5 inventory、K4/G3の73 fixture ID構造照合対象を維持する。K6/K7/G5/K9 fixture inventoryは未登録であり、本pinはfixture実行・CI coverageを示さない。 K8の設計追補を含む。K8 fixture inventoryは未登録であり、実行・coverageを示さない。"
     },
     {
@@ -185,11 +185,11 @@
     ],
     "oracles": [
       "docs/helix-os/L4-basic-design/local-ci.md §2.1, §2.2",
-      "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract",
+      "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract including IV-LCI-100..110",
       "docs/helix-os/L5-detail-design/local-ci-detail-design.md D-LCI-01..06",
-      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, CASE-L8-LCI-118..130 (design IDs 113..117 are not suite fixtures)",
+      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, CASE-L8-LCI-118..141 (design IDs 113..117 are not suite fixtures)",
       "docs/helix-os/L6-function-design/local-ci-function-design.md F-LCI-01..08 / F-LCI-09a..09d / F-LCI-10",
-      "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI-01..113, UT-LCI-120..132 (design only; not executed)",
+      "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI-01..113, UT-LCI-120..143 (design only; not executed)",
       "source-byte / target-tree digests and checkout-outside receipt location"
     ],
     "negative_cases": [

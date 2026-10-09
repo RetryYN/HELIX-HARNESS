@@ -153,6 +153,7 @@ def _baseline():
             references = []
         else:
             # Every verification document has one typed, nonempty outcome row.
+            references = []
             suite_config = {
                 manifest.LCI_L7_PATH: ("l7-suite-oracles", manifest.LCI_L7_SUITE_IDS, 4),
                 manifest.LCI_L8_PATH: ("l8-suite-cases", manifest.LCI_L8_CASE_IDS, 5),
@@ -191,10 +192,20 @@ def _baseline():
                     lines.append(f"| `{verifier_id}` | {labels[verifier_id]} | baseline | one mutation | Value(accepted) |")
                 lines.extend([suite_heading, "| Fixture | Oracle | Contract | Parent | Outcome |",
                               "|---|---|---|---|---|"])
-                lines.extend(
-                    f"| `{verifier_id}` | `IV-SYNTH-01` | `LC-SYNTH-01` | `AC-SYNTH-01` | Value(accepted) |"
-                    for verifier_id in sorted(manifest.LCI_L9_SUITE_IDS)
-                )
+                suite_contract_literals = []
+                for verifier_id in sorted(manifest.LCI_L9_SUITE_IDS):
+                    case_id = manifest.LCI_SUPPLEMENTAL_CASE_BY_IV.get(verifier_id)
+                    mutation = (f"synthetic mutation documented by L8 `{case_id}`"
+                                if case_id else "LC-STAGE1-L7-001 rowだけをplanから除く")
+                    lines.append(
+                        f"| `{verifier_id}` | `LC-STAGE1-L7-001` | `LC-SYNTH-01` | {mutation} | Value(accepted) |"
+                    )
+                    if case_id:
+                        suite_contract_literals.append({"literal": mutation, "ids": [case_id]})
+                suite_contract_literals.insert(0, {
+                    "literal": "LC-STAGE1-L7-001 rowだけをplanから除く",
+                    "ids": ["LC-STAGE1-L7-001"],
+                })
                 sources[path] = ("\n".join(lines) + "\n").encode()
                 definitions = [
                     {"range_id": "ci-l9-fixture-definitions", "start_heading": design_heading,
@@ -204,13 +215,25 @@ def _baseline():
                      "end_heading": None, "grammar": "table_column", "id_column": 1,
                      "literal_expansions": []},
                 ]
-                references = [{
-                    "range_id": "ci-l9-fixture-tables", "start_heading": design_heading,
-                    "end_heading": suite_heading, "grammar": "table_column", "id_column": 2,
-                    "literal_expansions": [
-                        {"literal": label, "ids": ["LC-DESIGN-001"]} for label in labels.values()
-                    ],
-                }]
+                references = [
+                    {
+                        "range_id": "ci-l9-fixture-tables", "start_heading": design_heading,
+                        "end_heading": suite_heading, "grammar": "table_column", "id_column": 2,
+                        "literal_expansions": [
+                            {"literal": label, "ids": ["LC-DESIGN-001"]} for label in labels.values()
+                        ],
+                    },
+                    {
+                        "range_id": "ci-l9-supplemental-source-refs", "start_heading": suite_heading,
+                        "end_heading": None, "grammar": "table_column", "id_column": 2,
+                        "literal_expansions": [],
+                    },
+                    {
+                        "range_id": "ci-l9-suite-contract-refs", "start_heading": suite_heading,
+                        "end_heading": None, "grammar": "table_column", "id_column": 4,
+                        "literal_expansions": suite_contract_literals,
+                    },
+                ]
                 verifier_ids[path] = ("IV-SYNTH-01",)
             elif path in suite_config:
                 range_id, suite_ids, outcome_column = suite_config[path]
@@ -238,7 +261,6 @@ def _baseline():
                     "end_heading": None, "grammar": "table_column", "id_column": 1,
                     "literal_expansions": [],
                 }]
-            references = []
         files.append({
             "path": path, "role": role, "source_kind": "current_contract",
             "expected_pair": pair, "definition_ranges": definitions,
@@ -375,6 +397,80 @@ def _graph(doc, sources):
 
 
 class DesignManifestTests(unittest.TestCase):
+    def test_supplemental_inventory_has_fixed_edges_and_preserves_dispositions(self):
+        doc, sources, _ = _baseline()
+        graph = _graph(doc, sources)
+        result = manifest.verify_coverage_edges(doc, graph)
+        self.assertTrue(result["structure_complete"])
+        self.assertEqual(len(doc["coverage_dispositions"]), 193)
+        self.assertEqual(len(manifest.LCI_L9_SUITE_IDS), 33)
+        self.assertEqual(len(manifest.LCI_L8_SUITE_IDS), 37)
+        self.assertEqual(len(manifest.LCI_L7_SUITE_IDS), 38)
+        self.assertEqual(set(manifest.LCI_SUPPLEMENTAL_CASE_BY_IV),
+                         {f"IV-LCI-{n}" for n in range(100, 111)})
+        self.assertEqual(set(manifest.LCI_SUPPLEMENTAL_CASE_BY_IV.values()),
+                         {f"CASE-L8-LCI-{n}" for n in range(131, 142)})
+        self.assertFalse(any(ident.startswith("SUP-") for ident in manifest.REQUIRED_SOURCE_IDS))
+        self.assertEqual(len([edge for edge in doc["coverage_edges"]
+                              if edge["source_id"] == "LC-STAGE1-L7-001"]), 33)
+        self.assertEqual(len([edge for edge in doc["coverage_edges"]
+                              if edge["source_id"] == "D-LCI-06"]), 37)
+        self.assertEqual(len([edge for edge in doc["coverage_edges"]
+                              if edge["source_id"] == "F-LCI-10"]), 38)
+        local_edges = [edge for edge in doc["coverage_edges"]
+                       if edge["source_id"] in {"LC-STAGE1-L7-001", "D-LCI-06", "F-LCI-10"}]
+        self.assertEqual(len(local_edges), 108)
+
+    def test_supplemental_l9_case_reference_cannot_be_crosswired(self):
+        doc, sources, _ = _baseline()
+        l9 = next(file for file in doc["files"] if file["path"] == manifest.LCI_L9_PATH)
+        rng = next(item for item in l9["reference_ranges"]
+                   if item["range_id"] == "ci-l9-suite-contract-refs")
+        literal = next(item for item in rng["literal_expansions"]
+                       if "CASE-L8-LCI-131" in item["literal"])
+        literal["ids"] = ["CASE-L8-LCI-132"]
+        graph = _graph(doc, sources)
+        _expect_diag(self, "Unknown", "conflict", manifest.verify_coverage_edges, doc, graph)
+
+    def test_supplemental_l9_case_reference_without_expansion_is_missing(self):
+        doc, sources, _ = _baseline()
+        l9 = next(file for file in doc["files"] if file["path"] == manifest.LCI_L9_PATH)
+        rng = next(item for item in l9["reference_ranges"]
+                   if item["range_id"] == "ci-l9-suite-contract-refs")
+        rng["literal_expansions"] = [item for item in rng["literal_expansions"]
+                                     if "CASE-L8-LCI-131" not in item["literal"]]
+        _expect_diag(self, "Unknown", "missing_input", _graph, doc, sources)
+
+    def test_supplemental_l4_edge_and_disposition_are_both_required(self):
+        doc, sources, _ = _baseline()
+        edge_id = "edge.local.LC-STAGE1-L7-001.IV-LCI-100"
+        doc["coverage_edges"] = [edge for edge in doc["coverage_edges"] if edge["edge_id"] != edge_id]
+        disposition = next(item for item in doc["coverage_dispositions"]
+                           if item["source_id"] == "LC-STAGE1-L7-001")
+        disposition["edge_ids"].remove(edge_id)
+        _expect_diag(self, "Unknown", "missing_input", manifest.verify_coverage_edges,
+                     doc, _graph(doc, sources))
+
+    def test_supplemental_l5_edge_and_disposition_are_both_required(self):
+        doc, sources, _ = _baseline()
+        edge_id = "edge.local.D-LCI-06.CASE-L8-LCI-131"
+        doc["coverage_edges"] = [edge for edge in doc["coverage_edges"] if edge["edge_id"] != edge_id]
+        disposition = next(item for item in doc["coverage_dispositions"]
+                           if item["source_id"] == "D-LCI-06")
+        disposition["edge_ids"].remove(edge_id)
+        _expect_diag(self, "Unknown", "missing_input", manifest.verify_coverage_edges,
+                     doc, _graph(doc, sources))
+
+    def test_supplemental_l6_edge_and_disposition_are_both_required(self):
+        doc, sources, _ = _baseline()
+        edge_id = "edge.local.F-LCI-10.UT-LCI-133"
+        doc["coverage_edges"] = [edge for edge in doc["coverage_edges"] if edge["edge_id"] != edge_id]
+        disposition = next(item for item in doc["coverage_dispositions"]
+                           if item["source_id"] == "F-LCI-10")
+        disposition["edge_ids"].remove(edge_id)
+        _expect_diag(self, "Unknown", "missing_input", manifest.verify_coverage_edges,
+                     doc, _graph(doc, sources))
+
     def test_ut_lci_19_missing_source_row_is_unknown(self):
         doc, sources, _ = _baseline()
         path = "docs/helix-harness/L4-basic-design/common-kernel.md"

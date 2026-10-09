@@ -13,6 +13,8 @@ version_target: 1.0
 
 固定入力は対のL5本文SHA-256 `05ba206ce78eaecba0585dec3d08fa18e6dfb6b31e80423b5fea1455ca08a868`である。
 
+L7 suite oracleの設計入力は`docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md`の本文SHA-256 `91c20f0e0ac81dae1be8c744979290bd513feddd6f5f2135174852d0f50473ec`に固定する。このpinはL7設計本文の同一性を示し、target tree上のsource参照を増やさず、fixture実行や合格も示さない。
+
 ## 1. Fixture規則
 
 全fixtureは一時Git repository、合成UTF-8文書、stub command結果を用いる。旧CLI/hook/runtime/test/CIはfixtureにも含めない。各行は一つの条件だけを変更し、派生値（tree OID、digest、receipt digest、base/head）は変異に合わせ再計算する。受口は期待型まで指定し、unknown/unobservedを合格に読み替えない。
