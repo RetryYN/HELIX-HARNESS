@@ -288,6 +288,21 @@ def _compare_resolved_axes(
     return tuple(checks)
 
 
+def _compare_axes_after_inventory_value(
+    creator_inventory: k1.Observed[Any],
+    rows: Sequence[_AxisComparisonInput],
+) -> tuple[_ReviewAxisCheck, ...] | None:
+    """Do not enter axis comparison when the inventory observation is non-Value.
+
+    ``None`` is a private control-flow marker meaning no axis checks were run;
+    the caller retains the original inventory observation. This does not map
+    it to the public K9 result/component shape.
+    """
+    if not isinstance(creator_inventory, k1.Value):
+        return None
+    return _compare_resolved_axes(rows)
+
+
 def _k9_independence_polarity(value: _K9IndependenceComponent) -> k1.Polarity:
     """Apply the HARNESS-owned K9 mapping already stated in L4 §17.3."""
     if isinstance(value, _AxisRelationFact):

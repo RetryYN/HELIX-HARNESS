@@ -207,6 +207,42 @@ class TargetAndAxisComparisonTests(unittest.TestCase):
         self.assertEqual(check.creator_axis_identity, None)
         self.assertEqual(check.reviewer_axis_identity, "route-r1")
 
+    def test_nonvalue_inventory_short_circuits_before_axis_comparison(self):
+        inventory = k1.Unknown(k1.UnknownReason.CONFLICT, _key("inventory"), {"inventory": "owner"})
+        malformed_for_comparison = k9._AxisComparisonInput(
+            creator_slot="creator-1",
+            creator_role="producer",
+            axis="identity",
+            creator_ref=None,
+            reviewer_ref=None,
+            comparison_contract=None,
+            creator_axis_identity="creator",
+            reviewer_axis_identity="reviewer",
+            comparison_key=None,
+            evidence=None,
+        )
+        self.assertIsNone(
+            k9._compare_axes_after_inventory_value(inventory, (malformed_for_comparison,))
+        )
+
+    def test_value_inventory_allows_axis_comparison_to_proceed(self):
+        inventory = k1.Value({"complete": True}, _key("inventory-value"), {"inventory": "owner"})
+        row = k9._AxisComparisonInput(
+            creator_slot="creator-1",
+            creator_role="producer",
+            axis="identity",
+            creator_ref=_ref("creator"),
+            reviewer_ref=_ref("reviewer"),
+            comparison_contract=None,
+            creator_axis_identity="creator",
+            reviewer_axis_identity="reviewer",
+            comparison_key=_key("identity"),
+            evidence={"axis": "identity"},
+        )
+        checks = k9._compare_axes_after_inventory_value(inventory, (row,))
+        self.assertEqual(len(checks), 1)
+        self.assertEqual(checks[0].relation.value, "distinct")
+
     def test_resolved_axis_requires_existing_key_and_unresolved_relation(self):
         row = k9._AxisComparisonInput(
             creator_slot="creator-1",

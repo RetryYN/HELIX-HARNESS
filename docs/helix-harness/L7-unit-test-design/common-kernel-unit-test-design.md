@@ -6,7 +6,7 @@ scope: K1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: `main` at `1aa6c968397ec79ad7197937d05c7a98c07302ca` (current integration base; prior bases `79020598e03fd7234cfa00306f6f6d3a5bd82fd0`, `4a40597efbf867b6b5b5640060b2cac81de56de0`, `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
+base: `main` at `40e5467dc7d67a990ff12323d40974a2e480f339` (current integration base; prior bases `1aa6c968397ec79ad7197937d05c7a98c07302ca`, `79020598e03fd7234cfa00306f6f6d3a5bd82fd0`, `4a40597efbf867b6b5b5640060b2cac81de56de0`, `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
 
 本書はL6のK1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10公開APIと内部関数を単体fixtureへ対応づけ、現行L4/L9の意味、失敗分類、fixture期待を変更せずL5/L8とのtraceを追加する。K3は194 formal fixtureと26件の別ID回帰method、K4/G3は§11の73 fixture、K5は91 formal IDと24件の補助ID、K6は§10の55個別設計fixtureを記録する。K5-22/23のowner未接続fixture 7件はlocal private-boundary assertionだけを実行し、L8 coverageには含めない。ローカルunit結果はL9合格、owner source接続、製品動作を示さない。K9は§13で87 unique fixtureをtraceする。K8は§14の162個別fixture索引、K10は§15の69個別fixture traceを記録し、いずれも未実行。K6のprivate候補実装と52件の単体実行は§10.1に記録する。43件の局所assertion、2件の部分被覆、10件の未実行fixture ID、7件の別ID回帰を区別し、公開API・owner接続・CI登録は未了である。
 
@@ -17,7 +17,7 @@ base: `main` at `1aa6c968397ec79ad7197937d05c7a98c07302ca` (current integration 
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `d5bb3455526c816b3af965db239c4b56207a884f`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; current main source at `d5bb3455526c816b3af965db239c4b56207a884f`, content SHA-256 `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `0dd68aa56c118aba067b8661e950cc50aaa3c865302926ec2094625cdb72f333`（L7→L6一方向。L6にL7 SHAは置かない） |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `e55d31228b73dbd12cce2dd64c01ea8c5f6be21c8a94cd37c0acf8d545e08fb5`（L7→L6一方向。L6にL7 SHAは置かない） |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `fcf00128a7503317fa1c779c38cc8df3877b4952`, content SHA-256 `bdac36e29b8cd0a5cec34cedce6d419f5d5ecc8daea70cba851067bcc308dfac`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L8 K4/G3 fixed snapshot | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`, content SHA-256 `9d441f69221eb2800182f08e49c159c271a77eccc482bdbfb45bc960d2b48753`; K4/G3 §7; 73 fixture IDs; historical design input, not run here |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
@@ -1106,14 +1106,16 @@ L7の87 formal fixtureは設計のままであり、次の局所private helper�
 | `test_nullable_source_is_not_replaced_with_a_fabricated_ref` | null sourceを保持し架空refを作らない | `L8-K9-05-BASE` | helper入力のみ。ownerの未選択/未読理由は判定しない。 |
 | `test_all_six_review_target_fields_compare_in_fixed_order` | artifact/base/task_scope/oracle/current_result/caseのfield単位比較 | `L8-K9-07-TARGET-ARTIFACT-FRESH`〜`L8-K9-07-TARGET-CASE-FRESH` | 6 ref比較候補のみ。公開result/component projectionなし。 |
 | `test_axis_comparison_retains_every_slot_and_axis_after_a_collision` | 合成2 slot×4 axisを全件比較し順序とsame/distinctを保持 | `L8-K9-06-*`, `L8-K9-08-*`, `L8-K9-09-*`, `L8-K9-10-*` | owner-resolved identity入力のみ。K9 result/componentを構成しない。 |
+| `test_nonvalue_inventory_short_circuits_before_axis_comparison` | inventoryの既存non-Value observation時にprivate axis comparisonを呼ばない | `L8-K9-15-INVENTORY-EARLY-RETURN` | private制御境界のみ。公開K9 result/component projectionなし。 |
+| `test_value_inventory_allows_axis_comparison_to_proceed` | Value inventoryを受けた場合だけ渡されたaxis rowを比較 | `L8-K9-BASE-CHECK` | 合成Value入力のみ。owner inventoryを構成・検証しない。 |
 | `test_unresolved_axis_preserves_the_existing_nonvalue_and_does_not_compare` | 渡された既存key付きnon-Value relationを保持 | `L8-K9-08-*`, `L8-K9-09-*`, `L8-K9-10-UNKNOWN-ONLY` | caller観測の保持のみ。unknown sourceの意味を推定しない。 |
 | `test_resolved_axis_requires_existing_key_and_unresolved_relation` | resolved comparisonに既存keyがある局所前提 | `L8-K9-06-*` | private preconditionのみ。新Rejected/reasonなし。 |
 | `test_same_is_negative_and_all_nonvalues_survive_the_existing_k1_fold` | L4 mappingのsame→NegativeとK1 combineでのnon-Value保持 | `L8-K9-BASE-CHECK-UNKNOWN-ONLY`, `L8-K9-10-SAME-PLUS-UNKNOWN` | 明示mapping/K1 foldのみ。owner components生成なし。 |
 | `test_distinct_complete_nonempty_are_positive_through_existing_k1_fold` | distinct、complete、nonemptyのPositive fold | `L8-K9-BASE-CHECK` | 合成K1 valuesのみ。roster/source completenessは証明しない。 |
 | `test_empty_component_set_uses_k1_existing_missing_input_set_diagnostic` | 空成分集合への既存K1診断 | `L8-K9-04-EMPTY-CREATORS` | K1 foldのみ。inventory early-returnのAPI結果ではない。 |
-| `test_nonaffirmative_facts_are_not_fabricated_as_negative_or_positive_values` | false complete/nonemptyを独自の肯定/否定Valueにしない | `L8-K9-04-EMPTY-CREATORS`, `L8-K9-15-INVENTORY-EARLY-RETURN` | private input境界のみ。L4 early-return orchestration未実装。 |
+| `test_nonaffirmative_facts_are_not_fabricated_as_negative_or_positive_values` | false complete/nonemptyを独自の肯定/否定Valueにしない | `L8-K9-04-EMPTY-CREATORS` | private input境界のみ。owner inventory値への写像なし。 |
 
-上記は14 supplemental testsであり、L8 formal fixture 87件の実行数ではない。OS assignment、producer graph/source closure、execution origin、context/authority/route current owner、K6 read/admission、inventory non-Value早期return、K2 current lookupは未接続で、対応するL8 oracleは未達またはowner返却のまま保持する。
+上記は16 supplemental testsであり、L8 formal fixture 87件の実行数ではない。OS assignment、producer graph/source closure、execution origin、context/authority/route current owner、K6 read/admission、inventory non-Value時の公開result/component mapping、K2 current lookupは未接続で、対応するL8 oracleは未達またはowner返却のまま保持する。
 
 ## 14. K8個別fixture設計
 
