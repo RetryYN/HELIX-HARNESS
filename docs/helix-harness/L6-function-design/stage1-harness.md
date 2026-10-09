@@ -14,7 +14,7 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 
 # HELIX-HARNESS Stage 1 L6関数設計
 
-本書は固定3親のStage 1 L4契約に対するL5技術候補を、関数境界と内部評価へ具体化する。下表のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`とpath別SHAは、このL6草稿が作られた時点の固定source snapshotとして保持する。現行main `d736f99edc4f43b6cd912b9db09d545a5e769e21`でこのpairが読むsourceは、続く「現在の入力source」に別記する。このL6/L7草稿は未実装・未実行で、製品登録、実運用、外部作用、合格を主張しない。
+本書は固定3親のStage 1 L4契約に対するL5技術候補を、関数境界と内部評価へ具体化する。下表のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`とpath別SHAは、このL6草稿が作られた時点の固定source snapshotとして保持する。このpairの当時の入力sourceは§1.1の履歴表に記録する。今回の補助traceの作業起点と入力L5/L8は§4.1に記録する。このL6/L7草稿は未実装・未実行で、製品登録、実運用、外部作用、合格を主張しない。
 
 ## 1. 固定sourceと境界
 
@@ -24,18 +24,18 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 | Stage 1 L5 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `a0ed72f672606aee19e0124ee54ce47f6b409ab2e93b81cff1824f7c9cf7a92d` | 10 API候補とpayloadの固定source。 |
 | Stage 1 L8 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `9eadffc05150c01114ff29ba0fb2d28449b927e06f5565fbb86510f59be89d26` | 7887時点の269合成fixture snapshot。 |
 | Stage 1 L9 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `6cc4bc3ac56b8d1d94e05ddc4dda71c35df2941aab39e65fb9d43cda2deb36da` | 既存20 verifier/caseの範囲。 |
-| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | 7887時点の固定参照snapshot。K1/K2/K3/K5等の意味は§1.1の現行sourceで再確認する。 |
+| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | 7887時点の固定参照snapshot。K1/K2/K3/K5等の意味は当時のsnapshotであり、現行参照として扱わない。 |
 | Common Kernel L5 | `docs/helix-harness/L5-detail-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `702a50b82fe7685198539f6a51f7203b72f2adef8edb08f8ce81f677b57a42f0` | 7887時点の固定参照snapshot。 |
 | Common Kernel L6 | `docs/helix-harness/L6-function-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `0c11e55342f983d278a02ac4786178386bf8beefdcc824333ef0c5a93f5000b0` | 7887時点の固定参照snapshot。 |
 | Common Kernel L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `89152ee3b58c291a88b7108fd0437c1349265eb85607c2da1f617d63ac3572c1` | 7887時点の固定参照snapshot。 |
 | Common Kernel L8 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `6f598a9a9fd0ab58a30ec26bb290f958e2807a8ceb7fb7c368e0ecf4af1d876e` | 7887時点の固定参照snapshot。 |
 | Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 7887時点の固定参照snapshot。 |
 
-旧L7 snapshotにある`b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`等のCommon Kernel revisionと上表のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`は当時の履歴参照として保持し、現在sourceとして再利用しない。現在のCommon Kernel本文は§1.1のpath別SHAで固定する。Stage 1 product L5/L8とcommon-kernel L5/L8は別文書である。各参照はpath別SHAで固定する。L6/L7の直接技術範囲はK1/K2/K3/K5の既存契約に限る。K6/K7は不透明なowner境界として結果型を区別して保持し、内部処理を実装・検証したとは主張しない。K4/G3の製品層参照も本pairへ詳細化しない。旧HELIX資産の12行はL5 §2と原台帳を起点に照合し、台帳のconsumer/failureを推測していない。
+旧L7 snapshotにある`b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`等のCommon Kernel revisionと上表のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`は当時の履歴参照として保持し、現在sourceとして再利用しない。§1.1のCommon Kernel path別SHAも当時の履歴値であり、現行参照を主張しない。Stage 1 product L5/L8とcommon-kernel L5/L8は別文書である。各参照はpath別SHAで固定する。L6/L7の直接技術範囲はK1/K2/K3/K5の既存契約に限る。K6/K7は不透明なowner境界として結果型を区別して保持し、内部処理を実装・検証したとは主張しない。K4/G3の製品層参照も本pairへ詳細化しない。旧HELIX資産の12行はL5 §2と原台帳を起点に照合し、台帳のconsumer/failureを推測していない。
 
-### 1.1 現在の入力source（main d736f99）
+### 1.1 当時の入力source snapshot（main d736f99）
 
-次表は本追補の基準点main `d736f99edc4f43b6cd912b9db09d545a5e769e21`で再計算した入力bytesであり、上表の7887 snapshot値を上書きしない。L4/L5/L8/L9は製品pairの現行境界、Common Kernel各層は既存共通契約の現行参照である。
+次表は旧追補作成時点main `d736f99edc4f43b6cd912b9db09d545a5e769e21`の入力bytesであり、本追補の現行参照ではなく履歴として保持する。上表の7887 snapshot値も上書きしない。この表と上表は当時の参照記録であり、現行参照ではない。今回の補助traceが使うL5/L8の作業起点・SHAは§4.1に記録する。
 
 | 入力source | main d736f99のSHA-256 | L6で読む範囲 |
 |---|---|---|
@@ -101,6 +101,17 @@ DomainEvaluation = { facts: tuple[FieldFact, ...], source_results: tuple[existin
 
 このmodelはL5 §3.2 `FieldComparisonCandidate`と宣言field状態の内部表現である。比較可能な場合の`FieldFact.path`はL5の`field_ref`、`left_ref/right_ref`はL5の比較した左右source ref、`comparison`は同じ`match | mismatch`に対応する。読取済みfield欠落・複数候補は別の`DeclaredFieldState`と既存candidate refsとして保持し、`FieldComparison`の列挙に混ぜない。公開API・payload fieldを追加しない。`FieldFact.path`は内部表示専用の別名ではなく、L5 `FieldComparisonCandidate.field_ref`と同一の既存宣言field参照を指す。pathを正規化・推測・別fieldへ読み替えず、各fixtureの変異対象と同じfield identityをpayloadの`field_ref`に渡す。比較結果はL5どおり`match | mismatch`、読取済み宣言状態は別の`missing | multiple`とし、その他のdomain語彙は`revision_relation=current | stale`、`declaration_relation=consistent | contradictory`、`selection_state=selected | not_selected`、`expiry_relation=before | equal | after`である。これらは完全に読めた入力のValue payload内の観測値で、K1/K2 result class/reasonではない。
 
+
+### 4.1 FN-HARNESS-04 `PackRevisionComparison`の局所構成
+
+この追補はmain `f020c04f2fb219e319bcc13478f14b41eb881701`を作業基準とする。§1/§1.1の7887/d736時点source記録は過去snapshotとして保持し、今回の入力は本PRの追補後bytesであり、入力L5 SHA-256は`76fa0e803cb71adc74303322fc4ed00eeccc7b43bad6d8eb5a7718b058f95da1`、入力L8 SHA-256は`36337c13910ce635fa2e94f71d068813d4e6e71b7ca657ac0cbfe10331c9e657`である。旧assetの対応表とfull SHAは§2を正本とする。
+
+FN-HARNESS-04のprivate pure constructorは、L5 §3.3の候補recordに列挙されたdeclared/current refs、caller-supplied cause refs、`revision_relation`、および元順序の全`facts` tupleを受けて候補payloadを組み立てる。`revision_relation`はこのconstructorへ渡された解決済み値を保持し、constructorはref equalityからそれを算出しない。cause refsも比較差分から推論しない。L5 `FieldComparisonCandidate`と同じshapeを持つ比較factは`facts`内に保持し、宣言欠落/複数factとの混在順序を崩さない。`field_comparisons`と宣言factの読み取りprojectionはこのtupleを順にfilterするだけであり、元のtupleを分割・再結合して順序を失う処理はしない。
+
+このconstructorは純粋なpayload構築候補であり、K1 `Observed<T>`や公開unionを返すAPIではない。source/current-owner解決、`revision_relation`の供給主体、完全読取の保証、K1 non-Valueの優先returnは既存FN-HARNESS-04 API境界に属するが、L5/L4から具体reader/mappingを導けないため未接続として保持する。既存`DomainEvaluation.source_results`にある非Valueをconstructorへ渡してValue payloadへ変換せず、API側の既存K1 helperがある場合はその既存境界で同じclass/reason/evidenceを先に返す。SUP-005はこの入力側の保持境界を局所的に照合し、constructorのunion返却動作を試験しない。
+
+旧asset `LEGACY-ASSET-B5B5E71B2AF1459D59A1`（旧functional requirements lines 119–196、SHA-256 `a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a`）のFR-03 trace edge列挙/欠落例と`LEGACY-ASSET-1B92155F959D7905DD1E`（旧acceptance design lines 60–69、SHA-256 `27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1`）の要求とcaseの対応は、fact単位を追跡する形の比較根拠として再導出する。旧12-edge graph、fail-close、CLI/gate/test-runnerは移さない。`LEGACY-ASSET-0327D0DF98618D3066FD`（旧source boundary lines 60–70、SHA-256 `81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a`）は既存非Value/effect境界を混ぜない比較根拠に限り、旧snapshot/Node writer/CASを本constructorへ追加しない。台帳の`consumer_refs`は空で`failure_refs` fieldもなく、旧consumer実行結果を根拠にしない。
+
 完全読取済みfieldの異同は`FieldComparisonCandidate`等L5指定payloadへ入れる。完全読取済み宣言のfield欠落/複数候補もL5どおりpayload内の`missing`/`multiple`比較factとする。sourceそのものが読めない、または入力が既存K1/K2の非Valueなら、既存結果を保持し比較payloadで包まない。Domain mismatchをK1 `Negative`やK2 conflictにしない。K2 `Stale`は既存ResultKeyでcurrent lookupした結果に限り、同じdomain packのfield差には使わない。
 
 `resolve_dependency_closure`では入力に存在するdependency declaration、選択状態、condition、scope、owner/version rangeをそのまま比較材料にする。分類は実dependencyの実装/利用可能性/成功を推定しない。未選択を選択済みへ変換せず、明示selected sourceが無いfallbackを作らない。unknown source inputは元の既存K1/K2 resultを同じclass/reason/evidenceで保持し、別reasonへの変換や既定reasonを設けない。`Unknown(unsupported)`はL8でstubがその観測能力を提供しないと明示した入力caseに限り、一般fallbackには使わない。
@@ -135,7 +146,7 @@ DomainEvaluation = { facts: tuple[FieldFact, ...], source_results: tuple[existin
 
 ## 7. 実装・検証状態
 
-関数、fixture、実行結果は未実装・未実行である。このpair内で旧runtime/CLI/hook/test/CIを実行しない。L7はテスト設計のみを示し、unit suite実行、L8/L9 integration、製品pack登録、owner/effect実証を主張しない。本書の現行入力sourceは§1.1のmain `d736f99edc4f43b6cd912b9db09d545a5e769e21` path別SHAで固定し、§1のmain `7887...` snapshotは履歴値として保持する。本L6/L7の未実装・未実行状態は、上流sourceがmainにあることから変わらない。
+関数、fixture、実行結果は未実装・未実行である。このpair内で旧runtime/CLI/hook/test/CIを実行しない。L7はテスト設計のみを示し、unit suite実行、L8/L9 integration、製品pack登録、owner/effect実証を主張しない。§1と§1.1の7887/d736 source表は履歴snapshotとして保持する。今回の補助traceで参照するL5/L8 bytesは§4.1に記録する。本L6/L7の未実装・未実行状態は、上流sourceがmainにあることから変わらない。
 
 ### 7.1 実装候補の観測状態（worktree `codex/harness-stage1-local-implementation`, base `d5bb3455526c816b3af965db239c4b56207a884f`）
 

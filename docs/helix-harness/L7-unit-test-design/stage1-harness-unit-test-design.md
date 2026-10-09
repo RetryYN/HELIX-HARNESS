@@ -18,7 +18,7 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 
 # HELIX-HARNESS Stage 1 L7単体試験設計
 
-本書はmain `d736f99edc4f43b6cd912b9db09d545a5e769e21`のL5/L8 Stage 1 productに対するL6関数候補と、既存L9 verifierを結ぶ269件のfixture設計である。§1の`7887...`表はこのpairが作られた時点の固定snapshotとして保持し、現在の入力source bytesを別途明示する。L6/L7の直接技術範囲はK1/K2/K3/K5であり、K6/K7の内部処理は不透明なowner境界として分離・保持するのみ、K4/G3は製品L5/L8参照にとどめる。これは設計・traceのみであり、テスト実装/実行、合格、coverage達成、製品登録、permission/effect、外部作用を意味しない。現main L8が入力・変異・主結果・構造assertionの正本であり、本表は全caseをL7 test IDとL6関数へ具体化して一対一に索引化する。FN01/FN04/FN10用の10 supplemental unit designはL8 traceとは分けて§4に置き、L8 fixture IDは追加しない。K6/K7 owner内部の実行や検証は含まない。
+本書はmain `d736f99edc4f43b6cd912b9db09d545a5e769e21`のL5/L8 Stage 1 productに対するL6関数候補と、既存L9 verifierを結ぶ269件のfixture設計である。§1の`7887...`表はこのpairが作られた時点の固定snapshotとして保持し、補助traceの入力source bytesは履歴snapshotと区別して別途記録する。L6/L7の直接技術範囲はK1/K2/K3/K5であり、K6/K7の内部処理は不透明なowner境界として分離・保持するのみ、K4/G3は製品L5/L8参照にとどめる。これは設計・traceのみであり、テスト実装/実行、合格、coverage達成、製品登録、permission/effect、外部作用を意味しない。現main L8が入力・変異・主結果・構造assertionの正本であり、本表は全caseをL7 test IDとL6関数へ具体化して一対一に索引化する。FN01/FN04/FN10用の10 supplemental unit designはL8 traceとは分けて§4に置き、L8 fixture IDは追加しない。K6/K7 owner内部の実行や検証は含まない。
 
 ## 1. 固定sourceとrevisionの区別
 
@@ -26,7 +26,7 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 |---|---|---|
 | Stage 1 L4 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `25fbd104fd47f39d22f542664e57fd44a440af8904e11b2f0b397ac6606b6cfb` | 7887時点の固定source snapshot。 |
 | Stage 1 L5 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `a0ed72f672606aee19e0124ee54ce47f6b409ab2e93b81cff1824f7c9cf7a92d` | 7887時点の固定source snapshot。 |
-| Stage 1 L6 | 本PR content HEADに含む対L6本文; SHA-256 `c92560cdc05e96a177b581614dced64fb368ced6a106483048bb5a22564bac36` | 本pairの関数設計と§7.1の実装候補status記録。L7から一方向に固定参照する。 |
+| Stage 1 L6 | 本PR content HEADに含む対L6本文; SHA-256 `1c0dd36fe8f0b3fd75251e686776c0188f3764b5b2293121fd2906eaa4772dca` | 本pairの関数設計と§7.1の実装候補status記録。L7から一方向に固定参照する。 |
 | Stage 1 L8 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `9eadffc05150c01114ff29ba0fb2d28449b927e06f5565fbb86510f59be89d26` | 7887時点の固定fixture snapshot。 |
 | Stage 1 L9 | main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`, `6cc4bc3ac56b8d1d94e05ddc4dda71c35df2941aab39e65fb9d43cda2deb36da` | 7887時点の固定verifier/case snapshot。 |
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | 7887時点の固定参照snapshot。 |
@@ -36,11 +36,11 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 | Common Kernel L8 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `6f598a9a9fd0ab58a30ec26bb290f958e2807a8ceb7fb7c368e0ecf4af1d876e` | 7887時点の固定参照snapshot。 |
 | Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`; `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 7887時点の固定参照snapshot。 |
 
-旧L7の236行snapshotが参照していたCommon Kernel revision `b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`および表中のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`は当時の履歴参照として保持し、現行入力には§1.1のmain `d736f99edc4f43b6cd912b9db09d545a5e769e21`を使う。既存UT `UT-HARNESS-001`〜`UT-HARNESS-236`はL8と一致するfixture IDの対応を維持し、33件の追加caseを`UT-HARNESS-237`〜`UT-HARNESS-269`としてL8表の出現順に索引化する。既存番号は振り直さない。旧test/runtime/CLI/CIは起動していない。
+旧L7の236行snapshotが参照していたCommon Kernel revision `b95f9706bbf27a6d9b09041890ef0f0602bbdcb3`、表中のmain `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`、および§1.1のd736 snapshotは履歴参照として保持する。今回の補助traceの作業起点とL5/L8入力SHAは§1.1末尾に記録する。既存UT `UT-HARNESS-001`〜`UT-HARNESS-236`はL8と一致するfixture IDの対応を維持し、33件の追加caseを`UT-HARNESS-237`〜`UT-HARNESS-269`としてL8表の出現順に索引化する。既存番号は振り直さない。旧test/runtime/CLI/CIは起動していない。
 
-### 1.1 現在の入力source（main d736f99）
+### 1.1 当時の入力source snapshot（main d736f99）
 
-次表は基準点main `d736f99edc4f43b6cd912b9db09d545a5e769e21`で再計算した入力bytesである。§1の7887表の各値はこの時点記録として変えない。
+次表は旧追補作成時点main `d736f99edc4f43b6cd912b9db09d545a5e769e21`で固定した入力bytesの履歴である。§1の7887表の各値も当時記録として変えない。今回の補助trace追補はmain `f020c04f2fb219e319bcc13478f14b41eb881701`を作業基準とし、追補入力は本PRの追補後bytesであり、L5 SHA-256は`76fa0e803cb71adc74303322fc4ed00eeccc7b43bad6d8eb5a7718b058f95da1`、L8 SHA-256は`36337c13910ce635fa2e94f71d068813d4e6e71b7ca657ac0cbfe10331c9e657`である。
 
 | 参照文書 | SHA-256 | L7で読む範囲 |
 |---|---|---|
@@ -360,6 +360,19 @@ upstream_detail_revision: main `7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44`
 | `UT-HARNESS-SUP-010` | `IV-HARNESS-S1-N-023-01` | `FN-HARNESS-10` | `candidate_id=NFR-C-HARNESS-023-01`、D1–D15各fixtureについて同一pack revision/inputの二つのclosure/reason observationsを示す合成evidence refs。 | D1の二回目closure observation refだけを異なる合成refへ置換する。 | L5のNFR-specific measurement record候補。D1二回目の`fixture_evidence` refだけが置換後refへ変わり、D1一回目・D2〜D15 refs・candidate_id・対象revisionは不変。 | 指定NFR ID、対象revision、選択したfixture evidence refsを対応付ける。D1–D15を全件扱うNFR範囲を保持し、同一条件のmeaning差分0を照合対象として示す。NFR実測・達成や残り14件の実施を主張しない。 |
 
 FN-HARNESS-10の補助行はL5が定める`candidate_id`、`fixture_evidence`、対象revisionを入力として結ぶ技術traceである。L5は測定recordの内部分類やK1 polarityを定義していないため、本表はNFR-specific candidateのref対応を期待し、K1 `Value`/`Negative`やsuccess/pass、正本measurement schemaを追加しない。SUP-009のcount変異も合成evidence bytesとその参照へ束縛して保持し、新しい公開record fieldを作らない。上記の変異は合成evidenceとそのrefだけに作用し、L9 NFRの合格や効果実在を証明しない。
+
+
+#### SUP-003〜005: PackRevisionComparison局所oracle
+
+この局所設計はmain `f020c04f2fb219e319bcc13478f14b41eb881701`のL5/L6/L8候補に対する補足である。既存補助ID三件に対するpure payload-constructorのassertion detailであり、formal L7 fixture数、L8 269 fixture ID、L9 verifier数を増やさない。実API/source readerの実行、K1外側return mapping、L9全体の合格を示すものではない。
+
+| 既存L7 ID | 入力・一変異 | 局所assertion | 範囲外/未接続 |
+|---|---|---|---|
+| `UT-HARNESS-SUP-003` | 完全な合成SubjectRef群、caller-supplied cause refs、比較factと宣言状態factを交互に含む元順tuple。基準caseは`revision_relation=current`で変異なし。別の保持subcaseでは解決済み入力`revision_relation=stale`を与え、他の入力は固定する。 | candidateの全declared/current/cause refs、入力された`revision_relation`、`facts`全体の元順を保持する。`field_comparisons`等のread-only projectionは元順tupleの該当factのみを示す。stale保持subcaseは単一変異試験ではなく、解決済み値の保持確認である。 | ref equalityからrelation/causeを推論せず、K2 lookupやeligibilityを呼ばない。L8の新CASEを作らない。 |
+| `UT-HARNESS-SUP-004` | `revision_relation=current`のSUP-003 baselineを使い、他のfactsとrefsを固定してdeclared pack refだけを別revisionへ置換する。 | payloadが変更後declared refと他入力を同値保持することを局所assertする。元SUP-004のpublic比較oracle全体は未充足。 | owner/read/Value mapping、mismatch計算、K2への変換は未接続。 |
+| `UT-HARNESS-SUP-005` | SUP-003のrefs/factsを保ち、既存source result位置の一つに既存K1 `Unknown(unreadable)`（同一evidence）を与える。 | 既存source-result helper/boundaryが同じclass/reason/evidenceを保持し、その入力をpure candidate constructorへ渡していないことを局所assertする。constructor自体の戻り値はpayload candidateのみで、union/non-Valueを生成しない。 | public `compare_pack_revision`入口、owner reader、K1 polarity/result mappingは未接続。unknownをconstructorの新return variantやL8追加CASEへ変換しない。 |
+
+SUP-003/004/005の各L7行は既存識別子の詳細traceであり、3件を新しいformal L8 fixtureや独立L9 verifierとして数えない。
 
 ## 5. Scope外と未実行項目
 
