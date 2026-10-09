@@ -1,25 +1,25 @@
 # 要求整理のPO判断案
 
-現在の対象baseは`7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822`。提案の正本は[差分JSON](requirements-resolution-packet.json)、SHA-256 `92f120b2abd5936df8e6f1a304bf35cdf0711e96b2a4e9f9a63f72862986bbdf`。canonical L2/L11とMPRは未変更であり、本packetから要求採択・仮登録・無損失保証・実装許可を生成しない。
+現在の対象baseは`bf670396f21e5a9e6c072fa35ceeb29ccf964ecb`。提案正本は[差分JSON](requirements-resolution-packet.json)、SHA-256 `e70c26b8f127b924e4b9dfea34e8f01a9c620abd5783a63ad396c9b112b2d14a`。canonical L2/L11とMPRは未変更であり、提案の共有から採択・仮登録・実装許可を生成しない。
 
 ## 現在の判断単位
 
-| 判断単位 | 提案 | 保持する点 |
+| 単位 | 対象 | 差分 |
 |---|---|---|
-| TEMPLATECONTRACT（#2846、HELIXBRAIN-L2-032単体案） | 汎用Design Templateの意味契約項目をBRAINが提供し、項目の欠落・値未決・非適用、JSON意味正本と生成viewを区別する。`version_target: 1.0`を提案 | 製品要求への適用/義務/BackflowはCORE、使用set/版/記録はOS。知識採否は既存BRAIN007/025。既存BRAIN003/008/028/030とHARNESS009/041の採択範囲を変えない |
+| COREAPPLY（#2846） | 既存HARNESS-L2-009の製品template適用追補と対L11 | 適用exact set・判定/義務・不足/Backflow・旧新版の意味影響を同じrevision/scopeへ結ぶ |
 
-提案は、identity、version、layer/pair、applicability、required input/section/field、relation、意味owner、trace、negative oracle、measurement、completion、downstream kind、supersessionの15項目を識別・比較できる契約候補と不足一覧を提供するもの。completionはtemplate適用義務の条件を表し、BRAIN知識採否や実projectの義務消込の裁定とは分ける。field定義がある値未決はBRAIN030の受領可能なreceiptと未完設計義務へ結び、定義自体の欠落をそれで補わない。
+既決の`version_target: 1.0`は保持する。別identityを増やさず、009の既採択意味、3kind固有義務、4Backflow候補、根拠付きN/A、任意fallback拒否、局所影響/Unknown保持を新規要求として再承認しない。差分は、それらを選択した各template版・対象要求・製品scope・元field/義務と影響先へ結ぶことである。
 
-対L11は正常例、15項目の個別欠落、値未決/非適用/unknown、別revision・生成viewだけの更新、製品固有値の混入と未見domainを照合する案である。具体schema/key/型/演算子/wire format、閾値・実装方式は固定しない。JSON内の2置換は現在のEOFの一意な行へ追記する案であり、本文・節digestを固定した。
+BRAINは032の汎用意味契約とknowledge版/state、COREは製品適用のset/義務/質問/意味影響、OSは案件の選択・使用set/版・記録/運転を持つ。Pythonの意味処理にDB/Git/GitHub write、割当、実行、認可を与えない。041のsource要素抽出、025/026の具体設計・oracle構成を置換しない。
 
-起点は[条件照合](../audits/template-condition-review-2026-10-10.json)の旧6surface/6componentとDST-HARNESS-002、[9/25の汎用BRAIN・JSON正本の判断](../decisions/brain-helix-core-po-intent-2026-09-25.md)、[9/28の固定L1](../decisions/helix-brain-requirements-po-decision-2026-09-28.md)。旧`design-template-json-authority.md:19–46`の意味項目・view分離・identityを保持し、HARNESS一括所有から既決の責務分離へ意味を再導出する。旧pair freezeによるauthorityを現行知識採否へ継承せず、旧runtime/test/CIを実行しない。
+対L11案は、正常、各入力axis欠落/別revision/別scope/duplicate、required/conditional/N/A/unresolved、4Backflow、定義欠落と値未決、意味変更とview更新・局所影響、未見domain/actorの例を照合する。候補set生成・受領・抽出成功から要求合意や設計成立を生成しない。schema/型/演算子/algorithm/通信/閾値は固定しない。
 
-## この案で閉じない範囲
+親は9/28の固定HARNESS-L1-009/004（`f6dad2a33e24f000b87d7f09b8d40288257e74cc`）。旧asset `LEGACY-ASSET-4F5A1F0739EC1111D91D`、L4 `design-template-json-authority.md:38/39/42/47–60/81–92`と旧CLAUDE49–63を起点に、意味を現行ownerへ再導出する。旧all/any/not/allowlist・layer・planner/cutover/runtimeは移植しない。source全体の移管やformal successorを主張しない。
 
-最小seed setと26seedの採否、CORE適用判定・Backflow・semantic impact、OSのproject exact set/event/評価母集団、shadow parity・renderer・pair/portfolioの固有binding、その他の要求Issueと旧identityの移管は#2846ほかに残る。032を採用してもこれらを完了扱いにしない。
+## 残る範囲
 
-採用後は一要求identityの反映PRで対L11、仮登録・source被覆receipt・独立reviewを結ぶ。L3再開、schema/registry/runtime/新gate、実装・CI・内部デプロイ・release、全seed採用、formal successor/retireは今回の判断対象外。
+最小seed set/26seed採否、OS project exact set/event/評価母集団、未完義務受理、安全/資源/計測、内部更新/復旧・支援/改善循環、parity/renderer/pair/portfolioのbindingとschema/runtimeは#2846ほかに残る。009追補の採用だけで本Issueや要求段階を閉じず、L3再開を生成しない。
 
-## 既決の判断単位
+## 既決packetの保全
 
-JSONAUTH、TDDORDER、VERSIONJOINは10/10の各判断記録に従って反映済み。対象は当時の固定packet commit `d4b439e5c48591749709a8707d0ee319c673f000`であり、JSONの`resolved_packet`に以前の提案objectをそのまま保つ。再承認・再適用は求めない。[JSONAUTH](../decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md)、[TDDORDER](../decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md)、[VERSIONJOIN](../decisions/version-join-requirement-resolution-po-decision-2026-10-10.md)を正本として読む。
+TEMPLATECONTRACTの032は[10/10判断記録](../decisions/brain-template-contract-032-po-decision-2026-10-10.md)に従いPR #2851で採用反映済み。前packet objectをJSONの`resolved_packet.packet`へ完全一致で保つ。内包するJSONAUTH/TDDORDER/VERSIONJOINの固定案も変更しない。過去の判断対象は固定commitとdigestで読み、再承認・再適用を求めない。
