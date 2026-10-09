@@ -16,8 +16,9 @@ base: `main` at `6727d7a10171940fcdb85ae9473f21d0a694c27f`
 | Stage 1 PO decision | `docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md`, `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e`; approved L3/L10 content revision `a77672513325aa9e79f3780af40455361b5d19a8` | HARNESS-L2-010/011/023 Stage 1 scope only |
 | L4 Common Kernel | `docs/helix-harness/L4-basic-design/common-kernel.md`, content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) | K1 §2.1–2.6, K2 §3.1–3.5, K3 §16, K5 §9.1–9.8 |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`, content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) | RL-C1–7, RL-D1–5, RL-T1–3, RL-K1–3 |
-| L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (main `b6463f2b9baa7df72703758f4e02afff9cbfac78`の対象本文) | K1/K2 public types, signatures, owner boundary, old-source crosswalk |
-| L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) | IV-K1-01–13; IV-K2-01–21d; design oracle, not run here |
+| L5 detail design | `docs/helix-harness/L5-detail-design/common-kernel.md`, fixed PR #2751 candidate commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (本worktree base時点で未main) | K1/K2 §3; K3 §6.1.1–6.1.5; K5 §6.2.1–6.2.7 |
+| L8 detail verification | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`, fixed PR #2751 candidate commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (本worktree base時点で未main) | K3 §5.1; K5 §5.2; fixtures are design inputs, not executed here |
+| L9 integration oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) | IV-K1-01–13; IV-K2-01–21d; IV-K3; IV-K5-01–26 and ledger oracles; design oracle, not run here |
 
 K1/K2はL4 §1.3の共通部品、K3の直接親はL4 §16.1、K5の直接親は§9.2のcrosswalkであり、単一のまとめ親を置かない。HARNESS Stage 1の下流traceは固定されたL2-010/011/023に限る。各契約の親は対応するL4 crosswalkに従い、契約境界上のK1-I6→K2、K2 record→K5、K3→K5/K6/K7参照は追加の親要求にしない。後続stageを含む現在文書全体のbytesをStage 1 approved inputと扱わない。
 
@@ -90,7 +91,7 @@ def record(
 
 `lookup`に与える`records`列はK5 `restore`が完全性を確認した全記録をK5の追記順で復元したものに限る。`Sequence`の順序を尊重し、K2はtimestampや別のsortで「最後」を再定義しない。K5 restoreが`Unknown(missing_input)`/`Unknown(unreadable)`等を返した場合はK2 lookupを呼ばず、その非Valueをcallerへ返す（L4 K5 `restore` / K2 §3.4）。
 
-K5は固定したK5単独L5候補 `ea7c6fd2c5e3f6f46033cd62351821a1ff48c921` の§6.1（型）・§6.2（公開関数）にあるlanguage-neutral契約をそのまま用いる。これは当該候補内のsection locatorである。K3/K5統合L5ではK5詳細の配置先を§6.2とするため、統合本文を読む際は本候補の§6.1/§6.2番号を現行locatorとして流用しない。以下は同じ引数と戻り型のPython候補表記であり、物理storeの振舞いを実装するものではない。
+K5の型と公開関数は、§1で固定したPR #2751 L5本文の§6.2.1–6.2.2に従う。これは本worktree base時点で未mainの親候補revisionであり、単独K5候補の旧section番号を現行locatorとして流用しない。以下は同じ引数と戻り型のPython候補表記であり、物理storeの振舞いを実装するものではない。
 
 ```text
 def append(segment, event, writer) -> Appended(SegmentHead) | NoOp | Conflict | Rejected(reason): ...
@@ -102,7 +103,7 @@ def verify(projection: Projection, checkpoint: Checkpoint | None = None) -> Obse
 def ledger_view(input_heads: list[SegmentHead]) -> Observed[LedgerView]: ...
 ```
 
-K5 model types (`LogDecl`, `SegmentId`, `FixedRef`, `LogEntry`, `SegmentHead`, `ScopeDecl`, `Projector`, `Projection`, `Checkpoint`, event union)は固定したK5単独L5候補の§6.1のまま使う。K3/K5統合L5での配置先は§6.2であり、`LedgerView` fieldと既存Rejected理由はL4/L5で定義された形に限り、本書で追加しない。
+K5 model types (`LogDecl`, `SegmentId`, `FixedRef`, `LogEntry`, `SegmentHead`, `ScopeDecl`, `Projector`, `Projection`, `Checkpoint`, event union)は固定L5親の§6.2.1のとおり使う。`LedgerView` fieldと既存Rejected理由はL4/L5で定義された形に限り、本書で追加しない。
 
 ## 3. 関数と内部algorithm
 
@@ -125,7 +126,10 @@ K5 model types (`LogDecl`, `SegmentId`, `FixedRef`, `LogEntry`, `SegmentHead`, `
 | `CK-K2-FN-08` | `record` / public pure decision | full records, key, `Observed` result, producer; Recorded/NoOp/Conflict/Rejected(missing_key \| stale_not_recordable) | 呼出し側は`result.key == key`を保証する。K2はこのfield間一致を再判定せず、新しい拒否理由を作らない。`result`がStaleならkey検査より先に`Rejected(stale_not_recordable)`を返す（L5 K1-I6 / K2-I4）。非Stale resultのkeyとresult内keyをそれぞれ検査し、どちらかの必須key field欠落は`Rejected(missing_key)`。正常な非Stale結果はownerが宣言encodingで構成済みのResultBodyのdeep-copied snapshot canonical bytesからresult_digestを得る。recordは入力Observed payloadをdeep copyしてdigestと保存projectionを構成し、呼出し側の元payload変更から記録時snapshotを隔離する。呼出し側は返却record内のnested payloadを後から変更しない。同key+同result_digestならNoOp。同key+異result_digestなら双方保持するConflict。物理append/rollback/lockはしない。 | K1-I6, K2-I4; IV-K1-08, IV-K2-10–11 |
 | `CK-K2-FN-09` | alias read handoff / owner + K6 boundary | expected key inputs, binding bytes, each alias source observation | callerがowner resolverを上書きしない。K6 readerがbinding bytesとaliasごとのraw bytesを別々に読む。raw bytes digest不一致はK6 L9のUnknown(conflict)。read identityはL4 K6 §10.3のsubject＋non-verifier inputs集合に一致し、raw identityの別readを加えない。K2自体はread receiptを作らない。 | K2 §3.4.1, K6 §10.3; IV-K2-21c, IV-K6 |
 
+### K5 function candidates
 
+| ID | 関数 / visibility | 入力・出力 | 処理契約と失敗境界 | L4 / L9 trace |
+|---|---|---|---|---|
 | `CK-K5-FN-01` | `decode_canonical_line` / private pure | raw line bytes; parsed `LogEntry`または内部codec不適合 | L4 §9.3のcanonical JSON+単一LF境界を解析用に確認し、record framingのLFをJSON value digestへ混ぜない。K1結果/reasonへcodec不適合を写さない。 | K5-I2/I3; IV-K5-02/03/24–26 |
 | `CK-K5-FN-02` | `validate_entry_schema` / private pure | decoded entryと`LogDecl`; valid entryまたは既存のread非Value | 宣言済みevent shape、schema_version、event-to-log対応とK1/K2 ResultBody/key/digest条件を照合する。新しい拒否reason/Observed分類を作らない。 | K5-I2/I3/I5/I6; IV-K5-03/11 |
 | `CK-K5-FN-03` | `validate_segment_prefix` / private pure | entry sequence、指定`SegmentHead`; `Observed[LogEntry[]]`相当 | seq連続、prev/entry digest、canonical line、固定headを検査し、部分prefixをValueへしない。 | K5-I1–I4; IV-K5-01–08/24–26 |
@@ -240,7 +244,7 @@ K3は§12で詳細化する。K4/K6–K10は本書で`not_designed`。既存契�
 
 ### 7.1 K5旧sourceの実読・保持点と差分
 
-固定したK5単独L5候補の§6.6に列挙されたassetをarchive本文と`legacy-asset-disposition.jsonl`で再確認し、下表のpath・対象行・宣言SHAを照合した。§6.6は当該候補内のcrosswalk locatorであり、K3/K5統合L5では§6.2に配置する。各SHAはarchive source bytesのSHA-256と一致する。旧source、consumer、failureを起点に保持点と置換点を分け、旧DB/runtime/testは実行していない。
+旧K5単独L5候補の§6.6に列挙されたassetをarchive本文と`legacy-asset-disposition.jsonl`で再確認し、下表のpath・対象行・宣言SHAを照合した。§6.6は当時の候補内crosswalk locatorであり、現在の固定L5親ではK5詳細が§6.2に配置されている。各SHAはarchive source bytesのSHA-256と一致する。旧source、consumer、failureを起点に保持点と置換点を分け、旧DB/runtime/testは実行していない。
 
 | Asset / 旧source (archive root相対) | 行 / full SHA-256 | 下流で保つ点 | 再導出・置換理由 |
 |---|---|---|---|
@@ -299,14 +303,14 @@ L4 K1-I6で呼出し元へ返すK1拒否を、ここでは`ApiBoundaryResult[T] 
 
 ## 12. K3関数設計
 
-本節はL4 §16の既存K3 API・不変条件を、L5/L8草稿d0687aae6の関数責務へ下ろす技術草稿である。L4/L9の意味、K3 `PermissionCheck` union、owner責務、K1/K2契約を変更しない。L5/L8の節locator・本文hashはK3/K5統合workerがL5 §6.1へ再配置中のため暫定固定であり、Root統合時に実bytesから同期する。
+本節はL4 §16の既存K3 API・不変条件を、§1で固定したPR #2751 L5/L8親の関数責務へ下ろす技術草稿である。L4/L9の意味、K3 `PermissionCheck` union、owner責務、K1/K2契約を変更しない。L5の直接locatorは§6.1.1–6.1.5、L8は§5.1および§5.1.1–5.1.2である。親本文はこのworktree base時点で未mainなので、固定commitとcontent SHAを保ち、現行main本文と混同しない。
 
 | 参照元 | 本文SHA-256 / revision | 対象範囲とpin状態 |
 |---|---|---|
 | Common Kernel L4 | `7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b`, main `6727d7a10171940fcdb85ae9473f21d0a694c27f` | §16.1–16.6、固定上流契約 |
 | Common Kernel L9 | `62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`, main `6727d7a10171940fcdb85ae9473f21d0a694c27f` | IV-K3-01–17、IV-K3-14a–j、oracle未実行 |
-| K3 L5 detail draft | `750d1dabab23d15a52d612721ac422c739a1555e890082c2c9ca7265368ff783`, draft commit `d0687aae6ee339a3b5d47bac520f9cd26f8e8d78` | §6.1–6.4 locator暫定。統合時に再配置後の同一本文から再pin |
-| K3 L8 verification draft | `295d65795ad41ea1ca91b4c52a9bdaaa207e951a6085f305d66db3ded7801bb1`, draft commit `d0687aae6ee339a3b5d47bac520f9cd26f8e8d78` | §5と一意展開一覧locator暫定。統合時に同一IDの本文から再pin |
+| K3 L5 parent | §1の固定L5 blob、commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` | §6.1.1–6.1.5 |
+| K3 L8 parent | §1の固定L8 blob、commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` | §5.1–5.1.2 |
 
 L4 §16.2の`PermissionQuery`、`PermissionQueryRef`、`OperationAuthorityTuple`、`AuthorityInputRef`、`AuthorityInputBindingRef`、`HeadInputRef`、`PermissionCheckResult`、`PermissionCheckDiagnostic`、`PermissionCheck`をその型のまま使う。公開APIは既存の`resolve_authority_context(query, input_heads)`と`check_permission(query, permission, input_heads)`の二つだけである。入力の`PermissionQuery`、`PermissionRecord`、`Digest`およびowner参照はL4のtyped input前提を満たすものとする。runtime shape validator、shape不正のreturn class、追加reasonは定義しない。
 
@@ -316,7 +320,7 @@ K3関数候補と責務境界は次のとおり。IDはL6 trace用で、新し�
 |---|---|---|---|
 | `CK-K3-FN-01` | `derive_permission_query_ref` / private | typed `PermissionQuery`からL4式どおりidentity/revision/digestを決定的に導く。caller提供refで上書きしない。 | K3-I4; IV-K3-03/14f–h |
 | `CK-K3-FN-02` | `resolve_owner_mapping` / SECURITY等owner resolver境界 | owner current declarationsから全role-bound raw refsを解決し、完全mapping bytes・binding ref・source-content aliasesを得る。caller mappingはauthorityにしない。同一alias内の完全一致だけdedupし、同一alias異refはL4 `docs/helix-harness/L4-basic-design/common-kernel.md:251–252`で定めるとおりK2 `key_of`前に既存`Rejected(missing_key)`として返す。 | K3-I4/I6; IV-K3-14/14a–j |
-| `CK-K3-FN-03` | `construct_k3_key_inputs` / 内部合成 | query ref、binding ref、各namespaceのrole alias、current `HeadInputRef`、L4で列挙するoperation/code/config/declaration/source/adapter refsをowner宣言集合から組み立てる。role/kindを混同せず、raw refsを重複投入しない。K2 `key_of`専用拒否をK3 Diagnosticへ写す規則は未定義のまま保つ。 | K3-I4; IV-K3-03/14/15/16 |
+| `CK-K3-FN-03` | `construct_k3_key_inputs` / 内部合成 | query ref、binding ref、各namespaceのrole alias、current `HeadInputRef`、L4で列挙するoperation/code/config/declaration/source/adapter refsをowner宣言集合から組み立てる。role/kindを混同せず、raw refsを重複投入しない。K2 `key_of`専用拒否はL4 §16.4と固定L5 §6.1.3に従いK3 `PermissionCheckDiagnostic(reason: missing_key)`へ写す。K1 componentにはしない。 | K3-I4; IV-K3-03/14/15/16 |
 | `CK-K3-FN-04` | current context再構成 / K5内部境界 | OS assignment、target relation、INFRA environment、operation/SECURITY declarations、time observation、revocation headsをcurrent owner prefixから再構成する。K5 `current_head/read/restore`はstub境界で、caller `input_heads`は期待値照合だけに用いる。 | K3-I1/I4/I5/I6; IV-K3-01/08/09/15/16 |
 | `CK-K3-FN-05` | `resolve_current_effective_decision` / SECURITY source adapter境界 | registered source adapterの既存selection ruleとcurrent prefixを使う。selector/tie-break/expiry/signature policyを新設せず、adapterが返した既存`Observed`を保つ。 | K3-I3/I4; IV-K3-04/05/06 |
 | `CK-K3-FN-06` | `compare_tuple_axes` / private pure comparison | actor/target/operation/revision/environment/explicit scope/expiryの7軸を独立に比較し全componentを保持する。 | K3-I1/I2/I6; IV-K3-01/02/09 |
@@ -342,7 +346,7 @@ K3関数候補と責務境界は次のとおり。IDはL6 trace用で、新し�
 
 K3 APIの既存diagnostic reasonは`missing_key | invalid_query`であり、`invalid_query` predicateはL4で定義されていない。したがってtyped query/refを受ける前提のままとし、`invalid_query`を発火させるvalidator/fixtureを作らない。L4で列挙された不一致、owner observation、K1 componentはそれぞれ既存のValue/Unknown/Unobservedとして扱い、新しいreasonへまとめない。
 
-K2 `key_of`の`invalid_digest`と`duplicate_identity`はK2専用`KeyOfResult`拒否である。正しいkind/role namespace、binding mapping、alias dedup、query/head refsの構成により、型付き正常経路から重複identityを作らない。異常なK2専用拒否をK3 diagnostic、`missing_key`、K1 Unknownへ変換する規則は現L4にないため、API transportを発明せず局所未決とする。`PermissionQuery`や`Digest`のruntime shape不正を新しいreturn classへ送らない。
+K2 `key_of`の`invalid_digest`と`duplicate_identity`はK2専用`KeyOfResult`拒否である。正しいkind/role namespace、binding mapping、alias dedup、query/head refsの構成により、型付き正常経路から重複identityを作らない。完全なK2 keyを構成できないこれらの拒否はL4 §16.4と固定L5 §6.1.3に従い、K3 API境界で`PermissionCheckDiagnostic(reason: missing_key)`へ写す。K2専用reasonをK3へ追加せず、K1 Unknownへ変換・combine・recordしない。`PermissionQuery`や`Digest`のruntime shape不正を新しいreturn classへ送らない。
 
 K5 prefix/read/restore、K6の実byte読取、K7 apply/recoveryはstubまたはconsumer受け渡し境界に限る。K6 stubはL4が指定するread identityとbinding/raw byte digest関係をfixture入力として照合するだけでproduction readを証明しない。L4 §16でK3結果を永続化するowner/LogDeclが示されないため、新writerや保存責務を追加しない。selector、expiry parsing、signature verification policyも既存source adapterの宣言を越えて補わない。
 
@@ -362,4 +366,4 @@ K5 prefix/read/restore、K6の実byte読取、K7 apply/recoveryはstubまたはc
 
 ### 12.4 対象外と検証状態
 
-K3は関数・fixture設計草稿であり、L6/L7から実装、実source reader、expiry/signature policy、永続化writer、action、recovery、K5/K6/K7の合格を主張しない。L7 caseはK3 L8の既存178個別IDを個別UTへ写す。fixture、旧test、旧CLI/hook/runtime/CIは起動していない。K4/K6–K10詳細はnot_designedのままである。
+K3は関数・fixture設計草稿であり、L6/L7から実装、実source reader、expiry/signature policy、永続化writer、action、recovery、K5/K6/K7の合格を主張しない。L7 caseはK3 L8の固定194個別IDを個別UTへ写す。fixture、旧test、旧CLI/hook/runtime/CIは起動していない。K4/K6–K10詳細は`not_designed`のままであり、K5詳細は本書§2–5/§7に記載する。
