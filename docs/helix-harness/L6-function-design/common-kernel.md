@@ -5,7 +5,7 @@ owner: HELIX-HARNESS
 scope: K1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `bd85021c3f08d26b96502f7773372a7538bb38ae` (current integration base; prior bases `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
+base: `main` at `79020598e03fd7234cfa00306f6f6d3a5bd82fd0` (current integration base; prior bases `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
 
 本書は現行Common Kernel L4 K1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/G3は本書§14、K6は§13で既存L5/L8設計を関数責務へ下ろす。K9は§16で詳細化する。K8は§17でL4 §18/L9 IV-K8-01–26を4つの既存L5 API境界へtraceする設計追補であり、owner接続・L9実行は未了。K10は§18でL4 §14/L9 IV-K10-01–14を既存L5/L8契約に沿って関数・fixtureへ展開し、実行・owner接続は未了。
 
@@ -248,7 +248,7 @@ Python 3.11+の標準`json` optionは一次仕様に記載される（[Python 3.
 
 K2 `key_of`はL5の専用`KeyOfResult`を返し、L4 §3.4が定める`missing_key`→`invalid_digest`→`duplicate_identity`の検査順を実装候補へ展開する。これらはK2 API境界の拒否であり、K1 `ApiBoundaryResult<T>`、`UnknownReason`、`record`の返却unionへ追加しない。役割内aliasの異なるraw refはL4 §3.4.1どおり`key_of`前に`Rejected(missing_key)`とする。
 
-K3は§12、K6は§13で詳細化する。K8は本書で`not_designed`。既存契約とoracleはCommon Kernel L4 §18、ならびにPair L9の対応IVを参照する。K10はL4 §14/L9の既存契約を本書§18で下位化する。K1/K2からK5/K6へ渡す境界は§3.2、K3のK5/K6/K7境界は§12、K6のK5/K2接続は§13であり、physical writer、production verifier/reader、未定義owner責務を追加しない。
+K3は§12、K6は§13で詳細化する。K8は本書§17でL4 §18/L9 IV-K8-01–26の既存契約を下位化し、K10は§18でL4 §14/L9 IV-K10-01–14を下位化する。K1/K2からK5/K6へ渡す境界は§3.2、K3のK5/K6/K7境界は§12、K6のK5/K2接続は§13であり、physical writer、production verifier/reader、未定義owner責務を追加しない。
 
 ## 7. 旧HELIX source・保持点・差分理由
 
@@ -666,7 +666,15 @@ K3 IV-K3-17とIV-LDG-03はK7/G5境界の既存traceであり、K7/G5 oracle数�
 
 純粋な候補処理は、明示的に与えられたtyped snapshotの順序、ref identity/digest、集合の重複保持、projection field分離、非肯定の全component保持を比較する範囲である。これらを実行する局所fixtureはK5/K10/K3/K6 ownerのsourceを読んだことや公開APIが接続されたことを示さない。明示source readerがない場合に`Value`、`Positive`、`Observed`を作る既定portは置かない。K5のread/append/restore/project、K3 current permission、K4/current verifier set、K6 receipt、K10 current graph/review_set、SECURITY RecipientMap/RecipientDecl、OS/build declarations、EpochLog、RuntimeLog、物理CAS、internal deploymentの各実owner境界は未接続である。L4/L5/L8/L9にないowner mappingや戻りreasonを新設せず、該当経路の実装・実行はowner返却としてholdする。
 
-K7/G5は本節で関数責務へ下ろした設計候補であり、L6 source実装、L7 unit実行、L9 pass、K7/G5 CI inventory登録、製品のcurrent reader/writer、実deployment、L10達成を示さない。
+K7/G5は本節で関数責務へ下ろした設計候補であり、§15.4に記録したhelper-level部分実装以外のL6実装、115 formal fixtureのL7実行、L9 pass、K7/G5 CI inventory登録、製品のcurrent reader/writer、実deployment、L10達成を示さない。
+
+### 15.4 private helperの限定実装・実行記録
+
+main `27707fe9f1506afaa3ab88b665f655b7212233f9`から分離した候補実装で、`helix/helix-harness/units/common-kernel/src/_k7_g5_private.py`に既存`SegmentHead`/`SubjectRef`とPythonの`str`/`tuple`/`frozenset`だけを比較・保持するprivate helperを置いた。moduleの`__all__`は空であり、公開API、Generation/Epoch/Pointer/RecipientMap等のdomain型、return union、keyless `Unknown`、owner port、外部reader/writer、append/CAS、fence作用は追加していない。
+
+`helix/helix-harness/units/common-kernel/tests/test_k7_g5_private.py`の5件は、L7 §12.5に列挙した3個のK7局所比較（UT-006/033/035）と、既存入力からのG5 identity/class集合保持・一class欠落比較（UT-035/036）を検査する。`python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k7_g5_private.py' -v`は5件成功した。これはL8 formal fixture全体の実行ではなく、115 fixtureはすべて未実行である。helperの実装・test SHA-256はそれぞれ`e13bff0ec554ab8a244949e3f318c86c00e88556ca9286fca51bd409c9b5917c`、`32aebb1851310f7938dd5cbf056f0041f5caafd26a2db8b1737fe5fb6f200ff9`である。
+
+この部分実装は9公開API、K5 source復元・current owner、K3 permission、K4 verifier set、K6 receipt、K10 graph/review set、OS/build declaration、SECURITY recipient source、physical append/CAS、internal deploymentを実装・接続していない。115 L8 formal fixture/L9 oracleの達成、製品動作、L10成立を主張しない。K7/G5 helper suiteは現行CI inventoryに未登録であり、local CIの586 Core discovery identityへ含めない。
 
 ## 16. K9 独立review関数設計
 

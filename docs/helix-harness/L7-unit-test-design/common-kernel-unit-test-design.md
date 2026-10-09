@@ -6,9 +6,9 @@ scope: K1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: `main` at `bd85021c3f08d26b96502f7773372a7538bb38ae` (current integration base; prior bases `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
+base: `main` at `79020598e03fd7234cfa00306f6f6d3a5bd82fd0` (current integration base; prior bases `4a40597efbf867b6b5b5640060b2cac81de56de0`, `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
 
-本書はL6のK1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10公開APIと内部関数を単体fixtureへ対応づけ、現行L4/L9の意味、失敗分類、fixture期待を変更せずL5/L8とのtraceを追加する。K3は194 formal fixtureと26件の別ID回帰method、K4/G3は§11の73 fixture、K5は91 formal IDと24件の補助ID、K6は§10の55個別設計fixtureを記録する。K5-22/23のowner未接続fixture 7件はlocal private-boundary assertionだけを実行し、L8 coverageには含めない。ローカルunit結果はL9合格、owner source接続、製品動作を示さない。K9は§13で87 unique fixtureをtraceする。K8は§14の162個別fixture索引で未実行。K10は§15でL8 §12の69個別fixtureをtraceし、未実行。K6のprivate候補実装と52件の単体実行は§10.1に記録する。43件の局所assertion、2件の部分被覆、10件の未実行fixture ID、7件の別ID回帰を区別し、公開API・owner接続・CI登録は未了である。
+本書はL6のK1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10公開APIと内部関数を単体fixtureへ対応づけ、現行L4/L9の意味、失敗分類、fixture期待を変更せずL5/L8とのtraceを追加する。K3は194 formal fixtureと26件の別ID回帰method、K4/G3は§11の73 fixture、K5は91 formal IDと24件の補助ID、K6は§10の55個別設計fixtureを記録する。K5-22/23のowner未接続fixture 7件はlocal private-boundary assertionだけを実行し、L8 coverageには含めない。ローカルunit結果はL9合格、owner source接続、製品動作を示さない。K9は§13で87 unique fixtureをtraceする。K8は§14の162個別fixture索引、K10は§15の69個別fixture traceを記録し、いずれも未実行。K6のprivate候補実装と52件の単体実行は§10.1に記録する。43件の局所assertion、2件の部分被覆、10件の未実行fixture ID、7件の別ID回帰を区別し、公開API・owner接続・CI登録は未了である。
 
 ## 1. 固定入力とtrace規則
 
@@ -17,7 +17,7 @@ base: `main` at `bd85021c3f08d26b96502f7773372a7538bb38ae` (current integration 
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `d5bb3455526c816b3af965db239c4b56207a884f`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; current main source at `d5bb3455526c816b3af965db239c4b56207a884f`, content SHA-256 `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `55d8ac5a6a29527ae61184351818e25643f69289e0bd35e00cdbc14801d6c915`（L7→L6一方向。L6にL7 SHAは置かない） |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `6270b0d9df663307a32aa1eb588f5b8a2ddee35fd2edc7f42ed4b8d972ab09fe`（L7→L6一方向。L6にL7 SHAは置かない） |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `fcf00128a7503317fa1c779c38cc8df3877b4952`, content SHA-256 `bdac36e29b8cd0a5cec34cedce6d419f5d5ecc8daea70cba851067bcc308dfac`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L8 K4/G3 fixed snapshot | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`, content SHA-256 `9d441f69221eb2800182f08e49c159c271a77eccc482bdbfb45bc960d2b48753`; K4/G3 §7; 73 fixture IDs; historical design input, not run here |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
@@ -323,7 +323,7 @@ K5各fixtureはL6 §7.1の旧asset/path/line/full SHA一覧を起点とし、eve
 - UT-018/019/021–032はprivate preflightの未写像sentinelを検査するだけで、L8の公開append拒否結果は未検証でありformal coverageへ数えない。UT-065もcheckpoint state不一致の補助確認に限り、incremental foldのL8 oracle coverageから除外する。
 - K5は`test_k5.py`に91 formal IDとUT-092–115の24補助IDを記録する。K5-22/23のowner未接続UT-077–083はskipせずlocal private-boundary assertionを実行するが、owner条件自体をhelperが受け取らないためL7 formal coverageへ含めない。UT-094/099/101/103/105/106/109/110/111/112–115の未接続placeholder確認もL7 formal coverageに含めない。今回のfollow-up実行で実際に確かめたmethod数は検証報告に記録し、これをL9結合oracle、公開append実装、K6 raw source観測、runtime/toolchain間の相互運用性と解釈しない。
 - K3は§9.2に194 formal fixtureと26 regression methodの実行記録を限定する。K5の試験実行からK3以外のowner接続やL9合格を推定しない。
-- K3は§9で固定L8 oracleを個別fixture IDへtraceする。L5/L8はPR #2751候補の固定commit/content SHAを歴史的source pinとして参照し、現在mainで更新されるL5/L8本文へのcurrent pinとして扱わない。K8は§14の162個別fixture索引で未実行。K10は本書§15に追補した。K4/G3 fixtureは§11、K6 fixtureは§10に限る設計追補である。
+- K3は§9で固定L8 oracleを個別fixture IDへtraceする。L5/L8はPR #2751候補の固定commit/content SHAを歴史的source pinとして参照し、現在mainで更新されるL5/L8本文へのcurrent pinとして扱わない。K8は§14、K10は§15に個別fixture traceを記録し、いずれも未実行。K4/G3 fixtureは§11、K6 fixtureは§10に限る設計追補である。
 - 先行統合確認ではK1/K2既存suite 199件（K1 117、K2 82）、K3 220件（194 formal + 26 regression）、K5 108件（91 formal + 17補助）を実行し、合計527件が成功した。前回追補時点のsuiteは530 method、523 pass・7 skipだった。現在の追補後suiteは534 method（K1/K2 199、K3 220、K5 115）で、実行結果は534 pass・0 skip。K1/K2 coreおよびtest sourceは変更していない。K3/K5の補助・回帰区分は上記各節に保ち、K5の補助placeholder確認はformal coverageへ加算しない。
 - L7は設計草稿であり、この単体実行はL9統合oracle、owner/source接続、物理読書き、製品動作または外部作用の証明ではない。K3 194個別fixtureとformal mapping外の26回帰methodの候補実装・実行範囲は§9.2に限る。`invalid_digest`/`duplicate_identity`はK2 `KeyOfResult`だけの境界結果で、K1 `ApiBoundaryResult`や`UnknownReason`への追加ではない。
 
@@ -818,7 +818,7 @@ G3-I4 (`HumanInterface`) の全caseは既存authority source/adapterのexact bin
 
 このlocal runは20 fixture IDのpure helper comparison範囲だけを確認した。formal 73 fixtures、K4/G3 public API、owner source、CI inventory/Binding、L9 passは未検証である。
 
-## 12. K7/G5 fixture trace（設計のみ・未実行）
+## 12. K7/G5 fixture trace（formal fixture設計・115件未実行）
 
 本節はL8 §10.1–10.3にある115 fixture IDを一対一でL7 locatorへ展開する。K7は74件（ledger 4件を含む）、G5は41件で、IDは各family内で重複しない。各L8行のbaseline・単独変異・既存期待を下表へ対応づけ、期待自体はL8を正本として保持する。表はunit methodの設計であり、試験を実行した記録ではない。`CK-K7-UT-NNN`はL8本文順の74件、`CK-G5-UT-NNN`は同41件へ一件ずつ割り当てたlocatorである。K3 IV-K3-17とIV-LDG-03は境界oracleのまま保持し、IV-K7/IV-G5の25 oracle数や115 fixture数へ加算しない。
 
@@ -939,6 +939,12 @@ G3-I4 (`HumanInterface`) の全caseは既存authority source/adapterのexact bin
 | `CK-G5-UT-039` | `L8-G5-10-SAME-REV-DIGEST` | `CK-K7G5-FN-11` | IV-G5-10 | BASEでdecl identity/revisionを固定し異digest declaration一件を追加。 | `Unknown(conflict)`。 | 設計・未実行。K2/K6 lookup projection候補のみ。current RecipientDecl/OperationDecl/VerifierSet/K5 restore/K6 receipt owner未接続。 |
 | `CK-G5-UT-040` | `L8-G5-10-DECL-MISSING` | `CK-K7G5-FN-11` | IV-G5-10 | BASEからRecipientDeclの対象identityだけを欠く。 | `Unknown(missing_input)`。 | 設計・未実行。K2/K6 lookup projection候補のみ。current RecipientDecl/OperationDecl/VerifierSet/K5 restore/K6 receipt owner未接続。 |
 | `CK-G5-UT-041` | `L8-G5-10-OLD-RECEIPT-SUBJECT` | `CK-K7G5-FN-11` | IV-G5-10 | current RecipientDeclから作るquery keyを固定し、同じidentityの旧revisionに対するotherwise-valid Value receiptだけを記録集合へ置く。 | K2 lookup `Stale`。old receipt SubjectRefをcurrent declaration refへ置換・流用しない。 | 設計・未実行。K2/K6 lookup projection候補のみ。current RecipientDecl/OperationDecl/VerifierSet/K5 restore/K6 receipt owner未接続。 |
+
+### 12.5 private helperの限定実行記録
+
+`helix/helix-harness/units/common-kernel/tests/test_k7_g5_private.py`で、既存型の値だけを受けるprivate比較helperを5件実行した。対象は`CK-K7-UT-006`（既存`SegmentHead`の一致／expected_headだけを古いprefix tailへ変更（seq=2、entry_digest=entry-2））、`CK-K7-UT-033`（明示済みtarget identityの一致／不一致）、`CK-K7-UT-035`（既存`SubjectRef`完全一致／identity差）、`CK-G5-UT-035`（一identityに二つのclassを保持）、`CK-G5-UT-036`（一class欠落を集合差として検出）である。各検査はhelperのboolまたは`frozenset`だけを確認し、L8の公開API・owner・source入力・期待return全体を実行していない。
+
+この限定実行は115個のL8 formal fixtureの実行ではない。L8 §10.1–10.3の115 IDはすべて未実行であり、25個のL9 oracle、9公開API、owner source、append/CAS、reader/writer、fence、K6 receipt、recipient mapping、CI inventoryにも未接続である。5件はhelper-levelの部分確認で、formal fixture達成やL9合格には数えない。現在のlocal CIはCommon Kernel K1/K2/K3/K5/K6の586 discovery identitiesを対象とし、K7/G5 helper suiteは未登録である。
 
 上表の入力・期待fieldはL8 §10の各行へ対応する。`L9 oracle`列では`IV-K3-17`と`IV-LDG-03`をK7/G5の25 oracleから分けた境界参照として記録した。各baselineと変異は独立したlocatorであり、owner観測をstub作成の`Value`/`Positive`へ置き換えない。owner入力が未接続の公開APIについてL8期待値は設計assertionに限り、実行・合格・owner接続を主張しない。
 
