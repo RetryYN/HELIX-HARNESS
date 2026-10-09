@@ -18,12 +18,12 @@ paired_l5_sha256: `0311794cd1fdb73673449de96bf3ea50d981ce6ed701443ff71292e266e4c
 | 文書 | 固定revision | SHA-256 | テスト設計で使う契約 |
 |---|---|---|---|
 | LABO L4 | main `7f95f61fc1e1ae1dd790fa46581aba34921d73c0` | `6ea7c6497e2349e63ed05a7a686e96e108a769a2ac864cf02295f174c00c6f1a` | L4 §1–5 |
-| LABO L5 | 同上 | `0311794cd1fdb73673449de96bf3ea50d981ce6ed701443ff71292e266e4cc97` | 3 API signatureとpayload |
+| LABO L5 | main `7f95f61fc1e1ae1dd790fa46581aba34921d73c0` | `0311794cd1fdb73673449de96bf3ea50d981ce6ed701443ff71292e266e4cc97` | 3 API signatureとpayload |
 | LABO L6（本pair） | 本PRのcontent HEAD | `58eb09d698b64f7e21230ae18e9f781ca53b223e2f0e525062e401d751943070` | 関数とprivate helper境界 |
-| LABO L8 | 同上 | `1d5d8e6b8046c8776493cf7ba0019efa1f33d8c2f14064557906d513f0e00d7a` | baseline・単一変異・期待の正本 |
-| LABO L9 | 同上 | `a19f842cd6fe9576a0984651cd4aff554bb9355304c9b1f619480cd9d7867973` | 35 verifier oracle |
-| Common Kernel L4 | 同上 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | K1/K2結果とkey境界 |
-| Common Kernel L5 | 同上 | `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69` | K1/K2 API/型 |
+| LABO L8 | main `7f95f61fc1e1ae1dd790fa46581aba34921d73c0` | `1d5d8e6b8046c8776493cf7ba0019efa1f33d8c2f14064557906d513f0e00d7a` | baseline・単一変異・期待の正本 |
+| LABO L9 | main `7f95f61fc1e1ae1dd790fa46581aba34921d73c0` | `a19f842cd6fe9576a0984651cd4aff554bb9355304c9b1f619480cd9d7867973` | 35 verifier oracle |
+| Common Kernel L4 | main `7f95f61fc1e1ae1dd790fa46581aba34921d73c0` | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | K1/K2結果とkey境界 |
+| Common Kernel L5 | main `7f95f61fc1e1ae1dd790fa46581aba34921d73c0` | `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69` | K1/K2 API/型 |
 
 固定親はL4でpinされたL3/L10本文と`HELIXLABO-L2-001`/`HELIXLABO-L2-011`である。Common Kernel L4 crosswalkから返却されたK8 typo PR #2779の3 pinはこのL7で個別照合していないため、一致を主張しない。各fixtureのbaseline・一変異・expected class/reason・構造assertionはL8の同じfixture IDの行を唯一の正本とする。L7はそのcellを再解釈したり、fixture IDからexpectedを推測したりしない。
 
