@@ -5,7 +5,7 @@ owner: HELIX-HARNESS
 scope: K1/K2/K3/K5
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `dc803dacfbbe56f6daf7724832b1bfa238ff2087`
+base: `main` at `f0ba62ce833463eb5f747ac4b95659ecea49928a`
 
 本書は現行Common Kernel L4 K1/K2/K3/K5の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記すが、実装や実行結果は含まない。K4/K6–K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
 
@@ -23,6 +23,8 @@ base: `main` at `dc803dacfbbe56f6daf7724832b1bfa238ff2087`
 K1/K2はL4 §1.3の共通部品、K3の直接親はL4 §16.1、K5の直接親は§9.2のcrosswalkであり、単一のまとめ親を置かない。HARNESS Stage 1の下流traceは固定されたL2-010/011/023に限る。各契約の親は対応するL4 crosswalkに従い、契約境界上のK1-I6→K2、K2 record→K5、K3→K5/K6/K7参照は追加の親要求にしない。後続stageを含む現在文書全体のbytesをStage 1 approved inputと扱わない。
 
 旧sourceは再構築原則に従って先に読んだ。旧measurement evaluator/canonical digestに加え、K5のevent/projection/checkpoint source・failure・consumerを下記§7/§7.1に対応づける。旧source/test/runtime/CLI/CIは一切実行していない。旧fixtureの歴史的passは新しい実行根拠ではない。
+
+K3/K5 fixtureのL8参照はPR #2751の固定commit/blobに対する歴史的source pinである。現在のL8本文のPaired L7 pinを参照する逆向きのcurrent SHAとして扱わない。K3/K5 §5.1/§5.2のfixture本文は現mainでも同一であり、L8のcurrent Paired L7 pinは本PRのL7へ更新する。
 
 ## 2. 公開型と関数signature
 
