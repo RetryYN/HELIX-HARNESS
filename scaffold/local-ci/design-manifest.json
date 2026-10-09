@@ -2304,6 +2304,36 @@
               "ids": [
                 "LC-DESIGN-001"
               ]
+            },
+            {
+              "literal": "K4/G3 fixed destination inventory",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
+            },
+            {
+              "literal": "K4/G3 extra ID拒否",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
+            },
+            {
+              "literal": "K4/G3 duplicate row拒否",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
+            },
+            {
+              "literal": "K4/G3 edge pair ownership",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
+            },
+            {
+              "literal": "K4/G3 L5 locator/range completeness",
+              "ids": [
+                "LC-DESIGN-001"
+              ]
             }
           ]
         },
@@ -2365,7 +2395,7 @@
               ]
             },
             {
-              "literal": "`CASE-L8-LCI-12`〜`-20`, `-53`〜`-54`, `-62`〜`-66`, `-68`〜`-73`, `-84`〜`-94`",
+              "literal": "`CASE-L8-LCI-12`〜`-20`, `-53`〜`-54`, `-62`〜`-66`, `-68`〜`-73`, `-84`〜`-95`, `-113`〜`-117`",
               "ids": [
                 "CASE-L8-LCI-12",
                 "CASE-L8-LCI-13",
@@ -2399,7 +2429,13 @@
                 "CASE-L8-LCI-91",
                 "CASE-L8-LCI-92",
                 "CASE-L8-LCI-93",
-                "CASE-L8-LCI-94"
+                "CASE-L8-LCI-94",
+                "CASE-L8-LCI-95",
+                "CASE-L8-LCI-113",
+                "CASE-L8-LCI-114",
+                "CASE-L8-LCI-115",
+                "CASE-L8-LCI-116",
+                "CASE-L8-LCI-117"
               ]
             },
             {
@@ -2691,6 +2727,13 @@
               ]
             },
             {
+              "literal": "`UT-LCI-28`, `UT-LCI-83`",
+              "ids": [
+                "UT-LCI-28",
+                "UT-LCI-83"
+              ]
+            },
+            {
               "literal": "`UT-LCI-29`",
               "ids": [
                 "UT-LCI-29"
@@ -2700,6 +2743,13 @@
               "literal": "`UT-LCI-30`",
               "ids": [
                 "UT-LCI-30"
+              ]
+            },
+            {
+              "literal": "`UT-LCI-31`, `UT-LCI-76`",
+              "ids": [
+                "UT-LCI-31",
+                "UT-LCI-76"
               ]
             },
             {
@@ -2725,20 +2775,6 @@
               "literal": "`UT-LCI-35`",
               "ids": [
                 "UT-LCI-35"
-              ]
-            },
-            {
-              "literal": "`UT-LCI-28`, `UT-LCI-83`",
-              "ids": [
-                "UT-LCI-28",
-                "UT-LCI-83"
-              ]
-            },
-            {
-              "literal": "`UT-LCI-31`, `UT-LCI-76`",
-              "ids": [
-                "UT-LCI-31",
-                "UT-LCI-76"
               ]
             },
             {
@@ -2862,7 +2898,7 @@
               ]
             },
             {
-              "literal": "`UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-87`〜`UT-LCI-88`, `UT-LCI-90`〜`UT-LCI-91`, `UT-LCI-96`〜`UT-LCI-97`, `UT-LCI-99`",
+              "literal": "`UT-LCI-19`, `UT-LCI-57`, `UT-LCI-63`〜`UT-LCI-64`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-87`〜`UT-LCI-88`, `UT-LCI-90`〜`UT-LCI-91`, `UT-LCI-96`〜`UT-LCI-97`, `UT-LCI-99`, `UT-LCI-115`, `UT-LCI-119`",
               "ids": [
                 "UT-LCI-19",
                 "UT-LCI-57",
@@ -2882,11 +2918,13 @@
                 "UT-LCI-91",
                 "UT-LCI-96",
                 "UT-LCI-97",
-                "UT-LCI-99"
+                "UT-LCI-99",
+                "UT-LCI-115",
+                "UT-LCI-119"
               ]
             },
             {
-              "literal": "`UT-LCI-23`, `UT-LCI-36`, `UT-LCI-58`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-91`〜`UT-LCI-92`, `UT-LCI-94`〜`UT-LCI-95`, `UT-LCI-98`",
+              "literal": "`UT-LCI-23`, `UT-LCI-36`, `UT-LCI-58`, `UT-LCI-65`, `UT-LCI-69`〜`UT-LCI-75`, `UT-LCI-91`〜`UT-LCI-92`, `UT-LCI-94`〜`UT-LCI-95`, `UT-LCI-98`, `UT-LCI-116`〜`UT-LCI-117`",
               "ids": [
                 "UT-LCI-23",
                 "UT-LCI-36",
@@ -2903,11 +2941,13 @@
                 "UT-LCI-92",
                 "UT-LCI-94",
                 "UT-LCI-95",
-                "UT-LCI-98"
+                "UT-LCI-98",
+                "UT-LCI-116",
+                "UT-LCI-117"
               ]
             },
             {
-              "literal": "`UT-LCI-20`, `UT-LCI-46`, `UT-LCI-47`, `UT-LCI-66`〜`UT-LCI-68`, `UT-LCI-92`〜`UT-LCI-95`, `UT-LCI-97`〜`UT-LCI-99`",
+              "literal": "`UT-LCI-20`, `UT-LCI-46`, `UT-LCI-47`, `UT-LCI-66`〜`UT-LCI-68`, `UT-LCI-92`〜`UT-LCI-95`, `UT-LCI-97`〜`UT-LCI-99`, `UT-LCI-118`",
               "ids": [
                 "UT-LCI-20",
                 "UT-LCI-46",
@@ -2921,7 +2961,8 @@
                 "UT-LCI-95",
                 "UT-LCI-97",
                 "UT-LCI-98",
-                "UT-LCI-99"
+                "UT-LCI-99",
+                "UT-LCI-118"
               ]
             },
             {
@@ -2986,6 +3027,14 @@
           "range_id": "ck-l5-k5-api",
           "start_heading": "#### 6.2.2 公開関数とprivate helper",
           "end_heading": "#### 6.2.3 不変条件の分解",
+          "grammar": "exact_heading",
+          "id_column": null,
+          "literal_expansions": []
+        },
+        {
+          "range_id": "ck-l5-k4-g3-api",
+          "start_heading": "## 8. K4/G3 義務評価API",
+          "end_heading": "## K4/G3 API 範囲終端",
           "grammar": "exact_heading",
           "id_column": null,
           "literal_expansions": []
@@ -3981,6 +4030,14 @@
           "range_id": "ck-l8-k5-fixtures",
           "start_heading": "### 5.2 K5 fixtures",
           "end_heading": "## 6. K1/K2 unit範囲と登録oracleの境界",
+          "grammar": "table_column",
+          "id_column": 1,
+          "literal_expansions": []
+        },
+        {
+          "range_id": "ck-l8-k4-g3-fixtures",
+          "start_heading": "## 7. K4/G3 fixtures",
+          "end_heading": "## K4/G3 fixture 範囲終端",
           "grammar": "table_column",
           "id_column": 1,
           "literal_expansions": []
@@ -5009,6 +5066,251 @@
               "ids": [
                 "#### 6.2.2 公開関数とprivate helper",
                 "### 9.5 API境界"
+              ]
+            }
+          ]
+        },
+        {
+          "range_id": "ck-l8-k4-g3-l9-oracles",
+          "start_heading": "## 7. K4/G3 fixtures",
+          "end_heading": "## K4/G3 fixture 範囲終端",
+          "grammar": "table_column",
+          "id_column": 2,
+          "literal_expansions": []
+        },
+        {
+          "range_id": "ck-l8-k4-g3-l4-l5-contracts",
+          "start_heading": "## 7. K4/G3 fixtures",
+          "end_heading": "## K4/G3 fixture 範囲終端",
+          "grammar": "table_column",
+          "id_column": 3,
+          "literal_expansions": [
+            {
+              "literal": "`check_view`; K4-I1",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I1"
+              ]
+            },
+            {
+              "literal": "`derive`; G3-I4",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I4"
+              ]
+            },
+            {
+              "literal": "`evaluate`/`reverify_view`; K4-I4/K6-I10",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I4",
+                "K6-I10"
+              ]
+            },
+            {
+              "literal": "`evaluate`; G3-I1",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I1"
+              ]
+            },
+            {
+              "literal": "`evaluate`; G3-I1/K2-I2",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I1",
+                "K2-I2"
+              ]
+            },
+            {
+              "literal": "`evaluate`; G3-I2",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I2"
+              ]
+            },
+            {
+              "literal": "`evaluate`; G3-I3",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I3"
+              ]
+            },
+            {
+              "literal": "`evaluate`; G3-I4",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I4"
+              ]
+            },
+            {
+              "literal": "`evaluate`; G3-I4/K2-I2",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I4",
+                "K2-I2"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K2-I1",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K2-I1"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K2-I2",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K2-I2"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I1",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I1"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I1 / K1-I4",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K1-I4",
+                "K4-I1"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I2",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I2"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I3",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I3"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I3 / K1-I5",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K1-I5",
+                "K4-I3"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I4",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I4"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I4 / K2-I2",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K2-I2",
+                "K4-I4"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I4/G3-I2",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I2",
+                "K4-I4"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I4/K6-I6",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I4",
+                "K6-I6"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I4/K6-I6/K1-I4",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K1-I4",
+                "K4-I4",
+                "K6-I6"
+              ]
+            },
+            {
+              "literal": "`evaluate`; K4-I6",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I6"
+              ]
+            },
+            {
+              "literal": "`inherit`; K4-I5",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I5"
+              ]
+            },
+            {
+              "literal": "`inherit`; K4-I5/K2-I2",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K2-I2",
+                "K4-I5"
+              ]
+            },
+            {
+              "literal": "`receive`; K4-I5",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I5"
+              ]
+            },
+            {
+              "literal": "`reverify_view`; G3-I3",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I3"
+              ]
+            },
+            {
+              "literal": "`reverify_view`; K4-I4",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "K4-I4"
+              ]
+            },
+            {
+              "literal": "`reverify_view`; K4-I4/G3-I2",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I2",
+                "K4-I4"
+              ]
+            },
+            {
+              "literal": "`ObligationSet` count observation; G3-I5",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I5"
+              ]
+            },
+            {
+              "literal": "L4 API-surface structural check; G3-I5",
+              "ids": [
+                "## 8. K4/G3 義務評価API",
+                "G3-I5"
+              ]
+            },
+            {
+              "literal": "`evaluate` / `ObligationView`構造",
+              "ids": [
+                "## 8. K4/G3 義務評価API"
               ]
             }
           ]
@@ -19173,6 +19475,1150 @@
         "verifier_id": "UT-LCI-113",
         "outcome_column": 4
       }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-01-COMPLETE",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-01-COMPLETE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-01-COMPLETE",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-01-MISSING",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-01-MISSING",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-01-MISSING",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-01-EXTRA",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-01-EXTRA",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-01-EXTRA",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-01-EMPTY-SET",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-01-EMPTY-SET",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-01-EMPTY-SET",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-01-NO-CALLER-SET",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-01-NO-CALLER-SET",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-01-NO-CALLER-SET",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-EXACT",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-02-EXACT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-02-EXACT",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-SOURCE-REV-VALUE",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-02-SOURCE-REV-VALUE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-02-SOURCE-REV-VALUE",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-SOURCE-REV-NONVALUE",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-02-SOURCE-REV-NONVALUE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-02-SOURCE-REV-NONVALUE",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-SOURCE-SAME-REV-DIGEST",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-02-SOURCE-SAME-REV-DIGEST",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-02-SOURCE-SAME-REV-DIGEST",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-RULE-VERSION",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-02-RULE-VERSION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-02-RULE-VERSION",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-RULE-SAME-VERSION-DIGEST",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-02-RULE-SAME-VERSION-DIGEST",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-02-RULE-SAME-VERSION-DIGEST",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-SOURCE-IDENTITY-ADD",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-02-SOURCE-IDENTITY-ADD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-02-SOURCE-IDENTITY-ADD",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-SOURCE-IDENTITY-REMOVE",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-02-SOURCE-IDENTITY-REMOVE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-02-SOURCE-IDENTITY-REMOVE",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-03-OPERATION-BASE-KEYS",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-03-OPERATION-BASE-KEYS",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-03-OPERATION-BASE-KEYS",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-03-DECL-REVISION",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-03-DECL-REVISION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-03-DECL-REVISION",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-03-MISSING-DECL",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-03-MISSING-DECL",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-03-MISSING-DECL",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-04-UNIT-POSITIVE-COMPOSITE-MISSING",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-04-UNIT-POSITIVE-COMPOSITE-MISSING",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-04-UNIT-POSITIVE-COMPOSITE-MISSING",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-04-OWN-RECEIPTS",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-04-OWN-RECEIPTS",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-04-OWN-RECEIPTS",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-NA-VALID",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-05-NA-VALID",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-05-NA-VALID",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-DEFERRED-VALID",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-05-DEFERRED-VALID",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-05-DEFERRED-VALID",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-NA-MISSING-REASON",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-05-NA-MISSING-REASON",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-05-NA-MISSING-REASON",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-NA-MISSING-AUTHORITY",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-05-NA-MISSING-AUTHORITY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-05-NA-MISSING-AUTHORITY",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-NA-MISSING-REENTRY",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-05-NA-MISSING-REENTRY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-05-NA-MISSING-REENTRY",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-DEFERRED-MISSING-TARGET",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-05-DEFERRED-MISSING-TARGET",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-05-DEFERRED-MISSING-TARGET",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-DEFERRED-MISSING-OWNER",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-05-DEFERRED-MISSING-OWNER",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-05-DEFERRED-MISSING-OWNER",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-DEFERRED-MISSING-DISCHARGE",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-05-DEFERRED-MISSING-DISCHARGE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-05-DEFERRED-MISSING-DISCHARGE",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-DEFERRED-DROPPED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-05-DEFERRED-DROPPED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-05-DEFERRED-DROPPED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-VERIFIERS-MATCH",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-06-VERIFIERS-MATCH",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-06-VERIFIERS-MATCH",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-REQUIRED-FOR-EXTRA",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-06-REQUIRED-FOR-EXTRA",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-06-REQUIRED-FOR-EXTRA",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-OBLIGATION-EXTRA",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-06-OBLIGATION-EXTRA",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-06-OBLIGATION-EXTRA",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-INNER-NEGATIVE",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-06-INNER-NEGATIVE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-06-INNER-NEGATIVE",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-INNER-UNKNOWN",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-06-INNER-UNKNOWN",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-06-INNER-UNKNOWN",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-INNER-SET-REASON",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-06-INNER-SET-REASON",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-06-INNER-SET-REASON",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-DETERMINISTIC-NOT-REVERIFIED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-07-DETERMINISTIC-NOT-REVERIFIED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-07-DETERMINISTIC-NOT-REVERIFIED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-REVERIFY-MATCH",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-07-REVERIFY-MATCH",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-07-REVERIFY-MATCH",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-LLM-EVALUATE",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-07-LLM-EVALUATE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-07-LLM-EVALUATE",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-LLM-REVERIFY",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-07-LLM-REVERIFY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-07-LLM-REVERIFY",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-REVERIFY-MISMATCH",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-07-REVERIFY-MISMATCH",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-07-REVERIFY-MISMATCH",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-ASSURANCE-PRESERVED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-07-ASSURANCE-PRESERVED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-07-ASSURANCE-PRESERVED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-08-INHERIT-UNOBSERVED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-08-INHERIT-UNOBSERVED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-08-INHERIT-UNOBSERVED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-08-POSITIVE-NOT-INHERITED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-08-POSITIVE-NOT-INHERITED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-08-POSITIVE-NOT-INHERITED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-08-OLD-ABSENT-UNFINISHED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-08-OLD-ABSENT-UNFINISHED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-08-OLD-ABSENT-UNFINISHED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-RECEIVE-MATCH",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-09-RECEIVE-MATCH",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-09-RECEIVE-MATCH",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISSING-NEW-UNFINISHED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-09-MISSING-NEW-UNFINISHED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-09-MISSING-NEW-UNFINISHED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISSING-OLD-UNFINISHED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-09-MISSING-OLD-UNFINISHED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-09-MISSING-OLD-UNFINISHED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-EXTRA-UNFINISHED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-09-EXTRA-UNFINISHED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-09-EXTRA-UNFINISHED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISSING-NEW-INHERITED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-09-MISSING-NEW-INHERITED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-09-MISSING-NEW-INHERITED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISSING-OLD-INHERITED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-09-MISSING-OLD-INHERITED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-09-MISSING-OLD-INHERITED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISMATCH-NEW-INHERITED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-09-MISMATCH-NEW-INHERITED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-09-MISMATCH-NEW-INHERITED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISMATCH-OLD-INHERITED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-09-MISMATCH-OLD-INHERITED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-09-MISMATCH-OLD-INHERITED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-10-UNKNOWN-RETAINED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-K4-10-UNKNOWN-RETAINED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-K4-10-UNKNOWN-RETAINED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-01-KIND-FIXED",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-01-KIND-FIXED",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-01-KIND-FIXED",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-01-NEW-REVISION",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-01-NEW-REVISION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-01-NEW-REVISION",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-01-KIND-REVISION",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-01-KIND-REVISION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-01-KIND-REVISION",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-02-MECHANICAL-DETERMINISTIC",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-02-MECHANICAL-DETERMINISTIC",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-02-MECHANICAL-DETERMINISTIC",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-02-MECHANICAL-NONDETERMINISTIC",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-02-MECHANICAL-NONDETERMINISTIC",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-02-MECHANICAL-NONDETERMINISTIC",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-03-LLM-ASSURANCE",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-03-LLM-ASSURANCE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-03-LLM-ASSURANCE",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-03-LLM-UNKNOWN",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-03-LLM-UNKNOWN",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-03-LLM-UNKNOWN",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-ACCEPTED-MATCH",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-ACCEPTED-MATCH",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-ACCEPTED-MATCH",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-NO-RECORD",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-NO-RECORD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-NO-RECORD",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-TARGET-IDENTITY",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-TARGET-IDENTITY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-TARGET-IDENTITY",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-SCOPE",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-SCOPE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-SCOPE",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-DECISION-KIND",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-DECISION-KIND",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-DECISION-KIND",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-PENDING",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-PENDING",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-PENDING",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-OLD-REVISION",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-OLD-REVISION",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-OLD-REVISION",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-SAME-REV-DIGEST",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-SAME-REV-DIGEST",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-SAME-REV-DIGEST",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-REJECTED-REQUIRES-POSITIVE",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-REJECTED-REQUIRES-POSITIVE",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-REJECTED-REQUIRES-POSITIVE",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-REJECTED-RECORD-ONLY",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-REJECTED-RECORD-ONLY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-REJECTED-RECORD-ONLY",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-MACHINE-NOT-HUMAN",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-MACHINE-NOT-HUMAN",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-MACHINE-NOT-HUMAN",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-UNAUTHORIZED-KIND",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-UNAUTHORIZED-KIND",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-UNAUTHORIZED-KIND",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-05-COUNTS-ONLY",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-05-COUNTS-ONLY",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-05-COUNTS-ONLY",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-05-NO-THRESHOLD",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-05-NO-THRESHOLD",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-05-NO-THRESHOLD",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-RECORD-ONLY-NO-ACCEPTANCE-OUTPUT",
+      "source_id": "## 8. K4/G3 義務評価API",
+      "source_path": "docs/helix-harness/L5-detail-design/common-kernel.md",
+      "verifier_id": "L8-G3-04-RECORD-ONLY-NO-ACCEPTANCE-OUTPUT",
+      "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
+        "range_id": "ck-l8-k4-g3-fixtures",
+        "verifier_id": "L8-G3-04-RECORD-ONLY-NO-ACCEPTANCE-OUTPUT",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-87",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-87",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-87",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-88",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-88",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-88",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-89",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-89",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-89",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-90",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-90",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-90",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-DESIGN-001.IV-LCI-91",
+      "source_id": "LC-DESIGN-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-91",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-fixture-definitions",
+        "verifier_id": "IV-LCI-91",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-113",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-113",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-113",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-114",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-114",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-114",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-115",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-115",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-115",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-116",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-116",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-116",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-03.CASE-L8-LCI-117",
+      "source_id": "D-LCI-03",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-117",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-117",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09a.UT-LCI-115",
+      "source_id": "F-LCI-09a",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-115",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-115",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09a.UT-LCI-119",
+      "source_id": "F-LCI-09a",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-119",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-119",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09b.UT-LCI-116",
+      "source_id": "F-LCI-09b",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-116",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-116",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09b.UT-LCI-117",
+      "source_id": "F-LCI-09b",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-117",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-117",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-09c.UT-LCI-118",
+      "source_id": "F-LCI-09c",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-118",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-unit-oracles",
+        "verifier_id": "UT-LCI-118",
+        "outcome_column": 4
+      }
     }
   ],
   "coverage_dispositions": [
@@ -20508,7 +21954,12 @@
         "edge.local.LC-DESIGN-001.IV-LCI-69",
         "edge.local.LC-DESIGN-001.IV-LCI-70",
         "edge.local.LC-DESIGN-001.IV-LCI-71",
-        "edge.local.LC-DESIGN-001.IV-LCI-72"
+        "edge.local.LC-DESIGN-001.IV-LCI-72",
+        "edge.local.LC-DESIGN-001.IV-LCI-87",
+        "edge.local.LC-DESIGN-001.IV-LCI-88",
+        "edge.local.LC-DESIGN-001.IV-LCI-89",
+        "edge.local.LC-DESIGN-001.IV-LCI-90",
+        "edge.local.LC-DESIGN-001.IV-LCI-91"
       ]
     },
     {
@@ -20587,7 +22038,12 @@
         "edge.local.D-LCI-03.CASE-L8-LCI-92",
         "edge.local.D-LCI-03.CASE-L8-LCI-93",
         "edge.local.D-LCI-03.CASE-L8-LCI-94",
-        "edge.local.D-LCI-03.CASE-L8-LCI-95"
+        "edge.local.D-LCI-03.CASE-L8-LCI-95",
+        "edge.local.D-LCI-03.CASE-L8-LCI-113",
+        "edge.local.D-LCI-03.CASE-L8-LCI-114",
+        "edge.local.D-LCI-03.CASE-L8-LCI-115",
+        "edge.local.D-LCI-03.CASE-L8-LCI-116",
+        "edge.local.D-LCI-03.CASE-L8-LCI-117"
       ]
     },
     {
@@ -20783,7 +22239,9 @@
         "edge.local.F-LCI-09a.UT-LCI-91",
         "edge.local.F-LCI-09a.UT-LCI-96",
         "edge.local.F-LCI-09a.UT-LCI-97",
-        "edge.local.F-LCI-09a.UT-LCI-99"
+        "edge.local.F-LCI-09a.UT-LCI-99",
+        "edge.local.F-LCI-09a.UT-LCI-115",
+        "edge.local.F-LCI-09a.UT-LCI-119"
       ]
     },
     {
@@ -20806,7 +22264,9 @@
         "edge.local.F-LCI-09b.UT-LCI-92",
         "edge.local.F-LCI-09b.UT-LCI-94",
         "edge.local.F-LCI-09b.UT-LCI-95",
-        "edge.local.F-LCI-09b.UT-LCI-98"
+        "edge.local.F-LCI-09b.UT-LCI-98",
+        "edge.local.F-LCI-09b.UT-LCI-116",
+        "edge.local.F-LCI-09b.UT-LCI-117"
       ]
     },
     {
@@ -20826,7 +22286,8 @@
         "edge.local.F-LCI-09c.UT-LCI-95",
         "edge.local.F-LCI-09c.UT-LCI-97",
         "edge.local.F-LCI-09c.UT-LCI-98",
-        "edge.local.F-LCI-09c.UT-LCI-99"
+        "edge.local.F-LCI-09c.UT-LCI-99",
+        "edge.local.F-LCI-09c.UT-LCI-118"
       ]
     },
     {
@@ -21437,6 +22898,85 @@
         "edge.local.F-LCI-10.UT-LCI-111",
         "edge.local.F-LCI-10.UT-LCI-112",
         "edge.local.F-LCI-10.UT-LCI-113"
+      ]
+    },
+    {
+      "source_id": "## 8. K4/G3 義務評価API",
+      "state": "mapped",
+      "edge_ids": [
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-01-COMPLETE",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-01-MISSING",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-01-EXTRA",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-01-EMPTY-SET",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-01-NO-CALLER-SET",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-EXACT",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-SOURCE-REV-VALUE",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-SOURCE-REV-NONVALUE",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-SOURCE-SAME-REV-DIGEST",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-RULE-VERSION",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-RULE-SAME-VERSION-DIGEST",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-SOURCE-IDENTITY-ADD",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-02-SOURCE-IDENTITY-REMOVE",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-03-OPERATION-BASE-KEYS",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-03-DECL-REVISION",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-03-MISSING-DECL",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-04-UNIT-POSITIVE-COMPOSITE-MISSING",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-04-OWN-RECEIPTS",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-NA-VALID",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-DEFERRED-VALID",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-NA-MISSING-REASON",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-NA-MISSING-AUTHORITY",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-NA-MISSING-REENTRY",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-DEFERRED-MISSING-TARGET",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-DEFERRED-MISSING-OWNER",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-DEFERRED-MISSING-DISCHARGE",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-05-DEFERRED-DROPPED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-VERIFIERS-MATCH",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-REQUIRED-FOR-EXTRA",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-OBLIGATION-EXTRA",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-INNER-NEGATIVE",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-INNER-UNKNOWN",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-06-INNER-SET-REASON",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-DETERMINISTIC-NOT-REVERIFIED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-REVERIFY-MATCH",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-LLM-EVALUATE",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-LLM-REVERIFY",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-REVERIFY-MISMATCH",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-07-ASSURANCE-PRESERVED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-08-INHERIT-UNOBSERVED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-08-POSITIVE-NOT-INHERITED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-08-OLD-ABSENT-UNFINISHED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-RECEIVE-MATCH",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISSING-NEW-UNFINISHED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISSING-OLD-UNFINISHED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-EXTRA-UNFINISHED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISSING-NEW-INHERITED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISSING-OLD-INHERITED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISMATCH-NEW-INHERITED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-09-MISMATCH-OLD-INHERITED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-K4-10-UNKNOWN-RETAINED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-01-KIND-FIXED",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-01-NEW-REVISION",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-01-KIND-REVISION",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-02-MECHANICAL-DETERMINISTIC",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-02-MECHANICAL-NONDETERMINISTIC",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-03-LLM-ASSURANCE",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-03-LLM-UNKNOWN",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-ACCEPTED-MATCH",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-NO-RECORD",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-TARGET-IDENTITY",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-SCOPE",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-DECISION-KIND",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-PENDING",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-OLD-REVISION",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-SAME-REV-DIGEST",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-REJECTED-REQUIRES-POSITIVE",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-REJECTED-RECORD-ONLY",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-MACHINE-NOT-HUMAN",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-UNAUTHORIZED-KIND",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-05-COUNTS-ONLY",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-05-NO-THRESHOLD",
+        "edge.ck.synthetic.ck-l8-k4-g3-fixtures.L8-G3-04-RECORD-ONLY-NO-ACCEPTANCE-OUTPUT"
       ]
     }
   ],

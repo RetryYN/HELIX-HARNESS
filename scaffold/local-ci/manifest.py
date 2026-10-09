@@ -39,7 +39,7 @@ REQUIRED_SOURCE_IDS_BY_PATH = {
         "RL-C1", "RL-C2", "RL-C3", "RL-C4", "RL-C5", "RL-C6", "RL-C7", "RL-R1", "RL-R2", "RL-R3", "RL-R4", "RL-R5", "RL-R6", "RL-R7", "RL-R8", "RL-V1", "RL-V2", "RL-V3", "RL-V4", "RL-V5", "RL-V6", "RL-P1", "RL-P2", "RL-P3", "RL-P4", "RL-P5", "RL-P6", "RL-P7", "RL-P8", "RL-P9", "RL-D1", "RL-D2", "RL-D3", "RL-D4", "RL-D5", "RL-T1", "RL-T2", "RL-T3", "RL-K1", "RL-K2", "RL-K3", "### 4.1 型", "### 6.1 符号化 `enc`",
     )),
     "docs/helix-harness/L5-detail-design/common-kernel.md": frozenset((
-        "### 3.2 K1 API contract", "### 3.4 K2 API contract", "#### 6.1.3 K3 function/API contract", "#### 6.2.2 公開関数とprivate helper",
+        "### 3.2 K1 API contract", "### 3.4 K2 API contract", "#### 6.1.3 K3 function/API contract", "#### 6.2.2 公開関数とprivate helper", "## 8. K4/G3 義務評価API",
     )),
     "docs/helix-os/L4-basic-design/local-ci.md": frozenset(("LC-SCF-001", "LC-SCF-002", "LC-GOV-001", "LC-DIFF-001", "LC-DESIGN-001", "LC-STAGE1-L7-001", "#### 実行snapshotとprocess境界", "## 3. GitHub Actions provider境界", "## 4. 実装技術の選択")),
     "docs/helix-os/L5-detail-design/local-ci-detail-design.md": frozenset(("D-LCI-01", "D-LCI-02", "D-LCI-03", "D-LCI-04", "D-LCI-05", "D-LCI-06")),
@@ -504,7 +504,82 @@ EXPECTED_CK_K5_VERIFIER_IDS = frozenset((
     "L8-K5-17-SCOPE-WHOLE-UNOBSERVED",
     "L8-K5-21-CONFLICT-B",
 ))
-EXPECTED_CK_VERIFIER_IDS = EXPECTED_CK_K1_K2_VERIFIER_IDS | EXPECTED_CK_K3_VERIFIER_IDS | EXPECTED_CK_K5_VERIFIER_IDS
+EXPECTED_CK_K4_G3_VERIFIER_IDS = frozenset((
+    'L8-K4-01-COMPLETE',
+    'L8-K4-01-MISSING',
+    'L8-K4-01-EXTRA',
+    'L8-K4-01-EMPTY-SET',
+    'L8-K4-01-NO-CALLER-SET',
+    'L8-K4-02-EXACT',
+    'L8-K4-02-SOURCE-REV-VALUE',
+    'L8-K4-02-SOURCE-REV-NONVALUE',
+    'L8-K4-02-SOURCE-SAME-REV-DIGEST',
+    'L8-K4-02-RULE-VERSION',
+    'L8-K4-02-RULE-SAME-VERSION-DIGEST',
+    'L8-K4-02-SOURCE-IDENTITY-ADD',
+    'L8-K4-02-SOURCE-IDENTITY-REMOVE',
+    'L8-K4-03-OPERATION-BASE-KEYS',
+    'L8-K4-03-DECL-REVISION',
+    'L8-K4-03-MISSING-DECL',
+    'L8-K4-04-UNIT-POSITIVE-COMPOSITE-MISSING',
+    'L8-K4-04-OWN-RECEIPTS',
+    'L8-K4-05-NA-VALID',
+    'L8-K4-05-DEFERRED-VALID',
+    'L8-K4-05-NA-MISSING-REASON',
+    'L8-K4-05-NA-MISSING-AUTHORITY',
+    'L8-K4-05-NA-MISSING-REENTRY',
+    'L8-K4-05-DEFERRED-MISSING-TARGET',
+    'L8-K4-05-DEFERRED-MISSING-OWNER',
+    'L8-K4-05-DEFERRED-MISSING-DISCHARGE',
+    'L8-K4-05-DEFERRED-DROPPED',
+    'L8-K4-06-VERIFIERS-MATCH',
+    'L8-K4-06-REQUIRED-FOR-EXTRA',
+    'L8-K4-06-OBLIGATION-EXTRA',
+    'L8-K4-06-INNER-NEGATIVE',
+    'L8-K4-06-INNER-UNKNOWN',
+    'L8-K4-06-INNER-SET-REASON',
+    'L8-K4-07-DETERMINISTIC-NOT-REVERIFIED',
+    'L8-K4-07-REVERIFY-MATCH',
+    'L8-K4-07-LLM-EVALUATE',
+    'L8-K4-07-LLM-REVERIFY',
+    'L8-K4-07-REVERIFY-MISMATCH',
+    'L8-K4-07-ASSURANCE-PRESERVED',
+    'L8-K4-08-INHERIT-UNOBSERVED',
+    'L8-K4-08-POSITIVE-NOT-INHERITED',
+    'L8-K4-08-OLD-ABSENT-UNFINISHED',
+    'L8-K4-09-RECEIVE-MATCH',
+    'L8-K4-09-MISSING-NEW-UNFINISHED',
+    'L8-K4-09-MISSING-OLD-UNFINISHED',
+    'L8-K4-09-EXTRA-UNFINISHED',
+    'L8-K4-09-MISSING-NEW-INHERITED',
+    'L8-K4-09-MISSING-OLD-INHERITED',
+    'L8-K4-09-MISMATCH-NEW-INHERITED',
+    'L8-K4-09-MISMATCH-OLD-INHERITED',
+    'L8-K4-10-UNKNOWN-RETAINED',
+    'L8-G3-01-KIND-FIXED',
+    'L8-G3-01-NEW-REVISION',
+    'L8-G3-01-KIND-REVISION',
+    'L8-G3-02-MECHANICAL-DETERMINISTIC',
+    'L8-G3-02-MECHANICAL-NONDETERMINISTIC',
+    'L8-G3-03-LLM-ASSURANCE',
+    'L8-G3-03-LLM-UNKNOWN',
+    'L8-G3-04-ACCEPTED-MATCH',
+    'L8-G3-04-NO-RECORD',
+    'L8-G3-04-TARGET-IDENTITY',
+    'L8-G3-04-SCOPE',
+    'L8-G3-04-DECISION-KIND',
+    'L8-G3-04-PENDING',
+    'L8-G3-04-OLD-REVISION',
+    'L8-G3-04-SAME-REV-DIGEST',
+    'L8-G3-04-REJECTED-REQUIRES-POSITIVE',
+    'L8-G3-04-REJECTED-RECORD-ONLY',
+    'L8-G3-04-RECORD-ONLY-NO-ACCEPTANCE-OUTPUT',
+    'L8-G3-04-MACHINE-NOT-HUMAN',
+    'L8-G3-04-UNAUTHORIZED-KIND',
+    'L8-G3-05-COUNTS-ONLY',
+    'L8-G3-05-NO-THRESHOLD',
+))
+EXPECTED_CK_VERIFIER_IDS = EXPECTED_CK_K1_K2_VERIFIER_IDS | EXPECTED_CK_K3_VERIFIER_IDS | EXPECTED_CK_K5_VERIFIER_IDS | EXPECTED_CK_K4_G3_VERIFIER_IDS
 
 LCI_L4_PATH = "docs/helix-os/L4-basic-design/local-ci.md"
 LCI_L5_PATH = "docs/helix-os/L5-detail-design/local-ci-detail-design.md"
@@ -514,10 +589,13 @@ LCI_L8_PATH = "docs/helix-os/L8-detail-verification/local-ci-detail-verification
 LCI_L9_PATH = "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md"
 LCI_L7_SUITE_IDS = frozenset(f"UT-LCI-{number}" for number in range(100, 114))
 LCI_L8_SUITE_IDS = frozenset(f"CASE-L8-LCI-{number}" for number in range(100, 113))
+LCI_L8_DESIGN_IDS = frozenset(f"CASE-L8-LCI-{number}" for number in range(113, 118))
+LCI_L8_CASE_IDS = LCI_L8_SUITE_IDS | LCI_L8_DESIGN_IDS
 LCI_L9_SUITE_IDS = frozenset(f"IV-LCI-{number}" for number in range(73, 87))
-EXPECTED_LOCAL_CI_SUITE_IDS = {
+LCI_L9_DESIGN_IDS = frozenset((*(f"IV-LCI-{number:02d}" for number in range(9, 15)), "IV-LCI-27", *(f"IV-LCI-{number}" for number in range(63, 73)), *(f"IV-LCI-{number}" for number in range(87, 92))))
+EXPECTED_LOCAL_CI_CASE_IDS = {
     (LCI_L7_PATH, "l7-suite-oracles"): LCI_L7_SUITE_IDS,
-    (LCI_L8_PATH, "l8-suite-cases"): LCI_L8_SUITE_IDS,
+    (LCI_L8_PATH, "l8-suite-cases"): LCI_L8_CASE_IDS,
     (LCI_L9_PATH, "ci-l9-suite-fixtures"): LCI_L9_SUITE_IDS,
 }
 
@@ -527,29 +605,34 @@ CK_L5_K1_LOCATOR = "### 3.2 K1 API contract"
 CK_L5_K2_LOCATOR = "### 3.4 K2 API contract"
 CK_L5_K3_LOCATOR = "#### 6.1.3 K3 function/API contract"
 CK_L5_K5_LOCATOR = "#### 6.2.2 公開関数とprivate helper"
+CK_L5_K4_G3_LOCATOR = "## 8. K4/G3 義務評価API"
 CK_L5_LOCATOR_BY_RANGE = {
     "ck-l8-k1-fixtures": CK_L5_K1_LOCATOR,
     "ck-l8-k2-fixtures": CK_L5_K2_LOCATOR,
     "ck-l8-k3-fixtures": CK_L5_K3_LOCATOR,
     "ck-l8-k5-fixtures": CK_L5_K5_LOCATOR,
+    "ck-l8-k4-g3-fixtures": CK_L5_K4_G3_LOCATOR,
 }
 CK_L5_LOCATORS = frozenset(CK_L5_LOCATOR_BY_RANGE.values())
 CK_L8_K1_RANGE = "ck-l8-k1-fixtures"
 CK_L8_K2_RANGE = "ck-l8-k2-fixtures"
 CK_L8_K3_RANGE = "ck-l8-k3-fixtures"
 CK_L8_K5_RANGE = "ck-l8-k5-fixtures"
+CK_L8_K4_G3_RANGE = "ck-l8-k4-g3-fixtures"
 CK_L8_SOURCE_BY_RANGE = CK_L5_LOCATOR_BY_RANGE
 CK_L8_EXPECTED_IDS_BY_RANGE = {
     CK_L8_K1_RANGE: frozenset(ident for ident in EXPECTED_CK_K1_K2_VERIFIER_IDS if ident.startswith("L8-K1-")),
     CK_L8_K2_RANGE: frozenset(ident for ident in EXPECTED_CK_K1_K2_VERIFIER_IDS if ident.startswith("L8-K2-")),
     CK_L8_K3_RANGE: EXPECTED_CK_K3_VERIFIER_IDS,
     CK_L8_K5_RANGE: EXPECTED_CK_K5_VERIFIER_IDS,
+    CK_L8_K4_G3_RANGE: EXPECTED_CK_K4_G3_VERIFIER_IDS,
 }
 CK_L8_OUTCOME_COLUMN_BY_RANGE = {
     CK_L8_K1_RANGE: 5,
     CK_L8_K2_RANGE: 5,
     CK_L8_K3_RANGE: 6,
     CK_L8_K5_RANGE: 4,
+    CK_L8_K4_G3_RANGE: 4,
 }
 EXPECTED_PARTIAL = frozenset(("RL-D4", "RL-T3"))
 EXPECTED_NOT_EXERCISED = frozenset(("RL-V1", "RL-K3"))
@@ -590,12 +673,14 @@ CK_L5_RANGE_CONFIG = {
     CK_L5_K2_LOCATOR: ("ck-l5-k2-api", "### 3.5 role-bound input alias binding"),
     CK_L5_K3_LOCATOR: ("ck-l5-k3-api", "#### 6.1.4 invariantからL5 functionへのtrace"),
     CK_L5_K5_LOCATOR: ("ck-l5-k5-api", "#### 6.2.3 不変条件の分解"),
+    CK_L5_K4_G3_LOCATOR: ("ck-l5-k4-g3-api", "## K4/G3 API 範囲終端"),
 }
 CK_L8_DEFINITION_CONFIG = {
     CK_L8_K1_RANGE: ("## 3. K1 fixtures", "## 4. K2 fixtures", 1),
     CK_L8_K2_RANGE: ("## 4. K2 fixtures", "## 5. K3–K10と未実施範囲", 1),
     CK_L8_K3_RANGE: ("### 5.1 K3 fixtures", "#### 5.1.2 K3 reason mappingの未決", 1),
     CK_L8_K5_RANGE: ("### 5.2 K5 fixtures", "## 6. K1/K2 unit範囲と登録oracleの境界", 1),
+    CK_L8_K4_G3_RANGE: ("## 7. K4/G3 fixtures", "## K4/G3 fixture 範囲終端", 1),
 }
 CK_L8_REFERENCE_CONFIG = {
     "ck-l8-k1-l9-oracles": ("## 3. K1 fixtures", "## 4. K2 fixtures", 2, CK_L8_K1_RANGE),
@@ -606,6 +691,8 @@ CK_L8_REFERENCE_CONFIG = {
     "ck-l8-k3-l4-l5-contracts": ("### 5.1 K3 fixtures", "#### 5.1.2 K3 reason mappingの未決", 3, CK_L8_K3_RANGE),
     "ck-l8-k5-l9-oracles": ("### 5.2 K5 fixtures", "## 6. K1/K2 unit範囲と登録oracleの境界", 2, CK_L8_K5_RANGE),
     "ck-l8-k5-l4-l5-contracts": ("### 5.2 K5 fixtures", "## 6. K1/K2 unit範囲と登録oracleの境界", 3, CK_L8_K5_RANGE),
+    "ck-l8-k4-g3-l9-oracles": ("## 7. K4/G3 fixtures", "## K4/G3 fixture 範囲終端", 2, CK_L8_K4_G3_RANGE),
+    "ck-l8-k4-g3-l4-l5-contracts": ("## 7. K4/G3 fixtures", "## K4/G3 fixture 範囲終端", 3, CK_L8_K4_G3_RANGE),
 }
 _MANIFEST_KEYS = {"version", "files", "coverage_edges", "coverage_dispositions", _PARENT_AC_COVERAGE_KEY, "source_scopeouts", "legacy_pins", "unsupported_items"}
 _MANIFEST_REQUIRED_KEYS = _MANIFEST_KEYS - {_PARENT_AC_COVERAGE_KEY}
@@ -836,8 +923,8 @@ def _validate_ck_range_contracts(file_by_path):
     l5 = file_by_path[CK_L5_PATH]
     expected_l5 = set(CK_L5_RANGE_CONFIG)
     actual_l5 = {r["start_heading"] for r in l5["definition_ranges"] if r["grammar"] == "exact_heading"}
-    if (actual_l5 != expected_l5 or len(l5["definition_ranges"]) != 4 or l5["reference_ranges"]):
-        _fail("Unknown", "missing_input", "Common Kernel L5 must define exactly the four fixed section locators")
+    if (actual_l5 != expected_l5 or len(l5["definition_ranges"]) != 5 or l5["reference_ranges"]):
+        _fail("Unknown", "missing_input", "Common Kernel L5 must define exactly the five fixed section locators")
     for heading, (range_id, end_heading) in CK_L5_RANGE_CONFIG.items():
         matches = [r for r in l5["definition_ranges"] if r["range_id"] == range_id]
         if len(matches) != 1:
@@ -850,7 +937,7 @@ def _validate_ck_range_contracts(file_by_path):
 
     l8 = file_by_path[CK_L8_PATH]
     if {r["range_id"] for r in l8["definition_ranges"]} != set(CK_L8_DEFINITION_CONFIG):
-        _fail("Unknown", "missing_input", "Common Kernel L8 K1/K2/K3/K5 definition ranges incomplete")
+        _fail("Unknown", "missing_input", "Common Kernel L8 K1/K2/K3/K5/K4-G3 definition ranges incomplete")
     if {r["range_id"] for r in l8["reference_ranges"]} != set(CK_L8_REFERENCE_CONFIG):
         _fail("Unknown", "missing_input", "Common Kernel L8 typed reference ranges incomplete")
     for range_id, (start, end, column) in CK_L8_DEFINITION_CONFIG.items():
@@ -1038,7 +1125,7 @@ def _extract_ids(manifest, sources):
             _fail("Unknown", "conflict", "unexpected Common Kernel verifier inventory in " + range_id + ": " + ",".join(sorted(extra)))
     if ck_actual != EXPECTED_CK_VERIFIER_IDS:
         _fail("Unknown", "conflict", "Common Kernel component inventories do not match the fixed union")
-    for (path, range_id), expected_ids in EXPECTED_LOCAL_CI_SUITE_IDS.items():
+    for (path, range_id), expected_ids in EXPECTED_LOCAL_CI_CASE_IDS.items():
         actual_ids = {item["id"] for item in definitions
                       if item["path"] == path and item["range_id"] == range_id}
         missing = expected_ids - actual_ids
@@ -1360,6 +1447,21 @@ def verify_coverage_edges(manifest: dict, graph: dict) -> dict:
     }
     if actual_local_ci_suite_pairs != local_ci_suite_pairs:
         _fail("Unknown", "missing_input", "fixed local-CI suite coverage edges are incomplete or unexpected")
+    local_ci_manifest_pairs = {("D-LCI-03", ident) for ident in LCI_L8_DESIGN_IDS}
+    actual_local_ci_manifest_pairs = {
+        (edge["source_id"], edge["verifier_id"]) for edge in edges
+        if edge["source_id"] == "D-LCI-03" and edge["verifier_path"] == LCI_L8_PATH
+        and edge["verifier_id"] in LCI_L8_CASE_IDS
+    }
+    if actual_local_ci_manifest_pairs != local_ci_manifest_pairs:
+        _fail("Unknown", "missing_input", "fixed local-CI design-manifest fixture edges are incomplete or unexpected")
+    local_ci_design_pairs = {("LC-DESIGN-001", ident) for ident in LCI_L9_DESIGN_IDS}
+    actual_local_ci_design_pairs = {
+        (edge["source_id"], edge["verifier_id"]) for edge in edges
+        if edge["source_id"] == "LC-DESIGN-001"
+    }
+    if actual_local_ci_design_pairs != local_ci_design_pairs:
+        _fail("Unknown", "missing_input", "fixed local-CI design-oracle edges are incomplete or unexpected")
     nonpass = []
     for item in dispositions:
         if item["state"] != "mapped":
