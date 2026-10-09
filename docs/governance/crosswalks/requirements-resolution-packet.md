@@ -1,43 +1,38 @@
-# DDD／TDD厳格化の要求追補案
+# 既存repository全資産の棚卸し・充足度mapping要求案
 
-base `9460b78fb11864932a51cdb62917f1704e2e2275`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `e7cdcf791967e0ebf5bb03290810f1f1f617b5d7b98138b67ebe20370ea124bb`。
+base `742258892f94ab5c42d9274e7732b39608abf3bb`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `3644eab31167f09e3a6fa3c1f20ad60ac4ca5f71bdf5b5ac88b1bdb5c6a97632`。authority_effect: none。
 
-#1854の旧FR-L1-50を起点に、HARNESS-L2-005の一identityと対L11へ5規律を追補する案。未採択であり、既存L2/L11/MPR/台帳/Bindingは変更していない。既決005の版・scope/riskと省略回収を保持する。
+#1852の旧FR-L1-33を起点に、HARNESS-L2-089という一つのunitと対L11を提案する。現行019（Full Reverse入口）、027（source型抽出）、034（計測）、OS033（detector運転）の近接能力と、全資産・カテゴリ網羅・充足reportの不足を分ける。版は未指定で、旧P2/Phase Bと初期必須化しない条件を保持する。
 
-## 旧source・consumerと差分
+旧sourceはfunctional-requirements.md:64（asset LEGACY-ASSET-6B6C5CB0E481BE01088B）、同309/317の残差、L3の743/773–774、screen469、internal-asset-inventoryの旧失敗/別identity、module-decomposition212。完全path・引用bytes/digestはJSONに保持する。旧inventoryのclosedと固定件数を現行成立の証拠へ転用せず、旧test/CLI/CI/runtimeを実行しない。
 
-旧FR50はfunctional-requirements.md L81、asset LEGACY-ASSET-6B6C5CB0E481BE01088B。DDD/TDD rule SSoT L39–58/125–139、asset LEGACY-ASSET-5E22432B0A5A8F7CC8B3と、旧unit test-design L666–673/675、asset LEGACY-ASSET-FAAFFA616A44F65911EBの負例を読んだ。archiveの完全path・file/区間digestはJSONへ固定した。意味の再導出であり、旧test/CLI/runtime/CIを実行しない。
+## 提案L2
 
-原sourceとconsumerの結合検証層のL9/L8表記を同値へ丸めず、現行pair/検証kindの明示対応へ戻す。旧Node path・doctor・PLAN field/schemaを現在の必須実装にせず、5規律の意味を対象scopeへ対応させる。依存方向は対象の設計ownerが宣言した表から読み、旧HELIX固有の方向表は例・未移管として保持する。Redの実装前/後というFR02差分と既決TDDORDERを、この案で変更しない。
+### HARNESS-L2-089 既存repository全資産の棚卸し・充足度mapping候補（unit、未採択）
 
-## 提案するL2追補
+- **対象・親・版**：旧FR-L1-33の資産棚卸しと充足度mappingを、一つのHARNESS unit候補として具体化する。親候補はHARNESS-L1-001／003／005／008。既存成果を要求・設計・検証のtraceへ結び、既存資産の不足と不明を要求形成へ返すための能力である。旧優先度P2と後続PLANへの分類を保持し、新しいversion_targetを指定しない。019のFull Reverse入口から参照できるが、すべての019利用やPhase 0の開始にこのunitの完了を一律に要求しない。
+- **受け取るもの**：対象repository identityとsource snapshot/revision、全資産の列挙根拠、各資産のsource/provenanceと読み取れる内容、照合対象の要求／設計義務／契約identity・revision・scopeと充足判定根拠。列挙した項目数だけで全量性を推定しない。許可されたread scopeがrepository全体を覆わない、列挙元や資産の内容が未観測の場合は、その範囲を不足として保持する。照合基準がまだない資産は棚卸し可能でも、充足済みとは判定しない。
+- **棚卸しの範囲**：リポジトリ全資産について、command、skill、detector、template、state、hook、docs、testsの各カテゴリを確認する。複数カテゴリに関係する資産は同じ資産の関係として保持し、重複列挙でcoverageを増やさない。カテゴリ名に一致しない資産も除外せず未分類として残す。旧W11/W12/W16のworkflow/task/agent builder、audit/metrics/dashboard、asset/code catalogも棚卸し対象に含める。
+- **提供するもの**：列挙された資産と根拠、各カテゴリの観測状態、各資産／照合条件の対応、充足した条件・一部のみ確認できた条件・不足・不明・非対象の根拠を持つ充足度reportと不足項目list。資産が存在することと、その内容が要求／義務を満たすことを区別する。元資産・基準revision・scopeが変われば影響する対応を再照合待ちとして残す。割合やthresholdを本候補で新設せず、数値を使う場合は既存034の計測契約に従う。
+- **拡張能力の分類**：上記builder、audit/metrics/dashboard、asset/code catalogは、後続PLANの候補機能・trace hint・CI summaryとして分類する。棚卸しで発見したことからPhase 0の必須開発導線、稼働済み機能、現行のCI開始条件を生成しない。候補分類の原根拠と未決を残し、旧能力を不要として削除しない。
+- **不足・失敗・回復**：カテゴリ抜け、列挙根拠欠落、読めない資産、別revision、未解決の資産identity、照合基準欠落を個別に不足／unknownとして返す。読めた一部だけでrepository全体を網羅済みにせず、資料なしを不存在や充足済みへ補完しない。資産／列挙不足はinput/source owner、要求値・合意不足は008、設計義務不足は009または該当設計ownerへ戻す候補へ結ぶ。根拠が補われた後も、元の不足と対象revisionを保持して再照合する。新しい停止gateや承認手続きを追加しない。
+- **責務と依存**：HARNESSは資産と充足根拠の意味照合・report／不足候補を提供する。実sourceの列挙・収集や実検査は選択された利用環境・担当ownerの証拠を使い、OSの記録・運転、LABOの評価、INTELLIGENCEの稼働中判断を代行しない。対象repository/sourceと照合scopeが常時必要で、内容充足を判定する操作には対応基準と根拠が必要である。非選択のdetector実行を必須化しない。027のsource型抽出、033（OS）のdetector運転、034の計測規範だけから全資産棚卸し成立を推定しない。019とは入口と棚卸しunitの別identityを保つ。
+- **限界・旧source**：旧functional-requirements.md:64の全資産・8カテゴリ・拡張分類と、旧L3のP2/Phase B carry、画面consumerの機能一覧＋coverageを保持する。入力snapshot／判定基準と不足の区別は、旧sourceでは固定されていないため今回の具体化差分として提示する。旧asset inventoryの19/107等の件数、旧CLI、hook、DB、guardやactive closed記録は現行基準へ移植しない。旧FR33のcatalog DB粒度（同:309）・A126文書export（同:317）、旧画面表示の具体化、formal successor／全source移管、実装・受入成立・L3再開は別に保持する。
 
-### HARNESS-L2-005 DDD／TDD厳格化の検証条件追補案（未採択）
+## 対L11案
 
-一つの対象revision・scopeの開発／設計／検証成果に、宣言されたdomain境界・不変条件・TDD・単体／結合検証が適用される場合の検証義務を具体化する。既存005の言語/tool非依存、kindごとの義務、scope/riskからの検査選定・省略回収を保持する。HARNESSが条件とoracleを定め、実行・CI構築・結果保存はOSまたは利用者の環境が行う。
+### HARNESS-L2-089 全資産棚卸し・充足度mappingの対L11候補（未採択）
 
-- **入力と適用**：対象要求／契約・artifact・対oracleのidentity/revision/scope、適用する規律とその根拠、宣言された依存方向／境界、不変条件集合と単体検証設計、TDD実観測、結合検証設計を受け取る。必要な入力が欠けた条件を合格にしない。domain／TDD／結合対象がないことと、入力不明・未実行を区別し、非適用は既存009の理由・判定者・対象revision・再評価条件へ結ぶ。全対象へ5検査の一律実行や新しい承認gateを追加しない。
-- **依存方向・domain boundary**：対象scopeの設計ownerが宣言した依存方向表・循環条件を、対象revisionと適用される設計authority状態へ結んで参照する。その表で禁止された依存方向と循環を検出して不成立にし、他の規律表や別scopeの結果で相殺しない。共有契約のために禁止方向を変える必要があれば設計ownerへ戻す。依存方向表・適用状態が不明なら検証可能と補完せず、具体的な不足を返す。検証規範は対象の構成や境界を決めず、旧HELIXのlint/runtime/schema/CLI構成や方向表を外部製品へ必須化しない。
-- **invariant trace**：scopeで宣言した各domain不変条件を、同じ対象の単体検証設計の明示oracle identityへ結ぶ。未解決のoracle、欠落、別revision、別の条件だけを検証するoracleを、その不変条件の被覆に数えない。traceの存在だけで振る舞いの成立を生成しない。
-- **Red-first evidence**：適用契約がTDD証拠を求めるscopeでは、意図した欠陥を検出したRedと、凍結したoracleを最小実装で満たしたGreenの実観測を同じ対象／oracleに結び、Redの観測がGreenより後なら拒否する。欠落・実結果なし・時系列不明も成立にしない。testを記述した時刻をRedへ転用しない。実装前test／oracle凍結と現在の003/015・TDDORDERの意味は変更しない。静的reviewや人の受入全般へRed実行を拡張しない。
-- **test oracle strength**：単体testには具体的な期待behaviorを判定する明示assertionまたは同等なoracleを要求する。実行しただけ、assertionなし、truthiness確認だけで具体的期待を判定しないtestを十分な検証としない。実装から期待値を逆算して正本にせず、oracle不足は対の設計ownerへ戻す。特定libraryやassertion syntaxを固定しない。
-- **integration Given／When／Then**：適用する結合検証では、前提状態／入力、操作／事象、期待する観測結果をそれぞれ識別し、境界・依存・失敗経路と同じ対oracleへ結ぶ。名前だけのGiven／When／Then、期待結果の欠落、別scopeの結果を成立にしない。旧L8/L9の表記は原sourceに保持し、現行HARNESSのpair／検証kindへの対応を入力契約で明示してから用いる。層番号の一致だけで対応済みにしない。
-- **出力と失敗**：適用した規律のidentity、対象revision/scope、oracle／実結果、違反・不足箇所、未評価範囲と戻し先を既存005の証拠条件へ結ぶ。適用規律のidentity欠落／unknownを別の規律へfallbackせず、不足findingとして返す。違反を0件やunknownをN/Aへ変換しない。境界／oracleの意味はHARNESSの設計・検証owner、要求の不足は008へ戻し、OSは元ticket／記録／未完義務を維持する。この検証条件だけで工程合格・受入・Releaseを生成しない。
+**正常例**：対象repository Rの同じsnapshot Sと列挙根拠で全資産を受け、8カテゴリと拡張能力の分類、資産から同じrevision/scopeの照合基準への対応を追える。複数カテゴリの一資産は重複して充足数を増やさない。存在する資産でも内容が基準を満たさない場合は不足をreport/listへ示す。基準未決や読めない内容はunknown／未照合として残す。拡張能力を後続候補・trace hint・CI summaryへ分類し、初期必須導線へ昇格させない。
 
-この案は旧FR-L1-50の5規律に対応する限定追補である。旧doctor／PLAN／DB／lint実装を移植しない。旧rule SSoT全体、workflow anchor配置、GreenDefinition/history、FR-L1-02のRedと本体実装の順序差分、formal successor、L3再開・実装・受入成功は別に保持する。005の既決版指定を保持し、版指定を追加しない。
+**負例**：hookだけ未列挙、testsだけ未読、未分類資産の無断除外、別snapshotのdocs結果、同じtemplateの二重計上、存在するだけのskillを義務充足とする、基準なしの充足宣言、W11/W12/W16拡張の省略またはPhase 0必須化を、一つずつ混入する。該当資産／カテゴリ／基準の不足と戻し先を識別し、他の成功や固定件数で全量／全充足を生成しない。旧doctorの0件・旧inventoryのclosed印・GitHubのcloseは現行の成立根拠にしない。
 
-## 提案する対L11追補
+**unknown・回復・未見例**：列挙根拠とread scopeがrepository全体を覆うか不明、snapshotがstale、asset identityが未解決、照合基準が欠落した例を区別し、不明範囲を不存在／成功へ変えない。source/inputまたは要求・設計ownerが不足を補った後、元の対象revision/scope・不足履歴と新根拠を結んで再照合する。未公開のカテゴリ抜け、拡張asset、部分読取、別版の基準を含むfixtureで、既知の名前や件数だけでは網羅性・充足が成立しないことを確認する。この候補段階でfixtureを実行済みとは主張しない。
 
-### HARNESS-L2-005 DDD／TDD厳格化追補の対L11案（未採択）
+**成立範囲**：棚卸し・意味照合unit固有の条件を確認する。Full Reverse全体、入先サービス、接続／構成体、実CI／runtime、旧FR33全移管を、このunitのreport生成だけで完了にしない。新規version_targetは指定しない。
 
-**正常**：同じ対象revision/scopeのfixtureについて、対象の設計ownerが宣言した依存方向と循環条件、全domain不変条件と対応する単体oracle、適用契約が求めるRedとGreenの実観測・順序、具体的期待behaviorを判定するassertion、結合検証の前提／操作／期待結果を照合する。各条件の適用／非適用根拠と未評価範囲、005の証拠条件・戻し先を識別できる。条件が満たされた記録の存在だけで工程合格や受入を生成しない。
+## 未完と前の案
 
-**負例**：宣言された方向表で禁止される依存または循環、1件の不変条件だけoracleが欠落／未解決／別revision、Red欠落／Greenより後のRed／test記述時刻だけのRed、assertionなしまたはtruthinessだけで期待behaviorを判定しないtest、Given／When／Thenの期待観測が欠けた結合testを、一つずつ混入する。適用条件の違反を特定のfindingと戻し先へ結び、他条件の成功や件数0で相殺しない。規律identity不明を既知ruleへfallbackせず、不足を返す。OSの結果保存成功を検証成功にしない。
+旧FR33のcatalog DB粒度・A126 export・具体画面・formal successor、#1852の他旧要求/接続/構成体は残る。この案だけで#1852をcloseしない。snapshot・照合基準・不足の区別は今回の具体化差分で、旧sourceに既定だったとは主張しない。schema・parser・演算・割合・thresholdや新しい承認gateを定めない。
 
-**unknown／回復／未見例**：対象の依存方向、oracle対応、時点や実結果が未観測なら未評価／不足を明示し、N/A／passを生成しない。必要入力・設計・検証契約をownerが補った後、同じ対象revision/scopeと更新した根拠を結んで再照合する。作成側に未公開の禁止依存・不変条件抜け・oracle弱化・結合期待欠落を使い、記述欄の充足だけでは成立しないことを確認する。未観測・未実行と、根拠付きの非適用を区別する。現在のL3停止中にfixtureを実行したとは主張しない。
-
-これは005の検証規範の対oracle案であり、OSのCI実装、旧lintの再利用、旧要求全体の移管／正式successor、L3承認・再開を含まない。
-
-## 採否と未完
-
-独立review後に、この追補の対象revision採否を問う。FR50のworkflow anchor/GreenDefinition/関連後続案、他ruleと全source/formal successor、FR02・FR24・FR30の移管は残す。005採用だけで#1854をcloseせず、schema/実装/L3再開を生成しない。SEEDFIRSTは採用済みの限定知識として、前packetをJSONのresolved_packet.packetに完全一致で保持する。
+DDDSTRICTはPO判断待ちのまま、前packet全体をJSONのpending_packet.packetへ完全一致で保持した。SEEDFIRSTの採択記録もその内部に保持する。未回答を採択とみなさず、canonical/MPR/台帳/Bindingは変更していない。
