@@ -59,7 +59,7 @@ class RunIntegrationTests(unittest.TestCase):
                 return "\n".join("`" + row["formal_l7_id"] + "`" for row in FORMAL_MAPPING).encode()
             if path in SOURCE_SHA256:
                 return subprocess.check_output(
-                    ["git", "show", "7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44:" + path],
+                    ["git", "show", "ea7f650904963234d69b0f27f9b5edfcf17e5861:" + path],
                     cwd=_LOCAL_CI.parent.parent)
             return Path(_LOCAL_CI.parent.parent, path).read_bytes()
         self._target_blob = target_blob
@@ -113,9 +113,9 @@ class RunIntegrationTests(unittest.TestCase):
         self.assertEqual((raised.exception.classification, raised.exception.reason),
                          ("Rejected", "invalid_input"))
 
-    def test_k3_suite_plan_literal_matches_supervisor_command_and_rejects_legacy_id(self):
+    def test_k1_k2_k3_k5_suite_plan_literal_matches_supervisor_command_and_rejects_legacy_id(self):
         expected = ("python3", "-B", "scaffold/local-ci/source_l7_runner.py",
-                    "--suite", "common-kernel-k1-k2-k3")
+                    "--suite", "common-kernel-k1-k2-k3-k5")
         self.assertEqual(COMMAND_TEMPLATES[5], expected)
         compiled = compile_plan(TARGET, self.portable, "d" * 64, "1")
         suite_spec = compiled["commands"][5]

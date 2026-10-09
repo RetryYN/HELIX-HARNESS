@@ -215,6 +215,21 @@ Stage 1の他のclosure owner sourceは34親表の既存固定pinで追跡でき
 
 この表は進捗記録であり、下流設計・実装の `not_started` からL3/L10の未承認・効力・実装不許可を推論しない。Stage 1の実装・CI着手判断は[2026-10-09 PO判断記録](../decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md)を参照する。着手判断は完了の証拠ではない。
 
+### 後続main到達の追補（d5bb3455時点）
+
+前掲の比較基準、34親・52 ACの固定対象、6機構の親別進捗行および時点別記録は保持する。以下はその後のmain到達だけを追補する。Draftやローカル候補の単体成功はこの表へ含めず、設計配置や構造照合から製品coverageを生成しない。
+
+| 対象 | main到達revision | 確認した範囲と未達 |
+|---|---|---|
+| INFRASTRUCTURE L5/L8 | #2770 `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d` | 配置・関数候補の詳細化。248 canonical fixture、40 IV、owner未接続・fixture未実行を保持。Root read-after `6075154760`。 |
+| INFRASTRUCTURE L6/L7 | #2771 `ea7f650904963234d69b0f27f9b5edfcf17e5861` | 248 canonical fixtureを関数・test所在へ対応づけた設計。実装・fixture実行・登録を意味しない。Root read-after `6075261323`。 |
+| Common Kernel K6 L6/L7 | #2772 `f13373132758fce43ebb3cd1ffe9fdc60523a23a` | 4 API、55 fixture、15 IVの関数・単体設計。owner returnの部分被覆と未接続を保持。Root read-after `6075542588`。 |
+| HARNESS L5/L8 | #2773 `d736f99edc4f43b6cd912b9db09d545a5e769e21` | 10 API候補と269 formal fixtureの配置設計。19局所保留とowner境界を保持し未実行。Root read-after `6075717571`。 |
+| Common Kernel K5 source-only CI登録 | #2774 `fc95f868ba6be60323e1c448429e0812c1c1b7cf` | K1/K2/K3/K5 suiteを534 identitiesでdiscovered/executed、non-pass 0。450 formal mappings（398 primary / 52 stub）は別集合。K5 primary 67は公開API41・helper24・K2依存のみ2で、local behaviorは65。UT-046/085/086を含むowner未接続・弱いassertionはstubとして残す。公開append、physical writer、実owner、L9、製品coverageは未達。main canonical receipt SHA-256 `94af0bdcf6d4625717b82a04ba0f7e71366ca5d0699d39e38d3458ff6a99ac91`、Root read-after `6075843209`。前掲#2766のCI未登録は当時の記録である。 |
+| Common Kernel K4/G3 L6/L7 | #2775 `1186d21b23987ffedc85097ea34f51041011ef3a` | 6 API、73 fixture、15 IVの関数・単体設計。HumanInterface・K6接合とconsumer Rejectedのowner返却を保持。fixture未実行。Root read-after `6076035686`。 |
+| HARNESS L6/L7 | #2776 `d5bb3455526c816b3af965db239c4b56207a884f` | 269 formalと補助10件をsource/test候補所在へ対応づけた設計。配置から実装・登録・fixture実行を生成しない。Root read-after `6076086560`。 |
+| 現main read-after | `d5bb3455526c816b3af965db239c4b56207a884f` | 全6検査success、source-only suite 534 discovered/executed、non-pass 0、実source refs 9件と成果物digestをRootが再照合。canonical receipt SHA-256 `ac62d3d4aec7b7cdfc9d5b2474600c039ed95733c1ddf85724a896e4485cb154`。製品L8–L10実行、全34親のcoverage、実owner接続の成功ではない。 |
+
 ## 旧HELIX sourceと保持／変更
 
 参照の起点はarchive内の旧HELIX原本と旧資産処置台帳である。旧asset digestは旧本文全体のSHA-256で、省略しない。役割と対応関係は保持するが、旧ID・物理配置・G3/runtime・判定値・承認挙動は再利用せず、現行L2/権限から意味を再導出する。
