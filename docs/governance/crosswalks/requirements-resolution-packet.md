@@ -1,30 +1,43 @@
-# template seedの意味対応案
+# DDD／TDD厳格化の要求追補案
 
-base `5643121bea60acdd4f6177730aa7a7f266073d18`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `c9926d8a9db74095b0792cb134ac59e6374519acf94e1a1045a29076e7d55897`。canonical L2/L11/MPRとseed26件は未変更。非画面の要求/受入知識sliceについて独立review後に対象revisionの採否を問う。全体の最小seed packはまだ未確定。
+base `9460b78fb11864932a51cdb62917f1704e2e2275`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `24e955d9ca8acf020a7c7f025d9aa7fe8f29180bc6b60f2f8bd8caf9d9e130b9`。
 
-## 作業単位
+#1854の旧FR-L1-50を起点に、HARNESS-L2-005の一identityと対L11へ5規律を追補する案。未採択であり、既存L2/L11/MPR/台帳/Bindingは変更していない。既決005の版・scope/riskと省略回収を保持する。
 
-SEEDFIRST（#2846）はVT001共通証拠・VT102 L2/L11と、VT002のC01/C02/C08/C26の技法意味を、非画面・技術的不確実性なしの要求/受入知識sliceとして提案する。2templateと4cardの選択理由をJSONへ記録した。全機構/全V-pairの最小setをこのsliceへ縮めない。
+## 旧source・consumerと差分
 
-VT001の15共通field、VT102の5固有fieldと共通欄継承を識別し、意味・source行・要否とowner境界へ結ぶ。measurementは実施契約のprofile/環境・設定digest・有効期限/再測定条件を参照し数値を新設しない。downstreamは共通/観点別証拠・N/A記録・省略義務/Backflow参照を識別する。field定義と案件値/実行結果の未決を区別し、初回記録前に将来の受入receiptを要求しない。
+旧FR50はfunctional-requirements.md L81、asset LEGACY-ASSET-6B6C5CB0E481BE01088B。DDD/TDD rule SSoT L39–58/125–139、asset LEGACY-ASSET-5E22432B0A5A8F7CC8B3と、旧unit test-design L666–673/675、asset LEGACY-ASSET-FAAFFA616A44F65911EBの負例を読んだ。archiveの完全path・file/区間digestはJSONへ固定した。意味の再導出であり、旧test/CLI/runtime/CIを実行しない。
 
-Prototype/PoCは別々に根拠付きN/A/適用を扱う。VT001のnegative oracleを原文L22–27の項目単位へ分け、L25のRed負例もVT001-F007と同じ適用契約条件へ限定した。旧検証phase L28–34/73–79のunit/TDDと人間受入の区別を根拠とする。Redは適用契約が要求する場合に照合し、静的reviewや人の判断のすべてへRed実行を追加しない。未実行/unknownをN/Aへ変換しない。C01/C02はreview/trace、C08は合意例と反例、C26は利用者接点のある成果での人の受入を持つ。tool名・cost・HELIX例は参考のまま。C36の旧cardのモデル/共通context条件、VT003の選択matrix、画面技法早見は採用せず、独立性と検証義務は正本のConcept/HARNESSと開発repo運用を区別する。
+原sourceとconsumerの結合検証層のL9/L8表記を同値へ丸めず、現行pair/検証kindの明示対応へ戻す。旧Node path・doctor・PLAN field/schemaを現在の必須実装にせず、5規律の意味を保持する。Redの実装前/後というFR02差分と既決TDDORDERを、この案で変更しない。
 
-旧sourceのarchive path・asset ID・行範囲・全体SHAはJSONの`legacy_sources`へ固定した。
+## 提案するL2追補
 
-- `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md`:74–77 — 意味構造/verification/measurementと説明を分離
-- `archive/legacy-generation-2026-09-14/root/docs/skills/verification.md`:87–91 — 必要artifactの欠落を中立へ変換しない
-- `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/ci-verification-plan.md`:24–32 — 検証義務の区別と延期義務の回収
-- `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md`:28–40/73–79/197–220 — 対/test basis、人の受入、未処理feedback、追加oracleの分離
-- `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L2-screen-ux-test-design.md`:26–35 — 受入観点と要求revision/実操作/人の証拠
-- `archive/legacy-generation-2026-09-14/root/docs/skills/acceptance-criteria-thinking.md`:45–76 — 観測可能AC、偽完了拒否、判定不能を未決保持
+### HARNESS-L2-005 DDD／TDD厳格化の検証条件追補案（未採択）
 
-`legacy_comparison`に保持/変更/理由を分ける。旧CLI/層/schema/固定差戻し/回収先方式は移植せず、全旧source移管を主張しない。source行hashは、UTF-8の一行にLF一つを加えたbytesのSHA-256（空行は対象外）。見出しはline/text/levelへ対応づける。
+一つの対象revision・scopeの開発／設計／検証成果に、宣言されたdomain境界・不変条件・TDD・単体／結合検証が適用される場合の検証義務を具体化する。既存005の言語/tool非依存、kindごとの義務、scope/riskからの検査選定・省略回収を保持する。HARNESSが条件とoracleを定め、実行・CI構築・結果保存はOSまたは利用者の環境が行う。
 
-## 採否と残り
+- **入力と適用**：対象要求／契約・artifact・対oracleのidentity/revision/scope、適用する規律とその根拠、宣言された依存方向／境界、不変条件集合と単体検証設計、TDD実観測、結合検証設計を受け取る。必要な入力が欠けた条件を合格にしない。domain／TDD／結合対象がないことと、入力不明・未実行を区別し、非適用は既存009の理由・判定者・対象revision・再評価条件へ結ぶ。全対象へ5検査の一律実行や新しい承認gateを追加しない。
+- **依存方向・domain boundary**：宣言された共通の依存方向表を使い、規律検証はsource／文書を読んでfindingを返し、runtime・CLIの実行統制を所有しない。検証／governance/domainはruntime／CLI orchestrationへ依存せず、runtimeはgovernance検証へ依存せず、下位の契約は上位のfeature・runtime・検証・CLIへ依存しない。対象domainの循環・禁止方向を検出して不成立にする。共有契約が必要な場合も上向き依存で相殺せず、設計ownerへ戻す。旧src pathやNode import構文を必須化せず、対象の同等な依存関係を照合する。
+- **invariant trace**：scopeで宣言した各domain不変条件を、同じ対象の単体検証設計の明示oracle identityへ結ぶ。未解決のoracle、欠落、別revision、別の条件だけを検証するoracleを、その不変条件の被覆に数えない。traceの存在だけで振る舞いの成立を生成しない。
+- **Red-first evidence**：適用契約がTDD証拠を求めるscopeでは、意図した欠陥を検出したRedと、凍結したoracleを最小実装で満たしたGreenの実観測を同じ対象／oracleに結び、Redの観測がGreenより後なら拒否する。欠落・実結果なし・時系列不明も成立にしない。testを記述した時刻をRedへ転用しない。実装前test／oracle凍結と現在の003/015・TDDORDERの意味は変更しない。静的reviewや人の受入全般へRed実行を拡張しない。
+- **test oracle strength**：単体testには具体的な期待behaviorを判定する明示assertionまたは同等なoracleを要求する。実行しただけ、assertionなし、truthiness確認だけで具体的期待を判定しないtestを十分な検証としない。実装から期待値を逆算して正本にせず、oracle不足は対の設計ownerへ戻す。特定libraryやassertion syntaxを固定しない。
+- **integration Given／When／Then**：適用する結合検証では、前提状態／入力、操作／事象、期待する観測結果をそれぞれ識別し、境界・依存・失敗経路と同じ対oracleへ結ぶ。名前だけのGiven／When／Then、期待結果の欠落、別scopeの結果を成立にしない。旧L8/L9の表記は原sourceに保持し、現行HARNESSのpair／検証kindへの対応を入力契約で明示してから用いる。層番号の一致だけで対応済みにしない。
+- **出力と失敗**：適用した規律のidentity、対象revision/scope、oracle／実結果、違反・不足箇所、未評価範囲と戻し先を既存005の証拠条件へ結ぶ。適用規律のidentity欠落／unknownを別の規律へfallbackせず、不足findingとして返す。違反を0件やunknownをN/Aへ変換しない。境界／oracleの意味はHARNESSの設計・検証owner、要求の不足は008へ戻し、OSは元ticket／記録／未完義務を維持する。この検証条件だけで工程合格・受入・Releaseを生成しない。
 
-独立reviewでscope・15descriptor・各field/技法の意味とsource対応・未完境界を確認してから、この知識sliceの対象revision採否を問う。採用だけで案件の合意/受入・実行を生成しない。画面/PoC・他pair・unit/connection/compositeのseed比較と全体最小setは残り、26候補と未選択cardを保全する。正式schema/runtime/実装・L3再開は別。
+この案は旧FR-L1-50の5規律に対応する限定追補である。旧doctor／PLAN／DB／lint実装を移植しない。旧rule SSoT全体、workflow anchor配置、GreenDefinition/history、FR-L1-02のRedと本体実装の順序差分、formal successor、L3再開・実装・受入成功は別に保持する。005の既決版指定を保持し、版指定を追加しない。
 
-## 既決packet
+## 提案する対L11追補
 
-OS002追補は[判断記録](../decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md)に従いPR #2855で採用反映済み。前OSTRACE packetと内包する既決packetをJSONの`resolved_packet.packet`へ完全一致で保持する。
+### HARNESS-L2-005 DDD／TDD厳格化追補の対L11案（未採択）
+
+**正常**：同じ対象revision/scopeのfixtureについて、宣言された依存方向と非循環、全domain不変条件と対応する単体oracle、適用契約が求めるRedとGreenの実観測・順序、具体的期待behaviorを判定するassertion、結合検証の前提／操作／期待結果を照合する。各条件の適用／非適用根拠と未評価範囲、005の証拠条件・戻し先を識別できる。条件が満たされた記録の存在だけで工程合格や受入を生成しない。
+
+**負例**：禁止方向の依存またはdomain循環、1件の不変条件だけoracleが欠落／未解決／別revision、Red欠落／Greenより後のRed／test記述時刻だけのRed、assertionなしまたはtruthinessだけで期待behaviorを判定しないtest、Given／When／Thenの期待観測が欠けた結合testを、一つずつ混入する。適用条件の違反を特定のfindingと戻し先へ結び、他条件の成功や件数0で相殺しない。規律identity不明を既知ruleへfallbackせず、不足を返す。OSの結果保存成功を検証成功にしない。
+
+**unknown／回復／未見例**：対象の依存方向、oracle対応、時点や実結果が未観測なら未評価／不足を明示し、N/A／passを生成しない。必要入力・設計・検証契約をownerが補った後、同じ対象revision/scopeと更新した根拠を結んで再照合する。作成側に未公開の禁止依存・不変条件抜け・oracle弱化・結合期待欠落を使い、記述欄の充足だけでは成立しないことを確認する。未観測・未実行と、根拠付きの非適用を区別する。現在のL3停止中にfixtureを実行したとは主張しない。
+
+これは005の検証規範の対oracle案であり、OSのCI実装、旧lintの再利用、旧要求全体の移管／正式successor、L3承認・再開を含まない。
+
+## 採否と未完
+
+独立review後に、この追補の対象revision採否を問う。FR50のworkflow anchor/GreenDefinition/関連後続案、他ruleと全source/formal successor、FR02・FR24・FR30の移管は残す。005採用だけで#1854をcloseせず、schema/実装/L3再開を生成しない。SEEDFIRSTは採用済みの限定知識として、前packetをJSONのresolved_packet.packetに完全一致で保持する。
