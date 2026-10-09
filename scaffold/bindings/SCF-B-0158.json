@@ -20,12 +20,12 @@
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "06b610d690fbc658db16abb0857344074f814650665bdf051d2be6ea82273dc1",
+      "sha256": "d3e583b9812a45d5b8531668b8f15f25321f6336f37fd44777d6b7d02d13e242",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "4a154f9d8e69a07a8c6452687c6c7600ea75e3dddcd8f4f01789043e1b01d6f3",
+      "sha256": "cf3e56c94268247e89a95c4b49f0512a0542951824aed1cabe73347216daff03",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
