@@ -4,7 +4,7 @@ layer: L8
 status: design_pair_defined
 owner: HELIX-HARNESS
 paired_l5: ../L5-detail-design/stage1-harness.md
-paired_l5_sha256: dc647e429ee99e6232509837cb89aa6ed451f566922dd19428ecb3f9c21851db
+paired_l5_sha256: 76fa0e803cb71adc74303322fc4ed00eeccc7b43bad6d8eb5a7718b058f95da1
 base: main `f75199749888f7261772ba26e9feb58a33d9a04f`
 ---
 
@@ -323,6 +323,19 @@ K1の`Unknown`はL4 Common Kernel §2.3の閉じた`UnknownReason`集合に従�
 | `SETUP-HARNESS-UNIT-LOCATOR-MISMATCH` | baselineの4候補pathと役割を固定し、unit rootの最後のpath componentだけを`harness-other`へ置き換える。 | source/test/fixtures/declaration候補pathは同一rootを共有し、candidate rootの照合結果は不一致となる。 | 構造上のlocator mismatchだけをassertする。製品APIを呼ばず、新K1 result、L9 failure、registration gateを追加しない。 |
 
 このsetupはrepository-layout L4 §2–3とL5 §7のpath候補を照合する補助である。登録有無を照合する入力も判定関数も持たず、candidate pathから登録や使用可能性を導かない。旧assetの保持・置換根拠はL5 §2/§7に記録する。
+
+
+### 2.2 既存L7 SUP-003〜005の局所component trace
+
+この局所trace追補の作業起点はmain `f020c04f2fb219e319bcc13478f14b41eb881701`であり、ここで参照するL5 bytesはSHA-256 `76fa0e803cb71adc74303322fc4ed00eeccc7b43bad6d8eb5a7718b058f95da1`である。L7 §4の`UT-HARNESS-SUP-003`〜`005`は、FN-HARNESS-04候補のprivate payload-constructorに関する既存補助設計である。次表はそのfield保持assertionを既存L9 verifier `IV-HARNESS-S1-F-010-02`/`F-010-03`のscopeに照らす局所traceとして記録する。ここにはL8 fixture row、L9 verifier、AC、L10 CASEの追加・再採番はなく、固定269 formal fixture setと既存verifier期待は変更しない。これはSUP helperの設計補足であり、既存L9 integration verifier全体の実行や合格を主張しない。
+
+| 既存L7補助ID | 既存L9 scope参照 | 既存L8 baseline/変異との対応 | 局所component assertion |
+|---|---|---|---|
+| `UT-HARNESS-SUP-003` | `IV-HARNESS-S1-F-010-02`, `IV-HARNESS-S1-F-010-03` | 010-02/03のpack revision refsと宣言field比較を使う。 | `PackRevisionComparison.facts`全体が受け取ったmixed fact tupleの順序を保ち、`field_comparisons`と宣言factのread-only projectionが同tuple由来であること。`revision_relation=current`、declared/current refs、cause refsは入力値を保持する。 |
+| `UT-HARNESS-SUP-004` | `IV-HARNESS-S1-F-010-02`, `IV-HARNESS-S1-F-010-03` | 既存L7 SUP-004の単一変異、declared pack revision refだけを変更する。 | owner/source境界から渡された`revision_relation=stale`をpayloadが保持し、変異対象factのmismatchと残りのrefs/factsを保持する。関係値はref全体のequal/differentをconstructorが再計算する値ではない。 |
+| `UT-HARNESS-SUP-005` | `IV-HARNESS-S1-F-010-02`, `IV-HARNESS-S1-F-010-03` | SUP-003と同一ref集合のsource observation一つだけを既存`Unknown(unreadable)`にする。 | 既存non-Value source resultを同一class/reason/evidenceで既存helper境界に保持し、payload constructorには渡さない。公開APIの外側returnやowner resolverはこの局所traceの対象外。 |
+
+この対応はL9の期待oracleを拡張せず、L8の既存`compare_pack_replacement`/artifact fixturesを`compare_pack_revision`の実行証拠に読み替えない。SUP rowsに記録された純payload assertionの対応を補うだけで、L8 full case、owner/current read、L1–L3意味、K1 class/reason mapping、PackRevisionComparison public APIは未実装・未検証のままである。
 
 ## 5. 製品と共通kernelの結合範囲
 
