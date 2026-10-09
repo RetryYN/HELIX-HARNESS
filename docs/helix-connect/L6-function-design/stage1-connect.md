@@ -10,7 +10,7 @@ parents:
   - HELIXCONNECT-L2-004
   - HELIXCONNECT-L2-005
 paired_l7: ../L7-unit-test-design/stage1-connect-unit-test-design.md
-base: main `4b647b837d5fe1f873611907fca373ac8239a928`
+base: main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`
 ---
 
 # HELIX-CONNECT Stage 1 L6 関数設計

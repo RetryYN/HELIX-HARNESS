@@ -4,8 +4,8 @@ layer: L7
 status: design_draft
 owner: HELIX-CONNECT
 paired_l6: ../L6-function-design/stage1-connect.md
-paired_l6_sha256: 4d77051dad011274a8b00e407a5e37ce432e99faf7329bf36b5c2de8069ec74a
-base: main `4b647b837d5fe1f873611907fca373ac8239a928`
+paired_l6_sha256: 86966d4a5553ea8613d3c3546d57272d186fe656250d474ae494fbcd50d80d6d
+base: main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`
 ---
 
 # HELIX-CONNECT Stage 1 L7 単体検証設計
