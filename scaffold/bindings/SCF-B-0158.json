@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS local CI運転契約",
   "state": "active",
-  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernel K1/K2/K3/K5 verifier inventory、共有raw-row resolver、suite traceを含む現在のsource/definition/reference/edge/旧pin inventoryを同期対象とし、旧10文書manifestのsuccessを12文書構造完全性へ読み替えない。Common Kernel K4/G3 L5/L8本文もsource inputとしてpinし、その73 fixture IDは構造inventoryへ登録してraw row/locator/edge/dispositionの照合対象とする。K1/K2/K3 source-only suiteは359 formal mappings（331 primary/28 stub）と419 discovery identitiesを固定し、K1/K2の既存165 mappings（139 primary/26 stub）と199 identitiesを保持する。実装/test 5 blobsをSHA pinし、L6/L7文書はtargetから実読する。同期の成立は単体検証とexact target CI証拠で確認し、Bindingから実装・合格を生成しない。",
+  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernel K1/K2/K3/K5 verifier inventory、共有raw-row resolver、suite traceを含む現在のsource/definition/reference/edge/旧pin inventoryを同期対象とし、旧10文書manifestのsuccessを12文書構造完全性へ読み替えない。Common Kernel K4/G3 L5/L8本文もsource inputとしてpinし、その73 fixture IDは構造inventoryへ登録してraw row/locator/edge/dispositionの照合対象とする。Common Kernel K6 L5/L8本文もsource inputとしてpinするが、K6の55 fixture IDsはlocal CI inventoryへ未登録であり、構造照合・fixture実行・CI coverageを主張しない。K1/K2/K3 source-only suiteは359 formal mappings（331 primary/28 stub）と419 discovery identitiesを固定し、K1/K2の既存165 mappings（139 primary/26 stub）と199 identitiesを保持する。実装/test 5 blobsをSHA pinし、L6/L7文書はtargetから実読する。同期の成立は単体検証とexact target CI証拠で確認し、Bindingから実装・合格を生成しない。",
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
@@ -45,12 +45,12 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/common-kernel.md",
-      "sha256": "81193f9be03af312da7e87915691b06f7d3e1777843708abab6efb040df1d6c9",
+      "sha256": "3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69",
       "note": "Common Kernel K1/K2/K3/K4/K5/G3 contract locator。固定構造corpusの入力bytesとして照合し、K4/G3のfixture登録・CI coverage、semantic approvalや実装成立を示さない。"
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "fefaa022cf64fae78552719a29def9155a3bbb93a8f3acb338cedc66d4c7c383",
+      "sha256": "bdac36e29b8cd0a5cec34cedce6d419f5d5ecc8daea70cba851067bcc308dfac",
       "note": "Common Kernel K1/K2/K3/K4/K5/G3 verifier table/range。K1/K2/K3/K5 inventoryとraw-row参照に加え、K4/G3の73 fixture IDも構造inventoryとしてraw row/locator/edge/dispositionを照合する。登録・構造照合はfixture実行やCI coverageを示さない。"
     },
     {
