@@ -28,6 +28,8 @@ K2 `key_of`拒否を扱うIV-012の3行は、BRAIN L9 §5が参照する共通ke
 
 ## 2. Functional oracle fixture（27 verifier ID、複数fixtureへ展開）
 
+局所hold・owner未接続の行はpositiveを主張せず、未接続の間の結果は非肯定である。Applicable、合格、採否を生成せず、既存入力Observedの保持を対象oracle全体の肯定へ昇格しない。
+
 27個のfunctional L9 verifier IDに対し、表のfunctional ID行は97件である。7個のNFR測定ID行を加えたID行は104件。うちDescriptorFieldSetの意味要素ごとの変異はpublic member encoding/readerが未定のため局所保留とし、実行済み・K1結果とは数えない。各negative ID行には一つの変異案を対応させ、fixture未接続と記した行はmaterialize/API呼出しをしない。各L9 oracle IDは従来どおり一つだけ保持する。K1/K2がclass/reasonを定める入力はその型をassertする。L4/L5がowner semanticsやcomparatorを定めないcaseは局所保留し、結果型を発明しない。 旧MLP unit/integration source（L4 §5 rows 3–4、asset `LEGACY-ASSET-1B990E15398E929D29BD` / `LEGACY-ASSET-B1F8D6CA3685EBF0F322`、full SHAは同表）にあるprovenance欠落・stale/danglingとowner混同の失敗類型を保持し、atomic fieldごとのfixtureへ分けた。旧memory schema、threshold、role型、runtimeは持ち込まない。ProvenanceRef内部のsource identity/revision member名がL5に定義されていないため、その2 memberに対するmissing/stale/danglingの6 mutationは各一行で局所保留とした。
 
 | L8 fixture ID | 固定L9 oracle / L10 case | L5関数・stub入力 | Positive baseline | 一つだけの変異 | 具体的期待結果 |
@@ -59,7 +61,7 @@ K2 `key_of`拒否を扱うIV-012の3行は、BRAIN L9 §5が参照する共通ke
 | `L8-BRAIN-007-BRAIN-VERIFICATION` | `IV-BRAIN-007` / `L10-BRAIN-007-C07` | `trace_source` | L8-BRAIN-001の完全な合成入力。 | `owner_records.brain_verification`だけにOS registrationのSubjectRefを置く。 | 入力`Value(SubjectRef)`を`owner_records.brain_verification`へそのまま返す。誤owner判定のK1 class/reasonは生成しない（未接続）。 |
 | `L8-BRAIN-007-ADOPTION` | `IV-BRAIN-007` / `L10-BRAIN-007-C07` | `trace_source` | L8-BRAIN-001の完全な合成入力。 | `owner_records.adoption`だけにBRAIN verificationのSubjectRefを置く。 | 入力`Value(SubjectRef)`を`owner_records.adoption`へそのまま返す。誤owner判定のK1 class/reasonは生成しない（未接続）。 |
 | `L8-BRAIN-008` | `IV-BRAIN-008` / `L10-BRAIN-007-C08` | `trace_source` | 必要source/evidenceと4 owner recordが全て入力Valueの完全入力。 | なし。 | `Value(BrainSourceTrace)`のfield別Observedを入力どおり返す。真正性・採否は判定しない。 |
-| `L8-BRAIN-009` | `IV-BRAIN-009` / `L10-BRAIN-007-C09` | `trace_source` | L8-BRAIN-001の完全な合成入力。 | Pattern/Unit/Part identity組合せだけを未見値にする。 | 全fieldがValueなら同一trace shape。required-input意味は追加しない。 |
+| `L8-BRAIN-009` | `IV-BRAIN-009` / `L10-BRAIN-007-C09` | `trace_source` | L8-BRAIN-001の完全な合成入力。 | Pattern/Unit/Part identity組合せだけを未見値にする。 | 入力`knowledge` SubjectRefと、`provenance`、`evidence`、`adopted_reason`、`evaluated_scope`、`counterexample`、`limitation`、`labo_evaluation_target`、`owner_records`の4 fieldを、それぞれ返却BrainSourceTraceの対応fieldと完全比較する。class・payload・key・evidenceを保持し、未見identityを既知identityへ置換しない。required-input意味は追加しない。 |
 | `L8-BRAIN-010` | `IV-BRAIN-010` / `L10-BRAIN-007-C10` | `trace_source` | L8-BRAIN-001の完全な合成入力。 | LABO targetだけ`Unknown(missing_input)`とする。 | 当該Unknownを保持しcandidate/adoption不変。 |
 | `L8-BRAIN-011` | `IV-BRAIN-011` / `L10-BRAIN-008-C01` | `read_knowledge` | K2 key成功のexact R queryと、R/R2両方の全fieldが固定されたK5 restore Value record集合。 | R recordのstateだけを`current`から`superseded`へ変える。R2 record、他field、exact R queryはbaselineのまま固定する。 | K2 `Value(BrainKnowledgeRecord)`としてqueryに一致するexact R recordを返し、R2への置換をせずBRAIN stateとOS useを混ぜない。 |
 | `L8-BRAIN-012-KEY-MISSING` | `IV-BRAIN-012` / `L10-BRAIN-008-C02` | K2 `key_of`/`lookup`; `read_knowledge`は成功keyの場合のみ | K2 `key_of`成功する完全key。 | 必須key fieldを一つ欠く。 | `Rejected(missing_key)`、API未呼出。 |
@@ -129,6 +131,16 @@ K2 `key_of`拒否を扱うIV-012の3行は、BRAIN L9 §5が参照する共通ke
 | `L8-BRAIN-027-KNOWLEDGE_IDENTITY` | `IV-BRAIN-027` / `L10-BRAIN-028-C08` | `compare_compatibility`（comparator未接続） | L8-BRAIN-020の完全な二軸基準。 | knowledge SubjectRef.identityだけ別Valueにする。 | 比較結果は`Unknown`。reasonはfield ownerへ返却し、field mismatch payload/classを作らない。 |
 | `L8-BRAIN-027-KNOWLEDGE_VERSION` | `IV-BRAIN-027` / `L10-BRAIN-028-C08` | `compare_compatibility`（comparator未接続） | L8-BRAIN-020の完全な二軸基準。 | BrainKnowledgeRecord.versionだけ別actual VersionRefにする。 | 比較結果は`Unknown`。reasonはfield ownerへ返却し、field mismatch payload/classを作らない。 |
 | `L8-BRAIN-027-KNOWLEDGE_REVISION` | `IV-BRAIN-027` / `L10-BRAIN-028-C08` | `compare_compatibility`（comparator未接続） | L8-BRAIN-020の完全な二軸基準。 | knowledge SubjectRef.revisionだけ別Valueにする。 | 比較結果は`Unknown`。reasonはfield ownerへ返却し、field mismatch payload/classを作らない。 |
+
+### 2.1 同じ局所入力の再利用とIVごとの責務
+
+以下のIDは別のL9期待へtraceする定義であり、同じ局所変異を再利用する。独立した入力変異や追加coverageとして二重計上しない。
+
+| 再利用する定義 | IVごとの期待と未被覆 |
+|---|---|
+| `L8-BRAIN-002-LABO-UNEVALUATED` / `L8-BRAIN-010` | 同じLABO targetの入力Unknown保持を再利用する。IV-002はLABO未評価を評価済みへ変えない責務、IV-010はevaluation target revision欠落を不一致や成功へ丸めない責務にtraceする。評価判定・target内部revisionのreaderはL5 §3.6のowner返却事項であり、このfield保持だけで両IVを充足しない。 |
+| `L8-BRAIN-012-RECORD-STATE-UNKNOWN` / `L8-BRAIN-016-UNKNOWN-STATE` | 同じ保存state Unknown保持を再利用する。IV-012はunknownのcurrent暗黙解決を止める期待、IV-016は未知stateを正常対照から除く境界を確認する。 |
+| `L8-BRAIN-021-RANGE-OUTSIDE` / `L8-BRAIN-023-OUTSIDE` | 同じrange外Value入力とcomparator未接続の非肯定を再利用する。IV-021はsilent fallback防止、IV-023はrange外と欠落/解釈不能の区別へtraceする。比較器未接続なので両IVの肯定・不適合判定は未実施である。 |
 
 ## 3. NFR測定oracle fixture（7件）
 
