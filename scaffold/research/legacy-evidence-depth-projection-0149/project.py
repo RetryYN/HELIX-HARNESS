@@ -36,7 +36,7 @@ BUNDLES = [
 def load_rows(root: Path = ROOT) -> list[dict]:
     rows = []
     for bundle, binding_id in BUNDLES:
-        path = root / "scaffold" / bundle / "classification-research.jsonl"
+        path = root / "scaffold" / "research" / bundle / "classification-research.jsonl"
         with path.open(encoding="utf-8") as f:
             for line_number, line in enumerate(f, 1):
                 if not line.strip():

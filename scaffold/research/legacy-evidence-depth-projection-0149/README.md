@@ -13,9 +13,9 @@
 ## 静的確認
 
 ```text
-python3 -B scaffold/legacy-evidence-depth-projection-0149/project.py --write
-python3 -B scaffold/legacy-evidence-depth-projection-0149/project.py --check
-python3 -B scaffold/legacy-evidence-depth-projection-0149/project.py --selfcheck
+python3 -B scaffold/research/legacy-evidence-depth-projection-0149/project.py --write
+python3 -B scaffold/research/legacy-evidence-depth-projection-0149/project.py --check
+python3 -B scaffold/research/legacy-evidence-depth-projection-0149/project.py --selfcheck
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale
 python3 scaffold/tools/scfctl.py residuals

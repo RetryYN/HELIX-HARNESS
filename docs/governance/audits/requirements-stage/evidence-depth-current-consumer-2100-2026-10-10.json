@@ -1,0 +1,278 @@
+{
+  "audit_id": "EVIDENCE-DEPTH-CURRENT-CONSUMER-2100-2026-10-10",
+  "base_revision": "330fbf8fed2d5960fe386443bcceb946bfa74f6c",
+  "authority_effect": "none",
+  "issue": 2100,
+  "scope": "#2100の14束深度集計と、現在mainに成立したSEEDFIRSTの人間判断入力/限定BRAIN配置の静的照合。全旧資産の分類/移管監査や将来consumerの保証ではない。",
+  "denominator": {
+    "record_rows": 768,
+    "unique_asset_ids": 726,
+    "duplicate_asset_ids": 42,
+    "extra_duplicate_occurrences": 42,
+    "legacy_asset_ledger_total": 4020,
+    "unique_id_coverage_percent": 18.06
+  },
+  "depth_projection": {
+    "source_snapshot": {
+      "record_rows_with_source_exact_object": 768,
+      "meaning": "source receipt presence only; not full-source semantic review"
+    },
+    "mechanical_profile_excerpt": {
+      "0142_records_with_nonempty_all_true_markers": 52,
+      "0142_false_marker_occurrences": 0,
+      "0142_direct_product_basis_occurrences": 35,
+      "0142_direct_occurrences_with_mechanical_marker": 35,
+      "meaning": "profile/path-group first pass; marker explicitly denies semantic analysis"
+    },
+    "selected_span_candidate": {
+      "0141_records_with_pinned_semantic_span_status": 41,
+      "0141_direct_product_basis_occurrences": 26,
+      "meaning": "selected source spans and candidate mapping; status still pending human review"
+    },
+    "responsibility_comparison_material": {
+      "0141_records_with_pinned_span_and_product_basis": 35,
+      "0142_records_with_boundary_evidence_object": 57,
+      "meaning": "comparison material is present in records; its presence alone does not establish semantic review, owner, or adoption"
+    },
+    "declared_direct_product_basis_record_occurrences_across_bundles": 387,
+    "formal_classification_update": {
+      "unique_ids_explicit_true": 0,
+      "unique_ids_explicit_false": 666,
+      "unique_ids_missing_or_mixed": 60,
+      "meaning": "recorded value only; not an approval/adoption receipt or formal adoption rate"
+    }
+  },
+  "classification_inputs": [
+    {
+      "path": "scaffold/research/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
+      "binding_id": "SCF-B-0145",
+      "sha256": "0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b"
+    },
+    {
+      "path": "scaffold/research/legacy-asset-product-classification-0107/classification-research.jsonl",
+      "binding_id": "SCF-B-0107",
+      "sha256": "ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76"
+    },
+    {
+      "path": "scaffold/research/legacy-config-product-classification-0141/classification-research.jsonl",
+      "binding_id": "SCF-B-0141",
+      "sha256": "a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b"
+    },
+    {
+      "path": "scaffold/research/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
+      "binding_id": "SCF-B-0147",
+      "sha256": "237a9cf9bae1963205f58e7a925ded128aa265b0f5f5342a9b8ed57fd907d8a0"
+    },
+    {
+      "path": "scaffold/research/legacy-implementation-residual-0126/classification-research.jsonl",
+      "binding_id": "SCF-B-0126",
+      "sha256": "d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138"
+    },
+    {
+      "path": "scaffold/research/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
+      "binding_id": "SCF-B-0128",
+      "sha256": "db407121029c9074e0679adf82e309caca9d7a33fabf7c6db23941c0b80e4251"
+    },
+    {
+      "path": "scaffold/research/legacy-lint-product-classification-0108/classification-research.jsonl",
+      "binding_id": "SCF-B-0108",
+      "sha256": "3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829"
+    },
+    {
+      "path": "scaffold/research/legacy-research-assets-product-classification-0142/classification-research.jsonl",
+      "binding_id": "SCF-B-0142",
+      "sha256": "488d795223c73386da579ea7018583f2276ea22dc333852fdd646f1a1bbacb99"
+    },
+    {
+      "path": "scaffold/research/legacy-runtime-product-classification-0117/classification-research.jsonl",
+      "binding_id": "SCF-B-0117",
+      "sha256": "ed5a673d065daf3c7254ea8812a4c3989b04dbb65855999c43e42139dc1b2104"
+    },
+    {
+      "path": "scaffold/research/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+      "binding_id": "SCF-B-0133",
+      "sha256": "c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee"
+    },
+    {
+      "path": "scaffold/research/legacy-schema-product-classification-0120/classification-research.jsonl",
+      "binding_id": "SCF-B-0120",
+      "sha256": "c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204"
+    },
+    {
+      "path": "scaffold/research/legacy-source-product-classification-0123/classification-research.jsonl",
+      "binding_id": "SCF-B-0123",
+      "sha256": "06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f"
+    },
+    {
+      "path": "scaffold/research/legacy-state-db-product-classification-0127/classification-research.jsonl",
+      "binding_id": "SCF-B-0127",
+      "sha256": "bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad"
+    },
+    {
+      "path": "scaffold/research/legacy-test-design-worker-workflow-0148/classification-research.jsonl",
+      "binding_id": "SCF-B-0148",
+      "sha256": "dd2b9923b65fd39c3af0096cbc664676496c31fe40da43ffa7f416671dd4eeab"
+    }
+  ],
+  "projection_file_sha256": "30b5dc76d8543b2c9425f8fcf1d7ff0434cec3cc7f8edebe59366311457ae22c",
+  "current_consumer": {
+    "identity": "SEEDFIRST",
+    "fixed_input_revision": "5b52bee6397125b8b9b8ca7f4a1b695605b0123e",
+    "fixed_packet_path": "docs/governance/crosswalks/requirements-resolution-packet.json",
+    "fixed_packet_sha256": "c9926d8a9db74095b0792cb134ac59e6374519acf94e1a1045a29076e7d55897",
+    "adopted_knowledge_path": "docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json",
+    "adopted_knowledge_sha256": "8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77",
+    "decision_path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+    "decision_sha256": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae",
+    "adoption_receipt_path": "docs/governance/audits/seedfirst-knowledge-adoption-receipt-2026-10-10.json",
+    "adoption_receipt_sha256": "6688dfa15606f18a26a93e0b59a46cb4f06b208dd8dbd97e2b3ba7dc29aee825",
+    "merge_revision": "330fbf8fed2d5960fe386443bcceb946bfa74f6c",
+    "review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/2859#issuecomment-6090920583",
+    "sources": [
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+        "selected_spans": [
+          {
+            "first_line": 74,
+            "last_line": 77,
+            "text": "- `verification`: pair template ID、required oracle class、negative oracle、stale条件。\n- `measurement`: metric ID、unit、threshold/operatorまたはauthority付きN/A。\n- `completion`: required coverage、unresolved policy、independent review、digest一致条件。\n- `downstream_artifact_kinds`: current layer/pairで生成可能な閉じたartifact kind。\n",
+            "sha256": "4c053c75d3eeb8bf5071c8341d1322ecc4de542946a324eafba14b7f7aeff4be"
+          }
+        ],
+        "meaning_use": "意味構造/verification/measurementと説明を分離",
+        "research_occurrences": [
+          {
+            "bundle": "legacy-asset-product-classification-0107",
+            "binding_id": "SCF-B-0107",
+            "record_line": 33,
+            "category": "direct_product_basis",
+            "mechanical_not_semantic_analysis_markers": [],
+            "formal_update_marker": false
+          }
+        ],
+        "adoption_basis": "固定packetの原文区間とlegacy_comparison、対象revisionへのPO回答。category/coverage/formal_update_markerは採用根拠に使わない。",
+        "adoption_scope": "限定したtemplate知識内容だけ。資産全体のowner/採否/consumer closureは変更しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B3E589D465867A5A1A1B",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/skills/verification.md",
+        "file_sha256": "fb714da2cc6f729b0a3add7465cad2606c47ed111b35be79ab9c26158e04a404",
+        "selected_spans": [
+          {
+            "first_line": 87,
+            "last_line": 91,
+            "text": "## Obligation absence rule（artifact 欠落 rule）\n\nabsent artifact は neutral state ではなく violation である。design doc が存在するのに paired test-design doc が無い場合、\n`helix vmodel lint` は gap として報告すべきである。lint がそれを検出しない場合は improvement entry を起票する。\nabsence-blindness は descent gaps の root cause である。\n",
+            "sha256": "1ae3be513530e454e2e239348810dc9bc8052f74b8ecc4b5b4e5e697dbed8701"
+          }
+        ],
+        "meaning_use": "必要artifactの欠落を中立へ変換しない",
+        "research_occurrences": [],
+        "adoption_basis": "固定packetの原文区間とlegacy_comparison、対象revisionへのPO回答。category/coverage/formal_update_markerは採用根拠に使わない。",
+        "adoption_scope": "限定したtemplate知識内容だけ。資産全体のowner/採否/consumer closureは変更しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-E9998EF887555DBB2751",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/ci-verification-plan.md",
+        "file_sha256": "21e0b8a05b965d6c1ad27c55bf28ff2d711daa4112c96589da63075b02fc5841",
+        "selected_spans": [
+          {
+            "first_line": 24,
+            "last_line": 32,
+            "text": "- current outputはlocal、boundary、global invariant、deferred obligation、execution DAG、full fallback reasonを別fieldにする。\n- changed test capabilityはgraph選定外でも必須とし、dependency closureを追加する。\n- candidate HEADは呼出元が取得したexpected candidate HEADとexact一致させ、40桁SHAという形状だけでは受理しない。\n- unknown／high-risk、selector／registry／security／schema／migration／rollback／lockfileはactive capability exact setへ\n  full fallbackする。未登録risk signalは黙って除外せず`unknown_identity` fallbackとfindingを返す。fallbackはfindingを相殺しない。\n- PRで延期するobligationはRegistryの`defer_targets` allowlist内でmain／nightly／releaseのいずれかへexactly-once\n  割り当て、candidate HEAD、pending／succeeded、terminal receipt digestをplanへ保持する。pendingは未完として追跡し、\n  succeededはdigest必須とする。dependencyを延期したままconsumerを即時実行しない。\n- 上流contractが渡すrequired obligation exact setをaggregateで照合し、一件でも選定closureから消えたら拒否する。\n",
+            "sha256": "4512cf162089109603d2152636f7cb56887a568cecf54b26730b0111e680f6cf"
+          }
+        ],
+        "meaning_use": "検証義務の区別と延期義務の回収",
+        "research_occurrences": [],
+        "adoption_basis": "固定packetの原文区間とlegacy_comparison、対象revisionへのPO回答。category/coverage/formal_update_markerは採用根拠に使わない。",
+        "adoption_scope": "限定したtemplate知識内容だけ。資産全体のowner/採否/consumer closureは変更しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+        "file_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+        "selected_spans": [
+          {
+            "first_line": 28,
+            "last_line": 40,
+            "text": "| gate | canonical pair | 検証本質 | 旧physical evidenceの投影 |\n|---|---|---|---|\n| G7 | L6↔L7 | unit実装・TDD closure | 旧L7/L8 unit evidence |\n| G8 | L5↔L8 | integration品質 | 旧L8/L9 integration evidence |\n| G9 | L4↔L9 | system品質 | 旧L9 system evidence |\n| G10 | L3↔L10 | 機能要件・UX受入 | 旧L10 UX + 旧L12 acceptance evidence |\n| G11 | L2↔L11 | 要求・人間受入 | 旧L11 UAT evidence |\n| G12 | L1↔L12 | 価値・運用品質 | 旧L12 release + L13 smoke + L14 operation/value evidence |\n\n検証失敗は対応する左腕へ差し戻す。旧G13/G14 receiptはG12のevidence componentとしてのみ取り込み、独立gate passやwhole-program completionを主張しない。\n\n- 右腕工程で **ペア未凍結のテスト設計を新規起票することは V-model 違反** (AP-7)。\n- 検証工程で品質観点の不足が見つかった場合は、独立の **QA 追加テスト設計 doc** として正本化し、既存 ③ を書き換えない (concept v3.1 §3.4)。\n",
+            "sha256": "3012940798edebfb2a7bf0944813814a9df5ff5ed7ecec9c62d431f3f16c63c3"
+          },
+          {
+            "first_line": 73,
+            "last_line": 79,
+            "text": "| gate | 左腕test basis | 右腕test condition | 必須evidence | gate消費形態 |\n|---|---|---|---|---|\n| G8 | L5 contract | 境界が結合する | `g8-integration-evidence-v1`、command exit 0 | hard gate |\n| G9 | L4 system contract | system behavior成立 | ST-* row、system command evidence | system workflow |\n| G10 | L3 FR/AC | 機能・UX・accessibility成立 | screenshot / render smoke / accessibility finding、WCAG 2.2 success-criteria mapping、Playwright trace or report | UX workflow |\n| G11 | L2要求 | 人間受入とfeedback disposition | UAT decision record、manual accessibility or inclusive-user review route | 未処理feedbackを拒否 |\n| G12 | L1事業要求 | 受入・配布・運用・価値を一体検証 | acceptance command evidence、smoke command evidence、operational metric snapshot、L12→L1/L0 feedback record | release/operation/value closure |\n",
+            "sha256": "2a915da30287f1fad062ca3554e1cac1a60ac7b3a88e5452845c22f48d726811"
+          },
+          {
+            "first_line": 197,
+            "last_line": 220,
+            "text": "検証工程で失敗した場合の差し戻し先を明示する (concept v3.1 §3.1.5):\n\n| 失敗工程 | 差し戻し先 |\n|---------|-----------|\n| L8 結合テスト失敗 | L5 詳細設計 または L7 実装 |\n| L9 総合テスト失敗 | L4 基本設計 |\n| L10 機能要件・UX受入失敗 | L3要件または対応するL4-L6設計 |\n| L11 人間受入フィードバック | L2要求。system behavior変更時はL3 add-design |\n| L12 価値・運用品質失敗 | L1事業要求へfeedback。本番回帰はIncident mode、軽微なrelease問題はG12 evidenceを再取得 |\n\n差し戻し記録は PLAN の carry log に残す。右側工程で「ペア未凍結のテスト設計を後付け」することは V-model 違反 (AP-7)。\n\n正本は本書のcanonical L7-L12表とL12 directiveである。旧L13/L14差し戻しはG12 evidence/Incident routeへ統合した。\n\n---\n\n## QA 追加テストの分離原則 (concept v3.1 §3.4)\n\nL8/L9 で発見した品質不足観点は以下の手順で扱う:\n\n1. 既存の ③ テスト設計 (L5/L6 で凍結済み) を **直接書き換えない**\n2. 独立した **QA 追加テスト設計 doc** を `docs/test-design/` に正本化する\n3. その追加テスト設計 doc に対応する ④ テストコードだけを `tests/` に追加する\n4. 追加が大きい場合は `add-design` / `add-impl` (Add-feature mode) として差分 PLAN を起票する\n",
+            "sha256": "2a7f32cbefee0ca475112b89b9a785e9a4e2b8f51d233e8b223d48f26e78c67a"
+          }
+        ],
+        "meaning_use": "対/test basis、人の受入、未処理feedback、追加oracleの分離",
+        "research_occurrences": [],
+        "adoption_basis": "固定packetの原文区間とlegacy_comparison、対象revisionへのPO回答。category/coverage/formal_update_markerは採用根拠に使わない。",
+        "adoption_scope": "限定したtemplate知識内容だけ。資産全体のowner/採否/consumer closureは変更しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-73C1830CFD650CEFDCF3",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L2-screen-ux-test-design.md",
+        "file_sha256": "2e49643f70e3837fc110f72aff2cce0ea607c7c462b8ac372bd8a1ccd4091de7",
+        "selected_spans": [
+          {
+            "first_line": 26,
+            "last_line": 35,
+            "text": "| ID | 対応 | 検証観点 | 合格条件 |\n|---|---|---|---|\n| HUX-L2-01 | L2-AC-01 | 合意済み要求に対応するnode／edge／blockerを実操作で確認し、要求からプロト・L3・受入結果へ辿る | 指定した要求文書・正本JSON・DB投影から再現でき、対応欠落と未検証項目を表示する。LLM生成図を正本にしない |\n| HUX-L2-02 | L2-AC-02 | モックのみ、実装のみ、総合テストのみの各状態とL11受入済みを区別する | 対象要求revisionに結び付く実操作・accessibility・blocker表示・操作承認境界の証跡が欠ける場合は未受入とする。旧doctorの層名やgreen単独を合格条件にしない |\n| HUX-L2-03 | L2-AC-03 | S4判断とプロト合意の欠落・revision不一致を確認する | `PLAN-DISCOVERY-10`のS4判断に加え、要求ID・要求revision・プロトrevision・合意者・判断記録が一致するまでL3凍結への受渡しを認めない |\n\n## 完了境界\n\nL11受入には上記3観点の実行結果が必要である。本書には実行結果や人の合意証拠を追加していない。\n要求の整備、pairの存在、旧テストの成功を受入完了の証拠としない。\n",
+            "sha256": "d7ba28d8810c290d04d4264fabf4a3c22627dcac27789e255d23853ed4cd841c"
+          }
+        ],
+        "meaning_use": "受入観点と要求revision/実操作/人の証拠",
+        "research_occurrences": [],
+        "adoption_basis": "固定packetの原文区間とlegacy_comparison、対象revisionへのPO回答。category/coverage/formal_update_markerは採用根拠に使わない。",
+        "adoption_scope": "限定したtemplate知識内容だけ。資産全体のowner/採否/consumer closureは変更しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-877A4CD3025063075BFE",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/skills/acceptance-criteria-thinking.md",
+        "file_sha256": "0523237a9575c2ca14231aba73d717e6c8b972295006fd4ff731c05e53ac744b",
+        "selected_spans": [
+          {
+            "first_line": 45,
+            "last_line": 76,
+            "text": "## §1 AC の質 — Testable を満たす\n\n次を満たさない AC は書き直す:\n\n- **観測可能な結果で書く。** 「使いやすいこと」ではなく「`helix doctor` が exit 0」\n  「3 操作以内で X が完了する」。主観語（速い・分かりやすい・適切）は数値・操作手順・\n  状態遷移に落とす。数値が決められないなら、それは AC ではなくまだ要求の議論である。\n- **Given-When-Then で状態を固定する。** 前提（Given）なき Then は再現できない。Given は\n  「どのデータ・どの権限・どの状態から」を明示する。\n- **1 AC = 1 判定。** 「登録できて、かつ通知されて、かつ一覧に出る」は 3 つに割る。\n  複合 AC はどれが落ちたか分からない。\n- **falsifiable claim には裏付け手段を併記する。** 「N green」「fully covered」型の claim は\n  prose ではなく、それを裏付ける test / command を cite する（PLAN claim discipline。\n  機械的代替は real-repo regression test であり sentence ではない）。\n\n## §2 「Done の偽装」カタログ — 判定時に疑う型\n\naccept 判定・レビュー時は、次の偽装パターンを名指しで疑う（adversarial-review の攻撃対象と同じ）:\n\n- **Done の偽装**: 「Done」宣言だが AC の一部が未検証 / 自動テストが無い / 別環境で動かない。\n  受入条件を 1 つずつ反例で突く。\n- **ゴールの空洞化**: task は閉じたが目的が達成されていない（チケットは消化したが、\n  要求した価値が出ていない）。PLAN の「目的」節に戻って突合する。\n- **垂直スライスの偽装**: デモ / happy path は通るが、裏が繋がっていない（ハードコード・\n  stub 残り・エラーパス未実装）。`code-minimalism` §4 の嗅覚と test-thinking §1-5 失敗系で突く。\n- **AC の後付け緩和**: 実装に合わせて AC を弱めていないか。PLAN の履歴（git log）と現 AC の\n  差分を疑う。confirmed PLAN の claim 訂正は silent overwrite ではなく supersede で行う。\n- **証跡の崩し**: review_evidence の green_commands から再確認手順が組めるか。「確認しました」\n  だけの証跡はアンカー（command / exit code / digest / path）が無ければ無効。\n\n判定に迷う AC は PASS にしない。**UNCERTAIN と明記して根拠不足を surface する**\n（推測で PASS を埋めるのが最悪の選択。judgment-core §4）。\n",
+            "sha256": "77a1d43bfd30db08ec961fc3d6048bd78569ea4ee278a18dfdf484994e21fca3"
+          }
+        ],
+        "meaning_use": "観測可能AC、偽完了拒否、判定不能を未決保持",
+        "research_occurrences": [],
+        "adoption_basis": "固定packetの原文区間とlegacy_comparison、対象revisionへのPO回答。category/coverage/formal_update_markerは採用根拠に使わない。",
+        "adoption_scope": "限定したtemplate知識内容だけ。資産全体のowner/採否/consumer closureは変更しない。"
+      }
+    ],
+    "0141_or_0142_asset_intersection_count": 0,
+    "research_category_or_depth_marker_promoted_to_adoption_basis": false,
+    "evidence_limit": "0141/0142が意味レビュー済みとして採用された実例はない。今回は別深度の入力を採用根拠へ流用していないことを、実際の固定packet・decision・配置JSONと原sourceで確認する。absence searchだけでなく6入力を全数追跡する。"
+  },
+  "relocation_fix": {
+    "path": "scaffold/research/legacy-evidence-depth-projection-0149/project.py",
+    "change": "load_rowsのscaffold/<bundle>をscaffold/research/<bundle>へ追随。分類/marker検査/集計条件を変更せず既存projection bytesを保つ。",
+    "readme_commands_follow_current_path": true
+  },
+  "checks": [
+    "project.py --check: 14束768行/726 unique/42重複の既存projection一致",
+    "project.py --selfcheck: 0142 mixed marker/non-object分類/numeric formal marker/重複混合4負例を拒否/保持",
+    "固定packet/knowledge/decision/receiptのhashと採用範囲照合",
+    "6旧sourceのfile/選択区間hashと研究レコード交差照合",
+    "14研究束不変、正式資産台帳/L2/L11/MPR/Binding不変"
+  ],
+  "completion_disposition": "独立review側へ#2100本文全条件の完了とclose可否を照合依頼する。review/mergeだけからIssue完了を生成しない。",
+  "remaining": [
+    "機械的0142分類35件と0141選択区間候補26件の正式採否は未完として保持",
+    "全旧assetの意味/consumer/failure/移管、全要求の採否・#1813/他Issueの完了は別",
+    "今後の配置/採否も原文・比較・対象decisionに戻す。集計から承認を生成しない"
+  ]
+}
