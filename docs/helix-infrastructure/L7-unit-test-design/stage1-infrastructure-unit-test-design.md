@@ -9,7 +9,7 @@ status: draft_candidate
 authority_status: draft_candidate
 stage: 1
 paired_l6: ../L6-function-design/stage1-infrastructure.md
-paired_l6_sha256: e4e469a840df0101fb0abea1e541a33b039ca2c1203bf5abcf3199447babf023
+paired_l6_sha256: df9f009e6303367f35c77e50fe715aa651f3b95321016c4a84c23a5abc92baad
 ---
 
 # HELIX-INFRASTRUCTURE Stage 1 単体テスト設計
@@ -24,10 +24,10 @@ paired_l6_sha256: e4e469a840df0101fb0abea1e541a33b039ca2c1203bf5abcf3199447babf0
 | L9 INFRA | `b83eee2452ec0b41ef23ffd6a3aea3e1374f82dbffc3e8c7bb54908b01ae9d8b` | origin/mainの固定本文。40 verifier IDを固定参照 |
 | L5 INFRA | `40b96764707a666d5d6dd39f3709857e58a67df564a2a4dbc7c98a1379737300` | PR #2770がmain `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`へ統合した配置候補の固定本文 |
 | L8 INFRA | `e1ab1329d1de3d61062a32c422c435863c0a2055eb4ef207623966b0bdb17f14` | 同main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`の配置fixture本文、上記L5を参照 |
-| L6 INFRA | `e4e469a840df0101fb0abea1e541a33b039ca2c1203bf5abcf3199447babf023` | このL7が参照する、配置と固定ref選択を追補した候補本文 |
+| L6 INFRA | `129f930d820283979f405b29bcf1c694d7a590976ea41b34fbba00fd79657d1f` | このL7が参照する、配置・固定ref選択・private resource projectionの局所実装状況を記録した候補本文 |
 | Common Kernel L4/L9 | origin/main `107a648842673ed9b0b02fd440aa68594dd201f6`の各本文 | 現行契約の読取参照。L6 §1のhash表参照 |
 
-L2/L11の親はL4/L5が固定する採択済み2親であり、L2-005は006に適用される場合だけの入力依存である。L5/L8の配置・locator detailはPR #2770によりmain `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`へ統合済みであり、ここに記したhashは同mainの本文bytesと一致する。登録・実行・承認をmergeから生成しない。テストsuite、fixture実体、test runnerは本書では作成・起動しない。
+L2/L11の親はL4/L5が固定する採択済み2親であり、L2-005は006に適用される場合だけの入力依存である。L5/L8の配置・locator detailはPR #2770によりmain `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`へ統合済みであり、ここに記したhashは同mainの本文bytesと一致する。登録・実行・承認をmergeから生成しない。formal 248 fixture suiteは未実行である。§9の局所private helper testsだけを別に記録し、L8 oracle実行へ読み替えない。
 
 ## 2. Fixture規約と共通baseline
 
@@ -474,18 +474,20 @@ L6/L7本文は設計候補であり、実装、suite配置、実行、CI統合�
 
 ## 9. 局所候補実装と実行記録
 
-この作業treeはprivate `_project_resource_observation_subset` / `_ResourceProjectionSubset`を持つが、formal `ResourceProjection`とは型・返却shapeが異なり、FN-02公開L5 APIを実装していない。FN-03/04は既存`Observed`を保持するprivate helperの合成subsetを部分検査し、L5の公開compare/project APIを実装したとは扱わない。FN-06は既存Observed外側型とOS operation/attempt owner sourceが未接続のため未実装である。FN-01/FN-05もowner bindingが未接続で未実装とする。FN-07は渡されたObservedのprivate集計helperだけを検査し、L8 NFRを実測しない。未接続APIへ`Rejected(missing_key)`、`None`、K3 resultを代用せず、K3 private owner-port stubやkind→action mappingを使わない。
+この作業treeは`src/_private_resource_projection.py`のprivate凍結record `_ResourceProjection(identity, fields)`を使い、既存`ResultKey.subject`由来identityと入力されたsource-qualified field observationだけを部分投影する。field keyはL8の`dependency`/`lifecycle`をそのまま使い、L5 §3.1の`dependencies`/`lifecycle state`属性名との対応をL6 §7に明記する。L5/L8の6 field名と合成baselineは照合するが、complete-scope read、owner mapping、domain absence encoding、polarity、公開L5 APIは実装していない。FN-03/04は既存`Observed`を保持するprivate helperの合成subsetを部分検査し、L5の公開compare/project APIを実装したとは扱わない。FN-06は既存Observed外側型とOS operation/attempt owner sourceが未接続のため未実装である。FN-01/FN-05もowner bindingが未接続で未実装とする。FN-07は渡されたObservedのprivate集計helperだけを検査し、L8 NFRを実測しない。未接続APIへ`Rejected(missing_key)`、`None`、K3 resultを代用せず、K3 private owner-port stubやkind→action mappingを使わない。
 
 248 canonical fixtureは本書§5のL8個別対応行から確定し、各fixtureの対応先はL8の同一ID行で照合する。L8を全量走査した269 unique tokenとの差21はcanonical分母外であり、001 verifier wildcard 15件、`L8-INFRA-<parent>-<verifier>-<condition>` template 1件、PACK locator/setup 5件である。これらをcanonical fixtureへ追加しない。
 
-実装coverageの248行は§9.1に記録する。各行にfixture IDとcoverage種別、実際の検査範囲または未接続理由を示す。分類結果は`partial` 7、`hold` 241、`primary` 0、`stub` 0。旧59/66/123の区分は計画用candidateタグであり、実行結果へ引き継がない。partial行もL8全oracle passを意味せず、入力観測の限定projectionだけを検査する。5 `INFRA-L7-SETUP-*`は別分母であり、この実行に含めない。
+実装coverageの248行は§9.1に記録する。各行にfixture IDとcoverage種別、実際の検査範囲または未接続理由を示す。分類結果は`partial` 8、`hold` 240、`primary` 0、`stub` 0。旧59/66/123の区分は計画用candidateタグであり、実行結果へ引き継がない。partial行もL8全oracle passを意味せず、入力観測の限定projectionだけを検査する。5 `INFRA-L7-SETUP-*`は別分母であり、この実行に含めない。
 
 | 対象 | 実行範囲 | 結果と境界 |
 |---|---|---|
-| test command | `PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s helix/helix-infrastructure/units/infrastructure-stage1/tests -p 'test_*.py' -q` | 5 tests run, OK。formal API適合は0件であり、FN-02相当のprivate projection subset helperおよび入力保持helperの合成subsetのみ。 |
-| source path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py` / `7bd177a70a01edd1adb439df290ef0c7d7d37940bff2072532eee28bd8ac7ffd` | 最終unit実行対象のsource bytes。 |
-| test path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py` / `e24e83f6dedf47202962687a9e00c70a85f9328e2587838a9ef349242e5add21` | 最終unit実行対象のtest bytes。 |
-| owner/domain hold | 241 canonical fixture | FN-01/05 owner API binding、FN-03/04 domain/path semantics、FN-06 operation result owner source、NFR probeやfull L8 oracleが未接続のためhold。 |
+| test command | `PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s helix/helix-infrastructure/units/infrastructure-stage1/tests -p 'test_*.py' -q` | 11 tests run, OK。元の5 testsと6件の独立projection testsを実行。FN-02のsource-qualified identity/field保持に限りL8 baselineとversion-unreadableへ局所partial assertionを行い、formal API適合は0件。 |
+| existing source path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py` / `7bd177a70a01edd1adb439df290ef0c7d7d37940bff2072532eee28bd8ac7ffd` | 既存source bytesはCI固定値を保ち未変更。新moduleは既存`SourceObservation`とvalidatorを参照する。 |
+| new private source path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/src/_private_resource_projection.py` / `f06c193f403cda7478e2195d36d1c0b7e97600bbef8a44565ced883a65c039bb` | FN-02の局所projection候補。L5公開API・owner/source readerを実装しない。 |
+| existing test path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py` / `e24e83f6dedf47202962687a9e00c70a85f9328e2587838a9ef349242e5add21` | 既存5 testsのbytesは未変更。 |
+| new test path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_resource_projection.py` / `d15e12ea0beeb541a011761ec87a22072a64f4a67a16fc4743af8a5970d14dfd` | 6 focused unit tests。L8 fixture locatorを参照するがL8全oracle実行ではない。 |
+| owner/domain hold | 240 canonical fixture | FN-01/05 owner API binding、FN-03/04 domain/path semantics、FN-06 operation result owner source、NFR probeやfull L8 oracleが未接続のためhold。8 partialはそれぞれ明記したsource-value保持subsetに限る。 |
 
 この実行は局所CPython `unittest`であり、Scaffold Binding/CI登録、declaration検証、module locator setup、実source/owner reader、operation、NFR測定、L10合格を示さない。source/test bytesが変わればこの実行記録はその後のbytesへ自動継承されない。
 
@@ -495,7 +497,7 @@ L6/L7本文は設計候補であり、実装、suite配置、実行、CI統合�
 
 | L8 fixture ID | coverage | 実検査範囲または未接続理由 |
 |---|---|---|
-| `L8-INFRA-001-01-BASE` | `hold` | projection-only hold: L5 §3/§4、L6 §2、L8 line 52。private projection subset helperによるsource Observed/ref保持の限定部分のみ。formal projection APIは未実装。単一条件「mutationなしの正常baseline。declared scope内のresource identityとrole/environment/location/version/dependency/lifecycleを全て読み、source/revisionを付ける。」から期待「完全scope readで6 fieldのsource-qualified観測を保持する。欠落fixtureは各fieldを個別に除く。」を導くdomain Value/polarity/absence encodingまたはowner bindingが未接続。 |
+| `L8-INFRA-001-01-BASE` | `partial` | L5 §3.1、L6 §2、L8 line 52。private `_ResourceProjection`がResultKey.subjectをidentityへ置き、入力された6つのsource-qualified `SourceObservation`をfieldごとに保持することを検査。完全scope read、owner binding、domain Value/polarity/absence encodingは未検査・未接続のため、L8 baseline全体は未実行。 |
 | `L8-INFRA-001-01-KEY-MISSING-IDENTITY` | `hold` | FN-01 hold: L5 §3/§4とL6 §2でK2 operation/operation_version/subject選択が未接続。L8条件「baselineからidentity key inputだけを除く。」のK2結果を本sourceは構成せずmissing_key等を代用しない。 |
 | `L8-INFRA-001-01-MISSING-dependency` | `hold` | projection-only hold: L5 §3/§4、L6 §2、L8 line 57。private projection subset helperによるsource Observed/ref保持の限定部分のみ。formal projection APIは未実装。単一条件「baselineから名前付きfieldだけ完全scope readで不在にする。」から期待「K1 I7の完全走査条件を満たす。不在のdomain value encodingが既存宣言にある場合だけValue、未定義なら値を作らずmapping未決。resource source/CORE。」を導くdomain Value/polarity/absence encodingまたはowner bindingが未接続。 |
 | `L8-INFRA-001-01-MISSING-environment` | `hold` | projection-only hold: L5 §3/§4、L6 §2、L8 line 54。private projection subset helperによるsource Observed/ref保持の限定部分のみ。formal projection APIは未実装。単一条件「baselineから名前付きfieldだけ完全scope readで不在にする。」から期待「K1 I7の完全走査条件を満たす。不在のdomain value encodingが既存宣言にある場合だけValue、未定義なら値を作らずmapping未決。resource source/CORE。」を導くdomain Value/polarity/absence encodingまたはowner bindingが未接続。 |
@@ -566,7 +568,7 @@ L6/L7本文は設計候補であり、実装、suite配置、実行、CI統合�
 | `L8-INFRA-001-14-BASE` | `partial` | location/version synthetic subset baselineをprivate projection subset helperが保持。formal FN-02は未実装。 |
 | `L8-INFRA-001-14-LOCATION-UNREADABLE` | `hold` | projection-only hold: L5 §3/§4、L6 §2、L8 line 121。private projection subset helperによるsource Observed/ref保持の限定部分のみ。formal projection APIは未実装。単一条件「ID名に示す条件をbaselineから一つだけ変更」から期待「baselineから指定fieldのreadだけ失敗させる。既知current値を再利用せず、該当fieldを`Unknown(unreadable)`とする。該当source owner。」を導くdomain Value/polarity/absence encodingまたはowner bindingが未接続。 |
 | `L8-INFRA-001-14-PARTIAL-UPDATE` | `hold` | projection-only hold: L5 §3/§4、L6 §2、L8 line 123。private projection subset helperによるsource Observed/ref保持の限定部分のみ。formal projection APIは未実装。単一条件「baselineのfield readを部分更新時点で中断する。」から期待「未完の観測を`Unobserved`に保ち、既知の旧値をcurrentにしない。具体whyが固定されていない場合はそのreason mappingのみ未決。source owner。」を導くdomain Value/polarity/absence encodingまたはowner bindingが未接続。 |
-| `L8-INFRA-001-14-VERSION-UNREADABLE` | `partial` | version値だけUnknown(unreadable)へ変え、location baselineをprivate projection subset helperが保持。formal FN-02は未実装。 |
+| `L8-INFRA-001-14-VERSION-UNREADABLE` | `partial` | L5 §3.1、L6 §2、L8 line 122。version fieldだけを`Unknown(unreadable)`へ変え、source SubjectRefとowner ref、残るfieldの同一observation保持をprivate `_ResourceProjection`で検査。読取source、complete scope、domain判定、formal FN-02 APIは未接続のためL8全oracleは未実行。 |
 | `L8-INFRA-001-15-BASE` | `hold` | projection-only hold: L5 §3/§4、L6 §2、L8 line 124。private projection subset helperによるsource Observed/ref保持の限定部分のみ。formal projection APIは未実装。単一条件「mutationなしの正常baseline。lifecycleとenvironmentを別fieldとしてsource/revision付きで読む。」から期待「観測fieldだけを保持し、authority/operation permissionへ導出しない。ready-onlyとproduction-onlyは個別fixtureで照合する。」を導くdomain Value/polarity/absence encodingまたはowner bindingが未接続。 |
 | `L8-INFRA-001-15-PRODUCTION-DOES-NOT-GRANT` | `hold` | projection-only hold: L5 §3/§4、L6 §2、L8 line 126。private projection subset helperによるsource Observed/ref保持の限定部分のみ。formal projection APIは未実装。単一条件「baselineで`environment=production`だけを与える。」から期待「environment fieldだけを保持し、authority/operation permissionを生成しない。SECURITY authority source。」を導くdomain Value/polarity/absence encodingまたはowner bindingが未接続。 |
 | `L8-INFRA-001-15-READY-DOES-NOT-GRANT` | `hold` | projection-only hold: L5 §3/§4、L6 §2、L8 line 125。private projection subset helperによるsource Observed/ref保持の限定部分のみ。formal projection APIは未実装。単一条件「baselineで`lifecycle=ready`だけを与える。」から期待「lifecycle fieldだけを保持し、authority/operation permissionを生成しない。SECURITY authority source。」を導くdomain Value/polarity/absence encodingまたはowner bindingが未接続。 |
