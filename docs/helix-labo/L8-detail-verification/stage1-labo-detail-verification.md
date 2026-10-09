@@ -3,8 +3,8 @@
 status: draft_for_independent_review
 owner: HELIX-LABO
 paired_l5: ../L5-detail-design/stage1-labo.md
-base: main `7d4ed840d96b43ea91f10c314b85dfdaf7a6242b`
-l5_sha256: `21cb318d9eaaf414eda12f50ce684a0402fa590799dd00304e6985336d2137db`
+base: main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
+l5_sha256: `f11b8db169bcc15d3ac80e8548f7da362f3c6d22a7e7ebf1d2f7ecb8c34766cf`
 
 本書は固定L5の3 API境界をfixtureごとに検証設計へ下ろす。対象はL9に定義済みの28 functional oracle、5 NFR oracle、およびL10 NFR:9の2 scope oracle、合計35 IDである。fixtureは合成入力で、実source read、source owner permission、実CONNECT通信、L8/L10実行、合格、業務完了を示さない。期待は固定L4/L9の範囲だけから導く。
 

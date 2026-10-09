@@ -3,7 +3,7 @@
 status: draft_for_independent_review
 owner: HELIX-LABO
 paired_l8: ../L8-detail-verification/stage1-labo-detail-verification.md
-base: main `7d4ed840d96b43ea91f10c314b85dfdaf7a6242b`
+base: main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
 
 本書は固定Stage 1親001/011の4 ACを、既存L4契約の型・API境界としてL6へ渡せる粒度に具体化する。対象は許可sourceのobservation読取、Aggregate、Correlate候補のreference保持だけである。要求、source authority、scope、connection owner、status語彙、戻し先、因果の意味を変更しない。物理store、実source読取、実通信、実sourceへのwritebackを定義しない。
 
