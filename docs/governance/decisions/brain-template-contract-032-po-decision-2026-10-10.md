@@ -22,7 +22,7 @@ POは本Codex会話の質問票で「032を1.0で採用（推奨）」と回答�
 - L2 path: `docs/helix-brain/L2-requirements/brain-requirements.md#helixbrain-l2-032`、節SHA-256 `f096552717f3b648477433e01df5533788e2ca2ead6bfdb5e24d32d364ac3e48`
 - 対L11 path: `docs/helix-brain/L11-acceptance/brain-acceptance.md#helixbrain-l2-032`、節SHA-256 `bc0a4ea0e6f282fbb0aac884d1e6ff9d86b279d32c5fbd9cc3180260d4c29429`
 - 節digest規則: 指定###見出しから次の見出し直前またはEOFまで、末尾空白を除きUTF-8 LF一つで終える。
-- 最新仮登録: `MPR-RC-HELIXBRAIN-L2-032-001`、[被覆receipt](../audits/requirement-registration/brain-template-contract-032-coverage-receipt-2026-10-10.json)。register自体は`registered_proposal`／`authority_effect: none`を保持し、採択は本decisionの固定対象から読む。
+- 最新仮登録: `MPR-RC-HELIXBRAIN-L2-032-002`、[被覆receipt](../audits/requirement-registration/brain-template-contract-032-coverage-receipt-2026-10-10-r2.json)。register自体は`registered_proposal`／`authority_effect: none`を保持し、採択は本decisionの固定対象から読む。
 
 ## 採用と責務
 
@@ -41,3 +41,5 @@ BRAINは汎用templateのidentity、version、layer/pair、applicability、requi
 ## 残る範囲
 
 最小seed選択・26seedの個別採否、CORE適用/Backflow/影響、OSのproject exact set/event/評価母集団、parity・renderer・pair/portfolioの固有bindingは#2846に保持する。schema/型/wire/algorithm、L3再開・承認、実装・CI起動・内部デプロイ・release、実行済み受入、他要求の採否、Issue closeは本decisionから生成しない。
+
+独立review F1により、最新仮登録の判断参照を002へ訂正追記した。001と初回receiptは履歴として保持し、意味・source・版・判断対象bytesは変えていない。
