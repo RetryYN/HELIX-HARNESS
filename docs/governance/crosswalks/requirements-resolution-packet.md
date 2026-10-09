@@ -1,25 +1,30 @@
-# 要求整理のPO判断案
+# template seedの意味対応案
 
-現在の対象baseは`1754ffdbd2a8a8e7b253aec8f73d73168fa1dc2b`。提案正本は[差分JSON](requirements-resolution-packet.json)、SHA-256 `6e341f01bde64097d9f16d23fca977ef44ee352c2f5649a5842e3d89c69cba2a`。canonical L2/L11とMPRは未変更。共有から採択・仮登録・実装許可を生成しない。
+base `8eccdd645288a5cea1eebdb49c93edcde5dae9da`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `9a490ecc4616b20ea1ec954513a60691e22b760fa3f16ae246a10487f55faaa0`。canonical L2/L11/MPRとseed26件は未変更。現在の候補は採用判断に出せる完成状態ではない。
 
-## 現在の判断単位
+## 作業単位
 
-| 単位 | 対象 | 差分 |
-|---|---|---|
-| OSTRACE（#2846） | 既存HELIXOS-L2-002のproject template記録追補と対L11 | 候補/選択/使用set、各eventと義務/結果、評価入力の原記録集合・未観測範囲を要求revision/scopeへ結ぶ |
+SEEDFIRST（#2846）はDT-VT-001（共通証拠）とDT-VT-102（L2/L11）をBRAIN032の15descriptorへ対応づける最初の起草である。全機構/全V-pairに必要な最小seedをこの2件に縮めない。採用対象set/版/適用規則を今回決定しない。
 
-使用templateのexact set/版、適用から運用結果までの記録、fallback拒否、LABO評価とBRAIN採否の分離は既採択のまま保持する。差分は、各記録の細粒度の結合、CORE009の判定根拠/再評価条件への参照、評価に渡す範囲と欠落の追跡である。002の既存版と適用条件を変えず、新しいversion_targetを指定しない。
+sourceの契約表・見出し・table行・listをJSON上で分け、各記載を元line/hashへ戻れるようにした。元のYAML/例値は説明材料のままであり、新しいschema/型/enumにしない。required input、negative oracle、completion等はsource参照で識別する。必須section/fieldの全identity・要否と意味owner、downstream kind、measurementの定義は不足/未確認を保持し、完全な意味契約として返さない。
 
-BRAINは汎用知識、COREは製品適用/義務/意味影響、OSは案件記録、LABOは評価を持つ。002の追補は005/024/048の接続やLABO評価方法・母集団・測定定義を置換せず、選択評価scopeと必要入力に基づく原記録を渡す。未観測を欠陥0にせず、結果receiptを初回記録の入力条件にしない。特定記録の不足を無関係な有効scopeの停止へ広げない。
+VT102が参照するVT002/003の技法・選択条件と、unit/connection/compositeのseed比較は残る。参照があるだけで依存や全カード必須を生成せず、Prototype/PoCを別々に判定し、unknownと根拠付きN/Aを分ける。成果物の状態・合否と人の受入は既存HARNESS契約に残す。
 
-対L11は、正常追跡、参照軸ごとの欠落/取り違え、N/A/Backflow/消込、旧新版と局所影響、評価対象の抽出/除外/未観測/重複、許可と未見projectの例を照合する。field存在や集合件数だけで合格にしない。wire/API/enum/schema/計測値/algorithmは固定しない。
+旧sourceのarchive path・asset ID・行範囲・全体SHAはJSONの`legacy_sources`へ固定した。
 
-親は9/28固定OS-L1-002/007/008（`f6dad2a33e24f000b87d7f09b8d40288257e74cc`）。旧L4 `design-template-json-authority.md:24/36/47–58/83–92`、旧柱要求54/56/58と対system oracle18–25を起点に意味を再導出する。旧sourceに追補条件全体が既定だったとはせず、旧DB/runtime/型/層を移植しない。source全移管/formal successorを主張しない。
+- `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md`:74–77 — 意味構造/verification/measurementと説明を分離
+- `archive/legacy-generation-2026-09-14/root/docs/skills/verification.md`:87–91 — 必要artifactの欠落を中立へ変換しない
+- `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/ci-verification-plan.md`:24–32 — 検証義務の区別と延期義務の回収
+- `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md`:28–40/73–79/197–220 — 対/test basis、人の受入、未処理feedback、追加oracleの分離
+- `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L2-screen-ux-test-design.md`:26–35 — 受入観点と要求revision/実操作/人の証拠
+- `archive/legacy-generation-2026-09-14/root/docs/skills/acceptance-criteria-thinking.md`:45–76 — 観測可能AC、偽完了拒否、判定不能を未決保持
 
-## 残る範囲
+`legacy_comparison`に保持/変更/理由を分ける。旧CLI/層/schema/固定差戻し/回収先方式は移植せず、全旧source移管を主張しない。source行hashは、UTF-8の一行にLF一つを加えたbytesのSHA-256（空行は対象外）。見出しはline/text/levelへ対応づける。
 
-最小seed set/26seed採否、接続/未完義務の成立確認、安全/資源/計測、内部更新/復旧・支援/改善循環、LABO評価/BRAIN採否、parity/renderer/pair/portfolioのbindingとschema/runtimeは#2846ほかに残る。この追補の採用だけで本Issueや要求段階を閉じず、L3再開を生成しない。
+## 続ける作業
 
-## 既決packetの保全
+選択seedの個々の意味・field/owner/要否・限界とsource対応を詰め、技法・unit/connection/composite・対検証の条件付き依存を比較して最小setを提案する。その対象revisionが固定できてから採用判断へ送る。未選択候補は保全し、正式N/A/retireへ変換しない。今回のJSON化から採用・実装/CI・受入・Issue完了・L3再開を生成しない。
 
-COREAPPLYの009追補は[10/10判断記録](../decisions/core-template-009-supplement-po-decision-2026-10-10.md)に従いPR #2853で採用反映済み。前packet objectをJSONの`resolved_packet.packet`へ完全一致で保持する。内包する032・JSONAUTH/TDDORDER/VERSIONJOINの固定案も変更しない。過去の判断は固定commitとdigestで読み、再承認・再適用を求めない。
+## 既決packet
+
+OS002追補は[判断記録](../decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md)に従いPR #2855で採用反映済み。前OSTRACE packetと内包する既決packetをJSONの`resolved_packet.packet`へ完全一致で保持する。
