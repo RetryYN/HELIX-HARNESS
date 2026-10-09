@@ -20,7 +20,78 @@ from common import Diagnostic, canonical_bytes, sha256  # noqa: E402
 
 
 class SourceL7RunnerTests(unittest.TestCase):
-    def test_inventory_digest_binds_callable_mapping_and_all_586_exact_identities(self):
+    def _fixed_ast_test_sources(self):
+        source_root = _LOCAL_CI.parent.parent
+        return {path: (source_root / path).read_bytes()
+                for _alias, path in suite_runner.FIXED_TEST_MODULES}
+
+    def test_trusted_ast_inventory_resolves_all_nine_aliases_without_loading_modules(self):
+        source_bytes = self._fixed_ast_test_sources()
+        with patch.object(suite_runner.importlib.util, "spec_from_file_location",
+                          side_effect=AssertionError("trusted AST preflight imported a test module")):
+            suite_runner.validate_fixed_test_ast_inventory(source_bytes)
+        self.assertEqual(len(suite_runner.FIXED_TEST_MODULES), 9)
+        self.assertEqual(len(suite_runner.EXPECTED_DISCOVERY_IDS), 613)
+
+    def test_trusted_ast_inventory_rejects_single_missing_extra_duplicate_and_unreadable_mutations(self):
+        baseline = self._fixed_ast_test_sources()
+        brain_path = "helix/helix-brain/units/stage1-brain/tests/test_brain.py"
+        brain = baseline[brain_path]
+        method = b"test_trace_source_projects_each_declared_field_and_keeps_owner_roles"
+        self.assertIn(method, brain)
+        cases = (
+            ("missing method", brain.replace(method, b"test_removed_source_method", 1),
+             "conflict"),
+            ("extra method", brain.replace(
+                b"class BrainProjectionTests(unittest.TestCase):",
+                b"class BrainProjectionTests(unittest.TestCase):\n"
+                b"    def test_unlisted_method(self):\n        pass", 1), "conflict"),
+            ("duplicate method", brain.replace(
+                b"test_trace_source_projects_each_declared_field_and_keeps_owner_roles",
+                b"test_trace_source_preserves_k1_variants_without_reclassifying_other_fields", 1),
+             "conflict"),
+            ("duplicate class", brain.replace(
+                b"class BrainKnowledgeLookupTests(unittest.TestCase):",
+                b"class BrainProjectionTests(unittest.TestCase):", 1), "conflict"),
+            ("extra class", brain + b"\nclass UnlistedEmptyCase:\n    pass\n", "conflict"),
+            ("syntax error", b"class broken(:\n", "unreadable"),
+        )
+        for label, changed, reason in cases:
+            with self.subTest(mutation=label):
+                candidate = dict(baseline)
+                candidate[brain_path] = changed
+                with self.assertRaises(Diagnostic) as raised:
+                    suite_runner.validate_fixed_test_ast_inventory(candidate)
+                self.assertEqual((raised.exception.classification, raised.exception.reason),
+                                 ("Unknown", reason))
+
+        duplicate_function = dict(baseline)
+        duplicate_function[brain_path] = brain + b"\ndef _duplicated_helper():\n    pass\n\ndef _duplicated_helper():\n    pass\n"
+        with self.assertRaises(Diagnostic) as raised:
+            suite_runner.validate_fixed_test_ast_inventory(duplicate_function)
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Unknown", "conflict"))
+
+        missing = dict(baseline)
+        missing.pop(brain_path)
+        with self.assertRaises(Diagnostic) as raised:
+            suite_runner.validate_fixed_test_ast_inventory(missing)
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Unknown", "missing_input"))
+
+    def test_trusted_ast_inventory_rejects_dynamic_range_inventory_mutation(self):
+        baseline = self._fixed_ast_test_sources()
+        path = "helix/helix-harness/units/common-kernel/tests/test_k6.py"
+        source = baseline[path]
+        self.assertIn(b"*range(1, 10)", source)
+        changed = dict(baseline)
+        changed[path] = source.replace(b"*range(1, 10)", b"*range(1, 9)", 1)
+        with self.assertRaises(Diagnostic) as raised:
+            suite_runner.validate_fixed_test_ast_inventory(changed)
+        self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Unknown", "conflict"))
+
+    def test_inventory_digest_keeps_core_586_and_binds_composite_613_identities(self):
         value = suite_runner.inventory_value()
         self.assertEqual(len(value["formal_mapping"]), 495)
         self.assertEqual(len({row["formal_l7_id"] for row in value["formal_mapping"]}), 495)
@@ -30,7 +101,15 @@ class SourceL7RunnerTests(unittest.TestCase):
         self.assertEqual(value["formal_inventory_count"], 505)
         self.assertEqual(len(value["formal_id_closure"]), 505)
         self.assertEqual(len(value["k6_unexecuted_dispositions"]), 10)
-        self.assertEqual(len(value["expected_discovery_ids"]), 586)
+        self.assertEqual(value["expected_discovery_count"], 613)
+        self.assertEqual(len(value["expected_discovery_ids"]), 613)
+        self.assertEqual(len(suite_runner.CORE_EXPECTED_DISCOVERY_IDS), 586)
+        self.assertEqual(len(suite_runner.SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS), 27)
+        self.assertFalse(set(suite_runner.CORE_EXPECTED_DISCOVERY_IDS)
+                         & set(suite_runner.SUPPLEMENTAL_EXPECTED_DISCOVERY_IDS))
+        self.assertEqual(value["core_suite_id"], "common-kernel-k1-k2-k3-k5-k6")
+        self.assertEqual(value["fixed_test_modules"], [list(row) for row in suite_runner.FIXED_TEST_MODULES])
+        self.assertEqual(len(value["fixed_test_modules"]), 9)
         self.assertEqual(value["expected_discovery_ids_sha256"],
                          sha256(("\n".join(value["expected_discovery_ids"]) + "\n").encode()))
         self.assertEqual(suite_runner.inventory_digest(), sha256(canonical_bytes(value)))
@@ -103,7 +182,14 @@ class SourceL7RunnerTests(unittest.TestCase):
         for mutation, changed_path in cases:
             with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as directory:
                 root = Path(directory)
-                for relative in suite_runner.SOURCE_SHA256:
+                all_source_hashes = {**suite_runner.SOURCE_SHA256,
+                                     **suite_runner.SUPPLEMENTAL_SOURCE_SHA256}
+                for relative in all_source_hashes:
+                    destination = root / relative
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(source_root / relative, destination)
+                for relative in (*suite_runner.CURRENT_DESIGN_PATHS,
+                                 *suite_runner.SUPPLEMENTAL_DESIGN_PATHS):
                     destination = root / relative
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copyfile(source_root / relative, destination)
@@ -154,13 +240,196 @@ class SourceL7RunnerTests(unittest.TestCase):
                                  ("Unknown", "conflict"))
                 load_suite.assert_not_called()
 
-    def test_current_fixed_suite_runs_all_586_identities_on_actual_tree(self):
+    def test_current_fixed_suite_runs_all_613_identities_on_actual_tree_and_stdout_stays_closed(self):
         payload, code = suite_runner.run_suite(_LOCAL_CI.parent.parent)
         self.assertEqual(code, 0)
         self.assertTrue(payload["complete"])
-        self.assertEqual(payload["test_count"], 586)
-        self.assertEqual(payload["discovered_test_ids"], list(suite_runner.EXPECTED_DISCOVERY_IDS))
-        self.assertEqual(payload["executed_test_ids"], list(suite_runner.EXPECTED_DISCOVERY_IDS))
+        self.assertEqual(payload["test_count"], 613)
+        self.assertEqual(set(payload["discovered_test_ids"]), set(suite_runner.EXPECTED_DISCOVERY_IDS))
+        self.assertEqual(set(payload["executed_test_ids"]), set(suite_runner.EXPECTED_DISCOVERY_IDS))
+        self.assertEqual(len(payload["discovered_test_ids"]), len(set(payload["discovered_test_ids"])))
+        self.assertEqual(len(payload["executed_test_ids"]), len(set(payload["executed_test_ids"])))
+        self.assertEqual(set(payload), {"schema_version", "suite_id", "complete", "discovered_test_ids",
+                                        "executed_test_ids", "test_count", "failure_count", "failed_ids",
+                                        "error_count", "error_ids", "skip_count", "skipped_ids",
+                                        "expected_failure_count", "expected_failure_ids",
+                                        "unexpected_success_count", "unexpected_success_ids",
+                                        "exit_code", "state"})
+
+    def test_source_trace_keeps_formal_reuse_oracle_status_and_owner_sets_separate(self):
+        source_bytes = {path: (_LOCAL_CI.parent.parent / path).read_bytes()
+                        for path, *_ in suite_runner.SUPPLEMENTAL_SOURCE_REFS.values()}
+        trace = suite_runner.collect_mechanism_l7_trace(source_bytes)
+        formal = trace["formal_locators"]
+        reuse_indexes = trace["nfr_reuse_indexes"]
+        oracle_indexes = trace["oracle_index_rows"]
+        self.assertEqual({m: sum(row["mechanism"] == m for row in formal)
+                          for m in suite_runner.SUPPLEMENTAL_SOURCE_REFS},
+                         {"BRAIN": 104, "LABO": 83, "HARNESS": 269, "INFRA": 40})
+        self.assertEqual([row["source_id"] for row in reuse_indexes],
+                         [f"LABO-UT-{number:03d}" for number in range(75, 80)])
+        self.assertEqual(len(oracle_indexes), 5)
+        self.assertEqual({row["source_id"] for row in oracle_indexes}, {
+            "IV-LABO-NFR-001-01", "IV-LABO-NFR-001-02", "IV-LABO-NFR-001-03",
+            "IV-LABO-NFR-011-01", "IV-LABO-NFR-011-02"})
+        self.assertTrue({f"LABO-UT-{number:03d}" for number in range(84, 89)}
+                        <= {row["source_id"] for row in formal})
+        infra_nfr = [row for row in formal if row["mechanism"] == "INFRA"
+                     and row["source_id"].startswith("INFRA-L7-NFR-")]
+        self.assertEqual(len(infra_nfr), 6)
+        self.assertTrue(all(row["source_kind"] == "formal_locator" for row in formal))
+        self.assertTrue(all(row["source_kind"] == "nfr_reuse_index" for row in reuse_indexes))
+        self.assertEqual(sum(row["mechanism"] == "INFRA" for row in trace["source_status_cells"]),
+                         526)  # §5 disposition rows (278) + §9.1 coverage rows (248)
+        self.assertEqual(sum(row["mechanism"] == "HARNESS" for row in trace["source_status_cells"]), 3)
+        self.assertEqual(len(trace["owner_return_cells"]), 278)
+        self.assertEqual({m: sum(row["mechanism"] == m for row in trace["owner_boundary_cells"])
+                          for m in ("LABO", "HARNESS")}, {"LABO": 88, "HARNESS": 269})
+        self.assertEqual({row["mechanism"] for row in trace["owner_return_not_declared"]},
+                         {"BRAIN", "LABO", "HARNESS"})
+        self.assertEqual({row["mechanism"] for row in trace["status_not_declared"]},
+                         {"BRAIN", "LABO"})
+        self.assertEqual(len(trace["source_context_sections"]), 11)
+        self.assertTrue(all(row["start_line"] <= row["end_line"] and row["byte_count"] > 0
+                            and len(row["section_sha256"]) == 64
+                            for row in trace["source_context_sections"]))
+        self.assertTrue(all(row["header_cells"] and row["raw_cells"]
+                            for row in formal))
+        self.assertTrue(all(isinstance(row["raw_row"], str) and row["source_row_locator"].endswith(tuple(
+            f"#L{number}" for number in range(1, 10000))) for row in formal))
+
+    def test_source_trace_rejects_missing_formal_and_reuse_rows_or_schema_drift(self):
+        source_bytes = {path: (_LOCAL_CI.parent.parent / path).read_bytes()
+                        for path, *_ in suite_runner.SUPPLEMENTAL_SOURCE_REFS.values()}
+        labo_path = suite_runner.SUPPLEMENTAL_SOURCE_REFS["LABO"][0]
+        original = source_bytes[labo_path]
+        with self.subTest("formal missing"), self.assertRaises(Diagnostic) as caught:
+            suite_runner.collect_mechanism_l7_trace({**source_bytes,
+                labo_path: original.replace(b"`LABO-UT-001`", b"`LABO-UT-001-REMOVED`", 1)})
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "missing_input"))
+
+    def test_source_trace_fixed_identity_keys_and_context_headings_reject_one_mutations(self):
+        source_bytes = {path: (_LOCAL_CI.parent.parent / path).read_bytes()
+                        for path, *_ in suite_runner.SUPPLEMENTAL_SOURCE_REFS.values()}
+        labo_path = suite_runner.SUPPLEMENTAL_SOURCE_REFS["LABO"][0]
+        labo = source_bytes[labo_path]
+        original = labo
+        width_lines = labo.decode("utf-8").splitlines(keepends=True)
+        for index, line in enumerate(width_lines):
+            if "`LABO-UT-088`" in line:
+                width_lines[index] = line.rstrip("\n")[:-1] + " | EXTRA |\n"
+                break
+        width_mutation = "".join(width_lines).encode("utf-8")
+        cases = (
+            ("same-count unknown formal ID", labo.replace(b"`LABO-UT-088`", b"`LABO-UT-089`", 1),
+             "conflict"),
+            ("formal row width", width_mutation, "conflict"),
+            ("owner boundary duplicate key", labo.replace(b"`LABO-UT-088`", b"`LABO-UT-087`", 1),
+             "conflict"),
+        )
+        for label, changed, expected_reason in cases:
+            with self.subTest(label=label), self.assertRaises(Diagnostic) as caught:
+                suite_runner.collect_mechanism_l7_trace({**source_bytes, labo_path: changed})
+            self.assertEqual((caught.exception.classification, caught.exception.reason),
+                             ("Unknown", expected_reason))
+
+        harness_path = suite_runner.SUPPLEMENTAL_SOURCE_REFS["HARNESS"][0]
+        harness = source_bytes[harness_path]
+        lines = harness.decode("utf-8").splitlines(keepends=True)
+        removed = False
+        section = 0
+        for index, line in enumerate(lines):
+            if line.startswith("## "):
+                section = 7 if line.startswith("## 7.") else 0
+            if section == 7 and "UT-HARNESS-SUP-001" in line:
+                del lines[index]
+                removed = True
+                break
+        self.assertTrue(removed)
+        with self.subTest(label="HARNESS fixed status row missing"), self.assertRaises(Diagnostic) as caught:
+            suite_runner.collect_mechanism_l7_trace({**source_bytes,
+                harness_path: "".join(lines).encode("utf-8")})
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "missing_input"))
+
+        infra_path = suite_runner.SUPPLEMENTAL_SOURCE_REFS["INFRA"][0]
+        infra = source_bytes[infra_path]
+        duplicate_key = infra.replace(b"`L8-INFRA-001-01-MISSING-role`",
+                                       b"`L8-INFRA-001-01-BASE`", 1)
+        with self.subTest(label="INFRA duplicate composite status key"), self.assertRaises(Diagnostic) as caught:
+            suite_runner.collect_mechanism_l7_trace({**source_bytes, infra_path: duplicate_key})
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "conflict"))
+
+        brain_path = suite_runner.SUPPLEMENTAL_SOURCE_REFS["BRAIN"][0]
+        with self.subTest(label="duplicate fixed context heading"), self.assertRaises(Diagnostic) as caught:
+            suite_runner._collect_source_context_sections({**source_bytes,
+                brain_path: source_bytes[brain_path] + b"\n## 3. Duplicate context\n"})
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "conflict"))
+        with self.subTest("reuse index missing"), self.assertRaises(Diagnostic) as caught:
+            suite_runner.collect_mechanism_l7_trace({**source_bytes,
+                labo_path: original.replace(b"`LABO-UT-075`", b"`LABO-UT-075-REMOVED`", 1)})
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "missing_input"))
+        with self.subTest("wrong index kind moves a formal ID out of formal set"), self.assertRaises(Diagnostic) as caught:
+            suite_runner.collect_mechanism_l7_trace({**source_bytes,
+                labo_path: original.replace(b"`input_api_case` | `aggregate_observations`",
+                                            b"`nfr_reuse_index` | `aggregate_observations`", 1)})
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "missing_input"))
+        with self.subTest("fixed index header changed"), self.assertRaises(Diagnostic) as caught:
+            suite_runner.collect_mechanism_l7_trace({**source_bytes,
+                labo_path: original.replace("| L7 ID | L8定義ID | 索引種別 |".encode(),
+                                            "| L7 ID | L8定義ID | category |".encode(), 1)})
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "conflict"))
+        infra_path = suite_runner.SUPPLEMENTAL_SOURCE_REFS["INFRA"][0]
+        infra = source_bytes[infra_path]
+        with self.subTest("infra nfr formal locator missing"), self.assertRaises(Diagnostic) as caught:
+            suite_runner.collect_mechanism_l7_trace({**source_bytes,
+                infra_path: infra.replace(b"`INFRA-L7-NFR-001-01`", b"`INFRA-L7-NFR-001-01-REMOVED`", 1)})
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "missing_input"))
+        with self.subTest("infra status table header changed"), self.assertRaises(Diagnostic) as caught:
+            suite_runner.collect_mechanism_l7_trace({**source_bytes,
+                infra_path: infra.replace("実装候補区分（未実行）".encode(), "実装区分".encode(), 1)})
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "conflict"))
+        lines = infra.decode("utf-8").splitlines(keepends=True)
+        section = 0
+        removed = False
+        for index, line in enumerate(lines):
+            if line.startswith("## "):
+                section = 9 if line.startswith("## 9.") else 0
+            if section == 9 and "`L8-INFRA-001-01-BASE`" in line:
+                del lines[index]
+                removed = True
+                break
+        self.assertTrue(removed)
+        with self.subTest("infra status row missing"), self.assertRaises(Diagnostic) as caught:
+            suite_runner.collect_mechanism_l7_trace({**source_bytes,
+                infra_path: "".join(lines).encode("utf-8")})
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
+                         ("Unknown", "missing_input"))
+
+    def test_labo_nfr_reuse_and_oracle_indexes_have_fixed_closed_id_sets(self):
+        source_bytes = {path: (_LOCAL_CI.parent.parent / path).read_bytes()
+                        for path, *_ in suite_runner.SUPPLEMENTAL_SOURCE_REFS.values()}
+        labo_path = suite_runner.SUPPLEMENTAL_SOURCE_REFS["LABO"][0]
+        baseline = source_bytes[labo_path]
+        mutations = (
+            ("reuse index ID", b"`LABO-UT-079`", b"`LABO-UT-074`"),
+            ("NFR oracle ID", b"`IV-LABO-NFR-011-02`", b"`IV-LABO-NFR-012-02`"),
+        )
+        for label, before, after in mutations:
+            with self.subTest(label=label), self.assertRaises(Diagnostic) as caught:
+                suite_runner.collect_mechanism_l7_trace(
+                    {**source_bytes, labo_path: baseline.replace(before, after, 1)})
+            self.assertEqual((caught.exception.classification, caught.exception.reason),
+                             ("Unknown", "conflict"))
+
 
     def test_mapping_unknown_identity_and_duplicate_formal_id_conflict_before_discovery(self):
         cases = ("unknown_identity", "duplicate_formal_id")
@@ -247,9 +516,9 @@ class SourceL7RunnerTests(unittest.TestCase):
         # the last is maximal because five nonempty arrays minimize separators
         # and five three-digit counts maximize count digits (586 total).
         measured = {}
-        for label, sizes in (("one", (586, 0, 0, 0, 0)),
-                             ("three", (195, 196, 195, 0, 0)),
-                             ("five", (118, 117, 117, 117, 117))):
+        for label, sizes in (("one", (613, 0, 0, 0, 0)),
+                             ("three", (204, 205, 204, 0, 0)),
+                             ("five", (123, 123, 123, 122, 122))):
             self.assertEqual(sum(sizes), len(ids))
             self.assertEqual(sum(size > 0 for size in sizes),
                              {"one": 1, "three": 3, "five": 5}[label])
@@ -273,9 +542,7 @@ class SourceL7RunnerTests(unittest.TestCase):
                          **outcome_fields, "exit_code": 1, "state": "fail"}
             candidate_frame = canonical_bytes(candidate) + b"\n"
             measured[label] = (candidate, candidate_frame)
-        self.assertEqual((len(measured["one"][1]) - 1, len(measured["one"][1])), (90510, 90511))
-        self.assertEqual((len(measured["three"][1]) - 1, len(measured["three"][1])), (90512, 90513))
-        self.assertEqual((len(measured["five"][1]) - 1, len(measured["five"][1])), (90514, 90515))
+        self.assertEqual((len(measured["five"][1]) - 1, len(measured["five"][1])), (99820, 99821))
         worst, frame = measured["five"]
         self.assertGreater(len(frame), 32768)
         self.assertLess(len(measured["one"][1]), len(measured["three"][1]))
@@ -299,19 +566,18 @@ class SourceL7RunnerTests(unittest.TestCase):
                         "suite_stdout_b64": base64.b64encode(candidate_frame).decode("ascii"),
                         "suite_stdout_overflow": False}
             helper_frames[label] = canonical_bytes(response) + b"\n"
-        self.assertEqual(tuple(len(helper_frames[key]) for key in ("one", "three", "five")),
-                         (121470, 121470, 121474))
+        self.assertEqual(len(helper_frames["five"]), 133870)
         helper_frame = helper_frames["five"]
         response = {"execution": execution,
                     "safe_to_continue": True, "diagnostic": None,
                     "suite_stdout_b64": base64.b64encode(frame).decode("ascii"),
                     "suite_stdout_overflow": False}
         self.assertLessEqual(len(helper_frame), runner.SUPERVISOR_FRAME_MAX_BYTES)
-        self.assertEqual(runner.SUITE_STDOUT_CAPTURE_LIMIT, 90515)
-        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 90514)
-        self.assertEqual(runner.SUPERVISOR_FRAME_MAX_BYTES, 122000)
+        self.assertEqual(runner.SUITE_STDOUT_CAPTURE_LIMIT, 99821)
+        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 99820)
+        self.assertEqual(runner.SUPERVISOR_FRAME_MAX_BYTES, 134000)
         max_capture_response = dict(response,
-                                    suite_stdout_b64=base64.b64encode(b"x" * 90515).decode("ascii"))
+                                    suite_stdout_b64=base64.b64encode(b"x" * 99821).decode("ascii"))
         self.assertLessEqual(len(canonical_bytes(max_capture_response) + b"\n"),
                              runner.SUPERVISOR_FRAME_MAX_BYTES)
 
@@ -332,16 +598,16 @@ class SourceL7RunnerTests(unittest.TestCase):
                          {"classification": "Unknown", "reason": "conflict"})
 
     def test_result_body_limit_accepts_exact_body_and_rejects_plus_one(self):
-        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 90514)
+        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 99820)
         exact = {"padding": ""}
         padding_len = suite_runner.RESULT_MAX_BYTES - len(canonical_bytes(exact))
         exact["padding"] = "x" * padding_len
-        self.assertEqual(len(canonical_bytes(exact)), 90514)
+        self.assertEqual(len(canonical_bytes(exact)), 99820)
 
-        for body_size in (90514, 90515):
+        for body_size in (99820, 99821):
             with self.subTest(body_size=body_size):
                 payload = dict(exact)
-                if body_size == 90515:
+                if body_size == 99821:
                     payload["padding"] += "x"
                 output = io.BytesIO()
                 with patch.object(suite_runner, "run_suite", return_value=(payload, 0)), \
@@ -349,10 +615,10 @@ class SourceL7RunnerTests(unittest.TestCase):
                     code = suite_runner.main(["--suite", suite_runner.SUITE_ID])
                 raw = output.getvalue()
                 self.assertTrue(raw.endswith(b"\n"))
-                self.assertLessEqual(len(raw), 90515)
-                if body_size == 90514:
+                self.assertLessEqual(len(raw), 99821)
+                if body_size == 99820:
                     self.assertEqual(code, 0)
-                    self.assertEqual(len(raw), 90515)
+                    self.assertEqual(len(raw), 99821)
                     self.assertEqual(suite_runner.json.loads(raw), payload)
                 else:
                     self.assertEqual(code, 2)
