@@ -687,7 +687,7 @@ L8 §8.1の55 fixture行と直前の`CK-K6-UT-001`–`055`の定義は変更し�
 | 検証 | 実測・限定 |
 |---|---|
 | K6 formal fixture methods | 45 methodを実行（43件は候補helper assertion、UT-035/036の2件は部分実行）。未実行10 IDはUT-018/019の部分設計2件と8件の未接続に分かれる。 |
-| K6 non-formal regression | 5 method pass。K5 restored original `ResultRecord.result_digest`と`producer`の保持、record digest mutation拒否、未接続public owner APIを公開しない境界、owner polarity mapping欠落時のkey保持・非肯定、同一check identityのverifier namespace欠如を確認。formal 55件へ加算しない。 |
+| K6 non-formal regression | 7 method pass。K5 restored original `ResultRecord.result_digest`と`producer`の保持、record digest mutation拒否、未接続public owner APIを公開しない境界、owner polarity mapping欠落時のkey保持・非肯定、同一check identityのverifier namespace欠如、別登録済みverifierへのbody差替えを導出元member不一致として拒否する境界、`-O`でもFixedRefの読取観測欠落を非肯定とする境界を確認。formal 55件へ加算しない。 |
 | Private seams | K4 current VerifierSet、K5 complete restore/ordered sequence、FixedRef reader、verifier executorはsynthetic test input。production reader/writer/executorの接続を証明しない。 |
 | 保留・外部境界 | K6-02 caller-field拒否、K6-04 owner returns、K6-12 issuer authenticity、K6-13 K5 Correction、K6-15 consumer rejection returnは実行済みと数えない。Assurance分離caseは別途実行する。 |
 
