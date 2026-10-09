@@ -6,7 +6,7 @@ owner: HELIX-SECURITY
 scope: SECURITY Stage 1 adapters / K3-K6-K7/G5-K8 projections
 base: `d4df293cbcdaf9dd357e3349c22057ea392f6fad`
 paired_l6: ../L6-function-design/stage1-security.md
-paired_l6_sha256: `1ee627d52995716c2311477f734d9402cfc16db589a106c971e0674543c51424`
+paired_l6_sha256: `90294c1a7958c347cc202c6d2de5236d06734db24dd2572a0153e0a26271e60b`
 paired_l8: ../L8-detail-verification/stage1-security-detail-verification.md
 paired_l8_sha256: `e2d55fdd753484c6bfac260719aa8290b8defa910aab348cad88da5fa5ea463a`
 paired_l9: ../L9-integration-verification/stage1-security-integration-verification.md
@@ -26,7 +26,7 @@ paired_l9_sha256: `41c23cd12c9717f2479e40017c62f1221efe55525507c6d2e48a56f06bb6e
 | SECURITY L8 | `docs/helix-security/L8-detail-verification/stage1-security-detail-verification.md`, `e2d55fdd753484c6bfac260719aa8290b8defa910aab348cad88da5fa5ea463a` | 421 canonical fixture oraclesと17 aliases |
 | SECURITY L9 | `docs/helix-security/L9-integration-verification/stage1-security-integration-verification.md`, `41c23cd12c9717f2479e40017c62f1221efe55525507c6d2e48a56f06bb6e9a6` | 19親、33 CASE、43 verifier（10 NFRを含む） |
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`, `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | K1/K2, K3, K6, K7/G5, K8 contract |
-| Common Kernel L6/L7/L9 | L6 `4dd37724359b8754c5c88f57a49017a39a05099f559c610efe5261a0f8c00886`; L7 `eb2634a570b4801d9d4069f0b317195d026fd52eb8e20b553cc43ddfe0f308b6`; L9 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 既存function/unit styleと共通API oracle |
+| Common Kernel L6/L7/L9 | L6 `340fc3b5f263d82bbc9c4d0b8e5a7d93ef4447781b8ef988a1e7e7919a04b7ae`; L7 `0a232dbb019d703b39941f920cbb561538b92bc977fa0f197c8560198708a9f5`; L9 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 既存function/unit styleと共通API oracle |
 
 L8 §5の438 fixture IDsは421 canonical definitionsと17 aliasesからなる。この文書の`SEC-UT-001`〜`SEC-UT-421`は421 canonical rowへ一対一に対応する。aliasは同じcanonical test/resultの参照でありAPIを再呼出ししない。alias元のL9 verifierもcanonical testへtraceする。L8 §5.4 NFR ID列は既存canonical fixtureへの参照で、別fixtureを作らない。L5の9 API候補すべてをunit/構造境界へtraceする。`project_effect`はL8 §5のAPI候補列に明示されないため、既存Common Kernel K8 IVに基づくL7-only補助fixtureへ分離する。`evaluate_security_case`にはL7-only slot-preservation補助fixtureを3件置き、`project_parent_obligations`はL5 §6の固定parent対応を構造照合する。いずれもSECURITY L8 fixture数・L9 verifier数を増やさない。
 

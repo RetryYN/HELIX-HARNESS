@@ -22,8 +22,8 @@ paired_l7: ../L7-unit-test-design/stage1-security-unit-test-design.md
 | SECURITY L8 `../L8-detail-verification/stage1-security-detail-verification.md` | `e2d55fdd753484c6bfac260719aa8290b8defa910aab348cad88da5fa5ea463a` | 438 fixture definitions/aliasesと期待値 |
 | SECURITY L9 `../L9-integration-verification/stage1-security-integration-verification.md` | `41c23cd12c9717f2479e40017c62f1221efe55525507c6d2e48a56f06bb6e9a6` | 19親、33 CASE、43 verifier oracle |
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`, `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` | K1/K2、K3 §16、K6 §10、K7/G5 §15、K8 §18 |
-| Common Kernel L6 | `docs/helix-harness/L6-function-design/common-kernel.md`, `4dd37724359b8754c5c88f57a49017a39a05099f559c610efe5261a0f8c00886` | 既存関数設計の粒度・既存K3関数形 |
-| Common Kernel L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`, `eb2634a570b4801d9d4069f0b317195d026fd52eb8e20b553cc43ddfe0f308b6` | unit fixture trace形式 |
+| Common Kernel L6 | `docs/helix-harness/L6-function-design/common-kernel.md`, `340fc3b5f263d82bbc9c4d0b8e5a7d93ef4447781b8ef988a1e7e7919a04b7ae` | 既存関数設計の粒度・既存K3関数形 |
+| Common Kernel L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`, `0a232dbb019d703b39941f920cbb561538b92bc977fa0f197c8560198708a9f5` | unit fixture trace形式 |
 | Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`, `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` | 既存kernel IV参照 |
 
 対象は`HELIXSECURITY-L2-001`〜`016`、`020`、`028`、`033`の19親、19 AC、33 functional CASE、L9の33 functional verifierと10 NFR verifier、計43 verifierに限る。L8 §5は438 fixture ID（421 canonical definition、17 alias）であり、aliasを別試験として数えない。Stage 2c-031、後続stage、Web/1.x sink、製品adapter実装は含めない。設計文書の存在や本書のfixtureは実装・実行・pass・L3/L10 approvalを意味しない。
