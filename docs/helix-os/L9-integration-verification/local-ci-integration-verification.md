@@ -122,7 +122,7 @@ Local runはplanの固定6 required stepを実行する。planの選択根拠/co
 | IV-LCI-81 | runner/toolchain identity | CPython 3.11+ stdlib runner refs/config match | runner identity bytes digestだけをfixed source/config identityと不一致にする | `Unknown(conflict)` before spawn。version/profile非対応だけを`Unknown(unsupported)`へ分類する |
 | IV-LCI-82 | source drift | run前後でsource/test refsはsame target bytes | test file digestだけをrun中に変える | Stale、positive suite receiptなし |
 | IV-LCI-83 | no stage-wide promotion | K1/K2 suite row success、他Stage 1 dispositionsはnon-passのまま | suite successのみからStage 1全L7 completeをclaim | Negative、OS-020/HARNESS適合・全suite passを生成しない |
-| IV-LCI-84 | compact suite summary | artifact SHA、counts、ID-set digests、mapping digestとtarget/source refsが必須で相互整合 | compact receiptからexecuted-ID-set digestだけを欠落 | Rejected(invalid_input)、providerは不完全summaryからpositiveを作らない。full artifact再取得や実行再証明をしない |
+| IV-LCI-84 | compact suite summary | artifact SHA、counts、ID-set digests、mapping digestとtarget/source refsが必須で相互整合 | compact receiptから`executed_ids_sha256`だけを欠落 | Rejected(invalid_input)、providerは不完全summaryからpositiveを作らない。full artifact再取得や実行再証明をしない |
 | IV-LCI-85 | full identity artifact completeness | discovered/executed ID arrays、mapping digest、target/source refsが揃う | executed_test_ids配列だけをartifactから除く | Rejected(invalid_input)、作成側full evidence不完全、compact digestだけで補わない |
 | IV-LCI-86 | missing suite source boundary | 先行5 execution evidenceをpartial diagnostic artifactへ残し、第6 suite source refsをtarget treeから読む | test_k2.py blob refだけをtarget treeから欠落させる | run_local_ci外側Unknown(missing_input)、先行5 evidence保持、suite row/receiptなし、Unknownをexecution stateへ投影しない |
 
