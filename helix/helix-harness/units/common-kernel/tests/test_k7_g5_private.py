@@ -19,7 +19,7 @@ class K7G5PrivatePartialTests(unittest.TestCase):
         baseline = k5.SegmentHead(segment, 3, "entry-3")
         self.assertTrue(helpers._same_head(baseline, baseline))
 
-        mutated = k5.SegmentHead(segment, 3, "entry-2")
+        mutated = k5.SegmentHead(segment, 2, "entry-2")
         self.assertFalse(helpers._same_head(baseline, mutated))
 
     def test_ck_k7_ut_033_target_identity_mismatch_is_only_a_bool(self) -> None:
