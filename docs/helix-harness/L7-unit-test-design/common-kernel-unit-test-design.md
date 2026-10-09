@@ -16,8 +16,8 @@ base: `main` at `33bbe8cd5f080be9e400e9259db22645bc620eda`
 |---|---|
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
-| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; content SHA-256 `30fb33b316b6116ccb3eb38240947b3fdde942b97df42bb23f45d8286d9d2285` (本PRのcontent HEAD) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `267fce6ecb47a0f17b8a9f4b06a8bcc4f6b2404067689a0399202fe8c28b7ae3` |
+| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (main `b6463f2b9baa7df72703758f4e02afff9cbfac78`の対象本文) |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `d022f1e51f2c624a26b01b9cc31191d71642c89a4381be88bd2025fbd0dade7b` |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
@@ -30,7 +30,7 @@ L4/L9は本PRのcontent本文、L5/L6はこのpair内の上流content SHAを参�
 - 各fixtureは新しいimmutable inputを作り、一回に変える意味要素を一つにする。入力順序が契約に属する場合、その順序自体を変異対象としない。
 - 結果はclass、reason、key/evidence/position field、全component保持まで構造比較する。表示色、boolean shortcut、単一failureだけの比較で代用しない。
 - K2 candidate fixtureでは、`records`がK5 restoreから完全復元され、append orderで渡されたsequenceというpreconditionをfixture builderに明示する。UTはK5 restoreを実装・検証したと主張しない。
-- `canonical_json_bytes`のUTF-8 canonical bytes golden vectorと`sha256:` digest golden vectorは別々に照合する。source-content digest vectorはraw bytesを直接渡し、JSON decode/re-encodeしない。
+- private `_canonical_json_bytes`のUTF-8 canonical bytes golden vectorとprivate `_sha256_digest`の`sha256:` digest golden vectorは別々に照合する。source-content digest vectorはraw bytesを直接渡し、JSON decode/re-encodeしない。
 - Codec入力がL4 canonical JSON domain外の場合、serializerがbytesを出さないことを検査する。内部例外のhost typeはL4 public result classではなく、`missing_key`、Unknown、Unobserved、Valueへ写さない。
 - fixture runner候補はPython 3.11+標準ライブラリの`unittest`とする。K1/K2が同じPython標準ライブラリのpure semantic core候補に沿い、各caseを外部test packageなしで個別に記述・実行できるためである。これは試験器の技術選択であり、新しい要件、gate、L9合格主張ではない。
 
@@ -38,21 +38,23 @@ L4/L9は本PRのcontent本文、L5/L6はこのpair内の上流content SHAを参�
 
 | UT ID | L6関数ID | L9 oracle | 基準fixture → 1変更fixture | 単一期待 |
 |---|---|---|---|---|
-| `CK-K1-UT-001` | FN-02/03/04 | IV-K1-01 | CONNECT compatibleとHARNESS passを各owner polarityに従って合成 | `Combined(Positive)`、`Admitted`。ownerが明示する各mapping identity/versionを成分対応どおり保持し、callableのqualnameや既定版で代用しない。 |
+| `CK-K1-UT-001` | FN-02/03/04 | IV-K1-01 | CONNECT compatibleとHARNESS passを各owner polarityに従って合成し、別caseでValue(pass)+成立済みNotApplicableも与える | `Combined(Positive)`、`Admitted`。ownerが明示する各mapping identity/versionを成分対応どおり保持し、callableのqualnameや既定版で代用しない。混合caseもPositive/Admittedで成立済みNotApplicableのexcluded indexを保持する。 |
 | `CK-K1-UT-002a/b/c` | FN-02/03/04 | IV-K1-01 | 001基底からCONNECT成分だけUnknown(incomparable)、Stale、Unobserved(not_selected)へ一つずつ変更 | 各々`Undetermined`、`Withheld`。reasonはその成分の位置/classを保持する。各suffixは別fixture IDとする。 |
+| `CK-K1-UT-002-ADMIT-INCONSISTENT` | FN-04 | IV-K1-02 | `combine`を経ず直接構成したPositive Combinedを7形で与える: negative index / non-value index / set_reason / non-Value componentだが該当indexなし / 空components / 成立済みNotApplicableだけ / invalid NotApplicable | いずれもAdmittedにせずWithheld。位置付きreasonは既存reasonを保持し、index欠落のnon-Value、空components、成立済みNotApplicableだけの集合はwhole `Unknown(missing_input)`へfail-closed。invalid NotApplicableはその既存`invalid_disposition`理由を保持する。 |
 | `CK-K1-UT-003` | FN-03/04 | IV-K1-02 | `[Value(fail)]`基底へUnknown(unreadable)を一成分追加 | Negativeのまま、2成分を入力順保持、negative/non-valueの両方のindexを記録しWithheld理由2件。 |
 | `CK-K1-UT-004` | FN-03/04 | IV-K1-03 | Value(pass)へUnknown(conflict)、Unobserved(pending_receipt)、Staleを加える | Undetermined、3つの非Value位置をすべて保持し、Withheld理由を3件記録する。 |
 | `CK-K1-UT-005a/b` | FN-03/04 | IV-K1-04 | all-pass基底から1成分だけfailへ変更する。all-passのpositive baselineは別fixtureにする | fail側はNegative/Withheldでreasonが空でなく、baselineはPositive/Admitted。 |
 | `CK-K1-UT-006` | FN-02/03 | IV-K1-05 | polarityありのValue成分を、mappingだけ不在の同値型入力へ変更 | callerはValueを渡さず、完全key付きUnknown(missing_input)を作り、combine結果でnon-valueとして保持する。 |
 | `CK-K1-UT-007a/b/c` | FN-03/04 | IV-K1-06 | 有効成分0件 / 成立N/A 1件のみ / 成立N/A 3件のみ（個別fixture） | 各々Undeterminedとし、set_reasonはL4 §2.2の集合診断`{class: Unknown, reason: missing_input}`（keyなし）、whole reasonは1件。componentsは入力件数0/1/3のままで、架空keyやN/A keyの流用・追加Observedなし。 |
-| `CK-K1-UT-008a/b/c` | FN-05/03 | IV-K1-07 | 有効なdispositionからreason/authority/reentry_triggerを一つずつ個別に除去する | 各々Unknown(invalid_disposition)となり、non-valueとして扱う。 |
+| `CK-K1-UT-008a/b/c` | FN-05/03 | IV-K1-07 | 有効なdispositionからreason/authority/reentry_triggerを一つずつ個別に除去する | 各々Unknown(invalid_disposition)となり、combineで`non_values=(0,)`、admitでその理由を保持する。 |
+| `CK-K1-UT-008-INVALID-NA` | FN-03/04 | IV-K1-07 | 完全keyを持つNotApplicableからauthorityだけを欠落させる | Undetermined、`non_values=(0,)`、`excluded=()`、Withheld理由は`NotApplicable/invalid_disposition`。 |
 | `CK-K1-UT-009-ACCEPT-COMBINE-{CLASS}` | FN-02/03 | IV-K1-08 | `{CLASS}`=Value/Unknown/Unobserved/NotApplicable/Stale。完全key付き成分を各class一つずつ`combine`へ渡す | 5個別fixtureで各成分classを受理し、結果のcomponentに保持する。 |
-| `CK-K1-UT-009-ACCEPT-RECORD-{CLASS}` | K2 FN-08 | IV-K1-08 | `{CLASS}`=Value/Unknown/Unobserved/NotApplicable。完全key付きrecord keyと各非Stale result classを`record`へ渡す | 4個別fixtureで各record classを受理する。Stale resultは`CK-K1-UT-009-STALE-RECORD`で別に扱う。 |
+| `CK-K1-UT-009-ACCEPT-RECORD-{CLASS}` | K2 FN-08 | IV-K1-08 | `{CLASS}`=Value/Unknown/Unobserved/NotApplicable。完全一致する外側record keyと各非Stale result classを`record`へ渡す | 4個別fixtureで`Recorded`とし、保存resultが入力class/fieldを保持する。Stale resultは`CK-K1-UT-009-STALE-RECORD`で別に扱う。 |
 | `CK-K1-UT-009-LOOKUP-{CLASS}` | K2 FN-05 | IV-K1-08 | `{CLASS}`=Value/Unknown/Unobserved/NotApplicable。完全一致する保存record classからlookup queryを作る | 4個別fixtureで各record classをそのまま返す。`lookup`はObserved入力を受けない。 |
 | `CK-K1-UT-009-STALE-LOOKUP` | K2 FN-05 | IV-K1-08 / IV-K2-02 | 完全keyの旧revision Value recordだけを置き、current queryでlookupする | lookupの返却値として`Stale`を導出する。`Stale`をlookup入力に渡さない。 |
 | `CK-K1-UT-009-STALE-RECORD` | K2 FN-08 | IV-K1-08 / IV-K2-11 | 完全keyとStale resultを持つ基準からkey全体だけを欠落させる優先順位fixture | key欠落の有無にかかわらず、Stale判定を優先して`Rejected(stale_not_recordable)`。 |
 | `CK-K1-UT-009-KEY-COMBINE-{CLASS}` | FN-01/03 | IV-K1-08 | `{CLASS}`=Value/Unknown/Unobserved/NotApplicable/Stale。各成分からkey全体だけ欠落させる | 5個別fixtureすべて`Rejected(missing_key)`。 |
-| `CK-K1-UT-009-KEY-RECORD` | K2 FN-08 | IV-K1-08 | 非StaleのValue resultを保ち、record keyだけ欠落させる | `Rejected(missing_key)`。 |
+| `CK-K1-UT-009-KEY-RECORD` | K2 FN-08 | IV-K1-08 | 2つの独立case: (1)完全Observed keyを保ちrecord引数keyだけ欠落、(2)完全record keyを保ちObserved内keyだけ欠落 | いずれも`Rejected(missing_key)`。Stale優先fixtureとは分離する。 |
 | `CK-K1-UT-009-KEY-LOOKUP` | K2 FN-05 | IV-K1-08 | 完全なrecord集合を保ち、lookup query_keyだけ欠落させる | `Rejected(missing_key)`。lookupはObserved入力を受けない。 |
 | `CK-K1-UT-010-COMPLETE` | FN-02/03 | IV-K1-09 | complete scan marker付き0件 | `Value(0件)`。 |
 | `CK-K1-UT-010-PARTIAL` | FN-02/03 | IV-K1-09 | 完全走査基準から走査範囲だけpartialに変更 | `Value(0件)`にならない。 |
@@ -83,13 +85,14 @@ L4/L9は本PRのcontent本文、L5/L6はこのpair内の上流content SHAを参�
 | `CK-K2-UT-008a–c` | FN-03/05 | IV-K2-08 | operation / operation_version / scopeのいずれか一つだけ変更する | 候補0件でUnobserved(not_run)。 |
 | `CK-K2-UT-009a/b` | FN-03/05 | IV-K2-09 | input identityを一つ追加 / 一つ除去する | 各々candidateから外れ、Unobserved(not_run)となる。 |
 | `CK-K2-UT-010` | FN-05/07 | IV-K2-10 | lookup前後でimmutable record bytesを比較し、query revisionだけ更新する | record bytesは同一のままで、lookupだけStaleとなる。 |
-| `CK-K2-UT-011a/b` | FN-08/06 | IV-K2-11 | same key+same result digestのrecordを再度与える / same key+different result digestを与える | NoOp / Conflictとなる。後者は両方を保持し、lookupはUnknown(conflict)となる。 |
+| `CK-K2-UT-011a/b` | FN-08/06 | IV-K2-11 | a: same key+same result digestを再度与え、record後に呼出し側の元evidence dictを変更する / b: same keyでValue内容を変更する。bにはclassだけ違うcaseとevidenceだけ違うcaseを独立して含める | aはNoOpとなり、記録済snapshot/evidenceとresult_digestは呼出し側の元dict変更で変わらない。bは各caseでConflictとなり、2件のresult_digestを保持してlookupはUnknown(conflict)。 |
 | `CK-K2-UT-011c` | FN-08 | IV-K2-11 | record resultをStaleへ一箇所変更 | Rejected(stale_not_recordable)。 |
 | `CK-K2-UT-012` | FN-05/07 | IV-K2-12 | query revisionをR2にし、唯一のcandidateをR1にする | R2 queryに対してR1 Valueをcurrent Valueとして返さない。IV-K2-02/03の結果に従う。 |
 | `CK-K2-UT-013-NO-PREFIX` | FN-03 | IV-K2-13 | 有効なsubject.digestから`sha256:` prefixだけを除き、他fieldは固定する | `Rejected(invalid_digest)`。 |
 | `CK-K2-UT-013-SHORT` | FN-03 | IV-K2-13a | 有効なsubject.digestのhex部分だけを64桁から63桁へ短縮し、他fieldは固定する | `Rejected(invalid_digest)`。 |
 | `CK-K2-UT-013-GIT-REVISION` | FN-03 | IV-K2-13b | subject.digestだけを40桁GitRevision値へ置き換え、他fieldは固定する | `Rejected(invalid_digest)`。 |
-| `CK-K2-UT-013-PRECEDENCE-MISSING` | FN-03 | L4 §3.4 priority; IV-K2-13/13a/13b | 必須key field欠落の基準fixtureからsubject.digestだけを不正形式へ変更する | 1 field mutationでも`Rejected(missing_key)`を維持する。`KeyOfResult`検査順でDigest拒否より必須欠落を優先する。 |
+| `CK-K2-UT-013-UPPERCASE` | FN-03 | IV-K2-13 | subject.digestの64桁hexだけをuppercaseへ変更し、他fieldは固定する | `Rejected(invalid_digest)`。 |
+| `CK-K2-UT-013-PRECEDENCE-MISSING` | FN-03 | L4 §3.4 priority; IV-K2-13/13a/13b | 意図的な複合priority fixture: operation欠落かつdigest有効の基準へ、subject.digestだけ不正形式を追加する | 追加した1 field変異後も`Rejected(missing_key)`。`KeyOfResult`検査順でDigest拒否より必須欠落を優先する。 |
 | `CK-K2-UT-013-PRECEDENCE-DIGEST` | FN-03 | L4 §3.4 priority; IV-K2-13/13a/13b/15 | 全必須fieldがあり、Digest有効な重複identity基準fixtureから、重複input一件のdigestだけを不正形式へ変更する | 1 field mutationで`Rejected(invalid_digest)`を返す。Digest拒否をduplicate identityより優先する。 |
 | `CK-K2-UT-014` | FN-03/05 | IV-K2-14 | pack versionだけを昇格し、他層版は固定する | release unit/product/stage refsは昇格しない。 |
 | `CK-K2-UT-015-ORDER` | FN-03/FN-01 | IV-K2-15 | same input setの順序だけを変更 | KeyDigestは同じ。 |
@@ -129,7 +132,7 @@ suffix展開はfixture identityの命名規則であり、L9 IDを再採番し�
 
 UT-030–041の各vectorのliteral/expected bytesとdigestはL7 fixture inventoryに固定する。実行時にruntime outputをgoldenとして採取してはならない。golden値はsource-controlled expected literalとしてreview対象にする。L4にない数値formatの性質をcross-runtime保証へ拡張しない。
 
-UT-036〜039はprivate `canonical_json_bytes`補助関数へ範囲外値を直接与える単体検査である。公開`record`の失敗caseではない。record fixtureはL5 §3.4/L6 §3.1の前提どおり、ownerの宣言encodingに適合したcanonical JSON表現可能なResultBodyを使い、未解決encodingや非JSON生値を公開APIへ渡さない。K1の一般値型Tと、記録時のInline/FixedRef表現を同一視しない。
+UT-036〜039はprivate `_canonical_json_bytes`補助関数へ範囲外値を直接与える単体検査である。公開`record`の失敗caseではない。record fixtureはL5 §3.4/L6 §3.1の前提どおり、ownerの宣言encodingに適合したcanonical JSON表現可能なResultBodyを使い、未解決encodingや非JSON生値を公開APIへ渡さない。K1の一般値型Tと、記録時のInline/FixedRef表現を同一視しない。
 
 ## 6. Unit suiteの配置と14関数の対応
 
@@ -144,7 +147,7 @@ UT-036〜039はprivate `canonical_json_bytes`補助関数へ範囲外値を直�
 | `CK-K1-FN-05` | `CK-K1-UT-008-*` |
 | `CK-K2-FN-01` | `CK-K2-UT-015-ORDER`, `CK-K2-UT-030`–`039`, `CK-K2-UT-041` |
 | `CK-K2-FN-02` | `CK-K2-UT-021`, `CK-K2-UT-030`, `CK-K2-UT-040`–`041` |
-| `CK-K2-FN-03` | `CK-K2-UT-008-*`, `013-*`, `014`, `015-*`, `021a` |
+| `CK-K2-FN-03` | `CK-K2-UT-008-*`, `013-*` (uppercaseを含む), `014`, `015-*`, `021a` |
 | `CK-K2-FN-04` | `CK-K2-UT-021`, `021a/b/d` |
 | `CK-K2-FN-05` | `CK-K1-UT-009-LOOKUP-*`, `009-STALE-LOOKUP`, `009-KEY-LOOKUP`; `CK-K2-UT-001`–`010`, `012`, `014`, `016`–`020`, `021d` |
 | `CK-K2-FN-06` | `CK-K2-UT-001`, `004`–`005`, `011a/b`, `016`, `019` |
@@ -152,7 +155,7 @@ UT-036〜039はprivate `canonical_json_bytes`補助関数へ範囲外値を直�
 | `CK-K2-FN-08` | `CK-K1-UT-009-ACCEPT-RECORD-*`, `009-STALE-RECORD`, `009-KEY-RECORD`; `CK-K2-UT-011a/b/c` |
 | `CK-K2-FN-09` | `CK-K2-UT-021`, `021c` (K6 stub boundary only) |
 
-全テスト候補は§3–5のID行から導き、展開suffixを実fixture identityにする。L7のK1 rows 001–014、K2 rows 001–021dおよびcodec vectors 030–041は既存の意味と期待を保持する。pack外の`src/`実装、別test runner、repository root設定、K3–K10 suiteをこの表から追加しない。
+全テスト候補は§3–5のID行から導き、展開suffixを実fixture identityにする。owner/caller/K6境界fixtureはkernel primary callable coverageへ数えない。K1 UT-006/010はcaller/owner stub、UT-012はtest-only word classifierからcombineを呼ぶ境界fixtureである。K2 UT-021aはowner key-input stub、UT-021cはK6 binding/raw-source stubであり、K2 primary APIの実装やproduction K6 readを主張しない。L7のK1 rows 001–014、K2 rows 001–021dおよびcodec vectors 030–041は既存の意味と期待を保持する。pack外の`src/`実装、別test runner、repository root設定、K3–K10 suiteをこの表から追加しない。
 
 ## 7. 旧source traceと技術差分の記録
 
