@@ -6,7 +6,7 @@ scope: K1/K2/K3/K5
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: `main` at `6727d7a10171940fcdb85ae9473f21d0a694c27f`
+base: `main` at `dc803dacfbbe56f6daf7724832b1bfa238ff2087`
 
 本書はL6のK1/K2/K3/K5 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。fixtureは未実装・未実行であり、合格を主張しない。K4/K6–K10は`not_designed`でfixtureを追加しない。
 
@@ -16,13 +16,13 @@ base: `main` at `6727d7a10171940fcdb85ae9473f21d0a694c27f`
 |---|---|
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
-| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; fixed PR #2751 candidate commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (未main) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `78b3dbcf0096d337e9c10e1a94835af5ce22914617becdb51265f14afeefb17f` |
-| L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed PR #2751 candidate commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (未main) |
+| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `44d2bfeb7e1eb2b304bab18080b55738a3c76b9239911d39c99336baa9e442c5` |
+| L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
-L4/L9は本PRのcontent本文、L5/L8は固定したPR #2751候補commitのcontent SHA、L6はこのpair内の上流content SHAを参照する。PR #2751は未mainであり、これらのpinは候補本文を固定するものでmain統合・承認を意味しない。L9 IV-K1-01–13、IV-K2-01–21dが期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
+L4/L9は本PRのcontent本文、L5/L8は固定したPR #2751候補commitのcontent SHA、L6はこのpair内の上流content SHAを参照する。PR #2751はmainへ統合済みであり、これらのpinはreview対象content本文を固定する。mergeから上流の承認を生成しない。L9 IV-K1-01–13、IV-K2-01–21dが期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
 
 各fixture表の関数ID列で、K1表の`FN-xx`は`CK-K1-FN-xx`、K2表およびcodec表の`FN-xx`は`CK-K2-FN-xx`を指す。明示した`K2 FN-xx`も`CK-K2-FN-xx`である。UT IDの波括弧・suffixは各行の展開規則で個別fixtureへ展開し、複数変異を一件へまとめない。
 
@@ -282,13 +282,13 @@ K5各fixtureはL6 §7.1の旧asset/path/line/full SHA一覧を起点とし、eve
 - `ledger_view`の既存IV-LDG-01/02/04接続はL6 `CK-K5-FN-20`に記録した。K5 L8の91 fixtureには固有fixtureがないため、この範囲のL7対応は未被覆で新規IDを作らない。
 - K5 recordの順序はsequenceのpreconditionであり、物理writer実装は設計しない。K6 source readはstub境界のままとし、production verifier/readは設計しない。
 - fixtureは未実装・未実行である。L9の実合格、K5 append保証、K6 raw source観測、runtime/toolchain間の相互運用性を主張しない。
-- K3は§9で固定L8 oracleを個別fixture IDへtraceする。L5/L8はPR #2751候補の固定commit/content SHAを参照し、未mainの候補として扱う。K4/K6–K10は`not_designed`のままであり、現行L4/L9の節はL6 §6を通じて参照する。
+- K3は§9で固定L8 oracleを個別fixture IDへtraceする。L5/L8はPR #2751候補の固定commit/content SHAを参照し、main統合済みの固定設計本文として扱う。K4/K6–K10は`not_designed`のままであり、現行L4/L9の節はL6 §6を通じて参照する。
 - L7 fixtureは設計草稿であり未実装・未実行である。`invalid_digest`/`duplicate_identity`はK2 `KeyOfResult`だけの境界結果で、K1 `ApiBoundaryResult`や`UnknownReason`への追加ではない。
 
 
 ## 9. K3単体fixture
 
-L8に固定済みの194 caseをL7で一つずつ追跡する。各`CK-K3-UT-NNN`は本節の当該行だけで一意に定義し、括弧展開・実行時suffix生成は行わない。各fixtureは対応するL8 IDの固定された変異と単一期待をそのまま使い、class/reason/key/component/fieldを構造比較する。L9 IDは新規採番せず、K3 L4 invariant traceはL6 §12.1を参照する。L5/L8はPR #2751の固定候補commit/content SHAを参照する。未mainの候補であり、統合・承認済みとは扱わない。
+L8に固定済みの194 caseをL7で一つずつ追跡する。各`CK-K3-UT-NNN`は本節の当該行だけで一意に定義し、括弧展開・実行時suffix生成は行わない。各fixtureは対応するL8 IDの固定された変異と単一期待をそのまま使い、class/reason/key/component/fieldを構造比較する。L9 IDは新規採番せず、K3 L4 invariant traceはL6 §12.1を参照する。L5/L8はPR #2751の固定候補commit/content SHAを参照する。main統合済みの固定設計本文であり、mergeから上流承認・実行合格を生成しない。
 
 | L9 family | 対応L8 case group | stubに渡す固定入力 | 呼ぶ関数・境界 | 観測する返却field | L7で証明しないもの |
 |---|---|---|---|---|---|
