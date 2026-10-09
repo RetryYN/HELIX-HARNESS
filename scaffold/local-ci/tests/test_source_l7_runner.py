@@ -20,16 +20,34 @@ from common import Diagnostic, canonical_bytes, sha256  # noqa: E402
 
 
 class SourceL7RunnerTests(unittest.TestCase):
-    def test_inventory_digest_binds_450_formal_rows_and_534_exact_identities(self):
+    def test_inventory_digest_binds_callable_mapping_and_all_586_exact_identities(self):
         value = suite_runner.inventory_value()
-        self.assertEqual(len(value["formal_mapping"]), 450)
-        self.assertEqual(len({row["formal_l7_id"] for row in value["formal_mapping"]}), 450)
-        self.assertEqual(sum(row["coverage_kind"] == "primary_callable" for row in value["formal_mapping"]), 398)
+        self.assertEqual(len(value["formal_mapping"]), 495)
+        self.assertEqual(len({row["formal_l7_id"] for row in value["formal_mapping"]}), 495)
+        self.assertEqual(sum(row["coverage_kind"] == "primary_callable" for row in value["formal_mapping"]), 441)
         self.assertEqual(sum(row["coverage_kind"] == "owner_or_fixture_stub" for row in value["formal_mapping"]), 52)
-        self.assertEqual(len(value["expected_discovery_ids"]), 534)
+        self.assertEqual(sum(row["coverage_kind"] == "partial_callable" for row in value["formal_mapping"]), 2)
+        self.assertEqual(value["formal_inventory_count"], 505)
+        self.assertEqual(len(value["formal_id_closure"]), 505)
+        self.assertEqual(len(value["k6_unexecuted_dispositions"]), 10)
+        self.assertEqual(len(value["expected_discovery_ids"]), 586)
         self.assertEqual(value["expected_discovery_ids_sha256"],
                          sha256(("\n".join(value["expected_discovery_ids"]) + "\n").encode()))
         self.assertEqual(suite_runner.inventory_digest(), sha256(canonical_bytes(value)))
+
+    def test_k6_callable_partial_and_unexecuted_inventories_stay_distinct(self):
+        rows = suite_runner.K6_FORMAL_MAPPING
+        self.assertEqual(len(rows), 45)
+        self.assertEqual(sum(row["coverage_kind"] == "primary_callable" for row in rows), 43)
+        self.assertEqual(sum(row["coverage_kind"] == "partial_callable" for row in rows), 2)
+        self.assertEqual({int(row["formal_l7_id"].rsplit("-", 1)[1]) for row in rows
+                          if row["coverage_kind"] == "partial_callable"}, {35, 36})
+        self.assertEqual(len(suite_runner.K6_UNEXECUTED_DISPOSITIONS), 10)
+        self.assertEqual({row["formal_l7_id"] for row in suite_runner.K6_UNEXECUTED_DISPOSITIONS},
+                         {f"CK-K6-UT-{number:03d}" for number in (10, 11, 12, 13, 18, 19, 50, 51, 52, 54)})
+        self.assertTrue({"partial_design", "owner_unconnected"} >=
+                        {row["disposition"] for row in suite_runner.K6_UNEXECUTED_DISPOSITIONS})
+        self.assertFalse({row["unittest_identity"] for row in rows} & set(suite_runner.K6_REGRESSION_IDS))
 
     def test_k1_k2_mapping_and_identity_pins_are_preserved(self):
         prefix = suite_runner.FORMAL_MAPPING[:suite_runner.K1_K2_FORMAL_MAPPING_COUNT]
@@ -76,7 +94,11 @@ class SourceL7RunnerTests(unittest.TestCase):
                  ("mutated", "helix/helix-harness/units/common-kernel/src/permission.py"),
                  ("missing", "helix/helix-harness/units/common-kernel/src/journal.py"),
                  ("missing", "helix/helix-harness/units/common-kernel/tests/test_k5.py"),
-                 ("mutated", "helix/helix-harness/units/common-kernel/tests/test_k5.py"))
+                 ("mutated", "helix/helix-harness/units/common-kernel/tests/test_k5.py"),
+                 ("missing", "helix/helix-harness/units/common-kernel/src/verification.py"),
+                 ("mutated", "helix/helix-harness/units/common-kernel/src/verification.py"),
+                 ("missing", "helix/helix-harness/units/common-kernel/tests/test_k6.py"),
+                 ("mutated", "helix/helix-harness/units/common-kernel/tests/test_k6.py"))
         source_root = _LOCAL_CI.parent.parent
         for mutation, changed_path in cases:
             with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as directory:
@@ -99,11 +121,44 @@ class SourceL7RunnerTests(unittest.TestCase):
                 self.assertEqual((caught.exception.classification, caught.exception.reason), expected)
                 load_suite.assert_not_called()
 
-    def test_current_fixed_suite_runs_all_534_identities_on_actual_tree(self):
+    def test_k6_map_disposition_and_closure_mutations_conflict_before_test_loading(self):
+        mutations = ("partial_promoted", "missing_disposition", "duplicate_disposition", "closure_missing")
+        for mutation in mutations:
+            with self.subTest(mutation=mutation), patch.object(suite_runner, "_load_fixed_suite") as load_suite:
+                changes = {}
+                if mutation == "partial_promoted":
+                    rows = [dict(row) for row in suite_runner.K6_FORMAL_MAPPING]
+                    index = next(index for index, row in enumerate(rows)
+                                 if row["formal_l7_id"] == "CK-K6-UT-035")
+                    rows[index]["coverage_kind"] = "primary_callable"
+                    changes.update(K6_FORMAL_MAPPING=tuple(rows),
+                                   K6_FORMAL_MAPPING_SHA256=sha256(canonical_bytes(rows)))
+                elif mutation == "missing_disposition":
+                    rows = suite_runner.K6_UNEXECUTED_DISPOSITIONS[:-1]
+                    changes.update(K6_UNEXECUTED_DISPOSITIONS=rows,
+                                   K6_DISPOSITION_SHA256=sha256(canonical_bytes(list(rows))))
+                elif mutation == "duplicate_disposition":
+                    rows = list(suite_runner.K6_UNEXECUTED_DISPOSITIONS)
+                    rows[-1] = dict(rows[0])
+                    changes.update(K6_UNEXECUTED_DISPOSITIONS=tuple(rows),
+                                   K6_DISPOSITION_SHA256=sha256(canonical_bytes(rows)))
+                else:
+                    closure = tuple(ident for ident in suite_runner.K6_FORMAL_ID_CLOSURE
+                                    if ident != "CK-K6-UT-010")
+                    changes.update(K6_FORMAL_ID_CLOSURE=closure,
+                                   K6_FORMAL_CLOSURE_SHA256=sha256(canonical_bytes(list(closure))))
+                with patch.multiple(suite_runner, **changes):
+                    with self.assertRaises(Diagnostic) as caught:
+                        suite_runner.run_suite(_LOCAL_CI.parent.parent)
+                self.assertEqual((caught.exception.classification, caught.exception.reason),
+                                 ("Unknown", "conflict"))
+                load_suite.assert_not_called()
+
+    def test_current_fixed_suite_runs_all_586_identities_on_actual_tree(self):
         payload, code = suite_runner.run_suite(_LOCAL_CI.parent.parent)
         self.assertEqual(code, 0)
         self.assertTrue(payload["complete"])
-        self.assertEqual(payload["test_count"], 534)
+        self.assertEqual(payload["test_count"], 586)
         self.assertEqual(payload["discovered_test_ids"], list(suite_runner.EXPECTED_DISCOVERY_IDS))
         self.assertEqual(payload["executed_test_ids"], list(suite_runner.EXPECTED_DISCOVERY_IDS))
 
@@ -187,24 +242,49 @@ class SourceL7RunnerTests(unittest.TestCase):
                     ("skip_count", "skipped_ids"),
                     ("expected_failure_count", "expected_failure_ids"),
                     ("unexpected_success_count", "unexpected_success_ids"))
-        partitions = [ids[index::len(families)] for index in range(len(families))]
-        outcome_fields = {}
-        for (count_key, ids_key), members in zip(families, partitions):
-            outcome_fields[count_key] = len(members)
-            outcome_fields[ids_key] = members
-        all_outcomes = [ident for _count_key, ids_key in families for ident in outcome_fields[ids_key]]
-        self.assertEqual(set(all_outcomes), set(ids))
-        self.assertEqual(len(all_outcomes), len(set(all_outcomes)))
-        worst = {"schema_version": 1, "suite_id": suite_runner.SUITE_ID, "complete": True,
-                 "discovered_test_ids": ids, "executed_test_ids": ids,
-                 "test_count": len(ids), **outcome_fields, "exit_code": 1, "state": "fail"}
-        frame = canonical_bytes(worst) + b"\n"
+        # A valid complete result assigns each executed identity to exactly one
+        # outcome family.  Exercise the one-, three-, and five-family shapes;
+        # the last is maximal because five nonempty arrays minimize separators
+        # and five three-digit counts maximize count digits (586 total).
+        measured = {}
+        for label, sizes in (("one", (586, 0, 0, 0, 0)),
+                             ("three", (195, 196, 195, 0, 0)),
+                             ("five", (118, 117, 117, 117, 117))):
+            self.assertEqual(sum(sizes), len(ids))
+            self.assertEqual(sum(size > 0 for size in sizes),
+                             {"one": 1, "three": 3, "five": 5}[label])
+            if label == "five":
+                self.assertTrue(all(100 <= size <= 199 for size in sizes))
+                self.assertEqual(sum(len(str(size)) for size in sizes), 15)
+            cursor = 0
+            outcome_fields = {}
+            for (count_key, ids_key), size in zip(families, sizes):
+                members = ids[cursor:cursor + size]
+                cursor += size
+                outcome_fields[count_key] = len(members)
+                outcome_fields[ids_key] = members
+            self.assertEqual(cursor, len(ids))
+            partitioned = [ident for _, ids_key in families for ident in outcome_fields[ids_key]]
+            self.assertEqual(len(partitioned), len(set(partitioned)))
+            self.assertEqual(set(partitioned), set(ids))
+            candidate = {"schema_version": 1, "suite_id": suite_runner.SUITE_ID,
+                         "complete": True, "discovered_test_ids": ids,
+                         "executed_test_ids": ids, "test_count": len(ids),
+                         **outcome_fields, "exit_code": 1, "state": "fail"}
+            candidate_frame = canonical_bytes(candidate) + b"\n"
+            measured[label] = (candidate, candidate_frame)
+        self.assertEqual((len(measured["one"][1]) - 1, len(measured["one"][1])), (90510, 90511))
+        self.assertEqual((len(measured["three"][1]) - 1, len(measured["three"][1])), (90512, 90513))
+        self.assertEqual((len(measured["five"][1]) - 1, len(measured["five"][1])), (90514, 90515))
+        worst, frame = measured["five"]
         self.assertGreater(len(frame), 32768)
-        self.assertEqual(len(frame) - 1, 81811)
-        self.assertEqual(len(frame), 81812)
-        self.assertLessEqual(len(frame) - 1, 82000)
-        self.assertLessEqual(len(frame), 82001)
+        self.assertLess(len(measured["one"][1]), len(measured["three"][1]))
+        self.assertLess(len(measured["three"][1]), len(frame))
+        self.assertLessEqual(len(frame) - 1, suite_runner.RESULT_MAX_BYTES)
+        self.assertLessEqual(len(frame), runner.SUITE_STDOUT_CAPTURE_LIMIT)
 
+        # The helper response embeds the full captured LF-terminated suite
+        # frame; it must fit without truncating a legal complete result.
         spec = {"check_id": "LC-STAGE1-L7-001",
                 "argv": ["python3", "-B", "scaffold/local-ci/source_l7_runner.py",
                          "--suite", suite_runner.SUITE_ID]}
@@ -212,15 +292,28 @@ class SourceL7RunnerTests(unittest.TestCase):
             spec, {"name": "python3", "version": "3.12.3", "sha256": "a" * 64},
             "fail", 1, "2026-10-09T00:00:00Z", "2026-10-09T00:00:01Z",
             "b" * 64, "c" * 64, "d" * 64)
+        helper_frames = {}
+        for label, (_, candidate_frame) in measured.items():
+            response = {"execution": execution,
+                        "safe_to_continue": True, "diagnostic": None,
+                        "suite_stdout_b64": base64.b64encode(candidate_frame).decode("ascii"),
+                        "suite_stdout_overflow": False}
+            helper_frames[label] = canonical_bytes(response) + b"\n"
+        self.assertEqual(tuple(len(helper_frames[key]) for key in ("one", "three", "five")),
+                         (121470, 121470, 121474))
+        helper_frame = helper_frames["five"]
         response = {"execution": execution,
                     "safe_to_continue": True, "diagnostic": None,
                     "suite_stdout_b64": base64.b64encode(frame).decode("ascii"),
                     "suite_stdout_overflow": False}
-        self.assertLess(len(canonical_bytes(response) + b"\n"), runner.SUPERVISOR_FRAME_MAX_BYTES)
+        self.assertLessEqual(len(helper_frame), runner.SUPERVISOR_FRAME_MAX_BYTES)
+        self.assertEqual(runner.SUITE_STDOUT_CAPTURE_LIMIT, 90515)
+        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 90514)
+        self.assertEqual(runner.SUPERVISOR_FRAME_MAX_BYTES, 122000)
         max_capture_response = dict(response,
-                                    suite_stdout_b64=base64.b64encode(b"x" * 82001).decode("ascii"))
-        self.assertLess(len(canonical_bytes(max_capture_response) + b"\n"), runner.SUPERVISOR_FRAME_MAX_BYTES)
-        self.assertEqual(runner.SUPERVISOR_FRAME_MAX_BYTES, 120000)
+                                    suite_stdout_b64=base64.b64encode(b"x" * 90515).decode("ascii"))
+        self.assertLessEqual(len(canonical_bytes(max_capture_response) + b"\n"),
+                             runner.SUPERVISOR_FRAME_MAX_BYTES)
 
     def test_over_result_limit_returns_noncomplete_conflict_frame(self):
         output = io.BytesIO()
@@ -239,16 +332,16 @@ class SourceL7RunnerTests(unittest.TestCase):
                          {"classification": "Unknown", "reason": "conflict"})
 
     def test_result_body_limit_accepts_exact_body_and_rejects_plus_one(self):
-        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 82000)
+        self.assertEqual(suite_runner.RESULT_MAX_BYTES, 90514)
         exact = {"padding": ""}
-        padding_len = 82000 - len(canonical_bytes(exact))
+        padding_len = suite_runner.RESULT_MAX_BYTES - len(canonical_bytes(exact))
         exact["padding"] = "x" * padding_len
-        self.assertEqual(len(canonical_bytes(exact)), 82000)
+        self.assertEqual(len(canonical_bytes(exact)), 90514)
 
-        for body_size in (82000, 82001):
+        for body_size in (90514, 90515):
             with self.subTest(body_size=body_size):
                 payload = dict(exact)
-                if body_size == 82001:
+                if body_size == 90515:
                     payload["padding"] += "x"
                 output = io.BytesIO()
                 with patch.object(suite_runner, "run_suite", return_value=(payload, 0)), \
@@ -256,10 +349,10 @@ class SourceL7RunnerTests(unittest.TestCase):
                     code = suite_runner.main(["--suite", suite_runner.SUITE_ID])
                 raw = output.getvalue()
                 self.assertTrue(raw.endswith(b"\n"))
-                self.assertLessEqual(len(raw), 82001)
-                if body_size == 82000:
+                self.assertLessEqual(len(raw), 90515)
+                if body_size == 90514:
                     self.assertEqual(code, 0)
-                    self.assertEqual(len(raw), 82001)
+                    self.assertEqual(len(raw), 90515)
                     self.assertEqual(suite_runner.json.loads(raw), payload)
                 else:
                     self.assertEqual(code, 2)
@@ -269,13 +362,13 @@ class SourceL7RunnerTests(unittest.TestCase):
                                      {"classification": "Unknown", "reason": "conflict"})
 
     def test_l7_row_expansions_bind_all_fixed_formal_ids(self):
-        source = "\n".join("`" + row["formal_l7_id"] + "`" for row in suite_runner.FORMAL_MAPPING).encode()
+        source = "\n".join("`" + ident + "`" for ident in suite_runner.FORMAL_ID_CLOSURE).encode()
         self.assertTrue(suite_runner.l7_formal_ids_present(source))
         missing_one = source.replace(b"`CK-K1-UT-001`", b"`CK-K1-UT-001-REMOVED`")
         self.assertFalse(suite_runner.l7_formal_ids_present(missing_one))
 
-    def test_target_l7_missing_k5_formal_id_is_not_completed_from_neighboring_ids(self):
-        source = "\n".join("`" + row["formal_l7_id"] + "`" for row in suite_runner.FORMAL_MAPPING).encode()
+    def test_target_l7_missing_formal_id_is_not_completed_from_neighboring_ids(self):
+        source = "\n".join("`" + ident + "`" for ident in suite_runner.FORMAL_ID_CLOSURE).encode()
         self.assertTrue(suite_runner.l7_formal_ids_present(source))
         missing = source.replace(b"`CK-K5-UT-001`", b"`CK-K5-UT-001-MISSING`")
         self.assertFalse(suite_runner.l7_formal_ids_present(missing))
@@ -293,11 +386,11 @@ class SourceL7RunnerTests(unittest.TestCase):
         for template, permitted, forbidden in cases:
             raw = f"`{template}`".encode()
             with self.subTest(template=template, value=permitted), patch.object(
-                    suite_runner, "FORMAL_MAPPING", [{"formal_l7_id": permitted}]
+                    suite_runner, "FORMAL_ID_CLOSURE", (permitted,)
             ):
                 self.assertTrue(suite_runner.l7_formal_ids_present(raw))
             with self.subTest(template=template, value=forbidden), patch.object(
-                    suite_runner, "FORMAL_MAPPING", [{"formal_l7_id": forbidden}]
+                    suite_runner, "FORMAL_ID_CLOSURE", (forbidden,)
             ):
                 self.assertFalse(suite_runner.l7_formal_ids_present(raw))
 
