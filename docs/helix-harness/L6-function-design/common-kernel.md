@@ -576,3 +576,11 @@ L4 §13.6/L5 §8.1の9旧assetについて、archiveの指定spanを実読し、
 | `LEGACY-ASSET-98372FEE8A3AC8F9C299`; `docs/design/helix/L5-detail/design-template-json-authority.md:74`; `3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830` | verification欄にrequired oracle classとnegative/stale条件を分ける。 | OracleKind値域を現L4に従って扱う。旧JSON schema/value setを現行authorityとして再利用しない。 |
 
 旧assetの完全一致再利用ではなく、失敗・保持点をL4 §13の型と既存K1/K2/K5/K6境界へ再導出する。変更理由は現行の固定contractとCPython semantic-core候補に沿った技術具体化であり、旧runtimeの有無や不在そのものではない。
+
+### 14.4 private helperの実装候補と未接続境界
+
+`helix/helix-harness/units/common-kernel/src/_k4_g3.py`にprivate pure helperを置き、L4で既に定義された値を受けた後の比較だけを行う。`_obligation_id_delta`は固定`ObligationSet`とviewから渡されたobligation ID集合の欠落/余分集合を返す。`_not_applicable_fields_complete`と`_deferred_fields_complete`はL4の各3 fieldが非nullであることだけを返す。`_handoff_delta`は`from_view`から既に導いた`obligation_id -> (key_digest, result_digest)`とHandoffから既に取り出したunfinished ID/record pairを比較し、missing/extra ID・missing/mismatched record ID集合を返す。戻りはPythonのbool/frozensetだけであり、K1 `Observed`、`Unknown`、`Unobserved`、`Rejected`、新しいK4/G3 domain型を生成しない。
+
+対応するunitは`tests/test_k4_g3_private_helpers.py`に限定し、fixture入力境界から先のhelper assertionを検査する。この候補でprivate helper assertionを実行したL8 IDは`L8-K4-01-COMPLETE/MISSING/EXTRA/EMPTY-SET`、`L8-K4-05-NA-VALID/DEFERRED-VALID/NA-MISSING-REASON/NA-MISSING-AUTHORITY/NA-MISSING-REENTRY/DEFERRED-MISSING-TARGET/DEFERRED-MISSING-OWNER/DEFERRED-MISSING-DISCHARGE`、`L8-K4-09-RECEIVE-MATCH/MISSING-NEW-UNFINISHED/MISSING-OLD-UNFINISHED/EXTRA-UNFINISHED/MISSING-NEW-INHERITED/MISSING-OLD-INHERITED/MISMATCH-NEW-INHERITED/MISMATCH-OLD-INHERITED`の20件である。ID対応はhelperの比較範囲だけを示し、L8ケース全体やL9 oracleの実行ではない。`EMPTY-SET`の既存K1 whole `set_reason`確認は既存`combine([])`を直接使い、新しい診断を作らない。
+
+実装状態は以下のとおり。73 fixture全体は未実行であり、20件はhelper-level assertionのみ、残り53件は未実装/未実施である。`CK-K4-UT-005`（公開API signature）と`CK-K4-UT-027`（Deferredを合成で落とさない）はこのhelperで扱わない。既存K2 lookup、K5 restore、K6 required/admit/reverify、OperationDecl/VerifierSet current source reader、K4 6 public APIは未接続であり、typed observation 36件はpartial実装と数えない。G3-I4 13件とG3-I5 2件はL4/L5 owner/API未接続のholdのまま、missing sourceを`Unobserved`へ写さない。K4/G3設計はCI登録、L9合格、owner source接続、製品動作を意味しない。
