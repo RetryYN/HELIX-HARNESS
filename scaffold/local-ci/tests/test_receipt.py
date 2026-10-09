@@ -16,7 +16,8 @@ from common import CHECK_IDS, Diagnostic, canonical_bytes  # noqa: E402
 from receipt import (_validate_suite_evidence, verify_receipt, write_private_artifact,
                      write_receipt)
 from plan import compile_plan  # noqa: E402
-from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS_SHA256,
+from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_COUNT,
+                              EXPECTED_DISCOVERY_IDS_SHA256, FORMAL_MAPPING_SHA256,
                               SOURCE_SHA256, SUITE_ID, inventory_digest)  # noqa: E402
 
 
@@ -73,10 +74,10 @@ def execution(check_id: str) -> dict:
         refs = suite_source_refs(current)
         result["result_complete"] = True
         result["suite_evidence"] = {
-            "suite_id": "common-kernel-k1-k2-k3", "artifact_sha256": _RAW_SHA,
-            "artifact_bytes": 100, "mapping_sha256": "4ebc0422e2c5a3ab0ef853901009c8e077c247bcb632d93cd06291fc2bfd1f4f",
-            "discovered_count": 419, "discovered_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
-            "executed_count": 419, "executed_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
+            "suite_id": SUITE_ID, "artifact_sha256": _RAW_SHA,
+            "artifact_bytes": 100, "mapping_sha256": FORMAL_MAPPING_SHA256,
+            "discovered_count": EXPECTED_DISCOVERY_COUNT, "discovered_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
+            "executed_count": EXPECTED_DISCOVERY_COUNT, "executed_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
             "failure_count": 0, "error_count": 0, "skip_count": 0,
             "expected_failure_count": 0, "unexpected_success_count": 0,
             "source_refs": refs, "target": current,
@@ -164,12 +165,14 @@ class VerifyReceiptTests(unittest.TestCase):
 
     def test_legacy_k1_k2_suite_and_inventory_receipts_are_not_current_evidence(self):
         valid = execution("LC-STAGE1-L7-001")["suite_evidence"]
-        legacy_suite = copy.deepcopy(valid)
-        legacy_suite["suite_id"] = "common-kernel-k1-k2"
-        with self.assertRaises(Diagnostic) as caught:
-            _validate_suite_evidence(legacy_suite)
-        self.assertEqual((caught.exception.classification, caught.exception.reason),
-                         ("Rejected", "invalid_input"))
+        for old_suite_id in ("common-kernel-k1-k2", "common-kernel-k1-k2-k3"):
+            with self.subTest(old_suite_id=old_suite_id):
+                legacy_suite = copy.deepcopy(valid)
+                legacy_suite["suite_id"] = old_suite_id
+                with self.assertRaises(Diagnostic) as caught:
+                    _validate_suite_evidence(legacy_suite)
+                self.assertEqual((caught.exception.classification, caught.exception.reason),
+                                 ("Rejected", "invalid_input"))
 
         legacy_mapping = copy.deepcopy(receipt())
         old_inventory_digest = "9d8cb22dc211a572a67ac493df44436752e27c5e62633ae50ecd9f967b756ba0"
@@ -394,7 +397,7 @@ class VerifyReceiptTests(unittest.TestCase):
     def test_suite_compact_evidence_rejects_outcome_counts_or_identity_digest_drift(self):
         mutations = []
         count_overflow = receipt()
-        count_overflow["executions"][-1]["suite_evidence"].update(failure_count=419, error_count=1)
+        count_overflow["executions"][-1]["suite_evidence"].update(failure_count=EXPECTED_DISCOVERY_COUNT, error_count=1)
         count_overflow["executions"][-1].update(state="fail", exit_code=1)
         count_overflow["aggregate_state"] = "fail"
         mutations.append(count_overflow)
@@ -422,7 +425,8 @@ class VerifyReceiptTests(unittest.TestCase):
 
         expected_failure_count_overflow = receipt()
         expected_failure_count_overflow["executions"][-1]["suite_evidence"].update(
-            executed_count=419, expected_failure_count=419, unexpected_success_count=1)
+            executed_count=EXPECTED_DISCOVERY_COUNT, expected_failure_count=EXPECTED_DISCOVERY_COUNT,
+            unexpected_success_count=1)
         expected_failure_count_overflow["executions"][-1].update(state="fail", exit_code=1)
         expected_failure_count_overflow["aggregate_state"] = "fail"
         mutations.append(expected_failure_count_overflow)

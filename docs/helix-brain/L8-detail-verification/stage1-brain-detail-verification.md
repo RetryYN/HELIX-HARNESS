@@ -3,10 +3,10 @@
 status: draft_for_independent_review
 owner: HELIX-BRAIN
 paired_l5: ../L5-detail-design/stage1-brain.md
-base: main `fcf00128a7503317fa1c779c38cc8df3877b4952`
-current_main_observed: origin/main `5c65aedbceab624cb6a5e276efb83519fd570461`（L5/L8先行分割時に観測）
+base: main `fc95f868ba6be60323e1c448429e0812c1c1b7cf`
+current_main_observed: origin/main `fc95f868ba6be60323e1c448429e0812c1c1b7cf`（fc95統合時に再照合）
 source_pair_base_candidate_commit: `eb3b52444093f0de6491d4f1b707132670afb9e4`（編集開始時の候補。編集開始時の比較基準）
-l5_sha256: `c8ec934ef8d096c8fb4234b5d8ef81baff8a17b4119c4ec1b8435071737a643e`
+l5_sha256: `5ade97a9ebb9b09de3f905302d4eef817282ffd9f7fd0ab7d368d94cd0255f78`
 
 本書は対L5の公開関数境界について、固定L9の27 functional oracleと7 NFR oracleをfixtureとして具体化する。ここに記すfixtureは設計上の合成入力であり、テスト実行、L9合格、実装、owner recordの実在、sourceの真正性、adoption、releaseを主張しない。期待値は固定L4/L9にある範囲だけを使う。
 
