@@ -1,4 +1,10 @@
-"""L7 K2 key, lookup, alias, and codec fixture coverage."""
+"""L7 K2 fixtures. Owner/K5/K6 stubs are not primary K2 callables.
+
+Owner-boundary fixtures: UT-021a models owner key-input preparation and
+UT-021c models the K6 binding/raw-source handoff. Primary K2 API coverage calls
+key_of, lookup, or record; codec/construction helper tests are supplemental
+private-boundary checks.
+"""
 
 from __future__ import annotations
 
@@ -24,13 +30,13 @@ from common_kernel import (  # noqa: E402
     Unknown,
     Unobserved,
     Value,
-    bind_alias_inputs,
-    canonical_json_bytes,
+    _bind_alias_inputs,
+    _canonical_json_bytes,
     combine,
     key_of,
     lookup,
     record,
-    sha256_digest,
+    _sha256_digest,
 )
 
 D1 = "sha256:" + "1" * 64
@@ -64,9 +70,9 @@ def observed_for(result: object, result_key: ResultKey):
 
 def record_for(result_key: ResultKey, result: object, result_digest: str | None = None, producer: str = "p"):
     observed = observed_for(result, result_key)
-    digest = result_digest or sha256_digest(canonical_json_bytes({"fixture": result}))
+    digest = result_digest or _sha256_digest(_canonical_json_bytes({"fixture": result}))
     # For lookup fixtures, a stable digest is enough to model a complete K5 restore.
-    key_digest = sha256_digest(canonical_json_bytes({"key": repr(result_key)}))
+    key_digest = _sha256_digest(_canonical_json_bytes({"key": repr(result_key)}))
     return ResultRecord(result_key, key_digest, observed, digest, producer)
 
 
@@ -172,8 +178,7 @@ class K2UnitTests(unittest.TestCase):
         for query in variants:
             with self.subTest(query=query):
                 result = lookup([stored], query)
-                self.assertIsInstance(result, Unobserved)
-                self.assertEqual(result.why, "not_run")
+                self.assertEqual(result, Unobserved(query, "not_run"))
 
     def test_CK_K2_UT_009_identity_set_add_remove(self) -> None:
         one = make_key(inputs=(ref("in1"),))
@@ -186,9 +191,16 @@ class K2UnitTests(unittest.TestCase):
         old = make_key(ref("subject", "r1", D1))
         query = make_key(ref("subject", "r2", D2))
         records = [record_for(old, "value")]
-        before = tuple(records)
+        before = tuple(
+            (item.key, item.key_digest, item.result, item.result_digest, item.producer)
+            for item in records
+        )
         self.assertIsInstance(lookup(records, query), Stale)
-        self.assertEqual(tuple(records), before)
+        after = tuple(
+            (item.key, item.key_digest, item.result, item.result_digest, item.producer)
+            for item in records
+        )
+        self.assertEqual(after, before)
 
     def test_CK_K2_UT_011_noop_conflict_and_stale_record_priority(self) -> None:
         k = make_key()
@@ -199,6 +211,7 @@ class K2UnitTests(unittest.TestCase):
         changed = record([first.record], k, Value("y", k, {"evidence": "e"}), "p")
         self.assertIsInstance(changed, Conflict)
         self.assertEqual(len(changed.records), 2)
+        self.assertNotEqual(changed.records[0].result_digest, changed.records[1].result_digest)
         self.assertEqual(lookup(changed.records, k).reason, "conflict")
         stale = Stale(Value("x", k, {"evidence": "e"}), k, make_key(ref("subject", "r2", D2)))
         self.assertEqual(record([], None, stale, "p"), Rejected("stale_not_recordable"))
@@ -288,19 +301,27 @@ class K2UnitTests(unittest.TestCase):
         raw = ref("source", "r1", D1)
         alias = ref("side-left|role-input|source", "r1", D1, "role-alias")
         item = ({"side": "left"}, "input", raw, alias)
-        binding = bind_alias_inputs([item], "binding", "owner-map", "owner-r1")
+        binding = _bind_alias_inputs([item], "binding", "owner-map", "owner-r1")
         self.assertEqual(binding.aliases[0].raw_ref, raw)
         self.assertEqual(binding.aliases[0].alias_ref.digest, raw.digest)
         self.assertEqual(binding.inputs[0], binding.binding_ref)
-        self.assertEqual(len(bind_alias_inputs([item, item], "binding", "owner-map").aliases), 1)
+        self.assertEqual(len(_bind_alias_inputs([item, item], "binding", "owner-map").aliases), 1)
 
         changed_raw = ref("source", "r2", D1)
         self.assertEqual(
-            bind_alias_inputs([item, ({"side": "left"}, "input", changed_raw, alias)], "binding", "owner-map"),
+            _bind_alias_inputs([item, ({"side": "left"}, "input", changed_raw, alias)], "binding", "owner-map"),
             Rejected("missing_key"),
         )
         self.assertEqual(
-            bind_alias_inputs([item, ({"side": "right"}, "input", raw, alias)], "binding", "owner-map"),
+            _bind_alias_inputs([item, ({"side": "right"}, "input", raw, alias)], "binding", "owner-map"),
+            Rejected("missing_key"),
+        )
+        digest_mismatch = ref("source", "r1", D2)
+        self.assertEqual(
+            _bind_alias_inputs(
+                [({"side": "left"}, "input", digest_mismatch, alias)],
+                "binding", "owner-map",
+            ),
             Rejected("missing_key"),
         )
 
@@ -308,22 +329,22 @@ class K2UnitTests(unittest.TestCase):
         # checked independently, without adding a K2 reader or receipt API.
         class StubReader:
             def read_binding(self, buffer: bytes, expected: SubjectRef) -> bool:
-                return sha256_digest(buffer) == expected.digest
+                return _sha256_digest(buffer) == expected.digest
 
             def observe_alias(self, buffer: bytes, expected: SubjectRef, key_ref: ResultKey):
-                if sha256_digest(buffer) != expected.digest:
+                if _sha256_digest(buffer) != expected.digest:
                     return Unknown("conflict", key_ref)
                 return Value(buffer, key_ref, {"stub_read": True})
 
         reader = StubReader()
-        binding_ref = replace(binding.binding_ref, digest=sha256_digest(binding.canonical_bytes))
+        binding_ref = replace(binding.binding_ref, digest=_sha256_digest(binding.canonical_bytes))
         self.assertTrue(reader.read_binding(binding.canonical_bytes, binding_ref))
         self.assertEqual(reader.observe_alias(b"wrong", alias, make_key()), Unknown("conflict", make_key()))
 
     def test_CK_K2_UT_021a_missing_binding_input(self) -> None:
         raw = ref("source")
         alias = ref("side-left|input|source", "r1", D1, "role-alias")
-        binding = bind_alias_inputs([({"side": "left"}, "input", raw, alias)], "binding", "owner-map")
+        binding = _bind_alias_inputs([({"side": "left"}, "input", raw, alias)], "binding", "owner-map")
 
         def owner_key(binding_ref: SubjectRef | None, alias_refs: tuple[SubjectRef, ...]):
             # This owner boundary knows its required binding identity; K2 does
@@ -338,11 +359,11 @@ class K2UnitTests(unittest.TestCase):
         self.assertEqual(owner_key(None, (alias,)), Rejected("missing_key"))
 
     def test_CK_K2_UT_021d_alias_revision_change_stales_lookup(self) -> None:
-        first = bind_alias_inputs(
+        first = _bind_alias_inputs(
             [({"side": "left"}, "input", ref("source", "r1", D1), ref("alias", "r1", D1, "alias"))],
             "binding", "owner-map", "owner-r1",
         )
-        second = bind_alias_inputs(
+        second = _bind_alias_inputs(
             [({"side": "left"}, "input", ref("source", "r2", D2), ref("alias", "r2", D2, "alias"))],
             "binding", "owner-map", "owner-r2",
         )
@@ -352,64 +373,64 @@ class K2UnitTests(unittest.TestCase):
 
     def test_CK_K2_UT_030_canonical_json_object_sort(self) -> None:
         payload = {"z": [2, 1], "a": True}
-        self.assertEqual(canonical_json_bytes(payload), b'{"a":true,"z":[2,1]}')
-        self.assertEqual(sha256_digest(canonical_json_bytes(payload)), "sha256:8e87dbb341568585e9b4a19cde5bb906feb933c76013ab18e2025932db6a3105")
+        self.assertEqual(_canonical_json_bytes(payload), b'{"a":true,"z":[2,1]}')
+        self.assertEqual(_sha256_digest(_canonical_json_bytes(payload)), "sha256:8e87dbb341568585e9b4a19cde5bb906feb933c76013ab18e2025932db6a3105")
 
     def test_CK_K2_UT_031_array_order(self) -> None:
         payload = {"z": [1, 2], "a": True}
-        self.assertEqual(canonical_json_bytes(payload), b'{"a":true,"z":[1,2]}')
-        self.assertEqual(sha256_digest(canonical_json_bytes(payload)), "sha256:4c1ce63323c4813ce58cbc0b652e6782131793514687e3b93c1fc8e8f44675fc")
+        self.assertEqual(_canonical_json_bytes(payload), b'{"a":true,"z":[1,2]}')
+        self.assertEqual(_sha256_digest(_canonical_json_bytes(payload)), "sha256:4c1ce63323c4813ce58cbc0b652e6782131793514687e3b93c1fc8e8f44675fc")
 
     def test_CK_K2_UT_032_finite_float(self) -> None:
-        self.assertEqual(canonical_json_bytes(1.0), b"1.0")
-        self.assertEqual(sha256_digest(canonical_json_bytes(1.0)), "sha256:d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6")
+        self.assertEqual(_canonical_json_bytes(1.0), b"1.0")
+        self.assertEqual(_sha256_digest(_canonical_json_bytes(1.0)), "sha256:d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6")
 
     def test_CK_K2_UT_033_negative_zero(self) -> None:
-        self.assertEqual(canonical_json_bytes(-0.0), b"-0.0")
-        self.assertEqual(sha256_digest(canonical_json_bytes(-0.0)), "sha256:c26617c7ccbcaa6631b45d851b8cf56e21d2ca624bdb1193afdbd4b560702cec")
+        self.assertEqual(_canonical_json_bytes(-0.0), b"-0.0")
+        self.assertEqual(_sha256_digest(_canonical_json_bytes(-0.0)), "sha256:c26617c7ccbcaa6631b45d851b8cf56e21d2ca624bdb1193afdbd4b560702cec")
 
     def test_CK_K2_UT_034a_integer(self) -> None:
-        self.assertEqual(canonical_json_bytes(9007199254740993), b"9007199254740993")
-        self.assertEqual(sha256_digest(canonical_json_bytes(9007199254740993)), "sha256:a1c367c29158357e62a3ff5d3e800fb7698a22396439dbc0a9d4929322afd35d")
+        self.assertEqual(_canonical_json_bytes(9007199254740993), b"9007199254740993")
+        self.assertEqual(_sha256_digest(_canonical_json_bytes(9007199254740993)), "sha256:a1c367c29158357e62a3ff5d3e800fb7698a22396439dbc0a9d4929322afd35d")
 
     def test_CK_K2_UT_034b_exponent(self) -> None:
-        self.assertEqual(canonical_json_bytes(1e20), b"1e+20")
-        self.assertEqual(sha256_digest(canonical_json_bytes(1e20)), "sha256:7c18c9fbdcc8281573e9db9e04f04c3790b10696f3706f0f03fa87427d33e28b")
+        self.assertEqual(_canonical_json_bytes(1e20), b"1e+20")
+        self.assertEqual(_sha256_digest(_canonical_json_bytes(1e20)), "sha256:7c18c9fbdcc8281573e9db9e04f04c3790b10696f3706f0f03fa87427d33e28b")
 
     def test_CK_K2_UT_035a_composed_unicode(self) -> None:
-        self.assertEqual(canonical_json_bytes("é"), bytes.fromhex("22c3a922"))
-        self.assertEqual(sha256_digest(canonical_json_bytes("é")), "sha256:f2886017e9c7abacf804b54d64787dce2b611c9544ba21f3affdd126a6e50086")
+        self.assertEqual(_canonical_json_bytes("é"), bytes.fromhex("22c3a922"))
+        self.assertEqual(_sha256_digest(_canonical_json_bytes("é")), "sha256:f2886017e9c7abacf804b54d64787dce2b611c9544ba21f3affdd126a6e50086")
 
     def test_CK_K2_UT_035b_decomposed_unicode(self) -> None:
-        self.assertEqual(canonical_json_bytes("e\u0301"), bytes.fromhex("2265cc8122"))
-        self.assertEqual(sha256_digest(canonical_json_bytes("e\u0301")), "sha256:3d68ce21f2899a475713cdbe7562ba9bdb6b1dfde8af1f221bdff4a0935b53b2")
+        self.assertEqual(_canonical_json_bytes("e\u0301"), bytes.fromhex("2265cc8122"))
+        self.assertEqual(_sha256_digest(_canonical_json_bytes("e\u0301")), "sha256:3d68ce21f2899a475713cdbe7562ba9bdb6b1dfde8af1f221bdff4a0935b53b2")
 
     def test_CK_K2_UT_036_non_string_key_rejected_by_codec(self) -> None:
         with self.assertRaises((TypeError, ValueError)):
-            canonical_json_bytes({1: "bad"})
+            _canonical_json_bytes({1: "bad"})
 
     def test_CK_K2_UT_037_nonfinite_rejected_by_codec(self) -> None:
         with self.assertRaises(ValueError):
-            canonical_json_bytes({"bad": float("nan")})
+            _canonical_json_bytes({"bad": float("nan")})
 
     def test_CK_K2_UT_038_cycle_rejected_by_codec(self) -> None:
         cycle: list[object] = []
         cycle.append(cycle)
         with self.assertRaises(ValueError):
-            canonical_json_bytes(cycle)
+            _canonical_json_bytes(cycle)
 
     def test_CK_K2_UT_039_lone_surrogate_rejected_by_codec(self) -> None:
         with self.assertRaises(UnicodeEncodeError):
-            canonical_json_bytes("\ud800")
+            _canonical_json_bytes("\ud800")
 
     def test_CK_K2_UT_040_raw_source_digest(self) -> None:
-        self.assertEqual(sha256_digest(b"x"), "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881")
-        self.assertEqual(sha256_digest(b"y"), "sha256:a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa")
+        self.assertEqual(_sha256_digest(b"x"), "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881")
+        self.assertEqual(_sha256_digest(b"y"), "sha256:a1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa")
 
     def test_CK_K2_UT_041_canonical_bytes_do_not_include_storage_lf(self) -> None:
-        raw = canonical_json_bytes({"a": 1})
+        raw = _canonical_json_bytes({"a": 1})
         self.assertEqual(raw, b'{"a":1}')
-        self.assertNotEqual(sha256_digest(raw), sha256_digest(raw + b"\n"))
+        self.assertNotEqual(_sha256_digest(raw), _sha256_digest(raw + b"\n"))
 
 
 def _make_exact_case_test(ut_id: str, case: str, assertion):
@@ -452,9 +473,11 @@ for _suffix, _prior in (
     def _fn(self, prior=_prior):
         old = make_key(ref("subject", "r1", D1))
         current = make_key(ref("subject", "r2", D2))
-        result = lookup([record_for(old, prior)], current)
+        stored = record_for(old, prior)
+        result = lookup([stored], current)
         self.assertIsInstance(result, Unobserved)
         self.assertEqual(result.why, "not_run")
+        self.assertEqual(result.superseded, stored.key_digest)
     _add_l7_expansion(f"test_CK_K2_UT_003{_suffix}", _fn)
 
 
@@ -503,6 +526,14 @@ def _test_k2_011a(self: K2UnitTests) -> None:
     first = record([], k, Value("x", k, {"evidence": "e"}), "p")
     self.assertIsInstance(record([first.record], k, Value("x", k, {"evidence": "e"}), "p"), NoOp)
 
+    caller_evidence = {"evidence": {"items": ["before"]}}
+    snapshot = record([], k, Value("x", k, caller_evidence), "p")
+    self.assertIsInstance(snapshot, Recorded)
+    digest_before = snapshot.record.result_digest
+    caller_evidence["evidence"]["items"].append("after")
+    self.assertEqual(snapshot.record.result.evidence, {"evidence": {"items": ["before"]}})
+    self.assertEqual(snapshot.record.result_digest, digest_before)
+
 
 def _test_k2_011b(self: K2UnitTests) -> None:
     k = make_key()
@@ -510,6 +541,22 @@ def _test_k2_011b(self: K2UnitTests) -> None:
     result = record([first.record], k, Value("y", k, {"evidence": "e"}), "p")
     self.assertIsInstance(result, Conflict)
     self.assertEqual(len(result.records), 2)
+    self.assertEqual(result.records[0].result, Value("x", k, {"evidence": "e"}))
+    self.assertEqual(result.records[1].result, Value("y", k, {"evidence": "e"}))
+    self.assertNotEqual(result.records[0].result_digest, result.records[1].result_digest)
+
+    # Separate one-change cases ensure class and evidence participate in the
+    # ResultBody digest while the ResultKey stays fixed.
+    class_changed = record(
+        [first.record], k, Unknown("unreadable", k, {"evidence": "e"}), "p"
+    )
+    self.assertIsInstance(class_changed, Conflict)
+    self.assertNotEqual(class_changed.records[0].result_digest, class_changed.records[1].result_digest)
+    evidence_changed = record(
+        [first.record], k, Value("x", k, {"evidence": "changed"}), "p"
+    )
+    self.assertIsInstance(evidence_changed, Conflict)
+    self.assertNotEqual(evidence_changed.records[0].result_digest, evidence_changed.records[1].result_digest)
 
 
 def _test_k2_011c(self: K2UnitTests) -> None:
@@ -539,7 +586,17 @@ def _test_k2_013_git_revision(self: K2UnitTests) -> None:
     self.assertEqual(key_of("op", "v1", ref("subject", digest="a" * 40), (), "scope"), Rejected("invalid_digest"))
 
 
+def _test_k2_013_uppercase(self: K2UnitTests) -> None:
+    self.assertEqual(
+        key_of("op", "v1", ref("subject", digest="sha256:" + "A" * 64), (), "scope"),
+        Rejected("invalid_digest"),
+    )
+
+
 def _test_k2_013_missing_precedence(self: K2UnitTests) -> None:
+    # Intentional compound input: required operation is missing in the base,
+    # then one field (subject.digest) is changed to an invalid format to check
+    # L4's missing_key-before-invalid_digest precedence.
     self.assertEqual(key_of(None, "v1", ref("subject", digest="bad"), (), "scope"), Rejected("missing_key"))
 
 
@@ -555,6 +612,7 @@ for _name, _fn in (
     ("test_CK_K2_UT_013_NO_PREFIX", _test_k2_013_no_prefix),
     ("test_CK_K2_UT_013_SHORT", _test_k2_013_short),
     ("test_CK_K2_UT_013_GIT_REVISION", _test_k2_013_git_revision),
+    ("test_CK_K2_UT_013_UPPERCASE", _test_k2_013_uppercase),
     ("test_CK_K2_UT_013_PRECEDENCE_MISSING", _test_k2_013_missing_precedence),
     ("test_CK_K2_UT_013_PRECEDENCE_DIGEST", _test_k2_013_digest_precedence),
 ):
@@ -651,21 +709,21 @@ _add_l7_expansion("test_CK_K2_UT_020c", _test_k2_020c)
 def _test_k2_021_positive(self: K2UnitTests) -> None:
     left = ("left", "input", ref("source", "r1", D1), ref("alias-left", "r1", D1, "alias"))
     right = ("right", "input", ref("source", "r2", D2), ref("alias-right", "r2", D2, "alias"))
-    result = bind_alias_inputs([left, right], "binding", "owner-map", "r1")
+    result = _bind_alias_inputs([left, right], "binding", "owner-map", "r1")
     self.assertEqual(len(result.aliases), 2)
     self.assertEqual(result.inputs[0], result.binding_ref)
 
 
 def _test_k2_021_dedup(self: K2UnitTests) -> None:
     item = ("left", "input", ref("source"), ref("alias", digest=D1, kind="alias"))
-    result = bind_alias_inputs([item, item], "binding", "owner-map")
+    result = _bind_alias_inputs([item, item], "binding", "owner-map")
     self.assertEqual(len(result.aliases), 1)
 
 
 def _test_k2_021_cross_role(self: K2UnitTests) -> None:
     left = ("left", "input", ref("source"), ref("alias-left", kind="alias"))
     right = ("right", "input", ref("source"), ref("alias-right", kind="alias"))
-    result = bind_alias_inputs([left, right], "binding", "owner-map")
+    result = _bind_alias_inputs([left, right], "binding", "owner-map")
     self.assertEqual(len(result.aliases), 2)
 
 
@@ -673,7 +731,7 @@ def _test_k2_021b(self: K2UnitTests) -> None:
     alias = ref("same-alias", kind="alias")
     first = ("left", "input", ref("source", "r1", D1), alias)
     second = ("left", "input", ref("source", "r2", D1), alias)
-    self.assertEqual(bind_alias_inputs([first, second], "binding", "owner-map"), Rejected("missing_key"))
+    self.assertEqual(_bind_alias_inputs([first, second], "binding", "owner-map"), Rejected("missing_key"))
 
 
 def _test_k2_021c(self: K2UnitTests) -> None:
@@ -682,7 +740,7 @@ def _test_k2_021c(self: K2UnitTests) -> None:
     binding_bytes = b"fixed owner binding"
     binding_ref = ref(
         "binding",
-        digest=sha256_digest(binding_bytes),
+        digest=_sha256_digest(binding_bytes),
         kind="owner-binding",
     )
     result_key = key_of(
@@ -698,10 +756,10 @@ def _test_k2_021c(self: K2UnitTests) -> None:
     # fixed binding successfully, then reports the raw-source digest mismatch.
     class StubReader:
         def read_binding(self, buffer: bytes, expected_ref: SubjectRef) -> bool:
-            return sha256_digest(buffer) == expected_ref.digest
+            return _sha256_digest(buffer) == expected_ref.digest
 
         def observe_alias(self, buffer: bytes, expected_ref: SubjectRef, key_ref: ResultKey):
-            if sha256_digest(buffer) != expected_ref.digest:
+            if _sha256_digest(buffer) != expected_ref.digest:
                 return Unknown("conflict", key_ref)
             return Value(buffer, key_ref, {"stub_read": True})
 

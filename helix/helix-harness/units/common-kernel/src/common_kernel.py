@@ -1,14 +1,16 @@
 """Pure K1/K2 semantic core for the HELIX common-kernel unit.
 
 The package deliberately has no K5 storage, K6 source reader, or owner-specific
-authority implementation.  Inputs and outputs are immutable values so callers
-can retain the exact observations and key material they supplied.
+authority implementation. Outer value objects are frozen. `record` snapshots
+mutable JSON-shaped payloads before deriving a stored record; callers still
+own and must not mutate nested payloads reachable through returned records.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+from copy import deepcopy
 import hashlib
 import json
 import math
@@ -236,7 +238,7 @@ def _observed_key(value: Any) -> Any:
     return _get(value, "key")
 
 
-def validate_result_key(key: Any) -> Rejected | None:
+def _validate_result_key(key: Any) -> Rejected | None:
     """K1-I6 key-field presence check; it intentionally does not shape-check values."""
     if key is None or not all(
         _present(_get(key, field))
@@ -253,7 +255,7 @@ def validate_result_key(key: Any) -> Rejected | None:
     return None
 
 
-def prepare_polarity_input(
+def _prepare_polarity_input(
     value: T,
     key: ResultKey,
     polarity: PolarityMapping | None,
@@ -264,7 +266,7 @@ def prepare_polarity_input(
     The mapping is not evaluated here: `combine` receives it separately. A
     missing mapping yields the existing complete-key Unknown variant.
     """
-    invalid = validate_result_key(key)
+    invalid = _validate_result_key(key)
     if invalid:
         return invalid
     if polarity is None:
@@ -320,7 +322,7 @@ def combine(
         _component_and_polarity(item, polarity) for item in components
     ]
     for component, _ in normalized:
-        invalid = validate_result_key(_observed_key(component))
+        invalid = _validate_result_key(_observed_key(component))
         if invalid:
             return invalid
 
@@ -389,10 +391,29 @@ def admit(combined: Combined[T]) -> Admitted | Withheld | Rejected:
     if not isinstance(combined, Combined):
         raise TypeError("admit expects Combined")
     for component in combined.components:
-        invalid = validate_result_key(_observed_key(component))
+        invalid = _validate_result_key(_observed_key(component))
         if invalid:
             return invalid
-    if combined.verdict is Verdict.POSITIVE:
+    valid_excluded = tuple(
+        index
+        for index, component in enumerate(combined.components)
+        if isinstance(component, NotApplicable) and _is_valid_disposition(component)
+    )
+    positive_components_valid = all(
+        isinstance(component, Value)
+        or (isinstance(component, NotApplicable) and _is_valid_disposition(component))
+        for component in combined.components
+    )
+    has_positive_value = any(isinstance(component, Value) for component in combined.components)
+    if (
+        combined.verdict is Verdict.POSITIVE
+        and has_positive_value
+        and positive_components_valid
+        and combined.excluded == valid_excluded
+        and not combined.negatives
+        and not combined.non_values
+        and combined.set_reason is None
+    ):
         return Admitted(combined)
 
     reasons: list[WithheldReason] = []
@@ -402,15 +423,29 @@ def admit(combined: Combined[T]) -> Admitted | Withheld | Rejected:
         component = combined.components[index]
         reason = _why(component)
         if isinstance(component, NotApplicable):
-            reason = "invalid_disposition"
+            reason = (
+                "invalid_disposition"
+                if not _is_valid_disposition(component)
+                else UnknownReason.MISSING_INPUT.value
+            )
         elif isinstance(component, Stale):
             reason = "stale"
         reasons.append(WithheldReason(index, _class_name(component), reason))
+    for index, component in enumerate(combined.components):
+        if (
+            isinstance(component, NotApplicable)
+            and not _is_valid_disposition(component)
+            and index not in combined.non_values
+        ):
+            reasons.append(WithheldReason(index, "NotApplicable", "invalid_disposition"))
     if combined.set_reason is not None:
         reasons.append(
             WithheldReason("whole", combined.set_reason.class_name, combined.set_reason.reason)
         )
-    if not reasons:
+    if not reasons or (
+        combined.verdict is Verdict.POSITIVE
+        and combined.excluded != valid_excluded
+    ):
         # A malformed hand-created Combined is outside the typed input
         # precondition; do not turn it into an affirmative result.
         return Withheld((WithheldReason("whole", "Unknown", "missing_input"),))
@@ -423,7 +458,7 @@ def disposition(
     reentry_trigger: str | None,
     key: ResultKey,
 ) -> NotApplicable | Unknown | Rejected:
-    invalid = validate_result_key(key)
+    invalid = _validate_result_key(key)
     if invalid:
         return invalid
     if reason is None or authority is None or reentry_trigger is None:
@@ -431,7 +466,7 @@ def disposition(
     return NotApplicable(reason, authority, reentry_trigger, key)
 
 
-def canonical_json_bytes(value: Any) -> bytes:
+def _canonical_json_bytes(value: Any) -> bytes:
     """Serialize the L6 selected CPython JSON candidate; no newline framing."""
     _check_json_domain(value, set())
     encoded = json.dumps(
@@ -480,9 +515,9 @@ def _check_json_domain(value: Any, ancestors: set[int]) -> None:
     raise TypeError("value is outside canonical JSON domain")
 
 
-def sha256_digest(value: bytes) -> Digest:
+def _sha256_digest(value: bytes) -> Digest:
     if not isinstance(value, bytes):
-        raise TypeError("sha256_digest accepts exact bytes")
+        raise TypeError("_sha256_digest accepts exact bytes")
     return "sha256:" + hashlib.sha256(value).hexdigest()
 
 
@@ -504,7 +539,7 @@ def _canonical_value(value: Any) -> Any:
 
 
 def _key_digest(key: ResultKey) -> KeyDigest:
-    return sha256_digest(canonical_json_bytes(_canonical_value(key)))
+    return _sha256_digest(_canonical_json_bytes(_canonical_value(key)))
 
 
 def _valid_digest(value: Any) -> bool:
@@ -542,7 +577,7 @@ def key_of(
     )
 
 
-def bind_alias_inputs(
+def _bind_alias_inputs(
     aliases: Sequence[tuple[Any, str, SubjectRef, SubjectRef]],
     binding_kind: str,
     binding_identity: str,
@@ -572,8 +607,8 @@ def bind_alias_inputs(
         }
         for context, role, raw_ref, alias_ref in ordered
     ]
-    binding_bytes = canonical_json_bytes(mapping)
-    revision = owner_revision or canonical_json_bytes(
+    binding_bytes = _canonical_json_bytes(mapping)
+    revision = owner_revision or _canonical_json_bytes(
         [
             {"alias_identity": alias_ref.identity, "raw_revision": raw_ref.revision}
             for _, _, raw_ref, alias_ref in ordered
@@ -583,7 +618,7 @@ def bind_alias_inputs(
         kind=binding_kind,
         identity=binding_identity,
         revision=revision,
-        digest=sha256_digest(binding_bytes),
+        digest=_sha256_digest(binding_bytes),
     )
     normalized_aliases = tuple(
         RoleBoundAlias(context, role, raw_ref, alias_ref)
@@ -593,10 +628,10 @@ def bind_alias_inputs(
     return AliasBinding(binding_ref, normalized_aliases, binding_bytes, inputs)
 
 
-def candidate_records(
+def _candidate_records(
     records: Sequence[ResultRecord[T]], query_key: ResultKey
 ) -> tuple[ResultRecord[T], ...] | Unobserved | Rejected:
-    invalid = validate_result_key(query_key)
+    invalid = _validate_result_key(query_key)
     if invalid:
         return invalid
     query_inputs = {_get(ref, "identity") for ref in query_key.inputs}
@@ -614,7 +649,7 @@ def candidate_records(
     return candidates
 
 
-def lookup_conflicts(
+def _lookup_conflicts(
     candidates: Sequence[ResultRecord[T]], query_key: ResultKey
 ) -> Unknown | None:
     query_refs = [query_key.subject, *query_key.inputs]
@@ -648,7 +683,7 @@ def _keys_equal(left: ResultKey, right: ResultKey) -> bool:
     )
 
 
-def lookup_exact_or_prior(
+def _lookup_exact_or_prior(
     candidates: Sequence[ResultRecord[T]], query_key: ResultKey
 ) -> Observed[T]:
     exact = [record for record in candidates if _keys_equal(record.key, query_key)]
@@ -665,13 +700,13 @@ def lookup_exact_or_prior(
 def lookup(
     records: Sequence[ResultRecord[T]], query_key: ResultKey
 ) -> Observed[T] | Rejected:
-    candidates = candidate_records(records, query_key)
+    candidates = _candidate_records(records, query_key)
     if isinstance(candidates, (Rejected, Unobserved)):
         return candidates
-    conflict = lookup_conflicts(candidates, query_key)
+    conflict = _lookup_conflicts(candidates, query_key)
     if conflict is not None:
         return conflict
-    return lookup_exact_or_prior(candidates, query_key)
+    return _lookup_exact_or_prior(candidates, query_key)
 
 
 def _observed_body(result: Observed[Any]) -> Any:
@@ -704,16 +739,25 @@ def record(
     result: Observed[T],
     producer: Any,
 ) -> Recorded[T] | NoOp[T] | Conflict[T] | Rejected:
+    """Record a snapshot of an owner-supplied, already-keyed observation.
+
+    The caller owns the result value and must not mutate the returned record's
+    nested payload after this function returns. The input object is deep-copied
+    before its digest and stored projection are derived.
+    """
+    # The public contract treats result.key == key as a caller precondition;
+    # there is no K1/K2 rejection reason for a complete but mismatched pair.
     if isinstance(result, Stale):
         return Rejected("stale_not_recordable")
-    invalid = validate_result_key(key)
+    invalid = _validate_result_key(key)
     if invalid:
         return invalid
-    invalid = validate_result_key(_get(result, "key"))
+    invalid = _validate_result_key(_get(result, "key"))
     if invalid:
         return invalid
-    result_digest = sha256_digest(canonical_json_bytes(_observed_body(result)))
-    new_record = ResultRecord(key, _key_digest(key), result, result_digest, producer)
+    result_snapshot = deepcopy(result)
+    result_digest = _sha256_digest(_canonical_json_bytes(_observed_body(result_snapshot)))
+    new_record = ResultRecord(key, _key_digest(key), result_snapshot, result_digest, producer)
     matching = tuple(existing for existing in records if _keys_equal(existing.key, key))
     if any(existing.result_digest == result_digest for existing in matching):
         return NoOp(next(existing for existing in matching if existing.result_digest == result_digest))

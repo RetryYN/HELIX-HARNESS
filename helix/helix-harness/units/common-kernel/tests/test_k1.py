@@ -1,4 +1,9 @@
-"""L7 K1 fixture coverage. Each generated method has one explicit UT ID."""
+"""L7 K1 fixtures. Owner-adapter stubs are distinct from kernel-primary tests.
+
+Owner/caller boundaries: UT-006 (polarity input preparation) and UT-010
+(source-scan observation); UT-012 exercises a test-only word classifier plus
+the public combine callable. These do not claim a production owner adapter.
+"""
 
 from __future__ import annotations
 
@@ -16,6 +21,7 @@ from common_kernel import (  # noqa: E402
     Polarity,
     PolarityMapping,
     PolarityRef,
+    Recorded,
     Rejected,
     ResultKey,
     ResultRecord,
@@ -33,7 +39,7 @@ from common_kernel import (  # noqa: E402
     admit,
     combine,
     disposition,
-    prepare_polarity_input,
+    _prepare_polarity_input,
 )
 
 
@@ -86,6 +92,12 @@ class K1UnitTests(unittest.TestCase):
             (PolarityRef("CONNECT.compatibility", "1"), PolarityRef("HARNESS.verification", "1")),
         )
         self.assertIsInstance(admit(combined), Admitted)
+        single = combine([value("pass")], positive)
+        self.assertEqual(single.polarity, PolarityRef("test.positive", "1"))
+        mixed = combine([value("pass"), NotApplicable("reason", "authority", "trigger", key())], positive)
+        self.assertEqual(mixed.verdict, Verdict.POSITIVE)
+        self.assertEqual(mixed.excluded, (1,))
+        self.assertEqual(admit(mixed), Admitted(mixed))
 
     def test_CK_K1_UT_003(self) -> None:
         combined = combine([value("fail"), Unknown("unreadable", key())], negative)
@@ -121,6 +133,41 @@ class K1UnitTests(unittest.TestCase):
             admit(result), Withheld((WithheldReason(1, "Unobserved", "not_selected"),))
         )
 
+    def test_CK_K1_UT_002_ADMIT_INCONSISTENT(self) -> None:
+        cases = (
+            (
+                Combined(Verdict.POSITIVE, (Unknown("conflict", key()),), positive.reference, (), (0,), (), None),
+                Withheld((WithheldReason(0, "Unknown", "conflict"),)),
+            ),
+            (
+                Combined(Verdict.POSITIVE, (value("fail"),), negative.reference, (0,), (), (), None),
+                Withheld((WithheldReason(0, "Value", "negative_value"),)),
+            ),
+            (
+                Combined(Verdict.POSITIVE, (), None, (), (), (), SetDiagnostic("Unknown", "missing_input")),
+                Withheld((WithheldReason("whole", "Unknown", "missing_input"),)),
+            ),
+            (
+                Combined(Verdict.POSITIVE, (Unknown("conflict", key()),), positive.reference, (), (), (), None),
+                Withheld((WithheldReason("whole", "Unknown", "missing_input"),)),
+            ),
+            (
+                Combined(Verdict.POSITIVE, (), None, (), (), (), None),
+                Withheld((WithheldReason("whole", "Unknown", "missing_input"),)),
+            ),
+            (
+                Combined(Verdict.POSITIVE, (NotApplicable("reason", "authority", "trigger", key()),), positive.reference, (), (), (0,), None),
+                Withheld((WithheldReason("whole", "Unknown", "missing_input"),)),
+            ),
+            (
+                Combined(Verdict.POSITIVE, (NotApplicable("reason", None, "trigger", key()),), positive.reference, (), (), (), None),
+                Withheld((WithheldReason(0, "NotApplicable", "invalid_disposition"),)),
+            ),
+        )
+        for malformed, expected in cases:
+            with self.subTest(combined=malformed):
+                self.assertEqual(admit(malformed), expected)
+
     def test_CK_K1_UT_004(self) -> None:
         components = [
             value("pass"),
@@ -151,7 +198,7 @@ class K1UnitTests(unittest.TestCase):
         )
 
     def test_CK_K1_UT_006(self) -> None:
-        prepared = prepare_polarity_input("source-value", key(), None)
+        prepared = _prepare_polarity_input("source-value", key(), None)
         self.assertEqual(prepared, Unknown(UnknownReason.MISSING_INPUT, key(), None))
         combined = combine([prepared, value("pass")], positive)
         self.assertEqual(combined.verdict, Verdict.UNDETERMINED)
@@ -190,13 +237,29 @@ class K1UnitTests(unittest.TestCase):
                 self.assertEqual(result, Unknown("invalid_disposition", key()))
 
     def test_CK_K1_UT_008a(self) -> None:
-        self.assertEqual(disposition(None, "authority", "trigger", key()), Unknown("invalid_disposition", key()))
+        result = disposition(None, "authority", "trigger", key())
+        self.assertEqual(result, Unknown("invalid_disposition", key()))
+        combined = combine([result], positive)
+        self.assertEqual(combined.non_values, (0,))
+        self.assertEqual(admit(combined), Withheld((WithheldReason(0, "Unknown", "invalid_disposition"),)))
 
     def test_CK_K1_UT_008b(self) -> None:
-        self.assertEqual(disposition("reason", None, "trigger", key()), Unknown("invalid_disposition", key()))
+        result = disposition("reason", None, "trigger", key())
+        self.assertEqual(result, Unknown("invalid_disposition", key()))
+        self.assertEqual(combine([result], positive).non_values, (0,))
 
     def test_CK_K1_UT_008c(self) -> None:
-        self.assertEqual(disposition("reason", "authority", None, key()), Unknown("invalid_disposition", key()))
+        result = disposition("reason", "authority", None, key())
+        self.assertEqual(result, Unknown("invalid_disposition", key()))
+        self.assertEqual(combine([result], positive).non_values, (0,))
+
+    def test_CK_K1_UT_008_invalid_not_applicable_is_nonvalue(self) -> None:
+        malformed = NotApplicable("reason", None, "trigger", key())
+        result = combine([malformed], positive)
+        self.assertEqual(result.verdict, Verdict.UNDETERMINED)
+        self.assertEqual(result.non_values, (0,))
+        self.assertEqual(result.excluded, ())
+        self.assertEqual(admit(result), Withheld((WithheldReason(0, "NotApplicable", "invalid_disposition"),)))
 
     def test_CK_K1_UT_009_accept_classes_and_record_classes(self) -> None:
         accepted = [
@@ -214,36 +277,64 @@ class K1UnitTests(unittest.TestCase):
         self.assertEqual(combine([accepted[3]], positive).excluded, (0,))
 
     def test_CK_K1_UT_009_ACCEPT_COMBINE_Value(self) -> None:
-        self.assertIsInstance(combine([value("v")], positive), Combined)
+        observed = value("v")
+        result = combine([observed], positive)
+        self.assertIsInstance(result, Combined)
+        self.assertEqual(result.components, (observed,))
+        self.assertEqual(result.verdict, Verdict.POSITIVE)
 
     def test_CK_K1_UT_009_ACCEPT_COMBINE_Unknown(self) -> None:
-        self.assertIsInstance(combine([Unknown("unreadable", key())], positive), Combined)
+        observed = Unknown("unreadable", key())
+        result = combine([observed], positive)
+        self.assertEqual(result.components, (observed,))
+        self.assertEqual(result.non_values, (0,))
 
     def test_CK_K1_UT_009_ACCEPT_COMBINE_Unobserved(self) -> None:
-        self.assertIsInstance(combine([Unobserved(key(), "not_run")], positive), Combined)
+        observed = Unobserved(key(), "not_run")
+        result = combine([observed], positive)
+        self.assertEqual(result.components, (observed,))
+        self.assertEqual(result.non_values, (0,))
 
     def test_CK_K1_UT_009_ACCEPT_COMBINE_NotApplicable(self) -> None:
-        self.assertIsInstance(combine([NotApplicable("reason", "authority", "trigger", key())], positive), Combined)
+        observed = NotApplicable("reason", "authority", "trigger", key())
+        result = combine([observed], positive)
+        self.assertEqual(result.components, (observed,))
+        self.assertEqual(result.excluded, (0,))
 
     def test_CK_K1_UT_009_ACCEPT_COMBINE_Stale(self) -> None:
         old = key(revision="r1")
-        self.assertIsInstance(combine([Stale(value("old", old), old, key(revision="r2"))], positive), Combined)
+        observed = Stale(value("old", old), old, key(revision="r2"))
+        result = combine([observed], positive)
+        self.assertEqual(result.components, (observed,))
+        self.assertEqual(result.non_values, (0,))
 
     def test_CK_K1_UT_009_ACCEPT_RECORD_Value(self) -> None:
         from common_kernel import record
-        self.assertNotIsInstance(record([], key(), value("v"), "producer"), Rejected)
+        observed = value("v")
+        result = record([], key(), observed, "producer")
+        self.assertIsInstance(result, Recorded)
+        self.assertEqual(result.record.result, observed)
 
     def test_CK_K1_UT_009_ACCEPT_RECORD_Unknown(self) -> None:
         from common_kernel import record
-        self.assertNotIsInstance(record([], key(), Unknown("unreadable", key()), "producer"), Rejected)
+        observed = Unknown("unreadable", key())
+        result = record([], key(), observed, "producer")
+        self.assertIsInstance(result, Recorded)
+        self.assertEqual(result.record.result, observed)
 
     def test_CK_K1_UT_009_ACCEPT_RECORD_Unobserved(self) -> None:
         from common_kernel import record
-        self.assertNotIsInstance(record([], key(), Unobserved(key(), "not_run"), "producer"), Rejected)
+        observed = Unobserved(key(), "not_run")
+        result = record([], key(), observed, "producer")
+        self.assertIsInstance(result, Recorded)
+        self.assertEqual(result.record.result, observed)
 
     def test_CK_K1_UT_009_ACCEPT_RECORD_NotApplicable(self) -> None:
         from common_kernel import record
-        self.assertNotIsInstance(record([], key(), NotApplicable("r", "a", "t", key()), "producer"), Rejected)
+        observed = NotApplicable("r", "a", "t", key())
+        result = record([], key(), observed, "producer")
+        self.assertIsInstance(result, Recorded)
+        self.assertEqual(result.record.result, observed)
 
     def test_CK_K1_UT_009_LOOKUP_Value(self) -> None:
         from common_kernel import record, lookup
@@ -302,7 +393,11 @@ class K1UnitTests(unittest.TestCase):
 
     def test_CK_K1_UT_009_KEY_RECORD(self) -> None:
         from common_kernel import record
-        self.assertEqual(record([], None, value("v"), "p"), Rejected("missing_key"))
+        # Two independent one-field omissions: external record key, then the
+        # Observed key. Each keeps the other key complete.
+        complete = key()
+        self.assertEqual(record([], None, value("v", complete), "p"), Rejected("missing_key"))
+        self.assertEqual(record([], complete, replace(value("v", complete), key=None), "p"), Rejected("missing_key"))
 
     def test_CK_K1_UT_009_KEY_LOOKUP(self) -> None:
         from common_kernel import lookup
@@ -349,28 +444,50 @@ class K1UnitTests(unittest.TestCase):
         self.assertEqual(combine([projection], positive), Rejected("missing_key"))
 
     def test_CK_K1_UT_012_mapping_word_table(self) -> None:
-        mapping = {
-            "ambiguous": (Unknown("ambiguous", key()), None),
-            "unsupported": (Unknown("unsupported", key()), None),
-            "mismatch": (value("mismatch"), negative),
-            "conflict": (Unknown("conflict", key()), None),
-            "evaluation_error": (Unknown("evaluation_error", key()), None),
-            "indeterminate": (Unknown("indeterminate", key()), None),
-            "unknown": (Unknown("missing_input", key()), None),
-            "stale": (Stale(value("old"), key(revision="r1"), key(revision="r2")), None),
-            "not_observed": (Unobserved(key(), "not_selected"), None),
-            "unregistered": (Unknown("unsupported", key()), None),
-            "incompatible": (value("incompatible"), negative),
-            "not_applicable": (NotApplicable("reason", "authority", "trigger", key()), None),
+        # This is an owner-adapter fixture: it tests a concrete input mapping
+        # before passing the resulting Observed into the public combine API.
+        def owner_observe(word: str):
+            if word in {"ambiguous", "unsupported", "conflict", "evaluation_error", "indeterminate"}:
+                return Unknown(word, key()), None
+            if word == "unknown":
+                return Unknown("missing_input", key()), None
+            if word in {"mismatch", "incompatible"}:
+                return value(word), negative
+            if word == "stale":
+                return Stale(value("old"), key(revision="r1"), key(revision="r2")), None
+            if word == "not_observed":
+                return Unobserved(key(), "not_selected"), None
+            if word == "unregistered":
+                return Unknown("unsupported", key()), None
+            if word == "not_applicable":
+                return NotApplicable("reason", "authority", "trigger", key()), None
+            raise AssertionError(f"unmapped test word: {word}")
+
+        expected_classes = {
+            "ambiguous": (Unknown, "ambiguous"),
+            "unsupported": (Unknown, "unsupported"),
+            "mismatch": (Value, Verdict.NEGATIVE),
+            "conflict": (Unknown, "conflict"),
+            "evaluation_error": (Unknown, "evaluation_error"),
+            "indeterminate": (Unknown, "indeterminate"),
+            "unknown": (Unknown, "missing_input"),
+            "stale": (Stale, Verdict.UNDETERMINED),
+            "not_observed": (Unobserved, Verdict.UNDETERMINED),
+            "unregistered": (Unknown, "unsupported"),
+            "incompatible": (Value, Verdict.NEGATIVE),
+            "not_applicable": (NotApplicable, Verdict.UNDETERMINED),
         }
-        for word, (observed, polarity) in mapping.items():
+        for word, (expected_class, expected) in expected_classes.items():
             with self.subTest(word=word):
-                result = combine([observed], polarity or unknown)
+                observed, polarity = owner_observe(word)
+                self.assertIsInstance(observed, expected_class)
+                if isinstance(observed, Unknown):
+                    self.assertEqual(observed.reason, expected)
+                result = combine([observed], polarity or positive)
                 self.assertIsInstance(result, Combined)
-                self.assertIs(result.components[0], observed)
-        self.assertEqual(combine([mapping["mismatch"][0]], negative).verdict, Verdict.NEGATIVE)
-        self.assertEqual(combine([mapping["incompatible"][0]], negative).verdict, Verdict.NEGATIVE)
-        self.assertEqual(combine([mapping["not_observed"][0]], unknown).verdict, Verdict.UNDETERMINED)
+                self.assertEqual(result.components, (observed,))
+                if isinstance(expected, Verdict):
+                    self.assertEqual(result.verdict, expected)
 
     def test_CK_K1_UT_012_wrong_mapping_mismatch(self) -> None:
         correct = combine([value("mismatch")], negative)
@@ -401,7 +518,14 @@ class K1UnitTests(unittest.TestCase):
         self.assertNotEqual(wrong.verdict, correct.verdict)
 
     def test_CK_K1_UT_012_unregistered(self) -> None:
-        self.assertEqual(Unknown("unsupported", key()).reason, "unsupported")
+        def owner_observe_unregistered():
+            return Unknown("unsupported", key())
+
+        observed = owner_observe_unregistered()
+        self.assertEqual(observed.reason, "unsupported")
+        result = combine([observed], positive)
+        self.assertEqual(result.verdict, Verdict.UNDETERMINED)
+        self.assertEqual(result.non_values, (0,))
 
 
 def _missing_key(field: str, boundary: str) -> object:
