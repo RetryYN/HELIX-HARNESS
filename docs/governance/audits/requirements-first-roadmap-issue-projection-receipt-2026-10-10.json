@@ -1,0 +1,17 @@
+{
+  "record_kind": "requirements_first_roadmap_issue_projection_receipt",
+  "authority_effect": "none",
+  "authorization_basis": "2026-10-10ユーザー指示「これをロードマップイシューとして立てて要件定義の最初にするでOK？」",
+  "scope_limit": "最初に扱う要求・接続条件の整理と後続主題の案内。L3以下の再開、実装、CI、内部デプロイの実施を生成しない。",
+  "body_projection_rule": "source ticket本文を転記し、相対Markdown linkだけを同じsource revisionのGitHub絶対linkへ解決する。",
+  "source_revision": "ddb2239d2000668b633d668132862218c5af7b40",
+  "source_path": "docs/governance/feature-tickets/FT-GOV-REQUIREMENTS-ROADMAP-001.md",
+  "source_sha256": "e542dc7c39d61ecdf0c461a2a8acfd62f2dcea613e36605ee8f8983222bdf50d",
+  "issue_number": 2846,
+  "issue_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2846",
+  "issue_title": "ロードマップ: 要件定義の最初にHARNESS・CORE・BRAIN・OSの最小内部循環を整理する",
+  "issue_body_sha256": "3b439b767e52b73070d0e9647df48fc2fb485e5be68fd26bd2cba815bfbf657e",
+  "read_after_body_sha256": "3b439b767e52b73070d0e9647df48fc2fb485e5be68fd26bd2cba815bfbf657e",
+  "read_after_state": "OPEN",
+  "meaning_match": true
+}
