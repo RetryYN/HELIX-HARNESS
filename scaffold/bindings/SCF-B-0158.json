@@ -45,12 +45,12 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/common-kernel.md",
-      "sha256": "02493e17e5cc786b5085b6df77d9f86a503f6eb4df6148049e7b26dfe95c82df",
+      "sha256": "e0256e04bd57401914c8a5ae9a4d0ef32092cbda18aa438611a9a4b289dcfdb4",
       "note": "Common KernelのK1/K2/K3/K5 contract locator。固定構造corpusの入力bytesとして照合し、semantic approvalや実装成立を示さない。"
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "226968862de490e61fe4ea032504605e2cd3effe92fd4ffc53d1ceb80ab1efed",
+      "sha256": "18562f0338cbab5e9a77a1943c08d44886f0fbf46945e03ca1270992b2c5e626",
       "note": "Common KernelのK1/K2/K3/K5 verifier table/range。独立inventoryとraw-row参照を構造照合し、fixture実行を示さない。"
     },
     {
