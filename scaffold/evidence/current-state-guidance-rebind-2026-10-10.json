@@ -1,0 +1,96 @@
+{
+  "reason": "現在状態の案内を既決採否と10/10失効へ追随。研究用の固定旧sourceとauthority_effect、role、obligations、artifact、replacementは不変。変更した現在案内へのupstream digestのみ再束縛。",
+  "authority_effect": "none",
+  "rebindings": [
+    {
+      "binding": "SCF-B-0003",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "before_sha256": "ae38b96b071f830e0b1f4ccc6d54070cb12adc21135bfab2842a11ad88d498f1",
+      "after_sha256": "eef460161247f5da3bcabc2a9aa77bc3e48379aa15d68b837ed3b00b8b035ae3"
+    },
+    {
+      "binding": "SCF-B-0011",
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "before_sha256": "161abbca4589d350df9e68f6bc48e455b51f5bd21692d34eaab7d01907376b4b",
+      "after_sha256": "4f818f7955ceb287364ff7ad7e856867749d81147efe4a8c7fc70fbd0d71b4d9"
+    },
+    {
+      "binding": "SCF-B-0036",
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "before_sha256": "161abbca4589d350df9e68f6bc48e455b51f5bd21692d34eaab7d01907376b4b",
+      "after_sha256": "4f818f7955ceb287364ff7ad7e856867749d81147efe4a8c7fc70fbd0d71b4d9"
+    },
+    {
+      "binding": "SCF-B-0040",
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "before_sha256": "161abbca4589d350df9e68f6bc48e455b51f5bd21692d34eaab7d01907376b4b",
+      "after_sha256": "4f818f7955ceb287364ff7ad7e856867749d81147efe4a8c7fc70fbd0d71b4d9"
+    },
+    {
+      "binding": "SCF-B-0046",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "before_sha256": "ae38b96b071f830e0b1f4ccc6d54070cb12adc21135bfab2842a11ad88d498f1",
+      "after_sha256": "eef460161247f5da3bcabc2a9aa77bc3e48379aa15d68b837ed3b00b8b035ae3"
+    },
+    {
+      "binding": "SCF-B-0074",
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "before_sha256": "a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072",
+      "after_sha256": "18c6da98da8d544b43fcfcd725ebea63c413c19bf82bc6f932a5a94f78f73ad8"
+    },
+    {
+      "binding": "SCF-B-0076",
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "before_sha256": "a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072",
+      "after_sha256": "18c6da98da8d544b43fcfcd725ebea63c413c19bf82bc6f932a5a94f78f73ad8"
+    },
+    {
+      "binding": "SCF-B-0079",
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "before_sha256": "a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072",
+      "after_sha256": "18c6da98da8d544b43fcfcd725ebea63c413c19bf82bc6f932a5a94f78f73ad8"
+    },
+    {
+      "binding": "SCF-B-0083",
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "before_sha256": "a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072",
+      "after_sha256": "18c6da98da8d544b43fcfcd725ebea63c413c19bf82bc6f932a5a94f78f73ad8"
+    },
+    {
+      "binding": "SCF-B-0085",
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "before_sha256": "a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072",
+      "after_sha256": "18c6da98da8d544b43fcfcd725ebea63c413c19bf82bc6f932a5a94f78f73ad8"
+    },
+    {
+      "binding": "SCF-B-0134",
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "before_sha256": "161abbca4589d350df9e68f6bc48e455b51f5bd21692d34eaab7d01907376b4b",
+      "after_sha256": "4f818f7955ceb287364ff7ad7e856867749d81147efe4a8c7fc70fbd0d71b4d9"
+    },
+    {
+      "binding": "SCF-B-0134",
+      "path": "docs/governance/requirement-overlap-review-program.md",
+      "before_sha256": "101248967764f0b23bc2da8cb5bbfffa973b4918f96ff4c968de3caf4de18584",
+      "after_sha256": "4f57e3a17712de05220d201cda85de0c0a4896795931b6eb4e56c2ba470de054"
+    },
+    {
+      "binding": "SCF-B-0134",
+      "path": "docs/governance/requirement-technical-substitutability-review-program.md",
+      "before_sha256": "734a78b31ffc251637d35c90fc0eeefa7bf0b4a27766fae5850e91ae4442fb77",
+      "after_sha256": "3eb2703dd547032e172dd632b452ae5dacac3372153a6d12addc6d8b580a5abe"
+    },
+    {
+      "binding": "SCF-B-0147",
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "before_sha256": "a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072",
+      "after_sha256": "18c6da98da8d544b43fcfcd725ebea63c413c19bf82bc6f932a5a94f78f73ad8"
+    },
+    {
+      "binding": "SCF-B-0046",
+      "path": "scaffold/bindings/SCF-B-0003.json",
+      "before_sha256": "61a2019d9497cd4c9ca7867a4ca7749ec998b738e4ded48585a5f50528d31015",
+      "after_sha256": "f883692da58581255ce043985e79cb307605f63db8ced21a2609fdd2935b70c6"
+    }
+  ]
+}

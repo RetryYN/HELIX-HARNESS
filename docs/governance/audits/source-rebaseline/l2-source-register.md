@@ -1,5 +1,26 @@
 # HELIX L2要求の読取り入口
 
+## 現在の読取り入口（2026-10-10）
+
+現在の対象・authority状態・許可された操作は[新世代作業入口](../../new-generation-start-here.md)を正として読む。本体8対象の固定L1とL2／L11の合意・採用は、同入口の9/28判断と後続の個別採否判断に束縛する。本文のcandidate metadataを採否の現在状態として使わない。
+
+| 対象 | L2 | 対L11 |
+|---|---|---|
+| HELIX-HARNESS | [要求](../../../helix-harness/L2-requirements/product-requirements.md) | [受入](../../../helix-harness/L11-acceptance/product-acceptance.md) |
+| HELIX-OS | [要求](../../../helix-os/L2-requirements/governance-requirements.md) | [受入](../../../helix-os/L11-acceptance/governance-acceptance.md) |
+| HELIX-BRAIN | [要求](../../../helix-brain/L2-requirements/brain-requirements.md) | [受入](../../../helix-brain/L11-acceptance/brain-acceptance.md) |
+| HELIX-INTELLIGENCE | [要求](../../../helix-intelligence/L2-requirements/intelligence-requirements.md) | [受入](../../../helix-intelligence/L11-acceptance/intelligence-acceptance.md) |
+| HELIX-LABO | [要求](../../../helix-labo/L2-requirements/labo-requirements.md) | [受入](../../../helix-labo/L11-acceptance/labo-acceptance.md) |
+| HELIX-SECURITY | [要求](../../../helix-security/L2-requirements/security-requirements.md) | [受入](../../../helix-security/L11-acceptance/security-acceptance.md) |
+| HELIX-INFRASTRUCTURE | [要求](../../../helix-infrastructure/L2-requirements/infrastructure-requirements.md) | [受入](../../../helix-infrastructure/L11-acceptance/infrastructure-acceptance.md) |
+| HELIX-CONNECT | [要求](../../../helix-connect/L2-requirements/connect-requirements.md) | [受入](../../../helix-connect/L11-acceptance/connect-acceptance.md) |
+
+Web／WEB-OSはVision材料であり、本体8対象の採択集合に算入しない。L3以下は[10/10の巻き戻し判断](../../decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)でカットされ、旧L3／L10承認は失効した。採択済みL2から実装許可・受入完了を生成しない。
+
+旧sourceの全条件・全consumerの移管は、本体8対象の採択と別に追跡する。下の37件・旧4対象・未採否・適用待ちという記述は、分離作業時点の配置・状態の記録として保持し、現在の採否・停止条件は上の入口から読む。
+
+## 分離作業時点の配置・状態（参照記録）
+
 本directoryは総称HELIXが要求を所有する場所ではなく、旧混在要求をHARNESS、HELIX-OS、個別製品へ
 分解する監査・移行入口である。新しい要求のownerは下記の対象別directoryとし、
 `concept-v4-derived-requirements.md`を含む本directoryの案は帰属確定後に対象別L2へ移すかarchiveする。
