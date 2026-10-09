@@ -5,7 +5,7 @@ owner: HELIX-HARNESS
 scope: K1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `79020598e03fd7234cfa00306f6f6d3a5bd82fd0` (current integration base; prior bases `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
+base: `main` at `1aa6c968397ec79ad7197937d05c7a98c07302ca` (current integration base; prior bases `79020598e03fd7234cfa00306f6f6d3a5bd82fd0`, `4a40597efbf867b6b5b5640060b2cac81de56de0`, `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
 
 本書は現行Common Kernel L4 K1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/G3は本書§14、K6は§13で既存L5/L8設計を関数責務へ下ろす。K9は§16で詳細化する。K8は§17でL4 §18/L9 IV-K8-01–26を4つの既存L5 API境界へtraceする設計追補であり、owner接続・L9実行は未了。K10は§18でL4 §14/L9 IV-K10-01–14を既存L5/L8契約に沿って関数・fixtureへ展開し、実行・owner接続は未了。
 
@@ -678,7 +678,7 @@ main `27707fe9f1506afaa3ab88b665f655b7212233f9`から分離した候補実装で
 
 ## 16. K9 独立review関数設計
 
-本節は、現行main `30e957ee900da7735b6c691bdb63b55cae7a0c95`に含まれるCommon Kernel L4 §17、L5 §10、L8 §9、L9 IV-K9-01–15を関数責務へ接続する設計である。参照本文のSHA-256はL4 `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82`、L5 `445c564a7b5678d7609daf4142090a26a3df73ce76522a29771a6dad5cdce3f2`、L9 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`である。L8のK9 fixture locatorは`docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md` §9であり、L7から一方向に参照する。L8 fixtureの実行、owner接続、K9合格を意味しない。
+本節は、現行main `1aa6c968397ec79ad7197937d05c7a98c07302ca`に含まれるCommon Kernel L4 §17、L5 §10、L8 §9、L9 IV-K9-01–15を関数責務へ接続する設計である。参照本文のSHA-256はL4 `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82`、L5 `1fb52363e169d6210b197b678e68881b49c87cecbf6e79e1767282996549b90a`、L9 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`である。L8のK9 fixture locatorは`docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md` §9であり、L7から一方向に参照する。L8 fixtureの実行、owner接続、K9合格を意味しない。
 
 直接親はL4 §17.1のConcept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08である。個別要素はL4 §17.1のcrosswalkからそれぞれtraceし、単一のまとめ親を置かない。K9-I1–I8と型はL4 §17、K9公開APIと詳細候補はL5 §10、oracleはL9 IV-K9-01–15を正本とする。L6はAPI/型/UnknownReason/K2優先順位を変更せず、K9が要求採択、reviewer採用、検証合格、Verified/Accepted、completion、authorityを生成しない境界を保つ。
 
@@ -770,6 +770,16 @@ K9 L9の15 oracleはL9 IV-K9-01–15のままであり、API/function IDsは新�
 ### 16.6 確認できない範囲
 
 OS assignment/selection/content-producer graph/source closureのcurrent reader、reviewer execution origin、context/route schema、SECURITY authority identity mapping、K6 read resultからK9結果へのprojectionは現L4/L5に具体owner adapterとして接続されていない。これらを推測で追加せず、各fixtureのowner未接続をL8 §9.17の返却先へ戻す。L7 unit designはL8の期待をtraceする設計であり、L8 fixture実行、K9 end-to-end実装、K6 authenticity、L9統合、登録済みunit packまたは製品動作を主張しない。
+
+### 16.7 局所private helperの実装状態
+
+現mainの候補実装 `helix/helix-harness/units/common-kernel/src/_k9_private.py` は、L4 §17.2の既存shapeをfield名・順序どおりprivate dataclassで表し、§17.3の`RoleBoundSourceRef` aliasを構成する。alias群のdedup/conflict判定とcanonical bindingは既存K2 `_bind_alias_inputs`へ委譲する。helperはownerが既に解決したbinding kind/identity/revisionとcomparison source refsを受け取り、K9の`ParticipantBindingSet` fixed refを生成せず、source bytes/current ownerを読み取らない。
+
+同モジュールのpure helperは、ReviewTargetの6 SubjectRefをL4宣言順に比較し、既にowner-resolvedなcreator/reviewer four-axis identityから全入力rowの`ReviewAxisCheck`を保持する。未解決relationは渡された既存key付きnon-Valueをそのまま保持する。`k9_independence_polarity`/version `K9`はL4 §17.3で明示されたHARNESS所有mappingを使い、`same`をNegative、`distinct`および肯定のroster-complete/creator-nonempty事実をPositiveへ写す。全componentを既存K1 `combine`へ渡し、non-Valueを落とさない。
+
+これはL5公開API `resolve_creator_inventory`/`check_review_independence`の実装ではない。OS assignment、selection、producer graph、source closure、execution origin、current context/authority/route owner、K6 read/admissionの接続、inventory non-Value時の公開結果/component projection、K2 current key lookupは未接続である。特にinventory non-Valueから四軸へ進まないL4早期returnは公開orchestrationであり、このhelper単体実装で実行済みとはしない。製品のcurrent truth・K6 assurance・L9/L8 fixture実行を主張しない。
+
+局所検証は`helix/helix-harness/units/common-kernel/tests/test_k9_private.py`の14テストに限定する。具体的なmethod-to-fixture範囲はL7 §13.4に記録する。これはL8 formal 87 fixtureの実行、L9 oracle coverage、unit pack登録、CI登録、owner接続を意味しない。
 
 ## 17. K8: input labelとauthority-effect observationの境界
 
