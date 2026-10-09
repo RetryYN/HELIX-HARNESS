@@ -1,21 +1,21 @@
-# HELIX-HARNESS 共通カーネル L8詳細検証設計（K1/K2/K3/K4/K5/K6/K7/K9/G3/G5）
+# HELIX-HARNESS 共通カーネル L8詳細検証設計（K1/K2/K3/K4/K5/K6/K7/K8/K9/G3/G5）
 
 status: draft
 owner: HELIX-HARNESS
-parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1／§9.2／§10.2／§13.1／§15.1／§16.1／§17.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
+parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1／§9.2／§10.2／§13.1／§15.1／§16.1／§17.1／§18.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l5: ../L5-detail-design/common-kernel.md
 base: main `d5bb3455526c816b3af965db239c4b56207a884f`
 
-本書はK1/K2/K3/K4/K5/K6/K7/K9/G3/G5のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9の既存項目を展開したものとする。K9は§9でL4 §17/L9 IV-K9-01–15を、K7/G5は§10で既存K7/G5 oracleを下位化する。K8/K10は`not_designed`で現行参照のみとする。すべて未実行であり、pass、実装完成、L10成立を示さない。
+本書はK1/K2/K3/K4/K5/K6/K7/K8/K9/G3/G5のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9の既存項目を展開したものとする。K9は§9でL4 §17/L9 IV-K9-01–15を、K7/G5は§10で既存K7/G5 oracleを下位化する。K8は§11でL4 §18/L9 IV-K8-01–26を下位化する。K10は`not_designed`で現行参照のみとする。すべて未実行であり、pass、実装完成、L10成立を示さない。
 
 ## 1. 固定入力とtrace
 
 | 入力 | revision・scope | SHA-256 |
 |---|---|---|
-| Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3/§9/§10/§13/§15/§16/§17 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
+| Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3/§9/§10/§13/§15/§16/§17/§18 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
 | Repository Layout L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
-| Common Kernel L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7-01–15、IV-G5-01–10、IV-LDG関連行、IV-K9-01–15 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
-| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9/§10/§11 | SHA-256 `445c564a7b5678d7609daf4142090a26a3df73ce76522a29771a6dad5cdce3f2` |
+| Common Kernel L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7-01–15、IV-G5-01–10、IV-LDG関連行、IV-K9-01–15、IV-K8-01–26 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
+| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9/§10/§11/§12 | SHA-256 `b6b2f2fe6d47d413a2d9e37d1ab26ea9017017d86a091ee2c8f5a144ac7cdc4a` |
 | Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `388e0164e556dd1ac1ae16aa7059dc28c749614ec6b5a8f5be91b15a83ae76b2` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
 
 L9の各`IV-K1-*`/`IV-K2-*`/`IV-K3-*`/`IV-K5-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。 K5 §9.2の直接由来はConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。K3の直接L3 traceはL4 §16.1のSECURITY ACに限定し、OS-014-04/-06はK7との境界参照のまま扱う。K5を共通kernelとして配置すること自体から、単一親要求やHARNESS-L2-031を追加しない。
@@ -121,7 +121,7 @@ K2逆trace: L5 `key_of`, `lookup`, `record`, alias binding clausesは表のL9 ID
 
 ## 5. K3–K10と未実施範囲
 
-K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K7/G5は§10で既存L4/L9契約を下位化し、K8/K10はこのpairで`not_designed`として既存L4/L9の該当契約へ戻す。K9は§9で設計する。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。K9の直接親はL4 §17.1のConcept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08である。K9 fixtureの設計はL7 mappingや実行を意味しない。
+K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K7/G5は§10で既存L4/L9契約を下位化し、K10はこのpairで`not_designed`として既存L4/L9の該当契約へ戻す。K9は§9、K8は§11で設計する。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。K9の直接親はL4 §17.1のConcept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08である。K9 fixtureの設計はL7 mappingや実行を意味しない。
 
 ### 5.1 K3 fixtures
 
@@ -896,3 +896,235 @@ K9 L4/L9 ownerへの追加返却事項は次のとおり。これは対象oracle
 表のAPI/result型はL4 §15.6から変えない。`AppliedUncertain`は追記済みeventとcheck、unfinishedを失わず保持し、`recover_move_observation`の`phase=recovery`は即時成功の代替にならない。K7のexpected headはappend境界のhead比較であり、stage/build ownerの全current refs/headsを示すものではない。K3 current authorizationは候補refではなくcurrent owner sourceを照合し、K7はその既存checkを前後で消さず保持する。K6 assurance/receipt未接続、物理CAS未実装、K10 graph/SECURITY RecipientMap/recipient owner binding未接続の部分はsynthetic fixtureに留め、別reason/classや権限を創作しない。G5 failed/received/missing/mixed outcomesはinner/lookup側の既存classとpolarityをそのまま入力にし、L8で新しいdomain payloadやNegative constructorを作らない。
 
 この節のfixture ID数は本文の表から機械再計数する対象である。L9 IV-K7 15件とIV-G5 10件の各行は少なくとも一つのbaseline/caseへtraceし、複数の反例は個別IDへ分ける。全fixtureは設計のみであり、実行、実装完成、承認、deploy、authority成立を示さない。
+
+## 11. K8 fixtures（既存L9 IV-K8-01〜26）
+
+本節はL4 §18 / SECURITY-AC-001-01 / 既存L9 IV-K8-01〜26のみをfixtureへ展開する。以下の`L8-K8-*`はL8 fixture IDであり、L9 oracle、K8 vocabulary、承認、実装、CI coverageを新設しない。5件のBASE、既存147 variant、L4のcomponent境界から具体化したIV-K8-16の10組合せ、計162件の設計fixture IDを記録する。これらは未実行であり、実装済み・構築済みの証拠ではない。各variantのbaselineを同一APIの既存L4正常例へ結び、独立caseの変異は指定fieldひとつだけとする。複合優先条件fixture（IV-K8-16/23）および二field列挙順fixture（IV-K8-15）はそのoracle目的に必要な組合せだけを保持し、単独変異caseと識別する。
+
+| Baseline ID | API / 入力 | baseline結果 |
+|---|---|---|
+| `L8-K8-BASE-CLASSIFICATION` | `observe_input_label`; L4 §18.6正常例（source/project/revision/digest、分類definition/classifier current refs全て読取可能） | `ObservedLabel`。classificationは入力値どおり、trust=`untrusted`。 |
+| `L8-K8-BASE-EFFECT` | `observe_authority_effect`; current case/effect-source/readerが解決し、原bytesから`EffectObservation`を読める | 原recordにある`none`または`occurred`、null、issuer/bindingを改変せず`Observed<EffectObservation>`。 |
+| `L8-K8-BASE-VALIDATION` | `validate_label_transition`; selected input-only binding、saved/current classification一致、route/target/K3/K6/effect refsが完全一致 | `TransitionValidation.result=Value(Validated)`。`Observed` wrapperを重ねず、untrustedは維持。 |
+| `L8-K8-BASE-PROJECTION-SELECTED` | `record_label_transition`; selected bindingと各operation current K2 key、pointer projectionがある | current key別lookup resultをfield別に保持する`LabelTransition`。fresh validationは呼ばない。 |
+| `L8-K8-BASE-PROJECTION-NOT-SELECTED` | `record_label_transition`; owner input-only bindingがnot_selected | `validated_transition=NotSelected`。K1 result/keyを作らない。 |
+| `K2-CURRENT-LOOKUP-BASE`（既存K2基準、K8 fixture IDではない） | L4 §3.3の完全なcurrent ResultKeyと、その完全一致keyで引ける単一の非Stale record | `lookup`はrecordの既存class/bodyをそのまま返す。 |
+| `K8-API-SURFACE-BASE`（構造比較基準、K8 fixture IDではない） | L4 §18.5の宣言済み4 APIと戻り型 | API/型/vocabularyを追加しない現行surface。 |
+
+以下の期待値はK1/K2/K3/K6 API return型を混成しない。API `Rejected(missing_key)`、projectionの`KeyUnavailable`/`NotSelected`、K1/K2 result、K3 `PermissionCheck`, K6 `RequiredResult`は別の型境界として記録する。K3/K6非肯定値とassuranceは原型・原理由のままcomponentsに残す。fixture案は未実行である。
+
+| 既存L9 oracle | fixture ID（それぞれ独立fixture） | API / baseline | 単一変異・期待 |
+|---|---|---|---|
+| IV-K8-01 | `L8-K8-01-SOURCE-ID`, `L8-K8-01-PROJECT-ID` | `observe_input_label` / BASE-CLASSIFICATION | subject source identityのみ変更、またはproject identityのみ変更。別identity集合のcurrent lookupは`Unobserved(not_run)`。別fieldを同時変更しない。 |
+| IV-K8-01 | `L8-K8-01-REVISION-DIGEST`, `L8-K8-01-DUP-SAME-IDENTITY`, `L8-K8-01-MISSING-KEY` | `observe_input_label` / BASE-CLASSIFICATION | 同一identityのrevision/digest更新後に旧ValueをlookupすればK2 `Stale`; 同一alias/key identityで異kind/revision/digest refが同居すればkey前`Rejected(missing_key)`; 1 required key fieldを欠かせばAPI `Rejected(missing_key)`。 |
+| IV-K8-02 | `L8-K8-02-CLASSIFICATION-UNKNOWN`, `L8-K8-02-SOURCE-UNREADABLE`, `L8-K8-02-NOT-RUN` | `observe_input_label` / BASE-CLASSIFICATION | それぞれclassification=`Unknown(indeterminate)`、source read=`Unknown(unreadable)`、observation未実施=`Unobserved(not_run)`を個別に入力。返す各class/reasonを保持しtrust=`untrusted`のまま。 |
+| IV-K8-03 | `L8-K8-03-CLASSIFIER-MISSING`, `L8-K8-03-CLASSIFIER-UNREGISTERED`, `L8-K8-03-EFFECT-SLICE-ABSENT`, `L8-K8-03-ROUTE-KEY-MISSING` | observe/classify, effect, validation | classifier required fieldだけ欠落→API `Rejected(missing_key)`。登録済みと宣言されたclassifier readerなし→`Unknown(unregistered)`。effect source slice absentだけ→effect API `Unknown(unregistered)`。selected route required refだけ欠落→`KeyUnavailable(Rejected(missing_key))`。classificationはroute/effect slice absentでも継続。 |
+| IV-K8-04 | `L8-K8-04-MISMATCH-ONE`, `L8-K8-04-K3-NEGATIVE`, `L8-K8-04-K6-NEGATIVE`, `L8-K8-04-UNKNOWN-INPUT`, `L8-K8-04-STALE-DEPENDENCY`, `L8-K8-04-NA-COMPONENT`, `L8-K8-04-K3-DIAGNOSTIC`, `L8-K8-04-UNOBSERVED`, `L8-K8-04-VALIDATED` | `validate_label_transition` / BASE-VALIDATION | 各caseでそれぞれ確定した1 field不一致→`Value(Mismatch{fields})`; K3 combined Negative→`Value(Denied{source:permission_check})`; K6 combined Negative→`Value(Denied{source:route_verification})`;既存UnknownはL4優先順reason、K3/K6 Staleまたはrequired NAは`Unknown(missing_input)`、K3 `invalid_query` diagnosticはL4写像どおり`Unknown(missing_input)`、単独未実施は対応`Unobserved(why)`、完全一致のみValidated。record lookup Staleをfresh outcomeへ混ぜない。 |
+| IV-K8-05 | `L8-K8-05-NOT-SELECTED-NULL`, `L8-K8-05-NOT-SELECTED-POINTER`, `L8-K8-05-SELECTED-NULL-POINTER`, `L8-K8-05-SELECTED-MISSING-POINTER`, `L8-K8-05-SELECTED-KEY-MISSING` | `record_label_transition` / BASE-PROJECTION-* | not_selectedはpointer null/non-null双方で`NotSelected`、非nullはselection mismatch diagnosticだけ。selectedはpointer不在でもcurrent lookupを実施し、pointer不在はdiagnosticに残す。selected required ref欠落はprojection内`KeyUnavailable`。read-only/K3/K6からeffectを作らない。 |
+| IV-K8-06 | `L8-K8-06-OBSERVED-NONE`, `L8-K8-06-EVENT-NULL`, `L8-K8-06-BINDING-NULL`, `L8-K8-06-INNER-BINDING-NULL`, `L8-K8-06-READER-UNREGISTERED`, `L8-K8-06-SOURCE-UNREADABLE`, `L8-K8-06-NOT-ARRIVED`, `L8-K8-06-HEAD-DRIFT` | `observe_authority_effect` / BASE-EFFECT | 原sourceのoutcome/event/bindingを各1 fieldずつnone/nullにし、原値を`Observed<EffectObservation>`で保持。registration欠落=`Unknown(unregistered)`, bytes unreadable=`Unknown(unreadable)`, 未着=`Unobserved(not_run)`, caller input_headsとactual current headの不一致は現head keyでfresh観測しL4 fresh優先順の`Unknown(missing_input)`。record projectionではlookupを変換せずhead driftをdiagnosticへ。 |
+| IV-K8-07 | `L8-K8-07-EFFECT-OCCURRED-RECORD`, `L8-K8-07-EFFECT-BINDING-NULL`, `L8-K8-07-VALIDATION-OLD-RECORD` | `validate_label_transition` / `record_label_transition` | `EFFECT-OCCURRED-RECORD`と`VALIDATION-OLD-RECORD`はBASE-PROJECTION-SELECTEDでrecord APIを照合し、effectのK2 resultとvalidation lookupを別fieldで保つ。`EFFECT-BINDING-NULL`はBASE-VALIDATIONでfresh APIを照合し、route ref・validation key等の必須refは完全なまま、EffectObservation.bindingだけnullにする。 |
+| IV-K8-08 | `L8-K8-08-READ-INSTRUCTION`, `L8-K8-08-READ-REQUIREMENT`, `L8-K8-08-READ-AUTHORITY`, `L8-K8-08-READ-PERSISTENCE`, `L8-K8-08-READ-LEARNING`, `L8-K8-08-READ-AGENT-INSTRUCTION`, `L8-K8-08-READ-TOOL-AUTHORITY`, `L8-K8-08-READ-MEMORY`, `L8-K8-08-READ-BRAIN`, `L8-K8-08-READ-TRAINING-DATA`, `L8-K8-08-READ-SECURITY-POLICY` | consumer boundary / BASE-CLASSIFICATION | 各caseは対象ひとつだけをread-only入力に結ぶ。read-onlyから対象別昇格、effect=`occurred`、trusted化がないことをそれぞれ照合。 |
+| IV-K8-09 | `L8-K8-09-K6-READSET-MISSING`, `L8-K8-09-K6-NEGATIVE`, `L8-K8-09-K6-UNDETERMINED` | `validate_label_transition` / BASE-VALIDATION | K6 receipt read setのrequired inputを1つ欠落→K6既存`Unknown(missing_input)`、K6 combined Negative→validation `Value(Denied{source:route_verification})`、K6 Undeterminedでset_reason=`Unknown(missing_input)`のみ→validation `Unknown(missing_input)`。K3/effectは別値保持しreceiptは`authority_effect="none"`。 |
+| IV-K8-10 | `L8-K8-10-EXACT-DUP`, `L8-K8-10-ALIAS-CONFLICT`, `L8-K8-10-SAVED-R1-CURRENT-R2`, `L8-K8-10-SAME-REV-DIFF-DIGEST`, `L8-K8-10-IDENTITY-SET-CHANGE` | K2 `key_of`/`lookup`; K8 operation baseline | exact alias/ref重複は一つへdedup。side/roleが同じalias内でref revision/digestだけ異なる→API `Rejected(missing_key)`。別side/roleのsaved R1/current R2は共存しK3 current lookupのold Valueならcomponent `Stale`。同revision/異digestは`Unknown(conflict)`。identity集合変更は`Unobserved(not_run)`。 |
+| IV-K8-11 | `L8-K8-11-TAINT-GRAPH`, `L8-K8-11-IMPLICIT-INHERITANCE`, `L8-K8-11-JOIN-MEET`, `L8-K8-11-DECLASSIFY-API`, `L8-K8-11-NEW-VOCABULARY` | API surface / declared four APIs | 各caseは禁止surface項目を一種類だけ設計へ追加した比較用negative。追加API/型/分類語彙/target語彙をK8契約へ導入しない。 |
+| IV-K8-12 | `L8-K8-12-OTHER-CASE-POINTER`, `L8-K8-12-OTHER-SCOPE-POINTER`, `L8-K8-12-POINTER-FIELD-MISSING`, `L8-K8-12-NULL-POINTER-DENIED` | validate/record projection | case identity、scope、またはpointer fieldのうちひとつだけ不一致/欠落。current result/effectは失わずpointer diagnosticへ。selected complete input+null pointer+current DeniedはDeniedを維持する。 |
+| IV-K8-13 | `L8-K8-13-VERSION-CHANGE`, `L8-K8-13-SCOPE-CHANGE`, `L8-K8-13-IDENTITY-SET-CHANGE`, `L8-K8-13-REV-DIGEST-CHANGE`, `L8-K8-13-SAME-REV-DIGEST-CHANGE`, `L8-K8-13-FRESH-REF-MISMATCH`, `L8-K8-13-REQUIRED-REF-MISSING` | four APIs → K2 | current operation version/scope/subject identity-set changeはlookup `Unobserved(not_run)`。同identityでrevision+digest更新しold Valueありは`Stale`、同revision異digestは`Unknown(conflict)`。fresh確定値ref不一致は`Value(Mismatch{fields})`。classification/effect missing keyはAPI `Rejected(missing_key)`、selected validation required ref欠落はprojection `KeyUnavailable(Rejected(missing_key))`。 |
+| IV-K8-14 | `L8-K8-14-POINTER-ONLY-UPDATE`, `L8-K8-14-INPUT-LABEL-UPDATE` | owner input binding→K2 key | pointer keysだけ更新しinput-only bytes/ref/head固定ならK8CaseBindingRef不変。InputLabelRefだけ更新した場合はinput binding digest/refを更新。結果pointer/headはkey inputsへ入れない。 |
+| IV-K8-15 | `L8-K8-15-INPUT-LABEL`, `L8-K8-15-ROUTE`, `L8-K8-15-TARGET`, `L8-K8-15-REVISION-SUBJECT`, `L8-K8-15-PERMISSION-CHECK`, `L8-K8-15-PERMISSION-QUERY`, `L8-K8-15-EFFECT-EVENT`, `L8-K8-15-BINDING-INPUT-LABEL`, `L8-K8-15-BINDING-ROUTE`, `L8-K8-15-BINDING-TARGET`, `L8-K8-15-BINDING-PERMISSION-QUERY`, `L8-K8-15-ISSUER`, `L8-K8-15-CURRENT-CLASSIFICATION-RECORD`, `L8-K8-15-NULL-COMPARISON`, `L8-K8-15-TWO-FIELDS-ORDER` | `validate_label_transition` / BASE-VALIDATION | 各単一fixtureはL4 `MismatchField`の該当field一つだけを返す。null比較不能はMismatchへ追加せずUnknown候補。`TWO-FIELDS-ORDER`のみL9が明示する2field同時不一致であり、返却はその二件をL4列挙順で重複なく保持。 |
+| IV-K8-16 | `L8-K8-16-REJECTED-FIRST`, `L8-K8-16-KEY-UNAVAILABLE`, `L8-K8-16-NOT-SELECTED-QUERY`, `L8-K8-16-MISMATCH`, `L8-K8-16-K3-DENIED`, `L8-K8-16-K6-DENIED`, `L8-K8-16-UNKNOWN`, `L8-K8-16-UNOBSERVED`, `L8-K8-16-VALIDATED`, `L8-K8-16-RECORD-STALE-ISOLATED`, `L8-K8-16-PAIR-MISMATCH-K3`, `L8-K8-16-PAIR-MISMATCH-K6`, `L8-K8-16-PAIR-MISMATCH-UNKNOWN`, `L8-K8-16-PAIR-MISMATCH-UNOBSERVED`, `L8-K8-16-PAIR-K3-K6`, `L8-K8-16-PAIR-K3-UNKNOWN`, `L8-K8-16-PAIR-K3-UNOBSERVED`, `L8-K8-16-PAIR-K6-UNKNOWN`, `L8-K8-16-PAIR-K6-UNOBSERVED`, `L8-K8-16-PAIR-UNKNOWN-UNOBSERVED` | fresh `validate_label_transition` vs record API | 単独fixtureは各名の結果を一つずつ確認する。組合せfixtureは下の対応表どおり二条件だけを同時に成立させ、先行するL4 §18.4結果と残るcomponentを別々に検査する。`Rejected`はAPI境界、`NotSelected`は別projection、`Validated`は他の非肯定条件がない場合の終端結果であり、これらを他のfresh component条件とのpairとして合成しない。record Stale/non-Valueもfresh順位へ加えない。全components/assurance保持。 |
+| IV-K8-17 | `L8-K8-17-ROLE-SOURCE-READ`, `L8-K8-17-SAVED-R1-CURRENT-R2`, `L8-K8-17-SAME-ALIAS-CONFLICT`, `L8-K8-17-BINDING-ONLY-NO-SOURCE-READ` | validation inputs / owner binding | 固定role bindingがraw SubjectRef一件を指しreaderがそのraw bytesを別途実読してdigest一致。保存/current refsはside/role別aliasに置き、source digestとrevisionはraw refと一致。同一alias内異refだけkey前`Rejected(missing_key)`、binding bytes読取のみはraw source readとして数えない。 |
+| IV-K8-18 | `L8-K8-18-CASE-REF-MISSING`, `L8-K8-18-SAME-EFFECT-OTHER-CASE` | effect/validate APIs | case ref欠落/当該case binding unreadableはAPI `Rejected(missing_key)`。同じeffect refの別caseは逆引きせずそれぞれの明示case binding/keyに結ぶ。 |
+| IV-K8-19 | `L8-K8-19-OPERATION-VERSION-CHANGE`, `L8-K8-19-SCOPE-CHANGE`, `L8-K8-19-IDENTITY-SET-CHANGE`, `L8-K8-19-REVISION-UPDATE`, `L8-K8-19-SAME-REV-DIGEST-CONFLICT`, `L8-K8-19-OLD-POINTER-ONLY` | `record_label_transition` → K2 `lookup` | operation/version/scope/identity set changeは`Unobserved(not_run)`、同identity revision+digest更新はold Value `Stale`、同revision異digestは`Unknown(conflict)`。pointerだけ旧refでもcurrent-key lookupを選びcurrent outcomeを消さない。 |
+| IV-K8-20 | `L8-K8-20-K3-COMBINED-POSITIVE`, `L8-K8-20-K3-COMBINED-NEGATIVE`, `L8-K8-20-K3-COMBINED-UNDETERMINED`, `L8-K8-20-K3-DIAGNOSTIC-MISSING-KEY`, `L8-K8-20-K3-DIAGNOSTIC-INVALID-QUERY`, `L8-K8-20-K3-ASSURANCE-REVERIFIABLE`, `L8-K8-20-K3-ASSURANCE-REPRODUCTION`, `L8-K8-20-K3-ASSURANCE-ISSUER-AUTHENTICITY`, `L8-K8-20-K6-COMBINED-POSITIVE`, `L8-K8-20-K6-COMBINED-NEGATIVE`, `L8-K8-20-K6-COMBINED-UNDETERMINED`, `L8-K8-20-K6-ASSURANCE-REVERIFIABLE`, `L8-K8-20-K6-ASSURANCE-REPRODUCTION`, `L8-K8-20-K6-ASSURANCE-ISSUER-AUTHENTICITY`, `L8-K8-20-EVIDENCE-UNREADABLE`, `L8-K8-20-NO-SELF-REFERENCE`, `L8-K8-20-CURRENT-EFFECT-INDEPENDENT` | validation record / record projection | 各caseは保存evidence内の該当K3 `PermissionCheckResult`またはK6 `RequiredResult`の一fieldだけを変え、API返却の`validated_transition`内で元型・元reason・assuranceを復元する。evidence読取失敗はL4 `ValidationEvidenceUnavailable{state:evidence_unavailable,evidence_ref,reason:unreadable}`、lookup/evidence ref保持、assurance補完なし。ResultRecord唯一resultは`Observed<TransitionOutcome>`で、self key/pointerをevidenceに含めない。独立current effect lookupも保持。 |
+| IV-K8-21 | `L8-K8-21-POINTERS-FIXED-LABEL-CHANGED`, `L8-K8-21-LABEL-FIXED-POINTERS-CHANGED` | K8CaseBindingRef canonical bytes / K2 inputs | pointer keysだけ変更してinput label固定ならbinding bytes/digest/revision/head不変。InputLabelRefだけを変えるとbinding ref更新。分類keyにcase bindingを含めない。 |
+| IV-K8-22 | `L8-K8-22-CLASSIFIER-REVISION`, `L8-K8-22-SAME-REV-DIGEST`, `L8-K8-22-OPTIONAL-ROUTE-SLICE-ABSENT` | `observe_input_label` → K2 | classifier contract revision更新でoperation_version/key変更、old resultを流用せず`Unobserved(not_run)`。同revision異digestは`Unknown(conflict)`。route/effect-only declaration欠落はclassification required inputs/keyへ加えない。 |
+| IV-K8-23 | `L8-K8-23-UNREGISTERED-AND-UNREADABLE`, `L8-K8-23-HEAD-DRIFT-AND-UNREADABLE`, `L8-K8-23-MISSING-KEY-AND-UNREADABLE` | classification/effect observers | L4 reason順で複合優先を各一組だけ照合：前二件`Unknown(unreadable)`、required key field欠落はAPI `Rejected(missing_key)`が先行。全候補を証拠へ残し、走査順に依存させない。 |
+| IV-K8-24 | `L8-K8-24-NOT-SELECTED-EXPLICIT-QUERY`, `L8-K8-24-NOT-SELECTED-QUERY-MISSING-KEY`, `L8-K8-24-NOT-SELECTED-PROJECTION` | validate API / record API | explicit complete-key queryは鍵付き`Unobserved(not_selected)`。required ref欠落はAPI `Rejected(missing_key)`。record projectionは`NotSelected`でK1 key/resultなし。二つの結果経路を混ぜない。 |
+| IV-K8-25 | `L8-K8-25-ISSUER-MATCH`, `L8-K8-25-ISSUER-MISMATCH`, `L8-K8-25-ISSUER-UNAVAILABLE`, `L8-K8-25-K6-UNSUPPORTED-AUTHENTICITY` | validation components | declared/observed issuer一致だけnon-K1 diagnostic match、不一致はL4 field mapping、未取得はeffect component既存non-Valueのまま。effect issuer authenticityはunproven diagnostic、K6 receipt authenticityは既存`Unknown(unsupported)`保持。 |
+| IV-K8-26 | `L8-K8-26-POLARITY-ID-MISSING`, `L8-K8-26-POLARITY-REVISION`, `L8-K8-26-FOREIGN-OWNER`, `L8-K8-26-NEGATIVE-PROMOTED` | K1 combine consumer | L4 `k8_transition_polarity` mappingのidentity/versionを欠く、一つの別owner写像、またはMismatch/DeniedのPositive化を個別に構造比較し、各oracleを別assertする。これは写像契約の照合であり、API/K1分類結果や新polarity/reasonを作らない。 |
+
+#### K8各fixture IDの1対1基準・変異・assertion索引
+
+次表はfixture IDごとにbaseline、変更条件、主結果/component assertを一行へ対応させる。BASE fixtureは変異なしの正常基準であり、上表の各L9行が示す詳細入力条件を適用する。各variantはそのIDの一条件だけを変え、期待結果は既存L4/L9の型境界を保つ。
+
+| fixture ID | baseline ID | ID固有の入力条件 | 主結果 / component assert |
+|---|---|---|---|
+| `L8-K8-BASE-CLASSIFICATION` | —（正常基準） | `observe_input_label`のL4正常入力をそのまま使う | ObservedLabel; trust=untrusted |
+| `L8-K8-BASE-EFFECT` | —（正常基準） | `observe_authority_effect`のL4正常入力をそのまま使う | 原値を保つObserved<EffectObservation> |
+| `L8-K8-BASE-VALIDATION` | —（正常基準） | `validate_label_transition`のselected L4正常入力をそのまま使う | TransitionValidation.result=Value(Validated); trust=untrusted |
+| `L8-K8-BASE-PROJECTION-SELECTED` | —（正常基準） | `record_label_transition`のL4正常入力をそのまま使う | field別current K2 lookupを保持しfresh評価しない |
+| `L8-K8-BASE-PROJECTION-NOT-SELECTED` | —（正常基準） | `record_label_transition`のL4正常入力をそのまま使う | NotSelected projection、K1 key/resultなし |
+| `L8-K8-01-SOURCE-ID` | `L8-K8-BASE-CLASSIFICATION` | source identityだけ変更 | Unobserved(not_run) |
+| `L8-K8-01-PROJECT-ID` | `L8-K8-BASE-CLASSIFICATION` | project identityだけ変更 | Unobserved(not_run) |
+| `L8-K8-01-REVISION-DIGEST` | `L8-K8-BASE-CLASSIFICATION` | 同一identityのrevision/digestを更新 | 旧ValueはStale |
+| `L8-K8-01-DUP-SAME-IDENTITY` | `L8-K8-BASE-CLASSIFICATION` | 同一alias内へ同identity異refを重ねる | key前Rejected(missing_key) |
+| `L8-K8-01-MISSING-KEY` | `L8-K8-BASE-CLASSIFICATION` | required key fieldを一つ欠落 | API Rejected(missing_key) |
+| `L8-K8-02-CLASSIFICATION-UNKNOWN` | `L8-K8-BASE-CLASSIFICATION` | classificationだけUnknown(indeterminate) | 同class/reason保持・trust untrusted |
+| `L8-K8-02-SOURCE-UNREADABLE` | `L8-K8-BASE-CLASSIFICATION` | source readだけUnknown(unreadable) | 同class/reason保持・trust untrusted |
+| `L8-K8-02-NOT-RUN` | `L8-K8-BASE-CLASSIFICATION` | observationだけ未実施 | Unobserved(not_run) |
+| `L8-K8-03-CLASSIFIER-MISSING` | `L8-K8-BASE-CLASSIFICATION` | classifier required fieldを一つ欠落 | API Rejected(missing_key) |
+| `L8-K8-03-CLASSIFIER-UNREGISTERED` | `L8-K8-BASE-CLASSIFICATION` | 宣言済classifier readerだけ未登録 | Unknown(unregistered) |
+| `L8-K8-03-EFFECT-SLICE-ABSENT` | `L8-K8-BASE-EFFECT` | optional effect sliceだけ不在 | effect API Unknown(unregistered)、分類は継続 |
+| `L8-K8-03-ROUTE-KEY-MISSING` | `L8-K8-BASE-VALIDATION` | selected validation route required refだけ欠落 | TransitionValidation.result=KeyUnavailable(Rejected(missing_key)) |
+| `L8-K8-04-MISMATCH-ONE` | `L8-K8-BASE-VALIDATION` | `target`だけを確定不一致 | TransitionValidation.result=Value(Mismatch{fields:[target]}) |
+| `L8-K8-04-K3-NEGATIVE` | `L8-K8-BASE-VALIDATION` | K3 combinedだけNegative | Value(Denied{source:permission_check}) |
+| `L8-K8-04-K6-NEGATIVE` | `L8-K8-BASE-VALIDATION` | K6 combinedだけNegative | Value(Denied{source:route_verification}) |
+| `L8-K8-04-UNKNOWN-INPUT` | `L8-K8-BASE-VALIDATION` | 一dependencyだけ`Unknown(unreadable)`へ変更 | TransitionValidation.result=Unknown(unreadable)、該当componentを保持 |
+| `L8-K8-04-STALE-DEPENDENCY` | `L8-K8-BASE-VALIDATION` | K3/K6 dependencyだけStale | Unknown(missing_input)、Stale componentを保持 |
+| `L8-K8-04-NA-COMPONENT` | `L8-K8-BASE-VALIDATION` | required componentだけNotApplicable | Unknown(missing_input) |
+| `L8-K8-04-K3-DIAGNOSTIC` | `L8-K8-BASE-VALIDATION` | K3 diagnosticをinvalid_queryにする | Unknown(missing_input)、原diagnostic保持 |
+| `L8-K8-04-UNOBSERVED` | `L8-K8-BASE-VALIDATION` | 一dependencyだけ`Unobserved(not_run)`へ変更 | TransitionValidation.result=Unobserved(not_run)、該当componentを保持 |
+| `L8-K8-04-VALIDATED` | `L8-K8-BASE-VALIDATION` | 全値・bindingを一致させる正常確認 | Value(Validated) |
+| `L8-K8-05-NOT-SELECTED-NULL` | `L8-K8-BASE-PROJECTION-NOT-SELECTED` | pointer fieldをnullにする | NotSelected |
+| `L8-K8-05-NOT-SELECTED-POINTER` | `L8-K8-BASE-PROJECTION-NOT-SELECTED` | pointer fieldだけnonnullにする | NotSelected + selection mismatch diagnostic |
+| `L8-K8-05-SELECTED-NULL-POINTER` | `L8-K8-BASE-PROJECTION-SELECTED` | pointer fieldだけnullにする | current lookup実施、pointer diagnostic保持 |
+| `L8-K8-05-SELECTED-MISSING-POINTER` | `L8-K8-BASE-PROJECTION-SELECTED` | pointer fieldだけ欠落 | current lookup実施、pointer diagnostic保持 |
+| `L8-K8-05-SELECTED-KEY-MISSING` | `L8-K8-BASE-PROJECTION-SELECTED` | selected owner input bindingのrequired route refを一つ欠落 | `validated_transition=KeyUnavailable(Rejected(missing_key))`; available lookups/componentsを保持 |
+| `L8-K8-06-OBSERVED-NONE` | `L8-K8-BASE-EFFECT` | 原outcomeをnoneにする | 原値をObserved<EffectObservation>で保持 |
+| `L8-K8-06-EVENT-NULL` | `L8-K8-BASE-EFFECT` | eventだけnull | Observed<EffectObservation>でnull保持 |
+| `L8-K8-06-BINDING-NULL` | `L8-K8-BASE-EFFECT` | bindingだけnull | Observed<EffectObservation>でnull保持 |
+| `L8-K8-06-INNER-BINDING-NULL` | `L8-K8-BASE-EFFECT` | binding内fieldをnull | Observed<EffectObservation>でnull保持 |
+| `L8-K8-06-READER-UNREGISTERED` | `L8-K8-BASE-EFFECT` | reader登録だけ欠落 | Unknown(unregistered) |
+| `L8-K8-06-SOURCE-UNREADABLE` | `L8-K8-BASE-EFFECT` | 原bytesだけ読取不能 | Unknown(unreadable) |
+| `L8-K8-06-NOT-ARRIVED` | `L8-K8-BASE-EFFECT` | source記録未着 | Unobserved(not_run) |
+| `L8-K8-06-HEAD-DRIFT` | `L8-K8-BASE-EFFECT` | expected headとcurrent headだけ不一致 | Unknown(missing_input)、actual current headを根拠に保持 |
+| `L8-K8-07-EFFECT-OCCURRED-RECORD` | `L8-K8-BASE-PROJECTION-SELECTED` | current effect resultをoccurredにする | observed_effect result保持、validation lookup別保持 |
+| `L8-K8-07-EFFECT-BINDING-NULL` | `L8-K8-BASE-VALIDATION` | `validate_label_transition`の完全keyを維持し、EffectObservation.bindingだけnull | `TransitionValidation.result=Unknown(missing_input)`、`components.effect=Value(EffectObservation{binding:null})`を保持 |
+| `L8-K8-07-VALIDATION-OLD-RECORD` | `L8-K8-BASE-PROJECTION-SELECTED` | validation pointerだけ旧Value | K2 Staleをfreshで上書きしない |
+| `L8-K8-08-READ-INSTRUCTION` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-08-READ-REQUIREMENT` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-08-READ-AUTHORITY` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-08-READ-PERSISTENCE` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-08-READ-LEARNING` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-08-READ-AGENT-INSTRUCTION` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-08-READ-TOOL-AUTHORITY` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-08-READ-MEMORY` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-08-READ-BRAIN` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-08-READ-TRAINING-DATA` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-08-READ-SECURITY-POLICY` | `L8-K8-BASE-CLASSIFICATION` | 対象1種類をread-only inputとして接続 | read-only由来の昇格・effect occurred・trusted化なし |
+| `L8-K8-09-K6-READSET-MISSING` | `L8-K8-BASE-VALIDATION` | K6 required read-set refを1件欠落 | K6 Unknown(missing_input) |
+| `L8-K8-09-K6-NEGATIVE` | `L8-K8-BASE-VALIDATION` | K6 combinedだけNegative | Value(Denied{source:route_verification}) |
+| `L8-K8-09-K6-UNDETERMINED` | `L8-K8-BASE-VALIDATION` | K6 set_reasonだけUnknown(missing_input) | validation Unknown(missing_input)、K3/effect保持 |
+| `L8-K8-10-EXACT-DUP` | `K2-CURRENT-LOOKUP-BASE` | exact alias/refを重複 | dedupして1件 |
+| `L8-K8-10-ALIAS-CONFLICT` | `K2-CURRENT-LOOKUP-BASE` | 同alias内ref revision/digestを変える | key前Rejected(missing_key) |
+| `L8-K8-10-SAVED-R1-CURRENT-R2` | `K2-CURRENT-LOOKUP-BASE` | saved/currentをrole別aliasでR1/R2にする | old K3 Valueならcomponent Stale |
+| `L8-K8-10-SAME-REV-DIFF-DIGEST` | `K2-CURRENT-LOOKUP-BASE` | 同revisionでdigestだけ異なる | Unknown(conflict) |
+| `L8-K8-10-IDENTITY-SET-CHANGE` | `K2-CURRENT-LOOKUP-BASE` | identity集合を変える | Unobserved(not_run) |
+| `L8-K8-11-TAINT-GRAPH` | `K8-API-SURFACE-BASE` | 禁止surface `taint-graph` を一項目だけ候補へ加える | 追加API/型/vocabularyを契約へ導入しない |
+| `L8-K8-11-IMPLICIT-INHERITANCE` | `K8-API-SURFACE-BASE` | 禁止surface `implicit-inheritance` を一項目だけ候補へ加える | 追加API/型/vocabularyを契約へ導入しない |
+| `L8-K8-11-JOIN-MEET` | `K8-API-SURFACE-BASE` | 禁止surface `join-meet` を一項目だけ候補へ加える | 追加API/型/vocabularyを契約へ導入しない |
+| `L8-K8-11-DECLASSIFY-API` | `K8-API-SURFACE-BASE` | 禁止surface `declassify-api` を一項目だけ候補へ加える | 追加API/型/vocabularyを契約へ導入しない |
+| `L8-K8-11-NEW-VOCABULARY` | `K8-API-SURFACE-BASE` | 禁止surface `new-vocabulary` を一項目だけ候補へ加える | 追加API/型/vocabularyを契約へ導入しない |
+| `L8-K8-12-OTHER-CASE-POINTER` | `L8-K8-BASE-PROJECTION-SELECTED` | pointer case identityだけ異なる | current result保持、pointer diagnostic |
+| `L8-K8-12-OTHER-SCOPE-POINTER` | `L8-K8-BASE-PROJECTION-SELECTED` | pointer scopeだけ異なる | current result保持、pointer diagnostic |
+| `L8-K8-12-POINTER-FIELD-MISSING` | `L8-K8-BASE-PROJECTION-SELECTED` | pointer fieldだけ欠落 | current result保持、missing_key diagnostic |
+| `L8-K8-12-NULL-POINTER-DENIED` | `L8-K8-BASE-PROJECTION-SELECTED` | pointer null、current result Denied | Denied保持 |
+| `L8-K8-13-VERSION-CHANGE` | `K2-CURRENT-LOOKUP-BASE` | operation versionだけ変更 | Unobserved(not_run) |
+| `L8-K8-13-SCOPE-CHANGE` | `K2-CURRENT-LOOKUP-BASE` | scopeだけ変更 | Unobserved(not_run) |
+| `L8-K8-13-IDENTITY-SET-CHANGE` | `K2-CURRENT-LOOKUP-BASE` | subject identity集合だけ変更 | Unobserved(not_run) |
+| `L8-K8-13-REV-DIGEST-CHANGE` | `K2-CURRENT-LOOKUP-BASE` | 同identity revision+digest更新 | old Value Stale |
+| `L8-K8-13-SAME-REV-DIGEST-CHANGE` | `K2-CURRENT-LOOKUP-BASE` | 同revisionのdigestだけ変更 | Unknown(conflict) |
+| `L8-K8-13-FRESH-REF-MISMATCH` | `L8-K8-BASE-VALIDATION` | route targetの実読refだけ不一致 | Value(Mismatch{fields:[target]}) |
+| `L8-K8-13-REQUIRED-REF-MISSING` | `L8-K8-BASE-PROJECTION-SELECTED` | selected owner bindingのvalidation required route refを一つ欠落 | `validated_transition=KeyUnavailable(Rejected(missing_key))`。利用可能な分類/effect/component lookupは保持 |
+| `L8-K8-14-POINTER-ONLY-UPDATE` | `K2-CURRENT-LOOKUP-BASE` | pointer keysだけ更新、input label固定 | K8CaseBindingRef unchanged |
+| `L8-K8-14-INPUT-LABEL-UPDATE` | `K2-CURRENT-LOOKUP-BASE` | InputLabelRefだけ更新 | binding digest/ref更新 |
+| `L8-K8-15-INPUT-LABEL` | `L8-K8-BASE-VALIDATION` | `input_label`だけを確定不一致 | `Mismatch.fields=[input_label]`だけ |
+| `L8-K8-15-ROUTE` | `L8-K8-BASE-VALIDATION` | `route`だけを確定不一致 | `Mismatch.fields=[route]`だけ |
+| `L8-K8-15-TARGET` | `L8-K8-BASE-VALIDATION` | `target`だけを確定不一致 | `Mismatch.fields=[target]`だけ |
+| `L8-K8-15-REVISION-SUBJECT` | `L8-K8-BASE-VALIDATION` | `revision_subject`だけを確定不一致 | `Mismatch.fields=[revision_subject]`だけ |
+| `L8-K8-15-PERMISSION-CHECK` | `L8-K8-BASE-VALIDATION` | `permission_check`だけを確定不一致 | `Mismatch.fields=[permission_check]`だけ |
+| `L8-K8-15-PERMISSION-QUERY` | `L8-K8-BASE-VALIDATION` | `permission_query`だけを確定不一致 | `Mismatch.fields=[permission_query]`だけ |
+| `L8-K8-15-EFFECT-EVENT` | `L8-K8-BASE-VALIDATION` | `effect_event`だけを確定不一致 | `Mismatch.fields=[effect_event]`だけ |
+| `L8-K8-15-BINDING-INPUT-LABEL` | `L8-K8-BASE-VALIDATION` | `binding.input_label`だけを確定不一致 | `Mismatch.fields=[binding.input_label]`だけ |
+| `L8-K8-15-BINDING-ROUTE` | `L8-K8-BASE-VALIDATION` | `binding.route`だけを確定不一致 | `Mismatch.fields=[binding.route]`だけ |
+| `L8-K8-15-BINDING-TARGET` | `L8-K8-BASE-VALIDATION` | `binding.target`だけを確定不一致 | `Mismatch.fields=[binding.target]`だけ |
+| `L8-K8-15-BINDING-PERMISSION-QUERY` | `L8-K8-BASE-VALIDATION` | `binding.permission_query`だけを確定不一致 | `Mismatch.fields=[binding.permission_query]`だけ |
+| `L8-K8-15-ISSUER` | `L8-K8-BASE-VALIDATION` | `issuer`だけを確定不一致 | `Mismatch.fields=[issuer]`だけ |
+| `L8-K8-15-CURRENT-CLASSIFICATION-RECORD` | `L8-K8-BASE-VALIDATION` | `current_classification_record`だけを確定不一致 | `Mismatch.fields=[current_classification_record]`だけ |
+| `L8-K8-15-NULL-COMPARISON` | `L8-K8-BASE-VALIDATION` | `route`比較値だけをnullにし比較不能 | `Unknown(missing_input)`、Mismatch.fieldsへ追加しない |
+| `L8-K8-15-TWO-FIELDS-ORDER` | `L8-K8-BASE-VALIDATION` | `input_label`と`route`だけ不一致 | `Mismatch.fields=[input_label, route]`の順に各1回 |
+| `L8-K8-16-REJECTED-FIRST` | `L8-K8-BASE-VALIDATION` | API required key field欠落 | API Rejected(missing_key)、K1結果なし |
+| `L8-K8-16-KEY-UNAVAILABLE` | `L8-K8-BASE-VALIDATION` | selected required ref欠落 | KeyUnavailable(Rejected(missing_key)) |
+| `L8-K8-16-NOT-SELECTED-QUERY` | `L8-K8-BASE-VALIDATION` | input-only owner selectionだけをnot_selectedへ変え、complete current keyで明示照会 | TransitionValidation.result=Unobserved(not_selected) |
+| `L8-K8-16-MISMATCH` | `L8-K8-BASE-VALIDATION` | `target`だけを確定不一致 | TransitionValidation.result=Value(Mismatch{fields:[target]}) |
+| `L8-K8-16-K3-DENIED` | `L8-K8-BASE-VALIDATION` | K3 combined Negative | Value(Denied{source:permission_check}) |
+| `L8-K8-16-K6-DENIED` | `L8-K8-BASE-VALIDATION` | K6 combined Negative | Value(Denied{source:route_verification}) |
+| `L8-K8-16-UNKNOWN` | `L8-K8-BASE-VALIDATION` | 一dependencyだけUnknown(unreadable) | TransitionValidation.result=Unknown(unreadable) |
+| `L8-K8-16-UNOBSERVED` | `L8-K8-BASE-VALIDATION` | 一dependencyだけUnobserved(not_run) | TransitionValidation.result=Unobserved(not_run) |
+| `L8-K8-16-VALIDATED` | `L8-K8-BASE-VALIDATION` | 完全一致・全依存肯定 | Value(Validated) |
+| `L8-K8-16-RECORD-STALE-ISOLATED` | `L8-K8-BASE-PROJECTION-SELECTED` | `record_label_transition`のみを呼ぶ。current validation keyと同一identityの旧Value recordを用意し、current revision/digestを更新 | `validated_transition`のK2 lookup結果`Stale<TransitionOutcome>`を保持し、fresh validationを呼ばない |
+| `L8-K8-17-ROLE-SOURCE-READ` | `L8-K8-BASE-VALIDATION` | binding roleのraw source bytesを実読 | ref digest一致 |
+| `L8-K8-17-SAVED-R1-CURRENT-R2` | `L8-K8-BASE-VALIDATION` | 異revisionをside/role別aliasへ分離 | current K3 old Valueはcomponent Stale |
+| `L8-K8-17-SAME-ALIAS-CONFLICT` | `L8-K8-BASE-VALIDATION` | 同alias内異ref | key前Rejected(missing_key) |
+| `L8-K8-17-BINDING-ONLY-NO-SOURCE-READ` | `L8-K8-BASE-VALIDATION` | binding bytesのみ読取 | source read assertion不成立 |
+| `L8-K8-18-CASE-REF-MISSING` | `L8-K8-BASE-EFFECT` | case_refを欠落 | API Rejected(missing_key) |
+| `L8-K8-18-SAME-EFFECT-OTHER-CASE` | `L8-K8-BASE-EFFECT` | 同effect refを別caseへ置く | 各case明示binding/key、逆引きなし |
+| `L8-K8-19-OPERATION-VERSION-CHANGE` | `K2-CURRENT-LOOKUP-BASE` | current operation versionだけ変更 | Unobserved(not_run) |
+| `L8-K8-19-SCOPE-CHANGE` | `K2-CURRENT-LOOKUP-BASE` | scopeだけ変更 | Unobserved(not_run) |
+| `L8-K8-19-IDENTITY-SET-CHANGE` | `K2-CURRENT-LOOKUP-BASE` | subject identity setだけ変更 | Unobserved(not_run) |
+| `L8-K8-19-REVISION-UPDATE` | `K2-CURRENT-LOOKUP-BASE` | 同identity revision+digest更新 | old Value Stale |
+| `L8-K8-19-SAME-REV-DIGEST-CONFLICT` | `K2-CURRENT-LOOKUP-BASE` | 同revision異digest | Unknown(conflict) |
+| `L8-K8-19-OLD-POINTER-ONLY` | `K2-CURRENT-LOOKUP-BASE` | pointerだけ旧ref | current key lookup結果を維持 |
+| `L8-K8-20-K3-COMBINED-POSITIVE` | `L8-K8-BASE-PROJECTION-SELECTED` | 保存evidence中のK3 `PermissionCheckResult.combined.verdict`だけを`Positive`にする | record APIの`validated_transition.components.permission_check`からK3 `PermissionCheckResult`を型どおり復元し、`combined.verdict=Positive`、他componentとassuranceはbaselineどおり保持 |
+| `L8-K8-20-K3-COMBINED-NEGATIVE` | `L8-K8-BASE-PROJECTION-SELECTED` | 保存evidence中のK3 `PermissionCheckResult.combined.verdict`だけを`Negative`にする | record APIの`validated_transition.components.permission_check`からK3 `PermissionCheckResult`を型どおり復元し、`combined.verdict=Negative`、他componentとassuranceはbaselineどおり保持 |
+| `L8-K8-20-K3-COMBINED-UNDETERMINED` | `L8-K8-BASE-PROJECTION-SELECTED` | 保存evidence中のK3 `PermissionCheckResult.combined.verdict`だけを`Undetermined`にする | record APIの`validated_transition.components.permission_check`からK3 `PermissionCheckResult`を型どおり復元し、`combined.verdict=Undetermined`と元のnon-value components/`set_reason`、assuranceを保持 |
+| `L8-K8-20-K3-DIAGNOSTIC-MISSING-KEY` | `L8-K8-BASE-PROJECTION-SELECTED` | 保存evidence中のK3 componentを`PermissionCheckDiagnostic{reason:missing_key}`にする（K3 §16.2で定義済みのdiagnostic reason） | `validated_transition.components.permission_check`に`PermissionCheckDiagnostic`型と`reason=missing_key`をそのまま復元。これを`PermissionCheckResult`やK1 resultへ変換しない |
+| `L8-K8-20-K3-DIAGNOSTIC-INVALID-QUERY` | `L8-K8-BASE-PROJECTION-SELECTED` | 保存evidence中のK3 componentを`PermissionCheckDiagnostic{reason:invalid_query}`にする | `validated_transition.components.permission_check`に`PermissionCheckDiagnostic`型と`reason=invalid_query`をそのまま復元。これを`PermissionCheckResult`やK1 resultへ変換しない |
+| `L8-K8-20-K3-ASSURANCE-REVERIFIABLE` | `L8-K8-BASE-PROJECTION-SELECTED` | reverifiable assurance fieldだけ変える | 対象assurance fieldを元型で復元、他component不変 |
+| `L8-K8-20-K3-ASSURANCE-REPRODUCTION` | `L8-K8-BASE-PROJECTION-SELECTED` | reproduction assurance fieldだけ変える | 対象assurance fieldを元型で復元、他component不変 |
+| `L8-K8-20-K3-ASSURANCE-ISSUER-AUTHENTICITY` | `L8-K8-BASE-PROJECTION-SELECTED` | issuer-authenticity assurance fieldだけ変える | 対象assurance fieldを元型で復元、他component不変 |
+| `L8-K8-20-K6-COMBINED-POSITIVE` | `L8-K8-BASE-PROJECTION-SELECTED` | 保存evidence中のK6 `RequiredResult.combined.verdict`だけを`Positive`にする | `validated_transition.components.route_verification`からK6 `RequiredResult`を型どおり復元し、`combined.verdict=Positive`、assuranceとK3 componentをbaselineどおり保持 |
+| `L8-K8-20-K6-COMBINED-NEGATIVE` | `L8-K8-BASE-PROJECTION-SELECTED` | 保存evidence中のK6 `RequiredResult.combined.verdict`だけを`Negative`にする | `validated_transition.components.route_verification`からK6 `RequiredResult`を型どおり復元し、`combined.verdict=Negative`、assuranceとK3 componentをbaselineどおり保持 |
+| `L8-K8-20-K6-COMBINED-UNDETERMINED` | `L8-K8-BASE-PROJECTION-SELECTED` | 保存evidence中のK6 `RequiredResult.combined.verdict`だけを`Undetermined`にする | `validated_transition.components.route_verification`からK6 `RequiredResult`を型どおり復元し、`combined.verdict=Undetermined`と元のnon-value components/`set_reason`、assuranceを保持 |
+| `L8-K8-20-K6-ASSURANCE-REVERIFIABLE` | `L8-K8-BASE-PROJECTION-SELECTED` | reverifiable assurance fieldだけ変える | 対象assurance fieldを元型で復元、他component不変 |
+| `L8-K8-20-K6-ASSURANCE-REPRODUCTION` | `L8-K8-BASE-PROJECTION-SELECTED` | reproduction assurance fieldだけ変える | 対象assurance fieldを元型で復元、他component不変 |
+| `L8-K8-20-K6-ASSURANCE-ISSUER-AUTHENTICITY` | `L8-K8-BASE-PROJECTION-SELECTED` | issuer-authenticity assurance fieldだけ変える | 対象assurance fieldを元型で復元、他component不変 |
+| `L8-K8-20-EVIDENCE-UNREADABLE` | `L8-K8-BASE-PROJECTION-SELECTED` | saved evidence bytesを読取不能 | ValidationEvidenceUnavailable(unreadable)、lookup/evidence ref維持、assurance補完なし |
+| `L8-K8-20-NO-SELF-REFERENCE` | `L8-K8-BASE-PROJECTION-SELECTED` | evidenceにself key/pointerを含める | self referenceを拒否、唯一result=Observed<TransitionOutcome> |
+| `L8-K8-20-CURRENT-EFFECT-INDEPENDENT` | `L8-K8-BASE-PROJECTION-SELECTED` | current effect lookupを独立に変える | current effect resultを別fieldで保持 |
+| `L8-K8-21-POINTERS-FIXED-LABEL-CHANGED` | `K2-CURRENT-LOOKUP-BASE` | pointer keysを固定し、input-only bindingの`InputLabelRef`だけを変更 | `K8CaseBindingRef`のcanonical bytes/digest/revisionが更新。pointer/headは不変 |
+| `L8-K8-21-LABEL-FIXED-POINTERS-CHANGED` | `K2-CURRENT-LOOKUP-BASE` | `InputLabelRef`を固定し、effect/validation result pointer keysだけを変更 | `K8CaseBindingRef`のcanonical bytes/digest/revisionとinput-only HeadInputRefは不変 |
+| `L8-K8-22-CLASSIFIER-REVISION` | `K2-CURRENT-LOOKUP-BASE` | classifier contract revisionだけ更新 | operation_version/key更新、旧結果Unobserved(not_run) |
+| `L8-K8-22-SAME-REV-DIGEST` | `K2-CURRENT-LOOKUP-BASE` | 同revision異digest | Unknown(conflict) |
+| `L8-K8-22-OPTIONAL-ROUTE-SLICE-ABSENT` | `L8-K8-BASE-CLASSIFICATION` | optional route/effect sliceだけ欠落 | 同じObservedLabel/classificationを保持し分類keyを止めない |
+| `L8-K8-23-UNREGISTERED-AND-UNREADABLE` | `L8-K8-BASE-CLASSIFICATION` | 未登録+read errorの複合 | Unknown(unreadable)、全candidate evidence保持 |
+| `L8-K8-23-HEAD-DRIFT-AND-UNREADABLE` | `L8-K8-BASE-EFFECT` | head drift+read errorの複合 | Unknown(unreadable)、全candidate evidence保持 |
+| `L8-K8-23-MISSING-KEY-AND-UNREADABLE` | `L8-K8-BASE-EFFECT` | required key欠落+read errorの複合 | API Rejected(missing_key)先行 |
+| `L8-K8-24-NOT-SELECTED-EXPLICIT-QUERY` | `L8-K8-BASE-VALIDATION` | input-only owner selectionだけをnot_selectedへ変え、complete current keyで明示照会 | TransitionValidation.result=Unobserved(not_selected) |
+| `L8-K8-24-NOT-SELECTED-QUERY-MISSING-KEY` | `L8-K8-24-NOT-SELECTED-EXPLICIT-QUERY` | not_selected explicit queryのrequired refを一つ欠落 | API Rejected(missing_key)、K1 resultなし |
+| `L8-K8-24-NOT-SELECTED-PROJECTION` | `L8-K8-BASE-PROJECTION-NOT-SELECTED` | query未発行not_selected projection | NotSelected、K1 key/resultなし |
+| `L8-K8-25-ISSUER-MATCH` | `L8-K8-BASE-VALIDATION` | declared/observed issuer一致 | non-K1 diagnostic match、authenticity未証明 |
+| `L8-K8-25-ISSUER-MISMATCH` | `L8-K8-BASE-VALIDATION` | observed issuerだけdeclared issuerと不一致 | `Mismatch{fields:[issuer]}`。真正性を推論しない |
+| `L8-K8-25-ISSUER-UNAVAILABLE` | `L8-K8-BASE-VALIDATION` | current issuer registrationだけ未取得 | 元effect component非Value維持 |
+| `L8-K8-25-K6-UNSUPPORTED-AUTHENTICITY` | `L8-K8-BASE-VALIDATION` | K6 issuer_authenticityを入力 | Unknown(unsupported)保持 |
+| `L8-K8-26-POLARITY-ID-MISSING` | `L8-K8-BASE-VALIDATION` | K1 `k8_transition_polarity` mapping構造の照合でidentityだけを欠落 | current mappingを特定できないことをassertし、K1 combine resultや新reasonは生成しない |
+| `L8-K8-26-POLARITY-REVISION` | `L8-K8-BASE-VALIDATION` | K1 `k8_transition_polarity` mapping refのrevisionだけをcurrent K8 validation API contract refと異ならせる | 構造比較でcurrent contract revisionとの不一致をassertする。API/K1判定結果を推論しない |
+| `L8-K8-26-FOREIGN-OWNER` | `L8-K8-BASE-VALIDATION` | mapping ownerだけをHARNESS以外へ変更 | 構造比較でowner mismatchをassertする。これは写像schemaの不適合であり、K1 returned classificationではない |
+| `L8-K8-26-NEGATIVE-PROMOTED` | `L8-K8-BASE-VALIDATION` | mapping tableでMismatchまたはDeniedの一つだけをPositiveへ変更 | 構造比較で既存L4 polarity tableとの不一致をassertする。K1 runtime resultを返すfixtureではない |
+
+#### IV-K8-16の具体的な二条件fixture
+
+以下10組はいずれも`L8-K8-BASE-VALIDATION`から開始し、validation keyのrequired refs一式（case binding、saved InputLabelRef、route/target、K3 PermissionCheckRef、K6 verifier/receipt refs、effect ref、各current owner input head）を欠落させない。K3とK6はL4 §18.3の`components.permission_check`と`components.route_verification`で別々に保持し、K3 current PermissionCheckとK6 current RequiredResultの参照・読み取りを分ける（K3 `check_permission` / K6 `required`・`read`、L4 §§10.3, 16.4, 18.3–18.4）。二条件fixtureでは指定されたcomponent resultだけを変異し、他の参照・component・assuranceはbaselineのままにする。
+
+| fixture ID | 正常基準と二条件 | L4 §18.4の優先比較 | 主結果 / component assertion |
+|---|---|---|---|
+| `L8-K8-16-PAIR-MISMATCH-K3` | `L8-K8-BASE-VALIDATION`からtargetだけ確定不一致、`TransitionValidation.components.permission_check`内のK3 `PermissionCheckResult.combined.verdict=Negative` | 条件3が条件4より先 | `result=Value(Mismatch{fields:[target]})`。K3 Negativeとassuranceをcomponentに保持。 |
+| `L8-K8-16-PAIR-MISMATCH-K6` | `L8-K8-BASE-VALIDATION`からtargetだけ確定不一致、`TransitionValidation.components.route_verification`内のK6 `RequiredResult.combined.verdict=Negative` | 条件3が条件5より先 | `result=Value(Mismatch{fields:[target]})`。K6 Negativeとassuranceをcomponentに保持。 |
+| `L8-K8-16-PAIR-MISMATCH-UNKNOWN` | `L8-K8-BASE-VALIDATION`からtargetだけ確定不一致、`TransitionValidation.components.current_classification=Unknown(unreadable)` | 条件3が条件6より先 | `result=Value(Mismatch{fields:[target]})`。Unknown component/evidenceを保持。 |
+| `L8-K8-16-PAIR-MISMATCH-UNOBSERVED` | `L8-K8-BASE-VALIDATION`からtargetだけ確定不一致、`TransitionValidation.components.effect=Unobserved(not_run)` | 条件3が条件7より先 | `result=Value(Mismatch{fields:[target]})`。Unobserved component/evidenceを保持。 |
+| `L8-K8-16-PAIR-K3-K6` | `L8-K8-BASE-VALIDATION`から`TransitionValidation.components.permission_check`のK3 `PermissionCheckResult.combined.verdict`と`TransitionValidation.components.route_verification`のK6 `RequiredResult.combined.verdict`だけをそれぞれNegative | 条件4が条件5より先 | `result=Value(Denied{source:permission_check})`。両Negativeとassuranceを個別componentに保持。 |
+| `L8-K8-16-PAIR-K3-UNKNOWN` | `L8-K8-BASE-VALIDATION`から`TransitionValidation.components.permission_check`のK3 `PermissionCheckResult.combined.verdict=Negative`、`TransitionValidation.components.current_classification=Unknown(unreadable)` | 条件4が条件6より先 | `result=Value(Denied{source:permission_check})`。Unknown component/evidenceを保持。 |
+| `L8-K8-16-PAIR-K3-UNOBSERVED` | `L8-K8-BASE-VALIDATION`から`TransitionValidation.components.permission_check`のK3 `PermissionCheckResult.combined.verdict=Negative`、`TransitionValidation.components.effect=Unobserved(not_run)` | 条件4が条件7より先 | `result=Value(Denied{source:permission_check})`。Unobserved component/evidenceを保持。 |
+| `L8-K8-16-PAIR-K6-UNKNOWN` | `L8-K8-BASE-VALIDATION`から`TransitionValidation.components.route_verification`のK6 `RequiredResult.combined.verdict=Negative`、`TransitionValidation.components.current_classification=Unknown(unreadable)` | 条件5が条件6より先 | `result=Value(Denied{source:route_verification})`。Unknown component/evidenceを保持。 |
+| `L8-K8-16-PAIR-K6-UNOBSERVED` | `L8-K8-BASE-VALIDATION`から`TransitionValidation.components.route_verification`のK6 `RequiredResult.combined.verdict=Negative`、`TransitionValidation.components.effect=Unobserved(not_run)` | 条件5が条件7より先 | `result=Value(Denied{source:route_verification})`。Unobserved component/evidenceを保持。 |
+| `L8-K8-16-PAIR-UNKNOWN-UNOBSERVED` | `L8-K8-BASE-VALIDATION`から`TransitionValidation.components.current_classification=Unknown(unreadable)`、`TransitionValidation.components.effect=Unobserved(not_run)` | 条件6が条件7より先 | `result=Unknown(unreadable)`。両candidateと元componentを保持。 |
+
+これら10組は、L4 §18.3が既に定義する`TransitionValidation.components`の別々のfield（`current_classification`、`effect`、`permission_check`、`route_verification`）に、完全なBASEのrequired refsを保ったまま値を与える純粋な複合入力である。reader/APIやowner sourceを追加せず、L4 §18.4の順序と既存component保持だけを比較する。
+
+KeyUnavailableとMismatch/K3/K6/Unknown/Unobservedの同時条件はfixture化しない。L4 §18.4の判定順1–2は必須key ref欠落時のAPI `Rejected(missing_key)`またはprojection内`KeyUnavailable`を先に決める。欠落したrefがある状態で、K3/K6の別current sourceを独立取得してfresh componentとして合成することまでは明示していない。独立取得可能性を仮定しないため、この5組は構築可能性未確定としてfixture ID・件数・検証範囲へ算入しない。非欠落pairは`L8-K8-BASE-VALIDATION`を正常基準にし、K3 `PermissionCheckResult` refとK6 `RequiredResult` ref、effect/route/input refsを全て有効・currentに保つ。L4 §18.3の`TransitionValidation.components`がK3 `PermissionCheck`とK6 `RequiredResult`を別fieldで保持し、§18.4の条件3–8がそれらのfresh判定順を定めるため、各pairでは対応するcomponent値だけを変異できる。これらの根拠が明示された10組を構築可能なfixture設計として数える。いずれも未実行であり、構築可能性は実測・実装済みを意味しない。`Rejected`はAPI必須入力/基盤欠落によるAPI境界、`NotSelected`はquery未発行projection、`Validated`は全必須値がそろった終端条件、record Staleはlookup結果であり、fresh component同士の組合せとはしない。
+
+### 11.1 traceの範囲と限界
+
+上表の26 IVは既存L9 oracleへの対応fixtureであり、L9定義を再発行しない。特にIV-K8-08の11 target、IV-K8-15のfield語彙、IV-K8-16/23の優先順位、IV-K8-20の保存evidence保全を一つのまとめcaseへ潰さず、個別fixture IDへ分けた。K8のAPI field、reason、schema、route/authority、sink対象を新設していない。追加したfixture IDのmanifest登録、実装、実行、CI coverageは主張しない。
+
+L4はK6 `RequiredResult`とK3 `PermissionCheck`をK8 result componentとして明示する。この文書はその既存型境界しか参照しない。起点baseで未統合だったK6/K7 L5/L8の詳細は借用せず、K7 AppliedUncertainをK8 API型として導入しない。起点baseのL4 §18.2本文末尾にあったWCA L4旧SHA typoはmain #2779で修正済みであり、このpairでは歴史snapshotを保持してL4を編集・再転記しない。
