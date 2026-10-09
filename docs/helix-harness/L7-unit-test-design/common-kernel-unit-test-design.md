@@ -8,7 +8,7 @@ paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
 base: `main` at `7715e7025212ea1a778ab9711e2f43241f7999c7`
 
-本書はL6のK1/K2/K3/K5 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。K3の194 formal fixtureは専用候補実装と単体実行を持ち、formal mapping外の三つの回帰確認を別IDで持つが、owner接続、L9統合検証、製品動作の合格を主張しない（実行記録は§9.2）。他のcase群の実装・実行はこの状態記録から推定しない。K4/K6–K10は`not_designed`でfixtureを追加しない。
+本書はL6のK1/K2/K3/K5 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。K3の194 formal fixtureは専用候補実装と単体実行を持ち、formal mapping外の17回帰methodを別IDで持つが、owner接続、L9統合検証、製品動作の合格を主張しない（実行記録は§9.2）。他のcase群の実装・実行はこの状態記録から推定しない。K4/K6–K10は`not_designed`でfixtureを追加しない。
 
 ## 1. 固定入力とtrace規則
 
@@ -17,7 +17,7 @@ base: `main` at `7715e7025212ea1a778ab9711e2f43241f7999c7`
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `7142c39d9e4db3ae0ea1eac9ff04832d7af2c60d4bbf60895e4129468fc06e9c`（本作業候補、L7→L6一方向。L6にL7 SHAは置かない） |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `dc7e83e2a5ee8ca6665a67c910474139007721c596c7284f46e7f0f0a7a783d9`（本作業候補、L7→L6一方向。L6にL7 SHAは置かない） |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
@@ -26,7 +26,7 @@ L4/L9は本PRのcontent本文、L5/L8は固定したPR #2751候補commitのconte
 
 各fixture表の関数ID列で、K1表の`FN-xx`は`CK-K1-FN-xx`、K2表およびcodec表の`FN-xx`は`CK-K2-FN-xx`を指す。明示した`K2 FN-xx`も`CK-K2-FN-xx`である。UT IDの波括弧・suffixは各行の展開規則で個別fixtureへ展開し、複数変異を一件へまとめない。
 
-K3/K5 fixtureのL8参照はPR #2751の固定commit/blobに対する歴史的source pinである。現在のL8本文のPaired L7 pinを参照する逆向きのcurrent SHAとして扱わない。K3/K5 §5.1/§5.2のfixture本文は現mainでも同一であり、L8のcurrent Paired L7 pinは本PRのL7へ更新する。
+K3/K5 fixtureのL8参照はPR #2751の固定commit/blobに対する歴史的source pinである。現在のL8本文のPaired L7 pinを参照する逆向きのcurrent SHAとして扱わない。K3/K5 §5.1/§5.2のfixture本文は現mainでも同一である。ここではL8を編集せず、L7→L6の一方向pinだけを固定する。
 
 ## 2. Fixture構成規約
 
@@ -285,7 +285,7 @@ K5各fixtureはL6 §7.1の旧asset/path/line/full SHA一覧を起点とし、eve
 - K5 recordの順序はsequenceのpreconditionであり、物理writer実装は設計しない。K6 source readはstub境界のままとし、production verifier/readは設計しない。
 - K3以外のfixture群の実装・実行状態は、このK3検証から主張しない。L9の実合格、K5 append保証、K6 raw source観測、runtime/toolchain間の相互運用性を主張しない。
 - K3は§9で固定L8 oracleを個別fixture IDへtraceする。L5/L8はPR #2751候補の固定commit/content SHAを参照し、main統合済みの固定設計本文として扱う。K4/K6–K10は`not_designed`のままであり、現行L4/L9の節はL6 §6を通じて参照する。
-- L7全体は設計草稿であり、K3以外のfixture実行を主張しない。K3 194個別fixtureとformal mapping外の三回帰確認の候補実装・実行範囲は§9.2に限る。`invalid_digest`/`duplicate_identity`はK2 `KeyOfResult`だけの境界結果で、K1 `ApiBoundaryResult`や`UnknownReason`への追加ではない。
+- L7全体は設計草稿であり、K3以外のfixture実行を主張しない。K3 194個別fixtureとformal mapping外の17回帰methodの候補実装・実行範囲は§9.2に限る。`invalid_digest`/`duplicate_identity`はK2 `KeyOfResult`だけの境界結果で、K1 `ApiBoundaryResult`や`UnknownReason`への追加ではない。
 
 
 ## 9. K3単体fixture
@@ -513,23 +513,37 @@ L8に固定済みの194 caseをL7で一つずつ追跡する。各`CK-K3-UT-NNN`
 
 ### 9.1 194 formal fixture外の回帰確認
 
-次の三つはformal K3 UT/L8 mappingへ加算しないfocused regression testである。いずれもL4 existing contractの実装漏れを防ぎ、owner/K5/K6境界はsynthetic stubのままとする。
+次の17 method IDはformal K3 UT/L8 mappingへ加算しないfocused regression testである。case suffixを持つ行は各suffixを独立fixtureとして展開し、各入力では記載した一条件だけを変える。1行内のbaselineと変異は別subTestで実行する。owner/K5/K6境界はsynthetic stubのままとする。test methodとfixture IDは`CK-K3-REG-<ID>`から`test_CK_K3_REG_<ID>`へハイフンをunderscoreへ置換して対応させる。
 
 | Test ID | 基準と一変異 | 呼出し | 固定する観測 |
 |---|---|---|---|
-| `CK-K3-REG-CURRENT-INPUT-REF` | queryとsaved recordは同一の旧`purpose` refを持つ。owner current `AuthorityContext.operation_inputs["purpose"]`だけrevisionと整合digestを更新する。 | `check_permission`（FN-07/09/11） | query/saved recordは一致しowner currentだけ異なるため`operation_input:purpose=Value(MISMATCH)`、全体`Negative`。queryとrecordの相互一致だけでPositiveにしない。 |
-| `CK-K3-REG-PARTIAL-CONTEXT-OWNER-SCOPE` | context本文/permission current readだけ未取得。owner境界が別途current tuple scopeを解決済みで、読取結果は`unreadable`。 | `check_permission`（FN-03/04/11） | owner scopeから完全keyを作り、`PermissionCheckResult.context=Unresolved`、effective decision `Unknown(unreadable)`、combined `Undetermined`を保持する。query `requested_scope`でkeyを作らない。 |
+| `CK-K3-REG-CURRENT-INPUT-REF` | queryとsaved recordは同一の旧`purpose` refを持つ。owner current `AuthorityContext.operation_inputs["purpose"]`だけrevisionと整合digestを更新する。 | `check_permission`（FN-07/09/11） | query/saved recordは一致しowner currentだけ異なるため`operation_input:purpose=Value(MISMATCH)`、全体`Negative`。 |
+| `CK-K3-REG-PARTIAL-CONTEXT-OWNER-SCOPE` | context本文/permission current readだけ未取得。owner境界が別途current tuple scopeを解決済みで、読取結果は`unreadable`。 | `check_permission`（FN-03/04/11） | owner scopeから完全keyを作り、context=`Unresolved(unreadable)`、effective decision=`Unknown(unreadable)`、combined=`Undetermined`。query `requested_scope`でkeyを作らない。 |
 | `CK-K3-REG-PARTIAL-CONTEXT-NO-SCOPE` | 同じcontext未取得だがowner current tuple scopeも未解決。 | `check_permission`（FN-03/04） | `PermissionCheckDiagnostic(missing_key)`と`current_tuple_scope`欠落を返し、caller scopeから補完しない。 |
+| `CK-K3-REG-RECORD-REF-STALE` | Positive基準から保存済み`PermissionRecord.ref.revision`だけを旧revisionへ変える。 | `check_permission`（FN-05/11） | `permission_record_ref=Value(MISMATCH)`、combined=`Negative`。 |
+| `CK-K3-REG-RECORD-SOURCE-UNREGISTERED` | Positive基準からrecord.source.identityだけを未登録identityへ変える。 | `check_permission`（FN-05/11） | `registered_source=Unknown(unregistered)`、combined=`Undetermined`。 |
+| `CK-K3-REG-RECORD-SOURCE-DIGEST-CONFLICT` | source identity/revisionを固定し、record.source.digestだけcurrent registered source digestと異ならせる。 | `check_permission`（FN-05/11） | `registered_source=Unknown(conflict)`、combined=`Undetermined`。 |
+| `CK-K3-REG-REVOCATION-HEAD-MISSING` | current revocation headを一つ持つ基準から、`RevocationSnapshot`だけを除く。 | `check_permission`（FN-04/08/11） | `revocation=Unknown(missing_input)`、combined=`Undetermined`。 |
+| `CK-K3-REG-REVOCATION-HEAD-SET-CONFLICT` | current head tupleを固定し、snapshot.headsの一つだけ別headへ変える。 | `check_permission`（FN-04/08/11） | `revocation=Unknown(conflict)`、combined=`Undetermined`。 |
+| `CK-K3-REG-REVOCATION-HEAD-SET-ORDER-AND-EXACT-DUPLICATES` | 同じ2-head集合でsnapshot順だけを逆転するcaseと、双方の集合に一方のheadの完全一致duplicateを含めて比較するcaseを別subTestにする。 | `check_permission`（FN-04/08/11） | 両caseで`revocation=Value(MATCH)`。比較は順序非依存で、完全一致refだけをdeduplicateする。 |
+| `CK-K3-REG-REVOCATION-OBSERVATION-KEY-PRESERVED` | Positive基準のowner observationだけを同じvalue/evidenceのまま別の完全keyへ束縛し、context/head setは固定する。 | `check_permission`（FN-04/08/11） | `revocation` componentの`key`と`evidence`がowner観測と完全一致し、K3 result keyへ置換されない。 |
+| `CK-K3-REG-ISSUER-DECL-MISSING` | Positive基準から`declared_issuer`だけを欠落させる。 | `check_permission`（FN-05/11） | `issuer=Unknown(missing_input)`、combined=`Undetermined`。 |
+| `CK-K3-REG-RECORD-MISSING-SELECTOR-POSITIVE` | Positive selectorを保持し、source recordだけを欠落させる。 | `check_permission`（FN-05/11） | `effective_decision=Unknown(missing_input)`、combined=`Undetermined`。selector肯定を保存recordの代替にしない。 |
+| `CK-K3-REG-OPERATION-INVALID` | 正常typed baselineではL4列挙の11 operationを一つずつ与えたsubTestを実行する。別の単独変異caseではbaselineのoperationだけをclosed union外の`frobnicate`へ変える。 | `check_permission`と`resolve_authority_context`（FN-10/11） | 11値は`invalid_query`にならずowner mapping境界へ進む。`frobnicate`は両APIで`PermissionCheckDiagnostic(invalid_query)`となりowner port呼出し数は0。 |
+| `CK-K3-REG-OUTCOME-CASE-EXACT` | record outcome `allow`を大文字`ALLOW`へ一か所だけ変える。 | `check_permission`（FN-05/11） | `source_outcome=Unknown(unsupported)`、combined=`Undetermined`。casefoldしない。 |
+| `CK-K3-REG-QUERY-REF-FIELDS` | 9個の独立subTest: `OPERATION`はoperationのみ、`TARGET`はtargetのみ、`REVISION-IDENTITY/REVISION-VERSION/REVISION-DIGEST`は該当revision fieldのみ、`SCOPE`はrequested_scopeのみ、`INPUT-IDENTITY`はoperation input keyのみ、`INPUT-REVISION/INPUT-DIGEST`は該当ref fieldのみ変更。 | `_query_ref`（FN-01） | 全caseでdigestが変わる。operation/target/revision identity/input identityではidentityも変わる。他caseではidentity不変。revision field変更caseだけrevisionも変わる。 |
+| `CK-K3-REG-QUERY-CONTEXT-TARGET` | Positive基準からquery.targetだけを変え、他のquery-ref関連bindingは同じqueryに再束縛する。 | `check_permission`（FN-01/07/11） | `target=Value(MISMATCH)`、combined=`Negative`。 |
+| `CK-K3-REG-RESOLVE-CONTEXT-OUTCOMES` | 同じbaselineからowner context観測を3つの個別subTestで返す: 完全context、expected input headだけのdrift、owner contextだけ`unreadable`。 | `resolve_authority_context`（FN-10） | それぞれ`Resolved`、`Unresolved(conflict)`、`Unresolved(unreadable)`。 |
 
 ### 9.2 候補実装・実行記録
 
-`helix/helix-harness/units/common-kernel/src/permission.py`と`tests/test_k3.py`にK3候補を置き、上表194 IDを個別の静的unittest methodで実行した。さらに§9.1の3 regression testを別IDで実行した。
+`helix/helix-harness/units/common-kernel/src/permission.py`と`tests/test_k3.py`にK3候補を置き、上表194 IDを個別の静的unittest methodで実行した。さらに§9.1の17 regression methodを別IDで実行した。query-ref field rowは一つのmethod内の9個の独立`subTest`として実行する。
 
 | 検証 | 結果 |
 |---|---|
-| `python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k3.py'` | 197 tests, OK（formal 194 + regression 3）。 |
+| `python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k3.py'` | 211 tests, OK（formal 194 + regression 17）。query-ref field rowは9独立subTestを含む。 |
 | `python3 -m py_compile helix/helix-harness/units/common-kernel/src/permission.py helix/helix-harness/units/common-kernel/tests/test_k3.py` | 成功。 |
 
 テストはowner mapping/context/source、K6 assuranceをprivate module境界の合成stubで与える。ownerの実読、K5/K6/K7実装、L9 oracle、CI登録、製品動作、外部作用を証明しない。実行時の変更理由・対象コード・境界はL6 §12.4に記録し、test fixtureから新しい要求や受入gateを作らない。
 
-K3単体fixtureは純粋な関数境界と固定入力を対象とする。K5 prefix/read/restore、K6 binding/raw byte実読、owner source adapter、K7 apply/recoveryはstubまたはconsumer handoffであり、この単体fixtureから製品動作、外部作用、実読、合格を主張しない。L8の`invalid_query`発生predicateは未定義なので期待値として追加しない。K2 `invalid_digest`/`duplicate_identity`はK2専用拒否であり、K3のkey構成境界ではL4 §16.4と固定L5 §6.1.3どおり`PermissionCheckDiagnostic(reason: missing_key)`へ写す。K1 Unknownへ変換せず、K1でcombine/K2へrecordしない。正しいnamespaceとalias構成を通る正常K3 keyではduplicate identityを作らない。K3結果の保存ownerがL4で指定されない範囲では保存writerを作らず、保存callerの指定を待つ。旧source crosswalkと保持/変更理由はL6 §12.3に記録した。
+K3単体fixtureは純粋な関数境界と固定入力を対象とする。K5 prefix/read/restore、K6 binding/raw byte実読、owner source adapter、K7 apply/recoveryはstubまたはconsumer handoffであり、この単体fixtureから製品動作、外部作用、実読、合格を主張しない。L4 §16.2で列挙したoperation closed union外の入力は既存`invalid_query`で両API入口から返し、owner portを呼ばない。11個の列挙値は同じ入口検査で拒否されないことを個別subTestで確認する。これはruntimeのtyped-query境界であり、汎用shape validatorを追加しない。K2 `invalid_digest`/`duplicate_identity`はK2専用拒否であり、K3のkey構成境界ではL4 §16.4と固定L5 §6.1.3どおり`PermissionCheckDiagnostic(reason: missing_key)`へ写す。K1 Unknownへ変換せず、K1でcombine/K2へrecordしない。正しいnamespaceとalias構成を通る正常K3 keyではduplicate identityを作らない。`allow`と`constraints`同時存在時のsource outcome mappingはL4で未定義なのでfixtureや新拒否を作らず、typed owner adapter境界の局所未決として残す。K3結果の保存ownerがL4で指定されない範囲では保存writerを作らず、保存callerの指定を待つ。旧source crosswalkと保持/変更理由はL6 §12.3に記録した。

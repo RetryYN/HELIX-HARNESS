@@ -8,19 +8,17 @@ come from the owning mechanisms rather than caller-supplied callbacks.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from enum import Enum
 from typing import Any, Mapping, Sequence
 
 from common_kernel import (
     Combined,
-    NotApplicable,
     Observed,
     Polarity,
     PolarityMapping,
     Rejected,
     ResultKey,
-    Stale,
     SubjectRef,
     Unknown,
     UnknownReason,
@@ -39,6 +37,21 @@ from common_kernel import (
 K3_OPERATION_VERSION = "k3-authority-check/2"
 K3_OPERATION = "permission_check"
 K3_SCOPE = "authority"
+_PERMISSION_OPERATIONS = frozenset(
+    {
+        "read",
+        "write",
+        "execute",
+        "network",
+        "install",
+        "delete",
+        "merge",
+        "release",
+        "deploy",
+        "credential-use",
+        "security-change",
+    }
+)
 _K3_POLARITY = PolarityMapping(
     identity="common-kernel-k3-check-value",
     version="0.1.0",
@@ -62,9 +75,9 @@ class PermissionQuery:
     operation_inputs: Mapping[str, SubjectRef]
 
 
-@dataclass(frozen=True)
-class PermissionQueryRef:
-    subject_ref: SubjectRef
+PermissionQueryRef = SubjectRef
+AuthorityInputRef = SubjectRef
+AuthorityInputBindingRef = SubjectRef
 
 
 @dataclass(frozen=True)
@@ -181,6 +194,7 @@ class OwnerContextData:
     unavailable_reason: str | None = None
     axis_observations: Mapping[str, Observed[Any]] = field(default_factory=dict)
     component_observations: Mapping[str, Observed[Any]] = field(default_factory=dict)
+    revocation_snapshot: "RevocationSnapshot | None" = None
     # Owner-resolved tuple scope can survive an otherwise incomplete context
     # read. It is never derived from PermissionQuery.requested_scope.
     key_scope: Any | None = None
@@ -188,6 +202,13 @@ class OwnerContextData:
 
 @dataclass(frozen=True)
 class PermissionSourceData:
+    """Typed private SECURITY adapter handoff.
+
+    Registration, exact-source-byte decoding, and declared issuer checks belong
+    to the owner adapter. K3 still cross-checks the returned refs against the
+    owner-resolved current source map before composing a positive result.
+    """
+
     record: PermissionRecord | None
     current_ref: SubjectRef | None
     selector_observation: Observed[SubjectRef] | None
@@ -211,6 +232,14 @@ class SegmentHead:
     segment: str
     seq: int
     entry_digest: str
+
+
+@dataclass(frozen=True)
+class RevocationSnapshot:
+    """Private owner-port result tied to the complete current revocation head set."""
+
+    heads: tuple[SegmentHead, ...]
+    observation: Observed[Any]
 
 
 def _owner_mapping(query_ref: SubjectRef, input_heads: Sequence[SubjectRef]) -> OwnerMapping | None:
@@ -351,26 +380,20 @@ def _unknown(key: ResultKey, reason: str, evidence: Any = None) -> Unknown:
     return Unknown(reason, key, evidence)
 
 
-def _compare_ref(key: ResultKey, left: SubjectRef, right: SubjectRef, name: str) -> Observed[Any]:
-    if left.identity == right.identity and left.revision == right.revision and left.digest != right.digest:
-        return _unknown(key, UnknownReason.CONFLICT.value, {"axis": name})
-    return _value(key, left == right, {"axis": name})
-
-
 def _compare_inputs(
     key: ResultKey,
     query_inputs: Mapping[str, SubjectRef],
     record_inputs: Mapping[str, SubjectRef],
     current_inputs: Mapping[str, SubjectRef],
-) -> list[Observed[Any]]:
+) -> dict[str, Observed[Any]]:
     """Compare caller, saved decision, and owner-current refs without substitution."""
-    result: list[Observed[Any]] = []
+    result: dict[str, Observed[Any]] = {}
     identities = sorted(set(query_inputs) | set(record_inputs) | set(current_inputs))
     for identity in identities:
         if identity not in current_inputs and (identity in query_inputs or identity in record_inputs):
-            result.append(_value(key, False, {"input": identity, "reason": "extra_key"}))
+            result[identity] = _value(key, False, {"input": identity, "reason": "extra_key"})
         elif identity not in query_inputs or identity not in record_inputs or identity not in current_inputs:
-            result.append(_unknown(key, UnknownReason.MISSING_INPUT.value, {"input": identity}))
+            result[identity] = _unknown(key, UnknownReason.MISSING_INPUT.value, {"input": identity})
         else:
             refs = (query_inputs[identity], record_inputs[identity], current_inputs[identity])
             conflict = any(
@@ -381,11 +404,9 @@ def _compare_inputs(
                 for right in refs[index + 1 :]
             )
             if conflict:
-                result.append(_unknown(key, UnknownReason.CONFLICT.value, {"input": identity}))
+                result[identity] = _unknown(key, UnknownReason.CONFLICT.value, {"input": identity})
             else:
-                result.append(
-                    _value(key, all(ref == refs[0] for ref in refs[1:]), {"input": identity})
-                )
+                result[identity] = _value(key, all(ref == refs[0] for ref in refs[1:]), {"input": identity})
     return result
 
 
@@ -436,6 +457,51 @@ def _axis_components(
     return components
 
 
+def _ref_match_observation(
+    key: ResultKey, identity: str, expected: SubjectRef | None, observed: SubjectRef | None
+) -> Observed[Any]:
+    if expected is None or observed is None:
+        return _unknown(key, UnknownReason.MISSING_INPUT.value, {"ref": identity})
+    if (
+        expected.identity == observed.identity
+        and expected.revision == observed.revision
+        and expected.digest != observed.digest
+    ):
+        return _unknown(key, UnknownReason.CONFLICT.value, {"ref": identity})
+    return _value(key, expected == observed, {"ref": identity})
+
+
+def _registered_source_observation(
+    key: ResultKey, context: AuthorityContext, record: PermissionRecord
+) -> Observed[Any]:
+    """Cross-check the typed SECURITY-port record against its registered current source ref."""
+    registered = context.source_current.get(record.source.identity)
+    if registered is None:
+        return _unknown(key, "unregistered", {"source": record.source.identity})
+    return _ref_match_observation(key, "registered_source", registered, record.source)
+
+
+def _revocation_observation(
+    key: ResultKey, context: AuthorityContext, owner_data: OwnerContextData
+) -> Observed[Any] | None:
+    snapshot = owner_data.revocation_snapshot
+    if snapshot is None:
+        if context.revocation_heads:
+            return _unknown(key, UnknownReason.MISSING_INPUT.value, {"component": "revocation"})
+        return None
+    if _canonical_revocation_heads(snapshot.heads) != _canonical_revocation_heads(context.revocation_heads):
+        return _unknown(key, UnknownReason.CONFLICT.value, {"component": "revocation", "heads": "mismatch"})
+    # The owner observation is already keyed to its source evidence. Keep its
+    # original key and evidence; the K3 query key is not a translation of it.
+    return snapshot.observation
+
+
+def _canonical_revocation_heads(heads: Sequence[SegmentHead]) -> tuple[SegmentHead, ...]:
+    """Compare current head sets independent of order, deduplicating exact refs only."""
+    unique = {(head.segment, head.seq, head.entry_digest): head for head in heads}
+    return tuple(unique[key] for key in sorted(unique))
+
+
 def _combine_components(components: Sequence[Component]) -> Combined[Any] | Rejected:
     return combine(
         [
@@ -450,6 +516,8 @@ def _combine_components(components: Sequence[Component]) -> Combined[Any] | Reje
 
 def _resolution(query: PermissionQuery, input_heads: Sequence[SubjectRef]) -> AuthorityContextResolution | PermissionCheckDiagnostic:
     query_ref = _query_ref(query)
+    if query.operation not in _PERMISSION_OPERATIONS:
+        return PermissionCheckDiagnostic(query_ref, "invalid_query")
     mapping = _owner_mapping(query_ref, input_heads)
     if mapping is None or mapping.missing_identities:
         missing = mapping.missing_identities if mapping else ("owner_current_refs",)
@@ -553,6 +621,8 @@ def check_permission(
 ) -> PermissionCheck:
     """Read-only K3 check composed through the existing K1 result kernel."""
     query_ref = _query_ref(query)
+    if query.operation not in _PERMISSION_OPERATIONS:
+        return PermissionCheckDiagnostic(query_ref, "invalid_query")
     mapping = _owner_mapping(query_ref, input_heads)
     if mapping is None or mapping.missing_identities:
         missing = mapping.missing_identities if mapping else ("owner_current_refs",)
@@ -578,7 +648,14 @@ def check_permission(
     effective_decision: Observed[SubjectRef]
     if source.record is None:
         selector = source.selector_observation
-        effective_decision = selector if selector is not None else _unknown(result_key, source.unavailable_reason or "missing_input")
+        if isinstance(selector, Value):
+            effective_decision = _unknown(
+                result_key,
+                UnknownReason.MISSING_INPUT.value,
+                {"source": "current_record_missing"},
+            )
+        else:
+            effective_decision = selector if selector is not None else _unknown(result_key, source.unavailable_reason or "missing_input")
         decision_polarity = PolarityMapping(
             identity="k3-current-decision-ref-match",
             version=K3_OPERATION_VERSION,
@@ -604,12 +681,19 @@ def check_permission(
                 ),
             )
         )
-        if source.declared_issuer is not None:
-            components.append(Component("issuer", _unknown(result_key, "missing_input")))
+        components.append(Component("issuer", _unknown(result_key, "missing_input")))
     else:
         record = source.record
         current_ref = source.current_ref
-        if source.selector_observation is not None:
+        if isinstance(source.selector_observation, Value) and (
+            current_ref is None or source.selector_observation.value != current_ref
+        ):
+            effective_decision = _unknown(
+                result_key,
+                UnknownReason.MISSING_INPUT.value if current_ref is None else UnknownReason.CONFLICT.value,
+                {"source": "selector_current_ref"},
+            )
+        elif source.selector_observation is not None:
             effective_decision = source.selector_observation
         elif current_ref is None:
             effective_decision = _unknown(result_key, source.unavailable_reason or "missing_input")
@@ -621,6 +705,18 @@ def check_permission(
             classify=lambda value: Polarity.POSITIVE if value == permission else Polarity.NEGATIVE,
         )
         components = [Component("effective_decision", effective_decision, decision_polarity)]
+        components.append(
+            Component(
+                "permission_record_ref",
+                _ref_match_observation(result_key, "permission_record", current_ref, record.ref),
+            )
+        )
+        components.append(
+            Component(
+                "registered_source",
+                _registered_source_observation(result_key, context, record),
+            )
+        )
         components.extend(
             _axis_components(
                 result_key,
@@ -647,19 +743,18 @@ def check_permission(
                     ),
                 )
             )
+        else:
+            components.append(Component("issuer", _unknown(result_key, UnknownReason.MISSING_INPUT.value)))
         components.extend(
             Component(f"operation_input:{identity}", observed)
-            for identity, observed in zip(
-                sorted(set(query.operation_inputs) | set(record.operation_inputs) | set(context.operation_inputs)),
-                _compare_inputs(
-                    result_key,
-                    query.operation_inputs,
-                    record.operation_inputs,
-                    context.operation_inputs,
-                ),
-            )
+            for identity, observed in _compare_inputs(
+                result_key,
+                query.operation_inputs,
+                record.operation_inputs,
+                context.operation_inputs,
+            ).items()
         )
-        outcome = record.outcome.casefold()
+        outcome = record.outcome
         if outcome == "deny":
             components.append(Component("source_outcome", _value(result_key, False, {"outcome": "deny"})))
         elif outcome == "allow":
@@ -688,6 +783,10 @@ def check_permission(
         else:
             components.append(Component("source_outcome", _unknown(result_key, UnknownReason.UNSUPPORTED.value, {"outcome": outcome})))
 
+    revocation = _revocation_observation(result_key, context, owner_data)
+    if revocation is not None:
+        components.append(Component("revocation", revocation))
+
     for name, observation in owner_data.component_observations.items():
         components.append(Component(name, observation))
     if context_drift:
@@ -701,8 +800,8 @@ def check_permission(
         ("issuer_authenticity", assurance_data.issuer_authenticity),
     ):
         assurance[name] = observation if observation is not None else _unknown(result_key, UnknownReason.MISSING_INPUT.value, {"assurance": name})
-        mapping = getattr(assurance_data, f"{name}_polarity")
-        components.append(Component(f"assurance:{name}", assurance[name], mapping))
+        polarity_mapping = getattr(assurance_data, f"{name}_polarity")
+        components.append(Component(f"assurance:{name}", assurance[name], polarity_mapping))
     combined = _combine_components(components)
     if isinstance(combined, Rejected):
         return PermissionCheckDiagnostic(query_ref, "missing_key")
@@ -731,6 +830,8 @@ def _lookup_saved_permission_check(records: Sequence[Any], query_key: ResultKey)
     return lookup(records, query_key)
 
 
+# Type-level names in L4 §16.2; concrete refs are SubjectRef values resolved
+# by the private owner boundary.
 __all__ = [
     "AuthorityContext",
     "AuthorityContextResolution",
@@ -747,8 +848,3 @@ __all__ = [
     "resolve_authority_context",
     "check_permission",
 ]
-
-
-# Type-level names in L4 §16.2; their concrete source values are in OwnerMapping.
-AuthorityInputRef = SubjectRef
-AuthorityInputBindingRef = SubjectRef

@@ -51,14 +51,31 @@ def _positive(value: object) -> Polarity:
 CHECK_POLARITY = PolarityMapping("k3-fixture-check-value", "0.1.0", _positive)
 
 
+_OPERATIONS = (
+    "credential-use",
+    "security-change",
+    "read",
+    "write",
+    "execute",
+    "network",
+    "install",
+    "delete",
+    "merge",
+    "release",
+    "deploy",
+)
+
+
+def _operation_from_fixture(l8_id: str) -> str:
+    return next((operation for operation in _OPERATIONS if l8_id.endswith(f"-{operation}")), "read")
+
+
 def _keyed(value: object, key, *, positive: bool = True):
     return Value(value, key, {"fixture": "K6/owner stub"}) if positive else Unknown("unsupported", key)
 
 
 def _baseline(l8_id: str):
-    operation = "read"
-    if "ALLOW-" in l8_id:
-        operation = l8_id.rsplit("-", 1)[1]
+    operation = _operation_from_fixture(l8_id) if "ALLOW-" in l8_id else "read"
     input_refs = {
         "purpose": ref("purpose"),
         "classification": ref("classification"),
@@ -136,7 +153,13 @@ def _baseline(l8_id: str):
         revocation_heads=(),
         pre_execution_constraints=(),
     )
-    owner_data = k3.OwnerContextData(context)
+    owner_data = k3.OwnerContextData(
+        context,
+        revocation_snapshot=k3.RevocationSnapshot(
+            context.revocation_heads,
+            Value(k3.CheckValue.MATCH, k3._key(permission, query_ref, context, mapping), {"revocation": "complete owner snapshot"}),
+        ),
+    )
     result_key = k3._key(permission, query_ref, context, mapping)
     assert not isinstance(result_key, k3.Rejected)
     record_tuple = replace(context_tuple)
@@ -327,7 +350,7 @@ FORMAL_EXPECTED_KIND_BY_L8_ID = {
     'L8-K3-04-CURRENT-DENY': 'Negative',
     'L8-K3-04-ISSUER-MISMATCH': 'Negative',
     'L8-K3-04-RECEIPT-SUBSTITUTE': 'Unknown',
-    'L8-K3-04-SAME-NAME-DIFFERENT-SOURCE': 'Positive',
+    'L8-K3-04-SAME-NAME-DIFFERENT-SOURCE': 'Unknown',
     'L8-K3-04-SELECTION-CONFLICTING-CANDIDATES': 'Unknown',
     'L8-K3-04-SELECTION-UNKNOWN-RULE': 'Unknown',
     'L8-K3-04-SELF-ISSUED': 'Unknown',
@@ -510,7 +533,7 @@ class K3FormalFixtures(unittest.TestCase):
         elif l8_id.endswith("14b"):
             duplicate = replace(mapping.role_inputs[0], raw_ref=replace(mapping.role_inputs[0].raw_ref, revision="different"))
             mapping = replace(mapping, role_inputs=(mapping.role_inputs[0], duplicate, *mapping.role_inputs[1:]))
-        elif ("MISSING" in l8_id or "UNKNOWN" in l8_id or "UNREADABLE" in l8_id or "UNPARSABLE" in l8_id or "UNPROVEN" in l8_id or "UNREGISTERED" in l8_id or "CONFLICT" in l8_id or "SIGNATURE" in l8_id or "RECEIPT-SUBSTITUTE" in l8_id or "SELF-ISSUED" in l8_id) and "POST-" not in l8_id:
+        elif ("MISSING" in l8_id or "UNKNOWN" in l8_id or "UNREADABLE" in l8_id or "UNPARSABLE" in l8_id or "UNPROVEN" in l8_id or "UNREGISTERED" in l8_id or "CONFLICT" in l8_id or "SIGNATURE" in l8_id or "RECEIPT-SUBSTITUTE" in l8_id or "SELF-ISSUED" in l8_id or "SAME-NAME-DIFFERENT-SOURCE" in l8_id) and "POST-" not in l8_id:
             axis_name = next((name for name in ("actor", "target", "operation", "revision", "environment", "scope", "expiry") if f"-{name}-" in l8_id), None)
             if l8_id.endswith("OWNER-MISSING") or l8_id.endswith("OWNER-UNREGISTERED") or l8_id.endswith("OWNER-CONFLICT"):
                 why = "missing_input" if l8_id.endswith("MISSING") else "unregistered" if l8_id.endswith("UNREGISTERED") else "conflict"
@@ -563,7 +586,7 @@ class K3FormalFixtures(unittest.TestCase):
                 tuple_value = replace(tuple_value, scope="project:other/worktree:other")
 
         if "READ-AS-" in l8_id:
-            query = replace(query, operation=l8_id.rsplit("-", 1)[1])
+            query = replace(query, operation=_operation_from_fixture(l8_id))
         if "FRESH-REVISION" in l8_id:
             new_revision = replace(query.revision, revision="r2", digest=D2)
             query = replace(query, revision=replace(query.revision, revision="r1", digest=D1))
@@ -595,15 +618,37 @@ class K3FormalFixtures(unittest.TestCase):
         if l8_id.endswith("CONSTRAINT-RELAXED"):
             component_observations["constraint"] = Value(k3.CheckValue.MISMATCH, key, {})
         if l8_id.endswith("REVOKED") or l8_id.endswith("PRE-REVOKED"):
-            component_observations["revocation"] = Value(k3.CheckValue.MISMATCH, key, {})
+            owner_data = replace(
+                owner_data,
+                revocation_snapshot=k3.RevocationSnapshot(
+                    current_ctx.revocation_heads,
+                    Value(k3.CheckValue.MISMATCH, key, {"revocation": "revoked"}),
+                ),
+            )
         if "POST-" in l8_id:
             component_observations = dict(component_observations)
-            component_observations.pop("revocation", None)
             component_observations.pop("later_unknown", None)
+            owner_data = replace(owner_data, revocation_snapshot=None)
         if l8_id.endswith("SEGMENT-MISSING"):
-            component_observations["revocation"] = Unknown("missing_input", key)
+            heads = (k3.SegmentHead("revocation-segment", 1, D1),)
+            current_ctx = replace(current_ctx, revocation_heads=heads)
+            owner_data = replace(
+                owner_data,
+                context=current_ctx,
+                revocation_snapshot=k3.RevocationSnapshot(
+                    heads, Unknown("missing_input", key, {"revocation": "missing"})
+                ),
+            )
         if l8_id.endswith("SEGMENT-UNREADABLE"):
-            component_observations["revocation"] = Unknown("unreadable", key)
+            heads = (k3.SegmentHead("revocation-segment", 1, D1),)
+            current_ctx = replace(current_ctx, revocation_heads=heads)
+            owner_data = replace(
+                owner_data,
+                context=current_ctx,
+                revocation_snapshot=k3.RevocationSnapshot(
+                    heads, Unknown("unreadable", key, {"revocation": "unreadable"})
+                ),
+            )
         if l8_id.endswith("EXTRA-RAW-READ") or l8_id.endswith("14c") or l8_id.endswith("14d"):
             assurance = replace(assurance, reverifiable=Unknown("conflict", key))
         if l8_id.endswith("ISSUER-UNPROVEN"):
@@ -1344,7 +1389,7 @@ class K3FormalFixtures(unittest.TestCase):
     def test_CK_K3_UT_194(self):
         self._exercise("CK-K3-UT-194", "L8-K3-17-BASE")
 
-    def test_K3_REGRESSION_CURRENT_OPERATION_INPUT_REF(self):
+    def test_CK_K3_REG_CURRENT_INPUT_REF(self):
         query, permission, mapping, owner_data, source, assurance, key = _baseline("regression")
         assert owner_data.context is not None and source.record is not None
         old_ref = query.operation_inputs["purpose"]
@@ -1389,7 +1434,7 @@ class K3FormalFixtures(unittest.TestCase):
         self.assertIs(purpose_component.observed.value, k3.CheckValue.MISMATCH)
         self.assertEqual(result.combined.verdict, Verdict.NEGATIVE)
 
-    def test_K3_REGRESSION_UNRESOLVED_CONTEXT_WITH_OWNER_SCOPE(self):
+    def test_CK_K3_REG_PARTIAL_CONTEXT_OWNER_SCOPE(self):
         query, permission, mapping, owner_data, source, assurance, _ = _baseline("regression")
         owner_scope = {"scope": "owner-current-scope"}
         unavailable = k3.OwnerContextData(
@@ -1413,7 +1458,7 @@ class K3FormalFixtures(unittest.TestCase):
         self.assertEqual(effective.key.scope, _canonical_json_bytes(owner_scope).decode("utf-8"))
         self.assertNotEqual(effective.key.scope, query.requested_scope)
 
-    def test_K3_REGRESSION_UNRESOLVED_CONTEXT_WITHOUT_OWNER_SCOPE(self):
+    def test_CK_K3_REG_PARTIAL_CONTEXT_NO_SCOPE(self):
         query, permission, mapping, owner_data, source, assurance, _ = _baseline("regression")
         unavailable = k3.OwnerContextData(
             context=None,
@@ -1428,3 +1473,305 @@ class K3FormalFixtures(unittest.TestCase):
         self.assertIsInstance(result, k3.PermissionCheckDiagnostic)
         self.assertEqual(result.reason, "missing_key")
         self.assertEqual(result.missing_identities, ("current_tuple_scope",))
+
+    def test_CK_K3_REG_RECORD_REF_STALE(self):
+        query, permission, mapping, owner_data, source, assurance, key = _baseline("regression")
+        assert source.record is not None
+        record = replace(source.record, ref=replace(source.record.ref, revision="older"))
+        source = replace(source, record=record)
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+            patch.object(k3, "_permission_source", return_value=source),
+            patch.object(k3, "_k6_assurance", return_value=assurance),
+        ):
+            result = k3.check_permission(query, permission, mapping.current_heads)
+        self.assertIsInstance(result, k3.PermissionCheckResult)
+        component = next(c.observed for c in result.components if c.identity == "permission_record_ref")
+        self.assertIsInstance(component, Value)
+        self.assertIs(component.value, k3.CheckValue.MISMATCH)
+        self.assertEqual(result.combined.verdict, Verdict.NEGATIVE)
+
+    def test_CK_K3_REG_RECORD_SOURCE_UNREGISTERED(self):
+        query, permission, mapping, owner_data, source, assurance, key = _baseline("regression")
+        assert source.record is not None and owner_data.context is not None
+        other_source = replace(source.record.source, identity="unregistered-source")
+        source = replace(source, record=replace(source.record, source=other_source))
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+            patch.object(k3, "_permission_source", return_value=source),
+            patch.object(k3, "_k6_assurance", return_value=assurance),
+        ):
+            result = k3.check_permission(query, permission, mapping.current_heads)
+        self.assertIsInstance(result, k3.PermissionCheckResult)
+        component = next(c.observed for c in result.components if c.identity == "registered_source")
+        self.assertIsInstance(component, Unknown)
+        self.assertEqual(component.reason, "unregistered")
+        self.assertEqual(result.combined.verdict, Verdict.UNDETERMINED)
+
+    def test_CK_K3_REG_RECORD_SOURCE_DIGEST_CONFLICT(self):
+        query, permission, mapping, owner_data, source, assurance, key = _baseline("regression")
+        assert source.record is not None
+        conflicting_source = replace(source.record.source, digest=D2)
+        source = replace(source, record=replace(source.record, source=conflicting_source))
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+            patch.object(k3, "_permission_source", return_value=source),
+            patch.object(k3, "_k6_assurance", return_value=assurance),
+        ):
+            result = k3.check_permission(query, permission, mapping.current_heads)
+        self.assertIsInstance(result, k3.PermissionCheckResult)
+        component = next(c.observed for c in result.components if c.identity == "registered_source")
+        self.assertIsInstance(component, Unknown)
+        self.assertEqual(component.reason, "conflict")
+        self.assertEqual(result.combined.verdict, Verdict.UNDETERMINED)
+
+    def test_CK_K3_REG_REVOCATION_HEAD_MISSING(self):
+        query, permission, mapping, owner_data, source, assurance, _ = _baseline("regression")
+        assert owner_data.context is not None
+        head = k3.SegmentHead("revoke-1", 1, D1)
+        context = replace(owner_data.context, revocation_heads=(head,))
+        owner_data = replace(owner_data, context=context, revocation_snapshot=None)
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+            patch.object(k3, "_permission_source", return_value=source),
+            patch.object(k3, "_k6_assurance", return_value=assurance),
+        ):
+            result = k3.check_permission(query, permission, mapping.current_heads)
+        self.assertIsInstance(result, k3.PermissionCheckResult)
+        component = next(c.observed for c in result.components if c.identity == "revocation")
+        self.assertIsInstance(component, Unknown)
+        self.assertEqual(component.reason, "missing_input")
+        self.assertEqual(result.combined.verdict, Verdict.UNDETERMINED)
+
+    def test_CK_K3_REG_REVOCATION_HEAD_SET_CONFLICT(self):
+        query, permission, mapping, owner_data, source, assurance, key = _baseline("regression")
+        assert owner_data.context is not None
+        current_head = k3.SegmentHead("revoke-current", 2, D1)
+        other_head = k3.SegmentHead("revoke-other", 2, D1)
+        context = replace(owner_data.context, revocation_heads=(current_head,))
+        snapshot = k3.RevocationSnapshot((other_head,), Value(k3.CheckValue.MATCH, key, {}))
+        owner_data = replace(owner_data, context=context, revocation_snapshot=snapshot)
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+            patch.object(k3, "_permission_source", return_value=source),
+            patch.object(k3, "_k6_assurance", return_value=assurance),
+        ):
+            result = k3.check_permission(query, permission, mapping.current_heads)
+        self.assertIsInstance(result, k3.PermissionCheckResult)
+        component = next(c.observed for c in result.components if c.identity == "revocation")
+        self.assertIsInstance(component, Unknown)
+        self.assertEqual(component.reason, "conflict")
+        self.assertEqual(result.combined.verdict, Verdict.UNDETERMINED)
+
+    def test_CK_K3_REG_REVOCATION_HEAD_SET_ORDER_AND_EXACT_DUPLICATES(self):
+        query, permission, mapping, owner_data, source, assurance, key = _baseline("regression")
+        assert owner_data.context is not None and owner_data.revocation_snapshot is not None
+        head_a = k3.SegmentHead("revoke-a", 1, D1)
+        head_b = k3.SegmentHead("revoke-b", 2, D2)
+        cases = (
+            ("order", (head_a, head_b), (head_b, head_a)),
+            ("exact_duplicates", (head_a, head_a, head_b), (head_b, head_a)),
+        )
+        for label, current_heads, snapshot_heads in cases:
+            with self.subTest(case=label):
+                context = replace(owner_data.context, revocation_heads=current_heads)
+                snapshot = replace(owner_data.revocation_snapshot, heads=snapshot_heads)
+                owner_data_case = replace(owner_data, context=context, revocation_snapshot=snapshot)
+                with (
+                    patch.object(k3, "_owner_mapping", return_value=mapping),
+                    patch.object(k3, "_owner_context", return_value=owner_data_case),
+                    patch.object(k3, "_permission_source", return_value=source),
+                    patch.object(k3, "_k6_assurance", return_value=assurance),
+                ):
+                    result = k3.check_permission(query, permission, mapping.current_heads)
+                self.assertIsInstance(result, k3.PermissionCheckResult)
+                component = next(c.observed for c in result.components if c.identity == "revocation")
+                self.assertIsInstance(component, Value)
+                self.assertIs(component.value, k3.CheckValue.MATCH)
+
+    def test_CK_K3_REG_REVOCATION_OBSERVATION_KEY_PRESERVED(self):
+        query, permission, mapping, owner_data, source, assurance, key = _baseline("regression")
+        assert owner_data.revocation_snapshot is not None
+        source_key = replace(key, scope='"revocation-source-scope"')
+        source_observation = replace(owner_data.revocation_snapshot.observation, key=source_key)
+        owner_data = replace(
+            owner_data,
+            revocation_snapshot=replace(owner_data.revocation_snapshot, observation=source_observation),
+        )
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+            patch.object(k3, "_permission_source", return_value=source),
+            patch.object(k3, "_k6_assurance", return_value=assurance),
+        ):
+            result = k3.check_permission(query, permission, mapping.current_heads)
+        self.assertIsInstance(result, k3.PermissionCheckResult)
+        component = next(c.observed for c in result.components if c.identity == "revocation")
+        self.assertIsInstance(component, Value)
+        self.assertEqual(component.key, source_key)
+        self.assertEqual(component.evidence, source_observation.evidence)
+        self.assertNotEqual(component.key, key)
+
+    def test_CK_K3_REG_ISSUER_DECL_MISSING(self):
+        query, permission, mapping, owner_data, source, assurance, _ = _baseline("regression")
+        source = replace(source, declared_issuer=None)
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+            patch.object(k3, "_permission_source", return_value=source),
+            patch.object(k3, "_k6_assurance", return_value=assurance),
+        ):
+            result = k3.check_permission(query, permission, mapping.current_heads)
+        self.assertIsInstance(result, k3.PermissionCheckResult)
+        component = next(c.observed for c in result.components if c.identity == "issuer")
+        self.assertIsInstance(component, Unknown)
+        self.assertEqual(component.reason, "missing_input")
+        self.assertEqual(result.combined.verdict, Verdict.UNDETERMINED)
+
+    def test_CK_K3_REG_RECORD_MISSING_SELECTOR_POSITIVE(self):
+        query, permission, mapping, owner_data, source, assurance, key = _baseline("regression")
+        source = replace(source, record=None, selector_observation=Value(permission, key, {}))
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+            patch.object(k3, "_permission_source", return_value=source),
+            patch.object(k3, "_k6_assurance", return_value=assurance),
+        ):
+            result = k3.check_permission(query, permission, mapping.current_heads)
+        self.assertIsInstance(result, k3.PermissionCheckResult)
+        self.assertIsInstance(result.effective_decision, Unknown)
+        self.assertEqual(result.effective_decision.reason, "missing_input")
+        self.assertEqual(result.combined.verdict, Verdict.UNDETERMINED)
+
+    def test_CK_K3_REG_OPERATION_INVALID(self):
+        query, permission, mapping, owner_data, source, assurance, _ = _baseline("regression")
+        for operation in OPS:
+            with self.subTest(operation=operation):
+                allowed = replace(query, operation=operation)
+                with patch.object(k3, "_owner_mapping", return_value=None):
+                    checked = k3.check_permission(allowed, permission, mapping.current_heads)
+                    resolved = k3.resolve_authority_context(allowed, mapping.current_heads)
+                self.assertIsInstance(checked, k3.PermissionCheckDiagnostic)
+                self.assertEqual(checked.reason, "missing_key")
+                self.assertIsInstance(resolved, k3.Unresolved)
+                self.assertEqual(resolved.diagnostic.reason, "missing_input")
+
+        invalid = replace(query, operation="frobnicate")
+        with patch.object(k3, "_owner_mapping", side_effect=AssertionError("owner port called")):
+            checked = k3.check_permission(invalid, permission, mapping.current_heads)
+            resolved = k3.resolve_authority_context(invalid, mapping.current_heads)
+        self.assertIsInstance(checked, k3.PermissionCheckDiagnostic)
+        self.assertEqual(checked.reason, "invalid_query")
+        self.assertIsInstance(resolved, k3.PermissionCheckDiagnostic)
+        self.assertEqual(resolved.reason, "invalid_query")
+
+    def test_CK_K3_REG_OUTCOME_CASE_EXACT(self):
+        query, permission, mapping, owner_data, source, assurance, _ = _baseline("regression")
+        assert source.record is not None
+        source = replace(source, record=replace(source.record, outcome="ALLOW"))
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+            patch.object(k3, "_permission_source", return_value=source),
+            patch.object(k3, "_k6_assurance", return_value=assurance),
+        ):
+            result = k3.check_permission(query, permission, mapping.current_heads)
+        self.assertIsInstance(result, k3.PermissionCheckResult)
+        component = next(c.observed for c in result.components if c.identity == "source_outcome")
+        self.assertIsInstance(component, Unknown)
+        self.assertEqual(component.reason, "unsupported")
+        self.assertEqual(result.combined.verdict, Verdict.UNDETERMINED)
+
+    def test_CK_K3_REG_QUERY_REF_FIELDS(self):
+        query, *_ = _baseline("regression")
+        baseline = k3._query_ref(query)
+        renamed_inputs = dict(query.operation_inputs)
+        renamed_inputs["other-purpose"] = renamed_inputs.pop("purpose")
+        changed_input_revision = dict(query.operation_inputs)
+        changed_input_revision["purpose"] = replace(changed_input_revision["purpose"], revision="r2")
+        changed_input_digest = dict(query.operation_inputs)
+        changed_input_digest["purpose"] = replace(changed_input_digest["purpose"], digest=D2)
+        changes = {
+            "operation": replace(query, operation="write"),
+            "target": replace(query, target="stage-B"),
+            "revision_identity": replace(query, revision=replace(query.revision, identity="composition-B")),
+            "revision_revision": replace(query, revision=replace(query.revision, revision="r2")),
+            "revision_digest": replace(query, revision=replace(query.revision, digest=D2)),
+            "requested_scope": replace(query, requested_scope="project:other/worktree:W"),
+            "input_identity": replace(query, operation_inputs=renamed_inputs),
+            "input_revision": replace(query, operation_inputs=changed_input_revision),
+            "input_digest": replace(query, operation_inputs=changed_input_digest),
+        }
+        for field_name, changed_query in changes.items():
+            with self.subTest(field=field_name):
+                changed = k3._query_ref(changed_query)
+                self.assertNotEqual(changed.digest, baseline.digest)
+                if field_name in {"operation", "target", "revision_identity", "input_identity"}:
+                    self.assertNotEqual(changed.identity, baseline.identity)
+                else:
+                    self.assertEqual(changed.identity, baseline.identity)
+                if field_name in {"revision_revision", "input_revision"}:
+                    self.assertNotEqual(changed.revision, baseline.revision)
+                else:
+                    self.assertEqual(changed.revision, baseline.revision)
+
+    def test_CK_K3_REG_QUERY_CONTEXT_TARGET(self):
+        query, permission, mapping, owner_data, source, assurance, _ = _baseline("regression")
+        assert owner_data.context is not None and source.selector_observation is not None
+        query = replace(query, target="stage-B")
+        mapping = _refresh_query_binding(query, mapping)
+        key = k3._key(permission, k3._query_ref(query), owner_data.context, mapping)
+        assert not isinstance(key, k3.Rejected)
+        source = replace(
+            source,
+            selector_observation=_rekey(source.selector_observation, key),
+            expiry_observation=_rekey(source.expiry_observation, key),
+        )
+        assurance = replace(
+            assurance,
+            reverifiable=_rekey(assurance.reverifiable, key),
+            reproduction=_rekey(assurance.reproduction, key),
+            issuer_authenticity=_rekey(assurance.issuer_authenticity, key),
+        )
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+            patch.object(k3, "_permission_source", return_value=source),
+            patch.object(k3, "_k6_assurance", return_value=assurance),
+        ):
+            result = k3.check_permission(query, permission, mapping.current_heads)
+        self.assertIsInstance(result, k3.PermissionCheckResult)
+        target = next(c.observed for c in result.components if c.identity == "target")
+        self.assertIsInstance(target, Value)
+        self.assertIs(target.value, k3.CheckValue.MISMATCH)
+        self.assertEqual(result.combined.verdict, Verdict.NEGATIVE)
+
+    def test_CK_K3_REG_RESOLVE_CONTEXT_OUTCOMES(self):
+        query, permission, mapping, owner_data, source, assurance, _ = _baseline("regression")
+        assert owner_data.context is not None
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(k3, "_owner_context", return_value=owner_data),
+        ):
+            resolved = k3.resolve_authority_context(query, mapping.current_heads)
+            drifted = k3.resolve_authority_context(query, (ref("different-head"),))
+        self.assertIsInstance(resolved, k3.Resolved)
+        self.assertEqual(resolved.value, owner_data.context)
+        self.assertIsInstance(drifted, k3.Unresolved)
+        self.assertEqual(drifted.diagnostic.reason, "conflict")
+        with (
+            patch.object(k3, "_owner_mapping", return_value=mapping),
+            patch.object(
+                k3,
+                "_owner_context",
+                return_value=k3.OwnerContextData(None, unavailable_reason="unreadable"),
+            ),
+        ):
+            unavailable = k3.resolve_authority_context(query, mapping.current_heads)
+        self.assertIsInstance(unavailable, k3.Unresolved)
+        self.assertEqual(unavailable.diagnostic.reason, "unreadable")
