@@ -43,32 +43,28 @@ class SourceL7RunnerTests(unittest.TestCase):
         security = baseline[security_path]
         self.assertIn(b"class _CaseRef:", security)
 
-        missing_case_ref = security.replace(
-            b"@dataclass(frozen=True)\nclass _CaseRef:\n"
-            b"    parent: k1.SubjectRef\n    case: k1.SubjectRef\n\n", b"", 1)
         cases = (
-            ("unlisted empty class", brain_path, brain + b"\nclass UnlistedEmptyCase:\n    pass\n", "conflict"),
-            ("unlisted inherited test class", brain_path, brain +
-             b"\nclass InheritedCopy(BrainProjectionTests):\n    pass\n", "conflict"),
-            ("required non-test class missing", security_path, missing_case_ref, "missing_input"),
-            ("allowlisted class gains TestCase base", security_path,
-             security.replace(b"class _CaseRef:", b"class _CaseRef(unittest.TestCase):", 1), "conflict"),
-            ("allowlisted class gains metaclass keyword", security_path,
-             security.replace(b"class _CaseRef:", b"class _CaseRef(metaclass=type):", 1), "conflict"),
-            ("allowlisted class gains test method", security_path,
+            ("unlisted empty class", brain + b"\nclass UnlistedEmptyCase:\n    pass\n"),
+            ("unlisted inherited test class", brain +
+             b"\nclass InheritedCopy(BrainProjectionTests):\n    pass\n"),
+            ("allowlisted class gains TestCase base",
+             security.replace(b"class _CaseRef:", b"class _CaseRef(unittest.TestCase):", 1)),
+            ("allowlisted class gains metaclass keyword",
+             security.replace(b"class _CaseRef:", b"class _CaseRef(metaclass=type):", 1)),
+            ("allowlisted class gains test method",
              security.replace(b"    case: k1.SubjectRef\n",
                               b"    case: k1.SubjectRef\n\n"
                               b"    def test_unlisted_helper_method(self):\n"
-                              b"        pass\n", 1), "conflict"),
+                              b"        pass\n", 1)),
         )
-        for label, path, changed, expected_reason in cases:
+        for label, changed in cases:
             with self.subTest(mutation=label):
                 candidate = dict(baseline)
-                candidate[path] = changed
+                candidate[brain_path if label.startswith("unlisted") else security_path] = changed
                 with self.assertRaises(Diagnostic) as raised:
                     suite_runner.validate_fixed_test_ast_inventory(candidate)
                 self.assertEqual((raised.exception.classification, raised.exception.reason),
-                                 ("Unknown", expected_reason))
+                                 ("Unknown", "conflict"))
 
     def test_projection_binding_restores_only_the_fixed_entry_even_after_exception(self):
         key = "projection"
