@@ -268,7 +268,7 @@ class K9PolarityDelegationTests(unittest.TestCase):
             k1.Value(k9._AxisRelationFact("slot", "identity", "same"), same_key, {"axis": "identity"}),
             k1.Unknown(k1.UnknownReason.UNSUPPORTED, unknown_key, {"axis": "route"}),
         )
-        combined = k9._combine_review_components(components)
+        combined = k9._combine_review_components(components, resolved_rule_version="K9")
         self.assertIsInstance(combined, k1.Combined)
         self.assertEqual(combined.verdict, k1.Verdict.NEGATIVE)
         self.assertEqual(combined.negatives, (0,))
@@ -291,17 +291,37 @@ class K9PolarityDelegationTests(unittest.TestCase):
             k1.Value(fact, _key(f"positive-{index}"), {"fact": index})
             for index, fact in enumerate(facts)
         )
-        combined = k9._combine_review_components(components)
+        combined = k9._combine_review_components(components, resolved_rule_version="K9")
         self.assertIsInstance(combined, k1.Combined)
         self.assertEqual(combined.verdict, k1.Verdict.POSITIVE)
         self.assertEqual(combined.negatives, ())
         self.assertEqual(combined.non_values, ())
 
     def test_empty_component_set_uses_k1_existing_missing_input_set_diagnostic(self):
-        combined = k9._combine_review_components(())
+        combined = k9._combine_review_components((), resolved_rule_version="K9")
         self.assertIsInstance(combined, k1.Combined)
         self.assertEqual(combined.verdict, k1.Verdict.UNDETERMINED)
         self.assertEqual(combined.set_reason, k1.SetDiagnostic("Unknown", "missing_input"))
+
+    def test_resolved_rule_version_is_bound_into_combined_polarity_refs(self):
+        component = k1.Value(
+            k9._AxisRelationFact("slot", "identity", "distinct"),
+            _key("version-bound-component"),
+            {"axis": "identity"},
+        )
+        current = k9._combine_review_components(
+            (component,), resolved_rule_version="K9-rule-r1"
+        )
+        advanced = k9._combine_review_components(
+            (component,), resolved_rule_version="K9-rule-r2"
+        )
+        self.assertIsInstance(current, k1.Combined)
+        self.assertIsInstance(advanced, k1.Combined)
+        self.assertEqual(current.verdict, k1.Verdict.POSITIVE)
+        self.assertEqual(advanced.verdict, k1.Verdict.POSITIVE)
+        self.assertEqual(current.polarity, (k1.PolarityRef("k9_independence_polarity", "K9-rule-r1"),))
+        self.assertEqual(advanced.polarity, (k1.PolarityRef("k9_independence_polarity", "K9-rule-r2"),))
+        self.assertNotEqual(current.polarity, advanced.polarity)
 
     def test_nonaffirmative_facts_are_not_fabricated_as_negative_or_positive_values(self):
         with self.assertRaises(TypeError):

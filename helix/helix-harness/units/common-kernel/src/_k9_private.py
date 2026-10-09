@@ -320,17 +320,21 @@ def _k9_independence_polarity(value: _K9IndependenceComponent) -> k1.Polarity:
     )
 
 
-_K9_INDEPENDENCE_POLARITY = k1.PolarityMapping(
-    identity="k9_independence_polarity",
-    version="K9",
-    classify=_k9_independence_polarity,
-)
-
-
 def _combine_review_components(
     components: Sequence[k1.Observed[_K9IndependenceComponent]],
+    *,
+    resolved_rule_version: str,
 ) -> k1.Combined[_K9IndependenceComponent] | k1.Rejected:
-    """Delegate K9 component folding to the existing K1 combine API."""
+    """Fold with the already-resolved current K9 rule version.
+
+    This helper neither chooses a default version nor reads the owner source
+    that resolves it.
+    """
+    mapping = k1.PolarityMapping(
+        identity="k9_independence_polarity",
+        version=resolved_rule_version,
+        classify=_k9_independence_polarity,
+    )
     return k1.combine(
-        [(component, _K9_INDEPENDENCE_POLARITY) for component in components]
+        [(component, mapping) for component in components]
     )

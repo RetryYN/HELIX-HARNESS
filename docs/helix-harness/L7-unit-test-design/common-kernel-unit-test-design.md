@@ -17,7 +17,7 @@ base: `main` at `40e5467dc7d67a990ff12323d40974a2e480f339` (current integration 
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `d5bb3455526c816b3af965db239c4b56207a884f`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; current main source at `d5bb3455526c816b3af965db239c4b56207a884f`, content SHA-256 `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `e55d31228b73dbd12cce2dd64c01ea8c5f6be21c8a94cd37c0acf8d545e08fb5`（L7→L6一方向。L6にL7 SHAは置かない） |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `17ff86ce8d7f5f1e5b1eb4125729411e325d4883085bb0d44aee5273b5aefe22`（L7→L6一方向。L6にL7 SHAは置かない） |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `fcf00128a7503317fa1c779c38cc8df3877b4952`, content SHA-256 `bdac36e29b8cd0a5cec34cedce6d419f5d5ecc8daea70cba851067bcc308dfac`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L8 K4/G3 fixed snapshot | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`, content SHA-256 `9d441f69221eb2800182f08e49c159c271a77eccc482bdbfb45bc960d2b48753`; K4/G3 §7; 73 fixture IDs; historical design input, not run here |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
@@ -1112,10 +1112,11 @@ L7の87 formal fixtureは設計のままであり、次の局所private helper�
 | `test_resolved_axis_requires_existing_key_and_unresolved_relation` | resolved comparisonに既存keyがある局所前提 | `L8-K9-06-*` | private preconditionのみ。新Rejected/reasonなし。 |
 | `test_same_is_negative_and_all_nonvalues_survive_the_existing_k1_fold` | L4 mappingのsame→NegativeとK1 combineでのnon-Value保持 | `L8-K9-BASE-CHECK-UNKNOWN-ONLY`, `L8-K9-10-SAME-PLUS-UNKNOWN` | 明示mapping/K1 foldのみ。owner components生成なし。 |
 | `test_distinct_complete_nonempty_are_positive_through_existing_k1_fold` | distinct、complete、nonemptyのPositive fold | `L8-K9-BASE-CHECK` | 合成K1 valuesのみ。roster/source completenessは証明しない。 |
+| `test_resolved_rule_version_is_bound_into_combined_polarity_refs` | 必須入力のcurrent K9 rule versionをK1 PolarityRefへ伝播 | `L8-K9-BASE-CHECK`, `L8-K9-10-SAME-PLUS-UNKNOWN` | 合成versionを2回比較。ownerからのversion解決は未実行。 |
 | `test_empty_component_set_uses_k1_existing_missing_input_set_diagnostic` | 空成分集合への既存K1診断 | `L8-K9-04-EMPTY-CREATORS` | K1 foldのみ。inventory early-returnのAPI結果ではない。 |
 | `test_nonaffirmative_facts_are_not_fabricated_as_negative_or_positive_values` | false complete/nonemptyを独自の肯定/否定Valueにしない | `L8-K9-04-EMPTY-CREATORS` | private input境界のみ。owner inventory値への写像なし。 |
 
-上記は16 supplemental testsであり、L8 formal fixture 87件の実行数ではない。OS assignment、producer graph/source closure、execution origin、context/authority/route current owner、K6 read/admission、inventory non-Value時の公開result/component mapping、K2 current lookupは未接続で、対応するL8 oracleは未達またはowner返却のまま保持する。
+上記は17 supplemental testsであり、L8 formal fixture 87件の実行数ではない。OS assignment、producer graph/source closure、execution origin、context/authority/route current ownerとK9 rule version source、K6 read/admission、inventory non-Value時の公開result/component mapping、K2 current lookupは未接続で、対応するL8 oracleは未達またはowner返却のまま保持する。
 
 ## 14. K8個別fixture設計
 
