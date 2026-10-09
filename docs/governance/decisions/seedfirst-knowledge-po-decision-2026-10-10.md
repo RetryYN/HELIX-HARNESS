@@ -19,7 +19,7 @@ POは本Codex会話の質問票で「限定した知識内容を採用（推奨�
 - 提示JSON SHA-256: `c9926d8a9db74095b0792cb134ac59e6374519acf94e1a1045a29076e7d55897`
 - 判断単位: SEEDFIRSTの非画面・技術的不確実性なしの要求／受入知識内容。新しい要求identity・版指定を追加しない。
 - 作業base: `b313df4f33d4d27b15b9565a95ccb3fc5ba40af3`
-- [BRAINの意味JSON](../../helix-brain/knowledge/requirements-acceptance-template-knowledge.json)、本文SHA-256 `e476839fc01229c600c1a34c00fc436db0e56e35c7670bfdb51167d6211f394f`
+- [BRAINの意味JSON](../../helix-brain/knowledge/requirements-acceptance-template-knowledge.json)、本文SHA-256 `8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77`
 - [採用範囲と抽出照合receipt](../audits/seedfirst-knowledge-adoption-receipt-2026-10-10.json)、意味payload SHA-256 `0afb4a628fbd34ca26715568298d9be0c56563ddf751c3a225541fae6e9a8ba8`。JSON化だけで採用とせず、本判断の範囲を根拠にする。
 
 ## 採用範囲と責務

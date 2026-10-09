@@ -7,7 +7,7 @@
   "fixed_packet_path": "docs/governance/crosswalks/requirements-resolution-packet.json",
   "fixed_packet_sha256": "c9926d8a9db74095b0792cb134ac59e6374519acf94e1a1045a29076e7d55897",
   "knowledge_path": "docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json",
-  "knowledge_file_sha256": "e476839fc01229c600c1a34c00fc436db0e56e35c7670bfdb51167d6211f394f",
+  "knowledge_file_sha256": "8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77",
   "adopted_payload_sha256": "0afb4a628fbd34ca26715568298d9be0c56563ddf751c3a225541fae6e9a8ba8",
   "payload_digest_rule": "UTF-8 JSON adopted_payload、sort_keys=true、separators=(comma,colon)、ensure_ascii=false、末尾LFなし",
   "extraction": "units[0].scope/selection_reason、seed_candidatesのtemplate_identity/semantic_descriptors/meaning_owner_boundary/proposed_scope、selected_technique_meaningsのidentity/contract_fieldsからcost/tools/helix_exampleを除いた部分。原valueは変更しない。",

@@ -797,12 +797,17 @@
           379
         ]
       }
+    ],
+    "remaining_scope_at_proposal": [
+      "画面/PoC、他pair、unit/connection/compositeのseed比較と全体の最小set",
+      "正式知識への配置/採用記録とsourceの完全な意味対応、未選択26候補の保全",
+      "案件の実記録/合意/受入、L3再開・実装は別"
     ]
   },
   "nonadopted_reference_disposition": "VT003の選択表やVT102の画面技法早見は参考候補のまま。C36の旧cardのモデル/共通context条件は採用しない。独立性/レビューの要求正本はConcept/該当HARNESS契約と開発repo運用を区別して参照する。未選択cardをN-A/retiredと判定しない。",
   "limits": [
     "画面/PoC、他pair、unit/connection/compositeのseed比較と全体の最小set",
-    "正式知識への配置/採用記録とsourceの完全な意味対応、未選択26候補の保全",
+    "今回の限定scope以外の正式知識への配置/採用記録、sourceの完全な意味対応、未選択候補の保全。今回の限定知識の配置と採用記録は本decision/JSON/receiptで行う。",
     "案件の実記録/合意/受入、L3再開・実装は別"
   ],
   "artifact_kind": "要求段階の採用済み知識内容。実行schema/registry/rendererではない。"
