@@ -9,7 +9,7 @@ status: draft_candidate
 authority_status: draft_candidate
 stage: 1
 paired_l6: ../L6-function-design/stage1-infrastructure.md
-paired_l6_sha256: 288ca9ed0d43e69831565ea46ac6e65c2a51df71668101ed1ce244f9839ae89e
+paired_l6_sha256: 2ba68cb475d95f9ff8da2ffeffb22bb25f192b1fb94884034ca0b15a78b5d614
 ---
 
 # HELIX-INFRASTRUCTURE Stage 1 単体テスト設計
@@ -22,12 +22,12 @@ paired_l6_sha256: 288ca9ed0d43e69831565ea46ac6e65c2a51df71668101ed1ce244f9839ae8
 |---|---|---|
 | L4 INFRA | `84756e019c04744ede7825518e4a153f1373260df1b972c5651ade7824ab9dec` | origin/mainの固定本文 |
 | L9 INFRA | `b83eee2452ec0b41ef23ffd6a3aea3e1374f82dbffc3e8c7bb54908b01ae9d8b` | origin/mainの固定本文。40 verifier IDを固定参照 |
-| L5 INFRA | `ccf2c64f9312bb9c90ab46500bbb02373c87868af2dc5a7eb5be9b5f65de9f1a` | #2752でorigin/mainへ統合済みの固定本文 |
-| L8 INFRA | `27dee2a416ec806b05c35fcf97c365df14259a380302c72ecc95f5c5972de5dc` | 同L5に対するorigin/mainの固定本文 |
-| L6 INFRA | `288ca9ed0d43e69831565ea46ac6e65c2a51df71668101ed1ce244f9839ae89e` | このL7が参照する設計候補本文 |
+| L5 INFRA | `40b96764707a666d5d6dd39f3709857e58a67df564a2a4dbc7c98a1379737300` | d4df mainの#2752 bytesを基にこのWTで配置候補を追補した本文 |
+| L8 INFRA | `d6b93dc56d30695a3d76290ce555725e7f3a3f5924a329c14e225c6a41bff2ab` | 上記L5を参照し、このWTで配置fixtureを追補した本文 |
+| L6 INFRA | `2ba68cb475d95f9ff8da2ffeffb22bb25f192b1fb94884034ca0b15a78b5d614` | このL7が参照する、配置と固定ref選択を追補した候補本文 |
 | Common Kernel L4/L9 | origin/main `107a648842673ed9b0b02fd440aa68594dd201f6`の各本文 | 現行契約の読取参照。L6 §1のhash表参照 |
 
-L2/L11の親はL4/L5が固定する採択済み2親であり、L2-005は006に適用される場合だけの入力依存である。L5/L8はorigin/mainの固定本文として参照する。テストsuite、fixture、test runnerは本書では作成・起動しない。
+L2/L11の親はL4/L5が固定する採択済み2親であり、L2-005は006に適用される場合だけの入力依存である。L5/L8の固定base bytesはorigin/main d4df293にあり、このWTではその後段候補として配置・locator detailを追補している。ここに記したhashは追補後candidate bytesであり、現在mainのbytesではない。テストsuite、fixture実体、test runnerは本書では作成・起動しない。
 
 ## 2. Fixture規約と共通baseline
 
@@ -407,4 +407,18 @@ K3関係fixtureでは`PermissionQuery`を5 field（`operation`, target identity,
 
 L5 §8に記録されたL4 §3 K9の誤参照はL4 ownerへの返却事項のまま未解決である。K9をpath観測に使わないことは、L4記述を修正したことを意味しない。
 
-L6/L7本文は設計候補であり、実装、suite配置、実行、CI統合、合格を示さない。L5/L8はmain上の固定本文である。Common Kernelとlocal-CIの既存文書は技術候補選定の根拠として読むに限り、INFRA固有unitが登録済み・実行済みとはしない。実装開始・外部operation・物理状態変更にauthorityを付与しない。
+L6/L7本文は設計候補であり、実装、suite配置、実行、CI統合、合格を示さない。L5/L8のbase bytesはmain d4dfに固定されているが、本書が参照するものは配置detailを追補した未公開candidate bytesである。Common Kernelとlocal-CIの既存文書は技術候補選定の根拠として読むに限り、INFRA固有unitが登録済み・実行済みとはしない。実装開始・外部operation・物理状態変更にauthorityを付与しない。
+
+## 8. 単体module・test locatorの準備照合（候補）
+
+この節はL5 §9とL6 §6で技術具体化したcandidate module/test selectionを、合成tree fixtureで照合する候補である。ここは製品APIのunit testsではなく、後続suite runnerがsource `SubjectRef`（`kind`/`identity`/`revision`/`digest`）と独立tree locator/pathに従い、どのsource/test locatorを選んだかを確認するsetup checkである。Common Kernel K5 `FixedRef`は`store`/`locator`/`digest`を持つ別の保存・証拠参照型であり、ここでのsource identityではない。declaration candidate bytesのbindingはK5 pack登録や使用可能性を示さない。新しいL9 verifier、L3親、approval/gateを作らず、元の40 verifier/248 concrete L8 functional-NFR fixture対応から分離する。
+
+| L7照合ID | L8 fixture | baseline / 単一変異 | 照合 |
+|---|---|---|---|
+| `INFRA-L7-SETUP-01` | `L8-INFRA-PACK-LOCATOR-BASE` | source `SubjectRef`と別tree locator/path、declaration bytes、候補identity、および`enc(identity)`に一致するunit rootを与える。 | locatorのrevision/pathで解決したbytesと`SubjectRef.digest`を照合し、同じunit root配下の`src/infrastructure.py`と`tests/test_infrastructure.py`をlocatorとして選び、他pathをimport/実行しない。 |
+| `INFRA-L7-SETUP-02` | `L8-INFRA-PACK-LOCATOR-DIGEST-MISMATCH` | baselineからdeclaration bytesだけを変え、`SubjectRef.digest`は維持する。 | `SubjectRef`とresolved bytesの照合で失敗し、module/test locatorを選択しない。既存read境界に留め、K1 resultや独自reasonを作らない。 |
+| `INFRA-L7-SETUP-03` | `L8-INFRA-PACK-LOCATOR-PATH-CONFLICT` | baselineからunit directory locatorだけを宣言identityの`enc`と不一致にする。 | RL-C4のidentity/path不一致として未選択にし、pathから宣言identityを上書きしない。 |
+| `INFRA-L7-SETUP-04` | `L8-INFRA-PACK-LOCATOR-UNREFERENCED-DIR` | baselineへsource `SubjectRef`および別tree locator/pathが指さない別unit directoryだけを追加する。 | 参照されたdeclarationから定まらないdirectoryをmodule/test selectorが列挙・採用しない。追加directoryのregistration/duplicate identity有無をこのcheckから推定しない。 |
+| `INFRA-L7-SETUP-05` | `L8-INFRA-PACK-DECLARATION-MISSING` | baselineから別tree locator/pathが指す対象revision内のdeclaration bytesだけを除く。 | RL-C5の既存declaration欠落境界に留め、module/testを選ばない。 |
+
+5 setup checksはL7の既存248 functional/NFR fixtureとの対応外であり、unit code coverageやL10合格の分子/分母へ加えない。declaration identity=`infrastructure-stage1`、module path、test pathは実在値ではなく候補である。owner、version/maturity、登録event、収載、K3 OperationDecl bindingが未定のままでも、pure module/test locator照合候補は設計できる。source/test実装、test実行、CI inventory登録は未実施である。

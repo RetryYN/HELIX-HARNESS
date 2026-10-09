@@ -9,7 +9,7 @@ status: draft_candidate
 authority_status: draft_candidate
 stage: 1
 paired_l5: ../L5-detail-design/stage1-infrastructure.md
-paired_l5_sha256: ccf2c64f9312bb9c90ab46500bbb02373c87868af2dc5a7eb5be9b5f65de9f1a
+paired_l5_sha256: 40b96764707a666d5d6dd39f3709857e58a67df564a2a4dbc7c98a1379737300
 paired_l7: ../L7-unit-test-design/stage1-infrastructure-unit-test-design.md
 ---
 
@@ -23,12 +23,12 @@ paired_l7: ../L7-unit-test-design/stage1-infrastructure-unit-test-design.md
 |---|---|---|
 | L4 INFRA | `docs/helix-infrastructure/L4-basic-design/stage1-infrastructure.md` | `84756e019c04744ede7825518e4a153f1373260df1b972c5651ade7824ab9dec`、origin/mainの固定本文 |
 | L9 INFRA | `docs/helix-infrastructure/L9-integration-verification/stage1-infrastructure-integration-verification.md` | `b83eee2452ec0b41ef23ffd6a3aea3e1374f82dbffc3e8c7bb54908b01ae9d8b`、origin/mainの固定本文 |
-| L5 INFRA | `docs/helix-infrastructure/L5-detail-design/stage1-infrastructure.md` | `ccf2c64f9312bb9c90ab46500bbb02373c87868af2dc5a7eb5be9b5f65de9f1a`、#2752でorigin/mainへ統合済みの固定本文 |
-| L8 INFRA | `docs/helix-infrastructure/L8-detail-verification/stage1-infrastructure-detail-verification.md` | `27dee2a416ec806b05c35fcf97c365df14259a380302c72ecc95f5c5972de5dc`、同main上の固定本文 |
+| L5 INFRA | `docs/helix-infrastructure/L5-detail-design/stage1-infrastructure.md` | `40b96764707a666d5d6dd39f3709857e58a67df564a2a4dbc7c98a1379737300`、このWTで配置候補を追補したL5 bytes |
+| L8 INFRA | `docs/helix-infrastructure/L8-detail-verification/stage1-infrastructure-detail-verification.md` | `d6b93dc56d30695a3d76290ce555725e7f3a3f5924a329c14e225c6a41bff2ab`、このWTで配置fixtureを追補し上記L5を参照するbytes |
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md` | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、fixed main `107a648842673ed9b0b02fd440aa68594dd201f6` |
 | Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`、同main |
 
-L5/L8は#2752でmainへ統合された固定本文であり、採択済み親L2-001/L2-006の詳細化と、L2-005の適用範囲を保持する。上記hashはorigin/mainのexact bytesを識別する。L4/L9の固定本文が変わった場合、この候補の対応は再照合が必要となる。固定親の詳細とL3/L10全体pinはL4/L5/L8を参照し、ここではfunctional AC/caseだけへ承認scopeを狭めない。
+L5/L8のbase bytesは#2752でmainへ統合されたexact bytesであり、採択済み親L2-001/L2-006の詳細化とL2-005の適用範囲を保持する。本WTの上記hashは配置detailを追補したcandidate bytesで、origin/mainの現行hashではない。L4/L9の固定本文が変わった場合、この候補の対応は再照合が必要となる。固定親の詳細とL3/L10全体pinはL4/L5/L8を参照し、ここではfunctional AC/caseだけへ承認scopeを狭めない。
 
 現Common Kernel参照は上記mainのbytesに固定する。K1 `Observed<T>`とpolarity、K2 `SubjectRef`/`ResultKey`、K3の既存5-field `PermissionQuery`とcurrent owner resolver、K5 evidence projection、K6 read receipt、K7 generation pointer/EpochToken fencing、K10 dependency closureを既存型のまま利用する。K7 pointer/fencingをOS operation/attempt stateとして扱わない。L5の歴史的Common Kernel pinsはL5が記録する履歴snapshotであり、現在mainのbytesと混同しない。
 
@@ -135,3 +135,17 @@ L4/L9/L5/L8に既にある未決は、影響するsource field・operation・cas
 ## 5. L7との対応
 
 L7は本書の関数IDと現L9の全40 oracle IDに1対1の設計fixture locatorを付ける。L9 ID自体は再定義・再採番しない。L7の期待値は合成fixture上の設計期待であり、実装・実source観測・CI実行・L10合格を意味しない。
+
+## 6. unit source/test配置と固定参照照合
+
+本節はL5 §9の候補配置を実装時にどう選択・検証するかの技術案であり、L5/L8のparent scopeや既存6 APIを変更しない。対象main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`にはINFRA declaration/source/test moduleが無い。したがって候補pathを既存のmodule identityと取り違えず、後続実装の登録・owner解決が済んだと仮定しない。
+
+| 対象 | 候補 locator / 入力 | source-selectionで行う照合 | 設計範囲外 |
+|---|---|---|---|
+| unit declaration | `helix/helix-infrastructure/units/infrastructure-stage1/declaration.json`。source selection側は既存`SubjectRef`（`kind`、`identity`、`revision`、`digest`）と、repository tree内の別locator/path、およびそこから解決されたimmutable bytesを受ける。 | locatorのrevision/pathからbytesを解決し、そのSHA-256を`SubjectRef.digest`と照合する。宣言本文の既存`identity`を正本として読み、repository-layout L4 §6.1の`enc(identity)`を再計算して、対象path要素と一致するかを見る。 | 新declaration field/schema、宣言値の補完、K5 registration/owner/bootstrap処理。 |
+| source module | `helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py` | declaration refから決まる同一unit root配下だけをmodule locatorとする。固定bytesまたはidentity/path不一致ならmoduleをimportしない。 | root走査によるmodule discovery、runtime時の`docs/`/`declarations/`読み、別pathへのfallback、実source実装。 |
+| unit tests | `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py` と同rootの`fixtures/` | L7 fixture locatorはunit root内の固定test pathへ解決する。fixture dataは合成入力とし、test identityを既存L7/L8 IDへ対応させる。 | pack directory一覧からのsuite inventoring、L9 verifier追加、test実行・CI成功・owner integrationの主張。 |
+
+source locator導出はCI/設計検証側の入力解決手順であり、`helix/`製品コードの公開関数ではない。候補内部helperは、既存`SubjectRef`と別locator/path、解決済みimmutable bytesを受ける純粋照合とし、出力は候補pathまたは未選択に留める。ここで`SubjectRef`は`kind`/`identity`/`revision`/`digest`でsourceを束縛し、pathはtree locatorとして別に保持する。Common Kernel K5 `FixedRef`（`store`/`locator`/`digest`）は別の保存・証拠参照型であり、source identityへ読み替えない。これはdeclaration全項目の妥当性、登録、usable判定ではなく、moduleをimport/testを実行する指示でもない。K1 `Observed`、新規diagnostic/reason、pack登録状態へ変換しない。digest不一致は`SubjectRef.digest`とresolved bytesの不一致として既存K6 read boundaryへ戻し、宣言identityとpathの不一致はrepository-layout RL-C4、宣言欠落はRL-C5へ戻す。treeに別directoryがあっても、参照されたdeclarationから定まらないmodule/testを自動選択しない。実行時の製品sourceが宣言/記録をpathから読むことはRL-D3に反するため、ここで述べるref解決は設計/CI入力準備に限定する。
+
+固定宣言のexact `SubjectRef`と独立tree locator/pathは現在存在しないため、本候補L6は数値pinを作らない。declaration bytesが後続の実装候補として用意されたとき、そのsource referenceとlocatorを同一対象revisionへ固定し、L7がそのbytes/path照合とL8 locator expectationsを確認する。unit testのfixture successとCommon Kernel K5型番台帳の`ModelNumberDeclared`/`VersionRegistered`は別の証拠である。registration未解決はunit source/testのpure設計候補を妨げないが、pack usability/収載をpositiveにしない。
