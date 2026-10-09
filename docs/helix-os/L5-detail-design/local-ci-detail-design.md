@@ -214,15 +214,15 @@ L7SuiteIdentityArtifactはschema/kind、suite ID、target、Core/product/helper 
 
 固定runner argvは`python3 -B scaffold/local-ci/source_l7_runner.py --suite stage1-l7-source`とする。runner設計はtarget snapshot内の明示されたsuite inventoryだけをloadし、Core、L5 §8.1の製品補助、§8.2の機構helper partitionを個別に照合する。Core discovery setは586 identities、製品補助setは27 identities、機構helper setは候補103 identitiesとして各別digestを持ち、同じtarget内の候補unionを716件として導出する。三partitionのexpected IDsが一意かつ相互disjointであることを検査してから、登録済みsourceの各identityを一度ずつ実行する。formal mappingは既存Coreの495行のみで、補助test identityをformal mappingへ加えない。runner自身とtoolchain identityもtarget/config refsへ固定し、shell/glob/任意plugin discoveryを介さない。CPython 3.11+と標準ライブラリの技術候補はこのlocal suite runnerに限り、製品runtimeを定めない。
 
-6-check固定集合はplan/receiptの必要構造である。source suiteが未登録packであることだけではexecutionを止めない一方、現対象treeからrequired source/testを読めない場合の非肯定は維持する。main eeb6ae7 runtimeの現行対象はCore586と製品補助27（613）で、機構helper103はruntime未登録の設計候補である。候補716件全件が同一targetで各一度実行された結果だけをsuite execution successとする設計である（Core 586、製品補助27、機構helper103を別partitionとして照合する）。helper103はeeb6 main runtime未登録の設計候補であり、現行runtimeの実行成功を意味しない。機構のformal locator、元status、owner returnは実行対象外のsource traceであり、formal L7 mappingやcoverage edgeにはしない。その他のStage 1機構のstateは変えず、Stage 1全体L7 coverage、各L8/L9 oracle、OS-020/HARNESS適合を意味しない。
+6-check固定集合はplan/receiptの必要構造である。source suiteが未登録packであることだけではexecutionを止めない一方、現対象treeからrequired source/testを読めない場合の非肯定は維持する。レビュー対象base `0b402da`のruntimeが対象とするのはCore586と製品補助27（613）であり、このidentity集合は`eeb6ae7`から不変である。suite成功の設計条件はCore 586、製品補助27、機構helper103の三partitionを別々に照合し、候補716件全件を同一targetで各一度実行した結果である。機構helper103はruntime未登録の設計候補であり、現行runtimeの実行成功を意味しない。機構のformal locator、元status、owner returnは実行対象外のsource traceであり、formal L7 mappingやcoverage edgeにはしない。その他のStage 1機構のstateは変えず、Stage 1全体L7 coverage、各L8/L9 oracle、OS-020/HARNESS適合を意味しない。
 
 runner outcomeの5組は`failure_count/failed_ids`、`error_count/error_ids`、`skip_count/skipped_ids`、`expected_failure_count/expected_failure_ids`、`unexpected_success_count/unexpected_success_ids`である。全組のcountとunique ID集合を照合し、ID配列はfull artifactだけに保持する。expected failureもこの固定suiteでは許容せず、5 countのいずれかが非zeroならstep failとする。runner exitが非zeroなのに5組すべて空なら結果の矛盾としてcomplete evidenceを発行しない。XDG未設定時のartifact rootは上記のuid別固定pathであり、保存先を失う一時directoryを毎回作らない。source準備が`Unknown(missing_input)`または`Unknown(conflict)`で停止した場合は、両方とも先行5件の外部partial diagnosticを保持し、suite行とreceiptを作らない。formal ID照合は現行CK L7に明記されたplaceholder値の明示展開だけを許し、任意文字列regexからIDを合成しない。
 
 ### 8.1 4機構の製品補助test partition
 
-`LC-STAGE1-L7-001`は同一checkのまま、既存Common Kernel suiteを不変の`core_partition`とし、以下の4機構のsource-only unittestを`mechanism_supplemental_partition`として追加する。呼出しは`python3 -B scaffold/local-ci/source_l7_runner.py --suite stage1-l7-source`とし、`check_id`は引き続き`LC-STAGE1-L7-001`、固定6 step、local-only、`merge_unit=false`である。`common-kernel-k1-k2-k3-k5-k6`はCore partitionの歴史的識別子として保持する。新しいcheck、L7 requirement、formal mapping, owner registration, product acceptanceを作らない。
+`LC-STAGE1-L7-001`は同一checkのまま、既存Common Kernel suiteを不変の`core_partition`とし、§8.1の製品補助testを`product_supplemental_partition`、§8.2の機構helperを`mechanism_helper_partition`として分ける。呼出しは`python3 -B scaffold/local-ci/source_l7_runner.py --suite stage1-l7-source`とし、`check_id`は引き続き`LC-STAGE1-L7-001`、固定6 step、local-only、`merge_unit=false`である。`common-kernel-k1-k2-k3-k5-k6`はCore partitionの歴史的識別子として保持する。suite successは当該design candidateの三partition全件が同一targetから実行され、全結果が揃う場合に限る。機構helper103はruntime未登録の設計候補なので、この設計条件を現行runtimeの実行成功とは扱わない。新しいcheck、L7 requirement、formal mapping, owner registration, product acceptanceを作らない。
 
-Core側の固定値は変更しない。`formal_id_closure={505}`, `FormalL7CallableMapping=495`, `FormalL7NotExercisedDisposition=10`, Core discovery identities `586`とその既存digestは従来どおり別に検証する。§8.1の製品補助expected setは27 identitiesで独自のsorted-ID SHA-256 `e5d71feabe981041144583fb0ee0f4754dd76d881e08fb44b48e5bf25d0b8239`を持つ。Core 586件とのdisjoint union 613件のsorted-ID SHA-256は`739e4f7078047a1bd19eb3c77a723d9a85809cd82193c383d04bb365b4bce5de`であり、§8.1までの歴史的prefix digestとして保持する。三partitionのcandidate unionは§8.2で別digestにより束縛する。完全なtarget treeに各required partitionがあるときだけ、composite discoveryは`586 + 27 = 613` identitiesとなる。composite digestを算出してもCore 586 digestを置換しない。10件のK6 dispositionはCore側に限り、機構別の原statusをK6語彙へ写さない。
+Core側の固定値は変更しない。`formal_id_closure={505}`, `FormalL7CallableMapping=495`, `FormalL7NotExercisedDisposition=10`, Core discovery identities `586`とその既存digestは従来どおり別に検証する。§8.1の製品補助expected setは27 identitiesで独自のsorted-ID SHA-256 `e5d71feabe981041144583fb0ee0f4754dd76d881e08fb44b48e5bf25d0b8239`を持つ。Core 586件とのdisjoint union 613件のsorted-ID SHA-256は`739e4f7078047a1bd19eb3c77a723d9a85809cd82193c383d04bb365b4bce5de`であり、§8.1までの歴史的prefix digestとして保持する。三partitionのcandidate unionは§8.2で別digestにより束縛する。§8.1の二partition prefix（Core 586＋製品補助27）について、完全なtarget treeに両required partitionがあるときだけ、composite discoveryは613 identitiesとなる。これは§8.2で機構helper partitionを加える716 identitiesの三partition候補とは別のprefix値である。composite digestを算出してもCore 586 digestを置換しない。10件のK6 dispositionはCore側に限り、機構別の原statusをK6語彙へ写さない。
 
 ```text
 MechanismFormalLocator = {
@@ -262,7 +262,8 @@ MechanismSupplementalPartition = {
 }
 SourceL7SuiteInventory = {
   core_partition: existing fixed Core inventory,
-  mechanism_supplemental_partition: exactly four fixed MechanismSupplementalPartition entries
+  product_supplemental_partition: the existing four fixed product-supplemental inventories,
+  mechanism_helper_partition: the fixed §8.2 helper candidate inventory
 }
 ```
 
@@ -339,7 +340,7 @@ ID集合は上表のSupplementalTestId 27件（BRAIN 13、LABO 4、HARNESS 5、I
 
 helper familyのsource module解決も固定表を使う。LABOとSECURITYは`projection.py`という同じbasenameを持ち、対応testはそれぞれ`import projection as candidate`と`from projection import ...`をmodule load時に行う。候補loaderは各test moduleをloadする直前に、対応する固定source pathのmodule objectだけを`sys.modules["projection"]`へ一時bindingし、test moduleのglobalへ参照が束縛された後、以前の`projection` entryだけを復元する。無関係な`sys.modules`全体は消去せず、directory scanやbasenameからの自動選択も行わない。これはPython import cacheに対する技術候補であり、runtimeに未実装・未検証である。source/test bytes変更は既存digest照合で止める。
 
-`SourceL7SuiteInventory`は`core_partition`、`mechanism_supplemental_partition`、`mechanism_helper_partition`の3固定keyを持つ候補形とする。`L7SuiteIdentityArtifact.partition_evidence`も同じ3 partitionを別々に記録し、各partitionについてdiscovered/executed countとsorted-ID digestを保持する。composite 716 count/digestは独立したunion値である。raw source traceはfull artifact内のsource referenceとして保持し、`source_l7_inventory_digest`へ含めない。formal mapping、Core 586 digest、product27 digestは既存値を置換しない。
+`SourceL7SuiteInventory`のpartition fieldは`core_partition`、`product_supplemental_partition`、`mechanism_helper_partition`の3固定keyを持つ候補形とする。一方、`L7SuiteIdentityArtifact.partition_evidence`は既存schemaどおり`core`、`product_supplemental`、`mechanism_helper`の3固定keyを持つ。両者は同じ三partitionを指すが、field名はそれぞれの閉じたschemaに従い、相互に別名置換しない。各artifact partitionについてdiscovered/executed countとsorted-ID digestを保持する。composite 716 count/digestは独立したunion値である。raw source traceはfull artifact内のsource referenceとして保持し、`source_l7_inventory_digest`へ含めない。formal mapping、Core 586 digest、product27 digestは既存値を置換しない。
 
 | helper ID | fixed unittest identity |
 |---|---|

@@ -3269,7 +3269,7 @@
               ]
             },
             {
-              "literal": "`UT-LCI-101`〜`UT-LCI-113`, `UT-LCI-120`〜`UT-LCI-132`, `UT-LCI-133`〜`UT-LCI-153`",
+              "literal": "`UT-LCI-101`〜`UT-LCI-113`, `UT-LCI-120`〜`UT-LCI-132`, `UT-LCI-133`〜`UT-LCI-154`",
               "ids": [
                 "UT-LCI-101",
                 "UT-LCI-102",
@@ -3317,7 +3317,8 @@
                 "UT-LCI-150",
                 "UT-LCI-151",
                 "UT-LCI-152",
-                "UT-LCI-153"
+                "UT-LCI-153",
+                "UT-LCI-154"
               ]
             }
           ]
@@ -22237,6 +22238,19 @@
         "verifier_id": "UT-LCI-153",
         "outcome_column": 4
       }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-154",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-154",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-154",
+        "outcome_column": 4
+      }
     }
   ],
   "coverage_dispositions": [
@@ -24614,7 +24628,8 @@
         "edge.local.F-LCI-10.UT-LCI-150",
         "edge.local.F-LCI-10.UT-LCI-151",
         "edge.local.F-LCI-10.UT-LCI-152",
-        "edge.local.F-LCI-10.UT-LCI-153"
+        "edge.local.F-LCI-10.UT-LCI-153",
+        "edge.local.F-LCI-10.UT-LCI-154"
       ]
     },
     {

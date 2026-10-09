@@ -589,7 +589,7 @@ LCI_L8_PATH = "docs/helix-os/L8-detail-verification/local-ci-detail-verification
 LCI_L9_PATH = "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md"
 LCI_L7_SUITE_IDS = (frozenset(f"UT-LCI-{number}" for number in range(100, 114))
                     | frozenset(f"UT-LCI-{number}" for number in range(120, 133))
-                    | frozenset(f"UT-LCI-{number}" for number in range(133, 154)))
+                    | frozenset(f"UT-LCI-{number}" for number in range(133, 155)))
 LCI_L8_SUITE_IDS = (frozenset(f"CASE-L8-LCI-{number}" for number in range(100, 113))
                     | frozenset(f"CASE-L8-LCI-{number}" for number in range(118, 131))
                     | frozenset(f"CASE-L8-LCI-{number}" for number in range(131, 153)))

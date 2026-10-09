@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS local CI運転契約",
   "state": "active",
-  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernelの固定Core inventoryとBRAIN/LABO/HARNESS/INFRAの製品補助partitionを保持する。現行main eeb6 runtimeはCore586＋製品補助27の613 identitiesを対象とする。L5 §8.2の機構helper103とunion716は設計追補候補で、runtimeには未登録・未実行である。manifestはhelper IDsの構造定義とsource/literal/reference/edge/dispositionだけを照合し、正式fixture pass、owner接続、登録、L8/L9合格を生成しない。同期の成立は個別の文書・参照・実装証拠で再検証し、Bindingから実装・合格を生成しない。",
+  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernelの固定Core inventoryとBRAIN/LABO/HARNESS/INFRAの製品補助partitionを保持する。レビュー対象base 0b402daのruntimeはCore586＋製品補助27の613 identitiesを対象とし、そのidentity集合はeeb6ae7から不変である。L5 §8.2の機構helper103とunion716は設計追補候補で、runtimeには未登録・未実行である。manifestはhelper IDsの構造定義とsource/literal/reference/edge/dispositionだけを照合し、正式fixture pass、owner接続、登録、L8/L9合格を生成しない。同期の成立は個別の文書・参照・実装証拠で再検証し、Bindingから実装・合格を生成しない。",
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
@@ -15,27 +15,27 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "2d6899e7b28260290562632b4fd5ca848168af345292401c3fd23248b8c39f75",
+      "sha256": "b7808a05292ac9f6cf2b7403fde426731fefa4750d0fee1e925ab0b174c9ed9a",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "c52d39cfc4ad2bc7469725284db76ed300a9d78806bb05ebafe7ce171a622753",
+      "sha256": "303bd6325d5ceb1aa1d1abd716a8bac2c343f7c8d0eb7fe96139482bd933e37b",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "f656baed7f0c1616ee6f654098212341f2574cc4a80aa4a97fde8c1bdaf84ac2",
+      "sha256": "2515fc8c2fcaef66d53ff4e550777534a080875f148aa8acc97726c98e741387",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "a4deac6d73a81bc84ca9d23613c8e11979a1c15e4af192f50b8471977bec62eb",
+      "sha256": "201dd7b8b2f84db20f0766b1a0bb4f7839ad856a9ccb4c2bb596fa7a1ee825d6",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "9c69ece956c58c94cd344c8774e02cccb42d2561f86610d97f4f5e36865055c4",
+      "sha256": "716efb68df195f37889b94815690500b5007d4334ce54bce197b25773fcd0842",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -424,7 +424,7 @@
       "docs/helix-os/L5-detail-design/local-ci-detail-design.md D-LCI-01..06",
       "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, CASE-L8-LCI-118..152 (design IDs 113..117 are not suite fixtures)",
       "docs/helix-os/L6-function-design/local-ci-function-design.md F-LCI-01..08 / F-LCI-09a..09d / F-LCI-10",
-      "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI-01..113, UT-LCI-120..143 (design only; not executed)",
+      "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI-01..113, UT-LCI-120..154 (design only; not executed)",
       "source-byte / target-tree digests and checkout-outside receipt location"
     ],
     "negative_cases": [

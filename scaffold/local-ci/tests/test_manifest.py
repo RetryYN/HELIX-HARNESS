@@ -405,7 +405,8 @@ class DesignManifestTests(unittest.TestCase):
         self.assertEqual(len(doc["coverage_dispositions"]), 193)
         self.assertEqual(len(manifest.LCI_L9_SUITE_IDS), 44)
         self.assertEqual(len(manifest.LCI_L8_SUITE_IDS), 48)
-        self.assertEqual(len(manifest.LCI_L7_SUITE_IDS), 48)
+        self.assertEqual(len(manifest.LCI_L7_SUITE_IDS), 49)
+        self.assertIn("UT-LCI-154", manifest.LCI_L7_SUITE_IDS)
         self.assertEqual(set(manifest.LCI_SUPPLEMENTAL_CASE_BY_IV),
                          ({f"IV-LCI-{n}" for n in range(100, 111)} | {f"IV-LCI-{n}" for n in range(111, 122)}))
         self.assertEqual(set(manifest.LCI_SUPPLEMENTAL_CASE_BY_IV.values()),
@@ -416,10 +417,10 @@ class DesignManifestTests(unittest.TestCase):
         self.assertEqual(len([edge for edge in doc["coverage_edges"]
                               if edge["source_id"] == "D-LCI-06"]), 48)
         self.assertEqual(len([edge for edge in doc["coverage_edges"]
-                              if edge["source_id"] == "F-LCI-10"]), 48)
+                              if edge["source_id"] == "F-LCI-10"]), 49)
         local_edges = [edge for edge in doc["coverage_edges"]
                        if edge["source_id"] in {"LC-STAGE1-L7-001", "D-LCI-06", "F-LCI-10"}]
-        self.assertEqual(len(local_edges), 140)
+        self.assertEqual(len(local_edges), 141)
 
     def test_supplemental_l9_case_reference_cannot_be_crosswired(self):
         doc, sources, _ = _baseline()
