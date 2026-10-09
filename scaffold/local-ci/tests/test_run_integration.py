@@ -18,7 +18,7 @@ from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
 from plan import compile_plan, COMMAND_TEMPLATES
 from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS,
-                              FORMAL_MAPPING, SOURCE_SHA256, SUITE_ID)
+                              FORMAL_ID_CLOSURE, FORMAL_MAPPING, SOURCE_SHA256, SUITE_ID)
 
 TARGET = {"repository_id": "RetryYN/HELIX-HARNESS", "base_commit": "a"*40,
           "merge_base": "a"*40, "head_commit": "b"*40, "head_tree": "c"*40,
@@ -56,10 +56,10 @@ class RunIntegrationTests(unittest.TestCase):
         self.reader.entries.return_value = {}
         def target_blob(_entries, path, _expected=None):
             if path == CURRENT_DESIGN_PATHS[1]:
-                return "\n".join("`" + row["formal_l7_id"] + "`" for row in FORMAL_MAPPING).encode()
+                return "\n".join("`" + ident + "`" for ident in FORMAL_ID_CLOSURE).encode()
             if path in SOURCE_SHA256:
                 return subprocess.check_output(
-                    ["git", "show", "ea7f650904963234d69b0f27f9b5edfcf17e5861:" + path],
+                    ["git", "show", "79013543184a6e47f99bc2ded1bb7a2e7f85737e:" + path],
                     cwd=_LOCAL_CI.parent.parent)
             return Path(_LOCAL_CI.parent.parent, path).read_bytes()
         self._target_blob = target_blob
@@ -113,9 +113,9 @@ class RunIntegrationTests(unittest.TestCase):
         self.assertEqual((raised.exception.classification, raised.exception.reason),
                          ("Rejected", "invalid_input"))
 
-    def test_k1_k2_k3_k5_suite_plan_literal_matches_supervisor_command_and_rejects_legacy_id(self):
+    def test_k1_k2_k3_k5_k6_suite_plan_literal_matches_supervisor_command_and_rejects_legacy_id(self):
         expected = ("python3", "-B", "scaffold/local-ci/source_l7_runner.py",
-                    "--suite", "common-kernel-k1-k2-k3-k5")
+                    "--suite", "common-kernel-k1-k2-k3-k5-k6")
         self.assertEqual(COMMAND_TEMPLATES[5], expected)
         compiled = compile_plan(TARGET, self.portable, "d" * 64, "1")
         suite_spec = compiled["commands"][5]

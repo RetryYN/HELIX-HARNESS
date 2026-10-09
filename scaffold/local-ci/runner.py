@@ -28,8 +28,8 @@ except ImportError:  # pragma: no cover - direct script entrypoint
 TIMEOUT_SECONDS = 300
 TERM_GRACE_SECONDS = 5
 SUPERVISOR_TIMEOUT_SECONDS = 330
-SUITE_STDOUT_CAPTURE_LIMIT = 82001
-SUPERVISOR_FRAME_MAX_BYTES = 120000
+SUITE_STDOUT_CAPTURE_LIMIT = 90515
+SUPERVISOR_FRAME_MAX_BYTES = 122000
 _HEX = frozenset("0123456789abcdef")
 _HOST_KEYS = frozenset({"python", "git", "bwrap", "mounts"})
 _EXEC_KEYS = frozenset({"python", "git", "bwrap"})
@@ -151,7 +151,7 @@ def _validate_command(spec: object) -> tuple[list[str], str]:
         CHECK_IDS[1]: ["python3", "-B", "scaffold/tools/scfctl.py", "stale"],
         CHECK_IDS[2]: ["python3", "-B", "scaffold/governance/tools/govcheck.py"],
         CHECK_IDS[4]: ["python3", "-B", "scaffold/local-ci/design_check.py"],
-        CHECK_IDS[5]: ["python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2-k3-k5"],
+        CHECK_IDS[5]: ["python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2-k3-k5-k6"],
     }
     if index == 3:
         if (len(argv) != 8 or argv[:4] != ["git", "diff", "--check", "--no-ext-diff"]
