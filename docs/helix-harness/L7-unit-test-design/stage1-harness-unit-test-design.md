@@ -435,7 +435,7 @@ L8の局所保留19件は、以下すべてに`CASE-HARNESS-L8-`を付けたID�
 
 ## 8. PackRevisionComparisonの局所実装assertion
 
-この追補はmain `8ab8d50f1c70fc3f42490f6cc0ce6d0ece7f8fcb`上のL6 §9に対応する、実装済みprivate helperの局所確認記録である。L6 SHA-256は`7aff92b54a51bc0997fb23ec2591f76b3ba55a9b13d12259368eec45f69691dd`、新source `helix/helix-harness/units/harness-stage1/src/pack_revision_projection.py` SHA-256は`1be6f0a58d82ebffd8ded44ab936fbefd48a65994eaba7f1a85e91ec3c430e63`、新test `helix/helix-harness/units/harness-stage1/tests/test_pack_revision_projection.py` SHA-256は`8c9db18475ed2c7886c535bbee6684cc29fa321ab1ded8bb6b6d6d0c1f631363`である。test moduleは`unittest`の4 methodから成り、以下のlocal aliasは後続CIの候補参照名である。aliasは新しいformal fixture ID、L8 CASE、L9 IV、SUP-00x設計行、実行登録を作らない。
+この追補は、起草基準main `8ab8d50f1c70fc3f42490f6cc0ce6d0ece7f8fcb`から本PRで追補したL6 §9（以下のL6 SHA-256は追補後本文）に対応する、実装済みprivate helperの局所確認記録である。L6 SHA-256は`7aff92b54a51bc0997fb23ec2591f76b3ba55a9b13d12259368eec45f69691dd`、新source `helix/helix-harness/units/harness-stage1/src/pack_revision_projection.py` SHA-256は`1be6f0a58d82ebffd8ded44ab936fbefd48a65994eaba7f1a85e91ec3c430e63`、新test `helix/helix-harness/units/harness-stage1/tests/test_pack_revision_projection.py` SHA-256は`8c9db18475ed2c7886c535bbee6684cc29fa321ab1ded8bb6b6d6d0c1f631363`である。test moduleは`unittest`の4 methodから成り、以下のlocal aliasは後続CIの候補参照名である。aliasは新しいformal fixture ID、L8 CASE、L9 IV、SUP-00x設計行、実行登録を作らない。
 
 | local alias | 実test method | 参照する既存SUP | 入力とassertion範囲 |
 |---|---|---|---|
