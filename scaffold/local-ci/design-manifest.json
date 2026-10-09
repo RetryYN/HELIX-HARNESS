@@ -2363,7 +2363,7 @@
               ]
             },
             {
-              "literal": "`SUP-SECURITY-001`を1件追加（L8 `CASE-L8-LCI-133`）",
+              "literal": "既存SECURITY module内の未宣言class.method identity一件だけをproduct supplemental setへ追加（L8 `CASE-L8-LCI-133`）",
               "ids": [
                 "CASE-L8-LCI-133"
               ]
@@ -2504,7 +2504,7 @@
               ]
             },
             {
-              "literal": "closed supplemental target set",
+              "literal": "product supplemental target setはBRAIN/LABO/HARNESS/INFRAの27件で閉じる",
               "ids": [
                 "LC-STAGE1-L7-001"
               ]

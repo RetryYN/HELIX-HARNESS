@@ -156,7 +156,7 @@ IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそ�
 |---|---|---|---|---|
 | `IV-LCI-100` | Core/product/helper three-partition baseline | exact target treeにCore586、L5 §8.1の製品補助27、§8.2の機構helper103が別digest/namespaceで存在する。Core/product/helper refsは固定33 source/test refsと14 unique L6/L7 pathsから解決し、formal locator/status/owner-returnはsource L7の別raw refsで保持 | 変異なし（L8 `CASE-L8-LCI-131`） | Core586、製品補助27、helper103の各count/digestとdisjoint union716を照合する。505/495/K6 dispositionsとCore/product digestsは従前値を保持し、新しいformal mappingなし。これは実行成功ではない |
 | `IV-LCI-101` | supplemental completeness | 27件全てが固定inventoryに存在 | `SUP-BRAIN-001`のみ除外（L8 `CASE-L8-LCI-132`） | `Unknown(missing_input)`、subset実行・complete evidenceなし |
-| `IV-LCI-102` | closed supplemental target set | BRAIN/LABO/HARNESS/INFRAの27件のみ | `SUP-SECURITY-001`を1件追加（L8 `CASE-L8-LCI-133`） | `Unknown(conflict)`、未登録機構をscan・自動追加しない |
+| `IV-LCI-102` | product supplemental target setはBRAIN/LABO/HARNESS/INFRAの27件で閉じる | 27件の固定IDのみがあり、SECURITYの未宣言class.method identityは含まれない | 既存SECURITY module内の未宣言class.method identity一件だけをproduct supplemental setへ追加（L8 `CASE-L8-LCI-133`） | `Unknown(conflict)`、未宣言identityをscan・自動追加しない |
 | `IV-LCI-103` | supplemental identity uniqueness | 27 IDsは一意 | `SUP-LABO-001`を1行重複（L8 `CASE-L8-LCI-134`） | `Unknown(conflict)`、deduplicateしない |
 | `IV-LCI-104` | Core/supplemental identity separation | 二partitionはdisjoint | `SUP-INFRA-001`の`unittest_identity`だけをCore identity一件と一致（L8 `CASE-L8-LCI-135`） | `Unknown(conflict)`、同一identityを二度実行せず黙って片側選択もしない |
 | `IV-LCI-105` | source L7 status locator binding | formal locatorとstatus cellは固定L7 rowを指す | BRAIN formal locator一件のstatus refだけを別rowへ差替（L8 `CASE-L8-LCI-136`） | `Unknown(conflict)`、raw statusを正規化せずsupplementへedgeを作らない |
