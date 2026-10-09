@@ -132,7 +132,7 @@ C01〜C40は26件とは別の内訳であり、40個の必須templateではな�
 
 ## 条件照合の結果と要求側の未完範囲
 
-確認baseは`9e39ff8f83105f70cb58fb3b940596428e3f0b71`。[条件照合記録](audits/template-condition-review-2026-10-10.json)にDST12件の要求・確認結果を44の条件群として保存し、各候補の正常・負例・unknown、比較先L2/L11、既存保証と固有の未確認範囲を記録した。26seedは本文digest・適用条件の所在・候補状態・保全理由へ結んだ。これは全seed本文の完全atom化や採用、全旧sourceの移管監査ではない。
+確認baseは`9e39ff8f83105f70cb58fb3b940596428e3f0b71`。[条件照合記録](audits/template-condition-review-2026-10-10.json)にDST12件の要求・確認結果を44の条件群として保存し、各候補の正常・負例・unknown、比較先L2/L11、既存保証と固有の未確認範囲を記録した。旧§1の6surface、§2の6componentも原文行digest・現行owner・L2/L11比較先・保持意味・未完範囲へ一項目ずつ結んだ。26seedは本文digest・適用条件の所在・候補状態・保全理由へ結んだ。これは全seed本文の完全atom化や採用、全旧sourceの移管監査ではない。
 
 MPRと判断記録を照合した結果、DST identityそのものの仮登録・対象revision付き採否は確認できなかった。BRAIN-L1の判断にあるDST-HARNESS-002/DST-OS-001への言及は企画の根拠であり、DSTのL2採否ではない。比較先の採択済み要求はその対象decisionのまま保持し、DSTが未採択であることを理由に未採択へ戻さない。
 
@@ -147,4 +147,4 @@ MPRと判断記録を照合した結果、DST identityそのものの仮登録�
 
 要求側の未完範囲は既存ロードマップ#2846へ保持する。次はこの4行の未確定部分を、既存採択で保持できる条件、追加・具体化の候補、採否対象と版が必要な差分へ分け、一要求identityずつ対象revisionへ結ぶ。DST12件を無条件にまとめて採用する案、schema/runtime/registryの新設、L3再開は本照合から生成しない。
 
-#2841〜#2843のimmutable ticketは要求整理・比較・不足の区別を指示しており、候補/seedの正式昇格を含まない。これらのcloseは、独立review側がticket本文の全作業と本照合の不足保全を確認した場合に限る。closeした場合も上記未完範囲、#2846、候補状態とScaffold Bindingは残り、要求段階全体の完了にはしない。確認が不足していれば元IssueをOPENのまま保つ。
+#2841〜#2843のimmutable ticketは要求整理・比較・不足の区別を指示しており、候補/seedの正式昇格を含まない。closeはticket本文の全作業と本照合の不足保全を、review結果・mergeとは別に確認して判断する。担当の扱いは[現行運用](github-upstream-operating-model.md#review判断merge-admission)の作成側のclose制限と、対応Issueの完了条件を別に確認する条項に従う。本照合から担当の変更や新しいclose手続きは作らない。closeした場合も上記未完範囲、#2846、候補状態とScaffold Bindingは残り、要求段階全体の完了にはしない。確認が不足していれば元IssueをOPENのまま保つ。

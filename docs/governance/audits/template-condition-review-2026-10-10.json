@@ -52,6 +52,14 @@
     {
       "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
       "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/governance/decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md",
+      "sha256": "3d7d0940399414e8ea7ea751f55ee012647c5ee2e834446b9c5a8d2e2ee273d7"
     }
   ],
   "legacy_source": {
@@ -63,7 +71,25 @@
     "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
     "retained": "意味契約・生成view分離・ID/版・適用/portfolio/pair",
     "changed": "汎用BRAIN/製品適用CORE/案件運転OSへ既決判断どおり対応付ける。旧schema/runtimeを再利用しない。",
-    "reason": "製品を跨ぐ再利用構造と製品固有意味/実行事実の責務分離。"
+    "reason": "製品を跨ぐ再利用構造と製品固有意味/実行事実の責務分離。",
+    "additional_conditions": [
+      {
+        "source_lines": [
+          19,
+          30
+        ],
+        "condition": "機械判断の契約をJSON意味正本とし、画像/Markdown/tool-node/pathだけを主キーにしない。",
+        "comparison": "BRAIN008のidentity/revision、既決JSON正本、OS053の意味正本/生成view境界と照合。"
+      },
+      {
+        "source_lines": [
+          43,
+          44
+        ],
+        "condition": "旧sliceのschema/runtime/algorithm/instance生成/pair freezeは後続材料。",
+        "comparison": "現行L3停止を保持し、旧予定を新しい解禁・実装済み証拠へ継承しない。"
+      }
+    ]
   },
   "candidate_count": 12,
   "condition_group_count": 44,
@@ -756,5 +782,194 @@
     "全条件の意味被覆/正式successor/registry/schemaの成立を主張しない。",
     "seedの機械的候補保全は採否ではなく、採用対象revision・選択集合・適用の不足は#2846に保持する。",
     "Issue closeは本監査とimmutable ticketの完了条件を独立に確認して判断する。監査のmergeから自動生成しない。"
+  ],
+  "legacy_surfaces": [
+    {
+      "source_line": 23,
+      "source_line_sha256": "95ecda9c8007dc99b5831dcabffe8eb518d726f6cc843540f1e2cff13b877ebd",
+      "name": "Design Template JSON",
+      "current_role": "BRAIN（汎用構造）/CORE（製品適用）",
+      "l2_l11_comparison_targets": [
+        "BRAIN003",
+        "BRAIN008",
+        "BRAIN028",
+        "HARNESS009",
+        "HARNESS041"
+      ],
+      "preserved_meaning": "ID/version、layer/pair、適用、input/section/field、owner、trace、negative oracle、measurement、completion、downstream kindを意味契約として比較。",
+      "pending_scope": "汎用templateの全field提供・template採否は未固定。旧pair freezeでcanonicalになるauthorityを現行BRAIN採否へ自動継承しない。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    },
+    {
+      "source_line": 24,
+      "source_line_sha256": "c9edada174019e47c72921be86564afb4ed557d81aa727b97706a337c28af4e8",
+      "name": "Design Instance JSON",
+      "current_role": "CORE",
+      "l2_l11_comparison_targets": [
+        "HARNESS025",
+        "HARNESS026"
+      ],
+      "preserved_meaning": "選択templateと要求/義務を製品固有設計へ束縛する。BRAIN知識正本へ製品設計値を入れない。",
+      "pending_scope": "instance schema/生成/保存は未設計。旧L5 episodeを現行の解禁としない。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    },
+    {
+      "source_line": 25,
+      "source_line_sha256": "a4576964914fecf2f9dd8a1cabfb9be1f1b4e5d1ad403c69e807cbf5e08e75f8",
+      "name": "graph JSON",
+      "current_role": "CORE",
+      "l2_l11_comparison_targets": [
+        "HARNESS025",
+        "HARNESS026",
+        "HARNESS040",
+        "HARNESS056"
+      ],
+      "preserved_meaning": "component/state/data/sequence/pair edgeの構造的意味は製品設計と対traceの範囲。",
+      "pending_scope": "graph schema/表現の型・生成は未固定。旧図のnode IDを意味identityにしない。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    },
+    {
+      "source_line": 26,
+      "source_line_sha256": "f20ac248c375406be4efde8556bd748ab5bceb64a823d2278c5b3b16dbdaf037",
+      "name": "generated Markdown/HTML/Mermaid",
+      "current_role": "各意味ownerの生成view・OSの保存/projection",
+      "l2_l11_comparison_targets": [
+        "OS053",
+        "HARNESS052"
+      ],
+      "preserved_meaning": "JSON意味正本と生成viewを分け、生成viewだけの編集を正本更新にしない。",
+      "pending_scope": "template/instance/graph固有のgeneratorとdeterministic-render oracleは未固定。OS保存成功を意味更新にしない。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    },
+    {
+      "source_line": 27,
+      "source_line_sha256": "fdf8cfe7dbd97b7596a45af9f335941dd8136c841c397181f680e4b9baa7401b",
+      "name": "supplemental Markdown",
+      "current_role": "説明対象の意味owner",
+      "l2_l11_comparison_targets": [
+        "BRAIN019",
+        "HARNESS025",
+        "HARNESS026"
+      ],
+      "preserved_meaning": "rationale/alternative/trade-offは参照identityへ結ぶ説明。構造的意味正本を上書きしない。",
+      "pending_scope": "説明の具体形式は未固定。汎用知識のtrade-offと製品選択理由を分ける。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    },
+    {
+      "source_line": 28,
+      "source_line_sha256": "c021d18432dd811f6ba1634c20273a962bd6868e50e203a47eff88ccaf3c5bec",
+      "name": "design catalog",
+      "current_role": "OSの所在/版/状態登録、知識stateはBRAIN",
+      "l2_l11_comparison_targets": [
+        "BRAIN008",
+        "OS001",
+        "OS019"
+      ],
+      "preserved_meaning": "所在・分類inventoryをtemplate schema/意味authorityと混同しない。",
+      "pending_scope": "旧yaml/path/分類を新registryとしてcopyしない。project template exact setは未固定。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    }
+  ],
+  "legacy_components": [
+    {
+      "source_line": 36,
+      "source_line_sha256": "54738f63205808e35f539e8a1b4b39a6d7a21511870203df84260c26cddc9e5d",
+      "name": "DesignTemplateRegistry",
+      "current_role": "BRAIN汎用版/状態・OS使用set",
+      "l2_l11_comparison_targets": [
+        "BRAIN008",
+        "BRAIN028",
+        "OS001",
+        "OS019"
+      ],
+      "preserved_meaning": "ID/version/supersession、exact set、unknown版/digest driftを比較する。",
+      "pending_scope": "template固有registry schema・duplicate判定・exact setのbindingは未固定。旧componentそのものの再利用ではない。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    },
+    {
+      "source_line": 37,
+      "source_line_sha256": "8af6c9adff61307c124d5d5b2fddce9446a65c93a8a5a01d3bc9b428fbe6880b",
+      "name": "ApplicabilityEvaluator",
+      "current_role": "CORE。BRAINは条件材料",
+      "l2_l11_comparison_targets": [
+        "BRAIN003",
+        "BRAIN022",
+        "HARNESS009",
+        "HARNESS023"
+      ],
+      "preserved_meaning": "適用/非適用の理由とunknown保留を保ち、自由文から適用成功を推定しない。",
+      "pending_scope": "旧all/any/not/operator/enumの式木・schemaは未固定。現行4区分で旧全predicate条件を被覆したとはしない。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    },
+    {
+      "source_line": 38,
+      "source_line_sha256": "6e48b58d61ed4023744d803f666dac273e35e05416142dee2202ed0c0b8f2573",
+      "name": "TemplateShadowCompiler",
+      "current_role": "汎用候補はBRAIN、製品obligation抽出はCORE",
+      "l2_l11_comparison_targets": [
+        "BRAIN007",
+        "BRAIN018",
+        "BRAIN025",
+        "HARNESS041"
+      ],
+      "preserved_meaning": "旧template/design inventoryを候補材料にし、未分類・意味欠落・二重authorityを隠さない。",
+      "pending_scope": "041のobligation抽出はshadow変換/parity全体と同じ能力ではない。変換・parity・採否の契約は未固定。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    },
+    {
+      "source_line": 39,
+      "source_line_sha256": "44f61fca0b7924b228dfc94fe5449a34ea6c4768128e55fa6930c03f8439db0a",
+      "name": "GeneratedViewProjector",
+      "current_role": "意味ownerの生成契約・OS保存/projection",
+      "l2_l11_comparison_targets": [
+        "OS053",
+        "HARNESS052"
+      ],
+      "preserved_meaning": "JSON/source revision・生成viewを別に保持し、source不一致やview直接編集を正本更新にしない。",
+      "pending_scope": "template固有renderとsource digest/決定論の全oracleは未固定。旧projector実行を新世代証拠にしない。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    },
+    {
+      "source_line": 40,
+      "source_line_sha256": "8591e7807f8be4ce1c19653a1634c54274b85bd0baa5149958e092f3a2139498",
+      "name": "DesignPortfolioPlanner",
+      "current_role": "HARNESS内の製品適用能力。BRAINは知識候補",
+      "l2_l11_comparison_targets": [
+        "HARNESS009",
+        "HARNESS044",
+        "BRAIN019"
+      ],
+      "preserved_meaning": "reuse/delta/new/N-A、未被覆・重複・fabricated identity、最小portfolioの意味を比較。",
+      "pending_scope": "044は契約coverage portfolioの限定保証であり、旧planner algorithm/schemaや全template選定の移管を証明しない。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    },
+    {
+      "source_line": 41,
+      "source_line_sha256": "b780ac9128b3756f56fa9ea8e7af87d4ab9606f693c4a696f73cbbdad0d6dce3",
+      "name": "PairGraphBinder",
+      "current_role": "HARNESSのpair意味・CORE製品設計、OS実証記録",
+      "l2_l11_comparison_targets": [
+        "HARNESS025",
+        "HARNESS026",
+        "HARNESS040",
+        "HARNESS056",
+        "OS019"
+      ],
+      "preserved_meaning": "選択template/設計と対oracle・exact revision・completionを束縛し、片側欠落・別revision・staleを完了にしない。",
+      "pending_scope": "graph binding/schema/freezeの実行は未固定。旧2pairだけをcurrent全6pairと見なさない。",
+      "residual_issue": 2846,
+      "reuse_class": "意味の再導出の比較材料。完全一致実装再利用/正式移管を主張しない。"
+    }
   ]
 }
