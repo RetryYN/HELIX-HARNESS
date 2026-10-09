@@ -112,7 +112,6 @@ OS017/020/023のL2/L11とINT031/035/037のL2の選択本文は9/28固定採択co
 | S23 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md` | 38–46 |
 | S24 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md` | 47–60 |
 | S25 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md` | 81–92 |
-
 | S26 | `docs/helix-os/L2-requirements/governance-requirements.md` | 674–683 |
 
 ## 元Issueの残条件
