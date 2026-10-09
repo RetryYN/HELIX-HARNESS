@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-      "sha256": "f2995068051d92d0f0b399503668bf2a7db2a667ac4798fdd370d3ba4ad56692",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
       "note": "HELIXBRAIN-L2-001の初期10領域と、知識の由来・scope・評価根拠・限界・版・状態の属性。採否なし"
     },
     {
@@ -25,7 +25,7 @@
     },
     {
       "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
-      "sha256": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87",
       "note": "採択済みHELIXBRAIN-L2-INFRA-001〜017の対のL11受入条件。D07 §2の照合先。採否なし"
     },
     {

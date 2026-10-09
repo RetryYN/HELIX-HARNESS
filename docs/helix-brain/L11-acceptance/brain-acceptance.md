@@ -124,3 +124,12 @@ L2の「親L1全12件の受け先」の各行を、この文書の同ID受入へ
 - **製品固有反例**：製品固有のscreen名、API、業務語、permissionを含む例を入れ、一般化できる role concept と固有意味を分離する。固有名を汎用knowledgeへ昇格したら不合格。
 - **版・成熟度**：source/版/state/反例が欠落、または単一の成功例やAI生成のみでaccepted/matureにした場合は不合格。評価・独立検証を通ったという根拠が候補に無ければ未評価のまま保持する。
 - **HARNESS境界**：返却されたrole knowledgeを使っても、HARNESSのcanonical name、例外、rename、consumer/oracle mappingは別途のHARNESS判断とする。BRAINが採用名を決めたりコード変更を行ったら不合格。
+
+### HELIXBRAIN-L2-032 汎用Design Template意味契約の受入候補
+
+- **正常例**：同じsource/knowledge revisionに結ぶtemplate候補に、identity、version、layer/pair、applicability、required input/section/field、relation、意味owner、trace、negative oracle、measurement、completion、downstream kind、supersessionを与える。各項目と根拠を個別に比較でき、measurement/completionが適用義務と対oracleへ結ばれ、知識採否やproject適用結果とは別に識別できることを確認する。単体・接続・構成体で必要になる項目内容の違いは保持し、一つの製品設計値を共通の正解にしない。
+- **項目欠落の反例**：上記15項目を一つずつ欠落・未定義にした入力は、不足項目と元revisionを示し、完全なtemplate契約として返さない。required section/fieldの定義がないものを、別のPatternのrequired inputだけで補完しない。意味owner、measurement、completionの意味が不明なものを文書の生成成功で閉じない。
+- **値未決・非適用**：required fieldの定義があり、その製品要求値だけが未設定なら、field identity・未決理由・元knowledge版を残す。BRAIN030の受領は可能でも設計義務は未完のままCOREへ返す。根拠を示す非適用と、適用条件がunknownの場合を区別し、unknownを非適用や完全な契約へ読み替えない。
+- **identity/viewの反例**：同じfilenameの異なるtemplate identity/版、別revisionのoracle、生成Markdown/HTMLだけの変更を入力する。filename一致・表示の更新だけでJSON意味契約の一致/更新を成立させず、具体的な不一致を返す。source/版/scopeが欠落した場合は未評価を保持する。
+- **責務と未見例**：未提示の別domainまたはactorを加えた材料に、製品固有のscreen/API/permission/state、projectの採用値、単一の成功結果を混入する。汎用契約と製品固有値を区別し、BRAINが製品template選択・要求合意・設計完成・project義務消込を決定したら不合格。BRAIN候補、LABO評価、OS受領だけでaccepted/matureにしない。
+- **範囲**：これは032の内容oracle案であり、実行済みfixture、全seed採択、formal successor移管、L3承認を示さない。具体schema/判定algorithm/runtime、実際の計測値・閾値、全seedの選択・採否は別に導出する。

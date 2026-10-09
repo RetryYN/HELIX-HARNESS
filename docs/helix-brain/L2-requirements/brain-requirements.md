@@ -595,3 +595,16 @@ ZIP source catalogはscratchpad記載の201件/22分類と保持ZIP内の179件/
 - **提供境界**：HELIX-HARNESS-COREへ役割語彙と例を候補知識として返せる。HARNESS側が対象への適用・命名decision・例外を判断する。BRAINは特定の命名表、コード文法、consumer一覧、test oracle対応、rename操作を所有しない。
 - **非対象**：製品固有のAPI、screen、業務用語、permission、state、要求意味、名称の強制を汎用知識に入れない。BRAIN候補の存在や返却だけでHARNESS側の受入・採択を成立させない。
 - **出所**：BRAIN固有のlegacy requirement atomを今回の直接入力にはせず、BRAIN L1からの新規導出候補として扱う。旧role語彙はHARNESS候補の限定source inputであり、本BRAIN candidateでは参照のみ。
+
+### HELIXBRAIN-L2-032 汎用Design Templateの意味契約候補を提供する（unit candidate）
+
+- **状態・親**：新規の未採択候補。`registered_proposal`／`authority_effect: none`。親は9/28に固定したHELIXBRAIN-L1-003/005/007/008/011/012の適用条件、relation、出所、版、製品固有意味の分離、候補提供の範囲。HARNESS-L1-009はconsumer contextであり、製品固有の意味をBRAINへ移す根拠にしない。
+- **対象・版**：製品をまたぐ汎用Design Templateの意味契約を提供する単体候補。`version_target: 1.0`を提案する。全Domainや全seedの完成、全template採用、registry/schema/runtimeの成立は範囲に含めない。
+- **受け取るもの**：template候補のsource/provenance、knowledge identity/revision/state、適用する汎用の問題・条件、契約項目とその根拠。製品固有の要求値、設計instance、project適用結果は汎用templateの値へ取り込まない。
+- **提供するもの**：versioned JSON意味契約候補として、template identity、version、layer/pair、applicability、required input、required section、required field、relation、意味owner、trace、negative oracle、measurement、completion、downstream kind、supersessionをそれぞれ識別・比較できるdescriptorと、未定義・値未決・不整合の一覧を返す。出所・評価範囲・限界・採用状態はBRAIN007/008/025の知識記録へ結ぶ。JSON key、型、演算子、serialization、wire formatはここで固定しない。
+- **契約の意味**：required input/section/fieldはtemplate適用先が満たす内容を、layer/pair/downstream kindは義務の適用と受渡し対象を示す。measurementは適用義務の計測観点・根拠とoracleへの関係、completionは適用義務を満たしたと確認する条件と対oracleへの関係を示す。固定閾値や具体的な製品値を新設しない。内容が非適用の場合の根拠と、意味・値が未決の場合を分ける。項目の定義欠落を値未決や非適用で補わない。
+- **保証すること**：filename、画像、Markdown、tool node IDだけでtemplateの意味identity/版を決めない。同じidentity/revisionの契約を項目ごとに比較でき、項目欠落・未定義・矛盾を完全な契約として返さない。定義されたfieldの値がunknownの場合はfield identityと未決理由を保持し、BRAIN030の受領可能な知識receiptと、未完の製品設計義務を区別する。契約候補の生成はBRAIN知識の採用、製品templateの選択、設計完成、project義務消込を生成しない。
+- **正本・責務**：JSONの意味契約と生成Markdown/HTML等のview、説明・理由を分ける。生成viewだけの変更を新しい意味契約へ昇格させない。汎用契約とknowledge版/stateはBRAIN、製品要求への適用・設計義務・不足質問・semantic impactはHARNESS-CORE、project使用set/版・記録/運転はOSへ残す。completionの定義を持つことと、実projectの義務成立を裁定することを混同しない。layer/pair・設計義務・oracle参照は対応するHARNESS契約に従い、BRAINが層・V-pair・設計完了規則を新設または再定義しない。
+- **依存区分**：常時必須はBRAIN003/005/007/008/028の条件・relation・出所・identity/版/state・pack互換契約。COREへ知識を返す操作ではBRAIN019/022/030の版付き受渡しを照合する。CORE由来候補またはLABO評価を選んだ入力ではBRAIN018/020/025の該当source/scope/evaluation条件を使い、未選択sourceは未観測。旧template/seed/設計例は参照材料であり、authorityや必須項目の代替にしない。受渡し先の完了receiptを候補提供前の入力にしない。
+- **失敗・戻し先**：汎用項目の定義/版/関係が不明ならBRAINの該当knowledge ownerへ返す。定義済みinputの製品要求値が未決ならCOREへ未充足材料として返し、COREから既存の要求形成へ戻す。project参照版・記録不整合はOSへ戻す。別templateの成功や任意fallbackで欠落を隠さない。
+- **旧sourceと限界**：旧design-template-json-authority.md:19–30の項目・意味正本/view分離・identityを比較起点とし、DST-HARNESS-002と旧6surface/componentの照合結果を使う。意味の再導出案であり、旧schema/runtimeをcopyしない。旧pair freezeからcanonical authorityを継承せず、知識の採否は既存BRAIN007/025へ残す。旧atomの全移管・formal successor・retireは本案から生成しない。既存BRAIN003/008/028/030とHARNESS009/041の固定採択範囲は変更しない。
