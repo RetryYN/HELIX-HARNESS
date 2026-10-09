@@ -139,7 +139,7 @@ MPRと判断記録を照合した結果、DST identityそのものの仮登録�
 | 比較した条件 | 現行の保証と追加採用 | 要求・候補側に残るもの |
 |---|---|---|
 | 汎用意味契約と版 | BRAIN003/005/007/008/028に加え、032の15項目意味契約を[10/10判断](decisions/brain-template-contract-032-po-decision-2026-10-10.md)で採用（PR #2851）。041の消費側契約だけで提供側を代替しない | 各seedの具体的section/field/owner/measurement/completionと汎用契約の対応、seed対象revisionと採否。032の採用は全seed完成ではない |
-| 初期seed | 26件の`0.1.0-seed-candidate`を保全。BRAIN007/020/025は評価・登録・独立検証・採否を区別する | 最小選択set、選択seedのJSON意味契約候補とsource対応、各対象revision採否。未採択の保持理由を正式除外/retireへ変換しない |
+| 初期seed | 26候補原文を保全。SEEDFIRSTの非画面・技術的不確実性なしの限定知識を[10/10判断](decisions/seedfirst-knowledge-po-decision-2026-10-10.md)で採用し、[BRAINのJSON](../helix-brain/knowledge/requirements-acceptance-template-knowledge.json)へ配置。VT001/102とC01/C02/C08/C26の内容に限る | 全体の最小set、画面/PoC/他pair/3kind、未選択候補/cardの意味と採否。候補全体の昇格/retire、実受入を生成しない |
 | 製品への適用と戻し | 009のexact set/各判定と義務/不足/意味影響・templateごとのN/A4属性を[10/10追補判断](decisions/core-template-009-supplement-po-decision-2026-10-10.md)で採用（PR #2853）。008/025/026等の責務と既決1.0を保持 | 選択seedと製品値の対応、判定/義務の実際の成立証拠。旧型/algorithmやpair/portfolio/renderer固有bindingの全移管は別。要求採用から実行済みにしない |
 | 案件記録・選択・改善接続 | 002の候補/選択/使用set、各eventの要求revision/scope/義務への結合、LABOへの評価入力範囲/未観測追跡を[10/10追補判断](decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md)で採用（PR #2855）。評価方法/母集団/測定定義はLABOのまま | 実案件の使用版/原記録と未完義務受理・接続成立、LABO評価/BRAIN採否。記録の要求採用だけで実利用/評価成立を生成しない |
 
@@ -149,6 +149,6 @@ SDOP/VTのREADMEは未採択seedをMarkdownで持つ理由を「schemaはL3以�
 
 [最初の要求例](requirements-first-roadmap.md#一つの要求例による初回の接続照合)は、申請の承認後編集拒否について知識→設計単体/構成体→ticket→Worker→検収→Backflowの経路と戻し先を示す。各候補の正常・負例・unknownは上記監査の比較例へ結ぶ。いずれも静的な意味照合であり、実在案件のL3承認、選択template、実行receiptを供給したことにはしない。
 
-要求側の未完範囲は既存ロードマップ#2846へ保持する。次はseedの最小選択setと、選択した意味内容のJSON候補/source対応・対象revision採否を具体化する。安全/資源/計測、内部更新/復旧・支援/改善循環の要求照合は#2846へ残す。実記録・接続・評価の成立確認を、要求段階の採用や終了から生成しない。DST12件を無条件にまとめて採用する案、schema/runtime/registryの新設、L3再開は本照合から生成しない。
+要求側の未完範囲は既存ロードマップ#2846へ保持する。SEEDFIRSTの限定知識内容は上の判断に従い採用済み。次は全体の最小選択setと、画面/PoC/他pair/3kindを含む残りの意味内容・source対応・対象revision採否を具体化する。安全/資源/計測、内部更新/復旧・支援/改善循環の要求照合は#2846へ残す。実記録・接続・評価の成立確認を、要求段階の採用や終了から生成しない。DST12件を無条件にまとめて採用する案、schema/runtime/registryの新設、L3再開は本照合から生成しない。
 
 #2841〜#2843のimmutable ticketは要求整理・比較・不足の区別を指示しており、候補/seedの正式昇格を含まない。closeはticket本文の全作業と本照合の不足保全を、review結果・mergeとは別に確認して判断する。担当の扱いは[現行運用](github-upstream-operating-model.md#review判断merge-admission)の作成側のclose制限と、対応Issueの完了条件を別に確認する条項に従う。本照合から担当の変更や新しいclose手続きは作らない。closeした場合も上記未完範囲、#2846、候補状態とScaffold Bindingは残り、要求段階全体の完了にはしない。確認が不足していれば元IssueをOPENのまま保つ。

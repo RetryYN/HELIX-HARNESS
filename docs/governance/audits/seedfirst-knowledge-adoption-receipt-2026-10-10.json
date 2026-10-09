@@ -1,0 +1,36 @@
+{
+  "receipt_id": "SEEDFIRST-KNOWLEDGE-ADOPTION-2026-10-10",
+  "authority_effect": "none",
+  "base_revision": "b313df4f33d4d27b15b9565a95ccb3fc5ba40af3",
+  "decision_ref": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+  "fixed_packet_revision": "5b52bee6397125b8b9b8ca7f4a1b695605b0123e",
+  "fixed_packet_path": "docs/governance/crosswalks/requirements-resolution-packet.json",
+  "fixed_packet_sha256": "c9926d8a9db74095b0792cb134ac59e6374519acf94e1a1045a29076e7d55897",
+  "knowledge_path": "docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json",
+  "knowledge_file_sha256": "8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77",
+  "adopted_payload_sha256": "0afb4a628fbd34ca26715568298d9be0c56563ddf751c3a225541fae6e9a8ba8",
+  "payload_digest_rule": "UTF-8 JSON adopted_payload、sort_keys=true、separators=(comma,colon)、ensure_ascii=false、末尾LFなし",
+  "extraction": "units[0].scope/selection_reason、seed_candidatesのtemplate_identity/semantic_descriptors/meaning_owner_boundary/proposed_scope、selected_technique_meaningsのidentity/contract_fieldsからcost/tools/helix_exampleを除いた部分。原valueは変更しない。",
+  "template_identities": [
+    "DT-VT-001",
+    "DT-VT-102"
+  ],
+  "technique_identities": [
+    "DT-VT-002/C01",
+    "DT-VT-002/C02",
+    "DT-VT-002/C08",
+    "DT-VT-002/C26"
+  ],
+  "descriptor_count_per_template": 15,
+  "common_field_count": 15,
+  "specific_field_count": 5,
+  "adopted_contract_field_count_per_technique": 9,
+  "excluded": [
+    "source_sections全文の採用",
+    "技法のcost/tools/helix_example、例値",
+    "VT003選択matrix、C36旧モデル/context条件、画面技法早見",
+    "全体最小set、画面/PoC/他pair、正式schema/実装/L3再開"
+  ],
+  "canonical_requirement_or_seed_changes": false,
+  "issue_close": false
+}

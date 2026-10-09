@@ -1,0 +1,814 @@
+{
+  "knowledge_identity": "SEEDFIRST",
+  "meaning_owner": "HELIX-BRAIN",
+  "decision_ref": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+  "authority_effect": "限定した知識内容の採用。判断記録がmainへ統合された時に有効。",
+  "revision_basis": "5b52bee6397125b8b9b8ca7f4a1b695605b0123e",
+  "metadata_interpretation": "descriptorのcandidate_mapping等と技法fieldのtechnique_meaning_candidateは提示原文のmetadataを保持する。限定scopeの採否はdecision_refから読む。candidate_versionは元seedの版であり正式schema/知識の新しい版を指定しない。",
+  "adopted_payload": {
+    "scope": "最初の非画面・技術的不確実性なしの要求/受入知識slice。全体の最小seed packとは分ける。",
+    "templates": [
+      {
+        "template_identity": "DT-VT-001",
+        "semantic_descriptors": {
+          "identity": {
+            "value": "DT-VT-001",
+            "source_line": 1
+          },
+          "version": {
+            "value": "`DT-VT-001`／`0.1.0-seed-candidate`",
+            "source_line": 7
+          },
+          "layer_pair": {
+            "value": "全6組。組ごとの差はDT-VT-101〜106",
+            "source_line": 14
+          },
+          "applicability": {
+            "value": "DT-VT-002の技法カード、DT-VT-101〜106の検証方法を使って証拠を残すすべての場合。本templateだけを単独で使う場面はない",
+            "source_line": 10
+          },
+          "required_input": {
+            "value": "対象要求のIDとrevision、成果物の識別（pathまたはIDとdigest）、V字の対、oracle ID。欠けたら証拠を作らず、欠けた入力を未解決として戻す（DST-HARNESS-004）",
+            "source_line": 12
+          },
+          "required_section": {
+            "meaning": "共通証拠欄。N/A時は非適用記録。oracleの負例を記述する場合は5型を参照。",
+            "source_lines": [
+              40,
+              63,
+              79
+            ],
+            "definition_state": "defined_for_proposed_scope"
+          },
+          "required_field": {
+            "fields": [
+              {
+                "field_identity": "DT-VT-001-F001",
+                "source_label": "target_requirement_ids_and_revisions",
+                "meaning": "対象要求のidentityとrevision",
+                "source_line": 46,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F002",
+                "source_label": "artifact_ref",
+                "meaning": "対象artifactの識別と内容digest",
+                "source_line": 47,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F003",
+                "source_label": "vpair",
+                "meaning": "適用するHARNESSの対",
+                "source_line": 48,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F004",
+                "source_label": "oracle_id",
+                "meaning": "左/右で共有するoracle identity",
+                "source_line": 49,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F005",
+                "source_label": "oracle_kind",
+                "meaning": "oracleの由来区分。合意や合格を生成しない",
+                "source_line": 50,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F006",
+                "source_label": "inputs_ref",
+                "meaning": "fixture/data/環境の参照",
+                "source_line": 51,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F007",
+                "source_label": "expected_failure",
+                "meaning": "期待する失敗と観測参照。適用契約がRedを求める場合に照合し、適用されない場合は根拠付きN/A",
+                "source_line": 52,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F008",
+                "source_label": "actual_result",
+                "meaning": "観測した結果。unknownをpass/N-A/0へ変換しない",
+                "source_line": 53,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F009",
+                "source_label": "applicability",
+                "meaning": "この技法/証拠の適用区分と根拠",
+                "source_line": 54,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F010",
+                "source_label": "na_record",
+                "meaning": "N/Aの理由・判断者・対象HEAD/要求影響・再評価条件の参照",
+                "source_line": 55,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F011",
+                "source_label": "tool",
+                "meaning": "使用tool/profileの版と設定digest。使用しない場合は理由を保持",
+                "source_line": 56,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F012",
+                "source_label": "run",
+                "meaning": "実行者、時点、HEAD、対象scope。未実行から実行済みを生成しない",
+                "source_line": 57,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F013",
+                "source_label": "valid_until_or_invalidation_trigger",
+                "meaning": "証拠の有効期限/失効・再測定条件",
+                "source_line": 58,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F014",
+                "source_label": "backflow_target",
+                "meaning": "意味が変わるowner/左側層または同段階の戻し先",
+                "source_line": 59,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              },
+              {
+                "field_identity": "DT-VT-001-F015",
+                "source_label": "omitted_checks",
+                "meaning": "省いた検査・理由・回収ticket。省略がない場合とunknownを分ける",
+                "source_line": 60,
+                "requiredness": "selected_evidence_requires_value_or_reasoned_NA; 未発生/未実行/unknownは各義務が未完のまま",
+                "meaning_owner": "BRAINが欄を提供し、値の意味/要否は該当HARNESS契約、値/原記録はOS。合意/受入の値は人の記録を参照。"
+              }
+            ],
+            "nonapplicability_fields": [
+              "reason",
+              "decided_by",
+              "head_sha",
+              "impact_on_requirements",
+              "reevaluate_when"
+            ],
+            "requiredness": "N/Aの対象カード/判定と6項目を結ぶ。全技法へ新しい承認gateを作らず、選択したseedの記録内容として提示。",
+            "source_lines": [
+              65,
+              70
+            ],
+            "definition_state": "defined_for_proposed_scope"
+          },
+          "relation": {
+            "value": "DT-VT-002（各カードは本templateの欄に固有の欄だけを足す）、DT-VT-003（選び方の案）、DT-VT-101〜106（対ごとの検証方法）、既存seed `DT-SDOP-002`（非機能の値ごとの測定方法）、`DT-SDOP-004` §7（表の行・マスを検証へ結ぶ）",
+            "source_line": 13
+          },
+          "meaning_owner": {
+            "value": "HELIX-BRAIN（汎用の欄の構造）。製品への適用と検証義務の導出はHELIX-HARNESS-CORE（HARNESS-L2-005、HARNESS-L2-022）。実行・保存・運転はHELIX-OS",
+            "source_line": 9
+          },
+          "trace": {
+            "source_section_refs": [
+              {
+                "source_heading": "1. 共通の証拠欄",
+                "source_line": 40
+              }
+            ],
+            "state": "candidate_mapping"
+          },
+          "negative_oracle": {
+            "items": [
+              {
+                "source_line": 22,
+                "source_text": "- 結果が分からない（unknown）のに、pass、N/A、0件のいずれかにする。",
+                "source_line_sha256": "a3e311b311737206f364e5f198f7e658f4ba5692057761146b7b93ad7231052a",
+                "meaning": "結果が分からない（unknown）のに、pass、N/A、0件のいずれかにする。"
+              },
+              {
+                "source_line": 23,
+                "source_text": "- N/Aに理由だけを書き、判断者・対象revision・再評価条件を書かない。",
+                "source_line_sha256": "3d29794acbe0a83eca6bcb590ad652ca0cb6bd111bf48ef8662ad22ff4f9ee0f",
+                "meaning": "N/Aに理由だけを書き、判断者・対象revision・再評価条件を書かない。"
+              },
+              {
+                "source_line": 24,
+                "source_text": "- 別のrevision・別の環境・別のscopeで取った結果を、今回の対象の証拠にする。",
+                "source_line_sha256": "c122d54ec1ec59e6615339cf0144832703b14f932f7c334b65ffbd033e3167f9",
+                "meaning": "別のrevision・別の環境・別のscopeで取った結果を、今回の対象の証拠にする。"
+              },
+              {
+                "source_line": 25,
+                "source_text": "- 期待する失敗（Red）を観測していない検証を、振る舞いを確かめた証拠にする。",
+                "source_line_sha256": "8c6627654dfb6ba2dfbf049c3d425f4b2d7f78f9479a17a7bf036ba4fcc485c1",
+                "meaning": "適用契約が期待する失敗（Red）の観測を要求する検証で、その観測なしに振る舞いを確かめた証拠にする。静的reviewや人の判断へ、この項目からRed実行義務を追加しない。"
+              },
+              {
+                "source_line": 26,
+                "source_text": "- 省いた検査を記録せず、回収先のticketも書かない。",
+                "source_line_sha256": "7cd77410a75881da1ef215a8f084b24222a10fc1b6d6f15ca6e4b640c40885a3",
+                "meaning": "省いた検査を記録せず、回収先のticketも書かない。"
+              },
+              {
+                "source_line": 27,
+                "source_text": "- ローカルとCIで設定が違うのに、同じ結果として扱う。",
+                "source_line_sha256": "76701e009628b3f53853828721c7da8d99efdf5a5c582b24820183a1a7e73a71",
+                "meaning": "ローカルとCIで設定が違うのに、同じ結果として扱う。"
+              }
+            ],
+            "boundary_examples": [
+              {
+                "source_line": 32,
+                "meaning": "結果未取得のtimeoutはunknownとして保持し、passや要求成立を主張しない。"
+              }
+            ],
+            "scope_interpretation": {
+              "source_line": 25,
+              "meaning": "原文のRed負例をVT001-F007と同じ適用契約条件へ限定する。",
+              "basis": "旧L08-L14-verification-phase.md L28–34はunit/TDDと要求/人間受入を区別し、L73–79のG11はUAT decision recordとfeedback dispositionを証拠にする。欄の定義から全技法共通のRed実行gateを生成しない。"
+            },
+            "definition_state": "defined_for_proposed_scope"
+          },
+          "measurement": {
+            "meaning": "実施結果の測定は適用契約が要求するmetric/profile/環境とその根拠を入力として保持。共通seedは実行情報、設定digest、有効期限/再測定triggerを結ぶ。数値や成功閾値を生成しない。値未決/未観測は未決のまま。",
+            "source_lines": [
+              16,
+              56,
+              58
+            ],
+            "definition_state": "defined_for_proposed_scope"
+          },
+          "completion": {
+            "source_section_refs": [
+              {
+                "source_heading": "完了条件",
+                "source_line": 34
+              }
+            ]
+          },
+          "downstream_kind": {
+            "meaning": "選択技法/対検証に付く共通証拠記録、N/A記録、省略義務の回収参照、Backflow参照。技法そのものの実行結果や工程合否を生成しない。",
+            "source_lines": [
+              45,
+              63,
+              60,
+              59
+            ],
+            "definition_state": "defined_for_proposed_scope"
+          },
+          "supersession": {
+            "value": "正式な証拠schemaが入ったら、本templateは`superseded`とし、各欄の行き先を`check-replacement`で対応づける。旧版で作った証拠は、旧版のまま読めるようにする",
+            "source_line": 18
+          }
+        },
+        "meaning_owner_boundary": "汎用の欄/技法意味と知識版はBRAIN。要求の意味と適用/合否規則はCOREが参照する承認済みHARNESS契約。案件値/証拠記録はOS、人の合意/受入は人。fieldの存在で判断を生成しない。",
+        "proposed_scope": "非画面・技術的不確実性なしの要求をL2/L11の成功条件/反例と人の判断へ結ぶ知識内容。実受入は未実施。画面/PoCのtemplate具体化や他pairはこのseed採用範囲へ含めない。"
+      },
+      {
+        "template_identity": "DT-VT-102",
+        "semantic_descriptors": {
+          "identity": {
+            "value": "DT-VT-102",
+            "source_line": 1
+          },
+          "version": {
+            "value": "`DT-VT-102`／`0.1.0-seed-candidate`",
+            "source_line": 7
+          },
+          "layer_pair": {
+            "value": "P2：L2 要求 ↔ L11 利用者受入（HARNESS-L2-040の6組）。適用されたL2.5のPrototype／PoC成果と要求への反映revisionは、該当する受入条件の入力として結ぶ",
+            "source_line": 15
+          },
+          "applicability": {
+            "value": "L2 要求（L2.5のPrototype・PoCを含む）の成果物に対の検証を行うとき。全件の実行を既定にせず、HARNESS-L2-005の規則（Forwardの大きさ、risk、触るコネクタ）で要否を決める",
+            "source_line": 10
+          },
+          "required_input": {
+            "value": "合意済みのL2要求とrevision、L11受入の条件（成功条件と反例）、HARNESS-L2-003に従ってPrototypeとPoCを別々に判定したL2.5適用記録。Prototype適用時は合意済みprototypeのrevisionと合意記録、PoC適用時は検証結果と要求へのBackflow先・反映revisionを含める。各々の非適用時は根拠付きN/A記録を含める。適用がunknown、または適用時の成果が欠ける場合、その成果に依存する受入条件をunknownとして成立を主張しない。",
+            "source_line": 12
+          },
+          "required_section": {
+            "meaning": "L2.5活動ごとのtest basis/非適用記録、要求ごとの成功条件と反例の照合、固有証拠、意味差分のBackflow。技法早見は参考提案として保持し規則へ昇格しない。",
+            "source_lines": [
+              46,
+              57,
+              73,
+              80
+            ],
+            "definition_state": "defined_for_proposed_scope"
+          },
+          "required_field": {
+            "fields": [
+              {
+                "field_identity": "DT-VT-102-F001",
+                "source_label": "scenario_ids",
+                "meaning": "対象要求revisionに対応する成功条件と反例のscenario",
+                "source_line": 75,
+                "requiredness": "該当する受入観点の値/証拠または根拠付きN-A。受入未実施/未決なら未完のまま。",
+                "meaning_owner": "BRAINは欄/技法意味、COREは受入条件/適用契約、OSは原記録、人は合意/受入。"
+              },
+              {
+                "field_identity": "DT-VT-102-F002",
+                "source_label": "counterexamples_tested",
+                "meaning": "反例の対象と観測/未観測",
+                "source_line": 75,
+                "requiredness": "該当する受入観点の値/証拠または根拠付きN-A。受入未実施/未決なら未完のまま。",
+                "meaning_owner": "BRAINは欄/技法意味、COREは受入条件/適用契約、OSは原記録、人は合意/受入。"
+              },
+              {
+                "field_identity": "DT-VT-102-F003",
+                "source_label": "acceptance_record_ref",
+                "meaning": "人が残した受入の記録参照。AIから生成しない",
+                "source_line": 76,
+                "requiredness": "該当する受入観点の値/証拠または根拠付きN-A。受入未実施/未決なら未完のまま。",
+                "meaning_owner": "BRAINは欄/技法意味、COREは受入条件/適用契約、OSは原記録、人は合意/受入。"
+              },
+              {
+                "field_identity": "DT-VT-102-F004",
+                "source_label": "prototype_poc_basis",
+                "meaning": "Prototype/PoCの別々の適用/N-A記録と、適用時の合意/結果/反映revision",
+                "source_line": 77,
+                "requiredness": "該当する受入観点の値/証拠または根拠付きN-A。受入未実施/未決なら未完のまま。",
+                "meaning_owner": "BRAINは欄/技法意味、COREは受入条件/適用契約、OSは原記録、人は合意/受入。"
+              },
+              {
+                "field_identity": "DT-VT-102-F005",
+                "source_label": "semantic_gaps",
+                "meaning": "意味差分とBackflow先",
+                "source_line": 78,
+                "requiredness": "該当する受入観点の値/証拠または根拠付きN-A。受入未実施/未決なら未完のまま。",
+                "meaning_owner": "BRAINは欄/技法意味、COREは受入条件/適用契約、OSは原記録、人は合意/受入。"
+              }
+            ],
+            "shared_fields_from": "DT-VT-001",
+            "definition_state": "defined_for_proposed_scope",
+            "table_view_mapping": {
+              "観点": "scenario_ids/対象成功条件・反例",
+              "使う技法": "selected_technique_meaningsへの選択参照と根拠。別のカードを暗黙採用しない。",
+              "結果": "DT-VT-001 actual_result",
+              "証拠のref": "DT-VT-001 artifact_ref/inputs_ref と固有の証拠",
+              "N/Aの理由": "DT-VT-001 na_record/判定根拠"
+            }
+          },
+          "relation": {
+            "value": "DT-VT-001（共通欄）、DT-VT-002（技法カード）、DT-VT-003（選び方の案）、HARNESS-L2-022、HARNESS-L2-056（対ごとのgate結果）",
+            "source_line": 17
+          },
+          "meaning_owner": {
+            "value": "HELIX-HARNESS-CORE（段階ごとの検証の契約と状態の遷移、HARNESS-L2-022）。汎用の型はHELIX-BRAIN。テストとCIの運転、ticketの発行、検収はHELIX-OS",
+            "source_line": 9
+          },
+          "trace": {
+            "source_section_refs": [
+              {
+                "source_heading": "1. 照合の観点",
+                "source_line": 57
+              },
+              {
+                "source_heading": "3. 必須の証拠（共通欄に足す）",
+                "source_line": 73
+              }
+            ],
+            "state": "candidate_mapping"
+          },
+          "negative_oracle": {
+            "source_section_refs": [
+              {
+                "source_heading": "不成立例（negative oracle）",
+                "source_line": 25
+              },
+              {
+                "source_heading": "正例と境界の負例",
+                "source_line": 35
+              }
+            ]
+          },
+          "measurement": {
+            "value": "数値の閾値は置かない。測る場合はHARNESS-L2-034の14項目に従い、値はL3で根拠付きで導く",
+            "source_line": 19
+          },
+          "completion": {
+            "source_section_refs": [
+              {
+                "source_heading": "完了条件",
+                "source_line": 40
+              }
+            ]
+          },
+          "downstream_kind": {
+            "meaning": "人の受入記録参照を持つL11観点別の証拠、未観測/意味差分のfinding、Backflow参照。Verified→Acceptedの裁定は既存契約/人の判断へ残す。",
+            "source_lines": [
+              73,
+              80,
+              14
+            ],
+            "definition_state": "defined_for_proposed_scope"
+          },
+          "supersession": {
+            "value": "正式な検証契約（HARNESS-L2-022の具体化）が入ったら`superseded`とし、観点・証拠・差戻し先の行き先を対応づける",
+            "source_line": 23
+          }
+        },
+        "meaning_owner_boundary": "汎用の欄/技法意味と知識版はBRAIN。要求の意味と適用/合否規則はCOREが参照する承認済みHARNESS契約。案件値/証拠記録はOS、人の合意/受入は人。fieldの存在で判断を生成しない。",
+        "proposed_scope": "非画面・技術的不確実性なしの要求をL2/L11の成功条件/反例と人の判断へ結ぶ知識内容。実受入は未実施。画面/PoCのtemplate具体化や他pairはこのseed採用範囲へ含めない。"
+      }
+    ],
+    "techniques": [
+      {
+        "identity": "DT-VT-002/C01",
+        "contract_fields": {
+          "vpair": {
+            "source_label": "V-pair",
+            "meaning": "主にP1〜P5の左側成果物自体の検証（IEEE 1012の「verification」）。P2ではprototype合意前の要求整合。",
+            "source_line": 46,
+            "source_line_sha256": "32526224ff396835e5ea76b5c77ad067d336579678951c1b136cec2726da2d7c",
+            "role": "technique_meaning_candidate"
+          },
+          "oracle": {
+            "source_label": "oracle",
+            "meaning": "checklist（完全性・一貫性・曖昧さ・検証可能性・trace）、上流文書、独立reviewerの判断。",
+            "source_line": 47,
+            "source_line_sha256": "9eee34100bc7f2c4ccc1430ae37f5ec9c731e99adb340106477cc85721f66f38",
+            "role": "technique_meaning_candidate"
+          },
+          "negative_oracle": {
+            "source_label": "負のoracle",
+            "meaning": "reviewerが作成者と同じ前提を共有（同源化）。checklist埋めだけでpass。指摘0件を品質の証拠と誤認。",
+            "source_line": 48,
+            "source_line_sha256": "e1ba3769e998803159b4b9c53203603335f360b47f93b53adca1f7948994c848",
+            "role": "technique_meaning_candidate"
+          },
+          "inputs": {
+            "source_label": "必要入力",
+            "meaning": "対象revision、上流revision、checklist版、review scope。",
+            "source_line": 49,
+            "source_line_sha256": "239b68f0a40783586113bc1423be04baa473c0479cd0cf6987a915e4cf5fcd03",
+            "role": "technique_meaning_candidate"
+          },
+          "evidence_specific": {
+            "source_label": "証拠（固有）",
+            "meaning": "`reviewer_identity_class(independent/author)`、`checklist_version`、`findings[{id, severity, location, disposition}]`、`reviewed_scope_digest`、`unreviewed_parts`。",
+            "source_line": 50,
+            "source_line_sha256": "efb2d987b0d7f2f3137ebc91f552d5149fc71cb6c1bda40674949fff4ab96fbd",
+            "role": "technique_meaning_candidate"
+          },
+          "anti_patterns": {
+            "source_label": "anti-pattern",
+            "meaning": "reviewer名・承認数をmerge admissionの代わりにする（CLAUDE.mdが禁止）。review commentの存在を要求合意と扱う。",
+            "source_line": 55,
+            "source_line_sha256": "485eaffd109644b850668ca5ec3efe672e914b10bce0789a33a6fee937833a00",
+            "role": "technique_meaning_candidate"
+          },
+          "name": {
+            "meaning": "要求・設計のreview／inspection（静的テスト）",
+            "source_line": 45
+          },
+          "applicability": {
+            "meaning": "すべての左側成果物の変更。",
+            "source_line": 51
+          },
+          "na_conditions": {
+            "meaning": "機械生成で上流と同値が証明済みの投影物のみ（理由と生成器版を記録）。",
+            "source_line": 51
+          }
+        }
+      },
+      {
+        "identity": "DT-VT-002/C02",
+        "contract_fields": {
+          "vpair": {
+            "source_label": "V-pair",
+            "meaning": "全pair（L2-004、L2-056）。",
+            "source_line": 58,
+            "source_line_sha256": "412d16bfcf38d49ba4bc320ae58fa473743120b091941eaaabd4641d9e60a940",
+            "role": "technique_meaning_candidate"
+          },
+          "oracle": {
+            "source_label": "oracle",
+            "meaning": "各上流項目に設計・検証の対応が存在し、oracle identityが両側で一致すること。孤立項目0、未対応要求0。",
+            "source_line": 59,
+            "source_line_sha256": "5553bd70a0c3362f64d58ea84ba55db6418794056bbc7afa976f6fa3c021d847",
+            "role": "technique_meaning_candidate"
+          },
+          "negative_oracle": {
+            "source_label": "負のoracle",
+            "meaning": "link存在＝検証済みと誤認（linkはあるがtestが何も主張しない）。ID一致だけで意味一致を確認しない。",
+            "source_line": 60,
+            "source_line_sha256": "3640940b05e6c3f7f98b0ea03238d6052647256de640fcc97f29b23d2b917382",
+            "role": "technique_meaning_candidate"
+          },
+          "inputs": {
+            "source_label": "必要入力",
+            "meaning": "要求／設計／test ID台帳、relation、各revision。",
+            "source_line": 61,
+            "source_line_sha256": "4b5aa79cad4dd3a4de485427cb45b0f91afa40c0466dae3d1fe6220e928956c7",
+            "role": "technique_meaning_candidate"
+          },
+          "evidence_specific": {
+            "source_label": "証拠（固有）",
+            "meaning": "`orphans_upstream[]`、`orphans_downstream[]`、`oracle_id_mismatch[]`、`stale_links[{id, linked_rev, current_rev}]`、`impact_state: Affected|Unaffected|Unknown`（L2-004：UnknownをUnaffectedにしない）。",
+            "source_line": 62,
+            "source_line_sha256": "e6dc31aa51280996f68445279ff2be15ebf6affaee11df9516b003a159ea4413",
+            "role": "technique_meaning_candidate"
+          },
+          "anti_patterns": {
+            "source_label": "anti-pattern",
+            "meaning": "trace率%をKPI化してダミーlinkで埋める。Unknownを0件扱い。",
+            "source_line": 67,
+            "source_line_sha256": "c9dc0401bf27b10f3682aa05ef9c938e8e670e3ea77afd190cecda4c06620d7f",
+            "role": "technique_meaning_candidate"
+          },
+          "name": {
+            "meaning": "双方向traceability分析（trace gate）",
+            "source_line": 57
+          },
+          "applicability": {
+            "meaning": "要求・設計・testのいずれかに差分がある変更。",
+            "source_line": 63
+          },
+          "na_conditions": {
+            "meaning": "ほぼ無し（docs-onlyでもtrace対象文書なら適用）。",
+            "source_line": 63
+          }
+        }
+      },
+      {
+        "identity": "DT-VT-002/C08",
+        "contract_fields": {
+          "vpair": {
+            "source_label": "V-pair",
+            "meaning": "P2（L11受入条件：成功条件と反例）、P3（L10）。",
+            "source_line": 134,
+            "source_line_sha256": "0be9f9c651057527933382369175b17beeae3136525d016aa3bab5b834c1db03",
+            "role": "technique_meaning_candidate"
+          },
+          "oracle": {
+            "source_label": "oracle",
+            "meaning": "合意済みの例（Given/When/Then）。",
+            "source_line": 135,
+            "source_line_sha256": "eb64accd1ec229c0033546120a07ab1125eaf984aef3eadb095ae7c4e1787156",
+            "role": "technique_meaning_candidate"
+          },
+          "negative_oracle": {
+            "source_label": "負のoracle",
+            "meaning": "例が要求の意味を狭く固定（例に書かれない条件を落とす）。step定義が空実装でもpass。AIが要求から例を作り人の合意なしに受入oracleと扱う（authority生成の危険）。",
+            "source_line": 136,
+            "source_line_sha256": "8fea3367125ede7717591f4916ff5eaa1bf2b328540aedfdcc1c27498dd11b00",
+            "role": "technique_meaning_candidate"
+          },
+          "inputs": {
+            "source_label": "入力",
+            "meaning": "要求revision、合意記録、反例。",
+            "source_line": 137,
+            "source_line_sha256": "003309efb8d5dd92a976f1d3f0fc4b8f45be3e1ff09859aae03ca09ebf86da1d",
+            "role": "technique_meaning_candidate"
+          },
+          "evidence_specific": {
+            "source_label": "証拠",
+            "meaning": "`scenario_ids[]`、`agreement_ref`（人の合意のref。本技法は合意を生成しない）、`counterexamples_tested[]`、`undefined_steps=0`。",
+            "source_line": 138,
+            "source_line_sha256": "e29fc5e0a54d91ed133509ac453f4bbc524fc675c5cca628c7a05441443bb106",
+            "role": "technique_meaning_candidate"
+          },
+          "anti_patterns": {
+            "source_label": "anti-pattern",
+            "meaning": "L10のsystem test合格をL11受入とする（L2-022禁止）。Gherkinを書いたことを受入完了とする。",
+            "source_line": 143,
+            "source_line_sha256": "0d73453d302a3af3d677c0d6baf466212cff22966d54df921987d20e7c054e9e",
+            "role": "technique_meaning_candidate"
+          },
+          "name": {
+            "meaning": "受入テスト駆動（ATDD／BDD／Specification by Example）",
+            "source_line": 133
+          },
+          "applicability": {
+            "meaning": "利用者観点の振る舞い要求。",
+            "source_line": 139
+          },
+          "na_conditions": {
+            "meaning": "内部refactor（外部振る舞い不変を別技法で示す）。",
+            "source_line": 139
+          }
+        }
+      },
+      {
+        "identity": "DT-VT-002/C26",
+        "contract_fields": {
+          "vpair": {
+            "source_label": "V-pair",
+            "meaning": "P2。",
+            "source_line": 367,
+            "source_line_sha256": "9141d62a68c03ceecad754eb7aa446ea186b208b0fbeb2e8556f24339a8398d1",
+            "role": "technique_meaning_candidate"
+          },
+          "oracle": {
+            "source_label": "oracle",
+            "meaning": "合意済み成功条件と反例に対する**人**の観察・判断。",
+            "source_line": 368,
+            "source_line_sha256": "fae0bb2939e5ae27fabc352889ae19d6057da73a3976bb8a9d88b72e16a78a2e",
+            "role": "technique_meaning_candidate"
+          },
+          "negative_oracle": {
+            "source_label": "負のoracle",
+            "meaning": "開発者が利用者役（代表性欠如）。AI simulationを受入とみなす。",
+            "source_line": 369,
+            "source_line_sha256": "3ab8758b37fb9980e3afe99d9557968bf621cf16a5d26844069530dcb7c07ad7",
+            "role": "technique_meaning_candidate"
+          },
+          "inputs": {
+            "source_label": "入力",
+            "meaning": "受入条件、参加者条件、task。",
+            "source_line": 370,
+            "source_line_sha256": "39beff4008eceda72d9c233ea835ddf5599d46322f98608f36a4d2198847640b",
+            "role": "technique_meaning_candidate"
+          },
+          "evidence_specific": {
+            "source_label": "証拠",
+            "meaning": "`participants_profile`、`tasks[{id, success, observations}]`、`acceptance_record_ref`（人の記録）、`semantic_gaps[]→Backflow`。",
+            "source_line": 371,
+            "source_line_sha256": "25f2db6350b2ce48744de856317d55b0f38ec29c50544a50a0345ce912937129",
+            "role": "technique_meaning_candidate"
+          },
+          "anti_patterns": {
+            "source_label": "anti-pattern",
+            "meaning": "L10合格からL11を自動合格。AIが受入を自己承認（L2-049禁止）。",
+            "source_line": 376,
+            "source_line_sha256": "21574efbe50e848e4fca368630264528ec1bc4e4dee976018e5a90c2ee12e78d",
+            "role": "technique_meaning_candidate"
+          },
+          "name": {
+            "meaning": "ユーザビリティ・利用者受入（観察・think-aloud・UAT）",
+            "source_line": 366
+          },
+          "applicability": {
+            "meaning": "利用者が触る成果。",
+            "source_line": 372
+          },
+          "na_conditions": {
+            "meaning": "利用者接点のない内部部品（上位の受入で扱う理由を記録）。",
+            "source_line": 372
+          }
+        }
+      }
+    ],
+    "selection_reason": {
+      "DT-VT-001": "参照する対/技法へ共通証拠を結ぶ",
+      "DT-VT-102": "要求revisionと成功/反例/人の受入への結合",
+      "DT-VT-002/C01": "左側要求の整合review",
+      "DT-VT-002/C02": "対象revisionの双方向trace",
+      "DT-VT-002/C08": "利用者振る舞い要求の合意例と反例",
+      "DT-VT-002/C26": "利用者接点がある場合の人の受入。接点がなければ上位受入の根拠付き扱い"
+    }
+  },
+  "provenance": {
+    "packet_revision": "5b52bee6397125b8b9b8ca7f4a1b695605b0123e",
+    "packet_path": "docs/governance/crosswalks/requirements-resolution-packet.json",
+    "packet_sha256": "c9926d8a9db74095b0792cb134ac59e6374519acf94e1a1045a29076e7d55897",
+    "source_sha256": {
+      "scaffold/verification-test-template-seed-20261001/templates/DT-VT-001-common-evidence.md": "cd70c910f7377f0de9eaf93076890d1250d1ef48300d18213c3bfc31de57ef3a",
+      "scaffold/verification-test-template-seed-20261001/templates/DT-VT-102-l2-l11-user-acceptance.md": "346d66f679b32caee2a960a270d163541dbf85ce9d37e127e32acd2cef3ec940",
+      "docs/helix-brain/L2-requirements/brain-requirements.md": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+      "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964",
+      "docs/governance/audits/template-seed-adoption-readiness-2026-10-10.json": "2e02f7f8af7d38926f63b3e44f891a75e1397857a1ee8281b0800526af7a1679",
+      "scaffold/verification-test-template-seed-20261001/templates/DT-VT-002-test-technique-cards.md": "b8f5be0fcc06eb612c7dc9e1ec0dee4f4925f060fd217ea2ce50c88ecf7bb4b5",
+      "docs/concept/helix-concept.md": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    "legacy_sources": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "lines": "74–77",
+        "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+        "use": "意味構造/verification/measurementと説明を分離"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/skills/verification.md",
+        "asset_id": "LEGACY-ASSET-B3E589D465867A5A1A1B",
+        "lines": "87–91",
+        "sha256": "fb714da2cc6f729b0a3add7465cad2606c47ed111b35be79ab9c26158e04a404",
+        "use": "必要artifactの欠落を中立へ変換しない"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/ci-verification-plan.md",
+        "asset_id": "LEGACY-ASSET-E9998EF887555DBB2751",
+        "lines": "24–32",
+        "sha256": "21e0b8a05b965d6c1ad27c55bf28ff2d711daa4112c96589da63075b02fc5841",
+        "use": "検証義務の区別と延期義務の回収"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+        "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+        "lines": "28–40/73–79/197–220",
+        "sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+        "use": "対/test basis、人の受入、未処理feedback、追加oracleの分離"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L2-screen-ux-test-design.md",
+        "asset_id": "LEGACY-ASSET-73C1830CFD650CEFDCF3",
+        "lines": "26–35",
+        "sha256": "2e49643f70e3837fc110f72aff2cce0ea607c7c462b8ac372bd8a1ccd4091de7",
+        "use": "受入観点と要求revision/実操作/人の証拠"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/skills/acceptance-criteria-thinking.md",
+        "asset_id": "LEGACY-ASSET-877A4CD3025063075BFE",
+        "lines": "45–76",
+        "sha256": "0523237a9575c2ca14231aba73d717e6c8b972295006fd4ff731c05e53ac744b",
+        "use": "観測可能AC、偽完了拒否、判定不能を未決保持"
+      }
+    ],
+    "legacy_comparison": {
+      "reuse_class": "semantic_rederivation",
+      "preserve": "JSON意味/説明分離、trace/欠落/人の受入/未完義務と判定不能の保持。sourceの各契約/表/例を参照できる。",
+      "change": "032の15descriptorとsource sectionを分けて候補へ対応づける。旧schema/型/層/固定差戻し/回収先/CLIを移植せず、source不足を未定義のまま残す。",
+      "reason": "前turnの採用準備照合で、Markdown候補の保持理由と正式意味JSONを区別し、選択seedの意味/source対応が未完と確認したため。"
+    },
+    "templates": [
+      {
+        "template_identity": "DT-VT-001",
+        "candidate_version": "0.1.0-seed-candidate",
+        "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-001-common-evidence.md",
+        "source_sha256": "cd70c910f7377f0de9eaf93076890d1250d1ef48300d18213c3bfc31de57ef3a",
+        "source_line_sha256_rule": "原文UTF-8の1行（改行を除いた文字列）にLF一つを加えたbytesのSHA-256。空行は対象外。見出しはline/text/levelを対応づける。"
+      },
+      {
+        "template_identity": "DT-VT-102",
+        "candidate_version": "0.1.0-seed-candidate",
+        "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-102-l2-l11-user-acceptance.md",
+        "source_sha256": "346d66f679b32caee2a960a270d163541dbf85ce9d37e127e32acd2cef3ec940",
+        "source_line_sha256_rule": "原文UTF-8の1行（改行を除いた文字列）にLF一つを加えたbytesのSHA-256。空行は対象外。見出しはline/text/levelを対応づける。"
+      }
+    ],
+    "techniques": [
+      {
+        "identity": "DT-VT-002/C01",
+        "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-002-test-technique-cards.md",
+        "source_sha256": "b8f5be0fcc06eb612c7dc9e1ec0dee4f4925f060fd217ea2ce50c88ecf7bb4b5",
+        "source_heading": "#### C01 要求・設計のreview／inspection（静的テスト）",
+        "source_lines": [
+          45,
+          56
+        ]
+      },
+      {
+        "identity": "DT-VT-002/C02",
+        "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-002-test-technique-cards.md",
+        "source_sha256": "b8f5be0fcc06eb612c7dc9e1ec0dee4f4925f060fd217ea2ce50c88ecf7bb4b5",
+        "source_heading": "#### C02 双方向traceability分析（trace gate）",
+        "source_lines": [
+          57,
+          68
+        ]
+      },
+      {
+        "identity": "DT-VT-002/C08",
+        "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-002-test-technique-cards.md",
+        "source_sha256": "b8f5be0fcc06eb612c7dc9e1ec0dee4f4925f060fd217ea2ce50c88ecf7bb4b5",
+        "source_heading": "#### C08 受入テスト駆動（ATDD／BDD／Specification by Example）",
+        "source_lines": [
+          133,
+          146
+        ]
+      },
+      {
+        "identity": "DT-VT-002/C26",
+        "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-002-test-technique-cards.md",
+        "source_sha256": "b8f5be0fcc06eb612c7dc9e1ec0dee4f4925f060fd217ea2ce50c88ecf7bb4b5",
+        "source_heading": "#### C26 ユーザビリティ・利用者受入（観察・think-aloud・UAT）",
+        "source_lines": [
+          366,
+          379
+        ]
+      }
+    ],
+    "remaining_scope_at_proposal": [
+      "画面/PoC、他pair、unit/connection/compositeのseed比較と全体の最小set",
+      "正式知識への配置/採用記録とsourceの完全な意味対応、未選択26候補の保全",
+      "案件の実記録/合意/受入、L3再開・実装は別"
+    ]
+  },
+  "nonadopted_reference_disposition": "VT003の選択表やVT102の画面技法早見は参考候補のまま。C36の旧cardのモデル/共通context条件は採用しない。独立性/レビューの要求正本はConcept/該当HARNESS契約と開発repo運用を区別して参照する。未選択cardをN-A/retiredと判定しない。",
+  "limits": [
+    "画面/PoC、他pair、unit/connection/compositeのseed比較と全体の最小set",
+    "今回の限定scope以外の正式知識への配置/採用記録、sourceの完全な意味対応、未選択候補の保全。今回の限定知識の配置と採用記録は本decision/JSON/receiptで行う。",
+    "案件の実記録/合意/受入、L3再開・実装は別"
+  ],
+  "artifact_kind": "要求段階の採用済み知識内容。実行schema/registry/rendererではない。"
+}
