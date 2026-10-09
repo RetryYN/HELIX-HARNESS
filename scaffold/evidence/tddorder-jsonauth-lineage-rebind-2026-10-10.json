@@ -1,0 +1,140 @@
+{
+  "authority_effect": "none",
+  "scope": "TDDORDER採用後の現行参照の再照合",
+  "rule": "upstream SHAのみ更新。role・scope・obligations・verification・replacement・固定research本文・authorityを保持。要求変更は対象decisionで限定。",
+  "changes": [
+    {
+      "binding": "scaffold/bindings/SCF-B-0040.json",
+      "title": "RDP-001 outside-67 historical 13→14 source_holding migration candidate",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0057.json",
+      "title": "outside67 Web／Web-OS L2 source gap semantic research candidate",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0062.json",
+      "title": "outside67 four-product boundary source research candidate",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0066.json",
+      "title": "outside67 candidate source boundary research 030/033/043/045/055",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0069.json",
+      "title": "outside67 follow-up source chain research 034/036/046/052/056",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0071.json",
+      "title": "outside67 boundary follow-up source chain research 035/037/047/054/057",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0073.json",
+      "title": "outside67 four-product boundary follow-up source chain research 001/004/007/010/060",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0074.json",
+      "title": "outside67 L2/L11 source-chain follow-up research 002/005/013/031/061",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0076.json",
+      "title": "outside67 four-product entry and shared L2 crosswalk research 003/006/009/012/014",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0079.json",
+      "title": "outside67 governance/crosswalk source-chain research 015/018/029/032/067",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0083.json",
+      "title": "outside67 governance/crosswalk source-chain research 016/020/023/038/062",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0085.json",
+      "title": "outside67 governance/crosswalk source-chain research 019/022/024/041/058",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0087.json",
+      "title": "outside67 residual source-chain research 017/021/025/026/027",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0090.json",
+      "title": "outside67 residual source-chain research 028/039/040/042/044",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0092.json",
+      "title": "outside67 final residual source-chain research 048/049/050/051/053",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0095.json",
+      "title": "RDP-001 outside67 PATH-001..005 lossless source-line atomization research",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0096.json",
+      "title": "RDP-001 outside67 PATH-006〜010 lossless source atomization research",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0099.json",
+      "title": "RDP-001 outside67 PATH-011〜015 source atomization research",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0121.json",
+      "title": "outside67 Web／Web-OS 未処理4 path L1 anchor research candidate",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "8d4b0f62814a63ca67d473ccaa0480466e3343fff117c7ccf75190fb04d8dbb7",
+      "after": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe"
+    }
+  ]
+}
