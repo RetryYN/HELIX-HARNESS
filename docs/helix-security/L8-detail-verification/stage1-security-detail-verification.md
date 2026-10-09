@@ -3,16 +3,16 @@ title: "HELIX-SECURITY Stage 1 詳細検証設計"
 layer: L8
 status: design_pair_defined
 owner: HELIX-SECURITY
-base: main `536c72b47c60ec2cd682574438003c13e56f8ea6`
+base: main `f0ba62ce833463eb5f747ac4b95659ecea49928a`
 paired_l5: ../L5-detail-design/stage1-security.md
-paired_l5_sha256: 855cb468036e5464eca1d57fbe861662744c59ea967e6595d9f1586406fbea28
+paired_l5_sha256: 408908b19bbe4b5276aa263266953b52f43511ad5fbb5e34541c54795c4ae166
 ---
 
 # HELIX-SECURITY Stage 1 詳細検証設計
 
 ## 1. 対象と固定source
 
-本書はmain `536c72b47c60ec2cd682574438003c13e56f8ea6`上のL4 `../L4-basic-design/stage1-security.md`（SHA-256 `71504a3c76512e8aa9c249eb229f7ecb25c9c350219d8a4b221c29d753767f68`）および既存L9 `../L9-integration-verification/stage1-security-integration-verification.md`（SHA-256 `41c23cd12c9717f2479e40017c62f1221efe55525507c6d2e48a56f06bb6e9a6`）を固定sourceとし、[L5](../L5-detail-design/stage1-security.md)の詳細設計を検証fixtureへ展開する。L5のSHA-256はfront matterの`paired_l5_sha256`で固定する。L9の`IV-SECURITY-*`は既存L9が定義するverifier IDであり、本書はfixtureとの対応を記すだけで、再定義・再採番しない。
+本書はmain `f0ba62ce833463eb5f747ac4b95659ecea49928a`上のL4 `../L4-basic-design/stage1-security.md`（SHA-256 `71504a3c76512e8aa9c249eb229f7ecb25c9c350219d8a4b221c29d753767f68`）および既存L9 `../L9-integration-verification/stage1-security-integration-verification.md`（SHA-256 `41c23cd12c9717f2479e40017c62f1221efe55525507c6d2e48a56f06bb6e9a6`）を固定sourceとし、[L5](../L5-detail-design/stage1-security.md)の詳細設計を検証fixtureへ展開する。L5のSHA-256はfront matterの`paired_l5_sha256`で固定する。L9の`IV-SECURITY-*`は既存L9が定義するverifier IDであり、本書はfixtureとの対応を記すだけで、再定義・再採番しない。
 
 6つの固定L3/L10文書の全体SHA-256はL5 §1の表を参照する。親ごとの承認revision/decision pin、固定機能span、L3業務/NFRとL10業務/NFR適用scopeはL4 §1および[Stage 1義務crosswalk](../../governance/crosswalks/stage1-l3-l10-obligation-crosswalk.md)へ戻る。設計済みfixtureであり実装、test実行、pass、物理enforcement、L3承認を表さない。
 

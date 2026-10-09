@@ -3,7 +3,7 @@ title: "HELIX-SECURITY Stage 1 詳細設計"
 layer: L5
 status: design_pair_defined
 owner: HELIX-SECURITY
-base: main `536c72b47c60ec2cd682574438003c13e56f8ea6`
+base: main `f0ba62ce833463eb5f747ac4b95659ecea49928a`
 paired_l4: ../L4-basic-design/stage1-security.md
 paired_l9: ../L9-integration-verification/stage1-security-integration-verification.md
 ---
@@ -12,7 +12,7 @@ paired_l9: ../L9-integration-verification/stage1-security-integration-verificati
 
 ## 1. 固定範囲とsource
 
-本書はmain `536c72b47c60ec2cd682574438003c13e56f8ea6`上のSECURITY Stage 1 L4/L9に対するL5設計である。L4本文SHA-256は`71504a3c76512e8aa9c249eb229f7ecb25c9c350219d8a4b221c29d753767f68`、L9本文SHA-256は`41c23cd12c9717f2479e40017c62f1221efe55525507c6d2e48a56f06bb6e9a6`。L9の一方向`paired_l4_sha256`は同じL4 bytesを指す。両本文は既存設計sourceであり、このL5/L8草稿がL3承認、実装、実行、受入を意味しない。
+本書はmain `f0ba62ce833463eb5f747ac4b95659ecea49928a`上のSECURITY Stage 1 L4/L9に対するL5設計である。L4本文SHA-256は`71504a3c76512e8aa9c249eb229f7ecb25c9c350219d8a4b221c29d753767f68`、L9本文SHA-256は`41c23cd12c9717f2479e40017c62f1221efe55525507c6d2e48a56f06bb6e9a6`。L9の一方向`paired_l4_sha256`は同じL4 bytesを指す。両本文は既存設計sourceであり、このL5/L8草稿がL3承認、実装、実行、受入を意味しない。
 
 対象は固定L2/L11の`HELIXSECURITY-L2-001`〜`016`、`020`、`028`、`033`の19親、19 AC、33 functional case、適用表で指定された10 NFR候補とそのL10測定だけである。Stage 2cの031、後続Stage、1.x/Web sink適用、共通pack lifecycleは含めない。19親の対象revisionとdecision authorityは[Stage 1義務crosswalk](../../governance/crosswalks/stage1-l3-l10-obligation-crosswalk.md)のSECURITY親別表とL4 §1に従う。decision pin、各親のL3/L10固定bytes、現在のcommon-kernel bytesは別々の参照である。
 
