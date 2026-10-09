@@ -1,0 +1,1174 @@
+{
+  "record_type": "GitHub作業投影・Issue整理の固定read-after記録",
+  "recorded_at": "2026-10-10",
+  "repository": "RetryYN/HELIX-HARNESS",
+  "reviewed_main": "64281f5620587103773a888f1935258aeaecb7e3",
+  "ticket_source_revision": "ad387a38b9c4b9b8c489d95df35717072b3600b9",
+  "authority_effect": "none",
+  "request": "テンプレートはHARNESSに置くか、BRAINに置くか？そして残数はイシューにして、イシュー自体も整理してくれ。",
+  "projection_receipts": [
+    {
+      "ticket": "FT-GOV-JSONAUTH-001",
+      "issue": 2825,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2825",
+      "source_revision": "ad387a38b9c4b9b8c489d95df35717072b3600b9",
+      "source_path": "docs/governance/feature-tickets/FT-GOV-JSONAUTH-001.md",
+      "source_sha256": "ed9cb2f93c5477699262e7fb9129ffdcd72eebc7e7f92f62242a95acedeba900",
+      "body_sha256": "f4fdf8963824b165dd48a2fa5bf7e8a13e086e6534c0b5aaf4321807ec118ed8"
+    },
+    {
+      "ticket": "FT-GOV-VERSIONJOIN-001",
+      "issue": 2826,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2826",
+      "source_revision": "ad387a38b9c4b9b8c489d95df35717072b3600b9",
+      "source_path": "docs/governance/feature-tickets/FT-GOV-VERSIONJOIN-001.md",
+      "source_sha256": "2f1e38d4fd99328cba9d93d181cc8ff5366afcb203822adef63cd83e57e4e97b",
+      "body_sha256": "ec826155ba863cf57b1b47338db62e6cf2f7be752aaeadd4a59dabffcc7fb0d8"
+    },
+    {
+      "ticket": "FT-GOV-PROCESSFOLLOW-001",
+      "issue": 2827,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2827",
+      "source_revision": "ad387a38b9c4b9b8c489d95df35717072b3600b9",
+      "source_path": "docs/governance/feature-tickets/FT-GOV-PROCESSFOLLOW-001.md",
+      "source_sha256": "f3016eb9e817abac0d124f21648697a41b8c9be876ebbfcdd075aa7a30b3ef8d",
+      "body_sha256": "ec57b53b6b1e88911197095bd0c9ac0b23641c4b28bc70acc17eb452b63d8b27"
+    },
+    {
+      "ticket": "FT-GOV-STATEFOLLOW-001",
+      "issue": 2828,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2828",
+      "source_revision": "ad387a38b9c4b9b8c489d95df35717072b3600b9",
+      "source_path": "docs/governance/feature-tickets/FT-GOV-STATEFOLLOW-001.md",
+      "source_sha256": "920e55bd17e3859ae07316c3025c93294ac0601b80e496c18b7dd098570886a2",
+      "body_sha256": "acca1f7ed2e10e1fa8c404ae8148b2f4b50cb7bfc69ec9c83c18e459610c90d7"
+    },
+    {
+      "ticket": "FT-GOV-TEMPLATE-SPLIT-001",
+      "issue": 2829,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2829",
+      "source_revision": "ad387a38b9c4b9b8c489d95df35717072b3600b9",
+      "source_path": "docs/governance/feature-tickets/FT-GOV-TEMPLATE-SPLIT-001.md",
+      "source_sha256": "0ebb4bd86c2d5e5672d7f981c526b5ce0aef0bd26cfe28e65ed3239e7942c4dd",
+      "body_sha256": "49a5eb23064ef521a0642c3274c85ef6538afb314323567744414acebc184f22"
+    },
+    {
+      "ticket": "FT-GOV-ISSUE-INVENTORY-001",
+      "issue": 2830,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2830",
+      "source_revision": "ad387a38b9c4b9b8c489d95df35717072b3600b9",
+      "source_path": "docs/governance/feature-tickets/FT-GOV-ISSUE-INVENTORY-001.md",
+      "source_sha256": "6d4fcb2d2088caa023e9c7faff47a69339a9579c31297c8513c4cd4faaa76d0a",
+      "body_sha256": "918fea66ed2bc09e49ca017f47dc5d9bc53ee14313615cdb007747865036d601"
+    }
+  ],
+  "organization_receipts": [
+    {
+      "issue": 2735,
+      "operation": "label",
+      "label": "area:development",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 2730,
+      "operation": "label",
+      "label": "area:development",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 2100,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 2093,
+      "operation": "label",
+      "label": "area:scaffold",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 2089,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1908,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1907,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1906,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1905,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1904,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1903,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1902,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1901,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1900,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1899,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1898,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1897,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1896,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1895,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1894,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1893,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1892,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1891,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1890,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1889,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1888,
+      "operation": "label",
+      "label": "area:legacy-audit",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1884,
+      "operation": "label",
+      "label": "area:scaffold",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1866,
+      "operation": "label",
+      "label": "area:scaffold",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1864,
+      "operation": "label",
+      "label": "area:scaffold",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1861,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1860,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1859,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1858,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1857,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1856,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1855,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1854,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1853,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1852,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1847,
+      "operation": "label",
+      "label": "area:scaffold",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1837,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1815,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1814,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1813,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1812,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1805,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1804,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1803,
+      "operation": "label",
+      "label": "area:templates",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1802,
+      "operation": "label",
+      "label": "area:templates",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1801,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1799,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1798,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 2825,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 2826,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 2827,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 2828,
+      "operation": "label",
+      "label": "area:requirements",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 2829,
+      "operation": "label",
+      "label": "area:templates",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 2830,
+      "operation": "label",
+      "label": "area:development",
+      "body_preserved": true,
+      "read_after_state": "OPEN"
+    },
+    {
+      "issue": 1802,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/1802#issuecomment-6087688451",
+      "body_sha256": "be54a8f0b91fa1e9684e26e92344c9d2b6309169def20d5544f0f0951c99be90",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 1802,
+      "operation": "close",
+      "reason": "NOT_PLANNED",
+      "body_preserved": true,
+      "read_after": "CLOSED"
+    },
+    {
+      "issue": 1803,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/1803#issuecomment-6087689387",
+      "body_sha256": "1f12b1c83d6470c3d107f0ab778250ba5cf6689f572f3a1ef52d670685e7d51c",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 1803,
+      "operation": "close",
+      "reason": "NOT_PLANNED",
+      "body_preserved": true,
+      "read_after": "CLOSED"
+    },
+    {
+      "issue": 2730,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2730#issuecomment-6087690515",
+      "body_sha256": "2dacee6c45ecaf84700cf350319feabc489e2328d249ac8100b0433e33350d68",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 2730,
+      "operation": "close",
+      "reason": "NOT_PLANNED",
+      "body_preserved": true,
+      "read_after": "CLOSED"
+    },
+    {
+      "issue": 2735,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2735#issuecomment-6087691486",
+      "body_sha256": "2dacee6c45ecaf84700cf350319feabc489e2328d249ac8100b0433e33350d68",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 2735,
+      "operation": "close",
+      "reason": "NOT_PLANNED",
+      "body_preserved": true,
+      "read_after": "CLOSED"
+    },
+    {
+      "issue": 1813,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/1813#issuecomment-6087692433",
+      "body_sha256": "e85d99ce5f5a55d02bcc932c912f0485e271403cf192d7edd81cd50e3c679d4d",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 1814,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/1814#issuecomment-6087692883",
+      "body_sha256": "188ec6a300626920f3b9823704ab24d4a81c839cdb925c0bdf1e2694114a0bd2",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 1815,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/1815#issuecomment-6087693288",
+      "body_sha256": "e1dce1aa0a2272fffd90f2798e47c13fac18f0a7b09ec5d9ba981bfdd0629f84",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 1866,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/1866#issuecomment-6087693647",
+      "body_sha256": "ac574a9ff9082244f98091d6dc50a7920366ef9bb496a27bc5567fcafe1ebb32",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 1884,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/1884#issuecomment-6087694154",
+      "body_sha256": "d473b7e3fac90d038ac5294d1b8c8e927ec5ff2a37b9d0414189237a78c48a70",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 1861,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/1861#issuecomment-6087694592",
+      "body_sha256": "0e9051147661b757b7790bf418e08115b5716fac1307b10320b5cc7cf5a344c9",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 2089,
+      "operation": "coordination_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2089#issuecomment-6087695003",
+      "body_sha256": "2bb8e12082e074f91f5417ce8ba9ee4ac3180ab566189f16b02a65c843f94b79",
+      "read_after": "exact_body_match"
+    },
+    {
+      "issue": 2830,
+      "operation": "inventory_comment",
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2830#issuecomment-6087695419",
+      "body_sha256": "64b678d5fda658c84910bbd389a8677765ac8a220761227621728dce6230bc6c",
+      "read_after": "exact_body_match"
+    }
+  ],
+  "final_read_after": [
+    {
+      "issue": 2735,
+      "state": "CLOSED",
+      "body_sha256": "77e97c3f3c5e9c15c7e67ccfb9bffb8b9dbdcf990f79dec16e62ba98c7793be3",
+      "original_body_preserved": true,
+      "labels": [
+        "area:development"
+      ]
+    },
+    {
+      "issue": 2730,
+      "state": "CLOSED",
+      "body_sha256": "9eac397e925fa8e2a55c4fe1e27f4d1e2057fba92196ebc033c806afc1232590",
+      "original_body_preserved": true,
+      "labels": [
+        "area:development"
+      ]
+    },
+    {
+      "issue": 2100,
+      "state": "OPEN",
+      "body_sha256": "44be7c002f9c84b13040d37af37bb64559d88e39c2c152a82fc5413508ba98eb",
+      "original_body_preserved": true,
+      "labels": [
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 2093,
+      "state": "OPEN",
+      "body_sha256": "41de1651fcd873923dcbb0c4f5a26596e5b4abfeca0c0dcf872f40ea13127eba",
+      "original_body_preserved": true,
+      "labels": [
+        "area:scaffold"
+      ]
+    },
+    {
+      "issue": 2089,
+      "state": "OPEN",
+      "body_sha256": "aa9108c7577f5ba1a1778c1e02adc033a8151e07f45d023bc52e34ea5167110f",
+      "original_body_preserved": true,
+      "labels": [
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1908,
+      "state": "OPEN",
+      "body_sha256": "0128e9129da3fe233e7e02d25e001085e1fa9cb6d34b6d9be28d739a37dc112a",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1907,
+      "state": "OPEN",
+      "body_sha256": "6b401a7cc24a74206266fb768c37c2e18d7821fc19d10db8bd63e2e7b66f28fb",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1906,
+      "state": "OPEN",
+      "body_sha256": "32f31573283ef72495d749a702b2cdb1d71d753fb988df4fb8206992b49b1dd8",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1905,
+      "state": "OPEN",
+      "body_sha256": "1c40ad69660ec5ae5f4f5f865a8c28885a4856b65e43f49dc88a36fc7b4c9b1c",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1904,
+      "state": "OPEN",
+      "body_sha256": "df5167cbe4fbda71569646ce39003171d9bb037d7f0871ac1a706933bd28d21c",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1903,
+      "state": "OPEN",
+      "body_sha256": "33b47a07744fd51a70c1a21cc8fd59ae03875cedb25d551fda77ebf5fb96577b",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1902,
+      "state": "OPEN",
+      "body_sha256": "33b0c90cb1be9c3df6cde887ab6b3d9260de66c18e1f477cfa0e538fe9ba3e9a",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1901,
+      "state": "OPEN",
+      "body_sha256": "1fa66205126f608e6c11eb72e7868ae3f9e41e0397622a35c4c19f884a8baaa2",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1900,
+      "state": "OPEN",
+      "body_sha256": "e90056639e4c70c66c58e1a08c51a15d68070b836fa2684382407d2ec805b463",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1899,
+      "state": "OPEN",
+      "body_sha256": "b64ecc44ff9436a8c6002ad882f110297d6d0b4a476bf572fcb1a2d83d0ec3f1",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1898,
+      "state": "OPEN",
+      "body_sha256": "6a8a4225300397f5df41ea3d99075eb0ec02f3d7d3fa5107fa74f441fda5382d",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1897,
+      "state": "OPEN",
+      "body_sha256": "dfc7fb9bdd013e0904425aa9ae32cd43a647ca19d0c67b7ce3c3eb03ce5e6141",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1896,
+      "state": "OPEN",
+      "body_sha256": "e99f3ac83b5aa3ce5ad5d2593fec096f04082e75584cb46f8cf8eb465ef6ecef",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1895,
+      "state": "OPEN",
+      "body_sha256": "ed1b03233b0299b255695db05c85a753fe7b2abfe6d5fe017c044e970e7f8cae",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1894,
+      "state": "OPEN",
+      "body_sha256": "b235ad897e89868d0c5742a51254155beb4cea77d8970b38f369b5210bf6ddb6",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1893,
+      "state": "OPEN",
+      "body_sha256": "36c64008c7d353e2cc6aef56b6e9c74a1793c10fdd3ec7a32a826bb608e2b0e8",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1892,
+      "state": "OPEN",
+      "body_sha256": "10231968a36c6102b9afb5273652b14388e71866ff80972234c4476635e3b413",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1891,
+      "state": "OPEN",
+      "body_sha256": "a34fd5a35c217ec7c248619c977f29b6e681f5133924d16679dbd759a3d9b502",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1890,
+      "state": "OPEN",
+      "body_sha256": "1bb6c98b429c7fcdad4cdd56582125b3e5750cde32a999be353fda8b01bdd3d9",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1889,
+      "state": "OPEN",
+      "body_sha256": "dee9fd1ea48e383ea84c87f4c5f7e993515949f913f7623a4f4b631650db97fc",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1888,
+      "state": "OPEN",
+      "body_sha256": "7ed7ec79afc914595d9a1cb8789f89f247627f077351ec40b0f4df2052873cb2",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:legacy-audit"
+      ]
+    },
+    {
+      "issue": 1884,
+      "state": "OPEN",
+      "body_sha256": "842386c1497a6f12e67da388baf67ab7e1927a2a245335094230f61d4a6cd8d9",
+      "original_body_preserved": true,
+      "labels": [
+        "area:scaffold"
+      ]
+    },
+    {
+      "issue": 1866,
+      "state": "OPEN",
+      "body_sha256": "53ac260247942962f64b3ed0265f38e8821b2f9f28cd2c8578a26d84aea32eae",
+      "original_body_preserved": true,
+      "labels": [
+        "documentation",
+        "area:scaffold"
+      ]
+    },
+    {
+      "issue": 1864,
+      "state": "OPEN",
+      "body_sha256": "aa1394489143625cdd2784a37e405f5378fe4e1d6ec0f3084d9fc8cb9ea31622",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:scaffold"
+      ]
+    },
+    {
+      "issue": 1861,
+      "state": "OPEN",
+      "body_sha256": "e44d888c75fdd9b7385cb30193e5b79fdcdcb5349c4e7532d69c44e51688ddb2",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1860,
+      "state": "OPEN",
+      "body_sha256": "6ee73600bf3b391b95202d638af066ab9d92aa90599a773b74af9b3046a9ca5d",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1859,
+      "state": "OPEN",
+      "body_sha256": "cfc48a9937f4b96474541687ce624a10d2a50f2ec19c24b3f6b885e9de681ce3",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1858,
+      "state": "OPEN",
+      "body_sha256": "95851b837e96c79020e0703ec4e03333e122d8d95714d41a8018218dbec114ef",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1857,
+      "state": "OPEN",
+      "body_sha256": "883f13bb6dea3188839b1a2b298b8723470cf70c3f6ba46ab244770cf8559b6f",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1856,
+      "state": "OPEN",
+      "body_sha256": "51e36f64761344d8720a2db5a85d7b5b37e489bac3db504ae9b6754d0b4978e3",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1855,
+      "state": "OPEN",
+      "body_sha256": "56f087fef2e4c490d51fa2615007f1b41ab85b5cfb51316784471f7cbbf0621f",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1854,
+      "state": "OPEN",
+      "body_sha256": "bb1091a5f28961b5a289566dcb3973be6b9de97b3c69dcb050e8185cd48ec0b0",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1853,
+      "state": "OPEN",
+      "body_sha256": "47e2a99b002b15c1fd9f574a86928134679f294f1d401b99d05785088c989dba",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1852,
+      "state": "OPEN",
+      "body_sha256": "330a65813e994e12bdcaae7399dbf5366bf616fd2bf905fc8b4de3cf07ae3f34",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1847,
+      "state": "OPEN",
+      "body_sha256": "e789b3880008ed46adde20062c1c2de0b0563179c249e12a3f01bd46a7fe54de",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:scaffold"
+      ]
+    },
+    {
+      "issue": 1837,
+      "state": "OPEN",
+      "body_sha256": "9e20b4996dc27a790252ec51d8a3a509e6fd791e16fdc214a005d3d72fb89703",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1815,
+      "state": "OPEN",
+      "body_sha256": "c8c9edfd526284e5fe47ec41b23016ec55e3860b65c86925e3db5737bf4bb539",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1814,
+      "state": "OPEN",
+      "body_sha256": "7ce3a448fba40f386c6f76bc66dc619f0e5278302bf3faac644f1dce9abb0561",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1813,
+      "state": "OPEN",
+      "body_sha256": "549560824d3b3787a938e828d068122261c3f24fc26019a75c90bba20dfd9bf6",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1812,
+      "state": "OPEN",
+      "body_sha256": "c1a0b5053f7ca40eb75b241ceffe83943885c09347ce2854196636e5ff1f7a28",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1805,
+      "state": "OPEN",
+      "body_sha256": "2808096a24396d7b1597c4d19fde57a97379f8c7683ea5f8d56c55ccdb086907",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1804,
+      "state": "OPEN",
+      "body_sha256": "7ac5a0cb9a2f0a81675f94cd963398db7da8b5ff2a6fd1c92413bf09e3489c99",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1803,
+      "state": "CLOSED",
+      "body_sha256": "f2b5d3447795c272355adfeafc0029ec6446051cea758c4b7172f92e498dec74",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:templates"
+      ]
+    },
+    {
+      "issue": 1802,
+      "state": "CLOSED",
+      "body_sha256": "02b95d331b5fa530ba89dac5277e0e973e11bd4058a540726b200945519bcbdd",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:templates"
+      ]
+    },
+    {
+      "issue": 1801,
+      "state": "OPEN",
+      "body_sha256": "c0b6726dd674cff29a2f27b127cda14acfcaf66fc583d197d4ca178b865ee485",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1799,
+      "state": "OPEN",
+      "body_sha256": "a35d376cfc4e641a544370b2f91f08db1a8081c19ade9927da3d4427c2b42aa5",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 1798,
+      "state": "OPEN",
+      "body_sha256": "773e110deced3c29a3fd594116e37646e69157f63e6dc826fd52377d7e81f029",
+      "original_body_preserved": true,
+      "labels": [
+        "state:proposed-upstream-waiting",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 2825,
+      "state": "OPEN",
+      "body_sha256": "f4fdf8963824b165dd48a2fa5bf7e8a13e086e6534c0b5aaf4321807ec118ed8",
+      "exact_projection": true,
+      "labels": [
+        "documentation",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 2826,
+      "state": "OPEN",
+      "body_sha256": "ec826155ba863cf57b1b47338db62e6cf2f7be752aaeadd4a59dabffcc7fb0d8",
+      "exact_projection": true,
+      "labels": [
+        "documentation",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 2827,
+      "state": "OPEN",
+      "body_sha256": "ec57b53b6b1e88911197095bd0c9ac0b23641c4b28bc70acc17eb452b63d8b27",
+      "exact_projection": true,
+      "labels": [
+        "documentation",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 2828,
+      "state": "OPEN",
+      "body_sha256": "acca1f7ed2e10e1fa8c404ae8148b2f4b50cb7bfc69ec9c83c18e459610c90d7",
+      "exact_projection": true,
+      "labels": [
+        "documentation",
+        "area:requirements"
+      ]
+    },
+    {
+      "issue": 2829,
+      "state": "OPEN",
+      "body_sha256": "49a5eb23064ef521a0642c3274c85ef6538afb314323567744414acebc184f22",
+      "exact_projection": true,
+      "labels": [
+        "documentation",
+        "area:templates"
+      ]
+    },
+    {
+      "issue": 2830,
+      "state": "OPEN",
+      "body_sha256": "918fea66ed2bc09e49ca017f47dc5d9bc53ee14313615cdb007747865036d601",
+      "exact_projection": true,
+      "labels": [
+        "documentation",
+        "area:development"
+      ]
+    }
+  ],
+  "summary": {
+    "existing_issues": 52,
+    "created_issues": 6,
+    "closed_as_not_planned": 4,
+    "remaining_open_in_this_inventory": 54,
+    "source_body_mismatches": 0
+  },
+  "limits": [
+    "要求の採否・意味・版・L3再開・実装完了を生成しない",
+    "旧ticketとIssue本文は発行時の内容を保持",
+    "旧資産の全条件・consumer移管や仮設の正式置換の完了証拠ではない",
+    "分類ラベルと一覧は作業案内であり依存gateではない"
+  ]
+}
