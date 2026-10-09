@@ -199,3 +199,23 @@ Ledger recordsは`docs/governance/legacy-asset-disposition.jsonl`の対象asset_
 ## 8. 設計状態
 
 本書と対のL7は§1とfront matterに明記したmain `d5bb3455526c816b3af965db239c4b56207a884f`の固定sourceを基準とする起草であり、実装・test execution・承認・releaseを表さない。L7はL8の421 canonical definitionsを一対一のunit oracleへ写し、17 aliasesをcanonical link assertionだけにする。再照合の手順と結果はL7 §7へ記録し、fixture mappingが固定source bytesから再現できることだけを示す。
+
+## 9. 局所source-only候補（main `2003701379a4e41f11f05fc0e9e3215956b7e856`）
+
+この節は前節までの関数設計とL8/L9 oracleを変更せず、指定main上で追加したprivate helper候補だけを記録する。現行入力のSHA-256はSECURITY L4 `71504a3c76512e8aa9c249eb229f7ecb25c9c350219d8a4b221c29d753767f68`、L5 `5a8adfc77201effc1ccb0e9fb5f99a2b8896e86ffacc3f322e891a0f988598ae`、L8 `f4cfb3f2a263f71e17012f9eeceb97d2a4f4139935b19f751a44785564732565`、L9 `41c23cd12c9717f2479e40017c62f1221efe55525507c6d2e48a56f06bb6e9a6`である。L4 §6のowner/未解決境界、L5 §4–5の既存slot形と9 API境界を起点とした。共通カーネル・構成L4の配置規則は`repository-layout.md` §2、§3.1/§3.2 RL-C2〜C5、およびCommon Kernel L4 §15.5に従う。
+
+候補は`helix/helix-security/units/stage1-security/src/projection.py`（SHA-256 `250f7318c73f2e3133aa60f77643fba983dfad9bec262a62065c4cc11811d799`）と、その局所test `helix/helix-security/units/stage1-security/tests/test_projection.py`（SHA-256 `45797b347d6edde5a87c6525bc30d5cf5cf21faae145a5ca5ddfe4581e12f8d1`）である。配置は機構所有の`helix/helix-security/units/`配下とし、BRAIN/LABOのsource-only候補と同じく、`declaration.json`、型番、version、owner/依存登録、formal pack declarationは追加しない。フォルダ名はidentityの正本ではなく、候補をregistered/usable packやRL-C3成立とみなさない。
+
+| private helper | 実装範囲 | 未接続・非主張 |
+|---|---|---|
+| `_project_existing_slots` | L5 `SecurityInputProjection`の既存slot名と順序を持つprivate frozen containerを浅く複製する。各slotに渡された既存K1/K3/K6/K7-G5/K8 result object、diagnostic、assurance、ref tupleを同一objectのまま保持する。 | 9つのL5公開candidate APIを実装せず、API結果・permission・owner mapping・K1 aggregateを生成しない。 |
+| `_same_subject_ref` | 明示された`SubjectRef`の`kind`、`identity`、`revision`、`digest`をfieldごとに完全比較する。 | ownerのcurrent ref解決、raw bytes read、digest再計算、staleness/authority判断はしない。 |
+| `_same_fixed_ref` | 明示された`FixedRef`の`store`、`locator`、`digest`をfieldごとに完全比較する。 | locatorを開かず、物理sourceの存在・内容・真正性を判定しない。 |
+
+言語候補はCPython 3.11+標準ライブラリと`unittest`である。BRAIN/LABOおよびCommon Kernelの同じStage 1 source-only実装と整合し、immutable dataclassと標準のfield equalityだけで上記private projectionを表現でき、外部依存や新runtimeを持ち込まないため選択した。これは製品toolchain、pack identity、正式依存登録の決定ではない。
+
+旧sourceは§6のasset表とledgerを起点に再読した。B62（`security-capability-broker-authority.md:30–44,109–151,160–166`, SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`）のtyped authority軸を現在の型境界で分離する保持点、0327（`source-boundary-contracts.md:20–24,28–42,60–70`, SHA-256 `81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a`）のread-only/pure境界、EE5D（`pillar-functional-requirements.md:171,186`, SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`）のraw/untrusted値を実行指示へ昇格しない境界、99C9（`architecture.md:61–64`, SHA-256 `f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2`）の分類正本を複製しない点を保持した。旧API/schema/runtimeを移さず、旧runtime/test/CIを起動していない。ここでの変更は既存typed resultを変換せずslotへ保つ技術実装に限定される。
+
+局所testはfield保持1件と、`SubjectRef`の4 fieldおよび`FixedRef`の3 fieldをそれぞれ独立に比較する9件、計10件である。K3 diagnosticのreason、K6 `RequiredResult`のassurance object、K1 non-value resultのclass/object identityが失われないことも同じslot testで検査する。これらはprivate helperの合成unit testであり、domain AC、L8 canonical fixture、L9 verifier、owner/source readや製品判定の実行件数には算入しない。
+
+この候補はsource-onlyで、owner resolver/K3/K6/K7-G5/K8の呼出し、外部通信、credential access、writer、policy決定を持たない。L8の421 canonical definitionは未実行、17 aliasesはcanonical参照で別testでない。L9の43 verifier、19親/AC、NFR測定、業務完了、L3/L10承認、formal pack登録は未検証・未主張である。局所test結果は対L7 §8に記録する。

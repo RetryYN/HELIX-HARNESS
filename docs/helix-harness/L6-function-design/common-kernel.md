@@ -5,7 +5,7 @@ owner: HELIX-HARNESS
 scope: K1/K2/K3/K4/G3/K5/K6/K9
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l7: ../L7-unit-test-design/common-kernel-unit-test-design.md
-base: `main` at `d5bb3455526c816b3af965db239c4b56207a884f` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7` and intermediate base `f75199749888f7261772ba26e9feb58a33d9a04f` retained as history)
+base: `main` at `30e957ee900da7735b6c691bdb63b55cae7a0c95` (current integration base; prior bases retained as history)
 
 本書は現行Common Kernel L4 K1/K2/K3/K4/G3/K5/K6の公開signatureと意味を、関数責務、内部処理、入出力境界へ下ろす候補である。要求、型の意味、失敗分類、owner authority、ResultKey lookup順を変更しない。Python 3.11+標準ライブラリを意味導出coreの実装候補とする技術的具体化を記す。K3には本書§12.4に記録した専用候補実装と単体検証があるが、owner接続、L9統合検証、製品動作の証拠ではない。K4/G3は本書§14、K6は§13、K9は§15で既存L5/L8設計を関数責務へ下ろす。K7/K8/K10は`not_designed`であり、L4/L9参照以外の詳細を定義しない。
 
@@ -577,9 +577,17 @@ L4 §13.6/L5 §8.1の9旧assetについて、archiveの指定spanを実読し、
 
 旧assetの完全一致再利用ではなく、失敗・保持点をL4 §13の型と既存K1/K2/K5/K6境界へ再導出する。変更理由は現行の固定contractとCPython semantic-core候補に沿った技術具体化であり、旧runtimeの有無や不在そのものではない。
 
+### 14.4 private helperの実装候補と未接続境界
+
+`helix/helix-harness/units/common-kernel/src/_k4_g3.py`にprivate pure helperを置き、L4で既に定義された値を受けた後の比較だけを行う。`_obligation_id_delta`は固定`ObligationSet`とviewから渡されたobligation ID集合の欠落/余分集合を返す。`_not_applicable_fields_complete`と`_deferred_fields_complete`はL4の各3 fieldが非nullであることだけを返す。`_handoff_delta`は`from_view`から既に導いた`obligation_id -> (key_digest, result_digest)`とHandoffから既に取り出したunfinished ID/record pairを比較し、missing/extra ID・missing/mismatched record ID集合を返す。戻りはPythonのbool/frozensetだけであり、K1 `Observed`、`Unknown`、`Unobserved`、`Rejected`、新しいK4/G3 domain型を生成しない。
+
+対応するunitは`tests/test_k4_g3_private_helpers.py`に限定し、fixture入力境界から先のhelper assertionを検査する。この候補でprivate helper assertionを実行したL8 IDは`L8-K4-01-COMPLETE/MISSING/EXTRA/EMPTY-SET`、`L8-K4-05-NA-VALID/DEFERRED-VALID/NA-MISSING-REASON/NA-MISSING-AUTHORITY/NA-MISSING-REENTRY/DEFERRED-MISSING-TARGET/DEFERRED-MISSING-OWNER/DEFERRED-MISSING-DISCHARGE`、`L8-K4-09-RECEIVE-MATCH/MISSING-NEW-UNFINISHED/MISSING-OLD-UNFINISHED/EXTRA-UNFINISHED/MISSING-NEW-INHERITED/MISSING-OLD-INHERITED/MISMATCH-NEW-INHERITED/MISMATCH-OLD-INHERITED`の20件である。ID対応はhelperの比較範囲だけを示し、L8ケース全体やL9 oracleの実行ではない。`EMPTY-SET`の既存K1 whole `set_reason`確認は既存`combine([])`を直接使い、新しい診断を作らない。
+
+実装状態は以下のとおり。73 fixture全体は未実行であり、20件はhelper-level assertionのみ、残り53件は未実装/未実施である。`CK-K4-UT-005`（公開API signature）と`CK-K4-UT-027`（Deferredを合成で落とさない）はこのhelperで扱わない。既存K2 lookup、K5 restore、K6 required/admit/reverify、OperationDecl/VerifierSet current source reader、K4 6 public APIは未接続であり、typed observation 36件はpartial実装と数えない。G3-I4 13件とG3-I5 2件はL4/L5 owner/API未接続のholdのまま、missing sourceを`Unobserved`へ写さない。K4/G3設計はCI登録、L9合格、owner source接続、製品動作を意味しない。
+
 ## 15. K9 独立review関数設計
 
-本節は、現行main `4eefaafd153d1fe48f52d29cfc4eab14b1fb55df`に含まれるCommon Kernel L4 §17、L5 §10、L8 §9、L9 IV-K9-01–15を関数責務へ接続する設計である。参照時の本文SHA-256はL4 `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82`、L5 `445c564a7b5678d7609daf4142090a26a3df73ce76522a29771a6dad5cdce3f2`、L8 `9c895a423071749a8af067736f83efd4c42c56375bff3fd653e907b361f2ea7a`、L9 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`である。これらはsource locatorであり、L8 fixtureの実行、owner接続、K9合格を意味しない。
+本節は、現行main `30e957ee900da7735b6c691bdb63b55cae7a0c95`に含まれるCommon Kernel L4 §17、L5 §10、L8 §9、L9 IV-K9-01–15を関数責務へ接続する設計である。参照本文のSHA-256はL4 `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82`、L5 `445c564a7b5678d7609daf4142090a26a3df73ce76522a29771a6dad5cdce3f2`、L9 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`である。L8のK9 fixture locatorは`docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md` §9であり、L7から一方向に参照する。L8 fixtureの実行、owner接続、K9合格を意味しない。
 
 直接親はL4 §17.1のConcept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08である。個別要素はL4 §17.1のcrosswalkからそれぞれtraceし、単一のまとめ親を置かない。K9-I1–I8と型はL4 §17、K9公開APIと詳細候補はL5 §10、oracleはL9 IV-K9-01–15を正本とする。L6はAPI/型/UnknownReason/K2優先順位を変更せず、K9が要求採択、reviewer採用、検証合格、Verified/Accepted、completion、authorityを生成しない境界を保つ。
 
