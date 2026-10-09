@@ -15,6 +15,7 @@ import target as target_module
 import design_check
 from common import CHECK_IDS, Diagnostic, canonical_bytes
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
+from source_l7_runner import CURRENT_DESIGN_PATHS
 
 
 BASE = "a" * 40
@@ -36,6 +37,7 @@ class FakeReader:
         self.calls = []
         self.blob_calls = []
         self.sources = {path: ("synthetic:" + path).encode() for path in CHECKER_PATHS}
+        self.sources.update({path: ("synthetic:" + path).encode() for path in CURRENT_DESIGN_PATHS})
         self.sources["scaffold/local-ci/config.json"] = canonical_bytes(type(self).portable)
         self.sources[MANIFEST_PATH] = type(self).manifest_data
         self.sources[LEDGER_PATH] = b"synthetic ledger\n"
@@ -221,7 +223,7 @@ class ProviderTests(unittest.TestCase):
             TARGET["merge_base"], HEAD, "--")])
         self.assertEqual(result["check_id"], "LC-DIFF-001")
         self.assertEqual(result["provider_state"], "success")
-        self.assertEqual(result["local_only_check_ids"], list(CHECK_IDS[:3]) + [CHECK_IDS[4]])
+        self.assertEqual(result["local_only_check_ids"], list(CHECK_IDS[:3]) + [CHECK_IDS[4], CHECK_IDS[5]])
         self.assertTrue(result["positive"])
         self.assertEqual(reader.identity, self.portable["executables"]["provider_git"])
         self.assertNotEqual(reader.identity, self.portable["executables"]["git"])
@@ -277,7 +279,7 @@ class ProviderTests(unittest.TestCase):
             manifest_path = repo / MANIFEST_PATH
             manifest_path.parent.mkdir(parents=True, exist_ok=True)
             manifest_path.write_bytes(canonical_bytes({"version": "1", "files": [], "legacy_pins": []}))
-            for path in (*CHECKER_PATHS, LEDGER_PATH, CONTRACT_PATH):
+            for path in (*CHECKER_PATHS, *CURRENT_DESIGN_PATHS, LEDGER_PATH, CONTRACT_PATH):
                 source = repo / path
                 source.parent.mkdir(parents=True, exist_ok=True)
                 if not source.exists():

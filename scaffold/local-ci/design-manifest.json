@@ -2083,6 +2083,14 @@
           "grammar": "table_column",
           "id_column": 1,
           "literal_expansions": []
+        },
+        {
+          "range_id": "ci-l9-suite-fixtures",
+          "start_heading": "## 4. 開発source L7 suiteの結合oracle",
+          "end_heading": null,
+          "grammar": "table_column",
+          "id_column": 1,
+          "literal_expansions": []
         }
       ],
       "reference_ranges": [
@@ -2298,6 +2306,21 @@
               ]
             }
           ]
+        },
+        {
+          "range_id": "ci-l9-suite-contract-refs",
+          "start_heading": "## 4. 開発source L7 suiteの結合oracle",
+          "end_heading": null,
+          "grammar": "table_column",
+          "id_column": 4,
+          "literal_expansions": [
+            {
+              "literal": "LC-STAGE1-L7-001 rowだけをplanから除く",
+              "ids": [
+                "LC-STAGE1-L7-001"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -2442,6 +2465,24 @@
                 "CASE-L8-LCI-78",
                 "CASE-L8-LCI-79"
               ]
+            },
+            {
+              "literal": "`CASE-L8-LCI-100`〜`-112`",
+              "ids": [
+                "CASE-L8-LCI-100",
+                "CASE-L8-LCI-101",
+                "CASE-L8-LCI-102",
+                "CASE-L8-LCI-103",
+                "CASE-L8-LCI-104",
+                "CASE-L8-LCI-105",
+                "CASE-L8-LCI-106",
+                "CASE-L8-LCI-107",
+                "CASE-L8-LCI-108",
+                "CASE-L8-LCI-109",
+                "CASE-L8-LCI-110",
+                "CASE-L8-LCI-111",
+                "CASE-L8-LCI-112"
+              ]
             }
           ]
         }
@@ -2465,6 +2506,14 @@
           "range_id": "l8-provider-cases",
           "start_heading": "## 3. GitHubのmerge単位fixture",
           "end_heading": "## 4. 判定境界",
+          "grammar": "table_column",
+          "id_column": 1,
+          "literal_expansions": []
+        },
+        {
+          "range_id": "l8-suite-cases",
+          "start_heading": "## 5. 開発source L7 suiteのreceipt/runner integration cases",
+          "end_heading": null,
           "grammar": "table_column",
           "id_column": 1,
           "literal_expansions": []
@@ -2567,6 +2616,21 @@
               ]
             }
           ]
+        },
+        {
+          "range_id": "ci-l6-functions-10",
+          "start_heading": "## 5. 開発source L7 suiteのfunction",
+          "end_heading": null,
+          "grammar": "heading_id",
+          "id_column": null,
+          "literal_expansions": [
+            {
+              "literal": "### F-LCI-10 run_source_l7_suite(snapshot) -> CiApiResult<L7SuiteEvidence>",
+              "ids": [
+                "F-LCI-10"
+              ]
+            }
+          ]
         }
       ],
       "reference_ranges": []
@@ -2580,6 +2644,14 @@
         {
           "range_id": "l7-unit-oracles",
           "start_heading": "### 単体oracle一覧",
+          "end_heading": null,
+          "grammar": "table_column",
+          "id_column": 1,
+          "literal_expansions": []
+        },
+        {
+          "range_id": "l7-suite-oracles",
+          "start_heading": "## 4. 開発source L7 suite runnerの単体oracle",
           "end_heading": null,
           "grammar": "table_column",
           "id_column": 1,
@@ -2667,6 +2739,12 @@
               "ids": [
                 "UT-LCI-31",
                 "UT-LCI-76"
+              ]
+            },
+            {
+              "literal": "`UT-LCI-100`",
+              "ids": [
+                "UT-LCI-100"
               ]
             }
           ]
@@ -2850,6 +2928,24 @@
               "literal": "`UT-LCI-21`",
               "ids": [
                 "UT-LCI-21"
+              ]
+            },
+            {
+              "literal": "`UT-LCI-101`〜`UT-LCI-113`",
+              "ids": [
+                "UT-LCI-101",
+                "UT-LCI-102",
+                "UT-LCI-103",
+                "UT-LCI-104",
+                "UT-LCI-105",
+                "UT-LCI-106",
+                "UT-LCI-107",
+                "UT-LCI-108",
+                "UT-LCI-109",
+                "UT-LCI-110",
+                "UT-LCI-111",
+                "UT-LCI-112",
+                "UT-LCI-113"
               ]
             }
           ]
@@ -18544,6 +18640,539 @@
         "verifier_id": "L8-K5-21-CONFLICT-B",
         "outcome_column": 4
       }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-73",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-73",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-73",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-74",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-74",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-74",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-75",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-75",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-75",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-76",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-76",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-76",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-77",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-77",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-77",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-78",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-78",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-78",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-79",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-79",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-79",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-80",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-80",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-80",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-81",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-81",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-81",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-82",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-82",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-82",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-83",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-83",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-83",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-84",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-84",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-84",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-85",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-85",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-85",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.LC-STAGE1-L7-001.IV-LCI-86",
+      "source_id": "LC-STAGE1-L7-001",
+      "source_path": "docs/helix-os/L4-basic-design/local-ci.md",
+      "verifier_id": "IV-LCI-86",
+      "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
+        "range_id": "ci-l9-suite-fixtures",
+        "verifier_id": "IV-LCI-86",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-100",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-100",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-100",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-101",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-101",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-101",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-102",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-102",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-102",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-103",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-103",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-103",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-104",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-104",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-104",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-105",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-105",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-105",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-106",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-106",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-106",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-107",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-107",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-107",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-108",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-108",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-108",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-109",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-109",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-109",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-110",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-110",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-110",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-111",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-111",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-111",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.D-LCI-06.CASE-L8-LCI-112",
+      "source_id": "D-LCI-06",
+      "source_path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
+      "verifier_id": "CASE-L8-LCI-112",
+      "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
+        "range_id": "l8-suite-cases",
+        "verifier_id": "CASE-L8-LCI-112",
+        "outcome_column": 5
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-100",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-100",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-100",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-101",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-101",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-101",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-102",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-102",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-102",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-103",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-103",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-103",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-104",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-104",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-104",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-105",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-105",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-105",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-106",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-106",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-106",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-107",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-107",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-107",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-108",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-108",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-108",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-109",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-109",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-109",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-110",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-110",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-110",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-111",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-111",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-111",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-112",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-112",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-112",
+        "outcome_column": 4
+      }
+    },
+    {
+      "edge_id": "edge.local.F-LCI-10.UT-LCI-113",
+      "source_id": "F-LCI-10",
+      "source_path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
+      "verifier_id": "UT-LCI-113",
+      "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+      "outcome_ref": {
+        "verifier_path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
+        "range_id": "l7-suite-oracles",
+        "verifier_id": "UT-LCI-113",
+        "outcome_column": 4
+      }
     }
   ],
   "coverage_dispositions": [
@@ -20749,6 +21378,65 @@
         "edge.local.ck-fixtures.L8-K5-26-NONCANONICAL",
         "edge.local.ck-fixtures.L8-K5-17-SCOPE-WHOLE-UNOBSERVED",
         "edge.local.ck-fixtures.L8-K5-21-CONFLICT-B"
+      ]
+    },
+    {
+      "source_id": "LC-STAGE1-L7-001",
+      "state": "mapped",
+      "edge_ids": [
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-73",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-74",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-75",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-76",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-77",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-78",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-79",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-80",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-81",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-82",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-83",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-84",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-85",
+        "edge.local.LC-STAGE1-L7-001.IV-LCI-86"
+      ]
+    },
+    {
+      "source_id": "D-LCI-06",
+      "state": "mapped",
+      "edge_ids": [
+        "edge.local.D-LCI-06.CASE-L8-LCI-100",
+        "edge.local.D-LCI-06.CASE-L8-LCI-101",
+        "edge.local.D-LCI-06.CASE-L8-LCI-102",
+        "edge.local.D-LCI-06.CASE-L8-LCI-103",
+        "edge.local.D-LCI-06.CASE-L8-LCI-104",
+        "edge.local.D-LCI-06.CASE-L8-LCI-105",
+        "edge.local.D-LCI-06.CASE-L8-LCI-106",
+        "edge.local.D-LCI-06.CASE-L8-LCI-107",
+        "edge.local.D-LCI-06.CASE-L8-LCI-108",
+        "edge.local.D-LCI-06.CASE-L8-LCI-109",
+        "edge.local.D-LCI-06.CASE-L8-LCI-110",
+        "edge.local.D-LCI-06.CASE-L8-LCI-111",
+        "edge.local.D-LCI-06.CASE-L8-LCI-112"
+      ]
+    },
+    {
+      "source_id": "F-LCI-10",
+      "state": "mapped",
+      "edge_ids": [
+        "edge.local.F-LCI-10.UT-LCI-100",
+        "edge.local.F-LCI-10.UT-LCI-101",
+        "edge.local.F-LCI-10.UT-LCI-102",
+        "edge.local.F-LCI-10.UT-LCI-103",
+        "edge.local.F-LCI-10.UT-LCI-104",
+        "edge.local.F-LCI-10.UT-LCI-105",
+        "edge.local.F-LCI-10.UT-LCI-106",
+        "edge.local.F-LCI-10.UT-LCI-107",
+        "edge.local.F-LCI-10.UT-LCI-108",
+        "edge.local.F-LCI-10.UT-LCI-109",
+        "edge.local.F-LCI-10.UT-LCI-110",
+        "edge.local.F-LCI-10.UT-LCI-111",
+        "edge.local.F-LCI-10.UT-LCI-112",
+        "edge.local.F-LCI-10.UT-LCI-113"
       ]
     }
   ],

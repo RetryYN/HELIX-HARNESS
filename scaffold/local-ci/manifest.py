@@ -41,9 +41,9 @@ REQUIRED_SOURCE_IDS_BY_PATH = {
     "docs/helix-harness/L5-detail-design/common-kernel.md": frozenset((
         "### 3.2 K1 API contract", "### 3.4 K2 API contract", "#### 6.1.3 K3 function/API contract", "#### 6.2.2 公開関数とprivate helper",
     )),
-    "docs/helix-os/L4-basic-design/local-ci.md": frozenset(("LC-SCF-001", "LC-SCF-002", "LC-GOV-001", "LC-DIFF-001", "LC-DESIGN-001", "#### 実行snapshotとprocess境界", "## 3. GitHub Actions provider境界", "## 4. 実装技術の選択")),
-    "docs/helix-os/L5-detail-design/local-ci-detail-design.md": frozenset(("D-LCI-01", "D-LCI-02", "D-LCI-03", "D-LCI-04", "D-LCI-05")),
-    "docs/helix-os/L6-function-design/local-ci-function-design.md": frozenset(("F-LCI-01", "F-LCI-02", "F-LCI-03", "F-LCI-04", "F-LCI-05", "F-LCI-06", "F-LCI-07", "F-LCI-08", "F-LCI-09a", "F-LCI-09b", "F-LCI-09c", "F-LCI-09d")),
+    "docs/helix-os/L4-basic-design/local-ci.md": frozenset(("LC-SCF-001", "LC-SCF-002", "LC-GOV-001", "LC-DIFF-001", "LC-DESIGN-001", "LC-STAGE1-L7-001", "#### 実行snapshotとprocess境界", "## 3. GitHub Actions provider境界", "## 4. 実装技術の選択")),
+    "docs/helix-os/L5-detail-design/local-ci-detail-design.md": frozenset(("D-LCI-01", "D-LCI-02", "D-LCI-03", "D-LCI-04", "D-LCI-05", "D-LCI-06")),
+    "docs/helix-os/L6-function-design/local-ci-function-design.md": frozenset(("F-LCI-01", "F-LCI-02", "F-LCI-03", "F-LCI-04", "F-LCI-05", "F-LCI-06", "F-LCI-07", "F-LCI-08", "F-LCI-09a", "F-LCI-09b", "F-LCI-09c", "F-LCI-09d", "F-LCI-10")),
 }
 REQUIRED_SOURCE_IDS = frozenset().union(*REQUIRED_SOURCE_IDS_BY_PATH.values())
 KNOWN_SECTION_LOCATORS = frozenset(ident for ident in REQUIRED_SOURCE_IDS if ident.startswith("#"))
@@ -505,6 +505,21 @@ EXPECTED_CK_K5_VERIFIER_IDS = frozenset((
     "L8-K5-21-CONFLICT-B",
 ))
 EXPECTED_CK_VERIFIER_IDS = EXPECTED_CK_K1_K2_VERIFIER_IDS | EXPECTED_CK_K3_VERIFIER_IDS | EXPECTED_CK_K5_VERIFIER_IDS
+
+LCI_L4_PATH = "docs/helix-os/L4-basic-design/local-ci.md"
+LCI_L5_PATH = "docs/helix-os/L5-detail-design/local-ci-detail-design.md"
+LCI_L6_PATH = "docs/helix-os/L6-function-design/local-ci-function-design.md"
+LCI_L7_PATH = "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md"
+LCI_L8_PATH = "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md"
+LCI_L9_PATH = "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md"
+LCI_L7_SUITE_IDS = frozenset(f"UT-LCI-{number}" for number in range(100, 114))
+LCI_L8_SUITE_IDS = frozenset(f"CASE-L8-LCI-{number}" for number in range(100, 113))
+LCI_L9_SUITE_IDS = frozenset(f"IV-LCI-{number}" for number in range(73, 87))
+EXPECTED_LOCAL_CI_SUITE_IDS = {
+    (LCI_L7_PATH, "l7-suite-oracles"): LCI_L7_SUITE_IDS,
+    (LCI_L8_PATH, "l8-suite-cases"): LCI_L8_SUITE_IDS,
+    (LCI_L9_PATH, "ci-l9-suite-fixtures"): LCI_L9_SUITE_IDS,
+}
 
 CK_L5_PATH = "docs/helix-harness/L5-detail-design/common-kernel.md"
 CK_L8_PATH = "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md"
@@ -1023,6 +1038,15 @@ def _extract_ids(manifest, sources):
             _fail("Unknown", "conflict", "unexpected Common Kernel verifier inventory in " + range_id + ": " + ",".join(sorted(extra)))
     if ck_actual != EXPECTED_CK_VERIFIER_IDS:
         _fail("Unknown", "conflict", "Common Kernel component inventories do not match the fixed union")
+    for (path, range_id), expected_ids in EXPECTED_LOCAL_CI_SUITE_IDS.items():
+        actual_ids = {item["id"] for item in definitions
+                      if item["path"] == path and item["range_id"] == range_id}
+        missing = expected_ids - actual_ids
+        extra = actual_ids - expected_ids
+        if missing:
+            _fail("Unknown", "missing_input", "fixed local-CI suite inventory incomplete in " + range_id)
+        if extra:
+            _fail("Unknown", "conflict", "unexpected local-CI suite ID in " + range_id)
     return definitions, references
 
 
@@ -1323,6 +1347,19 @@ def verify_coverage_edges(manifest: dict, graph: dict) -> dict:
             source_id, verifier_id = sorted(missing_ck_pairs)[0]
             _fail("Unknown", "missing_input", "fixed Common Kernel edge inventory incomplete: " + source_id + " -> " + verifier_id)
         _fail("Unknown", "conflict", "unexpected Common Kernel edge inventory")
+    local_ci_suite_pairs = {
+        ("LC-STAGE1-L7-001", ident) for ident in LCI_L9_SUITE_IDS
+    } | {
+        ("D-LCI-06", ident) for ident in LCI_L8_SUITE_IDS
+    } | {
+        ("F-LCI-10", ident) for ident in LCI_L7_SUITE_IDS
+    }
+    actual_local_ci_suite_pairs = {
+        (edge["source_id"], edge["verifier_id"]) for edge in edges
+        if edge["source_id"] in {"LC-STAGE1-L7-001", "D-LCI-06", "F-LCI-10"}
+    }
+    if actual_local_ci_suite_pairs != local_ci_suite_pairs:
+        _fail("Unknown", "missing_input", "fixed local-CI suite coverage edges are incomplete or unexpected")
     nonpass = []
     for item in dispositions:
         if item["state"] != "mapped":

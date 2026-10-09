@@ -6,37 +6,37 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS local CI運転契約",
   "state": "active",
-  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5のcontractとL6/L7のfunction/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。 固定12文書corpus・独立Common Kernel verifier inventory（K1/K2=164、K3=194、K5=91）・共有raw-row resolver・189 source/1,048 edge/15旧pinを同期対象とする。過去の10文書manifestのsuccessは12文書契約の構造完全性を示さない。同期の成立は追加単体検証とexact target CIのPR証拠で確認し、Binding自体から実装・合格を生成しない。",
+  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernel K1/K2/K3/K5 verifier inventory、共有raw-row resolver、suite traceを含む現在のsource/definition/reference/edge/旧pin inventoryを同期対象とし、旧10文書manifestのsuccessを12文書構造完全性へ読み替えない。K1/K2 source-only suiteは165 formal mappings（139 primary/26 stub）と199 discovery identitiesを固定し、実装/test 3 blobsをSHA pin、L6/L7文書はtargetから実読する。同期の成立は単体検証とexact target CI証拠で確認し、Bindingから実装・合格を生成しない。",
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
-      "sha256": "198931da35f7e6c23b801fbb8a651f836bdafdcb216643c316a38f3953f827e6",
-      "note": "Current local CI candidate bytes in the K3/K5 corpus integration based on rebased base 536c72b47c60ec2cd682574438003c13e56f8ea6; this pin is not execution, approval, or acceptance evidence."
+      "sha256": "263f43cf049a68e845bea735a985c47434cf0b74e9fad4dbbad993172378434b",
+      "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "6b927d26513b8e6e2afe68caa885f943e9e14540d5d6a672bc4e870f892e5f42",
-      "note": "Current local CI candidate bytes in the K3/K5 corpus integration based on rebased base 536c72b47c60ec2cd682574438003c13e56f8ea6; this pin is not execution, approval, or acceptance evidence."
+      "sha256": "7a5d74f1ec6a1d5777b180f573acf2bca9018ac0096b0c8635faeac30f9e71cd",
+      "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "aeccc87fd41c5dde8ec08483defc45d1285f6857921c58793b2d32506278f6b3",
-      "note": "Current local CI candidate bytes in the K3/K5 corpus integration based on rebased base 536c72b47c60ec2cd682574438003c13e56f8ea6; this pin is not execution, approval, or acceptance evidence."
+      "sha256": "aa008b0d2357a52c3673141b4e8e75b3ff643351375b46ce5d6f0aae2feb28f0",
+      "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "f8d4cefd9497a36bcd86651baf6c5a789da796a93d88486026c1c0ece3157099",
-      "note": "Current local CI candidate bytes in the K3/K5 corpus integration based on rebased base 536c72b47c60ec2cd682574438003c13e56f8ea6; this pin is not execution, approval, or acceptance evidence."
+      "sha256": "c51459270a662b39f47a1ada1e2006f616ebe7a7a6cc756cc389087328714c42",
+      "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "5d4c4656cfce6a2d98a607baacd6d48264293fd864981a6dc1320529c4714715",
-      "note": "Current local CI candidate bytes in the K3/K5 corpus integration based on rebased base 536c72b47c60ec2cd682574438003c13e56f8ea6; this pin is not execution, approval, or acceptance evidence."
+      "sha256": "aee3efd09dc5a0a3b0a1112ad1a874a0949ebbc1e460d349f96cf01bcf668db7",
+      "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "69f1cab1008b7e876f008bcd81e3997048dcf14d218710584881f58219c1c91a",
-      "note": "Current local CI candidate bytes in the K3/K5 corpus integration based on rebased base 536c72b47c60ec2cd682574438003c13e56f8ea6; this pin is not execution, approval, or acceptance evidence."
+      "sha256": "02b8ae5ba8e0807b2ee5c6f14b8f4225cfe55e347b2c2a9f3a32611600c32bb4",
+      "note": "Current local-CI design bytes define the 165-row/199-identity source-only suite contract; this exact pin records content only, not execution or approval."
     },
     {
       "path": "docs/governance/decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md",
@@ -128,7 +128,7 @@
   "obligations": [
     "#2716とcurrent L4/L5 contractとL6/L7 pairが固定する開発repository local-CI contractだけを運転し、OS-020 generic profile compositionやHARNESS-036全義務を実装済みと主張しない",
     "exact base/merge-base/head/treeとclean checkoutを確認し、fixed Git snapshotをread-onlyで扱う",
-    "固定順のLC-SCF-001、LC-SCF-002、LC-GOV-001、LC-DIFF-001、LC-DESIGN-001をlocalで試行し、固定targetに結ぶreceipt/evidenceを記録する",
+    "固定順のLC-SCF-001、LC-SCF-002、LC-GOV-001、LC-DIFF-001、LC-DESIGN-001、LC-STAGE1-L7-001をlocalで試行し、固定targetに結ぶreceipt/evidenceを記録する",
     "Actionsはworkflow_dispatchのmerge-unit verifierとし、選択済みLC-DIFF-001についてだけ同じtarget/contract/settingsのlocal evidenceを照合する。local-only checksをActions実行済みとしない",
     "manifestのID/参照/edge/source-pinを明示的に照合し、自然言語全体の意味等価性は推測しない",
     "scfctl/govcheck adapterとそのtransitive checkerを別々に固定し、dependency driftをnon-passとして残す",
@@ -154,7 +154,7 @@
   },
   "operations": {
     "allowed": [
-      "固定5-check contractに従うread-only local static CI運転",
+      "固定6-check contractに従うread-only local CI運転",
       "fixed target / clean checkout / source snapshot / manifest / historical pinの照合",
       "external receiptと診断のcheckout外への出力",
       "workflow_dispatchによる選択済みLC-DIFF-001のmerge-unit照合"
@@ -186,9 +186,9 @@
     "oracles": [
       "docs/helix-os/L4-basic-design/local-ci.md §2.1, §2.2",
       "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract",
-      "docs/helix-os/L5-detail-design/local-ci-detail-design.md D-LCI-01..05",
-      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..95",
-      "docs/helix-os/L6-function-design/local-ci-function-design.md F-LCI-01..08 / F-LCI-09a..09d",
+      "docs/helix-os/L5-detail-design/local-ci-detail-design.md D-LCI-01..06",
+      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112",
+      "docs/helix-os/L6-function-design/local-ci-function-design.md F-LCI-01..08 / F-LCI-09a..09d / F-LCI-10",
       "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI mapping (design only; not executed)",
       "source-byte / target-tree digests and checkout-outside receipt location"
     ],

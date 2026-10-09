@@ -1,18 +1,22 @@
 """Run orchestration oracles; no checker or archive executable is started."""
 import json
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
 from unittest.mock import Mock, patch
 from types import SimpleNamespace
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+_LOCAL_CI = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_LOCAL_CI))
 import driver
 import plan
-from common import CHECK_IDS, Diagnostic, sha256
+from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
 from plan import compile_plan, COMMAND_TEMPLATES
+from source_l7_runner import (CURRENT_DESIGN_PATHS, EXPECTED_DISCOVERY_IDS,
+                              FORMAL_MAPPING, SOURCE_SHA256, SUITE_ID)
 
 TARGET = {"repository_id": "RetryYN/HELIX-HARNESS", "base_commit": "a"*40,
           "merge_base": "a"*40, "head_commit": "b"*40, "head_tree": "c"*40,
@@ -33,17 +37,30 @@ class RunIntegrationTests(unittest.TestCase):
         sources[LEDGER_PATH] = b"synthetic ledger"
         sources["docs/helix-os/L4-basic-design/local-ci.md"] = b"synthetic contract"
         self.snapshot = SimpleNamespace(root=self.root, sources=sources, source_refs=[], close=Mock())
+        self.reader = None
         self.calls = []
         replacements = {"validate_runtime_config": Mock(), "GitReader": Mock(),
                         "resolve_target": Mock(return_value=TARGET),
                         "read_fixed_snapshot": Mock(return_value=self.snapshot),
                         "verify_design_manifest": Mock(return_value={"structure_complete": True}),
                         "check_clean_checkout": Mock(), "run_step": Mock(side_effect=self.success),
-                        "write_receipt": Mock()}
+                        "write_receipt": Mock(),
+                        "write_private_artifact": Mock(return_value=(self.root.parent / "artifact.json", "f" * 64, 100))}
         self.mocks = replacements
         for name, replacement in replacements.items():
             active = patch.object(driver, name, replacement)
             active.start(); self.addCleanup(active.stop)
+        self.reader = self.mocks["GitReader"].return_value
+        self.reader.entries.return_value = {}
+        def target_blob(_entries, path, _expected=None):
+            if path == CURRENT_DESIGN_PATHS[1]:
+                return "\n".join("`" + row["formal_l7_id"] + "`" for row in FORMAL_MAPPING).encode()
+            if path in SOURCE_SHA256:
+                return subprocess.check_output(
+                    ["git", "show", "f0ba62ce833463eb5f747ac4b95659ecea49928a:" + path],
+                    cwd=_LOCAL_CI.parent.parent)
+            return Path(_LOCAL_CI.parent.parent, path).read_bytes()
+        self.reader.blob.side_effect = target_blob
 
     def success(self, root, spec, host, portable, cancel):
         self.calls.append(spec["check_id"])
@@ -53,7 +70,17 @@ class RunIntegrationTests(unittest.TestCase):
         row.update(exit_code=0, started_at="2026-10-09T00:00:00Z",
                    finished_at="2026-10-09T00:00:01Z", stdout_sha256=sha256(b"out"),
                    stderr_sha256=sha256(b"err"))
-        return {"execution": row, "safe_to_continue": True, "diagnostic": None}
+        result = {"execution": row, "safe_to_continue": True, "diagnostic": None}
+        if spec["check_id"] == "LC-STAGE1-L7-001":
+            ids = list(EXPECTED_DISCOVERY_IDS)
+            payload = {"schema_version": 1, "suite_id": SUITE_ID, "complete": True,
+                       "discovered_test_ids": ids, "executed_test_ids": ids,
+                       "test_count": len(ids), "failure_count": 0, "failed_ids": [],
+                       "error_count": 0, "error_ids": [], "skip_count": 0,
+                       "skipped_ids": [], "exit_code": 0, "state": "success"}
+            result["suite_runner_stdout"] = canonical_bytes(payload)
+            result["suite_runner_stdout_overflow"] = False
+        return result
 
     def run_ci(self):
         return driver.run_local_ci(self.root, TARGET["base_commit"], TARGET["head_commit"],
@@ -75,7 +102,7 @@ class RunIntegrationTests(unittest.TestCase):
         self.assertEqual((raised.exception.classification, raised.exception.reason),
                          ("Rejected", "invalid_input"))
 
-    def test_full_run_constructs_and_validates_all_five_rows_before_write(self):
+    def test_full_run_constructs_and_validates_all_six_rows_before_write(self):
         receipt = self.run_ci()
         self.assertEqual(self.calls, list(CHECK_IDS))
         self.assertEqual(receipt["aggregate_state"], "success")
@@ -87,7 +114,7 @@ class RunIntegrationTests(unittest.TestCase):
         self.mocks["write_receipt"].assert_called_once()
         self.snapshot.close.assert_called_once()
 
-    def test_stale_binding_failure_keeps_all_five_attempts_and_nonpositive_receipt(self):
+    def test_stale_binding_failure_keeps_all_six_attempts_and_nonpositive_receipt(self):
         def stale_step(root, spec, host, portable, cancel):
             result = self.success(root, spec, host, portable, cancel)
             if spec["check_id"] == "LC-SCF-002":
@@ -101,15 +128,15 @@ class RunIntegrationTests(unittest.TestCase):
         self.assertEqual(receipt["aggregate_state"], "fail")
         self.mocks["write_receipt"].assert_called_once()
 
-    def test_final_drift_keeps_five_evidence_rows_without_receipt(self):
+    def test_final_drift_keeps_six_evidence_rows_without_receipt(self):
         def recheck(*args):
-            if len(self.calls) == 5:
+            if len(self.calls) == 6:
                 raise Diagnostic("Stale", "target_changed")
         self.mocks["check_clean_checkout"].side_effect = recheck
         with self.assertRaises(Diagnostic) as raised:
             self.run_ci()
         self.assertEqual(raised.exception.classification, "Stale")
-        self.assertEqual(len(raised.exception.evidence), 5)
+        self.assertEqual(len(raised.exception.evidence), 6)
         self.mocks["write_receipt"].assert_not_called()
         self.snapshot.close.assert_called_once()
 

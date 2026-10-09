@@ -149,18 +149,37 @@ def _baseline():
             references = []
         else:
             # Every verification document has one typed, nonempty outcome row.
-            verifier_id = f"IV-SYNTH-{index:02d}"
-            verifier_ids[path] = verifier_id
-            sources[path] = (
-                "# Synthetic\n## Oracle rows\n"
-                "| Test ID | Expected result |\n|---|---|\n"
-                f"| `{verifier_id}` | Value(accepted) |\n"
-            ).encode()
-            definitions = [{
-                "range_id": "oracle-rows", "start_heading": "## Oracle rows",
-                "end_heading": None, "grammar": "table_column", "id_column": 1,
-                "literal_expansions": [],
-            }]
+            suite_config = {
+                manifest.LCI_L7_PATH: ("l7-suite-oracles", manifest.LCI_L7_SUITE_IDS, 4),
+                manifest.LCI_L8_PATH: ("l8-suite-cases", manifest.LCI_L8_SUITE_IDS, 5),
+                manifest.LCI_L9_PATH: ("ci-l9-suite-fixtures", manifest.LCI_L9_SUITE_IDS, 5),
+            }
+            if path in suite_config:
+                range_id, suite_ids, outcome_column = suite_config[path]
+                heading = "## Synthetic suite oracle rows"
+                lines = ["# Synthetic", heading,
+                         "| Fixture | Oracle | Contract | Parent | Outcome |", "|---|---|---|---|---|"]
+                for verifier_id in sorted(suite_ids):
+                    cells = [f"`{verifier_id}`", "`IV-SYNTH-01`", "`LC-SYNTH-01`", "`AC-SYNTH-01`", "Value(accepted)"]
+                    lines.append("| " + " | ".join(cells[:outcome_column]) + " |")
+                sources[path] = ("\n".join(lines) + "\n").encode()
+                definitions = [{"range_id": range_id, "start_heading": heading,
+                                "end_heading": None, "grammar": "table_column", "id_column": 1,
+                                "literal_expansions": []}]
+                verifier_ids[path] = tuple(sorted(suite_ids))
+            else:
+                verifier_id = f"IV-SYNTH-{index:02d}"
+                verifier_ids[path] = (verifier_id,)
+                sources[path] = (
+                    "# Synthetic\n## Oracle rows\n"
+                    "| Test ID | Expected result |\n|---|---|\n"
+                    f"| `{verifier_id}` | Value(accepted) |\n"
+                ).encode()
+                definitions = [{
+                    "range_id": "oracle-rows", "start_heading": "## Oracle rows",
+                    "end_heading": None, "grammar": "table_column", "id_column": 1,
+                    "literal_expansions": [],
+                }]
             references = []
         files.append({
             "path": path, "role": role, "source_kind": "current_contract",
@@ -197,7 +216,27 @@ def _baseline():
         edge_ids = []
         if state != "not_exercised":
             verifier_path = next(row[2] for row in manifest.EXPECTED_FILES if row[0] == source_path)
-            if verifier_path == manifest.CK_L8_PATH:
+            local_suite_sources = {"LC-STAGE1-L7-001", "D-LCI-06", "F-LCI-10"}
+            if source_id in local_suite_sources:
+                if source_id == "LC-STAGE1-L7-001":
+                    verifier_path, range_id, suite_ids, outcome_column = (
+                        manifest.LCI_L9_PATH, "ci-l9-suite-fixtures", manifest.LCI_L9_SUITE_IDS, 5)
+                elif source_id == "D-LCI-06":
+                    verifier_path, range_id, suite_ids, outcome_column = (
+                        manifest.LCI_L8_PATH, "l8-suite-cases", manifest.LCI_L8_SUITE_IDS, 5)
+                else:
+                    verifier_path, range_id, suite_ids, outcome_column = (
+                        manifest.LCI_L7_PATH, "l7-suite-oracles", manifest.LCI_L7_SUITE_IDS, 4)
+                for verifier_id in sorted(suite_ids):
+                    edge_id = f"edge.local.{source_id}.{verifier_id}"
+                    edge_ids.append(edge_id)
+                    doc["coverage_edges"].append({
+                        "edge_id": edge_id, "source_id": source_id, "source_path": source_path,
+                        "verifier_id": verifier_id, "verifier_path": verifier_path,
+                        "outcome_ref": {"verifier_path": verifier_path, "range_id": range_id,
+                                        "verifier_id": verifier_id, "outcome_column": outcome_column},
+                    })
+            elif verifier_path == manifest.CK_L8_PATH:
                 range_id = next(rid for rid, locator in manifest.CK_L5_LOCATOR_BY_RANGE.items()
                                 if source_id == locator)
                 ck_ids = manifest.CK_L8_EXPECTED_IDS_BY_RANGE[range_id]
@@ -213,16 +252,21 @@ def _baseline():
                                         "outcome_column": manifest.CK_L8_OUTCOME_COLUMN_BY_RANGE[range_id]},
                     })
             else:
-                verifier_id = verifier_ids[verifier_path]
-                edge_id = f"edge.{source_id}.{verifier_id}"
-                edge_ids.append(edge_id)
-                doc["coverage_edges"].append({
-                    "edge_id": edge_id, "source_id": source_id,
-                    "source_path": source_path, "verifier_id": verifier_id,
-                    "verifier_path": verifier_path,
-                    "outcome_ref": {"verifier_path": verifier_path, "range_id": "oracle-rows",
-                                    "verifier_id": verifier_id, "outcome_column": 2},
-                })
+                for verifier_id in verifier_ids[verifier_path]:
+                    edge_id = f"edge.{source_id}.{verifier_id}"
+                    edge_ids.append(edge_id)
+                    range_id = {manifest.LCI_L7_PATH: "l7-suite-oracles",
+                                manifest.LCI_L8_PATH: "l8-suite-cases",
+                                manifest.LCI_L9_PATH: "ci-l9-suite-fixtures"}.get(verifier_path, "oracle-rows")
+                    outcome_column = {manifest.LCI_L7_PATH: 4, manifest.LCI_L8_PATH: 5,
+                                      manifest.LCI_L9_PATH: 5}.get(verifier_path, 2)
+                    doc["coverage_edges"].append({
+                        "edge_id": edge_id, "source_id": source_id,
+                        "source_path": source_path, "verifier_id": verifier_id,
+                        "verifier_path": verifier_path,
+                        "outcome_ref": {"verifier_path": verifier_path, "range_id": range_id,
+                                        "verifier_id": verifier_id, "outcome_column": outcome_column},
+                    })
         disp = {"source_id": source_id, "state": state, "edge_ids": edge_ids}
         if state in {"partial", "not_exercised"}:
             disp.update({"reason": "synthetic disposition", "owner_ref": "fixed owner ref",
@@ -306,7 +350,7 @@ class DesignManifestTests(unittest.TestCase):
         loaded = manifest.load_design_manifest(_raw(doc), sources)
         graph = _graph(loaded, sources)
         self.assertEqual(len(loaded["files"]), 12)
-        self.assertEqual(len(manifest.REQUIRED_SOURCE_IDS), 189)
+        self.assertEqual(len(manifest.REQUIRED_SOURCE_IDS), 192)
         self.assertEqual(len(manifest.EXPECTED_CK_K1_K2_VERIFIER_IDS), 164)
         self.assertEqual(len(manifest.EXPECTED_CK_K3_VERIFIER_IDS), 194)
         self.assertEqual(len(manifest.EXPECTED_CK_K5_VERIFIER_IDS), 91)
@@ -486,7 +530,10 @@ class DesignManifestTests(unittest.TestCase):
     def test_ut_lci_33_definitions_form_unique_graph(self):
         doc, sources, _ = _baseline()
         graph = _graph(doc, sources)
-        self.assertEqual(len(graph["by_id"]), len(manifest.REQUIRED_SOURCE_IDS) + 5 + len(manifest.EXPECTED_CK_VERIFIER_IDS))
+        self.assertEqual(len(graph["by_id"]), len(manifest.REQUIRED_SOURCE_IDS) + 5
+                         + len(manifest.EXPECTED_CK_VERIFIER_IDS)
+                         + len(manifest.LCI_L7_SUITE_IDS) + len(manifest.LCI_L8_SUITE_IDS)
+                         + len(manifest.LCI_L9_SUITE_IDS) - 3)
         ck_refs = [ref for ref in graph["references"] if ref["path"] == manifest.CK_L8_PATH]
         # The first three K1 verifier IDs intentionally share one raw row;
         # table references are observed once per raw row, not copied per ID.

@@ -3,7 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 
-CHECK_IDS = ("LC-SCF-001", "LC-SCF-002", "LC-GOV-001", "LC-DIFF-001", "LC-DESIGN-001")
+CHECK_IDS = ("LC-SCF-001", "LC-SCF-002", "LC-GOV-001", "LC-DIFF-001", "LC-DESIGN-001", "LC-STAGE1-L7-001")
 
 class Diagnostic(Exception):
     """Internal control flow; never a persisted K1 record or execution state."""

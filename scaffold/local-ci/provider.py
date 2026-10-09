@@ -10,6 +10,7 @@ from manifest import verify_design_manifest
 from plan import compile_plan
 from receipt import verify_receipt
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
+from source_l7_runner import CURRENT_DESIGN_PATHS
 from target import GitReader, observe_git_identity, resolve_target
 
 
@@ -111,6 +112,7 @@ def run_merge_unit_verifier(repo, base, head, data, *, event="workflow_dispatch"
     manifest = strict_json(raw_manifest)
     paths = _manifest_source_paths(manifest)
     paths.update(CHECKER_PATHS)
+    paths.update(CURRENT_DESIGN_PATHS)
     contract_path = "docs/helix-os/L4-basic-design/local-ci.md"
     paths.add(contract_path)
     sources = {path: reader.blob(entries, path) for path in paths}
@@ -125,7 +127,8 @@ def run_merge_unit_verifier(repo, base, head, data, *, event="workflow_dispatch"
                              design_manifest_digest=sha256(raw_manifest),
                              checker_refs=[ref(p) for p in sorted(CHECKER_PATHS)],
                              contract_ref=ref(contract_path),
-                             structure_complete=report["structure_complete"], plan_expected=plan)
+                             structure_complete=report["structure_complete"], plan_expected=plan,
+                             source_l7_refs=[ref(p) for p in CURRENT_DESIGN_PATHS])
     receipt = strict_json(data)
     diff_row = receipt["executions"][3]
     # Only the selected DIFF check runs on this provider.

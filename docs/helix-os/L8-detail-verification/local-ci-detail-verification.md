@@ -11,13 +11,13 @@ version_target: 1.0
 
 本書はL5 `local-ci-detail-design.md`のAPI、型、target束縛、receipt、provider入力を検証する統合fixture設計である。API型のcaseは将来のformal K1 projection契約を検証し、初期`scaffold/local-ci/` CLIは診断用JSONと外部receiptだけを出力する。CLIがK1 recordを作るとは主張しない。設計oracleでありL8の実行・合格、CI実行、上流承認を表さない。
 
-固定入力は対のL5本文SHA-256 `aeccc87fd41c5dde8ec08483defc45d1285f6857921c58793b2d32506278f6b3`である。
+固定入力は対のL5本文SHA-256 `aa008b0d2357a52c3673141b4e8e75b3ff643351375b46ce5d6f0aae2feb28f0`である。
 
 ## 1. Fixture規則
 
 全fixtureは一時Git repository、合成UTF-8文書、stub command結果を用いる。旧CLI/hook/runtime/test/CIはfixtureにも含めない。各行は一つの条件だけを変更し、派生値（tree OID、digest、receipt digest、base/head）は変異に合わせ再計算する。受口は期待型まで指定し、unknown/unobservedを合格に読み替えない。
 
-全量planのrequired setは順に`LC-SCF-001` → `LC-SCF-002` → `LC-GOV-001` → `LC-DIFF-001` → `LC-DESIGN-001`であり、各caseは一つのfieldを変えても他のrequired stepを保持する。一般`CiState` fold vocabularyに`skipped`があっても、この固定5件はselected requiredであるためreceipt schemaでfold前に拒否する。`skipped`を他stateへfoldしてlocal receiptを受理することはない。
+全量planのrequired setは順に`LC-SCF-001` → `LC-SCF-002` → `LC-GOV-001` → `LC-DIFF-001` → `LC-DESIGN-001` → `LC-STAGE1-L7-001`であり、各caseは一つのfieldを変えても他のrequired stepを保持する。一般`CiState` fold vocabularyに`skipped`があっても、この固定6件はselected requiredであるためreceipt schemaでfold前に拒否する。`skipped`を他stateへfoldしてlocal receiptを受理することはない。
 
 ## 2. API/receiptの検証fixture
 
@@ -25,12 +25,12 @@ version_target: 1.0
 |---|---|---|---|---|
 | `CASE-L8-LCI-01` | `resolve_target` | base/head commitとtreeが存在しclean | 必須head refを入力から欠落させる | `Rejected(missing_key)`、CI未実行 |
 | `CASE-L8-LCI-02` | `check_clean_checkout` | index/worktree/untracked変更なし | staged fileを一つ追加 | `Stale`、check未開始 |
-| `CASE-L8-LCI-03` | target比較 | 開始/終了時のHEAD/treeが一致 | 未開始stepがある時点でHEADを切替 | 未開始stepをstale行として5行receiptに保持、既実行evidenceを残しaggregate `stale` |
-| `CASE-L8-LCI-04` | `compile_plan` | 固定5 step IDとargvが指定順にある | `LC-DESIGN-001`を削除 | `Unknown(missing_input)`、success不可 |
-| `CASE-L8-LCI-05` | `run_local_ci` | 5 fixed runnerすべてexit 0 | SCF validateをexit 1にする | SCF `fail`、他4 stepも実行、aggregate `fail` |
+| `CASE-L8-LCI-03` | target比較 | 開始/終了時のHEAD/treeが一致 | 未開始stepがある時点でHEADを切替 | 未開始stepを`state=stale, started_at=null, finished_at=null, exit_code=null`として6行receiptに保持。第6 suite rowも未開始なら`suite_evidence`なし。既実行evidenceを残しaggregate `stale` |
+| `CASE-L8-LCI-04` | `compile_plan` | 固定6 step IDとargvが指定順にある | `LC-DESIGN-001`を削除 | `Unknown(missing_input)`、success不可 |
+| `CASE-L8-LCI-05` | `run_local_ci` | 6 fixed runnerすべてexit 0 | SCF validateをexit 1にする | SCF `fail`、他5 stepも実行、aggregate `fail` |
 | `CASE-L8-LCI-06` | 固定checker argv境界 | fixed configから作ったargv list、`shell=False`、repo cwd | 呼出側のchecker argv一項へ`; touch ...`相当を追加する | spawn前に`Rejected(invalid_input)`、shellもcheckerも起動しない |
 | `CASE-L8-LCI-07` | exit写像 | checkerがexit 0 | exit 2を返す | step `fail`、本文でなくstdout/stderr SHAを保存 |
-| `CASE-L8-LCI-08` | supervisor外run中止 | 2 step完了、3つ目processは中止要求後に停止・reapできる状態で、後続stepは未開始 | run全体へのcancel要求だけを加える | 起動中process停止/reap確認後、未開始stepを`state=interrupted, reason=cancelled`で残し後続を起動しない。aggregate successなし |
+| `CASE-L8-LCI-08` | supervisor外run中止 | 2 step完了、3つ目processは中止要求後に停止・reapできる状態で、後続stepは未開始 | run全体へのcancel要求だけを加える | 起動中process停止/reap確認後、未開始stepを`state=interrupted, reason=cancelled, started_at=null, finished_at=null, exit_code=null`で残し後続を起動しない。第6 suite rowも未開始なら`suite_evidence`なし。aggregate successなし |
 | `CASE-L8-LCI-09` | current checker ref | scfctl/govcheck refがtree bytesと一致 | govcheck bytesを変更しdigest不一致にする | `Stale`、govcheckを起動しない |
 | `CASE-L8-LCI-10` | 実行前後のchecker束縛 | 開始/終了のchecker digestが一致 | 最終step後にchecker digestだけを変える | 外側`Stale`、既実行evidenceは診断artifactへ保持、LocalCiReceiptを発行せずaggregateだけを上書きしない |
 | `CASE-L8-LCI-11` | `SourceSnapshotReader` | treeから宣言blobを読む | pathをsymlinkへ置換 | `Unknown(conflict)`、link先を辿らない |
@@ -39,33 +39,33 @@ version_target: 1.0
 | `CASE-L8-LCI-14` | reference parser | referenceが一意なdefinitionへ解決 | definitionを二重化 | `Unknown(conflict)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-15` | 明示coverage | L4 invariant→L9 IV edgeとfixture定義がある | verifier IDの定義行を削除 | `Unknown(missing_input)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-16` | coverage意味 | L6 function→L7 oracle edgeが一意 | edge先IDを別fixtureへ差替え | `Unknown(conflict)`。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
-| `CASE-L8-LCI-17` | `U-LCI-01..04` unsupported disposition | 4件を理由付きscope外non-pass inventoryに記録 | `U-LCI-01`をpassへ変える | `Rejected(invalid_input)`。`pass`はUnsupportedItemの型にないためpreflightで拒否する。正常入力では他3件も別fieldのnon-passで保持し、範囲外残余のみで固定5 stepをfailにしない |
+| `CASE-L8-LCI-17` | `U-LCI-01..04` unsupported disposition | 4件を理由付きscope外non-pass inventoryに記録 | `U-LCI-01`をpassへ変える | `Rejected(invalid_input)`。`pass`はUnsupportedItemの型にないためpreflightで拒否する。正常入力では他3件も別fieldのnon-passで保持し、範囲外残余のみで固定6 stepをfailにしない |
 | `CASE-L8-LCI-18` | HistoricalPin | full-file hashと指定line-span hashを再計算 | sourceの1行だけ変えfull digestを据置 | full pin `Unknown(conflict)` |
 | `CASE-L8-LCI-19` | HistoricalPin span照合 | 指定line bytesからspan digestを再計算 | partial line spanのdigestを全体file digestへ差替え | `Unknown(conflict)`、実際のspan bytesで判定 |
 | `CASE-L8-LCI-20` | source kind | archive pin/audit snapshotをhistoricalとして記録 | archive pathをcurrent linkに昇格 | `Unknown(unregistered)` |
 | `CASE-L8-LCI-21` | repository境界 | external temp pathがrepo root外 | repo配下をoutput pathにする | `Rejected(invalid_input)`、書込みなし |
 | `CASE-L8-LCI-22` | canonical receipt | sorted UTF-8 JSON、LF、body外hash | 一行をCRLFへ変える | `Rejected(invalid_input)` |
 | `CASE-L8-LCI-23` | 自己参照禁止 | receiptに自身のdigest fieldがない | `receipt_digest`を本文へ追加 | `Rejected(invalid_input)` |
-| `CASE-L8-LCI-24` | formal receipt schema | current sourceからformal key inputsを構成し、receipt内にtarget/contract/config/manifest/checkers/runtime/5 steps/stateがある | receipt内`checker_refs` fieldだけを欠落 | `Rejected(invalid_input)`。formal key inputsは別に構成済みで、CLI診断にもK1結果classを付けない |
+| `CASE-L8-LCI-24` | formal receipt schema | current sourceからformal key inputsを構成し、receipt内にtarget/contract/config/manifest/checkers/runtime/6 steps/stateがある | receipt内`checker_refs` fieldだけを欠落 | `Rejected(invalid_input)`。formal key inputsは別に構成済みで、CLI診断にもK1結果classを付けない |
 | `CASE-L8-LCI-25` | privacy | outputはSHA-256だけ、cwdは相対path | stdout本文fieldを追加 | `Rejected(invalid_input)` |
-| `CASE-L8-LCI-26` | selected required state | 5件すべてsuccess、すべてplan-selected required | 一checkを`skipped`へ変えてreceipt validatorへ渡す | `Rejected(invalid_input)`、aggregate `skipped`を作らない |
+| `CASE-L8-LCI-26` | selected required state | 6件すべてsuccess、すべてplan-selected required | 一checkを`skipped`へ変えてreceipt validatorへ渡す | `Rejected(invalid_input)`、aggregate `skipped`を作らない |
 | `CASE-L8-LCI-27` | config digest | 同じargv/selection/manifest versionから同digest | 同一target receiptのconfig fieldだけを変える | `Unknown(conflict)` |
 | `CASE-L8-LCI-28` | result authority | 全static checkがsuccess | resultをmerge-allowedへ写す | `Negative`、authority昇格なし |
 | `CASE-L8-LCI-43` | receiptのpath privacy | 外部cache/tempへreceiptを出力し、本文に絶対checkout pathを含めない | receipt内の一つのpath fieldだけを絶対checkout pathにする | `Rejected(invalid_input)`、receipt本文に絶対pathを残さない |
 | `CASE-L8-LCI-44` | formal K1 key構成 | operation/version、current target SubjectRef、scope、全required source refsを既存K2型で構成 | formal API inputからtarget SubjectRefを一つ欠落 | `Rejected(missing_key)`、架空refやK1 receiptを作らない。CLI diagnostic outcomeはK1 resultと呼ばない |
 | `CASE-L8-LCI-45` | formal K1 key後のsource read | formal APIでrequired refsを構成し固定target tree bytesを読める | 一つのGit blob readだけをunavailableにする | `Unknown(unreadable)`、未読sourceをsuccessにしない。CLIは読取診断のみを出す |
 | `CASE-L8-LCI-46` | plan/execution分離 | plan state=`success`、execution state=`fail`、両者別field | plan stateだけをexecution `fail`へ変更する | formal receipt validator `Rejected(invalid_input)`、CLI診断はK1 classを主張しない |
-| `CASE-L8-LCI-47` | isolated target snapshot | exact target必要blobs/minimal objectsとbaseline ancestorsだけのself-contained snapshot、credential-free private Git config、original checkout/`.git`なし | sandbox mount listへoriginal `.git/config`を加える | `denied`、checkerを起動しない |
-| `CASE-L8-LCI-48` | network boundary | checkerはhostと共有しない専用network namespace内で起動し、外部接続性は無効 | 専用namespace分離を一つ取り除きhost network namespaceを共有する | preflight `denied`、checkerを起動しない |
+| `CASE-L8-LCI-47` | isolated target snapshot | exact target必要blobs/minimal objectsとbaseline ancestorsだけのself-contained snapshot、credential-free private Git config、original checkout/`.git`なし | sandbox mount listへoriginal `.git/config`を加える | `denied`、checkerを起動しない。全6行は`started_at=null, finished_at=null, exit_code=null`、suite rowの`suite_evidence`不在でreceiptへ記録 |
+| `CASE-L8-LCI-48` | network boundary | checkerはhostと共有しない専用network namespace内で起動し、外部接続性は無効 | 専用namespace分離を一つ取り除きhost network namespaceを共有する | preflight `denied`、checkerを起動しない。全6行は`started_at=null, finished_at=null, exit_code=null`、suite rowの`suite_evidence`不在でreceiptへ記録 |
 | `CASE-L8-LCI-49` | fixed Python argv preflight | checker argvは設計固定の`python3 -B` | argvから`-B`だけを除く | `Rejected(invalid_input)` before spawn。readonly境界不成立とは推論しない |
-| `CASE-L8-LCI-50` | child process timeout supervision | govcheckと`gen_rulebook.py --check` childを同じgroupで監視 | timeout後childだけを生存させる | `denied`、child停止/reap確認まで後続stepを開始しない |
-| `CASE-L8-LCI-51` | timeout完了 | checkerが300秒候補timeout前に正常終了でき、process treeの停止・reapを確認する | fixed checkerをtimeout超過まで実行させる | `state=interrupted, reason=timeout`、process tree停止/reap後に後続stepを実行しdiagnosticを保持 |
+| `CASE-L8-LCI-50` | child process timeout supervision | govcheckと`gen_rulebook.py --check` childを同じgroupで監視 | timeout後childだけを生存させる | `denied`、child停止/reap確認まで後続stepを開始しない。未開始stepはnull時刻/exitの行でreceiptへ保持し、第6 suite rowが未開始なら`suite_evidence`なし |
+| `CASE-L8-LCI-51` | timeout完了 | checkerが300秒候補timeout前に正常終了でき、process treeの停止・reapを確認する | fixed checkerをtimeout超過まで実行させる | `state=interrupted, reason=timeout`、process tree停止/reap後に後続stepを実行しdiagnosticを保持。completeなsuite resultが無い場合はsuite_evidenceを省略しpartial diagnosticへ残す |
 | `CASE-L8-LCI-52` | transitive checker ref | `govcheck.py`と`gen_rulebook.py`双方のdigestがcurrent targetと一致 | child checker bytesだけ変更 | `Stale`、govcheck未起動 |
 | `CASE-L8-LCI-53` | known non-pass disposition | manifestは`RL-V1`/`RL-K3` not_exercised、`RL-D4`から`IV-RL-56`/`IV-RL-57`/`IV-RL-59`へのpartial edge、別fieldのD4 code-graph extraction scopeout、`RL-T3` partial edgeを記録 | `RL-D4`の`IV-RL-57` edgeを欠落 | `Unknown(missing_input)`、structure completeとしない。snapshot/planの構造preflightでrun全体の外側結果として返し、checker/execution/receiptは未作成 |
 | `CASE-L8-LCI-54` | non-pass保持 | `RL-V1`/`RL-K3`は`not_exercised`、`RL-D4`の3件の設計edgeは`partial`で抽出scopeoutは別field、`RL-T3`はclassifier edgeだけの`partial`、U-LCI残余は別inventory | `RL-T3` dispositionだけを`pass`へ変える | `Rejected(invalid_input)`、CI構造successから契約passを生成しない |
 | `CASE-L8-LCI-55` | dispatch envelope parse | workflow開始後、JSON envelope parserが構文を読める | envelope JSON構文だけを壊す | provider diagnostic `Unknown(unreadable)`、local receipt/aggregateを生成しない |
-| `CASE-L8-LCI-56` | private snapshot write boundary | snapshot/minimal objectsはread-only、checker-writableはreceiptと分離したscratchだけ | snapshot mountだけをwritableにする | `denied`、checkerを起動しない |
-| `CASE-L8-LCI-57` | receipt write authority | receipt/parent directoryはsandbox外で信頼側supervisorだけが書く | receipt parent directoryだけをsandboxへmountする | `denied`、checkerを起動しない |
+| `CASE-L8-LCI-56` | private snapshot write boundary | snapshot/minimal objectsはread-only、checker-writableはreceiptと分離したscratchだけ | snapshot mountだけをwritableにする | `denied`、checkerを起動しない。全6行はnull時刻/exit、第6 suite rowの`suite_evidence`不在でreceiptへ記録 |
+| `CASE-L8-LCI-57` | receipt write authority | receipt/parent directoryはsandbox外で信頼側supervisorだけが書く | receipt parent directoryだけをsandboxへmountする | `denied`、checkerを起動しない。全6行はnull時刻/exit、第6 suite rowの`suite_evidence`不在でreceiptへ記録 |
 | `CASE-L8-LCI-58` | host-side Git version boundary | fixed Git executable identity/digestと2.35.2以降のversionを確認してからreader probeする | versionだけを2.35.1に下げる | `Unknown(unsupported)`、reader Git probe/checkerを開始せず、`false`をhook pathnameとして起動しない |
 | `CASE-L8-LCI-59` | host-side Git reader command boundary | global/system config無効、fsmonitor/hook無効、external diff/textconv無効のfixed argvとallowlisted envでclean/source probeを行う | fixed argvから`-c core.fsmonitor=false`を一つ除く | `Rejected(invalid_input)` before Git probe。任意fsmonitor commandを起動しない |
 | `CASE-L8-LCI-60` | manifest/result整合 | receiptの`design_manifest_digest`が指すbytesの独立manifest検査が`structure_complete=true`で、`LC-DESIGN-001` execution rowはsuccess | receipt bodyを変えず、独立検査結果だけを`structure_complete=false`にする | 架空のreceipt fieldを要求せず、manifest digestで解決したbytesと検査結果を照合して`Rejected(invalid_input)` before aggregate fold。`Unknown`/aggregate failへ写さない |
@@ -94,7 +94,7 @@ version_target: 1.0
 | `CASE-L8-LCI-83` | bwrap binary availability | trusted host-local settingからprofile pinned binaryを解決できる | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし |
 | `CASE-L8-LCI-84` | 必須parent AC applicability記録 | `parent_ac_coverage`にOS-020-01/03が各一件あり、各state/reasonがL4 §1と一致 | `AC-OS-020-03` rowだけをlistから削除する | `Unknown(missing_input)`、LC-DESIGN-001非肯定、execution/receiptなし |
 | `CASE-L8-LCI-85` | parent ACの非昇格 | 必須2行のID/state/reasonがL4 §1と一致 | `AC-OS-020-01.state`だけを`pass`へ変える | `Rejected(invalid_input)`、parent ACをpassにせずexecution/receiptなし |
-| `CASE-L8-LCI-86` | Common Kernel L5 source locator | `### 3.2 K1 API contract`と`### 3.4 K2 API contract`がexact_heading source locatorとして各一件あり、required source inventoryは既存185 IDと合わせ189件（K1/K2/K3/K5の4 locator） | K2 locatorのdefinition rangeを一つ削除 | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、checker/execution/receiptなし。section locatorを意味上のAPI IDへ変換しない |
+| `CASE-L8-LCI-86` | Common Kernel L5 source locator | K1/K2/K3/K5の4 exact_heading locatorが各一件あり、required source inventoryはsuite trace追加後192件 | K2 locatorのdefinition rangeを一つ削除 | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、checker/execution/receiptなし。section locatorを意味上のAPI IDへ変換しない |
 | `CASE-L8-LCI-87` | Common Kernel L8 literal expansion | K1/K2のcase列literal expansionがそれぞれ111/53 fixture IDを定義し、各IDは同pairのraw rowへ一意に戻る | K1 expansionの一つの中間suffix IDだけを対応表から削除 | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、省略記法を推測せずchecker/execution/receiptなし |
 | `CASE-L8-LCI-88` | Common Kernel K1/K2 typed referencesとpair ownership | L8 K1/K2各rowの第2列L9 oracle、第3列L4 refsをtyped referenceに保ち、coverage sourceはexpected_pairの対応L5 locatorだけ | 一つのK1 rowの第3列展開先へK2 locatorを一つ指定 | snapshot/plan preflightでrun全体の外側`Unknown(conflict)`、L9/L4 referenceをL5 sourceへ昇格せずchecker/execution/receiptなし |
 | `CASE-L8-LCI-89` | Common Kernel L5→L8 required edges | 2 L5 locatorから164展開fixture IDへ各一件の明示edgeがありdispositionが全edgeを参照 | 一つのK2 destination edgeと同edge IDのdisposition referenceを同時削除（同sourceの別edgeは残す） | snapshot/plan preflightでrun全体の外側`Unknown(missing_input)`、他edgeで代替せずchecker/execution/receiptなし |
@@ -127,3 +127,24 @@ version_target: 1.0
 ## 4. 判定境界
 
 Local receiptは作成側の報告ではなく、独立reviewとActions receipt verifierが読む証拠候補である。hash一致が証明するのはbytes identityだけであり、署名/issuer anchorがないため実行主体の真正性は証明しない。CI成功をL10/L11、L2採否、merge admission、releaseへ昇格させない。
+
+
+## 5. 開発source L7 suiteのreceipt/runner integration cases
+
+各caseはtarget-tree内のsource-only inventoryを使う。registration状態は入力にも成功条件にも含めない。discovered identitiesとformal ID mappingは別々に検査する。
+
+| Case ID | 契約 | 正常入力 | 一点の変異 | 期待結果 |
+|---|---|---|---|---|
+| CASE-L8-LCI-100 | source-only baseline | exact target treeにkernel source/test refs、165 formal IDs/mapping、199 current source-bound expected discovery identities（sorted-ID SHA-256 `2203c7ba4c3064940792d0cd19b8e0e5e6b0123ed0f5ad302472213b1be3c874`）、runner identityがあり、pack declaration/registration recordは無い | 変異なし | inventory expected setと一致するdiscovered/executed IDsをfull external artifactへ保持しcompact summaryで束縛。passならcandidate suite row success、registered/usable claimなし。旧baselineの196件/count digestをcurrent expected値へ流用しない |
+| CASE-L8-LCI-101 | current target source binding | implementation/test refsはhead tree bytes | test_k1.py blob refだけをtarget tree外sourceへ差し替 | Unknown(conflict)、runner前停止、cbce source fallbackなし |
+| CASE-L8-LCI-102 | formal-to-callable mapping | 165 formal IDsがfixed L7 sourceのcoverage-kind付きmappingに一致し、stub IDsをprimary behavior coverageに数えない | mappingの一formal IDだけを除く | `Unknown(missing_input)`、runner spawn前inventory preflight停止、suite row successなし |
+| CASE-L8-LCI-103 | actual discovery identity set | current inventory expected set/count/sorted-ID digestがexact source closureに束縛され、runner discovery IDsと一致 | runner後のdiscovered ID一件だけを別IDへ置換 | `Unknown(conflict)`診断を保持しF05がsuite `CheckExecution.state=fail`へ写す。complete resultを回収できずcompact `suite_evidence`なしで部分diagnosticを残す。outer Unknown receiptにしない。count一致だけでは受理しない |
+| CASE-L8-LCI-104 | actual execution set | discovery/execution listsがcurrent inventory expected identitiesを各一度含む | spawned runnerのexecuted listから一identityだけを欠落させる | `CheckExecution.state=fail`、complete suite resultではないためcompact `suite_evidence`なしで部分diagnosticを保持する。IV-LCI-78のartifact schema欠落と異なり、これは実行後のsuite step failureである。success不可 |
+| CASE-L8-LCI-105 | unittest skip | 全expected IDsがdiscovered | 一identityだけをskipにする | step fail、skip identityを保持 |
+| CASE-L8-LCI-106 | unittest failure | 全expected IDsがdiscovered | 一identityだけをfailureにする | step fail、full artifactの`failed_ids`へ該当identityを保持 |
+| CASE-L8-LCI-107 | runner/toolchain binding | fixed runner/toolchain refsはcurrent target/configに一致 | runner identity bytes digestだけをfixed source/config identityと不一致にする | `Unknown(conflict)` before spawn。version/profile非対応は別の`Unknown(unsupported)`境界 |
+| CASE-L8-LCI-108 | full identity artifact | external artifactがactual discovery/execution IDsとtarget/source/mapping refsを保持 | discovered_test_idsだけをartifactから除く | Rejected(invalid_input)、count/digestだけではfull evidenceにならない |
+| CASE-L8-LCI-109 | partial coverage boundary | K1/K2 candidate resultとother Stage 1 dispositionsは別field | candidate successをstage1_l7_complete=trueへ投影 | Negative、Stage 1全L7/OS-020/HARNESS passを生成しない |
+| CASE-L8-LCI-110 | current-source missing | suite rowは固定formal IDsを参照、先行5 check evidenceを外部diagnosticに保持 | target treeからtest_k2.pyを欠落させる | run_local_ci外側Unknown(missing_input)、先行5件をdiagnosticへ保持、suite row/receiptなし、runner未起動、cbce/branch/host sourceを使わない |
+| CASE-L8-LCI-111 | compact suite summary | receipt summaryはartifact SHA、discovery/execution count+ID-set digest、mapping digest、target/source refsを持つ | executed ID-set digest fieldだけを削除 | Rejected(invalid_input)、compact provider input不完全、positive不可 |
+| CASE-L8-LCI-112 | full execution identity artifact | external artifactが実discovered/executed ID arraysとtarget/source/mapping refsを保持 | executed_test_ids配列だけをartifactから除く | Rejected(invalid_input)、full evidence不完全、success receiptなし |
