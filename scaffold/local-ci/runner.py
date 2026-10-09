@@ -28,6 +28,8 @@ except ImportError:  # pragma: no cover - direct script entrypoint
 TIMEOUT_SECONDS = 300
 TERM_GRACE_SECONDS = 5
 SUPERVISOR_TIMEOUT_SECONDS = 330
+SUITE_STDOUT_CAPTURE_LIMIT = 82001
+SUPERVISOR_FRAME_MAX_BYTES = 120000
 _HEX = frozenset("0123456789abcdef")
 _HOST_KEYS = frozenset({"python", "git", "bwrap", "mounts"})
 _EXEC_KEYS = frozenset({"python", "git", "bwrap"})
@@ -149,7 +151,7 @@ def _validate_command(spec: object) -> tuple[list[str], str]:
         CHECK_IDS[1]: ["python3", "-B", "scaffold/tools/scfctl.py", "stale"],
         CHECK_IDS[2]: ["python3", "-B", "scaffold/governance/tools/govcheck.py"],
         CHECK_IDS[4]: ["python3", "-B", "scaffold/local-ci/design_check.py"],
-        CHECK_IDS[5]: ["python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2-k3"],
+        CHECK_IDS[5]: ["python3", "-B", "scaffold/local-ci/source_l7_runner.py", "--suite", "common-kernel-k1-k2-k3-k5"],
     }
     if index == 3:
         if (len(argv) != 8 or argv[:4] != ["git", "diff", "--check", "--no-ext-diff"]
@@ -708,7 +710,7 @@ def _supervisor(payload: dict, control: socket.socket) -> dict:
     try:
         is_suite = spec["check_id"] == "LC-STAGE1-L7-001"
         drained = _drain_pipes(process, TIMEOUT_SECONDS, cancel_event, control=control,
-                                capture_stdout_limit=70001 if is_suite else 0)
+                                capture_stdout_limit=SUITE_STDOUT_CAPTURE_LIMIT if is_suite else 0)
         code, stdout_digest, stderr_digest, interrupted, safe = drained[:5]
         captured_stdout, stdout_overflow = drained[5:] if is_suite else (b"", False)
     finally:
@@ -865,7 +867,7 @@ def run_step(snapshot_root: Path, spec: dict, host_config: dict, portable_config
                         pass
                     continue
                 frames.extend(part)
-                if len(frames) > 100_000:
+                if len(frames) > SUPERVISOR_FRAME_MAX_BYTES:
                     protocol_error = Diagnostic("denied", "supervisor_protocol_invalid", "supervisor response exceeded bound")
                     break
                 while b"\n" in frames:

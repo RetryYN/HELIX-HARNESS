@@ -129,3 +129,18 @@ payload内の状態語は、必要sourceを完全読取して比較したdomain�
 固定NFR 5件はNFR-C-HARNESS-010-01/02、011-01/02、023-01のみ。010-01はartifact bytes digest一致（contractが明記する非意味metadata除外のみ）、010-02はtarget外pack version/evidence差分0、011-01は同keyでeffect高々1回、011-02はexpiry後success 0と案A/B比較、023-01はD1–D15全15 fixtureで同一input/revisionのclosure/reason差分0。NFR候補は実測やSLOでない。
 
 L8は既存L9の20 verifier ID（12 functional + 5 NFR + 3 business-boundary）を一件ずつ対応付ける。L8がIDやoracleを再発行するのでなく、L9 verifierの詳細fixture planを付ける。case内の複数mutationは一度に一fieldだけを変える個別synthetic fixtureに分ける。
+
+## 7. unit配置と言語の実装候補
+
+repository-layout L4 §2/§3.1が定めるunit pathと同居する`declaration.json`、`src/`、`tests/`、synthetic-only `fixtures/`をStage 1 HARNESSへ具体化する候補を次表に示す。unit locatorは`helix/helix-harness/units/harness-stage1/`を候補とする。これは配置用の候補値であり、確定したtype number、登録済みidentity、実在unitを意味しない。実装unlock PO判断の対象は承認済みStage 1親と依存閉包であり、必要なdirectory作成を含む。宣言登録をsource配置の先行条件にはしない。一方、path、候補fixture、source/testの存在からdeclaration成立、型番台帳登録、pack inclusion/usability、owner接続、実行admissionを導かない。
+
+| 候補locator | 責務とL5境界 |
+|---|---|
+| `helix/helix-harness/units/harness-stage1/declaration.json` | unit declarationの候補位置。既存L4 §3.1のidentity/version/maturity/owner/input-output/dependency/verification/inclusion-exclusion項目を正本化する場所を示すだけ。値・schema・owner・初回bootstrap/ledger event sequenceはこの候補で生成しない。 |
+| `helix/helix-harness/units/harness-stage1/src/stage1_pack.py` | 10 L5 API候補に対応する製品固有のpure comparison/projectionとtyped payloadを置くsource module候補。`read_pack_declaration`の実source reader/current owner adapter、permission/dispatch、K5 physical writer、K6 receipt verifierを新設・模倣しない。既存common-kernelの契約を呼ぶ箇所はその既存境界を保つ。 |
+| `helix/helix-harness/units/harness-stage1/tests/test_stage1_pack.py` | L7で269個の既存L8 fixture IDを実装可能な単体caseへ対応させるtest module候補。ここでfixture数、L9 verifier数、AC数は増やさない。 |
+| `helix/helix-harness/units/harness-stage1/fixtures/` | 上記L8が使うsynthetic-only inputを置く候補。実pack/declaration、credential、実案件data、実行recordは置かない。 |
+
+言語・単体testの技術候補はCPython 3.11以上と標準library（`dataclasses`、`typing`、`enum`、`unittest`）とする。候補理由は、既存common-kernel sourceがfrozen dataclassと型注釈を使い、同じrepository内のunit testsが`unittest`で既存K1/K2/K3/K5 APIを照合しているため、HARNESSのtyped in-memory comparisonとpure function testを外部package/runtimeなしで組み立てられること。INFRA L5 §9.1でも同じCPython 3.11+標準環境を既存dependency項目へ置く技術候補を選んでいる。これはStage 1実装の候補値であり、新しい親制約・登録runtime・dependency typeを作らない。Bunは使用しない。Node/Vitest等の旧HELIX具体を移植せず、別言語/外部frameworkもこのL5候補には加えない。toolchainの実固定、build、import/package wiringは後続L6で具体化する。
+
+この再導出ではL5 §2の12旧asset tableを起点にし、構成に直接関係する`LEGACY-ASSET-FDBA655B1CFF75DCDC0E`（旧repository-structure §2 lines 102–120; full SHA-256 `6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262`）からsource/testを一所有単位へ寄せる配置形を保持し、旧root layout・Node/TypeScript/Vitest具体を置換する。追加の比較根拠`LEGACY-ASSET-A2F6A697D7FFFD490B57`（旧release-module-bundle-composition-requirements RLS-R-03 lines 54–58; full SHA-256 `336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c`）は、pathごとの単一ownerとrelease scopeを示す。現行ではpack declaration/type-number ledgerがidentityを担い、pathは配置locatorとする意味へ再導出した。この追加assetは上記L5 §2の12件の内数ではなく、ledgerも`unresolved`、`consumer_refs=[]`で`failure_refs` fieldはない。12件とこの比較assetの台帳から、特定の実装consumerや失敗原因を追加しない。旧repository structureの§7 lines 152–159にある`[予定]`directory+後続PLAN規則は旧の予定directoryに限定されるため、現行Stage 1のsource pathへの先行登録gateとして一般化しない。旧HELIXの失敗/consumerはL5 §2各rowで本文記述とledger未登録情報を分離している。現在の配置根拠は構成L4と2026-10-09のStage 1 implementation unlock / repository-layout PO判断であり、後者の配置と登録の区別を保持する。配置候補は未実装であり、L8 setup照合も登録・usable・release acceptanceを判定しない。
