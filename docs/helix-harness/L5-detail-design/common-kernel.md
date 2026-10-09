@@ -440,3 +440,7 @@ L9 IV-G3-04(9)後半とIV-G3-05はconsumer経路が`Rejected`となる期待を�
 ### 8.4 実装候補と限界
 
 既存K1/K2 L5 §5のCPython 3.11+標準library候補を、K4の型付きview、決定的ID集合比較、状態variantへの適用にも使える候補として維持する。K4はK5 restoreとK6 receipt境界を使うため、pure coreだけの実装だとは主張しない。K5 segment reader、K6 verifier execution、HARNESS 014/041 owner ruleの存在・登録・実装をこの言語選択から導かない。既存L4のauthority source、K6/K5 entrypoint、各ownerが未確定の箇所は未決のまま保つ。
+
+## K4/G3 API 範囲終端
+
+この見出しは、manifestが定めるK4/G3 API抽出範囲の終端であり、K4/G3契約項目はここより前に置く。

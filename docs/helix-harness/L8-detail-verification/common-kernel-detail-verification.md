@@ -432,3 +432,7 @@ K4 direct L3 parent: HARNESS AC-HARNESS-L3-014-01–04/021-02/036-04/041-02、OS
 | `L8-G3-05-NO-THRESHOLD` | IV-G3-05 | L4 API-surface structural check; G3-I5 | L5で定義済みのreturn typeに割合由来の合否/承認fieldが存在しないことを文書構造で確認する。L9の`Rejected`経路を実行・満足したとは扱わず、consumer API/reasonを新設しない。 |
 
 G3-I4のaccepted/mismatch fixtureは既存authority source recordを既存adapterが読む契約のcase分割であり、`HumanDecision`を公開APIへ直接渡す入力ではない。source/adapterの具体的identityが既存文書で未確定な部分は、本fixture設計から補わない。上表の正常source fixtureは設計入力例に留まり、製品sourceの実在を主張しない。K4/G3のfixture IDは現行`design-manifest.json`およびCI verifier inventoryへ未登録であり、本書はそれらのCI coverageや実行を主張しない。inventory登録は別のPRで扱う。
+
+## K4/G3 fixture 範囲終端
+
+この見出しは、manifestが定めるK4/G3 fixtureおよびtyped reference抽出範囲の終端であり、既存K4/G3行はここより前に置く。

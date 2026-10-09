@@ -673,14 +673,14 @@ CK_L5_RANGE_CONFIG = {
     CK_L5_K2_LOCATOR: ("ck-l5-k2-api", "### 3.5 role-bound input alias binding"),
     CK_L5_K3_LOCATOR: ("ck-l5-k3-api", "#### 6.1.4 invariantからL5 functionへのtrace"),
     CK_L5_K5_LOCATOR: ("ck-l5-k5-api", "#### 6.2.3 不変条件の分解"),
-    CK_L5_K4_G3_LOCATOR: ("ck-l5-k4-g3-api", None),
+    CK_L5_K4_G3_LOCATOR: ("ck-l5-k4-g3-api", "## K4/G3 API 範囲終端"),
 }
 CK_L8_DEFINITION_CONFIG = {
     CK_L8_K1_RANGE: ("## 3. K1 fixtures", "## 4. K2 fixtures", 1),
     CK_L8_K2_RANGE: ("## 4. K2 fixtures", "## 5. K3–K10と未実施範囲", 1),
     CK_L8_K3_RANGE: ("### 5.1 K3 fixtures", "#### 5.1.2 K3 reason mappingの未決", 1),
     CK_L8_K5_RANGE: ("### 5.2 K5 fixtures", "## 6. K1/K2 unit範囲と登録oracleの境界", 1),
-    CK_L8_K4_G3_RANGE: ("## 7. K4/G3 fixtures", None, 1),
+    CK_L8_K4_G3_RANGE: ("## 7. K4/G3 fixtures", "## K4/G3 fixture 範囲終端", 1),
 }
 CK_L8_REFERENCE_CONFIG = {
     "ck-l8-k1-l9-oracles": ("## 3. K1 fixtures", "## 4. K2 fixtures", 2, CK_L8_K1_RANGE),
@@ -691,8 +691,8 @@ CK_L8_REFERENCE_CONFIG = {
     "ck-l8-k3-l4-l5-contracts": ("### 5.1 K3 fixtures", "#### 5.1.2 K3 reason mappingの未決", 3, CK_L8_K3_RANGE),
     "ck-l8-k5-l9-oracles": ("### 5.2 K5 fixtures", "## 6. K1/K2 unit範囲と登録oracleの境界", 2, CK_L8_K5_RANGE),
     "ck-l8-k5-l4-l5-contracts": ("### 5.2 K5 fixtures", "## 6. K1/K2 unit範囲と登録oracleの境界", 3, CK_L8_K5_RANGE),
-    "ck-l8-k4-g3-l9-oracles": ("## 7. K4/G3 fixtures", None, 2, CK_L8_K4_G3_RANGE),
-    "ck-l8-k4-g3-l4-l5-contracts": ("## 7. K4/G3 fixtures", None, 3, CK_L8_K4_G3_RANGE),
+    "ck-l8-k4-g3-l9-oracles": ("## 7. K4/G3 fixtures", "## K4/G3 fixture 範囲終端", 2, CK_L8_K4_G3_RANGE),
+    "ck-l8-k4-g3-l4-l5-contracts": ("## 7. K4/G3 fixtures", "## K4/G3 fixture 範囲終端", 3, CK_L8_K4_G3_RANGE),
 }
 _MANIFEST_KEYS = {"version", "files", "coverage_edges", "coverage_dispositions", _PARENT_AC_COVERAGE_KEY, "source_scopeouts", "legacy_pins", "unsupported_items"}
 _MANIFEST_REQUIRED_KEYS = _MANIFEST_KEYS - {_PARENT_AC_COVERAGE_KEY}
