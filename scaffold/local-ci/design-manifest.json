@@ -21444,12 +21444,12 @@
     {
       "parent_ac_id": "AC-OS-020-01",
       "state": "not_exercised",
-      "reason": "今回の5件は開発repoの固定local-CI contractから選ぶ。変更diffやticketからHARNESS義務を選びOS汎用profileを組成する機能を実装しない。"
+      "reason": "今回の6件は開発repository専用の固定operation contractから選ぶ。変更diffやticketからHARNESS義務を選びOS汎用profileを組成する機能を実装しない。"
     },
     {
       "parent_ac_id": "AC-OS-020-03",
       "state": "not_exercised",
-      "reason": "未見の一般diffから適用義務を推論する機能は実装しない。5件固定は本開発repoのlocal-CI operation contractであり、OS-020の汎用stage countや未見義務選択を定義しない。"
+      "reason": "未見の一般diffから適用義務を推論する機能は実装しない。6件固定は本開発repositoryのlocal-CI operation contractであり、OS-020の汎用stage countや未見義務選択を定義しない。"
     }
   ],
   "source_scopeouts": [
