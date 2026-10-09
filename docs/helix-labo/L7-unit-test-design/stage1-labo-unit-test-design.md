@@ -197,7 +197,7 @@ L8正式fixtureは実行していない。L6/L8/L9と88定義ID/35 oracle IDの�
 | `test_all_seven_declared_status_values_are_preserved_separately` | 空field mappingとL5列挙の各statusを個別に与える | statusを`success`、`failure`、`rejected`、`cancelled`、`blocked`、`unknown`、`not_observed`の間で一つずつ置換 | 各statusの同じ値を保持し、20 fieldの欠落表現と独立させる。K1 `Observed` classへの変換なし | L8 NFR-001-02のstatus候補をhelperに留めて確認するもの。L9/NFR測定は未実施 |
 | `test_episode_candidate_shape_retains_refs_and_relation_only` | L5既存ref collectionとrelationへopaque valuesを渡す | 変異なしのpositive shape case | 各入力objectをidentity保持し、`causal_assertion=false`。未定義fieldを投影へ加えない | ref-retention helperのみ。connection解決、correlation、L8-011/L9合格は未実施 |
 
-L6§6の候補コードは正式packではなく、L7本文上の88定義ID／35 oracle索引にも追加していない。補助検査の成功をowner/API接続や、L8/L9の実fixture実行証拠に数えない。現行sourceの欠落mapping、`lab_processing`、K2、CONNECT、因果性、NFR測定は既存L8§5のpartial/hold/uncovered区分を維持する。
+L6§6の候補コードは正式packではなく、L7本文上の88定義ID／35 oracle索引にも追加していない。補助検査の成功をowner/API接続や、L8/L9の実fixture実行証拠に数えない。現行sourceの欠落mapping、`lab_processing`の生成・owner接続、K2、CONNECT、因果性、NFR測定は既存L8§5のpartial/hold/uncovered区分を維持する。
 
 ### §6の実行記録（384c741時点）
 
