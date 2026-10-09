@@ -3034,7 +3034,7 @@
         {
           "range_id": "ck-l5-k4-g3-api",
           "start_heading": "## 8. K4/G3 義務評価API",
-          "end_heading": null,
+          "end_heading": "## K4/G3 API 範囲終端",
           "grammar": "exact_heading",
           "id_column": null,
           "literal_expansions": []
@@ -4037,7 +4037,7 @@
         {
           "range_id": "ck-l8-k4-g3-fixtures",
           "start_heading": "## 7. K4/G3 fixtures",
-          "end_heading": null,
+          "end_heading": "## K4/G3 fixture 範囲終端",
           "grammar": "table_column",
           "id_column": 1,
           "literal_expansions": []
@@ -5073,7 +5073,7 @@
         {
           "range_id": "ck-l8-k4-g3-l9-oracles",
           "start_heading": "## 7. K4/G3 fixtures",
-          "end_heading": null,
+          "end_heading": "## K4/G3 fixture 範囲終端",
           "grammar": "table_column",
           "id_column": 2,
           "literal_expansions": []
@@ -5081,7 +5081,7 @@
         {
           "range_id": "ck-l8-k4-g3-l4-l5-contracts",
           "start_heading": "## 7. K4/G3 fixtures",
-          "end_heading": null,
+          "end_heading": "## K4/G3 fixture 範囲終端",
           "grammar": "table_column",
           "id_column": 3,
           "literal_expansions": [
