@@ -52,7 +52,8 @@ def _validate_suite_result(payload, target, source_refs, execution):
         raise Diagnostic("Unknown", "conflict", "suite runner result schema is not recognized")
     required = {"schema_version", "suite_id", "complete", "discovered_test_ids", "executed_test_ids",
                 "test_count", "failure_count", "failed_ids", "error_count", "error_ids",
-                "skip_count", "skipped_ids", "exit_code", "state"}
+                "skip_count", "skipped_ids", "expected_failure_count", "expected_failure_ids",
+                "unexpected_success_count", "unexpected_success_ids", "exit_code", "state"}
     if set(payload) != required or payload.get("complete") is not True:
         raise Diagnostic("Unknown", "conflict", "suite runner did not return a complete identity result")
     discovered, executed = payload["discovered_test_ids"], payload["executed_test_ids"]
@@ -66,7 +67,10 @@ def _validate_suite_result(payload, target, source_refs, execution):
             or set(executed) != set(EXPECTED_DISCOVERY_IDS)):
         raise Diagnostic("Unknown", "conflict", "executed suite identities differ from the fixed inventory")
     outcome_ids = []
-    for count_key, ids_key in (("failure_count", "failed_ids"), ("error_count", "error_ids"), ("skip_count", "skipped_ids")):
+    for count_key, ids_key in (("failure_count", "failed_ids"), ("error_count", "error_ids"),
+                               ("skip_count", "skipped_ids"),
+                               ("expected_failure_count", "expected_failure_ids"),
+                               ("unexpected_success_count", "unexpected_success_ids")):
         ids = payload[ids_key]
         if (type(payload[count_key]) is not int or payload[count_key] < 0
                 or not isinstance(ids, list) or any(not isinstance(item, str) for item in ids)
@@ -75,7 +79,14 @@ def _validate_suite_result(payload, target, source_refs, execution):
             raise Diagnostic("Unknown", "conflict", "suite result counts and identity lists disagree")
         outcome_ids.extend(ids)
     if len(outcome_ids) != len(set(outcome_ids)):
-        raise Diagnostic("Unknown", "conflict", "suite failure/error/skip identity sets overlap")
+        raise Diagnostic("Unknown", "conflict",
+                         "suite failure/error/skip/expected-failure/unexpected-success identity sets overlap")
+    if type(payload["exit_code"]) is not int:
+        raise Diagnostic("Unknown", "conflict", "suite exit code is not an integer")
+    if payload["exit_code"] != 0 and not outcome_ids:
+        raise Diagnostic("Unknown", "conflict", "suite exited nonzero without an outcome identity")
+    if payload["exit_code"] == 0 and outcome_ids:
+        raise Diagnostic("Unknown", "conflict", "suite reported non-success identities with a zero exit code")
     expected_state = "success" if payload["exit_code"] == 0 and not outcome_ids else "fail"
     if (type(payload["test_count"]) is not int or payload["test_count"] != EXPECTED_DISCOVERY_COUNT
             or type(payload["exit_code"]) is not int or payload["exit_code"] != execution["exit_code"]
@@ -93,6 +104,10 @@ def _validate_suite_result(payload, target, source_refs, execution):
                 "failure_count": payload["failure_count"], "failed_ids": payload["failed_ids"],
                 "error_count": payload["error_count"], "error_ids": payload["error_ids"],
                 "skip_count": payload["skip_count"], "skipped_ids": payload["skipped_ids"],
+                "expected_failure_count": payload["expected_failure_count"],
+                "expected_failure_ids": payload["expected_failure_ids"],
+                "unexpected_success_count": payload["unexpected_success_count"],
+                "unexpected_success_ids": payload["unexpected_success_ids"],
                 "exit_code": payload["exit_code"], "state": payload["state"]}
     return artifact
 
@@ -256,6 +271,8 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
                     "executed_ids_sha256": _identity_digest(suite_payload["executed_test_ids"]),
                     "failure_count": suite_payload["failure_count"],
                     "error_count": suite_payload["error_count"], "skip_count": suite_payload["skip_count"],
+                    "expected_failure_count": suite_payload["expected_failure_count"],
+                    "unexpected_success_count": suite_payload["unexpected_success_count"],
                     "source_refs": suite_refs, "target": target,
                 }
             except Diagnostic as exc:
@@ -279,7 +296,8 @@ def run_local_ci(repo, base, head, host_config, receipt_path, cancel=None):
                 plan, portable, run_spec, recheck, cancel, prepare_step)
         except Diagnostic as exc:
             prior = getattr(exc, "evidence", [])
-            if exc.classification == "Unknown" and exc.reason == "missing_input" and prior:
+            if (exc.classification == "Unknown" and exc.reason in ("missing_input", "conflict")
+                    and prior):
                 partial = {"schema_version": 1, "artifact_kind": "partial_local_ci_diagnostic",
                            "diagnostic": exc.as_dict(), "target": target,
                            "config_digest": plan["config_digest"],

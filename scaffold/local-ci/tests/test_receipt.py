@@ -77,6 +77,7 @@ def execution(check_id: str) -> dict:
             "discovered_count": 199, "discovered_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
             "executed_count": 199, "executed_ids_sha256": EXPECTED_DISCOVERY_IDS_SHA256,
             "failure_count": 0, "error_count": 0, "skip_count": 0,
+            "expected_failure_count": 0, "unexpected_success_count": 0,
             "source_refs": refs, "target": current,
         }
     return result
@@ -369,6 +370,21 @@ class VerifyReceiptTests(unittest.TestCase):
         identity_digest_drift["executions"][-1]["suite_evidence"]["executed_ids_sha256"] = "f" * 64
         mutations.append(identity_digest_drift)
 
+        success_with_expected_failure = receipt()
+        success_with_expected_failure["executions"][-1]["suite_evidence"]["expected_failure_count"] = 1
+        mutations.append(success_with_expected_failure)
+
+        success_with_unexpected_success = receipt()
+        success_with_unexpected_success["executions"][-1]["suite_evidence"]["unexpected_success_count"] = 1
+        mutations.append(success_with_unexpected_success)
+
+        expected_failure_count_overflow = receipt()
+        expected_failure_count_overflow["executions"][-1]["suite_evidence"].update(
+            executed_count=199, expected_failure_count=199, unexpected_success_count=1)
+        expected_failure_count_overflow["executions"][-1].update(state="fail", exit_code=1)
+        expected_failure_count_overflow["aggregate_state"] = "fail"
+        mutations.append(expected_failure_count_overflow)
+
         for body in mutations:
             with self.subTest(body=body), self.assertRaises(Diagnostic):
                 verify(canonical_bytes(body))
@@ -478,6 +494,77 @@ class WriteReceiptTests(unittest.TestCase):
                     write_private_artifact(value, repo)
             self.assertEqual((caught.exception.classification, caught.exception.reason),
                              ("Rejected", "invalid_input"))
+
+    def test_unset_xdg_uses_deterministic_uid_private_root(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            cache_tmp = Path(tmp) / "system-tmp"
+            cache_tmp.mkdir(mode=0o700)
+            expected_root = cache_tmp / f"helix-local-ci-artifacts-{os.getuid()}"
+            with patch.dict(os.environ, {}, clear=True), patch("receipt.tempfile.gettempdir", return_value=str(cache_tmp)):
+                first = write_private_artifact({"artifact_kind": "deterministic"}, repo)
+                second = write_private_artifact({"artifact_kind": "deterministic"}, repo)
+            self.assertEqual(first, second)
+            self.assertEqual(first[0].parent, expected_root)
+            self.assertEqual(os.stat(expected_root).st_mode & 0o777, 0o700)
+
+    def test_private_artifact_rejects_insecure_root_and_repository_aliases(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            repo = root / "repo"
+            repo.mkdir()
+            value = {"artifact_kind": "negative"}
+
+            insecure = root / "insecure"
+            (insecure / "helix" / "local-ci").mkdir(parents=True)
+            (insecure / "helix" / "local-ci" / "artifacts").mkdir(mode=0o755)
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(insecure)}), self.assertRaises(Diagnostic) as bad_mode:
+                write_private_artifact(value, repo)
+            self.assertEqual((bad_mode.exception.classification, bad_mode.exception.reason),
+                             ("Rejected", "invalid_input"))
+
+            symlink_base = root / "cache-link"
+            real_cache = root / "real-cache"
+            real_cache.mkdir(mode=0o700)
+            symlink_base.symlink_to(real_cache, target_is_directory=True)
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(symlink_base)}), self.assertRaises(Diagnostic) as symlink:
+                write_private_artifact(value, repo)
+            self.assertEqual((symlink.exception.classification, symlink.exception.reason),
+                             ("Rejected", "invalid_input"))
+
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(repo)}), self.assertRaises(Diagnostic) as inside_repo:
+                write_private_artifact(value, repo)
+            self.assertEqual((inside_repo.exception.classification, inside_repo.exception.reason),
+                             ("Rejected", "invalid_input"))
+            self.assertFalse((repo / "helix").exists(), "repository-contained rejection must precede directory creation")
+
+    def test_private_artifact_rejects_conflicting_bytes_and_link_failure(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cache = Path(tmp) / "cache"
+            cache.mkdir(mode=0o700)
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            value = {"artifact_kind": "conflict"}
+            payload = canonical_bytes(value) + b"\n"
+            import hashlib
+            digest = hashlib.sha256(payload).hexdigest()
+            destination = cache / "helix/local-ci/artifacts" / (digest + ".json")
+            destination.parent.mkdir(parents=True, mode=0o700)
+            destination.write_bytes(b"different bytes")
+            destination.chmod(0o600)
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(cache)}), self.assertRaises(Diagnostic) as conflict:
+                write_private_artifact(value, repo)
+            self.assertEqual((conflict.exception.classification, conflict.exception.reason),
+                             ("Unknown", "conflict"))
+
+            destination.unlink()
+            with patch.dict(os.environ, {"XDG_CACHE_HOME": str(cache)}), \
+                    patch("receipt.os.link", side_effect=OSError("synthetic link failure")), \
+                    self.assertRaises(Diagnostic) as link_failure:
+                write_private_artifact(value, repo)
+            self.assertEqual((link_failure.exception.classification, link_failure.exception.reason),
+                             ("Unknown", "unreadable"))
 
 
 if __name__ == "__main__":

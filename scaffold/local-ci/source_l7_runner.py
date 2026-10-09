@@ -1056,6 +1056,40 @@ FORMAL_MAPPING_SHA256 = "ca5c7a91e666a13062e6cd22a2bf157f54dad0ce7aa79f3815b70e1
 RESULT_MAX_BYTES = 40000
 MODULES = ("test_k1", "test_k2")
 
+# Literal values permitted by the current L7 expansion rules.  Keeping the
+# template-to-domain mapping explicit prevents arbitrary regex captures from
+# standing in for a designed fixture ID.
+_L7_TEMPLATE_VALUES = {
+    "CK-K1-UT-009-ACCEPT-COMBINE-{CLASS}": {
+        "CLASS": frozenset(("Value", "Unknown", "Unobserved", "NotApplicable", "Stale")),
+    },
+    "CK-K1-UT-009-ACCEPT-RECORD-{CLASS}": {
+        "CLASS": frozenset(("Value", "Unknown", "Unobserved", "NotApplicable")),
+    },
+    "CK-K1-UT-009-LOOKUP-{CLASS}": {
+        "CLASS": frozenset(("Value", "Unknown", "Unobserved", "NotApplicable")),
+    },
+    "CK-K1-UT-009-KEY-COMBINE-{CLASS}": {
+        "CLASS": frozenset(("Value", "Unknown", "Unobserved", "NotApplicable", "Stale")),
+    },
+    "CK-K1-UT-012-MAP-{WORD}": {
+        "WORD": frozenset(("ambiguous", "unsupported", "mismatch", "conflict", "absent",
+                            "evaluation_error", "indeterminate", "unknown", "stale",
+                            "not_observed", "未評価", "incompatible", "not_applicable")),
+    },
+    "CK-K1-UT-013-{FIELD}-{BOUNDARY}": {
+        "FIELD": frozenset(("operation", "operation_version", "subject", "inputs", "scope",
+                            "subject.kind", "subject.identity", "subject.revision", "subject.digest",
+                            "input.kind", "input.identity", "input.revision", "input.digest")),
+        "BOUNDARY": frozenset(("combine-component", "record-key", "lookup-query")),
+    },
+    "CK-K1-UT-014-KEY-{FIELD}": {
+        "FIELD": frozenset(("operation", "operation_version", "subject", "inputs", "scope",
+                            "subject.kind", "subject.identity", "subject.revision", "subject.digest",
+                            "input.kind", "input.identity", "input.revision", "input.digest")),
+    },
+}
+
 
 def inventory_value() -> dict:
     return {
@@ -1082,18 +1116,21 @@ def l7_formal_ids_present(raw: bytes) -> bool:
     except UnicodeError:
         return False
     tokens = re.findall(r"`([^`]+)`", text)
-    templates = [token for token in tokens
-                 if "CK-K" in token and re.search(r"\{(?:CLASS|FIELD|BOUNDARY|WORD)\}", token)]
+    templates = [token for token in tokens if token in _L7_TEMPLATE_VALUES]
     for row in FORMAL_MAPPING:
         ident = row["formal_l7_id"]
         if ident in tokens:
             continue
         matched = False
         for template in templates:
+            variables = re.findall(r"\{([A-Z]+)\}", template)
             pattern = re.escape(template)
-            for variable in ("CLASS", "FIELD", "BOUNDARY", "WORD"):
-                pattern = pattern.replace(re.escape("{" + variable + "}"), r"(.+?)")
-            if re.fullmatch(pattern, ident):
+            for variable in variables:
+                pattern = pattern.replace(re.escape("{" + variable + "}"),
+                                          rf"(?P<{variable}>[^`]+?)")
+            expansion = re.fullmatch(pattern, ident)
+            if expansion and all(expansion.group(variable) in _L7_TEMPLATE_VALUES[template][variable]
+                                 for variable in variables):
                 matched = True
                 break
         if matched:
@@ -1163,18 +1200,25 @@ def _result_payload(discovered, result, exit_code):
     failed_ids = sorted({test.id() for test, _ in result.failures})
     error_ids = sorted({test.id() for test, _ in result.errors})
     skipped_ids = sorted({test.id() for test, _ in result.skipped})
+    expected_failure_ids = sorted({test.id() for test, _ in result.expectedFailures})
+    unexpected_success_ids = sorted({test.id() for test in result.unexpectedSuccesses})
     executed_ids = list(result.executed_ids)
     complete = (result.testsRun == EXPECTED_DISCOVERY_COUNT
                 and len(executed_ids) == EXPECTED_DISCOVERY_COUNT
                 and len(set(executed_ids)) == EXPECTED_DISCOVERY_COUNT
                 and set(executed_ids) == set(discovered))
-    state = "success" if complete and exit_code == 0 and not (failed_ids or error_ids or skipped_ids) else "fail"
+    outcomes = (failed_ids, error_ids, skipped_ids, expected_failure_ids, unexpected_success_ids)
+    state = "success" if complete and exit_code == 0 and not any(outcomes) else "fail"
     return {
         "schema_version": 1, "suite_id": SUITE_ID, "complete": complete,
         "discovered_test_ids": list(discovered), "executed_test_ids": executed_ids,
         "test_count": result.testsRun, "failure_count": len(failed_ids), "failed_ids": failed_ids,
         "error_count": len(error_ids), "error_ids": error_ids,
         "skip_count": len(skipped_ids), "skipped_ids": skipped_ids,
+        "expected_failure_count": len(expected_failure_ids),
+        "expected_failure_ids": expected_failure_ids,
+        "unexpected_success_count": len(unexpected_success_ids),
+        "unexpected_success_ids": unexpected_success_ids,
         "exit_code": exit_code, "state": state,
     }
 
@@ -1188,7 +1232,12 @@ def _run_discovered_suite(suite):
     stream = io.StringIO()
     runner = unittest.TextTestRunner(stream=stream, resultclass=_IdentityResult, verbosity=0)
     result = runner.run(suite)
-    exit_code = 0 if result.wasSuccessful() else 1
+    complete = (result.testsRun == EXPECTED_DISCOVERY_COUNT
+                and len(result.executed_ids) == EXPECTED_DISCOVERY_COUNT
+                and len(set(result.executed_ids)) == EXPECTED_DISCOVERY_COUNT
+                and set(result.executed_ids) == set(discovered))
+    exit_code = 0 if (complete and result.wasSuccessful() and not result.skipped
+                      and not result.expectedFailures and not result.unexpectedSuccesses) else 1
     return _result_payload(discovered, result, exit_code), exit_code
 
 

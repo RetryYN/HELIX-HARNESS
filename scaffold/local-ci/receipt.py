@@ -223,13 +223,15 @@ def _validate_execution(value: Any, index: int, command: dict) -> dict:
             if not has_evidence or has_partial:
                 _reject("invalid_input", "complete suite result requires evidence and forbids partial diagnostic ref")
             evidence = _validate_suite_evidence(execution["suite_evidence"])
-            total_outcomes = evidence["failure_count"] + evidence["error_count"] + evidence["skip_count"]
+            total_outcomes = (evidence["failure_count"] + evidence["error_count"]
+                              + evidence["skip_count"] + evidence["expected_failure_count"]
+                              + evidence["unexpected_success_count"])
             if total_outcomes > evidence["executed_count"]:
                 _reject("invalid_input", "suite outcome counts exceed executed identities")
             if state == "success" and total_outcomes != 0:
-                _reject("invalid_input", "successful suite cannot report failures, errors, or skips")
+                _reject("invalid_input", "successful suite cannot report any non-success outcome")
             if state == "fail" and total_outcomes == 0:
-                _reject("invalid_input", "failed complete suite must report a failed, errored, or skipped identity")
+                _reject("invalid_input", "failed complete suite must report a non-success outcome identity")
             if state not in ("success", "fail"):
                 _reject("invalid_input", "complete suite evidence requires a finished success/fail execution")
         else:
@@ -252,17 +254,22 @@ def _validate_suite_evidence(value: Any) -> dict:
     fields = {"suite_id", "artifact_sha256", "artifact_bytes", "mapping_sha256",
               "discovered_count", "discovered_ids_sha256", "executed_count",
               "executed_ids_sha256", "failure_count", "error_count", "skip_count",
-              "source_refs", "target"}
+              "expected_failure_count", "unexpected_success_count", "source_refs", "target"}
     evidence = _object(value, fields, "suite_evidence")
     if evidence["suite_id"] != "common-kernel-k1-k2":
         _reject("invalid_input", "suite evidence identity is unsupported")
     for key in ("artifact_sha256", "mapping_sha256", "discovered_ids_sha256", "executed_ids_sha256"):
         _digest(evidence[key], "suite_evidence." + key)
-    for key in ("artifact_bytes", "discovered_count", "executed_count", "failure_count", "error_count", "skip_count"):
+    for key in ("artifact_bytes", "discovered_count", "executed_count", "failure_count", "error_count",
+                "skip_count", "expected_failure_count", "unexpected_success_count"):
         if type(evidence[key]) is not int or evidence[key] < 0:
             _reject("invalid_input", "suite evidence count/size must be a non-negative integer")
     if evidence["discovered_count"] != 199 or evidence["executed_count"] != 199:
         _reject("invalid_input", "suite evidence identity counts differ from the fixed inventory")
+    if (evidence["failure_count"] + evidence["error_count"] + evidence["skip_count"]
+            + evidence["expected_failure_count"] + evidence["unexpected_success_count"]
+            > evidence["executed_count"]):
+        _reject("invalid_input", "suite outcome counts exceed executed identities")
     if (evidence["discovered_ids_sha256"] != EXPECTED_DISCOVERY_IDS_SHA256
             or evidence["executed_ids_sha256"] != EXPECTED_DISCOVERY_IDS_SHA256):
         _unknown("Unknown", "conflict", "suite evidence identity digest differs from the fixed inventory")
@@ -321,7 +328,7 @@ def validate_receipt(receipt: Any, current_target: Any, *, config_digest: str,
     if portable_config is None:
         try:
             portable_config = strict_json(Path(__file__).with_name("config.json").read_bytes())
-        except OSError as exc:
+        except (OSError, RuntimeError) as exc:
             raise Diagnostic("Unknown", "unreadable", "trusted runtime configuration unavailable") from exc
     runtime = _object(body["runtime_identity"], {"python", "git", "bwrap"}, "runtime_identity")
     for name, identity in runtime.items():
@@ -481,8 +488,13 @@ def write_private_artifact(value: dict, repo_root: str | os.PathLike[str]) -> tu
                 _reject("invalid_input", "XDG_CACHE_HOME must be absolute")
             root = base / "helix" / "local-ci" / "artifacts"
         else:
-            root = Path(tempfile.mkdtemp(prefix="helix-local-ci-artifacts-"))
-            os.chmod(root, 0o700)
+            root = Path(tempfile.gettempdir()) / f"helix-local-ci-artifacts-{os.getuid()}"
+        try:
+            prospective_root = root.resolve(strict=False)
+        except (OSError, RuntimeError) as exc:
+            raise Diagnostic("Rejected", "invalid_input", "artifact store path cannot be resolved") from exc
+        if prospective_root == repo or repo in prospective_root.parents:
+            _reject("invalid_input", "artifact store must be outside repository")
         # Check each existing component before creating descendants; never follow aliases.
         current = Path(root.anchor)
         for part in root.parts[1:]:

@@ -349,6 +349,18 @@ class ProviderTests(unittest.TestCase):
         self.assertFalse(result["selected_check_parity"])
         self.assertFalse(result["positive"])
 
+    def test_provider_does_not_promote_failed_receipt_fold_to_positive(self):
+        self.receipt_patch.stop()
+        self.receipt_patch = patch("provider.verify_receipt",
+                                   return_value={"receipt_digest": "e" * 64,
+                                                 "aggregate_state": "fail"})
+        self.receipt_mock = self.receipt_patch.start()
+        self.addCleanup(self.receipt_patch.stop)
+        result = provider.run_merge_unit_verifier("unused", BASE, HEAD, self.receipt_bytes())
+        self.assertEqual(result["provider_state"], "success")
+        self.assertTrue(result["selected_check_parity"])
+        self.assertFalse(result["positive"])
+
 
 if __name__ == "__main__":
     unittest.main()

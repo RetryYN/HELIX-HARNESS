@@ -175,7 +175,7 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 
 | Unit test ID | 正常前提 | 一点の変異／観測 | 期待 |
 |---|---|---|---|
-| UT-LCI-100 | target treeにsource/test refs、formal mapping、current inventory-bound expected discovery set、runnerが揃い、registration/declaration/usable packは入力されない。165 formal IDsがfull mappingへ対応し、primary-callableとowner/stub境界のcoverage kindを区別した上で199 expected IDsがすべてpass | 変異なしbaseline | 165-row formal mapping（139 primary/26 stub）と一致するdiscovery/execution ID arraysを持つfull external identity artifactとcompact summary、failure/error/skip=0。expected sorted-ID SHA-256は`2203c7ba4c3064940792d0cd19b8e0e5e6b0123ed0f5ad302472213b1be3c874`。pack状態を照会しない。旧baselineの196件を流用しない |
+| UT-LCI-100 | target treeにsource/test refs、formal mapping、current inventory-bound expected discovery set、runnerが揃い、registration/declaration/usable packは入力されない。165 formal IDsがfull mappingへ対応し、primary-callableとowner/stub境界のcoverage kindを区別した上で199 expected IDsがすべてpass | 変異なしbaseline | 165-row formal mapping（139 primary/26 stub）と一致するdiscovery/execution ID arraysを持つfull external identity artifactとcompact summary、failure/error/skip/expected-failure/unexpected-success=0。expected sorted-ID SHA-256は`2203c7ba4c3064940792d0cd19b8e0e5e6b0123ed0f5ad302472213b1be3c874`。pack状態を照会しない。旧baselineの196件を流用しない |
 | UT-LCI-101 | UT-LCI-100の他条件 | implementation source blob refを一件だけinventoryから除く | Unknown(missing_input)、runner未起動 |
 | UT-LCI-102 | UT-LCI-100の他条件 | test_k2.py blob refだけを欠落させる | Unknown(missing_input)、K1だけを実行しない |
 | UT-LCI-103 | exact source refsとcurrent inventory expected identities | coverage kind付きformal ID mappingからK2の一IDを除く | Unknown(missing_input)、spawn前inventory preflightで停止し、coverage欠落を実行済みとしない |
@@ -186,8 +186,10 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 | UT-LCI-108 | target-pinned CPython 3.11+ runner identity一致 | runner bytes digestだけをcurrent source/config identityと不一致にする | `Unknown(conflict)`をspawn前に返す。unsupportedなversion/profileは別条件で`Unknown(unsupported)`とし、digest不一致と混ぜない |
 | UT-LCI-109 | suite source refs=head tree | run前再読でtest source digestだけを変える | Stale、suite未開始 |
 | UT-LCI-110 | suite実行開始済み | run中にimplementation source digestだけを変える | Stale、正のsuite receiptなし |
-| UT-LCI-111 | full identity artifactにactual discovery/execution IDs、formal mapping digest、target/source refsがある | discovered_test_idsだけをartifactから除く | Rejected(invalid_input)、count/digestだけではfull evidenceとしない |
+| UT-LCI-111 | full identity artifactにactual discovery/execution IDs、formal mapping digest、target/source refsがある | discovered_test_idsだけを保存前payloadから除く | Unknown(conflict)、count/digestだけではfull evidenceとしない。F05はsuite step fail、compact summaryなし、partial diagnosticを保持する。providerは保存後artifactを再取得しない。 |
 | UT-LCI-112 | compact receiptにartifact digest、discovery/execution count+ID-set digest、formal mapping digest、target/source refsがある | executed_ids_sha256だけをcompact summaryから除く | Rejected(invalid_input)、provider compact schema不完全でpositive不可 |
-| UT-LCI-113 | full identity artifactに実discovered/executed ID arrays、mapping digest、target/source refsがある | executed_test_ids配列だけをartifactから除く | Rejected(invalid_input)、full evidence不完全、success receiptなし |
+| UT-LCI-113 | full identity artifactに実discovered/executed ID arrays、mapping digest、target/source refsがある | executed_test_ids配列だけを保存前payloadから除く | Unknown(conflict)、full evidence不完全、success receiptなし。F05はsuite step fail、compact summaryなし、partial diagnosticを保持する。providerは保存後artifactを再取得しない。 |
 
 他Stage 1 unitsの未実装/partial/not_exercised coverageはこの候補suite executionとは別に残し、Stage 1全L7 successを主張しない。
+
+既存oracleの負例内訳: UT-LCI-105/106はerror、expected failure、unexpected successも個別に変異させ、各該当ID/countを保持したfailを確かめる。UT-LCI-107は5 outcomeが空の非zero exit、bool count、余分なfield、count/ID不一致、過大frame、不正JSON、未開始結果を各々拒む。UT-LCI-103はplaceholder未知値/余分なsuffixを個別に拒む。UT-LCI-111/113は作成前payload検証の境界であり、保存後のartifactをproviderが取得・再検証する意味ではない。同oracleでartifact root/file mode不正、symlink ancestor、repo内path、digest名collision、atomic link失敗も個別に拒み、XDG未設定時はuid別固定rootからexact bytesを再読できることを確認する。UT-LCI-101/102にはmissing_inputとconflict双方で先行5件のpartial diagnosticが残りsuite行/receiptが無いことを含める。
