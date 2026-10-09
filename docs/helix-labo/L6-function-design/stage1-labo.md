@@ -10,7 +10,7 @@ base: main `7f95f61fc1e1ae1dd790fa46581aba34921d73c0`
 
 # HELIX-LABO Stage 1（001／011）関数設計
 
-本書は固定Stage 1 L4契約とLABO L5 API候補を関数境界へ写す設計草稿である。実装、実fixture実行、source接続、製品登録、業務完了を主張しない。対象は許可sourceの観測値保持、sourceごとのAggregate projection、Aggregate referenceからEpisodeCandidateへのCorrelate projectionに限る。
+本書は固定Stage 1 L4契約とLABO L5 API候補を関数境界へ写す設計草稿である。L5公開API、owner/source接続、正式fixture実行、製品登録、業務完了は実装済みと主張しない。局所source-only private helper候補の実装記録は§6に限定して記す。
 
 ## 1. 固定入力と参照境界
 
@@ -92,4 +92,14 @@ L8 C07の既存2状態（`Unobserved(not_run)`またはsource ownerが既に明�
 
 ## 5. 状態
 
-本書は未実装の技術設計候補である。source reader、source owner declaration、CONNECT resolver、K2 current key compositionの未接続部分はこの文書で実装済みにならない。fixture/L9 oracleは未実行であり、L3/L10 acceptance、source read、connection、NFR測定、業務完了を主張しない。
+本書のL5公開APIとowner接続は未実装の技術設計候補である。source reader、source owner declaration、CONNECT resolver、K2 current key compositionの未接続部分はこの文書で実装済みにならない。§6のprivate helperに対する合成単体検査のみ実行し、L8正式fixture/L9 oracleは未実行である。L3/L10 acceptance、source read、connection、NFR測定、業務完了を主張しない。
+
+## 6. Source-only private projection実装候補（384c741）
+
+この節は上記設計本文を変更せず、main `384c7411831649b9c4ed9db9b5922591c22286dc` 上で作成した局所source-only候補の実装範囲を記録する。参照した現行入力はLABO L4 `b55d062fbdbe39c3af7ae8364f4e84316518af80496687985952285b425977e6`、L5 `2619a557507258a79630c1bdc06aea72aad0c64aa27202dba04a4083080f5148`、L8 `b0ec0fa261b7899bda1384c75467bee4a3ea057b6fbffde380234ea31ffe1193`、L9 `1a17b42a96d53abfbc59c5b0f65805662234162d9bd0d12667238749c2d65d7e` である。旧HELIXとの保持・変更根拠は本書§2の旧9資産表およびL4/L5のcrosswalkに限り、旧runtime等は実行していない。
+
+`helix/helix-labo/units/stage1-labo/src/projection.py` は、L5既存20 fieldの存在／欠落と7種source宣言statusを、意味解釈せず保持するprivate projection候補を含む。また、既に与えられたEpisodeCandidate refs/relationを保持し、`causal_assertion=false`を保つprivate shape projectionを含む。候補はL5の3公開APIを実装せず、`__all__`も空である。source reader、current owner/sourceの解決、K1 `lab_processing`生成、K2保存/key、connection resolver、episode correlation、因果判定には接続しない。特に`AggregateObservation.lab_processing`を作らないため、完成したAggregateObservationや`aggregate_observations`の実装を主張しない。`observe_source`と`correlate_observations`も未実装である。
+
+本候補はdeclaration、型番、版、owner登録、正式pack登録を持たない。正式packとして数えず、repository-layout RL-C3の成立、owner接続、L8/L9合格を主張しない。既存API境界とowner返却事項は変えず、L8§5に残る未解決を本実装で閉じない。
+
+補助検査の対応表と合成検査実行記録は対のL7 §6にある。実装sourceは`helix/helix-labo/units/stage1-labo/src/projection.py`、合成testは`helix/helix-labo/units/stage1-labo/tests/test_projection.py`であり、いずれも本unit配下の未登録source-only候補である。
