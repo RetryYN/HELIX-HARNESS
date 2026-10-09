@@ -9,7 +9,7 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `0f92649310a7d8ae7a1838dc6161bb2528a218ab3570149506de90c4f7144a31`である。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `1d19acea1f875c542d471235c38ebe6edf39b9bb5e94d26bb771d39af8e86e16`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
@@ -87,7 +87,7 @@ IV-LCI-72とIV-LCI-87〜91は`LC-DESIGN-001`に対応するdesign-manifest構造
 | `IV-LCI-64` | Common Kernel L5→L8 pair binding | L5 K1/K2/K3/K5/K4-G3 exact_heading locatorは各一件、L8各rangeは対応するL5をexpected_pairとする | 一つのK1 rowの第3列literal expansionだけをK1 locatorからK2 locatorへ差し替える | `Unknown(conflict)`、fixture edgeを別pairへ結ばない |
 | `IV-LCI-65` | K1/K2 typed reference保全 | L8 case column expansionの各rowで第2列L9 oracle、第3列L4 invariant refsをtyped referenceとして解決し、coverage sourceは対応L5 locatorだけ | 一件のL9 IV referenceをsource_idに置く | `Unknown(conflict)`、L9/L4 referenceをL5→L8 sourceへ昇格しない |
 | `IV-LCI-66` | K1/K2 expanded fixture inventory | L8 K1/K2 table literal expansionが各111/53 IDをraw definition rowへ一意にbindする | K1 expansion中の一つのsuffix IDだけを固定対応表から削除 | `Unknown(missing_input)`、regex/隣接suffixで補完せず、checker/execution/receiptなし |
-| `IV-LCI-67` | Common Kernel L5→L8 edge inventory | 5 section locatorから522 expanded fixture destination（K1/K2=164、K3=194、K5=91、K4/G3=73）へ一件ずつedgeがあり、dispositionは全edge IDsを保持する | 一つのK2 edgeとそのdisposition referenceを同時に削除（同sourceの別edgeは残す） | `Unknown(missing_input)`。同sourceの他edgeで代替しない。完全な現行manifestではCommon Kernel L5→L8に522 destination edge、12文書全体に1,177 edgeがあり、同じ固定inventoryで欠落を検出する |
+| `IV-LCI-67` | Common Kernel L5→L8 edge inventory | 5 section locatorから522 expanded fixture destination（K1/K2=164、K3=194、K5=91、K4/G3=73）へ一件ずつedgeがあり、dispositionは全edge IDsを保持する | 一つのK2 edgeとそのdisposition referenceを同時に削除（同sourceの別edgeは残す） | `Unknown(missing_input)`。同sourceの他edgeで代替しない。完全な現行manifestではCommon Kernel L5→L8に522 destination edge、12文書全体に1,201 edgeがあり、同じ固定inventoryで欠落を検出する |
 | `IV-LCI-68` | Common Kernel OutcomeRef binding | 各expanded verifier IDは同じdefinition ID列セルを持つraw table rowの対応する期待値列へ一意に戻る（K1/K2は5列目、K3は6列目、K5/K4-G3は4列目） | 一つのexpanded IDのOutcomeRefだけを別raw rowへ結び替える | `Unknown(conflict)`、別fixtureのoutcomeを流用しない |
 | `IV-LCI-69` | L4 invariant reference separation | L8第3列に明記されたL4 invariantは既存L4 definitionへのtyped referenceとして解決され、L5→L8 sourceは対応L5 locatorだけ | 一件のL4 invariant referenceをcoverage `source_id`として使う | `Unknown(conflict)`、既存L4→L9 edgeをL5→L8 pair sourceへ転用しない |
 | `IV-LCI-70` | K3/K5 locator・range所有 | K1/K2既存locatorとrangeを維持し、K3 `#### 6.1.3 K3 function/API contract`、K5 `#### 6.2.2 公開関数とprivate helper`を各一件のL5 locatorとしてL8のK3/K5 rangeへ一対一に結ぶ | K3 locatorをK5 rangeへ結ぶ | `Unknown(conflict)`。新locatorをK1/K2 locatorやK1/K2 rangeへ混ぜない |
@@ -120,19 +120,27 @@ Local runはplanの固定6 required stepを実行する。planの選択根拠/co
 | Verifier ID | L4/L5 contract | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
 | IV-LCI-73 | 6件fixed plan | 6 check IDを順序どおり選びrequired IDsは各一度 | LC-STAGE1-L7-001 rowだけをplanから除く | Unknown(missing_input)、receipt successなし |
-| IV-LCI-74 | registration境界分離 | exact target tree source/test refsとformal mappingが揃い、registration/declaration inputなし | 変異なし | suiteを実行しK1/K2 candidate runとして示す。pack登録/usableとは示さない |
+| IV-LCI-74 | registration境界分離 | exact target tree source/test refsとformal mappingが揃い、registration/declaration inputなし | 変異なし | suiteを実行しK1/K2/K3 candidate runとして示す。pack登録/usableとは示さない |
 | IV-LCI-75 | exact target source closure | implementation/test refsはcurrent head tree内、reader digest一致 | test source refだけをhead tree外のcbce refへ差替 | Unknown(conflict)、runner未起動、baseline fallbackなし |
-| IV-LCI-76 | formal L7 identity coverage | K1 113/K2 52 formal IDs全てがcurrent source-bound inventoryのprimary/stub coverage kind付きmappingへ結び付く。stub IDsはprimary behavior coverage claimから除外する | formal mappingの一IDだけを欠落 | `Unknown(missing_input)`、spawn前inventory preflight停止、suite row successなし |
+| IV-LCI-76 | formal L7 identity coverage | K1/K2 165とK3 194 formal IDs全てがcurrent source-bound inventoryのprimary/stub coverage kind付きmappingへ結び付く。stub IDsはprimary behavior coverage claimから除外する | formal mappingの一IDだけを欠落 | `Unknown(missing_input)`、spawn前inventory preflight停止、suite row successなし |
 | IV-LCI-77 | unittest discovery identities | current inventory expected identity set/count/sorted-ID digestがexact source closureに束縛され、runner discovery IDsと一致 | runner後のdiscovered ID一件だけを変更 | `Unknown(conflict)`診断を保持しF05がsuite `CheckExecution.state=fail`へ写す。complete resultを回収できずcompact `suite_evidence`なしで部分diagnosticを残す。outer Unknown receiptにしない。count一致だけで通さない |
 | IV-LCI-78 | executed identity completeness | full identity artifactで全inventory-expected IDが一回ずつ実行され、compact summaryのcount/digestと一致 | 保存前runner payloadのexecuted IDsから一IDだけを除き、payload内のcountを元のsummaryのまま保持 | 保存前runner payload検証は`Unknown(conflict)`、positive receiptなし。CASE-L8-LCI-104と同じ実行後payload検証境界。F05はsuite step fail、compact summaryなし、partial diagnosticを保持する。providerは保存後artifactを再取得しない。 |
 | IV-LCI-79 | skip state | 全test pass/skip=0 | 一expected testだけskip | step fail、aggregate successなし |
 | IV-LCI-80 | assertion failure | 全test pass | 一expected testだけfailure | step fail、残るtest結果も保持 |
 | IV-LCI-81 | runner/toolchain identity | CPython 3.11+ stdlib runner refs/config match | runner identity bytes digestだけをfixed source/config identityと不一致にする | `Unknown(conflict)` before spawn。version/profile非対応だけを`Unknown(unsupported)`へ分類する |
 | IV-LCI-82 | source drift | run前後でsource/test refsはsame target bytes | test file digestだけをrun中に変える | Stale、positive suite receiptなし |
-| IV-LCI-83 | no stage-wide promotion | K1/K2 suite row success、他Stage 1 dispositionsはnon-passのまま | suite successのみからStage 1全L7 completeをclaim | Negative、OS-020/HARNESS適合・全suite passを生成しない |
+| IV-LCI-83 | no stage-wide promotion | K1/K2/K3 suite row success、他Stage 1 dispositionsはnon-passのまま | suite successのみからStage 1全L7 completeをclaim | Negative、OS-020/HARNESS適合・全suite passを生成しない |
 | IV-LCI-84 | compact suite summary | artifact SHA、counts、ID-set digests、mapping digestとtarget/source refsが必須で相互整合 | compact receiptから`executed_ids_sha256`だけを欠落 | Rejected(invalid_input)、providerは不完全summaryからpositiveを作らない。full artifact再取得や実行再証明をしない |
 | IV-LCI-85 | full identity artifact completeness | discovered/executed ID arrays、mapping digest、target/source refsが揃う | executed_test_ids配列だけを保存前payloadから除く | Unknown(conflict)、作成側full evidence不完全、compact digestだけで補わない。F05はsuite step fail、compact summaryなし、partial diagnosticを保持する。providerは保存後artifactを再取得しない。 |
 | IV-LCI-86 | missing suite source boundary | 先行5 execution evidenceをpartial diagnostic artifactへ残し、第6 suite source refsをtarget treeから読む | test_k2.py blob refだけをtarget treeから欠落させる | run_local_ci外側Unknown(missing_input)、先行5 evidence保持、suite row/receiptなし、Unknownをexecution stateへ投影しない |
+| `IV-LCI-92` | K3 implementation ref closure | K3 `permission.py` bytesがexact target source refsへ含まれる | exact target treeから`permission.py` blobだけを読めなくする | Unknown(missing_input)、先行5 checkのpartial diagnosticを保持しrunner未起動 |
+| `IV-LCI-93` | K3 test ref closure | `test_k3.py`がfixed test module refsにある | exact target treeから`test_k3.py` blobだけを読めなくする | Unknown(missing_input)、先行5 checkのpartial diagnosticを保持しrunner未起動 |
+| `IV-LCI-94` | target L7 formal ID completeness | target L7本文は固定K3 formal IDsを全て表す | target L7本文からK3 formal IDの一行だけを除く | Unknown(conflict)、target文書と固定inventoryの不一致としてspawn前に停止。inventory input欠落のUnknown(missing_input)とは別境界 |
+| `IV-LCI-95` | K3 formal mapping value binding | K3 mappingの全identity値は固定inventoryと一致する | 一rowのunittest identityだけをunknown値へ置換し、mutation側mapping digestを再計算 | runner起動後のfixed inventory検査がUnknown(conflict)。discovery/execution前のnoncomplete診断をF05がstep fail/partial diagnosticとして保持し、complete evidenceなし |
+| `IV-LCI-96` | K3 mapping uniqueness | 各K3 formal IDは一意なmapping rowへ結び付く | 一formal IDだけを別rowと重複させ、mutation側mapping digestを再計算 | runner起動後のfixed inventory検査がUnknown(conflict)。discovery/execution前のnoncomplete診断をF05がstep fail/partial diagnosticとして保持し、complete evidenceなし |
+| `IV-LCI-97` | K3 discovery completeness | fixed K3 discovery setは220 identitiesを含む | runner discovery結果からK3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを除く | Unknown(conflict)診断をF05がsuite step failへ写し、partial diagnosticのみを残す |
+| `IV-LCI-98` | K3 discovery uniqueness | actual discovery IDsは419件で一意 | K3 identity `test_k3.K3FormalFixtures.test_CK_K3_UT_001`だけを二重に返す | Unknown(conflict)、重複をdedupせずsuite step fail、complete evidenceなし |
+| `IV-LCI-99` | bounded suite frame | 最大419-IDのsingle-outcome complete frameは70,000-byte bodyと70,001-byte LF capture bound内、helper response envelopeは100,000 bytes未満 | runner bodyだけを70,000 bytes超へ増やす | Unknown(conflict) partial diagnostic、truncated frameからcomplete artifact/receiptを作らない |
 
 source欠落は第6 checkのspawn前にUnknown(missing_input)となる。先行5 checkのevidenceはfull external partial diagnostic artifactに残し、未起動suite rowとLocalCiReceiptを作らない。UnknownをCheckExecution有限語彙へ写さず、compact provider inputでも実行済みと偽装しない。providerはfull identity artifactを取得せず、compact summaryとcurrent refs/digest/countのみを検証する。現targetにsource/test refsが無い場合はIV-LCI-86の非肯定を適用する。
 
