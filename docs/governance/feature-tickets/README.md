@@ -28,3 +28,5 @@ GitHubへ送ったexact source commit、file SHA-256、remote revision、read-af
 開発repository専用CIの[FT-OS-LOCALCI-001](FT-OS-LOCALCI-001.md)も発行時の本文を保持する。現在の作業内容・順序・前提の正本は[Stage 1実装・CI解禁判断](../decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md)とlocal CI設計であり、同ticketの発行時の状態や依存をgateにしない。
 
 [FT-OS-LOCALCI-002](FT-OS-LOCALCI-002.md)は、現行local CI設計に従う実装と検証の作業指示である。
+
+[FT-GOV-L3STATUS-001](FT-GOV-L3STATUS-001.md)は、L3／L10正本に残る起草時の状態表示を現行のauthority状態へ揃える作業指示である。

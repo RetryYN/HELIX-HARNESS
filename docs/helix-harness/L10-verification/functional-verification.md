@@ -1,8 +1,8 @@
-# HELIX-HARNESS L10 機能総合検証設計（Stage 1: HARNESS-L2-010/011/023）
+# HELIX-HARNESS L10 機能総合検証設計
 
-status: draft_for_l3_review
-approval: not_approved
-scope: Stage 1 only; HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023
+status: approved
+approval: approved（[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)）
+scope: Stage 1（HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023）を起点とし、後続Stageの節を追補。各節の対象親は[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)を正とする
 paired_l3: ../L3-requirements/functional-requirements.md
 execution_status: designed_only_not_executed
 
@@ -142,7 +142,7 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 
 ## Stage 4 suffix — HARNESS-L2-026/027/028/029の対検証
 
-この節はStage4候補のL3 ACに対する未実行L10 fixture設計である。各CASEは表に示す単独条件を変異し、固定L2/L11のscopeと戻し先を検査する。候補の合格からL3承認、実行・releaseを生成しない。
+この節はStage4の承認済みL3 ACに対する未実行L10 fixture設計である。各CASEは表に示す単独条件を変異し、固定L2/L11のscopeと戻し先を検査する。候補の合格からL3承認、実行・releaseを生成しない。
 
 | L10 case ID | L3 trace | 入力・比較 | oracle・失敗時の戻し先 |
 |---|---|---|---|
@@ -371,7 +371,7 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 
 ## Stage 2b 残件追補 — HARNESS-L2-017/018/019/020/024
 
-本追補5親は未承認の起草。既承認prefixを変更せず、実行結果や下流許可を生成しない。
+本追補5親は承認済み。既承認prefixを変更せず、実行結果や下流許可を生成しない。
 
 execution_status: designed_only_not_executed
 
@@ -2127,9 +2127,9 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-049-r22-m2-fixture-authority-unknown` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 合成正常入力T0として、対象screen ID・target revision・利用許可・renderable prototype・選択scope S0・device condition D0・view condition V0・適用profile P0・oracle O0/手段版r0・known fixture F0をcurrentとして固定し、選択条件と表示evidenceの対応をsource上で結ぶ。prototype/profile/oracle/fixtureの4 authority fieldは全て存在しcurrent-knownとする。他の入力fieldと期待出力は全てこのsource/oracleに固定する。実測実績は主張しない。 known fixture authority state fieldは存在しcurrent-known。 | known fixture authority state fieldの値だけをunknownへ変える。他のsource/authority/revision fieldはcurrent-knownのまま固定する。 | fixture authorityに依存する測定または精度評価をunknown/未評価にし、passを出さない。原因はfixed L2:1090のLABO検査精度評価責務区分へ無条件返却し、担当個体identity不明は区分を維持したうえでidentityだけunknownとする。正常な他入力を返却せず、unknown authorityをknownへ補完しない。 |
 | `CASE-HARNESS-L10-049-r22-m3-target-revision-missing` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01/04` | 合成正常入力T0として、対象screen ID・target revision・利用許可・renderable prototype・選択scope S0・device condition D0・view condition V0・適用profile P0・oracle O0/手段版r0・known fixture F0をcurrentとして固定し、選択条件と表示evidenceの対応をsource上で結ぶ。prototype/profile/oracle/fixtureの4 authority fieldは全て存在しcurrent-knownとする。他の入力fieldと期待出力は全てこのsource/oracleに固定する。実測実績は主張しない。 既存screen IDと利用許可は有効。 target_revision=R0 fieldは存在しcurrent。 | target revision input valueだけを欠落させる。screen ID、prototype source revision、profile/oracle/fixture、全authorityはcurrent-knownのまま固定する。 | 当該screen/revisionに依存する測定をunknown/未評価にし、passにしない。target revision入力不足はfixed L2:1090の既存design/oracle責務区分へ無条件返却し、担当個体identityが不明なら区分を維持してidentityだけunknownとする。screen IDやprototype source revisionからtarget revisionを補完せず、正常な他入力は返却しない。 |
 
-### HELIX-HARNESS L2-044 — 機能総合検証（Stage 3、version_target: 1.0、起草候補）
+### HELIX-HARNESS L2-044 — 機能総合検証（Stage 3、version_target: 1.0）
 
-起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
+承認済み。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。本節は実装・実行・個別部品配置・設計成立を表さない。
 
 **固定親・判断根拠**：L2親は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1002–1014`、全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、span SHA-256 `b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d`。 L11対は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:735–745`、全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8`。 PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49`、SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、line SHA-256 `212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b`、registration `MPR-RC-HARNESS-L2-044-002`。POはB route / Design Contract Portfolioを条件付き採択し、採択済み025/026へ無断追記しない。
 
@@ -2310,7 +2310,7 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 
 ## Stage 3 親046の機能総合検証CASE
 
-起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
+承認済み。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
 
 **固定親とPO根拠**：親L2は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1025–1035`（全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、対象span SHA-256 `47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e`）。対L11は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:759–771`（全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f`）。PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:51`、file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、row SHA-256 `60fb90a139b313760ad5a259e2362e3c406e071aa1dfba8ed6d21d0cb9fb55a4`。POは`HARNESS-L2-046`を採択し、registrationは`MPR-RC-HARNESS-L2-046-001`。隣接row 52の`HARNESS-L2-047`は046へ混ぜない。
 
@@ -2433,11 +2433,11 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-046-r14-refuse-common-process-rewrite` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-03` | 対象scope/revisionとsource identity/revisionはcurrent。L3までの共通工程のsource値は `既存の共通工程C0`。他の変更禁止4項目、適用性、workflow、V-pair/oracle/evidenceを正常入力として固定。 | 入力を保持し、候補の `L3までの共通工程` 出力一項目だけを `候補が共通工程C1へ省略・変更` にする。 | sourceの `既存の共通工程C0` と出力値を比較し、不一致を拒否して元のsource値を保持する。改変値によるslice先行・義務免除・release-readyを認めない。 | 正常入力なのでsource ownerへ不足を返さず、046自身の出力を訂正する。新しい方式・許可・trigger・工程を作らない。 |
 | `CASE-HARNESS-L10-046-r14-composition-permission-missing` | `FR-HARNESS-L3-046-03` / `AC-HARNESS-L3-046-03` | 合成を適用するscope/revision、方式定義、Scrum適用部分、trigger、workflow、pair/oracle/evidenceはcurrentで正常。このscopeに適用する合成許可Pallowも提示済み。 | 合成許可の入力field一つだけをmissingにする。他の入力は不変。 | 合成許可を推測せずunknown/未完に保ち、このscopeへslice先行やrelease-readyを付与しない。 | HARNESS-L2-002/003の既存workflow/style意味の責務へ不足を返す。個別owner identityがunknownでも責務区分への返却を止めず、そのidentity状態を別記する。 |
 
-## Stage 3 親054の機能検証：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
+## Stage 3 親054の機能検証：専門Worker判定・契約のOS割当handoff（version_target: 1.0）
 
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
 
-**状態と根拠**：本節はHARNESS-L2-054／L11-054の意味をL3要件とL10 oracleへ再導出する起草候補である。POの決定記録 `MPR-RC-HARNESS-L2-054-001` は採択（判断記録revision `b0b0719dfe786370e9bee48c5d2f753710546b6f`、PO row 34）。固定L2/L11本文に残る「未採択候補」は当時の本文メタデータであり、この後のPO決定を覆さない。L2-047は別親で、その既存のmuster判断を受け渡すだけで意味を変更しない。PO-047条件判断や別親の採択を本候補から生成しない。
+**状態と根拠**：本節はHARNESS-L2-054／L11-054の意味をL3要件とL10 oracleへ再導出する節であり、承認済みである。POの決定記録 `MPR-RC-HARNESS-L2-054-001` は採択（判断記録revision `b0b0719dfe786370e9bee48c5d2f753710546b6f`、PO row 34）。固定L2/L11本文に残る「未採択候補」は当時の本文メタデータであり、この後のPO決定を覆さない。L2-047は別親で、その既存のmuster判断を受け渡すだけで意味を変更しない。PO-047条件判断や別親の採択を本節から生成しない。
 
 **旧sourceとの扱い**：旧HIL-BR-09/30、HIL-FR-59/60/61/62/63の対応を起点に、工程・入力・必要性判断・runtime-neutral契約・OS handoffへ責務を再導出する。旧runtime固有projectionや旧TeamDefinition schemaは再利用しない。旧100 CASE IDとraw literalは監査用に保持し、現行fixture条件は固定L2/L11に沿って再導出する。旧source全体、旧runtime/testの実行、旧要件の全件closureを主張しない。HIL-FR-63の歴史的effort defaultは旧sourceにとどめ、1.0の技術値や閾値へ前倒ししない。
 

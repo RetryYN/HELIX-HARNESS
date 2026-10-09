@@ -1,4 +1,4 @@
-# HELIX-SECURITY L10 NFR候補検証 — Stage 1（19親の候補）
+# HELIX-SECURITY L10 NFR候補検証
 
 > 状態：技術候補と測定設計。下記の数値・比較案は根拠付き候補で、実装値・PO承認値・実測結果ではない。parameterごとのPO確認は追加しない。要求の意味・scope・owner・versionを変える場合だけL2へ戻す。1.x/Web sinkや後続Stageは含めない。
 

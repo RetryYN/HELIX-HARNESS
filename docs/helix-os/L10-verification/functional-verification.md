@@ -1,10 +1,10 @@
-# HELIX-OS L10 機能総合検証（Stage 2b）
+# HELIX-OS L10 機能総合検証
 
-状態: L3未承認の候補／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
+状態: L3承認済み／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
 
 ## Stage 2b — HELIXOS-L2-014 functional verification
 
-以下は固定L2-014/L11行317に対する未実行oracle設計候補である。全fixtureは合成・secret-freeとし、target scopeとexact parent revisionへ結ぶ。通常例、独立negative、未見正常、期待状態、owner returnをCASEごとに定義する。HARNESS/INFRASTRUCTURE/SECURITY依存は常時・条件時・選択source時・参照資料のみを区別する。dependencyを人が代行しても必要field、authority、検証、receiptのいずれも省略しない。
+以下は固定L2-014/L11行317に対する承認済みの未実行oracle設計である。全fixtureは合成・secret-freeとし、target scopeとexact parent revisionへ結ぶ。通常例、独立negative、未見正常、期待状態、owner returnをCASEごとに定義する。HARNESS/INFRASTRUCTURE/SECURITY依存は常時・条件時・選択source時・参照資料のみを区別する。dependencyを人が代行しても必要field、authority、検証、receiptのいずれも省略しない。
 
 ### CASE-OS-014-01 — internal stage identity（AC-OS-014-01）
 
@@ -78,7 +78,7 @@
 
 ## Stage 2c追補 — HELIXOS-L2-028 / HELIXOS-L2-029
 
-状態: 以下はL3機能要件との対をなす検証候補で、case実行・PO承認・実装/実行許可ではない。固定oracleはf6dad2a33e24f000b87d7f09b8d40288257e74ccのL2/L11各親に限る。CASE IDは親ごとに完全修飾し、fixture ID・parent revision・scope・HARNESS oracle source・expected state・owner routeを記録する。一negative fixtureの変異は一変数のみ。存在しない業務oracleは作らない。
+状態: 以下はL3機能要件との対をなす承認済みの検証設計で、case実行・PO承認・実装/実行許可ではない。固定oracleはf6dad2a33e24f000b87d7f09b8d40288257e74ccのL2/L11各親に限る。CASE IDは親ごとに完全修飾し、fixture ID・parent revision・scope・HARNESS oracle source・expected state・owner routeを記録する。一negative fixtureの変異は一変数のみ。存在しない業務oracleは作らない。
 
 ### CASE-OS-028-01 — 相談案の正常例（amount境界、AC-OS-028-01）
 
@@ -242,7 +242,7 @@ C13からのOS carry identityは、[Claude13指摘コメント](https://github.c
 
 ## Stage 2a — 8親の機能総合検証（015/016/017/018/019/020/023/027）
 
-状態: L3対の検証設計候補。実行結果・L3承認・実装/実行許可を生成しない。L3 `functional-requirements.md`のAC IDに結び、fixed L2/L11 source revisionとownerをoracleにする。新世代CI未構築、旧test/runtime/CIは実行しない。
+状態: 承認済みのL3対の検証設計。実行結果・L3承認・実装/実行許可を生成しない。L3 `functional-requirements.md`のAC IDに結び、fixed L2/L11 source revisionとownerをoracleにする。新世代CI未構築、旧test/runtime/CIは実行しない。
 
 旧L3定義、旧L10 process、旧READMEとpaired testのpositive/negative/trace形からverification/backflowの意味を再導出する。旧processはL3↔L10、READMEはL3→L12と層対応が異なるため、この不一致を記録し、どちらの旧層対応も現行の正本として引き継がない。現在の配置は現行6 canonical文書によるL3/L10構成に従う。旧G3/L12 gateとtest runtimeは移さない。
 
@@ -1026,11 +1026,11 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-052-03q` | `AC-OS-L3-052-03` | mergeだけを根拠に要求完了を生成する変異。他条件の既存stateは保持する | 要求完了を生成しない。操作eventから上流判断を作らず既存ownerへ返す。 |
 
 
-## Stage 5 — 4親L10機能受入候補（未実行）
+## Stage 5 — 4親L10機能受入（承認済み、未実行）
 
-この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する承認済みの追補である。先頭のstatusは先行scopeの状態を示す。
 
-全行は静的oracle候補である。ID/記載の存在は要求採択、実装許可、L3承認、stage completionを生成しない。missing/unknown/staleは、固定L2に明記された該当source/unit/connection/要求ownerへ返し、scope外の親や全Stageへ波及させない。既存CASE-025-01〜21とCASE-025-022〜032はIDを変更せず保持し、今回以後の追加IDは3桁連番を使用する。
+全行は承認済みの静的oracleである。ID/記載の存在は要求採択、実装許可、L3承認、stage completionを生成しない。missing/unknown/staleは、固定L2に明記された該当source/unit/connection/要求ownerへ返し、scope外の親や全Stageへ波及させない。既存CASE-025-01〜21とCASE-025-022〜032はIDを変更せず保持し、今回以後の追加IDは3桁連番を使用する。
 
 | AC候補 | 親 | 正常・独立反例の範囲 |
 |---|---|---|

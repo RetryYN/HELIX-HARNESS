@@ -1,9 +1,9 @@
-# HELIX-LABO L10 業務総合検証 — Stage 1（001/011の候補）
+# HELIX-LABO L10 業務総合検証
 
 この2親について独立した別business outcome/ACは固定L2/L11から導かれない。観測集積とepisodeへの受渡しの成果・失敗は機能ACと対L10で照合し、観測からsource state/authorityや業務完了を生成しない。旧business-detailのBR-21/dashboardはHARNESSの業務条件であり、部分source破損を分離するfailure類型だけ機能要件へ再導出する。旧画面・owner・数値は移さない。
 
 
-状態：未承認のL3/L10候補。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定する。
+状態：承認済みのL3/L10。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定する。
 
 ## Stage 2b — HELIXLABO-L2-002/003/004/005
 
@@ -144,7 +144,7 @@
 
 これは業務成果の実測やquality closureの認定ではない。
 
-### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
+### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0）
 
 **固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。
 
@@ -166,9 +166,9 @@
 | 欠測とdenialの説明 | identity付きdeniedとidentityを持たないintake denialを別状態で示す。known OS/observation-source responsibility と個体identity unknownを併記する | deniedを全て除外/加算する、unknownを0へ変換する、特定不能な個人ownerを創設する |
 | 出力境界 | task evaluation oracle、assignment、Worker start/retry、adoption、qualification、admissionの既存stateを別々に読む | attempt countから各fieldを生成・変更しない |
 
-この確認はL10設計候補であり、business acceptanceや実測済みoutcomeを示さない。
+この確認は承認済みのL10設計であり、business acceptanceや実測済みoutcomeを示さない。
 
-### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0、起草候補）
+### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0）
 
 **採択済み固定親とPO根拠**：PO判断記録 `3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a` の `docs/governance/decisions/po-decision-2026-09-30-live26.md:50` は `HELIXLABO-L2-071` を通常採択22件に含むものとして承認し、L2節digest `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f` とL11節digest `029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0` に固定する。決定の`source_repository_revision`は `ea6f756f96a7370de78e412d737c7a7ed472114a`、`decision_basis_revision`は `81d1f35f9c5793c5312be4ae52526c96b609c254`。この二つを同一revisionと扱わない。
 
@@ -196,7 +196,7 @@
 
 ### HELIXLABO-L2-066 — 既存比較business outcomeとの対応確認
 
-状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+状態：承認済みのL10。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本節からL3承認・実装・比較run・実測合格を生成しない。
 
 固定L2/L11から独立のbusiness outcome/ownerは導かれないため、独立BV/AC/BCASEを追加しない。L2-066が定める同条件比較の成果を、L3 functional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` に従って [L10 functional verification](functional-verification.md) で照合する。
 
