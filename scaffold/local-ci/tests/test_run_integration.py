@@ -13,6 +13,7 @@ _LOCAL_CI = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_LOCAL_CI))
 import driver
 import plan
+import runner
 from common import CHECK_IDS, Diagnostic, canonical_bytes, sha256
 from snapshot import CHECKER_PATHS, LEDGER_PATH, MANIFEST_PATH
 from plan import compile_plan, COMMAND_TEMPLATES
@@ -58,7 +59,7 @@ class RunIntegrationTests(unittest.TestCase):
                 return "\n".join("`" + row["formal_l7_id"] + "`" for row in FORMAL_MAPPING).encode()
             if path in SOURCE_SHA256:
                 return subprocess.check_output(
-                    ["git", "show", "f0ba62ce833463eb5f747ac4b95659ecea49928a:" + path],
+                    ["git", "show", "7887edd6b82a4530d3b6a92bb5c3c7a2da5a3d44:" + path],
                     cwd=_LOCAL_CI.parent.parent)
             return Path(_LOCAL_CI.parent.parent, path).read_bytes()
         self._target_blob = target_blob
@@ -110,6 +111,21 @@ class RunIntegrationTests(unittest.TestCase):
             with self.assertRaises(Diagnostic) as raised:
                 compile_plan(TARGET, self.portable, "d"*64, "1")
         self.assertEqual((raised.exception.classification, raised.exception.reason),
+                         ("Rejected", "invalid_input"))
+
+    def test_k3_suite_plan_literal_matches_supervisor_command_and_rejects_legacy_id(self):
+        expected = ("python3", "-B", "scaffold/local-ci/source_l7_runner.py",
+                    "--suite", "common-kernel-k1-k2-k3")
+        self.assertEqual(COMMAND_TEMPLATES[5], expected)
+        compiled = compile_plan(TARGET, self.portable, "d" * 64, "1")
+        suite_spec = compiled["commands"][5]
+        self.assertEqual(tuple(suite_spec["argv"]), expected)
+        self.assertEqual(runner._validate_command(suite_spec)[0], list(expected))
+
+        legacy_spec = dict(suite_spec, argv=[*suite_spec["argv"][:-1], "common-kernel-k1-k2"])
+        with self.assertRaises(Diagnostic) as caught:
+            runner._validate_command(legacy_spec)
+        self.assertEqual((caught.exception.classification, caught.exception.reason),
                          ("Rejected", "invalid_input"))
 
     def test_full_run_constructs_and_validates_all_six_rows_before_write(self):
@@ -351,7 +367,10 @@ class RunIntegrationTests(unittest.TestCase):
                 else:
                     def conflict(_entries, path, _expected=None):
                         if path == CURRENT_DESIGN_PATHS[1]:
-                            return b"`unmapped formal id`"
+                            return b"\n".join(
+                                ("`" + row["formal_l7_id"] + "`").encode()
+                                for row in FORMAL_MAPPING
+                                if row["formal_l7_id"] != "CK-K3-UT-001")
                         return b"synthetic source"
                     reader.blob.side_effect = conflict
                 with self.assertRaises(Diagnostic) as raised:
@@ -367,6 +386,66 @@ class RunIntegrationTests(unittest.TestCase):
                 self.mocks["run_step"].reset_mock()
                 self.mocks["write_receipt"].reset_mock()
                 self.mocks["read_fixed_snapshot"].reset_mock()
+                reader.blob.side_effect = self._target_blob
+
+    def test_runner_fixed_mapping_conflict_is_started_fail_with_partial_only(self):
+        diagnostic_frame = canonical_bytes({
+            "schema_version": 1, "suite_id": SUITE_ID, "complete": False,
+            "diagnostic": {"classification": "Unknown", "reason": "conflict"},
+        })
+
+        def mapping_conflict_step(root, spec, host, portable, cancel):
+            result = self.success(root, spec, host, portable, cancel)
+            if spec["check_id"] == "LC-STAGE1-L7-001":
+                row = result["execution"]
+                row.update(state="fail", exit_code=2)
+                result["suite_runner_stdout"] = diagnostic_frame
+            return result
+
+        self.mocks["run_step"].side_effect = mapping_conflict_step
+        result = self.run_ci()
+        row = result["executions"][-1]
+        self.assertEqual(result["aggregate_state"], "fail")
+        self.assertEqual(row["state"], "fail")
+        self.assertIsNotNone(row["started_at"])
+        self.assertFalse(row["result_complete"])
+        self.assertNotIn("suite_evidence", row)
+        self.assertIn("partial_diagnostic_sha256", row)
+        artifact = self.mocks["write_private_artifact"].call_args.args[0]
+        self.assertEqual(artifact["artifact_kind"], "partial_l7_suite_diagnostic")
+        self.assertEqual((artifact["classification"], artifact["reason"]), ("Unknown", "conflict"))
+        self.assertEqual(artifact["reported"], {"classification": "Unknown", "overflow": False})
+        self.mocks["write_receipt"].assert_called_once()
+
+    def test_each_k3_source_blob_missing_preserves_five_prior_rows_before_spawn(self):
+        reader = self.mocks["GitReader"].return_value
+        for missing_path in (
+                "helix/helix-harness/units/common-kernel/src/permission.py",
+                "helix/helix-harness/units/common-kernel/tests/test_k3.py"):
+            with self.subTest(path=missing_path):
+                self.calls = []
+                self.mocks["write_private_artifact"].reset_mock(return_value=True)
+                self.mocks["write_private_artifact"].return_value = (
+                    self.root.parent / "artifact.json", "f" * 64, 100)
+                self.mocks["write_receipt"].reset_mock()
+
+                def missing(_entries, path, _expected=None):
+                    if path == missing_path:
+                        raise Diagnostic("Unknown", "missing_input", "synthetic missing target blob")
+                    return self._target_blob(_entries, path, _expected)
+
+                reader.blob.side_effect = missing
+                with self.assertRaises(Diagnostic) as raised:
+                    self.run_ci()
+                self.assertEqual((raised.exception.classification, raised.exception.reason),
+                                 ("Unknown", "missing_input"))
+                self.assertEqual(self.calls, list(CHECK_IDS[:5]))
+                self.assertTrue(hasattr(raised.exception, "partial_diagnostic_sha256"))
+                partial = self.mocks["write_private_artifact"].call_args.args[0]
+                self.assertEqual(partial["artifact_kind"], "partial_local_ci_diagnostic")
+                self.assertEqual(len(partial["completed_executions"]), 5)
+                self.assertNotIn(CHECK_IDS[5], [row["check_id"] for row in partial["completed_executions"]])
+                self.mocks["write_receipt"].assert_not_called()
                 reader.blob.side_effect = self._target_blob
 
     def test_structural_missing_edge_and_duplicate_stop_before_any_step_or_receipt(self):
