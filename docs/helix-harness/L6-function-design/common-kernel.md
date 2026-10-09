@@ -868,6 +868,21 @@ API全体の`Rejected(missing_key)`はL5/L4の既存必須key境界に限る。`
 
 K8の実owner reader、K3/K6 source current read、K5 evidence roundtrip、production API、CI manifest登録、fixture実行は未実施である。L7はL8のbaseline/mutation/expectedを逐語的に索引し、private candidate/structural-only/owner-unconnectedを区別する。fixture design inventoryをcoverage/passへ昇格させない。
 
+### 17.5 局所private実装の記録
+
+`main 8b628d308c5102b2a752f3284f2cf43809cf43d8`から、既存K8型の純粋な投影・比較・選択部分だけをprivate helperとして実装した。旧7資産の実装を移植せず、L4 §18、L5 §12と本節の型/優先順を技術的に具体化した。`_k8_label.py`は`__all__=()`で公開面を持たず、`observe_input_label`等の4公開API、current owner/source reader、K5保存/読取、K3/K6生成・current読取、外部作用を実装しない。
+
+| 実装箇所 | 実装した局所処理 | ここで検査できないこと |
+|---|---|---|
+| `helix/helix-harness/units/common-kernel/src/_k8_label.py` | SHA-256 `eb0cf6439172ede0164be6e68679eb500e3ae9445c34e5a01b0fce9c18f867ac`。L5 §12の既存shapeをprivate frozen recordへ1:1投影し、K1 canonical bytesを用いたoperation version/input-only case binding、role別raw-ref alias、K2 alias binder/key builder委譲、Observed/non-Valueの保持、閉じたMismatchField順序比較、L4 §18.4 precedenceによる既存class選択を実装した。同一role-bound alias内でkind/revision/digestの異なるraw refが衝突するときはK2 `key_of`前に既存`Rejected(missing_key)`とする（K2 `duplicate_identity`へ進めない）。K3既存`PermissionCheckResult | PermissionCheckDiagnostic`とK6既存`RequiredResult`を型で識別し、各`Combined.non_values`とassuranceを元component内に保持する。`k8_transition_polarity`は解決済みAPI contract `SubjectRef`のrevision/digestをcanonical JSONへ固定し、既存`TransitionOutcome`のみにPositive/Negativeを割り当てる。 | 現在のowner declaration/ref/headの取得と真正性、bytes再読、K2 store lookup、K3/K6 verifier実行、K5 evidence roundtrip、記録writer、製品API接続。 |
+| `helix/helix-harness/units/common-kernel/tests/test_k8_label.py` | SHA-256 `6804c46a277e6d57fa7682cdadd94ed52107e3089db7a61d318cca6bcd07b842`。合成したtyped inputに対する29個の局所unit method。K3/K6 `Combined.non_values`から候補を採り全候補を保持し、K3/K6 assuranceを含むcomponent objectをidentityで維持する。型外の任意objectはpositive resultに扱わない。完全なeffect baselineからevent/binding/4参照を各一項目欠かした独立subTestは`Unknown(missing_input)`を期待し、effect Value自体をcomponentで保持する。`python3 -B -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k8_label.py' -v`で29件成功。 | L8 §11の162 fixture、L9の26 oracle、owner/source接続、製品動作、CI inventoryは実行・登録していない。 |
+
+fresh validationではL4 §18.4にある順序を実装候補へ写し、完全に比較可能な不一致を既存Mismatchへ、比較不能なnullを`Unknown(missing_input)`候補へ分ける。K3/K6のNegativeは確定不一致より後、既存Unknown/Unobservedは各優先順位を使う。K1 `Combined.non_values`だけをnon-value候補として保持し、`excluded`の有効な`NotApplicable`をnon-valueへ誤変換しない。K3/K6 `Combined`の全componentとassuranceは別fieldのまま保持し、K6 issuer authenticityやeffect authenticityをPositiveへ昇格しない。
+
+K3/K6 input shapeは`permission.py`の既存`PermissionCheckResult | PermissionCheckDiagnostic`、`verification.py`の既存`RequiredResult`へ型で限定する。これらとK1 `Observed`/`Combined`の型前提を満たさないhost objectはhelperの技術的前提違反としてTypeErrorで止め、K1/K2 reasonや肯定結果へ写さない。`Mismatch`は既存の非空closed `MismatchField`集合、`Denied.source`は既存二値、selection/key readinessはboolというL4 shapeをprivate境界で検査する。K3 `missing_key`/`invalid_query` diagnosticはL4 K8 mappingどおり既存`Unknown(missing_input)`候補となる。selected effectがValueでもeventまたはbindingの必須参照が欠けていれば`Unknown(missing_input)`候補を追加し、confirmed mismatchおよびK3/K6 Negativeの優先順は保つ。原effect Valueと不足参照はcomponent/evidenceに残し、欠落をValidatedへ昇格しない。
+
+この局所実装はL8 §11のfixture定義を変更せず、そのfixtureを実行したものでもない。L7 §14.3に、unit methodが対応するfixture設計と実際のassertion範囲を示す。L8 §11の162 ID、L9 IV-K8-01–26、K8のmain local-CI未登録状態はそのまま維持する。K3/K6 reader、K5保存/復元、current key構築とlookupが未接続のcaseをunit helperのsynthetic inputでpass扱いしない。
+
 ## 18. K10 型付き依存グラフ関数設計
 
 この節はmain `4a40597efbf867b6b5b5640060b2cac81de56de0` 時点のL4 §14/L9 K10 oracleと、同mainへ統合済みのL5 §13/L8 §12を関数責務へ下ろす。参照本文の開始時SHA-256はL4 `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82`、L5 `1fb52363e169d6210b197b678e68881b49c87cecbf6e79e1767282996549b90a`、L8 `74ac95889ca8f436c7dcd643f0d9b7c1d20b0122ec615d0bd79219ab8b036d02`、L9 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`である。L5/L8はmain #2798に統合された設計根拠で、実装・fixture実行・owner source接続・L9合格を意味しない。K10直接親とStage 1 scopeはL4 §14.1およびL5 §13のとおり保持する。

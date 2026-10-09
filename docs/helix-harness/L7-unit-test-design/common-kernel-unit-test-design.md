@@ -6,7 +6,7 @@ scope: K1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: `main` at `40e5467dc7d67a990ff12323d40974a2e480f339` (current integration base; prior bases `79020598e03fd7234cfa00306f6f6d3a5bd82fd0`, `4a40597efbf867b6b5b5640060b2cac81de56de0`, `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
+base: `main` at `8b628d308c5102b2a752f3284f2cf43809cf43d8` (current integration base; prior bases `40e5467dc7d67a990ff12323d40974a2e480f339`, `79020598e03fd7234cfa00306f6f6d3a5bd82fd0`, `4a40597efbf867b6b5b5640060b2cac81de56de0`, `7715e7025212ea1a778ab9711e2f43241f7999c7`, `f75199749888f7261772ba26e9feb58a33d9a04f`, `d5bb3455526c816b3af965db239c4b56207a884f`, `30e957ee900da7735b6c691bdb63b55cae7a0c95`, `46cbf9297a11b7f23f561a57b5cab21768fe075c` retained as history)
 
 本書はL6のK1/K2/K3/K4/G3/K5/K6/K7/G5/K8/K9/K10公開APIと内部関数を単体fixtureへ対応づけ、現行L4/L9の意味、失敗分類、fixture期待を変更せずL5/L8とのtraceを追加する。K3は194 formal fixtureと26件の別ID回帰method、K4/G3は§11の73 fixture、K5は91 formal IDと24件の補助ID、K6は§10の55個別設計fixtureを記録する。K5-22/23のowner未接続fixture 7件はlocal private-boundary assertionだけを実行し、L8 coverageには含めない。ローカルunit結果はL9合格、owner source接続、製品動作を示さない。K9は§13で87 unique fixtureをtraceする。K8は§14の162個別fixture索引、K10は§15で69個別fixtureをtraceし、局所helper 18件を§15.2に別記する。69 fixture locatorの全実行、公開API・owner接続・CI登録は未了である。K6のprivate候補実装と52件の単体実行は§10.1に記録する。43件の局所assertion、2件の部分被覆、10件の未実行fixture ID、7件の別ID回帰を区別する。
 
@@ -17,7 +17,7 @@ base: `main` at `40e5467dc7d67a990ff12323d40974a2e480f339` (current integration 
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `d5bb3455526c816b3af965db239c4b56207a884f`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; current main source at `d5bb3455526c816b3af965db239c4b56207a884f`, content SHA-256 `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `1155c9ab7ecb50a6b5a2187236fb117f8cdd4111ab6aad3a8ab932be4ed34b5d`（L7→L6一方向。L6にL7 SHAは置かない） |
+| L6関数設計 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `92cbc6ede25629622f34effe7611d748a5fd151c186113e4bdef3e0a9e05ac74`（本候補のL6本文。L7→L6一方向。L6にL7 SHAは置かない） |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `fcf00128a7503317fa1c779c38cc8df3877b4952`, content SHA-256 `bdac36e29b8cd0a5cec34cedce6d419f5d5ecc8daea70cba851067bcc308dfac`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L8 K4/G3 fixed snapshot | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; fixed source snapshot at main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`, content SHA-256 `9d441f69221eb2800182f08e49c159c271a77eccc482bdbfb45bc960d2b48753`; K4/G3 §7; 73 fixture IDs; historical design input, not run here |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `d5bb3455526c816b3af965db239c4b56207a884f`) |
@@ -1284,6 +1284,44 @@ L7表はfixture design inventoryであり、実装済みunit testやcoverageで�
 | owner-unconnected | current declaration/source reader、case binding、K3/K6、K5 evidence read/writeを必要とする各variant | L8の期待値は保持するが、stub値を製品観測として使わず実行済みと数えない。 |
 
 K8はmain local-CI fixed manifestへ未登録である。L7 fixture一覧、文書の静的照合、commitやL6/L7設計の存在からCI coverage・L9合格・owner接続・製品動作を生成しない。L7→L6を一方向pinとし、L6にL7 SHAを置かない。
+
+### 14.3 private helper局所unitの実行記録
+
+`_k8_label.py`のprivate純関数候補を、既存L8 §11のtyped baselineと変異設計へ次の範囲で対応づける。表のL8 IDは既存fixture locatorであり、このunit実行でL8 fixtureを実行した意味ではない。各methodは合成入力によるhelper assertionで、実owner/source取得、K3/K6 verifier、K5保存/復元、公開API、L9統合を検査しない。
+
+| unit method | 対応する既存L8 locator | 実際にassertする範囲 |
+|---|---|---|
+| `test_ck_k8_pure_observed_label_preserves_nonvalue_and_untrusted` | `L8-K8-BASE-CLASSIFICATION`; `L8-K8-02-CLASSIFICATION-UNKNOWN` | 既存Observed non-Value objectを同一保持し、trustを`untrusted`に固定する。source/classifier readは含まない。 |
+| `test_ck_k8_pure_effect_projection_keeps_none_and_nulls` | `L8-K8-BASE-EFFECT`; `L8-K8-06-OBSERVED-NONE`; `L8-K8-06-EVENT-NULL`; `L8-K8-06-BINDING-NULL` | typed effect recordとnone/null fieldを同一objectで保持する。作用発生の真偽やsource readは判定しない。 |
+| `test_ck_k8_operation_version_is_ref_order_independent_and_revision_bound` | `L8-K8-22-CLASSIFIER-REVISION` | already-resolved API/owner refsからの決定的versionとAPI revision差によるversion変化だけをassertする。旧recordのlookup結果は検査しない。 |
+| `test_ck_k8_case_binding_ref_excludes_result_pointers` | `L8-K8-21-POINTERS-FIXED-LABEL-CHANGED`; `L8-K8-21-LABEL-FIXED-POINTERS-CHANGED`; `L8-K8-14-POINTER-ONLY-UPDATE`; `L8-K8-14-INPUT-LABEL-UPDATE` | input-only bindingのdigest/revisionとresult-pointer分離をassertする。 |
+| `test_ck_k8_role_aliases_preserve_roles_and_exact_dedupe` | `L8-K8-17-SAVED-R1-CURRENT-R2`; `L8-K8-17-BINDING-ONLY-NO-SOURCE-READ` | role/sideを分けたaliasを保持し、同一aliasの完全一致だけをdeduplicateする。raw bytes readはassertしない。 |
+| `test_ck_k8_same_alias_any_different_ref_is_prekey_rejection` | `L8-K8-17-SAME-ALIAS-CONFLICT`; `L8-K8-10-ALIAS-CONFLICT` | 同aliasのraw refでkind/revision/digestのいずれかが異なるとき、既存K8/K2境界の`Rejected(missing_key)`をkey前に保持する。 |
+| `test_ck_k8_role_bound_key_collision_rejects_before_k2_key_of` | `L8-K8-01-DUP-SAME-IDENTITY`; `L8-K8-10-EXACT-DUP`; `L8-K8-10-ALIAS-CONFLICT`; `L8-K8-10-SAME-REV-DIFF-DIGEST`; `L8-K8-13-IDENTITY-SET-CHANGE` | subject重複の扱い、exact ref dedupe、異kind/revision/digestの同一role-bound alias collisionをK2 `key_of`前の`Rejected(missing_key)`として照合する。K2 store lookupは含まない。 |
+| `test_ck_k8_mismatch_fields_use_closed_contract_order` | `L8-K8-15-INPUT-LABEL`; `L8-K8-15-TARGET`; `L8-K8-15-TWO-FIELDS-ORDER` | 閉語彙MismatchFieldの決定順と二fieldの列挙順だけをassertする。 |
+| `test_ck_k8_null_comparison_is_unknown_not_mismatch` | `L8-K8-15-NULL-COMPARISON` | null比較を不一致へ変えず、既存`Unknown(missing_input)`候補として保持する。 |
+| `test_ck_k8_polarity_mapping_is_versioned_by_resolved_api_ref` | `L8-K8-26-POLARITY-REVISION` | resolved API contract refからmapping identity/versionを構成し、既存typed outcomeへのPositive/Negative写像だけをassertする。owner mapping schema比較、登録・K1 combineは含まない。 |
+| `test_ck_k8_fresh_selector_precedence_mismatch_before_denial_and_unknown` | `L8-K8-16-PAIR-MISMATCH-K3`; `L8-K8-16-PAIR-MISMATCH-UNKNOWN` | 確定mismatchがK3 Negative/non-valueより先行し、componentを保持するselectorの結果をassertする。 |
+| `test_ck_k8_fresh_selector_k3_denial_precedes_unknown` | `L8-K8-16-PAIR-K3-UNKNOWN`; `L8-K8-16-PAIR-K3-UNOBSERVED` | K3 Negativeがclassification/effect non-valueより先行する既存selector結果をassertする。 |
+| `test_ck_k8_k6_denial_precedes_unknown` | `L8-K8-16-PAIR-K6-UNKNOWN`; `L8-K8-16-PAIR-K6-UNOBSERVED` | K6 Negativeがclassification/effect non-valueより先行する既存selector結果をassertする。 |
+| `test_ck_k8_k3_denial_precedes_k6_denial` | `L8-K8-16-PAIR-K3-K6` | K3/K6双方Negativeのとき先行する既存Denied sourceのみをassertする。両componentは保持する。 |
+| `test_ck_k8_unknown_priority_and_all_candidate_retention` | `L8-K8-16-UNKNOWN`; `L8-K8-23-UNREGISTERED-AND-UNREADABLE`; `L8-K8-23-HEAD-DRIFT-AND-UNREADABLE` | Unknown優先順と全non-value candidate objectの保持をassertする。source/head観測は合成済み入力。 |
+| `test_ck_k8_required_not_applicable_and_fresh_stale_map_to_missing_input` | `L8-K8-04-STALE-DEPENDENCY`; `L8-K8-04-NA-COMPONENT`; `L8-K8-09-K6-READSET-MISSING` | 必須fresh dependencyのStale/NotApplicableを既存`Unknown(missing_input)`候補として扱う。 |
+| `test_ck_k8_unobserved_priority_and_not_selected_boundary` | `L8-K8-16-UNOBSERVED`; `L8-K8-24-NOT-SELECTED-EXPLICIT-QUERY`; `L8-K8-24-NOT-SELECTED-PROJECTION` | selected時の既存Unobserved優先と、not-selected projectionの`Unobserved(not_selected)`をassertする。 |
+| `test_ck_k8_missing_key_boundary_is_keyunavailable_only_when_selected` | `L8-K8-03-ROUTE-KEY-MISSING`; `L8-K8-16-KEY-UNAVAILABLE`; `L8-K8-24-NOT-SELECTED-QUERY-MISSING-KEY` | selected required-key欠落の既存KeyUnavailableとexplicit queryの既存Rejected境界を分けてassertする。 |
+| `test_ck_k8_effect_none_is_confirmed_mismatch_before_unknown` | `L8-K8-04-MISMATCH-ONE`; `L8-K8-06-OBSERVED-NONE`; `L8-K8-16-MISMATCH` | selected `outcome=none`がeffect_event mismatchとして既存Unknownより先行するselector結果をassertする。 |
+| `test_ck_k8_validated_positive_requires_all_existing_dependencies` | `L8-K8-16-VALIDATED`; `L8-K8-BASE-VALIDATION` | 合成済みの全既存positive component時だけprivate selectorがValidatedを返し、既存PolarityMappingがPositiveになる範囲をassertする。実読・issuer authenticityは含まない。 |
+| `test_ck_k8_transition_validation_retains_components_and_assurance_by_identity` | `L8-K8-20-K3-ASSURANCE-REVERIFIABLE`; `L8-K8-20-K6-ASSURANCE-ISSUER-AUTHENTICITY`; `L8-K8-25-K6-UNSUPPORTED-AUTHENTICITY` | supplied K3/K6 component objectとassurance objectを別fieldのままidentity保持するprojectionだけをassertする。 |
+| `test_ck_k8_untyped_dependency_object_is_not_treated_as_a_valid_result` | L8 §11 `L8-K8-BASE-VALIDATION`の既存K3/K6型前提 | 型外の任意objectがK3/K6 resultの代わりに渡されたときhelper境界がTypeErrorを出し、positive outcomeを合成しないことをassertする。別のL8 fixture IDは追加しない。 |
+| `test_ck_k8_closed_outcome_and_selector_inputs_reject_invalid_shapes` | L8 §11 `L8-K8-BASE-VALIDATION`の既存closed-shape前提 | 空Mismatch、closed MismatchField外の値、未定義Denied source、非bool selector/readiness値を型前提違反として拒否し、空のMismatchや肯定結果へ写さないことをassertする。独立L8 fixture IDは追加しない。 |
+| `test_ck_k8_effect_event_and_binding_refs_missing_are_unknown` | `L8-K8-BASE-VALIDATION`; `L8-K8-04-OBSERVED-NONE` | 完全なeffect baselineからevent、binding全体、binding内のinput_label/route/target/permission_queryをそれぞれ個別に欠かす。各単一変異で`Unknown(missing_input)`候補と元effect Value保持をassertする。`outcome=none`の確定MismatchおよびK3/K6 Negativeの既存優先順は別methodで保持する。 |
+| `test_ck_k8_k3_k6_unknowns_retain_every_component_candidate` | `L8-K8-20-K3-COMBINED-UNDETERMINED`; `L8-K8-20-K6-COMBINED-UNDETERMINED` | 各L8 component shapeに沿ったK3/K6 Combined non-valueを入力し、両候補を保持する局所assertionを行う。両component同時入力は追加の合成regressionであり、L8単独fixtureを実行したとは数えない。 |
+| `test_ck_k8_observer_priority_retains_every_unknown_candidate` | `L8-K8-23-UNREGISTERED-AND-UNREADABLE`; `L8-K8-23-HEAD-DRIFT-AND-UNREADABLE` | observer helperが全Unknown/Stale candidateを保持し、既存priorityに従う結果をassertする。 |
+| `test_ck_k8_observer_priority_maps_stale_and_notapplicable_exactly` | `L8-K8-02-SOURCE-UNREADABLE`; `L8-K8-04-STALE-DEPENDENCY`; `L8-K8-04-NA-COMPONENT` | helper境界でStale/required NotApplicableを`Unknown(missing_input)`へ写す既定をassertする。 |
+| `test_ck_k8_valid_k1_disposition_is_not_a_nonvalue_candidate` | `L8-K8-16-VALIDATED`; `L8-K8-16-UNKNOWN` | K1 `Combined.excluded`の有効なNotApplicableをnon-value candidateに誤変換しないことをassertする。 |
+| `test_ck_k8_label_transition_projection_does_not_erase_stale` | `L8-K8-19-REVISION-UPDATE`; `L8-K8-19-OLD-POINTER-ONLY`; `L8-K8-BASE-PROJECTION-SELECTED` | supplied K2 Stale lookupをfresh validation/effect resultへ変換せず、projection fieldとして保持する。 |
+
+`python3 -B -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k8_label.py' -v`で29個のlocal unit methodが成功した。実行対象はL6 §17.5にSHA-256を示す同一source/test bytesである。これはL8 §11の162 fixtureの実行や26 L9 oracleの合格ではない。K8はlocal-CI fixed manifestへ未登録のままであり、このunitはL7 §14のfixture定義、L8期待、L9状態、CI inventoryを変更しない。
 
 ## 15. K10 個別fixture trace（設計・未実行）
 

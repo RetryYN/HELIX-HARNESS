@@ -16,7 +16,7 @@ base: main `d5bb3455526c816b3af965db239c4b56207a884f`
 | Repository Layout L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
 | Common Kernel L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7-01–15、IV-G5-01–10、IV-LDG関連行、IV-K9-01–15、IV-K8-01–26 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
 | paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9/§10/§11/§12/§13 | SHA-256 `1fb52363e169d6210b197b678e68881b49c87cecbf6e79e1767282996549b90a` |
-| Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `3f19e177e537a7a4a93831630887c3df3f8c0a7ad841e85885d25e54cb9b0069` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
+| Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `fa0f7176d4a5e9bdec3fb194235114407d19bcf9ed5130ef53dd4b680f3e2605` (本候補のcontent HEAD) | L7 suite IDs and function mapping |
 
 L9の各`IV-K1-*`/`IV-K2-*`/`IV-K3-*`/`IV-K5-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。 K5 §9.2の直接由来はConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。K3の直接L3 traceはL4 §16.1のSECURITY ACに限定し、OS-014-04/-06はK7との境界参照のまま扱う。K5を共通kernelとして配置すること自体から、単一親要求やHARNESS-L2-031を追加しない。
 
@@ -899,7 +899,7 @@ K9 L4/L9 ownerへの追加返却事項は次のとおり。これは対象oracle
 
 ## 11. K8 fixtures（既存L9 IV-K8-01〜26）
 
-本節はL4 §18 / SECURITY-AC-001-01 / 既存L9 IV-K8-01〜26のみをfixtureへ展開する。以下の`L8-K8-*`はL8 fixture IDであり、L9 oracle、K8 vocabulary、承認、実装、CI coverageを新設しない。5件のBASE、既存147 variant、L4のcomponent境界から具体化したIV-K8-16の10組合せ、計162件の設計fixture IDを記録する。これらは未実行であり、実装済み・構築済みの証拠ではない。各variantのbaselineを同一APIの既存L4正常例へ結び、独立caseの変異は指定fieldひとつだけとする。複合優先条件fixture（IV-K8-16/23）および二field列挙順fixture（IV-K8-15）はそのoracle目的に必要な組合せだけを保持し、単独変異caseと識別する。
+本節はL4 §18 / SECURITY-AC-001-01 / 既存L9 IV-K8-01〜26のみをfixtureへ展開する。以下の`L8-K8-*`はL8 fixture IDであり、L9 oracle、K8 vocabulary、承認、実装、CI coverageを新設しない。5件のBASE、既存147 variant、L4のcomponent境界から具体化したIV-K8-16の10組合せ、計162件の設計fixture IDを記録する。これらは未実行であり、実装済み・構築済みの証拠ではない。各variantのbaselineを同一APIの既存L4正常例へ結び、独立caseの変異は指定fieldひとつだけとする。複合優先条件fixture（IV-K8-16/23）および二field列挙順fixture（IV-K8-15）はそのoracle目的に必要な組合せだけを保持し、単独変異caseと識別する。L6 §17.5の29 local unit methodはprivate helperの合成入力検査であり、この162 fixtureやIV-K8 oracleの実行を意味しない。
 
 | Baseline ID | API / 入力 | baseline結果 |
 |---|---|---|
