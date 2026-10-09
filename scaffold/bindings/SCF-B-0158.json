@@ -50,7 +50,7 @@
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "327aef604f63651e945d707e02579781b0908da1ba46d82a29ca87bed49b3f4e",
+      "sha256": "091bba1ee72440d8205f0751791f11453d20612269cc4ce454aa8eb45434d02c",
       "note": "Common Kernel K1/K2/K3/K4/K5/G3/K6/K7/G5/K9 verifier table/range。K1/K2/K3/K5 inventory、K4/G3の73 fixture ID構造照合対象を維持する。K6/K7/G5/K9 fixture inventoryは未登録であり、本pinはfixture実行・CI coverageを示さない。 K8の設計追補を含む。K8 fixture inventoryは未登録であり、実行・coverageを示さない。"
     },
     {
