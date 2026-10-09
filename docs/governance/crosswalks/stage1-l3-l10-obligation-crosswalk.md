@@ -397,6 +397,31 @@ Common Kernel K1/K2/K3/K5/K6のsource-only L7 suite inventoryとrunner拡張はm
 main `79020598e03fd7234cfa00306f6f6d3a5bd82fd0` の#2801 post-merge read-after（Root comment `6079479589`）で、既存Common Kernel local-CIの6検査をexact mainへ結び、586 identities・11 source refs、non-pass 0、artifact cleanを確認した。CI receipt SHA-256は `5f6519902f57c59f28cb4b36047169f5af832a3a8f156b14b32a71ad7c54f25d`。この結果はlocal-CIの固定scopeに限られ、52 ACのformal L8/L9 fixture実行、34親の業務/NFR/L10全義務trace、6機構owner接続、製品合格またはv0.1成立を示さない。前記52行のstatusは#2801後のmainまでの設計・source-only到達点を記し、各行にある未達理由を維持する。
 
 
+### 共通Kernelの後続milestone（#2798–#2802）
+
+以下は34親・52 ACの機構別表とは別scopeのCommon Kernel進捗である。各PR後のexact-main local-CI receiptは共通CIの固定scope（6 checks、586 identities、11 source refs）の成立を示す。K8/K9/K10のformal fixture、L9 oracle、公開APIのproduction実装、owner接続や製品coverageを示さない。K7/G5の5 helper testだけは専用の局所単体確認があり、共通586-identity suiteには未登録である。
+
+| PR / scope | main到達revisionと読後確認 | exact-main CI receipt | mainに到達した設計・局所実装と未達 |
+|---|---|---|---|
+| #2798 Common Kernel K10 L5/L8 | merge `05eb26ab87e5e3ca21af7d020ee98ed8db736e9e`; Root post-merge comment `6079191434`。L5 §13 / L8 §12をL4 §14・L9 IV-K10-01–14へ接続。6 API、69 unique fixture、14 IV、旧4資産。 | 6 checks success、586 identities/11 refs、clean checkout。receipt `f0a083fb8943de62d3fc1508991177b2efcecd07dea3a25df54ead633363bb5a`。 | 設計のみ。69 fixture未実行。K10 API実装・owner接続・L8–L10 passなし。この#2798時点ではK10のL6/L7設計は未到達。根拠: PR #2798 review/read-after comment `6079056718` / `6079191434`; merge commit 上記。 |
+| #2799 Common Kernel K9 L6/L7 | merge `4a40597efbf867b6b5b5640060b2cac81de56de0`; Root post-merge comment `6079250307`。L6 §16 / L7 §13がL4 §17・L9 IV-K9-01–15へ接続。2 public API、9 private function responsibilities、87 unique fixture、12 BASE索引。 | 6 checks success、586 identities/11 refs、clean checkout。receipt `d1619940f20dbb73e521c4f97b9bd4b85edc046e3e64fba0b4c02601e8f3e40b`。 | 関数・fixture設計のみ。87 fixture、15 IV、owner resolver、実装、L8–L10未実行・未接続。根拠: PR #2799 review/read-after comment `6079197057` / `6079250307`; merge commit 上記。 |
+| #2800 Common Kernel K8 L6/L7 | merge `bd85021c3f08d26b96502f7773372a7538bb38ae`; Root post-merge comment `6079370047`。L6 §17 / L7 §14がL4 §18・L9 IV-K8-01–26へ接続。4 public API、162 unique fixture。 | 6 checks success、586 identities/11 refs、clean checkout。receipt `f04478d839415d60b518efb8af6c91ad7f3f8bc9dfd53e2bf35ed259d91a4e6a`。 | 関数・fixture設計のみ。162 fixture、26 IV、current owner reader、実装、L8–L10、formal CI登録は未実行・未完。根拠: PR #2800 review/read-after comment `6079296612` / `6079370047`; merge commit 上記。 |
+| #2801 Common Kernel K7/G5限定private helper | merge `79020598e03fd7234cfa00306f6f6d3a5bd82fd0`; Root post-merge comment `6079479589`。L6 §15.4 / L7 §12.5へ限定helper部分実装を記録。 | 6 checks success、586 identities/11 refs、clean checkout。receipt `5f6519902f57c59f28cb4b36047169f5af832a3a8f156b14b32a71ad7c54f25d`。 | 既存SegmentHead/SubjectRef/string/tuple/frozensetの比較・保持に限定する5 helper unittest methodsを専用確認。source SHA-256 `e13bff0ec554ab8a244949e3f318c86c00e88556ca9286fca51bd409c9b5917c`、test SHA-256 `32aebb1851310f7938dd5cbf056f0041f5caafd26a2db8b1737fe5fb6f200ff9`。5 testは586-identity CIに未登録。K7/G5 115 formal fixture、25 L9 oracle、owner/source接続、実writer/append/CAS、製品動作、L8–L10完了は主張しない。根拠: PR #2801 review02 comment `6079382743`、Claude merge/read-after comment `6079404307` / Root `6079479589`。 |
+
+| #2802 Common Kernel K10 L6/L7 | merge `a1505e7864b1db31270ce3e0f89b73cb37dada6c`; Root post-merge comment `6079612247`。L6 §18 / L7 §15へ6 API・8 private責務・69 fixture locatorを追補。 | 6 checks success、586 identities/11 refs、full artifact/source refs/clean checkoutをRoot照合。receipt `151eb9544df47e1da0cf4a7c002c5248d6c8c708fa38f85ddefbc18e4bc8c906`。 | 関数・単体fixtureの設計のみ。既存792 L8 raw行とK7/G5・K8本文・実装を保持。69 fixture・14 IVの実行、owner/current reader接続、K10実装・CI登録、L8–L10 passは未達。独立review01 `6079567643`、Claude merge/read-after `6079584292`。 |
+
+#### 共通のcurrent source references
+
+| 文書 | main `79020598e03fd7234cfa00306f6f6d3a5bd82fd0` のSHA-256 |
+|---|---|
+| `docs/helix-harness/L5-detail-design/common-kernel.md` | `1fb52363e169d6210b197b678e68881b49c87cecbf6e79e1767282996549b90a` |
+| `docs/helix-harness/L6-function-design/common-kernel.md` | `bd8c448652d4bb83163ac0bac874343d0cb83eb0cd33ab5c197b866970c23c1c` |
+| `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md` | `85bd63c83f05c74ad577cbef9eac62053be7390383b5f7d5774cdf742c569c59` |
+| `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md` | `c5a4b12d027d1a53e2b293497970ee1aedfcafc20d6dcee920f274b135feefce` |
+| `scaffold/bindings/SCF-B-0158.json` | `561da1b28c1fca1c8b57e5bc1ba538bb6ed0ee627efcd464d80ffffb2de8f8b3` |
+
+この追補で、機構別52 AC表のAC、owner、L3/L10 pin、業務/NFR理由や未達をCommon Kernelのlocal-CI結果へ読み替えない。K7/G5 helperは明記された局所比較以外のK7/G5責務を実装・検証したことにしない。
+
 ## 旧HELIX sourceと保持／変更
 
 参照の起点はarchive内の旧HELIX原本と旧資産処置台帳である。旧asset digestは旧本文全体のSHA-256で、省略しない。役割と対応関係は保持するが、旧ID・物理配置・G3/runtime・判定値・承認挙動は再利用せず、現行L2/権限から意味を再導出する。
