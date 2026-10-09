@@ -12,8 +12,8 @@ current_main_observed: origin/main `d5bb3455526c816b3af965db239c4b56207a884f`（
 
 | 入力 | 固定対象 | SHA-256 |
 |---|---|---|
-| LABO L4 | `docs/helix-labo/L4-basic-design/stage1-labo.md`（§1–5） | `6ea7c6497e2349e63ed05a7a686e96e108a769a2ac864cf02295f174c00c6f1a` |
-| LABO L9 | `docs/helix-labo/L9-integration-verification/stage1-labo-integration-verification.md`（§1–6） | `a19f842cd6fe9576a0984651cd4aff554bb9355304c9b1f619480cd9d7867973` |
+| LABO L4 | `docs/helix-labo/L4-basic-design/stage1-labo.md`（§1–5、main `d5bb3455526c816b3af965db239c4b56207a884f`の固定snapshot） | `6ea7c6497e2349e63ed05a7a686e96e108a769a2ac864cf02295f174c00c6f1a` |
+| LABO L9 | `docs/helix-labo/L9-integration-verification/stage1-labo-integration-verification.md`（§1–6、main `d5bb3455526c816b3af965db239c4b56207a884f`の固定snapshot） | `a19f842cd6fe9576a0984651cd4aff554bb9355304c9b1f619480cd9d7867973` |
 | 固定親本文 | L3/L10の6文書。親revision `8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7` | L4 §1の各path/SHA pinに固定 |
 | 共通カーネル | LABO L4 §2で固定されたK1–K10の現行L4/L9本文 | 本書では再定義しない |
 

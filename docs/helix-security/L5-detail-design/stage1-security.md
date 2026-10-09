@@ -39,7 +39,7 @@ L3業務の独立business identity/ACはない。SECURITY判定、receipt、分�
 
 ## 3. 共通kernelとの接続
 
-このL5はmain fixed bytesのcommon-kernel L4 `docs/helix-harness/L4-basic-design/common-kernel.md`（SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`）とL9 `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`）の既存契約へ接続する。SECURITY L4 §3のcommon-kernel参照は旧固定設計bytesを指す歴史的source pinであり、現在契約の上書き定義ではない。利用時の型/APIはこの節で固定したcurrent main bytesを読む。
+このL5はmain `79013543184a6e47f99bc2ded1bb7a2e7f85737e`のcommon-kernel L4 `docs/helix-harness/L4-basic-design/common-kernel.md`（SHA-256 `7d0d74ef75f4bf74ae50c2998b9d6d346ca01f4b14479d688e44aaeb8f10bd82`）とL9 `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`）の既存契約へ接続する。旧CK L4 SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`はmain `467004440805a27461f280ae0f3d5707b7f72cbd`の歴史的bytesを指し、そのbytesと現行bytesの差はK8旧asset表記のSHA-256誤記1文字だけである。SECURITY L4 §3のcommon-kernel参照は旧固定設計bytesを指す歴史的source pinであり、現在契約の上書き定義ではない。利用時の型/APIはこの節で固定したcurrent main bytesを読む。
 
 | 既存契約 | SECURITYでの読取り・projection | してはならない変換 |
 |---|---|---|
