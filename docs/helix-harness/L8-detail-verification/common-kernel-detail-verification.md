@@ -1,22 +1,22 @@
-# HELIX-HARNESS 共通カーネル L8詳細検証設計（K1/K2/K3/K4/K5/K6/G3）
+# HELIX-HARNESS 共通カーネル L8詳細検証設計（K1/K2/K3/K4/K5/K6/K9/G3）
 
 status: draft
 owner: HELIX-HARNESS
-parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1／§9.2／§10.2／§13.1／§16.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
+parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1／§9.2／§10.2／§13.1／§16.1／§17.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l5: ../L5-detail-design/common-kernel.md
-base: main `3961daac08d032ad512026e8365fafd9eae831c5`
+base: main `d5bb3455526c816b3af965db239c4b56207a884f`
 
-本書はK1/K2/K3/K4/K5/K6/G3のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9の既存項目を展開したものとする。K7〜K10は`not_designed`でL9の現行参照のみとする。以下のfixtureはすべて未実行であり、pass、実装完成、L10成立を示さない。
+本書はK1/K2/K3/K4/K5/K6/K9/G3のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9の既存項目を展開したものとする。K9は§9でL4 §17/L9 IV-K9-01–15を下位化し、K7/K8/K10は`not_designed`で現行参照のみとする。すべて未実行であり、pass、実装完成、L10成立を示さない。
 
 ## 1. 固定入力とtrace
 
 | 入力 | revision・scope | SHA-256 |
 |---|---|---|
-| Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3/§9/§10/§13/§16 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
+| Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3/§9/§10/§13/§16/§17 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
 | Repository Layout L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
-| Common Kernel L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7/IV-LDG関連行 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
-| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9 | SHA-256 `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69` |
-| Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `0a232dbb019d703b39941f920cbb561538b92bc977fa0f197c8560198708a9f5` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
+| Common Kernel L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7/IV-LDG関連行、IV-K9-01–15 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
+| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9/§10 | SHA-256 `1310b538c268532a4aa15d3b47048bcdf592e6a6a85af88c2fb9fa08986a43a7` |
+| Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `4a32405d2f11ec3b99eb58c7401f4356f7bea34fc1bbd96d84da6de353e6f3d0` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
 
 L9の各`IV-K1-*`/`IV-K2-*`/`IV-K3-*`/`IV-K5-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。 K5 §9.2の直接由来はConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。K3の直接L3 traceはL4 §16.1のSECURITY ACに限定し、OS-014-04/-06はK7との境界参照のまま扱う。K5を共通kernelとして配置すること自体から、単一親要求やHARNESS-L2-031を追加しない。
 
@@ -121,7 +121,7 @@ K2逆trace: L5 `key_of`, `lookup`, `record`, alias binding clausesは表のL9 ID
 
 ## 5. K3–K10と未実施範囲
 
-K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K7〜K10はこのpairで`not_designed`で、既存L4/L9の該当契約へ戻す。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。
+K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K7/K8/K10はこのpairで`not_designed`で、既存L4/L9の該当契約へ戻す。K9だけは後続の§9で設計する。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。K9の直接親はL4 §17.1のConcept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08である。K9 fixtureの設計はL7 mappingや実行を意味しない。
 
 ### 5.1 K3 fixtures
 
@@ -528,3 +528,231 @@ G3-I4のaccepted/mismatch fixtureは既存authority source recordを既存adapte
 `reproduction`, `issuer_authenticity`, `evidence integrity`は別項目である。再実行一致は同じ入力で結果が再現することだけを確かめ、過去実行、実行時刻、receipt issuerの真正性を証明しない。署名・attestation・外部固定が無い間は`issuer_authenticity=Unknown(unsupported)`を維持する。再現はできないdeterministic=false entryなら`reproduction=Unknown(unsupported)`である。これらを同一のpositiveへ縮約しない。
 
 K6の`required_for`値と義務に対する必要verifier集合はK4-I4 owner declarationから読む。L5/L8は検証器名・集合値・operation policyを新たに決めない。K4 declarationの読取失敗/未登録時の詳細reasonがL4/L9で特定されない箇所は、ownerから来る既存non-valueを保持し、分類を追加しない。IV-K6-04(1)は`ReceiptBody`に`deterministic` fieldが無いため、L8構造fixtureが確認する`VerifierEntry`由来の`reverifiable=false`までを部分被覆とし、型外claimのparser結果はL4/L9 ownerへ返す。IV-K6-04(2)はL9 oracleがいう再合成と保存claimの照合について、L4のK6-I6が明記する既存`Unknown(conflict)`の範囲を超えて分類を追加しない。IV-K6-15(1) consumer `Rejected`はL4 §10にconsumer API/返却型がないため未接続であり、`L8-K6-15-NO-AUTHORITY`の構造確認をoracle充足として数えずL4/L9 ownerへ返す。K3のpermissionやauthorityをK6へ追加しない。
+
+
+## 9. K9 独立review fixture設計
+
+この節はL9 IV-K9-01–15の既存oracleを下位fixtureへ展開する。各行は独立ID、特定した基準、API、単一変異または変異なしcontrol、期待型を持ち、fixtureは未実行である。owner metadataやsourceが複数不在の状態は専用baselineとして明記し、単一変異と偽らない。既存L9の複合条件を分ける場合も各条件のoracleを変えない。実owner/schema/readerが未定義の行は、必要な入力を現在sourceから取得できたと主張せず「局所未接続」として残す。実在しない契約をfixture専用に定義しない。
+
+### 9.1 共通fixture基準
+
+- `L8-K9-BASE-INVENTORY`は、固定targetに一致するOS assignment、selection records、actual content-producer graph、登録済みsource closureおよび全coverage evidenceを入力する正常基準である。resolverが完全性を観測した場合の期待は`Observed<Value<{complete:true,slots,selections}>>`。owner graph/schema未提供時の実行は局所未接続であり、この合成基準を現行owner登録の証明として扱わない。
+- `L8-K9-BASE-INVENTORY-OPTIONAL-NOT-SELECTED`は、必須roleの選択は完全に記録し、optional roleはowner selectionが`not_selected`でactual graphにも存在しない状態を固定する。これは正常基準であり、選択状態の変異を加えない。結果はそのroleを除いた`Observed<Value<{complete:true,slots,selections}>>`。
+- `L8-K9-BASE-INVENTORY-EMPTY`は、すべてのcurrent sourceが読め、選択状態・graph・closure・coverageが互いに一致したうえで、creator-side slotが0件である状態を固定する。これは単一変異で作らず、L4の空集合規則を直接確認する基準である。期待は`Observed<Unknown(missing_input)>`。
+- `L8-K9-BASE-INVENTORY-METADATA-ONLY`は、APIの全必須refを形式上そろえた状態で、owner source closureにproducer identityを供給する登録済みsourceがなく、読めるsourceにはcommit/publisher/provider/model metadataだけがある状態を固定する。これは複数のowner-source欠落を一つの変異として扱わないための専用基準であり、期待は`Observed<Unknown(unregistered)>`。metadata値をAPI引数に追加しない。
+- `L8-K9-BASE-CHECK`は、上記inventoryの固定refとcurrent exact ReviewTarget、review execution originおよびowner-resolvedな全slot×4軸identityが揃い、rosterがnonempty/completeで全軸distinctとなる合成正常基準である。期待は`ReviewIndependenceCheck.result=Value(Independent)`、全component positive、`combined.verdict=Positive`。K6 `issuer_authenticity=Unknown(unsupported)`とnon-deterministic verifier entryの`reproduction=Unknown(unsupported)`は別assurance fieldに保持する。owner契約未提供時はcheckを実行できたと数えない。
+- `L8-K9-BASE-CHECK-UNKNOWN-ONLY`は、他の全入力を`BASE-CHECK`と同じに保ち、owner contractで一軸の比較identityだけが未解決`Unknown(unsupported)`となる状態を固定する。baselineの期待は`ReviewIndependenceCheck.result=Unknown(unsupported)`、そのaxis componentのnon-value保持、`combined.verdict=Undetermined`である。
+- `L8-K9-BASE-CHECK-CONTEXT-SHARED-RAW`は、creator/reviewerのcontext role-bound aliasesが同じraw SubjectRefを指し、owner contractも同じcontext comparison identityへ解決する状態を固定する。identity/authority/routeとtargetは完全かつdistinct。共有refはalias identityがrole/sideで異なるためK2 inputsへ両方残り、これは変異なしcontrolである。期待はcontext collisionによるNegative。
+- `L8-K9-BASE-CHECK-AUTHORITY-COLLISION`は、全API ref/owner current recordが完全でbytes/digest整合済み、他の3軸がdistinct、authority owner contractがcreator/reviewerを同じexecution-authority comparison identityへ解決する状態を固定する。authority relationはsame、resultは`NotIndependent(authority_collision)`、combinedはNegative。この基準からauthority record metadataだけを一項目変える。
+- `L8-K9-BASE-CHECK-AUTHORITY-SCHEMA-UNDEFINED`は、API refsをすべて完全に保ち、SECURITY owner authority mapping schemaだけが未定義の状態を固定する。record/refを欠落させず、期待はauthority relation/result `Unknown(unsupported)`、combined `Undetermined`。
+- `L8-K9-BASE-CHECK-ROUTE-SCHEMA-UNDEFINED-WITH-LABELS`は、API refsが完全でroute owner comparison schemaだけが未定義、review execution sourceにはprovider/runtime/model labelsが残る状態を固定する。labelsはroute owner schema/identityではない。これは変異なしcontrolで、期待はroute relation/result `Unknown(unsupported)`、combined `Undetermined`。
+- `L8-K9-BASE-CHECK-INVENTORY-UNKNOWN`は、APIのtargetと`creator_inventory: SubjectRef`を完全に保ち、その固定refのowner-source read結果だけが`Unknown(conflict)`となる状態を固定する。値の代りにUnknownをAPI引数へ渡さない。期待はL4 §17.3のreview early-return。
+- `L8-K9-BASE-REVIEW-RECEIPT-PRESENT`は、有効candidateと同一current keyに結ばれた既存review receipt/resultが存在する状態を固定する。review receiptが存在することだけが差分であり、receipt内容や他inputは変えない。
+- fresh API観測とK2 saved lookupは別fixture経路である。freshなsource mismatchはL4の`Unknown(conflict)`、保存値の旧revisionはK2 `Stale`、同revision digest conflictは`Unknown(conflict)`、identity集合差は`Unobserved(not_run)`とする。
+- 上記`BASE-CHECK`とaxis collision baselinesはfresh comparison用で、prior K9 result recordを含まない。K2 saved lookup行だけが明示的にprior recordを持つ。
+- `Value(Negative)`はK1 combined verdictであり、K9の`ReviewIndependence.outcome=NotIndependent`とは区別して両方の型付きfieldをassertする。`Unknown`はK1 component/resultのnon-value、API key作成失敗の`Rejected(missing_key)`は外側診断である。
+
+### 9.2 IV-K9-01 — source boundaryと呼出し入力
+
+直接trace: Concept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08。baselineは`L8-K9-BASE-INVENTORY`。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-01-CALLER-SLOTS` | `resolve_creator_inventory` | callerが引数として`slots`/`creator_slots`/`reviewer_slot`を渡す試みを追加する | L4 signatureに引数が無い。型不一致構造として呼出し経路を持たず、K1値や未定義reasonを生成しない。 |
+| `L8-K9-01-METADATA-ONLY` | `resolve_creator_inventory` | `BASE-INVENTORY-METADATA-ONLY`を変異なしで照会する。これは複数owner-source欠落を含む専用baselineであり、single mutation caseではない | `Observed<Unknown(unregistered)>`。metadataからcreator identityを作らない。 |
+| `L8-K9-01-ASSIGNMENT-MISSING` | `resolve_creator_inventory` | `current_assignment`と他の全API参照/K2 key refsを完全な`SubjectRef`のまま固定し、owner current assignment source内の必要なassignment fieldだけを欠かす。具体field/schemaはL4で未定義のためfield名を作らない | `Observed<Unknown(missing_input)>`。完全API refを欠いた時の`Rejected`をこのAPIへ追加しない。 |
+| `L8-K9-01-SELECTION-SOURCE-MISSING` | `resolve_creator_inventory` | APIへ渡す全SubjectRefは完全なまま固定する。owner current selection sourceが示す選択済sourceのrequired source-reference dataだけを読取入力から欠かす（API ref自体を省かない） | `Observed<Unknown(missing_input)>`。 |
+| `L8-K9-01-ACTUAL-GRAPH-MISSING` | `resolve_creator_inventory` | APIの`actual_content_producer_graph`を含む全SubjectRefは完全なまま固定する。owner graph sourceのrequired graph dataだけを欠かす（API ref自体を省かない） | `Observed<Unknown(missing_input)>`。 |
+| `L8-K9-01-CLOSURE-UNREGISTERED` | `resolve_creator_inventory` | source closureのschema登録だけを欠かす | `Observed<Unknown(unregistered)>`。 |
+
+### 9.3 IV-K9-02 — rosterの全量性とsource間照合
+
+直接trace: AC-OS-029-03、AC-INTELLIGENCE-L3-072-08。baselineは`L8-K9-BASE-INVENTORY`。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-02-SOURCE-REF-MISSING` | `resolve_creator_inventory` | closure内の必須source ref一つだけを欠かす | `Observed<Unknown(missing_input)>`。 |
+| `L8-K9-02-SELECTION-UNKNOWN` | `resolve_creator_inventory` | 一つのowner selection stateだけをunknownにする | `Observed<Unknown(missing_input)>`。unknownを`not_selected`へ変えない。 |
+| `L8-K9-02-GRAPH-COMPLETENESS-UNPROVEN` | `resolve_creator_inventory` | source refは保ちactual graph全量性evidenceだけを未証明にする | `Observed<Unknown(unsupported)>`。 |
+| `L8-K9-02-COVERAGE-EVIDENCE-MISSING` | `resolve_creator_inventory` | coverage evidence ref一つだけを欠かす | `Observed<Unknown(missing_input)>`。`Unobserved(pending_receipt)`へ写さない。 |
+| `L8-K9-02-ROLE-SET-CONFLICT` | `resolve_creator_inventory` | completeなOS/selection sourcesに対してactual graphのrole集合だけを一つ異ならせる | `Observed<Unknown(conflict)>`。不足/追加slotと全差分を保持し、`NotIndependent`を作らない。 |
+| `L8-K9-02-CURRENT-SOURCE-CONFLICT` | `resolve_creator_inventory` | caller refとowner current refの確定不一致を一件だけ与える | `Observed<Unknown(conflict)>`。古いcaller refで肯定しない。 |
+
+### 9.4 IV-K9-03 — owner選択状態
+
+直接trace: AC-OS-029-03、AC-INTELLIGENCE-L3-072-08。baselineは`L8-K9-BASE-INVENTORY`。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-03-OPTIONAL-NOT-SELECTED` | `resolve_creator_inventory` | `BASE-INVENTORY-OPTIONAL-NOT-SELECTED`を変異なしで照会する | `Observed<Value<...>>`でnot_selectedのroleをrosterから外し、他selection/slotは保持する。 |
+| `L8-K9-03-SELECTION-ABSENT` | `resolve_creator_inventory` | `BASE-INVENTORY-OPTIONAL-NOT-SELECTED`からoptional roleのselection record一件だけを欠かす | `Observed<Unknown(missing_input)>`。明示not_selectedとrecord欠落を混同しない。 |
+| `L8-K9-03-SELECTED-GRAPH-OMISSION` | `resolve_creator_inventory` | 選択済みsourceは維持しcomplete actual graphから対応slot一件だけを除く | `Observed<Unknown(conflict)>`。 |
+| `L8-K9-03-CALLER-OVERRIDE` | `resolve_creator_inventory` | `selected_source_records`の一つだけをowner current selectionと不一致の旧refへ差し替える | `Observed<Unknown(conflict)>`。APIにselection claim入力はなく、caller refはcurrent owner sourceを上書きしない。 |
+
+### 9.5 IV-K9-04 — 空のcreator集合
+
+直接trace: AC-OS-029-03。baselineは`L8-K9-BASE-INVENTORY`。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-04-EMPTY-CREATORS` | `resolve_creator_inventory` | `BASE-INVENTORY-EMPTY`を変異なしで照会する | `Observed<Unknown(missing_input)>`。空集合の全称を真としてIndependentにしない。 |
+
+### 9.6 IV-K9-05 — role-bound source aliasesと実読
+
+直接trace: AC-OS-029-03、AC-INTELLIGENCE-L3-072-08。baselineは`L8-K9-BASE-CHECK`。aliasの形はL4 §3.4.1 `source_content`、binding bytesとraw bytesの照合はK6既存境界を使う。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-05-SHARED-RAW-REF` | `check_review_independence` | `BASE-CHECK-CONTEXT-SHARED-RAW`を変異なしで照会する。raw ref共有とowner-resolved same relationは基準入力で固定し、一方だけを変えない | K2 alias/bindingは両役割を保持。`ReviewIndependenceCheck.result=Value(NotIndependent(context_collision))`、`combined.verdict=Negative`。raw ref重複を`duplicate_identity`へ送らない。 |
+| `L8-K9-05-ROLE-BINDING-SWAP` | `check_review_independence` | 同じsource refsを保ち、binding内の二roleとの対応だけを入れ替える | ParticipantBindingSet canonical bytes/digestとK2 keyが変わる。旧keyのValueを再利用しない。 |
+| `L8-K9-05-ALIAS-IDENTITY-CONFLICT` | `check_review_independence` | 同一alias identityへ異なるraw SubjectRefを一つ追加する | key作成前`Rejected(missing_key, diagnostic)`。K1 Unknownへ変換しない。 |
+| `L8-K9-05-BINDING-BYTES-DRIFT` | K6 `admit_receipt(record, query_key, verifier_set)`境界（K9 `check_review_independence`への投影は未接続） | binding bytesだけを固定ref digestと不一致にする | K6 admissionは`Unknown(conflict)`。これはK9 `assurance`へ混ぜず、独立したK6 source診断として保持する。K9 `result`/`components`/`combined`へのprojectionはL4/L9で定義されないため局所holdとしてK9 ownerへ戻し、K9全体結果を捏造しない。 |
+| `L8-K9-05-RAW-SOURCE-BYTES-DRIFT` | K6 `admit_receipt(record, query_key, verifier_set)`境界（K9 `check_review_independence`への投影は未接続） | alias原source bytesだけをそのraw digestと不一致にする | K6 admissionは`Unknown(conflict)`であり、binding読取をraw source読取へ代用しない。K6 conflictはK9 `assurance`ではない。K9 result/components/combinedへのprojectionはL4/L9で未定義のため局所holdとしてK9 ownerへ戻し、K9全体結果を捏造しない。 |
+
+### 9.7 IV-K9-06 — identity collision
+
+直接trace: AC-OS-029-03。baselineは`L8-K9-BASE-CHECK`。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-06-ORIGINAL-WORKER` | `check_review_independence` | reviewerのowner-resolved identityをoriginal workerと同一にする | 該当identity component=`Value(same)`、`result=Value(NotIndependent(identity_collision))`、combined Negative。 |
+| `L8-K9-06-HELPER` | `check_review_independence` | reviewer identityだけをhelperと同一にする | 同上。 |
+| `L8-K9-06-TEST-AUTHOR` | `check_review_independence` | reviewer identityだけをtest authorと同一にする | 同上。 |
+| `L8-K9-06-CONSULTANT` | `check_review_independence` | reviewer identityだけをconsultantと同一にする | 同上。 |
+| `L8-K9-06-SUBAGENT` | `check_review_independence` | reviewer identityだけをcreator-side subagentと同一にする | 同上。作成側が起用したsubagentを独立reviewerにしない。 |
+
+### 9.8 IV-K9-07 — context collisionとReviewTarget exact binding
+
+直接trace: AC-OS-029-03、AC-INTELLIGENCE-L3-072-08。collision基準は`L8-K9-BASE-CHECK`、target mutationのK2 saved-lookup基準は同一identity current targetに保存したprior Value。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-07-CONTEXT-COLLISION` | `check_review_independence` | reviewer context owner-resolved identityだけをcreator contextと同一にする | `Value(NotIndependent(context_collision))`、combined Negative。 |
+| `L8-K9-07-TARGET-ARTIFACT-FRESH` | `check_review_independence` | fresh ReviewTargetのartifact identityだけをowner current targetと異ならせる | `ReviewIndependenceCheck.result=Unknown(conflict)`。target mismatchのcomponent/combined表現はL4に型が定義されていないため局所未接続とし、新componentを作らない。 |
+| `L8-K9-07-TARGET-BASE-FRESH` | `check_review_independence` | base identityだけを確定不一致にする | `ReviewIndependenceCheck.result=Unknown(conflict)`。target mismatchのcomponent/combined表現はL4に型が定義されていないため局所未接続とし、新componentを作らない。 |
+| `L8-K9-07-TARGET-SCOPE-FRESH` | `check_review_independence` | task_scope identityだけを確定不一致にする | `ReviewIndependenceCheck.result=Unknown(conflict)`。target mismatchのcomponent/combined表現はL4に型が定義されていないため局所未接続とし、新componentを作らない。 |
+| `L8-K9-07-TARGET-ORACLE-FRESH` | `check_review_independence` | oracle identityだけを確定不一致にする | `ReviewIndependenceCheck.result=Unknown(conflict)`。target mismatchのcomponent/combined表現はL4に型が定義されていないため局所未接続とし、新componentを作らない。 |
+| `L8-K9-07-TARGET-RESULT-FRESH` | `check_review_independence` | current_result identityだけを確定不一致にする | `ReviewIndependenceCheck.result=Unknown(conflict)`。target mismatchのcomponent/combined表現はL4に型が定義されていないため局所未接続とし、新componentを作らない。 |
+| `L8-K9-07-TARGET-CASE-FRESH` | `check_review_independence` | case identityだけを確定不一致にする | `ReviewIndependenceCheck.result=Unknown(conflict)`。target mismatchのcomponent/combined表現はL4に型が定義されていないため局所未接続とし、新componentを作らない。 |
+| `L8-K9-07-SAVED-OLD-REVISION` | K2 `lookup` | targetを同一identityの旧revisionへ保持し、current query revisionだけを進める | prior `Value`に対し`Stale`。fresh mismatchの代替にしない。 |
+| `L8-K9-07-SAVED-SAME-REV-DIGEST` | K2 `lookup` | 保存済みcurrent keyのtarget digestだけをqueryと不一致にする | `Unknown(conflict)`。 |
+| `L8-K9-07-SAVED-IDENTITY-SET` | K2 `lookup` | queryのtarget identity setだけをprior keyと異ならせる | `Unobserved(not_run)`。 |
+
+### 9.9 IV-K9-08 — authority identityとowner record
+
+直接trace: AC-OS-029-03、SECURITY owner boundaryはL4 §17.2/§17.3。baselineは`L8-K9-BASE-CHECK`。authority comparisonはpermission可否でなくowner contractがresolveした実行authority identityの比較。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-08-AUTHORITY-COLLISION` | `check_review_independence` | `BASE-CHECK-AUTHORITY-COLLISION`を変異なしで照会する | 該当`ReviewAxisCheck.relation=Value(same)`、`ReviewIndependenceCheck.result=Value(ReviewIndependence{outcome:NotIndependent(authority_collision)})`、`combined.verdict=Negative`。 |
+| `L8-K9-08-REF-MISSING` | `check_review_independence` | `BASE-CHECK`からauthority owner record bytes内の必須source reference field一つだけを欠かす。API引数`authority_owner_record`と全K2 key refsは完全なSubjectRefのまま | authority relation=`Unknown(missing_input)`、`ReviewIndependenceCheck.result=Unknown(missing_input)`、`combined.verdict=Undetermined`。API key欠落の`Rejected(missing_key)`とは分離し、他axis componentsは保持する。 |
+| `L8-K9-08-SCHEMA-UNDEFINED` | `check_review_independence` | `BASE-CHECK-AUTHORITY-SCHEMA-UNDEFINED`を変異なしで照会する。API refs/record refsは欠かさない | authority relation=`Unknown(unsupported)`、`ReviewIndependenceCheck.result=Unknown(unsupported)`、`combined.verdict=Undetermined`。 |
+| `L8-K9-08-CURRENT-RECORD-UNREGISTERED` | `check_review_independence` | 定義済みschemaは保ちcurrent owner recordの登録だけを欠かす | authority relation=`Unknown(unregistered)`、`ReviewIndependenceCheck.result=Unknown(unregistered)`、`combined.verdict=Undetermined`。 |
+| `L8-K9-08-MAPPING-UNSUPPORTED` | `check_review_independence` | recordは存在するがowner contractがrecord→authority identity対応を解決できない | authority relation=`Unknown(unsupported)`、`ReviewIndependenceCheck.result=Unknown(unsupported)`、`combined.verdict=Undetermined`。 |
+| `L8-K9-08-RECORD-REVISION-ONLY` | `check_review_independence` | `BASE-CHECK-AUTHORITY-COLLISION`からvalid current owner recordのrevision fieldだけを更新し、owner-current SubjectRef revisionとbytes digestを新しいrecordに整合させる。raw bytes corruptionではない | owner-resolved authority identityはsameのまま、authority relation=`Value(same)`、`ReviewIndependenceCheck.result=Value(NotIndependent(authority_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-08-OPERATION-ONLY` | `check_review_independence` | `BASE-CHECK-AUTHORITY-COLLISION`からvalid current owner recordのoperation fieldだけを更新し、current ref digestを新record bytesと整合させる。record revision/identityとauthority identityは維持 | authority relation=`Value(same)`、`ReviewIndependenceCheck.result=Value(NotIndependent(authority_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-08-TARGET-ONLY` | `check_review_independence` | `BASE-CHECK-AUTHORITY-COLLISION`からvalid current owner recordのtarget fieldだけを更新し、current ref digestを新record bytesと整合させる。record revision/identityとauthority identityは維持 | authority relation=`Value(same)`、`ReviewIndependenceCheck.result=Value(NotIndependent(authority_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-08-SOURCE-ONLY` | `check_review_independence` | `BASE-CHECK-AUTHORITY-COLLISION`からvalid current owner recordのsource fieldだけを更新し、current ref digestを新record bytesと整合させる。record revision/identityとauthority identityは維持 | authority relation=`Value(same)`、`ReviewIndependenceCheck.result=Value(NotIndependent(authority_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-08-OWNER-RESOLVED-DISTINCT` | `check_review_independence` | `BASE-CHECK-AUTHORITY-COLLISION`からowner contractが解決するcomparison identityだけをdistinctへ更新し、current record/ref/bytesは整合させる。他軸・target・rosterは固定 | 該当authority relation=`Value(distinct)`。他axis・rosterもpositiveなら`ReviewIndependenceCheck.result=Value(Independent)`、`combined.verdict=Positive`。 |
+
+### 9.10 IV-K9-09 — context/route owner contracts
+
+直接trace: AC-OS-029-03、AC-INTELLIGENCE-L3-072-08。baselineは`L8-K9-BASE-CHECK`。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-09-CONTEXT-SCHEMA-UNDEFINED` | `check_review_independence` | context owner comparison schemaだけを未定義にする | context relation=`Unknown(unsupported)`、`ReviewIndependenceCheck.result=Unknown(unsupported)`、`combined.verdict=Undetermined`。 |
+| `L8-K9-09-CONTEXT-CURRENT-UNREGISTERED` | `check_review_independence` | context schemaは既知だがcurrent declarationだけを未登録にする | context relation=`Unknown(unregistered)`、`ReviewIndependenceCheck.result=Unknown(unregistered)`、`combined.verdict=Undetermined`。 |
+| `L8-K9-09-ROUTE-SCHEMA-UNDEFINED` | `check_review_independence` | route owner comparison schemaだけを未定義にする | route relation=`Unknown(unsupported)`、`ReviewIndependenceCheck.result=Unknown(unsupported)`、`combined.verdict=Undetermined`。 |
+| `L8-K9-09-ROUTE-CURRENT-UNREGISTERED` | `check_review_independence` | route schemaは既知だがcurrent declarationだけを未登録にする | route relation=`Unknown(unregistered)`、`ReviewIndependenceCheck.result=Unknown(unregistered)`、`combined.verdict=Undetermined`。 |
+| `L8-K9-09-ROUTE-COLLISION` | `check_review_independence` | reviewer owner-resolved route identityだけをcreator routeと同一にする | route relation=`Value(same)`、`ReviewIndependenceCheck.result=Value(NotIndependent(route_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-09-PROVIDER-ONLY` | `check_review_independence` | `BASE-CHECK-ROUTE-SCHEMA-UNDEFINED-WITH-LABELS`を変異なしで照会する。route schema/sourceの欠落とlabels存在を専用baselineへ含め、複合状態を一変異と呼ばない | route relation=`Unknown(unsupported)`、`ReviewIndependenceCheck.result=Unknown(unsupported)`、`combined.verdict=Undetermined`。provider/runtime/model labelからrouteを作らない。 |
+
+### 9.11 IV-K9-10 — 四軸合成と混在結果
+
+直接trace: AC-OS-029-03。baselineは`L8-K9-BASE-CHECK`。各行は一軸だけをowner-resolved values上で変える。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-10-IDENTITY-SAME` | `check_review_independence` | identity axisだけsameにする | identity relation=`Value(same)`、`ReviewIndependenceCheck.result=Value(NotIndependent(identity_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-10-CONTEXT-SAME` | `check_review_independence` | context axisだけsameにする | context relation=`Value(same)`、`ReviewIndependenceCheck.result=Value(NotIndependent(context_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-10-AUTHORITY-SAME` | `check_review_independence` | authority axisだけsameにする | authority relation=`Value(same)`、`ReviewIndependenceCheck.result=Value(NotIndependent(authority_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-10-ROUTE-SAME` | `check_review_independence` | route axisだけsameにする | route relation=`Value(same)`、`ReviewIndependenceCheck.result=Value(NotIndependent(route_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-10-IDENTITY-REF-ONLY` | `check_review_independence` | `IDENTITY-SAME`のowner-resolved identityを保ったままidentity ref bytesだけを一つ差し替える | owner-resolved identity relation=`Value(same)`を維持し`ReviewIndependenceCheck.result=Value(NotIndependent(identity_collision))`、`combined.verdict=Negative`。ref差だけでdistinctにしない。 |
+| `L8-K9-10-CONTEXT-REF-ONLY` | `check_review_independence` | `CONTEXT-SAME`のowner-resolved contextを保ったままcontext ref bytesだけを一つ差し替える | owner-resolved context relation=`Value(same)`を維持し`ReviewIndependenceCheck.result=Value(NotIndependent(context_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-10-AUTHORITY-REF-ONLY` | `check_review_independence` | `AUTHORITY-SAME`のowner-resolved authorityを保ったままauthority ref bytesだけを一つ差し替える | owner-resolved authority relation=`Value(same)`を維持し`ReviewIndependenceCheck.result=Value(NotIndependent(authority_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-10-ROUTE-REF-ONLY` | `check_review_independence` | `ROUTE-SAME`のowner-resolved routeを保ったままroute ref bytesだけを一つ差し替える | owner-resolved route relation=`Value(same)`を維持し`ReviewIndependenceCheck.result=Value(NotIndependent(route_collision))`、`combined.verdict=Negative`。 |
+| `L8-K9-10-SAME-PLUS-UNKNOWN` | `check_review_independence` | `BASE-CHECK-UNKNOWN-ONLY`から、別の一軸だけをowner-resolved `Value(same)`へ変更する | 該当する既存軸理由（identity/context/authority/route_collision）の`ReviewIndependenceCheck.result=Value(NotIndependent(...))`と、基準から保持する別軸`Unknown(unsupported)`を残す。`combined.verdict=Negative`で全`non_values`を保持する。 |
+| `L8-K9-10-UNKNOWN-ONLY` | `check_review_independence` | baselineの一軸だけをUnknown(unsupported)へ変更する | relation=`Unknown(unsupported)`、`ReviewIndependenceCheck.result=Unknown(unsupported)`、`combined.verdict=Undetermined`。 |
+| `L8-K9-10-INVENTORY-PARTIAL-SAME` | `check_review_independence` | creator inventoryだけをUnknown(conflict)にし、読み取れた部分refにsameらしい値を残す | L4 early-returnどおり`ReviewIndependenceCheck.result=Unknown(conflict)`、roster completeness Unknown component一件、`combined.verdict=Undetermined`とそのnon_valuesを保持する。 |
+| `L8-K9-10-EMPTY-INVENTORY` | `resolve_creator_inventory`（`L8-K9-04-EMPTY-CREATORS`のtrace alias） | `L8-K9-04-EMPTY-CREATORS`と同じ`BASE-INVENTORY-EMPTY`を変異なしで再利用する。これは独立した二つ目のfixtureやroster mutationではない | `Observed<Unknown(missing_input)>`。空集合をIndependentとせず、K9-04と同一の期待を再利用する。 |
+
+### 9.12 IV-K9-11 — candidate/review段階分離
+
+直接trace: AC-INTELLIGENCE-L3-072-08。baselineはvalid candidate/sourceがあり、review receiptだけを未観測にした状態。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-11-PENDING-REVIEW` | K4 `evaluate(set_key, decls, verifier_set, input_heads)`（既存`L8-K4-05-DEFERRED-VALID`のtrace alias。K9 APIからのprojectionではない） | `L8-K4-05-DEFERRED-VALID`と同じ有効な`ObligationSet`/decls/verifier set/input headsを変異なしで再利用する。Deferred義務に対応するreceipt未着はこの既存baselineに含まれ、新しい変異・独立fixtureは作らない | `Observed<Value<ObligationView>>`内の該当義務成分は`Unobserved(pending_receipt)`。これはK4の既存Deferred semanticsであり、K9 `ReviewIndependenceCheck`のresult/componentを表さない。L9 IV-K9-11のK9 candidate/sourceとreviewの段階を結ぶAPIはL4/L9にないため、そのprojectionは未接続のまま保持し、新gate・K9成功/negativeを生成しない。 |
+
+### 9.13 IV-K9-12 — same-scope evidence再利用
+
+直接trace: AC-INTELLIGENCE-L3-072-08。baselineはK2 current exact keyに結ばれたprior `Value` evidence。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-12-EXACT-REUSE` | K2 `lookup` | 変異なし、same current exact key evidenceを再照会する | prior `Value`を再利用し、新しいWorker実験を要求しない。 |
+| `L8-K9-12-TARGET-REVISION` | K2 `lookup` | artifact targetの同一identity revisionだけを進める | prior `Value`に対し`Stale`。 |
+| `L8-K9-12-ROLE-ALIAS-IDENTITY` | K2 `lookup` | 一つのrole-bound alias identityだけを別slot identityへ変え、raw source refsは保持する | K2 inputs identity集合が変わるため`Unobserved(not_run)`。prior positiveを再利用しない。 |
+| `L8-K9-12-OWNER-CONTRACT-DIGEST` | K2 `lookup` | owner comparison contract refのdigestだけを同revisionで変える | `Unknown(conflict)`。 |
+| `L8-K9-12-SCOPE` | K2 `lookup` | task scopeだけを変える | prior resultをcurrentへ流用せず`Unobserved(not_run)`。 |
+
+### 9.14 IV-K9-13 — K2 conflictとnon-value
+
+直接trace: Concept:236、AC-INTELLIGENCE-L3-072-08。基準は同一K2 keyに保存済みresult。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-13-SAME-KEY-SAME-DIGEST` | K2 `record` | 同じkey/result digestを再記録する | `NoOp`（冪等）。 |
+| `L8-K9-13-SAME-KEY-DIFFERENT-DIGEST` | K2 `record` / `lookup` | 同一key result digestだけを異ならせる | 両recordを保持し`Conflict`、lookup `Unknown(conflict)`。 |
+| `L8-K9-13-REQUIRED-INPUT-MISSING` | `check_review_independence` | API引数およびK2 keyに必要なSubjectRefはすべて完全に保ち、owner current source bytesから必須source reference field一つだけを欠かす | API結果componentに`Unknown(missing_input)`。API key field自体の欠落による`Rejected(missing_key)`ではない。 |
+| `L8-K9-13-REVIEW-NOT-RUN` | K2 `lookup` | current key/inputsは固定し、matching recordだけを未作成にする | `Unobserved(not_run)`。positiveに丸めない。 |
+| `L8-K9-13-KEY-UNAVAILABLE` | `check_review_independence` | 必須K2 identity/ref bindingを欠かしkeyを構成不能にする | 公開APIの外側`Rejected(missing_key, diagnostic)`。K1 UnknownやK2 resultへ流用しない。 |
+
+### 9.15 IV-K9-14 — K6 assuranceとauthority境界
+
+直接trace: AC-OS-029-03、AC-INTELLIGENCE-L3-072-08。baselineは`L8-K9-BASE-CHECK`のK6 assurance付き出力。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-14-ISSUER-UNSUPPORTED` | `check_review_independence` | `BASE-CHECK`を変異なしcontrolとして照会する。K6 `issuer_authenticity`は既存baselineどおり`Unknown(unsupported)` | assuranceの同fieldに保持し、K9 relation/combinedをそれだけで変えず、実actor authenticityを主張しない。 |
+| `L8-K9-14-REPRODUCTION-UNKNOWN` | `check_review_independence` | `BASE-CHECK`に含む既存non-deterministic verifier entryを変異なしで照会する。K6既存mappingの`reproduction=Unknown(unsupported)`を基準とする | K6 assurance欄に`Unknown(unsupported)`を保持し、Verified/Acceptedを生成しない。新reasonを作らない。 |
+| `L8-K9-14-AUTHORITY-EFFECT` | `check_review_independence` | 実装変異で`authority_effect`を`none`以外へ変更する | L4の固定出力shape不一致として構造negative。新しいK1 class/reasonやauthorityを作らない。 |
+| `L8-K9-14-NO-COMPLETION` | `check_review_independence` | independent positiveだけを得る | 結果にfinding count/acceptance/completion outputを持たない。形式境界を確認し、外部作用を行わない。 |
+
+### 9.16 IV-K9-15 — inventory keyとearly-return
+
+直接trace: AC-OS-029-03、AC-INTELLIGENCE-L3-072-08。baselineは`L8-K9-BASE-INVENTORY`をK2 current recordとして保存し、check側で同じcurrent inventory ref/admissionを再照合する。
+
+| Fixture ID | API | 単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K9-15-OPERATION-VERSION` | K2 `lookup` / `check_review_independence` | inventory `operation_version`だけを変更する | `Unobserved(not_run)`。旧inventoryを再利用しない。 |
+| `L8-K9-15-SUBJECT` | K2 `lookup` | current assignment subject identityだけを変更する | identity-set differenceとして`Unobserved(not_run)`。 |
+| `L8-K9-15-TARGET-INPUT` | K2 `lookup` | ReviewTargetの一つのinput identityだけを変える | `Unobserved(not_run)`。他target refs固定。 |
+| `L8-K9-15-OWNER-CLOSURE-INPUT` | K2 `lookup` | closure/coverage input ref一つだけを同revision異digestにする | `Unknown(conflict)`。 |
+| `L8-K9-15-SCOPE` | K2 `lookup` | assignment task scopeだけを変更する | `Unobserved(not_run)`。 |
+| `L8-K9-15-INVENTORY-EARLY-RETURN` | `check_review_independence` | 完全なAPI `creator_inventory` SubjectRefと他の全API refsを固定し、そのrefのresolver/read resultだけを`Unknown(conflict)`にする | L4 §17.3どおりreview operation自身の鍵付き`Unknown(conflict)`、roster completeness Unknown component一件、combined Undetermined、そのnon_valuesを保持。四軸checks/ReviewIndependence Valueを作らない。 |
+| `L8-K9-15-EARLY-RETURN-KEY-MISSING` | `check_review_independence` | `BASE-CHECK-INVENTORY-UNKNOWN`を基準にし、早期return review keyに必要なReviewTarget ref一つだけをAPI入力から欠かす | `Rejected(missing_key, diagnostic)`。inventory resultやinventory keyをreview keyへ代用しない。 |
+
+L9逆trace: 上記fixture IDの各々は列挙された一つの`IV-K9-*`へ戻り、各oracleはL4 §17のK9-I1–I8、§17.3 key/early-return規則および直接親Concept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08へ戻る。1 fixtureが複数IVを代用したとは数えない。
+
+### 9.17 未接続・保証されない範囲
+
+現L4/L9でowner schema/read adapterが定義されていないため、K9 actual source traversal、OS assignmentからのcomplete producer roster構築、context/route/SECURITY authority identityの実測比較は実行可能とは主張しない。 また、ReviewTarget六要素のfresh mismatchはL4が`Unknown(conflict)`を定めるが、`K9IndependenceComponent` unionにはtarget binding factがないため、結果class/reason以外のcomponent/combined投影を新設せず局所未接続にする。上表のValue baselineとnegative比較はL4の型付きoracleを個別化した合成設計であり、owner bindingの実在を示さない。該当sourceまたはcomparison identityが無い場合は固定したL4結果だけを返し、未定義mappingを新API/reason/ownerへ埋めず、当該caseだけを未接続とする。K6 issuer authenticity未証明、開発repository cross-runtime規則、要求採択、外部review/merge動作は本fixtureの対象外である。
+
+K9 L4/L9 ownerへの追加返却事項は次のとおり。これは対象oracleの未達を記録し、K6/K4の既存診断をK9全体の結果へ昇格しない。
+
+| 対象 | 未接続範囲 | 返却先と保持する期待 |
+|---|---|---|
+| `L8-K9-05-BINDING-BYTES-DRIFT` / `RAW-SOURCE-BYTES-DRIFT`、IV-K9-05 | K6 admissionの`Unknown(conflict)`からK9 result/components/combinedへの投影が未定義。 | K9 L4 §17 / L9 IV-K9-05 ownerへ返す。K6 source診断を独立して保持し、K9 assuranceへ混入せずK9 oracle充足を主張しない。 |
+| `L8-K9-11-PENDING-REVIEW`、IV-K9-11 | K4 Deferred fixtureの再利用は既存義務成分だけを確認する。K9 candidate/sourceとreview段階を結ぶAPI・projectionは未接続。 | K9 L4 §17 / L9 IV-K9-11 ownerへ返す。IV-K9-11の期待全体をK4 aliasへ縮約せず、K9側の段階分離の未達を保持する。 |
