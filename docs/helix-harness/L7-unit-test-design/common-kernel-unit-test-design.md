@@ -17,7 +17,7 @@ base: `main` at `7715e7025212ea1a778ab9711e2f43241f7999c7`
 | Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
 | L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `804094e9b38e78a0982db89f79bed027a36c03be5b6fa69708598018e82de955` |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `a7139003fa07f0b34b2d4a2e90496721c483ae8b07e5944cc460de8dc5bf5dba` |
 | L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
 | L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
@@ -114,7 +114,7 @@ K3/K5 fixtureのL8参照はPR #2751の固定commit/blobに対する歴史的sour
 
 suffix展開はfixture identityの命名規則であり、L9 IDを再採番しない。各suffixを個別`unittest` caseとして作る候補であり、一つのfixtureが表中の複数変異を重ねない。precedence fixtureは基準状態を保った単一field mutationでL4 §3.4の検査順を確かめる。IV-K2-05はL9自身が二入力変化の優先順を期待する複合ケースであるため、契約を保つ明示的な例外とする。IV-K2-18–20も複数record集合を前提とするoracleであり、各record固有の変異を別caseで管理する。
 
-## 5.1 K5 fixture表
+## 5. K5 fixture表
 
 本節はL8 §5の91個別K5 caseを、K5関数候補と観測点へ対応づける。case IDは`CK-K5-UT-001`から`CK-K5-UT-091`の連番で、各IDは対応するL8 IDを一件だけ参照する。fixture builderはL8が定める基準prefixと単独条件を構成し、storage/reader/FixedRef/current-assignment/K3/K7は明示stub boundaryとする。期待classificationはL8/L9の正本を参照し、ここでは複製しない。
 
@@ -214,7 +214,7 @@ suffix展開はfixture identityの命名規則であり、L9 IDを再採番し�
 
 K5 fixtureはL8の初期化済みmanifest/assignment前提を守る。K5-22/23でK3/K7 authority・fenceの意味を再実装せず、stubが返したcurrent observationとappend境界の接続だけを扱う。genesis、物理永続性、atomic append、実読、実fenceの合格を示さない。`verify`のcheckpoint比較は完全な再構築値と関数境界の返却を比較し、公開Projectionにないfieldを追加しない。
 
-## 5.2 Canonical codecのgolden vector
+### 5.1 Canonical codecのgolden vector
 
 これらはL6 codec候補のbyte contractを固定する候補であり、Node/RFC8785互換性試験ではない。各行は独立したvector/testである。UTF-8 output bytesとsha256 digestを記録し、non-finite等の拒否vectorにはdigestを作らない。
 
@@ -237,7 +237,7 @@ UT-030–041の各vectorのliteral/expected bytesとdigestはL7 fixture inventor
 
 UT-036〜039はprivate `_canonical_json_bytes`補助関数へ範囲外値を直接与える単体検査である。公開`record`の失敗caseではない。record fixtureはL5 §3.4/L6 §3.1の前提どおり、ownerの宣言encodingに適合したcanonical JSON表現可能なResultBodyを使い、未解決encodingや非JSON生値を公開APIへ渡さない。K1の一般値型Tと、記録時のInline/FixedRef表現を同一視しない。
 
-## 6. Unit suiteの配置と14関数の対応
+## 6. K1/K2 Unit suiteの配置と14関数の対応
 
 正式配置候補は`helix/helix-harness/units/common-kernel/tests/`である。L7本文は`docs/`を唯一の検証設計正本とし、各test methodは以下の既存UT IDを識別子として参照する。`test_k1.py`/`test_k2.py`、`unittest`、合成fixture保存場所`fixtures/`は実装時の候補であり、suiteが存在することや実行済みであることを意味しない。suffix展開、各UTの変異と期待は§3–5の行が正本である。
 

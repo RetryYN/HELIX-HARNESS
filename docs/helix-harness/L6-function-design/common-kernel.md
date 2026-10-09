@@ -153,6 +153,19 @@ K5 model types (`LogDecl`, `SegmentId`, `FixedRef`, `LogEntry`, `SegmentHead`, `
 | `CK-K5-FN-19` | `verify` / public verify composition | saved projection, optional checkpoint and fixed complete inputs; `Observed[Projection]` | 保存output/digestと再構築値を照合し、checkpointはFN-13条件が全て成立するときだけ用いる。不一致はL4既存`Unknown(conflict)`を保つ。 | K5-I10/I13; IV-K5-19/20 |
 | `CK-K5-FN-20` | `ledger_view` / public projection over existing observations | fixed input headsとregistration/release/pointer/runtime observations; `Observed[LedgerView]` | 既存L4台帳の登録事実、成立、target/immediate/recovery、actualを別fieldへ投影する。台帳への独立write pathを作らず、raw source authorityを推測しない。 | K5 §9.6; IV-LDG-01/02/04; IV-K5-21 |
 
+### K5 appendの事前条件と担当関数
+
+固定L5 §6.2.2、L4 §9.4の既存条件を次の関数で検査する。違反時は既存のRejected／非肯定結果を保持し、記録bytesを変えない。
+
+| 対象 | 既存事前条件 | 担当関数 |
+|---|---|---|
+| 全event | writerがsegment.writerと一致し、segmentがmanifestに列挙済み。current authority/assignment/fenceを迂回しない。 | CK-K5-FN-07/14 |
+| ResultRecorded | ResultKey必須field、key/result digest再計算、class別ResultBody、宣言Inline型、LogDecl operation記録先を照合し、Staleを拒否する。全manifest segmentを読み、同key同digestはNoOp、異digestはConflict、peer読取不能なら追記しない。 | CK-K5-FN-07/08/14 |
+| ResultConflictDetected | result_digestsが2件以上あり、各digestが同じkey_digestのResultRecordedとしてlogに記録済み。 | CK-K5-FN-07/14 |
+| Correction | targetは同じlogのDeclaredEventか、DeclaredEventを根とするCorrection。ResultRecorded/ResultConflictDetected/SegmentOpenedを対象にしない。 | CK-K5-FN-07/10/14 |
+| SegmentOpened | manifest segmentへの追記で、writerはmanifest_writer。初回bootstrap例外を設けない。 | CK-K5-FN-07/14 |
+| DeclaredEvent | event_typeがLogDecl.event_typesに宣言済み。 | CK-K5-FN-07/14 |
+
 ### 3.1 Canonical JSON候補の技術的具体化
 
 L4 K2 §3.2はstructured dataについて「object keyを辞書順」「array順を保持」「非有限数を拒否」とする。上記Python serializer候補はその意味をコード選択へ具体化するが、新要求やcross-runtime equivalence claimではない。
@@ -316,12 +329,14 @@ L4 K1-I6で呼出し元へ返すK1拒否を、ここでは`ApiBoundaryResult[T] 
 
 L4 §16.2の`PermissionQuery`、`PermissionQueryRef`、`OperationAuthorityTuple`、`AuthorityInputRef`、`AuthorityInputBindingRef`、`HeadInputRef`、`PermissionCheckResult`、`PermissionCheckDiagnostic`、`PermissionCheck`をその型のまま使う。公開APIは既存の`resolve_authority_context(query, input_heads)`と`check_permission(query, permission, input_heads)`の二つだけである。入力の`PermissionQuery`、`PermissionRecord`、`Digest`およびowner参照はL4のtyped input前提を満たすものとする。runtime shape validator、shape不正のreturn class、追加reasonは定義しない。
 
+L4 §16.2の`PermissionQuery`は`{operation, target, revision: SubjectRef, requested_scope, operation_inputs}`の5 fieldである。operationは`read | write | execute | network | install | delete | merge | release | deploy | credential-use | security-change`の11種に限る。callerはactor/environment/contextを渡さず、current owner resolverがOS assignment、INFRASTRUCTURE environmentおよび各ownerのcurrent declarationから構成する。
+
 K3関数候補と責務境界は次のとおり。IDはL6 trace用で、新しい公開APIではない。
 
 | ID | 関数 / 可視性 | 責務と境界 | L4 invariant / L9 trace |
 |---|---|---|---|
 | `CK-K3-FN-01` | `derive_permission_query_ref` / private | typed `PermissionQuery`からL4式どおりidentity/revision/digestを決定的に導く。caller提供refで上書きしない。 | K3-I4; IV-K3-03/14f–h |
-| `CK-K3-FN-02` | `resolve_owner_mapping` / SECURITY等owner resolver境界 | owner current declarationsから全role-bound raw refsを解決し、完全mapping bytes・binding ref・source-content aliasesを得る。caller mappingはauthorityにしない。同一alias内の完全一致だけdedupし、同一alias異refはL4 `docs/helix-harness/L4-basic-design/common-kernel.md:251–252`で定めるとおりK2 `key_of`前に既存`Rejected(missing_key)`として返す。 | K3-I4/I6; IV-K3-14/14a–j |
+| `CK-K3-FN-02` | `resolve_owner_mapping` / SECURITY等owner resolver境界 | owner current declarationsから全role-bound raw refsを解決し、完全mapping bytes・binding ref・source-content aliasesを得る。caller mappingはauthorityにしない。同一alias内の完全一致だけdedupし、同一alias異refはL4 `docs/helix-harness/L4-basic-design/common-kernel.md:256`で定めるとおりK2 `key_of`前に既存`Rejected(missing_key)`として返す。 | K3-I4/I6; IV-K3-14/14a–j |
 | `CK-K3-FN-03` | `construct_k3_key_inputs` / 内部合成 | query ref、binding ref、各namespaceのrole alias、current `HeadInputRef`、L4で列挙するoperation/code/config/declaration/source/adapter refsをowner宣言集合から組み立てる。role/kindを混同せず、raw refsを重複投入しない。K2 `key_of`専用拒否はL4 §16.4と固定L5 §6.1.3に従いK3 `PermissionCheckDiagnostic(reason: missing_key)`へ写す。K1 componentにはしない。 | K3-I4; IV-K3-03/14/15/16 |
 | `CK-K3-FN-04` | current context再構成 / K5内部境界 | OS assignment、target relation、INFRA environment、operation/SECURITY declarations、time observation、revocation headsをcurrent owner prefixから再構成する。K5 `current_head/read/restore`はstub境界で、caller `input_heads`は期待値照合だけに用いる。 | K3-I1/I4/I5/I6; IV-K3-01/08/09/15/16 |
 | `CK-K3-FN-05` | `resolve_current_effective_decision` / SECURITY source adapter境界 | registered source adapterの既存selection ruleとcurrent prefixを使う。selector/tie-break/expiry/signature policyを新設せず、adapterが返した既存`Observed`を保つ。 | K3-I3/I4; IV-K3-04/05/06 |
