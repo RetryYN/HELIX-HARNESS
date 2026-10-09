@@ -1,6 +1,6 @@
-# HELIX-LABO L3 機能要件 — Stage 1（001/011の候補）
+# HELIX-LABO L3 機能要件
 
-状態：採択済み2親の未承認要件草稿。実装・実行許可、L10合格、業務完了を生成しない。対象はHELIXLABO-L2-001/011だけで、他Stage・保留・不採択親を追加しない。
+状態：採択済み2親の委任承認済み要件。実装・実行許可、L10合格、業務完了を生成しない。対象はHELIXLABO-L2-001/011だけで、他Stage・保留・不採択親を追加しない。
 
 ## 共通接続の境界
 
@@ -117,7 +117,7 @@ Aggregate observation fields/source revisionからepisode候補を作り、元ob
 | `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`:43–50; 67–90; 91–120 | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | 17a29eeb22b6ecf41e8776b556a566f0a0613212de2e7c660e259f3ec1bd6acb; e13598bd4995ac192a747b0690c0c2fa5a2d17eb9c72949211ae1430e8812866; 0493df0f6b3370862f8a2e43ae0eee86f445374bc0f45404208ebbdae14f2a8a |
 
 
-状態：未承認のL3/L10候補。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定する。
+状態：委任承認済みのL3/L10。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定する。
 
 ## Stage 2b — 採択親 HELIXLABO-L2-002/003/004/005（候補、1.0）
 
@@ -361,7 +361,7 @@ OS execution resultをLABO-028へ受け取り、同一のticket/task/assignment/
 
 ## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054（候補）
 
-状態：固定親から再導出した未承認L3/L10候補。対象は列記8 parentだけで、意味・範囲・owner・版は変更しない。本文はL3承認、実装/実行/配布許可を生成しない。要求段階のmain basis、PO決定記録、候補登録はすべて `633bf12ea8f948db8ba3d6600179c4a9507377a7` に存在する。PO決定は候補採択を記録し、registerは8候補を `registered_proposal` として登録する。要件意味の正本は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` の固定L2/L11であり、登録状態からL3承認を推定しない。
+状態：固定親から再導出した委任承認済みのL3/L10。対象は列記8 parentだけで、意味・範囲・owner・版は変更しない。本文はL3承認、実装/実行/配布許可を生成しない。要求段階のmain basis、PO決定記録、候補登録はすべて `633bf12ea8f948db8ba3d6600179c4a9507377a7` に存在する。PO決定は候補採択を記録し、registerは8候補を `registered_proposal` として登録する。要件意味の正本は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` の固定L2/L11であり、登録状態からL3承認を推定しない。
 
 ### 固定親・版・対L11
 
@@ -1554,7 +1554,7 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 ## Stage 5 — HELIXLABO-L2-050 1.0 pair 草稿
 
-状態: 本追補はStage 5の `HELIXLABO-L2-050` 一親だけを対象にするL3/L10候補であり、L3承認、実装・実験・運用の許可、完了を生成しない。PO/G0登録 `MPR-RC-HELIXLABO-L2-050-001` の1.0対象を保持する。未承認の他親・他Stageをauthorityやgateにしない。
+状態: 本追補はStage 5の `HELIXLABO-L2-050` 一親だけを対象にする委任承認済みのL3/L10であり、実装・実験・運用の許可、完了を生成しない。PO/G0登録 `MPR-RC-HELIXLABO-L2-050-001` の1.0対象を保持する。未承認の他親・他Stageをauthorityやgateにしない。
 
 ### HELIXLABO-L2-050 固定意味の対応
 
@@ -1924,7 +1924,7 @@ L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を�
 
 ### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示
 
-状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+状態：委任承認済みのL3。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
 
 **固定sourceとPO状態**：固定revision `0dd946cec1c3fca8e144513b72e2e10d16c7c9c3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:518-528`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、span SHA-256 `5a67776a3f4567fa662c86898caf275fddbe8dc806fd3a19622cae9f733cdb69`）およびL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:261-268`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、span SHA-256 `dd302f23a38d74475e707be64d9ee69a0bfda35b98902c62173c45d8c369a556`）を対で起点にする。PO記録 `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:81` は、候補base `af8d0aac1a20cd3a41ca9df088bc7bf3501847ff` 上の当該行をactualReadして確認した。行SHA-256 `41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f`。同行はHELIXLABO-L2-066を採択し、`MPR-RC-HELIXLABO-L2-066-001` と固定本文digestを指す。登録証拠 `MPR-RCPT-LABO-BUGBOT-MISREPAIR-COMPARISON-2026-09-28`（SHA-256 `b678eee15274606442d9b4f6ac99767e8f6c50939d36793550913fa89a443d56`）は旧source atomと候補対応を記録する。L2本文の事前metadata `draft_candidate` はそのまま保持し、PO採択状態と混同しない。
 

@@ -1,6 +1,6 @@
-# HELIX-OS L10 NFR総合検証（Stage 2b）
+# HELIX-OS L10 NFR総合検証
 
-状態: L3未承認の候補／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
+状態: L3委任承認済み／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
 
 ## Stage 2b — CASE-NFR-OS-014 measurement design
 

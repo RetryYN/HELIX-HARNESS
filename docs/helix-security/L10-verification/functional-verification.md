@@ -1,4 +1,4 @@
-# HELIX-SECURITY L10 総合検証 — Stage 1（19親の候補）
+# HELIX-SECURITY L10 総合検証
 
 > 状態：未実行の総合検証設計。合格証拠・L3承認・実行許可を生成しない。Stage 1節は`HELIXSECURITY-L2-001`〜`016`、`020`、`028`、`033`の19親を対象とし、Stage 2cの`HELIXSECURITY-L2-031`は下記の別scopeで扱う。
 

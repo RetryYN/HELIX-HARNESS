@@ -1,9 +1,9 @@
-# HELIX-LABO L10 業務総合検証 — Stage 1（001/011の候補）
+# HELIX-LABO L10 業務総合検証
 
 この2親について独立した別business outcome/ACは固定L2/L11から導かれない。観測集積とepisodeへの受渡しの成果・失敗は機能ACと対L10で照合し、観測からsource state/authorityや業務完了を生成しない。旧business-detailのBR-21/dashboardはHARNESSの業務条件であり、部分source破損を分離するfailure類型だけ機能要件へ再導出する。旧画面・owner・数値は移さない。
 
 
-状態：未承認のL3/L10候補。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定する。
+状態：委任承認済みのL3/L10。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定する。
 
 ## Stage 2b — HELIXLABO-L2-002/003/004/005
 
@@ -196,7 +196,7 @@
 
 ### HELIXLABO-L2-066 — 既存比較business outcomeとの対応確認
 
-状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+状態：委任承認済みのL10。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
 
 固定L2/L11から独立のbusiness outcome/ownerは導かれないため、独立BV/AC/BCASEを追加しない。L2-066が定める同条件比較の成果を、L3 functional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` に従って [L10 functional verification](functional-verification.md) で照合する。
 

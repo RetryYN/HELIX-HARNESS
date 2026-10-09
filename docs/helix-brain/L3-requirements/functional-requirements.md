@@ -1,6 +1,6 @@
-# HELIX-BRAIN L3 機能要件 — Stage 1（007/008/028）
+# HELIX-BRAIN L3 機能要件
 
-**状態：部分草稿・未承認。** 本文はPOが採択した固定L2/L11 revisionのうち`HELIXBRAIN-L2-007/008/028`だけを具体化する。HELIX-BRAIN全体や他StageのL3完了を示さず、実装・実行許可を生成しない。対象3親の版印は各親どおり`version_target: 1.0`。後続版・Web条件付き内容を1.0へ前倒ししない。
+**状態：委任承認済み。** 本文はPOが採択した固定L2/L11 revisionのうち`HELIXBRAIN-L2-007/008/028`だけを具体化する。HELIX-BRAIN全体や他StageのL3完了を示さず、実装・実行許可を生成しない。対象3親の版印は各親どおり`version_target: 1.0`。後続版・Web条件付き内容を1.0へ前倒ししない。
 
 旧HELIXのL3定義は `LEGACY-ASSET-F542125805B777D8A56A`（`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`、全文SHA-256 `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`）を起点とする。旧定義からFR+ACと対の検証へ結ぶ意味を保持し、旧G3名、sub-gate、runtime、旧層番号は継承しない。旧L10定義は `LEGACY-ASSET-34DF3B535879CC73FA86`（`archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`、全文SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）を起点に、L3 ACをsystem behaviorで照合する関係を保持する。通常のL3承認を超えるgateは追加しない。
 
@@ -162,7 +162,7 @@ HARNESS-L2-010/011の根拠は、PO判断記録 `docs/governance/decisions/helix
 
 
 ## Stage 2b — HELIX-BRAIN Infrastructure L3/AC候補（001–017）
-**状態：部分草稿・未承認。** 対象はPO採択された固定L2のINFRA-001〜017、各`version_target: 1.0`、G0上のStage 2bだけである。17親の起草を全28親完了条件へ広げない。これは通常のL3承認対象であり、実装・運用・release許可ではない。
+**状態：委任承認済み。** 対象はPO採択された固定L2のINFRA-001〜017、各`version_target: 1.0`、G0上のStage 2bだけである。17親の起草を全28親完了条件へ広げない。これは通常のL3承認対象であり、実装・運用・release許可ではない。
 
 旧共通L3はFR+ACを対の検証へつなぐ骨格のみ再利用し、G3名・sub-gate・旧runtime/層番号は継承しない。旧L10は対の検証関係を再導出し、G10/UX UAT等のgateや旧工程順は移さない。旧READMEはfunctional/business/NFRの分離を再導出し、screen/mode/drive/roadmapを移さない。
 旧候補NIOは未承認資料であり、その文言を新要件として採択しない。typed input/evidence/unknown/traceは対応する範囲で再利用または再導出し、NIO-07のoperation traceやNIO-08のruntime admission等、固定親にない能力は追加しない。固定source pinsとG0/PO行ごとの対応は本本文revisionに対する時点監査へ記録する。
@@ -428,7 +428,7 @@ L2は20 atomic field、L11は18列挙groupを持ち、trade-offとevidenceは別
 
 ## Stage 2b追補 — 採択済み001〜006の部分草稿
 
-**状態：候補のみ（独立review／L3承認前）。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
+**状態：委任承認済み。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
 
 ### BRAIN-001-FR-01 — 領域identityと進化
 
@@ -522,7 +522,7 @@ Pattern/Unit/Part間のrelationを種類、方向、意味、両端identity付�
 
 ## Stage 2b追補 — 採択済み009/010/011/012/029の部分草稿
 
-**状態：候補のみ（独立review／L3承認前）。** 対象はPO採択registrationが1.0候補として固定するHELIXBRAIN-L2-009/010/011/012/029のみ。各親のPO固定revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択registrationはmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`、G0は最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`で全件Stage 2b。後続版、Web条件付き、保留・不採択を含めず、前Stage完了gateや実装・実行・release許可を作らない。現在有効なL2/L11判断を使い、新たな承認・fieldごとのPO確認を設けない。採択registrationのmetadata-only後継（本PRのStage 2b親001–006および009–012の各`-003`、029の`-002`）はsemantic digestを変更せず、本文の親意味を更新しない。本節は009–012/029の5親で、001–006は前節に収録する。Stage 1の007/008は本PRの対象に含めない。
+**状態：委任承認済み。** 対象はPO採択registrationが1.0候補として固定するHELIXBRAIN-L2-009/010/011/012/029のみ。各親のPO固定revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択registrationはmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`、G0は最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`で全件Stage 2b。後続版、Web条件付き、保留・不採択を含めず、前Stage完了gateや実装・実行・release許可を作らない。現在有効なL2/L11判断を使い、新たな承認・fieldごとのPO確認を設けない。採択registrationのmetadata-only後継（本PRのStage 2b親001–006および009–012の各`-003`、029の`-002`）はsemantic digestを変更せず、本文の親意味を更新しない。本節は009–012/029の5親で、001–006は前節に収録する。Stage 1の007/008は本PRの対象に含めない。
 
 旧L3定義`LEGACY-ASSET-F542125805B777D8A56A`（`docs/process/forward/L00-L06-design-phase.md:148-168`）と旧L3層README `LEGACY-ASSET-9A772391C7FB1298D45F`（`docs/design/harness/L3-functional/README.md:16-56`）から、FR+AC、business/NFRの区分、対の検証へtraceする形だけを再導出する。旧HELIXのBRAIN専用L3要件・対testは、archiveのdocs inventoryを`brain`で絞り、旧L3 functional FR/README/acceptance designとUI Domain Pattern Profile設計・testのPattern/failure/product/consumer関連範囲を検索した限り見つからなかった。これはその検索範囲の結果であり、旧資産全体の不存在を主張しない。旧HARNESS FR/AC、ATと旧UI profileを構造上の類例として参照し、BRAINの意味authorityにはしない。旧G3/runtime、UI固有schema/enum、旧ID、旧閾値・gate・実行結果は継承しない。各親別のsource、物理行、full/raw-LF pin、再利用・再導出・置換理由は対応する固定時点source-pins記録にある。
 
@@ -601,7 +601,7 @@ Pattern/Unit/Partのidentity・source/version、一般化された課題、appli
 
 ## Stage 4 — 採択済み親018/019/020/021/022/023/030の部分草稿
 
-**状態：候補のみ・未承認。** この追補は固定PO登録`MPR-RC-HELIXBRAIN-L2-018/019/020/021/022/023/030-002`とL2/L11 revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の7親だけを対象にする。main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択記録とmain `0f3ae318af1730f37123667e3efd914dda38dbda`の実装順序G0を根拠に、各親の`version_target: 1.0`、Stage 4を記録する。POが採択した登録revisionは各親の`-002`であり、現行registerの`-003`はsemantic digest不変のmetadata-only revisionである。`-003`のmetadata更新から`-002`への承認を継承せず、対象authorityはPO採択`-002`のまま扱う。これは先行Stage完了gate、release収載、実装許可ではない。後続版、version未指定、Web、保留・不採択親および未承認candidateは依存authorityにしない。
+**状態：委任承認済み。** この追補は固定PO登録`MPR-RC-HELIXBRAIN-L2-018/019/020/021/022/023/030-002`とL2/L11 revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の7親だけを対象にする。main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択記録とmain `0f3ae318af1730f37123667e3efd914dda38dbda`の実装順序G0を根拠に、各親の`version_target: 1.0`、Stage 4を記録する。POが採択した登録revisionは各親の`-002`であり、現行registerの`-003`はsemantic digest不変のmetadata-only revisionである。`-003`のmetadata更新から`-002`への承認を継承せず、対象authorityはPO採択`-002`のまま扱う。これは先行Stage完了gate、release収載、実装許可ではない。後続版、version未指定、Web、保留・不採択親および未承認candidateは依存authorityにしない。
 
 旧L3起点は`LEGACY-ASSET-F542125805B777D8A56A`（`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148–168`）とfunctional/business/NFR三分割の`LEGACY-ASSET-9A772391C7FB1298D45F`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:16–56`）、旧L10定義`LEGACY-ASSET-34DF3B535879CC73FA86`（`archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162–170,195–207`）を起点にする。共通のbusiness/NFR比較は`LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21–39,84–104`）と`LEGACY-ASSET-DB669724249A14A665F0`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21–34,58–74`）に限る。旧L3のFR/AC/paired verificationの関係を再導出するが、旧G3名・runtime・gateを継承しない。親固有旧sourceのasset IDとspanは次表で親へ結ぶ。固定親にないschema、enum、閾値、承認手続きは置換または除外する。full/raw pinsとledger行はappend-only補正監査に記録する。
 
@@ -705,7 +705,7 @@ BRAIN→HARNESS-CORE query/receipt接続において、常時必須のconnection
 
 ## Stage 5 — HELIXBRAIN-L2-024/025 Infrastructure境界と知識採否
 
-**状態：候補のみ、未承認。** 親はPOが固定した `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2/L11で、両方 `version_target: 1.0`、G0登録はStage 5。G0登録のproposal metadataはauthorityを持たず、stage割当てをL3承認、実装・実行・昇格許可へ広げない。未採択・保留・不採択の親を新たに使用しない。
+**状態：委任承認済み。** 親はPOが固定した `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2/L11で、両方 `version_target: 1.0`、G0登録はStage 5。G0登録のproposal metadataはauthorityを持たず、stage割当てをL3承認、実装・実行・昇格許可へ広げない。未採択・保留・不採択の親を新たに使用しない。
 
 旧L3区分とFR+ACを対L10へ結ぶ配置は `LEGACY-ASSET-9A772391C7FB1298D45F`（旧 `docs/design/harness/L3-functional/README.md:16-56`）と `LEGACY-ASSET-F542125805B777D8A56A`（旧 `docs/process/forward/L00-L06-design-phase.md:148-168`）から形式を再導出する。L10側がL3のsystem behaviorを照合する関係は `LEGACY-ASSET-34DF3B535879CC73FA86`（旧 `docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`）から再導出する。旧G3/旧層番号やsub-gateは移さない。
 

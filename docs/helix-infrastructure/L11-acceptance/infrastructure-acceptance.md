@@ -5,8 +5,8 @@ canonical_layer: L11
 canonical_pair: L2
 layer: L11
 kind: acceptance
-status: draft_candidate
-authority_status: draft_candidate
+status: po_agreed
+authority_status: po_agreed
 freeze_blocking: true
 created: 2026-09-27
 updated: 2026-09-27

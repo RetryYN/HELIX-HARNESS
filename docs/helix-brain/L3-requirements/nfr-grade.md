@@ -1,6 +1,6 @@
-# HELIX-BRAIN L3 非機能要件・候補値 — Stage 1（007/008/028）
+# HELIX-BRAIN L3 非機能要件・候補値
 
-**状態：部分草稿・未承認。** 本書の値は固定親の列挙field/state/境界を検証可能にする根拠付き技術候補であり、PO指定SLA、採択済閾値、実測結果ではない。比較案・根拠・測定方法・判定境界を対のL10へ結び、候補の採否は通常のL3承認で扱う。parameterごとのPO確認は設けない。固定要求の意味・範囲・owner・版を変える場合だけL2へ戻す。
+**状態：委任承認済み。** 本書の値は固定親の列挙field/state/境界を検証可能にする根拠付き技術候補であり、PO指定SLA、採択済閾値、実測結果ではない。比較案・根拠・測定方法・判定境界を対のL10へ結び、候補の採否は通常のL3承認で扱う。parameterごとのPO確認は設けない。固定要求の意味・範囲・owner・版を変える場合だけL2へ戻す。
 
 旧NFRの形式的起点は **`LEGACY-ASSET-DB669724249A14A665F0`**（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21-34,58-74`、全文SHA-256 `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`）。これはHELIX-HARNESSの旧NFR文書であり、BRAIN要件や現行値ではない。NFRと測定・判定を結ぶ骨格のみ再導出する。旧IPA grade、数値、pass条件、CI/runtimeを移さない。旧BRAIN固有の直接一致するNFR根拠は確認できず、以下は固定BRAIN L2/L11からの候補である。
 
@@ -44,7 +44,7 @@
 
 形式比較元は旧`LEGACY-ASSET-DB669724249A14A665F0`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21–34,58–74`、全文SHA-256 `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`）。001–006では測定・判定構造だけを再導出し、旧IPA値・pass条件・runtimeは置換する。
 
-**状態：候補のみ（独立review／L3承認前）。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
+**状態：委任承認済み。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
 
 ### BRAIN-001-NFR-01 — 意味条件の照合可能性（候補）
 

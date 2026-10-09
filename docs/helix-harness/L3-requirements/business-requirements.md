@@ -1,8 +1,8 @@
-# HELIX-HARNESS L3 業務要件（Stage 1: HARNESS-L2-010/011/023）
+# HELIX-HARNESS L3 業務要件
 
-status: draft_for_l3_review
-approval: not_approved
-scope: Stage 1 only; HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023
+status: delegated_approved
+approval: delegated_approved（[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)）
+scope: Stage 1（HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023）を起点とし、後続Stageの節を追補。各節の対象親は[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)を正とする
 paired_l10: ../L10-verification/business-verification.md
 
 固定されたStage 1の3親から独立business requirement、business owner、価値閾値、事業判断を導出しない。HARNESS-L2-010は固定L2:350に列挙する既存FRS-BR-001/002/003/005/009とHARNESS-L2-008の単体・接続・構成体の区別を束ねる。固定L2:320は、束ね直しが既存条件の所在や意味を移さないとするため、これら既存条件をfunctional-requirements.mdのFR/ACで追跡する。これはHARNESS全体にbusiness要件がないことを意味しない。

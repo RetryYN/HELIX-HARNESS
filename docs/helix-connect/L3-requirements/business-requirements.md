@@ -1,4 +1,4 @@
-# HELIX-CONNECT L3 業務要件（Stage 1）
+# HELIX-CONNECT L3 業務要件
 
 > 状態: 未承認草稿。対象はHELIXCONNECT-L2-001〜005の5件。
 

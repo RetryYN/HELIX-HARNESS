@@ -1,4 +1,4 @@
-# HELIX-CONNECT L10 総合検証（Stage 1）
+# HELIX-CONNECT L10 総合検証
 
 > 状態: 総合検証設計の草稿・未実行。対象は1.0採択親001〜005の5件。検証結果、CI合格、L3承認を表さない。旧runtime/test/CIは実行しない。
 

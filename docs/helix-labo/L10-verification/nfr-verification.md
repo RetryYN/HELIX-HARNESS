@@ -1,4 +1,4 @@
-# HELIX-LABO L10 NFR測定設計 — Stage 1（001/011）
+# HELIX-LABO L10 NFR測定設計
 
 [L3 NFR候補](../L3-requirements/nfr-grade.md)と同じ合成入力・scope・revisionで測定する。未実行、未承認。
 
@@ -13,7 +13,7 @@
 測定不能・未観測は成功扱いせずsource statusを改変しない。許可source/observation ID/source revisionの欠落は依存L2-001 L2:73のsource責務へ、relation不一致はL2-011に従いCorrelateへ返す。source revision不一致やconnector代用のように固定parentに戻し先がない場合は元recordを保ってhold/unknownで停止し、新routeを作らない。性能・容量・保持期間の候補が必要になった場合はL3で根拠付き比較案と対の測定を起草し、個別parameterのPO gateを作らない。
 
 
-状態：未承認のL3/L10候補。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[repair04の不変source/pair記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定し、NFR traceの最新case-set訂正は[repair05の不変追補](../../governance/audits/requirement-registration/labo-stage2b-002-010-nfr-trace-reconciliation-repair05-2026-10-05.json)に記録する。repair04の13/13一致の記述は旧時点記録として保持し、repair05と今回の本文照合で訂正経緯を辿る。
+状態：委任承認済みのL3/L10。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[repair04の不変source/pair記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json)に固定し、NFR traceの最新case-set訂正は[repair05の不変追補](../../governance/audits/requirement-registration/labo-stage2b-002-010-nfr-trace-reconciliation-repair05-2026-10-05.json)に記録する。repair04の13/13一致の記述は旧時点記録として保持し、repair05と今回の本文照合で訂正経緯を辿る。
 
 ## Stage 2b — 002/003/004/005 の技術候補測定
 
@@ -245,7 +245,7 @@ L3の `NFR-LABO-071-01` binding候補を、選択scopeの証跡で静的照合�
 
 ### HELIXLABO-L2-066 — 同条件比較NFR測定候補
 
-状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+状態：委任承認済みのL10。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
 
 `LABO-066-NV-01` 測定設計：L3の `LABO-066-NG-01` と同一のB0/N1、scope、revision、oracle/scorer、両群receiptを用い、raw receiptから `misrepair_count/N` と `unresolved_count/N` を別々に再構成できるか記録する。両指標の重なりを維持し、unknown caseがcase ledgerとNの扱いに残り、unknownを0にせず、事後N/oracle/cutoff変更で割合を作らないことを合成単独変異で確認する。
 

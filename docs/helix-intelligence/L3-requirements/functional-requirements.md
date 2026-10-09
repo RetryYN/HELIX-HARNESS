@@ -1,6 +1,6 @@
-# HELIX-INTELLIGENCE L3 機能要件（Stage 2a）
+# HELIX-INTELLIGENCE L3 機能要件
 
-状態: PO L3承認前の起草候補。親は基準main `633bf12ea8f948db8ba3d6600179c4a9507377a7` で採択された要求の固定対象revisionに限る。L3承認、実装・実行の許可を生成しない。
+状態: 委任承認済みのL3要件。親は基準main `633bf12ea8f948db8ba3d6600179c4a9507377a7` で採択された要求の固定対象revisionに限る。L3承認、実装・実行の許可を生成しない。
 
 ## 目的とsource
 
@@ -54,9 +54,9 @@ C13-M10、C13-M7、C13-M12 audit-record correction、Minor INT-010、Minor INT-0
 
 ## Stage 2c — 068/075の起草範囲とsource
 
-状態: 以下のStage 2c追補はL3未承認の起草候補・未実行の検証設計である。上のStage 2a本文とその承認範囲を変更しない。対象は採択済みHELIXINTELLIGENCE-L2-068/075に限る。旧source起点・項目別の再導出/置換は各項目と時点監査に記録する。
+状態: 以下のStage 2c追補は委任承認済みのL3要件・未実行の検証設計である。上のStage 2a本文とその承認範囲を変更しない。対象は採択済みHELIXINTELLIGENCE-L2-068/075に限る。旧source起点・項目別の再導出/置換は各項目と時点監査に記録する。
 
-状態: L3未承認（委任承認前）の起草候補。親は基準main `633bf12ea8f948db8ba3d6600179c4a9507377a7` で採択された要求の固定対象revisionに限る。L3承認、実装・実行の許可を生成しない。
+状態: 委任承認済みのL3要件。親は基準main `633bf12ea8f948db8ba3d6600179c4a9507377a7` で採択された要求の固定対象revisionに限る。L3承認、実装・実行の許可を生成しない。
 
 ### Stage 2cの目的とsource
 
@@ -117,7 +117,7 @@ C13-M10、C13-M7、C13-M12 audit-record correction、Minor INT-010、Minor INT-0
 
 ## Stage 4 — 採択済み1.0接続15親
 
-状態: 以下はL3承認前の候補要件であり、実装・実行・受入済みを意味しない。対象はPO採択済みHELIXINTELLIGENCE-L2-017/030–041/044/045のみ。指定version_targetは1.0、041はsourceごとに定義する。全Stage3/前Stage完了をgateにしない。旧L3 shared FR/ACとpaired acceptanceのtrace・独立failure oracleを形式起点に再導出し、旧ID、旧runtime/route/approval/CIを移さない。根拠の旧L3定義は`LEGACY-ASSET-F542125805B777D8A56A` (`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`)、shared FR/ACは`LEGACY-ASSET-EE5DBACC7F28F7D1F605` (`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:38-57,134-197,198-307`)、対のtest designは`LEGACY-ASSET-44DD86E3DEC09E65EF51` (`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32-90,91-216`)。旧sourceごとの再利用/再導出/置換は各節と時点監査へ記録する。
+状態: 以下は委任承認済みの要件であり、実装・実行・受入済みを意味しない。対象はPO採択済みHELIXINTELLIGENCE-L2-017/030–041/044/045のみ。指定version_targetは1.0、041はsourceごとに定義する。全Stage3/前Stage完了をgateにしない。旧L3 shared FR/ACとpaired acceptanceのtrace・独立failure oracleを形式起点に再導出し、旧ID、旧runtime/route/approval/CIを移さない。根拠の旧L3定義は`LEGACY-ASSET-F542125805B777D8A56A` (`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`)、shared FR/ACは`LEGACY-ASSET-EE5DBACC7F28F7D1F605` (`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:38-57,134-197,198-307`)、対のtest designは`LEGACY-ASSET-44DD86E3DEC09E65EF51` (`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32-90,91-216`)。旧sourceごとの再利用/再導出/置換は各節と時点監査へ記録する。
 
 ### FR-INT-017 — 限定修復の接続横断境界（Stage 4）
 
@@ -303,7 +303,7 @@ C13-M10、C13-M7、C13-M12 audit-record correction、Minor INT-010、Minor INT-0
 
 ## Stage 3 — 採択済み22親の機能要件
 
-状態: L3承認前の要件候補。対象はmain 633bf12採択のStage 3 / version_target 1.0の22親だけ。PO決定行を対象revisionの採択根拠とし、後続登録metadataはそのscopeを拡張しない。L3候補は実装・実行・release許可を生成しない。
+状態: 委任承認済みの要件。対象はmain 633bf12採択のStage 3 / version_target 1.0の22親だけ。PO決定行を対象revisionの採択根拠とし、後続登録metadataはそのscopeを拡張しない。L3候補は実装・実行・release許可を生成しない。
 
 旧HELIXの旧L3定義・shared FR/ACとpaired L10 oracleのtrace形を再導出する。INT専用sourceがある項目は旧source/consumerの対応箇所を親別に読み、保持・再導出・置換と理由を表へ記録した。旧runtime、CLI、score、workflow、approval gateを現行authorityへ移さない。対象Stage外の候補全文はコピーしない。
 
@@ -648,7 +648,7 @@ judgment packのversion/applicability/shadow/review/rollback義務を示し、�
 | `072` | `AC-INTELLIGENCE-L3-072-02` | `CASE-INTELLIGENCE-L10-R08-072-applicability-failure-mismatch` |
 ## Stage 5 — 採択済みHELIXINTELLIGENCE-L2 9親の起草範囲
 
-状態: 本追補はStage 5対象のL3起草候補・未実行の検証設計であり、独立reviewやL3承認、実装・実行・releaseを生成しない。採択対象は `HELIXINTELLIGENCE-L2-060/061/062/063/069/070/071/074/077` の各 `version_target: 1.0`。060–063・069–071はMPR-RC `-002`、074は`MPR-RC-HELIXINTELLIGENCE-L2-074-002`、077は選択適用範囲を持つ`MPR-RC-HELIXINTELLIGENCE-L2-077-001`を、それぞれG0と該当PO判断の固定行へ結ぶ。069–071のL2は採択済みStage 5親であり、未承認という記述をL2採択状態へ読み替えない。未承認なのはこのL3 draftである。
+状態: 本追補はStage 5対象の委任承認済みL3要件・未実行の検証設計であり、実装・実行・releaseを生成しない。採択対象は `HELIXINTELLIGENCE-L2-060/061/062/063/069/070/071/074/077` の各 `version_target: 1.0`。060–063・069–071はMPR-RC `-002`、074は`MPR-RC-HELIXINTELLIGENCE-L2-074-002`、077は選択適用範囲を持つ`MPR-RC-HELIXINTELLIGENCE-L2-077-001`を、それぞれG0と該当PO判断の固定行へ結ぶ。069–071のL2は採択済みStage 5親であり、未承認という記述をL2採択状態へ読み替えない。このL3は委任承認済みである。
 
 旧HELIXのL3 layer definition、親ごとの旧L3 sourceとpaired consumerの受入形をsource起点にし、項目別の保持・意味再導出・置換は各FRへ示す。旧L3/L10のID、provider・runtime・旧workflow・採否/approval運用は移さない。旧pair artifactは設計材料であり実行証拠ではない。固定L2/L11の意味、対象、owner、版、scopeを越える依存や一括Stage完了gateを作らない。
 

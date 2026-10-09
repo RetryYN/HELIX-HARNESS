@@ -6,7 +6,7 @@ canonical_pair: L2
 layer: L11
 kind: test_design
 status: draft
-authority_status: draft_candidate
+authority_status: po_agreed
 freeze_blocking: true
 parent_concept: docs/concept/helix-concept.md
 parent_planning: docs/helix-brain/L1-planning/brain-intent.md

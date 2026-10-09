@@ -1,8 +1,8 @@
-# HELIX-HARNESS L3 機能要件（Stage 1: HARNESS-L2-010/011/023）
+# HELIX-HARNESS L3 機能要件
 
-status: draft_for_l3_review
-approval: not_approved
-scope: Stage 1 only; HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023
+status: delegated_approved
+approval: delegated_approved（[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)）
+scope: Stage 1（HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023）を起点とし、後続Stageの節を追補。各節の対象親は[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)を正とする
 owner: HELIX-HARNESS
 paired_l10: ../L10-verification/functional-verification.md
 
@@ -360,8 +360,8 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 
 ## Stage 2b 残件追補 — HARNESS-L2-017/018/019/020/024
 
-status: draft_for_l3_review
-approval: not_approved
+status: delegated_approved
+approval: delegated_approved（[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)）
 scope: 本追補5親のみ / G0 version_class 1.0
 
 本追補は未承認の5親のL3／L10起草である。先行する承認済み本文は変更しない。旧部分草稿revision `6b40b4c607396ca6bccd4d1286a5a1ff112cf491`の対応節を起点に、確定親の未被覆条件を再導出した。掲載順から実装順序や下流許可を生成しない。

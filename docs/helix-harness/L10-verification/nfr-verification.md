@@ -1,8 +1,8 @@
-# HELIX-HARNESS L10 非機能検証設計（Stage 1: HARNESS-L2-010/011/023）
+# HELIX-HARNESS L10 非機能検証設計
 
-status: draft_for_l3_review
-approval: not_approved
-scope: Stage 1 only; HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023
+status: delegated_approved
+approval: delegated_approved（[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)）
+scope: Stage 1（HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023）を起点とし、後続Stageの節を追補。各節の対象親は[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)を正とする
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 

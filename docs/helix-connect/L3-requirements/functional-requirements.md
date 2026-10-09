@@ -1,4 +1,4 @@
-# HELIX-CONNECT L3 機能要件（Stage 1）
+# HELIX-CONNECT L3 機能要件
 
 > 状態: 要件草稿・未承認。収録範囲は1.0採択親 `HELIXCONNECT-L2-001`〜`005` の5件。L3承認、方式確定、実装完了を表さない。
 

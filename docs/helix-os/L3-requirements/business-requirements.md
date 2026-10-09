@@ -1,6 +1,6 @@
-# HELIX-OS L3 業務要件（Stage 2b）
+# HELIX-OS L3 業務要件
 
-状態: L3未承認の候補／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
+状態: L3委任承認済み／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
 
 ## Stage 2b — HELIXOS-L2-014 business境界
 
@@ -12,7 +12,7 @@
 
 ## Stage 2a — 8親の業務要件（015/016/017/018/019/020/023/027）
 
-状態: L3未承認の起草候補。ここでいうbusinessはOS機構の管理・推進・記録上の成果であり、外部提供製品の成果ではない。新しいowner、事業KPI、PO確認gate、候補完了判断を作らない。
+状態: 委任承認済みのL3要件。ここでいうbusinessはOS機構の管理・推進・記録上の成果であり、外部提供製品の成果ではない。新しいowner、事業KPI、PO確認gate、候補完了判断を作らない。
 
 旧HELIXのfunctional/business/NFR三分離（`LEGACY-ASSET-9A772391C7FB1298D45F`、`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:16-56`）とbusiness concernを機能詳細から分ける形式（`LEGACY-ASSET-A6E2C7F0565E5F804F06`、`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21-39,84-104`）を起点にする。旧BR-21/Learning Engine、plan metrics、approval behaviorをOSへ移さず、各ownerは採択L2の意味に従って再導出する。旧READMEのL3→L12と旧L10 processのL3↔L10は層対応が異なるため不一致を記録し、いずれの旧mappingも現行の正本とはしない。三文書への分離形式だけを参考にし、現在の配置は現行6 canonical文書のL3/L10構成に従う。
 

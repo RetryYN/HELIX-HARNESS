@@ -1,12 +1,12 @@
 ---
-title: "HELIX-INFRASTRUCTURE Stage 1 business要件候補"
+title: "HELIX-INFRASTRUCTURE business要件"
 canonical_vmodel: L1-L12
 canonical_layer: L3
 canonical_pair: L10
 layer: L3
 kind: requirement
-status: draft_candidate
-authority_status: draft_candidate
+status: delegated_approved
+authority_status: delegated_approved
 freeze_blocking: true
 pair_artifact: docs/helix-infrastructure/L10-verification/business-verification.md
 stage: 1
@@ -22,7 +22,7 @@ stage: 1
 
 ## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 業務境界
 
-状態：候補のみ。対象は採択済み HELIXINFRASTRUCTURE-L2-002/007、version_target 1.0。固定L2/L11が要求意味のauthority、PO決定は親identity/revision/versionの採択登録、G0は実装順序のみを記録する。このL3/L10本文は未承認・未実行であり、実装・実行・配布の許可を生成しない。対象範囲とsource pinsは[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)に固定する。
+状態：委任承認済み。対象は採択済み HELIXINFRASTRUCTURE-L2-002/007、version_target 1.0。固定L2/L11が要求意味のauthority、PO決定は親identity/revision/versionの採択登録、G0は実装順序のみを記録する。このL3/L10本文は委任承認済み・未実行であり、実装・実行・配布の許可を生成しない。対象範囲とsource pinsは[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)に固定する。
 
 ### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007
 

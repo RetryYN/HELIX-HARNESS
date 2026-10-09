@@ -1,8 +1,8 @@
-# HELIX-HARNESS L3 非機能要件候補（Stage 1: HARNESS-L2-010/011/023）
+# HELIX-HARNESS L3 非機能要件候補
 
-status: draft_for_l3_review
-approval: not_approved
-scope: Stage 1 only; HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023
+status: delegated_approved
+approval: delegated_approved（[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)）
+scope: Stage 1（HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023）を起点とし、後続Stageの節を追補。各節の対象親は[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)を正とする
 paired_l10: ../L10-verification/nfr-verification.md
 
 値は固定L2/L11から導く技術計測候補であり、性能SLO、実測結果、承認、release eligibilityではない。L10測定は[対のnfr-verification.md](../L10-verification/nfr-verification.md)を参照する。

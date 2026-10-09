@@ -1,6 +1,6 @@
-# HELIX-BRAIN L10 非機能検証 — Stage 1（007/008/028）
+# HELIX-BRAIN L10 非機能検証
 
-**状態：部分草稿・未承認・未実行。** 対測定設計は`../L3-requirements/nfr-grade.md`の技術候補を検証する。全ケースで対象revision・fixture・入力・観測結果を記録し、閾値適用前にcandidate statusを保持する。固定L2/L11範囲を越えるSLA、承認gate、ownerを作らない。
+**状態：委任承認済み・L10未実行。** 対測定設計は`../L3-requirements/nfr-grade.md`の技術候補を検証する。全ケースで対象revision・fixture・入力・観測結果を記録し、閾値適用前にcandidate statusを保持する。固定L2/L11範囲を越えるSLA、承認gate、ownerを作らない。
 
 | 親L2 | 測定項目・入力/変異 | L10判定材料（AC/L10 trace） | 限界 |
 |---|---|---|---|
@@ -44,7 +44,7 @@
 
 001–006の測定・判定構造の形式比較元は旧`LEGACY-ASSET-DB669724249A14A665F0`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21–34,58–74`、全文SHA-256 `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`）。測定構造だけを再導出し、旧IPA値・pass条件・runtimeは置換する。
 
-**状態：候補のみ（独立review／L3承認前）。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
+**状態：委任承認済み。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
 
 ### L10-BRAIN-001-NFR-01 — 列挙意味条件と誤確定の観測
 
@@ -72,7 +72,7 @@
 
 ## Stage 2b追補 — 採択済み009/010/011/012/029候補の測定
 
-**状態：未承認・未実行。** 下記測定はL3技術候補と対応するfunctional CASE fixtureを照合する。旧HARNESS IPA/CI/runtime値は証拠にしない。結果をPO判断、L3承認または実行許可へ読み替えない。
+**状態：委任承認済み・未実行。** 下記測定はL3技術候補と対応するfunctional CASE fixtureを照合する。旧HARNESS IPA/CI/runtime値は証拠にしない。結果をPO判断、L3承認または実行許可へ読み替えない。
 
 | 親L2／candidate | 入力母集団とoracle | 判定と限界 |
 |---|---|---|

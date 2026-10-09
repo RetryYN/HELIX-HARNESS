@@ -1,4 +1,4 @@
-# HELIX-SECURITY L3 機能要件 — Stage 1（19親の候補）
+# HELIX-SECURITY L3 機能要件
 
 > 状態：L3要件の起草候補。L3承認、実装方式確定、実行・配布許可、受入結果を表さない。Stage 1節はHELIXSECURITY-L2-001〜016、020、028、033の19 identityを対象とし、Stage 2cのHELIXSECURITY-L2-031と後続Stageは各独立節で扱う。
 
