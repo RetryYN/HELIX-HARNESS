@@ -6,7 +6,7 @@ scope: K1/K2/K3/K5
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: `main` at `5c65aedbceab624cb6a5e276efb83519fd570461` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7` and intermediate base `f75199749888f7261772ba26e9feb58a33d9a04f` retained as history)
+base: `main` at `d4df293cbcdaf9dd357e3349c22057ea392f6fad` (current integration base; prior K5 candidate base `7715e7025212ea1a778ab9711e2f43241f7999c7` and intermediate base `f75199749888f7261772ba26e9feb58a33d9a04f` retained as history)
 
 本書はL6のK1/K2/K3/K5公開APIと内部関数を単体fixtureへ対応づけ、現行L4/L9の意味、失敗分類、fixture期待を変更せずL5/L8とのtraceを追加する。K3は194 formal fixtureと26件の別ID回帰method、K5は91 formal fixtureと10件の補助caseを実装・実行した範囲をそれぞれ§9.2と§5/§8の補助case記録に示す。これらのローカルunit結果はL9合格、owner source接続、製品動作を示さない。K4/K6–K10は`not_designed`でfixtureを追加しない。
 
@@ -14,15 +14,15 @@ base: `main` at `5c65aedbceab624cb6a5e276efb83519fd570461` (current integration 
 
 | 入力 | 対象revision / SHA |
 |---|---|
-| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `5c65aedbceab624cb6a5e276efb83519fd570461`) |
-| Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `5c65aedbceab624cb6a5e276efb83519fd570461`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
-| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; current main source at `5c65aedbceab624cb6a5e276efb83519fd570461`, content SHA-256 `702a50b82fe7685198539f6a51f7203b72f2adef8edb08f8ce81f677b57a42f0`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `803a4455eb5ecfd12917599e79def25166db8632de380197eceb7f4217de0251`（L7→L6一方向。L6にL7 SHAは置かない） |
-| L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; current main source at `5c65aedbceab624cb6a5e276efb83519fd570461`, content SHA-256 `6f598a9a9fd0ab58a30ec26bb290f958e2807a8ceb7fb7c368e0ecf4af1d876e`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `5c65aedbceab624cb6a5e276efb83519fd570461`) |
+| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`) |
+| Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (unchanged at main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`; earlier pin `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
+| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; current main source at `d4df293cbcdaf9dd357e3349c22057ea392f6fad`, content SHA-256 `81193f9be03af312da7e87915691b06f7d3e1777843708abab6efb040df1d6c9`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `7b098a43b4655aa40505be38ce7007cbea7e4114508c5d7ebdb0f69997c71e97`（L7→L6一方向。L6にL7 SHAは置かない） |
+| L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; current main source at `d4df293cbcdaf9dd357e3349c22057ea392f6fad`, content SHA-256 `fefaa022cf64fae78552719a29def9155a3bbb93a8f3acb338cedc66d4c7c383`; historical PR #2751 source retained: commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
+| L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (main `d4df293cbcdaf9dd357e3349c22057ea392f6fad`) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
-L4/L5/L8/L9のcurrent sourceは§1記載のmain `5c65aedbceab624cb6a5e276efb83519fd570461`に固定したcontent SHAを参照する。L6はこのpair内の上流content SHAを参照する。K3/K5 fixtureの歴史的PR #2751 source pinは後続本文のcurrent pinと区別して保持する。mergeから上流の承認を生成しない。L9 IV-K1-01–13、IV-K2-01–21dが期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
+L4/L5/L8/L9のcurrent sourceは§1記載のmain `d4df293cbcdaf9dd357e3349c22057ea392f6fad`に固定したcontent SHAを参照する。L6はこのpair内の上流content SHAを参照する。K3/K5 fixtureの歴史的PR #2751 source pinは後続本文のcurrent pinと区別して保持する。mergeから上流の承認を生成しない。L9 IV-K1-01–13、IV-K2-01–21dが期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
 
 各fixture表の関数ID列で、K1表の`FN-xx`は`CK-K1-FN-xx`、K2表およびcodec表の`FN-xx`は`CK-K2-FN-xx`を指す。明示した`K2 FN-xx`も`CK-K2-FN-xx`である。UT IDの波括弧・suffixは各行の展開規則で個別fixtureへ展開し、複数変異を一件へまとめない。
 
