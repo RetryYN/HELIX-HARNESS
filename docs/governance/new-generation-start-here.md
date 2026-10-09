@@ -49,7 +49,6 @@ HARNESS-L2-029＝CORE、031＝共通部品、032＝CORE。SECURITYは全操作�
    - [5大目標・七大原則のPO原文source atom inventory](l1-goals-principles-source-inventory.md)
 6. [対象別L2入口](audits/source-rebaseline/l2-source-register.md)と対応するL11
    - [L2D-S0-01・S0-02承認とL2D-S1-01 deferのdecision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)
-   - L3本文の起草前に[L3要件・L10総合検証の配置と著述規則](l3-l10-authoring-layout.md)を読む
 7. [企画・Vision→前提research→要求の被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md)
 8. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
 9. [上流authority状態モデル](authority-state-model.md)
@@ -106,7 +105,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 
 ## 現在停止する作業
 
-- 実装、新世代CIの実装・起動、release、deployment。`scaffold/`外に仮の物を置くこと。Scaffold Bindingに登録しない仮の物を置くこと。L4〜L6の設計と対の検証設計は、2026-10-08のPO判断（[判断記録](decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md)）で、承認済みのL3／L10を親とする範囲に限り解禁した。Stage 1の親とその依存閉包の実装・L7の検証、および新世代CI（ローカルCIを主とする）の構築・起動は、2026-10-09のPO判断（[判断記録](decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md)）で解禁した。release、v0.1の宣言、内部デプロイ、branch protectionの変更は停止のまま残す。
+- 実装、新世代CIの実装・起動、release、deployment。`scaffold/`外に仮の物を置くこと。Scaffold Bindingに登録しない仮の物を置くこと。L3要件定義以下（L3／L10、L4〜L9の設計と対の検証設計、実装、新世代CI）は、2026-10-10のPO判断（[巻き戻しの判断記録](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)）で要求整理完了の時点（main `633bf12e`）まで巻き戻してカットし、2026-10-08のL4〜L6設計解禁と2026-10-09のStage 1実装・CI解禁は効力を失った。L3の再開は、前提（Concept、七大原則、JSON正本、設計・検証テンプレート、開発の規律に当たる要求）を機構として成立させた後とし、順序と範囲はPOの指示による。release、v0.1の宣言、内部デプロイ、branch protectionの変更は停止のまま残す。
 - 旧CI、旧runtime、旧hook、旧test、旧AI promptの実行またはfallback。
 - 旧CLI・旧hook・旧runtime・旧CIへのfallback。reviewer名だけから旧実行通路を起動すること。GitHub native auto-mergeと、作成側による自己merge。
 - PR、Issue、CI、DB、memory、会話からの要求採否・人間承認・受入の生成。
