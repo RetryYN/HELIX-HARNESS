@@ -1,0 +1,18 @@
+{
+  "record_kind": "human_instruction_event",
+  "date": "2026-10-10",
+  "source": "本Codex会話のユーザー指示とactive thread goalのobjective。",
+  "instructions": [
+    {
+      "text": "テンプレートはHARNESSに置くか、BRAINに置くか？そして残数はイシューにして、イシュー自体も整理してくれ。",
+      "sha256": "32fd233521ab2e5b7f36a656f5af8f747513a8695dd798540bab1e6e7580d88b"
+    },
+    {
+      "text": "イシューを解決して要求を整理せよ。",
+      "sha256": "bffd285cd113b31a4c129d7bc35b388162034d895a37f46541c34dc03fa7b7e3"
+    }
+  ],
+  "scope": "レビュー残件の内容解決・要求整理と、既決のテンプレート分担への作業再構成。",
+  "authority_effect": "none",
+  "limits": "要求の意味・版の変更案の採用、L3再開、実装・releaseを指示原文から生成しない。"
+}
