@@ -9,6 +9,7 @@ status: draft_candidate
 authority_status: draft_candidate
 stage: 1
 paired_l5: ../L5-detail-design/stage1-infrastructure.md
+paired_l5_sha256: ccf2c64f9312bb9c90ab46500bbb02373c87868af2dc5a7eb5be9b5f65de9f1a
 paired_l7: ../L7-unit-test-design/stage1-infrastructure-unit-test-design.md
 ---
 
@@ -24,7 +25,7 @@ paired_l7: ../L7-unit-test-design/stage1-infrastructure-unit-test-design.md
 | L9 INFRA | `docs/helix-infrastructure/L9-integration-verification/stage1-infrastructure-integration-verification.md` | `b83eee2452ec0b41ef23ffd6a3aea3e1374f82dbffc3e8c7bb54908b01ae9d8b`、origin/mainの固定本文 |
 | L5 INFRA | `docs/helix-infrastructure/L5-detail-design/stage1-infrastructure.md` | `ccf2c64f9312bb9c90ab46500bbb02373c87868af2dc5a7eb5be9b5f65de9f1a`、#2752でorigin/mainへ統合済みの固定本文 |
 | L8 INFRA | `docs/helix-infrastructure/L8-detail-verification/stage1-infrastructure-detail-verification.md` | `27dee2a416ec806b05c35fcf97c365df14259a380302c72ecc95f5c5972de5dc`、同main上の固定本文 |
-| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md` | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、origin/main `7715e7025212ea1a778ab9711e2f43241f7999c7` |
+| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md` | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、fixed main `107a648842673ed9b0b02fd440aa68594dd201f6` |
 | Common Kernel L9 | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`、同main |
 
 L5/L8は#2752でmainへ統合された固定本文であり、採択済み親L2-001/L2-006の詳細化と、L2-005の適用範囲を保持する。上記hashはorigin/mainのexact bytesを識別する。L4/L9の固定本文が変わった場合、この候補の対応は再照合が必要となる。固定親の詳細とL3/L10全体pinはL4/L5/L8を参照し、ここではfunctional AC/caseだけへ承認scopeを狭めない。
@@ -75,7 +76,20 @@ OperationCheck = PermissionCheckResult | PermissionCheckDiagnostic
 | `INFRA-L6-FN-04` | 純粋、`project_path_and_storage` | CONNECT/INFRA refs、source observations → logical path・physical path・storage projection | logical connectionと各physical pathを別identityにする。8 path軸と6 storage属性/recovery refを個別に写す。接続、疎通、classification、backup完了を推定しない。 |
 | `INFRA-L6-FN-05` | 純粋、`prepare_operation_check` | INFRA kind、target identity、revision `SubjectRef`、requested scope、operation inputs、current declarations → `PermissionQuery`と`PermissionCheck` | 既存owner `OperationDecl`に対応がある場合だけそのactionを`operation`へ束縛する。queryは`{operation, target, revision, requested_scope, operation_inputs}`の5 field。actor/environmentはquery fieldでなく、K3 `resolve_authority_context`がcurrent owner declaration/assignmentから内部解決する。INFRA kindをK3 enumへ直写しない。bindingやcurrent owner inputが解決できない場合はそのoperationだけ既存K3非肯定結果へ留める。permission結果は操作命令ではない。 |
 | `INFRA-L6-FN-06` | 純粋、`record_operation_observation` | OS owner observation refs（宣言済みの場合）、K5 evidence refs、適用L2-005 duty refs → 参照保持projection | result/revision/未完義務を別refとして保持する。K5/K7への書込み、operation/rollback/recoveryの起動はしない。OS operation/attempt型が未宣言ならその観測だけ未決。古いsuccessでpartial/failureを上書きしない。 |
-| `INFRA-L6-FN-07` | 純粋、`summarize_nfr_observations` | L9 NFRごとのfixture observations → source-qualified count/unknown refs | fixture母集団、分母、unknown、未実施を分けて記録する。unknownを除外せず、分母不明を0や合格へ変換しない。NFR候補値から実測・SLO達成を作らない。 |
+| `INFRA-L6-FN-07` | private helper、`summarize_nfr_observations`（L5 APIではない） | L5 §7で定めるNFR fixture母集団/分母と既存Observed入力 → source-qualified count/unknown/not-run refs | L5 §7の測定母集団・分母・unknown/not-runの記録責務を純粋な内部helperへ分解する。unknownを除外せず、分母不明を0や合格へ変換しない。NFR候補値から実測・SLO達成を作らない。L8にこの名前の関数/verifierはなく、L7ではNFR oracle行から内部helperを呼ぶfunction cellを明示する。新しいL5 API/外部oracleは追加しない。 |
+
+L5 §4 APIとこの節の関数候補の引数対応（L5側の引数名・順序を保持）:
+
+| L5 API候補 | L6候補 | 引数対応 |
+|---|---|---|
+| `bind_inventory_inputs(scope_ref, source_refs)` | `INFRA-L6-FN-01 bind_inventory_inputs` | `scope_ref → scope_ref`; `source_refs → source_refs` |
+| `project_resource_observation(key, source_observations)` | `INFRA-L6-FN-02 project_resource_observation` | `key → key`; `source_observations → source_observations` |
+| `compare_environment_axes(left, right)` | `INFRA-L6-FN-03 compare_environment_axes` | `left → left`; `right → right` |
+| `project_path_and_storage(scope, source_observations)` | `INFRA-L6-FN-04 project_path_and_storage` | `scope → scope`; `source_observations → source_observations` |
+| `prepare_operation_check(request, current_inputs)` | `INFRA-L6-FN-05 prepare_operation_check` | `request → request`; `current_inputs → current_inputs`。request内のkind/target/resource/path/revision/scope/既存OS operation ref/SECURITY authority/current declarationsを別fieldとして保持し、current_inputsをK3 queryの5 fieldへ対応づける。 |
+| `record_operation_observation(os_owner_observation_refs, before_ref, result_ref, obligations)` | `INFRA-L6-FN-06 record_operation_observation` | 4引数すべてを同名・同roleで保持し、`before_ref`と`result_ref`を一つへ併合しない。 |
+
+`INFRA-L6-FN-07 summarize_nfr_observations`はL5 §7の測定母集団・分母・unknown/not-run集計から切り出すL6内private helperであり、上記L5 API集合に加えない。L8に同名function/verifierはない。L7 §4/§5のNFR fixture行にのみ内部helper呼出しを追加し、L9 oracleやL8 fixture本文は増やさない。
 
 K1の出力は既存`Value/Unknown/Unobserved/Stale/NotApplicable`のみであり、`missing`の新classを作らない。K2のRejectedはK2 API境界に留め、K1 `Observed`へ混ぜない。K3 resultは既存`PermissionCheckResult | PermissionCheckDiagnostic`のまま。K5/K6 receiptは読取/evidence参照であってsource真正性・物理適用の証明ではない。K10 dependency closureとK6/K5 physical observationは別の入力とする。K9独立reviewの設計記録を物理観測の代替にしない。
 
@@ -94,16 +108,18 @@ K3 queryにactor/environmentを入力させない。`resolve_authority_context`�
 
 | 固定義務 | 関数 | 関数設計に保持すること |
 |---|---|---|
-| `INFRA-NFR-001-01` | FN-02/03/07 | fixture内resource 7属性、environment 8軸、CORE/runtime revisionをsource-qualifiedに追跡する。実環境全数は主張しない。 |
-| `INFRA-NFR-001-02` | FN-04/07 | 各path 8軸、storage 6属性とrecovery ref。unknown/欠落fieldを明示しcomplete扱いしない。 |
-| `INFRA-NFR-001-03` | FN-04/07 | logical connection identityとphysical path identityを分離し、誤併合をfixtureで検出する。 |
-| `INFRA-NFR-006-01` | FN-05/07 | target/action/revision/scope/別SECURITY authority/expiryの6条件を個別に比較する。credential値を保存しない。 |
-| `INFRA-NFR-006-02` | FN-05/07 | 固定5 operationと停止中OS/control-plane routeのfixture coverageを別々に数える。6番目のoperationや自動failoverを要件化しない。 |
-| `INFRA-NFR-006-03` | FN-07 | 5秒×3回等の承認済み候補、比較候補、遅延/未応答/途中復帰を測定candidateとしてsource付きで比較する。SLO、incident/severity、実測合格は生成しない。 |
+| `INFRA-NFR-001-01` | `INFRA-L6-FN-02`, `INFRA-L6-FN-03`, `INFRA-L6-FN-07` | fixture内resource 7属性、environment 8軸、CORE/runtime revisionをsource-qualifiedに追跡する。実環境全数は主張しない。 |
+| `INFRA-NFR-001-02` | `INFRA-L6-FN-04`, `INFRA-L6-FN-07` | 各path 8軸、storage 6属性とrecovery ref。unknown/欠落fieldを明示しcomplete扱いしない。 |
+| `INFRA-NFR-001-03` | `INFRA-L6-FN-04`, `INFRA-L6-FN-07` | logical connection identityとphysical path identityを分離し、誤併合をfixtureで検出する。 |
+| `INFRA-NFR-006-01` | `INFRA-L6-FN-05`, `INFRA-L6-FN-07` | target/action/revision/scope/別SECURITY authority/expiryの6条件を個別に比較する。credential値を保存しない。 |
+| `INFRA-NFR-006-02` | `INFRA-L6-FN-05`, `INFRA-L6-FN-07` | 固定5 operationと停止中OS/control-plane routeのfixture coverageを別々に数える。6番目のoperationや自動failoverを要件化しない。 |
+| `INFRA-NFR-006-03` | INFRA-L6-FN-07 | 5秒×3回等の承認済み候補、比較候補、遅延/未応答/途中復帰を測定candidateとしてsource付きで比較する。SLO、incident/severity、実測合格は生成しない。 |
 
 固定business L3/L10には独立business outcome/test oracleがない。FN-07も業務成功・incident closure・復旧完了・費用/配置の採否を出力しない。
 
 ## 4. 局所未決と責務の引渡し
+
+L5 §8「L4への返却事項」に記録されたL4 §3 K9の誤参照（K9をpath依存閉包・物理観測へ結び付ける記述）は、L4 ownerへの返却事項のまま未解決である。本書はK9を物理観測の代替にせず、K10 dependency closureとK6/K5 observationの既存境界を維持するが、これをもってL4記述が修正済みとは扱わない。
 
 | 境界 | 現在決まっていること | 未決の局所範囲 |
 |---|---|---|
