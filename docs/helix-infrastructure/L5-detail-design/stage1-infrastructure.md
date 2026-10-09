@@ -47,17 +47,17 @@ L2/L11 revisionは `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA-256�
 
 ## 3. 共通kernel接続
 
-この候補の起草時に参照した共通kernelの歴史固定snapshotはcommit `7d48e458fcff7e03df18abc4f768981410685cf7`であり、当該revisionのL4 `[common-kernel.md](../../helix-harness/L4-basic-design/common-kernel.md)` のSHA-256は`7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b`、L9 `[common-kernel-integration-verification.md](../../helix-harness/L9-integration-verification/common-kernel-integration-verification.md)` は`62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`である。これらは参照した時点を特定する履歴pinであり、現行bytesのpinではない。現在のorigin/main `13a2d6ec23e568edb35ffaa7532950fbfda3aafd`では同じL4/L9本文のSHA-256はそれぞれ`3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、`77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`であり、現行共通kernel本文が正本である。本書は履歴snapshotの語彙を再導出根拠として記録し、現行共通kernelの契約を上書き・変更しない。HELIX-INFRASTRUCTURE専用K型・K1状態・共通kernel結果理由を追加しない。
+この候補の起草時に参照した共通kernelの歴史固定snapshotはcommit `7d48e458fcff7e03df18abc4f768981410685cf7`であり、当該revisionのL4 `[common-kernel.md](../../helix-harness/L4-basic-design/common-kernel.md)` のSHA-256は`7ee3a2e4bb820538ceab0dbf2ff2e8e44bf7cb113012ec16aba7484e70b6388b`、L9 `[common-kernel-integration-verification.md](../../helix-harness/L9-integration-verification/common-kernel-integration-verification.md)` は`62617cee9af0bdc1efe253275ae97dea9b2368cd8ee77a818735c5f180e0ba1b`である。これらは参照した時点を特定する履歴pinであり、現行bytesのpinではない。現行の共通kernel本文はPR base `536c72b47c60ec2cd682574438003c13e56f8ea6`に含まれるL4 SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696`、L9 SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52`であり、履歴snapshotとは別のbytesである。本書は履歴snapshotの語彙を再導出根拠として記録し、現行共通kernelの契約を上書き・変更しない。HELIX-INFRASTRUCTURE専用K型・K1状態・共通kernel結果理由を追加しない。
 
 | 接続 | 入力と処理境界 | 出力・失敗時 |
 |---|---|---|
 | K1 `Observed<T>` | sourceの読取値、scope、source/revisionを組にする。欠落が完全読取で確定した場合と、unreadable/partial/owner unknownを区別する。 | 既存Value/Unknown/Unobserved/Stale/NotApplicableだけを使う。未読値を空集合やhealthyへ変換しない。 |
 | K2 `SubjectRef` / `ResultKey` | resource/environment/path/storage/runtime/operation/authorityの参照とrole-bound inputをcanonical keyへ束縛する。各roleに元source revision/digestを残す。 | 異revisionのcache/resultをcurrentへ流用しない。raw sourceはK6側で読取り、K2 keyは固定入力identityを示す。 |
-| K3 permission query/check | L2-006 operation requestをtarget/action/revision/scope/別SECURITY authority/expiryへ結び、現行K3 owner resolver/checkへ渡す。 | permission結果のみをoperation eligibilityへ用いる。resource ready、OS停止、logical routeから許可を導かない。 |
+| K3 permission query/check | L2-006 `kind`はINFRA operation分類として保持し、K3 `PermissionQuery.operation`へ直接写さない。既存owner `OperationDecl`が当該INFRA operationとK3 actionを対応付けている場合に限り、そのactionを`operation`へ束縛する。対象を`target`、対象の版を`revision: SubjectRef`、scopeを`requested_scope`へ対応させ、残るrequired `operation_inputs`も既存owner declarationから解決する。別SECURITY authorityはpermission source refでありquery軸ではない。expiryはpermission record/adapterの既存規則で比較する。K3の7軸（actor, target, operation, revision, environment, scope, expiry）はcurrent owner resolverが構成する。対応する既存OperationDeclがない場合はその独立operationだけを未解決としてL4へ返し、K3 enumを拡張しない。 | permission結果のみをoperation eligibilityへ用いる。resource ready、OS停止、logical routeから許可を導かない。independent operation時のactor/environment供給元は現L4から一意に定まらず、該当operationをL4へ返す未決として記録する。 |
 | K5 evidence / projection | source observationとoperation結果参照を追記可能なevidenceへ関連付ける。 | partial/corrupt readはcomplete/missingへ昇格しない。以前の値をcurrent成功で上書きしない。 |
-| K6 read verifier/receipt | L9で宣言された固定sourceを、fixtureまたは将来の許可済みsource readerから読み取る境界。 | read receiptは読取り範囲を示すだけで、物理適用/疎通/正常を証明しない。 |
-| K7 operation / K4 obligation | 5種類の限定operation identity、開始前check、観測済み結果、未完義務を分離する。L2-005義務は該当state-changing actionへだけ結ぶ。 | 未開始・拒否・失敗・部分・unknownを既存K7状態で保持。物理実行は本設計範囲外。 |
-| K9 independent observation / K10 closure | logical reference、declaration graph、physical path observationと依存closureを分離する。 | graph/pointerだけでは実体・経路・receiptを肯定しない。未観測は該当source/operationのUnknown/Unobserved。 |
+| K6 read verifier/receipt | L9で宣言された固定sourceを、fixtureまたは宣言済みsource readerから読み取る境界。 | reader未登録・source未観測は該当fieldだけUnknown/Unobserved。read receiptは読取り範囲を示すだけで、物理適用/疎通/正常を証明しない。 |
+| K7 generation pointer/fencing / K4 obligation | INFRA operation kind、OS ownerが実際に宣言するoperation ref・operation/attempt observation ref（存在・型を解決できる場合）、既存結果観測、未完義務を別に扱う。OS ownerの参照や型が未宣言・未解決なら該当operation/観測だけを未決にする。L2-005義務はrollback/recoveryに適用される範囲だけで照合する。 | `prepare_operation_check`はOS ownerの既存operation refが宣言される場合にだけ入力として束縛し、K7のgeneration pointer/EpochToken fencing inputを別に扱う。K7はgeneration pointerとEpochTokenによるfencingを定義するが、OS operation attempt identity/stateは定義しない。OS ownerが既存operation/attempt observation refと型を宣言している場合だけ別入力として保持し、source/typeが無い・解決しない場合は該当operationの観測だけを未決にする。K7 fencing inputをその代用にしない。物理実行は本設計範囲外。 |
+| K10 dependency closure、K6/K5 observation | 宣言されたtyped dependency graphのclosureをK10で照合し、physical observationの読取・evidenceをK6/K5で別に追う。 | graph/pointerだけでは実体・経路・receiptを肯定しない。K9は独立reviewの独立性記録であり、このpath観測には使わない。未観測は該当source/operationのUnknown/Unobserved。 |
 
 ### 3.1 値の正規化とfield adapter
 
@@ -67,7 +67,7 @@ L2/L11 revisionは `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA-256�
 - Environment comparisonはscope/version/authority/source/config/network/credential scope/dataの8軸を同一視せず個別に扱う。同じ表示名はidentity同値の根拠にしない。
 - Network path recordはsource/destination/protocol/endpoint/direction/purpose/security boundary/dependencyの8軸をlogical CONNECT referenceと別に保持する。複数physical pathは別identityにする。
 - Storage recordはowner/durability/backup/retention/environment/confidentialityの6属性とrecovery referenceを分離する。resource/runtime属性は該当environment/source/revisionを付け、Model/Workerの能力・ticket・security policyをここから作らない。
-- Secret credential valueは通常resource observationへ含めない。scope/authorityのrefは値本体の代用品ではなく、既存SECURITY ownerへ戻す。
+- credential値は記録しない。scope/authorityのrefは値本体の代用品ではなく、既存SECURITY ownerへ戻す。
 
 ## 4. ComponentとAPI境界
 
@@ -75,12 +75,12 @@ L2/L11 revisionは `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA-256�
 
 | Component / API候補 | 引数境界 | 責務と返却 |
 |---|---|---|
-| `bind_inventory_inputs(scope_ref, source_refs)` | 固定scope、宣言source参照の集合 | K2 current keyへroleを束縛。重複/不明refを別resourceへ補完せず、K1/K2既存診断へ委譲。 |
-| `project_resource_observation(key, source_observations)` | keyとK6で読まれたsource observation | 7属性ごとに値・unknown・未観測とorigin revisionを組み立てる。complete scanで確定した欠落と読取不能を区別する。 |
-| `compare_environment_axes(left, right)` | 2つのenvironment付きresource projection | 8軸を個別比較し、全一致/不一致/unknownを対応軸へ保持。環境横断mergeやavailable判定はしない。 |
-| `project_path_and_storage(scope, source_observations)` | scope、CONNECT/INFRA source refs、読み取り結果 | logical connection、各physical path、storage、recovery ref、runtime fieldを別recordへ射影する。軸欠落は埋めず、owner境界を添える。 |
-| `prepare_operation_check(request, current_inputs)` | operation kind、target/resource/path refs、revision/scope/expiry、既存OS/SECURITY inputsの観測 | 対象5種に該当する要求だけを既存K3 check用の入力として整える。通常operationとindependent pathを分離。ここでは操作を開始しない。 |
-| `record_operation_observation(operation_ref, before_ref, result_ref, obligations)` | K7 operation ref、K5 evidence refs、適用義務ref | 既存K5/K7へ開始前check、結果、未完義務を対応づける。以前のsuccessでpartial/failure/unknownを消さない。 |
+| `bind_inventory_inputs(scope_ref, source_refs)` | 固定scope、宣言source参照の集合 | K2 current keyへroleを束縛。戻りは既存K2 key/inputまたは既存`Rejected`診断に限り、重複/不明refを別resourceへ補完しない。 |
+| `project_resource_observation(key, source_observations)` | keyとK6で読まれたsource observation | fieldごとの既存`Observed<T>`（`Value`/`Unknown`/`Unobserved`/`Stale`）を保持しorigin revisionを組み立てる。`NotApplicable`はowner declarationに適用外が明記され、既存K1成立条件を満たす場合に限る。完全走査で不在が確定した場合は既存resource field valueで表す。K1に`missing` variantはない。 |
+| `compare_environment_axes(left, right)` | 2つのenvironment付きresource projection | 8軸ごとに既存`Observed<T>`を返し、確定一致/不一致はownerのdomain valueと既存polarity、未解決は既存`Unknown`/`Unobserved`/`Stale`に保つ。新しい比較result classは作らない。 |
+| `project_path_and_storage(scope, source_observations)` | scope、CONNECT/INFRA source refs、読み取り結果 | logical connection、各physical path、storage、recovery ref、runtime fieldを別recordへ射影し、fieldごとの既存`Observed<T>`を保つ。軸欠落は埋めずowner境界を添える。 |
+| `prepare_operation_check(request, current_inputs)` | INFRA `kind`、target/resource/path refs、revision/scope、既存OS operation ref（既存OS owner declarationが供給する場合）、SECURITY authority ref、current owner declaration | INFRA `kind`をK3 operation enumへ直写しない。既存owner `OperationDecl`が宣言する対応actionをK3 `PermissionQuery.operation`へ束縛し、`target`/`revision`/`requested_scope`と他required inputsをcurrent declarationから解決する。対応OperationDecl不在、またはOS operation refのowner source/typeが解決しない場合は当該operationだけ未決。戻りは元の`PermissionCheckResult`または`PermissionCheckDiagnostic`。OS owner observation refとK7 generation pointer/EpochToken fencing inputを混同せず、ここでは操作を開始しない。 |
+| `record_operation_observation(os_owner_observation_refs, before_ref, result_ref, obligations)` | OS ownerが宣言する既存operation/attempt observation refs（存在・型が確認できる場合。未宣言なら当該観測は局所未決）、K5 evidence refs、rollback/recoveryに適用されるL2-005 duty refs | K5 evidenceは既存K5 APIで参照・追記し、K7は既存generation pointer/EpochTokenのcurrent/fencing照合に限って参照する。K7をOS operation/attempt result recordとして扱わない。K1 projectionは既存`Value` / `Unknown` / `Unobserved` / `Stale`を保持し、具体的なoperation result variantを増やさない。以前のsuccessでpartial/failure/unknownを消さない。 |
 
 本節の関数候補は、次のL6で既存共通kernel契約に沿う具体的なAPI、引数、返却、失敗境界へ詳細化する責務を持つ。外部adapterのbindingと実operationの接続・実行方法は本書で確定しない。読み取りsource/ownerが確認できない場合は該当入力・operationの範囲だけ未解決のまま保持し、別ownerやfallbackを設けない。
 
@@ -94,9 +94,9 @@ resource/environment/path/storage各projectionは、値、unknown、source/revis
 
 固定functional obligations `INFRA-006-AC-01..03`、L10 functional `L10-INFRA-006-C01..C19` とL3 NFR `INFRA-NFR-006-01..03` はL4のtraceどおり全件維持する。operation別のfixtureは[L8 §4「INFRA-006 fixture展開」](../L8-detail-verification/stage1-infrastructure-detail-verification.md)を参照。
 
-operation kindはbootstrap、read-only health check、service stop、rollback、recoveryの5種に限定する。6th operationを別名で既存5種へ写像しない。対象/operation/scope/revision/expiryに適用される別SECURITY authorityは既存K3で照合する。停止中OSのticket/assignmentや通常control-plane responseをindependent operationの開始要件にしないが、通常operationへの一般免除にも広げない。OS assignmentが適用される範囲は現行OS ownerの宣言で解決し、source未登録・scope不明なら該当operationだけunknownにする。
+operation kindはbootstrap、read-only health check、service stop、rollback、recoveryの5種に限定する。6th operationを別名で既存5種へ写像しない。INFRA `kind`はK3 operation enumへ直接写さない。既存owner `OperationDecl`が宣言するactionとのbindingがある場合だけ、そのactionをqueryの`operation`へ、対象を`target`、対象版を`revision`、scopeを`requested_scope`へ結ぶ。bindingがないoperationだけを未決としてL4へ返し、enumを追加しない。別SECURITY authorityはpermission source refであり、K3 tuple軸に置かない。K3 resolverが必要とするactor/environmentはcurrent OS assignmentとINFRASTRUCTURE environment declarationから構成するが、停止中OSでこれらを得る具体的owner sourceは現L4/L9で一意に定まらない。該当する独立operationだけをL4へ返す未決とし、L6で推測して埋めない。
 
-health checkはread-only観測であり状態変更を開始しない。rollback/recoveryを含むstate-changing actionでは、L2-005の該当before/after・backup/restore/rollback/recovery義務が適用される場合だけ照合する。義務unknown/未充足は該当operationを保留し、他操作へ一律拡張しない。結果は成功・拒否・失敗・部分・unknownを区別し、eligible revisionと未完義務を追跡する。fully automatic failoverは1.0要件や適格条件にしない。
+health checkはread-only観測であり状態変更を開始しない。L2-005のbefore/after・backup/restore/rollback/recovery義務は、L9で明示されたrollback/recovery fixtureにだけ結び、bootstrap/service stopへ拡張しない。義務unknown/未充足は該当rollback/recoveryだけを保留する。個別結果は成功・拒否・失敗・部分・unknownのfixture入力として区別する。eligible revisionと未完義務は、存在する場合に限りK5 evidenceおよびOS ownerの既存参照から追跡し、K7 generation pointer/EpochTokenをoperation/attempt stateとみなさない。これらを新しいK7状態型にしない。fully automatic failoverは1.0要件や適格条件にしない。
 
 ## 7. NFRとbusiness境界
 
@@ -109,3 +109,7 @@ L3 business全文はこの2親に独立outcomeを置かず、functional FR/ACを
 physical resource/pathを観測するsource、assignment、owner declarationが未登録または読取不能の場合、missingを主張せず観測不能/unknownとする。OS assignmentは必要なoperationのみ既存OS owner sourceへ戻す。independent path/authorityが不明ならINFRA-006該当operationだけ停止し、SECURITY/CONNECT/source ownerのうち既存契約で解決する範囲へ戻す。返却先owner自体が解決しない場合は未完scopeを保持する。
 
 L2の意味/scope/owner/versionを変える必要があるときだけ固定要求へ戻す。技術詳細のunknownは該当source/operationだけに限り、他のACやStage全体へ拡張しない。L4/L9本文の意味は本書で変更しない。
+
+### L4への返却事項
+
+L4 §3「現行共通型と責務境界」のK9行は、K9をindependent path依存閉包・物理観測へ結び付けている。現行common-kernel §17のK9は独立reviewの独立性記録であり、path observation/依存閉包の型ではない。L5では意味を黙って書き換えず、K10を依存closure、K6/K5をsource observation/evidenceの参照先とした。このL4記述の修正はL4 ownerへ返す。L5/L8の設計からL4の誤参照が修正済みとは扱わない。
