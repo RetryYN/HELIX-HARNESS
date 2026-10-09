@@ -9,13 +9,15 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `263f43cf049a68e845bea735a985c47434cf0b74e9fad4dbbad993172378434b`である。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `0f92649310a7d8ae7a1838dc6161bb2528a218ab3570149506de90c4f7144a31`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
 fixtureは合成Git tree・合成receipt・stub process resultだけを使う。checker実行fixtureはcommand adapterをstubし、archive source/runtimeを起動しない。各反例は対象受口を明記し一条件だけを変える。K1/OS-020状態語を使い、不明・未実行・失敗をsuccessへ縮退させない。
 
-L4 `DesignScopeManifest`が列挙するCommon Kernelとrepository-layoutの現行6文書、および今回のlocal-CI設計6文書について、定義域と参照域を分離したID解決、L4 invariant/contract→L9 IV edge、Common Kernel/local-CI L5 contract→L8 case、L6 function→L7 test edgeを照合する。Common Kernel L5の4つのexact-heading locatorから対のL8 K1/K2/K3/K5 table expansionへ各fixtureを対応付ける。K1/K2=164、K3=194、K5=91の固定inventoryはそれぞれ別に照合する。L8第2列のL9 oracleと第3列のL4 invariantはtyped referenceとして保持し、coverage sourceへ誤変換しない。coverage entryの無い契約、孤児edge、fixture定義欠落は肯定しない。HistoricalPinはasset ID、archive path、full-file SHA、行範囲、optional span SHAをそれぞれの型で照合し、時点auditをcurrent-link対象へ混ぜない。
+L4 `DesignScopeManifest`が列挙するCommon Kernelとrepository-layoutの現行6文書、および今回のlocal-CI設計6文書について、定義域と参照域を分離したID解決、L4 invariant/contract→L9 IV edge、Common Kernel/local-CI L5 contract→L8 case、L6 function→L7 test edgeを照合する。Common Kernel L5の5つのexact-heading locatorから対のL8 K1/K2/K3/K5/K4-G3 table expansionへ各fixtureを対応付ける。K1/K2=164、K3=194、K5=91、K4/G3=73（K4=51/G3=22）の固定inventoryはそれぞれ別に照合する。L8第2列のL9 oracleと第3列のL4 invariantはtyped referenceとして保持し、coverage sourceへ誤変換しない。coverage entryの無い契約、孤児edge、fixture定義欠落は肯定しない。HistoricalPinはasset ID、archive path、full-file SHA、行範囲、optional span SHAをそれぞれの型で照合し、時点auditをcurrent-link対象へ混ぜない。
+
+IV-LCI-72とIV-LCI-87〜91は`LC-DESIGN-001`に対応するdesign-manifest構造oracleであり、suite runnerの実行oracleではない。`LC-STAGE1-L7-001`に対応するsuite runner oracleはIV-LCI-73〜86に限る。
 
 | 検証ID | L4契約 | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
@@ -82,15 +84,21 @@ L4 `DesignScopeManifest`が列挙するCommon Kernelとrepository-layoutの現�
 | `IV-LCI-61` | bwrap opaque version label | 実`--version` literalがprofile labelと一致する | version literalだけをpinと不一致にする | `denied`、checker未起動。semantic version推論や別binary fallbackなし。 |
 | `IV-LCI-62` | bwrap binary availability | trusted host-local settingからprofile pinned binaryを解決できる | binary availabilityだけを不成立にする | `denied`、checker未起動、package install/host/別binary fallbackなし。 |
 | `IV-LCI-63` | Common Kernel corpus source | Common Kernel L4/L5/L8/L9とrepository-layout L4/L9の6 current pathが各role/pair/source-kindで登録される | CK L8 pathだけをcorpusから除く | `Unknown(missing_input)`、target snapshot/plan preflightでrun全体non-pass、checker/execution/receiptなし |
-| `IV-LCI-64` | Common Kernel L5→L8 pair binding | L5 K1/K2/K3/K5 exact_heading locatorは各一件、L8各rangeは対応するL5をexpected_pairとする | 一つのK1 rowの第3列literal expansionだけをK1 locatorからK2 locatorへ差し替える | `Unknown(conflict)`、fixture edgeを別pairへ結ばない |
+| `IV-LCI-64` | Common Kernel L5→L8 pair binding | L5 K1/K2/K3/K5/K4-G3 exact_heading locatorは各一件、L8各rangeは対応するL5をexpected_pairとする | 一つのK1 rowの第3列literal expansionだけをK1 locatorからK2 locatorへ差し替える | `Unknown(conflict)`、fixture edgeを別pairへ結ばない |
 | `IV-LCI-65` | K1/K2 typed reference保全 | L8 case column expansionの各rowで第2列L9 oracle、第3列L4 invariant refsをtyped referenceとして解決し、coverage sourceは対応L5 locatorだけ | 一件のL9 IV referenceをsource_idに置く | `Unknown(conflict)`、L9/L4 referenceをL5→L8 sourceへ昇格しない |
 | `IV-LCI-66` | K1/K2 expanded fixture inventory | L8 K1/K2 table literal expansionが各111/53 IDをraw definition rowへ一意にbindする | K1 expansion中の一つのsuffix IDだけを固定対応表から削除 | `Unknown(missing_input)`、regex/隣接suffixで補完せず、checker/execution/receiptなし |
-| `IV-LCI-67` | Common Kernel L5→L8 edge inventory | 4 section locatorから449 expanded fixture destination（K1/K2=164、K3=194、K5=91）へ一件ずつedgeがあり、dispositionは全edge IDsを保持する | 一つのK2 edgeとそのdisposition referenceを同時に削除（同sourceの別edgeは残す） | `Unknown(missing_input)`。同sourceの他edgeで代替せず、Common Kernelの1,010-edge基準（#2738の725件にK3/K5の285件を追加）からrequired edge欠落を検出する。今回追加のlocal-CI trace 79件を含む全候補は1,089 edge |
-| `IV-LCI-68` | Common Kernel OutcomeRef binding | 各expanded verifier IDは同じdefinition ID列セルを持つraw table rowの対応する期待値列へ一意に戻る（K1/K2は5列目、K3は6列目、K5は4列目） | 一つのexpanded IDのOutcomeRefだけを別raw rowへ結び替える | `Unknown(conflict)`、別fixtureのoutcomeを流用しない |
+| `IV-LCI-67` | Common Kernel L5→L8 edge inventory | 5 section locatorから522 expanded fixture destination（K1/K2=164、K3=194、K5=91、K4/G3=73）へ一件ずつedgeがあり、dispositionは全edge IDsを保持する | 一つのK2 edgeとそのdisposition referenceを同時に削除（同sourceの別edgeは残す） | `Unknown(missing_input)`。同sourceの他edgeで代替しない。完全な現行manifestではCommon Kernel L5→L8に522 destination edge、12文書全体に1,177 edgeがあり、同じ固定inventoryで欠落を検出する |
+| `IV-LCI-68` | Common Kernel OutcomeRef binding | 各expanded verifier IDは同じdefinition ID列セルを持つraw table rowの対応する期待値列へ一意に戻る（K1/K2は5列目、K3は6列目、K5/K4-G3は4列目） | 一つのexpanded IDのOutcomeRefだけを別raw rowへ結び替える | `Unknown(conflict)`、別fixtureのoutcomeを流用しない |
 | `IV-LCI-69` | L4 invariant reference separation | L8第3列に明記されたL4 invariantは既存L4 definitionへのtyped referenceとして解決され、L5→L8 sourceは対応L5 locatorだけ | 一件のL4 invariant referenceをcoverage `source_id`として使う | `Unknown(conflict)`、既存L4→L9 edgeをL5→L8 pair sourceへ転用しない |
 | `IV-LCI-70` | K3/K5 locator・range所有 | K1/K2既存locatorとrangeを維持し、K3 `#### 6.1.3 K3 function/API contract`、K5 `#### 6.2.2 公開関数とprivate helper`を各一件のL5 locatorとしてL8のK3/K5 rangeへ一対一に結ぶ | K3 locatorをK5 rangeへ結ぶ | `Unknown(conflict)`。新locatorをK1/K2 locatorやK1/K2 rangeへ混ぜない |
 | `IV-LCI-71` | K3/K5固定fixture inventory | K1/K2=164を不変に保ち、K3=194、K5=91の各L8 fixture IDを独立した固定inventoryとraw definition rowへ一意に結ぶ | K3のrequired ID一件を固定inventoryのliteral expansionから除く（L8 CASE-L8-LCI-95）。K5のraw-row欠落は独立変異L8 CASE-L8-LCI-93で検査する | いずれも`Unknown(missing_input)`、regex・隣接IDから補わず、checker/execution/receiptなし |
+
 | `IV-LCI-72` | K3/K5 typed referencesとedge/outcome | 各K3/K5 rowの第2列はL9 typed reference、第3列はL5 locator＋L4 contract typed refs、K1/K2第5列・K3第6列・K5第4列は同じraw rowのOutcomeRef。各fixture locatorから一件のedgeとdisposition参照を持つ | 一件のK5 edgeだけを削除し、disposition referenceは維持 | `Unknown(missing_input)`、同じK5 sourceの他edgeやK1/K2 edgeで代用しない。全既定範囲をrun-level preflightで検査する |
+| `IV-LCI-87` | K4/G3 fixed destination inventory | K4=51/G3=22の73 IDが独立集合・raw L8 row・L5 locator edgeへ一対一で結び付く | `L8-G3-04-RECORD-ONLY-NO-ACCEPTANCE-OUTPUT`のraw rowだけを除く | `Unknown(missing_input)`、隣接IDで補わずsuite実行/receiptなし |
+| `IV-LCI-88` | K4/G3 extra ID拒否 | raw definition setは固定73件と一致する | `L8-K4-EXTRA`行だけを足す | `Unknown(conflict)`、固定inventory外IDを受け入れない |
+| `IV-LCI-89` | K4/G3 duplicate row拒否 | 各K4/G3 IDは一意なraw rowへbindする | `L8-K4-01-COMPLETE` raw rowだけを複製 | `Unknown(conflict)`、rowを選び分けない |
+| `IV-LCI-90` | K4/G3 edge pair ownership | edge sourceはK4/G3 locator、outcomeは同raw row第4列 | `L8-K4-01-COMPLETE` edge sourceだけをK5 locatorへ替える | `Unknown(conflict)`、他componentのedgeで代替しない |
+| `IV-LCI-91` | K4/G3 L5 locator/range completeness | K4/G3 locator、definition/reference ranges、73 edgesとdispositionが固定inventoryに一致 | K4/G3 definition rangeだけを除く | `Unknown(missing_input)`、fixture実行/receiptなし |
 
 GitHub input仕様の25 inputs/65,535 character上限はprovider-boundary fixtureであり製品要求のthresholdではない。容量超過なら省略してvalid化せず未照合で止める。
 

@@ -53,6 +53,8 @@ def _baseline():
                 "#### 6.1.4 invariantからL5 functionへのtrace", "K3 range end.",
                 "#### 6.2.2 公開関数とprivate helper", "K5 API synthetic.",
                 "#### 6.2.3 不変条件の分解", "K5 range end.",
+                "## 8. K4/G3 義務評価API", "K4/G3 synthetic API.",
+                "## K4/G3 API 範囲終端",
             ]
             sources[path] = ("\n".join(lines) + "\n").encode()
             definitions = [
@@ -89,8 +91,10 @@ def _baseline():
                     if not grouped_ids or fixture_id not in grouped_ids[1:]:
                         if not (grouped_ids and fixture_id == grouped_ids[0]):
                             expansion.append({"literal": raw_literal, "ids": [fixture_id]})
-                        contract_expansions.append({"literal": contract_literal, "ids": [source_locator, "K1-I1"]})
-                lines.append(end)
+                        contract_ids = [source_locator, "K4-I1"] if range_id == manifest.CK_L8_K4_G3_RANGE else [source_locator, "K1-I1"]
+                    contract_expansions.append({"literal": contract_literal, "ids": contract_ids})
+                if end is not None:
+                    lines.append(end)
                 definitions.append({"range_id": range_id, "start_heading": start, "end_heading": end,
                                     "grammar": "table_column", "id_column": 1,
                                     "literal_expansions": expansion})
@@ -151,10 +155,64 @@ def _baseline():
             # Every verification document has one typed, nonempty outcome row.
             suite_config = {
                 manifest.LCI_L7_PATH: ("l7-suite-oracles", manifest.LCI_L7_SUITE_IDS, 4),
-                manifest.LCI_L8_PATH: ("l8-suite-cases", manifest.LCI_L8_SUITE_IDS, 5),
-                manifest.LCI_L9_PATH: ("ci-l9-suite-fixtures", manifest.LCI_L9_SUITE_IDS, 5),
+                manifest.LCI_L8_PATH: ("l8-suite-cases", manifest.LCI_L8_CASE_IDS, 5),
             }
-            if path in suite_config:
+            if path == manifest.LCI_L9_PATH:
+                design_heading = "## Synthetic design oracle rows"
+                suite_heading = "## Synthetic suite oracle rows"
+                labels = {
+                    "IV-LCI-09": "manifest source scope",
+                    "IV-LCI-10": "definition and reference identity",
+                    "IV-LCI-11": "coverage disposition separation",
+                    "IV-LCI-12": "unsupported inventory",
+                    "IV-LCI-13": "historical pin validation",
+                    "IV-LCI-14": "source kind separation",
+                    "IV-LCI-27": "aggregate consistency",
+                    "IV-LCI-63": "Common Kernel corpus source",
+                    "IV-LCI-64": "Common Kernel pair binding",
+                    "IV-LCI-65": "typed reference preservation",
+                    "IV-LCI-66": "expanded fixture inventory",
+                    "IV-LCI-67": "Common Kernel edge inventory",
+                    "IV-LCI-68": "OutcomeRef binding",
+                    "IV-LCI-69": "L4 reference separation",
+                    "IV-LCI-70": "locator and range ownership",
+                    "IV-LCI-71": "K3/K5 fixed inventory",
+                    "IV-LCI-72": "typed reference and outcome",
+                    "IV-LCI-87": "K4/G3 fixed destination inventory",
+                    "IV-LCI-88": "K4/G3 extra ID rejection",
+                    "IV-LCI-89": "K4/G3 duplicate row rejection",
+                    "IV-LCI-90": "K4/G3 edge pair ownership",
+                    "IV-LCI-91": "K4/G3 L5 locator completeness",
+                }
+                lines = ["# Synthetic", design_heading,
+                         "| Fixture | Contract | Normal | Mutation | Outcome |", "|---|---|---|---|---|"]
+                lines.append("| `IV-SYNTH-01` | generic design source | baseline | one mutation | Value(accepted) |")
+                for verifier_id in sorted(manifest.LCI_L9_DESIGN_IDS):
+                    lines.append(f"| `{verifier_id}` | {labels[verifier_id]} | baseline | one mutation | Value(accepted) |")
+                lines.extend([suite_heading, "| Fixture | Oracle | Contract | Parent | Outcome |",
+                              "|---|---|---|---|---|"])
+                lines.extend(
+                    f"| `{verifier_id}` | `IV-SYNTH-01` | `LC-SYNTH-01` | `AC-SYNTH-01` | Value(accepted) |"
+                    for verifier_id in sorted(manifest.LCI_L9_SUITE_IDS)
+                )
+                sources[path] = ("\n".join(lines) + "\n").encode()
+                definitions = [
+                    {"range_id": "ci-l9-fixture-definitions", "start_heading": design_heading,
+                     "end_heading": suite_heading, "grammar": "table_column", "id_column": 1,
+                     "literal_expansions": []},
+                    {"range_id": "ci-l9-suite-fixtures", "start_heading": suite_heading,
+                     "end_heading": None, "grammar": "table_column", "id_column": 1,
+                     "literal_expansions": []},
+                ]
+                references = [{
+                    "range_id": "ci-l9-fixture-tables", "start_heading": design_heading,
+                    "end_heading": suite_heading, "grammar": "table_column", "id_column": 2,
+                    "literal_expansions": [
+                        {"literal": label, "ids": ["LC-DESIGN-001"]} for label in labels.values()
+                    ],
+                }]
+                verifier_ids[path] = ("IV-SYNTH-01",)
+            elif path in suite_config:
                 range_id, suite_ids, outcome_column = suite_config[path]
                 heading = "## Synthetic suite oracle rows"
                 lines = ["# Synthetic", heading,
@@ -216,7 +274,7 @@ def _baseline():
         edge_ids = []
         if state != "not_exercised":
             verifier_path = next(row[2] for row in manifest.EXPECTED_FILES if row[0] == source_path)
-            local_suite_sources = {"LC-STAGE1-L7-001", "D-LCI-06", "F-LCI-10"}
+            local_suite_sources = {"LC-STAGE1-L7-001", "D-LCI-06", "D-LCI-03", "F-LCI-10"}
             if source_id in local_suite_sources:
                 if source_id == "LC-STAGE1-L7-001":
                     verifier_path, range_id, suite_ids, outcome_column = (
@@ -224,6 +282,9 @@ def _baseline():
                 elif source_id == "D-LCI-06":
                     verifier_path, range_id, suite_ids, outcome_column = (
                         manifest.LCI_L8_PATH, "l8-suite-cases", manifest.LCI_L8_SUITE_IDS, 5)
+                elif source_id == "D-LCI-03":
+                    verifier_path, range_id, suite_ids, outcome_column = (
+                        manifest.LCI_L8_PATH, "l8-suite-cases", manifest.LCI_L8_DESIGN_IDS, 5)
                 else:
                     verifier_path, range_id, suite_ids, outcome_column = (
                         manifest.LCI_L7_PATH, "l7-suite-oracles", manifest.LCI_L7_SUITE_IDS, 4)
@@ -235,6 +296,17 @@ def _baseline():
                         "verifier_id": verifier_id, "verifier_path": verifier_path,
                         "outcome_ref": {"verifier_path": verifier_path, "range_id": range_id,
                                         "verifier_id": verifier_id, "outcome_column": outcome_column},
+                    })
+            elif source_id == "LC-DESIGN-001":
+                for verifier_id in sorted(manifest.LCI_L9_DESIGN_IDS):
+                    edge_id = f"edge.local.{source_id}.{verifier_id}"
+                    edge_ids.append(edge_id)
+                    doc["coverage_edges"].append({
+                        "edge_id": edge_id, "source_id": source_id, "source_path": source_path,
+                        "verifier_id": verifier_id, "verifier_path": manifest.LCI_L9_PATH,
+                        "outcome_ref": {"verifier_path": manifest.LCI_L9_PATH,
+                                        "range_id": "ci-l9-fixture-definitions",
+                                        "verifier_id": verifier_id, "outcome_column": 5},
                     })
             elif verifier_path == manifest.CK_L8_PATH:
                 range_id = next(rid for rid, locator in manifest.CK_L5_LOCATOR_BY_RANGE.items()
@@ -257,7 +329,7 @@ def _baseline():
                     edge_ids.append(edge_id)
                     range_id = {manifest.LCI_L7_PATH: "l7-suite-oracles",
                                 manifest.LCI_L8_PATH: "l8-suite-cases",
-                                manifest.LCI_L9_PATH: "ci-l9-suite-fixtures"}.get(verifier_path, "oracle-rows")
+                                manifest.LCI_L9_PATH: "ci-l9-fixture-definitions"}.get(verifier_path, "oracle-rows")
                     outcome_column = {manifest.LCI_L7_PATH: 4, manifest.LCI_L8_PATH: 5,
                                       manifest.LCI_L9_PATH: 5}.get(verifier_path, 2)
                     doc["coverage_edges"].append({
@@ -345,16 +417,50 @@ class DesignManifestTests(unittest.TestCase):
         doc["parent_ac_coverage"][0]["state"] = "pass"
         _expect_diag(self, "Rejected", "invalid_input", manifest.load_design_manifest, _raw(doc), sources)
 
+
+    def test_ut_lci_115_missing_k4_g3_literal_is_not_recovered(self):
+        doc, sources, _ = _baseline()
+        ident = "L8-G3-04-RECORD-ONLY-NO-ACCEPTANCE-OUTPUT"
+        path = manifest.CK_L8_PATH
+        row = next(line for line in sources[path].splitlines() if f"| `{ident}` |".encode() in line)
+        sources[path] = sources[path].replace(row, b"", 1)
+        _expect_diag(self, "Unknown", "missing_input", _graph, doc, sources)
+
+    def test_ut_lci_116_extra_k4_g3_fixture_is_conflict(self):
+        doc, sources, _ = _baseline()
+        path = manifest.CK_L8_PATH
+        end_heading = (manifest.CK_L8_DEFINITION_CONFIG[manifest.CK_L8_K4_G3_RANGE][1] + "\n").encode()
+        row = b"| `L8-K4-EXTRA` | `IV-K4-01` | `contract-k4-L8-K4-EXTRA` | Value(accepted) |\n"
+        sources[path] = sources[path].replace(end_heading, row + end_heading, 1)
+        _expect_diag(self, "Unknown", "conflict", _graph, doc, sources)
+
+    def test_ut_lci_117_duplicate_k4_g3_fixture_is_conflict(self):
+        doc, sources, _ = _baseline()
+        path = manifest.CK_L8_PATH
+        original = next(line for line in sources[path].splitlines() if b"L8-K4-01-COMPLETE" in line)
+        end_heading = (manifest.CK_L8_DEFINITION_CONFIG[manifest.CK_L8_K4_G3_RANGE][1] + "\n").encode()
+        sources[path] = sources[path].replace(end_heading, original + b"\n" + end_heading, 1)
+        _expect_diag(self, "Unknown", "conflict", _graph, doc, sources)
+
+    def test_ut_lci_118_k4_g3_bad_edge_owner_is_conflict(self):
+        doc, sources, _ = _baseline()
+        edge = next(row for row in doc["coverage_edges"] if row["verifier_id"] == "L8-K4-01-COMPLETE")
+        edge["source_id"] = manifest.CK_L5_K5_LOCATOR
+        _expect_diag(self, "Unknown", "conflict", manifest.verify_coverage_edges, doc, _graph(doc, sources))
+
     def test_ut_lci_89_common_kernel_component_inventories_are_independent(self):
         doc, sources, _ = _baseline()
         loaded = manifest.load_design_manifest(_raw(doc), sources)
         graph = _graph(loaded, sources)
         self.assertEqual(len(loaded["files"]), 12)
-        self.assertEqual(len(manifest.REQUIRED_SOURCE_IDS), 192)
+        self.assertEqual(len(manifest.REQUIRED_SOURCE_IDS), 193)
         self.assertEqual(len(manifest.EXPECTED_CK_K1_K2_VERIFIER_IDS), 164)
         self.assertEqual(len(manifest.EXPECTED_CK_K3_VERIFIER_IDS), 194)
         self.assertEqual(len(manifest.EXPECTED_CK_K5_VERIFIER_IDS), 91)
-        self.assertEqual(len([item for item in graph["definitions"] if item["path"] == manifest.CK_L8_PATH]), 449)
+        self.assertEqual(len(manifest.EXPECTED_CK_K4_G3_VERIFIER_IDS), 73)
+        self.assertEqual(len([item for item in graph["definitions"] if item["path"] == manifest.CK_L8_PATH]), 522)
+        self.assertEqual(sum(ident.startswith("L8-K4-") for ident in manifest.EXPECTED_CK_K4_G3_VERIFIER_IDS), 51)
+        self.assertEqual(sum(ident.startswith("L8-G3-") for ident in manifest.EXPECTED_CK_K4_G3_VERIFIER_IDS), 22)
         grouped = [row for row in graph["definition_rows"].values()
                    if row[0] == manifest.CK_L8_PATH and row[1] == manifest.CK_L8_K1_RANGE
                    and row[3][0] == "group-k1"]
@@ -364,6 +470,20 @@ class DesignManifestTests(unittest.TestCase):
             actual = {item["id"] for item in graph["definitions"]
                       if item["path"] == manifest.CK_L8_PATH and item["range_id"] == range_id}
             self.assertEqual(actual, expected)
+
+    def test_k4_g3_ranges_stop_before_trailing_k6_shaped_rows(self):
+        doc, sources, _ = _baseline()
+        sources[manifest.CK_L8_PATH] += (
+            b"\n| `L8-K6-SYNTHETIC-01` | `IV-K6-SYNTHETIC-01` | `K6 synthetic contract` | Value(accepted) |\n"
+        )
+        loaded = manifest.load_design_manifest(_raw(doc), sources)
+        graph = _graph(loaded, sources)
+        actual = {item["id"] for item in graph["definitions"]
+                  if item["path"] == manifest.CK_L8_PATH
+                  and item["range_id"] == manifest.CK_L8_K4_G3_RANGE}
+        self.assertEqual(actual, manifest.EXPECTED_CK_K4_G3_VERIFIER_IDS)
+        self.assertEqual(len(actual), 73)
+        self.assertNotIn("L8-K6-SYNTHETIC-01", actual)
 
     def test_ut_lci_90_missing_k2_l5_locator_is_unknown(self):
         doc, sources, _ = _baseline()
@@ -425,6 +545,27 @@ class DesignManifestTests(unittest.TestCase):
         l8 = next(f for f in doc["files"] if f["path"] == manifest.CK_L8_PATH)
         l8["definition_ranges"] = [r for r in l8["definition_ranges"]
                                   if r["range_id"] != manifest.CK_L8_K3_RANGE]
+        _expect_diag(self, "Unknown", "missing_input", manifest.load_design_manifest, _raw(doc), sources)
+
+    def test_ut_lci_120_ci_k4_g3_oracles_are_design_manifest_edges(self):
+        doc, sources, _ = _baseline()
+        pairs = {(edge["source_id"], edge["verifier_id"]) for edge in doc["coverage_edges"]}
+        self.assertTrue(all(("D-LCI-03", ident) in pairs for ident in manifest.LCI_L8_DESIGN_IDS))
+        self.assertTrue(all(("D-LCI-06", ident) in pairs for ident in manifest.LCI_L8_SUITE_IDS))
+        self.assertFalse(any(("D-LCI-06", ident) in pairs for ident in manifest.LCI_L8_DESIGN_IDS))
+        self.assertFalse(any(("D-LCI-03", ident) in pairs for ident in manifest.LCI_L8_SUITE_IDS))
+        loaded = manifest.load_design_manifest(_raw(doc), sources)
+        graph = _graph(loaded, sources)
+        result = manifest.verify_coverage_edges(loaded, graph)
+        self.assertTrue(result["structure_complete"])
+
+    def test_ut_lci_119_deleted_k4_g3_l5_definition_range_is_missing_input(self):
+        doc, sources, _ = _baseline()
+        l5 = next(f for f in doc["files"] if f["path"] == manifest.CK_L5_PATH)
+        l5["definition_ranges"] = [
+            row for row in l5["definition_ranges"]
+            if row["start_heading"] != manifest.CK_L5_K4_G3_LOCATOR
+        ]
         _expect_diag(self, "Unknown", "missing_input", manifest.load_design_manifest, _raw(doc), sources)
 
     def test_ut_lci_97_joint_k5_raw_row_edge_disposition_removal_is_unknown(self):
@@ -532,12 +673,12 @@ class DesignManifestTests(unittest.TestCase):
         graph = _graph(doc, sources)
         self.assertEqual(len(graph["by_id"]), len(manifest.REQUIRED_SOURCE_IDS) + 5
                          + len(manifest.EXPECTED_CK_VERIFIER_IDS)
-                         + len(manifest.LCI_L7_SUITE_IDS) + len(manifest.LCI_L8_SUITE_IDS)
-                         + len(manifest.LCI_L9_SUITE_IDS) - 3)
+                         + len(manifest.LCI_L7_SUITE_IDS) + len(manifest.LCI_L8_CASE_IDS)
+                         + len(manifest.LCI_L9_SUITE_IDS) + len(manifest.LCI_L9_DESIGN_IDS) + 1 - 3)
         ck_refs = [ref for ref in graph["references"] if ref["path"] == manifest.CK_L8_PATH]
         # The first three K1 verifier IDs intentionally share one raw row;
         # table references are observed once per raw row, not copied per ID.
-        raw_rows = 449 - 2
+        raw_rows = 447 + len(manifest.EXPECTED_CK_K4_G3_VERIFIER_IDS)
         self.assertEqual(len(ck_refs), raw_rows * 3)
         self.assertEqual(sum(ref["column"] == 2 for ref in ck_refs), raw_rows)
         self.assertEqual(sum(ref["column"] == 3 for ref in ck_refs), raw_rows * 2)

@@ -1,12 +1,12 @@
-# HELIX-HARNESS 共通カーネル L5詳細設計（K1/K2/K3/K5）
+# HELIX-HARNESS 共通カーネル L5詳細設計（K1/K2/K3/K4/K5/G3）
 
 status: draft
 owner: HELIX-HARNESS
-parent_requirement: なし（要素別にL4 §2.1／§3.1／§9.2／§16.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
+parent_requirement: なし（要素別にL4 §2.1／§3.1／§9.2／§13.1／§16.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`
+base: main `08eb37bd8168f97566ac06d88424adaddb7815c1`
 
-本書は共通カーネルL4のK1「結果の多値型」、K2「identity・revision・digestによる鍵」、K3「既存operation authorityのread-only照合」、K5「正本記録とprojection」を詳述する。L4の型、判定、鍵、失敗分類、alias意味、authority境界を変えない。K4/K6〜K10は本書では`not_designed`であり、対応する現行L4/L9への参照だけを残す。実装、L6 algorithm、実行、物理writer enforcementは定義しない。対のL8もfixtureを設計するだけで未実行である。
+本書は共通カーネルL4のK1「結果の多値型」、K2「identity・revision・digestによる鍵」、K3「既存operation authorityのread-only照合」、K5「正本記録とprojection」、K4「義務の一級化」、G3「oracleの種別」を詳述する。L4の型、判定、鍵、失敗分類、alias意味、authority境界を変えない。K6〜K10は本書では`not_designed`であり、対応する現行L4/L9への参照だけを残す。実装、L6 algorithm、実行、物理writer enforcementは定義しない。対のL8もfixtureを設計するだけで未実行である。
 
 本設計が想定する単一HARNESS unitの配置候補は`helix/helix-harness/units/common-kernel/`（`enc(helix-harness)=helix-harness`、`enc(common-kernel)=common-kernel`）で、宣言正本は同じフォルダの`declaration.json`とする。identity候補は`common-kernel`、pack version候補は文字列`0.1.0`、maturity候補は`development`、owner候補は既存の`core`種別と`HELIX-HARNESS-CORE`である。これらはHARNESS-L2-010/AC-HARNESS-L3-010-01の既存欄へ置く技術候補であり、登録値、製品版、release unitへの収載、将来版を確定しない。宣言項目の形はrepository-layout RL-C2が定める既存項目だけを使い、schema-version/kindの封筒以外にfieldを足さない。
 
@@ -14,12 +14,14 @@ base: main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`
 
 | 入力 | 固定対象 | SHA-256 |
 |---|---|---|
-| Common Kernel L4 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`のcontent本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md`（K1/K2: §2/§3、とりわけ§2.1/2.5/2.6、§3.1–3.4.1。K3: §16全体。K5: §9全体と§15.4–15.6の境界接続） | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
+| Common Kernel L4 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`のcontent本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md`（K1/K2: §2/§3、とりわけ§2.1/2.5/2.6、§3.1–3.4.1。K3: §16全体。K4/G3: §13全体。K5: §9全体と§15.4–15.6の境界接続） | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
 | Repository Layout L4 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40` content pin：`docs/helix-harness/L4-basic-design/repository-layout.md`（§2–3、RL-C1–7、RL-D1–5、RL-T1–3、RL-K1–3、§6.1/§10） | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
-| Pair L9 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`のcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（K1/K2、IV-K3全27識別子、IV-K5-01–26、IV-K7/IV-LDG関連行） | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
+| Pair L9 | main `79f7c7186c4fa4bd7060b8991a26a1cf5676ab40`のcontent本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`（K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K7/IV-LDG関連行） | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
 | Stage 1 PO decision | `docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md`（§「対象revisionと本文SHA」「適用範囲」） | `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
 L3 direct parentはL4各§のcrosswalk列記に限る。K1の直接由来は§2.1にあるHARNESS AC-HARNESS-L3-022-02、030-02、032-02/03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2の直接由来は§3.1にあるHARNESS AC-HARNESS-L3-010-01/03、022-05、030-04、031-05、032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6のkey必須条件からK2 §3.1のHARNESS 030-04/032-04へ、またK2記録/保存からK5 §9.3へつなぐ箇所は契約境界の相互参照であり、K1/K2それぞれの直接crosswalk親へ加えない。K3の直接親はL4 §16.1が列記するSECURITY-AC-008-01、022-01/02/03、009-01、003-01、005-01、006-01に限る。AC-OS-014-04/-06はK7接続の境界参照でありK3親へ加えない。K5の直接由来はL4 §9.2のConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。§15 K7/台帳との接続は同じL4 §15.1の既存AC/PO判断を参照し、K5へ別の親要求を追加しない。別のL3要求を追加せず、各L4 crosswalk外へ親を拡張しない。HARNESS Stage 1の判断記録は対象本文revision `a77672513325aa9e79f3780af40455361b5d19a8`とL2-010/011/023に限るため、同判断を他機構または他親の承認根拠として流用しない。
+
+K4/G3の直接親はL4 §13.1のHARNESS AC-HARNESS-L3-014-01〜04、021-02、036-04、041-02、OS AC-OS-018-01/023-02、CONNECT CONNECT-AC-006-03、INFRASTRUCTURE INFRA-005-AC-04、HARNESS AC-HARNESS-L3-049-05/022-01/02、SECURITY SECURITY-AC-026-01/02に限る。K4からK5/K6への接続はboundary linkであり直接親を追加しない。K4/G3の固定入力は既存L4 §13全体とL9 IV-K4-01〜10/IV-G3-01〜05である。
 
 L4はK1/K2/K3/K5を8機構共通部品として配置するが、単一の親要求を置かない（L4 §1.3）。本書も`parent_requirement: なし`の境界を保ち、各API節・L8ケースのtrace列に直接のL4 contract IDとL3 ACを記す。K3は§6.1、K5は§6.2で既存K1/K2契約を使うが、別の親要求は作らない。
 
@@ -355,7 +357,7 @@ L5/L8で個別fixture設計へ展開するのはIV-K5-01–26である。IV-K7-0
 
 ### 6.3 今回の対象外
 
-K4およびK6〜K10は本対で`not_designed`であり、既存のCommon Kernel L4各契約節とPair L9の対応oracleへ戻す。K1/K2/K3/K5の設計は実装、実行、物理writer enforcement、approval/gateを意味しない。L3 semanticsの変更が必要な点は本書で解決せず、要求上流へ返す。
+K6〜K10は本対で`not_designed`であり、既存のCommon Kernel L4各契約節とPair L9の対応oracleへ戻す。K1/K2/K3/K4/K5/G3の設計は実装、実行、物理writer enforcement、approval/gateを意味しない。L3 semanticsの変更が必要な点は本書で解決せず、要求上流へ返す。
 
 ## 7. Unit配置・宣言・型番登録
 
@@ -368,7 +370,7 @@ K4およびK6〜K10は本対で`not_designed`であり、既存のCommon Kernel 
 | input / output contract | K1 `Observed<T>`/`Combined<T>`/`Admitted`または`Withheld`、K2 `SubjectRef`/`ResultKey`/`KeyOfResult`/lookup・record結果。operationの入力は各API signatureとL6関数表を参照 | 契約本文はdocsに置き、declarationはidentity+digestで参照する。 |
 | dependency type / identity / version | 外部実行接続 / `CPython` / 互換範囲候補`>=3.11`。標準ライブラリの`json`, `hashlib`, `dataclasses`, `enum`, `typing`, `unittest`はこのruntime候補に含め、個別依存にはしない。 | HARNESS-L2-010とAC-HARNESS-L3-010-01が既に持つ「外部実行接続」の依存欄へ置く技術候補。HELIX pack依存は空集合で、dependency kindやfieldを増やさない。 |
 | verification scope / oracle | K1/K2のL6全14関数、L7の個別UT/suffix展開/vector、L8 fixture、L9 IV-K1/IV-K2。 | L7の設計IDと本文をdeclarationへ複製しない。 |
-| inclusion / exclusion | 内容範囲候補はこのunit内のK1/K2 semantic suiteである。K3/K5は同じ共通カーネルのL5/L8詳細設計対象だが、このunit配置候補のsuite範囲へはまだ含めない。K4/K6〜K10と他機構の業務値型・reader/writerも含めない。 | これはunit内の機能範囲である。L3の収載/非収載欄はrelease-unit identity/versionごとの値であり、既存release-unit declarationから完全な候補集合を取得・照合するまで未確定とする。製品releaseへの収載を共通利用やpathから推定しない。 |
+| inclusion / exclusion | 内容範囲候補はこのunit内のK1/K2 semantic suiteである。K3/K4/K5/G3は同じ共通カーネルのL5/L8詳細設計対象だが、このunit配置候補のsuite範囲へはまだ含めない。K6〜K10と他機構の業務値型・reader/writerも含めない。 | これはunit内の機能範囲である。L3の収載/非収載欄はrelease-unit identity/versionごとの値であり、既存release-unit declarationから完全な候補集合を取得・照合するまで未確定とする。製品releaseへの収載を共通利用やpathから推定しない。 |
 
 宣言の具体的JSON field名と正規化規則はrepository-layout RL-C2および既存L3 declaration contractに従う。本表は既存項目への候補であり、別schemaを定義しない。HARNESS-L2-010とAC-HARNESS-L3-010-01は依存種別に外部実行接続を明記し、L6はCPython 3.11+をruntime/toolchain候補にしているため、これを既存欄の外部実行接続として表すのは意味変更ではなく値の具体化である。標準ライブラリのmodule名は独立依存として重ねない。`CPython`と互換範囲`>=3.11`はあくまで設計候補であり、実在する接続・登録済みruntime・実行環境を証明しない。宣言の固定時には既存依存欄へこの候補を明記し、実行側が宣言された範囲を満たすかを別途照合する。
 
@@ -388,3 +390,57 @@ K4およびK6〜K10は本対で`not_designed`であり、既存のCommon Kernel 
 登録対象の宣言bytesを先にpackの`declaration.json`へ固定し、そのbytesのSHA-256を計算する。次に既存K5 `model-number-ledger` の`LogDecl`・manifest・segment契約に従って、OSのmanifest writerがHARNESS owner segmentを`SegmentOpened`で登録した後、HARNESSのunit-owner segmentが`ModelNumberDeclared{kind:unit, identity:common-kernel, owner:HELIX-HARNESS-CORE}`と`VersionRegistered{identity, version, declaration:FixedRef, declaration_digest}`を追記する。`VersionRegistered.declaration`は宣言bytesを含む先行Git revisionと`declaration.json` pathへ固定し、event内へ宣言項目を複製しない。したがって宣言を含むGit commitを先に確定し、そのcommitをFixedRef revisionとしてから、台帳eventを後続commitへ記録する。宣言pathやfolderの存在だけでは登録済みにしない。`ledger_view`は登録行、FixedRefの実bytes、宣言digestと現在の評価revisionにおける宣言一致を確かめてからpackを利用可能とする（RL-C3–5、IV-LDG-01/02/04）。
 
 ただし、空のrepository storeで`LogDecl`を初めて固定し、manifest segment自身の最初の`SegmentOpened`をどう生成するかという初期bootstrap手順は、現K5 §9.3の既存append規則・IV-K5-22の既開設segment条件に定義がない。manifestがないと追記不可である一方、manifest初回生成の既存writer操作も記されていないため、AIが通常のappendだけで「初回登録eventを観測済み」とは宣言できない。ここは初回の物理bootstrapを局所保留とし、K1/K2の型・関数・fixture設計や既存event後の登録照合を止めない。新writer権限、bootstrap例外、承認gateは作らず、bootstrap出力は未観測として扱い、既存readerが実際に返した値型だけを保つ。実装前に現K5契約内の既存初期化経路を照合する。
+
+## 8. K4/G3 義務評価API
+
+この節はL4 §13.2–13.5の型、不変条件、6 APIを実装境界として対応づける。義務導出のbranch/template選択や義務内容の意味を新しく決めない。HARNESS AC-HARNESS-L3-014/041に由来する操作別ownerの導出規則・source atom選択が未実装の間、`derive`はそのownerが固定した`sources`と`rule`を受ける境界までを定義し、推測による義務補完をしない。
+
+### 8.1 旧sourceと保持・変更
+
+旧sourceとasset ID、対象行、bytes SHA-256はL4 §13.6を正本とする。以下の読取でsha256と資産明細台帳を照合し、asset ledgerの`consumer_refs`が空であることを確認した。旧規則や旧実装の実行・コピーは行わない。
+
+| 旧source | 保持する点 | K4/G3での再導出または変更 | 区分候補（L4 §13.6） |
+|---|---|---|---|
+| `LEGACY-ASSET-FEB591CA3369A4AF7729` `descent-obligation.md:20–24,66–69`, SHA-256 `8f6a5104bdb15790cd282414ef0e2b24976787097bce0245b5cff02ac3aaf984` | 上流から在るべき下流を作り、不在を見逃さない。義務のsatisfied/deferred/unmetを分ける | K1 result class、granularity、oracle種別、revisionをL4の明示型へ置く。deferの待ち先を期限付きgateに広げない。 | `semantic_rederive` |
+| `LEGACY-ASSET-E7AB06BE3282A7D4CBDA` `ci-deferred-obligation-recovery.md:17–35`, SHA-256 `077592139976a41d786141018c116e2c09393e41c8132adf0a259b86443083a9` | deferred義務を一つの回収先へつなぎ、missing/duplicate/cancelled/staleをsuccessで相殺しない | obligationのidentity継承とHandoffへ再導出する。旧CIの期限、scheduler、main/nightly/release targetを新規条件として持ち込まない（L4 §13.7/G11）。 | `semantic_rederive` |
+| `LEGACY-ASSET-E9998EF887555DBB2751` `ci-verification-plan.md:20–35`, SHA-256 `21e0b8a05b965d6c1ad27c55bf28ff2d711daa4112c96589da63075b02fc5841` | required obligation集合の一件欠落で拒否し、pendingを追跡する | 集合を呼出し側の任意リストにせず、K5 restoreした`ObligationSet`を唯一の集合とする。 | `semantic_rederive` |
+| `LEGACY-ASSET-C35E93F2D36777CD7462` `infinity-loop-platform-basic-design.md:351,383`, SHA-256 `2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357` | Required/NotApplicable/Deferredを明示し、N/Aに根拠・actor・再入を求める | `NotApplicable`の3根拠はK1-I5へ、`Deferred`は`Unobserved(pending_receipt)`へ対応し、後者を除外しない。 | `semantic_rederive` |
+| `LEGACY-ASSET-BC214D81DE9E77B8A804` `audit-report.md.txt:72–80` (F02), SHA-256 `dcf0d4e0dcc4db772afac465df10f2412134cd65dcd019a18cb99c9fd39be53f` | required setを空にして個別検査を消した実失敗 | K4-I1のempty-set `set_reason=Unknown(missing_input)`へ再導出する。 | 失敗史（区分なし） |
+| `LEGACY-ASSET-3B16BCFFAF353ADA813A` `helix-charter_v0.1.md:39`, SHA-256 `8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8`; `LEGACY-ASSET-EE5DBACC7F28F7D1F605` `pillar-functional-requirements.md:152`, SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544` | deterministic gateとAI判断を区別し、coverageだけで完了にしない | oracle種別を義務のfieldへ具体化し、coverage数からacceptanceを出さない。 | `semantic_rederive` |
+| `LEGACY-ASSET-D68CEADABCBECF13EFCB` `judgment-core.md:70–73`, SHA-256 `e0c0fc7c3c813ba59e434ea19dad3f54e90f2b7bd8e1b5151c572a06b3d3c1e8` | lint/testで機械的条件を判定し、LLMへ強制規則を代替させない | G3-I2を維持する。 | `semantic_rederive` |
+| `LEGACY-ASSET-98372FEE8A3AC8F9C299` `design-template-json-authority.md:74`, SHA-256 `3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830` | verification欄にrequired oracle classを持たせる | `Mechanical/LlmJudgment/HumanInterface`の値域と既存記録からのHumanDecision projectionはL4の新規案として明示し、承認済みschemaや既存実装と呼ばない。 | `semantic_rederive` |
+
+この対は旧の意図をそのまま採用せず、L4が既に定めたK1 class、K2 key、K5 append-only、K6 receiptの境界へ意味を再導出する。F02の空集合失敗は故障根拠であり、旧CI passやruntimeは根拠にしない。
+
+### 8.2 型と鍵
+
+`OracleKind`、`OracleRef`、`Disposition`、`Obligation`、`DerivationRule`、`ObligationSet`、`OperationDecl`、`HumanDecision`、`ObligationView`、`Handoff`はL4 §13.2の型をそのまま使う。ここで新しいdomain field、ID生成規則、oracle種別、status語彙を足さない。`ObligationSet`のK2 keyは`operation=derive_obligations`、`operation_version=rule.version`、`subject=target`、`inputs=derived_fromの全集合+derivation_rule ref`、`scope=呼出しscope`とし、K2 `key_of`の既存規則で正規化する。rule version更新は`Unobserved(not_run)`、同版のdigest差は`Unknown(conflict)`、source identity集合変更は`Unobserved(not_run)`、同identityのsource revision更新は旧result classに応じL4 K2-I2の`Stale`または`Unobserved(not_run,superseded)`へ従う。
+
+検証対象operationの基底keyはownerのcurrent `OperationDecl`だけから `{operation, operation_version=decl.version, subject=obligation.target, inputs=decl.inputs, scope=decl.scope}` として作る。receiptからinputs・scope・versionを逆算しない。義務・K6 receipt・K5 `ResultRecorded`は既存`FixedRef`/K2記録を使い、K4専用record型を追加しない。`obligation_id`はL4のsource.identity/target.identity/granularity/pair/operation由来で、revisionは含めない。
+
+`HumanDecision`はL4 G3-I4の既存authority sourceを読む`oracle.human.adapter`由来に限る。呼出し側がHumanDecisionやaccepted/rejectedを`evaluate`へ渡す新入力を作らない。K4-I4が`VerifierSet.required_for[o]`の一致対象を`Mechanical`/`LlmJudgment`に限る一方、G3-I4が`HumanInterface`のadapterを決定的検証器と呼ぶ接合について、L4にはそのadapterとK6 receipt/required_forとの読取経路の明記がない。本候補ではその経路を新設せず、L4の既存記述だけでは呼出し可能性を確定できない局所未決として保持する。 G3-I4の既存adapter/sourceがcurrent owner境界として特定できるfixtureだけを条件付きで実施可能とする。adapter/sourceの結合が未確定なら、そのfixtureは未実施のままにし、adapter不在を`HumanDecision`不在（L4 G3-I4(1)）へ読み替えず、K4/G3の他のAPI経路は続ける。これは新しい人間gateではなく、既存source接合が未定義である範囲の非肯定である。
+
+### 8.3 既存6 APIの詳細契約
+
+公開API名・引数・返却型はL4 §13.5と同一にする。下表はそれらの既存契約内の接続だけを具体化し、新API、入力引数、権限を追加しない。
+
+| API | 契約と境界 |
+|---|---|
+| `derive(sources, rule, target, scope) -> ResultRecorded | Rejected(reason)` | 義務配列をcallerから受け取らず、sourceと固定ruleからの導出だけを行う。source atomの選択・granularity/pair/operation割当は該当HARNESS L3 owner ruleが確定した範囲に限る。生成された`ObligationSet`はL4の`derive_obligations` K2 keyで一件の既存K5 `ResultRecorded`へ対応づける。由来L3が人の記録を求めないのに`HumanInterface`が導出されたらL4どおり`Rejected`。不足sourceから値や義務を推測しない。 |
+| `evaluate(set_key, decls: {operation -> OperationDecl}, verifier_set, input_heads) -> Observed<ObligationView>` | `input_heads`で指定されたK5固定prefixを`restore`し、完全性が`Value`の場合だけK2 `lookup`でObligationSetを解決する。非Valueならそのまま返す。`decls`は各operation ownerが宣言したcurrent値でありreceiptから作らない。`required_for[o]`とK4-I4のRequired Mechanical/LlmJudgment verifier集合を照合し、該当義務ごとにL4のbase keyを作ってK6 `required`相当のreceipt lookup/admissionを行い、結果のinner componentsとassuranceを保存する。K4-I4の集合不一致は該当成分`Unknown(conflict)`、`decls`に義務operationが無い場合は該当成分`Unknown(missing_input)`とする。G3-I4のHumanInterface adapter/sourceからK6 required_for・receiptへ至る接合はL4で未指定のため、本候補はその経路を定義せず、callerからreceiptやadmitted resultを注入しない。 |
+| `check_view(view, set_key) -> Observed<ObligationView>` | consumer側で保存viewとObligationSetを照合し、setの全obligation_idが成分にあり、未知IDの成分がないことをK4-I1どおり確認する。欠落はそのIDの`Unknown(missing_input)`、余分は`Unknown(unregistered)`。空setは既存K1-I4のwhole-set `set_reason`とし、IDを捏造しない。 |
+| `reverify_view(view, targets: {(obligation_id, verifier)}?) -> Observed<ObligationView>` | 指定された`(obligation_id, verifier)`だけを既に受理したK6 receiptへ接続し、K6 `reverify`の返却をassurance.reproductionへ反映する。未指定targetを再検証した扱いにしない。deterministic receiptは実施前`Unobserved(not_run)`、一致`Value`、不一致`Unknown(conflict)`。非deterministicは`Unknown(unsupported)`を維持する。issuer authenticityはL4 K6の`Unknown(unsupported)`を保持する。 |
+| `inherit(old_view, new_set_key, decls, verifier_set, input_heads) -> Observed<{view: ObligationView, handoff: Handoff}>` | new setをK5 fixed prefix/K2 lookupで解決し、新revisionの義務を新current OperationDeclとreceiptから評価する。旧Positiveを新revisionへ持ち越さない。旧viewで非PositiveのIDは、新setに無いものも含め`inherited`へ記録し、全未完IDをHandoffへ対応させる。 |
+| `receive(handoff, from_view) -> Observed<Handoff>` | `from_view`全体から旧Positive以外の義務集合と各recordを再計算し、Handoff.unfinishedの全ID集合、inheritedのkey_digest/result_digestを照合する。欠落は`Unknown(missing_input)`、余分は`Unknown(unregistered)`、異なる記録は`Unknown(conflict)`。Handoffの自己申告を真値として採用しない。 |
+
+L9 IV-G3-04(9)後半とIV-G3-05はconsumer経路が`Rejected`となる期待を記すが、L4 §13.5の6 API/返却型にはconsumer projection APIやその`Rejected`経路がない。L5は既存API/型を維持し、新API・新reasonを補わない。L8で該当出力経路の構造を照合しても、L9の`Rejected` oracleを満たしたことにはしない。このL4/L9接続の不一致はL9/L4 ownerへ返す項目として保持する。
+
+全APIで`NotApplicable`はreason/authority/reentry_trigger全fieldがある時だけ除外できる。`Deferred`はtarget_point/owner/discharge_conditionの三fieldがある時だけ`Unobserved(pending_receipt)`となり、合成から除外しない。無効なfield欠落はL4 K4-I3の`Unknown(invalid_disposition)`成分である。`Unknown`、`Unobserved`、`Stale`、negativeは成分ごとにK1 `combine`へ渡し、非肯定を省略しない。coverage件数は情報に留める。
+
+### 8.4 実装候補と限界
+
+既存K1/K2 L5 §5のCPython 3.11+標準library候補を、K4の型付きview、決定的ID集合比較、状態variantへの適用にも使える候補として維持する。K4はK5 restoreとK6 receipt境界を使うため、pure coreだけの実装だとは主張しない。K5 segment reader、K6 verifier execution、HARNESS 014/041 owner ruleの存在・登録・実装をこの言語選択から導かない。既存L4のauthority source、K6/K5 entrypoint、各ownerが未確定の箇所は未決のまま保つ。
+
+## K4/G3 API 範囲終端
+
+この見出しは、manifestが定めるK4/G3 API抽出範囲の終端であり、K4/G3契約項目はここより前に置く。
