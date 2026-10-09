@@ -45,12 +45,12 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/common-kernel.md",
-      "sha256": "2f9adfadcbf3f25dad81ae4a9c46a3676057c0efc002fcc15b167b892089f0cd",
+      "sha256": "ca951f6043b6f107f056417f8b8f2494263533eed507847f61c2419c5a39e02e",
       "note": "Common Kernel K1/K2/K3/K4/K5/G3 contract locator。固定構造corpusの入力bytesとして照合し、K4/G3のfixture登録・CI coverage、semantic approvalや実装成立を示さない。"
     },
     {
       "path": "docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md",
-      "sha256": "50a7a40ac764eca23143948100e73ae4ef9da8ccd267ee4715e7b21da44b6ccc",
+      "sha256": "94ab19b2ce07f53893941a9723d2234532164ad51046960b9203f67f97d1310d",
       "note": "Common Kernel K1/K2/K3/K4/K5/G3 verifier table/range。K1/K2/K3/K5 inventoryとraw-row参照に加え、K4/G3の73 fixture IDも構造inventoryとしてraw row/locator/edge/dispositionを照合する。登録・構造照合はfixture実行やCI coverageを示さない。"
     },
     {
