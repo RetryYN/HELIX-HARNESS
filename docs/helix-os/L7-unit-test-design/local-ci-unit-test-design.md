@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `7fbec380a4cf97e624bec494a80110922046206ce57a6160b32d938ffc34c2ea`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `c82d429917c891b5d4f82cd35331ff24ff081361868a551b6575494208f05f12`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -213,7 +213,7 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 
 ## 5. 3 partition identity oracle
 
-この節はL5 §8.1の製品補助27 identitiesと§8.2の機構helper 103 identitiesを、既存`F-LCI-10`の同じsuite内にある別partitionとして照合する。Core 586、製品補助27、helper103の全set/digestを別々に保持する。補助・helper IDは機構L7のformal UT IDではない。formal locator/status/owner-return refsはL5の別型で保持し、505 formal IDs・495 mappingへ足さない。helper familyはK4/G3 14、SECURITY 10、CONNECT 4、K7/G5 5、K9 17、K10 18、K8 29、INFRA resource 6で閉じ、directory scanで増やさない。
+この節はL5 §8.1の製品補助27 identitiesと§8.2の機構helper 109設計候補を、既存`F-LCI-10`の同じsuite内にある別partitionとして照合する。Core 586、製品補助27、helper109候補の全set/digestを別々に保持し、current runtimeのhelper103/716とは分離する。補助・helper IDは機構L7のformal UT IDではない。formal locator/status/owner-return refsはL5の別型で保持し、505 formal IDs・495 mappingへ足さない。helper familyはK4/G3 14、SECURITY 10、CONNECT 4、K7/G5 5、K9 17、K10 18、K8 29、INFRA resource 6、LABO aggregate 2、HARNESS revision 4で閉じ、合計109とする。directory scanで増やさない。
 
 | Unit test ID | 正常前提 | 一点の変異／観測 | 期待 |
 |---|---|---|---|
@@ -224,25 +224,25 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 | `UT-LCI-137` | Coreとsupplemental partitionは別ID namespaceで一意 | supplemental rowの一件だけの`unittest_identity`をCore 586 identities中の一つと一致させる | `Unknown(conflict)`、partition境界を保ち、同一identityを二回実行・片方だけ採用しない |
 | `UT-LCI-138` | 機構formal locator rowsはsource L7 bytesの原row/status/owner-return locatorへ一致 | BRAIN formal locator一行の元status cell refだけを別L7 rowへ差し替える | `Unknown(conflict)`、元status・owner returnを再解釈せず、supplemental identityへ写さない |
 | `UT-LCI-139` | supplemental identityはsource/test refs・module alias・callable qualnameで完全に固定され、formal ID fieldを持たない | `SUP-HARNESS-001` rowだけに`formal_l7_id` fieldを追加する | `Rejected(invalid_input)`、formal bindingを推測・生成しない |
-| `UT-LCI-140` | helper16 implementation/test refsと14 unique L6/L7 document refsはtarget tree上で固定SHAと一致 | `test_resource_projection.py`のhelper refだけをsource inventoryから欠落させる | 既存F-LCI-10 pre-spawn `Unknown(missing_input)`。部分subsetの実行・complete artifact・positive receiptなし |
+| `UT-LCI-140` | helper20 implementation/test refsと14 unique L6/L7 document refsはtarget tree上で固定SHAと一致 | `test_resource_projection.py`のhelper refだけをsource inventoryから欠落させる | 既存F-LCI-10 pre-spawn `Unknown(missing_input)`。部分subsetの実行・complete artifact・positive receiptなし |
 | `UT-LCI-141` | owner return locatorはsource L7に明記された場合だけexact cell refで保持し、非記載は`NotDeclaredBySource` | 一件のdeclared owner return cell refだけを別L7 rowへ差し替える | `Unknown(conflict)`、owner returnの意味を推定せず、実行ID/正式mappingへ昇格しない |
 | `UT-LCI-142` | UT-LCI-133の完全なsource/test inventory。CONNECTの4件は固定supplemental setに含まれない | 既存CONNECT module内に未宣言class.method identityを一件だけ追加する | `Unknown(conflict)`、未宣言methodをscan/登録せず、27件のsupplemental setを維持する |
 | `UT-LCI-143` | UT-LCI-133の完全なsource/test inventory。Common Kernel K4/G3の14件は固定supplemental setに含まれない | 既存K4/G3 module内に未宣言class.method identityを一件だけ追加する | `Unknown(conflict)`、未宣言methodをscan/登録せず、27件のsupplemental setを維持する |
 
-| `UT-LCI-144` | Core586、製品補助27、helper103の固定identity setsと各digest、33 code/test refsと14 unique L6/L7 document refs、計47 refsを固定する | 変異なし | 三partition別count/digestとdisjoint union 716を照合。formal 505/495/10とproduct27 digestは不変。これは設計集合照合であり実行成功ではない |
-| `UT-LCI-145` | 固定expected set/digestを保持し、AST validatorへ渡す合成target bytesがhelper `SUP-CK-K9-001` callableを含む | 合成target bytesから当該callableだけを除く（full source pin付き経路のsource bytesは変更しない） | AST validator関数境界で`Unknown(missing_input)`。固定metadata自体の欠落/不正とfull source bytesのpin不一致は別境界の`Unknown(conflict)`であり、subset execution/artifact/positive receiptは作らない |
+| `UT-LCI-144` | Core586、製品補助27、helper109の固定identity setsと各digest、37 code/test refsと14 unique L6/L7 document refs、計51 refsを固定する | 変異なし | 三partition別count/digestとdisjoint union 722を照合。formal 505/495/10とproduct27 digestは不変。これは設計集合照合であり実行成功ではない |
+| `UT-LCI-145` | 固定expected set/digestを保ち、AST validatorへ渡す合成target bytesにhelper `SUP-CK-K9-001` callableがある | 合成target bytesから当該callableだけを除く（full source pin付きtarget bytesは変えない） | AST validator関数境界で`Unknown(missing_input)`。固定metadata不正とfull source SHA不一致は別境界の`Unknown(conflict)`。subset execution/artifact/positive receiptなし |
 | `UT-LCI-146` | helper IDsは一意でproduct/Coreともdisjoint | helper `SUP-CK-K10-001` rowだけを重複させる | `Unknown(conflict)`、deduplicateしない |
 | `UT-LCI-147` | 三partition identity setsは相互にdisjoint | helper `unittest_identity`一件だけをCore identityと一致させる | `Unknown(conflict)`、片側を選ばず実行しない |
-| `UT-LCI-148` | helper tableは103の固定alias/callableのみを列挙する。17固定moduleのASTには、SECURITY alias `l7_sup_security_test_projection`のnon-test `_CaseRef`だけを許可し、base/keywordなし・`@dataclass(frozen=True)`・test名methodなしの形に限る | 各一点変異を独立に検査する: BRAIN aliasへ未宣言の空classを追加、同aliasへ`BrainProjectionTests`継承classを追加、SECURITY `_CaseRef`へ`unittest.TestCase` baseを追加、`metaclass` keywordを追加、`test_*` methodを追加 | すべて`Unknown(conflict)`をtest module import/spawn前に返す。`_CaseRef` allowlistはこの固定alias/class/形だけで、未宣言classや継承からidentityを自動追加しない |
+| `UT-LCI-148` | 109 helper identitiesを含む固定19 alias/pathのAST class inventoryは閉じている。expected test classは`unittest.TestCase`を直接継承し、non-test classは`l7_sup_security_test_projection._CaseRef`一つだけ（base/keywordなし、`@dataclass(frozen=True)`、`test*` methodなし） | 各一点変異を独立に照合する: 固定moduleへ未宣言の空classを追加、未宣言のTestCase継承classを追加、`_CaseRef`へTestCase baseを追加、`metaclass` keywordを追加、`test_*` methodを追加。また、基準sourceから`_CaseRef`だけを欠落させる | 前5変異は`Unknown(conflict)`、欠落だけは`Unknown(missing_input)`。全てimport/spawn前のAST preflightで返し、scanや継承からidentityを増やさない。formal mapping/fixture passを生成しない |
 | `UT-LCI-149` | helper source/test refsのbytesはL5 §8.2 SHAと一致する | `_private_resource_projection.py` bytesだけを別内容へ置換する | `Unknown(conflict)`、suite spawn前に停止 |
-| `UT-LCI-150` | helperの8 unique L6/L7 pathsは全てtarget treeから読み込める | SECURITY L7 refだけをrequired helper refsから欠落させる | `Unknown(missing_input)`、helper subset実行なし |
+| `UT-LCI-150` | helperの12 unique L6/L7 pathsは全てtarget treeから読み込める | SECURITY L7 refだけをrequired helper refsから欠落させる | `Unknown(missing_input)`、helper subset実行なし |
 | `UT-LCI-151` | `MechanismHelperIdentity`の閉じたfield setにformal ID fieldはない | helper identity一行に`formal_l7_id`だけを追加する | `Rejected(invalid_input)`、formal mappingを生成しない |
-| `UT-LCI-152` | discovered/executed helper IDsは103件・digest一致し、5 outcome groupsと整合する | helper executed IDsから一件だけを落とす | `Unknown(conflict)`のnoncomplete diagnostic。complete summary/positive receiptなし |
-| `UT-LCI-153` | 716 identitiesの5-family maximum body/capture/frameは134,755/134,756/180,450 bytes、候補boundは134,755/134,756/180,580 | runner bodyだけを134,756 bytesへ1 byte超過させる | `Unknown(conflict)`、切詰めからcomplete artifact/receiptを作らない |
-| `UT-LCI-154` | 正常baselineでは各module loadの前後に既存sentinel entryとentry不在の両方を検査し、LABO/SECURITY固定sourceを一時bindingしてtest globalsへ束縛する。module load/test executionの成功・例外を問わず`finally`で元entryを同一object（元々不在なら不在）へ戻し、無関係なmodule entryを変えない | SECURITY test loadだけLABOの`projection` entryを残して一時置換を省く | SECURITY import errorをF-LCI-10の起動後suite失敗として保持し、`CheckExecution.state=fail`、完全なsuite artifact/positive receiptなし。例外終了後も一時binding前のentryだけを復元し、無関係なmodule entryは不変。機構formal ID/mappingは作らない |
+| `UT-LCI-152` | discovered/executed helper IDsは109件・digest一致し、5 outcome groupsと整合する | helper executed IDsから一件だけを落とす | `Unknown(conflict)`のnoncomplete diagnostic。complete summary/positive receiptなし |
+| `UT-LCI-153` | 722 identitiesの5-family maximum body/capture/frameは137,401/137,402/183,978 bytes、候補boundは137,401/137,402/184,108 | runner bodyだけを137,402 bytesへ1 byte超過させる | `Unknown(conflict)`、切詰めからcomplete artifact/receiptを作らない |
+| `UT-LCI-154` | 正常baselineでは各module loadの前後に既存sentinel entryとentry不在の両方を検査し、LABO既存補助・LABO aggregate・SECURITYの3つの`projection` sourceを各test load直前に個別bindingしてtest globalsへ束縛する。追加2 module aliases（LABO aggregate、HARNESS revision）と4追加source/test refsを固定mappingで照合する。module load/test executionの成功・例外を問わず`finally`で元entryを同一object（元々不在なら不在）へ戻し、無関係なmodule entryを変えない | SECURITY test loadだけLABOの`projection` entryを残して一時置換を省く | SECURITY import errorをF-LCI-10の起動後suite失敗として保持し、`CheckExecution.state=fail`、完全なsuite artifact/positive receiptなし。例外終了後も一時binding前のentryだけを復元し、無関係なmodule entryは不変。機構formal ID/mappingは作らない |
 
 
-これらのoracleは三partitionの固定inventoryとrunner resultのidentity境界だけを検査し、機構の正式L7 fixture/pass・L8/L9 oracle・製品登録/owner接続を生成しない。`UT-LCI-144`の716は設計上の期待集合であり、このL7設計書自体は実行結果ではない。レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`のruntimeで照合された613（Core586＋製品補助27）は履歴であり、そのidentity集合は`eeb6ae7`から不変である。現在のsource_l7_runner.pyはCore586、製品補助27、helper103の固定716 inventoryを照合・実行する。L5 §8.1の27行ごとのmethod assertion内容は各製品source/test bytesに属し、本書で再分類しない。trusted側AST preflightは固定17 alias/path（Core 5、製品補助4、機構helper8）内のclass/method identityを照合する。classは閉じたinventoryとし、expected test classは直接`unittest.TestCase`を継承し、non-test classは`UT-LCI-148`記載の固定`_CaseRef`のみ許可する。許可外class、base、metaclass keyword、test methodはimport/spawn前に拒否する。test moduleのimport/discoveryはsandbox内runnerの責務である。runtime実装、L7 fixture設計、個別runの結果は別々に扱い、run結果はexact target receiptでのみ確認する。
+これらのoracleは三partitionの固定inventoryとrunner resultのidentity境界だけを検査し、機構の正式L7 fixture/pass・L8/L9 oracle・製品登録/owner接続を生成しない。`UT-LCI-144`の722は設計上の候補集合であり、このL7設計書自体は実行結果ではない。レビュー対象base `5bc41c69904e33e90b3c3036643972eaeab7ee03`のruntimeで照合された613（Core586＋製品補助27）は履歴であり、そのidentity集合は`eeb6ae7`から不変である。現在のsource_l7_runner.pyはCore586、製品補助27、helper103の固定716 inventoryを照合・実行する。L5 §8.2のhelper109/722は設計候補であり、同runtimeの実行集合ではない。L5 §8.1の27行ごとのmethod assertion内容は各製品source/test bytesに属し、本書で再分類しない。trusted側AST preflightは設計候補の固定19 alias/path（Core 5、製品補助4、機構helper10）からclass/method identityを照合し、test moduleをimportしない。実test moduleのimport/discoveryはsandbox内runnerの責務である。runtime実装、L7 fixture設計、個別runの結果は別々に扱い、run結果はexact target receiptでのみ確認する。
 
 既存oracleの負例内訳: UT-LCI-105/106はerror、expected failure、unexpected successも個別に変異させ、各該当ID/countを保持したfailを確かめる。UT-LCI-107は5 outcomeが空の非zero exit、bool count、余分なfield、count/ID不一致、過大frame、不正JSON、未開始結果を各々拒む。UT-LCI-103はplaceholder未知値/余分なsuffixを個別に拒む。UT-LCI-111/113は作成前payload検証の境界であり、保存後のartifactをproviderが取得・再検証する意味ではない。同oracleでartifact root/file mode不正、symlink ancestor、repo内path、digest名collision、atomic link失敗も個別に拒み、XDG未設定時はuid別固定rootからexact bytesを再読できることを確認する。UT-LCI-101/102にはmissing_inputとconflict双方で先行5件のpartial diagnosticが残りsuite行/receiptが無いことを含める。
 

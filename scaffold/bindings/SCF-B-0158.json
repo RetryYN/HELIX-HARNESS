@@ -6,36 +6,36 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS local CI運転契約",
   "state": "active",
-  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernel K1/K2/K3/K5/K6 verifier inventoryとBRAIN/LABO/HARNESS/INFRAの固定source-only補助partition、共有raw-row resolver、suite traceを含む現在のsource/definition/reference/edge/旧pin inventoryを同期対象とし、旧10文書manifestのsuccessを12文書構造完全性へ読み替えない。Common Kernel K4/G3 L5/L8本文もsource inputとしてpinし、その73 fixture IDは構造inventoryへ登録してraw row/locator/edge/dispositionの照合対象とする。Common Kernel K6 L5/L8本文もsource inputとしてpinする。K6の55 L8 fixture IDsはDesignScopeManifestへ未登録なので構造照合・L8 fixture実行を主張しない。一方、source-only K1/K2/K3/K5/K6 suiteは505 formal IDsを固定し、495 callable mapping（441 primary/52 stub/2 partial）と10 K6 not-exercised dispositionへ分ける。586 discovery identitiesを束縛し、K6は45 formal mappings（43 primary/2 partial callable）、10別disposition、7非formal regression identitiesである。K1/K2既存165 mappings（139 primary/26 stub）と199 identitiesを保持する。K5内訳は41 public API、24 helper、2 K2 lookupのprimaryと24 stubであり、local behavior 65とK2依存2を区別する。Core implementation/test refs 9件と4機構のsource/test refs 8件をそれぞれ固定inventoryのSHAで照合し、L6/L7文書はtargetから実読する。製品補助27 identitiesと機構helper103 identitiesはCore 586 identitiesから独立した二partitionとして保持し、固定composite inventory 716件として検査する。formal mapping、status/owner trace、L8/L9 oracleを補助testへ結ばない。同期の成立は単体検証とexact target CI証拠で確認し、Bindingから実装・合格を生成しない。",
+  "reason": "#2716のCI解禁を受けた開発repository専用driverはformal OS unitへ未移管であり、L4/L5 contractとL6/L7 function/test pairの作業用運転をscaffold内に限定して登録する。登録状態は実装・実行・合格・authorityを生成しない。固定12文書corpus、Common Kernel K1/K2/K3/K5/K6 verifier inventoryとBRAIN/LABO/HARNESS/INFRAの固定source-only補助partition、共有raw-row resolver、suite traceを含む現在のsource/definition/reference/edge/旧pin inventoryを同期対象とし、旧10文書manifestのsuccessを12文書構造完全性へ読み替えない。Common Kernel K4/G3 L5/L8本文もsource inputとしてpinし、その73 fixture IDは構造inventoryへ登録してraw row/locator/edge/dispositionの照合対象とする。Common Kernel K6 L5/L8本文もsource inputとしてpinする。K6の55 L8 fixture IDsはDesignScopeManifestへ未登録なので構造照合・L8 fixture実行を主張しない。一方、source-only K1/K2/K3/K5/K6 suiteは505 formal IDsを固定し、495 callable mapping（441 primary/52 stub/2 partial）と10 K6 not-exercised dispositionへ分ける。586 discovery identitiesを束縛し、K6は45 formal mappings（43 primary/2 partial callable）、10別disposition、7非formal regression identitiesである。K1/K2既存165 mappings（139 primary/26 stub）と199 identitiesを保持する。K5内訳は41 public API、24 helper、2 K2 lookupのprimaryと24 stubであり、local behavior 65とK2依存2を区別する。Core implementation/test refs 9件と4機構のsource/test refs 8件をそれぞれ固定inventoryのSHAで照合し、L6/L7文書はtargetから実読する。current runtimeは製品補助27 identitiesと機構helper103 identitiesをCore 586 identitiesから独立した二partitionとして保持し、固定composite inventory 716件を対象とする。L5 §8.2のsource-only設計候補は機構helper109 identities、20 code/test refs、12 helper L6/L7 paths、19 aliasesであり、candidate unionは722 identitiesだがcurrent runtimeへ未反映である。formal mapping、status/owner trace、L8/L9 oracleを補助testへ結ばない。同期の成立は単体検証とexact target CI証拠で確認し、Bindingから実装・合格を生成しない。",
   "upstream": [
     {
       "path": "docs/helix-os/L4-basic-design/local-ci.md",
-      "sha256": "60e866a347dea982a7764bf6c6f21f311f13e0986965d7c6cfaf1b0b02082fc0",
+      "sha256": "825594d2dd2a00ec3739dfe82428fee75f5aa95e949815f01c7405270f94e560",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "cf38e8c2e9b01a69adc21380b764a3d489138ef8928c4e0f99b6bfddaf021435",
+      "sha256": "f33f9852d8af835c77f5a0eb012927bb5a0df4c78bb7dd4fda65dbd62251afee",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "d21100e4b8583f003917cf2d9bb9110505bf26fcecbbb29b5b3b64cb14fc6ae6",
+      "sha256": "91cd83856d5951af5a5a967805fe359ef4bd3d52286420a00339f560cc56d784",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "f9c2b6ef65b607c30a5deedc1c99ff8abe4f8aec1d93b27762297a326ecb1f6b",
+      "sha256": "1532eec96bd2ca9ccbb69e52481747f3b26c49055d096a9d7af65aa0f52a1731",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "7fbec380a4cf97e624bec494a80110922046206ce57a6160b32d938ffc34c2ea",
+      "sha256": "c82d429917c891b5d4f82cd35331ff24ff081361868a551b6575494208f05f12",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "2a2c51d8338d5526a19cc3badace68c955099220d9cc7a4a365d4ede7b08291a",
+      "sha256": "fbb7d0f9b1dd7073e2f390fa884aaef526cb428fcc19e48132c5baff5da92e36",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -357,6 +357,26 @@
       "path": "helix/helix-infrastructure/units/infrastructure-stage1/tests/test_resource_projection.py",
       "sha256": "c57ef11a6c32d226880d7fc9e44de553cdd38410cacd3fd19812000deeebc768",
       "note": "Pinned helper test bytes for the design-only candidate partition; no execution claim."
+    },
+    {
+      "path": "helix/helix-labo/units/stage1-labo/src/_private_aggregate_assembly.py",
+      "sha256": "685b867b90844827e6a1639c29206cadfa4d086352698b5a86ab32aafb586d49",
+      "note": "Fixed target-tree implementation ref for the source-only mechanism-helper design candidate; pin is not execution, formal coverage, or acceptance evidence."
+    },
+    {
+      "path": "helix/helix-labo/units/stage1-labo/tests/test_aggregate_assembly.py",
+      "sha256": "1b4d54aaea45fb80799495fdaab5f00e3e5a986fb4f7817ae533d3a6bdc850a1",
+      "note": "Fixed target-tree test ref for the source-only mechanism-helper design candidate; pin is not execution, formal coverage, or acceptance evidence."
+    },
+    {
+      "path": "helix/helix-harness/units/harness-stage1/src/pack_revision_projection.py",
+      "sha256": "1be6f0a58d82ebffd8ded44ab936fbefd48a65994eaba7f1a85e91ec3c430e63",
+      "note": "Fixed target-tree implementation ref for the source-only mechanism-helper design candidate; pin is not execution, formal coverage, or acceptance evidence."
+    },
+    {
+      "path": "helix/helix-harness/units/harness-stage1/tests/test_pack_revision_projection.py",
+      "sha256": "8c9db18475ed2c7886c535bbee6684cc29fa321ab1ded8bb6b6d6d0c1f631363",
+      "note": "Fixed target-tree test ref for the source-only mechanism-helper design candidate; pin is not execution, formal coverage, or acceptance evidence."
     }
   ],
   "role": "開発repository向けlocal CI driverを固定target/snapshot上で運転し、local結果と選択済みmerge-unit照合の証拠を用意する。要求・承認・merge authorityは持たない。",
