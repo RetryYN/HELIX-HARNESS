@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-      "sha256": "f2995068051d92d0f0b399503668bf2a7db2a667ac4798fdd370d3ba4ad56692",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
       "note": "HELIXBRAIN-L2-003のPattern descriptor、L2-007／025の昇格条件、L2-026／027の外部知識経路（2.0）。採否なし"
     },
     {
