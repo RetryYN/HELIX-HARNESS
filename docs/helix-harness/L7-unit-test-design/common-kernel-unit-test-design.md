@@ -1,28 +1,28 @@
-# HELIX-HARNESS 共通カーネル L7単体試験設計（K1/K2/K3/K5）
+# HELIX-HARNESS 共通カーネル L7単体試験設計（K1/K2/K3/K5/K6）
 
 status: draft
 owner: HELIX-HARNESS
-scope: K1/K2/K3/K5
+scope: K1/K2/K3/K5/K6
 paired_l5: ../L5-detail-design/common-kernel.md
 paired_l6: ../L6-function-design/common-kernel.md
 paired_l8: ../L8-detail-verification/common-kernel-detail-verification.md
-base: `main` at `7715e7025212ea1a778ab9711e2f43241f7999c7`
+base: `main` at `fcf00128a7503317fa1c779c38cc8df3877b4952`
 
-本書はL6のK1/K2/K3/K5 公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。K3の194 formal fixtureは専用候補実装と単体実行を持ち、formal mapping外の17回帰methodを別IDで持つが、owner接続、L9統合検証、製品動作の合格を主張しない（実行記録は§9.2）。他のcase群の実装・実行はこの状態記録から推定しない。K4/K6–K10は`not_designed`でfixtureを追加しない。
+本書はL6のK1/K2/K3/K5/K6公開APIと内部関数を単体fixtureへ対応づける設計である。現行L4/L9の意味、失敗分類、fixture期待を変更せず、L5/L8とのtraceを追加する。K3の194 formal fixtureは専用候補実装と単体実行を持ち、formal mapping外の17回帰methodを別IDで持つが、owner接続、L9統合検証、製品動作の合格を主張しない（実行記録は§9.2）。他のcase群の実装・実行はこの状態記録から推定しない。K4/K7–K10は`not_designed`でfixtureを追加しない。K6は本書§10の55個別設計fixtureへ追補するが、実装・実行・CI登録は未了である。
 
 ## 1. 固定入力とtrace規則
 
 | 入力 | 対象revision / SHA |
 |---|---|
-| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (本PRのcontent HEAD) |
+| Common Kernel L4 | `docs/helix-harness/L4-basic-design/common-kernel.md`; content SHA-256 `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` (`fcf00128a7503317fa1c779c38cc8df3877b4952`) |
 | Repository Layout L4 | `docs/helix-harness/L4-basic-design/repository-layout.md`; content SHA-256 `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` (main `33bbe8cd5f080be9e400e9259db22645bc620eda`) |
-| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `ff24f1c74d17e3e5ed4aaedfc8163018891df6785de59e2de4fac3c33edf8ef4` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `dc7e83e2a5ee8ca6665a67c910474139007721c596c7284f46e7f0f0a7a783d9`（本作業候補、L7→L6一方向。L6にL7 SHAは置かない） |
-| L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; PR #2751 merged content commit `8d671541472f27a2d4d7b47992b6f428c0835eed`, content SHA-256 `3927337491a79f600d02a1b153628f556d267c954b79f4be90cc7c0743dec9ee` (main merge `dc803dacfbbe56f6daf7724832b1bfa238ff2087`) |
-| L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (本PRのcontent HEAD) |
+| L5詳細設計 | `docs/helix-harness/L5-detail-design/common-kernel.md`; main content SHA-256 `3f3867df4e04927fbf05615984654f2994dd76ac71fed0ee420d5edce36a2c69` (`fcf00128a7503317fa1c779c38cc8df3877b4952`) |
+| L6関数設計草稿 | `docs/helix-harness/L6-function-design/common-kernel.md`; content SHA-256 `9a54bd396a19ab76d669406fd91b2da745b05acaf92bce48096ad63867ad7361`（本作業候補、L7→L6一方向。L6にL7 SHAは置かない） |
+| L8詳細検証 | `docs/helix-harness/L8-detail-verification/common-kernel-detail-verification.md`; main content SHA-256 `bdac36e29b8cd0a5cec34cedce6d419f5d5ecc8daea70cba851067bcc308dfac` (`fcf00128a7503317fa1c779c38cc8df3877b4952`) |
+| L9統合oracle | `docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md`; content SHA-256 `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` (`fcf00128a7503317fa1c779c38cc8df3877b4952`) |
 | HARNESS Stage 1 PO判断 | 承認済みcontent revision `a77672513325aa9e79f3780af40455361b5d19a8`; 判断記録SHA `efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e` |
 
-L4/L9は本PRのcontent本文、L5/L8は固定したPR #2751候補commitのcontent SHA、L6はこのpair内の上流content SHAを参照する。PR #2751はmainへ統合済みであり、これらのpinはreview対象content本文を固定する。mergeから上流の承認を生成しない。L9 IV-K1-01–13、IV-K2-01–21dが期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
+L4/L9、K6のL5/L8はmain `fcf00128a7503317fa1c779c38cc8df3877b4952`の固定本文を参照し、K3/K5のL5/L8 fixture traceはPR #2751の歴史的content SHAを保持する。K6のL6/L7は本pair候補本文を一方向に固定する。PR mergeから上流の承認を生成しない。L9 IV-K1-01–13、IV-K2-01–21d、IV-K6-01–15が各節の期待値の根拠である。L7 UTはpure kernel境界とcodec vectorを検査し、K5の物理append/order recoveryやK6のsource実読をstub成功で代用しない。K5の順序付きsequence/K6 readerはstub境界で接続し、L9 K6 fixtureの期待値は別途固定する。K1 polarity mapping不在はL4/L5で定めるcaller準備境界をfixture化し、Observed classを増やさない。
 
 各fixture表の関数ID列で、K1表の`FN-xx`は`CK-K1-FN-xx`、K2表およびcodec表の`FN-xx`は`CK-K2-FN-xx`を指す。明示した`K2 FN-xx`も`CK-K2-FN-xx`である。UT IDの波括弧・suffixは各行の展開規則で個別fixtureへ展開し、複数変異を一件へまとめない。
 
@@ -284,7 +284,7 @@ K5各fixtureはL6 §7.1の旧asset/path/line/full SHA一覧を起点とし、eve
 - `ledger_view`の既存IV-LDG-01/02/04接続はL6 `CK-K5-FN-20`に記録した。K5 L8の91 fixtureには固有fixtureがないため、この範囲のL7対応は未被覆で新規IDを作らない。
 - K5 recordの順序はsequenceのpreconditionであり、物理writer実装は設計しない。K6 source readはstub境界のままとし、production verifier/readは設計しない。
 - K3以外のfixture群の実装・実行状態は、このK3検証から主張しない。L9の実合格、K5 append保証、K6 raw source観測、runtime/toolchain間の相互運用性を主張しない。
-- K3は§9で固定L8 oracleを個別fixture IDへtraceする。L5/L8はPR #2751候補の固定commit/content SHAを参照し、main統合済みの固定設計本文として扱う。K4/K6–K10は`not_designed`のままであり、現行L4/L9の節はL6 §6を通じて参照する。
+- K3は§9で固定L8 oracleを個別fixture IDへtraceする。L5/L8はPR #2751候補の固定commit/content SHAを参照し、main統合済みの固定設計本文として扱う。K4/K7–K10は`not_designed`のままであり、K6 fixtureは本書§10に限る設計追補である。
 - L7全体は設計草稿であり、K3以外のfixture実行を主張しない。K3 194個別fixtureとformal mapping外の17回帰methodの候補実装・実行範囲は§9.2に限る。`invalid_digest`/`duplicate_identity`はK2 `KeyOfResult`だけの境界結果で、K1 `ApiBoundaryResult`や`UnknownReason`への追加ではない。
 
 
@@ -556,3 +556,67 @@ L8に固定済みの194 caseをL7で一つずつ追跡する。各`CK-K3-UT-NNN`
 テストはowner mapping/context/source、K6 assuranceをprivate module境界の合成stubで与える。ownerの実読、K5/K6/K7実装、L9 oracle、CI登録、製品動作、外部作用を証明しない。実行時の変更理由・対象コード・境界はL6 §12.4に記録し、test fixtureから新しい要求や受入gateを作らない。
 
 K3単体fixtureは純粋な関数境界と固定入力を対象とする。K5 prefix/read/restore、K6 binding/raw byte実読、owner source adapter、K7 apply/recoveryはstubまたはconsumer handoffであり、この単体fixtureから製品動作、外部作用、実読、合格を主張しない。L4 §16.2で列挙したoperation closed union外の入力は既存`invalid_query`で両API入口から返し、owner portを呼ばない。11個の列挙値は同じ入口検査で拒否されないことを個別subTestで確認する。これはruntimeのtyped-query境界であり、汎用shape validatorを追加しない。K2 `invalid_digest`/`duplicate_identity`はK2専用拒否であり、K3のkey構成境界ではL4 §16.4と固定L5 §6.1.3どおり`PermissionCheckDiagnostic(reason: missing_key)`へ写す。K1 Unknownへ変換せず、K1でcombine/K2へrecordしない。正しいnamespaceとalias構成を通る正常K3 keyではduplicate identityを作らない。`allow`と非空`constraints`の同時存在はL4/L5にmappingがなく、回帰fixtureは既存`Unknown(unsupported)`を保持して肯定を防ぐ。新しい拒否、reason、authority policyは加えず、domain mappingの未決は局所に残す。K3結果の保存ownerがL4で指定されない範囲では保存writerを作らず、保存callerの指定を待つ。旧source crosswalkと保持/変更理由はL6 §12.3に記録した。
+
+## 10. K6個別fixture
+
+本節はL8 §8.1の55 fixture IDを一行ずつ単体fixtureへ対応づける設計である。`CK-K6-UT-001`から`CK-K6-UT-055`は表の行順に一意対応し、L8 ID、L9 oracle、L6 FN、基準/単一変異、期待観測をfixture単位で保持する。L8はL5 parentおよびoracle期待の正本であり、この表はそのcaseを実行済みと主張しない。test runner候補は既存§2のPython 3.11+標準library `unittest`であり、共通K1/K2/K3/K5と同じ標準library候補、外部package不要という技術上の一貫性による。
+
+| UT ID | L8 fixture / L9 oracle | L6 function | 基準と単一変異（L8 §8.1から） | 期待出力・assertion（同行のL8 oracle） | 被覆境界 |
+|---|---|---|---|---|---|
+| `CK-K6-UT-001` | `L8-K6-01-BASE` / IV-K6-01 | CK-K6-FN-02/FN-03 | query key・record key・body keyが一致 | lookup `Value`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-002` | `L8-K6-01-SUBJECT-REV` / IV-K6-01 | CK-K6-FN-02/FN-03 | 対象identityを維持しsubject revisionのみ更新。旧recordはValue | lookup `Stale`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-003` | `L8-K6-01-SUBJECT-DIGEST` / IV-K6-01 | CK-K6-FN-02/FN-03 | subject revision固定でdigestだけ更新 | lookup `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-004` | `L8-K6-01-SET-REV` / IV-K6-01 | CK-K6-FN-02/FN-03 | VerifierSet identity維持でset revisionのみ更新 | lookup `Stale`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-005` | `L8-K6-01-SET-DIGEST` / IV-K6-01 | CK-K6-FN-02/FN-03 | set revision固定でset bytes/digestだけ更新 | lookup `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-006` | `L8-K6-01-VERIFIER-DIGEST` / IV-K6-01 | CK-K6-FN-02/FN-03 | verifier version固定でcode/config digestだけ更新 | lookup `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-007` | `L8-K6-01-VERIFIER-VERSION` / IV-K6-01 | CK-K6-FN-02/FN-03 | verifier versionだけ新値へしreceipt key operation_versionへ追随 | lookup `Unobserved(not_run)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-008` | `L8-K6-01-INPUT-ADD` / IV-K6-01 | CK-K6-FN-02/FN-03 | base key inputsへidentityを1件だけ追加 | lookup `Unobserved(not_run)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-009` | `L8-K6-01-INPUT-REMOVE` / IV-K6-01 | CK-K6-FN-02/FN-03 | base key inputsからidentityを1件だけ削除 | lookup `Unobserved(not_run)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-010` | `L8-K6-02-BASE` / IV-K6-02 | CK-K6-FN-01 | 呼出し側はverifierとbase keyだけ渡す | verifier側が`ReceiptBody`を生成しK5 append境界へ渡す。実行の真正性は主張しない。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-011` | `L8-K6-02-CALLER-RESULT` / IV-K6-02 | CK-K6-FN-01 | base key以外にcaller result fieldだけを渡すattempt | `Rejected`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-012` | `L8-K6-02-CALLER-EXIT` / IV-K6-02 | CK-K6-FN-01 | base key以外にcaller exit fieldだけを渡すattempt | `Rejected`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-013` | `L8-K6-02-CALLER-OUTPUT-DIGEST` / IV-K6-02 | CK-K6-FN-01 | base key以外にcaller output digestだけを渡すattempt | `Rejected`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-014` | `L8-K6-03-BASE` / IV-K6-03 | CK-K6-FN-04 | receipt VerifierRefがregistered memberのidentity/version/digest全fieldと一致 | `Value`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-015` | `L8-K6-03-UNREGISTERED-IDENTITY` / IV-K6-03 | CK-K6-FN-04 | identityだけを未登録値へ変更し、receipt keyとdigestは再計算 | `Unknown(unregistered)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-016` | `L8-K6-03-UNREGISTERED-VERSION` / IV-K6-03 | CK-K6-FN-04 | versionだけを登録値と異なる値へ変更しkeyを再計算 | `Unknown(unregistered)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-017` | `L8-K6-03-UNREGISTERED-DIGEST` / IV-K6-03 | CK-K6-FN-04 | digestだけを登録値と異なる値へ変更しkeyを再計算 | `Unknown(unregistered)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-018` | `L8-K6-04-DETERMINISTIC-CLAIM` / IV-K6-04 | CK-K6-FN-04/FN-08 | VerifierEntry.deterministic=falseの基準。ReceiptBodyにdeterministic fieldはないため、別のcaller claimを追加してもK6 typed inputにはならない。 | これは型外claimの構造fixtureであり、actual member entryから導く`reverifiable=false`を保持する確認に限る。新field/decoder policy/result classは定めず、L9 IV-K6-04(1)全体の充足とは数えない（L8 §8.3）。 | 部分被覆: L4/L9 owner return。構造assertのみでoracle達成扱いにしない。 |
+| `CK-K6-UT-019` | `L8-K6-04-CHECK-MAPPING-CLAIM` / IV-K6-04 | CK-K6-FN-04/FN-08 | ReceiptBodyにmapping fieldは無い。実在する`inner` componentsとowner `VerifierEntry.checks`を固定し、保存`inner.verdict`だけをreceipt側で誤った肯定mappingを使った場合の`Positive` claimへ変える。body bytes/result digestをその変更に整合させる。 | owner `VerifierEntry.checks`が各`PolarityOf`の出所であることを構造比較する。保存inner claimと再合成`Combined`が不一致なら、L4 K6-I6どおり`Unknown(conflict)`を保持する。ただしL9 IV-K6-04(2)が求めるmapping-source assertionの全範囲をfixtureで閉じたとはせず、部分被覆として扱う（L8 §8.3）。新field・unknown-field parser policyを作らない。 | 部分被覆: L4/L9 owner return。構造assertのみでoracle達成扱いにしない。 |
+| `CK-K6-UT-020` | `L8-K6-05-OLD-QUERY-RECEIPT` / IV-K6-05 | CK-K6-FN-05 | query keyを維持し、対象旧revisionのotherwise-valid receiptを渡す | `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-021` | `L8-K6-05-INPUT-BODY` / IV-K6-05 | CK-K6-FN-05 | `ReceiptBody`に独立したinputs fieldは置かない。query keyは固定し、`body.key.inputs`のref一つだけを差し替える。record keyとbody keyの他fieldを固定し、変更後のbody bytesからFixedRefのdigest、記録のresult_digestとlog連鎖を再計算する | query keyとのkey/body不一致により`Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-022` | `L8-K6-05-VERIFIER-SET-BODY` / IV-K6-05 | CK-K6-FN-05 | body.verifier_setだけをkeyと異なるrefへ変更 | `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-023` | `L8-K6-06-BASE` / IV-K6-06 | CK-K6-FN-06 | read identity集合がsubject＋non-verifier inputsと一致し、各digestも一致 | admission境界を通る。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-024` | `L8-K6-06-SUBJECT-MISSING` / IV-K6-06 | CK-K6-FN-06 | expected readからsubject identityだけ除去し派生digestを再計算 | `Unknown(missing_input)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-025` | `L8-K6-06-INPUT-MISSING` / IV-K6-06 | CK-K6-FN-06 | expected readからoracle input identityだけ除去し派生digestを再計算 | `Unknown(missing_input)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-026` | `L8-K6-06-READ-EMPTY` / IV-K6-06 | CK-K6-FN-06 | read集合だけ空にし派生digestを再計算 | `Unknown(missing_input)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-027` | `L8-K6-06-EXTRA-IDENTITY` / IV-K6-06 | CK-K6-FN-06 | expected set外のidentityを一つreadへ追加 | `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-028` | `L8-K6-06-DIGEST-MISMATCH` / IV-K6-06 | CK-K6-FN-06 | read digest一つだけをexpected refと不一致にする | `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-029` | `L8-K6-07-BASE` / IV-K6-07 | CK-K6-FN-07 | output FixedRef bytesを実読したdigestと記録digestが一致 | output integrityを通る。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-030` | `L8-K6-07-BYTES-MUTATED` / IV-K6-07 | CK-K6-FN-07 | bytesだけ変更し記録digestは維持 | `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-031` | `L8-K6-07-OUTPUT-UNREADABLE` / IV-K6-07 | CK-K6-FN-07 | output FixedRefだけを読めない参照へ変更 | `Unknown(unreadable)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-032` | `L8-K6-08-BASE` / IV-K6-08 | CK-K6-FN-08 | registered/evaluated checksとVerifierEntry mappingが一致し、各checkをK1で合成 | 再合成inner `Positive`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-033` | `L8-K6-08-STORED-INNER-VERDICT` / IV-K6-08 | CK-K6-FN-08 | registered/evaluated checksから正常に再合成されるinnerを`Negative`にした整合基準を作る。check結果・mapping・他body fieldを固定し、保存inner verdictだけ`Positive`へ変更してbody digestを新bytesから再計算する | 保存innerと再合成innerが異なるため`Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-034` | `L8-K6-08-UNREGISTERED-CHECK` / IV-K6-08 | CK-K6-FN-08 | registered setに無いcheck result一つを含める | `Unknown(unregistered)` componentを保持する。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-035` | `L8-K6-09-BASE` / IV-K6-09 | CK-K6-FN-09 | A/B各registered check全件が肯定 | `required`の`RequiredResult.combined.verdict=Positive`で、A/B全check成分を含む。A/Bごとの三assurance fieldは`RequiredResult.assurance`にidentity別で保持する。`admit_receipt`の`Observed<AdmittedReceipt>`はmember単位の中間結果であり、`RequiredResult`のfieldではない。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-036` | `L8-K6-09-NEGATIVE-AND-UNKNOWN` / IV-K6-09 | CK-K6-FN-09 | Aの一検査をNegative、一検査をUnknownにするL9指定の複合状態 | outer `Negative`。A両成分をverifier/check ID付きでreasonsへ保持する。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-037` | `L8-K6-09-UNEVALUATED` / IV-K6-09 | CK-K6-FN-09 | Aのregistered check一つを未評価にする | outer `Undetermined`、`Unobserved(not_run)` component。receipt存在で肯定しない。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-038` | `L8-K6-09-REGISTERED-ZERO` / IV-K6-09 | CK-K6-FN-09 | Aのregistered checksを0件にする | outer `Unknown(missing_input)` component。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-039` | `L8-K6-09-ALL-NOT-APPLICABLE` / IV-K6-09 | CK-K6-FN-09 | A全checksを根拠のあるNotApplicableにする | outer `Unknown(missing_input)` component。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-040` | `L8-K6-10-A-RECEIPT-MISSING` / IV-K6-10 | CK-K6-FN-03/FN-09 | Aのreceiptを記録集合から除く | A component `Unobserved(not_run)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-041` | `L8-K6-10-A-OLD-REVISION` / IV-K6-10 | CK-K6-FN-03/FN-09 | Aの旧対象revision receiptだけを残す | A component `Stale`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-042` | `L8-K6-10-EXACT-PLUS-DIGEST-CONFLICT` / IV-K6-10 | CK-K6-FN-03/FN-09 | A exact receiptと同identity/revision異digest receiptを共存させる | A component `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-043` | `L8-K6-10-SAME-KEY-RESULT-CONFLICT` / IV-K6-10 | CK-K6-FN-03/FN-09 | Aの同一keyに異なるreceipt resultを2件置く | A component `Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-044` | `L8-K6-10-SEGMENT-MISSING` / IV-K6-10 | CK-K6-FN-03/FN-09 | operation scopeのsegment refをinput_headsから除く | A/B各componentへK5 restoreが返した同一の`Unknown(missing_input)`を伝播する。部分record lookupは行わない。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-045` | `L8-K6-10-VERIFIER-VERSIONS-DIFFER` / IV-K6-10 | CK-K6-FN-03/FN-09 | A/Bのregistered verifier versionを異なる値にする | 各verifier固有receipt keyで独立照会する。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-046` | `L8-K6-10-C-NOT-SUBSTITUTE` / IV-K6-10 | CK-K6-FN-03/FN-09 | Aを欠落させCのreceiptだけを追加する | Aは`Unobserved(not_run)`のまま。CでAを埋めない。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-047` | `L8-K6-11-REPRODUCTION-MATCH` / IV-K6-11 | CK-K6-FN-10 | deterministic verifier同一入力で再実行したinner digestが一致 | `reproduction=Value`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-048` | `L8-K6-11-FORGED-INNER` / IV-K6-11 | CK-K6-FN-10 | receiptの一検査結果だけを変更し、関連digestを整合させる | `reproduction=Unknown(conflict)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-049` | `L8-K6-11-NONDETERMINISTIC` / IV-K6-11 | CK-K6-FN-10 | non-deterministic entryを再現確認へ渡す | `reproduction=Unknown(unsupported)`。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-050` | `L8-K6-12-NO-PAST-EXECUTION` / IV-K6-12 | CK-K6-FN-10/FN-12 | 過去実行なしに同じinnerと整合digestを持つreceipt | 再検証が`Value`を返す場合に限り、その`reproduction=Value`を記録する。どの結果でも`issuer_authenticity=Unknown(unsupported)`を保持し、過去実行/時刻は出力しない。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-051` | `L8-K6-12-EXECUTION-FIELDS-REWRITTEN` / IV-K6-12 | CK-K6-FN-10/FN-12 | execution欄だけを整合digestで書き換える | 再検証が`Value`を返す場合に限り、その`reproduction=Value`を記録する。どの結果でも`issuer_authenticity=Unknown(unsupported)`を保持し、execution欄から過去実行を出力しない。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-052` | `L8-K6-13-CORRECTION` / IV-K6-13 | CK-K6-FN-11 | receipt bodyを保持する既存`ResultRecorded`を対象にCorrectionを要求 | `Rejected`（K5-I8）。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-053` | `L8-K6-14-TIME-ORDER` / IV-K6-14 | CK-K6-FN-03/FN-11 | 同一subject identityの異なる旧revisionに対する有効なprior Value receiptsを複数記録し、各key/body/result_digestを整合する。timestamp順とK5 append sequence順を逆にする。 | prior選択はK5-I7 sequence order。timestampで選ばない。K2 same-key異body conflictは作らない。 | fixture設計のみ。K5/K4/reader実接続・L9 passは証明しない。 |
+| `CK-K6-UT-054` | `L8-K6-15-NO-AUTHORITY` / IV-K6-15 | CK-K6-FN-12 | 既存`RequiredResult`は`combined`と`assurance`だけを持つこと、各receipt bodyの`authority_effect="none"`、L4 §10 API surfaceにauthority effect/approval/merge/acceptance/completion outputが無いことを構造確認する。RequiredResultへauthority_effect fieldを追加しない。 | これは構造fixtureであり、L9のconsumer `Rejected`経路はL4にAPI/return typeがなく未接続。このassertionはIV-K6-15(1)を満たしたことにせず、L4/L9 ownerへ返す（L8 §8.3）。新API/reasonを足さない。 | 部分被覆: L4/L9 owner return。構造assertのみでoracle達成扱いにしない。 |
+| `CK-K6-UT-055` | `L8-K6-15-ASSURANCE-SEPARATE` / IV-K6-15 | CK-K6-FN-12 | same fixed `RequiredResult`でreproduction=`Unknown(unsupported)`のAとreproduction=`Value`のBをassurance identity別に保持する。 | combinedからassuranceを消さず、異なる値を同等化しない。consumer rejectionは別の未接続oracleであり、このcaseの期待ではない。 | 部分被覆: L4/L9 owner return。構造assertのみでoracle達成扱いにしない。 |
+
+L8のAPI観測とL7の内部assertionを混同しない。K1 polarityや`RequiredResult.combined`は`Combined.verdict`等のfieldを検査し、`Observed<AdmittedReceipt>`はmember単位の中間値である。K2 `Stale`/`Unknown`/`Unobserved`はlookupが返す結果として扱い、K6が新しく合成しない。IV-K6-04(1)/(2)とIV-K6-15(1)はL8 §8.3記載の部分被覆/owner returnを維持する。各UT IDはfixture設計IDであり、K6実装、実K4/K5 reader/writer、K6 source execution、L9 execution、CI inventory登録、製品coverageの証拠ではない。
