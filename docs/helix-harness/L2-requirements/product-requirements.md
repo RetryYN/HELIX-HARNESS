@@ -1136,6 +1136,8 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 **境界**：coverage receiptは選択した25 source linesをholdingに保全した事実だけを記録し、source atomの候補移管、資産holdingの解除、旧FR全体のsuccessor割当、PHCAP-08の完了、PO合意、stage exitの実績を主張しない。旧sourceに含まれるlines 74–84、関連する別資産・旧case・旧runtimeは対象外である。
 ### HARNESS-L2-052 canonical commandの意味identityと再送判定（HELIX-HARNESS単体候補、未採択）
 
+**版の整理**：HARNESS-L2-052は`version_target: 1.0`とする。本文の版未指定・採否状態の記載は判断前の固定記述として保持する。既採択の意味範囲を拡張せず、接続先と同じ1.0でその操作・保証を成立させる。
+
 - **authority／状態**：新規の未採択候補。`registered_proposal`／`authority_effect: none`。2026-09-29の57候補PO判断の対象外であり、要求採択、L3承認、実装・実行許可、旧要求の正式後継割当を生成しない。`version_target`は旧HIL-FR-52に指定がないため付けない。
 - **親L1**：`HARNESS-L1-001/003/004`。要求意味とV-pair、変更影響・trace、oracle・evidenceの責務に限る。OSの保存・commit運転をHARNESSへ移さない。
 - **意味identity**：canonicalization commandのidentityは、呼出し側のcommand ID、操作scope、対象base revision、正規化した意味payloadのdigestを結んだものとする。command IDだけ、文書path、PR/Issue番号、到着時刻を意味identityの代替にしない。正規化規則と対象scopeのrevisionを記録し、入力payloadを同じ規則・同じrevisionで評価したときだけ同じ意味digestとする。HARNESSはこの意味照合条件とconflict分類を定め、永続保存や実際のcommitを所有しない。

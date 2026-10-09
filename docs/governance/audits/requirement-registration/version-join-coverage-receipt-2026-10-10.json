@@ -1,0 +1,144 @@
+{
+  "receipt_id": "RCPT-VERSIONJOIN-2026-10-10",
+  "authority_effect": "none",
+  "candidate_digest_rule": "対象###見出しから次の###直前、末尾空白を除きLF一つ。",
+  "fixed_proposal_unit": "VERSIONJOIN",
+  "human_decision_disposition_refs": [
+    "docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md"
+  ],
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-052",
+      "requirement_kind": "unit",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "candidate_semantic_digest": "sha256:f801e11097fe905b8519978ade42e06f8b3504d6481f4e14fc67f863c769669f",
+      "candidate_l2_file_sha256": "sha256:64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1",
+      "paired_acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "paired_acceptance_identity": "HARNESS-L11-052",
+      "paired_acceptance_digest": "sha256:3027c6b91b91ccf7cbab0c34821587956f8e8e7e20e5637f0fffaa591b2a633b",
+      "paired_acceptance_file_sha256": "sha256:c22df0429af7743eccfdeff8a404bd48bce4275d326e79f242d77af58c0b4bf5",
+      "version_target": "1.0",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr52-command-identity-source-lines-2026-09-29.jsonl",
+      "source_atom_set_digest": "sha256:c6afd7c73ec40ebd1d59167db7264b9bd50396286cbace099fabea61eea9505b",
+      "source_atom_count": 1,
+      "source_collection_scope": "MPR-SH-SEMANTIC-LINE-004のHIL-FR-52 line 142を5つの意味atomへ一度だけ分割した共通partitionから、このcandidateに割当てられたatomのみを選ぶ。HIL-FR-52の全source rowは2候補でno_loss; HIL-FR-53 line 143、FR53各意味、旧IR recordはcandidate atomとして二重計上せずholdingに残す。HOT-HIL-49はread-only oracle参照で追加source atomではない。",
+      "atoms": [
+        {
+          "atom_id": "FR52-CMD-IDENTITY-L0142",
+          "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 142,
+          "source_line_sha256": "sha256:c159d3113bc2719dd5f8492468407706c2d79978942aa8f0cf96bccc6936fda8",
+          "source_text": "| **HIL-FR-52** | Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。部分成功をCanonicalとして扱わず、command idempotencyとbase revision CASを強制する。 | canonicalization receipt、before/after revision、write count、rollback/conflict receipt |",
+          "source_span_text": "command idempotency",
+          "source_span_start_char": 194,
+          "source_span_end_char": 213,
+          "source_requirement_id": "HIL-FR-52",
+          "relation": "non-overlapping semantic partition of HIL-FR-52 line 142; semantic command identity: 同一command/scope/base/payloadの再送と異payload conflict",
+          "candidate_identity": "HARNESS-L2-052",
+          "disposition": "semantic_rederivation_candidate",
+          "human_decision_disposition_refs": []
+        }
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-SEMANTIC-LINE-004#remaining atoms (FR52 source row is split only at the five listed semantic spans)",
+        "MPR-SH-IR-004#HIL-FR-52 record; IR namespace remains held and is not double-counted as a second source atom",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0143 (HIL-FR-53 full line remains unassigned; not input to either candidate)"
+      ],
+      "prior_receipt": {
+        "path": "docs/governance/audits/requirement-registration/harness-fr52-command-identity-coverage-receipt-2026-09-29-r2.json",
+        "sha256": "sha256:fcfcf43db29e8628bb34ae8b9beeb9ebe227ceb5d0ae74414e4328edddf095cf"
+      },
+      "previous_registration_id": "MPR-RC-HARNESS-L2-052-002",
+      "meaning_scope": "版指定だけ変更。command意味、durable intake、CAS等の保証・owner・適用条件を保持。"
+    },
+    {
+      "requirement_identity": "HELIXOS-L2-102",
+      "requirement_kind": "connection",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "candidate_semantic_digest": "sha256:2dde594c94b2dd5179c881b19fb7435c114ccffc6570f0265b575f8ffb4c52af",
+      "candidate_l2_file_sha256": "sha256:00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be",
+      "paired_acceptance_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "paired_acceptance_identity": "HELIXOS-L11-102",
+      "paired_acceptance_digest": "sha256:0bfce78875f0e59ded0a2f2ecd31f39e795e043105d33c762d38e15251ea8459",
+      "paired_acceptance_file_sha256": "sha256:50c8bd186c2f75d44a29f9c37415a19e4b31c083c1a1aec07e33fe80f975d005",
+      "version_target": "1.0",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-source-lines-2026-09-29.jsonl#FR03-VERSIONED-CONTRACT-DIGEST-OUTPUT-L0093",
+      "source_atom_set_digest": "sha256:ebbbba0bb3a9fb0b96cc23d600a1a85d9aad88752f7edda3fd6cf4420a9908ec",
+      "source_atom_count": 1,
+      "source_collection_scope": "旧HIL-FR-03のarchive L1 requirements line 93のみ。line statement fields atomはHARNESS-L2-059、右端versioned issue contract＋digest output atomはHELIXOS-L2-102へ非重複に対応する。個別field omission oracleはline 93を受入意味として参照する。旧IR record、assertion/system contract全体、他line、実装・実行・採択・formal successor closureは含めない。source holdingsは存続する。 HARNESS-L2-059のoutput意味参照はこのatom計上外であり、OSが同一revision/digestをdurable保持する。",
+      "atoms": [
+        {
+          "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 93,
+          "source_line_sha256": "sha256:44f9ee43ff9055522406219010b168994477b8da21e0a076b6b5efd903159e58",
+          "source_line_text": "| **HIL-FR-03** | Issue contractはobjective、acceptance oracle、development style、case-driven activation、specialist capabilities、runtime mode、affected layers、style target、risk、scope budget、digestを別fieldで保持する。 | versioned issue contract＋digest |",
+          "source_requirement_id": "HIL-FR-03",
+          "source_item_id": "HIL-FR-03",
+          "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-03",
+          "ir_statement_semantic_digest": "sha256:be8c55e18f6bd462e31eb805edfa5dd4e378c69b86753b7a2cbfb143e6ab068c",
+          "ir_record_semantic_digest": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+          "source_authority_state": "specified_frozen",
+          "disposition": "semantic_rederivation_candidate",
+          "atom_id": "FR03-VERSIONED-CONTRACT-DIGEST-OUTPUT-L0093",
+          "source_field": "right-column output",
+          "source_text": "versioned issue contract＋digest",
+          "source_span_text": "versioned issue contract＋digest",
+          "source_span_start_char": 208,
+          "source_span_end_char": 239,
+          "carried_by": "HELIXOS-L2-102",
+          "relation": "旧line 93のoutput atom。HARNESS-L2-059がversioned issue contract＋digestの意味を定める（意味参照、atom計上外）。HELIXOS-L2-102は同一contract revision/digestのdurable保持・intake/projection/handoffを担い、この出力atomを計上する。statement atomとsource spanは重複しない。"
+        }
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-IR-004#HIL-FR-03; preserved_pending_rehome; successor_requirement_ids: []",
+        "MPR-SH-SEMANTIC-LINE-004#remaining semantic-line collection"
+      ],
+      "prior_receipt": {
+        "path": "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-coverage-receipt-2026-09-29-r2.json",
+        "sha256": "sha256:9252b311518b1b5170c054762c70258ec432359919bf223f74d39f15be1ddd55"
+      },
+      "previous_registration_id": "MPR-RC-HELIXOS-L2-102-002",
+      "meaning_scope": "版指定だけ変更。command意味、durable intake、CAS等の保証・owner・適用条件を保持。"
+    }
+  ],
+  "other_unspecified_version_identities": [
+    "HARNESS-L2-065",
+    "HARNESS-L2-067",
+    "HARNESS-L2-079",
+    "HARNESS-L2-087",
+    "HARNESS-L2-088",
+    "HELIXOS-L2-103",
+    "HELIXOS-L2-104",
+    "HELIXOS-L2-105",
+    "HELIXOS-L2-107",
+    "HELIXOS-L2-108",
+    "HELIXOS-L2-115",
+    "HELIXOS-L2-117",
+    "HELIXOS-L2-118",
+    "HELIXOS-L2-119",
+    "HELIXOS-L2-120",
+    "HELIXOS-L2-121",
+    "HELIXOS-L2-122",
+    "HELIXOS-L2-123",
+    "HELIXOS-L2-125",
+    "HELIXOS-L2-126",
+    "HELIXOS-L2-128",
+    "HELIXOS-L2-129",
+    "HELIXOS-L2-130",
+    "HELIXOS-L2-131",
+    "HELIXOS-L2-132"
+  ],
+  "coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "scope_limit": "2候補の版指定のみ。旧atom配分、holding、意味範囲、L3停止を保持。"
+}

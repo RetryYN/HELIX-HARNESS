@@ -1,0 +1,338 @@
+{
+  "authority_effect": "none",
+  "base_commit": "c195d7d997a8bd0bde6000bb5210a6e52288520b",
+  "scope": "VERSIONJOINの最新mainからの差分に対する直接のSHA再照合",
+  "rule": "upstream SHA以外の全field・本文bytesを保持。旧research・authorityを更新しない。",
+  "changes": [
+    {
+      "binding": "scaffold/bindings/SCF-B-0014.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0014.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0016.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0016.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0020.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0020.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0024.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0024.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0025.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0025.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0028.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0030.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0030.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0037.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0037.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0039.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0039.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0040.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0041.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0041.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0042.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0042.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0046.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0046.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0054.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0054.json",
+      "upstream_path": "scaffold/bindings/SCF-B-0037.json",
+      "before": "cb6dcbb86b0b59e36b8441d7b24b2200218b0d9fd62e0d2c7bb27416d3793547",
+      "after": "542e19d70e39f34eb0a451e212b57b807363719117929de0fdea93538190210d"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0057.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0062.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0066.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0069.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0071.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0073.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0074.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0074.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0074.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0076.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0079.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0083.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0085.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0087.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0090.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0092.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0095.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0095.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0095.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0096.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0099.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0102.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0102.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0104.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0104.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0106.json",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "35b96bbb095de88d4a269b696741f2973fe0e89ee96f2ca7f6662a68df328aa9",
+      "after": "64420c92cf66cf123aeee41e478edad512b9f02382716e7867e1aa715e8092b1"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0106.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0121.json",
+      "upstream_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "before": "e2ee9c455deeb60ebb1c72a05f20a4dbf3d51038c5040739c260f96a2bc86dbe",
+      "after": "d78c272db0d292ad5fb9aef47856b84e7eb695291a4a849a320b84c71740b03b"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0147.json",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "e6ae47e20b3392602392a0a1395f603212314a8701d27927fc5583c3f0850e96",
+      "after": "00525cc28114fb28f231dfbae53670b9ff2f256469a50855f42b56f13c1f16be"
+    }
+  ]
+}
