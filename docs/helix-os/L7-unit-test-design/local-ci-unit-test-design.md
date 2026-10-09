@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `7ef7afa990863d8ed05d147a3f6c3a8fff3a058ba110c19b1674c4c2161de3e0`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `2062d5ce0c0043b776841f2d22459fca9dfe63dfa3719fdbb54fcddc072303b2`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 
@@ -217,7 +217,7 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 
 | Unit test ID | 正常前提 | 一点の変異／観測 | 期待 |
 |---|---|---|---|
-| `UT-LCI-133` | exact target tree内にCore baseline 586 identitiesと、L5 §8.1の4 source/test pair・8 L6/L7 refs・27 unique supplemental identitiesがある。formal locator/status/owner-return refsは各機構L7原文に結び、supplemental rowにformal ID fieldがない | 変異なし | Core identities/count/digestは586の固定値を保持し、supplemental identitiesは27の別set/digestとして一回ずつ得られる。composite discovery候補613件。505/495とK6 10 dispositionを保持し、機構formal IDへの新mappingなし |
+| `UT-LCI-133` | exact target tree内にCore baseline 586 identitiesと、L5 §8.1の4 source/test pair・8 L6/L7 refs・27 unique supplemental identitiesがある。formal locator/status/owner-return refsは各機構L7原文に結び、supplemental rowにformal ID fieldがない。CONNECTおよびK4/G3の未宣言class.method identitiesは固定supplemental setに含めない | 変異なし | Core identities/count/digestは586の固定値を保持し、supplemental identitiesは27の別set/digestとして一回ずつ得られる。composite discovery候補613件。505/495とK6 10 dispositionを保持し、機構formal IDへの新mappingなし |
 | `UT-LCI-134` | `UT-LCI-133`の他条件 | 27 supplemental identityから`SUP-BRAIN-001`だけを固定 inventoryから除く | `Unknown(missing_input)`、4機構全体を縮退実行せず、complete artifact/positive receiptなし |
 | `UT-LCI-135` | `UT-LCI-133`の他条件 | 固定対象外の`SUP-SECURITY-001`一件だけを追加する | `Unknown(conflict)`、未登録mechanism/test identityをscan・appendしない |
 | `UT-LCI-136` | 27 supplemental IDsは一意 | `SUP-LABO-001`一行だけを重複させる | `Unknown(conflict)`、重複をdeduplicateせず、suite successなし |
@@ -226,10 +226,10 @@ result参照はすべて型付きIDである。`UT-LCI-*`は設計識別子で�
 | `UT-LCI-139` | supplemental identityはsource/test refs・module alias・callable qualnameで完全に固定され、formal ID fieldを持たない | `SUP-HARNESS-001` rowだけに`formal_l7_id` fieldを追加する | `Rejected(invalid_input)`、formal bindingを推測・生成しない |
 | `UT-LCI-140` | 全supplemental source/testとL6/L7 document refsはtarget tree上で固定SHAと一致 | `test_infrastructure.py`のtarget blobだけを参照から欠落させる | 既存F-LCI-10 pre-spawn `Unknown(missing_input)`。部分subsetの実行・complete artifact・positive receiptなし |
 | `UT-LCI-141` | owner return locatorはsource L7に明記された場合だけexact cell refで保持し、非記載は`NotDeclaredBySource` | 一件のdeclared owner return cell refだけを別L7 rowへ差し替える | `Unknown(conflict)`、owner returnの意味を推定せず、実行ID/正式mappingへ昇格しない |
-| `UT-LCI-142` | supplemental ID setはL5 §8.1の27件だけ。CONNECTの4件は明示的に対象外 | `SUP-CONNECT-001` ID-shaped rowを一件だけ補助setへ追加する | `Unknown(conflict)`、CONNECT sourceをscan/登録せず、27件のsetを維持する |
-| `UT-LCI-143` | supplemental ID setはL5 §8.1の27件だけ。Common Kernel K4/G3の14件は明示的に対象外 | `SUP-CK-K4-001` ID-shaped rowを一件だけ補助setへ追加する | `Unknown(conflict)`、K4/G3 sourceをscan/登録せず、27件のsetを維持する |
+| `UT-LCI-142` | UT-LCI-133の完全なsource/test inventory。CONNECTの4件は固定supplemental setに含まれない | 既存CONNECT module内に未宣言class.method identityを一件だけ追加する | `Unknown(conflict)`、未宣言methodをscan/登録せず、27件のsupplemental setを維持する |
+| `UT-LCI-143` | UT-LCI-133の完全なsource/test inventory。Common Kernel K4/G3の14件は固定supplemental setに含まれない | 既存K4/G3 module内に未宣言class.method identityを一件だけ追加する | `Unknown(conflict)`、未宣言methodをscan/登録せず、27件のsupplemental setを維持する |
 
-| `UT-LCI-144` | Core586、製品補助27、helper103の固定identity setsと各digest、33 code/test refs、14 unique L6/L7 pathsを固定する | 変異なし | 三partition別count/digestとdisjoint union 716を照合。formal 505/495/10とproduct27 digestは不変。これは設計集合照合であり実行成功ではない |
+| `UT-LCI-144` | Core586、製品補助27、helper103の固定identity setsと各digest、33 code/test refsと14 unique L6/L7 document refs、計47 refsを固定する | 変異なし | 三partition別count/digestとdisjoint union 716を照合。formal 505/495/10とproduct27 digestは不変。これは設計集合照合であり実行成功ではない |
 | `UT-LCI-145` | helper103固定identity setがtarget source bytesに全て存在する | helper `SUP-CK-K9-001` identityだけを期待setから欠落させる | pre-spawn `Unknown(missing_input)`、subset execution/artifact/positive receiptなし |
 | `UT-LCI-146` | helper IDsは一意でproduct/Coreともdisjoint | helper `SUP-CK-K10-001` rowだけを重複させる | `Unknown(conflict)`、deduplicateしない |
 | `UT-LCI-147` | 三partition identity setsは相互にdisjoint | helper `unittest_identity`一件だけをCore identityと一致させる | `Unknown(conflict)`、片側を選ばず実行しない |

@@ -15,7 +15,7 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md",
-      "sha256": "8fa3208750962ba5a73b95426c309c219a45aa4d7df2ab2fc24d8f7958aa2a9f",
+      "sha256": "da67d481a889575efbb441a814ef8a92e352d2a3ed2e4749624727b26feaf2da",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -30,12 +30,12 @@
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "88a12f9c3382be8eaac9d1f972a47f979a0c6ceab7a780bfaf070a17936b3344",
+      "sha256": "2062d5ce0c0043b776841f2d22459fca9dfe63dfa3719fdbb54fcddc072303b2",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "d72ceab73af279a8406c90fdfc2c9fd966e1cd13553af344f288e2ecaf083841",
+      "sha256": "6c828eb0b009ab37eb35e3dbb49f4a4ac104c08c704ab8f634449153c59daf87",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
@@ -420,9 +420,9 @@
     ],
     "oracles": [
       "docs/helix-os/L4-basic-design/local-ci.md §2.1, §2.2",
-      "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract including IV-LCI-100..110",
+      "docs/helix-os/L9-integration-verification/local-ci-integration-verification.md fixed local/merge-unit contract including IV-LCI-100..121",
       "docs/helix-os/L5-detail-design/local-ci-detail-design.md D-LCI-01..06",
-      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, CASE-L8-LCI-118..141 (design IDs 113..117 are not suite fixtures)",
+      "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md CASE-L8-LCI-01..112, CASE-L8-LCI-118..152 (design IDs 113..117 are not suite fixtures)",
       "docs/helix-os/L6-function-design/local-ci-function-design.md F-LCI-01..08 / F-LCI-09a..09d / F-LCI-10",
       "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md UT-LCI-01..113, UT-LCI-120..143 (design only; not executed)",
       "source-byte / target-tree digests and checkout-outside receipt location"

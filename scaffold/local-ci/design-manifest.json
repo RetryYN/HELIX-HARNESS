@@ -2405,13 +2405,13 @@
               ]
             },
             {
-              "literal": "`SUP-CONNECT-001` ID-shaped rowだけを追加（L8 `CASE-L8-LCI-140`）",
+              "literal": "既存CONNECT module内の未宣言class.method identity一件だけを固定setへ追加（L8 `CASE-L8-LCI-140`）",
               "ids": [
                 "CASE-L8-LCI-140"
               ]
             },
             {
-              "literal": "`SUP-CK-K4-001` ID-shaped rowだけを追加（L8 `CASE-L8-LCI-141`）",
+              "literal": "既存K4/G3 module内の未宣言class.method identity一件だけを固定setへ追加（L8 `CASE-L8-LCI-141`）",
               "ids": [
                 "CASE-L8-LCI-141"
               ]
@@ -2546,13 +2546,13 @@
               ]
             },
             {
-              "literal": "fixed helper alias set rejects undeclared CONNECT module method",
+              "literal": "固定supplemental setは4機構27件で、CONNECTの未宣言methodを含めない",
               "ids": [
                 "LC-STAGE1-L7-001"
               ]
             },
             {
-              "literal": "fixed helper alias set rejects undeclared K4/G3 module method",
+              "literal": "固定supplemental setは4機構27件で、Common Kernel K4/G3の未宣言methodを含めない",
               "ids": [
                 "LC-STAGE1-L7-001"
               ]

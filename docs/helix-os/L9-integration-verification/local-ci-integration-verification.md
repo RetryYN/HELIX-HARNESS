@@ -17,7 +17,7 @@ fixtureは合成Git tree・合成receipt・stub process resultだけを使う。
 
 L4 `DesignScopeManifest`が列挙するCommon Kernelとrepository-layoutの現行6文書、および今回のlocal-CI設計6文書について、定義域と参照域を分離したID解決、L4 invariant/contract→L9 IV edge、Common Kernel/local-CI L5 contract→L8 case、L6 function→L7 test edgeを照合する。Common Kernel L5の5つのexact-heading locatorから対のL8 K1/K2/K3/K5/K4-G3 table expansionへ各fixtureを対応付ける。K1/K2=164、K3=194、K5=91、K4/G3=73（K4=51/G3=22）の固定inventoryはそれぞれ別に照合する。L8第2列のL9 oracleと第3列のL4 invariantはtyped referenceとして保持し、coverage sourceへ誤変換しない。coverage entryの無い契約、孤児edge、fixture定義欠落は肯定しない。HistoricalPinはasset ID、archive path、full-file SHA、行範囲、optional span SHAをそれぞれの型で照合し、時点auditをcurrent-link対象へ混ぜない。
 
-IV-LCI-72とIV-LCI-87〜91は`LC-DESIGN-001`に対応するdesign-manifest構造oracleであり、suite runnerの実行oracleではない。`LC-STAGE1-L7-001`に対応するsuite runner oracleはIV-LCI-73〜86、IV-LCI-92〜99およびIV-LCI-100〜120である。
+IV-LCI-72とIV-LCI-87〜91は`LC-DESIGN-001`に対応するdesign-manifest構造oracleであり、suite runnerの実行oracleではない。`LC-STAGE1-L7-001`に対応するsuite runner oracleはIV-LCI-73〜86、IV-LCI-92〜99およびIV-LCI-100〜121である。
 
 | 検証ID | L4契約 | 正常入力 | 一点の変異 | 期待結果 |
 |---|---|---|---|---|
@@ -163,8 +163,8 @@ IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそ�
 | `IV-LCI-106` | owner return locator preservation | 明記されたowner returnはexact cell ref、非記載は`NotDeclaredBySource` | 一件のdeclared owner return refだけを別L7 rowへ差替（L8 `CASE-L8-LCI-137`） | `Unknown(conflict)`、owner不明を解消済みにせずraw source referenceを保つ |
 | `IV-LCI-107` | formal/supplemental type separation | supplemental identityの閉じたfield setにformal ID fieldなし | `SUP-HARNESS-001`へ`formal_l7_id`だけを追加（L8 `CASE-L8-LCI-138`） | `Rejected(invalid_input)`、新規formal bindingなし |
 | `IV-LCI-108` | required supplemental source closure | 16 helper implementation/test refsとcorpus全体で14 unique L6/L7 pathsをtarget treeから読める | `test_resource_projection.py` helper refだけを欠落（L8 `CASE-L8-LCI-139`） | 既存pre-spawn `Unknown(missing_input)`、subset実行・receiptなし |
-| `IV-LCI-109` | fixed helper alias set rejects undeclared CONNECT module method | BRAIN/LABO/HARNESS/INFRAの27 product-supplemental IDsだけが固定setにある | `SUP-CONNECT-001` ID-shaped rowだけを追加（L8 `CASE-L8-LCI-140`） | `Unknown(conflict)`、追加sourceをscan/登録せず27件を保つ |
-| `IV-LCI-110` | fixed helper alias set rejects undeclared K4/G3 module method | BRAIN/LABO/HARNESS/INFRAの27 product-supplemental IDsだけが固定setにある | `SUP-CK-K4-001` ID-shaped rowだけを追加（L8 `CASE-L8-LCI-141`） | `Unknown(conflict)`、追加sourceをscan/登録せず27件を保つ |
+| `IV-LCI-109` | 固定supplemental setは4機構27件で、CONNECTの未宣言methodを含めない | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにあり、CONNECTの未宣言class.method identityはない | 既存CONNECT module内の未宣言class.method identity一件だけを固定setへ追加（L8 `CASE-L8-LCI-140`） | `Unknown(conflict)`、未宣言CONNECT methodをscan/登録しない |
+| `IV-LCI-110` | 固定supplemental setは4機構27件で、Common Kernel K4/G3の未宣言methodを含めない | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにあり、K4/G3の未宣言class.method identityはない | 既存K4/G3 module内の未宣言class.method identity一件だけを固定setへ追加（L8 `CASE-L8-LCI-141`） | `Unknown(conflict)`、未宣言K4/G3 methodをscan/登録しない |
 | `IV-LCI-111` | helper103 identity完全性 | L5のhelper固定ID/digestと全required refがtargetにある | helper `SUP-CK-K9-001` callable一件だけを欠落させる（L8 `CASE-L8-LCI-142`） | `Unknown(missing_input)`、subset実行・complete artifactなし |
 | `IV-LCI-112` | helper source bytesの固定 | `_private_resource_projection.py`のbytes digestが固定値と一致 | source bytesだけを変更する（L8 `CASE-L8-LCI-143`） | `Unknown(conflict)`、spawn前停止 |
 | `IV-LCI-113` | helper paired-document closure | corpus全体で14 unique L6/L7 pathsがtargetで解決する | SECURITY L7 refだけを欠落させる（L8 `CASE-L8-LCI-144`） | `Unknown(missing_input)`、helper suite未開始 |
@@ -177,4 +177,4 @@ IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそ�
 | `IV-LCI-120` | helper source path固定 | 各familyは宣言済みsource/test pathを使う | K4/G3 test alias pathだけを変更する（L8 `CASE-L8-LCI-151`） | `Unknown(conflict)`、別path解決なし |
 | `IV-LCI-121` | basename衝突時のmodule alias隔離 | LABO/SECURITY各test import直前に各source pathの`projection`だけを一時bindingし、test globalsへ束縛後に同entryだけを復元する（L8 `CASE-L8-LCI-152`） | SECURITY test load前の一時置換を省き、LABOの`projection` entryをそのまま使う（L8 `CASE-L8-LCI-152`） | F-LCI-10 suite内のimport errorとしてstep fail。complete artifact/positive receiptなし。新L7 IDやformal coverageは作らない |
 
-これらはinventory/source bindingの設計oracleであり、27補助methodの未実行・部分実行をformal fixture pass、機構L7合格、owner接続、登録、製品全体coverageへ読み替えない。613は設計上の合成期待数で、実discovery/execution件数ではない。
+これらはinventory/source bindingの設計oracleであり、27補助methodの未実行・部分実行をformal fixture pass、機構L7合格、owner接続、登録、製品全体coverageへ読み替えない。現main eeb6ae7のruntimeが対象とするCore＋製品補助の613 identitiesは現行の実discovery/execution対象数である。機構helper 103を加えた716 identitiesは設計候補であり、runtimeは未更新のため実discovery/execution件数ではない。
