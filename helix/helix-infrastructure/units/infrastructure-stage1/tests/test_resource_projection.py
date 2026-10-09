@@ -79,7 +79,7 @@ class TestPrivateResourceProjection(unittest.TestCase):
 
         projected = projection_module._project_resource_observation(key, baseline)
 
-        self.assertEqual(projected.identity, key.subject)
+        self.assertIs(projected.identity, key.subject)
         self.assertEqual(set(projected.fields), set(RESOURCE_FIELDS))
         self.assertEqual(
             tuple(field.name for field in dataclass_fields(projection_module._ResourceProjection)),

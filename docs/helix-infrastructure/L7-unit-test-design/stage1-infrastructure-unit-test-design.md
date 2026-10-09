@@ -9,7 +9,7 @@ status: draft_candidate
 authority_status: draft_candidate
 stage: 1
 paired_l6: ../L6-function-design/stage1-infrastructure.md
-paired_l6_sha256: df9f009e6303367f35c77e50fe715aa651f3b95321016c4a84c23a5abc92baad
+paired_l6_sha256: 0e6f25978dd67e7cb09c7c6097def7be93e8851ac75476c4fa591ecb87b25564
 ---
 
 # HELIX-INFRASTRUCTURE Stage 1 単体テスト設計
@@ -24,7 +24,7 @@ paired_l6_sha256: df9f009e6303367f35c77e50fe715aa651f3b95321016c4a84c23a5abc92ba
 | L9 INFRA | `b83eee2452ec0b41ef23ffd6a3aea3e1374f82dbffc3e8c7bb54908b01ae9d8b` | origin/mainの固定本文。40 verifier IDを固定参照 |
 | L5 INFRA | `40b96764707a666d5d6dd39f3709857e58a67df564a2a4dbc7c98a1379737300` | PR #2770がmain `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`へ統合した配置候補の固定本文 |
 | L8 INFRA | `e1ab1329d1de3d61062a32c422c435863c0a2055eb4ef207623966b0bdb17f14` | 同main `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`の配置fixture本文、上記L5を参照 |
-| L6 INFRA | `129f930d820283979f405b29bcf1c694d7a590976ea41b34fbba00fd79657d1f` | このL7が参照する、配置・固定ref選択・private resource projectionの局所実装状況を記録した候補本文 |
+| L6 INFRA | `0e6f25978dd67e7cb09c7c6097def7be93e8851ac75476c4fa591ecb87b25564` | このL7が参照する、配置・固定ref選択・private resource projectionの局所実装状況を記録した候補本文 |
 | Common Kernel L4/L9 | origin/main `107a648842673ed9b0b02fd440aa68594dd201f6`の各本文 | 現行契約の読取参照。L6 §1のhash表参照 |
 
 L2/L11の親はL4/L5が固定する採択済み2親であり、L2-005は006に適用される場合だけの入力依存である。L5/L8の配置・locator detailはPR #2770によりmain `cb75db4daa35e84d4b2a02e3cb80dab6a84f127d`へ統合済みであり、ここに記したhashは同mainの本文bytesと一致する。登録・実行・承認をmergeから生成しない。formal 248 fixture suiteは未実行である。§9の局所private helper testsだけを別に記録し、L8 oracle実行へ読み替えない。
@@ -474,7 +474,7 @@ L6/L7本文は設計候補であり、実装、suite配置、実行、CI統合�
 
 ## 9. 局所候補実装と実行記録
 
-この作業treeは`src/_private_resource_projection.py`のprivate凍結record `_ResourceProjection(identity, fields)`を使い、既存`ResultKey.subject`由来identityと入力されたsource-qualified field observationだけを部分投影する。field keyはL8の`dependency`/`lifecycle`をそのまま使い、L5 §3.1の`dependencies`/`lifecycle state`属性名との対応をL6 §7に明記する。L5/L8の6 field名と合成baselineは照合するが、complete-scope read、owner mapping、domain absence encoding、polarity、公開L5 APIは実装していない。FN-03/04は既存`Observed`を保持するprivate helperの合成subsetを部分検査し、L5の公開compare/project APIを実装したとは扱わない。FN-06は既存Observed外側型とOS operation/attempt owner sourceが未接続のため未実装である。FN-01/FN-05もowner bindingが未接続で未実装とする。FN-07は渡されたObservedのprivate集計helperだけを検査し、L8 NFRを実測しない。未接続APIへ`Rejected(missing_key)`、`None`、K3 resultを代用せず、K3 private owner-port stubやkind→action mappingを使わない。
+この作業treeは`src/_private_resource_projection.py`のprivate凍結record `_ResourceProjection(identity, fields)`を使い、既存`ResultKey.subject`由来identityと入力されたsource-qualified field observationだけを部分投影する。field mappingは文字列keyのtyped observationを受け取ってそのまま保持し、closed key schemaを設けない。テストbaselineでL5/L8に対応する6属性keyを揃え、`dependency`/`lifecycle`とL5 §3.1の`dependencies`/`lifecycle state`属性名の対応をL6 §7に記録する。complete-scope read、owner mapping、domain absence encoding、polarity、公開L5 APIは実装していない。FN-03/04は既存`Observed`を保持するprivate helperの合成subsetを部分検査し、L5の公開compare/project APIを実装したとは扱わない。FN-06は既存Observed外側型とOS operation/attempt owner sourceが未接続のため未実装である。FN-01/FN-05もowner bindingが未接続で未実装とする。FN-07は渡されたObservedのprivate集計helperだけを検査し、L8 NFRを実測しない。未接続APIへ`Rejected(missing_key)`、`None`、K3 resultを代用せず、K3 private owner-port stubやkind→action mappingを使わない。
 
 248 canonical fixtureは本書§5のL8個別対応行から確定し、各fixtureの対応先はL8の同一ID行で照合する。L8を全量走査した269 unique tokenとの差21はcanonical分母外であり、001 verifier wildcard 15件、`L8-INFRA-<parent>-<verifier>-<condition>` template 1件、PACK locator/setup 5件である。これらをcanonical fixtureへ追加しない。
 
@@ -486,7 +486,7 @@ L6/L7本文は設計候補であり、実装、suite配置、実行、CI統合�
 | existing source path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/src/infrastructure.py` / `7bd177a70a01edd1adb439df290ef0c7d7d37940bff2072532eee28bd8ac7ffd` | 既存source bytesはCI固定値を保ち未変更。新moduleは既存`SourceObservation`とvalidatorを参照する。 |
 | new private source path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/src/_private_resource_projection.py` / `f06c193f403cda7478e2195d36d1c0b7e97600bbef8a44565ced883a65c039bb` | FN-02の局所projection候補。L5公開API・owner/source readerを実装しない。 |
 | existing test path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_infrastructure.py` / `e24e83f6dedf47202962687a9e00c70a85f9328e2587838a9ef349242e5add21` | 既存5 testsのbytesは未変更。 |
-| new test path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_resource_projection.py` / `d15e12ea0beeb541a011761ec87a22072a64f4a67a16fc4743af8a5970d14dfd` | 6 focused unit tests。L8 fixture locatorを参照するがL8全oracle実行ではない。 |
+| new test path / SHA-256 | `helix/helix-infrastructure/units/infrastructure-stage1/tests/test_resource_projection.py` / `c57ef11a6c32d226880d7fc9e44de553cdd38410cacd3fd19812000deeebc768` | 6 focused unit tests。L8 fixture locatorを参照するがL8全oracle実行ではない。 |
 | owner/domain hold | 240 canonical fixture | FN-01/05 owner API binding、FN-03/04 domain/path semantics、FN-06 operation result owner source、NFR probeやfull L8 oracleが未接続のためhold。8 partialはそれぞれ明記したsource-value保持subsetに限る。 |
 
 この実行は局所CPython `unittest`であり、Scaffold Binding/CI登録、declaration検証、module locator setup、実source/owner reader、operation、NFR測定、L10合格を示さない。source/test bytesが変わればこの実行記録はその後のbytesへ自動継承されない。
