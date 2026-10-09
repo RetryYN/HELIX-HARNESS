@@ -2471,7 +2471,7 @@
               ]
             },
             {
-              "literal": "bodyだけを134,756 bytesへ1 byte超過させる（L8 `CASE-L8-LCI-150`）",
+              "literal": "bodyだけを137,402 bytesへ1 byte超過させる（L8 `CASE-L8-LCI-150`）",
               "ids": [
                 "CASE-L8-LCI-150"
               ]
@@ -2558,7 +2558,7 @@
               ]
             },
             {
-              "literal": "固定expected set/digestと全required refを保持する",
+              "literal": "helper109 identity completeness",
               "ids": [
                 "LC-STAGE1-L7-001"
               ]
@@ -2606,7 +2606,7 @@
               ]
             },
             {
-              "literal": "716結果frame上限",
+              "literal": "722結果frame上限",
               "ids": [
                 "LC-STAGE1-L7-001"
               ]
