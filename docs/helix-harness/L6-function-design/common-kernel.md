@@ -672,7 +672,7 @@ K7/G5は本節で関数責務へ下ろした設計候補であり、§15.4に記
 
 main `27707fe9f1506afaa3ab88b665f655b7212233f9`から分離した候補実装で、`helix/helix-harness/units/common-kernel/src/_k7_g5_private.py`に既存`SegmentHead`/`SubjectRef`とPythonの`str`/`tuple`/`frozenset`だけを比較・保持するprivate helperを置いた。moduleの`__all__`は空であり、公開API、Generation/Epoch/Pointer/RecipientMap等のdomain型、return union、keyless `Unknown`、owner port、外部reader/writer、append/CAS、fence作用は追加していない。
 
-`helix/helix-harness/units/common-kernel/tests/test_k7_g5_private.py`の5件は、L7 §12.5に列挙した3個のK7局所比較（UT-006/033/035）と、既存入力からのG5 identity/class集合保持・一class欠落比較（UT-035/036）を検査する。`python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k7_g5_private.py' -v`は5件成功した。これはL8 formal fixture全体の実行ではなく、115 fixtureはすべて未実行である。helperの実装・test SHA-256はそれぞれ`e13bff0ec554ab8a244949e3f318c86c00e88556ca9286fca51bd409c9b5917c`、`20ab44e0c6866209230203bf1c75b906ff9b506d4ac77b8f7e926fb05cfe9307`である。
+`helix/helix-harness/units/common-kernel/tests/test_k7_g5_private.py`の5件は、L7 §12.5に列挙した3個のK7局所比較（UT-006/033/035）と、既存入力からのG5 identity/class集合保持・一class欠落比較（UT-035/036）を検査する。`python3 -m unittest discover -s helix/helix-harness/units/common-kernel/tests -p 'test_k7_g5_private.py' -v`は5件成功した。これはL8 formal fixture全体の実行ではなく、115 fixtureはすべて未実行である。helperの実装・test SHA-256はそれぞれ`e13bff0ec554ab8a244949e3f318c86c00e88556ca9286fca51bd409c9b5917c`、`32aebb1851310f7938dd5cbf056f0041f5caafd26a2db8b1737fe5fb6f200ff9`である。
 
 この部分実装は9公開API、K5 source復元・current owner、K3 permission、K4 verifier set、K6 receipt、K10 graph/review set、OS/build declaration、SECURITY recipient source、physical append/CAS、internal deploymentを実装・接続していない。115 L8 formal fixture/L9 oracleの達成、製品動作、L10成立を主張しない。K7/G5 helper suiteは現行CI inventoryに未登録であり、local CIの586 Core discovery identityへ含めない。
 
