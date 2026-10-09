@@ -9,7 +9,7 @@ version_target: 1.0
 
 # HELIX-OS Stage 1 local CI 結合検証設計
 
-本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `a490867226596a35a6c62f39bf14bcb4fa14b70032dfed8f76684c07b11e7d82`である。旧CI/旧testを実行しない。
+本書はL4 `local-ci.md`の選択scope、実行順序、receipt binding、GitHub `workflow_dispatch`を結合で検査する設計であり、実行・合格の記録ではない。期待は設計oracleである。固定入力は対のL4本文SHA-256 `4e1ffe61bc593c4f705e7c0527948b9834d49f68016077813eebcb2da9b138ec`である。旧CI/旧testを実行しない。
 
 ## 1. 検証構成と判定
 
@@ -163,7 +163,7 @@ IV-LCI-79/80ではfailure/error/skip/expected-failure/unexpected-successをそ�
 | `IV-LCI-106` | owner return locator preservation | 明記されたowner returnはexact cell ref、非記載は`NotDeclaredBySource` | 一件のdeclared owner return refだけを別L7 rowへ差替 | `Unknown(conflict)`、owner不明を解消済みにせずraw source referenceを保つ |
 | `IV-LCI-107` | formal/supplemental type separation | supplemental identityの閉じたfield setにformal ID fieldなし | `SUP-HARNESS-001`へ`formal_l7_id`だけを追加 | `Rejected(invalid_input)`、新規formal bindingなし |
 | `IV-LCI-108` | required supplemental source closure | 8 implementation/test refsと8 paired L6/L7 refsをtarget treeから読める | `test_infrastructure.py` refだけを欠落 | 既存pre-spawn `Unknown(missing_input)`、subset実行・receiptなし |
-| `IV-LCI-109` | closed supplemental target set excludes CONNECT 4 identities | `SUP-CONNECT-001` ID-shaped rowだけを追加 | `Unknown(conflict)`、追加sourceをscan/登録せず27件を保つ |
-| `IV-LCI-110` | closed supplemental target set excludes Common Kernel K4/G3 14 identities | `SUP-CK-K4-001` ID-shaped rowだけを追加 | `Unknown(conflict)`、追加sourceをscan/登録せず27件を保つ |
+| `IV-LCI-109` | closed supplemental target set excludes CONNECT 4 identities | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにある | `SUP-CONNECT-001` ID-shaped rowだけを追加 | `Unknown(conflict)`、追加sourceをscan/登録せず27件を保つ |
+| `IV-LCI-110` | closed supplemental target set excludes Common Kernel K4/G3 14 identities | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにある | `SUP-CK-K4-001` ID-shaped rowだけを追加 | `Unknown(conflict)`、追加sourceをscan/登録せず27件を保つ |
 
 これらはinventory/source bindingの設計oracleであり、27補助methodの未実行・部分実行をformal fixture pass、機構L7合格、owner接続、登録、製品全体coverageへ読み替えない。613は設計上の合成期待数で、実discovery/execution件数ではない。

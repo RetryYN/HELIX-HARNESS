@@ -11,7 +11,7 @@ version_target: 1.0
 
 本書はL6 `local-ci-function-design.md`の単体関数を合成inputで検証するoracle設計である。unit test実装・実行、CI起動、合格を表さない。検証codeはfixture IDを参照し、設計本文をcopyしない（repository-layout RL-T2）。
 
-固定入力は対のL6本文SHA-256 `e4f3f96d120fb853d67f6b5badebbf1d5f505ffed3d13a672ba719c3a69815a0`と、その固定入力表のL4/L5/L8/L9である。
+固定入力は対のL6本文SHA-256 `adc4b29717d9e564e076f0e0772a9b6f7de7f48fd7c6d4ab137d851bdfc73935`と、その固定入力表のL4/L5/L8/L9である。
 
 ## 1. 原則
 

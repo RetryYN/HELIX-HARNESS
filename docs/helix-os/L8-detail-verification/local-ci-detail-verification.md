@@ -184,7 +184,7 @@ CASE-L8-LCI-105/106のoutcome変異はerror、expected failure、unexpected succ
 | `CASE-L8-LCI-137` | owner return locator preservation | source L7 rowがowner return locatorを明記する場合、そのexact source cell refを保持する。明記しないrowは`NotDeclaredBySource`を保持する | 一件のdeclared owner return refだけを別L7 rowのlocatorへ差し替える | `Unknown(conflict)`、owner不明を解消済みへ変換せず、source refを固定する |
 | `CASE-L8-LCI-138` | formal/supplemental type separation | SupplementalTestIdentityはL5 §8.1の閉じたfield setを持ち、formal IDは持たない | `SUP-HARNESS-001` rowへ`formal_l7_id` fieldだけを追加する | `Rejected(invalid_input)`、正式bindingを新設しない |
 | `CASE-L8-LCI-139` | required supplemental source refs | 8 implementation/test refsと8 paired L6/L7 refsをexact target treeから読める | `test_infrastructure.py` refだけをtarget source setから除く | 既存pre-spawn `Unknown(missing_input)`、subset実行・suite row success・positive receiptなし |
-| `CASE-L8-LCI-140` | closed supplemental target setは4機構27件で、CONNECTの4件を含めない | `SUP-CONNECT-001` ID-shaped rowを一件だけ固定setへ追加する | `Unknown(conflict)`、未登録CONNECT identityをscan/登録しない |
-| `CASE-L8-LCI-141` | closed supplemental target setは4機構27件で、Common Kernel K4/G3の14件を含めない | `SUP-CK-K4-001` ID-shaped rowを一件だけ固定setへ追加する | `Unknown(conflict)`、未登録K4/G3 identityをscan/登録しない |
+| `CASE-L8-LCI-140` | closed supplemental target setは4機構27件で、CONNECTの4件を含めない | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにある | `SUP-CONNECT-001` ID-shaped rowを一件だけ固定setへ追加する | `Unknown(conflict)`、未登録CONNECT identityをscan/登録しない |
+| `CASE-L8-LCI-141` | closed supplemental target setは4機構27件で、Common Kernel K4/G3の14件を含めない | BRAIN/LABO/HARNESS/INFRAの27 supplemental IDsだけが固定setにある | `SUP-CK-K4-001` ID-shaped rowを一件だけ固定setへ追加する | `Unknown(conflict)`、未登録K4/G3 identityをscan/登録しない |
 
 各caseは固定inventoryの構造・source bindingだけを扱い、補助methodの実行成功から機構L7 formal fixtureの充足、owner接続、登録、L8/L9/L10合格を作らない。CASE-L8-LCI-131の613は期待集合計算であり、実discovery/execution結果ではない。
