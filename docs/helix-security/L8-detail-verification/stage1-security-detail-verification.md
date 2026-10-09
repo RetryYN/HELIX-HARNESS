@@ -5,7 +5,7 @@ status: design_pair_defined
 owner: HELIX-SECURITY
 base: main `f0ba62ce833463eb5f747ac4b95659ecea49928a`
 paired_l5: ../L5-detail-design/stage1-security.md
-paired_l5_sha256: 120ec37f7abbae712e54a07fcf425d98074ac7d7d5dcdd0aa844884c0576d38f
+paired_l5_sha256: 5a8adfc77201effc1ccb0e9fb5f99a2b8896e86ffacc3f322e891a0f988598ae
 ---
 
 # HELIX-SECURITY Stage 1 詳細検証設計
