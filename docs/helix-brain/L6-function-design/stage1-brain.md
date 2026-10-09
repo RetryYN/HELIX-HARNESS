@@ -133,7 +133,7 @@ NFR数値・coverage値はL3/L10のcandidate measurementであり、このL6にt
 | `helix/helix-brain/units/stage1-brain/src/brain.py` | L5 `BrainSourceTraceInput`と`BrainSourceTrace`の既存field shapeを局所dataclassで表現し、`trace_source`は各入力Observedを対応fieldへそのまま投影する。`read_knowledge`は渡されたexact `ResultKey`とK5 restore済みrecord列をCommon Kernelの既存`lookup`へ渡し、その戻り値をそのまま返す。 | 入力の生成元、owner declaration/current reader、K2 `key_of`・K5 `restore`のproduction caller、K3 permissionやK6 receiptは未接続。`compare_compatibility`は実装せず、公開API結果を生成しない。 |
 | `helix/helix-brain/units/stage1-brain/tests/test_brain.py` | 合成入力に限り、field/owner別のObserved保持とK2 lookupのValue/Unknown/Unobserved/Stale結果保持を検査する。 | L8 formal fixture一式、production reader、descriptor comparator、adoption、NFR測定の実行ではない。 |
 
-この実装候補の固定source bytesは`brain.py` SHA-256 `b2b856c3073d7a51e594362de3eaff9af7b76b6e9af6633fd214d2f3e8a05cce`、test bytesは`test_brain.py` SHA-256 `7d31e48e27ba5e680d39ff9266beb08fc9327c7a04aee5b7b4de71a321d4bf48`である。L7 §7に記したunit commandの実行はこのcandidate bytesだけを対象にし、L8/L9 system fixtureを実行したものではない。
+この実装候補の固定source bytesは`brain.py` SHA-256 `b2b856c3073d7a51e594362de3eaff9af7b76b6e9af6633fd214d2f3e8a05cce`、test bytesは`test_brain.py` SHA-256 `18ebfeaedc496c37adc0f000f472e8eb00b83f774cc05504be5259feb177a42f`である。L7 §7に記したunit commandの実行はこのcandidate bytesだけを対象にし、L8/L9 system fixtureを実行したものではない。
 
 CPython 3.11+標準ライブラリと`unittest`を用いる。既存Common Kernel sourceへのimportはこの未登録source候補をローカルで確かめるためだけのもので、pack dependency declaration/registrationが存在することを意味しない。実装とtestは合成のK1/K2値を使い、旧source/runtimeは実行しない。
 

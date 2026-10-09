@@ -180,11 +180,11 @@ class BrainKnowledgeLookupTests(unittest.TestCase):
 
     def test_read_knowledge_preserves_saved_unknown_observation(self) -> None:
         query = make_key(ref("knowledge:pattern-a"))
-        saved_unknown = stored(query, Unknown("unsupported", query))
+        saved_unknown = stored(query, Unknown("missing_input", query))
         result = read_knowledge(query, (saved_unknown,))
         self.assertIs(result, saved_unknown.result)
         self.assertIsInstance(result, Unknown)
-        self.assertEqual(result.reason, "unsupported")
+        self.assertEqual(result.reason, "missing_input")
 
     def test_read_knowledge_keeps_nested_version_unknown_in_record_value(self) -> None:
         query = make_key(ref("knowledge:pattern-a"))
@@ -238,7 +238,7 @@ class BrainKnowledgeLookupTests(unittest.TestCase):
     def test_read_knowledge_preserves_prior_nonvalue_as_k2_unobserved(self) -> None:
         prior_key = make_key(ref("knowledge:pattern-a", "r1", D1))
         current_key = make_key(ref("knowledge:pattern-a", "r2", D2))
-        prior_result = Unknown("unsupported", prior_key)
+        prior_result = Unknown("missing_input", prior_key)
         prior_record = stored(prior_key, prior_result)
         result = read_knowledge(current_key, (prior_record,))
         self.assertEqual(result, Unobserved(current_key, "not_run", prior_record.key_digest))

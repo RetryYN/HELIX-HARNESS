@@ -9,7 +9,7 @@ status: draft_candidate
 authority_status: draft_candidate
 stage: 1
 paired_l6: ../L6-function-design/stage1-brain.md
-paired_l6_sha256: 824c12c6d6559203ac98e4df99a0bd8aa532607c9e7fc3c1b15abd09532f03df
+paired_l6_sha256: 31e32f042f896dce387376cce7134690b32d1d77d92e1f8319ba5edce5587930
 paired_l8: ../L8-detail-verification/stage1-brain-detail-verification.md
 paired_l8_sha256: 7f1e074b5bd53f3bb41b8114a4d65265cf85e3bd47bb7bd8f23aa027951a8afa
 ---
@@ -206,7 +206,7 @@ L8 §2.1の3組は同一fixture mutationを複数L9 oracleへ参照する。104�
 | `test_read_knowledge_preserves_saved_unknown_observation` / `test_read_knowledge_keeps_nested_version_unknown_in_record_value` / `test_read_knowledge_keeps_nested_state_unknown_in_record_value` | `UT-BRAIN-035`–`036`、`048`–`049`への結果保持部分trace | 保存結果のUnknownとValue payload内のversion/state UnknownをK2 lookup経由で保持する。 | Unknownのsource別reason mappingやcurrent owner resolutionは未検査。 |
 | `test_read_knowledge_preserves_same_key_content_conflict` | `UT-BRAIN-038` | exact同一keyで異なる結果digestを持つK2 recordsの`Unknown(conflict)`を保持する。 | BRAIN固有のconflict policyやsource内容の真正性は未検査。 |
 | `test_read_knowledge_preserves_prior_value_as_k2_stale` / `test_read_knowledge_does_not_mutate_restored_records` | `UT-BRAIN-039` | prior revisionのValueに対するK2 `Stale`とrecord bytes不変を保持する。 | current reader、K5 restore、product-side更新動作は未検査。 |
-| `test_read_knowledge_preserves_prior_nonvalue_as_k2_unobserved` | `UT-BRAIN-041` | prior revisionのUnknown recordからK2が返す`Unobserved(not_run, superseded=key_digest)`を保持する。 | K5 restore非Valueを受けたcallerの短絡は未検査。 |
+| `test_read_knowledge_preserves_prior_nonvalue_as_k2_unobserved` | `UT-BRAIN-041` | prior revision r1の`Unknown(missing_input)` recordにcurrent query r2を与え、K2が返す`Unobserved(not_run, superseded=key_digest)`を保持する。正式locatorのquery R2→Rに対し、本testはrecord r1／query r2で同じrevision不一致境界だけを部分検査する。 | K5 restore非Valueを受けたcallerの短絡は未検査。 |
 
 次のlocatorはこのsource候補から実行していない。K2 `key_of`拒否は既存K2所有のため重複実装しない（`UT-BRAIN-031`–`033`、`046`–`047`、`059`）。K5 restore非Valueのcaller短絡はBRAIN production call site未接続のためholdする（`UT-BRAIN-037`、`040`）。`compare_compatibility`、adoption、descriptor member、lifecycle no-call oracleは引き続きowner返却または構造hold（`UT-BRAIN-019`–`020`、`057`–`097`）。NFR locator `UT-BRAIN-098`–`104`は未測定である。
 
