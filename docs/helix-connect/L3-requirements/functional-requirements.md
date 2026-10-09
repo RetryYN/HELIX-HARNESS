@@ -1,6 +1,6 @@
-# HELIX-CONNECT L3 機能要件（Stage 1）
+# HELIX-CONNECT L3 機能要件
 
-> 状態: 要件草稿・未承認。収録範囲は1.0採択親 `HELIXCONNECT-L2-001`〜`005` の5件。L3承認、方式確定、実装完了を表さない。
+> 状態: 承認済み。収録範囲は1.0採択親 `HELIXCONNECT-L2-001`〜`005` の5件。方式確定、実装完了を表さない。
 
 ## 適用・責務境界
 
@@ -125,7 +125,7 @@
 
 ## Stage 2a 追加 — HELIXCONNECT-L2-006のみ
 
-本節だけがStage 2aの追補であり、前段のStage 1対象・bytesは書き換えない。対象は採択済み`HELIXCONNECT-L2-006`の1.0候補のみ。L3未承認、実装・送信・交換許可、L10実行・合格を生成しない。Stage2aの他親、Stage2b、Stage2c、L2-007 compositeは含めない。
+本節だけがStage 2aの追補であり、前段のStage 1対象・bytesは書き換えない。対象は採択済み`HELIXCONNECT-L2-006`の1.0候補のみ。L3承認済み。実装・送信・交換許可、L10実行・合格を生成しない。Stage2aの他親、Stage2b、Stage2c、L2-007 compositeは含めない。
 
 ### 固定親・依存境界
 
@@ -172,9 +172,9 @@
 | `LEGACY-ASSET-44DD86E3DEC09E65EF51`（shared pillar test design） | FR/AC/case trace形式の旧起点。旧case ID・HAT/L12機構を移植しない |
 
 
-## Stage 4 — profile供給と方向・feedback relation（008/009、1.0草稿）
+## Stage 4 — profile供給と方向・feedback relation（008/009、1.0）
 
-対象は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `HELIXCONNECT-L2-008`（登録002、L2:274–284、L11:87–93）と `HELIXCONNECT-L2-009`（登録002、L2:285–295、訂正L11:94–104）。L2 full SHA `94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1`、L11 full SHA `aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9`。PO `po-decision-2026-09-29-57candidates.md:15,94–95` の008配置A（供給CONNECT、安全SECURITY）、009案A（direction/order属性、feedback型付き戻り辺、操作別unknown停止）を保持する。既承認本文を更新せず追補した草稿で、実装・実送信・probe起動の許可ではない。
+対象は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `HELIXCONNECT-L2-008`（登録002、L2:274–284、L11:87–93）と `HELIXCONNECT-L2-009`（登録002、L2:285–295、訂正L11:94–104）。L2 full SHA `94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1`、L11 full SHA `aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9`。PO `po-decision-2026-09-29-57candidates.md:15,94–95` の008配置A（供給CONNECT、安全SECURITY）、009案A（direction/order属性、feedback型付き戻り辺、操作別unknown停止）を保持する。既承認本文を更新せず追補した承認済み本文で、実装・実送信・probe起動の許可ではない。
 
 ### CONNECT-FR-008-01 — profile catalogとtyped descriptor
 
@@ -210,9 +210,9 @@ bounded loopはforward/feedback辺と既存ownerのretry/budget/stop policy参�
 **review01表記補足**：008のPO採択対象は登録002。現行register:1029の `MPR-RC-HELIXCONNECT-L2-008-003` は002のlocator訂正であり、意味/候補digestは同じ。現行holdingは `MPR-SH-SUPPLEMENTARY-004` と `MPR-SH-V13-BASELINE-001`、coverage receiptは `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29-r2.json` へ対応する。過去receiptの未採択metadataをPO採択状態へ継承しない。009のL2:290の宣言join条件は構成体のjoin成立・完了の条件として、PO:95と訂正L11:103に従い読む。join条件の欠落だけで各独立適格辺の送信を一括停止せず、join/composite完了だけ保留する。
 
 
-## Stage 5 — 複数機構の接続完全性（007、1.0草稿）
+## Stage 5 — 複数機構の接続完全性（007、1.0）
 
-対象は採択親`HELIXCONNECT-L2-007`のみ（`MPR-RC-HELIXCONNECT-L2-007-001`、semantic digest `44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b`）。PO記録 `docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md` が固定したrevision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2:128–138、L11:74–77と一覧38を正本とする。L2 full SHA `31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b`、L11 full SHA `bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad`。各現行本文のcandidate表記から採否を生成しない。Stage5配属は既存G0追補の007対応を用いる。これは要件・検証設計草稿で、送信・実装・承認・検証実行を許可しない。
+対象は採択親`HELIXCONNECT-L2-007`のみ（`MPR-RC-HELIXCONNECT-L2-007-001`、semantic digest `44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b`）。PO記録 `docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md` が固定したrevision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2:128–138、L11:74–77と一覧38を正本とする。L2 full SHA `31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b`、L11 full SHA `bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad`。各現行本文のcandidate表記から採否を生成しない。Stage5配属は既存G0追補の007対応を用いる。これは承認済みの要件・検証設計で、送信・実装・承認・検証実行を許可しない。
 
 ### CONNECT-FR-007-01 — 全辺の技術終端と未完引継ぎ
 

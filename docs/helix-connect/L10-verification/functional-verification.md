@@ -1,6 +1,6 @@
-# HELIX-CONNECT L10 総合検証（Stage 1）
+# HELIX-CONNECT L10 総合検証
 
-> 状態: 総合検証設計の草稿・未実行。対象は1.0採択親001〜005の5件。検証結果、CI合格、L3承認を表さない。旧runtime/test/CIは実行しない。
+> 状態: 総合検証設計・承認済み・未実行。対象は1.0採択親001〜005の5件。検証結果、CI合格を表さない。旧runtime/test/CIは実行しない。
 
 ## 判定規約
 
@@ -145,7 +145,7 @@
 
 ## Stage 4 — 008/009の総合検証設計（未実行）
 
-上記Stage 1の承認本文を保持し、採択済み008/009の1.0草稿に対する静的fixture設計を追補する。下表のCASE IDは個別変異を一意に識別し、一つのACに結ぶ。正常入力はL3各FRの全宣言を持ち、変異行は指定fieldだけを変えて他入力を正常に維持する。suffix M/U/S/Cはmissing/unknown/stale/conflictの独立fixtureである。expectedは判定oracleであり実行結果ではない。証拠はfixture ID、対象operation/profile/connection、revision、照合条件、reason、技術状態、未完・戻し先を持つ。実送信・MCP/probe/旧test/runtimeを起動せず、実許可や実安全性達成を生成しない。
+上記Stage 1の承認本文を保持し、採択済み008/009の承認済み1.0 L3に対する静的fixture設計を追補する。下表のCASE IDは個別変異を一意に識別し、一つのACに結ぶ。正常入力はL3各FRの全宣言を持ち、変異行は指定fieldだけを変えて他入力を正常に維持する。suffix M/U/S/Cはmissing/unknown/stale/conflictの独立fixtureである。expectedは判定oracleであり実行結果ではない。証拠はfixture ID、対象operation/profile/connection、revision、照合条件、reason、技術状態、未完・戻し先を持つ。実送信・MCP/probe/旧test/runtimeを起動せず、実許可や実安全性達成を生成しない。
 
 固定sourceはL3と同じ633bf12 L2/L11、009の訂正後L11登録002を用いる。旧HYB-002のHR-AC（未登録profile拒否）とUWJ loop/停止形状を起点に、現行L11の操作別範囲へ再導出する。旧serial merge/CI/DBや層pairを機構間接続の実証にしない。
 

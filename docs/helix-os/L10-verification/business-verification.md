@@ -1,6 +1,6 @@
-# HELIX-OS L10 業務総合検証（Stage 2b）
+# HELIX-OS L10 業務総合検証
 
-状態: L3未承認の候補／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
+状態: L3承認済み／L10未実行の検証設計。対象は `HELIXOS-L2-014` のみ。
 
 ## Stage 2b — HELIXOS-L2-014 business verification boundary
 
@@ -16,7 +16,7 @@
 
 ## Stage 2a — 8親の業務総合検証（015/016/017/018/019/020/023/027）
 
-状態: L3業務要件との対になるverification設計候補。業務達成、user acceptance、L3承認は生成しない。正本は `../L3-requirements/business-requirements.md`、functional oracleは `functional-verification.md` である。
+状態: L3業務要件との対になる承認済みのverification設計。業務達成、user acceptance、L3承認は生成しない。正本は `../L3-requirements/business-requirements.md`、functional oracleは `functional-verification.md` である。
 
 | 親BR | 業務oracle | 対応L3 | 対応functional CASE |
 |---|---|---|---|
@@ -81,7 +81,7 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 
 ## Stage 5 — 機能CASEと対になるbusiness境界確認（独立BRなし）
 
-この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する承認済みの追補である。先頭のstatusは先行scopeの状態を示す。
 
 この4親は、固定L2/L11に独立business outcome/KPIがないため、新BRやbusiness KPIを作らない。functional owner/state/CASEを同じscopeで照合する。
 

@@ -1,4 +1,4 @@
-# HELIX-SECURITY L10 総合検証 — Stage 1（19親の候補）
+# HELIX-SECURITY L10 総合検証
 
 > 状態：未実行の総合検証設計。合格証拠・L3承認・実行許可を生成しない。Stage 1節は`HELIXSECURITY-L2-001`〜`016`、`020`、`028`、`033`の19親を対象とし、Stage 2cの`HELIXSECURITY-L2-031`は下記の別scopeで扱う。
 
@@ -423,7 +423,7 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 | `SECURITY-CASE-035-03` | `SECURITY-AC-035-03` | repository deny switchの設定能力あり/なし/unknownと適用状態を分け、同一対象有効denyへのrun設定/provider flag試行、cleanup後、主Workerとbypass非選択正常操作を対照にする。 | 能力と適用を別に観測し、032のdeny優先・cleanup後denyを維持。優先成立だけからswitch能力を推定しない。主Workerに035を拡張せず既存条件の適用を免除しない。policy/deny applicabilityの意味・状態不足はSECURITY、実適用の観測不足とcleanup強制はWorker実行環境、assignment/未完義務はOSへ返す。 |
 | `SECURITY-CASE-035-04` | `SECURITY-AC-035-04` | allowlist正常例に同一target revision/既存authority/current repository policy/deny stateを与える。target revision不一致、別repositoryのdeny state流用、別runtimeのallowlist能力流用、旧repo設定/provider UI/remote flagだけでdeny能力を申告する変異、適用状態だけを申告する変異を別fixtureにする。006/007/008/OS-018既存条件の失敗も035成功から相殺しようとする独立negativeを含む。 | 正常は同一scopeの既存状態を照合する。target/repository/runtime間の証拠流用はhold（L11-035:165）、provider/UI/remote flagまたは適用状態だけの申告はunknown（L2-035:492）、既存006/007/008/OS-018条件の相殺は不合格（L11-035:166）とする。policy不足はSECURITY、assignment/未完義務はOS、enforcement/cleanup強制はWorker実行環境へ戻す。 |
 
-## Stage 4 — 接続・構成体の総合検証候補
+## Stage 4 — 接続・構成体の総合検証
 
 全caseは固定L2/L11の文書上oracleであり未実行である。合成identity/revision/credential markerだけを使い、実secret、実credential、実外部通信、実assignment、実resource、実promotionを行わない。共通してunknown/missing/staleはsuccessへ変換せず、無関係scopeを停止しない。各CASE IDは単一の正常条件または単一のnegative変異を検証する。
 
@@ -947,7 +947,7 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 
 ## Stage 5 — 永続化promotion構成体の検証設計
 
-固定親027/1.0、未実行・未承認。全IDは独立fixture。P1/P2/P3は合成identityであり、実account/credential/logを用いない。各negativeは指定fieldだけ変え、他fieldと他経路は有効な正常値に固定する。正常分類publicは固定L2-016の宣言語彙を使う。allowは当該合成source・scope・sink契約に適合した既存判定receiptとして与え、public一般から許可を推定しない。状態とreceiptを独立に観測する。P1はfixtureで接続契約identityを宣言する。P2/P3は固定L2-015で特定できるownerとscopeに適合する合成契約・receiptを正常入力とするが、実接続契約identityは未特定のまま保持する。以下のP2/P3の「owner contractは正常」はこの合成入力の適合を指し、実契約identityの特定や実接続成立を意味しない。
+固定親027/1.0、承認済み・未実行。全IDは独立fixture。P1/P2/P3は合成identityであり、実account/credential/logを用いない。各negativeは指定fieldだけ変え、他fieldと他経路は有効な正常値に固定する。正常分類publicは固定L2-016の宣言語彙を使う。allowは当該合成source・scope・sink契約に適合した既存判定receiptとして与え、public一般から許可を推定しない。状態とreceiptを独立に観測する。P1はfixtureで接続契約identityを宣言する。P2/P3は固定L2-015で特定できるownerとscopeに適合する合成契約・receiptを正常入力とするが、実接続契約identityは未特定のまま保持する。以下のP2/P3の「owner contractは正常」はこの合成入力の適合を指し、実契約identityの特定や実接続成立を意味しない。
 
 未完義務の合成source値は各経路別に固定する。P1は `P1-duty@r1` / 内容 `Memory受領手順の未完確認` / 宛先 `memory-sink-owner@contract-r1`、P2は `P2-duty@r1` / 内容 `Training Dataset受領手順の未完確認` / 宛先 `HELIX-LABO`、P3は `P3-duty@r1` / 内容 `BRAIN受領手順の未完確認` / 宛先 `HELIX-BRAIN`。いずれも元flow `P1/P2/P3` とsource `P1-src/P2-src/P3-src@r1` を結ぶ。これはsink手順を確認する残余のfixture値であり、denyを覆す操作や保存の許可ではない。Memory機構ownerとP2/P3実接続契約identityは未特定のまま保つ。
 

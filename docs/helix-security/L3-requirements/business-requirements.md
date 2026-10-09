@@ -1,4 +1,4 @@
-# HELIX-SECURITY L3 業務要件 — Stage 1（19親の候補）
+# HELIX-SECURITY L3 業務要件
 
 > 状態：この19親のscopeに独立したbusiness identity/ACはない。これは他機構・他Stageへ一般化しない。
 

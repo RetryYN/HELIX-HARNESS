@@ -1,4 +1,4 @@
-# HELIX-CONNECT L10 業務検証（Stage 1）
+# HELIX-CONNECT L10 業務検証
 
 > 状態: 検証設計・未実行。対象はHELIXCONNECT-L2-001〜005。
 

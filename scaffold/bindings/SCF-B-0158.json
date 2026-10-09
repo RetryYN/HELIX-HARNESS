@@ -20,22 +20,22 @@
     },
     {
       "path": "docs/helix-os/L5-detail-design/local-ci-detail-design.md",
-      "sha256": "d3e583b9812a45d5b8531668b8f15f25321f6336f37fd44777d6b7d02d13e242",
+      "sha256": "1abbc3c6f95ab8054059e5f18b7e91c796e274572bc9f9375ba6e95504edd5ca",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L8-detail-verification/local-ci-detail-verification.md",
-      "sha256": "cf3e56c94268247e89a95c4b49f0512a0542951824aed1cabe73347216daff03",
+      "sha256": "2d351f9f4a10cab6e395a43c10e605e204db5def6e3f324d0c1e7c849298fc20",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L6-function-design/local-ci-function-design.md",
-      "sha256": "7ef7afa990863d8ed05d147a3f6c3a8fff3a058ba110c19b1674c4c2161de3e0",
+      "sha256": "3f09a698ae46818c766a6c28231aa52ba5e2d54cf5745d1293325bed8be0e7e9",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
       "path": "docs/helix-os/L7-unit-test-design/local-ci-unit-test-design.md",
-      "sha256": "004166092e6abc5c8a20ccc2d2f0b8cb9c49017c46de43c29eb03d887de1043a",
+      "sha256": "1179c6f3a095d67bb2096f0cace6a9a998bf5aa1abea7459f1e76063b850a0ab",
       "note": "Current local-CI design bytes are pinned as content only; the pin does not claim execution, approval, or acceptance."
     },
     {
