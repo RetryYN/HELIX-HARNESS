@@ -410,7 +410,7 @@ CPython 3.11+標準libraryの`unittest`候補はL5 §7、Common Kernel L7 §2と
 | `UT-HARNESS-SUP-001`〜`UT-HARNESS-SUP-010`（補助fixture 10件） | `not_exercised` | SUPのreader/non-Value保持、revision comparison、NFR evidence projectionをL5 API候補で実行したtestなし。 |
 | `test_stage1_pack.PrivatePackComparisonTests` 5件 | `helper_only` | `_compare_field_refs`の同一ref基準・revision一変異、複数field内一変異、明示された`missing`/`multiple`保持、および既存owner `Unknown` objectのidentity保持だけ。正式UT/SUPへ対応付けず、API return shapeやL8期待を検証しない。 |
 
-この状態記録の実装source SHA-256は`stage1_pack.py`=`2a6db3be14fe2d094a3947c36b4e911708d0ec95c6bcd59bec4ffd338e088c5d`、test SHA-256は`test_stage1_pack.py`=`9846c526c7b1a0e03a5ce5fb6abf3fd30440f34a7e0f6794bbc8489519b380b4`である。5件の実行commandは次のとおり。
+この状態記録の実装source SHA-256は`stage1_pack.py`=`2a6db3be14fe2d094a3947c36b4e911708d0ec95c6bcd59bec4ffd338e088c5d`、test SHA-256は`test_stage1_pack.py`=`4ea1ee6a0056fba259298ce935f981dcfbef0dc00c296971b25cbc2806138d88`である。5件の実行commandは次のとおり。
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s helix/helix-harness/units/harness-stage1/tests -p 'test_*.py' -v

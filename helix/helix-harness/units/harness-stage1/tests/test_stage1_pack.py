@@ -16,6 +16,7 @@ sys.path.insert(0, str(_unit.parent / "common-kernel" / "src"))
 from common_kernel import SubjectRef, Unknown  # noqa: E402
 from stage1_pack import (  # noqa: E402
     _DeclaredFieldFact,
+    _FieldComparisonFact,
     _compare_declared_fields,
     _compare_field_refs,
 )
@@ -37,7 +38,7 @@ class PrivatePackComparisonTests(unittest.TestCase):
         self.assertEqual(result.left_ref, source)
         self.assertEqual(result.right_ref, source)
 
-    def test_single_revision_mutation_is_domain_mismatch_not_k2_stale(self) -> None:
+    def test_single_revision_mutation_is_domain_mismatch(self) -> None:
         field = ref("field:revision")
         baseline = ref("pack:one", "r1")
         changed = ref("pack:one", "r2")
@@ -46,7 +47,7 @@ class PrivatePackComparisonTests(unittest.TestCase):
 
         self.assertEqual(result.comparison, "mismatch")
         self.assertEqual((result.left_ref, result.right_ref), (baseline, changed))
-        self.assertNotIsInstance(result, Unknown)
+        self.assertIsInstance(result, _FieldComparisonFact)
 
     def test_explicit_fields_keep_order_and_detect_one_mutation(self) -> None:
         field_identity = ref("field:identity")
