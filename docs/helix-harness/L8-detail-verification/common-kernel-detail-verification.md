@@ -1,21 +1,21 @@
-# HELIX-HARNESS 共通カーネル L8詳細検証設計（K1/K2/K3/K4/K5/K6/K9/G3）
+# HELIX-HARNESS 共通カーネル L8詳細検証設計（K1/K2/K3/K4/K5/K6/K7/K9/G3/G5）
 
 status: draft
 owner: HELIX-HARNESS
-parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1／§9.2／§10.2／§13.1／§16.1／§17.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
+parent_requirement: なし（要素別にCommon Kernel L4 §2.1／§3.1／§9.2／§10.2／§13.1／§15.1／§16.1／§17.1の直接crosswalkへtrace。HARNESS-L2-031を親にしない）
 paired_l5: ../L5-detail-design/common-kernel.md
 base: main `d5bb3455526c816b3af965db239c4b56207a884f`
 
-本書はK1/K2/K3/K4/K5/K6/K9/G3のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9の既存項目を展開したものとする。K9は§9でL4 §17/L9 IV-K9-01–15を下位化し、K7/K8/K10は`not_designed`で現行参照のみとする。すべて未実行であり、pass、実装完成、L10成立を示さない。
+本書はK1/K2/K3/K4/K5/K6/K7/K9/G3/G5のL5公開契約とL9 fixture oracleを詳細fixtureへtraceする設計草稿である。契約はCommon Kernel L4の意味を保ち、期待値はPair L9の既存項目を展開したものとする。K9は§9でL4 §17/L9 IV-K9-01–15を、K7/G5は§10で既存K7/G5 oracleを下位化する。K8/K10は`not_designed`で現行参照のみとする。すべて未実行であり、pass、実装完成、L10成立を示さない。
 
 ## 1. 固定入力とtrace
 
 | 入力 | revision・scope | SHA-256 |
 |---|---|---|
-| Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3/§9/§10/§13/§16/§17 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
+| Common Kernel L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/common-kernel.md` §2/§3/§9/§10/§13/§15/§16/§17 | `3f7245e8fb548bab199107b1a020f0efea08713a5299076988326dae9feeb696` |
 | Repository Layout L4 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L4-basic-design/repository-layout.md` §2–3、RL-C/D/T/K、§6.1/§10 | `6968876dad1760257686108064520e1e98783b6034ca19bac7d6c7df1a3385f1` |
-| Common Kernel L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7/IV-LDG関連行、IV-K9-01–15 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
-| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9/§10 | SHA-256 `1310b538c268532a4aa15d3b47048bcdf592e6a6a85af88c2fb9fa08986a43a7` |
+| Common Kernel L9 | main `3961daac08d032ad512026e8365fafd9eae831c5`の本文pin：`docs/helix-harness/L9-integration-verification/common-kernel-integration-verification.md` K1/K2、IV-K3全27識別子、IV-K4-01–10、IV-G3-01–05、IV-K5-01–26、IV-K6-01–15、IV-K7-01–15、IV-G5-01–10、IV-LDG関連行、IV-K9-01–15 | `77f81138f3e323d98c16c7ea6c3be38e66d2aa36fc5a6b79986b6826e3facf52` |
+| paired L5 | 本PRのcontent HEADへ含める本文pin：`docs/helix-harness/L5-detail-design/common-kernel.md` §3/§4/§6/§7/§8/§9/§10/§11 | SHA-256 `445c564a7b5678d7609daf4142090a26a3df73ce76522a29771a6dad5cdce3f2` |
 | Paired L7 | `docs/helix-harness/L7-unit-test-design/common-kernel-unit-test-design.md`; content SHA-256 `dd933480812eb21647559ed41b51be672e271cf8a0e3a9fe0a78893748134133` (本PRのcontent HEAD) | L7 suite IDs and function mapping |
 
 L9の各`IV-K1-*`/`IV-K2-*`/`IV-K3-*`/`IV-K5-*`は上流fixture要件であり、この文書のcaseをその下位観測へ対応させる。直接のL3 parentはL4 crosswalkに限定する。K1 §2.1のdirect parentはHARNESS AC-HARNESS-L3-022-02/030-02/032-02/032-03、CONNECT CONNECT-AC-002-01/006-02、LABO LABO-001-AC-02、INFRA INFRA-001-AC-01、SECURITY SECURITY-AC-001-01、BRAIN BRAIN-008-AC-02。K2 §3.1のdirect parentはHARNESS AC-HARNESS-L3-010-01/010-03/022-05/030-04/031-05/032-04、CONNECT CONNECT-AC-002-01、LABO LABO-001-AC-02、BRAIN BRAIN-008-AC-02、OS AC-OS-014-02、INTELLIGENCE AC-INT-010-06。K1-I6からK2 §3.1のHARNESS 030-04/032-04への参照はkey境界のcontract linkとして別記し、K1のdirect parentへ加えない。case表のtrace欄はdirect parentと、必要な場合だけ明示したboundary linkを区別する。 K5 §9.2の直接由来はConcept、CONNECT-AC-005-01、INTELLIGENCE-078-06/078-04/INT-063-03、LABO-001-AC-02/002-AC-03/050-AC-02、HARNESS-024-05に限る。K3の直接L3 traceはL4 §16.1のSECURITY ACに限定し、OS-014-04/-06はK7との境界参照のまま扱う。K5を共通kernelとして配置すること自体から、単一親要求やHARNESS-L2-031を追加しない。
@@ -121,7 +121,7 @@ K2逆trace: L5 `key_of`, `lookup`, `record`, alias binding clausesは表のL9 ID
 
 ## 5. K3–K10と未実施範囲
 
-K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K7/K8/K10はこのpairで`not_designed`で、既存L4/L9の該当契約へ戻す。K9だけは後続の§9で設計する。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。K9の直接親はL4 §17.1のConcept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08である。K9 fixtureの設計はL7 mappingや実行を意味しない。
+K3とK5のfixtureはL4/L9が定める既存oracleを個別caseへ展開する。各caseは未実行であり、L5/L8の設計だけから実装passや物理writer enforcementを主張しない。K7/G5は§10で既存L4/L9契約を下位化し、K8/K10はこのpairで`not_designed`として既存L4/L9の該当契約へ戻す。K9は§9で設計する。K3の直接L3 traceはL4 §16.1のSECURITY ACに限り、OS-014-04/-06はK7境界参照のまま扱う。K5のwriter/assignment接続は既存K7/K5/Ledger oracleを再利用し、初回bootstrapを新設しない。K9の直接親はL4 §17.1のConcept:236、AC-OS-029-03、AC-INTELLIGENCE-L3-072-08である。K9 fixtureの設計はL7 mappingや実行を意味しない。
 
 ### 5.1 K3 fixtures
 
@@ -756,3 +756,143 @@ K9 L4/L9 ownerへの追加返却事項は次のとおり。これは対象oracle
 |---|---|---|
 | `L8-K9-05-BINDING-BYTES-DRIFT` / `RAW-SOURCE-BYTES-DRIFT`、IV-K9-05 | K6 admissionの`Unknown(conflict)`からK9 result/components/combinedへの投影が未定義。 | K9 L4 §17 / L9 IV-K9-05 ownerへ返す。K6 source診断を独立して保持し、K9 assuranceへ混入せずK9 oracle充足を主張しない。 |
 | `L8-K9-11-PENDING-REVIEW`、IV-K9-11 | K4 Deferred fixtureの再利用は既存義務成分だけを確認する。K9 candidate/sourceとreview段階を結ぶAPI・projectionは未接続。 | K9 L4 §17 / L9 IV-K9-11 ownerへ返す。IV-K9-11の期待全体をK4 aliasへ縮約せず、K9側の段階分離の未達を保持する。 |
+
+## 10. K7/G5 fixture表
+
+本節はL4 §15の既存9 APIとL9 IV-K7-01–15/IV-G5-01–10を、個別のbaseline・一条件変異・期待値へ展開する。全件が設計fixtureで未実行であり、K3 IV-K3-11/12/17、K5 writer、K6 receipt reader、K10 graph readerの製品接続や実作用を示さない。owner sourceやbindingがないfixtureはsynthetic input/port boundaryとしてだけ記述する。
+
+### 10.1 K7 fixture
+
+| Fixture ID | L9 / API | 固定baselineと単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K7-01-BASE` | IV-K7-01 / `apply_move`,`ledger_view` | Z segment 0→1、Aへhandoff、A segment 1→2の二つのPointerMoved。handoffはAのPointerLog最初の行。 | current generation number `2`。並び替えやrequest記録をcurrentに混ぜない。 |
+| `L8-K7-01-HANDOFF-GAP` | IV-K7-01 / `ledger_view` | BASEからWriterHandoff link一件だけを欠く。 | current `Unknown(missing_input)`。 |
+| `L8-K7-01-HANDOFF-WRONG-LOG` | IV-K7-01 / `ledger_view` | BASEのhandoffをPointerLogからRequestLogだけへ移す。 | linkなしと同じ`Unknown(missing_input)`。 |
+| `L8-K7-02-BASE` | IV-K7-02 / `append_if_head` | 期待headがcurrent tailである一件追記。 | `Appended`、pointer entry 1件。 |
+| `L8-K7-02-CONCURRENT-LOSER` | IV-K7-02 / `append_if_head` | 同じpointer_headの2要求を準備し、1つ目の成功後に2つ目を呼ぶ。 | 2つ目`Rejected(stale_head)`、追記0。 |
+| `L8-K7-02-OLD-PREFIX` | IV-K7-02 / `append_if_head` | BASEのexpected_headだけを現prefixより古いtailにする。 | `Rejected(stale_head)`、追記0。 |
+| `L8-K7-03-BASE` | IV-K7-03 / `request_move` | current stage/build owner declarations、全RL-R2 refs/heads、required resultが肯定、ManifestRefをstage_key subjectにする。 | `Appended(MoveRequested)`。記録されたeligibilityはassurance込みRequiredResult。 |
+| `L8-K7-03-DEPENDENCY-REV` | IV-K7-03 / `request_move` | BASEから宣言dependency revisionだけを更新し、他は固定。 | 旧receiptが当たらず`Rejected(not_eligible)`。内部照会の非肯定診断を保持。 |
+| `L8-K7-03-SCOPE` | IV-K7-03 / `request_move` | BASEからcurrent declaration scopeだけを変える。 | `Rejected(not_eligible)`。 |
+| `L8-K7-03-VERIFIER-VERSION` | IV-K7-03 / `request_move` | BASEからcurrent verifier versionだけを更新する。 | `Rejected(not_eligible)`。 |
+| `L8-K7-03-SAME-REV-DIGEST` | IV-K7-03 / `request_move` | BASEの同一ref revisionへ異digest recordを一件追加する。 | 内部結果`Unknown(conflict)`を保持し、requestは`Rejected(not_eligible)`。 |
+| `L8-K7-03-RECEIPT-HEAD-MISSING` | IV-K7-03 / `request_move` | BASEから必要receipt segment head一つだけをinput_heads期待値から欠落させる。 | 内部結果`Unknown(missing_input)`を保持し、requestは`Rejected(not_eligible)`。 |
+| `L8-K7-04-PROMOTE-BASE` | IV-K7-04 / `request_move` | stagedの未現行generationへの合法promote。 | `Appended(MoveRequested)`。 |
+| `L8-K7-04-REBUILD-BASE` | IV-K7-04 / `request_move` | fromと同compositionの新numberへの合法rebuild。 | `Appended(MoveRequested)`。 |
+| `L8-K7-04-ROLLBACK-BASE` | IV-K7-04 / `request_move` | stagedかつ以前currentだった保持generationへの合法rollback。 | `Appended(MoveRequested)`。 |
+| `L8-K7-04-REBUILD-COMPOSITION` | IV-K7-04 / `request_move` | REBUILD-BASEからto.compositionだけをfromと異ならせる。 | `Rejected(not_eligible)`。 |
+| `L8-K7-04-PROMOTE-OLD-NUMBER` | IV-K7-04 / `request_move` | PROMOTE-BASEからto.numberだけを既current generationへする。 | `Rejected(not_eligible)`。 |
+| `L8-K7-04-REBUILD-OLD-NUMBER` | IV-K7-04 / `request_move` | REBUILD-BASEからto.numberだけを既current generationへする。 | `Rejected(not_eligible)`。 |
+| `L8-K7-04-ROLLBACK-UNHELD` | IV-K7-04 / `request_move` | ROLLBACK-BASEからtoだけを未保持/未staged generationへ変える。 | `Rejected(not_eligible)`。 |
+| `L8-K7-11-BASE` | IV-K7-11 / `request_move`,`apply_move` | RequestLogだけを追記し、pointer prefixとowner inputsは不変。 | apply成功、request record自体はpointer headを変えない。 |
+| `L8-K7-11-POINTER-ADVANCED` | IV-K7-11 / `apply_move` | BASE後に別PointerMovedをpointer segmentへ1件追記。 | 古いrequestは`Rejected(stale_head)`、追記0。再bindしない。 |
+| `L8-K7-12-BASE` | IV-K7-12 / `request_move` | current=2、from=2、toはgeneration 2とgeneration 0の両方に同じcompositionを持つ合法new rebuild generation。 | `Appended(MoveRequested)`。 |
+| `L8-K7-12-FROM-OLD` | IV-K7-12 / `request_move` | BASEからfromだけを保持generation 0へ変更し、to・全ほかの入力を固定する。 | `Rejected(stale_from)`。 |
+| `L8-K7-13-BASE` | IV-K7-13 / `request_move`,`apply_move`,`verify_current` | request/apply間のowner declaration/ref/head/bytesを固定。 | apply成功、PointerMoved.checked_headsを保持。 |
+| `L8-K7-13-STAGE-DEPENDENCY-REV` | IV-K7-13 / `apply_move` | BASEからstage OperationDecl dependency revisionだけを更新。 | `Rejected(stale_eligibility)`、追記0。 |
+| `L8-K7-13-VERIFIER-REF` | IV-K7-13 / `apply_move` | BASEからVerifierSet refだけを更新。 | `Rejected(stale_eligibility)`、追記0。 |
+| `L8-K7-13-BUILD-ARTIFACT-VERIFIER` | IV-K7-13 / `apply_move` | BASEからbuild owner OperationDeclへartifact verifier一件だけ追加。 | `Rejected(stale_eligibility)`、追記0。 |
+| `L8-K7-13-POST-READ-DEPENDENCY-DRIFT` | IV-K7-13 / `apply_move`,`verify_current` | applyの全再読後・追記前にdependency headだけを更新する順序を注入。 | PointerMovedが成功し得る。verify_currentはfresh current refs/headsから再計算し、結果と診断を保持する。PositiveならRollbackRequiredを作らず、非Positiveなら観測+RollbackRequired・pointer不変。両分岐を固定しない範囲はowner fixture未接続。 |
+| `L8-K7-13-POST-APPEND-RESULT-CONFLICT` | IV-K7-13 / `verify_current` | BASEの宣言を固定し、receipt segmentに同key・異digest ResultRecorded一件だけ追加。 | `Unknown(conflict)`を保持し、RollbackRequired追記、pointer不変。 |
+| `L8-K7-13-NO-OLD-CHECKED-HEADS` | IV-K7-13 / `verify_current` | BASEからcurrent inputsだけを更新し、記録済checked_headsは固定する。 | current headsから再計算し、checked_headsの再利用で適格性を肯定しない。 |
+| `L8-K7-13-REQUIRED-SEGMENT-MISSING` | IV-K7-13 / `verify_current` | BASEから必要segment head一つだけを欠落させる。 | `Unknown(missing_input)`を保持しPositiveにしない。 |
+| `L8-K7-14-BASE` | IV-K7-14 / `stage_generation` | ReleaseEstablished済みmanifestとgeneration target/compositionがexact一致。 | `Appended(GenerationStaged)`、pointer/currentは不変。 |
+| `L8-K7-14-TARGET-MISMATCH` | IV-K7-14 / `stage_generation` | BASEのmanifest.targetだけをgeneration.targetと異ならせる。 | `Rejected(not_eligible)`、GenerationStaged追記0。 |
+| `L8-K7-15-BASE` | IV-K7-15 / `stage_generation` | IV-K7-14-BASEと同じ固定構造でtarget/composition exact一致。 | `Appended(GenerationStaged)`。 |
+| `L8-K7-15-COMPOSITE-MISMATCH` | IV-K7-15 / `stage_generation` | BASEのmanifest.compositeだけをgeneration.compositionと異ならせる。 | `Rejected(not_eligible)`、GenerationStaged追記0。 |
+| `L8-K7-05-BASE` | IV-K7-05 / `apply_move`,`ledger_view`,`propagate` | current K3 checkと他K7条件が肯定のsynthetic control。 | `Appended(PointerMoved)`。K3/owner実接続は主張しない。 |
+| `L8-K7-05-AUTH-TARGET` | IV-K7-05 / `apply_move` | authorization targetだけを移動対象と異ならせる。 | `Rejected(authorization_unverified, check)`。pointer/current/G5 wait不変。 |
+| `L8-K7-05-AUTH-KIND` | IV-K7-05 / `apply_move` | authorization kind/actionだけを要求kindと異ならせる。 | 同上。 |
+| `L8-K7-05-AUTH-REVOKED` | IV-K7-05 / `apply_move` | BASEからcurrent authorizationのrevoke状態だけを有効にする。 | 同上。 |
+| `L8-K7-05-AUTH-UNRESOLVABLE` | IV-K7-05 / `apply_move` | BASEからauthorization候補refの解決だけを失わせる。 | `Rejected(authorization_unverified, check)`でK3既存check/diagnosticを保持。 |
+| `L8-K7-RECOVERY-BASE` | IV-K3-17 boundary / `recover_move_observation` | PointerMovedは記録済みだがimmediate観測が欠落。current permission sourceを再照合し、観測時点あり。 | `Appended(MoveAuthorizationObserved)` phase=`recovery`。欠落immediateを補わずG5待ちも遡及解除しない。K3 IV-K3-17自体の実行・充足は主張しない。 |
+| `L8-K7-RECOVERY-NOT-A-MOVE` | IV-K3-17 boundary / `recover_move_observation` | RECOVERY-BASEからmove_refだけをPointerMovedでないrecordへ変える。 | `Rejected(not_a_move)`、追記0。 |
+| `L8-K7-RECOVERY-ALREADY-IMMEDIATE` | IV-K3-17 boundary / `recover_move_observation` | RECOVERY-BASEのmoveへ同じpointer segment seq+1・same digestのimmediate observationだけを追加。 | `Rejected(already_immediate)`、recovery追記0。 |
+| `L8-K7-RECOVERY-NONPOSITIVE` | IV-K3-17 boundary / `recover_move_observation` | RECOVERY-BASEからcurrent checkだけを既存non-Positiveに変える。 | `Appended` recovery診断にcheck全成分を保持。通常完了・immediate肯定へ変換しない。 |
+| `L8-K7-RECOVERY-TIME-UNOBSERVED` | IV-K3-17 boundary / `recover_move_observation` | RECOVERY-BASEから観測時刻だけをnullにする。 | `Appended` recovery行で`observed_at=null`を保持する。完了肯定にしない。 |
+| `L8-K7-06-BASE` | IV-K7-06 / failure observation | current generationの失敗を一件観測。 | RollbackRequiredを追記しpointer不変。 |
+| `L8-K7-06-AUTO-MOVE` | IV-K7-06 / failure consumer invariant | BASEから失敗後に自動PointerMovedを行う欠陥だけを注入。 | fixture oracleはpointer不変を要求し、自動移動を不合格とする。API return classは追加しない。 |
+| `L8-K7-06-RESTORE-CASE-STATE` | IV-K7-06 / rollback invariant | BASEのrollback試行で案件state/recordを戻す変異だけを加える。 | case state/recordは現行のまま、構成pointer以外の巻戻しなし。 |
+| `L8-K7-06-CLOSE-INCIDENT` | IV-K7-06 / rollback invariant | BASEのrollback試行でincidentを閉じる変異だけを加える。 | incident未完を保持。 |
+| `L8-K7-07-APPEND-BASE` | IV-K7-07 / `admit_effect` | current EpochTokenのscope/number/entry_digestが完全一致し、PropagationViewがPositiveで、取消しに代わる新しい許可記録もある状態でK5への追記を要求する。 | K7-I6の3段すべて成立して`Appended`。 |
+| `L8-K7-07-APPEND-SCOPE` | IV-K7-07 / `admit_effect` | current tokenを保ち、K5 append作用のscopeだけを別にする。 | `Rejected(fenced)`、K5 append 0。 |
+| `L8-K7-07-APPEND-NUMBER-LOW` | IV-K7-07 / `admit_effect` | current K5 tokenのnumberだけを一段小さくする。 | `Rejected(fenced)`、作用0。 |
+| `L8-K7-07-APPEND-NUMBER-HIGH` | IV-K7-07 / `admit_effect` | current K5 tokenのnumberだけを一段大きくする。 | `Rejected(fenced)`、作用0。 |
+| `L8-K7-07-APPEND-DIGEST` | IV-K7-07 / `admit_effect` | current K5 tokenとnumberを保ちentry_digestだけを変える。 | `Rejected(fenced)`、作用0。 |
+| `L8-K7-07-ARTIFACT-BASE` | IV-K7-07 / `admit_effect` | current EpochTokenのscope/number/entry_digestが完全一致し、PropagationViewがPositiveで、取消しに代わる新しい許可記録もある状態でartifact書込みを要求する。 | K7-I6の3段すべて成立して`Appended`。 |
+| `L8-K7-07-ARTIFACT-SCOPE` | IV-K7-07 / `admit_effect` | artifact writeのscopeだけを別にする。 | `Rejected(fenced)`、artifact write 0。 |
+| `L8-K7-07-ARTIFACT-NUMBER-LOW` | IV-K7-07 / `admit_effect` | artifact write token numberだけを一段小さくする。 | `Rejected(fenced)`、作用0。 |
+| `L8-K7-07-ARTIFACT-NUMBER-HIGH` | IV-K7-07 / `admit_effect` | artifact write token numberだけを一段大きくする。 | `Rejected(fenced)`、作用0。 |
+| `L8-K7-07-ARTIFACT-DIGEST` | IV-K7-07 / `admit_effect` | artifact write token entry_digestだけを変える。 | `Rejected(fenced)`、作用0。 |
+| `L8-K7-07-RECORD-BASE` | IV-K7-07 / `admit_effect` | current EpochTokenのscope/number/entry_digestが完全一致し、PropagationViewがPositiveで、取消しに代わる新しい許可記録もある状態でK2 `record`を要求する。 | K7-I6の3段すべて成立して`Appended`。 |
+| `L8-K7-07-RECORD-SCOPE` | IV-K7-07 / `admit_effect` | result record作用のscopeだけを別にする。 | `Rejected(fenced)`、K2 record 0。 |
+| `L8-K7-07-RECORD-NUMBER-LOW` | IV-K7-07 / `admit_effect` | result record token numberだけを一段小さくする。 | `Rejected(fenced)`、作用0。 |
+| `L8-K7-07-RECORD-NUMBER-HIGH` | IV-K7-07 / `admit_effect` | result record token numberだけを一段大きくする。 | `Rejected(fenced)`、作用0。 |
+| `L8-K7-07-RECORD-DIGEST` | IV-K7-07 / `admit_effect` | result record token entry_digestだけを変える。 | `Rejected(fenced)`、作用0。 |
+| `L8-K7-08-BASE` | IV-K7-08 / `admit_effect` | current epoch token、PropagationView Positive、新許可あり。 | `Appended`。 |
+| `L8-K7-08-PROPAGATION-NONPOSITIVE` | IV-K7-08 / `admit_effect` | BASEからPropagationViewだけを非Positiveにする。 | `Rejected(revocation_pending)`、作用0、view診断保持。 |
+| `L8-K7-09-BASE` | IV-K7-09 / `admit_effect` | current epoch、Positive propagation、新しい許可recordあり。 | `Appended`。 |
+| `L8-K7-09-AUTH-MISSING` | IV-K7-09 / `admit_effect` | BASEから新しい許可recordだけを除く。 | `Rejected(missing_authorization)`、作用0。 |
+| `L8-K7-10-BASE` | IV-K7-10 / late observation | 旧EpochTokenに紐づくCI/review/cost observation。 | 元episodeの`LateObservation`として保持。 |
+| `L8-K7-10-OLD-TOKEN-EFFECT` | IV-K7-10 / `admit_effect` | BASEの同一古いtokenをstate-changing effectとして扱う要求へ変える。 | `Rejected(fenced)`、effect適用0。late observationの原事実は保持。 |
+
+### 10.2 G5 fixture
+
+| Fixture ID | L9 / API | 固定baselineと単一変異 | 期待 |
+|---|---|---|---|
+| `L8-G5-01-BASE` | IV-G5-01 / `propagate` | current graph/impact/review_setで導く全recipientにapplied receipt。 | `Observed<PropagationView>`のcombined Positive。assuranceはidentity/verifier別。 |
+| `L8-G5-01-RECIPIENT-RECEIPT-MISSING` | IV-G5-01 / `propagate` | BASEから導出recipient一件のreceiptだけを除く。 | そのcomponent `Unobserved(not_run)`、全combinedで肯定にしない。 |
+| `L8-G5-01-EXTRA-RECIPIENT` | IV-G5-01 / `propagate` | BASEにgraphから導かれないidentityのapplied receipt一件だけ追加。 | extra receiptは集合に入らず、BASEのderived set結果を維持。 |
+| `L8-G5-01-UNMAPPED-KIND` | IV-G5-01 / `propagate` | BASEからaffected node kind一つのRecipientMap mappingだけを除く。 | 該当graph成分`Unknown(unregistered)`。 |
+| `L8-G5-01-EMPTY-RECIPIENT-SET` | IV-G5-01 / `propagate` | BASEからaffected/review_set recipient全件を除く。 | 既存Combined.set_reason=`Unknown(missing_input)`を保持、componentを捏造しない。 |
+| `L8-G5-02-BASE` | IV-G5-02 / `propagate` | recipient A receipt applied、current graph/rulesで照会成功。 | A成分を保持。 |
+| `L8-G5-02-UNRELATED-RELATION` | IV-G5-02 / `propagate` | BASEから無関係relation一つの語彙登録だけを外す。 | K10 check_graph非肯定成分を保持しcombined Positiveにしない。 |
+| `L8-G5-02-DECL-INPUT-REVIEW-RECIPIENT` | IV-G5-02 / `propagate` | revoked recordへの依存が義務decl.inputsだけにある関係を追加する。 | review_set由来`approval_consumer`を受け手集合へ含める。 |
+| `L8-G5-02-GRAPH-RULES-REV` | IV-G5-02 / `propagate` | BASEのGraphRules current revisionだけを更新する。 | old query resultを使わずcurrent照会結果を保持。 |
+| `L8-G5-03-BASE` | IV-G5-03 / `propagate` | 一recipientのinnerに全check結果とset_reasonを含む正常applied状態。 | inner全成分とassuranceを識別付きで保持。 |
+| `L8-G5-03-RECEIVED` | IV-G5-03 / `propagate` | BASEでinner check一つだけをreceivedに変える。 | そのcomponent `Unobserved(pending_receipt)`。 |
+| `L8-G5-03-FAILED` | IV-G5-03 / `propagate` | BASEでinner check一つだけをfailedに変える。 | 該当componentを既存owner polarityによる`Negative`として保持しPositiveにしない。新payload/polarityを作らない。 |
+| `L8-G5-03-MIXED-INNER` | IV-G5-03 / `propagate` | BASEのinnerへNegative一件と既存Unknown一件を置く相互作用scenario。 | 両方を`{r, verifier, check}`付きで保持。Unknown reasonは入力の既存値を保持。 |
+| `L8-G5-03-EMPTY-INNER` | IV-G5-03 / `propagate` | BASEのinner checksだけを空にし、ほかの入力は固定する。 | innerの`set_reason={class:Unknown,reason:missing_input}`を保持し、componentを作らず空をPositiveにしない（K1-I4）。 |
+| `L8-G5-04-BASE` | IV-G5-04 / `propagate` | current revocation/ref/scopeに一致するreceipt lookup。 | current receipt resultと各assuranceを`{identity, verifier}`で保持。 |
+| `L8-G5-04-OTHER-REVOCATION` | IV-G5-04 / `propagate` | receipt inputのrevocation record identityだけを別にする。 | `Unobserved(not_run)`。 |
+| `L8-G5-04-OLD-REVISION` | IV-G5-04 / `propagate` | 同identityのreceipt subject revisionだけを旧値にし、旧recordはValue。 | `Stale`。 |
+| `L8-G5-04-SAME-REV-DIGEST` | IV-G5-04 / `propagate` | 同identity/revisionに異digest receipt record一件を加える。 | `Unknown(conflict)`。 |
+| `L8-G5-04-OTHER-SCOPE` | IV-G5-04 / `propagate` | receipt key scopeだけをcurrent scopeと異ならせる。 | `Unobserved(not_run)`。 |
+| `L8-G5-04-HEAD-MISSING` | IV-G5-04 / `propagate` | 必要recipient segment headだけを欠落させる。 | `Unknown(missing_input)`。 |
+| `L8-G5-05-BASE` | IV-G5-05 / `admit_effect` | current token、PropagationView Positive、revoked recordに依存するscope。 | L4 K7-I6順でのみ作用を許す。 |
+| `L8-G5-05-BEFORE-PROPAGATION` | IV-G5-05 / `admit_effect` | BASEからPropagationViewだけを非Positiveへ変える。 | `Rejected(revocation_pending)`、作用0。 |
+| `L8-G5-06-BASE` | IV-G5-06 / `propagate` consumer boundary | 取消しの後に新しい許可を出さず、旧許可をcurrentへ戻さない構造。 | propagate projectionはauthorizationを生成しない。 |
+| `L8-G5-06-ISSUE-AUTHORIZATION` | IV-G5-06 / API-surface assertion | BASEの結果へauthorization outputを追加する誤った構造だけを検査する。 | 既存L4/L5 API/return shapeにそのfield/operationが無いこと。動的API reasonは定義しない。 |
+| `L8-G5-06-RESTORE-OLD-AUTH` | IV-G5-06 / API-surface assertion | BASEの出力へ取消し済み旧許可を復元する経路だけを検査する。 | restoration outputなし。 |
+| `L8-G5-07-BASE` | IV-G5-07 / `propagate` + K5 boundary | old approval recordを入力し、取消しの新recordは別に追記される前提。 | old record/body不変、K10 re-review対象を保持。 |
+| `L8-G5-07-MUTATE-OLD-ROW` | IV-G5-07 / K5 append boundary | BASEから既存取消対象record/bodyだけを書き換える誤操作を試す。 | append-only invariant違反として不合格。K5 APIの未指定reasonは付けない。 |
+| `L8-G5-08-BASE` | IV-G5-08 / `ledger_view`,`propagate`,`apply_move` | 現行composition revoked recordへ依存し、RollbackRequired、current receipt、same move immediate seq+1 exact digest/check Positive、observed_atあり。 | `ledger_view.target`はgeneration/immediate_check/recovery_diagnosticsを個別に返す。`propagate`の`internal_deployment`受け手だけが、IV-G5-08の全条件成立時に既存receipt/stateに従い肯定となる。実deployは行わない。 |
+| `L8-G5-08-NO-IMMEDIATE` | IV-G5-08 / `ledger_view`,`propagate` | BASEから同move immediate observation一件だけを除く。 | `ledger_view.target`は既存shapeのgeneration/immediate_check/recovery_diagnosticsだけを返し、generationによるpointer事実とRequestLog上の`RollbackRequired`はそれぞれのsourceで保持する。`propagate`の`internal_deployment`は`Unobserved(not_run)`。 |
+| `L8-G5-08-IMMEDIATE-NONPOSITIVE` | IV-G5-08 / `ledger_view`,`propagate` | BASEのimmediate checkだけを既存non-Positiveに変える。 | `ledger_view.target.immediate_check`で元check全成分を保持し、RequestLog上の`RollbackRequired`は別に保持する。`propagate`の`internal_deployment`は待ち`Unobserved(not_run)`。 |
+| `L8-G5-08-APPLIED-UNCERTAIN` | IV-G5-08 / `apply_move`,`ledger_view`,`propagate` | BASEの適用後結果だけをAppliedUncertainにする。 | `apply_move`結果のevent/check/unfinishedとRequestLog上の`RollbackRequired`をそれぞれ保持する。`ledger_view.target`は既存shapeのgeneration/immediate_check/recovery_diagnosticsだけ、actualは別fieldのまま返し、`propagate`の待ちは`Unobserved(not_run)`。 |
+| `L8-G5-08-MOVE-REQUESTED-ONLY` | IV-G5-08 / `ledger_view`,`propagate` | BASEからPointerMoved/immediateだけを除きMoveRequestedを残す。 | `ledger_view`はrequestからtarget/actualを作らず、`propagate`の待ちは`Unobserved(not_run)`。 |
+| `L8-G5-08-RECOVERY-ONLY` | IV-G5-08 / `ledger_view`,`propagate` | NO-IMMEDIATEからphase=recoveryの診断一件だけを追加し、即時成功は作らない。 | `ledger_view.target.recovery_diagnostics`だけを追加保持し、`propagate`の`internal_deployment`は`Unobserved(not_run)`。recoveryはimmediate待ちを解消しない。 |
+| `L8-G5-08-AUTO-POINTER` | IV-G5-08 / pointer invariant | BASEのfailed deploy scenarioへ自動PointerMovedを加える欠陥だけを検出。 | pointerは動かさずRollbackRequired/unfinishedを保持。物理作用を行わない。 |
+| `L8-G5-09-BASE` | IV-G5-09 / `propagate` | affected nodeとreview_setが同じidentityへworker_runとapproval_consumerを導く。 | 両classをrecipient mapとcombined成分に保持。 |
+| `L8-G5-09-DROP-CLASS` | IV-G5-09 / `propagate` | BASEからaffected由来の一classだけを落とす。 | fixtureの全source-derived class集合との比較で不足を検出。 |
+| `L8-G5-10-BASE` | IV-G5-10 / `propagate` | current RecipientDecl SubjectRefを基底key subjectとして一致receipt lookup。 | 現行receipt状態を保持。 |
+| `L8-G5-10-REVISION-ONLY` | IV-G5-10 / `propagate` | BASEのdecl revisionだけを更新し旧結果はValue。 | lookup `Stale`。 |
+| `L8-G5-10-SAME-REV-DIGEST` | IV-G5-10 / `propagate` | BASEでdecl identity/revisionを固定し異digest declaration一件を追加。 | `Unknown(conflict)`。 |
+| `L8-G5-10-DECL-MISSING` | IV-G5-10 / `propagate` | BASEからRecipientDeclの対象identityだけを欠く。 | `Unknown(missing_input)`。 |
+| `L8-G5-10-OLD-RECEIPT-SUBJECT` | IV-G5-10 / `propagate` | current RecipientDeclから作るquery keyを固定し、同じidentityの旧revisionに対するotherwise-valid Value receiptだけを記録集合へ置く。 | K2 lookup `Stale`。old receipt SubjectRefをcurrent declaration refへ置換・流用しない。 |
+
+### 10.3 台帳projection接続fixture（既存IV-LDG-03）
+
+| Fixture ID | L9 / API | 固定baselineと単一変異 | 期待 |
+|---|---|---|---|
+| `L8-K7-LEDGER-BASE` | IV-LDG-03 / `ledger_view` | 登録済みrows、ReleaseEstablished、PointerMovedと同move immediate check、RuntimeObservedを各正本から復元。 | `Observed<LedgerView>`の`rows/release/target/actual`を個別に保持。 targetはgeneration/immediate_check/recovery_diagnostics、actualはRuntimeLog由来。 |
+| `L8-K7-LEDGER-REQUEST-ONLY` | IV-LDG-03 / `ledger_view` | BASEへMoveRequested一件だけを加え、PointerMoved/RuntimeObservedは不変。 | target/actualは変わらず、requestからcurrent/actualを作らない。 |
+| `L8-K7-LEDGER-NO-RUNTIME` | IV-LDG-03 / `ledger_view` | RuntimeLog全体は完全復元できる状態のまま、BASEからRuntimeObservedの対象記録だけを除く。 | IV-LDG-03の「全量復元した該当証拠0件」に従い、`actual=Unobserved(not_run)`を保持しPointerMovedから補わない。RuntimeLog自体の欠落・損傷はこのfixtureに含めない。 |
+| `L8-K7-LEDGER-RECOVERY-SEPARATE` | IV-LDG-03 / `ledger_view` | BASEからrecovery diagnosticだけを追加し、immediate entryを変えない。 | target.recovery_diagnosticsのみ変わり、target.immediate_checkおよびactualは不変。 |
+
+### 10.4 K7/G5の保持点と未接続範囲
+
+表のAPI/result型はL4 §15.6から変えない。`AppliedUncertain`は追記済みeventとcheck、unfinishedを失わず保持し、`recover_move_observation`の`phase=recovery`は即時成功の代替にならない。K7のexpected headはappend境界のhead比較であり、stage/build ownerの全current refs/headsを示すものではない。K3 current authorizationは候補refではなくcurrent owner sourceを照合し、K7はその既存checkを前後で消さず保持する。K6 assurance/receipt未接続、物理CAS未実装、K10 graph/SECURITY RecipientMap/recipient owner binding未接続の部分はsynthetic fixtureに留め、別reason/classや権限を創作しない。G5 failed/received/missing/mixed outcomesはinner/lookup側の既存classとpolarityをそのまま入力にし、L8で新しいdomain payloadやNegative constructorを作らない。
+
+この節のfixture ID数は本文の表から機械再計数する対象である。L9 IV-K7 15件とIV-G5 10件の各行は少なくとも一つのbaseline/caseへtraceし、複数の反例は個別IDへ分ける。全fixtureは設計のみであり、実行、実装完成、承認、deploy、authority成立を示さない。
