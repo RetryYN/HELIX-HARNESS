@@ -30,3 +30,5 @@ GitHubへ送ったexact source commit、file SHA-256、remote revision、read-af
 [FT-OS-LOCALCI-002](FT-OS-LOCALCI-002.md)は、現行local CI設計に従う実装と検証の作業指示である。
 
 [FT-GOV-L3STATUS-001](FT-GOV-L3STATUS-001.md)は、L3／L10正本に残る起草時の状態表示を現行のauthority状態へ揃える作業指示である。
+
+[FT-GOV-AGENTREAD-001](FT-GOV-AGENTREAD-001.md)は、エージェント作業規則の入口にConcept・七大原則・JSON方針・テンプレートseedへの参照リンクを置く作業指示である。
