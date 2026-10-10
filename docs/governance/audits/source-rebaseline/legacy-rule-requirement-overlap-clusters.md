@@ -181,3 +181,15 @@ b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合
 旧gate表のG2は表が★POなのに凡例/脚注の定義済集合にはなく、原FR13と判断史を確認するまで確定しない。旧UIなしL2skipの記述は、現行003のL2要求省略禁止・Prototype/PoC別適用・L2.5位置と区別する。trace-freeze checklistのfailingcommit SHA句はRB08-109文にないが、別RB08-106へ保存済みであるため全台帳の欠落や退役とは扱わず、freeze時の義務接続を残す。
 
 特定cutoverの再承認、Incident時の全active PLAN凍結、旧Criticalだけでconditional pass、旧handover、package/wholegoal監査の分母や旧Issue終端順序も固有scopeと判断史を持つ。旧記録にある「成立した」は過去観測であり、現行の実績や新しい承認/CI/close条件へ継承しない。120件の引用条件を読み分けたことから、完全atom化・consumer閉包・正式successor・未計上0を生成しない。#1814/親#1813と残り377件、他clusterの残件を保持する。
+
+## RUL-OPS-02：運用体制の限定した本文・全12引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主11・副1＝12件の原inventory全field、15引用spanと8関連/補助spanを保存した。引用未比較0は完全atom化・判断史・全consumer・正式successor・未計上0・全要求被覆・Stage完了ではない。元relationはoriginal_relationsへ保全し、OS004のno-material-overlapとAIDOC001のcredential失効説明を限定して訂正した。他56clusterのbytes、過去revision、note、未評価fieldを維持する。
+
+旧チーム構想/運用書はReference-onlyで、本人PO1名＋AIrosterへの読替えを持つ。人間の招待/採用順/1on1/当番、成熟度の固定toolや80%例、初期30日、旧Phase0B全14項目のPRmatrix/prepushを現行全案件の必須手順へ移さない。旧v1.3soloはteam儀式・velocity・複数人roleを必須にしない。現行独立reviewやoracleを成熟度の例により省略する根拠にもならない。
+
+現行OS004はWorker交代時の責務/未完義務/累積制約の保持、自己承認/二重割当防止を明示し、OS009の復旧と一部共通する。human入退場の全条件と同一にはしない。AIDOC001は許可等のcontext解決であり、実credential付与/短期保持/失効そのものを定めない。SECURITY005の生値非露出・scope/expiry・revoke伝播は別契約として照合し、実account/credential/認可/本番設定の変更を行わない。
+
+サービスのAPM/稼働監視/oncallとOS008のCI実行監視は対象が異なる。候補句の保険/規制はこの12件にはないが、RB04-274（主FRM09/副OSA07）に保存済みである。別record原文を補助に保持し、母集団の所属を勝手に変更せず、欠落/退役やOPS02全条件被覆を主張しない。
+
+要求本文・schema・Python/CLI/runtime/CI・仮登録・holding・Bindingを変更しない。OSA04/PLN01とFRM02の別Draft未レビュー候補を本main基準に混ぜず、#1814/#1813と全残件を保持する。要求採用・retire・Issueclose・L3再開を生成しない。
