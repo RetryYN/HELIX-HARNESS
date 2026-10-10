@@ -181,3 +181,11 @@ b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合
 旧gate表のG2は表が★POなのに凡例/脚注の定義済集合にはなく、原FR13と判断史を確認するまで確定しない。旧UIなしL2skipの記述は、現行003のL2要求省略禁止・Prototype/PoC別適用・L2.5位置と区別する。trace-freeze checklistのfailingcommit SHA句はRB08-109文にないが、別RB08-106へ保存済みであるため全台帳の欠落や退役とは扱わず、freeze時の義務接続を残す。
 
 特定cutoverの再承認、Incident時の全active PLAN凍結、旧Criticalだけでconditional pass、旧handover、package/wholegoal監査の分母や旧Issue終端順序も固有scopeと判断史を持つ。旧記録にある「成立した」は過去観測であり、現行の実績や新しい承認/CI/close条件へ継承しない。120件の引用条件を読み分けたことから、完全atom化・consumer閉包・正式successor・未計上0を生成しない。#1814/親#1813と残り377件、他clusterの残件を保持する。
+
+## RUL-FRM-02：160件の個別比較とloader境界の確認
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。元120recordと158pinを保持し、次の主40recordの引用原文と候補句を比較した。現在160/497、未読主73・副264の全337 IDをpendingで保持する。追加した5箇所のloader/analyzer/計算式は`support_context_sources`へ分け、元inventoryの引用先を増やしたように扱わない。
+
+RC02-032/037のdoctor wrapperはroot不存在と外へ伝播した例外を失敗にする。一方、呼出先loaderはloadReviewPlansの例外を空集合へ変換し、個別文書read失敗もskipする。空入力のanalyzerがok=trueを返すため、内部で吸収した読込失敗はwrapperの外側catchへ届かない。RC02-032の下流confirmedは動機コメントであり、当純関数は下流状態を読まない。RC02-037の判定にはS3verifiedPoC例外やparsefailure/invalidmodification条件もある。2件の読込失敗保証の差を`source_support_followups`へ保持し、原抽出文・台帳は変更しない。旧codeは非実行で、記録は静的な分岐照合である。
+
+missinggate skip、archived/非終端status、test作者とimplのpending許容差、interviewのokとfreeze_allowed、truthy参照と証拠充足、routeの文字列包含と実効性を別条件として保存した。旧実行が通ったことや全consumer閉包、完全atom化、正式successor、未計上0を主張しない。要求採否・retire・holding解除・Issue close・L3再開は生成せず、#1814/親#1813へ全残件を保持する。
