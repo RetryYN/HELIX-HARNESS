@@ -1,0 +1,1104 @@
+{
+  "audit_kind": "source_identity_responsibility_comparison",
+  "authority_effect": "none",
+  "base_revision": "1daf2b74b78ae89b4549d262fb71264cdd391bf8",
+  "issue": 2089,
+  "related_issue": 1861,
+  "source_inventory": {
+    "path": "docs/governance/audits/requirements-stage/labo-intelligence-2089-preclose-inventory-2026-10-10.json",
+    "sha256": "3d4a381c519f85cecb986fdc1eb6e07047b440ece9ec4987fc72cb431ae375eb",
+    "named_inputs": 33
+  },
+  "input_record": {
+    "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+    "population": "confirmed175",
+    "issue1861_membership": "primary",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+    "source_line": 50,
+    "source_text": "| **FR-L1-19** | Learning Engine (成功実行 recipe 蓄積・頻出トラブル予防ルール化・スキル推薦改善・L 単位注入更新) | learning-engine | feedback_hook 5 軸 / skill 発火ログ / recovery-log / interrupt 履歴 / detector 結果 | recipe (pattern_key 付き)、予防ルール、推薦精度改善。※ extended: スキル破棄・改修自動化を含む。skill_rating 閾値以下を廃止候補としてフラグ、削除は人間確認必須 (F6=a、CLAUDE.md destructive 禁止事項)。ログ型失敗/成功蓄積 (event-sourced recipe log) を recipe store 実装方式として明記。※ extended (A-54 audit 軸1 C-02): 「失敗を仕組みに変換」原則 (L0 §1.4) に基づき GitHub PR / GHA / job summary から失敗 event を pull し、失敗種別の集計・同種反復検出・再発防止 PLAN 自動提案へ接続する (本人/AI roster 共有 audit。failure_log local とは分離 L0 §8.5、escalation L0-L3 §8.3 の入力経路) | P1 | HM-08 / GD-01 |",
+    "source_text_sha256": "be3ce53101b581a48033a8711a78bfc7566bcce7bbdbbb14981e95eb4545ab0a",
+    "carry_record": {
+      "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "declared_id": "FR-L1-19",
+      "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 50,
+      "source_line_text": "| **FR-L1-19** | Learning Engine (成功実行 recipe 蓄積・頻出トラブル予防ルール化・スキル推薦改善・L 単位注入更新) | learning-engine | feedback_hook 5 軸 / skill 発火ログ / recovery-log / interrupt 履歴 / detector 結果 | recipe (pattern_key 付き)、予防ルール、推薦精度改善。※ extended: スキル破棄・改修自動化を含む。skill_rating 閾値以下を廃止候補としてフラグ、削除は人間確認必須 (F6=a、CLAUDE.md destructive 禁止事項)。ログ型失敗/成功蓄積 (event-sourced recipe log) を recipe store 実装方式として明記。※ extended (A-54 audit 軸1 C-02): 「失敗を仕組みに変換」原則 (L0 §1.4) に基づき GitHub PR / GHA / job summary から失敗 event を pull し、失敗種別の集計・同種反復検出・再発防止 PLAN 自動提案へ接続する (本人/AI roster 共有 audit。failure_log local とは分離 L0 §8.5、escalation L0-L3 §8.3 の入力経路) | P1 | HM-08 / GD-01 |",
+      "source_line_sha256": "be3ce53101b581a48033a8711a78bfc7566bcce7bbdbbb14981e95eb4545ab0a",
+      "source_declared_status": "confirmed",
+      "carry_status": "preserved_pending_rehome",
+      "requirement_change_authority": "explicit_human_decision_only",
+      "identity_kind": "functional_requirement",
+      "successor_requirement_ids": [],
+      "decision_record": null
+    },
+    "additional_heading_body": [],
+    "assessment": "retained_input_not_atom_migration_proof",
+    "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+  },
+  "scope": "FR-L1-19の全L1 rowを24候補atomへ比較。関連consumer14区間は限定照合であり、全source閉包/旧HIL系列全量比較/正式atomization queue消込ではない。",
+  "atoms": [
+    {
+      "id": "FR19-A01",
+      "name": "成功recipe",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 34,
+      "source_end": 48,
+      "exact_source_text": "成功実行 recipe 蓄積",
+      "classification": "split",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N01",
+        "N04",
+        "N06",
+        "N11"
+      ],
+      "comparison": "原event保全OS、事例/評価LABO、汎用知識候補BRAINを分ける。recipe identity/採用条件の全対応は未証明。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A02",
+      "name": "予防ルール",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 49,
+      "source_end": 61,
+      "exact_source_text": "頻出トラブル予防ルール化",
+      "classification": "LABO候補",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N05",
+        "N06",
+        "N08"
+      ],
+      "comparison": "LABOはsystem/operation候補と効果を評価し、規則を自己適用しない。旧予防ruleの各target/fixtureは未対応。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A03",
+      "name": "推薦改善",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 62,
+      "source_end": 69,
+      "exact_source_text": "スキル推薦改善",
+      "classification": "split",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N05",
+        "N06",
+        "N10"
+      ],
+      "comparison": "推薦の長期効果LABOと現状への候補判断INTを区分。既存Skillへの更新方式/義務は未移管。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A04",
+      "name": "注入更新",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 70,
+      "source_end": 78,
+      "exact_source_text": "L 単位注入更新",
+      "classification": "unresolved",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N01",
+        "N06",
+        "N11"
+      ],
+      "comparison": "工程L別注入の正本/consumer/更新規則を現行generic候補へ丸めない。HARNESS工程義務とSkill供給の対応が必要。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A05",
+      "name": "入力5軸",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 100,
+      "source_end": 117,
+      "exact_source_text": "feedback_hook 5 軸",
+      "classification": "connection",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "O02",
+        "N01",
+        "N04"
+      ],
+      "comparison": "旧hook5軸の個別定義とsource接続は未閉包。OS原記録とLABO許可観測を分け、旧hookを起動しない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A06",
+      "name": "入力発火",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 120,
+      "source_end": 130,
+      "exact_source_text": "skill 発火ログ",
+      "classification": "OS保持",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N01",
+        "N04"
+      ],
+      "comparison": "発火事実のwriter/sourceは運転側。LABO観測へ渡す許可/版/receiptを別に確認する。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A07",
+      "name": "入力復旧",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 133,
+      "source_end": 145,
+      "exact_source_text": "recovery-log",
+      "classification": "OS保持",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N01",
+        "N04"
+      ],
+      "comparison": "復旧/未完義務の原記録はOS、分析用写像はLABO。復旧責任を移さない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A08",
+      "name": "入力割込",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 148,
+      "source_end": 160,
+      "exact_source_text": "interrupt 履歴",
+      "classification": "OS保持",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N01",
+        "N04"
+      ],
+      "comparison": "割込の原事実とcontinuationをOSに残す。評価用のepisode化で原事実を上書きしない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A09",
+      "name": "入力検出",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 163,
+      "source_end": 174,
+      "exact_source_text": "detector 結果",
+      "classification": "connection",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N01",
+        "N04",
+        "N07"
+      ],
+      "comparison": "検出結果/対象revision/未実行をsource側で保持し、許可観測として渡す。結果だけでrule変更/acceptanceなし。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A10",
+      "name": "出力recipe鍵",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 177,
+      "source_end": 200,
+      "exact_source_text": "recipe (pattern_key 付き)",
+      "classification": "unresolved",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N04",
+        "N06",
+        "N09"
+      ],
+      "comparison": "pattern_keyの同一性/重複/recipe storeへのexact bindingを一般provenance契約だけで充足したことにしない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A11",
+      "name": "出力予防",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 201,
+      "source_end": 206,
+      "exact_source_text": "予防ルール",
+      "classification": "LABO候補",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N05",
+        "N06"
+      ],
+      "comparison": "出力cellの予防ルールを入力目的とは別参照で保持。candidate→target変更→再評価の未成立辺を残す。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A12",
+      "name": "出力精度",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 207,
+      "source_end": 213,
+      "exact_source_text": "推薦精度改善",
+      "classification": "LABO候補",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N05",
+        "N08",
+        "N14"
+      ],
+      "comparison": "実験scope/oracle/baselineと変更後再観測が必要。推薦件数/登録数を効果にしない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A13",
+      "name": "破棄改修",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 226,
+      "source_end": 240,
+      "exact_source_text": "スキル破棄・改修自動化を含む",
+      "classification": "split",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "O04",
+        "N05",
+        "N06",
+        "N08"
+      ],
+      "comparison": "廃止candidate、通常改修、削除という異なる作用を分ける。通常AI自律の保持と不可逆削除の人間境界を混同しない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A14",
+      "name": "低rating候補",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 241,
+      "source_end": 269,
+      "exact_source_text": "skill_rating 閾値以下を廃止候補としてフラグ",
+      "classification": "LABO候補",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "O04",
+        "N05",
+        "N06"
+      ],
+      "comparison": "閾値以下は廃止候補flagであり削除ではない。関連受入30日<0.5をO04に保全し、現行閾値として採用しない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A15",
+      "name": "削除判断",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 270,
+      "source_end": 313,
+      "exact_source_text": "削除は人間確認必須 (F6=a、CLAUDE.md destructive 禁止事項)",
+      "classification": "unresolved",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "O04",
+        "N06"
+      ],
+      "comparison": "原削除境界を保持。LABO評価/OS登録/INT推薦だけでは削除を成立させない。通常更新に毎回承認を拡張しない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A16",
+      "name": "event store",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 314,
+      "source_end": 376,
+      "exact_source_text": "ログ型失敗/成功蓄積 (event-sourced recipe log) を recipe store 実装方式として明記",
+      "classification": "split",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "O13",
+        "N01",
+        "N04",
+        "N08"
+      ],
+      "comparison": "成功/失敗を両方残す意味と旧実装方式を分ける。event-sourced保存方式を無断継承/retireしない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A17",
+      "name": "原則起点",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 410,
+      "source_end": 433,
+      "exact_source_text": "「失敗を仕組みに変換」原則 (L0 §1.4)",
+      "classification": "LABO候補",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N05",
+        "N09"
+      ],
+      "comparison": "system化だけを最大化せずoperation候補を残す。旧原則の意味を本照合から変更しない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A18",
+      "name": "Github入力",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 439,
+      "source_end": 486,
+      "exact_source_text": "GitHub PR / GHA / job summary から失敗 event を pull",
+      "classification": "connection",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N01",
+        "N07",
+        "N08"
+      ],
+      "comparison": "自身の許可運転観測と外部source2.0を区別。GitHubという語だけで全入力を2.0へ延期しない。pull/collectorの専用契約は未特定。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A19",
+      "name": "分類反復",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 489,
+      "source_end": 503,
+      "exact_source_text": "失敗種別の集計・同種反復検出",
+      "classification": "LABO候補",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N04",
+        "N05",
+        "N06"
+      ],
+      "comparison": "source付きepisode/反復を比較し、相関だけで因果確定しない。旧種別/反復窓の全consumer対応は未証明。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A20",
+      "name": "PLAN提案",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 504,
+      "source_end": 523,
+      "exact_source_text": "再発防止 PLAN 自動提案へ接続する",
+      "classification": "split",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "O07",
+        "N01",
+        "N06",
+        "N08"
+      ],
+      "comparison": "LABOFeedback候補→OS登録/routing/ticket→target変更を分ける。旧自動提案を即時PLANedit/approveと読まない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A21",
+      "name": "共有と分離",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 525,
+      "source_end": 577,
+      "exact_source_text": "本人/AI roster 共有 audit。failure_log local とは分離 L0 §8.5",
+      "classification": "connection",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N01",
+        "N04"
+      ],
+      "comparison": "共有auditとlocal failure_logの別source/consumerを保持。原記録同一化/全ログ投入は禁止と断定追加せず、具体scopeを未判断に残す。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A22",
+      "name": "escalation",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 578,
+      "source_end": 605,
+      "exact_source_text": "escalation L0-L3 §8.3 の入力経路",
+      "classification": "unresolved",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "N01",
+        "N06"
+      ],
+      "comparison": "旧L0-L3から現行層番号への機械写像をしない。論点/判断先/失敗時戻し先の個別比較が残る。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A23",
+      "name": "priority",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 609,
+      "source_end": 611,
+      "exact_source_text": "P1",
+      "classification": "unresolved",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "O03"
+      ],
+      "comparison": "P1とPhase B carryを保持。現行1.0/2.0/3.0をこの照合で指定しない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    },
+    {
+      "id": "FR19-A24",
+      "name": "表示consumer",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "source_start": 614,
+      "source_end": 627,
+      "exact_source_text": "HM-08 / GD-01",
+      "classification": "unresolved",
+      "current_relation": "partial_or_candidate_not_successor",
+      "evidence": [
+        "O10",
+        "O11",
+        "O12"
+      ],
+      "comparison": "HM08の30秒poll/状態/未実装とGD01の静的/PhaseB半自動を別に残す。評価projection実装を画面/engine全実装にしない。",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": []
+    }
+  ],
+  "retained_unannotated_context": [
+    {
+      "start": 0,
+      "end": 34,
+      "text": "| **FR-L1-19** | Learning Engine (",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 48,
+      "end": 49,
+      "text": "・",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 61,
+      "end": 62,
+      "text": "・",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 69,
+      "end": 70,
+      "text": "・",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 78,
+      "end": 100,
+      "text": ") | learning-engine | ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 117,
+      "end": 120,
+      "text": " / ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 130,
+      "end": 133,
+      "text": " / ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 145,
+      "end": 148,
+      "text": " / ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 160,
+      "end": 163,
+      "text": " / ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 174,
+      "end": 177,
+      "text": " | ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 200,
+      "end": 201,
+      "text": "、",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 206,
+      "end": 207,
+      "text": "、",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 213,
+      "end": 226,
+      "text": "。※ extended: ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 240,
+      "end": 241,
+      "text": "。",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 269,
+      "end": 270,
+      "text": "、",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 313,
+      "end": 314,
+      "text": "。",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 376,
+      "end": 410,
+      "text": "。※ extended (A-54 audit 軸1 C-02): ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 433,
+      "end": 439,
+      "text": " に基づき ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 486,
+      "end": 489,
+      "text": " し、",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 503,
+      "end": 504,
+      "text": "・",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 523,
+      "end": 525,
+      "text": " (",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 577,
+      "end": 578,
+      "text": "、",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 605,
+      "end": 609,
+      "text": ") | ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 611,
+      "end": 614,
+      "text": " | ",
+      "classification": "retained_context_not_semantically_closed"
+    },
+    {
+      "start": 627,
+      "end": 629,
+      "text": " |",
+      "classification": "retained_context_not_semantically_closed"
+    }
+  ],
+  "source_character_coverage": {
+    "total": 629,
+    "annotated_unique": 481,
+    "context_unique": 148,
+    "lost": 0,
+    "interpretation": "文字保全は意味被覆receipt/要求移管/全consumer調査の代替ではない"
+  },
+  "evidence": [
+    {
+      "id": "O01",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "first_line": 50,
+      "last_line": 50,
+      "text": "| **FR-L1-19** | Learning Engine (成功実行 recipe 蓄積・頻出トラブル予防ルール化・スキル推薦改善・L 単位注入更新) | learning-engine | feedback_hook 5 軸 / skill 発火ログ / recovery-log / interrupt 履歴 / detector 結果 | recipe (pattern_key 付き)、予防ルール、推薦精度改善。※ extended: スキル破棄・改修自動化を含む。skill_rating 閾値以下を廃止候補としてフラグ、削除は人間確認必須 (F6=a、CLAUDE.md destructive 禁止事項)。ログ型失敗/成功蓄積 (event-sourced recipe log) を recipe store 実装方式として明記。※ extended (A-54 audit 軸1 C-02): 「失敗を仕組みに変換」原則 (L0 §1.4) に基づき GitHub PR / GHA / job summary から失敗 event を pull し、失敗種別の集計・同種反復検出・再発防止 PLAN 自動提案へ接続する (本人/AI roster 共有 audit。failure_log local とは分離 L0 §8.5、escalation L0-L3 §8.3 の入力経路) | P1 | HM-08 / GD-01 |",
+      "sha256": "be3ce53101b581a48033a8711a78bfc7566bcce7bbdbbb14981e95eb4545ab0a",
+      "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "claim": "FR-L1-19の全table row",
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+    },
+    {
+      "id": "O02",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "first_line": 112,
+      "last_line": 112,
+      "text": "| `feedback_hook` (legacy source 5軸) | `.helix/hooks/feedback.ts`（Node.js LTS） | FR-L1-19, FR-L1-20 |",
+      "sha256": "1cc970963d81dfdcfdb3f8f2924b0ac88cd40e01ddf2fa87ff20bcbc9299cd0b",
+      "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "claim": "5軸feedback_hookの旧runtime参照。実行しない",
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+    },
+    {
+      "id": "O03",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "first_line": 732,
+      "last_line": 739,
+      "text": "---\n\n## §3 carry 宣言 (P1 / P2 / Phase B)\n\n| FR-L1 | 優先度 | carry 先 | 理由 |\n|-------|--------|---------|------|\n| FR-L1-19 (Learning Engine) | P1 | Phase B carry | telemetry 整備後の本実装 |\n| FR-L1-20 (観測・計測層) | P1 | L4 carry + Phase B 拡張 | invocation_log / accuracy_score 等の集計アーキは L4 / Phase B telemetry は別途 |",
+      "sha256": "869223244a58e81f7f48539257e702644632b583e9b8fa877a047320795a2df7",
+      "file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "claim": "P1・Phase B carry、telemetry整備後本実装",
+      "legacy_asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1"
+    },
+    {
+      "id": "O04",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "first_line": 84,
+      "last_line": 104,
+      "text": "## §4 改善アクション (U-BR21-4 採用、通常改善は AI 自律、高影響のみ人間 residue)\n\n| アクション種別 | 自動化レベル | 人間判断点 |\n|-------------|------------|----------|\n| skill 推奨アルゴリズム更新 | **自動適用可** (検証 green + rollback 可能な通常改善) | 高影響・不可逆・secret/PII/production 変更時のみ PO (S-03) |\n| model 選択基準更新 | **自動適用可** (cost / quality 証跡付き) | provider 契約・課金上限・secret 変更時のみ TL/PO |\n| detector ルール更新 | **自動適用可** (targeted regression 必須) | destructive / production / security policy 変更時のみ TL |\n| PLAN テンプレート更新 | **自動適用可** (日本語 docs + lint green) | L0-L3 意味変更または不可逆 workflow 変更時のみ PO |\n| skill 廃止 (rating 閾値以下) | **半自動** (フラグのみ、削除は人間専属、F6=a + CLAUDE.md destructive 禁止) | PO |\n\n> **TL 採用根拠**: CC2 人間主導原則 + NFR-14 human-as-residue 整合、自動適用は AI 暴走源、半自動 = 提案 + 人間承認のサイクルで「学習する基盤」を実現。\n\n#### AC-FR-BR21-06 (正常系: skill 廃止提案)\n- **前提**: skill-X の rating が 30 日間 < 0.5 (採用率閾値以下)\n- **操作**: evaluation run 完了\n- **期待結果**: HM-08 に skill-X 廃止候補表示 + 提案テキスト生成 (AI 指示用コピー UI 提供) / PO 承認待ち状態 / skill 自体は削除されない\n\n#### AC-FR-BR21-07 (異常系: 自動適用試行 block)\n- **前提**: 何らかの実装ミスで skill 自動削除が試行される\n- **操作**: `helix skill delete skill-X` が PO 承認なしで実行\n- **期待結果**: fail-close `Error: skill 削除は PO 専属 + audit 記録必須 (CC2 / NFR-14)` / 削除されない / 終了コード 2",
+      "sha256": "013e6a46b0f523f0589aa487be5e5ca4813c82980e346403cdc887c1b1575a9e",
+      "file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "claim": "通常改善のAI自律と高影響人間residue、削除はPO専属。旧内部文言の緊張も保全",
+      "legacy_asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06"
+    },
+    {
+      "id": "O05",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "first_line": 147,
+      "last_line": 177,
+      "text": "## §6 後続引き継ぎ境界 (U-BR21-8 採用、projection 実装済み + HM-08/改善ループ引き継ぎ)\n\n### §6.1 現行実装済みスコープ\n\n- **projection**: FR-L1-36/38/43 は PLAN-L7-53 で `skill_evaluations` / `model_evaluations` / `poc_evaluations` として実装済み\n- **token/cost**: FR-L1-38 の token/cost 効率は PLAN-L7-57/58 で telemetry scan + model_evaluations 集計として実装済み\n- **画面**: HM-08 表示・操作 UX は L4/L10 へ引き継ぐ\n- **改善サイクル**: §4 の提案生成・人間承認・適用ループは後続へ引き継ぐ\n\n### §6.2 後続引き継ぎの着手条件 (U-BR21-9 採用、A-44 ledger)\n\n以下の **AND 条件**を全て満たした時点で HM-08 表示・改善ループの本格化に着手:\n\n1. **Phase A G14 通過** (workflow 標準完了点、技術判断)\n2. **KPI D-07 (AI 委譲時間率) 直近 1 sprint ≥ 50% 達成** (MVP 範囲で AI 委譲が機能している証明、目標値 ≥ 70% の手前)\n\n> **後続調整可能**: PO が目標値を引き上げたい場合は L4/Phase B 着手 PLAN で再調整。\n\n### §6.3 後続実装範囲\n\n- HM-08 表示 (skill/model/PoC 評価 projection の UI 表示)\n- §4 改善アクションの半自動適用パイプライン (提案 + 承認 + 適用 + 評価のループ)\n- HM-08 リアルタイム表示 (集計バッチ → イベントストリーム移行)\n- §6.4 telemetry (PII redaction + 同意の既定値)\n\n### §6.4 telemetry (U-BR21-10 採用)\n\n- **PLAN 評価**: 既定で有効 (KPI D-07 計測の必須インフラ)\n- **model 評価**: opt-in (`.helix/evaluation/model-opt-in.yaml`)\n- **PII redaction**: 必須 (prompt 本文除外、NFR-09/14 整合)\n- **詳細設計**: Phase B 着手時 PLAN で確定 (本 sub-doc は宣言のみ)",
+      "sha256": "0634255284a6fb1ef88713e91d961ebc131aaeb33be04006ec452f34c225abbc",
+      "file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "claim": "projection slice実装記録とHM08/改善loop carry、G14 AND 直近sprint D07>=50%、PII/opt-in",
+      "legacy_asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06"
+    },
+    {
+      "id": "O06",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/function.md",
+      "first_line": 334,
+      "last_line": 343,
+      "text": "\n## §5 AI ガード / 観測機能 (IMP-013)\n\n| 機能 | 実現 FR | 状態 | business-detail (BR-21) 接続 |\n|---|---|---|---|\n| **agent-guard** | FR-09 (AC-FR-09-01〜04) | **実装済** | — (ガードは Learning Engine 非依存) |\n| **観測層 (invocation_log)** | FR-L1-20 (P1、L4 carry) | 未 (Phase A 設計) | **business-detail §2 (BR-21 計測対象) / §5 (集計 → Learning Engine 入力) に接続** |\n| accuracy_score / detector_result / gate_evidence / kpi | FR-L1-20 (observability) | 未 (data.md §9 候補) | business-detail §2/§5 の KPI 集計経路 |\n\n> **IMP-013 接続明示**: FR-L1-20 の観測値 (invocation_log = AI 呼び出し記録 / accuracy_score = 判定精度 / gate_evidence = ゲート証跡) は、**Phase A で `.helix/audit/*.jsonl` に append-only 記録** (data.md §8 Evaluation 集約) され、**business-detail §2 (BR-21 計測対象定義) の入力 + §5 (Learning Engine 集計) の経路**となる。AC-FR-BR21-02 (business-detail) の Phase A 前提 = 「観測層が記録のみ稼働、学習エンジン本実装は Phase B」と整合。観測 (Phase A) と学習 (Phase B、FR-L1-19) を分離。",
+      "sha256": "864ab990ee6b4ae654070cb732211d4ffbc2f2503eabee954b50ee5b86786a3f",
+      "file_sha256": "64874fd460f00d97cf195fd6c997164a09c333982a2fbc0f29af7e8877cafe35",
+      "claim": "guardはLearning非依存、Phase A記録とPhase B学習を分ける",
+      "legacy_asset_id": "LEGACY-ASSET-295B373ABCF388FDB10A"
+    },
+    {
+      "id": "O07",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+      "first_line": 244,
+      "last_line": 244,
+      "text": "| FR-L1-19 | `emitFeedbackEvents` | emitFeedbackEvents(input: EmitFeedbackEventsInput, deps: EmitFeedbackEventsDeps) => EmitFeedbackEventsResult | findings と quality signals は正規化済みである。 | repeated gap、unresolved blocker、dependency stall、regression を feedback event にする。 | feedback event は PLAN を edit/approve しない。 | U-FR-L1-19 |",
+      "sha256": "6e1d51efa140f661b3756aea59235350e17eec0e5467ebca48f243531b8824e2",
+      "file_sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14",
+      "claim": "feedback eventはPLANをedit/approveしない",
+      "legacy_asset_id": "LEGACY-ASSET-809D616D0D7D844F5720"
+    },
+    {
+      "id": "O08",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+      "first_line": 55,
+      "last_line": 55,
+      "text": "| FR-L1-19 | docs/design/harness/L6-function-design/function-spec.md | `emitFeedbackEvents` は repeated failure、successful recipe、prevention rule を learning input として集約する。 | U-FR-L1-19 |",
+      "sha256": "65ebbf283ae60ba5153cb43a7cf37b8b65693280d3b5cb83e7c66d02d60d365b",
+      "file_sha256": "477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf",
+      "claim": "learning input集約のU-FR-L1-19参照であり全engineの受入ではない",
+      "legacy_asset_id": "LEGACY-ASSET-978C267AADC50615A1E2"
+    },
+    {
+      "id": "O09",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L7-unit-test-design.md",
+      "first_line": 790,
+      "last_line": 802,
+      "text": "> DB-trigger 候補面 (`PLAN-L7-133` workflow の下位 capability) を `quality_signals`\n> (`metric=refactor_candidate:<kind>`) / `feedback_events` へ projection する detector の L7 descent。\n> forward-convergence 集約 (Reverse back-fill `PLAN-REVERSE-141`) で本 descent を補い、impl PLAN を converged 化した。\n\n- detector は既存テーブルへの additive projection (schema 不変) ゆえ、新規番号 oracle を増やさず\n  **projection oracle family (U-FR-L1-06 / U-FR-L1-19 / U-FR-L1-20 / U-FR-L1-40 / U-FR-L1-41)** の被覆下に置く\n  (新 `U-XXX-NNN` ID を作らない = oracle-test-trace の偽 linkage を生まない)。\n- substance (実体) は `tests/projection-writer.test.ts` が担う: 4 candidate kind\n  (`split-module` / `extract-helper` / `deduplicate-function` / `externalize-literal`) の検出、`candidateRank`\n  順序、`projectRefactorCandidateSignals` による `quality_signals`/`feedback_events` projection、空入力で\n  candidate を捏造しないこと、を green `it` で被覆 (PLAN-L7-147 AC「4 kind すべてを純 detector test が被覆」)。\n- 関連 detector 後続 (`PLAN-L7-148`/`150`/`151`/`152`/`153`/`158`) は本 descent を基点とする (module extraction /\n  closure sweep / precision+policy extraction の検査)。",
+      "sha256": "938b3c52ce99d45189dee2ec7dff14a3aa78ed0a9f10661f9448cc4e1f4c63a3",
+      "file_sha256": "0fd9f9dc3ac452fefaa74d3fea79c19a9fe2e162908ed763bfbcc56514186347",
+      "claim": "projection oracle familyのconsumer。旧greenは現行受入にしない",
+      "legacy_asset_id": "LEGACY-ASSET-FAAFFA616A44F65911EB"
+    },
+    {
+      "id": "O10",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "first_line": 221,
+      "last_line": 230,
+      "text": "#### §1.HM.08 HM-08 AI 効果データ + Learning Engine ビュー 詳細\n\n| 観点 | 内容 |\n|------|------|\n| **対応 BR/UX/FR-L1** | BR-21 / FR-L1-19 / FR-L1-20 |\n| **情報要素** | BR-21 連動: skill/model 評価結果 / recipe 蓄積一覧 / AI 効果データ (task 成功率・コスト効率)。**L3 forward carry**: 詳細データテーブル仕様は L3 で確定 |\n| **操作要素** | skill/model フィルタ / recipe 詳細展開 / HM-05 Audit ログ参照遷移 / GD-01 Learning 参照リンク |\n| **更新頻度** | 30 秒ポーリング (S2=b) |\n| **状態種別** | データあり (緑) / 蓄積中 (黄) / データなし (灰) |\n| **実装状態** | not-implemented |",
+      "sha256": "3dd90aa76d401819d54ddba5ad461c2bd80f371fd2ab043fa7a20435e5ee54df",
+      "file_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "claim": "HM08データ/操作/30秒poll/状態/未実装",
+      "legacy_asset_id": "LEGACY-ASSET-3B905BB196962E2BE624"
+    },
+    {
+      "id": "O11",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "first_line": 246,
+      "last_line": 266,
+      "text": "| **対応 BR/UX/FR-L1** | BR-08 / UX-03 / FR-L1-19 / FR-L1-27 / FR-L1-32 / FR-L1-44 |\n\n左サイドナビカテゴリ一覧:\n\n| カテゴリ | 内容 |\n|---------|------|\n| **Troubleshooting** | 頻出トラブル + 解決手順。PM-03 gate fail / HM-03 配線図エラー / HM-04 DB 不整合 等の対処フロー |\n| **Architecture** | 旧 HM-02 配線図 doc 版を統合。静的アーキ図 + コンポーネント説明 + 依存関係 |\n| **Onboarding** | HELIX 使い方。初めての PLAN 起票 / 途中導入 FR-L1-44 連動 / 環境セットアップ手順 |\n| **Tutorial** | Walk-through 形式のステップバイステップガイド |\n| **CLI Reference** | `helix` コマンド一覧・オプション・使用例 |\n| **FAQ** | よくある質問と回答 |\n| **Changelog** | harness バージョン履歴・破壊的変更注記 |\n\n| 観点 | 内容 |\n|------|------|\n| **情報要素** | 左サイドナビ (カテゴリ切替) + 右コンテンツ表示エリア (Markdown レンダリング) |\n| **操作要素** | カテゴリ切替 / 内部リンク / 外部 doc 参照リンク / 検索 (Phase B) |\n| **更新頻度** | 静的 (手動更新のみ)。**Phase B で Learning Engine 連動半自動更新** (BB3=b carry) |\n| **状態種別** | 表示中 / ページ未存在 (404 表示) |\n| **実装状態** | not-implemented |",
+      "sha256": "4e9bedb12e36a9da594dfa9e6bb366febca3bb56dea9e9c7606ec118f3b5abd2",
+      "file_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "claim": "GD01カテゴリ/操作/静的とPhase B半自動更新",
+      "legacy_asset_id": "LEGACY-ASSET-3B905BB196962E2BE624"
+    },
+    {
+      "id": "O12",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "first_line": 279,
+      "last_line": 282,
+      "text": "### carry note: AI 実行成果評価 (BR-21 下流)\n\n- **BR-21** (AI 実行成果評価) の業務目標: スキル発火精度・モデル選定適切性・PoC の成否を定量評価し、Learning Engine (FR-L1-19) のフィードバック精度を高める。\n- **FR-L1-36** (スキル評価システム)、**FR-L1-38** (model 評価システム)、**FR-L1-43** (PoC サクセス計測) はすべて PLAN-L7-53 で実装済み (2026-06-15 P2 carry から昇格)。BR-21 の 3 件すべてが実装完了。",
+      "sha256": "fc6e6a5683aced862447778a22388170baf9c489213d992c6727815130e3265e",
+      "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "claim": "BR21の36/38/43実装をFR19全体へ広げない",
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+    },
+    {
+      "id": "O13",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "first_line": 93,
+      "last_line": 94,
+      "text": "| `recipe_store/` (A-52 audit C-1、Phase B) | Learning Engine の成功パターン蓄積 (FR-L1-19、`pattern_key` 付き event-sourced log)。**Phase B 着手条件** = `docs/design/harness/L3-functional/business-detail.md §6` 参照 (Phase A G14 通過 + KPI D-07 ≥ 50% AND 条件) | L4 データ設計 sub-doc / Phase B 実装 |\n| `accuracy_score/` (A-52 audit C-1、Phase B) | recipe 適用精度・skill 推薦精度 (FR-L1-19 / observability-metrics.md §トラブル計測)。**Phase B 着手条件** = `docs/design/harness/L3-functional/business-detail.md §6` 参照 | L4 データ設計 sub-doc / Phase B 実装 |",
+      "sha256": "0dc749487146ad1aae6cdbbed1821d73fdfb505ef289a4dd982bf83575875d2d",
+      "file_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "claim": "recipe_store/accuracy_score、Phase B AND条件のconsumer",
+      "legacy_asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D"
+    },
+    {
+      "id": "O14",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/memory-learning-promotion.md",
+      "first_line": 34,
+      "last_line": 65,
+      "text": "review、current revisionを明示snapshotとして受け取る。memory append、DB event、shadow runner、artifact disableはinjected portだけが行う。\n既存`compactMemory`は物理整理、`memoryPromotionNudge`は警告であり、以下のAPIの代用にしない。\n\n## §1 public APIとexact oracle\n\n全APIは対応するHST caseの`(case_id, pre_state, expected_state, canonical_failure)`をL5 §9のatomic tupleから受け、成功・失敗の双方でpre_stateを照合してからexpected_stateを返す。state不一致時はwrite/event/receipt 0とし、L7 oracleはResultだけでなくstate tupleを独立assertする。\n\n| API | signature | DbC／result | L7 oracle | HAC | HST exact case | 正規failure |\n|---|---|---|---|---|---|---|\n| `parseVerifiedCompletionPacket` | `(raw, verificationIndex, authorityResolver, bounds) => ResultV1<VerifiedCompletionPacketV1, MemoryLearningFailureV1>` | verified receipt、causality、digest、typed bounded refのauthority/revision/digest/count/bytesをstrict検証 | `U-MLP-001` | `HAC-HIL-07a` | `HST-CASE-015-06` | `HIL_MEMORY_COMPACTION_INVALID` |\n| `partitionCompletionKnowledge` | `(packet, candidates, continuation) => KnowledgePartitionDecisionV1` | 全candidateをdurable/continuation/forbidden/duplicate/no-valueへ一意分類 | `U-MLP-002` | `HAC-HIL-07a`, `HAC-HIL-07b` | `HST-CASE-015-03`, `HST-CASE-015-06`, `HST-CASE-015-07` | `HIL_MEMORY_PROGRESS_FORBIDDEN`; `HIL_MEMORY_COMPACTION_INVALID`; `HIL_MEMORY_EVENT_MIXED` |\n| `classifyForbiddenMemoryContent` | `(candidate, policy) => MemoryContentDecisionV1` | body/metadataのraw log、progress、secret/credential/PIIを同じpolicyで検出 | `U-MLP-003` | `HAC-HIL-07b` | `HST-CASE-015-02`, `HST-CASE-015-03`, `HST-CASE-015-04` | `HIL_MEMORY_RAW_LOG_FORBIDDEN`; `HIL_MEMORY_PROGRESS_FORBIDDEN`; `HIL_MEMORY_SECRET_FORBIDDEN` |\n| `buildDurableKnowledgeCandidate` | `(packet, partition, currentMemory) => KnowledgeCandidateDecisionV1` | decision/constraint/referenceだけをpromote/supersede/no-promotion候補化 | `U-MLP-004` | `HAC-HIL-07a` | `HST-CASE-015-01` | `なし（正常系）` |\n| `enforceKnowledgePromoterSeparation` | `(actors: PromotionActorSetV1, policy) => RoleSeparationDecisionV1` | worker/promoter/reviewer/final verifierの全6 pairでidentity、role、provider family collisionを拒否 | `U-MLP-005` | `HAC-HIL-07b` | `HST-CASE-015-05` | `HIL_MEMORY_PROMOTER_NOT_INDEPENDENT` |\n| `validateKnowledgePromotionProposal` | `(packet, candidate, promoter, policy) => ResultV1<ValidatedKnowledgePromotionV1, MemoryLearningFailureV1>` | provenance、partition、event kind、supersession、forbidden count 0を要求 | `U-MLP-006` | `HAC-HIL-07a`, `HAC-HIL-07b` | `HST-CASE-015-06`, `HST-CASE-015-07` | `HIL_MEMORY_COMPACTION_INVALID`; `HIL_MEMORY_EVENT_MIXED` |\n| `planKnowledgePromotionCommit` | `(validated, memoryHead, ledgerHead) => KnowledgePromotionCommitPlanV1` | memory appendとledger eventを同operationへbindしterminal exactly-one | `U-MLP-007` | `HAC-HIL-07a` | `HST-CASE-015-01` | `なし（正常系）` |\n| `commitKnowledgePromotion` | `(plan, memoryPort, dbPort) => Promise<ResultV1<KnowledgePromotionCommitOutcomeV1, MemoryLearningFailureV1>>` | Node portだけ。JSONL append後DB faultはprojection_pending、terminal 0 | `U-MLP-008` | `HAC-HIL-07a`, `HAC-HIL-07b` | `HST-CASE-015-01`, `HST-CASE-015-06` | `なし（正常系）`; `HIL_MEMORY_COMPACTION_INVALID` |\n| `reconcileKnowledgePromotionProjection` | `(pending, memoryPort, dbPort) => Promise<ResultV1<KnowledgePromotionReceiptV1, MemoryLearningFailureV1>>` | operation/entry digest/head一致時だけ再開し、JSONL増分0、DB一件、terminal exactly-one | `U-MLP-008` | `HAC-HIL-07a` | `HST-CASE-015-01` | `なし（正常系）`; `HIL_MEMORY_COMPACTION_INVALID` |\n| `buildNoKnowledgePromotionReceipt` | `(packet, reason, evidence) => NoPromotionReceiptV1` | duplicate/no-value/continuation-onlyをbody非包含digestで終端化 | `U-MLP-009` | `HAC-HIL-07a` | `HST-CASE-015-01` | `なし（正常系）` |\n| `aggregateLearningPattern` | `(findingRefs, repairRefs, policy) => PatternDecisionV1` | cause重複排除、support/独立causality、source digestを固定 | `U-MLP-010` | `HAC-HIL-07c` | `HST-CASE-016-07` | `HIL_LEARNING_PROMOTION_PREMATURE` |\n| `buildLearningRecipe` | `(pattern, scope, oracle, fixtureContract) => RecipeDecisionV1` | 再現手順、scope/non-goal、oracle、fixture契約を必須化 | `U-MLP-011` | `HAC-HIL-07c` | `HST-CASE-016-02` | `HIL_PROMOTION_FIXTURE_MISSING` |\n| `validatePromotionFixture` | `(recipe, fixture, sourceSnapshot) => FixtureValidationDecisionV1` | version、input/oracle、source、expected result、digestをstrict検証 | `U-MLP-012` | `HAC-HIL-07c` | `HST-CASE-016-02` | `HIL_PROMOTION_FIXTURE_MISSING` |\n| `planPromotionShadowRun` | `(recipe, fixture, baseline, candidate) => ShadowRunPlanV1` | 同一fixture/oracle、non-blocking、stable input digestを固定 | `U-MLP-013` | `HAC-HIL-07c` | `HST-CASE-016-01` | `なし（正常系）` |\n| `measurePromotionEffect` | `(plan, before, after, coveragePolicy) => PromotionEffectDecisionV1` | success、FP/FN、coverage、runtime/costを同一分母で比較 | `U-MLP-014` | `HAC-HIL-07c` | `HST-CASE-016-03` | `HIL_PROMOTION_EFFECT_MISSING` |\n| `validateIndependentPromotionReview` | `(actors, effect, review) => PromotionReviewDecisionV1` | 4主体全6 pairのidentity/provider分離、effect/fixture/rollback bindを要求 | `U-MLP-015` | `HAC-HIL-07b`, `HAC-HIL-07c` | `HST-CASE-015-05`, `HST-CASE-016-03`, `HST-CASE-016-07` | `HIL_MEMORY_PROMOTER_NOT_INDEPENDENT`; `HIL_PROMOTION_EFFECT_MISSING`; `HIL_LEARNING_PROMOTION_PREMATURE` |\n| `decidePromotionShadowVerdict` | `(effect, review, regressionPolicy) => ShadowVerdictV1` | 改善＋退行0だけverified、一件退行でrollback | `U-MLP-016` | `HAC-HIL-07c` | `HST-CASE-016-01`, `HST-CASE-016-04` | `なし（正常系）`; `HIL_PROMOTION_SHADOW_REGRESSION` |\n| `validateLearningPromotionTransition` | `(current, next, evidenceSet) => PromotionTransitionDecisionV1` | 許可graph、fixture/effect/review/rollback prerequisiteを評価 | `U-MLP-017` | `HAC-HIL-07b`, `HAC-HIL-07c` | `HST-CASE-016-05`, `HST-CASE-016-08` | `HIL_PROMOTION_IMMEDIATE_GATE_FORBIDDEN`; `HIL_PROMOTION_STAGE_BYPASS` |\n| `planSkillPromotion` | `(shadow, effect, review, rollback) => SkillPromotionPlanV1` | shadow_verified、目的metric改善、独立review、rollbackを要求 | `U-MLP-018` | `HAC-HIL-07c` | `HST-CASE-016-03`, `HST-CASE-016-06` | `HIL_PROMOTION_EFFECT_MISSING`; `HIL_PROMOTION_ROLLBACK_MISSING` |\n| `planDetectorPromotion` | `(shadow, effect, review, rollback) => DetectorPromotionPlanV1` | FP/FN policy、finding schema、限定scope、rollbackを要求 | `U-MLP-019` | `HAC-HIL-07c` | `HST-CASE-016-06` | `HIL_PROMOTION_ROLLBACK_MISSING` |\n| `planBlockingGatePromotion` | `(activeCapability, effect, review, rollback, coverage) => GatePromotionPlanV1` | active skill/detector、coverage改善、退行0、rollbackを要求 | `U-MLP-020` | `HAC-HIL-07b`, `HAC-HIL-07c` | `HST-CASE-016-05`, `HST-CASE-016-07` | `HIL_PROMOTION_IMMEDIATE_GATE_FORBIDDEN`; `HIL_LEARNING_PROMOTION_PREMATURE` |\n| `planLearningRollback` | `(activeRevision, regression, rollbackTarget) => LearningRollbackPlanV1` | target digest、disable集合、cause、retire/fenceを不可分計画 | `U-MLP-021` | `HAC-HIL-07c` | `HST-CASE-016-04`, `HST-CASE-016-06` | `HIL_PROMOTION_SHADOW_REGRESSION`; `HIL_PROMOTION_ROLLBACK_MISSING` |\n| `validateRetiredPromotionReentry` | `(retired, candidate, evidenceSet) => ReentryDecisionV1` | 同revision/同evidence再active拒否、新revision/shadow/reviewer必須 | `U-MLP-022` | `HAC-HIL-07c` | `HST-CASE-016-08` | `HIL_PROMOTION_STAGE_BYPASS` |",
+      "sha256": "c546b5f2ebf7c45ece8d581098699046ab2743d202cb181e2077538ec7377ec8",
+      "file_sha256": "e6e20a686ac0f9e019b9fd9803674c489b1e1674b7388efa20dfa3be648fb753",
+      "claim": "別HIL系列のpure boundary/fixture/shadow/effect/rollback/authority。FR19との同一性は未確定",
+      "legacy_asset_id": "LEGACY-ASSET-256C9F8C3029B185B151"
+    },
+    {
+      "id": "N01",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 58,
+      "last_line": 60,
+      "text": "| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。観測と作業の結果はLABOへ渡し、LABOが返す改善の提案（Feedback）を登録し、還流先へ振り分け、採否の後にticketにして回す（OSはPMにあたり、LABOはPMOとして評価と提案を出す。[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |",
+      "sha256": "388c5d2b07b8c449d52bfaa006cf5939b6112b32a665fb65609e8f3fc2e32fad",
+      "file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "claim": "OS005登録/振分け、007原証拠/ログ",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N02",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 65,
+      "last_line": 66,
+      "text": "| HELIXOS-L2-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査。本文は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIX-OS編成案 §3／6、2026-09-24 PO判断、2026-09-25 PO判断 | 要求整理前や設計途中の調査は工程内の調査（Research ticket）とする |\n| HELIXOS-L2-013 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断。本文は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIX-OS編成案 §5、2026-09-24 PO判断、2026-09-25 PO判断 | 同じ仕事への関連付けに使う原記録の保存はHELIXOS-L2-007に残す |",
+      "sha256": "65bc64c19e47d9c5ad87f37896b2edfddc1688251cf2ba8af31695d8efa0164a",
+      "file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "claim": "OS012/013移管案内と原記録OS007残存",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N03",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "first_line": 39,
+      "last_line": 41,
+      "text": "- HELIXOS-L2-005：未計測のSkill、誤推薦、旧版を投入し、候補・利用結果・失効を区別できる。学習結果がHARNESS規則へ無断反映されない。\n- HELIXOS-L2-001／002／005／007／013：Concept／企画L1、要求エンジンの入力・出力L2候補、人間の訂正・採否、採用要求、後続の見逃しを同じ因果IDで登録する。企画価値の要求化漏れ、企画外の意味追加、対象違い、scope／non-goal逸脱を個別に示し、戻す層と判断者へ辿る。登録やログ件数だけでは要求採用・改善成立とせず、許可外の生会話・PII・別project dataを学習へ転用しない。\n- HELIXOS-L2-001／005／007：改善入力の利用同意欠落、data class不明、retention期限超過、許可scope不一致を個別に投入し、拒否または隔離して学習・要求化・別project転用へ進めない。後から許可を補っても、過去の無許可処理を成功へ書き換えない。",
+      "sha256": "0243d6a69371179821c529ec63a889a03436795d5b65248deeb87cfb21605809",
+      "file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "claim": "未計測/誤推薦/旧版、同意/data class/retention/scope不足の拒否",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N04",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 71,
+      "last_line": 79,
+      "text": "- 親：HELIXLABO-L1-001。\n\n入力は各機構・製品・運用環境から許可された観測情報。出力はsource identity/revisionと出典を保つLABO observationである。最低限、原文§3の`episode_id, requirement_revision, ticket_id, responsibility_id, product, mechanism, worker, provider, model, configuration, artifact, CI/test, release, deployment, runtime, failure, rework, cost, time, result`を結べる。開発ログ、Worker/AI判断、CI/test/review、backflow/recovery/incident/refactor、release/deployment/runtime、利用、再作業、費用、token/API、model/provider、correction/rollback/product resultを対象にする。成功のみを収集せず、`success, failure, rejected, cancelled, blocked, unknown, not_observed`を区別する。sourceの正本・state・authorityをLABOへ移さない。欠落や権限外情報は成功扱いせず、当該観測を保留しsource責務へ戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：1.0対象sourceの個別入力接続（L2-021〜030）。Web/WEB-OS source（L2-031/032）は各source contractが採択された場合に加える任意接続で、1.0の必須依存にしない。保証：source provenance・revision・状態分類を保持したobservationだけを出力し、source正本を変更しない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-002 — Correlation Engine（相関）\n\n- 親：HELIXLABO-L1-002。",
+      "sha256": "e77c0569a3c9ccd462928fc0797a23894627369d9cf6399470a01c38ea1e6b32",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO001許可観測、sourceauthority非移管、欠測保留",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N05",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 110,
+      "last_line": 125,
+      "text": "\n- 親：HELIXLABO-L1-005。\n\n入力はbaseline/current、candidate、hybridの仮説・条件・oracleと、OSが割り当てたWorkerによる実験実行結果、出力は比較結果、失敗、反例、適用範囲、費用と限界である。実験実行はOSのassignmentに従うWorkerが担い、LABOはWorkerを選定・割当・起動しない。assignmentと実行結果の対応はL2-022/028のsource observationに結び、同じticket・experiment・対象版の証拠として評価する。品質、成功/失敗、false positive/negative、再作業、速度、CI/Worker時間、token/API費用、人間介入、context、複雑度、復旧時間、release lead time、運用負荷、cross-product再利用性を評価対象にする。「動いた」だけを改善としない。baselineやoracleの違い、比較不能、実験中断は結果へ記録し、無効比較を成功へ変換しない。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：比較可能なbaseline/candidate/hybrid、oracle、評価条件（L2-005/015）、OS assignmentとWorker実行結果の対応（L2-022/028）。保証：OS割当Workerによる実験実行を前提に証拠を結び、判定不能・中断・反例を成功扱いせず結果に含める。LABOは割当を行わない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-007 — Assurance Allocation Engine\n\n- 親：HELIXLABO-L1-006。\n\n入力は反復episode、実験証拠、ルール候補とoracle、出力はoperation継続またはsystem化候補の評価である。同条件で再現可能、機械判定可能、oracleあり、副作用限定、retry/rollback可能、冪等化可能という条件を調べる。Operation→Repeated Stable Decision→Rule Candidate→Shadow→Mechanism Candidateは評価上の段階であり、自動昇格や新たな承認手続きではない。文脈依存、意味判断、例外多数、不完全oracle、高い誤検知、過剰拘束はoperationで保証する候補に残す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：比較可能性とoracleのあるexperiment evidence（L2-006/016）。保証：system化とoperation継続の両候補および適用限界を示し、自動昇格しない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-008 — Operational Fallback Engine",
+      "sha256": "dfa750f51c4534609cd48ed09b4db4582bdaddeaa72b2f9ab9a07875e749454a",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO006実験/007system化候補、Worker割当はOS",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N06",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 132,
+      "last_line": 149,
+      "text": "\n### HELIXLABO-L2-009 — Generalization Engine\n\n- 親：HELIXLABO-L1-005, HELIXLABO-L1-007。\n\n入力は実験結果とepisode群、出力は適用範囲を`single episode → repeated episodes → cross-project → cross-product → general structure`のどこまで支持するか示す評価である。一事例から一般化しない。範囲ごとにFeedback先を分け、product固有意味はBRAINへ送らず、汎用構造も根拠なしに認定しない。反例や適用外条件が出たら範囲を狭め、元の証拠へ戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：評価済みexperiment群・反例・標本条件（L2-006/018）。保証：証拠の支持範囲を超えない適用範囲を出力する。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-010 — Feedback Derivation Engine\n\n- 親：HELIXLABO-L1-007, HELIXLABO-L1-010。\n\n入力は評価済みepisode、実験、反例、適用範囲、出力は一つ以上のtarget-specific Feedback candidateである。各Feedbackは最低限`source_episode, source_revision, target_mechanism, target_responsibility, observation, evidence, failure_or_success, hypothesis, experiment, result, counterexample, scope, confidence, regression_risk, recommended_action, revalidation_condition`を持つ。推奨actionは`maintain, redefine, replace, split, merge, systemize, operational_fallback, retire`から選ぶ。Feedbackは提案でありauthorityではない。登録・routingはOS、変更はtarget ownerが担い、欠けた必須根拠は補完せず差戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：範囲付き知見・target responsibility・evidence/反例（L2-009/019）。保証：target別提案を作り、登録・routing・authority変更はしない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n",
+      "sha256": "e5e62be35f5d6c760953ea3bac4e272fa4b97ce5183458282911a8b492f3130e",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO009一般化/010Feedback、登録はOS/変更targetowner",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N07",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 234,
+      "last_line": 238,
+      "text": "\n### HELIXLABO-L2-029 — CI/test → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可されたCI/test結果と対象revision。出力：検査範囲付きobservation。依存：HARNESS verification contractとOS実行証拠。保証：未実行/stale/中断をpassとしない。検査範囲欠落はsource ownerへ戻す。`version_target: 1.0`。\n",
+      "sha256": "4f873b9882d0db3606ac1053723806d7936ebd8f1d9459bbc127f029ea55e82e",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO029CI/test受取、stale/未実行非pass",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N08",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 296,
+      "last_line": 307,
+      "text": "## 構成体要求\n\n### HELIXLABO-L2-050 — 内部改善循環（1.0）\n\n入力は許可観測・episode・実験と評価済みFeedback候補、出力はOS登録/routing後のtarget変更、target検証、運用結果、LABO再観測を結ぶ追跡可能な循環である。段階はObserved→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS registration/target routing→target change process→verification→deployment/operation→LABO re-observation。登録、candidate数、変更、CI成功だけで改善完了としない。採択前は候補のまま保持し、target authorityはtarget ownerに残す。変更後の再観測と効果・退行評価がない場合は循環未完了として戻し、過去記録を上書きしない。\n\n- 親：HELIXLABO-L1-008。依存：L2-001〜010と適用される個別接続（実験ではL2-022のOS assignment観測とL2-028のWorker結果観測を同ticket/experimentへ結ぶ）、OSによるFeedback登録/routing、各target ownerによる変更・検証。保証：循環の未完義務とsource/target revisionを保持し、実験評価はOS割当Workerの実行証拠に結び付く。変更後観測が欠ければLABOの再観測へ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-051 — 外部知識評価循環 (`version_target: 2.0`)\n\n外部OSS/design/paper/Issue/PR等をcrawler/CONNECT等が取得し、LABOが由来・revision・取得範囲を確かめ、分解・Vector比較・実験評価し、汎用構造候補をBRAINへ返す構成体。外部で成功した方式の直接採用・BRAINへの無評価投入をしない。1.0内部改善循環の依存にしない。取得・由来が不明なら評価を保留し取得sourceへ戻す。\n",
+      "sha256": "895c86e34788d6e9cfcc9871d35fae32749fe07789d73863d865f9d211b385eb",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO050内部循環と051外部2.0別",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N09",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 343,
+      "last_line": 352,
+      "text": "\n既存候補のID・文言・状態は変更しない。ここでのrelationは移管・採択・置換ではない。\n\n| 既存source | 本書で関係するL2候補 | 保持の扱い |\n|---|---|---|\n| HELIXOS-L2-005の改善研究部分 | 006, 009, 010, 050 | 効果・退行をLABOで評価し、登録・routing・ticket化はOSに残す。元OS条件はOS本文に案内として保持 |\n| HELIXOS-L2-012（技術調査） | 051、内部観測は001/002 | 既存candidateの出典・revision・取得範囲・欠落・適用条件・秘密送信禁止・命令/patch不実行・closed/mergedのみで解決扱いしない条件をcandidateのまま残す |\n| HELIXOS-L2-013（横断診断） | 002, 006, 008, 050 | 原記録、原因候補、是正、再観測を関係づける。OS管理自身も評価対象。既存candidateの状態を変えない |\n| RCLS-BR-001..006 | 001,002,006,007,009,010,052 | responsibility ownership、CASE/SCENE/PATTERN/LOG/VERIFY区分、最小packet、project→independent→cross-project→shadow→mechanism段階、stale/revoked/revalidation、authority非変更を候補条件として保持。新しい学習機構を重複定義しない |\n| HELIXLABO-L2-WEB-001..014 | 001,002,006,009,010,050,054との関係候補 | WEB由来episode、比較条件、性能差と品質、観測/実験、総時間・費用、遅延障害窓、日次集計、公開母数/不確実性、残差、INTELLIGENCE連携、顧客秘密、Feedback再観測、実験分離の14条件は[候補文書](../candidates/improvement-research-requirements.md)に原文のまま保持。ここでは要求採択せず、別identity・所属・版は人判断候補として残す |",
+      "sha256": "c9aa2804acf705dce126838faa1324b9c42e4e51c76ea03e3140c6381c7d0241",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "RCLS等はcandidate状態を保持、重複新学習機構を作らない",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N10",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 145,
+      "last_line": 165,
+      "text": "\nINTELLIGENCEは現在状態と次の判断候補、LABOは過去episodeと長期効果を担当する。単体出力はcurrent judgmentとhistorical outcomeのラベル分離であり、結果の転送とLABO評価の受取I/OはL2-040/L2-034が定める。INTELLIGENCEは自己評価で長期改善を採択せず、過去評価からcurrent state/authorityを上書きしない。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-018。単独成立依存：INTELLIGENCE current decision/resultとLABOの過去episode/evaluation。検証範囲：current judgmentとhistorical effectの区別、LABO feedback input。保証：長期効果の独立評価はLABO、改善提案の登録・振分けはOS、変更の採否は対象ownerの変更手続きに残す。失敗時戻し先：過去評価またはsource scope不明はLABOへ。current state conflictは現在sourceへ照合する。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-019 — BRAIN知識との境界\n\nBRAINのPattern/Unit/Part等を判断材料として使い、現在の状況で適用する候補を出す。単体出力は適用candidateと根拠であり、BRAIN inputはHELIXINTELLIGENCE-L2-032、汎用化candidateのLABO routingはHELIXINTELLIGENCE-L2-044が定める。INTELLIGENCEの結果をBRAINのgeneric knowledgeへ直接書かず、候補と知識正本を混同しない。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-019。単独成立依存：BRAIN Pattern/Unit/Part/applicability/exception/counterexampleとcurrent situation。検証範囲：INTELLIGENCEの適用candidate、および汎用化候補のLABO routing。保証：BRAIN knowledge正本を書き換えず、今回の適用判断と汎用評価を分離する。失敗時戻し先：knowledge applicability/source不明はBRAINへ、汎用化evidence不足はLABOへ戻す。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-020 — Product Coreの意味とBackflow\n\n製品固有requirement/design/meaningを理解材料として使い、矛盾・不足・改善候補に適切なBackflow先を示す。requirement、design authority、acceptance、product-specific meaningをINTELLIGENCEが変更しない。target不明はproduct ownerへの候補で保持する。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-020。単独成立依存：Product Coreの固有requirement/design/meaningとrevision/owner。検証範囲：meaning consistency finding/improvement/backflow candidate。保証：requirement/design/acceptance authorityとproduct meaningをProduct Core ownerに残す。失敗時戻し先：backflow target/revision不明はcandidateのまま保持し、該当Product Core ownerへ照会する。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-021 — Domain/Capability専用モデル学習\n\n3.0以降、LABO評価済み事例・反例・学習材料を用いてdomainまたはcapabilityに特化したlocal LLMを学習/調整できる。Requirement理解、Design Review、Implementation/CI診断、Integration Review、Worker placement、Model Router、Audit、Bounded Repair等を含む候補。万能モデルへの統合は要求しない。学習実行はOS ticket/Workerに接続する。version_target 3.0。\n",
+      "sha256": "ac0f578f8264ddd619c1281ab21445989527bcc889fdbd4db21e0d7132b6c2b6",
+      "file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "claim": "現在判断と長期効果/BRAIN/製品meaning/3.0学習の境界",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N11",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "first_line": 150,
+      "last_line": 160,
+      "text": "### HELIXBRAIN-L2-007 出所・根拠・知識promotion\n\n- **親L1**：`HELIXBRAIN-L1-007`。\n\n- **受け取るもの**：Pattern / Unit / Part候補、source、provenance、evidence、adopted reason、evaluated scope、counterexample、limitation。\n- **提供するもの**：由来と評価範囲から採用状態まで追跡できる知識記録。\n- **保証すること**：AI生成だけで汎用知識に昇格しない。LABO評価結果、OSの登録・振分け、BRAIN変更手続き内の独立検証、採否を別状態として保持する。\n- **依存・検証／版**：L1-007、L2-011/025、LABO→BRAIN L2-020。source無し、scope無し、counterexample無し、評価未実施の候補を採用済みにしない。1.0。\n- **失敗時の戻し先**：欠けたsource/evidenceは未採用候補へ戻し、promotionを停止する。上流意味変更が必要なら該当L1へ戻す。\n- **束ねる条件**：PO原文§BRAIN-L1-007/009、旧RCLS-BR-004/006の段階的独立検証と提案境界。\n",
+      "sha256": "9584e757b02bf75f698a055eedb9df6d72aa7bdc07e82808fd92d786861c24ee",
+      "file_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+      "claim": "BRAIN知識promotionはLABO評価/OS登録/独立検証/採否別",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N12",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "first_line": 45,
+      "last_line": 54,
+      "text": "| HELIXLABO-L2-001 | 複数sourceから許可された成功、失敗、拒否、取消、blocked、unknown、not_observedを入力し、それぞれのsource identity/revisionと列挙されたobservation fieldsを保持できる。元source authority/stateはsource側に残る | 成功ログだけを受け取り失敗・拒否を落とす、not_observedをsuccessへ変える、source revision不明をcurrentとして使う、権限外/secret dataを取り込む、LABO側記録をsource正本として書き戻す |\n| HELIXLABO-L2-002 | 要求→ticket→Worker→実装→atomic CI→integration→proof CI→release→deployment→runtime→incident→recoveryをepisodeへ結び、要求revision・actor/provider/model/configuration・artifact・環境を追える。相関できないeventも孤立として残る | 時刻/path一致だけで因果断定する、無関係eventを一episodeへ結合する、欠けた義務を補完して完了扱いする、訂正で元eventを上書きする |\n| HELIXLABO-L2-003 | 一episodeに成功/失敗・条件・汎用/product固有・system/operation・unknown/unnecessaryが併存する入力を与え、別々に根拠付き分類できる | episode全体を一括採否する、unknownを推測で分類する、条件付きの成功を無条件一般化する |\n| HELIXLABO-L2-004 | 方式A/Bのpurpose, structure, behavior, assumption, constraint, guarantee, costを保ち、部分一致と条件依存差を含む比較candidateを作れる | 元方式の意味を読む前に変換する、部分一致を全体同等とする、candidateをauthorityまたは採択済みに表示する |\n| HELIXLABO-L2-005 | 12種の変換operationを個別に表現し、保持・変更する意味、条件、適用範囲を比較できる。吸収・移管・operation復帰も候補に残る | 仕組みの追加件数を改善指標にする、意味変更を技術的refactorに偽装する、LABO自身が採択・retireを実行する |\n| HELIXLABO-L2-006 | 同条件のcurrent/candidate/hybrid実験をOS assignmentに従うWorkerが実行し、OS ticket/assignment（L2-022）とWorkerの結果（L2-028）を同じexperiment・対象版へ結び、品質、success/failure、FP/FN、rework、speed、CI/Worker time、token/API cost、人介入、context、complexity、recovery、release lead、ops load、再利用性と反例を評価できる | LABOがWorkerを選定・割当・起動する、OS assignmentのない実行を割当済みとして扱う、ticket/experiment/対象版が異なる証拠を結合する、「一度動いた」だけで改善認定する、baseline差・oracle差を隠す、比較不能や中断を成功にする、必要な品質を下げて速度を改善扱いする |\n| HELIXLABO-L2-007 | 同条件の再現性、機械判定、oracle、副作用範囲、retry/rollback/idempotencyを示す根拠と、shadow等の候補段階を区別できる。文脈依存・例外多数・oracle不完全・FP高はoperation候補に残る | system化率を最大化する、operationを未完成扱いする、自動shadow→production昇格や新承認手続きが前提になる |\n| HELIXLABO-L2-008 | system ruleの例外、誤検知、workaround負担、変更費用増加を与え、system継続/修正またはoperation復帰候補を出し、保証と未完義務を保持する | systemを永続固定する、operation復帰を失敗/退役と誤表示する、LABOが運用切替を実行する |\n| HELIXLABO-L2-009 | 単一episode、反復episode、cross-project、cross-product、generic structureの各証拠を分け、主張できる最大範囲と反例を出力する | 1例をcross-productへ一般化する、product固有意味をBRAINへ送る、反例で範囲を狭めない |\n| HELIXLABO-L2-010 | 一つの実験から複数target向けFeedbackを生成し、全minimum fields、evidence、scope、counterexample、regression risk、revalidation conditionを備え、提案状態で保持する | 必須field欠落を推測補完する、Feedbackだけでtarget変更/ticket/権限/配置を生成する、target authorityをLABOへ移す |",
+      "sha256": "88945928a816318d124dabbe7722b9711c3d960a69bc72ca32302dd905647c23",
+      "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "claim": "LABO001/006/007/009/010の反例",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N13",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "first_line": 80,
+      "last_line": 80,
+      "text": "| HELIXLABO-L2-029 | CI/testから許可結果を受け、対象revisionと検査範囲を保持する | stale/未実行をpassと扱う |",
+      "sha256": "bb5ebb9c5c541d18abeb604f7753236cf2225e76bc6157b1592f9964fc58abba",
+      "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "claim": "LABO029許可/対象版/stale拒否",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N14",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "first_line": 100,
+      "last_line": 100,
+      "text": "| HELIXLABO-L2-050 | ObservedからLABO再観測までidentityと未完義務を追い、実験では同じticket/experiment/対象版にOS assignmentとWorker実行結果が対応することを確認し、target変更後の効果・退行を独立に評価できる。candidate、登録、変更、検証、運用、再観測を別状態で表示する | assignmentのない実行を割当済みとする、別ticket/experiment/対象版の証拠を結合する、Feedback発行、OS登録、target変更、CI成功だけで改善完了とする、採択前candidateを正本扱いする、元記録を書き換える |",
+      "sha256": "ca538f4b591d4e7cf0938b15e4b6d611e0ea50014902e5273b96febdbc16f460",
+      "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "claim": "LABO050登録/CI成功だけでは改善完了しない",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N15",
+      "path": "docs/helix-labo/candidates/improvement-research-requirements.md",
+      "first_line": 36,
+      "last_line": 65,
+      "text": "## 学習に関する候補条件（RCLS）\n\n出典は[RCLS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md)である。\nHELIX-OSの要求案の「監査・学習・成果の出所に関する候補条件」から、学習の部分を移した。\n\n| 出典 | 保持する具体条件 |\n|---|---|\n| RCLS-BR-001 | 知識・経験の所有を安定したresponsibility_idで追跡し、フォルダやSkill名の変更で失わない |\n| RCLS-BR-002 | CASE／SCENE／PATTERN／LOG／VERIFYを責務・事例・revisionへ対応づけ、相関を因果、自己評価を独立検証として扱わない |\n| RCLS-BR-003 | 割当には責務・事例・リスク・provider・task class・context budgetに応じた最小packetを使い、全記録を一括投入しない |\n| RCLS-BR-004 | project内、独立検証、横断検証、shadow、Mechanismへの段階を区別し、機構化した規則のSkill本文との二重管理を解消する |\n| RCLS-BR-005 | 反例・authority変更・provider／model／version・期限・security／licenseを適格性へ反映し、失効・矛盾・取消後の再検証を確認できる |\n| RCLS-BR-006 | 学習結果は提案・証拠・検索入力として扱い、要求・設計・merge・Release authorityを直接書き換えない。既存の要求形成・改善機構を重複実装しない |\n\nRCLSの最小packetはsceneとartifact classも保持して決定的に構成する。学習の仕組みを既存の要求形成・改善・評価機構と重複実装しない。\n\n## L11受入候補\n\n全件未実行である。\n\n| 元のID | 受入条件 |\n|---|---|\n| HELIXOS-L2-012 | 内部情報の欠落と外部情報の相違を保持し、秘密送信、取得命令実行、外部patch自動採用、closed／mergedだけの解決認定を拒否する |\n| HELIXOS-L2-013 | 同じ仕事について上流からの欠落と失敗からの原因候補を突合し、管理自身を含む是正ticket、再検証、再観測へ辿る。未着手や観測停止を正常と表示しない |\n\nRCLSは採用revision確定後に次を確認する。\n\n- 責務名や保存場所の変更後も経験の所有を追跡できる。事例・推論・検証を区別し、自己評価を独立検証として表示しない。\n- 割当packetの選択根拠と予算を確認し、全Skill・memory・logの一括投入を認めない。昇格段階と失効・取消後の再検証を識別できる。\n- 学習提案だけで要求・設計・merge・Releaseが変更されない。機構化後の規則がSkill本文と二重に判定を支配しない。",
+      "sha256": "dc52d85a8aa92b6e94d105d8998eba8c59b1e5ff7b3f7e0a5d0e9dc8ea5db9e7",
+      "file_sha256": "fc7a01337af73164067e2c564175c9825598c3598ebbec75e83bcb7e5b9244f5",
+      "claim": "RCLS候補6件と受入、候補状態"
+    }
+  ],
+  "authority_provenance": [
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "scope": "明示候補集合と固定f6dad2a本文だけ。旧FR19/RCLS全体のadoptionではない"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "scope": "明示候補集合と固定f6dad2a本文だけ。旧FR19/RCLS全体のadoptionではない"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+      "scope": "明示候補集合と固定f6dad2a本文だけ。旧FR19/RCLS全体のadoptionではない"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "scope": "明示候補集合と固定f6dad2a本文だけ。旧FR19/RCLS全体のadoptionではない"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
+      "scope": "現行参照。formal queue proposal/処理完了を本監査から生成しない。古い四対象/毎件承認文言を現行AGENTSの例外条件へ優先させない。"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139",
+      "scope": "現行参照。formal queue proposal/処理完了を本監査から生成しない。古い四対象/毎件承認文言を現行AGENTSの例外条件へ優先させない。"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8",
+      "scope": "現行参照。formal queue proposal/処理完了を本監査から生成しない。古い四対象/毎件承認文言を現行AGENTSの例外条件へ優先させない。"
+    }
+  ],
+  "consumer_findings": [
+    {
+      "id": "F01",
+      "evidence": [
+        "O03",
+        "O05",
+        "O12"
+      ],
+      "finding": "FR36/38/43 projection実装の主張とFR19 Phase B carryが並存。全Learning Engine完成へ昇格しない。"
+    },
+    {
+      "id": "F02",
+      "evidence": [
+        "O04"
+      ],
+      "finding": "通常改善自動適用可/人間residueと旧TL説明の「半自動=提案+人間承認」に緊張がある。本文別原文を保持し、人間の上流意味の変更/新毎回承認を作らない。"
+    },
+    {
+      "id": "F03",
+      "evidence": [
+        "O05",
+        "O13"
+      ],
+      "finding": "G14 AND 直近sprint D07>=50%（最終目標>=70%）とPII redaction/model opt-inを保持。現行着手許可にしない。"
+    },
+    {
+      "id": "F04",
+      "evidence": [
+        "O07",
+        "O08",
+        "O09"
+      ],
+      "finding": "U-FR-L1-19はprojection/feedback consumerでありrecipe/注入/自動改善全体の受入範囲とは確認できない。旧greenは実行/代用しない。"
+    },
+    {
+      "id": "F05",
+      "evidence": [
+        "O14",
+        "N09",
+        "N15"
+      ],
+      "finding": "HIL promotionのfixture/shadow/effect/rollbackやRCLS候補は関連sourceであり、名称類似だけでFR19と同一identity/被覆完了にしない。HIL10入力の比較は別途残る。"
+    },
+    {
+      "id": "F06",
+      "evidence": [
+        "N07",
+        "N08"
+      ],
+      "finding": "自身のPR/GHA失敗観測1.0の接続候補と外部Issue/PR知識取得2.0をsource用途で区分。全GitHub入力を外部知識へ丸めない。"
+    }
+  ],
+  "data_ownership_observations": [
+    {
+      "data": "skill/interrupt/recovery/detector原event",
+      "writer": "元運転source/OS",
+      "consumer": "LABO許可observation",
+      "authority": "原sourceへ残る",
+      "evidence": [
+        "N01",
+        "N04"
+      ],
+      "unresolved": "個別source入力接続、scope/retention/取消とconsumer閉包"
+    },
+    {
+      "data": "episode/experiment/Feedback candidate",
+      "writer": "LABO",
+      "consumer": "OS登録/routing・対象owner",
+      "authority": "Feedback非authority",
+      "evidence": [
+        "N05",
+        "N06",
+        "N08"
+      ],
+      "unresolved": "旧recipe/pattern_key/success-failure store/数値へのexact対応"
+    },
+    {
+      "data": "generic knowledge candidate",
+      "writer": "LABO評価→BRAIN変更手続き",
+      "consumer": "BRAIN/INTの適用候補",
+      "authority": "source/評価/登録/独立検証/採否別",
+      "evidence": [
+        "N10",
+        "N11"
+      ],
+      "unresolved": "汎用化条件と旧Skillへの供給・注入・変更の全接続"
+    }
+  ],
+  "unresolved": [
+    "残る32名指し入力と現OS005/007/012/013全atom比較。今回の個別FR19照合を33入力完了にしない。",
+    "旧feedback5軸の個別定義、failure_log/共有audit、L0§8.3/8.5のsource全文と実consumer閉包。",
+    "後段HIL source・全test/code consumer・consumerからconsumerの辺は今回閉包していない。",
+    "OS/LABO双方停止、再送/重複/欠測/取消全受入、物理repo/server判断条件、全dataのretention/write/adoption表。",
+    "採用対象revisionとの差分確認を原source atomごとの正式被覆/判断packetへ進める。候補関係をsuccessorへ自動変換しない。",
+    "現行Conceptの成長版と責務は参照するが、旧FR19のP1/PhaseBと現行version_targetの再配置判断を追加しない。"
+  ],
+  "conclusion": {
+    "issue_close_eligible": false,
+    "formal_atomization_completed": false,
+    "canonical_change": false,
+    "mpr_change": false,
+    "holding_change": false,
+    "binding_change": false,
+    "runtime_executed": false,
+    "old_tests_executed": false
+  },
+  "processing_kind": "既存sourceの意味を再導出する比較候補。完全一致再利用・置換・正式再配置の採択を生成しない。旧source意味/identity/carryと通常AI自律/削除境界は保持し、旧runtimeを実行しない。",
+  "search_scope": [
+    {
+      "query": "rg --files archive/.../root | rg learning-engine.md$",
+      "result": "PLAN-L7-53-learning-engine.mdを検出。参照されたlearning-engine.mdそのものの位置をこの限定検索では確定しない。absenceを機能削除根拠にしない。"
+    },
+    {
+      "query": "rg FR-L1-19/Learning Engine/recipe store in archive docs/design/harness and docs/test-design/harness",
+      "result": "O01-O13と、data.md125/module-decomposition211等の追加辺を検出。全辺の閉包は未完。"
+    },
+    {
+      "query": "L3-requirements/functional-detail.md/business-detail.md",
+      "result": "想定pathは存在せず、rg --filesから実際のL3-functional配下を特定してO03/O04/O05を読む。"
+    }
+  ]
+}
