@@ -1,8 +1,8 @@
 # LABO／INTELLIGENCE責務分離の判断packet
 
-status: research_partial / authority_effect: none
+status: research_closure_candidate / authority_effect: none
 
-対象はIssue #2089の9項目の調査である。機構追加自体は9/28の固定PO判断にあるが、旧要求の意味をすべて移管した証拠とは別である。今後はこの同じファイルを更新し、過去の比較証拠を改変しない。
+対象はIssue #2089の9項目の調査である。機構追加自体は9/28の固定PO判断にあるが、旧要求の意味をすべて移管した証拠とは別である。今後はこの同じファイルを更新し、過去の比較証拠を改変しない。先行比較節のpartial・未成立は当時の証明範囲を表す。現在の調査close判定は冒頭の9条件表と末尾の独立review対応で読み、正式移管の未成立は後続作業へ保持する。
 
 基準commit: `566f834ac58064c2c5ce44c8b8a178f28199cfad`。[現行参照の照合JSON](../audits/requirements-stage/labo-document-reference-comparison-2026-10-10.json)が27文書・231行の原文/行hash/文書hash/文書単位責務を固定する。検索の対象は#2870の明示ID参照母集団であり、実動作consumerや全同義語の閉包ではない。分類台帳の2参照行だけが先行inventoryから変わっており、#2871の既存decision追随として記録する。他229参照行は同一bytesである。
 
@@ -10,15 +10,15 @@ status: research_partial / authority_effect: none
 
 | 条件 | 判断に使える資料 | 残作業 |
 |---|---|---|
-| C01 inventory | [33旧入力と40機構対応/31旧path](../audits/requirements-stage/labo-intelligence-2089-preclose-inventory-2026-10-10.md)、今回27文書231行 | 補足source/consumerの辺と未計上の確認。明示参照検索を全consumer閉包にしない |
-| C02 atom比較 | [FR19](../audits/requirements-stage/learning-engine-fr19-responsibility-comparison-2026-10-10.md)、[観測4入力](../audits/requirements-stage/observation-evaluation-four-input-comparison-2026-10-10.md)、[KPI9入力](../audits/requirements-stage/nine-kpi-responsibility-comparison-2026-10-10.md)、[残19入力](../audits/requirements-stage/remaining-nineteen-input-comparison-2026-10-10.md)、[OS4要求](../audits/requirements-stage/os-labo-four-requirement-comparison-2026-10-10.md) | 33入力の全文とliteral/sentence区間は保全済み。複数actor/義務を正式最小atomとその対象責務へ分解し、例外/数値/failure対応を確認する |
-| C03 data所有 | [14object表](../audits/requirements-stage/labo-data-ownership-stop-topology-comparison-2026-10-10.md) | 全関連objectの補足辺と原記録/派生物ごとのretention・取消後処置をsourceへ対応づける |
-| C04 双方停止等 | [14正常/反例/停止候補](../audits/requirements-stage/labo-data-ownership-stop-topology-comparison-2026-10-10.md) | LABOSTOP/OSSTOPの送信待ち保全・許可有効性・overflow・再接続reconcileの不足を判断可能な候補へ明示する。調査完了にruntime実行を要求しないが、文書比較をpassにもしない |
-| C05 authority/write/adoption | 下の27文書比較と14object表 | 全atomと送受信sourceへ境界を結ぶ。WebのVision条件を本体採択へ変換しない |
-| C06 data利用禁止条件 | 14object/CLASS/HOLDOUT/TENANT/CANCEL比較 | 全tenant/export/retention/派生物取消の未対応をsourceへ結ぶ。区分記録とtraining許可を分ける |
-| C07 物理分離判断 | [repo/hostの4案と5観点](../audits/requirements-stage/labo-data-ownership-stop-topology-comparison-2026-10-10.md) | 観点は比較材料として保持。具体配置は未選択、現場の容量/停止影響/費用は未確認 |
-| C08 無損失coverage | 33input全文保全、旧source/failure比較と今回231参照行 | 正式atomごとのidentity/failure/consumer/未解決対応を検証する。原record存在をformal successor全被覆にしない |
-| C09 revision付きpacket | 本ファイルと固定JSON、先行比較のhash集合 | C01/C02/C08等がpartialのままなので全判断packet完成ではない。内容が揃ったexact revisionを独立reviewしてから調査closeを判定する |
+| C01 inventory | 33旧入力、147file/856行の旧24 ID明示参照。D01〜09・関連13 sibling・docsの参照も固定 | 追加consumerの意味比較未計上はLABO-FUP-02/#1861へ保持 |
+| C02 atom比較 | 33入力/35field/130predicate、115意味文脈＋46書式区間。独立reviewで調査資料成立 | 正式最小atom/現契約全量移管はLABO-FUP-01/#1861 |
+| C03 data所有 | 14objectのowner/purpose/authority/version。調査資料成立 | retention/取消後処置unknownはLABO-FUP-03/#1861 |
+| C04 双方停止等 | 14case、LABOSTOP/OSSTOP/RESTARTの不足を保持。調査資料成立 | durability/overflow/revoke等はLABO-FUP-04/#1861 |
+| C05 authority/write/adoption | 27文書231行、14objectと未採択Web境界。調査資料成立 | 個別consumer/接続の未判断はLABO-FUP-02/06/#1861 |
+| C06 data利用禁止条件 | CLASS/HOLDOUT/TENANT/CANCEL/CRED。区分≠training許可。調査資料成立 | 利用目的・同意・取消等はLABO-FUP-06/#1861 |
+| C07 物理分離判断 | repo×host4案/5観点、既定選択なし。調査資料成立 | 容量/停止影響/費用と配置選択はLABO-FUP-05/#1861 |
+| C08 無損失coverage | 原文全文/区間保全、明示consumer母集団と130predicate全件の引継ぎ固定 | 未判断を9群で#1861へ保持。formal successor成立とは別 |
+| C09 revision付きpacket | 本ファイル＋固定JSON/hash集合。PRのexact base/content HEADに独立reviewを束縛 | F1/F2の修正を確認して#2089調査closeを判定 |
 
 ## 現行文書の参照が担う役割
 
@@ -68,7 +68,7 @@ OS012/013の案内行、LABO001〜053の採択と、LABO candidateに残る元01
 
 原source・判断史・consumerと反例の個別path/行/hashは各先行比較JSONに残り、今回JSONがその本文hashを固定する。33旧inputのidentity・primary/secondary区分と保持義務は不変。未割当/未判断を消込せず、formal successor・全旧source閉包の成立を主張しない。
 
-#2089/#1861はOPEN。全9項目の調査完了、要求ステージ完了、L3再開・実装・配備の許可は本packetから成立しない。
+#2089は独立reviewによる調査close判定待ち。#1861は後続の未判断作業としてOPENを保持する。要求ステージ完了、L3再開・実装・配備の許可は本packetから成立しない。
 
 ## 33入力のpredicate別比較と共有受入辺
 
@@ -142,4 +142,17 @@ C02/C08は共有辺の比較が進んだが、正式最小atom・全consumer/fai
 
 label/priority/source参照も原recordの文脈である。BR21の旧PO判断とL3/L7状態・三評価入力、FR19のpattern_key/event store/audit/escalation、FR38のrun/model/config/time/opt-in、P7の意味正本と継続DB・Glossary/bounded recall未完は、比較対象から捨てない。旧path・数値・状態は来歴であり、現在の実装・採否・成功を表さない。
 
-115区間の文脈比較は成立したが、正式最小atomと現契約ごとの全量被覆は別である。各責務の比較結果は原入力ごとにJSONへ記録し、分類候補のない見出しはunresolvedを保持する。C02/C08の原文対応を補った段階であり、全consumer・未採用candidate・版の判断は残る。#2089/#1861はOPEN。
+115区間の文脈比較は成立したが、正式最小atomと現契約ごとの全量被覆は別である。各責務の比較結果は原入力ごとにJSONへ記録し、分類候補のない見出しはunresolvedを保持する。原文対応は調査資料として独立reviewで成立した。全consumerの意味移管・未採用candidate・版の判断は#1861へ残す。#2089の調査closeは下の修正を含むexact revisionで判定する。
+
+
+## 独立調査reviewの2指摘への対応と後続Issue
+
+[独立調査review](https://github.com/RetryYN/HELIX-HARNESS/issues/2089#issuecomment-6092295547)はC02〜C07を調査資料として成立とし、F1（consumer参照母集団）とF2（未判断の追跡先）をMajorとして残した。[今回の固定JSON](../audits/requirements-stage/labo-legacy-consumer-followup-closure-2026-10-10.json)がこの2点を補う。
+
+固定base `9d864e96e384d993e3196b97a6a7c27c2f070f76`のarchive 4,020 tracked fileとdocsを読み、旧24 IDの147file/856行、D01〜09の曖昧な短ID、共有13 siblingを別集合で保存する。各file/行のSHA-256、exact match span、consumer候補／来歴／監査のpath分類を固定する。先行27文書/231行は現行OS4 IDの別母集団であり、旧33 IDの全参照へ読み替えない。
+
+IDからpredicateへのjoinは比較候補であり、consumerの条件・failure・画面・data構造の意味比較は未計上と明記する。HM08のsample-size warning/ranking非表示、PhaseBのeventual集計、append-only AIcallと継続状態、ADR004の二層境界はsource行と比較注記を保持し、旧数値・DB・Bun・実装statusを現行採択へ変えない。
+
+[後続作業の固定comment](https://github.com/RetryYN/HELIX-HARNESS/issues/1861#issuecomment-6092332541)と今回JSONが9群の主追跡先を#1861、親を#1813へ結ぶ。130predicate全件（split27/unresolved27を含む）、115文脈区間、35原fieldをLABO-FUP-01へ保持し、consumer未比較は02、保存/取消は03、停止/復旧は04、物理構成は05、利用境界は06、旧provider/role差は07、13 siblingは08、旧技術/数値/status差は09へ渡す。関連IssueはcommentとJSONの表に固定する。
+
+これらの調査closeは未判断を解決済みにすることではない。全旧sourceの正式移管やL3以下の完成を調査終了の追加gateにせず、原文とunknownを後続Issueへ残す。修正後exact base/content HEADの独立reviewでF1/F2解消と9条件を確認したときに#2089の調査closeを判定する。
