@@ -22,7 +22,7 @@ created: 2026-09-18
 
 - 既存のどこにも関係が無い（`new_requirement_candidate`）: 3本 — `RUL-FRM-07`、`RUL-DEV-01`、`RUL-DEV-02`
 - HARNESSの規範とOSの運転が混在（`responsibility_split`）: 17本 — `RUL-REL-01`、`RUL-COR-01`、`RUL-COR-02`、`RUL-COR-04`、`RUL-TKT-01`、`RUL-TKT-03`、`RUL-OSM-01`、`RUL-OSM-07`、`RUL-OSA-01`、`RUL-OSA-02`、`RUL-OSA-03`、`RUL-OSA-04`、`RUL-OSA-05`、`RUL-OSA-06`、`RUL-COR-07`、`RUL-OSA-08`、`RUL-OPS-01`。採否時にHARNESS側とOS側へ分ける候補。
-- 既存要求と同一の意味（`exact_semantic_duplicate`）: 主relationでは0本、内部relationを含めて1本（`RUL-OSA-03`）。同一判定に要る10項目（actor・目的・入力・出力・正常系・failure・回復・制約・受入・適用範囲）を全て確かめたものではなく、確かめていないものは`partial_overlap`へ下げた。旧要求側のidentityを消さず、successor位置を記録して人間判断へ送る。
+- 既存要求と同一の意味（`exact_semantic_duplicate`）: 主relation・内部relationとも0本。RUL-OSA-03の旧2relationは下の原文比較によりpartial_overlapへ訂正した。旧identityと固有条件を保持する。
 
 ## 使い方
 
@@ -57,3 +57,13 @@ RUL-FRM-01の候補本文（工程順序とV-pairを閉じる）と、現行HARN
 | 全57cluster | 1clusterの候補本文比較を追加 | 他56と、このclusterのraw atom全比較 |
 
 元の`assessment_status=unassessed`は全raw atom・consumer比較が未了であることを引き続き表す。追加した限定比較はその完了を代替しない。空配列を差分なしへ変換せず、未比較を#1814/親#1813で追跡する。rule所属は旧機械対応づけの候補であり確定ownerではない。要求意味/採否/承認、全条件被覆、holding解除、L3再開、#1814 closeを生成しない。旧実行系は全て非実行。
+
+## 現在の本文比較：RUL-OSA-03（#1814、2026-10-10）
+
+基準main `fb646ef29a4bdf01d46e7583210a442af4451ab7`。台帳の`bounded_requirement_comparison`へ13原文span/hashと10比較軸、変更前のrelation/noteを記録した。
+
+旧HIL-BR-17/FR-30とRUL本文は、同責務の局所修正と独立責務の後続化では共通する。しかし旧要求の因果join、複数出力の原子的promotion、finding破棄/再流入/途中欠落の拒否と、RUL本文の一巡再審査・新独立blocker例外・対象変更staleは同一条件ではない。2本の`exact_semantic_duplicate`を`partial_overlap`へ訂正する。主relationの責務分割は保持する。
+
+「一巡の再判定は旧要求に無く新規性がある」という旧noteも不正確で、旧AGENTS.md:327–328に同じ一巡/新独立blocker例外がある。現行HXT-FLOW-07には返却/次ticketの因果とfinding破棄/再流入/返却先欠落の負例があるが、現在の引用から旧全条件の採用や全同値を生成しない。DTK-OS-003は9/24の既決退役sourceで、歴史比較としてだけ保持し現行候補分母・successorへ復活させない。
+
+主35・副40の全75rule IDとinventory hashを保全した。旧例3件の原文は確認したが、75ruleの個別全条件・consumer閉包・正式successorは未完である。既存の空配列と`assessment_status=unassessed`を完了へ変換しない。2clusterの本文比較があるが、他55とFRM01の518rule比較も残る。#1814/親#1813はOPENを保持し、要求統合・採否・retire・L3再開を生成しない。
