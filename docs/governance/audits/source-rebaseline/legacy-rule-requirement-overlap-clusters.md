@@ -181,3 +181,17 @@ b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合
 旧gate表のG2は表が★POなのに凡例/脚注の定義済集合にはなく、原FR13と判断史を確認するまで確定しない。旧UIなしL2skipの記述は、現行003のL2要求省略禁止・Prototype/PoC別適用・L2.5位置と区別する。trace-freeze checklistのfailingcommit SHA句はRB08-109文にないが、別RB08-106へ保存済みであるため全台帳の欠落や退役とは扱わず、freeze時の義務接続を残す。
 
 特定cutoverの再承認、Incident時の全active PLAN凍結、旧Criticalだけでconditional pass、旧handover、package/wholegoal監査の分母や旧Issue終端順序も固有scopeと判断史を持つ。旧記録にある「成立した」は過去観測であり、現行の実績や新しい承認/CI/close条件へ継承しない。120件の引用条件を読み分けたことから、完全atom化・consumer閉包・正式successor・未計上0を生成しない。#1814/親#1813と残り377件、他clusterの残件を保持する。
+
+## RUL-DEV-03：追加前の判断・最小性の限定した全19引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主14・副5＝19件の原inventory全field、23引用spanと15関連/補助spanを保持した。元note/relations/compared_revisions/未評価field、他56clusterを変更しない。引用未比較0は全atom・判断史・全consumer・正式successor・要求完了ではない。
+
+旧7問とv1.3六段no-codeは分類粒度と順序が異なり、止まった段/対案/tradeoffの記録を残す。PLAN理由だけで要求の意味を削除しない。HARNESS006単体行の提供構成と、004/005/006へ明示接続された横断退役節の完全一致再利用/意味再導出を分ける。HILFR16のinventory、FR02のTDD順、FR50のoracle強度だけで既存func再利用済み/意味移管済みにはしない。
+
+SCF001は正式未成立間の一時存在、005は正式置換全役割/consumer/oracle対応、LAR001は意味/後継ID確認であり、全code/CI純増のremovaltriggerと同じ契約ではない。旧RE01-274/RD05-219等の理由/削除条件を保持し、元SCF以外atomなしnoteを全旧source/全現行L2の未被覆結論へ一般化しない。
+
+旧policydoc語句regex、PLANのsubstantivefield/enum、却下digestの形式/重複検査は検討意味や根拠の妥当性の証明ではない。cutoff以降L3-L7/宣言対象とgrandfather/missinginvaliddateを区別し、全historicalPLANへ遡及しない。許可wrapper12行と両参照regexは全textを読むためcomment参照も条件を満たし得る。旧固定TS/path制約を新Python境界へ持ち込まない。
+
+旧atomicselectorはoraclePassRate1とfinite非負metricを適格とし、最小P95集合を先に絞る。複雑度tuple/IDはその集合内の順位であり、関数は入力値の実測provenanceを証明しない。canonicalizerは評価/却下証拠順を保つ。PoC4strategyとfeature再検証、detector2再発/既存検出gap/正当化/除去条件の固有scopeを残す。
+
+DDDSTRICT #1854の固定案の判断待ちは保持し、TDDORDER採用や旧lint成功で代替しない。要求本文・schema・Python/CLI/runtime/CI・仮登録・holding・Bindingを変更せず、別DraftPR2887–2893を本mainへ混ぜない。#1814/親#1813全scopeを保持し、採用・retire・Issueclose・L3再開を生成しない。
