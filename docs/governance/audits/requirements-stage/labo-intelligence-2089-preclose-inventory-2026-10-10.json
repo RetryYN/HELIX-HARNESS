@@ -1,0 +1,2155 @@
+{
+  "audit_kind": "issue_completion_precheck_and_input_inventory",
+  "authority_effect": "none",
+  "base_revision": "7c7c4a4680c51bec6f754a1ff862b07ddaeb45d2",
+  "issue": 2089,
+  "issue_snapshot": {
+    "body": "## 改定（2026-09-24、HELIX Conceptを親とする）\n\n- 親：[HELIX Concept](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/concept/helix-concept.md)。\n\n本Issueは、[HELIX Concept](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/concept/helix-concept.md)により改定する。現行Conceptの機構・版・製品属性を基準とし、下の旧本文との未解決差分は要求対応表とPO判断パッケージへ送る。旧本文は経緯として残す。\n\n- タイトルと対象を「HELIX-LABOとHELIX-Intelligenceの責務分離」に改める。\n- **HELIX-LABO**（Concept §3「機構の役割」）が持つもの：計測、実験、比較評価、改善効果と退行の確認。Workerとモデルの性能評価（bench、blind評価、実taskの品質・費用・再試行・手戻り）もLABOが持つ。平均点で安全違反を相殺しない。\n- **HELIX-Intelligence**（Concept §3「機構の役割」）が持つもの：経験・知識・判断方法の改善、学習データの整備、ローカルLLMのチューニング、モデル候補の管理。本文の「dataset、学習、学習済みmodel・予測器、Skill・知識」はこちらへ移す。\n- LABOは学習側の自己評価で採用を確定せず、Intelligenceは稼働モデルを検証なしで上書きしない。\n- 本文の「ログ・Memoryの分離原則」は維持する。OSに残す候補は変えない。「LABOへ移管を検討する候補」のうち、dataset、学習済みmodel、知識、SkillはIntelligenceの候補に読み替える。\n- 導入時期：LABOは1.0から、Intelligenceは3.0から加わる（HELIX Concept）。\n\n---\n\n## 位置づけ\n\n- Parent program: #1813（RDP-001）\n- Related responsibility shelf: #1861（現行HELIX-OS改善loopの仮置き）\n- Source revision reviewed: `fb5823862f0e3a5ab62fa0a36ba42e5f654340d3`\n- Current product-boundary source: `docs/concept/product-boundary.md`（SHA-256 `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038`）\n- Current HELIX-OS L1 source: `docs/helix-os/L1-planning/system-intent.md`（SHA-256 `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8`）\n- Authority effect: `none`\n- State: `research_proposal_waiting_source_inventory_and_human_decision`\n\nこのIssueは、学習・研究機構を将来の独立対象 **HELIX-LABO** として切り分けるための上流整理projectionである。旧四対象routing、要求target、successor、authority、工程、実装状態を変更しない。Issue本文やcloseから新製品採択、要求移管、実装許可を生成しない。\n\n現在進行中のゴール（定義済み製品に合う要求分類、旧HELIXの未実装・縮退・フェーズ・実装状況整理）には、この候補分類をまだ適用しない。既存分母と進捗率も変更しない。\n\n## 提案する責務境界\n\n| 対象 | 保持／候補責務 |\n|---|---|\n| HELIX-HARNESS | 要求形成、設計、工程、検証契約。「何を満たせば成立するか」 |\n| HELIX-OS | 管理・推進・検収、Worker割当、実行判断、実行状態、監査原本、継続・復旧。「今の仕事をどう進めるか」 |\n| HELIX-LABO（候補） | 許可された観測の分析、事例化、dataset、学習、実験、model比較、予測・改善効果評価。「次の仕事をどう賢くするか」 |\n| HELIX-Web／HELIX-Web-OS | 利用者向け開発serviceと独立運転。許可・目的・scopeを固定した観測だけを渡し、採択済み能力だけを利用する |\n\nLABOはHARNESSの工程契約、OSの管理・推進・検収、Web-OSのtenant/job復旧責任を吸収しない。OSを単なる指示中継器へ縮退させない。\n\n## ログ・Memoryの分離原則\n\n### OSに残す候補\n\n- authority、許可、対象revision、実行ID、進行中作業、予算消費\n- 検証結果、未完義務、checkpoint、二重実行防止、再開・復旧に必要な事実\n- Web-OSのtenant/job/incident原記録と運転責任\n- 監査原本、出典、read-after、retention、取消情報\n\n### LABOへ移管を検討する候補\n\n- failure pattern、再作業原因、作業種別ごとのmodel成績\n- dataset、実験、学習済みmodel・予測器、評価結果、版・系譜\n- 適用条件・反例・出典を持つ知識、Skill、改善候補\n- Worker能力profile（品質、費用、時間、再作業率）\n\n作業再開用memoryはOS、検証済みの再利用知識・学習資産はLABOという候補境界を検証する。保存基盤を共有する場合も、LABOの分類・要約・学習処理は監査原本を書き換えない。\n\n## 現行要求から調べる移管候補\n\n次を「移管済み」とせず、atom単位で **OS保持／LABO候補／接続要求／分割必要／未判断** に照合する。\n\n- `HELIXOS-L2-005`: 学習・改善候補、採択後の変更・再検証・効果確認\n- `HELIXOS-L2-007`: 原ログ・証拠の保全と、分析用data processingの境界\n- `HELIXOS-L2-012`: 知識・技術調査と再利用知識形成の境界\n- `HELIXOS-L2-013`: 横断診断、原因候補、是正効果追跡の境界\n- #1861に記録された旧Requirement IR、confirmed identity、memory／learning／improvement要求\n- Web／Web-OSのlog export、purpose、scope、同意、tenant境界、横断学習禁止条件\n\n旧HELIXの対応資産は資産明細台帳から特定し、source、判断史、failure、consumerを静的に読む。同じ役割の仕組みがある場合は独自機構を新規開発せず、完全一致再利用・意味の再導出・置換のいずれかを記録する。archive内runtime、test、CI、hook、adapterは実行しない。\n\n## 必要な接続契約候補\n\nLABO向けdataには最低限、次を欠落させない。\n\n- project／tenant\n- 対象revision\n- run／job／execution ID\n- 利用目的と許可scope\n- consent／revoke／retention\n- source event／evidence revision\n- dataset version\n- model／Skill version\n- evaluation conditionと比較baseline\n- 欠測、遅延、重複、再送、失効\n\nOS→LABOは送信待ち保全、再送、重複排除、欠測表示を持つ候補とし、**LABO停止中もOSが監査証拠を保全し、採択済み構成で開発・検証・復旧を継続できること**を境界受入条件とする。\n\nLABOの出力はproposal／candidateであり、自身の評価だけで本番採用、要求変更、HARNESS規則変更、model配備を自己承認しない。対象製品の採否、独立検証、release／deployment経路へ戻す。\n\n## このIssueで作る判断材料\n\n- [ ] 関連する現行要求・旧要求・旧資産・consumerの無損失inventory\n- [ ] requirement atomごとの `OS保持 / LABO候補 / connection / split / unresolved` 比較表\n- [ ] 原ログ、運転memory、研究dataset、知識資産、model artifactのdata ownership表\n- [ ] OS停止非依存、LABO停止非依存、再送・重複排除・欠測・取消の受入候補\n- [ ] HARNESS／OS／LABO／Web／Web-OS間のauthority・write・adoption境界\n- [ ] 機密・PII・tenant data・同意範囲外logを学習へ流さない条件\n- [ ] 単一repository/moduleで始める場合と、別repository/serverへ分離する場合の判断条件\n- [ ] 移管しても旧要求identity、failure、consumer、未解決を失わないcoverage\n- [ ] 対象revision付きの人間判断packet\n\n## 完了条件\n\nこのIssueの調査完了は、上記inventoryと比較表が固定され、未判断が明示され、HELIX-LABOを要求対象として追加するか、追加しないか、段階分離するかを人間が判断できる状態であること。\n\n製品追加を採択する場合も、Concept → LABO L1 → 対象別L2/L11 → L3/L10の順を別revisionで進める。現行OS要求を先に削除・移動しない。別repositoryや別serverの作成は、このIssueの完了条件に含めない。\n\n## 停止条件\n\n- LABOはConceptの1.0機構であり、製品属性を付けない。\n- 進行中の4,020資産分類、218 unit状態整理、30 phase gapへLABO候補を遡及適用しない。\n- 現行L1/L2/L11、product boundary、formal crosswalk、successor、authorityを変更しない。\n- LABO runtime、収集pipeline、dataset、model、DB、CI、deploymentを実装しない。\n- ログの存在、Issue/PR状態、model評価から要求採択・完了・配備許可を生成しない。\n\n参考資料（authorityではない）:\n- OpenTelemetry Collector resiliency: https://opentelemetry.io/docs/collector/resiliency/\n- Google Cloud MLOps continuous delivery and automation pipelines: https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning\n\n",
+    "title": "chore(governance): HELIX-LABOとHELIX-Intelligenceの責務分離の要求境界を整理する"
+  },
+  "issue_body_sha256": "aa9108c7577f5ba1a1778c1e02adc033a8151e07f45d023bc52e34ea5167110f",
+  "related_issue1861_body": "## 改定（2026-09-24、HELIX Conceptを親とする）\n\n- 親：[HELIX Concept](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/concept/helix-concept.md)。\n\n本Issueは、[HELIX Concept](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/concept/helix-concept.md)により改定する。現行Conceptの機構・版・製品属性を基準とし、下の旧本文との未解決差分は要求対応表とPO判断パッケージへ送る。旧本文は経緯として残す。\n\n- OS内の単一の「改善loop」として置かず、Concept §2「成長の循環」・§3「機構の役割」に従って分ける。\n  - 計測、改善効果、退行の確認 → HELIX-LABO\n  - 学習、判断pack、知識・モデルの改善 → HELIX-Intelligence\n  - 原因分析、改修計画 → HELIX-BRAIN\n  - 改修・検証・配布・切戻しの実行統制 → HELIX-OS（本Issueに残す）\n- 作業再開用のmemoryはOSに残し、検証済みの再利用知識はIntelligenceへ置く（#2089の境界）。\n- サービス⑦運用保守との分担：⑦は利用者の製品の運用保守、本Issueの改善経路はHELIX自身の改善として分ける。\n\n---\n\n<!-- HELIX:new-generation-upstream-work-projection:v1 -->\n\n## ローカル正本\n\n- Parent program: `RDP-001` / #1813\n- 構造の出典: `docs/concept/helix-structure-tvo-po-statements-2026-09-18.md`（PO発言記録、authorityなし）\n- 分類: `docs/governance/legacy-ir-structure-classification.md`、`docs/governance/helix-structure-requirement-coverage.md`\n- Source commit: `f3aef32af6ac31df08530035c92269a5bc316fb1`（Draft PR #1851、未merge）\n- 層: `os_improvement`\n- 状態: `proposed_upstream_waiting`（旧要求が厚い・現行L2が薄い・仮置き）\n- Authority effect: `none`\n\nこのIssueは上流整理用の作業projectionです。要求、設計、実装、CI、承認、完了の正本ではありません。分類はラベル付けであり、要求の本文、意味、採否、successorを変更していません。\n\n## この棚が扱うもの\n\n運用結果とOSのログ・学習から、HARNESS自身へ改善を戻す。置き場は仮置きで、サービス⑦運用保守との分担はPOの判断事項である。\n\n## この棚に属する要求（主の所属）\n\n- 旧Requirement IR（153件中）: `HIL-BR-03`、`HIL-BR-11`、`HIL-BR-29`、`HIL-FR-10`、`HIL-FR-14`、`HIL-FR-57`、`HIL-FR-58`、`HIL-NFR-34`\n- 旧confirmed identity（175件中）: `BR-21`、`D-01`、`D-02`、`D-03`、`D-04`、`D-05`、`D-06`、`D-07`、`D-08`、`D-09`、`FR-L1-19`、`FR-L1-20`、`FR-L1-34`、`FR-L1-36`、`HBR-P4`、`S-BR-001`\n- 現行L2（draft・未採否）: `HELIXOS-L2-005`\n\n## この棚へまたがる要求（副の所属）\n\n- 旧Requirement IR: `HIL-BR-23`、`HIL-FR-44`\n- 旧confirmed identity: `BR-22`、`FR-L1-38`、`FR-L1-43`、`FR-L1-47`、`HM-08`、`HBR-P7`、`HBR-P8`\n- 現行L2: `HELIXOS-L2-013`、`HELIXWEB-L2-008`、`HELIXWEBOS-L2-006`\n\n## 次の処理\n\n1. PR #1851の分類をreviewし、仮置きの論点をPOが決める。\n2. この棚の旧要求を、現行の対象別L2／L11へ一要求identityずつ移す要求PRを作る。旧要求が無い部分は、判断論点→必要なresearch／PoC→要求PRの順で新規に形成する。\n3. 単体要求、接続要求、構成体要求の順に降ろす。\n\n## 停止条件\n\n対象別L2／L11は未採否です。本Issueから要求の採否、successor確定、意味変更、retire、L3以降の設計、実装、CI、runtimeへ進みません。Issueのcloseから要求の完了を生成しません。\n\n",
+  "related_issue1861_body_sha256": "e44d888c75fdd9b7385cb30193e5b79fdcdcb5349c4e7532d69c44e51688ddb2",
+  "completion_scope": "調査inventory/比較表/未判断/人間判断材料の成立。source移管/実装全体の完成とは別。",
+  "criteria": [
+    {
+      "id": "C01",
+      "source_item": "関連する現行要求・旧要求・旧資産・consumerの無損失inventory",
+      "status": "partial",
+      "finding": "既存直接source監査は40機構対応/31pathに限定。今回1861の名指し33入力を原carry recordと全文行/heading bodyで保全したが、全関連consumer/補足sourceのinventory閉包を証明していない。",
+      "evidence_refs": [
+        "legacy_source_comparison",
+        "named_requirement_inventory"
+      ],
+      "next_action": "関連source/consumerの追加辺と未計上を確認する。"
+    },
+    {
+      "id": "C02",
+      "source_item": "requirement atomごとの `OS保持 / LABO候補 / connection / split / unresolved` 比較表",
+      "status": "missing",
+      "finding": "OS005/007/012/013と原33要求の全atom別OS保持/LABO候補/connection/split/unresolved表は未確認。原inputを保全したことを比較完了にしない。",
+      "evidence_refs": [
+        "E01",
+        "E02",
+        "E03",
+        "E04"
+      ],
+      "next_action": "33原要求のliteral条件/例外/数値/consumerを個別に比較する。"
+    },
+    {
+      "id": "C03",
+      "source_item": "原ログ、運転memory、研究dataset、知識資産、model artifactのdata ownership表",
+      "status": "partial",
+      "finding": "原証拠/運転memoryはOS、評価材料はLABO、汎用設計知識はBRAIN、3.0学習dataset/model candidateはINTの記載を確認した。単一表で全data objectのwriter/adoption/利用区分/retentionを対応づけた証拠は不足。",
+      "evidence_refs": [
+        "E01",
+        "E05",
+        "E08",
+        "E09"
+      ],
+      "next_action": "data objectごとにsource writerと評価/学習用途を分ける。"
+    },
+    {
+      "id": "C04",
+      "source_item": "OS停止非依存、LABO停止非依存、再送・重複排除・欠測・取消の受入候補",
+      "status": "partial",
+      "finding": "受渡しのstale/再送/重複/欠測は個別契約にあるが、双方停止とOS監査保全/継続を同じscopeで照合する全条件の証拠は未確認。",
+      "evidence_refs": [],
+      "next_action": "停止中source/receiver、再送、失効と元義務保全を対L11へ対応づける。"
+    },
+    {
+      "id": "C05",
+      "source_item": "HARNESS／OS／LABO／Web／Web-OS間のauthority・write・adoption境界",
+      "status": "partial",
+      "finding": "Concept/product boundaryと機構別採択はsource authorityを評価/candidateから分ける。WEB/WEB-OSのVision条件を採択済み要求として扱わない。全関連atomへの結合は未完。",
+      "evidence_refs": [
+        "E01",
+        "E08",
+        "E10",
+        "E11",
+        "E12"
+      ],
+      "next_action": "各送受信のwriter/authority/adoption境界を全atomへ結ぶ。"
+    },
+    {
+      "id": "C06",
+      "source_item": "機密・PII・tenant data・同意範囲外logを学習へ流さない条件",
+      "status": "partial",
+      "finding": "既存の許可scope、data class、holdout/prohibited隔離、同意外log禁止を確認。全tenant/export/cancel/retention条件を同じ対象scopeで照合した全量表は未確認。",
+      "evidence_refs": [
+        "E09",
+        "E10"
+      ],
+      "next_action": "原sourceとdata利用ごとのscope/consent/revoke/retentionを対応づける。"
+    },
+    {
+      "id": "C07",
+      "source_item": "単一repository/moduleで始める場合と、別repository/serverへ分離する場合の判断条件",
+      "status": "missing",
+      "finding": "既存の要求上の結合/交換境界はmodule/network topologyを確定しない。単一repo/module対別repo/serverの判断条件を固定した資料は確認できない。",
+      "evidence_refs": [
+        "coupling_boundaries"
+      ],
+      "next_action": "既存旧sourceの判断根拠と未決の物理判断を特定する。新しい規則として補完しない。"
+    },
+    {
+      "id": "C08",
+      "source_item": "移管しても旧要求identity、failure、consumer、未解決を失わないcoverage",
+      "status": "missing",
+      "finding": "今回の33原recordと既存40source対応は失わず保持したが、全failure/consumer/未解決のatomcoverage receiptを生成していない。原record存在や採択対象の列挙を全被覆にしない。",
+      "evidence_refs": [
+        "named_requirement_inventory",
+        "legacy_source_comparison"
+      ],
+      "next_action": "全source/consumer条件から比較表へのcoverageと未計上を照合する。"
+    },
+    {
+      "id": "C09",
+      "source_item": "対象revision付きの人間判断packet",
+      "status": "partial",
+      "finding": "LABO/INT/OSの9/28採択対象は固定decisionにある。これにより機構追加の判断はあるが、本Issueが要求する全inventoryと比較結果に結び付いた判断packetの完了を代替しない。",
+      "evidence_refs": [
+        "E06",
+        "E07"
+      ],
+      "next_action": "上記未判断を含む全比較表を既存decision対象と分けて判断材料へ固定する。"
+    }
+  ],
+  "named_requirement_inventory": [
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::BR-21",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 368,
+      "source_text": "## §11 BR-21 AI 実行成果の継続評価と改善サイクル",
+      "source_text_sha256": "77b65423feb226462b9ba9f9a94411da7113819085ea50fe3bacd4b9f264f21a",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::BR-21",
+        "declared_id": "BR-21",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 368,
+        "source_line_text": "## §11 BR-21 AI 実行成果の継続評価と改善サイクル",
+        "source_line_sha256": "77b65423feb226462b9ba9f9a94411da7113819085ea50fe3bacd4b9f264f21a",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [
+        {
+          "first_line": 368,
+          "last_line": 394,
+          "text": "## §11 BR-21 AI 実行成果の継続評価と改善サイクル\n\n| 属性 | 値 |\n|------|-----|\n| **ID** | BR-21 |\n| **優先度** | P2 起点 (FR-L1-36/38/43 は登録・実装済み) |\n| **実装フェーズ** | projection は PLAN-L7-53/57/58 で実装済み。HM-08 表示・改善アクション自動適用は後続 carry |\n| **L3/L7 接続** | FR-L1-36 / FR-L1-38 / FR-L1-43 は L3 business-detail で詳細化済み、L6 fr-unit-coverage と L7 oracle に接続済み |\n| **PO 承認** | 2026-05-28 (F2=a 採用) |\n\n### §11.1 業務目標\n\nHELIX が AI 実行品質を自律的に評価・改善するサイクルを持つ。個別 AI 委譲の成否を蓄積・分析し、skill 推奨精度・model 選択基準・PoC 成功率を継続的に向上させる。これにより、本人が AI 委譲を繰り返すほど harness が賢くなる「学習する基盤」を実現する。\n\n### §11.2 構成要素 (L3 詳細化済み / L7 projection 実装済み)\n\n| FR ID | 概要 | 現行状態 |\n|-------|------|-------|\n| **FR-L1-36** | skill 評価: skill_invocations + plan_registry から rating / adoption / success / unused を projection | PLAN-L7-53 実装済み |\n| **FR-L1-38** | model 評価: model_runs + plan_registry から success_rate を projection、token/cost 効率も telemetry から集計 | PLAN-L7-53/57/58 実装済み |\n| **FR-L1-43** | PoC 計測: Discovery decision_outcome から confirmed/rejected/pivot 成功率を projection | PLAN-L7-53 実装済み |\n\n### §11.3 業務的根拠\n\n- AI 委譲の品質は一回限りの設定で固定されず、実行ログから継続改善が必要 (concept §2.1.2.1 / requirements §7.8.7)\n- D-07 (AI 委譲時間率 ≥ 70 %) を達成・維持するには、委譲品質の可視化と改善ループが不可欠\n- skill / detector entity 参照注記 (§10.4) と連動し、FR-L1-12/08/18 の実績データを評価入力とする\n",
+          "sha256": "1d9367676770b153ed50b87dec7bbaf4f73dd278c1ba772f1c1aa69d58d4a447"
+        }
+      ],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-01",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 196,
+      "source_text": "| **D-01** | PLAN 起票数/sprint | sprint 期間中に起票された PLAN 件数 | ≥ 1 件/sprint | `.helix/plan_registry/` / `helix plan list` |",
+      "source_text_sha256": "7a64579a7cf085b81d2d7306ea672943f0b222f144f61dac159502818d37ba31",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::D-01",
+        "declared_id": "D-01",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 196,
+        "source_line_text": "| **D-01** | PLAN 起票数/sprint | sprint 期間中に起票された PLAN 件数 | ≥ 1 件/sprint | `.helix/plan_registry/` / `helix plan list` |",
+        "source_line_sha256": "7a64579a7cf085b81d2d7306ea672943f0b222f144f61dac159502818d37ba31",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-02",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 197,
+      "source_text": "| **D-02** | gate 通過率 | gate pass 件数 / gate 総実行件数 × 100 | ≥ 90 % | `.helix/gate_runs/` / `helix gate log` |",
+      "source_text_sha256": "bb5adc7a3bbb3bebf67cd03691f770b65e546c4f1d4849e394c0ef3c23d6f79a",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::D-02",
+        "declared_id": "D-02",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 197,
+        "source_line_text": "| **D-02** | gate 通過率 | gate pass 件数 / gate 総実行件数 × 100 | ≥ 90 % | `.helix/gate_runs/` / `helix gate log` |",
+        "source_line_sha256": "bb5adc7a3bbb3bebf67cd03691f770b65e546c4f1d4849e394c0ef3c23d6f79a",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-03",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 198,
+      "source_text": "| **D-03** | V-model 順序遵守違反 | 前工程未完了で後工程着手した検知件数 | 0 件 | `helix doctor` / `helix plan lint` |",
+      "source_text_sha256": "01eba392cbe0511496b5a0fd51b05f01387669f39a48dda4914cb875c389dd76",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::D-03",
+        "declared_id": "D-03",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 198,
+        "source_line_text": "| **D-03** | V-model 順序遵守違反 | 前工程未完了で後工程着手した検知件数 | 0 件 | `helix doctor` / `helix plan lint` |",
+        "source_line_sha256": "01eba392cbe0511496b5a0fd51b05f01387669f39a48dda4914cb875c389dd76",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-04",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 199,
+      "source_text": "| **D-04** | 回帰検出率 | テストで検出した回帰件数 / 回帰発生総件数 × 100 | ≥ 80 % | CI gate / `helix trace` |",
+      "source_text_sha256": "b02f2f37342ef167a26a4cdfd213197641a026b642277e86964987278f6868bd",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::D-04",
+        "declared_id": "D-04",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 199,
+        "source_line_text": "| **D-04** | 回帰検出率 | テストで検出した回帰件数 / 回帰発生総件数 × 100 | ≥ 80 % | CI gate / `helix trace` |",
+        "source_line_sha256": "b02f2f37342ef167a26a4cdfd213197641a026b642277e86964987278f6868bd",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-05",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 200,
+      "source_text": "| **D-05** | 4 artifact trace 整合率 | trace 整合 PLAN 件数 / 全 PLAN 件数 × 100 | ≥ 95 % | `helix trace check` / `.helix/artifact/trace/` |",
+      "source_text_sha256": "2dbedc2052c3e3fece7feeae67e88906681f77f05e09f1ed9904734179c93500",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::D-05",
+        "declared_id": "D-05",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 200,
+        "source_line_text": "| **D-05** | 4 artifact trace 整合率 | trace 整合 PLAN 件数 / 全 PLAN 件数 × 100 | ≥ 95 % | `helix trace check` / `.helix/artifact/trace/` |",
+        "source_line_sha256": "2dbedc2052c3e3fece7feeae67e88906681f77f05e09f1ed9904734179c93500",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-06",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 201,
+      "source_text": "| **D-06** | agent guard bypass 件数 | `HELIX_ALLOW_RAW_AGENT=1` 実行件数 (audit 記録) | 0 件 目標 (PO 承認時のみ許容) | `.helix/audit/` / agent-guard log |",
+      "source_text_sha256": "af85a9b45b798a26c57653d44c86e10b12c636d2b52d39363d6cde22f2be6d16",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::D-06",
+        "declared_id": "D-06",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 201,
+        "source_line_text": "| **D-06** | agent guard bypass 件数 | `HELIX_ALLOW_RAW_AGENT=1` 実行件数 (audit 記録) | 0 件 目標 (PO 承認時のみ許容) | `.helix/audit/` / agent-guard log |",
+        "source_line_sha256": "af85a9b45b798a26c57653d44c86e10b12c636d2b52d39363d6cde22f2be6d16",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-07",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 202,
+      "source_text": "| **D-07** | AI 委譲時間率 | AI 委譲タスク工数 / 総開発工数 × 100 | ≥ 70 % | PLAN `drive:` 集計 / `helix status` |",
+      "source_text_sha256": "459333adac014e170188f49bfd6365e770381db86413410078654a4a9560300d",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::D-07",
+        "declared_id": "D-07",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 202,
+        "source_line_text": "| **D-07** | AI 委譲時間率 | AI 委譲タスク工数 / 総開発工数 × 100 | ≥ 70 % | PLAN `drive:` 集計 / `helix status` |",
+        "source_line_sha256": "459333adac014e170188f49bfd6365e770381db86413410078654a4a9560300d",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-08",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 203,
+      "source_text": "| **D-08** | gate override 件数/sprint | PO による gate fail-close 例外行使件数 | ≤ 2 件/sprint | `.helix/audit/` / gate override log |",
+      "source_text_sha256": "5995c913ddb84305c9045fd6bd2f32819b774704f40c20a7c5c0f87c5323fab6",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::D-08",
+        "declared_id": "D-08",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 203,
+        "source_line_text": "| **D-08** | gate override 件数/sprint | PO による gate fail-close 例外行使件数 | ≤ 2 件/sprint | `.helix/audit/` / gate override log |",
+        "source_line_sha256": "5995c913ddb84305c9045fd6bd2f32819b774704f40c20a7c5c0f87c5323fab6",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-09",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 204,
+      "source_text": "| **D-09** | continuation 再開成功率 | next authority 実行成功件数 / continuation event 総件数 × 100 | ≥ 95 % | `harness.db` continuation projection / `helix status` |",
+      "source_text_sha256": "9cd4358f9d4b13991945ccb88c72cec3f2203b0cf443671cb595269664847557",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::D-09",
+        "declared_id": "D-09",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 204,
+        "source_line_text": "| **D-09** | continuation 再開成功率 | next authority 実行成功件数 / continuation event 総件数 × 100 | ≥ 95 % | `harness.db` continuation projection / `helix status` |",
+        "source_line_sha256": "9cd4358f9d4b13991945ccb88c72cec3f2203b0cf443671cb595269664847557",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 50,
+      "source_text": "| **FR-L1-19** | Learning Engine (成功実行 recipe 蓄積・頻出トラブル予防ルール化・スキル推薦改善・L 単位注入更新) | learning-engine | feedback_hook 5 軸 / skill 発火ログ / recovery-log / interrupt 履歴 / detector 結果 | recipe (pattern_key 付き)、予防ルール、推薦精度改善。※ extended: スキル破棄・改修自動化を含む。skill_rating 閾値以下を廃止候補としてフラグ、削除は人間確認必須 (F6=a、CLAUDE.md destructive 禁止事項)。ログ型失敗/成功蓄積 (event-sourced recipe log) を recipe store 実装方式として明記。※ extended (A-54 audit 軸1 C-02): 「失敗を仕組みに変換」原則 (L0 §1.4) に基づき GitHub PR / GHA / job summary から失敗 event を pull し、失敗種別の集計・同種反復検出・再発防止 PLAN 自動提案へ接続する (本人/AI roster 共有 audit。failure_log local とは分離 L0 §8.5、escalation L0-L3 §8.3 の入力経路) | P1 | HM-08 / GD-01 |",
+      "source_text_sha256": "be3ce53101b581a48033a8711a78bfc7566bcce7bbdbbb14981e95eb4545ab0a",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+        "declared_id": "FR-L1-19",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 50,
+        "source_line_text": "| **FR-L1-19** | Learning Engine (成功実行 recipe 蓄積・頻出トラブル予防ルール化・スキル推薦改善・L 単位注入更新) | learning-engine | feedback_hook 5 軸 / skill 発火ログ / recovery-log / interrupt 履歴 / detector 結果 | recipe (pattern_key 付き)、予防ルール、推薦精度改善。※ extended: スキル破棄・改修自動化を含む。skill_rating 閾値以下を廃止候補としてフラグ、削除は人間確認必須 (F6=a、CLAUDE.md destructive 禁止事項)。ログ型失敗/成功蓄積 (event-sourced recipe log) を recipe store 実装方式として明記。※ extended (A-54 audit 軸1 C-02): 「失敗を仕組みに変換」原則 (L0 §1.4) に基づき GitHub PR / GHA / job summary から失敗 event を pull し、失敗種別の集計・同種反復検出・再発防止 PLAN 自動提案へ接続する (本人/AI roster 共有 audit。failure_log local とは分離 L0 §8.5、escalation L0-L3 §8.3 の入力経路) | P1 | HM-08 / GD-01 |",
+        "source_line_sha256": "be3ce53101b581a48033a8711a78bfc7566bcce7bbdbbb14981e95eb4545ab0a",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 51,
+      "source_text": "| **FR-L1-20** | 観測・計測層 (5 hook で AI 実行を全量ログ化、発火 / トラブル / 精度 / 予算のメトリクス集約) | observability-metrics | AI 実行イベント全種 | invocation_log / action_logs / gate_runs / accuracy_score / budget_events、dashboard メトリクス。※ extended: スキル使用パラメータ + モデルパラメータ + トラブル計測 + トークン/利用コスト の 4 軸を計測対象に追加 (L3 で AC 詳細化、F7=b に従い L1 はスコープ宣言のみ) | P1 | HM-05 / HM-08 |",
+      "source_text_sha256": "508f583208a248beb17fc65a2241aa46754a774605fd101be1049a3dba0ac05c",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+        "declared_id": "FR-L1-20",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 51,
+        "source_line_text": "| **FR-L1-20** | 観測・計測層 (5 hook で AI 実行を全量ログ化、発火 / トラブル / 精度 / 予算のメトリクス集約) | observability-metrics | AI 実行イベント全種 | invocation_log / action_logs / gate_runs / accuracy_score / budget_events、dashboard メトリクス。※ extended: スキル使用パラメータ + モデルパラメータ + トラブル計測 + トークン/利用コスト の 4 軸を計測対象に追加 (L3 で AC 詳細化、F7=b に従い L1 はスコープ宣言のみ) | P1 | HM-05 / HM-08 |",
+        "source_line_sha256": "508f583208a248beb17fc65a2241aa46754a774605fd101be1049a3dba0ac05c",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-34",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 65,
+      "source_text": "| **FR-L1-34** | スキル・コマンド穴の優先順位管理 (vmodel-semantics 注入セット定義 / helix recover / helix route / retrofit skill 等) | integration-map | 穴リスト、設計確定済み仕様 | 優先順位付き実装タスクリスト | P2 | HM-02 |",
+      "source_text_sha256": "41e47dda5a11149429ded93265049a1a19998ab64b04aa5bdbe7672728a1101d",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-34",
+        "declared_id": "FR-L1-34",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 65,
+        "source_line_text": "| **FR-L1-34** | スキル・コマンド穴の優先順位管理 (vmodel-semantics 注入セット定義 / helix recover / helix route / retrofit skill 等) | integration-map | 穴リスト、設計確定済み仕様 | 優先順位付き実装タスクリスト | P2 | HM-02 |",
+        "source_line_sha256": "41e47dda5a11149429ded93265049a1a19998ab64b04aa5bdbe7672728a1101d",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 67,
+      "source_text": "| **FR-L1-36** | スキル評価システム (per-skill rating / adoption / success / unused flag を skill_invocations + plan_registry から projection) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) | skill_invocations.accepted=1 件、plan_registry.status、asOf timestamp | skill_evaluations projection (skill_rating 0.0-1.0、adoption_count、success_count、unused_flag)。cold-start = 0 行。unused = 30 日以内発火なし。削除は人手のみ | P2 | HM-05 |",
+      "source_text_sha256": "1d2f72f5d9c26e4bbdbb23a1ffd93cec22c82c117343c4f1b1e01692a0d00139",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+        "declared_id": "FR-L1-36",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 67,
+        "source_line_text": "| **FR-L1-36** | スキル評価システム (per-skill rating / adoption / success / unused flag を skill_invocations + plan_registry から projection) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) | skill_invocations.accepted=1 件、plan_registry.status、asOf timestamp | skill_evaluations projection (skill_rating 0.0-1.0、adoption_count、success_count、unused_flag)。cold-start = 0 行。unused = 30 日以内発火なし。削除は人手のみ | P2 | HM-05 |",
+        "source_line_sha256": "1d2f72f5d9c26e4bbdbb23a1ffd93cec22c82c117343c4f1b1e01692a0d00139",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "helix/L1-requirements/pillar-requirements.md::HBR-P4",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 54,
+      "source_text": "| **HBR-P4** | **自動保守システム** — drift/劣化/不整合を自動検出→**自動修復**、detection-routing 循環、学習ループ（recipe 蓄積/予防 gate 昇格）。根幹=P7 メモリ | FR-L1-08/11/18/19/33/34/36/38/43/49（検出・学習・inventory・評価・drift-lint） | **検出は厚いが「自動修復」FR 無し**。**learning→promote-to-gate/detector 専用 FR 無し**。劣化(flake/perf)検出未被覆 |",
+      "source_text_sha256": "507a74c0a159fafb2c3c889cb6750a13a83476c1fbb029c707053e03425b3283",
+      "carry_record": {
+        "source_qualified_requirement_id": "helix/L1-requirements/pillar-requirements.md::HBR-P4",
+        "declared_id": "HBR-P4",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/pillar-requirements.md",
+        "source_line": 54,
+        "source_line_text": "| **HBR-P4** | **自動保守システム** — drift/劣化/不整合を自動検出→**自動修復**、detection-routing 循環、学習ループ（recipe 蓄積/予防 gate 昇格）。根幹=P7 メモリ | FR-L1-08/11/18/19/33/34/36/38/43/49（検出・学習・inventory・評価・drift-lint） | **検出は厚いが「自動修復」FR 無し**。**learning→promote-to-gate/detector 専用 FR 無し**。劣化(flake/perf)検出未被覆 |",
+        "source_line_sha256": "507a74c0a159fafb2c3c889cb6750a13a83476c1fbb029c707053e03425b3283",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "pillar_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "helix/L1-requirements/skill-mechanism-migration-requests.md::S-BR-001",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md",
+      "source_line": 18,
+      "source_text": "## S-BR-001 利用者価値",
+      "source_text_sha256": "e6b2f97acf69f1987778213e7c4e9c6f2878d30878ffeddb046f3c827cdd66cd",
+      "carry_record": {
+        "source_qualified_requirement_id": "helix/L1-requirements/skill-mechanism-migration-requests.md::S-BR-001",
+        "declared_id": "S-BR-001",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md",
+        "source_line": 18,
+        "source_line_text": "## S-BR-001 利用者価値",
+        "source_line_sha256": "e6b2f97acf69f1987778213e7c4e9c6f2878d30878ffeddb046f3c827cdd66cd",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [
+        {
+          "first_line": 18,
+          "last_line": 35,
+          "text": "## S-BR-001 利用者価値\n\n専門知識・判断観点・手順を仕事に必要な範囲で取得し、旧資産の価値を保持しながらコンテキスト負担と重複を減らす。\n\n## 責務と追跡\n\n主Issue #1594、既存owner #1382へ接続する。\n詳細8要求は[L3 canonical source](../L3-requirements/skill-mechanism-migration-requirements.md)、対応する8受入は\n[L10 canonical source](../../../test-design/helix/skill-mechanism-migration-acceptance.md)に保持する。\n本書内IDはcanonical source IDであるが、Requirement IR admission済みとは扱わない。\nsource canonical化、IR admission、実装、有効化、退役を別状態で追跡する。\n\n## 取込み証跡\n\n2026-09-06受領原稿のSHA-256: `296265447c698e1d8f1dea1d91a419762f56b8e0e03ff93c68e8daf07455a73a`。\n原稿の全8要求本文をL3 sourceへ保持し、8つのL10受入へ対応付けた。原稿全文はIssue #1594にも保存する。\n本要求はprovider-neutralであり、Codexの設定や読込み仕様の変更事実を未検証のまま前提にしない。\n実装時にprovider/version/configと実読込みを測定し、既存供給との差を検証する。\n",
+          "sha256": "90008150f8dd54adb3333a90f5af483554d5583f6e8f18bc24ec35d927a1d344"
+        }
+      ],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::BR-22",
+      "population": "confirmed175",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 49,
+      "source_text": "| **BR-22** | **自前 runtime 内部資産体系を持つ** — HELIX は自身が使う/対象に提供する **subagent roster / skill pack / command** を HELIX 用の正本資産として持ち、source-derived資産を「そのまま使う」のでなく **HELIX 用に再構築**する。guard (呼出統制) だけでなく資産そのものを統制対象とする (再構築の HOW = FR-L1-46〜49) | A-77 PO 指摘 (前提抜け) / Recovery PLAN-RECOVERY-01 |",
+      "source_text_sha256": "f12e9c75d5647397c310c51486c0cc0ca2f0bd8482ca191b00ac468ed608d74d",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/business-requirements.md::BR-22",
+        "declared_id": "BR-22",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_line": 49,
+        "source_line_text": "| **BR-22** | **自前 runtime 内部資産体系を持つ** — HELIX は自身が使う/対象に提供する **subagent roster / skill pack / command** を HELIX 用の正本資産として持ち、source-derived資産を「そのまま使う」のでなく **HELIX 用に再構築**する。guard (呼出統制) だけでなく資産そのものを統制対象とする (再構築の HOW = FR-L1-46〜49) | A-77 PO 指摘 (前提抜け) / Recovery PLAN-RECOVERY-01 |",
+        "source_line_sha256": "f12e9c75d5647397c310c51486c0cc0ca2f0bd8482ca191b00ac468ed608d74d",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "business_or_value",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "population": "confirmed175",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 69,
+      "source_text": "| **FR-L1-38** | model 評価システム (per-model success rate を model_runs + plan_registry から projection、opt-in) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) / PLAN-L7-57 / PLAN-L7-58 | model_runs (run_id, runtime, model, role, drive, plan_id, started_at, completed_at, evidence_path)、plan_registry.status、.helix/config/model-opt-in.yaml (enabled:true で有効化)、runtime session telemetry | model_evaluations projection (model PK、success_rate REAL 0.0-1.0、run_count INTEGER、success_count INTEGER、token/cost efficiency、evaluated_at TEXT)。opt-in 無効 = 0 行。cold-start = 0 行。未掲載 pricing は null のまま捏造しない | P2 | HM-08 |",
+      "source_text_sha256": "76ca28f714bf37741a2ac6cdbbcae826fae07222afaedbc610ebcce0d3b922b0",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+        "declared_id": "FR-L1-38",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 69,
+        "source_line_text": "| **FR-L1-38** | model 評価システム (per-model success rate を model_runs + plan_registry から projection、opt-in) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) / PLAN-L7-57 / PLAN-L7-58 | model_runs (run_id, runtime, model, role, drive, plan_id, started_at, completed_at, evidence_path)、plan_registry.status、.helix/config/model-opt-in.yaml (enabled:true で有効化)、runtime session telemetry | model_evaluations projection (model PK、success_rate REAL 0.0-1.0、run_count INTEGER、success_count INTEGER、token/cost efficiency、evaluated_at TEXT)。opt-in 無効 = 0 行。cold-start = 0 行。未掲載 pricing は null のまま捏造しない | P2 | HM-08 |",
+        "source_line_sha256": "76ca28f714bf37741a2ac6cdbbcae826fae07222afaedbc610ebcce0d3b922b0",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "population": "confirmed175",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 74,
+      "source_text": "| **FR-L1-43** | PoC サクセス計測 (confirmed / rejected / pivot 件数から成功率を projection) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) | plan_registry (kind=poc, decision_outcome∈{confirmed,rejected,pivot}) | poc_evaluations projection (poc_success_rate 0.0-1.0、confirmed_count、rejected_count、pivot_count、total_count)。cold-start = 0 行。決定未記録 PoC は分母除外 | P2 | HM-08 |",
+      "source_text_sha256": "5b9244358b19838ad0de278c226cc5caf72880cf7e79bec471acc4e1282183b5",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+        "declared_id": "FR-L1-43",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 74,
+        "source_line_text": "| **FR-L1-43** | PoC サクセス計測 (confirmed / rejected / pivot 件数から成功率を projection) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) | plan_registry (kind=poc, decision_outcome∈{confirmed,rejected,pivot}) | poc_evaluations projection (poc_success_rate 0.0-1.0、confirmed_count、rejected_count、pivot_count、total_count)。cold-start = 0 行。決定未記録 PoC は分母除外 | P2 | HM-08 |",
+        "source_line_sha256": "5b9244358b19838ad0de278c226cc5caf72880cf7e79bec471acc4e1282183b5",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-47",
+      "population": "confirmed175",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 78,
+      "source_text": "| **FR-L1-47** | skill pack の HELIX curate (HELIX 版 SKILL_MAP / core-optional-drop 区分 / helix CLI trigger / legacy source 用語除去) | A-77 棚卸 / BR-22 | source skill reference、SKILL_MAP | `docs/skills/*.md` skill pack + HELIX 版 SKILL_MAP | P1 | HM-02 |",
+      "source_text_sha256": "e530fc3b4900240812c5e1730a5fd99732f75e22ea137e5b59639e33040788b8",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-47",
+        "declared_id": "FR-L1-47",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 78,
+        "source_line_text": "| **FR-L1-47** | skill pack の HELIX curate (HELIX 版 SKILL_MAP / core-optional-drop 区分 / helix CLI trigger / legacy source 用語除去) | A-77 棚卸 / BR-22 | source skill reference、SKILL_MAP | `docs/skills/*.md` skill pack + HELIX 版 SKILL_MAP | P1 | HM-02 |",
+        "source_line_sha256": "e530fc3b4900240812c5e1730a5fd99732f75e22ea137e5b59639e33040788b8",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/screen-requirements.md::HM-08",
+      "population": "confirmed175",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "source_line": 140,
+      "source_text": "| **HM-08** | AI 効果データ + Learning Engine ビュー | BR-21 連動、skill/model 評価 + recipe 蓄積 + L3 forward carry | BR-21 / FR-L1-12 |",
+      "source_text_sha256": "38329cb6810fd26aeaba24c1bac4803aaf98d445fbce77b9281a0e25bbd979b7",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/screen-requirements.md::HM-08",
+        "declared_id": "HM-08",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/screen-requirements.md",
+        "source_line": 140,
+        "source_line_text": "| **HM-08** | AI 効果データ + Learning Engine ビュー | BR-21 連動、skill/model 評価 + recipe 蓄積 + L3 forward carry | BR-21 / FR-L1-12 |",
+        "source_line_sha256": "38329cb6810fd26aeaba24c1bac4803aaf98d445fbce77b9281a0e25bbd979b7",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "screen_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "helix/L1-requirements/pillar-requirements.md::HBR-P7",
+      "population": "confirmed175",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 56,
+      "source_text": "| **HBR-P7** | **責務別の記録と共有可能な継続情報** — harness/projectのscopeを分離し、Claude/Codexから同じ正本revisionへ戻れるbounded recallを提供する。要件v1.3 HR-FR-HYB-005に従い、active memoryの内容を責務正本へ反映してからbody-free receiptへretireし、期限切れ・消費済み指示を再提示しない。要求の意味は指定文書・JSON、継続状態はDB projectionで確認する。provider delegation evidenceは委譲証拠でありprogress/continuation正本ではない | FR-L1-19/36/38/46/47（learning/skill・model 評価 projection/roster/skill — memory は impl detail 止まり） | 2 層 memory **architecture FR・cross-agent 共有 access・Glossary SSoT 無し** → architecture は **PLAN-L7-175/176 で充足済**、残=**Glossary SSoT 連結 / Codex SessionStart surface と Claude surface の同一 bounded recall 検証** |",
+      "source_text_sha256": "8cee35a9fe4da175b8638bb9168360a6a0c96a2e77528acb3bf57f062acb85b2",
+      "carry_record": {
+        "source_qualified_requirement_id": "helix/L1-requirements/pillar-requirements.md::HBR-P7",
+        "declared_id": "HBR-P7",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/pillar-requirements.md",
+        "source_line": 56,
+        "source_line_text": "| **HBR-P7** | **責務別の記録と共有可能な継続情報** — harness/projectのscopeを分離し、Claude/Codexから同じ正本revisionへ戻れるbounded recallを提供する。要件v1.3 HR-FR-HYB-005に従い、active memoryの内容を責務正本へ反映してからbody-free receiptへretireし、期限切れ・消費済み指示を再提示しない。要求の意味は指定文書・JSON、継続状態はDB projectionで確認する。provider delegation evidenceは委譲証拠でありprogress/continuation正本ではない | FR-L1-19/36/38/46/47（learning/skill・model 評価 projection/roster/skill — memory は impl detail 止まり） | 2 層 memory **architecture FR・cross-agent 共有 access・Glossary SSoT 無し** → architecture は **PLAN-L7-175/176 で充足済**、残=**Glossary SSoT 連結 / Codex SessionStart surface と Claude surface の同一 bounded recall 検証** |",
+        "source_line_sha256": "8cee35a9fe4da175b8638bb9168360a6a0c96a2e77528acb3bf57f062acb85b2",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "pillar_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "helix/L1-requirements/pillar-requirements.md::HBR-P8",
+      "population": "confirmed175",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 57,
+      "source_text": "| **HBR-P8** | **外部連携・外部検索（原則）** — 外部（Web/docs/OSS/tool）を検索・参照し幻覚を外部照合で抑止、有益知見をスキル化して自己取込（自己拡張） | （直接無し。FR-L1-09/05 が security guard 側のみ） | **外部検索/web grounding・skillify ループ・sandbox/trust-boundary すべて FR 無し → ほぼ全部 net-new**（最大の空白） |",
+      "source_text_sha256": "8d9b48e204e0dc21727a161fe6f2eb356eb8d9daeb0ad709511583b8591da634",
+      "carry_record": {
+        "source_qualified_requirement_id": "helix/L1-requirements/pillar-requirements.md::HBR-P8",
+        "declared_id": "HBR-P8",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/pillar-requirements.md",
+        "source_line": 57,
+        "source_line_text": "| **HBR-P8** | **外部連携・外部検索（原則）** — 外部（Web/docs/OSS/tool）を検索・参照し幻覚を外部照合で抑止、有益知見をスキル化して自己取込（自己拡張） | （直接無し。FR-L1-09/05 が security guard 側のみ） | **外部検索/web grounding・skillify ループ・sandbox/trust-boundary すべて FR 無し → ほぼ全部 net-new**（最大の空白） |",
+        "source_line_sha256": "8d9b48e204e0dc21727a161fe6f2eb356eb8d9daeb0ad709511583b8591da634",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "pillar_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "HIL-BR-03",
+      "population": "legacy_ir153",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-03",
+      "source_text": "Claude CodeはCodex完了時にraw実行ログ、PR、test/CI、監査所見を圧縮し、永続知識だけをharness memoryへ昇格する。進捗はDB continuationへ残しmemoryへ混載しない。",
+      "source_text_sha256": "b417efbef831936abb9089f4fbbcfa5c3b168a0a6238ccb4bcff5809905280ea",
+      "source_record": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-BR-03",
+        "revision": 1,
+        "kind": "business",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "Claude CodeはCodex完了時にraw実行ログ、PR、test/CI、監査所見を圧縮し、永続知識だけをharness memoryへ昇格する。進捗はDB continuationへ残しmemoryへ混載しない。",
+          "semantic_digest": "sha256:b417efbef831936abb9089f4fbbcfa5c3b168a0a6238ccb4bcff5809905280ea"
+        },
+        "assertion_id": "HIA-BR-003",
+        "primary_system_contract_id": "HR-FR-HIL-07",
+        "acceptance_ids": [
+          "HAC-HIL-07a",
+          "HAC-HIL-07b",
+          "HAC-HIL-07c"
+        ],
+        "system_test_id": "HAT-HIL-07",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-BR-03",
+          "owner_id": "HR-FR-HIL-07",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-BR-03",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:55",
+          "authority_id": "RAS-HIL-07"
+        },
+        "semantic_digest": "sha256:5f84dde8a994b0e2eb2f7026a46985a277f494b72a8a84f1d2e937f452aa2a4d"
+      },
+      "carry_record": {
+        "requirement_id": "HIL-BR-03",
+        "legacy_revision": 1,
+        "legacy_kind": "business",
+        "statement_text": "Claude CodeはCodex完了時にraw実行ログ、PR、test/CI、監査所見を圧縮し、永続知識だけをharness memoryへ昇格する。進捗はDB continuationへ残しmemoryへ混載しない。",
+        "statement_semantic_digest": "sha256:b417efbef831936abb9089f4fbbcfa5c3b168a0a6238ccb4bcff5809905280ea",
+        "record_semantic_digest": "sha256:5f84dde8a994b0e2eb2f7026a46985a277f494b72a8a84f1d2e937f452aa2a4d",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-03",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "OS・意味変更要",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原IRの全文/受入/例外/consumerの全被覆やsuccessorをこのinventoryから生成しない。"
+    },
+    {
+      "identity": "HIL-BR-11",
+      "population": "legacy_ir153",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-11",
+      "source_text": "Issue/実行/監査履歴からrecipe候補を作り、再現性検証後だけskill、detector、gateへ段階昇格する。自動生成物の即時強制適用を禁止する。",
+      "source_text_sha256": "edc9d4682e47c47a8f3fbfbd644ad25160be2f76df1e1c9a0d5a6d6f003398ff",
+      "source_record": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-BR-11",
+        "revision": 1,
+        "kind": "business",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "Issue/実行/監査履歴からrecipe候補を作り、再現性検証後だけskill、detector、gateへ段階昇格する。自動生成物の即時強制適用を禁止する。",
+          "semantic_digest": "sha256:edc9d4682e47c47a8f3fbfbd644ad25160be2f76df1e1c9a0d5a6d6f003398ff"
+        },
+        "assertion_id": "HIA-BR-011",
+        "primary_system_contract_id": "HR-FR-HIL-07",
+        "acceptance_ids": [
+          "HAC-HIL-07a",
+          "HAC-HIL-07b",
+          "HAC-HIL-07c"
+        ],
+        "system_test_id": "HAT-HIL-07",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-BR-11",
+          "owner_id": "HR-FR-HIL-07",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-BR-11",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:63",
+          "authority_id": "RAS-HIL-07"
+        },
+        "semantic_digest": "sha256:3bd4e6eb267004070d7c89bd80ba6cefba6f155d7e16179a356ef7c83fb25365"
+      },
+      "carry_record": {
+        "requirement_id": "HIL-BR-11",
+        "legacy_revision": 1,
+        "legacy_kind": "business",
+        "statement_text": "Issue/実行/監査履歴からrecipe候補を作り、再現性検証後だけskill、detector、gateへ段階昇格する。自動生成物の即時強制適用を禁止する。",
+        "statement_semantic_digest": "sha256:edc9d4682e47c47a8f3fbfbd644ad25160be2f76df1e1c9a0d5a6d6f003398ff",
+        "record_semantic_digest": "sha256:3bd4e6eb267004070d7c89bd80ba6cefba6f155d7e16179a356ef7c83fb25365",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-11",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "OS",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原IRの全文/受入/例外/consumerの全被覆やsuccessorをこのinventoryから生成しない。"
+    },
+    {
+      "identity": "HIL-BR-29",
+      "population": "legacy_ir153",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-29",
+      "source_text": "判断系skillを汎用checklistの固定配布に限定せず、工程、domain、risk、failure mode、判断authorityに適合するversioned judgment packとして拡張する。候補skillはshadow評価と独立reviewを経るまで判断gateの強制規則へ昇格しない。",
+      "source_text_sha256": "05eba9d85097424f46afa0356b747e930077ff8b31b8264784eb54af709dc148",
+      "source_record": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-BR-29",
+        "revision": 1,
+        "kind": "business",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "判断系skillを汎用checklistの固定配布に限定せず、工程、domain、risk、failure mode、判断authorityに適合するversioned judgment packとして拡張する。候補skillはshadow評価と独立reviewを経るまで判断gateの強制規則へ昇格しない。",
+          "semantic_digest": "sha256:05eba9d85097424f46afa0356b747e930077ff8b31b8264784eb54af709dc148"
+        },
+        "assertion_id": "HIA-BR-029",
+        "primary_system_contract_id": "HR-FR-HIL-21",
+        "acceptance_ids": [
+          "HAC-HIL-21a",
+          "HAC-HIL-21b",
+          "HAC-HIL-21c"
+        ],
+        "system_test_id": "HAT-HIL-21",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-BR-29",
+          "owner_id": "HR-FR-HIL-21",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-BR-29",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:81",
+          "authority_id": "RAS-HIL-21"
+        },
+        "semantic_digest": "sha256:268d823f6f6638c3009135050b4d696c0ee59da62833d816d196b1afb3812771"
+      },
+      "carry_record": {
+        "requirement_id": "HIL-BR-29",
+        "legacy_revision": 1,
+        "legacy_kind": "business",
+        "statement_text": "判断系skillを汎用checklistの固定配布に限定せず、工程、domain、risk、failure mode、判断authorityに適合するversioned judgment packとして拡張する。候補skillはshadow評価と独立reviewを経るまで判断gateの強制規則へ昇格しない。",
+        "statement_semantic_digest": "sha256:05eba9d85097424f46afa0356b747e930077ff8b31b8264784eb54af709dc148",
+        "record_semantic_digest": "sha256:268d823f6f6638c3009135050b4d696c0ee59da62833d816d196b1afb3812771",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-29",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "OS",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原IRの全文/受入/例外/consumerの全被覆やsuccessorをこのinventoryから生成しない。"
+    },
+    {
+      "identity": "HIL-FR-10",
+      "population": "legacy_ir153",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-10",
+      "source_text": "Memory CompactorはIssue admission時の問題・判断要約とCodex completion時の永続知識を別event種別で圧縮し、promote/supersede/no-promotionを記録する。進捗/raw logはmemoryへ複製しない。 | issue-summary、compressed memoryまたはno-promotion receipt",
+      "source_text_sha256": "1fbb80b64b2182063ff3a301d80e56bace634c8b9e362d61d860c6cbc54bcd65",
+      "source_record": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-FR-10",
+        "revision": 1,
+        "kind": "functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "Memory CompactorはIssue admission時の問題・判断要約とCodex completion時の永続知識を別event種別で圧縮し、promote/supersede/no-promotionを記録する。進捗/raw logはmemoryへ複製しない。 | issue-summary、compressed memoryまたはno-promotion receipt",
+          "semantic_digest": "sha256:1fbb80b64b2182063ff3a301d80e56bace634c8b9e362d61d860c6cbc54bcd65"
+        },
+        "assertion_id": "HIA-FR-010",
+        "primary_system_contract_id": "HR-FR-HIL-07",
+        "acceptance_ids": [
+          "HAC-HIL-07a",
+          "HAC-HIL-07b",
+          "HAC-HIL-07c"
+        ],
+        "system_test_id": "HAT-HIL-07",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-10",
+          "owner_id": "HR-FR-HIL-07",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-FR-10",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:100",
+          "authority_id": "RAS-HIL-07"
+        },
+        "semantic_digest": "sha256:743b700701a2522c7be6c4146f187c8c64b62d191df0b7949c091a71215e0dad"
+      },
+      "carry_record": {
+        "requirement_id": "HIL-FR-10",
+        "legacy_revision": 1,
+        "legacy_kind": "functional",
+        "statement_text": "Memory CompactorはIssue admission時の問題・判断要約とCodex completion時の永続知識を別event種別で圧縮し、promote/supersede/no-promotionを記録する。進捗/raw logはmemoryへ複製しない。 | issue-summary、compressed memoryまたはno-promotion receipt",
+        "statement_semantic_digest": "sha256:1fbb80b64b2182063ff3a301d80e56bace634c8b9e362d61d860c6cbc54bcd65",
+        "record_semantic_digest": "sha256:743b700701a2522c7be6c4146f187c8c64b62d191df0b7949c091a71215e0dad",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-10",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "OS・意味変更要",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原IRの全文/受入/例外/consumerの全被覆やsuccessorをこのinventoryから生成しない。"
+    },
+    {
+      "identity": "HIL-FR-14",
+      "population": "legacy_ir153",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-14",
+      "source_text": "Learning Promotionはraw event→pattern→recipe→shadow→skill/detector/gateの昇格状態を管理する。 | promotion ledger、効果測定、rollback target",
+      "source_text_sha256": "32c9cca689abf14f1a6dba50ff9144ff11791ba29f625b5eb1e4d41abeffff35",
+      "source_record": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-FR-14",
+        "revision": 1,
+        "kind": "functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "Learning Promotionはraw event→pattern→recipe→shadow→skill/detector/gateの昇格状態を管理する。 | promotion ledger、効果測定、rollback target",
+          "semantic_digest": "sha256:32c9cca689abf14f1a6dba50ff9144ff11791ba29f625b5eb1e4d41abeffff35"
+        },
+        "assertion_id": "HIA-FR-014",
+        "primary_system_contract_id": "HR-FR-HIL-07",
+        "acceptance_ids": [
+          "HAC-HIL-07a",
+          "HAC-HIL-07b",
+          "HAC-HIL-07c"
+        ],
+        "system_test_id": "HAT-HIL-07",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-14",
+          "owner_id": "HR-FR-HIL-07",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-FR-14",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:104",
+          "authority_id": "RAS-HIL-07"
+        },
+        "semantic_digest": "sha256:5283dc4aee1464c449fc50abff5c7bf0449a9abc48b5b24f5c2d15552a47925f"
+      },
+      "carry_record": {
+        "requirement_id": "HIL-FR-14",
+        "legacy_revision": 1,
+        "legacy_kind": "functional",
+        "statement_text": "Learning Promotionはraw event→pattern→recipe→shadow→skill/detector/gateの昇格状態を管理する。 | promotion ledger、効果測定、rollback target",
+        "statement_semantic_digest": "sha256:32c9cca689abf14f1a6dba50ff9144ff11791ba29f625b5eb1e4d41abeffff35",
+        "record_semantic_digest": "sha256:5283dc4aee1464c449fc50abff5c7bf0449a9abc48b5b24f5c2d15552a47925f",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-14",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "OS",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原IRの全文/受入/例外/consumerの全被覆やsuccessorをこのinventoryから生成しない。"
+    },
+    {
+      "identity": "HIL-FR-57",
+      "population": "legacy_ir153",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-57",
+      "source_text": "Judgment Pack Registryは工程別の判断目的、観点、反証質問、evidence要求、severity、escalation/停止条件、authority、適用domain/risk、model適性、versionを保持し、`judgment-core`、role judgment、task lens、専門skillを重複のないpackへ合成する。 | judgment pack、applicability/digest、source skill edge、conflict finding",
+      "source_text_sha256": "58171916df9edf46974d0241fc75879809fb314dd78d4ab24448b73442120065",
+      "source_record": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-FR-57",
+        "revision": 1,
+        "kind": "functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "Judgment Pack Registryは工程別の判断目的、観点、反証質問、evidence要求、severity、escalation/停止条件、authority、適用domain/risk、model適性、versionを保持し、`judgment-core`、role judgment、task lens、専門skillを重複のないpackへ合成する。 | judgment pack、applicability/digest、source skill edge、conflict finding",
+          "semantic_digest": "sha256:58171916df9edf46974d0241fc75879809fb314dd78d4ab24448b73442120065"
+        },
+        "assertion_id": "HIA-FR-057",
+        "primary_system_contract_id": "HR-FR-HIL-21",
+        "acceptance_ids": [
+          "HAC-HIL-21a",
+          "HAC-HIL-21b",
+          "HAC-HIL-21c"
+        ],
+        "system_test_id": "HAT-HIL-21",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-57",
+          "owner_id": "HR-FR-HIL-21",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-FR-57",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:147",
+          "authority_id": "RAS-HIL-21"
+        },
+        "semantic_digest": "sha256:93883f6fe73e884bcda3ea34ac945a41d6e13401d7fefb94476bce62f3ca6f10"
+      },
+      "carry_record": {
+        "requirement_id": "HIL-FR-57",
+        "legacy_revision": 1,
+        "legacy_kind": "functional",
+        "statement_text": "Judgment Pack Registryは工程別の判断目的、観点、反証質問、evidence要求、severity、escalation/停止条件、authority、適用domain/risk、model適性、versionを保持し、`judgment-core`、role judgment、task lens、専門skillを重複のないpackへ合成する。 | judgment pack、applicability/digest、source skill edge、conflict finding",
+        "statement_semantic_digest": "sha256:58171916df9edf46974d0241fc75879809fb314dd78d4ab24448b73442120065",
+        "record_semantic_digest": "sha256:93883f6fe73e884bcda3ea34ac945a41d6e13401d7fefb94476bce62f3ca6f10",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-57",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "OS",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原IRの全文/受入/例外/consumerの全被覆やsuccessorをこのinventoryから生成しない。"
+    },
+    {
+      "identity": "HIL-FR-58",
+      "population": "legacy_ir153",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-58",
+      "source_text": "Judgment Pack Improvement Loopはfinding、review reversal、retry、escaped defect、skill efficacyから不足観点を候補化し、with/without shadow比較、false-positive/negative、別runtime review、rollbackを経たversionだけをactive化する。判断結果そのものを自己教師として無監査昇格しない。 | candidate pack、shadow scorecard、independent review、promotion/rollback receipt",
+      "source_text_sha256": "1f3226818758cf15d8d60ffe6f435b6c8e524203664bb3414b2bfd61b10f41fe",
+      "source_record": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-FR-58",
+        "revision": 1,
+        "kind": "functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "Judgment Pack Improvement Loopはfinding、review reversal、retry、escaped defect、skill efficacyから不足観点を候補化し、with/without shadow比較、false-positive/negative、別runtime review、rollbackを経たversionだけをactive化する。判断結果そのものを自己教師として無監査昇格しない。 | candidate pack、shadow scorecard、independent review、promotion/rollback receipt",
+          "semantic_digest": "sha256:1f3226818758cf15d8d60ffe6f435b6c8e524203664bb3414b2bfd61b10f41fe"
+        },
+        "assertion_id": "HIA-FR-058",
+        "primary_system_contract_id": "HR-FR-HIL-21",
+        "acceptance_ids": [
+          "HAC-HIL-21a",
+          "HAC-HIL-21b",
+          "HAC-HIL-21c"
+        ],
+        "system_test_id": "HAT-HIL-21",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-58",
+          "owner_id": "HR-FR-HIL-21",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-FR-58",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:148",
+          "authority_id": "RAS-HIL-21"
+        },
+        "semantic_digest": "sha256:eae73de115a9a8efd0c1bba99eb7349704539d6de7d4c0c9f967a4ecc20c6e83"
+      },
+      "carry_record": {
+        "requirement_id": "HIL-FR-58",
+        "legacy_revision": 1,
+        "legacy_kind": "functional",
+        "statement_text": "Judgment Pack Improvement Loopはfinding、review reversal、retry、escaped defect、skill efficacyから不足観点を候補化し、with/without shadow比較、false-positive/negative、別runtime review、rollbackを経たversionだけをactive化する。判断結果そのものを自己教師として無監査昇格しない。 | candidate pack、shadow scorecard、independent review、promotion/rollback receipt",
+        "statement_semantic_digest": "sha256:1f3226818758cf15d8d60ffe6f435b6c8e524203664bb3414b2bfd61b10f41fe",
+        "record_semantic_digest": "sha256:eae73de115a9a8efd0c1bba99eb7349704539d6de7d4c0c9f967a4ecc20c6e83",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-58",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "OS",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原IRの全文/受入/例外/consumerの全被覆やsuccessorをこのinventoryから生成しない。"
+    },
+    {
+      "identity": "HIL-NFR-34",
+      "population": "legacy_ir153",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-34",
+      "source_text": "自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。",
+      "source_text_sha256": "8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47",
+      "source_record": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-NFR-34",
+        "revision": 1,
+        "kind": "non_functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。",
+          "semantic_digest": "sha256:8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47"
+        },
+        "assertion_id": "HIA-NFR-034",
+        "primary_system_contract_id": "HR-FR-HIL-21",
+        "acceptance_ids": [
+          "HAC-HIL-21a",
+          "HAC-HIL-21b",
+          "HAC-HIL-21c"
+        ],
+        "system_test_id": "HAT-HIL-21",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-NFR-34",
+          "owner_id": "HR-FR-HIL-21",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-NFR-34",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:214",
+          "authority_id": "RAS-HIL-21"
+        },
+        "semantic_digest": "sha256:bcf9d9a969abf7321dd827165c33f13ef27aa71e36f1fe27ab48acc27931b833"
+      },
+      "carry_record": {
+        "requirement_id": "HIL-NFR-34",
+        "legacy_revision": 1,
+        "legacy_kind": "non_functional",
+        "statement_text": "自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。",
+        "statement_semantic_digest": "sha256:8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47",
+        "record_semantic_digest": "sha256:bcf9d9a969abf7321dd827165c33f13ef27aa71e36f1fe27ab48acc27931b833",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-34",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "OS：pack・agent生成物の未承認状態、失効、権限・予算・独立性",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原IRの全文/受入/例外/consumerの全被覆やsuccessorをこのinventoryから生成しない。"
+    },
+    {
+      "identity": "HIL-BR-23",
+      "population": "legacy_ir153",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-23",
+      "source_text": "HARNESS所有のRequirement Translator subagentはchat、product data、source capabilityを要求atomへ翻訳し、既存templateで表現不能な論点を黙って捨てずTemplate Gap Issueとして改善loopへ戻す。",
+      "source_text_sha256": "271ec5381b718cce0fd8f0e3beacb9d0359059f88e8ea705fc7319edaa164c2d",
+      "source_record": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-BR-23",
+        "revision": 1,
+        "kind": "business",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "HARNESS所有のRequirement Translator subagentはchat、product data、source capabilityを要求atomへ翻訳し、既存templateで表現不能な論点を黙って捨てずTemplate Gap Issueとして改善loopへ戻す。",
+          "semantic_digest": "sha256:271ec5381b718cce0fd8f0e3beacb9d0359059f88e8ea705fc7319edaa164c2d"
+        },
+        "assertion_id": "HIA-BR-023",
+        "primary_system_contract_id": "HR-FR-HIL-17",
+        "acceptance_ids": [
+          "HAC-HIL-17a",
+          "HAC-HIL-17b",
+          "HAC-HIL-17c"
+        ],
+        "system_test_id": "HAT-HIL-17",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-BR-23",
+          "owner_id": "HR-FR-HIL-17",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-BR-23",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:75",
+          "authority_id": "RAS-HIL-17"
+        },
+        "semantic_digest": "sha256:5df3429940729de116ee825fbf09909ff7d6131b1fb8b7cc3ae7e41cce5901ae"
+      },
+      "carry_record": {
+        "requirement_id": "HIL-BR-23",
+        "legacy_revision": 1,
+        "legacy_kind": "business",
+        "statement_text": "HARNESS所有のRequirement Translator subagentはchat、product data、source capabilityを要求atomへ翻訳し、既存templateで表現不能な論点を黙って捨てずTemplate Gap Issueとして改善loopへ戻す。",
+        "statement_semantic_digest": "sha256:271ec5381b718cce0fd8f0e3beacb9d0359059f88e8ea705fc7319edaa164c2d",
+        "record_semantic_digest": "sha256:5df3429940729de116ee825fbf09909ff7d6131b1fb8b7cc3ae7e41cce5901ae",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-23",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "OS・意味変更要",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原IRの全文/受入/例外/consumerの全被覆やsuccessorをこのinventoryから生成しない。"
+    },
+    {
+      "identity": "HIL-FR-44",
+      "population": "legacy_ir153",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-44",
+      "source_text": "Template Improvement Loopは翻訳済み要求を現行templateへ照合し、表現不能な設計義務をTemplate Gap Issue化する。候補templateはshadow適用、既存要求への差分、false-positive/negative、migration、独立監査を経てversion昇格し、translator自身による即時強制を禁止する。 | template gap Issue、shadow coverage delta、review receipt、promotion/rollback receipt",
+      "source_text_sha256": "49bee96c5bb5d35a05301d3c0c4c7c4f31eb842b5bad1d58028c4d0c72bdf4f6",
+      "source_record": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-FR-44",
+        "revision": 1,
+        "kind": "functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "Template Improvement Loopは翻訳済み要求を現行templateへ照合し、表現不能な設計義務をTemplate Gap Issue化する。候補templateはshadow適用、既存要求への差分、false-positive/negative、migration、独立監査を経てversion昇格し、translator自身による即時強制を禁止する。 | template gap Issue、shadow coverage delta、review receipt、promotion/rollback receipt",
+          "semantic_digest": "sha256:49bee96c5bb5d35a05301d3c0c4c7c4f31eb842b5bad1d58028c4d0c72bdf4f6"
+        },
+        "assertion_id": "HIA-FR-044",
+        "primary_system_contract_id": "HR-FR-HIL-17",
+        "acceptance_ids": [
+          "HAC-HIL-17a",
+          "HAC-HIL-17b",
+          "HAC-HIL-17c"
+        ],
+        "system_test_id": "HAT-HIL-17",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-44",
+          "owner_id": "HR-FR-HIL-17",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-FR-44",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:134",
+          "authority_id": "RAS-HIL-17"
+        },
+        "semantic_digest": "sha256:20341bdb8156cd86ea9c445c1c738f803e18709753b41f3fec9ae0e83a9d8cf6"
+      },
+      "carry_record": {
+        "requirement_id": "HIL-FR-44",
+        "legacy_revision": 1,
+        "legacy_kind": "functional",
+        "statement_text": "Template Improvement Loopは翻訳済み要求を現行templateへ照合し、表現不能な設計義務をTemplate Gap Issue化する。候補templateはshadow適用、既存要求への差分、false-positive/negative、migration、独立監査を経てversion昇格し、translator自身による即時強制を禁止する。 | template gap Issue、shadow coverage delta、review receipt、promotion/rollback receipt",
+        "statement_semantic_digest": "sha256:49bee96c5bb5d35a05301d3c0c4c7c4f31eb842b5bad1d58028c4d0c72bdf4f6",
+        "record_semantic_digest": "sha256:20341bdb8156cd86ea9c445c1c738f803e18709753b41f3fec9ae0e83a9d8cf6",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-44",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "OS",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原IRの全文/受入/例外/consumerの全被覆やsuccessorをこのinventoryから生成しない。"
+    }
+  ],
+  "named_requirement_population": {
+    "ir": 10,
+    "confirmed": 23,
+    "total": 33,
+    "selection": "1861本文が主/副所属として明示する全ID。関連source全体の閉包母数とはしない。"
+  },
+  "legacy_source_comparison": [
+    {
+      "mechanism": "brain",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/design-catalog.yaml",
+      "asset_id": "LEGACY-ASSET-EC07511FF3E241F15359",
+      "sha256": "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864",
+      "condition_summary": "設計artifactをplan/requirement/basic/detail/data/standard/security/operations/infra/product別に分類する。分類は知識の正しさや承認状態を意味しない。",
+      "current_mapping_at_audit": "HELIXBRAIN-L1-001、HELIXBRAIN-L2-001/002、L11-001/002（brain-intent.md:82、brain-requirements.md:84-104、brain-acceptance.md:29-30）。分類済みartifactをDomain/Patternのauthorityへ昇格させない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 9-40",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "brain",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "condition_summary": "HIL-BR-15/F-23のversion付きproduct data connector、source provenance/freshness/schema/authority、owner、read/write、credential reference、sync/digestを扱う。",
+      "current_mapping_at_audit": "HELIXBRAIN-L2-018〜024、特に023/024と対応L11（brain-requirements.md:549、helix-brain-internal-audit-2026-09-27.md:23）。BRAINはsource/knowledgeのversioned contextを扱い、実接続・権限・同期はCONNECT/consumer責務。LABO per-edge接続は後発PO判断である。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 67, 113",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "brain",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "asset_id": "LEGACY-ASSET-24A3D981F1ED04404AA5",
+      "sha256": "6cb8fb254a82918ac472fb381268340a6d3c8f5c252f52ef8a58447ddac661f5",
+      "condition_summary": "V-model adoption matrixは共通点/差分、採用・不採用、tailoringと根拠を記録し、自動的な全移植や全53文書生成を求めない。引用に行指定がないためvmodel-docgen-adoption-matrix.md:176-248の判断・tailoring節を読んだ。",
+      "current_mapping_at_audit": "HELIXBRAIN-L1-003/007、L2-003/007/008と対応L11（brain-requirements.md:543、internal-audit:18）。source/trace/impact/tailoringの根拠に限る。旧docgen generator/全件採用は現行BRAINの義務ではない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "行指定なしのため関連節176-248を実読",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "brain",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "condition_summary": "Design template JSONはtemplate ID/version/pair/applicability/required input/owner/trace/oracle/measurement/completionを型付けし、重複ID・unknown・digest drift・未充足を失敗とし、生成viewは派生物とする。",
+      "current_mapping_at_audit": "HELIXBRAIN-L2-003/007/008/022/030と同ID L11（brain-requirements.md:544,546、brain-internal-resolution:14、audit:19）。L11-030は未定義fieldと既知fieldの未設定を区別し、BRAIN field→HARNESS obligation→sourceの逆traceも見る。現行L3設計schema/runtimeを完了済みとはしない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 23-27, 34-41, 61-91",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "brain",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "condition_summary": "L5詳細設計のschema family、field定義、適用条件、registry、semantic-shadow parity、例外、refactorを確認した（行指定なしの引用に対しdesign-template-json-authority.md:16-185を読了）。",
+      "current_mapping_at_audit": "HELIXBRAIN-L2-029/030とL11（brain-requirements.md:544、brain-acceptance.md:62,87-105）。typed source/version/traceの知識構造に接続するが、旧L5 schema、registry実装やshadow runtimeは移管していない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "行指定なしのため全体16-185を実読",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "brain",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+      "sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "condition_summary": "NIO-L3-01〜09: typed requirement inputとunknown、全design obligation、metric provenance/freshness/collector health/sample/digest、logging identity/redaction/retention/order/schema、incident alert routingとstorm/silence/ack/expiry、fault-injected backup/restore/rollback/failover、requirement/design/test/runtime/release双方向trace、bounded runtime repair admission、designed/implemented/verified/observed/operatedのevidence stateを要求。",
+      "current_mapping_at_audit": "HELIXBRAIN-L2-INFRA-003/004/005/006/009/010と対応L11はPattern成立input/failure/recovery/observation/backup設計知識を保持。工程条件・RTO/RPO inputはdocs/helix-brain/candidates/infrastructure-domain-requirements.md:69-71でHARNESS再採否待ちとして保持。現行移管はdocs/helix-infrastructure/L1-planning/infrastructure-intent.md:139-140。実restore/alert/logging/operation/repairはInfrastructure/Runtime下流で、NIO candidateは未承認。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: NIO-L3-01〜09は7-15、owner接続規律は17-22",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "brain",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+      "sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "condition_summary": "RCLSは責任者、CASE/SCENE/PATTERN/LOG/VERIFY evidence、段階的独立検証、counterexample・revision・provider/model・expiry・security変化時のstale/revalidation、既存authorityを直接変更しないことを求める。",
+      "current_mapping_at_audit": "RCLS-BR-001〜006の各要約条件はdocs/helix-labo/candidates/improvement-research-requirements.md:41-50、labo-acceptance.md:127-133、intelligence-acceptance.md:125でLABO candidateとして保持。部分現行対応はBRAIN-L2-007/020/025、LABO L2-001/002/006/007/009/010/052、INT L2-012/044。採択済み学習pipelineではない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 37-39, 37-47",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "brain",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "condition_summary": "旧HARNESS v1.3はUI/UX generation/evaluation、prototype、V-model/Scrum、real UX evidenceとAIの自己承認禁止を含む。",
+      "current_mapping_at_audit": "HELIXBRAIN-L1-006、L2/L11-006/023（brain-requirements.md:548、audit:22）。Visual Design/UXはPOの1.0範囲。BRAINは再利用構造、product固有screen/flow/token/meaningはProduct Core/HARNESS側。旧統合System Design全体やUI acceptance実行は移管しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 67, 265-275, 379-393",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "labo",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "condition_summary": "HIL-BR-15/F-23はsource type、connector/schema version、authority、owner、read/write policy、syncを持つproduct data connectionを定義する。",
+      "current_mapping_at_audit": "HELIXLABO-L2-001/006/009/010/050/054/057/058と選択入力時L11（labo-requirements.md:365）。provenance/contract/versionを維持。mechanismごとのconnector拡張は後発PO判断で、旧要件と同一とはしない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 67, 113",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "labo",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "condition_summary": "Bench R03–08は評価軸を分離し、task snapshot/protocol/cohortを揃え、receiptから再計算可能にし、failure/missingを分母に含め、重大failureを平均で相殺せず、accepted change当たりのcostとprice provenance、blind judge、historical/current差を保つ。",
+      "current_mapping_at_audit": "HELIXLABO-L2/L11-006/055/056/059/060、INTELLIGENCE-L2-011/067は限定結果を消費（labo-requirements.md:432、audit:87、resolution:16）。現在はbaseline/current/candidate/hybridという実験軸とHELIX-none/old/new cohort軸を分離し目的で選択。救援/再作業/人修正を含め、価格未決なら実時間数量と未貨幣化を分け、総金額確定とはしない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 74, 76-147, 119-147",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "labo",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "condition_summary": "HBR-P4は自動修復/measurement、高影響時の承認を、HBR-P8は外部source provenance/sandbox/approval/securityを扱う。",
+      "current_mapping_at_audit": "HELIXLABO-L2/L11-006/009/055/056/059/060（labo-requirements.md:361、audit:85）。効果評価・外部sourceの来歴境界を維持し、候補経路を保持。system→operation fallbackは明記された新差分で旧source由来としない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 46, 49, 92, 95",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "labo",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "condition_summary": "RLO-FR-040はtask-class Bench effortを根拠付きで持ち、未測定はprovider_default_unbenchmarkedとして示し、scoreだけでauthority/scope/assignmentを変えない。指定箇所663-666を実読。",
+      "current_mapping_at_audit": "HELIXLABO-L2/L11-055/056/057およびINTELLIGENCE-L2-010/011/067（labo-requirements.md:364、audit:86、resolution:18）。未評価と評価済みを区別し、評価結果は提案材料。INTは提案、OSが割当・実行を所有する。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 663-666",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "labo",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+      "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "condition_summary": "Connector設計は直DB無制限照会を避け、identity/schema/mapping version、credential reference、classification/read-write、snapshot/cursor/freshness/lineage/drift/quarantine/replayを扱い、secret値を保存しない。",
+      "current_mapping_at_audit": "HELIXLABO-L2-001/006/009/010/050/054/057/058と該当L11（labo-requirements.md:366）。stale/unknownを受入扱いしない。DB/runtime/registryの旧実装は移管しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 65, 554-575",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "labo",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "condition_summary": "HXB-FR-015 Benchはobserved/scored/qualified/expired状態とtask/risk/profile/sample/failure/freshness/independenceを使うadmission判断材料を返し、model switchや権限拡張はしない。",
+      "current_mapping_at_audit": "HELIXLABO-L2/L11-055/057からINTELLIGENCE-L2-010へ結果を渡し、OSがassignment（labo-requirements.md:363、labo-acceptance.md:138-154）。historical aliasは現行model保証ではない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 349-351",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "labo",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+      "sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "condition_summary": "RCLS候補は責任owner、case/scene/pattern/log/verify、最小packet、段階的独立検証、stale/revoke/revalidation、authority変更禁止を含む。指定された17-38を実読。 詳細RCLS-FR/RCLS-R-01〜23は個別schema・event journal・deterministic packet compiler・security/holdoutを含むが、現行候補の6要約条件を越えて採択されたとは扱わない。",
+      "current_mapping_at_audit": "docs/helix-labo/candidates/improvement-research-requirements.md:41-50およびdocs/helix-labo/L11-acceptance/labo-acceptance.md:127-133がRCLS-BR-001〜006を候補条件として保持。INTELLIGENCE-L11-0125 (`docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:125`)もLABO candidate/重複実装禁止を明示。詳細RCLS-R-01〜23の個別実装要件は現在のBRAIN/LABO/INTELLIGENCE L2/L11に採択されていない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 1, 17-38",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "labo",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "condition_summary": "Bench AC003–014は軸分離、同一task/cohort/protocol、隠しoracle、再採点、failure非除外、cost/provenance、blind judge、historical cohort非現行化を受入条件とする。",
+      "current_mapping_at_audit": "HELIXLABO-L2/L11-006/055/056/059/060（labo-requirements.md:432、audit:87、resolution:17）。同一比較条件を保ち、三cohort一律必須とはしない。採用oracle/範囲/判定根拠がない場合は未評価のまま。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 30-41, 35-41",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "labo",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "condition_summary": "RLO-AC-030はevidenceなしのeffortをprovider_default_unbenchmarkedとし、authority効果を与えず、推測値で補わない。",
+      "current_mapping_at_audit": "HELIXLABO-L2/L11-055/056/057とINTELLIGENCE-L2-010（audit:86、resolution:18）。未測定をunknown/unassessedで保持し、scoreのみでOS割当を生成しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 43",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "labo",
+      "source_path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-evaluation.ts",
+      "asset_id": "LEGACY-ASSET-D60AE87D9DFA0740F4A8",
+      "sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2",
+      "condition_summary": "Evaluation schemaのimprovement_episode_idは評価記録を改善episodeへ結ぶ。",
+      "current_mapping_at_audit": "HELIXLABO-L1/L2/L11-002、関連L2-001/006/050（labo-requirements.md:360、audit:84）。現行は要求からoperation/recoveryまでのcross-mechanism追跡へ拡張。旧DB schema migration/実行は要求しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 32",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "asset_id": "LEGACY-ASSET-335176749F6322C3CD8D",
+      "sha256": "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+      "condition_summary": "VDH FR004–013はprototype/UI scope、N/A、pattern/profile、frontend binding/state mapping、双方向trace、gate、mission/completion、実UX evidence、delta route、AI自己承認禁止を定義する。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L11 G12出所例（intelligence-acceptance.md:184）とL2-033の承認済みinput、L1/L2-020/045のproduct meaning境界。INTは根拠を入力として使いUI設計/UX完了を所有しない。HARNESS/Product Coreの詳細acceptanceは下流義務として保持。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 42-51",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "asset_id": "LEGACY-ASSET-CF1129DCA8779904F6B3",
+      "sha256": "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
+      "condition_summary": "GH-FR-011は同一episodeで記録・修正・局所検証・再送し、根拠なきrerun/delete/threshold緩和でgreen化せず、bounded retryはRecoveryへ戻す。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L2/L11-016/017（intelligence-requirements.md:438）。INT修復提案と権限/適用は分離し、実修復・GH操作は既存HARNESS/OS/SECURITY契約下流。旧routeを一律手順として起動しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 103-105",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "condition_summary": "Bench R03–08は独立評価軸、exact task/oracle/protocol、失敗分母、重大failure非平均化、費用根拠、歴史比較を要求する。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L2/L11-011/067は比較結果を限定入力として使い、実評価はHELIXLABO-L2/L11-059（intelligence-acceptance.md:188、requirements.md:489）。予測と独立oracle判定を同一視しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 76-147",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "condition_summary": "HBR-P2-04はplan-driven pair loop、reviewerがRED/oracleを作りimplementerがproof/questionを返すこと、review response loop、順序付きphase/traceを求める。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L1-014/016/017、L2/L11-068 support proposal。現行INTは支援提案/contextに限り、HARNESS-L2-022がverify obligation、OS-L2-028/029が相談/loop実行を所有（internal-audit:15）。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 147, 224",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "condition_summary": "RLO-FR-040はtask-class Bench effort/未評価状態/権限非作用を要求し、1114-1124はPR適用の事前simulationでmain candidate/assignment/ownership/projection/doctorを確認する。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L1-010/011、L2/L11-010/011/067（requirements.md:441,489,559、audit:16）。RLO effortはLABO-055結果をOS assignmentに渡す。旧PR simulationは工程例であり、有限design modelの計算oracle(G17 069/070/071)の先例・代替ではない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 663-666, 1114-1124",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "condition_summary": "UWAJ FR002–014はnormalized workflow atom、core/conditional question、source/uncertainty、transition trace/terminal loop、typed data、premature design回避、proposal state、自己authority禁止、switch/routing/allocation/measurementを定義する。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L1-005/007/008/010/012/013、L2/L11-005/007/008/010/012/013（intelligence-acceptance.md:186）。現行のINT資料形成/unknown/proposalは保持するが、15-signal interviewや全派生modelをINT 1.0へ移していない。HARNESS/Product Core/OSがsource workflow・承認済み入力・実配置を所有する。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 46-58",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/harness-agent-lifecycle.md",
+      "asset_id": "LEGACY-ASSET-1D32912A9A194FEAA7DE",
+      "sha256": "894500dee389a2fab00961697bae4baa71427c5ffe1431bbc77592497b2b3fd7",
+      "condition_summary": "Agent lifecycle詳細はauthority/applicability、versioned registry、runtime projection/drift、eligibility/lease/fence/checkpoint、verification/release/quarantine/retire、transaction/failure trace/freezeを扱う（指定34-303全体を読了）。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L1-014/016/017、L2/L11-014/016/017/068（internal-audit:15、requirements.md:491-505）。INT-068は支援提案であり、HARNESS/OSのregistry、lease、実行、acceptanceを移管しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 34-303",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md",
+      "asset_id": "LEGACY-ASSET-8247A056F30FF91E4B8D",
+      "sha256": "d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76",
+      "condition_summary": "AAFD BR-01..04はexact target/HEAD/authority/evidence/reproduction/falsifiability、owner route、projection invalidation、同corpus/responsibility比較を求める。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L1-009/011、L2/L11-009/011（requirements.md:434、audit:234-236）。target/evidence/owner/invalidationを監査情報に保つ。AAFD下位UIL/TER/compiler全要件は候補のままで現行INTの採択範囲外。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 20-23, 20-37, 35-38",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "condition_summary": "AAFD requirementsはidentity/authority/duplicate/expiry/deterministic detector/owner/invalidation/stale execution/replay/model reevaluationを定義する。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L1-009、L2/L11-009/011。現行map intelligence-requirements.md:435とintelligence-intent.md:106、audit:234-236。監査identity/期限の条件を保つが、UIL/TER/Future Synthesis詳細runtime는移管しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 23-110, 25-46, 94-109",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+      "sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+      "condition_summary": "BBR acceptanceはpositive/negative pair、正確なbinding、修復成功の合法性、独立性、idempotence/partial-failure/no-stale-mergeを検証し、附属scenarioが不足する範囲を明示する。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L2/L11-015/016/017（internal-resolution:20）。同resolutionはsource annex不足を記録。現行L11の限定正常/誤り/未見oracleに反映するが旧18-case全網羅や実行は主張しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 13-29",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md",
+      "asset_id": "LEGACY-ASSET-35F5F438E0F8755B1CCE",
+      "sha256": "20f549aa879d84e92196976ab2106bacedb393767d7a9946483c4d308576024e",
+      "condition_summary": "BBR requestは反復するbounded repair、検証済み登録済み修復のみ機械適用、failure/retryで他laneを壊さない、既存許可と追加範囲を区別する。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L1/L2/L11-015/016/017、別物のsupport proposal 068（requirements.md:436、intent.md:108、resolution:20）。INTは修復候補/根拠、SECURITYは許可、Workerは限定実行、HARNESSは検証、OSは受入。support proposalは権限を増やさない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 13-28, 15-27, 18-34",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+      "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "condition_summary": "BBR-R01..05はexact observation、unknown/approvalをworkerへ戻す、candidate≠permission≠apply、version/bytes/write-set/budget/stop契約、independent verification、precondition revalidation、idempotency/cycle stop、Recoveryとstale-CI対応、scope拡大禁止。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L2/L11-015/016/017（requirements.md:437、resolution:20）。SECURITY許可→限定Worker適用→HARNESS独立確認→OS受入の既存段階。INTが広域許可や実適用を生成しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 17-64, 21-64, 29-64",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "condition_summary": "HXB-FR-015はBench状態/evidenceとrisk/profile/sample/failure/freshness/independenceを用いたadmission材料を作り、model switch/right expansionしない。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L1-010、L2/L11-010/067（requirements.md:442）。LABO-055/057のevidenceはINT提案へ入り、OS assignmentが下流。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 349-351",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+      "sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+      "condition_summary": "RCLS acceptanceはcandidate/draft層、owner/lineage、channel分離、failure/human reject分母、独立producer/session verifier、exact packet、stale/expiry除外、再検証、権限非変更を求める。 詳細RCLS-FR/RCLS-R-01〜23は個別schema・event journal・deterministic packet compiler・security/holdoutを含むが、現行候補の6要約条件を越えて採択されたとは扱わない。",
+      "current_mapping_at_audit": "docs/helix-labo/candidates/improvement-research-requirements.md:41-50およびdocs/helix-labo/L11-acceptance/labo-acceptance.md:127-133がRCLS-BR-001〜006を候補条件として保持。INTELLIGENCE-L11-0125 (`docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:125`)もLABO candidate/重複実装禁止を明示。詳細RCLS-R-01〜23の個別実装要件は現在のBRAIN/LABO/INTELLIGENCE L2/L11に採択されていない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 1-30",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+      "sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "condition_summary": "RCLS-BR-002等は観測証拠の種別と因果推論を分け、最小packet、authority非変更を求める。 詳細RCLS-FR/RCLS-R-01〜23は個別schema・event journal・deterministic packet compiler・security/holdoutを含むが、現行候補の6要約条件を越えて採択されたとは扱わない。",
+      "current_mapping_at_audit": "docs/helix-labo/candidates/improvement-research-requirements.md:41-50およびdocs/helix-labo/L11-acceptance/labo-acceptance.md:127-133がRCLS-BR-001〜006を候補条件として保持。INTELLIGENCE-L11-0125 (`docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:125`)もLABO candidate/重複実装禁止を明示。詳細RCLS-R-01〜23の個別実装要件は現在のBRAIN/LABO/INTELLIGENCE L2/L11に採択されていない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 1, 29-35",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md",
+      "asset_id": "LEGACY-ASSET-5841D44AE1255A061667",
+      "sha256": "0d395f7ccd81a8c749ef4c3b8c0a660505b6183531992b4678267b5b51c929eb",
+      "condition_summary": "RCLS requirementsはCase/Scene/Pattern/Operational/Verification typed fields、unknown/source/causal state、authority非変更を要求する。 詳細RCLS-FR/RCLS-R-01〜23は個別schema・event journal・deterministic packet compiler・security/holdoutを含むが、現行候補の6要約条件を越えて採択されたとは扱わない。",
+      "current_mapping_at_audit": "docs/helix-labo/candidates/improvement-research-requirements.md:41-50およびdocs/helix-labo/L11-acceptance/labo-acceptance.md:127-133がRCLS-BR-001〜006を候補条件として保持。INTELLIGENCE-L11-0125 (`docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:125`)もLABO candidate/重複実装禁止を明示。詳細RCLS-R-01〜23の個別実装要件は現在のBRAIN/LABO/INTELLIGENCE L2/L11に採択されていない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 34-38",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md",
+      "asset_id": "LEGACY-ASSET-11E8FE0479751F02A4A3",
+      "sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba",
+      "condition_summary": "3-lane requestはcreation/design/review-integration capacityとWIP/backpressureを分ける。旧provider人数やburst固定値は要求された意味でない。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L1-010/011、L2/L11-010/011/066/067（requirements.md:439、intent.md:109、resolution:21）。INTは配置案・条件、OSが実capacity/assignmentを決定。旧数値configを継承しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 13-21, 15, 15-21",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requirements.md",
+      "asset_id": "LEGACY-ASSET-F172CBC75CAA4FCFC2EB",
+      "sha256": "d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e",
+      "condition_summary": "3L-R-26..31はregistered pool capacity対active WIP、queue/in-flight/review/merge、fixed pool profile、staged expansion/burst, one review lease, JIT main syncを扱う（引用に行指定なし。全47行から該当requirementsのthree-lane節13-47を読了）。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L2/L11-010/011/066/067（requirements.md:440）。具体assignment/lease/syncはOS/HARNESS責務。INTは提案packetに既決scopeのpool/WIP条件を伝えるだけで、旧固定人数や古いapproval thresholdは移管しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "行指定なしのため該当requirements節13-47を実読",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md",
+      "asset_id": "LEGACY-ASSET-879D95C07B789C9502CF",
+      "sha256": "6b72ed546c07349dfd5b59e78f15ddfbb353ea0b232b7c8b5de8d1cae7854191",
+      "condition_summary": "VDH acceptanceはUI field/pattern/relation graph/lifecycle/trace/gate/mission/real evidence/delta/no-self-approvalのnormal/error受入を定める。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L11 G12出所例（intelligence-acceptance.md:185）、L2-033 approved input、L2-020/045 backflow。INTの受入条件はsource/referenceの限定使用で、UI実装・mission完了のoracleはHARNESS/Product Core。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 20-29",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "condition_summary": "Bench acceptanceは同一task/cohort/protocol、oracle再計算、failures in denominator、重大failureを平均で隠さない、cost provenanceとhistorical/current分離を求める。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L11-011/067（intelligence-acceptance.md:189）→HELIXLABO-L2/L11-059。INTの予測計算は独立評価oracleでなく、評価済み化はLABO条件に従う。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 30-41",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "condition_summary": "AC-030は測定証拠がなければprovider_default_unbenchmarkedを保持し、推定値やauthority効果を与えない。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L2/L11-010/011/067（requirements.md:489）とHELIXLABO-055。未評価effortからINT/OS assignmentを自動生成しない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 43",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    },
+    {
+      "mechanism": "intelligence",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md",
+      "asset_id": "LEGACY-ASSET-6FFD7F4E58066D08B053",
+      "sha256": "1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3",
+      "condition_summary": "UWAJ acceptanceはconditional questions、unresolved/trace/loop/typed data/contracts/proposal/no-self-approval/switch-route-allocation/measurementを検証する。",
+      "current_mapping_at_audit": "HELIXINTELLIGENCE-L11 G12出所例（intelligence-acceptance.md:187）、L2/L11-005/007/008/010/012/013。現行資料形成は承認済みinputとunknownを保持するが、旧質問回数固定や全工程生成はINT 1.0に移していない。",
+      "audit_revision": "85cee18960bd1973fb1b28132e6498464b0f673b",
+      "scope": "指定範囲を実読: 18-30",
+      "traceability_status_at_audit": "source-condition-to-current-ID-and-owner-reviewed"
+    }
+  ],
+  "legacy_source_comparison_scope": "既存9/28監査の40機構対応/31unique pathを引用して再hash確認。既存の限定source条件比較であり、全4020資産・全consumer・全atom移管の証拠ではない。",
+  "source_files": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "role": "旧confirmed source（参照のみ）"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "role": "旧confirmed source（参照のみ）"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "role": "旧confirmed source（参照のみ）"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md",
+      "sha256": "ea6ac4da2e3396088f511288cd479a27612d53b5bfafa1370bfcf9235518719d",
+      "role": "旧confirmed source（参照のみ）"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "role": "旧confirmed source（参照のみ）"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "role": "旧IR source（参照のみ）"
+    },
+    {
+      "path": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+      "sha256": "eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+      "sha256": "51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
+      "sha256": "1f454d0dcb7e96fc5d3c2c8ae3ed237429bc4b12f8b2459958b626ba4a34abbe",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-2026-09-28.md",
+      "sha256": "fa6fc0aa76274850f08f36f1d80864862eb8caa5677359ef0d24a36b7ba246c6",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/coupling-boundaries-2026-09-27.md",
+      "sha256": "bd19e1bbdad06c3eea25569c605e66b14c423ea4529a1f40e4485232dc524b39",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "sha256": "8ae5baedb071995190e8553d23dad3cb55a4bde1cb0110f0b0c464859762c27c",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "fc20446eb90bf3d89de941686a6d9c82889bf5bb753af7c0aa52946053a8cac5",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "role": "現行比較または既存監査/採択根拠"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "role": "現行比較または既存監査/採択根拠"
+    }
+  ],
+  "direct_evidence": [
+    {
+      "id": "E01",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 58,
+      "last_line": 60,
+      "text": "| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。観測と作業の結果はLABOへ渡し、LABOが返す改善の提案（Feedback）を登録し、還流先へ振り分け、採否の後にticketにして回す（OSはPMにあたり、LABOはPMOとして評価と提案を出す。[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |\n",
+      "sha256": "bb8f2168c29f79213db290239e34211b3f6edf4aad62845c3c96a105b5d81f73",
+      "claim": "改善登録/原証拠はOS、評価と提案はLABO"
+    },
+    {
+      "id": "E02",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 65,
+      "last_line": 66,
+      "text": "| HELIXOS-L2-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査。本文は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIX-OS編成案 §3／6、2026-09-24 PO判断、2026-09-25 PO判断 | 要求整理前や設計途中の調査は工程内の調査（Research ticket）とする |\n| HELIXOS-L2-013 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断。本文は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIX-OS編成案 §5、2026-09-24 PO判断、2026-09-25 PO判断 | 同じ仕事への関連付けに使う原記録の保存はHELIXOS-L2-007に残す |\n",
+      "sha256": "e4c012c4ae02415ee3bf409d8ab729bc75d2c391fcf0e74c66adfed114f72456",
+      "claim": "012/013の技術調査・横断診断移管案内と原記録保持"
+    },
+    {
+      "id": "E03",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 294,
+      "last_line": 294,
+      "text": "| HELIXOS-L2-005 | 検出から改善候補・採否・再検証へ接続する。学習の発火・利用・効果・誤推薦・古い版を計測し、知見の登録だけを有効性の証拠にしない。記録と改善候補の登録はOS、効果の評価と学習（RCLS）はHELIX-LABOが担う（2026-09-25 PO判断。学習の分離は[OS L1](../L1-planning/system-intent.md)のとおり照合中）。経験からHARNESS工程規則を直接書き換えない | HBR-P4／P8、v1.3 HR-FR-HYB-007 |\n",
+      "sha256": "920c77d29b0bc3b04383f5edbd8b96300aab33f14a1ab302cc85199d323d79cf",
+      "claim": "旧学習(RCLS)表現は他のcandidate境界と照合する"
+    },
+    {
+      "id": "E04",
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "first_line": 44,
+      "last_line": 44,
+      "text": "現行の`HELIXOS-L2-005`と同じL2文書内の学習に関する記述は、旧OS集中責務を含む未承認の候補である。LABOの独立評価、OSの登録・実行、後続版のINTELLIGENCEによる知識・モデル改善への分離は[要求対応表](../../governance/crosswalks/concept-mechanism-version-requirement-crosswalk.md)で照合中とし、旧L2本文のまま現行のOS単独責務とは判定しない。\n",
+      "sha256": "4eb79a4ea2f62c15961b254e5a414f04baa39c2ea485615c917567ccb2099961",
+      "claim": "旧OS学習記述をOS単独責務と判定しない"
+    },
+    {
+      "id": "E05",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 343,
+      "last_line": 352,
+      "text": "\n既存候補のID・文言・状態は変更しない。ここでのrelationは移管・採択・置換ではない。\n\n| 既存source | 本書で関係するL2候補 | 保持の扱い |\n|---|---|---|\n| HELIXOS-L2-005の改善研究部分 | 006, 009, 010, 050 | 効果・退行をLABOで評価し、登録・routing・ticket化はOSに残す。元OS条件はOS本文に案内として保持 |\n| HELIXOS-L2-012（技術調査） | 051、内部観測は001/002 | 既存candidateの出典・revision・取得範囲・欠落・適用条件・秘密送信禁止・命令/patch不実行・closed/mergedのみで解決扱いしない条件をcandidateのまま残す |\n| HELIXOS-L2-013（横断診断） | 002, 006, 008, 050 | 原記録、原因候補、是正、再観測を関係づける。OS管理自身も評価対象。既存candidateの状態を変えない |\n| RCLS-BR-001..006 | 001,002,006,007,009,010,052 | responsibility ownership、CASE/SCENE/PATTERN/LOG/VERIFY区分、最小packet、project→independent→cross-project→shadow→mechanism段階、stale/revoked/revalidation、authority非変更を候補条件として保持。新しい学習機構を重複定義しない |\n| HELIXLABO-L2-WEB-001..014 | 001,002,006,009,010,050,054との関係候補 | WEB由来episode、比較条件、性能差と品質、観測/実験、総時間・費用、遅延障害窓、日次集計、公開母数/不確実性、残差、INTELLIGENCE連携、顧客秘密、Feedback再観測、実験分離の14条件は[候補文書](../candidates/improvement-research-requirements.md)に原文のまま保持。ここでは要求採択せず、別identity・所属・版は人判断候補として残す |\n",
+      "sha256": "c1243c119d0a6feaad2cb159a4681c1b8ebd84b7a8a747749ba1bea491476222",
+      "claim": "RCLSは既存候補保全、WEB14条件も別candidate"
+    },
+    {
+      "id": "E06",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 425,
+      "last_line": 425,
+      "text": "HELIXINTELLIGENCE-L1-001–020は1.0要求、HELIXINTELLIGENCE-L1-021–026は3.0 local-learning要求である。1.0は既存外部modelでの判断、model/provider/versionとsource由来data-use classの記録・同条件比較を保持する。data-use classの記録は学習の許可ではない。3.0ではLABO材料によるlocal model learning、data class分離、lineage、比較、適格化、独立評価を追加する。4.0の動的workflowはHELIXINTELLIGENCE-L2-064に隔離する。後続版だけの成立を1.0の依存/受入条件にしない。\n",
+      "sha256": "31dcb3f0488ef3947fd8b0b7a6fb8c3268912479653f2f1b583074a1835fed8f",
+      "claim": "INT1.0判断と3.0学習/4.0workflowの版境界"
+    },
+    {
+      "id": "E07",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 443,
+      "last_line": 443,
+      "text": "| LEGACY-ASSET-F2C2755C8809C2C0DEAD `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:各RCLS-BR-001..006` SHA `c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c` | responsibility owner、CASE/SCENE/PATTERN/LOG/VERIFY、最小packet、段階昇格、stale/revocation、authority non-write | RCLSはLABO candidateであり、INTELLIGENCEのlearning pipelineへ重複実装しない。HELIXINTELLIGENCE-L1-021..026はLABO材料を使う範囲に限る |\n",
+      "sha256": "044f47a60dfb00ecd75698cc75ecd1886d9092539134e5e8a8fedb5d24b00cd6",
+      "claim": "RCLSをINTモデル学習pipelineへ重複実装しない"
+    },
+    {
+      "id": "E08",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "first_line": 150,
+      "last_line": 160,
+      "text": "### HELIXBRAIN-L2-007 出所・根拠・知識promotion\n\n- **親L1**：`HELIXBRAIN-L1-007`。\n\n- **受け取るもの**：Pattern / Unit / Part候補、source、provenance、evidence、adopted reason、evaluated scope、counterexample、limitation。\n- **提供するもの**：由来と評価範囲から採用状態まで追跡できる知識記録。\n- **保証すること**：AI生成だけで汎用知識に昇格しない。LABO評価結果、OSの登録・振分け、BRAIN変更手続き内の独立検証、採否を別状態として保持する。\n- **依存・検証／版**：L1-007、L2-011/025、LABO→BRAIN L2-020。source無し、scope無し、counterexample無し、評価未実施の候補を採用済みにしない。1.0。\n- **失敗時の戻し先**：欠けたsource/evidenceは未採用候補へ戻し、promotionを停止する。上流意味変更が必要なら該当L1へ戻す。\n- **束ねる条件**：PO原文§BRAIN-L1-007/009、旧RCLS-BR-004/006の段階的独立検証と提案境界。\n\n",
+      "sha256": "f96983fecc67fdb539d5ff143ed758a9c2ae799ae3f4fb6fa24bad2c381a6774",
+      "claim": "汎用知識promotionはBRAIN、LABO/OS/採否と別段階"
+    },
+    {
+      "id": "E09",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 168,
+      "last_line": 195,
+      "text": "### HELIXINTELLIGENCE-L2-022 — Training/evaluation data区分\n\nLABOから渡されたdata classをtraining/validation/evaluation/holdout/prohibitedとして保持し混同しない。評価用隔離例をtrainingに混ぜず、training適合だけで改善判定しない。区分不明は学習・評価材料として昇格しない。version_target 3.0。\n\n- 親：HELIXINTELLIGENCE-L1-022。単独成立依存：LABO data-use classとsource dataset revision。検証範囲：training/validation/evaluation/holdout/prohibited区分付きdataset set。保証：evaluation/holdout/prohibitedの隔離、training fitのみで改善判定しない。失敗時戻し先：class/revision不明または混在はLABOへ返し、該当dataを学習・評価に利用しない。`version_target: 3.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-023 — Model lineage\n\ncandidate modelからbase model/version、training dataset revision、tuning method/configuration、domain/capability、training environment、evaluation corpus、known limitations、rollback targetへ辿れる。lineage不明のcandidateを稼働modelへ昇格候補としない。version_target 3.0。\n\n- 親：HELIXINTELLIGENCE-L1-023。単独成立依存：base model/version、training dataset revision、tuning method/configuration、environment、evaluation corpus。検証範囲：lineage-complete model candidateとknown limitations/rollback target。保証：candidate生成材料・設定・適用範囲・戻し先を辿れる。失敗時戻し先：lineage field不足は該当model/dataset/config ownerへ戻しcandidateをqualified扱いしない。`version_target: 3.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-024 — Candidate model比較\n\ncandidateとcurrent modelを同一responsibility scope・比較可能corpusでsuccess/findings/false positive/miss/reproducibility/latency/cost/resource consumption/failure patternにより比較する。新しい・大きい・学習済みだけを改善根拠としない。比較条件不一致は判定不能へ戻す。version_target 3.0。\n\n- 親：HELIXINTELLIGENCE-L1-024。単独成立依存：current/candidate modelの同一responsibility scope・比較可能corpus結果。検証範囲：比較指標と条件を伴うcandidate/current model comparison。保証：success/findings/FP/miss/reproducibility/latency/cost/resource/failureを同条件で比較する。失敗時戻し先：条件・evidence不一致は比較不能としてLABO/INTELLIGENCEのsource記録へ戻す。`version_target: 3.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-025 — Model適用範囲\n\nmodelごとにDomain×Capabilityの適格範囲を付ける。一領域の性能向上からINTELLIGENCE全体を置換せず、未評価範囲へ外挿しない。適格範囲が不明なら当該範囲で未評価とする。version_target 3.0。\n\n- 親：HELIXINTELLIGENCE-L1-025。単独成立依存：domain/capability別評価evidenceおよびmodel lineage。検証範囲：限定されたeligibility map。保証：適格範囲外を未評価と表示し、単領域結果を全体へ外挿しない。失敗時戻し先：適格scope evidence不足はLABOへ戻し、未評価表示を維持する。`version_target: 3.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-026 — LABO評価用実績packet\n\ncandidate/採用modelの実利用結果をquality/false positive/miss/rework/time/cost/human intervention/ops load/regressionを含むeffect-evaluation packetに整形する。単体出力はpacketであり、送達契約はL2-043が定める。INTELLIGENCE内評価だけで恒久改善を確定しない。version_target 3.0。\n\n",
+      "sha256": "2957dbb57e6c1b7444e7f9e9014715cb6d7e37c8aae8e15b637139df821584cc",
+      "claim": "3.0 dataset class/model lineage/比較/範囲/評価packet"
+    },
+    {
+      "id": "E10",
+      "path": "docs/concept/product-boundary.md",
+      "first_line": 65,
+      "last_line": 73,
+      "text": "要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、WEB-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-WEB-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\n渡し、HELIX-LABOがHARNESS自身の実践を含む各対象の効果と退行を評価し、HELIX-OSが評価を改善候補として登録する。\n採択された候補だけをHARNESS、Web、WEB-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。\n\n## 既存Conceptとの意味差分\n",
+      "sha256": "a92cc4bb7fe4ae7890d641c2bd684472e02c67482bdb6053dc97bf853fdcabdb",
+      "claim": "WEB原dataと同意外logの吸収禁止"
+    },
+    {
+      "id": "E11",
+      "path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "first_line": 16,
+      "last_line": 16,
+      "text": "> **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。\n",
+      "sha256": "5a3e80cae53c9b1220807b433d89452f878fa00695b61d965afc157d3a1a3dfc",
+      "claim": "WEBはVision材料であり採択要求ではない"
+    },
+    {
+      "id": "E12",
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "first_line": 15,
+      "last_line": 15,
+      "text": "> **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。\n",
+      "sha256": "5a3e80cae53c9b1220807b433d89452f878fa00695b61d965afc157d3a1a3dfc",
+      "claim": "WEB-OSはVision材料であり採択要求ではない"
+    }
+  ],
+  "search": {
+    "paths": [
+      "docs/governance",
+      "docs/helix-labo",
+      "docs/helix-intelligence",
+      "docs/concept"
+    ],
+    "terms": [
+      "LABO停止",
+      "OS停止",
+      "研究dataset",
+      "運転memory",
+      "別repository/server"
+    ],
+    "located": [
+      "legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
+      "coupling-boundaries-2026-09-27.md",
+      "g10-pack-dependency-audit.json"
+    ],
+    "limits": "語検索の不存在を未実装/意味削除の証拠にせず、所在未確認とする。"
+  },
+  "observed_boundary": "RCLS候補保全とINT3.0モデル学習は別。旧OS294の「学習」という単語だけから責務衝突・自動移管・既存採択の取消を導かない。",
+  "conclusion": {
+    "issue_close_eligible": false,
+    "reason": "9項目のうち全量inventory/atom比較/停止条件/物理分離判断/coverageが未証明。調査完了自体が未証明であり、full migrationが未完という理由だけで保留するのではない。"
+  },
+  "non_claims": [
+    "新しい要求/規則/承認手順/物理構成を作らない",
+    "canonical/MPR/holding/Binding/Issue本文は変更しない",
+    "旧CLI/runtime/test/CIを実行しない",
+    "入力保全を比較済み/移管済み/Issue完了に変換しない"
+  ]
+}
