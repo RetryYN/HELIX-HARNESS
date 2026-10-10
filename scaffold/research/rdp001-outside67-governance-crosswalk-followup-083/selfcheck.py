@@ -35,9 +35,10 @@ def main():
   case('counterpart_path',lambda c:mutatel(c/(REL+'selected-source-items.jsonl'),0,lambda d:d['archive_counterpart'].__setitem__('path','docs/changed.md')),'E_COUNTERPART')
   case('diff_status',lambda c:mutate(c/(REL+'source-diffs.json'),lambda d:d['items'][0].__setitem__('status','same')),'E_DIFF_PROV')
   case('canonical_text',lambda c:mutate(c/(REL+'inventory.json'),lambda d:d['prohibited_inference'].__setitem__(0,'changed')),'E_CANONICAL_TEXT')
-  case('stale_scan_counterpart_capture',lambda c:mutate(c/(REL+'evidence-scan.json'),lambda d:d['counterparts']['OUTSIDE67-PATH-062'].update({'sha256':'aca38dcee6ad2d88948bc2391f590eab3424836d1526dc507f23bf3aa187db2a','bytes':9565})),'E_SCAN_COUNTERPART_PROVENANCE')
+  case('later_scan_counterpart_capture',lambda c:mutate(c/(REL+'evidence-scan.json'),lambda d:d['counterparts']['OUTSIDE67-PATH-062'].update({'sha256':'6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048','bytes':9640})),'E_SCAN_COUNTERPART_PROVENANCE')
+  case('later_counterpart_capture',lambda c:(c/'docs/governance/audits/requirements-stage/history-snapshots/outside67-062-counterpart-input0083-capture-3184d613.md').write_bytes(b'later revision substituted'), 'E_COUNTERPART_CAPTURE_BASE')
   bad=[x for x in cases if not x[1]]
   if bad:
    print('FAIL negative cases: '+','.join(x[0] for x in bad)); print('\n'.join(x[2] for x in bad)); return 1
- print('PASS outside67 follow-up selfcheck: baseline + 21 negative cases'); return 0
+ print('PASS outside67 follow-up selfcheck: baseline + 22 negative cases'); return 0
 if __name__=='__main__':sys.exit(main())

@@ -145,3 +145,11 @@ validator、既存16負例、隔離生成による13機械記録/source snapshot
 [0040再照合receipt](osa03-register-consumer-reconciliation-0040-2026-10-10.json)に期待digestの33行/14 holding register captureと、当時のphase inventory/program/登録契約を固定した。旧13 holding sourceは移動先又は訂正前snapshot、Scaffold参照は現行research配置へ解決する。logical path、32行prefix、33行append記録、13/14会計は保持し、旧001を現在の生存holdingへ戻さない。候補JSONとBinding契約は不変。
 
 validatorと既存25＋祖先性2負例が成功し、read-only buildでmigration/read-after/first15 inventoryの全field一致を確認した。全147 Bindingの構造検証fail=0、stale=0。ただし新HEADの独立reviewは未完で、PRはDraft。全source/consumer closure・正式successor・他clusterの被覆・要求採否・holding解除・L3再開・Issue close・全要求完了は静的整合から生成しない。
+
+## 独立reviewで判明した0083観測入力とregister来歴の訂正
+
+b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合receipt](osa03-independent-review-input-reconciliation-2026-10-10.json)に、誤った後日観測と正しい研究時観測を両方保存した。先行0083 receiptの7aa2c120中間captureと038 driftを研究時入力へ混ぜた処理は誤りである。全5 counterpartを研究base3184d613の固定Git bytesへ戻し、038 hash一致、062 aca38dce/9565 bytesを保つ。selected/inventory/scanのcounterpartと観測oracleだけを訂正し、25 unit本文・source-diffs/meta/ledgerとunknown残差は不変。main8955f45cの後日観測は別receipt fieldに保持し、研究時観測を上書きしない。旧receiptや7aa2c120 snapshotは当時の誤った処理の証拠として変更しない。
+
+637行captureを使う16研究は、全研究baseの元registerがb68f3aca/33行（72b9f368 captureと同一）であることをGit bytesで確認した。1c276ab2の79c1e5a6/637行は9/29 refreshで更新された記録値であり、研究時入力ではない。後続refresh記録との静的照合にだけ使うことを各Binding note/READMEへ明記した。候補のregister記録値は保全し、当初base証拠や現在のholding数へ継承しない。0062研究は059/063/064/065/066の別集合で062 counterpartに依存しないが、そのbase294bfd90の062本文も同じaca38dce/9565であることを照合した。
+
+0083 validator・baseline＋22負例、全5 counterpartの原記録一致、16 Binding契約と候補non-counterpart fieldの保全を確認した。Binding147 fail=0・stale=0。ただし修正後HEADの独立reviewは未完でDraftを維持する。全source/consumer closure、正式successor、他cluster被覆、要求採否、holding解除、L3再開、Issue close、全要求完了を生成しない。

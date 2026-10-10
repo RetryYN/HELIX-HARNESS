@@ -11,3 +11,7 @@ SCF-B-0074はresearch Scaffold Bindingとして登録済みです。今回の検
 ## 固定register入力の再照合（2026-10-10）
 
 研究inventoryの期待digest `79c1e5a…fbcd` はcommit `1c276ab26dc50ca5d0f2d8c25441f17c303b9919` の637行・45 live holdingの台帳bytesに一致する。当初baseとは別の後続入力更新として記録し、validator読取先とBinding入力を同一bytesの固定snapshotへ結んだ。元のlogical path、基準base、候補本文・分母・unknown・未調査残差は保持する。以前のholding数は歴史metadataで、現在の生存holding数を表さない。selfcheckの成果物pathを実際のscaffold/research/配置へ訂正した。検証の成功から採否・正式successor・全consumer closureを生成せず、時間的照合と研究全体のclosureは未完とする。
+
+## 独立reviewによるregister来歴の確定
+
+独立review F2: 研究base b343360a104d377e545adc404a4151d70eac024e の入力はb68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd/33行（72b9f368 captureと同一）。1c276ab2の79c1e5a6/637行は2026-09-29 refreshの記録値であり、研究時入力ではない。既存候補のrefresh記録との静的照合にだけ使い、当初baseの証拠や現在のholding/authorityへ継承しない。照合: docs/governance/audits/source-rebaseline/osa03-independent-review-input-reconciliation-2026-10-10.json
