@@ -11,9 +11,9 @@ HOLDING='docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl';
 LEDGERS=['docs/governance/legacy-asset-disposition.jsonl','docs/governance/legacy-asset-decisions.jsonl','docs/governance/legacy-asset-copy-read-after.jsonl','docs/governance/legacy-asset-decision-log.md','docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl','docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl','docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl']
 SOURCE_PATHS={'OUTSIDE67-PATH-016': 'docs/governance/audits/l2-requirements/concept-v4.1-approval-readiness-audit.md', 'OUTSIDE67-PATH-020': 'docs/governance/audits/l2-requirements/infinity-business-target-crosswalk.md', 'OUTSIDE67-PATH-023': 'docs/governance/audits/l2-requirements/l2-freeze-ir-correction.md', 'OUTSIDE67-PATH-038': 'docs/governance/audits/l2-requirements/new-generation-concept-package-source-crosswalk.md', 'OUTSIDE67-PATH-062': 'docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md'}
 COUNTERPARTS={'OUTSIDE67-PATH-016': 'docs/governance/audits/source-rebaseline/concept-v4.1-approval-readiness-audit.md', 'OUTSIDE67-PATH-020': 'docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md', 'OUTSIDE67-PATH-023': 'docs/governance/audits/source-rebaseline/l2-freeze-ir-correction.md', 'OUTSIDE67-PATH-038': 'docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md', 'OUTSIDE67-PATH-062': 'docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md'}
-COUNTERPART_MATCH={'OUTSIDE67-PATH-016': False, 'OUTSIDE67-PATH-020': False, 'OUTSIDE67-PATH-023': False, 'OUTSIDE67-PATH-038': True, 'OUTSIDE67-PATH-062': False}
-CURRENT_COUNTERPART_HASH_EQUAL_ARCHIVE_IDS=['OUTSIDE67-PATH-038']
-CURRENT_COUNTERPART_CONTENT_DRIFT_IDS=['OUTSIDE67-PATH-016', 'OUTSIDE67-PATH-020', 'OUTSIDE67-PATH-023', 'OUTSIDE67-PATH-062']
+COUNTERPART_MATCH={'OUTSIDE67-PATH-016': False, 'OUTSIDE67-PATH-020': False, 'OUTSIDE67-PATH-023': False, 'OUTSIDE67-PATH-038': False, 'OUTSIDE67-PATH-062': False}
+CURRENT_COUNTERPART_HASH_EQUAL_ARCHIVE_IDS=[]
+CURRENT_COUNTERPART_CONTENT_DRIFT_IDS=['OUTSIDE67-PATH-016', 'OUTSIDE67-PATH-020', 'OUTSIDE67-PATH-023', 'OUTSIDE67-PATH-038', 'OUTSIDE67-PATH-062']
 CURRENT_COUNTERPART_RELOCATION_IDS=['OUTSIDE67-PATH-016', 'OUTSIDE67-PATH-020', 'OUTSIDE67-PATH-023', 'OUTSIDE67-PATH-038']
 LINES={'OUTSIDE67-PATH-016': [(8, 8), (14, 14), (19, 19), (35, 35), (65, 65)], 'OUTSIDE67-PATH-020': [(3, 3), (6, 6), (10, 10), (28, 28), (44, 44)], 'OUTSIDE67-PATH-023': [(3, 3), (11, 11), (18, 18), (31, 31), (53, 53)], 'OUTSIDE67-PATH-038': [(8, 8), (11, 11), (18, 18), (26, 26), (54, 54)], 'OUTSIDE67-PATH-062': [(10, 10), (18, 18), (31, 31), (54, 54), (84, 84)]}
 KINDS={'OUTSIDE67-PATH-016': ['approval_readiness_purpose_boundary', 'approval_readiness_product_boundary', 'approval_readiness_legacy_boundary', 'approval_readiness_nonpromotion_boundary', 'approval_readiness_status_boundary'], 'OUTSIDE67-PATH-020': ['business_crosswalk_authority_boundary', 'business_crosswalk_revision_boundary', 'business_crosswalk_product_scope', 'business_crosswalk_constraint_boundary', 'business_crosswalk_adoption_boundary'], 'OUTSIDE67-PATH-023': ['freeze_correction_authority_boundary', 'freeze_correction_parent_contract', 'freeze_correction_requirement_condition', 'freeze_correction_transaction_boundary', 'freeze_correction_missing_entry'], 'OUTSIDE67-PATH-038': ['concept_package_intake_boundary', 'concept_package_admission_boundary', 'concept_package_semantic_candidate', 'concept_package_legacy_identity_boundary', 'concept_package_provenance_boundary'], 'OUTSIDE67-PATH-062': ['backlog_projection_boundary', 'backlog_wave_boundary', 'backlog_work_contract', 'backlog_projection_reference', 'backlog_stop_boundary']}
@@ -34,14 +34,25 @@ EXPECTED_SOURCE_DIFF={'OUTSIDE67-PATH-016': 'different', 'OUTSIDE67-PATH-020': '
 META_KEYS={'schema','bundle_id','binding_reservation','binding_registration_status','base_origin_main','base_origin_main_previous','candidate_ids','existing_reviewed_count','candidate_count','combined_count','denominator','remaining_after_research','anchor_count','static_only','old_runtime_test_ci_execution','authority_effect'}
 LEDGER_KEYS={'schema','source_holding_registration','denominator','existing_reviewed_ids','selected_ids','selected_source_count','product_unit_candidate_count','exact_ledger_hit_count','source_anchor_count','status','formal_admission'}
 
+
+RELOCATED_PATHS = {'docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl': 'docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl', 'docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl': 'docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl', 'docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl', 'docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl': 'docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl', 'docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md': 'docs/governance/audits/requirements-stage/history-snapshots/upstream-rebaseline-execution-backlog-counterpart062-capture-7aa2c120.md'}
+
+def source_path(path):
+ text = str(path)
+ for old, new in RELOCATED_PATHS.items():
+  if text.endswith(old): return Path(text[:-len(old)] + new)
+ return path
+
+REGISTER_CAPTURE = "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl"
+
 def sha(b):
- if isinstance(b,Path): b=b.read_bytes()
+ if isinstance(b,Path): b=source_path(b).read_bytes()
  return hashlib.sha256(b).hexdigest()
 def load(p,e,c):
- try:return json.loads(p.read_text(encoding='utf8'))
+ try:return json.loads(source_path(p).read_text(encoding='utf8'))
  except Exception as ex:e.append(f'{c}:{ex}');return None
 def loadl(p,e,c):
- try:return [json.loads(x) for x in p.read_text(encoding='utf8').splitlines()]
+ try:return [json.loads(x) for x in source_path(p).read_text(encoding='utf8').splitlines()]
  except Exception as ex:e.append(f'{c}:{ex}');return []
 def blob(root,commit,path):return subprocess.check_output(['git','-C',str(root),'show',f'{commit}:{path}'])
 def fail(e,code,cond):
@@ -59,7 +70,7 @@ def validate(root):
  fail(e,'E_WORKTREE',sc.get('worktree')!='/home/tenni/.helix-worktrees/outside67-next-083')
  fail(e,'E_SCOPE_REASON',sc.get('base_drift_reason')!='initial exact base 1db1e9d7 was superseded after #2030 advanced origin/main to 3184d613; worktree was reset to latest main before final verification.')
  fail(e,'E_SCOPE_POLICY',sc.get('batch_width_policy')!='width 5 is the observed verification width for this bundle; no safe batch upper bound is asserted; next batch requires independent source-chain review from the then-current origin/main')
- fail(e,'E_SCOPE_DIGEST',sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER))
+ fail(e,'E_SCOPE_DIGEST',sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER_CAPTURE))
  # only ancestor gate; HEAD may be a later commit or a merge materialization.
  head=subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD'],text=True).strip()
  if subprocess.run(['git','-C',str(root),'merge-base','--is-ancestor',sc.get('base_origin_main',''),head],stderr=subprocess.DEVNULL).returncode:e.append('E_BASE_ANCESTOR')
@@ -81,7 +92,7 @@ def validate(root):
   fail(e,f'E_ITEM_KEYS:{sid}',set(x)!={'archive_counterpart','archive_revision','artifact_kind','candidate_phase','candidate_product','legacy_evidence','phase_status','pre_isolation','product_candidates','product_status','reported_holding','source_item_id','source_path','source_unit','status'})
   cp=x.get('archive_counterpart',{})
   fail(e,f'E_COUNTERPART:{sid}',cp.get('path')!=COUNTERPARTS.get(sid) or cp.get('content_hash_matches_archive') is not COUNTERPART_MATCH[sid])
-  current=(root/COUNTERPARTS[sid]).read_bytes() if (root/COUNTERPARTS[sid]).is_file() else b''
+  counterpart=source_path(root/COUNTERPARTS[sid]); current=counterpart.read_bytes() if counterpart.is_file() else b''
   fail(e,f'E_COUNTERPART_PROV:{sid}',cp.get('sha256')!=sha(current) or cp.get('bytes')!=len(current))
   for side,c in [('pre_isolation',PRE),('archive_revision',ARCH)]:
    got=x.get(side,{}); want=h.get('pre_isolation' if side=='pre_isolation' else 'archive',{})
@@ -121,9 +132,10 @@ def validate(root):
  fail(e,'E_SCAN_CANONICAL',scan.get('selected_ids')!=IDS or scan.get('existing_reviewed_ids')!=EXISTING or scan.get('exact_ledger_hits')!={sid:[] for sid in IDS})
  fail(e,'E_CURRENT_COUNTERPART_RELATION',scan.get('current_counterpart_relocation_ids')!=CURRENT_COUNTERPART_RELOCATION_IDS or scan.get('current_counterpart_hash_equal_archive_ids')!=CURRENT_COUNTERPART_HASH_EQUAL_ARCHIVE_IDS or scan.get('current_counterpart_content_drift_ids')!=CURRENT_COUNTERPART_CONTENT_DRIFT_IDS or scan.get('current_counterpart_drift_ids')!=CURRENT_COUNTERPART_CONTENT_DRIFT_IDS)
  fail(e,'E_ARCHIVE_RELOCATION_RELATION',scan.get('archive_relocation_ids')!=CURRENT_COUNTERPART_RELOCATION_IDS)
+ fail(e,'E_SCAN_COUNTERPART_PROVENANCE',scan.get('counterparts')!={x['source_item_id']:x['archive_counterpart'] for x in items})
  for lf in LEDGERS:
   fail(e,f'E_LEDGER_DIGEST:{lf}',scan.get('files',{}).get(lf,{}).get('sha256')!=sha(root/lf))
-  text=(root/lf).read_text(encoding='utf8',errors='replace')
+  text=source_path(root/lf).read_text(encoding='utf8',errors='replace')
   fail(e,f'E_LEDGER_EXACT:{lf}',any(token in text for token in IDS+list(SOURCE_PATHS.values())))
  fail(e,'E_UNKNOWN_COUNTS',inv.get('unknown_counts')!={k:5 for k in ['implementation','degradation','failure','consumer','decision','phase','authority','legacy_implementation','current_implementation','legacy_degradation','current_degradation']})
  meta=load(out/'meta.json',e,'E_META'); fail(e,'E_META_KEYS',not isinstance(meta,dict) or set(meta)!=META_KEYS)

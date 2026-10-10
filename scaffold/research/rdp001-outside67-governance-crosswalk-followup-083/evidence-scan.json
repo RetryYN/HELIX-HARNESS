@@ -41,17 +41,18 @@
       "sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd"
     },
     "OUTSIDE67-PATH-062": {
-      "bytes": 9565,
+      "bytes": 9640,
       "content_hash_matches_archive": false,
       "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
       "relation": "current_counterpart_same_path_and_content_drift_observed",
-      "sha256": "aca38dcee6ad2d88948bc2391f590eab3424836d1526dc507f23bf3aa187db2a"
+      "sha256": "6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048"
     }
   },
   "current_counterpart_drift_ids": [
     "OUTSIDE67-PATH-016",
     "OUTSIDE67-PATH-020",
     "OUTSIDE67-PATH-023",
+    "OUTSIDE67-PATH-038",
     "OUTSIDE67-PATH-062"
   ],
   "exact_ledger_hits": {

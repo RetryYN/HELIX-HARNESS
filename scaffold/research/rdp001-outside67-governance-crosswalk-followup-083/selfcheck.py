@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json, shutil, subprocess, sys, tempfile
 from pathlib import Path
-HERE=Path(__file__).resolve(); TARGET=HERE.parent; VALIDATOR=TARGET/'validate.py'; REL='scaffold/rdp001-outside67-governance-crosswalk-followup-083/'
+HERE=Path(__file__).resolve(); TARGET=HERE.parent; VALIDATOR=TARGET/'validate.py'; REL='scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/'
 def run(root): return subprocess.run([sys.executable,'-B',str(VALIDATOR),'--root',str(root)],capture_output=True,text=True)
 def mutate(path,fn):
  d=json.loads(path.read_text(encoding='utf8')); fn(d); path.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
@@ -35,8 +35,9 @@ def main():
   case('counterpart_path',lambda c:mutatel(c/(REL+'selected-source-items.jsonl'),0,lambda d:d['archive_counterpart'].__setitem__('path','docs/changed.md')),'E_COUNTERPART')
   case('diff_status',lambda c:mutate(c/(REL+'source-diffs.json'),lambda d:d['items'][0].__setitem__('status','same')),'E_DIFF_PROV')
   case('canonical_text',lambda c:mutate(c/(REL+'inventory.json'),lambda d:d['prohibited_inference'].__setitem__(0,'changed')),'E_CANONICAL_TEXT')
+  case('stale_scan_counterpart_capture',lambda c:mutate(c/(REL+'evidence-scan.json'),lambda d:d['counterparts']['OUTSIDE67-PATH-062'].update({'sha256':'aca38dcee6ad2d88948bc2391f590eab3424836d1526dc507f23bf3aa187db2a','bytes':9565})),'E_SCAN_COUNTERPART_PROVENANCE')
   bad=[x for x in cases if not x[1]]
   if bad:
    print('FAIL negative cases: '+','.join(x[0] for x in bad)); print('\n'.join(x[2] for x in bad)); return 1
- print('PASS outside67 follow-up selfcheck: baseline + 20 negative cases'); return 0
+ print('PASS outside67 follow-up selfcheck: baseline + 21 negative cases'); return 0
 if __name__=='__main__':sys.exit(main())

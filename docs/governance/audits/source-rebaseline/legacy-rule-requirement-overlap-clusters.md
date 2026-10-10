@@ -125,3 +125,11 @@ registerを直接pinする19 Bindingの固定BASE/current入力境界は再照�
 0083はscratchで移動済み4入力と後続register capture、counterpart062の同一Git本文を解決したが、PATH038のrelation条件で失敗した。実際のarchive hashと現行hashは異なり、選択記録/scanはcontent driftを記録する一方、validatorとBindingはsame hashを前提とする。旧scanのdrift一覧にも038が入っていない。不整合を検出したため0083の候補・Binding・検査は変更せず、過去更新史と条件の訂正を残した。
 
 残るstaleは0040・0083・0121。Draftを維持し、Ready/merge admission、正式successor、holding解除、要求採否、L3再開、Issue close、全要求完了は未成立。
+
+## 0083の静的観測条件の訂正
+
+[0083再照合receipt](osa03-register-consumer-reconciliation-0083-2026-10-10.json)に当初/後続captureの更新史を固定した。当初の038 same-hashは26124da8eの観測として保持する。後続digestへの更新後、選択記録はcontent driftへ訂正されたが、canonical oracle・scanの旧drift一覧・062 captureが取り残されていた。5 counterpartの実本文hash関係を再導出し、scanのdrift一覧と062 digest/bytesの3項目、validatorの観測条件、Bindingの当該観測条件だけを訂正した。
+
+選択source/anchor・25 unit本文・研究会計・unknown残差は不変。移動前4入力は現行配置へ解決し、期待registerは637行の固定capture、062は同一Git本文snapshotを読む。validatorと既存20＋062 stale scan負例1件が成功した。先行0096 receiptのfindingは当時の証拠として保持し、この静的エラーの解消から全研究closureを生成しない。
+
+構造検証147件fail=0、残るstaleは0040・0121。PRはDraftを維持し、独立review・Ready/merge admission、全source/consumer closure、正式successor、要求採否・holding解除・L3再開・Issue close・全要求完了は未成立。
