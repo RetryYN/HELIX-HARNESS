@@ -153,3 +153,15 @@ b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合
 637行captureを使う16研究は、全研究baseの元registerがb68f3aca/33行（72b9f368 captureと同一）であることをGit bytesで確認した。1c276ab2の79c1e5a6/637行は9/29 refreshで更新された記録値であり、研究時入力ではない。後続refresh記録との静的照合にだけ使うことを各Binding note/READMEへ明記した。候補のregister記録値は保全し、当初base証拠や現在のholding数へ継承しない。0062研究は059/063/064/065/066の別集合で062 counterpartに依存しないが、そのbase294bfd90の062本文も同じaca38dce/9565であることを照合した。
 
 0083 validator・baseline＋22負例、全5 counterpartの原記録一致、16 Binding契約と候補non-counterpart fieldの保全を確認した。Binding147 fail=0・stale=0。ただし修正後HEADの独立reviewは未完でDraftを維持する。全source/consumer closure、正式successor、他cluster被覆、要求採否、holding解除、L3再開、Issue close、全要求完了を生成しない。
+
+## 現在の本文比較：RUL-FRM-02（#1814、2026-10-10）
+
+基準main `f779b877411aa1e48ea0975fec50099956e2a93b`。台帳の`OVC-RUL-RUL-FRM-02.bounded_requirement_comparison`に、原文span/hash、10比較軸、共通/固有条件、受入/consumer差と主233・副264の全497 IDを保存した。候補本文・関連要求と旧例3件の比較を進めたもので、497rule全個別比較の完了ではない。
+
+現行HARNESS002は方式によらずL1–L3と要件承認を保持し、003:195–196とL11:119–122は相談/依頼/採択/要件承認/操作認可、委任済み技術具体化と未委任意味変更を分離する。旧noteの「人間が承認する層とAIが進める層の分担は未被覆」は訂正し、一般分担の重複候補は増やさない。L3/L10承認の委任方式は10/8判断の範囲で読み、現在のL3停止は保持する。
+
+旧HIL-BR-06:58とFR-07:97は要求本文なので、実装成立を根拠にした2 relationを`partial_overlap`へ訂正した。六gateの遷移禁止と、Closureの七検査対象/二出力は現行一般工程条件と同一ではない。FR07のうち057/054の限定8atomは9/30にpairとして採択され、10/10に版1.0となった。一方、memory 1atomはholdingに残り、採択済みpairの結果から旧IR全体のclose可否・正式移管を生成しない。9/29 receiptと本文の未採択metadataは当時の記録として読み分ける。AVS-BR-001の原文も確認したが、分類台帳のsource-qualified identity照合は未完としてunresolvedを保持する。
+
+旧例では、confirmed owning PLAN後のbody起票とslot≠完成、freeze発火のdraft0/pair孤児0/confirmed>=1とpark例外、gate-confirmのmissing skipを別条件として保存した。AIDOCの取得/正本逆参照/unknown分離は工程条件の実行成功や承認とは別である。旧sourceは読むだけで実行していない。
+
+全497ruleの個別source条件、consumer閉包、正式successorと保留意味、他54clusterの本文比較、FRM01/OSA03の残件は#1814/親#1813へ残す。既存の空配列と`assessment_status=unassessed`は維持し、未計上0・要求完了・Issue close・L3再開を主張しない。
