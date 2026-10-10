@@ -173,3 +173,11 @@ b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合
 一般の工程条件だけでは、旧CLIの検査順序/時刻・review mode、coding rule影響、no-code/complexity budget、PLANと要求の別lifecycle、特定packetのDB2回/exact table条件、各routeの独立した終了条件は表現できない。引用原文へ戻してこれらを残し、現行の新しいgateや実装方式へ無判断に移さない。旧screen applicabilityのdecision/receipt/deferredとprototype/walkthroughの負例、closureのmemory欠落負例、source coverageの各edge欠落も一般freeze/完了の一語へ集約しない。旧assertionのdesign-defined/not-implementedは期待oracleであり実施済みではない。
 
 引用spanの条件比較は60/497まで進んだが、読了分でも隣接条件のatom境界・判断史・call/test/外部consumer閉包・正式successorは未完。空の旧fieldを差分なしとせず、未計上0・要求全条件被覆・要求採否・holding解除・Issue close・L3再開を生成しない。#1814/親#1813で全残件を保持する。
+
+## RUL-FRM-02：個別比較を120件まで追補
+
+基準main `9f26f9cfd673c612d6720b5deb77678069acccbc`。既存の60recordとsource pinを保持したまま、主233の次の60recordの引用原文と候補句を比較した。`rule_source_comparison`は120/497まで進み、残る主113・副264の全377 IDをpendingとして保持する。初回60件という上の記録は当時の範囲として残す。
+
+旧gate表のG2は表が★POなのに凡例/脚注の定義済集合にはなく、原FR13と判断史を確認するまで確定しない。旧UIなしL2skipの記述は、現行003のL2要求省略禁止・Prototype/PoC別適用・L2.5位置と区別する。trace-freeze checklistのfailingcommit SHA句はRB08-109文にないが、別RB08-106へ保存済みであるため全台帳の欠落や退役とは扱わず、freeze時の義務接続を残す。
+
+特定cutoverの再承認、Incident時の全active PLAN凍結、旧Criticalだけでconditional pass、旧handover、package/wholegoal監査の分母や旧Issue終端順序も固有scopeと判断史を持つ。旧記録にある「成立した」は過去観測であり、現行の実績や新しい承認/CI/close条件へ継承しない。120件の引用条件を読み分けたことから、完全atom化・consumer閉包・正式successor・未計上0を生成しない。#1814/親#1813と残り377件、他clusterの残件を保持する。
