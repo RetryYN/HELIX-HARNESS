@@ -35,6 +35,7 @@ PRE = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCH = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HOLDING = ROOT / "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
 REGISTER = ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
+REGISTER_CAPTURE = ROOT / "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl"
 OLD_LEDGER_PATHS = [
     "docs/governance/legacy-asset-disposition.jsonl",
     "docs/governance/legacy-asset-decisions.jsonl",
@@ -359,7 +360,7 @@ def main():
         per_path.setdefault(row["source_item_id"], defaultdict(int))[row["category"]] += 1
     per_path = {k: dict(v) for k, v in per_path.items()}
     hold_sha = sha(relocated(HOLDING).read_bytes())
-    reg_sha = sha(REGISTER.read_bytes())
+    reg_sha = sha(REGISTER_CAPTURE.read_bytes())
     inv = {
         "schema": "rdp001-outside67-path006-010-atomization/v1",
         "candidate_id": "RDP-001-OUTSIDE67-PATH006-010-ATOMIZATION-0096",

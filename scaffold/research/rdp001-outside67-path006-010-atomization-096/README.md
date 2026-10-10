@@ -37,3 +37,7 @@ git diff --check
 ```
 
 提出前に`origin/main`が記録baseから進んだ場合は停止し、#2043など先行研究のHEAD、holding、snapshot、current counterpartを再照合してからrebaselineします。validatorは固定BASEが検査対象HEADの祖先であることと記録digestを検証し、merge後のlive remote進行を過去のScaffoldへ遡及させません。
+
+## 固定register入力の再照合（2026-10-10）
+
+記録済みの期待digestに一致する`1c276ab26dc50ca5d0f2d8c25441f17c303b9919`のregister（637行・45 live source holding）を同一bytesの歴史snapshotへ固定し、validator/generatorの読取先とBindingを当該captureへ束縛する。logical path、当初BASE、候補JSON/JSONL、全183行の会計とunknown残差は保持する。当初BASEとは別の後続入力更新であり、以前のholding数と入力revisionの時間的整合、研究全体のsource/consumer closureは未完。過去の001を現在の生存holdingとして扱わず、Web/WEB-OSの現行authorityも過去研究から生成しない。generatorは読取先だけを静的照合し、全再生成は実行しない。採否、正式successor、holding解除、L3再開、Issue closeを生成しない。

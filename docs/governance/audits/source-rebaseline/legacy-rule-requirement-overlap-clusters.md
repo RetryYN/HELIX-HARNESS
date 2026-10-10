@@ -117,3 +117,11 @@ registerを直接pinする19 Bindingの固定BASE/current入力境界は再照�
 11 validatorと既存224 negative casesは成功し、全候補JSON/JSONL・Bindingの責務/義務/接続/操作/置換は不変である。生成スクリプト3件はregister読取先のみ整合させ、syntaxと置換範囲を静的確認した。全再生成は実行していない。過去のholding数metadataと後続input更新の時間的整合、全研究の意味/consumer closureは未完として保持する。
 
 構造検証147件fail=0、残るstaleは0040・0083・0096・0121の4件。0040はfirst15 generatorの変更にも依存する。PRはDraftを維持し、Ready/merge admission、正式successor、要求採否、holding解除、L3再開、#1814/親#1813 close、全要求ステージ完了は未成立である。
+
+## register consumer 0096と0083の再照合
+
+[再照合receipt](osa03-register-consumer-reconciliation-0096-2026-10-10.json)に0096の固定register読取を記録した。候補JSON/JSONLとBinding契約は不変。183/183行validator、既存27負例、remote進行模擬、独立183行coverageと4破損負例は成功した。generatorは固定入力への読取先のみ静的照合し、全再生成は実行していない。時間的整合、全意味atom化とsource/consumer closureは未完。
+
+0083はscratchで移動済み4入力と後続register capture、counterpart062の同一Git本文を解決したが、PATH038のrelation条件で失敗した。実際のarchive hashと現行hashは異なり、選択記録/scanはcontent driftを記録する一方、validatorとBindingはsame hashを前提とする。旧scanのdrift一覧にも038が入っていない。不整合を検出したため0083の候補・Binding・検査は変更せず、過去更新史と条件の訂正を残した。
+
+残るstaleは0040・0083・0121。Draftを維持し、Ready/merge admission、正式successor、holding解除、要求採否、L3再開、Issue close、全要求完了は未成立。
