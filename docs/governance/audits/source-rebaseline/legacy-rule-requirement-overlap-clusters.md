@@ -133,3 +133,9 @@ registerを直接pinする19 Bindingの固定BASE/current入力境界は再照�
 選択source/anchor・25 unit本文・研究会計・unknown残差は不変。移動前4入力は現行配置へ解決し、期待registerは637行の固定capture、062は同一Git本文snapshotを読む。validatorと既存20＋062 stale scan負例1件が成功した。先行0096 receiptのfindingは当時の証拠として保持し、この静的エラーの解消から全研究closureを生成しない。
 
 構造検証147件fail=0、残るstaleは0040・0121。PRはDraftを維持し、独立review・Ready/merge admission、全source/consumer closure、正式successor、要求採否・holding解除・L3再開・Issue close・全要求完了は未成立。
+
+## 0121の実入力と旧承認revisionの分離
+
+[0121再照合receipt](osa03-register-consumer-reconciliation-0121-2026-10-10.json)に実際のinventory/candidate digestを固定した。11候補は9月17日decisionで承認された旧Web/Web-OS SHAを保持している一方、validatorだけが変更後の現行参照SHAを期待していた。候補を変更せず、旧承認SHAの本文、当初BASEのboundary/作業入口、後続637行register captureを固定snapshotへ束縛した。Bindingの現行文書pinはcontextとして別に保持し、旧承認を現行bytesへ継承しない。
+
+validator、既存16負例、隔離生成による13機械記録/source snapshot一致を確認した。生成された説明文は採用せず、研究scope・意味/source/consumer closure・正式successor・authorityの未完を保持する。候補JSON/JSONL・Binding契約は不変。残るstaleは0040だけで、Draftを維持し、独立review・Ready/merge admission・要求採否・holding解除・L3再開・Issue close・全要求完了は未成立。

@@ -21,3 +21,11 @@ git diff --check
 ```
 
 validatorは固定BASE祖先性、holding／register／L1／L1 approval decision／product-boundary入力digest、pre/archive snapshotのbytes・digest・blob、4 path集合、11 candidate／2 contextの全field、raw L1 metadataとeffective approved decisionの分離、既存Binding IDの存在とselected path集合、source-itemごとの先行Binding ID、formal／authority境界を独立定数で検査する。重複Bindingの全体bytes digestは固定せず、selected path集合の実体照合で重複事実を保持する。selfcheckは宣言済み16 negative casesを期待error codeまで照合する。
+
+## 固定入力と旧承認revisionの再照合（2026-10-10）
+
+registerは記録済み期待digestの637行capture（`1c276ab2`）。boundary/作業入口はinventoryに実際に記録された当初BASE `e80cb07c`の固定本文、holdingは同一bytesの移動先を読む。後続のvalidator pin更新は候補/inventoryへ追随しておらず、現在本文と過去の研究入力を混同していた。当初BASEと後続register pin更新の時間的照合は未完。旧14 holdingは歴史metadataであり現在の生存holding数ではない。
+
+11候補は9月17日decisionのWeb SHA `26815032…`／Web-OS SHA `600caa13…`を実際に保持している。validatorが後続の現行参照SHAを候補へ適用していた不整合を訂正し、候補本文とapproved表示を承認された旧exact bytesのsnapshotへ束縛する。Bindingの現行文書pinは比較contextとして別に保持する。上記本文の「current」「承認済み」はこの固定旧revisionの記録として読み、変更後本文や現行authorityへ承認を継承しない。Web/WEB-OSは既決のVision材料である。候補JSON/JSONL・ID・本文・unknown残差は不変。
+
+生成スクリプトも同じ固定読取先へ整合させる。全研究の意味/source/consumer closure・正式successor・要求採否・holding解除・L3再開・Issue closeはこの再照合から生成しない。
