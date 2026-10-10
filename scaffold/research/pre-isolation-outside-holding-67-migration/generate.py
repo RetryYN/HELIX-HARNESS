@@ -11,10 +11,7 @@ from pathlib import Path
 # 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
 # （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
 # 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
-RELOCATED_PATHS = {
-    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
-    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
-}
+RELOCATED_PATHS = {'scaffold/pre-isolation-outside-holding-67': 'scaffold/research/pre-isolation-outside-holding-67', 'docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl': 'docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl', 'docs/governance/delegated-requirement-document-reference-holding.jsonl': 'docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl', 'docs/governance/delegated-requirement-document-source-holding.jsonl': 'docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl', 'docs/governance/harness-workflow-source-clause-carry-forward.jsonl': 'docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl', 'docs/governance/legacy-candidate-source-line-carry-forward.jsonl': 'docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl', 'docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl': 'docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl', 'docs/governance/legacy-requirement-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl', 'docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl', 'docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-structural-heading-carry-forward.jsonl', 'docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl', 'docs/governance/legacy-rule-atom-inventory.jsonl': 'docs/governance/audits/requirements-stage/history-snapshots/legacy-rule-atom-inventory-pre-source-correction-8955f45.jsonl', 'docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl': 'docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl', 'docs/governance/pre-isolation-revision-delta-source-holding.jsonl': 'docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl', 'docs/governance/scrum-reverse-source-line-carry-forward.jsonl': 'docs/governance/legacy-migration/delegated-document/scrum-reverse-source-line-carry-forward.jsonl', 'docs/governance/management-provisional-requirement-register.jsonl': 'docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl', 'docs/governance/phase-capability-inventory.json': 'docs/governance/audits/requirements-stage/history-snapshots/phase-capability-input0040-capture-72b9f368.json', 'docs/governance/requirement-disposition-review-program.md': 'docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-program-input0040-capture-72b9f368.md', 'docs/governance/management-provisional-requirement-registration.md': 'docs/governance/audits/requirements-stage/history-snapshots/management-registration-contract-input0040-capture-72b9f368.md', 'scaffold/pre-isolation-outside-holding-first15/': 'scaffold/research/pre-isolation-outside-holding-first15/', 'scaffold/phcap02-03-registration-classification-audit/': 'scaffold/research/phcap02-03-registration-classification-audit/', 'scaffold/rdp001-delegated-doc003-unprocessed8/': 'scaffold/research/rdp001-delegated-doc003-unprocessed8/', 'scaffold/rdp001-unassessed-atom-audit/': 'scaffold/research/rdp001-unassessed-atom-audit/', 'scaffold/pre-isolation-outside-l1-semantic/': 'scaffold/research/pre-isolation-outside-l1-semantic/', 'scaffold/pre-isolation-outside-holding-31-48/': 'scaffold/research/pre-isolation-outside-holding-31-48/', 'scaffold/outside67-global-49-67/': 'scaffold/research/outside67-global-49-67/', 'scaffold/pre-isolation-outside-holding-67-proposal/': 'scaffold/research/pre-isolation-outside-holding-67-proposal/'}
 
 
 def relocated(path):
@@ -43,7 +40,7 @@ def sha(data: bytes) -> str:
 
 
 def load(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [json.loads(line) for line in relocated(path).read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
 def live(rows: list[dict]) -> list[dict]:
@@ -123,17 +120,17 @@ def build() -> dict:
         },
         "formal_append": {
             "register_path": str(CURRENT_REGISTER.relative_to(ROOT)),
-            "register_sha256": sha(CURRENT_REGISTER.read_bytes()),
+            "register_sha256": sha(relocated(CURRENT_REGISTER).read_bytes()),
             "register_record_count": len(current),
             "live_holding_count": len(current_live),
             "appended_registration_id": proposal["registration_id"],
             "source_set_path": str(SOURCE_SET.relative_to(ROOT)),
             "source_set_sha256": sha(relocated(SOURCE_SET).read_bytes()),
             "source_item_count": len(source),
-            "append_only_prefix_preserved": CURRENT_REGISTER.read_bytes().startswith(relocated(HISTORICAL_REGISTER).read_bytes()),
+            "append_only_prefix_preserved": relocated(CURRENT_REGISTER).read_bytes().startswith(relocated(HISTORICAL_REGISTER).read_bytes()),
         },
         "read_after": {
-            "path": str(READ_AFTER.relative_to(ROOT)),
+            "path": "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.json",
             "sha256": sha(READ_AFTER.read_bytes()),
             "register_sha256": read_after["register_sha256"],
             "live_holding_count": read_after["live_holding_count"],

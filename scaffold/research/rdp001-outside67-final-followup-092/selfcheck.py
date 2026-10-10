@@ -14,7 +14,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve()
 TARGET = HERE.parent
 VALIDATOR = TARGET / "validate.py"
-REL = "scaffold/rdp001-outside67-final-followup-092/"
+REL = "scaffold/research/rdp001-outside67-final-followup-092/"
 
 
 def run(root: Path):

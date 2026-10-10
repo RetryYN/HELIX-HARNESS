@@ -1,0 +1,108 @@
+{
+  "schema": "osa03-register-consumer-reconciliation/v1",
+  "prior_content_head": "71cd92e304c6bf573692f6f589d38e209aee57a2",
+  "binding_id": "SCF-B-0040",
+  "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+  "snapshot_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+  "historical_source_captures": [
+    {
+      "commit": "72b9f368a044709437841c5e862f01802b1a88ec",
+      "path": "docs/governance/phase-capability-inventory.json",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/phase-capability-input0040-capture-72b9f368.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "bytes": 55128
+    },
+    {
+      "commit": "72b9f368a044709437841c5e862f01802b1a88ec",
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-program-input0040-capture-72b9f368.md",
+      "sha256": "9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59",
+      "bytes": 10714
+    },
+    {
+      "commit": "72b9f368a044709437841c5e862f01802b1a88ec",
+      "path": "docs/governance/management-provisional-requirement-registration.md",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-registration-contract-input0040-capture-72b9f368.md",
+      "sha256": "4641b2fa1edd4d22748b85598e7bde1561aa8225305a6e54d90595b9b4c28ab8",
+      "bytes": 12128
+    }
+  ],
+  "input_path_resolution": {
+    "scaffold/pre-isolation-outside-holding-67": "scaffold/research/pre-isolation-outside-holding-67",
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+    "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
+    "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
+    "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
+    "docs/governance/legacy-candidate-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+    "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-structural-heading-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+    "docs/governance/legacy-rule-atom-inventory.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/legacy-rule-atom-inventory-pre-source-correction-8955f45.jsonl",
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+    "docs/governance/scrum-reverse-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/delegated-document/scrum-reverse-source-line-carry-forward.jsonl",
+    "docs/governance/management-provisional-requirement-register.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+    "docs/governance/phase-capability-inventory.json": "docs/governance/audits/requirements-stage/history-snapshots/phase-capability-input0040-capture-72b9f368.json",
+    "docs/governance/requirement-disposition-review-program.md": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-program-input0040-capture-72b9f368.md",
+    "docs/governance/management-provisional-requirement-registration.md": "docs/governance/audits/requirements-stage/history-snapshots/management-registration-contract-input0040-capture-72b9f368.md",
+    "scaffold/pre-isolation-outside-holding-first15/": "scaffold/research/pre-isolation-outside-holding-first15/",
+    "scaffold/phcap02-03-registration-classification-audit/": "scaffold/research/phcap02-03-registration-classification-audit/",
+    "scaffold/rdp001-delegated-doc003-unprocessed8/": "scaffold/research/rdp001-delegated-doc003-unprocessed8/",
+    "scaffold/rdp001-unassessed-atom-audit/": "scaffold/research/rdp001-unassessed-atom-audit/",
+    "scaffold/pre-isolation-outside-l1-semantic/": "scaffold/research/pre-isolation-outside-l1-semantic/",
+    "scaffold/pre-isolation-outside-holding-31-48/": "scaffold/research/pre-isolation-outside-holding-31-48/",
+    "scaffold/outside67-global-49-67/": "scaffold/research/outside67-global-49-67/",
+    "scaffold/pre-isolation-outside-holding-67-proposal/": "scaffold/research/pre-isolation-outside-holding-67-proposal/"
+  },
+  "changed_artifact_pins": [
+    {
+      "path": "scaffold/research/pre-isolation-outside-holding-67-migration/README.md",
+      "before_sha256": "24137779f3461483174a8060a07a8462e522e82a92d0240ffcbe73bfe4ecd288",
+      "after_sha256": "355394aa0aed635f69a1db21c6c4d0abf74f8d4fc5dca3bf9b5249be74181798"
+    },
+    {
+      "path": "scaffold/research/pre-isolation-outside-holding-67-migration/generate.py",
+      "before_sha256": "c58882cbd59011fc55bf419e4ae4b71ca6ed3f291beeec8fb17e798bebf6029d",
+      "after_sha256": "575b4022cb7a47c730cd0177f77ec22ef934fbd0129740e5eec506bb843e9e9b"
+    },
+    {
+      "path": "scaffold/research/pre-isolation-outside-holding-67-migration/validate.py",
+      "before_sha256": "78267eaaf9fa9866d19549946bd441792e12750e2e1896683e1e15d14a57a610",
+      "after_sha256": "e75743f5d2fdcb636f233f5bb4e0889985c218f725c3d3dffcd1a428468257d5"
+    },
+    {
+      "path": "scaffold/research/pre-isolation-outside-holding-67-migration/read-after-14.py",
+      "before_sha256": "c6f1d1f8bf877b344638e0273b7fe52fef87189bb910368b8b08f9a192a691f1",
+      "after_sha256": "8a08aac3fa4c7b9b87964beef6243df1bc4b0b8a7edf57c29d988885fbe78c8b"
+    },
+    {
+      "path": "scaffold/research/pre-isolation-outside-holding-first15/generate.py",
+      "before_sha256": "645dbec4934043ab4f552aaeaeae8ddb56510ad4dec9979192cf00d7ba6698d7",
+      "after_sha256": "7e9eb9ee6a4484b59ed9e5d083351282eca7b86cc7e1210efcb40d8bde174134"
+    }
+  ],
+  "candidate_files_unchanged": [
+    {
+      "path": "scaffold/research/pre-isolation-outside-holding-67-migration/read-after-14.json",
+      "sha256": "05e0ccf553268696d58478920d1402b305a4d6042dc2f2f95687b847e7755df0"
+    },
+    {
+      "path": "scaffold/research/pre-isolation-outside-holding-67-migration/migration.json",
+      "sha256": "f2434cdc2244af81b0b14a963439661e55591159ea39a63fe19d3fefd08c8540"
+    },
+    {
+      "path": "scaffold/research/pre-isolation-outside-holding-67-migration/proposed-register-record.json",
+      "sha256": "bf8eeb6070aa62fd3ea9879771f4abf10f05c56b223c9a4d8fe27e6fc2fa6b84"
+    }
+  ],
+  "binding_contracts_unchanged": true,
+  "validation": "PASS historical32/13 ->post-append33/14; 67 path pairs",
+  "negative_validation": "PASS existing25 +2 expected-code ancestry cases",
+  "deterministic_reproduction": "PASS read-only build equals complete migration.json, read-after-14.json and first15 inventory.json",
+  "authority_effect": "none",
+  "remaining_stale_bindings": [],
+  "merge_admission": "independent_review_pending_draft",
+  "unresolved": "全要求の意味/source/consumer closure、正式successor、要求採否、holding解除、L3再開、Issue closeは未成立。"
+}

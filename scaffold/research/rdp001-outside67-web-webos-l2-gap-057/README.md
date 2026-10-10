@@ -22,3 +22,11 @@ git diff --check
 ```
 
 validatorは別processでGit object、holding、revision snapshot、line coverage、atom keyset／固定意味欄、inventory固定catalog、fragmentとinherited predicateの同一行span／position、source provenanceの逐語支持と推論分離を再計算します。exact PR HEADについては、記録した`base_origin_main`がHEADの祖先であることだけを検査し、live `origin/main`との一致を要求しません。selfcheckはbaselineに加え、denominator／digest／span／inherited predicate／product／phase／implementation／degradation／failure／consumer／decision／authority／successor／旧実行／semantic fieldへの推論混入／guard inferenceの残留／candidate inference分離違反／固定keyset改変のnegative caseを期待error code付きで確認します。
+
+## 固定register入力の再照合（2026-10-10）
+
+この束のregister期待digest `79c1e5a…fbcd` は、Git commit `1c276ab26dc50ca5d0f2d8c25441f17c303b9919` の637行・45 live holdingの台帳bytesに一致する。記録した当初baseとは別の、その後の入力更新である。validatorのregister読取先を当該同一bytesの固定snapshotへ結び、現在のregisterの後続appendを過去研究へ混ぜない。本文の14、scope metadataの43、validatorの45はそれぞれ以前の記録・後続更新に由来し、現在のlive holding数を表さない。これらの時間的照合と研究全体の意味closureは未完として保持し、今回の入力訂正から要求採択・holding解除・全consumer closureを生成しない。
+
+## 独立reviewによるregister来歴の確定
+
+独立review F2: 研究base b6b4215bc169bad81d8aa73021da04bda669e9e7 の入力はb68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd/33行（72b9f368 captureと同一）。1c276ab2の79c1e5a6/637行は2026-09-29 refreshの記録値であり、研究時入力ではない。既存候補のrefresh記録との静的照合にだけ使い、当初baseの証拠や現在のholding/authorityへ継承しない。照合: docs/governance/audits/source-rebaseline/osa03-independent-review-input-reconciliation-2026-10-10.json

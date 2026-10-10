@@ -151,6 +151,9 @@ def fail(errors: list[str], code: str, condition: bool) -> None:
         errors.append(code)
 
 
+# Exact historical bytes for the recorded register digest; logical path metadata stays fixed.
+REGISTER_CAPTURE = "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl"
+
 def validate(root_arg: str | None) -> list[str]:
     root = Path(root_arg or Path(__file__).resolve().parents[3]).resolve()
     out = root / "scaffold/research/rdp001-outside67-concept-freeze-followup-087"
@@ -198,7 +201,7 @@ def validate(root_arg: str | None) -> list[str]:
     }
     for key, value in expected_scope.items():
         fail(errors, f"E_SCOPE:{key}", scope.get(key) != value)
-    fail(errors, "E_SCOPE_DIGEST", scope.get("holding_sha256") != digest(root / HOLDING) or scope.get("management_register_sha256") != digest(root / REGISTER))
+    fail(errors, "E_SCOPE_DIGEST", scope.get("holding_sha256") != digest(root / HOLDING) or scope.get("management_register_sha256") != digest(root / REGISTER_CAPTURE))
     fail(errors, "E_BASE_ANCESTOR", subprocess.run(["git", "-C", str(root), "merge-base", "--is-ancestor", HEAD, "HEAD"], stderr=subprocess.DEVNULL).returncode != 0)
 
     holding = load_lines(root / HOLDING, errors, "E_HOLDING")

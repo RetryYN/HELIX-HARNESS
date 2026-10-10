@@ -34,11 +34,11 @@
       "sha256": "99c1802d24313552b8755ca2843d3970cbf51d0bd8f1a79f58d8d1919e20e1f2"
     },
     "OUTSIDE67-PATH-038": {
-      "bytes": 9884,
-      "content_hash_matches_archive": false,
+      "bytes": 5659,
+      "content_hash_matches_archive": true,
       "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
-      "relation": "current_counterpart_path_relocation_and_content_drift_observed",
-      "sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd"
+      "relation": "current_counterpart_path_relocation_content_hash_equal_archive_observed",
+      "sha256": "24ef4fbd9e798e43c5e454c23e2086dfc0b9d62de24bc3084bf9c58a3cc95616"
     },
     "OUTSIDE67-PATH-062": {
       "bytes": 9565,
@@ -204,12 +204,13 @@
     "OUTSIDE67-PATH-023",
     "OUTSIDE67-PATH-038"
   ],
-  "current_counterpart_hash_equal_archive_ids": [],
+  "current_counterpart_hash_equal_archive_ids": [
+    "OUTSIDE67-PATH-038"
+  ],
   "current_counterpart_content_drift_ids": [
     "OUTSIDE67-PATH-016",
     "OUTSIDE67-PATH-020",
     "OUTSIDE67-PATH-023",
-    "OUTSIDE67-PATH-038",
     "OUTSIDE67-PATH-062"
   ]
 }

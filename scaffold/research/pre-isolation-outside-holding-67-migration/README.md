@@ -24,3 +24,9 @@ python3 scaffold/pre-isolation-outside-holding-67-migration/selfcheck.py
 ```
 
 旧archiveのruntime、test、CI、hook、adapterは実行していません。この候補のreview合格だけからmerge、Issue更新、要求採否を生成しません。
+
+## 過去のpost-append入力の再照合（2026-10-10）
+
+上記の「current」「33行・14 holding」は当時のpost-append研究入力を表す。記録済みdigestに一致する`72b9f368`のregister captureを固定し、現在の台帳や生存holding状態と分離する。旧001は現在の002にsupersedeされており、現在の生存holdingへ戻さない。phase inventoryと14件を記したprogram/登録契約も同commitの本文を歴史snapshotとして確認する。旧13 holdingのsourceは移動先又は訂正前の同一bytesを読み、logical path・32行prefix・33行append record・13/14会計を保持する。
+
+移動済みScaffold参照は現行research配置へ解決する。validatorと既存25負例・2祖先性負例、read-only buildによるmigration/read-after全field一致を確認した。変更されたfirst15 generatorも既存の歴史inventory全fieldを再現した。候補JSONとappend記録は不変で、registerへの再追記や現行文書の巻き戻しは行わない。歴史source/recordの再照合は現在の意味/source/consumer closure・正式successor・holding解除・要求採否・L3再開・Issue closeを表さない。

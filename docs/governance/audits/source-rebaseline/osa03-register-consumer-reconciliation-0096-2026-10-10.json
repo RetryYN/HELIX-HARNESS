@@ -1,0 +1,107 @@
+{
+  "schema": "osa03-register-consumer-reconciliation/v1",
+  "prior_content_head": "e2301b04662d881a706406f8fe43b9b6be6d36f0",
+  "scope": [
+    {
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-path006-010-atomization-096/line-coverage.jsonl",
+          "sha256": "b95e725bb5d1d584c97c68aaf2a0f775ab23415ce0849777ec68e3843f981bb1"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-path006-010-atomization-096/selected-source-items.jsonl",
+          "sha256": "b3fb10412cb40b6f1fb571907ef1913f87d96cf5a3aab101ff1801142551cac0"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-path006-010-atomization-096/reused-atom-references.jsonl",
+          "sha256": "8318d9f0296048c42b28d261c40453acf24c0fd0246382f697f4a0e70c4b2001"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-path006-010-atomization-096/source-diffs.json",
+          "sha256": "6291a0455bedbf8f637172f80ebdd58b176b1cf86cf21a747b9c2cae0d09c350"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-path006-010-atomization-096/semantic-atoms.jsonl",
+          "sha256": "acbf831fadfb80238812f26653a70cc7c6148b1f0a462c7cc29c5579d7cdf3c6"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-path006-010-atomization-096/inventory.json",
+          "sha256": "3886ba09c016c3e7bafd029cde86e9554d82526784cfdd280ea41e764c8bb6bf"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-path006-010-atomization-096/legacy-evidence.jsonl",
+          "sha256": "af249d7e9ea6492e95d1c62b12f59cb838f0577e0179d194c2b83b27214ede4d"
+        }
+      ],
+      "changed_artifact_pins": [
+        {
+          "path": "scaffold/research/rdp001-outside67-path006-010-atomization-096/generate.py",
+          "old_sha256": "a75f8f05ed512d4c6b7ca2bec5487b5613b6047029a8bc4d02f2ef446a71ee7d",
+          "new_sha256": "0773e1cc6492f2d883049686798e07859b5b12e62ef39e6058304784ad7c231d"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-path006-010-atomization-096/validate.py",
+          "old_sha256": "435e4c11067e71852606e23ec629fbaa8f1449a18577218c083243ecbb9bb381",
+          "new_sha256": "b33d93a55e105fb553fe7e628752d6b3f4fcf16c66da7b1d8368b7f343510eb2"
+        }
+      ],
+      "contracts_unchanged": true,
+      "binding_id": "SCF-B-0096",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "validation": "PASS 183/183 lines, 10 atomized, 74 metadata-only, 99 composite_unresolved, PATH008 reused74",
+      "negative_cases": 27,
+      "negative_validation": "PASS baseline, 27 negative cases, simulated remote advance",
+      "independent_coverage": "PASS 183/183 with disjoint classification; four corruption mutations rejected",
+      "generator_check": "PASS exact two input edits and syntax; full regeneration not executed",
+      "authority_effect": "none",
+      "unresolved": "当初baseと後続入力更新の時間的整合、全意味atom化・source/consumer closure・正式successorは未完。"
+    }
+  ],
+  "additional_unresolved_finding": {
+    "binding_id": "SCF-B-0083",
+    "status": "unresolved",
+    "input_resolution_trial": "register snapshot, four relocated inputs and counterpart062 historical bytes resolved in scratch; validator still rejected PATH038 relation",
+    "errors": [
+      "E_COUNTERPART:OUTSIDE67-PATH-038",
+      "E_CURRENT_COUNTERPART_RELATION"
+    ],
+    "path038_evidence": {
+      "archive_sha256": "24ef4fbd9e798e43c5e454c23e2086dfc0b9d62de24bc3084bf9c58a3cc95616",
+      "current_sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd",
+      "selected_content_hash_matches_archive": false,
+      "validator_expected_matches_archive": true,
+      "scan_current_counterpart_hash_equal_archive_ids": [],
+      "scan_current_counterpart_content_drift_ids": [
+        "OUTSIDE67-PATH-016",
+        "OUTSIDE67-PATH-020",
+        "OUTSIDE67-PATH-023",
+        "OUTSIDE67-PATH-038",
+        "OUTSIDE67-PATH-062"
+      ],
+      "scan_current_counterpart_drift_ids": [
+        "OUTSIDE67-PATH-016",
+        "OUTSIDE67-PATH-020",
+        "OUTSIDE67-PATH-023",
+        "OUTSIDE67-PATH-062"
+      ]
+    },
+    "counterpart062_exact_git_capture_found": {
+      "commit": "7aa2c1208757381bb4f5723b45ffc875e305f930",
+      "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+      "sha256": "6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048",
+      "bytes": 9640,
+      "rows": 103
+    },
+    "research_payload_and_binding_unchanged": true,
+    "next_action": "比較入力の過去更新史とBinding同一hash条件を照合し、誤った静的観測条件の訂正範囲を確定する。digest更新だけで通過させない。",
+    "authority_effect": "none"
+  },
+  "remaining_stale_bindings": [
+    "SCF-B-0040",
+    "SCF-B-0083",
+    "SCF-B-0121"
+  ],
+  "merge_admission": "not_established_draft"
+}

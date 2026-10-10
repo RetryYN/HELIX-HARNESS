@@ -5,7 +5,7 @@ generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
 source_candidate_sha256: f647bbbcbe21ef775186760086decac511c6a7845f7575952eb7eb551dd55101
 source_inventory: docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
+source_inventory_sha256: d27a7ae55bcf9959264dd3579f906479e236c95e188132a512ff4af2a35c9567
 rule_id: RUL-OSA-03
 group: OS検収
 product: OS
@@ -56,8 +56,8 @@ issue_projection: #1860
 | `RE01-088` | 下流のfindingを受けた担当者は局所修正・設計・要求・Conceptのどこへ戻すか分類し、back-propagationが未解決のまま完了にしてはならない。 | process_gate | prose／doctor | fail_close | 下流findingの四分類 | `RUL-OSI-01` | docs/governance/helix-harness-requirements_v1.2.md:1292-1305 | E01／claude-opus |
 | `RE01-141` | レビュー担当者はfindingを対応テストまたは追跡可能なdebtへ変換し、指摘だけで処理を終えない。 | review_merge | prose／ci | warn | failureからtest/design/recovery/debtへの変換 | `RUL-OSI-01` | docs/governance/helix-harness-requirements_v1.2.md:1952-1990; docs/governance/helix-harness-requirements_v1.2.md:2333-2348 | E01／claude-opus |
 | `RE01-222` | authoring判断者はsemantic diff・authority・revision・trace・pair影響・security・rollbackを評価し、規定の六つのdispositionから一つを選ぶ。 | process_gate | gate | fail_close | authoring disposition判定 | `RUL-FRM-02` | docs/governance/helix-harness-requirements_v1.3.md:354-354 | E01／claude-opus |
-| `RE01-257` | reviewerは同じHEADのblockerを一括返却し、修正後HEADは新しい独立blockerの実証がない限り一巡だけ再判定する。 | review_merge | prose | n/a | HEAD単位のreview収束規約 | — | docs/governance/helix-harness-requirements_v1.3.md:516-516 | E01／claude-opus |
-| `RE01-258` | 作成者は契約違反・correctness・security・data loss・必須oracle失敗・虚偽証拠、および同じ責務とscope内で安全に閉じるfindingをcurrent PRで修正する。独立責務の改善だけを別episodeへ分ける。 | review_merge | prose／gate | fail_close | current PR finding disposition | — | docs/governance/helix-harness-requirements_v1.3.md:516-516 | E01／claude-opus |
+| `RE01-257` | AI-Bはblockerを一括返却する。 | review_merge | prose | n/a | HEAD単位のreview収束規約 | — | docs/governance/helix-harness-requirements_v1.3.md:516-516 | E01／claude-opus |
+| `RE01-258` | current contract内で局所的に閉じるcorrectness/security findingはAI-Aがcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ送る。 | review_merge | prose／gate | fail_close | current PR finding disposition | — | docs/governance/helix-harness-requirements_v1.3.md:516-516 | E01／claude-opus |
 | `RF01-001` | pair-agentの計画生成器は、maxFixCyclesが未指定の場合、難易度trivial・simpleでは1、standardでは2、complexでは3、criticalでは4を修正サイクル上限にする。 | tooling_runtime | config | n/a | 旧難易度区分とmaxFixCyclesの対応値 | `RUL-OSP-07` | src/orchestration/pair-agent.ts:128-140; src/orchestration/pair-agent.ts:203-212 | F01／claude-opus |
 | `RG14-003` | finding promotionの是正担当者は、L1／L3／L4／L5をcurrent_pr_fix／successor_issueへ同期し、実装されるまではadapter markerでfail-closeを維持する。 | process_gate | prose／gate | fail_close | ORA-009、finding promotion設計、adapter marker | `RUL-OSI-01` | docs/governance/operations-rule-audit-2026-07-26.md:42-42 | G14／claude-opus |
 | `RG39-007` | PR review依頼に埋め込む収束方針は、current behavior contract違反・correctness/security/data loss・必須CI/DB/oracle red・虚偽/過大claimをblockerとしてcurrent PR内で閉じ、non-blockerはIssueへ分離し、mergeはcurrent HEADの独立review receipt・CI・DB convergenceを再照合した明示mergeに限ると定める。 | review_merge | prose | n/a | — | `RUL-OSA-04` | src/runtime/claude-memory-wake.ts:566-571 | G39／claude-opus |

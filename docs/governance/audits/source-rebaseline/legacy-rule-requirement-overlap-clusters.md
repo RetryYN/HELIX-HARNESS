@@ -89,3 +89,67 @@ RUL-FRM-01の候補本文（工程順序とV-pairを閉じる）と、現行HARN
 registerのsupersedes鎖を再計算すると、現行の生存中holdingは`MPR-SH-LEGACY-RULE-005`（-004の配置訂正）である。以前の候補文書と研究記録の-004は当時のlocatorを示す。比較用記述の訂正は台帳/holdingの正式訂正を代替しない。台帳訂正には新digestを持つappend-only revisionと、直接pin 4 Binding・register consumer・生成rulebookの再照合が必要である。原inventory、register、Binding、rulebookはこの追補では変更していない。
 
 3件の原文に忠実な比較用文は記録したが、source_holdingの訂正、consumer閉包、正式successor、atom境界は未完として#1814/親#1813へ残す。要求採否・意味のretire・holding解除・L3再開・Issue closeを生成しない。
+
+## OSA03正式台帳の抽出訂正Draft
+
+[訂正receipt](osa03-rule-source-extraction-correction-2026-10-10.json)に旧3recordの全field、原文pin、訂正後3record、before/after台帳digest、旧holding005とこのDraftで追記する006を固定した。RE01-257/258の過包含を引用行の直接条件へ訂正し、RG44-006のmerge_conflict分岐を回復する。7622 IDと候補routingは保持し、7619行はbytes不変。旧文を消さず、別sourceに残る一巡・blocker条件をretireしない。
+
+registerは旧全prefixを保持してMPR-SH-LEGACY-RULE-006を一行追記する。source_preserved_unassigned/authority noneであり、要求採用やsuccessor成立ではない。仮ルール集59fileを再生成しgovcheckで7622件の保持を確認した。SCF-B-0002の入力pinを更新し、0011は47選択record全field不変＋validator、0021はfailure projection全field不変＋validatorで再照合した。0035は過去13 holding研究なので、訂正前の同一bytesを歴史snapshotへ保全し、generatorの読取先を固定して15path/13holdingのvalidatorを再照合した。
+
+registerを直接pinする19 Bindingの固定BASE/current入力境界は再照合中である。このDraftではstaleを機械的pin更新で消さず、Ready/merge admissionを未成立とする。前の3件正規化と全75比較は訂正前の固定revisionに対する記録として保持する。正式台帳訂正の統合、残るconsumer、successor、他clusterのclosure、#1814 closeはまだ成立していない。
+
+## register consumerの固定capture再照合（0095・0099）
+
+[2件の再照合receipt](osa03-register-consumer-reconciliation-0095-0099-2026-10-10.json)に、現在のregister pinと実際の固定入力の違いを記録した。SCF-B-0095と0099は72b9f368の33行capture・MPR-SH-OUTSIDE67-001を使う研究である。現在のregisterでは001は002にsupersedeされており、旧001を現在の生存holdingと扱わない。同commitの全bytesを固定source snapshotへ保全し、2 Bindingの入力path/digestを当該captureへ訂正した。研究成果物・固定BASE・role・obligations・authorityは変更せず、各validator成功を確認した。
+
+147 Bindingの構造検証はfail=0、残るregister staleは17件である。これは3件台帳訂正のmerge admission成立、要求採否・consumer closure・Issue closeを表さず、PRはDraftのまま維持する。残る研究では固定BASEとその後に更新された期待register digestの相違があるため、当時の入力revisionを別途特定してから再照合する。
+
+## register consumerの後続input capture再照合（0057・0066）
+
+[再照合receipt](osa03-register-consumer-reconciliation-0057-0066-2026-10-10.json)に期待digestと一致するGit revision `1c276ab2`（637行・45 live source holding）を記録した。これは研究の当初baseとは別の、その後に更新された入力digestの実revisionである。0057/0066の候補JSON/JSONLは不変のまま、register読取先とBindingを同一bytesのsnapshotへ束縛した。0066 selfcheckの成果物pathは現行research配置へ訂正した。両validatorと0057の42・0066の12 negative casesは成功した。
+
+本文/metadataの以前の14/43 holdingと後続captureの45 holdingは現在の生存holding数を表さず、その時間的照合・研究全体のclosureは未完として各READMEに明記した。Bindingの役割・義務・authorityは変更しない。構造検証147件fail=0、残るstale Bindingは15件（0040はregisterに加えてfirst15 generator変更にも依存）であり、Draft維持・Ready/merge未成立とする。旧source/consumerの全closure、正式successor、要求採否、Issue closeは生成しない。
+
+## register consumer 11件の固定入力再照合
+
+[11件の再照合receipt](osa03-register-consumer-reconciliation-eleven-2026-10-10.json)に0062・0069・0071・0073・0074・0076・0079・0085・0087・0090・0092の固定入力を記録した。各期待digestに一致する1c276ab2の637行captureへ読取先とBindingを束縛し、selfcheckの成果物pathを現行research配置へ訂正した。0069の旧配置4参照は論理pathを保ったまま現行配置へ解決する。削除済みcounterpart052/056と改訂済み060は、元digestに一致するGit本文を歴史snapshotへ保全した。現在の要求・承認として復活させない。
+
+11 validatorと既存224 negative casesは成功し、全候補JSON/JSONL・Bindingの責務/義務/接続/操作/置換は不変である。生成スクリプト3件はregister読取先のみ整合させ、syntaxと置換範囲を静的確認した。全再生成は実行していない。過去のholding数metadataと後続input更新の時間的整合、全研究の意味/consumer closureは未完として保持する。
+
+構造検証147件fail=0、残るstaleは0040・0083・0096・0121の4件。0040はfirst15 generatorの変更にも依存する。PRはDraftを維持し、Ready/merge admission、正式successor、要求採否、holding解除、L3再開、#1814/親#1813 close、全要求ステージ完了は未成立である。
+
+## register consumer 0096と0083の再照合
+
+[再照合receipt](osa03-register-consumer-reconciliation-0096-2026-10-10.json)に0096の固定register読取を記録した。候補JSON/JSONLとBinding契約は不変。183/183行validator、既存27負例、remote進行模擬、独立183行coverageと4破損負例は成功した。generatorは固定入力への読取先のみ静的照合し、全再生成は実行していない。時間的整合、全意味atom化とsource/consumer closureは未完。
+
+0083はscratchで移動済み4入力と後続register capture、counterpart062の同一Git本文を解決したが、PATH038のrelation条件で失敗した。実際のarchive hashと現行hashは異なり、選択記録/scanはcontent driftを記録する一方、validatorとBindingはsame hashを前提とする。旧scanのdrift一覧にも038が入っていない。不整合を検出したため0083の候補・Binding・検査は変更せず、過去更新史と条件の訂正を残した。
+
+残るstaleは0040・0083・0121。Draftを維持し、Ready/merge admission、正式successor、holding解除、要求採否、L3再開、Issue close、全要求完了は未成立。
+
+## 0083の静的観測条件の訂正
+
+[0083再照合receipt](osa03-register-consumer-reconciliation-0083-2026-10-10.json)に当初/後続captureの更新史を固定した。当初の038 same-hashは26124da8eの観測として保持する。後続digestへの更新後、選択記録はcontent driftへ訂正されたが、canonical oracle・scanの旧drift一覧・062 captureが取り残されていた。5 counterpartの実本文hash関係を再導出し、scanのdrift一覧と062 digest/bytesの3項目、validatorの観測条件、Bindingの当該観測条件だけを訂正した。
+
+選択source/anchor・25 unit本文・研究会計・unknown残差は不変。移動前4入力は現行配置へ解決し、期待registerは637行の固定capture、062は同一Git本文snapshotを読む。validatorと既存20＋062 stale scan負例1件が成功した。先行0096 receiptのfindingは当時の証拠として保持し、この静的エラーの解消から全研究closureを生成しない。
+
+構造検証147件fail=0、残るstaleは0040・0121。PRはDraftを維持し、独立review・Ready/merge admission、全source/consumer closure、正式successor、要求採否・holding解除・L3再開・Issue close・全要求完了は未成立。
+
+## 0121の実入力と旧承認revisionの分離
+
+[0121再照合receipt](osa03-register-consumer-reconciliation-0121-2026-10-10.json)に実際のinventory/candidate digestを固定した。11候補は9月17日decisionで承認された旧Web/Web-OS SHAを保持している一方、validatorだけが変更後の現行参照SHAを期待していた。候補を変更せず、旧承認SHAの本文、当初BASEのboundary/作業入口、後続637行register captureを固定snapshotへ束縛した。Bindingの現行文書pinはcontextとして別に保持し、旧承認を現行bytesへ継承しない。
+
+validator、既存16負例、隔離生成による13機械記録/source snapshot一致を確認した。生成された説明文は採用せず、研究scope・意味/source/consumer closure・正式successor・authorityの未完を保持する。候補JSON/JSONL・Binding契約は不変。残るstaleは0040だけで、Draftを維持し、独立review・Ready/merge admission・要求採否・holding解除・L3再開・Issue close・全要求完了は未成立。
+
+## 0040のpost-append capture再照合
+
+[0040再照合receipt](osa03-register-consumer-reconciliation-0040-2026-10-10.json)に期待digestの33行/14 holding register captureと、当時のphase inventory/program/登録契約を固定した。旧13 holding sourceは移動先又は訂正前snapshot、Scaffold参照は現行research配置へ解決する。logical path、32行prefix、33行append記録、13/14会計は保持し、旧001を現在の生存holdingへ戻さない。候補JSONとBinding契約は不変。
+
+validatorと既存25＋祖先性2負例が成功し、read-only buildでmigration/read-after/first15 inventoryの全field一致を確認した。全147 Bindingの構造検証fail=0、stale=0。ただし新HEADの独立reviewは未完で、PRはDraft。全source/consumer closure・正式successor・他clusterの被覆・要求採否・holding解除・L3再開・Issue close・全要求完了は静的整合から生成しない。
+
+## 独立reviewで判明した0083観測入力とregister来歴の訂正
+
+b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合receipt](osa03-independent-review-input-reconciliation-2026-10-10.json)に、誤った後日観測と正しい研究時観測を両方保存した。先行0083 receiptの7aa2c120中間captureと038 driftを研究時入力へ混ぜた処理は誤りである。全5 counterpartを研究base3184d613の固定Git bytesへ戻し、038 hash一致、062 aca38dce/9565 bytesを保つ。selected/inventory/scanのcounterpartと観測oracleだけを訂正し、25 unit本文・source-diffs/meta/ledgerとunknown残差は不変。main8955f45cの後日観測は別receipt fieldに保持し、研究時観測を上書きしない。旧receiptや7aa2c120 snapshotは当時の誤った処理の証拠として変更しない。
+
+637行captureを使う16研究は、全研究baseの元registerがb68f3aca/33行（72b9f368 captureと同一）であることをGit bytesで確認した。1c276ab2の79c1e5a6/637行は9/29 refreshで更新された記録値であり、研究時入力ではない。後続refresh記録との静的照合にだけ使うことを各Binding note/READMEへ明記した。候補のregister記録値は保全し、当初base証拠や現在のholding数へ継承しない。0062研究は059/063/064/065/066の別集合で062 counterpartに依存しないが、そのbase294bfd90の062本文も同じaca38dce/9565であることを照合した。
+
+0083 validator・baseline＋22負例、全5 counterpartの原記録一致、16 Binding契約と候補non-counterpart fieldの保全を確認した。Binding147 fail=0・stale=0。ただし修正後HEADの独立reviewは未完でDraftを維持する。全source/consumer closure、正式successor、他cluster被覆、要求採否、holding解除、L3再開、Issue close、全要求完了を生成しない。

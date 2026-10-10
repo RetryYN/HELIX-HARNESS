@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json, shutil, subprocess, sys, tempfile
 from pathlib import Path
-HERE=Path(__file__).resolve(); TARGET=HERE.parent; VALIDATOR=TARGET/'validate.py'; REL='scaffold/rdp001-outside67-product-entry-followup-076/'
+HERE=Path(__file__).resolve(); TARGET=HERE.parent; VALIDATOR=TARGET/'validate.py'; REL='scaffold/research/rdp001-outside67-product-entry-followup-076/'
 def run(root): return subprocess.run([sys.executable,'-B',str(VALIDATOR),'--root',str(root)],capture_output=True,text=True)
 def mutate(path,fn):
  d=json.loads(path.read_text(encoding='utf8')); fn(d); path.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf8')

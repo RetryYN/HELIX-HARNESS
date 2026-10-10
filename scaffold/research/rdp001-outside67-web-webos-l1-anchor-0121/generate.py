@@ -52,9 +52,17 @@ def git_bytes(commit, path): return subprocess.check_output(["git", "show", f"{c
 def write_json(path, value): path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
 def write_jsonl(path, values): path.write_text("".join(json.dumps(v, ensure_ascii=False, sort_keys=True) + "\n" for v in values))
 
+FIXED_INPUT_PATHS = {'docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl': 'docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl', 'docs/governance/management-provisional-requirement-register.jsonl': 'docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl', 'docs/concept/product-boundary.md': 'docs/governance/audits/requirements-stage/history-snapshots/product-boundary-input0121-capture-e80cb07c.md', 'docs/governance/new-generation-start-here.md': 'docs/governance/audits/requirements-stage/history-snapshots/new-generation-entry-input0121-capture-e80cb07c.md', 'docs/helix-web/L1-planning/product-intent.md': 'docs/governance/audits/requirements-stage/history-snapshots/web-l1-approved-input0121-capture-c5d3e8a7.md', 'docs/helix-web-os/L1-planning/system-intent.md': 'docs/governance/audits/requirements-stage/history-snapshots/webos-l1-approved-input0121-capture-c5d3e8a7.md'}
+
+def fixed_input(path):
+ text = str(path)
+ for old, new in FIXED_INPUT_PATHS.items():
+  if text.endswith(old): return Path(text[:-len(old)] + new)
+ return path
+
 def load_holding():
     rows = {}
-    for line in (ROOT / HOLDING_PATH).read_text().splitlines():
+    for line in fixed_input(ROOT / HOLDING_PATH).read_text().splitlines():
         row = json.loads(line)
         if row.get("source_item_id") in TARGET_IDS: rows[row["source_item_id"]] = row
     if list(rows) != TARGET_IDS and set(rows) != set(TARGET_IDS): raise SystemExit("target holding IDs mismatch")
@@ -99,7 +107,7 @@ def main():
 
     lines = {}
     for product, (path, digest) in L1_SOURCES.items():
-        all_lines = (ROOT / path).read_text().splitlines()
+        all_lines = fixed_input(ROOT / path).read_text().splitlines()
         for rid, ln in ROW_LINES[product].items():
             line = all_lines[ln - 1]
             pieces = [x.strip() for x in line.strip().strip("|").split("|")]
@@ -145,7 +153,7 @@ def main():
     negative=["E_SOURCE_DIGEST","E_SOURCE_SNAPSHOT","E_SOURCE_SCHEMA","E_UNIT_SET","E_CANDIDATE_RECORD","E_CONTEXT_BOUNDARY","E_PHASE_BOUNDARY","E_IMPLEMENTATION_BOUNDARY","E_FORMAL_UNIT","E_AUTHORITY_BOUNDARY","E_OVERLAP","E_INVENTORY_DECLARATION","E_INPUT_DIGEST","E_BASE_COMMIT"]
     inventory={
       "schema":"rdp001-outside67-web-webos-l1-anchor/v1","candidate_id":"RDP-001-OUTSIDE67-WEB-WEBOS-L1-0121","status":"findings_only","authority_effect":"none","meaning_change_applied":False,"successor_requirement_ids":[],"human_decision_ref":None,"formal_register_append":False,"old_runtime_test_ci_execution":False,"new_build":False,
-      "scope":{"worktree":"outside67-web-l1-0121","base_origin_main":BASE,"base_origin_main_observed_at":BASE,"required_ancestor":BASE,"read_only":True,"static_only":True,"holding_registration_id":"MPR-SH-OUTSIDE67-001","holding_path":HOLDING_PATH,"holding_sha256":"d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54","holding_path_revision_pair_denominator":67,"holding_record_count":67,"current_live_source_holding_count":14,"management_register_path":REGISTER_PATH,"management_register_sha256":"c552ab4d6181ae4ae1592ab009fa18946ff8c60c9b24dff98c1e796fe09628e6","selected_source_document_count":4,"selected_path_revision_pair_count":4,"unselected_path_revision_pair_count":63,"pre_isolation_commit":PRE,"archive_commit":ARCHIVE,"historical_capture_commit":CAPTURE,"old_runtime_test_ci_execution":False},
+      "scope":{"worktree":"outside67-web-l1-0121","base_origin_main":BASE,"base_origin_main_observed_at":BASE,"required_ancestor":BASE,"read_only":True,"static_only":True,"holding_registration_id":"MPR-SH-OUTSIDE67-001","holding_path":HOLDING_PATH,"holding_sha256":"d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54","holding_path_revision_pair_denominator":67,"holding_record_count":67,"current_live_source_holding_count":14,"management_register_path":REGISTER_PATH,"management_register_sha256":sha(fixed_input(ROOT / REGISTER_PATH).read_bytes()),"selected_source_document_count":4,"selected_path_revision_pair_count":4,"unselected_path_revision_pair_count":63,"pre_isolation_commit":PRE,"archive_commit":ARCHIVE,"historical_capture_commit":CAPTURE,"old_runtime_test_ci_execution":False},
       "source_holding":{"registration_id":"MPR-SH-OUTSIDE67-001","source_collection_scope":"outside67 reportの67 path_revision_pair。要求unitではなくsource保存単位。","selected_item_ids":TARGET_IDS,"selected_ordinals":[7,9,10,12],"unselected_count":63,"current_live_source_holding_count":14},
       "candidate_summary":{"candidate_unit_count":11,"web_l1_candidate_unit_count":6,"webos_l1_candidate_unit_count":5,"readme_context_record_count":2,"source_item_count":4,"formal_requirement_unit_count":0,"formal_requirement_unit_status":"not_generated","row_sized_anchor_candidate_status":"research_only","context_records_are_units":False},
       "unknown_partition":{"phase_status":"unknown","implementation_status":"unknown","degradation_status":"unknown","failure_status":"unknown","consumer_status":"unknown","authority_status":"none","formal_unit_status":"not_generated","all_candidate_units_unknown_count":11,"all_context_records_unknown_count":2},

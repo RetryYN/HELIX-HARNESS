@@ -5,7 +5,7 @@ generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
 source_candidate_sha256: f647bbbcbe21ef775186760086decac511c6a7845f7575952eb7eb551dd55101
 source_inventory: docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
+source_inventory_sha256: d27a7ae55bcf9959264dd3579f906479e236c95e188132a512ff4af2a35c9567
 rule_id: RUL-OSI-01
 group: OS改善
 product: OS
@@ -136,7 +136,7 @@ issue_projection: #1861
 | `RG40-034` | 停止後メッセージの分類は、ユーザー自身の誤操作をmistake、AIへの是正をfeedbackとし、判断が曖昧な場合はfeedback側へ倒さなければならない。 | behavior_discipline | prose | fail_open | pmo-haikuへ渡すprompt contract | — | src/runtime/forced-stop.ts:266-287 | G40／claude-opus |
 | `RG40-035` | feedback記録は、attentionがhighの場合にだけrecovery起票提示フラグを立てる。 | process_gate | prose | fail_open | recovery_proposed というfield名 | `RUL-TKT-03` | src/runtime/forced-stop.ts:166-175 | G40／claude-opus |
 | `RG44-005` | review feedback取込検査は、kind・feedback_key・source refが同じeventを重複として計上するが、重複だけを理由に取込を不合格にしない。 | review_merge | prose | warn | — | — | src/runtime/review-feedback-session-intake.ts:53-58; src/runtime/review-feedback-session-intake.ts:78-82 | G44／claude-opus |
-| `RG44-006` | review feedback分類器は、解決済みeventをresolved、孤立eventをtriage、requested_changesをneeds_you、それ以外をretry_taskへ分類する。 | review_merge | prose | n/a | — | `RUL-OSA-03` | src/runtime/review-feedback-session-intake.ts:60-66 | G44／claude-opus |
+| `RG44-006` | review feedback分類器は、resolvedが真ならresolved、そうでなくorphanならtriage、それ以外でkind=requested_changesならneeds_you、kind=merge_conflictならblocked、その他ならretry_taskへこの優先順で分類する。 | review_merge | prose | n/a | — | `RUL-OSA-03` | src/runtime/review-feedback-session-intake.ts:60-66 | G44／claude-opus |
 
 ## 副として対応づいた規則（97件）
 

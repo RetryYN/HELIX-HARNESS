@@ -9,3 +9,11 @@ initial exact base `ee03352d8fc36c4e16d65f861ac9f0262b47fe87` から、#2033 mer
 四製品はcandidate boundary only、formal product ownerとphase authorityはunknownです。旧7 ledgerのcandidate ID/path exact hitは0件ですが、不在・完了・承認の証拠とは扱いません。SCF-B-0085はresearch Scaffold Bindingとして登録済みです。今回の検証幅は5 source pairであり、安全なbatch上限は断定せず、次batchはsource chainごとに独立確認します。
 
 旧archive sourceは意味・判断史・failure・consumerのstatic referenceとしてのみ読み、旧workflow/runtime/test/CI/hook/adapterは実行していません。origin/mainまたはstacked parent lineageが進んだ場合はsource選定・正式化を停止し、latest mainへの再materializationとscope/base digestの再検証を行います。
+
+## 固定register入力の再照合（2026-10-10）
+
+期待digest `79c1e5a…fbcd` は当初baseとは別の、後続commit 1c276ab26dc50ca5d0f2d8c25441f17c303b9919の637行・45 holding captureに一致する。validator読取先とBindingを同一bytesのsnapshotへ結び、現在の台帳appendから過去の研究を分離した。元のlogical path、base、候補JSON/JSONL、unknown、未調査残差を保持し、以前のholding数は現在の生存holding数を表さない。selfcheckの成果物pathは現行research配置へ訂正した。以前のmetadataの時間的整合と研究全体のclosureは未完で、採否・authority・正式successor・全consumer closureは生成しない。
+
+## 独立reviewによるregister来歴の確定
+
+独立review F2: 研究base c5ed4587d8563bd473368f5eb0f3c311fefb44a6 の入力はb68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd/33行（72b9f368 captureと同一）。1c276ab2の79c1e5a6/637行は2026-09-29 refreshの記録値であり、研究時入力ではない。既存候補のrefresh記録との静的照合にだけ使い、当初baseの証拠や現在のholding/authorityへ継承しない。照合: docs/governance/audits/source-rebaseline/osa03-independent-review-input-reconciliation-2026-10-10.json

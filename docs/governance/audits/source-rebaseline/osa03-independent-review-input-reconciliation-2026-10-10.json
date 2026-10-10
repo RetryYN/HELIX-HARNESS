@@ -1,0 +1,811 @@
+{
+  "authority_effect": "none",
+  "reviewed_base": "8955f45cf36727c610aac5dfd1847f992a9b82c5",
+  "rejected_content": "b61a11d04ba1e9ef2e738b96a922c863df724172",
+  "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2883#issuecomment-6093683892",
+  "f1": {
+    "research_base": "3184d6131a7c8aecc21c1544ec7882c2ef94f033",
+    "captures": [
+      {
+        "source_item_id": "OUTSIDE67-PATH-016",
+        "path": "docs/governance/audits/requirements-stage/history-snapshots/outside67-016-counterpart-input0083-capture-3184d613.md",
+        "source_commit": "3184d6131a7c8aecc21c1544ec7882c2ef94f033",
+        "source_path": "docs/governance/audits/source-rebaseline/concept-v4.1-approval-readiness-audit.md",
+        "sha256": "64ec56b5873b7b9cf4fff96c0faada77809bd6886842657b289e99efc56cb31a",
+        "bytes": 6322,
+        "matches_archive": false
+      },
+      {
+        "source_item_id": "OUTSIDE67-PATH-020",
+        "path": "docs/governance/audits/requirements-stage/history-snapshots/outside67-020-counterpart-input0083-capture-3184d613.md",
+        "source_commit": "3184d6131a7c8aecc21c1544ec7882c2ef94f033",
+        "source_path": "docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md",
+        "sha256": "afa6f1abac8b58af90aa7d6e91c16e57635fde40a28ab639f766fe54c8b404df",
+        "bytes": 5272,
+        "matches_archive": false
+      },
+      {
+        "source_item_id": "OUTSIDE67-PATH-023",
+        "path": "docs/governance/audits/requirements-stage/history-snapshots/outside67-023-counterpart-input0083-capture-3184d613.md",
+        "source_commit": "3184d6131a7c8aecc21c1544ec7882c2ef94f033",
+        "source_path": "docs/governance/audits/source-rebaseline/l2-freeze-ir-correction.md",
+        "sha256": "99c1802d24313552b8755ca2843d3970cbf51d0bd8f1a79f58d8d1919e20e1f2",
+        "bytes": 10277,
+        "matches_archive": false
+      },
+      {
+        "source_item_id": "OUTSIDE67-PATH-038",
+        "path": "docs/governance/audits/requirements-stage/history-snapshots/outside67-038-counterpart-input0083-capture-3184d613.md",
+        "source_commit": "3184d6131a7c8aecc21c1544ec7882c2ef94f033",
+        "source_path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
+        "sha256": "24ef4fbd9e798e43c5e454c23e2086dfc0b9d62de24bc3084bf9c58a3cc95616",
+        "bytes": 5659,
+        "matches_archive": true
+      },
+      {
+        "source_item_id": "OUTSIDE67-PATH-062",
+        "path": "docs/governance/audits/requirements-stage/history-snapshots/outside67-062-counterpart-input0083-capture-3184d613.md",
+        "source_commit": "3184d6131a7c8aecc21c1544ec7882c2ef94f033",
+        "source_path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+        "sha256": "aca38dcee6ad2d88948bc2391f590eab3424836d1526dc507f23bf3aa187db2a",
+        "bytes": 9565,
+        "matches_archive": false
+      }
+    ],
+    "counterparts_before": {
+      "OUTSIDE67-PATH-016": {
+        "bytes": 6322,
+        "content_hash_matches_archive": false,
+        "path": "docs/governance/audits/source-rebaseline/concept-v4.1-approval-readiness-audit.md",
+        "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+        "sha256": "64ec56b5873b7b9cf4fff96c0faada77809bd6886842657b289e99efc56cb31a"
+      },
+      "OUTSIDE67-PATH-020": {
+        "bytes": 5272,
+        "content_hash_matches_archive": false,
+        "path": "docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md",
+        "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+        "sha256": "afa6f1abac8b58af90aa7d6e91c16e57635fde40a28ab639f766fe54c8b404df"
+      },
+      "OUTSIDE67-PATH-023": {
+        "bytes": 10277,
+        "content_hash_matches_archive": false,
+        "path": "docs/governance/audits/source-rebaseline/l2-freeze-ir-correction.md",
+        "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+        "sha256": "99c1802d24313552b8755ca2843d3970cbf51d0bd8f1a79f58d8d1919e20e1f2"
+      },
+      "OUTSIDE67-PATH-038": {
+        "bytes": 9884,
+        "content_hash_matches_archive": false,
+        "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
+        "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+        "sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd"
+      },
+      "OUTSIDE67-PATH-062": {
+        "bytes": 9640,
+        "content_hash_matches_archive": false,
+        "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+        "relation": "current_counterpart_same_path_and_content_drift_observed",
+        "sha256": "6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048"
+      }
+    },
+    "counterparts_after": {
+      "OUTSIDE67-PATH-016": {
+        "bytes": 6322,
+        "content_hash_matches_archive": false,
+        "path": "docs/governance/audits/source-rebaseline/concept-v4.1-approval-readiness-audit.md",
+        "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+        "sha256": "64ec56b5873b7b9cf4fff96c0faada77809bd6886842657b289e99efc56cb31a"
+      },
+      "OUTSIDE67-PATH-020": {
+        "bytes": 5272,
+        "content_hash_matches_archive": false,
+        "path": "docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md",
+        "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+        "sha256": "afa6f1abac8b58af90aa7d6e91c16e57635fde40a28ab639f766fe54c8b404df"
+      },
+      "OUTSIDE67-PATH-023": {
+        "bytes": 10277,
+        "content_hash_matches_archive": false,
+        "path": "docs/governance/audits/source-rebaseline/l2-freeze-ir-correction.md",
+        "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+        "sha256": "99c1802d24313552b8755ca2843d3970cbf51d0bd8f1a79f58d8d1919e20e1f2"
+      },
+      "OUTSIDE67-PATH-038": {
+        "bytes": 5659,
+        "content_hash_matches_archive": true,
+        "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
+        "relation": "current_counterpart_path_relocation_content_hash_equal_archive_observed",
+        "sha256": "24ef4fbd9e798e43c5e454c23e2086dfc0b9d62de24bc3084bf9c58a3cc95616"
+      },
+      "OUTSIDE67-PATH-062": {
+        "bytes": 9565,
+        "content_hash_matches_archive": false,
+        "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+        "relation": "current_counterpart_same_path_and_content_drift_observed",
+        "sha256": "aca38dcee6ad2d88948bc2391f590eab3424836d1526dc507f23bf3aa187db2a"
+      }
+    },
+    "scan_before": {
+      "archive_changed_ids": [
+        "OUTSIDE67-PATH-016",
+        "OUTSIDE67-PATH-020",
+        "OUTSIDE67-PATH-023",
+        "OUTSIDE67-PATH-062"
+      ],
+      "archive_relocation_ids": [
+        "OUTSIDE67-PATH-016",
+        "OUTSIDE67-PATH-020",
+        "OUTSIDE67-PATH-023",
+        "OUTSIDE67-PATH-038"
+      ],
+      "counterparts": {
+        "OUTSIDE67-PATH-016": {
+          "bytes": 6322,
+          "content_hash_matches_archive": false,
+          "path": "docs/governance/audits/source-rebaseline/concept-v4.1-approval-readiness-audit.md",
+          "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+          "sha256": "64ec56b5873b7b9cf4fff96c0faada77809bd6886842657b289e99efc56cb31a"
+        },
+        "OUTSIDE67-PATH-020": {
+          "bytes": 5272,
+          "content_hash_matches_archive": false,
+          "path": "docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md",
+          "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+          "sha256": "afa6f1abac8b58af90aa7d6e91c16e57635fde40a28ab639f766fe54c8b404df"
+        },
+        "OUTSIDE67-PATH-023": {
+          "bytes": 10277,
+          "content_hash_matches_archive": false,
+          "path": "docs/governance/audits/source-rebaseline/l2-freeze-ir-correction.md",
+          "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+          "sha256": "99c1802d24313552b8755ca2843d3970cbf51d0bd8f1a79f58d8d1919e20e1f2"
+        },
+        "OUTSIDE67-PATH-038": {
+          "bytes": 9884,
+          "content_hash_matches_archive": false,
+          "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
+          "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+          "sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd"
+        },
+        "OUTSIDE67-PATH-062": {
+          "bytes": 9640,
+          "content_hash_matches_archive": false,
+          "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+          "relation": "current_counterpart_same_path_and_content_drift_observed",
+          "sha256": "6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048"
+        }
+      },
+      "current_counterpart_drift_ids": [
+        "OUTSIDE67-PATH-016",
+        "OUTSIDE67-PATH-020",
+        "OUTSIDE67-PATH-023",
+        "OUTSIDE67-PATH-038",
+        "OUTSIDE67-PATH-062"
+      ],
+      "exact_ledger_hits": {
+        "OUTSIDE67-PATH-016": [],
+        "OUTSIDE67-PATH-020": [],
+        "OUTSIDE67-PATH-023": [],
+        "OUTSIDE67-PATH-038": [],
+        "OUTSIDE67-PATH-062": []
+      },
+      "existing_reviewed_ids": [
+        "OUTSIDE67-PATH-008",
+        "OUTSIDE67-PATH-011",
+        "OUTSIDE67-PATH-030",
+        "OUTSIDE67-PATH-033",
+        "OUTSIDE67-PATH-034",
+        "OUTSIDE67-PATH-035",
+        "OUTSIDE67-PATH-036",
+        "OUTSIDE67-PATH-037",
+        "OUTSIDE67-PATH-043",
+        "OUTSIDE67-PATH-045",
+        "OUTSIDE67-PATH-046",
+        "OUTSIDE67-PATH-047",
+        "OUTSIDE67-PATH-052",
+        "OUTSIDE67-PATH-054",
+        "OUTSIDE67-PATH-055",
+        "OUTSIDE67-PATH-056",
+        "OUTSIDE67-PATH-057",
+        "OUTSIDE67-PATH-059",
+        "OUTSIDE67-PATH-063",
+        "OUTSIDE67-PATH-064",
+        "OUTSIDE67-PATH-065",
+        "OUTSIDE67-PATH-066",
+        "OUTSIDE67-PATH-001",
+        "OUTSIDE67-PATH-004",
+        "OUTSIDE67-PATH-007",
+        "OUTSIDE67-PATH-010",
+        "OUTSIDE67-PATH-060",
+        "OUTSIDE67-PATH-002",
+        "OUTSIDE67-PATH-005",
+        "OUTSIDE67-PATH-013",
+        "OUTSIDE67-PATH-031",
+        "OUTSIDE67-PATH-061",
+        "OUTSIDE67-PATH-003",
+        "OUTSIDE67-PATH-006",
+        "OUTSIDE67-PATH-009",
+        "OUTSIDE67-PATH-012",
+        "OUTSIDE67-PATH-014",
+        "OUTSIDE67-PATH-015",
+        "OUTSIDE67-PATH-018",
+        "OUTSIDE67-PATH-029",
+        "OUTSIDE67-PATH-032",
+        "OUTSIDE67-PATH-067"
+      ],
+      "files": {
+        "docs/governance/legacy-asset-disposition.jsonl": {
+          "bytes": 4857919,
+          "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+        },
+        "docs/governance/legacy-asset-decisions.jsonl": {
+          "bytes": 109547,
+          "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+        },
+        "docs/governance/legacy-asset-copy-read-after.jsonl": {
+          "bytes": 29632,
+          "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
+        },
+        "docs/governance/legacy-asset-decision-log.md": {
+          "bytes": 5000,
+          "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b"
+        },
+        "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": {
+          "bytes": 6311877,
+          "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+        },
+        "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": {
+          "bytes": 7938664,
+          "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
+        },
+        "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": {
+          "bytes": 602042,
+          "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
+        }
+      },
+      "legacy_evidence_summary": {
+        "OUTSIDE67-PATH-016": {
+          "consumer_exact_hits": [],
+          "decision_exact_hits": [],
+          "degradation": "unknown",
+          "failure_exact_hits": [],
+          "implementation": "unknown",
+          "source_row": "holding not_started; catalog_count=0; human_decision_ref=null"
+        },
+        "OUTSIDE67-PATH-020": {
+          "consumer_exact_hits": [],
+          "decision_exact_hits": [],
+          "degradation": "unknown",
+          "failure_exact_hits": [],
+          "implementation": "unknown",
+          "source_row": "holding not_started; catalog_count=0; human_decision_ref=null"
+        },
+        "OUTSIDE67-PATH-023": {
+          "consumer_exact_hits": [],
+          "decision_exact_hits": [],
+          "degradation": "unknown",
+          "failure_exact_hits": [],
+          "implementation": "unknown",
+          "source_row": "holding not_started; catalog_count=0; human_decision_ref=null"
+        },
+        "OUTSIDE67-PATH-038": {
+          "consumer_exact_hits": [],
+          "decision_exact_hits": [],
+          "degradation": "unknown",
+          "failure_exact_hits": [],
+          "implementation": "unknown",
+          "source_row": "holding not_started; catalog_count=0; human_decision_ref=null"
+        },
+        "OUTSIDE67-PATH-062": {
+          "consumer_exact_hits": [],
+          "decision_exact_hits": [],
+          "degradation": "unknown",
+          "failure_exact_hits": [],
+          "implementation": "unknown",
+          "source_row": "holding not_started; catalog_count=0; human_decision_ref=null"
+        }
+      },
+      "ledger_files": [
+        "docs/governance/legacy-asset-disposition.jsonl",
+        "docs/governance/legacy-asset-decisions.jsonl",
+        "docs/governance/legacy-asset-copy-read-after.jsonl",
+        "docs/governance/legacy-asset-decision-log.md",
+        "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+        "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+        "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+      ],
+      "notes": [
+        "pre-isolation/archive source revisions are held separately; current counterparts are path/content observations only",
+        "038 has equal pre/archive bytes, but the current relocated counterpart has content drift; 016/020/023/062 also have archive revision/content drift; 062 current path is unchanged; no observed difference is semantic authority",
+        "research accounting is 47/67 path_revision_pair candidates and is not a formal requirement or product-owner denominator"
+      ],
+      "selected_ids": [
+        "OUTSIDE67-PATH-016",
+        "OUTSIDE67-PATH-020",
+        "OUTSIDE67-PATH-023",
+        "OUTSIDE67-PATH-038",
+        "OUTSIDE67-PATH-062"
+      ],
+      "current_counterpart_relocation_ids": [
+        "OUTSIDE67-PATH-016",
+        "OUTSIDE67-PATH-020",
+        "OUTSIDE67-PATH-023",
+        "OUTSIDE67-PATH-038"
+      ],
+      "current_counterpart_hash_equal_archive_ids": [],
+      "current_counterpart_content_drift_ids": [
+        "OUTSIDE67-PATH-016",
+        "OUTSIDE67-PATH-020",
+        "OUTSIDE67-PATH-023",
+        "OUTSIDE67-PATH-038",
+        "OUTSIDE67-PATH-062"
+      ]
+    },
+    "current_main_observation_separate": [
+      {
+        "source_item_id": "OUTSIDE67-PATH-016",
+        "observation_commit": "8955f45cf36727c610aac5dfd1847f992a9b82c5",
+        "path": "docs/governance/audits/source-rebaseline/concept-v4.1-approval-readiness-audit.md",
+        "sha256": "64ec56b5873b7b9cf4fff96c0faada77809bd6886842657b289e99efc56cb31a",
+        "bytes": 6322,
+        "matches_archive": false
+      },
+      {
+        "source_item_id": "OUTSIDE67-PATH-020",
+        "observation_commit": "8955f45cf36727c610aac5dfd1847f992a9b82c5",
+        "path": "docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md",
+        "sha256": "afa6f1abac8b58af90aa7d6e91c16e57635fde40a28ab639f766fe54c8b404df",
+        "bytes": 5272,
+        "matches_archive": false
+      },
+      {
+        "source_item_id": "OUTSIDE67-PATH-023",
+        "observation_commit": "8955f45cf36727c610aac5dfd1847f992a9b82c5",
+        "path": "docs/governance/audits/source-rebaseline/l2-freeze-ir-correction.md",
+        "sha256": "99c1802d24313552b8755ca2843d3970cbf51d0bd8f1a79f58d8d1919e20e1f2",
+        "bytes": 10277,
+        "matches_archive": false
+      },
+      {
+        "source_item_id": "OUTSIDE67-PATH-038",
+        "observation_commit": "8955f45cf36727c610aac5dfd1847f992a9b82c5",
+        "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
+        "sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd",
+        "bytes": 9884,
+        "matches_archive": false
+      },
+      {
+        "source_item_id": "OUTSIDE67-PATH-062",
+        "observation_commit": "8955f45cf36727c610aac5dfd1847f992a9b82c5",
+        "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+        "sha256": "47ca01360a6af569dd37c09343d333d6575ec318cd92374bb3cae731f3b01d0e",
+        "bytes": 9691,
+        "matches_archive": false
+      }
+    ],
+    "contract_before": {
+      "role": "outside67 016/020/023/038/062 source pairのsource/judgement-history/failure/consumer boundary、revision差分、四製品候補、legacy evidence unknownをread-onlyで保持する",
+      "obligations": [
+        "67 path_revision_pair denominator、既済42件、候補5件、combined 47/67、残20を独立canonical tableで固定し、正式holding採否と分離する",
+        "5 source pair、25 exact line anchors、source snapshot、source diff、pre/archive/current hash・bytes・blob・pathを照合する",
+        "当初captureの038 pre/archive/current hash同一を履歴として保持し、後続captureの038を含む全5件のarchive/current content drift、062のcurrent same-path relationを意味同値・authorityへ変換しない",
+        "四製品をcandidate boundaryとして保持し、product assignment、phase authority、owner、successorを生成しない",
+        "product-unit keyset、normalized_statement、retained_meaning、unresolved_questions、diff_observation、scope canonical fieldsをvalidatorで固定する",
+        "product substitution、unknown promotion、duplicate、anchor、counterpart、denominator、nested keyset、base ancestorを本体validator経由のnegative selfcheckで検査する",
+        "legacy/current implementation、degradation、failure outcome、consumer closure、decisionをunknownのまま保持する",
+        "旧archive source／runtime／test／CI／hook／adapterを実行せず、static referenceとしてのみ読む",
+        "origin/main driftまたはstacked parent lineageの進行を検知した場合はsource選定・正式化を停止し、latest mainへrebaselineしてscope/base digestを再検証する"
+      ],
+      "connections": {
+        "consumers": [
+          "outside67 source-chain reviewer",
+          "source/judgement-history/failure/consumer boundary reviewer",
+          "four-product boundary semantic reviewer",
+          "SCF-B-0083 replacement reviewer"
+        ],
+        "dependencies": [
+          "MPR-SH-OUTSIDE67-001",
+          "旧4対象boundaryの履歴receiptと現行Conceptの機構/製品属性候補",
+          "current product entry READMEs",
+          "current shared L2 crosswalk",
+          "legacy static ledger set",
+          "Python standard library／git object read-only",
+          "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：現行HELIX-OS L1（SHA ffbafa47…）と製品責務境界（SHA 9268e357…）はPO採用。HARNESS L1と5大目標は内容採用・追記／縮約後revision未確認。これより前の「現行L1は未承認」の記述はこの状態で読み替える"
+        ],
+        "boundary": "成果物はscaffold/配下のresearch candidate。47/67会計は候補研究用で、正式holding admission、requirement identity、phase、四製品owner、implementation、degradation、acceptance、release、deploymentを確定しない。"
+      },
+      "operations": {
+        "allowed": [
+          "python3 -B scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/validate.py",
+          "python3 -B scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/selfcheck.py",
+          "python3 scaffold/tools/scfctl.py validate",
+          "python3 scaffold/tools/scfctl.py stale",
+          "python3 scaffold/tools/scfctl.py residuals",
+          "git diff --check"
+        ],
+        "forbidden": [
+          "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+          "旧sourceをcurrent implementation、oracle、fallback、pass、deployment evidenceへ昇格すること",
+          "scaffold/外への候補書き込み",
+          "正式holding採否、requirement、phase authority、product owner、successor、implementation、degradation、acceptance、release、deployment、consumer closureの生成",
+          "GitHub、Issue、PR、CI、DB、外部APIへの作用",
+          "origin/mainまたはstacked parent lineageが進んだ状態でのsilent rebase、merge、正式holding昇格",
+          "origin/mainまたはstacked parent lineageが進んだ状態でのsilent rebase、merge、正式holding昇格",
+          "origin/mainまたはstacked parent lineageが進んだ状態でのsilent rebase、merge、正式holding昇格"
+        ]
+      },
+      "verification": {
+        "evidence_kind": "scaffold",
+        "scope": [
+          "schema_interface",
+          "deterministic_behavior",
+          "source_revision_stale",
+          "negative_case",
+          "forbidden_write_scope"
+        ],
+        "oracles": [
+          "outside67 governance/crosswalk validate.py（47/67、20 residual、ancestor-only scope、unit keyset、canonical non-digest fields、exact anchors、当初038 same-hashは履歴、後続capture content drift 016/020/023/038/062、scan/selected counterpart一致、four products、unknowns）",
+          "outside67 governance/crosswalk selfcheck.py（baseline＋21 negative cases）",
+          "scaffold/tools/scfctl.py validate／stale／residuals",
+          "git diff --check"
+        ],
+        "negative_cases": [
+          "47/67 denominator or remaining tamper",
+          "reviewed/candidate overlap",
+          "product substitution",
+          "unknown status promotion",
+          "duplicate anchor",
+          "source fragment or anchor keyset tamper",
+          "current counterpart path or digest tamper",
+          "scope keyset or canonical field tamper",
+          "unit nested keyset tamper",
+          "old execution flag tamper",
+          "meta reservation or ledger count tamper",
+          "source diff status tamper",
+          "current counterpart hash relation tamper",
+          "current counterpart relation table tamper",
+          "stale scan counterpart062 capture against selected fixed revision"
+        ]
+      },
+      "replacement": {
+        "role_target": "承認済みoutside67 source semantic units、四製品責務、phase、implementation、failure／consumer contractへの個別移管（人間判断後）",
+        "formal_artifacts": [],
+        "issue": 2029,
+        "status": "pending",
+        "transfer": null,
+        "target_revisions": {},
+        "confirmation_ref": null,
+        "confirmation_digest": null
+      }
+    },
+    "restored_obligations": [
+      "67 path_revision_pair denominator、既済42件、候補5件、combined 47/67、残20を独立canonical tableで固定し、正式holding採否と分離する",
+      "5 source pair、25 exact line anchors、source snapshot、source diff、pre/archive/current hash・bytes・blob・pathを照合する",
+      "038のpre/archive/current hash同一、016/020/023/062のarchive/current content drift、062のcurrent same-path relationを意味同値・authorityへ変換しない",
+      "四製品をcandidate boundaryとして保持し、product assignment、phase authority、owner、successorを生成しない",
+      "product-unit keyset、normalized_statement、retained_meaning、unresolved_questions、diff_observation、scope canonical fieldsをvalidatorで固定する",
+      "product substitution、unknown promotion、duplicate、anchor、counterpart、denominator、nested keyset、base ancestorを本体validator経由のnegative selfcheckで検査する",
+      "legacy/current implementation、degradation、failure outcome、consumer closure、decisionをunknownのまま保持する",
+      "旧archive source／runtime／test／CI／hook／adapterを実行せず、static referenceとしてのみ読む",
+      "origin/main driftまたはstacked parent lineageの進行を検知した場合はsource選定・正式化を停止し、latest mainへrebaselineしてscope/base digestを再検証する"
+    ],
+    "binding0062": {
+      "selected_ids": [
+        "OUTSIDE67-PATH-059",
+        "OUTSIDE67-PATH-063",
+        "OUTSIDE67-PATH-064",
+        "OUTSIDE67-PATH-065",
+        "OUTSIDE67-PATH-066"
+      ],
+      "counterpart062_dependency": false,
+      "clarification": "SCF-B-0062 is a different five-source research; only SCF-B-0083 used the rejected counterpart062 snapshot",
+      "base062_observation": {
+        "base": "294bfd90bf58390798733a1437f1c91b8dc7fce8",
+        "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+        "sha256": "aca38dcee6ad2d88948bc2391f590eab3424836d1526dc507f23bf3aa187db2a",
+        "bytes": 9565
+      }
+    },
+    "all_five_counterparts_equal_original_26124da8e_record": true
+  },
+  "f2": {
+    "choice": "retain_refresh_record_capture_but_identify_not_research_input",
+    "bindings": [
+      {
+        "binding": "SCF-B-0057",
+        "research_base": "b6b4215bc169bad81d8aa73021da04bda669e9e7",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0062",
+        "research_base": "294bfd90bf58390798733a1437f1c91b8dc7fce8",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0066",
+        "research_base": "dbcc0f332704302d2f8181479552e7198f102db7",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0069",
+        "research_base": "98b5fb0f0743969835dcde7ebd00b476470a53a8",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0071",
+        "research_base": "f07602eef199048ba27200f81b78e838926cae8b",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0073",
+        "research_base": "95ba7e1813116632fd68ab3dcfc3b52ef18712b1",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0074",
+        "research_base": "b343360a104d377e545adc404a4151d70eac024e",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0076",
+        "research_base": "6396443e150d285b0b08edd43ea52a26f85dd434",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0079",
+        "research_base": "8e4a737a919caf768c9e0b916c83a5428966e58f",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0083",
+        "research_base": "3184d6131a7c8aecc21c1544ec7882c2ef94f033",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0085",
+        "research_base": "c5ed4587d8563bd473368f5eb0f3c311fefb44a6",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0087",
+        "research_base": "3cdde5dfedfc51ff7c757a2f5fb2eb11a3c6b64c",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0090",
+        "research_base": "a8f1ab1c7dce529cfb5293e1ddf4a23140877f22",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0092",
+        "research_base": "36accee66242338ded01dcc24d44148faadd3045",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0096",
+        "research_base": "16f694ae07cdb2d56e15045054c147c7a15d3275",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      },
+      {
+        "binding": "SCF-B-0121",
+        "research_base": "e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b",
+        "research_input_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+        "research_input_rows": 33,
+        "research_input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+        "refresh_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+        "refresh_record_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+        "refresh_rows": 637,
+        "refresh_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+        "refresh_is_research_input": false,
+        "inventory_refresh_before_after": {
+          "1c276ab2^": "4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+          "1c276ab2": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd"
+        }
+      }
+    ]
+  },
+  "own_artifact_pin_changes": [
+    {
+      "binding": "SCF-B-0057",
+      "path": "scaffold/research/rdp001-outside67-web-webos-l2-gap-057/README.md",
+      "before": "2dbaf65a3193dea5d85196fe70f4a73ef898cc45165ed27e5e1c7f0f938328b5",
+      "after": "cf89bc82e724409bf514d0c5995ef8ad7319b2523215684879f96516e76105d2"
+    },
+    {
+      "binding": "SCF-B-0062",
+      "path": "scaffold/research/rdp001-outside67-product-boundary-062/README.md",
+      "before": "9017fe8e8f2db6ea0b645c288c8a04507cca92d343414e709b6b2f10cb995458",
+      "after": "db3583a66a867dad26f660857485210779b5fe397435fe2d572566d8bf737ea2"
+    },
+    {
+      "binding": "SCF-B-0066",
+      "path": "scaffold/research/rdp001-outside67-boundary-evidence-066/README.md",
+      "before": "409818877c75858eac55a0cc1b6ea1e0c617ed6988fee31d49fafc2687c1dc03",
+      "after": "8a16461fe92cf31775143613ba9f79a40c05d7cc1c75f5a68e00a6be5d3cb7e9"
+    }
+  ],
+  "verification_status": "static_checks_passed_new_head_independent_review_pending",
+  "remaining": [
+    "new exact HEAD independent review",
+    "full source/consumer closure",
+    "formal successor assignment",
+    "all cluster comparison"
+  ],
+  "issue_close": false,
+  "verification": {
+    "0083_validator": "PASS 5 pairs/25 anchors/47 of 67",
+    "0083_selfcheck": "PASS baseline + 22 expected-error negative cases",
+    "binding_schema": "PASS 147 fail=0",
+    "binding_stale": "stale=0",
+    "candidate_preservation": "PASS all non-counterpart fields, 25 unit records, source-diffs/meta/ledger unchanged from b61a11d04",
+    "binding_contract_preservation": "PASS 16 bindings except 0083 restored historical observation obligation/oracles",
+    "counterpart_provenance": "5/5 equals research-base Git bytes and original26124da8e counterpart records",
+    "register_provenance": "16/16 research-base blobs equal b68f3aca/33-row72b9 capture; refresh637 separate"
+  }
+}

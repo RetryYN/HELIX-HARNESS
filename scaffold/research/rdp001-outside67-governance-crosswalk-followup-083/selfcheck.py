@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json, shutil, subprocess, sys, tempfile
 from pathlib import Path
-HERE=Path(__file__).resolve(); TARGET=HERE.parent; VALIDATOR=TARGET/'validate.py'; REL='scaffold/rdp001-outside67-governance-crosswalk-followup-083/'
+HERE=Path(__file__).resolve(); TARGET=HERE.parent; VALIDATOR=TARGET/'validate.py'; REL='scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/'
 def run(root): return subprocess.run([sys.executable,'-B',str(VALIDATOR),'--root',str(root)],capture_output=True,text=True)
 def mutate(path,fn):
  d=json.loads(path.read_text(encoding='utf8')); fn(d); path.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
@@ -35,8 +35,10 @@ def main():
   case('counterpart_path',lambda c:mutatel(c/(REL+'selected-source-items.jsonl'),0,lambda d:d['archive_counterpart'].__setitem__('path','docs/changed.md')),'E_COUNTERPART')
   case('diff_status',lambda c:mutate(c/(REL+'source-diffs.json'),lambda d:d['items'][0].__setitem__('status','same')),'E_DIFF_PROV')
   case('canonical_text',lambda c:mutate(c/(REL+'inventory.json'),lambda d:d['prohibited_inference'].__setitem__(0,'changed')),'E_CANONICAL_TEXT')
+  case('later_scan_counterpart_capture',lambda c:mutate(c/(REL+'evidence-scan.json'),lambda d:d['counterparts']['OUTSIDE67-PATH-062'].update({'sha256':'6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048','bytes':9640})),'E_SCAN_COUNTERPART_PROVENANCE')
+  case('later_counterpart_capture',lambda c:(c/'docs/governance/audits/requirements-stage/history-snapshots/outside67-062-counterpart-input0083-capture-3184d613.md').write_bytes(b'later revision substituted'), 'E_COUNTERPART_CAPTURE_BASE')
   bad=[x for x in cases if not x[1]]
   if bad:
    print('FAIL negative cases: '+','.join(x[0] for x in bad)); print('\n'.join(x[2] for x in bad)); return 1
- print('PASS outside67 follow-up selfcheck: baseline + 20 negative cases'); return 0
+ print('PASS outside67 follow-up selfcheck: baseline + 22 negative cases'); return 0
 if __name__=='__main__':sys.exit(main())

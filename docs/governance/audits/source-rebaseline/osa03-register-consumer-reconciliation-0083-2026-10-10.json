@@ -1,0 +1,388 @@
+{
+  "schema": "osa03-register-consumer-reconciliation/v1",
+  "prior_content_head": "bbb840fb8d51b28cd3917bd30d88af193be01f59",
+  "scope": [
+    {
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/product-units.jsonl",
+          "sha256": "8532b1d255fe1526a4885a6c2bdd0bd05eb7f49db5319dd069d374018b1b5837"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/ledger.json",
+          "sha256": "c362e9e38fdc3d8522290751f495f20c4b20633908bfc400c2259c9df561f135"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/selected-source-items.jsonl",
+          "sha256": "adc1b1a97e7da2a325f141e3ef0a7abc23d649ad91fae0ad72527f55329be2c6"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/source-diffs.json",
+          "sha256": "ea18abf8faaa5267c495bdd96ae261afae5333b76342f66782169438119cdf57"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/inventory.json",
+          "sha256": "f63f5c79f367df3cd8a839824929e83f095b67df19e26786a0dc9c1a74f941c3"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/meta.json",
+          "sha256": "6ca679fdd8f5be97c22736746f514baf862f615ed8b8d5fa83640054b3dfbd58"
+        }
+      ],
+      "scan_changes": [
+        {
+          "path": "/counterparts/OUTSIDE67-PATH-062/bytes",
+          "before": 9565,
+          "after": 9640
+        },
+        {
+          "path": "/counterparts/OUTSIDE67-PATH-062/sha256",
+          "before": "aca38dcee6ad2d88948bc2391f590eab3424836d1526dc507f23bf3aa187db2a",
+          "after": "6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048"
+        },
+        {
+          "path": "/current_counterpart_drift_ids",
+          "before": [
+            "OUTSIDE67-PATH-016",
+            "OUTSIDE67-PATH-020",
+            "OUTSIDE67-PATH-023",
+            "OUTSIDE67-PATH-062"
+          ],
+          "after": [
+            "OUTSIDE67-PATH-016",
+            "OUTSIDE67-PATH-020",
+            "OUTSIDE67-PATH-023",
+            "OUTSIDE67-PATH-038",
+            "OUTSIDE67-PATH-062"
+          ]
+        }
+      ],
+      "before_scan_sha256": "9b2f73526f3e4e7e7e48d0894782637d2103b43287a3d00fd694e13732005f7e",
+      "after_scan_sha256": "0d48ed4ba1a3839808a6f60e8337cf97009337b5f4f9358770866d5f480f6892",
+      "before_binding_obligations": [
+        "67 path_revision_pair denominator、既済42件、候補5件、combined 47/67、残20を独立canonical tableで固定し、正式holding採否と分離する",
+        "5 source pair、25 exact line anchors、source snapshot、source diff、pre/archive/current hash・bytes・blob・pathを照合する",
+        "038のpre/archive/current hash同一、016/020/023/062のarchive/current content drift、062のcurrent same-path relationを意味同値・authorityへ変換しない",
+        "四製品をcandidate boundaryとして保持し、product assignment、phase authority、owner、successorを生成しない",
+        "product-unit keyset、normalized_statement、retained_meaning、unresolved_questions、diff_observation、scope canonical fieldsをvalidatorで固定する",
+        "product substitution、unknown promotion、duplicate、anchor、counterpart、denominator、nested keyset、base ancestorを本体validator経由のnegative selfcheckで検査する",
+        "legacy/current implementation、degradation、failure outcome、consumer closure、decisionをunknownのまま保持する",
+        "旧archive source／runtime／test／CI／hook／adapterを実行せず、static referenceとしてのみ読む",
+        "origin/main driftまたはstacked parent lineageの進行を検知した場合はsource選定・正式化を停止し、latest mainへrebaselineしてscope/base digestを再検証する"
+      ],
+      "after_binding_obligations": [
+        "67 path_revision_pair denominator、既済42件、候補5件、combined 47/67、残20を独立canonical tableで固定し、正式holding採否と分離する",
+        "5 source pair、25 exact line anchors、source snapshot、source diff、pre/archive/current hash・bytes・blob・pathを照合する",
+        "当初captureの038 pre/archive/current hash同一を履歴として保持し、後続captureの038を含む全5件のarchive/current content drift、062のcurrent same-path relationを意味同値・authorityへ変換しない",
+        "四製品をcandidate boundaryとして保持し、product assignment、phase authority、owner、successorを生成しない",
+        "product-unit keyset、normalized_statement、retained_meaning、unresolved_questions、diff_observation、scope canonical fieldsをvalidatorで固定する",
+        "product substitution、unknown promotion、duplicate、anchor、counterpart、denominator、nested keyset、base ancestorを本体validator経由のnegative selfcheckで検査する",
+        "legacy/current implementation、degradation、failure outcome、consumer closure、decisionをunknownのまま保持する",
+        "旧archive source／runtime／test／CI／hook／adapterを実行せず、static referenceとしてのみ読む",
+        "origin/main driftまたはstacked parent lineageの進行を検知した場合はsource選定・正式化を停止し、latest mainへrebaselineしてscope/base digestを再検証する"
+      ],
+      "before_binding_verification": {
+        "evidence_kind": "scaffold",
+        "scope": [
+          "schema_interface",
+          "deterministic_behavior",
+          "source_revision_stale",
+          "negative_case",
+          "forbidden_write_scope"
+        ],
+        "oracles": [
+          "outside67 governance/crosswalk validate.py（47/67、20 residual、ancestor-only scope、unit keyset、canonical non-digest fields、exact anchors、current hash equal/archive 038、content drift 016/020/023/062、four products、unknowns）",
+          "outside67 governance/crosswalk selfcheck.py（baseline＋20 negative cases）",
+          "scaffold/tools/scfctl.py validate／stale／residuals",
+          "git diff --check"
+        ],
+        "negative_cases": [
+          "47/67 denominator or remaining tamper",
+          "reviewed/candidate overlap",
+          "product substitution",
+          "unknown status promotion",
+          "duplicate anchor",
+          "source fragment or anchor keyset tamper",
+          "current counterpart path or digest tamper",
+          "scope keyset or canonical field tamper",
+          "unit nested keyset tamper",
+          "old execution flag tamper",
+          "meta reservation or ledger count tamper",
+          "source diff status tamper",
+          "current counterpart hash relation tamper",
+          "current counterpart relation table tamper"
+        ]
+      },
+      "after_binding_verification": {
+        "evidence_kind": "scaffold",
+        "scope": [
+          "schema_interface",
+          "deterministic_behavior",
+          "source_revision_stale",
+          "negative_case",
+          "forbidden_write_scope"
+        ],
+        "oracles": [
+          "outside67 governance/crosswalk validate.py（47/67、20 residual、ancestor-only scope、unit keyset、canonical non-digest fields、exact anchors、当初038 same-hashは履歴、後続capture content drift 016/020/023/038/062、scan/selected counterpart一致、four products、unknowns）",
+          "outside67 governance/crosswalk selfcheck.py（baseline＋21 negative cases）",
+          "scaffold/tools/scfctl.py validate／stale／residuals",
+          "git diff --check"
+        ],
+        "negative_cases": [
+          "47/67 denominator or remaining tamper",
+          "reviewed/candidate overlap",
+          "product substitution",
+          "unknown status promotion",
+          "duplicate anchor",
+          "source fragment or anchor keyset tamper",
+          "current counterpart path or digest tamper",
+          "scope keyset or canonical field tamper",
+          "unit nested keyset tamper",
+          "old execution flag tamper",
+          "meta reservation or ledger count tamper",
+          "source diff status tamper",
+          "current counterpart hash relation tamper",
+          "current counterpart relation table tamper",
+          "stale scan counterpart062 capture against selected fixed revision"
+        ]
+      },
+      "other_binding_contracts_unchanged": true,
+      "counterpart_rederivation": "PASS all five exact bytes, SHA, archive relation",
+      "counterpart062_capture": {
+        "commit": "7aa2c1208757381bb4f5723b45ffc875e305f930",
+        "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+        "sha256": "6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048",
+        "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/upstream-rebaseline-execution-backlog-counterpart062-capture-7aa2c120.md",
+        "bytes": 9640,
+        "rows": 103
+      },
+      "binding_id": "SCF-B-0083",
+      "input_capture": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "input_capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "input_capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "validation": "PASS five source pairs /25 anchors /47-of-67 research accounting",
+      "negative_validation": "PASS baseline +21 (existing20 plus stale scan062 capture regression)",
+      "authority_effect": "none",
+      "historical_update_events": [
+        {
+          "commit": "26124da8e9cf96a7454163ea73aafa71e2fee38a",
+          "selected_source_sha256": "b162d30d1cd511e614f17b8793bc8b8d79fedc49c19b183f9d2440eba8e01c00",
+          "scan_sha256": "728c1aed4e7fb9e404909b79eeb68187371fc79ed65fd488f474dadf10f0b570",
+          "selected_038_062": [
+            {
+              "source_item_id": "OUTSIDE67-PATH-038",
+              "counterpart": {
+                "bytes": 5659,
+                "content_hash_matches_archive": true,
+                "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
+                "relation": "current_counterpart_path_relocation_content_hash_equal_archive_observed",
+                "sha256": "24ef4fbd9e798e43c5e454c23e2086dfc0b9d62de24bc3084bf9c58a3cc95616"
+              }
+            },
+            {
+              "source_item_id": "OUTSIDE67-PATH-062",
+              "counterpart": {
+                "bytes": 9565,
+                "content_hash_matches_archive": false,
+                "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+                "relation": "current_counterpart_same_path_and_content_drift_observed",
+                "sha256": "aca38dcee6ad2d88948bc2391f590eab3424836d1526dc507f23bf3aa187db2a"
+              }
+            }
+          ],
+          "scan_relations": {
+            "current_counterpart_drift_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-062"
+            ],
+            "current_counterpart_relocation_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-038"
+            ],
+            "current_counterpart_hash_equal_archive_ids": [
+              "OUTSIDE67-PATH-038"
+            ],
+            "current_counterpart_content_drift_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-062"
+            ]
+          }
+        },
+        {
+          "commit": "f4d9192c1742a5633c5450f10ca2bcac45a751e6",
+          "selected_source_sha256": "2bb3003e679d98fda5c2364f0e3999c623a83c82bd0b2aa59f139a415d1d7e7a",
+          "scan_sha256": "728c1aed4e7fb9e404909b79eeb68187371fc79ed65fd488f474dadf10f0b570",
+          "selected_038_062": [
+            {
+              "source_item_id": "OUTSIDE67-PATH-038",
+              "counterpart": {
+                "bytes": 9884,
+                "content_hash_matches_archive": true,
+                "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
+                "relation": "current_counterpart_path_relocation_content_hash_equal_archive_observed",
+                "sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd"
+              }
+            },
+            {
+              "source_item_id": "OUTSIDE67-PATH-062",
+              "counterpart": {
+                "bytes": 9640,
+                "content_hash_matches_archive": false,
+                "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+                "relation": "current_counterpart_same_path_and_content_drift_observed",
+                "sha256": "6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048"
+              }
+            }
+          ],
+          "scan_relations": {
+            "current_counterpart_drift_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-062"
+            ],
+            "current_counterpart_relocation_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-038"
+            ],
+            "current_counterpart_hash_equal_archive_ids": [
+              "OUTSIDE67-PATH-038"
+            ],
+            "current_counterpart_content_drift_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-062"
+            ]
+          }
+        },
+        {
+          "commit": "22e308e87e3d0602d9fc798c4fc8581556ea3ed0",
+          "selected_source_sha256": "adc1b1a97e7da2a325f141e3ef0a7abc23d649ad91fae0ad72527f55329be2c6",
+          "scan_sha256": "728c1aed4e7fb9e404909b79eeb68187371fc79ed65fd488f474dadf10f0b570",
+          "selected_038_062": [
+            {
+              "source_item_id": "OUTSIDE67-PATH-038",
+              "counterpart": {
+                "bytes": 9884,
+                "content_hash_matches_archive": false,
+                "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
+                "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+                "sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd"
+              }
+            },
+            {
+              "source_item_id": "OUTSIDE67-PATH-062",
+              "counterpart": {
+                "bytes": 9640,
+                "content_hash_matches_archive": false,
+                "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+                "relation": "current_counterpart_same_path_and_content_drift_observed",
+                "sha256": "6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048"
+              }
+            }
+          ],
+          "scan_relations": {
+            "current_counterpart_drift_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-062"
+            ],
+            "current_counterpart_relocation_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-038"
+            ],
+            "current_counterpart_hash_equal_archive_ids": [
+              "OUTSIDE67-PATH-038"
+            ],
+            "current_counterpart_content_drift_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-062"
+            ]
+          }
+        },
+        {
+          "commit": "76f00c1c043d00096c9c4d3d59df030e38d6f41a",
+          "selected_source_sha256": "adc1b1a97e7da2a325f141e3ef0a7abc23d649ad91fae0ad72527f55329be2c6",
+          "scan_sha256": "9b2f73526f3e4e7e7e48d0894782637d2103b43287a3d00fd694e13732005f7e",
+          "selected_038_062": [
+            {
+              "source_item_id": "OUTSIDE67-PATH-038",
+              "counterpart": {
+                "bytes": 9884,
+                "content_hash_matches_archive": false,
+                "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
+                "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+                "sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd"
+              }
+            },
+            {
+              "source_item_id": "OUTSIDE67-PATH-062",
+              "counterpart": {
+                "bytes": 9640,
+                "content_hash_matches_archive": false,
+                "path": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+                "relation": "current_counterpart_same_path_and_content_drift_observed",
+                "sha256": "6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048"
+              }
+            }
+          ],
+          "scan_relations": {
+            "current_counterpart_drift_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-062"
+            ],
+            "current_counterpart_relocation_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-038"
+            ],
+            "current_counterpart_hash_equal_archive_ids": [],
+            "current_counterpart_content_drift_ids": [
+              "OUTSIDE67-PATH-016",
+              "OUTSIDE67-PATH-020",
+              "OUTSIDE67-PATH-023",
+              "OUTSIDE67-PATH-038",
+              "OUTSIDE67-PATH-062"
+            ]
+          }
+        }
+      ],
+      "resolved_static_errors": [
+        "E_COUNTERPART:OUTSIDE67-PATH-038",
+        "E_CURRENT_COUNTERPART_RELATION"
+      ],
+      "unresolved": "当初baseと後続input captureの時間的整合、研究全体の意味/source/consumer closure、正式successorは未完。"
+    }
+  ],
+  "binding_validation": {
+    "bindings": 147,
+    "fail": 0
+  },
+  "remaining_stale_bindings": [
+    "SCF-B-0040",
+    "SCF-B-0121"
+  ],
+  "merge_admission": "not_established_draft",
+  "limits": [
+    "静的観測の不整合を訂正。source意味・採否・版・authorityは変更しない。",
+    "先行0096 receiptの未解消findingは当時の証拠として変更しない。",
+    "全source/consumer closure・正式successor・holding解除・Issue close・L3再開・全要求完了は生成しない。"
+  ]
+}

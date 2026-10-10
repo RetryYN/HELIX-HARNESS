@@ -1,0 +1,766 @@
+{
+  "schema": "osa03-register-consumer-reconciliation/v1",
+  "prior_content_head": "a186042ead1bc7322c0d0d5aa7b6596c3c6ac6de",
+  "scope": [
+    {
+      "binding_id": "SCF-B-0062",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 product-boundary validator: 5 documents / 26 exact source units / 67 denominator / static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/evidence-scan.json",
+          "sha256": "d31ef004a446a49bf7fb9806f50c3795e2a9d12d5c2749ac212de72c812bf5cd"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/product-units.jsonl",
+          "sha256": "38e92057ec93b2e06ce2c74d531712d6c963f363b1fdba2c65602d509897abb2"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/selected-source-items.jsonl",
+          "sha256": "6d30b1585f26655731957cd51139f97ddf893412ae97ecbb24c3584a41b9c13c"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/source-diffs.json",
+          "sha256": "9c8de3f37abc023cfcff46ea92a8f4a15694c35e1a669c8a42430be7a629e1ef"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/inventory.json",
+          "sha256": "56ab67889407d68ea56f69534d00fe9277fb6b554f88404a9bb20319b3284b33"
+        }
+      ],
+      "changed_artifact_pins": [
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/README.md",
+          "old_sha256": "c67e4703aff69081fa2976b5faf18785506d775d23c2f004d03b6c4d3523ff5c",
+          "new_sha256": "9017fe8e8f2db6ea0b645c288c8a04507cca92d343414e709b6b2f10cb995458"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/validate.py",
+          "old_sha256": "2f3900f8e7f9f60d523ebce2da7a02d413240bbf23585c91e9ade51afc09cf44",
+          "new_sha256": "e149b3bf73e98088ae85d936edf8a99fc874d1056a67fe65690d336e34e3e8c0"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/selfcheck.py",
+          "old_sha256": "1d89cdd0c837a39a371f94d855a5c141e2f2fad1efae26b68be66560212fe52d",
+          "new_sha256": "1e735167e9456d14a4f4f80a9ba853c7e84143a5771c94ced7f99a9b87008ae3"
+        }
+      ],
+      "generator_static_input_check": "not applicable",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 23,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/selfcheck.py",
+          "before_sha256": "1d89cdd0c837a39a371f94d855a5c141e2f2fad1efae26b68be66560212fe52d",
+          "after_sha256": "1e735167e9456d14a4f4f80a9ba853c7e84143a5771c94ced7f99a9b87008ae3"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/validate.py",
+          "before_sha256": "2f3900f8e7f9f60d523ebce2da7a02d413240bbf23585c91e9ade51afc09cf44",
+          "after_sha256": "e149b3bf73e98088ae85d936edf8a99fc874d1056a67fe65690d336e34e3e8c0"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-boundary-062/README.md",
+          "before_sha256": "c67e4703aff69081fa2976b5faf18785506d775d23c2f004d03b6c4d3523ff5c",
+          "after_sha256": "9017fe8e8f2db6ea0b645c288c8a04507cca92d343414e709b6b2f10cb995458"
+        }
+      ]
+    },
+    {
+      "binding_id": "SCF-B-0071",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 follow-up validator: 5 source pairs / 25 exact anchors / provisional 22-of-67 static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-071/evidence-scan.json",
+          "sha256": "9f89e1b61f5741ef0a8eddfe3544ef2e7fb69bb16d616edbad471ca2a8e583f6"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-071/product-units.jsonl",
+          "sha256": "b4aae786c9c47204dfc4ae7049ea805668ac5097758892c7b343d95b77122bc1"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-071/ledger.json",
+          "sha256": "93aba804ee9c83e2a37055d916b50368fef0b293c3d5a9f3581bf0bd03aeba88"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-071/selected-source-items.jsonl",
+          "sha256": "c14aaa2924f2b0328b2c01d1c9e04ec556222164e8d6b0be34bf5b680f51d659"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-071/source-diffs.json",
+          "sha256": "171bcedee48a65bd0126a1a4eb3e7236c568a7d0b46c246a0739c510a629b96f"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-071/inventory.json",
+          "sha256": "889e52a2a76c0bf89b7029ac7214db62c1dc266b6559742790d11aae6ee5a349"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-071/meta.json",
+          "sha256": "a5c79cd3b226293e321461f004e66b61654d845b78ef8ce730222b21f79e6456"
+        }
+      ],
+      "changed_artifact_pins": [],
+      "generator_static_input_check": "not applicable",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 18,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-071/selfcheck.py",
+          "before_sha256": "d06f9d68c48d333a4d7a93237dc925cdb8ab2a650950b4557ac04a1ab856b914",
+          "after_sha256": "9d23a55e24497360065f853d90be38a841f5a6ff37c1fcce97611f21c6b021c7"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-071/validate.py",
+          "before_sha256": "fd90c58c0d83fc877ab92d372125592c3f196e74947eaf23828ff5a99e54de5e",
+          "after_sha256": "2039b7a52ab7d293de943a99eb89c760512a43570717a6f5c4b2842147c7971c"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-071/README.md",
+          "before_sha256": "4c0569558d5959f9620bd0c5e34773c737e1dd81517e96eb6a5df6844368a567",
+          "after_sha256": "54463215f729ed3a5397674e48ab1a5d71b9ada5ea233500166d7c2ee123e8cf"
+        }
+      ]
+    },
+    {
+      "binding_id": "SCF-B-0074",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 follow-up validator: 5 source pairs / 25 exact anchors / provisional 32-of-67 static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-074/evidence-scan.json",
+          "sha256": "07864f705a7a6843db092bf85dc2e7aca5173671f7306704ba4bfb99119c22c5"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-074/product-units.jsonl",
+          "sha256": "fd9529a523a8feb63e5eeaff8ca865345b170f3902dfd552093cd9d37124ef31"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-074/ledger.json",
+          "sha256": "e940b506cef5d0a4c6d22d1c9dad700bfa614a0bd08f8f007fd1ba17a4188882"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-074/selected-source-items.jsonl",
+          "sha256": "a8870cd6deeebcf61047b25b2353ff8ab0eea626bde0b43f1a65bb0195a2a694"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-074/source-diffs.json",
+          "sha256": "05b3aceee88d019ca694d15f96a25622e674ea33d16f6f73ba7d7d3a12773e68"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-074/inventory.json",
+          "sha256": "fc63bb4da3a392b158dc629812db9afad517456e228272a98e58599c5a451040"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-074/meta.json",
+          "sha256": "150280cfb598a6fcb514a6790bb23188ff08951e8163aabe5f02927a782c9494"
+        }
+      ],
+      "changed_artifact_pins": [],
+      "generator_static_input_check": "not applicable",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 18,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-074/selfcheck.py",
+          "before_sha256": "d90fdead00203ee6bf8218c7ebcf1220ee735d64c45b8cb3ea487e28b24bea29",
+          "after_sha256": "ba596bb71a993ea9530c7aca7214914fba7f21c7416f4be95a5f67d64ca3ff12"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-074/validate.py",
+          "before_sha256": "0a8c674df89098ebcffb1b64871a1d09d126956e6144bf0d8bd4b4d041ca13de",
+          "after_sha256": "a56584e2d49a9a8c16ce105b1808510fd51674ec18dfb5701a268a3e48b43eb3"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-074/README.md",
+          "before_sha256": "5464e10caddd4412190b528c13b4e408145980e10a51fd74795c08c2bcf55153",
+          "after_sha256": "d7267f51d826e677da5fb7246a1d0eb246dbebc565bccb128bc618a199fa5009"
+        }
+      ]
+    },
+    {
+      "binding_id": "SCF-B-0076",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 follow-up validator: 5 source pairs / 25 exact anchors / provisional 37-of-67 static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/evidence-scan.json",
+          "sha256": "50033218a08cb6710e3fac01b680d23f9475e7f7898277d965e3928f965b777a"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/product-units.jsonl",
+          "sha256": "3a983273e8831b5316ffd60ee7c8a73e3d9f0bf71ae021a7d856a52f94d8d3e1"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/ledger.json",
+          "sha256": "af863ab2bfadd1f7f187e458e667f3a22b44b5d01e764456f6bf11a98ba87fa4"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/selected-source-items.jsonl",
+          "sha256": "904385df25b934292ca94b32f9bb561c309b2051b43754ad6e47488abf86b7db"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/source-diffs.json",
+          "sha256": "d636b720a77d3033fd3810eb823d1cabf6192d4fe6104a7dc82e53ce64f5a87f"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/inventory.json",
+          "sha256": "cd9ded6c1a4ce0f060bbe22cde5aaca5fdafcc3176aca318f2e0d85d6cad4bc1"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/meta.json",
+          "sha256": "ac708d4827378261917d005ffd788c36dc6e4f97d8cfd05d1fbc706dba745fef"
+        }
+      ],
+      "changed_artifact_pins": [],
+      "generator_static_input_check": "not applicable",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 18,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/selfcheck.py",
+          "before_sha256": "20b2a916f6c9c3f01582c5a09a876b87039102737cc061d6b602517e99a88d72",
+          "after_sha256": "e94c27ec5ba8af7900fab3ca78a2851d4f4a10b7e74fb1a797ccf85184ac5fa2"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/validate.py",
+          "before_sha256": "ff2edf137f2cd363cf118c7fcdc122cca86d42f6af73efcff8fc01c62507374b",
+          "after_sha256": "d80aaf970c4db3e85928963d534d1b01b24bbbb74bd1b821824842040a5ee2ff"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/README.md",
+          "before_sha256": "8c6109235c5e2c83cc037e822d1f8440107ab36398998253d2a74e38e3aff341",
+          "after_sha256": "8e198d347b839fad7737e76b0613b16c7c41c348d78b1283adb8a11706952488"
+        }
+      ]
+    },
+    {
+      "binding_id": "SCF-B-0069",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 follow-up validator: 5 source pairs / 25 exact anchors / provisional 17-of-67 static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-followup-069/evidence-scan.json",
+          "sha256": "610d30d9e0ef64ac421e857707ea5b05c2532e54cf25aa268d1c3d0b72feb74b"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-followup-069/product-units.jsonl",
+          "sha256": "ad02e2e74fcc777af58df66b9d3543ac0b72c02c5d39434c531f8c3b007defc0"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-followup-069/ledger.json",
+          "sha256": "da7db1633350ff3cce1de8b63b9f37c4b894194beb59dac797b5538e5f2ed1f1"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-followup-069/selected-source-items.jsonl",
+          "sha256": "2102344ef540f609dfedb4189af30cacf503bca5686b3116f8bf8f4baf957bfd"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-followup-069/source-diffs.json",
+          "sha256": "3f5dc3da9b74a0ac2d6ff80ac60fa8e02d51d347d8a00a141ac0c623b9cc1be9"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-followup-069/inventory.json",
+          "sha256": "9eae3f145b7499768eabb78b24ccf6e6ff2b200d44d1e4ea30ac3fae43a519a0"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-followup-069/meta.json",
+          "sha256": "508be648bb8112e2b1b17009b133b72fd952cbcc9d876253237a88b4d1430953"
+        }
+      ],
+      "changed_artifact_pins": [],
+      "generator_static_input_check": "not applicable",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 15,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-followup-069/selfcheck.py",
+          "before_sha256": "e83d61ea5ec7d3c56f483b19a6862a4a1495d4111f7f7f2b3b96cecba89d80d5",
+          "after_sha256": "8c05d54b1657658f8e5ffb48bb41f481f90947661db5694b5625d07b3625fed4"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-followup-069/validate.py",
+          "before_sha256": "53fe70532fa72565f70815ac62678990382a685cb1282e391b603cdeac513e27",
+          "after_sha256": "bd04ab118b718f5ab3702d65b43178d08557ffb286089091c443eee4c4e5e850"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-followup-069/README.md",
+          "before_sha256": "a29529038e74c3b2d775cd775c37670982360973d9c0c3c80953572492b03b1f",
+          "after_sha256": "87d53ddb695e54feacbe10771f7fefc2951ea04d142c9a60837aca272097b819"
+        }
+      ]
+    },
+    {
+      "binding_id": "SCF-B-0073",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 follow-up validator: 5 source pairs / 25 exact anchors / provisional 27-of-67 static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-073/evidence-scan.json",
+          "sha256": "046144686805a5a11fff09795b7d0894fbd8fbe5fb1585409a06c612c8e41eb5"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-073/product-units.jsonl",
+          "sha256": "f3e68ab86fd74a06836ff9f51fecf022d5f162dcc8af963bdfeb10392a2a7b5e"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-073/ledger.json",
+          "sha256": "57adfe07c50203b03364c48d599a1d1b6ecb2c28a502390931ed31d5780bb841"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-073/selected-source-items.jsonl",
+          "sha256": "c05f2ccc2072b28cc99fcad4e605d2848501ac8ef722f0fa540e5a97cdb0f923"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-073/source-diffs.json",
+          "sha256": "0e1073721bbf56309ead0c97fafccfa2175c6abc43361f3828fdceba1660d97b"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-073/inventory.json",
+          "sha256": "9121c11ba47a227b37774365936173ad10a658e5c33a10e661508d953b4b5e86"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-073/meta.json",
+          "sha256": "ac8ebcd6386fcc123eb6f1d2e9949c2fbfac1877ce1f1ee2b9758f9b08bb613f"
+        }
+      ],
+      "changed_artifact_pins": [],
+      "generator_static_input_check": "not applicable",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 18,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-073/selfcheck.py",
+          "before_sha256": "922ac1475a1ebe01562695673d2a558655d878a1a368cca680b7a5b5d1d47a6d",
+          "after_sha256": "f90aa9c06869f660dc9e0dcb5bf86e721a8b49a87e3bc79451b04b39530f9aa2"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-073/validate.py",
+          "before_sha256": "bee59547e250da48924152257dd22b94ef595edcacd3f7d16cc5bcd03f3a8f20",
+          "after_sha256": "0e49c5e88d2305da7a9e9c0e83e0c4e2cb3aeca676bdcc292ac572fd270da164"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-boundary-followup-073/README.md",
+          "before_sha256": "536e7d97a5ba85c0a736c1166404d32fa2c439676aa09c9eef4ef452d2fdbaab",
+          "after_sha256": "62e3bf3ddcb270a72cd7c43f472c08ea2c00e5d3b552d2b6c86fe33c6c17daa5"
+        }
+      ]
+    },
+    {
+      "binding_id": "SCF-B-0079",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 follow-up validator: 5 source pairs / 25 exact anchors / provisional 42-of-67 static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/evidence-scan.json",
+          "sha256": "f50019f8ef1a7a35807e87b930b825238afeec7bf3d81d59ab19767b20607abb"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/product-units.jsonl",
+          "sha256": "e998334602b10c7d194279c37cc63bc5ba497729e850b65a9d74cb76af08534d"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/ledger.json",
+          "sha256": "45d90821a335832c6468a6361a66b8d788bbac9a2f41466b170b3a0299e7f649"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/selected-source-items.jsonl",
+          "sha256": "72ed2f8bdf8f32c790b3994977cd1502540d70faf9a34b621419f8aff4670f28"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/source-diffs.json",
+          "sha256": "750a116b3412b40d31673f6708eb02059e0579c8e0e3de18b18bb187701dd55b"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/inventory.json",
+          "sha256": "62cae4b7cfd566023f200e4a056d28266b729d4af377c6de5366f265645ae953"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/meta.json",
+          "sha256": "7aa4a227cb82d3c3e3ed4732e3562d5352219202cff4e87aa1f611a9467dadf9"
+        }
+      ],
+      "changed_artifact_pins": [],
+      "generator_static_input_check": "not applicable",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 20,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/selfcheck.py",
+          "before_sha256": "e656c8245779546860729893cdfefb0b4f18164e1545f5466bdb7e7f456650e2",
+          "after_sha256": "0facce6e7c460544bcf3c4ebc94b9b19580f69de7761668a7796f10d4ab27abb"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/validate.py",
+          "before_sha256": "e5cdba1d278b502747ff155340f4fe89447f86f7e85f822b3ee2bdd083e089f7",
+          "after_sha256": "b01a4db57bdbeb22476c62482c87816895c6b29d2e8f38faea66328130e8f13b"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/README.md",
+          "before_sha256": "9ef3f9df9a4448fcc5f4be5e89b88857cef56228ac10437525120b8d5f85f3fb",
+          "after_sha256": "b768818caaf82b052b07ff5020c0f240089a418057aa209ab9d2567659cc694f"
+        }
+      ]
+    },
+    {
+      "binding_id": "SCF-B-0085",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 follow-up validator: 5 source pairs / 25 exact anchors / provisional 52-of-67 static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/evidence-scan.json",
+          "sha256": "8cd19a82c2b1e3518494c3fe6a0351b159c70867fc4f997ed91ec3db419a213f"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/product-units.jsonl",
+          "sha256": "f258c78cdbdf6d47f9e984ce76fd8f622f80a51e5e7215772204b1150fa1bbd5"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/ledger.json",
+          "sha256": "c2879b7c45e799aec9a1556102f2fa74990b2b29199e0153ea4297a639556c1e"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/selected-source-items.jsonl",
+          "sha256": "b6980f3aeefb98c5809879538227369c8701a8be5692cb73783b6beeeea51920"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/source-diffs.json",
+          "sha256": "c3f402b309fbac860bd4ea1dc33fd42eaf2a5951dbca7f1bd5a2d7a43ad10c48"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/inventory.json",
+          "sha256": "1b62d8bd8224cca3fa2fd8fff3fa9eeed00653f5a0608c59a3f8cd71bc16c307"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/meta.json",
+          "sha256": "5e98b9372825ac02a8eda3ac3e9cb3b6d49434585b8d4153db96f742e203eddd"
+        }
+      ],
+      "changed_artifact_pins": [],
+      "generator_static_input_check": "not applicable",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 20,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/selfcheck.py",
+          "before_sha256": "85de2e4b87023a8e9b472ad189a103c42c9195202ce9a85590f38786a0631713",
+          "after_sha256": "4b367a7287de599bc93da832ce655dba2a3e6b68ae68153680c127d95f80eaf1"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/validate.py",
+          "before_sha256": "3e8fcd61acd9c8bb35458a0245951ddcf4bf532fd3586de5d811bad6bc5046cc",
+          "after_sha256": "e7c126950be3f4559fd12e2e3f004b3418d735daec38f0470b99d59ad3ad296a"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/README.md",
+          "before_sha256": "0002faa26b4737698829001d1fee1ce67569b4dd7e6b0c7156c88048a84c09f6",
+          "after_sha256": "adc58cb4e16d282255e4637aa37c579be250574c1741f1ad15c0a326892f8661"
+        }
+      ]
+    },
+    {
+      "binding_id": "SCF-B-0087",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 concept/freeze follow-up validator: 5 source pairs / 25 exact anchors / provisional 57-of-67 static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/evidence-scan.json",
+          "sha256": "d4e2523cc5a4d57b1a1d95335fc89318a5de7b564a695090b28122b4793f44e1"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/product-units.jsonl",
+          "sha256": "4b0a814aea39f753e06f7b1c8a1adfa42be7b00614ac1f95591be6d6091c67be"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/ledger.json",
+          "sha256": "5a96a8995be10e80571ef709c9c803f32dd1c98fdfa9476a8b4d5a2eb954293e"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/selected-source-items.jsonl",
+          "sha256": "bb956d95a2f4b8dcb8003feac2619db57b925220f61c7986825b172f4a4a1b91"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/source-diffs.json",
+          "sha256": "6f2ace78a06b0ff92148f75ffb34586b0410e506166356306326f4827d8687ac"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/inventory.json",
+          "sha256": "c43f4b9fefa89ee99c7b301cb1def1196746acdb7571af8d05a1784131bfa30a"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/meta.json",
+          "sha256": "aab89d37d329318ca3cedf72b26ec34604915b46fd30fd391d369961985d6263"
+        }
+      ],
+      "changed_artifact_pins": [],
+      "generator_static_input_check": "PASS; full regeneration not executed",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 24,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/selfcheck.py",
+          "before_sha256": "34c7c6dc2f8d9372094e4917f4d5444762c03c738399bd26b77aaf30cd2448f7",
+          "after_sha256": "f8f085bab122513a2f46a2ac31a8a7ef83eb67e70f440a21a51343b9cd65aec5"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/validate.py",
+          "before_sha256": "dc77e4ba4da912f4a165c644d0a6e44ff78c2be3a1c160b78a09262649661a0d",
+          "after_sha256": "9ad432eba1de2cb61f3b98ad52b4d340397b78bb4e5cb8e412281097e76393b9"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/generate.py",
+          "before_sha256": "2be3b6e5a5f7110ee7b0f5af3b2a858ae8e17647ba59d2a7509658a53eee60cc",
+          "after_sha256": "b0487d3f82a2056aa03580221d627e28f184479556675488faecb9b957679ca8"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/README.md",
+          "before_sha256": "7e03a695119e2ad440ff5855481638662669ae8c60b392fb2fd32ff5b85095bf",
+          "after_sha256": "8e0d3f5b3770a39d240df36d15eb2198c6635323ae57360550ca32c8a643b689"
+        }
+      ]
+    },
+    {
+      "binding_id": "SCF-B-0090",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 residual follow-up validator: 5 source pairs / 25 exact anchors / provisional 62-of-67 static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/evidence-scan.json",
+          "sha256": "4549b887726cba9ae150f920270651c41ed588947e4c37e9ae61c02cc29fdc78"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/product-units.jsonl",
+          "sha256": "f225e85e95ff21c24d45614490e23bb54bfa0c2dc0a12738cf702a142f51bdb2"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/ledger.json",
+          "sha256": "b7592a90d16bb107e98e544ce995d265382a38587a9e29c36029d481c81aab93"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/selected-source-items.jsonl",
+          "sha256": "a80058ff30e9481c3f838c08edfdc46b57ca36c55902ff6e67f742e29a997eee"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/source-diffs.json",
+          "sha256": "88e74f30f3be111f1111c21db5cbd514f917bd245845fe26557c535f086c6d4f"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/inventory.json",
+          "sha256": "f07729be7576ff4bfafb8a932aa232095ff629c48b21f4350c37ad45b4d02e26"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/meta.json",
+          "sha256": "26496bc718457daccb7db270b411ff0490c8f358271313448aa6ab651c6ab388"
+        }
+      ],
+      "changed_artifact_pins": [],
+      "generator_static_input_check": "PASS; full regeneration not executed",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 25,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/selfcheck.py",
+          "before_sha256": "662f70fbe69f326c064b8330aa7b8e9287f9b31a0ad8d7b9cee52ae116e30083",
+          "after_sha256": "9a14b4e5a8e413c5f0f13782310d6612940a45473008ae679afde5fbf0d33b0d"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/validate.py",
+          "before_sha256": "94c91da47010950b5cb5f15b89da6e34011df65d12c92f78f4c5df1911aa0aa1",
+          "after_sha256": "83aa773ce1bc18648f34cb0f2e28e5ffa6412feb235fbad76820831319d6d913"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/generate.py",
+          "before_sha256": "6a2d15b94ead102a2ad7ee58b13a64decb9348ca2192337651ca5fd6c5474b2a",
+          "after_sha256": "93649d9c68908cb04c2d5fd02c07bd741f6282dc62fca88112912b3230132dd2"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-residual-followup-090/README.md",
+          "before_sha256": "b192efc6f12dcf364af99deb273e5aa6f7730cc32d0ee819cb3f8b010246d8fa",
+          "after_sha256": "a0170c329a5ecfc2876545565d3d0e63452a50c60ffb795e3fee889a4d412f33"
+        }
+      ]
+    },
+    {
+      "binding_id": "SCF-B-0092",
+      "validation": "PASS",
+      "validation_output": "PASS outside67 final follow-up validator: 5 source pairs / 25 exact anchors / provisional 67-of-67 static-only",
+      "candidate_files_unchanged": [
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/evidence-scan.json",
+          "sha256": "5318a70fd715cbfde4cd4583939f28c2c6eb06001fc1ee9e1c287a131d87867e"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/product-units.jsonl",
+          "sha256": "7cec936879ffbcac438c7d49e4608c40775e1d6331d92ea7ad6e7d6dd0dae63a"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/ledger.json",
+          "sha256": "077afc15b32da4e44c98083fac25faa86cfd882f2b928dbe9ccd5ea5e7fe62da"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/selected-source-items.jsonl",
+          "sha256": "dd8b6a55c11383730c9876b278d085bbec31d74927b2aae0b471fefce9077c5b"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/source-diffs.json",
+          "sha256": "99fb56df6c0774be2eb3721e015dbe4bddadf9ab140f921b76f363251d59acbd"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/inventory.json",
+          "sha256": "83e21b1eb6a8a467d380f9b5e8ec806e75b532104c2e344ea419a678b67aff2b"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/meta.json",
+          "sha256": "784d283df95710cdced8f7c924710867324eac5c1da335acb9d3682054f8f6a4"
+        }
+      ],
+      "changed_artifact_pins": [],
+      "generator_static_input_check": "PASS; full regeneration not executed",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+      "capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+      "capture_sha256": "79c1e5a609ee8d0b59f505ac6a480036b28fe6eb8de1e2642cfd818c9a70fbcd",
+      "capture_rows": 637,
+      "negative_cases": 25,
+      "negative_validation": "PASS baseline and all existing negative cases",
+      "binding_contracts_unchanged": true,
+      "authority_effect": "none",
+      "unresolved": "当初base・以前のholding数metadataと後続input更新の時間的照合、全source/consumer closure・正式successorは未完。",
+      "changed_files": [
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/selfcheck.py",
+          "before_sha256": "4670b4982dd1dce7e420f31a271ed989acd7bdd44c8fbdefe479826514646e79",
+          "after_sha256": "bd079456cf1c4e372382e6b1add0fbff4033a39d9f30ca06228afa08e667dafb"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/validate.py",
+          "before_sha256": "b3f8d0ed310be9126869198ab7c60b3d1f611ab48770b5384c44a243265a8738",
+          "after_sha256": "8dfa967106ae8fadf3a41a9edc7972470f3427dc901668213d864f5c7dedd569"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/generate.py",
+          "before_sha256": "3a88009daeab0867537ec0050bdd9a5a66eb70b1d5ac637acd3a7a735d56bfa7",
+          "after_sha256": "7412b94b085b9a4780d6ffa2fce0391c3a7db2eaeac84279434187a9e8908952"
+        },
+        {
+          "path": "scaffold/research/rdp001-outside67-final-followup-092/README.md",
+          "before_sha256": "6f6ab170d1e1fa4d0f0fc7304036fc06411c20eb8cd472f540a7dac4a62fb3fe",
+          "after_sha256": "266f1cad61704651e59657a8f0e4bbee753c99d82fea8ff374d924fadee63145"
+        }
+      ]
+    }
+  ],
+  "counterpart_captures": [
+    {
+      "source_item_id": "OUTSIDE67-PATH-052",
+      "commit": "3969a2f8b80c8d1659718dd6fa63bd3958a51a06",
+      "path": "docs/governance/candidates/ai-readable-authority-requirements.md",
+      "sha256": "5b81d1498af275eba03ea20bbe8893a1d4180078af7da3cf1800a559b907dcc9",
+      "bytes": 7494,
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/ai-readable-authority-requirements-counterpart052-capture-3969a2f8.md"
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-056",
+      "commit": "469870d37b7a0dfaa406a30e156588d9f7e1e379",
+      "path": "docs/governance/candidates/next-generation-ci-requirements.md",
+      "sha256": "5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba",
+      "bytes": 7905,
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/next-generation-ci-requirements-counterpart056-capture-469870d3.md"
+    },
+    {
+      "commit": "2352cf9ccfd5b73a97967880cb71d8fb8c625472",
+      "path": "docs/governance/upstream-authority-register-2026-09-14.md",
+      "sha256": "49a2b6a83bd68c212fbc05d6ceefb812f6d4d0cd7da0def853bc9ff8f864b3bb",
+      "bytes": 45577,
+      "rows": 146,
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/upstream-authority-register-counterpart060-capture-2352cf9c.md",
+      "source_item_id": "OUTSIDE67-PATH-060"
+    }
+  ],
+  "negative_case_total": 224,
+  "binding_validation": {
+    "bindings": 147,
+    "fail": 0
+  },
+  "remaining_stale_bindings": [
+    "SCF-B-0040",
+    "SCF-B-0083",
+    "SCF-B-0096",
+    "SCF-B-0121"
+  ],
+  "merge_admission": "not_established_draft",
+  "limits": [
+    "生成スクリプト3件は固定register読取先の2箇所の置換とsyntaxを確認。全再生成は実行していない。",
+    "historical counterpartは現在の要求・承認として復活させない。",
+    "候補採否・holding解除・L3再開・Issue close・全要求完了は生成しない。"
+  ]
+}

@@ -40,6 +40,9 @@ def loadl(p,errs,code):
  try:return [json.loads(x) for x in p.read_text(encoding='utf8').splitlines()]
  except Exception as e:errs.append(f'{code}:{e}');return []
 def blob(root,c,p):return subprocess.check_output(['git','-C',str(root),'show',f'{c}:{p}'])
+# Read the exact historical register bytes while retaining its original logical path.
+REGISTER_CAPTURE="docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl"
+
 def validate(root):
  root=Path(root).resolve(); out=root/'scaffold/research/rdp001-outside67-boundary-evidence-066'; e=[]; inv=load(out/'inventory.json',e,'E_INV')
  if not isinstance(inv,dict):return e
@@ -52,7 +55,7 @@ def validate(root):
  for k,v in SCOPE_CANONICAL.items():
   if sc.get(k)!=v:e.append(f'E_SCOPE_CANONICAL:{k}')
  if sc.get('holding_path')!=HOLDING or sc.get('management_register_path')!=REGISTER:e.append('E_SCOPE_PATH')
- if sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER):e.append('E_SCOPE_DIGEST')
+ if sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER_CAPTURE):e.append('E_SCOPE_DIGEST')
  hrows=loadl(root/HOLDING,e,'E_HOLDING'); by={x.get('source_item_id'):x for x in hrows}
  if len(hrows)!=67 or set(inv.get('source_holding',{}).get('selected_item_ids',[]))!=set(IDS):e.append('E_DENOMINATOR_SELECTION')
  sh=inv.get('source_holding',{})

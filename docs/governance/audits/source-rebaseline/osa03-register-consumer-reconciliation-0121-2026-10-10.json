@@ -1,0 +1,91 @@
+{
+  "schema": "osa03-register-consumer-reconciliation/v1",
+  "prior_content_head": "8e2766fe986abd1ec1f3aa12c0aed822523a6062",
+  "binding_id": "SCF-B-0121",
+  "input_register_snapshot": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl",
+  "input_register_capture_commit": "1c276ab26dc50ca5d0f2d8c25441f17c303b9919",
+  "historical_source_captures": [
+    {
+      "commit": "e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b",
+      "path": "docs/concept/product-boundary.md",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/product-boundary-input0121-capture-e80cb07c.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "bytes": 13307,
+      "rows": 106
+    },
+    {
+      "commit": "e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b",
+      "path": "docs/governance/new-generation-start-here.md",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/new-generation-entry-input0121-capture-e80cb07c.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "bytes": 7759,
+      "rows": 83
+    },
+    {
+      "commit": "c5d3e8a73ee932bab3af140dfbe39dbe15c4fad1",
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/web-l1-approved-input0121-capture-c5d3e8a7.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "bytes": 3559,
+      "rows": 56
+    },
+    {
+      "commit": "c5d3e8a73ee932bab3af140dfbe39dbe15c4fad1",
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/webos-l1-approved-input0121-capture-c5d3e8a7.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "bytes": 3018,
+      "rows": 50
+    }
+  ],
+  "candidate_files_unchanged": [
+    {
+      "path": "scaffold/research/rdp001-outside67-web-webos-l1-anchor-0121/context-records.jsonl",
+      "sha256": "fbdb477a693466f586083e893f5e0c9df4ff3eca1079c1992ae3c34ee638a228"
+    },
+    {
+      "path": "scaffold/research/rdp001-outside67-web-webos-l1-anchor-0121/candidate-units.jsonl",
+      "sha256": "0c00dfa823ac0302e3ab496f9b5c264c18d8239a679ff99bb9c8515744bb64fe"
+    },
+    {
+      "path": "scaffold/research/rdp001-outside67-web-webos-l1-anchor-0121/source-items.jsonl",
+      "sha256": "812f57696fa6b9d6a17f2caaa3a27bccfc9a802e1056a2bae712dac5984e658a"
+    },
+    {
+      "path": "scaffold/research/rdp001-outside67-web-webos-l1-anchor-0121/source-diffs.json",
+      "sha256": "9e03d43f499c7dad6c1ab63bb5622098a21e883de7e51a573e336c89ce796b19"
+    },
+    {
+      "path": "scaffold/research/rdp001-outside67-web-webos-l1-anchor-0121/inventory.json",
+      "sha256": "9b60bbe17f925ce5a7b897323ebc74bf39970fe372d4aa9b1ce36fbb56db0cf0"
+    }
+  ],
+  "binding_contracts_unchanged": true,
+  "validation": "PASS four source snapshots, 11 L1 anchor candidates, 2 README contexts",
+  "negative_validation": "PASS all existing16; expected error codes",
+  "isolated_generation": {
+    "scope": "isolated static generation of machine records and source snapshots; generated prose not adopted",
+    "unchanged_files": [
+      "context-records.jsonl",
+      "candidate-units.jsonl",
+      "source-items.jsonl",
+      "source-diffs.json",
+      "inventory.json",
+      "source-snapshots/OUTSIDE67-PATH-012/archive.md",
+      "source-snapshots/OUTSIDE67-PATH-012/pre-isolation.md",
+      "source-snapshots/OUTSIDE67-PATH-009/archive.md",
+      "source-snapshots/OUTSIDE67-PATH-009/pre-isolation.md",
+      "source-snapshots/OUTSIDE67-PATH-010/archive.md",
+      "source-snapshots/OUTSIDE67-PATH-010/pre-isolation.md",
+      "source-snapshots/OUTSIDE67-PATH-007/archive.md",
+      "source-snapshots/OUTSIDE67-PATH-007/pre-isolation.md"
+    ]
+  },
+  "correction_basis": "inventoryと11候補は当初の承認対象SHAを保持していたが、validatorの独立定数だけが現行context SHAへ変わっていた。実際の研究入力を旧exact bytesへ結び、現行context Bindingpinは別に保持する。",
+  "authority_effect": "none",
+  "unresolved": "当初BASEと後続register入力更新の時間的整合、全意味/source/consumer closure、正式successorは未完。現行Web/WEB-OSはVision材料であり旧承認を継承しない。",
+  "remaining_stale_bindings": [
+    "SCF-B-0040"
+  ],
+  "merge_admission": "not_established_draft"
+}

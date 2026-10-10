@@ -20,6 +20,7 @@ PRE = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCH = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HOLDING = ROOT / "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl"
 REGISTER = ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
+REGISTER_CAPTURE = ROOT / "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl"
 INV = HERE / "inventory.json"
 SELECTED = HERE / "selected-source-items.jsonl"
 ATOMS = HERE / "semantic-atoms.jsonl"
@@ -121,7 +122,7 @@ def validate_inventory(inv: dict) -> None:
     head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     if subprocess.run(["git", "merge-base", "--is-ancestor", BASE, head], cwd=ROOT, check=False).returncode:
         fail("E_BASE_NOT_ANCESTOR")
-    if scope["holding_sha256"] != sha(HOLDING.read_bytes()) or scope["management_register_sha256"] != sha(REGISTER.read_bytes()):
+    if scope["holding_sha256"] != sha(HOLDING.read_bytes()) or scope["management_register_sha256"] != sha(REGISTER_CAPTURE.read_bytes()):
         fail("E_LEDGER_DIGEST")
     holding = read_jsonl(HOLDING)
     if len(holding) != 67 or len({row["source_item_id"] for row in holding}) != 67:
