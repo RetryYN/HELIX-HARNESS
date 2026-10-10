@@ -2,7 +2,7 @@
 
 ## ASSETCOVER：既存repository全資産の棚卸し・充足度mapping要求案
 
-base `742258892f94ab5c42d9274e7732b39608abf3bb`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `427efb4978e07d811d78e23ca5bdea9701fe17334072f19df74b8a65701e0a24`。authority_effect: none。
+base `742258892f94ab5c42d9274e7732b39608abf3bb`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `88bc0559386df0e8b2f64de00aa40d32b673c9131e6c669a0798c123ccb1d4d5`。authority_effect: none。
 
 #1852の旧FR-L1-33を起点に、HARNESS-L2-089という一つのunitと対L11を提案する。現行019（Full Reverse入口）、027（source型抽出）、034（計測）、OS033（detector運転）の近接能力と、全資産・カテゴリ網羅・充足reportの不足を分ける。版は未指定で、旧P2/Phase Bと初期必須化しない条件を保持する。
 
@@ -52,9 +52,13 @@ Bは現行003/017のRelease-eligible条件との整合が理由です。旧sourc
 
 ### BのHARNESS-L2-003追補案
 
+挿入位置：L2の「工程規則として保持する具体条件」表の「開発の開始時からRelease Portを持つ」行の直後。行全文とSHA-256、一意一致件数、反映後file digestをJSONのeditへ固定しています。
+
 | HARNESS-L2-003 | Incidentのhotfixにも通常のRelease Portの必須条件を適用し、緊急性やhotfixという名称から省略を許可しない。旧FR-L1-16の「即release」を通常Portの例外として存続させず、条件が成立した後の迅速な適用として扱う。必要な証明・成果物識別・対象環境・依存・security・rollback・配備条件・受入状態がmissing／unknown／staleならRelease-eligibleにしない。検出・暫定対処・収束確認・postmortem・L12 feedbackと、収束後のcurrent L1–L12へのbackfillは保持する。恒久対策はReverse fullbackで影響する要求・設計・対検証を確認し、選択済み開発方式の該当層へ戻す。暫定収束や配備成功だけで恒久対策とbackfillを完了にしない。HARNESSは工程条件を持ち、OSは既存Incident／continuity／ticket／検収／受渡し契約を参照して運転・記録する。既存SECURITYの操作authorityと有効な既決権限を保持し、本追補からrelease許可や追加承認手続きを生成しない |
 
 ### Bの対L11追補案
+
+挿入位置：L11の「工程条件の確認シナリオ」の「開発の開始時にRelease Portの必須条件」箇条の直後。同様にanchor全文・digest・一意性・反映後file digestを固定しています。
 
 - HARNESS-L2-003（Incident）：通常Release Portの必須条件と既存操作authorityを満たすhotfixは、緊急性に依存せず同じRelease-eligible条件で確認する。必要な証明、対象環境、security、rollback、受入状態のいずれかが欠けたhotfixに「即release」や暫定収束を与えても、欠けた条件を省略できずRelease-eligibleにならない。収束後はpostmortemとL12 feedback、current L1–L12の影響先・backfillの未完義務、Reverse fullbackから選択済み開発方式への戻り先を辿る。未完のbackfillや恒久対策を配備成功・収束・Issue closeで完了にしない。戻り先がunknownなら完了へ補完せず保持する。通常Portの条件成立と実release許可・実行・受入結果を分離し、旧CLI／runtime／CIの成功を証拠へ流用しない。
 
