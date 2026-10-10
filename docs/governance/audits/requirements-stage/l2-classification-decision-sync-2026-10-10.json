@@ -1,0 +1,570 @@
+{
+  "audit_id": "L2SC-DECISION-SYNC-2026-10-10",
+  "authority_effect": "none",
+  "scope": "既存PO判断を分類台帳の20主表行のauthority表示へ追随",
+  "base_commit": "b9a753a812871424598a64a570eabb9e2be52200",
+  "approved_source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "classification_path": "docs/governance/current-l2-structure-classification.jsonl",
+  "before_sha256": "6cf95241bd47575cf82014bbe743a187d279e74273540a5a9802adf71d8f881c",
+  "after_sha256": "414414491584e09def5964daa362047b649cbfbfe5c557a16b56f64d5ffea23d",
+  "records_total": 37,
+  "records_updated": 20,
+  "records_byte_preserved": 17,
+  "evidence": [
+    {
+      "requirement_id": "HARNESS-L2-001",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "rows": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_line": 52,
+          "current_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+          "fixed_line": 52,
+          "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "row_sha256": "19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e",
+          "row": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "current_line": 21,
+          "current_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+          "fixed_line": 21,
+          "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "row_sha256": "c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1",
+          "row": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HARNESS-L2-002",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "rows": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_line": 53,
+          "current_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+          "fixed_line": 53,
+          "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "row_sha256": "932d09ce11a68ddc501378d4e0e5cf65f71597de161efebf5fd699ae82b2813b",
+          "row": "| HARNESS-L2-002 | 対象プロダクトの特性に合わせて開発方式（Vモデル、スクラム、ハイブリッド、リリースカンバン）を選び、または合成して進められる。L3までは方式によらず一律共通に進める | HBR-P0／P1、v1.3 §4、2026-09-24 PO判断、[2026-09-25 PO判断](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md) | 4つの方式を下の定義どおりに区別し、駆動（ticketの種類）と混同しない。どの組み合わせでも、L1–L3と人の要件承認、V字の対、品質条件を落とさない。提供の単位ごとにリリースカンバン上の状態が分かる |"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "current_line": 22,
+          "current_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+          "fixed_line": 22,
+          "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "row_sha256": "750bbdbca003df8710a0112781b490bb490573913fc1fd9d24f2d158cabb42cb",
+          "row": "| HARNESS-L2-002 | 異なる開発方式の工程を確認し、開発方式とticketの種類（駆動）を混同しない。Discovery・PoCを開発方式のphaseへ混入させない。リリースカンバンで立てたリリース単位の順序と優先に沿って、各リリース単位を選んだ開発方式で進められ、提供の単位ごとにリリースカンバン上の状態を確認できる |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HARNESS-L2-003",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "rows": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_line": 54,
+          "current_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+          "fixed_line": 54,
+          "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "row_sha256": "693deb038a91ee9ba358aecab588d889a9fa40ff67c5d697f880ee76ff18b3d0",
+          "row": "| HARNESS-L2-003 | 工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる。画面や不確定要素のある対象は、L2.5のPrototype・PoCで不確定要素を減らしてから要件へ進む。Vの左側（Forward）は原子CIの最低保証で暫定の成果を速く作り、Vの谷（L6↔L7）より右側は、結合の範囲を広げるたびに実物を対の設計と照合し、意味を保てる範囲で直してから証明を強める | HBR-P0／P3、HNFR-P3、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | 必要な合意、対成果物、検証、未解決事項が明示され、実行成功だけで工程完了にならない。成果物の状態を、前の状態の成立から推定しない。Releaseの条件を最初から持ち、終わりで初めて探さない |"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "current_line": 23,
+          "current_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+          "fixed_line": 23,
+          "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "row_sha256": "1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5",
+          "row": "| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない。画面または技術的な成立性に不確定要素がある対象は、L2.5で確かめて合意するまで要件へ進めない。Vの谷より右側で、実物を対の設計と照合し、意味を保てる変更だけをRefactorし、意味が変わるものを対応する左の層へBackflowする。成果物の状態を前の状態から推定せず、Release Portの条件を開発の開始時から満たしていく |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HARNESS-L2-004",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "rows": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_line": 55,
+          "current_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+          "fixed_line": 55,
+          "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "row_sha256": "7b09279d1e75c221cdc85f551026a6110496c42770c4721ad42e74acdcdd6006",
+          "row": "| HARNESS-L2-004 | 要求から設計・テストへの対応と、変更時の再検証範囲を導出できる | HBR-P3／P9、2026-09-24 PO判断 | 上下流traceとV-pairの欠落を識別し、変更した要求が検証から落ちない |"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "current_line": 24,
+          "current_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+          "fixed_line": 24,
+          "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "row_sha256": "2d548b5f31549a87687144145601848ec08fdd46311b50c3a05145d234f6609a",
+          "row": "| HARNESS-L2-004 | 要求変更から影響する設計・テストと再検証の範囲が導出され、変更した条件の検証漏れを識別できる |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HARNESS-L2-005",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "rows": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_line": 56,
+          "current_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+          "fixed_line": 56,
+          "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "row_sha256": "7840e6369db64bfe553628e2cb0c5cafcd8537266b2637e64e5c9789778f81e4",
+          "row": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証義務と証拠条件を導出し、PRの前に回すCIを動的に組み立てるための規則を定められる。CIの組み立てと運転はHELIX-OSの検収が行う。言語・tool・実装方式に依存しない | HNFR-P3、v1.3 §4、旧GH-FR-025、新世代CI要求候補、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | CIの段数を固定せず、特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる。全件の実行を既定にせず、省いた検査を記録して合流先のticketで回収する |"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "current_line": 25,
+          "current_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+          "fixed_line": 25,
+          "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "row_sha256": "edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371",
+          "row": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証が導出され、固定の段数ではなくその検証に合うCIをPRの前に組み立てる規則が導かれ、HELIX-OSの検収がその規則でCIを組み立てられる。省いた検査は記録され、合流先のticketで回収される。異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HARNESS-L2-006",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "rows": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_line": 57,
+          "current_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+          "fixed_line": 57,
+          "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "row_sha256": "22e5eb400f847570ca8403d38be0aaf7f99e3217bd0dcba4a328496e94d5fe3b",
+          "row": "| HARNESS-L2-006 | 外部利用者が、サービス①〜⑦の単位で提供範囲・版・必要依存・導入条件とリリースカンバン上の状態を確認し、必要なサービスを選んで導入・利用できる | 2026-09-14 PO指示、HBR-P6の提供物側条件、2026-09-24 PO判断 | HELIX内部の管理対象や運用記録を持たなくても、明示された構成で提供機能を利用できる |"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "current_line": 26,
+          "current_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+          "fixed_line": 26,
+          "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "row_sha256": "2457dc27019c935db49dd3ce0185ad4ad2ebbac49fc948d461720f7ffdab2fd4",
+          "row": "| HARNESS-L2-006 | サービス①〜⑦の単位で、提供版・依存・導入条件とリリースカンバン上の状態を確認し、選んだサービスだけをHELIX内部の運用状態を持たない利用環境で導入・利用できる |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HARNESS-L2-007",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "rows": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_line": 58,
+          "current_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+          "fixed_line": 58,
+          "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "row_sha256": "79821388309c95ec4a2ba4a9e637d60c2166f25bcc1e6d5ff4307a9034d4fb25",
+          "row": "| HARNESS-L2-007 | 検証フェーズで複数のプロダクトを開発し、HELIX自身のプロジェクトにも適用した結果と、Conceptの1.0土台7項目が全機構で共通に成立していること、サービス①〜⑦のすべてがそれぞれ単独で成り立ち、つなげて開発全体に使えることを含めて、HELIX-HARNESS製品群Version 1の完成を確認できる | 2026-09-14 PO指示、Vision §3／§13、2026-09-24 PO判断、2026-09-25 PO判断（7サービスすべて） | 性質の異なる対象で要求から受入・運用評価までの成立証拠を確認し、HELIX-Web等の展開前提を判定できる。Web自体の完成をVersion 1へ含めない |"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "current_line": 27,
+          "current_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+          "fixed_line": 27,
+          "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "row_sha256": "4983082c00b0cbb0a09e42a554465d6fd8a75d6371697c8bc1626b7324dc082a",
+          "row": "| HARNESS-L2-007 | 検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。サービス①〜⑦のすべてがそれぞれ単独で成り立ち、つなげて開発全体に使えることと、Conceptの1.0土台7項目（ログと証拠、データの利用区分、計測、接続契約と版、隔離の単位、構成版の固定と切戻し、後から加わる機構の受け口）が全機構で共通に成立していることを確認する。単一demo、HARNESS単体test、文書整合、土台の一部だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させない |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HARNESS-L2-008",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "rows": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_line": 59,
+          "current_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+          "fixed_line": 59,
+          "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "row_sha256": "8408b5461d54355389a0ec3006fbbca412f94cb6721c15adb95e2384c07b9024",
+          "row": "| HARNESS-L2-008 | 要求エンジンは、設計パターンと接続して選択するための質問を投げる。Concept／企画L1、利用者指示と根拠から1次要求を形成し、L2.5のPrototype・PoCの結果をBackflowで還流して2次形成する。単体・接続・構成体の対象粒度を分け、要求化漏れ・企画外追加・矛盾・重複・過剰解釈・対象違い・scope／non-goal逸脱・変更影響を提示して、人間の訂正と合意により要求へ収束できる | [2026-09-15 PO発言記録](../../concept/product-boundary.md)、旧Requirement Engine／ADR-010、2026-09-24 PO判断 | 意味導出の基盤は、HELIX-JSONの各JSONの間の意味をつなぐPythonコアとし、複数製品へ適用できる（HELIX-JSONの構築とPythonコアは改善要求として扱う）。機能A、A→Bの接続、A–Cから成るシステムAの要求と成立を混同せず、出力を承認済み要求や操作権限へ自動昇格させない |"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "current_line": 28,
+          "current_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+          "fixed_line": 28,
+          "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "row_sha256": "17f0df2470d79853de9bfe80755ab4e01a198aac313eaf3eb3e17da51a03ffe3",
+          "row": "| HARNESS-L2-008 | 設計パターンの選択に必要な質問が要求エンジンから出され、1次要求の形成と、L2.5の結果をBackflowで戻した2次形成を区別して確認できる。指示と要求候補を意味単位で比較し、欠落・意味追加・対象違い・未確定事項を確認できる。Python coreの出力、ログ、Issue、PR、CIだけでは要求合意や操作許可を成立させない |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HARNESS-L2-009",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "rows": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_line": 60,
+          "current_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+          "fixed_line": 60,
+          "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "row_sha256": "41fa01b2c887df8ab479d576ae954f5ac4b52f9deb6fc348e6a12ea49046c0b6",
+          "row": "| HARNESS-L2-009 | 要求kind、対象、構成、risk、domainに合うversioned Design Templateから必要な設計義務を導き、templateが必要とする要求入力の不足を質問・要求候補としてBackflow ticketで上流へ戻せる | 2026-09-15 PO指示、旧Design Template Registry、2026-09-24 PO判断 | 初期seedを参照して設計の恣意性を抑え、templateから要求意味を自動決定せず、unit・connection・composite固有の設計と検証へ接続できる |"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "current_line": 29,
+          "current_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+          "fixed_line": 29,
+          "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "row_sha256": "772d8db06e4386f5e2499b993b8e5665d4c696f0f4c7d8a3473c95491c73ec4f",
+          "row": "| HARNESS-L2-009 | unit、connection、compositeの各要求に適用するtemplateと設計義務を確認し、必要input欠落をBackflow ticketで上流へ戻せる。template適用や文書生成だけでは要求合意・設計完成・検証成功を成立させない |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-001",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 54,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 54,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "3846d5f5aac94a2001255bac0806d9256be421fa8c2e3169ed4cc49c98ab5860",
+          "row": "| HELIXOS-L2-001 | プロジェクトごとの企画・要求正本・採否・合意revisionと担当責務を確認できる | HCV4-L2-001／002、HBR-P9 | GitHubの状態から要求を推定せず、何に対する要求かと判断の出所が分かる |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 21,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 21,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "3db58c0b8f47095d1781ba2c05dd8080e98c880faba5f0f89a2497602b34cb54",
+          "row": "| HELIXOS-L2-001 | 各要求の対象プロダクト・正本・合意revisionへ辿る。Issue closeを要求の削除・受入として表示しない |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-002",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 55,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 55,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "e477bde49286141ca0d1477337c9b4704d7e0cb7dcbf7b99268911f35d7704a4",
+          "row": "| HELIXOS-L2-002 | プロジェクト群の要求から作業・実装・検証・提供・運用まで追跡し、欠落と競合を把握できる。提供はリリースカンバン上の状態として追跡できる | HCV4-L2-002／003、HBR-P3／P9、2026-09-24 PO判断 | 未接続・未合意・未実装・未検証を区別し、部分成功で全体完了にならない |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 22,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 22,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "3a33c5222ec9bc58030a6a1b6f49213d1c490c56638f587956bb26c51c091e24",
+          "row": "| HELIXOS-L2-002 | 異なるプロジェクトの欠落・競合・未検証を個別に把握し、一方の成功で他方の未完を相殺しない。提供をリリースカンバン上の状態として追跡し、状態の欠落やIssue・PRの状態だけからの推定を拒否する |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-003",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 56,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 56,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "22404f7dfe3df96043adb085e364035155b843eff2129667fe74a2278fb90461",
+          "row": "| HELIXOS-L2-003 | 共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる | PO指摘、HCV4-L2-001／004／006、HBR-P0 | あるプロダクトの方式変更が他プロダクトや共通統制を暗黙に変えない |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 23,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 23,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "94d20a208f9c0b886bb2824d5bd04a2541ae8bc72dbec51123857fc4fb3aaeb0",
+          "row": "| HELIXOS-L2-003 | 開発方式の変更で影響する範囲だけを再評価し、共通統制の無断変更を拒否する |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-004",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 57,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 57,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "bf2e22f915733a75b751b479be8cfe0b93ace8fd3d44c7372ad060d9e16d51b2",
+          "row": "| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は3つの機構と、作業の主体であるWorker（機構ではない）に分ける：割当てと進行統制はOS、割当て案はINTELLIGENCE（2026-09-25 PO判断「稼働はインテリジェンス」。2026-09-24判断ではBRAIN。案の材料は、LABOがHELIX-Benchで出したモデルクラスの水準。[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）、実行はWorker（2026-09-26 PO判断。旧Runner／Sandboxの実行の能力はWorkerへ移し、実行の制約はSECURITYが定めてWorkerの実行環境が強制する）、自己承認の防止と権限の制限はSECURITY |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 24,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 24,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "2cc13d5e75e6fe12828a08563af8ea5f4618ced32f8fd35a05c82905ff461ebb",
+          "row": "| HELIXOS-L2-004 | 割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する。割当てと進行統制はOS、割当て案はINTELLIGENCE、実行はWorker、自己承認の防止と権限の制限はSECURITYが担い、一つの機構が割当て案・実行・承認をまとめて持つ構成を拒否する。Workerの実行の結果から、Worker、provider、model、ticket、要求のrevision、authority、制約、成果物、実行の証拠、ticketが指定したモデルクラスとWorkerを呼び出したレーンまで辿れ、失効で実行が止まり途中の成果物が隔離され、作業の終了後に一時の資格情報や環境が次のassignmentへ残らないことを確かめる。作成したWorker自身またはそのSubagentのreviewが、独立reviewとして数えられないことを確かめる。ticketが指定したモデルクラスが、LABOがHELIX-Benchで出した水準を材料にINTELLIGENCEが作った配置の案を、OSの推進が確かめて指定したものであることを辿れ、評価していないモデルに「未評価」の印が付くことを確かめる。Benchの水準やINTELLIGENCEの案だけで割当てが決まる構成、印のない未評価のモデルを評価済みとして扱う構成を拒否する |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-005",
+      "classification_revision_before": 2,
+      "classification_revision_after": 3,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 58,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 58,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "db813b881bbffa7bae3f18e7dc0c2f9a5c16e833b498cf465c5a83bd78cfaeb9",
+          "row": "| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。観測と作業の結果はLABOへ渡し、LABOが返す改善の提案（Feedback）を登録し、還流先へ振り分け、採否の後にticketにして回す（OSはPMにあたり、LABOはPMOとして評価と提案を出す。[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 25,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 25,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "9f2b8f6c7d0820cccb8862beb8eea01d053792875c36ffbbd9ffd30b75c07963",
+          "row": "| HELIXOS-L2-005 | HARNESS自身への適用と各productの観測から改善候補を出典と適用範囲付きで登録し、還流先へ振り分けて採否・変更・再検証まで追跡する。未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失、還流先の欠落を拒否する。改善の効果と退行の評価はHELIX-LABOの候補で確認し、OSの登録件数やログ量を改善達成としない。観測と作業の結果がLABOへ渡り、LABOが返した改善の提案が登録・振り分けされてticketへ辿れることを確かめ、LABOの提案がOSのauthorityを直接書き換える構成を拒否する |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-006",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 59,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 59,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "f60359c5602849f71c08aedd59dadcb4e02a7613e59399d55c73f5382db7f1ac",
+          "row": "| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 26,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 26,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "0a64d5cc87650ae0df74a58984e01b6299e6e04993b2896bf3485f0b0ce57183",
+          "row": "| HELIXOS-L2-006 | サービス①〜⑦の単位で、リリースカンバン上の状態を見てfresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失、別artifactへの切替、選んでいないサービスの同時導入を拒否する |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-007",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 60,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 60,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "d674f0be810bebd44d407d82f5e323119d9add7e61ea558419955fe0e6d16158",
+          "row": "| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 27,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 27,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "e51cbfb3a6aa87ecf13618eed60a88dba1fc94ef262a71696591c00639984f2f",
+          "row": "| HELIXOS-L2-007 | Worker・判断・操作・検証のログを、Conceptの1.0土台（ログと証拠）の共通形式で要求revisionから辿り、欠落・重複・staleを成功証拠として使わない。共通形式の欠けた記録を、他の機構の記録と結べない不完全な記録として識別する |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-008",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 61,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 61,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "bfe58fd871e1c461bb2c187e2d225bb17013830adaf637932b506084a8ac2772",
+          "row": "| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、検収がその変更に必要なCIを動的に合成し（CIの規則はHARNESS、組み立てと運転はOS）、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 28,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 28,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "51252373ad1a061e81a6c18a4131d5ade93837100636a86aed15d4f1badd5e8c",
+          "row": "| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、その変更に必要なCIが動的に合成されることを確認する。合成したCIの起動・失敗・修復・再実行を追跡し、固定段数のCIをすべて回す構成、導出された検証の欠落、旧CI成功で新世代の未実行・中断・staleやreview欠落を相殺する構成を拒否する |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-009",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 62,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 62,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "114384bd7d266d6417b9145b96c32905a42726a9482af70fcb6e8e4e643ca9b6",
+          "row": "| HELIXOS-L2-009 | 中断・担当交代・障害後に、許可範囲内で継続・復旧できる | HBR-P1／P2、HNFR-P5／P8 | 累積予算・期限・未完義務を保持し、二重実行や範囲外操作を防ぐ |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 29,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 29,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "7de0dfc509ae5755279f8d093d8eda6c83c98d3d1b0ce9badb81f534ceed2ec2",
+          "row": "| HELIXOS-L2-009 | 中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否する |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-010",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 63,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 63,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "e00b99e43ad2e5f6a763d8ec05f994f8d2d94b51a9ae36468a02b2be2b228f6b",
+          "row": "| HELIXOS-L2-010 | 管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる。推進は案件ごとに必要な工程を動的ワークフローとして組み立てる。1.0の組み立ては、HARNESSが定めた工程の部品を規則どおりに組み合わせ、途中結果で差し戻すことに限る。部品にない流れまでINTELLIGENCEの判断で組み立てて再計画するのは、Conceptの4.0である | HELIX-OS編成案 §1／2／6、2026-09-15 PO指示、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md) | 管理はコアの接続状況（trace、依存、stale）を登録し、目的・要求・制約・許可・優先度・依存・資源・予算・期限・停止・HARNESS版と接続状況を推進へ渡す。推進はHARNESSのnormative工程語彙・順序を参照し、operational tag、mapping、composition、workflow instance生成規則を所有してticketと成果を生成する。管理は登録・統制し、検収はHARNESS contractへの収束を判断する。推進は、INTELLIGENCEの計画・配置の案を受け、承認済みの要求、HARNESSの工程契約、許可、予算、依存、LABOが出した水準に照らして適格性を確かめてから採り、案を無条件に実行しない。許可内の直接通信を保ち、固定モデル数や全通信の中央中継を要求しない |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 30,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 30,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "b1ff87cf0effbb9a2d7dac2895a0c8d62fe406519d110eac34b17d6917129238",
+          "row": "| HELIXOS-L2-010 | 管理・推進・検収が同じticketと因果IDで直接調整し、scope・優先度・共有資源・要求意味の変更だけを正しい判断先へ返す。推進が案件ごとに必要な工程を動的ワークフローとして組み立て、固定の工程列を全案件へ当てはめない。1.0では、組み立てがHARNESSの定めた工程の部品の規則どおりの組合せと途中結果での差し戻しに収まることを確かめ、部品にない工程を推進が独自に作る構成を拒否する。INTELLIGENCEの計画・配置の案を、適格性を確かめずにそのままticketにする構成を拒否する。役割を固定モデル数や中央中継へ変換しない |"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXOS-L2-011",
+      "classification_revision_before": 1,
+      "classification_revision_after": 2,
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "rows": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_line": 64,
+          "current_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "fixed_line": 64,
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "row_sha256": "fff4ebc5174d949c8461e5952b946bc0e9dea459cda41ed90491a784cb798e9b",
+          "row": "| HELIXOS-L2-011 | ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる。1.0の再計画は、HARNESSの工程の部品と検証義務の範囲での組み直しとする | HELIX-OS編成案 §1／4、2026-09-24 PO判断 | 本要求は計画を導く側であり、計画からCIを合成して実行する側はHELIXOS-L2-008とする。HARNESSの検証義務を追加・削除せず、実際の統合候補で具体化する。必要CI欠落、影響不明、契約解釈不明、stale結果を拒否し、review、内容検証、merge admission、release、運用評価を分けて収束させる |"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_line": 31,
+          "current_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "fixed_line": 31,
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "row_sha256": "afedd255a0e974db2e24f638665e77c0b5a6891f6b7f54a3a16ea35258f62897",
+          "row": "| HELIXOS-L2-011 | HARNESS契約で同じ検証義務を与え、A→Bの依存を実際のbase+A+Bで具体化する。base更新・候補増減・順序変更で再計画し、OSによるoracle削除・追加、必要CI欠落、影響証明不能、契約解釈不明、別HEADの成功ではmerge可能としない。計画を導く側（本要求）とCIを合成して実行する側（HELIXOS-L2-008）が別の要求として境目を持ち、計画側がCIを実行する、または実行側が計画を変える構成を拒否する |"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "後続追補やsource全文へ承認を継承しない",
+    "分類語彙とprovisional印の変更なし",
+    "旧要求successor全被覆・holding解除・L3再開・runtime検証・要求ステージ完了・Issue closeを主張しない"
+  ],
+  "legacy_comparison": {
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/operations-rule-audit-2026-07-26.md",
+    "lines": [
+      38,
+      39
+    ],
+    "preserved": "ORA-005/006の正本と表示の乖離を正本へ収束させる目的",
+    "changed": "旧marker/runtimeではなく固定PO decisionと主表行のbytes同一性を静的に照合",
+    "reason": "新世代の対象revisionと旧要求の採用状態を混同せず、既存decisionの表示だけを追随する"
+  }
+}
