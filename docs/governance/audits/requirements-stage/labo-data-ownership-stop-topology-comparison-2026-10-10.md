@@ -96,7 +96,6 @@ C03〜C07の判断材料を補う限定文書比較。14 data object、14正常/
 | LABOCON | `docs/helix-labo/L2-requirements/labo-requirements.md` | 208–222 | OS/BRAIN/INT/SECURITY観測接続と正本保持 |
 | RECEIPT | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | 148–154 | OS result receipt一致/同identity再送/重複/未成立保持 |
 | DEC | `docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md` | 19–23 | 明示固定集合/適用条件採択、Web前倒し/未完継承禁止 |
-
 | CAUSAL | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | 46–46 | 相関と因果、孤立event/元event/未完義務の区別 |
 | BENCH | `docs/helix-labo/L2-requirements/labo-requirements.md` | 150–154 | Bench水準生成/未評価、配置・割当・権限の非所有 |
 | CLASSRECORD | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md` | 120–124 | 1.0区分記録と3.0 training許可の区別 |
