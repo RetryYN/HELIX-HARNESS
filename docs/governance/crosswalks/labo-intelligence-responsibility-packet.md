@@ -69,3 +69,49 @@ OS012/013の案内行、LABO001〜053の採択と、LABO candidateに残る元01
 原source・判断史・consumerと反例の個別path/行/hashは各先行比較JSONに残り、今回JSONがその本文hashを固定する。33旧inputのidentity・primary/secondary区分と保持義務は不変。未割当/未判断を消込せず、formal successor・全旧source閉包の成立を主張しない。
 
 #2089/#1861はOPEN。全9項目の調査完了、要求ステージ完了、L3再開・実装・配備の許可は本packetから成立しない。
+
+## 33入力のpredicate別比較と共有受入辺
+
+[比較JSON](../audits/requirements-stage/labo-thirty-three-source-predicate-comparison-2026-10-10.json)は、基準commit `1c8d5ef087e457b4791e8b71cf7cba22d1e01dba`で33名指しinputから130件の主文/禁止/数量predicateを選び、原文のexact spanと検討用反例へ結び付ける。単なる文末分割ではなく、原記録・評価・提案・採否・供給・復旧の観測可能な条件を分けた比較候補である。正式最小atomの全量成立は未証明であり、列挙群/未分類原文を保持する。反例は採択済L11の新設ではない。
+
+| 原入力 | 比較predicate数 | 残る粒度/被覆 |
+|---|---:|---|
+| `harness/L1-requirements/business-requirements.md::BR-21` | 6 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/business-requirements.md::D-01` | 2 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/business-requirements.md::D-02` | 2 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/business-requirements.md::D-03` | 2 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/business-requirements.md::D-04` | 2 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/business-requirements.md::D-05` | 2 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/business-requirements.md::D-06` | 2 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/business-requirements.md::D-07` | 2 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/business-requirements.md::D-08` | 2 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/business-requirements.md::D-09` | 2 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/functional-requirements.md::FR-L1-19` | 12 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/functional-requirements.md::FR-L1-20` | 4 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/functional-requirements.md::FR-L1-34` | 2 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/functional-requirements.md::FR-L1-36` | 7 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `helix/L1-requirements/pillar-requirements.md::HBR-P4` | 4 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `helix/L1-requirements/skill-mechanism-migration-requests.md::S-BR-001` | 5 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/business-requirements.md::BR-22` | 3 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/functional-requirements.md::FR-L1-38` | 7 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/functional-requirements.md::FR-L1-43` | 4 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/functional-requirements.md::FR-L1-47` | 3 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `harness/L1-requirements/screen-requirements.md::HM-08` | 3 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `helix/L1-requirements/pillar-requirements.md::HBR-P7` | 6 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `helix/L1-requirements/pillar-requirements.md::HBR-P8` | 4 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `HIL-BR-03` | 3 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `HIL-BR-11` | 3 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `HIL-BR-29` | 3 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `HIL-FR-10` | 4 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `HIL-FR-14` | 4 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `HIL-FR-57` | 4 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `HIL-FR-58` | 6 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `HIL-NFR-34` | 4 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `HIL-BR-23` | 3 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+| `HIL-FR-44` | 8 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
+
+10名指しIRの共有HR07/17/21、HAC各a/b/c、HAT各1件の15recordを全文保持した。共有contractは別の13 sibling要求を含むため、そのedgeを保全し、33入力の分母へ加算しない。HST/HOT supporting testと13 siblingの本文/consumer対応は未完である。
+
+HR07はraw/secret混載・self-promotion・fixture/効果/rollback欠落を拒否する旧条件。HR17は原文消失・aggregate/TBD/偽N/A・typed edge/変更receipt/stale伝播欠落を保持。HR21は未許可tool・過剰agent・自己検証・catalog変更によるstaleを保持する。3HATの旧statusは`designed_not_implemented`であり、受入定義の存在を実行passにしない。
+
+C02/C08の比較をpredicateへ細分したが、未分類原文や共有辺が残るため完了へ変更しない。候補間の範囲/例外と個別現契約の対応、最小粒度、旧consumer/failureの被覆を独立review後も継続する。
