@@ -207,3 +207,15 @@ Cycle P4 statusはbacktick除去/trim後のcase-sensitive集合で判定する�
 旧静的layer gateはfreezeBlockingの適用・confirmed/placeholderの差・draft0・pair孤児0・L2のself wireframe条件を持ち、当ANDだけではconfirmed一件以上を要求していない。G7 coverage thresholdは指定値を受け、既定80と固定失敗メッセージの80を同一の実効条件にしない。通常の右側pair未凍結テスト設計の後付け禁止と、QA追加観点を独立design/差分PLANへ記録してからtestcodeを書く条件を分離する。4artifactの6無向pair/12 directed edgeと別文書で確定する必須8 edge、旧Recovery/Incident/Retrofitの異なる判断者、Scrumの旧TL判断とReverseのPO意図検証も固有条件として保持する。
 
 旧PLAN review evidence/doctor、UI無し旧L2skip、AC着手前の最低3反例、blocked再利用のdelta/oracle/review/digest、個別digest occurrenceのbyte oracle条件を現行の新gateや実行命令へコピーしない。273件の引用条件比較から隣接helper/caller・判断史・完全atom化・全consumer閉包・正式successor・未計上0・要求完了を生成しない。副224と読了分の意味対応残件を#1814/親#1813へ保持し、旧実行・要求採否・retire・holding解除・Issue close・L3再開は行わない。
+
+## RUL-FRM-02：全497件の引用条件比較候補と意味対応残件
+
+基準content `dea504d0d419b769a2e901b84e11af2798eb5a6d`。主233・副40の元273recordを保持し、残る副224recordのinventory全field、全引用原文とSHA-256、候補本文F1–F6の共通句、固有/未解決条件を一件ずつ追補した。現在主233＋副264＝497/497の引用条件比較候補で、引用未比較IDは0である。これは完全atom化、判断史、全隣接helper/caller、全consumer閉包、正式successor、未計上0、全要求被覆や要求ステージ完了を意味しない。上の途中件数は各差分時点の記録として保持する。副担当を主担当へ移さず、候補句の共通性もpartial overlapとして残す。
+
+旧assertion/coverage ledgerのdesign-defined・draft-defined／not-implemented、route catalogの入力条件/exit定義、期待値と実測を分離した。Recoveryの戻り先は事象ごとに正常化する最小scopeであり、毎回要求からやり直すものではない。RB08-345は追加12要求の下流L4詳細設計をG3後のForward事項とし、要件freezeの前提へ混入しない。旧whole-program/L12/L14、個別slice、要求stageの完了分母を同じものにしない。親Issueの終端とsuccessorのunblock/open保持も分ける。
+
+純analyzerの空集合ok、doctor wrapperのchecked>0、loader内の例外吸収/skipを分離した。plan-dodのDoD節不在はその判定を行わず、checked>0でもDoD substanceを保証しない。screen-impl-pair-freezeはnext_pair_freeze=nullを拒否しない実コードと未宣言も違反とするコメントを区別する。plan-artifact-existenceはarchived・有効supersession全graph・retired path・意図的空fileの適用条件と、read/parse失敗の空宣言/skipを保持する。補助原文7範囲をsupport_context_sourcesへ追加し、inventoryの引用先と混同しない。
+
+旧G1–G6の静的判定はplaceholderとconfirmedを区別し、当ANDにconfirmed>=1はない。G7は別のpair/group/trace/carry/coverage条件との合成である。L6 freezeInputReadyとready、review evidence文字列と独立review真正性、Red marker/exit code文字列と実際の欠陥検出、gate数とrequired exact set、typed record/digestと人間の対象revision判断を別に保持した。旧UI無しL2画面sub-doc skipを現行L2要求全体の省略にせず、旧層番号/role/provider/approval policy/CI/CLI/DB/stateを現行へそのまま転写しない。
+
+原inventory・要求候補・仮登録・holding・Binding・rulebookは不変である。引用source比較の残数0から要求採否・retire・holding解除・Issue close・L3再開を生成しない。497件の未確定意味対応、他54cluster、FRM01/OSA03の残件を#1814/親#1813へ保持し、既存assessment_status=unassessedと未評価fieldも維持する。
