@@ -3315,5 +3315,109 @@
       "旧FR-L1-16全体のretire、旧source全移管、実release/deploy、L3再開、要求全体完了、Issue closeを含まない。",
       "旧mode内の三者確認・severity・SLO固定値・PLAN/token/schema/runtimeは自動移植しない。未処置の旧条件は既存holdingへ保持する。"
     ]
+  },
+  "o10_generation_decision": {
+    "id": "O10GEN",
+    "issue": 1853,
+    "base_revision": "cd318c216433d915636db3f9a80f628ca6457f0f",
+    "authority_effect": "none",
+    "status": "awaiting_po_decision",
+    "finding": "F1",
+    "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/issues/1853#issuecomment-6092938361",
+    "sources": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+        "asset_id": "LEGACY-ASSET-335176749F6322C3CD8D",
+        "file_sha256": "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+        "start_line": 43,
+        "end_line": 43,
+        "text": "| VDH-FR-005 | AIは白紙生成せず、required/forbiddenを持つPattern Contract内で構成する。UI profileは情報優先順位、pattern/token、responsive、motion budget、reduced-motion、accessibility、brand制約、operational/expressive/mixed分類を持ち、product固有値を共通Rule Packへ混入しない | VDH-AC-005 |\n",
+        "span_sha256": "711774a660cecaba30226b8e1e3b770f63d6f089b56f3e4efb76f85bef0212a6"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md",
+        "asset_id": null,
+        "file_sha256": "6b72ed546c07349dfd5b59e78f15ddfbb353ea0b232b7c8b5de8d1cae7854191",
+        "start_line": 21,
+        "end_line": 21,
+        "text": "| VDH-AC-005 | Pattern required/forbidden、profile、surface分類、responsive、motion budget、reduced-motion、a11y、product固有値隔離の各違反を検出する |\n",
+        "span_sha256": "436108dccd0cf159e7d57a2e6df4ecabd6a5e1b343c84bfc9eabd64179b94e61"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/design-harness-assessment-audit-2026-07-19.md",
+        "asset_id": "LEGACY-ASSET-4E880D2FCD37879BA300",
+        "file_sha256": "9699f18b937dae6ec9edcbf18aba8d3d0854192baa217a02fee7ca67914cef56",
+        "start_line": 31,
+        "end_line": 38,
+        "text": "\n- L2 工程境界（L2 モック ↔ L10 UX 検証の pair）は `docs/design/helix/L2-screen/` で `status: confirmed`。\n- `screen-applicability-prototype.md`（全 PLAN の `prototype_required`/`not_applicable` 分類、\n  操作可能プロトタイプ、9 状態、walkthrough 証跡、no-UI 判定の stale 化）は `status: draft`。\n- runtime 側は `src/lint/screen-impl-pair-freeze.ts` 等の部分的 lint のみで、\n  ScreenApplicabilityGate・prototype manifest・walkthrough receipt のエンジンは未実装。\n\n### 3. 要求翻訳・設計リファクタリングハーネス = 設計段階（確認：一致）\n",
+        "span_sha256": "d768b06007aec4f4a354f0f18bcfcfe6cb165388aed3d9954144f5cec669ac1d"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/o10-visual-design-harness-request-source-snapshot-2026-09-29.md",
+        "asset_id": null,
+        "file_sha256": "f4f67a505eebe192b95cc0eb78af7f8c57dab98e3da8c17a4b551bf646903749",
+        "start_line": 1,
+        "end_line": 52,
+        "text": "# O10 Visual Design HARNESS 作業依頼source snapshot（2026-09-29）\n\nこの記録はlocal review handoffにあるO10節とPO発言を原文のまま固定する。元ファイルはuntrackedの作業依頼であり、要求revision・PO decision record・操作authorityではない。候補起草のtask basisに限り、旧要求の採択や本文の承認を生成しない。\n\n原典: `scaffold/review-handoff/local/codex-goals-2026-09-28-ops-loop.md`、SHA-256 `e4cfe94cb2072098058828ea3d41e8b5e0150d562457992a58a7c6414d931002`。O10節は148–191行。\n\n## O10節（作業依頼原文）\n\n### O10 Visual Design HARNESS：制約内で画面を作り、表示して測り、人が合意する（旧VDH-FR起点）\n\n- POの発言（原文）：「Visual Design HARNESSってデザイン能力が上がった君ならどう作ればいいかわかるんじゃない？」「せやね。画面検証の精度がよくないとはずす。あとは余計に文字書きすぎないとか。」\n- 旧source起点：\n  - `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md`（VDH-FR-001〜019）。特に次の4つ。\n    - 005：白紙から生成せず、Pattern Contractの中で構成し、UI profileを持つ。\n    - 003：screen/region/slot/action/state のsemantic IDを使う。\n    - 010：`implemented` と `ux_verified` を分ける。\n    - 013：AIはvision、brand、prototype合意を自己承認しない。\n  - `archive/.../docs/governance/design-harness-assessment-audit-2026-07-19.md`（POの改善提案6項目と実装優先順位）。\n  - 旧`CLAUDE.md:84`（人の直接関与はL2デザインモックまで）。\n- 現行の位置：\n  - Conceptの「部品：デザインHARNESS」。\n  - `HELIXBRAIN-L2-006`（Visual Design/UXの再利用知識。製品固有のVisual Identityは製品CORE）。\n  - `HELIXBRAIN-L2-023`（BRAIN↔Visual Design HARNESSの接続）。\n  - HARNESS側には受け皿がない（`helix-structure-tvo-po-statements-2026-09-18.md` の #1853）。\n- 候補化の方向（1.0の範囲）：\n  1. BRAINのPattern、製品のVisual Identity（CORE）、UI profile（情報の優先順位など）を制約として受け取り、その範囲で画面の試作（HTML等）を作る。\n  2. 画面の部品にsemantic IDを付ける。O9の命名規則と同じ規則を当てる。\n  3. 試作を実際に表示し、機械で判定できる項目を自動で測る。\n     - アクセシビリティ\n     - コントラスト\n     - 画面幅ごとの崩れ・はみ出し\n     - 主要状態（空・読込中・エラー等）の有無\n     - 文字量\n     結果は証拠として残す。\n  4. 見た目の好みとbrandの判断、試作への合意は人（PO）が持つ。AIは案と改善候補を出すまでとする。\n  5. `implemented` と `ux_verified` を分ける。\n- POが示した重点：\n  - **画面検証の精度**：表示結果の検査が外れると役に立たない。\n    - 検査項目ごとに、誤検出・見逃しを確かめる既知の正例・反例fixtureを持たせる。検査の精度は評価できる形にする（LABO連携）。\n    - 精度が確認できない検査は合格の根拠にしない。警告として扱う。\n    - 旧VDH-FR-011のUX evidence条件（状態、画面幅、device条件）を起点にする。\n  - **文字の書きすぎを防ぐ**：画面の文言を必要最小限にする。\n    - UI profileに、画面・領域ごとの文言の役割と上限の目安を持たせる。例：見出し、ラベル、補足、エラー。\n    - 上限を超える文言、同じ内容の繰り返し、説明のための説明を検出して、作成側へ返す。\n    - 旧sourceには文言量の明示規則が見当たらない（旧L3 requirementsとL2-screenを検索した）。新規案として示し、旧VDH-FR-005の「情報優先順位」とPOの改善提案3「Content Block」を意味の起点にする。\n- 後の版へ回すもの（締めすぎない、Web展開後）：\n  - 試作と実装のずれの検出\n  - 実データ・実利用者によるUX評価\n  - 計測eventの結線\n  - 旧版の重い仕組み（211ファイルの入力、gateごとのsub-check、DB）。移植しない。\n- 主担当：HARNESS（部品：デザインHARNESS）。BRAIN（再利用知識）、LABO（検査精度の評価）、INTELLIGENCE（配置）は既存の接続のまま使う。\n- 作成と検証の配置：O4の「要求・設計はClaudeを優先」に当たる。POが逆向き（Claude作成、Codex review）を選んだ場合はClaudeが候補を書く。選ばなければ通常どおりCodexが書く。\n",
+        "span_sha256": "f4f67a505eebe192b95cc0eb78af7f8c57dab98e3da8c17a4b551bf646903749"
+      }
+    ],
+    "source_limits": "O10は作業依頼で要求authorityではない。旧VDH005を意味起点、AC005を未実行oracle、assessmentを失敗の背景として読む。旧FR003/010/013等の全移管はしない。",
+    "legacy_comparison": {
+      "preserved": "required/forbidden内での構成、UI profile各制約、製品固有値隔離、人の合意・完成状態分離。",
+      "changed": "現行層・責務へ再対応し、生成/関係/証拠/測定を別能力にする。BはO10の1.0方向を明示した新候補として選択する。",
+      "reason": "文書管理の存在と画面生成成立を混同した旧失敗を避け、BRAIN汎用/CORE固有/各HARNESS能力の責務を保つ。"
+    },
+    "options": {
+      "A": {
+        "meaning": "生成を将来の049 revisionへ統合する方向を選択。計測単独成立を保つ生成操作別依存と対L11を追加形成し、exact revisionを再提示する。",
+        "effect": "049003既決は保持。方向だけでは新本文採択や1853closeを生成しない。"
+      },
+      "B": {
+        "meaning": "生成を独立HARNESS090として1.0に採用する。下記L2/L11固定案が対象。049003は測定専用、039003/後続039追補は関係、079001はartifact/walkthroughのまま。",
+        "recommended": true,
+        "edits": [
+          {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "operation": "append_exact_text",
+            "existing_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+            "proposed_text": "\n### HARNESS-L2-090 Pattern・製品CORE・UI profileの制約内で画面prototypeを構成する候補（HARNESS単体、1.0）\n\n- **対象・親・版**：HELIX-HARNESSの部品であるVisual Design HARNESSの生成unit候補。親はHARNESS-L1-006/008/009。O10が示した1.0の制約内画面試作を対象にする。049の表示計測、039の契約関係、079の操作可能artifact/walkthrough証拠とは別の能力として保持する。候補から採択、L3再開、実装許可を生成しない。\n- **受け取るもの**：画面を持つ対象のL2要求とscope/revision、生成に使う明示選択済みPattern Contractのidentity/版/適用条件/required・forbiddenと必要input、製品COREのVisual Identity・screen/flow/tokenの制約、UI profileと各入力の出所・利用条件。UI profileは情報優先順位、pattern/token、responsive、motion budget、reduced-motion、accessibility、brand、operational/expressive/mixedの区分を保持する。製品固有値は製品COREへ残し、汎用知識へ混入しない。Patternの適用性や必要制約がmissing/unknown/conflict/staleなら白紙生成で補わず不足を返す。\n- **提供するもの**：選択した制約と同じ対象scope/revisionに結び付いた、実際に描画できるHTML等の画面試作候補、各適用制約と構成要素の対応、制約不足・矛盾・未評価範囲と戻し先。画面・操作・状態等のidentityは既存039の意味関係と対象COREの識別を使い、別のID発行規範を追加しない。生成物を入力sourceや要求意味の正本にせず、JSON正本・生成viewの既決境界を守る。\n- **保証すること**：AIは選択したPatternのrequiredを満たしforbiddenを含まない範囲で、製品固有のVisual Identityと上記UI profileの各適用制約を保って構成する。根拠のない新しい画面・操作・機能、product固有値の共通Rule Pack化、未選択Patternの暗黙採用をしない。非適用項目は既存の根拠・判定者・対象revision・再評価条件を残し、unknownをN/Aに変換しない。生成した見た目や項目の存在だけで制約充足としない。\n- **接続と責務**：BRAIN006/023は汎用Pattern/Unit/Part・適用条件・反例・必要inputを提供し、製品COREは固有意味・Visual Identityを持つ。HARNESSの生成unitはその入力内で試作を構成する。039はExperience/UI/Frontendの関係を、079は操作path・9状態・仮data・manifest/起動/traceとwalkthroughを、049は入力済みprototypeの実描画計測と検査精度を所有する。生成unitの候補出力を各既存契約へ渡すだけで、その契約の合格・実行済みを生成しない。作業の発行・実行・記録はOS等の既存owner、利用結果の汎用化候補はLABO経由とし、BRAINへ直接昇格しない。\n- **失敗・戻し先・回復**：Pattern条件や必要input不足はBRAIN/選択source ownerへ、製品固有制約不足は対象COREへ、要求の矛盾や新しい操作が必要なら008/024の既存Backflowへ返す。生成候補の制約違反は違反箇所・対象制約・scope/revisionを示して再構成候補に戻す。不足を補った別revisionでは影響する対応を再照合し、古い候補の充足結果を流用しない。既存003/012のPrototype適用と人の合意前freeze禁止を保持する。\n- **人の境界と限界**：vision、brand、見た目の好み、prototype agreement、要件承認、利用者受入は人に残す。候補生成や機械制約照合だけでimplemented/ux_verified/production-readyを主張しない。非画面対象に画面生成を強制せず、技術PoCの適用は独立に003で判定する。実データUX、実装とのdrift、analytics event結線はO10の後続範囲のままで、1.0へ追加しない。旧211-file intake、旧mission分母/層番号、schema/API/CLI/DB/Node/Bun、具体framework・生成model・閾値を導入しない。\n- **旧sourceと差分**：VDH-FR-005の制約内構成とUI profile各条件、VDH-AC-005の違反検出を保持する。旧assessmentの文書管理の存在を画面生成能力の完成証拠にしない。O10の1.0方向と現Concept/BRAIN006/023の責務に対応づけ、生成unitを049測定・039関係・079証拠から分けることが今回の具体化差分。旧未完成やruntime存在を変更理由にしない。旧source holdingとformal successor未確定は維持する。\n",
+            "proposed_text_sha256": "d343d6581f6fd94657ed33c4570e9ef730794bd993f5acabaaa9e3de916f25aa",
+            "after_file_sha256": "de43565b60aaf7066e83362aa1305459a83fbc3cee91a84a57e2f3c0e41777ad"
+          },
+          {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "operation": "append_exact_text",
+            "existing_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+            "proposed_text": "\n### HARNESS-L2-090 制約内画面prototype構成の対L11候補（1.0、未採択）\n\n**正常例**：同じscope/revisionの画面要求、選択Patternのrequired/forbidden、製品Visual Identity、UI profileを与える。試作は実際に描画可能で、構成要素からrequired/forbidden・情報優先順位・pattern/token・responsive・motion budget・reduced-motion・accessibility・brand・surface区分の各適用制約へ意味上の対応を辿れる。製品固有値を共通知識へ入れず、生成候補と各制約の照合状態を示す。079の操作再生/walkthrough条件や049の測定を未実施なら、その未完義務を示す。生成だけで人の合意・受入・UX完成にならない。\n\n**独立した負例**：required一項欠落、forbidden要素追加、情報優先順位違反、token不一致、responsive条件違反、motion budget逸脱、reduced-motion代替欠落、accessibility条件欠落、brand制約違反、operational/expressive/mixed区分の混同、製品固有値の汎用Rule Pack混入を各別fixtureとして照合する。対象制約と違反箇所を示し、見栄えの評価や他の制約passで相殺しない。未選択Patternの暗黙採用、要求にない操作追加、静止画/proseだけをrenderable試作とする例も未完とする。motion等の数値は入力契約に従い、新しい固定閾値をoracleが作らない。\n\n**unknown・回復・未見例**：Patternの適用条件、必要input、UI profile、製品制約が欠落/矛盾/staleの例を区別し、白紙生成/自由補完/N/Aで充足にしない。ownerが不足を補った後、元scope/revisionと新根拠を結び直し、影響する試作候補を再照合する。未公開Pattern/profileや製品であっても選択条件を解釈できる場合は同じ意味で構成・検査し、未知条件は未評価として返す。非画面は根拠付き非適用とし、非画面で技術成立性不明ならPoCを省かない。\n\n**状態・責務の負例**：生成候補からAIがbrand/prototype合意を自己承認する、生成成功をimplemented/ux_verifiedとする、039の関係や079の証拠を生成unitのpassで代替する、049の測定passを生成義務充足の代用とする、LABOを迂回してBRAINへ製品情報を昇格する例を拒否する。実行、表示計測、walkthrough、人の合意は各既存owner/契約へ残す。fixtureは静的な期待条件で、実行証拠ではない。\n",
+            "proposed_text_sha256": "c05c5208c628ddcde638cfaa1e6e09195dfe20c2469be2b6cc17a31f974e4f80",
+            "after_file_sha256": "f99e56472b8c469729094b3d2c486afe73d2a2b5a262aebd9cb240369ee876a6"
+          }
+        ]
+      },
+      "C": {
+        "meaning": "この生成能力は現時点で明示保留。旧制約とO10を削除せず、1.0の実装義務へ追加しない。",
+        "tracking_issue": 1813,
+        "source_holding": "MPR-SH-VDH-O10-001",
+        "reassessment_conditions": [
+          "POが1.0生成能力を必要と指定したとき",
+          "選択Pattern/製品CORE/UI profileの生成入力とproducer責務の候補を具体化したとき",
+          "既存入力prototypeの測定だけでは利用者の画面試作要望を満たせないと確認したとき"
+        ],
+        "effect": "後続の版は未指定。明示保留の対象・行き先を記録して1853を独立再判定する。Cから生成能力のretireや全旧source移管完了を生成しない。"
+      }
+    },
+    "impact": {
+      "HARNESS049003": "既決測定単独成立を保持、B/Cでは本文変更なし。Aのみ将来revisionで操作scope変更。",
+      "HARNESS039003_and_future_004": "Experience/UI/Frontend関係と証拠受渡しの既決scope保持。未記載生成を推定せず、未採択追補もこの選択から採択しない。",
+      "HARNESS079001": "操作path/9状態/仮data/manifest/起動/trace/walkthrough証拠は既決scope保持。",
+      "BRAIN006_023_CORE_OS_LABO": "汎用Pattern提供/固有制約/運転/評価の既存責務を保持、新機構なし。"
+    },
+    "limits": [
+      "本packetは未採択案。canonical/MPR/carry/Bindingは変更しない。",
+      "Bの採択対象は固定090 L2/L11と1.0指定のみ。既決049/039/079/086を変更しない。",
+      "正式schema/実装/内部デプロイ/L3再開/要求Stage完了/Issuecloseは別。",
+      "全旧VDH/source/consumer移管、holding解除、seed全体採用、framework/model選定は含まない。"
+    ]
   }
 }
