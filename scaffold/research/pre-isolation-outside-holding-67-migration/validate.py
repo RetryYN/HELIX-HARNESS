@@ -10,9 +10,7 @@ import sys
 from pathlib import Path
 
 
-RELOCATED_PATHS = {
-    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
-}
+RELOCATED_PATHS = {'scaffold/pre-isolation-outside-holding-67': 'scaffold/research/pre-isolation-outside-holding-67', 'docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl': 'docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl', 'docs/governance/delegated-requirement-document-reference-holding.jsonl': 'docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl', 'docs/governance/delegated-requirement-document-source-holding.jsonl': 'docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl', 'docs/governance/harness-workflow-source-clause-carry-forward.jsonl': 'docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl', 'docs/governance/legacy-candidate-source-line-carry-forward.jsonl': 'docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl', 'docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl': 'docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl', 'docs/governance/legacy-requirement-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl', 'docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl', 'docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-structural-heading-carry-forward.jsonl', 'docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl', 'docs/governance/legacy-rule-atom-inventory.jsonl': 'docs/governance/audits/requirements-stage/history-snapshots/legacy-rule-atom-inventory-pre-source-correction-8955f45.jsonl', 'docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl': 'docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl', 'docs/governance/pre-isolation-revision-delta-source-holding.jsonl': 'docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl', 'docs/governance/scrum-reverse-source-line-carry-forward.jsonl': 'docs/governance/legacy-migration/delegated-document/scrum-reverse-source-line-carry-forward.jsonl', 'docs/governance/management-provisional-requirement-register.jsonl': 'docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl', 'docs/governance/phase-capability-inventory.json': 'docs/governance/audits/requirements-stage/history-snapshots/phase-capability-input0040-capture-72b9f368.json', 'docs/governance/requirement-disposition-review-program.md': 'docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-program-input0040-capture-72b9f368.md', 'docs/governance/management-provisional-requirement-registration.md': 'docs/governance/audits/requirements-stage/history-snapshots/management-registration-contract-input0040-capture-72b9f368.md', 'scaffold/pre-isolation-outside-holding-first15/': 'scaffold/research/pre-isolation-outside-holding-first15/', 'scaffold/phcap02-03-registration-classification-audit/': 'scaffold/research/phcap02-03-registration-classification-audit/', 'scaffold/rdp001-delegated-doc003-unprocessed8/': 'scaffold/research/rdp001-delegated-doc003-unprocessed8/', 'scaffold/rdp001-unassessed-atom-audit/': 'scaffold/research/rdp001-unassessed-atom-audit/', 'scaffold/pre-isolation-outside-l1-semantic/': 'scaffold/research/pre-isolation-outside-l1-semantic/', 'scaffold/pre-isolation-outside-holding-31-48/': 'scaffold/research/pre-isolation-outside-holding-31-48/', 'scaffold/outside67-global-49-67/': 'scaffold/research/outside67-global-49-67/', 'scaffold/pre-isolation-outside-holding-67-proposal/': 'scaffold/research/pre-isolation-outside-holding-67-proposal/'}
 
 
 def relocated(path):
@@ -119,7 +117,7 @@ def sha(data: bytes) -> str:
 
 
 def load(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [json.loads(line) for line in relocated(path).read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
 def live(rows: list[dict]) -> list[dict]:
@@ -157,7 +155,7 @@ def expected_holding_rows(rows: list[dict]) -> list[dict]:
         result.append({
             "registration_id": row["registration_id"],
             "source_atom_set_ref": row["source_atom_set_ref"],
-            "source_atom_set_sha256": sha(source.read_bytes()),
+            "source_atom_set_sha256": sha(relocated(source).read_bytes()),
             "source_atom_set_record_count": len(source_rows),
             "registration_kind": row["registration_kind"],
             "product_target": row["product_target"],
@@ -173,7 +171,7 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
     fail(errors, set(keysets) == set(EXPECTED_KEYSETS) and all(
         keysets.get(path) == {frozenset(expected)} for path, expected in EXPECTED_KEYSETS.items()
     ), "E_RECURSIVE_KEYSETS")
-    current_bytes = CURRENT.read_bytes()
+    current_bytes = relocated(CURRENT).read_bytes()
     historical_bytes = relocated(HISTORICAL).read_bytes()
     current_rows = load(CURRENT)
     historical_rows = load(relocated(HISTORICAL))
@@ -217,7 +215,7 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
     fail(errors, formal_meta.get("register_record_count") == 33 and formal_meta.get("live_holding_count") == 14, "E_FORMAL_INV_COUNT")
     fail(errors, formal_meta.get("appended_registration_id") == "MPR-SH-OUTSIDE67-001" and formal_meta.get("append_only_prefix_preserved") is True, "E_FORMAL_INV_STATE")
     fail(errors, len(source_rows) == 67, "E_SOURCE_COUNT")
-    source_sha = sha(SOURCE.read_bytes())
+    source_sha = sha(relocated(SOURCE).read_bytes())
     source_meta = inv.get("source_set", {})
     fail(errors, source_meta.get("path") == str(SOURCE.relative_to(ROOT)) and source_meta.get("sha256") == source_sha, "E_SOURCE_INV_SHA")
     fail(errors, source_meta.get("count") == 67 and source_meta.get("unit") == "path_revision_pair" and source_meta.get("requirement_atoms") is False, "E_SOURCE_INV_SCOPE")
@@ -257,7 +255,7 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
     fail(errors, read_after.get("live_holdings") == expected_holdings, "E_READ_AFTER_HOLDINGS")
     fail(errors, read_after.get("historical_capture_preserved") is True, "E_READ_AFTER_PRESERVE")
     read_after_meta = inv.get("read_after", {})
-    fail(errors, read_after_meta.get("path") == str(READ_AFTER.relative_to(ROOT)) and read_after_meta.get("sha256") == sha(READ_AFTER.read_bytes()), "E_READ_AFTER_INV_SHA")
+    fail(errors, read_after_meta.get("path") == "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.json" and read_after_meta.get("sha256") == sha(READ_AFTER.read_bytes()), "E_READ_AFTER_INV_SHA")
     fail(errors, read_after_meta.get("register_sha256") == sha(current_bytes) and read_after_meta.get("live_holding_count") == 14, "E_READ_AFTER_INV_STATE")
 
     old_ids = {row["registration_id"] for row in historical_live}
@@ -270,13 +268,13 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
     fail(errors, inv.get("affected_historical_captures") == EXPECTED_AFFECTED_HISTORICAL_CAPTURES, "E_AFFECTED_CAPTURE_ARRAY")
     fail(errors, inv.get("affected_historical_capture_count") == len(EXPECTED_AFFECTED_HISTORICAL_CAPTURES), "E_AFFECTED_CAPTURE_COUNT")
     for relative in EXPECTED_AFFECTED_HISTORICAL_CAPTURES:
-        fail(errors, (ROOT / relative).is_file(), f"E_AFFECTED_CAPTURE_MISSING:{relative}")
+        fail(errors, relocated(ROOT / relative).is_file(), f"E_AFFECTED_CAPTURE_MISSING:{relative}")
     fail(errors, inv.get("repointed_sources") == EXPECTED_REPOINTED_SOURCES, "E_REPOINTED_SOURCE_ARRAY")
     for source in EXPECTED_REPOINTED_SOURCES:
-        path = ROOT / source["path"]
+        path = relocated(ROOT / source["path"])
         fail(errors, path.is_file(), f"E_REPOINTED_SOURCE_MISSING:{source['path']}")
         if path.is_file():
-            text = path.read_text(encoding="utf-8")
+            text = relocated(path).read_text(encoding="utf-8")
             fail(errors, source["historical_register_ref"] in text, f"E_REPOINTED_SOURCE_REF:{source['path']}")
 
     expected_snapshot_path = "management-provisional-requirement-register-pre-append-3df81ad.jsonl"
@@ -290,17 +288,17 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
         "scaffold/rdp001-unassessed-atom-audit/validate.py",
     ]
     for relative in affected_sources:
-        text = (ROOT / relative).read_text(encoding="utf-8")
+        text = relocated(ROOT / relative).read_text(encoding="utf-8")
         fail(errors, expected_snapshot_path in text, f"E_SNAPSHOT_BINDING:{relative}")
     for relative in ("scaffold/bindings/SCF-B-0027.json", "scaffold/bindings/SCF-B-0029.json", "scaffold/bindings/SCF-B-0034.json", "scaffold/bindings/SCF-B-0035.json", "docs/governance/phase-capability-inventory.json"):
-        text = (ROOT / relative).read_text(encoding="utf-8")
+        text = relocated(ROOT / relative).read_text(encoding="utf-8")
         if relative == "docs/governance/phase-capability-inventory.json":
-            fail(errors, sha(PHASE.read_bytes()) == PHASE_SHA, "E_PHASE_CAPTURE_UNCHANGED")
+            fail(errors, sha(relocated(PHASE).read_bytes()) == PHASE_SHA, "E_PHASE_CAPTURE_UNCHANGED")
         else:
             fail(errors, expected_snapshot_path in text, f"E_SNAPSHOT_REFERENCE:{relative}")
 
-    program = (ROOT / "docs/governance/requirement-disposition-review-program.md").read_text(encoding="utf-8")
-    contract = (ROOT / "docs/governance/management-provisional-requirement-registration.md").read_text(encoding="utf-8")
+    program = relocated(ROOT / "docs/governance/requirement-disposition-review-program.md").read_text(encoding="utf-8")
+    contract = relocated(ROOT / "docs/governance/management-provisional-requirement-registration.md").read_text(encoding="utf-8")
     fail(errors, "現在の十四のholding" in program and "MPR-SH-OUTSIDE67-001" in program, "E_PROGRAM_CURRENT_14")
     fail(errors, "33 revision" in contract and "14生存中holding" in contract and "management-provisional-requirement-register-pre-append-3df81ad.jsonl" in contract, "E_CONTRACT_CURRENT_14")
     deps = inv.get("dependencies", [])

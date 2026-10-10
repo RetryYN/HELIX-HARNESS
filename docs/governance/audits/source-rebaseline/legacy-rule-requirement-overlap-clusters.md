@@ -139,3 +139,9 @@ registerを直接pinする19 Bindingの固定BASE/current入力境界は再照�
 [0121再照合receipt](osa03-register-consumer-reconciliation-0121-2026-10-10.json)に実際のinventory/candidate digestを固定した。11候補は9月17日decisionで承認された旧Web/Web-OS SHAを保持している一方、validatorだけが変更後の現行参照SHAを期待していた。候補を変更せず、旧承認SHAの本文、当初BASEのboundary/作業入口、後続637行register captureを固定snapshotへ束縛した。Bindingの現行文書pinはcontextとして別に保持し、旧承認を現行bytesへ継承しない。
 
 validator、既存16負例、隔離生成による13機械記録/source snapshot一致を確認した。生成された説明文は採用せず、研究scope・意味/source/consumer closure・正式successor・authorityの未完を保持する。候補JSON/JSONL・Binding契約は不変。残るstaleは0040だけで、Draftを維持し、独立review・Ready/merge admission・要求採否・holding解除・L3再開・Issue close・全要求完了は未成立。
+
+## 0040のpost-append capture再照合
+
+[0040再照合receipt](osa03-register-consumer-reconciliation-0040-2026-10-10.json)に期待digestの33行/14 holding register captureと、当時のphase inventory/program/登録契約を固定した。旧13 holding sourceは移動先又は訂正前snapshot、Scaffold参照は現行research配置へ解決する。logical path、32行prefix、33行append記録、13/14会計は保持し、旧001を現在の生存holdingへ戻さない。候補JSONとBinding契約は不変。
+
+validatorと既存25＋祖先性2負例が成功し、read-only buildでmigration/read-after/first15 inventoryの全field一致を確認した。全147 Bindingの構造検証fail=0、stale=0。ただし新HEADの独立reviewは未完で、PRはDraft。全source/consumer closure・正式successor・他clusterの被覆・要求採否・holding解除・L3再開・Issue close・全要求完了は静的整合から生成しない。
