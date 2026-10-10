@@ -89,3 +89,11 @@ RUL-FRM-01の候補本文（工程順序とV-pairを閉じる）と、現行HARN
 registerのsupersedes鎖を再計算すると、現行の生存中holdingは`MPR-SH-LEGACY-RULE-005`（-004の配置訂正）である。以前の候補文書と研究記録の-004は当時のlocatorを示す。比較用記述の訂正は台帳/holdingの正式訂正を代替しない。台帳訂正には新digestを持つappend-only revisionと、直接pin 4 Binding・register consumer・生成rulebookの再照合が必要である。原inventory、register、Binding、rulebookはこの追補では変更していない。
 
 3件の原文に忠実な比較用文は記録したが、source_holdingの訂正、consumer閉包、正式successor、atom境界は未完として#1814/親#1813へ残す。要求採否・意味のretire・holding解除・L3再開・Issue closeを生成しない。
+
+## OSA03正式台帳の抽出訂正Draft
+
+[訂正receipt](osa03-rule-source-extraction-correction-2026-10-10.json)に旧3recordの全field、原文pin、訂正後3record、before/after台帳digest、旧holding005とこのDraftで追記する006を固定した。RE01-257/258の過包含を引用行の直接条件へ訂正し、RG44-006のmerge_conflict分岐を回復する。7622 IDと候補routingは保持し、7619行はbytes不変。旧文を消さず、別sourceに残る一巡・blocker条件をretireしない。
+
+registerは旧全prefixを保持してMPR-SH-LEGACY-RULE-006を一行追記する。source_preserved_unassigned/authority noneであり、要求採用やsuccessor成立ではない。仮ルール集59fileを再生成しgovcheckで7622件の保持を確認した。SCF-B-0002の入力pinを更新し、0011は47選択record全field不変＋validator、0021はfailure projection全field不変＋validatorで再照合した。0035は過去13 holding研究なので、訂正前の同一bytesを歴史snapshotへ保全し、generatorの読取先を固定して15path/13holdingのvalidatorを再照合した。
+
+registerを直接pinする19 Bindingの固定BASE/current入力境界は再照合中である。このDraftではstaleを機械的pin更新で消さず、Ready/merge admissionを未成立とする。前の3件正規化と全75比較は訂正前の固定revisionに対する記録として保持する。正式台帳訂正の統合、残るconsumer、successor、他clusterのclosure、#1814 closeはまだ成立していない。

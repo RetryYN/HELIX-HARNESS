@@ -5,7 +5,7 @@ generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
 source_candidate_sha256: f647bbbcbe21ef775186760086decac511c6a7845f7575952eb7eb551dd55101
 source_inventory: docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
+source_inventory_sha256: d27a7ae55bcf9959264dd3579f906479e236c95e188132a512ff4af2a35c9567
 rule_id: RUL-FRM-07
 group: 枠
 product: HARNESS

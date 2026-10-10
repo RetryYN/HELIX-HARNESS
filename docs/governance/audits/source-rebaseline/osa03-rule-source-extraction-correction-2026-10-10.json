@@ -1,0 +1,295 @@
+{
+  "evidence_kind": "source_extraction_correction",
+  "authority_effect": "none",
+  "base_revision": "8955f45cf36727c610aac5dfd1847f992a9b82c5",
+  "inventory_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
+  "before_inventory_sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
+  "after_inventory_sha256": "d27a7ae55bcf9959264dd3579f906479e236c95e188132a512ff4af2a35c9567",
+  "before_records": [
+    {
+      "rule_id": "RE01-257",
+      "rule_text": "reviewerは同じHEADのblockerを一括返却し、修正後HEADは新しい独立blockerの実証がない限り一巡だけ再判定する。",
+      "kind": "review_merge",
+      "enforced_by": [
+        "prose"
+      ],
+      "fail_mode": "n/a",
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "lines": "516-516"
+        }
+      ],
+      "legacy_binding": "HEAD単位のreview収束規約",
+      "requirement_primary": "RUL-OSA-03",
+      "requirement_secondary": [],
+      "mapped_by": "claude-opus",
+      "legacy_only_reason": "",
+      "extraction_pass": "E01",
+      "extraction_note": "",
+      "authority_effect": "none"
+    },
+    {
+      "rule_id": "RE01-258",
+      "rule_text": "作成者は契約違反・correctness・security・data loss・必須oracle失敗・虚偽証拠、および同じ責務とscope内で安全に閉じるfindingをcurrent PRで修正する。独立責務の改善だけを別episodeへ分ける。",
+      "kind": "review_merge",
+      "enforced_by": [
+        "prose",
+        "gate"
+      ],
+      "fail_mode": "fail_close",
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "lines": "516-516"
+        }
+      ],
+      "legacy_binding": "current PR finding disposition",
+      "requirement_primary": "RUL-OSA-03",
+      "requirement_secondary": [],
+      "mapped_by": "claude-opus",
+      "legacy_only_reason": "",
+      "extraction_pass": "E01",
+      "extraction_note": "",
+      "authority_effect": "none"
+    },
+    {
+      "rule_id": "RG44-006",
+      "rule_text": "review feedback分類器は、解決済みeventをresolved、孤立eventをtriage、requested_changesをneeds_you、それ以外をretry_taskへ分類する。",
+      "kind": "review_merge",
+      "enforced_by": [
+        "prose"
+      ],
+      "fail_mode": "n/a",
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/src/runtime/review-feedback-session-intake.ts",
+          "lines": "60-66"
+        }
+      ],
+      "legacy_binding": "",
+      "requirement_primary": "RUL-OSI-01",
+      "requirement_secondary": [
+        "RUL-OSA-03"
+      ],
+      "mapped_by": "claude-opus",
+      "legacy_only_reason": "",
+      "extraction_pass": "G44",
+      "extraction_note": "",
+      "authority_effect": "none"
+    }
+  ],
+  "after_records": [
+    {
+      "rule_id": "RE01-257",
+      "rule_text": "AI-Bはblockerを一括返却する。",
+      "kind": "review_merge",
+      "enforced_by": [
+        "prose"
+      ],
+      "fail_mode": "n/a",
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "lines": "516-516"
+        }
+      ],
+      "legacy_binding": "HEAD単位のreview収束規約",
+      "requirement_primary": "RUL-OSA-03",
+      "requirement_secondary": [],
+      "mapped_by": "claude-opus",
+      "legacy_only_reason": "",
+      "extraction_pass": "E01",
+      "extraction_note": "2026-10-10: 引用原文への抽出訂正。旧全field/旧文と原文pinは docs/governance/audits/source-rebaseline/osa03-rule-source-extraction-correction-2026-10-10.json に保持。旧句のretire・現行要求の採択ではない。",
+      "authority_effect": "none"
+    },
+    {
+      "rule_id": "RE01-258",
+      "rule_text": "current contract内で局所的に閉じるcorrectness/security findingはAI-Aがcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ送る。",
+      "kind": "review_merge",
+      "enforced_by": [
+        "prose",
+        "gate"
+      ],
+      "fail_mode": "fail_close",
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "lines": "516-516"
+        }
+      ],
+      "legacy_binding": "current PR finding disposition",
+      "requirement_primary": "RUL-OSA-03",
+      "requirement_secondary": [],
+      "mapped_by": "claude-opus",
+      "legacy_only_reason": "",
+      "extraction_pass": "E01",
+      "extraction_note": "2026-10-10: 引用原文への抽出訂正。旧全field/旧文と原文pinは docs/governance/audits/source-rebaseline/osa03-rule-source-extraction-correction-2026-10-10.json に保持。旧句のretire・現行要求の採択ではない。",
+      "authority_effect": "none"
+    },
+    {
+      "rule_id": "RG44-006",
+      "rule_text": "review feedback分類器は、resolvedが真ならresolved、そうでなくorphanならtriage、それ以外でkind=requested_changesならneeds_you、kind=merge_conflictならblocked、その他ならretry_taskへこの優先順で分類する。",
+      "kind": "review_merge",
+      "enforced_by": [
+        "prose"
+      ],
+      "fail_mode": "n/a",
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/src/runtime/review-feedback-session-intake.ts",
+          "lines": "60-66"
+        }
+      ],
+      "legacy_binding": "",
+      "requirement_primary": "RUL-OSI-01",
+      "requirement_secondary": [
+        "RUL-OSA-03"
+      ],
+      "mapped_by": "claude-opus",
+      "legacy_only_reason": "",
+      "extraction_pass": "G44",
+      "extraction_note": "2026-10-10: 引用原文への抽出訂正。旧全field/旧文と原文pinは docs/governance/audits/source-rebaseline/osa03-rule-source-extraction-correction-2026-10-10.json に保持。旧句のretire・現行要求の採択ではない。",
+      "authority_effect": "none"
+    }
+  ],
+  "source_pins": [
+    {
+      "rule_id": "RE01-257",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "lines": "516-516",
+      "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "text": "`docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md`を既存GitHub要件、`docs/design/helix/L3-requirements/github-merge-admission-requirements.md`を同一HEAD merge admission拡張として採用する。Issue→PLAN→branch→PR→CI→merge→tag→memory/DBを一episodeとして閉じる。mainはPR-only、strict aggregate `harness-check`、bypassなし、人間approval不要、AI-A（作成・blocker修正）とread-only AI-B（監査・finding disposition・merge判断）の2実行主体、同一HEAD文脈レビューreceipt、DB追従receiptを必須とする。AI-Bは編集・push・Ready化を行わず、blockerを一括返却する。current contract内で局所的に閉じるcorrectness/security findingはAI-Aがcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ送る。CI greenだけではmergeを許可せず、push・base更新・正本digest変更で両receiptをstale化する。Issue closeは同要件GH-FR-017に従い、通常は終端PRの`Closes #N` mergeだけで行う。`resolved / rejected / quarantined / superseded / cancelled`を別outcomeとして保持し、証拠付き不採用も終端decision PRでclose可能とする。AI単独のmanual closeは禁止し、superseded/cancelledはPO decision、全outcomeはcurrent closure receiptと子Issue dispositionを要求する。\n",
+      "span_sha256": "15c275a96b0e29958bbffb28801451a1959bedd3b31d7918af55da8db29036fd"
+    },
+    {
+      "rule_id": "RE01-258",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "lines": "516-516",
+      "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "text": "`docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md`を既存GitHub要件、`docs/design/helix/L3-requirements/github-merge-admission-requirements.md`を同一HEAD merge admission拡張として採用する。Issue→PLAN→branch→PR→CI→merge→tag→memory/DBを一episodeとして閉じる。mainはPR-only、strict aggregate `harness-check`、bypassなし、人間approval不要、AI-A（作成・blocker修正）とread-only AI-B（監査・finding disposition・merge判断）の2実行主体、同一HEAD文脈レビューreceipt、DB追従receiptを必須とする。AI-Bは編集・push・Ready化を行わず、blockerを一括返却する。current contract内で局所的に閉じるcorrectness/security findingはAI-Aがcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ送る。CI greenだけではmergeを許可せず、push・base更新・正本digest変更で両receiptをstale化する。Issue closeは同要件GH-FR-017に従い、通常は終端PRの`Closes #N` mergeだけで行う。`resolved / rejected / quarantined / superseded / cancelled`を別outcomeとして保持し、証拠付き不採用も終端decision PRでclose可能とする。AI単独のmanual closeは禁止し、superseded/cancelledはPO decision、全outcomeはcurrent closure receiptと子Issue dispositionを要求する。\n",
+      "span_sha256": "15c275a96b0e29958bbffb28801451a1959bedd3b31d7918af55da8db29036fd"
+    },
+    {
+      "rule_id": "RG44-006",
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/review-feedback-session-intake.ts",
+      "lines": "60-66",
+      "file_sha256": "44f4d64fbe27d8f3d3416a45fce5f598ca9adfffc0c0fe606d4c45f015ef67ea",
+      "text": "function stateFor(event: ReviewFeedbackEventInput, orphan: boolean): ReviewFeedbackState {\n  if (event.resolved) return \"resolved\";\n  if (orphan) return \"triage\";\n  if (event.kind === \"requested_changes\") return \"needs_you\";\n  if (event.kind === \"merge_conflict\") return \"blocked\";\n  return \"retry_task\";\n}\n",
+      "span_sha256": "3cf4f59ac4484e45719af7f3395a5358c22b5ae3a4163553dcb9104a5f4ecb78"
+    }
+  ],
+  "prior_holding_record": {
+    "registration_id": "MPR-SH-LEGACY-RULE-005",
+    "supersedes_registration_id": "MPR-SH-LEGACY-RULE-004",
+    "registration_kind": "source_holding",
+    "requirement_identity": null,
+    "requirement_kind": null,
+    "product_target": "unassigned_cross_product",
+    "candidate_source_path": null,
+    "candidate_semantic_digest": null,
+    "parent_concept_revision": null,
+    "parent_planning_revision": null,
+    "source_atom_set_ref": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
+    "source_atom_set_digest": "sha256:97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
+    "source_atom_count": 7622,
+    "source_collection_scope": "旧HELIX（archive/legacy-generation-2026-09-14/root）のAI向け指示、運用文書、機械強制codeから抽出した規則atom 7,622件（1行1 atom、出どころpath・行範囲付き）。対象file 632件は legacy-rule-atom-source-files.jsonl（sha256、status、second_pass）で固定する。二巡目を読ませたfileは531件（一巡目でatomを得た533件のうち530件＋規則なし申告1件）で、509件を追加した（うち56件は一巡目統合時のpath正規化不具合で誤除外していたものの復元。台帳のextraction_note）。二巡目でも新規が出ているため、本集合は「発見済みの規則atom」であり、旧HELIXの全規則ではない。atomの要求への対応づけ（requirement_primary／secondary）は候補であり、本holdingの保全対象は原文と出どころである",
+    "coverage_receipt_ref": null,
+    "coverage_result": "source_preserved_unassigned",
+    "carried_atom_refs": [],
+    "preserved_pending_registration_refs": [],
+    "human_decision_disposition_refs": [],
+    "unaccounted_atom_refs": [],
+    "management_state": "registered_source_holding",
+    "authority_effect": "none",
+    "registered_by": "Codex execution lane (L3-D0 current locator correction; authority_effect:none)",
+    "registered_at": "2026-10-03T00:00:00+09:00",
+    "evidence_refs": [
+      "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-source-files.jsonl",
+      "docs/governance/candidates/legacy-rule-derived-requirements.md#洗い出した範囲と方法",
+      "scaffold/governance/README.md",
+      "scaffold/bindings/SCF-B-0002.json"
+    ],
+    "correction_reason": "L3-D0 current locator correction: update the current source-holding locator and current receipt reference to the existing 2026-09-26 destination / corrected receipt revision. Source bytes, digest, count, meaning, state, authority, ownership and disposition are unchanged."
+  },
+  "proposed_holding_record": {
+    "registration_id": "MPR-SH-LEGACY-RULE-006",
+    "supersedes_registration_id": "MPR-SH-LEGACY-RULE-005",
+    "registration_kind": "source_holding",
+    "requirement_identity": null,
+    "requirement_kind": null,
+    "product_target": "unassigned_cross_product",
+    "candidate_source_path": null,
+    "candidate_semantic_digest": null,
+    "parent_concept_revision": null,
+    "parent_planning_revision": null,
+    "source_atom_set_ref": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
+    "source_atom_set_digest": "sha256:d27a7ae55bcf9959264dd3579f906479e236c95e188132a512ff4af2a35c9567",
+    "source_atom_count": 7622,
+    "source_collection_scope": "旧HELIX（archive/legacy-generation-2026-09-14/root）のAI向け指示、運用文書、機械強制codeから抽出した規則atom 7,622件（1行1 atom、出どころpath・行範囲付き）。対象file 632件は legacy-rule-atom-source-files.jsonl（sha256、status、second_pass）で固定する。二巡目を読ませたfileは531件（一巡目でatomを得た533件のうち530件＋規則なし申告1件）で、509件を追加した（うち56件は一巡目統合時のpath正規化不具合で誤除外していたものの復元。台帳のextraction_note）。二巡目でも新規が出ているため、本集合は「発見済みの規則atom」であり、旧HELIXの全規則ではない。atomの要求への対応づけ（requirement_primary／secondary）は候補であり、本holdingの保全対象は原文と出どころである 2026-10-10に抽出文3件を引用原文へ訂正。旧3record/unsupported句は訂正receiptに保全する。これは意味採択・正式successor・全source/consumer closureではない。",
+    "coverage_receipt_ref": null,
+    "coverage_result": "source_preserved_unassigned",
+    "carried_atom_refs": [],
+    "preserved_pending_registration_refs": [],
+    "human_decision_disposition_refs": [],
+    "unaccounted_atom_refs": [],
+    "management_state": "registered_source_holding",
+    "authority_effect": "none",
+    "registered_by": "Codex execution lane (source extraction correction; authority_effect:none)",
+    "registered_at": "2026-10-10T12:20:08+09:00",
+    "evidence_refs": [
+      "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-source-files.jsonl",
+      "docs/governance/candidates/legacy-rule-derived-requirements.md#洗い出した範囲と方法",
+      "scaffold/governance/README.md",
+      "scaffold/bindings/SCF-B-0002.json",
+      "docs/governance/audits/source-rebaseline/osa03-rule-source-extraction-correction-2026-10-10.json",
+      "docs/governance/audits/source-rebaseline/legacy-rule-requirement-overlap-clusters.jsonl#OVC-RUL-RUL-OSA-03"
+    ],
+    "correction_reason": "OSA03原文比較で確認したRE01-257/258の過包含とRG44-006のmerge_conflict分岐落ちを訂正。ID/7622件/source path/行/候補routingは不変。旧3recordはcorrection receiptと005のgit revisionへ保持し、旧source意味の削減・retire・要求採択・consumer closureを生成しない。"
+  },
+  "register_base_sha256": "39b8f8e12b9965927e70d570528533b4c5203088bc985941d809367bbb7fc395",
+  "retained_meaning": [
+    "RE01-257の一巡/新独立blocker例外は旧全recordとRA-161の別原文へ保持し、当引用行の根拠へ混ぜない。",
+    "RE01-258の列挙と責務/scope条件は旧全recordとRA-162の別原文へ保持し、当引用行の直接条件へ混ぜない。",
+    "RG44-006は原文の5分岐と優先順を回復し、状態をfinding処分へ同一化しない。"
+  ],
+  "unchanged": [
+    "7619 inventory rows bytes",
+    "7622 ID集合/件数",
+    "3件のrule_text/extraction_note以外の全field",
+    "archive原文/source file台帳",
+    "要求候補57本文/要求採択状態",
+    "MPR既存全prefix bytes"
+  ],
+  "admission_status": "draft_pending_dependent_source_reconciliation",
+  "remaining": [
+    "register直接pin19 Bindingの固定BASE/current入力境界を再照合。staleをblind repinで消さない。",
+    "全consumer/正式successor/atom境界、他55cluster、FRM01の518rule比較。"
+  ],
+  "limits": [
+    "台帳抽出訂正であり要求の意味変更/採択/retireではない。",
+    "MPR006はsource_preserved_unassigned/authority noneで要求承認/holding解除/Stage完了/Issue closeを生成しない。",
+    "admissionは影響先整合・独立review・最新base/stale=0を確認するまで未成立。",
+    "旧runtime/test/CI/CLIは非実行。"
+  ],
+  "dependency_reconciliation": [
+    {
+      "binding": "SCF-B-0002",
+      "result": "rulebook deterministic regeneration and govcheck PASS; 7622 IDs retained"
+    },
+    {
+      "binding": "SCF-B-0011",
+      "result": "selected 47 records unchanged; independent current validator PASS (25/22/47, 26 source files, S1 denominator separation)"
+    },
+    {
+      "binding": "SCF-B-0021",
+      "result": "failure-match projection fields unchanged over 7622 rows; current validator PASS (24 edges, 7 target blobs, document atomization not performed)"
+    },
+    {
+      "binding": "SCF-B-0035",
+      "result": "historical 13-holding input isolated at identical prior bytes; first15 validator PASS (15 paths/13 holdings/static blob relation)",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/legacy-rule-atom-inventory-pre-source-correction-8955f45.jsonl",
+      "snapshot_sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784"
+    }
+  ]
+}
