@@ -1,0 +1,1549 @@
+{
+  "audit_kind": "related_source_measurement_responsibility_comparison",
+  "authority_effect": "none",
+  "base_revision": "69082b817bca91b0c9f931f0d12647b78301ce6a",
+  "issue": 2089,
+  "related_issue": 1861,
+  "scope": "33名指し入力のうちFR20/36/38/43の4入力を条件候補へ比較。関連consumerは限定区間。旧要求の正式atom化/再配置・全source閉包・runtime受入は未成立。",
+  "source_inventory": {
+    "path": "docs/governance/audits/requirements-stage/labo-intelligence-2089-preclose-inventory-2026-10-10.json",
+    "sha256": "3d4a381c519f85cecb986fdc1eb6e07047b440ece9ec4987fc72cb431ae375eb",
+    "named_inputs": 33
+  },
+  "input_records": [
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 51,
+      "source_text": "| **FR-L1-20** | 観測・計測層 (5 hook で AI 実行を全量ログ化、発火 / トラブル / 精度 / 予算のメトリクス集約) | observability-metrics | AI 実行イベント全種 | invocation_log / action_logs / gate_runs / accuracy_score / budget_events、dashboard メトリクス。※ extended: スキル使用パラメータ + モデルパラメータ + トラブル計測 + トークン/利用コスト の 4 軸を計測対象に追加 (L3 で AC 詳細化、F7=b に従い L1 はスコープ宣言のみ) | P1 | HM-05 / HM-08 |",
+      "source_text_sha256": "508f583208a248beb17fc65a2241aa46754a774605fd101be1049a3dba0ac05c",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+        "declared_id": "FR-L1-20",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 51,
+        "source_line_text": "| **FR-L1-20** | 観測・計測層 (5 hook で AI 実行を全量ログ化、発火 / トラブル / 精度 / 予算のメトリクス集約) | observability-metrics | AI 実行イベント全種 | invocation_log / action_logs / gate_runs / accuracy_score / budget_events、dashboard メトリクス。※ extended: スキル使用パラメータ + モデルパラメータ + トラブル計測 + トークン/利用コスト の 4 軸を計測対象に追加 (L3 で AC 詳細化、F7=b に従い L1 はスコープ宣言のみ) | P1 | HM-05 / HM-08 |",
+        "source_line_sha256": "508f583208a248beb17fc65a2241aa46754a774605fd101be1049a3dba0ac05c",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "population": "confirmed175",
+      "issue1861_membership": "primary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 67,
+      "source_text": "| **FR-L1-36** | スキル評価システム (per-skill rating / adoption / success / unused flag を skill_invocations + plan_registry から projection) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) | skill_invocations.accepted=1 件、plan_registry.status、asOf timestamp | skill_evaluations projection (skill_rating 0.0-1.0、adoption_count、success_count、unused_flag)。cold-start = 0 行。unused = 30 日以内発火なし。削除は人手のみ | P2 | HM-05 |",
+      "source_text_sha256": "1d2f72f5d9c26e4bbdbb23a1ffd93cec22c82c117343c4f1b1e01692a0d00139",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+        "declared_id": "FR-L1-36",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 67,
+        "source_line_text": "| **FR-L1-36** | スキル評価システム (per-skill rating / adoption / success / unused flag を skill_invocations + plan_registry から projection) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) | skill_invocations.accepted=1 件、plan_registry.status、asOf timestamp | skill_evaluations projection (skill_rating 0.0-1.0、adoption_count、success_count、unused_flag)。cold-start = 0 行。unused = 30 日以内発火なし。削除は人手のみ | P2 | HM-05 |",
+        "source_line_sha256": "1d2f72f5d9c26e4bbdbb23a1ffd93cec22c82c117343c4f1b1e01692a0d00139",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "population": "confirmed175",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 69,
+      "source_text": "| **FR-L1-38** | model 評価システム (per-model success rate を model_runs + plan_registry から projection、opt-in) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) / PLAN-L7-57 / PLAN-L7-58 | model_runs (run_id, runtime, model, role, drive, plan_id, started_at, completed_at, evidence_path)、plan_registry.status、.helix/config/model-opt-in.yaml (enabled:true で有効化)、runtime session telemetry | model_evaluations projection (model PK、success_rate REAL 0.0-1.0、run_count INTEGER、success_count INTEGER、token/cost efficiency、evaluated_at TEXT)。opt-in 無効 = 0 行。cold-start = 0 行。未掲載 pricing は null のまま捏造しない | P2 | HM-08 |",
+      "source_text_sha256": "76ca28f714bf37741a2ac6cdbbcae826fae07222afaedbc610ebcce0d3b922b0",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+        "declared_id": "FR-L1-38",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 69,
+        "source_line_text": "| **FR-L1-38** | model 評価システム (per-model success rate を model_runs + plan_registry から projection、opt-in) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) / PLAN-L7-57 / PLAN-L7-58 | model_runs (run_id, runtime, model, role, drive, plan_id, started_at, completed_at, evidence_path)、plan_registry.status、.helix/config/model-opt-in.yaml (enabled:true で有効化)、runtime session telemetry | model_evaluations projection (model PK、success_rate REAL 0.0-1.0、run_count INTEGER、success_count INTEGER、token/cost efficiency、evaluated_at TEXT)。opt-in 無効 = 0 行。cold-start = 0 行。未掲載 pricing は null のまま捏造しない | P2 | HM-08 |",
+        "source_line_sha256": "76ca28f714bf37741a2ac6cdbbcae826fae07222afaedbc610ebcce0d3b922b0",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    },
+    {
+      "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "population": "confirmed175",
+      "issue1861_membership": "secondary",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 74,
+      "source_text": "| **FR-L1-43** | PoC サクセス計測 (confirmed / rejected / pivot 件数から成功率を projection) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) | plan_registry (kind=poc, decision_outcome∈{confirmed,rejected,pivot}) | poc_evaluations projection (poc_success_rate 0.0-1.0、confirmed_count、rejected_count、pivot_count、total_count)。cold-start = 0 行。決定未記録 PoC は分母除外 | P2 | HM-08 |",
+      "source_text_sha256": "5b9244358b19838ad0de278c226cc5caf72880cf7e79bec471acc4e1282183b5",
+      "carry_record": {
+        "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+        "declared_id": "FR-L1-43",
+        "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 74,
+        "source_line_text": "| **FR-L1-43** | PoC サクセス計測 (confirmed / rejected / pivot 件数から成功率を projection) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) | plan_registry (kind=poc, decision_outcome∈{confirmed,rejected,pivot}) | poc_evaluations projection (poc_success_rate 0.0-1.0、confirmed_count、rejected_count、pivot_count、total_count)。cold-start = 0 行。決定未記録 PoC は分母除外 | P2 | HM-08 |",
+        "source_line_sha256": "5b9244358b19838ad0de278c226cc5caf72880cf7e79bec471acc4e1282183b5",
+        "source_declared_status": "confirmed",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "identity_kind": "functional_requirement",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "additional_heading_body": [],
+      "assessment": "retained_input_not_atom_migration_proof",
+      "unresolved": "原sourceの各条件/数値/例外/consumerから現ownerへのatom単位比較は別途必要。存在だけで移管済みにしない。"
+    }
+  ],
+  "candidate_atoms": [
+    {
+      "id": "METRIC-20-A01",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "source_start": 25,
+      "source_end": 45,
+      "exact_source_text": "5 hook で AI 実行を全量ログ化",
+      "classification_candidate": "split",
+      "evidence": [
+        "C08",
+        "N01",
+        "N04"
+      ],
+      "comparison": "旧5hook全量の母集団と現行許可scopeを区別。原運転記録はOS、許可観測LABO。5hook個別consumer閉包は未完。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-20-A02",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "source_start": 46,
+      "source_end": 73,
+      "exact_source_text": "発火 / トラブル / 精度 / 予算のメトリクス集約",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C01",
+        "N04",
+        "N05"
+      ],
+      "comparison": "4観点を残し、評価方法と運転原記録を分ける。予算原本と分析結果を同一authorityにしない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-20-A03",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "source_start": 101,
+      "source_end": 112,
+      "exact_source_text": "AI 実行イベント全種",
+      "classification_candidate": "connection",
+      "evidence": [
+        "N01",
+        "N04"
+      ],
+      "comparison": "全種という元のpopulationを保持。成功だけ選ぶ、欠測/未許可を観測済みにする読みは不可。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-20-A04",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "source_start": 115,
+      "source_end": 188,
+      "exact_source_text": "invocation_log / action_logs / gate_runs / accuracy_score / budget_events",
+      "classification_candidate": "OS保持",
+      "evidence": [
+        "C07",
+        "C08",
+        "N01"
+      ],
+      "comparison": "5出力sourceを列挙したまま保全し、raw log/運転stateをLABOへ移管しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-20-A05",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "source_start": 189,
+      "source_end": 204,
+      "exact_source_text": "dashboard メトリクス",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C01",
+        "N05"
+      ],
+      "comparison": "計測scope/原証拠と表示consumerの結合は未完。表示の存在で効果を証明しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-20-A06",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "source_start": 217,
+      "source_end": 266,
+      "exact_source_text": "スキル使用パラメータ + モデルパラメータ + トラブル計測 + トークン/利用コスト の 4 軸",
+      "classification_candidate": "split",
+      "evidence": [
+        "C01",
+        "C08",
+        "N05"
+      ],
+      "comparison": "拡張4軸を保持。計測と比較評価/配置案を分け、token量を費用実額と同一視しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-20-A07",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "source_start": 276,
+      "source_end": 309,
+      "exact_source_text": "L3 で AC 詳細化、F7=b に従い L1 はスコープ宣言のみ",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C01",
+        "C07"
+      ],
+      "comparison": "旧L1の宣言と旧下流詳細を区別。旧L3を現行L3へ自動承継しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-20-A08",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "source_start": 313,
+      "source_end": 315,
+      "exact_source_text": "P1",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C08"
+      ],
+      "comparison": "P1/Phase A記録・Phase B拡張の旧区別は保持。現行versionを今回指定しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-20-A09",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "source_start": 318,
+      "source_end": 331,
+      "exact_source_text": "HM-05 / HM-08",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C04"
+      ],
+      "comparison": "表示consumerの全境界/受入は別途残る。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-36-A01",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "source_start": 28,
+      "source_end": 79,
+      "exact_source_text": "per-skill rating / adoption / success / unused flag",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C04",
+        "C05",
+        "C09"
+      ],
+      "comparison": "4値を別指標に保つ。ratingは成功採用PLAN/採用PLAN、採用率と同じ式ではない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-36-A02",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "source_start": 82,
+      "source_end": 115,
+      "exact_source_text": "skill_invocations + plan_registry",
+      "classification_candidate": "split",
+      "evidence": [
+        "C05",
+        "C13",
+        "N01",
+        "N04"
+      ],
+      "comparison": "事実は原source、評価projectionは別。未join/重複時の分母を明示する。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-36-A03",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "source_start": 181,
+      "source_end": 247,
+      "exact_source_text": "skill_invocations.accepted=1 件、plan_registry.status、asOf timestamp",
+      "classification_candidate": "connection",
+      "evidence": [
+        "C05",
+        "C09",
+        "C13"
+      ],
+      "comparison": "accepted=1、成功状態confirmed/completed、asOfをconsumerで保持。distinct PLANと発火回数は別。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-36-A04",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "source_start": 250,
+      "source_end": 278,
+      "exact_source_text": "skill_evaluations projection",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C05",
+        "C13"
+      ],
+      "comparison": "旧projection実装方式を現行schemaへ継承しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-36-A05",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "source_start": 280,
+      "source_end": 341,
+      "exact_source_text": "skill_rating 0.0-1.0、adoption_count、success_count、unused_flag",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C05",
+        "C09"
+      ],
+      "comparison": "範囲0..1と各count/flagを保持。単一scoreで事実/未使用を相殺しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-36-A06",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "source_start": 343,
+      "source_end": 359,
+      "exact_source_text": "cold-start = 0 行",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C09",
+        "C13"
+      ],
+      "comparison": "0行は0点/劣性能ではない。既存行のあるDBで0入力に戻る時の失効は直接関数では確認できない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-36-A07",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "source_start": 360,
+      "source_end": 379,
+      "exact_source_text": "unused = 30 日以内発火なし",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C05",
+        "C13"
+      ],
+      "comparison": "30日asOf窓を保持。acceptedのみのadoptionとrecent全発火の窓は別。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-36-A08",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "source_start": 380,
+      "source_end": 387,
+      "exact_source_text": "削除は人手のみ",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C04",
+        "C05"
+      ],
+      "comparison": "unused flagで削除しない。通常改修の毎回人間承認へ広げない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-36-A09",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "source_start": 164,
+      "source_end": 166,
+      "exact_source_text": "P2",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C04"
+      ],
+      "comparison": "旧P2を保持し、現行versionへ機械写像しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-36-A10",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "source_start": 395,
+      "source_end": 400,
+      "exact_source_text": "HM-05",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C04"
+      ],
+      "comparison": "旧L1 HM05と旧L3 HM08 consumer差を保持。表示traceを勝手に訂正しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A01",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 31,
+      "source_end": 53,
+      "exact_source_text": "per-model success rate",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C05",
+        "C10",
+        "C12"
+      ],
+      "comparison": "modelごとの成功run/全run。Skillのdistinct採用PLAN分母とは違う。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A02",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 56,
+      "source_end": 82,
+      "exact_source_text": "model_runs + plan_registry",
+      "classification_candidate": "split",
+      "evidence": [
+        "C05",
+        "C12",
+        "N01",
+        "N04"
+      ],
+      "comparison": "元run/PLAN statusはsourceへ残る。join不成立は成功にしない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A03",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 181,
+      "source_end": 279,
+      "exact_source_text": "model_runs (run_id, runtime, model, role, drive, plan_id, started_at, completed_at, evidence_path)",
+      "classification_candidate": "connection",
+      "evidence": [
+        "C05",
+        "N04"
+      ],
+      "comparison": "9原fieldを保持。名称だけのmodel比較をせず、source/revision/scopeを別に照合する。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A04",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 280,
+      "source_end": 300,
+      "exact_source_text": "plan_registry.status",
+      "classification_candidate": "OS保持",
+      "evidence": [
+        "C05",
+        "C10",
+        "N01"
+      ],
+      "comparison": "status sourceと評価の成功定義を区分。projectionからPLAN完了を生成しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A05",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 301,
+      "source_end": 352,
+      "exact_source_text": ".helix/config/model-opt-in.yaml (enabled:true で有効化)",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C03",
+        "C05",
+        "C10",
+        "C12"
+      ],
+      "comparison": "旧config pathと旧L3のevaluation pathの差を保全。値true/false/欠落の許可を勝手に統合しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A06",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 353,
+      "source_end": 378,
+      "exact_source_text": "runtime session telemetry",
+      "classification_candidate": "connection",
+      "evidence": [
+        "C05",
+        "C12",
+        "N04"
+      ],
+      "comparison": "file-scan/telemetryという旧供給方式は現行実行経路として復活させない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A07",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 411,
+      "source_end": 525,
+      "exact_source_text": "model PK、success_rate REAL 0.0-1.0、run_count INTEGER、success_count INTEGER、token/cost efficiency、evaluated_at TEXT",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C05",
+        "C12"
+      ],
+      "comparison": "旧PK/型/範囲/費用/評価時刻を保全。正式schemaや実装採用ではない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A08",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 527,
+      "source_end": 542,
+      "exact_source_text": "opt-in 無効 = 0 行",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C10",
+        "C12"
+      ],
+      "comparison": "初回空DBの旧test宣言と既存評価行DBの直接returnを区別。既存行の非表示/失効consumerは未照合。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A09",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 543,
+      "source_end": 559,
+      "exact_source_text": "cold-start = 0 行",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C10",
+        "C12"
+      ],
+      "comparison": "有効でもrunなしは未観測、成功率0とは別。直接関数は既存行削除なし。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A10",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 560,
+      "source_end": 587,
+      "exact_source_text": "未掲載 pricing は null のまま捏造しない",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C05",
+        "C12"
+      ],
+      "comparison": "nullは無料ではない。SUMが既知costだけ集計する混在時の不完全総額を要照合。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A11",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 138,
+      "source_end": 140,
+      "exact_source_text": "P2",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C04"
+      ],
+      "comparison": "旧優先度を保持。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-38-A12",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_start": 595,
+      "source_end": 600,
+      "exact_source_text": "HM-08",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C04"
+      ],
+      "comparison": "model評価表示と推薦更新consumerは別義務。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-43-A01",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "source_start": 29,
+      "source_end": 65,
+      "exact_source_text": "confirmed / rejected / pivot 件数から成功率",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C04",
+        "C05",
+        "C11",
+        "C14"
+      ],
+      "comparison": "成功分子はconfirmedのみ、pivotは分母に入る非成功。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-43-A02",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "source_start": 129,
+      "source_end": 198,
+      "exact_source_text": "plan_registry (kind=poc, decision_outcome∈{confirmed,rejected,pivot})",
+      "classification_candidate": "connection",
+      "evidence": [
+        "C05",
+        "C11",
+        "C14"
+      ],
+      "comparison": "kind=pocと3outcomeを保持。PLAN status成功とdecision_outcome成功は別。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-43-A03",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "source_start": 201,
+      "source_end": 227,
+      "exact_source_text": "poc_evaluations projection",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C05",
+        "C14"
+      ],
+      "comparison": "旧固定summary rowは現行schemaに継承しない。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-43-A04",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "source_start": 229,
+      "source_end": 308,
+      "exact_source_text": "poc_success_rate 0.0-1.0、confirmed_count、rejected_count、pivot_count、total_count",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C05",
+        "C11"
+      ],
+      "comparison": "範囲/countを保持。6/3/1なら0.6の旧oracle例を保全。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-43-A05",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "source_start": 310,
+      "source_end": 326,
+      "exact_source_text": "cold-start = 0 行",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C04",
+        "C11",
+        "C14"
+      ],
+      "comparison": "0行と「蓄積中」/KPIゼロ起算の旧表示の層を区別。既存行DBの失効も未確認。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-43-A06",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "source_start": 327,
+      "source_end": 342,
+      "exact_source_text": "決定未記録 PoC は分母除外",
+      "classification_candidate": "LABO候補",
+      "evidence": [
+        "C05",
+        "C11",
+        "C14"
+      ],
+      "comparison": "未判断をpivot/成功へ補完しない。unknown outcomeは別途未解決に残す。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-43-A07",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "source_start": 112,
+      "source_end": 114,
+      "exact_source_text": "P2",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C04"
+      ],
+      "comparison": "旧優先度を保持。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    },
+    {
+      "id": "METRIC-43-A08",
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "source_start": 350,
+      "source_end": 355,
+      "exact_source_text": "HM-08",
+      "classification_candidate": "unresolved",
+      "evidence": [
+        "C04"
+      ],
+      "comparison": "成功率表示/原因分析提案の別consumerへ戻す。",
+      "relation": "partial_or_unresolved_not_successor",
+      "successor_requirement_ids": [],
+      "meaning_change_applied": false
+    }
+  ],
+  "character_preservation": [
+    {
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "total": 333,
+      "annotated_unique": 243,
+      "context_unique": 90,
+      "lost": 0,
+      "ranges": [
+        {
+          "start": 0,
+          "end": 25,
+          "text": "| **FR-L1-20** | 観測・計測層 (",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 45,
+          "end": 46,
+          "text": "、",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 73,
+          "end": 101,
+          "text": ") | observability-metrics | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 112,
+          "end": 115,
+          "text": " | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 188,
+          "end": 189,
+          "text": "、",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 204,
+          "end": 217,
+          "text": "。※ extended: ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 266,
+          "end": 276,
+          "text": "を計測対象に追加 (",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 309,
+          "end": 313,
+          "text": ") | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 315,
+          "end": 318,
+          "text": " | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 331,
+          "end": 333,
+          "text": " |",
+          "classification": "retained_context_not_semantic_completion"
+        }
+      ]
+    },
+    {
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-36",
+      "total": 402,
+      "annotated_unique": 288,
+      "context_unique": 114,
+      "lost": 0,
+      "ranges": [
+        {
+          "start": 0,
+          "end": 28,
+          "text": "| **FR-L1-36** | スキル評価システム (",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 79,
+          "end": 82,
+          "text": " を ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 115,
+          "end": 164,
+          "text": " から projection) | BR-21 / PLAN-L7-53 (2026-06-15 ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 166,
+          "end": 181,
+          "text": " carry から昇格) | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 247,
+          "end": 250,
+          "text": " | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 278,
+          "end": 280,
+          "text": " (",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 341,
+          "end": 343,
+          "text": ")。",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 359,
+          "end": 360,
+          "text": "。",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 379,
+          "end": 380,
+          "text": "。",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 387,
+          "end": 395,
+          "text": " | P2 | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 400,
+          "end": 402,
+          "text": " |",
+          "classification": "retained_context_not_semantic_completion"
+        }
+      ]
+    },
+    {
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "total": 602,
+      "annotated_unique": 421,
+      "context_unique": 181,
+      "lost": 0,
+      "ranges": [
+        {
+          "start": 0,
+          "end": 31,
+          "text": "| **FR-L1-38** | model 評価システム (",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 53,
+          "end": 56,
+          "text": " を ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 82,
+          "end": 138,
+          "text": " から projection、opt-in) | BR-21 / PLAN-L7-53 (2026-06-15 ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 140,
+          "end": 181,
+          "text": " carry から昇格) / PLAN-L7-57 / PLAN-L7-58 | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 279,
+          "end": 280,
+          "text": "、",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 300,
+          "end": 301,
+          "text": "、",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 352,
+          "end": 353,
+          "text": "、",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 378,
+          "end": 411,
+          "text": " | model_evaluations projection (",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 525,
+          "end": 527,
+          "text": ")。",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 542,
+          "end": 543,
+          "text": "。",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 559,
+          "end": 560,
+          "text": "。",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 587,
+          "end": 595,
+          "text": " | P2 | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 600,
+          "end": 602,
+          "text": " |",
+          "classification": "retained_context_not_semantic_completion"
+        }
+      ]
+    },
+    {
+      "source_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "total": 357,
+      "annotated_unique": 248,
+      "context_unique": 109,
+      "lost": 0,
+      "ranges": [
+        {
+          "start": 0,
+          "end": 29,
+          "text": "| **FR-L1-43** | PoC サクセス計測 (",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 65,
+          "end": 112,
+          "text": "を projection) | BR-21 / PLAN-L7-53 (2026-06-15 ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 114,
+          "end": 129,
+          "text": " carry から昇格) | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 198,
+          "end": 201,
+          "text": " | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 227,
+          "end": 229,
+          "text": " (",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 308,
+          "end": 310,
+          "text": ")。",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 326,
+          "end": 327,
+          "text": "。",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 342,
+          "end": 350,
+          "text": " | P2 | ",
+          "classification": "retained_context_not_semantic_completion"
+        },
+        {
+          "start": 355,
+          "end": 357,
+          "text": " |",
+          "classification": "retained_context_not_semantic_completion"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "N01",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 58,
+      "last_line": 60,
+      "text": "| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。観測と作業の結果はLABOへ渡し、LABOが返す改善の提案（Feedback）を登録し、還流先へ振り分け、採否の後にticketにして回す（OSはPMにあたり、LABOはPMOとして評価と提案を出す。[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |",
+      "sha256": "388c5d2b07b8c449d52bfaa006cf5939b6112b32a665fb65609e8f3fc2e32fad",
+      "file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "claim": "OS005登録/振分け、007原証拠/ログ",
+      "excerpt_present_in_20260928_fixed_revision": true,
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "N03",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "first_line": 39,
+      "last_line": 41,
+      "text": "- HELIXOS-L2-005：未計測のSkill、誤推薦、旧版を投入し、候補・利用結果・失効を区別できる。学習結果がHARNESS規則へ無断反映されない。\n- HELIXOS-L2-001／002／005／007／013：Concept／企画L1、要求エンジンの入力・出力L2候補、人間の訂正・採否、採用要求、後続の見逃しを同じ因果IDで登録する。企画価値の要求化漏れ、企画外の意味追加、対象違い、scope／non-goal逸脱を個別に示し、戻す層と判断者へ辿る。登録やログ件数だけでは要求採用・改善成立とせず、許可外の生会話・PII・別project dataを学習へ転用しない。\n- HELIXOS-L2-001／005／007：改善入力の利用同意欠落、data class不明、retention期限超過、許可scope不一致を個別に投入し、拒否または隔離して学習・要求化・別project転用へ進めない。後から許可を補っても、過去の無許可処理を成功へ書き換えない。",
+      "sha256": "0243d6a69371179821c529ec63a889a03436795d5b65248deeb87cfb21605809",
+      "file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "claim": "未計測/誤推薦/旧版、同意/data class/retention/scope不足の拒否",
+      "excerpt_present_in_20260928_fixed_revision": true,
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "N04",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 71,
+      "last_line": 79,
+      "text": "- 親：HELIXLABO-L1-001。\n\n入力は各機構・製品・運用環境から許可された観測情報。出力はsource identity/revisionと出典を保つLABO observationである。最低限、原文§3の`episode_id, requirement_revision, ticket_id, responsibility_id, product, mechanism, worker, provider, model, configuration, artifact, CI/test, release, deployment, runtime, failure, rework, cost, time, result`を結べる。開発ログ、Worker/AI判断、CI/test/review、backflow/recovery/incident/refactor、release/deployment/runtime、利用、再作業、費用、token/API、model/provider、correction/rollback/product resultを対象にする。成功のみを収集せず、`success, failure, rejected, cancelled, blocked, unknown, not_observed`を区別する。sourceの正本・state・authorityをLABOへ移さない。欠落や権限外情報は成功扱いせず、当該観測を保留しsource責務へ戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：1.0対象sourceの個別入力接続（L2-021〜030）。Web/WEB-OS source（L2-031/032）は各source contractが採択された場合に加える任意接続で、1.0の必須依存にしない。保証：source provenance・revision・状態分類を保持したobservationだけを出力し、source正本を変更しない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-002 — Correlation Engine（相関）\n\n- 親：HELIXLABO-L1-002。",
+      "sha256": "e77c0569a3c9ccd462928fc0797a23894627369d9cf6399470a01c38ea1e6b32",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO001許可観測、sourceauthority非移管、欠測保留",
+      "excerpt_present_in_20260928_fixed_revision": true,
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "N05",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 110,
+      "last_line": 125,
+      "text": "\n- 親：HELIXLABO-L1-005。\n\n入力はbaseline/current、candidate、hybridの仮説・条件・oracleと、OSが割り当てたWorkerによる実験実行結果、出力は比較結果、失敗、反例、適用範囲、費用と限界である。実験実行はOSのassignmentに従うWorkerが担い、LABOはWorkerを選定・割当・起動しない。assignmentと実行結果の対応はL2-022/028のsource observationに結び、同じticket・experiment・対象版の証拠として評価する。品質、成功/失敗、false positive/negative、再作業、速度、CI/Worker時間、token/API費用、人間介入、context、複雑度、復旧時間、release lead time、運用負荷、cross-product再利用性を評価対象にする。「動いた」だけを改善としない。baselineやoracleの違い、比較不能、実験中断は結果へ記録し、無効比較を成功へ変換しない。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：比較可能なbaseline/candidate/hybrid、oracle、評価条件（L2-005/015）、OS assignmentとWorker実行結果の対応（L2-022/028）。保証：OS割当Workerによる実験実行を前提に証拠を結び、判定不能・中断・反例を成功扱いせず結果に含める。LABOは割当を行わない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-007 — Assurance Allocation Engine\n\n- 親：HELIXLABO-L1-006。\n\n入力は反復episode、実験証拠、ルール候補とoracle、出力はoperation継続またはsystem化候補の評価である。同条件で再現可能、機械判定可能、oracleあり、副作用限定、retry/rollback可能、冪等化可能という条件を調べる。Operation→Repeated Stable Decision→Rule Candidate→Shadow→Mechanism Candidateは評価上の段階であり、自動昇格や新たな承認手続きではない。文脈依存、意味判断、例外多数、不完全oracle、高い誤検知、過剰拘束はoperationで保証する候補に残す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：比較可能性とoracleのあるexperiment evidence（L2-006/016）。保証：system化とoperation継続の両候補および適用限界を示し、自動昇格しない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-008 — Operational Fallback Engine",
+      "sha256": "dfa750f51c4534609cd48ed09b4db4582bdaddeaa72b2f9ab9a07875e749454a",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO006実験/007system化候補、Worker割当はOS",
+      "excerpt_present_in_20260928_fixed_revision": true,
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "N06",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 132,
+      "last_line": 149,
+      "text": "\n### HELIXLABO-L2-009 — Generalization Engine\n\n- 親：HELIXLABO-L1-005, HELIXLABO-L1-007。\n\n入力は実験結果とepisode群、出力は適用範囲を`single episode → repeated episodes → cross-project → cross-product → general structure`のどこまで支持するか示す評価である。一事例から一般化しない。範囲ごとにFeedback先を分け、product固有意味はBRAINへ送らず、汎用構造も根拠なしに認定しない。反例や適用外条件が出たら範囲を狭め、元の証拠へ戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：評価済みexperiment群・反例・標本条件（L2-006/018）。保証：証拠の支持範囲を超えない適用範囲を出力する。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-010 — Feedback Derivation Engine\n\n- 親：HELIXLABO-L1-007, HELIXLABO-L1-010。\n\n入力は評価済みepisode、実験、反例、適用範囲、出力は一つ以上のtarget-specific Feedback candidateである。各Feedbackは最低限`source_episode, source_revision, target_mechanism, target_responsibility, observation, evidence, failure_or_success, hypothesis, experiment, result, counterexample, scope, confidence, regression_risk, recommended_action, revalidation_condition`を持つ。推奨actionは`maintain, redefine, replace, split, merge, systemize, operational_fallback, retire`から選ぶ。Feedbackは提案でありauthorityではない。登録・routingはOS、変更はtarget ownerが担い、欠けた必須根拠は補完せず差戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：範囲付き知見・target responsibility・evidence/反例（L2-009/019）。保証：target別提案を作り、登録・routing・authority変更はしない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n",
+      "sha256": "e5e62be35f5d6c760953ea3bac4e272fa4b97ce5183458282911a8b492f3130e",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO009一般化/010Feedback、登録はOS/変更targetowner",
+      "excerpt_present_in_20260928_fixed_revision": true,
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "N07",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 234,
+      "last_line": 238,
+      "text": "\n### HELIXLABO-L2-029 — CI/test → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可されたCI/test結果と対象revision。出力：検査範囲付きobservation。依存：HARNESS verification contractとOS実行証拠。保証：未実行/stale/中断をpassとしない。検査範囲欠落はsource ownerへ戻す。`version_target: 1.0`。\n",
+      "sha256": "4f873b9882d0db3606ac1053723806d7936ebd8f1d9459bbc127f029ea55e82e",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO029CI/test受取、stale/未実行非pass",
+      "excerpt_present_in_20260928_fixed_revision": true,
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "N08",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 296,
+      "last_line": 307,
+      "text": "## 構成体要求\n\n### HELIXLABO-L2-050 — 内部改善循環（1.0）\n\n入力は許可観測・episode・実験と評価済みFeedback候補、出力はOS登録/routing後のtarget変更、target検証、運用結果、LABO再観測を結ぶ追跡可能な循環である。段階はObserved→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS registration/target routing→target change process→verification→deployment/operation→LABO re-observation。登録、candidate数、変更、CI成功だけで改善完了としない。採択前は候補のまま保持し、target authorityはtarget ownerに残す。変更後の再観測と効果・退行評価がない場合は循環未完了として戻し、過去記録を上書きしない。\n\n- 親：HELIXLABO-L1-008。依存：L2-001〜010と適用される個別接続（実験ではL2-022のOS assignment観測とL2-028のWorker結果観測を同ticket/experimentへ結ぶ）、OSによるFeedback登録/routing、各target ownerによる変更・検証。保証：循環の未完義務とsource/target revisionを保持し、実験評価はOS割当Workerの実行証拠に結び付く。変更後観測が欠ければLABOの再観測へ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-051 — 外部知識評価循環 (`version_target: 2.0`)\n\n外部OSS/design/paper/Issue/PR等をcrawler/CONNECT等が取得し、LABOが由来・revision・取得範囲を確かめ、分解・Vector比較・実験評価し、汎用構造候補をBRAINへ返す構成体。外部で成功した方式の直接採用・BRAINへの無評価投入をしない。1.0内部改善循環の依存にしない。取得・由来が不明なら評価を保留し取得sourceへ戻す。\n",
+      "sha256": "895c86e34788d6e9cfcc9871d35fae32749fe07789d73863d865f9d211b385eb",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO050内部循環と051外部2.0別",
+      "excerpt_present_in_20260928_fixed_revision": true,
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "N12",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "first_line": 45,
+      "last_line": 54,
+      "text": "| HELIXLABO-L2-001 | 複数sourceから許可された成功、失敗、拒否、取消、blocked、unknown、not_observedを入力し、それぞれのsource identity/revisionと列挙されたobservation fieldsを保持できる。元source authority/stateはsource側に残る | 成功ログだけを受け取り失敗・拒否を落とす、not_observedをsuccessへ変える、source revision不明をcurrentとして使う、権限外/secret dataを取り込む、LABO側記録をsource正本として書き戻す |\n| HELIXLABO-L2-002 | 要求→ticket→Worker→実装→atomic CI→integration→proof CI→release→deployment→runtime→incident→recoveryをepisodeへ結び、要求revision・actor/provider/model/configuration・artifact・環境を追える。相関できないeventも孤立として残る | 時刻/path一致だけで因果断定する、無関係eventを一episodeへ結合する、欠けた義務を補完して完了扱いする、訂正で元eventを上書きする |\n| HELIXLABO-L2-003 | 一episodeに成功/失敗・条件・汎用/product固有・system/operation・unknown/unnecessaryが併存する入力を与え、別々に根拠付き分類できる | episode全体を一括採否する、unknownを推測で分類する、条件付きの成功を無条件一般化する |\n| HELIXLABO-L2-004 | 方式A/Bのpurpose, structure, behavior, assumption, constraint, guarantee, costを保ち、部分一致と条件依存差を含む比較candidateを作れる | 元方式の意味を読む前に変換する、部分一致を全体同等とする、candidateをauthorityまたは採択済みに表示する |\n| HELIXLABO-L2-005 | 12種の変換operationを個別に表現し、保持・変更する意味、条件、適用範囲を比較できる。吸収・移管・operation復帰も候補に残る | 仕組みの追加件数を改善指標にする、意味変更を技術的refactorに偽装する、LABO自身が採択・retireを実行する |\n| HELIXLABO-L2-006 | 同条件のcurrent/candidate/hybrid実験をOS assignmentに従うWorkerが実行し、OS ticket/assignment（L2-022）とWorkerの結果（L2-028）を同じexperiment・対象版へ結び、品質、success/failure、FP/FN、rework、speed、CI/Worker time、token/API cost、人介入、context、complexity、recovery、release lead、ops load、再利用性と反例を評価できる | LABOがWorkerを選定・割当・起動する、OS assignmentのない実行を割当済みとして扱う、ticket/experiment/対象版が異なる証拠を結合する、「一度動いた」だけで改善認定する、baseline差・oracle差を隠す、比較不能や中断を成功にする、必要な品質を下げて速度を改善扱いする |\n| HELIXLABO-L2-007 | 同条件の再現性、機械判定、oracle、副作用範囲、retry/rollback/idempotencyを示す根拠と、shadow等の候補段階を区別できる。文脈依存・例外多数・oracle不完全・FP高はoperation候補に残る | system化率を最大化する、operationを未完成扱いする、自動shadow→production昇格や新承認手続きが前提になる |\n| HELIXLABO-L2-008 | system ruleの例外、誤検知、workaround負担、変更費用増加を与え、system継続/修正またはoperation復帰候補を出し、保証と未完義務を保持する | systemを永続固定する、operation復帰を失敗/退役と誤表示する、LABOが運用切替を実行する |\n| HELIXLABO-L2-009 | 単一episode、反復episode、cross-project、cross-product、generic structureの各証拠を分け、主張できる最大範囲と反例を出力する | 1例をcross-productへ一般化する、product固有意味をBRAINへ送る、反例で範囲を狭めない |\n| HELIXLABO-L2-010 | 一つの実験から複数target向けFeedbackを生成し、全minimum fields、evidence、scope、counterexample、regression risk、revalidation conditionを備え、提案状態で保持する | 必須field欠落を推測補完する、Feedbackだけでtarget変更/ticket/権限/配置を生成する、target authorityをLABOへ移す |",
+      "sha256": "88945928a816318d124dabbe7722b9711c3d960a69bc72ca32302dd905647c23",
+      "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "claim": "LABO001/006/007/009/010の反例",
+      "excerpt_present_in_20260928_fixed_revision": true,
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "N13",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "first_line": 80,
+      "last_line": 80,
+      "text": "| HELIXLABO-L2-029 | CI/testから許可結果を受け、対象revisionと検査範囲を保持する | stale/未実行をpassと扱う |",
+      "sha256": "bb5ebb9c5c541d18abeb604f7753236cf2225e76bc6157b1592f9964fc58abba",
+      "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "claim": "LABO029許可/対象版/stale拒否",
+      "excerpt_present_in_20260928_fixed_revision": true,
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "N14",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "first_line": 100,
+      "last_line": 100,
+      "text": "| HELIXLABO-L2-050 | ObservedからLABO再観測までidentityと未完義務を追い、実験では同じticket/experiment/対象版にOS assignmentとWorker実行結果が対応することを確認し、target変更後の効果・退行を独立に評価できる。candidate、登録、変更、検証、運用、再観測を別状態で表示する | assignmentのない実行を割当済みとする、別ticket/experiment/対象版の証拠を結合する、Feedback発行、OS登録、target変更、CI成功だけで改善完了とする、採択前candidateを正本扱いする、元記録を書き換える |",
+      "sha256": "ca538f4b591d4e7cf0938b15e4b6d611e0ea50014902e5273b96febdbc16f460",
+      "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "claim": "LABO050登録/CI成功だけでは改善完了しない",
+      "excerpt_present_in_20260928_fixed_revision": true,
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "M20",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "first_line": 51,
+      "last_line": 51,
+      "text": "| **FR-L1-20** | 観測・計測層 (5 hook で AI 実行を全量ログ化、発火 / トラブル / 精度 / 予算のメトリクス集約) | observability-metrics | AI 実行イベント全種 | invocation_log / action_logs / gate_runs / accuracy_score / budget_events、dashboard メトリクス。※ extended: スキル使用パラメータ + モデルパラメータ + トラブル計測 + トークン/利用コスト の 4 軸を計測対象に追加 (L3 で AC 詳細化、F7=b に従い L1 はスコープ宣言のみ) | P1 | HM-05 / HM-08 |",
+      "sha256": "508f583208a248beb17fc65a2241aa46754a774605fd101be1049a3dba0ac05c",
+      "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "claim": "名指し入力の全L1原row",
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+    },
+    {
+      "id": "M36",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "first_line": 67,
+      "last_line": 67,
+      "text": "| **FR-L1-36** | スキル評価システム (per-skill rating / adoption / success / unused flag を skill_invocations + plan_registry から projection) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) | skill_invocations.accepted=1 件、plan_registry.status、asOf timestamp | skill_evaluations projection (skill_rating 0.0-1.0、adoption_count、success_count、unused_flag)。cold-start = 0 行。unused = 30 日以内発火なし。削除は人手のみ | P2 | HM-05 |",
+      "sha256": "1d2f72f5d9c26e4bbdbb23a1ffd93cec22c82c117343c4f1b1e01692a0d00139",
+      "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "claim": "名指し入力の全L1原row",
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+    },
+    {
+      "id": "M38",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "first_line": 69,
+      "last_line": 69,
+      "text": "| **FR-L1-38** | model 評価システム (per-model success rate を model_runs + plan_registry から projection、opt-in) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) / PLAN-L7-57 / PLAN-L7-58 | model_runs (run_id, runtime, model, role, drive, plan_id, started_at, completed_at, evidence_path)、plan_registry.status、.helix/config/model-opt-in.yaml (enabled:true で有効化)、runtime session telemetry | model_evaluations projection (model PK、success_rate REAL 0.0-1.0、run_count INTEGER、success_count INTEGER、token/cost efficiency、evaluated_at TEXT)。opt-in 無効 = 0 行。cold-start = 0 行。未掲載 pricing は null のまま捏造しない | P2 | HM-08 |",
+      "sha256": "76ca28f714bf37741a2ac6cdbbcae826fae07222afaedbc610ebcce0d3b922b0",
+      "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "claim": "名指し入力の全L1原row",
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+    },
+    {
+      "id": "M43",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "first_line": 74,
+      "last_line": 74,
+      "text": "| **FR-L1-43** | PoC サクセス計測 (confirmed / rejected / pivot 件数から成功率を projection) | BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) | plan_registry (kind=poc, decision_outcome∈{confirmed,rejected,pivot}) | poc_evaluations projection (poc_success_rate 0.0-1.0、confirmed_count、rejected_count、pivot_count、total_count)。cold-start = 0 行。決定未記録 PoC は分母除外 | P2 | HM-08 |",
+      "sha256": "5b9244358b19838ad0de278c226cc5caf72880cf7e79bec471acc4e1282183b5",
+      "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "claim": "名指し入力の全L1原row",
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+    },
+    {
+      "id": "C01",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "first_line": 27,
+      "last_line": 64,
+      "text": "## §1 評価対象 (U-BR21-1 採用、PLAN 単位を既定 + 補助単位)\n\nL1 BR-21 で宣言した「AI 実行成果評価」の評価単位を以下で確定する:\n\n| 評価単位 | 役割 | 計測時点 | 主担当指標 |\n|---------|------|---------|----------|\n| **PLAN 単位** (既定) | harness 最小遂行単位、KPI D-07 と直結 | PLAN status=completed 時 | 成功率 / トークンコスト / 所要時間 / 再実行回数 |\n| **skill 単位** (補助) | skill 推奨精度評価 | skill 注入 → 利用 → PLAN 完了 サイクル末 | skill 採用率 / 採用後成功率 |\n| **model 単位** (補助、opt-in) | model 選択基準改善 | task 委譲完了時 | model 別成功率 / コスト効率 |\n\n> **TL 採用根拠**: PLAN 単位 = harness の業務単位、skill / model は補助メトリクス (drift 計測用)。3 単位を超える単位 (sprint 全体 / FR 単位) は集計コスト過大のためスキップする。\n\n## §2 評価指標 (U-BR21-2 採用、5 指標、KPI D-07 統合)\n\n| 指標 | 計算式 | 目標 | 計測場所 |\n|------|-------|------|---------|\n| **成功率** | (PLAN status=completed) / (全 PLAN 起票数) × 100 | ≥ 80% | `.helix/plan_registry/` 集計 |\n| **トークンコスト** | PLAN ごとの sum(invocation_log.input_tokens + output_tokens) | (LCM 目標は L4 で確定、P0 では計測のみ) | `.helix/audit/invocation_log/` |\n| **所要時間** | PLAN ごとの (PLAN updated - created) | (中央値 ≤ 1 sprint 推奨) | plan_registry timestamp 差分 |\n| **再実行回数** | PLAN ごとの sum(invocation count) | < 3 回 (1 回再試行を許容) | invocation_log 集計 |\n| **fail-close 発火率** | (agent guard block 件数) / (Agent 呼び出し総数) × 100 | < 5% | agent-guard audit log |\n\n> **KPI 整合**: 成功率 → D-04 (回帰検出率) / トークンコスト → D-06 (bypass 件数のコスト側面) / 所要時間 → D-09 (handover 引継ぎ成功率) / 再実行回数 → D-04 / fail-close 発火率 → D-06。\n\n#### AC-FR-BR21-01 (正常系: 5 指標全件記録)\n- **前提**: PLAN-005 が status=completed (Forward 経路で 7 日掛け)\n- **操作**: `helix plan close PLAN-005`\n- **期待結果**: 5 指標全件が `.helix/evaluation/PLAN-005.json` に記録 / KPI D-04/06/09 集計に反映\n\n#### AC-FR-BR21-02 (異常系: 指標欠落)\n- **前提**: invocation_log 未整備 (Phase A 初期、FR-L1-20 未実装)\n- **操作**: `helix plan close`\n- **期待結果**: 警告 `Warning: invocation_log 不在、token cost 計測不可 (Phase A scope)` / 他 4 指標は記録 / 終了コード 0\n\n#### AC-FR-BR21-03 (境界系: model 単位 opt-in 未設定)\n- **前提**: `.helix/evaluation/model-opt-in.yaml` で `enabled: false`\n- **操作**: PLAN close\n- **期待結果**: model 単位指標をスキップ / PLAN 単位 + skill 単位のみ記録 / audit に opt-in 状態記録",
+      "sha256": "785181f4a13105f01ea007d0f337d039d90940a15b8d3e5e76753af0fde49bd1",
+      "file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "claim": "評価単位と5指標/各分母/欠測警告/opt-in。KPIへの接続は同じ指標という意味ではない",
+      "legacy_asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06"
+    },
+    {
+      "id": "C02",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "first_line": 66,
+      "last_line": 81,
+      "text": "## §3 改善サイクル頻度 (U-BR21-3 採用、sprint 末 + 任意手動)\n\n- **既定**: sprint 末 (Forward では G7 通過時 / Scrum では sprint review 末)\n- **手動トリガー**: `helix evaluation run --since <date>` で任意期間集計\n- **頻度上限**: 1 日 1 回 (telemetry コスト保護、NFR-13 dev-local+CI 整合)\n\n> **TL 採用根拠**: 日次は telemetry コスト過大 (NFR-16 軽量原則違反)、週次は agile sprint と非同期、sprint 末が KPI 計測周期と整合。手動トリガーで柔軟性を確保する。\n\n#### AC-FR-BR21-04 (正常系: sprint 末自動起動)\n- **前提**: G7 通過直後 (sprint completed)\n- **操作**: G7 通過 hook 発火\n- **期待結果**: `helix evaluation run --auto` 自動実行 / sprint 内 PLAN 全件集計 / HM-08 ビュー更新\n\n#### AC-FR-BR21-05 (異常系: 頻度上限超過)\n- **前提**: 同日内に既に 1 回自動実行済、PO が手動再実行試行\n- **操作**: `helix evaluation run --force`",
+      "sha256": "9e1e0a26cf348d7a8736a6404799c458de6b4222463c96b458f60b79396c1573",
+      "file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "claim": "sprint末/手動/日1回/force警告とaudit",
+      "legacy_asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06"
+    },
+    {
+      "id": "C03",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "first_line": 172,
+      "last_line": 177,
+      "text": "### §6.4 telemetry (U-BR21-10 採用)\n\n- **PLAN 評価**: 既定で有効 (KPI D-07 計測の必須インフラ)\n- **model 評価**: opt-in (`.helix/evaluation/model-opt-in.yaml`)\n- **PII redaction**: 必須 (prompt 本文除外、NFR-09/14 整合)\n- **詳細設計**: Phase B 着手時 PLAN で確定 (本 sub-doc は宣言のみ)",
+      "sha256": "4cd104067f1e8a491cb967de05929d02800b3e4a9bf842a99cd7b4b9ab86c586",
+      "file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "claim": "model opt-in旧evaluation pathとPII redaction",
+      "legacy_asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06"
+    },
+    {
+      "id": "C04",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "first_line": 179,
+      "last_line": 231,
+      "text": "## §7 FR-L1-36/38/43 詳細化 (projection 実装契約)\n\n### FR-BR21-36: スキル評価システム\n\n- **L1 上流**: FR-L1-36\n- **入力**: `skill_invocations.accepted=1`、`plan_registry.status`、`asOf`\n- **出力**: `skill_evaluations` projection (skill_rating / adoption_count / success_count / unused_flag)\n- **振る舞い**: skill 別に採用 PLAN と成功 PLAN を集計し、30 日未発火を unused としてフラグ化する。削除は人間専属\n\n#### AC-FR-BR21-36-01 (正常系)\n- **前提**: skill-X が直近 sprint で 5 PLAN に採用、5 件全て成功\n- **操作**: sprint 末バッチ実行\n- **期待結果**: skill_rating = 1.0 / 廃止候補フラグ false / HM-08 に維持ステータス表示\n\n#### AC-FR-BR21-36-02 (境界系)\n- **前提**: skill-X が直近 30 日採用 0 件 (使われていない)\n- **操作**: バッチ実行\n- **期待結果**: 警告 `skill-X 30 日採用 0 件 (未使用 skill)` / 廃止候補フラグ true / 削除は人間専属 (AC-FR-BR21-06)\n\n### FR-BR21-38: model 評価システム (opt-in)\n\n- **L1 上流**: FR-L1-38\n- **入力**: `model_runs`、`plan_registry.status`、`.helix/config/model-opt-in.yaml`\n- **出力**: `model_evaluations` projection (success_rate / run_count / success_count / token・cost 効率)\n- **振る舞い**: model 別成功率と token/cost 効率を集計し、FR-L1-37 (model 推挙) のフィードバック入力にする\n\n#### AC-FR-BR21-38-01 (正常系)\n- **前提**: model-opt-in.yaml で `enabled: true`、model-A / model-B 両方使用履歴あり\n- **操作**: バッチ実行\n- **期待結果**: model 別 success_rate / run_count / success_count / token・cost 効率を projection し、HM-08 表示入力として利用可能\n\n#### AC-FR-BR21-38-02 (境界系)\n- **前提**: opt-in `enabled: false`\n- **操作**: バッチ実行\n- **期待結果**: model 評価をスキップ / PLAN/skill 評価のみ実行 / audit に opt-in 状態記録\n\n### FR-BR21-43: PoC サクセス計測\n\n- **L1 上流**: FR-L1-43\n- **入力**: Discovery (S0-S4) 完了 PLAN / decision_outcome\n- **出力**: `poc_evaluations` projection (poc_success_rate / confirmed_count / rejected_count / pivot_count / total_count)\n- **振る舞い**: 判断済み PoC の confirmed / rejected / pivot を集計し、pivot は分母に含めて非成功として扱う\n\n#### AC-FR-BR21-43-01 (正常系)\n- **前提**: 直近 10 件 PoC のうち confirmed 6 件 / rejected 3 件 / pivot 1 件\n- **操作**: バッチ実行\n- **期待結果**: PoC 成功率 60% を HM-08 に表示 / pivot 1 件の原因分析提案\n\n#### AC-FR-BR21-43-02 (異常系)\n- **前提**: PoC PLAN が 1 件も無し\n- **操作**: バッチ実行\n- **期待結果**: 情報 `info: PoC PLAN 0 件、計測対象なし` / HM-08 に「データ蓄積中」表示 / KPI ゼロ起算\n",
+      "sha256": "f4037b0bc43a5126555a5f12e932059af167ffc3e8ad50e23153fc1cf22e724c",
+      "file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "claim": "36/38/43 consumerのcount/0.6例/pivot/ゼロ時表示",
+      "legacy_asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06"
+    },
+    {
+      "id": "C05",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+      "first_line": 276,
+      "last_line": 278,
+      "text": "| FR-L1-36 | `projectSkillEvaluations` | projectSkillEvaluations(db: HarnessDb, opts?: { asOf?: string }) => void | skill_invocations と plan_registry row が存在し、asOf は ISO timestamp（既定 = nowIso()）である。 | accepted=1 invocation を持つ skill_id ごとに skill_evaluations row を書く。skill_rating = success_count / adoption_count、unused_flag = asOf から 30 日以内に invocation が無い場合 1。cold-start は 0 rows で throw しない。 | unused skill は自動削除しない。削除は human-only。success state (`confirmed`/`completed`) は source に文書化し、single-source-of-truth hardcoded とする。 | U-FR-L1-36 |\n| FR-L1-43 | `projectPocEvaluations` | projectPocEvaluations(db: HarnessDb, opts?: { asOf?: string }) => void | plan_registry は PLAN frontmatter 由来 decision_outcome を持つ kind=`poc` row を含む。 | `poc-evaluation:summary` row を 1 件書き、poc_success_rate、confirmed/rejected/pivot/total count、evaluated_at を記録する。decision_outcome 空の PoC PLAN は分母から除外し、cold-start は 0 rows で throw しない。 | pivot は non-success。decision_outcome value は rationale 付き single-source-hardcoded。row id は常に `poc-evaluation:summary`。 | U-FR-L1-43 |\n| FR-L1-38 | `projectModelEvaluations` | projectModelEvaluations(db: HarnessDb, repoRoot: string) => void | model_runs table は projectReviewModelRuns と token/cost telemetry 用 `projectTokenUsage` で populate 済みで、evaluation には `.helix/config/model-opt-in.yaml` enabled:true が必要である。 | opt-in disabled なら 0 rows を返す。enabled なら distinct model ごとに success_rate = success_count / run_count の model_evaluations row を書く。cold-start は 0 rows で throw せず、token/cost row は `helix telemetry scan` の file-scan だけで ingest する。 | cost-efficiency は PLAN-L7-57/58 で discharge 済み。cost は既知 model の local pricing table だけから計算し、未公開/unknown model は cost_usd=null のままにする。 | U-FR-L1-38 |",
+      "sha256": "e98f1f8a511cb13a806e3e9bc7c3cbc07182810f22987f79f5862d81c01835e1",
+      "file_sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14",
+      "claim": "3評価APIの入出力/成功状態/分母/unknown pricing",
+      "legacy_asset_id": "LEGACY-ASSET-809D616D0D7D844F5720"
+    },
+    {
+      "id": "C06",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+      "first_line": 577,
+      "last_line": 579,
+      "text": "| FR-L1-36 | skill evaluation input は Learning Engine aggregation 前に skill metric feedback として正規化する |\n| FR-L1-38 | model evaluation input は recommendation update 前に model/effort quality feedback として正規化する |\n| FR-L1-43 | PoC success measurement input は recipe/risk aggregation 前に verification outcome feedback として正規化する |",
+      "sha256": "4f7495f18aa455f49f9445796eadbd97b22b62cc7119143df06a13cc5deceba3",
+      "file_sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14",
+      "claim": "各評価からlearning/recommendation/recipeへ正規化する別consumer",
+      "legacy_asset_id": "LEGACY-ASSET-809D616D0D7D844F5720"
+    },
+    {
+      "id": "C07",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+      "first_line": 56,
+      "last_line": 56,
+      "text": "| FR-L1-20 | docs/design/harness/L6-function-design/session-log.md | `compressPlanDigest` と DB projection contract は execution logs、failures、budget、metrics input を保持する。 | U-FR-L1-20 |",
+      "sha256": "0d2ec1151d0b71c709640661c1c1f59cbad9278a093f7f6b6fdd2a55e2942ad3",
+      "file_sha256": "477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf",
+      "claim": "20はsession-log/projectionからexecution/budget/metricsを保持",
+      "legacy_asset_id": "LEGACY-ASSET-978C267AADC50615A1E2"
+    },
+    {
+      "id": "C08",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/function.md",
+      "first_line": 334,
+      "last_line": 343,
+      "text": "\n## §5 AI ガード / 観測機能 (IMP-013)\n\n| 機能 | 実現 FR | 状態 | business-detail (BR-21) 接続 |\n|---|---|---|---|\n| **agent-guard** | FR-09 (AC-FR-09-01〜04) | **実装済** | — (ガードは Learning Engine 非依存) |\n| **観測層 (invocation_log)** | FR-L1-20 (P1、L4 carry) | 未 (Phase A 設計) | **business-detail §2 (BR-21 計測対象) / §5 (集計 → Learning Engine 入力) に接続** |\n| accuracy_score / detector_result / gate_evidence / kpi | FR-L1-20 (observability) | 未 (data.md §9 候補) | business-detail §2/§5 の KPI 集計経路 |\n\n> **IMP-013 接続明示**: FR-L1-20 の観測値 (invocation_log = AI 呼び出し記録 / accuracy_score = 判定精度 / gate_evidence = ゲート証跡) は、**Phase A で `.helix/audit/*.jsonl` に append-only 記録** (data.md §8 Evaluation 集約) され、**business-detail §2 (BR-21 計測対象定義) の入力 + §5 (Learning Engine 集計) の経路**となる。AC-FR-BR21-02 (business-detail) の Phase A 前提 = 「観測層が記録のみ稼働、学習エンジン本実装は Phase B」と整合。観測 (Phase A) と学習 (Phase B、FR-L1-19) を分離。",
+      "sha256": "864ab990ee6b4ae654070cb732211d4ffbc2f2503eabee954b50ee5b86786a3f",
+      "file_sha256": "64874fd460f00d97cf195fd6c997164a09c333982a2fbc0f29af7e8877cafe35",
+      "claim": "Phase A観測とPhase B学習別、guardはLearning非依存",
+      "legacy_asset_id": "LEGACY-ASSET-295B373ABCF388FDB10A"
+    },
+    {
+      "id": "C09",
+      "path": "archive/legacy-generation-2026-09-14/root/tests/skill-evaluation.test.ts",
+      "first_line": 1,
+      "last_line": 13,
+      "text": "/**\n * U-FR-L1-36: skill evaluation projection (FR-L1-36 / PLAN-L7-53-learning-engine)\n *\n * Oracle: projectSkillEvaluations computes per-skill rating, adoption_count,\n * success_count, and unused_flag from skill_invocations + plan_registry.\n *   - skill_rating = success_count / adoption_count (0.0-1.0)\n *   - adoption = distinct plan_id with accepted=1\n *   - success = adopted plan whose plan_registry.status is \"confirmed\" or \"completed\"\n *   - unused_flag = 1 when no invocation has fired_at within last 30 days\n *   - Cold-start: 0 invocations => 0 evaluation rows (no throw)\n *\n * AC-FR-BR21-36-01: 5 adopted plans, all 5 success => rating 1.0, unused_flag 0\n * AC-FR-BR21-36-02: skill with 0 adoption in last 30 days => unused_flag 1; no auto-delete",
+      "sha256": "88e317278eeecead8b98af428b1dc990e7e0e842613763328dbfdbceb1ca1402",
+      "file_sha256": "1ac491829d2c5fbf1de9d79e87b28bc34cc94ae7bc4d8551d23b7526da0a6687",
+      "claim": "旧testのoracle宣言。実行証拠にはしない",
+      "legacy_asset_id": "LEGACY-ASSET-5588597A1D3AF3A3944E"
+    },
+    {
+      "id": "C10",
+      "path": "archive/legacy-generation-2026-09-14/root/tests/model-evaluation.test.ts",
+      "first_line": 1,
+      "last_line": 13,
+      "text": "/**\n * U-FR-L1-38: model evaluation projection (FR-L1-38 / PLAN-L7-53-learning-engine)\n *\n * Oracle: projectModelEvaluations computes per-model success_rate by joining\n * model_runs.plan_id -> plan_registry.status IN PLAN_SUCCESS_STATUSES.\n * Opt-in: runs only when .helix/config/model-opt-in.yaml exists with enabled:true.\n * Default (no file) = disabled => 0 rows.\n *\n * AC-38-01 (enabled): model-A (2 runs both success) => rate 1.0;\n *                     model-B (2 runs, 1 success) => rate 0.5.\n * AC-38-02 (disabled): no opt-in file => 0 model_evaluations rows.\n * Cold-start: enabled but 0 model_runs => 0 rows, no throw.\n */",
+      "sha256": "7db0f21c956ef9381226228832020980d0681157bfc538fea99cc7f1ba00ff2e",
+      "file_sha256": "9b296232230e677a87cf7869a2ddea4cc53f56812d0356ffc42c396aa1b122c8",
+      "claim": "旧testのopt-in/default disabled/cold-start宣言。既存row失効の全証拠ではない",
+      "legacy_asset_id": "LEGACY-ASSET-E744321F04B14B16EE06"
+    },
+    {
+      "id": "C11",
+      "path": "archive/legacy-generation-2026-09-14/root/tests/poc-evaluation.test.ts",
+      "first_line": 1,
+      "last_line": 13,
+      "text": "/**\n * U-FR-L1-43: PoC success measurement projection (FR-L1-43 / PLAN-L7-53-learning-engine)\n *\n * Oracle: projectPocEvaluations projects one summary row with:\n *   poc_success_rate = confirmed_count / (confirmed + rejected + pivot)\n *   from plan_registry (kind=\"poc\", decision_outcome != \"\").\n *   PoC PLANs with empty decision_outcome are excluded from denominator.\n *   Pivot counts as non-success (denominator, not numerator).\n *   Cold-start: 0 decided PoC PLANs => 0 poc_evaluations rows (no throw).\n *\n * AC-FR-BR21-43-01: 10 PoC, 6 confirmed / 3 rejected / 1 pivot => rate 0.60\n * AC-FR-BR21-43-02 cold-start: 0 PoC PLANs => 0 rows\n */",
+      "sha256": "d3b1616d83907d0f48d558f20a374a4e37269de5847e47d3e68fbd01b25b1e4b",
+      "file_sha256": "be7903e34cb9879575c879a76559dd4bf8d126ba1cfa54a3308f016599223239",
+      "claim": "旧testのPoC分母/pivot/0rows宣言。実行しない",
+      "legacy_asset_id": "LEGACY-ASSET-A09213C6AF0C2C56D434"
+    },
+    {
+      "id": "C12",
+      "path": "archive/legacy-generation-2026-09-14/root/src/state-db/projection-writer.ts",
+      "first_line": 4640,
+      "last_line": 4720,
+      "text": "export function projectModelEvaluations(db: HarnessDb, repoRoot: string): void {\n  // Opt-in gate: disabled by default.\n  const optInPath = join(repoRoot, \".helix\", \"config\", \"model-opt-in.yaml\");\n  if (!existsSync(optInPath)) return;\n  let enabled = false;\n  try {\n    const raw = readFileSync(optInPath, \"utf8\");\n    const parsed = parseYaml(raw) as Record<string, unknown> | null;\n    enabled = parsed != null && parsed.enabled === true;\n  } catch {\n    // parse failure = treat as disabled (fail-open for opt-in gate)\n    return;\n  }\n  if (!enabled) return;\n\n  // Fetch all model_runs grouped by model.\n  const runRows = db\n    .prepare(\"SELECT model, COUNT(*) AS run_count FROM model_runs GROUP BY model\")\n    .all() as { model: string; run_count: number }[];\n\n  if (runRows.length === 0) return; // Cold-start: 0 model_runs => 0 rows.\n\n  // Build success_count per model by joining model_runs -> plan_registry on plan_id.\n  // PLAN_SUCCESS_STATUSES is reused from this module (single-source-of-truth).\n  const successStatusPlaceholders = PLAN_SUCCESS_STATUSES.map(() => \"?\").join(\", \");\n  const evaluatedAt = nowIso();\n\n  for (const runRow of runRows) {\n    const model = runRow.model;\n    const runCount = Number(runRow.run_count ?? 0);\n\n    const successCount =\n      (\n        db\n          .prepare(\n            `SELECT COUNT(*) AS success_count\n           FROM model_runs mr\n           JOIN plan_registry pr ON mr.plan_id = pr.plan_id\n           WHERE mr.model = ?\n             AND pr.status IN (${successStatusPlaceholders})`,\n          )\n          .get(model, ...PLAN_SUCCESS_STATUSES) as { success_count: number } | undefined\n      )?.success_count ?? 0;\n\n    const successRate = runCount === 0 ? 0 : Number((Number(successCount) / runCount).toFixed(4));\n\n    // FR-L1-38 token 効率 (PLAN-L7-57): token 行 (token-tracker 投入) のみ非 NULL。SUM は NULL を無視。\n    // total_cost は全行 NULL のとき NULL (= cost を出せる run が無い)。tokens_per_success / cost_per_success\n    // は success が無い / 該当 totals が無いとき NULL (core=token、$=enrichment、捏造しない)。\n    const agg = db\n      .prepare(\n        `SELECT COALESCE(SUM(input_tokens), 0) AS total_input,\n                COALESCE(SUM(output_tokens), 0) AS total_output,\n                SUM(cost_usd) AS total_cost\n         FROM model_runs WHERE model = ?`,\n      )\n      .get(model) as { total_input: number; total_output: number; total_cost: number | null };\n    const totalInput = Number(agg.total_input ?? 0);\n    const totalOutput = Number(agg.total_output ?? 0);\n    const totalCost = agg.total_cost == null ? null : Number(agg.total_cost);\n    const sc = Number(successCount);\n    const tokensPerSuccess =\n      sc > 0 && totalOutput > 0 ? Number((totalOutput / sc).toFixed(2)) : null;\n    const costPerSuccess = totalCost != null && sc > 0 ? Number((totalCost / sc).toFixed(6)) : null;\n\n    recordProjectionEvent(db, {\n      table: \"model_evaluations\",\n      id: model,\n      row: {\n        model,\n        success_rate: successRate,\n        run_count: runCount,\n        success_count: sc,\n        evaluated_at: evaluatedAt,\n        total_input_tokens: totalInput,\n        total_output_tokens: totalOutput,\n        total_cost_usd: totalCost,\n        tokens_per_success: tokensPerSuccess,\n        cost_per_success: costPerSuccess,\n      },\n    });",
+      "sha256": "08d9de34e8a5c9965f7555aa133e904301f310a82fde291a8a641041357a9e48",
+      "file_sha256": "85b05f04268fb6471d9f518ad0c59fdc50ba153fcc221c7b48e627d57d5e2467",
+      "claim": "直接model関数: opt-inなし/false/parse失敗/0runはreturn、mixed costのSUM(null)",
+      "legacy_asset_id": "LEGACY-ASSET-03B06987CECB57AC4AE2"
+    },
+    {
+      "id": "C13",
+      "path": "archive/legacy-generation-2026-09-14/root/src/state-db/projection-writer.ts",
+      "first_line": 4474,
+      "last_line": 4522,
+      "text": "export function projectSkillEvaluations(db: HarnessDb, opts?: { asOf?: string }): void {\n  const evaluatedAt = opts?.asOf ?? nowIso();\n  // 30-day window: ISO timestamp 30 days before evaluatedAt.\n  const cutoff = new Date(new Date(evaluatedAt).getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();\n\n  // Adoption: distinct plan_id per skill_id with accepted=1 invocation.\n  const adoptionRows = db\n    .prepare(\n      `SELECT i.skill_id,\n              COUNT(DISTINCT i.plan_id) AS adoption_count,\n              MAX(i.fired_at) AS last_fired_at\n       FROM skill_invocations i\n       WHERE i.accepted = 1\n       GROUP BY i.skill_id`,\n    )\n    .all();\n\n  if (adoptionRows.length === 0) return; // Cold-start: nothing to write.\n\n  const successStatusPlaceholders = PLAN_SUCCESS_STATUSES.map(() => \"?\").join(\", \");\n\n  for (const row of adoptionRows) {\n    const skillId = String(row.skill_id ?? \"\");\n    const adoptionCount = Number(row.adoption_count ?? 0);\n\n    // Success count: adopted plans in a success status.\n    const successRow = db\n      .prepare(\n        `SELECT COUNT(DISTINCT i.plan_id) AS success_count\n         FROM skill_invocations i\n         JOIN plan_registry p ON p.plan_id = i.plan_id\n         WHERE i.skill_id = ?\n           AND i.accepted = 1\n           AND p.status IN (${successStatusPlaceholders})`,\n      )\n      .get(skillId, ...PLAN_SUCCESS_STATUSES) as { success_count: number } | undefined;\n\n    const successCount = Number(successRow?.success_count ?? 0);\n    const skillRating = adoptionCount === 0 ? 0 : Number((successCount / adoptionCount).toFixed(4));\n\n    // unused_flag: no invocation in last 30 days from asOf.\n    const recentRow = db\n      .prepare(\n        `SELECT COUNT(*) AS cnt\n         FROM skill_invocations\n         WHERE skill_id = ? AND fired_at >= ?`,\n      )\n      .get(skillId, cutoff) as { cnt: number } | undefined;\n",
+      "sha256": "60cea05574f0228d5d2baaa72c933da8cc39fad81e7db81a31b164376a07a15e",
+      "file_sha256": "85b05f04268fb6471d9f518ad0c59fdc50ba153fcc221c7b48e627d57d5e2467",
+      "claim": "直接skill関数: distinct accepted plans/30日>=cutoff、0inputはreturn",
+      "legacy_asset_id": "LEGACY-ASSET-03B06987CECB57AC4AE2"
+    },
+    {
+      "id": "C14",
+      "path": "archive/legacy-generation-2026-09-14/root/src/state-db/projection-writer.ts",
+      "first_line": 4565,
+      "last_line": 4610,
+      "text": "export function projectPocEvaluations(db: HarnessDb, opts?: { asOf?: string }): void {\n  const evaluatedAt = opts?.asOf ?? nowIso();\n\n  // Count decided PoC PLANs by outcome.\n  const rows = db\n    .prepare(\n      `SELECT decision_outcome, COUNT(*) AS cnt\n       FROM plan_registry\n       WHERE kind = 'poc'\n         AND decision_outcome IN ('confirmed', 'rejected', 'pivot')\n       GROUP BY decision_outcome`,\n    )\n    .all() as { decision_outcome: string; cnt: number }[];\n\n  if (rows.length === 0) return; // Cold-start: no decided PoC PLANs => 0 rows.\n\n  const counts: Record<string, number> = { confirmed: 0, rejected: 0, pivot: 0 };\n  for (const row of rows) {\n    const outcome = row.decision_outcome as (typeof POC_DECISION_VALUES)[number];\n    if (outcome in counts) counts[outcome] = Number(row.cnt ?? 0);\n  }\n\n  const confirmedCount = counts.confirmed;\n  const rejectedCount = counts.rejected;\n  const pivotCount = counts.pivot;\n  const totalCount = confirmedCount + rejectedCount + pivotCount;\n  const pocSuccessRate = totalCount === 0 ? 0 : Number((confirmedCount / totalCount).toFixed(4));\n\n  // 単一行制約 (review I-1): id 固定で全 PoC を 1 集計行に集約するのは FR-L1-43 の現要件\n  // (1 summary 行) のみで有効。将来 PoC 種別別 / スプリント別に分解する要件が出たら PK を\n  // (scope, evaluated_at) 等へ変更し、本 id 固定・idx_poc_evaluations_rate も合わせて見直す。\n  recordProjectionEvent(db, {\n    table: \"poc_evaluations\",\n    id: \"poc-evaluation:summary\",\n    row: {\n      poc_evaluation_id: \"poc-evaluation:summary\",\n      poc_success_rate: pocSuccessRate,\n      confirmed_count: confirmedCount,\n      rejected_count: rejectedCount,\n      pivot_count: pivotCount,\n      total_count: totalCount,\n      evaluated_at: evaluatedAt,\n    },\n  });\n}\n",
+      "sha256": "a579f54aabd7677f5895cf2ec91c2058428860e41196b348117a6a54c83b4293",
+      "file_sha256": "85b05f04268fb6471d9f518ad0c59fdc50ba153fcc221c7b48e627d57d5e2467",
+      "claim": "直接PoC関数:3 outcome/summary固定ID、0inputはreturn",
+      "legacy_asset_id": "LEGACY-ASSET-03B06987CECB57AC4AE2"
+    },
+    {
+      "id": "C15",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "first_line": 192,
+      "last_line": 204,
+      "text": "## §6.5 業務 KPI 定義 (D-01〜D-09、PO 承認 2026-05-28)\n\n| KPI ID | KPI 名 | 計測式 | 目標値 | 計測場所 |\n|--------|--------|--------|--------|---------|\n| **D-01** | PLAN 起票数/sprint | sprint 期間中に起票された PLAN 件数 | ≥ 1 件/sprint | `.helix/plan_registry/` / `helix plan list` |\n| **D-02** | gate 通過率 | gate pass 件数 / gate 総実行件数 × 100 | ≥ 90 % | `.helix/gate_runs/` / `helix gate log` |\n| **D-03** | V-model 順序遵守違反 | 前工程未完了で後工程着手した検知件数 | 0 件 | `helix doctor` / `helix plan lint` |\n| **D-04** | 回帰検出率 | テストで検出した回帰件数 / 回帰発生総件数 × 100 | ≥ 80 % | CI gate / `helix trace` |\n| **D-05** | 4 artifact trace 整合率 | trace 整合 PLAN 件数 / 全 PLAN 件数 × 100 | ≥ 95 % | `helix trace check` / `.helix/artifact/trace/` |\n| **D-06** | agent guard bypass 件数 | `HELIX_ALLOW_RAW_AGENT=1` 実行件数 (audit 記録) | 0 件 目標 (PO 承認時のみ許容) | `.helix/audit/` / agent-guard log |\n| **D-07** | AI 委譲時間率 | AI 委譲タスク工数 / 総開発工数 × 100 | ≥ 70 % | PLAN `drive:` 集計 / `helix status` |\n| **D-08** | gate override 件数/sprint | PO による gate fail-close 例外行使件数 | ≤ 2 件/sprint | `.helix/audit/` / gate override log |\n| **D-09** | continuation 再開成功率 | next authority 実行成功件数 / continuation event 総件数 × 100 | ≥ 95 % | `harness.db` continuation projection / `helix status` |",
+      "sha256": "1e927ea20b2f03c292ca1fa7171d913038e7324c5b369ab2ec2b0c3fb15e0de6",
+      "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "claim": "D01-D09各式/閾値。今回の4 inputのsuccess率とKPIを混同しない",
+      "legacy_asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039"
+    },
+    {
+      "id": "C16",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 102,
+      "last_line": 113,
+      "text": "### HELIXINTELLIGENCE-L2-010 — Worker配置候補\n\n入力はtask type/domain/complexity/context/tool requirementとsuccess/failure/rework/latency/cost/reliabilityの実績。出力はtask×Worker capability×observed performanceに基づくplacement proposal。価格、model名、benchmark単独で決めず、割当・進行はOSが行う。未評価のWorker/modelを評価済みに扱わない。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-010。単独成立依存：ticket/task identity、種類/domain/complexity/context/tool requirementとLABO HELIX-Benchのtask-class evidence、Worker実績・未評価状態。検証範囲：根拠付きticket別Worker placement proposal。保証：task属性と観測実績を使い、未評価を未評価と表示し、割当/進行はOSへ残す。失敗時戻し先：task属性不足はOSへ、Bench/evidence/適用scope不足はLABOへ返し、配置案を未確定にする。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-011 — Model/Provider適性\n\n入力は同一corpus・同一responsibility scopeのmodel/provider結果。出力はdomain/capability別findings、false positives、misses、reproducibility、latency、costの比較。更新だけで上位とせず、同条件がそろわない比較は不確実として返す。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-011。単独成立依存：同一corpus・同一responsibility scopeでのcurrent/candidate model-provider結果と各実行版。検証範囲：domain/capability別findings/false positives/misses/reproducibility/latency/cost比較。保証：比較条件とmodel/provider/versionを表示し、更新だけで優位判定しない。model差替えを自動実行しない。失敗時戻し先：corpus/scope/revisionが揃わない場合は比較不能としてINTELLIGENCE判断へ戻し、追加の同条件結果を求める。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n",
+      "sha256": "6698df193f69622e4e451e55930a6d2e3211ed46db58ab2afe2db24f87c81afb",
+      "file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "claim": "INT010配置候補/011同条件比較、割当はOS/未評価維持",
+      "present_in_fixed_f6dad2a": true
+    },
+    {
+      "id": "C17",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 151,
+      "last_line": 154,
+      "text": "\nHELIX-Benchは許可されたWorker作業履歴を作業種別・model classごとに集計し、対応可能性の水準、根拠、評価範囲を導く。評価していないmodel classは明示的に「未評価」とする。水準は配置案の材料であり、Benchは配置案を作成せず、Worker/modelの選定・指定・割当ても行わない。\n\n- 親：HELIXLABO-L1-011。入力：Worker作業履歴、作業種別、model class、評価結果とそのsource revision/範囲。出力：作業種別・model class別水準、根拠、評価期間/適用範囲、評価済み/未評価状態。依存：許可されたLABO observation（L2-001/028）と評価可能な実績（必要に応じL2-006）、Worker historyの作業種別・model class identity。保証：履歴だけで未知作業の成功を保証せず、未評価を評価済みに変換せず、配置・割当て・権限を変更しない。範囲や実績が不足・不整合なら水準を確定せず該当履歴sourceへ戻す。`version_target: 1.0`。",
+      "sha256": "78cacb241495e1667f67a105aad65088a1ca268943788565acb4d7362d1dee7b",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO055作業種別/model classの水準。選定/割当をしない",
+      "present_in_fixed_f6dad2a": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "MF01",
+      "evidence": [
+        "C01",
+        "C05",
+        "C09",
+        "C10",
+        "C11",
+        "C15"
+      ],
+      "finding": "成功という同語でもPLAN completed/全起票、Skill成功distinct採用PLAN/採用PLAN、model成功run/全run、PoC confirmed/判断済3outcomeは別分母。D04回帰検出率・D06 bypass・D09継続成功との関連を同じ指標として統合しない。"
+    },
+    {
+      "id": "MF02",
+      "evidence": [
+        "C03",
+        "C05",
+        "C10",
+        "C12"
+      ],
+      "finding": "opt-in pathは旧L3 §2/§6でevaluation、旧§7/L1/API/test/codeでconfig。差分が残る。直接APIは無効・parse失敗・0runでreturnし、既存model_evaluationsを消去/失効しない。fresh DBの0行testだけでは既存行DBの要求を証明しない。wrapper/rebuild/表示consumerの全照合なしに全runtimeのbugを断定しない。"
+    },
+    {
+      "id": "MF03",
+      "evidence": [
+        "C04",
+        "C09",
+        "C13"
+      ],
+      "finding": "Skill adoption/successはaccepted=1のdistinct PLAN。一方unusedのrecent窓はaccepted条件なしで全発火を数え、cutoffは>=。旧L3「30日採用0件」とAPI/実装「30日発火なし」の差を保持。"
+    },
+    {
+      "id": "MF04",
+      "evidence": [
+        "C04",
+        "C05",
+        "C11",
+        "C14"
+      ],
+      "finding": "PoC3outcome集合、pivot分母・非成功、未決定除外、固定summary IDを保全。L3のデータ蓄積中/KPIゼロ起算は0行/率0の区別なしに評価済みとしない。直接APIの0input returnも既存rowの失効とは別。"
+    },
+    {
+      "id": "MF05",
+      "evidence": [
+        "C05",
+        "C12"
+      ],
+      "finding": "未知pricing nullは無料0ではない。実装SUM(cost_usd)はmixed known/nullで既知分だけの合計になる。total_cost/cost_per_successを全run完全総費用と呼べるかは別consumerで確認が必要。token/output per successも入力/出力token量・金額と別。"
+    },
+    {
+      "id": "MF06",
+      "evidence": [
+        "C02",
+        "C08"
+      ],
+      "finding": "旧観測Phase A/学習Phase B、sprint末/手動、日1回上限とforce続行警告を保持。現行1.0判定や固定日次義務をこの照合から新設しない。"
+    },
+    {
+      "id": "MF07",
+      "evidence": [
+        "C06",
+        "N05",
+        "C16",
+        "C17"
+      ],
+      "finding": "各projection→learning/recommendation/recipeの入力と、LABO評価→INT配置候補→OS割当は別接続。scoreだけでmodel/Worker適格化・割当・配備を生成しない。"
+    }
+  ],
+  "ownership_observations": [
+    {
+      "object": "invocation/action/gate/budget/model/PLAN事実",
+      "writer": "原運転source/OS",
+      "use": "許可scopeでLABOへ観測",
+      "adoption": "sourceauthority不変",
+      "unresolved": "retention/revoke/writer別の全data表"
+    },
+    {
+      "object": "評価projection/episode/実験・Feedback",
+      "writer": "LABO評価候補",
+      "use": "範囲付き材料・OS登録/routing",
+      "adoption": "score/row存在だけでは成立しない",
+      "unresolved": "literal分母/数値/opt-in/表示と現契約のexact対応"
+    },
+    {
+      "object": "配置/推薦候補",
+      "writer": "INTELLIGENCE",
+      "use": "OSによる適格性確認/割当",
+      "adoption": "自動割当・model差替えなし",
+      "unresolved": "旧FR37等を含む推薦consumerの全閉包"
+    }
+  ],
+  "unresolved": [
+    "33入力のうちFR19と今回4入力の比較を記録したが、28入力の比較と各入力の全consumer閉包が残る。",
+    "4入力の全正式source atom被覆receipt/successor/旧status変更は未成立。",
+    "旧5hook個別意味・4axis詳細、actual pricing/telemetry供給、rebuild/consumer既存row表示/失効、同意撤回時の扱いを更に照合する。",
+    "OS005/007/012/013全atom、双方停止、再送/重複/欠測/取消、物理repo/server判断条件、全data ownership、判断packetは未完。"
+  ],
+  "non_claims": [
+    "旧code/testは読むだけで実行していない。旧green、CI、review履歴を新受入にしない。",
+    "候補分類は意味再導出の比較材料であり完全一致再利用・置換・正式schema・実装の採用ではない。",
+    "1.0/2.0/3.0の既決境界を保ち、旧P1/P2/PhaseBを現行版へ自動写像しない。"
+  ],
+  "conclusion": {
+    "issue_close_eligible": false,
+    "formal_atomization_completed": false,
+    "canonical_change": false,
+    "mpr_change": false,
+    "holding_change": false,
+    "binding_change": false,
+    "runtime_executed": false
+  },
+  "authority_provenance": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
+      "scope": "固定採用対象だけ。旧4入力全体のadoptionではない"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139",
+      "scope": "固定採用対象だけ。旧4入力全体のadoptionではない"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "scope": "固定採用対象だけ。旧4入力全体のadoptionではない"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "scope": "固定採用対象だけ。旧4入力全体のadoptionではない"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "scope": "固定採用対象だけ。旧4入力全体のadoptionではない"
+    }
+  ],
+  "search_notes": [
+    "旧tests/token-usage.test.tsは想定pathに存在せず、rg --filesでtoken-tracker/telemetry-closure等を検出。今回はその全consumer内容を照合したとしない。",
+    "コード照合は直接projectSkill/Model/PocEvaluations関数の3区間だけ。全rebuild/runtime/表示の動作は未実行/未閉包。"
+  ]
+}
