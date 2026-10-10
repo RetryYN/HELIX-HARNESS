@@ -133,3 +133,13 @@ MLPのsupporting transaction（IT016/017・U023〜027）、RTOのscenario/API/ma
 元161未分類intervalを再照合した。空白・句読点・Markdown区切りのみのintervalに限って書式と分類し、原文を削らない。語・数値・actor・operator・接続先を含む可能性のある残部は未解決のまま残す。BR21の履歴/三評価入力、FR19のrecipe/event store、FR38のmodel/config/30日条件、P7の意味正本と継続記録、IRの禁止actor等を見出しやmetadataとして捨てない。
 
 C02/C08は共有辺の比較が進んだが、正式最小atom・全consumer/failure対応と未分類原文は残る。C01/C02/C08/C09を完了へ変更しない。#2089/#1861はOPENであり、本比較は新たな人間判断・L11追加・Issue close・L3再開を生成しない。
+
+## 115保留区間を原文の文脈へ戻す比較
+
+[固定比較JSON](../audits/requirements-stage/labo-residual-context-comparison-2026-10-10.json)は、#2874で意味/contextを含む可能性を残した115区間を原fieldと同fieldの130predicateへ結び直す。区間ごとにactor/operator/合成の接続、label/scope/参照、入力・出力・条件・履歴の3区分へ比較した。46書式区間を含む元161区間と130predicateを保全し、全fieldの文字欠落・重複0を確認する。区間数を要求数や最小atom数にしない。
+
+主語と否定を切り離さない。旧BR03のClaude/Codex完了時trigger、BR29の「shadow評価と独立reviewを経るまで強制昇格しない」、NFR34のpackと専門agentの両actor、FR44のtranslator自身の即時強制禁止等を原fieldへ戻した。旧のprovider固定条件は現行の独立性へ自動継承せず、差を保持する。
+
+label/priority/source参照も原recordの文脈である。BR21の旧PO判断とL3/L7状態・三評価入力、FR19のpattern_key/event store/audit/escalation、FR38のrun/model/config/time/opt-in、P7の意味正本と継続DB・Glossary/bounded recall未完は、比較対象から捨てない。旧path・数値・状態は来歴であり、現在の実装・採否・成功を表さない。
+
+115区間の文脈比較は成立したが、正式最小atomと現契約ごとの全量被覆は別である。各責務の比較結果は原入力ごとにJSONへ記録し、分類候補のない見出しはunresolvedを保持する。C02/C08の原文対応を補った段階であり、全consumer・未採用candidate・版の判断は残る。#2089/#1861はOPEN。
