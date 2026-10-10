@@ -103,3 +103,9 @@ registerを直接pinする19 Bindingの固定BASE/current入力境界は再照�
 [2件の再照合receipt](osa03-register-consumer-reconciliation-0095-0099-2026-10-10.json)に、現在のregister pinと実際の固定入力の違いを記録した。SCF-B-0095と0099は72b9f368の33行capture・MPR-SH-OUTSIDE67-001を使う研究である。現在のregisterでは001は002にsupersedeされており、旧001を現在の生存holdingと扱わない。同commitの全bytesを固定source snapshotへ保全し、2 Bindingの入力path/digestを当該captureへ訂正した。研究成果物・固定BASE・role・obligations・authorityは変更せず、各validator成功を確認した。
 
 147 Bindingの構造検証はfail=0、残るregister staleは17件である。これは3件台帳訂正のmerge admission成立、要求採否・consumer closure・Issue closeを表さず、PRはDraftのまま維持する。残る研究では固定BASEとその後に更新された期待register digestの相違があるため、当時の入力revisionを別途特定してから再照合する。
+
+## register consumerの後続input capture再照合（0057・0066）
+
+[再照合receipt](osa03-register-consumer-reconciliation-0057-0066-2026-10-10.json)に期待digestと一致するGit revision `1c276ab2`（637行・45 live source holding）を記録した。これは研究の当初baseとは別の、その後に更新された入力digestの実revisionである。0057/0066の候補JSON/JSONLは不変のまま、register読取先とBindingを同一bytesのsnapshotへ束縛した。0066 selfcheckの成果物pathは現行research配置へ訂正した。両validatorと0057の42・0066の12 negative casesは成功した。
+
+本文/metadataの以前の14/43 holdingと後続captureの45 holdingは現在の生存holding数を表さず、その時間的照合・研究全体のclosureは未完として各READMEに明記した。Bindingの役割・義務・authorityは変更しない。構造検証147件fail=0、残るstale Bindingは15件（0040はregisterに加えてfirst15 generator変更にも依存）であり、Draft維持・Ready/merge未成立とする。旧source/consumerの全closure、正式successor、要求採否、Issue closeは生成しない。

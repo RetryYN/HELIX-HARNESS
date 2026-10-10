@@ -15,7 +15,7 @@ def main():
   if base.returncode:print('FAIL baseline\n'+base.stdout+base.stderr);return 1
   def case(name,fn,needle):
    c=Path(td)/name;shutil.copytree(root,c);fn(c);p=run(c);cases.append((name,p.returncode!=0 and needle in p.stdout+p.stderr,p.stdout+p.stderr))
-  basepath='scaffold/rdp001-outside67-boundary-evidence-066/'
+  basepath='scaffold/research/rdp001-outside67-boundary-evidence-066/'
   case('fragment',lambda c:mutatel(c/(basepath+'product-units.jsonl'),0,lambda d:d.__setitem__('source_fragment','tampered')),'E_FRAGMENT_PROVENANCE')
   case('counterpart',lambda c:mutatel(c/(basepath+'selected-source-items.jsonl'),4,lambda d:d['archive_counterpart'].__setitem__('sha256','tampered')),'E_COUNTERPART_PROV')
   case('product',lambda c:mutatel(c/(basepath+'product-units.jsonl'),0,lambda d:d.__setitem__('candidate_product','HELIX-OS')),'E_UNIT_CANON')

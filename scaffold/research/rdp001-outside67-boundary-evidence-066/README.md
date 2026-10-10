@@ -7,3 +7,6 @@
 source rowsはAICR/CICR/NIO/FRS/LARのrelation・failure・consumer・decision候補を含みます。legacy ledger 7ファイルのsource path/ID exact hitは0件、holdingのcatalog recordは0、human decisionはnullです。implementation/degradation/authority/failure/consumer/decision/phaseはunknownとして保持します。
 
 今回の検証幅は5 source path_revision_pairです。安全なbatch上限は断定せず、次候補ではsource chainを独立確認します。現行mainへのrebaseline、ancestor/materialization、source digest、validator、自検査まで完了しています。SCF-B-0066へresearch Bindingとして登録済みで、PRは未作成です。正式holding採用・正式要求は確定しません。
+## 固定register入力の再照合（2026-10-10）
+
+期待register digest `79c1e5a…fbcd` と一致するcommit `1c276ab26dc50ca5d0f2d8c25441f17c303b9919` の637行を同一bytesのsource snapshotへ保全した。validatorの台帳読取先とBindingの入力pinを同snapshotへ結び、元のlogical path、研究の基準base、選択・25候補・unknown・正式holding未確定を保持する。これは後続の入力digest更新の実revisionを特定したもので、当初base時点の台帳とは同一ではない。以前の14 holding表記は歴史metadataであり、snapshotの45 holdingや現在の生存holdingを表さない。selfcheckの成果物pathも実際のscaffold/research/配置へ訂正した。検証から要求採択・正式successor・全consumer closureを生成しない。
