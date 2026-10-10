@@ -1,6 +1,8 @@
-# 既存repository全資産の棚卸し・充足度mapping要求案
+# 要求の未決論点と固定差分案
 
-base `742258892f94ab5c42d9274e7732b39608abf3bb`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `3644eab31167f09e3a6fa3c1f20ad60ac4ca5f71bdf5b5ac88b1bdb5c6a97632`。authority_effect: none。
+## ASSETCOVER：既存repository全資産の棚卸し・充足度mapping要求案
+
+base `742258892f94ab5c42d9274e7732b39608abf3bb`。[JSON候補](requirements-resolution-packet.json)、SHA-256 `88bc0559386df0e8b2f64de00aa40d32b673c9131e6c669a0798c123ccb1d4d5`。authority_effect: none。
 
 #1852の旧FR-L1-33を起点に、HARNESS-L2-089という一つのunitと対L11を提案する。現行019（Full Reverse入口）、027（source型抽出）、034（計測）、OS033（detector運転）の近接能力と、全資産・カテゴリ網羅・充足reportの不足を分ける。版は未指定で、旧P2/Phase Bと初期必須化しない条件を保持する。
 
@@ -36,3 +38,30 @@ base `742258892f94ab5c42d9274e7732b39608abf3bb`。[JSON候補](requirements-reso
 旧FR33のcatalog DB粒度・A126 export・具体画面・formal successor、#1852の他旧要求/接続/構成体は残る。この案だけで#1852をcloseしない。snapshot・照合基準・不足の区別は今回の具体化差分で、旧sourceに既定だったとは主張しない。schema・parser・演算・割合・thresholdや新しい承認gateを定めない。
 
 DDDSTRICTはPO判断待ちのまま、前packet全体をJSONのpending_packet.packetへ完全一致で保持した。SEEDFIRSTの採択記録もその内部に保持する。未回答を採択とみなさず、canonical/MPR/台帳/Bindingは変更していない。
+
+## INCIDENTPORT：Incidentの即releaseと通常Portの関係（#1857）
+
+対象は旧`harness/L1-requirements/functional-requirements.md::FR-L1-16`の「検出→hotfix→即release→収束→current L1〜L12 backfill」です。独立判定で、この意味判断だけが#1857の要求側の未完事項と確認されました（[判定](https://github.com/RetryYN/HELIX-HARNESS/issues/1857#issuecomment-6092550610)）。本案のbaseは`11cdd5acdb5dacd435b2cd780b17c459857ac889`、意味候補とsource/span digestはJSONの`incident_release_decision`です。上のASSETCOVERとJSON内部のDDDSTRICTの採否は別の未回答のまま保持します。
+
+旧sourceはfunctional-requirements.md:47（LEGACY-ASSET-6B6C5CB0E481BE01088B）、incident.md:35–56/68–70（LEGACY-ASSET-9E033C3E39BE107D4CF1）、要件v1.3:626（LEGACY-ASSET-02319C2481B9E01698D5）。旧modeにもproduction境界・approval確認があるため、「即release＝無承認・全検査bypass」とは断定しません。旧L0〜L14の層番号を現行へ写さず、current L1–L12へ戻る要望を保持します。旧test／CLI／runtime／CIは実行しません。
+
+- **A**：Incident固有のrelease例外を残す方向を選び、最低安全条件・権限・backfillと対L11を追加形成して改めて提示します。方向選択だけでは未定義の例外を承認できず、#1857はOPENのままです。
+- **B（推奨）**：通常Release Portをhotfixにも適用します。即releaseを通常Portの例外として残さず、条件成立後の迅速な適用とします。FR-L1-16全体はretireせず、検出・hotfix・収束・postmortem・L12 feedback・backfill・選択済み開発方式への復帰を保持します。
+
+Bは現行003/017のRelease-eligible条件との整合が理由です。旧sourceの不在・未完成・runtimeの存在を変更理由にしません。HARNESSは工程条件、OSは既存Incident／continuity／ticket／検収／受渡し契約の運転と記録を持ち、既存SECURITY操作authorityと有効な既決権限を保持します。旧modeの三者確認主体をこの選択で移管・撤回せず、未処置の旧条件はholdingへ残します。
+
+### BのHARNESS-L2-003追補案
+
+挿入位置：L2の「工程規則として保持する具体条件」表の「開発の開始時からRelease Portを持つ」行の直後。行全文とSHA-256、一意一致件数、反映後file digestをJSONのeditへ固定しています。
+
+| HARNESS-L2-003 | Incidentのhotfixにも通常のRelease Portの必須条件を適用し、緊急性やhotfixという名称から省略を許可しない。旧FR-L1-16の「即release」を通常Portの例外として存続させず、条件が成立した後の迅速な適用として扱う。必要な証明・成果物識別・対象環境・依存・security・rollback・配備条件・受入状態がmissing／unknown／staleならRelease-eligibleにしない。検出・暫定対処・収束確認・postmortem・L12 feedbackと、収束後のcurrent L1–L12へのbackfillは保持する。恒久対策はReverse fullbackで影響する要求・設計・対検証を確認し、選択済み開発方式の該当層へ戻す。暫定収束や配備成功だけで恒久対策とbackfillを完了にしない。HARNESSは工程条件を持ち、OSは既存Incident／continuity／ticket／検収／受渡し契約を参照して運転・記録する。既存SECURITYの操作authorityと有効な既決権限を保持し、本追補からrelease許可や追加承認手続きを生成しない |
+
+### Bの対L11追補案
+
+挿入位置：L11の「工程条件の確認シナリオ」の「開発の開始時にRelease Portの必須条件」箇条の直後。同様にanchor全文・digest・一意性・反映後file digestを固定しています。
+
+- HARNESS-L2-003（Incident）：通常Release Portの必須条件と既存操作authorityを満たすhotfixは、緊急性に依存せず同じRelease-eligible条件で確認する。必要な証明、対象環境、security、rollback、受入状態のいずれかが欠けたhotfixに「即release」や暫定収束を与えても、欠けた条件を省略できずRelease-eligibleにならない。収束後はpostmortemとL12 feedback、current L1–L12の影響先・backfillの未完義務、Reverse fullbackから選択済み開発方式への戻り先を辿る。未完のbackfillや恒久対策を配備成功・収束・Issue closeで完了にしない。戻り先がunknownなら完了へ補完せず保持する。通常Portの条件成立と実release許可・実行・受入結果を分離し、旧CLI／runtime／CIの成功を証拠へ流用しない。
+
+影響先は003（追補対象）、017（既存Port参照）、OS010/017/019/020/023（運転・戻り先・continuity・検収・受渡し）、OS105（復旧証拠相関の限定scope）、旧carry／workflow clause／source holdingです。003の既決1.0は保持し、他identityの意味や版を変更しません。判断が採用された後もformal successorと旧source全移管は別であり、台帳の空successorを本案から埋めません。
+
+PO未回答でcanonical L2/L11、MPR、旧carry、Bindingは無変更です。採択対象はBの003追補と対L11、および通常Port例外の意味置換だけです。release/deployの許可・実行、L3再開、要求全体完了、#1857のcloseは含みません。

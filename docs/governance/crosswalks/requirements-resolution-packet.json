@@ -3192,5 +3192,128 @@
     "未採択の固定案準備のみ。canonical L2/L11/MPR/台帳/Bindingは無変更。",
     "DDDSTRICTの未回答採否は保持し、この案から005採用を生成しない。",
     "HARNESS-L2-089は提案identityのみ。管理層の仮登録とcanonical反映は対象採否の工程で照合する。"
-  ]
+  ],
+  "incident_release_decision": {
+    "id": "INCIDENTPORT",
+    "issue": 1857,
+    "base_revision": "11cdd5acdb5dacd435b2cd780b17c459857ac889",
+    "authority_effect": "none",
+    "status": "awaiting_po_decision",
+    "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-16",
+    "finding": "FR-L1-16-RELEASE",
+    "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/issues/1857#issuecomment-6092550610",
+    "legacy_sources": [
+      {
+        "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+        "start_line": 47,
+        "end_line": 47,
+        "text": "| **FR-L1-16** | Incidentワークフロー（本番障害: 検出 → hotfix → 即release → 収束 → current L1〜L12へbackfill） | incident-workflow | 本番障害alert／SLO逸脱 | troubleshoot/recovery PLAN、postmortem、L12 feedback。Reverse fullback経由で選択済みdevelopment styleへ戻す | P0 | PM-03 (障害シグナル) / HM-06 |\n",
+        "span_sha256": "032341c5bc716fbbb569df1a1dfaccd33c4577a6b81a440951545b2bdc886dfd"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+        "file_sha256": "bad6448a63dbc6b7867b9845ca8caf96ee144802961504f3793667f49fc28f7c",
+        "start_line": 35,
+        "end_line": 56,
+        "text": "```\n検出 → トリアージ → 緊急修正 (hotfix) → 即リリース → 収束確認 → 事後昇華\n```\n\n1. **検出**: 監視アラート / Discovery の post-deploy trigger から接続。signal: `production_incident` / `hotfix_required` / `regression_prod` (env=prod)\n2. **トリアージ**: 影響・緊急度判定。セキュリティインシデントは封じ込めを優先\n3. **緊急修正 (hotfix)**: `kind=troubleshoot` PLAN 起票。原因究明 + 暫定対処\n4. **即リリース**: hotfix を本番適用\n5. **収束確認**: SLO/KPI 正常化確認。`kind=recovery` PLAN で復旧手順・ロールバック記録\n6. **事後昇華**: Reverse fullback を活用し恒久対策を V-model へ統合。postmortem を L12 へ\n\n> **起票導線 (2 PLAN 分割)**: Incident は独立 kind を持たないため、**hotfix=`kind=troubleshoot` (token=L7) PLAN** と **復旧記録=`kind=recovery` (token=RECOVERY) PLAN** の 2 件に分けて起票する。recovery PLAN の `dependencies.requires` (or `references`) に troubleshoot PLAN を宣言し連鎖を明示する。恒久対策の昇華は別途 `kind=reverse` (fullback) PLAN。1 incident = troubleshoot + recovery (+ 必要なら reverse) の PLAN 群。\n\n---\n\n## 3. exit 条件\n\n- hotfix 暫定収束 (SLO/KPI 正常化)\n- **オンコール + tl + pm の三者確認** (人間サインオフ必須、§2.6.3)\n- 恒久対策の Forward 昇華 PLAN 起票済\n- postmortem → L12 フィードバック記録済\n\n",
+        "span_sha256": "921ac0a666a3307fbe56fcf16b73df09bc9e5862b2c637bda60af82c2342dbc8"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+        "file_sha256": "bad6448a63dbc6b7867b9845ca8caf96ee144802961504f3793667f49fc28f7c",
+        "start_line": 68,
+        "end_line": 70,
+        "text": "hotfix を打ちっぱなしにせず、Reverse fullback (R0-R4、`confirmed_reverse_type=fullback`) を経由して V-model のドキュメント体系・トレーサビリティへ収束させる。\n\n> **再発防止テストの ③-first 規律 (IMP-045)**: 上表「再発防止テスト → L8/L9」は ④ テストコードを直接足す意味ではない。恒久対策の Reverse fullback では §2.1 のとおり **③ テスト設計の as-is を観測・記録 (Reverse 自身は ③ を generates しない) → Forward 合流先 (L4/L5 等) の pair-freeze (G4/G5) で ①⇔③ を凍結 → その後 L8/L9 で ④ 実施**する。①③ 不在のまま ④ だけ追加するのは AP-7/AP-8 違反 (concept §3.5 AP-7 右側ペア未凍結 + §3.4 QA 追加テスト設計分離原則)。\n",
+        "span_sha256": "0ce24126bc5ba01539d0e6cafd878dee64c1e4352ddd5b44f6a77b35046263d9"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "start_line": 626,
+        "end_line": 626,
+        "text": "| `production_incident` / `hotfix_required` / `regression_prod` | Incident | production境界とapprovalを検証する |\n",
+        "span_sha256": "d67b7abd92d87209a2bc3c75daa2bb55646679236c20fdc42c50af0184d67269"
+      }
+    ],
+    "legacy_comparison": {
+      "preserved": [
+        "本番障害の検出・緊急対処・hotfix・収束確認",
+        "postmortem・L12 feedback",
+        "収束後のcurrent L1–L12 backfillとReverse fullbackから選択済み開発方式への復帰",
+        "production境界とapproval確認。既存SECURITY operation authorityを使い、旧三者承認主体は本選択で移管・撤回しない"
+      ],
+      "changed_if_B": "即releaseを通常Release Port条件の例外として残さない。条件成立後の迅速な適用とする。",
+      "reason": "旧原文は即releaseと事後backfillを定めるが通常Portとの関係が未決。現行003/017のRelease-eligible条件と整合させ、緊急性から未検証・未受入の配備成立を生成しない。旧未完成/runtime存在を変更理由にしない。",
+      "interpretation_limit": "旧即releaseを無承認または全検査bypassだったとは断定しない。旧modeはproduction approval確認を明記する。通常Portとの関係を今回明示選択する。"
+    },
+    "options": {
+      "A": {
+        "meaning": "Incident固有のrelease例外を残す方向を選ぶ。最低安全条件・権限・backfillと対L11の具体案を追加形成してから対象revisionをPOへ提示する。",
+        "effect": "方向選択だけでは未定義例外を承認しない。#1857はOPEN、release不可のまま。"
+      },
+      "B": {
+        "meaning": "通常Release Portをhotfixにも適用する。通常Port例外としての即releaseの意味だけを置換し、旧FR-L1-16全体はretireしない。下の003追補と対L11を採用する。",
+        "recommended": true,
+        "edits": [
+          {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "operation": "insert_after_exact_anchor",
+            "existing_file_sha256": "281e5e338ebd0478e5be43ed636921396adba13a0e1f596d322cfae366969dbc",
+            "proposed_text": "| HARNESS-L2-003 | Incidentのhotfixにも通常のRelease Portの必須条件を適用し、緊急性やhotfixという名称から省略を許可しない。旧FR-L1-16の「即release」を通常Portの例外として存続させず、条件が成立した後の迅速な適用として扱う。必要な証明・成果物識別・対象環境・依存・security・rollback・配備条件・受入状態がmissing／unknown／staleならRelease-eligibleにしない。検出・暫定対処・収束確認・postmortem・L12 feedbackと、収束後のcurrent L1–L12へのbackfillは保持する。恒久対策はReverse fullbackで影響する要求・設計・対検証を確認し、選択済み開発方式の該当層へ戻す。暫定収束や配備成功だけで恒久対策とbackfillを完了にしない。HARNESSは工程条件を持ち、OSは既存Incident／continuity／ticket／検収／受渡し契約を参照して運転・記録する。既存SECURITYの操作authorityと有効な既決権限を保持し、本追補からrelease許可や追加承認手続きを生成しない |\n",
+            "proposed_text_sha256": "33b1483db2a4d9344fd3776b460eb2691a0473eecf3b958f1667793829a4cb4e",
+            "target_section": "## 工程規則として保持する具体条件",
+            "before_anchor": "| HARNESS-L2-003 | [2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)に従い、開発の開始時からRelease Portを持つ。Release Portには、必要な証明、成果物の識別、対象環境、依存、securityの条件、rollback、配備の条件、受入の状態を置き、各工程で満たしていく |\n",
+            "before_anchor_sha256": "b1d8fe5902a6058c66df4a5b42ae148280e0155f747b8a5950695317f439ab1b",
+            "anchor_match_count": 1,
+            "after_file_sha256": "2b399d6183f869a1f2725c83475a44990c380d2e900f101089bf5e092fabcc8e"
+          },
+          {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "operation": "insert_after_exact_anchor",
+            "existing_file_sha256": "03b8fbc32d54450e56f79bdbd75af8188ce4192473f730842753335eb3601caa",
+            "proposed_text": "- HARNESS-L2-003（Incident）：通常Release Portの必須条件と既存操作authorityを満たすhotfixは、緊急性に依存せず同じRelease-eligible条件で確認する。必要な証明、対象環境、security、rollback、受入状態のいずれかが欠けたhotfixに「即release」や暫定収束を与えても、欠けた条件を省略できずRelease-eligibleにならない。収束後はpostmortemとL12 feedback、current L1–L12の影響先・backfillの未完義務、Reverse fullbackから選択済み開発方式への戻り先を辿る。未完のbackfillや恒久対策を配備成功・収束・Issue closeで完了にしない。戻り先がunknownなら完了へ補完せず保持する。通常Portの条件成立と実release許可・実行・受入結果を分離し、旧CLI／runtime／CIの成功を証拠へ流用しない。\n",
+            "proposed_text_sha256": "bdded223bb614b85b02db89b47b5c04e9d636c42b44ccd236765ea79238b9068",
+            "target_section": "## 工程条件の確認シナリオ",
+            "before_anchor": "- HARNESS-L2-003：開発の開始時にRelease Portの必須条件（必要な証明、成果物の識別、対象環境、依存、securityの条件、rollback、配備の条件、受入の状態）が置かれ、各工程で満たした条件と未充足の条件が分かることを確認する。\n",
+            "before_anchor_sha256": "bcb21dec755bfed4598cfab4191f712da309237c1dd2185c2a7eae14a921c478",
+            "anchor_match_count": 1,
+            "after_file_sha256": "00b26654102f7b555ad05cea0096835c3490c05dfaf6e6058fb4d905e947c455"
+          }
+        ]
+      }
+    },
+    "impact": [
+      {
+        "target": "HARNESS-L2-003/L11",
+        "effect": "Bの追補対象。既決1.0を保持。"
+      },
+      {
+        "target": "HARNESS-L2-017/L11",
+        "effect": "既存Release Portの条件を参照。改変しない。"
+      },
+      {
+        "target": "HELIXOS-L2-010/017/019/020/023/L11",
+        "effect": "Incident発行・戻り先、推進、continuity、検収、受渡しの既存契約へ接続。新しい例外許可・ticket種別・完了を生成しない。"
+      },
+      {
+        "target": "HELIXOS-L2-105/L11",
+        "effect": "既存復旧証拠相関だけのscopeを拡張しない。"
+      },
+      {
+        "target": "旧FR-L1-16 carry・workflow clause・source holding",
+        "effect": "対象意味判断を記録して接続するが、formal successor空とholdingを保持。全source移管や旧三者承認の処置を生成しない。"
+      }
+    ],
+    "limits": [
+      "PO未回答。canonical L2/L11・MPR・旧carry・Bindingは変更しない。",
+      "要求採否の対象はBの003追補と対L11、通常Port例外の置換だけ。",
+      "旧FR-L1-16全体のretire、旧source全移管、実release/deploy、L3再開、要求全体完了、Issue closeを含まない。",
+      "旧mode内の三者確認・severity・SLO固定値・PLAN/token/schema/runtimeは自動移植しない。未処置の旧条件は既存holdingへ保持する。"
+    ]
+  }
 }
