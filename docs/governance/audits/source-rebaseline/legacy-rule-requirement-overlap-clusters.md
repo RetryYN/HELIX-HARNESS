@@ -165,3 +165,11 @@ b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合
 旧例では、confirmed owning PLAN後のbody起票とslot≠完成、freeze発火のdraft0/pair孤児0/confirmed>=1とpark例外、gate-confirmのmissing skipを別条件として保存した。AIDOCの取得/正本逆参照/unknown分離は工程条件の実行成功や承認とは別である。旧sourceは読むだけで実行していない。
 
 全497ruleの個別source条件、consumer閉包、正式successorと保留意味、他54clusterの本文比較、FRM01/OSA03の残件は#1814/親#1813へ残す。既存の空配列と`assessment_status=unassessed`は維持し、未計上0・要求完了・Issue close・L3再開を主張しない。
+
+## RUL-FRM-02：個別source条件の比較を開始
+
+基準main `75871177f8fc13e3aed6287c3a563cede0cc0edc`。`rule_source_comparison`に主233の先頭60recordを原inventoryの全fieldのまま保存し、引用した全原文span/hash、候補本文の6句との共通性、固有/未解決条件を一件ずつ記録した。残る主173・副264の全437 IDは`pending_rule_refs`へ明示した。前の候補本文比較と未評価fieldは変更しない。
+
+一般の工程条件だけでは、旧CLIの検査順序/時刻・review mode、coding rule影響、no-code/complexity budget、PLANと要求の別lifecycle、特定packetのDB2回/exact table条件、各routeの独立した終了条件は表現できない。引用原文へ戻してこれらを残し、現行の新しいgateや実装方式へ無判断に移さない。旧screen applicabilityのdecision/receipt/deferredとprototype/walkthroughの負例、closureのmemory欠落負例、source coverageの各edge欠落も一般freeze/完了の一語へ集約しない。旧assertionのdesign-defined/not-implementedは期待oracleであり実施済みではない。
+
+引用spanの条件比較は60/497まで進んだが、読了分でも隣接条件のatom境界・判断史・call/test/外部consumer閉包・正式successorは未完。空の旧fieldを差分なしとせず、未計上0・要求全条件被覆・要求採否・holding解除・Issue close・L3再開を生成しない。#1814/親#1813で全残件を保持する。
