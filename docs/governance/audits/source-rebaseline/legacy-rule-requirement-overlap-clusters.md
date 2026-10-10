@@ -181,3 +181,17 @@ b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合
 旧gate表のG2は表が★POなのに凡例/脚注の定義済集合にはなく、原FR13と判断史を確認するまで確定しない。旧UIなしL2skipの記述は、現行003のL2要求省略禁止・Prototype/PoC別適用・L2.5位置と区別する。trace-freeze checklistのfailingcommit SHA句はRB08-109文にないが、別RB08-106へ保存済みであるため全台帳の欠落や退役とは扱わず、freeze時の義務接続を残す。
 
 特定cutoverの再承認、Incident時の全active PLAN凍結、旧Criticalだけでconditional pass、旧handover、package/wholegoal監査の分母や旧Issue終端順序も固有scopeと判断史を持つ。旧記録にある「成立した」は過去観測であり、現行の実績や新しい承認/CI/close条件へ継承しない。120件の引用条件を読み分けたことから、完全atom化・consumer閉包・正式successor・未計上0を生成しない。#1814/親#1813と残り377件、他clusterの残件を保持する。
+
+## RUL-OPS-01：運用保守の限定した本文・全38引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主26・副12＝38件の原inventory全fieldと47引用span、27関連/補助spanを保持した。元note/relations/compared_revisions/未評価fieldと他56clusterのbytesを変更せず、SECURITY/INFRASTRUCTUREを含む比較を追記した。引用未比較0は全atom・判断史・全consumer・正式successor・全被覆・Stage完了ではない。
+
+旧team資料はReference-onlyとPO1名＋AI読替えを持つ。漏洩30分/P0-P3とrunbook約15分/Sev1-3、Dependabot期限、hotfixP0P1だけmerge起算48hを単純同一化しない。固定tool/数値/旧approverを現行全案件へ昇格させず、catalogのaction-bound操作承認と自律の検知/証拠/準備を分ける。
+
+現行SECURITY005/008/009には生値非露出、scope/expiry、operation authority、各該当先revoke/quarantineと未観測条件がある。AIDOC001はcontext解決で実credential処置ではない。INFRA004は既存severity参照、005はbackup/restore/rollback/closureを区別し、006は限定した独立復旧。過去noteの「L2に方針だけ/受入なし」を全現行機構の未被覆と一般化しない。
+
+旧runbook5要素/3sectionと3alert以上、Recovery7headerは粒度別で、文書存在やheaderだけで内容妥当を証明しない。HARNESS005のoracle/evidence規則、OSの運転と証拠、HILFR23/BR15のread connector、HBRP4の自動修復/学習昇格を同一にしない。旧全activePLAN凍結・enginepin限定rollback・consumer成果物非巻戻しのscope/判断史も残す。
+
+旧providerwritebackのshape検査は内容の正当性でなく、同digestはJSON検査前skipである。回収finallyは試行であり成功ではなく、reject/IOfailureとreviewoktrueは併存できる。外側scratchcleanup例外が結果を覆う経路も区別する。旧runtimeを実行せず、全caller/consumer成立の証拠とはしない。
+
+要求本文・schema・Python/CLI/runtime/CI・認証/認可/credential/本番設定・仮登録・holding・Bindingを変更しない。別DraftPR2887–2892を本mainに混ぜず、#1814/親#1813と全残件を保持する。採用・retire・Issueclose・L3再開を生成しない。
