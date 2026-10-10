@@ -109,3 +109,11 @@ registerを直接pinする19 Bindingの固定BASE/current入力境界は再照�
 [再照合receipt](osa03-register-consumer-reconciliation-0057-0066-2026-10-10.json)に期待digestと一致するGit revision `1c276ab2`（637行・45 live source holding）を記録した。これは研究の当初baseとは別の、その後に更新された入力digestの実revisionである。0057/0066の候補JSON/JSONLは不変のまま、register読取先とBindingを同一bytesのsnapshotへ束縛した。0066 selfcheckの成果物pathは現行research配置へ訂正した。両validatorと0057の42・0066の12 negative casesは成功した。
 
 本文/metadataの以前の14/43 holdingと後続captureの45 holdingは現在の生存holding数を表さず、その時間的照合・研究全体のclosureは未完として各READMEに明記した。Bindingの役割・義務・authorityは変更しない。構造検証147件fail=0、残るstale Bindingは15件（0040はregisterに加えてfirst15 generator変更にも依存）であり、Draft維持・Ready/merge未成立とする。旧source/consumerの全closure、正式successor、要求採否、Issue closeは生成しない。
+
+## register consumer 11件の固定入力再照合
+
+[11件の再照合receipt](osa03-register-consumer-reconciliation-eleven-2026-10-10.json)に0062・0069・0071・0073・0074・0076・0079・0085・0087・0090・0092の固定入力を記録した。各期待digestに一致する1c276ab2の637行captureへ読取先とBindingを束縛し、selfcheckの成果物pathを現行research配置へ訂正した。0069の旧配置4参照は論理pathを保ったまま現行配置へ解決する。削除済みcounterpart052/056と改訂済み060は、元digestに一致するGit本文を歴史snapshotへ保全した。現在の要求・承認として復活させない。
+
+11 validatorと既存224 negative casesは成功し、全候補JSON/JSONL・Bindingの責務/義務/接続/操作/置換は不変である。生成スクリプト3件はregister読取先のみ整合させ、syntaxと置換範囲を静的確認した。全再生成は実行していない。過去のholding数metadataと後続input更新の時間的整合、全研究の意味/consumer closureは未完として保持する。
+
+構造検証147件fail=0、残るstaleは0040・0083・0096・0121の4件。0040はfirst15 generatorの変更にも依存する。PRはDraftを維持し、Ready/merge admission、正式successor、要求採否、holding解除、L3再開、#1814/親#1813 close、全要求ステージ完了は未成立である。

@@ -42,6 +42,9 @@ def loadl(p,e,c):
 def blob(root,commit,path):return subprocess.check_output(['git','-C',str(root),'show',f'{commit}:{path}'])
 def fail(e,code,cond):
  if cond:e.append(code)
+# Exact source snapshot for the historical input digest; logical path metadata is retained.
+REGISTER_CAPTURE = "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl"
+
 def validate(root):
  root=Path(root).resolve(); out=root/'scaffold/research/rdp001-outside67-boundary-followup-071'; e=[]
  inv=load(out/'inventory.json',e,'E_INV')
@@ -55,7 +58,7 @@ def validate(root):
  fail(e,'E_WORKTREE',sc.get('worktree')!='/home/tenni/.helix-worktrees/outside67-next-071')
  fail(e,'E_SCOPE_REASON',sc.get('base_drift_reason')!='#2018 merged after the prior 98b5fb0 baseline; rebaseline performed at latest origin/main f07602e before this bundle.')
  fail(e,'E_SCOPE_POLICY',sc.get('batch_width_policy')!='width 5 is the observed verification width for this bundle; no safe batch upper bound is asserted; next batch requires independent source-chain review from the then-current origin/main')
- fail(e,'E_SCOPE_DIGEST',sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER))
+ fail(e,'E_SCOPE_DIGEST',sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER_CAPTURE))
  # only ancestor gate; HEAD may be a later commit or a merge materialization.
  head=subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD'],text=True).strip()
  if subprocess.run(['git','-C',str(root),'merge-base','--is-ancestor',sc.get('base_origin_main',''),head],stderr=subprocess.DEVNULL).returncode:e.append('E_BASE_ANCESTOR')

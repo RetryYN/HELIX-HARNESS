@@ -30,3 +30,7 @@ python3 scaffold/tools/scfctl.py stale
 python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
+
+## 固定register入力の再照合（2026-10-10）
+
+研究inventoryの期待digest `79c1e5a…fbcd` はcommit `1c276ab26dc50ca5d0f2d8c25441f17c303b9919` の637行・45 live holdingの台帳bytesに一致する。当初baseとは別の後続入力更新として記録し、validator読取先とBinding入力を同一bytesの固定snapshotへ結んだ。元のlogical path、基準base、候補本文・分母・unknown・未調査残差は保持する。以前のholding数は歴史metadataで、現在の生存holding数を表さない。selfcheckの成果物pathを実際のscaffold/research/配置へ訂正した。検証の成功から採否・正式successor・全consumer closureを生成せず、時間的照合と研究全体のclosureは未完とする。

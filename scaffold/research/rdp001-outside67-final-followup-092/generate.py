@@ -20,6 +20,7 @@ HEAD = "36accee66242338ded01dcc24d44148faadd3045"
 PREVIOUS_HEAD = "15c2a145c06aedb4e1a081e288e5b302dc4182cf"
 HOLDING = "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl"
 REGISTER = "docs/governance/management-provisional-requirement-register.jsonl"
+REGISTER_CAPTURE = "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl"
 LEDGERS = [
     "docs/governance/legacy-asset-disposition.jsonl",
     "docs/governance/legacy-asset-decisions.jsonl",
@@ -403,7 +404,7 @@ def make() -> None:
         "holding_record_count": len(rows),
         "current_live_source_holding_count": 14,
         "management_register_path": REGISTER,
-        "management_register_sha256": sha(ROOT / REGISTER),
+        "management_register_sha256": sha(ROOT / REGISTER_CAPTURE),
         "existing_reviewed_ids": existing,
         "remaining_before_candidate_selection": 5,
         "candidate_ids": IDS,

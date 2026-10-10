@@ -30,18 +30,30 @@ EXPECTED_SOURCE_DIFF={'OUTSIDE67-PATH-034':'same','OUTSIDE67-PATH-036':'same','O
 META_KEYS={'schema','bundle_id','binding_reservation','binding_registration_status','base_origin_main','base_origin_main_previous','candidate_ids','existing_reviewed_count','candidate_count','combined_count','denominator','remaining_after_research','anchor_count','static_only','old_runtime_test_ci_execution','authority_effect'}
 LEDGER_KEYS={'schema','source_holding_registration','denominator','existing_reviewed_ids','selected_ids','selected_source_count','product_unit_candidate_count','exact_ledger_hit_count','source_anchor_count','status','formal_admission'}
 
+RELOCATED_PATHS = {'docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl': 'docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl', 'docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl': 'docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl', 'docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl', 'docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl': 'docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl', 'docs/governance/candidates/ai-readable-authority-requirements.md': 'docs/governance/audits/requirements-stage/history-snapshots/ai-readable-authority-requirements-counterpart052-capture-3969a2f8.md', 'docs/governance/candidates/next-generation-ci-requirements.md': 'docs/governance/audits/requirements-stage/history-snapshots/next-generation-ci-requirements-counterpart056-capture-469870d3.md'}
+
+def source_path(path):
+ text = str(path)
+ for old, new in RELOCATED_PATHS.items():
+  if text.endswith(old):
+   return Path(text[:-len(old)] + new)
+ return path
+
 def sha(b):
- if isinstance(b,Path): b=b.read_bytes()
+ if isinstance(b,Path): b=source_path(b).read_bytes()
  return hashlib.sha256(b).hexdigest()
 def load(p,e,c):
- try:return json.loads(p.read_text(encoding='utf8'))
+ try:return json.loads(source_path(p).read_text(encoding='utf8'))
  except Exception as ex:e.append(f'{c}:{ex}');return None
 def loadl(p,e,c):
- try:return [json.loads(x) for x in p.read_text(encoding='utf8').splitlines()]
+ try:return [json.loads(x) for x in source_path(p).read_text(encoding='utf8').splitlines()]
  except Exception as ex:e.append(f'{c}:{ex}');return []
 def blob(root,commit,path):return subprocess.check_output(['git','-C',str(root),'show',f'{commit}:{path}'])
 def fail(e,code,cond):
  if cond:e.append(code)
+# Fixed bytes for the recorded historical register digest.
+REGISTER_CAPTURE = "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl"
+
 def validate(root):
  root=Path(root).resolve(); out=root/'scaffold/research/rdp001-outside67-followup-069'; e=[]
  inv=load(out/'inventory.json',e,'E_INV')
@@ -55,7 +67,7 @@ def validate(root):
  fail(e,'E_WORKTREE',sc.get('worktree')!='/home/tenni/.helix-worktrees/outside67-followup-selection')
  fail(e,'E_SCOPE_REASON',sc.get('base_drift_reason')!='#2017 merged after the prior 38d38f4 baseline; rebaseline performed at latest origin/main 98b5fb0 before this validation fix.')
  fail(e,'E_SCOPE_POLICY',sc.get('batch_width_policy')!='width 5 is the observed verification width for this bundle; no safe batch upper bound is asserted; next batch requires independent source-chain review from the then-current origin/main')
- fail(e,'E_SCOPE_DIGEST',sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER))
+ fail(e,'E_SCOPE_DIGEST',sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER_CAPTURE))
  # only ancestor gate; HEAD may be a later commit or a merge materialization.
  head=subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD'],text=True).strip()
  if subprocess.run(['git','-C',str(root),'merge-base','--is-ancestor',sc.get('base_origin_main',''),head],stderr=subprocess.DEVNULL).returncode:e.append('E_BASE_ANCESTOR')
@@ -77,7 +89,8 @@ def validate(root):
   fail(e,f'E_ITEM_KEYS:{sid}',set(x)!={'archive_counterpart','archive_revision','artifact_kind','candidate_phase','candidate_product','legacy_evidence','phase_status','pre_isolation','product_candidates','product_status','reported_holding','source_item_id','source_path','source_unit','status'})
   cp=x.get('archive_counterpart',{})
   fail(e,f'E_COUNTERPART:{sid}',cp.get('path')!=COUNTERPARTS.get(sid) or cp.get('content_hash_matches_archive') is not COUNTERPART_MATCH[sid])
-  current=(root/COUNTERPARTS[sid]).read_bytes() if (root/COUNTERPARTS[sid]).is_file() else b''
+  counterpart = source_path(root/COUNTERPARTS[sid])
+  current=counterpart.read_bytes() if counterpart.is_file() else b''
   fail(e,f'E_COUNTERPART_PROV:{sid}',cp.get('sha256')!=sha(current) or cp.get('bytes')!=len(current))
   for side,c in [('pre_isolation',PRE),('archive_revision',ARCH)]:
    got=x.get(side,{}); want=h.get('pre_isolation' if side=='pre_isolation' else 'archive',{})
@@ -104,7 +117,7 @@ def validate(root):
   for side,c,fn in [('pre_isolation',PRE,'pre-isolation.md'),('archive',ARCH,'archive-revision.md')]:
    a=sa.get(side,{}); fail(e,f'E_ANCHOR_KEYS:{uid}:{side}',set(a)!=ANCHOR_KEYS)
    if set(a)==ANCHOR_KEYS:
-    p=out/'source-snapshots'/sid/fn; lines=p.read_text(encoding='utf8').splitlines() if p.is_file() else []; line=a.get('line'); frag=a.get('source_fragment')
+    p=out/'source-snapshots'/sid/fn; lines=source_path(p).read_text(encoding='utf8').splitlines() if p.is_file() else []; line=a.get('line'); frag=a.get('source_fragment')
     fail(e,f'E_ANCHOR:{uid}:{side}',not isinstance(line,int) or line<1 or line>len(lines) or lines[line-1]!=frag or sha(frag.encode())!=a.get('line_sha256') or a.get('commit')!=c)
   key=(sid,sa.get('pre_isolation',{}).get('line')); fail(e,f'E_DUP_ANCHOR:{uid}',key in seen); seen.add(key)
   fail(e,f'E_UNKNOWN:{uid}',any(u.get(k)!='unknown' for k in ['implementation_status','current_implementation_status','legacy_implementation_status','degradation_status','current_degradation_status','legacy_degradation_status','failure_status','consumer_status','decision_status']))
@@ -115,7 +128,7 @@ def validate(root):
  fail(e,'E_SCAN_CANONICAL',scan.get('selected_ids')!=IDS or scan.get('existing_reviewed_ids')!=EXISTING or scan.get('exact_ledger_hits')!={sid:[] for sid in IDS})
  for lf in LEDGERS:
   fail(e,f'E_LEDGER_DIGEST:{lf}',scan.get('files',{}).get(lf,{}).get('sha256')!=sha(root/lf))
-  text=(root/lf).read_text(encoding='utf8',errors='replace')
+  text=source_path(root/lf).read_text(encoding='utf8',errors='replace')
   fail(e,f'E_LEDGER_EXACT:{lf}',any(token in text for token in IDS+list(SOURCE_PATHS.values())))
  fail(e,'E_UNKNOWN_COUNTS',inv.get('unknown_counts')!={k:5 for k in ['implementation','degradation','failure','consumer','decision','phase','authority','legacy_implementation','current_implementation','legacy_degradation','current_degradation']})
  meta=load(out/'meta.json',e,'E_META'); fail(e,'E_META_KEYS',not isinstance(meta,dict) or set(meta)!=META_KEYS)

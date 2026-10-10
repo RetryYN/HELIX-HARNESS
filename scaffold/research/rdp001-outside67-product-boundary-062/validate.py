@@ -233,6 +233,9 @@ def add_unit_field_errors(u, errors):
                 errors.append(f'E_UNIT_CANONICAL:source_anchor:{uid}:{side}')
 
 
+# Exact source snapshot for the historical input digest; logical path metadata is retained.
+REGISTER_CAPTURE = "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-1c276ab2.jsonl"
+
 def validate(root):
     root = Path(root).resolve()
     out = root / "scaffold/research/rdp001-outside67-product-boundary-062"
@@ -260,7 +263,7 @@ def validate(root):
     if sc.get("remaining_before_batch") != 65 or sc.get("selected_path_revision_pair_count") != 5 or sc.get("remaining_after_batch") != 60: errors.append("E_ACCOUNTING")
     if sc.get("batch_width_observed") != 5 or "上限" not in sc.get("batch_width_policy", ""): errors.append("E_BATCH_POLICY")
     hold_path = root / HOLDING_REL
-    reg_path = root / REGISTER_REL
+    reg_path = root / REGISTER_CAPTURE
     if sc.get("holding_sha256") != digest(hold_path): errors.append("E_HOLDING_DIGEST")
     if sc.get("management_register_sha256") != digest(reg_path): errors.append("E_REGISTER_DIGEST")
     hold_rows = load_jsonl(hold_path, errors, "E_HOLDING_JSONL")
