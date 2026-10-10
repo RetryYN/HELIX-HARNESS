@@ -110,8 +110,26 @@ OS012/013の案内行、LABO001〜053の採択と、LABO candidateに残る元01
 | `HIL-BR-23` | 3 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
 | `HIL-FR-44` | 8 | 未分類contextと全consumer/failure対応を保持。移管/採用/完了未主張 |
 
-10名指しIRの共有HR07/17/21、HAC各a/b/c、HAT各1件の15recordを全文保持した。共有contractは別の13 sibling要求を含むため、そのedgeを保全し、33入力の分母へ加算しない。HST/HOT supporting testと13 siblingの本文/consumer対応は未完である。
+10名指しIRの共有HR07/17/21、HAC各a/b/c、HAT各1件の15recordを全文保持した。共有contractは別の13 sibling要求を含むため、そのedgeを保全し、33入力の分母へ加算しない。HST/HOT supporting行と13 sibling本文は、以下の共有consumer比較で追加確認した。実装まで含む全consumer対応は未完である。
 
 HR07はraw/secret混載・self-promotion・fixture/効果/rollback欠落を拒否する旧条件。HR17は原文消失・aggregate/TBD/偽N/A・typed edge/変更receipt/stale伝播欠落を保持。HR21は未許可tool・過剰agent・自己検証・catalog変更によるstaleを保持する。3HATの旧statusは`designed_not_implemented`であり、受入定義の存在を実行passにしない。
 
 C02/C08の比較をpredicateへ細分したが、未分類原文や共有辺が残るため完了へ変更しない。候補間の範囲/例外と個別現契約の対応、最小粒度、旧consumer/failureの被覆を独立review後も継続する。
+
+## 共有consumerと未分類原文の追加比較
+
+[固定比較JSON](../audits/requirements-stage/labo-shared-oracle-consumer-comparison-2026-10-10.json)は13 sibling原record、7旧test-design source全文、共有HST/HOT行、90 primary caseのL5/L6 tupleを保全する。33名指しinputの分母と、関連13要求の範囲を分ける。原文・failure・現契約との比較であり、旧実装の移植や正式successor採択ではない。
+
+| 共有範囲 | 追加要求 | 責務・失敗条件の比較 |
+|---|---|---|
+| HR17 | BR22/24、FR41/42/43/45、NFR26/27/28（各HIL prefix） | 汎用template意味はBRAIN、製品適用・義務はCORE/HARNESS、案件原記録はOSへ比較。aggregate/TBD/偽N/A、原文消失、source/authority/oracle/typed edge/変更receipt/stale欠落をLABOの評価だけで解消しない。 |
+| HR21 | HIL-BR-30、HIL-FR-59/60 | runtime中立agent生成の全入力/出力と、専門化の測定可能な利益、単純taskの既存role経路、権限・budget・lease/fence/retireを保持。LABOの測定、INTの案、OSの指定と生成契約を分ける。 |
+| HR07 | HIL-NFR-02 | worker/verifier/knowledge promoterの独立性を保持。旧Codex固定役割・provider/model分離と現行identity/context/authority/routeの差を未解決として残す。 |
+
+HST015/016/027/028/029、HOT52/53の設計行を確認した。旧physical L1のHOTは旧canonical L2↔L11であり、現行L12とみなさない。L5/L6にはHR07の15 caseとHR17の75 caseがあり、各caseのpre_state・expected_state・canonical failureが一致する。`assertion_pass`を伴うfailureも原tupleのまま保持し、負例検出のassertionを業務成功や実行passに変えない。旧statusの未実装を保持する。
+
+MLPのsupporting transaction（IT016/017・U023〜027）、RTOのscenario/API/manifest条件は7source全文へ保持し、90 primaryの分母へ加算しない。raw/progress/secret混載禁止、同operationの再送・部分失敗、shadow/effect/rollback欠落、原文custody/権限のtransaction currentnessを残す。文書間のjoin一致は実装consumer全量の証明ではない。
+
+元161未分類intervalを再照合した。空白・句読点・Markdown区切りのみのintervalに限って書式と分類し、原文を削らない。語・数値・actor・operator・接続先を含む可能性のある残部は未解決のまま残す。BR21の履歴/三評価入力、FR19のrecipe/event store、FR38のmodel/config/30日条件、P7の意味正本と継続記録、IRの禁止actor等を見出しやmetadataとして捨てない。
+
+C02/C08は共有辺の比較が進んだが、正式最小atom・全consumer/failure対応と未分類原文は残る。C01/C02/C08/C09を完了へ変更しない。#2089/#1861はOPENであり、本比較は新たな人間判断・L11追加・Issue close・L3再開を生成しない。
