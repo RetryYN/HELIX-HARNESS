@@ -1,0 +1,950 @@
+{
+  "audit_kind": "labo_data_ownership_stop_and_topology_comparison",
+  "authority_effect": "none",
+  "base_revision": "61af4f2736582709e286b7c56c7916c225080da6",
+  "issue": 2089,
+  "related_issue": 1861,
+  "scope": "C03〜C07の判断材料を補う限定文書比較。14 data object、14正常/反例/停止候補、repository/hostの4組合せと5判断観点。正式要求・schema・runtime・物理配置は選定しない。",
+  "prior_evidence": [
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-intelligence-2089-preclose-inventory-2026-10-10.json",
+      "sha256": "3d4a381c519f85cecb986fdc1eb6e07047b440ece9ec4987fc72cb431ae375eb"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/learning-engine-fr19-responsibility-comparison-2026-10-10.json",
+      "sha256": "bf711fea488436d9bc6a9040b19ffa91803017b9257914f38654865b2a5aac27"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/observation-evaluation-four-input-comparison-2026-10-10.json",
+      "sha256": "f754fc306d272feaee6038e05a85821676dbe27e54253a6c630af34dd367a12a"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/nine-kpi-responsibility-comparison-2026-10-10.json",
+      "sha256": "3674b56e5edf0a93c4c7a216baad110287697c27349bf2161d4578ad56fcf15b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/remaining-nineteen-input-comparison-2026-10-10.json",
+      "sha256": "80e1aae50a3c2546e5a03a08ddec7b07e82fca70f2f0be814d676f895809275c"
+    }
+  ],
+  "data_ownership": [
+    {
+      "id": "RAW",
+      "data_object": "作業原ログ・検証原証拠",
+      "declared_owner_boundary": "生成元owner；OSは作業記録/参照管理",
+      "permitted_use_comparison": "LABOは許可観測だけを受領",
+      "authority_adoption_boundary": "原証拠をLABO/INT/BRAINの正本へ移さない",
+      "version_scope": "1.0",
+      "evidence": [
+        "N01",
+        "N04",
+        "CONSENT",
+        "OLDW"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "CONT",
+      "data_object": "運転memory・checkpoint・予算・未完義務",
+      "declared_owner_boundary": "OS継続/復旧責務",
+      "permitted_use_comparison": "LABOは過去観測として利用、進行stateは書換えない",
+      "authority_adoption_boundary": "知識promotionや委譲receiptを継続正本にしない",
+      "version_scope": "1.0",
+      "evidence": [
+        "RESUME",
+        "OLDMEM",
+        "N04"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "OBS",
+      "data_object": "許可されたLABO observation",
+      "declared_owner_boundary": "LABO派生観測；元source ownerは変わらない",
+      "permitted_use_comparison": "episode/実験/比較への入力",
+      "authority_adoption_boundary": "取込成功は評価成功/原source変更ではない",
+      "version_scope": "1.0",
+      "evidence": [
+        "N04",
+        "LABOCON"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "EP",
+      "data_object": "episode・相関結果",
+      "declared_owner_boundary": "LABO；元source revision/eventを保持",
+      "permitted_use_comparison": "独立比較/失敗/反例/適用範囲",
+      "authority_adoption_boundary": "時刻/path一致だけの因果や欠けた義務を生成しない",
+      "version_scope": "1.0",
+      "evidence": [
+        "N04",
+        "N05",
+        "N06",
+        "CAUSAL"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "EXP",
+      "data_object": "experiment・baseline・oracle・実行結果",
+      "declared_owner_boundary": "LABOが評価設計/結果、実行結果はOS割当Worker",
+      "permitted_use_comparison": "同条件評価/中断/unknownを別表示",
+      "authority_adoption_boundary": "LABOはWorker assignment/実行を所有しない",
+      "version_scope": "1.0",
+      "evidence": [
+        "N05",
+        "RECEIPT"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "EVAL",
+      "data_object": "効果・退行・Bench水準/scorecard",
+      "declared_owner_boundary": "LABO評価owner",
+      "permitted_use_comparison": "INTの配置/判断候補とtarget owner検討へ",
+      "authority_adoption_boundary": "scoreだけで採択/資格/割当/長期改善を確定しない",
+      "version_scope": "1.0",
+      "evidence": [
+        "N05",
+        "N10",
+        "RECEIPT",
+        "BENCH"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "FB",
+      "data_object": "target-specific Feedback candidate",
+      "declared_owner_boundary": "LABO提案；登録/routingはOS",
+      "permitted_use_comparison": "対象ownerが既存変更手続きへ戻す",
+      "authority_adoption_boundary": "提案と採否/実行/再観測を分ける",
+      "version_scope": "1.0",
+      "evidence": [
+        "N06",
+        "N01"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "KNOW",
+      "data_object": "汎用設計知識・Pattern/Unit/Part",
+      "declared_owner_boundary": "BRAIN知識owner",
+      "permitted_use_comparison": "CORE/INT等へ版/scope付き材料",
+      "authority_adoption_boundary": "LABO評価、OS登録、BRAIN独立検証/採否を分ける",
+      "version_scope": "1.0内部/2.0外部",
+      "evidence": [
+        "BRAIN",
+        "N11"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "JUDGE",
+      "data_object": "current判断/予測/review/配置のproposal",
+      "declared_owner_boundary": "INTELLIGENCE候補owner",
+      "permitted_use_comparison": "OS/CORE等が適用、過去効果はLABO",
+      "authority_adoption_boundary": "proposalで要求/状態/権限の正本を書換えない",
+      "version_scope": "1.0",
+      "evidence": [
+        "N10",
+        "LABOCON",
+        "CLASSRECORD"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "DATASET",
+      "data_object": "training/validation/evaluation/holdout/prohibited dataset",
+      "declared_owner_boundary": "INTの3.0材料；source正本は各owner、classはLABO出所",
+      "permitted_use_comparison": "許可scope/revision/classを保つ学習/評価",
+      "authority_adoption_boundary": "holdout/prohibited混入、class不明、training fitだけの改善を拒否",
+      "version_scope": "3.0",
+      "evidence": [
+        "TRAIN",
+        "CONSENT",
+        "OLDW"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "MODEL",
+      "data_object": "tuned model candidate・lineage/rollback target",
+      "declared_owner_boundary": "INTELLIGENCE 3.0候補owner",
+      "permitted_use_comparison": "LABO独立評価/対象owner採否/OS実行経路",
+      "authority_adoption_boundary": "学習済みだけで稼働modelへ昇格しない",
+      "version_scope": "3.0",
+      "evidence": [
+        "TRAIN",
+        "N10"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "TRANSPORT",
+      "data_object": "connection/operation/attempt/ACKのtrace・receipt",
+      "declared_owner_boundary": "CONNECT通信証拠；業務正本はendpoint owner",
+      "permitted_use_comparison": "不一致/partial/expiry/重複の追跡",
+      "authority_adoption_boundary": "raw payloadを通常traceへ複製せずACKを業務完了にしない",
+      "version_scope": "対象connection scope",
+      "evidence": [
+        "CONNECT",
+        "RETRY",
+        "COMPOSITE"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "TENANT",
+      "data_object": "WEB-OS tenant/job/service原状態・export",
+      "declared_owner_boundary": "WEB-OS境界；具体運転要求はVision/未採択",
+      "permitted_use_comparison": "許可/最小化した観測exportだけLABO/OSへ",
+      "authority_adoption_boundary": "本体OSとevent store/credential/writerを暗黙共有しない",
+      "version_scope": "Web上流採択後",
+      "evidence": [
+        "BOUNDARY",
+        "WEB",
+        "WEBCAND"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    },
+    {
+      "id": "CRED",
+      "data_object": "credential/secretと値を含まないcapability/receipt",
+      "declared_owner_boundary": "SECURITYは利用境界；物理store/enforcerは対応資源owner",
+      "permitted_use_comparison": "actor/operation/target/environment/scope/expiryの識別子",
+      "authority_adoption_boundary": "raw値をAI/log/artifactへ出さずBRAIN知識化しない",
+      "version_scope": "1.0",
+      "evidence": [
+        "SEC",
+        "BRAIN",
+        "OLDW",
+        "INFRA"
+      ],
+      "retention": {
+        "policy_owner": "元source/consumerとSECURITYの該当契約；store属性はINFRASTRUCTURE",
+        "concrete_duration": "unknown_not_invented",
+        "unresolved": "当該objectの保存期間・複製先・取消後の本文/派生物処置・削除receiptを具体source contractと結ぶ必要がある。"
+      },
+      "runtime_writer_assigned": false
+    }
+  ],
+  "connection_acceptance_comparison": [
+    {
+      "id": "NORMAL",
+      "input_case": "許可scope/revisionのOS resultをLABOが受領",
+      "expected_comparison": "両receiptのidentity/状態/未完義務一致。観測済み未評価を保持。",
+      "evidence": [
+        "RECEIPT",
+        "N04"
+      ],
+      "comparison_kind": "existing_contract_comparison",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "ACKLOST",
+      "input_case": "受領効果後ACK欠落",
+      "expected_comparison": "業務未完。再送可能な同operation/digestだけ、効果一回。",
+      "evidence": [
+        "RETRY",
+        "CONNECT"
+      ],
+      "comparison_kind": "existing_contract_comparison",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "DUP",
+      "input_case": "同operation同digestを再送",
+      "expected_comparison": "同identityを新実績や新母数へ加算しない。",
+      "evidence": [
+        "RETRY",
+        "RECEIPT"
+      ],
+      "comparison_kind": "existing_contract_comparison",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "COLLISION",
+      "input_case": "同operationで異digest",
+      "expected_comparison": "衝突拒否、追加効果0、ownerへ未完を戻す。",
+      "evidence": [
+        "RETRY",
+        "OLDRETRY"
+      ],
+      "comparison_kind": "existing_contract_comparison",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "STALE",
+      "input_case": "送信後に契約/endpoint revision変更",
+      "expected_comparison": "該当接続stale、再照合前送信なし。旧/新revision混在なし。",
+      "evidence": [
+        "CONNECT",
+        "SWAP"
+      ],
+      "comparison_kind": "existing_contract_comparison",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "EXPIRED",
+      "input_case": "期限/上限到達",
+      "expected_comparison": "追加attemptなし、期限/累積数/未完義務を引継ぐ。新sessionでresetしない。",
+      "evidence": [
+        "CONNECT",
+        "RETRY",
+        "RESUME"
+      ],
+      "comparison_kind": "existing_contract_comparison",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "CANCEL",
+      "input_case": "取消/許可失効後、待機または再接続",
+      "expected_comparison": "成功に丸めず送信停止、未完/理由保持。旧許可で再開しない。",
+      "evidence": [
+        "CONNECT",
+        "RETRY",
+        "WEBCAND"
+      ],
+      "comparison_kind": "existing_internal_contract_with_unadopted_web_comparison",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "MISSING",
+      "input_case": "欠測/遅延/観測不能",
+      "expected_comparison": "not_observed/unknown、未観測範囲を保持。0違反/成功/healthyで補完しない。",
+      "evidence": [
+        "N04",
+        "CONSENT",
+        "INFRA"
+      ],
+      "comparison_kind": "existing_contract_comparison",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "CLASS",
+      "input_case": "class/consent/scope不明またはretention超過",
+      "expected_comparison": "拒否/隔離、学習/要求化/別project転用なし。後の許可で過去違反を成功にしない。",
+      "evidence": [
+        "CONSENT",
+        "TRAIN",
+        "SEC"
+      ],
+      "comparison_kind": "existing_contract_comparison",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "HOLDOUT",
+      "input_case": "evaluation/holdout/prohibitedをtrainingへ混入",
+      "expected_comparison": "区分/revision保持、混入を学習に利用しない。",
+      "evidence": [
+        "TRAIN"
+      ],
+      "comparison_kind": "existing_contract_comparison",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "TENANT",
+      "input_case": "別tenant/projectのlog/credential export",
+      "expected_comparison": "許可接続/目的scope不成立なら越境なし。Web条件を本体の採択へ変換しない。",
+      "evidence": [
+        "SEC",
+        "BOUNDARY",
+        "WEB"
+      ],
+      "comparison_kind": "existing_boundary_with_vision_condition",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "LABOSTOP",
+      "input_case": "LABO停止中のOS監査保全/採択済作業",
+      "expected_comparison": "候補比較：OS原記録/未完義務をOS側へ保持しLABO評価を生成しない。LABOを必要としない有効な既存作業はその依存で判定し、LABO結果が必要な操作は保留。送信待ちdurability/overflow/後の欠測照合は具体契約未確認。",
+      "evidence": [
+        "N01",
+        "N04",
+        "RESUME",
+        "CONNECT",
+        "OLDLOCAL"
+      ],
+      "comparison_kind": "unresolved_stop_acceptance_candidate",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "OSSTOP",
+      "input_case": "OS停止中のLABO比較",
+      "expected_comparison": "候補比較：既に許可された固定snapshotへの参照/分析と、新assignment/ticket/current state変更を分ける。前者も許可/freshnessを確認不能なら保留。OS停止を根拠にLABOへassignment/採否を移さない。offline許可確認/保存済receiptの有効期間/戻り待ち保全は未確認。",
+      "evidence": [
+        "N05",
+        "N06",
+        "CONSENT",
+        "CONNECT"
+      ],
+      "comparison_kind": "unresolved_stop_acceptance_candidate",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    },
+    {
+      "id": "RESTART",
+      "input_case": "停止後の交換/再開",
+      "expected_comparison": "単一契約revisionへ再照合、expiry/attempt/未完引継ぎを確認。停止中revokeの再接続反映とOS/LABO両側reconcileの全scope証明は未完。",
+      "evidence": [
+        "SWAP",
+        "RETRY",
+        "RESUME",
+        "OLDRETRY"
+      ],
+      "comparison_kind": "partial_contract_comparison_with_unresolved_bilateral_recovery",
+      "executed": false,
+      "acceptance_pass_claimed": false
+    }
+  ],
+  "physical_options": [
+    {
+      "id": "SAME_REPO_SAME_HOST",
+      "repository": "same",
+      "host": "same",
+      "assessment": "同一repo/hostでも意味owner・writer・data scope・接続identityを分離できるかを調べる。shared failure/resource saturationの影響は未測定。"
+    },
+    {
+      "id": "SAME_REPO_SEPARATE_HOST",
+      "repository": "same",
+      "host": "separate",
+      "assessment": "同一source管理と独立運転を組み合わせる案。release/config版・接続・再送・権限・復旧を別に確認する。"
+    },
+    {
+      "id": "SEPARATE_REPO_SAME_HOST",
+      "repository": "separate",
+      "host": "same",
+      "assessment": "source/release管理分離だけでは障害/資源/credential境界を保証しない。cross-repo版追跡と共有host影響を調べる。"
+    },
+    {
+      "id": "SEPARATE_REPO_SEPARATE_HOST",
+      "repository": "separate",
+      "host": "separate",
+      "assessment": "両方を分離する案。通信/版互換/ops/復旧/費用の追加条件を調べる。別hostだけでdata-use許可や独立reviewは成立しない。"
+    }
+  ],
+  "physical_comparison_criteria": [
+    {
+      "id": "P1",
+      "dimension": "意味正本・単一writer・projectionの区別",
+      "evidence": [
+        "OLDW",
+        "OLDCORE",
+        "BOUNDARY",
+        "CONNECT"
+      ],
+      "unresolved": "旧Node/DB/Git構成をcopyせず、各現ownerとtransaction境界を設計時に確定。"
+    },
+    {
+      "id": "P2",
+      "dimension": "配布/更新の同一性・版pin・consumer追随",
+      "evidence": [
+        "OLDADR",
+        "SWAP"
+      ],
+      "unresolved": "旧GitHub-pull/tag-pinは旧選択。現repo配置/配布方式を選んだ証拠ではない。"
+    },
+    {
+      "id": "P3",
+      "dimension": "停止/資源負荷の影響・回復",
+      "evidence": [
+        "OLDLOCAL",
+        "INFRA",
+        "RESUME"
+      ],
+      "unresolved": "停止独立性と負荷影響の実証、予算/容量/復旧条件が未確認。server不要の旧PhaseAと中央UIの旧scopeを統合しない。"
+    },
+    {
+      "id": "P4",
+      "dimension": "scope/許可/credential/retention分離",
+      "evidence": [
+        "SEC",
+        "CONSENT",
+        "WEB"
+      ],
+      "unresolved": "物理分離と利用同意を混同せず、対象environmentとdata class契約を結ぶ。"
+    },
+    {
+      "id": "P5",
+      "dimension": "接続版・再送・取消・監査/再構築",
+      "evidence": [
+        "OLDRETRY",
+        "OLDDIR",
+        "RETRY",
+        "SWAP"
+      ],
+      "unresolved": "旧direction-only syncを採用済み設計にせず、接続scopeと双方停止/reconcileを確かめる。"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "N01",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "first_line": 58,
+      "last_line": 60,
+      "text": "| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。観測と作業の結果はLABOへ渡し、LABOが返す改善の提案（Feedback）を登録し、還流先へ振り分け、採否の後にticketにして回す（OSはPMにあたり、LABOはPMOとして評価と提案を出す。[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |",
+      "sha256": "388c5d2b07b8c449d52bfaa006cf5939b6112b32a665fb65609e8f3fc2e32fad",
+      "file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "claim": "OS005登録/振分け、007原証拠/ログ",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N03",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "first_line": 39,
+      "last_line": 41,
+      "text": "- HELIXOS-L2-005：未計測のSkill、誤推薦、旧版を投入し、候補・利用結果・失効を区別できる。学習結果がHARNESS規則へ無断反映されない。\n- HELIXOS-L2-001／002／005／007／013：Concept／企画L1、要求エンジンの入力・出力L2候補、人間の訂正・採否、採用要求、後続の見逃しを同じ因果IDで登録する。企画価値の要求化漏れ、企画外の意味追加、対象違い、scope／non-goal逸脱を個別に示し、戻す層と判断者へ辿る。登録やログ件数だけでは要求採用・改善成立とせず、許可外の生会話・PII・別project dataを学習へ転用しない。\n- HELIXOS-L2-001／005／007：改善入力の利用同意欠落、data class不明、retention期限超過、許可scope不一致を個別に投入し、拒否または隔離して学習・要求化・別project転用へ進めない。後から許可を補っても、過去の無許可処理を成功へ書き換えない。",
+      "sha256": "0243d6a69371179821c529ec63a889a03436795d5b65248deeb87cfb21605809",
+      "file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "claim": "未計測/誤推薦/旧版、同意/data class/retention/scope不足の拒否",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N04",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 71,
+      "last_line": 79,
+      "text": "- 親：HELIXLABO-L1-001。\n\n入力は各機構・製品・運用環境から許可された観測情報。出力はsource identity/revisionと出典を保つLABO observationである。最低限、原文§3の`episode_id, requirement_revision, ticket_id, responsibility_id, product, mechanism, worker, provider, model, configuration, artifact, CI/test, release, deployment, runtime, failure, rework, cost, time, result`を結べる。開発ログ、Worker/AI判断、CI/test/review、backflow/recovery/incident/refactor、release/deployment/runtime、利用、再作業、費用、token/API、model/provider、correction/rollback/product resultを対象にする。成功のみを収集せず、`success, failure, rejected, cancelled, blocked, unknown, not_observed`を区別する。sourceの正本・state・authorityをLABOへ移さない。欠落や権限外情報は成功扱いせず、当該観測を保留しsource責務へ戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：1.0対象sourceの個別入力接続（L2-021〜030）。Web/WEB-OS source（L2-031/032）は各source contractが採択された場合に加える任意接続で、1.0の必須依存にしない。保証：source provenance・revision・状態分類を保持したobservationだけを出力し、source正本を変更しない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-002 — Correlation Engine（相関）\n\n- 親：HELIXLABO-L1-002。",
+      "sha256": "e77c0569a3c9ccd462928fc0797a23894627369d9cf6399470a01c38ea1e6b32",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO001許可観測、sourceauthority非移管、欠測保留",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N05",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 110,
+      "last_line": 125,
+      "text": "\n- 親：HELIXLABO-L1-005。\n\n入力はbaseline/current、candidate、hybridの仮説・条件・oracleと、OSが割り当てたWorkerによる実験実行結果、出力は比較結果、失敗、反例、適用範囲、費用と限界である。実験実行はOSのassignmentに従うWorkerが担い、LABOはWorkerを選定・割当・起動しない。assignmentと実行結果の対応はL2-022/028のsource observationに結び、同じticket・experiment・対象版の証拠として評価する。品質、成功/失敗、false positive/negative、再作業、速度、CI/Worker時間、token/API費用、人間介入、context、複雑度、復旧時間、release lead time、運用負荷、cross-product再利用性を評価対象にする。「動いた」だけを改善としない。baselineやoracleの違い、比較不能、実験中断は結果へ記録し、無効比較を成功へ変換しない。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：比較可能なbaseline/candidate/hybrid、oracle、評価条件（L2-005/015）、OS assignmentとWorker実行結果の対応（L2-022/028）。保証：OS割当Workerによる実験実行を前提に証拠を結び、判定不能・中断・反例を成功扱いせず結果に含める。LABOは割当を行わない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-007 — Assurance Allocation Engine\n\n- 親：HELIXLABO-L1-006。\n\n入力は反復episode、実験証拠、ルール候補とoracle、出力はoperation継続またはsystem化候補の評価である。同条件で再現可能、機械判定可能、oracleあり、副作用限定、retry/rollback可能、冪等化可能という条件を調べる。Operation→Repeated Stable Decision→Rule Candidate→Shadow→Mechanism Candidateは評価上の段階であり、自動昇格や新たな承認手続きではない。文脈依存、意味判断、例外多数、不完全oracle、高い誤検知、過剰拘束はoperationで保証する候補に残す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：比較可能性とoracleのあるexperiment evidence（L2-006/016）。保証：system化とoperation継続の両候補および適用限界を示し、自動昇格しない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-008 — Operational Fallback Engine",
+      "sha256": "dfa750f51c4534609cd48ed09b4db4582bdaddeaa72b2f9ab9a07875e749454a",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO006実験/007system化候補、Worker割当はOS",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N06",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 132,
+      "last_line": 149,
+      "text": "\n### HELIXLABO-L2-009 — Generalization Engine\n\n- 親：HELIXLABO-L1-005, HELIXLABO-L1-007。\n\n入力は実験結果とepisode群、出力は適用範囲を`single episode → repeated episodes → cross-project → cross-product → general structure`のどこまで支持するか示す評価である。一事例から一般化しない。範囲ごとにFeedback先を分け、product固有意味はBRAINへ送らず、汎用構造も根拠なしに認定しない。反例や適用外条件が出たら範囲を狭め、元の証拠へ戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：評価済みexperiment群・反例・標本条件（L2-006/018）。保証：証拠の支持範囲を超えない適用範囲を出力する。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n### HELIXLABO-L2-010 — Feedback Derivation Engine\n\n- 親：HELIXLABO-L1-007, HELIXLABO-L1-010。\n\n入力は評価済みepisode、実験、反例、適用範囲、出力は一つ以上のtarget-specific Feedback candidateである。各Feedbackは最低限`source_episode, source_revision, target_mechanism, target_responsibility, observation, evidence, failure_or_success, hypothesis, experiment, result, counterexample, scope, confidence, regression_risk, recommended_action, revalidation_condition`を持つ。推奨actionは`maintain, redefine, replace, split, merge, systemize, operational_fallback, retire`から選ぶ。Feedbackは提案でありauthorityではない。登録・routingはOS、変更はtarget ownerが担い、欠けた必須根拠は補完せず差戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：範囲付き知見・target responsibility・evidence/反例（L2-009/019）。保証：target別提案を作り、登録・routing・authority変更はしない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n",
+      "sha256": "e5e62be35f5d6c760953ea3bac4e272fa4b97ce5183458282911a8b492f3130e",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "LABO009一般化/010Feedback、登録はOS/変更targetowner",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N10",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 145,
+      "last_line": 165,
+      "text": "\nINTELLIGENCEは現在状態と次の判断候補、LABOは過去episodeと長期効果を担当する。単体出力はcurrent judgmentとhistorical outcomeのラベル分離であり、結果の転送とLABO評価の受取I/OはL2-040/L2-034が定める。INTELLIGENCEは自己評価で長期改善を採択せず、過去評価からcurrent state/authorityを上書きしない。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-018。単独成立依存：INTELLIGENCE current decision/resultとLABOの過去episode/evaluation。検証範囲：current judgmentとhistorical effectの区別、LABO feedback input。保証：長期効果の独立評価はLABO、改善提案の登録・振分けはOS、変更の採否は対象ownerの変更手続きに残す。失敗時戻し先：過去評価またはsource scope不明はLABOへ。current state conflictは現在sourceへ照合する。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-019 — BRAIN知識との境界\n\nBRAINのPattern/Unit/Part等を判断材料として使い、現在の状況で適用する候補を出す。単体出力は適用candidateと根拠であり、BRAIN inputはHELIXINTELLIGENCE-L2-032、汎用化candidateのLABO routingはHELIXINTELLIGENCE-L2-044が定める。INTELLIGENCEの結果をBRAINのgeneric knowledgeへ直接書かず、候補と知識正本を混同しない。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-019。単独成立依存：BRAIN Pattern/Unit/Part/applicability/exception/counterexampleとcurrent situation。検証範囲：INTELLIGENCEの適用candidate、および汎用化候補のLABO routing。保証：BRAIN knowledge正本を書き換えず、今回の適用判断と汎用評価を分離する。失敗時戻し先：knowledge applicability/source不明はBRAINへ、汎用化evidence不足はLABOへ戻す。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-020 — Product Coreの意味とBackflow\n\n製品固有requirement/design/meaningを理解材料として使い、矛盾・不足・改善候補に適切なBackflow先を示す。requirement、design authority、acceptance、product-specific meaningをINTELLIGENCEが変更しない。target不明はproduct ownerへの候補で保持する。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-020。単独成立依存：Product Coreの固有requirement/design/meaningとrevision/owner。検証範囲：meaning consistency finding/improvement/backflow candidate。保証：requirement/design/acceptance authorityとproduct meaningをProduct Core ownerに残す。失敗時戻し先：backflow target/revision不明はcandidateのまま保持し、該当Product Core ownerへ照会する。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-021 — Domain/Capability専用モデル学習\n\n3.0以降、LABO評価済み事例・反例・学習材料を用いてdomainまたはcapabilityに特化したlocal LLMを学習/調整できる。Requirement理解、Design Review、Implementation/CI診断、Integration Review、Worker placement、Model Router、Audit、Bounded Repair等を含む候補。万能モデルへの統合は要求しない。学習実行はOS ticket/Workerに接続する。version_target 3.0。\n",
+      "sha256": "ac0f578f8264ddd619c1281ab21445989527bcc889fdbd4db21e0d7132b6c2b6",
+      "file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "claim": "現在判断と長期効果/BRAIN/製品meaning/3.0学習の境界",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "N11",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "first_line": 150,
+      "last_line": 160,
+      "text": "### HELIXBRAIN-L2-007 出所・根拠・知識promotion\n\n- **親L1**：`HELIXBRAIN-L1-007`。\n\n- **受け取るもの**：Pattern / Unit / Part候補、source、provenance、evidence、adopted reason、evaluated scope、counterexample、limitation。\n- **提供するもの**：由来と評価範囲から採用状態まで追跡できる知識記録。\n- **保証すること**：AI生成だけで汎用知識に昇格しない。LABO評価結果、OSの登録・振分け、BRAIN変更手続き内の独立検証、採否を別状態として保持する。\n- **依存・検証／版**：L1-007、L2-011/025、LABO→BRAIN L2-020。source無し、scope無し、counterexample無し、評価未実施の候補を採用済みにしない。1.0。\n- **失敗時の戻し先**：欠けたsource/evidenceは未採用候補へ戻し、promotionを停止する。上流意味変更が必要なら該当L1へ戻す。\n- **束ねる条件**：PO原文§BRAIN-L1-007/009、旧RCLS-BR-004/006の段階的独立検証と提案境界。\n",
+      "sha256": "9584e757b02bf75f698a055eedb9df6d72aa7bdc07e82808fd92d786861c24ee",
+      "file_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+      "claim": "BRAIN知識promotionはLABO評価/OS登録/独立検証/採否別",
+      "excerpt_present_in_20260928_fixed_revision": true
+    },
+    {
+      "id": "OLDW",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "first_line": 33,
+      "last_line": 57,
+      "text": "本書はversioned read connectorからproduct dataをfull/incremental取得し、lineage、schema、freshness、classification、\nredactionを検証したcanonical snapshot/entity/mapping/watermarkへ投影する契約を定義する。外部service、product DB、\ncredential storeへの実接続、認証設定、token取得、write-backは行わない。fixtureとinjected portによるcontract設計だけを扱う。\n\n既定はread-onlyである。product側write-backは別Issue、Universal Reverse、security review、action-binding approvalを備えた\n別設計が承認されるまでNode/Python双方から拒否する。connectorのgreen、Python workerの完了、raw snapshotの取得だけを\ncurrent projectionの完了証拠にしない。\n\n## §1 componentとauthority\n\n| component | 責務 | authority | 禁止 |\n|---|---|---|---|\n| `ProductDataConnectorRegistry` | source、connector/schema/mapping version、credential reference、classification、sync/read-write policy、owner、freshness/retentionを管理 | Node registry event | credential値保存、不明version、write権限の暗黙付与 |\n| `ProductDataIngestionCoordinator` | full/incremental run、lease/fence、state、idempotency、checkpointを順序制御 | run event | connector固有mapping、Python結果の直接commit |\n| `ProductDataReadConnectorPort` | versioned requestを外部read adapterへ渡しrecord pageとcursorを返す | bounded ephemeral observation | arbitrary query、write-back、credential本文の返却、raw inputのpersistent seal |\n| `ProductDataProjectionWorker` | raw pageからcanonical entity/mapping proposalを導出 | Python proposal artifactだけ | harness.db、current pointer、watermarkへのwrite |\n| `ProductDataProposalIngestionPort` | worker envelope、source/schema/mapping/lineage/digestをNodeで再検証 | staged proposal | partial result、late fence、schema不明resultの昇格 |\n| `ProductDataPolicyGate` | classification、redaction、retention、freshness、agent-context field allowlistを評価 | policy receipt | PII/secret/raw payload複製、unknown classificationの通過 |\n| `ProductDataProjectionCommitter` | entity/mapping、旧current、snapshot、watermarkを一transactionでcommit | Node `HarnessDbPort`だけ | Python/connectorからのDB write、watermark先行更新 |\n| `ProductDataQuarantineStore` | drift/policy/authority findingとrelease条件をappend-only管理 | quarantine event | raw payload保存、無期限・ownerなしrelease |\n\nPythonは共通`PythonWorkerBroker`を通じてproposalだけを返す。run output root以外のwrite、DB pathの受領、repository/current\npointerへのアクセスを許可しない。Nodeは`complete`後にresult set、schema、provenance、lease/fence、artifact digestを再検証し、\n検証済みproposalだけをprojection transactionへ渡す。`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN`は\n`HIL_PYTHON_AUTHORITY_BYPASS`をproduct-data境界で失わず集約する。",
+      "sha256": "ac63696d602a9a023fb84201ef609a493b68f8721eaf60a209e8df57601a5349",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "claim": "旧source registry/原観測/proposal/commit/retention/quarantine責務",
+      "legacy_asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43"
+    },
+    {
+      "id": "OLDRETRY",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "first_line": 86,
+      "last_line": 109,
+      "text": "credentialはopaque referenceだけを受理し、値、header、connection string、secret bodyをregistry、run、artifact、logへ保存しない。\n同じsourceでactive connector versionは最大1件とする。version/schema/mapping/config digest変更は旧run/snapshotをstaleにし、\n旧greenを新versionへ流用しない。disabled/revoked/quarantined connectorのclaimは0件にする。\nactivationはpure decisionだけで完了させず、operation ID、contract digest、expected registry head、idempotency keyを持つ\nNode commit transactionでregistry event、旧active stale化、新active pointer、receiptをCAS commitする。fault時の部分active化、\n同一key別digest、head競合を拒否し、seal済みactivation evidenceからNode reconcileできるようにする。\n\n## §3 full／incremental取り込み\n\n```text\nreceived -> claimed -> fetching -> staged -> validating -> committing -> completed\n                |          |          |            |              |\n                +----------+----------+------------+-> failed\n                                      +--------------> quarantined\n                +------------------------------------> cancelled\n```\n\nfullはcursorなしの固定source intentから全pageを取得し、source record key digestの重複・欠落、page chain、終端cursorを検査する。\nincrementalはcurrent watermarkを`cursor_start`として固定し、page/event sequenceと`cursor_end`の単調前進を検査する。\ncursorの比較はconnector登録済みcodecだけが行い、文字列辞書順や時刻推測へ縮退しない。\n\noperation idempotency keyはsource、connector version、mode、cursor start、intent digestから導出する。同じkey・同じdigestの再送は\n同じreceiptを返して増分0、同じkey・異なるdigestは`HIL_PRODUCT_IDEMPOTENCY_CONFLICT`で停止する。full/incrementalとも\nsnapshot、entity、mapping、watermarkを別々の成功として公開しない。",
+      "sha256": "35aeafd322e2a9324a4edd5972cfbf5e5150d286fe02ef355dc24f0c9e175011",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "claim": "旧取消/再送/異digest停止/全transaction一体",
+      "legacy_asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43"
+    },
+    {
+      "id": "OLDF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "first_line": 27,
+      "last_line": 57,
+      "text": "## §0 関数境界\n\npure functionはnetwork、credential store、DB、filesystem、clockを直接読まず、明示入力を判定する。connector/Python adapterは\nobservation/proposalを返すだけで、projection commitはNode portに限定する。外部認証・接続、credential解決、write-back APIは\n本sliceに実装しない。\n\n## §1 public APIとexact oracle\n\n| API | signature | DbC／result | 対応するL7 oracle | HAC | HST exact case | failure token |\n|---|---|---|---|---|---|---|\n| `parseProductConnectorContract` | `(raw: unknown) => ResultV1<ProductConnectorContractV1, ProductDataFailureV1>` | strict field/version、read-only、credential reference、policyを要求 | `U-PDC-001` | `HAC-HIL-11b` | `HST-CASE-010-10` | `HIL_CONNECTOR_CONTRACT_INVALID` |\n| `activateProductConnectorVersion` | `(bundle: ConnectorActivationBundleV1, store: ConnectorActivationStoreV1) => Promise<ResultV1<ConnectorActivationReceiptV1, ProductDataFailureV1>>` | operation/contract digest/expected registry head/idempotencyをNode CAS commitしactive最大1 | `U-PDC-002` | `HAC-HIL-11b` | `HST-CASE-010-10` | `HIL_CONNECTOR_CONTRACT_INVALID` |\n| `reconcileProductConnectorActivation` | `(bundle: ConnectorActivationBundleV1, store: ConnectorActivationStoreV1) => Promise<ResultV1<ConnectorActivationReceiptV1, ProductDataFailureV1>>` | 同一activation evidence/operation/digest/headから専用reconcileし別evidenceを拒否 | `U-PDC-002` | `HAC-HIL-11b` | supporting activation fault oracle | `HIL_CONNECTOR_CONTRACT_INVALID` |\n| `planProductFullSync` | `(contract, intent, lease) => ProductIngestionPlanV1` | cursorなし、全page、read-only、stable idempotency key | `U-PDC-003` | `HAC-HIL-11a` | `HST-CASE-010-01` | `なし（正常系）` |\n| `planProductIncrementalSync` | `(contract, watermark, intent, lease) => ProductIngestionPlanV1` | current cursor/fenceを開始点へ固定 | `U-PDC-004` | `HAC-HIL-11a` | `HST-CASE-010-02` | `なし（正常系）` |\n| `compareProductCursor` | `(codec, previous, candidate) => CursorOrderDecisionV1` | registered codecのみ、greater/equal/regressed/invalidを決定 | `U-PDC-005` | `HAC-HIL-11b` | `HST-CASE-010-07` | `HIL_PRODUCT_WATERMARK_REGRESSION` |\n| `validateProductPageChain` | `(plan, pages, terminal) => ResultV1<ValidatedRecordSetV1, ProductDataFailureV1>` | page sequence、record key、cursor、content digest、終端exactly-one | `U-PDC-006` | `HAC-HIL-11a` | `HST-CASE-010-11` | `HIL_PRODUCT_INGESTION_INVALID` |\n| `validateProductSourceSchema` | `(registered, observed, driftPolicy) => SchemaValidationDecisionV1` | field/type/nullability/enum/identity差分を全件分類 | `U-PDC-007` | `HAC-HIL-11b` | `HST-CASE-010-03` | `HIL_PRODUCT_SCHEMA_DRIFT` |\n| `deriveCanonicalProductEntity` | `(record, mapping, source) => ResultV1<CanonicalEntityProposalV1, ProductDataFailureV1>` | stable ID、record key digest、mapping version、classification必須 | `U-PDC-008` | `HAC-HIL-11a` | `HST-CASE-010-09` | `HIL_PRODUCT_DATA_LINEAGE_MISSING` |\n| `deriveProductMappingEdges` | `(entity, targets, mapping) => ResultV1<ProductMappingEdgeV1[], ProductDataFailureV1>` | target存在、kind/ID/version/evidence一意 | `U-PDC-009` | `HAC-HIL-11a` | `HST-CASE-010-09` | `HIL_PRODUCT_DATA_LINEAGE_MISSING` |\n| `applyProductTombstone` | `(current, deletion, retention) => TombstoneDecisionV1` | 正常deleteは直前version/delete lineageを要求しmappingをstale化。未知/lineageなしはingestion反例 | `U-PDC-010` | `HAC-HIL-11c` | `HST-CASE-010-04`（正常） / `HST-CASE-010-11`（反例） | `なし（正常系）` / `HIL_PRODUCT_INGESTION_INVALID` |\n| `evaluateProductDataRedaction` | `(ephemeralInput, classification, policy, ttl, nodeClock) => RedactionDecisionV1` | bounded ephemeralだけを受理し、pre-classification seal禁止、secret即時reject、終端/TTL削除receiptを要求 | `U-PDC-011` | `HAC-HIL-11b` | `HST-CASE-010-08` | `HIL_PRODUCT_REDACTION_REQUIRED` |\n| `evaluateProductSnapshotFreshness` | `(sourceObservedAtUntrusted, nodeReceivedAt, nodeNow, sla, allowedSkew) => FreshnessDecisionV1` | Node trusted clockでfresh-untilを再導出し、未来/許容skew超過/期限超過をstaleまたはquarantine | `U-PDC-012` | `HAC-HIL-11c` | `HST-CASE-010-05` | `HIL_PRODUCT_SNAPSHOT_STALE` |\n| `buildProductDataLineage` | `(contract, run, records, mapping, worker) => ResultV1<ProductLineageV1, ProductDataFailureV1>` | source→connector→run→cursor→schema→mapping→resultを完全結線 | `U-PDC-013` | `HAC-HIL-11a` | `HST-CASE-010-09` | `HIL_PRODUCT_DATA_LINEAGE_MISSING` |\n| `validateProductWorkerProposal` | `(run, staged, authority) => ResultV1<ValidatedProductProposalV1, ProductDataFailureV1>` | complete/schema/provenance/current fenceを検証し、proposal-onlyかつdirect write 0を要求 | `U-PDC-014` | `HAC-HIL-11b` | `HST-CASE-010-06` | `HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN` |\n| `planProductProjectionTransaction` | `(current, snapshot, entities, mappings, tombstones, watermark) => ProjectionTransactionPlanV1` | 正常系は全stepを一計画へ閉じ、欠落stepはingestion反例として拒否 | `U-PDC-015` | `HAC-HIL-11a`, `HAC-HIL-11c` | `HST-CASE-010-01`（正常） / `HST-CASE-010-11`（反例） | `なし（正常系）` / `HIL_PRODUCT_INGESTION_INVALID` |\n| `commitProductProjection` | `(bundle: ProductProjectionCommitBundleV1, nodePort: ProductProjectionNodePortV1, store: ProductProjectionStoreV1) => Promise<ResultV1<ProductProjectionCommitReceiptV1, ProductDataFailureV1>>` | Node portはadapterとして唯一write authorityのstoreへ一回だけ委譲。同key同digest一回、異digest/CAS/failure増分0 | `U-PDC-016` | `HAC-HIL-11a`, `HAC-HIL-11b` | `HST-CASE-010-07` | `HIL_PRODUCT_WATERMARK_REGRESSION` |\n| `evaluateProductDataPolicy` | `(projection, contextRequest, policy, freshness) => ProductDataPolicyDecisionV1` | classification/redaction/retention/freshness/context allowlist全件評価 | `U-PDC-017` | `HAC-HIL-11b`, `HAC-HIL-11c` | `HST-CASE-010-12` | `HIL_PRODUCT_DATA_POLICY_VIOLATION` |\n| `buildProductQuarantineItem` | `(failure, scope, evidence, policy) => ResultV1<ProductQuarantineItemV1, ProductDataFailureV1>` | redacted fingerprint、owner、expiry、release条件必須、raw payload禁止 | `U-PDC-018` | `HAC-HIL-11b` | `HST-CASE-010-11` | `HIL_PRODUCT_INGESTION_INVALID` |\n| `reconcileProductProjection` | `(bundle: ProductProjectionCommitBundleV1, nodePort: ProductProjectionNodePortV1, store: ProductProjectionStoreV1) => Promise<ResultV1<ProductProjectionCommitReceiptV1, ProductDataFailureV1>>` | adapterから唯一write authorityへ一回だけ委譲し、同一operation/digest/expected snapshot-watermark-DB headでseal後DB faultを収束 | `U-PDC-019` | `HAC-HIL-11a`, `HAC-HIL-11b` | supporting fault oracle | `HIL_PRODUCT_INGESTION_INVALID` |\n| `deriveFullSyncDisappearances` | `(priorSnapshot, completeFullResult) => ResultV1<TombstoneProposalV1[], ProductDataFailureV1>` | full完了時だけrecord-key集合差分をtombstone＋mapping staleへ変換 | `U-PDC-020` | `HAC-HIL-11a`, `HAC-HIL-11c` | supporting disappearance oracle | `HIL_PRODUCT_INGESTION_INVALID` |",
+      "sha256": "d04c17c0f1941f3c8f6f32200ef353c40baeae54546844a9545f211cd1dde00a",
+      "file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+      "claim": "旧tombstone/redaction/期限/単一write/reconcileの未実行oracle",
+      "legacy_asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6"
+    },
+    {
+      "id": "OLDMEM",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/orchestration-memory.md",
+      "first_line": 23,
+      "last_line": 44,
+      "text": "\nworker/verifier の反復 loop は、**機械判定可能な決定関数**で駆動されること。\n\n- **継続判定** `canResume`: `status===\"running\"` ∧ 時間窓内 ∧ `lastVerdict!==\"pass\"` ∧ `iteration<max`\n  の 4 述語 AND（旧 auto_run_engine 3 条件の TS 化）。数だけで自動継続しない。\n- **停止判定** `evaluateStop`: `verdict/count/file_exists/cost_budget/no_progress/custom` を first-satisfied で\n  評価。**未知 reason・必須フィールド欠落は escalate で fail-close**（throw せず安全側）。\n- **失敗分類** `classifyRecovery`: doctor 赤 / budget 両超過 → escalate、handover stale → retry、diff 規模超過\n  → abort、閾値内 → continue（旧 RecoveryEngine C1-C4）。\n- 受入 = U-ORCH-001 / U-ORCH-002 / U-ORCH-005（`tests/orchestration`）。\n\n## HR-BR-12 — 2 層共有メモリのセマンティクス\n\nメモリは **harness 層 / project 層**を持ち、エントリは履歴非破壊で更新されること。\n\n- `writeMemory`: 同 key 既存は新エントリの `supersedes` に旧 id を載せる（上書きせず履歴を残す）。\n- `listMemory`: superseded を除外し、指定層のみ `createdAt` 昇順。\n- `surfaceMemory`: **harness 層のみ** surface（project 層は出さない）。\n- 永続は **注入抽象 `MemoryDeps`** 経由（実 2 層投影 = harness.db + jsonl は follow-up で配線）。\n- 受入 = U-MEM-001 / U-MEM-002 / U-MEM-003（`tests/memory`）。\n\n## HR-NFR-03 — hybrid 自己評価禁止（非機能・安全）",
+      "sha256": "7f6e885d33ff665701348e1eec48d1cd614a0fe30b8f23e11febe15a6ebd7fae",
+      "file_sha256": "9c88351f237d00c809f2cf7796fa30942f0ee2c3ad071842e719861551ccca5c",
+      "claim": "旧継続/停止/履歴非破壊/2層memory",
+      "legacy_asset_id": "LEGACY-ASSET-899A61905AFBC415F595"
+    },
+    {
+      "id": "OLDADR",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-005-distribution-model-and-central-ui.md",
+      "first_line": 18,
+      "last_line": 38,
+      "text": "### D1. 配布モデル = GitHub-pull (git dependency, tag-pin)\n\n- ハーネス engine + ルール = **GitHub repo** (本 repo)。各 project は **git dependency** で消費 (`bun add github:<org>/HELIX-HARNESS-OS#<tag>` 等)、`devDependencies` に **tag pin してコミット** = チーム共有 + 再現性。\n- **更新享受** = tag を bump (`bun update`)。社内安全側は **tag pin + 定期 bump** を既定とし、即時全社反映が要る場合のみ branch track を例外採用。\n- **public npm publish しない** (社内コード)。internal GitHub から直接 pull。\n- **engine は tool 非依存 package** (Claude plugin に閉じ込めない)。CLI / CI (Layer B-remote) / Codex / 将来ツールが同一 engine を呼ぶ (ルール同一性 §2.1.0)。\n- `helix setup` が各 project に adapter (`CLAUDE.md` / `.claude/` / `AGENTS.md`) を投影。単一真実 = package 内、project は投影を受ける。\n\n### D2. Web UI = 中央・全 project 横断の管理ツール (team server)\n\n- Web UI は **project-local でなく中央 (team server)**。**全員の GitHub project 群を data backbone として読み**、harness 工程の粒度で**詳細可視化**する (PLAN/gate 証跡 / V-model 4 artifact trace / 工程進捗 / harness 診断 / audit)。「GitHub native 可視化の harness 工程・詳細版」。\n- 15 画面 (screen-requirements: PM-01〜06 案件横断 (PM-06 設計書ビューア = 2026-06-22 追加) / HM-01〜08 harness 改善・診断 / GD-01) を **チーム全体・中央**へ昇格。PM-01 の既存「4 階層プルダウン×案件横断」がこの中央横断像と整合。\n- **UI から CLI 直接発動しない**: CLI コマンドの copy 提供に留める (screen-requirements S5=b は Recovery/interrupt の CLI コマンドコピーに特化、本 ADR は UI 直接実行禁止を中央 UI 全体方針として採用)。\n- backend 実装方式 (Bun HTTP server 等) と通信境界詳細は **L2 設計に carry** (ADR-003 IMP-031 の延長として設計)。本 ADR は「中央/team server・GitHub backbone」の**配置方針**を固定する。\n\n### D3. プラグイン = 補助チャネル (主軸でない)\n\n- Claude Code plugin (`.claude-plugin` marketplace、同 GitHub repo ホスト可) は **Claude 側の任意の追加配信レイヤ**。CI 不可・multi-tool 非対応のため**主軸にしない**。\n\n## 根拠（Rationale）\n",
+      "sha256": "c93601904c8c65c08867cd23313fe0f00128d0a59025f56e04157a5d91b77a59",
+      "file_sha256": "dc6f09d05556442518fb09dd7fa38536562b0ab60e6947d044593500e5d3f16f",
+      "claim": "旧GitHub-pull/tag-pin、中央team UI、tool-neutral、配置の根拠",
+      "legacy_asset_id": "LEGACY-ASSET-8195605FB59B8B837EFF"
+    },
+    {
+      "id": "OLDDIR",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-005-distribution-model-and-central-ui.md",
+      "first_line": 71,
+      "last_line": 76,
+      "text": "- **Phase B server sync 方向 (PO 2026-06-10、direction-only / 未 freeze)**: 中央 UI の同期方式を以下の方向で具体化 (technical-requirements §2 carry note の「PGlite + ElectricSQL 候補」を refine。実装は Phase B PLAN で起票)。\n  - **DB = SQLite** (`bun:sqlite` 継続 = physical-data §9 の core DB 選択と同一、新規依存なし。WAL モードで同期中の読取非ブロック。ElectricSQL/Postgres は不要として candidate から外す方向)。\n  - **同期 = ハイブリッド**: ① GitHub webhook (push) で鮮度同期 (project が `.helix` state を commit → webhook → VPS が pull + projection rebuild) + ② 定期 reconcile (cron full rebuild) を取りこぼし安全網に (柱3 整合保証)。純イベントのみは drift リスクで不可。\n  - **host = XServer VPS** (Bun HTTP server + SQLite)。CI (GitHub Actions, public 無料) と別の自己管理 ops (TLS/backup/監視)。\n  - **正本境界**: 各 project の git (`.helix` state) が正本。中央 SQLite は**非正本 projection** (再構築可能、生成物を正本化しない原則)。\n  - **auth = escalation (人間確定必須)**: ① webhook 受信は GitHub HMAC 署名検証 ② ダッシュボード閲覧アクセス制御。projection に secret/PII/raw transcript を載せない (physical-data 既定を outward-facing VPS で厳守)。判断根拠 = [[project_harness_central_ui_backend_first]]。",
+      "sha256": "d700838b692d85c459c58d0d179760a7532623a14ac0b3c98244215622efa113",
+      "file_sha256": "dc6f09d05556442518fb09dd7fa38536562b0ab60e6947d044593500e5d3f16f",
+      "claim": "旧PhaseB direction-only/未freeze、projection正本分離、PII非複製",
+      "legacy_asset_id": "LEGACY-ASSET-8195605FB59B8B837EFF"
+    },
+    {
+      "id": "OLDCORE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md",
+      "first_line": 20,
+      "last_line": 49,
+      "text": "\n1. Python への DB 直接 write 開放（全面 supersede 案）は劣位。Claude↔Codex が同一\n   `harness.db`/Git を並行運用する本ハーネスでは、書き込み口が 2 つになると lease/fence/\n   監査証跡を Python 側へ二重実装する必要が生じ、競合破損リスクだけが増える。\n2. ADR-009 現状維持も劣位。「分類不能 → TS/Node 再実装」既定は、実証済みエンジンに対して\n   退行リスクのみでメリットがない。実測でも hybrid の全 29 ツールが既存 capability class に\n   分類され、この条項は一度も発火していない（死文の書き直し圧力）。\n3. ADR-009 で技術的価値が実証されているのは「commit の一手を Node の単一境界に通す」こと\n   のみ。従属的な呼称・再実装既定は本質ではない。\n\n## 決定\n\n1. **Python = 恒久意味コア（semantic core）**。ハイブリッド設計ドキュメント v1 由来の\n   Python 実装は、要件抽出・typed spec・trace・検出・impact・review・文書生成という\n   意味判断・生成能力の**正本**であり、書き換え対象ではない。TS/Node への再実装義務\n   （reject-for-TS-reimplementation 既定）は**廃止**する。capability class に分類できない\n   新規機能は、ADR 改定による class 追加で扱う（書き直しを既定姿勢にしない）。\n   逆方向の bulk port（動作している Python エンジンの TS 一括書き直し）は高リスク行為として\n   原則禁止し、実施には PO の個別承認を要する。\n2. **Node = 実行境界（transactional boundary）**。`harness.db` および Git/GitHub への\n   commit・副作用は従来どおり Node の単一境界のみが実行する（lease/fence/audit は既存\n   Node 機構）。Python へ DB path・credential・repository・`.helix/` を渡さない実装手段も\n   維持する。これは Python の従属ではなく、multi-runtime 並行運用の直列化点である。\n3. **呼称の改定**。「proposal-only worker」という従属的呼称を廃止し、\n   Python = 「意味コア（semantic core）」、Node = 「実行境界（transactional boundary）」とする。\n   両者は層別権威（layered authority）であり、意味判断の正本 = Python、\n   トランザクション・外部副作用の正本 = Node、として**同格**に扱う。\n4. **権威順序**。人が承認した要求・判断記録・確定 ADR を最上位とし、その直下に\n   「意味判断の正本 = Python semantic contract」と「実行の正本 = Node runtime contract」を\n   同格併記する。一方を他方の全面上位とする記述を禁止する。",
+      "sha256": "d12ed260f99addb64efb988ff31a1290c84063110ad483330b9699ea7ae78f16",
+      "file_sha256": "0a91276521551f976d1b692a243b86653d02ff4cf51a4d6a0344a36fb499bbd6",
+      "claim": "旧Python意味コア/Node単一外部作用境界、2writerの競合理由",
+      "legacy_asset_id": "LEGACY-ASSET-5D4AF9B5877D5CAD7089"
+    },
+    {
+      "id": "OLDLOCAL",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "first_line": 63,
+      "last_line": 64,
+      "text": "| **NFR-12** | machine×AI 二層 (静的 + AI レビュー) | Lv2 | KPI D-07 (AI 委譲時間率) ≥ 70% (目標値) | `.helix/audit/invocation_log/` 集計 | 直近 1 sprint D-07 ≥ 50% (Phase A) / ≥ 70% (Phase B、§6.2 BR-21 着手条件と整合) |\n| **NFR-15** | server-optional (Phase A local / Phase B server) | Lv2 | Phase A は local-only で全機能動作 / Phase B 拡張は L4 carry | Phase A: `helix doctor --server-disabled` / Phase B: ADR | Phase A: server なしで全 P0 FR 動作 / Phase B: L4 ADR |",
+      "sha256": "14a01de6dad455fe539325870d2fb831b3a7d822cc710ef23f18a5029bc97ba8",
+      "file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "claim": "旧PhaseA local-only/PhaseB server carry、UI中央とのscope差",
+      "legacy_asset_id": "LEGACY-ASSET-DB669724249A14A665F0"
+    },
+    {
+      "id": "CONNECT",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "first_line": 44,
+      "last_line": 53,
+      "text": "\n- 1つの接続identityは、接続元・接続先、方向、接続先が定める意味契約、両端の契約revision、許容する互換範囲を区別して参照できる。個別接続ごとに登録し、無関係な接続同士の変更を一つの契約改版へ束ねない。\n- 接続登録、互換性評価、通信結果、再送試行、stale遷移、片側交換を、同じ接続identityと契約revisionへ辿れる。\n- 各operationには能力名、contract revision、対象scope、correlation ID、期限、冪等キー、結果状態を束縛する。SECURITYが発行した許可・data-use/classification scopeが適用される場合は、その対象・operation・revision・environment・expiryを識別して受け渡す。CONNECTは権限・利用区分・業務完了を生成、拡張、推定しない。\n- 登録済み契約のrevision、互換範囲、端点が変わった場合、影響を受ける接続をstaleとして識別する。互換性が再確認されるまで送信を許可しない。以前の正常結果で現在revisionの互換性を代用しない。\n- 不明な接続、契約revision、端点、互換性、SECURITY許可/data-use区分、ACK、再送結果は成功として扱わない。取消、期限切れ、ACKなし、許可失効、送信後の結果未回収はresult stateをunknown/unfinishedとして保持し、業務完了扱いせず、送信を止めて関連する接続先ownerへ返す。\n- 一回の受信または再送が部分成功した場合は、完了扱いにせず、どの段階まで到達したかを接続identity、operation identity、attempt identityに結び付ける。重複または異なる内容の同一idempotency identityを検出できる。\n- 接続交換・更新・切戻し時は、未完operation、未確認ACK、未完義務、累積attempt数、期限、対象scopeを引継ぎ、共通pack契約の明示recovery先へ返す。再試行は一つのoperationで旧revisionと新revisionを混在させず、変更後revisionの再照合と明示的な再開条件を満たすまで停止する。\n- 通常のtrace/receiptにraw payload、secret、credential値を保存しない。必要な本文の保持・削除・利用区分は元source/consumer ownerとSECURITYの契約に従い、CONNECTが再定義しない。\n",
+      "sha256": "f469a61d42e83477d0a5877beb14cf3e3c39a1e9e848793f71ef1444724a483a",
+      "file_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+      "claim": "接続scope/revision/取消/ACK/失効/未完引継ぎ/raw非複製"
+    },
+    {
+      "id": "RETRY",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "first_line": 58,
+      "last_line": 64,
+      "text": "### HELIXCONNECT-L11-004 再送・重複防止\n\n一回目の送信後に応答が失われたケースで、再送条件を満たす同一operation・同一digestだけを設定済み上限まで再送し、受信側の処理効果は一回分であることを確認する。上限に到達した後は追加attemptがなく、未完結果が業務ownerへ返ることを確認する。同じoperation identityで異なるdigestを送るケースは衝突として拒否され、受信側の処理効果が増えないことを確認する。業務エラーまたは再送不可の失敗はretryされないことを確認する。\n\n### HELIXCONNECT-L11-005 追跡と部分失敗\n\n送信受付後に受信確認が失敗するケース、再送途中で接続がstaleになるケース、期限切れ、取消、許可失効を作る。証拠に、接続identity、能力名、operation/correlation/idempotency identity、target scope、使用revision、期限、互換照合結果、各attemptの識別子・順序・結果、停止理由、成功を観測した端点を含むことを確認する。ACKなし・取消・期限切れ・許可失効をunknown/unfinishedとして保持し、業務完了へ丸めない。途中まで成功した状態をend-to-end成功へ丸めず、raw業務payload、secret、credential値を追跡証拠へ複製しない。",
+      "sha256": "8827881a4faf81de6ccd95b8ef2c0dd817a6b34584b7d1f262c95e78f46e3b0d",
+      "file_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+      "claim": "同operation/digest一効果、異digest拒否、取消/expiry/revoke/ACKなし"
+    },
+    {
+      "id": "SWAP",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "first_line": 68,
+      "last_line": 70,
+      "text": "### HELIXCONNECT-L11-006 片側交換\n\n二機構の一接続を用意する。4ケース（送信側機構本体のみ、送信側adapter/transportのみ、受信側機構本体のみ、受信側adapter/transportのみを交換）を独立に行い、交換しない側の機構・契約revisionを固定する。交換revisionが互換範囲内なら、stale再照合後に固定側を改変せず同一契約上の通信が成立することを確認する。未完operation/ACK/attempt/期限/未完義務が交換後のhandoffに保持され、旧revisionと新revisionを混ぜず、再照合と再開条件の成立前にretryされないことを確認する。交換前後のrevision・照合・送受信が一続きの証拠から辿れることを確認する。続いて各交換側について非互換revision、未登録revision、意味契約変更、stale照合結果を与え、各ケースで通信が0件となり、固定側を更新したことにして成功を偽装しないことを確認する。互換範囲外を交換可能と扱わない。",
+      "sha256": "41d6252fd00f4ebe980d0afe522fd0feca050286a6c3f1265c20936694fe41d6",
+      "file_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+      "claim": "片側交換4ケース/未完義務/再照合/単一revision"
+    },
+    {
+      "id": "COMPOSITE",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "first_line": 74,
+      "last_line": 80,
+      "text": "### HELIXCONNECT-L11-007 複数機構の構成体\n\n3つ以上の機構と複数の接続identityで構成する一連の処理を用意し、各辺に異なる能力名、契約revision、対象scopeを割り当てる。各辺の登録・互換照合・operation/correlation/idempotency引継ぎ・expiry/result state・SECURITY/data-use識別子・送受信結果が辺ごとに記録され、構成体の追跡から全辺の順序と終端が辿れることを確認する。一つの中間辺をstale、timeout、異digest再送衝突、期限切れ、取消、許可失効、部分成功にし、後続辺へ未許可の再送/送信が伝播しないこと、全体が成功表示にならないこと、停止位置と未完の引継ぎ先/recovery先が明示されることを確認する。全辺が技術的に完了しても、接続先業務上の成立・承認が生成されないことを確認する。\n\n## 判断に使う証拠\n\n各受入結果は対象の要求revision、接続棚卸しで確定した接続identity集合、端点revision、試験前後の登録revision、照合結果、各operation/attempt、受信側効果、失敗時の停止地点へ対応づける。fixture例や一つのconnection greenだけで、未棚卸接続、別の端点revision、複数機構の構成体を受け入れ済みとしない。未実行、証拠欠落、unknown、revision不一致はpassにしない。",
+      "sha256": "c0d51aeed00e43196188bc7210735412e599735a13a518040c1bb67d8e779a6d",
+      "file_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+      "claim": "部分失敗/終端/一辺成功≠全体、未実行≠pass"
+    },
+    {
+      "id": "TRAIN",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 162,
+      "last_line": 184,
+      "text": "### HELIXINTELLIGENCE-L2-021 — Domain/Capability専用モデル学習\n\n3.0以降、LABO評価済み事例・反例・学習材料を用いてdomainまたはcapabilityに特化したlocal LLMを学習/調整できる。Requirement理解、Design Review、Implementation/CI診断、Integration Review、Worker placement、Model Router、Audit、Bounded Repair等を含む候補。万能モデルへの統合は要求しない。学習実行はOS ticket/Workerに接続する。version_target 3.0。\n\n- 親：HELIXINTELLIGENCE-L1-021。単独成立依存：LABOが評価済みとした事例/反例/learning material、domain/capability target、3.0 model contract。検証範囲：domain/capability専用local model candidate。保証：万能modelを必須にせず、training jobはOS ticket/Worker経由とする。失敗時戻し先：material/evaluation status/scope不明はLABOへ、job/assignment不備はOSへ戻しtraining candidateを進めない。`version_target: 3.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-022 — Training/evaluation data区分\n\nLABOから渡されたdata classをtraining/validation/evaluation/holdout/prohibitedとして保持し混同しない。評価用隔離例をtrainingに混ぜず、training適合だけで改善判定しない。区分不明は学習・評価材料として昇格しない。version_target 3.0。\n\n- 親：HELIXINTELLIGENCE-L1-022。単独成立依存：LABO data-use classとsource dataset revision。検証範囲：training/validation/evaluation/holdout/prohibited区分付きdataset set。保証：evaluation/holdout/prohibitedの隔離、training fitのみで改善判定しない。失敗時戻し先：class/revision不明または混在はLABOへ返し、該当dataを学習・評価に利用しない。`version_target: 3.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-023 — Model lineage\n\ncandidate modelからbase model/version、training dataset revision、tuning method/configuration、domain/capability、training environment、evaluation corpus、known limitations、rollback targetへ辿れる。lineage不明のcandidateを稼働modelへ昇格候補としない。version_target 3.0。\n\n- 親：HELIXINTELLIGENCE-L1-023。単独成立依存：base model/version、training dataset revision、tuning method/configuration、environment、evaluation corpus。検証範囲：lineage-complete model candidateとknown limitations/rollback target。保証：candidate生成材料・設定・適用範囲・戻し先を辿れる。失敗時戻し先：lineage field不足は該当model/dataset/config ownerへ戻しcandidateをqualified扱いしない。`version_target: 3.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n### HELIXINTELLIGENCE-L2-024 — Candidate model比較\n\ncandidateとcurrent modelを同一responsibility scope・比較可能corpusでsuccess/findings/false positive/miss/reproducibility/latency/cost/resource consumption/failure patternにより比較する。新しい・大きい・学習済みだけを改善根拠としない。比較条件不一致は判定不能へ戻す。version_target 3.0。\n\n- 親：HELIXINTELLIGENCE-L1-024。単独成立依存：current/candidate modelの同一responsibility scope・比較可能corpus結果。検証範囲：比較指標と条件を伴うcandidate/current model comparison。保証：success/findings/FP/miss/reproducibility/latency/cost/resource/failureを同条件で比較する。失敗時戻し先：条件・evidence不一致は比較不能としてLABO/INTELLIGENCEのsource記録へ戻す。`version_target: 3.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。",
+      "sha256": "cec2a0f94207c80d8895a6a47eac59f5697550288052c85e7e3069c1a4b10236",
+      "file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "claim": "3.0 training/dataset classes/lineage/rollback/candidate比較"
+    },
+    {
+      "id": "BRAIN",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "first_line": 27,
+      "last_line": 33,
+      "text": "## 共通境界とパック契約\n\n- HELIX-BRAINは、製品横断で再利用できる設計知識の構造を持つ。製品固有の要求・設計・判断、稼働するInfrastructure状態、実ログ／metrics、provider account、credential、実行操作を持たない。製品固有の意味・採用判断は各製品のHELIX-HARNESS-COREと適切な接続先、実状態はそれぞれのownerに残す。\n- BRAINのknowledge promotionは、提案、LABO評価、OSによる登録・振り分け、BRAIN変更手続きの独立検証、採否状態を別々に扱う。AI生成、実績一件、LABOの単独評価、OS ticket、本文の存在だけで汎用知識へ昇格しない。意味の上流変更を要しない技術的差分に新しい人間承認gateを足さない。\n- 機能pack共通のidentity/kind、入出力contract、契約版、実artifact版、依存版、互換範囲、検証範囲、交換・更新・rollbackと未完義務の引継ぎはHARNESS-L2-010/011の共通契約に従う。本書は共通pack lifecycleを再定義・所有しない。BRAIN固有の知識identityとversion/stateはL2-008で定める。\n- BRAINの利用側はdescriptorにある機能identity、必要契約版、成果物版、依存identity/version、compatibility rangeを照合し、unknownまたはrange不一致で呼出しを止める。`version_target`（1.0/2.0等）は能力目標であり、実版ではない。候補に実版はまだない。\n- 版境界: BRAINの初期内部実績・seed、12のL1機能、Infrastructureの17要求と1.0接続は`version_target: 1.0`。外部情報の対象を決め打ちせず、LABOでの分解・比較・評価を経て知識候補として扱う経路は`version_target: 2.0`。1.0で2.0 capabilityを必須にせず、2.0候補も保留表だけにせず本書とL11に独立要求として置く。",
+      "sha256": "047633f9bf390a7fb197ba02b42626eddb66b308480370f9bfb5ab9308c5506c",
+      "file_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+      "claim": "汎用知識とproject/credential/raw metrics分離、promotion状態別"
+    },
+    {
+      "id": "BOUNDARY",
+      "path": "docs/concept/product-boundary.md",
+      "first_line": 61,
+      "last_line": 71,
+      "text": "HARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、\nartifactの生成、配布、promotion、rollback、監視の実行統制はHELIX-OSが担う。\n\nHELIX-OSによる「管理」は、HELIX-WEB-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWEB-OSの\n要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、WEB-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-WEB-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\n渡し、HELIX-LABOがHARNESS自身の実践を含む各対象の効果と退行を評価し、HELIX-OSが評価を改善候補として登録する。\n採択された候補だけをHARNESS、Web、WEB-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。",
+      "sha256": "8528af5ed9f98021538902395ea2670cffeb50d091ec697eb3b9c340993a208b",
+      "file_sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139",
+      "claim": "WEBOS独立authority/state/credential/writer、許可exportと改善"
+    },
+    {
+      "id": "WEB",
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "first_line": 15,
+      "last_line": 39,
+      "text": "> **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。\n\n本書はHELIX-Web展開時にHELIX-OSの外へ構成するサービス運転基盤の要求案である。HARNESS Version 1完成前の\n展開、外部接続、実装起動を許可しない。\n\n| L2要求 | 親L1候補 |\n|---|---|\n| HELIXWEBOS-L2-001 | HELIXWEBOS-L1-001 |\n| HELIXWEBOS-L2-002／003 | HELIXWEBOS-L1-002 |\n| HELIXWEBOS-L2-004 | HELIXWEBOS-L1-003 |\n| HELIXWEBOS-L2-005 | HELIXWEBOS-L1-004 |\n| HELIXWEBOS-L2-006 | HELIXWEBOS-L1-005 |\n\n| ID | HELIX-WEB-OSに対する要求 | 確認する結果 |\n|---|---|---|\n| HELIXWEBOS-L2-001 | tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる | 一利用者の資格・job・data・結果が別scopeへ流れず、HELIX-OS内部stateをservice authorityとして共有しない |\n| HELIXWEBOS-L2-002 | 適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる | Connectorに開発engineを重複実装せず、不適格版や更新失敗を利用可能と表示しない |\n| HELIXWEBOS-L2-003 | 長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる | 再送・障害・再接続で副作用を二重実行せず、期限・予算・許可・未完義務を失わない |\n| HELIXWEBOS-L2-004 | 認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる | 未確認経路、期限切れ権限、秘密送信、範囲外data返送を拒否し、サービス利用を横断学習同意へ変換しない |\n| HELIXWEBOS-L2-005 | jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる | projection欠落・遅延・stale・conflict・結果不明を成功表示せず、画面表示を実行事実や受入の正本にしない |\n| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-WEB-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWEB-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、",
+      "sha256": "88f1b401ce2107dc06d74dcf310fa3bbd595f751a79eb24ef0e3a930490c8f93",
+      "file_sha256": "fc20446eb90bf3d89de941686a6d9c82889bf5bb753af7c0aa52946053a8cac5",
+      "claim": "Visionのみ。tenant/job/同意/保持/export、採択済要求ではない"
+    },
+    {
+      "id": "WEBCAND",
+      "path": "docs/helix-web-os/candidates/service-governance-requirements.md",
+      "first_line": 43,
+      "last_line": 53,
+      "text": "| **013・接続** | 独立レビューを作成側と異なるidentity・context・authority・review経路で行えること。 | 作成Worker自身やその内部Subagentの自己評価を独立レビューとせず、providerの違いだけで独立性を決めない。 |\n| **014・構成体** | 残作業、依存、並列性、作業実績、再作業、各種待機から完了見込みを算出・更新すること。 | 単一日時の断定ではなく予測幅・前提・遅延要因を示し、予測誤差をLABOへ返す。 |\n| **015・構成体** | 取消・停止・権限失効を、実行中・待機中・再接続後の操作へ反映すること。 | 失効前の許可で再開せず、直ちに止められない処理はその状態と封じ込めを示す。 |\n| **016・単体** | 原記録からWebへ状態を投影し、遅延・不一致・結果不明を表せること。 | 表示キャッシュや通知だけを実行事実・受入の正本にしない。 |\n| **017・接続** | 観測を目的・許可・対象版・時点付きでLABOへ渡すこと。 | 原状態の所有をLABOへ移さず、失敗や欠測も受け渡す。 |\n| **018・接続** | LABOから公開用日次集計を受領し、一貫した集計版としてWebへ反映すること。 | 新旧の値を混在させず、集計停止時は最終正常更新と遅延を表示する。 |\n| **019・構成体** | 検証済みの製品・機構版を、互換性・依存・設定を確認して段階適用・切戻しすること。 | リリースの存在だけで全案件を更新せず、提供版と案件参照版を区別する。 |\n| **020・構成体** | 保存記録から案件・ジョブ・許可・未完義務を復旧できること。 | サービス再起動で作業が重複せず、復旧成功と恒久修復を区別する。 |\n| **021・構成体** | 管理・操作系、Worker・CI、統計集計、改善実験の負荷と予算を分離できること。 | 高負荷処理や集計停止で、無関係な顧客案件と制御機能を一律停止させない。 |\n\nWorkerの共通契約と独立レビュー条件は、現行本体の定義を再利用する。Web側の案件運転に適用することを、本体OSの運転authorityを共有する根拠にしない。",
+      "sha256": "b4610b94cca3844c57fdc3db70c87f91a312ea32ef034e6ad870d347c53dc278",
+      "file_sha256": "d7ceaf02fc0a62ec1c787e87adafc622a3a3e5824edf525b5fef9d21b0a91626",
+      "claim": "Web未採択原案015〜021取消/観測/停止時表示/負荷分離"
+    },
+    {
+      "id": "SEC",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "first_line": 90,
+      "last_line": 117,
+      "text": "### HELIXSECURITY-L2-003 project・tenant・環境・assignment隔離\n\n- **受け取るもの**：project、tenant、environment、assignment/worktree identityと、それらへ束縛する権限、state、data、Worker、credential、artifact、memory、execution target。\n- **提供するもの**：明示接続のみによる越境許可、project-scoped isolation情報、fallback禁止の判定。\n- **保証すること**：project AのAgent、Hook、memory、credential、設定、Workerが明示接続なしにproject Bへ作用しない。primary treeや別projectへの暗黙fallbackを行わない。\n- **単独依存**：OSからassignment/project identity、INFRASTRUCTUREから実環境identity、CONNECTから宣言済み接続identityを受ける。各機構は自分のstateを正本として保持する。\n- **検証範囲／版**：read/write/execute/network/state/credential/artifactの境界をproject・tenant・environment・worktreeごとに照合。1.0。\n- **失敗時の戻し先**：identityが欠落、衝突、不明なら操作停止。identity構造の不足はL1-003へ、物理環境の不足は接続要求でINFRASTRUCTUREへ戻す。\n- **束ねる既存条件**：L1-003、Conceptの隔離の単位、旧SEAのtarget/environment scoping。\n\n### HELIXSECURITY-L2-004 Agent・Hook・設定のintegrity\n\n- **受け取るもの**：AGENTS.md、CLAUDE.md、Agent定義、Hook、Skill、MCP設定、runtime設定、Sandbox方針、system instruction、model設定とproject identity、root、HEAD/revision、digest、owner、scope。\n- **提供するもの**：採用可能な構成revisionと、未知・stale・他project由来の構成を特定する比較結果。\n- **保証すること**：別project、古い版、未知のHook/設定を黙って採用しない。内容変更とauthority変更を識別する。\n- **単独依存**：L2-003のidentityと、構成sourceのrevision/digest。Ownerが不明ならその不明を維持する。\n- **検証範囲／版**：対象リストの全構成についてidentity/revision/digest/scope束縛を確認。1.0。\n- **失敗時の戻し先**：対象のowner/scopeが不明ならL1-004へ戻し、実行を停止する。承認のない構成を推測採用しない。\n- **束ねる既存条件**：L1-004、PO §5、Conceptの構成版固定と切戻し。\n\n### HELIXSECURITY-L2-005 Credential / Secret境界\n\n- **受け取るもの**：credential requestのactor、operation、target、environment、scope、expiry、目的とcredential classification。\n- **提供するもの**：生値を露出しない、範囲・操作・期限付きのcredential-use capability、検査・失効状態。\n- **保証すること**：raw secretをAI contextへ渡さない。credential storeをWorkerに直接見せない。repository混入と外部送信を検査し、revokeを伝播する。単一のsecret判定正本を使う。secret値は通常artifact/receiptに出さない。\n- **単独依存**：L2-008 authority、L2-006 egress、Worker境界L2-007、INFRASTRUCTUREの安全な実資源境界。\n- **検証範囲／版**：context、file/artifact、log、Tool result、外部sinkへの値露出と期限/operation mismatch。1.0。\n- **失敗時の戻し先**：欠落scope、期限切れ、未知のcredential class、検査不能はdeny/stop。方針の不足はL1-005へ、保存・注入境界はL2-024へ戻す。",
+      "sha256": "2d653ec06e5b9a4bbd7f834ff2bca5ab45607e6a436fc186fe4500c06532600a",
+      "file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "claim": "project/tenant/実環境/設定/credential境界"
+    },
+    {
+      "id": "CONSENT",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "first_line": 39,
+      "last_line": 41,
+      "text": "- HELIXOS-L2-005：未計測のSkill、誤推薦、旧版を投入し、候補・利用結果・失効を区別できる。学習結果がHARNESS規則へ無断反映されない。\n- HELIXOS-L2-001／002／005／007／013：Concept／企画L1、要求エンジンの入力・出力L2候補、人間の訂正・採否、採用要求、後続の見逃しを同じ因果IDで登録する。企画価値の要求化漏れ、企画外の意味追加、対象違い、scope／non-goal逸脱を個別に示し、戻す層と判断者へ辿る。登録やログ件数だけでは要求採用・改善成立とせず、許可外の生会話・PII・別project dataを学習へ転用しない。\n- HELIXOS-L2-001／005／007：改善入力の利用同意欠落、data class不明、retention期限超過、許可scope不一致を個別に投入し、拒否または隔離して学習・要求化・別project転用へ進めない。後から許可を補っても、過去の無許可処理を成功へ書き換えない。",
+      "sha256": "0243d6a69371179821c529ec63a889a03436795d5b65248deeb87cfb21605809",
+      "file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "claim": "未計測/因果/許可scope/同意/class/retention拒否"
+    },
+    {
+      "id": "RESUME",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "first_line": 29,
+      "last_line": 29,
+      "text": "| HELIXOS-L2-009 | 中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否する |",
+      "sha256": "7de0dfc509ae5755279f8d093d8eda6c83c98d3d1b0ce9badb81f534ceed2ec2",
+      "file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "claim": "継続/累積制約/二重実行/無許可復旧拒否"
+    },
+    {
+      "id": "INFRA",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "first_line": 43,
+      "last_line": 69,
+      "text": "\n- **親L1**：`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`。\n- **入力**：設計の意味正本から受け取るapproved configuration、deployment target、resource observationとそのsource/revision。\n- **提供**：approved design、deployment target、observed actual stateの分離および差異の提示。\n- **保証**：resource missing、unexpected resource、version/config/network/permission/capacity drift、runtime replacement、unknown dependencyを比較でき、差異を自動で正しい変更・設計承認とみなさない。actual stateから要求/設計を書き換えない。\n- **単独成立の依存・版**：L2-001、HELIX-HARNESS-COREの承認済み設計参照、source-qualified actual observation。`version_target: 1.0`。\n- **失敗時の戻し先・未完義務**：design/target/observationが欠落・stale・互換不明ならdrift結果を確定せず、そのsource ownerへ戻す。未確認範囲を保持し、修正実行はOS ticket/SECURITY authority/Worker接続を経る。\n- **束ねるL1/PO条件**：HRI-L1-002/003。最低範囲4 (Desired/Actual separation)、5 (Drift)。\n\n### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`。\n- **入力**：L2-001の資源snapshot、CPU/RAM/GPU/VRAM/storage/network/runtime/model requirement、capacity/utilization/queue/concurrency/saturation/rejection/backpressureの観測、起動要求。\n- **提供**：共通資源モデル、利用可能性・飽和の観測、および新Job/Worker/Model/CIを起動するための資源可用性情報。\n- **保証**：local machine、VPS、dedicated server、cloud VM、container runtime、GPU node、Worker nodeをcommon resource modelで参照し、CPU/RAM/GPU/VRAM/storage/runtime/capacity/health/availabilityを記録する。Network pathのsource/destination/protocol/endpoint/direction/purpose/security boundary/dependency、およびpersistent/temporary database, evidence/artifact store, queue, cache, log/metric store, model storeのowner/durability/backup/retention/environment/confidentiality/recovery属性はL2-001/003で追跡する。external model API/local LLM/GPU server/distributed model server/tuned modelのmodel/server/version/GPU-memory needs/concurrency/latency/capacity/health/endpointをruntime resourceとして記録するが、知能評価はINTELLIGENCE/LABOへ分ける。起動前に容量を確認し、不足時はqueue/delay、低費用または別node候補、reject、人へのescalationに情報を渡す。無制限なJob追加を成立扱いせず、配置・費用をInfrastructureが採否しない。\n- **単独成立の依存・版**：L2-001、資源/容量の観測元、OS/INTELLIGENCEへのcapacity/decision interface。`version_target: 1.0`。L1で記された高度なautoscalingは後続版であり依存しない。\n- **失敗時の戻し先・未完義務**：観測値不足・古い値・計測不可・capacity unknownでは安全に受入可能と返さず、起動要求をOS/INTELLIGENCEへ戻す。queue待ち等の未完状態とresource snapshotを保持する。\n- **束ねるL1/PO条件**：HRI-L1-005/006/007/009/010/011。最低範囲6 (Compute/Network/Storage)、7 (Model/Worker Runtime)、8 (Capacity)。\n\n### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-016`。\n- **入力**：health/metric/log/resource usage/dependency/queue/error/latency/deployment revision/recovery state、異常観測と参照要求。\n- **提供**：HELIX本体Infrastructureの最低限のobservabilityと通常/劣化/利用不能/容量枯渇/依存失敗/data・network unavailable/security isolation/unknownを区別したruntime/incident state。\n- **保証**：観測不能をhealthyへ変換しない。incidentの意味/severityは承認済み要求を参照し、INFRASTRUCTUREが独自定義しない。観測結果はsourceと対象revisionを保つ。\n- **単独成立の依存・版**：L2-001、対象の観測sourceと既存要求上のincident meaning。`version_target: 1.0`。より細かなfreshness/collector-confidence stateはHELIXINFRASTRUCTURE-L2-019 (`version_target: 1.0より後（版は未定）`)へ保全し、1.0の受入条件として増やさない。\n- **失敗時の戻し先・未完義務**：telemetry欠測・collector failure・source不明ならunknown/unobservedとして観測元へ戻し、原因を推測確定しない。未確認resourceとincident評価待ちを維持する。",
+      "sha256": "8c8c5ac7236f310e109ae10e77ae8ceaeba75feba18ed2c7365486e4f80abb4d",
+      "file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "claim": "desired/actual/容量/負荷/retention/resource ownership/観測不能"
+    },
+    {
+      "id": "LABOCON",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 208,
+      "last_line": 222,
+      "text": "\n- 親：HELIXLABO-L1-001。入力：OSから許可されたticket/運転/証拠観測。出力：source identity/revision付きobservation。依存：OS source contractと個別connector。保証：OS正本を保持し未完/unknownを区別。stale/欠落はOSへ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-023 — BRAIN → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可された知識利用・適用結果の観測。出力：source版付きobservation。依存：BRAIN source contractと個別connector。保証：BRAIN知識正本を書き換えない。source identity不明はBRAINへ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-024 — INTELLIGENCE → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可された判断/予測/診断/reviewの結果観測。出力：観測事実と判断結果を区別したobservation。依存：INTELLIGENCE source contractと個別connector。保証：過去評価は現在のauthorityにならない。版不一致はINTELLIGENCEへ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-025 — SECURITY → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：SECURITYが許可した安全性・incident evidence。出力：範囲付きobservation。依存：SECURITY data-use scopeとconnector。保証：restricted dataとauthorityを移さない。scope不明はSECURITYへ戻す。`version_target: 1.0`。\n",
+      "sha256": "5f4a505faea3e58e907b1b2f28939ac33c6f0c015b177d1b50297d29ee5f873a",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "OS/BRAIN/INT/SECURITY観測接続と正本保持"
+    },
+    {
+      "id": "RECEIPT",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "first_line": 148,
+      "last_line": 154,
+      "text": "### HELIXLABO-L2-057 初回実行結果のBench受領接続\n\n- **PO起点**：[補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第1点、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)。\n- **入力・版**：OS018/019/023の実行後assignment・attempt・result receiptと、LABO028/056の受領契約revisionを同一scopeに束縛する。OS027は使ったrun構成のprovenance参照に記録できるが、接続の開始依存にしない。\n- **成功条件**：OS-L2-018/019/023の出力を受け、成功/失敗/拒否/中断/unknown、ticket/task/Worker identity、要求と契約revision、scope、verification状態、人確認、未完義務が送信と受領で一致する。HELIXOS-L2-027は利用構成参照として記録し、接続依存にはしない。採択済みCONNECT契約または明示的な人手receiptがschema/版/scopeを照合し、acknowledgment・trace・重複抑止・stale停止・同一ID再送を示す。LABOは受領receiptを返し、後続の履歴化先を示す。二重配送は同じsource identityとして検出できる。\n- **反例**：受領時にscope・result state・revisionを書き換える、配送成功を評価済みとする、LABOがassignmentを行う、欠落receiptを成功配送とみなす、stale payloadを現行履歴へ混ぜる。\n- **失敗時・未完義務**：送信・受領receipt不一致は接続未成立としてOS/LABOへ戻す。再送は同じsource identityを保持し、重複を新規実績にしない。CONNECT契約も同義務を果たす人手receiptも不在/unknownなら受領成功を主張しない。",
+      "sha256": "717f8db04ca21cc1aff7703b2e9dc196ab5019efbd433e7238edad5de4b6426d",
+      "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "claim": "OS result receipt一致/同identity再送/重複/未成立保持"
+    },
+    {
+      "id": "DEC",
+      "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "first_line": 19,
+      "last_line": 23,
+      "text": "\n> #2198〜#2205について、各確認資料が固定したL1の対象revisionを確定し、L2と対になるL11の要求一式に合意する。各PRの明示候補集合は、記載されているversion_targetと適用条件を保持して採用する。\n> HARNESSの所属は029＝CORE、031＝共通部品、032＝COREとする。\n> SECURITYはA案を採用する。全操作のauthority境界を適用するが、有効な既決権限を再利用し、通常作業の毎回の人間承認は追加しない。\n> 後続版・Web条件付き要求を1.0へ前倒しせず、旧sourceの未完引継ぎは保持する。判断記録を各PRへ反映し、必要な追随・独立レビュー・統合後確認を行った後、最後の横断整理へ進める。ただし、旧HELIXからデグレ検証は必要。",
+      "sha256": "da5d5a50ed6418d4c54a1fb96d0ec015adfe2576a4fb678c8e72b70dccf52332",
+      "file_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+      "claim": "明示固定集合/適用条件採択、Web前倒し/未完継承禁止"
+    },
+    {
+      "id": "CAUSAL",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "first_line": 46,
+      "last_line": 46,
+      "text": "| HELIXLABO-L2-002 | 要求→ticket→Worker→実装→atomic CI→integration→proof CI→release→deployment→runtime→incident→recoveryをepisodeへ結び、要求revision・actor/provider/model/configuration・artifact・環境を追える。相関できないeventも孤立として残る | 時刻/path一致だけで因果断定する、無関係eventを一episodeへ結合する、欠けた義務を補完して完了扱いする、訂正で元eventを上書きする |",
+      "sha256": "f868e19c3ef9f6d5f899db90ffa708ae535c1a428056fd00db714cd27a5ac921",
+      "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "claim": "相関と因果、孤立event/元event/未完義務の区別"
+    },
+    {
+      "id": "BENCH",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "first_line": 150,
+      "last_line": 154,
+      "text": "### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）\n\nHELIX-Benchは許可されたWorker作業履歴を作業種別・model classごとに集計し、対応可能性の水準、根拠、評価範囲を導く。評価していないmodel classは明示的に「未評価」とする。水準は配置案の材料であり、Benchは配置案を作成せず、Worker/modelの選定・指定・割当ても行わない。\n\n- 親：HELIXLABO-L1-011。入力：Worker作業履歴、作業種別、model class、評価結果とそのsource revision/範囲。出力：作業種別・model class別水準、根拠、評価期間/適用範囲、評価済み/未評価状態。依存：許可されたLABO observation（L2-001/028）と評価可能な実績（必要に応じL2-006）、Worker historyの作業種別・model class identity。保証：履歴だけで未知作業の成功を保証せず、未評価を評価済みに変換せず、配置・割当て・権限を変更しない。範囲や実績が不足・不整合なら水準を確定せず該当履歴sourceへ戻す。`version_target: 1.0`。",
+      "sha256": "9adab450c34d893fdca14ead06856661d2c9e9f4bcb6d75accc66f4a2127850f",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "claim": "Bench水準生成/未評価、配置・割当・権限の非所有"
+    },
+    {
+      "id": "CLASSRECORD",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "first_line": 120,
+      "last_line": 124,
+      "text": "### HELIXINTELLIGENCE-L2-013 — 判断理由の追跡\n\n重要判断proposalからinput revisions、applicable rules、BRAIN knowledge、observations、assumptions、model/provider/version、reasoning result、uncertainty、rejected alternativesへ辿れる。sourceがdata-use classを提供する場合はその区分も1.0から保持するが、それはtrainingを許可せず学習・チューニングは3.0の範囲とする。完全な再生成は要求しない。根拠が揃わない場合は理由をunknownとして保持する。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-013。単独成立依存：input revisions、applicable rules、BRAIN knowledge、observations、assumptions、model/provider/version、source data-use class。検証範囲：重要判断candidateの根拠・推論・uncertainty・rejected alternativesへのtrace。保証：完全再生成なしで判断根拠を検査可能にし、利用区分を1.0から記録する。class記録はtraining許可ではない。失敗時戻し先：根拠/metadataが欠ける判断はunknownを返し、欠けたsource ownerへ照合を戻す。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。",
+      "sha256": "aa9ab21b12977689355c4c6f146d7db04160fbb36a9c07cab59913be0c6ed040",
+      "file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "claim": "1.0区分記録と3.0 training許可の区別"
+    }
+  ],
+  "legacy_processing": {
+    "kind": "意味の再導出候補",
+    "retained": "source正本/単一write境界、履歴/未完義務、同operation再送、scope/class/retention、tool-neutral/更新同一性、localとcentralの旧用途差を保持。",
+    "changed": "旧Node/Python/Bun/DB/CLI/host/配布方式を現行へcopyしない。repo/hostを独立軸で比較し、LABO固有停止保証や物理閾値を推測新設しない。",
+    "search_limit": "読んだ旧ADR005/010、NFR grade、orchestration memory、product connector L5/L6の限定範囲。旧全runtimeや全資産の不在証明ではない。"
+  },
+  "findings": [
+    "#2089の9/24本文「INTELLIGENCEは3.0から」は現行1.0判断支援と3.0学習の区分に照合し、旧Issue語彙で現在の1.0能力を落とさない。",
+    "接続再送/失効条件の存在は、双方停止時の運転継続/送信待ちdurability/取消後派生物処置の成立証明ではない。",
+    "旧ADR005の中央UIと旧NFR15のlocal-onlyは対象scopeが異なる。中央UI配置や未freeze VPS方向をLABO物理分離の採択へ流用しない。",
+    "同一repoと同一serverは独立軸。別repo/別hostだけでwriter/authority/data scopeや独立reviewが成立しない。",
+    "data-use classを記録することはtraining許可ではなく、3.0 dataset/model候補の生成も稼働採用ではない。"
+  ],
+  "unresolved": [
+    "14objectは本scopeの分類表で、全関連data object/consumer/retention処置の全量閉包ではない。各保存期間/削除/派生物取消/再利用scopeの具体sourceが未確認。",
+    "双方停止の許可・送信待ち保全・overflow・catch-up・revoke伝播・再構築の全受入条件は未固定/未実行。",
+    "物理4案と5判断観点は旧/現source比較からの検討案。既定配置・推奨threshold・新承認gateは採択しない。",
+    "OS005/007/012/013詳細atom、原33入力の全consumer/failure被覆、対象revision付き全判断packetは残る。"
+  ],
+  "conclusion": {
+    "issue_close_eligible": false,
+    "criteria_fully_closed": [],
+    "candidate_material_added": [
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07"
+    ],
+    "runtime_acceptance_proven": false
+  },
+  "non_claims": [
+    "canonical/MPR/holding/Binding/Issue本文を変更せず、successor/要求採択/retireを生成しない。",
+    "旧runtime/test/CIを実行せず、14caseのexecuted/acceptance_passは全false。",
+    "Web/WEBOSのVision/未採択sourceは比較資料であり本体1.0の必須依存にしない。"
+  ]
+}
