@@ -81,3 +81,11 @@ RUL-FRM-01の候補本文（工程順序とV-pairを閉じる）と、現行HARN
 | RG44-006 | 原文stateForにはmerge_conflict→blocked分岐があり、抽出文から落ちている | 全分岐・優先順を保持し、stateをfinding処分の二分類へ同一化しない |
 
 原inventoryと旧sourceは変更していない。全75件についてsource spanと差分は記録したが、source隣接条件のatom境界、3件のsource対応修正、call/test/外部consumer閉包、正式successorは未完である。元assessment_statusと以前のpendingを完了へ書き換えず、未計上0を主張しない。#1814/親#1813はOPENを保持する。
+
+## 抽出不備3件の比較用記述の訂正
+
+3recordの`source_normalization`に、引用原文だけで成立する検索・比較用の文を記録した。RE01-257は「AI-Bはblockerを一括返却」、RE01-258は当行のlocal correctness/security修正と独立責務等の後続化、RG44-006はresolved/orphan/requested_changes/merge_conflict/その他の5分岐と優先順である。元inventory_recordと原文pinは不変で、unsupported句は削除せず保持する。一巡/新独立blocker例外はRA-161、blocker列挙と責務/scope条件はRA-162の別sourceにも残っているが、それをv1.3:516の根拠へ混ぜない。
+
+registerのsupersedes鎖を再計算すると、現行の生存中holdingは`MPR-SH-LEGACY-RULE-005`（-004の配置訂正）である。以前の候補文書と研究記録の-004は当時のlocatorを示す。比較用記述の訂正は台帳/holdingの正式訂正を代替しない。台帳訂正には新digestを持つappend-only revisionと、直接pin 4 Binding・register consumer・生成rulebookの再照合が必要である。原inventory、register、Binding、rulebookはこの追補では変更していない。
+
+3件の原文に忠実な比較用文は記録したが、source_holdingの訂正、consumer閉包、正式successor、atom境界は未完として#1814/親#1813へ残す。要求採否・意味のretire・holding解除・L3再開・Issue closeを生成しない。
