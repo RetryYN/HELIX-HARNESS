@@ -67,3 +67,17 @@ RUL-FRM-01の候補本文（工程順序とV-pairを閉じる）と、現行HARN
 「一巡の再判定は旧要求に無く新規性がある」という旧noteも不正確で、旧AGENTS.md:327–328に同じ一巡/新独立blocker例外がある。現行HXT-FLOW-07には返却/次ticketの因果とfinding破棄/再流入/返却先欠落の負例があるが、現在の引用から旧全条件の採用や全同値を生成しない。DTK-OS-003は9/24の既決退役sourceで、歴史比較としてだけ保持し現行候補分母・successorへ復活させない。
 
 主35・副40の全75rule IDとinventory hashを保全した。旧例3件の原文は確認したが、75ruleの個別全条件・consumer閉包・正式successorは未完である。既存の空配列と`assessment_status=unassessed`を完了へ変換しない。2clusterの本文比較があるが、他55とFRM01の518rule比較も残る。#1814/親#1813はOPENを保持し、要求統合・採否・retire・L3再開を生成しない。
+
+## RUL-OSA-03：全75ruleのsource span比較（#1814）
+
+`rule_source_comparison`に主35・副40の全75recordを原inventoryのまま保持し、列挙された全source spanの本文/行/hashと候補本文を一件ずつ照合した。各recordに共通する候補の句（D1〜D4）、固有又は未解決条件、原文support、consumer/正式successorの未完を記録した。以前の限定本文比較はその時点の記録として保持する。
+
+処分先と一巡/staleの候補本文には、appeal・非終端receipt、promotion原子性、相談/継続/修正指示、lifecycle整合、時刻順序、QA doc-first、4種Backflowなどが入っていない。これらを候補本文へ縮退して被覆済みにしない。既存bug一律別PR、nonblocker一律後続、同reviewer sessionだけのblock解消、難易度別修正cycleも、現在の二分類/一巡と同じ操作又は条件ではなく、判断史・consumer・正式successorの照合へ残す。
+
+| 原文対応の残件 | 確認した差 | 扱い |
+|---|---|---|
+| RE01-257 | v1.3:516にblocker一括返却はあるが、一巡/新独立blocker例外の句はない | RA-161に意味があることと、この行の直接根拠不足を区別し、inventory対応修正へ残す |
+| RE01-258 | v1.3:516には局所correctness/securityがあるが、抽出文のdata loss/oracle/虚偽の列挙は当行にない | RA-162の別sourceを当行へ混ぜず、原文supportの範囲を確かめ直す |
+| RG44-006 | 原文stateForにはmerge_conflict→blocked分岐があり、抽出文から落ちている | 全分岐・優先順を保持し、stateをfinding処分の二分類へ同一化しない |
+
+原inventoryと旧sourceは変更していない。全75件についてsource spanと差分は記録したが、source隣接条件のatom境界、3件のsource対応修正、call/test/外部consumer閉包、正式successorは未完である。元assessment_statusと以前のpendingを完了へ書き換えず、未計上0を主張しない。#1814/親#1813はOPENを保持する。
