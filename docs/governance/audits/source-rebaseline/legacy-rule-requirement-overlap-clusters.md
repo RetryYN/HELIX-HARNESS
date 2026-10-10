@@ -97,3 +97,9 @@ registerのsupersedes鎖を再計算すると、現行の生存中holdingは`MPR
 registerは旧全prefixを保持してMPR-SH-LEGACY-RULE-006を一行追記する。source_preserved_unassigned/authority noneであり、要求採用やsuccessor成立ではない。仮ルール集59fileを再生成しgovcheckで7622件の保持を確認した。SCF-B-0002の入力pinを更新し、0011は47選択record全field不変＋validator、0021はfailure projection全field不変＋validatorで再照合した。0035は過去13 holding研究なので、訂正前の同一bytesを歴史snapshotへ保全し、generatorの読取先を固定して15path/13holdingのvalidatorを再照合した。
 
 registerを直接pinする19 Bindingの固定BASE/current入力境界は再照合中である。このDraftではstaleを機械的pin更新で消さず、Ready/merge admissionを未成立とする。前の3件正規化と全75比較は訂正前の固定revisionに対する記録として保持する。正式台帳訂正の統合、残るconsumer、successor、他clusterのclosure、#1814 closeはまだ成立していない。
+
+## register consumerの固定capture再照合（0095・0099）
+
+[2件の再照合receipt](osa03-register-consumer-reconciliation-0095-0099-2026-10-10.json)に、現在のregister pinと実際の固定入力の違いを記録した。SCF-B-0095と0099は72b9f368の33行capture・MPR-SH-OUTSIDE67-001を使う研究である。現在のregisterでは001は002にsupersedeされており、旧001を現在の生存holdingと扱わない。同commitの全bytesを固定source snapshotへ保全し、2 Bindingの入力path/digestを当該captureへ訂正した。研究成果物・固定BASE・role・obligations・authorityは変更せず、各validator成功を確認した。
+
+147 Bindingの構造検証はfail=0、残るregister staleは17件である。これは3件台帳訂正のmerge admission成立、要求採否・consumer closure・Issue closeを表さず、PRはDraftのまま維持する。残る研究では固定BASEとその後に更新された期待register digestの相違があるため、当時の入力revisionを別途特定してから再照合する。

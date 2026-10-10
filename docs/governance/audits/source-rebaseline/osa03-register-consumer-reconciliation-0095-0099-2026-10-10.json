@@ -1,0 +1,48 @@
+{
+  "schema": "osa03-register-consumer-reconciliation/v1",
+  "correction_content_head": "a71eb0de53fc4949a337ec7ed6ed28d8ff98a42e",
+  "register_append": "MPR-SH-LEGACY-RULE-006",
+  "scope": [
+    {
+      "binding_id": "SCF-B-0095",
+      "previous_register_pin": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "sha256": "39b8f8e12b9965927e70d570528533b4c5203088bc985941d809367bbb7fc395"
+      },
+      "capture_commit": "72b9f368a044709437841c5e862f01802b1a88ec",
+      "source_path_at_capture": "docs/governance/management-provisional-requirement-register.jsonl",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+      "snapshot_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "snapshot_bytes": 46979,
+      "snapshot_rows": 33,
+      "validator_result": "PASS 5 source pairs / 863 archive lines / mutually-exclusive partition",
+      "artifact_content_change": false,
+      "authority_effect": "none",
+      "historical_holding": "MPR-SH-OUTSIDE67-001",
+      "current_successor_holding": "MPR-SH-OUTSIDE67-002",
+      "historical_holding_is_not_current_terminal": true
+    },
+    {
+      "binding_id": "SCF-B-0099",
+      "previous_register_pin": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "sha256": "39b8f8e12b9965927e70d570528533b4c5203088bc985941d809367bbb7fc395"
+      },
+      "capture_commit": "72b9f368a044709437841c5e862f01802b1a88ec",
+      "source_path_at_capture": "docs/governance/management-provisional-requirement-register.jsonl",
+      "snapshot_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+      "snapshot_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "snapshot_bytes": 46979,
+      "snapshot_rows": 33,
+      "validator_result": "PASS PATH-011..015 full pre/archive coverage, reused PATH-011 candidates, new atoms and three-category accounting",
+      "artifact_content_change": false,
+      "authority_effect": "none",
+      "historical_holding": "MPR-SH-OUTSIDE67-001",
+      "current_successor_holding": "MPR-SH-OUTSIDE67-002",
+      "historical_holding_is_not_current_terminal": true
+    }
+  ],
+  "preserved": "旧sourceの原文、固定captureの研究成果物、unknown・未選択残差、責務・authorityを保持する。新要求・意味採択・holding closure・L3再開を生成しない。",
+  "remaining_register_consumers": 17,
+  "merge_admission": "not_established_draft"
+}
