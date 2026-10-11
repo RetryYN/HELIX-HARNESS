@@ -266,7 +266,8 @@
             186,
             239
           ],
-          "identity": "HXT-FR001..013のsource/ticket/assignment/attempt/候補/admission/依存/未来証拠の境界"
+          "identity": "HXT-FR001..013のsource/ticket/assignment/attempt/候補/admission/依存/未来証拠の境界",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
@@ -274,7 +275,8 @@
             285,
             294
           ],
-          "identity": "HYB001/006/010"
+          "identity": "HYB001/006/010",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
@@ -284,7 +286,8 @@
             64,
             65
           ],
-          "identity": "P1/P3/P6/HNFR-P3/P5"
+          "identity": "P1/P3/P6/HNFR-P3/P5",
+          "locator_kind": "inclusive_line_ranges"
         }
       ],
       "preserve": "同一入力候補、仕事/担当/試行分離、未解決の非ready、未来receiptを事前に捏造しない、原子性・独立review・実差分/HEADの照合・未完と累積制約。",
@@ -319,7 +322,8 @@
             907,
             907
           ],
-          "identity": "RLO-FR-040/RLO-AC-030"
+          "identity": "RLO-FR-040/RLO-AC-030",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
@@ -327,7 +331,8 @@
             43,
             43
           ],
-          "identity": "RLO-AC-030"
+          "identity": "RLO-AC-030",
+          "locator_kind": "inclusive_line_ranges"
         }
       ],
       "preserve": "未評価の明示/authority不変、selectionと品質/費用/retry trace、実逸脱/実順序receipt、重大failure非相殺、task別適用限界、ticket/assignment/attempt/累積制約/独立review。HR/HAC/HAT consumer意味を参照資料へ降格しない。",
