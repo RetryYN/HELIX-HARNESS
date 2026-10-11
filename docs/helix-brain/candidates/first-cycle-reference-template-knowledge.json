@@ -1,8 +1,8 @@
 {
   "artifact_kind": "汎用template参照知識の意味候補",
   "meaning_owner": "HELIX-BRAIN",
-  "authority_effect": "none",
-  "state": "candidate",
+  "authority_effect": "limited_content_adoption_by_linked_po_decision_when_admitted_to_main",
+  "state": "limited_meaning_content_adopted_other_content_candidate_runtime_promotion_not_performed",
   "base_revision": "4d37d4bc9e1debba200587b151ebb24290668389",
   "scope": "初回3MSGから参照するSDOP001〜005・VT103〜106の契約/本体/負例/完了の比較候補。正式schema/registryではない",
   "requirement_basis": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
@@ -2367,5 +2367,19 @@
       ]
     },
     "remaining": "選択sourceの有効依存（HARNESS023の4区分で再帰の終端/未決/後続/未選択を保持）、前提機構を成立させる停止中の範囲と証拠、再開順序/scopeの固定案、必要に応じた他の知識採否。実値/形式/oracle/設計/実行/promotionは該当後続へ残す。 VT103原文19行（値はL3で導出）とSDOP002原文12行（測定法/閾値はL11で固定）の時点差は、再開時にHARNESS034等の採択済み要求・対oracleへ照合する問いとして残す。本案で工程を再定義せず、SDOP002のrelation全文は非選択。"
+  },
+  "adoption_decision": {
+    "decision_record": "docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md",
+    "decision_id": "HDEC-P3FIRST-KNOWLEDGE-2026-10-12",
+    "proposal_id": "P3FIRST",
+    "presented_revision": "9b7c2dc6f6918b2d93487450d5f9fb2559d9210c",
+    "presented_document_sha256": "9217d14a45b5fb3ea75b02b1c4123d5f73522ddbf3dba4d126f9669416d44b56",
+    "presented_json_sha256": "fa1b3a7334123bad1ce2a792c0ed9dcd455a090def3e9a270768e865766d7f6b",
+    "adopted_payload_sha256": "048ac0d8cf2a4861d48de0e050cce3a5062463860caf52eaf1804bed2fcefc92",
+    "adopted_scope": "提示revisionのadoption_proposal.adoption_payload_scopeと限定解釈/原適用制限/補足意味に限る。元9候補全体の採用ではない。",
+    "state": "limited_meaning_content_adopted_runtime_promotion_not_performed",
+    "historical_metadata": "元candidate/提案metadataは提示時の来歴。現行限定採否は本decisionから読む。",
+    "promotion_effect": "none; BRAIN007/025 preserved",
+    "remaining": "有効依存の照合、前提成立の具体範囲/証拠、再開順序/scopeの固定。他内容はcandidate/未選択を保持。"
   }
 }

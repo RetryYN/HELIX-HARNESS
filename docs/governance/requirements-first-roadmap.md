@@ -165,7 +165,7 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 
 | 操作 | 入力元の案・owner | 未決と適用の境界 |
 |---|---|---|
-| 知識提供・意味導出 | 採用範囲に合致したSEEDFIRST意味JSONと、MSG004/001/005の意味candidate → BRAIN/CORE | MSGCONTENTは[固定案どおりの限定採用](decisions/msgcontent-knowledge-po-decision-2026-10-12.md)とし、同じ意味JSONの採否範囲へ戻す。運用knowledge promotionは実施していない。参照SDOP/VT内容・最小集合・適用条件が残る。実readにはSECURITY境界を適用する |
+| 知識提供・意味導出 | 採用範囲に合致したSEEDFIRST意味JSONと、MSG004/001/005の意味candidate → BRAIN/CORE | MSGCONTENTは[固定案どおりの限定採用](decisions/msgcontent-knowledge-po-decision-2026-10-12.md)とし、同じ意味JSONの採否範囲へ戻す。運用knowledge promotionは実施していない。VT103とSDOP5件19節/補足記録条件は[P3FIRSTの限定採用](decisions/p3first-knowledge-po-decision-2026-10-12.md)へ結ぶ。非選択内容・最小集合・案件適用条件は残る。実readにはSECURITY境界を適用する |
 | CORE→OSの受渡し・原記録 | CORE009の提案/選択/使用set、義務・N/A・不足・影響 → OS002の案件記録 | 将来出力のownerを定める案。実set・保存先・端契約版・receiptを捏造しない |
 | 割当・Worker実行 | OS ticket/assignment、LABO水準/INT配置案、INFRA対象資源/容量/Work-Change観測、SECURITY制約 → Worker環境 | 実task・資源source・分類・authority・制約適用は未供給。未評価初回027は既決6条件を満たす場合だけ |
 | 結果・資源観測の受渡し | OSが受領したWorker結果/receipt → LABO057/028/056。INFRA001/004の原観測 → LABO026 | 両者は別source。未選択は未観測。057の既決人手receiptを026の代行許可へ転用しない。結果は実行後出力で、受領は評価成功ではない |
@@ -259,7 +259,7 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 
 この表のStage 1への3件の著述先と、既存後段Stageの契約入力を先に導く順序は**提案差分**であり、採択済みの配属ではない。009／002については、9/27・10/3のrouting containerを`not_stage_candidate`としてStageへ配属しなかった状態からの差を提案する。著述対象は10/10採用の009の1.0規律・COREAPPLYと002のOSTRACEの本文範囲に限る。container内の旧要求atomのrehome／successor対応・被覆は未完のまま既存ledgerへ保持し、本案の著述先や当該追補のL3から旧atom全体の被覆を推定しない。10/3の374件roster、routingの別分母、要求の採否・版・承認parentは書き換えない。Stageは優先群であり、参照した契約の既存Stage番号だけを理由に当該契約を省いたり、Stage全体の実装を開始条件にしたりしない。初回経路の後には既存のStage 2c早期投資枝と2b／3の並行案を比較材料として残すが、その再開も本案から生成しない。
 
-MSGCONTENTは3件の意味内容と原文の適用制限に限定して採用済みで、運用knowledge promotionは未実施である。初回の起草範囲を確定する前に残る入力は、①必要な参照知識・技法内容の採否／不足とMSG3件の非採用範囲、②5操作で選択するsourceからの有効依存の照合、③10/10の前提を機構として成立させる範囲・証拠である。Stage照合の45identityは参照集合であり、本表も正式な最小親集合・再帰的閉包を確定した表ではない。①②の差分により必要な親や操作範囲が変わる場合は、同じ本節を更新してから対象revisionを固定する。未選択の能力義務は消さず、初回操作への適用と区別する。
+MSGCONTENTは3件の意味内容と原文の適用制限、P3FIRSTはVT103の限定意味とSDOP5件19節/補足記録条件を採用済みで、運用knowledge promotionは未実施である。初回の起草範囲を確定する前に残る入力は、①限定採用の範囲外に必要となる知識・技法内容の採否／不足とMSG3件/P3FIRSTの非採用範囲、②5操作で選択するsourceからの有効依存の照合、③10/10の前提を機構として成立させる範囲・証拠である。Stage照合の45identityは参照集合であり、本表も正式な最小親集合・再帰的閉包を確定した表ではない。①②の差分により必要な親や操作範囲が変わる場合は、同じ本節を更新してから対象revisionを固定する。未選択の能力義務は消さず、初回操作への適用と区別する。
 
 ③には現在停止中のschema・実装・検証・CI等を要する部分が含まれうる。「機構として成立」を文書整備・知識採用・hash照合だけで満たしたとはしない。その部分の具体的な実施範囲と、L3再開との順序は未確定であり、POへ出す判断材料に明示する。停止中の下流を準備の名で実行したり、本案で10/10の前提を解除したりしない。一方、実endpoint／契約版range／案件値／評価oracle／toolchain・lock／setup／更新復旧の実行証拠は、対象要件・設計・実行の各段階へ残し、その全ての完成を現在の要求整理Issueの終了条件に足さない。
 
