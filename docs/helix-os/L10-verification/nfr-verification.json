@@ -47,9 +47,17 @@
     {
       "path": "docs/helix-brain/candidates/first-cycle-reference-template-knowledge.json",
       "sha256": "321d1253e63a11c3b14b398138ee976e2960298d2007431808396171b2431caf"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md",
+      "sha256": "be23fea5cbffa3a19538bf3b1dba67eff424454f9adaa1d369aa9e22ba4c6dff"
     }
   ],
-  "dependency_boundary": "意味identity判定はHARNESS052、既存正本/event/projection/復旧はOS001/002/007/009、実権限/隔離はSECURITY、資源はINFRA。owner-qualified L3契約のexact revisionは未承認/未束縛。意味をOSで補わず該当実操作を保留する。",
+  "dependency_boundary": "意味identity判定はHARNESS052、既存正本/event/projection/復旧はOS001/002/007/009、実権限/隔離はSECURITY、資源はINFRA。owner-qualified L3契約のexact revisionは未承認/未束縛。意味をOSで補わず該当実操作を保留する。HARNESS052は10/3時点の版未指定から10/10 VERSIONJOINで1.0へ指定済み。既存OS-L2/L11-001〜029の採択固定revision・権限境界と一般更新/stale/再送条件は再定義しない。",
   "knowledge_use": "採用P3FIRSTのVT103と選択SDOP19節の問い/証拠/戻し先を限定利用する。数値・方式・全技法・正式schemaは採用しない。",
   "document_format": "JSONが意味正本、MDは生成view。本keyは文書用であり製品schema/wire/transaction方式を固定しない。",
   "legacy_comparison": {
@@ -67,6 +75,13 @@
         "lines": [
           76,
           76
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": [
+          19,
+          29
         ]
       }
     ],
