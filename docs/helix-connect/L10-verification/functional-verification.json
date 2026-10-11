@@ -159,6 +159,7 @@
     "sources": [
       {
         "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "identity": "PDC L5 §1 component/authority and §3 full/incremental ingestion",
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
         "lines": [
           33,
@@ -170,6 +171,7 @@
       },
       {
         "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+        "identity": "PDC L6 §0 function boundary and §1 public API/exact oracle",
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
         "lines": [
           27,
@@ -179,6 +181,7 @@
       },
       {
         "asset_id": "LEGACY-ASSET-BD13CC67526B48D461F9",
+        "identity": "ADR-003 runtime adapter boundary; A-71 failure",
         "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md",
         "lines": [
           8,
@@ -188,6 +191,7 @@
       },
       {
         "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "identity": "UWJ-FR-006",
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
         "lines": [
           50
@@ -196,15 +200,16 @@
       },
       {
         "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "identity": "HIL-NFR-04",
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
         "lines": [
-          77,
           184
         ],
         "locator_kind": "individual_lines"
       },
       {
         "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "identity": "MIC-R-02 serial integration and main merge workflow",
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
         "lines": [
           66,
