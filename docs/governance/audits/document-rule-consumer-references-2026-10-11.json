@@ -1,0 +1,257 @@
+{
+  "scope": "#2903の残るGUIローダ・利用者instruction管理区間・PRテンプレートの運用参照化。規則・要求の意味変更、正式機構への移管、L3再開を含まない。",
+  "base_revision": "c947f6eb1e888c786d3c61e3fbfea45043c92132",
+  "input_pins": [
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "0c9f42d1099d6d8d12979cbc86f21ce256b706f465d4e87ef71d591643fb8ab3"
+    },
+    {
+      "path": "scaffold/review-handoff/claude-current-loader.md",
+      "sha256": "c11d90db93c373cfb4213ccdc8db4a65d98f7813e6ceac2265ca0cc18d3666b5"
+    },
+    {
+      "path": "scaffold/review-handoff/configure_gui.py",
+      "sha256": "8a0dfe35b07856ebdb75839fdbe6ca5f551294b00ff82d61dc7317c29a380be9"
+    },
+    {
+      "path": "scaffold/external-references/SCF-B-0003.json",
+      "sha256": "4c7f0764a5ccff4db1eb921d73bc38a1c8fede0d9c73ef938e2092be25e3a761"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "a56e0d2f9484234f0b5de01692b19663fea9549acdfb45362c656bcc07243880"
+    },
+    {
+      "path": "scaffold/review-handoff/README.md",
+      "sha256": "a14b439312f15b78e715e35d459b72450f3d9e88f96f77428168ba93ade59686"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature-ticket-projection.yml",
+      "sha256": "1e3c965351e4f55455805f0804917b9af2ae834ff545610aa86957dd318f023f"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c"
+    },
+    {
+      "path": "docs/governance/authority-state-model.md",
+      "sha256": "1c0336ec838d3603231ffe6689175e9422c9cb1d19476159f88ab27f6a6233eb"
+    }
+  ],
+  "legacy_source": {
+    "asset_id": "LEGACY-ASSET-B8D84651753481B5F2B9",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/operations-rule-audit-2026-07-26.md",
+    "sha256": "d32bb1a780a36cd0710cbd58d575e900ac14c154a0e84f5dc92423b46c01466e",
+    "lines": [
+      3,
+      6,
+      38,
+      39
+    ],
+    "purpose": "ORA-005/006の正本/adapter driftと誤認を正本参照へ寄せる。旧marker照合/runtimeは実行しない。"
+  },
+  "source_mapping": [
+    {
+      "old_scope": "GUI登録・配送・ACKとauthorityへの非作用",
+      "destination": "GUIレーンの運転と通知",
+      "comparison": "登録と配送、不成立・ACK境界は正本へ。loader前半の現行入口/非実行archiveの所在は保持。"
+    },
+    {
+      "old_scope": "exact base/HEAD review・finding・Ready・blocker",
+      "destination": "作成側とレビュー対応側の責務",
+      "comparison": "同じ対象revisionの独立review、PR comment、修正後結果とblocker0を正本に保持。"
+    },
+    {
+      "old_scope": "人の追加approveやreceiptを要求しない明示merge・read-after・再照合",
+      "destination": "作成側とレビュー対応側の責務 / governance／operation_change PRのmerge admission",
+      "comparison": "最新baseのmerge結果stale=0、方式、変化時の再照合、追加approveなし、別delivery receipt不要を正本に保持。"
+    },
+    {
+      "old_scope": "Issue close・人間判断の非生成",
+      "destination": "IssueとFeature Ticket / review、判断、merge admission",
+      "comparison": "review/mergeから人の判断・closeを生成せず、ticket完了を別確認する本文を正本に保持。"
+    }
+  ],
+  "consumer_inventory": [
+    {
+      "path": "AGENTS.md / CLAUDE.md / authority-state-model.md",
+      "result": "#2909で運用・委任条件の複製を正本参照に集約。現況と停止境界は入口に保持。"
+    },
+    {
+      "path": "scaffold/review-handoff/claude-current-loader.md",
+      "result": "運用規則の複製を4節とPR class別admissionの参照へ置換。HELIX入口と旧非実行sourceの現況は保持。"
+    },
+    {
+      "path": "~/.claude/CLAUDE.md / ~/.codex/AGENTS.md",
+      "result": "HELIX管理区間を同じcandidate sourceへ同期。区間外の全bytesとhook設定を保持。固定hashとread-afterは下の同期証拠。"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "result": "stale説明の運用本文を正本URL参照へ置換。記入項目は保持。"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature-ticket-projection.yml",
+      "result": "projectionの入力欄と作業上の注意。独立review/mergeの手順本文はない。製品要求の正本にはしない。"
+    },
+    {
+      "path": "scaffold/review-handoff/README.md",
+      "result": "配送機構とcommand/ACK/撤去の使い方を保持。レーン割当・運転は運用モデルへの参照。機構の説明を運用規則の再定義にしない。"
+    }
+  ],
+  "managed_instruction_sync": {
+    "method": "既存checkoutのconfigure_gui.py update_policy/atomic_write_allでHELIX管理区間のみ同期。hook経路とhook設定は更新しない。",
+    "source": "/tmp/helix-rule-consumer-references/scaffold/review-handoff/claude-current-loader.md",
+    "source_sha256": "c11d90db93c373cfb4213ccdc8db4a65d98f7813e6ceac2265ca0cc18d3666b5",
+    "consumer_proof": [
+      {
+        "consumer": "~/.claude/CLAUDE.md",
+        "before_sha256": "83a9522ec1d3846cceeae405877f42f49e20f20ed87f227d9880fe1355b6dfb9",
+        "after_sha256": "3fbbdec0dfe1ab89d6bc6f36b0ad831f53ebf9666e0f04b7346386d894a634a0",
+        "outside_managed_block_sha256": [
+          "bc6e7eef93ed2ce6c8b358efc318bafa13f6924a876583135d8aad20b03fdcca",
+          "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        ],
+        "outside_managed_block_bytes_equal": true,
+        "managed_block_source_sha256": "c11d90db93c373cfb4213ccdc8db4a65d98f7813e6ceac2265ca0cc18d3666b5"
+      },
+      {
+        "consumer": "~/.codex/AGENTS.md",
+        "before_sha256": "233cbdca0dd225b4e30aa5e9c5f4273775cc997a51ec0526d8c7ab1beedcfd47",
+        "after_sha256": "621091090ae526a7e2776fb1929e31371d0a24f29d2d1d2c4366f630d72389a3",
+        "outside_managed_block_sha256": [
+          "1d0a80dcc460f27ebd9863cccd6f907bfcb4b25100f61b63ba1b2f1534d88275",
+          "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        ],
+        "outside_managed_block_bytes_equal": true,
+        "managed_block_source_sha256": "c11d90db93c373cfb4213ccdc8db4a65d98f7813e6ceac2265ca0cc18d3666b5"
+      }
+    ],
+    "hook_settings_byte_hashes_unchanged": {
+      ".claude/settings.json": "717aa50288e964f5b5b1ee4bfa15617442cee42390161a8c5060b87e779a6039",
+      ".codex/hooks.json": "2afc42c2e2efe95e26a1d73d10022a94d69aa3e9d660d57cc1531f2f340f3be9"
+    },
+    "read_after": true,
+    "credentials_or_settings_values_recorded": false
+  },
+  "binding_refresh": [
+    {
+      "binding": "scaffold/bindings/SCF-B-0003.json",
+      "index": 2,
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "before": "819248b77a8455f223c5a8499fd23e1eda565ce98c7cfe9b5e097dbbda6db005",
+      "after": "a56e0d2f9484234f0b5de01692b19663fea9549acdfb45362c656bcc07243880"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0003.json",
+      "index": 6,
+      "path": "scaffold/external-references/SCF-B-0003.json",
+      "before": "a60a770e3fcaaa134709319ebbc64cf74f7add4f8cb475fedbb64f78f5b68711",
+      "after": "4c7f0764a5ccff4db1eb921d73bc38a1c8fede0d9c73ef938e2092be25e3a761"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0046.json",
+      "index": 7,
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "before": "819248b77a8455f223c5a8499fd23e1eda565ce98c7cfe9b5e097dbbda6db005",
+      "after": "a56e0d2f9484234f0b5de01692b19663fea9549acdfb45362c656bcc07243880"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0046.json",
+      "index": 17,
+      "path": "scaffold/bindings/SCF-B-0003.json",
+      "before": "5fd377aba18cf7eb782c36459d345e2dbdfef5b81cb5528e093efbf37af88e66",
+      "after": "6586cb634f53d11871ca8492e8113e14ffa1fe661c3a8942643e16fb1d433cbd"
+    }
+  ],
+  "all_other_binding_fields_equal": true,
+  "configure_code_difference": "POLICY_SHA256の1値だけ更新。関数・hook経路・権限・provider設定は変更しない。",
+  "source_sections_verified": [
+    "GUIレーンの運転と通知",
+    "作成側とレビュー対応側の責務",
+    "IssueとFeature Ticket",
+    "運用規則の置き場と、機構への移管"
+  ],
+  "static_command_checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "182382bb6b7f678e7025fd61c01113d302c8d44eede8cb3aee86362baeaf60e5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": "bindings=147 fail=0"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "stale"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "87a3b1b935511a85473d742a599e5f4e976e2504e9b0e25e6203da661cd9bb49",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": "stale=0"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "residuals"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "f46ea5e2820c2731f4999edec0095a9094928411307eacaac3be271f8aae3fd5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": "residuals=0"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "selftest"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "f337690f27562141e096e0c787c41bee14b7949dc24566fa42fa5e21880194f7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": "cases=69 fail=0"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/review-handoff/gui_selftest.py"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6173c4b4b77a046eae15fef56116ced73f98354c983c82bf2e9f9bb1c0f787c3",
+      "summary": "OK"
+    }
+  ],
+  "remaining": [
+    "このinventory外の全旧source consumerの移管/closureは未証明。#1813/#1864/#1866と対象Bindingに保持。",
+    "#2905の最小対象への条件適用、安全/接続/資源/計測scopeと#2846の対象選択は未完。",
+    "新しい管理sourceはcandidate bytesで同期した。独立reviewで変更された場合は新しいsourceへ再同期し、outside bytesとhook不変を再確認する。"
+  ],
+  "independent_review": "本記録を含むexact HEADをPRで依頼し、Issue全段落の完了をmergeと別に判定する。"
+}

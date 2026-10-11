@@ -15,7 +15,7 @@ HERE = Path(__file__).resolve().parent
 POLICY_SOURCE = HERE / "claude-current-loader.md"
 POLICY_START = "<!-- HELIX:current-loader:start -->"
 POLICY_END = "<!-- HELIX:current-loader:end -->"
-POLICY_SHA256 = "4ecd663cb7adb722acc694dc22d352d682edfcdd2855a23a41de47ad8513c138"
+POLICY_SHA256 = "c11d90db93c373cfb4213ccdc8db4a65d98f7813e6ceac2265ca0cc18d3666b5"
 # 同じHELIX管理区間を両runtimeの利用者instructionへ同期する。marker外の利用者本文は保持する。
 POLICY_PATHS = {"claude": "~/.claude/CLAUDE.md", "codex": "~/.codex/AGENTS.md"}
 FORBIDDEN_POLICY_TEXT = ("許可している", "承認済み", "権限を与える", "authorized", "#1888")

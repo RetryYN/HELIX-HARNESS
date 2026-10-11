@@ -396,6 +396,8 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 
 今回、CLAUDE.mdのinventory-first・更新履歴の複製はAGENTS.mdへ、AGENTS.md／CLAUDE.mdのGitHub運転と委任条件の複製は本書へ寄せた。Claude固有の旧sourceの所在とAI context生成器の未構築という現況はCLAUDE.mdに保持する（[review指摘の訂正記録](audits/document-rules-consolidation-2026-10-11-r2.json)）。authority状態モデルの遷移図に残っていた旧委任条件も本書への参照へ訂正した。これは既決の意味に追随する参照整理であり、運用の変更や新しい承認条件の追加ではない。利用者instruction・GUIローダ・scaffold内の個別consumerまで全件を移管した証拠ではない。
 
+後続の[consumer参照整理の記録](audits/document-rule-consumer-references-2026-10-11.json)では、GUIローダの運用本文とPRテンプレートのmerge直前stale手順を本書への参照へ寄せ、両runtimeの利用者instructionのHELIX管理区間を同じsourceへ同期した。review-handoffの説明には配送機構・command・ACK・撤去の利用方法を残し、レーンの割当と運転は本書への参照から読む。旧sourceの全consumer closureや、正式機構への移管完了はこの参照整理から生成しない。
+
 ### 現在の照合と、設計後の開発規律
 
 開発repoの運用と製品が提供する規律を混ぜない。以下の製品側の採用状態は[43件の1.0判断](decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)等の対象revisionから読む。ここには具体的な言語ルールやtool設定を新設しない。

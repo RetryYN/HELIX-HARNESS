@@ -1,0 +1,61 @@
+{
+  "corrects": {
+    "revision": "37b0ec7a8f4aa45730f5cfea028dbb7a7bff369a",
+    "path": "docs/governance/audits/document-rule-consumer-references-2026-10-11.json",
+    "sha256": "ef224ed0f1721feed0e81e0684da569ca10a7fff9bf37074a33f4daf5e496420",
+    "scope": "先行記録を改変せず、candidate先行同期とmain不一致期間・不採用時の戻しを追補。"
+  },
+  "finding": {
+    "id": "F1",
+    "severity": "Minor",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2911#issuecomment-6109698825"
+  },
+  "timing": "両runtimeの管理区間は独立reviewとmerge前にcandidate c11d90dbのbytesへ同期した。内容の採用・merge許可を同期から生成しない。",
+  "main_mismatch": {
+    "revision": "c947f6eb1e888c786d3c61e3fbfea45043c92132",
+    "source_path": "scaffold/review-handoff/claude-current-loader.md",
+    "source_sha256": "4ecd663cb7adb722acc694dc22d352d682edfcdd2855a23a41de47ad8513c138",
+    "candidate_source_sha256": "c11d90db93c373cfb4213ccdc8db4a65d98f7813e6ceac2265ca0cc18d3666b5",
+    "argv": [
+      "python3",
+      "-B",
+      "scaffold/tools/scfctl.py",
+      "residuals"
+    ],
+    "exit_code": 1,
+    "stdout": "SCF-B-0003: 外部instructionがHELIX sourceと不一致: ~/.claude/CLAUDE.md\nSCF-B-0003: 外部instructionがHELIX sourceと不一致: ~/.codex/AGENTS.md\nresiduals=2\n",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "meaning": "main版のsourceは旧blockを期待するためcandidate同期中はinstruction不一致2件になる。candidate HEADでは0。mainとHEADの検査範囲を混ぜない。"
+  },
+  "restoration_if_not_admitted": {
+    "steps": [
+      "mainが依然旧sourceを採用していることと、対象commit・sourceのSHAを再取得する。base c947f6ebの旧sourceは4ecd663cb7adb722acc694dc22d352d682edfcdd2855a23a41de47ad8513c138。mainが進んだ場合は、そのmain sourceを基準にする。",
+      "main版configure_gui.pyのupdate_policyとatomic_write_allを用い、現在の両consumerを再読してHELIX管理区間だけをmain sourceへ再同期する。同期の前後で区間外bytesを比較し、同時更新を検出した場合は上書きしない。",
+      "現在のhook登録checkoutのpathとhook設定は保つ。別worktreeからconfigure_gui.py --applyを起動してhookを別pathへ付け替えない。",
+      "両consumerの管理区間の一致をread-afterし、main版scfctl residualsのresiduals=0を確かめる。旧CI/runtime/testは実行しない。"
+    ],
+    "supported_code": "scaffold/review-handoff/configure_gui.py update_policy / atomic_write_all（main版）。既存の同期で使ったものと同じ関数。",
+    "not_executed": "本PRは候補内容の変更を求められておらずreview継続中なので、現在は戻していない。戻しを実行済み・合格済みとしない。"
+  },
+  "reconstruction_checks": [
+    {
+      "consumer": "~/.claude/CLAUDE.md",
+      "after_sha256_matches": true,
+      "outside_hashes_match_recorded_before": true,
+      "before_reconstructed_using_main_block_sha256": "83a9522ec1d3846cceeae405877f42f49e20f20ed87f227d9880fe1355b6dfb9",
+      "before_reconstructed_matches_recorded_before_sha256": true,
+      "limitation": "現在の区間外bytesと固定main sourceからの再構成一致。同期前の実ファイルを独立に観測した証拠ではない。"
+    },
+    {
+      "consumer": "~/.codex/AGENTS.md",
+      "after_sha256_matches": true,
+      "outside_hashes_match_recorded_before": true,
+      "before_reconstructed_using_main_block_sha256": "233cbdca0dd225b4e30aa5e9c5f4273775cc997a51ec0526d8c7ab1beedcfd47",
+      "before_reconstructed_matches_recorded_before_sha256": true,
+      "limitation": "現在の区間外bytesと固定main sourceからの再構成一致。同期前の実ファイルを独立に観測した証拠ではない。"
+    }
+  ],
+  "main_worktree": "この観測用worktreeはcommand完了・clean確認後に削除する。pathは成立条件にしない。",
+  "current_candidate_validation": "先行HEADのvalidate147 fail0/stale0/residuals0、selftest69/GUI35を維持。訂正は固定記録の追加のみ。",
+  "authority_effect": "none"
+}
