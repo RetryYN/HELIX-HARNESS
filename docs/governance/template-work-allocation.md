@@ -270,3 +270,11 @@ scope制限も採用対象である。原文の1.0境界にある本番chaos等�
 汎用知識はBRAIN、製品への適用・義務・不足はCORE、使用set/版・案件記録はOS、工程/状態意味はHARNESSへ保持する。この9件は未採用で、既決SEEDFIRSTもMSGCONTENTの固定payloadも変更しない。BRAIN007/025の知識昇格・LABO評価・OS登録/振分け・独立検証は免除しない。source全文の移管・全体最小集合・欄の完全意味比較・正式schema/runtime・L3再開は未完のままである。
 
 旧JSON authority19〜60の意味/view・portfolio/pair、旧verification phase28〜40/73〜79のbasis/condition/evidence、旧ddd-tdd-rules21〜24の契約先行と欠陥検出Redを読取り起点に意味再導出した。旧層名・G番号・evidence形式・旧runtime/CIは移さず、原文seedが既に保持する現行pairと責務へ対応付ける。新しい要求・版・許可・gateは加えない。
+
+### 参照知識9件の本体節と欄文脈
+
+意味候補の`required_field.value.section_contracts`で48本体節を原文へ結び、欄が表す意味・適用義務・検出する取り違えを比較できる形にした。設計値を記入する欄、固定の規則/条件、技法の早見、参考分類、実行後の証拠を区別する。これは全節の欄文脈の比較であり、各欄の独立locator・要否・oracleの完全対応を証明したものではない。
+
+ログの相関IDは発行/伝搬、非機能値は決定者/根拠/受入、運用は方式/担当/復元実績、規則は全行/マスと未決返却、依存は版固定/更新owner/EOLへ戻す。原文の表・問い・規則を保持し、値未決をN/Aへ変えない。VTは観点・技法・必須証拠・差戻しの4節を分け、主力/補助/後続と実証の時点を混同しない。SDOP002のIPA参考枠、SDOP003の例時間、SDOP005の更新/CI例、VTの早見を製品値・全件実行義務・実行許可へ昇格しない。
+
+旧意味JSONの適用/portfolio/pairと契約先行/TDDを起点にした説明の具体化であり、新たな規範・case・schema・gateではない。知識候補の採否、全欄の最終意味比較、未定義supersession、全体最小集合、BRAIN007/025昇格、L3再開は未完を保持する。
