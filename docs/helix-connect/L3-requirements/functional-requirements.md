@@ -1,0 +1,177 @@
+# HELIXCONNECT-L3-PREREQUISITE-FUNCTIONAL
+
+生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `d0b30be00b9bcb143d2161dca391f7ea7cbb7c6357c5522a5ea33fe426c56d28`。JSONから再生成する。
+
+| 項目 | 内容 |
+|---|---|
+| mechanism | HELIX-CONNECT |
+| stage | Stage 1 limited prerequisite norm authoring |
+| primary_parents | HELIXCONNECT-L2-001 / HELIXCONNECT-L2-002 / HELIXCONNECT-L2-003 / HELIXCONNECT-L2-005 / HELIXCONNECT-L2-007 / HELIXCONNECT-L2-009 |
+| conditional_additional_parents | HELIXCONNECT-L2-004 / HELIXCONNECT-L2-006 |
+| version_target_by_parent | HELIXCONNECT-L2-001: 1.0 / HELIXCONNECT-L2-002: 1.0 / HELIXCONNECT-L2-003: 1.0 / HELIXCONNECT-L2-004: 1.0 / HELIXCONNECT-L2-005: 1.0 / HELIXCONNECT-L2-006: 1.0 / HELIXCONNECT-L2-007: 1.0 / HELIXCONNECT-L2-009: 1.0 |
+| historical_stage_by_parent | HELIXCONNECT-L2-001: Stage 1 / HELIXCONNECT-L2-002: Stage 1 / HELIXCONNECT-L2-003: Stage 1 / HELIXCONNECT-L2-004: Stage 1 / HELIXCONNECT-L2-005: Stage 1 / HELIXCONNECT-L2-006: Stage 2a / HELIXCONNECT-L2-007: Stage 5 / HELIXCONNECT-L2-009: Stage 4 |
+| status | draft |
+| authority_effect | none |
+| source_revision | 990ffad297804dd39d4da1474545e90ddc060c7f |
+| scope | 選択初回循環と安全/資源/観測受渡しに必要な001/002/003/005/007/009。004は構成体/再送選択の必要閉包、006は片側交換選択時の追加条件付き規範。歴史Stage/版を保持して入力規範を先行著述し、全接続/全能力/具体transport/schemaを前倒ししない。 |
+| source_pins | path: docs/concept/helix-concept.md / sha256: bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715 / path: docs/concept/helix-principles.md / sha256: 5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441 / path: docs/concept/product-boundary.md / sha256: 61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139 / path: docs/helix-connect/L1-planning/connect-intent.md / sha256: 9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70 / path: docs/helix-connect/L2-requirements/connect-requirements.md / sha256: 94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1 / path: docs/helix-connect/L11-acceptance/connect-acceptance.md / sha256: aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9 / path: docs/helix-connect/sources/connect-l1-po-original-2026-09-27.md / sha256: a9737c48618f048103879ef1602b82b9800c8b25df884a5d04562a07fcffec1a / path: docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md / sha256: 82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69 / path: docs/governance/decisions/po-decision-2026-09-29-57candidates.md / sha256: c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad / path: docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json / sha256: eb1e830f824cfdf7f29f343e0408e622bd80f076b8c1294b35c0cc3be2661735 / path: docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md / sha256: 994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b / path: docs/governance/requirements-entry-restart-proposal.json / sha256: 29bd949ddd49348bb149f11ea253959075f7c7ac7e248035701a2002199efaf4 / path: docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md / sha256: 9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220 / path: docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md / sha256: 27b51768cbf010d201ccc2aafe8e4c893ec5ccb2a9a0bce662af343ef87809ee / path: docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json / sha256: ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a / path: docs/governance/template-work-allocation.md / sha256: 40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md / sha256: 2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md / sha256: 48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42 / path: archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md / sha256: ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md / sha256: e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md / sha256: db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md / sha256: f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6 |
+| parent_basis | decision: docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md / adopted_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc / ids: HELIXCONNECT-L2-001 / HELIXCONNECT-L2-002 / HELIXCONNECT-L2-003 / HELIXCONNECT-L2-004 / HELIXCONNECT-L2-005 / HELIXCONNECT-L2-006 / HELIXCONNECT-L2-007 / decision: docs/governance/decisions/po-decision-2026-09-29-57candidates.md / line: 95 / identity: HELIXCONNECT-L2-009 / registration: MPR-RC-HELIXCONNECT-L2-009-002 / l2_section_sha256: d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f / l11_section_sha256: 07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1 / boundary: A：direction/orderは属性、feedbackは型付き戻り辺、unknown停止は操作ごと。旧10/5 L3の承認/本文を復活しない。 |
+| dependency_boundary | HARNESS010/011/023共通入出力/依存/検証/更新義務、endpoint意味契約とowner、SEC操作authority/data-use、INFRA実経路を操作/revision/scopeごとに照合する。owner-qualified exact bindingは別に閉じる。互換参照は送信用許可を要求せず既存accessを保持する。 |
+| knowledge_use | P3FIRSTのVT103と選択SDOP19節の問い/回答根拠/未完・戻し先を限定利用。MSG001の辺/因果とMSG005の構成責務を限定採用した意味へ接続し、全schema/技法/方式/数値を採用しない。 |
+| document_format | JSON意味正本、MD生成view。文書keyを製品wire/schema/transport方式へ昇格しない。 |
+| legacy_comparison | reuse_class: semantic_rederivation / sources: asset_id: LEGACY-ASSET-C3DE79BA9451172F3E43 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md / lines: 33 / 57 / 86 / 109 / locator_kind: inclusive_line_ranges / asset_id: LEGACY-ASSET-DD66C1B6B7BE234B37E6 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md / lines: 27 / 57 / locator_kind: inclusive_line_ranges / asset_id: LEGACY-ASSET-BD13CC67526B48D461F9 / path: archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md / lines: 8 / 45 / locator_kind: inclusive_line_ranges / asset_id: LEGACY-ASSET-5EE032D657C221184B00 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md / lines: 50 / locator_kind: individual_lines / asset_id: LEGACY-ASSET-719D5EC9C06FC4AAD0FF / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md / lines: 77 / 184 / locator_kind: individual_lines / asset_id: LEGACY-ASSET-23D3D9769B093AFDCC25 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md / lines: 66 / 132 / locator_kind: individual_lines / preserve: versioned contract・stale再照合・同operation同digestの重複防止/異digest拒否・lineage/partial failure・adapterで固有事情を隔離・actor/authority分離。loop累積上限/停止/checkpointと直列統合後のdriftは一般意味として保持。 / change: 旧PDCのNode/Python/DB/current projection/active最大1、旧ADRのCLI/認証方式/API-key禁止をCONNECT一般へ移植せず、現行endpoint ownerと技術通信に意味再導出する。009のexact typed relationは旧bounded検索で未発見の新規案を9/29に採択済みで、旧loop atomを直接入力/旧後継にしない。 / reason: 9/28採択と9/29条件付き採択、10/12限定前提形成の疎結合/変更耐性/責務を保持するため。 / consumer: BRAIN032→CORE009→OS002と必要なSEC/INFRA/LABO/INTの選択辺、各ownerの業務判断。旧全consumer/全archive closureは未完。 / nonexecution: 旧runtime/source/test/CI/CLIを実行/移植しない。旧greenは証拠にしない。 |
+| remaining | 各ownerの限定pair・条件付き追加参照・全scope exact bindingと最終監査は未完。 / 正式schema/transport/対設計/oracle凍結/実装前Red/Green/実認可/経路/効果/受領/CIは後続段階。 / PO実物L11 Accepted、通常L3再開、release/tag/deploy/配布/Issue closeを文書承認から生成しない。 |
+| document_id | HELIXCONNECT-L3-PREREQUISITE-FUNCTIONAL |
+| layer | L3 |
+| pair | P3: L3↔L10 |
+| category | functional |
+
+## HELIXCONNECT-L3-001-F01 接続identityと両端契約
+
+**parent**: HELIXCONNECT-L2-001
+**obligation**: source/consumer・端点owner・目的/能力名・方向・scope・意味契約identity/revision・adapter/transport revision・成果物/依存版・互換範囲・運用状態を個別connectionへ結び、登録receiptを返す。同一端点の共有は別identity/意味契約/scopeで識別できれば許容する。
+**oracle_ref**: HELIXCONNECT-L10-001-F01
+
+## HELIXCONNECT-L3-001-F02 共通descriptorと登録境界
+
+**parent**: HELIXCONNECT-L2-001
+**obligation**: 能力名、契約/成果物/依存版、scope、correlation、期限、idempotency、result state、適用SECURITY許可/data-use/classification参照を同接続へ保持する。HARNESS010/011の宣言・互換・検証・更新/切戻し/未完義務を参照し、登録を利用許可や業務承認へ変えない。
+**oracle_ref**: HELIXCONNECT-L10-001-F02
+
+## HELIXCONNECT-L3-002-F01 参照のみの互換照合
+
+**parent**: HELIXCONNECT-L2-002
+**obligation**: 既存読取りscope/access条件下で、登録receipt・両端の実使用revision・互換宣言・scopeを照合し、revision組合せへcompatible/incompatible/unknown/staleを束縛する。送信要求なしならsend_eligibility=not_evaluated、attemptを発行せず、送信用許可を前提にしない。
+**oracle_ref**: HELIXCONNECT-L10-002-F01
+
+## HELIXCONNECT-L3-002-F02 変更後staleと再照合
+
+**parent**: HELIXCONNECT-L2-002
+**obligation**: 端点、意味契約revision、adapter/transport revision、互換範囲の変更で影響接続をstaleにし、再利用前に新しい実使用revisionを照合する。互換確認済みの当該組合せだけstaleを解除する。
+**oracle_ref**: HELIXCONNECT-L10-002-F02
+
+## HELIXCONNECT-L3-002-F03 操作時の送信適格性
+
+**parent**: HELIXCONNECT-L2-002
+**obligation**: 送信要求時だけ互換成立に加えactor/target/operation/revision/environment/scope/expiryの有効SECURITY許可と適用data-use/classificationを照合しeligible/withheldと理由を返す。互換性と認可を互いの代替にしない。
+**oracle_ref**: HELIXCONNECT-L10-002-F03
+
+## HELIXCONNECT-L3-003-F01 契約に束縛したenvelope
+
+**parent**: HELIXCONNECT-L2-003
+**obligation**: 接続identity/operation identity・契約revision・現在互換receipt・能力名・依存版・scope・correlation・expiry・idempotency・result state・適用許可とenvelopeを同送受信へ結ぶ。未知operation/契約外field/異revisionは正常受信とせず拒否または隔離する。
+**oracle_ref**: HELIXCONNECT-L10-003-F01
+
+## HELIXCONNECT-L3-004-F01 同一再送の重複効果防止
+
+**parent**: HELIXCONNECT-L2-004
+**obligation**: 当該operationで再送を選択するとき、同identity・同digest・scope/期限/許可・単一互換contract revisionを維持し、receiverの重複排除契約へ結ぶ。同内容の再送で処理効果を増やさない。
+**oracle_ref**: HELIXCONNECT-L10-004-F01
+
+## HELIXCONNECT-L3-004-F02 異digest衝突の拒否
+
+**parent**: HELIXCONNECT-L2-004
+**obligation**: 同operation/idempotency identityに異digestを与えた場合は衝突として拒否し、別内容を再送と扱わず、受信側効果を増やさない。
+**oracle_ref**: HELIXCONNECT-L10-004-F02
+
+## HELIXCONNECT-L3-004-F03 既存上限・再送不可・失効
+
+**parent**: HELIXCONNECT-L2-004
+**obligation**: 接続契約の再送上限/可否、期限/許可、累積attempt、ACK/resultを照合し、上限到達/再送不可業務結果/失効/staleでは追加attemptを出さない。新revisionを混在させず、CONNECTが再送policyや業務判断を作らない。
+**oracle_ref**: HELIXCONNECT-L10-004-F03
+
+## HELIXCONNECT-L3-005-F01 append-only技術trace
+
+**parent**: HELIXCONNECT-L2-005
+**obligation**: 登録/照合/送信/受信/再送/終端/stale/交換/切戻し/拒否をconnection・operation・contract revision・attempt identity/順序・correlation・scope・期限・許可結果へ結ぶ。成功/失敗/部分成功/重複/digest衝突/unknownと観測端点を区別する。
+**oracle_ref**: HELIXCONNECT-L10-005-F01
+
+## HELIXCONNECT-L3-005-F02 未完とrecovery引継ぎ
+
+**parent**: HELIXCONNECT-L2-005
+**obligation**: ACKなし/取消/expiry/失効/送信後結果未回収/部分成功をunknown/unfinishedとして保持し、停止位置・未完義務・owner/recovery参照へ結ぶ。先行成功を消さず終端/業務完了へ丸めない。
+**oracle_ref**: HELIXCONNECT-L10-005-F02
+
+## HELIXCONNECT-L3-006-F01 選択した片側交換の照合
+
+**parent**: HELIXCONNECT-L2-006
+**obligation**: 片側交換を選択するoperationに限り、非変更側の機構/契約版を固定し、送信側機構/adapter・受信側機構/adapterの各変更を個別に再照合する。互換なら固定側を改変せず通信できる。
+**oracle_ref**: HELIXCONNECT-L10-006-F01
+
+## HELIXCONNECT-L3-006-F02 交換時の未完と切戻し
+
+**parent**: HELIXCONNECT-L2-006
+**obligation**: 交換/切戻し時の未完operation/ACK/義務/期限/scope/累積attemptをHARNESS010/011の明示recovery先へ引継ぐ。非互換/unknown/stale/意味契約変更では通信を停止し、単一新revision再照合と再開条件成立前にretryしない。
+**oracle_ref**: HELIXCONNECT-L10-006-F02
+
+## HELIXCONNECT-L3-007-F01 必須辺の技術的終端
+
+**parent**: HELIXCONNECT-L2-007
+**obligation**: 構成体ownerが宣言したexact edge集合・順序・correlation/scope・operation mapping・各登録/現在互換/expiry/idempotency/result/許可とrecovery先を照合する。全必須辺の受渡しを終端まで確認した場合だけ技術的通信完了を報告する。
+**oracle_ref**: HELIXCONNECT-L10-007-F01
+
+## HELIXCONNECT-L3-007-F02 中間故障と後続停止
+
+**parent**: HELIXCONNECT-L2-007
+**obligation**: 一中間辺のstale/timeout/異digest衝突/expiry/取消/失効/部分成功/unknownを個別検査し、必要な先行条件を満たさない後続を実行済みにしない。停止位置・未完辺/義務/owner/recoveryを示し、先行成功を消さない。
+**oracle_ref**: HELIXCONNECT-L10-007-F02
+
+## HELIXCONNECT-L3-009-F01 方向属性と個別authority
+
+**parent**: HELIXCONNECT-L2-009
+**obligation**: one_wayは宣言方向だけ、paired_bidirectionalは二方向を個別identity/endpoint contract/scope/operation authorityへ結ぶ。一方向登録・受信・ACK/feedbackから逆向き送信権を推論しない。
+**oracle_ref**: HELIXCONNECT-L10-009-F01
+
+## HELIXCONNECT-L3-009-F02 serialの宣言順
+
+**parent**: HELIXCONNECT-L2-009
+**obligation**: serial topologyは構成体/edge ownerが宣言し、先行辺の必要結果/契約条件成立前に後続を実行しない。CONNECTがOS ticket計画や具体workflow順序を作らない。
+**oracle_ref**: HELIXCONNECT-L10-009-F02
+
+## HELIXCONNECT-L3-009-F03 parallelと明示join
+
+**parent**: HELIXCONNECT-L2-009
+**obligation**: parallelは独立edge identity/scope/contract/operation/resultと宣言joinを持つ。join全条件成立までcompositeを完了にしない。join不足だけで個別に適格な辺の送信を一括停止しない。
+**oracle_ref**: HELIXCONNECT-L10-009-F03
+
+## HELIXCONNECT-L3-009-F04 typed feedbackと未送信relation
+
+**parent**: HELIXCONNECT-L2-009
+**obligation**: feedbackは一方向typed return edgeとしてsource connection/operation、target connection/owner、reason/根拠参照、correlation/lineage、契約版、停止/再開状態を持つ。記録/伝送は受領/解決/承認/task完了を意味しない。
+**oracle_ref**: HELIXCONNECT-L10-009-F04
+
+## HELIXCONNECT-L3-009-F05 bounded loopと既存policy
+
+**parent**: HELIXCONNECT-L2-009
+**obligation**: loopを明示forward/feedback edge、既存retry/budget/termination参照、期限、終端route/ownerへ結ぶ。operation lineageと累積attemptを保持し、上限到達で未解決/理由を既存ownerへ返す。新上限/解決条件をCONNECTが作らない。
+**oracle_ref**: HELIXCONNECT-L10-009-F05
+
+## HELIXCONNECT-L3-009-F06 初回送信の局所unknown
+
+**parent**: HELIXCONNECT-L2-009
+**obligation**: 初回送信のendpoint/connection identity/契約revision/適用authorityがmissing/unknown/stale/conflictなら当該辺をeligibleにしない。feedback reason/loop policy/parallel join/ACK欠落だけでは独立して適格な初回送信を止めない。
+**oracle_ref**: HELIXCONNECT-L10-009-F06
+
+## HELIXCONNECT-L3-009-F07 feedback送信だけの保留
+
+**parent**: HELIXCONNECT-L2-009
+**obligation**: feedback操作のreason/source/target identity/契約revision/独立逆方向connection/authorityが不足ならfeedback送信だけを保留し、未送信return relationとmissing input/ownerを残す。初回送信不成立や解決済みに読み替えない。
+**oracle_ref**: HELIXCONNECT-L10-009-F07
+
+## HELIXCONNECT-L3-009-F08 loop追加retryだけの保留
+
+**parent**: HELIXCONNECT-L2-009
+**obligation**: retry上限/budget/期限/停止時owner/既存termination policyがmissing/unknown/stale/conflictなら追加retryをせずloopを未解決で保留する。既に適格な初回辺の可否を遡って変えない。
+**oracle_ref**: HELIXCONNECT-L10-009-F08
+
+## HELIXCONNECT-L3-009-F09 joinだけのunknown
+
+**parent**: HELIXCONNECT-L2-009
+**obligation**: parallelの宣言joinがmissing/unknown/stale/conflictならjoin/composite完了だけを保留する。各辺の送信適格性は独立判定する。
+**oracle_ref**: HELIXCONNECT-L10-009-F09
+
+## HELIXCONNECT-L3-009-F10 ACK待ちと完了
+
+**parent**: HELIXCONNECT-L2-009
+**obligation**: ACK未着またはoperation/connection/contract revision対応が不足なら送信attemptをACK待ちとして保持し、受領/operation/composite完了を成立させない。送信attemptを消したり未確認を成功へ丸めない。
+**oracle_ref**: HELIXCONNECT-L10-009-F10
