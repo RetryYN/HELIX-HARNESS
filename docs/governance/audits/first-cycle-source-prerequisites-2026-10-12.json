@@ -1,0 +1,823 @@
+{
+  "audit_id": "FIRST-CYCLE-SOURCE-PREREQUISITES-2026-10-12",
+  "base_revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+  "authority_effect": "要求と接続条件の整理。source選定案であり、知識採用・正式依存宣言・L3再開・実装・実行・機構成立を生成しない",
+  "fixed_sections": [
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity": "HELIXSECURITY-L2-001",
+      "start_line": 70,
+      "end_line": 79,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "0c2fd43eba36ca1461dc40e9e91b390df36fbee51226643a52cab6ec042928e9",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 70,
+      "fixed_end_line": 79,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity": "HELIXSECURITY-L2-002",
+      "start_line": 80,
+      "end_line": 89,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "07ce9de25ab4b47be2b99a0550342230e34520548fe4444b6e0166d9454c61cd",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 80,
+      "fixed_end_line": 89,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity": "HELIXSECURITY-L2-003",
+      "start_line": 90,
+      "end_line": 99,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "2d800eaf8c98669fc8f890559d4405efcd1b3d8855de573b59b70e7961541475",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 90,
+      "fixed_end_line": 99,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity": "HELIXSECURITY-L2-004",
+      "start_line": 100,
+      "end_line": 109,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "1373d55273872771775be0d6f770431d2675d52f23af0606989503eedeb0bc44",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 100,
+      "fixed_end_line": 109,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity": "HELIXSECURITY-L2-005",
+      "start_line": 110,
+      "end_line": 119,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 110,
+      "fixed_end_line": 119,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity": "HELIXSECURITY-L2-006",
+      "start_line": 120,
+      "end_line": 129,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "09459643b100dbe79ef0cf47100a4b56834d975ef309322bc3f8d7f4055d888a",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 120,
+      "fixed_end_line": 129,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity": "HELIXSECURITY-L2-007",
+      "start_line": 130,
+      "end_line": 139,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "052c634e25dff6bd1cba742d240f87d07c6d395852e994414522e4fcd243f210",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 130,
+      "fixed_end_line": 139,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity": "HELIXSECURITY-L2-008",
+      "start_line": 140,
+      "end_line": 149,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "e00f26365cfbe64a4ee8369a9f6001ca4f1fb6f7f933b8055dd6ea47f0019d59",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 140,
+      "fixed_end_line": 149,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity": "HELIXSECURITY-L2-015",
+      "start_line": 210,
+      "end_line": 219,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "40e3bd42faa4b4b89c41a80b291f61c27bcff197a6ac924bedfd370cfe92c147",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 210,
+      "fixed_end_line": 219,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity": "HELIXSECURITY-L2-016",
+      "start_line": 220,
+      "end_line": 229,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "b5ce60587c348e5c055053a1b79187d36ef76a6a816733648a3fc73492ab951c",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 220,
+      "fixed_end_line": 229,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity": "HELIXSECURITY-L2-001",
+      "start_line": 25,
+      "end_line": 25,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "8e22198c3258b212cf56135925e1e6b000c1b937da6e2bf1add8a0133c51a446",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 25,
+      "fixed_end_line": 25,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity": "HELIXSECURITY-L2-002",
+      "start_line": 26,
+      "end_line": 26,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "e3be2a9d718395db4d018280b458e3c85e508bb68c59ae9828f1e486c99c3890",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 26,
+      "fixed_end_line": 26,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity": "HELIXSECURITY-L2-003",
+      "start_line": 27,
+      "end_line": 27,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 27,
+      "fixed_end_line": 27,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity": "HELIXSECURITY-L2-004",
+      "start_line": 28,
+      "end_line": 28,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "bd5cd1a6e0d604302743a36686d93c13fc57e95e62c48bbb64a17edc742911c5",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 28,
+      "fixed_end_line": 28,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity": "HELIXSECURITY-L2-005",
+      "start_line": 29,
+      "end_line": 29,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 29,
+      "fixed_end_line": 29,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity": "HELIXSECURITY-L2-006",
+      "start_line": 30,
+      "end_line": 30,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 30,
+      "fixed_end_line": 30,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity": "HELIXSECURITY-L2-007",
+      "start_line": 31,
+      "end_line": 31,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 31,
+      "fixed_end_line": 31,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity": "HELIXSECURITY-L2-008",
+      "start_line": 32,
+      "end_line": 32,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 32,
+      "fixed_end_line": 32,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity": "HELIXSECURITY-L2-015",
+      "start_line": 39,
+      "end_line": 39,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "1f940c5d714564fca0b15359607e1094efbcfda9e0a47cc97dfd9f63767a42b4",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 39,
+      "fixed_end_line": 39,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity": "HELIXSECURITY-L2-016",
+      "start_line": 40,
+      "end_line": 40,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "3e3b6e6d56a643ee76b377cbfff5917628782bbee2bf69bf97afd9efe84baea6",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 40,
+      "fixed_end_line": 40,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-001",
+      "start_line": 32,
+      "end_line": 41,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 32,
+      "fixed_end_line": 41,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-002",
+      "start_line": 42,
+      "end_line": 51,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "ec40a66b707315814420ac5a7fe17dd4da4b4b3a958cf74a6f799d65ef1d41bc",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 42,
+      "fixed_end_line": 51,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-003",
+      "start_line": 52,
+      "end_line": 61,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "44e32ca4dd7884e3bace925f48b9d76893035f6fcc46dfe958dd249b3b6eea99",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 52,
+      "fixed_end_line": 61,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-004",
+      "start_line": 62,
+      "end_line": 71,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "eec7bc7e7e6f7bb710fd2a191195c6fd656b81d78a8c8aff2bb76b26bca7a2a8",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 62,
+      "fixed_end_line": 71,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-005",
+      "start_line": 72,
+      "end_line": 81,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "4d2e826d42920d60b234a0cd1f23be671829fb052e9235a46fc1a36426acff5f",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 72,
+      "fixed_end_line": 81,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-006",
+      "start_line": 82,
+      "end_line": 91,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "35b634d00f4139bc7fbf91f0c3674f6420fec4f84cc1504f2b489845b31965ef",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 82,
+      "fixed_end_line": 91,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-009",
+      "start_line": 114,
+      "end_line": 123,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "b27aee4ffe80a11d8259e5af0ee0e716907c66ba0d65faa0fe9c0216487a7c16",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 114,
+      "fixed_end_line": 123,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-010",
+      "start_line": 126,
+      "end_line": 135,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "550d8ffed768dd86e5604fe82ba94efba3bd1cb51a7ede68654ba524e3dec798",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 126,
+      "fixed_end_line": 135,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-001",
+      "start_line": 34,
+      "end_line": 43,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "9fa4e35c53eb14f1d938f3299ac034f30c7b26c5848a8779c73359e32ac170fe",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 34,
+      "fixed_end_line": 43,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-002",
+      "start_line": 44,
+      "end_line": 53,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "710b5ef8b55bbef350573769de70e255962fde93e9421fbf4a9c2f43ac4dacfb",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 44,
+      "fixed_end_line": 53,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-003",
+      "start_line": 54,
+      "end_line": 63,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "064f0a0391c19e8726b2252b4dcefa786800983a769a556955ed55108aa4e5db",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 54,
+      "fixed_end_line": 63,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-004",
+      "start_line": 64,
+      "end_line": 73,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "c2a55878949b2659e2000c847df3aa263bbc69ad407b3097e694a1c138631013",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 64,
+      "fixed_end_line": 73,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-005",
+      "start_line": 74,
+      "end_line": 83,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "7a26bfaffee4f4b526deb40fb24536531672dceefc243f340c78a44c11d5d408",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 74,
+      "fixed_end_line": 83,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-006",
+      "start_line": 84,
+      "end_line": 93,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "620c929bf51d1a7e31749f3dc0cd439cf8d8dfcd88f2852c48e19d3845f15528",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 84,
+      "fixed_end_line": 93,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-009",
+      "start_line": 116,
+      "end_line": 125,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "db7eccb04c92d0cc674f4c2b0452b20ede329bd83bc09d46aaed99af2c61c9ea",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 116,
+      "fixed_end_line": 125,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "identity": "HELIXINFRASTRUCTURE-L2-010",
+      "start_line": 128,
+      "end_line": 137,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "15225795b3c03a72922512501bcf696cf13b66d3861a94d0806fa39dfd292cc7",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 128,
+      "fixed_end_line": 137,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "identity": "HELIXLABO-L2-001",
+      "start_line": 69,
+      "end_line": 76,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "9c1f285a0835a56fd7042025636ff68c2bca46d31eb2df693465d02fe772a104",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 69,
+      "fixed_end_line": 76,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "identity": "HELIXLABO-L2-002",
+      "start_line": 77,
+      "end_line": 84,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "d4ecde864ac4129741f32ac65d0075d1d0704cc7166b86491bbae6ef8865bf28",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 77,
+      "fixed_end_line": 84,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "identity": "HELIXLABO-L2-011",
+      "start_line": 163,
+      "end_line": 166,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "9fcf8b7b648681c7ff08080565a2d708cdd9c5a619e40e8f8bad6196f4c36cb6",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 163,
+      "fixed_end_line": 166,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "identity": "HELIXLABO-L2-026",
+      "start_line": 223,
+      "end_line": 226,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "a47b3ed9e39ae16dac5c50ab0d87282b5109c20874830693e5019e38742428ae",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 223,
+      "fixed_end_line": 226,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "identity": "HELIXLABO-L2-028",
+      "start_line": 231,
+      "end_line": 234,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 231,
+      "fixed_end_line": 234,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "identity": "HELIXLABO-L2-056",
+      "start_line": 379,
+      "end_line": 390,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "d8d9c30b52c338580f535a913a4b04d67f0d3d59d79eb2645ed33c911b1621c7",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 379,
+      "fixed_end_line": 390,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "identity": "HELIXLABO-L2-057",
+      "start_line": 391,
+      "end_line": 402,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "d5a62f8588867f80e17e1931f7570c72c89f28eedfd30a5aa9a368fbaba8004d",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 391,
+      "fixed_end_line": 402,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "identity": "HELIXLABO-L2-001",
+      "start_line": 45,
+      "end_line": 45,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "0d4dd3605081f35471edeb94d667b7753b8824d3466b9775cf3b513d0ce83748",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 45,
+      "fixed_end_line": 45,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "identity": "HELIXLABO-L2-002",
+      "start_line": 46,
+      "end_line": 46,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "ce062011fb183b86d221549f02b2885afe619ec15acbd3e3442e9fbe12fc3465",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 46,
+      "fixed_end_line": 46,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "identity": "HELIXLABO-L2-011",
+      "start_line": 62,
+      "end_line": 62,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "309f149464fee0fbdd025523df625f121ec584e93215c5773f41dbe8181154f5",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 62,
+      "fixed_end_line": 62,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "identity": "HELIXLABO-L2-026",
+      "start_line": 77,
+      "end_line": 77,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "f01587e60ad6c4fc356c4060bafb538209d7c0eb0012cc8c4c66503010479008",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 77,
+      "fixed_end_line": 77,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "identity": "HELIXLABO-L2-028",
+      "start_line": 79,
+      "end_line": 79,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "208b35f2bdc5a3e2586b819e1e6dc1e1b77930b6dac44dacb79fa6a4e8e99781",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 79,
+      "fixed_end_line": 79,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "identity": "HELIXLABO-L2-056",
+      "start_line": 138,
+      "end_line": 147,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 138,
+      "fixed_end_line": 147,
+      "same_as_adopted_section": true
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "identity": "HELIXLABO-L2-057",
+      "start_line": 148,
+      "end_line": 155,
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "sha256": "ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 148,
+      "fixed_end_line": 155,
+      "same_as_adopted_section": true
+    }
+  ],
+  "decision_pins": [
+    {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "revision": "6ade4ef4814e58d0de6c1ccb35edfaca6d63fc2d",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "revision": "6ade4ef4814e58d0de6c1ccb35edfaca6d63fc2d",
+      "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "revision": "6ade4ef4814e58d0de6c1ccb35edfaca6d63fc2d",
+      "sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "revision": "6ade4ef4814e58d0de6c1ccb35edfaca6d63fc2d",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+    },
+    {
+      "path": "docs/governance/decisions/first-development-target-selection-po-decision-2026-10-11.md",
+      "revision": "6ade4ef4814e58d0de6c1ccb35edfaca6d63fc2d",
+      "sha256": "f63a64350d25216c22cc56bff73baf513f51c371323fd9026c84d372aef62407"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "revision": "6ade4ef4814e58d0de6c1ccb35edfaca6d63fc2d",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+      "revision": "6ade4ef4814e58d0de6c1ccb35edfaca6d63fc2d",
+      "file_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "start_line": 49,
+      "end_line": 63,
+      "span_sha256": "f3401d41611165915c58d66b60228f061e056b7fe384411602ee2089007c24ca"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "revision": "6ade4ef4814e58d0de6c1ccb35edfaca6d63fc2d",
+      "file_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "start_line": 23,
+      "end_line": 67,
+      "span_sha256": "0b640473d25bde7bab525a6c9f0f7b924ac94f54dfb828d44bd176a9beee31d3"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "revision": "6ade4ef4814e58d0de6c1ccb35edfaca6d63fc2d",
+      "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "start_line": 87,
+      "end_line": 87,
+      "span_sha256": "32a75c3109b0e0a60e502c7535465a5ffa702ebc3af7532f5893dc47fac02f6b"
+    }
+  ],
+  "source_proposals": [
+    {
+      "operation": "知識提供・意味導出",
+      "owner": "BRAIN→CORE",
+      "source_proposal": "SEEDFIRSTの採用範囲に一致する要求/受入意味JSONと、MSG004/001/005の意味candidate。後者はMSGCONTENT未回答のため採用入力にしない",
+      "input_scope": "知識identity/revision/source、全required fields、適用条件、製品要求revision/scope",
+      "status": "意味sourceの候補を提示。参照SDOP/VT内容の採否・最小集合未確定。実BRAIN受渡し未成立"
+    },
+    {
+      "operation": "受渡し・案件記録",
+      "owner": "CORE→OS",
+      "source_proposal": "CORE009が導く提案/選択/使用set、適用義務/N/A/不足/影響の出力を、OS002の案件原記録へ渡す",
+      "input_scope": "同じ要求revision/scope・template版・義務・因果参照と各端の契約",
+      "status": "将来出力のsource owner案。実set・保存先・契約版・receiptは未供給"
+    },
+    {
+      "operation": "割当・Worker実行",
+      "owner": "OS、INFRA、SECURITY、Worker",
+      "source_proposal": "OS017/018のticket/assignment、既整理のLABO水準/INT配置案、INFRA001/003/009の対象資源/容量/Work-Change観測、SECURITY制約をWorker環境へ渡す",
+      "input_scope": "task/attempt、資源/environment/版、actor/target/action/revision/scope/expiry、予算・期限・停止条件",
+      "status": "実ticket・資源観測・性能材料・分類・制約適用は未供給。未評価経路027は6条件を満たす場合だけ"
+    },
+    {
+      "operation": "結果・資源観測の受渡し",
+      "owner": "OS/Worker→LABO、INFRA→LABO",
+      "source_proposal": "Worker結果はOS018/019/023が受領した結果/receiptから057→028/056へ。資源観測はINFRA001/004の対象資源sourceから026へ。両者を別sourceとして提案",
+      "input_scope": "source/契約/要求revision、scope、assignment/attempt、状態/未観測、data-use、原記録への参照",
+      "status": "実観測を捏造しない。057は既決同義務の人手receiptも可能、026へその代行許可を転用しない。選択しないsourceは未観測"
+    },
+    {
+      "operation": "構成更新・復旧",
+      "owner": "INFRA、SECURITY、OS、Worker",
+      "source_proposal": "選択actionのresource before/after・backup/restore/rollback・独立resource/pathをINFRA001/002/005/006へ結ぶ",
+      "input_scope": "target/config/artifact/dependency/data互換/最終適格revision、authority、未完操作",
+      "status": "後続主題への条件案。更新・復旧の実行選択/許可/実証はしない。通常経路とOS停止中独立経路を分ける"
+    }
+  ],
+  "dependency_checks": [
+    {
+      "entry": "SECURITY007",
+      "classification": "Worker実行操作時必須",
+      "dependencies": [
+        "SECURITY003",
+        "SECURITY005",
+        "SECURITY006",
+        "SECURITY008",
+        "OS assignment",
+        "INFRA実資源",
+        "Concept/Worker契約"
+      ],
+      "condition": "通信/credentialを使わない案でも遮断/制約の適用証拠は必要。003はOS project/assignment・INFRA環境・宣言CONNECT identityへ、004は003と構成source版へ戻る",
+      "unresolved": "実environment/capabilities・制約source・適用証拠。未適用/unknown/unsupportedは実行停止、host fallbackなし"
+    },
+    {
+      "entry": "SECURITY005/006/008",
+      "classification": "該当操作のcredential/通信/authority境界として必須",
+      "dependencies": [
+        "SECURITY005↔006/007/008",
+        "SECURITY008→003/004/005/006",
+        "SECURITY006→016→015",
+        "INFRA実資源/実network",
+        "CONNECT論理接続",
+        "OS進行"
+      ],
+      "condition": "相互参照は同じ操作tupleで境界を照合する意味契約。全能力を利用済み扱いせず、循環する参照を無限の起動順にも免除にも変えない。006は016の1.0分類だけを使う",
+      "unresolved": "owner/source/revision/data-useと操作authorityの入力未供給。unknownをpublic/allowにしない。019/016の1.x sink enforcementを初回へ前倒ししない"
+    },
+    {
+      "entry": "INFRA010",
+      "classification": "INFRA実操作時必須、経路/action条件付き",
+      "dependencies": [
+        "INFRA001",
+        "SECURITYの有効authority",
+        "Worker実行契約",
+        "通常経路:OS ticket/assignment+INFRA009",
+        "state-changing:actionに適用されるINFRA005",
+        "独立bootstrap/recovery:INFRA006+別authority"
+      ],
+      "condition": "更新/変更時だけupdate-admission追加。read-onlyでもwrite禁止と対象scopeの前後観測が必要。独立復旧は停止中OS ticket/009応答を開始条件にせず復旧後同期",
+      "unresolved": "実target/action/scope・before/after・authority・復旧対象/互換/証拠未供給。無関係な復旧義務を一律gateにしない"
+    },
+    {
+      "entry": "INFRA009",
+      "classification": "通常Work/Change接続利用時必須",
+      "dependencies": [
+        "INFRA001",
+        "INFRA002",
+        "INFRA004",
+        "INFRA006",
+        "OS versioned Work/Change interface/evidence"
+      ],
+      "condition": "002はapproved design/target/actualを分け、004は対象sourceと既存incident意味を保つ。006への明示依存を通常操作で復旧しない理由だけで除外しない。stage pack利用時だけOS014条件が加わる",
+      "unresolved": "承認対象CORE設計・実資源/観測・独立復旧契約の対応未供給。意味参照/単体成立/実復旧操作を区別し、通常操作を独立復旧扱いにしない"
+    },
+    {
+      "entry": "INFRA006→005→001/002",
+      "classification": "006の独立成立依存、005のaction適用条件を保持",
+      "dependencies": [
+        "INFRA006→005",
+        "独立resource/path+SECURITY別authority",
+        "INFRA005→001/002",
+        "state owner/retention/recovery要求",
+        "独立検証restore環境"
+      ],
+      "condition": "backup設定≠backup成功、backup存在≠restore可能、rollback≠incident終了。001はCORE設計参照と資源/environment/interface、002は001とapproved設計・qualified実観測を要する",
+      "unresolved": "実path・別authority・適格state/戻し先/互換と独立検証未供給。完全自動failover・INFRA012/014/019を追加必須化しない"
+    },
+    {
+      "entry": "LABO026",
+      "classification": "資源sourceを選択した入力元として必須",
+      "dependencies": [
+        "INFRA source contract",
+        "専用connector",
+        "INFRA001/004の原観測",
+        "SECURITY data-use"
+      ],
+      "condition": "source版・scope・許可・欠測を保持。INFRA014の後続episode詳細相関を026の1.0条件へ追加しない。057の人手代行規定を026へ転用しない",
+      "unresolved": "実source identity/版/観測/connector未供給。source unknown/staleはINFRA/接続ownerへ"
+    },
+    {
+      "entry": "LABO057→028/056",
+      "classification": "選択Worker結果sourceに必須、実行後出力",
+      "dependencies": [
+        "OS018/019/023 source result/receipt",
+        "LABO001/028/056",
+        "LABO028→OS assignment/Worker result契約",
+        "LABO056→001/028/055",
+        "SECURITY data-use"
+      ],
+      "condition": "CONNECT契約または同一identity/revision/schema/版/scope・ACK/trace/dedupe/stale-stop/同一ID再送の人手receipt。027は任意provenance。結果を開始前に要求しない",
+      "unresolved": "実assignment/result/receipt未供給。取込≠性能評価、055/054/INT010の配置入力と評価済み化は既整理の別条件"
+    },
+    {
+      "entry": "LABO001/002/011",
+      "classification": "選択source集積時001、相関操作時002/011",
+      "dependencies": [
+        "選択した1.0 source個別入力接続",
+        "LABO002→001/011",
+        "LABO011→001/Aggregate identity"
+      ],
+      "condition": "source identity/版/field/欠測を保ち、相関不能は孤立/unknown。選択sourceの必要依存を閉じ、未選択source全件の完成を要求しない",
+      "unresolved": "元source/観測/相関入力未供給。ID/時刻一致を因果・受領を評価成功にしない"
+    }
+  ],
+  "preserved": "旧FRS-BR-009の必要安全閉包、BR-002/004/007の明示集合・局所/全体・未成立保持、旧CLAUDEの意味/外部作用分離、UTW-021の自己申告への回帰防止",
+  "changed": "初回5操作の入力元案と、既決SECURITY/INFRA/LABOの入口から先の適用条件を整理する",
+  "change_reason": "選択した初回循環について要求整理の実依存候補と未供給を明示するため。新たな要求・版・承認手続きを作らない",
+  "not_proven": [
+    "MSGCONTENTと参照知識の採用、template最小集合",
+    "全周辺要求の再帰的有効依存閉包",
+    "正式packのidentity/契約版range/scopeと宣言",
+    "実資産分類/利用許可・実資源観測・制約適用・結果/評価oracle",
+    "再開順序/scopeの固定案・PO再開判断",
+    "製品setup・更新/復旧・CI・内部デプロイ実行"
+  ]
+}
