@@ -1,6 +1,6 @@
 # HELIXBRAIN-L3-032-business
 
-生成view。意味正本: `business-requirements.json`。JSON SHA-256: `7163c4b33097b53dfdba18969e337bf0b342a73373b22c0f4efcc5b535bf793a`。JSONから再生成する。
+生成view。意味正本: `business-requirements.json`。JSON SHA-256: `c529c8d9deeb914ccfbc764d918a7c47300bab14e68ea43f324f837a3d42f424`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -22,7 +22,7 @@
 | pair | P3: L3↔L10 |
 | category | business |
 | primary_parents | HELIXBRAIN-L2-032 / HELIXBRAIN-L2-007 / HELIXBRAIN-L2-008 / HELIXBRAIN-L2-028 |
-| roster_version_scope_by_parent | HELIXBRAIN-L2-032: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-007: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-008: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-028: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 |
+| roster_version_scope_by_parent | HELIXBRAIN-L2-032: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3 roster外。Stage 1は10/12限定再開判断で採用した初回の著述先、1.0は10/10 TEMPLATECONTRACT。歴史的Stage配属ではない。 / HELIXBRAIN-L2-007: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-008: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-028: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 |
 
 ## HELIXBRAIN-L3-032-B01 候補提供の価値
 

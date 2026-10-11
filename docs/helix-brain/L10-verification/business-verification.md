@@ -1,6 +1,6 @@
 # HELIXBRAIN-L10-032-business
 
-生成view。意味正本: `business-verification.json`。JSON SHA-256: `0387cc3e5fe42c12a8d6472334720e6210c36d941b1b1d6e08e22e614f092083`。JSONから再生成する。
+生成view。意味正本: `business-verification.json`。JSON SHA-256: `691b52be7e88ade6c3d4473f8aff037237cf33ef20236cda1b211b09411773ef`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -25,7 +25,7 @@
 | system_specific_obligation | 項目別の不足が知識供給→CORE材料返却でも保存され、知識受領と案件義務充足が別に示されること。局所の15項目存在確認や下位greenだけでは証明されない。 |
 | completion | 必要caseの実観測と下位receipt/固有義務/組合せ契約の照合が揃い、未観測・未完は残る。Integrated→VerifiedはHARNESS022/056の契約へ渡し、PO Acceptedを生成しない。 |
 | primary_parents | HELIXBRAIN-L2-032 / HELIXBRAIN-L2-007 / HELIXBRAIN-L2-008 / HELIXBRAIN-L2-028 |
-| roster_version_scope_by_parent | HELIXBRAIN-L2-032: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-007: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-008: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-028: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 |
+| roster_version_scope_by_parent | HELIXBRAIN-L2-032: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3 roster外。Stage 1は10/12限定再開判断で採用した初回の著述先、1.0は10/10 TEMPLATECONTRACT。歴史的Stage配属ではない。 / HELIXBRAIN-L2-007: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-008: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-028: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 |
 
 ## HELIXBRAIN-L10-032-B01 候補提供の価値
 

@@ -1,6 +1,6 @@
 # HELIXBRAIN-L3-032-functional
 
-生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `342d149cdd035e6bd6c14dc04633559fac2f52f4ba949001e5d53e1043cab710`。JSONから再生成する。
+生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `3b17c7c9a98c95d9ef704657beeaf382c18c96d52b2a4ea8c8d841e54d1a4837`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -23,7 +23,7 @@
 | category | functional |
 | descriptor_meanings | descriptor: template identity / meaning: 機能としてのtemplate識別。filenameやviewの所在と分ける。 / descriptor: version / meaning: template内容の版。knowledge revision、pack contract/artifact版、version_targetと分ける。 / descriptor: layer/pair / meaning: 義務の適用層と対。HARNESSが定めた対を参照する。 / descriptor: applicability / meaning: 汎用問題・前提と適用条件。unknownを非適用にしない。 / descriptor: required input / meaning: 適用に必要な入力の意味と根拠。定義と案件値を分ける。 / descriptor: required section / meaning: 満たす必要のある節の意味と原適用条件。 / descriptor: required field / meaning: 節に属する欄の意味・要否の条件。節のN/Aを全欄へ一律転写しない。 / descriptor: relation / meaning: 関係の種類・向き・両端identity/revision。名称類似を意味関係にしない。 / descriptor: 意味owner / meaning: 項目の意味を持つ責任者。製品判断や実運転のownerと分ける。 / descriptor: trace / meaning: source/provenance、項目根拠と知識revisionへの参照。 / descriptor: negative oracle / meaning: 契約が不成立になる条件と検証で観測する差異。 / descriptor: measurement / meaning: 適用義務の計測観点・根拠とoracleの関係。実値を創作しない。 / descriptor: completion / meaning: 適用義務の成立条件と対oracleの関係。project成立の裁定ではない。 / descriptor: downstream kind / meaning: 義務を渡す対象の種類。単体・接続・構成体の違いを残す。 / descriptor: supersession / meaning: 旧知識から新知識への明示関係。過去参照を黙って差し替えない。 |
 | primary_parents | HELIXBRAIN-L2-032 / HELIXBRAIN-L2-007 / HELIXBRAIN-L2-008 / HELIXBRAIN-L2-028 |
-| roster_version_scope_by_parent | HELIXBRAIN-L2-032: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-007: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-008: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-028: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 |
+| roster_version_scope_by_parent | HELIXBRAIN-L2-032: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3 roster外。Stage 1は10/12限定再開判断で採用した初回の著述先、1.0は10/10 TEMPLATECONTRACT。歴史的Stage配属ではない。 / HELIXBRAIN-L2-007: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-008: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-028: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 |
 
 ## HELIXBRAIN-L3-032-F01 15項目の独立識別
 
