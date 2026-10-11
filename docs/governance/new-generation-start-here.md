@@ -97,6 +97,8 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 
 ## 現在許可される作業
 
+2026-10-12の[限定再開のPO判断](decisions/requirements-entry-restart-po-decision-2026-10-12.md)がmainへ統合された。前提形成に必要な限定L3/L10と、その後の条件付き段階の範囲・親入力・停止条件は同判断と[ロードマップ](requirements-first-roadmap.md#前提構築の限定先行と通常l3の順序案)から読む。通常L3は実物のPO受入済み範囲に限り、個別の文書承認・実operation条件を省略しない。ここで許可範囲を追加しない。
+
 - 旧sourceのinventory、意味分類、対象別crosswalk、archive隔離。
 - 現行Conceptと対象revisionが確定したL1を照合するL2／L11の整理、静的なID・参照・責務整合確認、個別採否準備。対象decisionに含まれないL1差分を承認済み入力として使わない。
 - exact revisionのremote sync、Draft PRによる共有、現行の独立review通路での意味review。通常のGitHub作業では作成側が明示依頼を待たずpush・Draft PR作成・指摘修正を進め、review側がexact HEADのfindingを記録した後、作成側が修正後HEADのreview結果を確認してReady化する。
@@ -105,7 +107,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 
 ## 現在停止する作業
 
-- 実装、新世代CIの実装・起動、release、deployment。`scaffold/`外に仮の物を置くこと。Scaffold Bindingに登録しない仮の物を置くこと。L3要件定義以下（L3／L10、L4〜L9の設計と対の検証設計、実装、新世代CI）は、2026-10-10のPO判断（[巻き戻しの判断記録](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)）で要求整理完了の時点（main `633bf12e`）まで巻き戻してカットし、2026-10-08のL4〜L6設計解禁と2026-10-09のStage 1実装・CI解禁は効力を失った。L3の再開は、前提（Concept、七大原則、JSON正本、設計・検証テンプレート、開発の規律に当たる要求）を機構として成立させた後とし、順序と範囲はPOの指示による。release、v0.1の宣言、内部デプロイ、branch protectionの変更は停止のまま残す。
+- 上記の限定再開判断のscope外、または各段階の条件が未充足の実装・新世代CIの実装/起動。release、deployment。`scaffold/`外に仮の物を置くこと。Scaffold Bindingに登録しない仮の物を置くこと。L3要件定義以下（L3／L10、L4〜L9の設計と対の検証設計、実装、新世代CI）は、2026-10-10のPO判断（[巻き戻しの判断記録](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)）で要求整理完了の時点（main `633bf12e`）まで巻き戻してカットし、2026-10-08のL4〜L6設計解禁と2026-10-09のStage 1実装・CI解禁は効力を失った。この停止に対する限定前提形成の先行と成立後の通常L3の順序/scopeは、上記10/12判断に従う。前提（Concept、七大原則、JSON正本、設計・検証テンプレート、開発の規律に当たる要求）の実物成立とPO受入を文書の存在で代替しない。release、v0.1の宣言、内部デプロイ、branch protectionの変更は停止のまま残す。
 - 旧CI、旧runtime、旧hook、旧test、旧AI promptの実行またはfallback。
 - 旧CLI・旧hook・旧runtime・旧CIへのfallback。reviewer名だけから旧実行通路を起動すること。GitHub native auto-mergeと、作成側による自己merge。
 - PR、Issue、CI、DB、memory、会話からの要求採否・人間承認・受入の生成。
