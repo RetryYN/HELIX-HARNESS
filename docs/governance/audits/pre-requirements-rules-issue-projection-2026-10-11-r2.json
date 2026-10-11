@@ -1,0 +1,22 @@
+{
+  "ticket_id": "FT-GOV-PRE-REQUIREMENTS-RULES-001",
+  "source_revision": "fb2eedb21a84ed0f507724e002d4bcf7d1474c96",
+  "source_path": "docs/governance/feature-tickets/FT-GOV-PRE-REQUIREMENTS-RULES-001.md",
+  "source_sha256": "c6c0cda20a0d2c5d5337731fad5eaaa8a2ef3006e50d64d5a2afe5c27e9d34c9",
+  "issue_number": 2903,
+  "issue_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2903",
+  "issue_body_sha256": "02a82ceb1cbf8e56fdcef01b8d9ae27a3fc159f5357133fdbb836b42b034e1b3",
+  "read_after": "exact_body_and_open_state_confirmed",
+  "authority_effect": "work_projection_only",
+  "receipt_revision": 2,
+  "supersedes_receipt": "docs/governance/audits/feature-ticket-projection/pre-requirements-rules-issue-projection-2026-10-11.json",
+  "supersedes_receipt_sha256": "737831a0df783506341a3a9e283d98ff0674cb230b68122b1b2cc3e66d19270a",
+  "body_projection_rule": "投影元・source_revision・source_sha256と区切りのheaderを付加し、source ticket本文の相対Markdown linkだけを同じsource revisionのGitHub絶対linkへ解決する。本文のその他のbytesは変更しない。",
+  "projection_header": "投影元: [docs/governance/feature-tickets/FT-GOV-PRE-REQUIREMENTS-RULES-001.md](https://github.com/RetryYN/HELIX-HARNESS/blob/fb2eedb21a84ed0f507724e002d4bcf7d1474c96/docs/governance/feature-tickets/FT-GOV-PRE-REQUIREMENTS-RULES-001.md)\n\nsource_revision: `fb2eedb21a84ed0f507724e002d4bcf7d1474c96`\n\nsource_sha256: `c6c0cda20a0d2c5d5337731fad5eaaa8a2ef3006e50d64d5a2afe5c27e9d34c9`\n\n---\n\n",
+  "issue_title": "整備: 要件定義前に文書・配置・開発規律を照合して集約する",
+  "read_after_state": "OPEN",
+  "read_after_body_sha256": "02a82ceb1cbf8e56fdcef01b8d9ae27a3fc159f5357133fdbb836b42b034e1b3",
+  "authorization_basis": "2026-10-11のユーザーのIssue化指示。source ticketの発行根拠を参照。",
+  "meaning_match": true,
+  "placement_basis": "既存のrequirements-first-roadmap投影receiptと同じaudits直下に訂正証拠を追加する。初回receiptは変更せず履歴として保持し、feature-ticket-projectionサブディレクトリを新たな配置規則にはしない。"
+}
