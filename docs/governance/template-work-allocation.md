@@ -267,7 +267,7 @@ scope制限も採用対象である。原文の1.0境界にある本番chaos等�
 | SDOP004/005 | 規則・状態×イベント・異常系4問・冪等性からcaseへ結ぶ。外部依存の版固定・更新owner/EOL・adapterと例外 | 未決は上流へ戻し、未決リスト掲載を解決済みにしない。MSG004とは行参照で二重正本を避ける。auto-mergeの例は採用しない |
 | VT103〜106 | 総合固有義務、境界、詳細契約、実装前Red/Greenを各pairで比較。template記入完了と状態昇格を分ける | 実L3/設計/oracle/下位proof/実行receiptは未供給。主kind/pairを排他的な適用にせず005へ戻す。技法早見/共通cardの参照を内容全体の採用にしない |
 
-汎用知識はBRAIN、製品への適用・義務・不足はCORE、使用set/版・案件記録はOS、工程/状態意味はHARNESSへ保持する。この9件は未採用で、既決SEEDFIRSTもMSGCONTENTの固定payloadも変更しない。BRAIN007/025の知識昇格・LABO評価・OS登録/振分け・独立検証は免除しない。source全文の移管・全体最小集合・欄の完全意味比較・正式schema/runtime・L3再開は未完のままである。
+汎用知識はBRAIN、製品への適用・義務・不足はCORE、使用set/版・案件記録はOS、工程/状態意味はHARNESSへ保持する。9件全体の採用ではなく、[P3FIRSTの判断](decisions/p3first-knowledge-po-decision-2026-10-12.md)が固定したVT103とSDOP選択範囲だけを採用する。その他の内容は候補として保持し、既決SEEDFIRSTもMSGCONTENTの固定payloadも変更しない。BRAIN007/025の知識昇格・LABO評価・OS登録/振分け・独立検証は免除しない。source全文の移管・全体最小集合・欄の完全意味比較・正式schema/runtime・L3再開は未完のままである。
 
 旧JSON authority19〜60の意味/view・portfolio/pair、旧verification phase28〜40/73〜79のbasis/condition/evidence、旧ddd-tdd-rules21〜24の契約先行と欠陥検出Redを読取り起点に意味再導出した。旧層名・G番号・evidence形式・旧runtime/CIは移さず、原文seedが既に保持する現行pairと責務へ対応付ける。新しい要求・版・許可・gateは加えない。
 
@@ -281,7 +281,7 @@ scope制限も採用対象である。原文の1.0境界にある本番chaos等�
 
 ## P3FIRST：初回L3／L10のための限定知識採否案
 
-[#2846の第2回全作業照合](https://github.com/RetryYN/HELIX-HARNESS/issues/2846#issuecomment-6111384214)で、次の不足はL3／L10に使うP3知識の採否と、非画面対象に該当するSDOPの節の選別と確認された。[既存の参照意味JSON](../helix-brain/candidates/first-cycle-reference-template-knowledge.json)の`adoption_proposal`（P3FIRST）に、意味内容と非採用範囲を固定する**未採用案**を置く。元9候補の内容・状態は変えず、別版の本文を複製しない。SEEDFIRST・MSGCONTENTの採用範囲も不変である。
+[#2846の第2回全作業照合](https://github.com/RetryYN/HELIX-HARNESS/issues/2846#issuecomment-6111384214)で、次の不足はL3／L10に使うP3知識の採否と、非画面対象に該当するSDOPの節の選別と確認された。[既存の参照意味JSON](../helix-brain/candidates/first-cycle-reference-template-knowledge.json)の`adoption_proposal`（P3FIRST）に、意味内容と非採用範囲を固定した案を置いた。[P3FIRSTのPO判断](decisions/p3first-knowledge-po-decision-2026-10-12.md)により、その固定revisionの限定内容は要求整理入力へ採用済みである。提案metadataは提示時の来歴、現行採否は判断記録と`adoption_decision`から読む。元9候補の内容・状態は変えず、別版の本文を複製しない。SEEDFIRST・MSGCONTENTの採用範囲も不変である。
 
 | 知識 | 採用を提案する意味内容 | 適用条件と今回の限界 |
 |---|---|---|
@@ -296,7 +296,7 @@ SDOPは各原文の`applicability`・`required_input`・`source_limits`と上記
 
 VT104〜106（P4〜P6）は後続pairの知識で、L3再開前の一律入力へ加えない。技法card内容全体、他seed、案件のrequired／conditional／N/A／unresolved・N/A4属性、実値・方式・期待値・測定・復旧の実証、全体最小集合、正式schema／renderer／実装は確定しない。SDOPの未定義supersession等を完全な契約にせず、BRAIN032の未定義返却を保持する。
 
-採否は対象revisionへのPO判断へ残す。BRAIN007／025のLABO評価→OS登録／振分け→BRAIN変更内独立検証→採否は免除せず、要求整理に使う意味内容の選択と運用knowledgeのaccepted／mature昇格を分ける。汎用意味はBRAIN、案件適用・義務・不足はCORE、案件値と記録はOS、工程／対／状態はHARNESS、評価はLABOへ保持する。P3FIRST案の共有や採用だけでL3再開・前提機構成立・Issue完了を生成しない。
+固定revisionの上記限定内容はPOが採用した。非選択内容の採否は別に保持する。BRAIN007／025のLABO評価→OS登録／振分け→BRAIN変更内独立検証→採否は免除せず、要求整理に使う意味内容の選択と運用knowledgeのaccepted／mature昇格を分ける。汎用意味はBRAIN、案件適用・義務・不足はCORE、案件値と記録はOS、工程／対／状態はHARNESS、評価はLABOへ保持する。P3FIRST案の共有や採用だけでL3再開・前提機構成立・Issue完了を生成しない。
 
 旧JSON authority19〜60の意味／表示・適用／pair、旧verification phase28〜40／73〜79の左basis／右condition／証拠を起点に、既存候補からP3と要求形成の問いだけを選ぶ意味再導出案である。旧G10のUXと現行P3のシステム義務を混同せず、旧schema／runtime／層番号は移さない。10/10巻き戻しと旧弱点UTW-021の失敗を踏まえ、件数・hash・欄の存在を意味の充足や機構成立にしない。未選択範囲と有効依存・再開scopeの残件は#2846へ保持する。
 
