@@ -245,3 +245,15 @@ RE01-046のG/Hは節記号である。RE01-261/262のinventory引用518行だけ
 過去relationのDTK-HARNESS-002は9/24 PO判断で文書ごと退役している。旧比較履歴として保全し現在の要求/設計/実装の根拠にせず、OSticketへの対応を別に残す。REQENG002の存在やmetadataから採用状態を推測しない。市場仮説・利用者調査・機会比較の原atomの全L1/各機構/対oracle被覆は未確定であり、元noteの未被覆断定を本監査の確定結論へ継承しない。
 
 他56clusterのbytesと元relation/note/歴史/未評価fieldを保持する。OSA04の#2890とFRM02の#2887–2889は別Draftの未レビュー候補で本main基準へ含めない。要求本文・schema・Python/旧CLI/runtime/CI・仮登録・holding・Bindingは変更しない。#1814/#1813と全残件を保持し、要求採用・retire・Issueclose・L3再開を生成しない。
+
+## RUL-OPS-02：運用体制の限定した本文・全12引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主11・副1＝12件の原inventory全field、15引用spanと8関連/補助spanを保存した。引用未比較0は完全atom化・判断史・全consumer・正式successor・未計上0・全要求被覆・Stage完了ではない。元relationはoriginal_relationsへ保全し、OS004のno-material-overlapとAIDOC001のcredential失効説明を限定して訂正した。他56clusterのbytes、過去revision、note、未評価fieldを維持する。
+
+旧チーム構想/運用書はReference-onlyで、本人PO1名＋AIrosterへの読替えを持つ。人間の招待/採用順/1on1/当番、成熟度の固定toolや80%例、初期30日、旧Phase0B全14項目のPRmatrix/prepushを現行全案件の必須手順へ移さない。旧v1.3soloはteam儀式・velocity・複数人roleを必須にしない。現行独立reviewやoracleを成熟度の例により省略する根拠にもならない。
+
+現行OS004はWorker交代時の責務/未完義務/累積制約の保持、自己承認/二重割当防止を明示し、OS009の復旧と一部共通する。human入退場の全条件と同一にはしない。AIDOC001は許可等のcontext解決であり、実credential付与/短期保持/失効そのものを定めない。SECURITY005の生値非露出・scope/expiry・revoke伝播は別契約として照合し、実account/credential/認可/本番設定の変更を行わない。
+
+サービスのAPM/稼働監視/oncallとOS008のCI実行監視は対象が異なる。候補句の保険/規制はこの12件にはないが、RB04-274（主FRM09/副OSA07）に保存済みである。別record原文を補助に保持し、母集団の所属を勝手に変更せず、欠落/退役やOPS02全条件被覆を主張しない。
+
+要求本文・schema・Python/CLI/runtime/CI・仮登録・holding・Bindingを変更しない。OSA04/PLN01とFRM02の別Draft未レビュー候補を本main基準に混ぜず、#1814/#1813と全残件を保持する。要求採用・retire・Issueclose・L3再開を生成しない。
