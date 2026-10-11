@@ -18,7 +18,8 @@
     "HARNESS-L2-022",
     "HARNESS-L2-003",
     "HARNESS-L2-004",
-    "HARNESS-L2-008"
+    "HARNESS-L2-008",
+    "HARNESS-L2-034"
   ],
   "l2_individual_version_target_by_parent": {
     "HARNESS-L2-010": null,
@@ -37,12 +38,13 @@
     "HARNESS-L2-022": null,
     "HARNESS-L2-003": "1.0",
     "HARNESS-L2-004": "1.0",
-    "HARNESS-L2-008": "1.0"
+    "HARNESS-L2-008": "1.0",
+    "HARNESS-L2-034": "1.0"
   },
   "status": "draft_not_approved",
   "authority_effect": "none_until_exact_revision_delegated_approval",
   "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
-  "scope": "限定前提構築が参照する共通pack境界・呼出し・条件別依存とcommand意味identity・asset identity/意味revision照合のpair。既存Stage/親の版を変更せず、初回3主対象と周辺機構の全能力を混載しない。追加scopeは初回Stage1のCORE009製品template適用。既存31組は保持する。追加scopeは10/12限定前提の005検証規範と015の実装前TDD順序契約。既存42組は不変。015全能力のStage2b運転やCI実行を前倒ししない。追加scopeは10/12限定前提の041抽出、048命名対応、056pair結果の意味契約。既存59組は不変。歴史的Stage3/5の全能力運転や実rename/CIを前倒ししない。追加scopeは10/12限定前提の040全層ledger/pair/anchor意味契約。既存74組は不変。歴史的Stage3の全能力運転や全層実保存を前倒ししない。追加scopeは10/12限定前提の001層/pairと022段階別検証/受入の規範。既存80組は不変。022の全能力Stage2a運転や利用者受入を前倒ししない。追加scopeは10/12限定前提の003工程条件と004trace/影響/無損失の規範。既存89組は不変。Incident/release/資産copy-retire/実security操作は初回非選択のまま条件を保持する。追加scopeは10/12限定前提の008要求形成とPython意味コア/consumer境界の契約。既存103組は不変。実engine/knowledge promotion/OS登録/全要求移管/学習は成立宣言しない。",
+  "scope": "限定前提構築が参照する共通pack境界・呼出し・条件別依存とcommand意味identity・asset identity/意味revision照合のpair。既存Stage/親の版を変更せず、初回3主対象と周辺機構の全能力を混載しない。追加scopeは初回Stage1のCORE009製品template適用。既存31組は保持する。追加scopeは10/12限定前提の005検証規範と015の実装前TDD順序契約。既存42組は不変。015全能力のStage2b運転やCI実行を前倒ししない。追加scopeは10/12限定前提の041抽出、048命名対応、056pair結果の意味契約。既存59組は不変。歴史的Stage3/5の全能力運転や実rename/CIを前倒ししない。追加scopeは10/12限定前提の040全層ledger/pair/anchor意味契約。既存74組は不変。歴史的Stage3の全能力運転や全層実保存を前倒ししない。追加scopeは10/12限定前提の001層/pairと022段階別検証/受入の規範。既存80組は不変。022の全能力Stage2a運転や利用者受入を前倒ししない。追加scopeは10/12限定前提の003工程条件と004trace/影響/無損失の規範。既存89組は不変。Incident/release/資産copy-retire/実security操作は初回非選択のまま条件を保持する。追加scopeは10/12限定前提の008要求形成とPython意味コア/consumer境界の契約。既存103組は不変。実engine/knowledge promotion/OS登録/全要求移管/学習は成立宣言しない。追加scopeは034の要求別計測とcompletion規範。既存113組を保持し、実計測/比較/受入の成立を生成しない。",
   "source_pins": [
     {
       "path": "docs/concept/helix-concept.md",
@@ -179,6 +181,10 @@
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
       "sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
     }
   ],
   "knowledge_use": "P3FIRSTのVT103と選択SDOP19節を問い/証拠/Backflowの限定材料として使う。数値/方式/全技法/正式schemaを採用しない。知識採用を実適用としない。",
@@ -458,6 +464,29 @@
       "change": "現行008/009/OS責務へ再導出する。旧Node24/DB/CLI/G1G3/固定IR enum/直近2反復/旧153件移行を自動採用しない。transaction境界技術とwire schemaは対設計へ残す。",
       "reason": "採択済みL2/L11とJSON正本/10/12限定再開の境界を保持する。candidate全件の採用ではない。",
       "failure_basis": "旧ADR010背景のPython外部write二重化と分類不能からTS再実装を強制する不整合、RDJの未確定補完/score単独合意/別engine増設を防ぐ。実証済み旧engineの成功を現行成功へ流用しない。"
+    },
+    "measurement034": {
+      "reuse_class": "semantic_rederivation",
+      "sources": [
+        {
+          "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+          "revision": 3,
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "identity": "verification_measurement_contract §4.3 and HR-NFR-REG-001..007",
+          "lines": [
+            245,
+            252,
+            369,
+            375
+          ],
+          "locator_kind": "inclusive_line_ranges"
+        }
+      ],
+      "preserve": "13領域/14項目/4failure、工程/overhead/再現/秘密保護、NFR identity/閾値分類/AI品質/保存並行条件/risk別手法/時系列関係を保持。",
+      "change": "旧層番号/P4 event schema/SQLite/harness.db/vacuum/runtimeを移植せず現行HARNESS contractとOS実行/INFRA観測/LABO評価へ意味を再導出する。",
+      "reason": "9/29採択034と10/12限定前提形成の意味・責務保持。",
+      "failure": "test greenで計測不足相殺、unknown閾値補完、手法導入で完成、未再現原因断定、実測でAcceptedを生成する誤りを拒否。",
+      "consumer": "対象要求/CORE trace/022段階判定、選択実行手段と資源観測/比較評価。全archive/consumer被覆は未完。"
     }
   },
   "remaining": [
@@ -470,7 +499,8 @@
     "040の意味契約は限定起草。実catalog/ledger保存・snapshot生成/coverage発行のsource holdingは保持する。各対象機構のL1/L2/authority/選択templateと本040契約をexact bindingし、具体構成/正式schema/対設計/実実行を後続で成立させる。",
     "001/022は意味規範のみ。003/004/005の工程/trace/検証、対象authority/対設計、040/056の層/pair、OS/利用者CIと受入記録のexact binding、正式schema、対設計と実観測/実物PO受入/通常L3再開は未成立。022全能力の歴史的Stage2a完了を生成しない。",
     "003/004は意味規範のみ。対象authority/001/005/008/015/022/040/056と各SECURITY/OS/品質ownerへexact bindingする。具体schema/対設計/凍結/実CI/実操作/実物受入と通常L3再開は未成立。非選択Incident/release/copy-retire/security操作の保持を完了証拠にしない。",
-    "008は意味規範のみ。BRAIN知識版/利用receipt、各parentへのexact binding、wire/schema/具体構成、実engine/consumerの認可隔離資源、対設計/実RedGreen/CI、学習/PO実物受入を未成立へ引き継ぐ。024全能力やseed全件の採用を生成しない。"
+    "008は意味規範のみ。BRAIN知識版/利用receipt、各parentへのexact binding、wire/schema/具体構成、実engine/consumerの認可隔離資源、対設計/実RedGreen/CI、学習/PO実物受入を未成立へ引き継ぐ。024全能力やseed全件の採用を生成しない。",
+    "034は規範。対象metric/数値/schema/probe/具体layer、各owner-qualified exact binding、対設計/凍結/実装前RedGreen/実計測/認可資源/CI/PO実物受入は未成立。契約起草に未来実測を要求しない。"
   ],
   "roster_version_scope_by_parent": {
     "HARNESS-L2-010": {
@@ -576,6 +606,11 @@
       "sequence_stage": null,
       "basis": "10/10規律判断で1.0、routing containerの歴史的Stage未割当。",
       "scope_basis": "前提形成へ必要な意味契約のみ。旧候補/ADR全件、024全能力、正式schema/実engineを採用しない。"
+    },
+    "HARNESS-L2-034": {
+      "version_target": "1.0",
+      "sequence_stage": "Stage 3",
+      "basis": "9/29採択。歴史Stage3保持、10/12限定前提起草のみ。"
     }
   },
   "parent_basis": [
@@ -761,6 +796,14 @@
         "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md"
       ],
       "boundary": "008採択本文と対L11を意味入力とし、関連候補のmetadata/全件を自動昇格しない。"
+    },
+    {
+      "identity": "HARNESS-L2-034",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L39",
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "l2_section_sha256": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+      "l11_section_sha256": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
+      "boundary": "現行034節は採択固定bytes一致。本文未採択metadataは固定判断前本文として保持。版/Stage/要求意味を変えない。"
     }
   ],
   "operation_scope_boundary": "初回の053はidentity/意味revisionと供給された記録の照合を扱う。042参照未決とrename/move/split/merge/supersede/Design Refactor実操作の非選択は再開案unresolved_inputsに従って保持する。",
@@ -965,6 +1008,17 @@
       "expected_observation": "consumerが再検証対象と不足を識別し、意味候補と登録成立を分ける。",
       "negative_input": "旧schemaの存在で互換、staleをcurrent、payloadのcommand実行、consumer再検証を省略、外部consumerにOS導入必須。",
       "failure_observation": "再検証失敗を返し、外部commit/要求採用を生成しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-034-B01",
+      "parent": "HARNESS-L2-034",
+      "title": "契約・実行・観測・評価のowner",
+      "requirement_ref": "HARNESS-L3-034-B01",
+      "positive_input": "外部CIと内部OS計測、資源/許可不足実測、比較のみを区別する。",
+      "expected_observation": "選択実行手段と責務/操作別依存、未成立が辿れる。",
+      "negative_input": "OS/LABOがoracle黙変、比較で要求適合/authority確定、内部OS強制、実資源欠落で実測済み。",
+      "failure_observation": "実行/SEC/INFRA/CONNECT/契約の該当ownerへ返す。",
       "execution_state": "not_executed"
     }
   ],
