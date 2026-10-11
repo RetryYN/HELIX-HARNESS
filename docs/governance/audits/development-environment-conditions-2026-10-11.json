@@ -1,0 +1,219 @@
+{
+  "scope": "#2905の現在許可される技術調査・必要条件・再現確認方法の整理。製品setup/config/tool選定、L3以下の起草・実装・CI・内部デプロイは実施しない。",
+  "base_revision": "8cc567241d16728a3dfb4c978e9bda447d8bda88",
+  "input_pins": [
+    {
+      "path": "docs/governance/development-workspace-setup.md",
+      "sha256": "fd6502f0a6ab35bbce7457534f43ddd9ca8694b9e5ef878c63f4719daf5e3063"
+    },
+    {
+      "path": "docs/governance/requirements-first-roadmap.md",
+      "sha256": "7f1feaefae30bd815880e7c7f15f1323c2b9f86b462a19429a82af3647bcfe2f"
+    },
+    {
+      "path": "docs/governance/feature-tickets/FT-GOV-DEVELOPMENT-ENVIRONMENT-001.md",
+      "sha256": "35fd10558c3de2935eb3836bd453b6e113df4a2f406a070621387bd316327659"
+    },
+    {
+      "path": "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "sha256": "2c700ffcbb89c034d9f0b43a7f69483e785abbef28bb07601857a1d0caa72030"
+    },
+    {
+      "path": "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+      "sha256": "5a4c8d85acc89166b68868824fdffd09e2c50810dae463e1724c5e146cc1cc05"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    },
+    {
+      "path": "docs/helix-harness/candidates/requirement-engine-python-core-requirements.md",
+      "sha256": "8115c9aef6cb425db228bd020b312a5877c8533b062bf8787105cef5097468f3"
+    },
+    {
+      "path": ".editorconfig",
+      "sha256": "7e8b1ed439c583724cd97ddb73701ac9f81d29f7bd62d2c078fb751f0358e92a"
+    },
+    {
+      "path": "scaffold/tools/scfctl.py",
+      "sha256": "ff48b2949c92116fe29a1b5c9a690c1454db77929dff5b5b977b78f137425aed"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/coding-rules.md",
+      "sha256": "4652f8520c4db9069cbfee11e0cb318ee49ec0b6b574eb94a51994fb8dbc215e"
+    }
+  ],
+  "observation": {
+    "os_system": "Linux",
+    "architecture": "x86_64",
+    "meaning": "文書確認端末の観測であり製品対応OS/CPUの採用ではない。",
+    "config_scan": {
+      "method": "git ls-filesのtracked集合からarchive/とscaffold/を除き、列挙filenameと.github/workflowsのyamlだけを照合。",
+      "names": [
+        ".ruff.toml",
+        "Pipfile",
+        "Pipfile.lock",
+        "biome.json",
+        "mypy.ini",
+        "npm-shrinkwrap.json",
+        "package-lock.json",
+        "package.json",
+        "poetry.lock",
+        "pyproject.toml",
+        "pytest.ini",
+        "requirements.txt",
+        "ruff.toml",
+        "tsconfig.json",
+        "uv.lock",
+        "vitest.config.ts"
+      ],
+      "matches": [],
+      "limitation": "列挙外filenameや別形式の設定の不存在を証明しない。"
+    }
+  },
+  "primary_technical_sources": [
+    {
+      "url": "https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/",
+      "checked_on": "2026-10-11",
+      "use": "projectごとの依存環境分離の比較。",
+      "authority": "技術比較材料。採用・版・要求・実装許可を生成しない。取得したlive仕様は選定版で再照合する。"
+    },
+    {
+      "url": "https://docs.python.org/3/library/venv.html",
+      "checked_on": "2026-10-11",
+      "use": "環境は再作成する性質、VIRTUAL_ENVの比較。",
+      "authority": "技術比較材料。採用・版・要求・実装許可を生成しない。取得したlive仕様は選定版で再照合する。"
+    },
+    {
+      "url": "https://pip.pypa.io/en/stable/topics/repeatable-installs/",
+      "checked_on": "2026-10-11",
+      "use": "推移依存を含む版固定、hash照合、OS/architectureによるbinary差の比較。",
+      "authority": "技術比較材料。採用・版・要求・実装許可を生成しない。取得したlive仕様は選定版で再照合する。"
+    },
+    {
+      "url": "https://docs.npmjs.com/cli/v11/commands/npm-ci/",
+      "checked_on": "2026-10-11",
+      "use": "manifest/lock不一致は解決結果を変更せず失敗、解決optionの一致、NODE_ENVの影響の比較。",
+      "authority": "技術比較材料。採用・版・要求・実装許可を生成しない。取得したlive仕様は選定版で再照合する。"
+    },
+    {
+      "url": "https://docs.python.org/3/using/cmdline.html#environment-variables",
+      "checked_on": "2026-10-11",
+      "use": "PYTHONPATH/PYTHONHOME等の影響の比較。",
+      "authority": "技術比較材料。採用・版・要求・実装許可を生成しない。取得したlive仕様は選定版で再照合する。"
+    }
+  ],
+  "static_links": [
+    {
+      "consumer": "docs/governance/development-workspace-setup.md",
+      "target": "../helix-harness/candidates/requirement-engine-python-core-requirements.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/development-workspace-setup.md",
+      "target": "audits/development-environment-conditions-2026-10-11.json",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/development-workspace-setup.md",
+      "target": "audits/document-workspace-setup-reproduction-2026-10-11-r2.json",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/development-workspace-setup.md",
+      "target": "audits/requirements-entry-preparation-observation-2026-10-11.json",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/development-workspace-setup.md",
+      "target": "decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/development-workspace-setup.md",
+      "target": "requirements-first-roadmap.md#一つの要求例による初回の接続照合",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "docs/governance/requirements-first-roadmap.md",
+      "target": "development-workspace-setup.md#製品環境の条件を整理する調査",
+      "fragment_verified": true
+    }
+  ],
+  "command_checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "last_line": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "182382bb6b7f678e7025fd61c01113d302c8d44eede8cb3aee86362baeaf60e5",
+      "last_line": "bindings=147 fail=0"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "stale"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "87a3b1b935511a85473d742a599e5f4e976e2504e9b0e25e6203da661cd9bb49",
+      "last_line": "stale=0"
+    }
+  ],
+  "manual_coverage": [
+    {
+      "ticket_paragraph": 1,
+      "result": "既存文書/GitHub/editorと未構築製品環境を区別し、OS/CPU/shell、版、直接/推移依存とlock、変数名、setup成立、更新/復旧の必要条件・確認方法・不足の戻し先を既存案内へ記録。",
+      "remaining": "最小scope、正式版・lock形式・追加必須変数名・setup/復旧oracleは対象設計へ。"
+    },
+    {
+      "ticket_paragraph": 2,
+      "result": "docs意味/対検証と機構のパック実装/testを基本案へ結び、Python意味/外部作用の境界と型/lint/format/testの入力・成果・失敗戻し先を表で照合。",
+      "remaining": "具体path・schema・command・tool設定・test実観測は設計/構築後。"
+    },
+    {
+      "ticket_paragraph": 3,
+      "result": "ロードマップに4段階の入力/成果/未確定を追加。lock/版不一致、setup/検証失敗の戻し先、クリーン領域からの再現方法、必要安全/接続/資源/計測の選択方法を明示。",
+      "remaining": "#2846の対象未選択のため実際の安全/接続/資源/計測scopeは未確定。全Bot/全資産完了を一律条件にしない。"
+    }
+  ],
+  "legacy_mapping": {
+    "source_lines": [
+      "CLAUDE.md:49–63",
+      "docs/governance/repository-structure.md:102–173",
+      "docs/governance/coding-rules.md:10–31,138–143"
+    ],
+    "root": "archive/legacy-generation-2026-09-14/root/",
+    "preserved": "責務配置、実装/検証分離、設定最小化、実装前規律照合、Python意味と外部作用の分離。",
+    "changed": "旧Node固定/tool/path/gateを移さず、現行scope未選択と停止境界の下で条件調査へ再導出。技術資料は旧条件を置換するauthorityではない。",
+    "reason": "現行機構分担と10/10巻き戻し後に許可された調査範囲へ対応する。旧の未完だけを変更理由にしない。",
+    "consumers": [
+      "#2846の最小対象整理",
+      "対象のL3/L10と設計/対検証（再開後）",
+      "環境構築・独立review担当（許可後）"
+    ]
+  },
+  "completion_boundary": "独立reviewとIssue全段落の完了確認は別途。静的合格から製品環境成立・前提機構成立・L3再開を生成しない。"
+}
