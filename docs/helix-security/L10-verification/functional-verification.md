@@ -1,0 +1,287 @@
+# HELIXSECURITY-L10-PREREQUISITE-FUNCTIONAL
+
+生成view。意味正本: `functional-verification.json`。JSON SHA-256: `8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc`。JSONから再生成する。
+
+| 項目 | 内容 |
+|---|---|
+| mechanism | HELIX-SECURITY |
+| stage | Stage 1 limited prerequisite norm authoring |
+| primary_parents | HELIXSECURITY-L2-001 / HELIXSECURITY-L2-002 / HELIXSECURITY-L2-003 / HELIXSECURITY-L2-004 / HELIXSECURITY-L2-005 / HELIXSECURITY-L2-006 / HELIXSECURITY-L2-007 / HELIXSECURITY-L2-008 / HELIXSECURITY-L2-009 / HELIXSECURITY-L2-015 / HELIXSECURITY-L2-016 / HELIXSECURITY-L2-024 |
+| version_target_by_parent | HELIXSECURITY-L2-001: 1.0 / HELIXSECURITY-L2-002: 1.0 / HELIXSECURITY-L2-003: 1.0 / HELIXSECURITY-L2-004: 1.0 / HELIXSECURITY-L2-005: 1.0 / HELIXSECURITY-L2-006: 1.0 / HELIXSECURITY-L2-007: 1.0 / HELIXSECURITY-L2-008: 1.0 / HELIXSECURITY-L2-009: 1.0 / HELIXSECURITY-L2-015: 1.0 foundation; operational protection 1.x / HELIXSECURITY-L2-016: 1.0 classification foundation; exposure/sink application 1.x / HELIXSECURITY-L2-024: 1.0 |
+| historical_stage_by_parent | HELIXSECURITY-L2-001: Stage 1 / HELIXSECURITY-L2-002: Stage 1 / HELIXSECURITY-L2-003: Stage 1 / HELIXSECURITY-L2-004: Stage 1 / HELIXSECURITY-L2-005: Stage 1 / HELIXSECURITY-L2-006: Stage 1 / HELIXSECURITY-L2-007: Stage 1 / HELIXSECURITY-L2-008: Stage 1 / HELIXSECURITY-L2-009: Stage 1 / HELIXSECURITY-L2-015: Stage 1 / HELIXSECURITY-L2-016: Stage 1 / HELIXSECURITY-L2-024: Stage 4 |
+| status | draft |
+| authority_effect | none |
+| source_revision | 990ffad297804dd39d4da1474545e90ddc060c7f |
+| scope | 初回BRAIN032→CORE009→OS002と前提規律の成立に必要なSEC001..008/015/016/024の限定規範、および該当停止・隔離を閉じる追加条件付き009。024歴史Stage4を保持し、必要契約入力のみ先行著述する。1.x/Web/全Guard/全Bot/供給網/更新/学習等の全能力を前倒ししない。 |
+| source_pins | path: docs/concept/helix-concept.md / sha256: bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715 / path: docs/concept/helix-principles.md / sha256: 5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441 / path: docs/concept/product-boundary.md / sha256: 61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139 / path: docs/helix-security/L1-planning/security-intent.md / sha256: b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d / path: docs/helix-security/L2-requirements/security-requirements.md / sha256: aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf / path: docs/helix-security/L11-acceptance/security-acceptance.md / sha256: e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0 / path: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md / sha256: 699a0a0df5e92cfe7367dded2ab4c1e1d1cc6f4d8b1bff0418cdfa58e4768c0c / path: docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md / sha256: 7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff / path: docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md / sha256: 994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b / path: docs/governance/requirements-entry-restart-proposal.json / sha256: 29bd949ddd49348bb149f11ea253959075f7c7ac7e248035701a2002199efaf4 / path: docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md / sha256: 9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220 / path: docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md / sha256: 27b51768cbf010d201ccc2aafe8e4c893ec5ccb2a9a0bce662af343ef87809ee / path: docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json / sha256: ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a / path: docs/governance/template-work-allocation.md / sha256: 40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0 / path: docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md / sha256: 1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2 / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md / sha256: c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447 / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md / sha256: 38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16 / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md / sha256: c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md / sha256: 7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md / sha256: d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56 / path: archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md / sha256: f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2 |
+| parent_basis | decision: docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md / adopted_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc / selected_ids: HELIXSECURITY-L2-001 / HELIXSECURITY-L2-002 / HELIXSECURITY-L2-003 / HELIXSECURITY-L2-004 / HELIXSECURITY-L2-005 / HELIXSECURITY-L2-006 / HELIXSECURITY-L2-007 / HELIXSECURITY-L2-008 / HELIXSECURITY-L2-009 / HELIXSECURITY-L2-015 / HELIXSECURITY-L2-016 / HELIXSECURITY-L2-024 / boundary: 採択固定identityと同じ意味・責務・版。最新full-file pinにある未選択/別revision条件を採用しない。007の九制御、既決権限再利用、tenant非捏造、分類1.0/強制1.xの受入境界を保持。 |
+| dependency_boundary | HARNESS010/011/023共通pack/呼出し/四分類と検証義務、OS assignment/原記録、CONNECT論理接続、INFRA実資源/強制、資産owner/provenanceと該当SEC契約を操作/revision/scopeごとに照合する。owner-qualified exact bindingは別に完了する。依存契約の照合と実認可/実環境適用を分け、文書から実許可を作らない。 |
+| knowledge_use | 採用P3FIRSTのVT103と選択SDOP19節の問い/証拠/戻し先を限定利用する。数値・方式・全技法・正式schemaは採用しない。 |
+| document_format | JSONが意味正本、MDは生成view。文書keyは正式製品schema/wire/enforcer方式を固定しない。 |
+| legacy_comparison | reuse_class: semantic_rederivation / sources: asset_id: LEGACY-ASSET-322CD23B625A08E2BFB3 / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md / locator: authority境界・特権分離・revoke・通常/制限付証拠 / asset_id: LEGACY-ASSET-D461943347D372ECF6DA / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md / locator: SEA-FR001..003/005/006/008..010、NFR001..006 / asset_id: LEGACY-ASSET-349061A71CEF2554B9A7 / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md / locator: SEA-AC001/002/004/005/006/007/008/011/012とmutation / asset_id: LEGACY-ASSET-EE5DBACC7F28F7D1F605 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md / locator: HR-NFR-P8-02:186,HAC-N8-02a/b:297-298 / asset_id: LEGACY-ASSET-B8BBC1D5A8C91E746405 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md / locator: security filter:145-146 / asset_id: LEGACY-ASSET-99C939E249CAF40935CB / path: archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md / locator: secret predicate単一正本:63 / preserve: action-specific tuple/least privilege/失効後in-flight停止/値非露出/特権fallback禁止/外部命令隔離/監査/unknown拒否/独立性。旧文書greenはruntime完成ではない。 / change: 9/26原文と9/28A判断に従いSECはpolicy/authority、実環境は強制、OSは進行、CONNECTは通信、INFRAは実資源へ再導出。検出依存から直接authority経路遮断へ重点を移し、全操作境界と既決許可再利用を保持。旧special engagement固有のtyped profile/追加admission/通常taskの毎回人承認、旧broker/CLI/DBを移植しない。 / reason: 採択済み責務・適用条件と10/12限定前提形成を満たし、初回の安全境界を文書存在/自己申告/別greenから生成しないため。 / consumer: OS018/027の割当/初回適格性、OS020検収、BRAIN/CORE/OSの分類/権限を要する選択操作、CONNECT/INFRAの該当実境界。009は005/008/024等の条件付き停止閉包として追加。全機構全能力の初回必須化はしない。 / uncompleted_source: 旧SEA全profile/finding lifecycle/特権engagement/distribution等の採択や全consumer closureは含まない。旧test/runtime/CIは非実行。 |
+| remaining | 全限定scopeのowner-qualified exact bindingと条件付き追加参照、各ownerの必要限定pair・全体完了監査は未完。 / 正式schema/対設計/oracle凍結/実装前Red/最小Green、実認可/隔離/資源/九制御/失効/回収の実観測は後続段階。認可設定・credential・通信を変更/実行しない。 / PO実物L11 Accepted、通常L3再開、release/tag/deploy/配布/Issue close、1.x Web保護・全供給網/全promotion/全Botを文書承認から生成しない。 |
+| document_id | HELIXSECURITY-L10-PREREQUISITE-FUNCTIONAL |
+| layer | L10 |
+| pair | P3: L3↔L10 |
+| category | functional |
+| system_specific_obligation | 同operation/project/revision/scopeで未信頼→authority非直結、分類/権限/実強制、recipient別失効/回収を固有に照合する。単体green/通知/設定/自己申告から接続・構成体・実安全/実受入を生成しない。secret/credential/PIIの生値をfixture/証跡へ置かない。 |
+
+## HELIXSECURITY-L10-001-F01 外部入力の未信頼と出所
+
+**parent**: HELIXSECURITY-L2-001
+**requirement_ref**: HELIXSECURITY-L3-001-F01
+**positive_input**: 各source種別を同scopeの入力として読み、分類欠落を一つずつ与える。
+**expected_observation**: 出所と未信頼/unknownが保持され、読むだけで他の状態へ変わらない。
+**negative_input**: 閲覧だけでtrusted/authority、分類欠落をpublic、別projectのsource転用。
+**failure_observation**: 当該入力の不足を元source/meaning ownerへ返し、下流をunknownに保つ。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-001-F02 明示した昇格経路の分離
+
+**parent**: HELIXSECURITY-L2-001
+**requirement_ref**: HELIXSECURITY-L3-001-F02
+**positive_input**: 同dataを読む経路と明示した各昇格経路の入力・結果を別に照合する。
+**expected_observation**: 昇格未成立と経路/ownerが区別され、読取成功を昇格成功へ外挿しない。
+**negative_input**: 外部本文をinstructionへ直結、未承認案を要求採択、ACKだけでmemory/BRAIN採用。
+**failure_observation**: 未成立経路と不足ownerを記録し、入力意味/昇格条件不足を当該ownerへ返す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-002-F01 命令様dataの非実行
+
+**parent**: HELIXSECURITY-L2-002
+**requirement_ref**: HELIXSECURITY-L3-002-F01
+**positive_input**: 各命令様記述を文書/Issue/PR/Web/MCP/Tool responseへ個別に混ぜる。
+**expected_observation**: 内容を読めても、それを根拠とする権限付き呼出しやinstruction変更は起こらない。
+**negative_input**: 本文の命令をTool argsへ転記、source判定だけで信頼、dataで許可scope拡張。
+**failure_observation**: 直結を拒否し、境界不明の該当操作を止めてdata flow ownerへ返す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-003-F01 隔離identityと作用範囲
+
+**parent**: HELIXSECURITY-L2-003
+**requirement_ref**: HELIXSECURITY-L3-003-F01
+**positive_input**: 合成A/B project/tenant/environment/worktreeと同scope/別scopeの作用を照合する。
+**expected_observation**: 明示接続のある作用だけが対象内に限定され、identityの出所が辿れる。
+**negative_input**: identity欠落/衝突、primary tree/別project fallback、tenant適用省略。
+**failure_observation**: 該当操作を止め、identity不足はそのowner、実環境不足はINFRAへ返す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-003-F02 資産とstateの越境拒否
+
+**parent**: HELIXSECURITY-L2-003
+**requirement_ref**: HELIXSECURITY-L3-003-F02
+**positive_input**: 各作用種別を同projectの有効接続と別project/環境へ一つずつ試す。
+**expected_observation**: 許可対象と拒否/未観測を分け、scope不明を許可にしない。
+**negative_input**: 別project stateを最新扱い、暗黙fallback、あるread許可で全write/network許可。
+**failure_observation**: 該当境界へ戻し、無関係な有効scopeを保持する。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-004-F01 構成対象とexact revision
+
+**parent**: HELIXSECURITY-L2-004
+**requirement_ref**: HELIXSECURITY-L3-004-F01
+**positive_input**: 全10構成種別で正しいtupleと一field欠落/別project/stale/未知Hookを照合する。
+**expected_observation**: 構成の採用可否と出所、内容変更/authority変更が別に辿れる。
+**negative_input**: 未知Hook黙認、別HEAD設定、owner不明を既定値で補完。
+**failure_observation**: 該当構成の実行を止め、構成source/ownerへ不足を返す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-005-F01 生secret非露出と範囲付き利用
+
+**parent**: HELIXSECURITY-L2-005
+**requirement_ref**: HELIXSECURITY-L3-005-F01
+**positive_input**: 値を持たない合成credential参照と有効/不一致capabilityを各surfaceへ照合する。
+**expected_observation**: 許可された利用と値非露出、deny理由が別に辿れる。
+**negative_input**: raw値context/receipt、store直接露出、欠落scope/expiry/未知classで利用。
+**failure_observation**: 当該利用をdeny/stopし、方針はSEC、保存/注入境界は024へ戻す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-005-F02 secret検査と失効反映
+
+**parent**: HELIXSECURITY-L2-005
+**requirement_ref**: HELIXSECURITY-L3-005-F02
+**positive_input**: 混入/送信候補と失効前後の利用、検査不能を値なしfixtureで照合する。
+**expected_observation**: 検査/失効状態と拒否/隔離、未観測が対象operationへ辿れる。
+**negative_input**: 独自predicateで許可、revoke後利用、検査不能pass、redacted宣言だけで値非露出。
+**failure_observation**: 該当利用/送信を止め、既存009の該当停止・隔離と未完へ結ぶ。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-006-F01 default denyとegress tuple
+
+**parent**: HELIXSECURITY-L2-006
+**requirement_ref**: HELIXSECURITY-L3-006-F01
+**positive_input**: 許可tupleと一fieldだけ欠落/不一致/unknown、通信なしを別caseにする。
+**expected_observation**: 送信判定・範囲・計測値・根拠が辿れ、未許可先は通らない。
+**negative_input**: vendor設定のみで許可、未知宛先/分類/目的/authority、別scope送信。
+**failure_observation**: 当該送信をdenyし、policyはSEC、実network経路は024/INFRAへ返す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-006-F02 一般egressと分類基盤の接続
+
+**parent**: HELIXSECURITY-L2-006
+**requirement_ref**: HELIXSECURITY-L3-006-F02
+**positive_input**: 1.x資産sink機能がない構成で一般送信の必要条件と量/最小化を照合する。
+**expected_observation**: 一般egressと1.x asset-specific egress、未観測を別に判定する。
+**negative_input**: 1.x機能完成待ち、許可tupleだけで実経路/計測成立、未分類をallow。
+**failure_observation**: 該当接続/分類/計測不足を各ownerへ返す。根拠なし定量上限を新設しない。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-007-F01 policy・assignment・実環境の束縛
+
+**parent**: HELIXSECURITY-L2-007
+**requirement_ref**: HELIXSECURITY-L3-007-F01
+**positive_input**: 同assignment/policy/source revisionで実適用証拠と未適用/未観測/unsupportedを比較する。
+**expected_observation**: 宣言と実適用が別に辿れ、適用不能時hostへfallbackしない。
+**negative_input**: 設定存在だけで適用、Worker自己拡張、別host/backend fallback。
+**failure_observation**: 当該実行を停止/unknownにし、policy不足はSEC、実適用はINFRA/実環境へ返す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-007-F02 write path制御
+
+**parent**: HELIXSECURITY-L2-007
+**requirement_ref**: HELIXSECURITY-L3-007-F02
+**positive_input**: 合成allow内write、範囲外write、read-only禁止writeと前後treeを別caseにする。
+**expected_observation**: 許可diffまたはwrite拒否/変更なしを観測する。
+**negative_input**: read-onlyラベルだけ、禁止write成功、要求pathだけ記録。
+**failure_observation**: 当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-007-F03 network制御
+
+**parent**: HELIXSECURITY-L2-007
+**requirement_ref**: HELIXSECURITY-L3-007-F03
+**positive_input**: deny-allと隔離された合成端点への接続試行を使い、外部通信しない。
+**expected_observation**: deny適用と接続未成立が辿れる。
+**negative_input**: 未適用/unknownで通信、host fallback。
+**failure_observation**: 当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-007-F04 credential制御
+
+**parent**: HELIXSECURITY-L2-007
+**requirement_ref**: HELIXSECURITY-L3-007-F04
+**positive_input**: 値なしのprovider/store参照要求を使う。
+**expected_observation**: 遮断適用と参照拒否を観測し、raw値を証跡に置かない。
+**negative_input**: host credential fallback、store到達、原値env/log。
+**failure_observation**: 当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-007-F05 environment制御
+
+**parent**: HELIXSECURITY-L2-007
+**requirement_ref**: HELIXSECURITY-L3-007-F05
+**positive_input**: 合成allow set TASK_MODE/LANGと値なし未許可HOST_SECRET_REFを使う。
+**expected_observation**: allow setのみが渡った事実がpolicyへ辿れる。
+**negative_input**: 全host env継承、設定宣言だけで適用。
+**failure_observation**: 当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-007-F06 timeout制御
+
+**parent**: HELIXSECURITY-L2-007
+**requirement_ref**: HELIXSECURITY-L3-007-F06
+**positive_input**: fixture限定90sで期限内終了と期限到達を比較する。
+**expected_observation**: 期限後結果/side effectを成功へ混ぜず、値のfixture由来を残す。
+**negative_input**: 90sを製品既定値、期限無視、期限後成功。
+**failure_observation**: 当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-007-F07 resource制御
+
+**parent**: HELIXSECURITY-L2-007
+**requirement_ref**: HELIXSECURITY-L3-007-F07
+**positive_input**: fixture限定cpu1/memory256MiBの制約と到達を比較する。
+**expected_observation**: 受渡しと実適用、到達時状態が対応する。
+**negative_input**: 自己拡張、設定だけで適用、fixture値を共通limit。
+**failure_observation**: 当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-007-F08 diff検査制御
+
+**parent**: HELIXSECURITY-L2-007
+**requirement_ref**: HELIXSECURITY-L3-007-F08
+**positive_input**: 許可合成result pathと範囲外path追加を比較する。
+**expected_observation**: 範囲外差分を隔離/拒否し、内容を通常証跡へ露出しない。
+**negative_input**: 実状態未照合、範囲外通過、secret含有diff複写。
+**failure_observation**: 当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-007-F09 rollback制御
+
+**parent**: HELIXSECURITY-L2-007
+**requirement_ref**: HELIXSECURITY-L3-007-F09
+**positive_input**: postcondition failureと復旧、変更なしが証明できるcaseを分ける。
+**expected_observation**: 復旧実結果を観測し、変更なしを確認できたcaseだけrollback N/A。
+**negative_input**: 計画だけで復旧済、変更有無unknownでN/A、無関係scope復元。
+**failure_observation**: 当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-007-F10 result collection制御
+
+**parent**: HELIXSECURITY-L2-007
+**requirement_ref**: HELIXSECURITY-L3-007-F10
+**positive_input**: 同runと欠落/stale/別run結果、部分rollbackを比較する。
+**expected_observation**: 欠落は未回収、失敗/部分復旧は成功へ変換しない。
+**negative_input**: stdout/自己申告のみで適用、別revision receipt、値入り証跡。
+**failure_observation**: 当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-008-F01 operation-specific authority
+
+**parent**: HELIXSECURITY-L2-008
+**requirement_ref**: HELIXSECURITY-L3-008-F01
+**positive_input**: 全11操作で有効tupleと各field欠落/不一致/expiry/driftを比較する。
+**expected_observation**: 操作別判定と理由が辿れ、Agent利用権から包括write/deployを生成しない。
+**negative_input**: boolean approvalだけ、別operation許可転用、unknown/stale/失効通過。
+**failure_observation**: 該当operationをdenyし、意味変更はSEC/人判断の既存境界へ戻す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-009-F01 該当recipientへの停止・隔離
+
+**parent**: HELIXSECURITY-L2-009
+**requirement_ref**: HELIXSECURITY-L3-009-F01
+**positive_input**: 各triggerで該当recipient集合を与え、受領/実適用/未達/未観測を別々に照合する。
+**expected_observation**: 各該当先の状態が相関し、新規停止だけでin-flight成功を主張しない。
+**negative_input**: 一recipient未適用なのに継続、revoke後in-flight利用、単体成功で全停止。
+**failure_observation**: 対象operation/新規割当を止め、未達/適用不足と各ownerを保持する。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-009-F02 unknownの局所性と復旧境界
+
+**parent**: HELIXSECURITY-L2-009
+**requirement_ref**: HELIXSECURITY-L3-009-F02
+**positive_input**: 一対象の安全unknownと無関係scopeの有効作業、復旧不足を比較する。
+**expected_observation**: 該当停止/隔離と不足を保持し、無関係な有効scopeを一律失効しない。
+**negative_input**: 通知ACKだけで停止済、部分復旧を成功、一般meaning unknownで全project停止。
+**failure_observation**: policy意味はSEC、実適用はOS/実環境/CONNECT/INFRA等の該当ownerへ返す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-015-F01 資産identityとprovenance基盤
+
+**parent**: HELIXSECURITY-L2-015
+**requirement_ref**: HELIXSECURITY-L3-015-F01
+**positive_input**: 列挙全対象と別owner資産を値/本文dumpなしで識別する。
+**expected_observation**: 安定identityとprovenance、unknownが各ownerへ辿れる。
+**negative_input**: identity不明をpublic、列挙外除外、内容dumpを識別の必須条件。
+**failure_observation**: unclassified/unknownで保留し、資産ownerへ不足を返す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-016-F01 六分類とunknownの記録
+
+**parent**: HELIXSECURITY-L2-016
+**requirement_ref**: HELIXSECURITY-L3-016-F01
+**positive_input**: 全六分類と未分類、別asset/revision分類を照合する。
+**expected_observation**: 分類出所とunknown、不一致が辿れ、公開範囲とdata-use許可/operation authorityを区別する。
+**negative_input**: 分類不明をpublic、旧revision転用、分類だけで利用/送信許可。
+**failure_observation**: 当該分類をunknown/未成立にし、分類意味はSEC/資産出所はownerへ返す。
+**execution_state**: not_executed
+
+## HELIXSECURITY-L10-024-F01 policyと実資源・強制の接続
+
+**parent**: HELIXSECURITY-L2-024
+**requirement_ref**: HELIXSECURITY-L3-024-F01
+**positive_input**: policy受渡しと実適用状態を照合し、一境界未適用/unknownを与える。
+**expected_observation**: 宣言と実適用/未観測が別に辿れる。
+**negative_input**: policyだけで資源安全、INFRAがpolicy発行、SECが資源配置、別環境receipt。
+**failure_observation**: policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。
+**execution_state**: not_executed
