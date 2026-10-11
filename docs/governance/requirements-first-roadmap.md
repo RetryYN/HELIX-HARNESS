@@ -159,6 +159,34 @@ BRAIN→CORE、CORE→OS、検収→Backflowの各辺は別のconnectionであ�
 
 SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、INFRA012の高度なcontrol/execution resource隔離、013のfailure-domain評価、019の詳細freshness/confidence、autoscaling・multi-cloud等の後続版を初回へ前倒ししない。義務・安全・oracleとして効く旧sourceは「参照のみ」にせず、旧runtime・過去例を実依存と混同しない。旧functional-release-slice:23〜67の必要安全閉包と局所/全体の区別、旧CLAUDE:49〜63の意味/外部作用分離を、現行023と各ownerへ意味再導出する。変更は初回操作ごとの照合範囲を具体化する点で、新しい要求・版・許可・一律gateは追加しない。
 
+### 初回5操作の入力元案と、入口から先の依存条件
+
+[入力元案と依存照合](audits/first-cycle-source-prerequisites-2026-10-12.json)では、上の5操作について次のsourceを案として特定する。実sourceの登録・利用、知識の採用、正式packの依存宣言ではない。意味契約を読むこと、単体の成立、実操作の条件を分ける。
+
+| 操作 | 入力元の案・owner | 未決と適用の境界 |
+|---|---|---|
+| 知識提供・意味導出 | 採用範囲に合致したSEEDFIRST意味JSONと、MSG004/001/005の意味candidate → BRAIN/CORE | MSGCONTENT未回答のcandidateを採用入力にしない。参照SDOP/VT内容・最小集合・適用条件が残る。実readにはSECURITY境界を適用する |
+| CORE→OSの受渡し・原記録 | CORE009の提案/選択/使用set、義務・N/A・不足・影響 → OS002の案件記録 | 将来出力のownerを定める案。実set・保存先・端契約版・receiptを捏造しない |
+| 割当・Worker実行 | OS ticket/assignment、LABO水準/INT配置案、INFRA対象資源/容量/Work-Change観測、SECURITY制約 → Worker環境 | 実task・資源source・分類・authority・制約適用は未供給。未評価初回027は既決6条件を満たす場合だけ |
+| 結果・資源観測の受渡し | OSが受領したWorker結果/receipt → LABO057/028/056。INFRA001/004の原観測 → LABO026 | 両者は別source。未選択は未観測。057の既決人手receiptを026の代行許可へ転用しない。結果は実行後出力で、受領は評価成功ではない |
+| 更新・復旧 | INFRAの対象資源before/after、backup/restore/rollback、独立resource/pathとSECURITY authority | 後続主題への条件案。通常操作とOS停止中の独立復旧を分け、実行選択・許可・実証はしない |
+
+次の依存条件を既決L2と対L11へ照合した。実通信やcredentialを使わない案でも、遮断と制約適用の義務を省かない。
+
+| 入口 | さらに照合する依存と条件 | 不足時の戻し先 |
+|---|---|---|
+| SECURITY007 | 003/005/006/008、OS assignment、INFRA実資源、Worker契約。003のproject/環境/宣言接続、004の構成source版、005/006/008の相互境界、006→016→015の1.0分類を同じ操作tupleへ結ぶ | identity/構成/分類/authorityはSECURITYと各source owner、物理適用はINFRA/Worker。unknown/unsupportedは停止。相互参照を免除や無限の起動順へ変えない |
+| INFRA010 | 全実操作で001・有効SECURITY authority・Worker契約。通常経路ではOS ticket/assignmentと009。state-changingではactionに適用される005。更新/変更時だけupdate-admission。独立復旧は006と別authority | target/action/scope・制約・前後観測不足は該当owner。read-onlyもwrite禁止と対象scopeの前後観測が必要。停止中OSの通常応答を独立復旧の開始条件にしない |
+| INFRA009 | 明示依存001/002/004/006とOS Work/Change interface/evidence。002のapproved design/target/actual分離、004のsource観測、006→005→001/002の復旧契約を保持 | CORE設計参照・資源/観測・復旧owner。通常操作で復旧しないという理由だけで006への依存を削除しない。意味参照・単体成立・実復旧を分け、stage pack利用時だけOS014条件を加える |
+| LABO026、057/028/056 | 選択資源sourceはINFRA契約と専用connector、Worker sourceはOS結果/receipt・assignment/result契約・001/028/056、056→055とdata-use。057は同義務の明示人手receiptも可能 | 資源sourceはINFRA/接続owner、assignment/結果はOS/Worker、分類/利用許可はSECURITY。欠落・stale・unknownは未受領/未評価を保持 |
+| LABO001/002/011と058追補 | 個別集積呼出しは058に従い選択sourceの接続と安全/版条件、001のprovenance/状態/field契約を満たす。相関操作は002→001/011、011→001/Aggregate identity | source不足は元owner、相関不能は孤立/unknown。個別呼出しに未選択sourceの稼働を要求しない一方、001の1.0全source対応義務021〜030は未成立として保持し、任意へ変更しない。031/032だけが採択source契約を条件とする任意接続 |
+
+001の対応能力全体と、058が補う個別呼出しの成立を区別する。[指摘訂正記録](audits/first-cycle-source-prerequisites-2026-10-12-r2.json)は元記録を保持したまま、LABO001/002/011行の適用範囲と058の採択本文・対L11を補う。選択sourceだけで001の全source対応完成を主張せず、未選択021〜030の能力義務を削除・延期しない。逆に、その全対応の未完を、必要条件を満たす個別呼出しの一律停止理由へ変えない。
+
+これは選択案の入口から先の照合を進めたもので、全周辺要求の再帰的有効閉包は未確定である。INFRA012/014/019、SECURITY019/016の1.x sink enforcement、完全自動failoverを初回へ前倒ししない。実contract版・値・資産分類・制約適用・評価oracle・setup/復旧実証は後続要件・設計・実行に残す。#2846には必要知識の採否・最小集合と再開順序/scope案を保持し、L3以下の停止を継続する。
+
+旧functional-release-slice-requests:23〜67の明示集合・局所/全体・必要安全閉包、旧CLAUDE:49〜63の意味/外部作用分離、旧弱点UTW-021を起点に、現行ownerと利用条件へ意味再導出した。変更は入力元案と依存条件を具体化する点に限り、要求意味・版・許可・新しいgateは追加しない。
+
 ### 初回配置に供給する入力と未評価状態
 
 初回の配置材料を、採択済みの[OS要求](../helix-os/L2-requirements/governance-requirements.md)／[対受入](../helix-os/L11-acceptance/governance-acceptance.md)（018・019・023・027）、[LABO要求](../helix-labo/L2-requirements/labo-requirements.md)／[対受入](../helix-labo/L11-acceptance/labo-acceptance.md)（028・054〜057）、[INTELLIGENCE要求](../helix-intelligence/L2-requirements/intelligence-requirements.md)／[対受入](../helix-intelligence/L11-acceptance/intelligence-acceptance.md)（010・061・066）へ戻して整理する。[固定本文の照合記録](audits/first-allocation-input-contract-trace-2026-10-11.json)は9/28の採択revisionと現在の本文を比較する。以下は対象案件へ供給する内容と順序の整理であり、実ticket、配置案、権限、実行記録を作った証拠ではない。要求の実装依存と、意味契約を参照する依存も区別する。
