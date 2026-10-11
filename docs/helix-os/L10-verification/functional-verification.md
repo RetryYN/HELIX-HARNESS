@@ -1,0 +1,108 @@
+# HELIXOS-L10-053-functional
+
+生成view。意味正本: `functional-verification.json`。JSON SHA-256: `04c2b4cfb7bf6cec558f5098d394b651007699e06c52e6b479de182b3ec15801`。JSONから再生成する。
+
+| 項目 | 内容 |
+|---|---|
+| mechanism | HELIX-OS |
+| stage | Stage 1 |
+| primary_parent | HELIXOS-L2-053 |
+| version_target | 1.0 |
+| status | draft_not_approved |
+| authority_effect | none_until_exact_revision_delegated_approval |
+| source_revision | a2cc3defcee5a229145c89217af30c7d20da998f |
+| scope | 10/12限定前提形成のJSON意味正本・artifact群の単一operation原子確定。OS002案件template追跡は別pair。FR53履歴変換とHARNESS053→042不整合に依存する操作は選択しない。 |
+| source_pins | path: docs/concept/helix-concept.md / sha256: bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715 / path: docs/concept/helix-principles.md / sha256: 5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441 / path: docs/helix-os/L1-planning/system-intent.md / sha256: 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e / path: docs/helix-os/L2-requirements/governance-requirements.md / sha256: 9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240 / path: docs/helix-os/L11-acceptance/governance-acceptance.md / sha256: 976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275 / path: docs/governance/decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md / sha256: 3d7d0940399414e8ea7ea751f55ee012647c5ee2e834446b9c5a8d2e2ee273d7 / path: docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md / sha256: ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23 / path: docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md / sha256: 994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b / path: docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md / sha256: c091ac5083a0ebffb441921ab614567cfece8d95ded91cba3de3d462f9d667a9 / path: docs/helix-brain/candidates/first-cycle-reference-template-knowledge.json / sha256: 321d1253e63a11c3b14b398138ee976e2960298d2007431808396171b2431caf |
+| dependency_boundary | 意味identity判定はHARNESS052、既存正本/event/projection/復旧はOS001/002/007/009、実権限/隔離はSECURITY、資源はINFRA。owner-qualified L3契約のexact revisionは未承認/未束縛。意味をOSで補わず該当実操作を保留する。 |
+| knowledge_use | 採用P3FIRSTのVT103と選択SDOP19節の問い/証拠/戻し先を限定利用する。数値・方式・全技法・正式schemaは採用しない。 |
+| document_format | JSONが意味正本、MDは生成view。本keyは文書用であり製品schema/wire/transaction方式を固定しない。 |
+| legacy_comparison | reuse_class: semantic_rederivation / sources: path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md / lines: 142 / 142 / path: archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md / lines: 76 / 76 / preserve: 複数artifact単一operation、部分成功非公開、CAS、再送、before/after/write/rollback/conflict証拠。 / change: 10/10 JSONAUTH採用どおりMarkdownからJSON意味正本へ訂正する。HOT49はFR52部分の境界fault参照だけで、FR53履歴/旧runtime/旧test合格は移さない。 / reason: 9/25 JSON意味/view分離と既決責務へ整合し、保存の部分成功をcanonical成功へ誤認しない。 |
+| remaining | HARNESS052とOS一般正本/記録/復旧、実authority/資源/観測の限定L3契約を先行閉包する。 / 正式schema/transaction/DB選定、対設計/oracle凍結、実装前Red→最小実装→Green、各faultの実証は後続段階。 / PO L11実物受入と通常L3の再開、release/内部デプロイは本pairの文書承認で成立しない。 |
+| document_id | HELIXOS-L10-053-functional |
+| layer | L10 |
+| pair | P3: L3↔L10 |
+| category | functional |
+| execution_entry | 承認L3/対oracle、局所/接続の下位receipt、組合せ契約、同operation/scopeの実authority/隔離/資源/観測を揃える。左L3起草の前提に未来の実receiptを置かない。 |
+| system_specific_obligation | JSON正本・各所有者のartifact・保存結果・各read path・receiptが一つの論理operationとして矛盾なく確定し、境界故障や競合でも部分currentと二重revisionを公開しないこと。各write単独greenの合計ではこの義務を証明しない。 |
+| evidence | 下位proofと固有義務結果、composition contract、機械導出の有無、全対象writeのbefore/after/outcome、current/read/projection実観測、失敗/復旧/未完、意味判定参照、oracle/revision/scope。計測はHARNESS034の対象契約へ束縛する。 |
+| completion | 未実行・片側不足・別oracle・未観測をgreenへ変えず、照合結果をHARNESS022/056へ渡す。実物PO L11 Acceptedを生成しない。 |
+
+## HELIXOS-L10-053-F01 operationと全write義務
+
+**parent**: HELIXOS-L2-053
+**requirement_ref**: HELIXOS-L3-053-F01
+**positive_input**: ownerが確定したpayloadと全境界のwrite義務を同じoperationへ束縛する。
+**expected_observation**: 全必須writeとowner/baseが列挙され、他operationと区別される。
+**negative_input**: owner/base/必須projection/receipt linkを一つずつ落とす。
+**failure_observation**: 不足境界を特定し、完全な更新operationとしてcurrentを成立表示しない。
+**execution_state**: not_executed
+
+## HELIXOS-L10-053-F02 全必須write後の公開
+
+**parent**: HELIXOS-L2-053
+**requirement_ref**: HELIXOS-L3-053-F02
+**positive_input**: 全必須writeの成功を、同じoperationのreceiptとcurrent/read/projectionで照合する。
+**expected_observation**: before/afterと各write outcomeが辿れ、全てが揃ってから同じ新revisionをcurrentとして読める。
+**negative_input**: 各保存/照合境界を一つずつ失敗させ、他writeの順序を変える。
+**failure_observation**: どの失敗でも新artifactの部分集合は確定currentとして読めず、先行currentが維持される。
+**execution_state**: not_executed
+
+## HELIXOS-L10-053-F03 失敗隔離と未完復旧
+
+**parent**: HELIXOS-L2-053
+**requirement_ref**: HELIXOS-L3-053-F03
+**positive_input**: 各境界の失敗を返し、rollback完了と隔離のみの結果を分ける。
+**expected_observation**: 成功/未完writeと復旧状態が同じscopeへ結ばれ、未完を成功にしない。
+**negative_input**: rollback証拠無し、復旧先不明、隔離を正常currentと表示する。
+**failure_observation**: 残る復旧義務を保持し、rollback/再試行安全性を推測しない。
+**execution_state**: not_executed
+
+## HELIXOS-L10-053-F04 全baseのCAS
+
+**parent**: HELIXOS-L2-053
+**requirement_ref**: HELIXOS-L3-053-F04
+**positive_input**: 同じ開始baseから競合する更新が先に確定した後、元operationをcommitしようとする。
+**expected_observation**: 競合したbaseが示され、旧baseの上書きと新revision公開がない。
+**negative_input**: 対象baseの一つだけを変える、他scopeの成功receiptを使う。
+**failure_observation**: operation全体をstale/conflictとして止め、競合/未完writeをscope付きで返す。
+**execution_state**: not_executed
+
+## HELIXOS-L10-053-F05 command再送の保存境界
+
+**parent**: HELIXOS-L2-053
+**requirement_ref**: HELIXOS-L3-053-F05
+**positive_input**: 同じcommandと同じ意味判定結果で再送し、別payloadで同じcommand IDを再利用するcaseを分ける。
+**expected_observation**: 前者は同一操作結果へ結ばれ二重revisionがなく、後者はconflictで先行結果が保持される。
+**negative_input**: HARNESS判定evidenceがmissing/unknown、scope/baseが異なる再送、OS独自の同一payload判定。
+**failure_observation**: 意味判定不足/不一致を保持して当該保存操作を保留し、別payloadや別scopeを同一操作へ併合しない。
+**execution_state**: not_executed
+
+## HELIXOS-L10-053-F06 成功/失敗receipt
+
+**parent**: HELIXOS-L2-053
+**requirement_ref**: HELIXOS-L3-053-F06
+**positive_input**: 全成功と部分失敗のreceiptを、実write/current/read観測へ逆照合する。
+**expected_observation**: countだけでなく各writeとownerが辿れ、全成功と未完が別に示される。
+**negative_input**: countのみ一致、別revisionのprojection、失敗位置欠落、成功/失敗receiptのscope混在。
+**failure_observation**: 相違する境界と未完を返し、receiptの存在や件数だけで原子性を証明しない。
+**execution_state**: not_executed
+
+## HELIXOS-L10-053-F07 receipt保存失敗
+
+**parent**: HELIXOS-L2-053
+**requirement_ref**: HELIXOS-L3-053-F07
+**positive_input**: receipt保存失敗を起こし、既存の適用可能な証拠経路がある/ない場合を分ける。
+**expected_observation**: 証拠経路の有無と参照先を識別し、無い場合unknownと復旧義務が残る。
+**negative_input**: 成功の口頭主張や新しい無承認経路でreceipt欠落を補う。
+**failure_observation**: 証拠不足を保存し、全成功/復旧成功へ変換しない。
+**execution_state**: not_executed
+
+## HELIXOS-L10-053-F08 JSON正本と生成view
+
+**parent**: HELIXOS-L2-053
+**requirement_ref**: HELIXOS-L3-053-F08
+**positive_input**: JSONを更新したoperationと、JSONを保持してMD/HTMLだけを編集した状態を比較する。
+**expected_observation**: 正本/projectionの所属と対象revisionが区別される。viewだけの変更は意味更新にならない。
+**negative_input**: viewの成功を必須JSON writeの代替にする、別revisionのviewをcurrentへ結ぶ。
+**failure_observation**: 正本/projection不一致を返し、JSON未確定の部分currentを提示しない。
+**execution_state**: not_executed
