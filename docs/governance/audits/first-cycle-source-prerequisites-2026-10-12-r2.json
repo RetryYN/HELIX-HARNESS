@@ -1,0 +1,50 @@
+{
+  "audit_id": "FIRST-CYCLE-SOURCE-PREREQUISITES-2026-10-12-R2",
+  "finding": "PR2925 F1 Major",
+  "original_path": "docs/governance/audits/first-cycle-source-prerequisites-2026-10-12.json",
+  "original_sha256": "d12f1e7813c0fba911a3d62969b888017c0d1009aeeb28d2a67ad196c2585020",
+  "reviewed_original_head": "42015a1abda9327be66d5360440695b6ef3573e2",
+  "correction": "元記録LABO001/002/011行の選択source条件の範囲を個別呼出しへ限定し、採択済み058の根拠と001の全対応義務を補う。元監査は不変。能力全体と個別呼出しを混同しない。",
+  "corrected_dependency_check": {
+    "entry": "LABO001/002/011と058追補",
+    "classification": "058による選択sourceの個別集積呼出し条件と、001の1.0全source対応成立を分離",
+    "dependencies": [
+      "個別呼出し:001のprovenance/source版/状態/field/scope/許可と選択source接続・安全/版条件",
+      "能力全体:001の1.0対応source021〜030の個別接続義務を保持",
+      "LABO002→001/011",
+      "LABO011→001/Aggregate identity"
+    ],
+    "condition": "058は未選択sourceの稼働を個別呼出し成立の前提にしない。001の021〜030全source対応の義務は任意にせず未成立のまま保持し、削除/延期しない。031/032は採択source契約がある場合の任意接続。呼出し成功から全source対応完成を生成しない",
+    "unresolved": "実source/観測/許可/契約版・相関入力は未供給。未選択021〜030は未観測かつ全source対応の未成立義務として保持し、その全対応の未完だけで条件を満たす個別呼出しを拒否しない"
+  },
+  "additional_adopted_sections": [
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "identity": "HELIXLABO-L2-058",
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "start_line": 403,
+      "end_line": 415,
+      "sha256": "b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 403,
+      "fixed_end_line": 415
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "identity": "HELIXLABO-L2-058",
+      "revision": "1e79f3434f0f3fca4f590fe670007eb143ad5840",
+      "start_line": 156,
+      "end_line": 163,
+      "sha256": "f42d0cdbc001aeb26b91b0c1464f772c381cd7a4334908f24485c6847e802fcd",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_start_line": 156,
+      "fixed_end_line": 163
+    }
+  ],
+  "decision_pin": {
+    "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+    "revision": "6ade4ef4814e58d0de6c1ccb35edfaca6d63fc2d",
+    "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+  },
+  "authority_effect": "none; 要求意味・版・採用・L3再開・実行・全source完成を生成しない"
+}

@@ -179,7 +179,9 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 | INFRA010 | 全実操作で001・有効SECURITY authority・Worker契約。通常経路ではOS ticket/assignmentと009。state-changingではactionに適用される005。更新/変更時だけupdate-admission。独立復旧は006と別authority | target/action/scope・制約・前後観測不足は該当owner。read-onlyもwrite禁止と対象scopeの前後観測が必要。停止中OSの通常応答を独立復旧の開始条件にしない |
 | INFRA009 | 明示依存001/002/004/006とOS Work/Change interface/evidence。002のapproved design/target/actual分離、004のsource観測、006→005→001/002の復旧契約を保持 | CORE設計参照・資源/観測・復旧owner。通常操作で復旧しないという理由だけで006への依存を削除しない。意味参照・単体成立・実復旧を分け、stage pack利用時だけOS014条件を加える |
 | LABO026、057/028/056 | 選択資源sourceはINFRA契約と専用connector、Worker sourceはOS結果/receipt・assignment/result契約・001/028/056、056→055とdata-use。057は同義務の明示人手receiptも可能 | 資源sourceはINFRA/接続owner、assignment/結果はOS/Worker、分類/利用許可はSECURITY。欠落・stale・unknownは未受領/未評価を保持 |
-| LABO001/002/011 | 001は選択sourceの個別接続、相関する操作は002→001/011、011→001/Aggregate identity。原記録のfield/版/欠測を保つ | source不足は元owner、相関不能は孤立/unknown。IDや時刻一致を因果にせず、未選択source全件の完成待ちにしない |
+| LABO001/002/011と058追補 | 個別集積呼出しは058に従い選択sourceの接続と安全/版条件、001のprovenance/状態/field契約を満たす。相関操作は002→001/011、011→001/Aggregate identity | source不足は元owner、相関不能は孤立/unknown。個別呼出しに未選択sourceの稼働を要求しない一方、001の1.0全source対応義務021〜030は未成立として保持し、任意へ変更しない。031/032だけが採択source契約を条件とする任意接続 |
+
+001の対応能力全体と、058が補う個別呼出しの成立を区別する。[指摘訂正記録](audits/first-cycle-source-prerequisites-2026-10-12-r2.json)は元記録を保持したまま、LABO001/002/011行の適用範囲と058の採択本文・対L11を補う。選択sourceだけで001の全source対応完成を主張せず、未選択021〜030の能力義務を削除・延期しない。逆に、その全対応の未完を、必要条件を満たす個別呼出しの一律停止理由へ変えない。
 
 これは選択案の入口から先の照合を進めたもので、全周辺要求の再帰的有効閉包は未確定である。INFRA012/014/019、SECURITY019/016の1.x sink enforcement、完全自動failoverを初回へ前倒ししない。実contract版・値・資産分類・制約適用・評価oracle・setup/復旧実証は後続要件・設計・実行に残す。#2846には必要知識の採否・最小集合と再開順序/scope案を保持し、L3以下の停止を継続する。
 
