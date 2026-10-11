@@ -1,0 +1,463 @@
+{
+  "record_kind": "requirements_entry_preparation_observation",
+  "observed_at": "2026-10-11T13:10:48.346318+00:00",
+  "source_revision": "801cac123dacf795f6c01e132e7752c0db4f3e3a",
+  "authority_effect": "none",
+  "input_sha256": {
+    "AGENTS.md": "329461312a6e1a8ca651643bffcc4421948f74350a2a3d3f2244243dc37f6fc1",
+    "CLAUDE.md": "059b90f23d95f990686a2f21fd5635166e9cd435fca2699dbcf773331394b15f",
+    "README.md": "85a4465a438ce4645480b4a04506675b2a5473d40f2b2e6423f03b75eef0f098",
+    ".editorconfig": "7e8b1ed439c583724cd97ddb73701ac9f81d29f7bd62d2c078fb751f0358e92a",
+    "docs/README.md": "c8103d3d2f63151ab3d91ad37eae45f3e17a4cd7e2085342fb2db5c8fdeb7188",
+    "docs/governance/new-generation-start-here.md": "e176a00bc004ffbde79d52604d5cdc284079fd44576fe4f291bfd3ddbfb746bf",
+    "docs/governance/github-upstream-operating-model.md": "f5d5a2bc3bdbacb8578dcd3266f788a8f7778ba99fb3bdcdecc13a535671eb5e",
+    "docs/governance/authority-state-model.md": "2f9cf08cfe4512276bca0f3f993103d4debac0a6c2176b3a83932bf19f50729b",
+    "docs/governance/requirements-first-roadmap.md": "44ecca368e6a2065687eacfd3dc059de666865d700416225a94e10d10654633a",
+    "docs/governance/requirements-stage-closure.md": "62cb82dbcbc4003a9431564ebf01734edcab5ea71b94aac939e084c1530b6328",
+    "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198",
+    "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md": "2c700ffcbb89c034d9f0b43a7f69483e785abbef28bb07601857a1d0caa72030",
+    "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md": "ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23",
+    "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae",
+    "docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json": "8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77"
+  },
+  "entry_link_observations": [
+    {
+      "source": "AGENTS.md",
+      "relative_file_targets": [
+        "docs/governance/new-generation-start-here.md",
+        "docs/concept/helix-concept.md",
+        "docs/concept/helix-principles.md",
+        "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+        "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+        "scaffold/research/design-template-seed-sdop-20260929/README.md",
+        "scaffold/verification-test-template-seed-20261001/README.md",
+        "docs/governance/decisions/principles-are-po-directive-po-decision-2026-10-10.md",
+        "docs/governance/feature-tickets/FT-GOV-AGENTREAD-001.md",
+        "docs/governance/decisions/learn-from-failures-principle-po-decision-2026-10-09.md",
+        "docs/governance/github-upstream-operating-model.md",
+        "docs/governance/legacy-asset-disposition.jsonl",
+        "docs/governance/legacy-asset-reuse-control.md",
+        "docs/governance/authority-state-model.md",
+        "docs/governance/github-upstream-operating-model.md",
+        "docs/governance/github-upstream-operating-model.md"
+      ],
+      "missing_file_targets": [],
+      "limit": "file/tree存在の静的確認。anchor、意味整合、全量の実読、機構の成立はこの検査から主張しない。"
+    },
+    {
+      "source": "CLAUDE.md",
+      "relative_file_targets": [
+        "docs/governance/new-generation-start-here.md",
+        "docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md",
+        "AGENTS.md",
+        "AGENTS.md",
+        "docs/governance/github-upstream-operating-model.md"
+      ],
+      "missing_file_targets": [],
+      "limit": "file/tree存在の静的確認。anchor、意味整合、全量の実読、機構の成立はこの検査から主張しない。"
+    },
+    {
+      "source": "README.md",
+      "relative_file_targets": [
+        "docs/governance/decisions/helix-web-docs-consolidation-po-decisions-2026-10-03.md",
+        "docs/governance/new-generation-start-here.md",
+        "docs/governance/legacy-asset-reuse-control.md",
+        "LICENSE",
+        "THIRD_PARTY_NOTICES.md"
+      ],
+      "missing_file_targets": [],
+      "limit": "file/tree存在の静的確認。anchor、意味整合、全量の実読、機構の成立はこの検査から主張しない。"
+    },
+    {
+      "source": "docs/README.md",
+      "relative_file_targets": [
+        "docs/concept/README.md",
+        "docs/concept/product-boundary.md",
+        "docs/governance/new-generation-start-here.md",
+        "docs/helix-harness/L1-planning/product-intent.md",
+        "docs/helix-harness/L2-requirements/product-requirements.md",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "docs/helix-os/L1-planning/system-intent.md",
+        "docs/helix-os/L2-requirements/governance-requirements.md",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "docs/helix-web/L1-planning/product-intent.md",
+        "docs/helix-web/L2-requirements/product-requirements.md",
+        "docs/helix-web/L11-acceptance/product-acceptance.md",
+        "docs/helix-web-os/L1-planning/system-intent.md",
+        "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+        "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+        "docs/governance/decisions/helix-web-docs-consolidation-po-decisions-2026-10-03.md",
+        "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+        "docs/helix-web/README.md",
+        "docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md",
+        "docs/governance/legacy-migration/README.md",
+        "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+        "docs/helix-labo/README.md",
+        "docs/helix-brain/README.md",
+        "docs/helix-intelligence/README.md",
+        "docs/helix-security/README.md",
+        "docs/helix-infrastructure/README.md",
+        "docs/governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md",
+        "docs/governance/requirements-source/README.md",
+        "docs/helix-web/README.md",
+        "docs/helix-web-harness/README.md",
+        "docs/helix-web-harness-prototype/README.md",
+        "docs/helix-web-harness-requirements/README.md",
+        "docs/helix-web-harness-design/README.md",
+        "docs/helix-web-harness-development/README.md",
+        "docs/helix-web-harness-refactoring/README.md",
+        "docs/helix-web-harness-release/README.md",
+        "docs/helix-web-harness-operations/README.md",
+        "docs/helix-web-harness-core/README.md",
+        "docs/helix-web-connector/README.md",
+        "docs/helix-web-os/README.md",
+        "docs/helix-labo/candidates/improvement-research-requirements.md",
+        "docs/concept/helix-concept.md",
+        "docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md"
+      ],
+      "missing_file_targets": [],
+      "limit": "file/tree存在の静的確認。anchor、意味整合、全量の実読、機構の成立はこの検査から主張しない。"
+    },
+    {
+      "source": "docs/governance/new-generation-start-here.md",
+      "relative_file_targets": [
+        "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+        "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+        "docs/concept/README.md",
+        "docs/concept/helix-concept.md",
+        "docs/concept/product-boundary.md",
+        "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+        "docs/concept/helix-five-goals.md",
+        "docs/concept/helix-principles.md",
+        "docs/governance/decisions/principles-are-po-directive-po-decision-2026-10-10.md",
+        "docs/helix-harness/L1-planning/product-intent.md",
+        "docs/helix-os/L1-planning/system-intent.md",
+        "docs/helix-web/L1-planning/product-intent.md",
+        "docs/helix-web-os/L1-planning/system-intent.md",
+        "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/helix-web-docs-consolidation-po-decisions-2026-10-03.md",
+        "docs/helix-brain/L1-planning/brain-intent.md",
+        "docs/helix-labo/L1-planning/labo-intent.md",
+        "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+        "docs/helix-security/L1-planning/security-intent.md",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+        "docs/helix-connect/L1-planning/connect-intent.md",
+        "docs/governance/audits/source-rebaseline/l1-goals-principles-coverage-audit.md",
+        "docs/governance/l1-goals-principles-source-inventory.md",
+        "docs/governance/audits/source-rebaseline/l2-source-register.md",
+        "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+        "docs/governance/audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md",
+        "docs/governance/upstream-authority-register-2026-09-14.md",
+        "docs/governance/authority-state-model.md",
+        "docs/governance/github-upstream-operating-model.md",
+        "docs/governance/management-provisional-requirement-registration.md",
+        "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "docs/governance/legacy-requirement-carry-forward-policy.md",
+        "docs/governance/requirement-carry-forward-status.md",
+        "docs/governance/legacy-migration/ir/legacy-ir-rehome-wave-register.md",
+        "docs/governance/legacy-migration/README.md",
+        "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+        "docs/governance/crosswalks/concept-mechanism-version-requirement-crosswalk.md",
+        "docs/governance/crosswalks/concept-requirement-po-decision-packet.md",
+        "docs/governance/requirement-disposition-review-program.md",
+        "docs/governance/requirement-overlap-review-program.md",
+        "docs/governance/requirement-technical-substitutability-review-program.md",
+        "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-inventory.md",
+        "docs/governance/requirement-atomization-review-contract.md",
+        "docs/governance/legacy-migration/candidate/legacy-candidate-source-inventory.md",
+        "docs/governance/audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "docs/governance/legacy-asset-reuse-control.md",
+        "docs/governance/legacy-asset-disposition.jsonl",
+        "docs/governance/legacy-asset-decision-log.md",
+        "docs/concept/helix-concept.md",
+        "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+        "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+        "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/brain-l1-idea-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/intelligence-l1-idea-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/security-l1-idea-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+        "scaffold/README.md",
+        "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+        "docs/governance/github-upstream-operating-model.md",
+        "docs/governance/authority-state-model.md",
+        "AGENTS.md"
+      ],
+      "missing_file_targets": [],
+      "limit": "file/tree存在の静的確認。anchor、意味整合、全量の実読、機構の成立はこの検査から主張しない。"
+    }
+  ],
+  "local_tool_observations": {
+    "git": "git version 2.43.0",
+    "gh": "gh version 2.62.0 (2024-11-14)",
+    "python3": "Python 3.12.3",
+    "node": "v22.23.1",
+    "npm": "10.9.8"
+  },
+  "tool_observation_limit": "現在のCLI環境で版表示が成功した観測。採用版、対応OS、依存lock、再現セットアップ、製品実装・検証成功の証拠ではない。環境変数や認証情報は取得しない。",
+  "formal_build_config_observation": {
+    "matching_non_archive_non_scaffold_paths": [
+      ".editorconfig"
+    ],
+    "interpretation": "editorの基本設定は存在するが、選択パターンの正式package／Python依存manifest・lock・lint／formatter設定・CI workflow YAMLは存在しない。名前patternに限る観測で、任意の別方式の不存在や未承認方式の採用は生成しない。"
+  },
+  "open_issue_observation": [
+    {
+      "number": 2905,
+      "title": "整備: 新世代の最小開発環境・依存管理・再現検証手順を整理する",
+      "body_sha256": "5a63f8c5f6b50a237d1862488759b75ede2e465f46b0bbc0dae8a23267eba009"
+    },
+    {
+      "number": 2903,
+      "title": "整備: 要件定義前に文書・配置・開発規律を照合して集約する",
+      "body_sha256": "02a82ceb1cbf8e56fdcef01b8d9ae27a3fc159f5357133fdbb836b42b034e1b3"
+    },
+    {
+      "number": 2846,
+      "title": "ロードマップ: 要件定義の最初にHARNESS・CORE・BRAIN・OSの最小内部循環を整理する",
+      "body_sha256": "3b439b767e52b73070d0e9647df48fc2fb485e5be68fd26bd2cba815bfbf657e"
+    },
+    {
+      "number": 2093,
+      "title": "chore(ops): 作業ブランチとworktreeの残置を継続管理する",
+      "body_sha256": "41de1651fcd873923dcbb0c4f5a26596e5b4abfeca0c0dcf872f40ea13127eba"
+    },
+    {
+      "number": 1908,
+      "title": "audit(capability): [PHCAP-20] Memory／継続再構成の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "0128e9129da3fe233e7e02d25e001085e1fa9cb6d34b6d9be28d739a37dc112a"
+    },
+    {
+      "number": 1907,
+      "title": "audit(capability): [PHCAP-19] Learning／改善の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "6b401a7cc24a74206266fb768c37c2e18d7821fc19d10db8bd63e2e7b66f28fb"
+    },
+    {
+      "number": 1906,
+      "title": "audit(capability): [PHCAP-18] Refactorの旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "32f31573283ef72495d749a702b2cdb1d71d753fb988df4fb8206992b49b1dd8"
+    },
+    {
+      "number": 1905,
+      "title": "audit(capability): [PHCAP-17] Incidentの旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "1c40ad69660ec5ae5f4f5f865a8c28885a4856b65e43f49dc88a36fc7b4c9b1c"
+    },
+    {
+      "number": 1904,
+      "title": "audit(capability): [PHCAP-16] 運用・監視の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "df5167cbe4fbda71569646ce39003171d9bb037d7f0871ac1a706933bd28d21c"
+    },
+    {
+      "number": 1903,
+      "title": "audit(capability): [PHCAP-15] Deployの旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "33b47a07744fd51a70c1a21cc8fd59ae03875cedb25d551fda77ebf5fb96577b"
+    },
+    {
+      "number": 1902,
+      "title": "audit(capability): [PHCAP-14] Releaseの旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "33b0c90cb1be9c3df6cde887ab6b3d9260de66c18e1f477cfa0e538fe9ba3e9a"
+    },
+    {
+      "number": 1901,
+      "title": "audit(capability): [PHCAP-13] Merge admissionの旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "1fa66205126f608e6c11eb72e7868ae3f9e41e0397622a35c4c19f884a8baaa2"
+    },
+    {
+      "number": 1900,
+      "title": "audit(capability): [PHCAP-12] Review convergenceの旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "e90056639e4c70c66c58e1a08c51a15d68070b836fa2684382407d2ec805b463"
+    },
+    {
+      "number": 1899,
+      "title": "audit(capability): [PHCAP-11] CI／Testの旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "b64ecc44ff9436a8c6002ad882f110297d6d0b4a476bf572fcb1a2d83d0ec3f1"
+    },
+    {
+      "number": 1898,
+      "title": "audit(capability): [PHCAP-10] Worker実行の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "6a8a4225300397f5df41ea3d99075eb0ec02f3d7d3fa5107fa74f441fda5382d"
+    },
+    {
+      "number": 1897,
+      "title": "audit(capability): [PHCAP-09] Ticket生成の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "dfc7fb9bdd013e0904425aa9ae32cd43a647ca19d0c67b7ce3c3eb03ce5e6141"
+    },
+    {
+      "number": 1896,
+      "title": "audit(capability): [PHCAP-08] WBSの旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "e99f3ac83b5aa3ce5ad5d2593fec096f04082e75584cb46f8cf8eb465ef6ecef"
+    },
+    {
+      "number": 1895,
+      "title": "audit(capability): [PHCAP-07] Verification／L10の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "ed1b03233b0299b255695db05c85a753fe7b2abfe6d5fe017c044e970e7f8cae"
+    },
+    {
+      "number": 1894,
+      "title": "audit(capability): [PHCAP-06] Design／L3の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "b235ad897e89868d0c5742a51254155beb4cea77d8970b38f369b5210bf6ddb6"
+    },
+    {
+      "number": 1893,
+      "title": "audit(capability): [PHCAP-05] L11受入の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "36c64008c7d353e2cc6aef56b6e9c74a1793c10fdd3ec7a32a826bb608e2b0e8"
+    },
+    {
+      "number": 1892,
+      "title": "audit(capability): [PHCAP-04] 要求採否／L2の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "10231968a36c6102b9afb5273652b14388e71866ff80972234c4476635e3b413"
+    },
+    {
+      "number": 1891,
+      "title": "audit(capability): [PHCAP-03] 要求分類の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "a34fd5a35c217ec7c248619c977f29b6e681f5133924d16679dbd759a3d9b502"
+    },
+    {
+      "number": 1890,
+      "title": "audit(capability): [PHCAP-02] 要求収集・原登録の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "1bb6c98b429c7fcdad4cdd56582125b3e5750cde32a999be353fda8b01bdd3d9"
+    },
+    {
+      "number": 1889,
+      "title": "audit(capability): [PHCAP-01] Concept／L1企画の旧到達層・実装状況・機構・版・製品属性の候補分類を照合する",
+      "body_sha256": "dee9fd1ea48e383ea84c87f4c5f7e993515949f913f7623a4f4b631650db97fc"
+    },
+    {
+      "number": 1888,
+      "title": "chore(governance): 新世代HELIX全フェーズCapability Inventoryを閉包する",
+      "body_sha256": "7ed7ec79afc914595d9a1cb8789f89f247627f077351ec40b0f4df2052873cb2"
+    },
+    {
+      "number": 1866,
+      "title": "仮組み→本実装 差し替え台帳（Scaffold Binding の置換・撤去を追跡する）",
+      "body_sha256": "53ac260247942962f64b3ed0265f38e8821b2f9f28cd2c8578a26d84aea32eae"
+    },
+    {
+      "number": 1864,
+      "title": "docs(governance): 旧HELIXのAIレーン設定（収束review・escalate限定・委譲）の意味を新世代へ引き継ぐ",
+      "body_sha256": "aa1394489143625cdd2784a37e405f5378fe4e1d6ec0f3084d9fc8cb9ea31622"
+    },
+    {
+      "number": 1837,
+      "title": "HELIX-OS: 要求登録bot・監査crawler・admission CIを整備する",
+      "body_sha256": "9e20b4996dc27a790252ec51d8a3a509e6fd791e16fdc214a005d3d72fb89703"
+    },
+    {
+      "number": 1815,
+      "title": "research(governance): 旧技術の代替可能性を要求意味と分けて判断する",
+      "body_sha256": "c8c9edfd526284e5fe47ec41b23016ec55e3860b65c86925e3db5737bf4bb539"
+    },
+    {
+      "number": 1814,
+      "title": "chore(governance): 要求間の責務・機能重複候補を無損失で整理する",
+      "body_sha256": "7ce3a448fba40f386c6f76bc66dc619f0e5278302bf3faac644f1dce9abb0561"
+    },
+    {
+      "number": 1813,
+      "title": "chore(governance): 全要求の要否・再配置を無損失で整理する",
+      "body_sha256": "549560824d3b3787a938e828d068122261c3f24fc26019a75c90bba20dfd9bf6"
+    },
+    {
+      "number": 1812,
+      "title": "feat(helix-os): GitHub一方向projection・read-after同期adapterを設ける",
+      "body_sha256": "c1a0b5053f7ca40eb75b241ceffe83943885c09347ce2854196636e5ff1f7a28"
+    },
+    {
+      "number": 1805,
+      "title": "feat(helix-os): 推進機構が駆動tag・workflow・typed ticketを生成する",
+      "body_sha256": "2808096a24396d7b1597c4d19fde57a97379f8c7683ea5f8d56c55ccdb086907"
+    },
+    {
+      "number": 1804,
+      "title": "feat(harness): PoC・画面prototype・Featureの開発検証契約を定義する",
+      "body_sha256": "7ac5a0cb9a2f0a81675f94cd963398db7da8b5ff2a6fd1c92413bf09e3489c99"
+    },
+    {
+      "number": 1801,
+      "title": "feat(harness): 旧資産からPython意味コア候補を抽出する",
+      "body_sha256": "c0b6726dd674cff29a2f27b127cda14acfcaf66fc583d197d4ca178b865ee485"
+    },
+    {
+      "number": 1799,
+      "title": "feat(harness): Python要求意味コアを構築する",
+      "body_sha256": "a35d376cfc4e641a544370b2f91f08db1a8081c19ade9927da3d4427c2b42aa5"
+    },
+    {
+      "number": 1798,
+      "title": "feat(helix-os): 要求候補の因果関係付き原登録層を設ける",
+      "body_sha256": "773e110deced3c29a3fd594116e37646e69157f63e6dc826fd52377d7e81f029"
+    }
+  ],
+  "closed_template_review_observations": [
+    {
+      "closedAt": "2026-10-09T21:52:55Z",
+      "number": 2841,
+      "state": "CLOSED",
+      "closure_comment": {
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2841#issuecomment-6089877009",
+        "body_sha256": "80d0c2c50f98a7daaf0ebd227bddc463d244a1cf857f07113de7b89f1bdd6c61",
+        "body": "## 完了条件の確認（レビュー対応側 Claude）\n\nFT-BRAIN-TEMPLATE-REVIEW-001の作業内容と照合した。\n- 旧template（`design-template-json-authority.md`）の意味契約：§1の6 surface（L23–28）と§2の6 component（L36–41）を、原文行のSHA-256、現行owner、BRAIN L2／L11の比較先（BRAIN003／007／008／018／019／022／025／028ほか）、保持する意味、未完範囲へ個別に照合した。\n- 版：DST-HARNESS-002／DST-OS-001の汎用版・状態はBRAIN008／028と比較した。\n- seed：26件を本文SHA-256、適用条件の所在、`not_recorded`／`retain_candidate_material`へ結んだ。\n- 採否・不足：既存の保証と、template固有の未確定範囲を区別した。製品固有の要求意味はBRAINへ移していない。\n\n照合の記録: [条件照合監査](https://github.com/RetryYN/HELIX-HARNESS/blob/7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822/docs/governance/audits/template-condition-review-2026-10-10.json)、[分担文書](https://github.com/RetryYN/HELIX-HARNESS/blob/7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822/docs/governance/template-work-allocation.md)（main `7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822`、PR #2849・#2848・#2845）。完了条件を別に確認した記録: [#2849 review r2](https://github.com/RetryYN/HELIX-HARNESS/pull/2849#issuecomment-6089862035)。\n\nこのcloseは、ticketの作業（照合し、採否・不足を区別すること）が終わったことだけを表す。候補・seedの採否、registry／schema、L3再開、要求段階の完了は生成しない。それらの未完範囲は#2846に保持する。根拠は現行運用（github-upstream-operating-model.md「作成側とレビュー対応側の責務」で、対応Issueのcloseはticketの完了条件を別に確認し、mergeだけからは進めない）である。"
+      }
+    },
+    {
+      "closedAt": "2026-10-09T21:52:58Z",
+      "number": 2842,
+      "state": "CLOSED",
+      "closure_comment": {
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2842#issuecomment-6089877620",
+        "body_sha256": "826a6d101c23f45e12dfc8526ec44ea630f9674c0c2fe79a9cdc3e67aa488d55",
+        "body": "## 完了条件の確認（レビュー対応側 Claude）\n\nFT-HARNESS-TEMPLATE-REVIEW-001の作業内容と照合した。\n- 製品要求への適用、設計義務、適用／N/A、Backflow、変更影響：DST-HARNESS-001／003／004／006／007とDST-OS-005の意味を、HARNESS009／008／023／025／026／041ほかと対L11へ照合した。field定義の欠落と値の未決、N/Aと適用不明を区別している。\n- templateから要求の合意を生成していない（候補の採否は`not_recorded`のまま）。\n- DST-OS-002は、HARNESS要求エンジン、BRAINパターン、INTELLIGENCE判断の接続として保持した（INT032／033／035）。\n- 最初の要求例（#2848）で、知識→設計→ticket→検収→Backflowの経路と戻し先を示した。\n\n照合の記録: [条件照合監査](https://github.com/RetryYN/HELIX-HARNESS/blob/7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822/docs/governance/audits/template-condition-review-2026-10-10.json)、[分担文書](https://github.com/RetryYN/HELIX-HARNESS/blob/7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822/docs/governance/template-work-allocation.md)（main `7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822`、PR #2849・#2848・#2845）。完了条件を別に確認した記録: [#2849 review r2](https://github.com/RetryYN/HELIX-HARNESS/pull/2849#issuecomment-6089862035)。\n\nこのcloseは、ticketの作業（照合し、採否・不足を区別すること）が終わったことだけを表す。候補・seedの採否、registry／schema、L3再開、要求段階の完了は生成しない。それらの未完範囲は#2846に保持する。根拠は現行運用（github-upstream-operating-model.md「作成側とレビュー対応側の責務」で、対応Issueのcloseはticketの完了条件を別に確認し、mergeだけからは進めない）である。"
+      }
+    },
+    {
+      "closedAt": "2026-10-09T21:53:00Z",
+      "number": 2843,
+      "state": "CLOSED",
+      "closure_comment": {
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2843#issuecomment-6089878090",
+        "body_sha256": "d04f895c622d575295a58a591df13cea7044dcb395ee461d59e03bc1456e40f6",
+        "body": "## 完了条件の確認（レビュー対応側 Claude）\n\nFT-OS-TEMPLATE-REVIEW-001の作業内容と照合した。\n- 案件のexact set、版、適用／義務／N/A／Backflow／結果：DST-OS-001〜005を、OS001／002／007／017／019／023ほかのL2／L11へ照合した。汎用版・状態はBRAIN、停止・Backflowの意味はCOREへ戻している。\n- 改善接続：OSによる候補の登録・振分（OS005／024）→LABOの効果・退行評価（LABO022／034／037）→BRAINの汎用パーツ（BRAIN020／025）の経路を確認した。受領や評価だけから採択を生成しない。\n- 一般のepisode記録だけでtemplateの全eventや実利用setを登録済みとはしない、という不足を明記した。\n\n照合の記録: [条件照合監査](https://github.com/RetryYN/HELIX-HARNESS/blob/7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822/docs/governance/audits/template-condition-review-2026-10-10.json)、[分担文書](https://github.com/RetryYN/HELIX-HARNESS/blob/7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822/docs/governance/template-work-allocation.md)（main `7b9c110ace54b05a8b0c7bfa01d1dc9ef3d00822`、PR #2849・#2848・#2845）。完了条件を別に確認した記録: [#2849 review r2](https://github.com/RetryYN/HELIX-HARNESS/pull/2849#issuecomment-6089862035)。\n\nこのcloseは、ticketの作業（照合し、採否・不足を区別すること）が終わったことだけを表す。候補・seedの採否、registry／schema、L3再開、要求段階の完了は生成しない。それらの未完範囲は#2846に保持する。根拠は現行運用（github-upstream-operating-model.md「作成側とレビュー対応側の責務」で、対応Issueのcloseはticketの完了条件を別に確認し、mergeだけからは進めない）である。"
+      }
+    }
+  ],
+  "preparation_findings": [
+    {
+      "id": "PREP-01",
+      "state": "incomplete",
+      "scope": "#2903",
+      "finding": "既存規則の入口集約はロードマップ追補で提示する。初回対象のtemplate適用・対検証・N/A・不足戻し先の意味検証は#2846で未完。"
+    },
+    {
+      "id": "PREP-02",
+      "state": "incomplete",
+      "scope": "#2905",
+      "finding": "作業に使えるCLIとeditor設定は確認。製品用toolchain／依存lock／再現手順と検証経路は対象設計から導出する後続範囲。"
+    },
+    {
+      "id": "PREP-03",
+      "state": "incomplete",
+      "scope": "#2846",
+      "finding": "限定SEEDFIRSTの採用は全template集合や往復接続の成立ではない。#2841～#2843は条件照合ticketとしてclosedで、未完の機構範囲は#2846へ保持されている。"
+    },
+    {
+      "id": "PREP-04",
+      "state": "requires_po_scope_instruction",
+      "scope": "L3再開",
+      "finding": "10/10判断は前提を機構として成立させた後の順序・範囲をPO指示とする。準備指示やIssue closeからL3以下の解禁を生成しない。"
+    }
+  ],
+  "conclusion": "Issue全件消化は要件定義開始の証拠ではない。準備と後続の環境構築を区別し、選択scopeの未完前提と再開指示を確認する。現在L3再開可能とは判定しない。"
+}

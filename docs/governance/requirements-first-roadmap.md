@@ -16,6 +16,46 @@ HARNESSの工程定義、COREの意味導出、BRAINの汎用知識、OSの案�
 
 以下はこの指示を、既存Concept・要求・判断記録の責務と停止境界へ対応付けた作業順の整理である。個別要求の採否・意味・版や既存Stage配属を変更しない。
 
+## 要件定義前の準備と、開始後に具体化するもの
+
+2026-10-11のPO指示「イシュー消化すれば要件定義に入れる状態か確認しながら要点定義に入る準備すること。」に基づき、初回対象で使う前提を照合する。Issueの全件消化を開始条件にはしない。要求Stageの終了、文書・作業環境の準備、L3の再開、製品実装環境の成立を別に扱う。
+
+| 作業 | 要件定義前に整理する範囲 | 設計・実装へ進んだ後の範囲 | 対応する作業 |
+|---|---|---|---|
+| 文書と配置 | 既存規則の所在、意味正本・生成表示・判断記録・証拠の区別、ID・対検証・revision・参照・更新方法、複製や参照切れの照合 | コードとtestの物理配置、宣言・台帳・記録の形式。既決の基本案を対象設計で具体化する | #2903 |
+| 作業環境 | 文書編集・静的確認・GitHub・独立reviewの経路と再現手順、利用可能な環境と未構築部分の棚卸し | 対象設計から言語版・依存・lock・型検査・lint・formatter・test経路を確定し、クリーンな領域で再現確認する | #2905 |
+| 初回の対象と接続 | 一つの要求例の親revision・scope・使用知識・適用義務・対検証・不足と戻し先。安全・接続・資源・計測の実依存 | L3／L10、設計と対検証、schema・Python接続・実装・内部更新を対象authorityに従って導出する | #2846 |
+
+開発repoの規則は[GitHub上流運用モデル](github-upstream-operating-model.md)、現在の境界は[AGENTS.md](../../AGENTS.md)と[作業入口](new-generation-start-here.md)を参照する。製品としてHARNESSが提供する規律は対象L2／L11と採用判断から読む。repoの運用を製品要求の根拠へ転用せず、ここにも規則本文を複製しない。
+
+文書配置は[構成の基本案](decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md)と[内部デプロイ方針6](decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md)を起点にする。`docs/`の既存配置を保ち、機構・層・責務と参照を整理する。`declarations/`・`helix/`・`records/`は基本案であり、具体形式はL4の論点として残る。カットしたL4やコードを復元して配置済みとせず、フォルダpathをidentity・登録・承認の正本にしない。
+
+## 再開前提の現在地と残る確認
+
+[10/10巻き戻し判断](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)の再開前提を、既決内容と実適用の証拠に分けて照合する。以下は照合の入口であり、新しい規則・schema・全件完了gateではない。要求採用や件数・hashの一致を、機構の成立や実行済み受入の証拠へ置き換えない。
+
+| 前提 | 現在使える根拠 | 初回対象で確かめること |
+|---|---|---|
+| Concept・七大原則 | [Concept](../concept/helix-concept.md)、[七大原則](../concept/helix-principles.md)、[七大原則はPO指令という判断](decisions/principles-are-po-directive-po-decision-2026-10-10.md) | 責務語彙・依存・対検証・上流還流が選択した要求と工程へ結び付くこと。原則を再承認待ちにしない |
+| JSON意味正本 | [JSONAUTHの採用判断](decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md)、OS053と対L11 | 意味JSONと生成view・説明の境界、要求revisionと表示の対応。生成Markdown／HTMLだけの変更を意味更新としない |
+| template知識と適用 | [BRAIN032](decisions/brain-template-contract-032-po-decision-2026-10-10.md)、[CORE009](decisions/core-template-009-supplement-po-decision-2026-10-10.md)、[OS002](decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md)の採用判断 | 使用するtemplate exact set・版・scope、適用義務、N/A根拠、不足質問・戻し先、案件の記録との結合。契約採用だけで往復接続を成立としない |
+| 最初に使うseed | [限定SEEDFIRSTの採用判断](decisions/seedfirst-knowledge-po-decision-2026-10-10.md)、[BRAIN意味JSON](../helix-brain/knowledge/requirements-acceptance-template-knowledge.json) | 非画面・技術的不確実性なしの要求／受入に限るVT001・VT102とC01/C02/C08/C26の採用範囲。全template集合・他pair・schema・rendererの完成へ広げない |
+| 開発規律と版 | [43件の1.0判断](decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)、[052・102の接続版判断](decisions/version-join-requirement-resolution-po-decision-2026-10-10.md)、[REDFIRST A](decisions/redfirst-adoption-po-decision-2026-10-11.md)、対象L2／L11 | 009・048等の対象規律を版未指定と読み違えず初回scopeに対応付ける。test/oracle凍結→実装前Red→最小実装→Greenを保持する。文書reviewへRed実行義務を追加しない |
+
+上の限定知識と採用判断はmainにあるが、#2846で保持するtemplateの全体最小集合、適用・案件記録の往復、必要安全・資源・測定、失敗・未完義務の戻し先は未完である。#2903と#2905だけを閉じても、これらの成立は証明できない。[要求Stageの終了結果](requirements-stage-closure.md)もL3再開の証拠とは別である。
+
+初回対象が参照する未確定部分を明示し、それに依存する作業を止める。#1813〜#1815の全source移管、#1888〜#1908の全能力監査、#1837のBot／CI実装等を一律のL3開始条件にはしないが、選択した対象がそれらの未確定契約を実際に使う場合は個別に照合する。Issueのcloseを前提成立の代わりに使わない。
+
+現在許可される準備は、既存sourceの照合、文書規則の集約、初回要求と接続条件の整理、作業環境の調査である。「前提を機構として成立させる」の実施範囲とL3再開の順序・scopeは、巻き戻し判断に従うPO指示で特定する。準備指示をL3以下の起草・実装・CI解禁へ読み替えず、前提を成立させる手順のうち現行停止境界を越える部分を再開提案時に明示する。
+
+[準備状況の限定観測](audits/requirements-entry-preparation-observation-2026-10-11.json)に、対象mainの入力hash、入口5文書の相対参照先、利用可能なCLI版、正式設定の所在、open Issue集合とtemplate照合Issueの終了記録を固定した。Git・gh・Python・Node・npmの版表示とeditor基本設定は確認できたが、製品用の依存lock・セットアップ再現・型検査／lint／testの成立は未確認である。既存のインストール版を採用版とせず、静的照合を製品実行の合格へ変換しない。
+
+### 旧sourceとの対応
+
+旧`archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md:102–173`（LEGACY-ASSET-FDBA655B1CFF75DCDC0E）の責務に沿う配置・正本／生成物の区別・設定最小化、同rootの`docs/governance/coding-rules.md:10–31`（LEGACY-ASSET-4B835ADBEFBCCC13C1C0）の実装前の規律確認、`docs/design/helix/L4-basic-design/design-template-json-authority.md:19–46`のJSON意味と生成表示の区別を起点とする。旧の固定path・ツール・runtimeを継承せず、現行の配置判断とBRAIN／CORE／OSの採用契約へ対応させる。
+
+前身の弱点記録`docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md:65–101`（archive root内）のUTW-004・021・025は、文書と実体の乖離、自己申告への回帰、正本の認識負荷を示す。これと10/10の失敗分析を照合し、文書の所在を整えることと機構の成立を分ける。差は今回の準備指示に従って既存前提の照合先を集約することであり、新たな承認や全資産完了条件を追加することではない。
+
 ## 作業の順序と照合する結果
 
 | 順 | 主題 | 整理するもの | 照合する結果 |
@@ -78,7 +118,7 @@ schema・通信方式・実装配置・具体値は、この整理から確定�
 | 案件で使う版と往復の接続 | project exact set/使用版、query→設計義務→ticket→attempt→検収→Backflowの同一revision/scopeと未完義務の対応。不足は業務意味と記録運転を分けて提示する | #2843/#1805 |
 | 安全・資源・測定の選択閉包 | 選択した各操作のSECURITY/CONNECT/INFRASTRUCTURE契約と対oracle、利用区分、失敗・復旧先。既存要求の該当条件と不足を一つずつ照合する | #2846 |
 
-上の材料は未完であり、初回対応表だけで#2841–#2843や#2846を閉じない。実行fixture、内部更新・復旧、支援・評価還流までの要求照合は引き続き本ロードマップの範囲である。現在の証拠は既存要求の意味経路の照合に限り、全条件の被覆・形式的successor移管・要求整理完了は主張しない。
+上の表は初回対応時に整理した確認先である。#2841〜#2843は条件照合・不足の区別というticket範囲で終了し、未完のtemplate集合・適用往復・実記録等は#2846へ保持されている（[終了記録の限定観測](audits/requirements-entry-preparation-observation-2026-10-11.json)）。そのcloseから機構の成立を生成しない。実行fixture、内部更新・復旧、支援・評価還流までの要求照合は引き続き本ロードマップの範囲である。既存要求の意味経路の照合と、全条件の被覆・形式的successor移管・再開前提の成立は区別する。要求Stage自体の終了は[終了結果](requirements-stage-closure.md)の限定範囲から読む。
 
 ## 内部デプロイと旧sourceの対応
 
