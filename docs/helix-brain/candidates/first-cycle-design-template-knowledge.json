@@ -725,7 +725,7 @@
           "source_line": 58,
           "source_text": "| 項目 | 記入 |",
           "source_line_sha256": "2df06df70b6b6a918eabd79594affa2bdecb8f76398fb74bbe7157c799b3fab4",
-          "semantic_role": "normative_or_explanatory_unclassified; review_required_before_adoption"
+          "semantic_role": "section_or_table_structure"
         },
         {
           "source_line": 59,
@@ -857,7 +857,7 @@
           "source_line": 88,
           "source_text": "| 項目 | 記入 |",
           "source_line_sha256": "2df06df70b6b6a918eabd79594affa2bdecb8f76398fb74bbe7157c799b3fab4",
-          "semantic_role": "normative_or_explanatory_unclassified; review_required_before_adoption"
+          "semantic_role": "section_or_table_structure"
         },
         {
           "source_line": 89,
@@ -1474,6 +1474,56 @@
               "meaning": "| 完了を記録した後 | 済んだ | |",
               "semantic_role": "normative_fixed_row",
               "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 104,
+              "source_text": "| 正常 | | | |",
+              "source_line_sha256": "8b2e82a6b8eea939c1761f1204532acd1d2afe845867069b8ee951edb0a627ac",
+              "rule_locator": "DT-MSG-004/source-rule-104",
+              "section_locator": "DT-MSG-004/section-6",
+              "meaning": "| 正常 | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 105,
+              "source_text": "| 異常 | | | |",
+              "source_line_sha256": "3bcefb2c08e617fdb36c0f3e907f89d5de203682c78c659497c30432da90f15b",
+              "rule_locator": "DT-MSG-004/source-rule-105",
+              "section_locator": "DT-MSG-004/section-6",
+              "meaning": "| 異常 | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 106,
+              "source_text": "| 境界 | | | |",
+              "source_line_sha256": "83c781a2f56ef75b3633e62eb5a74bd2c8bedd7c38f2deb6de461e4153adcec6",
+              "rule_locator": "DT-MSG-004/source-rule-106",
+              "section_locator": "DT-MSG-004/section-6",
+              "meaning": "| 境界 | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 107,
+              "source_text": "| 失敗の種類ごと | | | |",
+              "source_line_sha256": "ddc484f6455744d96b224ea38439125553b540615c3dbdcc5c920c289a4018a5",
+              "rule_locator": "DT-MSG-004/source-rule-107",
+              "section_locator": "DT-MSG-004/section-6",
+              "meaning": "| 失敗の種類ごと | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 108,
+              "source_text": "| 回復の区間ごと | | | |",
+              "source_line_sha256": "4f63d3dc959505faf73244a87e09dec5e58ed3b54d0300589cf88c3676eae33e",
+              "rule_locator": "DT-MSG-004/source-rule-108",
+              "section_locator": "DT-MSG-004/section-6",
+              "meaning": "| 回復の区間ごと | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
             }
           ]
         },
@@ -1595,7 +1645,7 @@
           "source_line": 56,
           "source_text": "| 項目 | 記入 |",
           "source_line_sha256": "2df06df70b6b6a918eabd79594affa2bdecb8f76398fb74bbe7157c799b3fab4",
-          "semantic_role": "normative_or_explanatory_unclassified; review_required_before_adoption"
+          "semantic_role": "section_or_table_structure"
         },
         {
           "source_line": 57,
@@ -1631,7 +1681,7 @@
           "source_line": 64,
           "source_text": "| 項目 | 記入 |",
           "source_line_sha256": "2df06df70b6b6a918eabd79594affa2bdecb8f76398fb74bbe7157c799b3fab4",
-          "semantic_role": "normative_or_explanatory_unclassified; review_required_before_adoption"
+          "semantic_role": "section_or_table_structure"
         },
         {
           "source_line": 65,
@@ -1811,31 +1861,31 @@
           "source_line": 104,
           "source_text": "| 正常 | | | |",
           "source_line_sha256": "8b2e82a6b8eea939c1761f1204532acd1d2afe845867069b8ee951edb0a627ac",
-          "semantic_role": "normative_or_explanatory_unclassified; review_required_before_adoption"
+          "semantic_role": "normative_rule_in_required_field"
         },
         {
           "source_line": 105,
           "source_text": "| 異常 | | | |",
           "source_line_sha256": "3bcefb2c08e617fdb36c0f3e907f89d5de203682c78c659497c30432da90f15b",
-          "semantic_role": "normative_or_explanatory_unclassified; review_required_before_adoption"
+          "semantic_role": "normative_rule_in_required_field"
         },
         {
           "source_line": 106,
           "source_text": "| 境界 | | | |",
           "source_line_sha256": "83c781a2f56ef75b3633e62eb5a74bd2c8bedd7c38f2deb6de461e4153adcec6",
-          "semantic_role": "normative_or_explanatory_unclassified; review_required_before_adoption"
+          "semantic_role": "normative_rule_in_required_field"
         },
         {
           "source_line": 107,
           "source_text": "| 失敗の種類ごと | | | |",
           "source_line_sha256": "ddc484f6455744d96b224ea38439125553b540615c3dbdcc5c920c289a4018a5",
-          "semantic_role": "normative_or_explanatory_unclassified; review_required_before_adoption"
+          "semantic_role": "normative_rule_in_required_field"
         },
         {
           "source_line": 108,
           "source_text": "| 回復の区間ごと | | | |",
           "source_line_sha256": "4f63d3dc959505faf73244a87e09dec5e58ed3b54d0300589cf88c3676eae33e",
-          "semantic_role": "normative_or_explanatory_unclassified; review_required_before_adoption"
+          "semantic_role": "normative_rule_in_required_field"
         }
       ],
       "source_context_role": "source/provenanceの文脈保存。規範固定行・規範文はrequired_fieldのnormative_rules/source_constraintsへ対応する。欄に併記する規則/選択肢はsource_row_rule_or_choicesで保持。未分類はnormative_or_explanatory_unclassifiedとして採用前に意味分類し、例/選択肢と一括で非規範へ退避しない。",
@@ -2284,12 +2334,12 @@
               "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
             },
             {
-              "source_line": 93,
-              "source_text": "|---|---|---|",
-              "source_line_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
-              "rule_locator": "DT-MSG-005/source-rule-93",
+              "source_line": 90,
+              "source_text": "構成要素の義務の和では保証されない、全体として守ること。",
+              "source_line_sha256": "2bc9c165b264e88a190d844094bce76291f8e440124188aa51ebc968debb02aa",
+              "rule_locator": "DT-MSG-005/source-rule-90",
               "section_locator": "DT-MSG-005/section-5",
-              "meaning": "|---|---|---|",
+              "meaning": "構成要素の義務の和では保証されない、全体として守ること。",
               "semantic_role": "normative_statement",
               "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
             },
@@ -2630,7 +2680,7 @@
           "source_line": 90,
           "source_text": "構成要素の義務の和では保証されない、全体として守ること。",
           "source_line_sha256": "2bc9c165b264e88a190d844094bce76291f8e440124188aa51ebc968debb02aa",
-          "semantic_role": "normative_or_explanatory_unclassified; review_required_before_adoption"
+          "semantic_role": "normative_rule_in_required_field"
         },
         {
           "source_line": 92,
@@ -2642,7 +2692,7 @@
           "source_line": 93,
           "source_text": "|---|---|---|",
           "source_line_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
-          "semantic_role": "normative_rule_in_required_field"
+          "semantic_role": "section_or_table_structure"
         },
         {
           "source_line": 94,
@@ -2885,7 +2935,7 @@
     "参照するSDOP/DT-VT知識と各端契約の採用範囲/不足、6surface/6componentの移管",
     "製品要求値・N/A4属性、接続identity/依存閉包、初回Bench/配置、実原記録",
     "各fieldの要否とoracleへの具体束縛、技術的不確実性、正式schema/renderer/実行。L3再開・設計・実装・CI・内部デプロイは含まない",
-    "source_body_contextのnormative_or_explanatory_unclassified各行の意味分類。固定行/制約の適用義務を失わず、例/選択肢との区別を採用前に確かめる。"
+    "本文の規範/欄/構造の分類を保持し、各fieldの要否とoracleへの意味対応の完全性を採用前に確かめる。固定行/制約の適用義務を失わず、例/選択肢との区別を保持する。"
   ],
   "legacy_comparison": {
     "reuse_class": "semantic_rederivation",
