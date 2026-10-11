@@ -88,6 +88,21 @@ python3 -B scaffold/tools/scfctl.py stale
 
 ## 未構築の範囲と戻し先
 
+### 初回対象案への環境条件の対応
+
+#2846の[template提供・適用・案件追跡の対象案](requirements-first-roadmap.md#初回対象候補templateの意味契約から案件の義務追跡まで)へ、#2905の条件を次のように当てる。対象選択前の条件付き整理であり、実装scope・toolchain・setup成立を確定しない。BRAIN032の汎用知識、CORE009の意味処理、OS002の案件記録を一つの共有state/権限へまとめない。
+
+| 項目 | この対象案から具体化できる条件 | 対象選択・設計後に残るもの |
+|---|---|---|
+| 実行環境・依存 | BRAINの意味JSONを読む環境、COREの意味処理、OSの記録操作、Workerの検証環境と、それぞれの接続・利用版を識別する。意味処理の候補はPythonだが、OSの外部作用の言語や全機構共通runtimeを推定しない | 対象OS/CPU/shell、interpreter/依存binaryの対応、言語版、依存manifest/lock形式と取得元、必要/任意/検証依存。候補の技術的不確実性を確認して対象要件・設計へ |
+| 配置・型・lint・format | BRAINのknowledge契約、COREの適用単体、OSの案件追跡単体、各connection/compositeを責務に沿って分け、型契約・正常/負例/unknownと対検証を各ownerへ結ぶ。意味JSONと生成表示、原記録とprojection、検証設計と実行testを区別する | 既決配置基本案から各パックのpath・schema・型・tool commandと対象集合を導出。formatterは意味採用や記録訂正を代行しない。具体toolと設定は未選定 |
+| 環境変数・安全 | 各consumerの入力探索、版/scope選択、記録先、接続、実行制約を識別し、未設定時のunknown/拒否とownerを示す。Pythonの探索名等は前表の調査候補のまま。通常意味処理へcredentialを渡す前提を置かない | 必須/任意の変数名、scope、consumer、欠落時の扱いを設計で列挙。secret値は記録しない。SECURITYの認可・隔離・egressをINFRA/Workerで実適用できることを別に検証 |
+| ローカル検証・再現 | BRAIN032の15項目・不足/値未決、CORE009の適用集合/N/A/影響、OS002の原記録からの再構築を、それぞれのL11へ戻す。接続の版不一致・未受領・別scope、構成体の部分成功も別に扱う | 要件と対検証、凍結test/oracle、クリーン環境の固定依存復元、実装前Red/Green、独立review。具体fixtureとtoolは未構築。scfctlをこの製品検証へ代用しない |
+| 初回割当・資源・計測 | OS018のLABO水準/INTELLIGENCE配置案を保持し、Worker/資源/attemptの対応、操作のauthority、時間・費用・負荷・失敗・未観測の原記録を選択scopeへ結ぶ | 初回Bench入力、適用水準/配置案の根拠、資源容量/制限値、測定方式とLABO評価scopeは未確定。未評価を適格へ変換して環境構築を始めない |
+| setup・更新・復旧 | 各単体と辺を別の成立結果で確かめるsetup材料を用意し、旧新構成・検証対象artifact・使用版とOS案件記録を結ぶ。更新失敗時は適格な現用構成と原記録を保つ | 独立復旧資源、戻し先の構成/data互換、再接続・起動・復旧oracle、実setup/restore結果。段階構成の検証と内部デプロイは別事象・許可。単体成功だけで内部循環全体のsetup成立にしない |
+
+この条件付き対応から#2905を閉じず、対象選択後に各未定欄と実依存を再照合する。具体的な言語版・tool・設定の確定と実再現は後続設計・構築へ残る。対象案の安全/接続/資源/計測と初回配置の照合入口はロードマップの周辺契約表にあり、一段の照合先を有効依存閉包の完成へ変換しない。
+
 文書規則の集約は #2903、環境と再現・検証経路の整理は #2905、最初の対象要求と機構接続は #2846 で扱う。セットアップ失敗は対象revision・操作・結果を記録し、環境／参照の不足と要求意味の不足を区別して戻す。未実行・unknownをpassやN/Aに読み替えない。
 
 製品用toolchain・依存lock・設定の実体化、クリーンな領域での製品test、更新・復旧の実行は後続範囲である。L3以下の停止と再開範囲は[10/10判断](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)に従う。本案内の再現確認やIssueのcloseから、それらの起草・実装・CI起動・内部デプロイ・releaseの許可を生成しない。

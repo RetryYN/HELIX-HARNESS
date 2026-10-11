@@ -1,0 +1,267 @@
+{
+  "scope": "#2846の初回対象案と#2905の条件付き環境対応。対象選択/要求採用/L3再開/実装scope/製品環境成立を生成しない。",
+  "base_revision": "9f380d1749c0a6e267cdd6919861fb617a8835b4",
+  "input_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/feature-tickets/FT-GOV-REQUIREMENTS-ROADMAP-001.md",
+      "sha256": "e542dc7c39d61ecdf0c461a2a8acfd62f2dcea613e36605ee8f8983222bdf50d"
+    },
+    {
+      "path": "docs/governance/feature-tickets/FT-GOV-DEVELOPMENT-ENVIRONMENT-001.md",
+      "sha256": "35fd10558c3de2935eb3836bd453b6e113df4a2f406a070621387bd316327659"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    },
+    {
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    },
+    {
+      "path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "sha256": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae"
+    },
+    {
+      "path": "docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json",
+      "sha256": "8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253"
+    },
+    {
+      "path": "docs/helix-harness/candidates/requirement-engine-python-core-requirements.md",
+      "sha256": "8115c9aef6cb425db228bd020b312a5877c8533b062bf8787105cef5097468f3"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+    }
+  ],
+  "adopted_primary_pairs": [
+    {
+      "identity": "HELIXBRAIN-L2-032",
+      "scope": "主単体の採用済み追補の固定本文照合",
+      "sections": [
+        {
+          "layer": "L2",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "start_line": 599,
+          "end_line_inclusive": 610,
+          "normalized_section_sha256": "f096552717f3b648477433e01df5533788e2ca2ead6bfdb5e24d32d364ac3e48"
+        },
+        {
+          "layer": "L11",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "start_line": 128,
+          "end_line_inclusive": 135,
+          "normalized_section_sha256": "bc0a4ea0e6f282fbb0aac884d1e6ff9d86b279d32c5fbd9cc3180260d4c29429"
+        }
+      ]
+    },
+    {
+      "identity": "HARNESS-L2-009",
+      "scope": "主単体の採用済み追補の固定本文照合",
+      "sections": [
+        {
+          "layer": "L2",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_line": 1596,
+          "end_line_inclusive": 1607,
+          "normalized_section_sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b"
+        },
+        {
+          "layer": "L11",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "start_line": 1343,
+          "end_line_inclusive": 1351,
+          "normalized_section_sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5"
+        }
+      ]
+    },
+    {
+      "identity": "HELIXOS-L2-002",
+      "scope": "主単体の採用済み追補の固定本文照合",
+      "sections": [
+        {
+          "layer": "L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_line": 1698,
+          "end_line_inclusive": 1707,
+          "normalized_section_sha256": "98dea2842f7a3a5b26c2ab2af302a6abbd025b7ecef50998b3557ede5d78764e"
+        },
+        {
+          "layer": "L11",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "start_line": 1364,
+          "end_line_inclusive": 1371,
+          "normalized_section_sha256": "15fb77b844bf43cc4cf71db8458d7bd087eae7e4df9feaf850106b2f8465f293"
+        }
+      ]
+    }
+  ],
+  "legacy_source": [
+    {
+      "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "start_line": 49,
+      "end_line_inclusive": 63,
+      "span_sha256": "f3401d41611165915c58d66b60228f061e056b7fe384411602ee2089007c24ca",
+      "disposition": "意味の再導出。旧実行経路/schema/Node固定をcopyしない。旧consumer全closureは未確認。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "start_line": 23,
+      "end_line_inclusive": 67,
+      "span_sha256": "0b640473d25bde7bab525a6c9f0f7b924ac94f54dfb828d44bd176a9beee31d3",
+      "disposition": "意味の再導出。旧実行経路/schema/Node固定をcopyしない。旧consumer全closureは未確認。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "start_line": 19,
+      "end_line_inclusive": 60,
+      "span_sha256": "bb7592412649017028005405f75452a1edc59ae34eb43d215a5e7952f3c84505",
+      "disposition": "意味の再導出。旧実行経路/schema/Node固定をcopyしない。旧consumer全closureは未確認。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "start_line": 65,
+      "end_line_inclusive": 101,
+      "span_sha256": "5ad5370ce4af1ac36385b4dbe75a30eb3c15bf7ef394e1c764cd400d3998e415",
+      "disposition": "意味の再導出。旧実行経路/schema/Node固定をcopyしない。旧consumer全closureは未確認。"
+    }
+  ],
+  "scope_proposal": {
+    "primary_units": [
+      "HELIXBRAIN-L2-032",
+      "HARNESS-L2-009",
+      "HELIXOS-L2-002"
+    ],
+    "operation_chain": "meaning contract -> knowledge handoff -> applicability/obligation candidates -> project trace -> selected ticket/Worker/verification/Backflow -> separately verified update/recovery and feedback",
+    "state": "proposal_only_not_selected",
+    "version_note": "032/009の既決1.0保持。OS002の版指定追加なし。後続版能力を1.0に前倒ししない。"
+  },
+  "changed_reason": "#2905全ticket監査の未選択という不足へ、対象案と環境条件を結ぶ。旧仕組み先行/必要安全依存/意味正本とview分離を現行032/009/002へ再導出する。",
+  "failure_basis": [
+    "10/10巻き戻し: naming/template/JSON/証拠の不適用",
+    "旧UTW-004 文書と実体の乖離",
+    "旧UTW-021 自己申告へ戻る完了証拠",
+    "旧UTW-029 source/consumer setupの分岐"
+  ],
+  "new_evidence": "OS018の単独依存にLABO水準とINTELLIGENCE配置案がある。初回割当に必要な入力を後続の支援/評価拡張から分け、除外しない。",
+  "remaining": [
+    "対象のPO選択とL3再開順序/scope",
+    "26seed・旧6surface/componentから全体最小template集合、必要知識の採用revision",
+    "各operation/sourceの再帰的依存閉包・周辺採用revision/版・authority/data-useと対oracleの照合",
+    "初回Bench実績・未評価状態と配置案の入力/許容範囲",
+    "CORE->OS connection identity・各辺/compositeの固有契約",
+    "対象要求の技術的不確実性とSEEDFIRST/UI/PoC適用判断",
+    "具体OS/版/tool/lock/変数名・配置/schema/fixture/setup/restoreの設計と実再現",
+    "内部更新/復旧・支援Bot・LABOからBRAIN/INTELLIGENCEへの還流の全条件",
+    "旧source全consumer closure"
+  ],
+  "ticket_disposition": "#2846/#2905 OPEN保持。条件付き案だけで全ticket充足としない。",
+  "authority_effect": "none",
+  "static_checks": {
+    "primary_pair_section_digests_match_adoption": true,
+    "relative_reference_target_occurrences_checked": 62,
+    "reference_check_limit": "相対参照先fileの存在のみ。anchor・意味・周辺全契約の採用revision・再帰的閉包は別。",
+    "git_diff_check": "実行済みexit0"
+  }
+}
