@@ -585,7 +585,6 @@
     "result": "入力path/source hashを333件へ照合。該当は両revisionの限定行を別atomとして保全、非該当は未検出。意味同値を推定しない。"
   },
   "remaining_scope": [
-    "PO未回答。canonical L2/L11・MPR・旧carry・Bindingは変更しない。",
     "要求採否の対象はBの003追補と対L11、通常Port例外の置換だけ。",
     "旧FR-L1-16全体のretire、旧source全移管、実release/deploy、L3再開、要求全体完了、Issue closeを含まない。",
     "旧mode内の三者確認・severity・SLO固定値・PLAN/token/schema/runtimeは自動移植しない。未処置の旧条件は既存holdingへ保持する。"
@@ -616,5 +615,11 @@
     ],
     "effect": "L2/L11全file receipt hashのみ更新。Bindingを全文読取し、upstream sha256以外の全fieldの完全一致を確認。研究scaffoldのrole/義務/適用scope/verification/replacement/authorityを変更しない。採用・正式化・retireは生成しない。",
     "reason": "一identity固定追補によりL2/L11全file hashが変化した。scaffold研究範囲は既存のまま保持し、採用判断はPO recordに分離。"
-  }
+  },
+  "proposal_time_limits": [
+    "PO未回答。canonical L2/L11・MPR・旧carry・Bindingは変更しない。",
+    "要求採否の対象はBの003追補と対L11、通常Port例外の置換だけ。",
+    "旧FR-L1-16全体のretire、旧source全移管、実release/deploy、L3再開、要求全体完了、Issue closeを含まない。",
+    "旧mode内の三者確認・severity・SLO固定値・PLAN/token/schema/runtimeは自動移植しない。未処置の旧条件は既存holdingへ保持する。"
+  ]
 }
