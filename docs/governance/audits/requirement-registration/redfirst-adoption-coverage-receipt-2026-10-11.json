@@ -1,0 +1,509 @@
+{
+  "receipt_id": "MPR-RCPT-REDFIRST-2026-10-11",
+  "basis_commit": "9fb6ecc7fb5594edd652caa28be21b6d84cfe26c",
+  "authority_effect": "none",
+  "requirement_identity": "HARNESS-L2-015",
+  "requirement_kind": "unit",
+  "candidate_registration_id": "MPR-RC-HARNESS-L2-015-007",
+  "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-015",
+  "candidate_semantic_digest": "sha256:447950b214056b86115d58039f9212ada8221a7c0cc98e9d613f7c9d4730b313",
+  "candidate_digest_scope": "反映後の対象L2 section UTF-8 bytes、section末尾LFを含む。",
+  "paired_acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-015",
+  "paired_acceptance_digest": "sha256:3d30f23fa073f246abc27bba7dc6bc43ca0ede0233fc7774092642a5a00338f9",
+  "fixed_packet_revision": "fa6d06af2f182346dc56a3167a97fe0566e0a867",
+  "fixed_packet_path": "docs/governance/crosswalks/requirements-resolution-packet.json",
+  "fixed_packet_sha256": "c609380168c7b5b6d04994135fffb6e1e56db94d5364461e99b9f9733ad79a30",
+  "fixed_unit": {
+    "id": "REDFIRST",
+    "issue": 1854,
+    "base_revision": "16444f5037faa6a2383029ec758823b51793bb8b",
+    "authority_effect": "none",
+    "status": "awaiting_po_decision",
+    "requirement_identity": "HARNESS-L2-015",
+    "consequential_identity": "HARNESS-L2-003（工程表の同一順序だけ整合訂正、既決1.0/hotfix追補保持）",
+    "version_effect": "既存指定保持、新規版指定なし",
+    "review_finding": "F2",
+    "review": "https://github.com/RetryYN/HELIX-HARNESS/pull/2899#issuecomment-6108054870",
+    "sources": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "start_line": 33,
+        "end_line": 33,
+        "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+        "text": "| **FR-L1-02** | TDD 強制フロー (テストファースト順序厳守・実装先行禁止) | L7-implementation | L6 機能設計 (関数仕様 / クラス設計 / エッジケース) | テストコード (red) → 本体実装 (green) | P0 | PM-02 (L7 工程) / HM-07 |\n",
+        "span_sha256": "9ebc31aaeee0f1bbac64cab81a37312dd81f14fd45ccd0f0ff86436c93012ecc"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+        "start_line": 21,
+        "end_line": 24,
+        "file_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+        "text": "3. **契約先行**: public behavior、precondition、postcondition、invariant、failure semantics、owner、\n   write authorityを実装前に固定する。内部構造は契約を守る限り交換可能にする。\n4. **TDDは検証契約**: Redは「testを書いた時刻」ではなく、意図した欠陥を実際に検出する証拠である。\n   Greenは最小実装、Refactorは同じoracleがgreenのまま構造を単純化した証拠で閉じる。\n",
+        "span_sha256": "19a23bce2ad03f09c89d93d77363067020226ab1fc4d2d063ace3b9ff6c6583b"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+        "start_line": 47,
+        "end_line": 50,
+        "file_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+        "text": "  - id: red-first-evidence\n    enforcement: hard\n    owner: src/lint/ddd-tdd-rules.ts\n    intent: tdd_red_required が付いた confirmed TDD PLAN は red_at と green_at を時系列順に記録しなければならない。\n",
+        "span_sha256": "9992898029a21106f27533f9f991d119a14183a8efc85ec01bff5cadd28f5faa"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+        "start_line": 137,
+        "end_line": 137,
+        "file_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+        "text": "- id: DDD-INV-003 oracle: U-DDDTDD-003 - TDD implementation evidence は Red-first である: TDD evidence を要求する confirmed plan では `red_at <= green_at` を満たす。\n",
+        "span_sha256": "0a4e6307ff5ac729643bc391ed70229b41176ee59de94e5270deef3f1e110d06"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L7-unit-test-design.md",
+        "start_line": 668,
+        "end_line": 668,
+        "file_sha256": "0fd9f9dc3ac452fefaa74d3fea79c19a9fe2e162908ed763bfbcc56514186347",
+        "text": "| U-DDDTDD-003 | Red-first evidence                   | confirmed `tdd_red_required` PLAN が `red_at` / `green_at` を欠く、または `red_at > green_at` -> violation                                                                                                                                         |\n",
+        "span_sha256": "3ac45737d6a2d0df178c13f50fb3d4856ba1b865661c67758795ed36d4de9c22"
+      }
+    ],
+    "legacy_comparison": {
+      "preserved": "旧FR-L1-02はtestコードRed→本体実装Greenという実装前の順序を示す。一方、旧ddd-tdd-rules:23はRedを作成時刻でなく意図した欠陥の実検出と定義し、47-50/137とL7:668のRed-first条件はred_at<=green_atで、本体実装前とは明示しない。TDDORDERは後者を意味起点にした。この2つを旧世代内の異なる記述として保持し、同じ意味だったと補完しない。",
+      "changed": "AはFR-L1-02の実装前Red順序と旧ruleの実検出/Red-before-Greenを両立させ、TDDORDER015/003の実装→Redを訂正する。旧ruleに明記されなかった本体実装前の観測条件を現行の一律義務として明示するため、旧ruleの単なる完全一致移管とはしない。Bは旧ruleの実検出/Red-before-Greenと既決TDDORDERを保持し、FR-L1-02の本体実装前Redという順序保証を置換する。",
+      "reason": "作成時刻/凍結と観測の取り違えを防ぎ、既決の欠陥検出意味を保ったままFR-L1-02の本体実装前順序を保持するため。旧不在/未完成/runtime存在を変更理由にしない。"
+    },
+    "options": {
+      "A": {
+        "recommended": true,
+        "meaning": "旧実装前Red観測の順序を保持する。下記015/L11固定差分で既決TDDORDERの順序を訂正し、実装後のmutation証拠は005へ別証拠として保持する。",
+        "edits": [
+          {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "operation": "replace_exact_text",
+            "existing_file_sha256": "1ba5fea3de1cf92334e63493210226ab1357de3306aa3f64cbe55566ea21c694",
+            "before_text": "- **保証すること**：Vの谷（L6↔L7）で、設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じる。局所のRefactorはpublic contract、要求、architectureの意味、stateの意味を変えない。原子CIの合格を、品質の証明、システムの成立、利用者の受入、Releaseの成立にしない。PRの前に回すCIはticketとの関係から決め、省いた検査を記録する。\n",
+            "before_text_sha256": "67938f4774db2eb4be5e96e774dc147f2c0ba97f2822d3afd6c403a04cbebd08",
+            "proposed_text": "- **保証すること**：Vの谷（L6↔L7）で、設計の契約と対のtest／oracleの定義・凍結→実装前Red（対象の振る舞いが未実装または未修正の状態で、凍結したtestが意図する不足・欠陥を実際に検出した観測）→最小の本体実装→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じる。局所のRefactorはpublic contract、要求、architectureの意味、stateの意味を変えない。原子CIの合格を、品質の証明、システムの成立、利用者の受入、Releaseの成立にしない。PRの前に回すCIはticketとの関係から決め、省いた検査を記録する。 旧FR-L1-02のテストコードRed→本体実装Greenという順序を保持する。テスト作成時刻や定義凍結だけを実装前Redの観測にしない。実装後の意図した欠陥注入・mutationによる検出証拠は005のoracle強度を確かめる別の証拠であり、実装前Redの代用にしない。既存コードを改修する場合も本体変更前の対象revisionで意図した不成立を観測し、環境/構文障害など無関係な失敗をRedにしない。\n",
+            "proposed_text_sha256": "cfc3057f0a545284a121980824f8e308b12084eba72aaee0a103db336cfda5c7",
+            "after_file_sha256": "4392c8887cd6a0b15cd6b844423b4159d9a95a129c1804713a04848e58ca68ca"
+          },
+          {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "operation": "replace_exact_text",
+            "existing_file_sha256": "1ba5fea3de1cf92334e63493210226ab1357de3306aa3f64cbe55566ea21c694",
+            "before_text": "| HARNESS-L2-003 | [2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)に従い、Vの谷（L6↔L7）では、設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じ、成果物をProvisional（次の結合へ渡してよい）にする。局所のRefactorは、public contract、要求、architectureの意味、stateの意味を変えない。変える必要があればBackflowする。原子CIの合格は、品質の証明、システムの成立、利用者の受入、Releaseの成立を意味しない |\n",
+            "before_text_sha256": "9e6ac23a685719735c726ff0acf10d60325ae4b5edc9cf60b20768ad63a2f630",
+            "proposed_text": "| HARNESS-L2-003 | [2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)に従い、Vの谷（L6↔L7）では、設計の契約と対のtest／oracleの定義・凍結→実装前Red（未実装/未修正の対象契約で意図する不足・欠陥を実観測）→最小本体実装→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じ、実装後の欠陥注入/mutationの検出は005のoracle強度を確かめる別証拠として保持し、実装前Redを代替しない。成果物をProvisional（次の結合へ渡してよい）にする。局所のRefactorは、public contract、要求、architectureの意味、stateの意味を変えない。変える必要があればBackflowする。原子CIの合格は、品質の証明、システムの成立、利用者の受入、Releaseの成立を意味しない |\n",
+            "proposed_text_sha256": "dcc2a8a1f6bcfd04e9940615795952c265d3822d4ba8412ec860981b679dc0e3",
+            "after_file_sha256": "86d24a8bde48740014e5931777e6c3761fcd58ae1c83f2d034575600ae061a97"
+          },
+          {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "operation": "replace_exact_text",
+            "existing_file_sha256": "788042350eb2f9c8265958bb59cb81f484fb6752f7f18327af1a0dde4d38354f",
+            "before_text": "| HARNESS-L2-015 | ④だけを導入した環境で、実装前に凍結した設計と対のtest／oracleから、意図した欠陥を検出するRed→凍結したoracleを最小の実装で満たしたGreenの証拠→局所のRefactor→原子CIまでが閉じ、成果物がProvisionalになり、設計・テストとの双方向traceと省いた検査の記録が残る | 実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格を品質の証明・システムの成立・受入・Releaseの成立とする／局所のRefactorでpublic contractや要求の意味を変える／HELIX-OSのCI運転がないと使えない |\n",
+            "before_text_sha256": "cc68808d85e3ac2946e0f19309b8b2b5e443873bb9080a91428ffa0425e9783e",
+            "proposed_text": "| HARNESS-L2-015 | ④だけを導入した環境で、実装前に凍結した設計と対のtest／oracleから、本体の実装/修正前revisionで意図した不足・欠陥を観測するRed→最小本体実装→凍結したoracleを満たしたGreenの証拠→局所のRefactor→原子CIまでが閉じ、成果物がProvisionalになり、設計・テストとの双方向traceと省いた検査の記録が残る | 本体実装/修正後のRedだけを実装前Redとする／testの作成時刻や凍結だけをRed観測とする／環境・構文障害など対象契約と無関係な失敗をRedとする／実装後のmutation検出を実装前Redの代用にする／実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格を品質の証明・システムの成立・受入・Releaseの成立とする／局所のRefactorでpublic contractや要求の意味を変える／HELIX-OSのCI運転がないと使えない |\n",
+            "proposed_text_sha256": "3d30f23fa073f246abc27bba7dc6bc43ca0ede0233fc7774092642a5a00338f9",
+            "after_file_sha256": "5288ab1115b900966076eae394279fbbbb4f396eccd8c52c0c3fb2c6eb22864d"
+          }
+        ],
+        "legacy_effect": "FR-L1-02の順序保証、旧ruleの実検出/Red-before-Greenを保持。TDDORDERの実装→Red順序を訂正し、旧ruleには本体実装前と明示されなかった観測義務を具体化する。",
+        "after_files_sha256": {
+          "docs/helix-harness/L2-requirements/product-requirements.md": "7e4c0dd4336c896beec1304d6612a5defd5c3f0fc99dc2ac5b3452e49222cb31",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md": "5288ab1115b900966076eae394279fbbbb4f396eccd8c52c0c3fb2c6eb22864d"
+        }
+      },
+      "B": {
+        "meaning": "015の既決「凍結→実装→Red→Green」で旧FR-L1-02の実装前Red順序を置換する。旧順序はholdingへ保全し、実装前Red観測を現行義務にしない。",
+        "source_meaning_effect": "旧confirmed FR-L1-02の順序意味を変更する明示人間判断。既決015/L11本文変更なし。正式successor/holding解除は別。",
+        "legacy_effect": "旧ruleの実検出/Red-before-Green、既決TDDORDERの実装→Red順序を保持。FR-L1-02の本体実装前Red保証を現行義務としては置換し、旧sourceはholdingに保全。"
+      }
+    },
+    "limits": [
+      "本packetは未採択。canonical L2/L11・MPR・carry・Bindingは変更しない。",
+      "既採用ASSETCOVER/O10GEN/DDDSTRICT/INCIDENTPORTの意味・版・判断を保持する。新しい版指定を加えない。",
+      "採用は提示した要求差分と対L11だけ。L3再開・正式schema・実装・旧runtime/CI・実release・要求Stage終了・Issuecloseを許可しない。",
+      "旧source holding、空formal successor、未処置consumer/旧技術方式は保持する。全原文のformal rehomeを本案のStage終了gateにしない。"
+    ],
+    "digest_rule": "各editのafter_file_sha256は基準fileへ当該editだけを適用した検算値。採用時の累積反映結果はoptions.A.after_files_sha256に記録する。全beforeを基準fileで一意確認してから対象fileごとに全editを適用する。",
+    "adoption_followup": "採用記録で005追補の「FR-L1-02のRedと本体実装の順序差分は別に保持」を今回の対象decisionへ接続する。005の5規律/既決版/残る全source holdingを変更せず、旧未決表示を現在の採否として流用しない。"
+  },
+  "selected_option": "A",
+  "adopted_edits": [
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "operation": "replace_exact_text",
+      "existing_file_sha256": "1ba5fea3de1cf92334e63493210226ab1357de3306aa3f64cbe55566ea21c694",
+      "before_text": "- **保証すること**：Vの谷（L6↔L7）で、設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じる。局所のRefactorはpublic contract、要求、architectureの意味、stateの意味を変えない。原子CIの合格を、品質の証明、システムの成立、利用者の受入、Releaseの成立にしない。PRの前に回すCIはticketとの関係から決め、省いた検査を記録する。\n",
+      "before_text_sha256": "67938f4774db2eb4be5e96e774dc147f2c0ba97f2822d3afd6c403a04cbebd08",
+      "proposed_text": "- **保証すること**：Vの谷（L6↔L7）で、設計の契約と対のtest／oracleの定義・凍結→実装前Red（対象の振る舞いが未実装または未修正の状態で、凍結したtestが意図する不足・欠陥を実際に検出した観測）→最小の本体実装→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じる。局所のRefactorはpublic contract、要求、architectureの意味、stateの意味を変えない。原子CIの合格を、品質の証明、システムの成立、利用者の受入、Releaseの成立にしない。PRの前に回すCIはticketとの関係から決め、省いた検査を記録する。 旧FR-L1-02のテストコードRed→本体実装Greenという順序を保持する。テスト作成時刻や定義凍結だけを実装前Redの観測にしない。実装後の意図した欠陥注入・mutationによる検出証拠は005のoracle強度を確かめる別の証拠であり、実装前Redの代用にしない。既存コードを改修する場合も本体変更前の対象revisionで意図した不成立を観測し、環境/構文障害など無関係な失敗をRedにしない。\n",
+      "proposed_text_sha256": "cfc3057f0a545284a121980824f8e308b12084eba72aaee0a103db336cfda5c7",
+      "after_file_sha256": "4392c8887cd6a0b15cd6b844423b4159d9a95a129c1804713a04848e58ca68ca"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "operation": "replace_exact_text",
+      "existing_file_sha256": "1ba5fea3de1cf92334e63493210226ab1357de3306aa3f64cbe55566ea21c694",
+      "before_text": "| HARNESS-L2-003 | [2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)に従い、Vの谷（L6↔L7）では、設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じ、成果物をProvisional（次の結合へ渡してよい）にする。局所のRefactorは、public contract、要求、architectureの意味、stateの意味を変えない。変える必要があればBackflowする。原子CIの合格は、品質の証明、システムの成立、利用者の受入、Releaseの成立を意味しない |\n",
+      "before_text_sha256": "9e6ac23a685719735c726ff0acf10d60325ae4b5edc9cf60b20768ad63a2f630",
+      "proposed_text": "| HARNESS-L2-003 | [2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)に従い、Vの谷（L6↔L7）では、設計の契約と対のtest／oracleの定義・凍結→実装前Red（未実装/未修正の対象契約で意図する不足・欠陥を実観測）→最小本体実装→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じ、実装後の欠陥注入/mutationの検出は005のoracle強度を確かめる別証拠として保持し、実装前Redを代替しない。成果物をProvisional（次の結合へ渡してよい）にする。局所のRefactorは、public contract、要求、architectureの意味、stateの意味を変えない。変える必要があればBackflowする。原子CIの合格は、品質の証明、システムの成立、利用者の受入、Releaseの成立を意味しない |\n",
+      "proposed_text_sha256": "dcc2a8a1f6bcfd04e9940615795952c265d3822d4ba8412ec860981b679dc0e3",
+      "after_file_sha256": "86d24a8bde48740014e5931777e6c3761fcd58ae1c83f2d034575600ae061a97"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "operation": "replace_exact_text",
+      "existing_file_sha256": "788042350eb2f9c8265958bb59cb81f484fb6752f7f18327af1a0dde4d38354f",
+      "before_text": "| HARNESS-L2-015 | ④だけを導入した環境で、実装前に凍結した設計と対のtest／oracleから、意図した欠陥を検出するRed→凍結したoracleを最小の実装で満たしたGreenの証拠→局所のRefactor→原子CIまでが閉じ、成果物がProvisionalになり、設計・テストとの双方向traceと省いた検査の記録が残る | 実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格を品質の証明・システムの成立・受入・Releaseの成立とする／局所のRefactorでpublic contractや要求の意味を変える／HELIX-OSのCI運転がないと使えない |\n",
+      "before_text_sha256": "cc68808d85e3ac2946e0f19309b8b2b5e443873bb9080a91428ffa0425e9783e",
+      "proposed_text": "| HARNESS-L2-015 | ④だけを導入した環境で、実装前に凍結した設計と対のtest／oracleから、本体の実装/修正前revisionで意図した不足・欠陥を観測するRed→最小本体実装→凍結したoracleを満たしたGreenの証拠→局所のRefactor→原子CIまでが閉じ、成果物がProvisionalになり、設計・テストとの双方向traceと省いた検査の記録が残る | 本体実装/修正後のRedだけを実装前Redとする／testの作成時刻や凍結だけをRed観測とする／環境・構文障害など対象契約と無関係な失敗をRedとする／実装後のmutation検出を実装前Redの代用にする／実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格を品質の証明・システムの成立・受入・Releaseの成立とする／局所のRefactorでpublic contractや要求の意味を変える／HELIX-OSのCI運転がないと使えない |\n",
+      "proposed_text_sha256": "3d30f23fa073f246abc27bba7dc6bc43ca0ede0233fc7774092642a5a00338f9",
+      "after_file_sha256": "5288ab1115b900966076eae394279fbbbb4f396eccd8c52c0c3fb2c6eb22864d"
+    }
+  ],
+  "before_files_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "5a47567f6c9dde81a2d50c869bb36a57ebb66dc3d0155270c54fb60c1f87c3d9",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "205cc77d361bda9e5774f1a1daa56bd8204d494d82e5ff379b5ae3e6b6f80f61"
+  },
+  "after_files_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+  },
+  "source_lines_ref": "docs/governance/audits/requirement-registration/redfirst-adoption-source-lines-2026-10-11.jsonl",
+  "source_lines_file_sha256": "sha256:922c27485fecf210f2870175025d67be63a739805851f974d74b105f624cc736",
+  "source_atom_set_digest": "sha256:72dd722e9a9dd6804560077ea986647cfb96b43084b3fb0a85996289fcf36006",
+  "source_atom_set_digest_rule": "順序付きatom_id + space + sha256-prefixed source_span_sha256をLF連結、末尾LFなし。",
+  "source_atom_count": 11,
+  "source_collection_scope": "固定案参照行の限定集合を生存holdingへ保全。限定意味再導出の採否と全原文のformal successor/移管を分け、全行移管や実装完成を主張しない。",
+  "coverage_result": "no_loss",
+  "coverage_scope": "原文入力の生存保全partition、全意味移管/全source closureを主張しない。",
+  "carried_atom_refs": [],
+  "preserved_pending_atom_refs": [
+    "REDFIRST-SOURCE-001",
+    "REDFIRST-SOURCE-002",
+    "REDFIRST-SOURCE-003",
+    "REDFIRST-SOURCE-004",
+    "REDFIRST-SOURCE-005",
+    "REDFIRST-SOURCE-006",
+    "REDFIRST-SOURCE-007",
+    "REDFIRST-SOURCE-008",
+    "REDFIRST-SOURCE-009",
+    "REDFIRST-SOURCE-010",
+    "REDFIRST-SOURCE-011"
+  ],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-REDFIRST-001"
+  ],
+  "human_decision_disposition_refs": [
+    "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md"
+  ],
+  "unaccounted_atom_refs": [],
+  "atoms": [
+    {
+      "atom_id": "REDFIRST-SOURCE-001",
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "source_path": "docs/design/harness/L1-requirements/functional-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line": 33,
+      "source_text": "| **FR-L1-02** | TDD 強制フロー (テストファースト順序厳守・実装先行禁止) | L7-implementation | L6 機能設計 (関数仕様 / クラス設計 / エッジケース) | テストコード (red) → 本体実装 (green) | P0 | PM-02 (L7 工程) / HM-07 |\n",
+      "source_span_sha256": "sha256:9ebc31aaeee0f1bbac64cab81a37312dd81f14fd45ccd0f0ff86436c93012ecc",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    },
+    {
+      "atom_id": "REDFIRST-SOURCE-002",
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "source_path": "docs/governance/ddd-tdd-rules.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "source_line": 21,
+      "source_text": "3. **契約先行**: public behavior、precondition、postcondition、invariant、failure semantics、owner、\n",
+      "source_span_sha256": "sha256:f7fcc49f07f52c650d2abf497d374f7ebc2c1a1b902bc9cd2a26746c81491660",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    },
+    {
+      "atom_id": "REDFIRST-SOURCE-003",
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "source_path": "docs/governance/ddd-tdd-rules.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "source_line": 22,
+      "source_text": "   write authorityを実装前に固定する。内部構造は契約を守る限り交換可能にする。\n",
+      "source_span_sha256": "sha256:61c7b18f9d4932ec63d3bc8707563be03502783b2a1ab3bf6ba5978904af67d3",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    },
+    {
+      "atom_id": "REDFIRST-SOURCE-004",
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "source_path": "docs/governance/ddd-tdd-rules.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "source_line": 23,
+      "source_text": "4. **TDDは検証契約**: Redは「testを書いた時刻」ではなく、意図した欠陥を実際に検出する証拠である。\n",
+      "source_span_sha256": "sha256:de683d0f4dbdaac60d0e08ff7dde6e9515e884a34e8407fc47eeef52f7e2c139",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    },
+    {
+      "atom_id": "REDFIRST-SOURCE-005",
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "source_path": "docs/governance/ddd-tdd-rules.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "source_line": 24,
+      "source_text": "   Greenは最小実装、Refactorは同じoracleがgreenのまま構造を単純化した証拠で閉じる。\n",
+      "source_span_sha256": "sha256:04b95a14458951703dcaa9c2a0b21106576b83b9d0a05c17715fc194dc5bc313",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    },
+    {
+      "atom_id": "REDFIRST-SOURCE-006",
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "source_path": "docs/governance/ddd-tdd-rules.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "source_line": 47,
+      "source_text": "  - id: red-first-evidence\n",
+      "source_span_sha256": "sha256:3d7f8db7f3bbe1faaa30add33b6de7a72c569486b42ae50f7943df77cd1eef88",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    },
+    {
+      "atom_id": "REDFIRST-SOURCE-007",
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "source_path": "docs/governance/ddd-tdd-rules.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "source_line": 48,
+      "source_text": "    enforcement: hard\n",
+      "source_span_sha256": "sha256:432ef3684d8e734979512ec1ea6aa2749f64609be502880a51a4f065312a8fab",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    },
+    {
+      "atom_id": "REDFIRST-SOURCE-008",
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "source_path": "docs/governance/ddd-tdd-rules.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "source_line": 49,
+      "source_text": "    owner: src/lint/ddd-tdd-rules.ts\n",
+      "source_span_sha256": "sha256:511c6ffa5e41d18fbd95c53d336c14c8a040c1b039ace9c8e4482c7bfa19028d",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    },
+    {
+      "atom_id": "REDFIRST-SOURCE-009",
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "source_path": "docs/governance/ddd-tdd-rules.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "source_line": 50,
+      "source_text": "    intent: tdd_red_required が付いた confirmed TDD PLAN は red_at と green_at を時系列順に記録しなければならない。\n",
+      "source_span_sha256": "sha256:c80672262e6412debe662bcc6ecd00f51510cc498318938c69fd04b3eb222c7d",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    },
+    {
+      "atom_id": "REDFIRST-SOURCE-010",
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "source_path": "docs/governance/ddd-tdd-rules.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "source_line": 137,
+      "source_text": "- id: DDD-INV-003 oracle: U-DDDTDD-003 - TDD implementation evidence は Red-first である: TDD evidence を要求する confirmed plan では `red_at <= green_at` を満たす。\n",
+      "source_span_sha256": "sha256:0a4e6307ff5ac729643bc391ed70229b41176ee59de94e5270deef3f1e110d06",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    },
+    {
+      "atom_id": "REDFIRST-SOURCE-011",
+      "asset_id": "LEGACY-ASSET-FAAFFA616A44F65911EB",
+      "source_path": "docs/test-design/harness/L7-unit-test-design.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L7-unit-test-design.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:0fd9f9dc3ac452fefaa74d3fea79c19a9fe2e162908ed763bfbcc56514186347",
+      "source_line": 668,
+      "source_text": "| U-DDDTDD-003 | Red-first evidence                   | confirmed `tdd_red_required` PLAN が `red_at` / `green_at` を欠く、または `red_at > green_at` -> violation                                                                                                                                         |\n",
+      "source_span_sha256": "sha256:3ac45737d6a2d0df178c13f50fb3d4856ba1b865661c67758795ed36d4de9c22",
+      "source_span_rule": "指定行UTF-8 bytes、元のLFを含む。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-REDFIRST-001"
+    }
+  ],
+  "requirement_entries": [
+    {
+      "requirement_identity": "HARNESS-L2-015",
+      "candidate_registration_id": "MPR-RC-HARNESS-L2-015-007",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-015",
+      "candidate_semantic_digest": "sha256:447950b214056b86115d58039f9212ada8221a7c0cc98e9d613f7c9d4730b313",
+      "candidate_digest_scope": "反映後の対象L2 section UTF-8 bytes、section末尾LFを含む。",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/redfirst-adoption-source-lines-2026-10-11.jsonl",
+      "source_atom_set_digest": "sha256:72dd722e9a9dd6804560077ea986647cfb96b43084b3fb0a85996289fcf36006",
+      "source_atom_count": 11,
+      "preserved_pending_atom_refs": [
+        "REDFIRST-SOURCE-001",
+        "REDFIRST-SOURCE-002",
+        "REDFIRST-SOURCE-003",
+        "REDFIRST-SOURCE-004",
+        "REDFIRST-SOURCE-005",
+        "REDFIRST-SOURCE-006",
+        "REDFIRST-SOURCE-007",
+        "REDFIRST-SOURCE-008",
+        "REDFIRST-SOURCE-009",
+        "REDFIRST-SOURCE-010",
+        "REDFIRST-SOURCE-011"
+      ],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-REDFIRST-001"
+      ],
+      "human_decision_disposition_refs": [
+        "docs/governance/decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md",
+        "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md"
+      ],
+      "prior_candidate_registration_id": "MPR-RC-HARNESS-L2-015-006",
+      "prior_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-tdd-order-coverage-receipt-2026-10-10.json"
+    },
+    {
+      "requirement_identity": "HARNESS-L2-003",
+      "candidate_registration_id": "MPR-RC-HARNESS-L2-003-002",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-003",
+      "candidate_semantic_digest": "sha256:5c8945eaf925538051f377b7d7e2995d24ca7caa3933d44c691b68fb02d13b6a",
+      "candidate_digest_scope": "INCIDENTPORT固定L2追補text + REDFIRST固定003工程表proposed_textのUTF-8 bytes連結、各LFを保持。003全section digestではない。",
+      "candidate_text": "| HARNESS-L2-003 | Incidentのhotfixにも通常のRelease Portの必須条件を適用し、緊急性やhotfixという名称から省略を許可しない。旧FR-L1-16の「即release」を通常Portの例外として存続させず、条件が成立した後の迅速な適用として扱う。必要な証明・成果物識別・対象環境・依存・security・rollback・配備条件・受入状態がmissing／unknown／staleならRelease-eligibleにしない。検出・暫定対処・収束確認・postmortem・L12 feedbackと、収束後のcurrent L1–L12へのbackfillは保持する。恒久対策はReverse fullbackで影響する要求・設計・対検証を確認し、選択済み開発方式の該当層へ戻す。暫定収束や配備成功だけで恒久対策とbackfillを完了にしない。HARNESSは工程条件を持ち、OSは既存Incident／continuity／ticket／検収／受渡し契約を参照して運転・記録する。既存SECURITYの操作authorityと有効な既決権限を保持し、本追補からrelease許可や追加承認手続きを生成しない |\n| HARNESS-L2-003 | [2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)に従い、Vの谷（L6↔L7）では、設計の契約と対のtest／oracleの定義・凍結→実装前Red（未実装/未修正の対象契約で意図する不足・欠陥を実観測）→最小本体実装→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じ、実装後の欠陥注入/mutationの検出は005のoracle強度を確かめる別証拠として保持し、実装前Redを代替しない。成果物をProvisional（次の結合へ渡してよい）にする。局所のRefactorは、public contract、要求、architectureの意味、stateの意味を変えない。変える必要があればBackflowする。原子CIの合格は、品質の証明、システムの成立、利用者の受入、Releaseの成立を意味しない |\n",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/redfirst-adoption-003-cumulative-source-lines-2026-10-11.jsonl",
+      "source_atom_set_digest": "sha256:5eb7de32d3bc10cdca288bc405ca82ca29e5eeb577e99564736f79849df2df23",
+      "source_atom_count": 39,
+      "preserved_pending_atom_refs": [
+        "INCIDENTPORT-SOURCE-001",
+        "INCIDENTPORT-SOURCE-002",
+        "INCIDENTPORT-SOURCE-003",
+        "INCIDENTPORT-SOURCE-004",
+        "INCIDENTPORT-SOURCE-005",
+        "INCIDENTPORT-SOURCE-006",
+        "INCIDENTPORT-SOURCE-007",
+        "INCIDENTPORT-SOURCE-008",
+        "INCIDENTPORT-SOURCE-009",
+        "INCIDENTPORT-SOURCE-010",
+        "INCIDENTPORT-SOURCE-011",
+        "INCIDENTPORT-SOURCE-012",
+        "INCIDENTPORT-SOURCE-013",
+        "INCIDENTPORT-SOURCE-014",
+        "INCIDENTPORT-SOURCE-015",
+        "INCIDENTPORT-SOURCE-016",
+        "INCIDENTPORT-SOURCE-017",
+        "INCIDENTPORT-SOURCE-018",
+        "INCIDENTPORT-SOURCE-019",
+        "INCIDENTPORT-SOURCE-020",
+        "INCIDENTPORT-SOURCE-021",
+        "INCIDENTPORT-SOURCE-022",
+        "INCIDENTPORT-SOURCE-023",
+        "INCIDENTPORT-SOURCE-024",
+        "INCIDENTPORT-SOURCE-025",
+        "INCIDENTPORT-SOURCE-026",
+        "INCIDENTPORT-SOURCE-027",
+        "INCIDENTPORT-SOURCE-028",
+        "REDFIRST-SOURCE-001",
+        "REDFIRST-SOURCE-002",
+        "REDFIRST-SOURCE-003",
+        "REDFIRST-SOURCE-004",
+        "REDFIRST-SOURCE-005",
+        "REDFIRST-SOURCE-006",
+        "REDFIRST-SOURCE-007",
+        "REDFIRST-SOURCE-008",
+        "REDFIRST-SOURCE-009",
+        "REDFIRST-SOURCE-010",
+        "REDFIRST-SOURCE-011"
+      ],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-INCIDENTPORT-001",
+        "MPR-SH-REDFIRST-001"
+      ],
+      "human_decision_disposition_refs": [
+        "docs/governance/decisions/incidentport-adoption-po-decision-2026-10-11.md",
+        "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md"
+      ],
+      "prior_candidate_registration_id": "MPR-RC-HARNESS-L2-003-001",
+      "prior_coverage_receipt_ref": "docs/governance/audits/requirement-registration/incidentport-adoption-coverage-receipt-2026-10-11.json"
+    }
+  ],
+  "parent_concept_revision": "docs/concept/helix-concept.md@9fb6ecc7fb5594edd652caa28be21b6d84cfe26c sha256:bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715（読取revision、既決意味不変）",
+  "parent_planning_revision": "docs/helix-harness/L1-planning/product-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（9/28固定L1）",
+  "legacy_comparison": {
+    "preserved": "旧FR-L1-02はtestコードRed→本体実装Greenという実装前の順序を示す。一方、旧ddd-tdd-rules:23はRedを作成時刻でなく意図した欠陥の実検出と定義し、47-50/137とL7:668のRed-first条件はred_at<=green_atで、本体実装前とは明示しない。TDDORDERは後者を意味起点にした。この2つを旧世代内の異なる記述として保持し、同じ意味だったと補完しない。",
+    "changed": "AはFR-L1-02の実装前Red順序と旧ruleの実検出/Red-before-Greenを両立させ、TDDORDER015/003の実装→Redを訂正する。旧ruleに明記されなかった本体実装前の観測条件を現行の一律義務として明示するため、旧ruleの単なる完全一致移管とはしない。Bは旧ruleの実検出/Red-before-Greenと既決TDDORDERを保持し、FR-L1-02の本体実装前Redという順序保証を置換する。",
+    "reason": "作成時刻/凍結と観測の取り違えを防ぎ、既決の欠陥検出意味を保ったままFR-L1-02の本体実装前順序を保持するため。旧不在/未完成/runtime存在を変更理由にしない。"
+  },
+  "research_applicability": "非適用。既存旧sourceと現行採択条項の具体差を埋める要求意味の判断であり、新しい技術選定/実装性能の主張を含まない。",
+  "pre_isolation_check": {
+    "inventory_path": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+    "inventory_sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+    "matches": [],
+    "result": "333件の差分台帳へ選択pathを照合。該当は基準/隔離両revisionの限定行を別atomで保全し、意味同値は推定しない。"
+  },
+  "remaining_scope": [
+    "旧sourceの正式successor/全移管とconsumer/schema/実装は既存holdingと#1813/#2846へ保持。",
+    "採否だけを記録し、L3再開・実装・release・要求Stage終了・Issuecloseを生成しない。"
+  ],
+  "version_effect": "既決版保持、新規版指定なし。003既決1.0と005の5規律を保持。",
+  "formal_successor_effect": "none",
+  "issue_close": false,
+  "binding_refresh": {
+    "changed_files": [
+      "scaffold/bindings/SCF-B-0014.json",
+      "scaffold/bindings/SCF-B-0016.json",
+      "scaffold/bindings/SCF-B-0020.json",
+      "scaffold/bindings/SCF-B-0024.json",
+      "scaffold/bindings/SCF-B-0025.json",
+      "scaffold/bindings/SCF-B-0030.json",
+      "scaffold/bindings/SCF-B-0031.json",
+      "scaffold/bindings/SCF-B-0037.json",
+      "scaffold/bindings/SCF-B-0039.json",
+      "scaffold/bindings/SCF-B-0041.json",
+      "scaffold/bindings/SCF-B-0042.json",
+      "scaffold/bindings/SCF-B-0046.json",
+      "scaffold/bindings/SCF-B-0054.json",
+      "scaffold/bindings/SCF-B-0074.json",
+      "scaffold/bindings/SCF-B-0095.json",
+      "scaffold/bindings/SCF-B-0102.json",
+      "scaffold/bindings/SCF-B-0104.json",
+      "scaffold/bindings/SCF-B-0106.json"
+    ],
+    "effect": "L2/L11全file receipt hashのみ更新。Bindingを全文読取し、upstream sha256以外の全fieldの完全一致を確認。研究scaffoldのrole/義務/適用scope/verification/replacement/authorityを変更しない。採用・正式化・retireは生成しない。",
+    "reason": "一identity固定追補によりL2/L11全file hashが変化した。scaffold研究範囲は既存のまま保持し、採用判断はPO recordに分離。"
+  }
+}
