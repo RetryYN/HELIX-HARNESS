@@ -1357,3 +1357,13 @@ revision 001の既存L11 bytesとfixtureは保持し、ここではsource訂正r
 **unknown・回復・未見例**：列挙根拠とread scopeがrepository全体を覆うか不明、snapshotがstale、asset identityが未解決、照合基準が欠落した例を区別し、不明範囲を不存在／成功へ変えない。source/inputまたは要求・設計ownerが不足を補った後、元の対象revision/scope・不足履歴と新根拠を結んで再照合する。未公開のカテゴリ抜け、拡張asset、部分読取、別版の基準を含むfixtureで、既知の名前や件数だけでは網羅性・充足が成立しないことを確認する。この候補段階でfixtureを実行済みとは主張しない。
 
 **成立範囲**：棚卸し・意味照合unit固有の条件を確認する。Full Reverse全体、入先サービス、接続／構成体、実CI／runtime、旧FR33全移管を、このunitのreport生成だけで完了にしない。新規version_targetは指定しない。
+
+### HARNESS-L2-090 制約内画面prototype構成の対L11候補（1.0、未採択）
+
+**正常例**：同じscope/revisionの画面要求、選択Patternのrequired/forbidden、製品Visual Identity、UI profileを与える。試作は実際に描画可能で、構成要素からrequired/forbidden・情報優先順位・pattern/token・responsive・motion budget・reduced-motion・accessibility・brand・surface区分の各適用制約へ意味上の対応を辿れる。製品固有値を共通知識へ入れず、生成候補と各制約の照合状態を示す。079の操作再生/walkthrough条件や049の測定を未実施なら、その未完義務を示す。生成だけで人の合意・受入・UX完成にならない。
+
+**独立した負例**：required一項欠落、forbidden要素追加、情報優先順位違反、token不一致、responsive条件違反、motion budget逸脱、reduced-motion代替欠落、accessibility条件欠落、brand制約違反、operational/expressive/mixed区分の混同、製品固有値の汎用Rule Pack混入を各別fixtureとして照合する。対象制約と違反箇所を示し、見栄えの評価や他の制約passで相殺しない。未選択Patternの暗黙採用、要求にない操作追加、静止画/proseだけをrenderable試作とする例も未完とする。motion等の数値は入力契約に従い、新しい固定閾値をoracleが作らない。
+
+**unknown・回復・未見例**：Patternの適用条件、必要input、UI profile、製品制約が欠落/矛盾/staleの例を区別し、白紙生成/自由補完/N/Aで充足にしない。ownerが不足を補った後、元scope/revisionと新根拠を結び直し、影響する試作候補を再照合する。未公開Pattern/profileや製品であっても選択条件を解釈できる場合は同じ意味で構成・検査し、未知条件は未評価として返す。非画面は根拠付き非適用とし、非画面で技術成立性不明ならPoCを省かない。
+
+**状態・責務の負例**：生成候補からAIがbrand/prototype合意を自己承認する、生成成功をimplemented/ux_verifiedとする、039の関係や079の証拠を生成unitのpassで代替する、049の測定passを生成義務充足の代用とする、LABOを迂回してBRAINへ製品情報を昇格する例を拒否する。実行、表示計測、walkthrough、人の合意は各既存owner/契約へ残す。fixtureは静的な期待条件で、実行証拠ではない。
