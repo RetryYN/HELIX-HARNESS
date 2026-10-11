@@ -3,6 +3,7 @@
 @AGENTS.md
 
 本repositoryの現行contextは[新世代作業入口](docs/governance/new-generation-start-here.md)から取得する。
+新世代のAI context生成器は未構築である。旧Claude設定・role・command・hook・runtime方針の読取りsourceは`archive/legacy-generation-2026-09-14/root/.claude/`および同階層の旧`CLAUDE.md`に隔離されている。
 旧sourceの読込、差分の記録、人の判断境界、更新・履歴は[AGENTS.md「再構築の原則」](AGENTS.md#再構築の原則)に従う。
 運用規則の所在とconsumerは[GitHub上流運用モデル「文書規則と参照する側の対応」](docs/governance/github-upstream-operating-model.md#文書規則と参照する側の対応)から辿る。
 L3／L10の委任承認は同書の[「L3／L10承認の委任」](docs/governance/github-upstream-operating-model.md#l3l10承認の委任)を参照する。

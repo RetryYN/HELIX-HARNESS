@@ -394,7 +394,7 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 | PR作成・独立review・merge・配送 | 本書「作成側とレビュー対応側の責務」「governance／operation_change PRのmerge admission」「GUIレーンの運転と通知」 | AGENTS.md、CLAUDE.md、GUIローダ、両レーン、scaffold説明 | 上の移管表で未成立部分を保持。通知／ACKからreview・承認を生成しない。loader等の全consumerの移管は#1864／#1866と対象Bindingへ |
 | L3／L10の委任承認と停止 | 本書「L3／L10承認の委任」、[巻き戻し判断](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)、[ロードマップ](requirements-first-roadmap.md) | AGENTS.md、CLAUDE.md、authority状態モデル、再開準備の照合者 | 旧Opus・Fable一致の現行説明を本書への参照へ訂正。経過措置は保持。再開の前提成立・順序・scopeは#2846とPO指示へ。委任の存在から再開を生成しない |
 
-今回、CLAUDE.mdのinventory-first・更新履歴の複製はAGENTS.mdへ、AGENTS.md／CLAUDE.mdのGitHub運転と委任条件の複製は本書へ寄せた。authority状態モデルの遷移図に残っていた旧委任条件も本書への参照へ訂正した。これは既決の意味に追随する参照整理であり、運用の変更や新しい承認条件の追加ではない。利用者instruction・GUIローダ・scaffold内の個別consumerまで全件を移管した証拠ではない。
+今回、CLAUDE.mdのinventory-first・更新履歴の複製はAGENTS.mdへ、AGENTS.md／CLAUDE.mdのGitHub運転と委任条件の複製は本書へ寄せた。Claude固有の旧sourceの所在とAI context生成器の未構築という現況はCLAUDE.mdに保持する（[review指摘の訂正記録](audits/document-rules-consolidation-2026-10-11-r2.json)）。authority状態モデルの遷移図に残っていた旧委任条件も本書への参照へ訂正した。これは既決の意味に追随する参照整理であり、運用の変更や新しい承認条件の追加ではない。利用者instruction・GUIローダ・scaffold内の個別consumerまで全件を移管した証拠ではない。
 
 ### 現在の照合と、設計後の開発規律
 

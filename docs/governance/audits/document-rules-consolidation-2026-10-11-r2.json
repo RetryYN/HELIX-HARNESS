@@ -1,0 +1,157 @@
+{
+  "supersedes": {
+    "revision": "345dfe4103fa4c9a5b16564e32606e70f7216ab1",
+    "path": "docs/governance/audits/document-rules-consolidation-2026-10-11.json",
+    "sha256": "88fbf3b7ff8fdd4f5f9a65133d33926ade822076b2857defa76b45d67beaaeb2",
+    "scope": "修正後本文のinput pinsを訂正する。先行記録は修正前HEADの証拠として保持。"
+  },
+  "finding": {
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2909#issuecomment-6109591789",
+    "id": "F1",
+    "severity": "Minor",
+    "result": "CLAUDE固有の旧sourceの所在とAI context生成器未構築の現況は重複でないためCLAUDE.mdへ戻した。規則の複製削減と固有情報の保持を区別する。"
+  },
+  "input_pins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c"
+    },
+    {
+      "path": "docs/governance/authority-state-model.md",
+      "sha256": "1c0336ec838d3603231ffe6689175e9422c9cb1d19476159f88ab27f6a6233eb"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "819248b77a8455f223c5a8499fd23e1eda565ce98c7cfe9b5e097dbbda6db005"
+    },
+    {
+      "path": "docs/governance/requirements-first-roadmap.md",
+      "sha256": "e8204472ba6e41028abec780574836b924bc3e8e3d37fb98758993b76c6d15b6"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "path": "docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md",
+      "sha256": "27b51768cbf010d201ccc2aafe8e4c893ec5ccb2a9a0bce662af343ef87809ee"
+    },
+    {
+      "path": "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+      "sha256": "5a4c8d85acc89166b68868824fdffd09e2c50810dae463e1724c5e146cc1cc05"
+    },
+    {
+      "path": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+      "sha256": "ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23"
+    },
+    {
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    },
+    {
+      "path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "sha256": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    },
+    {
+      "path": "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "sha256": "2c700ffcbb89c034d9f0b43a7f69483e785abbef28bb07601857a1d0caa72030"
+    }
+  ],
+  "binding_refresh": [
+    {
+      "binding": "scaffold/bindings/SCF-B-0003.json",
+      "index": 2,
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "before": "6d0832a65aaefe2d3d931b007ad357664cdf9dadf6ee6e9ce036b76f450f0c53",
+      "after": "819248b77a8455f223c5a8499fd23e1eda565ce98c7cfe9b5e097dbbda6db005"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0046.json",
+      "index": 7,
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "before": "6d0832a65aaefe2d3d931b007ad357664cdf9dadf6ee6e9ce036b76f450f0c53",
+      "after": "819248b77a8455f223c5a8499fd23e1eda565ce98c7cfe9b5e097dbbda6db005"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0046.json",
+      "index": 17,
+      "path": "scaffold/bindings/SCF-B-0003.json",
+      "before": "2e77e381b18ee44e62a5ab1a623883c609585263d31a25da13fc22bc5c5b8f92",
+      "after": "5fd377aba18cf7eb782c36459d345e2dbdfef5b81cb5528e093efbf37af88e66"
+    }
+  ],
+  "all_other_binding_fields_equal": true,
+  "command_checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "last_line": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "182382bb6b7f678e7025fd61c01113d302c8d44eede8cb3aee86362baeaf60e5",
+      "last_line": "bindings=147 fail=0"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "stale"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "87a3b1b935511a85473d742a599e5f4e976e2504e9b0e25e6203da661cd9bb49",
+      "last_line": "stale=0"
+    }
+  ],
+  "link_correction": {
+    "consumer": "docs/governance/github-upstream-operating-model.md",
+    "target": "audits/document-rules-consolidation-2026-10-11-r2.json",
+    "meaning": "新しい訂正記録を参照する。先行34件と追加/置換の全参照は対象revisionで独立reviewする。"
+  },
+  "inherited_scope": "先行の一つの要求例・旧source・判断の比較先は未変更。静的照合は正式L3/実装/機構成立の証拠ではない。",
+  "remaining": [
+    "全consumerの移管・旧assetのconsumer closureは未確認。個別Bindingと#1864/#1866/#1813/#1814へ保持。",
+    "#2905の環境条件、#2846の初回scope・全体最小template集合・適用往復・安全/接続/資源/計測は未完。",
+    "L3停止を保持。Issue全件close・PRmerge・本監査から前提機構成立や再開を生成しない。"
+  ]
+}
