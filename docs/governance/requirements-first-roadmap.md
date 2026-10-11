@@ -307,7 +307,7 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 | OSの案件運転と初回配置 | OS002の提案／選択／使用setと案件義務・原記録・LABO評価母集団。OS017〜020／023のticket・割当・結果・検収・handoff、HARNESS015／022の検証契約、必要なOS027・INT010／066・LABO054〜057の初回材料 | 002はroutingの別分母を保持し、初回の著述先をStage 1とする案を提示するが、版指定は追加しない。作業・配置とHARNESS022は既存Stage 2a。HARNESS015はStage 2b、LABO054はStage 4の配属を保持し、必要な契約入力を先に導く。015は上記45identityの参照集合外なので、10/3追補の当該recordへ直接照合する。027と代行／人手receiptの既決条件を弱めず、未評価・未受領・未実行を分ける |
 | 選択辺・構成体と更新／復旧への接続 | BRAIN→CORE、CORE→OS、Worker結果→OS／LABO、検収→COREの各辺と、主対象を結ぶ構成体の義務を各ownerの要件・対受入へ結ぶ。INFRA観測→LABO026は結果receiptと別source。内部更新／独立復旧はINFRA005／006／009／010とSECURITYの条件へ結ぶ | 既存CONNECT各Stageと周辺の配属を保持する。構成体の一周でCONNECT007を選ぶ場合は、既存Stage 5を保持し必要な契約入力を先に導く。007も45identityの参照集合外なので10/3追補へ直接照合する。当該辺に実際に必要な安全・資源・計測を含める。単体・辺・構成体を別に検証する。更新／復旧の条件整理を、内部デプロイ・release・独立復旧の実施許可へ変えない |
 
-この表のStage 1への3件の著述先と、既存後段Stageの契約入力を先に導く順序は**提案差分**であり、採択済みの配属ではない。009／002については、9/27・10/3のrouting containerを`not_stage_candidate`としてStageへ配属しなかった状態からの差を提案する。著述対象は10/10採用の009の1.0規律・COREAPPLYと002のOSTRACEの本文範囲に限る。container内の旧要求atomのrehome／successor対応・被覆は未完のまま既存ledgerへ保持し、本案の著述先や当該追補のL3から旧atom全体の被覆を推定しない。10/3の374件roster、routingの別分母、要求の採否・版・承認parentは書き換えない。Stageは優先群であり、参照した契約の既存Stage番号だけを理由に当該契約を省いたり、Stage全体の実装を開始条件にしたりしない。初回経路の後には既存のStage 2c早期投資枝と2b／3の並行案を比較材料として残すが、その再開も本案から生成しない。
+この表のStage 1への3件の著述先と、既存後段Stageの契約入力を先に導く順序は**提案差分**であり、採択済みの配属ではない。009／002については、9/27・10/3のrouting containerを`not_stage_candidate`としてStageへ配属しなかった状態からの差を提案する。著述対象は10/10採用の009の1.0規律・COREAPPLYと002のOSTRACEの本文範囲に限る。container内の旧要求atomのrehome／successor対応・被覆は未完のまま既存ledgerへ保持し、本案の著述先や当該追補のL3から旧atom全体の被覆を推定しない。10/3の374件roster、routingの別分母、要求の採否・版・承認parentは書き換えない。Stageは優先群であり、参照した契約の既存Stage番号だけを理由に当該契約を省いたり、Stage全体の実装を開始条件にしたりしない。10/3の案B（Stage 1→2a→狭い2cと2b／3の並行）は再開時に再確認する。本案は選択済み初回scopeに限り、その順序を下記の限定前提構築→実物のPO受入→通常L3へ置き換える提案である。対象外の案Bと2cの6identityは比較材料として保留し、既存Stage・意味・版を保持する。その再開許可は本案から生成しない。
 
 MSGCONTENTとP3FIRSTの限定採用は反映済みで、運用knowledge promotionは未実施である。BRAIN・横断・安全/資源/観測の再帰照合は、既存契約への再訪、owner-qualified入力の未決、未選択操作、後続版まで記録した。正式packの最小集合/実利用閉包を成立とはしない。これらの結果を、次の初回著述の親契約・知識範囲と前提構築の順序案へ反映する。追加知識が必要となる範囲と未提示source契約の不足は未決のまま保持し、案件値や未来の実結果と区別する。
 
@@ -322,9 +322,21 @@ MSGCONTENTとP3FIRSTの限定採用は反映済みで、運用knowledge promotio
 | 段階案 | 限定する作業と、証拠を得る時点 |
 |---|---|
 | 1. 前提形成に必要なL3/L10 | JSON意味正本と生成view、template提供/適用/案件trace、命名/identity/対oracle、TDD/検証義務を、上記主対象とJSONの条件別親集合から導く。各owner・機構×Stageの単位で起草する。先行する3件のStage1著述先と後段契約入力の順序は上表の提案差分を保持する |
-| 2. 承認された限定要件の対設計・実装・検証・対象CI | 対象L3/L10の委任承認、必要な設計知識の内容採否、対設計/test-oracle凍結を経て、当該意味正本/適用/規律を実体へつなぐ。schema/tool/具体値はこの案で決めない。実operationに必要なauthority/隔離/資源を満たし、凍結→実装前Red→最小実装→Greenを守る。CIは当該ticket/義務から選び、省略回収を保持する |
-| 3. 前提機構の成立を確認 | JSON/各write失敗・CAS/生成viewだけ変更の拒否、templateの不足/別scope/N-A/未受領、role/consumer/oracle欠落、pair片側/未実行、実装後oracle/無関係Red、安全制約未適用/部分成功の各不成立を実対象で確認する。対象revision/scopeと局所・接続・構成体の実観測、独立review、read-afterを結ぶ。catalog/JSONの存在やCI greenだけで成立しない |
-| 4. 成立後の通常L3/L10 | 選択済みBRAIN→CORE→OSと必要な安全/接続/資源/計測へ、成立済み前提を使って未完要件を導く。限定前提で既に要件化した部分を重複起草しない。追加知識・入力不足は適用範囲へ戻し、対象外のStage/製品まで解禁しない |
+| 2. 承認された限定要件の対設計・実装・検証・対象CI | 対象L3/L10の委任承認、必要な設計知識の内容採否、対設計/test-oracle凍結を経て、当該意味正本/適用/規律を実体へつなぐ。schema/tool/具体値はこの案で決めない。10/9配置基本方針の4論点を対象L4へ再起草し、独立reviewで確かめる。実operationに必要なauthority/隔離/資源を満たし、凍結→実装前Red→最小実装→Greenを守る。CIは当該ticket/義務から選び、省略回収を保持する |
+| 3. POが実物のL11受入を確認 | JSON/各write失敗・CAS/生成viewだけ変更の拒否、templateの不足/別scope/N-A/未受領、role/consumer/oracle欠落、pair片側/未実行、実装後oracle/無関係Red、安全制約未適用/部分成功の各不成立を実対象で確認する。対象revision/scopeと局所・接続・構成体の実観測、独立review、read-afterを結ぶ。catalog/JSONの存在やCI greenだけで成立しない。POがHARNESS022のL11利用者受入として対象revision/scope・oracle・実証拠・未完範囲を確認し、受入者と判断を記録する |
+| 4. 成立後の通常L3/L10 | 本案の順序/scopeがPOに採用され、段階3でPOのAcceptedが成立した範囲だけ進む。選択済みBRAIN→CORE→OSと必要な安全/接続/資源/計測へ、成立済み前提を使って未完要件を導く。限定前提で既に要件化した部分を重複起草しない。追加知識・入力不足は適用範囲へ戻し、対象外のStage/製品まで解禁しない |
+
+L3/L10の本文承認は[10/5の委任](decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md)と[10/8の別系統reviewへの変更](decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md)に従う。作成と別runtime・別model familyのexact revision独立reviewで承認し、Fableは助言先とする。機構×StageのPO事後確認は保持する。段階3の実物のL11受入はPOが判断する案であり、文書承認・事後確認・AIのVerifiedをAcceptedへ読み替えない。同じ確認機会にまとめて提示しても、対象と判断を別に記録する。新しい承認主体や閾値を追加する案ではない。代案として限定前提構築だけを選び、通常L3は停止したまま証拠が揃った時点でPOの順序/scope指示へ戻すこともできる。
+
+再開に関係する既決方針をJSONの`retained_decisions`と固定inputへ結ぶ。
+
+| 既決方針 | 本案との関係 |
+|---|---|
+| [10/9の配置と公開範囲](decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md) | 基本方針は保持する。docsの配置、所有機構別declarations、種類別パック実装と検証コードの同居、符号化log_idのrecordsを用い、実行環境/instance状態/成果物ストアはrepo外とする。public開発/private配布allowlistとLICENSEは変更しない。巻き戻されたL4の承認は復元せず、①正本/宣言/台帳の一意化、②ReleaseManifest・pointer切替・実起動・rollbackの区別、③開発公開と配布範囲の区別、④記録の論理ID/安全な物理path・書込権限/整合性/条件付き追記の4論点を対象要件から再起草する。releaseや内部デプロイの実施許可は含まない |
+| [コンパイラ段階](decisions/development-compiler-stages-po-decisions-2026-10-06.md) | 1.0は採択契約をつなぐ部品コンパイラの境界を保持する。2.0/3.0のWeb製品feedbackとBenchは別に扱い、後続版を前倒ししない。ticket本文外graph配置の未決を本案で決めず、全件CI/nightlyを復活しない |
+| [PR原子単位](decisions/pr-atomicity-unit-po-decisions-2026-10-05.md) | 一つの機構×一つのStageをL3/L10 PRの上限とし、対を保つ |
+| [開発repoのticket方針](decisions/dev-repo-ticket-policy-po-decision-2026-10-09.md) | 作業種別/内容のみのimmutable ticketへstate/PR/Issue/完了を書き戻さず、ticket依存/状態のgateを作らない。製品OSのticket意味は変更しない |
+| [失敗から学ぶ原則](decisions/learn-from-failures-principle-po-decision-2026-10-09.md) | 同型の失敗を起点にし、事例なし予防規則を追加しない。失敗から要求意味/新gateを生成せず、機構が成立した運用規則を減らす |
 
 親集合の案はJSONの`parent_groups`へ明示する。常時の工程/対/依存契約、選択knowledge、意味正本/命名/trace/pair、案件記録/割当、選択辺、安全、資源/観測/初回配置の各入力を条件別に結ぶ。全列挙契約の全能力を同時実装する集合や、全template/全source/全Bot/全Stage完成を開始gateにする案ではない。参照nodeの件数やStage番号だけから義務を省かない。実契約版range/endpoint/案件値/分類/実適用/実行oracle/Bench/setup/復旧/promotionは対象の後続段階で充足し、その全完成を現在の要求整理Issueの終了条件に足さない。
 
