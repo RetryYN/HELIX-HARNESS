@@ -1,0 +1,227 @@
+# HELIXLABO-L10-PREREQUISITE-FUNCTIONAL
+
+生成view。意味正本: `functional-verification.json`。JSON SHA-256: `77f1832caec0d1f5dfe578aa636db2f3879a819af9eeca6635f1ff7dfd1791e3`。JSONから再生成する。
+
+| 項目 | 内容 |
+|---|---|
+| mechanism | HELIX-LABO |
+| stage | Stage 1 limited prerequisite norm authoring |
+| primary_parents | HELIXLABO-L2-001 / HELIXLABO-L2-002 / HELIXLABO-L2-011 / HELIXLABO-L2-026 / HELIXLABO-L2-028 / HELIXLABO-L2-054 / HELIXLABO-L2-055 / HELIXLABO-L2-056 / HELIXLABO-L2-057 / HELIXLABO-L2-058 |
+| version_target_by_parent | HELIXLABO-L2-001: 1.0 / HELIXLABO-L2-002: 1.0 / HELIXLABO-L2-011: 1.0 / HELIXLABO-L2-026: 1.0 / HELIXLABO-L2-028: 1.0 / HELIXLABO-L2-054: 1.0 / HELIXLABO-L2-055: 1.0 / HELIXLABO-L2-056: 1.0 / HELIXLABO-L2-057: 1.0 / HELIXLABO-L2-058: 1.0 |
+| historical_stage_by_parent | HELIXLABO-L2-001: Stage 1 / HELIXLABO-L2-002: Stage 2b / HELIXLABO-L2-011: Stage 1 / HELIXLABO-L2-026: Stage 2b / HELIXLABO-L2-028: Stage 2b / HELIXLABO-L2-054: Stage 4 / HELIXLABO-L2-055: Stage 2a / HELIXLABO-L2-056: Stage 2a / HELIXLABO-L2-057: Stage 2a / HELIXLABO-L2-058: Stage 2b |
+| status | draft |
+| authority_effect | none |
+| source_revision | e9a9bdc540877650a51960c3c0084cc66408a5fb |
+| scope | 初回template循環と安全/資源/観測・初回Worker結果の必要規範を10親へ導出。全LABO/全source/全実験/改善循環/外部知識取得を前倒ししない。 |
+| source_pins | path: docs/concept/helix-concept.md / sha256: bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715 / path: docs/concept/helix-principles.md / sha256: 5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441 / path: docs/concept/product-boundary.md / sha256: 61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139 / path: docs/helix-labo/L1-planning/labo-intent.md / sha256: 78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc / path: docs/helix-labo/L2-requirements/labo-requirements.md / sha256: cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6 / path: docs/helix-labo/L11-acceptance/labo-acceptance.md / sha256: 39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a / path: docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md / sha256: 3f95f09ee86920e0dd6172a9e28f32192c1ee16bd4bfbec72438464bfee9fa16 / path: docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md / sha256: cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78 / path: docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md / sha256: b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0 / path: docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md / sha256: b77fedaafaa484a178b4fda9e271ad44b892213d7b8db2a18a0250f3ed6d3169 / path: docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md / sha256: 1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2 / path: docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md / sha256: 994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b / path: docs/governance/requirements-entry-restart-proposal.json / sha256: 29bd949ddd49348bb149f11ea253959075f7c7ac7e248035701a2002199efaf4 / path: docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md / sha256: 9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220 / path: docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md / sha256: 27b51768cbf010d201ccc2aafe8e4c893ec5ccb2a9a0bce662af343ef87809ee / path: docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json / sha256: ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a / path: docs/governance/template-work-allocation.md / sha256: 40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0 / path: archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-evaluation.ts / sha256: d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2 / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md / sha256: f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md / sha256: 17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md / sha256: db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md / sha256: 2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357 / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md / sha256: eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17 |
+| parent_basis | decision: docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md / adopted_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc / identity_set: HELIXLABO-L2-001 / HELIXLABO-L2-002 / HELIXLABO-L2-011 / HELIXLABO-L2-026 / HELIXLABO-L2-028 / HELIXLABO-L2-054 / HELIXLABO-L2-055 / HELIXLABO-L2-056 / HELIXLABO-L2-057 / HELIXLABO-L2-058 / verification: 選択10親L2節と各L11表行/056057058節/055056補強caseは採択fixed bytesと一致。L1全文も一致。current L2/L11全文の他候補追加を親採択に含めない。 |
+| dependency_boundary | HARNESS010/011/023、選択source/個別connectorとSEC data-use/authority、INFRA資源evidence、OS018/019/023 assignment/result/handoff、Worker result契約、INT010/066配置材料受領へowner-qualified exact bindingを別に閉じる。OS027は057の任意provenance。006は当該入力が実験結果/評価実験を選択した場合だけ必要閉包へ照合。BRAIN/CORE/OS/CI等の追加sourceは選択ごとに021..030の個別契約を照合し未解決を成功にしない。 |
+| knowledge_use | P3FIRSTのVT103/選択SDOP19節の問い・根拠/N/A・未完と戻し先、MSG001接続/MSG005構成責務の限定意味を参照する。全知識・正式schema・数値/方式を採用しない。 |
+| document_format | JSON意味正本とMD生成view。文書fieldを正式wire/API schemaへ昇格しない。 |
+| legacy_comparison | reuse_class: semantic_rederivation / sources: asset_id: LEGACY-ASSET-D60AE87D9DFA0740F4A8 / identity: evaluation improvement_episode_id / path: archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-evaluation.ts / lines: 32 / locator_kind: individual_lines / asset_id: LEGACY-ASSET-3A15E5645D2D2A59DFF5 / identity: HXB-FR-015 historical candidate / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md / lines: 349 / 351 / locator_kind: inclusive_line_ranges / asset_id: LEGACY-ASSET-50CA1C554747F12266D3 / identity: RLO-FR-040 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md / lines: 663 / 666 / locator_kind: inclusive_line_ranges / asset_id: LEGACY-ASSET-719D5EC9C06FC4AAD0FF / identity: HIL-BR-15/HIL-FR-23 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md / lines: 67 / 113 / locator_kind: individual_lines / asset_id: LEGACY-ASSET-C35E93F2D36777CD7462 / identity: ProductDataConnectorRegistry and registration/data constraints / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md / lines: 65 / 65 / 554 / 575 / locator_kind: inclusive_line_ranges / asset_id: LEGACY-ASSET-B75E46DBE77592351574 / identity: FRS-R-06/13/14 historical candidate / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md / lines: 89 / 92 / 134 / 143 / locator_kind: inclusive_line_ranges / preserve: episode参照、由来/版/許可/分類を保つ個別connector、Bench証拠と配車authorityの分離、未評価明示とscore単独の権限非変更、必要閉包/unknown非成功/暗黙包含拒否を保持。 / change: 旧DB/schema/Node/Python/具体registry・portfolio/数値/配車方式を移植せず、LABO観測/評価とINT配置案/OS割当てへ意味を再導出。旧HXB/FRS候補は比較知識として保持し旧candidate承認を生成しない。001全source対応能力と058個別呼出しの必要入力を分ける。 / reason: 9/26 LABO・Worker責務配置/PO補強と9/28採択、10/12限定前提形成の疎結合と性能評価/実行許可の区別を保持するため。 / consumer: 初回BRAIN032→CORE009→OS002循環の選択観測、INFRA→LABO、OS/Worker結果→Bench→INT材料。全archive/全能力consumer整理は未完。 / nonexecution: 旧source/schema/runtime/test/CI/CLIを実行/複製しない。旧greenを検証証拠にしない。 |
+| remaining | 各ownerの限定pair/追加sourceと条件付き006など、全scope owner-qualified exact bindingと最終完了監査は未完。 / 正式schema・対設計・oracle凍結・実装前Red/Green・実認可/取込/受領/評価/資源/CIは未成立。 / PO実物L11 Accepted、通常L3再開、release/tag/deploy/配布/Issue closeや全LABO能力を本文承認から生成しない。 |
+| document_id | HELIXLABO-L10-PREREQUISITE-FUNCTIONAL |
+| layer | L10 |
+| pair | P3: L3↔L10 |
+| category | functional |
+| system_specific_obligation | 同じ要求revision/source exact集合・契約版/scope・result receiptで観測/相関/受領/評価を区別する。選択source不足・未知水準・未見条件・分母/根拠欠落を成功にせず、Bench scoreや単体greenからassignment/authority/全source完成/Acceptedを生成しない。 |
+
+## HELIXLABO-L10-001-F01 許可観測とprovenance
+
+**parent**: HELIXLABO-L2-001
+**requirement_ref**: HELIXLABO-L3-001-F01
+**positive_input**: 異なるsource版/scopeの許可観測と必須source参照欠落を比較する。
+**expected_observation**: 列挙fieldとsource receiptを辿れ、未発生/不明が明示される。
+**negative_input**: source revision不明をcurrent、権限外/secret取込、出所推測。
+**failure_observation**: source/SEC ownerへ返し該当観測を保留する。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-001-F02 成功以外の状態保全
+
+**parent**: HELIXLABO-L2-001
+**requirement_ref**: HELIXLABO-L3-001-F02
+**positive_input**: 各状態と未発生sourceを別caseで集積する。
+**expected_observation**: 全選択sourceの原状態と未観測が辿れる。
+**negative_input**: 成功だけ選別、unknownを成功、not_observedを観測済み。
+**failure_observation**: 該当sourceへ不足を返し失敗事実を失わない。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-002-F01 episodeの横断参照
+
+**parent**: HELIXLABO-L2-002
+**requirement_ref**: HELIXLABO-L3-002-F01
+**positive_input**: 同episodeの段階と孤立event/別ticketを比較する。
+**expected_observation**: 各段階の元eventと部分episodeの不足・未完が辿れる。
+**negative_input**: 無関係event混載、欠落段を成功補完。
+**failure_observation**: 相関/観測source ownerへ不足を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-002-F02 相関・因果・訂正
+
+**parent**: HELIXLABO-L2-002
+**requirement_ref**: HELIXLABO-L3-002-F02
+**positive_input**: 近接する無関係eventと誤relation訂正を比較する。
+**expected_observation**: 相関と因果未確定、訂正前後のrelationと元eventが辿れる。
+**negative_input**: 近接で因果、訂正で元event上書き、孤立削除。
+**failure_observation**: 元sourceとcorrelation ownerへ訂正根拠/未完を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-011-F01 AggregateからCorrelateへの受渡し
+
+**parent**: HELIXLABO-L2-011
+**requirement_ref**: HELIXLABO-L3-011-F01
+**positive_input**: 同観測の送受領とID/版欠落・relation不一致を比較する。
+**expected_observation**: 両端receiptとepisode/元観測、欠測が辿れる。
+**negative_input**: engine greenで接続成功、ID/source欠落、因果自動確定。
+**failure_observation**: 元記録を保ってcorrelation/接続ownerへ返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-026-F01 INFRA資源観測の受領
+
+**parent**: HELIXLABO-L2-026
+**requirement_ref**: HELIXLABO-L3-026-F01
+**positive_input**: 同資源版の送受領とstale/unknownを比較する。
+**expected_observation**: INFRA evidenceとLABO observation、未成立が辿れる。
+**negative_input**: 資源正本移管、staleをcurrent、別版receipt。
+**failure_observation**: INFRA/接続/SEC ownerへ不足と未観測を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-028-F01 Worker結果とassignment
+
+**parent**: HELIXLABO-L2-028
+**requirement_ref**: HELIXLABO-L3-028-F01
+**positive_input**: 対応assignmentと別ticket/Worker版、参照不明を比較する。
+**expected_observation**: 結果状態と作業参照、受領条件の不足が辿れる。
+**negative_input**: assignment推測、Workerをauthority、受領で評価済み。
+**failure_observation**: OS/Worker result source/SEC ownerへ返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-028-F02 実験結果の条件付き参照
+
+**parent**: HELIXLABO-L2-028
+**requirement_ref**: HELIXLABO-L3-028-F02
+**positive_input**: 通常結果と二experiment結果を別入力で比較する。
+**expected_observation**: 通常/実験の区分と当該experiment参照が辿れる。
+**negative_input**: 別experiment混載、全006稼働待ち、実験ID推測。
+**failure_observation**: 実験/OS/source ownerへ当該不足を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-054-F01 Bench水準のINT受渡し
+
+**parent**: HELIXLABO-L2-054
+**requirement_ref**: HELIXLABO-L3-054-F01
+**positive_input**: 評価済み/未評価payloadの送受領と版/scope不一致を比較する。
+**expected_observation**: 同水準と両端receipt、未受領範囲が辿れる。
+**negative_input**: 未評価を実績あり、範囲拡大、配送だけ受領成功。
+**failure_observation**: 水準生成側またはINT/接続ownerへ再照合を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-055-F01 task/model class別水準
+
+**parent**: HELIXLABO-L2-055
+**requirement_ref**: HELIXLABO-L3-055-F01
+**positive_input**: 既知class実績と新class/新source版・範囲不明を比較する。
+**expected_observation**: 水準の適用scopeと未評価部分が辿れる。
+**negative_input**: 未評価modelを評価済み、未知job成功保証、範囲推測。
+**failure_observation**: 該当history/評価ownerへ不足を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-055-F02 分母と算入・除外根拠
+
+**parent**: HELIXLABO-L2-055
+**requirement_ref**: HELIXLABO-L3-055-F02
+**positive_input**: 同history snapshotと理由不明除外/採点版欠落/事後分母変更を比較する。
+**expected_observation**: 同集合と規則から出力の根拠を再構成できる。
+**negative_input**: 欠測を0、失敗除外、結果後分母改変、根拠なし数値。
+**failure_observation**: 評価/metric/history ownerへ返し該当水準を未評価に保つ。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-055-F03 非相殺と適用限界
+
+**parent**: HELIXLABO-L2-055
+**requirement_ref**: HELIXLABO-L3-055-F03
+**positive_input**: 高平均かつ重大failure、未知scorer版、定性水準を比較する。
+**expected_observation**: 失敗事実と判定不能scope、適用根拠が分かれる。
+**negative_input**: 平均で重大失敗相殺、全portfolio必須、unknownを成功。
+**failure_observation**: 評価ownerへ該当未完を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-056-F01 初回結果の観測履歴
+
+**parent**: HELIXLABO-L2-056
+**requirement_ref**: HELIXLABO-L3-056-F01
+**positive_input**: 初回成功/失敗/拒否/unknownと各identity不足を比較する。
+**expected_observation**: 原状態とsource/scope、観測と未評価が辿れる。
+**negative_input**: 初回成功をqualified、unknown成功集約、別ticket結合。
+**failure_observation**: assignment/scopeはOS、許可はSEC、結果版はsourceへ返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-056-F02 評価oracleの実適用
+
+**parent**: HELIXLABO-L2-056
+**requirement_ref**: HELIXLABO-L3-056-F02
+**positive_input**: oracle/根拠あり実適用receiptと存在だけ/反例不足/単発成功を比較する。
+**expected_observation**: 実判定と対象scope、未評価/評価不能が辿れる。
+**negative_input**: oracle存在で評価済み、必要receipt欠落、固定sample数新設。
+**failure_observation**: Bench/評価oracle ownerへ未評価の理由を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-056-F03 水準の対象一致と未見
+
+**parent**: HELIXLABO-L2-056
+**requirement_ref**: HELIXLABO-L3-056-F03
+**positive_input**: 正常適用と各field不一致、新版/未見scopeを比較する。
+**expected_observation**: 実績事実と不一致/未評価理由、再評価条件が辿れる。
+**negative_input**: 同model classで新版自動継承、不一致を実績なし、任意期限。
+**failure_observation**: source/oracle/model/scope ownerへ再評価条件を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-056-F04 取込異常と訂正追跡
+
+**parent**: HELIXLABO-L2-056
+**requirement_ref**: HELIXLABO-L3-056-F04
+**positive_input**: 重複/矛盾/staleと単純不足を別caseにする。
+**expected_observation**: 原結果と訂正先、未評価/未完が辿れる。
+**negative_input**: 重複を新実績、矛盾消去、取込成功を評価成功。
+**failure_observation**: 該当OS/SEC/source/Benchへ不足を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-057-F01 OSからBenchへの受領
+
+**parent**: HELIXLABO-L2-057
+**requirement_ref**: HELIXLABO-L3-057-F01
+**positive_input**: 正常両端receiptとscope/版/状態不一致、配送失敗を比較する。
+**expected_observation**: 同source結果と受領/未受領、履歴化先が辿れる。
+**negative_input**: scope改変、配送だけ評価済み、欠落receipt成功。
+**failure_observation**: 送達/sourceはOS、schema/classificationはLABO/SECへ返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-057-F02 方式によらない受領義務
+
+**parent**: HELIXLABO-L2-057
+**requirement_ref**: HELIXLABO-L3-057-F02
+**positive_input**: CONNECTと人手receiptの同義務、ACK欠落/stale/二重配送を比較する。
+**expected_observation**: 選択方式と受領義務、同IDの重複検出が辿れる。
+**negative_input**: 人手なら証拠免除、再送で二重観測、stale混載。
+**failure_observation**: OS/接続/LABO ownerへ欠落receipt/未完を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-058-F01 選択source別の依存
+
+**parent**: HELIXLABO-L2-058
+**requirement_ref**: HELIXLABO-L3-058-F01
+**positive_input**: Workerのみ、Worker+OS、選択条件unknown/一receipt欠落を比較する。
+**expected_observation**: 選択根拠と未選択、必要閉包/欠落が辿れる。
+**negative_input**: 選択欠落を未選択化、安全依存を参考、unknownで全部不要。
+**failure_observation**: scope owner/source/LABO/SECへ該当不足を返す。
+**execution_state**: not_executed
+
+## HELIXLABO-L10-058-F02 操作条件と依存再照合
+
+**parent**: HELIXLABO-L2-058
+**requirement_ref**: HELIXLABO-L3-058-F02
+**positive_input**: Web未選択、有効選択、source/scope/版変更を比較する。
+**expected_observation**: 操作固有の追加条件とstale/再照合が辿れる。
+**negative_input**: Web未採択で全1.0停止、古い選択継承、外部取得無断追加。
+**failure_observation**: 当該source/scope/契約ownerへ未完を返す。
+**execution_state**: not_executed
