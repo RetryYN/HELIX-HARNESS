@@ -1,0 +1,204 @@
+{
+  "audit_id": "CORE-OS-TEMPLATE-CONNECTION-TRACE-2026-10-11",
+  "authority_effect": "none",
+  "base_revision": "0b8dbdcffc34a1b6771a6a3a30ce83f6dd6977ad",
+  "scope": "既存HXT-CORE-02とCORE009/OS002の意味対応。正式な接続登録・schema・実装ではない。",
+  "existing_identity": "HXT-CORE-02",
+  "parent_requirements": [
+    "HARNESS-L2-002",
+    "HARNESS-L2-008"
+  ],
+  "fixed_rows": [
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line": 317,
+      "text": "| HXT-CORE-02 | 接続 | HARNESS-L2-002／HARNESS-L2-008 | HARNESSのコア提供からOSのticket発行・検収への接続。OS側の構成体はHXT-SYS-01。 | INTELLIGENCEはコアを判断材料にし、OSの推進がticket・動的ワークフローを導いて発行し、検収が必要検証を導く。HARNESS自身は発行しない。 | 計画・配置の案の根拠と人の判断を提供する。BRAINの汎用設計知識とINTELLIGENCEの稼働中の判断を分ける。 |",
+      "line_sha256": "e40a9b3a6c1573171a378c3d9f4370ea9e988f986b2fb4dac962750799ef427a",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "same_row_in_current": true
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "line": 198,
+      "text": "| HXT-CORE-02 | HARNESS-L2-002／HARNESS-L2-008 | コアの版と義務をOS側のticket・検証へ辿れ、コア提供・判断・発行・検収の責務を区別できる。 | HARNESS又はINTELLIGENCEによる発行／BRAINを稼働中の判断主体にする。 |",
+      "line_sha256": "940d024c111e672a7e10ad99deca792139951e358710e179220dbb4741213242",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "same_row_in_current": true
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "line": 158,
+      "text": "| `HXT-CORE-02` | 明示connection | `HELIXCONNECT-L2-001`、`HELIXCONNECT-L2-002`、`HELIXCONNECT-L2-003`、`HELIXCONNECT-L2-005`、`HELIXCONNECT-L2-006` |",
+      "line_sha256": "4b067bf77141e2c9c8f4c9e602de00d01437a12b3bd7450c6b173b94108529fe",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_file_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+      "same_row_in_current": true
+    }
+  ],
+  "supplement_sections": [
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "heading": "### HARNESS-L2-009 製品template適用のexact set・義務・Backflow・影響の追補案（unit candidate）",
+      "start_line": 1596,
+      "sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b",
+      "matches_adopted_decision_digest": true
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "heading": "### HARNESS-L2-009 製品template適用追補の受入案",
+      "start_line": 1343,
+      "sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5",
+      "matches_adopted_decision_digest": true
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "heading": "### HELIXOS-L2-002 project template記録の因果・revision・評価入力追補案（unit candidate）",
+      "start_line": 1698,
+      "sha256": "98dea2842f7a3a5b26c2ab2af302a6abbd025b7ecef50998b3557ede5d78764e",
+      "matches_adopted_decision_digest": true
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "heading": "### HELIXOS-L2-002 project template記録追補の受入案",
+      "start_line": 1364,
+      "sha256": "15fb77b844bf43cc4cf71db8458d7bd087eae7e4df9feaf850106b2f8465f293",
+      "matches_adopted_decision_digest": true
+    }
+  ],
+  "decision_pins": [
+    {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "revision": "0b8dbdcffc34a1b6771a6a3a30ce83f6dd6977ad",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "revision": "0b8dbdcffc34a1b6771a6a3a30ce83f6dd6977ad",
+      "sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "revision": "0b8dbdcffc34a1b6771a6a3a30ce83f6dd6977ad",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "revision": "0b8dbdcffc34a1b6771a6a3a30ce83f6dd6977ad",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    },
+    {
+      "path": "docs/governance/decisions/first-development-target-selection-po-decision-2026-10-11.md",
+      "revision": "0b8dbdcffc34a1b6771a6a3a30ce83f6dd6977ad",
+      "sha256": "f63a64350d25216c22cc56bff73baf513f51c371323fd9026c84d372aef62407"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "revision": "0b8dbdcffc34a1b6771a6a3a30ce83f6dd6977ad",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md",
+      "asset_id": "LEGACY-ASSET-BF02D9AB7313C42D8FED",
+      "revision": "0b8dbdcffc34a1b6771a6a3a30ce83f6dd6977ad",
+      "file_sha256": "59120aa9b044b4edf2387959ced5ad4020d230b747cc5406ac6d03281f1f9b83",
+      "spans": [
+        {
+          "start": 64,
+          "end": 80,
+          "sha256": "6ff062766a36c0afcc51734f09eaf2aa41b44a6210d4de97c58c60bfbd78fc3d"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "revision": "0b8dbdcffc34a1b6771a6a3a30ce83f6dd6977ad",
+      "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "spans": [
+        {
+          "start": 24,
+          "end": 24,
+          "sha256": "a514554220932adf88b244316748eb17f839ef80cb014f1b353e179fe10e8d0b"
+        },
+        {
+          "start": 36,
+          "end": 42,
+          "sha256": "4a239f040ddfdfed7ae538225c29877d63c997c582777082242466ab744636d2"
+        },
+        {
+          "start": 47,
+          "end": 60,
+          "sha256": "54f55cec69c714740dad03b863e14e9a25138a6683e48e6c770dab9568228298"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "revision": "0b8dbdcffc34a1b6771a6a3a30ce83f6dd6977ad",
+      "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "spans": [
+        {
+          "start": 87,
+          "end": 87,
+          "sha256": "32a75c3109b0e0a60e502c7535465a5ffa702ebc3af7532f5893dc47fac02f6b"
+        }
+      ]
+    }
+  ],
+  "meaning_mapping": [
+    {
+      "core": "候補exact set・知識/要求/契約版・scope",
+      "os": "提案/選択/使用setと原記録",
+      "negative": "受領を使用済みにしない"
+    },
+    {
+      "core": "4適用判定・N/A4属性・kind固有義務/pair",
+      "os": "出力参照と未実施/不合格/未評価",
+      "negative": "OSによる適用意味の再定義をしない"
+    },
+    {
+      "core": "不足/未完義務と返却先",
+      "os": "002記録と023未完義務handoff",
+      "negative": "ACKを解決にしない、逆方向接続成立を代用しない"
+    },
+    {
+      "core": "旧新意味影響と対象revision/scope",
+      "os": "使用版/state・stale・再評価履歴",
+      "negative": "COREのOS直接更新、view/digestだけの移管を拒否"
+    }
+  ],
+  "connect_mapping": {
+    "source_identity": "HXT-CORE-02",
+    "requirements": [
+      "HELIXCONNECT-L2-001",
+      "HELIXCONNECT-L2-002",
+      "HELIXCONNECT-L2-003",
+      "HELIXCONNECT-L2-005",
+      "HELIXCONNECT-L2-006"
+    ],
+    "limit": "要求対応表は実登録ではない。004再送はこのsourceから一律追加せず、別source条件を別照合する。"
+  },
+  "preserved": "identity/版に結んだ導出、unknown/stale、template選択・義務・Backflow、提供/判断/発行/検収と意味/記録の責務分離。",
+  "changed": "準備文書のidentity未確定を、既存HXT定義と初回対象への束縛/実登録/受渡しの不足へ訂正。既決要求本文とimmutable判断記録は変更しない。",
+  "change_reason": "既存sourceを見落として新identityが必要と誤解させる記述を訂正し、要求定義と製品接続の成立を区別するため。",
+  "not_transferred": [
+    "旧workflow/runtime/test/CI",
+    "旧registry/schema/algorithm",
+    "旧層番号",
+    "UTW-021の自己申告/時刻/proseだけの完了証拠"
+  ],
+  "not_proven": [
+    "初回対象の実operation/sourceと契約版・scopeの束縛",
+    "CONNECT実登録・endpoint/物理経路・schema/受渡し形式",
+    "receipt・対oracleの実適用結果",
+    "逆向きBackflowとOS→LABO評価入力の接続成立",
+    "構成体join/停止と再帰的有効依存閉包",
+    "全template集合の採否/適用",
+    "製品setup・Issue完了・L3再開・実装/CI/deploy/release許可"
+  ]
+}

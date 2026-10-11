@@ -1,0 +1,12 @@
+{
+  "audit_id": "CORE-OS-TEMPLATE-CONNECTION-TRACE-2026-10-11-R2",
+  "authority_effect": "none",
+  "corrects": "docs/governance/audits/core-os-template-connection-trace-2026-10-11.json",
+  "reviewed_revision": "d3c31a96246840dc12a10f4067b73e0b73a98bfb",
+  "finding": "https://github.com/RetryYN/HELIX-HARNESS/pull/2917#issuecomment-6110314773",
+  "identity_status": "HXT-CORE-02は既存条件を追跡する詳細ID。固定revision f6dad2a33e24f000b87d7f09b8d40288257e74ccと現行本文の節は未採否の整理案と記述。HXT詳細IDの個別採択を主張しない。",
+  "authority_basis": "対象条件は親HARNESS-L2-002/008の9/28合意へ戻す。詳細IDの存在・CONNECT対応行は採択の追加や実接続登録を生成しない。",
+  "source": "docs/helix-harness/L2-requirements/product-requirements.md:308-317",
+  "unchanged": "元照合記録の3固定表行・4追補節・6判断pin・旧3source/5spanのdigest照合結果、4意味対応と実接続の未完は保持。元記録は書き換えない。",
+  "change": "living roadmap/setupのidentity記述を詳細IDと親要求の区別へ訂正。既決要求と採択判断は変更しない。"
+}
