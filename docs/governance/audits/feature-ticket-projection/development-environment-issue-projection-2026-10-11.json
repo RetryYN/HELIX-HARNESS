@@ -1,0 +1,11 @@
+{
+  "ticket_id": "FT-GOV-DEVELOPMENT-ENVIRONMENT-001",
+  "source_revision": "ce9f53a8400741c0bdc0637309dc47882f89626d",
+  "source_path": "docs/governance/feature-tickets/FT-GOV-DEVELOPMENT-ENVIRONMENT-001.md",
+  "source_sha256": "35fd10558c3de2935eb3836bd453b6e113df4a2f406a070621387bd316327659",
+  "issue_number": 2905,
+  "issue_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2905",
+  "issue_body_sha256": "5a63f8c5f6b50a237d1862488759b75ede2e465f46b0bbc0dae8a23267eba009",
+  "read_after": "exact_body_and_open_state_confirmed",
+  "authority_effect": "work_projection_only"
+}
