@@ -254,7 +254,8 @@
             186,
             239
           ],
-          "identity": "HXT-FR001..013のsource/ticket/assignment/attempt/候補/admission/依存/未来証拠の境界"
+          "identity": "HXT-FR001..013のsource/ticket/assignment/attempt/候補/admission/依存/未来証拠の境界",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
@@ -262,7 +263,8 @@
             285,
             294
           ],
-          "identity": "HYB001/006/010"
+          "identity": "HYB001/006/010",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
@@ -272,7 +274,8 @@
             64,
             65
           ],
-          "identity": "P1/P3/P6/HNFR-P3/P5"
+          "identity": "P1/P3/P6/HNFR-P3/P5",
+          "locator_kind": "inclusive_line_ranges"
         }
       ],
       "preserve": "同一入力候補、仕事/担当/試行分離、未解決の非ready、未来receiptを事前に捏造しない、原子性・独立review・実差分/HEADの照合・未完と累積制約。",
