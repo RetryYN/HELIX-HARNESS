@@ -1,0 +1,102 @@
+# HARNESS-L3-PACK-functional
+
+生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `6154a692d3de58d25a45c9fa703eca4495bf68985934b0947d5ea76ac76e9e8a`。JSONから再生成する。
+
+| 項目 | 内容 |
+|---|---|
+| mechanism | HELIX-HARNESS |
+| stage | Stage 1 |
+| primary_parents | HARNESS-L2-010 / HARNESS-L2-011 / HARNESS-L2-023 |
+| version_target_by_parent | HARNESS-L2-010: None / HARNESS-L2-011: None / HARNESS-L2-023: 1.0 |
+| status | draft_not_approved |
+| authority_effect | none_until_exact_revision_delegated_approval |
+| source_revision | a2cc3defcee5a229145c89217af30c7d20da998f |
+| scope | 限定前提構築が参照する共通pack境界・呼出し・条件別依存のpair。既存Stage/親の版を変更せず、初回3主対象と周辺機構の全能力を混載しない。 |
+| source_pins | path: docs/concept/helix-concept.md / sha256: bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715 / path: docs/concept/helix-principles.md / sha256: 5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441 / path: docs/helix-harness/L1-planning/product-intent.md / sha256: 238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f / path: docs/helix-harness/L2-requirements/product-requirements.md / sha256: c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d / path: docs/helix-harness/L11-acceptance/product-acceptance.md / sha256: 05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd / path: docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md / sha256: c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23 / path: docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md / sha256: 994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b / path: docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md / sha256: c091ac5083a0ebffb441921ab614567cfece8d95ded91cba3de3d462f9d667a9 |
+| knowledge_use | P3FIRSTのVT103と選択SDOP19節を問い/証拠/Backflowの限定材料として使う。数値/方式/全技法/正式schemaを採用しない。MSGの原適用制限を保持し、知識採用を実適用としない。 |
+| document_format | JSONが意味正本、Markdownは生成view。本keyを製品pack descriptor schemaやwire formatへ固定しない。 |
+| legacy_comparison | reuse_class: semantic_rederivation / source_path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md / source_lines: 23 / 67 / preserve: 独立したbehavior単位、収載/除外、成熟度分離、再現/rollback、安全閉包と組合せの別証拠。 / change: 旧Slice/Module/Bundleの名称/enum/永続化を移さず、採用010/011/023のownerと4条件区分で再導出する。 / reason: 全対応sourceと一利用の有効依存を混同せず、未選択を未観測に保ち、無関係な全基盤完了を開始条件にしない。 / failure_basis: UTW014の欠損空集合化、UTW021の自己申告完了（predecessor-harness-full-weakness-audit-2026-07-20.md:65–101）を旧sourceとして照合した。 |
+| remaining | HARNESS052/053、JSON原子確定のOS053、命名/trace/対/DDD-TDD等は別pairで起草・承認する。 / 呼出し実運転に使う認可/隔離/資源/記録/再開のowner-qualified契約を当該操作で束縛する。 / 実装/CI/切替/デプロイ/実行/PO L11受入は本pairの承認から成立しない。通常L3全体の再開はPO Acceptedの範囲に限る。 |
+| parent_basis | identity: HARNESS-L2-010 / decision: docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md / fixed_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc / current_section_sha256: 9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4 / comparison: 対象節は9/28採用固定revisionと同文。current file全体の採用を意味しない。 / identity: HARNESS-L2-011 / decision: docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md / fixed_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc / current_section_sha256: 30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952 / comparison: 対象節は9/28採用固定revisionと同文。current file全体の採用を意味しない。 / identity: HARNESS-L2-023 / decision: docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md / fixed_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc / current_section_sha256: 32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03 / comparison: 対象節は9/28採用固定revisionと同文。current file全体の採用を意味しない。 |
+| document_id | HARNESS-L3-PACK-functional |
+| layer | L3 |
+| pair | P3: L3↔L10 |
+| category | functional |
+
+## HARNESS-L3-010-F01 behaviorと所有境界
+
+**parent**: HARNESS-L2-010
+**obligation**: packは一つのbehavior contractまたは分割で意味を失う密結合contractのまとまりとして識別する。サービス/部品/COREの所有先を一つにする。複数サービスが利用しても所有を二重化しない。
+**oracle_ref**: HARNESS-L10-010-F01
+
+## HARNESS-L3-010-F02 宣言の完全性
+
+**parent**: HARNESS-L2-010
+**obligation**: packは入力/出力契約、必要依存、単体で証明する義務とoracle、版を宣言する。実行時に宣言外依存を使う契約を認めない。
+**oracle_ref**: HARNESS-L10-010-F02
+
+## HARNESS-L3-010-F03 収載・除外と独立した版
+
+**parent**: HARNESS-L2-010
+**obligation**: リリース単位に収めるpackと収めないpackを明示する。未指定/未検証/未適格なpackを暗黙に収載しない。packの版/成熟度、リリース単位の版、統合製品の版を分ける。
+**oracle_ref**: HARNESS-L10-010-F03
+
+## HARNESS-L3-010-F04 再現と局所置換
+
+**parent**: HARNESS-L2-010
+**obligation**: 同一入力と版から同じpack成果を再現できる条件を宣言する。交換/更新時に他packの版と証拠を保持し、失敗時は直前の適格版または明示置換へ戻せる。実切替の運転/許可を発行しない。
+**oracle_ref**: HARNESS-L10-010-F04
+
+## HARNESS-L3-011-F01 画面から独立した呼出し
+
+**parent**: HARNESS-L2-011
+**obligation**: 特定画面/GUI/ローカルpath/AI provider/CI製品を必須とせず、宣言入出力で呼べる契約を提供する。画面はconsumer。Web固有の要求を追加しない。
+**oracle_ref**: HARNESS-L10-011-F01
+
+## HARNESS-L3-011-F02 呼出しと依存版の照合
+
+**parent**: HARNESS-L2-011
+**obligation**: 能力名、呼出しcontract版、必要依存版を識別・照合する。未対応/unknown/不一致の版を黙って読み替えない。
+**oracle_ref**: HARNESS-L10-011-F02
+
+## HARNESS-L3-011-F03 権限・隔離の受渡し
+
+**parent**: HARNESS-L2-011
+**obligation**: 呼出し元が渡した権限とproject/tenant/環境の範囲で動く契約を示す。HELIX本体の稼働DB/鍵/内部統制を共有前提にしない。SECURITYのauthorityを別所有として参照する。
+**oracle_ref**: HARNESS-L10-011-F03
+
+## HARNESS-L3-011-F04 相関した進行・結果・証拠
+
+**parent**: HARNESS-L2-011
+**obligation**: 進行状態、結果状態、証拠を相関IDとともに呼出し元へ返す。進行の終了だけで結果成功を推定しない。保存と表示は呼出し元の責務。
+**oracle_ref**: HARNESS-L10-011-F04
+
+## HARNESS-L3-011-F05 停止・期限・再開
+
+**parent**: HARNESS-L2-011
+**obligation**: 途中停止と、冪等キー/記録済み途中状態からの再開を契約に含める。期限切れや中断を成功にしない。実保存/実行はOS等のownerへ残す。
+**oracle_ref**: HARNESS-L10-011-F05
+
+## HARNESS-L3-023-F01 4区分の意味
+
+**parent**: HARNESS-L2-023
+**obligation**: 依存ごとに常時必須/特定操作時のみ必須/選択した入力元に応じて必須/参照資料のみのいずれかと、その条件・owner・identity・契約版/rangeをpack revisionへ束縛する。
+**oracle_ref**: HARNESS-L10-023-F01
+
+## HARNESS-L3-023-F02 条件の未知と保留
+
+**parent**: HARNESS-L2-023
+**obligation**: 欠落/曖昧/矛盾/stale/互換range不明をfalse・参照のみ・未選択へ変換しない。当該操作をunknown/保留として、理由とownerへ返す。
+**oracle_ref**: HARNESS-L10-023-F02
+
+## HARNESS-L3-023-F03 選択sourceと安全依存
+
+**parent**: HARNESS-L2-023
+**obligation**: 選択sourceの依存は全て閉じる。未選択sourceは未観測と記録し、成功/不在/適格性を推測しない。認可/authority/隔離/排他/data-use/監査/停止復旧等の該当安全条件をoptional化しない。
+**oracle_ref**: HARNESS-L10-023-F03
+
+## HARNESS-L3-023-F04 分類と実利用の分離
+
+**parent**: HARNESS-L2-023
+**obligation**: 分類能力はmissing/unknownも出力でき、全依存の実装存在を分類能力の成立条件にしない。実利用には当該closureのidentity/版/authority/evidenceを別途充足する。
+**oracle_ref**: HARNESS-L10-023-F04
