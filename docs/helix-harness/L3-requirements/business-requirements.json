@@ -13,7 +13,9 @@
     "HARNESS-L2-041",
     "HARNESS-L2-048",
     "HARNESS-L2-056",
-    "HARNESS-L2-040"
+    "HARNESS-L2-040",
+    "HARNESS-L2-001",
+    "HARNESS-L2-022"
   ],
   "l2_individual_version_target_by_parent": {
     "HARNESS-L2-010": null,
@@ -27,12 +29,14 @@
     "HARNESS-L2-041": "1.0",
     "HARNESS-L2-048": "1.0",
     "HARNESS-L2-056": "1.0",
-    "HARNESS-L2-040": "1.0"
+    "HARNESS-L2-040": "1.0",
+    "HARNESS-L2-001": "1.0",
+    "HARNESS-L2-022": null
   },
   "status": "draft_not_approved",
   "authority_effect": "none_until_exact_revision_delegated_approval",
   "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
-  "scope": "限定前提構築が参照する共通pack境界・呼出し・条件別依存とcommand意味identity・asset identity/意味revision照合のpair。既存Stage/親の版を変更せず、初回3主対象と周辺機構の全能力を混載しない。追加scopeは初回Stage1のCORE009製品template適用。既存31組は保持する。追加scopeは10/12限定前提の005検証規範と015の実装前TDD順序契約。既存42組は不変。015全能力のStage2b運転やCI実行を前倒ししない。追加scopeは10/12限定前提の041抽出、048命名対応、056pair結果の意味契約。既存59組は不変。歴史的Stage3/5の全能力運転や実rename/CIを前倒ししない。追加scopeは10/12限定前提の040全層ledger/pair/anchor意味契約。既存74組は不変。歴史的Stage3の全能力運転や全層実保存を前倒ししない。",
+  "scope": "限定前提構築が参照する共通pack境界・呼出し・条件別依存とcommand意味identity・asset identity/意味revision照合のpair。既存Stage/親の版を変更せず、初回3主対象と周辺機構の全能力を混載しない。追加scopeは初回Stage1のCORE009製品template適用。既存31組は保持する。追加scopeは10/12限定前提の005検証規範と015の実装前TDD順序契約。既存42組は不変。015全能力のStage2b運転やCI実行を前倒ししない。追加scopeは10/12限定前提の041抽出、048命名対応、056pair結果の意味契約。既存59組は不変。歴史的Stage3/5の全能力運転や実rename/CIを前倒ししない。追加scopeは10/12限定前提の040全層ledger/pair/anchor意味契約。既存74組は不変。歴史的Stage3の全能力運転や全層実保存を前倒ししない。追加scopeは10/12限定前提の001層/pairと022段階別検証/受入の規範。既存80組は不変。022の全能力Stage2a運転や利用者受入を前倒ししない。",
   "source_pins": [
     {
       "path": "docs/concept/helix-concept.md",
@@ -141,6 +145,14 @@
     {
       "path": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28-r2.json",
       "sha256": "ff711659ac40587f278f98eb434645cc9596ddffa09a0c68ce8a3a4e40894285"
+    },
+    {
+      "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
+      "sha256": "d67f3379cfc5c6884a7aa82497473267caf5f4bed309c3b84c4307ced927edb5"
     }
   ],
   "knowledge_use": "P3FIRSTのVT103と選択SDOP19節を問い/証拠/Backflowの限定材料として使う。数値/方式/全技法/正式schemaを採用しない。知識採用を実適用としない。",
@@ -292,16 +304,40 @@
       "preserve": "十二層/六pairのversioned ledger意味とL0層外anchor、row identity/revision/source/owner/双方向edge、snapshot/coverageの内容条件。",
       "change": "旧registryの実writer/snapshot生成/coverage保存発行と旧DB/runtimeは移さず、040の意味とOSの運転を区別する。",
       "reason": "9/29採択040-002の責務境界とcoverage receiptで実行/保存をMPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001へ保留した判断を保持する。"
+    },
+    "layer_acceptance": {
+      "reuse_class": "semantic_rederivation",
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "lines": [
+            29,
+            66
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+          "lines": [
+            64,
+            67
+          ]
+        }
+      ],
+      "preserve": "正規十二層/六pair、要求と要件と利用者受入の分離、非UIでもL2を省略しない、組合せ検収を個別成功から分ける。",
+      "change": "9/24にL2.5を置きPrototype/PoC適用を独立化、現行ConceptのL4–L6設計/L7–L10検証に対応、9/26のProvisional/Integrated/Verified/Acceptedを用いる。旧Lite/Full/table/runtime/CIを移さない。",
+      "reason": "9/24/9/26/9/28採択と022-004受入追補、10/12限定前提順序を保持する。旧source自体のconfirmed/frozenをcurrent合格にしない。",
+      "failure_basis": "022-004の受入追補はharness-effect-acceptance coverageが保持した目標表現とProvisional品質範囲の不一致への是正。利用者受入記録無しのoracle成功をAcceptedにしない。"
     }
   },
   "remaining": [
-    "053の042参照は未決。OS053は別承認記録へ結ぶ。005/015、040/041/048/056の必要規範は本書で起草し、owner-qualified exact bindingと実物証拠は残る。022/工程/traceと周辺契約の未成立を閉じる。",
+    "053の042参照は未決。005/015、040/041/048/056、001/022の必要規範は本書で起草。各owner-qualified exact bindingと実物証拠、003/004/008等工程/trace/要求形成と周辺契約の未成立を閉じる。",
     "呼出し実運転に使う認可/隔離/資源/記録/再開のowner-qualified契約を当該操作で束縛する。",
     "実装/CI/切替/デプロイ/実行/PO L11受入は本pairの承認から成立しない。通常L3全体の再開はPO Acceptedの範囲に限る。",
     "CORE009はBRAIN032/030・HARNESS041/025/026/004/008等のowner-qualified契約と実使用版を適用操作で束縛する。OS002の案件記録と安全/資源/計測・実物受入は未成立。",
     "005/015は検証条件の規範。実CI/対設計/凍結/実装前Red/Green/独立実証とowner-qualified exact bindingは未成立。041/048/056の必要規範は本書へ追加したが実bindingは未成立。trace/工程/受入/安全/接続/資源/観測の残る契約を閉じる。",
     "041/048/056は限定意味契約のみ。009/BRAIN選択入力・040catalog/ledger/pair・022受入・安全/接続/資源/観測の各owner契約へのexact bindingと実提供/抽出/検査/実oracle/feedback運転は未成立。全能力の歴史的Stage3/5完了ではない。",
-    "040の意味契約は限定起草。実catalog/ledger保存・snapshot生成/coverage発行のsource holdingは保持する。各対象機構のL1/L2/authority/選択templateと本040契約をexact bindingし、具体構成/正式schema/対設計/実実行を後続で成立させる。"
+    "040の意味契約は限定起草。実catalog/ledger保存・snapshot生成/coverage発行のsource holdingは保持する。各対象機構のL1/L2/authority/選択templateと本040契約をexact bindingし、具体構成/正式schema/対設計/実実行を後続で成立させる。",
+    "001/022は意味規範のみ。003/004/005の工程/trace/検証、対象authority/対設計、040/056の層/pair、OS/利用者CIと受入記録のexact binding、正式schema、対設計と実観測/実物PO受入/通常L3再開は未成立。022全能力の歴史的Stage2a完了を生成しない。"
   ],
   "roster_version_scope_by_parent": {
     "HARNESS-L2-010": {
@@ -377,6 +413,18 @@
       "sequence_stage": "Stage 3",
       "basis": "9/29採択040-002と10/3歴史的Stage3",
       "scope_basis": "10/12前提に必要な層/pair/ledger意味契約のみ先行著述する。全能力stage変更ではない。"
+    },
+    "HARNESS-L2-001": {
+      "version_target": "1.0",
+      "sequence_stage": null,
+      "basis": "001は10/10規律判断で1.0のrouting container/Stage未割当。022は個別版印無しと10/3対象候補1.0/Stage2aを分ける。",
+      "scope_basis": "10/12限定前提へ必要な規範著述のみ、全能力運転のstage変更や実受入ではない。"
+    },
+    "HARNESS-L2-022": {
+      "version_target": "1.0",
+      "sequence_stage": "Stage 2a",
+      "basis": "001は10/10規律判断で1.0のrouting container/Stage未割当。022は個別版印無しと10/3対象候補1.0/Stage2aを分ける。",
+      "scope_basis": "10/12限定前提へ必要な規範著述のみ、全能力運転のstage変更や実受入ではない。"
     }
   },
   "parent_basis": [
@@ -497,6 +545,32 @@
       "adopted_l2_section_sha256": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
       "adopted_l11_section_sha256": "366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212",
       "boundary": "現在file pinsと採択時section SHAを区別し、未採択表記はdecisionを優先。意味契約からwriter/保存発行やauthorityを生成しない。"
+    },
+    {
+      "identity": "HARNESS-L2-001",
+      "routing_decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+      "current_l2": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "current_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "additional_decisions": [
+        "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+        "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md"
+      ],
+      "boundary": "001はrouting合意の必要規範。022-004の受入追補を既存段階契約と併用し、oracle成功と利用者受入を分ける。版/Stageは別軸。"
+    },
+    {
+      "identity": "HARNESS-L2-022",
+      "routing_decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+      "current_l2": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "current_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "additional_decisions": [
+        "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+        "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md"
+      ],
+      "boundary": "001はrouting合意の必要規範。022-004の受入追補を既存段階契約と併用し、oracle成功と利用者受入を分ける。版/Stageは別軸。"
     }
   ],
   "operation_scope_boundary": "初回の053はidentity/意味revisionと供給された記録の照合を扱う。042参照未決とrename/move/split/merge/supersede/Design Refactor実操作の非選択は再開案unresolved_inputsに従って保持する。",
@@ -588,6 +662,20 @@
       "title": "条件別依存とownerの分離",
       "obligation": "常時必要な対象L1 revision/canonical pair map/authority-source identity、指定layerのcatalog/snapshot/coverage操作scope-revision-互換契約、選択したL0/templateのexact revision-適用範囲-authority、参照だけの旧runtime/背景を区別する。HARNESSは意味と成立条件を持ち、登録/保存/projection/ticket運転は認められたOS scopeへ戻す。040はwriter/実行authority/完了状態を与えず、025/026の設計生成や完了receiptを開始必須にしない。",
       "oracle_ref": "HARNESS-L10-040-B01"
+    },
+    {
+      "id": "HARNESS-L3-001-B01",
+      "parent": "HARNESS-L2-001",
+      "title": "層の意味と実運転の境界",
+      "obligation": "HARNESSは成果/層/対の意味と工程契約を提供し、040はledger catalog、056はpair結果の意味を持つ。各層のauthority/合意/承認/実操作条件は対象ownerのcurrent revisionを参照する。文書の存在や層への配置で合意/凍結/実行/検証成功を生成せず、OSのticket発行/実行/登録/保存を代行しない。",
+      "oracle_ref": "HARNESS-L10-001-B01"
+    },
+    {
+      "id": "HARNESS-L3-022-B01",
+      "parent": "HARNESS-L2-022",
+      "title": "不一致・外部持込み・実行owner",
+      "obligation": "段階別検証と受入の契約はコアが所有し、サービス①〜⑦へ所有させない。意味保存可能な不一致は右側Refactorと同段階再検証を用い、左側へ一律差し戻さない。意味変更は003/004に従い詳細契約L5、architecture/境界L4、要件/要求受入L3/L2、価値L1へBackflowする。L11意味差をコードで合わせず要求へ戻す。外部成果は同revision/対/oracle/result/evidenceを満たした段階で⑥へ持ち込める。HARNESSは契約、OSまたは利用者CI/受入手段は運転/記録を持ち、OS/④を一律必須にしない。",
+      "oracle_ref": "HARNESS-L10-022-B01"
     }
   ],
   "base_l3_l10_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902"
