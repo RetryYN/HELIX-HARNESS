@@ -116,7 +116,7 @@ BRAIN→CORE、CORE→OS、検収→Backflowの各辺は別のconnectionであ�
 | 操作が選ばれた場合に照合するもの | 対象案での範囲と契約入口 | 未成立の扱い／後続へ残す範囲 |
 |---|---|---|
 | 読取・意味処理・案件記録・Worker実行 | SECURITY003〜008のproject/環境/設定/credential/egress/実行制約/操作authority。INFRA001/003/025の資源identity・容量・Worker対応、SECURITY024とINFRA010の実適用 | 読取とwrite/execute/install/update/deployを別操作として照合。read-onlyにも空write-setと対象scopeの前後確認を使う。制約未適用・authority unknownは該当操作を止め、hostへ迂回しない |
-| 知識・候補・記録・結果の受渡し | CONNECT001〜005の端点/契約登録、互換、通信、再送、traceと各端の業務契約。片側交換は006、複数辺の一周は007 | scope/版/期限/相関/冪等/結果を各辺へ結ぶ。ACKなし、再送の部分成功、互換staleは未完。通信方式・endpoint・schemaは設計後に導出。CONNECT009など未採択追補を既決条件へ混ぜない |
+| 知識・候補・記録・結果の受渡し | CONNECT001〜005の端点/契約登録、互換、通信、再送、traceと各端の業務契約。片側交換は006、複数辺の一周は007 | scope/版/期限/相関/冪等/結果を各辺へ結ぶ。ACKなし、再送の部分成功、互換staleは未完。通信方式・endpoint・schemaは設計後に導出。CONNECT009は[9/29の条件付き採択A](decisions/po-decision-2026-09-29-57candidates.md)に従い、方向/順序属性・型付きfeedback辺と訂正L11の操作別unknown条件を照合する。初回送信、feedback送信、追加retry、並列join、ACK/完了を分け、後段条件の欠落だけで独立して適格な初回辺を止めない |
 | 初回Workerの配置 | OS018が要求するLABO055のtask/model class水準、LABO054の受渡し、INTELLIGENCE010の配置案とOSへの受渡し。水準生成・配置案・OS割当を分ける | **初回からこの入力が必要**。未評価を評価済みにせず、根拠/適用scope不足はLABO/INTELLIGENCEへ戻す。初回実績の調達・評価入力と未評価時の許容範囲は未確定。Botや自動最適化を完成条件にしないが、この依存は後回しにしない |
 | 最初の実行・計測 | OS002/019の要求/template/義務/attempt/結果原記録、INFRAの資源観測、LABO001/002と選択source接続。時間・費用・負荷・失敗・再作業・未観測を対象構成へ結ぶ | 元記録集合、除外理由、版/環境、取得不能と未実行を保持。測定方法・分母・比較はLABO、原記録はsource。固定閾値、欠測=0、記録存在=改善成功を追加しない |
 | 内部更新・復旧 | 選択構成の旧新版、SECURITY010〜013/023の更新受入とartifact integrity、INFRA005〜010の復旧/再構築/OS状態接続、OS014の段階構成 | 内部デプロイ方針に従い、候補構成の検証と内部利用開始を別事象にする。適格な戻し先・互換・復旧検証未定なら更新は未成立。OS停止時の復旧はINFRA006の独立経路と別authorityを使い、停止中OSへの依頼で循環させない |
@@ -130,7 +130,7 @@ BRAIN→CORE、CORE→OS、検収→Backflowの各辺は別のconnectionであ�
 - unit/connection/compositeそれぞれのL3/L10・設計と対検証に必要なseed比較・最小集合・採用対象revisionを、26候補と旧6surface/6componentから導く。限定した要求/受入知識を全体最小集合や実装のtest設計へ代用しない。正式schema、renderer、pair/portfolio、parityの未完も保つ。
 - 対象案の主単体・各接続・周辺依存を既存Stage配属と照合し、POへ再開順序とscopeの固定案を提示する。009/032の10/10追補を10/3 rosterに無記録で差し込まず、OS002の版未指定を1.0指定へ変えない。HARNESS010/011/023等の共通契約を省いた「BRAINだけ先に実装」としない。
 
-環境条件は[対象案へ当てる整理](development-workspace-setup.md#初回対象案への環境条件の対応)へ結ぶ。対象選択、template集合、依存の閉包、初回配置根拠、再開scopeは未完であり、#2846/#2905はこの案の記録だけでは完了しない。[固定照合記録](audits/first-development-scope-proposal-2026-10-11.json)に入力revision・sourceと対受入の所在・未確定範囲を記録する。
+環境条件は[対象案へ当てる整理](development-workspace-setup.md#初回対象案への環境条件の対応)へ結ぶ。対象選択、template集合、依存の閉包、初回配置根拠、再開scopeは未完であり、#2846/#2905はこの案の記録だけでは完了しない。[固定照合記録](audits/first-development-scope-proposal-2026-10-11.json)に入力revision・sourceと対受入の所在・未確定範囲を記録する。[訂正記録](audits/first-development-scope-proposal-2026-10-11-r2.json)はCONNECT009の採否の読み違いを訂正し、9/29の固定条件を照合する。
 
 旧CLAUDE:49〜63の仕組み先行・意味処理と外部作用分離、旧functional-release-slice-requests:23〜67の選択集合・局所影響・必要安全依存・復旧、旧design-template-json-authority:19〜60の意味正本/view/適用/portfolio/pairを起点にした意味の再導出である。変更は今回の準備目的に沿って現行032/009/002を対象候補として結ぶ点で、旧schema/Node固定/旧runtimeは移さない。10/10巻き戻しと旧弱点UTW-004/021/029を踏まえ、文書の対応・hash・自己申告だけを機構の成立としない。旧source全consumerの閉包は未完として保持する。
 
