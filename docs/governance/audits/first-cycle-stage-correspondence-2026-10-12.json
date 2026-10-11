@@ -1,0 +1,478 @@
+{
+  "audit_id": "FIRST-CYCLE-STAGE-CORRESPONDENCE-2026-10-12",
+  "authority_effect": "none",
+  "base": "f4293e348d4ec623eec56d4f4b3551ba6ec02b61",
+  "scope": "主対象3件、共通3契約/検証/接続入口と、既に照合した操作/初回配置の固定節identityを、10/3固定rosterへ照合する44identityの参照集合。必要集合や有効依存全体ではない。後続版境界の参照012/014も含む。",
+  "scope_derivation": "first-cycle-operation-dependencies.fixed_sectionsとfirst-allocation-input-contract-trace.sectionsのidentity和集合へ、主3件・HARNESS010/011/023/022・BRAIN030・CONNECT001/002/003/005/006を加えた。",
+  "historical_roster": {
+    "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+    "sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+    "record_count": 374,
+    "unchanged": true
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-2026-09-27.md",
+      "sha256": "9b6c7233c57a42dc43c20146f776399a03c9aaf827f40f03a436cba15d7cb862"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-operation-dependencies-2026-10-12.json",
+      "sha256": "8a910efa0c634f2226bbe71e240384e824dc1d825dee87f22e61895ca7d34668"
+    },
+    {
+      "path": "docs/governance/audits/first-allocation-input-contract-trace-2026-10-11.json",
+      "sha256": "089ae9f3c1be2086601381296fbdb862fa98d4facfa486a11fa0c7e36b8a58b5"
+    },
+    {
+      "path": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+      "sha256": "ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+    },
+    {
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    },
+    {
+      "path": "docs/governance/decisions/first-development-target-selection-po-decision-2026-10-11.md",
+      "sha256": "f63a64350d25216c22cc56bff73baf513f51c371323fd9026c84d372aef62407"
+    }
+  ],
+  "comparison": [
+    {
+      "identity": "HARNESS-L2-009",
+      "historical_status": "not_in_fixed_10_03_roster",
+      "historical_sequence_stage": null,
+      "reason": "10/3 rosterが別分母へ残したHARNESS001〜009のrouting条件。10/10の規律43件判断で009を1.0へ指定し、COREAPPLYで追補採用した。",
+      "current_version": "1.0",
+      "decision": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md"
+    },
+    {
+      "identity": "HARNESS-L2-010",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HARNESS-L2-010-001",
+      "historical_record_sha256": "f8efd00e903358e10a60d17bd5900a92f7039a9546535e47a9a64ec93c98e1a8"
+    },
+    {
+      "identity": "HARNESS-L2-011",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HARNESS-L2-011-001",
+      "historical_record_sha256": "ad741870e90da3256121e47b6ab18af44ad3aac23b96a2279bfe7185b5a86943"
+    },
+    {
+      "identity": "HARNESS-L2-022",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HARNESS-L2-022-004",
+      "historical_record_sha256": "406dc6d930d03f90e856cc192fe266d5f9d8f0e4dec7687be5f554e2030a5cfb"
+    },
+    {
+      "identity": "HARNESS-L2-023",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HARNESS-L2-023-002",
+      "historical_record_sha256": "27cd7b7c28e43be457b0d83ff48536546a676b1672f07fcdbafbaa1764f6e90e"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-030",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 4",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXBRAIN-L2-030-002",
+      "historical_record_sha256": "73e672ed5e7027da070af43298944d5613a523943e7a31d1869b22d62be5a037"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-032",
+      "historical_status": "not_in_fixed_10_03_roster",
+      "historical_sequence_stage": null,
+      "reason": "10/10のTEMPLATECONTRACT判断で採用した15項目の新要求。10/3固定374件には無い。",
+      "current_version": "1.0",
+      "decision": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-001",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXCONNECT-L2-001-002",
+      "historical_record_sha256": "04dcc5070150e539fec1e7985ad5132b07a9ad63f3d417853c5dc312473eeda5"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-002",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXCONNECT-L2-002-002",
+      "historical_record_sha256": "f1c60da1e5086c34ce4048d6732ed65ee048bf86815bcc9e91766f31f4156a91"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-003",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXCONNECT-L2-003-001",
+      "historical_record_sha256": "dff3fd38acd8a67d9a8fcb9c8a957e96eec4300ea5ab57f9df126b206550fe5a"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-005",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXCONNECT-L2-005-001",
+      "historical_record_sha256": "35fbbed2f7467ec6285e10fdde47536928bb6d16519aa125c2e586e5f76232ae"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-006",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXCONNECT-L2-006-002",
+      "historical_record_sha256": "a21e11dd7a4e46055f4f21142519688f478ce6fc506d6f4a47b1b4ca4a290a20"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-001",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-001-003",
+      "historical_record_sha256": "856676a6cce1b384026e80765a0a5101609aaffc40475faa751edba494d8f0b3"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-003",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-003-003",
+      "historical_record_sha256": "b94f6f8d64c2595e0700ffadaea191d5fa95161311c9583efece94656b09299c"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-004",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-004-002",
+      "historical_record_sha256": "bba0287bcf7aaccb2a792bf3be9d083ad35981a62a02822830dab09936a76b95"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-005",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-005-002",
+      "historical_record_sha256": "41f4aef626d2078e8c44d81c2ac6e0b9eceb3744401942c52d2a1fae0747d193"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-006",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-006-002",
+      "historical_record_sha256": "57cb1a9caf4d28a3e36b3a9cd2968bfff3cf4952cb52ea2ca573e42b644e05de"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-009",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-009-002",
+      "historical_record_sha256": "40ce354add5e58136b0cf196e50de345896191e7480fb82ae3a5516c4654e6ea"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-010",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-010-003",
+      "historical_record_sha256": "6150f6211345f295ab5afa6470cc115f707ee6f60a7d2ca06e5c1dacf73de319"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-012",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "POST_1_0 / later-version hold",
+      "historical_version_intent": "後続版",
+      "historical_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-012-002",
+      "historical_record_sha256": "7fd369d54dd6fb91831d9c4646f9780bef164b23569c7d7227f99f9fd8bd12bf"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-014",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "POST_1_0 / later-version hold",
+      "historical_version_intent": "後続版",
+      "historical_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-014-002",
+      "historical_record_sha256": "d0a867254bab27f32c9f99c5bbafc85adeb03fbab3786d6d38359296c5a949da"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-010",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-010-004",
+      "historical_record_sha256": "997e9a47c6f4ce53ab1d3e132b812102e3a4cd6ff077f11b309b58fdb3eaa4d8"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-061",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 5",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-061-002",
+      "historical_record_sha256": "f97642b42872a9422d181d63d43baf74da28904b216cbae03ffa0b15f00d2e01"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-066",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-066-003",
+      "historical_record_sha256": "278eec59a9250d9f94520d17407f2559e16d0e22477a53f5ead68e64fe5c57ab"
+    },
+    {
+      "identity": "HELIXLABO-L2-026",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2b",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXLABO-L2-026-001",
+      "historical_record_sha256": "af7388674b8cc1394d3697de40bf492d98f758fcb06995ab55502dd386506b8e"
+    },
+    {
+      "identity": "HELIXLABO-L2-028",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2b",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXLABO-L2-028-001",
+      "historical_record_sha256": "100e729e926bf4d3c9d7a1e8cf24fd581775784f2cb26ed4bcae9fdfbcc0bb90"
+    },
+    {
+      "identity": "HELIXLABO-L2-054",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 4",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXLABO-L2-054-001",
+      "historical_record_sha256": "0a057c7f5a06ad2c022373b27a3782592f6234aa16b45201b7b626a61f998932"
+    },
+    {
+      "identity": "HELIXLABO-L2-055",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXLABO-L2-055-002",
+      "historical_record_sha256": "6b280eb260948ed1d6ce0995b2eef4cc646c02aa322c8ea986b369357b8c169a"
+    },
+    {
+      "identity": "HELIXLABO-L2-056",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXLABO-L2-056-003",
+      "historical_record_sha256": "accfa8add24cb2bdb4f7198cfe46e6144e3476ef028491e557ebc50fd52029ba"
+    },
+    {
+      "identity": "HELIXLABO-L2-057",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXLABO-L2-057-002",
+      "historical_record_sha256": "c921794e171603b4ed729c253938f1b7fe84aadc0761c3d758ee37e4176731cc"
+    },
+    {
+      "identity": "HELIXOS-L2-002",
+      "historical_status": "not_in_fixed_10_03_roster",
+      "historical_sequence_stage": null,
+      "reason": "10/3 rosterが別分母へ残したOS routing条件。OSTRACE追補は既存版を保持し版指定を追加しない。",
+      "current_version": "既存版・適用条件を保持、追加の版指定なし",
+      "decision": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md"
+    },
+    {
+      "identity": "HELIXOS-L2-018",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXOS-L2-018-002",
+      "historical_record_sha256": "9a214235255522959601d19061038467674baeb1d57d03709d85ded5db5f21a9"
+    },
+    {
+      "identity": "HELIXOS-L2-019",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXOS-L2-019-001",
+      "historical_record_sha256": "29482cc06720dee78ff5edf6df0a934690e2b4edba5e3c66db7375322aa5ff00"
+    },
+    {
+      "identity": "HELIXOS-L2-023",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXOS-L2-023-002",
+      "historical_record_sha256": "3583cd46a49bb3a8394bbcf7cc32a6cec1869040e610cef56883b2847d30cb86"
+    },
+    {
+      "identity": "HELIXOS-L2-027",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 2a",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXOS-L2-027-002",
+      "historical_record_sha256": "eb265a8a15a95135afa18324dc8f697902978300b2a6b2d146ee6e3153d07be0"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-001",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXSECURITY-L2-001-001",
+      "historical_record_sha256": "cc06db0f99a1a911d4dd718e17103d28a53cf113d08b055d64df3638afa3cbe4"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-002",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXSECURITY-L2-002-001",
+      "historical_record_sha256": "e23df3fbb0d424c0d7ab4c9b6c93fe59c4436f1ab738172b9f12dd9eb75a2fcf"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-003",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXSECURITY-L2-003-002",
+      "historical_record_sha256": "d166c036f834bf05335e8f29ef9db644bbb76984ff97cb6b897afef93c19f53f"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-004",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXSECURITY-L2-004-001",
+      "historical_record_sha256": "a82927c6f22758a9e50f0ff2af9ec7b1a784f405b3aa0113a45347dc6a43e537"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-005",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXSECURITY-L2-005-001",
+      "historical_record_sha256": "120cb3595bff435172ab01b410d55192a9644530d101d7cfa73a2eac6edd505d"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-006",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXSECURITY-L2-006-001",
+      "historical_record_sha256": "225d399219659b4d5ac320b3751f62a8d04c54b4a00b0f5517cfa4ce60e02fd6"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-007",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXSECURITY-L2-007-002",
+      "historical_record_sha256": "33bcd1c7aa21670fc75c595296be192b83c8d382cea400fc8a758c65004975af"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-008",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXSECURITY-L2-008-001",
+      "historical_record_sha256": "d42c6e14402a35aeed3531068dbfc194a1f39c1804b0d229e17e96fa10ce5562"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-015",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXSECURITY-L2-015-001",
+      "historical_record_sha256": "6eb60df7ea769a4b2634a72a88493f4050bebbbf4d2bbb812ca5ca0145c4556f"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-016",
+      "historical_status": "present_in_fixed_10_03_roster",
+      "historical_sequence_stage": "Stage 1",
+      "historical_version_intent": "1.0",
+      "historical_registration_id": "MPR-RC-HELIXSECURITY-L2-016-001",
+      "historical_record_sha256": "1e1e6d88240ccd587987836470910a3fc19f504992565a86e8f30645b58b481e"
+    }
+  ],
+  "finding": "参照44件のうち41件に固定Stageがある。主対象032/009/002の3件は固定roster外であり、10/10の要求/追補採用や1.0指定だけからStageを補完できない。歴史的374件/274件や承認parentは書き換えない。",
+  "order_constraints": [
+    "共通HARNESS010/011/023と選択SECURITY/CONNECT/INFRA契約を省かない。歴史的Stage 1の全件実装を全操作へ一律要求する意味ではない。",
+    "BRAIN030は固定Stage 4、LABO026/028はStage 2b、LABO054はStage 4、INT061はStage 5。初回の知識提供/観測/配置/評価がこれらを使う場合の意味契約と実装依存を分ける。Stage番号だけで接続を待たせたり、実output未供給を成功にしたりしない。",
+    "INFRA012/014は後続版であり初回1.0へ移さない。SECURITY007の実制約やLABO026の選択source契約を後続版の存在で免除しない。",
+    "主対象3件は未配属状態を明示したまま、次の再開scope固定案で扱う。032/009の既決1.0を保持し、OS002へ版指定を追加しない。新しいStage名/数/着手順/採択やL3本文は本照合で作らない。",
+    "10/3の案B判断と10/10巻き戻しを同時に読む。再開時に順序を改めて確認するというPO条件を保持し、初回対象選択だけを再開許可にしない。"
+  ],
+  "next_evidence": "MSGCONTENTと必要知識内容の採否、選択operation/sourceの安全・資源・計測の有効依存を整理したうえで、主対象/共通契約/必要接続の再開順序・scope固定案を提示する。今回の41行joinからその固定案の完成や#2846完了を生成しない。",
+  "legacy_comparison": {
+    "sources": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+        "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+        "spans": [
+          {
+            "lines": [
+              23,
+              67
+            ],
+            "sha256": "0b640473d25bde7bab525a6c9f0f7b924ac94f54dfb828d44bd176a9beee31d3"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+        "sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+        "spans": [
+          {
+            "lines": [
+              31,
+              85
+            ],
+            "sha256": "b27bbc8fff5cbb8ede233c02524fd6a5fdbe51ad2b8d24dcfe898259a190ccda"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+        "sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+        "spans": [
+          {
+            "lines": [
+              32,
+              59
+            ],
+            "sha256": "d5330a498ebe3b4bfa8ce605efeb1d2a84b90d31a77428eae86d97af51819ea8"
+          }
+        ]
+      }
+    ],
+    "reuse_class": "semantic_rederivation",
+    "preserve": "source authority/owner/依存に基づく順序、必要安全閉包、局所と全体固有義務、未所属・未接続・未検証の保持。",
+    "change": "既存Stageと10/10以後の主対象の差を準備監査として明示。旧Slice/Bundle/channel/schema/runtimeと旧層番号・実行gateは移植しない。",
+    "reason": "固定rosterに無い初回対象を暗黙追加し、版・順序・実行許可を同一視する再発を避ける。",
+    "unverified": "旧全consumer/全source移管と有効依存閉包・再開範囲・実装/受入。"
+  }
+}
