@@ -1367,3 +1367,13 @@ revision 001の既存L11 bytesとfixtureは保持し、ここではsource訂正r
 **unknown・回復・未見例**：Patternの適用条件、必要input、UI profile、製品制約が欠落/矛盾/staleの例を区別し、白紙生成/自由補完/N/Aで充足にしない。ownerが不足を補った後、元scope/revisionと新根拠を結び直し、影響する試作候補を再照合する。未公開Pattern/profileや製品であっても選択条件を解釈できる場合は同じ意味で構成・検査し、未知条件は未評価として返す。非画面は根拠付き非適用とし、非画面で技術成立性不明ならPoCを省かない。
 
 **状態・責務の負例**：生成候補からAIがbrand/prototype合意を自己承認する、生成成功をimplemented/ux_verifiedとする、039の関係や079の証拠を生成unitのpassで代替する、049の測定passを生成義務充足の代用とする、LABOを迂回してBRAINへ製品情報を昇格する例を拒否する。実行、表示計測、walkthrough、人の合意は各既存owner/契約へ残す。fixtureは静的な期待条件で、実行証拠ではない。
+
+### HARNESS-L2-005 DDD／TDD厳格化追補の対L11案（未採択）
+
+**正常**：同じ対象revision/scopeのfixtureについて、対象の設計ownerが宣言した依存方向と循環条件、全domain不変条件と対応する単体oracle、適用契約が求めるRedとGreenの実観測・順序、具体的期待behaviorを判定するassertion、結合検証の前提／操作／期待結果を照合する。各条件の適用／非適用根拠と未評価範囲、005の証拠条件・戻し先を識別できる。条件が満たされた記録の存在だけで工程合格や受入を生成しない。
+
+**負例**：宣言された方向表で禁止される依存または循環、1件の不変条件だけoracleが欠落／未解決／別revision、Red欠落／Greenより後のRed／test記述時刻だけのRed、assertionなしまたはtruthinessだけで期待behaviorを判定しないtest、Given／When／Thenの期待観測が欠けた結合testを、一つずつ混入する。適用条件の違反を特定のfindingと戻し先へ結び、他条件の成功や件数0で相殺しない。規律identity不明を既知ruleへfallbackせず、不足を返す。OSの結果保存成功を検証成功にしない。
+
+**unknown／回復／未見例**：対象の依存方向、oracle対応、時点や実結果が未観測なら未評価／不足を明示し、N/A／passを生成しない。必要入力・設計・検証契約をownerが補った後、同じ対象revision/scopeと更新した根拠を結んで再照合する。作成側に未公開の禁止依存・不変条件抜け・oracle弱化・結合期待欠落を使い、記述欄の充足だけでは成立しないことを確認する。未観測・未実行と、根拠付きの非適用を区別する。現在のL3停止中にfixtureを実行したとは主張しない。
+
+これは005の検証規範の対oracle案であり、OSのCI実装、旧lintの再利用、旧要求全体の移管／正式successor、L3承認・再開を含まない。
