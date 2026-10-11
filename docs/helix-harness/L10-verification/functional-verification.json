@@ -191,9 +191,12 @@
       "identity": "HARNESS-L2-052",
       "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
       "version_decision": "docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md",
-      "fixed_revision": "d4b439e5c48591749709a8707d0ee319c673f000",
+      "meaning_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+      "adopted_meaning_section_sha256": "d49f8cf116879f4283313f9c01ae7fb72bc9c528b5205cdbd45d06c46221d25c",
+      "version_proposal_revision": "d4b439e5c48591749709a8707d0ee319c673f000",
+      "fixed_revision": "ad24bbffee3a3c6c4dee6f9a6e1b921b14695c51",
       "current_section_sha256": "f801e11097fe905b8519978ade42e06f8b3504d6481f4e14fc67f863c769669f",
-      "comparison": "VERSIONJOIN対象節digest f801e110…と一致。9/29の意味と10/10の版指定だけを使用する。"
+      "comparison": "9/29採択意味digest d49f8cf1…に、10/10 VERSIONJOINの版の整理段落だけを追加したdigest f801e110…を適用revisionへ結ぶ。意味の句は同文。"
     },
     {
       "identity": "HARNESS-L2-053",
@@ -382,7 +385,7 @@
       "title": "同一操作の再送",
       "requirement_ref": "HARNESS-L3-052-F03",
       "positive_input": "初回と全軸一致の再送について入力値と意味結果を比較する。",
-      "expected_observation": "両方が同一identity/意味結果に結ばれ、再送の別意味変更が発行されない。",
+      "expected_observation": "両方が同一identity/意味結果に結ばれ、再送の別意味変更が発行されない。command ID以外の入力値が同じことを比較根拠としてreceiptへ結ぶ。",
       "negative_input": "全軸一致の再送を別意味変更、意味同一から実retry成功を推定。",
       "failure_observation": "意味判定の違反または未実証の運転を示し、二重意味変更を成立扱いしない。",
       "execution_state": "not_executed"
