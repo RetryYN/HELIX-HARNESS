@@ -1131,7 +1131,6 @@
     "result": "入力path/source hashを333件へ照合。該当は両revisionの限定行を別atomとして保全、非該当は未検出。意味同値を推定しない。"
   },
   "remaining_scope": [
-    "本packetは未採択案。canonical/MPR/carry/Bindingは変更しない。",
     "Bの採択対象は固定090 L2/L11と1.0指定のみ。既決049/039/079/086を変更しない。",
     "正式schema/実装/内部デプロイ/L3再開/要求Stage完了/Issuecloseは別。",
     "全旧VDH/source/consumer移管、holding解除、seed全体採用、framework/model選定は含まない。"
@@ -1162,5 +1161,11 @@
     ],
     "effect": "L2/L11全file receipt hashのみ更新。Bindingを全文読取し、upstream sha256以外の全fieldの完全一致を確認。研究scaffoldのrole/義務/適用scope/verification/replacement/authorityを変更しない。採用・正式化・retireは生成しない。",
     "reason": "一identity固定追補によりL2/L11全file hashが変化した。scaffold研究範囲は既存のまま保持し、採用判断はPO recordに分離。"
-  }
+  },
+  "proposal_time_limits": [
+    "本packetは未採択案。canonical/MPR/carry/Bindingは変更しない。",
+    "Bの採択対象は固定090 L2/L11と1.0指定のみ。既決049/039/079/086を変更しない。",
+    "正式schema/実装/内部デプロイ/L3再開/要求Stage完了/Issuecloseは別。",
+    "全旧VDH/source/consumer移管、holding解除、seed全体採用、framework/model選定は含まない。"
+  ]
 }
