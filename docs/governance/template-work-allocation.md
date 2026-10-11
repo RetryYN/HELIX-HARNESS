@@ -231,7 +231,7 @@ field locatorは候補内の原文対応であり、正式IDやruntime keyでは
 
 ## MSGCONTENT：初回要求整理へ採用する意味内容の固定案
 
-[意味JSON候補](../helix-brain/candidates/first-cycle-design-template-knowledge.json)の`adoption_proposal`を固定案とする。対象はMSG001/004/005の3件に限り、各templateのidentity・原候補版・15semantic_descriptorsと、原文の「1.0の境界」「限界」の意味を、今後の要求整理の入力へ採用する案である。現在は未回答、`authority_effect: none`。新しい要求identityや版指定は足さず、候補のkey/locatorを正式schemaやruntime keyにしない。[範囲照合記録](audits/msg-content-adoption-proposal-2026-10-12.json)は原文・既決責務・45項目の比較観点、選択payloadとscope制限を示す。
+[意味JSON候補](../helix-brain/candidates/first-cycle-design-template-knowledge.json)の`adoption_proposal`を固定案とする。対象はMSG001/004/005の3件に限り、各templateのidentity・原候補版・15semantic_descriptorsと、原文の「1.0の境界」「限界」の意味を、今後の要求整理の入力へ採用する案である。現在は未回答、`authority_effect: none`。新しい要求identityや版指定は足さず、候補のkey/locatorを正式schemaやruntime keyにしない。[範囲照合記録](audits/msg-content-adoption-proposal-2026-10-12.json)は原文・既決責務・3件共通の15観点を各件へ適用した45項目の値照合、選択payloadとscope制限を示す。[訂正記録](audits/msg-content-adoption-proposal-2026-10-12-r2.json)で、共通観点と個別の値照合を区別し、固定前の参照知識メモが当時の記述であることを明示する。
 
 | 契約項目 | 3件で保持する内容 | 採用案から確定しないもの |
 |---|---|---|
