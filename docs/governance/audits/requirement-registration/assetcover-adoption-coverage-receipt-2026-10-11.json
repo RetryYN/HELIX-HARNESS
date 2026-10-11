@@ -232,5 +232,28 @@
   ],
   "human_adoption_ref": "docs/governance/decisions/assetcover-adoption-po-decision-2026-10-11.md",
   "formal_successor_effect": "none",
-  "issue_close": false
+  "issue_close": false,
+  "binding_refresh": {
+    "changed_files": [
+      "scaffold/bindings/SCF-B-0014.json",
+      "scaffold/bindings/SCF-B-0016.json",
+      "scaffold/bindings/SCF-B-0020.json",
+      "scaffold/bindings/SCF-B-0024.json",
+      "scaffold/bindings/SCF-B-0025.json",
+      "scaffold/bindings/SCF-B-0030.json",
+      "scaffold/bindings/SCF-B-0031.json",
+      "scaffold/bindings/SCF-B-0037.json",
+      "scaffold/bindings/SCF-B-0039.json",
+      "scaffold/bindings/SCF-B-0041.json",
+      "scaffold/bindings/SCF-B-0042.json",
+      "scaffold/bindings/SCF-B-0046.json",
+      "scaffold/bindings/SCF-B-0074.json",
+      "scaffold/bindings/SCF-B-0095.json",
+      "scaffold/bindings/SCF-B-0102.json",
+      "scaffold/bindings/SCF-B-0104.json",
+      "scaffold/bindings/SCF-B-0106.json"
+    ],
+    "effect": "L2/L11全file receipt hashのみ更新。Bindingを全文読取し、upstream sha256以外の全fieldの完全一致を確認。研究scaffoldのrole/義務/適用scope/verification/replacement/authorityを変更しない。採用・正式化・retireは生成しない。",
+    "reason": "一identity固定追補によりL2/L11全file hashが変化した。scaffold研究範囲は既存のまま保持し、採用判断はPO recordに分離。"
+  }
 }
