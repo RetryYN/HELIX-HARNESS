@@ -1,6 +1,6 @@
 # HARNESS-L10-PACK-nfr
 
-生成view。意味正本: `nfr-verification.json`。JSON SHA-256: `57e5625d84d697af573a7a0b1b4ef469598b1f5fce3bdc1f2c16739f9dbbfe69`。JSONから再生成する。
+生成view。意味正本: `nfr-verification.json`。JSON SHA-256: `61d885c2502afb6354962b1af2ca0b054d12df47462642884934064df10428d1`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -136,6 +136,6 @@
 **requirement_ref**: HARNESS-L3-022-N01
 **positive_input**: 伏せた同scope artifactと、失効oracle/別scope証拠を別々に照合する条件を定める。
 **expected_observation**: 未見判定の成立範囲と未評価、証拠期限/適用scopeが辿れる。
-**negative_input**: 他artifactのpass流用、失効oracleを有効、未見未評価をAccepted、限定成功を全製品保証。
+**negative_input**: 他artifactのpass流用、失効oracleを有効、未見未評価をAccepted、限定成功を全製品保証、改善scoreで意思決定/要求承認を生成。
 **failure_observation**: 該当未評価/失効を保持し、利用者受入/Stage全体完了を生成しない。
 **execution_state**: not_executed

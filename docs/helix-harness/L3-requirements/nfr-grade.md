@@ -1,6 +1,6 @@
 # HARNESS-L3-PACK-nfr
 
-生成view。意味正本: `nfr-grade.json`。JSON SHA-256: `c394942ff27236f127b8cb55f1889b648721587731fc7b4cd06b56f00bf8d650`。JSONから再生成する。
+生成view。意味正本: `nfr-grade.json`。JSON SHA-256: `1a60f9bee5bae7d8d548d147ed867030071979a50d2c541b6d984379b0af16f6`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -89,5 +89,5 @@
 ## HARNESS-L3-022-N01 未見成果と証拠の有効範囲
 
 **parent**: HARNESS-L2-022
-**obligation**: 未公開の同scope artifact/外部成果に同じstage契約/oracleを適用し、結果内容/証拠/対象revisionの対応を照合する。oracle不在/失効/適用scope不一致は上位stateを生成せず未評価とし、下位成功や他成果の成功で埋めない。設計/実装/Refactorの各受入結果で確認したscopeと限界を引き継ぎ、全コード/全製品の品質保証へ外挿しない。
+**obligation**: 未公開の同scope artifact/外部成果に同じstage契約/oracleを適用し、結果内容/証拠/対象revisionの対応を照合する。oracle不在/失効/適用scope不一致は上位stateを生成せず未評価とし、下位成功や他成果の成功で埋めない。設計/実装/Refactorの各受入結果で確認したscopeと限界を引き継ぎ、全コード/全製品の品質保証へ外挿しない。改善scoreを意思決定/要求承認の根拠成立へ変換しない。
 **oracle_ref**: HARNESS-L10-022-N01

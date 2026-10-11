@@ -1,6 +1,6 @@
 # HARNESS-L3-PACK-functional
 
-生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `4fb7ba70fc8d2bc6eac71dc2e2fc7b007aac4dc918f62b1c657779898d0eb64f`。JSONから再生成する。
+生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `16a52e76553463d50764eca4410365e77b1a5f2fc558fcc23124be88d2ff68ea`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -389,7 +389,7 @@
 ## HARNESS-L3-022-F01 同revisionの段階入力
 
 **parent**: HARNESS-L2-022
-**obligation**: 対象artifact identity/revision/scopeとProvisional状態の根拠を、L5/L4対設計、L3要件、L2要求とL11成功条件/反例、L8/L9/L10検証設計の対象/oracleへ結ぶ。各入力の実使用版/適用範囲とauthorityを照合する。対の設計/コア追跡を用い、004/005/003の義務/戻し先を保ち、④開発の出力に限らない。
+**obligation**: 対象artifact identity/revision/scopeとProvisional状態の根拠を、L5/L4対設計、L3要件、L2要求とL11成功条件/反例、L8/L9/L10検証設計の対象/oracleへ結ぶ。各入力の実使用版/適用範囲とauthorityを照合し、quality/security/acceptance oracleを各stageへ結ぶ。対の設計/コア追跡を用い、004/005/003の義務/戻し先を保ち、④開発の出力に限らない。
 **oracle_ref**: HARNESS-L10-022-F01
 
 ## HARNESS-L3-022-F02 Integratedの境界証明

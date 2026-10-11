@@ -1,6 +1,6 @@
 # HARNESS-L10-PACK-business
 
-生成view。意味正本: `business-verification.json`。JSON SHA-256: `ace57627335f9e399dd0883d2b0a0ae40abccb734fb6351566f0d1247fccc0a3`。JSONから再生成する。
+生成view。意味正本: `business-verification.json`。JSON SHA-256: `fb83ea7470759f2f52ef5fafb5eecbb68903e403e3a8f86d60204436ec658ed9`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -166,6 +166,6 @@
 **requirement_ref**: HARNESS-L3-022-B01
 **positive_input**: 外部成果と内部成果の同じstage契約、不一致が意味保存可能/意味変更必要の入力を照合する。
 **expected_observation**: 持込可能な段階と不足を区別し、戻し先を発見層だけで決めない。
-**negative_input**: 外部artifact存在でAccepted、右側で左側authorityを変更、L11意味差の直接コード修正、OS未導入で利用不能。
+**negative_input**: 外部artifact存在でAccepted、右側で左側authorityを変更、L11意味差の直接コード修正、意味を保てる不一致まで一律に左側へ戻す、受入段階をサービス①〜⑦へ所有させる、OS未導入で利用不能。
 **failure_observation**: 不足と意味差をownerへ戻し、候補受渡しやOS検収を受入完了にしない。
 **execution_state**: not_executed

@@ -1,6 +1,6 @@
 # HARNESS-L3-PACK-business
 
-生成view。意味正本: `business-requirements.json`。JSON SHA-256: `c23351fc4f5a6b6d2e92711a05a28c59c96598bb9b55ca4c2e4d56884170b0f4`。JSONから再生成する。
+生成view。意味正本: `business-requirements.json`。JSON SHA-256: `4e8f787de2a86cf376e651ea196f4f906fc2f8abe96dd5772937db0dbc996fa7`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -107,5 +107,5 @@
 ## HARNESS-L3-022-B01 不一致・外部持込み・実行owner
 
 **parent**: HARNESS-L2-022
-**obligation**: 意味保存可能な不一致は右側Refactorと同段階再検証、意味変更は003/004に従い詳細契約L5、architecture/境界L4、要件/要求受入L3/L2、価値L1へBackflowする。L11意味差をコードで合わせず要求へ戻す。外部成果は同revision/対/oracle/result/evidenceを満たした段階で⑥へ持ち込める。HARNESSは契約、OSまたは利用者CI/受入手段は運転/記録を持ち、OS/④を一律必須にしない。
+**obligation**: 段階別検証と受入の契約はコアが所有し、サービス①〜⑦へ所有させない。意味保存可能な不一致は右側Refactorと同段階再検証を用い、左側へ一律差し戻さない。意味変更は003/004に従い詳細契約L5、architecture/境界L4、要件/要求受入L3/L2、価値L1へBackflowする。L11意味差をコードで合わせず要求へ戻す。外部成果は同revision/対/oracle/result/evidenceを満たした段階で⑥へ持ち込める。HARNESSは契約、OSまたは利用者CI/受入手段は運転/記録を持ち、OS/④を一律必須にしない。
 **oracle_ref**: HARNESS-L10-022-B01
