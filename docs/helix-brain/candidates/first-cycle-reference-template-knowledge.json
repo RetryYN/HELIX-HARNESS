@@ -2026,7 +2026,45 @@
             "source_text": "| 1.0の境界 | —（1.0の範囲。本番規模の負荷はWeb展開後に扱う） |\n",
             "source_sha256": "b5ddc407f8c6a88bde610dcb8b18d5deb2df81292cffb5b59e593fb775eb9e03"
           }
-        }
+        },
+        "supplemental_source_spans": [
+          {
+            "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-103-l3-l10-system-verification.md",
+            "source_file_sha256": "af53fa80653b0996680399460b07679af3db2688a3fce22ec782b7eea2696d76",
+            "start_line": 11,
+            "end_line": 11,
+            "source_text": "| 適用判定の記録 | DT-VT-001 §2（非適用、理由、判断者、HEAD、要求への影響、再評価条件） |\n",
+            "source_sha256": "7235ba4424ae711dc27d11008b114830df24080668d284e4fe64152603a1b5ba",
+            "meaning_scope": "適用判定の記録はVT001 §2へ結ぶ。SEEDFIRSTの採用範囲を拡張せず、HARNESS003/009の既決判定責務を保持する。"
+          },
+          {
+            "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-103-l3-l10-system-verification.md",
+            "source_file_sha256": "af53fa80653b0996680399460b07679af3db2688a3fce22ec782b7eea2696d76",
+            "start_line": 13,
+            "end_line": 14,
+            "source_text": "| 右腕のtest condition | 下位の証明を積み上げたうえで、システムに固有の義務が満たされるか |\n| 成果物の状態 | Integrated→Verified（HARNESS-L2-022） |\n",
+            "source_sha256": "d1ff166e7f0131ecd820e93316e005dab6c23e363ef805812f8271ca36ab1daf",
+            "meaning_scope": "下位証明を積んだ上でシステム固有義務を確かめ、IntegratedからVerifiedへの状態判断はHARNESS022に従う。左L3の起草前に未来の実証明を求めない。"
+          },
+          {
+            "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-103-l3-l10-system-verification.md",
+            "source_file_sha256": "af53fa80653b0996680399460b07679af3db2688a3fce22ec782b7eea2696d76",
+            "start_line": 18,
+            "end_line": 18,
+            "source_text": "| 差戻し先 | 意味の変更が要る不一致は、見つけた検証層で戻し先を固定しない。意味が変わる左側の層へBackflowする（詳細の契約はL5、architectureや境界はL4、要求や受入はL3／L2、製品の価値はL1。HARNESS-L2-022、HARNESS-L2-003／004）。振る舞い・契約・要求を保てる不一致は、右側でRefactorして同じ段階の検証をやり直す。右側が左側のauthorityを黙って書き換えない |\n",
+            "source_sha256": "aa0fba0ec737e7eaa54e94cf0c721e82786dd87e094188d7cf3921c2fb90d5e1",
+            "meaning_scope": "不一致の意味が変わる左側へBackflowし、契約を保てる不一致は右側Refactorと同段階再検証。右側が左authorityを変更しない。"
+          },
+          {
+            "source_path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-103-l3-l10-system-verification.md",
+            "source_file_sha256": "af53fa80653b0996680399460b07679af3db2688a3fce22ec782b7eea2696d76",
+            "start_line": 33,
+            "end_line": 36,
+            "source_text": "### 正例と境界の負例\n\n- 正例：要件X-7の固有義務（台帳投入→6組の評価→結果表示）を1本のE2Eで確かめ、残りは下位の証明のreceiptを参照した。\n- 境界の負例：Forward 小・中の変更で、C21を省いた。省いた理由と回収先のticketを記録すれば成立する。記録がなければ不成立。\n",
+            "source_sha256": "f63ecfd2700ea0972908917f5a4b035811e05b438c3bfdc7578b0bda90d9fe28",
+            "meaning_scope": "正例と境界負例の構造を知識例として使う。X-7や6組/1本のE2Eを初回案件の値にしない。小中ForwardでC21を省く場合の理由/回収先記録を保持し、全変更へのC21省略許可にしない。"
+          }
+        ]
       },
       "sdop_requirement_question_selection": [
         {
@@ -2065,7 +2103,8 @@
           ],
           "limits_member": "source_limits",
           "scope_reason": "対象循環は知識提供・適用・案件記録の実行物として動作記録を扱う。L3では誰が何のために記録を使うか、業務イベント、閲覧/費用の制約を問いとして扱う。静的な知識ファイルそのものには無条件適用しない。",
-          "stage_boundary": "選択節の意味を要求形成の問い/義務候補へ使う。templateのlayer/pairを書き換えず、L3の書式や全表/実値/実証の完成条件を新設しない。案件への要否/N/A4属性はCORE、記録はOS。"
+          "stage_boundary": "選択節の意味を要求形成の問い/義務候補へ使う。templateのlayer/pairを書き換えず、L3の書式や全表/実値/実証の完成条件を新設しない。案件への要否/N/A4属性はCORE、記録はOS。",
+          "supplemental_source_spans": []
         },
         {
           "template_identity": "DT-SDOP-002",
@@ -2124,7 +2163,27 @@
           ],
           "limits_member": "source_limits",
           "scope_reason": "主対象と構成体は稼働・運用される機構を予定する。L3の非機能条件を見落とさないためA〜Fの問いを選ぶ。移行、冗長化、暗号等の個別項目は実scopeに応じてrequired/conditional/N/A/unresolvedをCOREが判定し、全項目最大値や全方式採用にはしない。",
-          "stage_boundary": "選択節の意味を要求形成の問い/義務候補へ使う。templateのlayer/pairを書き換えず、L3の書式や全表/実値/実証の完成条件を新設しない。案件への要否/N/A4属性はCORE、記録はOS。"
+          "stage_boundary": "選択節の意味を要求形成の問い/義務候補へ使う。templateのlayer/pairを書き換えず、L3の書式や全表/実値/実証の完成条件を新設しない。案件への要否/N/A4属性はCORE、記録はOS。",
+          "supplemental_source_spans": [
+            {
+              "source_path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-002-nonfunctional.md",
+              "source_file_sha256": "d7a2bee9ffe95af2f2e30db1a31655fb4ee8a675cefb39f7e7eda8546b954275",
+              "start_line": 37,
+              "end_line": 37,
+              "source_text": "各項目に「決定値｜決定者｜決定日｜根拠」を書く。対象外は「N/A｜理由」。\n",
+              "source_sha256": "9555740cf551d5df2d4b8a851d87c7781e0d85d7ac029d21af77f43373f3225e",
+              "meaning_scope": "各問いに答える際、決定値/決定者/決定日/根拠、対象外はN/A/理由を結ぶ記録条件。案件のCORE009 N/A4属性も保持し、未決を値やN/Aへ補完せず未決として残す。今の採用やL3起草前に全表完成を求めない。"
+            },
+            {
+              "source_path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-002-nonfunctional.md",
+              "source_file_sha256": "d7a2bee9ffe95af2f2e30db1a31655fb4ee8a675cefb39f7e7eda8546b954275",
+              "start_line": 103,
+              "end_line": 103,
+              "source_text": "小項目の一覧は出典`references/02-nonfunctional-requirements.md` §3を参照する。クラウド前提の対象では、機材設置環境や帳票印刷など当たらない項目を理由付きN/Aにする。\n",
+              "source_sha256": "c4e020c486fd247ac6cf1831fe344c8870213dd880f395e9fbdef4eb05ff1c5d",
+              "meaning_scope": "クラウド前提で当たらない項目は理由付きN/A。クラウド採用や未選択の小項目一覧の採用は生成しない。"
+            }
+          ]
         },
         {
           "template_identity": "DT-SDOP-003",
@@ -2148,7 +2207,8 @@
           ],
           "limits_member": "source_limits",
           "scope_reason": "初回対象は内部更新・復旧へ結ぶ運用対象である。気づく/直す/戻す目的、必要な要素の方式とownerを問う§1を選ぶ。実アラート・コマンド・担当の割当・復元実績は後続に残す。",
-          "stage_boundary": "選択節の意味を要求形成の問い/義務候補へ使う。templateのlayer/pairを書き換えず、L3の書式や全表/実値/実証の完成条件を新設しない。案件への要否/N/A4属性はCORE、記録はOS。"
+          "stage_boundary": "選択節の意味を要求形成の問い/義務候補へ使う。templateのlayer/pairを書き換えず、L3の書式や全表/実値/実証の完成条件を新設しない。案件への要否/N/A4属性はCORE、記録はOS。",
+          "supplemental_source_spans": []
         },
         {
           "template_identity": "DT-SDOP-004",
@@ -2207,7 +2267,8 @@
           ],
           "limits_member": "source_limits",
           "scope_reason": "COREの条件付き適用とOSの状態/義務記録には規則と状態がある。actor/事前事後、条件結果、状態イベント、不成立/重複/同時/中断、深さの根拠、検証との対応を要求形成で問いとして扱う。規則が未決なら上流へ戻し、実装者が補完しない。",
-          "stage_boundary": "選択節の意味を要求形成の問い/義務候補へ使う。templateのlayer/pairを書き換えず、L3の書式や全表/実値/実証の完成条件を新設しない。案件への要否/N/A4属性はCORE、記録はOS。"
+          "stage_boundary": "選択節の意味を要求形成の問い/義務候補へ使う。templateのlayer/pairを書き換えず、L3の書式や全表/実値/実証の完成条件を新設しない。案件への要否/N/A4属性はCORE、記録はOS。",
+          "supplemental_source_spans": []
         },
         {
           "template_identity": "DT-SDOP-005",
@@ -2245,12 +2306,13 @@
           ],
           "limits_member": "source_limits",
           "scope_reason": "Python意味処理などの実行対象はruntimeや外部依存を選ぶ段階を持つ。任せる/自分で持つ範囲、依存identity/版固定/EOL/ownerと更新方針を条件付きの問いにする。具体runtime/ライブラリ/API/サービス/lockや更新頻度は未選定で、静的資料に実行依存を捏造しない。",
-          "stage_boundary": "選択節の意味を要求形成の問い/義務候補へ使う。templateのlayer/pairを書き換えず、L3の書式や全表/実値/実証の完成条件を新設しない。案件への要否/N/A4属性はCORE、記録はOS。"
+          "stage_boundary": "選択節の意味を要求形成の問い/義務候補へ使う。templateのlayer/pairを書き換えず、L3の書式や全表/実値/実証の完成条件を新設しない。案件への要否/N/A4属性はCORE、記録はOS。",
+          "supplemental_source_spans": []
         }
       ],
-      "semantic_payload_sha256": "c548f0780994009aaec37c287c2bedd19c364f8ccc137ccd5c23281d61bb027f",
-      "payload_digest_rule": "固定source_artifactのtemplatesからVT103の3memberをvt103へ、SDOP各選択をsdop_requirement_questions配列へ原順序で抽出する。各SDOPはtemplate_identity/candidate_version/applicability/required_input/source_limits/selected_section_contractsの6member。descriptorはsemantic_descriptors内、sectionはrequired_field.value.section_contractsの見出しで選択する。UTF-8/ensure_ascii=false/sort_keys=true/separators=(comma,colon)、末尾LF一つのJSONへSHA-256。読み取り範囲の照合で、正式schema/runtime selectorではない。",
-      "interpretation": "source path/行/text/hashとcandidate版は来歴。VT103の15descriptorの意味と4節の観点/証拠/差戻し、原文の適用制限を採用する案。SDOPは選択節の問い/field文脈意味と原適用条件/必須入力/限界だけ。参考値/製品例/方式選定/実instanceは採用しない。definition_state等の未証明注記を完全定義/実成立へ昇格させない。"
+      "semantic_payload_sha256": "048ac0d8cf2a4861d48de0e050cce3a5062463860caf52eaf1804bed2fcefc92",
+      "payload_digest_rule": "固定source_artifactのtemplatesからVT103の3memberをvt103へ、SDOP各選択をsdop_requirement_questions配列へ原順序で抽出する。各SDOPはtemplate_identity/candidate_version/applicability/required_input/source_limits/selected_section_contracts。descriptorはsemantic_descriptors内、sectionはrequired_field.value.section_contractsの見出しで選択する。VT103および各SDOPへ本案のsupplemental_source_spansを同名memberとして加える（空配列を含む）。補足はpinされた原文と限定意味を採否するための記録。UTF-8/ensure_ascii=false/sort_keys=true/separators=(comma,colon)、末尾LF一つのJSONへSHA-256。正式schema/runtime selectorではない。",
+      "interpretation": "source path/行/text/hashとcandidate版は来歴。VT103の15descriptorの意味と4節の観点/証拠/差戻し、原文の適用制限を採用する案。SDOPは選択節の問い/field文脈意味と原適用条件/必須入力/限界だけ。参考値/製品例/方式選定/実instanceは採用しない。definition_state等の未証明注記を完全定義/実成立へ昇格させない。 VT103原文11/13–14/18/33–36行とSDOP002の37/103行の補足意味を明示的に含め、例の値を案件の値にしない。"
     },
     "vt103_stage_boundary": "左側L3で固有義務と対oracleの意味を準備し、右側L10実検証開始では承認済みL3/下位proof/組合せcontractを要する。未来の実proof/receiptを今の知識比較やL3起草開始入力にしない。全技法の実行や技法早見の参照card内容全体を採用せず、HARNESS005/022/034/040/056の規則と状態責務を保持する。",
     "sdop_scope_boundary": "非画面だけを理由に全SDOP節を一律適用せず、各原条件と対象scopeをCOREが判定する。選択節は記録の目的、非機能、保守目的、規則/状態、外部依存の要求を見つけるための知識で、L3の全表記入や方式/数値/担当の確定を先取りしない。原templateの設計時適用義務はその工程で照合し、未選択の義務を不要としてretireしない。",
@@ -2304,6 +2366,6 @@
         }
       ]
     },
-    "remaining": "選択sourceの有効依存（HARNESS023の4区分で再帰の終端/未決/後続/未選択を保持）、前提機構を成立させる停止中の範囲と証拠、再開順序/scopeの固定案、必要に応じた他の知識採否。実値/形式/oracle/設計/実行/promotionは該当後続へ残す。"
+    "remaining": "選択sourceの有効依存（HARNESS023の4区分で再帰の終端/未決/後続/未選択を保持）、前提機構を成立させる停止中の範囲と証拠、再開順序/scopeの固定案、必要に応じた他の知識採否。実値/形式/oracle/設計/実行/promotionは該当後続へ残す。 VT103原文19行（値はL3で導出）とSDOP002原文12行（測定法/閾値はL11で固定）の時点差は、再開時にHARNESS034等の採択済み要求・対oracleへ照合する問いとして残す。本案で工程を再定義せず、SDOP002のrelation全文は非選択。"
   }
 }
