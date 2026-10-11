@@ -42,7 +42,7 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 
 ## 範囲と未完の引継ぎ
 
-初期10領域の識別能力と追加候補/全領域知識の充実を区別し、固定enumにしない。Domain→Pattern→Unit→Partの意味階層と孤立/誤種別のunknown保持、複数候補の比較内容と未決要求値/重み、候補返却と採用authorityの分離を保持する。queryと知識版/scope、返却全内容と反例/限界、required input/dependencyからCORE009義務への双方向traceを対応付ける。製品要求値・設計選択・工程表/遷移図/実装優先順位の導出はHARNESS-CORE/HARNESSが所有する。
+初期10領域の識別能力と追加候補/全領域知識の充実を区別し、固定enumにしない。Domain→Pattern→Unit→Partの意味階層と孤立/誤種別のunknown保持、複数候補の比較内容と未決要求値/重み、候補返却と採用authorityの分離を保持する。queryと知識版/scope、返却全内容と反例/限界、required input/dependencyからHARNESS009（HARNESS-L2-009）義務への双方向traceを対応付ける。製品要求値・設計選択・工程表/遷移図/実装優先順位の導出はHARNESS-CORE/HARNESSが所有する。
 
 独立結論は追加23組（B6/F15/N2）、全70組の双方向参照、先行47組不変、21 source_pins、採択6親のL2節/L11行とroster、旧L4 template16..60/catalog10..52/RCLS45..47のidentityとlocator、生成viewを確認した。F1の途中範囲とlocator_kind混在は修正された最新revisionだけを根拠とする。旧sourceからの保持/変更/理由は本文に固定し、旧runtime/test/CIを実行・移植していない。
 
