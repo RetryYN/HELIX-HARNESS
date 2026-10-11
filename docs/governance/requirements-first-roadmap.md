@@ -222,6 +222,21 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 
 残る準備は、上記の未展開の契約依存の照合、限定採用済み知識を初回の著述へ当てる適用集合/最小親集合、停止中の前提機構の具体scope・証拠とL3再開の順序、#2846全作業との独立照合である。この横断照合だけから依存閉包全体・前提成立・要件定義開始可能・Issue完了を宣言しない。旧CLAUDE:49〜63、旧functional-release-slice:23〜67、旧JSON authority:19〜60と旧弱点UTW-014/021を起点に意味再導出し、旧NFR-REGのsource/revisionを保持する。新しい要求・版・gate・承認者は加えない。
 
+### 安全・資源・観測契約の未展開参照をたどる
+
+[再帰照合記録](audits/first-cycle-safety-observation-recursion-2026-10-12.json)は、PR2933で未展開と記したSECURITY003〜008/015/016、INFRA001/002/005/006、LABO001/028の先を、INFRA004とLABO021〜030も含む24契約へ照合する。採択L2/L11の48箇所に加え、SECURITY007が参照する9制御fixtureの本文も固定する。上の47契約の記録は当時の部分照合として保持し、本記録がその未展開枝の照合先を補う。49箇所の一致を機構成立・安全適用・正式packの依存閉包の証拠にしない。
+
+| 契約から先の経路 | 意味上の参照と、未提示入力を使う時点 |
+|---|---|
+| SECURITY003/004→OS018・INFRA001・CONNECT001／構成source | project/tenant/environment/assignment/worktreeと構成revision/digest/owner/scopeを結ぶ。具体actor・構成・実環境が未提示なら当該操作を実行可能にしない。該当しないtenantの存在は捏造しない |
+| SECURITY005/006/007/008→相互安全契約・015/016・OS・CONNECT・INFRA | authority、credential、egress、Worker制約は相互参照でも別条件として充足する。実enforcerはWorker環境。read-onlyでもwrite禁止と対象scopeの操作前後観測を要し、変更なしを確認できた場合だけrollbackはN/A。016の1.0分類と1.x sink強制を分ける。authority・遮断・適用証拠を現在の文書照合から生成しない |
+| INFRA001/002/004/005/006→CORE設計・資源source・復旧source・SECURITY | 設計契約と対象approved design、desired/actual/観測、backup存在/実restore/rollback適格性は別入力。通常Control Planeから独立する資源/pathと別authorityを使い、停止中OSへの復旧依頼を循環させない。COREの承認済み設計や実資源・復旧可能性は後続の対象段階で供給する |
+| LABO001→021〜030、選択source→owner契約／専用connector | 1.0の全source対応能力は義務として保持する。初回入力元案はWorker結果028とINFRA原観測026の別sourceであり、各個別呼出しは001/058と選択sourceの版・scope・許可・安全依存へ結ぶ。他sourceは未観測を保持し、個別呼出し成功を全対応完成にしない。実source登録・通信・観測は未実施 |
+
+参照は、既に照合した同じ要求契約、Concept/L1/既決Worker契約、ownerが供給するsource/構成/設計/資源の契約と対象revision、未選択操作・後続版へ到達する。owner-qualified入力の具体的な契約が未提示なら定義不足のまま、定義済み欄の値が未決なら値未決のまま保持し、どちらも空集合・参照資料・N/Aへ変えない。source/操作/scope/版の選択が変わればHARNESS023とLABO058に従って再展開する。実利用要求に束縛した閉包・単体/接続/構成体の受入・実隔離/権限/容量/復旧は未成立である。
+
+次に固定する準備は、限定採用済み知識から初回著述へ適用する集合・親契約と不足、前提機構の具体的な構築scope/証拠と通常L3再開との順序、および#2846の独立完了照合である。未提示sourceの契約不足を、実値・未来の結果の未供給と区別して再開案に渡す。旧CLAUDE:49〜63・functional-release-slice:23〜67・JSON authority:19〜60とUTW014/021を起点に既決の意味を照合し、新しい要求・版・承認gate・閾値は追加しない。L3以下の停止は保持する。
+
 ### 初回配置に供給する入力と未評価状態
 
 初回の配置材料を、採択済みの[OS要求](../helix-os/L2-requirements/governance-requirements.md)／[対受入](../helix-os/L11-acceptance/governance-acceptance.md)（018・019・023・027）、[LABO要求](../helix-labo/L2-requirements/labo-requirements.md)／[対受入](../helix-labo/L11-acceptance/labo-acceptance.md)（028・054〜057）、[INTELLIGENCE要求](../helix-intelligence/L2-requirements/intelligence-requirements.md)／[対受入](../helix-intelligence/L11-acceptance/intelligence-acceptance.md)（010・061・066）へ戻して整理する。[固定本文の照合記録](audits/first-allocation-input-contract-trace-2026-10-11.json)は9/28の採択revisionと現在の本文を比較する。以下は対象案件へ供給する内容と順序の整理であり、実ticket、配置案、権限、実行記録を作った証拠ではない。要求の実装依存と、意味契約を参照する依存も区別する。
