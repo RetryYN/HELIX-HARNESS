@@ -4,7 +4,7 @@
   "authority_effect": "none",
   "source_main": "888c6208353929a65e51ba6407994e10b3b81f13",
   "status": "independent_semantic_audit_pending",
-  "boundary": "75条件別親と12必要追加親の定義/対/承認出典を全量収集。16接続は意味照合候補。件数/hash/mergeを全scope完了、実契約束縛、実行証拠、PO Acceptedへ読み替えない。",
+  "boundary": "75条件別親と12必要追加親の定義/対/承認出典を全量収集。26接続は意味照合候補。件数/hash/mergeを全scope完了、実契約束縛、実行証拠、PO Acceptedへ読み替えない。",
   "scope_source": {
     "path": "docs/governance/requirements-entry-restart-proposal.json",
     "sha256": "29bd949ddd49348bb149f11ea253959075f7c7ac7e248035701a2002199efaf4",
@@ -15,14 +15,15 @@
     "additional_parents": 12,
     "parents": 87,
     "pairs": 405,
-    "join_candidates": 16
+    "join_candidates": 26
   },
   "legacy_basis": {
     "sources": [
       "archive/legacy-generation-2026-09-14/root/CLAUDE.md:49-63",
       "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md:23-67",
-      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:19-60",
-      "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md:65-101"
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:16-60",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md:65-101",
+      "archive/legacy-generation-2026-09-14/root/CLAUDE.md:82-85"
     ],
     "retained": "仕組み先行、意味/外部作用分離、明示集合と必要安全依存、局所/接続/構成体の別証拠、template適用/pair/Backflow。UTW004/014/021/029と10/10失敗を起点にする。",
     "change": "既決意味を変えず、対象revisionと対oracleと元の独立承認を集約する監査snapshot。旧runtime/CI/全catalogを採用・実行しない。",
@@ -1050,7 +1051,21 @@
       "identity": "HELIXBRAIN-L2-001",
       "owner": "HELIX-BRAIN",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXBRAIN-L2-003",
+          "HELIXBRAIN-L2-005"
+        ],
+        "condition": "003/005→002→001の常時意味入力。初期領域と汎用性の規範のみ。全領域充実/実Domain変更は未選択。",
+        "evidence_requirement_ids": [
+          "HELIXBRAIN-L3-001-B01",
+          "HELIXBRAIN-L3-001-F01",
+          "HELIXBRAIN-L3-001-F02"
+        ],
+        "approval_pr_numbers": [
+          2961
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 2b",
@@ -1071,7 +1086,22 @@
       "identity": "HELIXBRAIN-L2-002",
       "owner": "HELIX-BRAIN",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXBRAIN-L2-003",
+          "HELIXBRAIN-L2-005"
+        ],
+        "condition": "003/005の常時構造入力。Domain→Pattern→Unit→Partのidentity/責務/関係を先行定義。実構造生成の成立ではない。",
+        "evidence_requirement_ids": [
+          "HELIXBRAIN-L3-002-B01",
+          "HELIXBRAIN-L3-002-F01",
+          "HELIXBRAIN-L3-002-F02",
+          "HELIXBRAIN-L3-002-N01"
+        ],
+        "approval_pr_numbers": [
+          2961
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 2b",
@@ -1116,7 +1146,21 @@
       "identity": "HELIXBRAIN-L2-004",
       "owner": "HELIX-BRAIN",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXBRAIN-L2-032",
+          "HELIXBRAIN-L2-003"
+        ],
+        "condition": "032-F09のCORE返却に必要な019の複数候補比較。候補比較の意味のみ、BRAINが製品選択を代行しない。",
+        "evidence_requirement_ids": [
+          "HELIXBRAIN-L3-004-B01",
+          "HELIXBRAIN-L3-004-F01",
+          "HELIXBRAIN-L3-004-F02"
+        ],
+        "approval_pr_numbers": [
+          2961
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 2b",
@@ -1208,7 +1252,20 @@
       "identity": "HELIXBRAIN-L2-011",
       "owner": "HELIX-BRAIN",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXBRAIN-L2-007"
+        ],
+        "condition": "007 provenance/promotion参照の製品意味と汎用知識の境界。実CORE intake/汎用化は未選択。",
+        "evidence_requirement_ids": [
+          "HELIXBRAIN-L3-011-B01",
+          "HELIXBRAIN-L3-011-F01",
+          "HELIXBRAIN-L3-011-F02"
+        ],
+        "approval_pr_numbers": [
+          2960
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 2b",
@@ -1229,7 +1286,20 @@
       "identity": "HELIXBRAIN-L2-012",
       "owner": "HELIX-BRAIN",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXBRAIN-L2-032"
+        ],
+        "condition": "初回032のCORE候補返却019/022の提供者/採用authority分離。INT query021は未選択。",
+        "evidence_requirement_ids": [
+          "HELIXBRAIN-L3-012-B01",
+          "HELIXBRAIN-L3-012-F01",
+          "HELIXBRAIN-L3-012-F02"
+        ],
+        "approval_pr_numbers": [
+          2961
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 2b",
@@ -1250,7 +1320,22 @@
       "identity": "HELIXBRAIN-L2-019",
       "owner": "HELIX-BRAIN",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXBRAIN-L2-032"
+        ],
+        "condition": "032-F09で初回CORE返却を選択するための必要候補提供接続。実返却は後段。",
+        "evidence_requirement_ids": [
+          "HELIXBRAIN-L3-019-B01",
+          "HELIXBRAIN-L3-019-F01",
+          "HELIXBRAIN-L3-019-F02",
+          "HELIXBRAIN-L3-019-F03",
+          "HELIXBRAIN-L3-019-N01"
+        ],
+        "approval_pr_numbers": [
+          2961
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 4",
@@ -1273,7 +1358,22 @@
       "identity": "HELIXBRAIN-L2-020",
       "owner": "HELIX-BRAIN",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXBRAIN-L2-007",
+          "HELIXBRAIN-L2-032"
+        ],
+        "condition": "007/032-F09のLABO評価参照を扱う受領規範。選択評価sourceのrevision/scope/状態を分離。初回実LABO知識評価/昇格は未選択。",
+        "evidence_requirement_ids": [
+          "HELIXBRAIN-L3-020-B01",
+          "HELIXBRAIN-L3-020-F01",
+          "HELIXBRAIN-L3-020-F02",
+          "HELIXBRAIN-L3-020-F03"
+        ],
+        "approval_pr_numbers": [
+          2960
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 4",
@@ -1295,7 +1395,22 @@
       "identity": "HELIXBRAIN-L2-022",
       "owner": "HELIX-BRAIN",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXBRAIN-L2-032"
+        ],
+        "condition": "032-F09の初回CORE返却でrequired input/dependencyをHARNESS009設計義務へ渡す必要接続。実義務充足は後段。",
+        "evidence_requirement_ids": [
+          "HELIXBRAIN-L3-022-B01",
+          "HELIXBRAIN-L3-022-F01",
+          "HELIXBRAIN-L3-022-F02",
+          "HELIXBRAIN-L3-022-F03",
+          "HELIXBRAIN-L3-022-F04"
+        ],
+        "approval_pr_numbers": [
+          2961
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 4",
@@ -1318,7 +1433,25 @@
       "identity": "HELIXBRAIN-L2-025",
       "owner": "HELIX-BRAIN",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXBRAIN-L2-007",
+          "HELIXBRAIN-L2-008",
+          "HELIXBRAIN-L2-032"
+        ],
+        "condition": "007/008/032の採否・promotion境界の規範。限定知識内容のPO採用を運用昇格としない。実promotionは未選択。",
+        "evidence_requirement_ids": [
+          "HELIXBRAIN-L3-025-B01",
+          "HELIXBRAIN-L3-025-F01",
+          "HELIXBRAIN-L3-025-F02",
+          "HELIXBRAIN-L3-025-F03",
+          "HELIXBRAIN-L3-025-F04",
+          "HELIXBRAIN-L3-025-N01"
+        ],
+        "approval_pr_numbers": [
+          2960
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 5",
@@ -1484,7 +1617,22 @@
       "identity": "HELIXCONNECT-L2-004",
       "owner": "HELIX-CONNECT",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXCONNECT-L2-003",
+          "HELIXCONNECT-L2-005",
+          "HELIXCONNECT-L2-009"
+        ],
+        "condition": "既存idempotency/expiry/失効の保留条件を閉じる参照規範。実再送を選択した時のみ再送操作条件を充足。初回実再送は未選択。",
+        "evidence_requirement_ids": [
+          "HELIXCONNECT-L3-004-F01",
+          "HELIXCONNECT-L3-004-F02",
+          "HELIXCONNECT-L3-004-F03"
+        ],
+        "approval_pr_numbers": [
+          2955
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 1",
@@ -1519,7 +1667,20 @@
       "identity": "HELIXCONNECT-L2-006",
       "owner": "HELIX-CONNECT",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXCONNECT-L2-002",
+          "HELIXCONNECT-L2-005"
+        ],
+        "condition": "片側交換を選択した場合の互換再照合/未完/切戻し規範。初回実交換は未選択。原親の変更後staleと未完を消さない。",
+        "evidence_requirement_ids": [
+          "HELIXCONNECT-L3-006-F01",
+          "HELIXCONNECT-L3-006-F02"
+        ],
+        "approval_pr_numbers": [
+          2955
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 2a",
@@ -2407,7 +2568,22 @@
       "identity": "HELIXSECURITY-L2-009",
       "owner": "HELIX-SECURITY",
       "scope_membership": "necessary_additional_parent",
-      "operation_condition": null,
+      "operation_condition": {
+        "origin_original_parents": [
+          "HELIXSECURITY-L2-005",
+          "HELIXSECURITY-L2-008",
+          "HELIXSECURITY-L2-024"
+        ],
+        "condition": "原親の失効/停止/逸脱時に該当recipientへ伝播する安全閉包。実trigger発生を開始前提にせず、無関係操作の停止を生成しない。",
+        "evidence_requirement_ids": [
+          "HELIXSECURITY-L3-009-B01",
+          "HELIXSECURITY-L3-009-F01",
+          "HELIXSECURITY-L3-009-F02"
+        ],
+        "approval_pr_numbers": [
+          2954
+        ]
+      },
       "individual_version_target": "1.0",
       "historical_stage": {
         "value": "Stage 1",
@@ -18906,10 +19082,8 @@
     },
     {
       "name": "OS原記録→LABO受領・履歴",
-      "condition": "初回実行後に選択観測を渡す。未発生は未観測",
+      "condition": "初回選択Worker028の実行後にOS018/019/023からLABO057へ結果を渡す。未発生は未観測。汎用template評価原記録と提供/運用の024経路を初回Worker結果に混ぜない。",
       "producer_ids": [
-        "HELIXOS-L3-002-F08",
-        "HELIXOS-L3-002-F09",
         "HELIXOS-L3-018-F01",
         "HELIXOS-L3-027-F05"
       ],
@@ -19010,6 +19184,177 @@
       "review_state": "semantic_independent_review_pending",
       "binding_kind": "owner_qualified_normative_contract_candidate",
       "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-17",
+      "name": "BRAIN固有pack→HARNESS共通descriptor",
+      "condition": "BRAIN知識を共通packとして登録/参照する初回scope",
+      "producer_ids": [
+        "HELIXBRAIN-L3-028-F01",
+        "HELIXBRAIN-L3-028-F02",
+        "HELIXBRAIN-L3-028-B01"
+      ],
+      "consumer_ids": [
+        "HARNESS-L3-010-F02",
+        "HARNESS-L3-011-F02",
+        "HARNESS-L3-023-F01"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-18",
+      "name": "BRAIN query/receipt→HARNESS受取義務",
+      "condition": "CORE返却を選択し、field定義と案件値未決を分ける",
+      "producer_ids": [
+        "HELIXBRAIN-L3-030-F01",
+        "HELIXBRAIN-L3-030-F02",
+        "HELIXBRAIN-L3-030-F03"
+      ],
+      "consumer_ids": [
+        "HARNESS-L3-009-F01",
+        "HARNESS-L3-009-F04"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-19",
+      "name": "CORE不足→要求input/BRAIN知識とOS Backflow記録",
+      "condition": "初回の不足返却。製品値未決と知識定義欠落を分ける",
+      "producer_ids": [
+        "HARNESS-L3-009-F05"
+      ],
+      "consumer_ids": [
+        "HARNESS-L3-008-F01",
+        "HELIXBRAIN-L3-012-F01",
+        "HELIXOS-L3-002-F05"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-20",
+      "name": "template変更影響→案件使用版再評価",
+      "condition": "意味/版変更を選択した場合の規範。初回実変更の成立ではない",
+      "producer_ids": [
+        "HARNESS-L3-009-F07",
+        "HELIXBRAIN-L3-008-F01"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-002-F07"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-21",
+      "name": "asset分類→初回有限runのasset利用判定",
+      "condition": "初回read/Worker/記録に使うassetの分類",
+      "producer_ids": [
+        "HELIXSECURITY-L3-015-F01",
+        "HELIXSECURITY-L3-016-F01"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-027-F07",
+        "HELIXOS-L3-027-F08",
+        "HELIXOS-L3-027-F09"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-22",
+      "name": "config revision→初回Worker/input束縛",
+      "condition": "初回mainWorkerのconfig/指示revision",
+      "producer_ids": [
+        "HELIXSECURITY-L3-004-F01"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-027-F01",
+        "HELIXOS-L3-018-F01"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-23",
+      "name": "SEC失効・隔離→全該当recipient",
+      "condition": "失効/scope drift/異常通信等が該当する操作だけ。無関係な文書unknownを全停止へ広げない",
+      "producer_ids": [
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-018-F02",
+        "HELIXCONNECT-L3-004-F03",
+        "HELIXCONNECT-L3-005-F02",
+        "HELIXCONNECT-L3-007-F02",
+        "HELIXINFRASTRUCTURE-L3-010-F01",
+        "HELIXINFRASTRUCTURE-L3-010-F04"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-24",
+      "name": "SEC操作許可/data-use→CONNECT送信適格性",
+      "condition": "送信要求を選択した時だけ。参照互換照合だけなら送信用認可を前提にしない",
+      "producer_ids": [
+        "HELIXSECURITY-L3-008-F01",
+        "HELIXSECURITY-L3-006-F01",
+        "HELIXSECURITY-L3-006-F02"
+      ],
+      "consumer_ids": [
+        "HELIXCONNECT-L3-002-F03",
+        "HELIXCONNECT-L3-001-F02"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-25",
+      "name": "HARNESS段階契約→OS検証/検収handoff",
+      "condition": "後段で運転する当該revision/scopeのstage。文書承認と実Verified/Acceptedは別",
+      "producer_ids": [
+        "HARNESS-L3-022-F01",
+        "HARNESS-L3-022-F02",
+        "HARNESS-L3-022-F03",
+        "HARNESS-L3-022-F04",
+        "HARNESS-L3-022-B01"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-020-F01",
+        "HELIXOS-L3-023-F01"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-26",
+      "name": "INFRA work/change・復旧同期↔OS記録",
+      "condition": "通常operationで各正本を対応。OS停止中の独立復旧はOS応答を開始条件にせず復旧後同期を保持",
+      "producer_ids": [
+        "HELIXINFRASTRUCTURE-L3-009-F01",
+        "HELIXINFRASTRUCTURE-L3-010-F06"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-023-F01",
+        "HELIXOS-L3-019-F01"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
     }
   ],
   "current_reference_triage": {
@@ -19033,7 +19378,12 @@
         "from": "HELIXBRAIN-L2-008",
         "historical_target": "HELIXOS-L2-025",
         "current_source": "docs/helix-brain/L2-requirements/brain-requirements.md#helixbrain-l2-008",
-        "finding": "宣言元BRAIN内の018/019/025とBRAIN依存展開既存監査を照合する。BRAIN025は候補採否、OS025は全1.0統合運転で別identity。初回のproject使用版はOS002/015/016/019で要件化済。namespace解釈とowner bindingは独立auditへ。OS025全1.0を初回必須にしない。"
+        "finding": "旧G10はBRAIN文書の無修飾018/019/025をOS018/019/025へ誤修飾した。現行採択とBRAIN依存監査ではBRAIN018/019/025を指す。CORE由来intake018は選択時のみ、初回CORE返却は019/022/030、採否規範は025。OS018/019は独立したWorker/証拠の原75親であり、この無修飾参照の根拠と取り違えない。OS025全運転を初回必須にしない。",
+        "historical_targets": [
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-019",
+          "HELIXOS-L2-025"
+        ]
       }
     ],
     "nonselected_conditions": {
@@ -19041,7 +19391,8 @@
       "HELIXLABO-L2-006": "実比較実験を選択しない。",
       "HELIXLABO-L2-021/022/023/024/025/027/029/030/031/032": "初回選択sourceは026資源と028Worker。その他sourceは未観測/全source未完を保持。",
       "HELIXINFRASTRUCTURE-L2-019": "後続版能力の参照資料。初回1.0必須ではない。",
-      "HELIXOS-L2-026": "027の任意provenance。初回実結果の常時開始gateにしない。"
+      "HELIXOS-L2-026": "027の任意provenance。初回実結果の常時開始gateにしない。",
+      "HELIXBRAIN-L2-018": "COREから再利用候補intakeを選択した場合の032-F09/008の参照。初回は実intakeを選択しない。候補返却019/022/030や限定SEED/MSG/P3知識内容採否と、CORE由来候補の取込/運用promotionは別。"
     }
   },
   "post_check_listing": [
@@ -19300,10 +19651,27 @@
     }
   ],
   "unresolved": [
-    "16候補のsource/target/対oracleと責務・条件の独立意味照合、残りowner接続の欠落監査は未成立。",
+    "26候補のsource/target/対oracleと責務・条件の独立意味照合、残りowner接続の欠落監査は未成立。",
     "原75親の全適用義務・条件付き追加親の十分性は独立意味監査で確認する。ID有無や405双方向だけでは閉包を証明しない。",
     "HARNESS053→042の参照不整合を保持。当該rename/move等操作は未選択で、推測代替IDを置かない。",
     "BRAIN008内018/019/025のowner namespaceと現行採択本文の条件を独立監査する。OS025全能力を無条件初回gateにしない。",
     "L4の4配置論点、schema/実契約/実test-oracle/実装CI/実authority・隔離/実観測/PO L11受入は後段未完。"
-  ]
+  ],
+  "conditional_future_reference": {
+    "producer_ids": [
+      "HELIXOS-L3-002-F08",
+      "HELIXOS-L3-002-F09"
+    ],
+    "condition": "template評価/提供運用の原記録を実際にLABOへ渡す経路を選択した場合。OS005/024およびその依存閉包はその時に要件化/照合する。初回source026/028の実経路成立と混同せず、OSTRACEの原記録/除外/未観測義務は保持する。",
+    "runtime_state": "not_selected_for_initial_worker_resource_source"
+  },
+  "finding_resolution": {
+    "review_head": "193852a7069ab8c79c49b4766d680c70466e0e55",
+    "review_comment": 6114435045,
+    "F1": "指定5接続（030は作成側6候補と重複）と他5候補を追加し26接続へ。初回Workerと汎用template評価原記録を分離。",
+    "F2": "旧OS018/019/025誤修飾を全て記録しBRAIN018を条件付き未選択と明記。",
+    "F3": "12追加親に原親・選択/未選択操作条件・項目と承認出典を追補。",
+    "F4": "JSON旧sourceへ82-85を追加、template16-60へ統一。",
+    "boundary": "405 requirement/oracle entriesと48document pins/24admissions/歴史Stage/個別版は不変。監査入力を補正し新義務/実操作を追加しない。"
+  }
 }
