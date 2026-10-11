@@ -131,7 +131,7 @@ NFR-16:32とFR-L1-44:75の「途中導入でproject全体を止めない／段�
 
 ### REDFIRST（#1854、015の順序を明示判断）
 
-旧FR-L1-02:33の実装前Redを、TDDORDERの定義凍結や実装後の欠陥検出と同一に扱わない。既決TDDORDERと005を取り消す判断は生成せず、この015順序差だけを明示判断の対象にする。
+旧FR-L1-02:33の実装前Redを、TDDORDERの定義凍結や実装後の欠陥検出と同一に扱わない。 旧世代内でも、FR-L1-02:33の本体実装前順序と、ddd-tdd-rules:23の「作成時刻ではなく実際の欠陥検出」、47–50/137とL7-unit-test-design:668の`red_at<=green_at`には異なる記述がある。後者は本体実装前とは明示しておらず、TDDORDERはこちらを起点にした。Aは両方の保証を併せて実装前観測を現行義務に明示し、既決015/003の実装→Redを訂正する。Bは旧ruleと既決015の順序を保ち、FR-L1-02の本体実装前保証を置換する。Aを旧ruleの完全一致移管、Bだけを旧意味変更とは扱わない。既決TDDORDERと005を取り消す判断は生成せず、この015順序差だけを明示判断の対象にする。
 
 - **A（推奨）**：凍結→実装前Red実観測→最小本体実装→Greenへ訂正する。実装後の欠陥注入/mutationは005のoracle強度を確かめる別証拠として保持する。
 - **B**：015の既決順序で旧FR-L1-02の実装前Red順序を置換する。旧confirmed要求の意味変更として明示記録し、旧順序はholdingに保持する。015/L11本文変更なし。
@@ -149,3 +149,5 @@ NFR-16:32とFR-L1-44:75の「途中導入でproject全体を止めない／段�
 | HARNESS-L2-015 | ④だけを導入した環境で、実装前に凍結した設計と対のtest／oracleから、本体の実装/修正前revisionで意図した不足・欠陥を観測するRed→最小本体実装→凍結したoracleを満たしたGreenの証拠→局所のRefactor→原子CIまでが閉じ、成果物がProvisionalになり、設計・テストとの双方向traceと省いた検査の記録が残る | 本体実装/修正後のRedだけを実装前Redとする／testの作成時刻や凍結だけをRed観測とする／環境・構文障害など対象契約と無関係な失敗をRedとする／実装後のmutation検出を実装前Redの代用にする／実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格を品質の証明・システムの成立・受入・Releaseの成立とする／局所のRefactorでpublic contractや要求の意味を変える／HELIX-OSのCI運転がないと使えない |
 
 採用後もsource holding/formal successor/旧consumer/schema/実装は別に保持する。L3再開・release・要求Stage終了・Issuecloseの許可を含まない。
+
+**REDFIRSTの反映digest規則**：各editのafter値は基準へ単独適用した検算値で、全editの累積反映結果はJSONの`options.A.after_files_sha256`へ固定した。L2累積SHA-256は`7e4c0dd4336c896beec1304d6612a5defd5c3f0fc99dc2ac5b3452e49222cb31`。採用記録では005追補の旧「FR-L1-02順序差分は別に保持」を今回decisionへ接続し、5規律・既決版・未処置sourceのholdingを維持する。

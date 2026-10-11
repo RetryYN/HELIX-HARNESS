@@ -3528,25 +3528,33 @@
           "span_sha256": "19a23bce2ad03f09c89d93d77363067020226ab1fc4d2d063ace3b9ff6c6583b"
         },
         {
-          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L7-unit-test-design.md",
-          "start_line": 666,
-          "end_line": 666,
-          "file_sha256": "0fd9f9dc3ac452fefaa74d3fea79c19a9fe2e162908ed763bfbcc56514186347",
-          "text": "| U-DDDTDD-001 | `analyzeDddTddRules` policy          | DDD/TDD rule ID の欠落または unknown -> violation                                                                                                                                                                                                  |\n",
-          "span_sha256": "92af010f84666b97e768bf35814ba2fd581b5dafd8896224065f4d7a9966c17a"
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+          "start_line": 47,
+          "end_line": 50,
+          "file_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+          "text": "  - id: red-first-evidence\n    enforcement: hard\n    owner: src/lint/ddd-tdd-rules.ts\n    intent: tdd_red_required が付いた confirmed TDD PLAN は red_at と green_at を時系列順に記録しなければならない。\n",
+          "span_sha256": "9992898029a21106f27533f9f991d119a14183a8efc85ec01bff5cadd28f5faa"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+          "start_line": 137,
+          "end_line": 137,
+          "file_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+          "text": "- id: DDD-INV-003 oracle: U-DDDTDD-003 - TDD implementation evidence は Red-first である: TDD evidence を要求する confirmed plan では `red_at <= green_at` を満たす。\n",
+          "span_sha256": "0a4e6307ff5ac729643bc391ed70229b41176ee59de94e5270deef3f1e110d06"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L7-unit-test-design.md",
-          "start_line": 675,
-          "end_line": 675,
+          "start_line": 668,
+          "end_line": 668,
           "file_sha256": "0fd9f9dc3ac452fefaa74d3fea79c19a9fe2e162908ed763bfbcc56514186347",
-          "text": "| U-DDDTDD-010 | canonical source-boundary matrix     | `domain-boundary` は `module-boundary` と同じ共有 matrix を使い、`src/lint/*` importing `../gate/*` も violation になる                                                                                                                            |\n",
-          "span_sha256": "9c0235260c4bdf2619cca12dab15da267c49334b47fe1492ba1bcc0e442008a3"
+          "text": "| U-DDDTDD-003 | Red-first evidence                   | confirmed `tdd_red_required` PLAN が `red_at` / `green_at` を欠く、または `red_at > green_at` -> violation                                                                                                                                         |\n",
+          "span_sha256": "3ac45737d6a2d0df178c13f50fb3d4856ba1b865661c67758795ed36d4de9c22"
         }
       ],
       "legacy_comparison": {
-        "preserved": "旧confirmed FR-L1-02のtest-first・本体実装先行禁止・実装前Red→本体実装Green、既決test/oracle実装前定義凍結、005の実観測とoracle強度。",
-        "changed": "TDDORDERで採用した015の「凍結→実装→Red→Green」順序を明示的に訂正。実装前Redと実装後欠陥注入/mutation検出を区別する。",
+        "preserved": "旧FR-L1-02はtestコードRed→本体実装Greenという実装前の順序を示す。一方、旧ddd-tdd-rules:23はRedを作成時刻でなく意図した欠陥の実検出と定義し、47-50/137とL7:668のRed-first条件はred_at<=green_atで、本体実装前とは明示しない。TDDORDERは後者を意味起点にした。この2つを旧世代内の異なる記述として保持し、同じ意味だったと補完しない。",
+        "changed": "AはFR-L1-02の実装前Red順序と旧ruleの実検出/Red-before-Greenを両立させ、TDDORDER015/003の実装→Redを訂正する。旧ruleに明記されなかった本体実装前の観測条件を現行の一律義務として明示するため、旧ruleの単なる完全一致移管とはしない。Bは旧ruleの実検出/Red-before-Greenと既決TDDORDERを保持し、FR-L1-02の本体実装前Redという順序保証を置換する。",
         "reason": "作成時刻/凍結と観測の取り違えを防ぎ、既決の欠陥検出意味を保ったままFR-L1-02の本体実装前順序を保持するため。旧不在/未完成/runtime存在を変更理由にしない。"
       },
       "options": {
@@ -3584,11 +3592,17 @@
               "proposed_text_sha256": "3d30f23fa073f246abc27bba7dc6bc43ca0ede0233fc7774092642a5a00338f9",
               "after_file_sha256": "5288ab1115b900966076eae394279fbbbb4f396eccd8c52c0c3fb2c6eb22864d"
             }
-          ]
+          ],
+          "legacy_effect": "FR-L1-02の順序保証、旧ruleの実検出/Red-before-Greenを保持。TDDORDERの実装→Red順序を訂正し、旧ruleには本体実装前と明示されなかった観測義務を具体化する。",
+          "after_files_sha256": {
+            "docs/helix-harness/L2-requirements/product-requirements.md": "7e4c0dd4336c896beec1304d6612a5defd5c3f0fc99dc2ac5b3452e49222cb31",
+            "docs/helix-harness/L11-acceptance/product-acceptance.md": "5288ab1115b900966076eae394279fbbbb4f396eccd8c52c0c3fb2c6eb22864d"
+          }
         },
         "B": {
           "meaning": "015の既決「凍結→実装→Red→Green」で旧FR-L1-02の実装前Red順序を置換する。旧順序はholdingへ保全し、実装前Red観測を現行義務にしない。",
-          "source_meaning_effect": "旧confirmed FR-L1-02の順序意味を変更する明示人間判断。既決015/L11本文変更なし。正式successor/holding解除は別。"
+          "source_meaning_effect": "旧confirmed FR-L1-02の順序意味を変更する明示人間判断。既決015/L11本文変更なし。正式successor/holding解除は別。",
+          "legacy_effect": "旧ruleの実検出/Red-before-Green、既決TDDORDERの実装→Red順序を保持。FR-L1-02の本体実装前Red保証を現行義務としては置換し、旧sourceはholdingに保全。"
         }
       },
       "limits": [
@@ -3596,7 +3610,9 @@
         "既採用ASSETCOVER/O10GEN/DDDSTRICT/INCIDENTPORTの意味・版・判断を保持する。新しい版指定を加えない。",
         "採用は提示した要求差分と対L11だけ。L3再開・正式schema・実装・旧runtime/CI・実release・要求Stage終了・Issuecloseを許可しない。",
         "旧source holding、空formal successor、未処置consumer/旧技術方式は保持する。全原文のformal rehomeを本案のStage終了gateにしない。"
-      ]
+      ],
+      "digest_rule": "各editのafter_file_sha256は基準fileへ当該editだけを適用した検算値。採用時の累積反映結果はoptions.A.after_files_sha256に記録する。全beforeを基準fileで一意確認してから対象fileごとに全editを適用する。",
+      "adoption_followup": "採用記録で005追補の「FR-L1-02のRedと本体実装の順序差分は別に保持」を今回の対象decisionへ接続する。005の5規律/既決版/残る全source holdingを変更せず、旧未決表示を現在の採否として流用しない。"
     }
   ]
 }
