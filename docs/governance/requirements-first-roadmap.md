@@ -48,6 +48,8 @@ HARNESSの工程定義、COREの意味導出、BRAINの汎用知識、OSの案�
 
 現在許可される準備は、既存sourceの照合、文書規則の集約、初回要求と接続条件の整理、作業環境の調査である。「前提を機構として成立させる」の実施範囲とL3再開の順序・scopeは、巻き戻し判断に従うPO指示で特定する。準備指示をL3以下の起草・実装・CI解禁へ読み替えず、前提を成立させる手順のうち現行停止境界を越える部分を再開提案時に明示する。
 
+[準備状況の限定観測](audits/requirements-entry-preparation-observation-2026-10-11.json)に、対象mainの入力hash、入口5文書の相対参照先、利用可能なCLI版、正式設定の所在、open Issue集合とtemplate照合Issueの終了記録を固定した。Git・gh・Python・Node・npmの版表示とeditor基本設定は確認できたが、製品用の依存lock・セットアップ再現・型検査／lint／testの成立は未確認である。既存のインストール版を採用版とせず、静的照合を製品実行の合格へ変換しない。
+
 ### 旧sourceとの対応
 
 旧`archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md:102–173`（LEGACY-ASSET-FDBA655B1CFF75DCDC0E）の責務に沿う配置・正本／生成物の区別・設定最小化、同rootの`docs/governance/coding-rules.md:10–31`（LEGACY-ASSET-4B835ADBEFBCCC13C1C0）の実装前の規律確認、`docs/design/helix/L4-basic-design/design-template-json-authority.md:19–46`のJSON意味と生成表示の区別を起点とする。旧の固定path・ツール・runtimeを継承せず、現行の配置判断とBRAIN／CORE／OSの採用契約へ対応させる。
@@ -116,7 +118,7 @@ schema・通信方式・実装配置・具体値は、この整理から確定�
 | 案件で使う版と往復の接続 | project exact set/使用版、query→設計義務→ticket→attempt→検収→Backflowの同一revision/scopeと未完義務の対応。不足は業務意味と記録運転を分けて提示する | #2843/#1805 |
 | 安全・資源・測定の選択閉包 | 選択した各操作のSECURITY/CONNECT/INFRASTRUCTURE契約と対oracle、利用区分、失敗・復旧先。既存要求の該当条件と不足を一つずつ照合する | #2846 |
 
-上の材料は未完であり、初回対応表だけで#2841–#2843や#2846を閉じない。実行fixture、内部更新・復旧、支援・評価還流までの要求照合は引き続き本ロードマップの範囲である。現在の証拠は既存要求の意味経路の照合に限り、全条件の被覆・形式的successor移管・要求整理完了は主張しない。
+上の表は初回対応時に整理した確認先である。#2841〜#2843は条件照合・不足の区別というticket範囲で終了し、未完のtemplate集合・適用往復・実記録等は#2846へ保持されている（[終了記録の限定観測](audits/requirements-entry-preparation-observation-2026-10-11.json)）。そのcloseから機構の成立を生成しない。実行fixture、内部更新・復旧、支援・評価還流までの要求照合は引き続き本ロードマップの範囲である。既存要求の意味経路の照合と、全条件の被覆・形式的successor移管・再開前提の成立は区別する。要求Stage自体の終了は[終了結果](requirements-stage-closure.md)の限定範囲から読む。
 
 ## 内部デプロイと旧sourceの対応
 
