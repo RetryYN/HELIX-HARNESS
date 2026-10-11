@@ -14,3 +14,5 @@
 ## 採用済みの限定知識
 
 [要求／受入templateの意味JSON](knowledge/requirements-acceptance-template-knowledge.json)は、[SEEDFIRSTのPO判断](../governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md)に結び付く。非画面・技術的不確実性なしの知識内容に限り、固定案の値を保持する。候補26件の全体採用、実受入、正式schema/runtimeの成立とは区別する。既存の企画・要求の採否は、それぞれの対象revisionの判断記録から読む。
+
+[MSG001・004・005の意味JSON](candidates/first-cycle-design-template-knowledge.json)は、[MSGCONTENTのPO判断](../governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md)に結び付く。3件の15項目の意味内容と原文の適用制限に限って要求整理入力へ採用し、同じファイルを更新するため配置は`candidates/`に保持する。限定採否は判断記録から読み、候補metadataは提示時の来歴として扱う。BRAIN007／025の運用knowledge promotionは未実施で、accepted／matureへの昇格・参照知識全体・最小集合・正式schema・L3再開を生成しない。

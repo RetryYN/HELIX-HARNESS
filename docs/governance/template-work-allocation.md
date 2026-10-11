@@ -200,7 +200,7 @@ VT103の下位証拠receiptは右側検証を始める入力であり、今の�
 
 ## 初回の3kindに対応する意味JSON候補
 
-[MSG001・004・005の意味候補](../helix-brain/candidates/first-cycle-design-template-knowledge.json)をBRAIN配下へ置く。単体の振る舞い、辺の契約、構成体固有の義務を比較するため、各候補を032の15項目へ対応付けた。原文の同じ候補版・source行/digest・節文脈を保ち、negative oracleとcompletionを欄の存在から区別する。これは要求整理段階の知識候補であり、対象の設計instance・schema・型・実装を起こしたものではない。
+[MSG001・004・005の意味候補](../helix-brain/candidates/first-cycle-design-template-knowledge.json)をBRAIN配下へ置く。単体の振る舞い、辺の契約、構成体固有の義務を比較するため、各候補を032の15項目へ対応付けた。原文の同じ候補版・source行/digest・節文脈を保ち、negative oracleとcompletionを欄の存在から区別する。これは要求整理段階の知識候補を起点とし、[MSGCONTENT節](#msgcontent初回要求整理へ採用する意味内容の固定案)の限定意味内容はPOが採用した。運用knowledge promotionは未実施であり、対象の設計instance・schema・型・実装を起こしたものではない。
 
 | 候補 | 具体化した知識と節の適用 | 残る入力・依存 |
 |---|---|---|
