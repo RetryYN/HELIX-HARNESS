@@ -1,0 +1,22 @@
+{
+  "ticket_id": "FT-GOV-DEVELOPMENT-ENVIRONMENT-001",
+  "source_revision": "ce9f53a8400741c0bdc0637309dc47882f89626d",
+  "source_path": "docs/governance/feature-tickets/FT-GOV-DEVELOPMENT-ENVIRONMENT-001.md",
+  "source_sha256": "35fd10558c3de2935eb3836bd453b6e113df4a2f406a070621387bd316327659",
+  "issue_number": 2905,
+  "issue_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2905",
+  "issue_body_sha256": "5a63f8c5f6b50a237d1862488759b75ede2e465f46b0bbc0dae8a23267eba009",
+  "read_after": "exact_body_and_open_state_confirmed",
+  "authority_effect": "work_projection_only",
+  "receipt_revision": 2,
+  "supersedes_receipt": "docs/governance/audits/feature-ticket-projection/development-environment-issue-projection-2026-10-11.json",
+  "supersedes_receipt_sha256": "827a91d0f32c8d211ddc309fd1a7446fe9aae4c8e1b2dc9c151153e1ff98da7d",
+  "body_projection_rule": "投影元・source_revision・source_sha256と区切りのheaderを付加し、source ticket本文の相対Markdown linkだけを同じsource revisionのGitHub絶対linkへ解決する。本文のその他のbytesは変更しない。",
+  "projection_header": "投影元: [docs/governance/feature-tickets/FT-GOV-DEVELOPMENT-ENVIRONMENT-001.md](https://github.com/RetryYN/HELIX-HARNESS/blob/ce9f53a8400741c0bdc0637309dc47882f89626d/docs/governance/feature-tickets/FT-GOV-DEVELOPMENT-ENVIRONMENT-001.md)\n\nsource_revision: `ce9f53a8400741c0bdc0637309dc47882f89626d`\n\nsource_sha256: `35fd10558c3de2935eb3836bd453b6e113df4a2f406a070621387bd316327659`\n\n---\n\n",
+  "issue_title": "整備: 新世代の最小開発環境・依存管理・再現検証手順を整理する",
+  "read_after_state": "OPEN",
+  "read_after_body_sha256": "5a63f8c5f6b50a237d1862488759b75ede2e465f46b0bbc0dae8a23267eba009",
+  "authorization_basis": "2026-10-11のユーザーのIssue化指示。source ticketの発行根拠を参照。",
+  "meaning_match": true,
+  "placement_basis": "既存のrequirements-first-roadmap投影receiptと同じaudits直下に訂正証拠を追加する。初回receiptは変更せず履歴として保持し、feature-ticket-projectionサブディレクトリを新たな配置規則にはしない。"
+}
