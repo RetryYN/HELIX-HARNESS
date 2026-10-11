@@ -55,6 +55,7 @@ pair_artifact: docs/helix-harness/L2-requirements/product-requirements.md
 - HARNESS-L2-003／004：由来と対の設計が分かっている変更では、その範囲だけを照合し、全体のReverseを既定にしないことを確認する。由来が不明な変更、旧資産、設計traceの欠落では、全体のReverseが復旧の手段として選ばれることを確認する。通常の照合でticketを発行せず、明らかなずれ・同種findingの再発・性能の退行ではReverse ticketが発行されることを確認する。
 - HARNESS-L2-003：Working→Provisional→Integrated→Verified→Accepted→Release-eligible→Deployed→Observedの各状態を、対応する証明の成立だけで進め、単体と結合の証明だけで、システムに固有の義務との差分を確かめずにVerifiedを、L10の合格からAcceptedを推定しないことを確認する。L11で意味の差を与え、コードの直接修正ではなくBackflowと要求への再投入に進むことを確認する。
 - HARNESS-L2-003：開発の開始時にRelease Portの必須条件（必要な証明、成果物の識別、対象環境、依存、securityの条件、rollback、配備の条件、受入の状態）が置かれ、各工程で満たした条件と未充足の条件が分かることを確認する。
+- HARNESS-L2-003（Incident）：通常Release Portの必須条件と既存操作authorityを満たすhotfixは、緊急性に依存せず同じRelease-eligible条件で確認する。必要な証明、対象環境、security、rollback、受入状態のいずれかが欠けたhotfixに「即release」や暫定収束を与えても、欠けた条件を省略できずRelease-eligibleにならない。収束後はpostmortemとL12 feedback、current L1–L12の影響先・backfillの未完義務、Reverse fullbackから選択済み開発方式への戻り先を辿る。未完のbackfillや恒久対策を配備成功・収束・Issue closeで完了にしない。戻り先がunknownなら完了へ補完せず保持する。通常Portの条件成立と実release許可・実行・受入結果を分離し、旧CLI／runtime／CIの成功を証拠へ流用しない。
 - HARNESS-L2-008／005：単体A・B・Cをすべて成立させ、A→BとB→Cの接続に固有の義務を未検証にする。単体の合格が接続の前提の証拠として集められ、接続A-B、接続B-C、構成体Xは成立にならないことを確認する。単体の成立だけで接続や構成体を成立させる構成を不成立とする。
 - HARNESS-L2-008／005：すべての単体と接続を成立させ、構成体に固有のoracle（例：システム全体の応答時間）を未実行にする。構成体が未検証のまま残り、不足する固有の証明だけが求められることを確認する。下の合格の集合だけで構成体を成立させる構成を不成立とする。
 - HARNESS-L2-005：すべての単体と接続が成立し、組み合わせの契約がそろい、未解決の構成体に固有の義務がないことがHARNESSの契約で示せる構成体を与える。大きな端から端までの検証をやり直さずに、構成体の合格が導かれることを確認する。下の証明をやり直す構成と、固有の義務があるのに差分を証明せずに合格とする構成を、どちらも不成立とする。
