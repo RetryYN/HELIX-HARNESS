@@ -228,3 +228,25 @@ field locatorは候補内の原文対応であり、正式IDやruntime keyでは
 例えば方向欄は「一方向ACKから逆方向許可を作る」取り違えをVT104の境界へ、停止区間は「外部作用後の完了不明を自動再実行する」取り違えをVT105の契約へ、全体成功は「下位成功だけで全体固有義務を閉じる」取り違えをVT103へ結ぶ。欄/規範の適用範囲で照合し、主kind/pairを排他的な条件にしない。VT候補の参照からVT内容全体の採用や、再開前の検証設計・実行を生成しない。
 
 3件は全体最小集合ではない。他23seed・40cardの残る意味対応と採否、各fieldの要否/意味とoracleの最終照合、参照先knowledgeの不足、旧6surface/component移管を保持する。JSON化だけで完全な15項目や機構成立を宣言せず、不足はBRAIN/CORE/OSの既決責務へ戻す。L3以下の停止は継続し、Issue完了・内部デプロイの許可を生成しない。
+
+## MSGCONTENT：初回要求整理へ採用する意味内容の固定案
+
+[意味JSON候補](../helix-brain/candidates/first-cycle-design-template-knowledge.json)の`adoption_proposal`を固定案とする。対象はMSG001/004/005の3件に限り、各templateのidentity・原候補版・15semantic_descriptorsと、原文の「1.0の境界」「限界」の意味を、今後の要求整理の入力へ採用する案である。現在は未回答、`authority_effect: none`。新しい要求identityや版指定は足さず、候補のkey/locatorを正式schemaやruntime keyにしない。[範囲照合記録](audits/msg-content-adoption-proposal-2026-10-12.json)は原文・既決責務・45項目の比較観点、選択payloadとscope制限を示す。
+
+| 契約項目 | 3件で保持する内容 | 採用案から確定しないもの |
+|---|---|---|
+| identity・version | 3種を区別し、原候補版とsource revisionを保持 | 新知識版、schema版、案件の使用版 |
+| layer/pair・downstream kind | 単体の詳細/実装、辺の境界/詳細、構成体の全体/境界の主観点 | kind/pairの排他的適用、各案件の全義務 |
+| applicability | 振る舞いを変える単体、境界を越える辺、複数要素の構成体の条件 | 案件のrequired/conditional/N/A/unresolvedとN/A4属性 |
+| required input | 要求/受入、両端契約、全体成果とowner、未決の戻し先 | 製品値、実各端契約、未来receiptの供給 |
+| required section/field | 節別義務、欄の意味/要否根拠、固定規範/制約と列見出しだけで充足にしない注意 | 全欄一律required、空表の充足、設計instance |
+| relation・meaning owner | SDOP/MSG/VTの参照と二重正本を避ける境界、汎用BRAIN/適用CORE/案件OSの責務 | 参照知識の内容全体・採否、ownerのauthority拡張 |
+| trace・negative oracle | 要求から対oracleへの意味対応、失敗/不明/部分成功/単体の和による取り違え | 実case ID、期待値、実行合格、義務消込 |
+| measurement・completion | 数値を根拠付きの要求/後続pairへ残すこと、適用義務の条件と設計の正しさの区別 | 実測法/閾値/結果、要求充足・機構成立 |
+| supersession | 正式templateが来た際の欄の行き先対応 | 旧版consumer移管、撤去、旧sourceのretire |
+
+意味内容の採否と、BRAIN007/025の運用knowledge promotionを分ける。LABO評価→OS登録/振分け→BRAIN変更内の独立検証→採否の順序は変更・免除せず、POの内容選択やこのPRのreviewで代替しない。選択されても運用knowledgeをaccepted/matureにせず、案件適用と実行済み受入を生成しない。SEEDFIRSTの既決範囲は保持する。
+
+MSG005の関係欄は省略形「SDOP001・003」「VT103・104」も含む。さらにstate/data欄には関係欄外のMSG002参照がある。これらを落とさず、MSG003の権限/分類、SDOP001〜005の記録/非機能/運用/規則/依存、MSG006のtestability、VT103〜106の方法を参照先の意味/採否として残す。SDOP006はAWS採用時の条件を保持する。単純な名前抽出や3件の採用だけで必要集合・再帰的依存閉包を閉じない。
+
+scope制限も採用対象である。原文の1.0境界にある本番chaos等を前倒しせず、図や欄が埋まったことを設計の適切さへ変換しない。source_body_context全文、例の案件値、参照知識全体、旧surface/componentの全移管、正式schema/実装・L3再開・内部デプロイは対象外である。これらの意味を不要としてretireせず、#2846と各ownerの未完へ保持する。

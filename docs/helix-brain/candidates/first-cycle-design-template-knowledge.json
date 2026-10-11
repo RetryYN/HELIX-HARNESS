@@ -6500,5 +6500,95 @@
     "change": "既存MSG候補を032の15項目へsource対応する。旧層のauthority/旧役割/runtime/形式/固有技術を移さない。MSGの束ね方と構成体固有欄は既存seedが記録した新規案のまま",
     "reason": "初回対象で単体/接続/構成体を別に扱い、10/10巻き戻しのseed不使用と件数/hashのみreviewの失敗を防ぐため",
     "limits": "旧source全体の移管/consumer/採否、全candidate意味の等価性、全15項目の実動を証明しない"
+  },
+  "adoption_proposal": {
+    "proposal_id": "MSGCONTENT",
+    "state": "proposed_not_decided",
+    "authority_effect": "none",
+    "subject": "初回要求整理の入力となるMSG001/004/005の汎用template意味内容の限定採用案",
+    "basis": "BRAIN032、CORE009、OS002と初回対象選択の既決責務。SEEDFIRSTの限定内容採用と候補全体昇格を分けた判断を参照し、採用範囲は今回別に判断する。",
+    "source_artifact": {
+      "path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+      "revision": "0a39b4b363c9d6d0c44c7bda10c058c9c3128adc",
+      "sha256": "9d5dc696716d66d363f97a2f4b97b8e1f6a94e415dc64d5f3cff4a209b69ebd2"
+    },
+    "adoption_payload_scope": {
+      "template_exact_set": [
+        "DT-MSG-001",
+        "DT-MSG-004",
+        "DT-MSG-005"
+      ],
+      "selected_template_members": [
+        "template_identity",
+        "candidate_version",
+        "semantic_descriptors"
+      ],
+      "semantic_payload_sha256": "b396de59d77e4bbe44715e980b4e96d81596fb6354a2e06cc1c493defd9f6f77",
+      "payload_digest_rule": "選択3memberのtemplate配列を元の順序で、UTF-8/ensure_ascii=false/sort_keys=true/separators=(comma,colon)、LF一つを末尾に付けてSHA-256。JSON keyの設計選定ではなく範囲照合。",
+      "meaning_scope_limits": [
+        {
+          "template_identity": "DT-MSG-001",
+          "source_path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-001-connection-contract.md",
+          "source_sha256": "94cc4a2a3f795645bf274148e47f3a2e0622643f822a1815f4068fb2f3cbfa5c",
+          "meaning_scope_limits": [
+            {
+              "source_line": 20,
+              "source_text": "| 1.0の境界 | — （本番の障害注入・chaosはWeb展開後。DT-VT-104と同じ） |",
+              "source_line_sha256": "1f2bb8f6046866a9bd044d3a05af0fffaedd973a51bf993c57aa782dd8b6ce9d"
+            },
+            {
+              "source_line": 22,
+              "source_text": "| 限界 | 欄の集合は材料であり、正式なschemaではない。業務上の意味（受け取った結果をどう判断するか）は接続先の持ち主が決め、本templateは決めない |",
+              "source_line_sha256": "a768a293c5868b358c4a66183ba3009464e6d16c8e82e07956c541a8ea2e1082"
+            }
+          ]
+        },
+        {
+          "template_identity": "DT-MSG-004",
+          "source_path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+          "source_sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+          "meaning_scope_limits": [
+            {
+              "source_line": 20,
+              "source_text": "| 1.0の境界 | — |",
+              "source_line_sha256": "8f771d6d951ebfcb6cb2c17352fbfa29b45eeed7de8e38743e7cb12df3f291b2"
+            },
+            {
+              "source_line": 22,
+              "source_text": "| 限界 | 欄を埋めても振る舞いが正しいことは示さない。単体の契約だけで接続・構成体の設計を満たしたとしない（DST-HARNESS-003） |",
+              "source_line_sha256": "3ff91759b284b98a9bf6691d2be61988370cc502fed2aa80d246437b9a304cb4"
+            }
+          ]
+        },
+        {
+          "template_identity": "DT-MSG-005",
+          "source_path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-005-composite-architecture.md",
+          "source_sha256": "678e71797043d48e0f9e19c588e41cab059034fd5fe9cf5994f9d6c51d011589",
+          "meaning_scope_limits": [
+            {
+              "source_line": 20,
+              "source_text": "| 1.0の境界 | 本番のchaos、canary、自動failover、multi-cloudの構成は1.0の必須欄にしない（Web展開後。現行HELIXINFRASTRUCTURE-L2-022〜024が1.0より後の版としている扱いと揃え、その意味は変えない） |",
+              "source_line_sha256": "d9793798477ad50ad57699185d017866a7b817701c3fdef3397b699b6f630752"
+            },
+            {
+              "source_line": 22,
+              "source_text": "| 限界 | 構成の描き方（図の種類、view）は材料であり、製品ごとに選ぶ。欄を埋めても構成が適切であることは示さない |",
+              "source_line_sha256": "4b99eac05fac2aa6997e1a9e9f4e39b20f78381052eaa54fe21c283d64537938"
+            }
+          ]
+        }
+      ],
+      "interpretation": "15descriptorの意味内容（欄/規範/条件/関係/負例/計測とcompletion/検証観点への意味対応）とscope制限を採用する案。source path/行/text/hashは来歴。候補locator/key/原候補版を正式schema/runtime key/新知識版へ昇格させない。参照VTの行は観点の対応を識別する来歴であり、VT内容全体や実case/期待値を採用しない。 scope制限行は記載された制限の意味を採用対象とし、locator/hashは来歴として読む。"
+    },
+    "not_selected": [
+      "definition_state/required_input_value_state/採否metadata、source_body_context全文、raw source全体、正例の案件値や仮の技術/数値",
+      "参照SDOP/VT/他23seed/40cardの内容全体、全体最小集合、案件選択/使用exact setやN/A/製品値",
+      "旧6surface/component・holdingの全移管やformal successor/retire、schema/型/式木/algorithm/registry/renderer/Python接続",
+      "LABO評価/OS登録/BRAIN独立変更手続きの実施、運用knowledgeのaccepted/matureへのpromotion",
+      "L3再開/正式要件/設計/実装/CI/内部デプロイ/release、実case/実行受入/Issue close"
+    ],
+    "promotion_boundary": "本案は要求整理に用いる意味内容の採否である。BRAIN007/025のLABO評価→OS登録/振分け→BRAIN変更内独立検証→採否を変更・免除しない。PO選択やこのPRの独立reviewをその工程の代替にせず、運用knowledge stateをaccepted/matureへしない。既決SEEDFIRSTの範囲を変更せず、新要求identity/版指定/承認gateを足さない。",
+    "ownership_boundary": "BRAINが汎用意味内容と版/stateを保持し、CORE009/008が案件適用・N/A4属性・不足/製品値・意味影響を導く。OS002が候補/選択/使用set/版/原記録を持ち、LABOが評価方法/母集団を持つ。知識内容の採用から適用義務充足を生成しない。",
+    "remaining": "参照knowledgeの意味/採否、15項目全体の完全な供給と旧固有binding、全体最小集合、実operation/source/revision/scope/依存閉包、初回配置と安全/資源/計測、内部更新/復旧/支援/改善循環。要求値/実oracle/未来receiptは該当する後続の入力として残す。"
   }
 }
