@@ -5,7 +5,7 @@
   "version_target": "1.0",
   "status": "draft_not_approved",
   "authority_effect": "none_until_exact_revision_delegated_approval",
-  "scope": "10/12限定前提構築の032汎用template候補提供。003/005/007/008/028等は参照契約で、その全能力の新規承認や全seed採用を表さない。追加scopeは10/12限定前提の007provenance/段階別promotion、008知識版/利用状態分離、028共通pack互換の規範。既存032の14組不変。実promotion/実登録/実版の成立を宣言しない。追加scopeは10/12限定前提の003Pattern成立条件、005領域横断relation、030query/receipt受渡し規範。既存24組不変。歴史Stage2b/4の全能力運転を前倒しせず、必要な意味入力のみをStage1前提へ先行する。追加scopeは007の必要参照011製品意味分離/020評価候補受領/025独立採否の限定規範。既存34組は不変。実promotion/全seed/全構成/全LABO能力を前倒ししない。",
+  "scope": "10/12限定前提構築の032汎用template候補提供。003/005/007/008/028等は参照契約で、その全能力の新規承認や全seed採用を表さない。追加scopeは10/12限定前提の007provenance/段階別promotion、008知識版/利用状態分離、028共通pack互換の規範。既存032の14組不変。実promotion/実登録/実版の成立を宣言しない。追加scopeは10/12限定前提の003Pattern成立条件、005領域横断relation、030query/receipt受渡し規範。既存24組不変。歴史Stage2b/4の全能力運転を前倒しせず、必要な意味入力のみをStage1前提へ先行する。追加scopeは007の必要参照011製品意味分離/020評価候補受領/025独立採否の限定規範。既存34組は不変。実promotion/全seed/全構成/全LABO能力を前倒ししない。追加scopeは032-F09 CORE返却の必要004複数候補比較/012採用authority分離/019候補提供/022設計義務input受渡し。既存47組不変。歴史Stage2b/4の全能力や実返却/義務成立を前倒ししない。",
   "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
   "source_pins": [
     {
@@ -87,6 +87,10 @@
     {
       "path": "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
       "sha256": "3f12d5a53b05dc478cc7138e362730d38c6aa835079b41b6124cb569f0fc6b9d"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
     }
   ],
   "knowledge_use": "MSGCONTENTの3templateの意味・制限、P3FIRSTのVT103と選択SDOP19節だけ。原candidate/schema/keyを正式化せず、SEEDFIRSTのVT001/VT102とC01/C02/C08/C26の限定意味は、非UIかつ技術的不確実性なしを確認した要求/受入部分に限る。他pairへ自動拡張しない。",
@@ -190,6 +194,36 @@
       "reason": "007の未完参照を閉じ、限定採用した知識内容と運用promotionを混同しないため。",
       "failure": "AI生成/一実績/評価/登録/文書だけで昇格、製品意味混入、上流authority変更、独立性/適用範囲欠落を防ぐ。",
       "consumer": "初回template提供の知識provenance/採否境界とCORE適用/OS記録。全旧候補/consumer被覆は未完。"
+    },
+    "core_return_boundary": {
+      "reuse_class": "semantic_rederivation",
+      "sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "identity": "template/instance authority, component contract, obligation-to-template flow",
+          "lines": [
+            19,
+            60
+          ],
+          "locator_kind": "inclusive_line_range"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+          "identity": "RCLS-BR-006 historical authority separation",
+          "lines": [
+            45,
+            47
+          ],
+          "locator_kind": "inclusive_line_range"
+        }
+      ],
+      "preserve": "汎用templateと製品instanceの分離、適用input/義務/選択候補/双方向trace、提案と採用authorityの区別を保持する。",
+      "change": "9/25PO JSON/Python方針と9/26BRAIN原文および9/28採択に従い汎用知識返却をBRAIN、製品義務/選択をCORE、案件運転をOSへ分ける。旧component/層番号/schema/runtimeをcopyしない。複数Patternの絶対解化拒否はL1の既存検索記録が旧対応なしとした9/26新規PO原文004と9/28採択から導く。",
+      "reason": "032-F09 CORE返却で019/022が未導出だった必要参照を閉じ、返却成功を製品採用や義務成立にすり替えないため。",
+      "failure": "現在の限定032-F09参照の定義不足、候補の絶対解化、版/scope取り違え、input/反例/trace落ち、候補提供で製品採用成立を防ぐ。",
+      "consumer": "初回BRAIN032提供→CORE009適用→OS002記録。INT query021/新候補生成/運用promotionは選択時の追加閉包。全旧consumer被覆は未完。"
     }
   },
   "remaining": [
@@ -198,7 +232,8 @@
     "本体のschema/方式/計測値の導出、対設計とoracle凍結、実装前Red、実装/Green、L10実行、PO L11実物受入は後続段階。",
     "007/008/028は規範のみ。003/005/030や007が参照する011/025/020の必要な限定契約、owner-qualified exact binding、正式schema/実promotion/知識実版/案件登録/CI/PO実物受入は未成立。未選択source/操作の全能力を初回必須条件にしない。",
     "003/005/030は限定規範のみ。親L1/L2/知識版とHARNESS009/共通pack/connectionへのexact binding、正式query/receipt schema/実connector/実promotion、対設計/実RedGreen/CI/PO実物受入は未成立。歴史Stage2b/4全体の再開を生成しない。",
-    "011/020/025は必要参照の規範。018/009/010/012/INFRA017等は対象入力/操作で追加閉包を照合する。全scope owner-qualified exact binding、正式schema/対設計/実promotion/評価/登録/独立実検証/CI/PO実物受入は未成立。非選択実験/外部知識2.0/全seedを初回必須にしない。"
+    "011/020/025は必要参照の規範。018/009/010/012/INFRA017等は対象入力/操作で追加閉包を照合する。全scope owner-qualified exact binding、正式schema/対設計/実promotion/評価/登録/独立実検証/CI/PO実物受入は未成立。非選択実験/外部知識2.0/全seedを初回必須にしない。",
+    "004/012/019/022はCORE返却の必要規範。INT query021は非選択。構成候補009/失敗知識010/CORE intake018/INFRA017等は選択入力と操作で追加閉包を照合する。全scope owner-qualified exact normative binding/完了audit、正式schema/対設計/実Python/実返却/実義務trace/実promotion/CI/PO実物受入は未成立。"
   ],
   "document_id": "HELIXBRAIN-L10-032-nfr",
   "layer": "L10",
@@ -270,6 +305,17 @@
       "negative_input": "fixture合格を普遍化、状態fieldだけ合格、未知を採用済み。",
       "failure_observation": "該当CORE/LABO/OS/BRAIN ownerへ不足を返す。",
       "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXBRAIN-L10-019-N01",
+      "parent": "HELIXBRAIN-L2-019",
+      "title": "未見queryの内容oracle",
+      "requirement_ref": "HELIXBRAIN-L3-019-N01",
+      "positive_input": "伏せたscope/反例/版の混載と未評価/unknownの返却を比較する。",
+      "expected_observation": "内容不一致/不足/未実行が明示され、正しい候補と区別される。",
+      "negative_input": "field存在だけpass、未見queryを検証済み、単体回答で全構成完成。",
+      "failure_observation": "BRAIN/COREの内容または契約ownerへ不足を返す。",
+      "execution_state": "not_executed"
     }
   ],
   "execution_entry": "承認済みL3、固有義務集合、下位の実証明receipt、組合せ契約、同revision/scopeのoracleがそろってから実行する。下位receiptを左L3の起草前提にしない。参照共通契約の不足は実行停止条件。",
@@ -285,7 +331,11 @@
     "HELIXBRAIN-L2-030",
     "HELIXBRAIN-L2-011",
     "HELIXBRAIN-L2-020",
-    "HELIXBRAIN-L2-025"
+    "HELIXBRAIN-L2-025",
+    "HELIXBRAIN-L2-004",
+    "HELIXBRAIN-L2-012",
+    "HELIXBRAIN-L2-019",
+    "HELIXBRAIN-L2-022"
   ],
   "roster_version_scope_by_parent": {
     "HELIXBRAIN-L2-032": {
@@ -337,6 +387,26 @@
       "version_target": "1.0",
       "sequence_stage": "Stage 5",
       "basis": "9/28採択f6dadの選択L2/L11 bytes一致。10/12限定規範の先行起草のみ。"
+    },
+    "HELIXBRAIN-L2-004": {
+      "version_target": "1.0",
+      "sequence_stage": "Stage 2b",
+      "basis": "9/28採択f6dadの選択L2/L11 bytes一致。032-F09 CORE返却の限定前提参照を閉じる。"
+    },
+    "HELIXBRAIN-L2-012": {
+      "version_target": "1.0",
+      "sequence_stage": "Stage 2b",
+      "basis": "9/28採択f6dadの選択L2/L11 bytes一致。032-F09 CORE返却の限定前提参照を閉じる。"
+    },
+    "HELIXBRAIN-L2-019": {
+      "version_target": "1.0",
+      "sequence_stage": "Stage 4",
+      "basis": "9/28採択f6dadの選択L2/L11 bytes一致。032-F09 CORE返却の限定前提参照を閉じる。"
+    },
+    "HELIXBRAIN-L2-022": {
+      "version_target": "1.0",
+      "sequence_stage": "Stage 4",
+      "basis": "9/28採択f6dadの選択L2/L11 bytes一致。032-F09 CORE返却の限定前提参照を閉じる。"
     }
   }
 }
