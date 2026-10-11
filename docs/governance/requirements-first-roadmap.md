@@ -143,6 +143,22 @@ BRAIN→CORE、CORE→OS、検収→Backflowの各辺は別のconnectionであ�
 
 この表の各入口にはさらに依存がある。選択したoperation/sourceごとにHARNESS023の4区分へ当て、常時必須・操作時必須・選択source必須を閉じる。ここでは一段の照合先を示しただけで、全周辺要求の再帰的閉包・採用revision・実装成立は未検証である。未選択は未観測として保持し、必須の安全条件をoptionalにしない。
 
+### 初回対象の操作別に必要条件を照合する
+
+[HARNESS023と対L11](../helix-harness/L11-acceptance/product-acceptance.md#harness-l2-023-利用条件別の依存宣言の受入)の4区分を、選択対象の各操作へ当てる。以下は既決要求にある条件の照合材料であり、正式packの依存宣言、実案件のsource選択、契約版range、実行許可を作るものではない。各行で「操作時必須」とする条件は、その操作を含む利用では省かない。実operation/sourceの選択が未供給のため、表の各入口から先の有効依存閉包は未確定である。[固定本文と版境界の照合記録](audits/first-cycle-operation-dependencies-2026-10-12.json)へ戻る。
+
+| 初回対象で扱う操作 | 条件に応じて閉じる要求・owner | 省略できない負例／未供給の入力 |
+|---|---|---|
+| BRAIN032の知識提供とCORE009の意味導出 | 常時必要な要求/製品scope・工程/適用契約identity/revisionは009へ。知識sourceを選ぶ利用では032/030の全required fields・版・利用状態が選択source必須。読込のsource/classificationはSECURITY001/015/016、命令様dataは002、実読込actor/対象/scope/authorityは008へ照合する | JSON候補の存在を採択済み知識にせず、unknown fieldや未提示知識へのfallbackを拒否。実readの安全依存を参照資料へ落とさない。Python意味処理に操作権限や外部writeを与えず、呼出し側の実操作として照合する |
+| CORE候補の受渡しとOS002の原記録 | その受渡し操作では各端の版・scope・input/result・未受領をCONNECT001/002/003/005/006と各ownerへ。OSの記録操作は001/002/007/019/023、SECURITY003/004/008のproject/環境・構成・操作境界、実保存資源はINFRA001へ。資産identity/classification・data-useは常時照合する | 候補receipt、案件での選択、実使用、未完義務消込を別状態にする。原記録の実source/owner/版/保存先は未指定。全台帳や全connectorの完成をこの一本へ持ち込まず、使う接続の不成立も隠さない |
+| OS018の割当とWorker実行 | 実行操作ではOS017/018/019/023と既存配置入力、SECURITY003〜008の隔離・構成・credential/通信境界・認可・007の実制約適用、INFRA001/003の資源identity/容量と通常Work/Change接続009を照合する。INFRA010の通常操作はOS ticket/assignmentと有効authorityが必要 | 通信やcredentialを使わない場合も、その遮断/制約の適用を保持する。容量unknown、未適用隔離、期限切れ、host fallbackでは実行可能にしない。後段Worker結果を開始前に要求せず、実actor/assignment/資源/予算/停止条件は未供給 |
+| 結果・資源観測をLABOへ渡す | Worker結果sourceを選ぶときはOS002/019/023→LABO057/028。資源sourceを選ぶときはINFRA001/004の原観測→LABO026、各source contract/connector版・scope・data-useが選択source必須。LABO001/002が集積/相関し、評価方法・分母・比較はLABOに残す | Worker sourceだけの利用へ別source全件を要求せず、選択資源sourceの必要入力も省かない。資源・費用・時間・負荷・失敗・未観測は原定義と版を保持し、未観測=0、ID一致=因果、受領=評価成功にしない。source選択・実観測契約と評価scopeは未供給 |
+| 構成更新・復旧（その操作を選ぶ場合） | INFRA010は対象state-changing operationに適用される005のbefore/after・backup/restore/rollbackを照合。更新/変更の適用時だけ同target/revision/scopeのSECURITY update-admissionを追加する。OS停止中の独立復旧は006の資源/path・別authorityとWorker契約を使い、復旧後にOSへ同期する | read-onlyにも対象/action/scope/authorityとwrite禁止の適用証拠が必要だが、update-admission欠如だけで拒否しない。通常ticket免除へ広げず、停止中OSの応答待ちで独立復旧を循環させない。実更新・内部デプロイ・releaseは停止中で別の許可範囲 |
+
+**資源観測の版境界**：LABO026は1.0の許可resource/runtime evidenceを受けるsource接続であり、INFRA014の詳細なOS・LABO episode相関は「1.0より後（版は未定）」である。INFRA009も最小のOS resource-state接続へ後続episode相関を必須化しない。初回計測で014の完成を一律前提にせず、026を選ぶ場合の実INFRA source contract/connector・版・scope・利用許可は別に充足する。この対応だけで新しい通信経路、014の代替機構、接続済みの証拠を生成しない。1.0でもConceptとLABO001/002が求める原記録・相関参照は保持し、詳細相関の後続版を理由に消さない。
+
+SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、INFRA012の高度なcontrol/execution resource隔離、013のfailure-domain評価、019の詳細freshness/confidence、autoscaling・multi-cloud等の後続版を初回へ前倒ししない。義務・安全・oracleとして効く旧sourceは「参照のみ」にせず、旧runtime・過去例を実依存と混同しない。旧functional-release-slice:23〜67の必要安全閉包と局所/全体の区別、旧CLAUDE:49〜63の意味/外部作用分離を、現行023と各ownerへ意味再導出する。変更は初回操作ごとの照合範囲を具体化する点で、新しい要求・版・許可・一律gateは追加しない。
+
 ### 初回配置に供給する入力と未評価状態
 
 初回の配置材料を、採択済みの[OS要求](../helix-os/L2-requirements/governance-requirements.md)／[対受入](../helix-os/L11-acceptance/governance-acceptance.md)（018・019・023・027）、[LABO要求](../helix-labo/L2-requirements/labo-requirements.md)／[対受入](../helix-labo/L11-acceptance/labo-acceptance.md)（028・054〜057）、[INTELLIGENCE要求](../helix-intelligence/L2-requirements/intelligence-requirements.md)／[対受入](../helix-intelligence/L11-acceptance/intelligence-acceptance.md)（010・061・066）へ戻して整理する。[固定本文の照合記録](audits/first-allocation-input-contract-trace-2026-10-11.json)は9/28の採択revisionと現在の本文を比較する。以下は対象案件へ供給する内容と順序の整理であり、実ticket、配置案、権限、実行記録を作った証拠ではない。要求の実装依存と、意味契約を参照する依存も区別する。
