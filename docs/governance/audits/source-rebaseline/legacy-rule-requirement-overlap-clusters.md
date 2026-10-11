@@ -233,3 +233,15 @@ Draftのok=true/deferred=true/nullreceipt、provider-neutral advisory-onlyで常
 RE01-046のG/Hは節記号である。RE01-261/262のinventory引用518行だけではreview/CI/DB・auto-merge禁止の句を支えず、続く519行を別support contextへ記録した。原inventory/holdingを黙って訂正せず、append-only source訂正とconsumer/Binding照合を伴う残件に置く。current scope内のfinding処分と独立責務の後続化も一律non-blocker分離へ弱めない。
 
 本追補は比較候補である。要求本文・正本schema・Python/CLI/runtime/CI・仮登録・holding・Bindingを変更せず、#1814/#1813と他53cluster、FRM01/FRM02/OSA03の残件を保持する。assessment_status=unassessedと既存空配列は維持し、要求採否・retire・Issueclose・L3再開を生成しない。
+
+## RUL-PLN-01：企画・探索の限定した本文・全12引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主5・副7＝12件の原inventory全fieldと16引用span、関連本文13spanを固定bytes/hashで保持した。市場仮説の証拠・不確実性・最小検証とdecision criteria、機会の比較、利用者検証、探索spec/research memo、S3非終端と採否裁定を個別に読み分けた。引用未比較0から完全atom化・判断史・全consumer・正式successor・未計上0・全要求被覆・Stage完了を生成しない。
+
+旧社内基盤の企画はfeed-forwardで方向/trace/矛盾を確認し、ROI/KPI詳細を強制しない。書きすぎは要求へ降ろし、未調査断定と完全性不足を混同しない。市場仮説検証の不足を理由に全企画へ詳細なbusiness計画や新gateを無断追加しない。HARNESS自身のCLI形状だけで利用者製品に必要なcatalogを消さず、対象製品/土台missionと適用条件を保つ。
+
+現行HARNESS002/008は、探索と開発方式を分け、候補形成/Backflow/人間合意へ収束する。9/24判断でDiscovery/PoC/Decideが別ticketとなったため、旧単一S0–S4の起動方式を復活させない。Researchは判断用sourceと候補/比較基準を返し、選定はDecideで行う。検証成功、required_evidenceの文字列、生成文書や調査結果だけから採用・利用者合意・production成立を生成しない。
+
+過去relationのDTK-HARNESS-002は9/24 PO判断で文書ごと退役している。旧比較履歴として保全し現在の要求/設計/実装の根拠にせず、OSticketへの対応を別に残す。REQENG002の存在やmetadataから採用状態を推測しない。市場仮説・利用者調査・機会比較の原atomの全L1/各機構/対oracle被覆は未確定であり、元noteの未被覆断定を本監査の確定結論へ継承しない。
+
+他56clusterのbytesと元relation/note/歴史/未評価fieldを保持する。OSA04の#2890とFRM02の#2887–2889は別Draftの未レビュー候補で本main基準へ含めない。要求本文・schema・Python/旧CLI/runtime/CI・仮登録・holding・Bindingは変更しない。#1814/#1813と全残件を保持し、要求採用・retire・Issueclose・L3再開を生成しない。
