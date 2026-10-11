@@ -31,7 +31,7 @@ Concept、七大原則（POの指令。[判断記録](docs/governance/decisions/
   完全一致再利用、意味の再導出、置換のいずれかを明示する。
 - 旧HELIXと異なる内容にするときは、旧source、保持する点、変更する点、変更理由を記録する。旧資産の不在、未完成、旧runtimeの存在だけを変更理由にしない。
   人の判断が要るのは、人が持つ上流の意味を変える場合と、[上流authority状態モデル](docs/governance/authority-state-model.md)が対象revisionの人間decision（対象revisionの承認、旧要求の意味変更・retire等）を求める場合に限る。
-  人が持つ上流は、旧HELIXの自律境界（旧`CLAUDE.md`「自律境界」：人は企画・要求・デザインモックを持ち、要件は承認のみ、要件の起草以下はAIが自走）を現行の層に対応させたもので、Concept、企画（L1）、要求とprototype／非UIの合意（L2）、要件の承認（L3）である。L3／L10の承認は、2026-10-08のPO判断により、作成側とは別runtime・別model familyの独立reviewがexact base／content HEADでno_findingsと結論し、作成・review両側の系統を記録し、その後6文書のbytesが変わっていない場合に成立する。Fableはエスカレーション先とし、POは機構×Stageの区切りで事後確認する（[GitHub上流運用モデル](docs/governance/github-upstream-operating-model.md)「L3／L10承認の委任」）。判断記録がmainへ入る前の旧条件で成立した承認は引き続き有効とする。旧世代の層番号（L0企画・L1要求・L2デザインモック）をそのまま現行の層番号に当てない。
+  人が持つ上流は、旧HELIXの自律境界（旧`CLAUDE.md`「自律境界」：人は企画・要求・デザインモックを持ち、要件は承認のみ、要件の起草以下はAIが自走）を現行の層に対応させたもので、Concept、企画（L1）、要求とprototype／非UIの合意（L2）、要件の承認（L3）である。L3／L10の委任承認の成立条件、記録、エスカレーション、経過措置とPOの事後確認は、[GitHub上流運用モデル「L3／L10承認の委任」](docs/governance/github-upstream-operating-model.md#l3l10承認の委任)を正とする。旧世代の層番号（L0企画・L1要求・L2デザインモック）をそのまま現行の層番号に当てない。
   それ以外の差分は、記録したうえでAIが進め、独立reviewで確かめる。差分の記録を理由に、新しい承認手続きを作らない。
 - 対応する旧記述が見つからない場合は、検索範囲と結果を記録し、新規案であることを明示して人に提示する。
 - 報告、review、指摘でも、旧HELIXとの対応を確認せずに現行の規則文言だけを根拠にしない。現行文言が旧HELIXと
@@ -49,8 +49,7 @@ Concept、七大原則（POの指令。[判断記録](docs/governance/decisions/
 - Concept → 対象別L1 → L2／L11 → L3／L10 → 下流pairの順を飛ばさない。
 - GitHub、Issue、PR、CI、DB、memory、会話から要求意味・承認・完了を生成しない。
 - 新世代CIは未構築である。旧CIを動かさない。
-- 通常のGitHub作業は明示依頼を待たず、作成側がcommit・push・Draft PR作成・指摘修正を進め、修正後HEADの独立review結果を確認してReady化する。新世代CIは未構築のため旧CIを代用せず、静的検証と独立reviewを記録する。旧HELIXのGitHub自走運用の保持点と変更点は[GitHub上流運用モデル](docs/governance/github-upstream-operating-model.md)に記録する。
-- 作成側は自分のPRをmergeしない。独立したreview側はexact HEADを読み、findingをPR commentへ記録する。未解消のblockerと現行merge admissionを確認した後、人間の追加approveなしで`gh pr merge --merge`により明示mergeし、read-afterする。GitHub native auto-mergeは使わない。reviewer名だけから旧CLI・旧hook・旧runtimeを起動せず、利用可能な新世代のreview通路を使う。
+- 通常のGitHub作業の作成・独立review・Ready化・明示merge・read-afterは、[GitHub上流運用モデル「作成側とレビュー対応側の責務」](docs/governance/github-upstream-operating-model.md#作成側とレビュー対応側の責務)と対象PR classのmerge admissionに従う。GUIレーンの登録・依頼・応答は同書の[「GUIレーンの運転と通知」](docs/governance/github-upstream-operating-model.md#guiレーンの運転と通知)に従う。
 - 未承認、missing、unknown、conflict、staleでは下流実装へ進まない。仮の物は`scaffold/`名前空間に限り、Scaffold Bindingへ登録して置く。正式な物が入ったら`scfctl check-replacement`→`retire`で置換・撤去し、残留を残さない。
 - secrets、PII、credentialsを書かない。通常のGitHub laneのpush・Draft PR・明示mergeに操作ごとの重複許可を求めない。release、tag、cutover、配布repo切替、およびそれ以外の不可逆な外部作用は対象と作用を明示した許可を要する。
 

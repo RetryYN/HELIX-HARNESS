@@ -1,0 +1,477 @@
+{
+  "scope": "#2903: 文書規則の所在・参照・現在と設計後の区別の集約。要求採否、旧全資産移管、下流起草・実装・L3再開は含まない。",
+  "base_revision": "8cc567241d16728a3dfb4c978e9bda447d8bda88",
+  "input_pins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "6570d553cdaf2d4658c10fc1008edc1bb8d7895625e05e1dc4fa53f9c095dc0a"
+    },
+    {
+      "path": "docs/governance/authority-state-model.md",
+      "sha256": "1c0336ec838d3603231ffe6689175e9422c9cb1d19476159f88ab27f6a6233eb"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "6d0832a65aaefe2d3d931b007ad357664cdf9dadf6ee6e9ce036b76f450f0c53"
+    },
+    {
+      "path": "docs/governance/requirements-first-roadmap.md",
+      "sha256": "e8204472ba6e41028abec780574836b924bc3e8e3d37fb98758993b76c6d15b6"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "path": "docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md",
+      "sha256": "27b51768cbf010d201ccc2aafe8e4c893ec5ccb2a9a0bce662af343ef87809ee"
+    },
+    {
+      "path": "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+      "sha256": "5a4c8d85acc89166b68868824fdffd09e2c50810dae463e1724c5e146cc1cc05"
+    },
+    {
+      "path": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+      "sha256": "ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23"
+    },
+    {
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    },
+    {
+      "path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "sha256": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    },
+    {
+      "path": "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "sha256": "2c700ffcbb89c034d9f0b43a7f69483e785abbef28bb07601857a1d0caa72030"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "asset_id": "LEGACY-ASSET-B8D84651753481B5F2B9",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/operations-rule-audit-2026-07-26.md",
+      "sha256": "d32bb1a780a36cd0710cbd58d575e900ac14c154a0e84f5dc92423b46c01466e",
+      "lines": [
+        3,
+        6,
+        38,
+        39
+      ],
+      "use": "静的read-only。既存正本への収束、責務配置、実装前規律確認を保持。固定path・旧runtime・CI・baselineは移さない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262",
+      "lines": [
+        102,
+        173
+      ],
+      "use": "静的read-only。既存正本への収束、責務配置、実装前規律確認を保持。固定path・旧runtime・CI・baselineは移さない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4B835ADBEFBCCC13C1C0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/coding-rules.md",
+      "sha256": "4652f8520c4db9069cbfee11e0cb318ee49ec0b6b574eb94a51994fb8dbc215e",
+      "lines": [
+        10,
+        31,
+        138,
+        143
+      ],
+      "use": "静的read-only。既存正本への収束、責務配置、実装前規律確認を保持。固定path・旧runtime・CI・baselineは移さない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "lines": [
+        185,
+        237
+      ],
+      "use": "静的read-only。既存正本への収束、責務配置、実装前規律確認を保持。固定path・旧runtime・CI・baselineは移さない。"
+    }
+  ],
+  "link_checks": [
+    {
+      "consumer": "AGENTS.md",
+      "target": "docs/governance/github-upstream-operating-model.md#guiレーンの運転と通知",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "AGENTS.md",
+      "target": "docs/governance/github-upstream-operating-model.md#l3l10承認の委任",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "AGENTS.md",
+      "target": "docs/governance/github-upstream-operating-model.md#作成側とレビュー対応側の責務",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "CLAUDE.md",
+      "target": "AGENTS.md#再構築の原則",
+      "path": "AGENTS.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "CLAUDE.md",
+      "target": "AGENTS.md#現在の境界",
+      "path": "AGENTS.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "CLAUDE.md",
+      "target": "docs/governance/github-upstream-operating-model.md#guiレーンの運転と通知",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "CLAUDE.md",
+      "target": "docs/governance/github-upstream-operating-model.md#l3l10承認の委任",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "CLAUDE.md",
+      "target": "docs/governance/github-upstream-operating-model.md#作成側とレビュー対応側の責務",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "CLAUDE.md",
+      "target": "docs/governance/github-upstream-operating-model.md#文書規則と参照する側の対応",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "CLAUDE.md",
+      "target": "docs/governance/new-generation-start-here.md#現在停止する作業",
+      "path": "docs/governance/new-generation-start-here.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "docs/governance/authority-state-model.md",
+      "target": "decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/authority-state-model.md",
+      "target": "github-upstream-operating-model.md#l3l10承認の委任",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "../../AGENTS.md#再構築の原則",
+      "path": "AGENTS.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "../../scaffold/README.md",
+      "path": "scaffold/README.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "../concept/helix-concept.md",
+      "path": "docs/concept/helix-concept.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "../helix-brain/knowledge/requirements-acceptance-template-knowledge.json",
+      "path": "docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "audits/document-rules-consolidation-2026-10-11.json",
+      "path": "docs/governance/audits/document-rules-consolidation-2026-10-11.json",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "audits/source-rebaseline/l2-source-register.md",
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+      "path": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md",
+      "path": "docs/governance/decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md",
+      "path": "docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "decisions/redfirst-adoption-po-decision-2026-10-11.md",
+      "path": "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "path": "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "legacy-asset-reuse-control.md",
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "new-generation-start-here.md#現在許可される作業",
+      "path": "docs/governance/new-generation-start-here.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "requirements-first-roadmap.md",
+      "path": "docs/governance/requirements-first-roadmap.md",
+      "fragment_verified": false
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "requirements-first-roadmap.md#一つの要求例による初回の接続照合",
+      "path": "docs/governance/requirements-first-roadmap.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "requirements-first-roadmap.md#再開前提の現在地と残る確認",
+      "path": "docs/governance/requirements-first-roadmap.md",
+      "fragment_verified": true
+    },
+    {
+      "consumer": "docs/governance/github-upstream-operating-model.md",
+      "target": "template-work-allocation.md",
+      "path": "docs/governance/template-work-allocation.md",
+      "fragment_verified": false
+    }
+  ],
+  "binding_refresh": [
+    {
+      "path": "scaffold/bindings/SCF-B-0003.json",
+      "before_sha256": "70f8a224242551a915398094acf0dc3ce41224abceb5b054df9708b05e5e226a",
+      "after_sha256": "2e77e381b18ee44e62a5ab1a623883c609585263d31a25da13fc22bc5c5b8f92",
+      "only_changes": [
+        {
+          "index": 2,
+          "path": "docs/governance/github-upstream-operating-model.md",
+          "before": "f5d5a2bc3bdbacb8578dcd3266f788a8f7778ba99fb3bdcdecc13a535671eb5e",
+          "after": "6d0832a65aaefe2d3d931b007ad357664cdf9dadf6ee6e9ce036b76f450f0c53"
+        }
+      ],
+      "all_other_fields_equal": true
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0046.json",
+      "before_sha256": "a4fce6f13f117d17c40b8c5dd8f1ccc736ce4325b168bb5db24da0273f780a1b",
+      "after_sha256": "2cb91fab569d352f88ddcf8afd45e0b488cf7c57d2c3ab765f63f733b74ac0d4",
+      "only_changes": [
+        {
+          "index": 7,
+          "path": "docs/governance/github-upstream-operating-model.md",
+          "before": "f5d5a2bc3bdbacb8578dcd3266f788a8f7778ba99fb3bdcdecc13a535671eb5e",
+          "after": "6d0832a65aaefe2d3d931b007ad357664cdf9dadf6ee6e9ce036b76f450f0c53"
+        },
+        {
+          "index": 17,
+          "path": "scaffold/bindings/SCF-B-0003.json",
+          "before": "70f8a224242551a915398094acf0dc3ce41224abceb5b054df9708b05e5e226a",
+          "after": "2e77e381b18ee44e62a5ab1a623883c609585263d31a25da13fc22bc5c5b8f92"
+        }
+      ],
+      "all_other_fields_equal": true
+    }
+  ],
+  "command_checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_summary": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "182382bb6b7f678e7025fd61c01113d302c8d44eede8cb3aee86362baeaf60e5",
+      "stdout_summary": "bindings=147 fail=0"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "stale"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "87a3b1b935511a85473d742a599e5f4e976e2504e9b0e25e6203da661cd9bb49",
+      "stdout_summary": "stale=0"
+    }
+  ],
+  "manual_checks": [
+    {
+      "subject": "入口のGitHub運転と委任条件",
+      "result": "CLAUDEの重複本文、AGENTSの運転・委任本文を正本への参照へ置換。正本にexact base/content HEAD、別runtime/model family、6文書bytes、経過措置、Fable escalation、独立merge/read-afterが残ることを照合。"
+    },
+    {
+      "subject": "authority状態モデルの旧条件",
+      "result": "Opus・Fable一致の現行遷移表示を、10/8既決の正本参照へ訂正。五軸・authority effect・covered条件・L3停止は不変。"
+    },
+    {
+      "subject": "製品規律とrepo運用",
+      "result": "6項目の現在用途／設計後の具体化を分離。型・エラー等の具体旧ruleを採用済みにしない。43件1.0、REDFIRST A、BRAIN032/CORE009/OS002の責務、SEEDFIRSTの限定を判断記録へ照合。"
+    }
+  ],
+  "example_trace": [
+    {
+      "id": "HARNESS-L2-026",
+      "kind": "unit",
+      "requirement_span": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 534,
+        "end_line": 547,
+        "sha256": "445574626f02ccd6ed198ac0f48241d9e667293dbff98375889e5d5e1676ddc5"
+      },
+      "acceptance_span": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 333,
+        "end_line": 342,
+        "sha256": "4b93df3509eeadc3c6559bd4ab1d1d5e595ddead2fcca64a56db2804fd1bbca9"
+      },
+      "manual_comparison": "承認後編集拒否のstate/API/permission/data不変条件、同一revision、正常・負例・未評価とL2-008への戻しを両節で照合。026は設計要素、025は構成体固有の端から端整合を担当。",
+      "missing_inputs": [
+        "実在案件の承認済みL3",
+        "選択templateの使用exact set／版",
+        "実行receipt"
+      ],
+      "runtime_executed": false
+    },
+    {
+      "id": "HARNESS-L2-025",
+      "kind": "composite",
+      "requirement_span": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 548,
+        "end_line": 558,
+        "sha256": "452339e55022f3b8a15c509eb6f05a36c2c01fc10bcac616a1c757b4187df979"
+      },
+      "acceptance_span": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 343,
+        "end_line": 350,
+        "sha256": "05c400ae6119ab512f2f7078e81defec4f0a32563983a6033bb08cf5dedb626d"
+      },
+      "manual_comparison": "承認後編集拒否のstate/API/permission/data不変条件、同一revision、正常・負例・未評価とL2-008への戻しを両節で照合。026は設計要素、025は構成体固有の端から端整合を担当。",
+      "missing_inputs": [
+        "実在案件の承認済みL3",
+        "選択templateの使用exact set／版",
+        "実行receipt"
+      ],
+      "runtime_executed": false
+    }
+  ],
+  "authority_evidence": {
+    "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "source_repository_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "ids": [
+      "HARNESS-L2-025",
+      "HARNESS-L2-026"
+    ],
+    "interpretation": "対象revisionの採用記録。現行L2/L11のfile hashへの包括的承認継承を主張しない。"
+  },
+  "remaining": [
+    "全consumerの移管・旧assetのconsumer closureは未確認。個別Bindingと#1864/#1866/#1813/#1814へ保持。",
+    "#2905の環境条件、#2846の初回scope・全体最小template集合・適用往復・安全/接続/資源/計測は未完。",
+    "L3停止を保持。Issue全件close・PRmerge・本監査から前提機構成立や再開を生成しない。"
+  ],
+  "independent_review": "本記録を含むexact HEADについてPRで依頼する。作成側の静的照合は独立reviewの代替ではない。"
+}
