@@ -257,3 +257,17 @@ RE01-046のG/Hは節記号である。RE01-261/262のinventory引用518行だけ
 サービスのAPM/稼働監視/oncallとOS008のCI実行監視は対象が異なる。候補句の保険/規制はこの12件にはないが、RB04-274（主FRM09/副OSA07）に保存済みである。別record原文を補助に保持し、母集団の所属を勝手に変更せず、欠落/退役やOPS02全条件被覆を主張しない。
 
 要求本文・schema・Python/CLI/runtime/CI・仮登録・holding・Bindingを変更しない。OSA04/PLN01とFRM02の別Draft未レビュー候補を本main基準に混ぜず、#1814/#1813と全残件を保持する。要求採用・retire・Issueclose・L3再開を生成しない。
+
+## RUL-OPS-01：運用保守の限定した本文・全38引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主26・副12＝38件の原inventory全fieldと47引用span、27関連/補助spanを保持した。元note/relations/compared_revisions/未評価fieldと他56clusterのbytesを変更せず、SECURITY/INFRASTRUCTUREを含む比較を追記した。引用未比較0は全atom・判断史・全consumer・正式successor・全被覆・Stage完了ではない。
+
+旧team資料はReference-onlyとPO1名＋AI読替えを持つ。漏洩30分/P0-P3とrunbook約15分/Sev1-3、Dependabot期限、hotfixP0P1だけmerge起算48hを単純同一化しない。固定tool/数値/旧approverを現行全案件へ昇格させず、catalogのaction-bound操作承認と自律の検知/証拠/準備を分ける。
+
+現行SECURITY005/008/009には生値非露出、scope/expiry、operation authority、各該当先revoke/quarantineと未観測条件がある。AIDOC001はcontext解決で実credential処置ではない。INFRA004は既存severity参照、005はbackup/restore/rollback/closureを区別し、006は限定した独立復旧。過去noteの「L2に方針だけ/受入なし」を全現行機構の未被覆と一般化しない。
+
+旧runbook5要素/3sectionと3alert以上、Recovery7headerは粒度別で、文書存在やheaderだけで内容妥当を証明しない。HARNESS005のoracle/evidence規則、OSの運転と証拠、HILFR23/BR15のread connector、HBRP4の自動修復/学習昇格を同一にしない。旧全activePLAN凍結・enginepin限定rollback・consumer成果物非巻戻しのscope/判断史も残す。
+
+旧providerwritebackのshape検査は内容の正当性でなく、同digestはJSON検査前skipである。回収finallyは試行であり成功ではなく、reject/IOfailureとreviewoktrueは併存できる。外側scratchcleanup例外が結果を覆う経路も区別する。旧runtimeを実行せず、全caller/consumer成立の証拠とはしない。
+
+要求本文・schema・Python/CLI/runtime/CI・認証/認可/credential/本番設定・仮登録・holding・Bindingを変更しない。別DraftPR2887–2892を本mainに混ぜず、#1814/親#1813と全残件を保持する。採用・retire・Issueclose・L3再開を生成しない。
