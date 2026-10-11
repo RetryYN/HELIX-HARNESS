@@ -245,6 +245,7 @@
       "supplement_decision": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
       "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
       "supplement_section_sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b",
+      "supplement_l11_section_sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5",
       "boundary": "既存routing表/Design Template節/対受入条件と、固定COREAPPLYの一identity追補を併せて用いる。提示commitを適用後bytesのrevisionにしない。"
     }
   ],
@@ -303,9 +304,9 @@
       "parent": "HARNESS-L2-009",
       "title": "Python意味処理の責務",
       "requirement_ref": "HARNESS-L3-009-B01",
-      "positive_input": "同じ入力から意味処理結果候補と、外部作用要求を別結果として照合する。",
+      "positive_input": "同じ入力から意味処理結果候補と、外部作用要求を別結果として照合する。対象操作の必須入力が揃い、OS受領/完了receiptや全seed採用がまだ無い場合でも候補提供を照合する。",
       "expected_observation": "候補返却がticket発行/実行/認可/要求合意/設計成立/pair成功へ昇格されない。",
-      "negative_input": "COREに外部writeや実行を持たせる、OS受領だけでproject完了、知識提供を製品適用済みとする。",
+      "negative_input": "COREに外部writeや実行を持たせる、OS受領だけでproject完了、知識提供を製品適用済みとする。OS完了receiptや全seed採用が無いことだけで初回候補提供を停止。",
       "failure_observation": "越境した作用を不成立とし、ownerごとの未完を保存する。",
       "execution_state": "not_executed"
     },

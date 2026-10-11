@@ -245,6 +245,7 @@
       "supplement_decision": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
       "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
       "supplement_section_sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b",
+      "supplement_l11_section_sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5",
       "boundary": "既存routing表/Design Template節/対受入条件と、固定COREAPPLYの一identity追補を併せて用いる。提示commitを適用後bytesのrevisionにしない。"
     }
   ],
@@ -514,7 +515,7 @@
       "requirement_ref": "HARNESS-L3-009-F01",
       "positive_input": "全axisと出典/版が同scopeに束縛された要求分類を与える。",
       "expected_observation": "各入力値と知識/適用契約の版が辿れ、候補母集合の境界を示せる。",
-      "negative_input": "各axisを一つずつ欠落/矛盾させ、別revision/別製品の知識を混入。",
+      "negative_input": "各axisを一つずつ欠落/矛盾させ、別revision/別製品の知識を混入。操作に不要な差戻し/影響比較入力や未選択知識を常時必須へ昇格させる。",
       "failure_observation": "欠落axisと元revision/scopeを未解決として返し、推定補完しない。",
       "execution_state": "not_executed"
     },
@@ -536,7 +537,7 @@
       "requirement_ref": "HARNESS-L3-009-F03",
       "positive_input": "四判定を持つ入力と、conditional条件未充足、N/Aの4属性各欠落を別caseにする。",
       "expected_observation": "各判定の根拠と未充足条件が辿れ、欠落N/Aとunknownが義務消失へ変換されない。",
-      "negative_input": "根拠だけのN/A、判定者/revision/再評価条件欠落、unknownをN/Aとして完了。",
+      "negative_input": "根拠だけのN/A、判定者/revision/再評価条件欠落、unknownをN/Aとして完了。003や性能/security限定のN/Aを別templateへ承認済みとして転用。",
       "failure_observation": "不足属性と対象templateを返し、未解決/未充足を保持する。",
       "execution_state": "not_executed"
     },
@@ -569,7 +570,7 @@
       "requirement_ref": "HARNESS-L3-009-F06",
       "positive_input": "利用可能な選択知識と、利用状態/版/適用性に不足のある入力を別々に照合する。",
       "expected_observation": "有効な範囲の候補だけが返り、知識unknownは製品義務の未完として残る。",
-      "negative_input": "stale/未承認/別productのtemplateを有効として適用、該当なしで任意選択、templateから要求合意を生成。",
+      "negative_input": "stale/未承認/別productのtemplateを有効として適用、該当なしで任意選択、templateから要求合意を生成。非選択知識/旧例を適用authorityとして扱う。",
       "failure_observation": "元の不足を質問/候補として上流へ返し、要求の意味を自動決定しない。",
       "execution_state": "not_executed"
     },

@@ -245,6 +245,7 @@
       "supplement_decision": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
       "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
       "supplement_section_sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b",
+      "supplement_l11_section_sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5",
       "boundary": "既存routing表/Design Template節/対受入条件と、固定COREAPPLYの一identity追補を併せて用いる。提示commitを適用後bytesのrevisionにしない。"
     }
   ],
@@ -419,7 +420,7 @@
       "id": "HARNESS-L3-009-F01",
       "parent": "HARNESS-L2-009",
       "title": "入力axisと版",
-      "obligation": "要求identity/revision、kind、subject、relation、構成、risk、domain、layer/pair、製品scope、工程/適用契約版と、候補templateのidentity/version/意味契約revision/source/利用状態、選択根拠を照合する。知識提供/受領と製品適用選択を分ける。",
+      "obligation": "要求identity/revision、kind、subject、relation、構成、risk、domain、layer/pair、製品scope、工程/適用契約版と、候補templateのidentity/version/意味契約revision/source/利用状態、選択根拠を照合する。知識提供/受領と製品適用選択を分け、BRAIN032の汎用項目、030の提供知識受領、既存HARNESS009/023/026の依存区分を使う。常時必須は要求/製品scopeと工程・適用契約のidentity/revision、選択/差戻し/影響比較の各入力は対象操作時に照合する。",
       "oracle_ref": "HARNESS-L10-009-F01"
     },
     {
@@ -433,7 +434,7 @@
       "id": "HARNESS-L3-009-F03",
       "parent": "HARNESS-L2-009",
       "title": "required/conditional/N/A/unresolved",
-      "obligation": "templateごとのrequired/conditional/N/A/unresolvedを、根拠・判定者・対象revision/scope・条件・再評価条件とともに区別する。N/Aの理由/判定者/対象revision/再評価条件を欠かさず、判定不能をN/Aにしない。",
+      "obligation": "templateごとのrequired/conditional/N/A/unresolvedを、根拠・判定者・対象revision/scope・条件・再評価条件とともに区別する。N/Aの理由/判定者/対象revision/再評価条件を欠かさず、判定不能をN/Aにしない。L2.5の003や性能/securityの限定文脈の既存N/Aを、全templateへ承認済みとして広げない。",
       "oracle_ref": "HARNESS-L10-009-F03"
     },
     {
@@ -454,7 +455,7 @@
       "id": "HARNESS-L3-009-F06",
       "parent": "HARNESS-L2-009",
       "title": "Forwardと知識の不成立",
-      "obligation": "Forwardは合意要求に適用template/義務を導く。未承認候補、stale版、別product版、該当なし、未提示知識へ任意fallbackせず、不足を返す。知識を選んだ入力では全required fields/版/適用条件を照合する。",
+      "obligation": "Forwardは合意要求に適用template/義務を導く。未承認候補、stale版、別product版、該当なし、未提示知識へ任意fallbackせず、不足を返す。知識を選んだ入力では全required fields/版/適用条件を照合する。非選択知識と旧例は参照資料とし、適用authorityや必須入力へ変換しない。",
       "oracle_ref": "HARNESS-L10-009-F06"
     },
     {

@@ -245,6 +245,7 @@
       "supplement_decision": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
       "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
       "supplement_section_sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b",
+      "supplement_l11_section_sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5",
       "boundary": "既存routing表/Design Template節/対受入条件と、固定COREAPPLYの一identity追補を併せて用いる。提示commitを適用後bytesのrevisionにしない。"
     }
   ],
@@ -286,7 +287,7 @@
       "id": "HARNESS-L3-009-B01",
       "parent": "HARNESS-L2-009",
       "title": "Python意味処理の責務",
-      "obligation": "HARNESS-COREのPython意味処理は適用set/義務/不足質問/意味影響の材料を導く。BRAINは汎用知識版/state、OSは案件選択/使用set/版の登録と運転を持つ。CORE出力にDB/Git/GitHub write、割当、lease、実行、認可を与えない。",
+      "obligation": "HARNESS-COREのPython意味処理は適用set/義務/不足質問/意味影響の材料を導く。BRAINは汎用知識版/state、OSは案件選択/使用set/版の登録と運転を持つ。CORE出力にDB/Git/GitHub write、割当、lease、実行、認可を与えない。受渡し先の完了receiptや全seed採用を初回処理前の入力にしない。",
       "oracle_ref": "HARNESS-L10-009-B01"
     },
     {

@@ -245,6 +245,7 @@
       "supplement_decision": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
       "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
       "supplement_section_sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b",
+      "supplement_l11_section_sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5",
       "boundary": "既存routing表/Design Template節/対受入条件と、固定COREAPPLYの一identity追補を併せて用いる。提示commitを適用後bytesのrevisionにしない。"
     }
   ],
