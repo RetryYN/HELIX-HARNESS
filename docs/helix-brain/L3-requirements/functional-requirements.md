@@ -21,6 +21,7 @@
 | layer | L3 |
 | pair | P3: L3↔L10 |
 | category | functional |
+| descriptor_meanings | descriptor: template identity / meaning: 機能としてのtemplate識別。filenameやviewの所在と分ける。 / descriptor: version / meaning: template内容の版。knowledge revision、pack contract/artifact版、version_targetと分ける。 / descriptor: layer/pair / meaning: 義務の適用層と対。HARNESSが定めた対を参照する。 / descriptor: applicability / meaning: 汎用問題・前提と適用条件。unknownを非適用にしない。 / descriptor: required input / meaning: 適用に必要な入力の意味と根拠。定義と案件値を分ける。 / descriptor: required section / meaning: 満たす必要のある節の意味と原適用条件。 / descriptor: required field / meaning: 節に属する欄の意味・要否の条件。節のN/Aを全欄へ一律転写しない。 / descriptor: relation / meaning: 関係の種類・向き・両端identity/revision。名称類似を意味関係にしない。 / descriptor: 意味owner / meaning: 項目の意味を持つ責任者。製品判断や実運転のownerと分ける。 / descriptor: trace / meaning: source/provenance、項目根拠と知識revisionへの参照。 / descriptor: negative oracle / meaning: 契約が不成立になる条件と検証で観測する差異。 / descriptor: measurement / meaning: 適用義務の計測観点・根拠とoracleの関係。実値を創作しない。 / descriptor: completion / meaning: 適用義務の成立条件と対oracleの関係。project成立の裁定ではない。 / descriptor: downstream kind / meaning: 義務を渡す対象の種類。単体・接続・構成体の違いを残す。 / descriptor: supersession / meaning: 旧知識から新知識への明示関係。過去参照を黙って差し替えない。 |
 
 ## HELIXBRAIN-L3-032-F01 15項目の独立識別
 
@@ -84,5 +85,3 @@
 **obligation**: 常時の003/005/007/008/028を参照する。CORE返却時は019/022/030、CORE由来またはLABO評価を選んだ入力は018/020/025の該当source/scope/evaluationを参照する。未選択sourceは未観測。受渡し先の完了receiptを候補提供前の入力にしない。
 **oracle_ref**: HELIXBRAIN-L10-032-F09
 **failure_return**: 汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。
-
-| descriptor_meanings | descriptor: template identity / meaning: 機能としてのtemplate識別。filenameやviewの所在と分ける。 / descriptor: version / meaning: template内容の版。knowledge revision、pack contract/artifact版、version_targetと分ける。 / descriptor: layer/pair / meaning: 義務の適用層と対。HARNESSが定めた対を参照する。 / descriptor: applicability / meaning: 汎用問題・前提と適用条件。unknownを非適用にしない。 / descriptor: required input / meaning: 適用に必要な入力の意味と根拠。定義と案件値を分ける。 / descriptor: required section / meaning: 満たす必要のある節の意味と原適用条件。 / descriptor: required field / meaning: 節に属する欄の意味・要否の条件。節のN/Aを全欄へ一律転写しない。 / descriptor: relation / meaning: 関係の種類・向き・両端identity/revision。名称類似を意味関係にしない。 / descriptor: 意味owner / meaning: 項目の意味を持つ責任者。製品判断や実運転のownerと分ける。 / descriptor: trace / meaning: source/provenance、項目根拠と知識revisionへの参照。 / descriptor: negative oracle / meaning: 契約が不成立になる条件と検証で観測する差異。 / descriptor: measurement / meaning: 適用義務の計測観点・根拠とoracleの関係。実値を創作しない。 / descriptor: completion / meaning: 適用義務の成立条件と対oracleの関係。project成立の裁定ではない。 / descriptor: downstream kind / meaning: 義務を渡す対象の種類。単体・接続・構成体の違いを残す。 / descriptor: supersession / meaning: 旧知識から新知識への明示関係。過去参照を黙って差し替えない。 |

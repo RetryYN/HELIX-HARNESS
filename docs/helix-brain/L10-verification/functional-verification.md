@@ -21,6 +21,9 @@
 | layer | L10 |
 | pair | P3: L3↔L10 |
 | category | functional |
+| execution_entry | 承認済みL3、固有義務集合、下位の実証明receipt、組合せ契約、同revision/scopeのoracleがそろってから実行する。下位receiptを左L3の起草前提にしない。参照共通契約の不足は実行停止条件。 |
+| system_specific_obligation | 項目別の不足が知識供給→CORE材料返却でも保存され、知識受領と案件義務充足が別に示されること。局所の15項目存在確認や下位greenだけでは証明されない。 |
+| completion | 必要caseの実観測と下位receipt/固有義務/組合せ契約の照合が揃い、未観測・未完は残る。Integrated→VerifiedはHARNESS022/056の契約へ渡し、PO Acceptedを生成しない。 |
 
 ## HELIXBRAIN-L10-032-F01 15項目の独立識別
 
@@ -111,7 +114,3 @@
 **failure_observation**: 定義欠落と接続未成立を分離し、知識owner/CORE/OSへ原因別に返す。
 **proof_needed**: 対象requirement/oracle revisionとscope、局所/接続の下位証明、実際の入出力と副作用観測、相違とBackflow先。実行前oracleと実観測を分ける。
 **execution_state**: not_executed
-
-| execution_entry | 承認済みL3、固有義務集合、下位の実証明receipt、組合せ契約、同revision/scopeのoracleがそろってから実行する。下位receiptを左L3の起草前提にしない。参照共通契約の不足は実行停止条件。 |
-| system_specific_obligation | 項目別の不足が知識供給→CORE材料返却でも保存され、知識受領と案件義務充足が別に示されること。局所の15項目存在確認や下位greenだけでは証明されない。 |
-| completion | 必要caseの実観測と下位receipt/固有義務/組合せ契約の照合が揃い、未観測・未完は残る。Integrated→VerifiedはHARNESS022/056の契約へ渡し、PO Acceptedを生成しない。 |
