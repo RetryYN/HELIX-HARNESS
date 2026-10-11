@@ -1347,3 +1347,13 @@ revision 001の既存L11 bytesとfixtureは保持し、ここではsource訂正r
 - **不足・4候補**：template必要inputについて、質問、矛盾、derived requirement candidate、N/A判断候補へ返す各例を示す。field定義自体の欠落と、定義済みfieldの製品要求値未決を混ぜず、source/field identity、元revision/scope、未完義務と返却先を保つ。分類不明、AIの補完、口頭のみの返却、別template成功での相殺は未解決とする。BRAIN受領可能な値unknownでも製品義務は未完、候補返却は人間合意やOS ticket発行ではない。
 - **変更・局所影響**：同じtemplateの旧新版について、適用条件/必須field/negative oracle/completionの意味変更、意味を変えないview更新、製品scope外の変更を与える。要求/義務/artifact/対検証の影響集合、旧版参照、再評価理由を期待oracleへ照合する。filename/digestだけ更新して移管完了、UnknownをUnaffected、無関係な有効scopeの一律失効は不合格。OSの使用版/stateをCOREが直接更新しない。
 - **未見・境界**：作成側に伏せた別domain/actorまたは同scopeの変更位置で、適用setと固有義務、不足の返却先、影響根拠を照合する。候補/受領から要求採択・設計成立・pair成功を生成した場合は不合格。scope外・oracle未定は未評価を保持し、全seed/全知識を観測済みにしない。schema/algorithm、実行fixture、旧source全移管、L3再開をこの静的案から成立させない。
+
+### HARNESS-L2-089 全資産棚卸し・充足度mappingの対L11候補（未採択）
+
+**正常例**：対象repository Rの同じsnapshot Sと列挙根拠で全資産を受け、8カテゴリと拡張能力の分類、資産から同じrevision/scopeの照合基準への対応を追える。複数カテゴリの一資産は重複して充足数を増やさない。存在する資産でも内容が基準を満たさない場合は不足をreport/listへ示す。基準未決や読めない内容はunknown／未照合として残す。拡張能力を後続候補・trace hint・CI summaryへ分類し、初期必須導線へ昇格させない。
+
+**負例**：hookだけ未列挙、testsだけ未読、未分類資産の無断除外、別snapshotのdocs結果、同じtemplateの二重計上、存在するだけのskillを義務充足とする、基準なしの充足宣言、W11/W12/W16拡張の省略またはPhase 0必須化を、一つずつ混入する。該当資産／カテゴリ／基準の不足と戻し先を識別し、他の成功や固定件数で全量／全充足を生成しない。旧doctorの0件・旧inventoryのclosed印・GitHubのcloseは現行の成立根拠にしない。
+
+**unknown・回復・未見例**：列挙根拠とread scopeがrepository全体を覆うか不明、snapshotがstale、asset identityが未解決、照合基準が欠落した例を区別し、不明範囲を不存在／成功へ変えない。source/inputまたは要求・設計ownerが不足を補った後、元の対象revision/scope・不足履歴と新根拠を結んで再照合する。未公開のカテゴリ抜け、拡張asset、部分読取、別版の基準を含むfixtureで、既知の名前や件数だけでは網羅性・充足が成立しないことを確認する。この候補段階でfixtureを実行済みとは主張しない。
+
+**成立範囲**：棚卸し・意味照合unit固有の条件を確認する。Full Reverse全体、入先サービス、接続／構成体、実CI／runtime、旧FR33全移管を、このunitのreport生成だけで完了にしない。新規version_targetは指定しない。
