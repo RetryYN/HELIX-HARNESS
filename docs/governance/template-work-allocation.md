@@ -256,3 +256,17 @@ scope制限も採用対象である。原文の1.0境界にある本番chaos等�
 [26seedの参照探索記録](audits/template-reference-traversal-2026-10-12.json)は、契約の関係欄と適用条件・必須入力を原文行へ束縛する。省略形と範囲を展開し、MSG001/004/005からの参照経路を記録した。名前だけを無条件に辿ると26候補全体へ届くが、これは全件を初回に必要とする根拠ではない。AWS条件、節ごとの適用、主pairと検証時点、意味参照と実装依存を保持し、選択operation/sourceに対する必要集合は別に照合する。
 
 関係欄だけの探索であり、40card本文、全field由来参照、各原資料と旧consumerの閉包は未確認である。MSG005の本文にあるMSG002参照は対象外参照として保全する。参照循環から互いの完成receiptを知識比較の前提にせず、VT001/102と4cardの限定採用、MSGCONTENT未回答、各候補の状態を保持する。次は実際に選ぶ内容・版・条件・未決入力を各ownerへ結ぶ。参照の到達や件数からIssue完了・L3再開・全体最小集合の確定を生成しない。
+
+## 初回参照知識の契約内容候補
+
+[SDOP001〜005・VT103〜106の意味候補](../helix-brain/candidates/first-cycle-reference-template-knowledge.json)は、既存3MSGが参照する9件の契約・負例・完了と本体を、032の15比較項目へ結ぶ。26件の適用索引から、参照先の知識内容の比較へ進める材料である。各値に原文範囲を付け、SDOPの未定義supersession、欄別meaning/要否/oracle・trace/測定の不足も残す。候補に15キーがあることを全定義完成の証拠にしない。
+
+| 参照内容 | 保持する意味 | 比較に残す不足・適用の境界 |
+|---|---|---|
+| SDOP001〜003 | 動作記録の利用者・相関・分類/保持、根拠付き非機能値と受入、気づく/直す/戻す方式と担当 | 静的/非稼働は原文条件で理由付きN/A。例の数値・製品名を採用しない。復元/rollback実績は後続運用の入力 |
+| SDOP004/005 | 規則・状態×イベント・異常系4問・冪等性からcaseへ結ぶ。外部依存の版固定・更新owner/EOL・adapterと例外 | 未決は上流へ戻し、未決リスト掲載を解決済みにしない。MSG004とは行参照で二重正本を避ける。auto-mergeの例は採用しない |
+| VT103〜106 | 総合固有義務、境界、詳細契約、実装前Red/Greenを各pairで比較。template記入完了と状態昇格を分ける | 実L3/設計/oracle/下位proof/実行receiptは未供給。主kind/pairを排他的な適用にせず005へ戻す。技法早見/共通cardの参照を内容全体の採用にしない |
+
+汎用知識はBRAIN、製品への適用・義務・不足はCORE、使用set/版・案件記録はOS、工程/状態意味はHARNESSへ保持する。この9件は未採用で、既決SEEDFIRSTもMSGCONTENTの固定payloadも変更しない。BRAIN007/025の知識昇格・LABO評価・OS登録/振分け・独立検証は免除しない。source全文の移管・全体最小集合・欄の完全意味比較・正式schema/runtime・L3再開は未完のままである。
+
+旧JSON authority19〜60の意味/view・portfolio/pair、旧verification phase28〜40/73〜79のbasis/condition/evidence、旧ddd-tdd-rules21〜24の契約先行と欠陥検出Redを読取り起点に意味再導出した。旧層名・G番号・evidence形式・旧runtime/CIは移さず、原文seedが既に保持する現行pairと責務へ対応付ける。新しい要求・版・許可・gateは加えない。
