@@ -979,10 +979,13 @@
         "HELIXLABO-L2-055",
         "HELIXINTELLIGENCE-L2-010",
         "HELIXINFRASTRUCTURE-L2-003",
-        "HELIXINFRASTRUCTURE-L2-025"
+        "HELIXINFRASTRUCTURE-L2-025",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008"
       ],
       "condition_and_role": "割当・実行の操作時必須：ticket、配置案、Bench水準/未評価、SECURITY制約、INFRA資源。人代行ならINT066。将来Worker結果は開始入力にしない。未採択018 HIL-NFR-36追補を本範囲に入れない。",
-      "pair_oracle": "累積予算/期限/lease/HEAD/未完義務を継承し、作成者の自己承認を独立reviewにしない。"
+      "pair_oracle": "累積予算/期限/lease/HEAD/未完義務を継承し、作成者の自己承認を独立reviewにしない。",
+      "reference_mapping_basis": "採択018の「SECURITYの権限・制約」をSECURITY007のWorker制約と008の操作authorityへ対応付ける。018原文に番号があるという主張ではない。各契約の安全依存003/005/006/016等は未展開endpointへ保持し、省略・optional化しない。"
     },
     {
       "identity": "HELIXOS-L2-019",
@@ -1060,7 +1063,14 @@
         "HELIXINTELLIGENCE-L2-010",
         "HELIXINTELLIGENCE-L2-066",
         "HELIXLABO-L2-054",
-        "HELIXLABO-L2-055"
+        "HELIXLABO-L2-055",
+        "HELIXSECURITY-L2-003",
+        "HELIXSECURITY-L2-005",
+        "HELIXSECURITY-L2-006",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-015",
+        "HELIXSECURITY-L2-016"
       ],
       "condition_and_role": "未評価初回を選ぶ場合だけ6安全条件と固定oracle/人確認分担が必須。SEC003005006007008016と該当資源を省かない。020実装を前提にせず同契約の人の証拠を使える。",
       "pair_oracle": "性能未評価とauthority/safety/oracle不足を別にし、成功runから評価済みを生成しない。"
@@ -1506,6 +1516,90 @@
     {
       "identity": "HELIXOS-L2-007",
       "reason": "共通原event/evidence/feedback lifecycle。候補、受領、解決を区別。正本/source/ownerのauthorityを上書きしない。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-003",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。隔離契約。その先のproject/環境/宣言接続、構成source・actor・assignmentの条件は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-004",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。宣言/構成integrity。その先のsource/版・対象構成/関連正本の条件は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-005",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。credential境界。その先の006/007/008・資産分類・実credential遮断/利用条件は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-006",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。egress境界。その先の016の1.0分類、CONNECT論理接続、INFRA実network経路・005/007/008条件は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-007",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。Worker制約。その先のWorker実行契約、OS assignment、INFRA実資源、003/005/006/008の依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-008",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。操作authority。その先の003/004/005/006とOS進行・有効権限/scopeの依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-001",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。資源identity/状態。その先の宣言source/CORE設計・Worker/観測契約の依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-002",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。desired/actualと承認設計。その先のCORE設計/資源状態/変更・観測の依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-005",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。変更前後/backup/restore/rollback。その先の資源/設計/SECURITY・Worker/検証条件は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-006",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。独立復旧。その先の005、独立復旧資源/path、SECURITY authorityの依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXLABO-L2-001",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。集積/provenance/状態。その先の1.0各source接続021〜030と選択source側の安全依存は未展開。058の個別呼出し条件と全source対応能力を区別し、全対応義務を消さない。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXLABO-L2-028",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。Worker観測source。その先のOS assignment/result/sourceとconnector/版/scope/data-use依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-015",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。資産identity/source来歴。OS027の6条件の第一条件から参照する。その先の原source/owner/revision/分類契約の依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-016",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。分類の1.0基盤。OS027とSECURITY006から必要な分類source/利用許可の依存は未展開。1.x sink enforcementの前倒しはしない。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
     }
   ],
   "other_endpoints": [
@@ -1541,6 +1635,7 @@
     }
   ],
   "remaining": [
+    "PR2925で入口条件を照合したSECURITY003〜008/015/016、INFRA001/002/005/006、LABO001/028の先の安全/資源/観測契約依存を再帰照合する。未展開endpointとして保持し、参照資料や実値未供給の終端へ置換しない。LABO021〜030の対応能力と選択sourceの個別呼出しを区別する。",
     "選択知識の意味採用範囲から初回著述の適用集合/最小親集合を固定する（参照node数では決めない）。",
     "実operation/source/条件が未供給の枝はunknownを保持し、正式な利用要求とpack依存宣言へ束縛した再帰閉包は後続に残る。",
     "停止中のschema/実装/検証/CI等を含む前提機構の具体的実施scope・証拠と、L3再開との順序を判断材料にする。",
@@ -1568,5 +1663,11 @@
     "L11_sha256": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
     "coverage": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
     "result": "本文の250候補から採択を継承しない/未採択追補というmetadataは判断前。9/29の003対象digestはNFR-REG追補を含む。今回の意味照合から追補を除外しない。新しい採用/再承認ではない。"
+  },
+  "review_corrections": {
+    "request": "GOV2933CROSSOWNERDEPENDENCYREVIEW01",
+    "comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2933#issuecomment-6111815343",
+    "F1": "12件とSECURITY015/016の未展開範囲をendpoint/remainingへ明記。47nodeの完了をG2全体完了にしない。",
+    "F2": "OS018へ007/008を意味対応として、OS027へ明示安全条件003/005/006/007/008/015/016を参照edgeとして保持。"
   }
 }
