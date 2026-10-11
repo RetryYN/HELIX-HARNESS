@@ -18,7 +18,7 @@
     "HARNESS-L2-052": "1.0",
     "HARNESS-L2-053": "1.0",
     "HARNESS-L2-009": "1.0",
-    "HARNESS-L2-005": null,
+    "HARNESS-L2-005": "1.0",
     "HARNESS-L2-015": "1.0"
   },
   "status": "draft_not_approved",
@@ -192,15 +192,30 @@
             29,
             62
           ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "lines": [
+            319,
+            319
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md",
+          "lines": [
+            10,
+            11
+          ]
         }
       ],
       "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
       "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
-      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。"
+      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "source_limit": "HCV4-L11-003/004は現行L11の移管条件を起点とする。archive/root/docsでIDと語句を検索したが直接の旧原文行は未特定であり、現行crosswalkを旧原文の代替出典にしない。NIO候補全件の採用ではなく現行005へ移管済みの回復結果分離を具体化する。"
     }
   },
   "remaining": [
-    "053の042参照は未決、JSON原子確定のOS053、命名/trace/対/DDD-TDD等は別pairで起草・承認する。",
+    "053の042参照は未決。OS053は別pairの承認記録へ結ぶ。005/015の検証規範は本pairで起草し、旧固有GreenDefinition/history等の未移管範囲を別に保持する。命名/trace/対などの未成立owner契約と実物bindingは残る。",
     "呼出し実運転に使う認可/隔離/資源/記録/再開のowner-qualified契約を当該操作で束縛する。",
     "実装/CI/切替/デプロイ/実行/PO L11受入は本pairの承認から成立しない。通常L3全体の再開はPO Acceptedの範囲に限る。",
     "CORE009はBRAIN032/030・HARNESS041/025/026/004/008等のowner-qualified契約と実使用版を適用操作で束縛する。OS002の案件記録と安全/資源/計測・実物受入は未成立。",
@@ -246,9 +261,9 @@
       "scope_basis": "初回3主対象のStage1は10/12再開判断を使用。既存routing合意とCOREAPPLYを保持する。"
     },
     "HARNESS-L2-005": {
-      "version_target": null,
+      "version_target": "1.0",
       "sequence_stage": null,
-      "basis": "既存routing container、DDDSTRICTは版指定追加なし",
+      "basis": "10/10規律版判断で既決1.0。DDDSTRICTはその版を保持し、歴史的Stage未割当は別軸で保持",
       "scope_basis": "10/12前提形成へ必要な検証規範のみ著述する。全旧atomのsuccessorや全能力stage割当ではない。"
     },
     "HARNESS-L2-015": {
@@ -316,6 +331,7 @@
       "current_l2": "docs/helix-harness/L2-requirements/product-requirements.md",
       "current_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "decisions": [
+        "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
         "docs/governance/decisions/dddstrict-adoption-po-decision-2026-10-11.md",
         "docs/governance/decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md",
         "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
@@ -330,6 +346,7 @@
       "current_l2": "docs/helix-harness/L2-requirements/product-requirements.md",
       "current_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "decisions": [
+        "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
         "docs/governance/decisions/dddstrict-adoption-po-decision-2026-10-11.md",
         "docs/governance/decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md",
         "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
@@ -385,6 +402,13 @@
       "title": "適用・unknown・未見の意味証拠",
       "obligation": "適用規律のidentity/根拠、対象revision/scope、oracle/実結果、違反/不足箇所、未評価範囲と戻し先を既存005証拠条件へ結ぶ。domain/TDD/結合対象無しと入力不明/未実行を区別し、非適用は009の理由/判定者/revision/再評価条件へ結ぶ。5規律の一律実行や新gateを追加しない。",
       "oracle_ref": "HARNESS-L10-005-N01"
+    },
+    {
+      "id": "HARNESS-L3-005-N02",
+      "parent": "HARNESS-L2-005",
+      "title": "回復結果の独立した判定",
+      "obligation": "backupの存在、restore成功、rollback成功、恒久修復、再発防止を独立した結果として対象revision/scope/環境/oracleへ結ぶ。一結果から他結果を生成せず、個別製品の実結果は当該製品のL11/L10/L12で判定する。HARNESSはRTO/RPOや環境/保持期間を全製品へ固定しない。",
+      "oracle_ref": "HARNESS-L10-005-N02"
     }
   ],
   "base_l3_l10_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902"
