@@ -231,7 +231,7 @@ field locatorは候補内の原文対応であり、正式IDやruntime keyでは
 
 ## MSGCONTENT：初回要求整理へ採用する意味内容の固定案
 
-[意味JSON候補](../helix-brain/candidates/first-cycle-design-template-knowledge.json)の`adoption_proposal`を固定案とする。対象はMSG001/004/005の3件に限り、各templateのidentity・原候補版・15semantic_descriptorsと、原文の「1.0の境界」「限界」の意味を、今後の要求整理の入力へ採用する案である。現在は未回答、`authority_effect: none`。新しい要求identityや版指定は足さず、候補のkey/locatorを正式schemaやruntime keyにしない。[範囲照合記録](audits/msg-content-adoption-proposal-2026-10-12.json)は原文・既決責務・3件共通の15観点を各件へ適用した45項目の値照合、選択payloadとscope制限を示す。[訂正記録](audits/msg-content-adoption-proposal-2026-10-12-r2.json)で、共通観点と個別の値照合を区別し、固定前の参照知識メモが当時の記述であることを明示する。
+[意味JSON候補](../helix-brain/candidates/first-cycle-design-template-knowledge.json)の`adoption_proposal`を固定案とする。対象はMSG001/004/005の3件に限り、各templateのidentity・原候補版・15semantic_descriptorsと、原文の「1.0の境界」「限界」の意味を、今後の要求整理の入力へ採用する案である。2026-10-12、POは[限定採用の判断記録](decisions/msgcontent-knowledge-po-decision-2026-10-12.md)の原文どおり3件の意味内容を採用した。意味JSONは同じファイルで採否範囲と判断参照を更新し、`adoption_proposal`とcandidate metadataは提示時の来歴として保持する。限定採用の効力は判断記録のmain統合時に成立し、運用knowledgeのaccepted/matureへの昇格は行わない。新しい要求identityや版指定は足さず、候補のkey/locatorを正式schemaやruntime keyにしない。[範囲照合記録](audits/msg-content-adoption-proposal-2026-10-12.json)は原文・既決責務・3件共通の15観点を各件へ適用した45項目の値照合、選択payloadとscope制限を示す。[訂正記録](audits/msg-content-adoption-proposal-2026-10-12-r2.json)で、共通観点と個別の値照合を区別し、固定前の参照知識メモが当時の記述であることを明示する。
 
 | 契約項目 | 3件で保持する内容 | 採用案から確定しないもの |
 |---|---|---|
@@ -255,7 +255,7 @@ scope制限も採用対象である。原文の1.0境界にある本番chaos等�
 
 [26seedの参照探索記録](audits/template-reference-traversal-2026-10-12.json)は、契約の関係欄と適用条件・必須入力を原文行へ束縛する。省略形と範囲を展開し、MSG001/004/005からの参照経路を記録した。名前だけを無条件に辿ると26候補全体へ届くが、これは全件を初回に必要とする根拠ではない。AWS条件、節ごとの適用、主pairと検証時点、意味参照と実装依存を保持し、選択operation/sourceに対する必要集合は別に照合する。
 
-関係欄だけの探索であり、40card本文、全field由来参照、各原資料と旧consumerの閉包は未確認である。MSG005の本文にあるMSG002参照は対象外参照として保全する。参照循環から互いの完成receiptを知識比較の前提にせず、VT001/102と4cardの限定採用、MSGCONTENT未回答、各候補の状態を保持する。次は実際に選ぶ内容・版・条件・未決入力を各ownerへ結ぶ。参照の到達や件数からIssue完了・L3再開・全体最小集合の確定を生成しない。
+関係欄だけの探索であり、40card本文、全field由来参照、各原資料と旧consumerの閉包は未確認である。MSG005の本文にあるMSG002参照は対象外参照として保全する。参照循環から互いの完成receiptを知識比較の前提にせず、VT001/102と4cardの限定採用、MSGCONTENTの限定採用と運用promotion未実施、各候補の状態を保持する。次は実際に選ぶ内容・版・条件・未決入力を各ownerへ結ぶ。参照の到達や件数からIssue完了・L3再開・全体最小集合の確定を生成しない。
 
 ## 初回参照知識の契約内容候補
 

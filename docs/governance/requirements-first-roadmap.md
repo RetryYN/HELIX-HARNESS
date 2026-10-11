@@ -165,7 +165,7 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 
 | 操作 | 入力元の案・owner | 未決と適用の境界 |
 |---|---|---|
-| 知識提供・意味導出 | 採用範囲に合致したSEEDFIRST意味JSONと、MSG004/001/005の意味candidate → BRAIN/CORE | MSGCONTENT未回答のcandidateを採用入力にしない。参照SDOP/VT内容・最小集合・適用条件が残る。実readにはSECURITY境界を適用する |
+| 知識提供・意味導出 | 採用範囲に合致したSEEDFIRST意味JSONと、MSG004/001/005の意味candidate → BRAIN/CORE | MSGCONTENTは[固定案どおりの限定採用](decisions/msgcontent-knowledge-po-decision-2026-10-12.md)とし、同じ意味JSONの採否範囲へ戻す。運用knowledge promotionは実施していない。参照SDOP/VT内容・最小集合・適用条件が残る。実readにはSECURITY境界を適用する |
 | CORE→OSの受渡し・原記録 | CORE009の提案/選択/使用set、義務・N/A・不足・影響 → OS002の案件記録 | 将来出力のownerを定める案。実set・保存先・端契約版・receiptを捏造しない |
 | 割当・Worker実行 | OS ticket/assignment、LABO水準/INT配置案、INFRA対象資源/容量/Work-Change観測、SECURITY制約 → Worker環境 | 実task・資源source・分類・authority・制約適用は未供給。未評価初回027は既決6条件を満たす場合だけ |
 | 結果・資源観測の受渡し | OSが受領したWorker結果/receipt → LABO057/028/056。INFRA001/004の原観測 → LABO026 | 両者は別source。未選択は未観測。057の既決人手receiptを026の代行許可へ転用しない。結果は実行後出力で、受領は評価成功ではない |
@@ -241,7 +241,7 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 | BRAIN030、LABO026/028/054、INT061 | Stage 4、2b、5に分かれる | 意味参照・選択source入力・実outputを分け、Stage番号だけを実行条件にしない |
 | INFRA012/014 | 1.0より後 | 初回へ前倒しせず、SECURITY007とLABO026の必要条件は保持 |
 
-10/3の履歴・374件の分母・承認parentは不変とする。[件数訂正](audits/first-cycle-stage-correspondence-2026-10-12-r2.json)は、元記録の文章にあった44/41を配列どおり45/42へ訂正する。今回の照合は3件を新たなStageへ配属するものではない。必要知識と選択operation/sourceを照合した次の再開順序・scope固定案で扱い、10/10巻き戻しのPO条件へ戻す。現行L3以下の停止、MSGCONTENT未回答、#2846の未完を保持する。
+10/3の履歴・374件の分母・承認parentは不変とする。[件数訂正](audits/first-cycle-stage-correspondence-2026-10-12-r2.json)は、元記録の文章にあった44/41を配列どおり45/42へ訂正する。今回の照合は3件を新たなStageへ配属するものではない。必要知識と選択operation/sourceを照合した次の再開順序・scope固定案で扱い、10/10巻き戻しのPO条件へ戻す。現行L3以下の停止、MSGCONTENTの限定採用と運用promotion未実施、#2846の未完を保持する。
 
 ## 既存の作業と正本
 
