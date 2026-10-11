@@ -109,13 +109,13 @@ schema・通信方式・実装配置・具体値は、この整理から確定�
 | CORE出力→OS002 | 提案・選択・使用setを分け、要求revision/scope、template版、義務・成果・pair・event・因果参照へ結ぶ。適用意味はCORE、実際の案件記録はOS | 元記録から選択と利用を再構築する。受領を使用済み、ACKを解決、別義務の成功を消込へ変換しない。未完義務受理はOS023、記録不備はOS、意味不足はCOREへ |
 | OSのticket→Worker→検収→Backflow | OS017/018/019/020/023の作業具体化・割当・原記録・検収・未完義務handoffと、HARNESS015/022の凍結oracle・結果を同じrevision/scopeへ結ぶ | 実装前Red→最小実装→Greenと独立reviewを別証拠で追う。別HEAD結果、期限切れ、部分実行、未回収は未完。oracleはHARNESS、割当/記録はOS、認可はSECURITYへ |
 
-BRAIN→CORE、CORE→OS、検収→Backflowの各辺は別のconnectionである。個別の提供・受領を一周の成功へ昇格させず、各端の契約版・互換・scope・義務と、構成体固有のjoin/停止条件を照合する。CORE→OSには既存の要求上の接続identity `HXT-CORE-02` がある。今回のtemplate適用・案件記録との対応と、実接続に残る契約版・scope・登録・受渡し形式は[接続照合](#coreosの既存接続とtemplate記録への対応)に分けて残す。Pythonは009の意味処理の候補経路で、DB/Git/GitHub write、割当、lease、認可、実行は各操作ownerに残す。Python候補の未採択条件は#1799/#1801で別に照合する。
+BRAIN→CORE、CORE→OS、検収→Backflowの各辺は別のconnectionである。個別の提供・受領を一周の成功へ昇格させず、各端の契約版・互換・scope・義務と、構成体固有のjoin/停止条件を照合する。CORE→OSの既存条件には追跡用の詳細ID `HXT-CORE-02` がある。今回のtemplate適用・案件記録との対応と、実接続に残る契約版・scope・登録・受渡し形式は[接続照合](#coreosの既存接続とtemplate記録への対応)に分けて残す。Pythonは009の意味処理の候補経路で、DB/Git/GitHub write、割当、lease、認可、実行は各操作ownerに残す。Python候補の未採択条件は#1799/#1801で別に照合する。
 
 ### CORE→OSの既存接続とtemplate記録への対応
 
-要求上の接続identityは既存の **`HXT-CORE-02`** である。[HARNESS L2](../helix-harness/L2-requirements/product-requirements.md)の詳細ID表と[対L11](../helix-harness/L11-acceptance/product-acceptance.md)は、コア提供からOSのticket発行・検収へ版と義務を辿り、提供・判断・発行・検収の責務を区別する。[9/28の合意](decisions/helix-harness-requirements-po-decision-2026-09-28.md)が固定した本文にこの表が含まれる。固定時の「未採否」表記を現行の採否にせず、親主要求は002／008のまま保持する。009を新しい親へ付け替えたり、初回対象専用の接続IDを新設したりしない。
+**`HXT-CORE-02`** は、9/28固定本文に含まれるCORE→OSの既存条件を追跡する詳細IDである。[HARNESS L2](../helix-harness/L2-requirements/product-requirements.md)の詳細ID表と[対L11](../helix-harness/L11-acceptance/product-acceptance.md)は、コア提供からOSのticket発行・検収へ版と義務を辿り、提供・判断・発行・検収の責務を区別する。[9/28の合意](decisions/helix-harness-requirements-po-decision-2026-09-28.md)が固定した本文にこの表が含まれる。HXT表を含む節は現行も「未採否の整理案」と記述しており、この詳細IDを個別に採択した新要求とは扱わない。対象条件の採否根拠は親主要求002／008の合意であり、詳細IDと主要求を区別する。009を新しい親へ付け替えたり、初回対象専用の接続IDを新設したりしない。
 
-以下は[CORE009追補](decisions/core-template-009-supplement-po-decision-2026-10-10.md)と[OS002追補](decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md)の意味を、この既存接続の照合材料へ対応付ける。HXT-CORE-02の一般的な工程接続だけで、template固有の全保証や各辺の成立を代用しない。[固定source照合記録](audits/core-os-template-connection-trace-2026-10-11.json)に本文revision・digest、旧source、保持点と限界を残す。
+以下は[CORE009追補](decisions/core-template-009-supplement-po-decision-2026-10-10.md)と[OS002追補](decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md)の意味を、この既存接続の照合材料へ対応付ける。HXT-CORE-02の一般的な工程接続だけで、template固有の全保証や各辺の成立を代用しない。[固定source照合記録](audits/core-os-template-connection-trace-2026-10-11.json)に本文revision・digest、旧source、保持点と限界を残す。[採否の表現の訂正記録](audits/core-os-template-connection-trace-2026-10-11-r2.json)は詳細IDと親要求の区別を補う。
 
 | COREから引き継ぐ意味材料 | OSが記録・運転するもの | 対L11へ戻す負例と責務境界 |
 |---|---|---|
@@ -169,7 +169,7 @@ BRAIN→CORE、CORE→OS、検収→Backflowの各辺は別のconnectionであ�
 
 初回対象のBRAIN/CORE/OS資産だからpublic／非restrictedとは推定しない。対象資産の分類・利用許可・実環境適用はまだ供給されていないため、この循環に027を利用できるとの判定は未成立である。利用できなければ、通常の018の材料・authority・安全依存を充足する経路へ戻し、027の条件を弱めない。人の代行と確認も実担当・対象・revision・scope・receiptが要り、この文書から人に作業を割り当てない。
 
-これにより初回の供給経路は既決契約から特定できるが、案件のinput値、代行/確認担当、実評価oracle、資産分類、制約適用、各辺の契約版・受領証拠は未供給である。CORE→OSの要求上のidentityは `HXT-CORE-02` に辿れるが、初回対象への契約版・scopeの束縛、実登録・受渡しと、実使用operation/sourceの安全・接続・資源・計測の依存閉包は引き続き未完。#2905段落3、#2846、L3再開、製品setup成立をこの照合から完了にしない。
+これにより初回の供給経路は既決契約から特定できるが、案件のinput値、代行/確認担当、実評価oracle、資産分類、制約適用、各辺の契約版・受領証拠は未供給である。CORE→OSの既存条件は詳細ID `HXT-CORE-02` と親要求002／008へ辿れるが、初回対象への契約版・scopeの束縛、実登録・受渡しと、実使用operation/sourceの安全・接続・資源・計測の依存閉包は引き続き未完。#2905段落3、#2846、L3再開、製品setup成立をこの照合から完了にしない。
 
 旧RLO-FR-040:663〜666とRLO-AC-030:907、旧受入:43の未評価明示・scoreによるauthority非変更を保持する。旧provider defaultの固定policyや旧runtimeを採用せず、9/27補強の「性能評価なし」と「許可なし」の分離を9/28採択の027・066・056/057で意味再導出する。変更理由は現行のLABO水準・INT配置案・OS割当の責務を保った初回材料の整理であり、同じ既決要求の再承認を求めることではない。
 
