@@ -1,0 +1,51 @@
+{
+  "corrects": {
+    "revision": "b37ca35c3b7cc17edbb93863911f666737b221e9",
+    "path": "docs/governance/audits/first-development-scope-proposal-2026-10-11.json",
+    "sha256": "c7dddc94a1e922c6f677a14083fa63e850fe9c46c4c7d13709039fc30ad075dd",
+    "scope": "先行監査は不変。roadmapのCONNECT009未採択誤記を9/29条件付き採択Aに訂正。"
+  },
+  "finding": {
+    "id": "F1",
+    "severity": "Major",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2912#issuecomment-6109825946"
+  },
+  "decision": {
+    "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "identity": "HELIXCONNECT-L2-009",
+    "registration_revision": "MPR-RC-HELIXCONNECT-L2-009-002",
+    "condition": "条件付き採択：A。direction/orderは属性、feedbackは型付き戻り辺。操作ごとのunknown停止条件を分ける（訂正L11 `HELIXCONNECT-L11-009-002`）。",
+    "acceptance_revision": "HELIXCONNECT-L11-009-002",
+    "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+  },
+  "sections": [
+    {
+      "identity": "HELIXCONNECT-L2-009",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "start_line": 285,
+      "end_line_inclusive": 295,
+      "normalized_section_sha256": "d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f",
+      "matches_adopted_decision": true
+    },
+    {
+      "identity": "HELIXCONNECT-L11-009",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "start_line": 94,
+      "end_line_inclusive": 104,
+      "normalized_section_sha256": "07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1",
+      "matches_adopted_decision": true
+    }
+  ],
+  "correction_reason": "L2の候補metadataを採否として扱った誤り。採否は固定対象付きPO判断から読み、10/10で失効したL3/L10承認を根拠にしない。",
+  "operation_boundaries": [
+    "初回送信: 端点/接続identity/契約revision/適用authority不足はその辺を保留。feedback/loop/join/ACK不足だけで適格な初回送信を止めない。",
+    "feedback送信: reason/端点/契約revision/独立逆方向connection/authority不足はfeedback送信を保留。未送信return relationを保持。",
+    "loop: policy/上限/budget/期限/終端owner不足は追加retryを保留。初回可否を遡及変更しない。",
+    "parallel: join条件不足はjoin/composite完了だけ保留。各辺の適格性は別。",
+    "ACK/完了: ACK未着/対応不明はattemptのACK待ちを保持し、受領/operation/composite完了を生成しない。"
+  ],
+  "other_unadopted_reference_check": "追加表の未採択例として名指した引用はCONNECT009だけ。Python候補は候補全体の未採択条件を保持する表現で、既存032/009/002の採用条件を未採択にしない。周辺全revision/閉包の未完は先行記録へ保持。",
+  "static_scope": "009のL2/L11固定節digestとdecision一致。direction/orderは属性、feedbackはtyped return edge。新たな権限/transport/schema/policy/gateは作らない。",
+  "authority_effect": "none"
+}

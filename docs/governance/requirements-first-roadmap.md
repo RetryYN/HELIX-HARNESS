@@ -92,6 +92,48 @@ HARNESSの工程定義、COREの意味導出、BRAINの汎用知識、OSの案�
 
 schema・通信方式・実装配置・具体値は、この整理から確定済み扱いにせず、再開後の対象要件・設計と対検証で導出する。実装前test／oracleの定義・凍結、DDDの責務・命名、JSON正本と生成view、独立reviewを対象成果へ適用する。
 
+## 初回対象候補：templateの意味契約から案件の義務追跡まで
+
+初回対象の候補を、HELIX自身の非画面の開発に用いる「汎用templateの意味契約提供→製品への適用候補→案件の義務追跡」とする。主となる単体はBRAIN032、HARNESS009、OS002であり、各単体と接続・構成体を分けて扱う。JSONを読めることだけをBRAINの成立にせず、15項目の意味・不足を提供する032の全保証を対象とする。COREの適用判定とOSの記録運転も、別々の責務として残す。
+
+これは#2846と#2905を具体化するための**対象案**である。対象の選択、L3の再開順序・範囲は未決であり、10/10判断に従ってPOへ提示する。既存の「申請は承認後に編集できない」は比較例として保ち、この対象案を実在案件の承認済み要求・使用template集合・実行記録にしない。ここで初回対象を小さく区切ることは、1.0全体や本ロードマップの内部更新・復旧・支援・評価還流の義務を減らさない。
+
+### 主対象と、その接続で照合する内容
+
+以下の略号は各機構のL2 identityを指す。対受入は各L11の同じidentityへ戻す。032・009・002の追補は上記採用判断の固定本文を使い、候補metadataや版未指定を読み替えない。番号の列挙は有効依存閉包の確定ではなく、対象案が照合する契約の入口である。
+
+| 対象・操作 | 対象案で扱う入出力と責務 | 正常・負例・unknown／不足の戻し先 |
+|---|---|---|
+| BRAIN032単体 | knowledge identity/revision/sourceと汎用条件から、15項目のdescriptorと定義欠落・値未決・矛盾を提供する。知識版/stateと汎用の意味はBRAIN | 同じrevisionの項目を意味と根拠で比較する。項目欠落、製品値の混入、viewだけの意味更新は成立にしない。定義不足はBRAIN、製品要求値未決はCOREへ |
+| BRAIN030→HARNESS009 | 選択知識の全required fields、版・互換・query/scopeとreceiptを保持し、COREが対象要求のkind/domain/risk/layer/pairに応じた適用候補set・義務・不足質問・意味影響を導く | required/conditional/N/A/unresolved、N/Aの4属性、単体/接続/構成体の義務を区別する。候補母集合未定、版不一致、別scope、unknown条件は保留。knowledge不足はBRAIN、適用契約はHARNESS、製品要求値は要求形成へ |
+| CORE出力→OS002 | 提案・選択・使用setを分け、要求revision/scope、template版、義務・成果・pair・event・因果参照へ結ぶ。適用意味はCORE、実際の案件記録はOS | 元記録から選択と利用を再構築する。受領を使用済み、ACKを解決、別義務の成功を消込へ変換しない。未完義務受理はOS023、記録不備はOS、意味不足はCOREへ |
+| OSのticket→Worker→検収→Backflow | OS017/018/019/020/023の作業具体化・割当・原記録・検収・未完義務handoffと、HARNESS015/022の凍結oracle・結果を同じrevision/scopeへ結ぶ | 実装前Red→最小実装→Greenと独立reviewを別証拠で追う。別HEAD結果、期限切れ、部分実行、未回収は未完。oracleはHARNESS、割当/記録はOS、認可はSECURITYへ |
+
+BRAIN→CORE、CORE→OS、検収→Backflowの各辺は別のconnectionである。個別の提供・受領を一周の成功へ昇格させず、各端の契約版・互換・scope・義務と、構成体固有のjoin/停止条件を照合する。CORE→OSの具体的な接続identity・受渡し形式は未確定であり、既存OS002/017/023と各端契約の照合へ残す。Pythonは009の意味処理の候補経路で、DB/Git/GitHub write、割当、lease、認可、実行は各操作ownerに残す。Python候補の未採択条件は#1799/#1801で別に照合する。
+
+### 初回から必要になる周辺契約と、後続の拡張
+
+| 操作が選ばれた場合に照合するもの | 対象案での範囲と契約入口 | 未成立の扱い／後続へ残す範囲 |
+|---|---|---|
+| 読取・意味処理・案件記録・Worker実行 | SECURITY003〜008のproject/環境/設定/credential/egress/実行制約/操作authority。INFRA001/003/025の資源identity・容量・Worker対応、SECURITY024とINFRA010の実適用 | 読取とwrite/execute/install/update/deployを別操作として照合。read-onlyにも空write-setと対象scopeの前後確認を使う。制約未適用・authority unknownは該当操作を止め、hostへ迂回しない |
+| 知識・候補・記録・結果の受渡し | CONNECT001〜005の端点/契約登録、互換、通信、再送、traceと各端の業務契約。片側交換は006、複数辺の一周は007 | scope/版/期限/相関/冪等/結果を各辺へ結ぶ。ACKなし、再送の部分成功、互換staleは未完。通信方式・endpoint・schemaは設計後に導出。CONNECT009は[9/29の条件付き採択A](decisions/po-decision-2026-09-29-57candidates.md)に従い、方向/順序属性・型付きfeedback辺と訂正L11の操作別unknown条件を照合する。初回送信、feedback送信、追加retry、並列join、ACK/完了を分け、後段条件の欠落だけで独立して適格な初回辺を止めない |
+| 初回Workerの配置 | OS018が要求するLABO055のtask/model class水準、LABO054の受渡し、INTELLIGENCE010の配置案とOSへの受渡し。水準生成・配置案・OS割当を分ける | **初回からこの入力が必要**。未評価を評価済みにせず、根拠/適用scope不足はLABO/INTELLIGENCEへ戻す。初回実績の調達・評価入力と未評価時の許容範囲は未確定。Botや自動最適化を完成条件にしないが、この依存は後回しにしない |
+| 最初の実行・計測 | OS002/019の要求/template/義務/attempt/結果原記録、INFRAの資源観測、LABO001/002と選択source接続。時間・費用・負荷・失敗・再作業・未観測を対象構成へ結ぶ | 元記録集合、除外理由、版/環境、取得不能と未実行を保持。測定方法・分母・比較はLABO、原記録はsource。固定閾値、欠測=0、記録存在=改善成功を追加しない |
+| 内部更新・復旧 | 選択構成の旧新版、SECURITY010〜013/023の更新受入とartifact integrity、INFRA005〜010の復旧/再構築/OS状態接続、OS014の段階構成 | 内部デプロイ方針に従い、候補構成の検証と内部利用開始を別事象にする。適格な戻し先・互換・復旧検証未定なら更新は未成立。OS停止時の復旧はINFRA006の独立経路と別authorityを使い、停止中OSへの依頼で循環させない |
+| 支援・評価からの還流拡張 | 初回配置に必要な上記入力を土台に、INTELLIGENCEの診断/review/Bot候補、OS024の評価受渡し、LABO050/052とBRAIN/INTELLIGENCEへの個別接続へ広げる | 評価scopeと利用許可、原記録・比較条件・未観測を先に照合。BRAINへは汎用知識候補、INTELLIGENCEへは判断評価材料を返し、受領・候補数だけで採用/改善成功にしない。全Bot・学習・cloud拡張は初回の一律条件にしない |
+
+この表の各入口にはさらに依存がある。選択したoperation/sourceごとにHARNESS023の4区分へ当て、常時必須・操作時必須・選択source必須を閉じる。ここでは一段の照合先を示しただけで、全周辺要求の再帰的閉包・採用revision・実装成立は未検証である。未選択は未観測として保持し、必須の安全条件をoptionalにしない。
+
+### templateと再開順序に残る入力
+
+- 非画面という対象条件だけでSEEDFIRSTを全面適用しない。技術的不確実性の有無を要求ごとに確認し、合致した要求/受入部分に限りVT001/VT102とC01/C02/C08/C26の限定知識を使う。UI/PoCの非適用判定、required inputの値、適用者・revision・再評価条件はまだ案件値として与えていない。
+- unit/connection/compositeそれぞれのL3/L10・設計と対検証に必要なseed比較・最小集合・採用対象revisionを、26候補と旧6surface/6componentから導く。限定した要求/受入知識を全体最小集合や実装のtest設計へ代用しない。正式schema、renderer、pair/portfolio、parityの未完も保つ。
+- 対象案の主単体・各接続・周辺依存を既存Stage配属と照合し、POへ再開順序とscopeの固定案を提示する。009/032の10/10追補を10/3 rosterに無記録で差し込まず、OS002の版未指定を1.0指定へ変えない。HARNESS010/011/023等の共通契約を省いた「BRAINだけ先に実装」としない。
+
+環境条件は[対象案へ当てる整理](development-workspace-setup.md#初回対象案への環境条件の対応)へ結ぶ。対象選択、template集合、依存の閉包、初回配置根拠、再開scopeは未完であり、#2846/#2905はこの案の記録だけでは完了しない。[固定照合記録](audits/first-development-scope-proposal-2026-10-11.json)に入力revision・sourceと対受入の所在・未確定範囲を記録する。[訂正記録](audits/first-development-scope-proposal-2026-10-11-r2.json)はCONNECT009の採否の読み違いを訂正し、9/29の固定条件を照合する。
+
+旧CLAUDE:49〜63の仕組み先行・意味処理と外部作用分離、旧functional-release-slice-requests:23〜67の選択集合・局所影響・必要安全依存・復旧、旧design-template-json-authority:19〜60の意味正本/view/適用/portfolio/pairを起点にした意味の再導出である。変更は今回の準備目的に沿って現行032/009/002を対象候補として結ぶ点で、旧schema/Node固定/旧runtimeは移さない。10/10巻き戻しと旧弱点UTW-004/021/029を踏まえ、文書の対応・hash・自己申告だけを機構の成立としない。旧source全consumerの閉包は未完として保持する。
+
 ## 既存の作業と正本
 
 | 整理先 | 主に扱う範囲 | 要求・正本の入口 |
