@@ -46,7 +46,7 @@ target_authority_state
     → 対象revision付き人間decision
     → approved_revision
   L3／L10のdraft
-    → POの委任によるOpus・Fable一致の判断記録（GitHub上流運用モデル「L3／L10承認の委任」）
+    → POの委任による判断記録（成立条件はGitHub上流運用モデル「L3／L10承認の委任」を参照）
     → approved_revision
 
 carry_forward_state
@@ -70,6 +70,8 @@ work_projection_state
 ```
 
 `covered`は、successor ID、対象product、原意味atom、successor側の被覆、未被覆0件を一要求identityごとに確認した場合だけ成立する。意味変更、縮退、統合、retireは、対象revisionと変更前後を示した人間decisionが必要である。
+
+L3／L10の委任承認は[GitHub上流運用モデル「L3／L10承認の委任」](github-upstream-operating-model.md#l3l10承認の委任)を正とする。2026-10-08の成立条件の改定と旧条件の経過措置も同節から読む。委任条件の所在を示すことであり、[10/10巻き戻し判断](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)によるL3以下の停止を解除しない。
 
 ## fail-close規則
 

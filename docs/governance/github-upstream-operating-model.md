@@ -379,6 +379,44 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 - `CLAUDE.md`、利用者instructionの管理区間（`~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`）、PR／Issue template、scaffoldの説明は、本書の該当節を指すだけにし、規則の本文を複製しない。複製が見つかった場合は、本書の節を正として複製を指し示しへ置き換える。
 - 開発repoの運用規則は、製品（HELIX）の要求の根拠にしない。製品の要求で本書を書き換えない（2026-10-08の[判断記録](decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md)の判断3）。下の表の移管先は、機構ができたときに同じ守りを引き継ぐ要求であり、本書の規則を製品の要求にするものではない。
 
+### 文書規則と参照する側の対応
+
+#2903の集約は、以下の既存本文への参照を一か所へ寄せる。表は所在の案内であり、引用先に代わる規則本文ではない。現在の境界はAGENTS.md、authorityは対象revisionの判断記録、運用は本書、製品の意味は対象L2／L11から読む。
+
+| 照合する規則・区別 | 本文の所在 | 現在参照する側（consumer） | 未確定部分と戻し先 |
+|---|---|---|---|
+| 意味正本と生成表示・説明 | [JSON方針](decisions/brain-helix-core-po-intent-2026-09-25.md)、[JSONAUTH判断](decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md)、[BRAIN意味JSON](../helix-brain/knowledge/requirements-acceptance-template-knowledge.json) | BRAIN知識の整理、CORE適用、OS記録、生成viewの照合 | 意味JSONの採用範囲と生成Markdownを区別する。全seedのschema・rendererは未定。意味の不足はBRAIN／CORE、形式は再開後の対象設計へ |
+| 継続更新する文書と固定記録 | [AGENTS.md「再構築の原則」](../../AGENTS.md#再構築の原則)、本書「IssueとFeature Ticket」 | 文書編集者、decision／audit記録者、Issue投影とreview | living本文は同じpath、固定記録は対象commit／hashへ戻る。将来版を別のliving文書へ分裂させない。過去auditは訂正で上書きせず新記録へ |
+| 仮組みと正式な成果 | [作業入口](new-generation-start-here.md#現在許可される作業)、[Scaffold Binding](../../scaffold/README.md) | scaffold作成者、独立review、置換・撤去担当 | Bindingと検査結果は要求採用・実装許可ではない。正式置換は対象の上流成立後。#1866の残作業を文書の整理から完了にしない |
+| 機構・層・種類の配置、pathとidentity | [配置の基本案](decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md)、[方針6](decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md)、[Conceptの責務](../concept/helix-concept.md) | 対象別文書の編集者、将来の宣言／登録／パック設計者 | docsの既存配置を保つ。宣言・登録・記録・実行物の具体形式はL4へ。カットした設計とディレクトリを復元せず、基本案を実装許可にしない |
+| 要求ID・対検証・revision・状態 | [authority状態モデル](authority-state-model.md)、[L2入口](audits/source-rebaseline/l2-source-register.md)、本書「authority順序」 | L2／L11照合、判断記録、PR classと対象scopeのreview | 同じIDでも現行bytesへ旧承認を移さない。IDの所在だけで対oracleの意味被覆を証明しない。revision不一致は該当owner、意味変更は上流判断へ |
+| templateの意味・適用義務・案件記録 | [template分担](template-work-allocation.md)、[BRAIN032判断](decisions/brain-template-contract-032-po-decision-2026-10-10.md)、[CORE009判断](decisions/core-template-009-supplement-po-decision-2026-10-10.md)、[OS002判断](decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md) | BRAIN汎用知識、CORE製品適用、OS案件の版・義務・結果記録 | field定義の不足はBRAIN、製品値・適用義務の不足はCORE、案件記録の不足はOS。全体最小setと往復成立は#2846。限定[SEEDFIRST](decisions/seedfirst-knowledge-po-decision-2026-10-10.md)を全seed採用へ広げない |
+| PR作成・独立review・merge・配送 | 本書「作成側とレビュー対応側の責務」「governance／operation_change PRのmerge admission」「GUIレーンの運転と通知」 | AGENTS.md、CLAUDE.md、GUIローダ、両レーン、scaffold説明 | 上の移管表で未成立部分を保持。通知／ACKからreview・承認を生成しない。loader等の全consumerの移管は#1864／#1866と対象Bindingへ |
+| L3／L10の委任承認と停止 | 本書「L3／L10承認の委任」、[巻き戻し判断](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)、[ロードマップ](requirements-first-roadmap.md) | AGENTS.md、CLAUDE.md、authority状態モデル、再開準備の照合者 | 旧Opus・Fable一致の現行説明を本書への参照へ訂正。経過措置は保持。再開の前提成立・順序・scopeは#2846とPO指示へ。委任の存在から再開を生成しない |
+
+今回、CLAUDE.mdのinventory-first・更新履歴の複製はAGENTS.mdへ、AGENTS.md／CLAUDE.mdのGitHub運転と委任条件の複製は本書へ寄せた。Claude固有の旧sourceの所在とAI context生成器の未構築という現況はCLAUDE.mdに保持する（[review指摘の訂正記録](audits/document-rules-consolidation-2026-10-11-r2.json)）。authority状態モデルの遷移図に残っていた旧委任条件も本書への参照へ訂正した。これは既決の意味に追随する参照整理であり、運用の変更や新しい承認条件の追加ではない。利用者instruction・GUIローダ・scaffold内の個別consumerまで全件を移管した証拠ではない。
+
+### 現在の照合と、設計後の開発規律
+
+開発repoの運用と製品が提供する規律を混ぜない。以下の製品側の採用状態は[43件の1.0判断](decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)等の対象revisionから読む。ここには具体的な言語ルールやtool設定を新設しない。
+
+| 項目 | 現在の整理で使う根拠・用途 | 設計後に具体化する内容／残る照合 |
+|---|---|---|
+| 既存再利用 | AGENTS.md「再構築の原則」、[旧資産再利用統制](legacy-asset-reuse-control.md)。旧source・failure・consumerを先に確認する | 対象設計の依存・behaviorと完全一致／再導出／置換の選択を結ぶ。全資産の要否・移管は#1813。旧の未完だけを置換理由にしない |
+| 責務と依存方向 | Conceptと七大原則、HARNESS005・009。対象の意味ownerと対oracleを照合する | モジュール／接続の依存方向・不変条件trace・結合GWT等を設計と対検証へ。具体import境界やPython接続は対象設計へ。文書表だけで接続成立にしない |
+| 命名 | HARNESS048の要求と対L11、43件の1.0判断。責務語彙とrename影響の追跡を照合する | 言語・ファイル・型・識別子の表記、renameの参照・互換検査は対象設計から。旧kebab-caseを一律に移さず、旧coding-ruleの未移管条件は#1813／#1814へ |
+| 型 | 旧coding-rulesの型規律をsourceとして保全し、対象の入力・出力・revision・unknownを意味で区別する | Python／TypeScript等の型表現・schema・実行時検証・型検査commandは対象設計へ。旧no-explicit-any等を新世代で採用済みとせず、具体条件の保持／変更は#1813／#1814で照合 |
+| エラーと戻し | [最初の要求例](requirements-first-roadmap.md#一つの要求例による初回の接続照合)の負例・unknownとownerを辿る。旧coding-rulesのstructured-error-handlingを照合sourceにする | 欠落・拒否・stale・部分失敗・取消・復旧の型、外部作用、記録、再試行を対象契約へ。旧catch規約・例外styleは自動採用せず、未移管を#1813／#1814へ |
+| test／oracle凍結とRed | [REDFIRST A](decisions/redfirst-adoption-po-decision-2026-10-11.md)、HARNESS003・015、HARNESS005の既決追補。現在の文書照合には静的確認と独立reviewを使う | 実装前凍結→実装前Red実観測→最小実装→Greenを対象設計と証拠へ。実装後mutationは別証拠。型・lint・format・test設定と実行は#2905と対象設計へ |
+
+上の表は規律の所在と具体化先を示す。具体coding-ruleの未移管や全templateの未確定を消したことにはしない。文書整備・対象規律の採用・機構成立を別に照合し、再開の前提は[ロードマップ](requirements-first-roadmap.md#再開前提の現在地と残る確認)へ戻す。[今回の静的照合記録](audits/document-rules-consolidation-2026-10-11.json)には参照整理の対象bytesと、一つの要求例のL1・L2・L11・判断revision・責務・未供給入力の照合を残す。
+
+### 今回の集約の旧source・保持点・変更点
+
+旧ORA-005・006（下の旧HELIX対応表）とUTW-004・025の、本文の乖離・正本の誤認・入口肥大を起点にした。旧`CLAUDE.md:185–237`（LEGACY-ASSET-6EBDB617A8104A7756D0）の自走運用は本書に既に再導出されており、入口側の複製を参照へ置換する。独立review・修正後HEAD・明示merge・read-afterの意味は本書に保持する。旧CI・DB・CLIの経路は移さない。
+
+文書・配置・規律の対応は旧`docs/governance/repository-structure.md:102–173`（LEGACY-ASSET-FDBA655B1CFF75DCDC0E）と`docs/governance/coding-rules.md:10–31,138–143`（LEGACY-ASSET-4B835ADBEFBCCC13C1C0。いずれもarchive root内）を起点にした。意味／表示／履歴の区別、責務に沿う配置、実装前の規律照合、設定最小化を保持する。固定path・言語別tool・旧gate・複雑度や循環依存の旧baselineは継承せず、既決の配置案と対象設計へ具体化先を結ぶ。理由は現行の機構分担と10/10の停止境界であり、型・エラー等の旧条件の採否はこの集約では変更しない。
+
 ### 規則を足す条件と、減らす条件
 
 - **足す条件**：規則を足すのは、同じ種類のトラブルが実際に起きたときに限る。足すときは、起きた事例（PR、Issue、comment等の参照）と、旧HELIXの対応箇所を記録する。事例のない予防の規則は足さない。
