@@ -199,6 +199,22 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 
 旧CLAUDE:49〜63の仕組み先行・意味処理と外部作用分離、旧functional-release-slice-requests:23〜67の選択集合・局所影響・必要安全依存・復旧、旧design-template-json-authority:19〜60の意味正本/view/適用/portfolio/pairを起点にした意味の再導出である。変更は今回の準備目的に沿って現行032/009/002を選択した準備対象として結ぶ点で、旧schema/Node固定/旧runtimeは移さない。10/10巻き戻しと旧弱点UTW-004/021/029を踏まえ、文書の対応・hash・自己申告だけを機構の成立としない。旧source全consumerの閉包は未完として保持する。
 
+### 初回対象と既存Stageの差を照合する
+
+[Stage対応の照合記録](audits/first-cycle-stage-correspondence-2026-10-12.json)は、主対象・共通契約・既に照合した操作/初回配置の44identityを10/3固定rosterへ対応付ける。41件に既存配属があり、主対象3件は固定roster外である。これは比較した参照集合であり、初回の必須集合や有効依存閉包ではない。
+
+| 対象 | 固定rosterとの関係 | 今回保持する境界 |
+|---|---|---|
+| HARNESS009 | routing条件として374件とは別分母 | 10/10の既決1.0とCOREAPPLY追補を保持。Stageは補完しない |
+| BRAIN032 | 10/3の後、10/10に採用 | TEMPLATECONTRACTの既決1.0を保持。Stageは補完しない |
+| OS002 | routing条件として374件とは別分母 | OSTRACEは版指定を追加しない。Stageは補完しない |
+| HARNESS010/011/023、選択CONNECT/SECURITY/INFRAの土台 | 主にStage 1 | 共通契約を省かず、無関係なStage全件完了を要求しない |
+| HARNESS022、初回配置・Worker・結果記録 | 主にStage 2a | 人代行/未評価とauthority/安全/oracle不足を分ける |
+| BRAIN030、LABO026/028/054、INT061 | Stage 4、2b、5に分かれる | 意味参照・選択source入力・実outputを分け、Stage番号だけを実行条件にしない |
+| INFRA012/014 | 1.0より後 | 初回へ前倒しせず、SECURITY007とLABO026の必要条件は保持 |
+
+10/3の履歴・374件の分母・承認parentは不変とする。今回の照合は3件を新たなStageへ配属するものではない。必要知識と選択operation/sourceを照合した次の再開順序・scope固定案で扱い、10/10巻き戻しのPO条件へ戻す。現行L3以下の停止、MSGCONTENT未回答、#2846の未完を保持する。
+
 ## 既存の作業と正本
 
 | 整理先 | 主に扱う範囲 | 要求・正本の入口 |
