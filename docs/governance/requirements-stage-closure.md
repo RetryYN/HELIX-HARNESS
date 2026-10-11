@@ -55,3 +55,7 @@ POは4件の固定案を提示した質問に「4件とも推奨案を採用」�
 [残るIssueの限定照合資料](audits/requirements-stage/requirements-issue-stage-reconciliation-2026-10-11.md)は、#1852の主13IR/副HIL-TR03とconfirmed4件、#1854の主FR02/50・副FR24/30を既存の限定joinと今回の採用へ結ぶ。#1853/#1857の既存独立reviewが残した選択も、今回のB採用と照合する。要求粒度の具体不足があればsourceと現行条項の差を明記し、仮登録やmergeだけで閉じない。全sourceのformal successor/consumer/schema/実装だけが残る場合は、既存生存holdingと#1813/#2846へ保持して、要求側Issueの終了を別に判断する。
 
 本追補は独立review前の照合入口であり、要求完了やIssue closeを宣言しない。全source意味対応の親program #1813/#1814/#1815、要件定義以降の#2846は別範囲として残す。
+
+### 独立reviewで特定した具体不足
+
+[独立照合r2](audits/requirements-stage/requirements-issue-stage-reconciliation-2026-10-11-r2.md)と[PRのF1/F2](https://github.com/RetryYN/HELIX-HARNESS/pull/2899#issuecomment-6108054870)で、#1852に途中導入の非停止・段階移行、#1854にFR-L1-02の実装前Red順序という要求差を特定した。[未採択固定案](crosswalks/requirements-resolution-packet.md)のONBOARDING/REDFIRSTで人の意味判断へ送る。既採用4件の判断は保持し、具体差の採否が記録されるまで両Issueを閉じない。全source移管やL3以下の完成を追加gateにしない。
