@@ -212,7 +212,7 @@ field locatorは候補内の原文対応であり、正式IDやruntime keyでは
 
 91fieldのmeaning説明は、各欄が表す対象と区別（例：両端revisionと互換、事前条件と事後条件、部分成功と全体状態、oracle参照と実合格）を原文から具体化した。[変更照合記録](audits/first-cycle-template-field-meanings-2026-10-12.json)は3sourceと91箇所の変更、その他のdescriptor・規範・requiredness・authorityの保持を示す。説明の具体化からfieldの最終適用判定や実oracle束縛の完了を生成せず、案件値未供給と参照先知識の不足を保持する。
 
-22節のobligation_policyを節別の記入内容・理由付き非適用・対caseへの引渡しに分け、91欄のrequirednessをその節と原文の規範/条件へ結んだ。[節別照合記録](audits/first-cycle-template-section-obligations-2026-10-12.json)に原文・変更範囲を残す。MSG001 §8は結果追跡の必要性で分かれ、§9、MSG004 §6、MSG005 §7は記入した節から検証への引渡しを持つ。節が適用されることだけで全欄を一律requiredへ固定せず、案件の適用/N/A判定と理由・判定者・revision・再評価条件はCORE009へ残す。
+22節のobligation_policyを節別の記入内容・理由付き非適用・対caseへの引渡しに分け、91欄のrequirednessをその節と原文の規範/条件へ結んだ。[節別照合記録](audits/first-cycle-template-section-obligations-2026-10-12.json)と[指摘訂正記録](audits/first-cycle-template-section-obligations-2026-10-12-r2.json)に原文・変更範囲を残す。欄種別ごとの元の注意も保持し、列見出しの存在だけで行の記入・条件充足としない。MSG001 §8は結果追跡の必要性で分かれ、§9、MSG004 §6、MSG005 §7は記入した節から検証への引渡しを持つ。節が適用されることだけで全欄を一律requiredへ固定せず、案件の適用/N/A判定と理由・判定者・revision・再評価条件はCORE009へ残す。
 
 | 未完の種類 | 戻し先と次に供給するもの | 知識比較との関係 |
 |---|---|---|
