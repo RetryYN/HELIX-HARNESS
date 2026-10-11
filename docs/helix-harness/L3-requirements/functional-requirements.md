@@ -1,6 +1,6 @@
 # HARNESS-L3-PACK-functional
 
-生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `dd1e5577a4951559a79083a9ce7efb806f5ad97a92ce10d7dcef97ea9e861ec2`。JSONから再生成する。
+生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `5a0ccb8e75f59fb78cd67f211ef2bca8a41f73a440e36ac5374a53fe1dfcfe69`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -425,7 +425,7 @@
 ## HARNESS-L3-003-F03 Vの谷と右側の照合範囲
 
 **parent**: HARNESS-L2-003
-**obligation**: 005/015の凍結→実装前Red実観測→最小Green→局所Refactor/原子CIと双方向traceを同対象へ結び、出力をProvisionalにする。右側では結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。正規由来が分かる変更は当該scopeのScoped Reverse、由来不明/旧資産/trace欠落/設計を信用できない/大きなずれは全体Reverseの復旧候補に分ける。
+**obligation**: 005/015の凍結→実装前Red実観測→最小Green→局所Refactor/原子CIと双方向traceを同対象へ結び、出力をProvisionalにする。右側では結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。正規由来が分かる変更は当該scopeのScoped Reverse、由来不明/旧資産/trace欠落/設計を信用できない/大きなずれは全体Reverseの復旧候補に分ける。L9ではinterface、依存の向き、state/dataの所有、transaction、失敗伝播、retry、timeout、冪等性、結合度、責務重複を照合する。通常の照合ではticketを発行しない。明らかな設計/実装のずれ、由来欠落、同種findingの再発、性能退行、障害後の恒久対策、Scrum Reverse checkpoint、大きな設計退行ではReverse ticketの発行条件となる。小さな境界Refactorは現在のForward ticket内、独立した大きな構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactor ticketへ区別する。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。
 **oracle_ref**: HARNESS-L10-003-F03
 
 ## HARNESS-L3-003-F04 八状態と段階別の証明
@@ -443,7 +443,7 @@
 ## HARNESS-L3-004-F01 要求から対設計・検証へのtrace
 
 **parent**: HARNESS-L2-004
-**obligation**: 要求identity/revision/scope/sourceから設計と対検証へ上下方向のrelationを辿り、変更した要求条件に対応する設計/検証/oracle/再検証範囲を導出する。pair片側/孤立/出典/revision不足を識別し、件数/link存在だけで全条件の検証対応にしない。
+**obligation**: 要求identity/revision/scope/sourceから設計と対検証へ上下方向のrelationを辿り、変更した要求条件に対応する設計/検証/oracle/再検証範囲を導出する。pair片側/孤立/出典/revision不足を識別し、件数/link存在だけで全条件の検証対応にしない。所有/実装/接続/検証の欠落、未所属と二重所有をそれぞれ識別し、unknown影響を影響なしへ補完しない。
 **oracle_ref**: HARNESS-L10-004-F01
 
 ## HARNESS-L3-004-F02 影響と成立の分離
@@ -455,7 +455,7 @@
 ## HARNESS-L3-004-F03 限定再確定と意味変更の戻し先
 
 **parent**: HARNESS-L2-004
-**obligation**: 要求/public contract変更、trace欠落、Scrum実装事実の合流では影響する設計/対検証を再確定し必要なpair凍結を確認する。影響しない有効作業を一律失効させない。意味保存可能な不一致は右側Refactor/再検証、詳細L5/architecture境界L4/要件要求受入L3L2/価値L1の意味変更は該当層へBackflowし、発見層だけで戻し先を固定しない。
+**obligation**: 要求/public contract変更、trace欠落、Scrum実装事実の合流では影響する設計/対検証を再確定し必要なpair凍結を確認する。影響しない有効作業を一律失効させない。意味保存可能な不一致は右側Refactor/再検証、詳細L5/architecture境界L4/要件要求受入L3L2/価値L1の意味変更は該当層へBackflowし、発見層だけで戻し先を固定しない。通常照合のticket非発行と、明らかなずれ/由来欠落/同種finding再発/性能退行/障害後恒久対策/Scrum Reverse checkpoint/大きな設計退行のReverse ticket条件を003-F03へ結ぶ。局所は現在のForward ticket、独立構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactorの種類へ分け、実発行はOSへ返す。
 **oracle_ref**: HARNESS-L10-004-F03
 
 ## HARNESS-L3-004-F04 source atomの無損失変更
