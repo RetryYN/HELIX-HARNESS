@@ -4,7 +4,7 @@ decision_status: recorded_pending_final_review_and_main_admission
 decider_role: PO（委任：作成と別系統の独立review）
 decided_at: 2026-10-12
 reviewed_content_head: 0473767cb338041ae83a9e3c95ca48a55eb4eae6
-review_base: ddb7420f9d72a8c421cf8e073c368d24ba923030
+review_base: 990ffad297804dd39d4da1474545e90ddc060c7f
 authority_effect: effective_when_this_record_is_admitted_to_main
 ---
 
