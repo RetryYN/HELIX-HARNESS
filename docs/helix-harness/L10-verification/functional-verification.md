@@ -1,6 +1,6 @@
 # HARNESS-L10-PACK-functional
 
-生成view。意味正本: `functional-verification.json`。JSON SHA-256: `ace01daf16189c5e9352a82239c7d3a5c5b7c5c9bf41c354561c487db404fbac`。JSONから再生成する。
+生成view。意味正本: `functional-verification.json`。JSON SHA-256: `5ba181e72fe14f5d449961c05b537c858b20fb6ba350bd138303cb3325d773c2`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -824,9 +824,9 @@
 
 **parent**: HARNESS-L2-008
 **requirement_ref**: HARNESS-L3-008-F06
-**positive_input**: 単体interface変更、構成体budget変更、接続問題の新finding、relation不明、無関係対象を与える。
-**expected_observation**: 影響集合、原finding、kind再形成と必要な再合意/対再導出が辿れる。
-**negative_input**: 元単体要求を黙って接続へ変更、finding消去、全構成失効、unknownを影響なし、変更影響から成立state生成。
+**positive_input**: 単体interface変更、構成体budget変更、接続問題の新finding、relation不明、無関係対象を与える。同じfindingでも対象revisionと既存成果の再利用可/不可/未確認を別々に与える。
+**expected_observation**: 影響集合、原finding、kind再形成と必要な再合意/対再導出が辿れる。再分類の元/新kind、対象revisionと既存成果の再利用判断根拠が辿れる。
+**negative_input**: 元単体要求を黙って接続へ変更、finding消去、全構成失効、unknownを影響なし、変更影響から成立state生成。対象revision無しで再分類、既存成果を無条件に破棄/流用、再利用可否未確認を利用可へ補完。
 **failure_observation**: 必要な意味判断を既存要求形成へ戻し、影響/成立を分ける。
 **execution_state**: not_executed
 

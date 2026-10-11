@@ -1,6 +1,6 @@
 # HARNESS-L3-PACK-functional
 
-生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `2fc16e3e1a6cfc0a802e6b7c1838022d8fa9b4f051fb7a244775749fdfc4f6c6`。JSONから再生成する。
+生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `ff1d2f84e6f948037b053c14cf17ba6f226ed4263bf0b9cc73a96952f5d7a1a8`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -503,7 +503,7 @@
 ## HARNESS-L3-008-F06 変更影響とkind再形成
 
 **parent**: HARNESS-L2-008
-**obligation**: 構成体変更から接続/単体へ、単体interface変更から接続/構成体へ004の双方向traceで影響候補とownerを示す。単体として進めた変更に接続問題のfindingが出た場合は原finding/元要求を保ち、Backflowから接続候補と対設計/検証を導き直す。Unknownを影響なしへ変換せず無関係な有効構成は失効させない。
+**obligation**: 構成体変更から接続/単体へ、単体interface変更から接続/構成体へ004の双方向traceで影響候補とownerを示す。単体として進めた変更に接続問題のfindingが出た場合は原finding/元要求を保ち、Backflowから接続候補と対設計/検証を導き直す。Unknownを影響なしへ変換せず無関係な有効構成は失効させない。再分類では元の要求identity/種類、新しい種類の候補、根拠finding、対象revision、影響設計/検証、既存成果の再利用可否を追跡する。
 **oracle_ref**: HARNESS-L10-008-F06
 
 ## HARNESS-L3-008-F07 Python意味コアの再現と分離

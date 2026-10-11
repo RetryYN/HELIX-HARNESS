@@ -1326,7 +1326,7 @@
       "id": "HARNESS-L3-008-F06",
       "parent": "HARNESS-L2-008",
       "title": "変更影響とkind再形成",
-      "obligation": "構成体変更から接続/単体へ、単体interface変更から接続/構成体へ004の双方向traceで影響候補とownerを示す。単体として進めた変更に接続問題のfindingが出た場合は原finding/元要求を保ち、Backflowから接続候補と対設計/検証を導き直す。Unknownを影響なしへ変換せず無関係な有効構成は失効させない。",
+      "obligation": "構成体変更から接続/単体へ、単体interface変更から接続/構成体へ004の双方向traceで影響候補とownerを示す。単体として進めた変更に接続問題のfindingが出た場合は原finding/元要求を保ち、Backflowから接続候補と対設計/検証を導き直す。Unknownを影響なしへ変換せず無関係な有効構成は失効させない。再分類では元の要求identity/種類、新しい種類の候補、根拠finding、対象revision、影響設計/検証、既存成果の再利用可否を追跡する。",
       "oracle_ref": "HARNESS-L10-008-F06"
     },
     {
