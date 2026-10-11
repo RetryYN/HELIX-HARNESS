@@ -212,4 +212,15 @@ field locatorは候補内の原文対応であり、正式IDやruntime keyでは
 
 91fieldのmeaning説明は、各欄が表す対象と区別（例：両端revisionと互換、事前条件と事後条件、部分成功と全体状態、oracle参照と実合格）を原文から具体化した。[変更照合記録](audits/first-cycle-template-field-meanings-2026-10-12.json)は3sourceと91箇所の変更、その他のdescriptor・規範・requiredness・authorityの保持を示す。説明の具体化からfieldの最終適用判定や実oracle束縛の完了を生成せず、案件値未供給と参照先知識の不足を保持する。
 
+22節のobligation_policyを節別の記入内容・理由付き非適用・対caseへの引渡しに分け、91欄のrequirednessをその節と原文の規範/条件へ結んだ。[節別照合記録](audits/first-cycle-template-section-obligations-2026-10-12.json)に原文・変更範囲を残す。MSG001 §8は結果追跡の必要性で分かれ、§9、MSG004 §6、MSG005 §7は記入した節から検証への引渡しを持つ。節が適用されることだけで全欄を一律requiredへ固定せず、案件の適用/N/A判定と理由・判定者・revision・再評価条件はCORE009へ残す。
+
+| 未完の種類 | 戻し先と次に供給するもの | 知識比較との関係 |
+|---|---|---|
+| 汎用の定義・条件・関係・対oracleの意味対応が不足 | BRAIN。各field/規範の要否とoracle観点の最終照合、参照SDOP/VTの知識内容・版・採否 | 既存JSONの節/欄だけで完全とせず、不足を持つ知識候補として比較する |
+| 定義済み欄の案件値、適用根拠や要求が未決 | CORE009/008。要求revision/scope/axis、候補母集合、製品値と適用判定の根拠 | 製品値を汎用知識へ埋め込まず、値未決を定義欠落やN/Aへ変えない |
+| 具体設計・対case/oracle IDと実行証拠が未供給 | HARNESS025/026と対応するpair、OS002の原記録 | 汎用oracle観点と実caseを分け、未来の実行receiptを知識候補提供前の入力にしない。正式L3以下は停止中 |
+| 案件の参照版・使用set・記録が不整合 | OS002。候補/選択/使用setの区別、元のrevision/scope/義務と訂正の因果関係 | BRAINの知識採否やCOREの適用判断をOSの保存成功で代替しない |
+
+この区分は既決032/009/002の不足返却と入力時点の説明であり、追加gateや承認手続ではない。知識内容の採否準備は案件値・実行証拠が未供給でも進められるが、選択した操作に必要な要求値やauthorityのunknownを埋めて下流へ進めることはできない。
+
 3件は全体最小集合ではない。他23seed・40cardの残る意味対応と採否、各fieldの要否/意味とoracleの最終照合、参照先knowledgeの不足、旧6surface/component移管を保持する。JSON化だけで完全な15項目や機構成立を宣言せず、不足はBRAIN/CORE/OSの既決責務へ戻す。L3以下の停止は継続し、Issue完了・内部デプロイの許可を生成しない。

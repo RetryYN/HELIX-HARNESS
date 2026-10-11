@@ -1,0 +1,332 @@
+{
+  "audit_id": "FIRST-CYCLE-TEMPLATE-SECTION-OBLIGATIONS-2026-10-12",
+  "authority_effect": "none",
+  "base": "721b2146ff014692e60825894f82f768bb61ba85",
+  "candidate_path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+  "before_sha256": "31494f0b7700705b13147fba90393ac73891a3f278b4a3ba28113f73e946dae7",
+  "after_sha256": "1a5f6a5f7b9133735aaac3f82517586791a4e9ea445ac725370c7791e1c43496",
+  "preservation_proof": "22 section obligation_policy, 6 trace source_section_refs obligation_policy, 91 field requirednessだけを復元するとbase JSONとdeep equal。知識採否/definition_state/規範/出典/meaning/完了条件/案件値は不変。",
+  "sections": [
+    {
+      "template": "DT-MSG-001",
+      "section": "DT-MSG-001/section-1",
+      "before": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。",
+      "after": "辺のidentity・両端owner・方向を記入、または本節の非適用理由を残す。二方向は向きごとに行と権限を区別する。",
+      "source_lines": [
+        56,
+        66
+      ]
+    },
+    {
+      "template": "DT-MSG-001",
+      "section": "DT-MSG-001/section-2",
+      "before": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。",
+      "after": "越えるdataの各項目の意味・正本owner・変換・書換可否・分類を記入、または本節の非適用理由を残す。型やlabelだけで意味を代替しない。",
+      "source_lines": [
+        67,
+        72
+      ]
+    },
+    {
+      "template": "DT-MSG-001",
+      "section": "DT-MSG-001/section-3",
+      "before": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。",
+      "after": "両端revision・互換範囲・revision変更時と互換unknown時の扱いを記入、または本節の非適用理由を残す。以前の互換判定を新revisionへ継承しない。",
+      "source_lines": [
+        73,
+        79
+      ]
+    },
+    {
+      "template": "DT-MSG-001",
+      "section": "DT-MSG-001/section-4",
+      "before": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。",
+      "after": "順序の前提と崩れ・欠け・重複時の扱い、並列時のjoin条件を記入、または本節の非適用理由を残す。選択肢を案件の決定値へ読み替えない。",
+      "source_lines": [
+        80,
+        85
+      ]
+    },
+    {
+      "template": "DT-MSG-001",
+      "section": "DT-MSG-001/section-5",
+      "before": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。",
+      "after": "期限が必要な操作と根拠、timeout時unknown、再送可/不可、上限到達時の戻し先、再送で保持するidentity/digest/scope/revisionを記入、または本節の非適用理由を残す。数値未決はL3以降の行き先を残す。",
+      "source_lines": [
+        86,
+        96
+      ]
+    },
+    {
+      "template": "DT-MSG-001",
+      "section": "DT-MSG-001/section-6",
+      "before": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。",
+      "after": "冪等キーの決め方、同一キー同一内容/異内容の扱いとSDOP004 §5の方式参照を記入、または本節の非適用理由を残す。保存期間の値はL3以降へ残す。",
+      "source_lines": [
+        97,
+        103
+      ]
+    },
+    {
+      "template": "DT-MSG-001",
+      "section": "DT-MSG-001/section-7",
+      "before": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。",
+      "after": "各段の到達根拠・停止状態・戻し先・補償/再開を記入、または本節の非適用理由を残す。ACKなし/未回収を完了へ丸めず、補償する場合は補償失敗の扱いも書く。",
+      "source_lines": [
+        104,
+        112
+      ]
+    },
+    {
+      "template": "DT-MSG-001",
+      "section": "DT-MSG-001/section-8",
+      "before": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。",
+      "after": "辺の結果を後から辿る必要がある場合はrequired、必要がなければ理由付きN/A。辺/操作/試行identityと順序で結果を辿り、raw payload/secret/credentialを追跡に残さない。",
+      "source_lines": [
+        113,
+        117
+      ]
+    },
+    {
+      "template": "DT-MSG-001",
+      "section": "DT-MSG-001/section-9",
+      "before": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。",
+      "after": "記入した節ごとに欄→DT-VT-104/105の観点→対象case/oracleへの引渡し行を持つ。実case ID/結果は案件側入力であり、本知識候補の存在から検証済みにはしない。",
+      "source_lines": [
+        118,
+        123
+      ]
+    },
+    {
+      "template": "DT-MSG-004",
+      "section": "DT-MSG-004/section-1",
+      "before": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。",
+      "after": "対象単体・要求/受入条件と状態/規則の有無を記入、または本節の非適用理由を残す。状態/規則を持つ場合はSDOP004の既存行を参照する。",
+      "source_lines": [
+        54,
+        61
+      ]
+    },
+    {
+      "template": "DT-MSG-004",
+      "section": "DT-MSG-004/section-2",
+      "before": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。",
+      "after": "入出力の意味/範囲、事前・事後・不変条件を記入、または本節の非適用理由を残す。要求で未定義の期待振る舞いは上流へ戻す。",
+      "source_lines": [
+        62,
+        71
+      ]
+    },
+    {
+      "template": "DT-MSG-004",
+      "section": "DT-MSG-004/section-3",
+      "before": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。",
+      "after": "副作用の種類・port・順序・失敗後の残留状態と計算部分との分離を記入、または本節の非適用理由を残す。原文のpure関数例では副作用なしを理由にN/Aとする。",
+      "source_lines": [
+        72,
+        79
+      ]
+    },
+    {
+      "template": "DT-MSG-004",
+      "section": "DT-MSG-004/section-4",
+      "before": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。",
+      "after": "失敗の種類・想定内/外・再試行可否・返却/残すもの・次の行動を記入、または本節の非適用理由を残す。固定行の入力不正/想定外の再試行不可と情報を伏せる規則を消さない。",
+      "source_lines": [
+        80,
+        88
+      ]
+    },
+    {
+      "template": "DT-MSG-004",
+      "section": "DT-MSG-004/section-5",
+      "before": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。",
+      "after": "停止区間ごとの再起動時分類・扱いと完了根拠を記入、または本節の非適用理由を残す。外部副作用後の完了不明は自動再実行しない。原文のpure関数例では途中状態なしを理由にN/Aとする。",
+      "source_lines": [
+        89,
+        99
+      ]
+    },
+    {
+      "template": "DT-MSG-004",
+      "section": "DT-MSG-004/section-6",
+      "before": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。",
+      "after": "記入した節ごとにDT-VT-105/106の対象caseへ引き渡す。正常/異常/境界、失敗種別、回復区間とoracleの対応を持つ。実case ID/結果は案件側入力であり、本知識候補の存在から検証済みにはしない。",
+      "source_lines": [
+        100,
+        109
+      ]
+    },
+    {
+      "template": "DT-MSG-005",
+      "section": "DT-MSG-005/section-1",
+      "before": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。",
+      "after": "全体成果の要求ID・内外境界・外部とつながる辺を記入、または本節の非適用理由を残す。全体成果未定を下位成功から補わない。",
+      "source_lines": [
+        55,
+        61
+      ]
+    },
+    {
+      "template": "DT-MSG-005",
+      "section": "DT-MSG-005/section-2",
+      "before": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。",
+      "after": "構成要素の責務・owner・入出力・状態を記入、または本節の非適用理由を残す。一つの段の正本ownerを複数にしない。",
+      "source_lines": [
+        62,
+        67
+      ]
+    },
+    {
+      "template": "DT-MSG-005",
+      "section": "DT-MSG-005/section-3",
+      "before": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。",
+      "after": "依存方向・理由・差替点、循環の有無とありの場合の理由/解消予定、外部呼出しの集約を記入、または本節の非適用理由を残す。",
+      "source_lines": [
+        68,
+        76
+      ]
+    },
+    {
+      "template": "DT-MSG-005",
+      "section": "DT-MSG-005/section-4",
+      "before": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。",
+      "after": "代表の流れごとに各段の要素/辺・失敗/部分成功/不明時の全体状態・停止位置/引継ぎ先・全体成功とjoin条件を記入、または本節の非適用理由を残す。段の成功を消したり全体成功へ丸めたりしない。",
+      "source_lines": [
+        77,
+        87
+      ]
+    },
+    {
+      "template": "DT-MSG-005",
+      "section": "DT-MSG-005/section-5",
+      "before": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。",
+      "after": "下位要素の義務の和で保証されない全体の不変条件・守る要素/辺・破れたときの扱いを記入、または本節の非適用理由を残す。単体/辺の合格を全体の合格根拠にしない。",
+      "source_lines": [
+        88,
+        95
+      ]
+    },
+    {
+      "template": "DT-MSG-005",
+      "section": "DT-MSG-005/section-6",
+      "before": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。",
+      "after": "容量/可用性/観測/運用/security/依存更新の関心と値/方式の参照先を記入、または本節の非適用理由を残す。値はSDOP等の既存行を参照し二重正本にしない。AWS採用時のSDOP006関係を無条件へ変えない。",
+      "source_lines": [
+        96,
+        106
+      ]
+    },
+    {
+      "template": "DT-MSG-005",
+      "section": "DT-MSG-005/section-7",
+      "before": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。",
+      "after": "記入した節ごとにDT-VT-103/104の対象caseへ引き渡す。§4の失敗/不明を全体成功へ変えない観点と§5の構成体不変条件を保持する。実case ID/結果は案件側入力であり、本知識候補の存在から検証済みにはしない。",
+      "source_lines": [
+        107,
+        113
+      ]
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-001-connection-contract.md",
+      "sha256": "94cc4a2a3f795645bf274148e47f3a2e0622643f822a1815f4068fb2f3cbfa5c",
+      "contract_lines": [
+        13,
+        16
+      ],
+      "completion": [
+        {
+          "source_line": 44,
+          "source_text": "辺ごとに§1〜§7が埋まっている、または理由付きのN/Aである。§8（追跡）は、辺の結果を後から辿る必要がある場合はrequired、そうでなければ理由付きN/Aである。§9（検証への対応）は、埋めた節ごとにDT-VT-104・105の対象caseへ引き渡す行がある。unknown・部分成功の扱いが成功へ丸められていない。値が未決の欄は「L3以降で導く」と未決の行き先が書かれている。各欄が検証（DT-VT-104・105の観点）へ結ばれている。**完了条件を満たしても、接続の設計が正しいこと・要求を満たすことを意味しない。**",
+          "source_line_sha256": "3209e37b06ae005bc940bf241e0237fd5ebd8e1887c963c505ba05bc481b24a7"
+        }
+      ]
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "contract_lines": [
+        13,
+        16
+      ],
+      "completion": [
+        {
+          "source_line": 43,
+          "source_text": "§1〜§5が埋まっている、または理由付きN/Aである。§6（検証への対応）は、埋めた節ごとにDT-VT-105・106の対象caseへ引き渡す行がある。失敗が成功へ変えられていない。途中で止まった場合の分類があり、分からない状態を「無かった」ことにしていない。正常・異常・境界の振る舞いがoracleへ結ばれている。**完了条件を満たしても、振る舞いが正しいこと・要求を満たすことを意味しない。**",
+          "source_line_sha256": "ddfa7aeefbe0fca704820ba6969acf83dffaac0326e166ac2214e6d7c049c45e"
+        }
+      ]
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-005-composite-architecture.md",
+      "sha256": "678e71797043d48e0f9e19c588e41cab059034fd5fe9cf5994f9d6c51d011589",
+      "contract_lines": [
+        13,
+        16
+      ],
+      "completion": [
+        {
+          "source_line": 44,
+          "source_text": "§1〜§6が埋まっている、または理由付きN/Aである。§7（検証への対応）は、埋めた節ごとにDT-VT-103・104の対象caseへ引き渡す行がある。end-to-endの流れの各段に、失敗・部分成功・不明のときの全体の状態がある。構成体の不変条件が、構成要素の義務の和とは別に書かれている。容量・観測・運用・securityの値は既存templateの行を指し、重ねて書いていない。**完了条件を満たしても、構成が正しいこと・要求を満たすことを意味しない。**",
+          "source_line_sha256": "f40669967682c07d1752a6440a7258701ce7377af929bd8a789068d9c9afe45f"
+        }
+      ]
+    }
+  ],
+  "decision_pins": [
+    {
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    }
+  ],
+  "knowledge_gaps": [
+    "各fieldと規範の要否/対oracleへの意味対応の最終照合",
+    "参照SDOP/VT/他23seed/40cardと全体最小集合の意味/採否",
+    "旧6surface/component固有bindingとsource holding"
+  ],
+  "case_inputs_separate": [
+    "CORE009の要求revision/scope/axis/候補母集合と適用判定/N/A4属性",
+    "製品値・設計instance・各端契約・実case/oracle ID",
+    "OS002の実使用set/原記録/未完義務/評価渡し"
+  ],
+  "not_proven": [
+    "候補の採択・全15項目の完全性",
+    "案件適用と義務充足・実case成功・機構/環境成立",
+    "Issue完了・L3再開・正式schema/実装/内部デプロイ"
+  ],
+  "legacy": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+    "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+    "spans": [
+      {
+        "lines": [
+          19,
+          46
+        ],
+        "sha256": "f856044cea35df88ad0e54434efb2b2d336f4a1fddc3467ac9fb4dcbf4bdadf6"
+      },
+      {
+        "lines": [
+          77,
+          92
+        ],
+        "sha256": "6d68444ee6e8354439b4ca05f127e39335889dbc39d3df67fb46cfb51ffd0e0e"
+      }
+    ],
+    "preserve": "template知識とinstanceの分離、適用/N/A根拠、trace/oracle/completion",
+    "change": "既存seedの節別記入/非適用/引渡し条件を現在の032/009/002責務へ対応する意味再導出",
+    "reason": "案件値/未来証拠を知識比較の前提にせず、節と欄の義務を識別する",
+    "holding": "旧式木/allowlist/registry digest/pair freeze/renderer等をこの差分で採用・移管完了にしない。既存source holdingを保持"
+  }
+}

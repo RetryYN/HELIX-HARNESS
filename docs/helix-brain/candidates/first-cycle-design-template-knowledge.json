@@ -53,63 +53,63 @@
               "heading": "1. 接続のidentityと方向",
               "source_line": 56,
               "source_end_line": 66,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "辺のidentity・両端owner・方向を記入、または本節の非適用理由を残す。二方向は向きごとに行と権限を区別する。"
             },
             {
               "section_locator": "DT-MSG-001/section-2",
               "heading": "2. dataの意味と所有",
               "source_line": 67,
               "source_end_line": 72,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "越えるdataの各項目の意味・正本owner・変換・書換可否・分類を記入、または本節の非適用理由を残す。型やlabelだけで意味を代替しない。"
             },
             {
               "section_locator": "DT-MSG-001/section-3",
               "heading": "3. 契約revisionと互換",
               "source_line": 73,
               "source_end_line": 79,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "両端revision・互換範囲・revision変更時と互換unknown時の扱いを記入、または本節の非適用理由を残す。以前の互換判定を新revisionへ継承しない。"
             },
             {
               "section_locator": "DT-MSG-001/section-4",
               "heading": "4. 順序",
               "source_line": 80,
               "source_end_line": 85,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "順序の前提と崩れ・欠け・重複時の扱い、並列時のjoin条件を記入、または本節の非適用理由を残す。選択肢を案件の決定値へ読み替えない。"
             },
             {
               "section_locator": "DT-MSG-001/section-5",
               "heading": "5. 期限・timeout・再送",
               "source_line": 86,
               "source_end_line": 96,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "期限が必要な操作と根拠、timeout時unknown、再送可/不可、上限到達時の戻し先、再送で保持するidentity/digest/scope/revisionを記入、または本節の非適用理由を残す。数値未決はL3以降の行き先を残す。"
             },
             {
               "section_locator": "DT-MSG-001/section-6",
               "heading": "6. 冪等性と重複",
               "source_line": 97,
               "source_end_line": 103,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "冪等キーの決め方、同一キー同一内容/異内容の扱いとSDOP004 §5の方式参照を記入、または本節の非適用理由を残す。保存期間の値はL3以降へ残す。"
             },
             {
               "section_locator": "DT-MSG-001/section-7",
               "heading": "7. 部分失敗と不明",
               "source_line": 104,
               "source_end_line": 112,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "各段の到達根拠・停止状態・戻し先・補償/再開を記入、または本節の非適用理由を残す。ACKなし/未回収を完了へ丸めず、補償する場合は補償失敗の扱いも書く。"
             },
             {
               "section_locator": "DT-MSG-001/section-8",
               "heading": "8. 追跡",
               "source_line": 113,
               "source_end_line": 117,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "辺の結果を後から辿る必要がある場合はrequired、必要がなければ理由付きN/A。辺/操作/試行identityと順序で結果を辿り、raw payload/secret/credentialを追跡に残さない。"
             },
             {
               "section_locator": "DT-MSG-001/section-9",
               "heading": "9. 検証への対応",
               "source_line": 118,
               "source_end_line": 123,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "記入した節ごとに欄→DT-VT-104/105の観点→対象case/oracleへの引渡し行を持つ。実case ID/結果は案件側入力であり、本知識候補の存在から検証済みにはしない。"
             }
           ],
           "source_completion": [
@@ -130,7 +130,7 @@
               "source_line": 60,
               "source_text": "| 接続ID | |",
               "source_line_sha256": "e40df529b145ac4f05f87abeedd998f3bb9793d16dee96c02df4d5548e04ae9c",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -142,7 +142,7 @@
               "source_line": 61,
               "source_text": "| 接続元（持ち主） | |",
               "source_line_sha256": "ef32fabc33f194b1b11b1ec3c954604d8e1a6812877aca45b9b9588c576a78ed",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -154,7 +154,7 @@
               "source_line": 62,
               "source_text": "| 接続先（持ち主） | |",
               "source_line_sha256": "c4fed9675e04159f2b318a7f248246e91fee961dde1dfce384b6c9a3dc8b611d",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -166,7 +166,7 @@
               "source_line": 63,
               "source_text": "| 方向 | 一方向／二方向（二方向は向きごとに別の行として書き、それぞれの権限を確かめる） |",
               "source_line_sha256": "fd75fd885feffb365222801b7cd274f07b3fb83c281b70c3b99e75a84f9bb380",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "一方向／二方向（二方向は向きごとに別の行として書き、それぞれの権限を確かめる）",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -178,7 +178,7 @@
               "source_line": 64,
               "source_text": "| 同期・非同期 | |",
               "source_line_sha256": "c4bea4e7fd028b46a21942a521eb7b1645bb47fa7425fa2e560478fa2921937b",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -190,7 +190,7 @@
               "source_line": 65,
               "source_text": "| 越えるもの | data／操作の要求／event |",
               "source_line_sha256": "eea0ddc3cae6774bd23bcd8aa25467ecc81b62e521f0806d4868cd34f38c4991",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "data／操作の要求／event",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -202,7 +202,7 @@
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
               "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-2/column-2",
@@ -212,7 +212,7 @@
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
               "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-2/column-3",
@@ -222,7 +222,7 @@
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
               "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-2/column-4",
@@ -232,7 +232,7 @@
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
               "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-2/column-5",
@@ -242,7 +242,7 @@
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
               "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-2/column-6",
@@ -252,7 +252,7 @@
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
               "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-3/prompt-75",
@@ -262,7 +262,7 @@
               "source_line": 75,
               "source_text": "- 両端の契約revision：",
               "source_line_sha256": "6c5b0e511687465e142436894a0e667d9f6d3cb2c5247569eeed22c24619ca44",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-001/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-3/prompt-76",
@@ -272,7 +272,7 @@
               "source_line": 76,
               "source_text": "- 互換範囲（どの組合せなら通してよいか）：",
               "source_line_sha256": "0decf618c21dd61ad4e1393a623f2e1fd37c807767160a6ed7eee55a14be4150",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-001/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-3/prompt-77",
@@ -282,7 +282,7 @@
               "source_line": 77,
               "source_text": "- revisionが変わったときの扱い（stale化、再照合まで送信を止める）：",
               "source_line_sha256": "d5c4bc2ec0aaab3573916a0ca1b3f54680615cdfc6ca15d9bac11c30b656e8aa",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-001/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-3/prompt-78",
@@ -292,7 +292,7 @@
               "source_line": 78,
               "source_text": "- 互換が確かめられないとき（unknown）の扱い：",
               "source_line_sha256": "b933c651e8903bec2a9cea14bb52d4509540d8fc600a080f150b3d25cc7bd9bd",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-001/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-4/prompt-84",
@@ -302,7 +302,7 @@
               "source_line": 84,
               "source_text": "- 並列に流す場合の合流（join）の条件：",
               "source_line_sha256": "a8f43fc2d1b866473dd61a6517436d6d433c178c22aef0f1e013258509ec93c6",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-001/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-5/row-90",
@@ -312,7 +312,7 @@
               "source_line": 90,
               "source_text": "| 期限（操作ごと） | 値はL3以降。ここでは「どの操作に期限が要るか」と根拠 |",
               "source_line_sha256": "bfeeae531f8d532ab5eca7200c89c58d579cfe4d582c68b57b856637f866d75b",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "値はL3以降。ここでは「どの操作に期限が要るか」と根拠",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -324,7 +324,7 @@
               "source_line": 91,
               "source_text": "| timeout時の結果 | unknownとして記録（成功・失敗に丸めない） |",
               "source_line_sha256": "87a7420fd1770159d044b68dc5d7f228f2d1c0cdd3b9d14e40567bb4a1cca46a",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "unknownとして記録（成功・失敗に丸めない）",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -336,7 +336,7 @@
               "source_line": 92,
               "source_text": "| 再送してよい失敗 | 例：一時的な技術失敗 |",
               "source_line_sha256": "c0c8086bb284b90d3a813e3452d22dcbc7e3a417a6ffb596d35f79069b0dc32d",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "例：一時的な技術失敗",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -348,7 +348,7 @@
               "source_line": 93,
               "source_text": "| 再送しない失敗 | 例：業務上の拒否、権限の失効、契約不一致 |",
               "source_line_sha256": "a6d090cb9c6e3234f95c9f1c278a948943d1d15febd1980213f37aa6795aafd9",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "例：業務上の拒否、権限の失効、契約不一致",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -360,7 +360,7 @@
               "source_line": 94,
               "source_text": "| 再送の上限・間隔 | 値はL3以降。上限に達したときの戻し先 |",
               "source_line_sha256": "eced572bc0ce7777859b45813593d4758cc434e9ce0f5cc69b0ae6bbbc831f55",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "値はL3以降。上限に達したときの戻し先",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -372,7 +372,7 @@
               "source_line": 95,
               "source_text": "| 再送で変えないもの | 操作ID、内容digest、scope、契約revision（一つの操作で旧新revisionを混ぜない） |",
               "source_line_sha256": "6f52ea3be3c6a2004ce6296b7dc9e38f7e735cd7d3055639882d88423a35c8ac",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-001/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "操作ID、内容digest、scope、契約revision（一つの操作で旧新revisionを混ぜない）",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -384,7 +384,7 @@
               "source_line": 106,
               "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
               "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-7 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-7/column-2",
@@ -394,7 +394,7 @@
               "source_line": 106,
               "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
               "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-7 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-7/column-3",
@@ -404,7 +404,7 @@
               "source_line": 106,
               "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
               "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-7 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-7/column-4",
@@ -414,7 +414,7 @@
               "source_line": 106,
               "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
               "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-7 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-7/column-5",
@@ -424,7 +424,7 @@
               "source_line": 106,
               "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
               "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-7 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-8/prompt-115",
@@ -434,7 +434,7 @@
               "source_line": 115,
               "source_text": "- 辺・操作・試行のidentityと順序で、登録・照合・送信・受信・再送・終端・stale・拒否を辿れるか：",
               "source_line_sha256": "2fe7c46f5e318081236767905decfb1cf940d50a038af1fada9f3db327c8dda5",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-001/section-8 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-9/column-1",
@@ -444,7 +444,7 @@
               "source_line": 120,
               "source_text": "| 欄 | DT-VT-104／105の観点 | oracle ID |",
               "source_line_sha256": "329cd5e75563fa4c57386875b4f106a799728dec4e47ad04d1f4c68ffd1fe636",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-9 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-9/column-2",
@@ -454,7 +454,7 @@
               "source_line": 120,
               "source_text": "| 欄 | DT-VT-104／105の観点 | oracle ID |",
               "source_line_sha256": "329cd5e75563fa4c57386875b4f106a799728dec4e47ad04d1f4c68ffd1fe636",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-9 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-001/section-9/column-3",
@@ -464,7 +464,7 @@
               "source_line": 120,
               "source_text": "| 欄 | DT-VT-104／105の観点 | oracle ID |",
               "source_line_sha256": "329cd5e75563fa4c57386875b4f106a799728dec4e47ad04d1f4c68ffd1fe636",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-001/section-9 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             }
           ],
           "source_constraints": [
@@ -615,21 +615,21 @@
               "heading": "1. 接続のidentityと方向",
               "source_line": 56,
               "source_end_line": 66,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "辺のidentity・両端owner・方向を記入、または本節の非適用理由を残す。二方向は向きごとに行と権限を区別する。"
             },
             {
               "section_locator": "DT-MSG-001/section-8",
               "heading": "8. 追跡",
               "source_line": 113,
               "source_end_line": 117,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "辺の結果を後から辿る必要がある場合はrequired、必要がなければ理由付きN/A。辺/操作/試行identityと順序で結果を辿り、raw payload/secret/credentialを追跡に残さない。"
             },
             {
               "section_locator": "DT-MSG-001/section-9",
               "heading": "9. 検証への対応",
               "source_line": 118,
               "source_end_line": 123,
-              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+              "obligation_policy": "記入した節ごとに欄→DT-VT-104/105の観点→対象case/oracleへの引渡し行を持つ。実case ID/結果は案件側入力であり、本知識候補の存在から検証済みにはしない。"
             }
           ]
         },
@@ -1057,42 +1057,42 @@
               "heading": "1. 対象と要求",
               "source_line": 54,
               "source_end_line": 61,
-              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+              "obligation_policy": "対象単体・要求/受入条件と状態/規則の有無を記入、または本節の非適用理由を残す。状態/規則を持つ場合はSDOP004の既存行を参照する。"
             },
             {
               "section_locator": "DT-MSG-004/section-2",
               "heading": "2. 入出力の契約",
               "source_line": 62,
               "source_end_line": 71,
-              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+              "obligation_policy": "入出力の意味/範囲、事前・事後・不変条件を記入、または本節の非適用理由を残す。要求で未定義の期待振る舞いは上流へ戻す。"
             },
             {
               "section_locator": "DT-MSG-004/section-3",
               "heading": "3. 副作用",
               "source_line": 72,
               "source_end_line": 79,
-              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+              "obligation_policy": "副作用の種類・port・順序・失敗後の残留状態と計算部分との分離を記入、または本節の非適用理由を残す。原文のpure関数例では副作用なしを理由にN/Aとする。"
             },
             {
               "section_locator": "DT-MSG-004/section-4",
               "heading": "4. 失敗の分類",
               "source_line": 80,
               "source_end_line": 88,
-              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+              "obligation_policy": "失敗の種類・想定内/外・再試行可否・返却/残すもの・次の行動を記入、または本節の非適用理由を残す。固定行の入力不正/想定外の再試行不可と情報を伏せる規則を消さない。"
             },
             {
               "section_locator": "DT-MSG-004/section-5",
               "heading": "5. 回復（途中で止まったとき）",
               "source_line": 89,
               "source_end_line": 99,
-              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+              "obligation_policy": "停止区間ごとの再起動時分類・扱いと完了根拠を記入、または本節の非適用理由を残す。外部副作用後の完了不明は自動再実行しない。原文のpure関数例では途中状態なしを理由にN/Aとする。"
             },
             {
               "section_locator": "DT-MSG-004/section-6",
               "heading": "6. 検証への対応",
               "source_line": 100,
               "source_end_line": 109,
-              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+              "obligation_policy": "記入した節ごとにDT-VT-105/106の対象caseへ引き渡す。正常/異常/境界、失敗種別、回復区間とoracleの対応を持つ。実case ID/結果は案件側入力であり、本知識候補の存在から検証済みにはしない。"
             }
           ],
           "source_completion": [
@@ -1113,7 +1113,7 @@
               "source_line": 58,
               "source_text": "| 単体ID | |",
               "source_line_sha256": "7f2159e1c8cd3ea2ecbf6d4c5649b5b008de2419aeea2667e2125c795b870d9b",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-004/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -1125,7 +1125,7 @@
               "source_line": 59,
               "source_text": "| 対応する要求・受入条件 | |",
               "source_line_sha256": "6ab3601c8edd79ae8170888f08b3af15c0875b0a9b5ea8012ce273cfef2a9835",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-004/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -1137,7 +1137,7 @@
               "source_line": 60,
               "source_text": "| 状態・規則を持つか | 持つ場合はDT-SDOP-004の§2〜§5へ |",
               "source_line_sha256": "8c62fae576046d8d2d7edff0b039461a3112daf75ead669a6ed1f20dec57c27f",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-004/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "持つ場合はDT-SDOP-004の§2〜§5へ",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -1149,7 +1149,7 @@
               "source_line": 66,
               "source_text": "| 入力（意味、範囲） | |",
               "source_line_sha256": "ca5c3272c55535b0dc7c05eb67d5950c4ff477b8697d292d3ecc396b5f5e0888",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-004/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -1161,7 +1161,7 @@
               "source_line": 67,
               "source_text": "| 事前条件（呼ぶ側が保証すること） | |",
               "source_line_sha256": "a44f19e730b36095e440f4709c673c191af45dae5a22428fd564d99ecb108dda",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-004/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -1173,7 +1173,7 @@
               "source_line": 68,
               "source_text": "| 出力（意味、範囲） | |",
               "source_line_sha256": "05fb384f4c88f54c5bea6d752392757a4313f2309c7a5eaba6f2b4e1e9a04aba",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-004/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -1185,7 +1185,7 @@
               "source_line": 69,
               "source_text": "| 事後条件（正常終了後に保証すること、観測できる形で） | |",
               "source_line_sha256": "fb8fa03b3d7c8b43a1fe531ba07bbf89ba4da7f018b12b6594aa38098343c606",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-004/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -1197,7 +1197,7 @@
               "source_line": 70,
               "source_text": "| 不変条件（処理中も破らないこと） | |",
               "source_line_sha256": "e1811e84f99d8e3872f095f2eb5659b7cc93ad65a963afa343abc780f705c3bd",
-              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "requiredness": "節 DT-MSG-004/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。",
               "source_row_rule_or_choices": "",
               "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
             },
@@ -1209,7 +1209,7 @@
               "source_line": 74,
               "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
               "source_line_sha256": "0d5fb70216140c2d56a58dcbf425e2736ce8c498f205cd7e451258538e2d94cc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-3/column-2",
@@ -1219,7 +1219,7 @@
               "source_line": 74,
               "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
               "source_line_sha256": "0d5fb70216140c2d56a58dcbf425e2736ce8c498f205cd7e451258538e2d94cc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-3/column-3",
@@ -1229,7 +1229,7 @@
               "source_line": 74,
               "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
               "source_line_sha256": "0d5fb70216140c2d56a58dcbf425e2736ce8c498f205cd7e451258538e2d94cc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-3/column-4",
@@ -1239,7 +1239,7 @@
               "source_line": 74,
               "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
               "source_line_sha256": "0d5fb70216140c2d56a58dcbf425e2736ce8c498f205cd7e451258538e2d94cc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-3/prompt-78",
@@ -1249,7 +1249,7 @@
               "source_line": 78,
               "source_text": "- 副作用を持たない部分（計算）と分けているか：",
               "source_line_sha256": "20e746e8d482ce028e1c140540960ccf6ae2b629d5f0b335b9aca5c29a8b26a2",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-004/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-4/column-1",
@@ -1259,7 +1259,7 @@
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
               "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-4/column-2",
@@ -1269,7 +1269,7 @@
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
               "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-4/column-3",
@@ -1279,7 +1279,7 @@
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
               "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-4/column-4",
@@ -1289,7 +1289,7 @@
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
               "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-4/column-5",
@@ -1299,7 +1299,7 @@
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
               "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-4/column-6",
@@ -1309,7 +1309,7 @@
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
               "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-5/column-1",
@@ -1319,7 +1319,7 @@
               "source_line": 91,
               "source_text": "| 止まった区間 | 再び動いたときの分類 | 扱い |",
               "source_line_sha256": "e2977231abef43619cf16513561669c9471ec8a42aea6852dcf0fbbad068ca69",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-5/column-2",
@@ -1329,7 +1329,7 @@
               "source_line": 91,
               "source_text": "| 止まった区間 | 再び動いたときの分類 | 扱い |",
               "source_line_sha256": "e2977231abef43619cf16513561669c9471ec8a42aea6852dcf0fbbad068ca69",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-5/column-3",
@@ -1339,7 +1339,7 @@
               "source_line": 91,
               "source_text": "| 止まった区間 | 再び動いたときの分類 | 扱い |",
               "source_line_sha256": "e2977231abef43619cf16513561669c9471ec8a42aea6852dcf0fbbad068ca69",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-5/prompt-98",
@@ -1349,7 +1349,7 @@
               "source_line": 98,
               "source_text": "- 「済んだ」を何で確かめるか（完了の記録、digest等）：",
               "source_line_sha256": "ff6fccea7efd2a455aef245db7dbd0c6d58bb82523f262f2d1eeedeef4d2043e",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-004/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-6/column-1",
@@ -1359,7 +1359,7 @@
               "source_line": 102,
               "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
               "source_line_sha256": "6513d41c0210ae40c0522606f1535a616dfdce6d7677d6a4ad691ae8db4673b1",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-6 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-6/column-2",
@@ -1369,7 +1369,7 @@
               "source_line": 102,
               "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
               "source_line_sha256": "6513d41c0210ae40c0522606f1535a616dfdce6d7677d6a4ad691ae8db4673b1",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-6 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-6/column-3",
@@ -1379,7 +1379,7 @@
               "source_line": 102,
               "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
               "source_line_sha256": "6513d41c0210ae40c0522606f1535a616dfdce6d7677d6a4ad691ae8db4673b1",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-6 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-004/section-6/column-4",
@@ -1389,7 +1389,7 @@
               "source_line": 102,
               "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
               "source_line_sha256": "6513d41c0210ae40c0522606f1535a616dfdce6d7677d6a4ad691ae8db4673b1",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-004/section-6 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             }
           ],
           "source_constraints": [],
@@ -1547,14 +1547,14 @@
               "heading": "1. 対象と要求",
               "source_line": 54,
               "source_end_line": 61,
-              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+              "obligation_policy": "対象単体・要求/受入条件と状態/規則の有無を記入、または本節の非適用理由を残す。状態/規則を持つ場合はSDOP004の既存行を参照する。"
             },
             {
               "section_locator": "DT-MSG-004/section-6",
               "heading": "6. 検証への対応",
               "source_line": 100,
               "source_end_line": 109,
-              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+              "obligation_policy": "記入した節ごとにDT-VT-105/106の対象caseへ引き渡す。正常/異常/境界、失敗種別、回復区間とoracleの対応を持つ。実case ID/結果は案件側入力であり、本知識候補の存在から検証済みにはしない。"
             }
           ]
         },
@@ -1935,49 +1935,49 @@
               "heading": "1. 境界",
               "source_line": 55,
               "source_end_line": 61,
-              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+              "obligation_policy": "全体成果の要求ID・内外境界・外部とつながる辺を記入、または本節の非適用理由を残す。全体成果未定を下位成功から補わない。"
             },
             {
               "section_locator": "DT-MSG-005/section-2",
               "heading": "2. 構成要素",
               "source_line": 62,
               "source_end_line": 67,
-              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+              "obligation_policy": "構成要素の責務・owner・入出力・状態を記入、または本節の非適用理由を残す。一つの段の正本ownerを複数にしない。"
             },
             {
               "section_locator": "DT-MSG-005/section-3",
               "heading": "3. 依存の向き",
               "source_line": 68,
               "source_end_line": 76,
-              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+              "obligation_policy": "依存方向・理由・差替点、循環の有無とありの場合の理由/解消予定、外部呼出しの集約を記入、または本節の非適用理由を残す。"
             },
             {
               "section_locator": "DT-MSG-005/section-4",
               "heading": "4. end-to-endの流れ",
               "source_line": 77,
               "source_end_line": 87,
-              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+              "obligation_policy": "代表の流れごとに各段の要素/辺・失敗/部分成功/不明時の全体状態・停止位置/引継ぎ先・全体成功とjoin条件を記入、または本節の非適用理由を残す。段の成功を消したり全体成功へ丸めたりしない。"
             },
             {
               "section_locator": "DT-MSG-005/section-5",
               "heading": "5. 構成体の不変条件",
               "source_line": 88,
               "source_end_line": 95,
-              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+              "obligation_policy": "下位要素の義務の和で保証されない全体の不変条件・守る要素/辺・破れたときの扱いを記入、または本節の非適用理由を残す。単体/辺の合格を全体の合格根拠にしない。"
             },
             {
               "section_locator": "DT-MSG-005/section-6",
               "heading": "6. 横断の関心（重ねて書かない）",
               "source_line": 96,
               "source_end_line": 106,
-              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+              "obligation_policy": "容量/可用性/観測/運用/security/依存更新の関心と値/方式の参照先を記入、または本節の非適用理由を残す。値はSDOP等の既存行を参照し二重正本にしない。AWS採用時のSDOP006関係を無条件へ変えない。"
             },
             {
               "section_locator": "DT-MSG-005/section-7",
               "heading": "7. 検証への対応",
               "source_line": 107,
               "source_end_line": 113,
-              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+              "obligation_policy": "記入した節ごとにDT-VT-103/104の対象caseへ引き渡す。§4の失敗/不明を全体成功へ変えない観点と§5の構成体不変条件を保持する。実case ID/結果は案件側入力であり、本知識候補の存在から検証済みにはしない。"
             }
           ],
           "source_completion": [
@@ -1998,7 +1998,7 @@
               "source_line": 57,
               "source_text": "- 構成体が全体として出す成果（要求ID）：",
               "source_line_sha256": "1d3275584ab85ff66ac44e23cd12432a823d44b8550e50f1e259533f2dd195d4",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-005/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-1/prompt-58",
@@ -2008,7 +2008,7 @@
               "source_line": 58,
               "source_text": "- 中に含む物：",
               "source_line_sha256": "58e94235fc2aa303d92dcc7b1962ba6e327c27d852066307fade8d04e4b2bd7d",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-005/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-1/prompt-59",
@@ -2018,7 +2018,7 @@
               "source_line": 59,
               "source_text": "- 外（外部、別の持ち主）：",
               "source_line_sha256": "181f61e14b720a8e5daa15f8ac2b970bb94203aea4cb4460c89a6db19f389787",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-005/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-1/prompt-60",
@@ -2028,7 +2028,7 @@
               "source_line": 60,
               "source_text": "- 外との接続（DT-MSG-001の辺ID）：",
               "source_line_sha256": "ca1295dfa1de832380fe0d496db55da30433c3770343fb8b49f00eb63c3374d5",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-005/section-1 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-2/column-1",
@@ -2038,7 +2038,7 @@
               "source_line": 64,
               "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
               "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-2/column-2",
@@ -2048,7 +2048,7 @@
               "source_line": 64,
               "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
               "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-2/column-3",
@@ -2058,7 +2058,7 @@
               "source_line": 64,
               "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
               "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-2/column-4",
@@ -2068,7 +2068,7 @@
               "source_line": 64,
               "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
               "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-2/column-5",
@@ -2078,7 +2078,7 @@
               "source_line": 64,
               "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
               "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-2 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-3/column-1",
@@ -2088,7 +2088,7 @@
               "source_line": 70,
               "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
               "source_line_sha256": "414780bc0291b53ec48a6499a994ee00c4ac5915d9a68ed49f7993f507da3294",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-3/column-2",
@@ -2098,7 +2098,7 @@
               "source_line": 70,
               "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
               "source_line_sha256": "414780bc0291b53ec48a6499a994ee00c4ac5915d9a68ed49f7993f507da3294",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-3/column-3",
@@ -2108,7 +2108,7 @@
               "source_line": 70,
               "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
               "source_line_sha256": "414780bc0291b53ec48a6499a994ee00c4ac5915d9a68ed49f7993f507da3294",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-3/column-4",
@@ -2118,7 +2118,7 @@
               "source_line": 70,
               "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
               "source_line_sha256": "414780bc0291b53ec48a6499a994ee00c4ac5915d9a68ed49f7993f507da3294",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-3/prompt-75",
@@ -2128,7 +2128,7 @@
               "source_line": 75,
               "source_text": "- 外部serviceを呼ぶ点が一か所にまとまっているか：",
               "source_line_sha256": "09133c223cadeacea3c0ea53c8f30cdcc8dcfb4d157ce4ff4775e93653f8c970",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-005/section-3 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-4/column-1",
@@ -2138,7 +2138,7 @@
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
               "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-4/column-2",
@@ -2148,7 +2148,7 @@
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
               "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-4/column-3",
@@ -2158,7 +2158,7 @@
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
               "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-4/column-4",
@@ -2168,7 +2168,7 @@
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
               "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-4/column-5",
@@ -2178,7 +2178,7 @@
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
               "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-4/column-6",
@@ -2188,7 +2188,7 @@
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
               "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-4/prompt-85",
@@ -2198,7 +2198,7 @@
               "source_line": 85,
               "source_text": "- 全体の成功とする条件（必須の段がすべて終わったことを何で確かめるか）：",
               "source_line_sha256": "d4868800f73d7ae8666b5e5d4461401c620d372f52aa0a85335c4e13de45268f",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-005/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-4/prompt-86",
@@ -2208,7 +2208,7 @@
               "source_line": 86,
               "source_text": "- 並列の段の合流（join）の条件：",
               "source_line_sha256": "c554330bd2940f7bcd04e4198ac5c53f80ae91382d3297d78df238deb5ccc853",
-              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+              "requiredness": "節 DT-MSG-005/section-4 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-5/column-1",
@@ -2218,7 +2218,7 @@
               "source_line": 92,
               "source_text": "| 不変条件 | 守る構成要素・辺 | 破れたときの扱い |",
               "source_line_sha256": "5909464757bec6488d0814403b09f1022488b57af55d0227619f76d12f3244bd",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-5/column-2",
@@ -2228,7 +2228,7 @@
               "source_line": 92,
               "source_text": "| 不変条件 | 守る構成要素・辺 | 破れたときの扱い |",
               "source_line_sha256": "5909464757bec6488d0814403b09f1022488b57af55d0227619f76d12f3244bd",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-5/column-3",
@@ -2238,7 +2238,7 @@
               "source_line": 92,
               "source_text": "| 不変条件 | 守る構成要素・辺 | 破れたときの扱い |",
               "source_line_sha256": "5909464757bec6488d0814403b09f1022488b57af55d0227619f76d12f3244bd",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-5 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-6/column-1",
@@ -2248,7 +2248,7 @@
               "source_line": 98,
               "source_text": "| 関心 | 本templateで書くこと | 値・方式を書く場所 |",
               "source_line_sha256": "427c4929c691f72a2947f12a058ed6ba117f0e00620fd87c974fe178c46ba784",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-6 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-6/column-2",
@@ -2258,7 +2258,7 @@
               "source_line": 98,
               "source_text": "| 関心 | 本templateで書くこと | 値・方式を書く場所 |",
               "source_line_sha256": "427c4929c691f72a2947f12a058ed6ba117f0e00620fd87c974fe178c46ba784",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-6 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-6/column-3",
@@ -2268,7 +2268,7 @@
               "source_line": 98,
               "source_text": "| 関心 | 本templateで書くこと | 値・方式を書く場所 |",
               "source_line_sha256": "427c4929c691f72a2947f12a058ed6ba117f0e00620fd87c974fe178c46ba784",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-6 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-7/column-1",
@@ -2278,7 +2278,7 @@
               "source_line": 109,
               "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
               "source_line_sha256": "14fb9dbf3d5eb76ccb0ee72705eef84770f89ffda8e5001a78a59dac103471fc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-7 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-7/column-2",
@@ -2288,7 +2288,7 @@
               "source_line": 109,
               "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
               "source_line_sha256": "14fb9dbf3d5eb76ccb0ee72705eef84770f89ffda8e5001a78a59dac103471fc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-7 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-7/column-3",
@@ -2298,7 +2298,7 @@
               "source_line": 109,
               "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
               "source_line_sha256": "14fb9dbf3d5eb76ccb0ee72705eef84770f89ffda8e5001a78a59dac103471fc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-7 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             },
             {
               "field_locator": "DT-MSG-005/section-7/column-4",
@@ -2308,7 +2308,7 @@
               "source_line": 109,
               "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
               "source_line_sha256": "14fb9dbf3d5eb76ccb0ee72705eef84770f89ffda8e5001a78a59dac103471fc",
-              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+              "requiredness": "節 DT-MSG-005/section-7 のobligation_policyと本行の規範/条件を照合する。節の記入/N/Aを各欄の一律required/N/Aへ置換せず、欄の定義と案件値未決を分ける。案件判定の理由・判定者・revision・再評価条件はCORE009へ残す。"
             }
           ],
           "source_constraints": [
@@ -2445,14 +2445,14 @@
               "heading": "1. 境界",
               "source_line": 55,
               "source_end_line": 61,
-              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+              "obligation_policy": "全体成果の要求ID・内外境界・外部とつながる辺を記入、または本節の非適用理由を残す。全体成果未定を下位成功から補わない。"
             },
             {
               "section_locator": "DT-MSG-005/section-7",
               "heading": "7. 検証への対応",
               "source_line": 107,
               "source_end_line": 113,
-              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+              "obligation_policy": "記入した節ごとにDT-VT-103/104の対象caseへ引き渡す。§4の失敗/不明を全体成功へ変えない観点と§5の構成体不変条件を保持する。実case ID/結果は案件側入力であり、本知識候補の存在から検証済みにはしない。"
             }
           ]
         },
