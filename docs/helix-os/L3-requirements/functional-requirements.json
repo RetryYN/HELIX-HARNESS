@@ -225,10 +225,9 @@
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
           "lines": [
             51,
-            57,
-            59,
-            63,
-            64
+            56,
+            58,
+            65
           ],
           "identity": "HBR-P1/P7/P9,HNFR-P5"
         },
@@ -275,8 +274,8 @@
           "lines": [
             51,
             55,
-            63,
-            64
+            64,
+            65
           ],
           "identity": "P1/P3/P6/HNFR-P3/P5"
         }

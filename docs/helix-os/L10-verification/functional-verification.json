@@ -225,10 +225,9 @@
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
           "lines": [
             51,
-            57,
-            59,
-            63,
-            64
+            56,
+            58,
+            65
           ],
           "identity": "HBR-P1/P7/P9,HNFR-P5"
         },
@@ -275,8 +274,8 @@
           "lines": [
             51,
             55,
-            63,
-            64
+            64,
+            65
           ],
           "identity": "P1/P3/P6/HNFR-P3/P5"
         }
@@ -802,7 +801,7 @@
       "requirement_ref": "HELIXOS-L3-023-F02",
       "positive_input": "unitは成功だがhandoffまたは固有受入が不足するfixtureを分ける。",
       "expected_observation": "判定が別に残り、independent reviewerのidentity/context/authority/routeへ辿れる。",
-      "negative_input": "unit successで次段受入/完了、作成側兼独立review、推進が検収義務変更。",
+      "negative_input": "unit successで次段受入/完了、作成側兼独立review、推進が検収義務変更、検収が要求/ticket発行。",
       "failure_observation": "不足する接続/独立性を保持し、unit成功だけで合格にしない。",
       "execution_state": "not_executed"
     },
@@ -813,7 +812,7 @@
       "requirement_ref": "HELIXOS-L3-023-F03",
       "positive_input": "返却/ACK/受信側受理/実解決/元義務消込を別々に照合する。",
       "expected_observation": "元作業と受信側に対応する未完・証拠と解消先が辿れる。",
-      "negative_input": "通知ACKだけで未完消失、受理なし元作業完了、検収が要求/ticket発行。",
+      "negative_input": "通知ACKだけで未完消失、受理なし元作業完了。",
       "failure_observation": "当該handoff/完了を未成立にし、受理不足と元義務を保持する。",
       "execution_state": "not_executed"
     },
