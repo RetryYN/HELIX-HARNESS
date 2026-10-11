@@ -12,19 +12,19 @@ PR class: research_premise
 
 歴史的Stage、L2個別の版印、10/12限定著述先は別軸で記載した。版未指定とStage未割当を推測で補わない。mechanism×歴史的Stageの出典一覧はPO事後確認用であり、PO確認済みの宣言ではない。
 
-26の接続候補は、BRAINの汎用知識→HARNESS-L2-009の製品適用→OS案件記録に加え、pack/CONNECT、層・pair・命名、HARNESS検証/OS CI、SECURITY/資源/Worker、OSとINFRAの観測/LABO、計測、LABO水準/INT案、初回人代行/OS割当、通信終端/記録を対象とする。各接続は提供側と受領側のexact L3項目を指定し、対oracleは405組の一覧へ辿れる。略称CORE009の正式要求IDはHARNESS-L2-009であり、別のCORE-L2-009を新設しない。
+32の接続候補は、BRAINの汎用知識→HARNESS-L2-009の製品適用→OS案件記録に加え、pack/CONNECT、層・pair・命名、HARNESS検証/OS CI、SECURITY/資源/Worker、OSとINFRAの観測/LABO、計測、LABO水準/INT案、初回人代行/OS割当、通信終端/記録を対象とする。各接続は提供側と受領側のexact L3項目を指定し、対oracleは405組の一覧へ辿れる。略称CORE009の正式要求IDはHARNESS-L2-009であり、別のCORE-L2-009を新設しない。
 
 ## 独立監査で確かめること
 
 - 原75親の条件と限定義務の意味被覆。項目の存在と件数は被覆証明ではない。
 - 12追加親の必要性と、残る条件付き参照の欠落。未選択能力の全実装を初回gateにしない。
-- 26候補の提供/受領内容、revision・scope・identityの一致、対oracleの反例、失敗の返却先。候補に含まれない必要接続も指摘する。
+- 32候補の提供/受領内容、revision・scope・identityの一致、対oracleの反例、失敗の返却先。候補に含まれない必要接続も指摘する。
 - BRAIN008内018/019/025のnamespace、HARNESS022の004出力/019持込という選択経路、SEC006の後続版019除外を、旧G10一覧と現行採択本文の双方から照合する。JSONのtriageは独立review前の解釈である。
 - HARNESS053→042の不整合は保持し、該当rename/move等は未選択とする。推測の代替IDを置かない。
 
 ## 後段への境界
 
-全scope完了の独立判定は未成立。26候補は規範の意味接続候補であり、実契約版、adapter/schema、実Python往復、実authority・隔離・資源、実test/oracle凍結と実装前Red→最小実装→Green、CI・計測・評価、POの実物L11 Acceptedは未成立である。通常L3・release・内部デプロイの成立をこの監査から生成しない。
+全scope完了の独立判定は未成立。32候補は規範の意味接続候補であり、実契約版、adapter/schema、実Python往復、実authority・隔離・資源、実test/oracle凍結と実装前Red→最小実装→Green、CI・計測・評価、POの実物L11 Acceptedは未成立である。通常L3・release・内部デプロイの成立をこの監査から生成しない。
 
 ## 旧HELIXと失敗との対応
 
@@ -34,8 +34,10 @@ PR class: research_premise
 
 ## 静的照合
 
-75親の集合を採択JSONから直接抽出し、87親のL3項目と405対の双方向参照を照合した。各405項目・対oracleを元の承認HEADと比較し全件一致、26接続候補の端点IDは全件存在する。JSONのdocument_pins/admissionsは当該snapshotのbytesを指定する。これらは静的整合の証拠であり、意味閉包・実検証・受入の証拠ではない。
+75親の集合を採択JSONから直接抽出し、87親のL3項目と405対の双方向参照を照合した。各405項目・対oracleを元の承認HEADと比較し全件一致、32接続候補の端点IDは全件存在する。JSONのdocument_pins/admissionsは当該snapshotのbytesを指定する。これらは静的整合の証拠であり、意味閉包・実検証・受入の証拠ではない。
 
 ## 独立指摘への対応
 
 [初回独立監査](https://github.com/RetryYN/HELIX-HARNESS/pull/2962#issuecomment-6114435045)のF1〜F4を反映した。query/receipt、失効伝播、送信適格性、段階検証、OS/資源状態同期の5接続と作成側追加候補を合わせ26候補にした。初回Worker sourceと条件付きtemplate/提供運用評価の原記録経路は分ける。原75親、12追加親、405項目と対oracle、承認出典は不変。全体完了の結論は独立監査へ残す。
+
+[再監査](https://github.com/RetryYN/HELIX-HARNESS/pull/2962#issuecomment-6114496824)が示した残り6接続をJOIN-27〜32へ追補した。初回credential/egress、OS020を要しない初回検証、使用template版記録、評価状態の水準適用、依存4区分のWorker照合、更新故障判定を対象とする。405組/原75親/追加12親と承認出典は不変。独立reviewは要件本文の不足を見つけず、接続記録の補完が残ると判断した。この修正HEADに対する最終完了判定はまだ成立していない。

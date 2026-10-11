@@ -4,7 +4,7 @@
   "authority_effect": "none",
   "source_main": "888c6208353929a65e51ba6407994e10b3b81f13",
   "status": "independent_semantic_audit_pending",
-  "boundary": "75条件別親と12必要追加親の定義/対/承認出典を全量収集。26接続は意味照合候補。件数/hash/mergeを全scope完了、実契約束縛、実行証拠、PO Acceptedへ読み替えない。",
+  "boundary": "75条件別親と12必要追加親の定義/対/承認出典を全量収集。32接続は意味照合候補。件数/hash/mergeを全scope完了、実契約束縛、実行証拠、PO Acceptedへ読み替えない。",
   "scope_source": {
     "path": "docs/governance/requirements-entry-restart-proposal.json",
     "sha256": "29bd949ddd49348bb149f11ea253959075f7c7ac7e248035701a2002199efaf4",
@@ -15,7 +15,7 @@
     "additional_parents": 12,
     "parents": 87,
     "pairs": 405,
-    "join_candidates": 26
+    "join_candidates": 32
   },
   "legacy_basis": {
     "sources": [
@@ -19355,6 +19355,110 @@
       "review_state": "semantic_independent_review_pending",
       "binding_kind": "owner_qualified_normative_contract_candidate",
       "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-27",
+      "name": "SEC credential/egress→初回run適格条件",
+      "condition": "初回有限runはcredential不使用/遮断を維持。通信を選択した時だけ既決SEC egress tupleを照合。通常credential能力を初回へ拡張しない",
+      "producer_ids": [
+        "HELIXSECURITY-L3-005-F01",
+        "HELIXSECURITY-L3-005-F02",
+        "HELIXSECURITY-L3-005-B01",
+        "HELIXSECURITY-L3-007-F04",
+        "HELIXSECURITY-L3-006-F01"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-027-F08",
+        "HELIXOS-L3-027-F09"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-28",
+      "name": "HARNESS段階検証→初回run検証/人確認",
+      "condition": "初回runは固定HARNESS022 oracle/義務と独立actorの人確認をOS019へ記録。OS020実装を初回の開始条件にしない",
+      "producer_ids": [
+        "HARNESS-L3-022-F01",
+        "HARNESS-L3-022-F03",
+        "HARNESS-L3-022-F04",
+        "HARNESS-L3-022-B01"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-027-F04",
+        "HELIXOS-L3-019-F01"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-29",
+      "name": "BRAIN知識/利用状態→OS使用template版記録",
+      "condition": "初回使用setに含める知識/templateの版と意味契約を記録。BRAIN knowledge状態とOS project使用状態を別所有に保つ",
+      "producer_ids": [
+        "HELIXBRAIN-L3-008-F01",
+        "HELIXBRAIN-L3-008-F02",
+        "HELIXBRAIN-L3-032-F04"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-002-F02"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-30",
+      "name": "LABO評価状態→OS初回水準適用",
+      "condition": "同task/model class・scope/revisionの実評価receiptがある範囲だけ。明示未評価による狭い初回実行許可とは別",
+      "producer_ids": [
+        "HELIXLABO-L3-055-F01",
+        "HELIXLABO-L3-054-F01",
+        "HELIXLABO-L3-056-F02"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-027-F06"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-31",
+      "name": "HARNESS依存4区分→OS Worker run",
+      "condition": "実選択runの常時/操作別/入力source別/参照のみを照合。規範入力を参照へ降格せず、全能力実装を分類能力の前提にしない",
+      "producer_ids": [
+        "HARNESS-L3-023-F01",
+        "HARNESS-L3-023-F02",
+        "HARNESS-L3-023-F03",
+        "HARNESS-L3-023-F04"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-018-N01"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
+    },
+    {
+      "id": "JOIN-32",
+      "name": "command意味/原子保存→OS更新故障判定",
+      "condition": "OS001更新操作のfault/stale base/混在を六条件不足と区別。未選択更新を実行済みにしない",
+      "producer_ids": [
+        "HARNESS-L3-052-F01",
+        "HARNESS-L3-052-F04",
+        "HARNESS-L3-052-F05",
+        "HELIXOS-L3-053-F01",
+        "HELIXOS-L3-053-F04"
+      ],
+      "consumer_ids": [
+        "HELIXOS-L3-001-F04"
+      ],
+      "review_state": "semantic_independent_review_pending",
+      "binding_kind": "owner_qualified_normative_contract_candidate",
+      "runtime_binding_state": "not_established"
     }
   ],
   "current_reference_triage": {
@@ -19651,7 +19755,7 @@
     }
   ],
   "unresolved": [
-    "26候補のsource/target/対oracleと責務・条件の独立意味照合、残りowner接続の欠落監査は未成立。",
+    "32候補のsource/target/対oracleと責務・条件の独立意味照合、残りowner接続の欠落監査は未成立。",
     "原75親の全適用義務・条件付き追加親の十分性は独立意味監査で確認する。ID有無や405双方向だけでは閉包を証明しない。",
     "HARNESS053→042の参照不整合を保持。当該rename/move等操作は未選択で、推測代替IDを置かない。",
     "BRAIN008内018/019/025のowner namespaceと現行採択本文の条件を独立監査する。OS025全能力を無条件初回gateにしない。",
@@ -19673,5 +19777,11 @@
     "F3": "12追加親に原親・選択/未選択操作条件・項目と承認出典を追補。",
     "F4": "JSON旧sourceへ82-85を追加、template16-60へ統一。",
     "boundary": "405 requirement/oracle entriesと48document pins/24admissions/歴史Stage/個別版は不変。監査入力を補正し新義務/実操作を追加しない。"
+  },
+  "finding_resolution_round2": {
+    "review_head": "9d46ee1241466b5922013f3451c83dd02e2f6aa9",
+    "review_comment": 6114496824,
+    "F1": "JOIN27..32として指摘6接続を追加。両端は承認済み405組。不足していた接続一覧の補正で、要求/承認/操作scopeを追加しない。",
+    "completion": "全scopeの独立完了判定はこの修正HEADで確認する。見込みを確定結論へ読み替えない。"
   }
 }
