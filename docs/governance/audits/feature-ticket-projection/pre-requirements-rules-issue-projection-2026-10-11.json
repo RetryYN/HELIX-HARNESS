@@ -1,0 +1,11 @@
+{
+  "ticket_id": "FT-GOV-PRE-REQUIREMENTS-RULES-001",
+  "source_revision": "fb2eedb21a84ed0f507724e002d4bcf7d1474c96",
+  "source_path": "docs/governance/feature-tickets/FT-GOV-PRE-REQUIREMENTS-RULES-001.md",
+  "source_sha256": "c6c0cda20a0d2c5d5337731fad5eaaa8a2ef3006e50d64d5a2afe5c27e9d34c9",
+  "issue_number": 2903,
+  "issue_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/2903",
+  "issue_body_sha256": "02a82ceb1cbf8e56fdcef01b8d9ae27a3fc159f5357133fdbb836b42b034e1b3",
+  "read_after": "exact_body_and_open_state_confirmed",
+  "authority_effect": "work_projection_only"
+}
