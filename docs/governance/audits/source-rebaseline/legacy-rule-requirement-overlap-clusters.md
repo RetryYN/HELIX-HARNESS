@@ -189,3 +189,21 @@ b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合
 RC02-032/037のdoctor wrapperはroot不存在と外へ伝播した例外を失敗にする。一方、呼出先loaderはloadReviewPlansの例外を空集合へ変換し、個別文書read失敗もskipする。空入力のanalyzerがok=trueを返すため、内部で吸収した読込失敗はwrapperの外側catchへ届かない。RC02-032の下流confirmedは動機コメントであり、当純関数は下流状態を読まない。RC02-037の判定にはS3verifiedPoC例外やparsefailure/invalidmodification条件もある。2件の読込失敗保証の差を`source_support_followups`へ保持し、原抽出文・台帳は変更しない。旧codeは非実行で、記録は静的な分岐照合である。
 
 missinggate skip、archived/非終端status、test作者とimplのpending許容差、interviewのokとfreeze_allowed、truthy参照と証拠充足、routeの文字列包含と実効性を別条件として保存した。旧実行が通ったことや全consumer閉包、完全atom化、正式successor、未計上0を主張しない。要求採否・retire・holding解除・Issue close・L3再開は生成せず、#1814/親#1813へ全残件を保持する。
+
+## RUL-FRM-02：主233件の引用条件比較と残る副264件
+
+基準content `c823efa38c0a53df9ccae6f260c97d53750f2346`。先頭160recordと209引用pin・5contextを保持し、残る主73recordの原抽出全field・引用原文・候補句との共通/固有条件を追補した。現在233/497で、副264の全IDを未比較として保持する。主233の引用条件比較は全数へ達したが、隣接helper/caller、完全atom化、判断史、全consumer閉包と正式successorの完了ではない。
+
+RE01-046の抽出文は「G gate／H gate」と呼ぶが、原文718–720は文書の§Gのsub-doc検査と§HのG1-trace検査の依存順である。独立したG/H gateを追加せず、原抽出文の呼称差をsource_support_followupsへ保存する。旧G1のR1/R2/R3 blockとP1/P2・R4 warn、UI無しscreen除外、G0.5の方向性/矛盾確認と完成度/ROI/KPI不足のhard禁止を別条件として保持する。旧Phase0Aの11項目・両OS・旧hook/CI・owner条件は特定scopeであり、現行作業への実行や新しい完了gateへ転用しない。
+
+Cycle P4 statusはbacktick除去/trim後のcase-sensitive集合で判定するが、必須セル不足の行は別のmalformed違反で先に止まる。追加2contextを元inventory引用pinと分離して保存した。manifestの宣言値と実測、文字列の存在と人間判断、S4 outcomeとPLAN status、freezeInputReadyとready、独立したDesign/Runtime/Release/Production Observationを同一の完了値へ潰さない。version_target、provider、旧層や数値、CLI、終端lifecycleもscopeを保つ。
+
+原inventory/仮登録/holding/Binding/rulebookは不変。主233の引用source読了から要求採否・retire・holding解除・Issue close・未計上0・要求ステージ完了・L3再開を生成しない。副264、主233の意味対応残件、他clusterを#1814/親#1813へ保持する。
+
+## RUL-FRM-02：副40件を追補し273/497の比較候補
+
+基準content `6c8e07a23adda72fca9310d906f1253acdda6d31`。主233の比較記録を保持し、副264の先頭40recordの引用原文と候補句を比較した。現在主233＋副40＝273/497の途中候補で、副224の全IDを未比較へ保持する。主担当がFRM01/OSA01/OSA06/FRM05/CORE等であることも原inventoryの全fieldのまま残し、副担当を主担当へ変更しない。
+
+旧静的layer gateはfreezeBlockingの適用・confirmed/placeholderの差・draft0・pair孤児0・L2のself wireframe条件を持ち、当ANDだけではconfirmed一件以上を要求していない。G7 coverage thresholdは指定値を受け、既定80と固定失敗メッセージの80を同一の実効条件にしない。通常の右側pair未凍結テスト設計の後付け禁止と、QA追加観点を独立design/差分PLANへ記録してからtestcodeを書く条件を分離する。4artifactの6無向pair/12 directed edgeと別文書で確定する必須8 edge、旧Recovery/Incident/Retrofitの異なる判断者、Scrumの旧TL判断とReverseのPO意図検証も固有条件として保持する。
+
+旧PLAN review evidence/doctor、UI無し旧L2skip、AC着手前の最低3反例、blocked再利用のdelta/oracle/review/digest、個別digest occurrenceのbyte oracle条件を現行の新gateや実行命令へコピーしない。273件の引用条件比較から隣接helper/caller・判断史・完全atom化・全consumer閉包・正式successor・未計上0・要求完了を生成しない。副224と読了分の意味対応残件を#1814/親#1813へ保持し、旧実行・要求採否・retire・holding解除・Issue close・L3再開は行わない。
