@@ -47,9 +47,13 @@
     {
       "path": "docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md",
       "sha256": "c091ac5083a0ebffb441921ab614567cfece8d95ded91cba3de3d462f9d667a9"
+    },
+    {
+      "path": "docs/helix-brain/candidates/first-cycle-reference-template-knowledge.json",
+      "sha256": "321d1253e63a11c3b14b398138ee976e2960298d2007431808396171b2431caf"
     }
   ],
-  "knowledge_use": "P3FIRSTのVT103と選択SDOP19節を問い/証拠/Backflowの限定材料として使う。数値/方式/全技法/正式schemaを採用しない。MSGの原適用制限を保持し、知識採用を実適用としない。",
+  "knowledge_use": "P3FIRSTのVT103と選択SDOP19節を問い/証拠/Backflowの限定材料として使う。数値/方式/全技法/正式schemaを採用しない。知識採用を実適用としない。",
   "document_format": "JSONが意味正本、Markdownは生成view。本keyを製品pack descriptor schemaやwire formatへ固定しない。",
   "legacy_comparison": {
     "reuse_class": "semantic_rederivation",
