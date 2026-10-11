@@ -104,3 +104,50 @@ BはO10の制約内生成方向とBRAIN006/023・COREの責務に沿います。
 **状態・責務の負例**：生成候補からAIがbrand/prototype合意を自己承認する、生成成功をimplemented/ux_verifiedとする、039の関係や079の証拠を生成unitのpassで代替する、049の測定passを生成義務充足の代用とする、LABOを迂回してBRAINへ製品情報を昇格する例を拒否する。実行、表示計測、walkthrough、人の合意は各既存owner/契約へ残す。fixtureは静的な期待条件で、実行証拠ではない。
 
 このpacketだけではcanonical/MPR/carry/Bindingを変更しません。090の固定案と1.0指定以外の要求採否、正式schema、UI seed全体、model/framework、実装、内部デプロイ、L3再開、実受入、旧source全移管、holding解除、要求Stage完了・Issuecloseを含めません。
+
+## ONBOARDING／REDFIRST：独立reviewで特定された残る要求差分
+
+[独立review F1/F2](https://github.com/RetryYN/HELIX-HARNESS/pull/2899#issuecomment-6108054870)を受けた未採択の固定案。JSONの`requirements_stage_gap_decisions`にsource原文・span/file SHA-256・一意置換前後bytes・反映後file digestを固定する。基準は`16444f5037faa6a2383029ec758823b51793bb8b`。既採用4件の判断を保持する。canonical/MPR/carry/Bindingは変更しない。
+
+### ONBOARDING（#1852、019追補）
+
+NFR-16:32とFR-L1-44:75の「途中導入でproject全体を止めない／段階移行」を019へ追補する。変換済みで入力・権限・義務を満たす範囲は利用継続でき、未変換・不整合はunknown/未完義務・影響先・戻し先として保持する。不足範囲へ依存する操作は未成立のまま。部分利用を全導入完了や受入にしない。旧NFR-06のfail-closeとの関係を操作のscopeで分け、全体停止の新gateを作らない。旧PLAN-L7-66:48–58の既存repo bootstrap目的も読むが、旧fallback template/runtimeは採用しない。新しい版指定を加えない。
+
+**L2固定差分（019の全section置換）**
+
+### HARNESS-L2-019 入口：フルリバース（単体）
+
+- **受け取るもの**：持ち込まれた既存の要件、コード、PoC。
+- **提供するもの**：HELIXの形（要求・設計・検証の対とtrace）へ変換した成果と、変換できなかった部分・由来の不明な部分の一覧。
+- **保証すること**：どのリリース単位からでも入れる。由来が不明、旧資産、設計traceの欠落のときの復旧の手段として全体のReverseを使い、変換の結果を承認済みの要求・設計にしない。変換できない部分をunknownとして残し、推定で埋めない。
+- **途中導入と段階移行**：既存プロジェクトへ途中導入するとき、既存docs・コード・stateの不整合や初回importの未完だけを理由にプロジェクト全体を止めず、変換済みで入力・権限・必要な義務を満たした範囲から利用を継続できる。未変換・不整合・由来不明の範囲はunknownと未完義務、その影響先・戻し先として保持し、既存資産を段階的に取り込んで再照合する。継続可能な範囲と未利用の範囲を同じsource revision/scopeへ結ぶ。未完範囲へ依存する操作や、必要条件がmissing/unknown/conflict/staleの操作をこの継続保証で成立させず、既存のauthority・検証・受入・Release条件を保持する。変換済み範囲の利用を全体の導入完了・承認済み要求・受入としない。旧NFR-16/FR-L1-44の非停止・段階移行要望を保持し、旧.helix初期化/state import/gate/runtimeの方式は移植しない。
+- **単独で成り立つための依存**：コアを使う。入った先のリリース単位を必須にしない。
+- 束ねる既存の条件：Conceptの「入口：フルリバース」、HARNESS-L2-003／004（Scoped Reverseと全体のReverse）。
+
+
+**対L11固定差分（019のrow置換）**
+
+| HARNESS-L2-019 | 既存の要件・コード・PoCを持ち込み、どのリリース単位からでも入れ、変換の結果と、変換できなかった部分・由来の不明な部分の一覧が出る。途中導入の初回importに不整合・未変換を含む場合も、同じrevision/scopeで必要条件を満たす変換済み範囲は利用でき、未完範囲・影響先・戻し先を保持して段階的に取り込み再照合する。不足範囲へ依存する操作は未成立のままとし、補完後に対象を再照合する | 変換の結果を承認済みの要求・設計とする／変換できない部分を推定で埋める／入る先の単位を限る ／既存資産の不整合だけでproject全体を停止する／unknownに依存する操作まで継続可能とする／部分取込みを全導入完了・受入とする |
+
+### REDFIRST（#1854、015の順序を明示判断）
+
+旧FR-L1-02:33の実装前Redを、TDDORDERの定義凍結や実装後の欠陥検出と同一に扱わない。 旧世代内でも、FR-L1-02:33の本体実装前順序と、ddd-tdd-rules:23の「作成時刻ではなく実際の欠陥検出」、47–50/137とL7-unit-test-design:668の`red_at<=green_at`には異なる記述がある。後者は本体実装前とは明示しておらず、TDDORDERはこちらを起点にした。Aは両方の保証を併せて実装前観測を現行義務に明示し、既決015/003の実装→Redを訂正する。Bは旧ruleと既決015の順序を保ち、FR-L1-02の本体実装前保証を置換する。Aを旧ruleの完全一致移管、Bだけを旧意味変更とは扱わない。既決TDDORDERと005を取り消す判断は生成せず、この015順序差だけを明示判断の対象にする。
+
+- **A（推奨）**：凍結→実装前Red実観測→最小本体実装→Greenへ訂正する。実装後の欠陥注入/mutationは005のoracle強度を確かめる別証拠として保持する。
+- **B**：015の既決順序で旧FR-L1-02の実装前Red順序を置換する。旧confirmed要求の意味変更として明示記録し、旧順序はholdingに保持する。015/L11本文変更なし。
+
+**AのL2固定差分（015の保証行置換）**
+
+- **保証すること**：Vの谷（L6↔L7）で、設計の契約と対のtest／oracleの定義・凍結→実装前Red（対象の振る舞いが未実装または未修正の状態で、凍結したtestが意図する不足・欠陥を実際に検出した観測）→最小の本体実装→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じる。局所のRefactorはpublic contract、要求、architectureの意味、stateの意味を変えない。原子CIの合格を、品質の証明、システムの成立、利用者の受入、Releaseの成立にしない。PRの前に回すCIはticketとの関係から決め、省いた検査を記録する。 旧FR-L1-02のテストコードRed→本体実装Greenという順序を保持する。テスト作成時刻や定義凍結だけを実装前Redの観測にしない。実装後の意図した欠陥注入・mutationによる検出証拠は005のoracle強度を確かめる別の証拠であり、実装前Redの代用にしない。既存コードを改修する場合も本体変更前の対象revisionで意図した不成立を観測し、環境/構文障害など無関係な失敗をRedにしない。
+
+**003工程表の同一順序整合差分**
+
+| HARNESS-L2-003 | [2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)に従い、Vの谷（L6↔L7）では、設計の契約と対のtest／oracleの定義・凍結→実装前Red（未実装/未修正の対象契約で意図する不足・欠陥を実観測）→最小本体実装→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じ、実装後の欠陥注入/mutationの検出は005のoracle強度を確かめる別証拠として保持し、実装前Redを代替しない。成果物をProvisional（次の結合へ渡してよい）にする。局所のRefactorは、public contract、要求、architectureの意味、stateの意味を変えない。変える必要があればBackflowする。原子CIの合格は、品質の証明、システムの成立、利用者の受入、Releaseの成立を意味しない |
+
+**Aの対L11固定差分（015のrow置換）**
+
+| HARNESS-L2-015 | ④だけを導入した環境で、実装前に凍結した設計と対のtest／oracleから、本体の実装/修正前revisionで意図した不足・欠陥を観測するRed→最小本体実装→凍結したoracleを満たしたGreenの証拠→局所のRefactor→原子CIまでが閉じ、成果物がProvisionalになり、設計・テストとの双方向traceと省いた検査の記録が残る | 本体実装/修正後のRedだけを実装前Redとする／testの作成時刻や凍結だけをRed観測とする／環境・構文障害など対象契約と無関係な失敗をRedとする／実装後のmutation検出を実装前Redの代用にする／実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格を品質の証明・システムの成立・受入・Releaseの成立とする／局所のRefactorでpublic contractや要求の意味を変える／HELIX-OSのCI運転がないと使えない |
+
+採用後もsource holding/formal successor/旧consumer/schema/実装は別に保持する。L3再開・release・要求Stage終了・Issuecloseの許可を含まない。
+
+**REDFIRSTの反映digest規則**：各editのafter値は基準へ単独適用した検算値で、全editの累積反映結果はJSONの`options.A.after_files_sha256`へ固定した。L2累積SHA-256は`7e4c0dd4336c896beec1304d6612a5defd5c3f0fc99dc2ac5b3452e49222cb31`。採用記録では005追補の旧「FR-L1-02順序差分は別に保持」を今回decisionへ接続し、5規律・既決版・未処置sourceのholdingを維持する。

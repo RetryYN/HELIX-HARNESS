@@ -3419,5 +3419,200 @@
       "正式schema/実装/内部デプロイ/L3再開/要求Stage完了/Issuecloseは別。",
       "全旧VDH/source/consumer移管、holding解除、seed全体採用、framework/model選定は含まない。"
     ]
-  }
+  },
+  "requirements_stage_gap_decisions": [
+    {
+      "id": "ONBOARDING",
+      "issue": 1852,
+      "base_revision": "16444f5037faa6a2383029ec758823b51793bb8b",
+      "authority_effect": "none",
+      "status": "awaiting_po_decision",
+      "requirement_identity": "HARNESS-L2-019",
+      "version_effect": "既存指定保持、新規版指定なし",
+      "review_finding": "F1",
+      "review": "https://github.com/RetryYN/HELIX-HARNESS/pull/2899#issuecomment-6108054870",
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+          "start_line": 31,
+          "end_line": 32,
+          "file_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+          "text": "| **NFR-06** | **fail-close** — gate / lint は安全側に倒し、silent pass を許さない。**FE detector 5 軸決定論性適用** (A-52 audit I-03): drive=fe 時は fe-detector-spec.md の 5 軸 (mock-promotion / design-token-drift / a11y-regression / visual-regression / state-transition-drift、axis-15〜19) の pass 証跡を必須化し fail-close 対象とする (FR-L1-22 連動) | subagent guard: blockOnFailure=true / gate-checks.yaml: exit 2 on fail / stdin 読取失敗も block / FE detector 5 軸 fail-close (drive=fe 時、fe-detector-spec.md) |\n| **NFR-16** | **onboarding 互換性** — 既存プロジェクトへの途中導入時、既存 docs / コード / state の不整合を block せず段階移行 | FR-L1-44 連動。既存資産を harness state に段階的に取り込み、初回 import でプロジェクトを止めない |\n",
+          "span_sha256": "ad5857adf48470b29ea577618b831fcfef6e9979e11b07e3f844f14d91a8d2f1"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+          "start_line": 75,
+          "end_line": 75,
+          "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "text": "| **FR-L1-44** | 途中導入 onboarding workflow (既存プロジェクトへの harness baseline 確立) | PO directed (2026-05-28) | 既存コード/docs/PLAN 資産一覧、`.helix/` 未初期化状態 | `.helix/` 初期 baseline、既存資産 → state import レポート、onboarding 完了 gate 証跡。FR-L1-14 の前段 context、FR-L1-07 初回 import 引継ぎ、FR-L1-26 段階移行と組合せ | P1 | GD-01 (Onboarding) |\n",
+          "span_sha256": "b6c517f4b782bb1cbc97fadbb508ee84fb9cee8809dcaa0c42e48bb7c5250207"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+          "start_line": 119,
+          "end_line": 119,
+          "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "text": "| (対応 source reference doc なし) | FR-L1-44 (途中導入 onboarding workflow) は source reference側に対応 doc なし、HELIX 独自設計 (PO directed 2026-05-28) | FR-L1-44 |\n",
+          "span_sha256": "e9fdbf3c46b2a52d40ea8d4bc05882510fc7b49a823b2edaf8247ca83dd10ad3"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-66-existing-repo-onboarding-readme.md",
+          "start_line": 48,
+          "end_line": 58,
+          "file_sha256": "ce4e02cc0846ecca5031d7998bfc7b165b35c9d03b3d8c9b1c6024e70928c320",
+          "text": "## スコープ\n\n- 対象 repository に `docs/templates/github/` が存在しない場合に使う built-in GitHub setup template を追加する。\n- 対象 repository 側の template が存在する場合は override として維持する。\n- 目的、Windows/TS stance、source-checkout setup、team run、model/effort policy、verification command を説明する root `README.md` を追加する。\n\n## 検証\n\n- [x] `bunx vitest run tests\\setup.test.ts`\n\n## DoD\n",
+          "span_sha256": "294ff365fe1f3ffc9367d589344e8e34b55aaea3a79366585645b9132da9de75"
+        }
+      ],
+      "legacy_comparison": {
+        "preserved": "NFR-16/FR-L1-44の途中導入・非停止・段階移行、既存019の部分変換/unknown/非承認。",
+        "changed": "019に継続可能範囲と未完依存操作の境界を明示する。旧初期化/state import方式・gate主体は固定しない。",
+        "reason": "unknown一覧だけでは利用継続を保証できないという独立reviewの具体不足を補い、全体非停止と操作ごとの必要条件を両立する。"
+      },
+      "edits": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "operation": "replace_exact_text",
+          "existing_file_sha256": "1ba5fea3de1cf92334e63493210226ab1357de3306aa3f64cbe55566ea21c694",
+          "before_text": "### HARNESS-L2-019 入口：フルリバース（単体）\n\n- **受け取るもの**：持ち込まれた既存の要件、コード、PoC。\n- **提供するもの**：HELIXの形（要求・設計・検証の対とtrace）へ変換した成果と、変換できなかった部分・由来の不明な部分の一覧。\n- **保証すること**：どのリリース単位からでも入れる。由来が不明、旧資産、設計traceの欠落のときの復旧の手段として全体のReverseを使い、変換の結果を承認済みの要求・設計にしない。変換できない部分をunknownとして残し、推定で埋めない。\n- **単独で成り立つための依存**：コアを使う。入った先のリリース単位を必須にしない。\n- 束ねる既存の条件：Conceptの「入口：フルリバース」、HARNESS-L2-003／004（Scoped Reverseと全体のReverse）。\n\n",
+          "before_text_sha256": "0f50a16bcb31791e5d27f784a0d97f8142f41559d957b12713e19f1ab80d7609",
+          "proposed_text": "### HARNESS-L2-019 入口：フルリバース（単体）\n\n- **受け取るもの**：持ち込まれた既存の要件、コード、PoC。\n- **提供するもの**：HELIXの形（要求・設計・検証の対とtrace）へ変換した成果と、変換できなかった部分・由来の不明な部分の一覧。\n- **保証すること**：どのリリース単位からでも入れる。由来が不明、旧資産、設計traceの欠落のときの復旧の手段として全体のReverseを使い、変換の結果を承認済みの要求・設計にしない。変換できない部分をunknownとして残し、推定で埋めない。\n- **途中導入と段階移行**：既存プロジェクトへ途中導入するとき、既存docs・コード・stateの不整合や初回importの未完だけを理由にプロジェクト全体を止めず、変換済みで入力・権限・必要な義務を満たした範囲から利用を継続できる。未変換・不整合・由来不明の範囲はunknownと未完義務、その影響先・戻し先として保持し、既存資産を段階的に取り込んで再照合する。継続可能な範囲と未利用の範囲を同じsource revision/scopeへ結ぶ。未完範囲へ依存する操作や、必要条件がmissing/unknown/conflict/staleの操作をこの継続保証で成立させず、既存のauthority・検証・受入・Release条件を保持する。変換済み範囲の利用を全体の導入完了・承認済み要求・受入としない。旧NFR-16/FR-L1-44の非停止・段階移行要望を保持し、旧.helix初期化/state import/gate/runtimeの方式は移植しない。\n- **単独で成り立つための依存**：コアを使う。入った先のリリース単位を必須にしない。\n- 束ねる既存の条件：Conceptの「入口：フルリバース」、HARNESS-L2-003／004（Scoped Reverseと全体のReverse）。\n\n",
+          "proposed_text_sha256": "680e2f2f742982c9afd896c6ad51613bfcd171e3ff30ec46eb672c87669dd9b2",
+          "after_file_sha256": "5a47567f6c9dde81a2d50c869bb36a57ebb66dc3d0155270c54fb60c1f87c3d9"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "operation": "replace_exact_text",
+          "existing_file_sha256": "788042350eb2f9c8265958bb59cb81f484fb6752f7f18327af1a0dde4d38354f",
+          "before_text": "| HARNESS-L2-019 | 既存の要件・コード・PoCを持ち込み、どのリリース単位からでも入れ、変換の結果と、変換できなかった部分・由来の不明な部分の一覧が出る | 変換の結果を承認済みの要求・設計とする／変換できない部分を推定で埋める／入る先の単位を限る |\n",
+          "before_text_sha256": "272a6649b26e16d38a8679a36832e3aa621a46373b6beb73c9847969d5a1af89",
+          "proposed_text": "| HARNESS-L2-019 | 既存の要件・コード・PoCを持ち込み、どのリリース単位からでも入れ、変換の結果と、変換できなかった部分・由来の不明な部分の一覧が出る。途中導入の初回importに不整合・未変換を含む場合も、同じrevision/scopeで必要条件を満たす変換済み範囲は利用でき、未完範囲・影響先・戻し先を保持して段階的に取り込み再照合する。不足範囲へ依存する操作は未成立のままとし、補完後に対象を再照合する | 変換の結果を承認済みの要求・設計とする／変換できない部分を推定で埋める／入る先の単位を限る ／既存資産の不整合だけでproject全体を停止する／unknownに依存する操作まで継続可能とする／部分取込みを全導入完了・受入とする |\n",
+          "proposed_text_sha256": "221e20e1e9d683aa08bea06b96fab2a254784c26de063e00707a263f0952843d",
+          "after_file_sha256": "205cc77d361bda9e5774f1a1daa56bd8204d494d82e5ff379b5ae3e6b6f80f61"
+        }
+      ],
+      "limits": [
+        "本packetは未採択。canonical L2/L11・MPR・carry・Bindingは変更しない。",
+        "既採用ASSETCOVER/O10GEN/DDDSTRICT/INCIDENTPORTの意味・版・判断を保持する。新しい版指定を加えない。",
+        "採用は提示した要求差分と対L11だけ。L3再開・正式schema・実装・旧runtime/CI・実release・要求Stage終了・Issuecloseを許可しない。",
+        "旧source holding、空formal successor、未処置consumer/旧技術方式は保持する。全原文のformal rehomeを本案のStage終了gateにしない。"
+      ]
+    },
+    {
+      "id": "REDFIRST",
+      "issue": 1854,
+      "base_revision": "16444f5037faa6a2383029ec758823b51793bb8b",
+      "authority_effect": "none",
+      "status": "awaiting_po_decision",
+      "requirement_identity": "HARNESS-L2-015",
+      "consequential_identity": "HARNESS-L2-003（工程表の同一順序だけ整合訂正、既決1.0/hotfix追補保持）",
+      "version_effect": "既存指定保持、新規版指定なし",
+      "review_finding": "F2",
+      "review": "https://github.com/RetryYN/HELIX-HARNESS/pull/2899#issuecomment-6108054870",
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+          "start_line": 33,
+          "end_line": 33,
+          "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "text": "| **FR-L1-02** | TDD 強制フロー (テストファースト順序厳守・実装先行禁止) | L7-implementation | L6 機能設計 (関数仕様 / クラス設計 / エッジケース) | テストコード (red) → 本体実装 (green) | P0 | PM-02 (L7 工程) / HM-07 |\n",
+          "span_sha256": "9ebc31aaeee0f1bbac64cab81a37312dd81f14fd45ccd0f0ff86436c93012ecc"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+          "start_line": 21,
+          "end_line": 24,
+          "file_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+          "text": "3. **契約先行**: public behavior、precondition、postcondition、invariant、failure semantics、owner、\n   write authorityを実装前に固定する。内部構造は契約を守る限り交換可能にする。\n4. **TDDは検証契約**: Redは「testを書いた時刻」ではなく、意図した欠陥を実際に検出する証拠である。\n   Greenは最小実装、Refactorは同じoracleがgreenのまま構造を単純化した証拠で閉じる。\n",
+          "span_sha256": "19a23bce2ad03f09c89d93d77363067020226ab1fc4d2d063ace3b9ff6c6583b"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+          "start_line": 47,
+          "end_line": 50,
+          "file_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+          "text": "  - id: red-first-evidence\n    enforcement: hard\n    owner: src/lint/ddd-tdd-rules.ts\n    intent: tdd_red_required が付いた confirmed TDD PLAN は red_at と green_at を時系列順に記録しなければならない。\n",
+          "span_sha256": "9992898029a21106f27533f9f991d119a14183a8efc85ec01bff5cadd28f5faa"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+          "start_line": 137,
+          "end_line": 137,
+          "file_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+          "text": "- id: DDD-INV-003 oracle: U-DDDTDD-003 - TDD implementation evidence は Red-first である: TDD evidence を要求する confirmed plan では `red_at <= green_at` を満たす。\n",
+          "span_sha256": "0a4e6307ff5ac729643bc391ed70229b41176ee59de94e5270deef3f1e110d06"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L7-unit-test-design.md",
+          "start_line": 668,
+          "end_line": 668,
+          "file_sha256": "0fd9f9dc3ac452fefaa74d3fea79c19a9fe2e162908ed763bfbcc56514186347",
+          "text": "| U-DDDTDD-003 | Red-first evidence                   | confirmed `tdd_red_required` PLAN が `red_at` / `green_at` を欠く、または `red_at > green_at` -> violation                                                                                                                                         |\n",
+          "span_sha256": "3ac45737d6a2d0df178c13f50fb3d4856ba1b865661c67758795ed36d4de9c22"
+        }
+      ],
+      "legacy_comparison": {
+        "preserved": "旧FR-L1-02はtestコードRed→本体実装Greenという実装前の順序を示す。一方、旧ddd-tdd-rules:23はRedを作成時刻でなく意図した欠陥の実検出と定義し、47-50/137とL7:668のRed-first条件はred_at<=green_atで、本体実装前とは明示しない。TDDORDERは後者を意味起点にした。この2つを旧世代内の異なる記述として保持し、同じ意味だったと補完しない。",
+        "changed": "AはFR-L1-02の実装前Red順序と旧ruleの実検出/Red-before-Greenを両立させ、TDDORDER015/003の実装→Redを訂正する。旧ruleに明記されなかった本体実装前の観測条件を現行の一律義務として明示するため、旧ruleの単なる完全一致移管とはしない。Bは旧ruleの実検出/Red-before-Greenと既決TDDORDERを保持し、FR-L1-02の本体実装前Redという順序保証を置換する。",
+        "reason": "作成時刻/凍結と観測の取り違えを防ぎ、既決の欠陥検出意味を保ったままFR-L1-02の本体実装前順序を保持するため。旧不在/未完成/runtime存在を変更理由にしない。"
+      },
+      "options": {
+        "A": {
+          "recommended": true,
+          "meaning": "旧実装前Red観測の順序を保持する。下記015/L11固定差分で既決TDDORDERの順序を訂正し、実装後のmutation証拠は005へ別証拠として保持する。",
+          "edits": [
+            {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "operation": "replace_exact_text",
+              "existing_file_sha256": "1ba5fea3de1cf92334e63493210226ab1357de3306aa3f64cbe55566ea21c694",
+              "before_text": "- **保証すること**：Vの谷（L6↔L7）で、設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じる。局所のRefactorはpublic contract、要求、architectureの意味、stateの意味を変えない。原子CIの合格を、品質の証明、システムの成立、利用者の受入、Releaseの成立にしない。PRの前に回すCIはticketとの関係から決め、省いた検査を記録する。\n",
+              "before_text_sha256": "67938f4774db2eb4be5e96e774dc147f2c0ba97f2822d3afd6c403a04cbebd08",
+              "proposed_text": "- **保証すること**：Vの谷（L6↔L7）で、設計の契約と対のtest／oracleの定義・凍結→実装前Red（対象の振る舞いが未実装または未修正の状態で、凍結したtestが意図する不足・欠陥を実際に検出した観測）→最小の本体実装→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じる。局所のRefactorはpublic contract、要求、architectureの意味、stateの意味を変えない。原子CIの合格を、品質の証明、システムの成立、利用者の受入、Releaseの成立にしない。PRの前に回すCIはticketとの関係から決め、省いた検査を記録する。 旧FR-L1-02のテストコードRed→本体実装Greenという順序を保持する。テスト作成時刻や定義凍結だけを実装前Redの観測にしない。実装後の意図した欠陥注入・mutationによる検出証拠は005のoracle強度を確かめる別の証拠であり、実装前Redの代用にしない。既存コードを改修する場合も本体変更前の対象revisionで意図した不成立を観測し、環境/構文障害など無関係な失敗をRedにしない。\n",
+              "proposed_text_sha256": "cfc3057f0a545284a121980824f8e308b12084eba72aaee0a103db336cfda5c7",
+              "after_file_sha256": "4392c8887cd6a0b15cd6b844423b4159d9a95a129c1804713a04848e58ca68ca"
+            },
+            {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "operation": "replace_exact_text",
+              "existing_file_sha256": "1ba5fea3de1cf92334e63493210226ab1357de3306aa3f64cbe55566ea21c694",
+              "before_text": "| HARNESS-L2-003 | [2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)に従い、Vの谷（L6↔L7）では、設計の契約と対のtest／oracleの定義・凍結→実装→Red（意図した欠陥の検出）→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じ、成果物をProvisional（次の結合へ渡してよい）にする。局所のRefactorは、public contract、要求、architectureの意味、stateの意味を変えない。変える必要があればBackflowする。原子CIの合格は、品質の証明、システムの成立、利用者の受入、Releaseの成立を意味しない |\n",
+              "before_text_sha256": "9e6ac23a685719735c726ff0acf10d60325ae4b5edc9cf60b20768ad63a2f630",
+              "proposed_text": "| HARNESS-L2-003 | [2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)に従い、Vの谷（L6↔L7）では、設計の契約と対のtest／oracleの定義・凍結→実装前Red（未実装/未修正の対象契約で意図する不足・欠陥を実観測）→最小本体実装→Green（凍結したoracleを最小の実装で満たした証拠）→局所のRefactor→原子CIまでを閉じ、実装後の欠陥注入/mutationの検出は005のoracle強度を確かめる別証拠として保持し、実装前Redを代替しない。成果物をProvisional（次の結合へ渡してよい）にする。局所のRefactorは、public contract、要求、architectureの意味、stateの意味を変えない。変える必要があればBackflowする。原子CIの合格は、品質の証明、システムの成立、利用者の受入、Releaseの成立を意味しない |\n",
+              "proposed_text_sha256": "dcc2a8a1f6bcfd04e9940615795952c265d3822d4ba8412ec860981b679dc0e3",
+              "after_file_sha256": "86d24a8bde48740014e5931777e6c3761fcd58ae1c83f2d034575600ae061a97"
+            },
+            {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "operation": "replace_exact_text",
+              "existing_file_sha256": "788042350eb2f9c8265958bb59cb81f484fb6752f7f18327af1a0dde4d38354f",
+              "before_text": "| HARNESS-L2-015 | ④だけを導入した環境で、実装前に凍結した設計と対のtest／oracleから、意図した欠陥を検出するRed→凍結したoracleを最小の実装で満たしたGreenの証拠→局所のRefactor→原子CIまでが閉じ、成果物がProvisionalになり、設計・テストとの双方向traceと省いた検査の記録が残る | 実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格を品質の証明・システムの成立・受入・Releaseの成立とする／局所のRefactorでpublic contractや要求の意味を変える／HELIX-OSのCI運転がないと使えない |\n",
+              "before_text_sha256": "cc68808d85e3ac2946e0f19309b8b2b5e443873bb9080a91428ffa0425e9783e",
+              "proposed_text": "| HARNESS-L2-015 | ④だけを導入した環境で、実装前に凍結した設計と対のtest／oracleから、本体の実装/修正前revisionで意図した不足・欠陥を観測するRed→最小本体実装→凍結したoracleを満たしたGreenの証拠→局所のRefactor→原子CIまでが閉じ、成果物がProvisionalになり、設計・テストとの双方向traceと省いた検査の記録が残る | 本体実装/修正後のRedだけを実装前Redとする／testの作成時刻や凍結だけをRed観測とする／環境・構文障害など対象契約と無関係な失敗をRedとする／実装後のmutation検出を実装前Redの代用にする／実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格を品質の証明・システムの成立・受入・Releaseの成立とする／局所のRefactorでpublic contractや要求の意味を変える／HELIX-OSのCI運転がないと使えない |\n",
+              "proposed_text_sha256": "3d30f23fa073f246abc27bba7dc6bc43ca0ede0233fc7774092642a5a00338f9",
+              "after_file_sha256": "5288ab1115b900966076eae394279fbbbb4f396eccd8c52c0c3fb2c6eb22864d"
+            }
+          ],
+          "legacy_effect": "FR-L1-02の順序保証、旧ruleの実検出/Red-before-Greenを保持。TDDORDERの実装→Red順序を訂正し、旧ruleには本体実装前と明示されなかった観測義務を具体化する。",
+          "after_files_sha256": {
+            "docs/helix-harness/L2-requirements/product-requirements.md": "7e4c0dd4336c896beec1304d6612a5defd5c3f0fc99dc2ac5b3452e49222cb31",
+            "docs/helix-harness/L11-acceptance/product-acceptance.md": "5288ab1115b900966076eae394279fbbbb4f396eccd8c52c0c3fb2c6eb22864d"
+          }
+        },
+        "B": {
+          "meaning": "015の既決「凍結→実装→Red→Green」で旧FR-L1-02の実装前Red順序を置換する。旧順序はholdingへ保全し、実装前Red観測を現行義務にしない。",
+          "source_meaning_effect": "旧confirmed FR-L1-02の順序意味を変更する明示人間判断。既決015/L11本文変更なし。正式successor/holding解除は別。",
+          "legacy_effect": "旧ruleの実検出/Red-before-Green、既決TDDORDERの実装→Red順序を保持。FR-L1-02の本体実装前Red保証を現行義務としては置換し、旧sourceはholdingに保全。"
+        }
+      },
+      "limits": [
+        "本packetは未採択。canonical L2/L11・MPR・carry・Bindingは変更しない。",
+        "既採用ASSETCOVER/O10GEN/DDDSTRICT/INCIDENTPORTの意味・版・判断を保持する。新しい版指定を加えない。",
+        "採用は提示した要求差分と対L11だけ。L3再開・正式schema・実装・旧runtime/CI・実release・要求Stage終了・Issuecloseを許可しない。",
+        "旧source holding、空formal successor、未処置consumer/旧技術方式は保持する。全原文のformal rehomeを本案のStage終了gateにしない。"
+      ],
+      "digest_rule": "各editのafter_file_sha256は基準fileへ当該editだけを適用した検算値。採用時の累積反映結果はoptions.A.after_files_sha256に記録する。全beforeを基準fileで一意確認してから対象fileごとに全editを適用する。",
+      "adoption_followup": "採用記録で005追補の「FR-L1-02のRedと本体実装の順序差分は別に保持」を今回の対象decisionへ接続する。005の5規律/既決版/残る全source holdingを変更せず、旧未決表示を現在の採否として流用しない。"
+    }
+  ]
 }
