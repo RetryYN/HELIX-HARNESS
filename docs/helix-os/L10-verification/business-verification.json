@@ -6,7 +6,7 @@
   "status": "draft_not_approved",
   "authority_effect": "none_until_exact_revision_delegated_approval",
   "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
-  "scope": "10/12限定前提形成のJSON意味正本・artifact群の単一operation原子確定。OS002案件template追跡は別pair。FR53履歴変換とHARNESS053→042不整合に依存する操作は選択しない。追加scopeは10/12初回対象のStage1 OS002案件template記録/因果追跡と選択評価入力の追跡材料。既存053の11組は不変。通常L3再開やrelease運転は選択しない。追加scopeはOS001/007/015/016/019の管理・状態・原証拠・継続の必要規範。歴史的Stage2aの015/016/019は10/12限定前提入力のみ先行し、全能力実装を前倒ししない。既存24組は不変。追加scopeは017/020/023の推進・検収・受渡し前提規範。歴史Stage2a/1.0を保持し、10/12必要入力の先行著述だけを行う。先行45組は不変。018/027は別追加で必要規範を閉じる。",
+  "scope": "10/12限定前提形成のJSON意味正本・artifact群の単一operation原子確定。OS002案件template追跡は別pair。FR53履歴変換とHARNESS053→042不整合に依存する操作は選択しない。追加scopeは10/12初回対象のStage1 OS002案件template記録/因果追跡と選択評価入力の追跡材料。既存053の11組は不変。通常L3再開やrelease運転は選択しない。追加scopeはOS001/007/015/016/019の管理・状態・原証拠・継続の必要規範。歴史的Stage2aの015/016/019は10/12限定前提入力のみ先行し、全能力実装を前倒ししない。既存24組は不変。追加scopeは017/020/023の推進・検収・受渡し前提規範。歴史Stage2a/1.0を保持し、10/12必要入力の先行著述だけを行う。先行45組は不変。018/027は別追加で必要規範を閉じる。追加は018の割当/継続/既定逸脱とescalation実receipt、および027の限定初回経路の必要規範。先行57組不変。歴史Stage2a/1.0保持、10/12前提規範の限定先行のみ。",
   "source_pins": [
     {
       "path": "docs/concept/helix-concept.md",
@@ -107,9 +107,21 @@
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
       "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+    },
+    {
+      "path": "docs/governance/decisions/body-reinforcement-po-decisions-2026-09-27.md",
+      "sha256": "c0cf47913b93e462cd609b51f3a8ca634b84bf46dc351aa1debfcb91b919ce8d"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707"
     }
   ],
-  "dependency_boundary": "意味identity判定はHARNESS052、既存正本/event/projection/復旧はOS001/002/007/009、実権限/隔離はSECURITY、資源はINFRA。owner-qualified L3契約のexact revisionは未承認/未束縛。意味をOSで補わず該当実操作を保留する。HARNESS052は10/3時点の版未指定から10/10 VERSIONJOINで1.0へ指定済み。既存OS-L2/L11-001〜029の採択固定revision・権限境界と一般更新/stale/再送条件は再定義しない。本追加規範と実record/owner-qualified bindingは別。個別承認済みのHARNESS/BRAIN/COREはそのexact判断記録へ戻る。015の正本/authority形式、016の関係する検証/提供根拠、019の018assignment/利用区分/接続は適用操作で必要。未来の結果を左L3起草の前提にしない。017/020/023の規範は本追加にあるが、018assignment/027初回構成体、実SEC/INFRA、INT案/LABO水準の該当契約とowner-qualified bindingは未完。実結果/receiptは当該操作の後で生成して照合する。",
+  "dependency_boundary": "意味identity判定はHARNESS052、既存正本/event/projection/復旧はOS001/002/007/009、実権限/隔離はSECURITY、資源はINFRA。owner-qualified L3契約のexact revisionは未承認/未束縛。意味をOSで補わず該当実操作を保留する。HARNESS052は10/3時点の版未指定から10/10 VERSIONJOINで1.0へ指定済み。既存OS-L2/L11-001〜029の採択固定revision・権限境界と一般更新/stale/再送条件は再定義しない。本追加規範と実record/owner-qualified bindingは別。個別承認済みのHARNESS/BRAIN/COREはそのexact判断記録へ戻る。015の正本/authority形式、016の関係する検証/提供根拠、019の018assignment/利用区分/接続は適用操作で必要。未来の結果を左L3起草の前提にしない。017/020/023の規範は本追加にあるが、018assignment/027初回構成体、実SEC/INFRA、INT案/LABO水準の該当契約とowner-qualified bindingは未完。実結果/receiptは当該操作の後で生成して照合する。018/027の規範は本追加にあるが、SEC/CONNECT/INFRA/LABO/INTと追加条件付き参照の各限定契約・owner-qualified exact bindingは未完。実認可/環境/資源/実record/検証/受入は後続段階で照合する。",
   "knowledge_use": "採用P3FIRSTのVT103と選択SDOP19節の問い/証拠/戻し先を限定利用する。数値・方式・全技法・正式schemaは採用しない。",
   "document_format": "JSONが意味正本、MDは生成view。本keyは文書用であり製品schema/wire/transaction方式を固定しない。",
   "legacy_comparison": {
@@ -282,6 +294,51 @@
       "change": "9/28OS/周辺のownerと既存HARNESS工程/義務へ意味を再導出。旧CLI/DB/schema/admission engine/固定mode/provider/required checkを継承しない。部品外flowは4.0。",
       "reason": "採択済み責務分離と10/12限定前提形成を満たし、案/CI/単体成功からhandoff/実受入を誤生成しない。",
       "consumer": "015016管理と状態→017ticket→018Worker→020検収→019証拠/023受渡し。CORE/BRAINの意味・HARNESSの義務と実SEC/INFRA条件は各ownerへ戻る。"
+    },
+    "worker_first": {
+      "reuse_class": "semantic_rederivation",
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+          "identity": "HIL-NFR-36、whole atom digest2224ab3bcd6e7974df0e119d9298a784abf86594399cfbe09c6d40b75620f8d3"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "identity": "HR-FR-HIL-22"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+          "identity": "HAC-HIL-22a/b/c"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+          "identity": "HAT-HIL-22 designed_not_implemented"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+          "lines": [
+            663,
+            666,
+            907,
+            907
+          ],
+          "identity": "RLO-FR-040/RLO-AC-030",
+          "locator_kind": "inclusive_line_ranges"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+          "lines": [
+            43,
+            43
+          ],
+          "identity": "RLO-AC-030",
+          "locator_kind": "inclusive_line_ranges"
+        }
+      ],
+      "preserve": "未評価の明示/authority不変、selectionと品質/費用/retry trace、実逸脱/実順序receipt、重大failure非相殺、task別適用限界、ticket/assignment/attempt/累積制約/独立review。HR/HAC/HAT consumer意味を参照資料へ降格しない。",
+      "change": "9/27補強と9/28採択で未評価からの限定初回を現行OS/INT/LABO/HARNESS/SEC/INFRA責務間に閉じ、10/3残差追補の実receiptを保持する。旧固定配車/model/effort値/runtime/schemaは採用しない。",
+      "reason": "未評価と不許可を分離し、許可・安全・実検証を省略せず実績を観測へ渡す採択意味を満たす。",
+      "consumer": "017ticket→018割当/実行→019証拠/023handoff→LABO観測/適用範囲付き評価→INT案→OS指定。027は構成provenanceでLABO057の依存ではない。"
     }
   },
   "remaining": [
@@ -290,7 +347,8 @@
     "PO L11実物受入と通常L3の再開、release/内部デプロイは本pairの文書承認で成立しない。",
     "OS002のowner-qualified契約（CORE009/BRAIN032/OS001/007/019/023/005/024/048等）と適用操作のexact revision・許可/資源/観測は未束縛。実handoff/実記録/選択評価scopeの接続とLABO評価/BRAIN採否は未成立。",
     "017/018/020/023/027の限定pair、SEC/CONNECT/INFRA/LABO/INT等の適用契約と全scopeのowner-qualified exact bindingは後続。記録形式/schema/実event/projection/実更新/運用memory/CI/PO受入は文書承認で生成しない。",
-    "018/027の必要限定規範・exact bindingと周辺契約が残る。017/020/023の正式schema/engine/profile/実運転/実handoff/独立実証は後続段階。全種類/全flow実装、部品外4.0能力、旧workflow/CIを採用しない。"
+    "018/027の必要限定規範・exact bindingと周辺契約が残る。017/020/023の正式schema/engine/profile/実運転/実handoff/独立実証は後続段階。全種類/全flow実装、部品外4.0能力、旧workflow/CIを採用しない。",
+    "全限定scopeのowner-qualified exact bindingと必要周辺契約/条件付き追加参照/最終監査は未完。正式schema/assignment engine/実run/評価/CI/PO受入は生成しない。027適用時の具体Worker/scope/budget/期限/oracle/人分担と実安全条件は後続の対象作業へ固定する。"
   ],
   "document_id": "HELIXOS-L10-053-business",
   "layer": "L10",
@@ -373,6 +431,28 @@
       "negative_input": "運転側が計画変更、CI成功でmeaning review/Accepted/release。",
       "failure_observation": "越境を拒み、該当計画/義務/判断ownerへ返す。",
       "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L10-018-B01",
+      "parent": "HELIXOS-L2-018",
+      "title": "配置案・比較評価・実行記録の責務",
+      "requirement_ref": "HELIXOS-L3-018-B01",
+      "positive_input": "案/評価/実assignment/観測receiptを異なるownerで照合する。",
+      "expected_observation": "各ownerと対象revision/scopeが別に辿れる。",
+      "negative_input": "proposalから実receipt生成、receiptだけで許可/適合/成功、旧FR63値をdefaultへ昇格。",
+      "failure_observation": "責務ownerへ返し、未完を保持する。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L10-027-B01",
+      "parent": "HELIXOS-L2-027",
+      "title": "初回経路と責務・許可の境界",
+      "requirement_ref": "HELIXOS-L3-027-B01",
+      "positive_input": "各ownerの入力と判定を同scopeで照合する。",
+      "expected_observation": "条件付き開始と不成立を個別に表示し、無関係な機構全体の完成待ちを追加しない。",
+      "negative_input": "新risk分類、候補だけで実許可、単体成功で構成体成功、全機構完成待ち。",
+      "failure_observation": "責務または必要条件の不足を各ownerへ返す。",
+      "execution_state": "not_executed"
     }
   ],
   "execution_entry": "承認L3/対oracle、局所/接続の下位receipt、組合せ契約、同operation/scopeの実authority/隔離/資源/観測を揃える。左L3起草の前提に未来の実receiptを置かない。",
@@ -390,7 +470,9 @@
     "HELIXOS-L2-019",
     "HELIXOS-L2-017",
     "HELIXOS-L2-020",
-    "HELIXOS-L2-023"
+    "HELIXOS-L2-023",
+    "HELIXOS-L2-018",
+    "HELIXOS-L2-027"
   ],
   "version_target_by_parent": {
     "HELIXOS-L2-053": "1.0",
@@ -402,7 +484,9 @@
     "HELIXOS-L2-019": "1.0",
     "HELIXOS-L2-017": "1.0",
     "HELIXOS-L2-020": "1.0",
-    "HELIXOS-L2-023": "1.0"
+    "HELIXOS-L2-023": "1.0",
+    "HELIXOS-L2-018": "1.0",
+    "HELIXOS-L2-027": "1.0"
   },
   "version_boundary": "053は既決1.0。002には今回版指定を追加しない。primary_parent/version_targetは先行053の文書metadataとして保持し、002の版へ継承しない。001の1.0指定はMPR-RC-HELIXOS-L2-001-001の六条件に限定する。001の旧routing本文と007のrouting本文へ新たな版を付けない。015/016/019は9/28既決1.0。017の部品外flow生成4.0を保持し、今回の1.0義務へ前倒ししない。",
   "parent_basis": [
@@ -547,6 +631,32 @@
         386
       ],
       "boundary": "9/28採択の必要規範のみ。1.0/歴史Stage2a保持、10/12前提入力として限定先行。実能力/稼働完了を生成しない。"
+    },
+    {
+      "identity": "HELIXOS-L2-018",
+      "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "l2_lines": [
+        674,
+        683
+      ],
+      "l11_lines": [
+        345,
+        351
+      ],
+      "boundary": "固定018-001採択を保持。残差は10/3 additions10採択MPR-018-002（L2:1630-1646,L11:1260-1276）を別根拠として含む。新default/order/threshold/gateなし。"
+    },
+    {
+      "identity": "HELIXOS-L2-027",
+      "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "l2_lines": [
+        826,
+        847
+      ],
+      "l11_lines": [
+        442,
+        452
+      ],
+      "boundary": "9/27補強/修正を9/28対象採択へ結ぶ。六条件を同attemptで照合する限定初回経路、実許可/実環境は別。"
     }
   ],
   "failure_context": {
@@ -566,6 +676,8 @@
     "HELIXOS-L2-019": "Stage 2a",
     "HELIXOS-L2-017": "Stage 2a",
     "HELIXOS-L2-020": "Stage 2a",
-    "HELIXOS-L2-023": "Stage 2a"
+    "HELIXOS-L2-023": "Stage 2a",
+    "HELIXOS-L2-018": "Stage 2a",
+    "HELIXOS-L2-027": "Stage 2a"
   }
 }
