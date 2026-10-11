@@ -1,0 +1,164 @@
+# HARNESS-L3-PACK-functional
+
+生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `c0e340333a0928bb45d9c920a4caae9e9f0c06bcd33f6a6799ea9f3818469f1e`。JSONから再生成する。
+
+| 項目 | 内容 |
+|---|---|
+| mechanism | HELIX-HARNESS |
+| stage | Stage 1 |
+| primary_parents | HARNESS-L2-010 / HARNESS-L2-011 / HARNESS-L2-023 / HARNESS-L2-052 / HARNESS-L2-053 |
+| l2_individual_version_target_by_parent | HARNESS-L2-010: None / HARNESS-L2-011: None / HARNESS-L2-023: 1.0 / HARNESS-L2-052: 1.0 / HARNESS-L2-053: 1.0 |
+| status | draft_not_approved |
+| authority_effect | none_until_exact_revision_delegated_approval |
+| source_revision | a2cc3defcee5a229145c89217af30c7d20da998f |
+| scope | 限定前提構築が参照する共通pack境界・呼出し・条件別依存とcommand意味identity・asset identity/意味revision照合のpair。既存Stage/親の版を変更せず、初回3主対象と周辺機構の全能力を混載しない。 |
+| source_pins | path: docs/concept/helix-concept.md / sha256: bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715 / path: docs/concept/helix-principles.md / sha256: 5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441 / path: docs/helix-harness/L1-planning/product-intent.md / sha256: 238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f / path: docs/helix-harness/L2-requirements/product-requirements.md / sha256: c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d / path: docs/helix-harness/L11-acceptance/product-acceptance.md / sha256: 05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd / path: docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md / sha256: c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23 / path: docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md / sha256: 994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b / path: docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md / sha256: c091ac5083a0ebffb441921ab614567cfece8d95ded91cba3de3d462f9d667a9 / path: docs/helix-brain/candidates/first-cycle-reference-template-knowledge.json / sha256: 321d1253e63a11c3b14b398138ee976e2960298d2007431808396171b2431caf / path: docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json / sha256: ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a / path: docs/governance/decisions/po-decision-2026-09-29-11candidates.md / sha256: 6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5 / path: docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md / sha256: be23fea5cbffa3a19538bf3b1dba67eff424454f9adaa1d369aa9e22ba4c6dff / path: docs/governance/audits/requirement-registration/version-join-coverage-receipt-2026-10-10.json / sha256: 6938fd8d1f85bcf2470da04d51cbe257d490e027ec31424c1e792d304ecd2881 / path: docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md / sha256: ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23 / path: docs/governance/requirements-entry-restart-proposal.json / sha256: 29bd949ddd49348bb149f11ea253959075f7c7ac7e248035701a2002199efaf4 |
+| knowledge_use | P3FIRSTのVT103と選択SDOP19節を問い/証拠/Backflowの限定材料として使う。数値/方式/全技法/正式schemaを採用しない。知識採用を実適用としない。 |
+| document_format | JSONが意味正本、Markdownは生成view。本keyを製品pack descriptor schemaやwire formatへ固定しない。 |
+| legacy_comparison | reuse_class: semantic_rederivation / source_path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md / source_lines: 23 / 67 / preserve: 独立したbehavior単位、収載/除外、成熟度分離、再現/rollback、安全閉包と組合せの別証拠。 / change: 旧Slice/Module/Bundleの名称/enum/永続化を移さず、採用010/011/023のownerと4条件区分で再導出する。 / reason: 全対応sourceと一利用の有効依存を混同せず、未選択を未観測に保ち、無関係な全基盤完了を開始条件にしない。 / failure_basis: UTW014の欠損空集合化、UTW021の自己申告完了（predecessor-harness-full-weakness-audit-2026-07-20.md:65–101）を旧sourceとして照合した。 / command_sources: path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md / lines: 142 / 142 / preserve: command idempotencyの意味条件 / change: 意味判定をHARNESS、原子保存・CAS運転をOSへ非重複配分 / reason: 9/29採択済み052/OS053の責務境界に従う。旧DB/runtimeは移さない。 / path: archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md / lines: 76 / 76 / use: 異payload conflictのoracle設計参照のみ。FR53履歴/故障注入実行は052へ取り込まない。 / asset_identity_source: path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md / lines: 143 / 143 / preserve: path非依存identity・意味revision・history/authority/oracle/typed edgeの保持と欠落unknown / change: 現行HARNESSの記録照合へ意味を再導出し、実変換・保存・authority裁定は初回非選択に残す。 / reason: 9/29採択と10/12限定再開の操作scopeを守る。旧runtime/実装/FR全体successorを継承しない。 |
+| remaining | 053の042参照は未決、JSON原子確定のOS053、命名/trace/対/DDD-TDD等は別pairで起草・承認する。 / 呼出し実運転に使う認可/隔離/資源/記録/再開のowner-qualified契約を当該操作で束縛する。 / 実装/CI/切替/デプロイ/実行/PO L11受入は本pairの承認から成立しない。通常L3全体の再開はPO Acceptedの範囲に限る。 |
+| roster_version_scope_by_parent | HARNESS-L2-010: version_class: 1.0 / version_intent: 1.0 / version_intent_label: 1.0 target candidate / basis: docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json / boundary: 10/3固定rosterの起草対象区分を保持する。L2個別印の追加、release収載、実装許可を生成しない。 / HARNESS-L2-011: version_class: 1.0 / version_intent: 1.0 / version_intent_label: 1.0 target candidate / basis: docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json / boundary: 10/3固定rosterの起草対象区分を保持する。L2個別印の追加、release収載、実装許可を生成しない。 / HARNESS-L2-023: version_class: 1.0 / version_intent: 1.0 / version_intent_label: 1.0 target candidate / basis: docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json / boundary: 10/3固定rosterの起草対象区分を保持する。L2個別印の追加、release収載、実装許可を生成しない。 / HARNESS-L2-052: historical_version_class: 版未指定 / version_target: 1.0 / basis: docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md / boundary: 10/10 VERSIONJOINが052の版のみ更新。既存Stage 1・意味・ownerを保持する。 / HARNESS-L2-053: historical_version_class: 版未指定 / version_target: 1.0 / basis: docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md / boundary: 版のみ更新。既存Stage 1・9/29の採択意味・ownerは保持。 |
+| parent_basis | identity: HARNESS-L2-010 / decision: docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md / fixed_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc / current_section_sha256: 9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4 / comparison: 対象節は9/28採用固定revisionと同文。current file全体の採用を意味しない。 / identity: HARNESS-L2-011 / decision: docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md / fixed_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc / current_section_sha256: 30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952 / comparison: 対象節は9/28採用固定revisionと同文。current file全体の採用を意味しない。 / identity: HARNESS-L2-023 / decision: docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md / fixed_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc / current_section_sha256: 32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03 / comparison: 対象節は9/28採用固定revisionと同文。current file全体の採用を意味しない。 / identity: HARNESS-L2-052 / decision: docs/governance/decisions/po-decision-2026-09-29-11candidates.md / version_decision: docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md / meaning_revision: 909c8015326f35f8d42ce12e3c388923de411d1f / adopted_meaning_section_sha256: d49f8cf116879f4283313f9c01ae7fb72bc9c528b5205cdbd45d06c46221d25c / version_proposal_revision: d4b439e5c48591749709a8707d0ee319c673f000 / fixed_revision: ad24bbffee3a3c6c4dee6f9a6e1b921b14695c51 / current_section_sha256: f801e11097fe905b8519978ade42e06f8b3504d6481f4e14fc67f863c769669f / comparison: 9/29採択意味digest d49f8cf1…に、10/10 VERSIONJOINの版の整理段落だけを追加したdigest f801e110…を適用revisionへ結ぶ。意味の句は同文。 / identity: HARNESS-L2-053 / decision: docs/governance/decisions/po-decision-2026-09-29-11candidates.md / meaning_revision: 909c8015326f35f8d42ce12e3c388923de411d1f / adopted_meaning_section_sha256: ebc78869f6d94668d9fed00d0a0415d068d85c0f61c0d98f01a9c4ec39710587 / current_section_sha256: f3f41538d08f0f85bcf9eace48429bcfd655f77de108cfc313cf60c06c135a45 / version_decision: docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md / comparison: 意味は9/29固定採択、1.0印は10/10判断。042参照の未決を補完しない。 |
+| operation_scope_boundary | 初回の053はidentity/意味revisionと供給された記録の照合を扱う。042参照未決とrename/move/split/merge/supersede/Design Refactor実操作の非選択は再開案unresolved_inputsに従って保持する。 |
+| document_id | HARNESS-L3-PACK-functional |
+| layer | L3 |
+| pair | P3: L3↔L10 |
+| category | functional |
+
+## HARNESS-L3-010-F01 behaviorと所有境界
+
+**parent**: HARNESS-L2-010
+**obligation**: packは一つのbehavior contractまたは分割で意味を失う密結合contractのまとまりとして識別する。サービス/部品/COREの所有先を一つにする。複数サービスが利用しても所有を二重化しない。複数のリリース単位から使う能力は部品またはCOREに置く。
+**oracle_ref**: HARNESS-L10-010-F01
+
+## HARNESS-L3-010-F02 宣言の完全性
+
+**parent**: HARNESS-L2-010
+**obligation**: packは入力/出力契約、必要依存、単体で証明する義務とoracle、版を宣言する。実行時に宣言外依存を使う契約を認めない。
+**oracle_ref**: HARNESS-L10-010-F02
+
+## HARNESS-L3-010-F03 収載・除外と独立した版
+
+**parent**: HARNESS-L2-010
+**obligation**: リリース単位に収めるpackと収めないpackを明示する。未指定/未検証/未適格なpackを暗黙に収載しない。packの版/成熟度、リリース単位の版、統合製品の版を分ける。
+**oracle_ref**: HARNESS-L10-010-F03
+
+## HARNESS-L3-010-F04 再現と局所置換
+
+**parent**: HARNESS-L2-010
+**obligation**: 同一入力と版から同じpack成果を再現できる条件を宣言する。交換/更新時に他packの版と証拠を保持し、失敗時は直前の適格版または明示置換へ戻せる。実切替の運転/許可を発行しない。
+**oracle_ref**: HARNESS-L10-010-F04
+
+## HARNESS-L3-011-F01 画面から独立した呼出し
+
+**parent**: HARNESS-L2-011
+**obligation**: 特定画面/GUI/ローカルpath/AI provider/CI製品を必須とせず、宣言入出力で呼べる契約を提供する。画面はconsumer。Web固有の要求を追加しない。
+**oracle_ref**: HARNESS-L10-011-F01
+
+## HARNESS-L3-011-F02 呼出しと依存版の照合
+
+**parent**: HARNESS-L2-011
+**obligation**: 能力名、呼出しcontract版、必要依存版を識別・照合する。未対応/unknown/不一致の版を黙って読み替えない。
+**oracle_ref**: HARNESS-L10-011-F02
+
+## HARNESS-L3-011-F03 権限・隔離の受渡し
+
+**parent**: HARNESS-L2-011
+**obligation**: 呼出し元が渡した権限とproject/tenant/環境の範囲で動く契約を示す。HELIX本体の稼働DB/鍵/内部統制を共有前提にしない。SECURITYのauthorityを別所有として参照する。
+**oracle_ref**: HARNESS-L10-011-F03
+
+## HARNESS-L3-011-F04 相関した進行・結果・証拠
+
+**parent**: HARNESS-L2-011
+**obligation**: 進行状態、結果状態、証拠を相関IDとともに呼出し元へ返す。進行の終了だけで結果成功を推定しない。保存と表示は呼出し元の責務。
+**oracle_ref**: HARNESS-L10-011-F04
+
+## HARNESS-L3-011-F05 停止・期限・再開
+
+**parent**: HARNESS-L2-011
+**obligation**: 途中停止と、冪等キー/記録済み途中状態からの再開を契約に含める。期限切れや中断を成功にしない。実保存/実行はOS等のownerへ残す。
+**oracle_ref**: HARNESS-L10-011-F05
+
+## HARNESS-L3-023-F01 4区分の意味
+
+**parent**: HARNESS-L2-023
+**obligation**: 依存ごとに常時必須/特定操作時のみ必須/選択した入力元に応じて必須/参照資料のみのいずれかと、その条件・owner・identity・契約版/rangeをpack revisionへ束縛する。依存区分はtarget packの機能・owner・上位要求・版成熟度を変更しない。後続版依存を1.0へ強制せず、1.0で必要な安全依存を後続版扱いにして削らない。未選択能力の1.0完成義務を削除・延期しない。
+**oracle_ref**: HARNESS-L10-023-F01
+
+## HARNESS-L3-023-F02 条件の未知と保留
+
+**parent**: HARNESS-L2-023
+**obligation**: 欠落/曖昧/矛盾/stale/互換range不明をfalse・参照のみ・未選択へ変換しない。当該操作をunknown/保留として、理由とownerへ返す。依存identity/区分/条件/版rangeの不足はpack契約ownerへ戻して010改訂候補にする。operation/source/scope/権限/receipt不足や版不一致は呼出しownerへ戻して011入力修正・再実行候補にする。authority/安全条件/親scopeの未知・矛盾はauthority ownerまたはHARNESS-L1-005の利用境界の意味を持つPOへ戻す。修正と明示根拠が揃うまで該当操作を保留し、別source・手作業・参照資料へ迂回しない。
+**oracle_ref**: HARNESS-L10-023-F02
+
+## HARNESS-L3-023-F03 選択sourceと安全依存
+
+**parent**: HARNESS-L2-023
+**obligation**: 選択sourceの依存は全て閉じる。未選択sourceは未観測と記録し、成功/不在/適格性を推測しない。認可/authority/隔離/排他/data-use/監査/停止復旧等の該当安全条件をoptional化しない。credentialも該当安全条件として必須とする。実行条件、source authority、検証oracle、安全制約として効く文書を参照資料へ分類して義務を消さない。
+**oracle_ref**: HARNESS-L10-023-F03
+
+## HARNESS-L3-023-F04 分類と実利用の分離
+
+**parent**: HARNESS-L2-023
+**obligation**: 分類能力はmissing/unknownも出力でき、全依存の実装存在を分類能力の成立条件にしない。実利用には当該closureのidentity/版/authority/evidenceを別途充足する。
+**oracle_ref**: HARNESS-L10-023-F04
+
+## HARNESS-L3-052-F01 command意味identityの4軸
+
+**parent**: HARNESS-L2-052
+**obligation**: command ID、操作scope、対象base revision、正規化した意味payload digestを結んでcommand意味identityを判定する。command IDだけ、path、PR/Issue番号、到着時刻を代替にしない。
+**oracle_ref**: HARNESS-L10-052-F01
+
+## HARNESS-L3-052-F02 正規化規則とscopeのrevision
+
+**parent**: HARNESS-L2-052
+**obligation**: 正規化規則と対象scopeのrevisionを記録する。同じ規則とrevisionで評価した入力だけを同じ意味digestとして照合する。具体的な正規化algorithm/schemaは後続設計で選ぶ。
+**oracle_ref**: HARNESS-L10-052-F02
+
+## HARNESS-L3-052-F03 同一操作の再送
+
+**parent**: HARNESS-L2-052
+**obligation**: 同一command ID/scope/base/payload digestの再送は同一操作identityと同じ意味結果へ結び、新しい意味変更として数えない。実再試行・保存の成功はOSの証拠として別に扱う。
+**oracle_ref**: HARNESS-L10-052-F03
+
+## HARNESS-L3-052-F04 異payload・scope・baseのconflict
+
+**parent**: HARNESS-L2-052
+**obligation**: 記録済みcommand IDが異なるpayload digest/scope/baseへ結ばれる場合conflictを返し、先行identity・意味結果・receiptを上書きしない。
+**oracle_ref**: HARNESS-L10-052-F04
+
+## HARNESS-L3-052-F05 OSのbase CASと意味判定の分離
+
+**parent**: HARNESS-L2-052
+**obligation**: base currentness/CASの運転と保存はOSが持つ。意味identity照合とOSのstale/conflict結果を別々に結び、OSが拒否したものを新canonicalizationとして受理しない。
+**oracle_ref**: HARNESS-L10-052-F05
+
+## HARNESS-L3-052-F06 欠落・unknownの保留
+
+**parent**: HARNESS-L2-052
+**obligation**: command ID/scope/base/payload digest/正規化規則revision/先行identityの欠落や不一致を補完せずunknownまたはconflictへ分類する。別scope・別revisionのoracleで不足を埋めない。
+**oracle_ref**: HARNESS-L10-052-F06
+
+## HARNESS-L3-053-F01 path非依存のasset identity
+
+**parent**: HARNESS-L2-053
+**obligation**: 要求・設計・資産はimmutable asset IDで識別し、path/nameの一致や変更から同一性・意味変更・authority移転を推定しない。採番/符号化/永続化方式は後続設計へ残す。
+**oracle_ref**: HARNESS-L10-053-F01
+
+## HARNESS-L3-053-F02 意味revisionと差分
+
+**parent**: HARNESS-L2-053
+**obligation**: 意味変更の前後を同一identityの異なるrevisionとして識別し、semantic diffと影響するoracle/typed edgeへ結ぶ。配置や名称だけの変更を新identity・意味変更として数えない。
+**oracle_ref**: HARNESS-L10-053-F02
+
+## HARNESS-L3-053-F03 供給されたlineage記録の対応
+
+**parent**: HARNESS-L2-053
+**obligation**: 供給済みのrename/move履歴は同identityのlocation履歴へ、split/merge/supersede記録は前後identity・revision・関係種別・影響history・authority・oracle・typed edgeへ個別に対応付ける。変換操作自体は初回に選択せず、この照合から発行しない。
+**oracle_ref**: HARNESS-L10-053-F03
+
+## HARNESS-L3-053-F04 authority・oracle・typed edge欠落
+
+**parent**: HARNESS-L2-053
+**obligation**: lineage記録でauthority、acceptance oracle、typed edgeのいずれかが欠けるか対応不明なら、その項目をunknown/不成立として返す。他の項目やreceiptの存在で補わない。
+**oracle_ref**: HARNESS-L10-053-F04
