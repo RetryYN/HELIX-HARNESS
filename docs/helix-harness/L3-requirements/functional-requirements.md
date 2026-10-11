@@ -1,6 +1,6 @@
 # HARNESS-L3-PACK-functional
 
-生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `03a595405640c11611129c2fb171ee1e48799de25c2866d8c0190c48ebf9f6cb`。JSONから再生成する。
+生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -233,7 +233,7 @@
 ## HARNESS-L3-005-F04 密結合と後日失敗の還流
 
 **parent**: HARNESS-L2-005
-**obligation**: 影響が広がる密結合では当該PRで影響する接続/composite検査を広げ、成立まで合流しない。その後は恒常的にCIを重くせず設計不具合としてDesign-refactor発行の材料へ戻す。すり抜けて後日見つかった失敗は証拠付きrelationで閉じた元ticketへ接続し、元のcompletion/closureを保存したまま追補assessmentを保持する。LABOが原子CI/connector契約不足を評価する入力へ結び、一般ticket closeを長期観測窓待ちにしない。
+**obligation**: 影響が広がる密結合では当該PRで影響する接続/composite検査を広げ、成立まで合流しない。その後は恒常的にCIを重くせず設計不具合としてDesign-refactor発行の材料へ戻す。すり抜けて後日見つかった失敗は証拠付きrelationで閉じた元ticketへ接続し、元のcompletion/closureを保存したまま追補assessmentを保持する。LABOが原子CI/connector契約不足を評価する入力へ結び。
 **oracle_ref**: HARNESS-L10-005-F04
 
 ## HARNESS-L3-005-F05 宣言依存方向の照合
