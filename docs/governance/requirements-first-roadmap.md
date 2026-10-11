@@ -55,7 +55,7 @@ HARNESSの工程定義、COREの意味導出、BRAINの汎用知識、OSの案�
 | 最初に使うseed | [限定SEEDFIRSTの採用判断](decisions/seedfirst-knowledge-po-decision-2026-10-10.md)、[BRAIN意味JSON](../helix-brain/knowledge/requirements-acceptance-template-knowledge.json) | 非画面・技術的不確実性なしの要求／受入に限るVT001・VT102とC01/C02/C08/C26の採用範囲。全template集合・他pair・schema・rendererの完成へ広げない |
 | 開発規律と版 | [43件の1.0判断](decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)、[052・102の接続版判断](decisions/version-join-requirement-resolution-po-decision-2026-10-10.md)、[REDFIRST A](decisions/redfirst-adoption-po-decision-2026-10-11.md)、対象L2／L11 | 009・048等の対象規律を版未指定と読み違えず初回scopeに対応付ける。test/oracle凍結→実装前Red→最小実装→Greenを保持する。文書reviewへRed実行義務を追加しない |
 
-上の限定知識と採用判断はmainにあるが、#2846で保持するtemplateの全体最小集合、適用・案件記録の往復、必要安全・資源・測定、失敗・未完義務の戻し先は未完である。#2903と#2905だけを閉じても、これらの成立は証明できない。[要求Stageの終了結果](requirements-stage-closure.md)もL3再開の証拠とは別である。
+上の限定知識と採用判断はmainにあり、初回L3/L10の知識採否、必要安全・資源・測定の契約参照、失敗・未完義務の戻し先は、要求整理の範囲で照合済みである。templateの全体最小集合、正式schemaと適用・案件記録の実往復、制約の実適用と観測は成立していない。これらの未完義務の扱い先は[再開案の段階2・3](#前提構築の限定先行と通常l3の順序案)であり、必要な設計知識の内容採否と対象設計・構築、実物のPO受入へ結ぶ。[PO採用の判断記録](decisions/requirements-entry-restart-po-decision-2026-10-12.md)の効力と、各段階の承認/操作条件を満たす範囲で扱う。#2846の準備充足や#2903/#2905のcloseから実物の成立を推定しない。[要求Stageの終了結果](requirements-stage-closure.md)もL3再開の証拠とは別である。
 
 初回対象が参照する未確定部分を明示し、それに依存する作業を止める。#1813〜#1815の全source移管、#1888〜#1908の全能力監査、#1837のBot／CI実装等を一律のL3開始条件にはしないが、選択した対象がそれらの未確定契約を実際に使う場合は個別に照合する。Issueのcloseを前提成立の代わりに使わない。
 
@@ -263,7 +263,7 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 
 初回対象のBRAIN/CORE/OS資産だからpublic／非restrictedとは推定しない。対象資産の分類・利用許可・実環境適用はまだ供給されていないため、この循環に027を利用できるとの判定は未成立である。利用できなければ、通常の018の材料・authority・安全依存を充足する経路へ戻し、027の条件を弱めない。人の代行と確認も実担当・対象・revision・scope・receiptが要り、この文書から人に作業を割り当てない。
 
-これにより初回の供給経路は既決契約から特定できるが、案件のinput値、代行/確認担当、実評価oracle、資産分類、制約適用、各辺の契約版・受領証拠は未供給である。CORE→OSの既存条件は詳細ID `HXT-CORE-02` と親要求002／008へ辿れるが、初回対象への契約版・scopeの束縛、実登録・受渡しと、実使用operation/sourceの安全・接続・資源・計測の依存閉包は引き続き未完。#2905段落3、#2846、L3再開、製品setup成立をこの照合から完了にしない。
+これにより初回の供給経路は既決契約から特定できるが、案件のinput値、代行/確認担当、実評価oracle、資産分類、制約適用、各辺の契約版・受領証拠は未供給である。CORE→OSの既存条件は詳細ID `HXT-CORE-02` と親要求002／008へ辿れる。初回の条件別親契約と再帰の終端は下記の照合で記録済みである。初回対象への実契約版・scopeの束縛、実登録・受渡し、実使用operation/sourceの安全・接続・資源・計測の実利用閉包は、再開案の段階2・3で扱う未完義務である。契約参照の照合を実適用の証拠へ読み替えない。#2905段落3、#2846、L3再開、製品setup成立をこの照合から完了にしない。
 
 旧RLO-FR-040:663〜666とRLO-AC-030:907、旧受入:43の未評価明示・scoreによるauthority非変更を保持する。旧provider defaultの固定policyや旧runtimeを採用せず、9/27補強の「性能評価なし」と「許可なし」の分離を9/28採択の027・066・056/057で意味再導出する。変更理由は現行のLABO水準・INT配置案・OS割当の責務を保った初回材料の整理であり、同じ既決要求の再承認を求めることではない。
 
@@ -273,7 +273,7 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 - unit/connection/compositeそれぞれのL3/L10・設計と対検証に必要なseed比較・最小集合・採用対象revisionを、26候補と旧6surface/6componentから導く。限定した要求/受入知識を全体最小集合や実装のtest設計へ代用しない。正式schema、renderer、pair/portfolio、parityの未完も保つ。
 - 対象案の主単体・各接続・周辺依存を既存Stage配属と照合し、POへ再開順序とscopeの固定案を提示する。009/032の10/10追補を10/3 rosterに無記録で差し込まず、OS002の版未指定を1.0指定へ変えない。HARNESS010/011/023等の共通契約を省いた「BRAINだけ先に実装」としない。
 
-環境条件は[対象案へ当てる整理](development-workspace-setup.md#初回対象案への環境条件の対応)へ結ぶ。対象選択は記録済みである。template集合、依存の閉包、初回配置根拠、再開scopeは未完であり、#2846/#2905は選択の記録だけでは完了しない。[固定照合記録](audits/first-development-scope-proposal-2026-10-11.json)に入力revision・sourceと対受入の所在・未確定範囲を記録する。[訂正記録](audits/first-development-scope-proposal-2026-10-11-r2.json)はCONNECT009の採否の読み違いを訂正し、9/29の固定条件を照合する。
+環境条件は[対象案へ当てる整理](development-workspace-setup.md#初回対象案への環境条件の対応)へ結ぶ。対象選択、初回L3/L10の限定知識採否、条件別親契約と依存参照の再帰照合、初回配置の供給経路の整理は記録済みである。再開順序/scopeの固定案は下記に置き、POの採用回答は[再開判断記録](decisions/requirements-entry-restart-po-decision-2026-10-12.md)へ固定した。実対象のtemplate最小集合、実契約版/案件値/配置根拠と適用・受渡しの成立は、固定案の段階2・3へ結ぶ未完義務として保持する。これらの実証を要求整理Issueの完了条件へ追加せず、準備完了や対象選択だけで実証済みにもしない。#2846は採否記録とこの帰属整理の独立照合までOPENを保持する。#2905は[独立の全段落照合](https://github.com/RetryYN/HELIX-HARNESS/issues/2905#issuecomment-6110859758)で環境条件と再現・検証方法の整理を充足と判定し、close済みである。この判定も製品setupや実環境の成立を生成しない。[固定照合記録](audits/first-development-scope-proposal-2026-10-11.json)に入力revision・sourceと対受入の所在・未確定範囲を記録する。[訂正記録](audits/first-development-scope-proposal-2026-10-11-r2.json)はCONNECT009の採否の読み違いを訂正し、9/29の固定条件を照合する。
 
 旧CLAUDE:49〜63の仕組み先行・意味処理と外部作用分離、旧functional-release-slice-requests:23〜67の選択集合・局所影響・必要安全依存・復旧、旧design-template-json-authority:19〜60の意味正本/view/適用/portfolio/pairを起点にした意味の再導出である。変更は今回の準備目的に沿って現行032/009/002を選択した準備対象として結ぶ点で、旧schema/Node固定/旧runtimeは移さない。10/10巻き戻しと旧弱点UTW-004/021/029を踏まえ、文書の対応・hash・自己申告だけを機構の成立としない。旧source全consumerの閉包は未完として保持する。
 
@@ -295,7 +295,7 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 
 ### L3／L10の再開順序・範囲の提案
 
-以下は初回対象の選択を、再開判断へ渡すための**未採用の順序案**である。対象選択の判断を再開許可へ読み替えず、L3／L10本文は起草しない。準備の完了もまだ主張しない。比較基準は[10/3の順序判断](decisions/implementation-order-po-decision-2026-10-03.md)、現行との差は上記Stage照合と、[5操作の入力元・依存条件](#初回5操作の入力元案と入口から先の依存条件)である。
+以下は[POが採用した限定再開順序](decisions/requirements-entry-restart-po-decision-2026-10-12.md)である。判断記録のmain統合により対象scopeで効力を持つ。限定前提形成のL3/L10を先行し、通常L3は実物のPO受入後に限る。個別要件承認や前提成立をこの回答から生成しない。比較基準は[10/3の順序判断](decisions/implementation-order-po-decision-2026-10-03.md)、現行との差は上記Stage照合と、[5操作の入力元・依存条件](#初回5操作の入力元案と入口から先の依存条件)である。
 
 提案は、共通契約を先に参照可能にし、BRAINの提供契約、COREの適用契約、OSの案件記録・作業契約の順に要件と対受入を導くこととする。単体の要件を決める時点では接続先の実装成功を要求せず、各端の契約を参照する。接続と構成体の対受入では各端の同じrevision／scopeへの結合を扱い、単体の成功を一周の成功にしない。各PRの上限は既存の機構×Stageであり、横断案を一括のL3 PRへ変えない。
 
@@ -307,15 +307,15 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 | OSの案件運転と初回配置 | OS002の提案／選択／使用setと案件義務・原記録・LABO評価母集団。OS017〜020／023のticket・割当・結果・検収・handoff、HARNESS015／022の検証契約、必要なOS027・INT010／066・LABO054〜057の初回材料 | 002はroutingの別分母を保持し、初回の著述先をStage 1とする案を提示するが、版指定は追加しない。作業・配置とHARNESS022は既存Stage 2a。HARNESS015はStage 2b、LABO054はStage 4の配属を保持し、必要な契約入力を先に導く。015は上記45identityの参照集合外なので、10/3追補の当該recordへ直接照合する。027と代行／人手receiptの既決条件を弱めず、未評価・未受領・未実行を分ける |
 | 選択辺・構成体と更新／復旧への接続 | BRAIN→CORE、CORE→OS、Worker結果→OS／LABO、検収→COREの各辺と、主対象を結ぶ構成体の義務を各ownerの要件・対受入へ結ぶ。INFRA観測→LABO026は結果receiptと別source。内部更新／独立復旧はINFRA005／006／009／010とSECURITYの条件へ結ぶ | 既存CONNECT各Stageと周辺の配属を保持する。構成体の一周でCONNECT007を選ぶ場合は、既存Stage 5を保持し必要な契約入力を先に導く。007も45identityの参照集合外なので10/3追補へ直接照合する。当該辺に実際に必要な安全・資源・計測を含める。単体・辺・構成体を別に検証する。更新／復旧の条件整理を、内部デプロイ・release・独立復旧の実施許可へ変えない |
 
-この表のStage 1への3件の著述先と、既存後段Stageの契約入力を先に導く順序は**提案差分**であり、採択済みの配属ではない。009／002については、9/27・10/3のrouting containerを`not_stage_candidate`としてStageへ配属しなかった状態からの差を提案する。著述対象は10/10採用の009の1.0規律・COREAPPLYと002のOSTRACEの本文範囲に限る。container内の旧要求atomのrehome／successor対応・被覆は未完のまま既存ledgerへ保持し、本案の著述先や当該追補のL3から旧atom全体の被覆を推定しない。10/3の374件roster、routingの別分母、要求の採否・版・承認parentは書き換えない。Stageは優先群であり、参照した契約の既存Stage番号だけを理由に当該契約を省いたり、Stage全体の実装を開始条件にしたりしない。10/3の案B（Stage 1→2a→狭い2cと2b／3の並行）は再開時に再確認する。本案は選択済み初回scopeに限り、その順序を下記の限定前提構築→実物のPO受入→通常L3へ置き換える提案である。対象外の案Bと2cの6identityは比較材料として保留し、既存Stage・意味・版を保持する。その再開許可は本案から生成しない。
+この表のStage 1への3件の著述先と、既存後段Stageの契約入力を先に導く順序は**今回採用した著述順序の差分**であり、10/3 roster自体の書換えではない。009／002については、9/27・10/3のrouting containerを`not_stage_candidate`としてStageへ配属しなかった状態からの差を提案する。著述対象は10/10採用の009の1.0規律・COREAPPLYと002のOSTRACEの本文範囲に限る。container内の旧要求atomのrehome／successor対応・被覆は未完のまま既存ledgerへ保持し、本案の著述先や当該追補のL3から旧atom全体の被覆を推定しない。10/3の374件roster、routingの別分母、要求の採否・版・承認parentは書き換えない。Stageは優先群であり、参照した契約の既存Stage番号だけを理由に当該契約を省いたり、Stage全体の実装を開始条件にしたりしない。10/3の案B（Stage 1→2a→狭い2cと2b／3の並行）は再開時に再確認する。本案は選択済み初回scopeに限り、その順序を下記の限定前提構築→実物のPO受入→通常L3へ置き換える提案である。対象外の案Bと2cの6identityは比較材料として保留し、既存Stage・意味・版を保持する。その再開許可は本案から生成しない。
 
 MSGCONTENTとP3FIRSTの限定採用は反映済みで、運用knowledge promotionは未実施である。BRAIN・横断・安全/資源/観測の再帰照合は、既存契約への再訪、owner-qualified入力の未決、未選択操作、後続版まで記録した。正式packの最小集合/実利用閉包を成立とはしない。これらの結果を、次の初回著述の親契約・知識範囲と前提構築の順序案へ反映する。追加知識が必要となる範囲と未提示source契約の不足は未決のまま保持し、案件値や未来の実結果と区別する。
 
 #### 前提構築の限定先行と通常L3の順序案
 
-[再開scopeの意味案](requirements-entry-restart-proposal.json)（`proposal_not_adopted` / `authority_effect: none`）に、初回の主対象・知識・条件別親集合・停止境界・成立を確かめる問いをまとめる。本節とJSONは正式L3やschemaの設計ではなく、POが再開の順序と範囲を判断するための案である。
+[再開scopeの意味案](requirements-entry-restart-proposal.json)（`adopted_conditional_restart`。効力は[PO判断記録](decisions/requirements-entry-restart-po-decision-2026-10-12.md)のmain統合時）に、初回の主対象・知識・条件別親集合・停止境界・成立を確かめる問いをまとめる。本節とJSONは正式L3やschemaの設計ではなく、POが採用した順序/scopeの記録である。正式な各pairは別に起草・承認する。
 
-**10/10との差分**：前提機構を構築するための限定L3/L10だけを、その機構の成立前に先行させる。対象要件の既存委任承認を経て、その範囲の対設計・実装・検証・対象CIへ進む案とする。対象外の通常L3は前提成立まで停止する。前提成立条件を文書・採用・hashで代替せず、順序の例外をPOが採用するまでは限定範囲を含め全L3以下の停止を保持する。旧HELIXにこの例外許可があったとは主張しない。
+**10/10との差分**：前提機構を構築するための限定L3/L10だけを、その機構の成立前に先行させる。対象要件の既存委任承認を経て、その範囲の対設計・実装・検証・対象CIへ進む案とする。対象外の通常L3は前提成立まで停止する。前提成立条件を文書・採用・hashで代替せず、今回の判断記録がmainへ入るまでは全L3以下の停止を保持し、統合後も採用scope外と未充足の段階条件に依存する作業は停止する。旧HELIXにこの例外許可があったとは主張しない。
 
 初回著述の主対象はBRAIN032の採択15項目、HARNESS009の1.0規律/COREAPPLY、OS002のOSTRACEの本文範囲とする。使用知識の案は、SEEDFIRSTの適合部分、MSG004/001/005の限定意味、VT103とSDOP選択19節/補足記録条件である。単体/接続/構成体の固有義務とL3/L10の対を分け、技術的不確実性/PoC適用を非画面という理由だけで免除しない。未採用の知識内容やrequired field定義不足を補完せず、追加採否/要求質問へ戻す。BRAIN007/025の運用promotionは別工程のままである。
 
@@ -326,7 +326,7 @@ MSGCONTENTとP3FIRSTの限定採用は反映済みで、運用knowledge promotio
 | 3. POが実物のL11受入を確認 | JSON/各write失敗・CAS/生成viewだけ変更の拒否、templateの不足/別scope/N-A/未受領、role/consumer/oracle欠落、pair片側/未実行、実装後oracle/無関係Red、安全制約未適用/部分成功の各不成立を実対象で確認する。対象revision/scopeと局所・接続・構成体の実観測、独立review、read-afterを結ぶ。catalog/JSONの存在やCI greenだけで成立しない。POがHARNESS022のL11利用者受入として対象revision/scope・oracle・実証拠・未完範囲を確認し、受入者と判断を記録する |
 | 4. 成立後の通常L3/L10 | 本案の順序/scopeがPOに採用され、段階3でPOのAcceptedが成立した範囲だけ進む。選択済みBRAIN→CORE→OSと必要な安全/接続/資源/計測へ、成立済み前提を使って未完要件を導く。限定前提で既に要件化した部分を重複起草しない。追加知識・入力不足は適用範囲へ戻し、対象外のStage/製品まで解禁しない |
 
-L3/L10の本文承認は[10/5の委任](decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md)と[10/8の別系統reviewへの変更](decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md)に従う。作成と別runtime・別model familyのexact revision独立reviewで承認し、Fableは助言先とする。機構×StageのPO事後確認は保持する。段階3の実物のL11受入はPOが判断する案であり、文書承認・事後確認・AIのVerifiedをAcceptedへ読み替えない。同じ確認機会にまとめて提示しても、対象と判断を別に記録する。新しい承認主体や閾値を追加する案ではない。代案として限定前提構築だけを選び、通常L3は停止したまま証拠が揃った時点でPOの順序/scope指示へ戻すこともできる。
+L3/L10の本文承認は[10/5の委任](decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md)と[10/8の別系統reviewへの変更](decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md)に従う。作成と別runtime・別model familyのexact revision独立reviewで承認し、Fableは助言先とする。機構×StageのPO事後確認は保持する。段階3の実物のL11受入はPOが判断する案であり、文書承認・事後確認・AIのVerifiedをAcceptedへ読み替えない。同じ確認機会にまとめて提示しても、対象と判断を別に記録する。新しい承認主体や閾値を追加する案ではない。POは限定前提構築だけの代案ではなく、PO受入後の通常L3までの条件付き順序を選んだ。
 
 再開に関係する既決方針をJSONの`retained_decisions`と固定inputへ結ぶ。
 
@@ -342,7 +342,7 @@ L3/L10の本文承認は[10/5の委任](decisions/l3-l10-approval-delegation-po-
 
 **既存の未決参照**：HARNESS053は042を「source revisionと再現可能性」と説明するが、現行042はDesign Refactor判定/episode分離である。042をprovenance保証として消費せず、別IDを推測採用しない。初回のJSON更新traceは004/040とOS053の義務へ結び、053のidentity/意味revisionと分けて扱う。rename/move/split/merge/supersede/Design Refactorの実操作は初回前提構築では選ばず、当該参照の訂正/適用を053のownerへ戻す。必要となる操作は未決のまま止め、053全能力の成立を主張しない。
 
-本案が解禁を申請するのは上の限定前提構築と成立後の選択済み初回対象のL3順序である。release/tag/内部デプロイ/配布切替/branch protection変更、旧runtime/CI/testやカット成果物の復元は含めない。実装可能範囲は承認された要件と対設計/実operation条件に従う。各機構の既決意味/版、既存委任承認、10/3 roster、未移管旧atomは保持する。前提が不足すれば該当範囲を未完に戻し、本案のmergeから前提成立・PO再開指示・#2846の完了を生成しない。
+本案が解禁を申請するのは上の限定前提構築と成立後の選択済み初回対象のL3順序である。release/tag/内部デプロイ/配布切替/branch protection変更、旧runtime/CI/testやカット成果物の復元は含めない。実装可能範囲は承認された要件と対設計/実operation条件に従う。各機構の既決意味/版、既存委任承認、10/3 roster、未移管旧atomは保持する。前提が不足すれば該当範囲を未完に戻し、案共有PRのmergeからPO指示を生成せず、今回のPO指示は判断記録の対象scopeへ限定する。今回の記録から前提成立・個別要件承認・#2846の完了を生成しない。
 
 
 旧`CLAUDE.md:49〜63`の仕組み先行と意味／外部作用分離、旧`functional-release-slice-requests.md:23〜67`の明示集合・必要安全依存・局所と構成体の証拠分離、旧`design-template-json-authority.md:19〜60`のtemplate／適用／pairとBackflowを保持する。旧の固定runtime・schema・層番号は移さず、現行032／009／002と既存Stageへ意味を再導出する。変更理由はPOが選んだ循環の起草順序を提示することであり、新しい要求や承認手続きの追加ではない。失敗UTW-004／021／029とPR #2564の横断一括起草を踏まえ、準備案・単体の成立・独立review・実接続・再開判断を区別する。

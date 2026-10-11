@@ -1,7 +1,7 @@
 {
   "proposal_id": "GOV-REQUIREMENTS-ENTRY-RESTART-FIRST",
-  "status": "proposal_not_adopted",
-  "authority_effect": "none",
+  "status": "adopted_conditional_restart",
+  "authority_effect": "effective_when_decision_record_is_admitted_to_main",
   "source_main": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
   "purpose": "初回選択BRAIN032→CORE009→OS002を起点に、10/10の前提を機構として成立させる限定構築と、成立後の通常L3の順序/scopeをPOへ提示する。正式L3/設計/schema/実装の成果物ではない。",
   "decision_delta": {
@@ -542,5 +542,12 @@
     "ReleaseManifestの構成/digest/環境/検証証拠/切戻し条件を同revisionへ結ぶ。PointerMovedと実環境の正常起動を分け、rollbackは構成/成果物を戻し案件状態/履歴を巻き戻さない。release/内部デプロイの実施許可は別。",
     "public開発ソースとprivate配布allowlistを分け、配布範囲を閲覧範囲と同一視しない。visibility/LICENSEを変更しない。",
     "論理log ID/writer IDはmanifest、物理pathは安全な符号化。publicには非機密の開発記録/許可証拠のみ。Git履歴だけでappend-only/真正性とせず、書込権限/整合性検証/条件付き追記を再導出する。"
-  ]
+  ],
+  "adoption": {
+    "decision_record": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+    "fixed_revision": "7f891070db37fa7e868e4dcbad1f45e97b79e57e",
+    "fixed_proposal_sha256": "3d0880df1653db164f41da3beddd1f68deea9324eb354b0e58c0255823ae97a6",
+    "answer": "限定前提構築と、PO受入後の通常L3まで採用（推奨）",
+    "scope": "固定案の4段階と保持境界。実物Acceptedと個別文書承認/操作条件は未成立。"
+  }
 }
