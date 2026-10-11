@@ -162,9 +162,9 @@
         "identity": "PDC L5 §1 component/authority and §3 full/incremental ingestion",
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
         "lines": [
-          33,
+          41,
           57,
-          86,
+          93,
           109
         ],
         "locator_kind": "inclusive_line_ranges"
@@ -175,7 +175,7 @@
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
         "lines": [
           27,
-          57
+          63
         ],
         "locator_kind": "inclusive_line_ranges"
       },
