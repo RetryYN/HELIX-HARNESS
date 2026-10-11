@@ -219,3 +219,17 @@ Cycle P4 statusはbacktick除去/trim後のcase-sensitive集合で判定する�
 旧G1–G6の静的判定はplaceholderとconfirmedを区別し、当ANDにconfirmed>=1はない。G7は別のpair/group/trace/carry/coverage条件との合成である。L6 freezeInputReadyとready、review evidence文字列と独立review真正性、Red marker/exit code文字列と実際の欠陥検出、gate数とrequired exact set、typed record/digestと人間の対象revision判断を別に保持した。旧UI無しL2画面sub-doc skipを現行L2要求全体の省略にせず、旧層番号/role/provider/approval policy/CI/CLI/DB/stateを現行へそのまま転写しない。
 
 原inventory・要求候補・仮登録・holding・Binding・rulebookは不変である。引用source比較の残数0から要求採否・retire・holding解除・Issue close・L3再開を生成しない。497件の未確定意味対応、他54cluster、FRM01/OSA03の残件を#1814/親#1813へ保持し、既存assessment_status=unassessedと未評価fieldも維持する。
+
+## RUL-OSA-04：統合許可の限定した本文・全156引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主94・副62＝156件の原inventory全field、引用原文・SHA-256、候補本文との固有/未解決条件を保存した。引用未比較IDは0だが、完全atom化・判断史・全helper/caller/fixture/外部consumer閉包・正式successor・未計上0・全要求被覆・要求Stage完了は未確認である。証拠は本基準mainの固定bytesに束縛し、RC02-037のloader/analyzer（merged-plan-status.ts:99–132/259–328）を追加の2補助pinで保持した。補助pinは28件となり、未統合PRの読取結果へ依存しない。他56clusterと過去のcompared_revisions・未評価fieldは保持した。
+
+HARNESS003は工程条件、OS011は統合順序・単位・検証計画、OS008はCI合成・隔離実行である。旧BR06の6gate、FR07のClosure検査、FR28の固定3段CI、BR20の既知failure quarantineを一般merge permissionにまとめない。NCI002はpipeline classを分けるがnative auto-merge禁止を明示しないため、その同義推論だけを根拠から取り除き、旧basisをoriginal_relationsへ保全した。NCI候補への関係付けから採用範囲を拡張しない。
+
+旧AGENTS/CLAUDEと7/26是正はnative auto-mergeを禁止するが、8/12運用文書は条件付きで許可する。後続判断史と適用scopeは未解決として残す。Reference-onlyチーム案のSquash/作成者mergeや、旧監査frameworkのAIreview省略は同格の正本でなく、後者には535–541行で運用失効の明文がある。旧直接gh merge拒否hookと専用receipt CLI、旧Claude Ready主体の非対称性もscope差を保持する。旧実行系を起動しない。
+
+Draftのok=true/deferred=true/nullreceipt、provider-neutral advisory-onlyで常にmerge拒否、文字列fallback、inputboolean、digest形式/一致と実provenance・独立review・admission成立を分ける。未解消blockの履歴、mixedauthor例外、非空requiredcheck、CI世代・時刻、旧DBreplay、post-merge parent/tree照合、親受入のactor分離も個別に保持する。merge・release・Issueclose・親受入の成立を互いから生成しない。
+
+RE01-046のG/Hは節記号である。RE01-261/262のinventory引用518行だけではreview/CI/DB・auto-merge禁止の句を支えず、続く519行を別support contextへ記録した。原inventory/holdingを黙って訂正せず、append-only source訂正とconsumer/Binding照合を伴う残件に置く。current scope内のfinding処分と独立責務の後続化も一律non-blocker分離へ弱めない。
+
+本追補は比較候補である。要求本文・正本schema・Python/CLI/runtime/CI・仮登録・holding・Bindingを変更せず、#1814/#1813と他53cluster、FRM01/FRM02/OSA03の残件を保持する。assessment_status=unassessedと既存空配列は維持し、要求採否・retire・Issueclose・L3再開を生成しない。
