@@ -43,7 +43,7 @@ python3 -B scaffold/tools/scfctl.py stale
 
 参照確認は今回編集する文書とその依存先を対象とし、意味は旧source・現行Concept・対象L2／L11・採用判断へ戻って読む。参照先ファイルの存在やID集合の一致だけで独立意味reviewを代用しない。旧archive内のtool・test・workflowは実行しない。
 
-上の例はdetached領域での読取り確認である。編集するときは独立した作業branchを用意し、対象を読んでから変更する。commit・push・Draft PR・exact base／content HEADの独立review・Ready化・独立側の明示merge・read-afterは既存の運用モデルに従う。通知箱はrootの既存仮設経路に一本化し、作業領域ごとに複製・再設定しない。作業領域の片付けも同モデルの既存条件に従う。
+上の例はdetached領域での読取り確認である。編集するときは独立した作業branchを用意し、対象を読んでから変更する。commit・push・Draft PR・exact base／content HEADの独立review・Ready化・独立側の明示merge・read-afterは既存の運用モデルに従う。通知箱の操作は、hookに登録済みの既存checkoutの絶対pathにある`scaffold/review-handoff/gui_mailbox.py`で行い、分離作業領域内の同名scriptを実行しない。両GUIが同じ仮設経路を使う条件は[review-handoffの説明](../../scaffold/review-handoff/README.md#依頼と指摘返却)を参照する。作業領域の片付けも同モデルの既存条件に従う。
 
 ## 未構築の範囲と戻し先
 
