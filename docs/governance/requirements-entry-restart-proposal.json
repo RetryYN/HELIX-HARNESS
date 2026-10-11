@@ -1,0 +1,546 @@
+{
+  "proposal_id": "GOV-REQUIREMENTS-ENTRY-RESTART-FIRST",
+  "status": "proposal_not_adopted",
+  "authority_effect": "none",
+  "source_main": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+  "purpose": "初回選択BRAIN032→CORE009→OS002を起点に、10/10の前提を機構として成立させる限定構築と、成立後の通常L3の順序/scopeをPOへ提示する。正式L3/設計/schema/実装の成果物ではない。",
+  "decision_delta": {
+    "existing": "10/10はL3以下を停止し、前提機構成立後にL3再開、順序/scopeはPO指示とする。",
+    "proposed": "前提機構を構築するための限定L3/L10と、その承認から降ろす対設計/実装/検証/対象CIを先行させる。対象外の通常L3は前提成立まで停止。成立後は選択済み初回対象の未完要件を下記の親/順序で扱う。",
+    "reason": "前提の形成自体が停止中のL3以下を要するため、その例外範囲を明示する。前提成立条件を文書整備で代替/削除しない。",
+    "kind": "新規の再開順序/scope案。旧HELIXにこの10/10の例外許可が存在したとは主張しない。POの採否までは停止を保持。",
+    "implementation_order": "10/3の案B（Stage1→2a→狭い2cと2b/3の並行）は再開時に再確認する。本案は初回選択scopeに限り、その順序を限定前提構築→実物のPO受入→通常のBRAIN032/CORE009/OS002の順序へ置換する提案。対象外の案Bは比較材料として保留し、再開許可を生成しない。6件の2c identity、374件roster、既存Stage/版/要求意味は保持する。"
+  },
+  "initial_authoring_scope": {
+    "primary": [
+      {
+        "identity": "HELIXBRAIN-L2-032",
+        "extent": "採用済み15項目のtemplate汎用意味契約。定義欠落/矛盾/製品要求値未決を分ける返却。"
+      },
+      {
+        "identity": "HARNESS-L2-009",
+        "extent": "既決1.0のtemplate適用規律とCOREAPPLY追補。候補母集合・提案/選択/使用exact set、義務、N/A4属性、不足/Backflow、意味影響。routing containerの旧atom全体の再配置完了は含まない。"
+      },
+      {
+        "identity": "HELIXOS-L2-002",
+        "extent": "OSTRACE追補の要求revision/scope/義務・原記録/除外理由/未観測範囲。版指定を追加しない。routing containerの旧atom全体は未完のまま保持。"
+      }
+    ],
+    "knowledge": [
+      {
+        "key": "SEEDFIRST",
+        "extent": "VT001/VT102とC01/C02/C08/C26の限定意味。非画面かつ技術的不確実性なしの要求/受入部分だけ。"
+      },
+      {
+        "key": "MSGCONTENT",
+        "extent": "MSG004/001/005の採用済み15項目の意味と原適用制限。単体/接続/構成体の適用義務を混同しない。"
+      },
+      {
+        "key": "P3FIRST",
+        "extent": "VT103の限定意味とSDOP001〜005の選択19節/補足記録条件。要求形成の問い/根拠/N/A。数値・方式・他節・全技法実行は含まない。"
+      }
+    ],
+    "pair": "左L3の要求値/固有義務と右L10の期待oracle/失敗/証拠条件を同時に導く。実下位receiptは右側実行時の入力で、左起草の前提ではない。",
+    "adoption_boundary": "知識内容の限定採用をBRAIN007/025の運用promotionとしない。既決の適用条件がunknownなら不足を返し、追加知識が必要なら内容の採否を先に提示する。VT104〜106を未採用のまま正式設計に利用しない。",
+    "uncertainty": "非画面でも技術的不確実性なしとは仮定しない。選択部分の不確実性/PoC適用判定がunknownならその部分を保留し、必要な知識内容・合意を上流へ戻す。SEEDFIRSTを自動全面適用しない。"
+  },
+  "parent_groups": [
+    {
+      "role": "常時の著述入力",
+      "identities": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HARNESS-L2-008",
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HARNESS-L2-022",
+        "HARNESS-L2-023",
+        "HARNESS-L2-040"
+      ],
+      "condition": "対象Concept/各L1/採択L2-L11のrevisionとkind/scope、工程/対/依存区分/適用義務/戻し先を参照。実装成功は左L3起草の入力ではない。"
+    },
+    {
+      "role": "選択知識の汎用契約",
+      "identities": [
+        "HELIXBRAIN-L2-003",
+        "HELIXBRAIN-L2-005",
+        "HELIXBRAIN-L2-007",
+        "HELIXBRAIN-L2-008",
+        "HELIXBRAIN-L2-028",
+        "HELIXBRAIN-L2-030",
+        "HELIXBRAIN-L2-032"
+      ],
+      "condition": "032の明示常時契約と、選択sourceの全required fields・版・scope・利用状態/receipt。その他の依存はBRAIN再帰照合の条件へ戻る。030の既存Stage4は保持。"
+    },
+    {
+      "role": "限定前提機構の意味正本/規律",
+      "identities": [
+        "HARNESS-L2-009",
+        "HARNESS-L2-015",
+        "HARNESS-L2-041",
+        "HARNESS-L2-048",
+        "HARNESS-L2-052",
+        "HARNESS-L2-053",
+        "HARNESS-L2-056",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-053"
+      ],
+      "condition": "JSON意味と生成view、template対象要素のatom/gap、role/target命名・stable identity・oracle、command再送/CAS/原子確定、pair未実行/欠落の不成立。005/015のoracle凍結→実装前Red→最小実装→Greenを適用scopeで保持。 053の042参照不整合はunresolved_inputsへ保持し、初回の非選択lineage/refactor操作で補完しない。"
+    },
+    {
+      "role": "案件記録/初回実行を要件化する操作条件",
+      "identities": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-016",
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-020",
+        "HELIXOS-L2-023",
+        "HELIXOS-L2-027"
+      ],
+      "condition": "template提案/選択/使用と記録運転・割当・検収・handoffを分ける。027の未評価初回を選ぶ場合は6安全条件全部。結果/受領証拠は実行後。"
+    },
+    {
+      "role": "選択辺/構成体の契約入力",
+      "identities": [
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-002",
+        "HELIXCONNECT-L2-003",
+        "HELIXCONNECT-L2-005",
+        "HELIXCONNECT-L2-007",
+        "HELIXCONNECT-L2-009"
+      ],
+      "condition": "BRAIN→CORE・CORE→OS・結果/不足の返却を当該端のrevision/scopeへ結ぶ。007の既存Stage5と009の逆辺/feedback/loop/join条件を保持し、未選択の再送/交換/loop/joinは実施しない。"
+    },
+    {
+      "role": "実read/記録/Workerを使う場合の安全契約",
+      "identities": [
+        "HELIXSECURITY-L2-001",
+        "HELIXSECURITY-L2-002",
+        "HELIXSECURITY-L2-003",
+        "HELIXSECURITY-L2-004",
+        "HELIXSECURITY-L2-005",
+        "HELIXSECURITY-L2-006",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-015",
+        "HELIXSECURITY-L2-016",
+        "HELIXSECURITY-L2-024"
+      ],
+      "condition": "untrusted data、構成/分類/隔離/authorityとWorker制約の実適用を必要な操作へ結ぶ。主Worker以外のruntime追加、credential利用、外部通信は初回前提構築の操作として選ばない。既存GitHubレビュー経路の利用は製品SECURITYの実適用証拠ではない。"
+    },
+    {
+      "role": "資源/観測/復旧の操作と選択source",
+      "identities": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-002",
+        "HELIXINFRASTRUCTURE-L2-003",
+        "HELIXINFRASTRUCTURE-L2-004",
+        "HELIXINFRASTRUCTURE-L2-005",
+        "HELIXINFRASTRUCTURE-L2-006",
+        "HELIXINFRASTRUCTURE-L2-009",
+        "HELIXINFRASTRUCTURE-L2-010",
+        "HELIXINFRASTRUCTURE-L2-025",
+        "HELIXLABO-L2-001",
+        "HELIXLABO-L2-002",
+        "HELIXLABO-L2-011",
+        "HELIXLABO-L2-026",
+        "HELIXLABO-L2-028",
+        "HELIXLABO-L2-054",
+        "HELIXLABO-L2-055",
+        "HELIXLABO-L2-056",
+        "HELIXLABO-L2-057",
+        "HELIXLABO-L2-058",
+        "HELIXINTELLIGENCE-L2-010",
+        "HELIXINTELLIGENCE-L2-066",
+        "HARNESS-L2-034"
+      ],
+      "condition": "初回source案はWorker028と資源026の別入力。001全source対応は未成立義務として保持。Bench/INTは未評価または既決の同契約代行を用い、実比較実験は選ばない。設計/実資源/容量/隔離/変更前/復旧先を必要段階で充足。高度な後続版/全source稼働を初回一律条件にしない。"
+    }
+  ],
+  "parent_set_boundary": "上記は初回著述と限定前提構築が参照する親契約集合の案で、条件ごとの適用を示す。全列挙契約の全能力/全要求を同時実装する集合でも、正式packの最小依存宣言でもない。契約本文の先は固定した再帰照合に戻り、owner-qualified契約定義が未提示なら未決とする。",
+  "stages": [
+    {
+      "step": 1,
+      "scope": "限定前提構築のL3/L10",
+      "deliver": "上記主対象とJSON/命名/trace/pair/TDDの機構保証について、当該著述範囲の要件と対oracle、適用input/unknown/戻し先を各ownerで導く。各PRは既存機構×Stageの単位。",
+      "before": "POが本案の限定再開scope/順序を採用するまで起草しない。",
+      "limit": "B032/009/002のStage1著述先は提案差分。既存後段Stageの参照契約入力を先に導くが、roster/版/要求意味は変えない。"
+    },
+    {
+      "step": 2,
+      "scope": "承認済み限定要件からの対設計・実装・検証・対象CI",
+      "deliver": "JSONの意味/生成viewの形式と検証、template適用/義務/不足/trace、role/target命名とoracle identity、意味変更と原子的確定、選択pairと実TDD証拠を対象設計・対testから構築する。必要な実隔離/資源/authorityを同scopeに結ぶ。",
+      "before": "対象L3/L10の既存委任承認、必要な知識内容の採否、対設計/test-oracle凍結と実operation authorityを満たす。未定義schema/tool/値をこの提案から決めない。 10/9配置方針の4論点はカット済みL4を復元せず、対象要件からL4へ再起草して独立reviewする。",
+      "limit": "旧runtime/CI/testやカット成果物を復元しない。CIは当該ticket/義務で選択した検査に限定し、省略回収を保持。全件CI/nightlyを新設しない。"
+    },
+    {
+      "step": 3,
+      "scope": "前提機構の局所/接続/構成体の実証拠",
+      "deliver": "下記の保証ごとに対象revision/scope・凍結oracle・実観測/負例/不足・独立review・read-afterを結ぶ。単体success/件数/hashだけから一周成立にしない。",
+      "before": "対象外の通常L3は停止を保持。実証拠のunknown/missing/staleを未完のままownerへ返す。",
+      "limit": "HARNESS022のL10 VerifiedとL11 Acceptedを分ける。POがconfirmation_policyの対象revision/scopeと実証拠でL11利用者受入を判断する。既存056の対義務と未完範囲を保持し、新しい承認主体/閾値は設けない。"
+    },
+    {
+      "step": 4,
+      "scope": "前提成立後の選択済み初回対象の通常L3/L10",
+      "deliver": "共通契約→BRAIN提供→CORE適用→OS記録/案件運転→選択辺/構成体の順に、限定前提構築で既に成立した部分と未完要件を区別して導く。",
+      "before": "POが本案の限定scope/順序（初回scopeの10/3順序の置換を含む）を採用し、段階3の実物についてPOのL11受入記録が成立した範囲だけ進む。文書承認/AI検証から受入を生成せず、不足は該当範囲に止める。",
+      "limit": "本案外のStage/製品・全1.0能力・release/tag/内部デプロイ/配布切替/branch protection変更は解禁しない。"
+    }
+  ],
+  "proof_questions": [
+    {
+      "guarantee": "JSON意味正本/生成view",
+      "parents": [
+        "HELIXOS-L2-053",
+        "HARNESS-L2-052"
+      ],
+      "evidence": "JSON更新と投影/trace/impact/stale/receiptを同一operationへ結ぶ。各必須write failureとCAS競合/同command異payload、生成viewだけ編集の負例でcurrentが誤成立しない。失敗時のcurrent保持/隔離/復旧義務を実観測する。"
+    },
+    {
+      "guarantee": "template提供/適用/案件追跡",
+      "parents": [
+        "HELIXBRAIN-L2-032",
+        "HARNESS-L2-009",
+        "HARNESS-L2-041",
+        "HELIXOS-L2-002"
+      ],
+      "evidence": "15項目の意味定義、適用対象要素のatom/gap、選択母集合とexact set/義務/N-A4属性/不足、同revisionの原記録を結ぶ。定義欠落/値未決/別scope/未受領/不成立を個別に返す。"
+    },
+    {
+      "guarantee": "責務・命名・trace・pair",
+      "parents": [
+        "HARNESS-L2-004",
+        "HARNESS-L2-040",
+        "HARNESS-L2-048",
+        "HARNESS-L2-053",
+        "HARNESS-L2-056"
+      ],
+      "evidence": "role/target・stable identity・symbol・consumer・oracleの対応、依存方向、不変条件trace、pair片側欠落/別oracle/未実行の不成立を実対象で確認する。期限付き例外は既決属性を保持し、全自動rename機能を前提にしない。全6pair catalogと、選択pairの実証拠を分ける。"
+    },
+    {
+      "guarantee": "実装前Red/GreenとCIの責務",
+      "parents": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-005",
+        "HARNESS-L2-015",
+        "HARNESS-L2-022",
+        "HELIXOS-L2-020"
+      ],
+      "evidence": "実装前の凍結oracleが意図した不足を検出するRed→最小本体実装→Green、別のoracle強度と結合GWTを同じ対象へ結ぶ。後付けoracle/環境障害Red/CI greenから受入やReleaseを生成する負例を拒む。"
+    },
+    {
+      "guarantee": "安全・資源・観測・Backflow",
+      "parents": [
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXINFRASTRUCTURE-L2-010",
+        "HELIXOS-L2-023",
+        "HELIXLABO-L2-058",
+        "HARNESS-L2-034"
+      ],
+      "evidence": "実operationの隔離/authority/制約適用/資源before-after・未観測/未評価/未受領・未完義務の戻し先を別に確認。9制御の適用不足や範囲外変更を他のsuccessで相殺しない。計測値/許容値は対象要件で根拠付きに導く。"
+    }
+  ],
+  "unresolved_inputs": [
+    {
+      "kind": "既存参照の意味不整合",
+      "identity": "HARNESS-L2-053 → HARNESS-L2-042",
+      "evidence": "053は042を「source revisionと再現可能性」と説明するが現行042の採択契約はDesign Refactor判定/episode分離。参照意味の対応が未決。",
+      "handling": "042をprovenance保証として消費せず、別IDを推測採用しない。053のimmutable identity/意味revision自体と、適用する003/004等の追跡条件を分ける。rename/move/split/merge/supersede/Design Refactorの実操作は初回前提構築では選ばず、当該参照の訂正/適用判断は053のownerへ返す。参照が必要となる操作は未決のまま停止する。",
+      "scope_boundary": "初回で必要なcurrent JSON更新のtraceは採択004/040とOS053の義務に結ぶ。未決参照を053全能力の成立/受入完了と読み替えない。"
+    },
+    {
+      "kind": "契約の定義/選択不足",
+      "handling": "具体knowledge/source/connector/構成/資源ownerの契約と版/scopeが未提示なら、その対象の入力定義不足としてL3で必要な問い/戻し先を導く。未採用内容を補完せず、人が持つ意味の採否が必要なら固定案を提示。"
+    },
+    {
+      "kind": "定義済み欄の案件値/実版range",
+      "handling": "対象要件/設計で導く値。未知をN/Aにせず、該当操作前に充足。初回左L3の一律開始gateへ全値完成を追加しない。"
+    },
+    {
+      "kind": "未来の実結果",
+      "handling": "実Worker結果/観測/Bench/復旧/受領/proofは段階後の出力。左起草の開始入力にしない。実行段階のmissing/unknown/staleは完了にしない。"
+    }
+  ],
+  "retained_boundaries": [
+    "Concept/七大原則/JSON方針・採択L2/L11の意味・既決版は変更しない。",
+    "BRAIN汎用意味、CORE製品適用、OS実操作/保存、LABO評価、INT案、SEC方針/authority、INFRA実資源、Worker enforcerを分離。Python意味処理へDB/Git/GitHub writeやassignment/認可を移さない。",
+    "運用knowledge promotion、全seed/全source能力/全Bot/全Stageの完成を初回一律gateにしない。",
+    "旧atomの未移管/保留をretireせず、初回追補の要件からrouting container全体のclosureを推定しない。",
+    "Issue完了と前提成立とPO再開指示を別に確認。本案mergeからどれも生成しない。"
+  ],
+  "legacy_comparison": {
+    "sources": [
+      "archive/legacy-generation-2026-09-14/root/CLAUDE.md:49-63",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md:23-67",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:19-60",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md:65-101"
+    ],
+    "retained": "仕組み先行、意味/外部作用分離、明示集合と必要安全依存、局所/接続/構成体の別証拠、template適用/pair/Backflow。UTW004/014/021/029と10/10失敗を起点にする。",
+    "changed": "巻き戻し後の前提形成に限ってL3以下の限定先行を申請する新規順序案。旧層番号/実装/CI/手順を移植せず、既存委任承認を維持。"
+  },
+  "input_file_pins": [
+    {
+      "path": "docs/governance/requirements-first-roadmap.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "d9cfb5b22e390618e754d5b70542a7765f55d538fb65c4148b75768c1cd9f8d7",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/decisions/first-development-target-selection-po-decision-2026-10-11.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "f63a64350d25216c22cc56bff73baf513f51c371323fd9026c84d372aef62407",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "c091ac5083a0ebffb441921ab614567cfece8d95ded91cba3de3d462f9d667a9",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-brain-dependency-expansion-2026-10-12.json",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "7d09f2ff9d0b7e923d6ca89b50a76a904acaa286300f92ffad72bb78e16337dc",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-cross-owner-contract-dependencies-2026-10-12.json",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "70e469eabda9ebb58581a6e4c9c62ad233b69bd09fe97841be0df7fc4d4ada13",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-safety-observation-recursion-2026-10-12.json",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "7a4c9c7c83faa04628c77b85ea5e235ed79bcb8e63b36df6aeddd34ded8e0b79",
+      "role": "採択/条件/調査の入力。本文全体の採用を意味せず各authority記録とscopeから読む。"
+    },
+    {
+      "path": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "be23fea5cbffa3a19538bf3b1dba67eff424454f9adaa1d369aa9e22ba4c6dff",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/json-canonical-requirement-resolution-po-decision-2026-10-10.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "3d7d0940399414e8ea7ea751f55ee012647c5ee2e834446b9c5a8d2e2ee273d7",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "5a4c8d85acc89166b68868824fdffd09e2c50810dae463e1724c5e146cc1cc05",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "27b51768cbf010d201ccc2aafe8e4c893ec5ccb2a9a0bce662af343ef87809ee",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "role": "固定した入力snapshot。採否/revisionのauthorityは判断記録から読む。全本文の今回採用/全能力完成ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/implementation-order-po-decision-2026-10-03.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "c06e922bfd26947f22afebcc5dbd44f57aa04579728872350229792a1c7f1224",
+      "role": "再開時の再確認/保持境界。retained_decisionsと対象decisionのscopeで読む。"
+    },
+    {
+      "path": "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "2c700ffcbb89c034d9f0b43a7f69483e785abbef28bb07601857a1d0caa72030",
+      "role": "再開時の再確認/保持境界。retained_decisionsと対象decisionのscopeで読む。"
+    },
+    {
+      "path": "docs/governance/decisions/development-compiler-stages-po-decisions-2026-10-06.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "39e2a9abef7766e8a73916e94adf2cfd7df09209e86e22014864ce2a4a8bc394",
+      "role": "再開時の再確認/保持境界。retained_decisionsと対象decisionのscopeで読む。"
+    },
+    {
+      "path": "docs/governance/decisions/pr-atomicity-unit-po-decisions-2026-10-05.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "eeb92f0047c670ccf2c584241c00abdacbc418e00ac5e976426b250040b28bab",
+      "role": "再開時の再確認/保持境界。retained_decisionsと対象decisionのscopeで読む。"
+    },
+    {
+      "path": "docs/governance/decisions/dev-repo-ticket-policy-po-decision-2026-10-09.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "9e35fa63a3438f909d1b660cf03573e5ae6cca8166007c9795fe3399bb9b249f",
+      "role": "再開時の再確認/保持境界。retained_decisionsと対象decisionのscopeで読む。"
+    },
+    {
+      "path": "docs/governance/decisions/learn-from-failures-principle-po-decision-2026-10-09.md",
+      "revision": "a284e5ac2b46ea43bdbf3eef934c2d1a8c3358f7",
+      "sha256": "00df2cf4a1e3f0256960d911723a4c60668ff26d007c553361ec411fabff9c3d",
+      "role": "再開時の再確認/保持境界。retained_decisionsと対象decisionのscopeで読む。"
+    }
+  ],
+  "proposal_pin_rule": "input_file_pinsはsource_main時点の入力。roadmapは改訂前の入力snapshotを指す。current candidate本文と採択revisionを混同しない。過去入力はgit show revision:pathで照合する。",
+  "confirmation_policy": {
+    "recommended": "POが既存HARNESS-L2-022のL11利用者受入として、限定前提機構の実物の成立を確認する。対象revision/scope、対oracle、成功条件/反例、局所/接続/構成体の実証拠と未完範囲、受入者POと判断を記録する。Acceptedとなった範囲だけを本案で採用した通常L3の範囲へ渡す。",
+    "document_approval": "L3/L10の本文承認は10/5・10/8の委任に従い、作成と別runtime/別model familyのexact revision独立reviewで成立する。Fableは助言先。機構×StageのPO事後確認を保持する。文書承認と事後確認を実物のL11受入の代わりにしない。",
+    "separation": "AIのVerified、独立review、CI green、件数/hashからPOのAcceptedを生成しない。実物の受入は同じ事後確認の機会にまとめて提示できるが、対象と判断を別に記録する。新しい承認主体/閾値は設けない。",
+    "alternative": "限定前提構築の範囲だけ採用し、通常L3は停止を保持して、成立証拠が揃った時点でPOの順序/scope指示へ戻す選択も可能。本案の推奨は上記の条件付き通常L3までを一度に選ぶこと。"
+  },
+  "retained_decisions": [
+    {
+      "path": "docs/governance/decisions/implementation-order-po-decision-2026-10-03.md",
+      "relation": "再確認/限定置換の提案",
+      "constraint": "初回scopeの順序はdecision_deltaの置換案。対象外の案B/2cは保留、roster/要求意味/版は保持。"
+    },
+    {
+      "path": "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "relation": "基本方針保持/L4再起草",
+      "constraint": "docsの配置、declarations/所有機構/種類/identity.json、helix/機構/units・connections・composites/型番、records/符号化log_idを保持。段階実行物/環境/instance状態と成果物ストアはrepo外。開発public/配布private・allowlist、visibility/LICENSEは変更しない。カット済みL4から承認を継承しない。"
+    },
+    {
+      "path": "docs/governance/decisions/development-compiler-stages-po-decisions-2026-10-06.md",
+      "relation": "既決境界保持",
+      "constraint": "1.0部品コンパイラは採択契約の接続。2.0/3.0のWeb製品feedbackとBenchを分離し、後続4.0/5.0を前倒ししない。全件CI/nightlyを復活せず、省略回収を保持。ticket本文外graph位置の未決を本案で決めない。"
+    },
+    {
+      "path": "docs/governance/decisions/pr-atomicity-unit-po-decisions-2026-10-05.md",
+      "relation": "既決単位保持",
+      "constraint": "L3/L10 PRの上限は一つの機構×一つのStage。identityの対を同じ単位で扱い、横断初回案を一括L3 PRにしない。"
+    },
+    {
+      "path": "docs/governance/decisions/dev-repo-ticket-policy-po-decision-2026-10-09.md",
+      "relation": "開発repo限定で保持",
+      "constraint": "ticketは作業種別/内容のみでimmutable。state/PR/Issue/完了を書き戻さず、ticket依存/状態のgateを作らない。正本の順序/前提を参照し、製品OSのticket意味へこの運用を移さない。"
+    },
+    {
+      "path": "docs/governance/decisions/learn-from-failures-principle-po-decision-2026-10-09.md",
+      "relation": "既決原則保持",
+      "constraint": "同型の失敗を起点にし、失敗事例から要求意味/新gateを生成しない。事例なし予防規則を足さず、機構が成立した運用規則を減らす。"
+    }
+  ],
+  "layout_l4_reauthoring": [
+    "docsの意味、パック間declarations、パック宣言、型番台帳の責務/項目を一意化する。型番を書くだけで登録済みにしない。内部デプロイ状態と型番台帳を分ける。",
+    "ReleaseManifestの構成/digest/環境/検証証拠/切戻し条件を同revisionへ結ぶ。PointerMovedと実環境の正常起動を分け、rollbackは構成/成果物を戻し案件状態/履歴を巻き戻さない。release/内部デプロイの実施許可は別。",
+    "public開発ソースとprivate配布allowlistを分け、配布範囲を閲覧範囲と同一視しない。visibility/LICENSEを変更しない。",
+    "論理log ID/writer IDはmanifest、物理pathは安全な符号化。publicには非機密の開発記録/許可証拠のみ。Git履歴だけでappend-only/真正性とせず、書込権限/整合性検証/条件付き追記を再導出する。"
+  ]
+}
