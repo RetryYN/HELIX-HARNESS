@@ -6,6 +6,11 @@
 - [製品責務境界](concept/product-boundary.md)
 - [作業入口](governance/new-generation-start-here.md)
 
+## 開発の準備
+
+- [要件定義の最初に扱うロードマップ](governance/requirements-first-roadmap.md)：初回対象の機構接続と、開始前の準備・残る前提を照合する。
+- [文書・要求整理の作業環境](governance/development-workspace-setup.md)：現在の環境を分離した作業領域で再現する。製品用toolchain・依存・CIの構築とは区別する。
+
 ## 対象別V-model
 
 | 対象 | 責務 | L1 | L2 | L11 |
