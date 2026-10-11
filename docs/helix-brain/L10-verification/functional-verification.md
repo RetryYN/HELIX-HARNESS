@@ -1,6 +1,6 @@
 # HELIXBRAIN-L10-032-functional
 
-生成view。意味正本: `functional-verification.json`。本文JSON SHA-256: `bb8af60e15b7c6bc6069d4e89cd6e0dae7b3a18f27615c7964e5558627c2b437`。直接編集せずJSONから再生成する。
+生成view。意味正本: `functional-verification.json`。JSON SHA-256: `ce6e984006e25d12b836425476bc4d5db6ab991ba7aa6b7e5465d6693704cc9e`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -10,13 +10,13 @@
 | version_target | 1.0 |
 | status | draft_not_approved |
 | authority_effect | none_until_exact_revision_delegated_approval |
-| scope | 10/12限定前提構築の032汎用template候補提供。003/005/007/008/028等は参照契約で、その全能力の新規承認や全seed採用を表さない。 |
+| scope | 10/12限定前提構築の032汎用template候補提供。003/005/007/008/028等は参照契約で、その全能力の新規承認や全seed採用を表さない。追加scopeは10/12限定前提の007provenance/段階別promotion、008知識版/利用状態分離、028共通pack互換の規範。既存032の14組不変。実promotion/実登録/実版の成立を宣言しない。 |
 | source_revision | a2cc3defcee5a229145c89217af30c7d20da998f |
-| source_pins | path: docs/concept/helix-concept.md / sha256: bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715 / path: docs/concept/helix-principles.md / sha256: 5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441 / path: docs/helix-brain/L1-planning/brain-intent.md / sha256: 2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0 / path: docs/helix-brain/L2-requirements/brain-requirements.md / sha256: ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c / path: docs/helix-brain/L11-acceptance/brain-acceptance.md / sha256: b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87 / path: docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md / sha256: 6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964 / path: docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md / sha256: 994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b / path: docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md / sha256: 85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a / path: docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md / sha256: c091ac5083a0ebffb441921ab614567cfece8d95ded91cba3de3d462f9d667a9 / path: docs/helix-brain/candidates/first-cycle-design-template-knowledge.json / sha256: 3779f7612a1555a07796bb3097f124ca4c63878bc3a42ec6fc864cb317d5d1a8 / path: docs/helix-brain/candidates/first-cycle-reference-template-knowledge.json / sha256: 321d1253e63a11c3b14b398138ee976e2960298d2007431808396171b2431caf / path: docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md / sha256: 4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae / path: docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json / sha256: 8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77 |
+| source_pins | path: docs/concept/helix-concept.md / sha256: bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715 / path: docs/concept/helix-principles.md / sha256: 5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441 / path: docs/helix-brain/L1-planning/brain-intent.md / sha256: 2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0 / path: docs/helix-brain/L2-requirements/brain-requirements.md / sha256: ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c / path: docs/helix-brain/L11-acceptance/brain-acceptance.md / sha256: b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87 / path: docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md / sha256: 6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964 / path: docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md / sha256: 994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b / path: docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md / sha256: 85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a / path: docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md / sha256: c091ac5083a0ebffb441921ab614567cfece8d95ded91cba3de3d462f9d667a9 / path: docs/helix-brain/candidates/first-cycle-design-template-knowledge.json / sha256: 3779f7612a1555a07796bb3097f124ca4c63878bc3a42ec6fc864cb317d5d1a8 / path: docs/helix-brain/candidates/first-cycle-reference-template-knowledge.json / sha256: 321d1253e63a11c3b14b398138ee976e2960298d2007431808396171b2431caf / path: docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md / sha256: 4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae / path: docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json / sha256: 8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77 / path: docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md / sha256: fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a / path: docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json / sha256: ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a / path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md / sha256: c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md / sha256: e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb |
 | knowledge_use | MSGCONTENTの3templateの意味・制限、P3FIRSTのVT103と選択SDOP19節だけ。原candidate/schema/keyを正式化せず、SEEDFIRSTのVT001/VT102とC01/C02/C08/C26の限定意味は、非UIかつ技術的不確実性なしを確認した要求/受入部分に限る。他pairへ自動拡張しない。 |
 | serialization_boundary | 本JSON keyは要件文書の記述用。製品template schema、wire format、registry、式木、algorithmを固定しない。JSON本文が意味正本でMDは同内容の生成view。 |
-| legacy_comparison | reuse_class: semantic_rederivation / sources: path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md / lines: 19 / 60 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md / lines: 33 / 108 / path: archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md / lines: 65 / 101 / preserve: 項目・identity/版・未知保持・意味/view分離・項目単位trace。UTW014の欠損空集合化とUTW021の自己申告完了を防ぐ。 / change: 旧TPL ID文法、整数版、lifecycle enum、式木、runtime、pair freezeを継承せず、採用032と限定知識の意味から再導出する。 / reason: 旧統合されなかったtemplate意味供給をBRAIN責務へ分離し、10/10のseed不使用・hash/件数のみreviewを繰り返さない。 |
-| remaining | 参照するHARNESS共通L3契約のexact revisionは未承認。先行pairの閉包後に束縛し直す。 / CORE009/OS002、接続・安全・資源・計測の限定pairを別機構PRで起草する。032だけで限定前提全体の要件定義完了としない。 / 本体のschema/方式/計測値の導出、対設計とoracle凍結、実装前Red、実装/Green、L10実行、PO L11実物受入は後続段階。 |
+| legacy_comparison | reuse_class: semantic_rederivation / sources: path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md / lines: 19 / 60 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md / lines: 33 / 108 / path: archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md / lines: 65 / 101 / preserve: 項目・identity/版・未知保持・意味/view分離・項目単位trace。UTW014の欠損空集合化とUTW021の自己申告完了を防ぐ。 / change: 旧TPL ID文法、整数版、lifecycle enum、式木、runtime、pair freezeを継承せず、採用032と限定知識の意味から再導出する。 / reason: 旧統合されなかったtemplate意味供給をBRAIN責務へ分離し、10/10のseed不使用・hash/件数のみreviewを繰り返さない。 / provenance_version: reuse_class: semantic_rederivation / sources: path: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md / lines: 37 / 47 / path: archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md / lines: 19 / 60 / preserve: 独立段階検証を経るpromotionと提案によるauthority奪取禁止、identity/版/supersessionとdigest drift拒否。 / change: 旧project-local/cross-project/shadowの固定方式、TPL文法/整数版/runtime/Node registryを直写せず、採択BRAIN007/008/028とOS/LABO/CORE分担へ再導出する。 / reason: 9/26のPO配置と9/28採択、10/12限定前提を保持する。旧candidate全件の採用ではない。 / source_limit: DST-HARNESS-002/DST-OS-001はarchive/root/docsをID検索したが直接原文行を特定できない。9/15現行候補とその移管表を旧sourceと混同せず、旧Design Template JSONとRCLSの直接原文を出典にする。 / failure_basis: 032既存legacy_comparisonのUTW014欠損の空集合化/UTW021自己申告完了と、RCLSの相関→因果/自己評価→独立検証への誤昇格を防ぐ。 |
+| remaining | HARNESS共通契約/CORE009/OS002は各判断記録とmain承認を別に確認する。本書から承認を生成せず、各owner-qualified exact bindingは未成立。 / 接続・安全・資源・計測とBRAIN003/005/030等の必要な限定pairを別の著述単位で閉じる。032と007/008/028だけで限定前提全体完了としない。 / 本体のschema/方式/計測値の導出、対設計とoracle凍結、実装前Red、実装/Green、L10実行、PO L11実物受入は後続段階。 / 007/008/028は規範のみ。003/005/030や007が参照する011/025/020の必要な限定契約、owner-qualified exact binding、正式schema/実promotion/知識実版/案件登録/CI/PO実物受入は未成立。未選択source/操作の全能力を初回必須条件にしない。 |
 | document_id | HELIXBRAIN-L10-032-functional |
 | layer | L10 |
 | pair | P3: L3↔L10 |
@@ -24,6 +24,8 @@
 | execution_entry | 承認済みL3、固有義務集合、下位の実証明receipt、組合せ契約、同revision/scopeのoracleがそろってから実行する。下位receiptを左L3の起草前提にしない。参照共通契約の不足は実行停止条件。 |
 | system_specific_obligation | 項目別の不足が知識供給→CORE材料返却でも保存され、知識受領と案件義務充足が別に示されること。局所の15項目存在確認や下位greenだけでは証明されない。 |
 | completion | 必要caseの実観測と下位receipt/固有義務/組合せ契約の照合が揃い、未観測・未完は残る。Integrated→VerifiedはHARNESS022/056の契約へ渡し、PO Acceptedを生成しない。 |
+| primary_parents | HELIXBRAIN-L2-032 / HELIXBRAIN-L2-007 / HELIXBRAIN-L2-008 / HELIXBRAIN-L2-028 |
+| roster_version_scope_by_parent | HELIXBRAIN-L2-032: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3 roster外。Stage 1は10/12限定再開判断で採用した初回の著述先、1.0は10/10 TEMPLATECONTRACT。歴史的Stage配属ではない。 / HELIXBRAIN-L2-007: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-008: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 / HELIXBRAIN-L2-028: version_target: 1.0 / sequence_stage: Stage 1 / scope_basis: 10/3歴史的Stageを保持。10/12限定前提の意味規範のみ、全能力運転/実promotionではない。 |
 
 ## HELIXBRAIN-L10-032-F01 15項目の独立識別
 
@@ -113,4 +115,64 @@
 **negative_input**: receiver未受領を知識定義欠落へ変える、または選択sourceの欠落を別sourceで補う、または旧template/seed/設計例をauthorityや必須項目の代替にする。
 **failure_observation**: 定義欠落と接続未成立を分離し、知識owner/CORE/OSへ原因別に返す。参照資料からのauthority生成や必須項目の代替を成立させない。
 **proof_needed**: 対象requirement/oracle revisionとscope、局所/接続の下位証明、実際の入出力と副作用観測、相違とBackflow先。実行前oracleと実観測を分ける。
+**execution_state**: not_executed
+
+## HELIXBRAIN-L10-007-F01 知識の出所と評価範囲
+
+**parent**: HELIXBRAIN-L2-007
+**requirement_ref**: HELIXBRAIN-L3-007-F01
+**positive_input**: 出所/評価対象revision/反例/限界が揃う候補と各項目が欠ける候補を比較する。
+**expected_observation**: 由来、評価scope/対象revision、未採用の理由が辿れる。
+**negative_input**: sourceなし/反例なし/評価未実施で採用済み、別revisionの評価結果を流用、unknownを空集合にする。
+**failure_observation**: 欠けた根拠を未採用候補へ返し、promotion成立を生成しない。
+**execution_state**: not_executed
+
+## HELIXBRAIN-L10-007-F02 昇格の段階と独立検証
+
+**parent**: HELIXBRAIN-L2-007
+**requirement_ref**: HELIXBRAIN-L3-007-F02
+**positive_input**: LABO評価のみ、OS登録のみ、独立検証欠落、各段階が同対象へ結ばれる候補を比較する。
+**expected_observation**: どの段階が成立/未成立かと各owner、採否根拠が辿れる。
+**negative_input**: 単独評価でaccepted、AI自己検証を独立検証扱い、OS ticketでmature、技術差分へ毎回の新しい人間gate。
+**failure_observation**: 不足段階と対象revisionを保持し、既存の変更/検証経路へ返す。
+**execution_state**: not_executed
+
+## HELIXBRAIN-L10-008-F01 知識identity・版・状態の識別
+
+**parent**: HELIXBRAIN-L2-008
+**requirement_ref**: HELIXBRAIN-L3-008-F01
+**positive_input**: 同identityの旧/新revision、各状態、版/参照不明を比較する。
+**expected_observation**: 知識の版/stateと参照対象が一意に辿れ、不明を利用可能にしない。
+**negative_input**: filenameを知識identity、version_targetを実版、retired/unknownをcurrent、旧新state混同。
+**failure_observation**: 知識revision/stateを008へ返し、案件利用状態の不足はOSへ返す。
+**execution_state**: not_executed
+
+## HELIXBRAIN-L10-008-F02 旧版参照とsupersession
+
+**parent**: HELIXBRAIN-L2-008
+**requirement_ref**: HELIXBRAIN-L3-008-F02
+**positive_input**: v旧を使うCORE参照にv新のsupersessionと意味差を与える。
+**expected_observation**: 旧参照は元revisionへ辿れ、新版候補と未完の再照合が別に示される。
+**negative_input**: latestを無言で採用、旧参照削除、supersession edgeのみで案件移行完了。
+**failure_observation**: 参照の知識差をBRAIN、製品適用をCORE、案件の実使用記録をOSへ返す。
+**execution_state**: not_executed
+
+## HELIXBRAIN-L10-028-F01 知識版とpack版の別照合
+
+**parent**: HELIXBRAIN-L2-028
+**requirement_ref**: HELIXBRAIN-L3-028-F01
+**positive_input**: descriptor各版と知識版が違う候補、実版unknown、1.0目標のみの候補を照合する。
+**expected_observation**: 各版軸と対象scope、知識状態を別々に辿れる。
+**negative_input**: knowledge版をartifact版へ転写、1.0目標を実contract版、descriptor欠落を知識存在で補完。
+**failure_observation**: 知識revisionは008、descriptor boundary不足はHARNESS ownerへ返す。
+**execution_state**: not_executed
+
+## HELIXBRAIN-L10-028-F02 互換範囲とunknownの返却
+
+**parent**: HELIXBRAIN-L2-028
+**requirement_ref**: HELIXBRAIN-L3-028-F02
+**positive_input**: range内/外、identity mismatch、依存版不明、知識state不明を個別に与える。
+**expected_observation**: 適用可能/不適用/unknownと根拠、該当版軸と返却ownerを識別する。
+**negative_input**: unknownで呼出し、range外を黙って読み替え、古いcurrent候補へfallback、知識状態を無視。
+**failure_observation**: 当該呼出しの未成立を保持し、無関係な有効参照を一律失効させない。
 **execution_state**: not_executed
