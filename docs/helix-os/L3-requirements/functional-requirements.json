@@ -185,33 +185,37 @@
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
           "lines": [
             5756,
-            5797
+            5798
           ],
-          "identity": "HIL-NFR-32"
+          "identity": "HIL-NFR-32",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
           "lines": [
             441,
-            467
+            465
           ],
-          "identity": "HR-FR-HIL-19"
+          "identity": "HR-FR-HIL-19",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
           "lines": [
             596,
-            629
+            628
           ],
-          "identity": "HAC-HIL-19a..c"
+          "identity": "HAC-HIL-19a..c",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
           "lines": [
             360,
-            377
+            379
           ],
-          "identity": "HAT-HIL-19"
+          "identity": "HAT-HIL-19",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
@@ -219,7 +223,8 @@
             289,
             290
           ],
-          "identity": "HR-FR-HYB-005/006"
+          "identity": "HR-FR-HYB-005/006",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
@@ -229,7 +234,8 @@
             58,
             65
           ],
-          "identity": "HBR-P1/P7/P9,HNFR-P5"
+          "identity": "HBR-P1/P7/P9,HNFR-P5",
+          "locator_kind": "individual_lines"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
@@ -239,7 +245,8 @@
             125,
             151
           ],
-          "identity": "source/ticket/assignment/attempt/event境界"
+          "identity": "source/ticket/assignment/attempt/event境界",
+          "locator_kind": "inclusive_line_ranges"
         }
       ],
       "preserve": "同operationの六条件と独立negative、原event/正本/projection分離、feedback未ack保全、memory反映後retire、期限/予算/未完維持、三kindと局所影響。",
@@ -648,7 +655,7 @@
       "id": "HELIXOS-L3-018-F01",
       "parent": "HELIXOS-L2-018",
       "title": "assignmentとattemptの厳密な束縛",
-      "obligation": "ticket revision/digest、要求revision、actor/Worker/呼出しlane、scope/head、authority、capability、lease、予算、期限、成果と証拠を辿る。仕事の意味とassignment/attemptを別identityにし、OSがSECURITYの認可やINFRASTRUCTUREの実資源状態を代替しない。",
+      "obligation": "ticket revision/digest、要求revision、actor/Worker/呼出しlane、scope/head、authority、capability、lease、予算、期限、成果と証拠を辿る。LABO/HELIX-Benchのモデルクラス水準と評価状態を、その根拠revision・適用task/scopeへ束縛し、未評価を評価済みとして扱わない。仕事の意味とassignment/attemptを別identityにし、OSがSECURITYの認可やINFRASTRUCTUREの実資源状態を代替しない。",
       "oracle_ref": "HELIXOS-L10-018-F01"
     },
     {
@@ -718,7 +725,7 @@
       "id": "HELIXOS-L3-027-F06",
       "parent": "HELIXOS-L2-027",
       "title": "評価済み化の実適用証拠",
-      "obligation": "LABO055/054が対象task/model class・scope・入力revisionについて適用oracle/基準revision、判定/比較条件と実適用結果・失敗/反例/unknownの根拠、評価者/時点/判定receiptを持つときだけ、その範囲の水準を評価済みとして渡す。INT案→OS指定/割当は別判定。",
+      "obligation": "LABO055/054が対象task/model class・scope・入力revisionについて適用oracle/基準revision、判定/比較条件と実適用結果・失敗/反例/unknownの根拠、評価者/時点/判定receiptを持つときだけ、その範囲の水準を評価済みとして渡す。INT案→OS指定/割当は別判定。Bench score単独でscope・branch・assignment・操作権限を変更しない。",
       "oracle_ref": "HELIXOS-L10-027-F06"
     },
     {

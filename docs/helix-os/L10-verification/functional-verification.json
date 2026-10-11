@@ -185,33 +185,37 @@
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
           "lines": [
             5756,
-            5797
+            5798
           ],
-          "identity": "HIL-NFR-32"
+          "identity": "HIL-NFR-32",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
           "lines": [
             441,
-            467
+            465
           ],
-          "identity": "HR-FR-HIL-19"
+          "identity": "HR-FR-HIL-19",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
           "lines": [
             596,
-            629
+            628
           ],
-          "identity": "HAC-HIL-19a..c"
+          "identity": "HAC-HIL-19a..c",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
           "lines": [
             360,
-            377
+            379
           ],
-          "identity": "HAT-HIL-19"
+          "identity": "HAT-HIL-19",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
@@ -219,7 +223,8 @@
             289,
             290
           ],
-          "identity": "HR-FR-HYB-005/006"
+          "identity": "HR-FR-HYB-005/006",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
@@ -229,7 +234,8 @@
             58,
             65
           ],
-          "identity": "HBR-P1/P7/P9,HNFR-P5"
+          "identity": "HBR-P1/P7/P9,HNFR-P5",
+          "locator_kind": "individual_lines"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
@@ -239,7 +245,8 @@
             125,
             151
           ],
-          "identity": "source/ticket/assignment/attempt/event境界"
+          "identity": "source/ticket/assignment/attempt/event境界",
+          "locator_kind": "inclusive_line_ranges"
         }
       ],
       "preserve": "同operationの六条件と独立negative、原event/正本/projection分離、feedback未ack保全、memory反映後retire、期限/予算/未完維持、三kindと局所影響。",
@@ -823,7 +830,7 @@
       "requirement_ref": "HELIXOS-L3-018-F01",
       "positive_input": "同一ticketへ有効assignmentと一fieldだけ不一致のassignmentを与える。",
       "expected_observation": "各fieldの出所と実行可否が辿れ、不一致は起動/継続しない。",
-      "negative_input": "別head/scope/authority/lease/capability、案だけで実割当、実資源推測。",
+      "negative_input": "別head/scope/authority/lease/capability、案だけで実割当、実資源推測、未評価Workerを評価済み扱い。",
       "failure_observation": "該当境界へ戻し、拒否理由と未完を保持する。",
       "execution_state": "not_executed"
     },
@@ -933,7 +940,7 @@
       "requirement_ref": "HELIXOS-L3-027-F06",
       "positive_input": "実評価receiptのある範囲と単一成功/未適用oracle/別scope/staleを比較する。",
       "expected_observation": "評価済みは適用範囲付き、他範囲は未評価/評価不能を保持する。",
-      "negative_input": "oracleの存在だけで評価済み、一律件数/閾値新設、全taskへ外挿、LABOが割当。",
+      "negative_input": "oracleの存在だけで評価済み、一律件数/閾値新設、全taskへ外挿、LABOが割当、Bench scoreだけでscope/branch/assignment/権限変更。",
       "failure_observation": "評価不足をLABOへ返し、次の限定仕事は同契約の明示人案を保持する。",
       "execution_state": "not_executed"
     },
@@ -944,7 +951,7 @@
       "requirement_ref": "HELIXOS-L3-027-F07",
       "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
       "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
-      "negative_input": "一資産unknown、分類だけで利用許可、生成後逸脱",
+      "negative_input": "一資産unknown、分類だけで利用許可、生成後逸脱。",
       "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
       "execution_state": "not_executed"
     },
@@ -955,7 +962,7 @@
       "requirement_ref": "HELIXOS-L3-027-F08",
       "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
       "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
-      "negative_input": "credential必要またはアクセス未遮断",
+      "negative_input": "credential必要またはアクセス未遮断。",
       "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
       "execution_state": "not_executed"
     },
@@ -966,7 +973,7 @@
       "requirement_ref": "HELIXOS-L3-027-F09",
       "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
       "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
-      "negative_input": "一通信field不一致、未確認宛先へretry",
+      "negative_input": "一通信field不一致、未確認宛先へretry。",
       "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
       "execution_state": "not_executed"
     },
@@ -977,7 +984,7 @@
       "requirement_ref": "HELIXOS-L3-027-F10",
       "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
       "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
-      "negative_input": "一隔離/制約未適用、host fallback",
+      "negative_input": "一隔離/制約未適用、host fallback。",
       "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
       "execution_state": "not_executed"
     },
@@ -988,7 +995,7 @@
       "requirement_ref": "HELIXOS-L3-027-F11",
       "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
       "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
-      "negative_input": "一操作漏れ/期限切れ/別actor、案を認可へ昇格",
+      "negative_input": "一操作漏れ/期限切れ/別actor、案を認可へ昇格。",
       "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
       "execution_state": "not_executed"
     },
@@ -999,7 +1006,7 @@
       "requirement_ref": "HELIXOS-L3-027-F12",
       "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
       "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
-      "negative_input": "復旧不明/不可逆作用、人確認で免除",
+      "negative_input": "復旧不明/不可逆作用、人確認で免除。",
       "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
       "execution_state": "not_executed"
     }
