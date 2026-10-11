@@ -182,6 +182,82 @@ b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合
 
 特定cutoverの再承認、Incident時の全active PLAN凍結、旧Criticalだけでconditional pass、旧handover、package/wholegoal監査の分母や旧Issue終端順序も固有scopeと判断史を持つ。旧記録にある「成立した」は過去観測であり、現行の実績や新しい承認/CI/close条件へ継承しない。120件の引用条件を読み分けたことから、完全atom化・consumer閉包・正式successor・未計上0を生成しない。#1814/親#1813と残り377件、他clusterの残件を保持する。
 
+## RUL-FRM-02：160件の個別比較とloader境界の確認
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。元120recordと158pinを保持し、次の主40recordの引用原文と候補句を比較した。現在160/497、未読主73・副264の全337 IDをpendingで保持する。追加した5箇所のloader/analyzer/計算式は`support_context_sources`へ分け、元inventoryの引用先を増やしたように扱わない。
+
+RC02-032/037のdoctor wrapperはroot不存在と外へ伝播した例外を失敗にする。一方、呼出先loaderはloadReviewPlansの例外を空集合へ変換し、個別文書read失敗もskipする。空入力のanalyzerがok=trueを返すため、内部で吸収した読込失敗はwrapperの外側catchへ届かない。RC02-032の下流confirmedは動機コメントであり、当純関数は下流状態を読まない。RC02-037の判定にはS3verifiedPoC例外やparsefailure/invalidmodification条件もある。2件の読込失敗保証の差を`source_support_followups`へ保持し、原抽出文・台帳は変更しない。旧codeは非実行で、記録は静的な分岐照合である。
+
+missinggate skip、archived/非終端status、test作者とimplのpending許容差、interviewのokとfreeze_allowed、truthy参照と証拠充足、routeの文字列包含と実効性を別条件として保存した。旧実行が通ったことや全consumer閉包、完全atom化、正式successor、未計上0を主張しない。要求採否・retire・holding解除・Issue close・L3再開は生成せず、#1814/親#1813へ全残件を保持する。
+
+## RUL-FRM-02：主233件の引用条件比較と残る副264件
+
+基準content `c823efa38c0a53df9ccae6f260c97d53750f2346`。先頭160recordと209引用pin・5contextを保持し、残る主73recordの原抽出全field・引用原文・候補句との共通/固有条件を追補した。現在233/497で、副264の全IDを未比較として保持する。主233の引用条件比較は全数へ達したが、隣接helper/caller、完全atom化、判断史、全consumer閉包と正式successorの完了ではない。
+
+RE01-046の抽出文は「G gate／H gate」と呼ぶが、原文718–720は文書の§Gのsub-doc検査と§HのG1-trace検査の依存順である。独立したG/H gateを追加せず、原抽出文の呼称差をsource_support_followupsへ保存する。旧G1のR1/R2/R3 blockとP1/P2・R4 warn、UI無しscreen除外、G0.5の方向性/矛盾確認と完成度/ROI/KPI不足のhard禁止を別条件として保持する。旧Phase0Aの11項目・両OS・旧hook/CI・owner条件は特定scopeであり、現行作業への実行や新しい完了gateへ転用しない。
+
+Cycle P4 statusはbacktick除去/trim後のcase-sensitive集合で判定するが、必須セル不足の行は別のmalformed違反で先に止まる。追加2contextを元inventory引用pinと分離して保存した。manifestの宣言値と実測、文字列の存在と人間判断、S4 outcomeとPLAN status、freezeInputReadyとready、独立したDesign/Runtime/Release/Production Observationを同一の完了値へ潰さない。version_target、provider、旧層や数値、CLI、終端lifecycleもscopeを保つ。
+
+原inventory/仮登録/holding/Binding/rulebookは不変。主233の引用source読了から要求採否・retire・holding解除・Issue close・未計上0・要求ステージ完了・L3再開を生成しない。副264、主233の意味対応残件、他clusterを#1814/親#1813へ保持する。
+
+## RUL-FRM-02：副40件を追補し273/497の比較候補
+
+基準content `6c8e07a23adda72fca9310d906f1253acdda6d31`。主233の比較記録を保持し、副264の先頭40recordの引用原文と候補句を比較した。現在主233＋副40＝273/497の途中候補で、副224の全IDを未比較へ保持する。主担当がFRM01/OSA01/OSA06/FRM05/CORE等であることも原inventoryの全fieldのまま残し、副担当を主担当へ変更しない。
+
+旧静的layer gateはfreezeBlockingの適用・confirmed/placeholderの差・draft0・pair孤児0・L2のself wireframe条件を持ち、当ANDだけではconfirmed一件以上を要求していない。G7 coverage thresholdは指定値を受け、既定80と固定失敗メッセージの80を同一の実効条件にしない。通常の右側pair未凍結テスト設計の後付け禁止と、QA追加観点を独立design/差分PLANへ記録してからtestcodeを書く条件を分離する。4artifactの6無向pair/12 directed edgeと別文書で確定する必須8 edge、旧Recovery/Incident/Retrofitの異なる判断者、Scrumの旧TL判断とReverseのPO意図検証も固有条件として保持する。
+
+旧PLAN review evidence/doctor、UI無し旧L2skip、AC着手前の最低3反例、blocked再利用のdelta/oracle/review/digest、個別digest occurrenceのbyte oracle条件を現行の新gateや実行命令へコピーしない。273件の引用条件比較から隣接helper/caller・判断史・完全atom化・全consumer閉包・正式successor・未計上0・要求完了を生成しない。副224と読了分の意味対応残件を#1814/親#1813へ保持し、旧実行・要求採否・retire・holding解除・Issue close・L3再開は行わない。
+
+## RUL-FRM-02：全497件の引用条件比較候補と意味対応残件
+
+基準content `dea504d0d419b769a2e901b84e11af2798eb5a6d`。主233・副40の元273recordを保持し、残る副224recordのinventory全field、全引用原文とSHA-256、候補本文F1–F6の共通句、固有/未解決条件を一件ずつ追補した。現在主233＋副264＝497/497の引用条件比較候補で、引用未比較IDは0である。これは完全atom化、判断史、全隣接helper/caller、全consumer閉包、正式successor、未計上0、全要求被覆や要求ステージ完了を意味しない。上の途中件数は各差分時点の記録として保持する。副担当を主担当へ移さず、候補句の共通性もpartial overlapとして残す。
+
+旧assertion/coverage ledgerのdesign-defined・draft-defined／not-implemented、route catalogの入力条件/exit定義、期待値と実測を分離した。Recoveryの戻り先は事象ごとに正常化する最小scopeであり、毎回要求からやり直すものではない。RB08-345は追加12要求の下流L4詳細設計をG3後のForward事項とし、要件freezeの前提へ混入しない。旧whole-program/L12/L14、個別slice、要求stageの完了分母を同じものにしない。親Issueの終端とsuccessorのunblock/open保持も分ける。
+
+純analyzerの空集合ok、doctor wrapperのchecked>0、loader内の例外吸収/skipを分離した。plan-dodのDoD節不在はその判定を行わず、checked>0でもDoD substanceを保証しない。screen-impl-pair-freezeはnext_pair_freeze=nullを拒否しない実コードと未宣言も違反とするコメントを区別する。plan-artifact-existenceはarchived・有効supersession全graph・retired path・意図的空fileの適用条件と、read/parse失敗の空宣言/skipを保持する。補助原文7範囲をsupport_context_sourcesへ追加し、inventoryの引用先と混同しない。
+
+旧G1–G6の静的判定はplaceholderとconfirmedを区別し、当ANDにconfirmed>=1はない。G7は別のpair/group/trace/carry/coverage条件との合成である。L6 freezeInputReadyとready、review evidence文字列と独立review真正性、Red marker/exit code文字列と実際の欠陥検出、gate数とrequired exact set、typed record/digestと人間の対象revision判断を別に保持した。旧UI無しL2画面sub-doc skipを現行L2要求全体の省略にせず、旧層番号/role/provider/approval policy/CI/CLI/DB/stateを現行へそのまま転写しない。
+
+原inventory・要求候補・仮登録・holding・Binding・rulebookは不変である。引用source比較の残数0から要求採否・retire・holding解除・Issue close・L3再開を生成しない。497件の未確定意味対応、他54cluster、FRM01/OSA03の残件を#1814/親#1813へ保持し、既存assessment_status=unassessedと未評価fieldも維持する。
+
+## RUL-OSA-04：統合許可の限定した本文・全156引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主94・副62＝156件の原inventory全field、引用原文・SHA-256、候補本文との固有/未解決条件を保存した。引用未比較IDは0だが、完全atom化・判断史・全helper/caller/fixture/外部consumer閉包・正式successor・未計上0・全要求被覆・要求Stage完了は未確認である。証拠は本基準mainの固定bytesに束縛し、RC02-037のloader/analyzer（merged-plan-status.ts:99–132/259–328）を追加の2補助pinで保持した。補助pinは28件となり、未統合PRの読取結果へ依存しない。他56clusterと過去のcompared_revisions・未評価fieldは保持した。
+
+HARNESS003は工程条件、OS011は統合順序・単位・検証計画、OS008はCI合成・隔離実行である。旧BR06の6gate、FR07のClosure検査、FR28の固定3段CI、BR20の既知failure quarantineを一般merge permissionにまとめない。NCI002はpipeline classを分けるがnative auto-merge禁止を明示しないため、その同義推論だけを根拠から取り除き、旧basisをoriginal_relationsへ保全した。NCI候補への関係付けから採用範囲を拡張しない。
+
+旧AGENTS/CLAUDEと7/26是正はnative auto-mergeを禁止するが、8/12運用文書は条件付きで許可する。後続判断史と適用scopeは未解決として残す。Reference-onlyチーム案のSquash/作成者mergeや、旧監査frameworkのAIreview省略は同格の正本でなく、後者には535–541行で運用失効の明文がある。旧直接gh merge拒否hookと専用receipt CLI、旧Claude Ready主体の非対称性もscope差を保持する。旧実行系を起動しない。
+
+Draftのok=true/deferred=true/nullreceipt、provider-neutral advisory-onlyで常にmerge拒否、文字列fallback、inputboolean、digest形式/一致と実provenance・独立review・admission成立を分ける。未解消blockの履歴、mixedauthor例外、非空requiredcheck、CI世代・時刻、旧DBreplay、post-merge parent/tree照合、親受入のactor分離も個別に保持する。merge・release・Issueclose・親受入の成立を互いから生成しない。
+
+RE01-046のG/Hは節記号である。RE01-261/262のinventory引用518行だけではreview/CI/DB・auto-merge禁止の句を支えず、続く519行を別support contextへ記録した。原inventory/holdingを黙って訂正せず、append-only source訂正とconsumer/Binding照合を伴う残件に置く。current scope内のfinding処分と独立責務の後続化も一律non-blocker分離へ弱めない。
+
+本追補は比較候補である。要求本文・正本schema・Python/CLI/runtime/CI・仮登録・holding・Bindingを変更せず、#1814/#1813と他53cluster、FRM01/FRM02/OSA03の残件を保持する。assessment_status=unassessedと既存空配列は維持し、要求採否・retire・Issueclose・L3再開を生成しない。
+
+## RUL-PLN-01：企画・探索の限定した本文・全12引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主5・副7＝12件の原inventory全fieldと16引用span、関連本文13spanを固定bytes/hashで保持した。市場仮説の証拠・不確実性・最小検証とdecision criteria、機会の比較、利用者検証、探索spec/research memo、S3非終端と採否裁定を個別に読み分けた。引用未比較0から完全atom化・判断史・全consumer・正式successor・未計上0・全要求被覆・Stage完了を生成しない。
+
+旧社内基盤の企画はfeed-forwardで方向/trace/矛盾を確認し、ROI/KPI詳細を強制しない。書きすぎは要求へ降ろし、未調査断定と完全性不足を混同しない。市場仮説検証の不足を理由に全企画へ詳細なbusiness計画や新gateを無断追加しない。HARNESS自身のCLI形状だけで利用者製品に必要なcatalogを消さず、対象製品/土台missionと適用条件を保つ。
+
+現行HARNESS002/008は、探索と開発方式を分け、候補形成/Backflow/人間合意へ収束する。9/24判断でDiscovery/PoC/Decideが別ticketとなったため、旧単一S0–S4の起動方式を復活させない。Researchは判断用sourceと候補/比較基準を返し、選定はDecideで行う。検証成功、required_evidenceの文字列、生成文書や調査結果だけから採用・利用者合意・production成立を生成しない。
+
+過去relationのDTK-HARNESS-002は9/24 PO判断で文書ごと退役している。旧比較履歴として保全し現在の要求/設計/実装の根拠にせず、OSticketへの対応を別に残す。REQENG002の存在やmetadataから採用状態を推測しない。市場仮説・利用者調査・機会比較の原atomの全L1/各機構/対oracle被覆は未確定であり、元noteの未被覆断定を本監査の確定結論へ継承しない。
+
+他56clusterのbytesと元relation/note/歴史/未評価fieldを保持する。OSA04の#2890とFRM02の#2887–2889は別Draftの未レビュー候補で本main基準へ含めない。要求本文・schema・Python/旧CLI/runtime/CI・仮登録・holding・Bindingは変更しない。#1814/#1813と全残件を保持し、要求採用・retire・Issueclose・L3再開を生成しない。
+
+## RUL-OPS-02：運用体制の限定した本文・全12引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主11・副1＝12件の原inventory全field、15引用spanと8関連/補助spanを保存した。引用未比較0は完全atom化・判断史・全consumer・正式successor・未計上0・全要求被覆・Stage完了ではない。元relationはoriginal_relationsへ保全し、OS004のno-material-overlapとAIDOC001のcredential失効説明を限定して訂正した。他56clusterのbytes、過去revision、note、未評価fieldを維持する。
+
+旧チーム構想/運用書はReference-onlyで、本人PO1名＋AIrosterへの読替えを持つ。人間の招待/採用順/1on1/当番、成熟度の固定toolや80%例、初期30日、旧Phase0B全14項目のPRmatrix/prepushを現行全案件の必須手順へ移さない。旧v1.3soloはteam儀式・velocity・複数人roleを必須にしない。現行独立reviewやoracleを成熟度の例により省略する根拠にもならない。
+
+現行OS004はWorker交代時の責務/未完義務/累積制約の保持、自己承認/二重割当防止を明示し、OS009の復旧と一部共通する。human入退場の全条件と同一にはしない。AIDOC001は許可等のcontext解決であり、実credential付与/短期保持/失効そのものを定めない。SECURITY005の生値非露出・scope/expiry・revoke伝播は別契約として照合し、実account/credential/認可/本番設定の変更を行わない。
+
+サービスのAPM/稼働監視/oncallとOS008のCI実行監視は対象が異なる。候補句の保険/規制はこの12件にはないが、RB04-274（主FRM09/副OSA07）に保存済みである。別record原文を補助に保持し、母集団の所属を勝手に変更せず、欠落/退役やOPS02全条件被覆を主張しない。
+
+要求本文・schema・Python/CLI/runtime/CI・仮登録・holding・Bindingを変更しない。OSA04/PLN01とFRM02の別Draft未レビュー候補を本main基準に混ぜず、#1814/#1813と全残件を保持する。要求採用・retire・Issueclose・L3再開を生成しない。
+
 ## RUL-OPS-01：運用保守の限定した本文・全38引用条件比較
 
 基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主26・副12＝38件の原inventory全fieldと47引用span、27関連/補助spanを保持した。元note/relations/compared_revisions/未評価fieldと他56clusterのbytesを変更せず、SECURITY/INFRASTRUCTUREを含む比較を追記した。引用未比較0は全atom・判断史・全consumer・正式successor・全被覆・Stage完了ではない。
