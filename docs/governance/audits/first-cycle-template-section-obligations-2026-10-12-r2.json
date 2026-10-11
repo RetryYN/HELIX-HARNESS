@@ -1,0 +1,21 @@
+{
+  "audit_id": "FIRST-CYCLE-TEMPLATE-SECTION-OBLIGATIONS-2026-10-12-R2",
+  "authority_effect": "none",
+  "corrects": "docs/governance/audits/first-cycle-template-section-obligations-2026-10-12.json",
+  "original_record_sha256": "f05b53b298b84c7f7186f62992bbd6cd7956f58c3f34d0f6ddd7325892f79d0b",
+  "finding": "F1: trace参照件数6→7、欄種別の元requirednessを保持",
+  "actual_changed_keys": {
+    "section_policies": 22,
+    "trace_policies": 7,
+    "field_requiredness": 91
+  },
+  "after_sha256": "20218fe96f26ad9a1ac6011bd7bc4b18a850d9bea2e9c4e7017a173ab7838263",
+  "candidate_path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+  "preservation_proof": "上記22+7+91の値だけをbaseから復元するとJSONはdeep equal。91requirednessは全て元の欄種別条件を付記し、table_column 56件のheaderだけで充足にしない条件も保持。元auditのafter_sha256は修正前HEADの証拠として保持し、修正後は本after_sha256を参照。",
+  "source_pins_state": "元audit source/decision/legacy pinsは不変",
+  "not_proven": [
+    "候補の採択・全15項目の完全性",
+    "案件適用と義務充足・実case成功・機構/環境成立",
+    "Issue完了・L3再開・正式schema/実装/内部デプロイ"
+  ]
+}
