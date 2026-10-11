@@ -11,11 +11,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 84,
-      "end_line": 94,
+      "end_line": 93,
       "sha256": "e708841bf5f5560a96915866d68dd4d37cd663bb250e61084e1d19ebf2eb4abf",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 84,
-      "adopted_end_line": 94,
+      "adopted_end_line": 93,
       "same_as_adopted_span": true
     },
     {
@@ -24,11 +24,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 95,
-      "end_line": 105,
+      "end_line": 104,
       "sha256": "6ea1c1d2d7808649aaa553fbc6afcf814e72eeb24a0e83caf89c7d043fe70039",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 95,
-      "adopted_end_line": 105,
+      "adopted_end_line": 104,
       "same_as_adopted_span": true
     },
     {
@@ -37,11 +37,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 106,
-      "end_line": 116,
+      "end_line": 115,
       "sha256": "0c9aa2e7b9c84e47147fc40fb2893ae58a7bbd08b5975dc925299a184824dc56",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 106,
-      "adopted_end_line": 116,
+      "adopted_end_line": 115,
       "same_as_adopted_span": true
     },
     {
@@ -50,11 +50,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 117,
-      "end_line": 127,
+      "end_line": 126,
       "sha256": "ea1ad035c22d4c34626ec52cea621e47f304c66f97c0f44507a01e1325a3686b",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 117,
-      "adopted_end_line": 127,
+      "adopted_end_line": 126,
       "same_as_adopted_span": true
     },
     {
@@ -63,11 +63,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 128,
-      "end_line": 138,
+      "end_line": 137,
       "sha256": "120d16b39c985bd7f62efe6974a71849cad4cb0f234c395a509dc6793ddd9ff0",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 128,
-      "adopted_end_line": 138,
+      "adopted_end_line": 137,
       "same_as_adopted_span": true
     },
     {
@@ -76,11 +76,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 150,
-      "end_line": 160,
+      "end_line": 159,
       "sha256": "9584e757b02bf75f698a055eedb9df6d72aa7bdc07e82808fd92d786861c24ee",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 150,
-      "adopted_end_line": 160,
+      "adopted_end_line": 159,
       "same_as_adopted_span": true
     },
     {
@@ -89,11 +89,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 161,
-      "end_line": 171,
+      "end_line": 170,
       "sha256": "90cc1f814eda48b0da887912b3a0862b94291e3264cd6c84225d14e19bc0900e",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 161,
-      "adopted_end_line": 171,
+      "adopted_end_line": 170,
       "same_as_adopted_span": true
     },
     {
@@ -102,11 +102,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 172,
-      "end_line": 182,
+      "end_line": 181,
       "sha256": "2357966979f49c70ea6881fddd664a9f121dc43849f8b2889768f931c5e89d01",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 172,
-      "adopted_end_line": 182,
+      "adopted_end_line": 181,
       "same_as_adopted_span": true
     },
     {
@@ -115,11 +115,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 183,
-      "end_line": 193,
+      "end_line": 192,
       "sha256": "bb9b45219db15affd84fd2098e37930da414358e9170f42d9f308143a3090b2a",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 183,
-      "adopted_end_line": 193,
+      "adopted_end_line": 192,
       "same_as_adopted_span": true
     },
     {
@@ -128,11 +128,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 194,
-      "end_line": 204,
+      "end_line": 203,
       "sha256": "726a83d698826a4376d6cf8bb47be6a10de671776d27d0b219ada48a38b77091",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 194,
-      "adopted_end_line": 204,
+      "adopted_end_line": 203,
       "same_as_adopted_span": true
     },
     {
@@ -141,11 +141,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 205,
-      "end_line": 215,
+      "end_line": 214,
       "sha256": "f574ca7fda5b129544983c786c5c5881fa7c479e00d96cdeaa60757b7964493f",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 205,
-      "adopted_end_line": 215,
+      "adopted_end_line": 214,
       "same_as_adopted_span": true
     },
     {
@@ -154,11 +154,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 394,
-      "end_line": 403,
+      "end_line": 402,
       "sha256": "ae31cde4ec8dd5a0fa336b4161e68771344ce30ca42bd0ee375845e032481e29",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 394,
-      "adopted_end_line": 403,
+      "adopted_end_line": 402,
       "same_as_adopted_span": true
     },
     {
@@ -167,11 +167,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 404,
-      "end_line": 413,
+      "end_line": 412,
       "sha256": "8502faa7d18a6668ebaa852cd7b09700544574816253b4705dc87f7ac83ad786",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 404,
-      "adopted_end_line": 413,
+      "adopted_end_line": 412,
       "same_as_adopted_span": true
     },
     {
@@ -180,11 +180,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 414,
-      "end_line": 423,
+      "end_line": 422,
       "sha256": "2b6f40a524fa611797652318ee4eb6e986727d8f3abea9a3063669d28c51cc1d",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 414,
-      "adopted_end_line": 423,
+      "adopted_end_line": 422,
       "same_as_adopted_span": true
     },
     {
@@ -193,11 +193,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 424,
-      "end_line": 433,
+      "end_line": 432,
       "sha256": "6908ff21f39e72df2dd6cfa0f71b9c1d4a9e7d693896835bdf2ef24e5e1ab38a",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 424,
-      "adopted_end_line": 433,
+      "adopted_end_line": 432,
       "same_as_adopted_span": true
     },
     {
@@ -206,11 +206,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 434,
-      "end_line": 443,
+      "end_line": 442,
       "sha256": "c199e33e57a16d7199e7e8d15804c08736e0838ec2469d88b5f343285c0960e8",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 434,
-      "adopted_end_line": 443,
+      "adopted_end_line": 442,
       "same_as_adopted_span": true
     },
     {
@@ -219,11 +219,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 464,
-      "end_line": 473,
+      "end_line": 472,
       "sha256": "dad26c150491fb7b31b6297acffd119b6390a675d79d2feedcc61fc0d857db12",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 464,
-      "adopted_end_line": 473,
+      "adopted_end_line": 472,
       "same_as_adopted_span": true
     },
     {
@@ -232,11 +232,11 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 494,
-      "end_line": 503,
+      "end_line": 502,
       "sha256": "e3d58bda2215f1a5aeb846d7160f31d832c8e46866a8a53c5e8115664cd72df8",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 494,
-      "adopted_end_line": 503,
+      "adopted_end_line": 502,
       "same_as_adopted_span": true
     },
     {
@@ -245,7 +245,7 @@
       "layer": "L2",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 575,
-      "end_line": 586,
+      "end_line": 584,
       "sha256": "2a5c1cb842fa1f431d6a07a23506ef4304671b9b407b32527684ddfed987a2a0",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 575,
@@ -505,11 +505,11 @@
       "layer": "L11",
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "start_line": 97,
-      "end_line": 114,
+      "end_line": 113,
       "sha256": "cc1e907e38e38bbab08688d10407549d199bda685e6088441b6ec847a67c2980",
       "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "adopted_start_line": 97,
-      "adopted_end_line": 114,
+      "adopted_end_line": 113,
       "same_as_adopted_span": true
     },
     {
@@ -543,6 +543,7 @@
         "028"
       ],
       "operation_or_source_conditions": {
+        "常時必須": "003/005/007/008/028の条件・relation・出所・identity/版/state・pack互換契約。各参照先runtimeの完成を常時必須にする意味ではない。",
         "特定操作時のみ必須": "COREへ返すとき019/022/030。",
         "選択した入力元に応じて必須": "CORE由来候補/LABO評価を選ぶとき018/020/025。",
         "参照資料のみ": "旧template/seed/設計例。authority/必須項目の代替にしない。"
@@ -863,5 +864,6 @@
       "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
       "sha256": "ed787d9e87324735bdcfadfaee308a9a159126906c7e4513ab831b2f7a664b42"
     }
-  ]
+  ],
+  "span_digest_rule": "start_line/end_lineは1始まりのinclusiveで、末尾の空行を範囲に含めない。指定行をLFで連結し、末尾空白を除去してLF一つを加え、UTF-8でSHA-256を取る。全40箇所で同一方式を使う。same_as_adopted_spanはこの正規化後のbytesの一致を示す。"
 }
