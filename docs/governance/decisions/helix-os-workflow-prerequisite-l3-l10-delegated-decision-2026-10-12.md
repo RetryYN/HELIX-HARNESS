@@ -14,7 +14,7 @@ OS017/020/023の追加12組を、このexact本文revisionに限って承認す�
 
 ## 委任・親・系統
 
-[10/05委任](l3-l10-approval-delegation-po-decision-2026-10-05.md)と[10/08独立runtime/family](l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md)、[10/12限定再開](requirements-entry-restart-po-decision-2026-10-12.md)に従う。親は9/29の57候補採択と10/3 rosterが固定するOS017/020/023である。017/020/023の歴史Stage 2aと1.0を保持し、部品外flowの4.0を前倒ししない。必要な前提規範だけ先行著述する。
+[10/05委任](l3-l10-approval-delegation-po-decision-2026-10-05.md)と[10/08独立runtime/family](l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md)、[10/12限定再開](requirements-entry-restart-po-decision-2026-10-12.md)に従う。親は[9/28 OS採択](helix-os-requirements-po-decision-2026-09-28.md)の明示候補集合と10/3 rosterが固定するOS017/020/023である。017/020/023の歴史Stage 2aと1.0を保持し、部品外flowの4.0を前倒ししない。必要な前提規範だけ先行著述する。
 
 | 役割 | runtime | model family | モデル名・版 |
 |---|---|---|---|
