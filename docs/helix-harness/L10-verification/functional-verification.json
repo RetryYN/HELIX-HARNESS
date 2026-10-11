@@ -4,17 +4,19 @@
   "primary_parents": [
     "HARNESS-L2-010",
     "HARNESS-L2-011",
-    "HARNESS-L2-023"
+    "HARNESS-L2-023",
+    "HARNESS-L2-052"
   ],
   "l2_individual_version_target_by_parent": {
     "HARNESS-L2-010": null,
     "HARNESS-L2-011": null,
-    "HARNESS-L2-023": "1.0"
+    "HARNESS-L2-023": "1.0",
+    "HARNESS-L2-052": "1.0"
   },
   "status": "draft_not_approved",
   "authority_effect": "none_until_exact_revision_delegated_approval",
   "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
-  "scope": "限定前提構築が参照する共通pack境界・呼出し・条件別依存のpair。既存Stage/親の版を変更せず、初回3主対象と周辺機構の全能力を混載しない。",
+  "scope": "限定前提構築が参照する共通pack境界・呼出し・条件別依存とcommand意味identityのpair。既存Stage/親の版を変更せず、初回3主対象と周辺機構の全能力を混載しない。",
   "source_pins": [
     {
       "path": "docs/concept/helix-concept.md",
@@ -55,6 +57,18 @@
     {
       "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
       "sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+    },
+    {
+      "path": "docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md",
+      "sha256": "be23fea5cbffa3a19538bf3b1dba67eff424454f9adaa1d369aa9e22ba4c6dff"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/version-join-coverage-receipt-2026-10-10.json",
+      "sha256": "6938fd8d1f85bcf2470da04d51cbe257d490e027ec31424c1e792d304ecd2881"
     }
   ],
   "knowledge_use": "P3FIRSTのVT103と選択SDOP19節を問い/証拠/Backflowの限定材料として使う。数値/方式/全技法/正式schemaを採用しない。知識採用を実適用としない。",
@@ -69,10 +83,30 @@
     "preserve": "独立したbehavior単位、収載/除外、成熟度分離、再現/rollback、安全閉包と組合せの別証拠。",
     "change": "旧Slice/Module/Bundleの名称/enum/永続化を移さず、採用010/011/023のownerと4条件区分で再導出する。",
     "reason": "全対応sourceと一利用の有効依存を混同せず、未選択を未観測に保ち、無関係な全基盤完了を開始条件にしない。",
-    "failure_basis": "UTW014の欠損空集合化、UTW021の自己申告完了（predecessor-harness-full-weakness-audit-2026-07-20.md:65–101）を旧sourceとして照合した。"
+    "failure_basis": "UTW014の欠損空集合化、UTW021の自己申告完了（predecessor-harness-full-weakness-audit-2026-07-20.md:65–101）を旧sourceとして照合した。",
+    "command_sources": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "lines": [
+          142,
+          142
+        ],
+        "preserve": "command idempotencyの意味条件",
+        "change": "意味判定をHARNESS、原子保存・CAS運転をOSへ非重複配分",
+        "reason": "9/29採択済み052/OS053の責務境界に従う。旧DB/runtimeは移さない。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+        "lines": [
+          76,
+          76
+        ],
+        "use": "異payload conflictのoracle設計参照のみ。FR53履歴/故障注入実行は052へ取り込まない。"
+      }
+    ]
   },
   "remaining": [
-    "HARNESS052/053、JSON原子確定のOS053、命名/trace/対/DDD-TDD等は別pairで起草・承認する。",
+    "HARNESS053、JSON原子確定のOS053、命名/trace/対/DDD-TDD等は別pairで起草・承認する。",
     "呼出し実運転に使う認可/隔離/資源/記録/再開のowner-qualified契約を当該操作で束縛する。",
     "実装/CI/切替/デプロイ/実行/PO L11受入は本pairの承認から成立しない。通常L3全体の再開はPO Acceptedの範囲に限る。"
   ],
@@ -97,6 +131,12 @@
       "version_intent_label": "1.0 target candidate",
       "basis": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
       "boundary": "10/3固定rosterの起草対象区分を保持する。L2個別印の追加、release収載、実装許可を生成しない。"
+    },
+    "HARNESS-L2-052": {
+      "historical_version_class": "版未指定",
+      "version_target": "1.0",
+      "basis": "docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md",
+      "boundary": "10/10 VERSIONJOINが052の版のみ更新。既存Stage 1・意味・ownerを保持する。"
     }
   },
   "parent_basis": [
@@ -120,6 +160,14 @@
       "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "current_section_sha256": "32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
       "comparison": "対象節は9/28採用固定revisionと同文。current file全体の採用を意味しない。"
+    },
+    {
+      "identity": "HARNESS-L2-052",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "version_decision": "docs/governance/decisions/version-join-requirement-resolution-po-decision-2026-10-10.md",
+      "fixed_revision": "d4b439e5c48591749709a8707d0ee319c673f000",
+      "current_section_sha256": "f801e11097fe905b8519978ade42e06f8b3504d6481f4e14fc67f863c769669f",
+      "comparison": "VERSIONJOIN対象節digest f801e110…と一致。9/29の意味と10/10の版指定だけを使用する。"
     }
   ],
   "document_id": "HARNESS-L10-PACK-functional",
@@ -269,10 +317,76 @@
       "negative_input": "分類成功を利用許可/機能成立とする、全source実装を分類開始条件にする。",
       "failure_observation": "二つの成立判定を区別し、全体gateの追加や未完隠蔽をしない。",
       "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-052-F01",
+      "parent": "HARNESS-L2-052",
+      "title": "command意味identityの4軸",
+      "requirement_ref": "HARNESS-L3-052-F01",
+      "positive_input": "同じIDと異なるscope/base/payloadの入力を個別に比較する。",
+      "expected_observation": "4軸の値と相違が辿れ、ID一致だけでは同一操作にならない。",
+      "negative_input": "IDだけで同一操作、path/PR番号/到着時刻で意味identityを決める。",
+      "failure_observation": "誤った代替軸を示し、同一操作として受理しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-052-F02",
+      "parent": "HARNESS-L2-052",
+      "title": "正規化規則とscopeのrevision",
+      "requirement_ref": "HARNESS-L3-052-F02",
+      "positive_input": "同じ意味payloadを固定規則/revisionで再評価し、規則revisionだけが異なる入力も比較する。",
+      "expected_observation": "固定条件で意味digestが一致し、規則/revision違いは同一digestの根拠にしない。",
+      "negative_input": "規則revision欠落、別revisionのdigestを同一評価とする。",
+      "failure_observation": "根拠不足または不一致をunknown/conflictへ残し、規則を推測しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-052-F03",
+      "parent": "HARNESS-L2-052",
+      "title": "同一操作の再送",
+      "requirement_ref": "HARNESS-L3-052-F03",
+      "positive_input": "初回と全軸一致の再送について入力値と意味結果を比較する。",
+      "expected_observation": "両方が同一identity/意味結果に結ばれ、再送の別意味変更が発行されない。",
+      "negative_input": "全軸一致の再送を別意味変更、意味同一から実retry成功を推定。",
+      "failure_observation": "意味判定の違反または未実証の運転を示し、二重意味変更を成立扱いしない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-052-F04",
+      "parent": "HARNESS-L2-052",
+      "title": "異payload・scope・baseのconflict",
+      "requirement_ref": "HARNESS-L3-052-F04",
+      "positive_input": "同じIDでpayload atom一つ、scopeだけ、baseだけを変える三つの後続入力を独立に比較する。",
+      "expected_observation": "各相違がconflictとなり、先行identity/結果/receiptのdigestとrevisionが不変で二つ目の意味revisionがない。",
+      "negative_input": "異payloadを同IDだけで冪等扱い、scope/base違いで先行receiptを上書き。",
+      "failure_observation": "相違軸と先行identityを返し、後続入力の受理と先行証拠の置換を拒否する。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-052-F05",
+      "parent": "HARNESS-L2-052",
+      "title": "OSのbase CASと意味判定の分離",
+      "requirement_ref": "HARNESS-L3-052-F05",
+      "positive_input": "同じ意味payloadの古いbaseをOSがstale/conflictとした入力を意味照合へ渡す。",
+      "expected_observation": "意味identityの照合根拠とOSのCAS結果が区別され、保存拒否が保持される。",
+      "negative_input": "payload一致だけでOS拒否を無視、HARNESSでCAS保存を代行。",
+      "failure_observation": "OS結果と対象baseを保持し、該当canonicalizationを成立扱いしない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-052-F06",
+      "parent": "HARNESS-L2-052",
+      "title": "欠落・unknownの保留",
+      "requirement_ref": "HARNESS-L3-052-F06",
+      "positive_input": "各必要値を一つずつ欠落させ、正常入力と比較する。",
+      "expected_observation": "欠落値と不足scope/revisionが個別に示され、passにならない。",
+      "negative_input": "unknownを同一payloadとする、他scopeのoracleや先行identityを流用。",
+      "failure_observation": "不足と差戻し先を保持し、当該意味判定を成功へ変えない。",
+      "execution_state": "not_executed"
     }
   ],
   "execution_entry": "承認済みL3/対oracle、下位証明receipt、組合せ契約、実operationのauthority/隔離/資源/観測を同revision/scopeへ結んで開始する。未来receiptを左L3起草の入力にしない。",
-  "system_specific_obligation": "条件分類→呼出し可否→相関結果の流れで、宣言した選択範囲と実利用が一致し、不足・未観測が失われず、pack成功から上位成立を推定しないこと。局所caseを集めるだけではこの組合せ義務を証明しない。",
+  "system_specific_obligation": "条件分類→呼出し可否→相関結果の流れで、宣言した選択範囲と実利用が一致し、不足・未観測が失われず、pack成功から上位成立を推定しないこと。command意味identityの照合とOSのCAS/保存結果を同operationへ結び、同一再送・異payload競合・OS拒否・unknownが互いに混同されず、意味同一だけで保存/原子性成功を成立扱いしないこと。局所caseを集めるだけではこの組合せ義務を証明しない。",
   "required_evidence": "下位proof参照、固有義務ごとの結果、composition contract、機械導出の有無、入力/出力/拒否/副作用の実観測、oracle/revision/scope、不足・N/Aの理由/判定者/対象revision/再評価条件。計測を行う場合はHARNESS034の採用条件へ別途束縛する。",
   "completion": "未実行/片側欠落/別oracle/unknownを成功にせず、必要証拠の照合結果をHARNESS022/056の状態契約へ渡す。L10 VerifiedとPO L11 Acceptedを分ける。"
 }
