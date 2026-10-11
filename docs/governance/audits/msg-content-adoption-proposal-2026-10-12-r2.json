@@ -1,0 +1,18 @@
+{
+  "audit_id": "MSG-CONTENT-ADOPTION-PROPOSAL-2026-10-12-R2",
+  "authority_effect": "none",
+  "corrects": {
+    "path": "docs/governance/audits/msg-content-adoption-proposal-2026-10-12.json",
+    "sha256": "16ad0c049afe4306af06172ae07b28c1f0d223fed803e4189cace59ab4ad3529",
+    "reviewed_head": "b7b84a5d96159a06909f730586e3acb29210eb8a",
+    "finding": "https://github.com/RetryYN/HELIX-HARNESS/pull/2922#issuecomment-6110736792"
+  },
+  "descriptor_comparison_interpretation": "原記録のmeaning_focusは3件共通の15観点である。各観点を3件へ適用した45項目のvalue_sha256照合を記録したもので、45個の異なる観点やtemplate固有の意味比較を新規に記述した記録ではない。remainingも3件共通の未確定範囲である。template固有の意味本文と原文対応は選択payloadと既存候補の意味・欄・規範対応へ戻る。",
+  "reference_knowledge_notes_interpretation": {
+    "candidate_head": "6fa86434dd6bb5e83b9dfc9fe4ab3a90273f394c",
+    "historical_context": "原記録reference_knowledge_notesはPR #2921 HEAD時点の採否準備メモを保持している。candidate_headとpossible_subjectの未準備という文はその時点の記述であり、本PRの固定状態ではない。",
+    "current_proposal": "PR #2922のb7b84a5d96159a06909f730586e3acb29210eb8aでadoption_proposalとsemantic_payload_sha256、scope制限6行を固定した。POはMSGCONTENTに未回答で、authority_effectはnone。F1訂正ではpayloadも採否も変更しない。"
+  },
+  "semantic_payload_sha256": "b396de59d77e4bbe44715e980b4e96d81596fb6354a2e06cc1c493defd9f6f77",
+  "preserved": "原監査記録は書き換えない。候補JSON、選択payload、scope制限、既決要求・promotion境界は不変。原監査記録のlegacy_comparisonを保持し、新しい規則・手続き・gateは追加しない。"
+}

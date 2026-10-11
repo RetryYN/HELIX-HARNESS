@@ -1,0 +1,523 @@
+{
+  "audit_id": "MSG-CONTENT-ADOPTION-PROPOSAL-2026-10-12",
+  "authority_effect": "none",
+  "base": "0a39b4b363c9d6d0c44c7bda10c058c9c3128adc",
+  "candidate_path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+  "candidate_before_sha256": "9d5dc696716d66d363f97a2f4b97b8e1f6a94e415dc64d5f3cff4a209b69ebd2",
+  "candidate_after_sha256": "b97d6965e41a3ec4cefca3a1d98a9d2f9744d5a313939751dc92cf2db0a3d461",
+  "semantic_payload_sha256": "b396de59d77e4bbe44715e980b4e96d81596fb6354a2e06cc1c493defd9f6f77",
+  "source_pins": [
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-001-connection-contract.md",
+      "sha256": "94cc4a2a3f795645bf274148e47f3a2e0622643f822a1815f4068fb2f3cbfa5c"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-005-composite-architecture.md",
+      "sha256": "678e71797043d48e0f9e19c588e41cab059034fd5fe9cf5994f9d6c51d011589"
+    },
+    {
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    },
+    {
+      "path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "sha256": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae"
+    },
+    {
+      "path": "docs/governance/decisions/first-development-target-selection-po-decision-2026-10-11.md",
+      "sha256": "f63a64350d25216c22cc56bff73baf513f51c371323fd9026c84d372aef62407"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
+    }
+  ],
+  "descriptor_comparison": [
+    {
+      "template": "DT-MSG-001",
+      "items": [
+        {
+          "descriptor": "identity",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.identity",
+          "meaning_focus": "単体/辺/構成体で異なるidentityを保持し、filenameやviewだけで意味の主キーにしない。",
+          "value_sha256": "b7f12dec95dac6e2d738adcbe4c8d76c927f26df9aa80fdc2ead7cc7edcaaa8e",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "version",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.version",
+          "meaning_focus": "原候補版0.1.0-seed-candidateとsource revisionを保つ。新しい知識版/schema版を推定しない。",
+          "value_sha256": "87a5bda83063a327df49a5bd1579e3239570552857482c65e73c6f106fd74f40",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "layer_pair",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.layer_pair",
+          "meaning_focus": "主pairの意味を保持するがkindとの排他的対応にしない。単体にも他pairの義務があり得る。",
+          "value_sha256": "c202cb050edf469ca73a3223f6032fbfcd532fd7f08040d4744be8f050868027",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "applicability",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.applicability",
+          "meaning_focus": "境界を越える辺、振る舞いを変える単体、複数単体/辺の構成体の条件を区別し、未決をN/Aへしない。",
+          "value_sha256": "e392b76d6fc332022d4d9803db6662255a6fd47199a68b75147ae4b66a318125",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "required_input",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.required_input",
+          "meaning_focus": "両端契約/要求受入/全体成果とownerなど必要な意味を識別し、値未決をAIが補完しない。",
+          "value_sha256": "49dc3cfecd998f23b311d97ab35dd60510f51db4f12a361c5e421073afe479b0",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "required_section",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.required_section",
+          "meaning_focus": "22節の記入/N/A/追跡条件/検証引渡しを区別する。節が適用されるだけで全欄を一律requiredにしない。",
+          "value_sha256": "8488093bf3ff780412bcb9112dc90bb7c0faf52334325647ce9a6871ed558cdd",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "required_field",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.required_field",
+          "meaning_focus": "91欄の意味と要否根拠、33 unique規範/制約、欄種別の注意を保つ。空表/headerだけで充足にしない。",
+          "value_sha256": "ca1b1d0ae8fc4be621a0f8947518706388ffab1585b611ea3c079acb2dd8d583",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "relation",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.relation",
+          "meaning_focus": "SDOP/MSG/VTへの意味参照を二重正本にせず保持する。参照先内容/採否をこの3件の供給で代替しない。",
+          "value_sha256": "3e199e96689ce025268909d4a98e99a6973f79b37660f29fa446e0e3997ef3c8",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "meaning_owner",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.meaning_owner",
+          "meaning_focus": "汎用内容BRAINと適用CORE、記録/運転OS、評価LABOを区別する。原文ownerから全処理ownerを拡張しない。",
+          "value_sha256": "f910fdce8b7c24dd7974addf6d8d816373536840edd4ac18dd6a64d23ebab2be",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "trace",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.trace",
+          "meaning_focus": "要求/義務/設計/対oracleへの意味対応を辿る。91/33問い・取り違えは実case/実行合格ではない。",
+          "value_sha256": "f783a59fd7158437d3595e919318c80a4a64900df40b14e8f63e6efcb00188bf",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "negative_oracle",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.negative_oracle",
+          "meaning_focus": "方向/所有/unknown/部分成功/失敗/全体義務の取り違えを保持する。候補登録だけで拒否を実施済みにしない。",
+          "value_sha256": "411a7917b78e708431db506ddf69ab4b59653c5ce3aff37be237fc19bd6fc569",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "measurement",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.measurement",
+          "meaning_focus": "期限/再送/処理時間/容量の数値を新設せず根拠付きの要求/後続pairへ残す。計測の意味と実値/方法/実測を分ける。",
+          "value_sha256": "bb75bbafae48ad55aa743268c34f2ba6dc2d1eff80eae11cef948ca9e46a031b",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "completion",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.completion",
+          "meaning_focus": "欄/節・未完/引渡しの適用義務の条件を識別する。満たしても設計の正しさ/要求充足へ昇格しない。",
+          "value_sha256": "81b91b8b73a59bebf315cfdcd9659f26248f3cdeff264c64902921dbbf579670",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "downstream_kind",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.downstream_kind",
+          "meaning_focus": "unit/connection/compositeの固有義務を保持する。unitの和を接続/構成体の充足にしない。",
+          "value_sha256": "813eee92fa223510dc304ae13e99e213e76752890a7dafcc21ad51dbb74a1dea",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "supersession",
+          "payload_pointer": "templates[DT-MSG-001].semantic_descriptors.supersession",
+          "meaning_focus": "正式templateが来たとき欄の行き先を対応する意味を保持する。旧consumer/版移管/撤去を実施済みにしない。",
+          "value_sha256": "1d6938ccf63dcff923df87c4d9c48549f33f15d5761c2202fc57f121d30d8f41",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        }
+      ]
+    },
+    {
+      "template": "DT-MSG-004",
+      "items": [
+        {
+          "descriptor": "identity",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.identity",
+          "meaning_focus": "単体/辺/構成体で異なるidentityを保持し、filenameやviewだけで意味の主キーにしない。",
+          "value_sha256": "3a878b39b84ad8850baa035c3f582df5502221c74d506683cf834e469d027c80",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "version",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.version",
+          "meaning_focus": "原候補版0.1.0-seed-candidateとsource revisionを保つ。新しい知識版/schema版を推定しない。",
+          "value_sha256": "047cba336c23dbeba0e8014897e7a0d3d9eb889af4dd33873626d90aa385892e",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "layer_pair",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.layer_pair",
+          "meaning_focus": "主pairの意味を保持するがkindとの排他的対応にしない。単体にも他pairの義務があり得る。",
+          "value_sha256": "b89065f817a964f00b826cd73f0263041ef2910320cf6ef257998ca7bdeb8f21",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "applicability",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.applicability",
+          "meaning_focus": "境界を越える辺、振る舞いを変える単体、複数単体/辺の構成体の条件を区別し、未決をN/Aへしない。",
+          "value_sha256": "81795b519dee6d47098d04d66ecdf157246658582d8439ae38580daae4860ac7",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "required_input",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.required_input",
+          "meaning_focus": "両端契約/要求受入/全体成果とownerなど必要な意味を識別し、値未決をAIが補完しない。",
+          "value_sha256": "82e3346c15e20f38d7b895cc9a9a5046e7ea43196e9d9fd34bc94c07e7bc43e2",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "required_section",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.required_section",
+          "meaning_focus": "22節の記入/N/A/追跡条件/検証引渡しを区別する。節が適用されるだけで全欄を一律requiredにしない。",
+          "value_sha256": "14635051265c87cae5b4f80b0dbb69a39c94e23e9f5174491db0cabcecdddc2b",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "required_field",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.required_field",
+          "meaning_focus": "91欄の意味と要否根拠、33 unique規範/制約、欄種別の注意を保つ。空表/headerだけで充足にしない。",
+          "value_sha256": "bff201f8543eb7f16656064e3abfc2de638c5243b18bf62152d0db9b5bb348e6",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "relation",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.relation",
+          "meaning_focus": "SDOP/MSG/VTへの意味参照を二重正本にせず保持する。参照先内容/採否をこの3件の供給で代替しない。",
+          "value_sha256": "a8d844c25c682946ff23df258deac21afad27240e632d71c0e09282fd1057ded",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "meaning_owner",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.meaning_owner",
+          "meaning_focus": "汎用内容BRAINと適用CORE、記録/運転OS、評価LABOを区別する。原文ownerから全処理ownerを拡張しない。",
+          "value_sha256": "f910fdce8b7c24dd7974addf6d8d816373536840edd4ac18dd6a64d23ebab2be",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "trace",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.trace",
+          "meaning_focus": "要求/義務/設計/対oracleへの意味対応を辿る。91/33問い・取り違えは実case/実行合格ではない。",
+          "value_sha256": "b91f31c618e05d76d3427131ec84f35307351403d93ac5a513a44c8daf07db7f",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "negative_oracle",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.negative_oracle",
+          "meaning_focus": "方向/所有/unknown/部分成功/失敗/全体義務の取り違えを保持する。候補登録だけで拒否を実施済みにしない。",
+          "value_sha256": "c6d21ea16f9442a1048e4751354c9e9f66f54157ec434fa984ad9a60d0aab5bf",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "measurement",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.measurement",
+          "meaning_focus": "期限/再送/処理時間/容量の数値を新設せず根拠付きの要求/後続pairへ残す。計測の意味と実値/方法/実測を分ける。",
+          "value_sha256": "063b26256025dceb9d85a96a8b3be7fd1a91a3e2857820256308bf320f15afd0",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "completion",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.completion",
+          "meaning_focus": "欄/節・未完/引渡しの適用義務の条件を識別する。満たしても設計の正しさ/要求充足へ昇格しない。",
+          "value_sha256": "1232508baddc099396225c8376836c77a6f1384f0ab3cb95d1a3fbc7e61496b7",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "downstream_kind",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.downstream_kind",
+          "meaning_focus": "unit/connection/compositeの固有義務を保持する。unitの和を接続/構成体の充足にしない。",
+          "value_sha256": "658990e3e1e41fd4973f3d5cafacc3e38808541164064390b4ca431b82b2a1b2",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "supersession",
+          "payload_pointer": "templates[DT-MSG-004].semantic_descriptors.supersession",
+          "meaning_focus": "正式templateが来たとき欄の行き先を対応する意味を保持する。旧consumer/版移管/撤去を実施済みにしない。",
+          "value_sha256": "8e1dfb4e2412381714e726402c8c0fc12478d6e10966dd7aa1f474770b442d67",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        }
+      ]
+    },
+    {
+      "template": "DT-MSG-005",
+      "items": [
+        {
+          "descriptor": "identity",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.identity",
+          "meaning_focus": "単体/辺/構成体で異なるidentityを保持し、filenameやviewだけで意味の主キーにしない。",
+          "value_sha256": "c49bad85f7a258ef96ea50139f990f514a8215f88e225596de4fb319f211e573",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "version",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.version",
+          "meaning_focus": "原候補版0.1.0-seed-candidateとsource revisionを保つ。新しい知識版/schema版を推定しない。",
+          "value_sha256": "43f47a5fb84be18fdce212441a340830b692c0686bf4f4f1770ff19dacc3453a",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "layer_pair",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.layer_pair",
+          "meaning_focus": "主pairの意味を保持するがkindとの排他的対応にしない。単体にも他pairの義務があり得る。",
+          "value_sha256": "75cb577902534e2827bc8bf1c24fb7b39df1a88c6801477207aeb4c56551389d",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "applicability",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.applicability",
+          "meaning_focus": "境界を越える辺、振る舞いを変える単体、複数単体/辺の構成体の条件を区別し、未決をN/Aへしない。",
+          "value_sha256": "7ffc377a55e86909b03f836b5c12ee223635e7c029e55c60b8dc28f3f6eb59f0",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "required_input",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.required_input",
+          "meaning_focus": "両端契約/要求受入/全体成果とownerなど必要な意味を識別し、値未決をAIが補完しない。",
+          "value_sha256": "3d85d64c56ef5d941a5673e6326cb804d47548fd9150ee6c64435d1f77e6e1c4",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "required_section",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.required_section",
+          "meaning_focus": "22節の記入/N/A/追跡条件/検証引渡しを区別する。節が適用されるだけで全欄を一律requiredにしない。",
+          "value_sha256": "7ddf62130e8752011731746a1c1b81182cecc9a275deb3ea4468d1f5421f5370",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "required_field",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.required_field",
+          "meaning_focus": "91欄の意味と要否根拠、33 unique規範/制約、欄種別の注意を保つ。空表/headerだけで充足にしない。",
+          "value_sha256": "88a4319b73ebea486e6882599c3a5c4886f41522af65e62b60657aac0431763c",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "relation",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.relation",
+          "meaning_focus": "SDOP/MSG/VTへの意味参照を二重正本にせず保持する。参照先内容/採否をこの3件の供給で代替しない。",
+          "value_sha256": "b9add0564b4f6ce22923a61b5092f56c22b3023f5dffca6a439158257476f4ae",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "meaning_owner",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.meaning_owner",
+          "meaning_focus": "汎用内容BRAINと適用CORE、記録/運転OS、評価LABOを区別する。原文ownerから全処理ownerを拡張しない。",
+          "value_sha256": "f910fdce8b7c24dd7974addf6d8d816373536840edd4ac18dd6a64d23ebab2be",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "trace",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.trace",
+          "meaning_focus": "要求/義務/設計/対oracleへの意味対応を辿る。91/33問い・取り違えは実case/実行合格ではない。",
+          "value_sha256": "c7c06e4b0d8f610de3ef7ca8813d942deeb1de76a5ba1c5f9de9951c0056315f",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "negative_oracle",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.negative_oracle",
+          "meaning_focus": "方向/所有/unknown/部分成功/失敗/全体義務の取り違えを保持する。候補登録だけで拒否を実施済みにしない。",
+          "value_sha256": "0400e2eac12228467c0c07695cb4a761aa0333bb28defd1fd19784d0bc737c8a",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "measurement",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.measurement",
+          "meaning_focus": "期限/再送/処理時間/容量の数値を新設せず根拠付きの要求/後続pairへ残す。計測の意味と実値/方法/実測を分ける。",
+          "value_sha256": "0427c7d6f0dbaf484a6ddc878f8d6b25ad88805445b643d64a1c590e0c8b13ab",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "completion",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.completion",
+          "meaning_focus": "欄/節・未完/引渡しの適用義務の条件を識別する。満たしても設計の正しさ/要求充足へ昇格しない。",
+          "value_sha256": "5938ab010567c36e06c95fe1b8fff23e709cc654a03e56a849aeeb52c2bde249",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "downstream_kind",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.downstream_kind",
+          "meaning_focus": "unit/connection/compositeの固有義務を保持する。unitの和を接続/構成体の充足にしない。",
+          "value_sha256": "aa1036b60bb347158d11825c833f5f31b30d7b61c354fe3dd2ba2eab9f4b3980",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        },
+        {
+          "descriptor": "supersession",
+          "payload_pointer": "templates[DT-MSG-005].semantic_descriptors.supersession",
+          "meaning_focus": "正式templateが来たとき欄の行き先を対応する意味を保持する。旧consumer/版移管/撤去を実施済みにしない。",
+          "value_sha256": "b74e40fcbe2e045edb5c7e1be37c20ed4e9216ba2d27a0dad36897d8b3cfaa3e",
+          "remaining": "参照知識/案件値/実証/運用promotionとは別の意味内容。採否は未決。"
+        }
+      ]
+    }
+  ],
+  "reference_knowledge_notes": {
+    "authority_effect": "none",
+    "basis": "seedfirst-knowledge-po-decision-2026-10-10.mdの限定内容採用と候補全体/全体集合/正式schemaの区別を照合した採否準備notes",
+    "candidate_head": "6fa86434dd6bb5e83b9dfc9fe4ab3a90273f394c",
+    "provided": [
+      "DT-MSG-001",
+      "DT-MSG-004",
+      "DT-MSG-005"
+    ],
+    "dependencies": [
+      {
+        "template": "DT-MSG-001",
+        "relation_source_line": 16,
+        "referenced_knowledge": [
+          "DT-MSG-003",
+          "DT-MSG-005",
+          "DT-SDOP-002",
+          "DT-SDOP-004",
+          "DT-VT-104",
+          "DT-VT-105"
+        ],
+        "provided_by_3": [
+          "DT-MSG-005"
+        ],
+        "not_provided_by_3": [
+          "DT-MSG-003",
+          "DT-SDOP-002",
+          "DT-SDOP-004",
+          "DT-VT-104",
+          "DT-VT-105"
+        ],
+        "conditional_note": "relation中のAWS採用時SDOP006、外部interface時MSG003等の条件は原文に残す。名前の抽出は依存閉包/全required判定ではない。"
+      },
+      {
+        "template": "DT-MSG-004",
+        "relation_source_line": 16,
+        "referenced_knowledge": [
+          "DT-MSG-001",
+          "DT-MSG-006",
+          "DT-SDOP-001",
+          "DT-SDOP-004",
+          "DT-VT-105",
+          "DT-VT-106"
+        ],
+        "provided_by_3": [
+          "DT-MSG-001"
+        ],
+        "not_provided_by_3": [
+          "DT-MSG-006",
+          "DT-SDOP-001",
+          "DT-SDOP-004",
+          "DT-VT-105",
+          "DT-VT-106"
+        ],
+        "conditional_note": "relation中のAWS採用時SDOP006、外部interface時MSG003等の条件は原文に残す。名前の抽出は依存閉包/全required判定ではない。"
+      },
+      {
+        "template": "DT-MSG-005",
+        "relation_source_line": 16,
+        "referenced_knowledge": [
+          "DT-MSG-001",
+          "DT-MSG-003",
+          "DT-SDOP-001",
+          "DT-SDOP-002",
+          "DT-SDOP-003",
+          "DT-SDOP-005",
+          "DT-SDOP-006",
+          "DT-VT-103",
+          "DT-VT-104"
+        ],
+        "provided_by_3": [
+          "DT-MSG-001"
+        ],
+        "not_provided_by_3": [
+          "DT-MSG-003",
+          "DT-SDOP-001",
+          "DT-SDOP-002",
+          "DT-SDOP-003",
+          "DT-SDOP-005",
+          "DT-SDOP-006",
+          "DT-VT-103",
+          "DT-VT-104"
+        ],
+        "conditional_note": "relation中のAWS採用時SDOP006、外部interface時MSG003等の条件は原文に残す。名前の抽出は依存閉包/全required判定ではない。",
+        "source_read_note": "003/104は関係欄の省略形SDOP001・003、VT103・104を原文から展開した。単純regex結果の不足を訂正。"
+      }
+    ],
+    "adoption_boundaries": {
+      "possible_subject": "3MSGの汎用意味内容。採否対象revisionとpayload scopeはまだ固定案/独立review未準備",
+      "not_subject": "参照VT全体、SDOP/残りseed/card全体、各案件の選択/使用set、正式schema/runtime、旧全source移管、L3再開",
+      "conditions": "15descriptor全体と必要関係の意味不足を具体的に読み、知識不足と案件値未決を分ける。今回の91/33参照存在だけで完全性を判定しない。"
+    },
+    "additional_field_refs": [
+      {
+        "template": "DT-MSG-005",
+        "field": "section-2/column-5",
+        "referenced_knowledge": "DT-MSG-002",
+        "note": "関係欄外のfield由来。まだ全sourceの再帰closureではない。"
+      }
+    ]
+  },
+  "promotion_boundary": "本案は要求整理に用いる意味内容の採否である。BRAIN007/025のLABO評価→OS登録/振分け→BRAIN変更内独立検証→採否を変更・免除しない。PO選択やこのPRの独立reviewをその工程の代替にせず、運用knowledge stateをaccepted/matureへしない。既決SEEDFIRSTの範囲を変更せず、新要求identity/版指定/承認gateを足さない。",
+  "preservation_proof": "adoption_proposalだけを除去するとbase JSONとdeep equal。既存45descriptor、732source対応、91欄/33規範の意味、採否/stateは不変。source_scope_limitsの20/22行は選択意味内容の適用制限として保持し、原文全体の採用にしない。",
+  "not_proven": [
+    "definition_state/required_input_value_state/採否metadata、source_body_context全文、raw source全体、正例の案件値や仮の技術/数値",
+    "参照SDOP/VT/他23seed/40cardの内容全体、全体最小集合、案件選択/使用exact setやN/A/製品値",
+    "旧6surface/component・holdingの全移管やformal successor/retire、schema/型/式木/algorithm/registry/renderer/Python接続",
+    "LABO評価/OS登録/BRAIN独立変更手続きの実施、運用knowledgeのaccepted/matureへのpromotion",
+    "L3再開/正式要件/設計/実装/CI/内部デプロイ/release、実case/実行受入/Issue close"
+  ],
+  "legacy_comparison": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+    "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+    "spans": [
+      {
+        "lines": [
+          19,
+          46
+        ],
+        "sha256": "f856044cea35df88ad0e54434efb2b2d336f4a1fddc3467ac9fb4dcbf4bdadf6"
+      },
+      {
+        "lines": [
+          77,
+          100
+        ],
+        "sha256": "e8e8d4edc2c8c11aa01bbffb6a3a3f4132218b701cafe5f85ca9e9f47a56e2c6"
+      }
+    ],
+    "reuse_class": "semantic_rederivation",
+    "preserve": "template知識とinstance/graph/viewの分離、identity/版/条件/必須項目/trace/oracle/completion、移行で候補を完成にしない。",
+    "change": "旧一括HARNESSの意味を既決BRAIN/CORE/OSへ分けて知識内容の採否案へ固定。旧typed schema/gate/pair freeze/実装/cutoverや機構成立は継承しない。",
+    "reason": "初回選択済み循環で知識内容の意味を明確にし、欄/文書/レビューだけの成立推定を避ける。",
+    "holding": "旧surface/component/consumer、完全parity/式木/renderer/registry/instance digest/atomic cutoverの未完は保持し、この案でretireしない。"
+  }
+}
