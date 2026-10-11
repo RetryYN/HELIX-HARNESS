@@ -14,7 +14,7 @@ OS018/027の追加22組を、このexact本文revisionに限って承認する�
 
 ## 委任・親・系統
 
-[10/05委任](l3-l10-approval-delegation-po-decision-2026-10-05.md)と[10/08独立runtime/family](l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md)、[10/12限定再開](requirements-entry-restart-po-decision-2026-10-12.md)に従う。親は9/29の57候補採択・10/3の018-002採択とrosterが固定するOS018/027である。018/027の歴史Stage 2aと1.0を保持する。必要な前提規範だけ先行著述する。
+[10/05委任](l3-l10-approval-delegation-po-decision-2026-10-05.md)と[10/08独立runtime/family](l3-l10-delegation-cross-runtime-review-po-decision-2026-10-08.md)、[10/12限定再開](requirements-entry-restart-po-decision-2026-10-12.md)に従う。親は[9/28 OS採択](helix-os-requirements-po-decision-2026-09-28.md)・[10/3の018-002採択](po-decision-2026-10-03-additions10.md)とrosterが固定するOS018/027である。018/027の歴史Stage 2aと1.0を保持する。必要な前提規範だけ先行著述する。
 
 | 役割 | runtime | model family | モデル名・版 |
 |---|---|---|---|
