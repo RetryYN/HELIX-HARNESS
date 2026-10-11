@@ -51,9 +51,17 @@
     {
       "path": "docs/helix-brain/candidates/first-cycle-reference-template-knowledge.json",
       "sha256": "321d1253e63a11c3b14b398138ee976e2960298d2007431808396171b2431caf"
+    },
+    {
+      "path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "sha256": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae"
+    },
+    {
+      "path": "docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json",
+      "sha256": "8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77"
     }
   ],
-  "knowledge_use": "MSGCONTENTの3templateの意味・制限、P3FIRSTのVT103と選択SDOP19節だけ。原candidate/schema/keyを正式化せず、SEEDFIRSTは非UIかつ技術的不確実性なしを確認した部分に限る。",
+  "knowledge_use": "MSGCONTENTの3templateの意味・制限、P3FIRSTのVT103と選択SDOP19節だけ。原candidate/schema/keyを正式化せず、SEEDFIRSTのVT001/VT102とC01/C02/C08/C26の限定意味は、非UIかつ技術的不確実性なしを確認した要求/受入部分に限る。他pairへ自動拡張しない。",
   "serialization_boundary": "本JSON keyは要件文書の記述用。製品template schema、wire format、registry、式木、algorithmを固定しない。JSON本文が意味正本でMDは同内容の生成view。",
   "legacy_comparison": {
     "reuse_class": "semantic_rederivation",

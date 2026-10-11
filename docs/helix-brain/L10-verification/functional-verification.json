@@ -51,9 +51,17 @@
     {
       "path": "docs/helix-brain/candidates/first-cycle-reference-template-knowledge.json",
       "sha256": "321d1253e63a11c3b14b398138ee976e2960298d2007431808396171b2431caf"
+    },
+    {
+      "path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "sha256": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae"
+    },
+    {
+      "path": "docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json",
+      "sha256": "8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77"
     }
   ],
-  "knowledge_use": "MSGCONTENTの3templateの意味・制限、P3FIRSTのVT103と選択SDOP19節だけ。原candidate/schema/keyを正式化せず、SEEDFIRSTは非UIかつ技術的不確実性なしを確認した部分に限る。",
+  "knowledge_use": "MSGCONTENTの3templateの意味・制限、P3FIRSTのVT103と選択SDOP19節だけ。原candidate/schema/keyを正式化せず、SEEDFIRSTのVT001/VT102とC01/C02/C08/C26の限定意味は、非UIかつ技術的不確実性なしを確認した要求/受入部分に限る。他pairへ自動拡張しない。",
   "serialization_boundary": "本JSON keyは要件文書の記述用。製品template schema、wire format、registry、式木、algorithmを固定しない。JSON本文が意味正本でMDは同内容の生成view。",
   "legacy_comparison": {
     "reuse_class": "semantic_rederivation",
@@ -100,8 +108,8 @@
       "title": "15項目の独立識別",
       "positive_input": "15項目を持つMSG004/001/005の限定採用内容をそれぞれ与える。各項目の根拠と原適用制限を照合する。",
       "expected_observation": "全項目が個別に参照でき、単体・接続・構成体の内容差を保持する。返却は候補であり採用判断を伴わない。",
-      "negative_input": "同じ表示labelに異なる意味を入れる、またはrelationの端と向きを落とす。",
-      "failure_observation": "不一致項目・元revisionを示し、同じ意味の契約として返さない。",
+      "negative_input": "同じ表示labelに異なる意味を入れる、relationの端と向きを落とす、またはBRAINが層・V-pair・設計完了規則を新設/再定義する。",
+      "failure_observation": "不一致項目・元revisionを示し、同じ意味の契約として返さない。HARNESS契約から逸脱した層/対/完了規則を成立結果にしない。",
       "proof_needed": "対象requirement/oracle revisionとscope、局所/接続の下位証明、実際の入出力と副作用観測、相違とBackflow先。実行前oracleと実観測を分ける。",
       "execution_state": "not_executed"
     },
@@ -133,8 +141,8 @@
       "title": "identity・版・出所",
       "positive_input": "同じfilenameの異なるidentity、同identityの異なる版、pack版のみ異なる候補を与える。",
       "expected_observation": "各相違を正しい識別軸で返す。version_target=1.0を実版として扱わない。",
-      "negative_input": "別revisionのoracle、source無し、宣言互換範囲外を混入する。",
-      "failure_observation": "当該参照を未評価または不適用として返し、別候補の成功で相殺しない。",
+      "negative_input": "別revisionのoracle、source無し、宣言互換範囲外、画像やtool node IDだけから推定した意味identity/版を混入する。",
+      "failure_observation": "当該参照を未評価または不適用として返し、別候補の成功で相殺しない。画像/tool node IDだけでidentity/版の一致や成立を返さない。",
       "proof_needed": "対象requirement/oracle revisionとscope、局所/接続の下位証明、実際の入出力と副作用観測、相違とBackflow先。実行前oracleと実観測を分ける。",
       "execution_state": "not_executed"
     },
@@ -188,8 +196,8 @@
       "title": "条件別依存と返却",
       "positive_input": "常時入力だけの局所候補、COREへ返す候補、CORE由来またはLABO評価を選んだ候補を分ける。",
       "expected_observation": "選択条件で必要になる不足だけを返し、未選択source成功を主張しない。",
-      "negative_input": "receiver未受領を知識定義欠落へ変える、または選択sourceの欠落を別sourceで補う。",
-      "failure_observation": "定義欠落と接続未成立を分離し、知識owner/CORE/OSへ原因別に返す。",
+      "negative_input": "receiver未受領を知識定義欠落へ変える、または選択sourceの欠落を別sourceで補う、または旧template/seed/設計例をauthorityや必須項目の代替にする。",
+      "failure_observation": "定義欠落と接続未成立を分離し、知識owner/CORE/OSへ原因別に返す。参照資料からのauthority生成や必須項目の代替を成立させない。",
       "proof_needed": "対象requirement/oracle revisionとscope、局所/接続の下位証明、実際の入出力と副作用観測、相違とBackflow先。実行前oracleと実観測を分ける。",
       "execution_state": "not_executed"
     }
