@@ -173,33 +173,37 @@
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
           "lines": [
             5756,
-            5797
+            5798
           ],
-          "identity": "HIL-NFR-32"
+          "identity": "HIL-NFR-32",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
           "lines": [
             441,
-            467
+            465
           ],
-          "identity": "HR-FR-HIL-19"
+          "identity": "HR-FR-HIL-19",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
           "lines": [
             596,
-            629
+            628
           ],
-          "identity": "HAC-HIL-19a..c"
+          "identity": "HAC-HIL-19a..c",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
           "lines": [
             360,
-            377
+            379
           ],
-          "identity": "HAT-HIL-19"
+          "identity": "HAT-HIL-19",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
@@ -207,7 +211,8 @@
             289,
             290
           ],
-          "identity": "HR-FR-HYB-005/006"
+          "identity": "HR-FR-HYB-005/006",
+          "locator_kind": "inclusive_line_ranges"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
@@ -217,7 +222,8 @@
             58,
             65
           ],
-          "identity": "HBR-P1/P7/P9,HNFR-P5"
+          "identity": "HBR-P1/P7/P9,HNFR-P5",
+          "locator_kind": "individual_lines"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
@@ -227,7 +233,8 @@
             125,
             151
           ],
-          "identity": "source/ticket/assignment/attempt/event境界"
+          "identity": "source/ticket/assignment/attempt/event境界",
+          "locator_kind": "inclusive_line_ranges"
         }
       ],
       "preserve": "同operationの六条件と独立negative、原event/正本/projection分離、feedback未ack保全、memory反映後retire、期限/予算/未完維持、三kindと局所影響。",
