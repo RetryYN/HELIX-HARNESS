@@ -47,3 +47,11 @@ IR153件の[route locator projection](audits/requirements-stage/ir153-destinatio
 8機構のL1固定・L2/L11合意は[作業入口](new-generation-start-here.md)の2026-09-28判断一覧を起点にし、後続候補のexact採否を各判断記録へ結びます。今回の記録が統合された場合、latest384件は採択374・保留5・現revision不採択5に全件振り分けられ、IR153は行き先153・未割当0です。保留5件の解除や不採択5件の作り直しを終了条件に加えません。
 
 終了確認の範囲は利用者要望・配置・意味scope・人の確認と行き先の整理です。既存receipt/監査の限定joinと#2553の独立reviewを証拠にし、全原文条件・consumerの再監査、旧source回収完了、L3以下の完成は主張しません。本PRの独立review・統合・read-afterを閉じてから要求整理完了を報告します。L3承認・実装許可・releaseは別の境界です。
+
+## 2026-10-11の追加4件と残るIssueの照合
+
+POは4件の固定案を提示した質問に「4件とも推奨案を採用」と回答した。対象は[ASSETCOVER089（版未指定）](decisions/assetcover-adoption-po-decision-2026-10-11.md)、[O10GEN090（B・1.0）](decisions/o10gen-adoption-po-decision-2026-10-11.md)、[DDDSTRICT005追補（既決版保持）](decisions/dddstrict-adoption-po-decision-2026-10-11.md)、[INCIDENTPORT003追補（B・既決1.0保持）](decisions/incidentport-adoption-po-decision-2026-10-11.md)。固定追補本文の候補metadataは提示時のbytesとして保持し、採否は対象decisionから読む。4件の要求判断に実装・release・L3再開の許可を含めない。上の384件/374採択等の集計は10/3の固定照合時点の記録であり、この4件を反映した現在の全件数として再使用しない。
+
+[残るIssueの限定照合資料](audits/requirements-stage/requirements-issue-stage-reconciliation-2026-10-11.md)は、#1852の主13IR/副HIL-TR03とconfirmed4件、#1854の主FR02/50・副FR24/30を既存の限定joinと今回の採用へ結ぶ。#1853/#1857の既存独立reviewが残した選択も、今回のB採用と照合する。要求粒度の具体不足があればsourceと現行条項の差を明記し、仮登録やmergeだけで閉じない。全sourceのformal successor/consumer/schema/実装だけが残る場合は、既存生存holdingと#1813/#2846へ保持して、要求側Issueの終了を別に判断する。
+
+本追補は独立review前の照合入口であり、要求完了やIssue closeを宣言しない。全source意味対応の親program #1813/#1814/#1815、要件定義以降の#2846は別範囲として残す。
