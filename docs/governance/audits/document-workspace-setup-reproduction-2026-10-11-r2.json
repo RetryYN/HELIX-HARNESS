@@ -1,0 +1,118 @@
+{
+  "record_kind": "document_workspace_setup_reproduction",
+  "observed_at": "2026-10-11T13:14:58.557024+00:00",
+  "source_revision": "94161bac27beda4ed404bc583483b0f40922a0c8",
+  "authority_effect": "none",
+  "scope": "同じローカルGUI環境内の分離したmain作業領域で、文書整理の既存操作経路を再現。製品のsetup・検証・CI・別端末再現は対象外。",
+  "procedure_path": "docs/governance/development-workspace-setup.md",
+  "procedure_sha256": "0324a95dd3d46ca64ac01100f10cd893fd1562b5a051292479512f06c5a50bee",
+  "initial_and_final_worktree_status": "clean",
+  "checks": [
+    {
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": "empty_output"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "afa7970ef4c43d107a6e39feb29aeef4610841faaa3e875681b0d7476ded004c",
+      "summary": "94161bac27beda4ed404bc583483b0f40922a0c8"
+    },
+    {
+      "command": [
+        "python3",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "5b3e43dc38ca01e3f5a7854ba50d4330864b0c1e0f646650b2c78cf072acc366",
+      "summary": "Python 3.12.3"
+    },
+    {
+      "command": [
+        "git",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "25f3602b5caaf92437be1e76b53698e8d73f14a6c71c2e91c8d5875f923ab29f",
+      "summary": "git version 2.43.0"
+    },
+    {
+      "command": [
+        "gh",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "42c79710888dc6df3a72a52e9660f896595b8f862aab769a681b9cca26f2b01c",
+      "summary": "https://github.com/cli/cli/releases/tag/v2.62.0"
+    },
+    {
+      "command": [
+        "gh",
+        "repo",
+        "view",
+        "RetryYN/HELIX-HARNESS",
+        "--json",
+        "nameWithOwner"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "99d89e5ecab4817a617feb986970d6fe6929f7a245b0aa2ec696276d6a0ba13e",
+      "summary": "{\"nameWithOwner\":\"RetryYN/HELIX-HARNESS\"}"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": "empty_output"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "182382bb6b7f678e7025fd61c01113d302c8d44eede8cb3aee86362baeaf60e5",
+      "summary": "bindings=147 fail=0"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "stale"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "87a3b1b935511a85473d742a599e5f4e976e2504e9b0e25e6203da661cd9bb49",
+      "summary": "stale=0"
+    }
+  ],
+  "relative_file_links_checked": 6,
+  "temporary_worktree_removed": true,
+  "no_legacy_execution": true,
+  "no_formal_toolchain_or_dependency_change": true,
+  "receipt_revision": 2,
+  "supersedes_receipt": "docs/governance/audits/document-workspace-setup-reproduction-2026-10-11.json",
+  "supersedes_receipt_sha256": "555efd3394c6e2274b883d646c77f8fafbe1f175b98fedc82092467dc19a5dfd",
+  "correction": "F1対応: 通知箱はhook登録済みの既存checkoutの絶対pathのscriptを使うことを現行READMEへ結んだ。分離worktree内の同名scriptは使わない。",
+  "command_evidence_basis": "記載のsh code blockは初回の固定procedureと完全一致。9操作の再現結果は初回receiptを参照し、実行していない新規操作の成功は生成しない。",
+  "prior_procedure_revision": "ce00c7ae1f2d7f76062f907325efe8d1cb1f5dd1",
+  "static_correction_evidence": [
+    "scaffold/review-handoff/gui_mailbox.py:16–17のSTOREはscript自身の所在に依存",
+    "scaffold/review-handoff/README.md:64は両GUIで同じ仮設worktreeの絶対pathを使用と定める"
+  ]
+}
