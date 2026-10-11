@@ -1,0 +1,576 @@
+{
+  "audit_id": "FIRST-CYCLE-TEMPLATE-FIELD-MEANINGS-2026-10-12",
+  "authority_effect": "none",
+  "base_revision": "22cd641239dbdb39f7db5a2868c7c548769bb2a8",
+  "artifact": {
+    "path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+    "before_sha256": "fdf434a0cedbede4c4a41530eb539fb7afd78df8e547c7dfd9d21784565bbb85",
+    "after_sha256": "31494f0b7700705b13147fba90393ac73891a3f278b4a3ba28113f73e946dae7"
+  },
+  "scope": "MSG001/004/005の既存91fieldのmeaning説明を各欄の対象と原文規範から具体化。正式schema・案件値・演算子・caseではない。",
+  "changed_field_counts": {
+    "DT-MSG-001": 32,
+    "DT-MSG-004": 27,
+    "DT-MSG-005": 32
+  },
+  "changed_fields": [
+    {
+      "field_locator": "DT-MSG-001/section-1/row-60",
+      "source_label": "接続ID",
+      "source_line": 60
+    },
+    {
+      "field_locator": "DT-MSG-001/section-1/row-61",
+      "source_label": "接続元（持ち主）",
+      "source_line": 61
+    },
+    {
+      "field_locator": "DT-MSG-001/section-1/row-62",
+      "source_label": "接続先（持ち主）",
+      "source_line": 62
+    },
+    {
+      "field_locator": "DT-MSG-001/section-1/row-63",
+      "source_label": "方向",
+      "source_line": 63
+    },
+    {
+      "field_locator": "DT-MSG-001/section-1/row-64",
+      "source_label": "同期・非同期",
+      "source_line": 64
+    },
+    {
+      "field_locator": "DT-MSG-001/section-1/row-65",
+      "source_label": "越えるもの",
+      "source_line": 65
+    },
+    {
+      "field_locator": "DT-MSG-001/section-2/column-1",
+      "source_label": "項目（field）",
+      "source_line": 69
+    },
+    {
+      "field_locator": "DT-MSG-001/section-2/column-2",
+      "source_label": "意味",
+      "source_line": 69
+    },
+    {
+      "field_locator": "DT-MSG-001/section-2/column-3",
+      "source_label": "正本の持ち主",
+      "source_line": 69
+    },
+    {
+      "field_locator": "DT-MSG-001/section-2/column-4",
+      "source_label": "相手側の項目との対応（変換）",
+      "source_line": 69
+    },
+    {
+      "field_locator": "DT-MSG-001/section-2/column-5",
+      "source_label": "受け側が書き換えてよいか",
+      "source_line": 69
+    },
+    {
+      "field_locator": "DT-MSG-001/section-2/column-6",
+      "source_label": "分類（DT-MSG-003 §2）",
+      "source_line": 69
+    },
+    {
+      "field_locator": "DT-MSG-001/section-3/prompt-75",
+      "source_label": "両端の契約revision",
+      "source_line": 75
+    },
+    {
+      "field_locator": "DT-MSG-001/section-3/prompt-76",
+      "source_label": "互換範囲（どの組合せなら通してよいか）",
+      "source_line": 76
+    },
+    {
+      "field_locator": "DT-MSG-001/section-3/prompt-77",
+      "source_label": "revisionが変わったときの扱い（stale化、再照合まで送信を止める）",
+      "source_line": 77
+    },
+    {
+      "field_locator": "DT-MSG-001/section-3/prompt-78",
+      "source_label": "互換が確かめられないとき（unknown）の扱い",
+      "source_line": 78
+    },
+    {
+      "field_locator": "DT-MSG-001/section-4/prompt-84",
+      "source_label": "並列に流す場合の合流（join）の条件",
+      "source_line": 84
+    },
+    {
+      "field_locator": "DT-MSG-001/section-5/row-90",
+      "source_label": "期限（操作ごと）",
+      "source_line": 90
+    },
+    {
+      "field_locator": "DT-MSG-001/section-5/row-91",
+      "source_label": "timeout時の結果",
+      "source_line": 91
+    },
+    {
+      "field_locator": "DT-MSG-001/section-5/row-92",
+      "source_label": "再送してよい失敗",
+      "source_line": 92
+    },
+    {
+      "field_locator": "DT-MSG-001/section-5/row-93",
+      "source_label": "再送しない失敗",
+      "source_line": 93
+    },
+    {
+      "field_locator": "DT-MSG-001/section-5/row-94",
+      "source_label": "再送の上限・間隔",
+      "source_line": 94
+    },
+    {
+      "field_locator": "DT-MSG-001/section-5/row-95",
+      "source_label": "再送で変えないもの",
+      "source_line": 95
+    },
+    {
+      "field_locator": "DT-MSG-001/section-7/column-1",
+      "source_label": "段",
+      "source_line": 106
+    },
+    {
+      "field_locator": "DT-MSG-001/section-7/column-2",
+      "source_label": "届いたことを何で確かめるか",
+      "source_line": 106
+    },
+    {
+      "field_locator": "DT-MSG-001/section-7/column-3",
+      "source_label": "途中で止まったときの状態",
+      "source_line": 106
+    },
+    {
+      "field_locator": "DT-MSG-001/section-7/column-4",
+      "source_label": "戻し先（持ち主）",
+      "source_line": 106
+    },
+    {
+      "field_locator": "DT-MSG-001/section-7/column-5",
+      "source_label": "補償・再開の方法",
+      "source_line": 106
+    },
+    {
+      "field_locator": "DT-MSG-001/section-8/prompt-115",
+      "source_label": "辺・操作・試行のidentityと順序で、登録・照合・送信・受信・再送・終端・stale・拒否を辿れるか",
+      "source_line": 115
+    },
+    {
+      "field_locator": "DT-MSG-001/section-9/column-1",
+      "source_label": "欄",
+      "source_line": 120
+    },
+    {
+      "field_locator": "DT-MSG-001/section-9/column-2",
+      "source_label": "DT-VT-104／105の観点",
+      "source_line": 120
+    },
+    {
+      "field_locator": "DT-MSG-001/section-9/column-3",
+      "source_label": "oracle ID",
+      "source_line": 120
+    },
+    {
+      "field_locator": "DT-MSG-004/section-1/row-58",
+      "source_label": "単体ID",
+      "source_line": 58
+    },
+    {
+      "field_locator": "DT-MSG-004/section-1/row-59",
+      "source_label": "対応する要求・受入条件",
+      "source_line": 59
+    },
+    {
+      "field_locator": "DT-MSG-004/section-1/row-60",
+      "source_label": "状態・規則を持つか",
+      "source_line": 60
+    },
+    {
+      "field_locator": "DT-MSG-004/section-2/row-66",
+      "source_label": "入力（意味、範囲）",
+      "source_line": 66
+    },
+    {
+      "field_locator": "DT-MSG-004/section-2/row-67",
+      "source_label": "事前条件（呼ぶ側が保証すること）",
+      "source_line": 67
+    },
+    {
+      "field_locator": "DT-MSG-004/section-2/row-68",
+      "source_label": "出力（意味、範囲）",
+      "source_line": 68
+    },
+    {
+      "field_locator": "DT-MSG-004/section-2/row-69",
+      "source_label": "事後条件（正常終了後に保証すること、観測できる形で）",
+      "source_line": 69
+    },
+    {
+      "field_locator": "DT-MSG-004/section-2/row-70",
+      "source_label": "不変条件（処理中も破らないこと）",
+      "source_line": 70
+    },
+    {
+      "field_locator": "DT-MSG-004/section-3/column-1",
+      "source_label": "副作用（DB／file／network／外部の状態）",
+      "source_line": 74
+    },
+    {
+      "field_locator": "DT-MSG-004/section-3/column-2",
+      "source_label": "起きる場所（port）",
+      "source_line": 74
+    },
+    {
+      "field_locator": "DT-MSG-004/section-3/column-3",
+      "source_label": "起きる順序",
+      "source_line": 74
+    },
+    {
+      "field_locator": "DT-MSG-004/section-3/column-4",
+      "source_label": "失敗したときに残る状態",
+      "source_line": 74
+    },
+    {
+      "field_locator": "DT-MSG-004/section-3/prompt-78",
+      "source_label": "副作用を持たない部分（計算）と分けているか",
+      "source_line": 78
+    },
+    {
+      "field_locator": "DT-MSG-004/section-4/column-1",
+      "source_label": "失敗",
+      "source_line": 82
+    },
+    {
+      "field_locator": "DT-MSG-004/section-4/column-2",
+      "source_label": "想定内／想定外",
+      "source_line": 82
+    },
+    {
+      "field_locator": "DT-MSG-004/section-4/column-3",
+      "source_label": "やり直せるか",
+      "source_line": 82
+    },
+    {
+      "field_locator": "DT-MSG-004/section-4/column-4",
+      "source_label": "返すもの",
+      "source_line": 82
+    },
+    {
+      "field_locator": "DT-MSG-004/section-4/column-5",
+      "source_label": "残すもの",
+      "source_line": 82
+    },
+    {
+      "field_locator": "DT-MSG-004/section-4/column-6",
+      "source_label": "利用者・呼ぶ側が次にすること",
+      "source_line": 82
+    },
+    {
+      "field_locator": "DT-MSG-004/section-5/column-1",
+      "source_label": "止まった区間",
+      "source_line": 91
+    },
+    {
+      "field_locator": "DT-MSG-004/section-5/column-2",
+      "source_label": "再び動いたときの分類",
+      "source_line": 91
+    },
+    {
+      "field_locator": "DT-MSG-004/section-5/column-3",
+      "source_label": "扱い",
+      "source_line": 91
+    },
+    {
+      "field_locator": "DT-MSG-004/section-5/prompt-98",
+      "source_label": "「済んだ」を何で確かめるか（完了の記録、digest等）",
+      "source_line": 98
+    },
+    {
+      "field_locator": "DT-MSG-004/section-6/column-1",
+      "source_label": "観点",
+      "source_line": 102
+    },
+    {
+      "field_locator": "DT-MSG-004/section-6/column-2",
+      "source_label": "振る舞い",
+      "source_line": 102
+    },
+    {
+      "field_locator": "DT-MSG-004/section-6/column-3",
+      "source_label": "oracle ID",
+      "source_line": 102
+    },
+    {
+      "field_locator": "DT-MSG-004/section-6/column-4",
+      "source_label": "DT-VT-105／106",
+      "source_line": 102
+    },
+    {
+      "field_locator": "DT-MSG-005/section-1/prompt-57",
+      "source_label": "構成体が全体として出す成果（要求ID）",
+      "source_line": 57
+    },
+    {
+      "field_locator": "DT-MSG-005/section-1/prompt-58",
+      "source_label": "中に含む物",
+      "source_line": 58
+    },
+    {
+      "field_locator": "DT-MSG-005/section-1/prompt-59",
+      "source_label": "外（外部、別の持ち主）",
+      "source_line": 59
+    },
+    {
+      "field_locator": "DT-MSG-005/section-1/prompt-60",
+      "source_label": "外との接続（DT-MSG-001の辺ID）",
+      "source_line": 60
+    },
+    {
+      "field_locator": "DT-MSG-005/section-2/column-1",
+      "source_label": "構成要素",
+      "source_line": 64
+    },
+    {
+      "field_locator": "DT-MSG-005/section-2/column-2",
+      "source_label": "責務",
+      "source_line": 64
+    },
+    {
+      "field_locator": "DT-MSG-005/section-2/column-3",
+      "source_label": "持ち主",
+      "source_line": 64
+    },
+    {
+      "field_locator": "DT-MSG-005/section-2/column-4",
+      "source_label": "公開するinterface",
+      "source_line": 64
+    },
+    {
+      "field_locator": "DT-MSG-005/section-2/column-5",
+      "source_label": "状態・dataを持つか（DT-MSG-002）",
+      "source_line": 64
+    },
+    {
+      "field_locator": "DT-MSG-005/section-3/column-1",
+      "source_label": "依存する側",
+      "source_line": 70
+    },
+    {
+      "field_locator": "DT-MSG-005/section-3/column-2",
+      "source_label": "依存される側",
+      "source_line": 70
+    },
+    {
+      "field_locator": "DT-MSG-005/section-3/column-3",
+      "source_label": "理由",
+      "source_line": 70
+    },
+    {
+      "field_locator": "DT-MSG-005/section-3/column-4",
+      "source_label": "差し替えの点",
+      "source_line": 70
+    },
+    {
+      "field_locator": "DT-MSG-005/section-3/prompt-75",
+      "source_label": "外部serviceを呼ぶ点が一か所にまとまっているか",
+      "source_line": 75
+    },
+    {
+      "field_locator": "DT-MSG-005/section-4/column-1",
+      "source_label": "段",
+      "source_line": 81
+    },
+    {
+      "field_locator": "DT-MSG-005/section-4/column-2",
+      "source_label": "構成要素",
+      "source_line": 81
+    },
+    {
+      "field_locator": "DT-MSG-005/section-4/column-3",
+      "source_label": "使う辺（DT-MSG-001）",
+      "source_line": 81
+    },
+    {
+      "field_locator": "DT-MSG-005/section-4/column-4",
+      "source_label": "この段が失敗したときの全体",
+      "source_line": 81
+    },
+    {
+      "field_locator": "DT-MSG-005/section-4/column-5",
+      "source_label": "部分成功・不明のときの全体",
+      "source_line": 81
+    },
+    {
+      "field_locator": "DT-MSG-005/section-4/column-6",
+      "source_label": "止まった位置と引継ぎ先",
+      "source_line": 81
+    },
+    {
+      "field_locator": "DT-MSG-005/section-4/prompt-85",
+      "source_label": "全体の成功とする条件（必須の段がすべて終わったことを何で確かめるか）",
+      "source_line": 85
+    },
+    {
+      "field_locator": "DT-MSG-005/section-4/prompt-86",
+      "source_label": "並列の段の合流（join）の条件",
+      "source_line": 86
+    },
+    {
+      "field_locator": "DT-MSG-005/section-5/column-1",
+      "source_label": "不変条件",
+      "source_line": 92
+    },
+    {
+      "field_locator": "DT-MSG-005/section-5/column-2",
+      "source_label": "守る構成要素・辺",
+      "source_line": 92
+    },
+    {
+      "field_locator": "DT-MSG-005/section-5/column-3",
+      "source_label": "破れたときの扱い",
+      "source_line": 92
+    },
+    {
+      "field_locator": "DT-MSG-005/section-6/column-1",
+      "source_label": "関心",
+      "source_line": 98
+    },
+    {
+      "field_locator": "DT-MSG-005/section-6/column-2",
+      "source_label": "本templateで書くこと",
+      "source_line": 98
+    },
+    {
+      "field_locator": "DT-MSG-005/section-6/column-3",
+      "source_label": "値・方式を書く場所",
+      "source_line": 98
+    },
+    {
+      "field_locator": "DT-MSG-005/section-7/column-1",
+      "source_label": "欄",
+      "source_line": 109
+    },
+    {
+      "field_locator": "DT-MSG-005/section-7/column-2",
+      "source_label": "確かめる内容",
+      "source_line": 109
+    },
+    {
+      "field_locator": "DT-MSG-005/section-7/column-3",
+      "source_label": "DT-VT-103／104の観点",
+      "source_line": 109
+    },
+    {
+      "field_locator": "DT-MSG-005/section-7/column-4",
+      "source_label": "oracle ID",
+      "source_line": 109
+    }
+  ],
+  "structural_check": "91meaningを元に戻すと変更前JSONと構造全体が等しい。state/authority/version/requiredness/source/descriptor/section/oracle/normative ruleを保持。",
+  "source_pins": [
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-001-connection-contract.md",
+      "revision": "22cd641239dbdb39f7db5a2868c7c548769bb2a8",
+      "sha256": "94cc4a2a3f795645bf274148e47f3a2e0622643f822a1815f4068fb2f3cbfa5c"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "revision": "22cd641239dbdb39f7db5a2868c7c548769bb2a8",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-005-composite-architecture.md",
+      "revision": "22cd641239dbdb39f7db5a2868c7c548769bb2a8",
+      "sha256": "678e71797043d48e0f9e19c588e41cab059034fd5fe9cf5994f9d6c51d011589"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/design/L6-function-spec-template.md",
+      "asset_id": "LEGACY-ASSET-4CAC3EB72DAD353A64D7",
+      "revision": "22cd641239dbdb39f7db5a2868c7c548769bb2a8",
+      "sha256": "85559d2cb659bd8c1ebf89eb9da5f1d8a9efa965a8b82ce2db84303a524ef733",
+      "spans": [
+        {
+          "start": 13,
+          "end": 40,
+          "sha256": "ff54aaa8f80b9c1b4d7b49a137796a4b3d60db79c9f92766ff07aa693d0a795a"
+        },
+        {
+          "start": 41,
+          "end": 48,
+          "sha256": "4e1d13aa18a480d21e79df60a674bd338414b8ec60e2248238361ca8e644b884"
+        },
+        {
+          "start": 60,
+          "end": 65,
+          "sha256": "5aeb0c0c942681ccca4a3b9bcae64ff2d3ad4f0b4e7d8218cf03259fa499af26"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md",
+      "asset_id": "LEGACY-ASSET-BB08D70A42B6445B2D1E",
+      "revision": "22cd641239dbdb39f7db5a2868c7c548769bb2a8",
+      "sha256": "9e18d68b5e463192fb30b839eb164d79f7202a15374482f65181b238df8e513d",
+      "spans": [
+        {
+          "start": 34,
+          "end": 64,
+          "sha256": "5c78cf2a638408526b1801e2bcef5e0b5b8032c34b11fe73e6a2c3d2c7e62800"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+      "asset_id": "LEGACY-ASSET-99C939E249CAF40935CB",
+      "revision": "22cd641239dbdb39f7db5a2868c7c548769bb2a8",
+      "sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+      "spans": [
+        {
+          "start": 52,
+          "end": 60,
+          "sha256": "4c6b5674444006cfd5bfb92c9acab0415c3f0cb1f5c35e49edb4d0823c08c88b"
+        },
+        {
+          "start": 159,
+          "end": 174,
+          "sha256": "64a876e4e89622d0d4e5fe18a1f8e84d8b79876b56a6353450b71cbd4a887239"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/durability-boundaries.md",
+      "asset_id": "LEGACY-ASSET-656F75AF81EE933415D9",
+      "revision": "22cd641239dbdb39f7db5a2868c7c548769bb2a8",
+      "sha256": "b6c4c6f58259b6c09f6cd52a64ab1fb7b04114a41d2b1089fdc5b9730f8666d5",
+      "spans": [
+        {
+          "start": 40,
+          "end": 70,
+          "sha256": "f7f69ecc196a6e7e97b211477f9ab0b1ccde32764f8c8c7224268d1d72017c2b"
+        }
+      ]
+    }
+  ],
+  "meaning_review_focus": [
+    "001: source/consumerと向き別authority、data意味/所有と変換、両端revision/互換/stale、再送と未完、欄→観点→oracleを区別",
+    "004: input/precondition/output/postcondition/invariant、副作用port/順序/残状態、失敗の返却/記録/次行動、停止区間と再起動分類、観点/振る舞い/oracleを区別",
+    "005: 内外と辺ID、要素/責務/owner/interface、依存方向/差し替え、段ごとの全体状態と引継ぎ、固有不変条件、横断値の正本参照とoracleを区別"
+  ],
+  "preserved": "旧sourceの事前/事後/不変/失敗・回復、因果/冪等/未完、責務と流れ、正本/派生物の区別を保持。旧runtime/層番号/技術/具体型/CLIを移さない。",
+  "changed": "field名を共通文へ埋めただけの説明を、各fieldが何を表し何と区別するかの説明へ具体化。規範と案件値は元source/descriptorに残す。",
+  "change_reason": "BRAINの知識候補が論点を提示する意味材料となるよう、欄の来歴・存在だけを意味定義と同一視しないため。",
+  "not_proven": [
+    "91fieldの最終適用判定・個別oracleへの具体束縛",
+    "参照先SDOP/VTの全意味供給と採否",
+    "3候補/他23seed/40cardの採否・全体最小集合",
+    "実案件値とN/A4属性・接続/依存閉包・初回配置input",
+    "BRAIN032機構成立・正式schema/renderer/Python接続",
+    "Issue全体完了・L3再開・実装/CI/deploy/release"
+  ]
+}

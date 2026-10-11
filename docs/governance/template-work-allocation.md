@@ -210,4 +210,6 @@ VT103の下位証拠receiptは右側検証を始める入力であり、今の�
 
 field locatorは候補内の原文対応であり、正式IDやruntime keyではない。列・記入行・問いと、規範固定行・制約文・例/選択肢を分ける。規範はdescriptorのnormative_rules/source_constraintsへ結び、失敗分類/回復区間や横断参照の規則を来歴だけへ退避しない。欄に併記された規則/選択肢も保持する。未分類行は採用前の意味分類へ残し、各fieldの要否は節の適用と原文条件を保持する。欄の定義を候補として提供できること、製品要求値が未決であること、実際に義務が満たされたことを別に扱う。候補は採用済みの知識に昇格せず、SEEDFIRSTも変更しない。
 
+91fieldのmeaning説明は、各欄が表す対象と区別（例：両端revisionと互換、事前条件と事後条件、部分成功と全体状態、oracle参照と実合格）を原文から具体化した。[変更照合記録](audits/first-cycle-template-field-meanings-2026-10-12.json)は3sourceと91箇所の変更、その他のdescriptor・規範・requiredness・authorityの保持を示す。説明の具体化からfieldの最終適用判定や実oracle束縛の完了を生成せず、案件値未供給と参照先知識の不足を保持する。
+
 3件は全体最小集合ではない。他23seed・40cardの残る意味対応と採否、各fieldの要否/意味とoracleの最終照合、参照先knowledgeの不足、旧6surface/component移管を保持する。JSON化だけで完全な15項目や機構成立を宣言せず、不足はBRAIN/CORE/OSの既決責務へ戻す。L3以下の停止は継続し、Issue完了・内部デプロイの許可を生成しない。

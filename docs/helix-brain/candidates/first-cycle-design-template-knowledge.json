@@ -125,7 +125,7 @@
             {
               "field_locator": "DT-MSG-001/section-1/row-60",
               "source_label": "接続ID",
-              "meaning": "この節で要求する「接続ID」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "対象とする接続の辺を識別する。単体や構成体そのもののidentityとは分ける。",
               "role": "key_value_row_label",
               "source_line": 60,
               "source_text": "| 接続ID | |",
@@ -137,7 +137,7 @@
             {
               "field_locator": "DT-MSG-001/section-1/row-61",
               "source_label": "接続元（持ち主）",
-              "meaning": "この節で要求する「接続元（持ち主）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "この向きの受渡しを開始する端と、その端の意味契約の持ち主を示す。",
               "role": "key_value_row_label",
               "source_line": 61,
               "source_text": "| 接続元（持ち主） | |",
@@ -149,7 +149,7 @@
             {
               "field_locator": "DT-MSG-001/section-1/row-62",
               "source_label": "接続先（持ち主）",
-              "meaning": "この節で要求する「接続先（持ち主）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "この向きの受渡しを受ける端と、その端の意味契約の持ち主を示す。",
               "role": "key_value_row_label",
               "source_line": 62,
               "source_text": "| 接続先（持ち主） | |",
@@ -161,7 +161,7 @@
             {
               "field_locator": "DT-MSG-001/section-1/row-63",
               "source_label": "方向",
-              "meaning": "この節で要求する「方向」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "どちらの端からどちらの端へ渡すかを示す。二方向は向きごとに行と権限を分け、一方向のACKを逆向きの許可へ変えない。",
               "role": "key_value_row_label",
               "source_line": 63,
               "source_text": "| 方向 | 一方向／二方向（二方向は向きごとに別の行として書き、それぞれの権限を確かめる） |",
@@ -173,7 +173,7 @@
             {
               "field_locator": "DT-MSG-001/section-1/row-64",
               "source_label": "同期・非同期",
-              "meaning": "この節で要求する「同期・非同期」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "受渡しが同期か非同期かを示す。案件の方式をこの知識から選択済みにしない。",
               "role": "key_value_row_label",
               "source_line": 64,
               "source_text": "| 同期・非同期 | |",
@@ -185,7 +185,7 @@
             {
               "field_locator": "DT-MSG-001/section-1/row-65",
               "source_label": "越えるもの",
-              "meaning": "この節で要求する「越えるもの」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "境界を越えるものがdata、操作要求、eventのどれかを示す。受渡しを業務上の完了と同一視しない。",
               "role": "key_value_row_label",
               "source_line": 65,
               "source_text": "| 越えるもの | data／操作の要求／event |",
@@ -197,7 +197,7 @@
             {
               "field_locator": "DT-MSG-001/section-2/column-1",
               "source_label": "項目（field）",
-              "meaning": "「2. dataの意味と所有」の行に対して「項目（field）」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "この辺で渡すdataの各項目を指す。名前と型だけで意味と所有を済ませない。",
               "role": "table_column",
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
@@ -207,7 +207,7 @@
             {
               "field_locator": "DT-MSG-001/section-2/column-2",
               "source_label": "意味",
-              "meaning": "「2. dataの意味と所有」の行に対して「意味」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "渡す項目が何を表すかを示す。接続先の業務判断をtemplateが新設する欄ではない。",
               "role": "table_column",
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
@@ -217,7 +217,7 @@
             {
               "field_locator": "DT-MSG-001/section-2/column-3",
               "source_label": "正本の持ち主",
-              "meaning": "「2. dataの意味と所有」の行に対して「正本の持ち主」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "渡す項目の正本をどの端の誰が持つかを示す。受領した側の写しと正本を区別する。",
               "role": "table_column",
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
@@ -227,7 +227,7 @@
             {
               "field_locator": "DT-MSG-001/section-2/column-4",
               "source_label": "相手側の項目との対応（変換）",
-              "meaning": "「2. dataの意味と所有」の行に対して「相手側の項目との対応（変換）」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "送る側の項目が受け側のどの項目へどう対応するかを示す。項目名の一致だけを意味の一致にしない。",
               "role": "table_column",
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
@@ -237,7 +237,7 @@
             {
               "field_locator": "DT-MSG-001/section-2/column-5",
               "source_label": "受け側が書き換えてよいか",
-              "meaning": "「2. dataの意味と所有」の行に対して「受け側が書き換えてよいか」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "受け側が当該dataを変更できる範囲を、その正本の持ち主との関係で示す。受領だけから変更権限を生成しない。",
               "role": "table_column",
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
@@ -247,7 +247,7 @@
             {
               "field_locator": "DT-MSG-001/section-2/column-6",
               "source_label": "分類（DT-MSG-003 §2）",
-              "meaning": "「2. dataの意味と所有」の行に対して「分類（DT-MSG-003 §2）」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該項目のdata分類をDT-MSG-003 §2の判断へ結ぶ。分類値を接続template側で推測しない。",
               "role": "table_column",
               "source_line": 69,
               "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
@@ -257,7 +257,7 @@
             {
               "field_locator": "DT-MSG-001/section-3/prompt-75",
               "source_label": "両端の契約revision",
-              "meaning": "両端の契約revisionを対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "接続元と接続先がそれぞれ使う意味契約のrevisionを示す。両端の片方を省いたまま互換を確定しない。",
               "role": "prompt",
               "source_line": 75,
               "source_text": "- 両端の契約revision：",
@@ -267,7 +267,7 @@
             {
               "field_locator": "DT-MSG-001/section-3/prompt-76",
               "source_label": "互換範囲（どの組合せなら通してよいか）",
-              "meaning": "互換範囲（どの組合せなら通してよいか）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "両端の契約revisionのどの組合せを互換として扱えるかを示す。実際の範囲と根拠は対象契約から得る。",
               "role": "prompt",
               "source_line": 76,
               "source_text": "- 互換範囲（どの組合せなら通してよいか）：",
@@ -277,7 +277,7 @@
             {
               "field_locator": "DT-MSG-001/section-3/prompt-77",
               "source_label": "revisionが変わったときの扱い（stale化、再照合まで送信を止める）",
-              "meaning": "revisionが変わったときの扱い（stale化、再照合まで送信を止める）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "契約revision変更で以前の互換確認をstaleにし、再照合まで送信を止める扱いを示す。旧確認を新revisionへ転用しない。",
               "role": "prompt",
               "source_line": 77,
               "source_text": "- revisionが変わったときの扱い（stale化、再照合まで送信を止める）：",
@@ -287,7 +287,7 @@
             {
               "field_locator": "DT-MSG-001/section-3/prompt-78",
               "source_label": "互換が確かめられないとき（unknown）の扱い",
-              "meaning": "互換が確かめられないとき（unknown）の扱いを対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "両端の互換を確認できないときのunknownと、その解消先を示す。送信可能へ補完しない。",
               "role": "prompt",
               "source_line": 78,
               "source_text": "- 互換が確かめられないとき（unknown）の扱い：",
@@ -297,7 +297,7 @@
             {
               "field_locator": "DT-MSG-001/section-4/prompt-84",
               "source_label": "並列に流す場合の合流（join）の条件",
-              "meaning": "並列に流す場合の合流（join）の条件を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "並列の受渡し結果を、どの条件が揃ったとき合流できるかを示す。実際のjoin条件は対象要求・契約から得る。",
               "role": "prompt",
               "source_line": 84,
               "source_text": "- 並列に流す場合の合流（join）の条件：",
@@ -307,7 +307,7 @@
             {
               "field_locator": "DT-MSG-001/section-5/row-90",
               "source_label": "期限（操作ごと）",
-              "meaning": "この節で要求する「期限（操作ごと）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "どの操作に期限が必要かとその根拠を示す。期限値はL3以降へ残し、未決の行き先を保持する。",
               "role": "key_value_row_label",
               "source_line": 90,
               "source_text": "| 期限（操作ごと） | 値はL3以降。ここでは「どの操作に期限が要るか」と根拠 |",
@@ -319,7 +319,7 @@
             {
               "field_locator": "DT-MSG-001/section-5/row-91",
               "source_label": "timeout時の結果",
-              "meaning": "この節で要求する「timeout時の結果」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "timeout後に結果を確認できないことをunknownとして残す。成功又は失敗へ丸めない。",
               "role": "key_value_row_label",
               "source_line": 91,
               "source_text": "| timeout時の結果 | unknownとして記録（成功・失敗に丸めない） |",
@@ -331,7 +331,7 @@
             {
               "field_locator": "DT-MSG-001/section-5/row-92",
               "source_label": "再送してよい失敗",
-              "meaning": "この節で要求する「再送してよい失敗」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "要求・契約が再送を認める失敗の種類を示す。一時的な技術失敗の例を全失敗の許可へ広げない。",
               "role": "key_value_row_label",
               "source_line": 92,
               "source_text": "| 再送してよい失敗 | 例：一時的な技術失敗 |",
@@ -343,7 +343,7 @@
             {
               "field_locator": "DT-MSG-001/section-5/row-93",
               "source_label": "再送しない失敗",
-              "meaning": "この節で要求する「再送しない失敗」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "業務上の拒否、権限失効、契約不一致など再送しない失敗の種類を示す。例と対象での判断を区別する。",
               "role": "key_value_row_label",
               "source_line": 93,
               "source_text": "| 再送しない失敗 | 例：業務上の拒否、権限の失効、契約不一致 |",
@@ -355,7 +355,7 @@
             {
               "field_locator": "DT-MSG-001/section-5/row-94",
               "source_label": "再送の上限・間隔",
-              "meaning": "この節で要求する「再送の上限・間隔」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "再送回数・間隔と上限到達時の返却先の置き場所を示す。値はL3以降に根拠から導く。",
               "role": "key_value_row_label",
               "source_line": 94,
               "source_text": "| 再送の上限・間隔 | 値はL3以降。上限に達したときの戻し先 |",
@@ -367,7 +367,7 @@
             {
               "field_locator": "DT-MSG-001/section-5/row-95",
               "source_label": "再送で変えないもの",
-              "meaning": "この節で要求する「再送で変えないもの」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "同じ再送で操作ID、内容digest、scope、契約revisionを保つ条件を示す。内容又はrevisionが違うものを同一再送にしない。",
               "role": "key_value_row_label",
               "source_line": 95,
               "source_text": "| 再送で変えないもの | 操作ID、内容digest、scope、契約revision（一つの操作で旧新revisionを混ぜない） |",
@@ -379,7 +379,7 @@
             {
               "field_locator": "DT-MSG-001/section-7/column-1",
               "source_label": "段",
-              "meaning": "「7. 部分失敗と不明」の行に対して「段」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "部分成功を区別するため、受渡しのどの段を扱うかを示す。段の一覧を製品値として知識へ固定しない。",
               "role": "table_column",
               "source_line": 106,
               "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
@@ -389,7 +389,7 @@
             {
               "field_locator": "DT-MSG-001/section-7/column-2",
               "source_label": "届いたことを何で確かめるか",
-              "meaning": "「7. 部分失敗と不明」の行に対して「届いたことを何で確かめるか」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該段の到達を何で確認できるかを示す。到達の確認と業務完了の判断を分ける。",
               "role": "table_column",
               "source_line": 106,
               "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
@@ -399,7 +399,7 @@
             {
               "field_locator": "DT-MSG-001/section-7/column-3",
               "source_label": "途中で止まったときの状態",
-              "meaning": "「7. 部分失敗と不明」の行に対して「途中で止まったときの状態」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "その段で止まった場合の状態と未確認範囲を示す。部分成功やunknownを全体成功・全体失敗に丸めない。",
               "role": "table_column",
               "source_line": 106,
               "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
@@ -409,7 +409,7 @@
             {
               "field_locator": "DT-MSG-001/section-7/column-4",
               "source_label": "戻し先（持ち主）",
-              "meaning": "「7. 部分失敗と不明」の行に対して「戻し先（持ち主）」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "その段の未完又は不明を返す持ち主を示す。未回収の結果を消さず、解消の責務へ結ぶ。",
               "role": "table_column",
               "source_line": 106,
               "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
@@ -419,7 +419,7 @@
             {
               "field_locator": "DT-MSG-001/section-7/column-5",
               "source_label": "補償・再開の方法",
-              "meaning": "「7. 部分失敗と不明」の行に対して「補償・再開の方法」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "その段の取り消し又は再開の方法を示す。補償を行う場合は補償自体の失敗も扱い、方法未決を復旧済みにしない。",
               "role": "table_column",
               "source_line": 106,
               "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
@@ -429,7 +429,7 @@
             {
               "field_locator": "DT-MSG-001/section-8/prompt-115",
               "source_label": "辺・操作・試行のidentityと順序で、登録・照合・送信・受信・再送・終端・stale・拒否を辿れるか",
-              "meaning": "辺・操作・試行のidentityと順序で、登録・照合・送信・受信・再送・終端・stale・拒否を辿れるかを対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "辺・操作・試行のidentityと順序から、登録・照合・送受信・再送・終端・stale・拒否を辿る観測を示す。追跡は必要時requiredで、raw payloadやsecretは残さない。",
               "role": "prompt",
               "source_line": 115,
               "source_text": "- 辺・操作・試行のidentityと順序で、登録・照合・送信・受信・再送・終端・stale・拒否を辿れるか：",
@@ -439,7 +439,7 @@
             {
               "field_locator": "DT-MSG-001/section-9/column-1",
               "source_label": "欄",
-              "meaning": "「9. 検証への対応」の行に対して「欄」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "検証へ渡す、適用して記入した節又は欄を指す。未適用の欄を実施済みの検証対象へ補わない。",
               "role": "table_column",
               "source_line": 120,
               "source_text": "| 欄 | DT-VT-104／105の観点 | oracle ID |",
@@ -449,7 +449,7 @@
             {
               "field_locator": "DT-MSG-001/section-9/column-2",
               "source_label": "DT-VT-104／105の観点",
-              "meaning": "「9. 検証への対応」の行に対して「DT-VT-104／105の観点」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該欄をDT-VT-104又は105のどの観点で確かめるかを示す。接続境界と詳細契約の観点を保持する。",
               "role": "table_column",
               "source_line": 120,
               "source_text": "| 欄 | DT-VT-104／105の観点 | oracle ID |",
@@ -459,7 +459,7 @@
             {
               "field_locator": "DT-MSG-001/section-9/column-3",
               "source_label": "oracle ID",
-              "meaning": "「9. 検証への対応」の行に対して「oracle ID」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該欄の意味を確かめるoracleへの参照を示す。参照欄の存在だけでcaseの定義・実行・合格を成立にしない。",
               "role": "table_column",
               "source_line": 120,
               "source_text": "| 欄 | DT-VT-104／105の観点 | oracle ID |",
@@ -1108,7 +1108,7 @@
             {
               "field_locator": "DT-MSG-004/section-1/row-58",
               "source_label": "単体ID",
-              "meaning": "この節で要求する「単体ID」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "振る舞いを足す又は変える対象単体を識別する。接続や構成体のidentityと区別する。",
               "role": "key_value_row_label",
               "source_line": 58,
               "source_text": "| 単体ID | |",
@@ -1120,7 +1120,7 @@
             {
               "field_locator": "DT-MSG-004/section-1/row-59",
               "source_label": "対応する要求・受入条件",
-              "meaning": "この節で要求する「対応する要求・受入条件」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "単体が満たす要求と受入条件を示す。期待する振る舞いが上流にない場合はAIが補わず上流へ返す。",
               "role": "key_value_row_label",
               "source_line": 59,
               "source_text": "| 対応する要求・受入条件 | |",
@@ -1132,7 +1132,7 @@
             {
               "field_locator": "DT-MSG-004/section-1/row-60",
               "source_label": "状態・規則を持つか",
-              "meaning": "この節で要求する「状態・規則を持つか」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "単体が状態又は業務規則を持つかを示す。持つ場合はSDOP-004の規則・状態の行を参照し、同じ正本を二重に作らない。",
               "role": "key_value_row_label",
               "source_line": 60,
               "source_text": "| 状態・規則を持つか | 持つ場合はDT-SDOP-004の§2〜§5へ |",
@@ -1144,7 +1144,7 @@
             {
               "field_locator": "DT-MSG-004/section-2/row-66",
               "source_label": "入力（意味、範囲）",
-              "meaning": "この節で要求する「入力（意味、範囲）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "単体が受け取る入力の意味と許容範囲を示す。型だけでは事前条件や意味の説明を代替しない。",
               "role": "key_value_row_label",
               "source_line": 66,
               "source_text": "| 入力（意味、範囲） | |",
@@ -1156,7 +1156,7 @@
             {
               "field_locator": "DT-MSG-004/section-2/row-67",
               "source_label": "事前条件（呼ぶ側が保証すること）",
-              "meaning": "この節で要求する「事前条件（呼ぶ側が保証すること）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "単体を呼ぶ前に呼ぶ側が保証する条件を示す。単体の正常終了後の保証と区別する。",
               "role": "key_value_row_label",
               "source_line": 67,
               "source_text": "| 事前条件（呼ぶ側が保証すること） | |",
@@ -1168,7 +1168,7 @@
             {
               "field_locator": "DT-MSG-004/section-2/row-68",
               "source_label": "出力（意味、範囲）",
-              "meaning": "この節で要求する「出力（意味、範囲）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "単体が返す出力の意味と範囲を示す。空の結果やexit 0で失敗を成功に変えない。",
               "role": "key_value_row_label",
               "source_line": 68,
               "source_text": "| 出力（意味、範囲） | |",
@@ -1180,7 +1180,7 @@
             {
               "field_locator": "DT-MSG-004/section-2/row-69",
               "source_label": "事後条件（正常終了後に保証すること、観測できる形で）",
-              "meaning": "この節で要求する「事後条件（正常終了後に保証すること、観測できる形で）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "正常終了後に単体が保証することを、呼ぶ側から観測できる形で示す。実際の成立は対oracleで別に確認する。",
               "role": "key_value_row_label",
               "source_line": 69,
               "source_text": "| 事後条件（正常終了後に保証すること、観測できる形で） | |",
@@ -1192,7 +1192,7 @@
             {
               "field_locator": "DT-MSG-004/section-2/row-70",
               "source_label": "不変条件（処理中も破らないこと）",
-              "meaning": "この節で要求する「不変条件（処理中も破らないこと）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "meaning": "処理中にも破ってはいけない条件を示す。正常終了時だけの条件に縮めない。",
               "role": "key_value_row_label",
               "source_line": 70,
               "source_text": "| 不変条件（処理中も破らないこと） | |",
@@ -1204,7 +1204,7 @@
             {
               "field_locator": "DT-MSG-004/section-3/column-1",
               "source_label": "副作用（DB／file／network／外部の状態）",
-              "meaning": "「3. 副作用」の行に対して「副作用（DB／file／network／外部の状態）」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "単体がDB、file、network又は外部状態へ与える作用を示す。作用があるものをなしとせず、純粋計算と分ける。",
               "role": "table_column",
               "source_line": 74,
               "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
@@ -1214,7 +1214,7 @@
             {
               "field_locator": "DT-MSG-004/section-3/column-2",
               "source_label": "起きる場所（port）",
-              "meaning": "「3. 副作用」の行に対して「起きる場所（port）」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "各副作用が発生する境界portを示す。副作用を単体の各所へ散らさず端へ寄せる観点である。",
               "role": "table_column",
               "source_line": 74,
               "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
@@ -1224,7 +1224,7 @@
             {
               "field_locator": "DT-MSG-004/section-3/column-3",
               "source_label": "起きる順序",
-              "meaning": "「3. 副作用」の行に対して「起きる順序」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "複数の副作用がどの順で発生するかを示す。実際の順序は対象要求・契約に従う。",
               "role": "table_column",
               "source_line": 74,
               "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
@@ -1234,7 +1234,7 @@
             {
               "field_locator": "DT-MSG-004/section-3/column-4",
               "source_label": "失敗したときに残る状態",
-              "meaning": "「3. 副作用」の行に対して「失敗したときに残る状態」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "副作用失敗後に何が残るかを示す。残った途中状態を無かったことにしない。",
               "role": "table_column",
               "source_line": 74,
               "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
@@ -1244,7 +1244,7 @@
             {
               "field_locator": "DT-MSG-004/section-3/prompt-78",
               "source_label": "副作用を持たない部分（計算）と分けているか",
-              "meaning": "副作用を持たない部分（計算）と分けているかを対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "入力から出力を計算する部分と外部作用を持つ部分を分けているかを示す。計算にDB/file/network作用を隠さない。",
               "role": "prompt",
               "source_line": 78,
               "source_text": "- 副作用を持たない部分（計算）と分けているか：",
@@ -1254,7 +1254,7 @@
             {
               "field_locator": "DT-MSG-004/section-4/column-1",
               "source_label": "失敗",
-              "meaning": "「4. 失敗の分類」の行に対して「失敗」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "入力不正、必要物欠落、依存先失敗、想定外など、分類する失敗を指す。失敗の種類ごとに返却と回復を記す。",
               "role": "table_column",
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
@@ -1264,7 +1264,7 @@
             {
               "field_locator": "DT-MSG-004/section-4/column-2",
               "source_label": "想定内／想定外",
-              "meaning": "「4. 失敗の分類」の行に対して「想定内／想定外」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "失敗が契約で想定したものか想定外かを示す。原文の固定分類と対象の期待動作を保つ。",
               "role": "table_column",
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
@@ -1274,7 +1274,7 @@
             {
               "field_locator": "DT-MSG-004/section-4/column-3",
               "source_label": "やり直せるか",
-              "meaning": "「4. 失敗の分類」の行に対して「やり直せるか」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "その失敗後に再実行できるかを示す。入力不正と想定外の固定行を含め、完了不明の副作用を自動再実行にしない。",
               "role": "table_column",
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
@@ -1284,7 +1284,7 @@
             {
               "field_locator": "DT-MSG-004/section-4/column-4",
               "source_label": "返すもの",
-              "meaning": "「4. 失敗の分類」の行に対して「返すもの」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "失敗時に利用者又は呼ぶ側へ返す結果を示す。想定外では伏せたmessageとし、secret・個人情報・内部情報を出さない。",
               "role": "table_column",
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
@@ -1294,7 +1294,7 @@
             {
               "field_locator": "DT-MSG-004/section-4/column-5",
               "source_label": "残すもの",
-              "meaning": "「4. 失敗の分類」の行に対して「残すもの」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "失敗の分類・digestなど後から確認する記録を示す。返すmessageと残す記録を混同せず、失敗を成功記録へ変えない。",
               "role": "table_column",
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
@@ -1304,7 +1304,7 @@
             {
               "field_locator": "DT-MSG-004/section-4/column-6",
               "source_label": "利用者・呼ぶ側が次にすること",
-              "meaning": "「4. 失敗の分類」の行に対して「利用者・呼ぶ側が次にすること」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "失敗後に利用者又は呼ぶ側が行うべき次の行動を示す。単に例外を投げる説明で済ませない。",
               "role": "table_column",
               "source_line": 82,
               "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
@@ -1314,7 +1314,7 @@
             {
               "field_locator": "DT-MSG-004/section-5/column-1",
               "source_label": "止まった区間",
-              "meaning": "「5. 回復（途中で止まったとき）」の行に対して「止まった区間」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "副作用前、書きかけ、外部作用開始後から確認前、完了記録後など、どの区間で止まったかを示す。区間を実装方式へ固定しない。",
               "role": "table_column",
               "source_line": 91,
               "source_text": "| 止まった区間 | 再び動いたときの分類 | 扱い |",
@@ -1324,7 +1324,7 @@
             {
               "field_locator": "DT-MSG-004/section-5/column-2",
               "source_label": "再び動いたときの分類",
-              "meaning": "「5. 回復（途中で止まったとき）」の行に対して「再び動いたときの分類」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "再起動後に済んだ・済んでいない・分からないを区別する。書きかけは未完、外部副作用の完了確認前は不明として保つ。",
               "role": "table_column",
               "source_line": 91,
               "source_text": "| 止まった区間 | 再び動いたときの分類 | 扱い |",
@@ -1334,7 +1334,7 @@
             {
               "field_locator": "DT-MSG-004/section-5/column-3",
               "source_label": "扱い",
-              "meaning": "「5. 回復（途中で止まったとき）」の行に対して「扱い」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "再起動時の分類ごとに再実行・未完保持・持ち主又は人への返却を示す。不明の自動再実行を許さない。",
               "role": "table_column",
               "source_line": 91,
               "source_text": "| 止まった区間 | 再び動いたときの分類 | 扱い |",
@@ -1344,7 +1344,7 @@
             {
               "field_locator": "DT-MSG-004/section-5/prompt-98",
               "source_label": "「済んだ」を何で確かめるか（完了の記録、digest等）",
-              "meaning": "「済んだ」を何で確かめるか（完了の記録、digest等）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "完了記録やdigestなど、済んだことを確認する根拠を示す。単なる再起動や結果不在を完了根拠にしない。",
               "role": "prompt",
               "source_line": 98,
               "source_text": "- 「済んだ」を何で確かめるか（完了の記録、digest等）：",
@@ -1354,7 +1354,7 @@
             {
               "field_locator": "DT-MSG-004/section-6/column-1",
               "source_label": "観点",
-              "meaning": "「6. 検証への対応」の行に対して「観点」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "正常・異常・境界・失敗種類・回復区間のうち、どの振る舞いを検証するかを示す。",
               "role": "table_column",
               "source_line": 102,
               "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
@@ -1364,7 +1364,7 @@
             {
               "field_locator": "DT-MSG-004/section-6/column-2",
               "source_label": "振る舞い",
-              "meaning": "「6. 検証への対応」の行に対して「振る舞い」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該観点で確かめる期待振る舞いを示す。要求にない期待値を設計者又はAIが作らない。",
               "role": "table_column",
               "source_line": 102,
               "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
@@ -1374,7 +1374,7 @@
             {
               "field_locator": "DT-MSG-004/section-6/column-3",
               "source_label": "oracle ID",
-              "meaning": "「6. 検証への対応」の行に対して「oracle ID」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "その振る舞いを確かめるoracleへの参照を示す。oracle欄の存在と定義・実行・合格は分ける。",
               "role": "table_column",
               "source_line": 102,
               "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
@@ -1384,7 +1384,7 @@
             {
               "field_locator": "DT-MSG-004/section-6/column-4",
               "source_label": "DT-VT-105／106",
-              "meaning": "「6. 検証への対応」の行に対して「DT-VT-105／106」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該振る舞いをDT-VT-105又は106の対象caseへ渡す対応を示す。適用して記入した各節の引渡しを保つ。",
               "role": "table_column",
               "source_line": 102,
               "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
@@ -1993,7 +1993,7 @@
             {
               "field_locator": "DT-MSG-005/section-1/prompt-57",
               "source_label": "構成体が全体として出す成果（要求ID）",
-              "meaning": "構成体が全体として出す成果（要求ID）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "構成体が全体として出す成果を要求・受入条件へ結ぶ。成果未決を下位要素の成功だけで補わない。",
               "role": "prompt",
               "source_line": 57,
               "source_text": "- 構成体が全体として出す成果（要求ID）：",
@@ -2003,7 +2003,7 @@
             {
               "field_locator": "DT-MSG-005/section-1/prompt-58",
               "source_label": "中に含む物",
-              "meaning": "中に含む物を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "構成体の内側に含めるものを示す。対象境界を定めて外部との接続の抜けを確認する。",
               "role": "prompt",
               "source_line": 58,
               "source_text": "- 中に含む物：",
@@ -2013,7 +2013,7 @@
             {
               "field_locator": "DT-MSG-005/section-1/prompt-59",
               "source_label": "外（外部、別の持ち主）",
-              "meaning": "外（外部、別の持ち主）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "構成体の外側又は別の持ち主に属するものを示す。内外を区別せず接続を省かない。",
               "role": "prompt",
               "source_line": 59,
               "source_text": "- 外（外部、別の持ち主）：",
@@ -2023,7 +2023,7 @@
             {
               "field_locator": "DT-MSG-005/section-1/prompt-60",
               "source_label": "外との接続（DT-MSG-001の辺ID）",
-              "meaning": "外との接続（DT-MSG-001の辺ID）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "境界の外側へ接続する辺をDT-MSG-001の辺IDで指す。各辺の契約を構成体側へ重複定義しない。",
               "role": "prompt",
               "source_line": 60,
               "source_text": "- 外との接続（DT-MSG-001の辺ID）：",
@@ -2033,7 +2033,7 @@
             {
               "field_locator": "DT-MSG-005/section-2/column-1",
               "source_label": "構成要素",
-              "meaning": "「2. 構成要素」の行に対して「構成要素」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "全体を構成する単体などの要素を指す。要素一覧だけで構成体固有の義務を済ませない。",
               "role": "table_column",
               "source_line": 64,
               "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
@@ -2043,7 +2043,7 @@
             {
               "field_locator": "DT-MSG-005/section-2/column-2",
               "source_label": "責務",
-              "meaning": "「2. 構成要素」の行に対して「責務」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "各構成要素が引き受ける仕事を示す。同じ段の処理を複数要素が所有して二重正本になることを避ける。",
               "role": "table_column",
               "source_line": 64,
               "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
@@ -2053,7 +2053,7 @@
             {
               "field_locator": "DT-MSG-005/section-2/column-3",
               "source_label": "持ち主",
-              "meaning": "「2. 構成要素」の行に対して「持ち主」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "その構成要素の責務・状態・dataの持ち主を示す。構成体が各ownerの意味を無断で置換しない。",
               "role": "table_column",
               "source_line": 64,
               "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
@@ -2063,7 +2063,7 @@
             {
               "field_locator": "DT-MSG-005/section-2/column-4",
               "source_label": "公開するinterface",
-              "meaning": "「2. 構成要素」の行に対して「公開するinterface」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "構成要素が他の要素又は外部へ公開するinterfaceを示す。辺の詳細は接続templateへ結ぶ。",
               "role": "table_column",
               "source_line": 64,
               "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
@@ -2073,7 +2073,7 @@
             {
               "field_locator": "DT-MSG-005/section-2/column-5",
               "source_label": "状態・dataを持つか（DT-MSG-002）",
-              "meaning": "「2. 構成要素」の行に対して「状態・dataを持つか（DT-MSG-002）」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該要素が状態又はdataを持つかを示し、持つ場合の永続化・移行の論点をDT-MSG-002へ結ぶ。",
               "role": "table_column",
               "source_line": 64,
               "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
@@ -2083,7 +2083,7 @@
             {
               "field_locator": "DT-MSG-005/section-3/column-1",
               "source_label": "依存する側",
-              "meaning": "「3. 依存の向き」の行に対して「依存する側」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "依存の出発側、すなわち他の構成要素を必要とする側を示す。",
               "role": "table_column",
               "source_line": 70,
               "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
@@ -2093,7 +2093,7 @@
             {
               "field_locator": "DT-MSG-005/section-3/column-2",
               "source_label": "依存される側",
-              "meaning": "「3. 依存の向き」の行に対して「依存される側」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "依存の到着側、すなわち必要とされる構成要素を示す。依存の向きを逆に読まない。",
               "role": "table_column",
               "source_line": 70,
               "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
@@ -2103,7 +2103,7 @@
             {
               "field_locator": "DT-MSG-005/section-3/column-3",
               "source_label": "理由",
-              "meaning": "「3. 依存の向き」の行に対して「理由」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "その依存が必要な理由を示す。循環がある場合は理由と解消予定の原文条件も保持する。",
               "role": "table_column",
               "source_line": 70,
               "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
@@ -2113,7 +2113,7 @@
             {
               "field_locator": "DT-MSG-005/section-3/column-4",
               "source_label": "差し替えの点",
-              "meaning": "「3. 依存の向き」の行に対して「差し替えの点」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "依存先を交換する際の境界点を示す。外部呼出しを端に寄せ、構成要素の各所へ散らさない。",
               "role": "table_column",
               "source_line": 70,
               "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
@@ -2123,7 +2123,7 @@
             {
               "field_locator": "DT-MSG-005/section-3/prompt-75",
               "source_label": "外部serviceを呼ぶ点が一か所にまとまっているか",
-              "meaning": "外部serviceを呼ぶ点が一か所にまとまっているかを対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "外部serviceへの呼出しが差し替え可能な点へ集まるかを示す。具体adapterや製品技術をこの知識で選定しない。",
               "role": "prompt",
               "source_line": 75,
               "source_text": "- 外部serviceを呼ぶ点が一か所にまとまっているか：",
@@ -2133,7 +2133,7 @@
             {
               "field_locator": "DT-MSG-005/section-4/column-1",
               "source_label": "段",
-              "meaning": "「4. end-to-endの流れ」の行に対して「段」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "代表のend-to-end流れにおける順番又は処理段を指す。正常系だけでなく各段の失敗等を扱う。",
               "role": "table_column",
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
@@ -2143,7 +2143,7 @@
             {
               "field_locator": "DT-MSG-005/section-4/column-2",
               "source_label": "構成要素",
-              "meaning": "「4. end-to-endの流れ」の行に対して「構成要素」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該段を担当する構成要素を示す。段の責務と持ち主の対応を辿れるようにする。",
               "role": "table_column",
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
@@ -2153,7 +2153,7 @@
             {
               "field_locator": "DT-MSG-005/section-4/column-3",
               "source_label": "使う辺（DT-MSG-001）",
-              "meaning": "「4. end-to-endの流れ」の行に対して「使う辺（DT-MSG-001）」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該段で使う接続をDT-MSG-001の辺へ結ぶ。辺の契約を構成体側で二重正本にしない。",
               "role": "table_column",
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
@@ -2163,7 +2163,7 @@
             {
               "field_locator": "DT-MSG-005/section-4/column-4",
               "source_label": "この段が失敗したときの全体",
-              "meaning": "「4. end-to-endの流れ」の行に対して「この段が失敗したときの全体」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該段が失敗した場合の構成体全体の状態を示す。途中の失敗を全体成功へ変えない。",
               "role": "table_column",
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
@@ -2173,7 +2173,7 @@
             {
               "field_locator": "DT-MSG-005/section-4/column-5",
               "source_label": "部分成功・不明のときの全体",
-              "meaning": "「4. end-to-endの流れ」の行に対して「部分成功・不明のときの全体」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該段が部分成功又は結果不明の場合の全体の状態を示す。先に成功した段を消さず、未完・不明を保つ。",
               "role": "table_column",
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
@@ -2183,7 +2183,7 @@
             {
               "field_locator": "DT-MSG-005/section-4/column-6",
               "source_label": "止まった位置と引継ぎ先",
-              "meaning": "「4. end-to-endの流れ」の行に対して「止まった位置と引継ぎ先」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "流れがどこで止まり、未完を誰へ引き継ぐかを示す。止まった位置を伏せた全体成功にしない。",
               "role": "table_column",
               "source_line": 81,
               "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
@@ -2193,7 +2193,7 @@
             {
               "field_locator": "DT-MSG-005/section-4/prompt-85",
               "source_label": "全体の成功とする条件（必須の段がすべて終わったことを何で確かめるか）",
-              "meaning": "全体の成功とする条件（必須の段がすべて終わったことを何で確かめるか）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "必須の段すべてが終わったことを何で確認するかを示す。各要素の個別成功だけで全体の成果を成立にしない。",
               "role": "prompt",
               "source_line": 85,
               "source_text": "- 全体の成功とする条件（必須の段がすべて終わったことを何で確かめるか）：",
@@ -2203,7 +2203,7 @@
             {
               "field_locator": "DT-MSG-005/section-4/prompt-86",
               "source_label": "並列の段の合流（join）の条件",
-              "meaning": "並列の段の合流（join）の条件を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "meaning": "並列段のどの結果が揃えば全体の次段へ合流できるかを示す。実際の条件は対象の要求・契約から得る。",
               "role": "prompt",
               "source_line": 86,
               "source_text": "- 並列の段の合流（join）の条件：",
@@ -2213,7 +2213,7 @@
             {
               "field_locator": "DT-MSG-005/section-5/column-1",
               "source_label": "不変条件",
-              "meaning": "「5. 構成体の不変条件」の行に対して「不変条件」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "構成要素の義務の和では保証されない、全体を通して守る条件を示す。",
               "role": "table_column",
               "source_line": 92,
               "source_text": "| 不変条件 | 守る構成要素・辺 | 破れたときの扱い |",
@@ -2223,7 +2223,7 @@
             {
               "field_locator": "DT-MSG-005/section-5/column-2",
               "source_label": "守る構成要素・辺",
-              "meaning": "「5. 構成体の不変条件」の行に対して「守る構成要素・辺」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "全体の不変条件をどの構成要素と辺が守るかを示す。単体だけの確認へ閉じない。",
               "role": "table_column",
               "source_line": 92,
               "source_text": "| 不変条件 | 守る構成要素・辺 | 破れたときの扱い |",
@@ -2233,7 +2233,7 @@
             {
               "field_locator": "DT-MSG-005/section-5/column-3",
               "source_label": "破れたときの扱い",
-              "meaning": "「5. 構成体の不変条件」の行に対して「破れたときの扱い」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "全体の不変条件が破れたときの扱いと未完を示す。破れたまま全体成功を返さない。",
               "role": "table_column",
               "source_line": 92,
               "source_text": "| 不変条件 | 守る構成要素・辺 | 破れたときの扱い |",
@@ -2243,7 +2243,7 @@
             {
               "field_locator": "DT-MSG-005/section-6/column-1",
               "source_label": "関心",
-              "meaning": "「6. 横断の関心（重ねて書かない）」の行に対して「関心」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "容量・性能、可用性、観測、運用、security、依存更新のどの横断関心を扱うかを指す。",
               "role": "table_column",
               "source_line": 98,
               "source_text": "| 関心 | 本templateで書くこと | 値・方式を書く場所 |",
@@ -2253,7 +2253,7 @@
             {
               "field_locator": "DT-MSG-005/section-6/column-2",
               "source_label": "本templateで書くこと",
-              "meaning": "「6. 横断の関心（重ねて書かない）」の行に対して「本templateで書くこと」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "横断関心に対して、この構成体で記す詰まりうる段・単一障害点候補・相関ID/観測点・owner/戻す単位・境界・依存一覧を示す。",
               "role": "table_column",
               "source_line": 98,
               "source_text": "| 関心 | 本templateで書くこと | 値・方式を書く場所 |",
@@ -2263,7 +2263,7 @@
             {
               "field_locator": "DT-MSG-005/section-6/column-3",
               "source_label": "値・方式を書く場所",
-              "meaning": "「6. 横断の関心（重ねて書かない）」の行に対して「値・方式を書く場所」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "値・方式の正本があるSDOP又はMSGの行を指す。容量・観測・運用・securityの値を構成体へ重ねて書かない。",
               "role": "table_column",
               "source_line": 98,
               "source_text": "| 関心 | 本templateで書くこと | 値・方式を書く場所 |",
@@ -2273,7 +2273,7 @@
             {
               "field_locator": "DT-MSG-005/section-7/column-1",
               "source_label": "欄",
-              "meaning": "「7. 検証への対応」の行に対して「欄」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "検証へ渡す、記入した節又は欄を指す。§4の流れと§5の全体不変条件の規範固定行を保つ。",
               "role": "table_column",
               "source_line": 109,
               "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
@@ -2283,7 +2283,7 @@
             {
               "field_locator": "DT-MSG-005/section-7/column-2",
               "source_label": "確かめる内容",
-              "meaning": "「7. 検証への対応」の行に対して「確かめる内容」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該欄で確認する構成体の振る舞い・条件を示す。段の失敗/不明で全体成功にならないことと固有不変条件を含む。",
               "role": "table_column",
               "source_line": 109,
               "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
@@ -2293,7 +2293,7 @@
             {
               "field_locator": "DT-MSG-005/section-7/column-3",
               "source_label": "DT-VT-103／104の観点",
-              "meaning": "「7. 検証への対応」の行に対して「DT-VT-103／104の観点」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "当該欄をDT-VT-103又は104のどの観点で確かめるかを示す。構成体全体と境界の確認を区別する。",
               "role": "table_column",
               "source_line": 109,
               "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
@@ -2303,7 +2303,7 @@
             {
               "field_locator": "DT-MSG-005/section-7/column-4",
               "source_label": "oracle ID",
-              "meaning": "「7. 検証への対応」の行に対して「oracle ID」を表す。原文の制約と完了条件を保持する。",
+              "meaning": "構成体の条件を確かめるoracleへの参照を示す。参照欄だけで全体検証の定義・実行・合格を成立にしない。",
               "role": "table_column",
               "source_line": 109,
               "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
