@@ -1,0 +1,999 @@
+{
+  "artifact_kind": "選択対象のseed適用条件照合記録。意味知識正本・formal schemaではない",
+  "authority_effect": "none",
+  "base_revision": "64450c7295b5d154543907abc8c75587624ba9b3",
+  "scope": "PO選択済みBRAIN032→CORE009→OS002と必要周辺入力",
+  "review_extent": "26候補の契約表の適用条件・必須入力・kind/pair・限界を選択scopeへ比較。全本文atomの意味被覆、全40card採否、全15descriptor充足は未確認",
+  "input_pins": [
+    {
+      "path": "docs/governance/decisions/first-development-target-selection-po-decision-2026-10-11.md",
+      "sha256": "f63a64350d25216c22cc56bff73baf513f51c371323fd9026c84d372aef62407"
+    },
+    {
+      "path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "sha256": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae"
+    },
+    {
+      "path": "docs/helix-brain/knowledge/requirements-acceptance-template-knowledge.json",
+      "sha256": "8fb9dd2a7f4a90f3f941f36331f7418c55e1441763f8e84da709c9056c3c9e77"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/governance/requirements-first-roadmap.md",
+      "sha256": "0ee3b370f1805c4890c7cc4e0b038dd116d9a7be536ed112f64ef83ec0ee6efe"
+    }
+  ],
+  "seeds": [
+    {
+      "id": "DT-SDOP-001",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-001-logging.md",
+      "sha256": "a1ddab32214d79eac5f2b27afea43ac40934f9f7360e0fcc569152a5f740d69a",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | 対象が稼働中に動作記録を出す実行物（サービス、バッチ、CLI、Worker等）である。記録を一切出さない静的成果物はN/A（理由必須） |",
+          "sha256": "b9a463de1076b79eae160541854e3ca0cec9b00d48c32ab0c9825b52b3c0e01d"
+        },
+        {
+          "line": 11,
+          "text": "| 必須入力 | 記録の利用者と利用場面、扱うデータの機密区分（個人情報・秘密情報の有無）、実行環境（出力先の候補）、保存に関する法令・規程の有無 |",
+          "sha256": "69c1bd401308585ba2cd6aa9ca5f5c499fcf9eb6d0ea2945b917a78a7a21ac4c"
+        },
+        {
+          "line": 14,
+          "text": "| 限界 | 保存期間・サンプリング率・閾値の値は目安であり、要件・法令で決める。記載の製品名（CloudWatch、Datadog等）は例で、採用を意味しない |",
+          "sha256": "83494ab53d4c83d64906c22b1443f2d680f3dd8a01d005a5ebd19c8f743626f9"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "OS案件原記録と各実行物の動作記録を区別",
+      "unresolved_inputs": "記録consumer・分類・出力環境・保持根拠",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-SDOP-002",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-002-nonfunctional.md",
+      "sha256": "d7a2bee9ffe95af2f2e30db1a31655fb4ee8a675cefb39f7e7eda8546b954275",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | 稼働・運用される対象（composite、または単独で稼働するunit）。一回限りのPoCは、深さを「ざっくり」に下げて適用するか、理由付きN/A |",
+          "sha256": "50717df934247b38bae0b81a5cc8911e5a00ada9606b4aca29f39bcd2aec0260"
+        },
+        {
+          "line": 11,
+          "text": "| 必須入力 | 対象の種別（Web／業務／バッチ等）、重要度（止まったら何が起きるか）、規模（利用者数・業務量）、稼働環境、準拠すべき法令・規格 |",
+          "sha256": "e3d4a7e2ebc6ba76e27292816d874d940c0c3b335590b774c67e6dd8730705dc"
+        },
+        {
+          "line": 14,
+          "text": "| 限界 | IPAのグレード表は版で細部が違う。正確な定義は公式版を参照する。記載の数値（99.9%、p95 300ms等）は一般的なWebサービスの目安で、要求の値ではない |",
+          "sha256": "7fa8e51a035c23a7d875c77094c70bc162b606cb77be91524d8152b4d5a176ff"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "循環と単独稼働unitの非機能条件",
+      "unresolved_inputs": "重要度・規模・環境・要求値と測定法",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-SDOP-003",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-003-maintainability-runbook.md",
+      "sha256": "c15cba99bd2efa358a5c59aed1698592c0339b1107951012e57b61c950ac167d",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | リリース後に稼働・保守される対象。稼働しない成果物はN/A（理由必須） |",
+          "sha256": "d793ada097f10811f151eb8e3b9e61cd6f6a07732c6aeb75637b224b2e677668"
+        },
+        {
+          "line": 11,
+          "text": "| 必須入力 | 利用者への影響の定義（SLO）、運用体制（誰がいつ対応するか）、デプロイ・ロールバックの手段、バックアップの対象 |",
+          "sha256": "4070126e528b6862ec14ffa77286267e518247a699e506419ed0800c5a90024c"
+        },
+        {
+          "line": 14,
+          "text": "| 限界 | 重大度の区分・通知手段・時間の値は例。PagerDuty、Slack等の製品名は例で、採用を意味しない |",
+          "sha256": "d9ee432cc9173a67c7e5b5cfb30a69376546936712d73f6c19665dab990c4502"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "内部利用開始後の更新・復旧運用",
+      "unresolved_inputs": "SLO・体制・更新/戻し手段・backup対象",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-SDOP-004",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-004-logic-design.md",
+      "sha256": "2fbc5a77e4700ccce0f6ce7100ed5f54559c1eb2ecc1c539ce492d6097054bf5",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | 条件分岐を持つ業務規則、状態を持つ対象、外部との副作用を持つ処理のいずれかを含むunitまたはconnection。深さは§6で決める |",
+          "sha256": "fb2ed9a0ec180d001afb41b308d9e7b39bce78938d04b7af93fe7c0c0797183c"
+        },
+        {
+          "line": 11,
+          "text": "| 必須入力 | 対象の業務規則と状態の一覧（要求から）、関係する外部サービス、重要度（お金・在庫・権限・個人情報・データ削除に当たるか） |",
+          "sha256": "7daa71d5a7829a8c1cc032ff0c99b9798c2b0e24481600573a4473ef2cabec60"
+        },
+        {
+          "line": 14,
+          "text": "| 限界 | 例（ECの注文）は説明用。記載のコード片は例示で、実装方式を決めない |",
+          "sha256": "1e696a8301770c12b4694da2ae407d06ba0a0a84b255d0d02d199599567415d5"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "CORE判定とOS状態/副作用の規則",
+      "unresolved_inputs": "要求の規則・state・失敗、MSG004との参照行",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-SDOP-005",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-005-dependencies.md",
+      "sha256": "7d047d46b0d35e4bc76fc4082fc7305aaf8205d6f906525a62db9868ee2170b3",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | 外部のライブラリ、外部API、マネージドサービス、ランタイムのいずれかに依存する対象 |",
+          "sha256": "01558242f6f6dcd388bf7535c1ec1228810fe574b8817b4bba08bad08628e58b"
+        },
+        {
+          "line": 11,
+          "text": "| 必須入力 | 依存の一覧（ライブラリ、外部API、ランタイム、基盤サービス）、自社の核となる処理（自分で書く範囲）、更新の担当 |",
+          "sha256": "49910da9e099a1d6e7b7d2a73e519440cc5ed1c87bb6390611d5d2290160936a"
+        },
+        {
+          "line": 14,
+          "text": "| 限界 | Dependabot、Renovate等の設定例と製品名は例。自動mergeの設定例は、HELIXの運用規則（独立review、明示merge）と別であり、そのまま採らない |",
+          "sha256": "77a1225b224db7173a926f9843506a96901a6848d811999b5f7123b83c3dba23"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "意味処理runtime・外部境界の依存",
+      "unresolved_inputs": "実依存集合・自製範囲・更新owner",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-SDOP-006",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-006-aws-foundation.md",
+      "sha256": "d64f285b0427ac8a5498b972c65953f8706a0c1d093ae85ca6933f6a0ab4f3fc",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | 稼働環境にAWSを選んだ対象に限る。AWSを使わない対象はN/A。他のクラウドへは、項目の意味（後から変えにくい順、初日のセキュリティ）だけを別templateとして導く候補にし、本templateをそのまま当てない |",
+          "sha256": "aaf728bd741522f5215f51c7eb87b48137dff4bd862b8e14479df23dcdcbbb90"
+        },
+        {
+          "line": 11,
+          "text": "| 必須入力 | 環境の数と分離の要件、データ所在地の要件、既存ネットワーク（CIDR）、IaCの候補、予算、運用体制 |",
+          "sha256": "5c6eba2229609c8bc778b87ac4cb6f6e90b09f503c65c0192c8d0255f4dc79fe"
+        },
+        {
+          "line": 14,
+          "text": "| 限界 | AWSのサービス名・仕様・料金は変わる。実装時は公式文書で確かめる。CIDR、タグ、予算額の例は例である。HELIXの現行の版計画では、Web展開後に対応すべきSecurity・インフラの内容があるため、本templateを1.0の必須条件へ前倒しして当てない |",
+          "sha256": "c6ec604b7ddc1803eaf4fa4888bdbf63b6adaf095136e21b39cfa110794da619"
+        }
+      ],
+      "comparison_disposition": "条件未決",
+      "selected_scope_relation": "AWS選定時だけ照合。現在AWS選択はない",
+      "unresolved_inputs": "実行基盤の選定。非AWSのN/A4属性は案件で記録",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-SDOP-007",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-007-design-review-quickcheck.md",
+      "sha256": "76cbcdd9d211e71ff16a99c25afc51754b97139e6463200b04e319a0366e4288",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | 稼働・保守される対象の設計review。問いごとに、関係するtemplate（DT-SDOP-001〜006）が適用されている場合に当てる |",
+          "sha256": "36c9aaf3f02c00b447bc5c9b3e292c4dd4d693225e32ebae63ea75c7f94b1b18"
+        },
+        {
+          "line": 11,
+          "text": "| 必須入力 | 対象の設計成果と、適用したtemplateの一覧 |",
+          "sha256": "c2813b7104d92a556ada5b872a2a86438f45c34a1eef002273910a61f5c02997"
+        },
+        {
+          "line": 14,
+          "text": "| 限界 | 本templateは最低限の問いで、各templateの完了条件の代わりにならない。問いに答えられたことは、設計の完成や要求の充足を示さない |",
+          "sha256": "06001200b1b23dab65a1432d2a8b116934a533b256b309962ac82cb9cbd75b1e"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "選択SDOPの設計review",
+      "unresolved_inputs": "対象設計と適用SDOP集合。単独で充足判定しない",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-VT-001",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-001-common-evidence.md",
+      "sha256": "cd70c910f7377f0de9eaf93076890d1250d1ef48300d18213c3bfc31de57ef3a",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | DT-VT-002の技法カード、DT-VT-101〜106の検証方法を使って証拠を残すすべての場合。本templateだけを単独で使う場面はない |",
+          "sha256": "1f0c9bbd20dcaa80d7e99f2a41955e685df32e728be696ec9cafed92ff2511b9"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力 | 対象要求のIDとrevision、成果物の識別（pathまたはIDとdigest）、V字の対、oracle ID。欠けたら証拠を作らず、欠けた入力を未解決として戻す（DST-HARNESS-004） |",
+          "sha256": "847c85ff6366344cd5fcc1d4d331d5778d73702cb47d595c9f4605a3c4ae3174"
+        },
+        {
+          "line": 14,
+          "text": "| 対（V-pair） | 全6組。組ごとの差はDT-VT-101〜106 |",
+          "sha256": "a8d9589768e86721886e408e18cb272fbce3fff99cd0c6ad7608ba81dbf45c3a"
+        },
+        {
+          "line": 15,
+          "text": "| 区分 | unit・connection・compositeを問わない。区分ごとの差はDT-VT-101〜106 |",
+          "sha256": "e1aedc2ba03a5f58ab18746a8e877c3b20bfcc596d92a1debe7a20620c64c64e"
+        },
+        {
+          "line": 17,
+          "text": "| 限界 | 欄の名前と形は材料であり、正式なschemaではない（schemaはL3以降で選ぶ）。欄を全部埋めたことは、検証が正しいことを示さない |",
+          "sha256": "aa8977f6c9dce82e12c9a069228a32fd1173796e29cb05baabe1f88546fd19b8"
+        }
+      ],
+      "comparison_disposition": "限定採用あり",
+      "selected_scope_relation": "要求/受入はSEEDFIRST限定。全pairの共通候補は保全",
+      "unresolved_inputs": "各要求revision・成果・pair・oracle。単独使用しない",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "SEEDFIRST限定scopeのみ採用済み"
+    },
+    {
+      "id": "DT-VT-002",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-002-test-technique-cards.md",
+      "sha256": "b8f5be0fcc06eb612c7dc9e1ec0dee4f4925f060fd217ea2ce50c88ecf7bb4b5",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | 各カードの「適用」「N/A」欄による。カードごとに判定し、判定はDT-VT-001の非適用の記録で残す |",
+          "sha256": "2a6130dc2e57fd76cbfc986bab535877f82df4ffabbf3ab8531b0407d810f137"
+        },
+        {
+          "line": 11,
+          "text": "| 必須入力 | 各カードの「入力」欄。欠けたら技法を実行したことにせず、欠けた入力を未解決として戻す |",
+          "sha256": "a494453eb2c3db45268d99653471773ef0821ecece95fcd73e73edb9b7198e8b"
+        },
+        {
+          "line": 14,
+          "text": "| 区分 | カードごとに主な対を持つ（`V-pair`欄）。unit・connection・compositeの別は対から読む（L6↔L7・L5↔L8は主にunit、L4↔L9はconnection、L3↔L10以上はcomposite） |",
+          "sha256": "39175912b37d7759947a206ff7a591ba62b160d7af8a23ac036a1412fe2da123"
+        },
+        {
+          "line": 18,
+          "text": "| 限界 | toolの名前は例であり採用ではない。1.0でWeb展開後に扱う項目（canary、本番chaos、本番SLO監視、脆弱性scanの必須化）は、カードに載せても1.0の必須条件にしない。各カードの「HELIX例」は技法の当て方の例で、要求・受入条件ではない |",
+          "sha256": "f925e9101c27053ffb118ee47a5605e346ed87f8c3c7a7ea47b283c8590612a8"
+        }
+      ],
+      "comparison_disposition": "限定採用あり",
+      "selected_scope_relation": "C01/C02/C08/C26だけ限定採用。残り36cardは候補",
+      "unresolved_inputs": "cardごとのinput/risk/適用根拠。全40cardの採用ではない",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "SEEDFIRST限定scopeのみ採用済み"
+    },
+    {
+      "id": "DT-VT-003",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-003-technique-selection-proposal.md",
+      "sha256": "3e1f668323aa590e475ec71b62342200557ecded09d0fc064d6de81b16c64e72",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | 変更（ticket）ごとに、DT-VT-002のどのカードを使うかを決めるとき |",
+          "sha256": "de6640cc69507c1192eb2428548edaa00ab2a845ba9b0dd1a1ace84618b13c9d"
+        },
+        {
+          "line": 11,
+          "text": "| 必須入力 | 変更の種類、risk（低・高とその根拠）、触る対、触るコネクタ、画面の有無。riskの根拠が無ければ「高」と推測せず、未解決として戻す |",
+          "sha256": "344a994ab9cf97b8983527725330a91cbf1770e67a425613327cc52c2dc58363"
+        },
+        {
+          "line": 13,
+          "text": "| 対（V-pair） | 全6組 |",
+          "sha256": "0cb007a1fe0dea0aec7be6302fd2e30e0c55fb4948b23c0d5e61c1b5b28e2eda"
+        },
+        {
+          "line": 15,
+          "text": "| 限界 | riskを低・高の2段で示しただけであり、高riskの判定根拠はL3で導く。セルの記号は最小集合の案で、全件の実行を既定にしない。Web展開後に扱う項目（canary、本番chaos、本番SLO監視、脆弱性scan）は1.0で必須にしない |",
+          "sha256": "29726e1dd5cd9c9e5c1cc76929afdb5e2dd600976207f856bd86f931dfd47db8"
+        }
+      ],
+      "comparison_disposition": "準備で照合する候補",
+      "selected_scope_relation": "選択対象の変更種類・risk・pairから技法候補を比較",
+      "unresolved_inputs": "risk根拠・触る辺。早見表を必須gateにしない",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-VT-004",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-004-verification-design.md",
+      "sha256": "c4ee5cbe21181be475210cfd3519d5fe147778be43b051386ba21e2d472250e0",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | L3要件（またはL2要求）を、どの方式・対・技法・caseで確かめるかを、実行の前に決めるとき。要件を持たない対象はN/A（理由必須） |",
+          "sha256": "a71fbf4da027e7dae0a8ac7ad0dd3d43b23f252e28cdca1302a6f86be0a3a5ad"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力 | 対象の要求・要件のIDとrevision、非機能の値と測定方法（DT-SDOP-002）、riskの根拠。欠けたら行を作らず、欠けた入力を要件の持ち主へ戻す |",
+          "sha256": "bddf9a9e675542bc183fd6a2881b2f79400c4c732ed9e026821a1c64a259d6e2"
+        },
+        {
+          "line": 14,
+          "text": "| 対（V-pair） | 主にP3（L3↔L10）とP2（L2↔L11）。下位の対へは行ごとに割り当てる |",
+          "sha256": "0a1ffcbda9584bbd1aa68145800ac4c9b4129f268c4ff5485620994b9f021a33"
+        },
+        {
+          "line": 15,
+          "text": "| 区分 | composite（要件の集合） |",
+          "sha256": "922112be3d26609178346eac989254242421e48471c4f178bb1ec46a01b4604a"
+        },
+        {
+          "line": 18,
+          "text": "| 限界 | 方式・技法の割当は材料であり、検証義務ではない。表を埋めたことは検証の十分さを示さない |",
+          "sha256": "a88f93a78e0efb223bc5204a30dbd3be45a0bae93e9a879347ff44a5ded8b6f6"
+        }
+      ],
+      "comparison_disposition": "準備で照合する候補",
+      "selected_scope_relation": "L2要求の検証方式・pair・case/oracleの知識を比較",
+      "unresolved_inputs": "risk・非機能値/測定法。正式L3/L10は停止",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-VT-005",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-005-screen-verification.md",
+      "sha256": "8b2fa19fd85d09d779e95e9c1a0aa5b187169193d50ce921ecc2b65528bad65a",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | 画面を持つ対象（L2.5のPrototype、UIの実装）。非画面と根拠付きで判定された対象だけN/A。**画面を持つ対象では5軸をN/Aにしない**（HARNESS-L2-036） |",
+          "sha256": "e0090c067c6875d6aa1546203c8d1ba41a82dd7113adeb85c11e837f4447d0c5"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力 | 描画できる画面（またはPrototype）とそのrevision、画面の状態とデータの条件、device・viewportの条件、UIのprofile（あれば）、oracleの版、既知のfixture（HARNESS-L2-049の入力） |",
+          "sha256": "66458c1776beaf917976d0377a69107493780b7501b8ce7082b9051f69b3902c"
+        },
+        {
+          "line": 14,
+          "text": "| 対（V-pair） | P2（L2.5のPrototypeとL11受入）、P3（L10のUXを含む非機能）、P6（UIの実装） |",
+          "sha256": "c0f40074b40c35b2a329b5ba16f64ad9e0d04eb5fed58f2a0edde9c983c73dc0"
+        },
+        {
+          "line": 15,
+          "text": "| 区分 | unit（画面・component）からcomposite（画面の流れ）まで |",
+          "sha256": "61dc3d5b1ae15e3865772c86134337261eca6408b4ecaff6972959596b5dff7c"
+        },
+        {
+          "line": 18,
+          "text": "| 限界 | 画素の一致、DOMの存在、静止画だけでは、表示検証や合格を主張しない（HARNESS-L2-049）。機械の検査は人の合意（Prototypeの合意、L11受入）を代わりにしない |",
+          "sha256": "4ef5fc068607cf53f6ec7f655bcd19effe3996b51caafb1d8d73a411d993e3c7"
+        }
+      ],
+      "comparison_disposition": "非画面scopeでは未選択候補",
+      "selected_scope_relation": "PO選択の非画面対象。UI拡張時に再照合",
+      "unresolved_inputs": "案件の非画面根拠・判定者/revision/再評価条件は未記録",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-VT-006",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-006-poc-verification.md",
+      "sha256": "9da3c8ebf1611c04e5dc34e6ccc2010e8e1a66773439de43bc2fe2faa4f1726f",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | L2.5でPoC（技術的な成立性が不明）またはPrototype（画面を持つ）を適用したとき。適用はPoCとPrototypeで別に判定する（HARNESS-L2-003） |",
+          "sha256": "d6f51906fa733e95df64f94e1243022635b77c278aef5b1ce94670e5f1432f2d"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力 | 対象のL2要求とrevision、減らしたい不確定要素、検証の期限。欠けたら始めず、要求の持ち主へ戻す |",
+          "sha256": "3e461b5039af5767f65b69379e8f3f4ec4744da9eea49d4b93b13bfc7e9955fc"
+        },
+        {
+          "line": 14,
+          "text": "| 対（V-pair） | P2（L2要求とL2.5） |",
+          "sha256": "9668f8d2986fe743256af795490955927edd6624a14a64f38e288e87a9e23950"
+        },
+        {
+          "line": 15,
+          "text": "| 区分 | 対象による（技術の成立性はunit〜connection、利用価値はcomposite） |",
+          "sha256": "dabce6cd5e348430cd9eaeb4688ebbb6ab738297f2170d1d4a5be85a2da313ee"
+        },
+        {
+          "line": 18,
+          "text": "| 限界 | PoCの結果は要求へ還流する材料であり、要求の合意やL3の凍結を決めない。PoCの成果物は本番の品質を前提にしない |",
+          "sha256": "2aeedda0c0566d2dceeaea0eb6c3ce5f3959501168b5a096b334b570cb005d61"
+        }
+      ],
+      "comparison_disposition": "条件未決",
+      "selected_scope_relation": "Prototypeは非画面条件、PoCは技術的不確実性を別判定",
+      "unresolved_inputs": "要求ごとの成立性・期限・不確定要素。非画面だけでPoCをN/Aにしない",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-VT-007",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-007-ai-output-verification.md",
+      "sha256": "bce9a5f05c92d69e3cae00c5b23c8826ec4862d784206be3ac44c00680772922",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | AI（agent、生成model）が作った成果物（code、設計、文章、データ・分類）を採るとき。AIが関わらない成果物はN/A |",
+          "sha256": "1d14488d882f12db9cc2435ee66f67c831676b4518b9a38890924b5f2816cc5c"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力 | 成果物とrevision、作ったmodelとpromptの版（分かる範囲）、成果物の種類、対の設計・要求 |",
+          "sha256": "f87de00ce431cc74e9f8626a9cb8c6332b52bb9935f502f80a1b1cd776392265"
+        },
+        {
+          "line": 14,
+          "text": "| 対（V-pair） | 成果物が属する対による。AIが関わることは対を変えない |",
+          "sha256": "318b70165434f8932e3eb7c4986224103c3f042077d0f176fa30be7056421a63"
+        },
+        {
+          "line": 15,
+          "text": "| 区分 | 成果物による |",
+          "sha256": "1fdfefc2d5352677cee86a2f21c01395a90c404c356396a00e7e10c05a853f98"
+        },
+        {
+          "line": 18,
+          "text": "| 限界 | 構造の検査のgreenは「壊れていない」の意味で、品質の証明ではない。機械やmodelの採点から人の合意・承認を作らない（HARNESS-L2-049） |",
+          "sha256": "50cf59976574efacad2d569e7b3004620f5cfcc27564174d25152f0eec91587d"
+        }
+      ],
+      "comparison_disposition": "準備で照合する候補",
+      "selected_scope_relation": "AI生成の知識/適用案/記録材料の検証",
+      "unresolved_inputs": "成果revision・model/prompt版・対の要求。採用/受入をAI採点で生成しない",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-VT-101",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-101-l1-l12-operation-value.md",
+      "sha256": "6c81fe0091d40008e7ef74777499838ac526d7fa3e16f205a968839e3cc8a41e",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | L1 企画の成果物に対の検証を行うとき。全件の実行を既定にせず、HARNESS-L2-005の規則（Forwardの大きさ、risk、触るコネクタ）で要否を決める |",
+          "sha256": "be82e8f01da3360e7c9df2fb99f8529cc3eb59b52aa9fe4ce6aef530ba56d63b"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力（左腕のtest basis） | L1企画の価値仮説と成功指標、SLOの定義（あれば）、Release Portの条件。欠けたら検証を始めず、欠けた入力を左側の持ち主へ戻す |",
+          "sha256": "ba37726b4008c3ded7dd1ed25b6e464fc2f95070d448ca0420ad63d6161a0248"
+        },
+        {
+          "line": 15,
+          "text": "| 対（V-pair） | P1：L1 企画 ↔ L12 運用評価（HARNESS-L2-040の6組） |",
+          "sha256": "72207d7025439fa299ba404920f2fecda97932c4b4e7864beb89fe1c73b500c9"
+        },
+        {
+          "line": 16,
+          "text": "| 区分 | composite（製品全体） |",
+          "sha256": "a2eeea00be7de60c471d6d5710dac4d231853aec20fa0fdddb15bdfa2f66b3a0"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 対ごとの観点と技法の組合せは材料であり、正式な検証義務ではない。検証義務はHARNESS-L2-005の規則からL3で導く |",
+          "sha256": "6ff496869b4825aee802411f77e6ccedfa5883e80d723a8889d80dbefe94ea52"
+        }
+      ],
+      "comparison_disposition": "運用評価に残す候補",
+      "selected_scope_relation": "L1/L12価値/運用還流の義務を保持",
+      "unresolved_inputs": "価値仮説・成功指標・適用SLO/Release条件。今の実行入力ではない",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-VT-102",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-102-l2-l11-user-acceptance.md",
+      "sha256": "346d66f679b32caee2a960a270d163541dbf85ce9d37e127e32acd2cef3ec940",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | L2 要求（L2.5のPrototype・PoCを含む）の成果物に対の検証を行うとき。全件の実行を既定にせず、HARNESS-L2-005の規則（Forwardの大きさ、risk、触るコネクタ）で要否を決める |",
+          "sha256": "4823a70187376ed368ce92193e98dd209a5cef82e75f7a421809cfbddc18d819"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力（左腕のtest basis） | 合意済みのL2要求とrevision、L11受入の条件（成功条件と反例）、HARNESS-L2-003に従ってPrototypeとPoCを別々に判定したL2.5適用記録。Prototype適用時は合意済みprototypeのrevisionと合意記録、PoC適用時は検証結果と要求へのBackflow先・反映revisionを含める。各々の非適用時は根拠付きN/A記録を含める。適用がunknown、または適用時の成果が欠ける場合、その成果に依存する受入条件をunknownとして成立を主張しない。 |",
+          "sha256": "e1bd9d3f9cd5dbf242de40a81cd4cc45d8fb20f46c7b3894501c464fdb736395"
+        },
+        {
+          "line": 15,
+          "text": "| 対（V-pair） | P2：L2 要求 ↔ L11 利用者受入（HARNESS-L2-040の6組）。適用されたL2.5のPrototype／PoC成果と要求への反映revisionは、該当する受入条件の入力として結ぶ |",
+          "sha256": "7dd8c295c5b0f5d1512f62b777dd766a699cdc9e5d24e949663ca4c8c42e3745"
+        },
+        {
+          "line": 16,
+          "text": "| 区分 | composite（利用者が触る成果） |",
+          "sha256": "43e9b72fbecee7ed1c63f475f5c4ddea0a499d6e084edcc58eb02c4ca77b36ed"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 対ごとの観点と技法の組合せは材料であり、正式な検証義務ではない。検証義務はHARNESS-L2-005の規則からL3で導く |",
+          "sha256": "6ff496869b4825aee802411f77e6ccedfa5883e80d723a8889d80dbefe94ea52"
+        }
+      ],
+      "comparison_disposition": "限定採用あり",
+      "selected_scope_relation": "非画面・技術的不確実性なしの要求/受入知識のみ",
+      "unresolved_inputs": "L2/L11固定revisionとPrototype/PoC別判定。実受入は未実施",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "SEEDFIRST限定scopeのみ採用済み"
+    },
+    {
+      "id": "DT-VT-103",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-103-l3-l10-system-verification.md",
+      "sha256": "af53fa80653b0996680399460b07679af3db2688a3fce22ec782b7eea2696d76",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | L3 要件の成果物に対の検証を行うとき。全件の実行を既定にせず、HARNESS-L2-005の規則（Forwardの大きさ、risk、触るコネクタ）で要否を決める |",
+          "sha256": "099a847fa53382ce2c056fdb12a9b519b5e017e4f03dff890cf38fa390b7f4b1"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力（左腕のtest basis） | 承認済みのL3要件、システムに固有の義務の一覧、下位の証明のreceipt、組合せの契約。欠けたら検証を始めず、欠けた入力を左側の持ち主へ戻す |",
+          "sha256": "93e1c2061c790e1f373bca0e06d0c671f64987e40271c97f673450f8ec2a11fa"
+        },
+        {
+          "line": 15,
+          "text": "| 対（V-pair） | P3：L3 要件 ↔ L10 総合検証（HARNESS-L2-040の6組） |",
+          "sha256": "547714d99ccb4d8a22960e95e6b2a85e2595431dc181ef6c1a0ae2bab9bd2cc0"
+        },
+        {
+          "line": 16,
+          "text": "| 区分 | composite（システム） |",
+          "sha256": "0feb341861f73576acad84a481b4f57abc6e5e2a7638089f0baaffecd8d82b99"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 対ごとの観点と技法の組合せは材料であり、正式な検証義務ではない。検証義務はHARNESS-L2-005の規則からL3で導く |",
+          "sha256": "6ff496869b4825aee802411f77e6ccedfa5883e80d723a8889d80dbefe94ea52"
+        }
+      ],
+      "comparison_disposition": "後続対検証候補",
+      "selected_scope_relation": "L3/L10の固有義務と下位証拠/組合せを比較",
+      "unresolved_inputs": "kind/pair照合、再開後の承認L3、検証時の下位receipt",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-VT-104",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-104-l4-l9-integration.md",
+      "sha256": "c262496c20c7d52197fd377616b1a6720bac6d8257132257cc0cf531d0be9526",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | L4 基本設計の成果物に対の検証を行うとき。全件の実行を既定にせず、HARNESS-L2-005の規則（Forwardの大きさ、risk、触るコネクタ）で要否を決める |",
+          "sha256": "7dab77c0c894e20331d7e5bec73b8fd4e9998648ecdd1e2fff74f9961813a7c7"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力（左腕のtest basis） | L4基本設計の境界の仕様、コネクタの契約。欠けたら検証を始めず、欠けた入力を左側の持ち主へ戻す |",
+          "sha256": "e997918de41e3aa220681c70046757d663d750c0e6cc5a93b429f156a94ed323"
+        },
+        {
+          "line": 15,
+          "text": "| 対（V-pair） | P4：L4 基本設計 ↔ L9（L4基本設計との照合）（HARNESS-L2-040の6組） |",
+          "sha256": "6f10c751ebc274dc046885bb8b77f992cb577a2826c488ab33c480efd666e2ab"
+        },
+        {
+          "line": 16,
+          "text": "| 区分 | connection（境界・コネクタ） |",
+          "sha256": "10b487c66922d2499dd1ab650c360dba2853c7a46a942290fa9c05fac9337492"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 対ごとの観点と技法の組合せは材料であり、正式な検証義務ではない。検証義務はHARNESS-L2-005の規則からL3で導く |",
+          "sha256": "6ff496869b4825aee802411f77e6ccedfa5883e80d723a8889d80dbefe94ea52"
+        }
+      ],
+      "comparison_disposition": "後続対検証候補",
+      "selected_scope_relation": "BRAIN→CORE・CORE→OS等の辺の検証観点",
+      "unresolved_inputs": "kind/pair照合、境界仕様・connector契約",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-VT-105",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-105-l5-l8-detail-conformance.md",
+      "sha256": "d1b0bc1a4d18b749dd67710ac9308551e56764a5770336920a67c5a8a58cbb1b",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | L5 詳細設計の成果物に対の検証を行うとき。全件の実行を既定にせず、HARNESS-L2-005の規則（Forwardの大きさ、risk、触るコネクタ）で要否を決める |",
+          "sha256": "14d56a58c8d3f84630236d41eebc37c39b59728f12f65ddd1e2ea0a577a8e41a"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力（左腕のtest basis） | L5詳細設計の契約（関数・状態・事前条件・事後条件・不変条件・失敗・rollback・端の値）、oracle ID。欠けたら検証を始めず、欠けた入力を左側の持ち主へ戻す |",
+          "sha256": "cca2b20ec14e081581823ccd3f6d91f3a5e9a6565888523b4d7ca0c9c93d8816"
+        },
+        {
+          "line": 15,
+          "text": "| 対（V-pair） | P5：L5 詳細設計 ↔ L8（L5詳細設計との照合）（HARNESS-L2-040の6組） |",
+          "sha256": "f71c925b5537ffcef338565d0caad7a7e2041b0784c816bd72b5b96cb328688a"
+        },
+        {
+          "line": 16,
+          "text": "| 区分 | unit（詳細設計の単位） |",
+          "sha256": "82aee292eded0cb1e67c5fdc991562f53931e05227e599dd24016e6389e96162"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 対ごとの観点と技法の組合せは材料であり、正式な検証義務ではない。検証義務はHARNESS-L2-005の規則からL3で導く |",
+          "sha256": "6ff496869b4825aee802411f77e6ccedfa5883e80d723a8889d80dbefe94ea52"
+        }
+      ],
+      "comparison_disposition": "後続対検証候補",
+      "selected_scope_relation": "詳細契約・state・不変条件・失敗/回復",
+      "unresolved_inputs": "kind/pair照合、凍結対象設計・oracle",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-VT-106",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-106-l6-l7-tdd-closure.md",
+      "sha256": "dbbc0ab3a06676925670c509a421e30c751f3f9f77ec777013dc10e54a4dbbfa",
+      "source_contract_rows": [
+        {
+          "line": 10,
+          "text": "| 適用条件 | L6 実装の成果物に対の検証を行うとき。全件の実行を既定にせず、HARNESS-L2-005の規則（Forwardの大きさ、risk、触るコネクタ）で要否を決める |",
+          "sha256": "7f358016ca8de8b9a24d8400786ee73462f35aad9bd86aa13ceb94f49b1fedda"
+        },
+        {
+          "line": 12,
+          "text": "| 必須入力（左腕のtest basis） | 凍結済みの設計の範囲、oracle ID、先に書くtest。欠けたら検証を始めず、欠けた入力を左側の持ち主へ戻す |",
+          "sha256": "61bd6f271fb3b6c837a018f49bdb1a26f7ce6102a2c0d7c1779180ad8b247c83"
+        },
+        {
+          "line": 15,
+          "text": "| 対（V-pair） | P6：L6 実装 ↔ L7（TDDの閉じ・test実装）（HARNESS-L2-040の6組） |",
+          "sha256": "85fb35256881bcb1b395ab621bba1281c1c862a265ec4522c69ac24ea323b903"
+        },
+        {
+          "line": 16,
+          "text": "| 区分 | unit |",
+          "sha256": "8e92820391168176740d1dbc5a97e66cb190d2784006fe005c55c90a5c584de2"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 対ごとの観点と技法の組合せは材料であり、正式な検証義務ではない。検証義務はHARNESS-L2-005の規則からL3で導く |",
+          "sha256": "6ff496869b4825aee802411f77e6ccedfa5883e80d723a8889d80dbefe94ea52"
+        }
+      ],
+      "comparison_disposition": "後続対検証候補",
+      "selected_scope_relation": "実装前Red→最小実装→Greenの知識",
+      "unresolved_inputs": "kind/pair照合、凍結設計・先に定義するtest/oracle。今は実行しない",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-MSG-001",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-001-connection-contract.md",
+      "sha256": "94cc4a2a3f795645bf274148e47f3a2e0622643f822a1815f4068fb2f3cbfa5c",
+      "source_contract_rows": [
+        {
+          "line": 13,
+          "text": "| 適用条件 | 二つ以上の単体（機構、module、外部service、process）の間でdataまたは操作の要求が境界を越える場合。接続の辺ごとに1回適用する。境界を越えない単体内の呼出しはN/A（理由必須） |",
+          "sha256": "212eb7c47956ec978d0d81d78b44016e61a7f6405c07191d02e5850e0ddad7e3"
+        },
+        {
+          "line": 15,
+          "text": "| 必須入力 | 接続の両端と、各端の意味契約の持ち主。方向（一方向／二方向）。越えるdataの意味（何を表すか、誰が正本を持つか）。両端の契約revisionと互換範囲。期限・再送・重複の扱いについて要求が定めていること。**欠けたら設計を進めず、欠けた入力を質問・要求候補として上流へ戻す（DST-HARNESS-004）** |",
+          "sha256": "2caadcef5f1ad90ae0bf54da867659d4edd1da993a536359c7095ee4cc3fe1fe"
+        },
+        {
+          "line": 17,
+          "text": "| 区分 | connection |",
+          "sha256": "a9f370bdae0f46bfcb9d7449607ad904305c678886990734ab4cdab9114cb851"
+        },
+        {
+          "line": 18,
+          "text": "| 対（V-pair） | 主にL4↔L9（境界の形）とL5↔L8（timeout・再送・冪等性の詳細）。検証の方法はDT-VT-104・105 |",
+          "sha256": "4eb5530e58f3e44b323fc7a9b8e89c4fde0909327a26c3195f09ab1803729671"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 欄の集合は材料であり、正式なschemaではない。業務上の意味（受け取った結果をどう判断するか）は接続先の持ち主が決め、本templateは決めない |",
+          "sha256": "a768a293c5868b358c4a66183ba3009464e6d16c8e82e07956c541a8ea2e1082"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "BRAIN→CORE・CORE→OS・Backflow各辺",
+      "unresolved_inputs": "各端owner/revision/互換・data意味・方向・期限/再送。実装形式未定",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-MSG-002",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-002-data-migration-rollback.md",
+      "sha256": "1c7f487aab6acfe5a5583b74adb78ab77b56e1fa3f7bf772189b1384f4f33b6e",
+      "source_contract_rows": [
+        {
+          "line": 13,
+          "text": "| 適用条件 | 永続するdata（DB、file、projection、外部のstore）を追加・変更・削除する変更。schemaまたはdataの形を変える場合は§3〜§6をrequired、data構造を変えない変更は§1・§2だけ（§3〜§6は理由付きN/A） |",
+          "sha256": "d535ac7c87c2085586a52d67949fc1967ef6bcc3327f79becc6d07df9db18b19"
+        },
+        {
+          "line": 15,
+          "text": "| 必須入力 | dataが表す意味と正本の持ち主（要求から）。消してよいdata・戻せなくてよいdataについて要求が定めていること。保持・削除の要求。変更前の形（before）。**data loss（戻せない変更）を許すかどうかは要求側・人の判断であり、設計者やAIが補わない。欠けたら上流へ戻す（DST-HARNESS-004）** |",
+          "sha256": "381094df668060c909b79f1f3b8d807b7c59e41a5fd04730f9aec3bc4fe65b1a"
+        },
+        {
+          "line": 17,
+          "text": "| 区分 | unit（1つのstore）またはconnection（storeと読み書きする側の間）。複数のstoreを跨ぐ移行は、加えてDT-MSG-005を使う |",
+          "sha256": "9d30a9335763764d28a738a509cbbae7430c33d045e6e00edd5cbafd5f0c1ce1"
+        },
+        {
+          "line": 18,
+          "text": "| 対（V-pair） | 主にL4↔L9（dataの所有と境界）とL5↔L8（変換規則・巻戻し手順・整合の確かめ方）。検証の方法はDT-VT-104・105 |",
+          "sha256": "1487d33dccd285ba6e395d2020efc71fd240cdaec2a733b1813a40216f048b79"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 段階の名前と並びは材料であり、どの段階を省けるかは対象のriskと要求で決める。DBの種類ごとの具体的な安全な操作は実装の段で確かめる |",
+          "sha256": "10f41fe5900362e1531b82acbfbf90fd8f15307f6d42c533623a77199e28615e"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "knowledge/案件原記録の永続化と更新/復旧",
+      "unresolved_inputs": "意味owner・before・保持/削除・loss判断。構造変更の有無で節を判定",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-MSG-003",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-003-permission-privacy-external-interface.md",
+      "sha256": "fee0053840e1e63189cde0bb7f761cda9c04ead19c9794d0e79ce117b90e723e",
+      "source_contract_rows": [
+        {
+          "line": 13,
+          "text": "| 適用条件 | §1：利用者・actorごとに許す操作が違う対象。§2・§3：個人や組織の情報、秘密、外部へ出るdataを扱う対象。§4：外部（別の持ち主、別の製品、公開されるAPI・CLI・file形式）に向けたinterfaceを持つ対象。当たらない節は理由付きN/A |",
+          "sha256": "41600a11d8542d6221ff10bcb84149d1d1b8a8c6db083cdae6c4956374c12b78"
+        },
+        {
+          "line": 15,
+          "text": "| 必須入力 | 誰が何をしてよいかについて要求が定めていること。扱うdataの種類と、それを扱う目的。保持・削除・外部提供についての要求と準拠すべき法令・規格（DT-SDOP-002 Eの入力）。外部interfaceのconsumer。**権限の範囲、個人情報の扱い、法令の解釈は要求側・人の判断であり、設計者やAIが補わない。欠けたら上流へ戻す（DST-HARNESS-004）** |",
+          "sha256": "4932b5a168b5be44d8a5e98e1b7c28fd1cf518a21e47ac550a5b0bef949d61e9"
+        },
+        {
+          "line": 17,
+          "text": "| 区分 | unit（操作ごとの権限）、connection（外部interface、外部へ出るdata） |",
+          "sha256": "9d23872477fc4b04503f40e56dc1347d69ed62b5624a5a0510fb456d0ae0c194"
+        },
+        {
+          "line": 18,
+          "text": "| 対（V-pair） | 主にL3↔L10（誰が何をしてよいかの要件）、L4↔L9（境界と外部interface）、L5↔L8（拒否・errorの振る舞い）。検証の方法はDT-VT-103〜105 |",
+          "sha256": "e42e93221cf5e0541767dd339e44502a891c2926b72e7962b19a06e20606d37a"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 法令・規格の適合を判断する物ではない。欄を埋めても安全であることを示さない。脅威の洗い出しは機械的な確認では済まない（旧`threat-model.md` 98–99と同旨） |",
+          "sha256": "e2b079c468fbad68824b0450d362fd34d990482beb30bcb97a0af4faf2d9cd64"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "読取/write/実行を別actor/操作として安全境界へ",
+      "unresolved_inputs": "権限・data目的/分類・保持/外部consumer。節ごとに条件を照合",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-MSG-004",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "source_contract_rows": [
+        {
+          "line": 13,
+          "text": "| 適用条件 | 振る舞いを足す・変える単体（関数、module、command、job）。条件分岐の業務規則・状態・外部への副作用を持つ場合は、DT-SDOP-004（デシジョンテーブル、状態×イベント、異常系の4問、冪等性）と併せて使う。本templateの§2〜§5は、SDOP-004の既存行の詳細化である。§2（入出力の契約）はSDOP-004 §1の事前・事後条件を、§3（副作用）はSDOP-004 §3の副作用を、§4（失敗の分類）と§5（回復）はSDOP-004 §4の「失敗したら？」「途中で止まったら？」を、それぞれ参照して詳しく書く。併用するときは、同じ条件・同じ回復判断の正本を二か所に作らず、SDOP-004の行IDを参照する |",
+          "sha256": "2d148fd7e97ea41c4b897d5ba3a1c501ecba131a7d289b93585ff4a766c75107"
+        },
+        {
+          "line": 15,
+          "text": "| 必須入力 | 対象の単体が満たす要求・受入条件のID。入力と出力が表す意味。失敗したときに要求が期待すること（止める、利用者へ返す、後でやり直す）。**期待する振る舞いが要求に書かれていない場合、設計者やAIが補わず上流へ戻す（DST-HARNESS-004）** |",
+          "sha256": "142980a7d2dd83bd53071ee5f5dc1aa9632a6716faae28e09adb24c87a50be7b"
+        },
+        {
+          "line": 17,
+          "text": "| 区分 | unit |",
+          "sha256": "8e92820391168176740d1dbc5a97e66cb190d2784006fe005c55c90a5c584de2"
+        },
+        {
+          "line": 18,
+          "text": "| 対（V-pair） | 主にL5↔L8（事前・事後・不変条件、失敗と巻戻し）とL6↔L7（関数の契約とRed→Green）。検証の方法はDT-VT-105・106 |",
+          "sha256": "6f0163c7dd423ed3da2858b369f194c6e95582040f54f677eb917fc4bfea4f30"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 欄を埋めても振る舞いが正しいことは示さない。単体の契約だけで接続・構成体の設計を満たしたとしない（DST-HARNESS-003） |",
+          "sha256": "3ff91759b284b98a9bf6691d2be61988370cc502fed2aa80d246437b9a304cb4"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "BRAIN032/CORE009/OS002各単体の入出力/失敗",
+      "unresolved_inputs": "要求/受入・意味・期待失敗/回復。SDOP004と二重正本にしない",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-MSG-005",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-005-composite-architecture.md",
+      "sha256": "678e71797043d48e0f9e19c588e41cab059034fd5fe9cf5994f9d6c51d011589",
+      "source_contract_rows": [
+        {
+          "line": 13,
+          "text": "| 適用条件 | 複数の単体と接続を組み合わせて一つの成果を出す対象（system、複数機構を通る処理、複数のstoreを跨ぐ移行）。単体1つと接続1本で閉じる対象はN/A（理由必須。DT-MSG-004・001を使う） |",
+          "sha256": "99ea28bb28894b75c75d2cbc9850c586289302d6032148eddf774adb6a7a9a4d"
+        },
+        {
+          "line": 15,
+          "text": "| 必須入力 | 構成体が全体として出す成果（要求・受入条件のID）。構成要素の一覧と、それぞれの持ち主。構成要素の間の接続（DT-MSG-001を適用済みの辺）。重要度・規模・稼働環境（DT-SDOP-002の入力と同じ）。**全体の成果や、途中まで進んだときに要求が期待することが書かれていない場合、上流へ戻す（DST-HARNESS-004）** |",
+          "sha256": "b2b68cbc99c4e1effa4e8e40515c4407b003a0ae72d3de0de41e89394f459235"
+        },
+        {
+          "line": 17,
+          "text": "| 区分 | composite |",
+          "sha256": "3a2b371d95de6303829431fcbdcde8c823a231ee1395c21049e32c3aae01494a"
+        },
+        {
+          "line": 18,
+          "text": "| 対（V-pair） | 主にL4↔L9（構成と境界）、L3↔L10（system全体の義務）。検証の方法はDT-VT-103・104 |",
+          "sha256": "977ce08755f9f19f3e5e2164f8500875c0264519a4f91f7649f03ce413078d7e"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 構成の描き方（図の種類、view）は材料であり、製品ごとに選ぶ。欄を埋めても構成が適切であることは示さない |",
+          "sha256": "4b99eac05fac2aa6997e1a9e9f4e39b20f78381052eaa54fe21c283d64537938"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "三単体と複数辺による循環固有の義務",
+      "unresolved_inputs": "全体成果・各owner/辺・部分成功時の期待。値はSDOP等を参照",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    },
+    {
+      "id": "DT-MSG-006",
+      "candidate_version": "0.1.0-seed-candidate",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-006-design-testability.md",
+      "sha256": "ac09807696d823c9fcccb99b381458949493e8ab345ee1b3c71c7116f00c00c8",
+      "source_contract_rows": [
+        {
+          "line": 13,
+          "text": "| 適用条件 | DT-MSG-001〜005、DT-SDOP-004を適用した設計成果物。設計の段（L4・L5・L6）で、検証の対（L9・L8・L7）に入る前に使う。振る舞いを持たない成果物（文言だけの変更等）は理由付きN/A |",
+          "sha256": "f0f71ced3f453c5579fc0f52268f8b2e3426a058e5ff5aafe42a627aee7c8630"
+        },
+        {
+          "line": 15,
+          "text": "| 必須入力 | 対象の設計成果物と、それが満たす要求・受入条件のID。設計で宣言した事後条件・不変条件・失敗の種類（DT-MSG-004 §2・§4）、辺ごとの結果の状態（DT-MSG-001 §7）、構成体の不変条件（DT-MSG-005 §5）。**期待値の出所が要求にも独立した根拠にも無い場合、「検証できない要求」として上流へ戻す（DST-HARNESS-004）** |",
+          "sha256": "3df5988d930ca1f12f41e2aa4eab22c769879174916a6b667e1b0ef5797601d3"
+        },
+        {
+          "line": 17,
+          "text": "| 区分 | unit・connection・compositeを問わない。§5で区分ごとの差を書く |",
+          "sha256": "939a747a478fcbc0c771bb21121e6e58f0a1e82c47a9e12c5fec17d5aca178c7"
+        },
+        {
+          "line": 18,
+          "text": "| 対（V-pair） | 設計側（L4・L5・L6）に置く。対の右側（L9・L8・L7）はDT-VT-104〜106 |",
+          "sha256": "c41a9e2c263f171e3f9360441dd2e47f0e1f08bdf8a5cf723b87dc233e35f48f"
+        },
+        {
+          "line": 22,
+          "text": "| 限界 | 欄を埋めても検証が行われたこと・振る舞いが正しいことは示さない。testabilityを理由に、要求にない構造（過剰な抽象化、層）を足さない |",
+          "sha256": "0b7deb1c0a6d4c8b41d7c26e0f011211c315a644c8a84839e733ea8b0235d46e"
+        }
+      ],
+      "comparison_disposition": "後続設計候補",
+      "selected_scope_relation": "設計段階で観測/制御/oracle出所/失敗到達を比較",
+      "unresolved_inputs": "MSG/SDOP設計の宣言行と右側case。L1/L2 review開始gateにしない",
+      "project_applicability_decision": "not_recorded",
+      "knowledge_adoption": "この照合では採用しない"
+    }
+  ],
+  "meaning_checks": [
+    {
+      "id": "KIND-PAIR",
+      "observation": "VT002:14はkindを対から読む。VT103:16はcomposite、VT104:16はconnection、VT105/106:16はunit。HARNESS008/009/005は要求identityごとの固有義務を保持する。",
+      "result": "seedの主な検証観点と要求kindの排他的適用を混同しない。採用時にunitのL3/L10等の義務が欠落しないかsourceとdescriptorを比較する。現時点で全seedの意味矛盾/修正必須とは判定しない。"
+    },
+    {
+      "id": "RECEIPT-TIMING",
+      "result": "VT103の下位receiptは右側検証開始のinput。知識候補の比較や左側要求形成前に実装結果を要求しない。MSG006もL1/L2技法選択の前提にしない。"
+    },
+    {
+      "id": "NA-UNKNOWN",
+      "result": "非画面選択は技術的不確実性の不存在やAWS不採用の案件判定を生成しない。unknown/N/A/未選択を分ける。"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "lines": [
+        19,
+        60
+      ],
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "span_sha256": "bb7592412649017028005405f75452a1edc59ae34eb43d215a5e7952f3c84505"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "lines": [
+        28,
+        40
+      ],
+      "sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "span_sha256": "3012940798edebfb2a7bf0944813814a9df5ff5ed7ecec9c62d431f3f16c63c3"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "lines": [
+        73,
+        79
+      ],
+      "sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "span_sha256": "2a915da30287f1fad062ca3554e1cac1a60ac7b3a88e5452845c22f48d726811"
+    }
+  ],
+  "legacy_comparison": {
+    "reuse": "semantic_rederivation",
+    "preserve": "意味正本/view分離、適用/portfolio/pair、左basisと右condition/evidenceの区別",
+    "change": "旧gate/physical evidenceではなく現行032/009/002とHARNESS005/040の責務へ照合する。旧runtime/schemaを移植しない",
+    "failure_basis": "10/10巻き戻しのseed不使用と件数/SHAのみreviewの失敗。UTW004/021/029は初回選択記録のsourceを参照。文書照合だけで機構成立としない"
+  },
+  "remaining": [
+    "案件のexact selected/used set、各N/A4属性とrequired input値",
+    "26候補のsection/field/owner/measurement/completionと032の15項目の意味対応、40card個別比較、採用revision",
+    "旧6surface/6componentのparity/portfolio/pair/renderer source移管",
+    "実依存閉包・接続identity・初回Bench/配置・環境具体化",
+    "L3再開scopeと前提機構の成立。実記録/実行/受入は未実施"
+  ]
+}
