@@ -6,7 +6,7 @@
     "HARNESS-L2-011",
     "HARNESS-L2-023"
   ],
-  "version_target_by_parent": {
+  "l2_individual_version_target_by_parent": {
     "HARNESS-L2-010": null,
     "HARNESS-L2-011": null,
     "HARNESS-L2-023": "1.0"
@@ -51,6 +51,10 @@
     {
       "path": "docs/helix-brain/candidates/first-cycle-reference-template-knowledge.json",
       "sha256": "321d1253e63a11c3b14b398138ee976e2960298d2007431808396171b2431caf"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a"
     }
   ],
   "knowledge_use": "P3FIRSTのVT103と選択SDOP19節を問い/証拠/Backflowの限定材料として使う。数値/方式/全技法/正式schemaを採用しない。知識採用を実適用としない。",
@@ -72,6 +76,29 @@
     "呼出し実運転に使う認可/隔離/資源/記録/再開のowner-qualified契約を当該操作で束縛する。",
     "実装/CI/切替/デプロイ/実行/PO L11受入は本pairの承認から成立しない。通常L3全体の再開はPO Acceptedの範囲に限る。"
   ],
+  "roster_version_scope_by_parent": {
+    "HARNESS-L2-010": {
+      "version_class": "1.0",
+      "version_intent": "1.0",
+      "version_intent_label": "1.0 target candidate",
+      "basis": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "boundary": "10/3固定rosterの起草対象区分を保持する。L2個別印の追加、release収載、実装許可を生成しない。"
+    },
+    "HARNESS-L2-011": {
+      "version_class": "1.0",
+      "version_intent": "1.0",
+      "version_intent_label": "1.0 target candidate",
+      "basis": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "boundary": "10/3固定rosterの起草対象区分を保持する。L2個別印の追加、release収載、実装許可を生成しない。"
+    },
+    "HARNESS-L2-023": {
+      "version_class": "1.0",
+      "version_intent": "1.0",
+      "version_intent_label": "1.0 target candidate",
+      "basis": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "boundary": "10/3固定rosterの起草対象区分を保持する。L2個別印の追加、release収載、実装許可を生成しない。"
+    }
+  },
   "parent_basis": [
     {
       "identity": "HARNESS-L2-010",
@@ -104,7 +131,7 @@
       "id": "HARNESS-L3-010-F01",
       "parent": "HARNESS-L2-010",
       "title": "behaviorと所有境界",
-      "obligation": "packは一つのbehavior contractまたは分割で意味を失う密結合contractのまとまりとして識別する。サービス/部品/COREの所有先を一つにする。複数サービスが利用しても所有を二重化しない。",
+      "obligation": "packは一つのbehavior contractまたは分割で意味を失う密結合contractのまとまりとして識別する。サービス/部品/COREの所有先を一つにする。複数サービスが利用しても所有を二重化しない。複数のリリース単位から使う能力は部品またはCOREに置く。",
       "oracle_ref": "HARNESS-L10-010-F01"
     },
     {
@@ -167,21 +194,21 @@
       "id": "HARNESS-L3-023-F01",
       "parent": "HARNESS-L2-023",
       "title": "4区分の意味",
-      "obligation": "依存ごとに常時必須/特定操作時のみ必須/選択した入力元に応じて必須/参照資料のみのいずれかと、その条件・owner・identity・契約版/rangeをpack revisionへ束縛する。",
+      "obligation": "依存ごとに常時必須/特定操作時のみ必須/選択した入力元に応じて必須/参照資料のみのいずれかと、その条件・owner・identity・契約版/rangeをpack revisionへ束縛する。依存区分はtarget packの機能・owner・上位要求・版成熟度を変更しない。後続版依存を1.0へ強制せず、1.0で必要な安全依存を後続版扱いにして削らない。未選択能力の1.0完成義務を削除・延期しない。",
       "oracle_ref": "HARNESS-L10-023-F01"
     },
     {
       "id": "HARNESS-L3-023-F02",
       "parent": "HARNESS-L2-023",
       "title": "条件の未知と保留",
-      "obligation": "欠落/曖昧/矛盾/stale/互換range不明をfalse・参照のみ・未選択へ変換しない。当該操作をunknown/保留として、理由とownerへ返す。",
+      "obligation": "欠落/曖昧/矛盾/stale/互換range不明をfalse・参照のみ・未選択へ変換しない。当該操作をunknown/保留として、理由とownerへ返す。依存identity/区分/条件/版rangeの不足はpack契約ownerへ戻して010改訂候補にする。operation/source/scope/権限/receipt不足や版不一致は呼出しownerへ戻して011入力修正・再実行候補にする。authority/安全条件/親scopeの未知・矛盾はauthority ownerまたはHARNESS-L1-005の利用境界の意味を持つPOへ戻す。修正と明示根拠が揃うまで該当操作を保留し、別source・手作業・参照資料へ迂回しない。",
       "oracle_ref": "HARNESS-L10-023-F02"
     },
     {
       "id": "HARNESS-L3-023-F03",
       "parent": "HARNESS-L2-023",
       "title": "選択sourceと安全依存",
-      "obligation": "選択sourceの依存は全て閉じる。未選択sourceは未観測と記録し、成功/不在/適格性を推測しない。認可/authority/隔離/排他/data-use/監査/停止復旧等の該当安全条件をoptional化しない。",
+      "obligation": "選択sourceの依存は全て閉じる。未選択sourceは未観測と記録し、成功/不在/適格性を推測しない。認可/authority/隔離/排他/data-use/監査/停止復旧等の該当安全条件をoptional化しない。credentialも該当安全条件として必須とする。実行条件、source authority、検証oracle、安全制約として効く文書を参照資料へ分類して義務を消さない。",
       "oracle_ref": "HARNESS-L10-023-F03"
     },
     {
