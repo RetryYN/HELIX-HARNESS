@@ -84,6 +84,8 @@ python3 -B scaffold/tools/scfctl.py stale
 - 資源：対象OS・interpreter・依存環境、保存先、Workerの実行制約、起動・復旧に必要な資源と観測をINFRASTRUCTURE／OSへ結ぶ。大規模cloudや全Botを一律に要求しない。
 - 計測：対象revision・環境構成・attempt、command結果、時間・負荷・失敗・未実行範囲を原記録として残す範囲を選び、LABOの評価とINTELLIGENCEの支援入力へ渡す。記録が存在するだけで改善成功にしない。
 
+初回対象の条件は[操作別の照合](requirements-first-roadmap.md#初回対象の操作別に必要条件を照合する)へ結び、知識提供・記録・実行・source観測・更新/復旧を分ける。資源観測の1.0入口LABO026と後続INFRA014を同じ完成条件にしない。
+
 選択結果と未確定契約は#2846へ保持する。これは必要条件の照合方法であり、安全・接続・資源・計測の具体scopeが既に確定した証拠ではない。
 
 ## 未構築の範囲と戻し先
