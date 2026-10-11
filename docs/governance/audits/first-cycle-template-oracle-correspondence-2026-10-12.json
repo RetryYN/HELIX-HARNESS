@@ -1,0 +1,144 @@
+{
+  "audit_id": "FIRST-CYCLE-TEMPLATE-ORACLE-CORRESPONDENCE-2026-10-12",
+  "authority_effect": "none",
+  "base": "6acade6259809f3b6fe413d0a36ef1abbebbd07c",
+  "candidate_path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+  "before_sha256": "20218fe96f26ad9a1ac6011bd7bc4b18a850d9bea2e9c4e7017a173ab7838263",
+  "after_sha256": "9d5dc696716d66d363f97a2f4b97b8e1f6a94e415dc64d5f3cff4a209b69ebd2",
+  "scope": "91fieldと、規範/制約の重複を同じsource行へ束ねた33行に対する意味照合の問い/取り違えとVT候補の原文観点参照。実oracleや正式検証設計ではない。",
+  "counts": [
+    {
+      "template": "DT-MSG-001",
+      "fields": 32,
+      "normative_or_constraint_source_lines": 9
+    },
+    {
+      "template": "DT-MSG-004",
+      "fields": 27,
+      "normative_or_constraint_source_lines": 13
+    },
+    {
+      "template": "DT-MSG-005",
+      "fields": 32,
+      "normative_or_constraint_source_lines": 11
+    }
+  ],
+  "preservation_proof": "各template traceのfield_oracle_correspondence/normative_oracle_correspondence/correspondence_boundaryだけを除去するとbase JSONとdeep equal。15descriptorの既存内容/meaning/requiredness/規範/definition_state/採否/製品値/negative/completionは不変。",
+  "source_pins": [
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-001-connection-contract.md",
+      "sha256": "94cc4a2a3f795645bf274148e47f3a2e0622643f822a1815f4068fb2f3cbfa5c"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-005-composite-architecture.md",
+      "sha256": "678e71797043d48e0f9e19c588e41cab059034fd5fe9cf5994f9d6c51d011589"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-103-l3-l10-system-verification.md",
+      "sha256": "af53fa80653b0996680399460b07679af3db2688a3fce22ec782b7eea2696d76"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-104-l4-l9-integration.md",
+      "sha256": "c262496c20c7d52197fd377616b1a6720bac6d8257132257cc0cf531d0be9526"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-105-l5-l8-detail-conformance.md",
+      "sha256": "d1b0bc1a4d18b749dd67710ac9308551e56764a5770336920a67c5a8a58cbb1b"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-106-l6-l7-tdd-closure.md",
+      "sha256": "dbbc0ab3a06676925670c509a421e30c751f3f9f77ec777013dc10e54a4dbbfa"
+    }
+  ],
+  "legacy_reads": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L4-design-template-json-authority-system-test-design.md",
+      "asset_id": "LEGACY-ASSET-B69B18EBA9D1D21370D5",
+      "sha256": "383a24892ba865ac5dc53729cf3e9fc49073aafa7dbabc3b17ee0408f3ed559a",
+      "spans": [
+        {
+          "lines": [
+            19,
+            28
+          ],
+          "sha256": "0ba8a684437dc1e7b414d3a8fe3648f46b2022c48856f2ba6295c5d449cab8e6"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "spans": [
+        {
+          "lines": [
+            28,
+            40
+          ],
+          "sha256": "3012940798edebfb2a7bf0944813814a9df5ff5ed7ecec9c62d431f3f16c63c3"
+        },
+        {
+          "lines": [
+            73,
+            79
+          ],
+          "sha256": "2a915da30287f1fad062ca3554e1cac1a60ac7b3a88e5452845c22f48d726811"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/skills/test-thinking.md",
+      "asset_id": "LEGACY-ASSET-12A39A2481B480E18FE2",
+      "sha256": "853f22744fe2cad42f5cb586d84e7198daaf01c00acbcfac56c383c220a8d545",
+      "spans": [
+        {
+          "lines": [
+            44,
+            65
+          ],
+          "sha256": "9ff3a1c101a5f918a3ac6217901cfb56d0492ac84715499c17acf5c8a4b957dc"
+        }
+      ]
+    }
+  ],
+  "legacy_comparison": {
+    "reuse_class": "semantic_rederivation",
+    "preserve": "required field/trace/negative/oracle/pair欠落を成功へしない。左のbasisと右のcondition/evidenceを分け、期待値の出所を先に確かめる。正常だけでなく時間/順序/途中/権限/失敗の取り違えを比較する。",
+    "change": "旧ST-DTJやgate/manifest/旧pair名称は流用せず現行MSGとVT候補の意味観点へ結ぶ。schema実行・hard gate・旧runtime/CIの合格を使わない。",
+    "reason": "旧の孤立greenや欄の存在で条件充足を主張する失敗を防ぎ、汎用知識比較と案件設計/実行証拠を区別する。",
+    "holding": "旧全source、旧ST-DTJ010増加gate/typed式木/renderer/parity/atomic cutoverの移管やretireを本記録から生成しない。数値や実値のoracleは要求と再開後pairで根拠付きに導く。"
+  },
+  "comparison_examples": [
+    {
+      "subject": "MSG001方向/再送/部分到達",
+      "preserved": "一方向ACKから逆方向許可を生成しない。同一再送でidentity/digest/scope/revisionを保持。未回収を成功へ丸めない。",
+      "perspective": "VT104境界/失敗伝播、VT105詳細契約"
+    },
+    {
+      "subject": "MSG004事前/事後/不変/停止区間",
+      "preserved": "入力型だけで条件を代替せず、外部作用後の不明を自動再実行しない。想定外messageは情報を伏せる。",
+      "perspective": "VT105契約/禁止遷移、VT106契約保持と期待理由のRed"
+    },
+    {
+      "subject": "MSG005全体成功/横断正本",
+      "preserved": "下位の和で全体固有義務を保証しない。失敗/不明段と先の成功をともに残す。値は元SDOP/MSGへ参照。",
+      "perspective": "VT103固有義務差分/非機能、VT104境界/所有/責務"
+    }
+  ],
+  "unknown_and_applicability_boundary": "各問い/反例は対象の適用条件で使う。unknown/値未決をN/Aや成功にせず返却先へ保持。全91欄一律必須ではない。主kind/pairは排他的ではない。具体値とcaseはCORE/対象pair、使用版/原記録はOS。VT103下位receiptは将来右側検証inputで今の知識比較前に要求しない。",
+  "remaining": [
+    "対象知識revisionの採否、参照SDOP/VT/他23seed/40cardの意味・採否と全体最小集合",
+    "15項目全体・旧6surface/componentとsource holdingの未完",
+    "実operation/sourceのscope/revision/採用状態/依存閉包、初回配置入力",
+    "案件ごとの適用/N/A4属性/製品値と実oracle/case/実行証拠"
+  ],
+  "not_proven": [
+    "新規参照keyの存在/件数は意味完全性の証拠ではなく全問い/反例の意味reviewが要る",
+    "全知識採否/seed正式化/正式schema/registry/型/演算子/設計/実装",
+    "実検証成功/環境成立/Issue close/L3再開/内部デプロイ"
+  ]
+}
