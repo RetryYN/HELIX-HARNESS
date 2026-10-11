@@ -1,0 +1,1673 @@
+{
+  "audit_id": "FIRST-CYCLE-CROSS-OWNER-CONTRACT-DEPENDENCIES-2026-10-12",
+  "base_revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+  "authority_effect": "既決の初回5操作入力元案に対する要求契約の照合。要求意味/採否/版/正式最小集合/実dependency closure/前提機構成立/L3再開/実装/CI/Issue完了を生成しない。",
+  "scope": "CORE009/OS002と、既存BRAIN部分照合/PR2925 source照合から先のowner・操作・source条件。契約参照の到達点、再訪、未選択/未発生/値未供給の境界を記録する。",
+  "classification_rule": "各nodeのcondition_and_roleはHARNESS023の4区分を意味に応じて照合した説明。contract_referencesは分類対象の意味参照であり全参照先のruntime完成が常時必須という宣言ではない。必要条件不明はunknown/保留でありN/Aではない。",
+  "span_digest_rule": "各pinはadopted source revisionの1始まりinclusiveの指定範囲。末尾空行は範囲外。LF連結、末尾空白除去、LF一つを付けてUTF-8 SHA-256。全pinに同じ規則を適用。現在の全節の採用を宣言せず、後続の未採択追補は対象外。",
+  "fixed_sections": [
+    {
+      "identity": "HARNESS-L2-009",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "9c8c208784cee65db61004a20fb3d92d123f5157",
+      "start_line": 1594,
+      "end_line": 1604,
+      "sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b"
+    },
+    {
+      "identity": "HARNESS-L2-009",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "9c8c208784cee65db61004a20fb3d92d123f5157",
+      "start_line": 1342,
+      "end_line": 1349,
+      "sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5"
+    },
+    {
+      "identity": "HELIXOS-L2-002",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "5b4369cb951f534f4d961c55ad1853118bbc101f",
+      "start_line": 1698,
+      "end_line": 1707,
+      "sha256": "98dea2842f7a3a5b26c2ab2af302a6abbd025b7ecef50998b3557ede5d78764e"
+    },
+    {
+      "identity": "HELIXOS-L2-002",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "5b4369cb951f534f4d961c55ad1853118bbc101f",
+      "start_line": 1364,
+      "end_line": 1371,
+      "sha256": "15fb77b844bf43cc4cf71db8458d7bd087eae7e4df9feaf850106b2f8465f293"
+    },
+    {
+      "identity": "HARNESS-L2-010",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 340,
+      "end_line": 350,
+      "sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4"
+    },
+    {
+      "identity": "HARNESS-L2-010",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 205,
+      "end_line": 205,
+      "sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
+    },
+    {
+      "identity": "HARNESS-L2-011",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 352,
+      "end_line": 361,
+      "sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952"
+    },
+    {
+      "identity": "HARNESS-L2-011",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 206,
+      "end_line": 206,
+      "sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
+    },
+    {
+      "identity": "HARNESS-L2-023",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 463,
+      "end_line": 497,
+      "sha256": "32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03"
+    },
+    {
+      "identity": "HARNESS-L2-023",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 219,
+      "end_line": 233,
+      "sha256": "f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+    },
+    {
+      "identity": "HARNESS-L2-022",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 447,
+      "end_line": 461,
+      "sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1"
+    },
+    {
+      "identity": "HARNESS-L2-022",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 217,
+      "end_line": 217,
+      "sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755"
+    },
+    {
+      "identity": "HARNESS-L2-025",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 544,
+      "end_line": 554,
+      "sha256": "452339e55022f3b8a15c509eb6f05a36c2c01fc10bcac616a1c757b4187df979"
+    },
+    {
+      "identity": "HARNESS-L2-025",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 342,
+      "end_line": 348,
+      "sha256": "1953d9eac34f694e0d317de37a47133546e7270eea5fbd30fe9b7433c8a3e82d"
+    },
+    {
+      "identity": "HARNESS-L2-026",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 530,
+      "end_line": 542,
+      "sha256": "d797f5d29526059783ea6e469f762b6d51373dbece7223f2941894130c73b880"
+    },
+    {
+      "identity": "HARNESS-L2-026",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 332,
+      "end_line": 340,
+      "sha256": "7a9b631d08d21e1bbefb97996fced810311a57e5ae9dce24e20326f9c84fe522"
+    },
+    {
+      "identity": "HARNESS-L2-034",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "start_line": 693,
+      "end_line": 717,
+      "sha256": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+    },
+    {
+      "identity": "HARNESS-L2-034",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "start_line": 465,
+      "end_line": 483,
+      "sha256": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+    },
+    {
+      "identity": "HARNESS-L2-040",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "start_line": 946,
+      "end_line": 955,
+      "sha256": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df"
+    },
+    {
+      "identity": "HARNESS-L2-040",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "start_line": 689,
+      "end_line": 697,
+      "sha256": "366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212"
+    },
+    {
+      "identity": "HELIXOS-L2-015",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 642,
+      "end_line": 650,
+      "sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef"
+    },
+    {
+      "identity": "HELIXOS-L2-015",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 324,
+      "end_line": 329,
+      "sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+    },
+    {
+      "identity": "HELIXOS-L2-016",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 652,
+      "end_line": 660,
+      "sha256": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743"
+    },
+    {
+      "identity": "HELIXOS-L2-016",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 331,
+      "end_line": 336,
+      "sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+    },
+    {
+      "identity": "HELIXOS-L2-017",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 662,
+      "end_line": 670,
+      "sha256": "d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df"
+    },
+    {
+      "identity": "HELIXOS-L2-017",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 338,
+      "end_line": 343,
+      "sha256": "33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a"
+    },
+    {
+      "identity": "HELIXOS-L2-018",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 672,
+      "end_line": 680,
+      "sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408"
+    },
+    {
+      "identity": "HELIXOS-L2-018",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 345,
+      "end_line": 350,
+      "sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+    },
+    {
+      "identity": "HELIXOS-L2-019",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 682,
+      "end_line": 690,
+      "sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a"
+    },
+    {
+      "identity": "HELIXOS-L2-019",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 352,
+      "end_line": 357,
+      "sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+    },
+    {
+      "identity": "HELIXOS-L2-020",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 692,
+      "end_line": 700,
+      "sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a"
+    },
+    {
+      "identity": "HELIXOS-L2-020",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 359,
+      "end_line": 364,
+      "sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
+    },
+    {
+      "identity": "HELIXOS-L2-021",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 702,
+      "end_line": 710,
+      "sha256": "0656171a926f67d47263a53cdd012b64112c6143399ab5cb4ac35d00e804dc81"
+    },
+    {
+      "identity": "HELIXOS-L2-021",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 366,
+      "end_line": 371,
+      "sha256": "21ab8d8199d2f8e1d9999a30d6502d6aa8d7dc3017fe394a3d090d4baf7a6462"
+    },
+    {
+      "identity": "HELIXOS-L2-022",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 712,
+      "end_line": 720,
+      "sha256": "0420ffc076b080ceba91b3344d149d1316c745bf36c2ea3a97e2cc07f9359aea"
+    },
+    {
+      "identity": "HELIXOS-L2-022",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 373,
+      "end_line": 378,
+      "sha256": "844a21ece8560bc7fd0cad5b1982d96027847ac07a44518a85e5eab29539c7a8"
+    },
+    {
+      "identity": "HELIXOS-L2-023",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 722,
+      "end_line": 730,
+      "sha256": "d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020"
+    },
+    {
+      "identity": "HELIXOS-L2-023",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 380,
+      "end_line": 385,
+      "sha256": "a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20"
+    },
+    {
+      "identity": "HELIXOS-L2-024",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 732,
+      "end_line": 740,
+      "sha256": "b84651c09401e2d58c50652d2e74942cbe3f485ec949d79a42255a947b075dcb"
+    },
+    {
+      "identity": "HELIXOS-L2-024",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 387,
+      "end_line": 392,
+      "sha256": "7e4f145d506c50084fcaa993a255e4dc098b4055c477f0917c1d0bccfea03e54"
+    },
+    {
+      "identity": "HELIXOS-L2-027",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 824,
+      "end_line": 845,
+      "sha256": "f0e3e68996a3f9b9cf1740413a979483f32b78dcc8cd1aca9a881d7dd7fa2d0c"
+    },
+    {
+      "identity": "HELIXOS-L2-027",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 442,
+      "end_line": 455,
+      "sha256": "d46c2a7f8c3c0c47572c1e72bc47ec2d745ccc29b7a7a17585cf7462b5c4e942"
+    },
+    {
+      "identity": "HELIXOS-L2-047",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "start_line": 1184,
+      "end_line": 1192,
+      "sha256": "e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377"
+    },
+    {
+      "identity": "HELIXOS-L2-047",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "start_line": 794,
+      "end_line": 802,
+      "sha256": "d36677691f846bfc793b1dbc2322cb047aae86a3b102e97026e0275801ec7871"
+    },
+    {
+      "identity": "HELIXOS-L2-048",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "start_line": 1194,
+      "end_line": 1202,
+      "sha256": "0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622"
+    },
+    {
+      "identity": "HELIXOS-L2-048",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "start_line": 804,
+      "end_line": 811,
+      "sha256": "543007c8f43b3372dee673dc94fdaceb3ca3d2a291dc9cbb674acac68369054d"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-001",
+      "layer": "L2",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 56,
+      "end_line": 65,
+      "sha256": "895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-001",
+      "layer": "L11",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 42,
+      "end_line": 44,
+      "sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-002",
+      "layer": "L2",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 67,
+      "end_line": 78,
+      "sha256": "ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-002",
+      "layer": "L11",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 46,
+      "end_line": 52,
+      "sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-003",
+      "layer": "L2",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 80,
+      "end_line": 89,
+      "sha256": "6eea10829958fee5807147b6a7cdd9d4e889f72fbf5b6cef24ab925e9b85bf42"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-003",
+      "layer": "L11",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 54,
+      "end_line": 56,
+      "sha256": "6390037be1dfc2e6d25634862bcb364576022ed6d779886714436cef7c778d71"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-004",
+      "layer": "L2",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 91,
+      "end_line": 100,
+      "sha256": "2a62ae83a10c379554ce2ac586edeb887256ee8742f7c8b5c53f0c6250dc41ef"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-004",
+      "layer": "L11",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 58,
+      "end_line": 60,
+      "sha256": "8c0f91f6f7631659db82240fa147cb6bf0c6a0e839dc180c5f4c86e02733e920"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-005",
+      "layer": "L2",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 102,
+      "end_line": 111,
+      "sha256": "d2e2a658c6055384b4946a6aff9840ec3a1d719f9cc6863d8fc260ff0e3af871"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-005",
+      "layer": "L11",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 62,
+      "end_line": 64,
+      "sha256": "754fd37a10da8881c3184fcc2b60a931a0331de5db746cc2a8704e5f392b9264"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-006",
+      "layer": "L2",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 115,
+      "end_line": 124,
+      "sha256": "876d54895668800e8a3f1866523fb65fb68bb7c13bad936396ecf43ecff30db7"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-006",
+      "layer": "L11",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 68,
+      "end_line": 70,
+      "sha256": "971546cffcd567e8c74ed7525e1111c1a391d5c61cb978b811da01260eebc992"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-007",
+      "layer": "L2",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 128,
+      "end_line": 137,
+      "sha256": "44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-007",
+      "layer": "L11",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 74,
+      "end_line": 76,
+      "sha256": "4ac689f38f647b61c77a8bf46c491e9b50f95294e36073379b05912c3200bed8"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-009",
+      "layer": "L2",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "start_line": 285,
+      "end_line": 295,
+      "sha256": "d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-009",
+      "layer": "L11",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "start_line": 94,
+      "end_line": 104,
+      "sha256": "07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1"
+    },
+    {
+      "identity": "HELIXLABO-L2-055",
+      "layer": "L2",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 150,
+      "end_line": 154,
+      "sha256": "7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065"
+    },
+    {
+      "identity": "HELIXLABO-L2-055",
+      "layer": "L11",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 191,
+      "end_line": 196,
+      "sha256": "f4ef263d8a969705e15987b60365228be56875b88794a76d5609a799ff7e0779"
+    },
+    {
+      "identity": "HELIXLABO-L2-054",
+      "layer": "L2",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 290,
+      "end_line": 294,
+      "sha256": "6afd3f3b015ff2064e35a2dc2840da101ea06cf40d2f255ff49bfaeb51dabc4c"
+    },
+    {
+      "identity": "HELIXLABO-L2-054",
+      "layer": "L11",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 94,
+      "end_line": 94,
+      "sha256": "325bf15f1535899d2d63c5ce09bb35afe99dcbc9596f0f2e1e5fce195a2dbf74"
+    },
+    {
+      "identity": "HELIXLABO-L2-006",
+      "layer": "L2",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 109,
+      "end_line": 115,
+      "sha256": "70efe5dee64cbfddf73ddcf4b553038f2b51a4a2bfd9b6113dca338164b2476d"
+    },
+    {
+      "identity": "HELIXLABO-L2-006",
+      "layer": "L11",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 50,
+      "end_line": 50,
+      "sha256": "b4ac64ec8fb37afed92f5a2603e9229af869fa0a480d7b092a6befc2cfe43c4f"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-010",
+      "layer": "L2",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 102,
+      "end_line": 106,
+      "sha256": "29b05afbff84475d17b9b1f0698762dab2a1be92480313833d9c8fef87d410c1"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-010",
+      "layer": "L11",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 71,
+      "end_line": 71,
+      "sha256": "fb8e588559cf58c54fd45b991e4b60f27929e0c8bd2f96bf8b57c7eed161c712"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-066",
+      "layer": "L2",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 454,
+      "end_line": 464,
+      "sha256": "4085daba7873d4cddefe498b04e59ff5b4e44ba3ec80a307537b51af601cfa69"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-066",
+      "layer": "L11",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 131,
+      "end_line": 138,
+      "sha256": "6d8b1b785f58b51c7e2ffeffa27d61c6d1fe7f58bd5c5de04a72ad7cb4e4320e"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-009",
+      "layer": "L2",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 150,
+      "end_line": 158,
+      "sha256": "8fb04c1b20003123cbcb8f1b23adaca402e0d94d784473ca63f18ecabf544a84"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-009",
+      "layer": "L11",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 33,
+      "end_line": 33,
+      "sha256": "749fcd644ce86f164a511fcef1381bbfd9aba301fccd6c6ce4d8f01e7fd7324e"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-010",
+      "layer": "L2",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 160,
+      "end_line": 168,
+      "sha256": "8d63bbbd688538d1a743705539e404b3a684d0631fcd585c74ef387bfca2fb31"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-010",
+      "layer": "L11",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 34,
+      "end_line": 34,
+      "sha256": "8c5d010b69e32c1ba25e091f8b2eb07af70988ff06190786f394fc32005a2f89"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-011",
+      "layer": "L2",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 170,
+      "end_line": 178,
+      "sha256": "dcd26abfcd8bff20835c05541fe7c3360e5e1a512679c48d6e7c53e368f22496"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-011",
+      "layer": "L11",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 35,
+      "end_line": 35,
+      "sha256": "ca300d27bd9d76885f8c7ceeb139db7d96bbca82e0b6211ac3005250dcfbdfbd"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-012",
+      "layer": "L2",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 180,
+      "end_line": 188,
+      "sha256": "a9460cd56aa398e8b553910926987e8a7affc758781f1d0967540fd39acc6e1a"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-012",
+      "layer": "L11",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 36,
+      "end_line": 36,
+      "sha256": "1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-013",
+      "layer": "L2",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 190,
+      "end_line": 198,
+      "sha256": "e6daf304f8d09b86237dde6dfb2ec99029673ef920dcbd3538c56b449edeee3e"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-013",
+      "layer": "L11",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 37,
+      "end_line": 37,
+      "sha256": "e775685b309e83121aca7eef7ac3116926920b447650fca4f1fe2a099ed03c97"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-023",
+      "layer": "L2",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 292,
+      "end_line": 300,
+      "sha256": "c2e3deb8aea7a46916c9c39943643c33e28e0487e31422f3e4e6236cf266ae35"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-023",
+      "layer": "L11",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 47,
+      "end_line": 47,
+      "sha256": "ac72a6ebd9c56464050d76be9fc0f9d0765efcff17a0adb4a91597abd41760f7"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-024",
+      "layer": "L2",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 302,
+      "end_line": 310,
+      "sha256": "2aaf5d6f20ac668b11cd8f3d1f0f10a467503cc2c6d5661a7eb4a03592ab0db7"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-024",
+      "layer": "L11",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 48,
+      "end_line": 48,
+      "sha256": "efce6df4ce18371035b1b4772da986eaf88f065ed6224546b82afd15dd49aedd"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-003",
+      "layer": "L2",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 52,
+      "end_line": 60,
+      "sha256": "dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-003",
+      "layer": "L11",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 54,
+      "end_line": 62,
+      "sha256": "202bceb56f70fbbcffa74eb5f875e38d18297003a7fc4e2b57cc6411ec3251fe"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-007",
+      "layer": "L2",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 92,
+      "end_line": 100,
+      "sha256": "80ecb820424040f016c4dba4c8ec403fdc14f9e4e90e40473df37449592bf7d1"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-007",
+      "layer": "L11",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 94,
+      "end_line": 102,
+      "sha256": "7014db4e6058e2c1d365d44abf864ddf43c5904a383accb0764f470beb7a77eb"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-008",
+      "layer": "L2",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 104,
+      "end_line": 112,
+      "sha256": "ae2457734e68f0fa49d801f485fad5b99b08945c8ba85f405306150d8d65c925"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-008",
+      "layer": "L11",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 106,
+      "end_line": 114,
+      "sha256": "d239724c79981d902c872ecdfcd76adac425e08318f64ee5ceb97d2260d5b9ae"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-025",
+      "layer": "L2",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 287,
+      "end_line": 295,
+      "sha256": "7465361b4d272cc1bf352a019272d6212a59282c938af704583ba1c0d493554c"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-025",
+      "layer": "L11",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 290,
+      "end_line": 297,
+      "sha256": "385ffc1a0f77205bc932cba48db5a889df57b2cb3545c2aef6e424f0d889ce7c"
+    }
+  ],
+  "dependency_expansion": [
+    {
+      "identity": "HARNESS-L2-009",
+      "contract_references": [
+        "HARNESS-L2-023",
+        "HARNESS-L2-004",
+        "HARNESS-L2-008"
+      ],
+      "condition_and_role": "常時必須：要求/製品scope、工程・適用契約identity/revision。選択/差戻し/意味影響比較には各操作入力、選択knowledgeにはBRAIN032/030の全required fields/版/条件が必須。H004は影響比較、H008は製品値不足の要求形成。041のsource抽出、025/026の設計構成は置換せず別操作へ残す。",
+      "pair_oracle": "同じ意味/scope/候補母集合への期待set・義務を照合し、件数/field存在だけで適合にしない。N/A4属性、unknown、4候補の返却先、局所影響を保持。"
+    },
+    {
+      "identity": "HELIXOS-L2-002",
+      "contract_references": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-023",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-024",
+        "HELIXOS-L2-048"
+      ],
+      "condition_and_role": "常時必須：記録対象project/scope/source/要求revisionと該当契約参照。template選択/使用時にset/版/CORE009出力、評価送信時に選択scope/必要入力/許可が必須。related identityの全操作が常時必須という意味ではない。",
+      "pair_oracle": "提案/選択/使用set、原event/訂正、義務未実施/不合格/未評価、受領/解決を分ける。将来結果を開始前入力にしない。"
+    },
+    {
+      "identity": "HARNESS-L2-010",
+      "contract_references": [],
+      "condition_and_role": "常時必須：behavior contract、入出力/依存/検証/版/ownerの明示。構成へ収載/更新する操作でexact set・適格性・再現/rollbackを確認する。",
+      "pair_oracle": "パック単体昇格と上位構成成立を別にし、無関係な上位未完で適格な単体を隠さない。"
+    },
+    {
+      "identity": "HARNESS-L2-011",
+      "contract_references": [
+        "HARNESS-L2-010"
+      ],
+      "condition_and_role": "利用ごとのscope/版/権限/隔離/相関進行・結果・証拠・停止再開の契約。SECURITYと各source/consumerの契約へ結ぶ。",
+      "pair_oracle": "画面/provider/path依存を固定せず、期限切れを成功にしない。HELIX本体の鍵/稼働DB/内部統制を共有しない。"
+    },
+    {
+      "identity": "HARNESS-L2-023",
+      "contract_references": [
+        "HARNESS-L2-010",
+        "HARNESS-L2-011"
+      ],
+      "condition_and_role": "常時必須：分類対象の依存宣言、operation/source/scope入力と共通契約。4区分/条件をrevisionへ束縛。分類対象の全実装完成を分類能力の成立条件にしない。",
+      "pair_oracle": "安全条件とunknownをN/A/参照扱いへ落とさず、選択source必須を閉じる。人代行も同じ義務。"
+    },
+    {
+      "identity": "HARNESS-L2-022",
+      "contract_references": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "condition_and_role": "常時必須の意味契約：traceと対の設計/段階判定。実段階判定では対象pair/oracleと実証拠が必要。成果物は015または外部適格成果であり、015の実装を一律前提にしない。",
+      "pair_oracle": "Provisional/Integrated/Verified/Acceptedを分け、下位証明のみで上位固有義務を閉じない。"
+    },
+    {
+      "identity": "HARNESS-L2-025",
+      "contract_references": [
+        "HARNESS-L2-026",
+        "HARNESS-L2-022"
+      ],
+      "condition_and_role": "設計構成体を生成/検査する操作の常時必須：026契約/receipt、承認L3 revision、CORE/template/BRAIN connector版・互換、scope/oracle。選択PatternとUIの条件は原契約どおり。009分類前に025実出力を要求しない。",
+      "pair_oracle": "相互trace/構成体invariant/failure pathを独立確認。026の成功・要素の和・片方向traceでは成立にしない。"
+    },
+    {
+      "identity": "HARNESS-L2-026",
+      "contract_references": [
+        "HARNESS-L2-009",
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HARNESS-L2-022"
+      ],
+      "condition_and_role": "設計生成の常時必須：承認L3、対象revision/template/CORE/BRAIN connector契約、対検証設計契約。Patternを使うとき全条件/反例が必須。UI対象のみprototype/screen入力。014完了への自己依存を作らない。",
+      "pair_oracle": "要求入力不足・版矛盾を補完せずH008/L3 owner/BRAIN/設計ownerへ戻す。"
+    },
+    {
+      "identity": "HARNESS-L2-034",
+      "contract_references": [
+        "HARNESS-L2-022",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "condition_and_role": "常時必須：要求revision、段階/oracle/trace、適用条件/判断出所。実測時に実行/資源/SECURITY・data-use・使用CONNECTが必須。選択比較はLABO、資源観測はINFRAへ。9/29採択revision003のNFR-REG追補を含める。AI/永続化/並行運転/異常条件の適用、risk別検証選択、時系列/effect連結を保持する。H005のticket別選択を全ticket固定CIへ変えない。",
+      "pair_oracle": "14項目・NFR identity/source/surface、target/error budget/hard limit、適用品質条件、risk別検証/測定時系列を照合。未観測/stale/非代表/未達を完成にしない。値/schema/probe・保存方式ごとの測定条件はL3へ根拠付きに残す。"
+    },
+    {
+      "identity": "HARNESS-L2-040",
+      "contract_references": [],
+      "condition_and_role": "常時必須：対象L1、canonical six-pair map、authority/source revision。catalog/snapshot操作はそのscope入力、選択template/層外anchorは正確なrevisionが必要。",
+      "pair_oracle": "catalog存在からauthority/承認/実行/completionを生成せず、025/026完了receiptを開始入力にしない。"
+    },
+    {
+      "identity": "HELIXOS-L2-015",
+      "contract_references": [],
+      "condition_and_role": "対象別正本/authority記録形式、Concept共通ログ・証拠を常時参照。判断は元source ownerへ戻す。",
+      "pair_oracle": "GH/DB/記録から要求意味/承認/実装許可を生成しない。"
+    },
+    {
+      "identity": "HELIXOS-L2-016",
+      "contract_references": [
+        "HELIXOS-L2-015"
+      ],
+      "condition_and_role": "対象HARNESS/製品正本、関係するconnection/検証/evidenceの契約と記録。初回未発生結果は未発生として保持。",
+      "pair_oracle": "未接続/未合意/未実装/未検証/未提供/unknown/staleを区別し、下位成功を上位へ自動伝播しない。"
+    },
+    {
+      "identity": "HELIXOS-L2-017",
+      "contract_references": [
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-016"
+      ],
+      "condition_and_role": "ticket/workflowの操作時必須：HARNESS工程とSECURITY authority、対象/親revision/scope/制約/依存。INT計画案/LABO材料が提供される場合はそのscope評価材料を照合。",
+      "pair_oracle": "未解決入力/依存から実行可能ticketを生成しない。1.0は定義済み工程部品の組合せ、4.0の自由組立を追加しない。"
+    },
+    {
+      "identity": "HELIXOS-L2-018",
+      "contract_references": [
+        "HELIXOS-L2-017",
+        "HELIXLABO-L2-054",
+        "HELIXLABO-L2-055",
+        "HELIXINTELLIGENCE-L2-010",
+        "HELIXINFRASTRUCTURE-L2-003",
+        "HELIXINFRASTRUCTURE-L2-025",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008"
+      ],
+      "condition_and_role": "割当・実行の操作時必須：ticket、配置案、Bench水準/未評価、SECURITY制約、INFRA資源。人代行ならINT066。将来Worker結果は開始入力にしない。未採択018 HIL-NFR-36追補を本範囲に入れない。",
+      "pair_oracle": "累積予算/期限/lease/HEAD/未完義務を継承し、作成者の自己承認を独立reviewにしない。",
+      "reference_mapping_basis": "採択018の「SECURITYの権限・制約」をSECURITY007のWorker制約と008の操作authorityへ対応付ける。018原文に番号があるという主張ではない。各契約の安全依存003/005/006/016等は未展開endpointへ保持し、省略・optional化しない。"
+    },
+    {
+      "identity": "HELIXOS-L2-019",
+      "contract_references": [
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-018"
+      ],
+      "condition_and_role": "常時必須の意味契約：authority/assignment・共通event/source/revision/相関/data-use/版付き接続/continuity。実行結果・checkpointは発生時に回収。",
+      "pair_oracle": "欠落/重複/stale/拒否/未実行を成功と分け、書込/projection/replay失敗を成功checkpointにしない。"
+    },
+    {
+      "identity": "HELIXOS-L2-020",
+      "contract_references": [
+        "HELIXOS-L2-016",
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-019",
+        "HARNESS-L2-022"
+      ],
+      "condition_and_role": "検収/CI運転操作で対象pair/oracle、実差分/base/runner・SECURITY制約/INFRA資源が必須。027の限定人確認経路を本実装の完成待ちにしない。",
+      "pair_oracle": "検証不足/oracle欠落/環境違いを未完とし、意味review/受入/merge/releaseをCI結果へ統合しない。"
+    },
+    {
+      "identity": "HELIXOS-L2-021",
+      "contract_references": [
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-016",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-020"
+      ],
+      "condition_and_role": "HARNESS構成版を対象projectへ配布/更新/復旧する操作の必要契約。該当サービス/artifact、authority/資源が必須。初回知識提供には実配布結果を前倒ししない。",
+      "pair_oracle": "021のproject配布、014のHELIX stage構成、025の全体運転を別identityで保持。今回実配布を選択/許可しない。"
+    },
+    {
+      "identity": "HELIXOS-L2-022",
+      "contract_references": [
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-016",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-017"
+      ],
+      "condition_and_role": "改善候補登録/振分け操作でLABO評価契約・対象正本・判断主体・ticket契約を参照。1.0記録土台と後続学習を分ける。",
+      "pair_oracle": "LABO proposalから要求/設計/authorityを直接変更しない。"
+    },
+    {
+      "identity": "HELIXOS-L2-023",
+      "contract_references": [
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-016",
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-020"
+      ],
+      "condition_and_role": "handoff操作で必要な各unit/interfaceとSECURITY/INFRA境界を照合。要求契約参照と各段実結果を分け、初回結果を開始前へ戻さない。",
+      "pair_oracle": "受信側の未完義務受理を元ticket完了の条件として保持。各unit成功だけで接続/構成体を成立にしない。"
+    },
+    {
+      "identity": "HELIXOS-L2-024",
+      "contract_references": [
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-021",
+        "HELIXOS-L2-022"
+      ],
+      "condition_and_role": "HARNESS提供・運用結果をLABOへ渡す場合の必要契約と版付きLABO接続/data-use。021の提供版/対象/許可scopeを落とさない。002の一般原記録traceだけで024実運転成立を主張しない。",
+      "pair_oracle": "提供/運用/評価/採否/効果を別にし、許可・data class・revision・評価範囲の不一致で当該送信を止める。"
+    },
+    {
+      "identity": "HELIXOS-L2-027",
+      "contract_references": [
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HARNESS-L2-022",
+        "HELIXINTELLIGENCE-L2-010",
+        "HELIXINTELLIGENCE-L2-066",
+        "HELIXLABO-L2-054",
+        "HELIXLABO-L2-055",
+        "HELIXSECURITY-L2-003",
+        "HELIXSECURITY-L2-005",
+        "HELIXSECURITY-L2-006",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-015",
+        "HELIXSECURITY-L2-016"
+      ],
+      "condition_and_role": "未評価初回を選ぶ場合だけ6安全条件と固定oracle/人確認分担が必須。SEC003005006007008016と該当資源を省かない。020実装を前提にせず同契約の人の証拠を使える。",
+      "pair_oracle": "性能未評価とauthority/safety/oracle不足を別にし、成功runから評価済みを生成しない。"
+    },
+    {
+      "identity": "HELIXOS-L2-047",
+      "contract_references": [
+        "HELIXOS-L2-007"
+      ],
+      "condition_and_role": "理由付き返却/再発行操作で元source/対象revision/scope、発行主体と既存ticket契約が必須。9/29採択scopeを参照し、ticket非参照境界は10/9方針を保持。",
+      "pair_oracle": "返却理由/根拠不足、元revision上書き、旧assignment/result暗黙継承を不成立にする。"
+    },
+    {
+      "identity": "HELIXOS-L2-048",
+      "contract_references": [
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-020",
+        "HELIXOS-L2-047",
+        "HELIXINTELLIGENCE-L2-010"
+      ],
+      "condition_and_role": "返却/検証不成立feedbackを評価還流する操作。LABOの範囲付き評価、次回INT配置入力は適合した評価済み証拠に限る。今回の始動に後日findingを要求しない。",
+      "pair_oracle": "未評価/未ACK/証拠不足をresolutionにせず、後日findingで元closureを書換えない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-001",
+      "contract_references": [],
+      "condition_and_role": "常時必須：各接続候補/両端ownerの契約。共通H010/011、適用scope/classification識別子。通信/再送/他接続を登録条件にしない。",
+      "pair_oracle": "登録receiptは利用許可/業務承認ではない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-002",
+      "contract_references": [
+        "HELIXCONNECT-L2-001"
+      ],
+      "condition_and_role": "互換照合に登録/両端実版/互換宣言と読取accessが必須。送信適格性照合時だけ操作authority/data-useを追加。",
+      "pair_oracle": "参照だけではsend eligibilityは未評価。不一致/staleを互換成立にしない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-003",
+      "contract_references": [
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-002"
+      ],
+      "condition_and_role": "通信操作で両端受領契約、operation/scope/相関/期限/冪等/適用許可と互換が必須。",
+      "pair_oracle": "伝送結果を業務完了にしない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-004",
+      "contract_references": [
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-002",
+        "HELIXCONNECT-L2-003"
+      ],
+      "condition_and_role": "再送操作で受信側重複排除、同じID/digest/単一契約版、上限/可否/期限/許可が必須。再送を実際に発生させることを初回送信前提にしない。",
+      "pair_oracle": "異なる内容/新revision混載/上限resetを再送成功にしない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-005",
+      "contract_references": [],
+      "condition_and_role": "操作eventと共通ログ/証拠契約を参照し、使用辺の技術traceを回収。raw payload保存は必須にしない。",
+      "pair_oracle": "trace不足/順序不明をunknownにし、不要payload/secretを複製しない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-006",
+      "contract_references": [
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-002",
+        "HARNESS-L2-010",
+        "HARNESS-L2-011"
+      ],
+      "condition_and_role": "片側交換を行う操作で固定側/旧新版/互換/未完義務/SECURITY交換復旧authorityが必須。通常初回送信に交換実施を要求しない。",
+      "pair_oracle": "両側同時変更を片側互換成功にしない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-007",
+      "contract_references": [
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-002",
+        "HELIXCONNECT-L2-003",
+        "HELIXCONNECT-L2-004",
+        "HELIXCONNECT-L2-005",
+        "HARNESS-L2-010",
+        "HARNESS-L2-011"
+      ],
+      "condition_and_role": "選択構成体を成す全辺の001〜005契約と端owner/安全条件は必須。全HELIX接続を集合へ足さない。",
+      "pair_oracle": "途中失敗/ACK欠落/互換stale/unknownを全体通信成功にしない。技術的終端と業務成立は別。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-009",
+      "contract_references": [
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-002",
+        "HELIXCONNECT-L2-004",
+        "HELIXCONNECT-L2-005",
+        "HELIXCONNECT-L2-007"
+      ],
+      "condition_and_role": "direction/order/feedbackを扱うとき適用宣言を参照。逆方向送信には独立辺/許可、loopには既存ownerのbudget/retry/停止/終端、joinには宣言条件が必須。",
+      "pair_oracle": "操作別unknownを訂正L11で分け、未選択loop/join条件不足だけで独立適格な初回辺を止めない。ACKを解決にしない。"
+    },
+    {
+      "identity": "HELIXLABO-L2-055",
+      "contract_references": [
+        "HELIXLABO-L2-001",
+        "HELIXLABO-L2-028",
+        "HELIXLABO-L2-006"
+      ],
+      "condition_and_role": "許可観測/Worker履歴のtask/model class/source/scopeと評価状態。006は比較実験が必要な場合だけ。初回に適合履歴がなければ範囲付き未評価を供給。",
+      "pair_oracle": "履歴だけで未知jobを保証せず、未評価を評価済みや割当/権限に変換しない。"
+    },
+    {
+      "identity": "HELIXLABO-L2-054",
+      "contract_references": [
+        "HELIXLABO-L2-055",
+        "HELIXINTELLIGENCE-L2-010"
+      ],
+      "condition_and_role": "Bench結果の専用INT接続操作で同じscope/根拠/未評価状態を保持。",
+      "pair_oracle": "水準生成/配置案/OS割当を別状態にし、接続途中で評価状態を変更しない。"
+    },
+    {
+      "identity": "HELIXLABO-L2-006",
+      "contract_references": [
+        "HELIXLABO-L2-005",
+        "HELIXLABO-L2-015",
+        "HELIXLABO-L2-022",
+        "HELIXLABO-L2-028"
+      ],
+      "condition_and_role": "比較実験を選ぶ場合のbaseline/current/candidate/hybrid・oracle・評価条件・OS割当とWorker結果。同条件比較は初回未評価receiptの前提にしない。",
+      "pair_oracle": "比較不能/中断/反例を成功にせず、LABOがWorkerを割り当てない。"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-010",
+      "contract_references": [
+        "HELIXLABO-L2-054",
+        "HELIXLABO-L2-055",
+        "HELIXOS-L2-017"
+      ],
+      "condition_and_role": "task identity/type/domain/complexity/context/toolsとBench evidence/Worker実績・未評価の意味契約。価格/model名/score単独で配置を決めない。",
+      "pair_oracle": "task不足→OS、Bench/evidence/scope不足→LABO。proposalと割当は別。"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-066",
+      "contract_references": [
+        "HELIXINTELLIGENCE-L2-010",
+        "HELIXLABO-L2-054",
+        "HELIXLABO-L2-055",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HARNESS-L2-010",
+        "HARNESS-L2-011"
+      ],
+      "condition_and_role": "人代行案を選ぶ場合は010と同じproposal契約、source/actor/revision/scope/時点/受領receiptが必須。INT runtimeの実行結果を偽装せず、同契約の材料を供給する。",
+      "pair_oracle": "代行案は評価実績/INT出力/実行許可/authorityを生成しない。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-009",
+      "contract_references": [
+        "HELIXSECURITY-L2-003",
+        "HELIXSECURITY-L2-005",
+        "HELIXSECURITY-L2-006",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008"
+      ],
+      "condition_and_role": "失効/scope drift/異常等の該当trigger時にOS/Worker/CONNECT/credential/artifact/INFRA各recipientへ停止を伝播。一般文書の意味unknownを全操作停止に広げない。",
+      "pair_oracle": "受領/適用/未達/未観測を分け、該当停止確認不足のまま継続しない。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-010",
+      "contract_references": [
+        "HELIXSECURITY-L2-011",
+        "HELIXSECURITY-L2-012",
+        "HELIXSECURITY-L2-013",
+        "HELIXSECURITY-L2-008"
+      ],
+      "condition_and_role": "更新を受け入れる操作時必須：対象15kindごとのprovenance/digest/能力差分/risk/rollbackとauthority。",
+      "pair_oracle": "新versionや欠落情報を根拠にacceptしない。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-011",
+      "contract_references": [
+        "HELIXSECURITY-L2-004",
+        "HELIXSECURITY-L2-010"
+      ],
+      "condition_and_role": "能力差分比較で構成identityとcandidate revisionが必須。",
+      "pair_oracle": "file hashだけでread/write/shell/network能力不変としない。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-012",
+      "contract_references": [
+        "HELIXSECURITY-L2-010",
+        "HELIXSECURITY-L2-013"
+      ],
+      "condition_and_role": "supply-chain入力選択時のsource/producer/version/digest/dependency/permission/network/risk/rollback。",
+      "pair_oracle": "未知供給元/実行能力をtrustedにしない。特定scanner/registryを追加しない。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-013",
+      "contract_references": [
+        "HELIXSECURITY-L2-010",
+        "HELIXSECURITY-L2-012",
+        "HARNESS-L2-022"
+      ],
+      "condition_and_role": "artifact生成/検証/配布/実行の同一性とHARNESS検証/OS昇格記録。段階ごとの実証拠を該当操作時に回収する。",
+      "pair_oracle": "digest一致だけでtrust/検証pass/昇格を生成しない。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-023",
+      "contract_references": [
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-010",
+        "HELIXSECURITY-L2-011",
+        "HELIXSECURITY-L2-012",
+        "HELIXSECURITY-L2-013",
+        "HARNESS-L2-022"
+      ],
+      "condition_and_role": "更新を適用/昇格する構成体でSECURITY admission→Worker→HARNESS verification→OS promotionを別状態として照合。",
+      "pair_oracle": "単一段階成功で後段実行/昇格を許可せず、途中unknownを保持。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-024",
+      "contract_references": [
+        "HELIXSECURITY-L2-005",
+        "HELIXSECURITY-L2-006",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-009"
+      ],
+      "condition_and_role": "方針を実資源へ適用する操作でINFRA L1-004/006/016/028/029と当該資源・実環境・network/credential境界の観測が必須。",
+      "pair_oracle": "方針/authorityはSECURITY、資源/actualはINFRA、制約強制はWorker環境。credentialを通常backupへ保存しない。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-003",
+      "contract_references": [
+        "HELIXINFRASTRUCTURE-L2-001"
+      ],
+      "condition_and_role": "資源/容量観測とOS/INT capacity/decision interface。起動要求時には対象CPU/memory/storage/network/model requirementsと利用可能性が必須。",
+      "pair_oracle": "unknown/stale/閾値未定をcapacity十分にしない。後続026判断接続やautoscalingを1.0依存にしない。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-007",
+      "contract_references": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-005",
+        "HELIXINFRASTRUCTURE-L2-006"
+      ],
+      "condition_and_role": "再構築操作でapproved design/artifact/data/依存/起動と検証証拠が必須。",
+      "pair_oracle": "backupや文書の存在だけでrebuildableとしない。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-008",
+      "contract_references": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-002",
+        "HARNESS-L2-026"
+      ],
+      "condition_and_role": "CORE設計からtargetを導く操作でapproved design exact revision/scopeと版付きdesign interfaceが必須。026はCORE設計能力契約の入口、他owner成果ならその適格契約を参照。",
+      "pair_oracle": "実actualを設計authorityへ変換せず、未承認/不一致でtarget確定を止める。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-025",
+      "contract_references": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-003",
+        "HELIXOS-L2-018",
+        "HELIXSECURITY-L2-003",
+        "HELIXSECURITY-L2-007"
+      ],
+      "condition_and_role": "Workerと実資源の対応操作でWorker契約/OS作業参照/SECURITY隔離と実資源/容量が必須。",
+      "pair_oracle": "資源移動でticket/要求/責務を失わず、隔離不能を成功にしない。自動最適化を必須化しない。"
+    }
+  ],
+  "five_operation_paths": [
+    {
+      "operation": "知識提供/意味導出",
+      "contract_path": "BRAIN032→019/022/030→CORE009→023→010/011。032の常時003005007008028とBRAIN内再帰はPR2932へ。",
+      "needed_now": "意味契約revisionと選択知識の採用scope、axis/母集合/義務/不足の契約。",
+      "later_input": "実query/契約range/要求値/案件exact set。実readの安全tuple/分類/実資源。"
+    },
+    {
+      "operation": "候補受渡し/原記録",
+      "contract_path": "CORE009→OS002→001/007/019/023→015〜020。選択辺CONNECT001/002/003/005。",
+      "needed_now": "提案/選択/使用set、義務/原記録/因果、受領と解決、各端の意味契約。",
+      "later_input": "実保存先・source/actor・project/義務/event/attempt、両端schema/契約版/receipt。"
+    },
+    {
+      "operation": "初回配置/Worker実行",
+      "contract_path": "OS017/018→LABO055/054→INT010（人代行時066）、OS027選択時の6条件。SECURITY003〜009/024→INFRA001/003/009/010/025。",
+      "needed_now": "task/配置材料/未評価契約、隔離・authority・資源制約、固定検証義務。",
+      "later_input": "実task/actor/Worker/environment/capacity/分類/authority/制約適用/予算/期限/oracle値。"
+    },
+    {
+      "operation": "結果/資源観測の集積",
+      "contract_path": "OS002/019/023→LABO057/028/056→055、INFRA001/004→LABO026、個別集積058→001/002/011。PR2925/r2を保持。",
+      "needed_now": "各source identity/revision/scopeと集積/相関/未観測の意味契約。",
+      "later_input": "初回実行後の結果・許可scope・抽出/除外・原記録集合。実験比較006は必要なscopeでのみ再展開。"
+    },
+    {
+      "operation": "構成更新/復旧（選択時）",
+      "contract_path": "INFRA010→005/006、再構築007→001/005/006、設計target008→001/002/CORE設計契約026。SECURITY010→011/012/013、023→007/010〜013/HARNESS検証/OS昇格。片側交換CONNECT006。",
+      "needed_now": "通常/独立復旧と更新admission・before/after・同一artifact・未完義務の契約。",
+      "later_input": "approved design/artifact/data/復旧資源/別authority/実検証/実行receipt。stage構成へ組み込むときだけOS014。実更新/内部デプロイは選択/許可していない。"
+    }
+  ],
+  "inherited_evidence": [
+    {
+      "path": "docs/governance/audits/first-cycle-brain-dependency-expansion-2026-10-12.json",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "7d09f2ff9d0b7e923d6ca89b50a76a904acaa286300f92ffad72bb78e16337dc",
+      "treatment": "独立review済み限定scopeを保持し、全体closureへ拡張しない。"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-source-prerequisites-2026-10-12.json",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "d12f1e7813c0fba911a3d62969b888017c0d1009aeeb28d2a67ad196c2585020",
+      "treatment": "独立review済み限定scopeを保持し、全体closureへ拡張しない。"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-source-prerequisites-2026-10-12-r2.json",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "ed787d9e87324735bdcfadfaee308a9a159126906c7e4513ab831b2f7a664b42",
+      "treatment": "独立review済み限定scopeを保持し、全体closureへ拡張しない。"
+    },
+    {
+      "path": "docs/governance/audits/first-allocation-input-contract-trace-2026-10-11.json",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "089ae9f3c1be2086601381296fbdb862fa98d4facfa486a11fa0c7e36b8a58b5",
+      "treatment": "独立review済み限定scopeを保持し、全体closureへ拡張しない。"
+    }
+  ],
+  "authority_records": [
+    {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    },
+    {
+      "path": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23"
+    },
+    {
+      "path": "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "5a4c8d85acc89166b68868824fdffd09e2c50810dae463e1724c5e146cc1cc05"
+    },
+    {
+      "path": "docs/governance/decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "72f5bf1931e43cfc5e455bca9a07999a60e84f82752c772464a9044c431b4537"
+    },
+    {
+      "path": "docs/governance/decisions/dev-repo-ticket-policy-po-decision-2026-10-09.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "9e35fa63a3438f909d1b660cf03573e5ae6cca8166007c9795fe3399bb9b249f"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "revision": "520cf75d55efb4597a650e9edeec22dc6f65705d",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    }
+  ],
+  "unexpanded_requirement_endpoints": [
+    {
+      "identity": "HARNESS-L2-003",
+      "reason": "既決の工程/成果物state/Backflow規律。現行TDDORDER/REDFIRST/DDDSTRICTを別decisionで保持。実test/CI実行は後続操作。"
+    },
+    {
+      "identity": "HARNESS-L2-004",
+      "reason": "要求/設計/対検証のtraceと局所意味影響。対象scopeの既存正本/relationが入力で、未知影響をUnaffectedにしない。"
+    },
+    {
+      "identity": "HARNESS-L2-005",
+      "reason": "工程/検証規律と依存方向/不変条件/実装前Red/Green/別oracle強度/結合GWT。実対象への適用は後続pair、既決規律の意味を省かない。"
+    },
+    {
+      "identity": "HARNESS-L2-008",
+      "reason": "既存要求形成routing。Concept/企画/人指示とBRAIN質問/Prototype-PoC Backflowが根拠。製品値未決を上流へ返す。旧container atom移管は未完。"
+    },
+    {
+      "identity": "HELIXLABO-L2-005",
+      "reason": "比較実験を選択した場合に再展開する評価条件契約。初回未評価材料の供給では実験を選択しない。"
+    },
+    {
+      "identity": "HELIXLABO-L2-015",
+      "reason": "比較実験を選択した場合に再展開する評価条件契約。初回未評価材料では実比較成功を開始前入力にしない。"
+    },
+    {
+      "identity": "HELIXLABO-L2-022",
+      "reason": "比較実験を選択した場合のOS assignment source接続。通常Worker観測057/028と混同しない。"
+    },
+    {
+      "identity": "HELIXOS-L2-001",
+      "reason": "合意要求/source/revision/ownerの記録。9/28既存routing条件を保持。"
+    },
+    {
+      "identity": "HELIXOS-L2-005",
+      "reason": "観測/改善候補の登録・LABOへの評価還流。効果/比較方法はLABO。後続実評価のsource/値は別入力。"
+    },
+    {
+      "identity": "HELIXOS-L2-007",
+      "reason": "共通原event/evidence/feedback lifecycle。候補、受領、解決を区別。正本/source/ownerのauthorityを上書きしない。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-003",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。隔離契約。その先のproject/環境/宣言接続、構成source・actor・assignmentの条件は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-004",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。宣言/構成integrity。その先のsource/版・対象構成/関連正本の条件は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-005",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。credential境界。その先の006/007/008・資産分類・実credential遮断/利用条件は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-006",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。egress境界。その先の016の1.0分類、CONNECT論理接続、INFRA実network経路・005/007/008条件は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-007",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。Worker制約。その先のWorker実行契約、OS assignment、INFRA実資源、003/005/006/008の依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-008",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。操作authority。その先の003/004/005/006とOS進行・有効権限/scopeの依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-001",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。資源identity/状態。その先の宣言source/CORE設計・Worker/観測契約の依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-002",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。desired/actualと承認設計。その先のCORE設計/資源状態/変更・観測の依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-005",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。変更前後/backup/restore/rollback。その先の資源/設計/SECURITY・Worker/検証条件は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-006",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。独立復旧。その先の005、独立復旧資源/path、SECURITY authorityの依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXLABO-L2-001",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。集積/provenance/状態。その先の1.0各source接続021〜030と選択source側の安全依存は未展開。058の個別呼出し条件と全source対応能力を区別し、全対応義務を消さない。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXLABO-L2-028",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。Worker観測source。その先のOS assignment/result/sourceとconnector/版/scope/data-use依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-015",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。資産identity/source来歴。OS027の6条件の第一条件から参照する。その先の原source/owner/revision/分類契約の依存は未展開。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-016",
+      "state": "既存照合の先は未展開",
+      "reason": "PR2925で採択L2/L11と入口条件を照合済み。その先の安全/資源/観測依存は本47nodeの展開には含まれない。分類の1.0基盤。OS027とSECURITY006から必要な分類source/利用許可の依存は未展開。1.x sink enforcementの前倒しはしない。",
+      "boundary": "未展開を終端成立・任意依存・参照のみ・後続の実値未供給と混同しない。#2846のG2準備として契約依存の先を照合し、実行時には該当必須条件を別途充足する。"
+    }
+  ],
+  "other_endpoints": [
+    {
+      "kind": "再訪",
+      "state": "同じ要求契約の参照へ到達",
+      "boundary": "新nodeを増やさないことは、循環実行/起動順/実証拠が成立する意味ではない。"
+    },
+    {
+      "kind": "既存上流",
+      "state": "Concept/対象L1/人判断/正本と既決規律へ到達",
+      "boundary": "要求意味の変更/旧container atom rehomeを生成せず、未分類sourceは元ownerへ返す。"
+    },
+    {
+      "kind": "個別知識/実actor/資源/通信方式",
+      "state": "選択未供給・条件unknown",
+      "boundary": "条件を参照資料/N/Aに落とさず、選択時に当該knowledge全fields・source依存・authority/安全を再帰照合。主Worker以外の追加runtime/MCP等を使う場合の既決追加条件を省かない。"
+    },
+    {
+      "kind": "実値/実結果/実版range",
+      "state": "段階に応じて未供給/未発生",
+      "boundary": "契約定義不足と値未決を分け、後の入力を現在捏造しない。実行前には該当必須を充足する。"
+    },
+    {
+      "kind": "後続操作/別能力",
+      "state": "未選択として義務保持",
+      "boundary": "個別sourceの候補昇格/Bot/全LABOsource対応/比較実験/loop/join/実配布/HELIX stage/全体運転を本scopeの成功から生成しない。OS024を実施する場合に必要な021を削除しない。"
+    },
+    {
+      "kind": "後続版",
+      "state": "元version_targetを保持",
+      "boundary": "INFRA012/014/019/026やSECURITY016 sink enforcement/019(1.x)を1.0必須にしない。必要な1.0安全/容量/相関の意味は保持。"
+    }
+  ],
+  "remaining": [
+    "PR2925で入口条件を照合したSECURITY003〜008/015/016、INFRA001/002/005/006、LABO001/028の先の安全/資源/観測契約依存を再帰照合する。未展開endpointとして保持し、参照資料や実値未供給の終端へ置換しない。LABO021〜030の対応能力と選択sourceの個別呼出しを区別する。",
+    "選択知識の意味採用範囲から初回著述の適用集合/最小親集合を固定する（参照node数では決めない）。",
+    "実operation/source/条件が未供給の枝はunknownを保持し、正式な利用要求とpack依存宣言へ束縛した再帰閉包は後続に残る。",
+    "停止中のschema/実装/検証/CI等を含む前提機構の具体的実施scope・証拠と、L3再開との順序を判断材料にする。",
+    "#2846全ticketと初回著述準備の完了を独立に照合し、本記録だけから完了/再開にしない。"
+  ],
+  "legacy_correspondence": {
+    "sources": [
+      "archive/legacy-generation-2026-09-14/root/CLAUDE.md:49-63",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md:23-67",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:19-60",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md:65-90",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:245-252,369-375 (LEGACY-ASSET-02319C2481B9E01698D5)",
+      "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt:354-360"
+    ],
+    "retained": "仕組み先行、意味と外部作用の分離、明示集合、必要安全依存、局所/接続/構成体の別検収、版/trace/Backflow。UTW-014/021に対しunknown/未観測を空集合や完成にしない。",
+    "changed": "旧固定runtime/schema/DB/層番号を移さず現行ownerと操作/source条件へ意味再導出。",
+    "reason": "初回提供・適用・案件追跡の契約参照と、後続実証拠/未選択能力を分けて要件定義の親を整理するため。新しい規則/gate/承認者を追加しない。"
+  },
+  "authority_reading_correction": {
+    "identity": "HARNESS-L2-034",
+    "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "registration": "MPR-RC-HARNESS-L2-034-003",
+    "L2_sha256": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+    "L11_sha256": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
+    "coverage": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+    "result": "本文の250候補から採択を継承しない/未採択追補というmetadataは判断前。9/29の003対象digestはNFR-REG追補を含む。今回の意味照合から追補を除外しない。新しい採用/再承認ではない。"
+  },
+  "review_corrections": {
+    "request": "GOV2933CROSSOWNERDEPENDENCYREVIEW01",
+    "comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2933#issuecomment-6111815343",
+    "F1": "12件とSECURITY015/016の未展開範囲をendpoint/remainingへ明記。47nodeの完了をG2全体完了にしない。",
+    "F2": "OS018へ007/008を意味対応として、OS027へ明示安全条件003/005/006/007/008/015/016を参照edgeとして保持。"
+  }
+}

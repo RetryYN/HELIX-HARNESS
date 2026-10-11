@@ -203,6 +203,25 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 
 旧CLAUDE:49〜63、旧functional-release-slice-requests:23〜67の明示集合・必要安全依存・局所／全体分離を起点に、現行契約の操作／source条件へ意味再導出する。旧runtimeを継承せず、新しい要求・版・承認手続きは加えない。旧弱点UTW-014/021に対し、未観測・未完・部分照合を全体成立へ変えない。
 
+### CORE・OSと周辺契約への横断依存照合
+
+[横断照合記録](audits/first-cycle-cross-owner-contract-dependencies-2026-10-12.json)は、初回5操作の入力元案をCORE009／OS002から先へたどり、47identityの契約参照・操作条件・対oracleと、採択対象L2／L11の94箇所を記録する。BRAIN側の部分照合、PR2925と訂正r2、初回配置の照合を引き継ぐ。47/94は照合範囲であり、必須実装数・正式な最小親集合ではない。実利用要求へのoperation/source/版range束縛と実証拠の閉包は未成立である。
+
+| 主経路と横断先 | 必要な契約と、実入力・証拠を使う時点 |
+|---|---|
+| CORE009→023→010/011、影響→004、不足→008 | 要求scope・適用契約・候補母集合・選択knowledgeの条件を照合する。041のsource抽出と025/026の設計構成を009の意味処理で置換しない。実設計生成では承認L3と対oracleが必要で、その成功receiptを009の分類前に要求しない |
+| OS002→001/007/019/023→015〜020 | source authority、原記録・訂正・continuity、handoff、検証義務の契約を参照する。未発生結果は開始後に回収し、ACKを解決、候補setを使用setにしない。OS019/023のassignment・結果契約は省かない |
+| OS018→LABO055/054→INT010、必要時066/OS027 | Bench水準/未評価、task属性、配置案、OS割当を分ける。比較実験006は必要な評価scopeでのみ展開し、初回未評価receiptのために比較成功を捏造しない。人代行も同じ契約・receiptと6安全条件を満たす必要がある |
+| 選択辺→CONNECT001〜005、構成体007、交換006、方向/feedback009 | 両端契約・互換・操作authority・冪等・traceを辺ごとに閉じる。全必須辺の契約と構成体固有条件は保持する。実再送・交換・loop/joinは当該操作の条件であり、後段条件不足を独立して適格な初回辺の不成立へ戻さない |
+| SECURITY007/008→009/024、実資源→INFRA003/025 | 失効等の該当triggerでは停止伝播を照合する。方針/authority、実資源/actual、Worker制約強制を別ownerに保ち、容量unknownや未適用制約を実行可能にしない。実資源・分類・actor・authority・制約適用証拠は未供給 |
+| 更新→SECURITY010〜013/023、復旧→INFRA005〜008/010 | admission・隔離実行・検証・昇格を別状態にし、同一artifactとbefore/after・復旧先を追う。CORE設計契約と承認済み実designを区別する。独立復旧に停止中OSの通常応答を要求しない。実更新/配布/内部デプロイは選択・許可していない |
+| OS002評価trace→005/024/048、024→019/021/022 | OS024のHARNESS提供版・対象・許可scopeと021への依存を削らない。一般原記録の追跡だけで024の実運転成立を主張しない。後日findingや比較評価・改善効果は発生時の入力で、初回候補提供前の証拠ではない |
+| 計測→HARNESS034→022/003/004/005、source観測→INFRA/LABO | 9/29採択revision003はNFR-REG追補を含む。本文の「未採択追補」「250候補の採択は継承しない」は判断前metadataであり、[固定decision](decisions/po-decision-2026-09-29-57candidates.md)の003節digestと[被覆receipt](audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json)から現行採否を読む。14項目に加えidentity/source/surface、閾値の区別、AI/永続化/並行性/異常条件/risk別手法/時系列の適用を落とさず、実値・probe・測定方式は根拠付きに後続へ残す |
+
+記録には、PR2925で入口条件を照合したSECURITY003〜008/015/016、INFRA001/002/005/006、LABO001/028の先の**未展開の安全・資源・観測依存**が残る。これらを未展開endpointへ明記し、終端成立・参照のみ・実値未供給と混同しない。SECURITY006の分類/CONNECT/実network、007のWorker/assignment/実資源、008の安全/OS依存、INFRA006の独立復旧/authority、LABO001の021〜030 source接続等はG2の残件として照合する。その他の記録上の到達点は、同じ契約への再訪、既存Concept/L1/正本、別操作の未選択枝、後続版境界、実値・結果の未供給/未発生である。未供給の条件をfalse/N/A/参照扱いにせず、利用要求が具体化した時点で必要sourceの依存を再展開する。既存工程・要求形成routingの条件と旧atomの未完を保持し、参照先の契約を実機構の完成へ読み替えない。実実行・安全適用・評価を開始する時には、該当する必須条件と証拠を別途充足する。
+
+残る準備は、上記の未展開の契約依存の照合、限定採用済み知識を初回の著述へ当てる適用集合/最小親集合、停止中の前提機構の具体scope・証拠とL3再開の順序、#2846全作業との独立照合である。この横断照合だけから依存閉包全体・前提成立・要件定義開始可能・Issue完了を宣言しない。旧CLAUDE:49〜63、旧functional-release-slice:23〜67、旧JSON authority:19〜60と旧弱点UTW-014/021を起点に意味再導出し、旧NFR-REGのsource/revisionを保持する。新しい要求・版・gate・承認者は加えない。
+
 ### 初回配置に供給する入力と未評価状態
 
 初回の配置材料を、採択済みの[OS要求](../helix-os/L2-requirements/governance-requirements.md)／[対受入](../helix-os/L11-acceptance/governance-acceptance.md)（018・019・023・027）、[LABO要求](../helix-labo/L2-requirements/labo-requirements.md)／[対受入](../helix-labo/L11-acceptance/labo-acceptance.md)（028・054〜057）、[INTELLIGENCE要求](../helix-intelligence/L2-requirements/intelligence-requirements.md)／[対受入](../helix-intelligence/L11-acceptance/intelligence-acceptance.md)（010・061・066）へ戻して整理する。[固定本文の照合記録](audits/first-allocation-input-contract-trace-2026-10-11.json)は9/28の採択revisionと現在の本文を比較する。以下は対象案件へ供給する内容と順序の整理であり、実ticket、配置案、権限、実行記録を作った証拠ではない。要求の実装依存と、意味契約を参照する依存も区別する。
