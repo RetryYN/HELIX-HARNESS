@@ -7,7 +7,9 @@
     "HARNESS-L2-023",
     "HARNESS-L2-052",
     "HARNESS-L2-053",
-    "HARNESS-L2-009"
+    "HARNESS-L2-009",
+    "HARNESS-L2-005",
+    "HARNESS-L2-015"
   ],
   "l2_individual_version_target_by_parent": {
     "HARNESS-L2-010": null,
@@ -15,12 +17,14 @@
     "HARNESS-L2-023": "1.0",
     "HARNESS-L2-052": "1.0",
     "HARNESS-L2-053": "1.0",
-    "HARNESS-L2-009": "1.0"
+    "HARNESS-L2-009": "1.0",
+    "HARNESS-L2-005": "1.0",
+    "HARNESS-L2-015": "1.0"
   },
   "status": "draft_not_approved",
   "authority_effect": "none_until_exact_revision_delegated_approval",
   "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
-  "scope": "限定前提構築が参照する共通pack境界・呼出し・条件別依存とcommand意味identity・asset identity/意味revision照合のpair。既存Stage/親の版を変更せず、初回3主対象と周辺機構の全能力を混載しない。追加scopeは初回Stage1のCORE009製品template適用。既存31組は保持する。",
+  "scope": "限定前提構築が参照する共通pack境界・呼出し・条件別依存とcommand意味identity・asset identity/意味revision照合のpair。既存Stage/親の版を変更せず、初回3主対象と周辺機構の全能力を混載しない。追加scopeは初回Stage1のCORE009製品template適用。既存31組は保持する。追加scopeは10/12限定前提の005検証規範と015の実装前TDD順序契約。既存42組は不変。015全能力のStage2b運転やCI実行を前倒ししない。",
   "source_pins": [
     {
       "path": "docs/concept/helix-concept.md",
@@ -93,6 +97,22 @@
     {
       "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
       "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/governance/decisions/dddstrict-adoption-po-decision-2026-10-11.md",
+      "sha256": "5bf5652f37b71ed1c21850b8c88358a4d18202d6c1ecb5b237691589f42258cd"
+    },
+    {
+      "path": "docs/governance/decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md",
+      "sha256": "72f5bf1931e43cfc5e455bca9a07999a60e84f82752c772464a9044c431b4537"
+    },
+    {
+      "path": "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+      "sha256": "5a4c8d85acc89166b68868824fdffd09e2c50810dae463e1724c5e146cc1cc05"
+    },
+    {
+      "path": "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md",
+      "sha256": "650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea"
     }
   ],
   "knowledge_use": "P3FIRSTのVT103と選択SDOP19節を問い/証拠/Backflowの限定材料として使う。数値/方式/全技法/正式schemaを採用しない。知識採用を実適用としない。",
@@ -149,13 +169,57 @@
       "preserve": "exact set、適用性未知、不足Backflow、N/A根拠、trace/pair/revisionの照合",
       "change": "汎用知識はBRAIN、製品適用はCORE、記録はOSへ再導出。旧式木/registry digest/instance digest一致/旧plannerは採用しない。",
       "reason": "固定COREAPPLYが分離したownerと限定8facet/保留3facetに従う。旧本文の38/39/42locatorの訂正は判断記録を参照。"
+    },
+    "verification_norms": {
+      "sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+          "lines": [
+            33,
+            81
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+          "lines": [
+            21,
+            55
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
+          "lines": [
+            29,
+            62
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "lines": [
+            319,
+            319
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md",
+          "lines": [
+            10,
+            11
+          ]
+        }
+      ],
+      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
+      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
+      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "source_limit": "HCV4-L11-003/004は現行L11の移管条件を起点とする。archive/root/docsでIDと語句を検索したが直接の旧原文行は未特定であり、現行crosswalkを旧原文の代替出典にしない。NIO候補全件の採用ではなく現行005へ移管済みの回復結果分離を具体化する。"
     }
   },
   "remaining": [
-    "053の042参照は未決、JSON原子確定のOS053、命名/trace/対/DDD-TDD等は別pairで起草・承認する。",
+    "053の042参照は未決。OS053は別pairの承認記録へ結ぶ。005/015の検証規範は本pairで起草し、旧固有GreenDefinition/history等の未移管範囲を別に保持する。命名/trace/対などの未成立owner契約と実物bindingは残る。",
     "呼出し実運転に使う認可/隔離/資源/記録/再開のowner-qualified契約を当該操作で束縛する。",
     "実装/CI/切替/デプロイ/実行/PO L11受入は本pairの承認から成立しない。通常L3全体の再開はPO Acceptedの範囲に限る。",
-    "CORE009はBRAIN032/030・HARNESS041/025/026/004/008等のowner-qualified契約と実使用版を適用操作で束縛する。OS002の案件記録と安全/資源/計測・実物受入は未成立。"
+    "CORE009はBRAIN032/030・HARNESS041/025/026/004/008等のowner-qualified契約と実使用版を適用操作で束縛する。OS002の案件記録と安全/資源/計測・実物受入は未成立。",
+    "005/015は検証条件の規範。実CI/対設計/凍結/実装前Red/Green/独立実証とowner-qualified exact bindingは未成立。命名/trace/工程/受入/安全/接続/資源/観測の残る前提契約を閉じる。"
   ],
   "roster_version_scope_by_parent": {
     "HARNESS-L2-010": {
@@ -195,6 +259,18 @@
       "version_target": "1.0",
       "basis": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
       "scope_basis": "初回3主対象のStage1は10/12再開判断を使用。既存routing合意とCOREAPPLYを保持する。"
+    },
+    "HARNESS-L2-005": {
+      "version_target": "1.0",
+      "sequence_stage": null,
+      "basis": "10/10規律版判断で既決1.0。DDDSTRICTはその版を保持し、歴史的Stage未割当は別軸で保持",
+      "scope_basis": "10/12前提形成へ必要な検証規範のみ著述する。全旧atomのsuccessorや全能力stage割当ではない。"
+    },
+    "HARNESS-L2-015": {
+      "version_target": "1.0",
+      "sequence_stage": "Stage 2b",
+      "basis": "9/28対象候補と10/10規律版判断、10/3 order",
+      "scope_basis": "10/12初回限定前提のTDD順序規範を先行著述。歴史的Stage2bの全能力をStage1へ変更しない。"
     }
   },
   "parent_basis": [
@@ -247,6 +323,36 @@
       "supplement_section_sha256": "8c5ac0bb8580044f1cc256eda103b79bc0e9d91416e70a535a12d08c6ae3100b",
       "supplement_l11_section_sha256": "70608d09ce23e6d67b8f34a4c6f68fb32334e0e483c422125f7b6fe093c842e5",
       "boundary": "既存routing表/Design Template節/対受入条件と、固定COREAPPLYの一identity追補を併せて用いる。提示commitを適用後bytesのrevisionにしない。"
+    },
+    {
+      "identity": "HARNESS-L2-005",
+      "routing_decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+      "current_l2": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "current_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "decisions": [
+        "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+        "docs/governance/decisions/dddstrict-adoption-po-decision-2026-10-11.md",
+        "docs/governance/decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md",
+        "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+        "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md"
+      ],
+      "boundary": "005の既存kind別義務/CI選定省略回収/独立性とDDDSTRICT5規律、015の元候補/TDDORDERをREDFIRST Aで訂正した実装前Red順序/単独利用/quality-firstを併用する。REDFIRST Bは採用しない。既存範囲を削減しない。"
+    },
+    {
+      "identity": "HARNESS-L2-015",
+      "routing_decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+      "current_l2": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "current_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "decisions": [
+        "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+        "docs/governance/decisions/dddstrict-adoption-po-decision-2026-10-11.md",
+        "docs/governance/decisions/tdd-order-requirement-resolution-po-decision-2026-10-10.md",
+        "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+        "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md"
+      ],
+      "boundary": "005の既存kind別義務/CI選定省略回収/独立性とDDDSTRICT5規律、015の元候補/TDDORDERをREDFIRST Aで訂正した実装前Red順序/単独利用/quality-firstを併用する。REDFIRST Bは採用しない。既存範囲を削減しない。"
     }
   ],
   "operation_scope_boundary": "初回の053はidentity/意味revisionと供給された記録の照合を扱う。042参照未決とrename/move/split/merge/supersede/Design Refactor実操作の非選択は再開案unresolved_inputsに従って保持する。",
@@ -471,6 +577,97 @@
       "title": "局所影響とOSの記録",
       "obligation": "HARNESS004の局所影響を守り、無関係な有効scopeの作業を保持する。案件の実使用版/state/event/stale記録と未完義務消込はOSへ残し、COREが直接更新しない。",
       "oracle_ref": "HARNESS-L10-009-F08"
+    },
+    {
+      "id": "HARNESS-L3-005-F01",
+      "parent": "HARNESS-L2-005",
+      "title": "対象と検証条件",
+      "obligation": "ticketとの関係（Forward小/中/大、V-pair、触るconnector、変更種別）と変更内容/layer/riskから、対象要求revision・artifact・入力・oracle・expected failure・実結果・証拠の有効期限・差戻し先を含む検証義務を導く。required/conditional/informational/N/Aを理由付きで区別し、unknownをskipへ変えない。",
+      "oracle_ref": "HARNESS-L10-005-F01"
+    },
+    {
+      "id": "HARNESS-L3-005-F02",
+      "parent": "HARNESS-L2-005",
+      "title": "構造別義務と差分証明",
+      "obligation": "unitは単体、connectionは境界/結合、compositeはシステム固有のoracle/expected failure/証拠条件を持つ。下位proofと組合せ契約を証拠に積み上げ、上位固有義務の差分を証明する。下位proofで表せない固有非機能は別証明し、下位proof/組合せ契約が揃い未解決固有義務が無いことを契約で示せる場合は機械導出してよい。",
+      "oracle_ref": "HARNESS-L10-005-F02"
+    },
+    {
+      "id": "HARNESS-L3-005-F03",
+      "parent": "HARNESS-L2-005",
+      "title": "ticket起点のCI範囲と省略回収",
+      "obligation": "PR前CIはForward小=原子、中=境界/触るconnector、大=システム証明を基本に、認証/DB migration/security/release等の高riskでは小さくても上位証明を早めに求める。ticket範囲外変更は止める。省略検査を記録し小→中/大、中→大の合流先ticketで回収する。未回収はRelease Portで止め、merge直後全件/夜間補完を既定にしない。",
+      "oracle_ref": "HARNESS-L10-005-F03"
+    },
+    {
+      "id": "HARNESS-L3-005-F04",
+      "parent": "HARNESS-L2-005",
+      "title": "密結合と後日失敗の還流",
+      "obligation": "影響が広がる密結合では当該PRで影響する接続/composite検査を広げ、成立まで合流しない。その後は恒常的にCIを重くせず設計不具合としてDesign-refactor発行の材料へ戻す。すり抜けて後日見つかった失敗は証拠付きrelationで閉じた元ticketへ接続し、元のcompletion/closureを保存したまま追補assessmentを保持する。LABOが原子CI/connector契約不足を評価する入力へ結び。",
+      "oracle_ref": "HARNESS-L10-005-F04"
+    },
+    {
+      "id": "HARNESS-L3-005-F05",
+      "parent": "HARNESS-L2-005",
+      "title": "宣言依存方向の照合",
+      "obligation": "適用domainでは設計ownerが宣言した依存方向表/循環条件を対象revisionと設計authority状態へ結ぶ。禁止方向/循環は不成立、変更が必要なら設計ownerへ戻す。表/適用状態不明を補完せず、検証規範から構成/境界を決めない。旧HELIX固有lint/runtime/schema/CLI方向表を外部製品へ必須化しない。",
+      "oracle_ref": "HARNESS-L10-005-F05"
+    },
+    {
+      "id": "HARNESS-L3-005-F06",
+      "parent": "HARNESS-L2-005",
+      "title": "domain不変条件のoracle trace",
+      "obligation": "適用scopeの宣言された各domain不変条件を、同じ対象の単体検証設計の明示oracle identityへ結ぶ。欠落/未解決/別revision/別条件だけを検証するoracleは当該不変条件の被覆に数えず、traceの存在で振る舞い成功を生成しない。",
+      "oracle_ref": "HARNESS-L10-005-F06"
+    },
+    {
+      "id": "HARNESS-L3-005-F07",
+      "parent": "HARNESS-L2-005",
+      "title": "TDDの実観測と順序",
+      "obligation": "TDD適用scopeでは意図した欠陥を検出したRedと凍結oracleを最小実装で満たしたGreenの実観測を同じ対象/oracleへ結び、欠落/時系列不明/Greenより後のRedを拒否する。003/015の実装前凍結とREDFIRSTの実装前Redを保持し、静的reviewや人の受入全般にRed実行を拡張しない。",
+      "oracle_ref": "HARNESS-L10-005-F07"
+    },
+    {
+      "id": "HARNESS-L3-005-F08",
+      "parent": "HARNESS-L2-005",
+      "title": "具体的behaviorを判定するoracle",
+      "obligation": "単体testは具体的な期待behaviorを判定する明示assertionまたは同等oracleを持つ。実行のみ/assertionなし/期待behaviorを判定しないtruthinessのみを十分とせず、実装から期待値を逆算して正本にしない。oracle不足は対設計ownerへ戻し、library/assertion syntaxを固定しない。",
+      "oracle_ref": "HARNESS-L10-005-F08"
+    },
+    {
+      "id": "HARNESS-L3-005-F09",
+      "parent": "HARNESS-L2-005",
+      "title": "結合のGiven/When/Then",
+      "obligation": "適用結合検証では前提状態/入力、操作/事象、期待観測を別々に識別し、境界/依存/失敗経路と同じpair oracleへ結ぶ。旧L8/L9表記は保持し、現行pair/kindへの対応を入力契約で示して使う。層番号だけで対応済みにしない。",
+      "oracle_ref": "HARNESS-L10-005-F09"
+    },
+    {
+      "id": "HARNESS-L3-015-F01",
+      "parent": "HARNESS-L2-015",
+      "title": "凍結済み対契約を入力",
+      "obligation": "L6契約/L5詳細設計と対test/oracleを実装前に定義・凍結し、対象identity/revision/scopeへ結ぶ。test後付け/定義凍結だけを実Redにせず、コアの工程/検証契約を参照する。",
+      "oracle_ref": "HARNESS-L10-015-F01"
+    },
+    {
+      "id": "HARNESS-L3-015-F02",
+      "parent": "HARNESS-L2-015",
+      "title": "本体変更前のRed実観測",
+      "obligation": "新規実装では対象behaviorが未実装、既存改修では本体変更前の未修正revisionに対し、凍結testが意図した不足/欠陥を検出する実装前Redを実観測する。環境/構文障害など無関係な失敗をRedにしない。実装後のmutation検出は005のoracle強度の別証拠として保持する。",
+      "oracle_ref": "HARNESS-L10-015-F02"
+    },
+    {
+      "id": "HARNESS-L3-015-F03",
+      "parent": "HARNESS-L2-015",
+      "title": "最小Greenと局所Refactor",
+      "obligation": "実装前Redの後に最小本体実装で同じ凍結oracleを満たすGreen証拠を得て、局所Refactorと原子CIまでを閉じる。局所Refactorはpublic contract/要求/architecture意味/state意味を変えず、変更が必要ならBackflowする。",
+      "oracle_ref": "HARNESS-L10-015-F03"
+    },
+    {
+      "id": "HARNESS-L3-015-F04",
+      "parent": "HARNESS-L2-015",
+      "title": "双方向traceとProvisional上限",
+      "obligation": "コードと設計/testの双方向traceを同じ対象revisionへ結び、④開発単独の出力をProvisionalとする。Integrated以降はコア検証/受入022との組合せを必要とし、原子CI greenを品質/システム/利用者受入/Releaseの成立にしない。",
+      "oracle_ref": "HARNESS-L10-015-F04"
     }
   ],
   "base_l3_l10_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902"
