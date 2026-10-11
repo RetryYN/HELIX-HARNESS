@@ -124,6 +124,36 @@ BRAIN→CORE、CORE→OS、検収→Backflowの各辺は別のconnectionであ�
 
 この表の各入口にはさらに依存がある。選択したoperation/sourceごとにHARNESS023の4区分へ当て、常時必須・操作時必須・選択source必須を閉じる。ここでは一段の照合先を示しただけで、全周辺要求の再帰的閉包・採用revision・実装成立は未検証である。未選択は未観測として保持し、必須の安全条件をoptionalにしない。
 
+### 初回配置に供給する入力と未評価状態
+
+初回の配置材料を、採択済みの[OS要求](../helix-os/L2-requirements/governance-requirements.md)／[対受入](../helix-os/L11-acceptance/governance-acceptance.md)（018・019・023・027）、[LABO要求](../helix-labo/L2-requirements/labo-requirements.md)／[対受入](../helix-labo/L11-acceptance/labo-acceptance.md)（028・054〜057）、[INTELLIGENCE要求](../helix-intelligence/L2-requirements/intelligence-requirements.md)／[対受入](../helix-intelligence/L11-acceptance/intelligence-acceptance.md)（010・061・066）へ戻して整理する。[固定本文の照合記録](audits/first-allocation-input-contract-trace-2026-10-11.json)は9/28の採択revisionと現在の本文を比較する。以下は対象案件へ供給する内容と順序の整理であり、実ticket、配置案、権限、実行記録を作った証拠ではない。要求の実装依存と、意味契約を参照する依存も区別する。
+
+| 時点・操作 | 初回対象へ供給する入力とそのowner | HARNESS023の条件別分類・成立の限界 |
+|---|---|---|
+| taskの具体化（OS017→018） | BRAIN032／CORE009／OS002のうち作業する責務、要求revisionとscope、task type/domain/complexity/context/tool requirement、必要なWorker capability、予算・期限・停止条件、HARNESS検証義務・oracleをOS ticketへ結ぶ | assignmentには常時必須。属性をprovider名や現在のGUI割当から推測しない。実task値と承認対象oracleは未供給 |
+| 性能材料の提示（LABO055→054） | 使うtask/model class、許可されたWorker履歴source/revision、評価範囲・期間・根拠・評価状態を供給する。対象に使える履歴が無ければ、そのscopeを明示した「未評価」を供給する | 選択した履歴sourceは必須。履歴なしとsource不明を混同せず、既存GUIのreview/merge記録を製品Workerの性能水準へ転用しない。水準生成はLABO、配置案はINTELLIGENCE |
+| 配置候補の供給（INT010→OS018、必要時066） | INT010の同じ入力/契約revision/scopeで、候補Workerとcapability/version、根拠、除外理由、未評価/unknown、source revision、作成actor/時点を含む案を供給し、OS受領actor/時点を記録する | 配置案はassignmentに必須。INT実装が出力できない場合の人代行は066の操作時必須条件を使う。案の同契約receiptを供給し、INT実装の存在・出力を偽装しない。代行担当と実案は未指定 |
+| 未評価からの限定初回（OS027→018） | 下記6条件、限定Worker、狭いscope、予算・期限・停止条件、固定検証義務、人の確認分担を同じtask/attemptへ結ぶ | この限定経路を使う場合だけ027の条件が必須。性能が明示的に未評価という理由だけでは拒否しない一方、authority・安全・oracleの不足は保留。通常経路の一般免除にしない |
+| 実行後の観測受渡し（OS018/019/023→LABO057→028/056） | ticket/task/assignment/attempt、要求/Worker/契約revision、scope、成功/失敗/拒否/中断/unknown、検証、人確認、data-use、未完義務を同じsource result/receiptへ結ぶ | 実行後の当該Worker sourceでは必須。開始前に結果を要求しない。057はCONNECT契約または同じidentity/版/scope・ACK/trace・重複抑止・stale停止・同一ID再送を満たす明示的な人手receiptを使える。027はrun構成のprovenance参照で、057の実行依存にしない |
+| 範囲付き評価と次回案（LABO056/055→054→INT010/061→OS018） | 対象task/model classとscopeの採用評価oracle/基準revision、判定/比較条件、結果・失敗/反例・unknown、実適用結果と根拠・評価者/時点/receiptを供給する | 評価済み化の操作時必須。観測受領や単発成功からqualifiedにしない。根拠が足りなければ未評価を保ち、次回も同条件の限定経路か成立した通常経路を別に照合する |
+
+未評価時に許されるのは、OS027の次の**6条件すべて**と他の開始入力が成立した限定経路である。これは既決の条件への照合で、新しい一般リスク分類や承認手続きを作るものではない。
+
+| 条件 | 選択対象で照合する内容・既存owner |
+|---|---|
+| 資産分類と利用許可 | 読込・入力・生成/出力の全資産のidentity/owner/source/revision、公開範囲とdata-useをSECURITY015/016へ結ぶ。unknown・secret・HELIX-restrictedを含めない。他分類も公開許可ではない。生成予定物の事前分類/出力scopeと、生成後差分を照合する |
+| credential遮断 | SECURITY005/007でcredential-useやraw secretの入出力を必要とせず、credentialへのアクセスが遮断されている。credentialを要する仕事はこの限定経路から除く |
+| 通信の限定 | SECURITY006で通信なし、または必要なdestination/protocol/path・data分類・量・purpose・authority・expiryに一致する明示許可だけを使う。未確認先への再送を許さない |
+| 実環境への適用 | SECURITY003/007のproject/tenant/environment/assignment隔離、write path・network・credential・環境変数・timeout・resource limit・差分検査・rollback・結果回収を、INFRAの実資源とWorker環境へ適用し、証拠を確認する。未適用/unsupportedやhost fallbackは成立にしない |
+| 操作ごとのauthority | SECURITY008のactor/target/operation/revision/environment/scope/expiryに一致する既存許可を全操作へ照合する。人代行案や性能未評価を許可の代わりにしない |
+| 取り消せる変更 | 許可scope内の変更前状態・復旧手段・復旧先を事前に確認し、不可逆な外部作用、release、tag、配布を含めない。復旧可能性不明も対象外で、人確認だけで免除しない |
+
+初回対象のBRAIN/CORE/OS資産だからpublic／非restrictedとは推定しない。対象資産の分類・利用許可・実環境適用はまだ供給されていないため、この循環に027を利用できるとの判定は未成立である。利用できなければ、通常の018の材料・authority・安全依存を充足する経路へ戻し、027の条件を弱めない。人の代行と確認も実担当・対象・revision・scope・receiptが要り、この文書から人に作業を割り当てない。
+
+これにより初回の供給経路は既決契約から特定できるが、案件のinput値、代行/確認担当、実評価oracle、資産分類、制約適用、各辺の契約版・受領証拠は未供給である。CORE→OSの固有接続identityと実使用operation/sourceの安全・接続・資源・計測の依存閉包も引き続き未完。#2905段落3、#2846、L3再開、製品setup成立をこの照合から完了にしない。
+
+旧RLO-FR-040:663〜666とRLO-AC-030:907、旧受入:43の未評価明示・scoreによるauthority非変更を保持する。旧provider defaultの固定policyや旧runtimeを採用せず、9/27補強の「性能評価なし」と「許可なし」の分離を9/28採択の027・066・056/057で意味再導出する。変更理由は現行のLABO水準・INT配置案・OS割当の責務を保った初回材料の整理であり、同じ既決要求の再承認を求めることではない。
+
 ### templateと再開順序に残る入力
 
 - 非画面という対象条件だけでSEEDFIRSTを全面適用しない。技術的不確実性の有無を要求ごとに確認し、合致した要求/受入部分に限りVT001/VT102とC01/C02/C08/C26の限定知識を使う。UI/PoCの非適用判定、required inputの値、適用者・revision・再評価条件はまだ案件値として与えていない。
