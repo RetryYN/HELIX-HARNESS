@@ -201,7 +201,7 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 
 ### 初回対象と既存Stageの差を照合する
 
-[Stage対応の照合記録](audits/first-cycle-stage-correspondence-2026-10-12.json)は、主対象・共通契約・既に照合した操作/初回配置の44identityを10/3固定rosterへ対応付ける。41件に既存配属があり、主対象3件は固定roster外である。これは比較した参照集合であり、初回の必須集合や有効依存閉包ではない。
+[Stage対応の照合記録](audits/first-cycle-stage-correspondence-2026-10-12.json)は、主対象・共通契約・既に照合した操作/初回配置の45identityを10/3固定rosterへ対応付ける。42件に既存配属があり、主対象3件は固定roster外である。これは比較した参照集合であり、初回の必須集合や有効依存閉包ではない。
 
 | 対象 | 固定rosterとの関係 | 今回保持する境界 |
 |---|---|---|
@@ -213,7 +213,7 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 | BRAIN030、LABO026/028/054、INT061 | Stage 4、2b、5に分かれる | 意味参照・選択source入力・実outputを分け、Stage番号だけを実行条件にしない |
 | INFRA012/014 | 1.0より後 | 初回へ前倒しせず、SECURITY007とLABO026の必要条件は保持 |
 
-10/3の履歴・374件の分母・承認parentは不変とする。今回の照合は3件を新たなStageへ配属するものではない。必要知識と選択operation/sourceを照合した次の再開順序・scope固定案で扱い、10/10巻き戻しのPO条件へ戻す。現行L3以下の停止、MSGCONTENT未回答、#2846の未完を保持する。
+10/3の履歴・374件の分母・承認parentは不変とする。[件数訂正](audits/first-cycle-stage-correspondence-2026-10-12-r2.json)は、元記録の文章にあった44/41を配列どおり45/42へ訂正する。今回の照合は3件を新たなStageへ配属するものではない。必要知識と選択operation/sourceを照合した次の再開順序・scope固定案で扱い、10/10巻き戻しのPO条件へ戻す。現行L3以下の停止、MSGCONTENT未回答、#2846の未完を保持する。
 
 ## 既存の作業と正本
 

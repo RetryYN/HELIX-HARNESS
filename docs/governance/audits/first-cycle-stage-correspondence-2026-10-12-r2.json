@@ -1,0 +1,21 @@
+{
+  "audit_id": "FIRST-CYCLE-STAGE-CORRESPONDENCE-2026-10-12-R2",
+  "authority_effect": "none",
+  "corrects": {
+    "path": "docs/governance/audits/first-cycle-stage-correspondence-2026-10-12.json",
+    "sha256": "3208147807eb94a2b4ca5c13934c5f890d7fcb3d33bf9da4daf8409636701b07",
+    "recorded_revision": "ec3ffaf6223573d8bd238b8fe6e56ca84660d497"
+  },
+  "correction": "元記録のscope/findingに44/41と記載した件数は誤り。comparison配列は45identity、42件の固定Stage対応と3件の固定roster外主対象である。配列のidentity/Stage/原record digestと3件の意味は訂正不要。",
+  "counts": {
+    "compared": 45,
+    "present_in_fixed_roster": 42,
+    "absent_principal_subjects": 3
+  },
+  "missing_principal_subjects": [
+    "HARNESS-L2-009",
+    "HELIXBRAIN-L2-032",
+    "HELIXOS-L2-002"
+  ],
+  "reason": "元記録生成時に表示文へ件数を固定記入して誤った。配列を再計算し訂正。旧374件のroster/採否/版/配属と再開scopeは不変。"
+}
