@@ -1,0 +1,455 @@
+{
+  "authority_effect": "none",
+  "scope": "初回対象BRAIN032→CORE009→OS002の配置入力供給経路と未評価状態。案件入力・実行・全dependency閉包の証拠ではない。",
+  "base_revision": "e216193d8a7d939d12b9e26ec11cd19b486fe2af",
+  "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "sections": [
+    {
+      "identity": "HELIXOS-L2-018",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "current_lines": [
+        674,
+        683
+      ],
+      "current_section_sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
+      "adopted_lines": [
+        672,
+        681
+      ],
+      "adopted_section_sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXOS-L2-019",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "current_lines": [
+        684,
+        693
+      ],
+      "current_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+      "adopted_lines": [
+        682,
+        691
+      ],
+      "adopted_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXOS-L2-023",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "current_lines": [
+        724,
+        733
+      ],
+      "current_section_sha256": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248",
+      "adopted_lines": [
+        722,
+        731
+      ],
+      "adopted_section_sha256": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXOS-L2-027",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "current_lines": [
+        826,
+        848
+      ],
+      "current_section_sha256": "49cd7c1512f292a292908d42c6af02024f5b7b0a89d7176e2c691720c27703c6",
+      "adopted_lines": [
+        824,
+        846
+      ],
+      "adopted_section_sha256": "49cd7c1512f292a292908d42c6af02024f5b7b0a89d7176e2c691720c27703c6",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXOS-L2-018",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "current_lines": [
+        345,
+        351
+      ],
+      "current_section_sha256": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891",
+      "adopted_lines": [
+        345,
+        351
+      ],
+      "adopted_section_sha256": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXOS-L2-019",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "current_lines": [
+        352,
+        358
+      ],
+      "current_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
+      "adopted_lines": [
+        352,
+        358
+      ],
+      "adopted_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXOS-L2-023",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "current_lines": [
+        380,
+        386
+      ],
+      "current_section_sha256": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d",
+      "adopted_lines": [
+        380,
+        386
+      ],
+      "adopted_section_sha256": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXOS-L2-027",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "current_lines": [
+        442,
+        456
+      ],
+      "current_section_sha256": "a2ae828eaa67210d5b6a38de065d989a5addfd5676f0408d6564fa318bb541c2",
+      "adopted_lines": [
+        442,
+        456
+      ],
+      "adopted_section_sha256": "a2ae828eaa67210d5b6a38de065d989a5addfd5676f0408d6564fa318bb541c2",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXLABO-L2-028",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "current_lines": [
+        231,
+        234
+      ],
+      "current_section_sha256": "672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd",
+      "adopted_lines": [
+        231,
+        234
+      ],
+      "adopted_section_sha256": "672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXLABO-L2-054",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "current_lines": [
+        290,
+        295
+      ],
+      "current_section_sha256": "ed36ee1f061bb4f70ce6c590c019d5eae594c08ca19de6d3f719e99026018373",
+      "adopted_lines": [
+        290,
+        295
+      ],
+      "adopted_section_sha256": "ed36ee1f061bb4f70ce6c590c019d5eae594c08ca19de6d3f719e99026018373",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXLABO-L2-055",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "current_lines": [
+        150,
+        155
+      ],
+      "current_section_sha256": "f6c97eeef48634ec11fc36f849763a35da358f5ce89490f6c785c9f67b4575c7",
+      "adopted_lines": [
+        150,
+        155
+      ],
+      "adopted_section_sha256": "f6c97eeef48634ec11fc36f849763a35da358f5ce89490f6c785c9f67b4575c7",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXLABO-L2-056",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "current_lines": [
+        379,
+        390
+      ],
+      "current_section_sha256": "d8d9c30b52c338580f535a913a4b04d67f0d3d59d79eb2645ed33c911b1621c7",
+      "adopted_lines": [
+        379,
+        390
+      ],
+      "adopted_section_sha256": "d8d9c30b52c338580f535a913a4b04d67f0d3d59d79eb2645ed33c911b1621c7",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXLABO-L2-057",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "current_lines": [
+        391,
+        402
+      ],
+      "current_section_sha256": "d5a62f8588867f80e17e1931f7570c72c89f28eedfd30a5aa9a368fbaba8004d",
+      "adopted_lines": [
+        391,
+        402
+      ],
+      "adopted_section_sha256": "d5a62f8588867f80e17e1931f7570c72c89f28eedfd30a5aa9a368fbaba8004d",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXLABO-L2-055",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "current_lines": [
+        191,
+        197
+      ],
+      "current_section_sha256": "c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c",
+      "adopted_lines": [
+        191,
+        197
+      ],
+      "adopted_section_sha256": "c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXLABO-L2-056",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "current_lines": [
+        138,
+        147
+      ],
+      "current_section_sha256": "b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed",
+      "adopted_lines": [
+        138,
+        147
+      ],
+      "adopted_section_sha256": "b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXLABO-L2-057",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "current_lines": [
+        148,
+        155
+      ],
+      "current_section_sha256": "ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60",
+      "adopted_lines": [
+        148,
+        155
+      ],
+      "adopted_section_sha256": "ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-010",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "current_lines": [
+        102,
+        107
+      ],
+      "current_section_sha256": "bb5239d4bcd59c2d9c125704c26ba3dad3ce45d4d9acd55eb662f060e25924dd",
+      "adopted_lines": [
+        102,
+        107
+      ],
+      "adopted_section_sha256": "bb5239d4bcd59c2d9c125704c26ba3dad3ce45d4d9acd55eb662f060e25924dd",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-061",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "current_lines": [
+        360,
+        365
+      ],
+      "current_section_sha256": "861843e4eef3fa6be5f1220bded6a1e7df995d28e9d8e3577802f0657465bc95",
+      "adopted_lines": [
+        360,
+        365
+      ],
+      "adopted_section_sha256": "861843e4eef3fa6be5f1220bded6a1e7df995d28e9d8e3577802f0657465bc95",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-066",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "current_lines": [
+        454,
+        465
+      ],
+      "current_section_sha256": "e7b52b1bd92d6ff3fb47acbfd13e119c590cc7d6dc472e6eb96d32864f3d23c4",
+      "adopted_lines": [
+        454,
+        465
+      ],
+      "adopted_section_sha256": "e7b52b1bd92d6ff3fb47acbfd13e119c590cc7d6dc472e6eb96d32864f3d23c4",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-066",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "current_lines": [
+        131,
+        139
+      ],
+      "current_section_sha256": "7969c17ed59308cc1c052b7a2ffb246e5cf92d8cdcad5bc12f4ad2545d9fc0f1",
+      "adopted_lines": [
+        131,
+        139
+      ],
+      "adopted_section_sha256": "7969c17ed59308cc1c052b7a2ffb246e5cf92d8cdcad5bc12f4ad2545d9fc0f1",
+      "byte_equal": true
+    }
+  ],
+  "artifact_kind": "static_upstream_contract_trace",
+  "legacy_reuse": "意味再導出。旧未評価/authority非変更を保持し、旧provider default・runtimeを採用しない。",
+  "rows": [
+    {
+      "identity": "HELIXLABO-L2-028",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "current_line": 79,
+      "adopted_line": 79,
+      "line_sha256": "208b35f2bdc5a3e2586b819e1e6dc1e1b77930b6dac44dacb79fa6a4e8e99781",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXLABO-L2-054",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "current_line": 94,
+      "adopted_line": 94,
+      "line_sha256": "325bf15f1535899d2d63c5ce09bb35afe99dcbc9596f0f2e1e5fce195a2dbf74",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-010",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "current_line": 71,
+      "adopted_line": 71,
+      "line_sha256": "fb8e588559cf58c54fd45b991e4b60f27929e0c8bd2f96bf8b57c7eed161c712",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-010",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "current_line": 163,
+      "adopted_line": 163,
+      "line_sha256": "a27a934f442d8ae650deca348885f0d9eee5158e2bc17c550c731df8de0b98c2",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-061",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "current_line": 115,
+      "adopted_line": 115,
+      "line_sha256": "74a9c747c8373032002c0382319aabbbec5d708a5906386e93b37b97177e35ca",
+      "byte_equal": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-061",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "current_line": 282,
+      "adopted_line": 282,
+      "line_sha256": "5a8306f8f14bb3322fd5497fc502b29daf0e8c89b090b5365d0eb2d2ef04413b",
+      "byte_equal": true
+    }
+  ],
+  "input_pins": [
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "path": "docs/governance/decisions/first-development-target-selection-po-decision-2026-10-11.md",
+      "sha256": "f63a64350d25216c22cc56bff73baf513f51c371323fd9026c84d372aef62407"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    },
+    {
+      "path": "docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md",
+      "sha256": "cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78"
+    }
+  ],
+  "legacy_reads": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "spans": [
+        {
+          "lines": [
+            663,
+            666
+          ],
+          "sha256": "e5491837b6d6df74cc5fbc66e93706c298df1d7520b660f8eb3f128db39a5769"
+        },
+        {
+          "lines": [
+            907,
+            907
+          ],
+          "sha256": "306bafdf5f989bf2803f86592a50e2b59fb5e8c3f095e4fe5051cf5f7b930bdb"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "spans": [
+        {
+          "lines": [
+            43,
+            43
+          ],
+          "sha256": "bb2ffab864ed73e12178b85b2245118672d59fce09ab411abce3adf53107ff00"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "spans": [
+        {
+          "lines": [
+            23,
+            67
+          ],
+          "sha256": "0b640473d25bde7bab525a6c9f0f7b924ac94f54dfb828d44bd176a9beee31d3"
+        }
+      ]
+    }
+  ],
+  "meaning_checks": [
+    "性能未評価と実行許可を分離する。未評価を拒否の唯一の理由にもqualifiedにも変えない。",
+    "INT066の人代行は同010契約/入力/版/scopeとreceipt。assignment・LABO評価・権限は代行しない。",
+    "OS027六条件と全開始入力の積。BRAIN/CORE/OS資産をpublicと推定せず、実適用unknownでは利用不可。",
+    "OS018/019/023結果は実行後LABO057へ。027を057のdependencyにしない。",
+    "LABO観測受領・単発成功・oracle存在から評価済みを生成しない。実適用結果/根拠/評価者/時点/receiptと範囲を保持する。",
+    "人手receiptは057で規定する方式だけであり、他辺のCONNECT依存を人手で迂回しない。"
+  ],
+  "not_proven": [
+    "実案件task/source/input値・代行/確認担当・操作authority・資産分類・Worker制約適用",
+    "実評価oracle/実績と受渡しreceipt",
+    "CORE→OS固有接続identityとoperation/sourceの全有効依存閉包",
+    "template全体最小集合、知識候補採用、L3再開、製品setup/実装/CI/内部デプロイ、Issue完了"
+  ]
+}

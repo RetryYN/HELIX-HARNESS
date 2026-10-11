@@ -98,7 +98,7 @@ python3 -B scaffold/tools/scfctl.py stale
 | 配置・型・lint・format | BRAINのknowledge契約、COREの適用単体、OSの案件追跡単体、各connection/compositeを責務に沿って分け、型契約・正常/負例/unknownと対検証を各ownerへ結ぶ。意味JSONと生成表示、原記録とprojection、検証設計と実行testを区別する | 既決配置基本案から各パックのpath・schema・型・tool commandと対象集合を導出。formatterは意味採用や記録訂正を代行しない。具体toolと設定は未選定 |
 | 環境変数・安全 | 各consumerの入力探索、版/scope選択、記録先、接続、実行制約を識別し、未設定時のunknown/拒否とownerを示す。Pythonの探索名等は前表の調査候補のまま。通常意味処理へcredentialを渡す前提を置かない | 必須/任意の変数名、scope、consumer、欠落時の扱いを設計で列挙。secret値は記録しない。SECURITYの認可・隔離・egressをINFRA/Workerで実適用できることを別に検証 |
 | ローカル検証・再現 | BRAIN032の15項目・不足/値未決、CORE009の適用集合/N/A/影響、OS002の原記録からの再構築を、それぞれのL11へ戻す。接続の版不一致・未受領・別scope、構成体の部分成功も別に扱う | 要件と対検証、凍結test/oracle、クリーン環境の固定依存復元、実装前Red/Green、独立review。具体fixtureとtoolは未構築。scfctlをこの製品検証へ代用しない |
-| 初回割当・資源・計測 | OS018のLABO水準/INTELLIGENCE配置案を保持し、Worker/資源/attemptの対応、操作のauthority、時間・費用・負荷・失敗・未観測の原記録を選択scopeへ結ぶ | 初回Bench入力、適用水準/配置案の根拠、資源容量/制限値、測定方式とLABO評価scopeは未確定。未評価を適格へ変換して環境構築を始めない |
+| 初回割当・資源・計測 | OS018のLABO水準/INTELLIGENCE配置案を保持し、Worker/資源/attemptの対応、操作のauthority、時間・費用・負荷・失敗・未観測の原記録を選択scopeへ結ぶ | 初回の供給経路と未評価の限定条件は[配置入力の照合](requirements-first-roadmap.md#初回配置に供給する入力と未評価状態)を使う。実task/source/根拠・担当、資源容量/制限値、測定方式と評価scopeは未供給。性能未評価をqualifiedへ変えず、authority・安全・oracle不足も補完しない |
 | setup・更新・復旧 | 各単体と辺を別の成立結果で確かめるsetup材料を用意し、旧新構成・検証対象artifact・使用版とOS案件記録を結ぶ。更新失敗時は適格な現用構成と原記録を保つ | 独立復旧資源、戻し先の構成/data互換、再接続・起動・復旧oracle、実setup/restore結果。段階構成の検証と内部デプロイは別事象・許可。単体成功だけで内部循環全体のsetup成立にしない |
 
 対象選択後の照合でも、上の6行の責務・必要条件は選択対象に対応する一方、右欄の具体値と実依存の閉包は未確定である。初回Bench入力と配置案、接続identity、template集合の不足を#2846と各ownerへ残す。この対応だけで#2905を閉じず、ticket全体の完了条件を独立reviewで照合する。具体的な言語版・tool・設定の確定と実再現は後続設計・構築へ残る。対象案の安全/接続/資源/計測と初回配置の照合入口はロードマップの周辺契約表にあり、一段の照合先を有効依存閉包の完成へ変換しない。
