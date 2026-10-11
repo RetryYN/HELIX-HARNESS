@@ -187,6 +187,22 @@ SECURITY007のWorker隔離・資源制約は初回実行に適用する一方、
 
 旧functional-release-slice-requests:23〜67の明示集合・局所/全体・必要安全閉包、旧CLAUDE:49〜63の意味/外部作用分離、旧弱点UTW-021を起点に、現行ownerと利用条件へ意味再導出した。変更は入力元案と依存条件を具体化する点に限り、要求意味・版・許可・新しいgateは追加しない。
 
+### BRAINの提供契約から先の条件別依存照合
+
+[部分照合記録](audits/first-cycle-brain-dependency-expansion-2026-10-12.json)は、BRAIN032の提供・COREへの返却からBRAIN側20identityの意味契約参照を展開し、L2と対L11の40箇所を採択revisionと比較する。20/40はこの記録の参照数であり、正式な最小集合・全横断閉包ではない。CORE009・OS002と共通／安全／接続／資源／計測の横断再帰は未完で、上記PR2925の照合を置き換えない。
+
+| 入口からの経路 | 条件と到達点 |
+|---|---|
+| 032→003→002→001、005→001/002 | 適用条件・階層・relationの意味を参照し、各親L1とConceptの境界へ戻す。全Domainの知識充実は初回の入力条件にしない |
+| 032→007/008、007→011/025/020、008→028/018/019/025 | 出所・版・state・製品固有意味との分離は保持する。取込み／評価／昇格の実receiptは、その操作を行う時点の条件として残す。P3FIRST採用をruntime promotionにしない |
+| 032→019/022/030、019→004→012→019/021/022 | COREへ返す操作でquery・選択知識の全required fields・版・scope・受領契約を照合する。012のauthority分離は保持し、021のINTELLIGENCE queryは別操作として残す |
+| 028→008/HARNESS010/011、022/030→HARNESS009 | BRAIN側の再訪identityは同じ契約へ戻り、新nodeを増やさない。共通descriptorとCORE受領契約は次の横断照合へ接続する。循環やhash一致から起動順・実接続成立を推定しない |
+| CORE由来候補／LABO評価を選ぶ入力→018/020/025→009/010/011/012 | 選択sourceの出所、評価対象revision、scope、反例、未評価範囲を落とさない。Infrastructure maturityを扱う場合のINFRA-017、未選択の個別知識や外部操作は条件付きendpointとして保持し、選択時に再展開する |
+
+この部分照合は、契約参照を「全参照先のruntime完成が常時必須」と読み替えないための整理である。unknownの選択条件をN/Aや参照資料へ落とさず、選択時には必要条件を照合する。将来の受渡し先の完了receiptを候補提供前の入力へ戻さない一方、必要な定義欠落・版不整合を正常receiptで補わない。CORE・OS側の未供給値と返却先、横断endpointの再帰、停止中の前提機構の具体範囲は引き続き#2846へ残す。
+
+旧CLAUDE:49〜63、旧functional-release-slice-requests:23〜67の明示集合・必要安全依存・局所／全体分離を起点に、現行契約の操作／source条件へ意味再導出する。旧runtimeを継承せず、新しい要求・版・承認手続きは加えない。旧弱点UTW-014/021に対し、未観測・未完・部分照合を全体成立へ変えない。
+
 ### 初回配置に供給する入力と未評価状態
 
 初回の配置材料を、採択済みの[OS要求](../helix-os/L2-requirements/governance-requirements.md)／[対受入](../helix-os/L11-acceptance/governance-acceptance.md)（018・019・023・027）、[LABO要求](../helix-labo/L2-requirements/labo-requirements.md)／[対受入](../helix-labo/L11-acceptance/labo-acceptance.md)（028・054〜057）、[INTELLIGENCE要求](../helix-intelligence/L2-requirements/intelligence-requirements.md)／[対受入](../helix-intelligence/L11-acceptance/intelligence-acceptance.md)（010・061・066）へ戻して整理する。[固定本文の照合記録](audits/first-allocation-input-contract-trace-2026-10-11.json)は9/28の採択revisionと現在の本文を比較する。以下は対象案件へ供給する内容と順序の整理であり、実ticket、配置案、権限、実行記録を作った証拠ではない。要求の実装依存と、意味契約を参照する依存も区別する。

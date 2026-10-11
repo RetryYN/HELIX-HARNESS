@@ -1,0 +1,869 @@
+{
+  "audit_id": "FIRST-CYCLE-BRAIN-DEPENDENCY-EXPANSION-2026-10-12",
+  "base_revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+  "authority_effect": "要求準備の部分照合。採否・版・正式最小集合・全横断閉包・L3再開・schema・実装・実行・機構成立を生成しない。",
+  "scope": "初回BRAIN032の知識提供とCOREへの返却から、BRAIN側の意味契約参照を再帰展開。G2全体のうちBRAIN側。CORE/OS/共通・安全・接続・資源・計測の横断再帰は未完。",
+  "classification_basis": "HARNESS023の常時必須/特定操作時のみ必須/選択した入力元に応じて必須/参照資料のみ。contract_referencesは意味参照であり、全参照先のruntime完成を常時必須とする宣言ではない。",
+  "fixed_sections": [
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-001",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 84,
+      "end_line": 93,
+      "sha256": "e708841bf5f5560a96915866d68dd4d37cd663bb250e61084e1d19ebf2eb4abf",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 84,
+      "adopted_end_line": 93,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-002",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 95,
+      "end_line": 104,
+      "sha256": "6ea1c1d2d7808649aaa553fbc6afcf814e72eeb24a0e83caf89c7d043fe70039",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 95,
+      "adopted_end_line": 104,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-003",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 106,
+      "end_line": 115,
+      "sha256": "0c9aa2e7b9c84e47147fc40fb2893ae58a7bbd08b5975dc925299a184824dc56",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 106,
+      "adopted_end_line": 115,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-004",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 117,
+      "end_line": 126,
+      "sha256": "ea1ad035c22d4c34626ec52cea621e47f304c66f97c0f44507a01e1325a3686b",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 117,
+      "adopted_end_line": 126,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-005",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 128,
+      "end_line": 137,
+      "sha256": "120d16b39c985bd7f62efe6974a71849cad4cb0f234c395a509dc6793ddd9ff0",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 128,
+      "adopted_end_line": 137,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-007",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 150,
+      "end_line": 159,
+      "sha256": "9584e757b02bf75f698a055eedb9df6d72aa7bdc07e82808fd92d786861c24ee",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 150,
+      "adopted_end_line": 159,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-008",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 161,
+      "end_line": 170,
+      "sha256": "90cc1f814eda48b0da887912b3a0862b94291e3264cd6c84225d14e19bc0900e",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 161,
+      "adopted_end_line": 170,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-009",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 172,
+      "end_line": 181,
+      "sha256": "2357966979f49c70ea6881fddd664a9f121dc43849f8b2889768f931c5e89d01",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 172,
+      "adopted_end_line": 181,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-010",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 183,
+      "end_line": 192,
+      "sha256": "bb9b45219db15affd84fd2098e37930da414358e9170f42d9f308143a3090b2a",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 183,
+      "adopted_end_line": 192,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-011",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 194,
+      "end_line": 203,
+      "sha256": "726a83d698826a4376d6cf8bb47be6a10de671776d27d0b219ada48a38b77091",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 194,
+      "adopted_end_line": 203,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-012",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 205,
+      "end_line": 214,
+      "sha256": "f574ca7fda5b129544983c786c5c5881fa7c479e00d96cdeaa60757b7964493f",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 205,
+      "adopted_end_line": 214,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-018",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 394,
+      "end_line": 402,
+      "sha256": "ae31cde4ec8dd5a0fa336b4161e68771344ce30ca42bd0ee375845e032481e29",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 394,
+      "adopted_end_line": 402,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-019",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 404,
+      "end_line": 412,
+      "sha256": "8502faa7d18a6668ebaa852cd7b09700544574816253b4705dc87f7ac83ad786",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 404,
+      "adopted_end_line": 412,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-020",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 414,
+      "end_line": 422,
+      "sha256": "2b6f40a524fa611797652318ee4eb6e986727d8f3abea9a3063669d28c51cc1d",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 414,
+      "adopted_end_line": 422,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-021",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 424,
+      "end_line": 432,
+      "sha256": "6908ff21f39e72df2dd6cfa0f71b9c1d4a9e7d693896835bdf2ef24e5e1ab38a",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 424,
+      "adopted_end_line": 432,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-022",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 434,
+      "end_line": 442,
+      "sha256": "c199e33e57a16d7199e7e8d15804c08736e0838ec2469d88b5f343285c0960e8",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 434,
+      "adopted_end_line": 442,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-025",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 464,
+      "end_line": 472,
+      "sha256": "dad26c150491fb7b31b6297acffd119b6390a675d79d2feedcc61fc0d857db12",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 464,
+      "adopted_end_line": 472,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-028",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 494,
+      "end_line": 502,
+      "sha256": "e3d58bda2215f1a5aeb846d7160f31d832c8e46866a8a53c5e8115664cd72df8",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 494,
+      "adopted_end_line": 502,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-030",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 575,
+      "end_line": 584,
+      "sha256": "2a5c1cb842fa1f431d6a07a23506ef4304671b9b407b32527684ddfed987a2a0",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 575,
+      "adopted_end_line": 584,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "identity": "HELIXBRAIN-L2-032",
+      "layer": "L2",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 599,
+      "end_line": 610,
+      "sha256": "f096552717f3b648477433e01df5533788e2ca2ead6bfdb5e24d32d364ac3e48",
+      "adopted_revision": "a518bcc63ce0252edface6c99b8ac8c647e9340c",
+      "adopted_start_line": 599,
+      "adopted_end_line": 610,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-001",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 29,
+      "end_line": 29,
+      "sha256": "ec39e3a80fddc529db9431b6124817f0eef9d5b0cdf291ff4bcfa8926add1834",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 29,
+      "adopted_end_line": 29,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-002",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 30,
+      "end_line": 30,
+      "sha256": "7d42d53aa64d43765a52521af16a924cfaf74a8e232f102161869c767cb82756",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 30,
+      "adopted_end_line": 30,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-003",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 31,
+      "end_line": 31,
+      "sha256": "6d275b94b4e42f48730dd934f7ee025f357ff64fb4aaa479ca06919a0c543156",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 31,
+      "adopted_end_line": 31,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-004",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 32,
+      "end_line": 32,
+      "sha256": "7d5f1bc00d42a6a0d0582a43f6db0d86f037c4c875fcaf0d805e3e57f35c14ac",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 32,
+      "adopted_end_line": 32,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-005",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 33,
+      "end_line": 33,
+      "sha256": "e147986e41c25adbfa95ad2c395658058922f921fd9214b5a08cb802ca1c1917",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 33,
+      "adopted_end_line": 33,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-007",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 35,
+      "end_line": 35,
+      "sha256": "10d2eca8689ebae8e517fe59ec8ae5586b9410dc3acec5d70fa39e1b9a551a3f",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 35,
+      "adopted_end_line": 35,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-008",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 36,
+      "end_line": 36,
+      "sha256": "28e9f53fbd07098f7ffbf66216d59c7a58eb5e773083894b0451152ffb69ee3e",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 36,
+      "adopted_end_line": 36,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-009",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 37,
+      "end_line": 37,
+      "sha256": "e547ea632dbfa78b7cbc732642ad6c860ee072dfa4e6a73c8a3053533d627817",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 37,
+      "adopted_end_line": 37,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-010",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 38,
+      "end_line": 38,
+      "sha256": "885d2a34d5c05c01e6c192f12c1add9b7e35f505d4722c3c0e59af6d9cc4a650",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 38,
+      "adopted_end_line": 38,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-011",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 39,
+      "end_line": 39,
+      "sha256": "0f6702b067bacfd28d5ceca6cd3c046edae2deb10cd4ed701647aac37a1e93c8",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 39,
+      "adopted_end_line": 39,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-012",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 40,
+      "end_line": 40,
+      "sha256": "f332f7974002d1d73fe5bc5b12c24d988913fd66717e4d6915dacc6eea238a27",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 40,
+      "adopted_end_line": 40,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-018",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 58,
+      "end_line": 58,
+      "sha256": "028fea2baa9ee9a199c8207ec22e0fd9344a525460ed1db29b5214cb730152b9",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 58,
+      "adopted_end_line": 58,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-019",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 59,
+      "end_line": 59,
+      "sha256": "bd35e9df0c69f1cbf061193c67cbb44ac991a484cf6b143155f61eabe6319152",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 59,
+      "adopted_end_line": 59,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-020",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 60,
+      "end_line": 60,
+      "sha256": "a2e14b5a11026650f650dcc5d622fae8b5526342c7a198f7a80bb258ed45f3a4",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 60,
+      "adopted_end_line": 60,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-021",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 61,
+      "end_line": 61,
+      "sha256": "b2049bccaa192a54e930af64845a43a504e53b7a71a4a55650002bcdac60444f",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 61,
+      "adopted_end_line": 61,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-022",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 62,
+      "end_line": 62,
+      "sha256": "0ce688f2e9115c2ae76f188a209862ed2a64088cdda85c930f4c828236f70258",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 62,
+      "adopted_end_line": 62,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-025",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 65,
+      "end_line": 65,
+      "sha256": "820a9905a103a6993004f6db6bfad8222091898c704a56eb51e865c75a81b895",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 65,
+      "adopted_end_line": 65,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-028",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 68,
+      "end_line": 68,
+      "sha256": "fdf71fc826cce6edd4c669afefd546d3bf27e2093236cecdbe6cd6a972a23929",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 68,
+      "adopted_end_line": 68,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-030",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 97,
+      "end_line": 113,
+      "sha256": "cc1e907e38e38bbab08688d10407549d199bda685e6088441b6ec847a67c2980",
+      "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adopted_start_line": 97,
+      "adopted_end_line": 113,
+      "same_as_adopted_span": true
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "identity": "HELIXBRAIN-L2-032",
+      "layer": "L11",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "start_line": 128,
+      "end_line": 135,
+      "sha256": "bc0a4ea0e6f282fbb0aac884d1e6ff9d86b279d32c5fbd9cc3180260d4c29429",
+      "adopted_revision": "a518bcc63ce0252edface6c99b8ac8c647e9340c",
+      "adopted_start_line": 128,
+      "adopted_end_line": 135,
+      "same_as_adopted_span": true
+    }
+  ],
+  "authority_records": [
+    "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+    "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+    "docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md",
+    "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md"
+  ],
+  "dependency_expansion": [
+    {
+      "identity": "HELIXBRAIN-L2-032",
+      "contract_references": [
+        "003",
+        "005",
+        "007",
+        "008",
+        "028"
+      ],
+      "operation_or_source_conditions": {
+        "常時必須": "003/005/007/008/028の条件・relation・出所・identity/版/state・pack互換契約。各参照先runtimeの完成を常時必須にする意味ではない。",
+        "特定操作時のみ必須": "COREへ返すとき019/022/030。",
+        "選択した入力元に応じて必須": "CORE由来候補/LABO評価を選ぶとき018/020/025。",
+        "参照資料のみ": "旧template/seed/設計例。authority/必須項目の代替にしない。"
+      },
+      "pair_oracle": "15項目の定義欠落、製品値unknown、非適用を分ける。receipt可能と義務成立を別にする。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-003",
+      "contract_references": [
+        "002"
+      ],
+      "operation_or_source_conditions": {},
+      "pair_oracle": "条件充足/不充足/unknownとrequired input欠落を区別する。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-002",
+      "contract_references": [
+        "001"
+      ],
+      "operation_or_source_conditions": {},
+      "pair_oracle": "Domain/Pattern/Unit/Partのidentity、親、relationを保ち、孤立/誤種別をunknownにする。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-001",
+      "contract_references": [],
+      "operation_or_source_conditions": {
+        "常時必須": "親L1-001とConceptの領域/製品境界。"
+      },
+      "pair_oracle": "製品/projectをDomainにせず、初期領域のschema能力と全領域の知識充実を区別する。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-005",
+      "contract_references": [
+        "001",
+        "002"
+      ],
+      "operation_or_source_conditions": {},
+      "pair_oracle": "意味relationの種別/向き/両端を保ち、名前類似や未知endpointを確定edgeにしない。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-007",
+      "contract_references": [
+        "011",
+        "025",
+        "020"
+      ],
+      "operation_or_source_conditions": {
+        "常時必須": "出所/評価範囲/限界/採用状態の分離規則。",
+        "特定操作時のみ必須": "採用/昇格操作でLABO評価、OS登録・振分け、BRAIN独立検証、採否の実証拠を照合する。"
+      },
+      "pair_oracle": "AI生成、文書存在、単一実績、評価だけで採用済みにしない。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-008",
+      "contract_references": [
+        "028",
+        "018",
+        "019",
+        "025"
+      ],
+      "operation_or_source_conditions": {
+        "常時必須": "identity/version/state/supersessionと製品利用参照の責務。",
+        "特定操作時のみ必須": "取込み/返却/昇格ごとの接続receipt。project使用版の記録はOS。"
+      },
+      "pair_oracle": "古い参照を無言で新しい版へ置換しない。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-028",
+      "contract_references": [
+        "008"
+      ],
+      "operation_or_source_conditions": {
+        "常時必須": "HARNESS010/011のdescriptor identity・contract/artifact/dependency版・互換範囲。"
+      },
+      "pair_oracle": "知識版とpack版、version_targetと実版を混同せず、不一致/unknownを止める。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-019",
+      "contract_references": [
+        "003",
+        "004",
+        "008",
+        "012"
+      ],
+      "operation_or_source_conditions": {
+        "特定操作時のみ必須": "CORE queryへの返却。HARNESS-CORE受領契約。"
+      },
+      "pair_oracle": "選択知識のrequired input/制約/反例/版と複数候補を保持し、製品採用をBRAINが決めない。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-004",
+      "contract_references": [
+        "003",
+        "012"
+      ],
+      "operation_or_source_conditions": {
+        "特定操作時のみ必須": "同じ問題の複数成立候補を比較するとき。"
+      },
+      "pair_oracle": "比較軸欠落を示し、要求値/重み未決で選択を確定しない。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-012",
+      "contract_references": [
+        "019",
+        "021",
+        "022"
+      ],
+      "operation_or_source_conditions": {
+        "常時必須": "候補提供と各接続先の採用/判断authorityの分離。",
+        "特定操作時のみ必須": "019はCORE提供、021はINTELLIGENCE query、022は設計義務材料の受渡し。別の接続操作の実結果をCORE queryの開始前入力にしない。"
+      },
+      "pair_oracle": "候補回答を製品選択/runtime決定に変えない。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-022",
+      "contract_references": [
+        "003",
+        "005",
+        "008"
+      ],
+      "operation_or_source_conditions": {
+        "特定操作時のみ必須": "HARNESS009へinput/relation/版/traceを渡すとき。"
+      },
+      "pair_oracle": "双方向trace、製品値未決と未充足を区別し、BRAINが製品値・工程を決定しない。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-030",
+      "contract_references": [],
+      "operation_or_source_conditions": {
+        "常時必須": "connection identity/version/互換範囲、query/receipt契約、scope/相関identity、HARNESS009受領契約。",
+        "特定操作時のみ必須": "選択Patternを設計候補へ適用する場合の条件/反例検査。",
+        "選択した入力元に応じて必須": "選択知識の全required fields、identity/version/source。029はその知識を選んだ場合。",
+        "参照資料のみ": "説明/背景例。"
+      },
+      "pair_oracle": "別知識の成功で欠落を補わず、受渡し不整合をBRAINまたはHARNESSへ返す。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-011",
+      "contract_references": [
+        "007",
+        "018",
+        "020",
+        "025"
+      ],
+      "operation_or_source_conditions": {
+        "特定操作時のみ必須": "製品由来候補の汎用化/昇格。",
+        "常時必須": "製品固有意味を汎用知識として確定しない責務境界。"
+      },
+      "pair_oracle": "過度一般化と未分離を不合格にし、元CORE/LABOへ戻す。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-018",
+      "contract_references": [
+        "007",
+        "011"
+      ],
+      "operation_or_source_conditions": {
+        "選択した入力元に応じて必須": "CORE候補出力を入力に選ぶとき、候補source/revisionと抽出/原本の区別を照合。"
+      },
+      "pair_oracle": "候補取込みだけで採用済みにしない。raw originalの保存をBRAINへ移さない。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-020",
+      "contract_references": [
+        "007",
+        "008",
+        "009",
+        "010"
+      ],
+      "operation_or_source_conditions": {
+        "選択した入力元に応じて必須": "LABO評価入力を選ぶとき、評価対象revision/scope/method/result/failure/未評価範囲を照合。Infrastructure候補maturityを扱うときだけINFRA-017。"
+      },
+      "pair_oracle": "評価部分欠落/対象不一致でaccepted/matureへ進めない。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-009",
+      "contract_references": [
+        "005",
+        "007",
+        "025"
+      ],
+      "operation_or_source_conditions": {
+        "特定操作時のみ必須": "Unit/relationから構成候補を作るとき。"
+      },
+      "pair_oracle": "構成候補は評価/昇格を経ず確立Patternにしない。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-010",
+      "contract_references": [
+        "003",
+        "005",
+        "007"
+      ],
+      "operation_or_source_conditions": {
+        "選択した入力元に応じて必須": "失敗知識を提供/評価する場合のsource/evidence/条件。"
+      },
+      "pair_oracle": "反例や失敗を全条件へ一般化せず、根拠不足を未確定へ返す。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-025",
+      "contract_references": [
+        "007",
+        "008",
+        "009",
+        "011",
+        "012",
+        "020"
+      ],
+      "operation_or_source_conditions": {
+        "特定操作時のみ必須": "知識候補の独立検証・採否操作。LABO/OS/BRAIN changeの版付き契約と各stateの実証拠。Infrastructure maturityならINFRA-017。"
+      },
+      "pair_oracle": "source/evaluation不足→LABO、登録/進行→OS、知識意味→BRAIN上流、変更検証→BRAIN change owner。"
+    },
+    {
+      "identity": "HELIXBRAIN-L2-021",
+      "contract_references": [
+        "003",
+        "004",
+        "008",
+        "012"
+      ],
+      "operation_or_source_conditions": {
+        "特定操作時のみ必須": "INTELLIGENCE query/responseを選ぶ場合。初回CORE知識queryでは別操作として保持。"
+      },
+      "pair_oracle": "判断材料とruntime結論を区別し、INTELLIGENCEが知識を暗黙昇格しない。"
+    }
+  ],
+  "external_and_revisit_endpoints": [
+    {
+      "endpoint": "BRAIN L1各親/Concept",
+      "state": "上流境界へ到達",
+      "reason": "各L2の親L1を保持。要求意味やDomain境界の変更は本照合で決定しない。"
+    },
+    {
+      "endpoint": "HARNESS010/011",
+      "state": "既存共通契約照合へ接続・横断再帰未完",
+      "reason": "pack/connectorの版・identity・未完義務契約を参照。PR2925の選択依存照合を保持し、ここで実pack成立を主張しない。"
+    },
+    {
+      "endpoint": "HARNESS009/CORE候補出力・受領契約",
+      "state": "次のCORE側照合へ持越し",
+      "reason": "COREAPPLY採用範囲とrouting container内の旧atom未完を区別。実query版/scope/製品値/選択集合は未供給。"
+    },
+    {
+      "endpoint": "LABO評価/OS登録・振分け/BRAIN change",
+      "state": "昇格操作の契約と実証拠の横断照合へ持越し",
+      "reason": "P3FIRSTの限定意味採用はruntime昇格ではない。今回の候補提供前に将来の昇格receiptを要求しない。"
+    },
+    {
+      "endpoint": "BRAIN-INFRA-017",
+      "state": "入力条件未選択",
+      "reason": "Infrastructure知識のmaturityを扱うときの条件。義務を削除せず、選択時に再展開する。"
+    },
+    {
+      "endpoint": "INTELLIGENCE query/response",
+      "state": "別操作未選択",
+      "reason": "BRAIN021の実接続操作。012のauthority境界は常時保持。選択時には受け手契約を展開する。"
+    },
+    {
+      "endpoint": "BRAIN029またはその他の個別知識",
+      "state": "入力選択に従う",
+      "reason": "030は選択知識の全required fieldsを要求する。全知識完成をquery開始条件にしない。選択時に知識固有依存を照合する。"
+    },
+    {
+      "endpoint": "BRAIN内の再訪identity",
+      "state": "契約参照を再訪",
+      "reason": "本表のidentityへ戻る参照は新nodeを増やさない。循環が実行可能/起動順成立/実証拠ありを意味しない。"
+    }
+  ],
+  "prior_reviewed_evidence": [
+    "docs/governance/audits/first-cycle-source-prerequisites-2026-10-12.json",
+    "docs/governance/audits/first-cycle-source-prerequisites-2026-10-12-r2.json"
+  ],
+  "remaining": [
+    "CORE009とOS002からの横断依存を同じ条件別分類で展開する。",
+    "選択する各operation/sourceの共通・安全・接続・資源・計測について、PR2925で参照したendpointから先の依存を照合する。",
+    "入力knowledgeの選択集合/未観測と、初回の正式な著述親集合を固定する。",
+    "機構成立に必要な停止中下流作業の範囲・証拠とL3再開の順序をPO判断材料へ分けて提示する。"
+  ],
+  "legacy_correspondence": {
+    "sources": [
+      "archive/legacy-generation-2026-09-14/root/CLAUDE.md:49-63",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md:23-67",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md:65-90"
+    ],
+    "retained": "明示集合、必要安全依存、局所と構成体の独立検収、意味と外部作用の分離。UTW-014/021を踏まえunknown/未観測を欠落や完成へ縮退しない。",
+    "changed": "旧runtime/DB/層番号を採用せず、現行BRAIN032と採択済みBRAIN契約の操作・source条件へ意味再導出。",
+    "reason": "初回の知識提供に必要な契約参照と、後の取込み/昇格/判断操作の実証拠を分けて残すため。新しいgate/承認手続きを追加しない。"
+  },
+  "evidence_file_pins": [
+    {
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
+    },
+    {
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964"
+    },
+    {
+      "path": "docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "sha256": "c091ac5083a0ebffb441921ab614567cfece8d95ded91cba3de3d462f9d667a9"
+    },
+    {
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-source-prerequisites-2026-10-12.json",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "sha256": "d12f1e7813c0fba911a3d62969b888017c0d1009aeeb28d2a67ad196c2585020"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-source-prerequisites-2026-10-12-r2.json",
+      "revision": "2b97c67a0e5c1061bb41fa9248e641a2772bacc2",
+      "sha256": "ed787d9e87324735bdcfadfaee308a9a159126906c7e4513ab831b2f7a664b42"
+    }
+  ],
+  "span_digest_rule": "start_line/end_lineは1始まりのinclusiveで、末尾の空行を範囲に含めない。指定行をLFで連結し、末尾空白を除去してLF一つを加え、UTF-8でSHA-256を取る。全40箇所で同一方式を使う。same_as_adopted_spanはこの正規化後のbytesの一致を示す。"
+}
