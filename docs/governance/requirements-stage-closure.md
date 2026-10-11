@@ -1,8 +1,8 @@
 # 要求段階の現在状況
 
-PO候補一覧は[2026-10-03の固定snapshot](audits/requirements-stage/requirements-stage-closure-2026-10-03.md)にある。現在の基準mainは`7294112e39d8309d4ec43201953bbd706a92b325`（#2553統合後）。snapshot後の384候補のうち未記録だった4件は[末尾4件のPO判断](decisions/po-decision-2026-10-03-pending4-bun.md)で対象revisionを固定しました。OS132は003へ訂正し、HELIXの開発・実行・検証・配布でBunを今後も使わない保証を加えます。以下は本判断記録がmainへ統合された時点で有効となる分類です。固定snapshotのHARNESS-088保留表示は誤記であり、下記の判断記録に従って現在一覧を訂正します。
+PO候補一覧は[2026-10-03の固定snapshot](audits/requirements-stage/requirements-stage-closure-2026-10-03.md)にある。2026-10-03時点の基準mainは`7294112e39d8309d4ec43201953bbd706a92b325`（#2553統合後）。snapshot後の384候補のうち未記録だった4件は[末尾4件のPO判断](decisions/po-decision-2026-10-03-pending4-bun.md)で対象revisionを固定しました。OS132は003へ訂正し、HELIXの開発・実行・検証・配布でBunを今後も使わない保証を加えます。以下は本判断記録がmainへ統合された時点で有効となる分類です。固定snapshotのHARNESS-088保留表示は誤記であり、下記の判断記録に従って現在一覧を訂正します。
 
-8機構のMPR latest requirement-candidate identityは384件。台帳の物理行は候補数を表さず、source holding・候補の履歴revision・参照訂正を含む。legacy IR 153件も別の母集団である。
+2026-10-03の固定照合で8機構のMPR latest requirement-candidate identityは384件。台帳の物理行は候補数を表さず、source holding・候補の履歴revision・参照訂正を含む。legacy IR 153件も別の母集団である。
 
 ## 台帳行数と要求候補数の読み分け
 
@@ -59,3 +59,9 @@ POは4件の固定案を提示した質問に「4件とも推奨案を採用」�
 ### 独立reviewで特定した具体不足
 
 [独立照合r2](audits/requirements-stage/requirements-issue-stage-reconciliation-2026-10-11-r2.md)と[PRのF1/F2](https://github.com/RetryYN/HELIX-HARNESS/pull/2899#issuecomment-6108054870)で、#1852に途中導入の非停止・段階移行、#1854にFR-L1-02の実装前Red順序という要求差を特定した。[未採択固定案](crosswalks/requirements-resolution-packet.md)のONBOARDING/REDFIRSTで人の意味判断へ送る。既採用4件の判断は保持し、具体差の採否が記録されるまで両Issueを閉じない。全source移管やL3以下の完成を追加gateにしない。
+
+## 2026-10-11の個別要求Issue終了結果
+
+[終了結果の照合記録](audits/requirements-stage/requirements-stage-issue-closure-result-2026-10-11.md)で、#1852/#1853/#1854/#1857の人間採否、main反映、独立した要求Stage終了判定とclosedのread-afterを結んだ。ONBOARDINGは[019の採用判断](decisions/onboarding-adoption-po-decision-2026-10-11.md)、REDFIRSTは[Aの採用判断](decisions/redfirst-adoption-po-decision-2026-10-11.md)へ確定した。上の「人の意味判断へ送る」「判断まで閉じない」は当時の未決状態の記録で、現在の判断待ちに流用しない。初回/r2の監査証拠は保持する。
+
+要求整理の終了確認は既存の153行限定joinと追加22source限定照合、人間採否と独立Stage判定による、要望・配置・意味scope・人の確認と行き先の整理である。source全移管、全consumer/schema、旧設定/能力の全監査、個別Feature Ticketの全作業をこの終了確認へ拡張しない。残る35open Issueのscope/保持理由を終了結果JSONへ記録し、親programや下流作業を完了としない。#2846の要件定義初回ロードマップと、未承認/missing/unknown/conflict/staleの局所停止を維持する。L3再開、要件承認、実装、CI、内部デプロイ、releaseの許可は含まない。
