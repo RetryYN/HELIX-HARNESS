@@ -152,3 +152,48 @@ SDOP/VTのREADMEは未採択seedをMarkdownで持つ理由を「schemaはL3以�
 要求側の未完範囲は既存ロードマップ#2846へ保持する。SEEDFIRSTの限定知識内容は上の判断に従い採用済み。次は全体の最小選択setと、画面/PoC/他pair/3kindを含む残りの意味内容・source対応・対象revision採否を具体化する。安全/資源/計測、内部更新/復旧・支援/改善循環の要求照合は#2846へ残す。実記録・接続・評価の成立確認を、要求段階の採用や終了から生成しない。DST12件を無条件にまとめて採用する案、schema/runtime/registryの新設、L3再開は本照合から生成しない。
 
 #2841〜#2843のimmutable ticketは要求整理・比較・不足の区別を指示しており、候補/seedの正式昇格を含まない。closeはticket本文の全作業と本照合の不足保全を、review結果・mergeとは別に確認して判断する。担当の扱いは[現行運用](github-upstream-operating-model.md#review判断merge-admission)の作成側のclose制限と、対応Issueの完了条件を別に確認する条項に従う。本照合から担当の変更や新しいclose手続きは作らない。closeした場合も上記未完範囲、#2846、候補状態とScaffold Bindingは残り、要求段階全体の完了にはしない。確認が不足していれば元IssueをOPENのまま保つ。
+
+## 選択した初回対象へのseed適用条件の照合
+
+[初回対象のPO選択](decisions/first-development-target-selection-po-decision-2026-10-11.md)（BRAIN032→CORE009→OS002と必要周辺入力）へ26候補の契約条件を当てる。[固定照合記録](audits/first-target-template-applicability-2026-10-11.json)は各原文のpath・行・全文/行digest、適用条件・必須入力・kind/pair・限界と未完入力を記録する。これは**知識候補の関連性の照合**であり、案件のrequired/conditional/N/A/unresolved判定、採用や使用exact set、全体の最小集合の確定ではない。
+
+| seed | 現在の扱い | 初回対象との関係 | 未確定入力・境界 |
+|---|---|---|---|
+| DT-SDOP-001 | 後続設計候補 | OS案件原記録と各実行物の動作記録を区別 | 記録consumer・分類・出力環境・保持根拠 |
+| DT-SDOP-002 | 後続設計候補 | 循環と単独稼働unitの非機能条件 | 重要度・規模・環境・要求値と測定法 |
+| DT-SDOP-003 | 後続設計候補 | 内部利用開始後の更新・復旧運用 | SLO・体制・更新/戻し手段・backup対象 |
+| DT-SDOP-004 | 後続設計候補 | CORE判定とOS状態/副作用の規則 | 要求の規則・state・失敗、MSG004との参照行 |
+| DT-SDOP-005 | 後続設計候補 | 意味処理runtime・外部境界の依存 | 実依存集合・自製範囲・更新owner |
+| DT-SDOP-006 | 条件未決 | AWS選定時だけ照合。現在AWS選択はない | 実行基盤の選定。非AWSのN/A4属性は案件で記録 |
+| DT-SDOP-007 | 後続設計候補 | 選択SDOPの設計review | 対象設計と適用SDOP集合。単独で充足判定しない |
+| DT-VT-001 | 限定採用あり | 要求/受入はSEEDFIRST限定。全pairの共通候補は保全 | 各要求revision・成果・pair・oracle。単独使用しない |
+| DT-VT-002 | 限定採用あり | C01/C02/C08/C26だけ限定採用。残り36cardは候補 | cardごとのinput/risk/適用根拠。全40cardの採用ではない |
+| DT-VT-003 | 準備で照合する候補 | 選択対象の変更種類・risk・pairから技法候補を比較 | risk根拠・触る辺。早見表を必須gateにしない |
+| DT-VT-004 | 準備で照合する候補 | L2要求の検証方式・pair・case/oracleの知識を比較 | risk・非機能値/測定法。正式L3/L10は停止 |
+| DT-VT-005 | 非画面scopeでは未選択候補 | PO選択の非画面対象。UI拡張時に再照合 | 案件の非画面根拠・判定者/revision/再評価条件は未記録 |
+| DT-VT-006 | 条件未決 | Prototypeは非画面条件、PoCは技術的不確実性を別判定 | 要求ごとの成立性・期限・不確定要素。非画面だけでPoCをN/Aにしない |
+| DT-VT-007 | 準備で照合する候補 | AI生成の知識/適用案/記録材料の検証 | 成果revision・model/prompt版・対の要求。採用/受入をAI採点で生成しない |
+| DT-VT-101 | 運用評価に残す候補 | L1/L12価値/運用還流の義務を保持 | 価値仮説・成功指標・適用SLO/Release条件。今の実行入力ではない |
+| DT-VT-102 | 限定採用あり | 非画面・技術的不確実性なしの要求/受入知識のみ | L2/L11固定revisionとPrototype/PoC別判定。実受入は未実施 |
+| DT-VT-103 | 後続対検証候補 | L3/L10の固有義務と下位証拠/組合せを比較 | kind/pair照合、再開後の承認L3、検証時の下位receipt |
+| DT-VT-104 | 後続対検証候補 | BRAIN→CORE・CORE→OS等の辺の検証観点 | kind/pair照合、境界仕様・connector契約 |
+| DT-VT-105 | 後続対検証候補 | 詳細契約・state・不変条件・失敗/回復 | kind/pair照合、凍結対象設計・oracle |
+| DT-VT-106 | 後続対検証候補 | 実装前Red→最小実装→Greenの知識 | kind/pair照合、凍結設計・先に定義するtest/oracle。今は実行しない |
+| DT-MSG-001 | 後続設計候補 | BRAIN→CORE・CORE→OS・Backflow各辺 | 各端owner/revision/互換・data意味・方向・期限/再送。実装形式未定 |
+| DT-MSG-002 | 後続設計候補 | knowledge/案件原記録の永続化と更新/復旧 | 意味owner・before・保持/削除・loss判断。構造変更の有無で節を判定 |
+| DT-MSG-003 | 後続設計候補 | 読取/write/実行を別actor/操作として安全境界へ | 権限・data目的/分類・保持/外部consumer。節ごとに条件を照合 |
+| DT-MSG-004 | 後続設計候補 | BRAIN032/CORE009/OS002各単体の入出力/失敗 | 要求/受入・意味・期待失敗/回復。SDOP004と二重正本にしない |
+| DT-MSG-005 | 後続設計候補 | 三単体と複数辺による循環固有の義務 | 全体成果・各owner/辺・部分成功時の期待。値はSDOP等を参照 |
+| DT-MSG-006 | 後続設計候補 | 設計段階で観測/制御/oracle出所/失敗到達を比較 | MSG/SDOP設計の宣言行と右側case。L1/L2 review開始gateにしない |
+
+限定採用の3行も、VT001/102とC01/C02/C08/C26の**非画面・技術的不確実性なしの要求/受入知識**に限る。全card・他pair・schemaへの採用拡張ではない。非画面の選択だけでPoCを不要にせず、技術的不確実性を要求ごとに戻して照合する。AWS・画面の未選択候補もretireせず、案件のN/Aには理由・判定者・対象revision・再評価条件が要る。
+
+### kindとpair、検証inputの時点を分ける
+
+VT002の契約表はkindをpairから読む記述を持ち、VT103はcomposite、104はconnection、105/106はunitを主な検証観点にする。一方、既決HARNESS008/009/005は要求identityごとの単体・接続・構成体の義務を持つ。主な観点の索引を排他的な適用条件へ読み替えると、初回主単体のL3/L10などの義務が漏れるため、採用候補の15descriptorと義務を照合する。現時点で全seedの意味矛盾や新規templateの必要を断定せず、pairとkindの各原文条件を保全する。
+
+VT103の下位証拠receiptは右側検証を始める入力であり、今の知識比較や左側要求形成前に供給する実装証拠ではない。MSG006の設計testabilityもL1/L2 reviewや技法候補選定の開始条件にしない。凍結前にoracleの意味を準備することと、実行後に証拠を得ることを区別する。
+
+旧JSON authority:19–60の意味/表示・適用・portfolio・pair、旧verification phase:28–40/73–79のbasis/condition/evidenceを起点にした意味再導出である。旧gate、schema、test/CIを現行へ移植しない。10/10で失敗したseed不使用と件数/hashだけのreviewを繰り返さず、全section/fieldの意味被覆と未完を次の比較で確かめる。今回の表では全26本文atom、40card採否、15descriptorの完全性、6surface/6component移管を証明しない。
+
+次は候補ごとのsection/field・負例・measurement/completionを既決032へ対応付け、必要な知識の対象revisionを提示する。案件値、接続依存、初回配置根拠は#2846へ残し、環境条件は#2905へ結ぶ。既決の意味を再承認待ちにせず、知識内容の追加採用と下流設計・L3再開は別に扱う。
