@@ -1,0 +1,2947 @@
+{
+  "artifact_kind": "要求整理段階の汎用template意味候補。正式schema/設計instance/registryではない",
+  "meaning_owner": "HELIX-BRAIN",
+  "authority_effect": "none",
+  "state": "source_bound_meaning_candidate_not_adopted",
+  "base_revision": "19031f742efb3e0811fdeff1b9a53b17ef539336",
+  "scope": "初回対象のunit/connection/compositeを比較する3候補。全体最小集合ではない",
+  "requirement_basis": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+  "target_selection": "docs/governance/decisions/first-development-target-selection-po-decision-2026-10-11.md",
+  "interpretation": "JSONのkey/field locatorはこの候補内の読取り対応でありruntime key/型/演算子/wire formatの選定ではない。候補sourceの同じ版を識別し、採否は別の対象revision判断で読む。",
+  "templates": [
+    {
+      "template_identity": "DT-MSG-001",
+      "candidate_version": "0.1.0-seed-candidate",
+      "source_path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-001-connection-contract.md",
+      "source_sha256": "94cc4a2a3f795645bf274148e47f3a2e0622643f822a1815f4068fb2f3cbfa5c",
+      "semantic_descriptors": {
+        "identity": {
+          "value": "DT-MSG-001",
+          "source_line": 1,
+          "source_text": "# DT-MSG-001 接続契約（方向・データの意味・順序・timeout・再送・冪等性・部分失敗）",
+          "source_line_sha256": "8fad142c38ceaeb374285fb774d819540fdddd45eadaba0c63882017e1c28554"
+        },
+        "version": {
+          "value": "`DT-MSG-001`／`0.1.0-seed-candidate`",
+          "source_line": 10,
+          "source_text": "| template ID／版 | `DT-MSG-001`／`0.1.0-seed-candidate` |",
+          "source_line_sha256": "9ac36826293e135a675f45f48b52a63db195d7d741ad56d88b1569ece299c78f"
+        },
+        "layer_pair": {
+          "value": "主にL4↔L9（境界の形）とL5↔L8（timeout・再送・冪等性の詳細）。検証の方法はDT-VT-104・105",
+          "source_line": 18,
+          "source_text": "| 対（V-pair） | 主にL4↔L9（境界の形）とL5↔L8（timeout・再送・冪等性の詳細）。検証の方法はDT-VT-104・105 |",
+          "source_line_sha256": "4eb5530e58f3e44b323fc7a9b8e89c4fde0909327a26c3195f09ab1803729671"
+        },
+        "applicability": {
+          "value": "二つ以上の単体（機構、module、外部service、process）の間でdataまたは操作の要求が境界を越える場合。接続の辺ごとに1回適用する。境界を越えない単体内の呼出しはN/A（理由必須）",
+          "source_line": 13,
+          "source_text": "| 適用条件 | 二つ以上の単体（機構、module、外部service、process）の間でdataまたは操作の要求が境界を越える場合。接続の辺ごとに1回適用する。境界を越えない単体内の呼出しはN/A（理由必須） |",
+          "source_line_sha256": "212eb7c47956ec978d0d81d78b44016e61a7f6405c07191d02e5850e0ddad7e3"
+        },
+        "required_input": {
+          "value": "接続の両端と、各端の意味契約の持ち主。方向（一方向／二方向）。越えるdataの意味（何を表すか、誰が正本を持つか）。両端の契約revisionと互換範囲。期限・再送・重複の扱いについて要求が定めていること。**欠けたら設計を進めず、欠けた入力を質問・要求候補として上流へ戻す（DST-HARNESS-004）**",
+          "source_line": 15,
+          "source_text": "| 必須入力 | 接続の両端と、各端の意味契約の持ち主。方向（一方向／二方向）。越えるdataの意味（何を表すか、誰が正本を持つか）。両端の契約revisionと互換範囲。期限・再送・重複の扱いについて要求が定めていること。**欠けたら設計を進めず、欠けた入力を質問・要求候補として上流へ戻す（DST-HARNESS-004）** |",
+          "source_line_sha256": "2caadcef5f1ad90ae0bf54da867659d4edd1da993a536359c7095ee4cc3fe1fe"
+        },
+        "required_section": {
+          "meaning": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。",
+          "sections": [
+            {
+              "section_locator": "DT-MSG-001/section-1",
+              "heading": "1. 接続のidentityと方向",
+              "source_line": 56,
+              "source_end_line": 66,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            },
+            {
+              "section_locator": "DT-MSG-001/section-2",
+              "heading": "2. dataの意味と所有",
+              "source_line": 67,
+              "source_end_line": 72,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            },
+            {
+              "section_locator": "DT-MSG-001/section-3",
+              "heading": "3. 契約revisionと互換",
+              "source_line": 73,
+              "source_end_line": 79,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            },
+            {
+              "section_locator": "DT-MSG-001/section-4",
+              "heading": "4. 順序",
+              "source_line": 80,
+              "source_end_line": 85,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            },
+            {
+              "section_locator": "DT-MSG-001/section-5",
+              "heading": "5. 期限・timeout・再送",
+              "source_line": 86,
+              "source_end_line": 96,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            },
+            {
+              "section_locator": "DT-MSG-001/section-6",
+              "heading": "6. 冪等性と重複",
+              "source_line": 97,
+              "source_end_line": 103,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            },
+            {
+              "section_locator": "DT-MSG-001/section-7",
+              "heading": "7. 部分失敗と不明",
+              "source_line": 104,
+              "source_end_line": 112,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            },
+            {
+              "section_locator": "DT-MSG-001/section-8",
+              "heading": "8. 追跡",
+              "source_line": 113,
+              "source_end_line": 117,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            },
+            {
+              "section_locator": "DT-MSG-001/section-9",
+              "heading": "9. 検証への対応",
+              "source_line": 118,
+              "source_end_line": 123,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            }
+          ],
+          "source_completion": [
+            {
+              "source_line": 44,
+              "source_text": "辺ごとに§1〜§7が埋まっている、または理由付きのN/Aである。§8（追跡）は、辺の結果を後から辿る必要がある場合はrequired、そうでなければ理由付きN/Aである。§9（検証への対応）は、埋めた節ごとにDT-VT-104・105の対象caseへ引き渡す行がある。unknown・部分成功の扱いが成功へ丸められていない。値が未決の欄は「L3以降で導く」と未決の行き先が書かれている。各欄が検証（DT-VT-104・105の観点）へ結ばれている。**完了条件を満たしても、接続の設計が正しいこと・要求を満たすことを意味しない。**",
+              "source_line_sha256": "3209e37b06ae005bc940bf241e0237fd5ebd8e1887c963c505ba05bc481b24a7"
+            }
+          ]
+        },
+        "required_field": {
+          "fields": [
+            {
+              "field_locator": "DT-MSG-001/section-1/row-60",
+              "source_label": "接続ID",
+              "meaning": "この節で要求する「接続ID」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 60,
+              "source_text": "| 接続ID | |",
+              "source_line_sha256": "e40df529b145ac4f05f87abeedd998f3bb9793d16dee96c02df4d5548e04ae9c",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-1/row-61",
+              "source_label": "接続元（持ち主）",
+              "meaning": "この節で要求する「接続元（持ち主）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 61,
+              "source_text": "| 接続元（持ち主） | |",
+              "source_line_sha256": "ef32fabc33f194b1b11b1ec3c954604d8e1a6812877aca45b9b9588c576a78ed",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-1/row-62",
+              "source_label": "接続先（持ち主）",
+              "meaning": "この節で要求する「接続先（持ち主）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 62,
+              "source_text": "| 接続先（持ち主） | |",
+              "source_line_sha256": "c4fed9675e04159f2b318a7f248246e91fee961dde1dfce384b6c9a3dc8b611d",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-1/row-63",
+              "source_label": "方向",
+              "meaning": "この節で要求する「方向」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 63,
+              "source_text": "| 方向 | 一方向／二方向（二方向は向きごとに別の行として書き、それぞれの権限を確かめる） |",
+              "source_line_sha256": "fd75fd885feffb365222801b7cd274f07b3fb83c281b70c3b99e75a84f9bb380",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "一方向／二方向（二方向は向きごとに別の行として書き、それぞれの権限を確かめる）",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-1/row-64",
+              "source_label": "同期・非同期",
+              "meaning": "この節で要求する「同期・非同期」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 64,
+              "source_text": "| 同期・非同期 | |",
+              "source_line_sha256": "c4bea4e7fd028b46a21942a521eb7b1645bb47fa7425fa2e560478fa2921937b",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-1/row-65",
+              "source_label": "越えるもの",
+              "meaning": "この節で要求する「越えるもの」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 65,
+              "source_text": "| 越えるもの | data／操作の要求／event |",
+              "source_line_sha256": "eea0ddc3cae6774bd23bcd8aa25467ecc81b62e521f0806d4868cd34f38c4991",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "data／操作の要求／event",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-2/column-1",
+              "source_label": "項目（field）",
+              "meaning": "「2. dataの意味と所有」の行に対して「項目（field）」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 69,
+              "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
+              "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-2/column-2",
+              "source_label": "意味",
+              "meaning": "「2. dataの意味と所有」の行に対して「意味」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 69,
+              "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
+              "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-2/column-3",
+              "source_label": "正本の持ち主",
+              "meaning": "「2. dataの意味と所有」の行に対して「正本の持ち主」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 69,
+              "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
+              "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-2/column-4",
+              "source_label": "相手側の項目との対応（変換）",
+              "meaning": "「2. dataの意味と所有」の行に対して「相手側の項目との対応（変換）」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 69,
+              "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
+              "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-2/column-5",
+              "source_label": "受け側が書き換えてよいか",
+              "meaning": "「2. dataの意味と所有」の行に対して「受け側が書き換えてよいか」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 69,
+              "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
+              "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-2/column-6",
+              "source_label": "分類（DT-MSG-003 §2）",
+              "meaning": "「2. dataの意味と所有」の行に対して「分類（DT-MSG-003 §2）」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 69,
+              "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
+              "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-3/prompt-75",
+              "source_label": "両端の契約revision",
+              "meaning": "両端の契約revisionを対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 75,
+              "source_text": "- 両端の契約revision：",
+              "source_line_sha256": "6c5b0e511687465e142436894a0e667d9f6d3cb2c5247569eeed22c24619ca44",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-3/prompt-76",
+              "source_label": "互換範囲（どの組合せなら通してよいか）",
+              "meaning": "互換範囲（どの組合せなら通してよいか）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 76,
+              "source_text": "- 互換範囲（どの組合せなら通してよいか）：",
+              "source_line_sha256": "0decf618c21dd61ad4e1393a623f2e1fd37c807767160a6ed7eee55a14be4150",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-3/prompt-77",
+              "source_label": "revisionが変わったときの扱い（stale化、再照合まで送信を止める）",
+              "meaning": "revisionが変わったときの扱い（stale化、再照合まで送信を止める）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 77,
+              "source_text": "- revisionが変わったときの扱い（stale化、再照合まで送信を止める）：",
+              "source_line_sha256": "d5c4bc2ec0aaab3573916a0ca1b3f54680615cdfc6ca15d9bac11c30b656e8aa",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-3/prompt-78",
+              "source_label": "互換が確かめられないとき（unknown）の扱い",
+              "meaning": "互換が確かめられないとき（unknown）の扱いを対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 78,
+              "source_text": "- 互換が確かめられないとき（unknown）の扱い：",
+              "source_line_sha256": "b933c651e8903bec2a9cea14bb52d4509540d8fc600a080f150b3d25cc7bd9bd",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-4/prompt-84",
+              "source_label": "並列に流す場合の合流（join）の条件",
+              "meaning": "並列に流す場合の合流（join）の条件を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 84,
+              "source_text": "- 並列に流す場合の合流（join）の条件：",
+              "source_line_sha256": "a8f43fc2d1b866473dd61a6517436d6d433c178c22aef0f1e013258509ec93c6",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-5/row-90",
+              "source_label": "期限（操作ごと）",
+              "meaning": "この節で要求する「期限（操作ごと）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 90,
+              "source_text": "| 期限（操作ごと） | 値はL3以降。ここでは「どの操作に期限が要るか」と根拠 |",
+              "source_line_sha256": "bfeeae531f8d532ab5eca7200c89c58d579cfe4d582c68b57b856637f866d75b",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "値はL3以降。ここでは「どの操作に期限が要るか」と根拠",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-5/row-91",
+              "source_label": "timeout時の結果",
+              "meaning": "この節で要求する「timeout時の結果」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 91,
+              "source_text": "| timeout時の結果 | unknownとして記録（成功・失敗に丸めない） |",
+              "source_line_sha256": "87a7420fd1770159d044b68dc5d7f228f2d1c0cdd3b9d14e40567bb4a1cca46a",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "unknownとして記録（成功・失敗に丸めない）",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-5/row-92",
+              "source_label": "再送してよい失敗",
+              "meaning": "この節で要求する「再送してよい失敗」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 92,
+              "source_text": "| 再送してよい失敗 | 例：一時的な技術失敗 |",
+              "source_line_sha256": "c0c8086bb284b90d3a813e3452d22dcbc7e3a417a6ffb596d35f79069b0dc32d",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "例：一時的な技術失敗",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-5/row-93",
+              "source_label": "再送しない失敗",
+              "meaning": "この節で要求する「再送しない失敗」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 93,
+              "source_text": "| 再送しない失敗 | 例：業務上の拒否、権限の失効、契約不一致 |",
+              "source_line_sha256": "a6d090cb9c6e3234f95c9f1c278a948943d1d15febd1980213f37aa6795aafd9",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "例：業務上の拒否、権限の失効、契約不一致",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-5/row-94",
+              "source_label": "再送の上限・間隔",
+              "meaning": "この節で要求する「再送の上限・間隔」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 94,
+              "source_text": "| 再送の上限・間隔 | 値はL3以降。上限に達したときの戻し先 |",
+              "source_line_sha256": "eced572bc0ce7777859b45813593d4758cc434e9ce0f5cc69b0ae6bbbc831f55",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "値はL3以降。上限に達したときの戻し先",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-5/row-95",
+              "source_label": "再送で変えないもの",
+              "meaning": "この節で要求する「再送で変えないもの」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 95,
+              "source_text": "| 再送で変えないもの | 操作ID、内容digest、scope、契約revision（一つの操作で旧新revisionを混ぜない） |",
+              "source_line_sha256": "6f52ea3be3c6a2004ce6296b7dc9e38f7e735cd7d3055639882d88423a35c8ac",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "操作ID、内容digest、scope、契約revision（一つの操作で旧新revisionを混ぜない）",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-7/column-1",
+              "source_label": "段",
+              "meaning": "「7. 部分失敗と不明」の行に対して「段」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 106,
+              "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
+              "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-7/column-2",
+              "source_label": "届いたことを何で確かめるか",
+              "meaning": "「7. 部分失敗と不明」の行に対して「届いたことを何で確かめるか」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 106,
+              "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
+              "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-7/column-3",
+              "source_label": "途中で止まったときの状態",
+              "meaning": "「7. 部分失敗と不明」の行に対して「途中で止まったときの状態」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 106,
+              "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
+              "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-7/column-4",
+              "source_label": "戻し先（持ち主）",
+              "meaning": "「7. 部分失敗と不明」の行に対して「戻し先（持ち主）」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 106,
+              "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
+              "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-7/column-5",
+              "source_label": "補償・再開の方法",
+              "meaning": "「7. 部分失敗と不明」の行に対して「補償・再開の方法」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 106,
+              "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
+              "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-8/prompt-115",
+              "source_label": "辺・操作・試行のidentityと順序で、登録・照合・送信・受信・再送・終端・stale・拒否を辿れるか",
+              "meaning": "辺・操作・試行のidentityと順序で、登録・照合・送信・受信・再送・終端・stale・拒否を辿れるかを対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 115,
+              "source_text": "- 辺・操作・試行のidentityと順序で、登録・照合・送信・受信・再送・終端・stale・拒否を辿れるか：",
+              "source_line_sha256": "2fe7c46f5e318081236767905decfb1cf940d50a038af1fada9f3db327c8dda5",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-9/column-1",
+              "source_label": "欄",
+              "meaning": "「9. 検証への対応」の行に対して「欄」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 120,
+              "source_text": "| 欄 | DT-VT-104／105の観点 | oracle ID |",
+              "source_line_sha256": "329cd5e75563fa4c57386875b4f106a799728dec4e47ad04d1f4c68ffd1fe636",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-9/column-2",
+              "source_label": "DT-VT-104／105の観点",
+              "meaning": "「9. 検証への対応」の行に対して「DT-VT-104／105の観点」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 120,
+              "source_text": "| 欄 | DT-VT-104／105の観点 | oracle ID |",
+              "source_line_sha256": "329cd5e75563fa4c57386875b4f106a799728dec4e47ad04d1f4c68ffd1fe636",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-001/section-9/column-3",
+              "source_label": "oracle ID",
+              "meaning": "「9. 検証への対応」の行に対して「oracle ID」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 120,
+              "source_text": "| 欄 | DT-VT-104／105の観点 | oracle ID |",
+              "source_line_sha256": "329cd5e75563fa4c57386875b4f106a799728dec4e47ad04d1f4c68ffd1fe636",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            }
+          ],
+          "source_constraints": [
+            {
+              "source_line": 82,
+              "source_text": "- 順序の前提：なし／接続内で順序あり／因果順序（原因より先に結果を確定しない）",
+              "source_line_sha256": "38bb2f824902e0bec2cb0fefc197b72b694e10c59a58806091a72e1ee62aca65",
+              "semantic_role": "field_choices_or_required_prompt",
+              "meaning": "順序の前提：なし／接続内で順序あり／因果順序（原因より先に結果を確定しない）",
+              "requiredness": "選択肢は案件の確定値にしない。規範文は該当節の適用条件で保持し、source_body_contextだけへ退避しない。"
+            },
+            {
+              "source_line": 83,
+              "source_text": "- 順序が崩れた・欠けた・重複したときの扱い：拒否／保留／並べ替え／無視（理由）",
+              "source_line_sha256": "049846fb0e81f37e32ee36e8e65ac030d3d1123e449fc8022fc542a7db99ce8f",
+              "semantic_role": "field_choices_or_required_prompt",
+              "meaning": "順序が崩れた・欠けた・重複したときの扱い：拒否／保留／並べ替え／無視（理由）",
+              "requiredness": "選択肢は案件の確定値にしない。規範文は該当節の適用条件で保持し、source_body_contextだけへ退避しない。"
+            },
+            {
+              "source_line": 99,
+              "source_text": "- 冪等キー：発行元、含める要素、保存期間の決め方（値はL3以降）",
+              "source_line_sha256": "957069ecf4024c8312d916863b80854130bcd28ddc599cb35b82a3b8595b04c8",
+              "semantic_role": "field_choices_or_required_prompt",
+              "meaning": "冪等キー：発行元、含める要素、保存期間の決め方（値はL3以降）",
+              "requiredness": "選択肢は案件の確定値にしない。規範文は該当節の適用条件で保持し、source_body_contextだけへ退避しない。"
+            },
+            {
+              "source_line": 100,
+              "source_text": "- 同じキー・同じ内容：効果なしで同じ結果を返す",
+              "source_line_sha256": "5336985f4d39abc3759c22d86613fe6dcfc76d72175301e1f12ef8d67c0bd221",
+              "semantic_role": "normative_statement",
+              "meaning": "同じキー・同じ内容：効果なしで同じ結果を返す",
+              "requiredness": "選択肢は案件の確定値にしない。規範文は該当節の適用条件で保持し、source_body_contextだけへ退避しない。"
+            },
+            {
+              "source_line": 101,
+              "source_text": "- 同じキー・違う内容：衝突として拒否",
+              "source_line_sha256": "1b92b8b5ecfd4e5ae45e9fa916d05bb8f83930477cb388a31af22c663b098d4c",
+              "semantic_role": "normative_statement",
+              "meaning": "同じキー・違う内容：衝突として拒否",
+              "requiredness": "選択肢は案件の確定値にしない。規範文は該当節の適用条件で保持し、source_body_contextだけへ退避しない。"
+            },
+            {
+              "source_line": 102,
+              "source_text": "- 方式の選択（冪等キー、一意制約、状態チェック、処理済みIDの記録）：DT-SDOP-004 §5",
+              "source_line_sha256": "cec5a2ee075eced4b02cd39fff3f02d17b703cde9cab9d7c1439d8a85ddf47ef",
+              "semantic_role": "field_choices_or_required_prompt",
+              "meaning": "方式の選択（冪等キー、一意制約、状態チェック、処理済みIDの記録）：DT-SDOP-004 §5",
+              "requiredness": "選択肢は案件の確定値にしない。規範文は該当節の適用条件で保持し、source_body_contextだけへ退避しない。"
+            },
+            {
+              "source_line": 110,
+              "source_text": "- ACKなし・結果未回収は未完として持ち主へ戻す。業務の完了にしない。",
+              "source_line_sha256": "0da4aa2c557ab6e2e55d54491330d9bc5c2f621d9bc4d38c8706cb4afb4e7cd6",
+              "semantic_role": "normative_statement",
+              "meaning": "ACKなし・結果未回収は未完として持ち主へ戻す。業務の完了にしない。",
+              "requiredness": "選択肢は案件の確定値にしない。規範文は該当節の適用条件で保持し、source_body_contextだけへ退避しない。"
+            },
+            {
+              "source_line": 111,
+              "source_text": "- 補償（取り消し）を行う場合は、補償自体の失敗の扱いも書く。",
+              "source_line_sha256": "383a3f6d3daca39edaa5f7084a9f8b68693daad3f41e3e0074e0f662943ec16f",
+              "semantic_role": "normative_statement",
+              "meaning": "補償（取り消し）を行う場合は、補償自体の失敗の扱いも書く。",
+              "requiredness": "選択肢は案件の確定値にしない。規範文は該当節の適用条件で保持し、source_body_contextだけへ退避しない。"
+            },
+            {
+              "source_line": 116,
+              "source_text": "- 追跡に本文（raw payload）、secret、credentialを残さない（DT-MSG-003 §3）。",
+              "source_line_sha256": "24e986964510137a3f8088d1bd2c3c68704170efbdb357e7ab22a0aac5e0c320",
+              "semantic_role": "normative_statement",
+              "meaning": "追跡に本文（raw payload）、secret、credentialを残さない（DT-MSG-003 §3）。",
+              "requiredness": "選択肢は案件の確定値にしない。規範文は該当節の適用条件で保持し、source_body_contextだけへ退避しない。"
+            }
+          ],
+          "meaning_owner_boundary": "汎用欄の意味はBRAIN、製品値/適用義務はCORE、使用setと原記録はOS。例示行は製品値にしない。",
+          "normative_rules": [
+            {
+              "source_line": 100,
+              "source_text": "- 同じキー・同じ内容：効果なしで同じ結果を返す",
+              "source_line_sha256": "5336985f4d39abc3759c22d86613fe6dcfc76d72175301e1f12ef8d67c0bd221",
+              "rule_locator": "DT-MSG-001/source-rule-100",
+              "section_locator": "DT-MSG-001/section-6",
+              "meaning": "同じキー・同じ内容：効果なしで同じ結果を返す",
+              "semantic_role": "normative_statement",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 101,
+              "source_text": "- 同じキー・違う内容：衝突として拒否",
+              "source_line_sha256": "1b92b8b5ecfd4e5ae45e9fa916d05bb8f83930477cb388a31af22c663b098d4c",
+              "rule_locator": "DT-MSG-001/source-rule-101",
+              "section_locator": "DT-MSG-001/section-6",
+              "meaning": "同じキー・違う内容：衝突として拒否",
+              "semantic_role": "normative_statement",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 110,
+              "source_text": "- ACKなし・結果未回収は未完として持ち主へ戻す。業務の完了にしない。",
+              "source_line_sha256": "0da4aa2c557ab6e2e55d54491330d9bc5c2f621d9bc4d38c8706cb4afb4e7cd6",
+              "rule_locator": "DT-MSG-001/source-rule-110",
+              "section_locator": "DT-MSG-001/section-7",
+              "meaning": "ACKなし・結果未回収は未完として持ち主へ戻す。業務の完了にしない。",
+              "semantic_role": "normative_statement",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 111,
+              "source_text": "- 補償（取り消し）を行う場合は、補償自体の失敗の扱いも書く。",
+              "source_line_sha256": "383a3f6d3daca39edaa5f7084a9f8b68693daad3f41e3e0074e0f662943ec16f",
+              "rule_locator": "DT-MSG-001/source-rule-111",
+              "section_locator": "DT-MSG-001/section-7",
+              "meaning": "補償（取り消し）を行う場合は、補償自体の失敗の扱いも書く。",
+              "semantic_role": "normative_statement",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 116,
+              "source_text": "- 追跡に本文（raw payload）、secret、credentialを残さない（DT-MSG-003 §3）。",
+              "source_line_sha256": "24e986964510137a3f8088d1bd2c3c68704170efbdb357e7ab22a0aac5e0c320",
+              "rule_locator": "DT-MSG-001/source-rule-116",
+              "section_locator": "DT-MSG-001/section-8",
+              "meaning": "追跡に本文（raw payload）、secret、credentialを残さない（DT-MSG-003 §3）。",
+              "semantic_role": "normative_statement",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            }
+          ]
+        },
+        "relation": {
+          "value": "DT-SDOP-004 §4・§5（異常系の4問と冪等性・排他の方式。本templateは辺ごとの契約を持ち、方式の選択はSDOP-004を使う）、DT-SDOP-002 A（timeout・retry・circuit breakerの全体方針。本templateは辺ごとの値の置き場所だけを持つ）、DT-MSG-003 §4（外部interfaceのときの版・廃止）、DT-MSG-005（複数の辺の構成）、DT-VT-104（L4↔L9 境界の照合）、DT-VT-105（L5↔L8）",
+          "source_line": 16,
+          "source_text": "| 関係 | DT-SDOP-004 §4・§5（異常系の4問と冪等性・排他の方式。本templateは辺ごとの契約を持ち、方式の選択はSDOP-004を使う）、DT-SDOP-002 A（timeout・retry・circuit breakerの全体方針。本templateは辺ごとの値の置き場所だけを持つ）、DT-MSG-003 §4（外部interfaceのときの版・廃止）、DT-MSG-005（複数の辺の構成）、DT-VT-104（L4↔L9 境界の照合）、DT-VT-105（L5↔L8） |",
+          "source_line_sha256": "a02e953b43ae5e5c48c7af4e4171075ee4d2ff6b952d0dff9405cda88e65f7d4"
+        },
+        "meaning_owner": {
+          "value": "HELIX-BRAIN（汎用の構造）。製品への適用と設計義務の導出はHELIX-HARNESS-CORE（HARNESS-L2-009）",
+          "source_line": 12,
+          "source_text": "| 想定する持ち主 | HELIX-BRAIN（汎用の構造）。製品への適用と設計義務の導出はHELIX-HARNESS-CORE（HARNESS-L2-009） |",
+          "source_line_sha256": "5b66ab20b31289ab9cfa8d16add7451d856bef81fa831248b26bf7db68c367af"
+        },
+        "trace": {
+          "meaning": "対象要求/受入→対象単体/辺/構成体→節/field→対case/oracleを辿る。候補field locatorを正式schema IDへ昇格させない。",
+          "source_section_refs": [
+            {
+              "section_locator": "DT-MSG-001/section-1",
+              "heading": "1. 接続のidentityと方向",
+              "source_line": 56,
+              "source_end_line": 66,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            },
+            {
+              "section_locator": "DT-MSG-001/section-8",
+              "heading": "8. 追跡",
+              "source_line": 113,
+              "source_end_line": 117,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            },
+            {
+              "section_locator": "DT-MSG-001/section-9",
+              "heading": "9. 検証への対応",
+              "source_line": 118,
+              "source_end_line": 123,
+              "obligation_policy": "§1〜§7は記入または理由付きN/A。§8は結果追跡が必要ならrequired、そうでなければ理由付きN/A。§9は記入した節ごとに対caseへ引き渡す。値未決はL3以降の行き先を記録し未決保持。"
+            }
+          ]
+        },
+        "negative_oracle": {
+          "items": [
+            {
+              "source_line": 27,
+              "source_text": "- 方向を書かず、一方向の登録・受信・ACKから逆向きの送信を許したことにする。",
+              "source_line_sha256": "9e6c514175b1e5d12cdeb91d0f20736a71186903ef8d0d299f5ca22cd3d5f62d"
+            },
+            {
+              "source_line": 28,
+              "source_text": "- dataの項目名と型だけを書き、意味（何を表すか）と正本の持ち主を書かない。",
+              "source_line_sha256": "5fa245d9f3e947bc3b3d30ccc4e544f8d88e211d61a6b05cfcc713010ca89afc"
+            },
+            {
+              "source_line": 29,
+              "source_text": "- timeoutした呼出しを「失敗」または「成功」のどちらかに丸め、結果不明（unknown）として扱わない。",
+              "source_line_sha256": "e4076ac23b277c8b90c89e2543ecb3583bb9bc9fa820022e77c2c38f5db14454"
+            },
+            {
+              "source_line": 30,
+              "source_text": "- 再送の上限、再送してよい失敗とそうでない失敗の区別を書かない。業務上の拒否まで再送する。",
+              "source_line_sha256": "cc38a2acb8295a88c530017b80bacfb8c9d4d2d0c2380e79cd20d8db72d1603e"
+            },
+            {
+              "source_line": 31,
+              "source_text": "- 同じ冪等キーで内容（digest）が違う要求を、再送として処理する。",
+              "source_line_sha256": "b2a8592efbe91c3baaa34deaea90a62b09d486e0597edf503ec542e65ba4b16b"
+            },
+            {
+              "source_line": 32,
+              "source_text": "- 3件中2件が書けた等の部分成功を、成功または全体失敗に丸める。どこまで届いたかを残さない。",
+              "source_line_sha256": "a2d8e737feec635e7a7cca9b32012ff1fa63b1bd719fec61f7cd5ebc4b4125d3"
+            },
+            {
+              "source_line": 33,
+              "source_text": "- 順序を前提にしているのに、順序が崩れた・欠けた・重複したときの扱いを書かない。",
+              "source_line_sha256": "e1fd9aba430f6c8df287659ce6a8ab52823b93bbd25594ab5800cbd725732c0d"
+            },
+            {
+              "source_line": 34,
+              "source_text": "- 契約revisionが変わった後も、前に確かめた互換性で送信を続ける。",
+              "source_line_sha256": "e1e865e0b2d4697c178d0dc5ce2b7e018045ac2750126fe7e0919bf483842a61"
+            },
+            {
+              "source_line": 35,
+              "source_text": "- 単体のtemplateを両端に適用しただけで、接続の設計を済んだとする（DST-HARNESS-003）。",
+              "source_line_sha256": "a63e8e15514b95209d800959f6fb319f862d9c1345c8c946cd653562662311ef"
+            }
+          ],
+          "interpretation": "適用した意味条件の不成立例。文書の登録や欄の存在だけでこれらの拒否を実施済みにしない。"
+        },
+        "measurement": {
+          "value": "数値（timeout、再送の上限、backoff、期限）を置かない。値は要求とL3以降で根拠付きで導く。測る場合はHARNESS-L2-034の14項目に従う",
+          "source_line": 19,
+          "source_text": "| 計測 | 数値（timeout、再送の上限、backoff、期限）を置かない。値は要求とL3以降で根拠付きで導く。測る場合はHARNESS-L2-034の14項目に従う |",
+          "source_line_sha256": "ad09474edf641b923e158b25072b8ccaff20ecf4d2ad5df49a115e23ae56d72d"
+        },
+        "completion": {
+          "source_conditions": [
+            {
+              "source_line": 44,
+              "source_text": "辺ごとに§1〜§7が埋まっている、または理由付きのN/Aである。§8（追跡）は、辺の結果を後から辿る必要がある場合はrequired、そうでなければ理由付きN/Aである。§9（検証への対応）は、埋めた節ごとにDT-VT-104・105の対象caseへ引き渡す行がある。unknown・部分成功の扱いが成功へ丸められていない。値が未決の欄は「L3以降で導く」と未決の行き先が書かれている。各欄が検証（DT-VT-104・105の観点）へ結ばれている。**完了条件を満たしても、接続の設計が正しいこと・要求を満たすことを意味しない。**",
+              "source_line_sha256": "3209e37b06ae005bc940bf241e0237fd5ebd8e1887c963c505ba05bc481b24a7"
+            }
+          ],
+          "meaning": "template適用義務の確認条件。実接続/振る舞い/構成の正しさや要求充足の裁定は別。"
+        },
+        "downstream_kind": {
+          "value": "connection",
+          "source_line": 17,
+          "source_text": "| 区分 | connection |",
+          "source_line_sha256": "a9f370bdae0f46bfcb9d7449607ad904305c678886990734ab4cdab9114cb851"
+        },
+        "supersession": {
+          "value": "正式な接続契約templateが入ったら`superseded`とし、各欄の行き先を対応づける。旧版で書いた設計は旧版のまま読めるようにする",
+          "source_line": 23,
+          "source_text": "| 置き換え | 正式な接続契約templateが入ったら`superseded`とし、各欄の行き先を対応づける。旧版で書いた設計は旧版のまま読めるようにする |",
+          "source_line_sha256": "7fa411e58391e7cd1b6f68509e61d710dc8767061c4c6eb024f6036f4775c209"
+        }
+      },
+      "definition_state": "source_bound_candidate; 各field要否/意味とoracleの最終照合は未完",
+      "required_input_value_state": "no_project_values_supplied; COREへ未充足材料として戻す",
+      "source_body_context": [
+        {
+          "source_line": 56,
+          "source_text": "### 1. 接続のidentityと方向",
+          "source_line_sha256": "27b1317636ea7ecc5f0c7684ee1089e1d23607e946361327f8eaefa5d356cdb5",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 58,
+          "source_text": "| 項目 | 記入 |",
+          "source_line_sha256": "2df06df70b6b6a918eabd79594affa2bdecb8f76398fb74bbe7157c799b3fab4",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 59,
+          "source_text": "|---|---|",
+          "source_line_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 60,
+          "source_text": "| 接続ID | |",
+          "source_line_sha256": "e40df529b145ac4f05f87abeedd998f3bb9793d16dee96c02df4d5548e04ae9c",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 61,
+          "source_text": "| 接続元（持ち主） | |",
+          "source_line_sha256": "ef32fabc33f194b1b11b1ec3c954604d8e1a6812877aca45b9b9588c576a78ed",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 62,
+          "source_text": "| 接続先（持ち主） | |",
+          "source_line_sha256": "c4fed9675e04159f2b318a7f248246e91fee961dde1dfce384b6c9a3dc8b611d",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 63,
+          "source_text": "| 方向 | 一方向／二方向（二方向は向きごとに別の行として書き、それぞれの権限を確かめる） |",
+          "source_line_sha256": "fd75fd885feffb365222801b7cd274f07b3fb83c281b70c3b99e75a84f9bb380",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 64,
+          "source_text": "| 同期・非同期 | |",
+          "source_line_sha256": "c4bea4e7fd028b46a21942a521eb7b1645bb47fa7425fa2e560478fa2921937b",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 65,
+          "source_text": "| 越えるもの | data／操作の要求／event |",
+          "source_line_sha256": "eea0ddc3cae6774bd23bcd8aa25467ecc81b62e521f0806d4868cd34f38c4991",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 67,
+          "source_text": "### 2. dataの意味と所有",
+          "source_line_sha256": "77d7012f7f94df7631535a32c0ab7561ba7447b5dae95d02873cdfd77d069d09",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 69,
+          "source_text": "| 項目（field） | 意味 | 正本の持ち主 | 相手側の項目との対応（変換） | 受け側が書き換えてよいか | 分類（DT-MSG-003 §2） |",
+          "source_line_sha256": "eb199c53566b05a138fbaf4d4eb2fffc29dad5deb4f2ef58d21bd1a2c726101d",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 70,
+          "source_text": "|---|---|---|---|---|---|",
+          "source_line_sha256": "386dd7132ff82a3235473307d1e9d483ef7e0a9ae30607085abe2edd440cdcf7",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 71,
+          "source_text": "| | | | | | |",
+          "source_line_sha256": "6bd35296cda9bab77bc30bec2b88d60b71bb9d41a824aea014ac7dd24423a3ea",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 73,
+          "source_text": "### 3. 契約revisionと互換",
+          "source_line_sha256": "fd052a278808dddb1409d334a778ff7b61e4aea9c0fc4b664fdb1949251b4c07",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 75,
+          "source_text": "- 両端の契約revision：",
+          "source_line_sha256": "6c5b0e511687465e142436894a0e667d9f6d3cb2c5247569eeed22c24619ca44",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 76,
+          "source_text": "- 互換範囲（どの組合せなら通してよいか）：",
+          "source_line_sha256": "0decf618c21dd61ad4e1393a623f2e1fd37c807767160a6ed7eee55a14be4150",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 77,
+          "source_text": "- revisionが変わったときの扱い（stale化、再照合まで送信を止める）：",
+          "source_line_sha256": "d5c4bc2ec0aaab3573916a0ca1b3f54680615cdfc6ca15d9bac11c30b656e8aa",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 78,
+          "source_text": "- 互換が確かめられないとき（unknown）の扱い：",
+          "source_line_sha256": "b933c651e8903bec2a9cea14bb52d4509540d8fc600a080f150b3d25cc7bd9bd",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 80,
+          "source_text": "### 4. 順序",
+          "source_line_sha256": "b474aa713af7e4276ebcdc3a4a3cb801386e763d6bc1d36028647b787d273a72",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 82,
+          "source_text": "- 順序の前提：なし／接続内で順序あり／因果順序（原因より先に結果を確定しない）",
+          "source_line_sha256": "38bb2f824902e0bec2cb0fefc197b72b694e10c59a58806091a72e1ee62aca65",
+          "semantic_role": "field_choices_or_prompt_in_required_field"
+        },
+        {
+          "source_line": 83,
+          "source_text": "- 順序が崩れた・欠けた・重複したときの扱い：拒否／保留／並べ替え／無視（理由）",
+          "source_line_sha256": "049846fb0e81f37e32ee36e8e65ac030d3d1123e449fc8022fc542a7db99ce8f",
+          "semantic_role": "field_choices_or_prompt_in_required_field"
+        },
+        {
+          "source_line": 84,
+          "source_text": "- 並列に流す場合の合流（join）の条件：",
+          "source_line_sha256": "a8f43fc2d1b866473dd61a6517436d6d433c178c22aef0f1e013258509ec93c6",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 86,
+          "source_text": "### 5. 期限・timeout・再送",
+          "source_line_sha256": "5284faa9be08e968d07539e682e38d4bab092ec7c9d769db72d7887d5398f85f",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 88,
+          "source_text": "| 項目 | 記入 |",
+          "source_line_sha256": "2df06df70b6b6a918eabd79594affa2bdecb8f76398fb74bbe7157c799b3fab4",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 89,
+          "source_text": "|---|---|",
+          "source_line_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 90,
+          "source_text": "| 期限（操作ごと） | 値はL3以降。ここでは「どの操作に期限が要るか」と根拠 |",
+          "source_line_sha256": "bfeeae531f8d532ab5eca7200c89c58d579cfe4d582c68b57b856637f866d75b",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 91,
+          "source_text": "| timeout時の結果 | unknownとして記録（成功・失敗に丸めない） |",
+          "source_line_sha256": "87a7420fd1770159d044b68dc5d7f228f2d1c0cdd3b9d14e40567bb4a1cca46a",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 92,
+          "source_text": "| 再送してよい失敗 | 例：一時的な技術失敗 |",
+          "source_line_sha256": "c0c8086bb284b90d3a813e3452d22dcbc7e3a417a6ffb596d35f79069b0dc32d",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 93,
+          "source_text": "| 再送しない失敗 | 例：業務上の拒否、権限の失効、契約不一致 |",
+          "source_line_sha256": "a6d090cb9c6e3234f95c9f1c278a948943d1d15febd1980213f37aa6795aafd9",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 94,
+          "source_text": "| 再送の上限・間隔 | 値はL3以降。上限に達したときの戻し先 |",
+          "source_line_sha256": "eced572bc0ce7777859b45813593d4758cc434e9ce0f5cc69b0ae6bbbc831f55",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 95,
+          "source_text": "| 再送で変えないもの | 操作ID、内容digest、scope、契約revision（一つの操作で旧新revisionを混ぜない） |",
+          "source_line_sha256": "6f52ea3be3c6a2004ce6296b7dc9e38f7e735cd7d3055639882d88423a35c8ac",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 97,
+          "source_text": "### 6. 冪等性と重複",
+          "source_line_sha256": "4129f78b549c3d7c8ec86306482857518c94d6cbf486df79370839fb63cd5b83",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 99,
+          "source_text": "- 冪等キー：発行元、含める要素、保存期間の決め方（値はL3以降）",
+          "source_line_sha256": "957069ecf4024c8312d916863b80854130bcd28ddc599cb35b82a3b8595b04c8",
+          "semantic_role": "field_choices_or_prompt_in_required_field"
+        },
+        {
+          "source_line": 100,
+          "source_text": "- 同じキー・同じ内容：効果なしで同じ結果を返す",
+          "source_line_sha256": "5336985f4d39abc3759c22d86613fe6dcfc76d72175301e1f12ef8d67c0bd221",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 101,
+          "source_text": "- 同じキー・違う内容：衝突として拒否",
+          "source_line_sha256": "1b92b8b5ecfd4e5ae45e9fa916d05bb8f83930477cb388a31af22c663b098d4c",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 102,
+          "source_text": "- 方式の選択（冪等キー、一意制約、状態チェック、処理済みIDの記録）：DT-SDOP-004 §5",
+          "source_line_sha256": "cec5a2ee075eced4b02cd39fff3f02d17b703cde9cab9d7c1439d8a85ddf47ef",
+          "semantic_role": "field_choices_or_prompt_in_required_field"
+        },
+        {
+          "source_line": 104,
+          "source_text": "### 7. 部分失敗と不明",
+          "source_line_sha256": "cbb436cb773c89baf2d3e92f1058d92a2fa9d6baaf91584c3e98ea29528e3500",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 106,
+          "source_text": "| 段 | 届いたことを何で確かめるか | 途中で止まったときの状態 | 戻し先（持ち主） | 補償・再開の方法 |",
+          "source_line_sha256": "55444bfde3d5a5246d6c580d79c12bae8bfd300cae82cc6b97aa2e5e9bb7510d",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 107,
+          "source_text": "|---|---|---|---|---|",
+          "source_line_sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 108,
+          "source_text": "| | | | | |",
+          "source_line_sha256": "ee0addd1ea73f9f48f56a7216d0bdeb0d2aace812c02364732e65c8e46d9d7df",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 110,
+          "source_text": "- ACKなし・結果未回収は未完として持ち主へ戻す。業務の完了にしない。",
+          "source_line_sha256": "0da4aa2c557ab6e2e55d54491330d9bc5c2f621d9bc4d38c8706cb4afb4e7cd6",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 111,
+          "source_text": "- 補償（取り消し）を行う場合は、補償自体の失敗の扱いも書く。",
+          "source_line_sha256": "383a3f6d3daca39edaa5f7084a9f8b68693daad3f41e3e0074e0f662943ec16f",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 113,
+          "source_text": "### 8. 追跡",
+          "source_line_sha256": "65929245f34bc0d2456505973aac86536ecabae53ab7d83e67c382ef3c422fee",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 115,
+          "source_text": "- 辺・操作・試行のidentityと順序で、登録・照合・送信・受信・再送・終端・stale・拒否を辿れるか：",
+          "source_line_sha256": "2fe7c46f5e318081236767905decfb1cf940d50a038af1fada9f3db327c8dda5",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 116,
+          "source_text": "- 追跡に本文（raw payload）、secret、credentialを残さない（DT-MSG-003 §3）。",
+          "source_line_sha256": "24e986964510137a3f8088d1bd2c3c68704170efbdb357e7ab22a0aac5e0c320",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 118,
+          "source_text": "### 9. 検証への対応",
+          "source_line_sha256": "d2f311164d7abcad6cca3aedaa6820bebc13605af76c938fbb784a1bd0f3376d",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 120,
+          "source_text": "| 欄 | DT-VT-104／105の観点 | oracle ID |",
+          "source_line_sha256": "329cd5e75563fa4c57386875b4f106a799728dec4e47ad04d1f4c68ffd1fe636",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 121,
+          "source_text": "|---|---|---|",
+          "source_line_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 122,
+          "source_text": "| | | |",
+          "source_line_sha256": "557360e303f6d940f970066fd417d7447b42128b143135d37688ee2b4ef62eda",
+          "semantic_role": "section_or_table_structure"
+        }
+      ],
+      "source_context_role": "source/provenanceの文脈保存。規範固定行・規範文はrequired_fieldのnormative_rules/source_constraintsへ対応する。欄に併記する規則/選択肢はsource_row_rule_or_choicesで保持。未分類はnormative_or_explanatory_unclassifiedとして採用前に意味分類し、例/選択肢と一括で非規範へ退避しない。",
+      "dependency_state": "relationの参照先はこの3候補では供給しない。未解決は該当knowledge/要求ownerへ保持する。"
+    },
+    {
+      "template_identity": "DT-MSG-004",
+      "candidate_version": "0.1.0-seed-candidate",
+      "source_path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "source_sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "semantic_descriptors": {
+        "identity": {
+          "value": "DT-MSG-004",
+          "source_line": 1,
+          "source_text": "# DT-MSG-004 単体の振る舞い（入出力の契約、副作用、失敗の分類、回復）",
+          "source_line_sha256": "bd951065199b8c91d2dbe3301047958123af74ced9576aee8ff7cfa89b85d385"
+        },
+        "version": {
+          "value": "`DT-MSG-004`／`0.1.0-seed-candidate`",
+          "source_line": 10,
+          "source_text": "| template ID／版 | `DT-MSG-004`／`0.1.0-seed-candidate` |",
+          "source_line_sha256": "c0e9d25b657b55b4e4eba1b769ab854f11a1fa9ec9ca4449dece7a6234665f89"
+        },
+        "layer_pair": {
+          "value": "主にL5↔L8（事前・事後・不変条件、失敗と巻戻し）とL6↔L7（関数の契約とRed→Green）。検証の方法はDT-VT-105・106",
+          "source_line": 18,
+          "source_text": "| 対（V-pair） | 主にL5↔L8（事前・事後・不変条件、失敗と巻戻し）とL6↔L7（関数の契約とRed→Green）。検証の方法はDT-VT-105・106 |",
+          "source_line_sha256": "6f0163c7dd423ed3da2858b369f194c6e95582040f54f677eb917fc4bfea4f30"
+        },
+        "applicability": {
+          "value": "振る舞いを足す・変える単体（関数、module、command、job）。条件分岐の業務規則・状態・外部への副作用を持つ場合は、DT-SDOP-004（デシジョンテーブル、状態×イベント、異常系の4問、冪等性）と併せて使う。本templateの§2〜§5は、SDOP-004の既存行の詳細化である。§2（入出力の契約）はSDOP-004 §1の事前・事後条件を、§3（副作用）はSDOP-004 §3の副作用を、§4（失敗の分類）と§5（回復）はSDOP-004 §4の「失敗したら？」「途中で止まったら？」を、それぞれ参照して詳しく書く。併用するときは、同じ条件・同じ回復判断の正本を二か所に作らず、SDOP-004の行IDを参照する",
+          "source_line": 13,
+          "source_text": "| 適用条件 | 振る舞いを足す・変える単体（関数、module、command、job）。条件分岐の業務規則・状態・外部への副作用を持つ場合は、DT-SDOP-004（デシジョンテーブル、状態×イベント、異常系の4問、冪等性）と併せて使う。本templateの§2〜§5は、SDOP-004の既存行の詳細化である。§2（入出力の契約）はSDOP-004 §1の事前・事後条件を、§3（副作用）はSDOP-004 §3の副作用を、§4（失敗の分類）と§5（回復）はSDOP-004 §4の「失敗したら？」「途中で止まったら？」を、それぞれ参照して詳しく書く。併用するときは、同じ条件・同じ回復判断の正本を二か所に作らず、SDOP-004の行IDを参照する |",
+          "source_line_sha256": "2d148fd7e97ea41c4b897d5ba3a1c501ecba131a7d289b93585ff4a766c75107"
+        },
+        "required_input": {
+          "value": "対象の単体が満たす要求・受入条件のID。入力と出力が表す意味。失敗したときに要求が期待すること（止める、利用者へ返す、後でやり直す）。**期待する振る舞いが要求に書かれていない場合、設計者やAIが補わず上流へ戻す（DST-HARNESS-004）**",
+          "source_line": 15,
+          "source_text": "| 必須入力 | 対象の単体が満たす要求・受入条件のID。入力と出力が表す意味。失敗したときに要求が期待すること（止める、利用者へ返す、後でやり直す）。**期待する振る舞いが要求に書かれていない場合、設計者やAIが補わず上流へ戻す（DST-HARNESS-004）** |",
+          "source_line_sha256": "142980a7d2dd83bd53071ee5f5dc1aa9632a6716faae28e09adb24c87a50be7b"
+        },
+        "required_section": {
+          "meaning": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。",
+          "sections": [
+            {
+              "section_locator": "DT-MSG-004/section-1",
+              "heading": "1. 対象と要求",
+              "source_line": 54,
+              "source_end_line": 61,
+              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+            },
+            {
+              "section_locator": "DT-MSG-004/section-2",
+              "heading": "2. 入出力の契約",
+              "source_line": 62,
+              "source_end_line": 71,
+              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+            },
+            {
+              "section_locator": "DT-MSG-004/section-3",
+              "heading": "3. 副作用",
+              "source_line": 72,
+              "source_end_line": 79,
+              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+            },
+            {
+              "section_locator": "DT-MSG-004/section-4",
+              "heading": "4. 失敗の分類",
+              "source_line": 80,
+              "source_end_line": 88,
+              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+            },
+            {
+              "section_locator": "DT-MSG-004/section-5",
+              "heading": "5. 回復（途中で止まったとき）",
+              "source_line": 89,
+              "source_end_line": 99,
+              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+            },
+            {
+              "section_locator": "DT-MSG-004/section-6",
+              "heading": "6. 検証への対応",
+              "source_line": 100,
+              "source_end_line": 109,
+              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+            }
+          ],
+          "source_completion": [
+            {
+              "source_line": 43,
+              "source_text": "§1〜§5が埋まっている、または理由付きN/Aである。§6（検証への対応）は、埋めた節ごとにDT-VT-105・106の対象caseへ引き渡す行がある。失敗が成功へ変えられていない。途中で止まった場合の分類があり、分からない状態を「無かった」ことにしていない。正常・異常・境界の振る舞いがoracleへ結ばれている。**完了条件を満たしても、振る舞いが正しいこと・要求を満たすことを意味しない。**",
+              "source_line_sha256": "ddfa7aeefbe0fca704820ba6969acf83dffaac0326e166ac2214e6d7c049c45e"
+            }
+          ]
+        },
+        "required_field": {
+          "fields": [
+            {
+              "field_locator": "DT-MSG-004/section-1/row-58",
+              "source_label": "単体ID",
+              "meaning": "この節で要求する「単体ID」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 58,
+              "source_text": "| 単体ID | |",
+              "source_line_sha256": "7f2159e1c8cd3ea2ecbf6d4c5649b5b008de2419aeea2667e2125c795b870d9b",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-1/row-59",
+              "source_label": "対応する要求・受入条件",
+              "meaning": "この節で要求する「対応する要求・受入条件」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 59,
+              "source_text": "| 対応する要求・受入条件 | |",
+              "source_line_sha256": "6ab3601c8edd79ae8170888f08b3af15c0875b0a9b5ea8012ce273cfef2a9835",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-1/row-60",
+              "source_label": "状態・規則を持つか",
+              "meaning": "この節で要求する「状態・規則を持つか」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 60,
+              "source_text": "| 状態・規則を持つか | 持つ場合はDT-SDOP-004の§2〜§5へ |",
+              "source_line_sha256": "8c62fae576046d8d2d7edff0b039461a3112daf75ead669a6ed1f20dec57c27f",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "持つ場合はDT-SDOP-004の§2〜§5へ",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-2/row-66",
+              "source_label": "入力（意味、範囲）",
+              "meaning": "この節で要求する「入力（意味、範囲）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 66,
+              "source_text": "| 入力（意味、範囲） | |",
+              "source_line_sha256": "ca5c3272c55535b0dc7c05eb67d5950c4ff477b8697d292d3ecc396b5f5e0888",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-2/row-67",
+              "source_label": "事前条件（呼ぶ側が保証すること）",
+              "meaning": "この節で要求する「事前条件（呼ぶ側が保証すること）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 67,
+              "source_text": "| 事前条件（呼ぶ側が保証すること） | |",
+              "source_line_sha256": "a44f19e730b36095e440f4709c673c191af45dae5a22428fd564d99ecb108dda",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-2/row-68",
+              "source_label": "出力（意味、範囲）",
+              "meaning": "この節で要求する「出力（意味、範囲）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 68,
+              "source_text": "| 出力（意味、範囲） | |",
+              "source_line_sha256": "05fb384f4c88f54c5bea6d752392757a4313f2309c7a5eaba6f2b4e1e9a04aba",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-2/row-69",
+              "source_label": "事後条件（正常終了後に保証すること、観測できる形で）",
+              "meaning": "この節で要求する「事後条件（正常終了後に保証すること、観測できる形で）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 69,
+              "source_text": "| 事後条件（正常終了後に保証すること、観測できる形で） | |",
+              "source_line_sha256": "fb8fa03b3d7c8b43a1fe531ba07bbf89ba4da7f018b12b6594aa38098343c606",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-2/row-70",
+              "source_label": "不変条件（処理中も破らないこと）",
+              "meaning": "この節で要求する「不変条件（処理中も破らないこと）」の意味と根拠を対象へ束縛する。欄の定義は原文の行と節に従う。",
+              "role": "key_value_row_label",
+              "source_line": 70,
+              "source_text": "| 不変条件（処理中も破らないこと） | |",
+              "source_line_sha256": "e1811e84f99d8e3872f095f2eb5659b7cc93ad65a963afa343abc780f705c3bd",
+              "requiredness": "節の適用と原文条件による。値未決は欠落定義やN/Aへ変換しない。",
+              "source_row_rule_or_choices": "",
+              "row_semantics": "空欄は案件値未供給。非空の原文は汎用規則/選択肢を持つため、欄labelだけで消費せず行の文脈と合わせる。例と選択肢は採用値ではない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-3/column-1",
+              "source_label": "副作用（DB／file／network／外部の状態）",
+              "meaning": "「3. 副作用」の行に対して「副作用（DB／file／network／外部の状態）」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 74,
+              "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
+              "source_line_sha256": "0d5fb70216140c2d56a58dcbf425e2736ce8c498f205cd7e451258538e2d94cc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-3/column-2",
+              "source_label": "起きる場所（port）",
+              "meaning": "「3. 副作用」の行に対して「起きる場所（port）」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 74,
+              "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
+              "source_line_sha256": "0d5fb70216140c2d56a58dcbf425e2736ce8c498f205cd7e451258538e2d94cc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-3/column-3",
+              "source_label": "起きる順序",
+              "meaning": "「3. 副作用」の行に対して「起きる順序」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 74,
+              "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
+              "source_line_sha256": "0d5fb70216140c2d56a58dcbf425e2736ce8c498f205cd7e451258538e2d94cc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-3/column-4",
+              "source_label": "失敗したときに残る状態",
+              "meaning": "「3. 副作用」の行に対して「失敗したときに残る状態」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 74,
+              "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
+              "source_line_sha256": "0d5fb70216140c2d56a58dcbf425e2736ce8c498f205cd7e451258538e2d94cc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-3/prompt-78",
+              "source_label": "副作用を持たない部分（計算）と分けているか",
+              "meaning": "副作用を持たない部分（計算）と分けているかを対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 78,
+              "source_text": "- 副作用を持たない部分（計算）と分けているか：",
+              "source_line_sha256": "20e746e8d482ce028e1c140540960ccf6ae2b629d5f0b335b9aca5c29a8b26a2",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-4/column-1",
+              "source_label": "失敗",
+              "meaning": "「4. 失敗の分類」の行に対して「失敗」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 82,
+              "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
+              "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-4/column-2",
+              "source_label": "想定内／想定外",
+              "meaning": "「4. 失敗の分類」の行に対して「想定内／想定外」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 82,
+              "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
+              "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-4/column-3",
+              "source_label": "やり直せるか",
+              "meaning": "「4. 失敗の分類」の行に対して「やり直せるか」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 82,
+              "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
+              "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-4/column-4",
+              "source_label": "返すもの",
+              "meaning": "「4. 失敗の分類」の行に対して「返すもの」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 82,
+              "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
+              "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-4/column-5",
+              "source_label": "残すもの",
+              "meaning": "「4. 失敗の分類」の行に対して「残すもの」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 82,
+              "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
+              "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-4/column-6",
+              "source_label": "利用者・呼ぶ側が次にすること",
+              "meaning": "「4. 失敗の分類」の行に対して「利用者・呼ぶ側が次にすること」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 82,
+              "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
+              "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-5/column-1",
+              "source_label": "止まった区間",
+              "meaning": "「5. 回復（途中で止まったとき）」の行に対して「止まった区間」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 91,
+              "source_text": "| 止まった区間 | 再び動いたときの分類 | 扱い |",
+              "source_line_sha256": "e2977231abef43619cf16513561669c9471ec8a42aea6852dcf0fbbad068ca69",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-5/column-2",
+              "source_label": "再び動いたときの分類",
+              "meaning": "「5. 回復（途中で止まったとき）」の行に対して「再び動いたときの分類」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 91,
+              "source_text": "| 止まった区間 | 再び動いたときの分類 | 扱い |",
+              "source_line_sha256": "e2977231abef43619cf16513561669c9471ec8a42aea6852dcf0fbbad068ca69",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-5/column-3",
+              "source_label": "扱い",
+              "meaning": "「5. 回復（途中で止まったとき）」の行に対して「扱い」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 91,
+              "source_text": "| 止まった区間 | 再び動いたときの分類 | 扱い |",
+              "source_line_sha256": "e2977231abef43619cf16513561669c9471ec8a42aea6852dcf0fbbad068ca69",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-5/prompt-98",
+              "source_label": "「済んだ」を何で確かめるか（完了の記録、digest等）",
+              "meaning": "「済んだ」を何で確かめるか（完了の記録、digest等）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 98,
+              "source_text": "- 「済んだ」を何で確かめるか（完了の記録、digest等）：",
+              "source_line_sha256": "ff6fccea7efd2a455aef245db7dbd0c6d58bb82523f262f2d1eeedeef4d2043e",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-6/column-1",
+              "source_label": "観点",
+              "meaning": "「6. 検証への対応」の行に対して「観点」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 102,
+              "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
+              "source_line_sha256": "6513d41c0210ae40c0522606f1535a616dfdce6d7677d6a4ad691ae8db4673b1",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-6/column-2",
+              "source_label": "振る舞い",
+              "meaning": "「6. 検証への対応」の行に対して「振る舞い」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 102,
+              "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
+              "source_line_sha256": "6513d41c0210ae40c0522606f1535a616dfdce6d7677d6a4ad691ae8db4673b1",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-6/column-3",
+              "source_label": "oracle ID",
+              "meaning": "「6. 検証への対応」の行に対して「oracle ID」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 102,
+              "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
+              "source_line_sha256": "6513d41c0210ae40c0522606f1535a616dfdce6d7677d6a4ad691ae8db4673b1",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-004/section-6/column-4",
+              "source_label": "DT-VT-105／106",
+              "meaning": "「6. 検証への対応」の行に対して「DT-VT-105／106」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 102,
+              "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
+              "source_line_sha256": "6513d41c0210ae40c0522606f1535a616dfdce6d7677d6a4ad691ae8db4673b1",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            }
+          ],
+          "source_constraints": [],
+          "meaning_owner_boundary": "汎用欄の意味はBRAIN、製品値/適用義務はCORE、使用setと原記録はOS。例示行は製品値にしない。",
+          "normative_rules": [
+            {
+              "source_line": 84,
+              "source_text": "| 入力不正 | 想定内 | いいえ | | | |",
+              "source_line_sha256": "0d0974ec1df671a695f4776547acfd1ba61d057bb62603ec1359e2509ad988e8",
+              "rule_locator": "DT-MSG-004/source-rule-84",
+              "section_locator": "DT-MSG-004/section-4",
+              "meaning": "| 入力不正 | 想定内 | いいえ | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 85,
+              "source_text": "| 必要な物の欠落 | 想定内 | | | | |",
+              "source_line_sha256": "a43cdae777bc734a8629fa71e014d89cf75f1728439b5bc73f4769e9cbc9ce54",
+              "rule_locator": "DT-MSG-004/source-rule-85",
+              "section_locator": "DT-MSG-004/section-4",
+              "meaning": "| 必要な物の欠落 | 想定内 | | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 86,
+              "source_text": "| 依存先の失敗 | 想定内 | | | | |",
+              "source_line_sha256": "d58274ba6b9562ab3363a8b4e3e3bd8f51372e3750b0bc456073d3cd2e74fbc5",
+              "rule_locator": "DT-MSG-004/source-rule-86",
+              "section_locator": "DT-MSG-004/section-4",
+              "meaning": "| 依存先の失敗 | 想定内 | | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 87,
+              "source_text": "| 想定外 | 想定外 | いいえ | 伏せたmessage（secret・個人情報・内部の情報を出さない） | 分類とdigest | |",
+              "source_line_sha256": "6bba1ded33453f0797e3e762a447d3a3403738f62ba03d5fc7880a9a3e0f56c6",
+              "rule_locator": "DT-MSG-004/source-rule-87",
+              "section_locator": "DT-MSG-004/section-4",
+              "meaning": "| 想定外 | 想定外 | いいえ | 伏せたmessage（secret・個人情報・内部の情報を出さない） | 分類とdigest | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 93,
+              "source_text": "| 副作用の前 | 済んでいない | やり直してよい |",
+              "source_line_sha256": "88b186289834404d472bebc7da2abeceb61b65e643c2111a793ab12a8f5a8991",
+              "rule_locator": "DT-MSG-004/source-rule-93",
+              "section_locator": "DT-MSG-004/section-5",
+              "meaning": "| 副作用の前 | 済んでいない | やり直してよい |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 94,
+              "source_text": "| 書きかけ | 済んでいない（書きかけを完成として読ませない） | |",
+              "source_line_sha256": "fc79c2bdc0b80d75ad37a6c2731b233542259c8216d30fce4cfa7168f36e4237",
+              "rule_locator": "DT-MSG-004/source-rule-94",
+              "section_locator": "DT-MSG-004/section-5",
+              "meaning": "| 書きかけ | 済んでいない（書きかけを完成として読ませない） | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 95,
+              "source_text": "| 外部への副作用を始めた後、完了の確認前 | 分からない | 自動でやり直さない。持ち主・人へ上げる |",
+              "source_line_sha256": "c106225dbc4a6b0eb55410f15f6fa642622bedce365a2486b15fba9cb672692a",
+              "rule_locator": "DT-MSG-004/source-rule-95",
+              "section_locator": "DT-MSG-004/section-5",
+              "meaning": "| 外部への副作用を始めた後、完了の確認前 | 分からない | 自動でやり直さない。持ち主・人へ上げる |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 96,
+              "source_text": "| 完了を記録した後 | 済んだ | |",
+              "source_line_sha256": "2a7adf0a92ecd04133d139e07b78abc5cfc542af4ee4f44203474858620e1b9b",
+              "rule_locator": "DT-MSG-004/source-rule-96",
+              "section_locator": "DT-MSG-004/section-5",
+              "meaning": "| 完了を記録した後 | 済んだ | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 104,
+              "source_text": "| 正常 | | | |",
+              "source_line_sha256": "8b2e82a6b8eea939c1761f1204532acd1d2afe845867069b8ee951edb0a627ac",
+              "rule_locator": "DT-MSG-004/source-rule-104",
+              "section_locator": "DT-MSG-004/section-6",
+              "meaning": "| 正常 | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 105,
+              "source_text": "| 異常 | | | |",
+              "source_line_sha256": "3bcefb2c08e617fdb36c0f3e907f89d5de203682c78c659497c30432da90f15b",
+              "rule_locator": "DT-MSG-004/source-rule-105",
+              "section_locator": "DT-MSG-004/section-6",
+              "meaning": "| 異常 | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 106,
+              "source_text": "| 境界 | | | |",
+              "source_line_sha256": "83c781a2f56ef75b3633e62eb5a74bd2c8bedd7c38f2deb6de461e4153adcec6",
+              "rule_locator": "DT-MSG-004/source-rule-106",
+              "section_locator": "DT-MSG-004/section-6",
+              "meaning": "| 境界 | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 107,
+              "source_text": "| 失敗の種類ごと | | | |",
+              "source_line_sha256": "ddc484f6455744d96b224ea38439125553b540615c3dbdcc5c920c289a4018a5",
+              "rule_locator": "DT-MSG-004/source-rule-107",
+              "section_locator": "DT-MSG-004/section-6",
+              "meaning": "| 失敗の種類ごと | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 108,
+              "source_text": "| 回復の区間ごと | | | |",
+              "source_line_sha256": "4f63d3dc959505faf73244a87e09dec5e58ed3b54d0300589cf88c3676eae33e",
+              "rule_locator": "DT-MSG-004/source-rule-108",
+              "section_locator": "DT-MSG-004/section-6",
+              "meaning": "| 回復の区間ごと | | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            }
+          ]
+        },
+        "relation": {
+          "value": "DT-SDOP-004（状態・規則・異常系・冪等性。重複して書かない）、DT-SDOP-001（errorの種類とcode、観測点）、DT-MSG-001（単体が接続の端になる場合）、DT-MSG-006（観測点と制御点）、DT-VT-105（L5↔L8）、DT-VT-106（L6↔L7）",
+          "source_line": 16,
+          "source_text": "| 関係 | DT-SDOP-004（状態・規則・異常系・冪等性。重複して書かない）、DT-SDOP-001（errorの種類とcode、観測点）、DT-MSG-001（単体が接続の端になる場合）、DT-MSG-006（観測点と制御点）、DT-VT-105（L5↔L8）、DT-VT-106（L6↔L7） |",
+          "source_line_sha256": "063233a16392a1ff974340633bfcff0155f69db09ebc0c9159658a36f7dcfe7e"
+        },
+        "meaning_owner": {
+          "value": "HELIX-BRAIN（汎用の構造）。製品への適用と設計義務の導出はHELIX-HARNESS-CORE（HARNESS-L2-009）",
+          "source_line": 12,
+          "source_text": "| 想定する持ち主 | HELIX-BRAIN（汎用の構造）。製品への適用と設計義務の導出はHELIX-HARNESS-CORE（HARNESS-L2-009） |",
+          "source_line_sha256": "5b66ab20b31289ab9cfa8d16add7451d856bef81fa831248b26bf7db68c367af"
+        },
+        "trace": {
+          "meaning": "対象要求/受入→対象単体/辺/構成体→節/field→対case/oracleを辿る。候補field locatorを正式schema IDへ昇格させない。",
+          "source_section_refs": [
+            {
+              "section_locator": "DT-MSG-004/section-1",
+              "heading": "1. 対象と要求",
+              "source_line": 54,
+              "source_end_line": 61,
+              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+            },
+            {
+              "section_locator": "DT-MSG-004/section-6",
+              "heading": "6. 検証への対応",
+              "source_line": 100,
+              "source_end_line": 109,
+              "obligation_policy": "§1〜§5は記入または理由付きN/A。§6は記入した節ごとに対caseへ引き渡す。正常/異常/境界と各失敗/回復をoracleへ結ぶ。"
+            }
+          ]
+        },
+        "negative_oracle": {
+          "items": [
+            {
+              "source_line": 27,
+              "source_text": "- 入力と出力を型だけで書き、満たすべき条件（事前・事後・不変）を書かない。",
+              "source_line_sha256": "2254a28b61df8790a3230176145f75d71849867efec80665735911bcbc0a303e"
+            },
+            {
+              "source_line": 28,
+              "source_text": "- 副作用（DB、file、network、外部の状態）があるのに「なし」と書く、または副作用の起きる場所が単体のあちこちに散る。",
+              "source_line_sha256": "91ca4a206ed876f543afd48469c9323aeaa4ec7f2be8ed93af5f5609de017e83"
+            },
+            {
+              "source_line": 29,
+              "source_text": "- 失敗を「例外を投げる」とだけ書き、種類（想定内／想定外、やり直せる／やり直せない）と、そのとき何を返し何を残すかを書かない。",
+              "source_line_sha256": "d44978312b9b07460b847569d9851a703480f530d8c30bb7189ad5bdca895f46"
+            },
+            {
+              "source_line": 30,
+              "source_text": "- 想定外の失敗のmessageに、secret・個人情報・内部のpathをそのまま出す。",
+              "source_line_sha256": "832a726cf6ba01da667d0506ff2ef43388048a09ee96c91c0f519d2887c29cce"
+            },
+            {
+              "source_line": 31,
+              "source_text": "- 途中で止まった（process停止、書きかけ）後に再び動いたとき、前回が終わったのか終わっていないのか分からない状態を「無かった」ことにする。",
+              "source_line_sha256": "76134bff297892f44cefd3ce81a2be2a4525fd56fbd15e0e34857aa7f69c0bd6"
+            },
+            {
+              "source_line": 32,
+              "source_text": "- 外部への副作用を始めた後に止まり、完了したか分からないのに、自動でやり直す。",
+              "source_line_sha256": "4031a9fd655633fc5fe1a106158d6d78c4b76b3cb4017d824ef48bf03c4401a7"
+            },
+            {
+              "source_line": 33,
+              "source_text": "- 失敗を成功（exit 0、空の結果）に変えて返す。",
+              "source_line_sha256": "720f2bd567a7981848aa8aabd2dbd571bc49d20e812beb0c960e464021ea4fb8"
+            },
+            {
+              "source_line": 34,
+              "source_text": "- 正常・異常・境界のどれかの振る舞いがoracleへ結ばれていない。",
+              "source_line_sha256": "782d2c9e99b2a291a3261d42f985037c28ef676589b1049e7d359d37e23ac8cf"
+            }
+          ],
+          "interpretation": "適用した意味条件の不成立例。文書の登録や欄の存在だけでこれらの拒否を実施済みにしない。"
+        },
+        "measurement": {
+          "value": "数値（処理時間、上限）を置かない。値は要求とL3以降で導く",
+          "source_line": 19,
+          "source_text": "| 計測 | 数値（処理時間、上限）を置かない。値は要求とL3以降で導く |",
+          "source_line_sha256": "9c124459a1aaa6f46a39c5d0742ecb079071caf892644ce6332a8e8a0e3495e9"
+        },
+        "completion": {
+          "source_conditions": [
+            {
+              "source_line": 43,
+              "source_text": "§1〜§5が埋まっている、または理由付きN/Aである。§6（検証への対応）は、埋めた節ごとにDT-VT-105・106の対象caseへ引き渡す行がある。失敗が成功へ変えられていない。途中で止まった場合の分類があり、分からない状態を「無かった」ことにしていない。正常・異常・境界の振る舞いがoracleへ結ばれている。**完了条件を満たしても、振る舞いが正しいこと・要求を満たすことを意味しない。**",
+              "source_line_sha256": "ddfa7aeefbe0fca704820ba6969acf83dffaac0326e166ac2214e6d7c049c45e"
+            }
+          ],
+          "meaning": "template適用義務の確認条件。実接続/振る舞い/構成の正しさや要求充足の裁定は別。"
+        },
+        "downstream_kind": {
+          "value": "unit",
+          "source_line": 17,
+          "source_text": "| 区分 | unit |",
+          "source_line_sha256": "8e92820391168176740d1dbc5a97e66cb190d2784006fe005c55c90a5c584de2"
+        },
+        "supersession": {
+          "value": "正式な単体の設計templateが入ったら`superseded`とし、各欄の行き先を対応づける",
+          "source_line": 23,
+          "source_text": "| 置き換え | 正式な単体の設計templateが入ったら`superseded`とし、各欄の行き先を対応づける |",
+          "source_line_sha256": "9ef6ad67083648256d5229a02c950ab3a8350244df640d779d911d8dc6fe1901"
+        }
+      },
+      "definition_state": "source_bound_candidate; 各field要否/意味とoracleの最終照合は未完",
+      "required_input_value_state": "no_project_values_supplied; COREへ未充足材料として戻す",
+      "source_body_context": [
+        {
+          "source_line": 54,
+          "source_text": "### 1. 対象と要求",
+          "source_line_sha256": "4c9ea096c8578c15c24f04698b6a11f147f5b2db9b73fdd8502b99111074a9ff",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 56,
+          "source_text": "| 項目 | 記入 |",
+          "source_line_sha256": "2df06df70b6b6a918eabd79594affa2bdecb8f76398fb74bbe7157c799b3fab4",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 57,
+          "source_text": "|---|---|",
+          "source_line_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 58,
+          "source_text": "| 単体ID | |",
+          "source_line_sha256": "7f2159e1c8cd3ea2ecbf6d4c5649b5b008de2419aeea2667e2125c795b870d9b",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 59,
+          "source_text": "| 対応する要求・受入条件 | |",
+          "source_line_sha256": "6ab3601c8edd79ae8170888f08b3af15c0875b0a9b5ea8012ce273cfef2a9835",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 60,
+          "source_text": "| 状態・規則を持つか | 持つ場合はDT-SDOP-004の§2〜§5へ |",
+          "source_line_sha256": "8c62fae576046d8d2d7edff0b039461a3112daf75ead669a6ed1f20dec57c27f",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 62,
+          "source_text": "### 2. 入出力の契約",
+          "source_line_sha256": "c795d95838157f31c5cdd303f06097d90ab808bbdb0838b4d5ca06bff198be7e",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 64,
+          "source_text": "| 項目 | 記入 |",
+          "source_line_sha256": "2df06df70b6b6a918eabd79594affa2bdecb8f76398fb74bbe7157c799b3fab4",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 65,
+          "source_text": "|---|---|",
+          "source_line_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 66,
+          "source_text": "| 入力（意味、範囲） | |",
+          "source_line_sha256": "ca5c3272c55535b0dc7c05eb67d5950c4ff477b8697d292d3ecc396b5f5e0888",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 67,
+          "source_text": "| 事前条件（呼ぶ側が保証すること） | |",
+          "source_line_sha256": "a44f19e730b36095e440f4709c673c191af45dae5a22428fd564d99ecb108dda",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 68,
+          "source_text": "| 出力（意味、範囲） | |",
+          "source_line_sha256": "05fb384f4c88f54c5bea6d752392757a4313f2309c7a5eaba6f2b4e1e9a04aba",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 69,
+          "source_text": "| 事後条件（正常終了後に保証すること、観測できる形で） | |",
+          "source_line_sha256": "fb8fa03b3d7c8b43a1fe531ba07bbf89ba4da7f018b12b6594aa38098343c606",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 70,
+          "source_text": "| 不変条件（処理中も破らないこと） | |",
+          "source_line_sha256": "e1811e84f99d8e3872f095f2eb5659b7cc93ad65a963afa343abc780f705c3bd",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 72,
+          "source_text": "### 3. 副作用",
+          "source_line_sha256": "392ec096f4eb139adb501f5dd3ac61ed966302ba3acad56e066981af1b1eda52",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 74,
+          "source_text": "| 副作用（DB／file／network／外部の状態） | 起きる場所（port） | 起きる順序 | 失敗したときに残る状態 |",
+          "source_line_sha256": "0d5fb70216140c2d56a58dcbf425e2736ce8c498f205cd7e451258538e2d94cc",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 75,
+          "source_text": "|---|---|---|---|",
+          "source_line_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 76,
+          "source_text": "| | | | |",
+          "source_line_sha256": "187596b1145648c2017a2da0d07418ac82c20f1b272e619937ef73d6c2c7dc6b",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 78,
+          "source_text": "- 副作用を持たない部分（計算）と分けているか：",
+          "source_line_sha256": "20e746e8d482ce028e1c140540960ccf6ae2b629d5f0b335b9aca5c29a8b26a2",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 80,
+          "source_text": "### 4. 失敗の分類",
+          "source_line_sha256": "c27f394b3e246953422ebc8d59a89719d9c8d454b9ae79ed9be389acd3fce720",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 82,
+          "source_text": "| 失敗 | 想定内／想定外 | やり直せるか | 返すもの | 残すもの | 利用者・呼ぶ側が次にすること |",
+          "source_line_sha256": "636c73e608cb2d2bd52f984de0024a6379767f7e2e1433739a72b6351c26ea18",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 83,
+          "source_text": "|---|---|---|---|---|---|",
+          "source_line_sha256": "386dd7132ff82a3235473307d1e9d483ef7e0a9ae30607085abe2edd440cdcf7",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 84,
+          "source_text": "| 入力不正 | 想定内 | いいえ | | | |",
+          "source_line_sha256": "0d0974ec1df671a695f4776547acfd1ba61d057bb62603ec1359e2509ad988e8",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 85,
+          "source_text": "| 必要な物の欠落 | 想定内 | | | | |",
+          "source_line_sha256": "a43cdae777bc734a8629fa71e014d89cf75f1728439b5bc73f4769e9cbc9ce54",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 86,
+          "source_text": "| 依存先の失敗 | 想定内 | | | | |",
+          "source_line_sha256": "d58274ba6b9562ab3363a8b4e3e3bd8f51372e3750b0bc456073d3cd2e74fbc5",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 87,
+          "source_text": "| 想定外 | 想定外 | いいえ | 伏せたmessage（secret・個人情報・内部の情報を出さない） | 分類とdigest | |",
+          "source_line_sha256": "6bba1ded33453f0797e3e762a447d3a3403738f62ba03d5fc7880a9a3e0f56c6",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 89,
+          "source_text": "### 5. 回復（途中で止まったとき）",
+          "source_line_sha256": "bc0be9d289e17d30068ee2256d4d018e29e098d421db3b1bfc4d489e15502466",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 91,
+          "source_text": "| 止まった区間 | 再び動いたときの分類 | 扱い |",
+          "source_line_sha256": "e2977231abef43619cf16513561669c9471ec8a42aea6852dcf0fbbad068ca69",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 92,
+          "source_text": "|---|---|---|",
+          "source_line_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 93,
+          "source_text": "| 副作用の前 | 済んでいない | やり直してよい |",
+          "source_line_sha256": "88b186289834404d472bebc7da2abeceb61b65e643c2111a793ab12a8f5a8991",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 94,
+          "source_text": "| 書きかけ | 済んでいない（書きかけを完成として読ませない） | |",
+          "source_line_sha256": "fc79c2bdc0b80d75ad37a6c2731b233542259c8216d30fce4cfa7168f36e4237",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 95,
+          "source_text": "| 外部への副作用を始めた後、完了の確認前 | 分からない | 自動でやり直さない。持ち主・人へ上げる |",
+          "source_line_sha256": "c106225dbc4a6b0eb55410f15f6fa642622bedce365a2486b15fba9cb672692a",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 96,
+          "source_text": "| 完了を記録した後 | 済んだ | |",
+          "source_line_sha256": "2a7adf0a92ecd04133d139e07b78abc5cfc542af4ee4f44203474858620e1b9b",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 98,
+          "source_text": "- 「済んだ」を何で確かめるか（完了の記録、digest等）：",
+          "source_line_sha256": "ff6fccea7efd2a455aef245db7dbd0c6d58bb82523f262f2d1eeedeef4d2043e",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 100,
+          "source_text": "### 6. 検証への対応",
+          "source_line_sha256": "53e1ac035a44880e398fb2d3439eacbd812eb13bed04982215221be9ddb71e84",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 102,
+          "source_text": "| 観点 | 振る舞い | oracle ID | DT-VT-105／106 |",
+          "source_line_sha256": "6513d41c0210ae40c0522606f1535a616dfdce6d7677d6a4ad691ae8db4673b1",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 103,
+          "source_text": "|---|---|---|---|",
+          "source_line_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 104,
+          "source_text": "| 正常 | | | |",
+          "source_line_sha256": "8b2e82a6b8eea939c1761f1204532acd1d2afe845867069b8ee951edb0a627ac",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 105,
+          "source_text": "| 異常 | | | |",
+          "source_line_sha256": "3bcefb2c08e617fdb36c0f3e907f89d5de203682c78c659497c30432da90f15b",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 106,
+          "source_text": "| 境界 | | | |",
+          "source_line_sha256": "83c781a2f56ef75b3633e62eb5a74bd2c8bedd7c38f2deb6de461e4153adcec6",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 107,
+          "source_text": "| 失敗の種類ごと | | | |",
+          "source_line_sha256": "ddc484f6455744d96b224ea38439125553b540615c3dbdcc5c920c289a4018a5",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 108,
+          "source_text": "| 回復の区間ごと | | | |",
+          "source_line_sha256": "4f63d3dc959505faf73244a87e09dec5e58ed3b54d0300589cf88c3676eae33e",
+          "semantic_role": "normative_rule_in_required_field"
+        }
+      ],
+      "source_context_role": "source/provenanceの文脈保存。規範固定行・規範文はrequired_fieldのnormative_rules/source_constraintsへ対応する。欄に併記する規則/選択肢はsource_row_rule_or_choicesで保持。未分類はnormative_or_explanatory_unclassifiedとして採用前に意味分類し、例/選択肢と一括で非規範へ退避しない。",
+      "dependency_state": "relationの参照先はこの3候補では供給しない。未解決は該当knowledge/要求ownerへ保持する。"
+    },
+    {
+      "template_identity": "DT-MSG-005",
+      "candidate_version": "0.1.0-seed-candidate",
+      "source_path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-005-composite-architecture.md",
+      "source_sha256": "678e71797043d48e0f9e19c588e41cab059034fd5fe9cf5994f9d6c51d011589",
+      "semantic_descriptors": {
+        "identity": {
+          "value": "DT-MSG-005",
+          "source_line": 1,
+          "source_text": "# DT-MSG-005 構成体（境界、構成要素、依存の向き、end-to-endの流れ、構成体に固有の義務）",
+          "source_line_sha256": "037dfc24b5072a3ef87d8d10542b012366347d6caff6b483dd57ab11d396a8ab"
+        },
+        "version": {
+          "value": "`DT-MSG-005`／`0.1.0-seed-candidate`",
+          "source_line": 10,
+          "source_text": "| template ID／版 | `DT-MSG-005`／`0.1.0-seed-candidate` |",
+          "source_line_sha256": "4b569fb68683f5511b3a05e45c3d9ae59836188b27629613d8c5b6c1426caf3d"
+        },
+        "layer_pair": {
+          "value": "主にL4↔L9（構成と境界）、L3↔L10（system全体の義務）。検証の方法はDT-VT-103・104",
+          "source_line": 18,
+          "source_text": "| 対（V-pair） | 主にL4↔L9（構成と境界）、L3↔L10（system全体の義務）。検証の方法はDT-VT-103・104 |",
+          "source_line_sha256": "977ce08755f9f19f3e5e2164f8500875c0264519a4f91f7649f03ce413078d7e"
+        },
+        "applicability": {
+          "value": "複数の単体と接続を組み合わせて一つの成果を出す対象（system、複数機構を通る処理、複数のstoreを跨ぐ移行）。単体1つと接続1本で閉じる対象はN/A（理由必須。DT-MSG-004・001を使う）",
+          "source_line": 13,
+          "source_text": "| 適用条件 | 複数の単体と接続を組み合わせて一つの成果を出す対象（system、複数機構を通る処理、複数のstoreを跨ぐ移行）。単体1つと接続1本で閉じる対象はN/A（理由必須。DT-MSG-004・001を使う） |",
+          "source_line_sha256": "99ea28bb28894b75c75d2cbc9850c586289302d6032148eddf774adb6a7a9a4d"
+        },
+        "required_input": {
+          "value": "構成体が全体として出す成果（要求・受入条件のID）。構成要素の一覧と、それぞれの持ち主。構成要素の間の接続（DT-MSG-001を適用済みの辺）。重要度・規模・稼働環境（DT-SDOP-002の入力と同じ）。**全体の成果や、途中まで進んだときに要求が期待することが書かれていない場合、上流へ戻す（DST-HARNESS-004）**",
+          "source_line": 15,
+          "source_text": "| 必須入力 | 構成体が全体として出す成果（要求・受入条件のID）。構成要素の一覧と、それぞれの持ち主。構成要素の間の接続（DT-MSG-001を適用済みの辺）。重要度・規模・稼働環境（DT-SDOP-002の入力と同じ）。**全体の成果や、途中まで進んだときに要求が期待することが書かれていない場合、上流へ戻す（DST-HARNESS-004）** |",
+          "source_line_sha256": "b2b68cbc99c4e1effa4e8e40515c4407b003a0ae72d3de0de41e89394f459235"
+        },
+        "required_section": {
+          "meaning": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。",
+          "sections": [
+            {
+              "section_locator": "DT-MSG-005/section-1",
+              "heading": "1. 境界",
+              "source_line": 55,
+              "source_end_line": 61,
+              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+            },
+            {
+              "section_locator": "DT-MSG-005/section-2",
+              "heading": "2. 構成要素",
+              "source_line": 62,
+              "source_end_line": 67,
+              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+            },
+            {
+              "section_locator": "DT-MSG-005/section-3",
+              "heading": "3. 依存の向き",
+              "source_line": 68,
+              "source_end_line": 76,
+              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+            },
+            {
+              "section_locator": "DT-MSG-005/section-4",
+              "heading": "4. end-to-endの流れ",
+              "source_line": 77,
+              "source_end_line": 87,
+              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+            },
+            {
+              "section_locator": "DT-MSG-005/section-5",
+              "heading": "5. 構成体の不変条件",
+              "source_line": 88,
+              "source_end_line": 95,
+              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+            },
+            {
+              "section_locator": "DT-MSG-005/section-6",
+              "heading": "6. 横断の関心（重ねて書かない）",
+              "source_line": 96,
+              "source_end_line": 106,
+              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+            },
+            {
+              "section_locator": "DT-MSG-005/section-7",
+              "heading": "7. 検証への対応",
+              "source_line": 107,
+              "source_end_line": 113,
+              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+            }
+          ],
+          "source_completion": [
+            {
+              "source_line": 44,
+              "source_text": "§1〜§6が埋まっている、または理由付きN/Aである。§7（検証への対応）は、埋めた節ごとにDT-VT-103・104の対象caseへ引き渡す行がある。end-to-endの流れの各段に、失敗・部分成功・不明のときの全体の状態がある。構成体の不変条件が、構成要素の義務の和とは別に書かれている。容量・観測・運用・securityの値は既存templateの行を指し、重ねて書いていない。**完了条件を満たしても、構成が正しいこと・要求を満たすことを意味しない。**",
+              "source_line_sha256": "f40669967682c07d1752a6440a7258701ce7377af929bd8a789068d9c9afe45f"
+            }
+          ]
+        },
+        "required_field": {
+          "fields": [
+            {
+              "field_locator": "DT-MSG-005/section-1/prompt-57",
+              "source_label": "構成体が全体として出す成果（要求ID）",
+              "meaning": "構成体が全体として出す成果（要求ID）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 57,
+              "source_text": "- 構成体が全体として出す成果（要求ID）：",
+              "source_line_sha256": "1d3275584ab85ff66ac44e23cd12432a823d44b8550e50f1e259533f2dd195d4",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-1/prompt-58",
+              "source_label": "中に含む物",
+              "meaning": "中に含む物を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 58,
+              "source_text": "- 中に含む物：",
+              "source_line_sha256": "58e94235fc2aa303d92dcc7b1962ba6e327c27d852066307fade8d04e4b2bd7d",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-1/prompt-59",
+              "source_label": "外（外部、別の持ち主）",
+              "meaning": "外（外部、別の持ち主）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 59,
+              "source_text": "- 外（外部、別の持ち主）：",
+              "source_line_sha256": "181f61e14b720a8e5daa15f8ac2b970bb94203aea4cb4460c89a6db19f389787",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-1/prompt-60",
+              "source_label": "外との接続（DT-MSG-001の辺ID）",
+              "meaning": "外との接続（DT-MSG-001の辺ID）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 60,
+              "source_text": "- 外との接続（DT-MSG-001の辺ID）：",
+              "source_line_sha256": "ca1295dfa1de832380fe0d496db55da30433c3770343fb8b49f00eb63c3374d5",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-2/column-1",
+              "source_label": "構成要素",
+              "meaning": "「2. 構成要素」の行に対して「構成要素」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 64,
+              "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
+              "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-2/column-2",
+              "source_label": "責務",
+              "meaning": "「2. 構成要素」の行に対して「責務」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 64,
+              "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
+              "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-2/column-3",
+              "source_label": "持ち主",
+              "meaning": "「2. 構成要素」の行に対して「持ち主」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 64,
+              "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
+              "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-2/column-4",
+              "source_label": "公開するinterface",
+              "meaning": "「2. 構成要素」の行に対して「公開するinterface」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 64,
+              "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
+              "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-2/column-5",
+              "source_label": "状態・dataを持つか（DT-MSG-002）",
+              "meaning": "「2. 構成要素」の行に対して「状態・dataを持つか（DT-MSG-002）」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 64,
+              "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
+              "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-3/column-1",
+              "source_label": "依存する側",
+              "meaning": "「3. 依存の向き」の行に対して「依存する側」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 70,
+              "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
+              "source_line_sha256": "414780bc0291b53ec48a6499a994ee00c4ac5915d9a68ed49f7993f507da3294",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-3/column-2",
+              "source_label": "依存される側",
+              "meaning": "「3. 依存の向き」の行に対して「依存される側」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 70,
+              "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
+              "source_line_sha256": "414780bc0291b53ec48a6499a994ee00c4ac5915d9a68ed49f7993f507da3294",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-3/column-3",
+              "source_label": "理由",
+              "meaning": "「3. 依存の向き」の行に対して「理由」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 70,
+              "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
+              "source_line_sha256": "414780bc0291b53ec48a6499a994ee00c4ac5915d9a68ed49f7993f507da3294",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-3/column-4",
+              "source_label": "差し替えの点",
+              "meaning": "「3. 依存の向き」の行に対して「差し替えの点」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 70,
+              "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
+              "source_line_sha256": "414780bc0291b53ec48a6499a994ee00c4ac5915d9a68ed49f7993f507da3294",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-3/prompt-75",
+              "source_label": "外部serviceを呼ぶ点が一か所にまとまっているか",
+              "meaning": "外部serviceを呼ぶ点が一か所にまとまっているかを対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 75,
+              "source_text": "- 外部serviceを呼ぶ点が一か所にまとまっているか：",
+              "source_line_sha256": "09133c223cadeacea3c0ea53c8f30cdcc8dcfb4d157ce4ff4775e93653f8c970",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-4/column-1",
+              "source_label": "段",
+              "meaning": "「4. end-to-endの流れ」の行に対して「段」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 81,
+              "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
+              "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-4/column-2",
+              "source_label": "構成要素",
+              "meaning": "「4. end-to-endの流れ」の行に対して「構成要素」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 81,
+              "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
+              "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-4/column-3",
+              "source_label": "使う辺（DT-MSG-001）",
+              "meaning": "「4. end-to-endの流れ」の行に対して「使う辺（DT-MSG-001）」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 81,
+              "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
+              "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-4/column-4",
+              "source_label": "この段が失敗したときの全体",
+              "meaning": "「4. end-to-endの流れ」の行に対して「この段が失敗したときの全体」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 81,
+              "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
+              "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-4/column-5",
+              "source_label": "部分成功・不明のときの全体",
+              "meaning": "「4. end-to-endの流れ」の行に対して「部分成功・不明のときの全体」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 81,
+              "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
+              "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-4/column-6",
+              "source_label": "止まった位置と引継ぎ先",
+              "meaning": "「4. end-to-endの流れ」の行に対して「止まった位置と引継ぎ先」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 81,
+              "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
+              "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-4/prompt-85",
+              "source_label": "全体の成功とする条件（必須の段がすべて終わったことを何で確かめるか）",
+              "meaning": "全体の成功とする条件（必須の段がすべて終わったことを何で確かめるか）を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 85,
+              "source_text": "- 全体の成功とする条件（必須の段がすべて終わったことを何で確かめるか）：",
+              "source_line_sha256": "d4868800f73d7ae8666b5e5d4461401c620d372f52aa0a85335c4e13de45268f",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-4/prompt-86",
+              "source_label": "並列の段の合流（join）の条件",
+              "meaning": "並列の段の合流（join）の条件を対象scopeへ束縛する。値・判断は製品側に残す。",
+              "role": "prompt",
+              "source_line": 86,
+              "source_text": "- 並列の段の合流（join）の条件：",
+              "source_line_sha256": "c554330bd2940f7bcd04e4198ac5c53f80ae91382d3297d78df238deb5ccc853",
+              "requiredness": "節の適用と原文条件による。対象値未決は未完保持。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-5/column-1",
+              "source_label": "不変条件",
+              "meaning": "「5. 構成体の不変条件」の行に対して「不変条件」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 92,
+              "source_text": "| 不変条件 | 守る構成要素・辺 | 破れたときの扱い |",
+              "source_line_sha256": "5909464757bec6488d0814403b09f1022488b57af55d0227619f76d12f3244bd",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-5/column-2",
+              "source_label": "守る構成要素・辺",
+              "meaning": "「5. 構成体の不変条件」の行に対して「守る構成要素・辺」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 92,
+              "source_text": "| 不変条件 | 守る構成要素・辺 | 破れたときの扱い |",
+              "source_line_sha256": "5909464757bec6488d0814403b09f1022488b57af55d0227619f76d12f3244bd",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-5/column-3",
+              "source_label": "破れたときの扱い",
+              "meaning": "「5. 構成体の不変条件」の行に対して「破れたときの扱い」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 92,
+              "source_text": "| 不変条件 | 守る構成要素・辺 | 破れたときの扱い |",
+              "source_line_sha256": "5909464757bec6488d0814403b09f1022488b57af55d0227619f76d12f3244bd",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-6/column-1",
+              "source_label": "関心",
+              "meaning": "「6. 横断の関心（重ねて書かない）」の行に対して「関心」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 98,
+              "source_text": "| 関心 | 本templateで書くこと | 値・方式を書く場所 |",
+              "source_line_sha256": "427c4929c691f72a2947f12a058ed6ba117f0e00620fd87c974fe178c46ba784",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-6/column-2",
+              "source_label": "本templateで書くこと",
+              "meaning": "「6. 横断の関心（重ねて書かない）」の行に対して「本templateで書くこと」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 98,
+              "source_text": "| 関心 | 本templateで書くこと | 値・方式を書く場所 |",
+              "source_line_sha256": "427c4929c691f72a2947f12a058ed6ba117f0e00620fd87c974fe178c46ba784",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-6/column-3",
+              "source_label": "値・方式を書く場所",
+              "meaning": "「6. 横断の関心（重ねて書かない）」の行に対して「値・方式を書く場所」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 98,
+              "source_text": "| 関心 | 本templateで書くこと | 値・方式を書く場所 |",
+              "source_line_sha256": "427c4929c691f72a2947f12a058ed6ba117f0e00620fd87c974fe178c46ba784",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-7/column-1",
+              "source_label": "欄",
+              "meaning": "「7. 検証への対応」の行に対して「欄」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 109,
+              "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
+              "source_line_sha256": "14fb9dbf3d5eb76ccb0ee72705eef84770f89ffda8e5001a78a59dac103471fc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-7/column-2",
+              "source_label": "確かめる内容",
+              "meaning": "「7. 検証への対応」の行に対して「確かめる内容」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 109,
+              "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
+              "source_line_sha256": "14fb9dbf3d5eb76ccb0ee72705eef84770f89ffda8e5001a78a59dac103471fc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-7/column-3",
+              "source_label": "DT-VT-103／104の観点",
+              "meaning": "「7. 検証への対応」の行に対して「DT-VT-103／104の観点」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 109,
+              "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
+              "source_line_sha256": "14fb9dbf3d5eb76ccb0ee72705eef84770f89ffda8e5001a78a59dac103471fc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            },
+            {
+              "field_locator": "DT-MSG-005/section-7/column-4",
+              "source_label": "oracle ID",
+              "meaning": "「7. 検証への対応」の行に対して「oracle ID」を表す。原文の制約と完了条件を保持する。",
+              "role": "table_column",
+              "source_line": 109,
+              "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
+              "source_line_sha256": "14fb9dbf3d5eb76ccb0ee72705eef84770f89ffda8e5001a78a59dac103471fc",
+              "requiredness": "節の適用と原文条件による。headerの存在だけで条件充足にしない。"
+            }
+          ],
+          "source_constraints": [
+            {
+              "source_line": 74,
+              "source_text": "- 循環：なし／あり（理由と解消の予定）",
+              "source_line_sha256": "4b3e134b2def354756c0760f0c785301d154e568df8db22e43ccc1dad216fa8b",
+              "semantic_role": "field_choices_or_required_prompt",
+              "meaning": "循環：なし／あり（理由と解消の予定）",
+              "requiredness": "選択肢は案件の確定値にしない。規範文は該当節の適用条件で保持し、source_body_contextだけへ退避しない。"
+            }
+          ],
+          "meaning_owner_boundary": "汎用欄の意味はBRAIN、製品値/適用義務はCORE、使用setと原記録はOS。例示行は製品値にしない。",
+          "normative_rules": [
+            {
+              "source_line": 79,
+              "source_text": "代表の流れごとに書く。",
+              "source_line_sha256": "e0b71e6f3eadbdc1dab75b265a2b1d1ca2d9f694442272a6bb69659e6954b768",
+              "rule_locator": "DT-MSG-005/source-rule-79",
+              "section_locator": "DT-MSG-005/section-4",
+              "meaning": "代表の流れごとに書く。",
+              "semantic_role": "normative_statement",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 90,
+              "source_text": "構成要素の義務の和では保証されない、全体として守ること。",
+              "source_line_sha256": "2bc9c165b264e88a190d844094bce76291f8e440124188aa51ebc968debb02aa",
+              "rule_locator": "DT-MSG-005/source-rule-90",
+              "section_locator": "DT-MSG-005/section-5",
+              "meaning": "構成要素の義務の和では保証されない、全体として守ること。",
+              "semantic_role": "normative_statement",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 100,
+              "source_text": "| 容量・性能 | 流れの中で詰まりうる段（bottleneck）の候補 | DT-SDOP-002 B |",
+              "source_line_sha256": "9b842e88f424bace03cce16ce67ea4d539dfd2df65516544d4e7a37f820116dc",
+              "rule_locator": "DT-MSG-005/source-rule-100",
+              "section_locator": "DT-MSG-005/section-6",
+              "meaning": "| 容量・性能 | 流れの中で詰まりうる段（bottleneck）の候補 | DT-SDOP-002 B |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 101,
+              "source_text": "| 可用性 | 単一障害点になる構成要素の候補 | DT-SDOP-002 A |",
+              "source_line_sha256": "df2731abdfc6a0e90eb39dcb8eb4192ad34ebabd2c40951b3b851a84c3b036f6",
+              "rule_locator": "DT-MSG-005/source-rule-101",
+              "section_locator": "DT-MSG-005/section-6",
+              "meaning": "| 可用性 | 単一障害点になる構成要素の候補 | DT-SDOP-002 A |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 102,
+              "source_text": "| 観測 | 流れを跨いで一つの要求を追う相関ID、段ごとの観測点 | DT-SDOP-001、003 |",
+              "source_line_sha256": "da376a48d24a25618611ce04ad5b79cae8615ae0de0edc14f22413ae7ae85df2",
+              "rule_locator": "DT-MSG-005/source-rule-102",
+              "section_locator": "DT-MSG-005/section-6",
+              "meaning": "| 観測 | 流れを跨いで一つの要求を追う相関ID、段ごとの観測点 | DT-SDOP-001、003 |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 103,
+              "source_text": "| 運用 | 構成要素ごとの持ち主と、止める・戻す単位 | DT-SDOP-003 |",
+              "source_line_sha256": "5b93261e60c2a777e38fab20e2d3cf77017ce6edbba3092c5d216bb2f8fae69d",
+              "rule_locator": "DT-MSG-005/source-rule-103",
+              "section_locator": "DT-MSG-005/section-6",
+              "meaning": "| 運用 | 構成要素ごとの持ち主と、止める・戻す単位 | DT-SDOP-003 |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 104,
+              "source_text": "| security | 境界（§1）ごとの権限と外部interface | DT-MSG-003、DT-SDOP-002 E |",
+              "source_line_sha256": "80752405f0c048b2877f31f642e85024c25992556bda73ac1c1a9f59966b4914",
+              "rule_locator": "DT-MSG-005/source-rule-104",
+              "section_locator": "DT-MSG-005/section-6",
+              "meaning": "| security | 境界（§1）ごとの権限と外部interface | DT-MSG-003、DT-SDOP-002 E |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 105,
+              "source_text": "| 依存の更新 | 外部依存の一覧 | DT-SDOP-005 |",
+              "source_line_sha256": "8c84ca49887ee13ccc1258e7269003b660e0efef63f80bab0ec7f245d73893c6",
+              "rule_locator": "DT-MSG-005/source-rule-105",
+              "section_locator": "DT-MSG-005/section-6",
+              "meaning": "| 依存の更新 | 外部依存の一覧 | DT-SDOP-005 |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 111,
+              "source_text": "| §4 | 段ごとの失敗・不明で全体が成功にならないこと | | |",
+              "source_line_sha256": "2424032083b6efca3d38761adc5373e237bf94022fd910c634c445f3ce385d49",
+              "rule_locator": "DT-MSG-005/source-rule-111",
+              "section_locator": "DT-MSG-005/section-7",
+              "meaning": "| §4 | 段ごとの失敗・不明で全体が成功にならないこと | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            },
+            {
+              "source_line": 112,
+              "source_text": "| §5 | 構成体の不変条件 | | |",
+              "source_line_sha256": "4392c740255291418902bed3f56e0f4c5ed8dcc9d4b2e16b181775ab135b8b2f",
+              "rule_locator": "DT-MSG-005/source-rule-112",
+              "section_locator": "DT-MSG-005/section-7",
+              "meaning": "| §5 | 構成体の不変条件 | | |",
+              "semantic_role": "normative_fixed_row",
+              "requiredness": "該当節/行の適用条件で要求する汎用規則。対象の確定値や実施済み証拠ではない。条件付きの本文はその条件を保持。"
+            }
+          ]
+        },
+        "relation": {
+          "value": "**重なる領域は次を使い、本templateに重ねて持たない**：容量・可用性・性能・移行・security・環境の値はDT-SDOP-002（B・A・D・E・F）、観測・監視・runbook・deploy・rollbackの運用はDT-SDOP-001・003、外部依存の選択と更新はDT-SDOP-005、AWS採用時はDT-SDOP-006。辺ごとの契約はDT-MSG-001、権限・外部interfaceはDT-MSG-003。検証はDT-VT-103（L3↔L10）・104（L4↔L9）",
+          "source_line": 16,
+          "source_text": "| 関係 | **重なる領域は次を使い、本templateに重ねて持たない**：容量・可用性・性能・移行・security・環境の値はDT-SDOP-002（B・A・D・E・F）、観測・監視・runbook・deploy・rollbackの運用はDT-SDOP-001・003、外部依存の選択と更新はDT-SDOP-005、AWS採用時はDT-SDOP-006。辺ごとの契約はDT-MSG-001、権限・外部interfaceはDT-MSG-003。検証はDT-VT-103（L3↔L10）・104（L4↔L9） |",
+          "source_line_sha256": "46657a7995793245fbc1d8b543d00f4560c596981ea119bbc6cee29d04001aa4"
+        },
+        "meaning_owner": {
+          "value": "HELIX-BRAIN（汎用の構造）。製品への適用と設計義務の導出はHELIX-HARNESS-CORE（HARNESS-L2-009）",
+          "source_line": 12,
+          "source_text": "| 想定する持ち主 | HELIX-BRAIN（汎用の構造）。製品への適用と設計義務の導出はHELIX-HARNESS-CORE（HARNESS-L2-009） |",
+          "source_line_sha256": "5b66ab20b31289ab9cfa8d16add7451d856bef81fa831248b26bf7db68c367af"
+        },
+        "trace": {
+          "meaning": "対象要求/受入→対象単体/辺/構成体→節/field→対case/oracleを辿る。候補field locatorを正式schema IDへ昇格させない。",
+          "source_section_refs": [
+            {
+              "section_locator": "DT-MSG-005/section-1",
+              "heading": "1. 境界",
+              "source_line": 55,
+              "source_end_line": 61,
+              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+            },
+            {
+              "section_locator": "DT-MSG-005/section-7",
+              "heading": "7. 検証への対応",
+              "source_line": 107,
+              "source_end_line": 113,
+              "obligation_policy": "§1〜§6は記入または理由付きN/A。§7は記入した節ごとに対caseへ引き渡す。各段の失敗/部分成功/不明と構成体固有の不変条件を保つ。"
+            }
+          ]
+        },
+        "negative_oracle": {
+          "items": [
+            {
+              "source_line": 27,
+              "source_text": "- 構成要素の単体と接続がそれぞれ合格したので、構成体も合格とする（DST-HARNESS-003）。",
+              "source_line_sha256": "ee3af712882c4c3617d70beaaa49f6aae50f72656fe948b0fdc58f99b2e06b47"
+            },
+            {
+              "source_line": 28,
+              "source_text": "- 構成体の境界（何が中で何が外か）を書かず、外部との接続が抜ける。",
+              "source_line_sha256": "cf8045825ae6de68f356af29b5effa4cf94eb99485e5630dc6247080f6e92dc8"
+            },
+            {
+              "source_line": 29,
+              "source_text": "- 依存の向きを書かない。循環した依存を理由なく残す。",
+              "source_line_sha256": "4fd7bc630b64bc10851611489c944765025fd04a4313fb94034360c7912df450"
+            },
+            {
+              "source_line": 30,
+              "source_text": "- 外部serviceを構成要素のあちこちから直接呼び、差し替えの点が一つにまとまらない（DT-SDOP-005と同じ）。",
+              "source_line_sha256": "0ba83faaa382f94d7c90f52168f721dc4363e69920a06f6a658d33c3cb10a2c3"
+            },
+            {
+              "source_line": 31,
+              "source_text": "- end-to-endの流れを正常系だけで書き、途中の段が失敗・部分成功・不明のとき全体がどうなるかを書かない。",
+              "source_line_sha256": "22dc6f51adc43db4eb5624011e57230bb3151b952629d58a8f09909087d6ca56"
+            },
+            {
+              "source_line": 32,
+              "source_text": "- 途中の辺が失敗・不明なのに、全体を成功と報告する。または先に成功した段を消す。",
+              "source_line_sha256": "013aef0441a3b25a86d6ec648320b757eb0b53b7fc0f4e0bf468a82de2e3dcb1"
+            },
+            {
+              "source_line": 33,
+              "source_text": "- 一つの段の処理を複数の構成要素が持ち、正本の持ち主が二つになる。",
+              "source_line_sha256": "36d82c135519e6d4b7f44c7c4c858454da6a1f23fea440e97e11d7771890d015"
+            },
+            {
+              "source_line": 34,
+              "source_text": "- 流れを跨いで一つの要求を追えない（相関のIDがない）。",
+              "source_line_sha256": "bce15f02c9f477e35b3c1e1da899d299bbb65baeb21eac8a92d02ff2b5c873c9"
+            },
+            {
+              "source_line": 35,
+              "source_text": "- 容量・観測・運用の値をここに重ねて書き、DT-SDOP-002・003と食い違う。",
+              "source_line_sha256": "116d922db8323b5a350ed0f2984455c102b2e77ef6dd5db90f76fd93b5847544"
+            }
+          ],
+          "interpretation": "適用した意味条件の不成立例。文書の登録や欄の存在だけでこれらの拒否を実施済みにしない。"
+        },
+        "measurement": {
+          "value": "数値を置かない。容量・性能の値はDT-SDOP-002 Bと要求、L3以降で導く",
+          "source_line": 19,
+          "source_text": "| 計測 | 数値を置かない。容量・性能の値はDT-SDOP-002 Bと要求、L3以降で導く |",
+          "source_line_sha256": "c1f71b15167c8611411b3a585a7aaf82e24cd136f2ac32be34aa0d81119928f6"
+        },
+        "completion": {
+          "source_conditions": [
+            {
+              "source_line": 44,
+              "source_text": "§1〜§6が埋まっている、または理由付きN/Aである。§7（検証への対応）は、埋めた節ごとにDT-VT-103・104の対象caseへ引き渡す行がある。end-to-endの流れの各段に、失敗・部分成功・不明のときの全体の状態がある。構成体の不変条件が、構成要素の義務の和とは別に書かれている。容量・観測・運用・securityの値は既存templateの行を指し、重ねて書いていない。**完了条件を満たしても、構成が正しいこと・要求を満たすことを意味しない。**",
+              "source_line_sha256": "f40669967682c07d1752a6440a7258701ce7377af929bd8a789068d9c9afe45f"
+            }
+          ],
+          "meaning": "template適用義務の確認条件。実接続/振る舞い/構成の正しさや要求充足の裁定は別。"
+        },
+        "downstream_kind": {
+          "value": "composite",
+          "source_line": 17,
+          "source_text": "| 区分 | composite |",
+          "source_line_sha256": "3a2b371d95de6303829431fcbdcde8c823a231ee1395c21049e32c3aae01494a"
+        },
+        "supersession": {
+          "value": "正式な構成体templateが入ったら`superseded`とし、各欄の行き先を対応づける",
+          "source_line": 23,
+          "source_text": "| 置き換え | 正式な構成体templateが入ったら`superseded`とし、各欄の行き先を対応づける |",
+          "source_line_sha256": "c5c7a79522d37bd842e80bd8863a11310d5c068f736accf7e443493f84a116fb"
+        }
+      },
+      "definition_state": "source_bound_candidate; 各field要否/意味とoracleの最終照合は未完",
+      "required_input_value_state": "no_project_values_supplied; COREへ未充足材料として戻す",
+      "source_body_context": [
+        {
+          "source_line": 55,
+          "source_text": "### 1. 境界",
+          "source_line_sha256": "c56a9f6d6fe70ddc404081599c9520060758ea997d6adc0deb09ebc8d17d6386",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 57,
+          "source_text": "- 構成体が全体として出す成果（要求ID）：",
+          "source_line_sha256": "1d3275584ab85ff66ac44e23cd12432a823d44b8550e50f1e259533f2dd195d4",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 58,
+          "source_text": "- 中に含む物：",
+          "source_line_sha256": "58e94235fc2aa303d92dcc7b1962ba6e327c27d852066307fade8d04e4b2bd7d",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 59,
+          "source_text": "- 外（外部、別の持ち主）：",
+          "source_line_sha256": "181f61e14b720a8e5daa15f8ac2b970bb94203aea4cb4460c89a6db19f389787",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 60,
+          "source_text": "- 外との接続（DT-MSG-001の辺ID）：",
+          "source_line_sha256": "ca1295dfa1de832380fe0d496db55da30433c3770343fb8b49f00eb63c3374d5",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 62,
+          "source_text": "### 2. 構成要素",
+          "source_line_sha256": "7fb8e5551de1bec5d089e7f720a13c1f9efb5912f9247249d20a4a0f55ab7656",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 64,
+          "source_text": "| 構成要素 | 責務 | 持ち主 | 公開するinterface | 状態・dataを持つか（DT-MSG-002） |",
+          "source_line_sha256": "e67e8bf4a6c0bb20e727af56ee114487ade11f388515d2b7c35eaf2ab75b32cc",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 65,
+          "source_text": "|---|---|---|---|---|",
+          "source_line_sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 66,
+          "source_text": "| | | | | |",
+          "source_line_sha256": "ee0addd1ea73f9f48f56a7216d0bdeb0d2aace812c02364732e65c8e46d9d7df",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 68,
+          "source_text": "### 3. 依存の向き",
+          "source_line_sha256": "8a984e0e297d7d8ba140f588d3c1862a4ff636914d04702d4394c1d30cf245fe",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 70,
+          "source_text": "| 依存する側 | 依存される側 | 理由 | 差し替えの点 |",
+          "source_line_sha256": "414780bc0291b53ec48a6499a994ee00c4ac5915d9a68ed49f7993f507da3294",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 71,
+          "source_text": "|---|---|---|---|",
+          "source_line_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 72,
+          "source_text": "| | | | |",
+          "source_line_sha256": "187596b1145648c2017a2da0d07418ac82c20f1b272e619937ef73d6c2c7dc6b",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 74,
+          "source_text": "- 循環：なし／あり（理由と解消の予定）",
+          "source_line_sha256": "4b3e134b2def354756c0760f0c785301d154e568df8db22e43ccc1dad216fa8b",
+          "semantic_role": "field_choices_or_prompt_in_required_field"
+        },
+        {
+          "source_line": 75,
+          "source_text": "- 外部serviceを呼ぶ点が一か所にまとまっているか：",
+          "source_line_sha256": "09133c223cadeacea3c0ea53c8f30cdcc8dcfb4d157ce4ff4775e93653f8c970",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 77,
+          "source_text": "### 4. end-to-endの流れ",
+          "source_line_sha256": "ac1f47eb4a2990d548fce195da6c660c1d4d7f65b0c305ca582bf177f451f3a6",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 79,
+          "source_text": "代表の流れごとに書く。",
+          "source_line_sha256": "e0b71e6f3eadbdc1dab75b265a2b1d1ca2d9f694442272a6bb69659e6954b768",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 81,
+          "source_text": "| 段 | 構成要素 | 使う辺（DT-MSG-001） | この段が失敗したときの全体 | 部分成功・不明のときの全体 | 止まった位置と引継ぎ先 |",
+          "source_line_sha256": "963dce010e9a585b6eca185be25df5eb9c0b30514ed0f43a3661b6a0e41c0fe1",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 82,
+          "source_text": "|---|---|---|---|---|---|",
+          "source_line_sha256": "386dd7132ff82a3235473307d1e9d483ef7e0a9ae30607085abe2edd440cdcf7",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 83,
+          "source_text": "| | | | | | |",
+          "source_line_sha256": "6bd35296cda9bab77bc30bec2b88d60b71bb9d41a824aea014ac7dd24423a3ea",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 85,
+          "source_text": "- 全体の成功とする条件（必須の段がすべて終わったことを何で確かめるか）：",
+          "source_line_sha256": "d4868800f73d7ae8666b5e5d4461401c620d372f52aa0a85335c4e13de45268f",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 86,
+          "source_text": "- 並列の段の合流（join）の条件：",
+          "source_line_sha256": "c554330bd2940f7bcd04e4198ac5c53f80ae91382d3297d78df238deb5ccc853",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 88,
+          "source_text": "### 5. 構成体の不変条件",
+          "source_line_sha256": "1f32f0ecff175f291f0f0e63f04ae93ffedf378ed0ef319e742f3a8bc250d596",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 90,
+          "source_text": "構成要素の義務の和では保証されない、全体として守ること。",
+          "source_line_sha256": "2bc9c165b264e88a190d844094bce76291f8e440124188aa51ebc968debb02aa",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 92,
+          "source_text": "| 不変条件 | 守る構成要素・辺 | 破れたときの扱い |",
+          "source_line_sha256": "5909464757bec6488d0814403b09f1022488b57af55d0227619f76d12f3244bd",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 93,
+          "source_text": "|---|---|---|",
+          "source_line_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 94,
+          "source_text": "| | | |",
+          "source_line_sha256": "557360e303f6d940f970066fd417d7447b42128b143135d37688ee2b4ef62eda",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 96,
+          "source_text": "### 6. 横断の関心（重ねて書かない）",
+          "source_line_sha256": "87c9a2b06bfc2df0f76dce6d45d4d54ffba8f5f0d6c8b15cde9a6b7efe8025af",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 98,
+          "source_text": "| 関心 | 本templateで書くこと | 値・方式を書く場所 |",
+          "source_line_sha256": "427c4929c691f72a2947f12a058ed6ba117f0e00620fd87c974fe178c46ba784",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 99,
+          "source_text": "|---|---|---|",
+          "source_line_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 100,
+          "source_text": "| 容量・性能 | 流れの中で詰まりうる段（bottleneck）の候補 | DT-SDOP-002 B |",
+          "source_line_sha256": "9b842e88f424bace03cce16ce67ea4d539dfd2df65516544d4e7a37f820116dc",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 101,
+          "source_text": "| 可用性 | 単一障害点になる構成要素の候補 | DT-SDOP-002 A |",
+          "source_line_sha256": "df2731abdfc6a0e90eb39dcb8eb4192ad34ebabd2c40951b3b851a84c3b036f6",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 102,
+          "source_text": "| 観測 | 流れを跨いで一つの要求を追う相関ID、段ごとの観測点 | DT-SDOP-001、003 |",
+          "source_line_sha256": "da376a48d24a25618611ce04ad5b79cae8615ae0de0edc14f22413ae7ae85df2",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 103,
+          "source_text": "| 運用 | 構成要素ごとの持ち主と、止める・戻す単位 | DT-SDOP-003 |",
+          "source_line_sha256": "5b93261e60c2a777e38fab20e2d3cf77017ce6edbba3092c5d216bb2f8fae69d",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 104,
+          "source_text": "| security | 境界（§1）ごとの権限と外部interface | DT-MSG-003、DT-SDOP-002 E |",
+          "source_line_sha256": "80752405f0c048b2877f31f642e85024c25992556bda73ac1c1a9f59966b4914",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 105,
+          "source_text": "| 依存の更新 | 外部依存の一覧 | DT-SDOP-005 |",
+          "source_line_sha256": "8c84ca49887ee13ccc1258e7269003b660e0efef63f80bab0ec7f245d73893c6",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 107,
+          "source_text": "### 7. 検証への対応",
+          "source_line_sha256": "c5569283c39bd45f5cf16c7264bcde1d0396698e29642c2095b83d5738d4973f",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 109,
+          "source_text": "| 欄 | 確かめる内容 | DT-VT-103／104の観点 | oracle ID |",
+          "source_line_sha256": "14fb9dbf3d5eb76ccb0ee72705eef84770f89ffda8e5001a78a59dac103471fc",
+          "semantic_role": "field_or_constraint_in_required_field"
+        },
+        {
+          "source_line": 110,
+          "source_text": "|---|---|---|---|",
+          "source_line_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832",
+          "semantic_role": "section_or_table_structure"
+        },
+        {
+          "source_line": 111,
+          "source_text": "| §4 | 段ごとの失敗・不明で全体が成功にならないこと | | |",
+          "source_line_sha256": "2424032083b6efca3d38761adc5373e237bf94022fd910c634c445f3ce385d49",
+          "semantic_role": "normative_rule_in_required_field"
+        },
+        {
+          "source_line": 112,
+          "source_text": "| §5 | 構成体の不変条件 | | |",
+          "source_line_sha256": "4392c740255291418902bed3f56e0f4c5ed8dcc9d4b2e16b181775ab135b8b2f",
+          "semantic_role": "normative_rule_in_required_field"
+        }
+      ],
+      "source_context_role": "source/provenanceの文脈保存。規範固定行・規範文はrequired_fieldのnormative_rules/source_constraintsへ対応する。欄に併記する規則/選択肢はsource_row_rule_or_choicesで保持。未分類はnormative_or_explanatory_unclassifiedとして採用前に意味分類し、例/選択肢と一括で非規範へ退避しない。",
+      "dependency_state": "relationの参照先はこの3候補では供給しない。未解決は該当knowledge/要求ownerへ保持する。"
+    }
+  ],
+  "provenance": {
+    "pins": [
+      {
+        "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+        "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964"
+      },
+      {
+        "path": "docs/governance/decisions/first-development-target-selection-po-decision-2026-10-11.md",
+        "sha256": "f63a64350d25216c22cc56bff73baf513f51c371323fd9026c84d372aef62407"
+      },
+      {
+        "path": "docs/governance/audits/first-target-template-applicability-2026-10-11.json",
+        "sha256": "fdfed281c27c0d459f00f5f396a87a01519c47916ae31f2d3a70f088a788f182"
+      },
+      {
+        "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+        "sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+      }
+    ],
+    "legacy_reads": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+        "spans": [
+          {
+            "lines": [
+              19,
+              46
+            ],
+            "sha256": "f856044cea35df88ad0e54434efb2b2d336f4a1fddc3467ac9fb4dcbf4bdadf6"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/templates/design/L6-function-spec-template.md",
+        "asset_id": "LEGACY-ASSET-4CAC3EB72DAD353A64D7",
+        "sha256": "85559d2cb659bd8c1ebf89eb9da5f1d8a9efa965a8b82ce2db84303a524ef733",
+        "spans": [
+          {
+            "lines": [
+              13,
+              22
+            ],
+            "sha256": "fcb86e863e3887931934a04cf688ea0b62cb9188d0f31193ac2b2ae0c7e2afd9"
+          },
+          {
+            "lines": [
+              24,
+              48
+            ],
+            "sha256": "11337174c350451fb801a575f69f84982327810a791aebb54c73dc9d3e5ad5f2"
+          },
+          {
+            "lines": [
+              60,
+              65
+            ],
+            "sha256": "5aeb0c0c942681ccca4a3b9bcae64ff2d3ad4f0b4e7d8218cf03259fa499af26"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        "asset_id": "LEGACY-ASSET-0327D0DF98618D3066FD",
+        "sha256": "81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a",
+        "spans": [
+          {
+            "lines": [
+              28,
+              42
+            ],
+            "sha256": "33986f4f642ff04d6d1daa4aa59f74021bc1abceff5f18e6164644bf329104ca"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/skills/api-and-interface-design.md",
+        "asset_id": "LEGACY-ASSET-429C82941E059B0F3D12",
+        "sha256": "721b1067ec8cafa5e5063eac2b573077b0da3c6c67fdfef48c8610432509e50b",
+        "spans": [
+          {
+            "lines": [
+              39,
+              51
+            ],
+            "sha256": "dd828df54170d664ca2b66656d792473041884e0ae5832ffa79673b576556299"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+        "asset_id": "LEGACY-ASSET-99C939E249CAF40935CB",
+        "sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+        "spans": [
+          {
+            "lines": [
+              22,
+              33
+            ],
+            "sha256": "b4e9fc4ade629064537df618cb89cf2cd26006c2593372f2a8997385d272670c"
+          },
+          {
+            "lines": [
+              52,
+              60
+            ],
+            "sha256": "4c6b5674444006cfd5bfb92c9acab0415c3f0cb1f5c35e49edb4d0823c08c88b"
+          },
+          {
+            "lines": [
+              159,
+              174
+            ],
+            "sha256": "64a876e4e89622d0d4e5fe18a1f8e84d8b79876b56a6353450b71cbd4a887239"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md",
+        "asset_id": "LEGACY-ASSET-BB08D70A42B6445B2D1E",
+        "sha256": "9e18d68b5e463192fb30b839eb164d79f7202a15374482f65181b238df8e513d",
+        "spans": [
+          {
+            "lines": [
+              34,
+              43
+            ],
+            "sha256": "64a118d124276bba7877db24965c166ec6e9bc541e392dd91d6f02321617dccd"
+          },
+          {
+            "lines": [
+              45,
+              64
+            ],
+            "sha256": "44a88ae0ba5d362990b611e91804a65614f452a364980e187effdca456f6fd31"
+          }
+        ]
+      }
+    ]
+  },
+  "remaining": [
+    "他の23seedと各技法の意味対応/採否、全体最小集合と案件の選択/使用exact set",
+    "参照するSDOP/DT-VT知識と各端契約の採用範囲/不足、6surface/6componentの移管",
+    "製品要求値・N/A4属性、接続identity/依存閉包、初回Bench/配置、実原記録",
+    "各fieldの要否とoracleへの具体束縛、技術的不確実性、正式schema/renderer/実行。L3再開・設計・実装・CI・内部デプロイは含まない",
+    "本文の規範/欄/構造の分類を保持し、各fieldの要否とoracleへの意味対応の完全性を採用前に確かめる。固定行/制約の適用義務を失わず、例/選択肢との区別を保持する。"
+  ],
+  "legacy_comparison": {
+    "reuse_class": "semantic_rederivation",
+    "preserve": "単体の事前/事後/不変/失敗、接続のdirection/owner/因果/冪等/未完、構成の責務/流れ/失敗、意味/view分離",
+    "change": "既存MSG候補を032の15項目へsource対応する。旧層のauthority/旧役割/runtime/形式/固有技術を移さない。MSGの束ね方と構成体固有欄は既存seedが記録した新規案のまま",
+    "reason": "初回対象で単体/接続/構成体を別に扱い、10/10巻き戻しのseed不使用と件数/hashのみreviewの失敗を防ぐため",
+    "limits": "旧source全体の移管/consumer/採否、全candidate意味の等価性、全15項目の実動を証明しない"
+  }
+}

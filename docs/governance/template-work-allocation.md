@@ -197,3 +197,17 @@ VT103の下位証拠receiptは右側検証を始める入力であり、今の�
 旧JSON authority:19–60の意味/表示・適用・portfolio・pair、旧verification phase:28–40/73–79のbasis/condition/evidenceを起点にした意味再導出である。旧gate、schema、test/CIを現行へ移植しない。10/10で失敗したseed不使用と件数/hashだけのreviewを繰り返さず、全section/fieldの意味被覆と未完を次の比較で確かめる。今回の表では全26本文atom、40card採否、15descriptorの完全性、6surface/6component移管を証明しない。
 
 次は候補ごとのsection/field・負例・measurement/completionを既決032へ対応付け、必要な知識の対象revisionを提示する。案件値、接続依存、初回配置根拠は#2846へ残し、環境条件は#2905へ結ぶ。既決の意味を再承認待ちにせず、知識内容の追加採用と下流設計・L3再開は別に扱う。
+
+## 初回の3kindに対応する意味JSON候補
+
+[MSG001・004・005の意味候補](../helix-brain/candidates/first-cycle-design-template-knowledge.json)をBRAIN配下へ置く。単体の振る舞い、辺の契約、構成体固有の義務を比較するため、各候補を032の15項目へ対応付けた。原文の同じ候補版・source行/digest・節文脈を保ち、negative oracleとcompletionを欄の存在から区別する。これは要求整理段階の知識候補であり、対象の設計instance・schema・型・実装を起こしたものではない。
+
+| 候補 | 具体化した知識と節の適用 | 残る入力・依存 |
+|---|---|---|
+| MSG004（unit） | 入出力の事前/事後/不変条件、副作用、失敗分類、途中停止と回復、各観点のoracle参照。§1〜5の記入/理由付きN/Aと§6の引渡し | 業務規則/state/冪等性はSDOP004の行を参照。案件値と対caseは未供給 |
+| MSG001（connection） | 各辺の方向、data意味/owner、版/互換、順序、期限/再送、冪等、部分失敗/unknownと追跡。§8の追跡は条件付き、§9は適用節ごとの引渡し | SDOP004/002とMSG003/005、VT104/105。timeout/retry値や接続形式は未定 |
+| MSG005（composite） | 全体境界、各owner、依存方向、段ごとの失敗/部分成功/不明、全体の不変条件、横断参照と対oracle。下位の和だけで全体を閉じない | MSG001等の辺、SDOPの容量/観測/運用、VT103/104。構成体要求identityと実案件値は未定 |
+
+field locatorは候補内の原文対応であり、正式IDやruntime keyではない。列・記入行・問いと、規範固定行・制約文・例/選択肢を分ける。規範はdescriptorのnormative_rules/source_constraintsへ結び、失敗分類/回復区間や横断参照の規則を来歴だけへ退避しない。欄に併記された規則/選択肢も保持する。未分類行は採用前の意味分類へ残し、各fieldの要否は節の適用と原文条件を保持する。欄の定義を候補として提供できること、製品要求値が未決であること、実際に義務が満たされたことを別に扱う。候補は採用済みの知識に昇格せず、SEEDFIRSTも変更しない。
+
+3件は全体最小集合ではない。他23seed・40cardの残る意味対応と採否、各fieldの要否/意味とoracleの最終照合、参照先knowledgeの不足、旧6surface/component移管を保持する。JSON化だけで完全な15項目や機構成立を宣言せず、不足はBRAIN/CORE/OSの既決責務へ戻す。L3以下の停止は継続し、Issue完了・内部デプロイの許可を生成しない。
