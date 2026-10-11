@@ -271,3 +271,17 @@ RE01-046のG/Hは節記号である。RE01-261/262のinventory引用518行だけ
 旧providerwritebackのshape検査は内容の正当性でなく、同digestはJSON検査前skipである。回収finallyは試行であり成功ではなく、reject/IOfailureとreviewoktrueは併存できる。外側scratchcleanup例外が結果を覆う経路も区別する。旧runtimeを実行せず、全caller/consumer成立の証拠とはしない。
 
 要求本文・schema・Python/CLI/runtime/CI・認証/認可/credential/本番設定・仮登録・holding・Bindingを変更しない。別DraftPR2887–2892を本mainに混ぜず、#1814/親#1813と全残件を保持する。採用・retire・Issueclose・L3再開を生成しない。
+
+## RUL-DEV-03：追加前の判断・最小性の限定した全19引用条件比較
+
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主14・副5＝19件の原inventory全field、23引用spanと15関連/補助spanを保持した。元note/relations/compared_revisions/未評価field、他56clusterを変更しない。引用未比較0は全atom・判断史・全consumer・正式successor・要求完了ではない。
+
+旧7問とv1.3六段no-codeは分類粒度と順序が異なり、止まった段/対案/tradeoffの記録を残す。PLAN理由だけで要求の意味を削除しない。HARNESS006単体行の提供構成と、004/005/006へ明示接続された横断退役節の完全一致再利用/意味再導出を分ける。HILFR16のinventory、FR02のTDD順、FR50のoracle強度だけで既存func再利用済み/意味移管済みにはしない。
+
+SCF001は正式未成立間の一時存在、005は正式置換全役割/consumer/oracle対応、LAR001は意味/後継ID確認であり、全code/CI純増のremovaltriggerと同じ契約ではない。旧RE01-274/RD05-219等の理由/削除条件を保持し、元SCF以外atomなしnoteを全旧source/全現行L2の未被覆結論へ一般化しない。
+
+旧policydoc語句regex、PLANのsubstantivefield/enum、却下digestの形式/重複検査は検討意味や根拠の妥当性の証明ではない。cutoff以降L3-L7/宣言対象とgrandfather/missinginvaliddateを区別し、全historicalPLANへ遡及しない。許可wrapper12行と両参照regexは全textを読むためcomment参照も条件を満たし得る。旧固定TS/path制約を新Python境界へ持ち込まない。
+
+旧atomicselectorはoraclePassRate1とfinite非負metricを適格とし、最小P95集合を先に絞る。複雑度tuple/IDはその集合内の順位であり、関数は入力値の実測provenanceを証明しない。canonicalizerは評価/却下証拠順を保つ。PoC4strategyとfeature再検証、detector2再発/既存検出gap/正当化/除去条件の固有scopeを残す。
+
+DDDSTRICT #1854の固定案の判断待ちは保持し、TDDORDER採用や旧lint成功で代替しない。要求本文・schema・Python/CLI/runtime/CI・仮登録・holding・Bindingを変更せず、別DraftPR2887–2893を本mainへ混ぜない。#1814/親#1813全scopeを保持し、採用・retire・Issueclose・L3再開を生成しない。
