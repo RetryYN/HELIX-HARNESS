@@ -217,6 +217,16 @@
             47
           ],
           "locator_kind": "inclusive_line_range"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-EC07511FF3E241F15359",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/design-catalog.yaml",
+          "identity": "historical document classification categories",
+          "lines": [
+            9,
+            40
+          ],
+          "locator_kind": "inclusive_line_range"
         }
       ],
       "preserve": "汎用templateと製品instanceの分離、適用input/義務/選択候補/双方向trace、提案と採用authorityの区別を保持する。",
@@ -224,7 +234,7 @@
       "reason": "032-F09 CORE返却で019/022が未導出だった必要参照を閉じ、返却成功を製品採用や義務成立にすり替えないため。",
       "failure": "現在の限定032-F09参照の定義不足、候補の絶対解化、版/scope取り違え、input/反例/trace落ち、候補提供で製品採用成立を防ぐ。",
       "consumer": "初回BRAIN032提供→CORE009適用→OS002記録。INT query021/新候補生成/運用promotionは選択時の追加閉包。全旧consumer被覆は未完。",
-      "hierarchy_basis": "旧L4 template/instanceと意味identity/traceの保持点から、9/26PO原文001/002と9/28採択のDomain→Pattern→Unit→Partへ意味再導出。旧の層/DB/schemaを採用せず、初期領域の識別能力と全内容充実を区別する。"
+      "hierarchy_basis": "001は旧catalog9..40の文書分類を起点に9/26PO原文の再利用知識領域へ意味再導出。002は9/25POのパターン/ユニット/パーツを9/26原文のDomain→Pattern→Unit→Partへ具体化。9/28採択を保持し、旧層/DB/schemaを採用せず、初期領域識別能力と全内容充実を区別する。"
     }
   },
   "remaining": [
