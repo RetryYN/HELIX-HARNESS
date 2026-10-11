@@ -184,7 +184,7 @@ b61a11d04への独立reviewでF1 blocker/F2 minorを受けた。[新しい照合
 
 ## RUL-OSA-04：統合許可の限定した本文・全156引用条件比較
 
-基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主94・副62＝156件の原inventory全field、引用原文・SHA-256、候補本文との固有/未解決条件を保存した。引用未比較IDは0だが、完全atom化・判断史・全helper/caller/fixture/外部consumer閉包・正式successor・未計上0・全要求被覆・要求Stage完了は未確認である。準備読取revision e5fa1abの全source bytesが本基準mainと一致することを検証し、他56clusterと過去のcompared_revisions・未評価fieldは保持した。
+基準main `a4d6cf4af046e55c57de89ed017adab07fbe16c3`。主94・副62＝156件の原inventory全field、引用原文・SHA-256、候補本文との固有/未解決条件を保存した。引用未比較IDは0だが、完全atom化・判断史・全helper/caller/fixture/外部consumer閉包・正式successor・未計上0・全要求被覆・要求Stage完了は未確認である。証拠は本基準mainの固定bytesに束縛し、RC02-037のloader/analyzer（merged-plan-status.ts:99–132/259–328）を追加の2補助pinで保持した。補助pinは28件となり、未統合PRの読取結果へ依存しない。他56clusterと過去のcompared_revisions・未評価fieldは保持した。
 
 HARNESS003は工程条件、OS011は統合順序・単位・検証計画、OS008はCI合成・隔離実行である。旧BR06の6gate、FR07のClosure検査、FR28の固定3段CI、BR20の既知failure quarantineを一般merge permissionにまとめない。NCI002はpipeline classを分けるがnative auto-merge禁止を明示しないため、その同義推論だけを根拠から取り除き、旧basisをoriginal_relationsへ保全した。NCI候補への関係付けから採用範囲を拡張しない。
 
