@@ -520,7 +520,6 @@
   },
   "fixture_progress": {
     "remaining_functions": [
-      "F05",
       "N01"
     ],
     "B01": {
@@ -558,10 +557,17 @@
       "typed_expected_cells": 210,
       "nested_state_cells": 240,
       "state": "draft_basic_typed_cases_independent_qualification_pending"
+    },
+    "F05": {
+      "basic_calls": 29,
+      "typed_expected_cells": 638,
+      "nested_port_cells": 232,
+      "nested_backfill_cells": 348,
+      "state": "draft_basic_typed_cases_independent_qualification_pending"
     }
   },
   "pending": [
-    "2関数の内部比較/typed部分期待/対単体oracle、F01未定義action、F02/F03/F04独立qualificationと追加内容反例の具体化",
+    "N01の内部比較/typed部分期待/対単体oracle、F01未定義action、F02〜F05独立qualificationと追加内容反例の具体化",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -1165,18 +1171,68 @@
           "actual_release": "PartialValue",
           "actual_deployment": "PartialValue",
           "actual_approval_created": "PartialValue",
-          "actual_completion": "PartialValue"
+          "actual_completion": "PartialValue",
+          "port_condition_results": "PartialValue（knownのvalueは必須Port義務→PartialValue map。必要集合未知ならnull）",
+          "port_timing_result": "PartialValue（開発開始時にPort義務が定義されている条件）",
+          "backfill_results": "PartialValue（knownのvalueはcurrent L1〜L12→PartialValue map。各原成果物と対条件を独立照合）",
+          "detection_result": "PartialValue",
+          "mitigation_result": "PartialValue",
+          "postmortem_result": "PartialValue",
+          "feedback_result": "PartialValue"
         },
         "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
         "unaffected_scope": "元の有効な非対象資料",
         "operation_effect": "none"
       },
       "internal_steps": [
-        "原sourceとcandidateを分け、各Ref/context/kind/owner/qualificationを独立照合。",
-        "基本契約の各input/output/invariantを内容で比較し、fieldごとの不足/意味差/戻し先を返す。",
-        "候補の強制成立/未知消去を原資料へ照合し、実操作は生成しない。"
+        "Context/carrierと開発開始時Port契約、各必須証拠、既存操作authority、初回操作scope、Incident各原記録を独立sourceとして解決/資格照合する。合成authority参照やPortのknownを実操作許可にしない。",
+        "Port defined_seqとdevelopment_start_seqを比較し、開始時から義務を持つことと各工程で証拠を埋めることを分離する。開始時の全証拠未充足を隠さず、義務の後付けを開始時定義済みにしない。",
+        "当該Port原契約の必要集合を確認し、proofs/artifact_identity/environment/dependencies/security/rollback/deployment_conditions/acceptanceを個別Ref/bindingと具体内容で照合する。参照label一致だけでsystem観測/rollback原結果/人間受入を成立させない。",
+        "通常とhotfixに同じPort義務を適用する。既存authorityの操作/対象revision/scope/artifact/environment・期限・revokeを独立比較し、緊急性や暫定収束から省略/新許可/新承認手続きを生成しない。",
+        "初回scopeでは実release/Incident運転を選択しない。条件比較とcan_execute、actual_release/actual_deployment/actual_approval_created/actual_completionを分離し、実作用はnoneとする。",
+        "検出原観測、暫定対処、収束、postmortemの残原因、L12 feedbackを個別に比較し、暫定改善と恒久対策原証拠を区別する。配備成功とIssue closeは恒久対策/未完還流の原資料を変更しない。",
+        "current L1〜L12 backfillの各原成果物と対成立条件を独立に比較し、欠落を個別state/nullで保持する。全層membershipや資格が未知なら空集合/全完了に補完しない。",
+        "Reverse fullbackの原実結果と対象選択方式の原資料から戻り先を照合する。not_executedを成功にせず、戻り層unknownを適当な層へ補完せず当該ownerへ返す。再開/凍結条件はF01へ結ぶ。",
+        "candidateを原資料と別に比較し、当該義務/原資料/理由/該当ownerへの返却候補と無関係scopeの有効材料を保持する。実Incident/配備/記録/ticketはOS、既存認可はSECURITY、方式の意味は要求ownerが保持する。"
       ],
-      "detail_state": "signature_only_content_comparison_pending"
+      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "port_detail": {
+        "port_fields": [
+          "proofs",
+          "artifact_identity",
+          "environment",
+          "dependencies",
+          "security",
+          "rollback",
+          "deployment_conditions",
+          "acceptance"
+        ],
+        "backfill_layers": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6",
+          "L7",
+          "L8",
+          "L9",
+          "L10",
+          "L11",
+          "L12"
+        ],
+        "constant_false_fields": [
+          "can_execute",
+          "actual_release",
+          "actual_deployment",
+          "actual_approval_created",
+          "actual_completion"
+        ],
+        "constant_false_limit": "この合成初回scopeは実作用非選択。将来の許可/実施成立ではない。未知scopeをfalseへ変換する汎用規則ではない。",
+        "extra_field_derivation": "承認済みF05/基本契約のPort個別義務・開始時定義・検出/暫定対処/postmortem/L12 feedback/backfillを内部部分結果へ明示する。要求意味/版/基本期待を変更しない。",
+        "legacy_preservation": "旧v1.3:29–66の層/受入とGitHub非authority、security-engagement-authority-requests:14–29の既存認可/対象期限/原結果区別を意味再導出する。旧runtime/追加approval経路/旧Security業務の包括許可は採用しない。",
+        "source_binding_limit": "合成例の独立原内容比較。実owner/authority/資格と正式schema/codec、実release/Incident/deployの成立ではない。"
+      }
     },
     {
       "id": "HARNESS-L5-003-N01",
