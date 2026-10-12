@@ -1,0 +1,1403 @@
+{
+  "document_id": "HARNESS-L4-009-PRODUCT-TEMPLATE-APPLICATION",
+  "layer": "L4",
+  "paired_document": "HARNESS-L9-009-PRODUCT-TEMPLATE-APPLICATION",
+  "parent": "HARNESS-L2-009",
+  "status": "draft_candidate_not_independently_reviewed",
+  "source_main": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108"
+    },
+    {
+      "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+    },
+    {
+      "path": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23"
+    },
+    {
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027"
+    },
+    {
+      "path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "3779f7612a1555a07796bb3097f124ca4c63878bc3a42ec6fc864cb317d5d1a8"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+      "revision": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b"
+    }
+  ],
+  "authority_boundary": "10/12限定再開scope2・e509851ce7c27c09f85cb1a6e3b9a1d231885de3で承認されたCORE00911対・10/10 COREAPPLY/既決1.0。10/8一般解禁失効。seed/schema/実使用set/実受領/義務完了を生成しない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "lines": "36–60,81–92",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "reuse_mode": "semantic_rederivation",
+      "keep": "候補exact set、適用unknown、理由付きN/A、不足Backflow、義務/対oracle/版traceの照合。",
+      "change": "BRAIN汎用契約、CORE製品適用、OS使用記録を分離。registry digest/具体式木/instanceまでのdigest一致3facetを保留。旧planner/schema/operator/runtimeは移植しない。",
+      "reason": "10/10 COREAPPLYの限定8facet/保留3facetと承認済み00911対の責務に従う。旧locator38/39/42はdecisionで36/37/40へ訂正済み。"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "65–101",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "meaning": "UTW014欠損空集合化、UTW020部分不足をaggregateで隠す失敗、UTW021自己申告/件数/hash完成を義務/判定/影響各項目で防ぐ設計。実再発防止は未証明。"
+  },
+  "purpose": "versioned generic意味契約を製品scopeへ適用する候補材料を導き、OS記録成立と分離する。",
+  "components": [
+    {
+      "id": "ApplicationInputBinding",
+      "owner": "HARNESS-CORE",
+      "responsibility": "要求・工程/適用契約・knowledgeの各版/scope/sourceと操作別入力を独立照合。知識受領と適用を分ける。"
+    },
+    {
+      "id": "TemplateApplicabilityComparison",
+      "owner": "HARNESS-CORE",
+      "responsibility": "母集合/比較境界と各template適用条件からexact候補setとrequired/conditional/N/A/unresolvedの理由を導く。N/A4属性を個別保持。"
+    },
+    {
+      "id": "DesignObligationTrace",
+      "owner": "HARNESS-CORE",
+      "responsibility": "unit/connection/composite固有の義務と要求→義務→設計→pair traceの材料を同template版へ結ぶ。041抽出/025/026具体設計を代行しない。"
+    },
+    {
+      "id": "RequirementGapReturn",
+      "owner": "HARNESS-CORE",
+      "responsibility": "質問/矛盾/derived requirement candidate/N/A判断候補に不足種別/原版/scope/未完義務/ownerを保持。ticket発行はOS。"
+    },
+    {
+      "id": "TemplateMeaningImpact",
+      "owner": "HARNESS-CORE",
+      "responsibility": "旧新意味差を使用consumerの義務/artifact/pairへ結び影響あり/なし/Unknownを局所化。原旧版参照と未移管保持。OS使用版/stateを更新しない。"
+    }
+  ],
+  "architecture": {
+    "input_binding": "要求identity/revisionと製品scope、工程/適用contract版を常時保持。要求分類axisの要否は対象操作と適用template契約から照合し、不要なrelation/旧新比較/差戻し入力を一律gateにしない。意味必要axisが欠落/相反なら当該操作/義務を未解決へ返す。",
+    "exact_set": "母集合は供給されたowner-qualified境界・各template identity/版/sourceと同scopeから解決する。候補要素を黙って追加/削除せず、各適用/不適用/未解決理由を保持。母集合unknownを空集合成功へ丸めない。candidate/proposed/OS selected/usedは別集合。",
+    "applicability": "required/conditional/N/A/unresolvedの原理由/判定者/版/scope/条件/再評価を保存。条件未充足はconditionalと未完を併存。N/A4属性の欠落は未成立で、unknownをN/Aにしない。003/性能/security限定N/Aは原template/条件を越えて転用しない。具体式木/operatorは未採用。",
+    "obligation": "unit:内部behavior/state/failure等、connection:辺interface/向き/所有/順序/retry/timeout/冪等性/部分失敗等、composite:architecture/end-to-end/invariant/recovery/NFR/operation等を同適用契約から導く。下位成功は上位義務完成にしない。全体固有義務emptyはqualified理由が必要。具体値/方式/全seed最小集合は創作しない。",
+    "pair_trace": "同requirement→obligation→design→pairの両向き参照とidentity/revision/scopeを個別照合。参照先未供給はmissing/unknownで返す。041atom抽出/025/026設計oracle構成は消費境界でありCORE009が代行しない。",
+    "gap_return": "質問/矛盾/derived要求候補/N/A判断候補を原意味と不足原因から区別。定義missingと製品値unknownを別に返し、質問/候補を上流Backflow入力へ結ぶ。ticket発行/人の要求合意/採択/実消込はしない。分類不能/owner未決はunknown。",
+    "knowledge_use": "BRAIN032の原15意味/版/stateと030提供を参照。選択knowledgeは全required fields/版/条件へ照合し、不足/stale/別製品/未承認を任意fallbackしない。非選択はunobserved/reference-only。提供/受領成功は製品適用にならない。",
+    "impact": "旧新同template意味差を適用条件/必須field/negative oracle/completionごとに原consumerの要求/義務/artifact/pair版/scopeへ結ぶ。qualified影響根拠があるときだけ影響あり/なし、不十分はUnknown。旧版/未移管を残し、表示/filename/digestだけで意味移管しない。",
+    "locality": "不足/矛盾/影響は対象template/義務/選択操作/scopeへ局所化。無関係な有効scopeを止めず、他候補成功で欠落相殺しない。OSの実使用set/版/state/event/stale/義務完了は独立。",
+    "comparison": "同意味の要求分類/母集合/適用contract/製品scopeではAI/言語/project名だけで義務を増減しない。意味等価性はowner根拠と対oracleで比較し件数/hashだけで同等にしない。異domain/risk/scopeには異なる原根拠と未評価境界を保存。",
+    "python_boundary": "Python意味処理のpure境界。供給immutable snapshot→候補材料のみ。外部write/DB/Git/GitHub/clock/env/fs/network/割当/lease/実行/認可/採択/受入なし。外部作用が要るときの要求材料と、その実作用成立を分離する。",
+    "original_and_claim": "原definition/value/applicability/trace/usability/handoff/used_set/stateを独立保持。別owner裁定claimは原確定境界に反すればconflict、裏付け不足ならunknown。claimで原axisを更新しない。",
+    "dependencies": {
+      "always": "要求/製品scope・工程/適用contractのidentity/revision",
+      "operation_selected": "Forward選択/Backflow不足返却/旧新影響比較の対象操作で必要なinputのみ",
+      "source_selected": "選択knowledgeの全required fields/版/条件とBRAIN032/030のexact source。未選択sourceは未観測。",
+      "reference_only": "旧例/seedの非選択内容は参考。必須根拠/authorityの代替なし。",
+      "future_outputs": "OS完了receipt・全seed採用・後段設計/実検証成功は初回候補提供前の入力gateではない。"
+    }
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-009-B01",
+      "requirement_ref": "HARNESS-L3-009-B01",
+      "system_oracle_ref": "HARNESS-L10-009-B01",
+      "oracle_ref": "HARNESS-L9-009-B01",
+      "title": "Python意味処理の責務",
+      "behavior": "HARNESS-COREのPython意味処理は適用set/義務/不足質問/意味影響の材料を導く。BRAINは汎用知識版/state、OSは案件選択/使用set/版の登録と運転を持つ。CORE出力にDB/Git/GitHub write、割当、lease、実行、認可を与えない。受渡し先の完了receiptや全seed採用を初回処理前の入力にしない。",
+      "component_refs": [
+        "ApplicationInputBinding",
+        "RequirementGapReturn"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    },
+    {
+      "id": "HARNESS-L4-009-B02",
+      "requirement_ref": "HARNESS-L3-009-B02",
+      "system_oracle_ref": "HARNESS-L10-009-B02",
+      "oracle_ref": "HARNESS-L9-009-B02",
+      "title": "同意味入力の論点保持",
+      "behavior": "同じ意味の要求分類・適用契約・候補集合・製品scopeでは、AI/言語/projectの差だけで必要な論点を恣意的に増減させない。異なるdomain/risk/scopeや未観測知識まで同一setへ固定しない。",
+      "component_refs": [
+        "TemplateApplicabilityComparison",
+        "DesignObligationTrace"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    },
+    {
+      "id": "HARNESS-L4-009-F01",
+      "requirement_ref": "HARNESS-L3-009-F01",
+      "system_oracle_ref": "HARNESS-L10-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01",
+      "title": "入力axisと版",
+      "behavior": "要求identity/revision、kind、subject、relation、構成、risk、domain、layer/pair、製品scope、工程/適用契約版と、候補templateのidentity/version/意味契約revision/source/利用状態、選択根拠を照合する。知識提供/受領と製品適用選択を分け、BRAIN032の汎用項目、030の提供知識受領、既存HARNESS009/023/026の依存区分を使う。常時必須は要求/製品scopeと工程・適用契約のidentity/revision、選択/差戻し/影響比較の各入力は対象操作時に照合する。",
+      "component_refs": [
+        "ApplicationInputBinding"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    },
+    {
+      "id": "HARNESS-L4-009-F02",
+      "requirement_ref": "HARNESS-L3-009-F02",
+      "system_oracle_ref": "HARNESS-L10-009-F02",
+      "oracle_ref": "HARNESS-L9-009-F02",
+      "title": "適用候補のexact set",
+      "behavior": "適用条件と入力axisを比較し、検討対象のexact set、各要素の適用/不適用/未解決理由、比較境界、要求/製品scope、知識/適用契約版を結果候補へ結ぶ。candidate/proposed setとOSが登録するselected/used setを混同しない。",
+      "component_refs": [
+        "TemplateApplicabilityComparison"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    },
+    {
+      "id": "HARNESS-L4-009-F03",
+      "requirement_ref": "HARNESS-L3-009-F03",
+      "system_oracle_ref": "HARNESS-L10-009-F03",
+      "oracle_ref": "HARNESS-L9-009-F03",
+      "title": "required/conditional/N/A/unresolved",
+      "behavior": "templateごとのrequired/conditional/N/A/unresolvedを、根拠・判定者・対象revision/scope・条件・再評価条件とともに区別する。N/Aの理由/判定者/対象revision/再評価条件を欠かさず、判定不能をN/Aにしない。L2.5の003や性能/securityの限定文脈の既存N/Aを、全templateへ承認済みとして広げない。",
+      "component_refs": [
+        "TemplateApplicabilityComparison"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    },
+    {
+      "id": "HARNESS-L4-009-F04",
+      "requirement_ref": "HARNESS-L3-009-F04",
+      "system_oracle_ref": "HARNESS-L10-009-F04",
+      "oracle_ref": "HARNESS-L9-009-F04",
+      "title": "kind固有義務とtrace",
+      "behavior": "選択template版へunit/connection/composite固有義務とrequirement→obligation→design→pairのtraceを結ぶ。041のatom/proposal/gap抽出と025/026の具体設計/oracle構成は別能力として残す。",
+      "component_refs": [
+        "DesignObligationTrace"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    },
+    {
+      "id": "HARNESS-L4-009-F05",
+      "requirement_ref": "HARNESS-L3-009-F05",
+      "system_oracle_ref": "HARNESS-L10-009-F05",
+      "oracle_ref": "HARNESS-L9-009-F05",
+      "title": "不足の4候補と返却先",
+      "behavior": "不足を質問、矛盾、derived requirement candidate、N/A判断候補へ区別し、source/template/requirement revision、field/obligation identity、定義欠落/値未決、根拠、影響scope、未完義務、返却先を保つ。定義/knowledge版不足はBRAIN、製品要求値未決は008、適用contract不整合はHARNESSへ返す候補にする。Backflow ticketとして上流へ戻すための入力に結び、ticketの発行はOSへ残す。",
+      "component_refs": [
+        "RequirementGapReturn"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    },
+    {
+      "id": "HARNESS-L4-009-F06",
+      "requirement_ref": "HARNESS-L3-009-F06",
+      "system_oracle_ref": "HARNESS-L10-009-F06",
+      "oracle_ref": "HARNESS-L9-009-F06",
+      "title": "Forwardと知識の不成立",
+      "behavior": "Forwardは合意要求に適用template/義務を導く。未承認候補、stale版、別product版、該当なし、未提示知識へ任意fallbackせず、不足を返す。知識を選んだ入力では全required fields/版/適用条件を照合する。非選択知識と旧例は参照資料とし、適用authorityや必須入力へ変換しない。",
+      "component_refs": [
+        "ApplicationInputBinding",
+        "TemplateApplicabilityComparison",
+        "RequirementGapReturn"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    },
+    {
+      "id": "HARNESS-L4-009-F07",
+      "requirement_ref": "HARNESS-L3-009-F07",
+      "system_oracle_ref": "HARNESS-L10-009-F07",
+      "oracle_ref": "HARNESS-L9-009-F07",
+      "title": "template意味変更の影響",
+      "behavior": "旧新template identity/revisionと意味差分を、使用する要求/義務/設計artifact/対検証のidentity/revision/scopeへ結び、影響あり/なし/Unknownの根拠と再評価対象を返す。旧版参照と移管状態を識別する。",
+      "component_refs": [
+        "TemplateMeaningImpact"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    },
+    {
+      "id": "HARNESS-L4-009-F08",
+      "requirement_ref": "HARNESS-L3-009-F08",
+      "system_oracle_ref": "HARNESS-L10-009-F08",
+      "oracle_ref": "HARNESS-L9-009-F08",
+      "title": "局所影響とOSの記録",
+      "behavior": "HARNESS004の局所影響を守り、無関係な有効scopeの作業を保持する。案件の実使用版/state/event/stale記録と未完義務消込はOSへ残し、COREが直接更新しない。",
+      "component_refs": [
+        "TemplateMeaningImpact"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    },
+    {
+      "id": "HARNESS-L4-009-N01",
+      "requirement_ref": "HARNESS-L3-009-N01",
+      "system_oracle_ref": "HARNESS-L10-009-N01",
+      "oracle_ref": "HARNESS-L9-009-N01",
+      "title": "実証と候補の分離",
+      "behavior": "適用集合・根拠・義務・不足/返却先・影響のoracleは意味を照合し、fieldの存在や件数だけで合格にしない。scope外/oracle未定を未評価と残し、全seed/全知識観測済みや実適用済みにしない。",
+      "component_refs": [
+        "TemplateApplicabilityComparison",
+        "DesignObligationTrace",
+        "RequirementGapReturn",
+        "TemplateMeaningImpact"
+      ],
+      "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
+      "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+    }
+  ],
+  "failure_classifications": [
+    {
+      "code": "core_external_write",
+      "design_ref": "HARNESS-L4-009-B01",
+      "oracle_ref": "HARNESS-L9-009-B01-NEG-01",
+      "condition": "CORE結果にDB/Git/GitHub write要求を加える",
+      "expected_axis": "operation_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "os_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "core_execution_authorization",
+      "design_ref": "HARNESS-L4-009-B01",
+      "oracle_ref": "HARNESS-L9-009-B01-NEG-02",
+      "condition": "CORE結果へ割当/lease/実行/認可を加える",
+      "expected_axis": "operation_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "os_security_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "receipt_as_project_complete",
+      "design_ref": "HARNESS-L4-009-B01",
+      "oracle_ref": "HARNESS-L9-009-B01-NEG-03",
+      "condition": "OS受領だけでproject完成を主張",
+      "expected_axis": "project_completion_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "os_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "knowledge_supply_as_applied",
+      "design_ref": "HARNESS-L4-009-B01",
+      "oracle_ref": "HARNESS-L9-009-B01-NEG-04",
+      "condition": "BRAIN提供知識を製品適用済みと主張",
+      "expected_axis": "application_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "future_receipt_gate",
+      "design_ref": "HARNESS-L4-009-B01",
+      "oracle_ref": "HARNESS-L9-009-B01-NEG-05",
+      "condition": "初回候補提供の前提にOS完了receiptを要求",
+      "expected_axis": "precondition_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "all_seed_gate",
+      "design_ref": "HARNESS-L4-009-B01",
+      "oracle_ref": "HARNESS-L9-009-B01-NEG-06",
+      "condition": "全seed採用なしだけで局所候補提供を停止",
+      "expected_axis": "precondition_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "candidate_as_ticket",
+      "design_ref": "HARNESS-L4-009-B01",
+      "oracle_ref": "HARNESS-L9-009-B01-NEG-07",
+      "condition": "不足候補の返却をBackflow ticket発行済みとする",
+      "expected_axis": "ticket_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "os_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "candidate_as_design_pair_success",
+      "design_ref": "HARNESS-L4-009-B01",
+      "oracle_ref": "HARNESS-L9-009-B01-NEG-08",
+      "condition": "返却候補から設計成立/pair成功を主張",
+      "expected_axis": "design_pair_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "design_oracle_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "ai_name_changes_obligations",
+      "design_ref": "HARNESS-L4-009-B02",
+      "oracle_ref": "HARNESS-L9-009-B02-NEG-01",
+      "condition": "同意味/scope入力のAI名だけで必要義務を増減",
+      "expected_axis": "obligation_equivalence",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "language_changes_obligations",
+      "design_ref": "HARNESS-L4-009-B02",
+      "oracle_ref": "HARNESS-L9-009-B02-NEG-02",
+      "condition": "同意味/scope入力の言語だけで必要論点を省略",
+      "expected_axis": "obligation_equivalence",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "different_domain_forced_equal",
+      "design_ref": "HARNESS-L4-009-B02",
+      "oracle_ref": "HARNESS-L9-009-B02-NEG-03",
+      "condition": "domain/risk/scopeが違うのに同setを強制",
+      "expected_axis": "comparison_boundary",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "count_as_semantic_equivalence",
+      "design_ref": "HARNESS-L4-009-B02",
+      "oracle_ref": "HARNESS-L9-009-B02-NEG-04",
+      "condition": "異なる義務内容を同件数だけで同等とする",
+      "expected_axis": "equivalence_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "oracle_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_01_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-01",
+      "condition": "対象操作に必要なrequirement identityだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "requirement identity",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_01_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-02",
+      "condition": "対象操作に必要なrequirement identityだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "requirement identity",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_02_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-03",
+      "condition": "対象操作に必要なrequirement revisionだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "requirement revision",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_02_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-04",
+      "condition": "対象操作に必要なrequirement revisionだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "requirement revision",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_03_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-05",
+      "condition": "対象操作に必要なkindだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "kind",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_03_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-06",
+      "condition": "対象操作に必要なkindだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "kind",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_04_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-07",
+      "condition": "対象操作に必要なsubjectだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "subject",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_04_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-08",
+      "condition": "対象操作に必要なsubjectだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "subject",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_05_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-09",
+      "condition": "対象操作に必要なrelationだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "relation",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_05_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-10",
+      "condition": "対象操作に必要なrelationだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "relation",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_06_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-11",
+      "condition": "対象操作に必要なcompositionだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "composition",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_06_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-12",
+      "condition": "対象操作に必要なcompositionだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "composition",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_07_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-13",
+      "condition": "対象操作に必要なriskだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "risk",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_07_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-14",
+      "condition": "対象操作に必要なriskだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "risk",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_08_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-15",
+      "condition": "対象操作に必要なdomainだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "domain",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_08_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-16",
+      "condition": "対象操作に必要なdomainだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "domain",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_09_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-17",
+      "condition": "対象操作に必要なlayerだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "layer",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_09_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-18",
+      "condition": "対象操作に必要なlayerだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "layer",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_10_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-19",
+      "condition": "対象操作に必要なpairだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "pair",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_10_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-20",
+      "condition": "対象操作に必要なpairだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "pair",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_11_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-21",
+      "condition": "対象操作に必要なproduct scopeだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "product scope",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_11_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-22",
+      "condition": "対象操作に必要なproduct scopeだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "product scope",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_12_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-23",
+      "condition": "対象操作に必要なprocess contract revisionだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "process contract revision",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_12_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-24",
+      "condition": "対象操作に必要なprocess contract revisionだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "process contract revision",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_13_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-25",
+      "condition": "対象操作に必要なapplication contract revisionだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "application contract revision",
+      "expected_state": "missing",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_13_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-26",
+      "condition": "対象操作に必要なapplication contract revisionだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "application contract revision",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_or_contract_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "knowledge_wrong_revision",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-27",
+      "condition": "選択knowledgeのみ異revisionにする",
+      "expected_axis": "knowledge.binding",
+      "expected_state": "conflict",
+      "backflow_owner": "brain_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "unused_backflow_required",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-28",
+      "condition": "差戻し非選択操作で差戻し専用入力を常時必須へ昇格",
+      "expected_axis": "precondition_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "unused_impact_required",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-29",
+      "condition": "影響比較非選択で旧新版/consumer比較入力を常時必須へ昇格",
+      "expected_axis": "precondition_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "unselected_knowledge_required",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-30",
+      "condition": "非選択knowledgeを常時必須へ昇格",
+      "expected_axis": "precondition_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "duplicate_template_identity",
+      "design_ref": "HARNESS-L4-009-F02",
+      "oracle_ref": "HARNESS-L9-009-F02-NEG-01",
+      "condition": "母集合に同template identityを重複収載",
+      "expected_axis": "candidate_set",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "universe_missing",
+      "design_ref": "HARNESS-L4-009-F02",
+      "oracle_ref": "HARNESS-L9-009-F02-NEG-02",
+      "condition": "検討母集合を未供給にし任意候補を返す",
+      "expected_axis": "candidate_universe",
+      "expected_state": "missing",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "foreign_revision_in_set",
+      "design_ref": "HARNESS-L4-009-F02",
+      "oracle_ref": "HARNESS-L9-009-F02-NEG-03",
+      "condition": "当該binding外のtemplate revisionを収載",
+      "expected_axis": "candidate_set",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "foreign_product_in_set",
+      "design_ref": "HARNESS-L4-009-F02",
+      "oracle_ref": "HARNESS-L9-009-F02-NEG-04",
+      "condition": "別製品scopeのtemplateを収載",
+      "expected_axis": "candidate_set",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "proposed_as_used",
+      "design_ref": "HARNESS-L4-009-F02",
+      "oracle_ref": "HARNESS-L9-009-F02-NEG-05",
+      "condition": "提案集合をOSの使用済みexact setへ変換",
+      "expected_axis": "used_set_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "os_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "same_count_wrong_member",
+      "design_ref": "HARNESS-L4-009-F02",
+      "oracle_ref": "HARNESS-L9-009-F02-NEG-06",
+      "condition": "正しい件数だが違うtemplateを返す",
+      "expected_axis": "candidate_set_equivalence",
+      "expected_state": "conflict",
+      "backflow_owner": "oracle_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "na_reason_missing",
+      "design_ref": "HARNESS-L4-009-F03",
+      "oracle_ref": "HARNESS-L9-009-F03-NEG-01",
+      "condition": "N/A理由のみ除く",
+      "expected_axis": "na.reason",
+      "expected_state": "missing",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "na_decider_missing",
+      "design_ref": "HARNESS-L4-009-F03",
+      "oracle_ref": "HARNESS-L9-009-F03-NEG-02",
+      "condition": "N/A判定者のみ除く",
+      "expected_axis": "na.decider",
+      "expected_state": "missing",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "na_revision_missing",
+      "design_ref": "HARNESS-L4-009-F03",
+      "oracle_ref": "HARNESS-L9-009-F03-NEG-03",
+      "condition": "N/A対象revisionのみ除く",
+      "expected_axis": "na.revision",
+      "expected_state": "missing",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "na_reentry_missing",
+      "design_ref": "HARNESS-L4-009-F03",
+      "oracle_ref": "HARNESS-L9-009-F03-NEG-04",
+      "condition": "N/A再評価条件のみ除く",
+      "expected_axis": "na.reentry_condition",
+      "expected_state": "missing",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "unknown_as_na",
+      "design_ref": "HARNESS-L4-009-F03",
+      "oracle_ref": "HARNESS-L9-009-F03-NEG-05",
+      "condition": "適用条件未定をN/Aへ丸める",
+      "expected_axis": "applicability",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "conditional_unfulfilled_closed",
+      "design_ref": "HARNESS-L4-009-F03",
+      "oracle_ref": "HARNESS-L9-009-F03-NEG-06",
+      "condition": "conditional条件未充足を義務消込済みと主張",
+      "expected_axis": "condition",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "limited_na_cross_template",
+      "design_ref": "HARNESS-L4-009-F03",
+      "oracle_ref": "HARNESS-L9-009-F03-NEG-07",
+      "condition": "003または性能/security限定N/Aを別templateへ転用",
+      "expected_axis": "na.binding",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "na_scope_mismatch",
+      "design_ref": "HARNESS-L4-009-F03",
+      "oracle_ref": "HARNESS-L9-009-F03-NEG-08",
+      "condition": "N/Aの原scopeだけ別製品へ変える",
+      "expected_axis": "na.binding",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "connection_by_unit_only",
+      "design_ref": "HARNESS-L4-009-F04",
+      "oracle_ref": "HARNESS-L9-009-F04-NEG-01",
+      "condition": "接続の辺固有義務をunit成功だけで閉じる",
+      "expected_axis": "connection.obligation",
+      "expected_state": "missing",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "composite_by_lower_sum",
+      "design_ref": "HARNESS-L4-009-F04",
+      "oracle_ref": "HARNESS-L9-009-F04-NEG-02",
+      "condition": "構成体固有義務をunit/edgeの和だけで閉じる",
+      "expected_axis": "composite.obligation",
+      "expected_state": "missing",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "one_way_trace",
+      "design_ref": "HARNESS-L4-009-F04",
+      "oracle_ref": "HARNESS-L9-009-F04-NEG-03",
+      "condition": "要求/義務/設計/pairの逆向きtraceを除く",
+      "expected_axis": "trace",
+      "expected_state": "missing",
+      "backflow_owner": "trace_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "design_revision_mismatch",
+      "design_ref": "HARNESS-L4-009-F04",
+      "oracle_ref": "HARNESS-L9-009-F04-NEG-04",
+      "condition": "義務から別revisionのdesignへ結ぶ",
+      "expected_axis": "design.binding",
+      "expected_state": "conflict",
+      "backflow_owner": "design_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "pair_revision_mismatch",
+      "design_ref": "HARNESS-L4-009-F04",
+      "oracle_ref": "HARNESS-L9-009-F04-NEG-05",
+      "condition": "designから別revisionのpairへ結ぶ",
+      "expected_axis": "pair.binding",
+      "expected_state": "conflict",
+      "backflow_owner": "oracle_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "extraction_as_design_complete",
+      "design_ref": "HARNESS-L4-009-F04",
+      "oracle_ref": "HARNESS-L9-009-F04-NEG-06",
+      "condition": "041抽出成功だけで具体設計完成を主張",
+      "expected_axis": "design_completion_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "design_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "composite_empty_without_reason",
+      "design_ref": "HARNESS-L4-009-F04",
+      "oracle_ref": "HARNESS-L9-009-F04-NEG-07",
+      "condition": "構成体固有義務を根拠なし空集合へ変える",
+      "expected_axis": "composite.obligation",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "definition_as_value_gap",
+      "design_ref": "HARNESS-L4-009-F05",
+      "oracle_ref": "HARNESS-L9-009-F05-NEG-01",
+      "condition": "field定義missingを値unknownだけへ置換",
+      "expected_axis": "field.definition",
+      "expected_state": "missing",
+      "backflow_owner": "brain_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "value_as_definition_gap",
+      "design_ref": "HARNESS-L4-009-F05",
+      "oracle_ref": "HARNESS-L9-009-F05-NEG-02",
+      "condition": "定義knownの製品値unknownを知識定義欠落へ置換",
+      "expected_axis": "field.value",
+      "expected_state": "unknown",
+      "backflow_owner": "requirement_008_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "classification_fabricated",
+      "design_ref": "HARNESS-L4-009-F05",
+      "oracle_ref": "HARNESS-L9-009-F05-NEG-03",
+      "condition": "不足の分類未決をAI任意補完で閉じる",
+      "expected_axis": "gap.classification",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "oral_only_gap",
+      "design_ref": "HARNESS-L4-009-F05",
+      "oracle_ref": "HARNESS-L9-009-F05-NEG-04",
+      "condition": "元revision/scope/未完義務への記録参照なしで口頭返却",
+      "expected_axis": "gap.trace",
+      "expected_state": "missing",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "other_template_compensation",
+      "design_ref": "HARNESS-L4-009-F05",
+      "oracle_ref": "HARNESS-L9-009-F05-NEG-05",
+      "condition": "当該templateの不足を別template成功で相殺",
+      "expected_axis": "gap.coverage",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "wrong_gap_owner",
+      "design_ref": "HARNESS-L4-009-F05",
+      "oracle_ref": "HARNESS-L9-009-F05-NEG-06",
+      "condition": "knowledge版不足を製品値ownerへ誤返却",
+      "expected_axis": "gap.owner",
+      "expected_state": "conflict",
+      "backflow_owner": "brain_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "candidate_as_requirements_agreement",
+      "design_ref": "HARNESS-L4-009-F05",
+      "oracle_ref": "HARNESS-L9-009-F05-NEG-07",
+      "condition": "derived要求候補を人間合意済みへ昇格",
+      "expected_axis": "requirements_agreement_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "stale_template_allowed",
+      "design_ref": "HARNESS-L4-009-F06",
+      "oracle_ref": "HARNESS-L9-009-F06-NEG-01",
+      "condition": "選択knowledgeのstale版を有効として使う",
+      "expected_axis": "knowledge.usability",
+      "expected_state": "conflict",
+      "backflow_owner": "brain_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "unapproved_template_allowed",
+      "design_ref": "HARNESS-L4-009-F06",
+      "oracle_ref": "HARNESS-L9-009-F06-NEG-02",
+      "condition": "未承認候補を適用authorityに使う",
+      "expected_axis": "knowledge.authority",
+      "expected_state": "unknown",
+      "backflow_owner": "brain_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "foreign_product_template_allowed",
+      "design_ref": "HARNESS-L4-009-F06",
+      "oracle_ref": "HARNESS-L9-009-F06-NEG-03",
+      "condition": "別製品版を有効templateとして使う",
+      "expected_axis": "knowledge.binding",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "no_match_arbitrary_selection",
+      "design_ref": "HARNESS-L4-009-F06",
+      "oracle_ref": "HARNESS-L9-009-F06-NEG-04",
+      "condition": "該当なしで任意templateを選ぶ",
+      "expected_axis": "application",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "knowledge_gap_fallback",
+      "design_ref": "HARNESS-L4-009-F06",
+      "oracle_ref": "HARNESS-L9-009-F06-NEG-05",
+      "condition": "選択knowledgeの必須field不足を任意fallbackで埋める",
+      "expected_axis": "knowledge.required_input",
+      "expected_state": "missing",
+      "backflow_owner": "brain_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "reference_as_application_authority",
+      "design_ref": "HARNESS-L4-009-F06",
+      "oracle_ref": "HARNESS-L9-009-F06-NEG-06",
+      "condition": "非選択knowledge/旧例を適用authorityに変える",
+      "expected_axis": "authority_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "template_as_requirement_agreement",
+      "design_ref": "HARNESS-L4-009-F06",
+      "oracle_ref": "HARNESS-L9-009-F06-NEG-07",
+      "condition": "templateから要求合意を生成",
+      "expected_axis": "requirements_agreement_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "requirement_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "filename_as_migration_complete",
+      "design_ref": "HARNESS-L4-009-F07",
+      "oracle_ref": "HARNESS-L9-009-F07-NEG-01",
+      "condition": "filename変更だけで意味移管完了と主張",
+      "expected_axis": "migration_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "digest_as_migration_complete",
+      "design_ref": "HARNESS-L4-009-F07",
+      "oracle_ref": "HARNESS-L9-009-F07-NEG-02",
+      "condition": "file digest更新だけで意味移管完了と主張",
+      "expected_axis": "migration_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "view_as_meaning_migration",
+      "design_ref": "HARNESS-L4-009-F07",
+      "oracle_ref": "HARNESS-L9-009-F07-NEG-03",
+      "condition": "意味不変view変更だけで意味変更/移管を主張",
+      "expected_axis": "meaning_change_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "unknown_as_unaffected",
+      "design_ref": "HARNESS-L4-009-F07",
+      "oracle_ref": "HARNESS-L9-009-F07-NEG-04",
+      "condition": "影響根拠未供給をUnaffectedへ変換",
+      "expected_axis": "impact",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "foreign_scope_unaffected_proof",
+      "design_ref": "HARNESS-L4-009-F07",
+      "oracle_ref": "HARNESS-L9-009-F07-NEG-05",
+      "condition": "別scope証拠で当該consumerに影響なしと主張",
+      "expected_axis": "impact.binding",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "old_revision_lost",
+      "design_ref": "HARNESS-L4-009-F07",
+      "oracle_ref": "HARNESS-L9-009-F07-NEG-06",
+      "condition": "未移管consumerの原旧template参照を削除",
+      "expected_axis": "consumer.trace",
+      "expected_state": "missing",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "completion_delta_omitted",
+      "design_ref": "HARNESS-L4-009-F07",
+      "oracle_ref": "HARNESS-L9-009-F07-NEG-07",
+      "condition": "completion意味変更だけ影響集合から除外",
+      "expected_axis": "impact.coverage",
+      "expected_state": "missing",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "all_scope_invalidated",
+      "design_ref": "HARNESS-L4-009-F08",
+      "oracle_ref": "HARNESS-L9-009-F08-NEG-01",
+      "condition": "一scope変更で無関係有効scopeを一律失効",
+      "expected_axis": "impact.scope",
+      "expected_state": "conflict",
+      "backflow_owner": "core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "core_updates_used_revision",
+      "design_ref": "HARNESS-L4-009-F08",
+      "oracle_ref": "HARNESS-L9-009-F08-NEG-02",
+      "condition": "CORE結果だけでOS実使用版を更新済みと主張",
+      "expected_axis": "used_revision_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "os_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "core_closes_unfinished_obligation",
+      "design_ref": "HARNESS-L4-009-F08",
+      "oracle_ref": "HARNESS-L9-009-F08-NEG-03",
+      "condition": "CORE結果だけでOS未完義務を消し込む",
+      "expected_axis": "obligation_discharge_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "os_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "core_updates_event_stale",
+      "design_ref": "HARNESS-L4-009-F08",
+      "oracle_ref": "HARNESS-L9-009-F08-NEG-04",
+      "condition": "CORE結果だけでOS event/state/stale記録を更新",
+      "expected_axis": "record_update_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "os_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "fixture_as_verification_success",
+      "design_ref": "HARNESS-L4-009-N01",
+      "oracle_ref": "HARNESS-L9-009-N01-NEG-01",
+      "condition": "fixture存在だけで検証成功と主張",
+      "expected_axis": "verification_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "oracle_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "receipt_as_verification_success",
+      "design_ref": "HARNESS-L4-009-N01",
+      "oracle_ref": "HARNESS-L9-009-N01-NEG-02",
+      "condition": "受領だけで実適用検証成功と主張",
+      "expected_axis": "verification_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "oracle_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "oracle_undefined_success",
+      "design_ref": "HARNESS-L4-009-N01",
+      "oracle_ref": "HARNESS-L9-009-N01-NEG-03",
+      "condition": "oracle未定を成功にする",
+      "expected_axis": "oracle",
+      "expected_state": "unknown",
+      "backflow_owner": "oracle_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "unobserved_all_knowledge_success",
+      "design_ref": "HARNESS-L4-009-N01",
+      "oracle_ref": "HARNESS-L9-009-N01-NEG-04",
+      "condition": "未観測knowledgeを全件観測/成立済みにする",
+      "expected_axis": "unselected_knowledge",
+      "expected_state": "unobserved",
+      "backflow_owner": "brain_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "scope_outside_evaluated",
+      "design_ref": "HARNESS-L4-009-N01",
+      "oracle_ref": "HARNESS-L9-009-N01-NEG-05",
+      "condition": "対象scope外を評価済みとする",
+      "expected_axis": "evaluation_scope",
+      "expected_state": "unobserved",
+      "backflow_owner": "oracle_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "seed_schema_portfolio_success",
+      "design_ref": "HARNESS-L4-009-N01",
+      "oracle_ref": "HARNESS-L9-009-N01-NEG-06",
+      "condition": "候補setだけでseed最小集合/schema/renderer/parity/pair/portfolio成立を主張",
+      "expected_axis": "foundation_completion_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "respective_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_14_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-31",
+      "condition": "選択したtemplateを消費する操作で必要なtemplate identityだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "template identity",
+      "expected_state": "missing",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_14_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-32",
+      "condition": "選択したtemplateを消費する操作で必要なtemplate identityだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "template identity",
+      "expected_state": "conflict",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_15_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-33",
+      "condition": "選択したtemplateを消費する操作で必要なtemplate versionだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "template version",
+      "expected_state": "missing",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_15_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-34",
+      "condition": "選択したtemplateを消費する操作で必要なtemplate versionだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "template version",
+      "expected_state": "conflict",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_16_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-35",
+      "condition": "選択したtemplateを消費する操作で必要なsemantic contract revisionだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "semantic contract revision",
+      "expected_state": "missing",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_16_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-36",
+      "condition": "選択したtemplateを消費する操作で必要なsemantic contract revisionだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "semantic contract revision",
+      "expected_state": "conflict",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_17_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-37",
+      "condition": "選択したtemplateを消費する操作で必要なtemplate sourceだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "template source",
+      "expected_state": "missing",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_17_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-38",
+      "condition": "選択したtemplateを消費する操作で必要なtemplate sourceだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "template source",
+      "expected_state": "conflict",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_18_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-39",
+      "condition": "選択したtemplateを消費する操作で必要なknowledge usabilityだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "knowledge usability",
+      "expected_state": "missing",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_18_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-40",
+      "condition": "選択したtemplateを消費する操作で必要なknowledge usabilityだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "knowledge usability",
+      "expected_state": "conflict",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_19_missing",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-41",
+      "condition": "選択したtemplateを消費する操作で必要なselection basisだけをmissingにし元scope/他axisを保持",
+      "expected_axis": "selection basis",
+      "expected_state": "missing",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    },
+    {
+      "code": "axis_19_conflict",
+      "design_ref": "HARNESS-L4-009-F01",
+      "oracle_ref": "HARNESS-L9-009-F01-NEG-42",
+      "condition": "選択したtemplateを消費する操作で必要なselection basisだけをconflictにし元scope/他axisを保持",
+      "expected_axis": "selection basis",
+      "expected_state": "conflict",
+      "backflow_owner": "brain_or_core_owner",
+      "effect": "pure比較結果だけ。適用/採用/移管/実記録/実受入を発行しない。"
+    }
+  ],
+  "remaining": [
+    "L5/L8でlogical型/各axis判定/集合/適用/N/A/trace/gap/影響pure関数と単体oracleへ降ろす。",
+    "正式schema/operator/registry/instance digest/言語依存/入力資格resolver/具体fixtureと採用知識の未完照合は未成立。",
+    "全92親430対の設計/実装準備、配置4論点、toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deploy未成立。"
+  ]
+}
