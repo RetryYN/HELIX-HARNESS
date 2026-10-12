@@ -548,7 +548,32 @@
         "event_registration_execution_owner": "OS",
         "external_consumer": "独立consumerは008の再検証契約を実装し、自分のauthorityで処理する。OSを意味処理の必須基盤にしない。"
       },
-      "failure_return": "当該source/identity/revision/scope/版と読めた原資料を保持し、不足/unknown/conflict/staleを当該ownerへ返す。未解決で依存する下流成立を生成しない。"
+      "failure_return": "当該source/identity/revision/scope/版と読めた原資料を保持し、不足/unknown/conflict/staleを当該ownerへ返す。未解決で依存する下流成立を生成しない。",
+      "composite_specific_detail": {
+        "source_basis": "承認済み008-F05を具体化。旧RDJ-FR004/006/008の失敗/復旧/非適用根拠/独立oracle traceを意味再導出し、ADR010の意味判断と外部作用分離を保持する。旧固定IR/schema/運転/CIを採用しない。",
+        "obligation_fields": [
+          "purpose",
+          "end_to_end",
+          "invariant",
+          "failure_propagation",
+          "recovery",
+          "nonfunctional",
+          "acceptance",
+          "performance_budget",
+          "trust_boundary",
+          "consistency",
+          "optional_batch_window"
+        ],
+        "lower_proof_limit": "005/022は下位前提の責務を示す合成familyのみ。未統合詳細設計や実proofを採用した記録ではない。",
+        "na_limit": "原適用条件でoptionalとされた義務だけ。必須の目的/全体応答/invariant等をN/Aで消さない。",
+        "comparison": "下位成功と別に全体性能budget/trust boundary/整合性/固有oracle差分を内容比較。未観測をunknown、違反をconflictとして保持する。",
+        "implementation_pending": [
+          "実owner資格とN/A判断の有効性",
+          "正式proof型とwire schema",
+          "実oracle凍結/実装前Red/Green",
+          "実全体観測と受入"
+        ]
+      }
     },
     {
       "id": "HARNESS-L4-008-F06",
@@ -659,7 +684,6 @@
     },
     "remaining_contracts": [
       "B01",
-      "F05",
       "F06",
       "F07",
       "N01"
@@ -686,6 +710,12 @@
       "normal": 2,
       "negative": 45,
       "source_packets": 47,
+      "state": "draft_not_executed"
+    },
+    "F05": {
+      "normal": 3,
+      "negative": 62,
+      "source_packets": 65,
       "state": "draft_not_executed"
     }
   }
