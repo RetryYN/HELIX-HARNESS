@@ -1,0 +1,1779 @@
+{
+  "status": "draft_candidate_not_independently_reviewed",
+  "authority_effect": "none",
+  "source_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-template002-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "bc43990ff996350a96ca53284c0bd8b102f7b224daf755a5b890257a9390d7f0"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "c67edf6f5f2553e79e790ac519a8e7dc335b213fc2ce243cc6881e74fc7ac4b5"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "88816f81ca26c02c3913eea6b609e16eda0d6b5b4fa59ea69e024268969bc703"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/os-template-trace-002-source-lines-2026-10-10.jsonl",
+      "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
+      "sha256": "a567a88929afedd83d28e95202125526972286341280395e41357b08e15652a2"
+    }
+  ],
+  "authority_boundary": {
+    "approved_parent": "HELIXOS-L2-002",
+    "approved_l3_l10_content": "a2f6961068619e550dd0467898927b6bc8451c75",
+    "restart": "2026-10-12 adopted scope2;10/8 general unlock revoked",
+    "version_target": "既存002は版指定追加なし",
+    "scope": "13承認義務の一つのL4/L9 pair。全限定92親430対の完了/実記録の成立なし。"
+  },
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "individual_lines": [
+        24,
+        36,
+        58,
+        86,
+        91
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "carried facetに限り案件記録のtemplate/要求/義務traceとexact set・Backflow・scope責務分離を意味再導出する。各行の採用/保留はlegacy_facet_dispositionsに従う。",
+      "change": "carried facetを起点に、OSTRACE採択済みのevent/revision/因果・評価入力集合を各ownerへ具体化する。pending facetの方式・gate・意味は本pairで変更しない。",
+      "reason": "002の採用済み案件追跡の具体化であり、source/template/instance digest全体、recipe/予防gate昇格、旧DB収束gateは元holdingに保持する。",
+      "facet_atom_refs": [
+        "OST002-LEGACY-001",
+        "OST002-LEGACY-002",
+        "OST002-LEGACY-003",
+        "OST002-LEGACY-004",
+        "OST002-LEGACY-005"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "individual_lines": [
+        54,
+        56,
+        58
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "carried facetに限り案件記録のtemplate/要求/義務traceとexact set・Backflow・scope責務分離を意味再導出する。各行の採用/保留はlegacy_facet_dispositionsに従う。",
+      "change": "carried facetを起点に、OSTRACE採択済みのevent/revision/因果・評価入力集合を各ownerへ具体化する。pending facetの方式・gate・意味は本pairで変更しない。",
+      "reason": "002の採用済み案件追跡の具体化であり、source/template/instance digest全体、recipe/予防gate昇格、旧DB収束gateは元holdingに保持する。",
+      "facet_atom_refs": [
+        "OST002-LEGACY-006",
+        "OST002-LEGACY-007",
+        "OST002-LEGACY-008"
+      ]
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "lines": [
+      65,
+      101
+    ],
+    "cases": [
+      "UTW-002",
+      "UTW-005",
+      "UTW-020",
+      "UTW-021"
+    ],
+    "use": "正本/projection、revision、部分失敗、自己申告の混同を原採択条件の反例として照合。新要求/gateへ昇格しない。"
+  },
+  "document_id": "HELIXOS-L4-002-PROJECT-TEMPLATE-TRACE",
+  "layer": "L4",
+  "pair": "L9",
+  "purpose": "案件の原記録を責務別sourceと同revision/scopeへ結び直す基本設計。記録と意味裁定/評価の成立を分離する。",
+  "architecture": {
+    "components": [
+      {
+        "id": "RecordInputBinding",
+        "responsibility": "対象project/scope/要求revision/source・選択操作に必要なowner契約を照合。未来receiptを前提にしない。"
+      },
+      {
+        "id": "TemplateSetTrace",
+        "responsibility": "提案/選択/実使用集合と各版/根拠を別に保持。"
+      },
+      {
+        "id": "EventObligationTrace",
+        "responsibility": "event/actor/source/correlationと要求/義務/kind/成果/pairを各記録へ結ぶ。"
+      },
+      {
+        "id": "DispositionAndHandoffTrace",
+        "responsibility": "CORE判定属性、conditional未充足、未実施/不合格/未評価、返却/ACK/受理/解決/消込の独立証拠を追跡。"
+      },
+      {
+        "id": "EventCorrectionProjection",
+        "responsibility": "原event不変と訂正/旧新分類/engine/schema版の参照を分離。"
+      },
+      {
+        "id": "MeaningImpactHistory",
+        "responsibility": "CORE影響出力へ旧新使用版・再評価/Unknown・無関係scope保持を束縛。"
+      },
+      {
+        "id": "EvaluationRecordSelection",
+        "responsibility": "LABO指定評価範囲と原記録母集合/抽出/包含/除外/duplicate/欠測を照合。"
+      },
+      {
+        "id": "FindingAndShareTrace",
+        "responsibility": "finding因果未決とSECURITY操作/data利用条件を保持する。"
+      }
+    ],
+    "flow": [
+      "owner原snapshot/操作選択→RecordInputBinding",
+      "set/event/義務/訂正/影響の個別比較→trace/projection候補",
+      "選択LABO評価範囲+既存SEC条件→評価入力集合の包含/除外/欠測材料",
+      "正式保存はOS053/001/007/019/023の実操作契約へ戻す。002は意味/許可を作らず本pairでは実writeしない。"
+    ]
+  },
+  "contracts": [
+    {
+      "id": "HELIXOS-L4-002-B01",
+      "requirement_ref": "HELIXOS-L3-002-B01",
+      "system_oracle_ref": "HELIXOS-L10-002-B01",
+      "oracle_ref": "HELIXOS-L9-002-B01",
+      "title": "意味・記録・評価のowner",
+      "behavior": "OS002は案件記録の追跡を持つ。合意/sourceは001、evidence/continuityは007/019、未完義務handoffは023、改善/評価/再発の既存接続は005/024/048へ残す。汎用知識意味/版はBRAIN、適用/意味影響はCORE、効果/退行評価はLABO、操作/data利用条件はSECURITYを参照する。",
+      "component_refs": [
+        "RecordInputBinding",
+        "TemplateSetTrace",
+        "EventObligationTrace",
+        "DispositionAndHandoffTrace",
+        "EventCorrectionProjection",
+        "MeaningImpactHistory",
+        "EvaluationRecordSelection",
+        "FindingAndShareTrace"
+      ],
+      "required_input_meanings": [
+        "BRAIN汎用知識の原版/state",
+        "CORE適用/影響の原出力",
+        "LABO評価の原出力または未評価",
+        "SECURITY操作/data利用条件",
+        "案件記録receiptと独立した実接続/受入証拠"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "record_as_owner_decision",
+          "change": "OS保存だけでBRAIN採否/CORE適用/LABO評価済みを主張",
+          "axis": "owner",
+          "state": "conflict",
+          "backflow_owner": "該当BRAIN/CORE/LABO",
+          "expected": "保存receiptは保存だけ。各owner未成立を保持。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "保存receiptは保存だけ。各owner未成立を保持。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "collection_as_connection",
+          "change": "原記録集合供給だけでLABO接続成立を主張",
+          "axis": "connection",
+          "state": "unknown",
+          "backflow_owner": "OS005/024とLABO",
+          "expected": "供給集合は保持し接続実証未供給を残す。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "供給集合は保持し接続実証未供給を残す。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-B01.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-B02",
+      "requirement_ref": "HELIXOS-L3-002-B02",
+      "system_oracle_ref": "HELIXOS-L10-002-B02",
+      "oracle_ref": "HELIXOS-L9-002-B02",
+      "title": "開始時と操作時の依存",
+      "behavior": "常時必要は記録対象project/scope、source/要求revisionと該当契約参照。特定template選択/使用操作ではset/版/適用出力、評価へ送る操作では選択評価scope/必要入力/利用許可を照合する。関係しない知識/全seedや今回初めて生じる結果/受領証拠を開始前提にしない。",
+      "component_refs": [
+        "RecordInputBinding"
+      ],
+      "required_input_meanings": [
+        "選択operation",
+        "常時project/scope/source/要求revision/契約ref",
+        "選択/実使用操作の原set/版/CORE出力",
+        "評価共有を選択した場合のLABOscope/必要入力/利用許可",
+        "まだ発生しない結果と非選択sourceの原状態"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "future_receipt_gate",
+          "change": "未発生結果receiptを初回入力へ要求",
+          "axis": "operation_dependency",
+          "state": "conflict",
+          "backflow_owner": "OS002/該当評価owner",
+          "expected": "P初回の有効入力を照合し、未発生/未観測とQ有効作業を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "P初回の有効入力を照合し、未発生/未観測とQ有効作業を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "all_seed_gate",
+          "change": "全seed採択を初回記録へ要求",
+          "axis": "operation_dependency",
+          "state": "conflict",
+          "backflow_owner": "OS002/該当評価owner",
+          "expected": "P初回の有効入力を照合し、未発生/未観測とQ有効作業を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "P初回の有効入力を照合し、未発生/未観測とQ有効作業を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unrelated_scope_stop",
+          "change": "LABO未観測で無関係Qを停止",
+          "axis": "operation_dependency",
+          "state": "conflict",
+          "backflow_owner": "OS002/該当評価owner",
+          "expected": "P初回の有効入力を照合し、未発生/未観測とQ有効作業を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "P初回の有効入力を照合し、未発生/未観測とQ有効作業を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-B02.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-F01",
+      "requirement_ref": "HELIXOS-L3-002-F01",
+      "system_oracle_ref": "HELIXOS-L10-002-F01",
+      "oracle_ref": "HELIXOS-L9-002-F01",
+      "title": "要求から運用までの個別追跡",
+      "behavior": "project群の要求から作業・実装・検証・提供・運用までを、対象project/scopeと要求revisionへ結び、欠落・競合・未接続・未合意・未実装・未検証を区別する。提供はrelease kanban上の状態として追跡し、部分成功で全体完了にしない。",
+      "component_refs": [
+        "EventObligationTrace"
+      ],
+      "required_input_meanings": [
+        "projectごとの工程状態と発生元",
+        "要求revisionと作業/実装/検証/提供/運用trace",
+        "release kanban原状態または未提示理由"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "other_project_completion",
+          "change": "Q成功でPを完了",
+          "axis": "project_scope",
+          "state": "conflict",
+          "backflow_owner": "OS002",
+          "expected": "P未実装/未検証を保持しQ状態も原入力どおり返す。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "P未実装/未検証を保持しQ状態も原入力どおり返す。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "github_as_release",
+          "change": "Issue close/PR mergeをkanban提供状態へ転写",
+          "axis": "release_state",
+          "state": "unknown",
+          "backflow_owner": "OS002/提供記録owner",
+          "expected": "P kanban未提示を保持しQのKQ preparedを保持。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "P kanban未提示を保持しQのKQ preparedを保持。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-F01.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-F02",
+      "requirement_ref": "HELIXOS-L3-002-F02",
+      "system_oracle_ref": "HELIXOS-L10-002-F02",
+      "oracle_ref": "HELIXOS-L9-002-F02",
+      "title": "候補・選択・使用setの区別",
+      "behavior": "project/製品scope、要求identity/revision、HARNESS契約版、CORE009の選択/判定/義務/不足/意味影響候補と根拠、BRAIN template identity/version/意味契約revision/利用状態を照合する。提案set・案件が選択したset・実際に使用したsetを分け、各記録の所属setを示す。",
+      "component_refs": [
+        "TemplateSetTrace"
+      ],
+      "required_input_meanings": [
+        "提案/選択/実使用の別原集合と各根拠event",
+        "template identity/version/意味契約revision/knowledge利用状態",
+        "CORE適用出力とHARNESS契約版/要求revision"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "proposal_as_used",
+          "change": "提案setを実使用へ代入",
+          "axis": "template_set",
+          "state": "conflict",
+          "backflow_owner": "CORE/OS002",
+          "expected": "提案T1/T2・選択T1・実使用空の原集合と各不成立を保持し該当操作へ返す。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "提案T1/T2・選択T1・実使用空の原集合と各不成立を保持し該当操作へ返す。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "arbitrary_fallback",
+          "change": "未登録/stale/conflict/必要input不足で任意様式fallback",
+          "axis": "template_set",
+          "state": "conflict",
+          "backflow_owner": "CORE/OS002",
+          "expected": "提案T1/T2・選択T1・実使用空の原集合と各不成立を保持し該当操作へ返す。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "提案T1/T2・選択T1・実使用空の原集合と各不成立を保持し該当操作へ返す。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "other_template_compensation",
+          "change": "T1成功でT2不足を消去",
+          "axis": "template_set",
+          "state": "conflict",
+          "backflow_owner": "CORE/OS002",
+          "expected": "提案T1/T2・選択T1・実使用空の原集合と各不成立を保持し該当操作へ返す。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "提案T1/T2・選択T1・実使用空の原集合と各不成立を保持し該当操作へ返す。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-F02.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-F03",
+      "requirement_ref": "HELIXOS-L3-002-F03",
+      "system_oracle_ref": "HELIXOS-L10-002-F03",
+      "oracle_ref": "HELIXOS-L9-002-F03",
+      "title": "各記録の因果とrevision",
+      "behavior": "template適用、義務生成/消込、N/A、Backflow、設計成果、finding、再作業、受入、運用結果を、それぞれの発生event・actor・source・相関参照、project/scope、要求revision、選択/使用template版、義務・成果・対検証identity/revisionと因果へ結ぶ。関係しない項目は架空値で埋めず不適用根拠または未解決を残す。",
+      "component_refs": [
+        "EventObligationTrace"
+      ],
+      "required_input_meanings": [
+        "原event/actor/source/correlation",
+        "project/scope/要求revision/選択または使用template版",
+        "対象unit/connection/composite義務・成果・pairのidentity/版",
+        "非関係項目の原不適用根拠または未解決"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "record_project_missing",
+          "change": "原eventのproject参照だけ欠落",
+          "axis": "project",
+          "state": "missing",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該projectの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該projectの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_project_conflict",
+          "change": "原eventのproject参照を別対象へ置換",
+          "axis": "project",
+          "state": "conflict",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該projectの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該projectの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_scope_missing",
+          "change": "原eventのscope参照だけ欠落",
+          "axis": "scope",
+          "state": "missing",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該scopeの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該scopeの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_scope_conflict",
+          "change": "原eventのscope参照を別対象へ置換",
+          "axis": "scope",
+          "state": "conflict",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該scopeの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該scopeの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_requirement_revision_missing",
+          "change": "原eventのrequirement_revision参照だけ欠落",
+          "axis": "requirement_revision",
+          "state": "missing",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該requirement_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該requirement_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_requirement_revision_conflict",
+          "change": "原eventのrequirement_revision参照を別対象へ置換",
+          "axis": "requirement_revision",
+          "state": "conflict",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該requirement_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該requirement_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_template_revision_missing",
+          "change": "原eventのtemplate_revision参照だけ欠落",
+          "axis": "template_revision",
+          "state": "missing",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該template_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該template_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_template_revision_conflict",
+          "change": "原eventのtemplate_revision参照を別対象へ置換",
+          "axis": "template_revision",
+          "state": "conflict",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該template_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該template_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_obligation_missing",
+          "change": "原eventのobligation参照だけ欠落",
+          "axis": "obligation",
+          "state": "missing",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該obligationの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該obligationの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_obligation_conflict",
+          "change": "原eventのobligation参照を別対象へ置換",
+          "axis": "obligation",
+          "state": "conflict",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該obligationの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該obligationの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_artifact_missing",
+          "change": "原eventのartifact参照だけ欠落",
+          "axis": "artifact",
+          "state": "missing",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該artifactの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該artifactの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_artifact_conflict",
+          "change": "原eventのartifact参照を別対象へ置換",
+          "axis": "artifact",
+          "state": "conflict",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該artifactの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該artifactの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_pair_missing",
+          "change": "原eventのpair参照だけ欠落",
+          "axis": "pair",
+          "state": "missing",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該pairの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該pairの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "record_pair_conflict",
+          "change": "原eventのpair参照を別対象へ置換",
+          "axis": "pair",
+          "state": "conflict",
+          "backflow_owner": "元record/source owner",
+          "expected": "当該pairの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "当該pairの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "causal_event_missing",
+          "change": "発生元eventだけ除去",
+          "axis": "event",
+          "state": "missing",
+          "backflow_owner": "元event owner",
+          "expected": "発生元event不足を元recordへ結び、因果未決を別eventで補わない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "発生元event不足を元recordへ結び、因果未決を別eventで補わない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "causal_actor_missing",
+          "change": "発生元actorだけ除去",
+          "axis": "actor",
+          "state": "missing",
+          "backflow_owner": "元event owner",
+          "expected": "発生元actor不足を元recordへ結び、因果未決を別eventで補わない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "発生元actor不足を元recordへ結び、因果未決を別eventで補わない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "causal_source_missing",
+          "change": "発生元sourceだけ除去",
+          "axis": "source",
+          "state": "missing",
+          "backflow_owner": "元event owner",
+          "expected": "発生元source不足を元recordへ結び、因果未決を別eventで補わない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "発生元source不足を元recordへ結び、因果未決を別eventで補わない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "causal_correlation_missing",
+          "change": "発生元correlationだけ除去",
+          "axis": "correlation",
+          "state": "missing",
+          "backflow_owner": "元event owner",
+          "expected": "発生元correlation不足を元recordへ結び、因果未決を別eventで補わない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "発生元correlation不足を元recordへ結び、因果未決を別eventで補わない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "nonrelated_fabrication",
+          "change": "非関係項目を架空pairで埋める",
+          "axis": "applicability",
+          "state": "conflict",
+          "backflow_owner": "元record owner",
+          "expected": "原不適用理由を保持し架空結合を拒否。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "原不適用理由を保持し架空結合を拒否。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-F03.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-F04",
+      "requirement_ref": "HELIXOS-L3-002-F04",
+      "system_oracle_ref": "HELIXOS-L10-002-F04",
+      "oracle_ref": "HELIXOS-L9-002-F04",
+      "title": "判定と未完義務の保存",
+      "behavior": "CORE009のrequired/conditional/N/A/unresolved、根拠・判定者・対象revision・再評価条件を出力参照へ結ぶ。conditional未充足、義務の未実施/不合格/未評価を分け、OSが適用規則やN/A判断を新設しない。",
+      "component_refs": [
+        "DispositionAndHandoffTrace"
+      ],
+      "required_input_meanings": [
+        "CORE4判定の出力refと理由/判定者/要求revision/再評価条件",
+        "原条件true/false/unknownとconditional未完",
+        "各義務の未実施/不合格/未評価"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "na_reason_missing",
+          "change": "N/A原判断のreasonだけ除去",
+          "axis": "NA_reason",
+          "state": "missing",
+          "backflow_owner": "CORE",
+          "expected": "N/A属性不足とCORE元出力を保持。OSが補完しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "N/A属性不足とCORE元出力を保持。OSが補完しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "na_decider_missing",
+          "change": "N/A原判断のdeciderだけ除去",
+          "axis": "NA_decider",
+          "state": "missing",
+          "backflow_owner": "CORE",
+          "expected": "N/A属性不足とCORE元出力を保持。OSが補完しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "N/A属性不足とCORE元出力を保持。OSが補完しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "na_target_revision_missing",
+          "change": "N/A原判断のtarget_revisionだけ除去",
+          "axis": "NA_target_revision",
+          "state": "missing",
+          "backflow_owner": "CORE",
+          "expected": "N/A属性不足とCORE元出力を保持。OSが補完しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "N/A属性不足とCORE元出力を保持。OSが補完しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "na_reentry_missing",
+          "change": "N/A原判断のreentryだけ除去",
+          "axis": "NA_reentry",
+          "state": "missing",
+          "backflow_owner": "CORE",
+          "expected": "N/A属性不足とCORE元出力を保持。OSが補完しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "N/A属性不足とCORE元出力を保持。OSが補完しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unknown_as_na",
+          "change": "判断不能をN/Aへ変更",
+          "axis": "disposition_obligation",
+          "state": "conflict",
+          "backflow_owner": "CORE/該当義務owner",
+          "expected": "原4判定/条件と未実施/不合格/未評価、辺/構成体未完を保持。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "原4判定/条件と未実施/不合格/未評価、辺/構成体未完を保持。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "os_judgment",
+          "change": "OSが適用規則/判断を新設",
+          "axis": "disposition_obligation",
+          "state": "conflict",
+          "backflow_owner": "CORE/該当義務owner",
+          "expected": "原4判定/条件と未実施/不合格/未評価、辺/構成体未完を保持。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "原4判定/条件と未実施/不合格/未評価、辺/構成体未完を保持。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unit_as_composite",
+          "change": "単体成功から辺/構成体義務を消込",
+          "axis": "disposition_obligation",
+          "state": "conflict",
+          "backflow_owner": "CORE/該当義務owner",
+          "expected": "原4判定/条件と未実施/不合格/未評価、辺/構成体未完を保持。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "原4判定/条件と未実施/不合格/未評価、辺/構成体未完を保持。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "conditional_discharge",
+          "change": "conditional falseから義務完了",
+          "axis": "disposition_obligation",
+          "state": "conflict",
+          "backflow_owner": "CORE/該当義務owner",
+          "expected": "原4判定/条件と未実施/不合格/未評価、辺/構成体未完を保持。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "原4判定/条件と未実施/不合格/未評価、辺/構成体未完を保持。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-F04.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-F05",
+      "requirement_ref": "HELIXOS-L3-002-F05",
+      "system_oracle_ref": "HELIXOS-L10-002-F05",
+      "oracle_ref": "HELIXOS-L9-002-F05",
+      "title": "Backflow受領と消込",
+      "behavior": "Backflowの返却先・停止理由・未完義務・受領/解決証拠を別々に記録する。受領/ACKと意味判断/解決を分け、元義務の消込には適用契約が求める対象revision/scopeの証拠を結ぶ。既存023の受信側による未完義務受理と元ticket完了の条件を保持する。",
+      "component_refs": [
+        "DispositionAndHandoffTrace"
+      ],
+      "required_input_meanings": [
+        "原返却eventに束縛された返却先と停止理由を独立に供給する（原event/ref、要求revision/scope、因果参照を保持）",
+        "Backflow返却/ACK/受理/意味解決/消込の別event",
+        "OS023の受信側未完義務受理と元ticket条件の出力",
+        "対象revision/scopeと適用契約が求める消込証拠"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "ack_as_resolution",
+          "change": "ACKを意味解決へ転写",
+          "axis": "handoff_discharge",
+          "state": "unknown",
+          "backflow_owner": "OS023/原義務owner",
+          "expected": "BF1返却/ACKだけ既知、受理/解決/消込未提示とU1未完を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "BF1返却/ACKだけ既知、受理/解決/消込未提示とU1未完を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "no_acceptance_discharge",
+          "change": "受信側未受理で元義務消込",
+          "axis": "handoff_discharge",
+          "state": "unknown",
+          "backflow_owner": "OS023/原義務owner",
+          "expected": "BF1返却/ACKだけ既知、受理/解決/消込未提示とU1未完を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "BF1返却/ACKだけ既知、受理/解決/消込未提示とU1未完を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "document_as_completion",
+          "change": "文書/checkboxで設計完成",
+          "axis": "handoff_discharge",
+          "state": "unknown",
+          "backflow_owner": "OS023/原義務owner",
+          "expected": "BF1返却/ACKだけ既知、受理/解決/消込未提示とU1未完を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "BF1返却/ACKだけ既知、受理/解決/消込未提示とU1未完を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "other_obligation_compensation",
+          "change": "別義務成功でU1消込",
+          "axis": "handoff_discharge",
+          "state": "unknown",
+          "backflow_owner": "OS023/原義務owner",
+          "expected": "BF1返却/ACKだけ既知、受理/解決/消込未提示とU1未完を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "BF1返却/ACKだけ既知、受理/解決/消込未提示とU1未完を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "backflow_return_target_missing",
+          "change": "原返却event由来の返却先だけ除去",
+          "axis": "backflow_return_target",
+          "state": "missing",
+          "backflow_owner": "OS023/原返却event owner",
+          "expected": "返却先の欠落を個別に返し、原返却eventの返却先/停止理由とU1未完を保持。OS023/原返却event ownerへ戻し、受理/解決/消込を生成しない。",
+          "expected_preserved": {
+            "original_binding": "BF1/RETURN-E1の原要求r1/project P/template v1と原返却先/停止理由",
+            "observable": "返却先の欠落を個別に返し、原返却eventの返却先/停止理由とU1未完を保持。OS023/原返却event ownerへ戻し、受理/解決/消込を生成しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "backflow_return_target_conflict",
+          "change": "原返却event由来の返却先だけ別案件Qの値へ置換",
+          "axis": "backflow_return_target",
+          "state": "conflict",
+          "backflow_owner": "OS023/原返却event owner",
+          "expected": "返却先の原eventとの不一致を個別に返し、原返却eventの返却先/停止理由とU1未完を保持。OS023/原返却event ownerへ戻し、受理/解決/消込を生成しない。",
+          "expected_preserved": {
+            "original_binding": "BF1/RETURN-E1の原要求r1/project P/template v1と原返却先/停止理由",
+            "observable": "返却先の原eventとの不一致を個別に返し、原返却eventの返却先/停止理由とU1未完を保持。OS023/原返却event ownerへ戻し、受理/解決/消込を生成しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "backflow_stop_reason_missing",
+          "change": "原返却event由来の停止理由だけ除去",
+          "axis": "backflow_stop_reason",
+          "state": "missing",
+          "backflow_owner": "OS023/原返却event owner",
+          "expected": "停止理由の欠落を個別に返し、原返却eventの返却先/停止理由とU1未完を保持。OS023/原返却event ownerへ戻し、受理/解決/消込を生成しない。",
+          "expected_preserved": {
+            "original_binding": "BF1/RETURN-E1の原要求r1/project P/template v1と原返却先/停止理由",
+            "observable": "停止理由の欠落を個別に返し、原返却eventの返却先/停止理由とU1未完を保持。OS023/原返却event ownerへ戻し、受理/解決/消込を生成しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "backflow_stop_reason_conflict",
+          "change": "原返却event由来の停止理由だけ別案件Qの値へ置換",
+          "axis": "backflow_stop_reason",
+          "state": "conflict",
+          "backflow_owner": "OS023/原返却event owner",
+          "expected": "停止理由の原eventとの不一致を個別に返し、原返却eventの返却先/停止理由とU1未完を保持。OS023/原返却event ownerへ戻し、受理/解決/消込を生成しない。",
+          "expected_preserved": {
+            "original_binding": "BF1/RETURN-E1の原要求r1/project P/template v1と原返却先/停止理由",
+            "observable": "停止理由の原eventとの不一致を個別に返し、原返却eventの返却先/停止理由とU1未完を保持。OS023/原返却event ownerへ戻し、受理/解決/消込を生成しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-F05.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-F06",
+      "requirement_ref": "HELIXOS-L3-002-F06",
+      "system_oracle_ref": "HELIXOS-L10-002-F06",
+      "oracle_ref": "HELIXOS-L9-002-F06",
+      "title": "原eventと訂正の履歴",
+      "behavior": "原eventと訂正・分類projectionを分け、後からの分類や訂正で旧失敗・旧scope・原eventを消さない。schema/engine版変更後も原記録と旧分類/stale/新分類を辿る。",
+      "component_refs": [
+        "EventCorrectionProjection"
+      ],
+      "required_input_meanings": [
+        "原eventの出所/因果/旧scope/失敗",
+        "旧分類・訂正event・新分類の各参照",
+        "各schema/engine版または原未供給状態",
+        "旧分類のstale状態と原因の訂正/新分類参照、変更前後engine/schema版を原owner出力で供給。原失敗を消さず新分類のcurrentと区別する。"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "overwrite_original",
+          "change": "新分類でE1上書き",
+          "axis": "original_history",
+          "state": "conflict",
+          "backflow_owner": "OS007/019/原event owner",
+          "expected": "E1原失敗/旧scopeとC1/C2訂正履歴、未分類/未解決を保持。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "E1原失敗/旧scopeとC1/C2訂正履歴、未分類/未解決を保持。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "remove_failure",
+          "change": "旧失敗/C1を削除",
+          "axis": "original_history",
+          "state": "conflict",
+          "backflow_owner": "OS007/019/原event owner",
+          "expected": "E1原失敗/旧scopeとC1/C2訂正履歴、未分類/未解決を保持。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "E1原失敗/旧scopeとC1/C2訂正履歴、未分類/未解決を保持。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "schema_as_provenance",
+          "change": "分類schema未供給から原sourceを推定",
+          "axis": "original_history",
+          "state": "conflict",
+          "backflow_owner": "OS007/019/原event owner",
+          "expected": "E1原失敗/旧scopeとC1/C2訂正履歴、未分類/未解決を保持。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "E1原失敗/旧scopeとC1/C2訂正履歴、未分類/未解決を保持。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "old_projection_not_stale",
+          "change": "訂正後のC1をstaleにせずcurrentとして返す",
+          "axis": "projection_currency_history",
+          "state": "conflict",
+          "backflow_owner": "OS007/019/原分類owner",
+          "expected": "C1のstale化漏れをconflictとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+          "expected_preserved": {
+            "original_binding": "E1原要求r1/project P/template v1、C1/ENGINE-A/SCHEMA-A、E2/C2/ENGINE-B/SCHEMA-B",
+            "observable": "C1のstale化漏れをconflictとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+            "effects": "原event/旧分類/訂正/両版は保存。DB write/新authority/評価/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "old_projection_removed",
+          "change": "C1をstaleとして保持せず出力から削除する",
+          "axis": "projection_currency_history",
+          "state": "missing",
+          "backflow_owner": "OS007/019/原分類owner",
+          "expected": "C1旧分類の欠落をmissingとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+          "expected_preserved": {
+            "original_binding": "E1原要求r1/project P/template v1、C1/ENGINE-A/SCHEMA-A、E2/C2/ENGINE-B/SCHEMA-B",
+            "observable": "C1旧分類の欠落をmissingとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+            "effects": "原event/旧分類/訂正/両版は保存。DB write/新authority/評価/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-F06.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-F07",
+      "requirement_ref": "HELIXOS-L3-002-F07",
+      "system_oracle_ref": "HELIXOS-L10-002-F07",
+      "oracle_ref": "HELIXOS-L9-002-F07",
+      "title": "使用版変更と局所影響",
+      "behavior": "同projectの使用template旧新版とCOREの意味影響対象/理由を再評価する要求・義務・成果・pairのrevision/scopeへ結ぶ。旧版利用/stale/再評価待ち/影響Unknownを区別する。意味影響をOSが独自算出せず、無関係な有効scopeを保持する。",
+      "component_refs": [
+        "MeaningImpactHistory"
+      ],
+      "required_input_meanings": [
+        "原使用旧版/未移管state",
+        "CORE意味差/影響出力と再評価する要求/義務/成果/pair",
+        "無関係scopeの原有効記録、view-only原意味不変根拠"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "unknown_as_unaffected",
+          "change": "U2 UnknownをUnaffected",
+          "axis": "impact_history",
+          "state": "conflict",
+          "backflow_owner": "CORE/OS002",
+          "expected": "U2Unknown、v1旧使用/移管未完、P局所影響とQ有効結果を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "U2Unknown、v1旧使用/移管未完、P局所影響とQ有効結果を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "digest_as_migrated",
+          "change": "filename/digest/view変更だけで使用版移管",
+          "axis": "impact_history",
+          "state": "conflict",
+          "backflow_owner": "CORE/OS002",
+          "expected": "U2Unknown、v1旧使用/移管未完、P局所影響とQ有効結果を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "U2Unknown、v1旧使用/移管未完、P局所影響とQ有効結果を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "all_scope_stale",
+          "change": "P一変更でQ含む全scope失効",
+          "axis": "impact_history",
+          "state": "conflict",
+          "backflow_owner": "CORE/OS002",
+          "expected": "U2Unknown、v1旧使用/移管未完、P局所影響とQ有効結果を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "U2Unknown、v1旧使用/移管未完、P局所影響とQ有効結果を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-F07.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-F08",
+      "requirement_ref": "HELIXOS-L3-002-F08",
+      "system_oracle_ref": "HELIXOS-L10-002-F08",
+      "oracle_ref": "HELIXOS-L9-002-F08",
+      "title": "評価入力の原記録集合",
+      "behavior": "005/024を通じLABOへ渡す選択評価scopeについてproject・要求revision・使用template版・期間、原記録集合と抽出根拠、包含/除外対象と理由、重複/再送の対応、未接続/未観測/未回収/比較不能を結ぶ。LABO指定/合意の範囲と必要入力が未決なら不完全として示す。",
+      "component_refs": [
+        "EvaluationRecordSelection"
+      ],
+      "required_input_meanings": [
+        "LABO指定/合意の評価scope/期間と独立必要原記録集合",
+        "実供給原記録集合と抽出source",
+        "duplicate/再送の原相関",
+        "包含/除外対象と理由、未接続/未観測/未回収/比較不能範囲"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "silent_exclusion",
+          "change": "未回収E3を黙示除外",
+          "axis": "evaluation_inputs",
+          "state": "conflict",
+          "backflow_owner": "LABO/OS005/024",
+          "expected": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "retry_as_use",
+          "change": "E2再送を別使用へ水増し",
+          "axis": "evaluation_inputs",
+          "state": "conflict",
+          "backflow_owner": "LABO/OS005/024",
+          "expected": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "cross_version_compare",
+          "change": "Q異版/期間を無条件比較",
+          "axis": "evaluation_inputs",
+          "state": "conflict",
+          "backflow_owner": "LABO/OS005/024",
+          "expected": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "missing_as_empty",
+          "change": "未回収を空集合成功",
+          "axis": "evaluation_inputs",
+          "state": "conflict",
+          "backflow_owner": "LABO/OS005/024",
+          "expected": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "os_evaluation_population",
+          "change": "OSがLABO母集団/測定定義/因果効果を新設",
+          "axis": "evaluation_inputs",
+          "state": "conflict",
+          "backflow_owner": "LABO/OS005/024",
+          "expected": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-F08.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-F09",
+      "requirement_ref": "HELIXOS-L3-002-F09",
+      "system_oracle_ref": "HELIXOS-L10-002-F09",
+      "oracle_ref": "HELIXOS-L9-002-F09",
+      "title": "finding候補の原記録",
+      "behavior": "不足/過剰要求/誤選定/再作業/欠陥流出のfinding候補を、発生元・対象義務・使用版・再作業・受入・運用原記録へ結ぶ。因果未決は未決として渡し、LABO評価やBRAIN採否の成立にしない。",
+      "component_refs": [
+        "FindingAndShareTrace"
+      ],
+      "required_input_meanings": [
+        "5finding候補の発生元と対象義務",
+        "使用版/再作業/受入/運用原記録",
+        "因果根拠の原関係と未決理由"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "temporal_as_cause",
+          "change": "時間/path一致だけで因果確定",
+          "axis": "causal_evaluation",
+          "state": "unknown",
+          "backflow_owner": "LABO/BRAIN",
+          "expected": "5候補の原義務/使用版/実績と未決因果を保持し評価/昇格なし。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "5候補の原義務/使用版/実績と未決因果を保持し評価/昇格なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "self_evaluation_promotion",
+          "change": "利用回数/AI自己評価から改善成功/知識昇格",
+          "axis": "causal_evaluation",
+          "state": "unknown",
+          "backflow_owner": "LABO/BRAIN",
+          "expected": "5候補の原義務/使用版/実績と未決因果を保持し評価/昇格なし。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "5候補の原義務/使用版/実績と未決因果を保持し評価/昇格なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-F09.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-N01",
+      "requirement_ref": "HELIXOS-L3-002-N01",
+      "system_oracle_ref": "HELIXOS-L10-002-N01",
+      "oracle_ref": "HELIXOS-L9-002-N01",
+      "title": "共有scopeとdata利用条件",
+      "behavior": "発生元の操作/利用許可とdata classを対象scopeへ結び、既存SECURITY条件に従う。利用許可/data class/scope不一致では該当共有を未成立にし、許可外dataを評価/別projectへ渡さない。",
+      "component_refs": [
+        "FindingAndShareTrace"
+      ],
+      "required_input_meanings": [
+        "発生元操作/利用許可の既存SECURITY出力",
+        "data classと許可scope/今回共有scope",
+        "不足/不一致時の既存共有制約"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "permission_missing",
+          "change": "共有入力permissionだけ欠落",
+          "axis": "permission",
+          "state": "missing",
+          "backflow_owner": "SECURITY",
+          "expected": "該当共有は未成立。原recordと無関係な有効共有を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "該当共有は未成立。原recordと無関係な有効共有を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "data_class_missing",
+          "change": "共有入力data_classだけ欠落",
+          "axis": "data_class",
+          "state": "missing",
+          "backflow_owner": "SECURITY",
+          "expected": "該当共有は未成立。原recordと無関係な有効共有を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "該当共有は未成立。原recordと無関係な有効共有を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "scope_missing",
+          "change": "共有入力scopeだけ欠落",
+          "axis": "scope",
+          "state": "missing",
+          "backflow_owner": "SECURITY",
+          "expected": "該当共有は未成立。原recordと無関係な有効共有を保存。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "該当共有は未成立。原recordと無関係な有効共有を保存。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "foreign_permission",
+          "change": "別scope許可をPへ転用",
+          "axis": "permission_scope",
+          "state": "conflict",
+          "backflow_owner": "SECURITY",
+          "expected": "該当共有を拒否/既存条件で隔離。過去event/不成立を後付けで消さない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "該当共有を拒否/既存条件で隔離。過去event/不成立を後付けで消さない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "retroactive_permission",
+          "change": "後付け許可で過去無許可処理を成功へ訂正",
+          "axis": "permission_scope",
+          "state": "conflict",
+          "backflow_owner": "SECURITY",
+          "expected": "該当共有を拒否/既存条件で隔離。過去event/不成立を後付けで消さない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "該当共有を拒否/既存条件で隔離。過去event/不成立を後付けで消さない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "permission_mismatch",
+          "change": "有資格の既存SEC原出力と今回共有のpermission内容が不一致",
+          "axis": "permission",
+          "state": "conflict",
+          "backflow_owner": "SECURITY",
+          "expected": "当該permission不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+          "expected_side_effect_count": 0,
+          "expected_preserved": {
+            "original_binding": "当該原record/SEC出力/project/scope/版",
+            "observable": "当該permission不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+            "effects": "新許可/遡及成功を生成しない。原eventとQ有効作業を保持。"
+          }
+        },
+        {
+          "code": "data_class_mismatch",
+          "change": "有資格の既存SEC原出力と今回共有のdata_class内容が不一致",
+          "axis": "data_class",
+          "state": "conflict",
+          "backflow_owner": "SECURITY",
+          "expected": "当該data_class不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+          "expected_side_effect_count": 0,
+          "expected_preserved": {
+            "original_binding": "当該原record/SEC出力/project/scope/版",
+            "observable": "当該data_class不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+            "effects": "新許可/遡及成功を生成しない。原eventとQ有効作業を保持。"
+          }
+        },
+        {
+          "code": "scope_mismatch",
+          "change": "有資格の既存SEC原出力と今回共有のscope内容が不一致",
+          "axis": "scope",
+          "state": "conflict",
+          "backflow_owner": "SECURITY",
+          "expected": "当該scope不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+          "expected_side_effect_count": 0,
+          "expected_preserved": {
+            "original_binding": "当該原record/SEC出力/project/scope/版",
+            "observable": "当該scope不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+            "effects": "新許可/遡及成功を生成しない。原eventとQ有効作業を保持。"
+          }
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-N01.expected_observation"
+    },
+    {
+      "id": "HELIXOS-L4-002-N02",
+      "requirement_ref": "HELIXOS-L3-002-N02",
+      "system_oracle_ref": "HELIXOS-L10-002-N02",
+      "oracle_ref": "HELIXOS-L9-002-N02",
+      "title": "未観測と実証の区別",
+      "behavior": "非選択sourceを未観測、まだ発生しない義務/結果を未発生として保つ。未観測/観測期間不足を欠陥0や改善成功へ変換せず、入力整合/登録件数を実記録/handoff/接続/全seed/旧atom被覆/実行成功にしない。",
+      "component_refs": [
+        "RecordInputBinding",
+        "EvaluationRecordSelection"
+      ],
+      "required_input_meanings": [
+        "選択/非選択sourceと未発生event",
+        "観測期間/必要範囲と未回収/未評価",
+        "検証側未見inputと実input/output/原oracleの別参照"
+      ],
+      "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
+      "negative_classifications": [
+        {
+          "code": "one_path_all_scopes",
+          "change": "一経路成功で全scope評価済み",
+          "axis": "observation_proof",
+          "state": "unknown",
+          "backflow_owner": "該当検証owner/PO",
+          "expected": "未観測/未回収/未評価scopeと原revisionを保持。実受入/全体成立なし。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "未観測/未回収/未評価scopeと原revisionを保持。実受入/全体成立なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unobserved_zero",
+          "change": "未観測/期間不足を欠陥0",
+          "axis": "observation_proof",
+          "state": "unknown",
+          "backflow_owner": "該当検証owner/PO",
+          "expected": "未観測/未回収/未評価scopeと原revisionを保持。実受入/全体成立なし。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "未観測/未回収/未評価scopeと原revisionを保持。実受入/全体成立なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "fixture_as_accepted",
+          "change": "fixture/文書存在を実受入",
+          "axis": "observation_proof",
+          "state": "unknown",
+          "backflow_owner": "該当検証owner/PO",
+          "expected": "未観測/未回収/未評価scopeと原revisionを保持。実受入/全体成立なし。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "未観測/未回収/未評価scopeと原revisionを保持。実受入/全体成立なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ],
+      "comparison_order": [
+        "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
+        "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+      ],
+      "output_observation_ref": "HELIXOS-L9-002-N02.expected_observation"
+    }
+  ],
+  "implementation_preparation": {
+    "state": "not_ready",
+    "remaining": [
+      "L5/L8 logical型/関数/具体fixtureと独立review",
+      "正式記録schema/codec/原event保管と訂正projection",
+      "各実operationのauthority/隔離/資源とOS053保存binding",
+      "実行oracle凍結/実装前Red/Green",
+      "LABO選択scope/必要入力と実handoff接続",
+      "PO実物L11 Accepted、通常L3再開、内部デプロイは未成立"
+    ]
+  },
+  "record_boundary": {
+    "original_event": "元event/actorを推定しない。訂正は別eventと因果へ束縛する。",
+    "persistence": "実保存の原子性/CAS/rollbackはOS053、合意は001、continuity/evidenceは007/019、未完受理は023の該当操作契約へ戻す。本pairで実writeしない。",
+    "evaluation": "005/024でLABOへ渡す原集合を照合。母集団/測定定義/因果効果はLABO。",
+    "stop_locality": "当該記録/共有だけ未成立。評価欠測だけで無関係scopeを止めない。"
+  },
+  "legacy_facet_dispositions": [
+    {
+      "atom_id": "OST002-LEGACY-001",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "source_line": 24,
+      "source_text": "選択済みtemplateとrequirement/obligationを束縛した設計値",
+      "source_span_sha256": "sha256:b63ebfe12a60e7faffebbe805427bb4ab9a032cbc2b86bb1c0dfe4c603394bea",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "carried",
+      "target_requirement": "HELIXOS-L2-002",
+      "preserved_pending_registration_ref": null,
+      "note": "案件記録の選択template/要求/義務への参照。instance schemaは固定しない"
+    },
+    {
+      "atom_id": "OST002-LEGACY-002",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "source_line": 36,
+      "source_text": "exact template set",
+      "source_span_sha256": "sha256:a76e0d60acba923def9d160ac6cc9902816624b4ab3e746c210d212df9a07964",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "carried",
+      "target_requirement": "HELIXOS-L2-002",
+      "preserved_pending_registration_ref": null,
+      "note": "各案件の候補/選択/使用setを区分して結ぶ"
+    },
+    {
+      "atom_id": "OST002-LEGACY-003",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "source_line": 58,
+      "source_text": "back-propagationはfindingまたはproposal eventとしてRequirement Engine／template revisionへ戻す。",
+      "source_span_sha256": "sha256:ae19d85fc689be8bb3bdb806503e4e44db6f1db743e1861a1dc297fe5467d558",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "carried",
+      "target_requirement": "HELIXOS-L2-002",
+      "preserved_pending_registration_ref": null,
+      "note": "Backflow eventを要求形成/knowledge ownerへ辿る"
+    },
+    {
+      "atom_id": "OST002-LEGACY-004",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "source_line": 86,
+      "source_text": "requirement/obligation trace",
+      "source_span_sha256": "sha256:4fa37ab2ccdbb1dfd48a84ab6cc8d3a5b896987b157f4cc45cd716e47255561b",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "carried",
+      "target_requirement": "HELIXOS-L2-002",
+      "preserved_pending_registration_ref": null,
+      "note": "義務と成果/pairへの追跡"
+    },
+    {
+      "atom_id": "OST002-LEGACY-005",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "source_line": 91,
+      "source_text": "- source/template/instance revision digest一致",
+      "source_span_sha256": "sha256:642c12eb70f141ef4fce04998d7e14919d730fc7262ea1525b8748062f8ac193",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "note": "instanceを含むrevision digest全体の一致は今回の案件記録追補では証明しない"
+    },
+    {
+      "atom_id": "OST002-LEGACY-006",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line": 56,
+      "source_text": "harness/projectのscopeを分離し",
+      "source_span_sha256": "sha256:4f91f9fa0e41de590b4c5562d06491676dc2bbf236fd0eedf67e9e95262662aa",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "carried",
+      "target_requirement": "HELIXOS-L2-002",
+      "preserved_pending_registration_ref": null,
+      "note": "案件scope/知識と原記録責務を分離"
+    },
+    {
+      "atom_id": "OST002-LEGACY-007",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line": 54,
+      "source_text": "recipe 蓄積/予防 gate 昇格",
+      "source_span_sha256": "sha256:7eda094471598769f0b62a5e2bc292516293a56d3bbb0ee02d427b306980360d",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "note": "旧改善循環のrecipe蓄積/予防gate昇格全体は別の既存holding/還流要求を含み本追補では移管しない"
+    },
+    {
+      "atom_id": "OST002-LEGACY-008",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line": 58,
+      "source_text": "**DB 未収束＝未完了**",
+      "source_span_sha256": "sha256:3475da16d4527cfa3a65e753cd7104e60ce64caa9ee9f70ee46ee55e8210ea62",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "note": "旧DB収束gate全体は保持。今回の記録/評価inputへの限定条件で置換/弱化しない"
+    },
+    {
+      "atom_id": "OST002-LEGACY-009",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_file_sha256": "sha256:11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
+      "source_line": 47,
+      "source_text": "recipe 蓄積/予防 gate 昇格",
+      "source_span_sha256": "sha256:7eda094471598769f0b62a5e2bc292516293a56d3bbb0ee02d427b306980360d",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "revision_pair_item": "PREISO-REV-000008",
+      "related_archive_atom_ref": "OST002-LEGACY-007",
+      "revision_relation": "別revisionの入力facetとして独立保持。同値へ統合せず、P7の文言差分も未決のまま保持する。",
+      "note": "監査基準revisionの旧facetを別に保全。全文差分はMPR-SH-PREISOLATION-003へ残し今回の有限facetで全revision closureとしない。"
+    },
+    {
+      "atom_id": "OST002-LEGACY-010",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_file_sha256": "sha256:11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
+      "source_line": 49,
+      "source_text": "harness-memory（保守の根幹）と project-memory を分離",
+      "source_span_sha256": "sha256:8e919eca6c1e1d39ab44e4fbb71c9a6e78c2ffce789e068e96473b3a43e6e812",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "revision_pair_item": "PREISO-REV-000008",
+      "related_archive_atom_ref": "OST002-LEGACY-006",
+      "revision_relation": "別revisionの入力facetとして独立保持。同値へ統合せず、P7の文言差分も未決のまま保持する。",
+      "note": "監査基準revisionの旧facetを別に保全。全文差分はMPR-SH-PREISOLATION-003へ残し今回の有限facetで全revision closureとしない。"
+    },
+    {
+      "atom_id": "OST002-LEGACY-011",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_file_sha256": "sha256:11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
+      "source_line": 51,
+      "source_text": "**DB 未収束＝未完了**",
+      "source_span_sha256": "sha256:3475da16d4527cfa3a65e753cd7104e60ce64caa9ee9f70ee46ee55e8210ea62",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "revision_pair_item": "PREISO-REV-000008",
+      "related_archive_atom_ref": "OST002-LEGACY-008",
+      "revision_relation": "別revisionの入力facetとして独立保持。同値へ統合せず、P7の文言差分も未決のまま保持する。",
+      "note": "監査基準revisionの旧facetを別に保全。全文差分はMPR-SH-PREISOLATION-003へ残し今回の有限facetで全revision closureとしない。"
+    }
+  ],
+  "legacy_facet_boundary": {
+    "carried_atom_refs": [
+      "OST002-LEGACY-001",
+      "OST002-LEGACY-002",
+      "OST002-LEGACY-003",
+      "OST002-LEGACY-004",
+      "OST002-LEGACY-006"
+    ],
+    "pending_atom_refs": [
+      "OST002-LEGACY-005",
+      "OST002-LEGACY-007",
+      "OST002-LEGACY-008",
+      "OST002-LEGACY-009",
+      "OST002-LEGACY-010",
+      "OST002-LEGACY-011"
+    ],
+    "pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+    "full_revision_difference_ref": "MPR-SH-PREISOLATION-003",
+    "meaning": "保留6facetの原意味は保持し、本pairで移管・置換・弱化・retireしない。PREISO-REV-000008の3facetは別revision入力で、archiveと同値へ統合せず、全文revision closureを主張しない。"
+  }
+}
