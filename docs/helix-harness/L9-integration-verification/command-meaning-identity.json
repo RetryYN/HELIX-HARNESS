@@ -156,7 +156,7 @@
         },
         {
           "change": "OS側だけでpayload正規化",
-          "expected": "禁止normalization call/規則根拠不一致を拒否、独立HARNESS結果なしを同一扱いしない。"
+          "expected": "classification=unknown、原因normalization_basis（HARNESS規則による独立正規化根拠なし）。OS outcome=not_observed、new/same禁止。"
         }
       ],
       "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
@@ -167,17 +167,20 @@
       "design_ref": "HARNESS-L4-052-F03",
       "requirement_ref": "HARNESS-L3-052-F03",
       "system_oracle_ref": "HARNESS-L10-052-F03",
-      "positive_input": "先行C/O1がfound、全軸/規則/normalized bytes一致。初回は独立query=C/absent T0。",
+      "positive_input": "先行C/O1がfound、全軸/規則/normalized bytes一致。初回は独立query=C/absent T0。 比較結果Kは今回/先行の全比較根拠とM1/REC1へ束縛。独立OS結合snapshotはREC1→command binding(C,O1,Sr1)→M1を解決し、K→M1/REC1と逆照合する。",
       "expected_observation": [
         "初回はnew候補、再送はsame O1/M1、先行REC1参照不変。",
-        "再送で新意味revision0、実retry/commit成功の証拠は別。"
+        "再送で新意味revision0、実retry/commit成功の証拠は別。",
+        "scope/base/rule・scope revision/normalized bytes/digestの同一比較根拠がKとM1へ結ばれ、REC1から同command binding経由で同じM1へ辿れる。再送でKを供給しても既存binding/M1/REC1全内容は不変。結合の観測状態とsemantic sameは別field。"
       ],
       "negative_fixture_mutations": [
         "全一致再送をnewとする",
         "sameから実retry成功を出す",
         "lookupをscope+Cで行い異scope既存Cを隠す",
         "foundから先行identityを除く",
-        "absent根拠なしの空recordをnewとする"
+        "absent根拠なしの空recordをnewとする",
+        "receiptからcomparison basisへの結合snapshotを欠落",
+        "receiptのcommand bindingが別identity result M2へ結ぶ"
       ],
       "negative_expectations": [
         {
@@ -190,7 +193,7 @@
         },
         {
           "change": "lookupをscope+Cで行い異scope既存Cを隠す",
-          "expected": "query=Cの独立snapshot照合でlookup不一致、new禁止。"
+          "expected": "classification=unknown、原因lookup_query（command ID単独queryの根拠不成立）。OS outcome=not_observed、new禁止。異scopeのvalid foundを得た別caseのconflict(scope)とは区別。"
         },
         {
           "change": "foundから先行identityを除く",
@@ -199,6 +202,14 @@
         {
           "change": "absent根拠なしの空recordをnewとする",
           "expected": "unknown(lookup証拠)、new禁止。"
+        },
+        {
+          "change": "receiptからcomparison basisへの結合snapshotを欠落",
+          "expected": "semantic sameを保持、OS outcome binding=unknown(receipt_comparison_binding)。結合成立は未観測、OS053へbackflow、receipt更新0。"
+        },
+        {
+          "change": "receiptのcommand bindingが別identity result M2へ結ぶ",
+          "expected": "semantic sameを保持、OS outcome binding=binding_conflict(receipt_comparison_binding)。M1/REC1不変、別根拠で結合成立にしない。"
         }
       ],
       "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",

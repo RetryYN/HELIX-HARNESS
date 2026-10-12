@@ -177,7 +177,8 @@
     "normalization_boundary": "payload意味はowner契約から読む。transport contextは別envelopeでscope/commandから意味を補完しない。raw bytes→owner適用/正規化→normalized bytes→digest。単純なJSON key sortだけで全domainの意味同一性を仮定しない。許容input domain/bytes/number/重複key/Unicode/algorithm版と実装前oracleはL5/L8で閉じる。",
     "result_contract": "semantic classificationとexact identity/result/trace、prior refs、differences、unresolved、backflowを返す。sameは先行意味結果、newは候補判定で意味revision発行ではない。OS結果は別ref/state。実装/CI/PO受入/完了authority fieldは無い。",
     "concurrency": "HARNESSはlookup snapshot時点の比較をする。結果を実currentとして継続保証しない。OSのtransaction再照合/CASで競合を閉じ、拒否/失敗結果を意味new/sameで相殺しない。",
-    "physical_boundary": "runtime版・Python↔Node transport/API schema・formal配置はL5以降と親配置設計へ残す。意味コアにはDB/root/credential/Git write/API tokenを渡さない。"
+    "physical_boundary": "runtime版・Python↔Node transport/API schema・formal配置はL5以降と親配置設計へ残す。意味コアにはDB/root/credential/Git write/API tokenを渡さない。",
+    "receipt_comparison_binding": "HARNESSは比較結果Ref Kへ今回と先行のcommand/scope/全base/rule・scope revision/normalized bytes/digest、同一比較の根拠、先行identity result Ref M1とreceipt Ref REC1を結ぶ。OSは初回Plan.identity_result_refをcommand_bindings.identity_result_ref_bytesへ保存し、同bindingのreceipt identity/revision/scopeをcontent_recordsのreceiptへFKで結ぶ。receipt→同command binding→先行M1の解決内容と今回Kの比較対象を双方向照合する。再送sameではKが同じM1/REC1を指し、既存binding/receipt/M1を更新せず、別意味revision・別成功receiptも作らない。Kは意味比較の出力参照であり、それだけでOSの保存やreceipt結合成立を証明しない。OSから供給する結合snapshotでreceiptからM1、KからM1/REC1への同operation/scope/全根拠対応を観測する。参照または解決内容が不足ならOS outcome bindingのunknown(receipt_comparison_binding)、異対象ならbinding_conflictを返し、semantic sameは別fieldへ保持。OS053の既存lookup/readからこのsnapshotを供給できない範囲はOS053へbackflowし、結合観測未成立を残す。"
   },
   "contracts": [
     {
@@ -211,7 +212,7 @@
         "caller digest（照合値、独立計算の代替でない）"
       ],
       "behavior": "HARNESSの同じNormalizationBoundaryが入力と先行根拠を同じRuleRef/scope revisionで評価する。normalized bytesとdigestを結び、digestが一致しても規則/scope revisionの差を消さない。意味atomの除外/array扱い/数値/Unicode等はRuleRefの宣言に従い、任意のheuristicやOS側正規化を挟まない。具体algorithm/schema/toolchainはL5で閉じる。",
-      "failure": "規則missing/unknownならunknown、解決した規則revision/本文の不一致はconflict。未対応ruleをlatest/defaultへ読み替えない。",
+      "failure": "規則missing/unknownならunknown、解決した規則revision/本文の不一致はconflict。未対応ruleをlatest/defaultへ読み替えない。 OSの正規化結果しか供給されずHARNESS規則の独立根拠がない入力はunknown(normalization_basis)であり、new/sameを返さない。",
       "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
     },
     {
@@ -226,8 +227,8 @@
         "OSのcommand ID単独lookup snapshot",
         "先行identity/result/receiptの参照とbytes"
       ],
-      "behavior": "lookupは今回command IDだけで行い、scope付き検索で異scopeの既存IDを隠さない。valid foundで全4軸と規則/scope revision/normalized bytesが同じならsameと先行operation/resultを返す。先行receipt参照は未変更で返す。別意味変更/revisionを発行しない。実再試行/保存成功は同一性判定から推定しない。",
-      "failure": "先行identity/result/必要receipt参照が欠けるfound、またはlookup unknownはunknown。証拠付きabsentだけnewであり、callerが先行recordを消した空入力はnewにならない。",
+      "behavior": "lookupは今回command IDだけで行い、scope付き検索で異scopeの既存IDを隠さない。valid foundで全4軸と規則/scope revision/normalized bytesが同じならsameと先行operation/resultを返す。先行receipt参照は未変更で返す。別意味変更/revisionを発行しない。実再試行/保存成功は同一性判定から推定しない。 比較根拠をarchitecture.receipt_comparison_bindingのK→M1/REC1とREC1→command binding→M1の経路へ結び、同command以外の入力値が一致する根拠をreceiptから照合できるようにする。保存/再送側の結合不足をHARNESSがreceipt更新で補修しない。",
+      "failure": "先行identity/result/必要receipt参照が欠けるfound、またはlookup unknownはunknown。証拠付きabsentだけnewであり、callerが先行recordを消した空入力はnewにならない。 scope付きqueryは必要なcommand ID単独lookupの証拠を満たさないためunknown(lookup_query)、OS結果未供給ならnot_observedのまま。",
       "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
     },
     {
@@ -292,7 +293,7 @@
         "classification/相違/戻し先",
         "先行result/receiptとOS結果の独立参照"
       ],
-      "behavior": "比較traceを同scope/revision/対象oracleへ結び、先行証拠不変、相違軸と欠落原因、意味判定と運転観測を区別して返す。count/hash/fixture名だけでPASSしない。traceは意味判定出力で、永続receiptの保存はOS側。",
+      "behavior": "比較traceを同scope/revision/対象oracleへ結び、先行証拠不変、相違軸と欠落原因、意味判定と運転観測を区別して返す。count/hash/fixture名だけでPASSしない。traceは意味判定出力で、永続receiptの保存はOS側。 比較結果Ref Kの根拠とOS供給のreceipt結合snapshotを照合し、結合成立/unknown/binding_conflictと未観測を意味分類から区別して追跡する。",
       "failure": "未観測retry/多artifact原子性/旧FR全体closureはnot_proven。prose/時刻/別scope証拠で不足を埋めず、traceを実durability証拠にしない。",
       "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
     },
