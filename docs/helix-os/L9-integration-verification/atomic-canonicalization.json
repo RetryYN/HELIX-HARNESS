@@ -1,0 +1,247 @@
+{
+  "document_id": "OS-L9-053-ATOMIC-CANONICALIZATION",
+  "layer": "L9",
+  "paired_document": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+  "parent": "HELIXOS-L2-053",
+  "status": "candidate_pending_independent_review",
+  "source_main": "010395ecbbd95101bb0a6b4974a52ce3a4908b97",
+  "source_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    }
+  ],
+  "scope": "同operationの全保存境界と3readの実接続を反証する検証設計。adapter実物/実行結果は未供給。単体stubの成功をこのL9へ昇格しない。",
+  "fixture": {
+    "base": "scope S/r1、command C、operation O、対象asset A@a1/B@b1。先行current G0は両asset/JSON/evidence/view/receiptが完全。",
+    "update": "A@a2/B@b2へ更新するO。owner確定JSON source差分から独立closureを固定。json2/asset_revision2/event1/trace2/impact2/stale_relation1/projection2/receipt1の計13write。全writeは個別ID/owner/before/after/依存/結果を持つ。13はfixture値で製品固定件数ではない。",
+    "reads": "独立readerのpointerはG0/G1、canonicalはA/BのJSON+全参照、projectionは同source/revisionの2view。各responseは一committed snapshotへ固定。保存中のwriter viewは別に観測しcurrentと混同しない。",
+    "authority": "Oの許可/意味採否/SEC/INFRA条件は別のcurrent根拠。HARNESS052 result IはC/S/{a1,b1}/payload H/規則 R1を結ぶ。同一/異payload/欠落scopeも別に先固定。",
+    "faults": "各13writeの保存前/保存後内容照合、全baseCAS後commit前、commit、成功応答、rollbackとreceipt保存を個別fault pointにする。既存証拠経路Eが適用可能なscopeと、無いscopeは別fixture。新経路をtest中に作らない。",
+    "independent_oracle": "ownerが固定したsource/適用契約と期待write集合は試験入力とは別の凍結root。inputと供給closureを同時に削っても期待rootは変更しない。以後のwrite ID・owner・source revision・内容・参照はこのrootから照合する。"
+  },
+  "cases": [
+    {
+      "id": "OS-L9-053-F01",
+      "design_ref": "OS-L4-053-F01",
+      "requirement_ref": "HELIXOS-L3-053-F01",
+      "system_oracle_ref": "HELIXOS-L10-053-F01",
+      "positive_input": "Oの固定13write/2base/各ownerと独立closureを接続する。",
+      "expected_observation": "exact13writeと各内容/owner/base/参照が一致。 入力closure自身の件数だけではなく、変更不能な独立rootの各期待write/owner/内容を逆照合する。",
+      "negative_fixture_mutations": [
+        "owner一件欠落",
+        "Bのbase欠落",
+        "projection1の必要writeを除去",
+        "receipt link除去",
+        "inputと同時にclosureを切り詰めようとする"
+      ],
+      "failure_observation": "同O/Sの失敗位置・成功/未完write・三read可視性・実復旧/未証明を保持。意味/保存/権限/資源ownerへ返し、未成立を成功へ補わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "OS-L9-053-F02",
+      "design_ref": "OS-L4-053-F02",
+      "requirement_ref": "HELIXOS-L3-053-F02",
+      "system_oracle_ref": "HELIXOS-L10-053-F02",
+      "positive_input": "全writeの保存/内容照合/commit成功後に3readerでG1を読む。",
+      "expected_observation": "全経路G1/A@a2/B@b2と各参照が一致。commit前はG0、途中混合0。",
+      "negative_fixture_mutations": [
+        "13write各保存fault",
+        "13write各内容照合fault",
+        "commit前にcurrentだけ公開",
+        "writer接続の途中SELECTを公開readへ転用",
+        "commit応答喪失"
+      ],
+      "failure_observation": "commit前の各保存/照合失敗では全3readで完全なG0保持と新current部分集合なしを確認。read不能はunknown/not_provenで、G0保持の義務を解除しない。commit応答喪失は別caseで、既存storeの全write/receiptと3readで完全なG1を確認できる場合だけ既存成功結果へ結ぶ。それ以外はunknown/復旧義務とし、実commit後にG0へ巻戻ったと推定しない。",
+      "execution_state": "not_executed",
+      "metamorphic_cases": [
+        {
+          "input": "依存を守る複数のwrite順へ入替し、各順序でも全write保存/照合を完了する。",
+          "expected": "各順序でcommit前はG0、commit後は同じ完全なG1。順序変更だけではfailureにならない。"
+        },
+        {
+          "input": "依存を守るwrite順を変えたうえで各保存/照合位置へ一件ずつfaultを入れる。",
+          "expected": "commit前failureの各順序でG0保持、新current部分集合なし。途中bytesの順序によらず全3readで確認する。"
+        }
+      ]
+    },
+    {
+      "id": "OS-L9-053-F03",
+      "design_ref": "OS-L4-053-F03",
+      "requirement_ref": "HELIXOS-L3-053-F03",
+      "system_oracle_ref": "HELIXOS-L10-053-F03",
+      "positive_input": "各faultでrollback確認可能と隔離だけ/確認不能を別に接続する。",
+      "expected_observation": "成功/未完writeと実復旧先がOへ結び、未証明はunknown/incomplete。",
+      "negative_fixture_mutations": [
+        "rollback呼出しのみで完了主張",
+        "復旧先不明",
+        "隔離bytesをcurrent扱い",
+        "rollback自身が失敗",
+        "rollback後read不能"
+      ],
+      "failure_observation": "同O/Sの失敗位置・成功/未完write・三read可視性・実復旧/未証明を保持。意味/保存/権限/資源ownerへ返し、未成立を成功へ補わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "OS-L9-053-F04",
+      "design_ref": "OS-L4-053-F04",
+      "requirement_ref": "HELIXOS-L3-053-F04",
+      "system_oracle_ref": "HELIXOS-L10-053-F04",
+      "positive_input": "開始base {a1,b1}で他operationがBをb2へ先commitした後Oをcommitする。",
+      "expected_observation": "Bのbase conflict、OのG1公開なし、競合側current保持。",
+      "negative_fixture_mutations": [
+        "Aだけbaseを変更",
+        "Bだけbaseを変更",
+        "CAS比較後にwriter排他を解放して別writerをcommit",
+        "他scope receiptでbase条件を充足"
+      ],
+      "failure_observation": "同O/Sの失敗位置・成功/未完write・三read可視性・実復旧/未証明を保持。意味/保存/権限/資源ownerへ返し、未成立を成功へ補わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "OS-L9-053-F05",
+      "design_ref": "OS-L4-053-F05",
+      "requirement_ref": "HELIXOS-L3-053-F05",
+      "system_oracle_ref": "HELIXOS-L10-053-F05",
+      "positive_input": "committed Oを同command/同scope/base/payload/R1で再送し、異payloadと先行未完再送を別に行う。",
+      "expected_observation": "同一committed再送はO/receiptへ結びrevision増0。異payloadはconflict。未完の復旧義務は引継ぐ。",
+      "negative_fixture_mutations": [
+        "同ID異payload",
+        "別scope再送",
+        "別base再送",
+        "052 evidence missing",
+        "052 unknown",
+        "OS独自正規化で同一と判定",
+        "先行未完の復旧をdrop"
+      ],
+      "failure_observation": "同O/Sの失敗位置・成功/未完write・三read可視性・実復旧/未証明を保持。意味/保存/権限/資源ownerへ返し、未成立を成功へ補わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "OS-L9-053-F06",
+      "design_ref": "OS-L4-053-F06",
+      "requirement_ref": "HELIXOS-L3-053-F06",
+      "system_oracle_ref": "HELIXOS-L10-053-F06",
+      "positive_input": "全成功receiptと部分失敗receiptを各write/readへ逆照合する。",
+      "expected_observation": "13行の各owner/outcome/refsと実内容が一致。失敗位置/可視性/復旧が残る。",
+      "negative_fixture_mutations": [
+        "count13を保ちwrite一行を別IDへ",
+        "別revision projection",
+        "失敗位置欠落",
+        "success/failure scope混在",
+        "receiptだけを見てactual readなし"
+      ],
+      "failure_observation": "同O/Sの失敗位置・成功/未完write・三read可視性・実復旧/未証明を保持。意味/保存/権限/資源ownerへ返し、未成立を成功へ補わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "OS-L9-053-F07",
+      "design_ref": "OS-L4-053-F07",
+      "requirement_ref": "HELIXOS-L3-053-F07",
+      "system_oracle_ref": "HELIXOS-L10-053-F07",
+      "positive_input": "receipt保存を失敗させ、既存Eあり/なしscopeを比較する。",
+      "expected_observation": "E有効根拠とfailure参照を返すか、E無しはunknown/復旧義務。新current成功なし。",
+      "negative_fixture_mutations": [
+        "口頭成功だけ",
+        "records/へ新fallbackを作る",
+        "Eはあるが別scope",
+        "E内容unknown",
+        "receipt候補の存在を成功扱い"
+      ],
+      "failure_observation": "同O/Sの失敗位置・成功/未完write・三read可視性・実復旧/未証明を保持。意味/保存/権限/資源ownerへ返し、未成立を成功へ補わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "OS-L9-053-F08",
+      "design_ref": "OS-L4-053-F08",
+      "requirement_ref": "HELIXOS-L3-053-F08",
+      "system_oracle_ref": "HELIXOS-L10-053-F08",
+      "positive_input": "owner JSON更新とviewだけの編集を比較する。",
+      "expected_observation": "JSON確定Oとview source/revisionが結ぶ。viewだけでJSON revision増0。",
+      "negative_fixture_mutations": [
+        "view成功をJSON write代替",
+        "別JSON revision viewをcurrent結合",
+        "view bytesからowner意味を逆生成"
+      ],
+      "failure_observation": "同O/Sの失敗位置・成功/未完write・三read可視性・実復旧/未証明を保持。意味/保存/権限/資源ownerへ返し、未成立を成功へ補わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "OS-L9-053-N01",
+      "design_ref": "OS-L4-053-N01",
+      "requirement_ref": "HELIXOS-L3-053-N01",
+      "system_oracle_ref": "HELIXOS-L10-053-N01",
+      "positive_input": "fault×13write×3read経路を同じOで記録し、途中bytesと公開readを分ける。",
+      "expected_observation": "全矩形の観測/未観測が識別され、未観測経路が残る場合not_proven。",
+      "negative_fixture_mutations": [
+        "pointerだけ確認して他2経路成功",
+        "canonicalだけ確認",
+        "projectionだけ確認",
+        "writer private viewだけ観測",
+        "read失敗を空集合成功へ"
+      ],
+      "failure_observation": "同O/Sの失敗位置・成功/未完write・三read可視性・実復旧/未証明を保持。意味/保存/権限/資源ownerへ返し、未成立を成功へ補わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "OS-L9-053-N02",
+      "design_ref": "OS-L4-053-N02",
+      "requirement_ref": "HELIXOS-L3-053-N02",
+      "system_oracle_ref": "HELIXOS-L10-053-N02",
+      "positive_input": "各trace/before/after/owner/052 resultを一つずつ欠落/異revisionへ置換。",
+      "expected_observation": "具体不足/ref mismatchがOへ残り、意味owner/OS/SEC/INFRAを原因で分ける。",
+      "negative_fixture_mutations": [
+        "他scope receiptで補完",
+        "countのみで成功",
+        "任意fallbackでtrace補完",
+        "他operationの成功でO未完を消す"
+      ],
+      "failure_observation": "同O/Sの失敗位置・成功/未完write・三read可視性・実復旧/未証明を保持。意味/保存/権限/資源ownerへ返し、未成立を成功へ補わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "OS-L9-053-B01",
+      "design_ref": "OS-L4-053-B01",
+      "requirement_ref": "HELIXOS-L3-053-B01",
+      "system_oracle_ref": "HELIXOS-L10-053-B01",
+      "positive_input": "ownerの採否参照とOの保存結果を別に読む。",
+      "expected_observation": "意味裁定と保存currentが別の参照として辿れ、境界外操作が出ない。",
+      "negative_fixture_mutations": [
+        "O成功で要求採択",
+        "O成功でPO Accepted",
+        "O成功でFR53履歴変換",
+        "旧DB名/schema生成",
+        "旧runtime fallback"
+      ],
+      "failure_observation": "同O/Sの失敗位置・成功/未完write・三read可視性・実復旧/未証明を保持。意味/保存/権限/資源ownerへ返し、未成立を成功へ補わない。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "evidence_contract": [
+    "同一operation/scopeと固定plan/closure/root/source/adapter/環境/authorityのrevision",
+    "全writeの各実結果、fault位置/順序、pointer/canonical/projection各読出しの実内容/失敗/未観測",
+    "成功/失敗receiptの各行→実write/readの逆照合とrollback/隔離/未証明",
+    "全11 L4↔L9↔L3/L10双方向trace。未実行/未知/不足を件数やdigestで消さない。"
+  ],
+  "completion": "fault×全write×全read経路の実物観測と内容oracleで閉じる。単一DBがあることやtransaction成功、receipt/hash/countだけを全原子性の証拠にしない。"
+}
