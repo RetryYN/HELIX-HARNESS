@@ -6770,6 +6770,12 @@
                 "field": "after_conflict",
                 "result": "unknown_unobserved",
                 "return_owner": "receiver-owner"
+              },
+              {
+                "area": "effect_content",
+                "field": "before",
+                "result": "unknown_original_information",
+                "return_owner": "receiver-owner"
               }
             ],
             "failure_return_owners": [

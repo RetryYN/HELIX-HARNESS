@@ -177,7 +177,8 @@
       "content_comparison": [
         "異digestは別内容retryでなく衝突として停止する。",
         "衝突後副作用や別内容成功で増分効果を相殺しない。",
-        "原効果不明を増分なしにせず、未完をoperation ownerへ返す。"
+        "原効果不明を増分なしにせず、未完をoperation ownerへ返す。",
+        "衝突前の原効果がunknownの場合はeffect_content.beforeを理由に残し、衝突後unknownと原因項目を混同しない。"
       ],
       "qualification_rule": "元policy/効果/許可/receiptは合成例。実source資格/必要集合/binding/再送/効果一回/authority/Accepted/設計閉包へ昇格しない。",
       "operation_effect": "none"
