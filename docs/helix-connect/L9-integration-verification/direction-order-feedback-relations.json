@@ -1,0 +1,3809 @@
+{
+  "parent": "HELIXCONNECT-L2-009",
+  "status": "draft_basic_architecture_scenarios_pending_material_qualification",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 4",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "eb1e830f824cfdf7f29f343e0408e622bd80f076b8c1294b35c0cc3be2661735"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "read_lines": [
+        50,
+        50
+      ],
+      "quote": "| UWJ-FR-006 | loopはreturn、continue、stop、上限、上限到達時、terminalは正常/取消/失敗/期限切れ、終了後更新、通知、audit、再開可否を契約化する | UWJ-AC-006 |",
+      "file_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "selected_lines_sha256": "21e664a7fd4afa4085c2a1f62a2497de925ae21a9fe6e0aeb5609bae45f13b17",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "disposition": "unresolved",
+        "source_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b"
+      },
+      "reuse": "reference_only",
+      "preserve": "General workflow loop return/continue/stop, limit, terminal, and resume contract; reference only, not CONNECT relation semantics.",
+      "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
+      "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        184,
+        184
+      ],
+      "quote": "| **HIL-NFR-04** | 各loopはiteration/time/token/cost上限、停止理由、再開checkpointを持ち、無限再Issue化を防ぐ。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "6294259dd37af26ddd6f86e404be637b29c341c80d344d4eae2253daff8490fe",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "reference_only",
+      "preserve": "General loop iteration/time/token/cost cap, stop reason, and resume checkpoint; reference only, not connector relation semantics.",
+      "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
+      "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        77,
+        77
+      ],
+      "quote": "| **HIL-BR-25** | canonical L1からL12の各layerに粒度固有の設計・実行・検証台帳を置く`Layer Ledger Chain`を持つ。L0 charterは層外authority anchorとしてL1企画へ投影する。各台帳は上位/下位layerと双方向に導出・逆伝播し、正規V-modelの左右pairとも双方向に対応する。上下または左右の片edgeだけで工程完了を主張しない。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "5f6245bdc3312264b8e3ff4ba5589f71fa97f8bcbe4b7ff055e0070b54de2fd6",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "reference_only",
+      "preserve": "Bidirectional relation between adjacent layers/V-pairs; not inter-mechanism CONNECT direction or send authority.",
+      "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
+      "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "read_lines": [
+        66,
+        66
+      ],
+      "quote": "直列mergeし、先行merge後に残存laneのbase drift、CI、review、DB receiptを再判定する。",
+      "file_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "selected_lines_sha256": "7775aa4943f269d8bbba9dbc198de37a029bb6a1e8186795e0368887a74183bd",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "disposition": "unresolved",
+        "source_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6"
+      },
+      "reuse": "reference_only",
+      "preserve": "Serial merge followed by remaining-lane base-drift recheck; integration control, not connector-edge ordering.",
+      "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
+      "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "read_lines": [
+        132,
+        132
+      ],
+      "quote": "  → serial main merge",
+      "file_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "selected_lines_sha256": "9ace7e580dc064b86250c8cb88a991ab8bff812c6c4edec3e0d0a14fdeff143f",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "disposition": "unresolved",
+        "source_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6"
+      },
+      "reuse": "reference_only",
+      "preserve": "Serial main merge in old orchestration flow; general workflow sequence, not a CONNECT connection kind.",
+      "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
+      "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    }
+  ],
+  "legacy_search_record": {
+    "record_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-source-lines-2026-09-29.jsonl#O7-LEGACY-SEARCH-CONNECT-RELATION-2026-09-29",
+    "command": "rg -n -i 'feedback.{0,50}(edge|relation|return)|(edge|relation|return).{0,50}feedback|loop.{0,40}(termination|budget|retry|上限|終了)|(termination|budget|retry|上限|終了).{0,40}loop|serial.{0,30}(connection|relation|merge)|parallel.{0,30}(connection|relation)|paired[_ -]?bidirectional|one[_ -]?way|双方向.{0,40}(接続|relation)|片方向.{0,40}(接続|relation)' archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements archive/legacy-generation-2026-09-14/root/docs/governance/candidates archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements",
+    "scopes": [
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements"
+    ],
+    "match_count": 18,
+    "search_output_sha256": "sha256:a337468b2cfdd6e37b3fce0fd50420dff7766845d4f0048f96c6a792c42f61de",
+    "absence_limit": "The searched archive directories and query terms are bounded; no claim is made for requirements.json or all archive paths."
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "必要集合はownerの原宣言に結ぶ。ここで列挙する入力役割は正式schema/最小field集合の採択ではない。各実source資格とexact必要集合/bindingは未成立。",
+    "L9のシナリオ設計を独立原packet/対象revision/scopeと具体期待へ展開し、内容反例/他scope保全/不正claimの静的検証と独立reviewを行う。",
+    "正式schema/codec/transport/clock/resolverとL5/L8、test/oracle凍結→実装前Red実観測→最小Green→Refactor→再検証は未成立。",
+    "実L9/L10、PO L11、全92親430対の基本/詳細設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXCONNECT-L9-009",
+  "layer": "L9",
+  "pair": "L4",
+  "verification_obligations": [
+    {
+      "id": "HELIXCONNECT-L9-009-F01",
+      "l4_ref": "HELIXCONNECT-L4-009-F01",
+      "requirement_ref": "HELIXCONNECT-L3-009-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F01",
+      "approved_system_oracle": {
+        "id": "HELIXCONNECT-L10-009-F01",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "方向属性と個別authority",
+        "requirement_ref": "HELIXCONNECT-L3-009-F01",
+        "positive_input": "A→Bと独立B→A、片方向だけ許可を与えた双方向を比較する。",
+        "expected_observation": "各方向の登録/適格/未送信が分かれる。",
+        "negative_input": "逆向き暗黙許可、双方向の片側だけ確認、direction欠落通過。",
+        "failure_observation": "該当directionの不足をendpoint/SEC ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "verification_scenarios": [
+        {
+          "id": "C009-F01-POSITIVE",
+          "input_description": "A→B/B→Aを別identityで宣言し双方のoperation許可を独立照合",
+          "expected_observation": "各方向の登録/適格/未送信が分かれる。",
+          "basis": "HELIXCONNECT-L10-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-NEGATIVE",
+          "input_description": "逆direction暗黙許可、双方向の片側照合だけで全体適格",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L10-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-DIRECTION-MISSING",
+          "input_description": "当該操作の原必要入力 direction が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "direction",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-DIRECTION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 direction が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "direction",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-DIRECTION-STALE",
+          "input_description": "当該操作の原必要入力 direction が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "direction",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-DIRECTION-CONFLICT",
+          "input_description": "当該操作の原必要入力 direction が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "direction",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-FORWARD_CONNECTION-MISSING",
+          "input_description": "当該操作の原必要入力 forward_connection が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "forward_connection",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-FORWARD_CONNECTION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 forward_connection が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "forward_connection",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-FORWARD_CONNECTION-STALE",
+          "input_description": "当該操作の原必要入力 forward_connection が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "forward_connection",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-FORWARD_CONNECTION-CONFLICT",
+          "input_description": "当該操作の原必要入力 forward_connection が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "forward_connection",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-REVERSE_CONNECTION_IF_USED-MISSING",
+          "input_description": "当該操作の原必要入力 reverse_connection_if_used が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "reverse_connection_if_used",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-REVERSE_CONNECTION_IF_USED-UNKNOWN",
+          "input_description": "当該操作の原必要入力 reverse_connection_if_used が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "reverse_connection_if_used",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-REVERSE_CONNECTION_IF_USED-STALE",
+          "input_description": "当該操作の原必要入力 reverse_connection_if_used が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "reverse_connection_if_used",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-REVERSE_CONNECTION_IF_USED-CONFLICT",
+          "input_description": "当該操作の原必要入力 reverse_connection_if_used が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "reverse_connection_if_used",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-ENDPOINT_CONTRACT_PER_DIRECTION-MISSING",
+          "input_description": "当該操作の原必要入力 endpoint_contract_per_direction が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "endpoint_contract_per_direction",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-ENDPOINT_CONTRACT_PER_DIRECTION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 endpoint_contract_per_direction が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "endpoint_contract_per_direction",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-ENDPOINT_CONTRACT_PER_DIRECTION-STALE",
+          "input_description": "当該操作の原必要入力 endpoint_contract_per_direction が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "endpoint_contract_per_direction",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-ENDPOINT_CONTRACT_PER_DIRECTION-CONFLICT",
+          "input_description": "当該操作の原必要入力 endpoint_contract_per_direction が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "endpoint_contract_per_direction",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-SCOPE_PER_DIRECTION-MISSING",
+          "input_description": "当該操作の原必要入力 scope_per_direction が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "scope_per_direction",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-SCOPE_PER_DIRECTION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 scope_per_direction が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "scope_per_direction",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-SCOPE_PER_DIRECTION-STALE",
+          "input_description": "当該操作の原必要入力 scope_per_direction が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "scope_per_direction",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-SCOPE_PER_DIRECTION-CONFLICT",
+          "input_description": "当該操作の原必要入力 scope_per_direction が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "scope_per_direction",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-AUTHORITY_PER_OPERATION-MISSING",
+          "input_description": "当該操作の原必要入力 authority_per_operation が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "authority_per_operation",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-AUTHORITY_PER_OPERATION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 authority_per_operation が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "authority_per_operation",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-AUTHORITY_PER_OPERATION-STALE",
+          "input_description": "当該操作の原必要入力 authority_per_operation が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "authority_per_operation",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F01-AUTHORITY_PER_OPERATION-CONFLICT",
+          "input_description": "当該操作の原必要入力 authority_per_operation が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+          "missing_input": "authority_per_operation",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "connection-contract-owner",
+            "endpoint-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F01",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        }
+      ],
+      "coverage_limit": "入力役割ごとの4状態と意味反例の設計。全組合せ・実資格・具体期待・実適格性は未証明。"
+    },
+    {
+      "id": "HELIXCONNECT-L9-009-F02",
+      "l4_ref": "HELIXCONNECT-L4-009-F02",
+      "requirement_ref": "HELIXCONNECT-L3-009-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F02",
+      "approved_system_oracle": {
+        "id": "HELIXCONNECT-L10-009-F02",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "serialの宣言順",
+        "requirement_ref": "HELIXCONNECT-L3-009-F02",
+        "positive_input": "先行必要結果成立と欠落/失敗を比較する。",
+        "expected_observation": "宣言順と先行条件、後続実行状態が辿れる。",
+        "negative_input": "宣言なし順序推測、先行未成立で後続、CONNECTが業務順序改変。",
+        "failure_observation": "順序意味は既存HARNESS/OS等ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "verification_scenarios": [
+        {
+          "id": "C009-F02-POSITIVE",
+          "input_description": "原宣言EDGE-A→EDGE-B、Aの必要結果成立と不成立を比較",
+          "expected_observation": "宣言順と先行条件、後続実行状態が辿れる。",
+          "basis": "HELIXCONNECT-L10-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-NEGATIVE",
+          "input_description": "宣言なし順序推測、未成立先行を飛ばす後続、提出で業務順序変更",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L10-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-DECLARED_TOPOLOGY-MISSING",
+          "input_description": "当該操作の原必要入力 declared_topology が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "declared_topology",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-DECLARED_TOPOLOGY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 declared_topology が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "declared_topology",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-DECLARED_TOPOLOGY-STALE",
+          "input_description": "当該操作の原必要入力 declared_topology が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "declared_topology",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-DECLARED_TOPOLOGY-CONFLICT",
+          "input_description": "当該操作の原必要入力 declared_topology が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "declared_topology",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-TOPOLOGY_OWNER-MISSING",
+          "input_description": "当該操作の原必要入力 topology_owner が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "topology_owner",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-TOPOLOGY_OWNER-UNKNOWN",
+          "input_description": "当該操作の原必要入力 topology_owner が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "topology_owner",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-TOPOLOGY_OWNER-STALE",
+          "input_description": "当該操作の原必要入力 topology_owner が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "topology_owner",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-TOPOLOGY_OWNER-CONFLICT",
+          "input_description": "当該操作の原必要入力 topology_owner が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "topology_owner",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-ORDERED_EDGE_SET-MISSING",
+          "input_description": "当該操作の原必要入力 ordered_edge_set が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "ordered_edge_set",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-ORDERED_EDGE_SET-UNKNOWN",
+          "input_description": "当該操作の原必要入力 ordered_edge_set が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "ordered_edge_set",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-ORDERED_EDGE_SET-STALE",
+          "input_description": "当該操作の原必要入力 ordered_edge_set が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "ordered_edge_set",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-ORDERED_EDGE_SET-CONFLICT",
+          "input_description": "当該操作の原必要入力 ordered_edge_set が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "ordered_edge_set",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-NEEDED_PREDECESSOR_RESULTS-MISSING",
+          "input_description": "当該操作の原必要入力 needed_predecessor_results が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "needed_predecessor_results",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-NEEDED_PREDECESSOR_RESULTS-UNKNOWN",
+          "input_description": "当該操作の原必要入力 needed_predecessor_results が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "needed_predecessor_results",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-NEEDED_PREDECESSOR_RESULTS-STALE",
+          "input_description": "当該操作の原必要入力 needed_predecessor_results が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "needed_predecessor_results",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-NEEDED_PREDECESSOR_RESULTS-CONFLICT",
+          "input_description": "当該操作の原必要入力 needed_predecessor_results が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "needed_predecessor_results",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-PREDECESSOR_CONTRACT_CONDITIONS-MISSING",
+          "input_description": "当該操作の原必要入力 predecessor_contract_conditions が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "predecessor_contract_conditions",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-PREDECESSOR_CONTRACT_CONDITIONS-UNKNOWN",
+          "input_description": "当該操作の原必要入力 predecessor_contract_conditions が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "predecessor_contract_conditions",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-PREDECESSOR_CONTRACT_CONDITIONS-STALE",
+          "input_description": "当該操作の原必要入力 predecessor_contract_conditions が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "predecessor_contract_conditions",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F02-PREDECESSOR_CONTRACT_CONDITIONS-CONFLICT",
+          "input_description": "当該操作の原必要入力 predecessor_contract_conditions が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+          "missing_input": "predecessor_contract_conditions",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "topology-owner",
+            "HARNESS/OS-workflow-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F02",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        }
+      ],
+      "coverage_limit": "入力役割ごとの4状態と意味反例の設計。全組合せ・実資格・具体期待・実適格性は未証明。"
+    },
+    {
+      "id": "HELIXCONNECT-L9-009-F03",
+      "l4_ref": "HELIXCONNECT-L4-009-F03",
+      "requirement_ref": "HELIXCONNECT-L3-009-F03",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F03",
+      "approved_system_oracle": {
+        "id": "HELIXCONNECT-L10-009-F03",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "parallelと明示join",
+        "requirement_ref": "HELIXCONNECT-L3-009-F03",
+        "positive_input": "各辺適格かつjoin未成立と全join成立を比較する。",
+        "expected_observation": "個別送信とjoin/構成完了が別に辿れる。",
+        "negative_input": "部分辺成功でjoin、暗黙join、一join欠落で全適格辺停止。",
+        "failure_observation": "join不足は構成体ownerへ返し、個別辺結果を保持する。",
+        "execution_state": "not_executed"
+      },
+      "verification_scenarios": [
+        {
+          "id": "C009-F03-POSITIVE",
+          "input_description": "各辺適格/一部結果未完と全必要結果成立を比較",
+          "expected_observation": "個別送信とjoin/構成完了が別に辿れる。",
+          "basis": "HELIXCONNECT-L10-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-NEGATIVE",
+          "input_description": "暗黙join、部分成功で全体成功、join欠落で全辺停止",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L10-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-INDEPENDENT_EDGE_IDENTITIES-MISSING",
+          "input_description": "当該操作の原必要入力 independent_edge_identities が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "independent_edge_identities",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-INDEPENDENT_EDGE_IDENTITIES-UNKNOWN",
+          "input_description": "当該操作の原必要入力 independent_edge_identities が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "independent_edge_identities",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-INDEPENDENT_EDGE_IDENTITIES-STALE",
+          "input_description": "当該操作の原必要入力 independent_edge_identities が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "independent_edge_identities",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-INDEPENDENT_EDGE_IDENTITIES-CONFLICT",
+          "input_description": "当該操作の原必要入力 independent_edge_identities が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "independent_edge_identities",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-SCOPE_CONTRACT_OPERATION_RESULT_PER_EDGE-MISSING",
+          "input_description": "当該操作の原必要入力 scope_contract_operation_result_per_edge が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "scope_contract_operation_result_per_edge",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-SCOPE_CONTRACT_OPERATION_RESULT_PER_EDGE-UNKNOWN",
+          "input_description": "当該操作の原必要入力 scope_contract_operation_result_per_edge が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "scope_contract_operation_result_per_edge",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-SCOPE_CONTRACT_OPERATION_RESULT_PER_EDGE-STALE",
+          "input_description": "当該操作の原必要入力 scope_contract_operation_result_per_edge が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "scope_contract_operation_result_per_edge",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-SCOPE_CONTRACT_OPERATION_RESULT_PER_EDGE-CONFLICT",
+          "input_description": "当該操作の原必要入力 scope_contract_operation_result_per_edge が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "scope_contract_operation_result_per_edge",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-DECLARED_JOIN-MISSING",
+          "input_description": "当該操作の原必要入力 declared_join が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "declared_join",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-DECLARED_JOIN-UNKNOWN",
+          "input_description": "当該操作の原必要入力 declared_join が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "declared_join",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-DECLARED_JOIN-STALE",
+          "input_description": "当該操作の原必要入力 declared_join が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "declared_join",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-DECLARED_JOIN-CONFLICT",
+          "input_description": "当該操作の原必要入力 declared_join が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "declared_join",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-NEEDED_JOIN_RESULT_SET-MISSING",
+          "input_description": "当該操作の原必要入力 needed_join_result_set が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "needed_join_result_set",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-NEEDED_JOIN_RESULT_SET-UNKNOWN",
+          "input_description": "当該操作の原必要入力 needed_join_result_set が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "needed_join_result_set",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-NEEDED_JOIN_RESULT_SET-STALE",
+          "input_description": "当該操作の原必要入力 needed_join_result_set が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "needed_join_result_set",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F03-NEEDED_JOIN_RESULT_SET-CONFLICT",
+          "input_description": "当該操作の原必要入力 needed_join_result_set が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+          "missing_input": "needed_join_result_set",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "edge-owner",
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F03",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        }
+      ],
+      "coverage_limit": "入力役割ごとの4状態と意味反例の設計。全組合せ・実資格・具体期待・実適格性は未証明。"
+    },
+    {
+      "id": "HELIXCONNECT-L9-009-F04",
+      "l4_ref": "HELIXCONNECT-L4-009-F04",
+      "requirement_ref": "HELIXCONNECT-L3-009-F04",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F04",
+      "approved_system_oracle": {
+        "id": "HELIXCONNECT-L10-009-F04",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "typed feedbackと未送信relation",
+        "requirement_ref": "HELIXCONNECT-L3-009-F04",
+        "positive_input": "A→B結果へのB→A relationを許可あり/なし、reasonなしで比較する。",
+        "expected_observation": "未送信relationと実送信、受領/解決が別に辿れる。",
+        "negative_input": "自由文のみでrelation成立、reasonなしresolved、送信なし成功。",
+        "failure_observation": "relation入力は端点owner、解決意味は既存ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "verification_scenarios": [
+        {
+          "id": "C009-F04-POSITIVE",
+          "input_description": "原A→B operationに結ぶB→A relationの許可あり/なしとreasonなしを比較",
+          "expected_observation": "未送信relationと実送信、受領/解決が別に辿れる。",
+          "basis": "HELIXCONNECT-L10-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-NEGATIVE",
+          "input_description": "自由文だけで型付きrelation成立、reasonなしresolved、未送信を送信成功",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L10-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-SOURCE_CONNECTION-MISSING",
+          "input_description": "当該操作の原必要入力 source_connection が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "source_connection",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-SOURCE_CONNECTION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 source_connection が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "source_connection",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-SOURCE_CONNECTION-STALE",
+          "input_description": "当該操作の原必要入力 source_connection が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "source_connection",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-SOURCE_CONNECTION-CONFLICT",
+          "input_description": "当該操作の原必要入力 source_connection が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "source_connection",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-SOURCE_OPERATION-MISSING",
+          "input_description": "当該操作の原必要入力 source_operation が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "source_operation",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-SOURCE_OPERATION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 source_operation が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "source_operation",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-SOURCE_OPERATION-STALE",
+          "input_description": "当該操作の原必要入力 source_operation が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "source_operation",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-SOURCE_OPERATION-CONFLICT",
+          "input_description": "当該操作の原必要入力 source_operation が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "source_operation",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-TARGET_CONNECTION-MISSING",
+          "input_description": "当該操作の原必要入力 target_connection が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "target_connection",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-TARGET_CONNECTION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 target_connection が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "target_connection",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-TARGET_CONNECTION-STALE",
+          "input_description": "当該操作の原必要入力 target_connection が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "target_connection",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-TARGET_CONNECTION-CONFLICT",
+          "input_description": "当該操作の原必要入力 target_connection が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "target_connection",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-TARGET_OWNER-MISSING",
+          "input_description": "当該操作の原必要入力 target_owner が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "target_owner",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-TARGET_OWNER-UNKNOWN",
+          "input_description": "当該操作の原必要入力 target_owner が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "target_owner",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-TARGET_OWNER-STALE",
+          "input_description": "当該操作の原必要入力 target_owner が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "target_owner",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-TARGET_OWNER-CONFLICT",
+          "input_description": "当該操作の原必要入力 target_owner が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "target_owner",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-REASON_OR_EVIDENCE_REF-MISSING",
+          "input_description": "当該操作の原必要入力 reason_or_evidence_ref が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "reason_or_evidence_ref",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-REASON_OR_EVIDENCE_REF-UNKNOWN",
+          "input_description": "当該操作の原必要入力 reason_or_evidence_ref が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "reason_or_evidence_ref",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-REASON_OR_EVIDENCE_REF-STALE",
+          "input_description": "当該操作の原必要入力 reason_or_evidence_ref が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "reason_or_evidence_ref",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-REASON_OR_EVIDENCE_REF-CONFLICT",
+          "input_description": "当該操作の原必要入力 reason_or_evidence_ref が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "reason_or_evidence_ref",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-CORRELATION_LINEAGE-MISSING",
+          "input_description": "当該操作の原必要入力 correlation_lineage が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "correlation_lineage",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-CORRELATION_LINEAGE-UNKNOWN",
+          "input_description": "当該操作の原必要入力 correlation_lineage が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "correlation_lineage",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-CORRELATION_LINEAGE-STALE",
+          "input_description": "当該操作の原必要入力 correlation_lineage が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "correlation_lineage",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-CORRELATION_LINEAGE-CONFLICT",
+          "input_description": "当該操作の原必要入力 correlation_lineage が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "correlation_lineage",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-CONTRACT_REVISION-MISSING",
+          "input_description": "当該操作の原必要入力 contract_revision が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "contract_revision",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-CONTRACT_REVISION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 contract_revision が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "contract_revision",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-CONTRACT_REVISION-STALE",
+          "input_description": "当該操作の原必要入力 contract_revision が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "contract_revision",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-CONTRACT_REVISION-CONFLICT",
+          "input_description": "当該操作の原必要入力 contract_revision が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "contract_revision",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-STOP_RESUME_STATE-MISSING",
+          "input_description": "当該操作の原必要入力 stop_resume_state が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "stop_resume_state",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-STOP_RESUME_STATE-UNKNOWN",
+          "input_description": "当該操作の原必要入力 stop_resume_state が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "stop_resume_state",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-STOP_RESUME_STATE-STALE",
+          "input_description": "当該操作の原必要入力 stop_resume_state が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "stop_resume_state",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F04-STOP_RESUME_STATE-CONFLICT",
+          "input_description": "当該操作の原必要入力 stop_resume_state が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "未送信relationと入力不足を残し、業務解決は未成立。",
+          "missing_input": "stop_resume_state",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "resolution-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F04",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        }
+      ],
+      "coverage_limit": "入力役割ごとの4状態と意味反例の設計。全組合せ・実資格・具体期待・実適格性は未証明。"
+    },
+    {
+      "id": "HELIXCONNECT-L9-009-F05",
+      "l4_ref": "HELIXCONNECT-L4-009-F05",
+      "requirement_ref": "HELIXCONNECT-L3-009-F05",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F05",
+      "approved_system_oracle": {
+        "id": "HELIXCONNECT-L10-009-F05",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "bounded loopと既存policy",
+        "requirement_ref": "HELIXCONNECT-L3-009-F05",
+        "positive_input": "同loopを反復/別sessionへ引継ぎ、上限到達とcheckpointを照合する。",
+        "expected_observation": "累積上限・停止理由・未完/recoveryが保持される。",
+        "negative_input": "反復でbudget reset、policyなしloop、proseで解決、固定上限新設。",
+        "failure_observation": "既存OS040等の適用ownerへ返し、未解決を保持する。",
+        "execution_state": "not_executed"
+      },
+      "verification_scenarios": [
+        {
+          "id": "C009-F05-POSITIVE",
+          "input_description": "同loopを別sessionへ引継ぎ累積と上限到達checkpointを対照",
+          "expected_observation": "累積上限・停止理由・未完/recoveryが保持される。",
+          "basis": "HELIXCONNECT-L10-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-NEGATIVE",
+          "input_description": "sessionで累積reset、policyなしloop、proseで解決、CONNECT固定上限新設",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L10-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-FORWARD_EDGE-MISSING",
+          "input_description": "当該操作の原必要入力 forward_edge が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "forward_edge",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-FORWARD_EDGE-UNKNOWN",
+          "input_description": "当該操作の原必要入力 forward_edge が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "forward_edge",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-FORWARD_EDGE-STALE",
+          "input_description": "当該操作の原必要入力 forward_edge が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "forward_edge",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-FORWARD_EDGE-CONFLICT",
+          "input_description": "当該操作の原必要入力 forward_edge が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "forward_edge",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-FEEDBACK_EDGE-MISSING",
+          "input_description": "当該操作の原必要入力 feedback_edge が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "feedback_edge",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-FEEDBACK_EDGE-UNKNOWN",
+          "input_description": "当該操作の原必要入力 feedback_edge が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "feedback_edge",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-FEEDBACK_EDGE-STALE",
+          "input_description": "当該操作の原必要入力 feedback_edge が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "feedback_edge",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-FEEDBACK_EDGE-CONFLICT",
+          "input_description": "当該操作の原必要入力 feedback_edge が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "feedback_edge",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_RETRY_POLICY-MISSING",
+          "input_description": "当該操作の原必要入力 existing_retry_policy が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_retry_policy",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_RETRY_POLICY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 existing_retry_policy が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_retry_policy",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_RETRY_POLICY-STALE",
+          "input_description": "当該操作の原必要入力 existing_retry_policy が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_retry_policy",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_RETRY_POLICY-CONFLICT",
+          "input_description": "当該操作の原必要入力 existing_retry_policy が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_retry_policy",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_BUDGET_POLICY-MISSING",
+          "input_description": "当該操作の原必要入力 existing_budget_policy が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_budget_policy",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_BUDGET_POLICY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 existing_budget_policy が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_budget_policy",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_BUDGET_POLICY-STALE",
+          "input_description": "当該操作の原必要入力 existing_budget_policy が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_budget_policy",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_BUDGET_POLICY-CONFLICT",
+          "input_description": "当該操作の原必要入力 existing_budget_policy が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_budget_policy",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_TERMINATION_POLICY-MISSING",
+          "input_description": "当該操作の原必要入力 existing_termination_policy が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_termination_policy",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_TERMINATION_POLICY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 existing_termination_policy が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_termination_policy",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_TERMINATION_POLICY-STALE",
+          "input_description": "当該操作の原必要入力 existing_termination_policy が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_termination_policy",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXISTING_TERMINATION_POLICY-CONFLICT",
+          "input_description": "当該操作の原必要入力 existing_termination_policy が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "existing_termination_policy",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXPIRY-MISSING",
+          "input_description": "当該操作の原必要入力 expiry が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "expiry",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXPIRY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 expiry が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "expiry",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXPIRY-STALE",
+          "input_description": "当該操作の原必要入力 expiry が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "expiry",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-EXPIRY-CONFLICT",
+          "input_description": "当該操作の原必要入力 expiry が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "expiry",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-TERMINAL_ROUTE_OWNER-MISSING",
+          "input_description": "当該操作の原必要入力 terminal_route_owner が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "terminal_route_owner",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-TERMINAL_ROUTE_OWNER-UNKNOWN",
+          "input_description": "当該操作の原必要入力 terminal_route_owner が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "terminal_route_owner",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-TERMINAL_ROUTE_OWNER-STALE",
+          "input_description": "当該操作の原必要入力 terminal_route_owner が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "terminal_route_owner",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-TERMINAL_ROUTE_OWNER-CONFLICT",
+          "input_description": "当該操作の原必要入力 terminal_route_owner が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "terminal_route_owner",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-OPERATION_LINEAGE-MISSING",
+          "input_description": "当該操作の原必要入力 operation_lineage が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "operation_lineage",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-OPERATION_LINEAGE-UNKNOWN",
+          "input_description": "当該操作の原必要入力 operation_lineage が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "operation_lineage",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-OPERATION_LINEAGE-STALE",
+          "input_description": "当該操作の原必要入力 operation_lineage が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "operation_lineage",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-OPERATION_LINEAGE-CONFLICT",
+          "input_description": "当該操作の原必要入力 operation_lineage が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "operation_lineage",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-CUMULATIVE_ATTEMPTS-MISSING",
+          "input_description": "当該操作の原必要入力 cumulative_attempts が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "cumulative_attempts",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-CUMULATIVE_ATTEMPTS-UNKNOWN",
+          "input_description": "当該操作の原必要入力 cumulative_attempts が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "cumulative_attempts",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-CUMULATIVE_ATTEMPTS-STALE",
+          "input_description": "当該操作の原必要入力 cumulative_attempts が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "cumulative_attempts",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-CUMULATIVE_ATTEMPTS-CONFLICT",
+          "input_description": "当該操作の原必要入力 cumulative_attempts が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "cumulative_attempts",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-CHECKPOINT-MISSING",
+          "input_description": "当該操作の原必要入力 checkpoint が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "checkpoint",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-CHECKPOINT-UNKNOWN",
+          "input_description": "当該操作の原必要入力 checkpoint が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "checkpoint",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-CHECKPOINT-STALE",
+          "input_description": "当該操作の原必要入力 checkpoint が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "checkpoint",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F05-CHECKPOINT-CONFLICT",
+          "input_description": "当該操作の原必要入力 checkpoint が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+          "missing_input": "checkpoint",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "existing-OS040-operation-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F05",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        }
+      ],
+      "coverage_limit": "入力役割ごとの4状態と意味反例の設計。全組合せ・実資格・具体期待・実適格性は未証明。"
+    },
+    {
+      "id": "HELIXCONNECT-L9-009-F06",
+      "l4_ref": "HELIXCONNECT-L4-009-F06",
+      "requirement_ref": "HELIXCONNECT-L3-009-F06",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F06",
+      "approved_system_oracle": {
+        "id": "HELIXCONNECT-L10-009-F06",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "初回送信の局所unknown",
+        "requirement_ref": "HELIXCONNECT-L3-009-F06",
+        "positive_input": "各開始必須field欠落と後続phaseだけの欠落を別々に与える。",
+        "expected_observation": "初回送信の適格性と後続未完が別に示される。",
+        "negative_input": "必須unknownで送信、後続reason/ACK欠落で適格な初回辺を拒否。",
+        "failure_observation": "当該必須入力のownerへ返し、非該当欠落で権限を変えない。",
+        "execution_state": "not_executed"
+      },
+      "verification_scenarios": [
+        {
+          "id": "C009-F06-POSITIVE",
+          "input_description": "初回必須4項目の欠落と後続4種欠落を別々に与える",
+          "expected_observation": "初回送信の適格性と後続未完が別に示される。",
+          "basis": "HELIXCONNECT-L10-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-NEGATIVE",
+          "input_description": "初回必須unknown通過、後続reason/ACKなしを初回拒否理由にする",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L10-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-ENDPOINT-MISSING",
+          "input_description": "当該操作の原必要入力 endpoint が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "endpoint",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-ENDPOINT-UNKNOWN",
+          "input_description": "当該操作の原必要入力 endpoint が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "endpoint",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-ENDPOINT-STALE",
+          "input_description": "当該操作の原必要入力 endpoint が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "endpoint",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-ENDPOINT-CONFLICT",
+          "input_description": "当該操作の原必要入力 endpoint が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "endpoint",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-CONNECTION_IDENTITY-MISSING",
+          "input_description": "当該操作の原必要入力 connection_identity が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "connection_identity",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-CONNECTION_IDENTITY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 connection_identity が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "connection_identity",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-CONNECTION_IDENTITY-STALE",
+          "input_description": "当該操作の原必要入力 connection_identity が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "connection_identity",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-CONNECTION_IDENTITY-CONFLICT",
+          "input_description": "当該操作の原必要入力 connection_identity が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "connection_identity",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-CONTRACT_REVISION-MISSING",
+          "input_description": "当該操作の原必要入力 contract_revision が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "contract_revision",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-CONTRACT_REVISION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 contract_revision が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "contract_revision",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-CONTRACT_REVISION-STALE",
+          "input_description": "当該操作の原必要入力 contract_revision が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "contract_revision",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-CONTRACT_REVISION-CONFLICT",
+          "input_description": "当該操作の原必要入力 contract_revision が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "contract_revision",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-OPERATION_AUTHORITY-MISSING",
+          "input_description": "当該操作の原必要入力 operation_authority が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "operation_authority",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-OPERATION_AUTHORITY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 operation_authority が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "operation_authority",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-OPERATION_AUTHORITY-STALE",
+          "input_description": "当該操作の原必要入力 operation_authority が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "operation_authority",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F06-OPERATION_AUTHORITY-CONFLICT",
+          "input_description": "当該操作の原必要入力 operation_authority が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+          "missing_input": "operation_authority",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F06",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        }
+      ],
+      "coverage_limit": "入力役割ごとの4状態と意味反例の設計。全組合せ・実資格・具体期待・実適格性は未証明。"
+    },
+    {
+      "id": "HELIXCONNECT-L9-009-F07",
+      "l4_ref": "HELIXCONNECT-L4-009-F07",
+      "requirement_ref": "HELIXCONNECT-L3-009-F07",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F07",
+      "approved_system_oracle": {
+        "id": "HELIXCONNECT-L10-009-F07",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "feedback送信だけの保留",
+        "requirement_ref": "HELIXCONNECT-L3-009-F07",
+        "positive_input": "初回適格かつfeedback各field欠落を独立に与える。",
+        "expected_observation": "初回結果保持、feedback未送信/不足ownerが辿れる。",
+        "negative_input": "feedback不足で初回結果失効、未送信をresolved、逆権限推測。",
+        "failure_observation": "feedback endpoint/contract/SECの該当ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "verification_scenarios": [
+        {
+          "id": "C009-F07-POSITIVE",
+          "input_description": "初回適格後、feedbackの必要fieldを独立に欠落させる",
+          "expected_observation": "初回結果保持、feedback未送信/不足ownerが辿れる。",
+          "basis": "HELIXCONNECT-L10-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-NEGATIVE",
+          "input_description": "逆許可推測、feedback不足で過去初回失効、未送信resolved",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L10-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-REASON_OR_EVIDENCE_REF-MISSING",
+          "input_description": "当該操作の原必要入力 reason_or_evidence_ref が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "reason_or_evidence_ref",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-REASON_OR_EVIDENCE_REF-UNKNOWN",
+          "input_description": "当該操作の原必要入力 reason_or_evidence_ref が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "reason_or_evidence_ref",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-REASON_OR_EVIDENCE_REF-STALE",
+          "input_description": "当該操作の原必要入力 reason_or_evidence_ref が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "reason_or_evidence_ref",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-REASON_OR_EVIDENCE_REF-CONFLICT",
+          "input_description": "当該操作の原必要入力 reason_or_evidence_ref が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "reason_or_evidence_ref",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-SOURCE_IDENTITY-MISSING",
+          "input_description": "当該操作の原必要入力 source_identity が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "source_identity",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-SOURCE_IDENTITY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 source_identity が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "source_identity",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-SOURCE_IDENTITY-STALE",
+          "input_description": "当該操作の原必要入力 source_identity が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "source_identity",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-SOURCE_IDENTITY-CONFLICT",
+          "input_description": "当該操作の原必要入力 source_identity が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "source_identity",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-TARGET_IDENTITY-MISSING",
+          "input_description": "当該操作の原必要入力 target_identity が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "target_identity",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-TARGET_IDENTITY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 target_identity が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "target_identity",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-TARGET_IDENTITY-STALE",
+          "input_description": "当該操作の原必要入力 target_identity が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "target_identity",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-TARGET_IDENTITY-CONFLICT",
+          "input_description": "当該操作の原必要入力 target_identity が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "target_identity",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-CONTRACT_REVISION-MISSING",
+          "input_description": "当該操作の原必要入力 contract_revision が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "contract_revision",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-CONTRACT_REVISION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 contract_revision が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "contract_revision",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-CONTRACT_REVISION-STALE",
+          "input_description": "当該操作の原必要入力 contract_revision が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "contract_revision",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-CONTRACT_REVISION-CONFLICT",
+          "input_description": "当該操作の原必要入力 contract_revision が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "contract_revision",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-INDEPENDENT_REVERSE_CONNECTION-MISSING",
+          "input_description": "当該操作の原必要入力 independent_reverse_connection が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "independent_reverse_connection",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-INDEPENDENT_REVERSE_CONNECTION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 independent_reverse_connection が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "independent_reverse_connection",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-INDEPENDENT_REVERSE_CONNECTION-STALE",
+          "input_description": "当該操作の原必要入力 independent_reverse_connection が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "independent_reverse_connection",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-INDEPENDENT_REVERSE_CONNECTION-CONFLICT",
+          "input_description": "当該操作の原必要入力 independent_reverse_connection が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "independent_reverse_connection",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-FEEDBACK_OPERATION_AUTHORITY-MISSING",
+          "input_description": "当該操作の原必要入力 feedback_operation_authority が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "feedback_operation_authority",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-FEEDBACK_OPERATION_AUTHORITY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 feedback_operation_authority が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "feedback_operation_authority",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-FEEDBACK_OPERATION_AUTHORITY-STALE",
+          "input_description": "当該操作の原必要入力 feedback_operation_authority が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "feedback_operation_authority",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F07-FEEDBACK_OPERATION_AUTHORITY-CONFLICT",
+          "input_description": "当該操作の原必要入力 feedback_operation_authority が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+          "missing_input": "feedback_operation_authority",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "feedback-endpoint-owner",
+            "connection-contract-owner",
+            "HELIX-SECURITY"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F07",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        }
+      ],
+      "coverage_limit": "入力役割ごとの4状態と意味反例の設計。全組合せ・実資格・具体期待・実適格性は未証明。"
+    },
+    {
+      "id": "HELIXCONNECT-L9-009-F08",
+      "l4_ref": "HELIXCONNECT-L4-009-F08",
+      "requirement_ref": "HELIXCONNECT-L3-009-F08",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F08",
+      "approved_system_oracle": {
+        "id": "HELIXCONNECT-L10-009-F08",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "loop追加retryだけの保留",
+        "requirement_ref": "HELIXCONNECT-L3-009-F08",
+        "positive_input": "初回送信後にloop必須条件を一つずつ欠落させる。",
+        "expected_observation": "追加attempt0件と初回結果、未解決/停止理由が辿れる。",
+        "negative_input": "上限不明でretry、過去初回を不許可へ変更、累積reset。",
+        "failure_observation": "policy/termination ownerへ不足を返す。",
+        "execution_state": "not_executed"
+      },
+      "verification_scenarios": [
+        {
+          "id": "C009-F08-POSITIVE",
+          "input_description": "初回送信後にloop条件だけ一つずつ欠落させる",
+          "expected_observation": "追加attempt0件と初回結果、未解決/停止理由が辿れる。",
+          "basis": "HELIXCONNECT-L10-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-NEGATIVE",
+          "input_description": "上限不明retry、過去初回を不許可化、原累積reset",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L10-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-RETRY_LIMIT-MISSING",
+          "input_description": "当該操作の原必要入力 retry_limit が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "retry_limit",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-RETRY_LIMIT-UNKNOWN",
+          "input_description": "当該操作の原必要入力 retry_limit が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "retry_limit",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-RETRY_LIMIT-STALE",
+          "input_description": "当該操作の原必要入力 retry_limit が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "retry_limit",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-RETRY_LIMIT-CONFLICT",
+          "input_description": "当該操作の原必要入力 retry_limit が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "retry_limit",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-BUDGET-MISSING",
+          "input_description": "当該操作の原必要入力 budget が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "budget",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-BUDGET-UNKNOWN",
+          "input_description": "当該操作の原必要入力 budget が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "budget",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-BUDGET-STALE",
+          "input_description": "当該操作の原必要入力 budget が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "budget",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-BUDGET-CONFLICT",
+          "input_description": "当該操作の原必要入力 budget が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "budget",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-EXPIRY-MISSING",
+          "input_description": "当該操作の原必要入力 expiry が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "expiry",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-EXPIRY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 expiry が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "expiry",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-EXPIRY-STALE",
+          "input_description": "当該操作の原必要入力 expiry が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "expiry",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-EXPIRY-CONFLICT",
+          "input_description": "当該操作の原必要入力 expiry が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "expiry",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-STOP_ROUTE_OWNER-MISSING",
+          "input_description": "当該操作の原必要入力 stop_route_owner が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "stop_route_owner",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-STOP_ROUTE_OWNER-UNKNOWN",
+          "input_description": "当該操作の原必要入力 stop_route_owner が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "stop_route_owner",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-STOP_ROUTE_OWNER-STALE",
+          "input_description": "当該操作の原必要入力 stop_route_owner が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "stop_route_owner",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-STOP_ROUTE_OWNER-CONFLICT",
+          "input_description": "当該操作の原必要入力 stop_route_owner が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "stop_route_owner",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-EXISTING_TERMINATION_POLICY-MISSING",
+          "input_description": "当該操作の原必要入力 existing_termination_policy が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "existing_termination_policy",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-EXISTING_TERMINATION_POLICY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 existing_termination_policy が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "existing_termination_policy",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-EXISTING_TERMINATION_POLICY-STALE",
+          "input_description": "当該操作の原必要入力 existing_termination_policy が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "existing_termination_policy",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F08-EXISTING_TERMINATION_POLICY-CONFLICT",
+          "input_description": "当該操作の原必要入力 existing_termination_policy が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+          "missing_input": "existing_termination_policy",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "existing-policy-owner",
+            "termination-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F08",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        }
+      ],
+      "coverage_limit": "入力役割ごとの4状態と意味反例の設計。全組合せ・実資格・具体期待・実適格性は未証明。"
+    },
+    {
+      "id": "HELIXCONNECT-L9-009-F09",
+      "l4_ref": "HELIXCONNECT-L4-009-F09",
+      "requirement_ref": "HELIXCONNECT-L3-009-F09",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F09",
+      "approved_system_oracle": {
+        "id": "HELIXCONNECT-L10-009-F09",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "joinだけのunknown",
+        "requirement_ref": "HELIXCONNECT-L3-009-F09",
+        "positive_input": "各辺が適格な状態でjoinだけを欠落させる。",
+        "expected_observation": "辺送信と未成立joinが区別される。",
+        "negative_input": "join推測pass、join不足で適格辺一括停止。",
+        "failure_observation": "構成体join ownerへ不足を返す。",
+        "execution_state": "not_executed"
+      },
+      "verification_scenarios": [
+        {
+          "id": "C009-F09-POSITIVE",
+          "input_description": "各辺適格でjoinだけ欠落またはstaleにする",
+          "expected_observation": "辺送信と未成立joinが区別される。",
+          "basis": "HELIXCONNECT-L10-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-NEGATIVE",
+          "input_description": "join推測pass、join不足で全適格辺停止",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L10-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-DECLARED_JOIN-MISSING",
+          "input_description": "当該操作の原必要入力 declared_join が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "declared_join",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-DECLARED_JOIN-UNKNOWN",
+          "input_description": "当該操作の原必要入力 declared_join が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "declared_join",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-DECLARED_JOIN-STALE",
+          "input_description": "当該操作の原必要入力 declared_join が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "declared_join",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-DECLARED_JOIN-CONFLICT",
+          "input_description": "当該操作の原必要入力 declared_join が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "declared_join",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-JOIN_CONTRACT_REVISION-MISSING",
+          "input_description": "当該操作の原必要入力 join_contract_revision が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "join_contract_revision",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-JOIN_CONTRACT_REVISION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 join_contract_revision が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "join_contract_revision",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-JOIN_CONTRACT_REVISION-STALE",
+          "input_description": "当該操作の原必要入力 join_contract_revision が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "join_contract_revision",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-JOIN_CONTRACT_REVISION-CONFLICT",
+          "input_description": "当該操作の原必要入力 join_contract_revision が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "join_contract_revision",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-NEEDED_JOIN_RESULT_SET-MISSING",
+          "input_description": "当該操作の原必要入力 needed_join_result_set が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "needed_join_result_set",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-NEEDED_JOIN_RESULT_SET-UNKNOWN",
+          "input_description": "当該操作の原必要入力 needed_join_result_set が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "needed_join_result_set",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-NEEDED_JOIN_RESULT_SET-STALE",
+          "input_description": "当該操作の原必要入力 needed_join_result_set が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "needed_join_result_set",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F09-NEEDED_JOIN_RESULT_SET-CONFLICT",
+          "input_description": "当該操作の原必要入力 needed_join_result_set が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+          "missing_input": "needed_join_result_set",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "composite-join-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F09",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        }
+      ],
+      "coverage_limit": "入力役割ごとの4状態と意味反例の設計。全組合せ・実資格・具体期待・実適格性は未証明。"
+    },
+    {
+      "id": "HELIXCONNECT-L9-009-F10",
+      "l4_ref": "HELIXCONNECT-L4-009-F10",
+      "requirement_ref": "HELIXCONNECT-L3-009-F10",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F10",
+      "approved_system_oracle": {
+        "id": "HELIXCONNECT-L10-009-F10",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "ACK待ちと完了",
+        "requirement_ref": "HELIXCONNECT-L3-009-F10",
+        "positive_input": "送信後ACK未着、別operation/版ACKと正しいACKを比較する。",
+        "expected_observation": "attemptと受領確認/完了、missing input/確認先が分かれる。",
+        "negative_input": "ACK未確認pass、別版ACK採用、送信履歴消去。",
+        "failure_observation": "受領確認先ownerへ返し、未完を保持する。",
+        "execution_state": "not_executed"
+      },
+      "verification_scenarios": [
+        {
+          "id": "C009-F10-POSITIVE",
+          "input_description": "原送信attemptに正しいACK、未着、別operation/connection/版ACKを比較",
+          "expected_observation": "attemptと受領確認/完了、missing input/確認先が分かれる。",
+          "basis": "HELIXCONNECT-L10-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-NEGATIVE",
+          "input_description": "未確認ACKpass、別版ACK採用、原送信履歴消去",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L10-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ORIGINAL_ATTEMPT-MISSING",
+          "input_description": "当該操作の原必要入力 original_attempt が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "original_attempt",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ORIGINAL_ATTEMPT-UNKNOWN",
+          "input_description": "当該操作の原必要入力 original_attempt が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "original_attempt",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ORIGINAL_ATTEMPT-STALE",
+          "input_description": "当該操作の原必要入力 original_attempt が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "original_attempt",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ORIGINAL_ATTEMPT-CONFLICT",
+          "input_description": "当該操作の原必要入力 original_attempt が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "original_attempt",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_RECEIPT-MISSING",
+          "input_description": "当該操作の原必要入力 ack_receipt が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_receipt",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_RECEIPT-UNKNOWN",
+          "input_description": "当該操作の原必要入力 ack_receipt が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_receipt",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_RECEIPT-STALE",
+          "input_description": "当該操作の原必要入力 ack_receipt が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_receipt",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_RECEIPT-CONFLICT",
+          "input_description": "当該操作の原必要入力 ack_receipt が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_receipt",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_OPERATION_IDENTITY-MISSING",
+          "input_description": "当該操作の原必要入力 ack_operation_identity が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_operation_identity",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_OPERATION_IDENTITY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 ack_operation_identity が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_operation_identity",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_OPERATION_IDENTITY-STALE",
+          "input_description": "当該操作の原必要入力 ack_operation_identity が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_operation_identity",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_OPERATION_IDENTITY-CONFLICT",
+          "input_description": "当該操作の原必要入力 ack_operation_identity が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_operation_identity",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_CONNECTION_IDENTITY-MISSING",
+          "input_description": "当該操作の原必要入力 ack_connection_identity が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_connection_identity",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_CONNECTION_IDENTITY-UNKNOWN",
+          "input_description": "当該操作の原必要入力 ack_connection_identity が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_connection_identity",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_CONNECTION_IDENTITY-STALE",
+          "input_description": "当該操作の原必要入力 ack_connection_identity が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_connection_identity",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_CONNECTION_IDENTITY-CONFLICT",
+          "input_description": "当該操作の原必要入力 ack_connection_identity が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_connection_identity",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_CONTRACT_REVISION-MISSING",
+          "input_description": "当該操作の原必要入力 ack_contract_revision が missing。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_contract_revision",
+          "original_state": "missing",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_CONTRACT_REVISION-UNKNOWN",
+          "input_description": "当該操作の原必要入力 ack_contract_revision が unknown。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_contract_revision",
+          "original_state": "unknown",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_CONTRACT_REVISION-STALE",
+          "input_description": "当該操作の原必要入力 ack_contract_revision が stale。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_contract_revision",
+          "original_state": "stale",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "C009-F10-ACK_CONTRACT_REVISION-CONFLICT",
+          "input_description": "当該操作の原必要入力 ack_contract_revision が conflict。提出だけの補完で原根拠を成立させない。",
+          "expected_observation": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+          "missing_input": "ack_contract_revision",
+          "original_state": "conflict",
+          "failure_owner_candidates": [
+            "receipt-endpoint-owner",
+            "connection-contract-owner"
+          ],
+          "basis": "HELIXCONNECT-L3-009-F10",
+          "qualification": "scenario_only_packet_expected_material_pending",
+          "execution_state": "not_executed"
+        }
+      ],
+      "coverage_limit": "入力役割ごとの4状態と意味反例の設計。全組合せ・実資格・具体期待・実適格性は未証明。"
+    }
+  ],
+  "completion": "シナリオ設計。具体原packet/期待/資格反例は未完成。実送信/実L9の証拠ではない。"
+}

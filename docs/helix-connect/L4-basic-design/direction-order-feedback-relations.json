@@ -1,0 +1,566 @@
+{
+  "parent": "HELIXCONNECT-L2-009",
+  "status": "draft_basic_architecture_scenarios_pending_material_qualification",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 4",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "eb1e830f824cfdf7f29f343e0408e622bd80f076b8c1294b35c0cc3be2661735"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "read_lines": [
+        50,
+        50
+      ],
+      "quote": "| UWJ-FR-006 | loopはreturn、continue、stop、上限、上限到達時、terminalは正常/取消/失敗/期限切れ、終了後更新、通知、audit、再開可否を契約化する | UWJ-AC-006 |",
+      "file_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "selected_lines_sha256": "21e664a7fd4afa4085c2a1f62a2497de925ae21a9fe6e0aeb5609bae45f13b17",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "disposition": "unresolved",
+        "source_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b"
+      },
+      "reuse": "reference_only",
+      "preserve": "General workflow loop return/continue/stop, limit, terminal, and resume contract; reference only, not CONNECT relation semantics.",
+      "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
+      "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        184,
+        184
+      ],
+      "quote": "| **HIL-NFR-04** | 各loopはiteration/time/token/cost上限、停止理由、再開checkpointを持ち、無限再Issue化を防ぐ。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "6294259dd37af26ddd6f86e404be637b29c341c80d344d4eae2253daff8490fe",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "reference_only",
+      "preserve": "General loop iteration/time/token/cost cap, stop reason, and resume checkpoint; reference only, not connector relation semantics.",
+      "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
+      "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        77,
+        77
+      ],
+      "quote": "| **HIL-BR-25** | canonical L1からL12の各layerに粒度固有の設計・実行・検証台帳を置く`Layer Ledger Chain`を持つ。L0 charterは層外authority anchorとしてL1企画へ投影する。各台帳は上位/下位layerと双方向に導出・逆伝播し、正規V-modelの左右pairとも双方向に対応する。上下または左右の片edgeだけで工程完了を主張しない。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "5f6245bdc3312264b8e3ff4ba5589f71fa97f8bcbe4b7ff055e0070b54de2fd6",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "reference_only",
+      "preserve": "Bidirectional relation between adjacent layers/V-pairs; not inter-mechanism CONNECT direction or send authority.",
+      "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
+      "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "read_lines": [
+        66,
+        66
+      ],
+      "quote": "直列mergeし、先行merge後に残存laneのbase drift、CI、review、DB receiptを再判定する。",
+      "file_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "selected_lines_sha256": "7775aa4943f269d8bbba9dbc198de37a029bb6a1e8186795e0368887a74183bd",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "disposition": "unresolved",
+        "source_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6"
+      },
+      "reuse": "reference_only",
+      "preserve": "Serial merge followed by remaining-lane base-drift recheck; integration control, not connector-edge ordering.",
+      "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
+      "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "read_lines": [
+        132,
+        132
+      ],
+      "quote": "  → serial main merge",
+      "file_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "selected_lines_sha256": "9ace7e580dc064b86250c8cb88a991ab8bff812c6c4edec3e0d0a14fdeff143f",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "disposition": "unresolved",
+        "source_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6"
+      },
+      "reuse": "reference_only",
+      "preserve": "Serial main merge in old orchestration flow; general workflow sequence, not a CONNECT connection kind.",
+      "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
+      "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    }
+  ],
+  "legacy_search_record": {
+    "record_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-source-lines-2026-09-29.jsonl#O7-LEGACY-SEARCH-CONNECT-RELATION-2026-09-29",
+    "command": "rg -n -i 'feedback.{0,50}(edge|relation|return)|(edge|relation|return).{0,50}feedback|loop.{0,40}(termination|budget|retry|上限|終了)|(termination|budget|retry|上限|終了).{0,40}loop|serial.{0,30}(connection|relation|merge)|parallel.{0,30}(connection|relation)|paired[_ -]?bidirectional|one[_ -]?way|双方向.{0,40}(接続|relation)|片方向.{0,40}(接続|relation)' archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements archive/legacy-generation-2026-09-14/root/docs/governance/candidates archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements",
+    "scopes": [
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements"
+    ],
+    "match_count": 18,
+    "search_output_sha256": "sha256:a337468b2cfdd6e37b3fce0fd50420dff7766845d4f0048f96c6a792c42f61de",
+    "absence_limit": "The searched archive directories and query terms are bounded; no claim is made for requirements.json or all archive paths."
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "必要集合はownerの原宣言に結ぶ。ここで列挙する入力役割は正式schema/最小field集合の採択ではない。各実source資格とexact必要集合/bindingは未成立。",
+    "L9のシナリオ設計を独立原packet/対象revision/scopeと具体期待へ展開し、内容反例/他scope保全/不正claimの静的検証と独立reviewを行う。",
+    "正式schema/codec/transport/clock/resolverとL5/L8、test/oracle凍結→実装前Red実観測→最小Green→Refactor→再検証は未成立。",
+    "実L9/L10、PO L11、全92親430対の基本/詳細設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXCONNECT-L4-009",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "python_boundary": "原宣言・必要根拠・提出内容の不変な読取/対照と局所不足の返却。実送信/retry/受領/認可/保存/業務判断を行わない。",
+    "dependencies": [
+      "001の登録identity/direction",
+      "002のcurrent互換と参照アクセス/送信の分離",
+      "003のoperation envelope/receipt",
+      "004の選択retry累積policy",
+      "005の因果trace/未完handoff",
+      "007の必要辺集合/構成体終端",
+      "SECURITYの既存操作時authority",
+      "HARNESS/OSのworkflow/termination/業務意味owner"
+    ],
+    "ownership": "CONNECTはrelationを結び局所不足を返す。policy/権限/業務解決を作らず、理由のfree proseだけを入力資格にしない。",
+    "state_separation": [
+      "各方向登録/候補/未送信",
+      "先行成立/後続候補",
+      "各辺結果/join/composite終端",
+      "feedback記録/送信/受領/解決",
+      "loop累積/追加候補/停止/未完checkpoint",
+      "原attempt/ACK待ち/受領確認/完了"
+    ]
+  },
+  "contracts": [
+    {
+      "id": "HELIXCONNECT-L4-009-F01",
+      "requirement_ref": "HELIXCONNECT-L3-009-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-009-F01",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "方向属性と個別authority",
+        "obligation": "one_wayは宣言方向だけ、paired_bidirectionalは二方向を個別identity/endpoint contract/scope/operation authorityへ結ぶ。一方向登録・受信・ACK/feedbackから逆向き送信権を推論しない。",
+        "oracle_ref": "HELIXCONNECT-L10-009-F01"
+      },
+      "component": "direction_reader",
+      "input_roles": [
+        "direction",
+        "forward_connection",
+        "reverse_connection_if_used",
+        "endpoint_contract_per_direction",
+        "scope_per_direction",
+        "authority_per_operation"
+      ],
+      "rules": [
+        "両方向は独立identityを持ち、それぞれの端点・scope・operation許可へ束縛する。",
+        "one_wayの登録/受信/ACK/feedbackから逆向き許可を派生しない。"
+      ],
+      "return_owners": [
+        "connection-contract-owner",
+        "endpoint-owner",
+        "HELIX-SECURITY"
+      ],
+      "held_behavior": "片側だけ適格なら当該方向だけ候補。他方向は未送信を保持。",
+      "required_source_bindings": [
+        "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
+        "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+      ],
+      "candidate_effect": "none; actual operation count 0"
+    },
+    {
+      "id": "HELIXCONNECT-L4-009-F02",
+      "requirement_ref": "HELIXCONNECT-L3-009-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F02",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-009-F02",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "serialの宣言順",
+        "obligation": "serial topologyは構成体/edge ownerが宣言し、先行辺の必要結果/契約条件成立前に後続を実行しない。CONNECTがOS ticket計画や具体workflow順序を作らない。",
+        "oracle_ref": "HELIXCONNECT-L10-009-F02"
+      },
+      "component": "serial_predecessor_reader",
+      "input_roles": [
+        "declared_topology",
+        "topology_owner",
+        "ordered_edge_set",
+        "needed_predecessor_results",
+        "predecessor_contract_conditions"
+      ],
+      "rules": [
+        "ownerの宣言順と必要先行結果を保ち、後続候補はその成立した範囲に限る。",
+        "未観測/失敗の先行辺を飛ばさない。CONNECTはOS ticket計画や業務順序を生成しない。"
+      ],
+      "return_owners": [
+        "topology-owner",
+        "HARNESS/OS-workflow-owner"
+      ],
+      "held_behavior": "当該後続だけ保留。先行結果/未完/宣言順を保持。",
+      "required_source_bindings": [
+        "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
+        "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+      ],
+      "candidate_effect": "none; actual operation count 0"
+    },
+    {
+      "id": "HELIXCONNECT-L4-009-F03",
+      "requirement_ref": "HELIXCONNECT-L3-009-F03",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F03",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-009-F03",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "parallelと明示join",
+        "obligation": "parallelは独立edge identity/scope/contract/operation/resultと宣言joinを持つ。join全条件成立までcompositeを完了にしない。join不足だけで個別に適格な辺の送信を一括停止しない。",
+        "oracle_ref": "HELIXCONNECT-L10-009-F03"
+      },
+      "component": "parallel_join_reader",
+      "input_roles": [
+        "independent_edge_identities",
+        "scope_contract_operation_result_per_edge",
+        "declared_join",
+        "needed_join_result_set"
+      ],
+      "rules": [
+        "各辺の送信適格性とjoinの成立を独立に示す。",
+        "原必要集合の全条件が揃うまでjoin/composite完了を候補にしない。部分成功を全体へ昇格しない。"
+      ],
+      "return_owners": [
+        "edge-owner",
+        "composite-join-owner"
+      ],
+      "held_behavior": "joinだけの不足ならjoin/compositeだけ保留し適格辺を保持。",
+      "required_source_bindings": [
+        "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
+        "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+      ],
+      "candidate_effect": "none; actual operation count 0"
+    },
+    {
+      "id": "HELIXCONNECT-L4-009-F04",
+      "requirement_ref": "HELIXCONNECT-L3-009-F04",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F04",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-009-F04",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "typed feedbackと未送信relation",
+        "obligation": "feedbackは一方向typed return edgeとしてsource connection/operation、target connection/owner、reason/根拠参照、correlation/lineage、契約版、停止/再開状態を持つ。記録/伝送は受領/解決/承認/task完了を意味しない。",
+        "oracle_ref": "HELIXCONNECT-L10-009-F04"
+      },
+      "component": "typed_feedback_reader",
+      "input_roles": [
+        "source_connection",
+        "source_operation",
+        "target_connection",
+        "target_owner",
+        "reason_or_evidence_ref",
+        "correlation_lineage",
+        "contract_revision",
+        "stop_resume_state"
+      ],
+      "rules": [
+        "feedbackは独立した一方向typed return edge。reasonはcodeまたは原根拠refであり自由文だけを成立根拠にしない。",
+        "記録/送信/受領/解決/承認/task完了を別状態で保持する。実送信は独立逆辺の適格性が別途必要。"
+      ],
+      "return_owners": [
+        "feedback-endpoint-owner",
+        "connection-contract-owner",
+        "resolution-owner"
+      ],
+      "held_behavior": "未送信relationと入力不足を残し、業務解決は未成立。",
+      "required_source_bindings": [
+        "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
+        "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+      ],
+      "candidate_effect": "none; actual operation count 0"
+    },
+    {
+      "id": "HELIXCONNECT-L4-009-F05",
+      "requirement_ref": "HELIXCONNECT-L3-009-F05",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F05",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-009-F05",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "bounded loopと既存policy",
+        "obligation": "loopを明示forward/feedback edge、既存retry/budget/termination参照、期限、終端route/ownerへ結ぶ。operation lineageと累積attemptを保持し、上限到達で未解決/理由を既存ownerへ返す。新上限/解決条件をCONNECTが作らない。",
+        "oracle_ref": "HELIXCONNECT-L10-009-F05"
+      },
+      "component": "bounded_loop_reader",
+      "input_roles": [
+        "forward_edge",
+        "feedback_edge",
+        "existing_retry_policy",
+        "existing_budget_policy",
+        "existing_termination_policy",
+        "expiry",
+        "terminal_route_owner",
+        "operation_lineage",
+        "cumulative_attempts",
+        "checkpoint"
+      ],
+      "rules": [
+        "既存適用policyの上限/期限/終端意味を参照し、CONNECTが固定上限や解決条件を作らない。",
+        "同一loopの累積と未完checkpointをsession変更後も保持する。上限到達は未解決/理由を元ownerへ返す。"
+      ],
+      "return_owners": [
+        "existing-policy-owner",
+        "existing-OS040-operation-owner"
+      ],
+      "held_behavior": "上限/期限到達または必要根拠不足なら追加attempt0、元未完/累積/routeを保持。",
+      "required_source_bindings": [
+        "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
+        "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+      ],
+      "candidate_effect": "none; actual operation count 0"
+    },
+    {
+      "id": "HELIXCONNECT-L4-009-F06",
+      "requirement_ref": "HELIXCONNECT-L3-009-F06",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F06",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-009-F06",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "初回送信の局所unknown",
+        "obligation": "初回送信のendpoint/connection identity/契約revision/適用authorityがmissing/unknown/stale/conflictなら当該辺をeligibleにしない。feedback reason/loop policy/parallel join/ACK欠落だけでは独立して適格な初回送信を止めない。",
+        "oracle_ref": "HELIXCONNECT-L10-009-F06"
+      },
+      "component": "initial_edge_reader",
+      "input_roles": [
+        "endpoint",
+        "connection_identity",
+        "contract_revision",
+        "operation_authority"
+      ],
+      "rules": [
+        "送信する辺の必要入力だけで当該初回候補を判定する。",
+        "feedback reason/loop policy/join/ACKの不足だけで独立して適格な初回辺を拒否しない。"
+      ],
+      "return_owners": [
+        "endpoint-owner",
+        "connection-contract-owner",
+        "HELIX-SECURITY"
+      ],
+      "held_behavior": "当該必須入力不足で当該初回候補だけ保留。後続phaseの不足は別に残す。",
+      "required_source_bindings": [
+        "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
+        "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+      ],
+      "candidate_effect": "none; actual operation count 0"
+    },
+    {
+      "id": "HELIXCONNECT-L4-009-F07",
+      "requirement_ref": "HELIXCONNECT-L3-009-F07",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F07",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-009-F07",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "feedback送信だけの保留",
+        "obligation": "feedback操作のreason/source/target identity/契約revision/独立逆方向connection/authorityが不足ならfeedback送信だけを保留し、未送信return relationとmissing input/ownerを残す。初回送信不成立や解決済みに読み替えない。",
+        "oracle_ref": "HELIXCONNECT-L10-009-F07"
+      },
+      "component": "feedback_send_reader",
+      "input_roles": [
+        "reason_or_evidence_ref",
+        "source_identity",
+        "target_identity",
+        "contract_revision",
+        "independent_reverse_connection",
+        "feedback_operation_authority"
+      ],
+      "rules": [
+        "初回結果を保持し、逆方向の宣言/操作時許可を再利用可能な原根拠へ結ぶ。",
+        "不足はfeedback送信だけに作用し、未送信relationを解決済みへ丸めない。"
+      ],
+      "return_owners": [
+        "feedback-endpoint-owner",
+        "connection-contract-owner",
+        "HELIX-SECURITY"
+      ],
+      "held_behavior": "feedbackのみ未送信。原初回結果/未完と不足field/ownerを保持。",
+      "required_source_bindings": [
+        "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
+        "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+      ],
+      "candidate_effect": "none; actual operation count 0"
+    },
+    {
+      "id": "HELIXCONNECT-L4-009-F08",
+      "requirement_ref": "HELIXCONNECT-L3-009-F08",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F08",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-009-F08",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "loop追加retryだけの保留",
+        "obligation": "retry上限/budget/期限/停止時owner/既存termination policyがmissing/unknown/stale/conflictなら追加retryをせずloopを未解決で保留する。既に適格な初回辺の可否を遡って変えない。",
+        "oracle_ref": "HELIXCONNECT-L10-009-F08"
+      },
+      "component": "loop_retry_reader",
+      "input_roles": [
+        "retry_limit",
+        "budget",
+        "expiry",
+        "stop_route_owner",
+        "existing_termination_policy"
+      ],
+      "rules": [
+        "追加retryは当該loopの既存policyと原累積attemptに結ぶ。",
+        "不足や上限到達で追加0。初回結果を遡って変えず未解決を保持する。"
+      ],
+      "return_owners": [
+        "existing-policy-owner",
+        "termination-owner"
+      ],
+      "held_behavior": "追加retryのみ保留。元初回結果/累積/停止理由を保持。",
+      "required_source_bindings": [
+        "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
+        "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+      ],
+      "candidate_effect": "none; actual operation count 0"
+    },
+    {
+      "id": "HELIXCONNECT-L4-009-F09",
+      "requirement_ref": "HELIXCONNECT-L3-009-F09",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F09",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-009-F09",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "joinだけのunknown",
+        "obligation": "parallelの宣言joinがmissing/unknown/stale/conflictならjoin/composite完了だけを保留する。各辺の送信適格性は独立判定する。",
+        "oracle_ref": "HELIXCONNECT-L10-009-F09"
+      },
+      "component": "join_only_reader",
+      "input_roles": [
+        "declared_join",
+        "join_contract_revision",
+        "needed_join_result_set"
+      ],
+      "rules": [
+        "joinのmissing/unknown/stale/conflictはcomposite完了の不足として残す。",
+        "辺の適格性を独立判定し、join不足だけを一括停止の根拠にしない。"
+      ],
+      "return_owners": [
+        "composite-join-owner"
+      ],
+      "held_behavior": "join/compositeだけ未成立。独立適格辺と個別結果を保持。",
+      "required_source_bindings": [
+        "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
+        "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+      ],
+      "candidate_effect": "none; actual operation count 0"
+    },
+    {
+      "id": "HELIXCONNECT-L4-009-F10",
+      "requirement_ref": "HELIXCONNECT-L3-009-F10",
+      "system_oracle_ref": "HELIXCONNECT-L10-009-F10",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-009-F10",
+        "parent": "HELIXCONNECT-L2-009",
+        "title": "ACK待ちと完了",
+        "obligation": "ACK未着またはoperation/connection/contract revision対応が不足なら送信attemptをACK待ちとして保持し、受領/operation/composite完了を成立させない。送信attemptを消したり未確認を成功へ丸めない。",
+        "oracle_ref": "HELIXCONNECT-L10-009-F10"
+      },
+      "component": "ack_binding_reader",
+      "input_roles": [
+        "original_attempt",
+        "ack_receipt",
+        "ack_operation_identity",
+        "ack_connection_identity",
+        "ack_contract_revision"
+      ],
+      "rules": [
+        "原送信attemptとACKのoperation/connection/版を結び、未着/別operation/別版を受領根拠にしない。",
+        "ACK確認とoperation/composite完了を分け、適用契約の他条件をACKだけで成立させない。"
+      ],
+      "return_owners": [
+        "receipt-endpoint-owner",
+        "connection-contract-owner"
+      ],
+      "held_behavior": "ACK待ちのattemptを保持。受領/operation/composite完了は未成立。",
+      "required_source_bindings": [
+        "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
+        "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+      ],
+      "candidate_effect": "none; actual operation count 0"
+    }
+  ]
+}
