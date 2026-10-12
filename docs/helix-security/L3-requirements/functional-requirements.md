@@ -1,6 +1,6 @@
 # HELIXSECURITY-L3-PREREQUISITE-FUNCTIONAL
 
-生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `f53b5a59996e6cf57c8ccc7b934c167f2532bf6a8f4d81f1e5275ec043010639`。JSONから再生成する。
+生成view。意味正本: `functional-requirements.json`。JSON SHA-256: `84392ce194417297443fb499816580a708d748f73dadbb6f8f5f8947f7455aa7`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -239,7 +239,7 @@
 ## HELIXSECURITY-L3-013-F01 工程ごとのidentity chain
 
 **parent**: HELIXSECURITY-L2-013
-**obligation**: 生成/build/validation/配布/実行の各artifact identity/version/digest/provenance/producerと工程traceを同対象revision/scopeへ結ぶ。選択した実行経路のbuild/検証/実起動artifactが同じ鎖であることを照合し、未選択の配布/release工程は未発生とする。
+**obligation**: code/package/model/config/security policy等のartifact対象種を個別に識別し、列挙外・分類不能な種はunknownに保持する。各種の生成/build/validation/配布/実行の各artifact identity/version/digest/provenance/producerと工程traceを同対象revision/scopeへ結ぶ。選択した実行経路のbuild/検証/実起動artifactが同じ鎖であることを照合し、未選択の配布/release工程は未発生とする。
 **oracle_ref**: HELIXSECURITY-L10-013-F01
 
 ## HELIXSECURITY-L3-013-F02 不一致・missing stepと昇格停止

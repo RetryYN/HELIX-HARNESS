@@ -1,6 +1,6 @@
 # HELIXSECURITY-L10-PREREQUISITE-NFR
 
-生成view。意味正本: `nfr-verification.json`。JSON SHA-256: `5c38c5dd82dee0e39b4dc37ed4d76709f5ff4c994d15816a4099e9fd8711d0b1`。JSONから再生成する。
+生成view。意味正本: `nfr-verification.json`。JSON SHA-256: `d508d02126562a73e662ea11a5bdf9a40eea40cfe874511b26f2d701cd032631`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -91,8 +91,8 @@
 
 **parent**: HELIXSECURITY-L2-013
 **requirement_ref**: HELIXSECURITY-L3-013-N01
-**positive_input**: 未見artifactの途中差替えと同artifactを比較する。
-**expected_observation**: 差替えた工程と未観測工程を示せる。
-**negative_input**: 別binary実行を同HEAD結果化、未配布をrelease合格。
-**failure_observation**: 当該鎖/昇格を未完に保ち影響工程へ戻す。
+**positive_input**: 各artifact対象種を保持した集合と、未見artifactの途中差替えと同artifactを比較する。
+**expected_observation**: 対象種縮小による欠落と、差替えた工程と未観測工程を示せる。
+**negative_input**: 別binary実行を同HEAD結果化、未配布をrelease合格。config/policyを対象集合から落とす、package鎖のみで全対象種の一致を主張。
+**failure_observation**: 欠落対象種と当該鎖を未完に保ち、当該鎖/昇格を未完に保ち影響工程へ戻す。
 **execution_state**: not_executed

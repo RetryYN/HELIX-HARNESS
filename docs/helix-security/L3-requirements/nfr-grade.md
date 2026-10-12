@@ -1,6 +1,6 @@
 # HELIXSECURITY-L3-PREREQUISITE-NFR
 
-生成view。意味正本: `nfr-grade.json`。JSON SHA-256: `4aa5eb54e03db72fb9593dbbce7749d0a9d0c69ae487bb06725952212dff9724`。JSONから再生成する。
+生成view。意味正本: `nfr-grade.json`。JSON SHA-256: `eed3e27aec34d76b4979cbbee769fe7fec05f0a694b189426496a068fd9c452e`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -65,5 +65,5 @@
 ## HELIXSECURITY-L3-013-N01 未見artifactと鎖の欠落
 
 **parent**: HELIXSECURITY-L2-013
-**obligation**: 未見revision/producer/環境のartifactで一段差替え/欠落/別digestを照合し、件数/hash欄の存在だけを全鎖一致にしない。初回の限定build/実行証拠を正式release/配布の成立へ外挿しない。
+**obligation**: code/package/model/config/security policy等の対象種集合を縮小し、configやpolicyを鎖の対象外にした欠陥を工程の差替え/欠落とは別に検出する。未見revision/producer/環境のartifactで一段差替え/欠落/別digestを照合し、件数/hash欄の存在だけを全鎖一致にしない。初回の限定build/実行証拠を正式release/配布の成立へ外挿しない。
 **oracle_ref**: HELIXSECURITY-L10-013-N01

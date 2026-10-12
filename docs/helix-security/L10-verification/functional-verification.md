@@ -1,6 +1,6 @@
 # HELIXSECURITY-L10-PREREQUISITE-FUNCTIONAL
 
-生成view。意味正本: `functional-verification.json`。JSON SHA-256: `fd222ad7a3d6b4bbc3e0f5f1cad44222e1e92e5eeb10ccd01dd8d924f25d398c`。JSONから再生成する。
+生成view。意味正本: `functional-verification.json`。JSON SHA-256: `256ca8a0229f65dd1694e56e80469b855816ccfe66fb4d01a20cde94f1301de1`。JSONから再生成する。
 
 | 項目 | 内容 |
 |---|---|
@@ -381,10 +381,10 @@
 
 **parent**: HELIXSECURITY-L2-013
 **requirement_ref**: HELIXSECURITY-L3-013-F01
-**positive_input**: build→validation→executeの同一鎖と、配布未選択を比較する。
-**expected_observation**: 選択工程の同artifactと未発生工程を区別して辿れる。
-**negative_input**: CIと実起動で別artifact、producer/工程欠落、未配布を配布済みにする。
-**failure_observation**: 対象鎖の不足を未完にし該当工程ownerへ返す。
+**positive_input**: code/package/model/config/security policy等の各対象種と、build→validation→executeの同一鎖と、配布未選択を比較する。
+**expected_observation**: 対象種ごとの鎖と分類不能な対象を区別し、選択工程の同artifactと未発生工程を区別して辿れる。
+**negative_input**: CIと実起動で別artifact、producer/工程欠落、未配布を配布済みにする。config/security policyを鎖の対象外にする、packageの鎖だけで全対象種一致を主張、未分類種を既知種へ補完。
+**failure_observation**: 不足対象種をunknown/未完に保ち、対象鎖の不足を未完にし該当工程ownerへ返す。
 **execution_state**: not_executed
 
 ## HELIXSECURITY-L10-013-F02 不一致・missing stepと昇格停止

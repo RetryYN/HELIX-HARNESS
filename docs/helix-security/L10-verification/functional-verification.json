@@ -611,10 +611,10 @@
       "parent": "HELIXSECURITY-L2-013",
       "title": "工程ごとのidentity chain",
       "requirement_ref": "HELIXSECURITY-L3-013-F01",
-      "positive_input": "build→validation→executeの同一鎖と、配布未選択を比較する。",
-      "expected_observation": "選択工程の同artifactと未発生工程を区別して辿れる。",
-      "negative_input": "CIと実起動で別artifact、producer/工程欠落、未配布を配布済みにする。",
-      "failure_observation": "対象鎖の不足を未完にし該当工程ownerへ返す。",
+      "positive_input": "code/package/model/config/security policy等の各対象種と、build→validation→executeの同一鎖と、配布未選択を比較する。",
+      "expected_observation": "対象種ごとの鎖と分類不能な対象を区別し、選択工程の同artifactと未発生工程を区別して辿れる。",
+      "negative_input": "CIと実起動で別artifact、producer/工程欠落、未配布を配布済みにする。config/security policyを鎖の対象外にする、packageの鎖だけで全対象種一致を主張、未分類種を既知種へ補完。",
+      "failure_observation": "不足対象種をunknown/未完に保ち、対象鎖の不足を未完にし該当工程ownerへ返す。",
       "execution_state": "not_executed"
     },
     {

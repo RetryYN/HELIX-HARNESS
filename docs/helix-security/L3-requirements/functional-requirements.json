@@ -470,7 +470,7 @@
       "id": "HELIXSECURITY-L3-013-F01",
       "parent": "HELIXSECURITY-L2-013",
       "title": "工程ごとのidentity chain",
-      "obligation": "生成/build/validation/配布/実行の各artifact identity/version/digest/provenance/producerと工程traceを同対象revision/scopeへ結ぶ。選択した実行経路のbuild/検証/実起動artifactが同じ鎖であることを照合し、未選択の配布/release工程は未発生とする。",
+      "obligation": "code/package/model/config/security policy等のartifact対象種を個別に識別し、列挙外・分類不能な種はunknownに保持する。各種の生成/build/validation/配布/実行の各artifact identity/version/digest/provenance/producerと工程traceを同対象revision/scopeへ結ぶ。選択した実行経路のbuild/検証/実起動artifactが同じ鎖であることを照合し、未選択の配布/release工程は未発生とする。",
       "oracle_ref": "HELIXSECURITY-L10-013-F01"
     },
     {
