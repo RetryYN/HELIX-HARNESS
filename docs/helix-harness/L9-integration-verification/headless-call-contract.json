@@ -1,0 +1,428 @@
+{
+  "document_id": "HARNESS-L9-011-HEADLESS-CALL-CONTRACT",
+  "layer": "L9",
+  "paired_document": "docs/helix-harness/L4-basic-design/headless-call-contract.json",
+  "parent": "HARNESS-L2-011",
+  "status": "candidate_pending_independent_review",
+  "source_main": "f07c93939f069ec35e8256693f6cb64b107b8986",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-prerequisite-contracts-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/command-meaning-identity.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "b50bcc43fc293e0678a7f9f59b2b4bd05ecfffecd4e47cca657cfd85f88be90a"
+    },
+    {
+      "path": "docs/governance/template-work-allocation.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0"
+    }
+  ],
+  "verification_scope": "011一親の6義務の境界照合。L5/L8の局所判定、OS/SEC/INFRA/CONNECT実接続、430対総合、PO L11はそれぞれ別証拠。",
+  "cases": [
+    {
+      "id": "HARNESS-L9-011-F01",
+      "design_ref": "HARNESS-L4-011-F01",
+      "requirement_ref": "HARNESS-L3-011-F01",
+      "system_oracle_ref": "HARNESS-L10-011-F01",
+      "positive_fixture": "同じpack P@p1・能力A・入力I@i1をGUIなしconsumer C1と別rootのconsumer C2へ渡す。両者とも宣言済み依存だけを提供する。",
+      "expected_observation": [
+        "入力revision/scopeと出力の意味を照合して一致する。presentationや物理path差を意味差へしない。",
+        "GUI/provider/CI不在だけで契約利用を失敗させない。必要依存の未提供はF02で不足として返す。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L9-011-F01-NEG-01",
+          "change": "画面widgetのglobal値を隠れた入力にする",
+          "expected_classification": "hidden_input",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F01-NEG-02",
+          "change": "固定個人pathから宣言外のdataを読む",
+          "expected_classification": "hidden_input",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F01-NEG-03",
+          "change": "能力Aに不要な特定AI provider必須",
+          "expected_classification": "hidden_dependency",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F01-NEG-04",
+          "change": "特定CI製品がなければ純粋な能力Aを呼べない",
+          "expected_classification": "hidden_dependency",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F01-NEG-05",
+          "change": "C2だけ旧DBを利用し出力差を隠す",
+          "expected_classification": "meaning_mismatch",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F01-NEG-06",
+          "change": "この一般呼出しからWeb tenant job方式を確定する",
+          "expected_classification": "scope_expansion",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-011-F02",
+      "design_ref": "HARNESS-L4-011-F02",
+      "requirement_ref": "HARNESS-L3-011-F02",
+      "system_oracle_ref": "HARNESS-L10-011-F02",
+      "positive_fixture": "P@p1がA/c1とD@d1を必要とする。mapping K@k1でc1/d1の適合が明示され、両consumerで実版を照合できる。",
+      "expected_observation": [
+        "requested/resolved/observed各revisionとmapping根拠が辿れる。宣言された互換範囲内だけ利用可能候補になる。",
+        "不足、不一致、未対応、staleは対象項目とownerを返し実dispatch前に利用保留。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L9-011-F02-NEG-01",
+          "change": "呼出し版をversion_target=1.0で代用",
+          "expected_classification": "axis_substitution",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F02-NEG-02",
+          "change": "未知contractをlatestへ読み替え",
+          "expected_classification": "unsupported_contract",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F02-NEG-03",
+          "change": "必要依存Dの観測欠落を空集合へする",
+          "expected_classification": "dependency_unknown",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F02-NEG-04",
+          "change": "依存D@d2をmappingなしでcompatibleとする",
+          "expected_classification": "dependency_mismatch",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F02-NEG-05",
+          "change": "前の構成で得た互換結果を現構成へ継承",
+          "expected_classification": "stale_binding",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F02-NEG-06",
+          "change": "能力名Aを類似名Bへ黙ってfallback",
+          "expected_classification": "capability_mismatch",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-011-F03",
+      "design_ref": "HARNESS-L4-011-F03",
+      "requirement_ref": "HARNESS-L3-011-F03",
+      "system_oracle_ref": "HARNESS-L10-011-F03",
+      "positive_fixture": "caller X・project P・tenant T・環境E・資源R・action readに限定した有効owner判断で、許可R内の読み取りを行う。",
+      "expected_observation": [
+        "宣言scopeとauthority判断と実アクセス対象が同じ束縛に一致し、R外アクセスが無いことを独立観測できる。",
+        "範囲外callはdispatch前に拒否され、callback countだけでなく資源before/afterとアクセス記録を照合する。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L9-011-F03-NEG-01",
+          "change": "未提供の権限を暗黙に追加",
+          "expected_classification": "authority_missing",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F03-NEG-02",
+          "change": "別tenantの資源を使用",
+          "expected_classification": "isolation_mismatch",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F03-NEG-03",
+          "change": "HELIX本体の鍵/稼働DBを必須で渡す",
+          "expected_classification": "internal_shared_dependency",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F03-NEG-04",
+          "change": "自己発行のallow objectだけで実行",
+          "expected_classification": "authority_unverified",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F03-NEG-05",
+          "change": "preflight後に失効した判断をdispatchで再照合しない",
+          "expected_classification": "authority_stale",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F03-NEG-06",
+          "change": "拒否結果でも書き込みを実行し返却で隠す",
+          "expected_classification": "unauthorized_effect",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-011-F04",
+      "design_ref": "HARNESS-L4-011-F04",
+      "requirement_ref": "HARNESS-L3-011-F04",
+      "system_oracle_ref": "HARNESS-L10-011-F04",
+      "positive_fixture": "call C、attempt a1、correlation Q、入力I@i1・scope S・構成G1の正常/失敗/停止を個別episodeとして渡す。",
+      "expected_observation": [
+        "進行のendedと結果success/failure/partial/unknownを独立に辿り、同call同attemptの証拠で照合する。",
+        "未観測は未観測として返し、caller保存成立は別receiptがある場合だけ参照する。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L9-011-F04-NEG-01",
+          "change": "endedをsuccessへ変換",
+          "expected_classification": "progress_result_conflation",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F04-NEG-02",
+          "change": "別call/attemptのgreen証拠を流用",
+          "expected_classification": "evidence_cross_binding",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F04-NEG-03",
+          "change": "correlation_id欠落を生成済み扱い",
+          "expected_classification": "correlation_missing",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F04-NEG-04",
+          "change": "同correlationでも別scopeの証拠を混ぜる",
+          "expected_classification": "evidence_cross_binding",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F04-NEG-05",
+          "change": "表示成功を永続保存成功とする",
+          "expected_classification": "unproven_persistence",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F04-NEG-06",
+          "change": "exit0かつ空出力を意味成功とする",
+          "expected_classification": "result_unproven",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-011-F05",
+      "design_ref": "HARNESS-L4-011-F05",
+      "requirement_ref": "HARNESS-L3-011-F05",
+      "system_oracle_ref": "HARNESS-L10-011-F05",
+      "positive_fixture": "step s1完了receipt後にs2手前で停止。記録済みcheckpoint CPと同キーKで、現authority/期限を確かめ、s1を重複させず未実施s2から新attemptを開始する。期限切れは別case。",
+      "expected_observation": [
+        "元callと新attempt、既実施/未実施/未確認集合、停止要求と実停止、checkpoint保存receiptが辿れる。",
+        "期限切れは未完、unknown作用は再開保留。同キー異内容/scopeはconflictで旧記録を変更しない。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L9-011-F05-NEG-01",
+          "change": "記録済みcheckpointなしで再開成功",
+          "expected_classification": "checkpoint_missing",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F05-NEG-02",
+          "change": "同キーで別scope/内容の途中状態を使う",
+          "expected_classification": "resume_identity_conflict",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F05-NEG-03",
+          "change": "期限切れをsuccessへ変換",
+          "expected_classification": "expiry_success",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F05-NEG-04",
+          "change": "cancel送信ACKだけで実停止とする",
+          "expected_classification": "stop_unobserved",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F05-NEG-05",
+          "change": "timeoutで未確認のs1を再実行",
+          "expected_classification": "duplicate_effect_risk",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F05-NEG-06",
+          "change": "expired元deadlineを無断延長",
+          "expected_classification": "deadline_substitution",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F05-NEG-07",
+          "change": "同じ意味の再送だけでOS exactly-onceを主張",
+          "expected_classification": "unproven_execution",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-F05-NEG-08",
+          "change": "resume時に別構成版へ黙って切り替える",
+          "expected_classification": "configuration_drift",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-011-N01",
+      "design_ref": "HARNESS-L4-011-N01",
+      "requirement_ref": "HARNESS-L3-011-N01",
+      "system_oracle_ref": "HARNESS-L10-011-N01",
+      "positive_fixture": "同fixtureを正常/拒否/停止/期限切れ/再開として実行する設計。対象Rのbefore/afterとアクセス記録、出力、checkpoint保存、作用receiptを同callへ結ぶ。",
+      "expected_observation": [
+        "許可範囲内の作用と拒否時の未作用を実資源から照合できる。観測範囲・除外・未観測を明示する。",
+        "局所green/文書hashを実接続/総合/利用者受入へ昇格しない。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L9-011-N01-NEG-01",
+          "change": "契約JSONのhashだけで隔離成立",
+          "expected_classification": "observation_missing",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-N01-NEG-02",
+          "change": "mock callback0だけで実資源未作用を証明",
+          "expected_classification": "observation_insufficient",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-N01-NEG-03",
+          "change": "2/3作用完了を全体成功",
+          "expected_classification": "partial_success",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-N01-NEG-04",
+          "change": "観測できない資源を未作用扱い",
+          "expected_classification": "absence_blindness",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-N01-NEG-05",
+          "change": "下位greenだけで冪等再開成立",
+          "expected_classification": "observation_insufficient",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        },
+        {
+          "id": "HARNESS-L9-011-N01-NEG-06",
+          "change": "観測対象集合から失敗資源を除いて合格",
+          "expected_classification": "coverage_shrink",
+          "expected": "対象call/input revision/scopeと不足・差異・owner・戻し先を保持し、正常fixtureと同じ成立/成功結果にしない。元記録は改変しない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    }
+  ],
+  "evidence_contract": {
+    "binding": [
+      "design/test oracle revision",
+      "pack/capability/contract/依存/構成のrequested/resolved/observed版",
+      "call/attempt/correlation/input revision/project/tenant/環境",
+      "authority判断owner/ref/失効観測",
+      "operation deadline/clock観測/stop要求と実停止",
+      "原checkpointと保存receipt/既実施・未実施・未観測集合",
+      "実入出力/アクセス/資源before-after/作用receipt/観測被覆",
+      "原状態・effective結果・finding/owner/Backflow"
+    ],
+    "actual_boundary": "headlessと別rootのconsumer、実executor、実資源、実checkpoint/保存、権限強制で正例と各独立負例を観測する。mock局所結果/宣言hashで代替しない。",
+    "control": "停止/期限は作用前・途中・作用後回収前へ個別に注入し、局所成功receiptとcall未完を区別。元証拠はappend-onlyのowner記録を参照し上書きしない。",
+    "unknown": "未観測集合は明示し対象利用未証明へ残す。機密値・credential・生payload・個人絶対pathは観測公開へ写さない。"
+  },
+  "completion": {
+    "execution_state": "not_executed",
+    "design_static": "6組のtrace/逆参照/入力意味/旧比較/各負例を独立reviewで確認する。件数だけでは質を証明しない。",
+    "runtime": "各正例と負例が実境界で観測され、必要scope被覆・未作用/既作用/再開が独立証拠で一致した対象範囲だけ成立とする。",
+    "not_proven": [
+      "実transport/型schema",
+      "認可/隔離の実強制",
+      "停止/冪等再開の実効果",
+      "checkpoint保存",
+      "新世代CI",
+      "総合検証/PO受入/release/deploy"
+    ]
+  }
+}
