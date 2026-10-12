@@ -582,11 +582,15 @@
       "basic_calls": 38,
       "typed_expected_cells": 190,
       "nested_target_cells": 1900,
-      "state": "draft_basic_typed_cases_independent_qualification_pending"
+      "state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
+      "qualification_source_groups": 128,
+      "qualification_baselines": 3,
+      "qualification_single_source_examples": 1536,
+      "qualification_mixed_examples": 4
     }
   },
   "pending": [
-    "全7関数のbasic typed例とF03/F04/F05独立資格例を起草済み。N01の独立qualification、全関数の追加内容/組合せ/返却例・実bindingは未完",
+    "全7関数のbasic typed例と独立資格例を起草済み。全関数の必要集合/追加内容/組合せ/返却先実binding・独立reviewと、全限定範囲の基本/詳細設計閉包は未完",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -3069,7 +3073,7 @@
         "candidateを原資料と別に比較し、設計→実装/観測/運用、推定→修復、参照→実認可、数値根拠なし目標への差分を当該fieldで返す。未決は当該製品要求/Release owner、方針/認可はSECURITY、割当/運転はOSへ不足として返す。",
         "関数は実security操作・認可生成・状態更新・完了を実施しない。actual_security_operation/actual_operation_approved/actual_completionはfalse、operation_effectはnone。"
       ],
-      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "detail_state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
       "quality_detail": {
         "quality_stages": [
           "designed",
@@ -3108,7 +3112,2926 @@
         ],
         "healthy_projection_rule": "basic healthy=falseは成立を主張できないことの否定例。typed結果では未評価/未観測/適用unknownをunknown/nullにして、根拠のない不健康確定も生成しない。原basic期待は無改変で参照/hash束縛する。",
         "legacy_preservation": "旧infrastructure-operations-quality-l1-request-candidates:7–13の状態分離/未決数値とsecurity-engagement-authority-requests:14–29の既存scope/原finding段階を意味再導出する。旧CI/runtime/包括Security許可や追加数値を採用しない。",
-        "source_binding_limit": "合成例の内部部分比較案。実source/owner/authority資格、正式schema/codec、実観測/実診断/認可の成立ではない。"
+        "source_binding_limit": "合成例の内部部分比較案。実source/owner/authority資格、正式schema/codec、実観測/実診断/認可の成立ではない。",
+        "qualification_dependencies": {
+          "carrier": {
+            "material_locator": [],
+            "affected_partial_paths": [
+              [
+                "target_results"
+              ]
+            ],
+            "qualification_role": "target_membership"
+          },
+          "target_membership": {
+            "material_locator": [
+              "targets"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results"
+              ]
+            ],
+            "qualification_role": "target_membership"
+          },
+          "P_context": {
+            "material_locator": [
+              "targets",
+              0,
+              "target"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "scope"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "security_authority_owner"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "ticket_operation_owner"
+              ]
+            ],
+            "qualification_role": "row_context"
+          },
+          "P_quality_applicability_membership": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "P_quality_applicability_availability_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "availability"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_availability_basis": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "availability",
+              "basis"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_availability_status": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "availability",
+              "status"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_availability_owner": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "availability",
+              "owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_availability_reason": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "availability",
+              "reason"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_applicability",
+                "availability",
+                "status"
+              ],
+              "equals": "not_applicable"
+            }
+          },
+          "P_quality_applicability_latency_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "latency"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_latency_basis": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "latency",
+              "basis"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_latency_status": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "latency",
+              "status"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_latency_owner": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "latency",
+              "owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_latency_reason": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "latency",
+              "reason"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_applicability",
+                "latency",
+                "status"
+              ],
+              "equals": "not_applicable"
+            }
+          },
+          "P_quality_evidence_membership": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "P_quality_evidence_designed_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "designed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_evidence_designed_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "designed",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "designed"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_quality_evidence_designed_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "designed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "designed"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_quality_evidence_implemented_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "implemented"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_evidence_implemented_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "implemented",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "implemented"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_quality_evidence_implemented_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "implemented"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "implemented"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_quality_evidence_verified_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_evidence_verified_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "verified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_quality_evidence_verified_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_quality_evidence_observed_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "observed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_evidence_observed_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "observed",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "observed"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_quality_evidence_observed_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "observed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "observed"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_quality_evidence_operated_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_evidence_operated_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "operated",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_quality_evidence_operated_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_membership": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "P_finding_evidence_inferred_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "inferred"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_inferred_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "inferred",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "inferred"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_inferred_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "inferred"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "inferred"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_reproduced_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reproduced"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_reproduced_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reproduced",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "reproduced"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_reproduced_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reproduced"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "reproduced"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_verified_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_verified_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "verified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_verified_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_repaired_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "repaired"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_repaired_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "repaired",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "repaired"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_repaired_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "repaired"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "repaired"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_reverified_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reverified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_reverified_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reverified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "reverified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_reverified_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reverified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "reverified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_operated_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_operated_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "operated",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_operated_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_numeric_targets_membership": {
+            "material_locator": [
+              "targets",
+              0,
+              "numeric_targets"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "P_numeric_targets_SLO_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "numeric_targets",
+              "SLO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support",
+                "value",
+                "SLO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_numeric_targets_RTO_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "numeric_targets",
+              "RTO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support",
+                "value",
+                "RTO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_numeric_targets_RPO_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "numeric_targets",
+              "RPO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support",
+                "value",
+                "RPO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_numeric_targets_retention_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "numeric_targets",
+              "retention"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support",
+                "value",
+                "retention"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_protected_asset": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "protected_asset"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_data_scope": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "data_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_operation": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "operation"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_environment": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "environment"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_network_scope": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "network_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_severity": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "severity"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_disclosure": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "disclosure"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_policy_ref": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "policy_ref"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_authority_ref": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "authority_ref"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_ticket_owner": {
+            "material_locator": [
+              "targets",
+              0,
+              "ticket_operation_owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "ticket_operation_owner"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_context": {
+            "material_locator": [
+              "targets",
+              1,
+              "target"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "scope"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "security_authority_owner"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "ticket_operation_owner"
+              ]
+            ],
+            "qualification_role": "row_context"
+          },
+          "Q_quality_applicability_membership": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "Q_quality_applicability_availability_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "availability"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_availability_basis": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "availability",
+              "basis"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_availability_status": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "availability",
+              "status"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_availability_owner": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "availability",
+              "owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_availability_reason": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "availability",
+              "reason"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_applicability",
+                "availability",
+                "status"
+              ],
+              "equals": "not_applicable"
+            }
+          },
+          "Q_quality_applicability_latency_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "latency"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_latency_basis": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "latency",
+              "basis"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_latency_status": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "latency",
+              "status"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_latency_owner": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "latency",
+              "owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_latency_reason": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "latency",
+              "reason"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_applicability",
+                "latency",
+                "status"
+              ],
+              "equals": "not_applicable"
+            }
+          },
+          "Q_quality_evidence_membership": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "Q_quality_evidence_designed_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "designed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_evidence_designed_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "designed",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "designed"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_quality_evidence_designed_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "designed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "designed"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_quality_evidence_implemented_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "implemented"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_evidence_implemented_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "implemented",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "implemented"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_quality_evidence_implemented_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "implemented"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "implemented"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_quality_evidence_verified_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_evidence_verified_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "verified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_quality_evidence_verified_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_quality_evidence_observed_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "observed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_evidence_observed_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "observed",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "observed"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_quality_evidence_observed_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "observed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "observed"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_quality_evidence_operated_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_evidence_operated_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "operated",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_quality_evidence_operated_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_membership": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "Q_finding_evidence_inferred_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "inferred"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_inferred_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "inferred",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "inferred"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_inferred_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "inferred"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "inferred"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_reproduced_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reproduced"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_reproduced_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reproduced",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "reproduced"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_reproduced_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reproduced"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "reproduced"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_verified_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_verified_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "verified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_verified_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_repaired_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "repaired"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_repaired_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "repaired",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "repaired"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_repaired_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "repaired"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "repaired"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_reverified_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reverified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_reverified_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reverified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "reverified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_reverified_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reverified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "reverified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_operated_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_operated_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "operated",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_operated_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_numeric_targets_membership": {
+            "material_locator": [
+              "targets",
+              1,
+              "numeric_targets"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "Q_numeric_targets_SLO_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "numeric_targets",
+              "SLO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support",
+                "value",
+                "SLO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_numeric_targets_RTO_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "numeric_targets",
+              "RTO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support",
+                "value",
+                "RTO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_numeric_targets_RPO_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "numeric_targets",
+              "RPO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support",
+                "value",
+                "RPO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_numeric_targets_retention_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "numeric_targets",
+              "retention"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support",
+                "value",
+                "retention"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_protected_asset": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "protected_asset"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_data_scope": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "data_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_operation": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "operation"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_environment": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "environment"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_network_scope": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "network_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_severity": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "severity"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_disclosure": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "disclosure"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_policy_ref": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "policy_ref"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_authority_ref": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "authority_ref"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_ticket_owner": {
+            "material_locator": [
+              "targets",
+              1,
+              "ticket_operation_owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "ticket_operation_owner"
+              ]
+            ],
+            "qualification_role": "direct"
+          }
+        },
+        "qualification_rule": "各対象Context/領域membership/原適用・N/A根拠、品質5段とfinding6段のroot/binding/原内容、各数値根拠とsecurity7軸/policy/authorityを個別SourceCellとして照合する。未観測nullと未資格sourceを区別し、無関係targetを保持する。全域のhealthyや操作許可/数値既定を部分的な原資料から生成しない。"
       }
     }
   ]
