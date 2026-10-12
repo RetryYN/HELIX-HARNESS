@@ -397,6 +397,10 @@
         {
           "code": "freeze_as_red",
           "meaning": "定義凍結は実Redではない。"
+        },
+        {
+          "code": "freeze_timestamp_only",
+          "meaning": "作成時刻だけが本体変更より前でも対象revision/設計/test/oracle/期待結果/凍結順序の原記録なし。凍結不成立を当該条件に保持。"
         }
       ],
       "effect": "normative_contract_only_no_execution"
