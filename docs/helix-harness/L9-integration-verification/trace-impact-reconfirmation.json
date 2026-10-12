@@ -150,7 +150,13 @@
           "text": ""
         }
       ],
-      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "locator_correction": {
+        "upstream_locator_end": 19,
+        "actual_file_end": 16,
+        "meaning_change": false,
+        "note": "不存在の17〜19行を引用しない。004承認元のlegacy locatorは変更せず本設計の引用範囲を実在行に限定。"
+      }
     },
     {
       "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
@@ -311,7 +317,7 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "全7契約の具体的な正常/負例・原資料bytes・期待部分結果",
+    "F04の具体的分割/欠落/重複/生存先/判断revision/内容比較例を起草。残る6契約の正常/負例と独立原資料bytesを作成する。",
     "未見relation/無損失partition/再利用不変条件の内容比較と静的照合",
     "003未統合基本設計と後続ownerのexact binding",
     "独立exact HEAD意味reviewとmain admission",
@@ -439,9 +445,1839 @@
         "input": "当該ownerの独立原資料と提出候補を同scope/revisionへ結ぶ",
         "comparison": "個別要求条件と原資料内容の対応、導出範囲、不足の部分保持を照合する",
         "reject": "原材料の欠落/unknown/矛盾/staleを件数・hash・旧graph・CI成功で相殺する接続",
-        "effect": "照合結果は実operation/authority/成立状態を生成しない。"
+        "effect": "照合結果は実operation/authority/成立状態を生成しない。",
+        "scope_limit": "選択population全体の論理分割と、未選択source/4020資産/旧要求全体の移管を区別する。合成normalは実判断資格や移管完了を生成しない。"
       },
-      "fixture_state": "not_authored"
+      "fixture_state": "draft_concrete_fixtures_pending_semantic_review",
+      "normal_cases": [
+        {
+          "id": "H004-F04-NORMAL",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "41cee121b164b8e4a316c843561d85fc6554b1a6b340c3e372782bd49909ee91",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H004-F04-NORMAL-RETIRE-REFERENCE",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-NORMAL-RETIRE-REFERENCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-NORMAL-RETIRE-REFERENCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"retire\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_retire\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"retire\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "583221a511480962b2028d15205c53e29f65935f1a434c538d0a2ff3868a3c09",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        }
+      ],
+      "negative_cases": [
+        {
+          "id": "H004-F04-UNACCOUNTED",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-UNACCOUNTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-UNACCOUNTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "ee290b72798a564b227a5333a45810fdd7070579e52f58eeb25f6152c3c2aba0",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [
+              "A2"
+            ],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "missing",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "一atomが未計上でも件数/digest/receiptの自己申告でno_lossにしない。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "partition",
+              "pending"
+            ],
+            "before": [
+              {
+                "atom_id": "A2",
+                "source_ref": {
+                  "identity": "SOURCE-ATOMS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "independent-source-owner"
+                },
+                "source_sha256": "2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272",
+                "destination_ref": {
+                  "identity": "LIVE-CANDIDATE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "candidate-owner"
+                },
+                "destination_raw_utf8": "未観測はunknownとして保持する。",
+                "destination_sha256": "2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272"
+              }
+            ],
+            "after": []
+          }
+        },
+        {
+          "id": "H004-F04-DUPLICATE",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-DUPLICATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-DUPLICATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "e38490ccb6f7b5c04c0919d99067c67029e4b8b875853fc0dba21a9b1a62c7e9",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [
+              "A1"
+            ],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "conflict",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "同atomを保持と保留へ重複配置して完全分割にしない。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "partition",
+              "retained"
+            ],
+            "before": [
+              {
+                "atom_id": "A1",
+                "source_ref": {
+                  "identity": "SOURCE-ATOMS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "independent-source-owner"
+                },
+                "source_sha256": "70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a",
+                "destination_ref": {
+                  "identity": "CURRENT-REQ",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "current-requirement-owner"
+                },
+                "destination_raw_utf8": "状態原記録はOSが所有する。",
+                "destination_sha256": "70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a"
+              }
+            ],
+            "after": [
+              {
+                "atom_id": "A1",
+                "source_ref": {
+                  "identity": "SOURCE-ATOMS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "independent-source-owner"
+                },
+                "source_sha256": "70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a",
+                "destination_ref": {
+                  "identity": "CURRENT-REQ",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "current-requirement-owner"
+                },
+                "destination_raw_utf8": "状態原記録はOSが所有する。",
+                "destination_sha256": "70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a"
+              },
+              {
+                "atom_id": "A1",
+                "source_ref": {
+                  "identity": "SOURCE-ATOMS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "independent-source-owner"
+                },
+                "source_sha256": "70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a",
+                "destination_ref": {
+                  "identity": "CURRENT-REQ",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "current-requirement-owner"
+                },
+                "destination_raw_utf8": "状態原記録はOSが所有する。",
+                "destination_sha256": "70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "H004-F04-DEAD-CANDIDATE",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-DEAD-CANDIDATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-DEAD-CANDIDATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"expired_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "c4f326787629450da05c244c52a7b915d66061b22983f43ac517793d64db4065",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [
+              "A2"
+            ],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "conflict",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "保留先は生存中候補を要し、失効した生存先を被覆に使わない。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "destination_records",
+              1,
+              "state"
+            ],
+            "before": "live_candidate",
+            "after": "expired_candidate"
+          }
+        },
+        {
+          "id": "H004-F04-DECISION-MISSING",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-DECISION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-DECISION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "155602fa26d9e67435973e9f52947360df319c98ee81bae12564d732fb2a8226",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [
+              "A3"
+            ],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "missing",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "意味変更には対象revision付き人の原判断が必要。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "human_decisions"
+            ],
+            "before": [
+              {
+                "ref": {
+                  "identity": "HUMAN-CHANGE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "human-decision-original-owner"
+                },
+                "kind": "human_meaning_change",
+                "source_ref": {
+                  "identity": "SOURCE-ATOMS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "independent-source-owner"
+                },
+                "source_atom": "A3",
+                "source_sha256": "3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328",
+                "target_ref": {
+                  "identity": "CHANGED-REQ",
+                  "revision": "fixture-r2",
+                  "scope": "PRODUCT-P",
+                  "owner": "requirement-owner"
+                },
+                "target_sha256": "266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c",
+                "outcome": "change",
+                "reason": "合成例でPort例外の置換を明示する",
+                "impact_scope": "PRODUCT-P",
+                "qualification": "synthetic_reference_not_actual_human_decision"
+              }
+            ],
+            "after": []
+          }
+        },
+        {
+          "id": "H004-F04-AI-AS-DECISION",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-AI-AS-DECISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-AI-AS-DECISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"AI\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "37df1e4c9618bdf519e69bcddd9922d76712300f46796e69bb83fde15a31f77e",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [
+              "A3"
+            ],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "conflict",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "AI評価や仮登録を人間判断にしない。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "human_decisions",
+              0,
+              "ref",
+              "owner"
+            ],
+            "before": "human-decision-original-owner",
+            "after": "AI"
+          }
+        },
+        {
+          "id": "H004-F04-DECISION-FOREIGN-REVISION",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-DECISION-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-DECISION-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r0\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "1f4766cf7412e00c29c457020ca03d699438a462856f2fa83299505f012eef21",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [
+              "A3"
+            ],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "stale",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "別target revisionの意味変更判断を流用しない。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "human_decisions",
+              0,
+              "target_ref",
+              "revision"
+            ],
+            "before": "fixture-r2",
+            "after": "fixture-r0"
+          }
+        },
+        {
+          "id": "H004-F04-SOURCE-DIGEST-MISMATCH",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-SOURCE-DIGEST-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-SOURCE-DIGEST-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"synthetic-wrong-digest\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "7bc453e283abc630d735dabeb9a2c65f6daef9a8e2a0acc660b54047d6b23541",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [
+              "A1"
+            ],
+            "invalid_receipt": false,
+            "partition_condition": "conflict",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "atomの原文digestを保持先へ結ぶ。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "partition",
+              "retained",
+              0,
+              "source_sha256"
+            ],
+            "before": "70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a",
+            "after": "synthetic-wrong-digest"
+          }
+        },
+        {
+          "id": "H004-F04-DESTINATION-CONTENT-MISMATCH",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-DESTINATION-CONTENT-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-DESTINATION-CONTENT-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測は合格とする。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "afe44533f81484358de14dd40e349c727b237cdc6fba1a43508ed6b643d7439a",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [
+              "A2"
+            ],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "conflict",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "同参照と件数でも保持内容が原atomと違えば不一致。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "destination_records",
+              1,
+              "raw_utf8"
+            ],
+            "before": "未観測はunknownとして保持する。",
+            "after": "未観測は合格とする。"
+          }
+        },
+        {
+          "id": "H004-F04-RECEIPT-OMITS-ATOM",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-RECEIPT-OMITS-ATOM",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-RECEIPT-OMITS-ATOM",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "3bf22c948830dd4efebfa09d7ada2c9bfd397360c8515a5c9730c8bc856e1b64",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": true,
+            "partition_condition": "conflict",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "receiptの明示集合は全選択入力atomへ対応する。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "coverage_receipt",
+              "covered_atom_ids"
+            ],
+            "before": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "after": [
+              "A1",
+              "A3"
+            ]
+          }
+        },
+        {
+          "id": "H004-F04-RECEIPT-FOREIGN-SOURCE",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-RECEIPT-FOREIGN-SOURCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-RECEIPT-FOREIGN-SOURCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r0\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "d8626aa65e4ed649772606ffdccec51dfa2cc2eb65213cf57f1ff35416076c06",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": true,
+            "partition_condition": "stale",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "別source revisionのcoverageを流用しない。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "coverage_receipt",
+              "source_ref",
+              "revision"
+            ],
+            "before": "fixture-r1",
+            "after": "fixture-r0"
+          }
+        },
+        {
+          "id": "H004-F04-UNKNOWN-ATOM",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-UNKNOWN-ATOM",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-UNKNOWN-ATOM",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"atom_id\":\"A4\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":null,\"destination_ref\":{\"identity\":\"UNKNOWN-DEST\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"選択sourceに無いatom\",\"destination_sha256\":\"34f8ac8174acb581e81fb7ba134a32d1688c0c33be31c002f9988aeec42e246e\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "582887496be7def8e0f5853754a5e626831278c612d8c7be4c83b91e191cf4b3",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2",
+              "A4"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [
+              "A4"
+            ],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "conflict",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "選択入力外atomを捏造して分母や被覆を変えない。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "partition",
+              "pending"
+            ],
+            "before": [
+              {
+                "atom_id": "A2",
+                "source_ref": {
+                  "identity": "SOURCE-ATOMS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "independent-source-owner"
+                },
+                "source_sha256": "2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272",
+                "destination_ref": {
+                  "identity": "LIVE-CANDIDATE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "candidate-owner"
+                },
+                "destination_raw_utf8": "未観測はunknownとして保持する。",
+                "destination_sha256": "2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272"
+              }
+            ],
+            "after": [
+              {
+                "atom_id": "A2",
+                "source_ref": {
+                  "identity": "SOURCE-ATOMS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "independent-source-owner"
+                },
+                "source_sha256": "2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272",
+                "destination_ref": {
+                  "identity": "LIVE-CANDIDATE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "candidate-owner"
+                },
+                "destination_raw_utf8": "未観測はunknownとして保持する。",
+                "destination_sha256": "2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272"
+              },
+              {
+                "atom_id": "A4",
+                "source_ref": {
+                  "identity": "SOURCE-ATOMS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "independent-source-owner"
+                },
+                "source_sha256": null,
+                "destination_ref": {
+                  "identity": "UNKNOWN-DEST",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "candidate-owner"
+                },
+                "destination_raw_utf8": "選択sourceに無いatom",
+                "destination_sha256": "34f8ac8174acb581e81fb7ba134a32d1688c0c33be31c002f9988aeec42e246e"
+              }
+            ]
+          }
+        },
+        {
+          "id": "H004-F04-SOURCE-POPULATION-TRUNCATED",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-SOURCE-POPULATION-TRUNCATED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-SOURCE-POPULATION-TRUNCATED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "5cdcc2b656c13d56c602a585a3781ebcb3e852119c0ef474718b231195e8ccf9",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [
+              "A3"
+            ],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": true,
+            "partition_condition": "conflict",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "入力populationと処置集合/receiptの不一致を隠さない。固定原資料資格の実証は別義務に残す。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "source_population",
+              "atoms"
+            ],
+            "before": [
+              {
+                "id": "A1",
+                "raw_utf8": "状態原記録はOSが所有する。",
+                "sha256": "70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a"
+              },
+              {
+                "id": "A2",
+                "raw_utf8": "未観測はunknownとして保持する。",
+                "sha256": "2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272"
+              },
+              {
+                "id": "A3",
+                "raw_utf8": "hotfixは即releaseする。",
+                "sha256": "3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328"
+              }
+            ],
+            "after": [
+              {
+                "id": "A1",
+                "raw_utf8": "状態原記録はOSが所有する。",
+                "sha256": "70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a"
+              },
+              {
+                "id": "A2",
+                "raw_utf8": "未観測はunknownとして保持する。",
+                "sha256": "2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272"
+              }
+            ]
+          }
+        },
+        {
+          "id": "H004-F04-PENDING-AS-ADOPTED",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-PENDING-AS-ADOPTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-PENDING-AS-ADOPTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"adopted_requirement\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "a1762fecb06f9ef23dce7ee303053007297e85b34eba7efc6bf4e01bb031e25b",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [
+              "A2"
+            ],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "conflict",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "reason": "candidate保留の位置を無断で採択済み要求に昇格させない。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "destination_records",
+              1,
+              "state"
+            ],
+            "before": "live_candidate",
+            "after": "adopted_requirement"
+          }
+        },
+        {
+          "id": "H004-F04-LIMITED-AS-ALL-MIGRATION",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-LIMITED-AS-ALL-MIGRATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-LIMITED-AS-ALL-MIGRATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "41cee121b164b8e4a316c843561d85fc6554b1a6b340c3e372782bd49909ee91",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_source_migration_complete",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "actual_source_migration_complete"
+            ],
+            "before": false,
+            "after": true
+          },
+          "submitted_candidate": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": true,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false
+          }
+        },
+        {
+          "id": "H004-F04-REGISTRATION-AS-ADOPTION",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-REGISTRATION-AS-ADOPTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-REGISTRATION-AS-ADOPTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "41cee121b164b8e4a316c843561d85fc6554b1a6b340c3e372782bd49909ee91",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_requirement_adopted",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "actual_requirement_adopted"
+            ],
+            "before": false,
+            "after": true
+          },
+          "submitted_candidate": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": true,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false
+          }
+        },
+        {
+          "id": "H004-F04-REGISTRATION-AS-IMPLEMENTATION",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-REGISTRATION-AS-IMPLEMENTATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-REGISTRATION-AS-IMPLEMENTATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "41cee121b164b8e4a316c843561d85fc6554b1a6b340c3e372782bd49909ee91",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_implementation_authorized",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "actual_implementation_authorized"
+            ],
+            "before": false,
+            "after": true
+          },
+          "submitted_candidate": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": true,
+            "actual_retirement": false
+          }
+        },
+        {
+          "id": "H004-F04-CONDITION-AS-NO-LOSS-CERTIFICATE",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-CONDITION-AS-NO-LOSS-CERTIFICATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-CONDITION-AS-NO-LOSS-CERTIFICATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "41cee121b164b8e4a316c843561d85fc6554b1a6b340c3e372782bd49909ee91",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_no_loss_certified",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "actual_no_loss_certified"
+            ],
+            "before": false,
+            "after": true
+          },
+          "submitted_candidate": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": true,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false
+          }
+        },
+        {
+          "id": "H004-F04-REFERENCE-AS-RETIREMENT",
+          "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-REFERENCE-AS-RETIREMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F04-REFERENCE-AS-RETIREMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"source_population\":{\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"]},\"partition\":{\"retained\":[{\"atom_id\":\"A1\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"destination_ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"destination_raw_utf8\":\"状態原記録はOSが所有する。\",\"destination_sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"}],\"pending\":[{\"atom_id\":\"A2\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"destination_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"destination_raw_utf8\":\"未観測はunknownとして保持する。\",\"destination_sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"}],\"human_changed_or_retired\":[{\"atom_id\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"destination_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"destination_raw_utf8\":\"hotfixにも通常Portを適用する。\",\"destination_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"decision_ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"disposition\":\"change\"}]},\"destination_records\":[{\"ref\":{\"identity\":\"CURRENT-REQ\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"current-requirement-owner\"},\"state\":\"live_requirement\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"candidate-owner\"},\"state\":\"live_candidate\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"state\":\"changed_requirement\",\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}],\"human_decisions\":[{\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"human-decision-original-owner\"},\"kind\":\"human_meaning_change\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"source_atom\":\"A3\",\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"revision\":\"fixture-r2\",\"scope\":\"PRODUCT-P\",\"owner\":\"requirement-owner\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"outcome\":\"change\",\"reason\":\"合成例でPort例外の置換を明示する\",\"impact_scope\":\"PRODUCT-P\",\"qualification\":\"synthetic_reference_not_actual_human_decision\"}],\"coverage_receipt\":{\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"coverage-original-owner\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"independent-source-owner\"},\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"},\"container_registration\":{\"kind\":\"registered_proposal\",\"authority_effect\":\"none\"},\"scenario_kind\":\"synthetic_partition_fixture_not_real_source_migration_or_human_adoption\"}",
+            "sha256": "41cee121b164b8e4a316c843561d85fc6554b1a6b340c3e372782bd49909ee91",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格はL5/L8で閉じる。合成判断は実PO採否でない。"
+          },
+          "expected_material": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_retirement",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F04-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "actual_retirement"
+            ],
+            "before": false,
+            "after": true
+          },
+          "submitted_candidate": {
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "unknown_atom_ids": [],
+            "invalid_destination_atom_ids": [],
+            "invalid_decision_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "invalid_receipt": false,
+            "partition_condition": "supported_synthetic_condition",
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_no_loss_certified": false,
+            "actual_source_migration_complete": false,
+            "actual_requirement_adopted": false,
+            "actual_implementation_authorized": false,
+            "actual_retirement": true
+          }
+        }
+      ],
+      "original_material_storage": "case固有exact source packetに全入力bytesを保持。原入力変更とcandidate-only変更を分ける。"
     },
     {
       "id": "HARNESS-L9-004-F05",
@@ -491,5 +2327,21 @@
       },
       "fixture_state": "not_authored"
     }
-  ]
+  ],
+  "fixture_progress": {
+    "F04": {
+      "normal": 2,
+      "negative": 18,
+      "source_packets": 20,
+      "state": "draft_not_executed"
+    },
+    "remaining_contracts": [
+      "B01",
+      "F01",
+      "F02",
+      "F03",
+      "F05",
+      "N01"
+    ]
+  }
 }

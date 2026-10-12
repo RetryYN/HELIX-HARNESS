@@ -150,7 +150,13 @@
           "text": ""
         }
       ],
-      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "locator_correction": {
+        "upstream_locator_end": 19,
+        "actual_file_end": 16,
+        "meaning_change": false,
+        "note": "不存在の17〜19行を引用しない。004承認元のlegacy locatorは変更せず本設計の引用範囲を実在行に限定。"
+      }
     },
     {
       "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
@@ -311,7 +317,7 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "全7契約の具体的な正常/負例・原資料bytes・期待部分結果",
+    "F04の具体的分割/欠落/重複/生存先/判断revision/内容比較例を起草。残る6契約の正常/負例と独立原資料bytesを作成する。",
     "未見relation/無損失partition/再利用不変条件の内容比較と静的照合",
     "003未統合基本設計と後続ownerのexact binding",
     "独立exact HEAD意味reviewとmain admission",
@@ -481,7 +487,16 @@
         "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
         "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
       },
-      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。"
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "source_population_owner": "原source owner",
+        "live_destination_owner": "保持要求または生存候補owner",
+        "meaning_change_decision_owner": "対象revisionの人間原判断owner",
+        "coverage_meaning_owner": "HARNESS",
+        "record_operation_owner": "OS",
+        "partition": "選択入力全件を保持/生存候補/人間判断による変更・retireへ完全かつ非重複に割り当てる。未計上・重複・不明/失効生存先・原文不一致を個別返却する。",
+        "qualification_limit": "source全体と個別ownerの実資格はL5/L8で閉じる。限定合成例を現行実移管/退役/採否へ昇格しない。"
+      }
     },
     {
       "id": "HARNESS-L4-004-F05",
@@ -549,5 +564,21 @@
       },
       "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。"
     }
-  ]
+  ],
+  "fixture_progress": {
+    "F04": {
+      "normal": 2,
+      "negative": 18,
+      "source_packets": 20,
+      "state": "draft_not_executed"
+    },
+    "remaining_contracts": [
+      "B01",
+      "F01",
+      "F02",
+      "F03",
+      "F05",
+      "N01"
+    ]
+  }
 }
