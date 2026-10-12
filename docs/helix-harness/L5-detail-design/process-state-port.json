@@ -520,7 +520,6 @@
   },
   "fixture_progress": {
     "remaining_functions": [
-      "F04",
       "F05",
       "N01"
     ],
@@ -553,10 +552,16 @@
       "nested_l9_dimension_cells": 430,
       "nested_pair_cells": 129,
       "state": "draft_basic_typed_cases_independent_qualification_pending"
+    },
+    "F04": {
+      "basic_calls": 30,
+      "typed_expected_cells": 210,
+      "nested_state_cells": 240,
+      "state": "draft_basic_typed_cases_independent_qualification_pending"
     }
   },
   "pending": [
-    "3関数の内部比較/typed部分期待/対単体oracle、F01未定義action、F02/F03独立qualificationと追加内容反例の具体化",
+    "2関数の内部比較/typed部分期待/対単体oracle、F01未定義action、F02/F03/F04独立qualificationと追加内容反例の具体化",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -1071,7 +1076,7 @@
       },
       "output": {
         "partial_values": {
-          "own_basis_support": "PartialValue",
+          "own_basis_support": "PartialValue（knownのvalueは八状態→PartialValue map。必要状態集合が未知ならnull）",
           "contiguous_frontier": "PartialValue",
           "missing_basis": "PartialValue",
           "conflicting_basis": "PartialValue",
@@ -1084,11 +1089,46 @@
         "operation_effect": "none"
       },
       "internal_steps": [
-        "原sourceとcandidateを分け、各Ref/context/kind/owner/qualificationを独立照合。",
-        "基本契約の各input/output/invariantを内容で比較し、fieldごとの不足/意味差/戻し先を返す。",
-        "候補の強制成立/未知消去を原資料へ照合し、実操作は生成しない。"
+        "Context/carrierと対象成果物revision/scope/artifact/environment、各状態の原証拠とembedded観測/人間原受入/Port/配備/運用評価を独立sourceとして解決し、Ref/binding/owner/資格を照合する。claimed_stateや前状態成功を原証拠にしない。",
+        "Workingは同対象のOS作業記録、Provisionalは005/015の同oracle凍結→実装前Red→最小Green→意味保存Refactor→原子CIと双方向traceを内容比較する。文書存在や実装後mutationで谷の実証拠を補わない。",
+        "IntegratedはL9↔L4の対象境界とRefactor意味保存、必要義務ごとの原観測、必要L9各観点の期待/観測を照合する。state/data二重所有や未観測観点を結合証明済みにしない。",
+        "VerifiedはL10↔L3、当該L3固有system義務、005/022の上位差分exact setと原実観測を比較する。下位成功でglobal義務の欠落/不一致を相殺せず、全義務値を合成例から製品へ固定しない。",
+        "AcceptedはL11↔L2の同対象利用者原受入と受入scope/軸を照合し、AI解釈を別sourceとして保持する。L10/CI greenやAIのhuman_provenance宣言だけでは利用者受入を生成しない。意味差分は当該L2/Forward ownerへ返す。",
+        "Release-eligibleはF05通常Portの対象必須条件集合と各原観測、DeployedはOSの同artifact/digest/対象環境実配備、ObservedはL12↔L1の運用時間軸/価値軸/原運用記録と還流先をそれぞれ別に照合する。受入/配備を次状態の代替にしない。",
+        "各状態固有の部分結果を全て保持し、knownの必要状態順序についてWorkingから連続して成立した条件frontierだけを返す。途中欠落より後の原証拠は消さず、後続状態成立への穴埋めにも使わない。Working根拠も未成立ならfrontierを当該state/nullへする。",
+        "既知状態集合のmissing/conflictを個別に列挙し、該当原証拠/理由/ownerへ返却候補を渡す。未知集合/source資格を空集合/falseへ補わず、無関係scopeを一括停止しない。",
+        "照合結果は状態成立の条件材料のみで、actual_state_update/actual_completionはfalse、operation_effectはnone。状態の実保存/実更新はOS、受入や配備の実作用は当該ownerが所有する。"
       ],
-      "detail_state": "signature_only_content_comparison_pending"
+      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "state_detail": {
+        "state_order": [
+          "Working",
+          "Provisional",
+          "Integrated",
+          "Verified",
+          "Accepted",
+          "Release-eligible",
+          "Deployed",
+          "Observed"
+        ],
+        "basis_by_state": {
+          "Working": "作業中。後続証明なし",
+          "Provisional": "同対象の谷証拠と原子CI",
+          "Integrated": "境界照合・Refactor・結合の固有証明",
+          "Verified": "L10 system証明と005/022固有義務差分",
+          "Accepted": "同対象L11利用者原受入",
+          "Release-eligible": "通常Release Portの全必須条件",
+          "Deployed": "対象環境の実配備記録",
+          "Observed": "対象のL12運用評価"
+        },
+        "frontier_rule": "既知状態集合における連続成立の条件材料。後続proofの読取成功と連続成立を分離する。先頭proof未成立なら当該state/null。",
+        "constant_false_fields": [
+          "actual_state_update",
+          "actual_completion"
+        ],
+        "legacy_preservation": "旧v1.3:29–66の六V-pair、谷/検証/受入/運用の別証明を各状態へ意味再導出する。旧層番号や旧CI成功、PR/Issue/DB stateを実承認/完了にしない。",
+        "source_binding_limit": "各状態のtyped合成例。実owner/authority/各embedded観測/原受入資格・正式schema/codec・実操作ではない。"
+      }
     },
     {
       "id": "HARNESS-L5-003-F05",
