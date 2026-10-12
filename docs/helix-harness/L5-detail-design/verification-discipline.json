@@ -995,8 +995,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "claimは原意味/実結果を代替しない。"
               }
             },
             "non_target": {
@@ -1217,17 +1219,11 @@
                       },
                       "condition": {
                         "presence": "Field",
-                        "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
-                        }
+                        "value": "F01ConditionContent"
                       },
                       "actual_result": {
                         "presence": "Field",
-                        "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
-                        }
+                        "value": "F01ExecutionObservation"
                       },
                       "pair_basis": {
                         "presence": "Field",
@@ -1333,10 +1329,7 @@
                       },
                       "actual_result": {
                         "presence": "Field",
-                        "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
-                        }
+                        "value": "F01ExecutionObservation"
                       },
                       "pair_basis": {
                         "presence": "Field",
@@ -1427,17 +1420,11 @@
                       },
                       "condition": {
                         "presence": "Field",
-                        "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
-                        }
+                        "value": "F01ConditionContent"
                       },
                       "actual_result": {
                         "presence": "Field",
-                        "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
-                        }
+                        "value": "F01ExecutionObservation"
                       },
                       "na_record": {
                         "presence": "Field",
@@ -1662,17 +1649,11 @@
                       },
                       "condition": {
                         "presence": "Field",
-                        "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
-                        }
+                        "value": "F01ConditionContent"
                       },
                       "actual_result": {
                         "presence": "Field",
-                        "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
-                        }
+                        "value": "F01ExecutionObservation"
                       },
                       "pair_basis": {
                         "presence": "Field",
@@ -1683,6 +1664,10 @@
                 ],
                 "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
               }
+            },
+            "worker_assignment": {
+              "presence": "Field",
+              "value": "F01WorkerAssignment"
             }
           }
         },
@@ -1702,8 +1687,10 @@
                 "claims": {
                   "presence": "Field",
                   "value": {
-                    "array_item_shapes": [],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "array_item_shapes": [
+                      "never"
+                    ],
+                    "empty_semantics": "claimは原意味/実結果を代替しない。"
                   }
                 },
                 "non_target": {
@@ -1926,17 +1913,11 @@
                           },
                           "condition": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ConditionContent"
                           },
                           "actual_result": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ExecutionObservation"
                           },
                           "pair_basis": {
                             "presence": "Field",
@@ -2042,10 +2023,7 @@
                           },
                           "actual_result": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ExecutionObservation"
                           },
                           "pair_basis": {
                             "presence": "Field",
@@ -2136,17 +2114,11 @@
                           },
                           "condition": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ConditionContent"
                           },
                           "actual_result": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ExecutionObservation"
                           },
                           "na_record": {
                             "presence": "Field",
@@ -2371,17 +2343,11 @@
                           },
                           "condition": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ConditionContent"
                           },
                           "actual_result": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ExecutionObservation"
                           },
                           "pair_basis": {
                             "presence": "Field",
@@ -2392,6 +2358,10 @@
                     ],
                     "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
                   }
+                },
+                "worker_assignment": {
+                  "presence": "Field",
+                  "value": "F01WorkerAssignment"
                 }
               }
             }
@@ -2411,8 +2381,10 @@
                 "claims": {
                   "presence": "Field",
                   "value": {
-                    "array_item_shapes": [],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "array_item_shapes": [
+                      "never"
+                    ],
+                    "empty_semantics": "claimは原意味/実結果を代替しない。"
                   }
                 },
                 "non_target": {
@@ -2633,17 +2605,11 @@
                           },
                           "condition": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ConditionContent"
                           },
                           "actual_result": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ExecutionObservation"
                           },
                           "pair_basis": {
                             "presence": "Field",
@@ -2749,10 +2715,7 @@
                           },
                           "actual_result": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ExecutionObservation"
                           },
                           "pair_basis": {
                             "presence": "Field",
@@ -2843,17 +2806,11 @@
                           },
                           "condition": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ConditionContent"
                           },
                           "actual_result": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ExecutionObservation"
                           },
                           "na_record": {
                             "presence": "Field",
@@ -3078,17 +3035,11 @@
                           },
                           "condition": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ConditionContent"
                           },
                           "actual_result": {
                             "presence": "Field",
-                            "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
-                            }
+                            "value": "F01ExecutionObservation"
                           },
                           "pair_basis": {
                             "presence": "Field",
@@ -3099,6 +3050,10 @@
                     ],
                     "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
                   }
+                },
+                "worker_assignment": {
+                  "presence": "Field",
+                  "value": "F01WorkerAssignment"
                 }
               }
             }
@@ -3157,8 +3112,10 @@
             "unknown_refs": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "opaque original duty identity"
+                ],
+                "empty_semantics": "全義務の明示条件を比較できた場合の空。sourceなしを0件へしない。"
               }
             },
             "unexecuted_required_refs": {
@@ -3173,6 +3130,22 @@
             "completion": {
               "presence": "Field",
               "value": "string"
+            },
+            "duty_details": {
+              "presence": "Field",
+              "value": "collection<F01DutyDetail>"
+            },
+            "rule_matches": {
+              "presence": "Field",
+              "value": "collection<F01RuleMatch>"
+            },
+            "declared_affected_match": {
+              "presence": "Field",
+              "value": "boolean"
+            },
+            "skipped_refs": {
+              "presence": "Field",
+              "value": "collection<never>"
             }
           }
         },
@@ -7305,6 +7278,88 @@
           "required_conditions": "collection<original condition identity>"
         },
         "meaning": "交代は元工程/対象/証拠条件を変更しない。条件省略の許可ではない。"
+      },
+      "F01DutyAttributes": {
+        "fields": {
+          "requirement_revision": "ObservationField<opaque revision>",
+          "artifact": "ObservationField<Ref>",
+          "input": "ObservationField<Ref>",
+          "oracle": "ObservationField<Ref>",
+          "expected_failure": "ObservationField<string>",
+          "evidence_validity": "ObservationField<F01EvidenceValidity>",
+          "backflow_owner": "ObservationField<owner identity>"
+        },
+        "meaning": "7属性を個別保持。owner sourceに値があっても提出属性欠落はmissing。"
+      },
+      "F01EvidenceValidity": {
+        "fields": {
+          "policy_ref": "Ref",
+          "invalidated_by": "collection<target_revision_change|oracle_change|scope_change>",
+          "expires_at": "Field<owner-defined deadline; symbolic or actual>"
+        },
+        "meaning": "この原policyを全製品の期限へ固定せず、symbolから実期限有効性を生成しない。"
+      },
+      "F01DutyDetail": {
+        "fields": {
+          "identity": "opaque duty identity",
+          "duty_ref": "Ref",
+          "declared_disposition": "required|conditional|informational|N/A",
+          "reason": "original reason",
+          "layer_pair": "original explicit pair",
+          "attributes": "F01DutyAttributes",
+          "condition": "ObservationField<boolean|not_conditional>",
+          "na_attributes": "null|map<four NA attributes,ObservationField>",
+          "actual_result": "Field<original owner execution result>",
+          "evidence_freshness": "ObservationField<owner evidence timeliness>",
+          "backflow_owner": "original owner identity or contract backflow"
+        },
+        "meaning": "条件null/false/未実行/N/Aを別に保持。"
+      },
+      "F01SubmittedDutySource": {
+        "fields": {
+          "ref": "Ref",
+          "subject_binding": "Ref",
+          "canonical_duty_ref": "Ref",
+          "declared_duty": "F01VerificationInput original duty member",
+          "role": "submitted_duty_projection_not_canonical_replacement"
+        },
+        "meaning": "提出欄の欠落をowner catalogから充足させない。"
+      },
+      "F01RuleMatch": {
+        "fields": {
+          "rule_ref": "Ref",
+          "matched": "boolean|unknown",
+          "duty_identity": "opaque duty identity",
+          "reason": "original rule reason"
+        },
+        "meaning": "原whenの集合条件。unknownをfalse/skipへ補完しない。"
+      },
+      "F01WorkerAssignment": {
+        "fields": {
+          "ref": "Ref",
+          "worker_identity": "opaque worker identity",
+          "ticket_ref": "Ref",
+          "role": "execution_assignment_not_duty_meaning"
+        },
+        "meaning": "義務意味の根拠ではない。"
+      },
+      "F01ConditionContent": {
+        "fields": {
+          "ref": "Ref",
+          "value": "Field<boolean>"
+        },
+        "meaning": "提出条件のnull/欠落/falseを分け、owner原basisの値から不足を補完しない。"
+      },
+      "F01ExecutionObservation": {
+        "fields": {
+          "ref": "Ref",
+          "subject_binding": "Ref",
+          "duty_ref": "Ref",
+          "oracle_ref": "Ref",
+          "observations": "Field<original owner observation material>",
+          "result": "Field<original execution state>"
+        },
+        "meaning": "このfixtureではactual_resultは明示null。Ref名/期限/義務導出から実結果や完了を生成しない。"
       }
     },
     "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
@@ -7509,7 +7564,8 @@
           "backflow_owner": "CORE/005",
           "preserve": "元分類を保持し余分な必須化を拒否。"
         }
-      ]
+      ],
+      "detail_contract": "verification_duty_detail"
     },
     {
       "name": "compare_proof_composition",
@@ -8280,7 +8336,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106主呼出しのrootとB01/F05-F09/N01/N02の64件の合成参照資料状態、53負例の部分期待を起草。残る42主呼出しの参照先と31負例の部分結果、全体のdomain型は未完。",
+      "106主呼出しのrootとB01/F01/F05-F09/N01/N02の78件の合成参照資料状態、64負例の部分期待を起草。残る28主呼出しの参照先と20負例の部分結果、domain型は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -8334,9 +8390,9 @@
     },
     "normal_sources": "各L9正常/variantの合成owner materialをimmutable root source_refへ固定する。",
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
-    "negative_candidate_sources": "原資料をcandidateから分離する。F07/N01の個別前提とB01のrunなし保存/表示・未実行/stale結果はfixture_preparation/source_preparationへ明示。B01 runtime交代は明示前提の後、原review欠落を別変異として追跡する。他のcandidate負例は正常owner材料を保持する。実実行/実authority/意味承認を生成しない。",
+    "negative_candidate_sources": "原資料をcandidateから分離する。F07/N01の個別前提とB01のrunなし保存/表示・未実行/stale結果はfixture_preparation/source_preparationへ明示。B01 runtime交代は明示前提の後、原review欠落を別変異として追跡する。他のcandidate負例は正常owner材料を保持する。実実行/実authority/意味承認を生成しない。 F01 unknown_as_skipの条件null、worker_as_dutyの割当資料も明示前提であり、catalogにある値から元入力不足を補わない。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106主呼出しのうちB01/F05-F09/N01/N02の64件へ独立合成資料状態を供給。未解決oracle/新意味、未観測/未実行、N/A不備、別対象成功を保全。他42件はmissing。root資格から意味/authority/実観測を生成しない。"
+    "referent_input_state": "106主呼出しのうちB01/F01/F05-F09/N01/N02の78件へ独立合成資料状態を供給。提出欄の欠落/条件null/未実行/未観測、未解決oracle/新意味を保全。他28件はmissing。root/catalog資格から実成立を生成しない。"
   },
   "behavior_oracle_detail": {
     "design_ref": "HARNESS-L5-005-F08",
@@ -9280,5 +9336,1165 @@
       "runtime_transition": "B01RuntimeTransition",
       "actual_probe": "B01ProbeObservation"
     }
+  },
+  "verification_duty_detail": {
+    "design_ref": "HARNESS-L5-005-F01",
+    "requirement_ref": "HARNESS-L3-005-F01",
+    "basic_oracle_ref": "HARNESS-L9-005-F01",
+    "independent_fixtures": {
+      "rules": [
+        {
+          "ref": {
+            "identity": "RULE-U",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS-contract-owner"
+          },
+          "when": {
+            "forward": [
+              "small",
+              "medium",
+              "large"
+            ],
+            "changed_subjects_include": "A"
+          },
+          "duty_identity": "U1",
+          "reason": "変更Aの単体契約"
+        },
+        {
+          "ref": {
+            "identity": "RULE-C",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS-contract-owner"
+          },
+          "when": {
+            "touched_connectors_include": "AB"
+          },
+          "duty_identity": "C1",
+          "reason": "接続AB境界契約"
+        },
+        {
+          "ref": {
+            "identity": "RULE-X",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS-contract-owner"
+          },
+          "when": {
+            "change_kind": [
+              "whole_configuration_change"
+            ]
+          },
+          "duty_identity": "X1",
+          "reason": "構成全体の固有契約"
+        }
+      ],
+      "canonical_duties": [
+        {
+          "ref": {
+            "identity": "U1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS-contract-owner"
+          },
+          "requirement_ref": {
+            "identity": "REQ-U1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "artifact_ref": {
+            "identity": "ART-U1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "kind": "unit",
+          "layer_pair": {
+            "left": "L5",
+            "right": "L8"
+          },
+          "input_ref": {
+            "identity": "INPUT-U1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "oracle_ref": {
+            "identity": "ORACLE-U1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "expected_failure": "対象のU1振る舞い違反を観測する",
+          "evidence_validity": {
+            "policy_ref": {
+              "identity": "VALIDITY-1",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "invalidated_by": [
+              "target_revision_change",
+              "oracle_change",
+              "scope_change"
+            ],
+            "expires_at": "synthetic-owner-defined-deadline"
+          },
+          "backflow_owner": "verification-design-owner",
+          "disposition": "required",
+          "reason": "対象の宣言契約と変更の関係",
+          "condition": null,
+          "actual_result": null,
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "C1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS-contract-owner"
+          },
+          "requirement_ref": {
+            "identity": "REQ-C1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "artifact_ref": {
+            "identity": "ART-C1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "kind": "connection",
+          "layer_pair": {
+            "left": "L4",
+            "right": "L9"
+          },
+          "input_ref": {
+            "identity": "INPUT-C1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "oracle_ref": {
+            "identity": "ORACLE-C1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "expected_failure": "対象のC1振る舞い違反を観測する",
+          "evidence_validity": {
+            "policy_ref": {
+              "identity": "VALIDITY-1",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "invalidated_by": [
+              "target_revision_change",
+              "oracle_change",
+              "scope_change"
+            ],
+            "expires_at": "synthetic-owner-defined-deadline"
+          },
+          "backflow_owner": "verification-design-owner",
+          "disposition": "required",
+          "reason": "対象の宣言契約と変更の関係",
+          "condition": null,
+          "actual_result": null,
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "X1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS-contract-owner"
+          },
+          "requirement_ref": {
+            "identity": "REQ-X1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "artifact_ref": {
+            "identity": "ART-X1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "kind": "composite",
+          "layer_pair": {
+            "left": "L3",
+            "right": "L10"
+          },
+          "input_ref": {
+            "identity": "INPUT-X1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "oracle_ref": {
+            "identity": "ORACLE-X1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "expected_failure": "対象のX1振る舞い違反を観測する",
+          "evidence_validity": {
+            "policy_ref": {
+              "identity": "VALIDITY-1",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "invalidated_by": [
+              "target_revision_change",
+              "oracle_change",
+              "scope_change"
+            ],
+            "expires_at": "synthetic-owner-defined-deadline"
+          },
+          "backflow_owner": "verification-design-owner",
+          "disposition": "required",
+          "reason": "対象の宣言契約と変更の関係",
+          "condition": null,
+          "actual_result": null,
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "S1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS-contract-owner"
+          },
+          "requirement_ref": {
+            "identity": "REQ-S1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "artifact_ref": {
+            "identity": "ART-S1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "kind": "composite",
+          "layer_pair": {
+            "left": "L3",
+            "right": "L10"
+          },
+          "input_ref": {
+            "identity": "INPUT-S1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "oracle_ref": {
+            "identity": "ORACLE-S1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "expected_failure": "対象のS1振る舞い違反を観測する",
+          "evidence_validity": {
+            "policy_ref": {
+              "identity": "VALIDITY-1",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "invalidated_by": [
+              "target_revision_change",
+              "oracle_change",
+              "scope_change"
+            ],
+            "expires_at": "synthetic-owner-defined-deadline"
+          },
+          "backflow_owner": "verification-design-owner",
+          "disposition": "conditional",
+          "reason": "対象の宣言契約と変更の関係",
+          "condition": {
+            "ref": {
+              "identity": "COND-S1",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "value": false
+          },
+          "actual_result": null,
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "I1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS-contract-owner"
+          },
+          "requirement_ref": {
+            "identity": "REQ-I1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "artifact_ref": {
+            "identity": "ART-I1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "kind": "unit",
+          "layer_pair": {
+            "left": "L5",
+            "right": "L8"
+          },
+          "input_ref": {
+            "identity": "INPUT-I1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "oracle_ref": {
+            "identity": "ORACLE-I1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "expected_failure": "対象のI1振る舞い違反を観測する",
+          "evidence_validity": {
+            "policy_ref": {
+              "identity": "VALIDITY-1",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "invalidated_by": [
+              "target_revision_change",
+              "oracle_change",
+              "scope_change"
+            ],
+            "expires_at": "synthetic-owner-defined-deadline"
+          },
+          "backflow_owner": "verification-design-owner",
+          "disposition": "informational",
+          "reason": "対象の宣言契約と変更の関係",
+          "condition": null,
+          "actual_result": null,
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "NA1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS-contract-owner"
+          },
+          "requirement_ref": {
+            "identity": "REQ-NA1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "artifact_ref": {
+            "identity": "ART-NA1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "kind": "connection",
+          "layer_pair": {
+            "left": "L4",
+            "right": "L9"
+          },
+          "input_ref": {
+            "identity": "INPUT-NA1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "oracle_ref": {
+            "identity": "ORACLE-NA1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "expected_failure": "対象のNA1振る舞い違反を観測する",
+          "evidence_validity": {
+            "policy_ref": {
+              "identity": "VALIDITY-1",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "invalidated_by": [
+              "target_revision_change",
+              "oracle_change",
+              "scope_change"
+            ],
+            "expires_at": "synthetic-owner-defined-deadline"
+          },
+          "backflow_owner": "verification-design-owner",
+          "disposition": "N/A",
+          "reason": "対象の宣言契約と変更の関係",
+          "condition": null,
+          "actual_result": null,
+          "na_record": {
+            "reason": "このscopeに対象接続なし",
+            "decider": {
+              "identity": "CORE-DECIDER",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "target_revision": "r1",
+            "reevaluation": "接続境界が追加された場合"
+          },
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        }
+      ],
+      "validity": {
+        "ref": {
+          "identity": "VALIDITY-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "invalidated_by": [
+          "target_revision_change",
+          "oracle_change",
+          "scope_change"
+        ],
+        "expires_at": "synthetic-owner-defined-deadline",
+        "time_state": "symbolic_deadline_not_actual_time_evidence",
+        "limit": "製品ownerが定めた合成policy。現時刻/一律期限/実証拠有効性を生成しない。"
+      },
+      "risk_basis": {
+        "ref": {
+          "identity": "RISK-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "state": "known_low",
+        "meaning": "このfixtureのrisk原根拠。small/medium/largeやWorker名だけからriskを生成しない。"
+      },
+      "conditional_basis": {
+        "ref": {
+          "identity": "COND-S1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "value": false,
+        "meaning": "この追加S1固有義務の条件が未充足という合成owner原内容。unknownな提出条件をfalseへ補完しない。"
+      },
+      "core_decider": {
+        "ref": {
+          "identity": "CORE-DECIDER",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "role": "core_applicability_decider",
+        "limit": "このNA1の合成判定者。実authorityを証明せず、欠落N/A判定linkを補完しない。"
+      },
+      "linked_meaning_sources": [
+        {
+          "ref": {
+            "identity": "REQ-U1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "duty_identity": "U1",
+          "meaning": "この合成義務のU1条件",
+          "limit": "実製品要求の新規採用ではない。"
+        },
+        {
+          "ref": {
+            "identity": "ART-U1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "U1",
+          "kind": "unit",
+          "layer_pair": {
+            "left": "L5",
+            "right": "L8"
+          },
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "INPUT-U1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "U1",
+          "material": {
+            "edge": {
+              "from": "domain",
+              "to": "application"
+            }
+          }
+        },
+        {
+          "ref": {
+            "identity": "ORACLE-U1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "duty_identity": "U1",
+          "input_ref": {
+            "identity": "INPUT-U1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "expected": {
+            "dependency_decision": "rejected"
+          },
+          "expected_failure": "対象のU1振る舞い違反を観測する",
+          "limit": "独立検証ownerの合成期待。正式oracle凍結/実行ではない。"
+        },
+        {
+          "ref": {
+            "identity": "REQ-C1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "duty_identity": "C1",
+          "meaning": "この合成義務のC1条件",
+          "limit": "実製品要求の新規採用ではない。"
+        },
+        {
+          "ref": {
+            "identity": "ART-C1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "C1",
+          "kind": "connection",
+          "layer_pair": {
+            "left": "L4",
+            "right": "L9"
+          },
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "INPUT-C1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "C1",
+          "material": {
+            "boundary": "AB",
+            "command": "CMD1",
+            "deliveries": 2
+          }
+        },
+        {
+          "ref": {
+            "identity": "ORACLE-C1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "duty_identity": "C1",
+          "input_ref": {
+            "identity": "INPUT-C1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "expected": {
+            "receiver_debits": 1
+          },
+          "expected_failure": "対象のC1振る舞い違反を観測する",
+          "limit": "独立検証ownerの合成期待。正式oracle凍結/実行ではない。"
+        },
+        {
+          "ref": {
+            "identity": "REQ-X1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "duty_identity": "X1",
+          "meaning": "この合成義務のX1条件",
+          "limit": "実製品要求の新規採用ではない。"
+        },
+        {
+          "ref": {
+            "identity": "ART-X1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "X1",
+          "kind": "composite",
+          "layer_pair": {
+            "left": "L3",
+            "right": "L10"
+          },
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "INPUT-X1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "X1",
+          "material": {
+            "components": [
+              "A",
+              "B"
+            ],
+            "configuration": "synthetic-whole"
+          }
+        },
+        {
+          "ref": {
+            "identity": "ORACLE-X1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "duty_identity": "X1",
+          "input_ref": {
+            "identity": "INPUT-X1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "expected": {
+            "combined_contract": "satisfied"
+          },
+          "expected_failure": "対象のX1振る舞い違反を観測する",
+          "limit": "独立検証ownerの合成期待。正式oracle凍結/実行ではない。"
+        },
+        {
+          "ref": {
+            "identity": "REQ-S1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "duty_identity": "S1",
+          "meaning": "この合成義務のS1条件",
+          "limit": "実製品要求の新規採用ではない。"
+        },
+        {
+          "ref": {
+            "identity": "ART-S1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "S1",
+          "kind": "composite",
+          "layer_pair": {
+            "left": "L3",
+            "right": "L10"
+          },
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "INPUT-S1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "S1",
+          "material": {
+            "conditional_contract": "synthetic-S1",
+            "condition": false
+          }
+        },
+        {
+          "ref": {
+            "identity": "ORACLE-S1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "duty_identity": "S1",
+          "input_ref": {
+            "identity": "INPUT-S1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "expected": {
+            "condition_unfulfilled": true
+          },
+          "expected_failure": "対象のS1振る舞い違反を観測する",
+          "limit": "独立検証ownerの合成期待。正式oracle凍結/実行ではない。"
+        },
+        {
+          "ref": {
+            "identity": "REQ-I1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "duty_identity": "I1",
+          "meaning": "この合成義務のI1条件",
+          "limit": "実製品要求の新規採用ではない。"
+        },
+        {
+          "ref": {
+            "identity": "ART-I1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "I1",
+          "kind": "unit",
+          "layer_pair": {
+            "left": "L5",
+            "right": "L8"
+          },
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "INPUT-I1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "I1",
+          "material": {
+            "information": "synthetic-report"
+          }
+        },
+        {
+          "ref": {
+            "identity": "ORACLE-I1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "duty_identity": "I1",
+          "input_ref": {
+            "identity": "INPUT-I1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "expected": {
+            "classification": "informational"
+          },
+          "expected_failure": "対象のI1振る舞い違反を観測する",
+          "limit": "独立検証ownerの合成期待。正式oracle凍結/実行ではない。"
+        },
+        {
+          "ref": {
+            "identity": "REQ-NA1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "duty_identity": "NA1",
+          "meaning": "この合成義務のNA1条件",
+          "limit": "実製品要求の新規採用ではない。"
+        },
+        {
+          "ref": {
+            "identity": "ART-NA1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "NA1",
+          "kind": "connection",
+          "layer_pair": {
+            "left": "L4",
+            "right": "L9"
+          },
+          "pair_basis": "この合成fixtureの明示対象pair。kindだけから他対象のpairを固定しない。"
+        },
+        {
+          "ref": {
+            "identity": "INPUT-NA1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "duty_identity": "NA1",
+          "material": {
+            "boundary": "synthetic-CD",
+            "present": false
+          }
+        },
+        {
+          "ref": {
+            "identity": "ORACLE-NA1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "duty_identity": "NA1",
+          "input_ref": {
+            "identity": "INPUT-NA1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "expected": {
+            "classification": "N/A_with_four_attributes"
+          },
+          "expected_failure": "対象のNA1振る舞い違反を観測する",
+          "limit": "独立検証ownerの合成期待。正式oracle凍結/実行ではない。"
+        }
+      ]
+    },
+    "source_roles": {
+      "ticket": "OSのForward/V-pair/変更種別/layer/触る対象・connector/risk。Worker割当を代用しない。",
+      "rules": "HARNESS ownerの明示条件。small→unit等の全製品既定を新設しない。",
+      "catalog": "ownerの原義務。提出projectionと別資料で、欠落入力を値の存在だけで補完しない。",
+      "submitted_duty": "別refの提出元snapshot。canonical_duty_refへ対応付けて属性不足/原分類を局所化。",
+      "links": "要求revision/artifact/input/oracleの独立合成意味。期待と入力をcandidateから生成しない。",
+      "validity": "失効条件/期限の元policy。symbolic deadlineは実時刻の有効性ではない。",
+      "conditional_na": "条件nullはunknown、falseは未充足。N/A4属性とCORE判定を保持。"
+    },
+    "comparison_steps": [
+      "対象ticket/risk/明示rule/catalogと各owner sourceのidentity/revision/scopeを比較。source欠落はunknownでWorker名/affected宣言/空集合をfallbackにしない。",
+      "各when条件を元ticket集合/種別へ照合。指定外の条件を勝手に追加せず、ruleから必要義務を導出する。layer/pairは明示原契約の対応として比較しkindから番号を固定しない。",
+      "導出requiredとdeclared affectedをexact比較。conditional/informational/N/Aの分類理由と提出元属性を別に保持し、requiredの選択とF03の実行選択を混ぜない。",
+      "提出義務の7属性を独立に検査。catalogから欠落revision/artifact/input/oracle/expected failure/validity/backflowを補填しない。未実行actual nullと期限の実未観測を保持。",
+      "条件nullをskipにせずfalseとは別に保持。N/A4属性をCOREへ束縛し、consumer受入や完了を生成しない。"
+    ],
+    "partial_results": "duty_detailsは原分類/reason/pair/7属性/条件/N/A/実結果/証拠時刻不明/戻し先を保持。unknown義務を消さず、required集合の導出と完全性の成立を区別する。",
+    "fixture_preparation": "unknown_as_skipは条件nullを原前提にしcandidateのunknown消去と明示skipを別に追跡。worker_as_dutyは割当資料を追加して義務導出との誤同一化を検出。",
+    "limits": "14主呼出しの合成設計。期限はsymbolのままで正式時刻codec/期限判定/実run/実権限/実凍結/受入は未成立。U1等の具体意味例はこのfixture限定で、製品方式・全体template採用・固定Worker数へ昇格しない。"
   }
 }
