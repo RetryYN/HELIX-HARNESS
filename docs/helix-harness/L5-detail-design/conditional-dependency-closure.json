@@ -1,0 +1,1102 @@
+{
+  "document_id": "HARNESS-L5-023-CONDITIONAL-DEPENDENCY-CLOSURE",
+  "layer": "L5",
+  "paired_document": "docs/helix-harness/L8-unit-verification/conditional-dependency-closure.json",
+  "parent": "HARNESS-L2-023",
+  "status": "candidate_pending_independent_review",
+  "source_main": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-prerequisite-contracts-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/headless-call-contract.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "c17d939d378909555b7ecbf30dde8af47137c03d55317b4b17c4849b6071fb7b"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "d030634a263087dca369ae44d99ad186566a0326bb436e98e0ce127e4c6111f9"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/headless-call-contract.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "a9a934b4654e41c04c3d4774a94e7ee826171c383c054aec2d560bcfc407bb84"
+    },
+    {
+      "path": "docs/governance/template-work-allocation.md",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "55bd79ac24bbccfdc79b25537899a7ea5c80f77006af5eb4406312c71f399d2b"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/conditional-dependency-closure.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "737ed026c7640c3bd1233f48335b0a82934eba2b2371ebf15c0a7c778c192ff3"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/headless-call-contract.json",
+      "revision": "766ffc52d2aac4f6a5960d7fa2a88cf685162e08",
+      "sha256": "b3cd8e627331ab25ae54ed12fcf6db39d0608b8ca27baf7347a460d2582a3ef2"
+    }
+  ],
+  "scope": "承認済み023の6対から依存条件/閉包の純粋関数と論理型を導く。実resolver、formal schema、実装/実観測は未成立。",
+  "authority_boundary": "10/12限定再開範囲2と85103aa7の023承認6対。023 version_target1.0を保持。10/8一般解禁失効、未選択sourceを全体の完成分母から削除しない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md",
+      "asset_id": "LEGACY-ASSET-42A34FA10C651E19C463",
+      "sha256": "eaa3ef510cc95b374f9ff79789e9e052cb97604e14e571fadc4d4db6b232d649",
+      "keep": "明示ownershipとrequired dependency exact set、入力順に依存しないtrace、未収載依存はmissing、拒否ではhandler不実行。",
+      "change": "旧Lite provider dry-run、CLI/doctor、64KiB、旧AST/runtime方式を新規023へ自動採用しない。現4条件分類とscope/ownerの保持から再導出。",
+      "lines": "21–33、35–49",
+      "reuse_mode": "意味の再導出、旧runtime/source/test実行なし、完全一致copyなし",
+      "reason": "現L2-023が選択した利用条件に必要な依存と安全条件を閉じるため、旧exact ownership/不足拒否/決定論を保持し4区分と局所保留へ意味を再導出する。旧Lite限定provider/CLI/AST実装を023の汎用条件分類へ強制すると未選択sourceの一律前提になるため具体方式は移さない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "keep": "局所影響追跡/安全閉包/同入力再現。",
+      "change": "旧Slice/Module/Bundle配布形式を新023へ継承しない。",
+      "reason": "現行L2-023が保持/変更を指定するため、旧構造ではなく現4区分と010/011へ意味を対応させる。",
+      "lines": "38–47、64–67",
+      "reuse_mode": "意味の再導出、旧runtime/source/test実行なし、完全一致copyなし"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "keep": "owner不変、必要verification依存閉包、unknownの空集合禁止、必要な安全条件のmandatory。",
+      "change": "旧full verificationへの一律送りと旧registry/CI形式を現行の局所保留と3返却先へ再導出。",
+      "reason": "現行L2-023が保持/変更を指定するため、旧構造ではなく現4区分と010/011へ意味を対応させる。",
+      "lines": "129–144、209–214",
+      "reuse_mode": "意味の再導出、旧runtime/source/test実行なし、完全一致copyなし"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+      "sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "keep": "owner変更/検証削減/unknown成功/安全optional化を独立負例で拒否。",
+      "change": "旧CI合格と旧Slice gateを新世代合格証拠へ使わず、現L3/L10から対oracleを作る。",
+      "reason": "現行L2-023が保持/変更を指定するため、旧構造ではなく現4区分と010/011へ意味を対応させる。",
+      "lines": "45–47、58",
+      "reuse_mode": "意味の再導出、旧runtime/source/test実行なし、完全一致copyなし"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "65–101",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "meaning": "UTW010必須旧runtime、013fail-open、014空集合化、020巨大集約、021自己申告、022安全後付けを持ち込まず局所closureと実evidenceを分離。"
+  },
+  "type_contract": {
+    "syntax": "閉じた論理型。tupleはimmutable、set意味はexact重複拒否、順序意味は保持。Refは011 L5に対応、正式serializer/共通型moduleは未構築。",
+    "type_model": {
+      "Text": "nonempty Unicode scalar string。trim/NFC/casefoldでidentityを変えない。",
+      "Ref": {
+        "identity": "Text",
+        "revision": "Text",
+        "scope": "Text",
+        "owner": "Text",
+        "sha256": "64 lowercase hex; owner原body bytesのdigest"
+      },
+      "ResolutionState": "valid | missing | unknown | ambiguous | conflict | stale",
+      "ConditionState": "true | false | missing | unknown | ambiguous | conflict | stale",
+      "DependencyState": "required | excluded_condition_false | unselected_unobserved | reference | pending",
+      "ClassificationState": "valid | valid_with_unresolved | unresolved",
+      "UtilizationState": "candidate | held | rejected",
+      "Role": "execution | result | authority | isolation | exclusion | credential | data_use | audit | stop | recovery | oracle | source_authority | background",
+      "Binding": {
+        "request_ref": "Ref",
+        "pack_ref": "Ref",
+        "contract_ref": "Ref",
+        "call_id": "Text",
+        "attempt_id": "Text",
+        "correlation_id": "Text",
+        "input_ref": "Ref",
+        "operation_ref": "Ref | null; 意味上のmissingを表現",
+        "source_selection_ref": "Ref | null",
+        "scope_ref": "Ref | null",
+        "actor_ref": "Ref",
+        "actor_kind": "human | worker"
+      },
+      "PackMeaning": {
+        "owner": "Text",
+        "parent_requirement_ref": "Ref",
+        "parent_scope_ref": "Ref",
+        "behavior_ref": "Ref",
+        "version_ref": "Ref",
+        "maturity_ref": "Ref",
+        "completion_obligation_refs": "unique Ref tuple; 未選択source分も保持",
+        "version_target_ref": "Ref"
+      },
+      "Declaration": {
+        "slot": "Text; owner宣言body内locator、欠落identityの報告に使用しasset IDに昇格しない",
+        "dependency_ref": "Ref | null",
+        "category": "always | operation | source | reference | null",
+        "declaration_state": "ResolutionState",
+        "condition_ref": "Ref | null; always/referenceはnull可、条件付きでnullはsemantic missing",
+        "compatibility_ref": "Ref | null",
+        "requested_revision": "Text | null",
+        "roles": "unique Role tuple",
+        "outgoing_edges": "unique Edge tuple; edge_refをkeyに重複拒否",
+        "meaning_ref": "Ref; 宣言意味source",
+        "completion_obligation_ref": "Ref; 当該能力の完成義務は非選択でも保全"
+      },
+      "Edge": {
+        "edge_ref": "Ref",
+        "target_ref": "Ref | null",
+        "state": "ResolutionState",
+        "condition_ref": "Ref | null; nullは無条件、他はqualified edge適用条件",
+        "roles": "unique Role tuple; 到達依存に課す意味拘束"
+      },
+      "ConditionBody": {
+        "dependency_ref": "Ref",
+        "binding": "Binding",
+        "state": "ConditionState",
+        "domain": "operation | source | safety | declaration",
+        "cause_owner": "pack_contract_owner | call_owner | authority_owner | PO | unknown",
+        "applicable_operation_refs": "unique Ref tuple",
+        "selected_source_ref": "Ref | null",
+        "basis_refs": "Ref tuple; falseにもowner根拠必須"
+      },
+      "MappingBody": {
+        "dependency_ref": "Ref",
+        "contract_ref": "Ref",
+        "requested_revision": "Text",
+        "allowed_revision_pairs": "unique tuple of {requested:Text,observed:Text}",
+        "profile_ref": "Ref",
+        "basis_refs": "Ref tuple"
+      },
+      "ObservationBody": {
+        "dependency_ref": "Ref",
+        "binding": "Binding",
+        "actual_revision": "Text | null",
+        "source_ref": "Ref | null",
+        "state": "success | failure | unknown | unobserved",
+        "authority_ref": "Ref | null",
+        "evidence_refs": "Ref tuple",
+        "verification_ref": "Ref | null",
+        "record_ref": "Ref | null",
+        "receipt_ref": "Ref | null",
+        "isolation_ref": "Ref | null"
+      },
+      "OwnerEvidenceBody": {
+        "dependency_ref": "Ref",
+        "binding": "Binding",
+        "role": "Role | receipt | record | verification",
+        "decision": "satisfied | unsatisfied | unknown",
+        "issuer_ref": "Ref",
+        "basis_refs": "Ref tuple; 外部owner既決資格への参照"
+      },
+      "Resolution": {
+        "ref": "Ref",
+        "kind": "declarations | condition | mapping | observation | owner_evidence | qualification",
+        "state": "ResolutionState",
+        "content_bytes": "bytes | null",
+        "body": "DeclarationsBody | ConditionBody | MappingBody | ObservationBody | OwnerEvidenceBody | QualificationBody | null",
+        "qualification_ref": "Ref | null"
+      },
+      "QualificationBody": {
+        "subject_ref": "Ref",
+        "kind": "Text; Resolution.kindと一致",
+        "issuer_ref": "Ref",
+        "binding_ref": "Ref; owner指定の適用scope/revision根拠",
+        "source_refs": "Ref tuple"
+      },
+      "DeclarationsBody": {
+        "binding": "Binding; request/pack/contractのみ宣言固定軸、call/actorは消費時適用照合",
+        "meaning": "PackMeaning",
+        "declarations": "unique Declaration tuple; slotをkeyに重複拒否、dependency_refの同identity/revision異scope/ownerはconflictとして後段へ"
+      },
+      "ProposedDeclaration": {
+        "slot": "Text",
+        "dependency_ref": "Ref | null",
+        "category": "always | operation | source | reference | null",
+        "state": "DependencyState | capability_only | optional",
+        "condition_state": "ConditionState",
+        "roles": "unique Role tuple"
+      },
+      "ReportedClosure": {
+        "binding": "Binding",
+        "condition_snapshot_refs": "Ref tuple",
+        "declarations": "unique ProposedDeclaration tuple; slotをkeyに重複拒否",
+        "required_refs": "Ref tuple",
+        "excluded_refs": "Ref tuple",
+        "unselected_refs": "Ref tuple",
+        "reference_refs": "Ref tuple",
+        "pending_refs": "Ref tuple",
+        "reason_refs": "Ref tuple; 原意味source/condition refs",
+        "observed_target_refs": "Ref tuple; green母集合照合",
+        "claims": "Claim tuple"
+      },
+      "Claim": {
+        "kind": "dispatch | all_source_gate | success | nonexistent | green | fallback | delegate_waiver | oral_receipt | backflow",
+        "subject_ref": "Ref | null",
+        "binding": "Binding",
+        "replacement_source_ref": "Ref | null",
+        "waived_roles": "unique ObligationRole tuple",
+        "backflow_owner": "pack_contract_owner | call_owner | authority_owner | PO | unknown | null",
+        "basis_refs": "Ref tuple"
+      },
+      "ClosureInput": {
+        "binding": "Binding",
+        "declarations_ref": "Ref | null",
+        "condition_refs": "Ref tuple",
+        "observation_refs": "Ref tuple",
+        "qualification_roots": "Ref tuple; owner既決資格の解決入力。caller自己発行をrootとして採用不可",
+        "resolutions": "unique Resolution tuple",
+        "proposed_meaning": "PackMeaning | null; nullは変更提案なし",
+        "reported_closure": "ReportedClosure | null; nullは結果主張なし、分類に必須化しない"
+      },
+      "InputIssue": {
+        "pointer": "Text",
+        "reason": "type | missing_field | extra_field | duplicate | dangling | malformed_bytes | conflicting_resolution",
+        "subject_ref": "Ref | null"
+      },
+      "ValidatedInput": {
+        "input": "ClosureInput",
+        "qualified_refs": "Ref tuple",
+        "resolution_index": "immutable mapping exact Ref -> Resolution",
+        "input_issues": "InputIssue tuple"
+      },
+      "ValidationResult": {
+        "state": "valid | invalid | unresolved",
+        "value": "ValidatedInput | null; invalidのみnull",
+        "input_issues": "InputIssue tuple"
+      },
+      "Cause": {
+        "code": "closed27Code",
+        "dependency_ref": "Ref | null",
+        "slot": "Text | null",
+        "binding": "Binding",
+        "pointer": "Text",
+        "condition_state": "ConditionState | null",
+        "domain": "declaration | call | authority | parent | unknown",
+        "basis_refs": "Ref tuple",
+        "difference": "unique tuple of {axis:Text,requested:Text|null,observed:Text|null}",
+        "utilization": "held | rejected"
+      },
+      "DependencyDecision": {
+        "slot": "Text",
+        "dependency_ref": "Ref | null",
+        "state": "DependencyState",
+        "condition_state": "ConditionState | null",
+        "roles": "unique Role tuple",
+        "basis_refs": "Ref tuple",
+        "required_by": "Ref tuple; 到達originとedgeを保持"
+      },
+      "ConditionAnalysis": {
+        "decisions": "DependencyDecision tuple",
+        "meaning": "PackMeaning | null",
+        "causes": "Cause tuple",
+        "classification": "ClassificationState"
+      },
+      "ClosureAnalysis": {
+        "decisions": "DependencyDecision tuple",
+        "required_refs": "Ref tuple; 未収載の既知targetも保持",
+        "pending_slots": "Text tuple",
+        "unknown_edge_refs": "Ref tuple",
+        "visited_refs": "Ref tuple",
+        "causes": "Cause tuple",
+        "classification": "ClassificationState"
+      },
+      "UtilizationAnalysis": {
+        "state": "UtilizationState",
+        "causes": "Cause tuple",
+        "qualified_observation_refs": "Ref tuple",
+        "unobserved_refs": "Ref tuple"
+      },
+      "Backflow": {
+        "owner": "pack_contract_owner | call_owner | authority_owner | PO | unknown",
+        "cause": "Cause; 二原因は二record、first-returnにしない"
+      },
+      "ClosureResult": {
+        "binding": "Binding | null; invalid入力だけnull",
+        "classification": "ClassificationState",
+        "utilization": "UtilizationState",
+        "decisions": "DependencyDecision tuple",
+        "required_refs": "Ref tuple",
+        "pending_slots": "Text tuple",
+        "unknown_edge_refs": "Ref tuple",
+        "meaning": "PackMeaning | null; 原body値を保全",
+        "reported": "ReportedClosure | null; 主張はeffective集合と別field",
+        "causes": "Cause tuple",
+        "backflow": "Backflow tuple",
+        "input_issues": "InputIssue tuple",
+        "dispatch_permitted": "literal false",
+        "persistence_established": "literal false",
+        "parent_completion_established": "literal false"
+      },
+      "closed27Code": "authority_unknown | backflow_mismatch | binding_document_omission | classification_as_use | classification_change | compatibility_mismatch | compatibility_unknown | completion_scope_change | condition_conflict | condition_stale | condition_unknown | coverage_shrink | declaration_ambiguous | declaration_missing | delegate_obligation_omission | evidence_unproven | global_gate_added | implicit_fallback | meaning_change | nondeterministic_closure | receipt_unproven | required_omission | safety_omission | trace_cross_binding | unselected_claim | utilization_unproven | version_scope_change",
+      "ObligationRole": "Role | version | verification | record | receipt"
+    },
+    "qualification_boundary": "Resolution原bytes/digest/typed projection/既決owner資格は別照合。QualificationBodyを自己署名/再帰hashで真にしない。資格根拠の実解決はowner portの責務、単体fixtureはその純粋判断だけを模す。",
+    "finding_rules": [
+      {
+        "id": "R-authority_unknown",
+        "code": "authority_unknown",
+        "symbol": "check_dependency_utilization",
+        "predicate": "required roleのauthority/安全根拠が未資格/unknown/unsatisfied又は親scope矛盾をcallerが補完するclaim。authority不足domain=authority、親scope矛盾domain=parent。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F02-NEG-07",
+          "HARNESS-L9-023-F04-NEG-05"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-backflow_mismatch",
+        "code": "backflow_mismatch",
+        "symbol": "route_dependency_backflow",
+        "predicate": "reported backflow claimのowner != 原cause.domain対応owner。caller operation/source/scope/receipt不足を010へ返す場合を含み、正しいcall_owner recordを返す。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F02-NEG-06"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-binding_document_omission",
+        "code": "binding_document_omission",
+        "symbol": "expand_dependency_closure",
+        "predicate": "required oracle/execution/result/source_authorityのroleとreported reference/backgroundが矛盾。source_authority domain=authority、その他declaration。拡張子を判定に使わない。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F03-NEG-04",
+          "HARNESS-L9-023-F03-NEG-05"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-classification_as_use",
+        "code": "classification_as_use",
+        "symbol": "check_dependency_utilization",
+        "predicate": "reported claimsにdispatchが有り、その根拠がclassificationだけ又は実owner条件未成立。pure分類からdispatch許可を生成しない。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F04-NEG-01"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-classification_change",
+        "code": "classification_change",
+        "symbol": "classify_dependency_conditions",
+        "predicate": "reported.declarations[slot].category != original.category（B source→always等）。原categoryで計算しreportedを採用しない。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F01-NEG-01"
+        ],
+        "utilization": "rejected"
+      },
+      {
+        "id": "R-compatibility_mismatch",
+        "code": "compatibility_mismatch",
+        "symbol": "check_dependency_utilization",
+        "predicate": "qualified mappingあり、qualified observation.actual_revision != nullで(requested_revision,actual_revision)がallowed_revision_pairsに無い。domain=call。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F04-NEG-07"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-compatibility_unknown",
+        "code": "compatibility_unknown",
+        "symbol": "check_dependency_utilization",
+        "predicate": "required Dependencyのcompatibility_ref又はmappingがmissing/unknown/ambiguous/stale/conflict/資格未解決。requested/observed差を消さずdomain=declaration。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F04-NEG-04"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-completion_scope_change",
+        "code": "completion_scope_change",
+        "symbol": "classify_dependency_conditions",
+        "predicate": "proposed_meaning.completion_obligation_refs != original集合。unselected宣言の完成義務も比較対象。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F01-NEG-09"
+        ],
+        "utilization": "rejected"
+      },
+      {
+        "id": "R-condition_conflict",
+        "code": "condition_conflict",
+        "symbol": "classify_dependency_conditions",
+        "predicate": "原宣言/適用ConditionBody.state=conflict又は相互矛盾するqualified根拠。宣言矛盾はdeclaration domain、caller条件矛盾はcall domain。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F02-NEG-09"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-condition_stale",
+        "code": "condition_stale",
+        "symbol": "classify_dependency_conditions",
+        "predicate": "適用ConditionBody.state=stale又はenvelope.state=stale。旧revisionを新bindingへ継承せずpending。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F02-NEG-03"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-condition_unknown",
+        "code": "condition_unknown",
+        "symbol": "classify_dependency_conditions",
+        "predicate": "適用conditionのstateがmissing/unknown又は資格未解決。reported true/falseに置換せずdecision pending。domainはConditionBody.cause_ownerにより保持、未解決はunknown。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F02-NEG-01",
+          "HARNESS-L9-023-F02-NEG-02",
+          "HARNESS-L9-023-F03-NEG-06"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-coverage_shrink",
+        "code": "coverage_shrink",
+        "symbol": "expand_dependency_closure",
+        "predicate": "reported green claim有り、computed required_refs - reported.observed_target_refs が非empty。失敗/未知対象を差分へ残す。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F03-NEG-09"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-declaration_ambiguous",
+        "code": "declaration_ambiguous",
+        "symbol": "classify_dependency_conditions",
+        "predicate": "Declaration.declaration_state=ambiguous又はcategory/requested_revision/条件宣言/compatibility指定の意味が曖昧。pending、自己推定しない。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F02-NEG-05"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-declaration_missing",
+        "code": "declaration_missing",
+        "symbol": "classify_dependency_conditions",
+        "predicate": "declarations_ref/body又はDeclaration.dependency_refがsemantic null/missing。slotで不足locatorを返し分類unresolved、空集合にしない。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F02-NEG-04"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-delegate_obligation_omission",
+        "code": "delegate_obligation_omission",
+        "symbol": "check_dependency_utilization",
+        "predicate": "actor_kind=human又はworkerで、reported delegate_waiverのwaived_rolesに必要authority/isolation又はversion照合/verification相当が含まれる。安全domain=authority、版/検証domain=call。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-B01-NEG-01",
+          "HARNESS-L9-023-B01-NEG-02"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-evidence_unproven",
+        "code": "evidence_unproven",
+        "symbol": "check_dependency_utilization",
+        "predicate": "required実evidence/verification/record根拠がowner解決未成立、mock/hash/plain claimだけ又はobservation failure/unknown。実資格に昇格せずdomain=call。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F04-NEG-06"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-global_gate_added",
+        "code": "global_gate_added",
+        "symbol": "check_dependency_utilization",
+        "predicate": "reported all_source_gate claim有り、unselected_unobserved又は無関係scopeの実装まで分類の前提にする。分類は返すが当該不正gate claimをheld。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F04-NEG-02"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-implicit_fallback",
+        "code": "implicit_fallback",
+        "symbol": "check_dependency_utilization",
+        "predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F02-NEG-08",
+          "HARNESS-L9-023-F02-NEG-10",
+          "HARNESS-L9-023-F02-NEG-11",
+          "HARNESS-L9-023-F03-NEG-08"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-meaning_change",
+        "code": "meaning_change",
+        "symbol": "classify_dependency_conditions",
+        "predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F01-NEG-03",
+          "HARNESS-L9-023-F01-NEG-04",
+          "HARNESS-L9-023-F01-NEG-05",
+          "HARNESS-L9-023-F01-NEG-06"
+        ],
+        "utilization": "rejected"
+      },
+      {
+        "id": "R-nondeterministic_closure",
+        "code": "nondeterministic_closure",
+        "symbol": "build_dependency_analysis",
+        "predicate": "reported_closureが同Bindingと同condition_snapshot_refsに束縛されるがcomputed 5集合/decision理由と異なる（arrival order又はclockだけの差も含む）。変更snapshotは比較対象外でtrace差を扱う。報告が無ければ比較原因を捏造しない。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-N01-NEG-01",
+          "HARNESS-L9-023-N01-NEG-02"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-receipt_unproven",
+        "code": "receipt_unproven",
+        "symbol": "check_dependency_utilization",
+        "predicate": "required receiptがnull/未資格又はreported oral_receipt。実保存/受領成立を返さない、domain=call。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-B01-NEG-03"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-required_omission",
+        "code": "required_omission",
+        "symbol": "expand_dependency_closure",
+        "predicate": "computed requiredにあるidentityがreported.required_refsに無い又はcapability_onlyに落とす。またqualified required edgeのtargetが宣言母集合に無い。target identityをrequired_refsへ残す。 またrequired edge.stateがunknown/missing/stale/conflict、target_ref=null、又は到達先条件と必須edgeが矛盾。unknown edgeを不足の原因として残す。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F01-NEG-02",
+          "HARNESS-L9-023-F03-NEG-01"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-safety_omission",
+        "code": "safety_omission",
+        "symbol": "expand_dependency_closure",
+        "predicate": "qualified origin/edgeが課すauthority/isolation/exclusion/credential/data_use/audit/stop/recovery roleの必要依存をreported optional/reference/未来版除外へ変える。required又はpendingを保持。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F01-NEG-08",
+          "HARNESS-L9-023-F03-NEG-02",
+          "HARNESS-L9-023-F03-NEG-03"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-trace_cross_binding",
+        "code": "trace_cross_binding",
+        "symbol": "check_dependency_utilization",
+        "predicate": "Condition/Observation/OwnerEvidence/ReportedClosureのrequest/pack/contract/call/attempt/correlation/input/operation/source_selection/scope/actorいずれかが適用Bindingと不一致。原Refと差分保持、domain=call。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-N01-NEG-03",
+          "HARNESS-L9-023-N01-NEG-04",
+          "HARNESS-L9-023-B01-NEG-04"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-unselected_claim",
+        "code": "unselected_claim",
+        "symbol": "check_dependency_utilization",
+        "predicate": "unselected_unobserved identityについてreported success/nonexistent claimがある。未観測維持、domain=call。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F03-NEG-07"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-utilization_unproven",
+        "code": "utilization_unproven",
+        "symbol": "check_dependency_utilization",
+        "predicate": "required observationが未解決又はactual_revision=null。原classify可、domain=call、mapping不足とは別原因。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F04-NEG-03"
+        ],
+        "utilization": "held"
+      },
+      {
+        "id": "R-version_scope_change",
+        "code": "version_scope_change",
+        "symbol": "classify_dependency_conditions",
+        "predicate": "proposed_meaning.version_target_ref != original.version_target_refによって後続版能力を現在利用requiredへ強制。版/成熟度変更は別meaning_change原因も保持。",
+        "integration_oracle_refs": [
+          "HARNESS-L9-023-F01-NEG-07"
+        ],
+        "utilization": "rejected"
+      }
+    ]
+  },
+  "functions": [
+    {
+      "symbol": "validate_closure_input",
+      "signature": "raw: object -> ValidationResult",
+      "steps": [
+        "閉じたfield/enum/非empty文字列/hex/bytesを検査。field未記載はInputIssue、意味上のnullは後段へ渡す。set tupleはexact Refで重複拒否。",
+        "Resolutionのref/kind/content原bytes SHA/typed body対応を照合。qualificationは注入した既決owner根拠とのsubject/kind/scope/revision/issuer照合が必要。自己発行rootを認めず、不明はunresolved。",
+        "qualified_refsは資格解決したRefだけ。missing/unknown/stale/conflictをvalidへ補完しない。対応Bodyを解析不能ならmalformed_bytesでinvalid。validという自己ラベルだけを根拠にしない。"
+      ],
+      "design_refs": [
+        "HARNESS-L5-023-F01",
+        "HARNESS-L5-023-F02",
+        "HARNESS-L5-023-F03",
+        "HARNESS-L5-023-F04",
+        "HARNESS-L5-023-N01",
+        "HARNESS-L5-023-B01"
+      ],
+      "oracle_refs": [
+        "HARNESS-L8-023-F01",
+        "HARNESS-L8-023-F02",
+        "HARNESS-L8-023-F03",
+        "HARNESS-L8-023-F04",
+        "HARNESS-L8-023-N01",
+        "HARNESS-L8-023-B01"
+      ],
+      "negative_oracle_refs": [],
+      "additional_oracle_refs": [
+        "HARNESS-L8-023-X01",
+        "HARNESS-L8-023-X02",
+        "HARNESS-L8-023-X03",
+        "HARNESS-L8-023-X19"
+      ],
+      "finding_rule_refs": [],
+      "side_effects": "none; input不変、注入snapshotのみ"
+    },
+    {
+      "symbol": "classify_dependency_conditions",
+      "signature": "v: ValidatedInput -> ConditionAnalysis",
+      "steps": [
+        "010 qualified DeclarationsBodyの全slotを母集合にする。semantic欠落identityはunresolved。原PackMeaningとoptional proposedを全軸比較し変更causeを生成、原値を保全。",
+        "always→required。operation/sourceはowner-qualified条件のtrue→required、false→excluded_condition_false/unselected_unobserved。operation=falseは当該scopeに操作を含まない根拠を照合。falseでも必要always安全を消さない。",
+        "referenceはrolesがbackgroundだけで当該成果等の意味拘束が無いqualified根拠のあるもののみ。binding role有りならpendingとしてexpandへ渡す。domain=safety未知もpending。分類不明や適用scope不明は除外しない。",
+        "conditionの適用bindingと原envelopeは消費前に照合。不一致は後段trace_cross_binding原因、条件はpending。actual観測が無くても分類する。"
+      ],
+      "design_refs": [
+        "HARNESS-L5-023-F01",
+        "HARNESS-L5-023-F02",
+        "HARNESS-L5-023-F03",
+        "HARNESS-L5-023-F04",
+        "HARNESS-L5-023-N01",
+        "HARNESS-L5-023-B01"
+      ],
+      "oracle_refs": [
+        "HARNESS-L8-023-F01",
+        "HARNESS-L8-023-F02",
+        "HARNESS-L8-023-F03",
+        "HARNESS-L8-023-F04",
+        "HARNESS-L8-023-N01",
+        "HARNESS-L8-023-B01"
+      ],
+      "negative_oracle_refs": [
+        "HARNESS-L8-023-F01-NEG-01",
+        "HARNESS-L8-023-F01-NEG-03",
+        "HARNESS-L8-023-F01-NEG-04",
+        "HARNESS-L8-023-F01-NEG-05",
+        "HARNESS-L8-023-F01-NEG-06",
+        "HARNESS-L8-023-F01-NEG-07",
+        "HARNESS-L8-023-F01-NEG-09",
+        "HARNESS-L8-023-F02-NEG-01",
+        "HARNESS-L8-023-F02-NEG-02",
+        "HARNESS-L8-023-F02-NEG-03",
+        "HARNESS-L8-023-F02-NEG-04",
+        "HARNESS-L8-023-F02-NEG-05",
+        "HARNESS-L8-023-F02-NEG-09",
+        "HARNESS-L8-023-F03-NEG-06"
+      ],
+      "additional_oracle_refs": [
+        "HARNESS-L8-023-X04",
+        "HARNESS-L8-023-X05",
+        "HARNESS-L8-023-X14"
+      ],
+      "finding_rule_refs": [
+        "R-classification_change",
+        "R-meaning_change",
+        "R-version_scope_change",
+        "R-completion_scope_change",
+        "R-condition_unknown",
+        "R-condition_stale",
+        "R-condition_conflict",
+        "R-declaration_missing",
+        "R-declaration_ambiguous"
+      ],
+      "side_effects": "none; input不変、注入snapshotのみ"
+    },
+    {
+      "symbol": "expand_dependency_closure",
+      "signature": "v: ValidatedInput, conditions: ConditionAnalysis -> ClosureAnalysis",
+      "steps": [
+        "required seedをexact Ref昇順queueへ入れる。訪問keyはRefのidentity/revision、scope/owner差の同keyは解決矛盾でpending、勝手に同一視しない。visitedで既知cycle有限、cycle全禁止はしない。",
+        "各requiredのoutgoing edgeをqualified snapshotから展開。無条件又は適用trueのedgeはtargetが必要。edge falseはqualified対象外理由を保持。unknown/null targetはedge_refをunknown_edge_refsへ保持しpending、空集合にしない。 未知edgeはrequired_omission cause(domain=declaration,pointer=edge_ref,target=null可)として返し、既知identityが無いときslot/edgeで不足を特定。",
+        "既知target未宣言はrequired_refsへ残しrequired_omission、分類valid_with_unresolved。到達先の条件false/referenceが必須edgeの役割と矛盾したらpending+安全又は文書拘束不足。required親からのedge義務をleaf categoryで消せない。未知edgeから全sourceを推測しない。 到達条件の矛盾は安全/文書roleが無くてもrequired_omissionを返してpending保留する。",
+        "reported集合/roleと計算値を比較しrequired_omission/safety_omission/binding_document_omission/coverage_shrinkを個別に生成。必要集合を報告集合から導出しない。"
+      ],
+      "design_refs": [
+        "HARNESS-L5-023-F01",
+        "HARNESS-L5-023-F02",
+        "HARNESS-L5-023-F03",
+        "HARNESS-L5-023-F04",
+        "HARNESS-L5-023-N01",
+        "HARNESS-L5-023-B01"
+      ],
+      "oracle_refs": [
+        "HARNESS-L8-023-F01",
+        "HARNESS-L8-023-F02",
+        "HARNESS-L8-023-F03",
+        "HARNESS-L8-023-F04",
+        "HARNESS-L8-023-N01",
+        "HARNESS-L8-023-B01"
+      ],
+      "negative_oracle_refs": [
+        "HARNESS-L8-023-F01-NEG-02",
+        "HARNESS-L8-023-F01-NEG-08",
+        "HARNESS-L8-023-F03-NEG-01",
+        "HARNESS-L8-023-F03-NEG-02",
+        "HARNESS-L8-023-F03-NEG-03",
+        "HARNESS-L8-023-F03-NEG-04",
+        "HARNESS-L8-023-F03-NEG-05",
+        "HARNESS-L8-023-F03-NEG-09"
+      ],
+      "additional_oracle_refs": [
+        "HARNESS-L8-023-X06",
+        "HARNESS-L8-023-X07",
+        "HARNESS-L8-023-X08"
+      ],
+      "finding_rule_refs": [
+        "R-required_omission",
+        "R-safety_omission",
+        "R-binding_document_omission",
+        "R-coverage_shrink"
+      ],
+      "side_effects": "none; input不変、注入snapshotのみ"
+    },
+    {
+      "symbol": "check_dependency_utilization",
+      "signature": "v: ValidatedInput, closure: ClosureAnalysis -> UtilizationAnalysis",
+      "steps": [
+        "required_refsそれぞれのrequested版、mapping、observed実版を別に解決しqualified allowed pairへ照合。mapping不足とactual不足を独立cause生成。range文字列の独自解析/latest推定をしない。",
+        "required実版/source/scope/actorとauthority/隔離/検証/evidence/record/receiptのowner資格と適用Bindingを照合。必要roleだけを対象とし無関係sourceへ全体gateを足さない。missing condition/pending edgeでも当該利用held。",
+        "各reported Claimは元依存/元bindingのまま個別検査。分類＝dispatch、未観測＝成功/不存在、fallback、人の免除、口頭受領を受理しない。body自己申告・ローカルmockは実owner資格の代用不可。 Claimをkindだけで内容が表せない場合はbasis_refsの原qualified入力と比較する。version/verification免除はObligationRoleで明示。",
+        "trace照合は原bodyと全Binding軸（source_refもsource選択根拠と照合）。原因domainを保持。classification結果は変更せず、実利用不足を別軸へ。"
+      ],
+      "design_refs": [
+        "HARNESS-L5-023-F01",
+        "HARNESS-L5-023-F02",
+        "HARNESS-L5-023-F03",
+        "HARNESS-L5-023-F04",
+        "HARNESS-L5-023-N01",
+        "HARNESS-L5-023-B01"
+      ],
+      "oracle_refs": [
+        "HARNESS-L8-023-F01",
+        "HARNESS-L8-023-F02",
+        "HARNESS-L8-023-F03",
+        "HARNESS-L8-023-F04",
+        "HARNESS-L8-023-N01",
+        "HARNESS-L8-023-B01"
+      ],
+      "negative_oracle_refs": [
+        "HARNESS-L8-023-F02-NEG-07",
+        "HARNESS-L8-023-F02-NEG-08",
+        "HARNESS-L8-023-F02-NEG-10",
+        "HARNESS-L8-023-F02-NEG-11",
+        "HARNESS-L8-023-F03-NEG-07",
+        "HARNESS-L8-023-F03-NEG-08",
+        "HARNESS-L8-023-F04-NEG-01",
+        "HARNESS-L8-023-F04-NEG-02",
+        "HARNESS-L8-023-F04-NEG-03",
+        "HARNESS-L8-023-F04-NEG-04",
+        "HARNESS-L8-023-F04-NEG-05",
+        "HARNESS-L8-023-F04-NEG-06",
+        "HARNESS-L8-023-F04-NEG-07",
+        "HARNESS-L8-023-N01-NEG-03",
+        "HARNESS-L8-023-N01-NEG-04",
+        "HARNESS-L8-023-B01-NEG-01",
+        "HARNESS-L8-023-B01-NEG-02",
+        "HARNESS-L8-023-B01-NEG-03",
+        "HARNESS-L8-023-B01-NEG-04"
+      ],
+      "additional_oracle_refs": [
+        "HARNESS-L8-023-X09",
+        "HARNESS-L8-023-X10",
+        "HARNESS-L8-023-X11",
+        "HARNESS-L8-023-X12",
+        "HARNESS-L8-023-X13",
+        "HARNESS-L8-023-X15",
+        "HARNESS-L8-023-X16"
+      ],
+      "finding_rule_refs": [
+        "R-classification_as_use",
+        "R-compatibility_mismatch",
+        "R-compatibility_unknown",
+        "R-utilization_unproven",
+        "R-authority_unknown",
+        "R-evidence_unproven",
+        "R-global_gate_added",
+        "R-implicit_fallback",
+        "R-unselected_claim",
+        "R-delegate_obligation_omission",
+        "R-receipt_unproven",
+        "R-trace_cross_binding"
+      ],
+      "side_effects": "none; input不変、注入snapshotのみ"
+    },
+    {
+      "symbol": "route_dependency_backflow",
+      "signature": "v: ValidatedInput, causes: Cause tuple -> Backflow tuple",
+      "steps": [
+        "domain declaration→pack_contract_owner、call→call_owner、authority→authority_owner、parent→PO、unknown→unknown。ConditionBody.cause_ownerはqualified原因根拠との一致を確認し、自己ラベルでowner変更不可。",
+        "reported backflow ownerとの差はbackflow_mismatch causeを追加して正しいownerへ返す。authority_owner_or_POという上流oracleは具体causeのauthority/parentで別recordへ分解、曖昧ならunknown/held。",
+        "同dependencyでmapping不足とobserved版不足を二つのrecordにする。code/domain/pointer/basisが同一の場合のみ重複除去し別原因を一つにしない。人判断を代行で作らない。"
+      ],
+      "design_refs": [
+        "HARNESS-L5-023-F01",
+        "HARNESS-L5-023-F02",
+        "HARNESS-L5-023-F03",
+        "HARNESS-L5-023-F04",
+        "HARNESS-L5-023-N01",
+        "HARNESS-L5-023-B01"
+      ],
+      "oracle_refs": [
+        "HARNESS-L8-023-F01",
+        "HARNESS-L8-023-F02",
+        "HARNESS-L8-023-F03",
+        "HARNESS-L8-023-F04",
+        "HARNESS-L8-023-N01",
+        "HARNESS-L8-023-B01"
+      ],
+      "negative_oracle_refs": [
+        "HARNESS-L8-023-F02-NEG-06"
+      ],
+      "additional_oracle_refs": [
+        "HARNESS-L8-023-X20"
+      ],
+      "finding_rule_refs": [
+        "R-backflow_mismatch"
+      ],
+      "side_effects": "none; input不変、注入snapshotのみ"
+    },
+    {
+      "symbol": "build_dependency_analysis",
+      "signature": "validation: ValidationResult -> ClosureResult",
+      "steps": [
+        "invalid→classification unresolved/utilization held、InputIssueと原報告を保全、dispatch等false。valid/unresolved→classify→expand→check→同snapshot報告比較→routeの順。",
+        "同Binding/condition Ref集合のreported 5集合と原理由を計算値へ比較する。不一致はnondeterministic_closure。差をslot/refで返し、計算値を報告に合わせて書き換えない。snapshot差はtrace原因として扱い同一入力の差と誤認しない。",
+        "原因rejectedが一つでもあればrejected、それ以外cause/InputIssue/pending/unknown edge/qualification未成立があればheld、それ以外candidate。未選択sourceの未観測だけならheldにしない。",
+        "分類は母集合identity未成立ならunresolved、分類条件/edge又はrequired実依存に不足があればvalid_with_unresolved、それ以外valid。不正claimによるheldだけでvalid分類を破棄しない。",
+        "各Ref集合はidentity/revision/scope/owner/sha256 Unicode scalar昇順。slot集合はslot昇順。reason/causeはdependency key,slot,code,domain,pointer,basis keyの昇順、differenceはaxis昇順。同meaningのarrival順は結果不変。入力をmutationせず時計/env/network/DB/process/filesystem/dispatch/保存なし。"
+      ],
+      "design_refs": [
+        "HARNESS-L5-023-F01",
+        "HARNESS-L5-023-F02",
+        "HARNESS-L5-023-F03",
+        "HARNESS-L5-023-F04",
+        "HARNESS-L5-023-N01",
+        "HARNESS-L5-023-B01"
+      ],
+      "oracle_refs": [
+        "HARNESS-L8-023-F01",
+        "HARNESS-L8-023-F02",
+        "HARNESS-L8-023-F03",
+        "HARNESS-L8-023-F04",
+        "HARNESS-L8-023-N01",
+        "HARNESS-L8-023-B01"
+      ],
+      "negative_oracle_refs": [
+        "HARNESS-L8-023-N01-NEG-01",
+        "HARNESS-L8-023-N01-NEG-02"
+      ],
+      "additional_oracle_refs": [
+        "HARNESS-L8-023-X17",
+        "HARNESS-L8-023-X18"
+      ],
+      "finding_rule_refs": [
+        "R-nondeterministic_closure"
+      ],
+      "side_effects": "none; input不変、注入snapshotのみ"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HARNESS-L5-023-F01",
+      "basic_design_ref": "HARNESS-L4-023-F01",
+      "requirement_ref": "HARNESS-L3-023-F01",
+      "system_oracle_ref": "HARNESS-L10-023-F01",
+      "integration_oracle_ref": "HARNESS-L9-023-F01",
+      "oracle_ref": "HARNESS-L8-023-F01",
+      "symbols": [
+        "validate_closure_input",
+        "classify_dependency_conditions",
+        "expand_dependency_closure",
+        "check_dependency_utilization",
+        "build_dependency_analysis",
+        "route_dependency_backflow"
+      ],
+      "behavior": "pack/contract revisionに束縛された全宣言を母集合として、always/operation/source/referenceの4区分を保持する。alwaysは当該利用で必須、operationは条件trueのみ必須、falseはその操作を含まない当該利用だけ対象外。sourceは明示選択trueの全依存を必須、非選択falseは未観測、選択unknownは保留。referenceは当該成果/authority/oracle/安全へ効かない背景のみ。区分で機能/owner/親要求/版/成熟度を変えない。"
+    },
+    {
+      "id": "HARNESS-L5-023-F02",
+      "basic_design_ref": "HARNESS-L4-023-F02",
+      "requirement_ref": "HARNESS-L3-023-F02",
+      "system_oracle_ref": "HARNESS-L10-023-F02",
+      "integration_oracle_ref": "HARNESS-L9-023-F02",
+      "oracle_ref": "HARNESS-L8-023-F02",
+      "symbols": [
+        "validate_closure_input",
+        "classify_dependency_conditions",
+        "expand_dependency_closure",
+        "check_dependency_utilization",
+        "build_dependency_analysis",
+        "route_dependency_backflow"
+      ],
+      "behavior": "条件の解決状態がmissing/unknown/ambiguous/conflict/stale又は版互換根拠不明ならpendingへ保持し、falseや空集合へ補完しない。不足をpack宣言/呼出し入力/authority又は親scopeに分け、010契約owner/011呼出しowner/authority owner又はPOへ根拠付きで返す。無関係な操作まで停止せず、当該未成立を他source/手作業/参照へ迂回しない。"
+    },
+    {
+      "id": "HARNESS-L5-023-F03",
+      "basic_design_ref": "HARNESS-L4-023-F03",
+      "requirement_ref": "HARNESS-L3-023-F03",
+      "system_oracle_ref": "HARNESS-L10-023-F03",
+      "integration_oracle_ref": "HARNESS-L9-023-F03",
+      "oracle_ref": "HARNESS-L8-023-F03",
+      "symbols": [
+        "validate_closure_input",
+        "classify_dependency_conditions",
+        "expand_dependency_closure",
+        "check_dependency_utilization",
+        "build_dependency_analysis",
+        "route_dependency_backflow"
+      ],
+      "behavior": "選択sourceの宣言済み到達依存を固定点で展開し、該当する認可/authority/隔離/排他/credential/data-use/監査/停止復旧と検証oracle・実行条件・source authorityの文書をrequiredへ保持する。条件不明はpending、必要なのにreference又はoptionalへ落とした宣言は誤分類として拒否。未選択sourceはunobservedで、存在/不在/適格性/成功を推測しない。"
+    },
+    {
+      "id": "HARNESS-L5-023-F04",
+      "basic_design_ref": "HARNESS-L4-023-F04",
+      "requirement_ref": "HARNESS-L3-023-F04",
+      "system_oracle_ref": "HARNESS-L10-023-F04",
+      "integration_oracle_ref": "HARNESS-L9-023-F04",
+      "oracle_ref": "HARNESS-L8-023-F04",
+      "symbols": [
+        "validate_closure_input",
+        "classify_dependency_conditions",
+        "expand_dependency_closure",
+        "check_dependency_utilization",
+        "build_dependency_analysis",
+        "route_dependency_backflow"
+      ],
+      "behavior": "分類成立は宣言と条件根拠から不足を含む結果を生成できること。必要依存の実装実体がmissingでも分類できる。実利用候補はrequiredのidentity/版/authority/実evidenceを全て当該callへ束縛できた場合だけ返し、分類結果から利用許可/機能完成/dispatch/受入を生成しない。全source実装を分類能力への一律前提にしない。"
+    },
+    {
+      "id": "HARNESS-L5-023-N01",
+      "basic_design_ref": "HARNESS-L4-023-N01",
+      "requirement_ref": "HARNESS-L3-023-N01",
+      "system_oracle_ref": "HARNESS-L10-023-N01",
+      "integration_oracle_ref": "HARNESS-L9-023-N01",
+      "oracle_ref": "HARNESS-L8-023-N01",
+      "symbols": [
+        "validate_closure_input",
+        "classify_dependency_conditions",
+        "expand_dependency_closure",
+        "check_dependency_utilization",
+        "build_dependency_analysis",
+        "route_dependency_backflow"
+      ],
+      "behavior": "同一要求入力/pack/contract revision/条件根拠のsnapshotから、同一required/excluded/unselected/reference/pending集合と理由を再現する。出力をcall/correlation/input/scope/pack/contractと依存実版の根拠へ結ぶ。時刻/到着順/フォルダ名を意味条件に使わず、版変更の差分は影響依存だけへ局所化する。"
+    },
+    {
+      "id": "HARNESS-L5-023-B01",
+      "basic_design_ref": "HARNESS-L4-023-B01",
+      "requirement_ref": "HARNESS-L3-023-B01",
+      "system_oracle_ref": "HARNESS-L10-023-B01",
+      "integration_oracle_ref": "HARNESS-L9-023-B01",
+      "oracle_ref": "HARNESS-L8-023-B01",
+      "symbols": [
+        "validate_closure_input",
+        "classify_dependency_conditions",
+        "expand_dependency_closure",
+        "check_dependency_utilization",
+        "build_dependency_analysis",
+        "route_dependency_backflow"
+      ],
+      "behavior": "実施者が人かWorkerかをactorの別軸に保持し、同じ宣言・条件・closure・authority/隔離/版/検証/記録/受領を適用する。人の口頭受領や代行自己申告をqualified receiptへしない。成果のsource/actor/revision/scope/receiptを011へ束縛する。"
+    }
+  ],
+  "owner_port_contract": {
+    "declaration": "010がexact DeclarationsBody/全母集合/原意味/条件と互換profileを提供。023は新registry/DBを作らない。",
+    "caller": "011がoperation/source/scope/correlation/actorと実owner observationsを供給、実dispatch直前再認可/期限/資源は011と各ownerで維持。",
+    "authority": "SECURITY/各安全ownerのqualified入力だけを消費。caller代行でPO/authority判断を作らない。",
+    "persistence": "OSが実record/receiptを所有。023結果のrecord field存在は保存成立ではない。",
+    "resolver": "版profile/条件/evidenceの実resolveは明示port、純粋関数は供給snapshotのみ。real adapter/schema/bytes budget/qualification rootsの運用をL6/L7とowner対設計で閉じる。"
+  },
+  "remaining": [
+    "L6 module/function/test fixture/oracle freezeと実装前Red/最小Green、実source/owner port/authority/資源/receipt、正式schema/依存lock/CIは未成立。",
+    "全92親430対の基本/詳細、配置4論点、toolchain/文書監査と実装準備は未完。VT104–106未採用を維持。",
+    "PO実物受入、通常L3、release/内部デプロイは本設計から成立しない。"
+  ]
+}
