@@ -461,8 +461,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "claimsから実証拠を生成しない。"
               }
             },
             "non_target": {
@@ -666,6 +668,18 @@
                   }
                 }
               }
+            },
+            "storage_receipt": {
+              "presence": "Field",
+              "value": "B01MaterialReceipt"
+            },
+            "projection": {
+              "presence": "Field",
+              "value": "B01MaterialReceipt"
+            },
+            "runtime_transition": {
+              "presence": "Field",
+              "value": "B01RuntimeTransition"
             }
           }
         },
@@ -685,8 +699,10 @@
                 "claims": {
                   "presence": "Field",
                   "value": {
-                    "array_item_shapes": [],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "array_item_shapes": [
+                      "never"
+                    ],
+                    "empty_semantics": "claimsから実証拠を生成しない。"
                   }
                 },
                 "non_target": {
@@ -890,6 +906,18 @@
                       }
                     }
                   }
+                },
+                "storage_receipt": {
+                  "presence": "Field",
+                  "value": "B01MaterialReceipt"
+                },
+                "projection": {
+                  "presence": "Field",
+                  "value": "B01MaterialReceipt"
+                },
+                "runtime_transition": {
+                  "presence": "Field",
+                  "value": "B01RuntimeTransition"
                 }
               }
             }
@@ -911,16 +939,15 @@
             "provider_obligation_delta": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "provider/Worker名から義務差分を生成しない。"
               }
             },
             "repair_contract_changes": {
               "presence": "Field",
-              "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
-              }
+              "value": "collection<B01RepairChange>"
             },
             "same_head_oracle_digest": {
               "presence": "Field",
@@ -933,6 +960,22 @@
             "completion": {
               "presence": "Field",
               "value": "string"
+            },
+            "run_results": {
+              "presence": "Field",
+              "value": "collection<B01RunResult>"
+            },
+            "independent_review": {
+              "presence": "Field",
+              "value": "boolean"
+            },
+            "meaning_change_review": {
+              "presence": "Field",
+              "value": "not_requested|independent meaning comparison"
+            },
+            "runtime_continuity": {
+              "presence": "Field",
+              "value": "original_conditions_preserved"
             }
           }
         },
@@ -6984,12 +7027,12 @@
       "FixtureInputPreparation": {
         "fields": {
           "operation": "remove|replace|append",
-          "field_path": "exact logical field path",
+          "field_path": "exact logical field path; $ denotes entire original owner material",
           "before": "Field<logical value>",
           "after": "Field<logical value>|key_absent",
           "purpose": "string"
         },
-        "meaning": "候補変異と分けた合成対照の前提。F07のRed欠落とN01の未知identity/規律単独成功で使用。原source差分を追跡し、authority変更や実凍結/実実行を生成しない。"
+        "meaning": "候補と分けた合成前提。F07/N01/B01で元材料・個別fieldの差分を明示。原履歴を保全し実authority/凍結/runを生成しない。"
       },
       "TddOracleSourceContent": {
         "fields": {
@@ -7199,6 +7242,69 @@
           "retention": "Field<product-owned quantity with unit>"
         },
         "meaning": "未供給値/単位/条件はunknown。一律既定を置かない。"
+      },
+      "B01RunResult": {
+        "fields": {
+          "ref": "Ref",
+          "target_head": "opaque HEAD",
+          "oracle_revision": "opaque revision",
+          "meaning_digest": "opaque digest identity",
+          "declared_execution": "boolean",
+          "declared_result": "null|string",
+          "binding_match": "ObservationField<boolean>",
+          "verification": "ObservationField<boolean>"
+        },
+        "meaning": "binding matchと実観測内容を別に保持。null/未実行を他run成功で補わない。"
+      },
+      "B01RepairChange": {
+        "fields": {
+          "field": "required_test_ids|forbidden_acceptance_allowance|affected_projects|meaning_digest",
+          "before": "integer|opaque identity|collection<opaque identity>",
+          "after": "integer|opaque identity|collection<opaque identity>",
+          "source_ref": "Ref"
+        },
+        "meaning": "差分の元集合/期待/対象/意味を保全。scope内修復と意味変更を混ぜない。"
+      },
+      "B01ProbeObservation": {
+        "fields": {
+          "test_id": "opaque test identity",
+          "edge": "DirectedEdge",
+          "actual": "rejected|retained"
+        },
+        "meaning": "実行ownerの具体合成観測。独立oracle側expectedと別fieldで比較する。"
+      },
+      "B01RunSource": {
+        "fields": {
+          "ref": "Ref",
+          "subject_binding": "Ref",
+          "run": "B01VerificationInput.normal_shape.fields.runs.value member",
+          "oracle_ref": "Ref",
+          "observations": "Field<collection<B01ProbeObservation>>",
+          "kind": "synthetic_run_fixture_not_actual_execution"
+        },
+        "meaning": "null observationsは未実行を表す。この仮定から製品runを成立させない。"
+      },
+      "B01MaterialReceipt": {
+        "fields": {
+          "ref": "Ref",
+          "subject_binding": "Ref",
+          "target_head": "opaque HEAD",
+          "state": "saved|rendered",
+          "source_run_refs": "collection<Ref>",
+          "verification_observation": "Field<collection<B01ProbeObservation>>"
+        },
+        "meaning": "保存/表示は元runを代替しない。空source_run_refsとnull verificationは成功ではない。"
+      },
+      "B01RuntimeTransition": {
+        "fields": {
+          "ref": "Ref",
+          "from_runtime": "opaque runtime identity",
+          "to_runtime": "opaque runtime identity",
+          "subject_binding": "Ref",
+          "normative_ref": "Ref",
+          "required_conditions": "collection<original condition identity>"
+        },
+        "meaning": "交代は元工程/対象/証拠条件を変更しない。条件省略の許可ではない。"
       }
     },
     "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
@@ -7308,7 +7414,8 @@
           "backflow_owner": "OS/実行環境",
           "preserve": "同じ義務を保持し再開不足理由を示す。"
         }
-      ]
+      ],
+      "detail_contract": "evidence_continuity_detail"
     },
     {
       "name": "derive_verification_duties",
@@ -8173,7 +8280,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106主呼出しのrootとF05-F09/N01/N02の51件の合成参照資料状態、42負例の部分期待を起草。残る55主呼出しの参照先と42負例の部分結果、全体のnull/empty型は未完。",
+      "106主呼出しのrootとB01/F05-F09/N01/N02の64件の合成参照資料状態、53負例の部分期待を起草。残る42主呼出しの参照先と31負例の部分結果、全体のdomain型は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -8227,9 +8334,9 @@
     },
     "normal_sources": "各L9正常/variantの合成owner materialをimmutable root source_refへ固定する。",
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
-    "negative_candidate_sources": "原資料をcandidateから分離する。F07 mutation_as_pre_redのRed欠落、N01 unknown_rule_fallbackの未知identity、other_rule_cancelsのdirection合成成功は、明示fixture_preparation/source_preparationを候補変異と分けて追跡する。それ以外のcandidate負例は正常owner材料を保持する。実実行・実authorityの成立を生成しない。",
+    "negative_candidate_sources": "原資料をcandidateから分離する。F07/N01の個別前提とB01のrunなし保存/表示・未実行/stale結果はfixture_preparation/source_preparationへ明示。B01 runtime交代は明示前提の後、原review欠落を別変異として追跡する。他のcandidate負例は正常owner材料を保持する。実実行/実authority/意味承認を生成しない。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106主呼出しのうちF05-F09/N01/N02の51件へ独立合成資料状態を供給。未解決oracle、unknown適用、N/A不備、別scope/環境成功を保全。root資格を意味/authority/実観測へ昇格しない。他55件はmissing。"
+    "referent_input_state": "106主呼出しのうちB01/F05-F09/N01/N02の64件へ独立合成資料状態を供給。未解決oracle/新意味、未観測/未実行、N/A不備、別対象成功を保全。他42件はmissing。root資格から意味/authority/実観測を生成しない。"
   },
   "behavior_oracle_detail": {
     "design_ref": "HARNESS-L5-005-F08",
@@ -9017,5 +9124,161 @@
     "partial_results": "result_statesはkindごとのObservationField。result_detailsは元state/ref/環境/oracle/不足と戻し先。集計knownはmapの供給状態だけで、各unknown/conflictを成功へ集約しない。",
     "fixture_limit": "records7/11、rollback対象synthetic-product-r0等は今回の独立合成対照のみ。実test・backup/restore/rollback操作・製品数値/CI/受入の成立ではない。",
     "legacy_basis": "LEGACY-ASSET-5166C9AB5D52E9926082 行10/11の独立結果とintegrity/原因修復再検証を再導出。旧candidate全体の採否は変えない。"
+  },
+  "evidence_continuity_detail": {
+    "design_ref": "HARNESS-L5-005-B01",
+    "requirement_ref": "HARNESS-L3-005-B01",
+    "basic_oracle_ref": "HARNESS-L9-005-B01",
+    "independent_fixtures": {
+      "oracle": {
+        "ref": {
+          "identity": "B01-ORACLE-o1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "verification-design-owner"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "oracle_revision": "o1",
+        "meaning_digest": "MD1",
+        "expected_failure": "bad dependency rejected",
+        "probes": [
+          {
+            "test_id": "reject-forbidden",
+            "edge": {
+              "from": "domain",
+              "to": "application"
+            },
+            "expected": "rejected"
+          },
+          {
+            "test_id": "keep-allowed",
+            "edge": {
+              "from": "application",
+              "to": "domain"
+            },
+            "expected": "retained"
+          }
+        ],
+        "limit": "独立意味期待の合成資料。実oracle凍結/実runではない。"
+      },
+      "meaning": {
+        "ref": {
+          "identity": "B01-MEANING-MD1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "meaning-owner"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "meaning_digest": "MD1",
+        "oracle_ref": {
+          "identity": "B01-ORACLE-o1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "verification-design-owner"
+        },
+        "meaning": [
+          {
+            "test_id": "reject-forbidden",
+            "edge": {
+              "from": "domain",
+              "to": "application"
+            },
+            "expected": "rejected"
+          },
+          {
+            "test_id": "keep-allowed",
+            "edge": {
+              "from": "application",
+              "to": "domain"
+            },
+            "expected": "retained"
+          }
+        ],
+        "limit": "MD1は合成opaque identity。正式意味digest算法/署名/意味承認は未成立。"
+      },
+      "review_authority": {
+        "ref": {
+          "identity": "REVIEW-AUTH",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "authority-owner"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "target_head": "H1",
+        "review_context": "CTX-review",
+        "producer_context": "CTX-create",
+        "route": "synthetic independent route",
+        "state": "synthetic_qualified",
+        "limit": "合成の独立review権限仮定。実authority/admissionではない。provider名/Worker数から独立性を作らない。"
+      }
+    },
+    "source_roles": {
+      "norm": "HARNESSの規範。運転/保存と意味所有を分ける。",
+      "run": "実行ownerの元runと具体観測を別entryへ。成功labelのみから観測を生成しない。",
+      "oracle_meaning": "独立期待と意味内容。MD1はopaque fixture labelで、正式digest方式を導入しない。",
+      "repair": "元from/to HEAD、required test/凍結期待/scope/意味の前後。boolだけでなく具体差分を比較。",
+      "review": "元対象HEAD・context・routeを独立authority内容へ照合。provider数/Worker数を独立性条件へしない。",
+      "acceptance": "consumerのnot_observedを保持。規範/run/reviewから受入を生成しない。",
+      "material_only": "runなしの保存receipt/表示とruntime交代。実行/独立reviewの不足を維持。"
+    },
+    "comparison_steps": [
+      "normと独立oracle/意味内容/ownerの対象revision/scope/HEADを比較。runが空なら一致の全称真を生成しない。",
+      "各runのHEAD/oracle revision/digest、実行有無、具体依存の観測を別に照合。同label一致でも観測retainedと独立rejectedはconflict。",
+      "repairの元test集合/凍結期待/scope/意味内容を比較し、削除/緩和/拡張/未審査の新digestを修復成功にしない。",
+      "reviewの対象HEADと別context/authority/routeを照合。同providerは許容し、自己contextや別HEADを当該reviewへ数えない。",
+      "未観測consumerとruntime交代後の原条件を保全。不足時は戻し先を示し、比較器から再開/完了/受入/Releaseを生成しない。"
+    ],
+    "partial_results": "run_resultsに元ref/HEAD/oracle/digest/実行/結果とbinding_match/verificationを保持。repairとreviewの不成立を別fieldへ。別runの成功で個別不足を消さない。",
+    "fixture_preparation": "saved/projectionのrunなしは$で元material全体を用意。未実行/staleはrun単体前提、runtime交代は元material全体前提→review除去の順。candidateとsource_preparationを別に追跡する。",
+    "limits": "13主呼出しとsource/意味対照の合成設計。実権限/実run/実独立review/consumer受入・正式意味digest算法・実修復は未成立。凍結期待の0/1はこの反例の許容禁止依存数であり全製品品質閾値ではない。",
+    "source_content_types": {
+      "run": "B01RunSource",
+      "receipt_projection": "B01MaterialReceipt",
+      "runtime_transition": "B01RuntimeTransition",
+      "actual_probe": "B01ProbeObservation"
+    }
   }
 }
