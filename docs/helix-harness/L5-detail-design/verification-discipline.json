@@ -589,7 +589,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "independent_review": {
@@ -827,7 +827,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "independent_review": {
@@ -1054,8 +1054,10 @@
                   "touched_connectors": {
                     "presence": "Field",
                     "value": {
-                      "array_item_shapes": [],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "array_item_shapes": [
+                        "opaque connector identity"
+                      ],
+                      "empty_semantics": "明示された触るconnector集合。空は触る対象0件という提出で、欠落や全検査省略ではない。"
                     }
                   },
                   "risk": {
@@ -1079,7 +1081,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   }
                 }
@@ -1099,7 +1101,7 @@
                       "array_item_shapes": [
                         "Ref"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "conditional_duty_refs": {
@@ -1108,7 +1110,7 @@
                       "array_item_shapes": [
                         "Ref"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "informational_duty_refs": {
@@ -1117,7 +1119,7 @@
                       "array_item_shapes": [
                         "Ref"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "not_applicable_duty_refs": {
@@ -1126,7 +1128,7 @@
                       "array_item_shapes": [
                         "Ref"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   }
                 }
@@ -1195,7 +1197,7 @@
                                 "array_item_shapes": [
                                   "string"
                                 ],
-                                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                               }
                             },
                             "expires_at": {
@@ -1290,7 +1292,7 @@
                                 "array_item_shapes": [
                                   "string"
                                 ],
-                                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                               }
                             },
                             "expires_at": {
@@ -1396,7 +1398,7 @@
                                 "array_item_shapes": [
                                   "string"
                                 ],
-                                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                               }
                             },
                             "expires_at": {
@@ -1456,7 +1458,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "derivation_rules": {
@@ -1479,7 +1481,7 @@
                                 "array_item_shapes": [
                                   "string"
                                 ],
-                                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                               }
                             },
                             "changed_subjects_include": {
@@ -1542,7 +1544,7 @@
                                 "array_item_shapes": [
                                   "string"
                                 ],
-                                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                               }
                             }
                           }
@@ -1559,7 +1561,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "duty_catalog": {
@@ -1625,7 +1627,7 @@
                                 "array_item_shapes": [
                                   "string"
                                 ],
-                                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                               }
                             },
                             "expires_at": {
@@ -1662,7 +1664,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "worker_assignment": {
@@ -1749,7 +1751,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "risk": {
@@ -1773,7 +1775,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       }
                     }
@@ -1793,7 +1795,7 @@
                           "array_item_shapes": [
                             "Ref"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "conditional_duty_refs": {
@@ -1802,7 +1804,7 @@
                           "array_item_shapes": [
                             "Ref"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "informational_duty_refs": {
@@ -1811,7 +1813,7 @@
                           "array_item_shapes": [
                             "Ref"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "not_applicable_duty_refs": {
@@ -1820,7 +1822,7 @@
                           "array_item_shapes": [
                             "Ref"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       }
                     }
@@ -1889,7 +1891,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -1984,7 +1986,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -2090,7 +2092,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -2150,7 +2152,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "derivation_rules": {
@@ -2173,7 +2175,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "changed_subjects_include": {
@@ -2236,7 +2238,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 }
                               }
@@ -2253,7 +2255,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "duty_catalog": {
@@ -2319,7 +2321,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -2356,7 +2358,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "worker_assignment": {
@@ -2440,8 +2442,10 @@
                       "touched_connectors": {
                         "presence": "Field",
                         "value": {
-                          "array_item_shapes": [],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "array_item_shapes": [
+                            "opaque connector identity"
+                          ],
+                          "empty_semantics": "明示された触るconnector集合。空は触る対象0件という提出で、欠落や全検査省略ではない。"
                         }
                       },
                       "risk": {
@@ -2465,7 +2469,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       }
                     }
@@ -2485,7 +2489,7 @@
                           "array_item_shapes": [
                             "Ref"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "conditional_duty_refs": {
@@ -2494,7 +2498,7 @@
                           "array_item_shapes": [
                             "Ref"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "informational_duty_refs": {
@@ -2503,7 +2507,7 @@
                           "array_item_shapes": [
                             "Ref"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "not_applicable_duty_refs": {
@@ -2512,7 +2516,7 @@
                           "array_item_shapes": [
                             "Ref"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       }
                     }
@@ -2581,7 +2585,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -2676,7 +2680,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -2782,7 +2786,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -2842,7 +2846,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "derivation_rules": {
@@ -2865,7 +2869,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "changed_subjects_include": {
@@ -2928,7 +2932,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 }
                               }
@@ -2945,7 +2949,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "duty_catalog": {
@@ -3011,7 +3015,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -3048,7 +3052,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "worker_assignment": {
@@ -3070,7 +3074,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "conditional_refs": {
@@ -3079,7 +3083,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "conditional_unfulfilled_refs": {
@@ -3088,7 +3092,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "informational_refs": {
@@ -3097,7 +3101,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "na_refs": {
@@ -3106,7 +3110,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "unknown_refs": {
@@ -3124,7 +3128,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "completion": {
@@ -3196,7 +3200,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "connection_refs": {
@@ -3205,7 +3209,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "composite_ref": {
@@ -3240,7 +3244,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "combination_contract": {
@@ -3257,7 +3261,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "composite_obligation_refs": {
@@ -3266,7 +3270,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "covered_by_lower_refs": {
@@ -3310,7 +3314,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             }
           }
@@ -3362,7 +3366,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "connection_refs": {
@@ -3371,7 +3375,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "composite_ref": {
@@ -3406,7 +3410,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "combination_contract": {
@@ -3423,14 +3427,16 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "composite_obligation_refs": {
                         "presence": "Field",
                         "value": {
-                          "array_item_shapes": [],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "array_item_shapes": [
+                            "opaque upper obligation identity"
+                          ],
+                          "empty_semantics": "明示上位固有義務集合。空の妥当性は独立ownerの目的/完全性/未決集合と別に照合。"
                         }
                       },
                       "covered_by_lower_refs": {
@@ -3511,7 +3517,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "unique_required_refs": {
@@ -3520,7 +3526,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "unique_unproven_refs": {
@@ -3529,7 +3535,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "mechanical_composition": {
@@ -3621,7 +3627,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "touched_connector_refs": {
@@ -3630,7 +3636,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "relation_basis": {
@@ -3661,7 +3667,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "risk": {
@@ -3686,7 +3692,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "upper_proof_basis": {
@@ -3778,7 +3784,7 @@
                                 "array_item_shapes": [
                                   "string"
                                 ],
-                                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                               }
                             },
                             "expires_at": {
@@ -3803,15 +3809,15 @@
                       "condition": {
                         "presence": "Field",
                         "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
+                          "nullable_slot": "F01ConditionContent",
+                          "meaning": "明示nullは条件未供給。false、N/A、skipを生成しない。F01と同じ元義務条件型。"
                         }
                       },
                       "actual_result": {
                         "presence": "Field",
                         "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
+                          "nullable_slot": "F01ExecutionObservation",
+                          "meaning": "明示nullは実観測未供給。selected/recovered labelを実結果にしない。F01と同じ元義務実観測型。"
                         }
                       },
                       "pair_basis": {
@@ -3821,7 +3827,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "selected_refs": {
@@ -3830,14 +3836,14 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "omitted": {
               "presence": "Field",
               "value": {
                 "array_item_shapes": [
-                  "duty_identity/reason/joining_ticket_ref record"
+                  "F03OmissionRecord"
                 ],
                 "empty_semantics": "selectedがinventoryを覆う場合の明示省略0件。記録欠落とは別。"
               }
@@ -3857,8 +3863,19 @@
                   "recovered_refs": {
                     "presence": "Field",
                     "value": {
-                      "array_item_shapes": [],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "array_item_shapes": [
+                        "opaque duty identity"
+                      ],
+                      "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
+                    }
+                  },
+                  "recovery_evidence": {
+                    "presence": "Field",
+                    "value": {
+                      "array_item_shapes": [
+                        "F03RecoveryRecord"
+                      ],
+                      "empty_semantics": "明示0件と未供給は別。recovered_refsだけから内容を補わない。"
                     }
                   }
                 }
@@ -3925,7 +3942,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "touched_connector_refs": {
@@ -3934,7 +3951,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "relation_basis": {
@@ -3965,7 +3982,7 @@
                     "array_item_shapes": [
                       "string"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "risk": {
@@ -3987,8 +4004,10 @@
                       "required_upper_refs": {
                         "presence": "Field",
                         "value": {
-                          "array_item_shapes": [],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "array_item_shapes": [
+                            "opaque duty identity"
+                          ],
+                          "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
                         }
                       }
                     }
@@ -4057,7 +4076,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -4082,15 +4101,15 @@
                           "condition": {
                             "presence": "Field",
                             "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
+                              "nullable_slot": "F01ConditionContent",
+                              "meaning": "明示nullは条件未供給。false、N/A、skipを生成しない。F01と同じ元義務条件型。"
                             }
                           },
                           "actual_result": {
                             "presence": "Field",
                             "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
+                              "nullable_slot": "F01ExecutionObservation",
+                              "meaning": "明示nullは実観測未供給。selected/recovered labelを実結果にしない。F01と同じ元義務実観測型。"
                             }
                           },
                           "pair_basis": {
@@ -4100,7 +4119,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "selected_refs": {
@@ -4109,31 +4128,16 @@
                     "array_item_shapes": [
                       "string"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "omitted": {
                   "presence": "Field",
                   "value": {
                     "array_item_shapes": [
-                      {
-                        "fields": {
-                          "duty_identity": {
-                            "presence": "Field",
-                            "value": "string"
-                          },
-                          "reason": {
-                            "presence": "Field",
-                            "value": "string"
-                          },
-                          "joining_ticket_ref": {
-                            "presence": "Field",
-                            "value": "Ref"
-                          }
-                        }
-                      }
+                      "F03OmissionRecord"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "joining_ticket": {
@@ -4151,8 +4155,19 @@
                       "recovered_refs": {
                         "presence": "Field",
                         "value": {
-                          "array_item_shapes": [],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "array_item_shapes": [
+                            "opaque duty identity"
+                          ],
+                          "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
+                        }
+                      },
+                      "recovery_evidence": {
+                        "presence": "Field",
+                        "value": {
+                          "array_item_shapes": [
+                            "F03RecoveryRecord"
+                          ],
+                          "empty_semantics": "明示0件と未供給は別。recovered_refsだけから内容を補わない。"
                         }
                       }
                     }
@@ -4219,7 +4234,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "touched_connector_refs": {
@@ -4228,7 +4243,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "relation_basis": {
@@ -4259,7 +4274,7 @@
                     "array_item_shapes": [
                       "string"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "risk": {
@@ -4281,8 +4296,10 @@
                       "required_upper_refs": {
                         "presence": "Field",
                         "value": {
-                          "array_item_shapes": [],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "array_item_shapes": [
+                            "opaque duty identity"
+                          ],
+                          "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
                         }
                       }
                     }
@@ -4351,7 +4368,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -4376,15 +4393,15 @@
                           "condition": {
                             "presence": "Field",
                             "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
+                              "nullable_slot": "F01ConditionContent",
+                              "meaning": "明示nullは条件未供給。false、N/A、skipを生成しない。F01と同じ元義務条件型。"
                             }
                           },
                           "actual_result": {
                             "presence": "Field",
                             "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
+                              "nullable_slot": "F01ExecutionObservation",
+                              "meaning": "明示nullは実観測未供給。selected/recovered labelを実結果にしない。F01と同じ元義務実観測型。"
                             }
                           },
                           "pair_basis": {
@@ -4394,7 +4411,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "selected_refs": {
@@ -4403,31 +4420,16 @@
                     "array_item_shapes": [
                       "string"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "omitted": {
                   "presence": "Field",
                   "value": {
                     "array_item_shapes": [
-                      {
-                        "fields": {
-                          "duty_identity": {
-                            "presence": "Field",
-                            "value": "string"
-                          },
-                          "reason": {
-                            "presence": "Field",
-                            "value": "string"
-                          },
-                          "joining_ticket_ref": {
-                            "presence": "Field",
-                            "value": "Ref"
-                          }
-                        }
-                      }
+                      "F03OmissionRecord"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "joining_ticket": {
@@ -4445,8 +4447,19 @@
                       "recovered_refs": {
                         "presence": "Field",
                         "value": {
-                          "array_item_shapes": [],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "array_item_shapes": [
+                            "opaque duty identity"
+                          ],
+                          "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
+                        }
+                      },
+                      "recovery_evidence": {
+                        "presence": "Field",
+                        "value": {
+                          "array_item_shapes": [
+                            "F03RecoveryRecord"
+                          ],
+                          "empty_semantics": "明示0件と未供給は別。recovered_refsだけから内容を補わない。"
                         }
                       }
                     }
@@ -4513,7 +4526,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "touched_connector_refs": {
@@ -4522,7 +4535,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "relation_basis": {
@@ -4553,7 +4566,7 @@
                     "array_item_shapes": [
                       "string"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "risk": {
@@ -4575,8 +4588,10 @@
                       "required_upper_refs": {
                         "presence": "Field",
                         "value": {
-                          "array_item_shapes": [],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "array_item_shapes": [
+                            "opaque duty identity"
+                          ],
+                          "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
                         }
                       }
                     }
@@ -4645,7 +4660,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -4670,15 +4685,15 @@
                           "condition": {
                             "presence": "Field",
                             "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
+                              "nullable_slot": "F01ConditionContent",
+                              "meaning": "明示nullは条件未供給。false、N/A、skipを生成しない。F01と同じ元義務条件型。"
                             }
                           },
                           "actual_result": {
                             "presence": "Field",
                             "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
+                              "nullable_slot": "F01ExecutionObservation",
+                              "meaning": "明示nullは実観測未供給。selected/recovered labelを実結果にしない。F01と同じ元義務実観測型。"
                             }
                           },
                           "pair_basis": {
@@ -4688,7 +4703,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "selected_refs": {
@@ -4697,14 +4712,14 @@
                     "array_item_shapes": [
                       "string"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "omitted": {
                   "presence": "Field",
                   "value": {
                     "array_item_shapes": [
-                      "duty_identity/reason/joining_ticket_ref record"
+                      "F03OmissionRecord"
                     ],
                     "empty_semantics": "selectedがinventoryを覆う場合の明示省略0件。記録欠落とは別。"
                   }
@@ -4724,8 +4739,19 @@
                       "recovered_refs": {
                         "presence": "Field",
                         "value": {
-                          "array_item_shapes": [],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "array_item_shapes": [
+                            "opaque duty identity"
+                          ],
+                          "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
+                        }
+                      },
+                      "recovery_evidence": {
+                        "presence": "Field",
+                        "value": {
+                          "array_item_shapes": [
+                            "F03RecoveryRecord"
+                          ],
+                          "empty_semantics": "明示0件と未供給は別。recovered_refsだけから内容を補わない。"
                         }
                       }
                     }
@@ -4792,7 +4818,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "touched_connector_refs": {
@@ -4801,7 +4827,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "relation_basis": {
@@ -4832,7 +4858,7 @@
                     "array_item_shapes": [
                       "string"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "risk": {
@@ -4854,8 +4880,10 @@
                       "required_upper_refs": {
                         "presence": "Field",
                         "value": {
-                          "array_item_shapes": [],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "array_item_shapes": [
+                            "opaque duty identity"
+                          ],
+                          "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
                         }
                       }
                     }
@@ -4924,7 +4952,7 @@
                                     "array_item_shapes": [
                                       "string"
                                     ],
-                                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                                   }
                                 },
                                 "expires_at": {
@@ -4949,15 +4977,15 @@
                           "condition": {
                             "presence": "Field",
                             "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
+                              "nullable_slot": "F01ConditionContent",
+                              "meaning": "明示nullは条件未供給。false、N/A、skipを生成しない。F01と同じ元義務条件型。"
                             }
                           },
                           "actual_result": {
                             "presence": "Field",
                             "value": {
-                              "nullable_slot": "unresolved_domain_payload",
-                              "meaning": "nullを合格/非適用/空配列へ補わない。"
+                              "nullable_slot": "F01ExecutionObservation",
+                              "meaning": "明示nullは実観測未供給。selected/recovered labelを実結果にしない。F01と同じ元義務実観測型。"
                             }
                           },
                           "pair_basis": {
@@ -4967,7 +4995,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "selected_refs": {
@@ -4976,31 +5004,16 @@
                     "array_item_shapes": [
                       "string"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "omitted": {
                   "presence": "Field",
                   "value": {
                     "array_item_shapes": [
-                      {
-                        "fields": {
-                          "duty_identity": {
-                            "presence": "Field",
-                            "value": "string"
-                          },
-                          "reason": {
-                            "presence": "Field",
-                            "value": "string"
-                          },
-                          "joining_ticket_ref": {
-                            "presence": "Field",
-                            "value": "Ref"
-                          }
-                        }
-                      }
+                      "F03OmissionRecord"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 },
                 "joining_ticket": {
@@ -5021,35 +5034,16 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "recovery_evidence": {
                         "presence": "Field",
                         "value": {
                           "array_item_shapes": [
-                            {
-                              "fields": {
-                                "duty_identity": {
-                                  "presence": "Field",
-                                  "value": "string"
-                                },
-                                "oracle_ref": {
-                                  "presence": "Field",
-                                  "value": "Ref"
-                                },
-                                "target_ref": {
-                                  "presence": "Field",
-                                  "value": "Ref"
-                                },
-                                "actual_result": {
-                                  "presence": "Field",
-                                  "value": "string"
-                                }
-                              }
-                            }
+                            "F03RecoveryRecord"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "明示0件と未供給は別。recovered_refsだけから内容を補わない。"
                         }
                       }
                     }
@@ -5074,35 +5068,43 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "scope_outside_refs": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "opaque artifact identity"
+                ],
+                "empty_semantics": "照合済み範囲外差分集合。空は当該照合の範囲外0件、必要検査の成功ではない。"
               }
             },
             "missing_selected_refs": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "opaque duty identity"
+                ],
+                "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
               }
             },
             "omitted_refs": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "opaque duty identity"
+                ],
+                "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
               }
             },
             "unrecovered_refs": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "opaque duty identity"
+                ],
+                "empty_semantics": "元義務母集合と照合する明示identity集合。空と未供給/unknownは別。recovered labelは実回収資格ではない。"
               }
             },
             "merge_material": {
@@ -5202,7 +5204,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "cause": {
@@ -5215,7 +5217,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   }
                 }
@@ -5238,7 +5240,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "original_closure": {
@@ -5328,7 +5330,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   }
                 }
@@ -5336,7 +5338,7 @@
             },
             "advisory_material": {
               "presence": "Field",
-              "value": "same_path | near_time | refactor_receipt | full_ci_receipt original record"
+              "value": "F04AdvisoryMaterial"
             }
           }
         },
@@ -5352,7 +5354,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "missing_current_pr_targets": {
@@ -5361,7 +5363,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "merge_material": {
@@ -5374,7 +5376,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "original_closure_state": {
@@ -5395,7 +5397,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "ticket_issued": {
@@ -5448,8 +5450,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "この合成fixture契約は主張から結果を生成しない。空claimsとkey欠落は別。"
               }
             },
             "non_target": {
@@ -5513,10 +5517,10 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "cycles_allowed": {
@@ -5534,10 +5538,10 @@
                     "array_item_shapes": [
                       "string"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             }
           }
@@ -5558,8 +5562,10 @@
                 "claims": {
                   "presence": "Field",
                   "value": {
-                    "array_item_shapes": [],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "array_item_shapes": [
+                      "never"
+                    ],
+                    "empty_semantics": "この合成fixture契約は主張から結果を生成しない。空claimsとkey欠落は別。"
                   }
                 },
                 "non_target": {
@@ -5623,10 +5629,10 @@
                               "array_item_shapes": [
                                 "string"
                               ],
-                              "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                              "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                             }
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "cycles_allowed": {
@@ -5644,10 +5650,10 @@
                         "array_item_shapes": [
                           "string"
                         ],
-                        "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                        "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 }
               }
@@ -5709,8 +5715,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "この合成fixture契約は主張から結果を生成しない。空claimsとkey欠落は別。"
               }
             },
             "non_target": {
@@ -5745,7 +5753,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "oracle_designs": {
@@ -5788,7 +5796,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "actual_results": {
@@ -5814,10 +5822,10 @@
                     "array_item_shapes": [
                       "string"
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "uncovered_invariants": {
@@ -5853,8 +5861,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "この合成fixture契約は主張から結果を生成しない。空claimsとkey欠落は別。"
               }
             },
             "non_target": {
@@ -6052,7 +6062,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "postimplementation_mutation_role": {
@@ -6081,8 +6091,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "この合成fixture契約は主張から結果を生成しない。空claimsとkey欠落は別。"
               }
             },
             "non_target": {
@@ -6165,7 +6177,7 @@
                           "array_item_shapes": [
                             "number"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "observed": {
@@ -6175,7 +6187,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "example_kind": {
@@ -6196,7 +6208,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "concrete_expected": {
@@ -6229,8 +6241,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "この合成fixture契約は主張から結果を生成しない。空claimsとkey欠落は別。"
               }
             },
             "non_target": {
@@ -6547,7 +6561,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "observed_rules": {
@@ -6575,7 +6589,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "unseen_case_contract": {
@@ -6611,7 +6625,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "na_rules": {
@@ -6620,7 +6634,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "unknown_rules": {
@@ -6629,7 +6643,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "not_executed_rules": {
@@ -6638,7 +6652,7 @@
                 "array_item_shapes": [
                   "string"
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             },
             "unseen_validation": {
@@ -6719,7 +6733,7 @@
                       "array_item_shapes": [
                         "string"
                       ],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                     }
                   },
                   "target_environment": {
@@ -6793,7 +6807,7 @@
                     }
                   }
                 ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
               }
             }
           }
@@ -6849,7 +6863,7 @@
                           "array_item_shapes": [
                             "string"
                           ],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                         }
                       },
                       "target_environment": {
@@ -6962,7 +6976,7 @@
                         }
                       }
                     ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "empty_semantics": "この欄の明示空集合は要素0件の提出。key欠落・明示null・意味/資格unknownとは別。妥当性は各関数の原母集合/適用条件で照合し、空だけで成功を生成しない。"
                   }
                 }
               }
@@ -7036,9 +7050,10 @@
           "missing(original_field_path, backflow_owner)",
           "unknown(reason, source_refs, backflow_owner)",
           "conflict(original_value, supplied_value, source_refs, backflow_owner)",
-          "stale(expected_binding, supplied_binding, backflow_owner)"
+          "stale(original_binding, required_binding, source_refs, backflow_owner)"
         ],
-        "meaning": "型付き部分結果。1fieldの不足で他fieldの元結果を置換しない。knownは合成/実証拠のkindを保持し実工程完了ではない。"
+        "meaning": "型付き部分結果。1fieldの不足で他fieldの元結果を置換しない。knownは合成/実証拠のkindを保持し実工程完了ではない。",
+        "stale_meaning": "original_bindingは提出された古い対象、required_bindingは現在必要な元対象条件。同fieldのknown原結果を消さず、当該証拠の資格不足を保全。"
       },
       "FixtureSourcePacket": {
         "fields": {
@@ -7579,7 +7594,7 @@
           "target_head": "opaque HEAD",
           "duty_ref": "Ref",
           "oracle_ref": "Ref",
-          "original_record": "original duty/oracle/target_ref/actual_result",
+          "original_record": "F03RecoveryRecord",
           "actual_observations": "Field<owner observations>",
           "evidence_validity": "synthetic_design_assumption_not_actual_timeliness",
           "kind": "synthetic_recovery_material_not_actual_operation"
@@ -7603,9 +7618,63 @@
           "qualification": "ObservationField<owner execution qualification>"
         },
         "meaning": "未実行をreceipt/full/unitで相殺しない。"
+      },
+      "F03OmissionRecord": {
+        "fields": {
+          "duty_identity": "Field<opaque duty identity>",
+          "reason": "Field<original reason>",
+          "joining_ticket_ref": "Field<Ref>"
+        },
+        "meaning": "回収義務の原record。欠落理由/linkを空集合やcandidateから補わない。"
+      },
+      "F03RecoveryRecord": {
+        "fields": {
+          "duty_identity": "Field<opaque duty identity>",
+          "oracle_ref": "Field<Ref>",
+          "target_ref": "Field<Ref>",
+          "actual_result": "Field<original declared result>"
+        },
+        "meaning": "合流先の提出記録。source側のHEAD/個別具体観測/資格と独立oracleへ照合し、結果labelだけを成功としない。"
+      },
+      "F04AdvisoryMaterial": {
+        "variants": {
+          "same_path": {
+            "kind": "same_path",
+            "original_ticket_path": "Field<opaque path>",
+            "failure_path": "Field<opaque path>",
+            "causal_evidence_refs": "Field<collection<Ref>>"
+          },
+          "near_time": {
+            "kind": "near_time",
+            "closure_time": "Field<owner time material>",
+            "failure_time": "Field<owner time material>",
+            "causal_evidence_refs": "Field<collection<Ref>>"
+          },
+          "refactor_receipt": {
+            "kind": "refactor_receipt",
+            "ticket_ref": "Field<Ref>",
+            "state": "Field<original receipt state>",
+            "current_pr_proof_refs": "Field<collection<Ref>>"
+          },
+          "full_ci_receipt": {
+            "kind": "full_ci_receipt",
+            "state": "Field<original result label>",
+            "policy": "Field<original policy>",
+            "design_remediation_proof_refs": "Field<collection<Ref>>",
+            "current_pr_bound_proof_refs": "Field<collection<Ref>>"
+          }
+        },
+        "meaning": "この合成対照の4種をkindで識別。path/time/発行/full labelは現PR実証・因果・設計解消の資格を代替しない。正式wire discriminatorではない。"
       }
     },
-    "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
+    "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。",
+    "fixture_shape_boundary": "normal_shape/variant_shapesは正常fixtureの論理field形であり、各負例で意図した欠落/null/変異を拒否前に保存する。ObservationFieldは型付き部分観測、expected_observationのflat値は既存基本期待の保全snapshotで、unknownをfalse/空へ計算した結果ではない。",
+    "domain_refinement_basis": {
+      "shared_duty": "F01の元condition/execution型を同じU1/C1/X1のF03 inventoryへ完全一致で適用。",
+      "identity_collections": "既存medium/large/recovered正常例と各負例がconnector/duty/upper/artifact identityの要素を与える。空fixtureだけから型を推測しない。",
+      "advisory": "F04の明示prep 4件から原資料shapeを具体化。新たな因果判定規則/製品policyは追加しない。",
+      "stale": "既存型付き部分期待のoriginal_binding/required_binding/source_refsに宣言を揃える。元source bytesや要求意味は変更しない。"
+    }
   },
   "reference_resolution_contract": {
     "owner": "source owners/adapters、比較規範HARNESS",
@@ -8582,8 +8651,8 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106主呼出しのroot/合成参照資料状態と84負例の型付き部分期待を起草。全12関数のdomain型/null/empty/fixture忠実性の横断確認と独立意味reviewは未完。",
-      "null/empty/open_slotのdomain型具体化・比較precedence",
+      "全12関数、106主呼出し、84負例と21追加対照を起草し、論理型の空/nullと全84変異の再現性を静的照合。独立意味reviewは未成立。",
+      "独立reviewのfindingを対象HEADへ反映し、修正後HEADを再確認する。",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
       "実oracle凍結→実装前Red→最小Green、実CI/実L9/L10/計測/PO L11受入",

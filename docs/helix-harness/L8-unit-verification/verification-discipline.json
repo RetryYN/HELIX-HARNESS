@@ -278926,11 +278926,11 @@
     }
   ],
   "completion": {
-    "state": "draft_pending_source_catalog_and_output_type_review",
+    "state": "draft_pending_independent_review",
     "normal_calls": 22,
     "negative_classifications_preserved": 84,
     "concrete_negative_mutations": 84,
-    "remaining": "106主呼出しの資料状態と84負例の部分期待を追補。source対照13、宣言条件対照2、意味対照6。全12関数のdomain型/null/empty/具体反例忠実性、独立意味review・実行は未成立。",
+    "remaining": "106主呼出し/84負例の型付き部分期待、source13・条件2・意味6の追加対照を起草。論理型の31空/null欄を具体化し、84変異をfixture準備→変異で再現、127部分期待の宣言field/stateを静的照合。独立意味review・実行は未成立。",
     "source_packets": 106,
     "synthetic_referent_calls": 106
   },
@@ -278983,5 +278983,6 @@
       ],
       "effect": "candidate missingは比較未依頼を示す。computed observation自体が不明なら比較一致/候補成功にしない。"
     }
-  ]
+  ],
+  "domain_type_static_check_scope": "全12関数の論理field/stateと空/null、84変異の再現性。正式schema/codec/typechecker/実比較関数の検証ではない。"
 }
