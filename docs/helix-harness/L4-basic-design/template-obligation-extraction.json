@@ -1,0 +1,347 @@
+{
+  "parent": "HARNESS-L2-041",
+  "status": "draft_basic_contracts_initial_concrete_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 3",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "71c22542e119f5a3c2f0f07e0d4141c3ca05475f",
+    "restart_decision": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+    "boundary": "限定前提の041意味契約。実抽出/実write/Stage3全能力は成立させない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c67edf6f5f2553e79e790ac519a8e7dc335b213fc2ce243cc6881e74fc7ac4b5"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "323c9f4a37c033a7570c391721c4977d74b315ab4b82d0bb70092e2d137441d4"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "source_pin_limit": "入力bytesの固定であり全資料の全文精読/意味被覆の証拠ではない。",
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "read_lines": [
+        137,
+        137
+      ],
+      "quote": "| **HIL-FR-47** | Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 | template atom、ledger proposal、extractor/version digest、gap finding |",
+      "line_sha256": "785f0998ca9fd2192bcddc638d1ef1233551c251e307e631303642abe7713fad",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "preserve": "要素別の原子的機械抽出、span/版/digest、候補行と個別gap、自由補完拒否を保持。",
+      "change": "旧writer/台帳登録/runtimeを移さずCORE候補とOS実登録を分離。",
+      "reason": "9/29の041-003と10/12委任承認の原子性・二結果比較・owner境界へ導出する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "read_lines": [
+        425,
+        425
+      ],
+      "quote": "Template Obligation Extractorはactive templateの章、field、table row/column、applicability、done-when、pair contractを1 obligationずつ抽出する。Python workerはAST/YAML/Markdown解析候補だけを返し、Nodeがschema・digest・authorityを検証してledger proposalへcommitする。抽出不能は`HIL_LAYER_TEMPLATE_EXTRACTION_EMPTY`、未対応要素は`HIL_LAYER_TEMPLATE_ATOM_ORPHAN`としてfreezeをblockする。",
+      "line_sha256": "67048269fe1b568fbd6129b4bfeb569a3d4edcd11824a0c94d400d9cad7b5fc4",
+      "archive_disposition": "unresolved",
+      "reuse": "reference_only_semantic_context",
+      "preserve": "Pythonが解析候補を返し、正本更新と抽出結果を分離する文脈を参照。",
+      "change": "旧AST/YAML/Markdown実装、Node commit/table/schema/故障codeは採用しない。実登録は認められたOS別契約へ戻す。",
+      "reason": "現行009のpure Python境界と041の候補/正本分離を旧sourceへ照合する読み取り参照。unresolved資産の再利用実行/採択ではない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "初回合成oracle起草済み。追加source資格/必要集合/内容組合せ・実未見比較と独立意味reviewは未完。",
+    "009/BRAIN選択入力・040相当ledger/pair・対象scopeへのowner-qualified exact binding、正式schema/codec/extractorは未binding。",
+    "L5/L8内部処理/edge cases、実oracle凍結→実装前Red→最小Green→Refactorと再検証、実L9/L10・PO L11は未成立。",
+    "全限定92親430対の設計閉包・実装準備は未成立。"
+  ],
+  "document_id": "HARNESS-L4-041",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "meaning_owner": "HARNESS-CORE",
+    "components": [
+      "extraction_input_reader",
+      "atomic_candidate_reader",
+      "element_gap_reader",
+      "extraction_comparison_reader",
+      "extraction_owner_router"
+    ],
+    "flow": [
+      "独立原source/009選択入力 → 入力照合",
+      "選択template原bytes/要素 → 原子atom候補/候補行 → 全対象とgap照合",
+      "独立した同input二結果 → 比較限界/未対応",
+      "意味/適用性/ledger/運転の局所不足 → 原owner返却候補"
+    ],
+    "python_boundary": "immutableな供給snapshotと候補材料のpure比較。OSのWorker起動/保存/GitHub/DB/clock/env/fs/network/認可/採択/受入を行わない。機械抽出の実観測は実extractor/実運転の別証拠が必要。",
+    "normalization_boundary": "NDJSON・field名・digest方式は以下の合成対照の表現のみ。正式template/schema/codec採用ではない。未対応formatはspan付きgapへ返し任意fallbackしない。"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-041-F01",
+      "requirement_ref": "HARNESS-L3-041-F01",
+      "system_oracle_ref": "HARNESS-L10-041-F01",
+      "oracle_ref": "HARNESS-L9-041-F01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-041-F01",
+        "parent": "HARNESS-L2-041",
+        "title": "選択入力と依存区分",
+        "obligation": "対象HARNESS-L1 revision、009の適用契約、layer/kind/scopeとsource spanを常時必須にする。抽出操作では選択active templateのexact identity/revision/bytes、applicability分岐、pair契約、040または互換な版付きledger契約、extractor identity/versionを識別する。選択ownerがBRAINなら当該入力契約/互換性を使い、非選択知識と旧runtimeは参照/未観測に分ける。未提示/矛盾/staleでは当該抽出対象を確定しない。",
+        "oracle_ref": "HARNESS-L10-041-F01"
+      },
+      "component": "extraction_input_reader",
+      "input_meanings": [
+        "target_L1_revision",
+        "CORE009_application",
+        "layer_kind_scope_source_span",
+        "selected_template_bytes_revision",
+        "applicability_pair_ledger_contract",
+        "extractor_identity_version",
+        "selected_owner_input_compatibility",
+        "reference_only_sources"
+      ],
+      "output_meanings": [
+        "per_input_results",
+        "selected_scope_result",
+        "reference_only_inputs",
+        "owner_return_candidates"
+      ],
+      "content_comparison": [
+        "常時/抽出操作/選択ownerに応じる入力/参照のみを独立に識別し原意味とexact revision/bytes/scopeを比較。未選択知識は未観測であり完了を要求しない。",
+        "対象/active版/意味/適用分岐/pair/ledger/抽出器を推測で補わず、missing/unknown/conflict/staleを当該抽出scopeへ保持する。"
+      ],
+      "failure_returns": [
+        "009/対象契約owner",
+        "選択template/BRAIN入力owner",
+        "040相当ledger/pair owner"
+      ],
+      "qualification_rule": "原source identity/revision/scope/owner/意味と必要集合を独立比較。missing/unknown/conflict/staleを当該field/scopeへ保持し他の成立部分を消さない。具体source資格と正式codecは未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-041-F02",
+      "requirement_ref": "HARNESS-L3-041-F02",
+      "system_oracle_ref": "HARNESS-L10-041-F02",
+      "oracle_ref": "HARNESS-L9-041-F02",
+      "approved_requirement": {
+        "id": "HARNESS-L3-041-F02",
+        "parent": "HARNESS-L2-041",
+        "title": "原子的atomと候補行",
+        "obligation": "選択templateの章/field/table row/applicability rule/done-when/pair contractの各義務を個別atomへ機械抽出し、source span/template revision/適用条件/義務kind/semantic digestとextractor/version digestを付け、版付きledgerへの候補行へ結ぶ。異なる二義務を一つの複合atomにまとめない。候補行は正本登録/採択ではない。",
+        "oracle_ref": "HARNESS-L10-041-F02"
+      },
+      "component": "atomic_candidate_reader",
+      "input_meanings": [
+        "qualified_scope_frame",
+        "original_template_elements_and_spans",
+        "mechanical_extractor_candidate_material",
+        "extractor_identity_version_digest",
+        "versioned_ledger_candidate_contract"
+      ],
+      "output_meanings": [
+        "per_atomic_obligation_results",
+        "candidate_row_correspondence",
+        "compound_or_missing_findings"
+      ],
+      "content_comparison": [
+        "各原義務を一つのatomへ結び、source span/版/適用条件/kind/semantic digest/抽出器版digestを独立原sourceへ照合する。二義務を一atomへ集約しない。",
+        "各atomをversioned ledgerの候補行へ結ぶ。人手要約/自由補完を機械抽出の実観測とせず、候補行は採択/登録/writeではない。"
+      ],
+      "failure_returns": [
+        "009/対象template owner",
+        "040相当ledger契約owner"
+      ],
+      "qualification_rule": "原source identity/revision/scope/owner/意味と必要集合を独立比較。missing/unknown/conflict/staleを当該field/scopeへ保持し他の成立部分を消さない。具体source資格と正式codecは未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-041-F03",
+      "requirement_ref": "HARNESS-L3-041-F03",
+      "system_oracle_ref": "HARNESS-L10-041-F03",
+      "oracle_ref": "HARNESS-L9-041-F03",
+      "approved_requirement": {
+        "id": "HARNESS-L3-041-F03",
+        "parent": "HARNESS-L2-041",
+        "title": "全対象要素の被覆とgap",
+        "obligation": "各対象template要素をatomまたは理由付き非適用/未解決gapへ一つずつ対応づける。未対応、空/TBD、抽出不能、同一義務重複を具体的spanと種類/対象/数で示す。適用分岐を読み飛ばさず、LLM自由補完で空所を埋めない。未解決gapを完了にしない。",
+        "oracle_ref": "HARNESS-L10-041-F03"
+      },
+      "component": "element_gap_reader",
+      "input_meanings": [
+        "original_required_element_set",
+        "applicability_branches",
+        "candidate_atoms",
+        "reasoned_non_applicability",
+        "extractor_limits"
+      ],
+      "output_meanings": [
+        "element_dispositions",
+        "span_kind_target_count_gaps",
+        "unresolved_elements",
+        "owner_return_candidates"
+      ],
+      "content_comparison": [
+        "原templateの全対象要素をatom/原条件による理由付き非適用/個別gapへ対応。gapがあることを表示できても完了にはしない。",
+        "未対応/空/TBD/抽出不能/同一義務重複/分岐欠落を当該span/kind/対象/数で示す。gapをLLM値で埋めず、重複と欠落を件数で相殺しない。"
+      ],
+      "failure_returns": [
+        "009/対象template owner",
+        "041 extractor契約owner"
+      ],
+      "qualification_rule": "原source identity/revision/scope/owner/意味と必要集合を独立比較。missing/unknown/conflict/staleを当該field/scopeへ保持し他の成立部分を消さない。具体source資格と正式codecは未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-041-N01",
+      "requirement_ref": "HARNESS-L3-041-N01",
+      "system_oracle_ref": "HARNESS-L10-041-N01",
+      "oracle_ref": "HARNESS-L9-041-N01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-041-N01",
+        "parent": "HARNESS-L2-041",
+        "title": "同入力比較と未見の限界",
+        "obligation": "同じtemplate bytes/revision、scope、applicability入力、extractor identity/versionから独立に得た二結果のsemantic digestを比較する。不一致は当該scopeの非決定的抽出finding/未解決、一致も当該比較に限る。伏せた新revision/分岐は個別atomかspan付きgapへ返し、一般決定性/全template対応へ外挿しない。",
+        "oracle_ref": "HARNESS-L10-041-N01"
+      },
+      "component": "extraction_comparison_reader",
+      "input_meanings": [
+        "two_independent_result_sources",
+        "same_template_bytes_revision_scope_applicability_extractor_frame",
+        "held_out_revision_or_branch"
+      ],
+      "output_meanings": [
+        "per_scope_comparison",
+        "nondeterministic_extraction_finding",
+        "held_out_atom_or_gap",
+        "unobserved_nonselected_inputs"
+      ],
+      "content_comparison": [
+        "同一input frameに独立に由来する二結果のsemantic digestを内容と照合。不一致を当該scopeへ保持し、一致もこの比較に限る。入力版/scope/抽出器/独立性が未成立なら比較不成立。",
+        "伏せた新revision/分岐は個別atomまたは具体span付きgapへ返す。一般決定性/全template対応/実未見試験成功を生成しない。"
+      ],
+      "failure_returns": [
+        "041 extractor契約owner",
+        "009/対象template owner"
+      ],
+      "qualification_rule": "原source identity/revision/scope/owner/意味と必要集合を独立比較。missing/unknown/conflict/staleを当該field/scopeへ保持し他の成立部分を消さない。具体source資格と正式codecは未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-041-B01",
+      "requirement_ref": "HARNESS-L3-041-B01",
+      "system_oracle_ref": "HARNESS-L10-041-B01",
+      "oracle_ref": "HARNESS-L9-041-B01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-041-B01",
+        "parent": "HARNESS-L2-041",
+        "title": "抽出と適用・登録・設計のowner境界",
+        "obligation": "CORE041は抽出/gap/候補行の意味を持ち、009はtemplate適用と要求不足Backflowを持つ。意味/適用性不足は009/対象owner、ledger/pair契約不整合は040相当owner、OS保存/実行receipt欠落はOSへ戻す。041は台帳writer、executor、template authority、025/026設計生成/対oracle、要求合意/受入を所有しない。",
+        "oracle_ref": "HARNESS-L10-041-B01"
+      },
+      "component": "extraction_owner_router",
+      "input_meanings": [
+        "template_meaning_applicability_results",
+        "ledger_pair_contract_results",
+        "OS_execution_save_observation",
+        "candidate_provenance"
+      ],
+      "output_meanings": [
+        "owner_return_candidates",
+        "retained_unresolved_results",
+        "forbidden_completion_claims"
+      ],
+      "content_comparison": [
+        "template意味/適用性不足は009/対象owner、ledger/pair不整合は040相当owner、実保存/実行未観測はOSへ別々に戻す。個別結果を別責務の成功で消さない。",
+        "CORE041は候補/gapのみ。writer/executor/template authority/025026設計oracle/要求合意/受入の完了を生成しない。025/026完了を起草の必須にしない。"
+      ],
+      "failure_returns": [
+        "009/対象template owner",
+        "040相当ledger/pair owner",
+        "OS運転owner"
+      ],
+      "qualification_rule": "原source identity/revision/scope/owner/意味と必要集合を独立比較。missing/unknown/conflict/staleを当該field/scopeへ保持し他の成立部分を消さない。具体source資格と正式codecは未binding。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 9,
+      "F02": 4,
+      "F03": 6,
+      "N01": 5,
+      "B01": 4
+    },
+    "normal_and_counterexamples_are_synthetic": true,
+    "formal_schema_codec_or_actual_execution": false
+  }
+}
