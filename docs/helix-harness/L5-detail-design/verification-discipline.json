@@ -5167,8 +5167,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "claimsから因果/成功/closure変更を生成しない。"
               }
             },
             "non_target": {
@@ -5289,8 +5291,10 @@
                         "evidence_refs": {
                           "presence": "Field",
                           "value": {
-                            "array_item_shapes": [],
-                            "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                            "array_item_shapes": [
+                              "Ref"
+                            ],
+                            "empty_semantics": "明示根拠0件。因果未成立であり欠落も0defectsも意味しない。"
                           }
                         }
                       }
@@ -5329,6 +5333,10 @@
                   }
                 }
               }
+            },
+            "advisory_material": {
+              "presence": "Field",
+              "value": "same_path | near_time | refactor_receipt | full_ci_receipt original record"
             }
           }
         },
@@ -5397,6 +5405,30 @@
             "evaluation_success": {
               "presence": "Field",
               "value": "boolean"
+            },
+            "original_proof_qualification": {
+              "presence": "Field",
+              "value": "owner original proof qualification"
+            },
+            "causal_qualification": {
+              "presence": "Field",
+              "value": "evidence-backed causal relation"
+            },
+            "current_pr_details": {
+              "presence": "Field",
+              "value": "collection<F04CurrentPrDetail>"
+            },
+            "completion": {
+              "presence": "Field",
+              "value": "not_generated"
+            },
+            "design_remediation": {
+              "presence": "Field",
+              "value": "owner design remediation qualification"
+            },
+            "labo_record_partition": {
+              "presence": "Field",
+              "value": "requested/available/missing original identity collections"
             }
           }
         },
@@ -7562,6 +7594,15 @@
           "limit": "string"
         },
         "meaning": "実HEAD resolver/trustは未成立。"
+      },
+      "F04CurrentPrDetail": {
+        "fields": {
+          "target": "opaque boundary/composite identity",
+          "oracle_ref": "Ref",
+          "original_result": "original target/state record",
+          "qualification": "ObservationField<owner execution qualification>"
+        },
+        "meaning": "未実行をreceipt/full/unitで相殺しない。"
       }
     },
     "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
@@ -7960,7 +8001,8 @@
           "backflow_owner": "LABO",
           "preserve": "原記録集合は保持し評価結果不足を残す。"
         }
-      ]
+      ],
+      "detail_contract": "impact_causal_detail"
     },
     {
       "name": "compare_dependency_direction",
@@ -8540,7 +8582,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106主呼出しのrootとF04以外98件の合成参照資料状態、77負例の部分期待を起草。残るF04の8主呼出しの参照先と7負例、domain型は未完。",
+      "106主呼出しのroot/合成参照資料状態と84負例の型付き部分期待を起草。全12関数のdomain型/null/empty/fixture忠実性の横断確認と独立意味reviewは未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -8596,7 +8638,7 @@
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
     "negative_candidate_sources": "原資料をcandidateから分離する。F07/N01の個別前提とB01のrunなし保存/表示・未実行/stale結果はfixture_preparation/source_preparationへ明示。B01 runtime交代は明示前提の後、原review欠落を別変異として追跡する。他のcandidate負例は正常owner材料を保持する。実実行/実authority/意味承認を生成しない。 F01 unknown_as_skipの条件null、worker_as_dutyの割当資料も明示前提であり、catalogにある値から元入力不足を補わない。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106主呼出しのうちF04以外98件へ独立合成資料状態を供給。risk/元集合/省略/個別回収/HEAD不足を保全。F04の8件はmissing。source資格/選択/回収labelから実成立を生成しない。"
+    "referent_input_state": "106主呼出しへ独立合成資料状態を供給。unknown/missing/conflict/staleを保全。資格/件数/labelから実成功・因果・closure更新を生成しない。"
   },
   "behavior_oracle_detail": {
     "design_ref": "HARNESS-L5-005-F08",
@@ -11589,5 +11631,99 @@
     ],
     "fixture_preparation": "高riskの省略記録を完全にして選択不足を隔離。Releaseはrequested=true前提。wrong joinは完全な回収資料付きmedium前提からsmallへ差分。$は元owner material全体。",
     "limits": "12主呼出しの合成設計。HEAD/回収有効性はfixture仮定だけ。実期限/実proof/CI/merge/Port通過/releaseは未成立。旧postmerge/full/nightly/固定予算は引き継がない。"
+  },
+  "impact_causal_detail": {
+    "design_ref": "HARNESS-L5-005-F04",
+    "independent_fixtures": {
+      "boundary_oracles": [
+        {
+          "ref": {
+            "identity": "OAB",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "subject": "AB",
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "input": {
+            "boundary": "AB",
+            "command": "CMD1",
+            "deliveries": 2
+          },
+          "expected": {
+            "receiver_debits": 1
+          },
+          "kind": "connection",
+          "limit": "独立oracleの合成意味。実oracle凍結/実test成功ではない。"
+        },
+        {
+          "ref": {
+            "identity": "OX",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "target": "X",
+          "input": {
+            "command": "CMD-1",
+            "amount": 3
+          },
+          "expected": {
+            "system_balance_change": -3,
+            "duplicate_debit": false
+          },
+          "limit": "独立合成期待。実凍結なし。"
+        }
+      ]
+    },
+    "source_roles": [
+      "impact",
+      "current_pr_results",
+      "boundary_oracle",
+      "closure",
+      "original_ticket",
+      "late_failure",
+      "causal_relation",
+      "assessment",
+      "labo_input",
+      "advisory"
+    ],
+    "comparison_steps": [
+      "影響AB/Xと独立oracleを実current PR資料へ結び、未実行不足をunit/発行/full receiptで相殺しない。",
+      "元closureとproof参照は原recordとして保持。proof資格unknownをclosed消去にも実completion生成にも使わない。",
+      "後日失敗/因果relation/追補assessmentを独立owner資料へ分ける。same path/近接時刻の具体材料だけでは原因ticketを確定しない。",
+      "LABOの要求原record集合をavailable/missingへ分け、材料供給から評価成功を生成しない。",
+      "Design-refactor候補材料を返すだけ。実ticket発行/merge/旧closure変更をしない。"
+    ],
+    "legacy_basis": "既存7asset意味再導出台帳を保持。execution-ticket-requirements.md:319のclosure保存/証拠付きrelation/追補assessment、旧impact-ci-recoveryの読み取りgraph/HEAD束縛を保持。旧full/nightly/固定予算を採用しない。",
+    "limits": "合成比較のみ。元proof、LABO結果、実current PR結果、因果実証は未成立。未追跡/未観測を0defectsにしない。",
+    "shared_owner_meaning": "OABはF02の独立owner snapshotを完全一致再利用。target ABは既存subject fieldへ照合し、同Ref別payloadを作らない。"
   }
 }
