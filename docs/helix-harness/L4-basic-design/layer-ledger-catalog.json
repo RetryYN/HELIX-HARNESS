@@ -98,7 +98,7 @@
   "authority_effect": "none",
   "operation_effect": "none",
   "remaining": [
-    "F01/F02/F03の具体原packet/正常/負例・field/edge matrixを起草済み。F04/B01/N01の具体oracleと全関数の独立資格/内容組合せ・未見例は未完",
+    "F01/F02/F03/F04の具体原packet/正常/負例・field/edge/content変異を起草済み。B01/N01の具体oracleと全関数の独立資格/内容組合せ・未見例は未完",
     "実owner-qualified L1/L2/authority/template版・対象scope/revision/互換契約binding",
     "L5/L8内部比較・edge casesと正式schema/codec/resolver",
     "独立reviewと所見閉包。実oracle凍結/Red/Green/Refactor・実L9/L10は未成立",
@@ -287,7 +287,38 @@
         "OS保存/発行owner（運転不足のみ）"
       ],
       "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "concrete_snapshot_coverage_rule": [
+        "必要集合sourceのexact対象を分母とし、正常caseの独立原内容を各snapshotへ比較する。map keyはstable identity、各axisは出典case/hashを保持する。",
+        "snapshot/receiptの対象revision/scopeを比較し、十二層/六pair/独立anchor、各層contractのauthority/template、row/原意味/両端edgeの各facetを別々に保持する。値・書式・digest方式は合成例で正式schemaではない。",
+        "未観測/unknownも未完へ保持しstaleを別集合に残す。局所欠落/矛盾は対象Aの未完にし対象Bの成立を消さない。snapshot資格unknownと個別field unknownを混同しない。",
+        "全件・評価済み・未完・stale・未観測・根拠付き除外をreceipt申告と内容比較する。件数/保存/発行flagを内容条件または実作用へ昇格しない。",
+        "対象集合資格unknownではexact分母と対象外をnullに保持する。独立に観測できる部分facetは保持し全件coverageは未成立。",
+        "snapshot mapのexact membershipとrow両方向記録も照合する。余分なL0 layer/第七pair/別rowを分母へ補充しない。pair片方向欠落をpair全体欠落と分ける。"
+      ],
+      "legacy_context": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "read_lines": [
+          136,
+          209
+        ],
+        "preserve": "FR46のsnapshot/coverageとNFR29の原子義務・両方向/同revision内容条件を保持。旧DB/旧ledger保存実行は移さない。"
+      },
+      "supporting_context_reads": [
+        {
+          "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+          "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+          "read_lines": [
+            391,
+            435
+          ],
+          "disposition": "unresolved_reference_only",
+          "preserve": "台帳の原子subject、snapshot/source/template/catalog、row revisionと両方向edgeの内容照合を参照。FR46/NFR29と現行承認済み040を起点とする。",
+          "not_adopted": "旧table/schema/runtimeと旧L8/L9名称は移さない。canonical層の意味は現行001/040の承認revisionへ照合する。"
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-040-B01",
@@ -373,7 +404,6 @@
       "state": "draft_concrete_catalog_cases_pending_qualification_detail_and_review"
     },
     "remaining_concrete_functions": [
-      "F04",
       "B01",
       "N01"
     ],
@@ -389,6 +419,12 @@
       "row_field_matrix_cases": 216,
       "edge_matrix_cases": 96,
       "state": "draft_concrete_row_trace_cases_pending_qualification_and_review"
+    },
+    "F04": {
+      "normal_cases": 1,
+      "content_mutation_cases": 33,
+      "comparison_axes": 332,
+      "state": "draft_concrete_snapshot_coverage_cases_pending_qualification_and_review"
     }
   }
 }
