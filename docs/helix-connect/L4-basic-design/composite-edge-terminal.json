@@ -1,0 +1,311 @@
+{
+  "parent": "HELIXCONNECT-L2-007",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 5",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+    "boundary": "当該構成体の選択必須辺/技術終端/局所故障/証拠適用範囲と業務責務を内容対照。歴史Stage5を保持し限定入力を先行著述。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "0fc000a1bd25a5a9c77cb845870b294bc246367051e49daa378cabb4fd6ffdd4"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "e9ef8fea59cfed03b96ff61e2f556fc22fa72279cf660fa47786c2b1f24fa877"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    }
+  ],
+  "source_pin_limit": "固定bytesは実source資格/全意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "read_lines": [
+        41,
+        57
+      ],
+      "quote": "## §1 componentとauthority\n\n| component | 責務 | authority | 禁止 |\n|---|---|---|---|\n| `ProductDataConnectorRegistry` | source、connector/schema/mapping version、credential reference、classification、sync/read-write policy、owner、freshness/retentionを管理 | Node registry event | credential値保存、不明version、write権限の暗黙付与 |\n| `ProductDataIngestionCoordinator` | full/incremental run、lease/fence、state、idempotency、checkpointを順序制御 | run event | connector固有mapping、Python結果の直接commit |\n| `ProductDataReadConnectorPort` | versioned requestを外部read adapterへ渡しrecord pageとcursorを返す | bounded ephemeral observation | arbitrary query、write-back、credential本文の返却、raw inputのpersistent seal |\n| `ProductDataProjectionWorker` | raw pageからcanonical entity/mapping proposalを導出 | Python proposal artifactだけ | harness.db、current pointer、watermarkへのwrite |\n| `ProductDataProposalIngestionPort` | worker envelope、source/schema/mapping/lineage/digestをNodeで再検証 | staged proposal | partial result、late fence、schema不明resultの昇格 |\n| `ProductDataPolicyGate` | classification、redaction、retention、freshness、agent-context field allowlistを評価 | policy receipt | PII/secret/raw payload複製、unknown classificationの通過 |\n| `ProductDataProjectionCommitter` | entity/mapping、旧current、snapshot、watermarkを一transactionでcommit | Node `HarnessDbPort`だけ | Python/connectorからのDB write、watermark先行更新 |\n| `ProductDataQuarantineStore` | drift/policy/authority findingとrelease条件をappend-only管理 | quarantine event | raw payload保存、無期限・ownerなしrelease |\n\nPythonは共通`PythonWorkerBroker`を通じてproposalだけを返す。run output root以外のwrite、DB pathの受領、repository/current\npointerへのアクセスを許可しない。Nodeは`complete`後にresult set、schema、provenance、lease/fence、artifact digestを再検証し、\n検証済みproposalだけをprojection transactionへ渡す。`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN`は\n`HIL_PYTHON_AUTHORITY_BYPASS`をproduct-data境界で失わず集約する。",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "selected_lines_sha256": "fcee7a502821376a85ced4c9850dbc8f97ee283d7c3a3b311c7cd92d147a5d4d",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "disposition": "unresolved",
+        "source_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+      },
+      "reuse": "reference_only",
+      "preserve": "component/authority分離、結果set/版/lineage照合、partialを完了へ昇格させない。loop/terminalの個別状態、先行変更後のdrift再照合を保持。",
+      "change": "旧Node/Python/DB/merge/runtime方式を新CONNECTへ移植せず、当該owner exact edge/順序/mapping/終端と局所故障保持へ意味再導出。",
+      "reason": "承認007の必須辺完全性と責務境界が正本であり、旧loop等の全能力/実装や全接続必須化は採用しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "read_lines": [
+        50,
+        50
+      ],
+      "quote": "| UWJ-FR-006 | loopはreturn、continue、stop、上限、上限到達時、terminalは正常/取消/失敗/期限切れ、終了後更新、通知、audit、再開可否を契約化する | UWJ-AC-006 |",
+      "file_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "selected_lines_sha256": "21e664a7fd4afa4085c2a1f62a2497de925ae21a9fe6e0aeb5609bae45f13b17",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "disposition": "unresolved",
+        "source_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b"
+      },
+      "reuse": "reference_only",
+      "preserve": "component/authority分離、結果set/版/lineage照合、partialを完了へ昇格させない。loop/terminalの個別状態、先行変更後のdrift再照合を保持。",
+      "change": "旧Node/Python/DB/merge/runtime方式を新CONNECTへ移植せず、当該owner exact edge/順序/mapping/終端と局所故障保持へ意味再導出。",
+      "reason": "承認007の必須辺完全性と責務境界が正本であり、旧loop等の全能力/実装や全接続必須化は採用しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "read_lines": [
+        66,
+        66
+      ],
+      "quote": "直列mergeし、先行merge後に残存laneのbase drift、CI、review、DB receiptを再判定する。",
+      "file_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "selected_lines_sha256": "7775aa4943f269d8bbba9dbc198de37a029bb6a1e8186795e0368887a74183bd",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "disposition": "unresolved",
+        "source_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6"
+      },
+      "reuse": "reference_only",
+      "preserve": "component/authority分離、結果set/版/lineage照合、partialを完了へ昇格させない。loop/terminalの個別状態、先行変更後のdrift再照合を保持。",
+      "change": "旧Node/Python/DB/merge/runtime方式を新CONNECTへ移植せず、当該owner exact edge/順序/mapping/終端と局所故障保持へ意味再導出。",
+      "reason": "承認007の必須辺完全性と責務境界が正本であり、旧loop等の全能力/実装や全接続必須化は採用しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "read_lines": [
+        132,
+        132
+      ],
+      "quote": "  → serial main merge",
+      "file_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "selected_lines_sha256": "9ace7e580dc064b86250c8cb88a991ab8bff812c6c4edec3e0d0a14fdeff143f",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "disposition": "unresolved",
+        "source_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6"
+      },
+      "reuse": "reference_only",
+      "preserve": "component/authority分離、結果set/版/lineage照合、partialを完了へ昇格させない。loop/terminalの個別状態、先行変更後のdrift再照合を保持。",
+      "change": "旧Node/Python/DB/merge/runtime方式を新CONNECTへ移植せず、当該owner exact edge/順序/mapping/終端と局所故障保持へ意味再導出。",
+      "reason": "承認007の必須辺完全性と責務境界が正本であり、旧loop等の全能力/実装や全接続必須化は採用しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "構成体ownerの必要exact edge集合/順序/operation mapping、各辺登録/現在互換/SEC/expiry/receiver実効果/原receipt/未完の実source資格とowner-qualified exact binding。",
+    "正式schema/codec/graph resolver/証拠適用/各停止観測とL5L8、凍結oracle→実装前Red→最小Green→Refactor→再検証。",
+    "実L9/L10/PO L11、全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXCONNECT-L4-007",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "composite_terminal_reader",
+      "intermediate_stop_reader",
+      "evidence_scope_reader",
+      "business_boundary_reader"
+    ],
+    "flow": [
+      "原必須辺宣言/順序/operation mapping→各辺原/提出receiptと登録/互換/許可/終端→辺ごとの不足",
+      "原中間故障→先行成功/後続attemptと停止/handoff保持→元owner返却",
+      "原対象範囲/必要証拠→各receipt target→未見版/別scope/未観測を保持",
+      "原技術結果/元業務判断/必要依存→当該選択閉包のみ内容対照→Accepted非生成"
+    ],
+    "python_boundary": "pure immutable内容照合。通信/実attempt/SEC判定/保存/DB/network/時計/業務承認はしない。",
+    "representation_limit": "4合成端点/3合成辺の直列例は実製品接続集合の選択・全graph規則・全接続完成条件でない。typed relation/loop/joinは009の契約に残し、未選択操作を実行しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXCONNECT-L4-007-F01",
+      "requirement_ref": "HELIXCONNECT-L3-007-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
+      "oracle_ref": "HELIXCONNECT-L9-007-F01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-007-F01",
+        "parent": "HELIXCONNECT-L2-007",
+        "title": "必須辺の技術的終端",
+        "obligation": "構成体ownerが宣言したexact edge集合・順序・correlation/scope・operation mapping・各登録/現在互換/expiry/idempotency/result/許可とrecovery先を照合する。全必須辺の受渡しを終端まで確認した場合だけ技術的通信完了を報告する。",
+        "oracle_ref": "HELIXCONNECT-L10-007-F01"
+      },
+      "component": "composite_terminal_reader",
+      "input_meanings": [
+        "構成体owner原必須exact edge/順序/各endpoint版/能力/scope/operation mapping",
+        "各辺原/提出registration/compat/expiry/permit/result/効果receipt"
+      ],
+      "output_meanings": [
+        "個別対象/内容/条件/mappingと不足",
+        "当該辺集合の合成終端候補と元結果保持"
+      ],
+      "content_comparison": [
+        "全必須辺の個別登録/互換/operation受渡し/終端を照合し、一辺greenを全構成へ外挿しない。",
+        "原順序/mappingのunknown/別版/不足は原/提出一致でも全体終端にしない。",
+        "receipt不足/重複は各集合の件数を返し、同内容の複数記録を一つへ推測で選ばない。"
+      ],
+      "qualification_rule": "原owner必要集合/各辺/許可/実効果の合成例は実source資格/実通信終端/authority/Accepted/設計閉包でない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXCONNECT-L4-007-F02",
+      "requirement_ref": "HELIXCONNECT-L3-007-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
+      "oracle_ref": "HELIXCONNECT-L9-007-F02",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-007-F02",
+        "parent": "HELIXCONNECT-L2-007",
+        "title": "中間故障と後続停止",
+        "obligation": "一中間辺のstale/timeout/異digest衝突/expiry/取消/失効/部分成功/unknownを個別検査し、必要な先行条件を満たさない後続を実行済みにしない。停止位置・未完辺/義務/owner/recoveryを示し、先行成功を消さない。",
+        "oracle_ref": "HELIXCONNECT-L10-007-F02"
+      },
+      "component": "intermediate_stop_reader",
+      "input_meanings": [
+        "原中間故障/順序/先行成功/後続attempt",
+        "原未完/handoffと提出"
+      ],
+      "output_meanings": [
+        "停止位置/発生owner/recovery/未完と先行結果保持",
+        "後続未実行と元業務再計画owner"
+      ],
+      "content_comparison": [
+        "stale/timeout/digest衝突/expiry/取消/失効/部分/unknownを個別に保持。",
+        "先行条件不成立の後続を実行済みとせず、原attemptがあれば不整合として保留。",
+        "先行成功を消さず、業務判断/再計画は元機構/OS等ownerへ返す。"
+      ],
+      "qualification_rule": "原owner必要集合/各辺/許可/実効果の合成例は実source資格/実通信終端/authority/Accepted/設計閉包でない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXCONNECT-L4-007-N01",
+      "requirement_ref": "HELIXCONNECT-L3-007-N01",
+      "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
+      "oracle_ref": "HELIXCONNECT-L9-007-N01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-007-N01",
+        "parent": "HELIXCONNECT-L2-007",
+        "title": "未見scopeと証拠の適用限界",
+        "obligation": "対象要求revision・選択connection exact set・endpoint/登録revision・各operation/attempt・効果/停止地点へ証拠を結ぶ。未見版/別scopeと一境界故障を評価し、fixture/一connection greenを未棚卸接続や構成体へ外挿しない。",
+        "oracle_ref": "HELIXCONNECT-L10-007-N01"
+      },
+      "component": "evidence_scope_reader",
+      "input_meanings": [
+        "原要求revision/選択connection exact set/登録/operation/attempt/効果停止target",
+        "原必要証拠集合と原/提出観測"
+      ],
+      "output_meanings": [
+        "未見版/別scope/欠落/未実行と適用限界",
+        "境界ownerへの局所理由"
+      ],
+      "content_comparison": [
+        "元対象と各証拠を個別に結び、field存在/件数を内容資格へ読み替えない。",
+        "一境界unknown/不足を保持してfixture/一connection greenを未棚卸構成へ外挿しない。"
+      ],
+      "qualification_rule": "原owner必要集合/各辺/許可/実効果の合成例は実source資格/実通信終端/authority/Accepted/設計閉包でない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXCONNECT-L4-007-B01",
+      "requirement_ref": "HELIXCONNECT-L3-007-B01",
+      "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
+      "oracle_ref": "HELIXCONNECT-L9-007-B01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-007-B01",
+        "parent": "HELIXCONNECT-L2-007",
+        "title": "構成体完了の責務と条件付き依存",
+        "obligation": "技術的通信完了は業務成立/要求採否/受入を生成しない。構成体の当該必須辺に001..005と共通pack/endpoint/SEC契約を照合し、未選択の全接続・全能力を初回必須化しない。交換006は選択操作時に限る。",
+        "oracle_ref": "HELIXCONNECT-L10-007-B01"
+      },
+      "component": "business_boundary_reader",
+      "input_meanings": [
+        "原技術状態と元業務/受入記録",
+        "当該必要契約閉包と未選択操作"
+      ],
+      "output_meanings": [
+        "業務成立/採否/Acceptedの非生成",
+        "元ownerと必要scopeの不足保持"
+      ],
+      "content_comparison": [
+        "技術通信終端は業務成立/要求採否/受入でない。",
+        "当該必要辺の001..005/common pack/endpoint/SECを保持。再送004/交換006は選択操作に限定。",
+        "未選択全接続/全能力の完成を初回必須にしない。"
+      ],
+      "qualification_rule": "原owner必要集合/各辺/許可/実効果の合成例は実source資格/実通信終端/authority/Accepted/設計閉包でない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 39,
+      "F02": 25,
+      "N01": 16,
+      "B01": 11
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
