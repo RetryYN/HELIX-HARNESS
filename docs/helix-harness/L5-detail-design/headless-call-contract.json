@@ -371,7 +371,8 @@
         "difference": "tuple of {axis:Text, requested:Text|null, observed:Text|null}",
         "basis_refs": "Ref tuple",
         "owner": "Text",
-        "affected_axis": "progress | result | effects | recording | identity"
+        "affected_axis": "progress | result | effects | recording | identity",
+        "evaluation_scope": "current_call | origin_checkpoint; originの根拠所属を保持"
       },
       "CallAnalysis": {
         "binding": "Binding | null (invalid入力だけ)",
@@ -893,7 +894,8 @@
       "observation_body": "ObservationBody"
     },
     "structural_failure": "input_state invalid/unresolvedとInputIssueは形/資格/解決不足の境界。意味finding34codeと別に保持し、InputIssueありの候補/意味成功は返さない。 観測headerのnull correlationは許された型の意味missingでcorrelation_missing finding。CallInput本体のfield欠落とは分ける。未確認状態そのものによるheld（例:期限到来でdispatch不可）と、成功主張によるexpiry_success findingを別に扱う。",
-    "metadata_encoding": "metadataはstrict UTF8 JSON object、BOM禁止、object_pairs_hook相当でdecoded duplicate key拒否、parse_constantでNaN/Infinity拒否、Unicode scalar検査、追加field拒否。JSON numberとして扱うsequence/budgetはexact intでboolを除外、tickはcanonical decimal stringで受ける。opaque input原bytesをmetadataとして再parseしない。ownerのbudget解決前は入力消費を開始しない。budget/資格解決自体の資源限界はcallerの既決port条件が必須で未解決ならunresolved。"
+    "metadata_encoding": "metadataはstrict UTF8 JSON object、BOM禁止、object_pairs_hook相当でdecoded duplicate key拒否、parse_constantでNaN/Infinity拒否、Unicode scalar検査、追加field拒否。JSON numberとして扱うsequence/budgetはexact intでboolを除外、tickはcanonical decimal stringで受ける。opaque input原bytesをmetadataとして再parseしない。ownerのbudget解決前は入力消費を開始しない。budget/資格解決自体の資源限界はcallerの既決port条件が必須で未解決ならunresolved。",
+    "classification_application": "34 ruleは分類codeの閉集合。複数関数が同じruleを評価する場合は対象集合をcurrent観測/origin checkpointに明示的に分ける。evidence_cross_binding/observation_missing/stop_unobservedの3 ruleだけがこの2経路を持つ。同じscopeに二重担当を置かず、元Ref/binding/evaluation_scopeをfinding根拠として保全し、current/originを混同しない。1 code=1 functionという規則は置かない。"
   },
   "functions": [
     {
@@ -941,11 +943,13 @@
       "post": "requested/resolved/observed差分、対応互換根拠、不足を返す。利用候補≠実環境の証明。",
       "design_refs": [
         "HARNESS-L5-011-F01",
-        "HARNESS-L5-011-F02"
+        "HARNESS-L5-011-F02",
+        "HARNESS-L5-011-F03"
       ],
       "integration_design_refs": [
         "HARNESS-L4-011-F01",
-        "HARNESS-L4-011-F02"
+        "HARNESS-L4-011-F02",
+        "HARNESS-L4-011-F03"
       ],
       "failure_rule_refs": [
         "R-axis_substitution",
@@ -967,77 +971,88 @@
           "code": "axis_substitution",
           "predicate": "requested契約版の値が版根拠ではなくStage/version_target/maturity参照から供給されている境界観測を照合。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-capability_mismatch",
           "code": "capability_mismatch",
           "predicate": "input.binding.capability_nameとvalid ContractBody.capability_nameの不一致。",
           "utilization": "rejected",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-dependency_mismatch",
           "code": "dependency_mismatch",
           "predicate": "required dependencyのrequested/observed revision pairがvalid MappingBody.allowed_revision_pairsに無い。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-dependency_unknown",
           "code": "dependency_unknown",
           "predicate": "required dependencyのobserved_refがmissing/unknown。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-hidden_dependency",
           "code": "hidden_dependency",
           "predicate": "valid runtime_dependency観測のundeclared required_refがruntime_binding_requirementsに含まれない。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-hidden_input",
           "code": "hidden_input",
           "predicate": "valid declared_input観測のundeclared read参照がinput_contract_refのrequired input集合に含まれない。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-internal_shared_dependency",
           "code": "internal_shared_dependency",
           "predicate": "valid runtime_dependency観測がhelix_internal_sharedかつcallerに必須である。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-meaning_mismatch",
           "code": "meaning_mismatch",
           "predicate": "qualified052 comparisonが同宣言入力に対してdifferentで、差分根拠が未宣言sourceに束縛されている。",
           "utilization": "unproven",
-          "affected_axis": "result"
+          "affected_axis": "result",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-scope_expansion",
           "code": "scope_expansion",
           "predicate": "valid parent_scope観測がweb_scopeで対象親011 scope外の成果を含む。",
           "utilization": "rejected",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-stale_binding",
           "code": "stale_binding",
           "predicate": "contract/configuration対応Resolution.state=stale。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-unsupported_contract",
           "code": "unsupported_contract",
           "predicate": "requested/resolved contract版が異なり、当該contract pairのowner-qualified MappingBodyが無い。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         }
       ]
     },
@@ -1071,35 +1086,40 @@
           "code": "authority_missing",
           "predicate": "required action/resourceについてauthority owner判断Refがmissing。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-authority_stale",
           "code": "authority_stale",
           "predicate": "authority validity/revocation観測が失効又は元scope不適合。",
           "utilization": "rejected",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-authority_unverified",
           "code": "authority_unverified",
           "predicate": "authority判断のissuer/qualificationを正当ownerの根拠へ解決できない。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-isolation_mismatch",
           "code": "isolation_mismatch",
           "predicate": "AuthorityBody又はvalid access観測のproject/tenant/environmentがcurrent bindingと異なる。",
           "utilization": "rejected",
-          "affected_axis": "effects"
+          "affected_axis": "effects",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-unauthorized_effect",
           "code": "unauthorized_effect",
           "predicate": "valid effect観測のresource/actionが許可対象外でobserved_applied。",
           "utilization": "rejected",
-          "affected_axis": "effects"
+          "affected_axis": "effects",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         }
       ]
     },
@@ -1119,12 +1139,14 @@
         "HARNESS-L5-011-F01",
         "HARNESS-L5-011-F03",
         "HARNESS-L5-011-F04",
+        "HARNESS-L5-011-F05",
         "HARNESS-L5-011-N01"
       ],
       "integration_design_refs": [
         "HARNESS-L4-011-F01",
         "HARNESS-L4-011-F03",
         "HARNESS-L4-011-F04",
+        "HARNESS-L4-011-F05",
         "HARNESS-L4-011-N01"
       ],
       "failure_rule_refs": [
@@ -1147,77 +1169,88 @@
           "code": "absence_blindness",
           "predicate": "effect unobserved又は観測不能なrequired resourceを、valid result_claimがobserved_not_appliedへ変換したと示す。",
           "utilization": "unproven",
-          "affected_axis": "effects"
+          "affected_axis": "effects",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-correlation_missing",
           "code": "correlation_missing",
           "predicate": "観測header EvidenceBinding.correlation_idがnull。",
           "utilization": "unproven",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-coverage_shrink",
           "code": "coverage_shrink",
           "predicate": "valid result_claimの観測被覆集合がeffect_plan全required stepから未完stepを除き全体成立を主張。",
           "utilization": "unproven",
-          "affected_axis": "effects"
+          "affected_axis": "effects",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-evidence_cross_binding",
           "code": "evidence_cross_binding",
           "predicate": "headerのnonnull binding memberがcurrent Bindingと不一致。",
           "utilization": "unproven",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-observation_insufficient",
           "code": "observation_insufficient",
           "predicate": "必要実境界のsource qualificationがmock/局所scopeで、実作用/未作用のscopeを覆わない。",
           "utilization": "unproven",
-          "affected_axis": "effects"
+          "affected_axis": "effects",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-observation_missing",
           "code": "observation_missing",
           "predicate": "effect_planのrequired stepに資格付き実観測Refが無く、宣言/hashしかない。",
           "utilization": "unproven",
-          "affected_axis": "effects"
+          "affected_axis": "effects",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-partial_success",
           "code": "partial_success",
           "predicate": "qualified result_claimが一部のみ完了したeffect_planを全体successと主張。",
           "utilization": "unproven",
-          "affected_axis": "result"
+          "affected_axis": "result",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-progress_result_conflation",
           "code": "progress_result_conflation",
           "predicate": "qualified result_claimがprogress endedだけをsuccess根拠にする。",
           "utilization": "unproven",
-          "affected_axis": "result"
+          "affected_axis": "result",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-result_unproven",
           "code": "result_unproven",
           "predicate": "reported successのrequired意味output根拠が空又はexit0だけで未成立。",
           "utilization": "unproven",
-          "affected_axis": "result"
+          "affected_axis": "result",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-unproven_persistence",
           "code": "unproven_persistence",
           "predicate": "保存がrequiredなのにrecord subject/binding一致receiptが無く、表示又はresult successを保存根拠にする。",
           "utilization": "unproven",
-          "affected_axis": "recording"
+          "affected_axis": "recording",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-stop_unobserved",
           "code": "stop_unobserved",
           "predicate": "stop ACKが有るが実停止ownerのsource_refsが未解決又は無い。",
           "utilization": "held",
-          "affected_axis": "progress"
+          "affected_axis": "progress",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         }
       ]
     },
@@ -1249,7 +1282,10 @@
         "R-duplicate_effect_risk",
         "R-expiry_success",
         "R-resume_identity_conflict",
-        "R-unproven_execution"
+        "R-unproven_execution",
+        "R-evidence_cross_binding",
+        "R-observation_missing",
+        "R-stop_unobserved"
       ],
       "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし",
       "classification_steps": [
@@ -1258,49 +1294,80 @@
           "code": "checkpoint_missing",
           "predicate": "resumeの記録済みcheckpoint又は同subject/origin binding保存receiptがmissing。",
           "utilization": "held",
-          "affected_axis": "recording"
+          "affected_axis": "recording",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-configuration_drift",
           "code": "configuration_drift",
           "predicate": "resume current configuration_refがorigin checkpoint構成と不一致。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-deadline_substitution",
           "code": "deadline_substitution",
           "predicate": "origin deadlineと供給deadlineが異なり正当continuation根拠が無い。",
           "utilization": "held",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-duplicate_effect_risk",
           "code": "duplicate_effect_risk",
           "predicate": "resume origin作用にunobserved stepが有り、そのstepを再候補に要求。",
           "utilization": "held",
-          "affected_axis": "effects"
+          "affected_axis": "effects",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-expiry_success",
           "code": "expiry_success",
           "predicate": "now>=expiryかつqualified result_claimが対象call全体successを主張。",
           "utilization": "held",
-          "affected_axis": "result"
+          "affected_axis": "result",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-resume_identity_conflict",
           "code": "resume_identity_conflict",
           "predicate": "origin/currentのattempt条件又はcall/input/scope/契約/相関/意味キー条件が不一致。",
           "utilization": "rejected",
-          "affected_axis": "identity"
+          "affected_axis": "identity",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
         },
         {
           "rule_ref": "R-unproven_execution",
           "code": "unproven_execution",
           "predicate": "qualified execution_claimが052 same又は局所greenを実exactly-once receipt根拠にしている。",
           "utilization": "unproven",
-          "affected_axis": "effects"
+          "affected_axis": "effects",
+          "evaluation_scope": "current call; evaluate側の固有resume ruleはorigin/current比較"
+        },
+        {
+          "rule_ref": "R-evidence_cross_binding",
+          "code": "evidence_cross_binding",
+          "predicate": "origin CP保存receiptのsubject又はbindingがCP/origin bindingと異なる。",
+          "utilization": "unproven",
+          "affected_axis": "identity",
+          "evaluation_scope": "origin checkpoint only; current観測を再所属させない"
+        },
+        {
+          "rule_ref": "R-observation_missing",
+          "code": "observation_missing",
+          "predicate": "origin effect_plan全stepの必要作用/未作用観測のqualified Refが未供給。",
+          "utilization": "unproven",
+          "affected_axis": "effects",
+          "evaluation_scope": "origin checkpoint only; current観測を再所属させない"
+        },
+        {
+          "rule_ref": "R-stop_unobserved",
+          "code": "stop_unobserved",
+          "predicate": "origin CPのstop headerはACKまでで、owner実停止source_refsが解決できない。",
+          "utilization": "held",
+          "affected_axis": "progress",
+          "evaluation_scope": "origin checkpoint only; current観測を再所属させない"
         }
       ]
     },
@@ -1426,7 +1493,8 @@
         "validate_call_input",
         "bind_call_authority",
         "bind_call_observations",
-        "build_call_analysis"
+        "build_call_analysis",
+        "match_call_contract"
       ],
       "behavior": "callerから渡されたproject/tenant/環境・actor・action・資源範囲へ、SECURITY等の正当なauthority ownerが提供した有効判断をexactに結ぶ。plain自己申告やcallable objectの存在を権限としない。意味coreは権限を発行/拡張せず、executorは実作用の直前にも有効性を確かめる。拒否/unknown/失効はdispatchさせず、強制と実アクセスの証拠はexecutor/SECURITYへ求める。HELIX稼働DB/鍵/内部統制の共有を必須構成にしない。認証方式はここで選定しない。",
       "failure_rule_refs": [
@@ -1467,7 +1535,8 @@
       "symbols": [
         "validate_call_input",
         "evaluate_call_control",
-        "build_call_analysis"
+        "build_call_analysis",
+        "bind_call_observations"
       ],
       "behavior": "途中停止要求と停止が実際に成立した観測を区別する。期限はcallerの対象operationの有効な入力、clock観測はruntime owner入力であり意味coreがwall clockや既定timeoutを読むことはない。停止/期限到来は新しい作用開始を止め、既発行作用の成否が不明ならunknown/partialと実範囲を保持する。停止前成功の局所作用を消さず、call全体の期限切れ/中断をsuccessとしない。再開は記録済みcheckpointの元call/input/scope/contract/構成/冪等キーと既実施範囲の解決を要求し、現authority・期限を再照合する。未決の既作用を再実行しない。保存/CAS/重複作用の強制はexecution ownerの契約へ渡し、HARNESS052のsame/conflictだけでexactly-onceを保証しない。",
       "failure_rule_refs": [
