@@ -537,11 +537,13 @@
       "basic_calls": 22,
       "typed_expected_cells": 198,
       "nested_condition_cells": 76,
-      "state": "draft_basic_typed_cases_independent_qualification_pending"
+      "state": "draft_basic_typed_and_qualification_cases_pending_semantic_review",
+      "qualification_calls": 52,
+      "qualification_typed_cells": 468
     }
   },
   "pending": [
-    "5関数の内部比較/typed部分期待/対単体oracleの具体化、F01の独立qualificationと返却例",
+    "5関数の内部比較/typed部分期待/対単体oracleの具体化、F01の未定義action/必要条件集合の具体比較",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -730,7 +732,8 @@
       "input": {
         "context": "ProcessContext",
         "original_sources": "SourceCell map（各対象の独立原資料）",
-        "candidate": "ProcessAssessment | null"
+        "candidate": "ProcessAssessment | null",
+        "source_qualifications": "Context/carrier/phase契約/委任/各原資料を別々に解決したSourceCell資格入力。合成例のstateは実資格の証明ではない。"
       },
       "output": {
         "partial_values": {
@@ -746,7 +749,8 @@
         },
         "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
         "unaffected_scope": "元の有効な非対象資料",
-        "operation_effect": "none"
+        "operation_effect": "none",
+        "source_qualification_results": "個別source資格の状態を保全し、非必要資料の診断と進行条件の未成立を分ける。"
       },
       "internal_steps": [
         "Contextの対象revision/scope、工程、操作種別を独立原資料へ照合し、source packet carrier資格とembedded各資料資格を分離する。",
@@ -758,7 +762,7 @@
         "candidateは原資料と別に比較し、反復承認要求・相談由来の実承認・実装成功由来の完了などの意味差をfieldで返す。candidateの宣言で元資料の資格/結果を更新しない。",
         "実進行/承認生成/工程完了はこの照合関数の作用として全てfalse、operation_effectはnone。実進行と記録はOS、原authority判断は当該ownerの責務に保持する。"
       ],
-      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "detail_state": "draft_internal_basic_typed_and_qualification_cases_pending_semantic_review",
       "progression_detail": {
         "condition_membership_source": "対象revision/scope・工程・actionに束縛されたphase契約の独立原資料。fixtureのrequired_by_actionをglobal defaultへしない。",
         "source_dependencies": {
@@ -794,10 +798,70 @@
           "actual_approval_created",
           "actual_completion"
         ],
-        "independent_qualification_limit": "現段階は基本例の内容比較をtypedに分解した案。Context/carrier/phase契約/6資料/delegationの独立qualification入力と反例は未起草。source_packet_refはcarrier参照で、embedded sourceの実資格・human provenanceを代替しない。",
+        "independent_qualification_limit": "独立資格を合成入力にした論理比較例を起草済み。実resolver/owner/authority資格・正式schema/codec・実運転は未成立。source_packet_refはcarrier参照で、embedded sourceの資格を代替しない。",
         "partial_result_rule": "既知required集合のcondition_results containerはknownで保持し、当該conditionだけをmissing/unknown/conflict/stale・value nullへする。known false/nullと未知nullはstateで区別する。",
         "owner_return_rule": "不足条件の原資料参照/対象revision/scope/理由/該当ownerへ返却候補を作る。未解決ownerを別ownerや新規承認主体で補わない。無関係scopeの有効材料を保持する。",
-        "logical_type_limit": "論理型/関数契約案。正式schema/codec/resolver/実権限や運転の成立ではない。"
+        "logical_type_limit": "論理型/関数契約案。正式schema/codec/resolver/実権限や運転の成立ではない。",
+        "qualification_groups": {
+          "context": [
+            [
+              "target"
+            ],
+            [
+              "phase"
+            ],
+            [
+              "action"
+            ]
+          ],
+          "phase_contract": [
+            [
+              "phase_condition_material"
+            ]
+          ],
+          "delegation": [
+            [
+              "delegation"
+            ]
+          ],
+          "agreement": [
+            [
+              "materials",
+              "agreement"
+            ]
+          ],
+          "requirements_approval": [
+            [
+              "materials",
+              "requirements_approval"
+            ]
+          ],
+          "pair": [
+            [
+              "materials",
+              "pair"
+            ]
+          ],
+          "verification": [
+            [
+              "materials",
+              "verification"
+            ]
+          ],
+          "unresolved": [
+            [
+              "materials",
+              "unresolved"
+            ]
+          ],
+          "finding_route": [
+            [
+              "materials",
+              "finding_route"
+            ]
+          ]
+        },
+        "qualification_return_rule": "未知の必要条件membershipはunknown/null、未知の委任は承認要/不要へ補完しない。sourceごとの理由/原参照を残し、owner資格が未成立ならowner_targetを当該state/nullにする。非必要資料の不足は診断だけを保持し、無関係Qを消さない。"
       }
     },
     {
