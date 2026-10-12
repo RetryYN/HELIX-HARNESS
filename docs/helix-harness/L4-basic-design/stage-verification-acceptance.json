@@ -298,7 +298,6 @@
   ],
   "fixture_progress": {
     "remaining_contracts": [
-      "N01",
       "B01"
     ],
     "F01": {
@@ -324,10 +323,16 @@
       "negative": 60,
       "source_packets": 66,
       "state": "draft_not_executed"
+    },
+    "N01": {
+      "normal": 4,
+      "negative": 32,
+      "source_packets": 36,
+      "state": "draft_not_executed"
     }
   },
   "pending": [
-    "N01/B01の具体的な原入力/独立期待/正常/反例と内容検証。F01〜F04は設計例で、独立reviewと実観測は未成立。",
+    "B01の具体的な原入力/独立期待/正常/反例と内容検証。F01〜F04/N01は設計例で、独立reviewと実観測は未成立。",
     "003/004/005の必要object/義務への残りexact binding。F02/F03/F04は該当契約を固定参照し、F01/N01/B01の接続は未完。",
     "正式stage proof/schema/codecとowner資格",
     "L5/L8詳細設計/実oracle凍結/実装前Red/Green/Refactor",
@@ -796,7 +801,110 @@
         "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
         "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
       },
-      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。",
+      "unseen_evidence_detail": {
+        "independent_behavior_fixture": {
+          "condition": "one_result_per_command",
+          "success": {
+            "result_count": 1
+          },
+          "counterexample": {
+            "duplicate_result_count": 0
+          }
+        },
+        "stage_contract_object_bindings": [
+          {
+            "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
+            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "object_id": "HARNESS-L4-022-F01",
+            "object_sha256": "7b0fa691315e8e7b4d0ba7763d3a2ffe81d80d1508b95353ba0b69b203f9a16d",
+            "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
+            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "object_id": "HARNESS-L4-022-F02",
+            "object_sha256": "8fb11fe759c57521b979fc7143eb63b6573210d813ca9ed2cc804f318edf6dcb",
+            "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
+            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "object_id": "HARNESS-L4-022-F03",
+            "object_sha256": "70e4c0ce9fbb55e34e771c290a66c475e7d4a56b4e7a1979fbf61f56fbbc2419",
+            "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
+            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "object_id": "HARNESS-L4-022-F04",
+            "object_sha256": "f20090d6737449e35494f5ccef6360d1ef065a8f8ba8d7279111d6dad285c091",
+            "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
+          },
+          {
+            "path": "docs/helix-harness/L9-integration-verification/stage-verification-acceptance.json",
+            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "object_id": "HARNESS-L9-022-F01",
+            "object_sha256": "9792f0cc7c32c149b56a80b21d54d985fba04aec3d4049ca10fc32beca61b8d4",
+            "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
+          },
+          {
+            "path": "docs/helix-harness/L9-integration-verification/stage-verification-acceptance.json",
+            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "object_id": "HARNESS-L9-022-F02",
+            "object_sha256": "37c66dfff10a75a82d9ad66fc1d839dd51f0dffb94db03185ffc28a141588dd4",
+            "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
+          },
+          {
+            "path": "docs/helix-harness/L9-integration-verification/stage-verification-acceptance.json",
+            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "object_id": "HARNESS-L9-022-F03",
+            "object_sha256": "73e1d7302fc88a8ec0f649dbfccc54737a1b66acb88d07edc878f5f08b8130e5",
+            "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
+          },
+          {
+            "path": "docs/helix-harness/L9-integration-verification/stage-verification-acceptance.json",
+            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "object_id": "HARNESS-L9-022-F04",
+            "object_sha256": "f68aa4eb8eadddb10a5b367003342699248e105474380fdab54b594019796736",
+            "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
+          }
+        ],
+        "prior_receipts": [
+          {
+            "phase": "design",
+            "artifact_identity": "UNSEEN-ARTIFACT-U",
+            "artifact_revision": "ART-U@r0",
+            "scope": "PRODUCT-P/design",
+            "confirmed": "limited_synthetic_only",
+            "limit": "prior_revision_not_current_proof"
+          },
+          {
+            "phase": "implementation",
+            "artifact_identity": "UNSEEN-ARTIFACT-U",
+            "artifact_revision": "ART-U@r0",
+            "scope": "PRODUCT-P/implementation",
+            "confirmed": "limited_synthetic_only",
+            "limit": "prior_revision_not_current_proof"
+          },
+          {
+            "phase": "refactor",
+            "artifact_identity": "UNSEEN-ARTIFACT-U",
+            "artifact_revision": "ART-U@r0",
+            "scope": "PRODUCT-P/refactor",
+            "confirmed": "limited_synthetic_only",
+            "limit": "prior_revision_not_current_proof"
+          }
+        ],
+        "validity_rule": "各owner原oracle/evidenceが宣言する有効範囲・失効条件と対象scopeを照合。epoch3〜5は合成例の原条件で、正式TTLや期限policyは採用しない。",
+        "evaluation_limit": "未見はこの合成artifactの識別に限る。実holdout試験や汎用意味判定/全製品保証は未成立。F01〜F04の必要stage証明・実利用者受入はこの内容照合では代替しない。",
+        "score_role": "診断値。要求採否/意思決定/Acceptedの原根拠として用いない。",
+        "pending": [
+          "正式有効範囲/失効schemaと原owner資格",
+          "実未見artifact/実検証/実受入",
+          "003/004/005との残るexact bindingとL5/L8内部契約"
+        ]
+      }
     },
     {
       "id": "HARNESS-L4-022-B01",
