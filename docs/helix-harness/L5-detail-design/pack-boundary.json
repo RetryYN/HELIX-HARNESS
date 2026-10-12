@@ -82,7 +82,7 @@
         "basis_refs": "ReferenceSet",
         "validity": "valid | missing | unknown | conflict | stale",
         "value": "kindに対応する下記の閉じたBasis record。任意object/free textを渡さない。",
-        "kind": "boundary_basis | declaration_basis | dependency_observation | qualification_basis | reproduction_basis | composition_basis"
+        "kind": "boundary_basis | declaration_basis | dependency_observation | qualification_basis | reproduction_basis | composition_basis | maturity_basis"
       },
       "Context": {
         "subject_ref": "Reference",
@@ -162,6 +162,18 @@
         "upper_obligation_refs": "ReferenceSet",
         "upper_proved_refs": "ReferenceSet",
         "upper_unproved_refs": "ReferenceSet"
+      },
+      "PackMaturityChange": {
+        "pack_ref": "Reference",
+        "before_maturity_ref": "Reference（pack自身の成熟度、適格性state/製品stateとは別）",
+        "after_maturity_ref": "Reference",
+        "basis_refs": "ReferenceSet"
+      },
+      "MaturityBasis": {
+        "pack_ref": "Reference",
+        "before_maturity_ref": "Reference",
+        "after_maturity_ref": "Reference",
+        "content_check_refs": "ReferenceSet（同pack/対象scopeの成熟度before/afterを照合したcurrent根拠）"
       }
     },
     "cardinality": "（1以上）等はdomain充足条件であり、tuple自体は空でも型上はtuple。空の必須契約/根拠はdomain finding/incompleteにする。required field自体の欠落はinput_invalid。"
@@ -236,7 +248,7 @@
       },
       "steps": [
         "input/output/依存宣言/局所義務/oracle/版の六項目を個別に検査。欠落を空集合で補わない。",
-        "宣言の各Refとcontextの契約内容/owner/scope/revisionを照合し、local_pairsをexpected_local_pairsと両方向比較する。",
+        "宣言の各Refとcontextの契約内容/owner/scope/revisionを照合し、local_pairsをexpected_local_pairsと両方向比較する。 型が正しいpair内容の差分はlocal_pair_mismatch/conflict。oracle一件差替えは/local_pairs/index/oracle_ref、集合の余分/不足は/local_pairsをlocatorとする。空の必須pair集合についてはdeclaration_missing/incompleteも残す。",
         "観測factが未供給/unknown/staleなら成功を返さない。観測の生成・process probeを呼ばない。",
         "observed minus declaredをundeclared_dependency_refs、required declared minus observedをmissing_required_dependency_refsへ返す。各不一致を依存identity単位で残す。",
         "両差分が空で、全契約内容が合う場合だけsatisfied。依存なしはvalidな空観測と依存なし根拠を必要とし、観測無しとは区別。"
@@ -261,20 +273,22 @@
         "unresolved_refs": "ReferenceSet",
         "qualifications": "QualificationFactのtuple",
         "before_upper": "UpperState",
-        "proposed_upper": "UpperState"
+        "proposed_upper": "UpperState",
+        "pack_maturity_changes": "PackMaturityChangeのtuple（変化無しは空、同packの二重定義は拒否）"
       },
       "output": {
         "included_refs": "ReferenceSet",
         "excluded": "inputと同じ理由/根拠付き集合",
         "unresolved_refs": "ReferenceSet",
         "upper_state": "before_upperと同じ値",
-        "upper_unproved_refs": "ReferenceSet"
+        "upper_unproved_refs": "ReferenceSet",
+        "pack_maturity_changes": "照合済みinputと同じPackMaturityChangeのtuple"
       },
       "steps": [
         "contextのCompositionBasis.candidate_refsとinput母集合をまず両方向比較し固定母集合の切り詰め/増加を検出。収載/除外/未解決の三集合と母集合を両方向比較し、重複所属、母集合外、未処置を個別findingへ。",
         "各収載packのqualified factについて対象Ref、全局所pair/proof内容とcurrent根拠をcontextへ照合する。state文字列やproof countだけでは適格としない。未検証/未適格/unknownは収載不可。",
         "除外理由/basis不足を残す。unknown packを母集合から削除せず、理由付き除外または未解決にする。",
-        "pack版と成熟度を各pack factに保持し、before_upperとproposed_upperの全fieldを比較する。pack昇格だけを根拠とする上位版/成熟度/状態の変更はupper_state_inferred。",
+        "pack版はpack_refに保持し、pack_maturity_changesの各before/afterを同pack/owner/scopeのcontext MaturityBasisへ内容照合して独立に保持する。before_upperをcontext CompositionBasis.upper_stateへ照合し、proposed_upperの全fieldをbefore_upperと完全一致比較する。この関数は上位変更を行わず、一fieldでも不一致なら原因の推測によらずupper_state_inferred/conflict。単独差分はその/proposed_upper/field、複数差分は/proposed_upperをlocatorとする。上位変更の別ownerによる正当性判定はこの関数の入力/出力では扱わない。",
         "上位固有義務の未証明をcontextからそのまま返す。対象は構成候補であり、組合せ適格性判定やAccepted/Releaseは発行しない。"
       ],
       "codes": [

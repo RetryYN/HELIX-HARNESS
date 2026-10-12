@@ -94,7 +94,16 @@
       "proofs": [
         "proof-B-retained"
       ]
-    }
+    },
+    "maturity_change_A": {
+      "pack_ref": "A@r1",
+      "before_maturity_ref": "m1@r1",
+      "after_maturity_ref": "m2@r1",
+      "basis_refs": [
+        "maturity-A-m1-m2"
+      ]
+    },
+    "maturity_context": "maturity-A-m1-m2はA@r1/CORE/fixture010のMaturityBasisで、before=m1@r1、after=m2@r1とその内容照合根拠を持つ。m1/m2はpack成熟度だけのRef。upperのdraft Refとは別。"
   },
   "cases": [
     {
@@ -293,12 +302,13 @@
       "symbol": "check_composition_candidate",
       "l9_ref": "HARNESS-L9-010-F03",
       "requirement_ref": "HARNESS-L3-010-F03",
-      "positive_input": "母集合={A,B,C}、収載={A}、除外={B:未適格}、未解決={C}。upper before/proposedともu1/draft,p1/draft。",
+      "positive_input": "母集合={A,B,C}、収載={A}、除外={B:未適格}、未解決={C}。upper before/proposedともu1/draft,p1/draft。 pack_maturity_changes=[{pack_ref:A@r1,before_maturity_ref:m1@r1,after_maturity_ref:m2@r1,basis_refs:{maturity-A-m1-m2}}]を独立したcontext maturity_basisへ結ぶ。",
       "expected_observation": [
         "outcome=incomplete（Cとupper-o1を保持）",
         "included={A}、excluded={B:理由/根拠あり}、unresolved={C}",
         "upper_state=u1/draft,p1/draft（Aのm1→m2だけの変更でも不変）",
-        "upper_unproved_refs={upper-o1}"
+        "upper_unproved_refs={upper-o1}",
+        "output.pack_maturity_changesは照合済みA@r1のm1@r1→m2@r1を保持。空change tupleの別正常でもupper値は同じ。"
       ],
       "negative_mutations": [
         {
@@ -376,7 +386,7 @@
             "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
           },
           "input_pointer": "/proposed_upper",
-          "change": "set release/product state to pack m2 using pack maturity change only",
+          "change": "正常入力のpack_maturity_changes[0]（A@r1のm1@r1→m2@r1）とcontext maturity_basisを保持し、proposed_upper.release_unit_state_refとproduct_state_refだけをm2@r1へ変更。before_upperはu1/draft,p1/draftのまま。",
           "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
         },
         {
@@ -602,11 +612,74 @@
       "input": "同じ入力を、I/O/network/process/DB/Git/GitHubの呼出しを観測する禁止effect stubを備えた局所test環境で評価。正常outputを実行intentへ変える意図的な実装欠陥も別oracle強度証拠として使う。",
       "expected": "通常評価のeffect呼出しは0、返却recordは宣言した純粋output fieldだけ。意図的な実装欠陥ではtest oracleが失敗する。これは実装後mutationの証拠で、実装前Redを代替しない。実SEC隔離/実OS受渡しの成立証拠でもない。",
       "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-X07",
+      "targets": "check_pack_declaration",
+      "fixture": "型が正しい独立fixture。context expected_local_pairsとinput local_pairsは[(ob-A,or-A),(ob-A2,or-A2)]。両pairのowner/scope/revisionと内容根拠を持つ。or-other/ob-extra/or-extraも解決済みのRefだがexpected集合には含まない。基準正常はsatisfied。",
+      "negative_mutations": [
+        {
+          "input_pointer": "/local_pairs/0/oracle_ref",
+          "change": "or-Aを解決済みor-otherへ置換。context expectedは不変。",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "local_pair_mismatch",
+            "finding_pointer": "/local_pairs/0/oracle_ref"
+          }
+        },
+        {
+          "input_pointer": "/local_pairs",
+          "change": "解決済み(ob-extra,or-extra)のpairを追加。context expectedは不変。",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "local_pair_mismatch",
+            "finding_pointer": "/local_pairs"
+          }
+        },
+        {
+          "input_pointer": "/local_pairs",
+          "change": "(ob-A2,or-A2)だけを削除し、非空の[(ob-A,or-A)]を残す。context expectedは二pairのまま。",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "local_pair_mismatch",
+            "finding_pointer": "/local_pairs"
+          }
+        }
+      ],
+      "expected": "required field/type/cardinalityは正常なまま。双方向の内容比較を削除した実装は、この3負例で拒否される。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-X08",
+      "targets": "check_pack_boundary",
+      "fixture": "基準A。function-name-A/path-name-Aは関数名/フォルダ名だけを表す解決済みRefで、current_basis_refsに存在しidentity/revision/owner/scope/contentは有効だが、BoundaryBasis.behavior_atom_refs={x}に含まない。",
+      "negative_mutations": [
+        {
+          "input_pointer": "/behavior_atom_refs",
+          "change": "{x}を非空の{function-name-A}へ置換。contextのowner確定behavior集合{x}は不変。",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "boundary_mismatch",
+            "finding_pointer": "/behavior_atom_refs"
+          }
+        },
+        {
+          "input_pointer": "/behavior_atom_refs",
+          "change": "{x}を非空の{path-name-A}へ置換。contextのowner確定behavior集合{x}は不変。",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "boundary_mismatch",
+            "finding_pointer": "/behavior_atom_refs"
+          }
+        }
+      ],
+      "expected": "参照解決/非空検査だけで通らず、既決behavior集合との矛盾を検出。既存29負例の空集合caseも残す。",
+      "execution_state": "not_executed"
     }
   ],
   "evidence_contract": [
     "各fixture展開値/context/oracleの同一revisionと凍結bytes",
-    "全正常と29単独負例、共通Ref/不正/決定性の追加caseについて具体input→expected→actual差分",
+    "全正常と29単独負例、8追加family（X07の3 pair内容変異、X08の2名前由来境界変異を含む）について具体input→expected→actual差分",
     "各L5 symbol/契約→L8 case→L4/L9→L3/L10の双方向trace",
     "未実行/失敗/未知と戻し先。局所結果を実接続/実資源/利用者受入へ昇格しない。"
   ],
