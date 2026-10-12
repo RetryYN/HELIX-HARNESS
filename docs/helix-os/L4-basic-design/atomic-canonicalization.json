@@ -189,7 +189,7 @@
       "commit確定を独立readerのpointer/canonical/projectionで照合。成功応答は全内容同revisionの場合だけ。commit結果が不明ならunknownで再読/復旧へ。",
       "各faultで未commit/途中bytesの可視性を分離し、rollback実証・隔離・未証明を記録。新currentを成立表示しない。"
     ],
-    "receipt_visibility": "receipt候補のbytesが保存中に存在しても成功receiptではない。成功は同operationの全必須write/参照/current公開を照合した確定receiptだけ。commit応答喪失は保存失敗と分け、既存storeのread-afterが全成功を示す場合だけ既存結果を返す。"
+    "receipt_visibility": "transaction内のreceipt recordはcommit時点のoperation/command/scope、base/before/after、全write/owner/outcome/count/参照/projection revisionを保存する。commit後の独立read結果を予告したfieldや、実施済みと称するread証拠は入れない。receipt候補はcommit前にwriterから見えても成功ではない。保存済みreceiptと全write/参照/currentの独立3readが一致するときだけ、その保存済みreceiptをL3-F06の成功receiptとして応答へ渡す。read-afterは応答/consumer側の別観測であり、この原子境界に新たな必須writeを追加せず、receiptを後から書換えない。commit後に不一致/読出し不能なら保存済みrecordを保全し、呼出し結果はconflict/unknownと復旧義務を返す。G1を観測した事実も保全し、commit済み事実を無かったことにしたり、receiptだけで全成功を返さない。commit応答喪失はreceipt保存失敗とは別で、既存storeのreceiptと全内容のread-after一致が確認できる場合だけ先行成功結果を返す。"
   },
   "invariants": [
     "JSON意味正本/元sourceとviewは別kind。viewだけの変更で新canonical revisionを成立させない。",
@@ -277,7 +277,7 @@
       "system_oracle_ref": "HELIXOS-L10-053-F06",
       "oracle_ref": "OS-L9-053-F06",
       "boundary": "ReceiptRecoveryPort/ReadCommittedPort",
-      "behavior": "成功receiptは全writeとowner/operation/command/scope/before/after/base/全参照/projection/実outcomeを持ち、実store/readへ逆照合。失敗receiptは失敗位置/可視性/rollback/隔離/復旧義務を同scopeへ保持。countだけでは成功にしない。",
+      "behavior": "成功receiptは全writeとowner/operation/command/scope/before/after/base/全参照/projection/実outcomeを持ち、実store/readへ逆照合。失敗receiptは失敗位置/可視性/rollback/隔離/復旧義務を同scopeへ保持。countだけでは成功にしない。 transaction内receiptはcommit時点のwrite/参照結果であり、commit後readの未来結果を含めない。別の独立read-after観測との全一致で成功receiptとして返す。不一致/読出し不能はrecordを保全してconflict/unknownと復旧義務へ分け、後書きでreceiptを成功へ補修しない。",
       "required_witness": "receipt各行→実write/読出し/失敗とownerの逆参照",
       "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
     },
