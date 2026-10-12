@@ -222,7 +222,8 @@
         "040相当ledger契約owner"
       ],
       "qualification_rule": "原source identity/revision/scope/owner/意味と必要集合を独立比較。missing/unknown/conflict/staleを当該field/scopeへ保持し他の成立部分を消さない。具体source資格と正式codecは未binding。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "candidate_provenance_rule": "atom metadata/digestを独立extractor/ledger契約と原candidate材料へ照合。人手要約claimと機械候補原材料を分離する。合成recordは実機械抽出の実観測にしない。"
     },
     {
       "id": "HARNESS-L4-041-F03",
@@ -294,7 +295,8 @@
         "009/対象template owner"
       ],
       "qualification_rule": "原source identity/revision/scope/owner/意味と必要集合を独立比較。missing/unknown/conflict/staleを当該field/scopeへ保持し他の成立部分を消さない。具体source資格と正式codecは未binding。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "input_binding_rule": "原template bytes/revisionとscope/applicability/extractorの同一frameを二結果へ結ぶ。input digest文字列一致だけで元入力一致/独立性を確定しない。"
     },
     {
       "id": "HARNESS-L4-041-B01",
@@ -336,12 +338,20 @@
   "fixture_progress": {
     "cases_by_function": {
       "F01": 9,
-      "F02": 4,
+      "F02": 9,
       "F03": 6,
       "N01": 5,
       "B01": 4
     },
     "normal_and_counterexamples_are_synthetic": true,
     "formal_schema_codec_or_actual_execution": false
+  },
+  "review_corrections": {
+    "reviewed_head": "5e1bb645db4f2feaa3785280a1a609758919dbc2",
+    "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2995#issuecomment-6131331931",
+    "F1": "E3局所のatom digest欠落/不一致・抽出器版digest/版欠落・機械原材料無し人手要約claimの5反例と承認negative clause→case対応を追加。",
+    "source_binding_clarification": "F02に独立extractor/ledger契約と合成機械候補原材料を明示。N01に元template bytesとinput digest算出規則を明示。既存28例の期待値は保持。実抽出/実qualificationの証拠ではない。",
+    "independent_closure": "pending_rereview_of_corrected_HEAD",
+    "authority_effect": "none"
   }
 }
