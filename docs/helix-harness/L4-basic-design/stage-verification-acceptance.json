@@ -869,56 +869,56 @@
         "stage_contract_object_bindings": [
           {
             "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
-            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "revision": "c9307b1c86e582511b2ab89040827f891745f37c",
             "object_id": "HARNESS-L4-022-F01",
-            "object_sha256": "7b0fa691315e8e7b4d0ba7763d3a2ffe81d80d1508b95353ba0b69b203f9a16d",
+            "object_sha256": "d47a2e68a9ac89b59851caf0d18be79969e5372cd4dc10f54f7965cc22d6cc0b",
             "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
           },
           {
             "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
-            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "revision": "c9307b1c86e582511b2ab89040827f891745f37c",
             "object_id": "HARNESS-L4-022-F02",
             "object_sha256": "8fb11fe759c57521b979fc7143eb63b6573210d813ca9ed2cc804f318edf6dcb",
             "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
           },
           {
             "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
-            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "revision": "c9307b1c86e582511b2ab89040827f891745f37c",
             "object_id": "HARNESS-L4-022-F03",
             "object_sha256": "70e4c0ce9fbb55e34e771c290a66c475e7d4a56b4e7a1979fbf61f56fbbc2419",
             "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
           },
           {
             "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
-            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "revision": "c9307b1c86e582511b2ab89040827f891745f37c",
             "object_id": "HARNESS-L4-022-F04",
             "object_sha256": "f20090d6737449e35494f5ccef6360d1ef065a8f8ba8d7279111d6dad285c091",
             "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
           },
           {
             "path": "docs/helix-harness/L9-integration-verification/stage-verification-acceptance.json",
-            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "revision": "c9307b1c86e582511b2ab89040827f891745f37c",
             "object_id": "HARNESS-L9-022-F01",
             "object_sha256": "9792f0cc7c32c149b56a80b21d54d985fba04aec3d4049ca10fc32beca61b8d4",
             "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
           },
           {
             "path": "docs/helix-harness/L9-integration-verification/stage-verification-acceptance.json",
-            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "revision": "c9307b1c86e582511b2ab89040827f891745f37c",
             "object_id": "HARNESS-L9-022-F02",
             "object_sha256": "37c66dfff10a75a82d9ad66fc1d839dd51f0dffb94db03185ffc28a141588dd4",
             "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
           },
           {
             "path": "docs/helix-harness/L9-integration-verification/stage-verification-acceptance.json",
-            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "revision": "c9307b1c86e582511b2ab89040827f891745f37c",
             "object_id": "HARNESS-L9-022-F03",
             "object_sha256": "73e1d7302fc88a8ec0f649dbfccc54737a1b66acb88d07edc878f5f08b8130e5",
             "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
           },
           {
             "path": "docs/helix-harness/L9-integration-verification/stage-verification-acceptance.json",
-            "revision": "9b76e6f9bb6cf7ca3f8b8d5baa93d7846d82d903",
+            "revision": "c9307b1c86e582511b2ab89040827f891745f37c",
             "object_id": "HARNESS-L9-022-F04",
             "object_sha256": "f68aa4eb8eadddb10a5b367003342699248e105474380fdab54b594019796736",
             "limit": "同branchの未review設計依存。実段階proof/資格/受入を生成しない。"
