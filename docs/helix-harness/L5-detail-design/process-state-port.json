@@ -544,11 +544,13 @@
       "basic_calls": 24,
       "typed_expected_cells": 336,
       "nested_return_cells": 120,
-      "state": "draft_basic_typed_cases_independent_qualification_pending"
+      "state": "draft_basic_typed_and_content_counterexamples_qualification_pending",
+      "content_counterexamples": 10,
+      "content_counterexample_typed_cells": 140
     }
   },
   "pending": [
-    "4関数の内部比較/typed部分期待/対単体oracle、F01未定義action、F02独立qualification/追加原内容反例の具体化",
+    "4関数の内部比較/typed部分期待/対単体oracle、F01未定義action、F02独立qualification/未確定適用branchの具体化",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -919,7 +921,7 @@
         "要求/設計変更に影響する合意と対のrevisionを再照合し、古い合意をstaleとして対象ownerへ戻す。影響しないscopeの有効材料を一括停止しない。",
         "candidateを原資料と別に比較する。PoC/Prototype成功・還流成立から要求採用/要件承認/L3凍結/完了を生成せず、関数の実作用はnoneに保つ。"
       ],
-      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "detail_state": "draft_internal_basic_typed_and_content_counterexamples_qualification_pending",
       "backflow_detail": {
         "additional_field_derivation": "承認済みF02と基本契約はPrototype/PoCを独立に扱う。基本例の原資料に既存のPrototype観測とPoC N/Aを、prototype_result/poc_na_resultとして内部出力へ明示する。要求意味・基本期待・適用範囲は変更しない。",
         "na_fields": [

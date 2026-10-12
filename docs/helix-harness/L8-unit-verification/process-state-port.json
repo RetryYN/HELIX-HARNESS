@@ -544,11 +544,13 @@
       "basic_calls": 24,
       "typed_expected_cells": 336,
       "nested_return_cells": 120,
-      "state": "draft_basic_typed_cases_independent_qualification_pending"
+      "state": "draft_basic_typed_and_content_counterexamples_qualification_pending",
+      "content_counterexamples": 10,
+      "content_counterexample_typed_cells": 140
     }
   },
   "pending": [
-    "4関数の内部比較/typed部分期待/対単体oracle、F01未定義action、F02独立qualification/追加原内容反例の具体化",
+    "4関数の内部比較/typed部分期待/対単体oracle、F01未定義action、F02独立qualification/未確定適用branchの具体化",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -38061,7 +38063,7 @@
         "execution_state": "not_executed"
       },
       "basic_oracle_sha256": "3e01de93b8778d06568bfb7b8fd0955e0fd6ffb3b2cc25505a25b6a44c6366a8",
-      "fixture_state": "draft_basic_typed_cases_independent_qualification_pending",
+      "fixture_state": "draft_basic_typed_and_content_counterexamples_qualification_pending",
       "comparison_rule": "原sourceの具体内容とtyped部分結果を照合。署名/digest/link存在だけで技術品質や人間受容を生成しない。",
       "cases": [
         {
@@ -43565,8 +43567,2159 @@
       ],
       "remaining": [
         "Context/carrier/独立適用判定/各N/A/各原結果/還流各段の独立qualificationと返却例",
-        "Prototypeの結果missing/unknown/state不一致/failure不一致、PoC N/A不足と未定義適用値の具体反例",
+        "独立適用値がmissing/unknown/conflict/staleの場合のbranch membership、複数原内容不足/意味差の組合せ反例",
         "正式schema/codec/resolver/実owner資格、独立review、実oracle凍結→実装前Red→Green→Refactor/再検証、実L9/L10"
+      ],
+      "content_counterexamples": [
+        {
+          "id": "H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+          "function_ref": "HARNESS-L5-003-F02",
+          "base_basic_case_ref": "H003-F02-NORMAL-SCREEN-AND-POC",
+          "base_basic_case_sha256": "0a384088aedd660f1e049e43843e72b8f53eea09efc1d4e2c3da2ba404b63312",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "L2_5_results",
+              "prototype"
+            ],
+            "before": {
+              "ref": {
+                "identity": "PROTOTYPE_RESULT",
+                "revision": "fixture-r1-content-ca731e3c65c3bb12eb06d4c46fc4ad4b0ea8265269d8c8554c4b4f95b59d9c71",
+                "scope": "PRODUCT-P",
+                "owner": "original-prototype_result-owner"
+              },
+              "binding": {
+                "revision": "REQ@r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "prototype_result",
+              "content": {
+                "operation": "confirm",
+                "expected_state": "confirmed",
+                "observed_state": "confirmed",
+                "expected_failure": "duplicate_confirm_rejected",
+                "observed_failure": "duplicate_confirm_rejected"
+              }
+            },
+            "after": null
+          },
+          "reference_preparation": [],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-source-owner"
+            },
+            "raw_utf8": "{\"L2_5_results\":{\"poc\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"expected_debits\":1,\"observed_debits\":1,\"technical_unknown_resolved\":true},\"kind\":\"poc_result\",\"ref\":{\"identity\":\"POC_RESULT\",\"owner\":\"original-poc_result-owner\",\"revision\":\"fixture-r1-content-78f62062db08ede5b7a33cc82502ec65e6546f6752cedf69c553f066e8552762\",\"scope\":\"PRODUCT-P\"}},\"prototype\":null},\"applicability\":{\"has_screen\":true,\"poc\":{\"na\":null,\"status\":\"applicable\"},\"prototype\":{\"na\":null,\"status\":\"applicable\"},\"technical_feasibility\":\"unknown\"},\"l2_record\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"l2_requirement\",\"ref\":{\"identity\":\"L2_REQUIREMENT\",\"owner\":\"original-l2_requirement-owner\",\"revision\":\"fixture-r1-content-716b076f1f4e77e49052ba42e2538a2360efe911cbb6f7153e311dcf3bd14e98\",\"scope\":\"PRODUCT-P\"}},\"return_chain\":{\"agreement\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"requirement_agreement\",\"ref\":{\"identity\":\"REQUIREMENT_AGREEMENT\",\"owner\":\"original-requirement_agreement-owner\",\"revision\":\"fixture-r1-content-9216f528aebe73ea5681f3583847b00d2647cbb226ed36f2cb324612b395222b\",\"scope\":\"PRODUCT-P\"}},\"backflow\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"from\":\"POC@r1\",\"to\":\"SECONDARY@r1\"},\"kind\":\"backflow\",\"ref\":{\"identity\":\"BACKFLOW\",\"owner\":\"original-backflow-owner\",\"revision\":\"fixture-r1-content-46a91819558c9a45000807b796f7a429d28714e3f22f6d787bfced46adefdcc9\",\"scope\":\"PRODUCT-P\"}},\"decide\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"original_owner\":\"human-PO-original\",\"outcome\":\"adopt\"},\"kind\":\"human_requirement_disposition\",\"ref\":{\"identity\":\"HUMAN_REQUIREMENT_DISPOSITION\",\"owner\":\"original-human_requirement_disposition-owner\",\"revision\":\"fixture-r1-content-cabfa1e30d92a60eb31e7cc95ccbacb7d16837972ceeea7b13d72d9d8af3e6bc\",\"scope\":\"PRODUCT-P\"}},\"pair_refreeze\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"actual_frozen\":false,\"left\":\"REQ@r1\",\"right\":\"TEST@r1\"},\"kind\":\"pair_refreeze_conditions\",\"ref\":{\"identity\":\"PAIR_REFREEZE_CONDITIONS\",\"owner\":\"original-pair_refreeze_conditions-owner\",\"revision\":\"fixture-r1-content-9dfa07382192bf45a538f4c1fa26a48d50d644aeeb449b2d93be34389e8a922d\",\"scope\":\"PRODUCT-P\"}},\"secondary_008\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"candidate\":\"REQ@r1\",\"from\":\"POC@r1\"},\"kind\":\"secondary_requirement_formation\",\"ref\":{\"identity\":\"SECONDARY_REQUIREMENT_FORMATION\",\"owner\":\"original-secondary_requirement_formation-owner\",\"revision\":\"fixture-r1-content-61b9654eec0b3facd37d52b5617ef241b34203992251f2c1fad6df4e923ebc2f\",\"scope\":\"PRODUCT-P\"}}},\"scenario_kind\":\"synthetic_L2_5_return_fixture_not_actual_adoption_or_freeze\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "abbc5f1ec7e1046540f23ef36c5c398e0f6879fd26c4f8cf7fda07741b261751",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "l2_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_applicability": {
+              "state": "known",
+              "value": "applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_applicability": {
+              "state": "known",
+              "value": "applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_na_result": {
+              "state": "known",
+              "value": "not_required_for_applicable_prototype",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_result": {
+              "state": "known",
+              "value": "supported_synthetic_observation",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "return_chain_results": {
+              "state": "known",
+              "value": {
+                "backflow": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "secondary_008": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "decide": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "pair_refreeze": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "unresolved_return_fields": {
+              "state": "known",
+              "value": [],
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "refreeze_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該必要結果またはN/A記録が未成立。実凍結は生成しない。"
+            },
+            "actual_requirement_adopted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_requirements_approved": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_l3_frozen": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該独立原内容の欠落/不明/不一致を他方の成功で補わない。"
+            },
+            "poc_na_result": {
+              "state": "known",
+              "value": "not_required_for_applicable_poc",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+          "function_ref": "HARNESS-L5-003-F02",
+          "base_basic_case_ref": "H003-F02-NORMAL-SCREEN-AND-POC",
+          "base_basic_case_sha256": "0a384088aedd660f1e049e43843e72b8f53eea09efc1d4e2c3da2ba404b63312",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "L2_5_results",
+              "prototype",
+              "content"
+            ],
+            "before": {
+              "operation": "confirm",
+              "expected_state": "confirmed",
+              "observed_state": "confirmed",
+              "expected_failure": "duplicate_confirm_rejected",
+              "observed_failure": "duplicate_confirm_rejected"
+            },
+            "after": null
+          },
+          "reference_preparation": [
+            {
+              "path": [
+                "L2_5_results",
+                "prototype",
+                "ref",
+                "revision"
+              ],
+              "before": "fixture-r1-content-ca731e3c65c3bb12eb06d4c46fc4ad4b0ea8265269d8c8554c4b4f95b59d9c71",
+              "after": "detail-content-04f6adf4a6fa75bdf0b35bdd9b3fd9ed9d98476b9b7c738bd0f609f6c2ef0ca5"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-source-owner"
+            },
+            "raw_utf8": "{\"L2_5_results\":{\"poc\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"expected_debits\":1,\"observed_debits\":1,\"technical_unknown_resolved\":true},\"kind\":\"poc_result\",\"ref\":{\"identity\":\"POC_RESULT\",\"owner\":\"original-poc_result-owner\",\"revision\":\"fixture-r1-content-78f62062db08ede5b7a33cc82502ec65e6546f6752cedf69c553f066e8552762\",\"scope\":\"PRODUCT-P\"}},\"prototype\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":null,\"kind\":\"prototype_result\",\"ref\":{\"identity\":\"PROTOTYPE_RESULT\",\"owner\":\"original-prototype_result-owner\",\"revision\":\"detail-content-04f6adf4a6fa75bdf0b35bdd9b3fd9ed9d98476b9b7c738bd0f609f6c2ef0ca5\",\"scope\":\"PRODUCT-P\"}}},\"applicability\":{\"has_screen\":true,\"poc\":{\"na\":null,\"status\":\"applicable\"},\"prototype\":{\"na\":null,\"status\":\"applicable\"},\"technical_feasibility\":\"unknown\"},\"l2_record\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"l2_requirement\",\"ref\":{\"identity\":\"L2_REQUIREMENT\",\"owner\":\"original-l2_requirement-owner\",\"revision\":\"fixture-r1-content-716b076f1f4e77e49052ba42e2538a2360efe911cbb6f7153e311dcf3bd14e98\",\"scope\":\"PRODUCT-P\"}},\"return_chain\":{\"agreement\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"requirement_agreement\",\"ref\":{\"identity\":\"REQUIREMENT_AGREEMENT\",\"owner\":\"original-requirement_agreement-owner\",\"revision\":\"fixture-r1-content-9216f528aebe73ea5681f3583847b00d2647cbb226ed36f2cb324612b395222b\",\"scope\":\"PRODUCT-P\"}},\"backflow\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"from\":\"POC@r1\",\"to\":\"SECONDARY@r1\"},\"kind\":\"backflow\",\"ref\":{\"identity\":\"BACKFLOW\",\"owner\":\"original-backflow-owner\",\"revision\":\"fixture-r1-content-46a91819558c9a45000807b796f7a429d28714e3f22f6d787bfced46adefdcc9\",\"scope\":\"PRODUCT-P\"}},\"decide\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"original_owner\":\"human-PO-original\",\"outcome\":\"adopt\"},\"kind\":\"human_requirement_disposition\",\"ref\":{\"identity\":\"HUMAN_REQUIREMENT_DISPOSITION\",\"owner\":\"original-human_requirement_disposition-owner\",\"revision\":\"fixture-r1-content-cabfa1e30d92a60eb31e7cc95ccbacb7d16837972ceeea7b13d72d9d8af3e6bc\",\"scope\":\"PRODUCT-P\"}},\"pair_refreeze\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"actual_frozen\":false,\"left\":\"REQ@r1\",\"right\":\"TEST@r1\"},\"kind\":\"pair_refreeze_conditions\",\"ref\":{\"identity\":\"PAIR_REFREEZE_CONDITIONS\",\"owner\":\"original-pair_refreeze_conditions-owner\",\"revision\":\"fixture-r1-content-9dfa07382192bf45a538f4c1fa26a48d50d644aeeb449b2d93be34389e8a922d\",\"scope\":\"PRODUCT-P\"}},\"secondary_008\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"candidate\":\"REQ@r1\",\"from\":\"POC@r1\"},\"kind\":\"secondary_requirement_formation\",\"ref\":{\"identity\":\"SECONDARY_REQUIREMENT_FORMATION\",\"owner\":\"original-secondary_requirement_formation-owner\",\"revision\":\"fixture-r1-content-61b9654eec0b3facd37d52b5617ef241b34203992251f2c1fad6df4e923ebc2f\",\"scope\":\"PRODUCT-P\"}}},\"scenario_kind\":\"synthetic_L2_5_return_fixture_not_actual_adoption_or_freeze\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "f65a128106e9becf095e8acc9db92f81c70fe9ac8ff2095d584932568f920e64",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "l2_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_applicability": {
+              "state": "known",
+              "value": "applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_applicability": {
+              "state": "known",
+              "value": "applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_na_result": {
+              "state": "known",
+              "value": "not_required_for_applicable_prototype",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_result": {
+              "state": "known",
+              "value": "supported_synthetic_observation",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "return_chain_results": {
+              "state": "known",
+              "value": {
+                "backflow": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "secondary_008": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "decide": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "pair_refreeze": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "unresolved_return_fields": {
+              "state": "known",
+              "value": [],
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "refreeze_condition": {
+              "state": "unknown",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該必要結果またはN/A記録が未成立。実凍結は生成しない。"
+            },
+            "actual_requirement_adopted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_requirements_approved": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_l3_frozen": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_result": {
+              "state": "unknown",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該独立原内容の欠落/不明/不一致を他方の成功で補わない。"
+            },
+            "poc_na_result": {
+              "state": "known",
+              "value": "not_required_for_applicable_poc",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+          "function_ref": "HARNESS-L5-003-F02",
+          "base_basic_case_ref": "H003-F02-NORMAL-SCREEN-AND-POC",
+          "base_basic_case_sha256": "0a384088aedd660f1e049e43843e72b8f53eea09efc1d4e2c3da2ba404b63312",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "L2_5_results",
+              "prototype",
+              "content",
+              "observed_state"
+            ],
+            "before": "confirmed",
+            "after": "unconfirmed"
+          },
+          "reference_preparation": [
+            {
+              "path": [
+                "L2_5_results",
+                "prototype",
+                "ref",
+                "revision"
+              ],
+              "before": "fixture-r1-content-ca731e3c65c3bb12eb06d4c46fc4ad4b0ea8265269d8c8554c4b4f95b59d9c71",
+              "after": "detail-content-dd39f663bcfd8e3740d1f35d1b1d5a9e257dcfa88578402268b1340de40fb22d"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-source-owner"
+            },
+            "raw_utf8": "{\"L2_5_results\":{\"poc\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"expected_debits\":1,\"observed_debits\":1,\"technical_unknown_resolved\":true},\"kind\":\"poc_result\",\"ref\":{\"identity\":\"POC_RESULT\",\"owner\":\"original-poc_result-owner\",\"revision\":\"fixture-r1-content-78f62062db08ede5b7a33cc82502ec65e6546f6752cedf69c553f066e8552762\",\"scope\":\"PRODUCT-P\"}},\"prototype\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"expected_failure\":\"duplicate_confirm_rejected\",\"expected_state\":\"confirmed\",\"observed_failure\":\"duplicate_confirm_rejected\",\"observed_state\":\"unconfirmed\",\"operation\":\"confirm\"},\"kind\":\"prototype_result\",\"ref\":{\"identity\":\"PROTOTYPE_RESULT\",\"owner\":\"original-prototype_result-owner\",\"revision\":\"detail-content-dd39f663bcfd8e3740d1f35d1b1d5a9e257dcfa88578402268b1340de40fb22d\",\"scope\":\"PRODUCT-P\"}}},\"applicability\":{\"has_screen\":true,\"poc\":{\"na\":null,\"status\":\"applicable\"},\"prototype\":{\"na\":null,\"status\":\"applicable\"},\"technical_feasibility\":\"unknown\"},\"l2_record\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"l2_requirement\",\"ref\":{\"identity\":\"L2_REQUIREMENT\",\"owner\":\"original-l2_requirement-owner\",\"revision\":\"fixture-r1-content-716b076f1f4e77e49052ba42e2538a2360efe911cbb6f7153e311dcf3bd14e98\",\"scope\":\"PRODUCT-P\"}},\"return_chain\":{\"agreement\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"requirement_agreement\",\"ref\":{\"identity\":\"REQUIREMENT_AGREEMENT\",\"owner\":\"original-requirement_agreement-owner\",\"revision\":\"fixture-r1-content-9216f528aebe73ea5681f3583847b00d2647cbb226ed36f2cb324612b395222b\",\"scope\":\"PRODUCT-P\"}},\"backflow\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"from\":\"POC@r1\",\"to\":\"SECONDARY@r1\"},\"kind\":\"backflow\",\"ref\":{\"identity\":\"BACKFLOW\",\"owner\":\"original-backflow-owner\",\"revision\":\"fixture-r1-content-46a91819558c9a45000807b796f7a429d28714e3f22f6d787bfced46adefdcc9\",\"scope\":\"PRODUCT-P\"}},\"decide\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"original_owner\":\"human-PO-original\",\"outcome\":\"adopt\"},\"kind\":\"human_requirement_disposition\",\"ref\":{\"identity\":\"HUMAN_REQUIREMENT_DISPOSITION\",\"owner\":\"original-human_requirement_disposition-owner\",\"revision\":\"fixture-r1-content-cabfa1e30d92a60eb31e7cc95ccbacb7d16837972ceeea7b13d72d9d8af3e6bc\",\"scope\":\"PRODUCT-P\"}},\"pair_refreeze\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"actual_frozen\":false,\"left\":\"REQ@r1\",\"right\":\"TEST@r1\"},\"kind\":\"pair_refreeze_conditions\",\"ref\":{\"identity\":\"PAIR_REFREEZE_CONDITIONS\",\"owner\":\"original-pair_refreeze_conditions-owner\",\"revision\":\"fixture-r1-content-9dfa07382192bf45a538f4c1fa26a48d50d644aeeb449b2d93be34389e8a922d\",\"scope\":\"PRODUCT-P\"}},\"secondary_008\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"candidate\":\"REQ@r1\",\"from\":\"POC@r1\"},\"kind\":\"secondary_requirement_formation\",\"ref\":{\"identity\":\"SECONDARY_REQUIREMENT_FORMATION\",\"owner\":\"original-secondary_requirement_formation-owner\",\"revision\":\"fixture-r1-content-61b9654eec0b3facd37d52b5617ef241b34203992251f2c1fad6df4e923ebc2f\",\"scope\":\"PRODUCT-P\"}}},\"scenario_kind\":\"synthetic_L2_5_return_fixture_not_actual_adoption_or_freeze\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "2311846c7efed1b00558335bcd5b73aeb1a5057e2f86d7c9698e159d99af0a19",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "l2_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_applicability": {
+              "state": "known",
+              "value": "applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_applicability": {
+              "state": "known",
+              "value": "applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_na_result": {
+              "state": "known",
+              "value": "not_required_for_applicable_prototype",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_result": {
+              "state": "known",
+              "value": "supported_synthetic_observation",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "return_chain_results": {
+              "state": "known",
+              "value": {
+                "backflow": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "secondary_008": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "decide": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "pair_refreeze": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "unresolved_return_fields": {
+              "state": "known",
+              "value": [],
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "refreeze_condition": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該必要結果またはN/A記録が未成立。実凍結は生成しない。"
+            },
+            "actual_requirement_adopted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_requirements_approved": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_l3_frozen": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_result": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該独立原内容の欠落/不明/不一致を他方の成功で補わない。"
+            },
+            "poc_na_result": {
+              "state": "known",
+              "value": "not_required_for_applicable_poc",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-STATE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+          "function_ref": "HARNESS-L5-003-F02",
+          "base_basic_case_ref": "H003-F02-NORMAL-SCREEN-AND-POC",
+          "base_basic_case_sha256": "0a384088aedd660f1e049e43843e72b8f53eea09efc1d4e2c3da2ba404b63312",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "L2_5_results",
+              "prototype",
+              "content",
+              "observed_failure"
+            ],
+            "before": "duplicate_confirm_rejected",
+            "after": "duplicate_confirm_accepted"
+          },
+          "reference_preparation": [
+            {
+              "path": [
+                "L2_5_results",
+                "prototype",
+                "ref",
+                "revision"
+              ],
+              "before": "fixture-r1-content-ca731e3c65c3bb12eb06d4c46fc4ad4b0ea8265269d8c8554c4b4f95b59d9c71",
+              "after": "detail-content-6de62584d02cf892b7d0407e997fa72d6c4bf808c9b35b36ae078e34887c0945"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-source-owner"
+            },
+            "raw_utf8": "{\"L2_5_results\":{\"poc\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"expected_debits\":1,\"observed_debits\":1,\"technical_unknown_resolved\":true},\"kind\":\"poc_result\",\"ref\":{\"identity\":\"POC_RESULT\",\"owner\":\"original-poc_result-owner\",\"revision\":\"fixture-r1-content-78f62062db08ede5b7a33cc82502ec65e6546f6752cedf69c553f066e8552762\",\"scope\":\"PRODUCT-P\"}},\"prototype\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"expected_failure\":\"duplicate_confirm_rejected\",\"expected_state\":\"confirmed\",\"observed_failure\":\"duplicate_confirm_accepted\",\"observed_state\":\"confirmed\",\"operation\":\"confirm\"},\"kind\":\"prototype_result\",\"ref\":{\"identity\":\"PROTOTYPE_RESULT\",\"owner\":\"original-prototype_result-owner\",\"revision\":\"detail-content-6de62584d02cf892b7d0407e997fa72d6c4bf808c9b35b36ae078e34887c0945\",\"scope\":\"PRODUCT-P\"}}},\"applicability\":{\"has_screen\":true,\"poc\":{\"na\":null,\"status\":\"applicable\"},\"prototype\":{\"na\":null,\"status\":\"applicable\"},\"technical_feasibility\":\"unknown\"},\"l2_record\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"l2_requirement\",\"ref\":{\"identity\":\"L2_REQUIREMENT\",\"owner\":\"original-l2_requirement-owner\",\"revision\":\"fixture-r1-content-716b076f1f4e77e49052ba42e2538a2360efe911cbb6f7153e311dcf3bd14e98\",\"scope\":\"PRODUCT-P\"}},\"return_chain\":{\"agreement\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"requirement_agreement\",\"ref\":{\"identity\":\"REQUIREMENT_AGREEMENT\",\"owner\":\"original-requirement_agreement-owner\",\"revision\":\"fixture-r1-content-9216f528aebe73ea5681f3583847b00d2647cbb226ed36f2cb324612b395222b\",\"scope\":\"PRODUCT-P\"}},\"backflow\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"from\":\"POC@r1\",\"to\":\"SECONDARY@r1\"},\"kind\":\"backflow\",\"ref\":{\"identity\":\"BACKFLOW\",\"owner\":\"original-backflow-owner\",\"revision\":\"fixture-r1-content-46a91819558c9a45000807b796f7a429d28714e3f22f6d787bfced46adefdcc9\",\"scope\":\"PRODUCT-P\"}},\"decide\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"original_owner\":\"human-PO-original\",\"outcome\":\"adopt\"},\"kind\":\"human_requirement_disposition\",\"ref\":{\"identity\":\"HUMAN_REQUIREMENT_DISPOSITION\",\"owner\":\"original-human_requirement_disposition-owner\",\"revision\":\"fixture-r1-content-cabfa1e30d92a60eb31e7cc95ccbacb7d16837972ceeea7b13d72d9d8af3e6bc\",\"scope\":\"PRODUCT-P\"}},\"pair_refreeze\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"actual_frozen\":false,\"left\":\"REQ@r1\",\"right\":\"TEST@r1\"},\"kind\":\"pair_refreeze_conditions\",\"ref\":{\"identity\":\"PAIR_REFREEZE_CONDITIONS\",\"owner\":\"original-pair_refreeze_conditions-owner\",\"revision\":\"fixture-r1-content-9dfa07382192bf45a538f4c1fa26a48d50d644aeeb449b2d93be34389e8a922d\",\"scope\":\"PRODUCT-P\"}},\"secondary_008\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"candidate\":\"REQ@r1\",\"from\":\"POC@r1\"},\"kind\":\"secondary_requirement_formation\",\"ref\":{\"identity\":\"SECONDARY_REQUIREMENT_FORMATION\",\"owner\":\"original-secondary_requirement_formation-owner\",\"revision\":\"fixture-r1-content-61b9654eec0b3facd37d52b5617ef241b34203992251f2c1fad6df4e923ebc2f\",\"scope\":\"PRODUCT-P\"}}},\"scenario_kind\":\"synthetic_L2_5_return_fixture_not_actual_adoption_or_freeze\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "bb2e13a932566487103f826d6414e2d3e5ead6240d753f37b44d48e72a7d7b4a",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "l2_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_applicability": {
+              "state": "known",
+              "value": "applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_applicability": {
+              "state": "known",
+              "value": "applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_na_result": {
+              "state": "known",
+              "value": "not_required_for_applicable_prototype",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_result": {
+              "state": "known",
+              "value": "supported_synthetic_observation",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "return_chain_results": {
+              "state": "known",
+              "value": {
+                "backflow": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "secondary_008": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "decide": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                },
+                "pair_refreeze": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-source-owner"
+                  },
+                  "reason": "当該還流段の原資料と対象revisionを個別保持する。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "unresolved_return_fields": {
+              "state": "known",
+              "value": [],
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "refreeze_condition": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該必要結果またはN/A記録が未成立。実凍結は生成しない。"
+            },
+            "actual_requirement_adopted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_requirements_approved": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_l3_frozen": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_result": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該独立原内容の欠落/不明/不一致を他方の成功で補わない。"
+            },
+            "poc_na_result": {
+              "state": "known",
+              "value": "not_required_for_applicable_poc",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-PROTOTYPE-FAILURE-MISMATCH",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+          "function_ref": "HARNESS-L5-003-F02",
+          "base_basic_case_ref": "H003-F02-NORMAL-BOTH-NA",
+          "base_basic_case_sha256": "cc6524f0603c63217a99ec8f0428115fe6bd21c5838ac22219f08c55f64f79bd",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "applicability",
+              "poc",
+              "na",
+              "not_applicable"
+            ],
+            "before": true,
+            "after": null
+          },
+          "reference_preparation": [],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-source-owner"
+            },
+            "raw_utf8": "{\"L2_5_results\":{\"poc\":null,\"prototype\":null},\"applicability\":{\"has_screen\":false,\"poc\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":null,\"reason\":\"合成要求の技術成立性に未決が無い\",\"reevaluation\":\"technical_uncertainty_detected\",\"requirement_impact\":\"none_for_poc\",\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"prototype\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":true,\"reason\":\"対象に画面が無い\",\"reevaluation\":\"screen_requirement_added\",\"requirement_impact\":\"none_for_prototype\",\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"technical_feasibility\":\"known\"},\"l2_record\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"l2_requirement\",\"ref\":{\"identity\":\"L2_REQUIREMENT\",\"owner\":\"original-l2_requirement-owner\",\"revision\":\"fixture-r1-content-716b076f1f4e77e49052ba42e2538a2360efe911cbb6f7153e311dcf3bd14e98\",\"scope\":\"PRODUCT-P\"}},\"return_chain\":{\"agreement\":null,\"backflow\":null,\"decide\":null,\"pair_refreeze\":null,\"secondary_008\":null},\"scenario_kind\":\"synthetic_L2_5_return_fixture_not_actual_adoption_or_freeze\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "19a2bb2fdab033a28cb289cb5e178fc3a763da1c9851f392053af4652914a0b3",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "l2_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_na_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "PoC非適用の必要記録が未成立。確認済みN/Aとして扱わない。"
+            },
+            "return_chain_results": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "unresolved_return_fields": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "refreeze_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該必要結果またはN/A記録が未成立。実凍結は生成しない。"
+            },
+            "actual_requirement_adopted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_requirements_approved": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_l3_frozen": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_result": {
+              "state": "known",
+              "value": "not_applicable_with_record",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_na_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-NOT_APPLICABLE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該独立原内容の欠落/不明/不一致を他方の成功で補わない。"
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+          "function_ref": "HARNESS-L5-003-F02",
+          "base_basic_case_ref": "H003-F02-NORMAL-BOTH-NA",
+          "base_basic_case_sha256": "cc6524f0603c63217a99ec8f0428115fe6bd21c5838ac22219f08c55f64f79bd",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "applicability",
+              "poc",
+              "na",
+              "reason"
+            ],
+            "before": "合成要求の技術成立性に未決が無い",
+            "after": null
+          },
+          "reference_preparation": [],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-source-owner"
+            },
+            "raw_utf8": "{\"L2_5_results\":{\"poc\":null,\"prototype\":null},\"applicability\":{\"has_screen\":false,\"poc\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":true,\"reason\":null,\"reevaluation\":\"technical_uncertainty_detected\",\"requirement_impact\":\"none_for_poc\",\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"prototype\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":true,\"reason\":\"対象に画面が無い\",\"reevaluation\":\"screen_requirement_added\",\"requirement_impact\":\"none_for_prototype\",\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"technical_feasibility\":\"known\"},\"l2_record\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"l2_requirement\",\"ref\":{\"identity\":\"L2_REQUIREMENT\",\"owner\":\"original-l2_requirement-owner\",\"revision\":\"fixture-r1-content-716b076f1f4e77e49052ba42e2538a2360efe911cbb6f7153e311dcf3bd14e98\",\"scope\":\"PRODUCT-P\"}},\"return_chain\":{\"agreement\":null,\"backflow\":null,\"decide\":null,\"pair_refreeze\":null,\"secondary_008\":null},\"scenario_kind\":\"synthetic_L2_5_return_fixture_not_actual_adoption_or_freeze\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "36fe74eee6545fb92d6b5633a0d4ad5891b9212bb1e3ba4100f7449d7b210d7b",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "l2_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_na_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "PoC非適用の必要記録が未成立。確認済みN/Aとして扱わない。"
+            },
+            "return_chain_results": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "unresolved_return_fields": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "refreeze_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該必要結果またはN/A記録が未成立。実凍結は生成しない。"
+            },
+            "actual_requirement_adopted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_requirements_approved": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_l3_frozen": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_result": {
+              "state": "known",
+              "value": "not_applicable_with_record",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_na_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REASON-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該独立原内容の欠落/不明/不一致を他方の成功で補わない。"
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+          "function_ref": "HARNESS-L5-003-F02",
+          "base_basic_case_ref": "H003-F02-NORMAL-BOTH-NA",
+          "base_basic_case_sha256": "cc6524f0603c63217a99ec8f0428115fe6bd21c5838ac22219f08c55f64f79bd",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "applicability",
+              "poc",
+              "na",
+              "decider"
+            ],
+            "before": "applicability-owner",
+            "after": null
+          },
+          "reference_preparation": [],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-source-owner"
+            },
+            "raw_utf8": "{\"L2_5_results\":{\"poc\":null,\"prototype\":null},\"applicability\":{\"has_screen\":false,\"poc\":{\"na\":{\"decider\":null,\"not_applicable\":true,\"reason\":\"合成要求の技術成立性に未決が無い\",\"reevaluation\":\"technical_uncertainty_detected\",\"requirement_impact\":\"none_for_poc\",\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"prototype\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":true,\"reason\":\"対象に画面が無い\",\"reevaluation\":\"screen_requirement_added\",\"requirement_impact\":\"none_for_prototype\",\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"technical_feasibility\":\"known\"},\"l2_record\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"l2_requirement\",\"ref\":{\"identity\":\"L2_REQUIREMENT\",\"owner\":\"original-l2_requirement-owner\",\"revision\":\"fixture-r1-content-716b076f1f4e77e49052ba42e2538a2360efe911cbb6f7153e311dcf3bd14e98\",\"scope\":\"PRODUCT-P\"}},\"return_chain\":{\"agreement\":null,\"backflow\":null,\"decide\":null,\"pair_refreeze\":null,\"secondary_008\":null},\"scenario_kind\":\"synthetic_L2_5_return_fixture_not_actual_adoption_or_freeze\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "6203dae9ca1696224a76710bb7e86e60fc603bd907ee23631b69c2e232292d86",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "l2_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_na_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "PoC非適用の必要記録が未成立。確認済みN/Aとして扱わない。"
+            },
+            "return_chain_results": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "unresolved_return_fields": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "refreeze_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該必要結果またはN/A記録が未成立。実凍結は生成しない。"
+            },
+            "actual_requirement_adopted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_requirements_approved": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_l3_frozen": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_result": {
+              "state": "known",
+              "value": "not_applicable_with_record",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_na_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-DECIDER-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該独立原内容の欠落/不明/不一致を他方の成功で補わない。"
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+          "function_ref": "HARNESS-L5-003-F02",
+          "base_basic_case_ref": "H003-F02-NORMAL-BOTH-NA",
+          "base_basic_case_sha256": "cc6524f0603c63217a99ec8f0428115fe6bd21c5838ac22219f08c55f64f79bd",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "applicability",
+              "poc",
+              "na",
+              "target_head"
+            ],
+            "before": "HEAD@r1",
+            "after": null
+          },
+          "reference_preparation": [],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-source-owner"
+            },
+            "raw_utf8": "{\"L2_5_results\":{\"poc\":null,\"prototype\":null},\"applicability\":{\"has_screen\":false,\"poc\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":true,\"reason\":\"合成要求の技術成立性に未決が無い\",\"reevaluation\":\"technical_uncertainty_detected\",\"requirement_impact\":\"none_for_poc\",\"target_head\":null},\"status\":\"not_applicable\"},\"prototype\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":true,\"reason\":\"対象に画面が無い\",\"reevaluation\":\"screen_requirement_added\",\"requirement_impact\":\"none_for_prototype\",\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"technical_feasibility\":\"known\"},\"l2_record\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"l2_requirement\",\"ref\":{\"identity\":\"L2_REQUIREMENT\",\"owner\":\"original-l2_requirement-owner\",\"revision\":\"fixture-r1-content-716b076f1f4e77e49052ba42e2538a2360efe911cbb6f7153e311dcf3bd14e98\",\"scope\":\"PRODUCT-P\"}},\"return_chain\":{\"agreement\":null,\"backflow\":null,\"decide\":null,\"pair_refreeze\":null,\"secondary_008\":null},\"scenario_kind\":\"synthetic_L2_5_return_fixture_not_actual_adoption_or_freeze\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "3db441d7eba7ab91cd757ab6a581a5139b4a51e1d4b4c42c4110bd439b539ac6",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "l2_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_na_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "PoC非適用の必要記録が未成立。確認済みN/Aとして扱わない。"
+            },
+            "return_chain_results": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "unresolved_return_fields": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "refreeze_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該必要結果またはN/A記録が未成立。実凍結は生成しない。"
+            },
+            "actual_requirement_adopted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_requirements_approved": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_l3_frozen": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_result": {
+              "state": "known",
+              "value": "not_applicable_with_record",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_na_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-TARGET_HEAD-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該独立原内容の欠落/不明/不一致を他方の成功で補わない。"
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+          "function_ref": "HARNESS-L5-003-F02",
+          "base_basic_case_ref": "H003-F02-NORMAL-BOTH-NA",
+          "base_basic_case_sha256": "cc6524f0603c63217a99ec8f0428115fe6bd21c5838ac22219f08c55f64f79bd",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "applicability",
+              "poc",
+              "na",
+              "requirement_impact"
+            ],
+            "before": "none_for_poc",
+            "after": null
+          },
+          "reference_preparation": [],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-source-owner"
+            },
+            "raw_utf8": "{\"L2_5_results\":{\"poc\":null,\"prototype\":null},\"applicability\":{\"has_screen\":false,\"poc\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":true,\"reason\":\"合成要求の技術成立性に未決が無い\",\"reevaluation\":\"technical_uncertainty_detected\",\"requirement_impact\":null,\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"prototype\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":true,\"reason\":\"対象に画面が無い\",\"reevaluation\":\"screen_requirement_added\",\"requirement_impact\":\"none_for_prototype\",\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"technical_feasibility\":\"known\"},\"l2_record\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"l2_requirement\",\"ref\":{\"identity\":\"L2_REQUIREMENT\",\"owner\":\"original-l2_requirement-owner\",\"revision\":\"fixture-r1-content-716b076f1f4e77e49052ba42e2538a2360efe911cbb6f7153e311dcf3bd14e98\",\"scope\":\"PRODUCT-P\"}},\"return_chain\":{\"agreement\":null,\"backflow\":null,\"decide\":null,\"pair_refreeze\":null,\"secondary_008\":null},\"scenario_kind\":\"synthetic_L2_5_return_fixture_not_actual_adoption_or_freeze\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "185dcb1ce82e9cb021386032bc889a6d14230b54854cb6bf669ec10e10c9969f",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "l2_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_na_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "PoC非適用の必要記録が未成立。確認済みN/Aとして扱わない。"
+            },
+            "return_chain_results": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "unresolved_return_fields": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "refreeze_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該必要結果またはN/A記録が未成立。実凍結は生成しない。"
+            },
+            "actual_requirement_adopted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_requirements_approved": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_l3_frozen": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_result": {
+              "state": "known",
+              "value": "not_applicable_with_record",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_na_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REQUIREMENT_IMPACT-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該独立原内容の欠落/不明/不一致を他方の成功で補わない。"
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+          "function_ref": "HARNESS-L5-003-F02",
+          "base_basic_case_ref": "H003-F02-NORMAL-BOTH-NA",
+          "base_basic_case_sha256": "cc6524f0603c63217a99ec8f0428115fe6bd21c5838ac22219f08c55f64f79bd",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "applicability",
+              "poc",
+              "na",
+              "reevaluation"
+            ],
+            "before": "technical_uncertainty_detected",
+            "after": null
+          },
+          "reference_preparation": [],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-source-owner"
+            },
+            "raw_utf8": "{\"L2_5_results\":{\"poc\":null,\"prototype\":null},\"applicability\":{\"has_screen\":false,\"poc\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":true,\"reason\":\"合成要求の技術成立性に未決が無い\",\"reevaluation\":null,\"requirement_impact\":\"none_for_poc\",\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"prototype\":{\"na\":{\"decider\":\"applicability-owner\",\"not_applicable\":true,\"reason\":\"対象に画面が無い\",\"reevaluation\":\"screen_requirement_added\",\"requirement_impact\":\"none_for_prototype\",\"target_head\":\"HEAD@r1\"},\"status\":\"not_applicable\"},\"technical_feasibility\":\"known\"},\"l2_record\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"l2_requirement\",\"ref\":{\"identity\":\"L2_REQUIREMENT\",\"owner\":\"original-l2_requirement-owner\",\"revision\":\"fixture-r1-content-716b076f1f4e77e49052ba42e2538a2360efe911cbb6f7153e311dcf3bd14e98\",\"scope\":\"PRODUCT-P\"}},\"return_chain\":{\"agreement\":null,\"backflow\":null,\"decide\":null,\"pair_refreeze\":null,\"secondary_008\":null},\"scenario_kind\":\"synthetic_L2_5_return_fixture_not_actual_adoption_or_freeze\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "70833086db55b4e827a4224e4e81b3b35abe05088b997d51fc573ca61cf72575",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "l2_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_applicability": {
+              "state": "known",
+              "value": "not_applicable",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_na_result": {
+              "state": "known",
+              "value": "supported_synthetic_material",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "PoC非適用の必要記録が未成立。確認済みN/Aとして扱わない。"
+            },
+            "return_chain_results": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "unresolved_return_fields": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "両N/A成立という不要条件の根拠が欠けるため、還流を空集合/全not_requiredへ補わない。"
+            },
+            "refreeze_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該必要結果またはN/A記録が未成立。実凍結は生成しない。"
+            },
+            "actual_requirement_adopted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_requirements_approved": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_l3_frozen": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "prototype_result": {
+              "state": "known",
+              "value": "not_applicable_with_record",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "原資料と独立適用/結果/N/A/還流を別々に保持する。"
+            },
+            "poc_na_result": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F02-CONTENT-POC-NA-REEVALUATION-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-source-owner"
+              },
+              "reason": "当該独立原内容の欠落/不明/不一致を他方の成功で補わない。"
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        }
       ]
     },
     {
