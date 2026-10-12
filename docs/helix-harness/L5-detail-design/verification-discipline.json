@@ -3165,8 +3165,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "claims/件数からproofを生成しない。"
               }
             },
             "non_target": {
@@ -3270,16 +3272,15 @@
                   "covered_by_lower_refs": {
                     "presence": "Field",
                     "value": {
-                      "array_item_shapes": [],
-                      "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                      "array_item_shapes": [
+                        "opaque upper obligation identity"
+                      ],
+                      "empty_semantics": "元上位固有母集合のcoverage差分。空を全coverage成立にしない。"
                     }
                   },
                   "no_unresolved_unique_basis": {
                     "presence": "Field",
-                    "value": {
-                      "nullable_slot": "unresolved_domain_payload",
-                      "meaning": "nullを合格/非適用/空配列へ補わない。"
-                    }
+                    "value": "F02NoUniqueBasis"
                   }
                 }
               }
@@ -3304,10 +3305,7 @@
                       },
                       "proof": {
                         "presence": "Field",
-                        "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
-                        }
+                        "value": "Ref to F02ProofSource"
                       }
                     }
                   }
@@ -3333,8 +3331,10 @@
                 "claims": {
                   "presence": "Field",
                   "value": {
-                    "array_item_shapes": [],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "array_item_shapes": [
+                      "never"
+                    ],
+                    "empty_semantics": "claims/件数からproofを生成しない。"
                   }
                 },
                 "non_target": {
@@ -3436,8 +3436,10 @@
                       "covered_by_lower_refs": {
                         "presence": "Field",
                         "value": {
-                          "array_item_shapes": [],
-                          "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                          "array_item_shapes": [
+                            "opaque upper obligation identity"
+                          ],
+                          "empty_semantics": "元上位固有母集合のcoverage差分。空を全coverage成立にしない。"
                         }
                       },
                       "no_unresolved_unique_basis": {
@@ -3451,22 +3453,28 @@
                             "declared_full_upper_obligations": {
                               "presence": "Field",
                               "value": {
-                                "array_item_shapes": [],
-                                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                "array_item_shapes": [
+                                  "opaque upper obligation identity"
+                                ],
+                                "empty_semantics": "元owner母集合/未解決の比較結果。未供給を0件にしない。"
                               }
                             },
                             "coverage_partition": {
                               "presence": "Field",
                               "value": {
-                                "array_item_shapes": [],
-                                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                "array_item_shapes": [
+                                  "F02CoverageItem"
+                                ],
+                                "empty_semantics": "owner意味coverage。母集合unknownを空partitionの成功にしない。"
                               }
                             },
                             "unresolved": {
                               "presence": "Field",
                               "value": {
-                                "array_item_shapes": [],
-                                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                                "array_item_shapes": [
+                                  "opaque upper obligation identity"
+                                ],
+                                "empty_semantics": "元owner母集合/未解決の比較結果。未供給を0件にしない。"
                               }
                             },
                             "meaning": {
@@ -3482,8 +3490,10 @@
                 "unique_obligations": {
                   "presence": "Field",
                   "value": {
-                    "array_item_shapes": [],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "array_item_shapes": [
+                      "F02UniqueObligation"
+                    ],
+                    "empty_semantics": "独立母集合が同scope/revisionで固有なしを示す場合の空。source欠落ではない。"
                   }
                 }
               }
@@ -3533,6 +3543,26 @@
             "completion": {
               "presence": "Field",
               "value": "string"
+            },
+            "lower_details": {
+              "presence": "Field",
+              "value": "collection<F02LowerDetail>"
+            },
+            "missing_lower_subjects": {
+              "presence": "Field",
+              "value": "collection<F02MissingLowerSubject>"
+            },
+            "unique_details": {
+              "presence": "Field",
+              "value": "collection<F02UniqueDetail>"
+            },
+            "combination_contract": {
+              "presence": "Field",
+              "value": "boolean"
+            },
+            "upper_inventory": {
+              "presence": "Field",
+              "value": "collection<opaque original obligation identity>"
             }
           }
         },
@@ -7360,6 +7390,97 @@
           "result": "Field<original execution state>"
         },
         "meaning": "このfixtureではactual_resultは明示null。Ref名/期限/義務導出から実結果や完了を生成しない。"
+      },
+      "F02LowerDetail": {
+        "fields": {
+          "proof_ref": "Ref",
+          "declared_subject": "opaque subject identity",
+          "owner_subject": "opaque subject identity",
+          "oracle_ref": "Ref",
+          "declared_state": "original proof label",
+          "validity": "ObservationField<boolean|subject identity|concrete observation value>",
+          "execution_kind": "synthetic_design_comparison"
+        },
+        "meaning": "provenラベルを原観測にせず、subject/oracle/内容を個別に比較。"
+      },
+      "F02MissingLowerSubject": {
+        "fields": {
+          "subject": "opaque required subject",
+          "state": "missing|conflict",
+          "backflow_owner": "owner identity"
+        },
+        "meaning": "別subjectや件数で必要subjectを埋めない。"
+      },
+      "F02UniqueDetail": {
+        "fields": {
+          "ref": "Ref",
+          "behavior": "original owner behavior",
+          "oracle_ref": "Ref",
+          "original_proof": "Field<Ref-bound independent proof material>",
+          "proof_state": "ObservationField<independent proof status>"
+        },
+        "meaning": "元nullは別証明未実行/未供給として保全。下位成功でproofを作らない。"
+      },
+      "F02UpperInventory": {
+        "fields": {
+          "ref": "Ref",
+          "subject_binding": "Ref",
+          "composite": "opaque identity",
+          "upper_specific_obligation_refs": "collection<Ref>",
+          "lower_contract_refs": "collection<Ref>",
+          "complete_inventory_for_declared_purpose": "boolean",
+          "purpose": "owner-declared scope meaning",
+          "limit": "string"
+        },
+        "meaning": "fixtureのcomplete仮定は実製品の網羅性承認ではない。母集合欠落を空集合にしない。"
+      },
+      "F02ProofSource": {
+        "fields": {
+          "ref": "Ref",
+          "subject_binding": "Ref",
+          "proof": "original subject/ref/state/oracle_ref record",
+          "input": "Field<original owner input material>",
+          "actual_observations": "Field<map<observable identity, original value>>",
+          "kind": "synthetic_proof_material_not_actual_product_execution"
+        },
+        "meaning": "sourceのproven labelだけでは具体観測成立にしない。"
+      },
+      "F02CombinationSource": {
+        "fields": {
+          "ref": "Ref",
+          "subject_binding": "Ref",
+          "contract": "original required_lower_subjects/composite_obligation_refs/covered_by_lower_refs/no_unresolved_unique_basis",
+          "structure_ref": "Ref",
+          "upper_inventory_ref": "Ref"
+        },
+        "meaning": "source内の明示母集合linkを解決する。契約/母集合の欠落を空の成功契約へ補完しない。"
+      },
+      "F02CoverageItem": {
+        "fields": {
+          "obligation_ref": "Ref",
+          "lower_proof_refs": "collection<Ref>",
+          "rationale": "owner-declared composition meaning"
+        },
+        "meaning": "下位証拠による意味coverage。単なる同件数/名前一致ではない。"
+      },
+      "F02NoUniqueBasis": {
+        "fields": {
+          "ref": "Ref",
+          "declared_full_upper_obligations": "collection<opaque obligation identity>",
+          "coverage_partition": "collection<F02CoverageItem>",
+          "unresolved": "collection<opaque obligation identity>",
+          "meaning": "original owner purpose meaning"
+        },
+        "meaning": "同scope/revisionの上位固有母集合とcoverageへ比較。空fieldの名前だけでは完全性を証明しない。"
+      },
+      "F02UniqueObligation": {
+        "fields": {
+          "ref": "Ref",
+          "behavior": "original whole-system behavior",
+          "oracle_ref": "Ref",
+          "proof": "Field<Ref to F02ProofSource>"
+        },
+        "meaning": "actual proofはこのfixtureで明示null。下位proofの存在から生成しない。"
       }
     },
     "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
@@ -7624,7 +7745,8 @@
           "backflow_owner": "構成体検証owner",
           "preserve": "subject/oracle/revisionごとの不足を特定。"
         }
-      ]
+      ],
+      "detail_contract": "proof_composition_detail"
     },
     {
       "name": "plan_ticket_verification",
@@ -8336,7 +8458,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106主呼出しのrootとB01/F01/F05-F09/N01/N02の78件の合成参照資料状態、64負例の部分期待を起草。残る28主呼出しの参照先と20負例の部分結果、domain型は未完。",
+      "106主呼出しのrootとB01/F01/F02/F05-F09/N01/N02の86件の合成参照資料状態、70負例の部分期待を起草。残る20主呼出しの参照先と14負例の部分結果、domain型は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -8392,7 +8514,7 @@
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
     "negative_candidate_sources": "原資料をcandidateから分離する。F07/N01の個別前提とB01のrunなし保存/表示・未実行/stale結果はfixture_preparation/source_preparationへ明示。B01 runtime交代は明示前提の後、原review欠落を別変異として追跡する。他のcandidate負例は正常owner材料を保持する。実実行/実authority/意味承認を生成しない。 F01 unknown_as_skipの条件null、worker_as_dutyの割当資料も明示前提であり、catalogにある値から元入力不足を補わない。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106主呼出しのうちB01/F01/F05-F09/N01/N02の78件へ独立合成資料状態を供給。提出欄の欠落/条件null/未実行/未観測、未解決oracle/新意味を保全。他28件はmissing。root/catalog資格から実成立を生成しない。"
+    "referent_input_state": "106主呼出しのうちB01/F01/F02/F05-F09/N01/N02の86件へ独立合成資料状態を供給。提出欠落、未観測/未実行、母集合不明/固有未証明を保全。他20件はmissing。source資格や空集合/ラベルから実成立を生成しない。"
   },
   "behavior_oracle_detail": {
     "design_ref": "HARNESS-L5-005-F08",
@@ -10496,5 +10618,527 @@
     "partial_results": "duty_detailsは原分類/reason/pair/7属性/条件/N/A/実結果/証拠時刻不明/戻し先を保持。unknown義務を消さず、required集合の導出と完全性の成立を区別する。",
     "fixture_preparation": "unknown_as_skipは条件nullを原前提にしcandidateのunknown消去と明示skipを別に追跡。worker_as_dutyは割当資料を追加して義務導出との誤同一化を検出。",
     "limits": "14主呼出しの合成設計。期限はsymbolのままで正式時刻codec/期限判定/実run/実権限/実凍結/受入は未成立。U1等の具体意味例はこのfixture限定で、製品方式・全体template採用・固定Worker数へ昇格しない。"
+  },
+  "proof_composition_detail": {
+    "design_ref": "HARNESS-L5-005-F02",
+    "requirement_ref": "HARNESS-L3-005-F02",
+    "basic_oracle_ref": "HARNESS-L9-005-F02",
+    "independent_fixtures": {
+      "structure": {
+        "ref": {
+          "identity": "F02-STRUCTURE-X",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "structure": {
+          "unit_refs": [
+            "A",
+            "B"
+          ],
+          "connection_refs": [
+            "AB"
+          ],
+          "composite_ref": "X"
+        },
+        "lower_oracle_refs": {
+          "A": {
+            "identity": "OA",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "B": {
+            "identity": "OB",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "AB": {
+            "identity": "OAB",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          }
+        },
+        "meaning": "A/B/AB/Xのこの合成構造。文字列の名前からkind/ownerを推定しない。"
+      },
+      "lower_oracles": {
+        "A": {
+          "ref": {
+            "identity": "OA",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "subject": "A",
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "input": {
+            "command": "CMD1"
+          },
+          "expected": {
+            "encoded_command": "CMD1"
+          },
+          "kind": "unit",
+          "limit": "独立oracleの合成意味。実oracle凍結/実test成功ではない。"
+        },
+        "B": {
+          "ref": {
+            "identity": "OB",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "subject": "B",
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "input": {
+            "encoded_command": "CMD1"
+          },
+          "expected": {
+            "decoded_command": "CMD1"
+          },
+          "kind": "unit",
+          "limit": "独立oracleの合成意味。実oracle凍結/実test成功ではない。"
+        },
+        "AB": {
+          "ref": {
+            "identity": "OAB",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          "subject": "AB",
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "input": {
+            "boundary": "AB",
+            "command": "CMD1",
+            "deliveries": 2
+          },
+          "expected": {
+            "receiver_debits": 1
+          },
+          "kind": "connection",
+          "limit": "独立oracleの合成意味。実oracle凍結/実test成功ではない。"
+        }
+      },
+      "lower_proofs": {
+        "A": {
+          "ref": {
+            "identity": "PROOF-A",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-owner"
+          },
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "proof": {
+            "subject": "A",
+            "ref": {
+              "identity": "PROOF-A",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "verification-owner"
+            },
+            "state": "proven",
+            "oracle_ref": {
+              "identity": "OA",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "verification-design-owner"
+            }
+          },
+          "input": {
+            "command": "CMD1"
+          },
+          "actual_observations": {
+            "encoded_command": "CMD1"
+          },
+          "kind": "synthetic_proof_material_not_actual_product_execution"
+        },
+        "B": {
+          "ref": {
+            "identity": "PROOF-B",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-owner"
+          },
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "proof": {
+            "subject": "B",
+            "ref": {
+              "identity": "PROOF-B",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "verification-owner"
+            },
+            "state": "proven",
+            "oracle_ref": {
+              "identity": "OB",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "verification-design-owner"
+            }
+          },
+          "input": {
+            "encoded_command": "CMD1"
+          },
+          "actual_observations": {
+            "decoded_command": "CMD1"
+          },
+          "kind": "synthetic_proof_material_not_actual_product_execution"
+        },
+        "AB": {
+          "ref": {
+            "identity": "PROOF-AB",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-owner"
+          },
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "proof": {
+            "subject": "AB",
+            "ref": {
+              "identity": "PROOF-AB",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "verification-owner"
+            },
+            "state": "proven",
+            "oracle_ref": {
+              "identity": "OAB",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "verification-design-owner"
+            }
+          },
+          "input": {
+            "boundary": "AB",
+            "command": "CMD1",
+            "deliveries": 2
+          },
+          "actual_observations": {
+            "receiver_debits": 1
+          },
+          "kind": "synthetic_proof_material_not_actual_product_execution"
+        }
+      },
+      "upper_with_unique": {
+        "ref": {
+          "identity": "F02-UPPER-X-UX1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "composite": "X",
+        "upper_specific_obligation_refs": [
+          {
+            "identity": "UX1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          }
+        ],
+        "lower_contract_refs": [
+          {
+            "identity": "OA",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          {
+            "identity": "OB",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          {
+            "identity": "OAB",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          }
+        ],
+        "complete_inventory_for_declared_purpose": true,
+        "purpose": "下位A/B/ABの契約に加え、Xの全体系response目標UX1が必要。",
+        "limit": "宣言目的内で完全な上位固有集合という合成owner仮定。実製品の網羅性承認ではない。"
+      },
+      "upper_no_unique": {
+        "ref": {
+          "identity": "F02-UPPER-X-NOUNIQUE",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "composite": "X",
+        "upper_specific_obligation_refs": [],
+        "lower_contract_refs": [
+          {
+            "identity": "OA",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          {
+            "identity": "OB",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          },
+          {
+            "identity": "OAB",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          }
+        ],
+        "complete_inventory_for_declared_purpose": true,
+        "purpose": "Xの宣言目的はこのA/B/AB契約の組合せだけ。固有非機能/復旧/受入の追加差分はない。",
+        "limit": "宣言目的内で完全な上位固有集合という合成owner仮定。実製品の網羅性承認ではない。"
+      },
+      "unique_oracle": {
+        "ref": {
+          "identity": "OX1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "verification-design-owner"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "subject": "X",
+        "obligation_ref": {
+          "identity": "UX1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "expected": {
+          "command": "CMD1",
+          "whole_system_response": "ok-for-CMD1",
+          "target": "synthetic-owner-declared-target"
+        },
+        "expected_failure": "whole-system response violates declared X target",
+        "limit": "UX1は別証明が必要な合成全体系期待。全製品SLOや期限を固定せず実成功を生成しない。"
+      }
+    },
+    "source_roles": {
+      "structure": "設計ownerの構成subject/種別/関係。identity文字列から導かない。",
+      "lower": "各ownerのsubject/対象binding/oracle/具体観測。submitted snapshotの誤subjectをcanonical sourceへ上書きしない。",
+      "upper": "宣言目的内の上位固有母集合。空集合は母集合sourceと完全な目的根拠がある場合だけ使う。",
+      "combination": "必要下位subjects、上位母集合への参照、coverage/no-unresolved根拠。欠落契約を下位proofから補わない。",
+      "unique": "固有UX1の別oracleと元proof null。下位proofで相殺しない。"
+    },
+    "comparison_steps": [
+      "構造と原下位proofのsubject/revision/scope/oracle/具体観測を比較。submittedとownerのsubject不一致や同oracleの観測不一致は個別に保持。",
+      "必要下位A/B/ABを件数でなく各意味で照合。AB証拠欠落は単体A/Bから補完しない。",
+      "上位固有母集合とcontractのcomposite_obligation_refs/covered_by_lower_refsを照合し、残るUX1は別proof不足として保持する。母集合未供給をemptyへ縮退しない。",
+      "固有なしのowner目的/母集合、coverage/no-unresolved根拠、全必要下位proofが成立する合成仮定だけでcontract_supported_candidateを返す。一律E2E/実受入/完了を生成しない。"
+    ],
+    "partial_results": "valid_lower_subjectsとlower_details/missing_lower_subjectsを別に保持。上位固有/組合せ欠落は別結果。unique_required/unprovenは母集合不明ならunknownで0件にしない。",
+    "limits": "8主呼出しの合成設計。owner網羅性仮定は実製品へ継承せず、実trust/oracle凍結/実proof/consumer受入/実機械合成の成功は未成立。CMD1/debit1等はこのfixtureに限る。",
+    "source_content_types": {
+      "lower_proof": "F02ProofSource",
+      "combination_contract": "F02CombinationSource",
+      "upper_inventory": "F02UpperInventory",
+      "coverage_partition": "collection<F02CoverageItem>"
+    }
   }
 }
