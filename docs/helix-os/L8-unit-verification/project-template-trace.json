@@ -124,7 +124,7 @@
     "approved_l3_l10_content": "a2f6961068619e550dd0467898927b6bc8451c75",
     "restart": "2026-10-12 adopted scope2;10/8 general unlock revoked",
     "version_target": "既存002は版指定追加なし",
-    "scope": "13承認義務の一つのL4/L9 pair。全限定92親430対の完了/実記録の成立なし。"
+    "scope": "13承認義務の一つのL5/L8 pair。確定L4/L9を入力とし、全限定92親430対の完了/実記録の成立は含まない。"
   },
   "legacy_comparison": [
     {
@@ -99217,7 +99217,23 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F03-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_effect_count": 0
         }
@@ -100400,7 +100416,73 @@
                 "owner": "PO"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-B01-BRAIN",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              },
+              {
+                "identity": "SOURCE-B01-CORE",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "CORE"
+              },
+              {
+                "identity": "SOURCE-B01-LABO",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "LABO"
+              },
+              {
+                "identity": "SOURCE-B01-SECURITY",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "SECURITY"
+              },
+              {
+                "identity": "SOURCE-B01-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              {
+                "identity": "SOURCE-B01-PO",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "PO"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -100837,7 +100919,23 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-N02-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -101467,7 +101565,23 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-B02-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -102147,7 +102261,23 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F01-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -102910,7 +103040,33 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F02-CORE",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "CORE"
+              },
+              {
+                "identity": "SOURCE-F02-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -107198,7 +107354,23 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F03-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -110073,7 +110245,33 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F04-CORE",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "CORE"
+              },
+              {
+                "identity": "SOURCE-F04-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -111499,7 +111697,23 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F05-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -112870,7 +113084,23 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F06-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -114647,7 +114877,33 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F07-CORE",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "CORE"
+              },
+              {
+                "identity": "SOURCE-F07-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -116314,7 +116570,33 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F08-LABO",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "LABO"
+              },
+              {
+                "identity": "SOURCE-F08-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -118649,7 +118931,23 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F09-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -119545,7 +119843,33 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-N01-SECURITY",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "SECURITY"
+              },
+              {
+                "identity": "SOURCE-N01-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": [
             {
@@ -123783,7 +124107,23 @@
                 "owner": "OS-original-owner"
               }
             ],
-            "source_issues": []
+            "source_issues": [],
+            "qualified_source_refs": [
+              {
+                "identity": "SOURCE-F03-OS-original-owner",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ],
+            "unqualified_source_refs": [],
+            "conflicting_source_refs": [],
+            "unresolved_source_refs": [],
+            "unresolved_sections": []
           },
           "expected_output": {
             "sections": [
@@ -125146,25 +125486,29 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "input_shape",
-          "state": "invalid_shape",
-          "path": ""
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
-          },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+        "input": null,
+        "input_issues": [
+          {
+            "axis": "input_shape",
+            "state": "invalid_shape",
+            "path": "",
+            "source_ref": null,
+            "related_source_refs": []
+          }
+        ],
+        "source_issues": [],
+        "qualified_records": [],
+        "qualified_source_refs": [],
+        "unqualified_source_refs": [],
+        "conflicting_source_refs": [],
+        "unresolved_source_refs": [],
+        "unresolved_sections": [
+          "input"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-02",
@@ -125184,25 +125528,29 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "input_shape",
-          "state": "invalid_shape",
-          "path": "candidate"
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
-          },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+        "input": null,
+        "input_issues": [
+          {
+            "axis": "input_shape",
+            "state": "invalid_shape",
+            "path": "candidate",
+            "source_ref": null,
+            "related_source_refs": []
+          }
+        ],
+        "source_issues": [],
+        "qualified_records": [],
+        "qualified_source_refs": [],
+        "unqualified_source_refs": [],
+        "conflicting_source_refs": [],
+        "unresolved_source_refs": [],
+        "unresolved_sections": [
+          "input"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-03",
@@ -125222,25 +125570,170 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "source_bytes",
-          "state": "conflict",
-          "path": "sources/0/source_json_utf8"
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
-          },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+        "input_issues": [],
+        "source_issues": [
+          {
+            "axis": "source_bytes",
+            "state": "conflict",
+            "path": "sources/0/source_json_utf8",
+            "source_ref": {
+              "identity": "SOURCE-F02-CORE",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "related_source_refs": []
+          }
+        ],
+        "qualified_records": [
+          {
+            "subject_ref": {
+              "identity": "FIXTURE-F02-OS-original-owner",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "section_key": "F02",
+            "record_kind": "original_trace_section",
+            "payload": {
+              "binding": {
+                "project_scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "requirement_ref": {
+                  "identity": "R",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "requirement-owner"
+                },
+                "HARNESS_contract_ref": {
+                  "identity": "HARNESS-CONTRACT",
+                  "revision": "h1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "HARNESS"
+                },
+                "template_ref": {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                },
+                "semantic_contract_ref": {
+                  "identity": "MEANING-T1",
+                  "revision": "m1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              },
+              "selected_refs": [
+                {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              ],
+              "used_refs": [],
+              "selected_source": {
+                "identity": "SELECTION-S1",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_source": {
+                "identity": "USE-U0",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_empty_basis": "原ownerが実使用集合を空として供給;missingではない"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "qualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "unqualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "conflicting_source_refs": [],
+        "unresolved_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "unresolved_sections": [
+          "F02.proposed_refs",
+          "F02.proposed_source"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-04",
@@ -125260,25 +125753,170 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "source_body",
-          "state": "conflict",
-          "path": "sources/0/decoded_records/0/record_kind"
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
-          },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+        "input_issues": [],
+        "source_issues": [
+          {
+            "axis": "source_body",
+            "state": "conflict",
+            "path": "sources/0/decoded_records/0/record_kind",
+            "source_ref": {
+              "identity": "SOURCE-F02-CORE",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "related_source_refs": []
+          }
+        ],
+        "qualified_records": [
+          {
+            "subject_ref": {
+              "identity": "FIXTURE-F02-OS-original-owner",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "section_key": "F02",
+            "record_kind": "original_trace_section",
+            "payload": {
+              "binding": {
+                "project_scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "requirement_ref": {
+                  "identity": "R",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "requirement-owner"
+                },
+                "HARNESS_contract_ref": {
+                  "identity": "HARNESS-CONTRACT",
+                  "revision": "h1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "HARNESS"
+                },
+                "template_ref": {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                },
+                "semantic_contract_ref": {
+                  "identity": "MEANING-T1",
+                  "revision": "m1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              },
+              "selected_refs": [
+                {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              ],
+              "used_refs": [],
+              "selected_source": {
+                "identity": "SELECTION-S1",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_source": {
+                "identity": "USE-U0",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_empty_basis": "原ownerが実使用集合を空として供給;missingではない"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "qualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "unqualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "conflicting_source_refs": [],
+        "unresolved_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "unresolved_sections": [
+          "F02.proposed_refs",
+          "F02.proposed_source"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-05",
@@ -125297,25 +125935,170 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "qualification",
-          "state": "missing",
-          "path": "qualifications/0"
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
-          },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+        "input_issues": [],
+        "source_issues": [
+          {
+            "axis": "qualification",
+            "state": "missing",
+            "path": "qualifications/0",
+            "source_ref": {
+              "identity": "SOURCE-F02-CORE",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "related_source_refs": []
+          }
+        ],
+        "qualified_records": [
+          {
+            "subject_ref": {
+              "identity": "FIXTURE-F02-OS-original-owner",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "section_key": "F02",
+            "record_kind": "original_trace_section",
+            "payload": {
+              "binding": {
+                "project_scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "requirement_ref": {
+                  "identity": "R",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "requirement-owner"
+                },
+                "HARNESS_contract_ref": {
+                  "identity": "HARNESS-CONTRACT",
+                  "revision": "h1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "HARNESS"
+                },
+                "template_ref": {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                },
+                "semantic_contract_ref": {
+                  "identity": "MEANING-T1",
+                  "revision": "m1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              },
+              "selected_refs": [
+                {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              ],
+              "used_refs": [],
+              "selected_source": {
+                "identity": "SELECTION-S1",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_source": {
+                "identity": "USE-U0",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_empty_basis": "原ownerが実使用集合を空として供給;missingではない"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "qualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "unqualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "conflicting_source_refs": [],
+        "unresolved_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "unresolved_sections": [
+          "F02.proposed_refs",
+          "F02.proposed_source"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-06",
@@ -125334,25 +126117,170 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "qualification",
-          "state": "unknown",
-          "path": "qualification_roots/0"
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
-          },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+        "input_issues": [],
+        "source_issues": [
+          {
+            "axis": "qualification",
+            "state": "unknown",
+            "path": "qualification_roots/0",
+            "source_ref": {
+              "identity": "SOURCE-F02-CORE",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "related_source_refs": []
+          }
+        ],
+        "qualified_records": [
+          {
+            "subject_ref": {
+              "identity": "FIXTURE-F02-OS-original-owner",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "section_key": "F02",
+            "record_kind": "original_trace_section",
+            "payload": {
+              "binding": {
+                "project_scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "requirement_ref": {
+                  "identity": "R",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "requirement-owner"
+                },
+                "HARNESS_contract_ref": {
+                  "identity": "HARNESS-CONTRACT",
+                  "revision": "h1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "HARNESS"
+                },
+                "template_ref": {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                },
+                "semantic_contract_ref": {
+                  "identity": "MEANING-T1",
+                  "revision": "m1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              },
+              "selected_refs": [
+                {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              ],
+              "used_refs": [],
+              "selected_source": {
+                "identity": "SELECTION-S1",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_source": {
+                "identity": "USE-U0",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_empty_basis": "原ownerが実使用集合を空として供給;missingではない"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "qualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "unqualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "conflicting_source_refs": [],
+        "unresolved_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "unresolved_sections": [
+          "F02.proposed_refs",
+          "F02.proposed_source"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-07",
@@ -125372,25 +126300,170 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "qualification_owner",
-          "state": "conflict",
-          "path": "qualifications/0/owner"
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
-          },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+        "input_issues": [],
+        "source_issues": [
+          {
+            "axis": "qualification_owner",
+            "state": "conflict",
+            "path": "qualifications/0/owner",
+            "source_ref": {
+              "identity": "SOURCE-F02-CORE",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "related_source_refs": []
+          }
+        ],
+        "qualified_records": [
+          {
+            "subject_ref": {
+              "identity": "FIXTURE-F02-OS-original-owner",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "section_key": "F02",
+            "record_kind": "original_trace_section",
+            "payload": {
+              "binding": {
+                "project_scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "requirement_ref": {
+                  "identity": "R",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "requirement-owner"
+                },
+                "HARNESS_contract_ref": {
+                  "identity": "HARNESS-CONTRACT",
+                  "revision": "h1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "HARNESS"
+                },
+                "template_ref": {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                },
+                "semantic_contract_ref": {
+                  "identity": "MEANING-T1",
+                  "revision": "m1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              },
+              "selected_refs": [
+                {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              ],
+              "used_refs": [],
+              "selected_source": {
+                "identity": "SELECTION-S1",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_source": {
+                "identity": "USE-U0",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_empty_basis": "原ownerが実使用集合を空として供給;missingではない"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "qualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "unqualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "conflicting_source_refs": [],
+        "unresolved_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "unresolved_sections": [
+          "F02.proposed_refs",
+          "F02.proposed_source"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-08",
@@ -125419,25 +126492,170 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "qualification_subject",
-          "state": "conflict",
-          "path": "qualifications/0/subject_refs/0"
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
-          },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+        "input_issues": [],
+        "source_issues": [
+          {
+            "axis": "qualification_subject",
+            "state": "conflict",
+            "path": "qualifications/0/subject_refs/0",
+            "source_ref": {
+              "identity": "SOURCE-F02-CORE",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "related_source_refs": []
+          }
+        ],
+        "qualified_records": [
+          {
+            "subject_ref": {
+              "identity": "FIXTURE-F02-OS-original-owner",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "section_key": "F02",
+            "record_kind": "original_trace_section",
+            "payload": {
+              "binding": {
+                "project_scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "requirement_ref": {
+                  "identity": "R",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "requirement-owner"
+                },
+                "HARNESS_contract_ref": {
+                  "identity": "HARNESS-CONTRACT",
+                  "revision": "h1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "HARNESS"
+                },
+                "template_ref": {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                },
+                "semantic_contract_ref": {
+                  "identity": "MEANING-T1",
+                  "revision": "m1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              },
+              "selected_refs": [
+                {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              ],
+              "used_refs": [],
+              "selected_source": {
+                "identity": "SELECTION-S1",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_source": {
+                "identity": "USE-U0",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_empty_basis": "原ownerが実使用集合を空として供給;missingではない"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "qualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "unqualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "conflicting_source_refs": [],
+        "unresolved_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "unresolved_sections": [
+          "F02.proposed_refs",
+          "F02.proposed_source"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-09",
@@ -125582,25 +126800,170 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "qualification_digest",
-          "state": "conflict",
-          "path": "sources/0"
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
-          },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+        "input_issues": [],
+        "source_issues": [
+          {
+            "axis": "qualification_digest",
+            "state": "conflict",
+            "path": "sources/0",
+            "source_ref": {
+              "identity": "SOURCE-F02-CORE",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "related_source_refs": []
+          }
+        ],
+        "qualified_records": [
+          {
+            "subject_ref": {
+              "identity": "FIXTURE-F02-OS-original-owner",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "section_key": "F02",
+            "record_kind": "original_trace_section",
+            "payload": {
+              "binding": {
+                "project_scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "requirement_ref": {
+                  "identity": "R",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "requirement-owner"
+                },
+                "HARNESS_contract_ref": {
+                  "identity": "HARNESS-CONTRACT",
+                  "revision": "h1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "HARNESS"
+                },
+                "template_ref": {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                },
+                "semantic_contract_ref": {
+                  "identity": "MEANING-T1",
+                  "revision": "m1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              },
+              "selected_refs": [
+                {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              ],
+              "used_refs": [],
+              "selected_source": {
+                "identity": "SELECTION-S1",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_source": {
+                "identity": "USE-U0",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_empty_basis": "原ownerが実使用集合を空として供給;missingではない"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "qualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "unqualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "conflicting_source_refs": [],
+        "unresolved_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "unresolved_sections": [
+          "F02.proposed_refs",
+          "F02.proposed_source"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-10",
@@ -125620,25 +126983,170 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "qualification_scope",
-          "state": "conflict",
-          "path": "qualifications/0/source_ref/scope/project"
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
-          },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+        "input_issues": [],
+        "source_issues": [
+          {
+            "axis": "qualification_scope",
+            "state": "conflict",
+            "path": "qualifications/0/source_ref/scope/project",
+            "source_ref": {
+              "identity": "SOURCE-F02-CORE",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "related_source_refs": []
+          }
+        ],
+        "qualified_records": [
+          {
+            "subject_ref": {
+              "identity": "FIXTURE-F02-OS-original-owner",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "section_key": "F02",
+            "record_kind": "original_trace_section",
+            "payload": {
+              "binding": {
+                "project_scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "requirement_ref": {
+                  "identity": "R",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "requirement-owner"
+                },
+                "HARNESS_contract_ref": {
+                  "identity": "HARNESS-CONTRACT",
+                  "revision": "h1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "HARNESS"
+                },
+                "template_ref": {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                },
+                "semantic_contract_ref": {
+                  "identity": "MEANING-T1",
+                  "revision": "m1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              },
+              "selected_refs": [
+                {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              ],
+              "used_refs": [],
+              "selected_source": {
+                "identity": "SELECTION-S1",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_source": {
+                "identity": "USE-U0",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_empty_basis": "原ownerが実使用集合を空として供給;missingではない"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "qualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "unqualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "conflicting_source_refs": [],
+        "unresolved_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "unresolved_sections": [
+          "F02.proposed_refs",
+          "F02.proposed_source"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-11",
@@ -125813,25 +127321,211 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "source_record",
-          "state": "conflict",
-          "path": "sources"
-        },
         "effect_requests": [],
         "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
+        "input_issues": [],
+        "source_issues": [
+          {
+            "axis": "source_record",
+            "state": "conflict",
+            "path": "sources",
+            "source_ref": {
+              "identity": "SOURCE-F02-CORE",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "related_source_refs": [
+              {
+                "identity": "SOURCE-F02-CORE",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "CORE"
+              },
+              {
+                "identity": "SOURCE-F02-CONFLICT",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "CORE"
+              }
+            ]
+          }
+        ],
+        "qualified_records": [
+          {
+            "subject_ref": {
+              "identity": "FIXTURE-F02-OS-original-owner",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "section_key": "F02",
+            "record_kind": "original_trace_section",
+            "payload": {
+              "binding": {
+                "project_scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "requirement_ref": {
+                  "identity": "R",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "requirement-owner"
+                },
+                "HARNESS_contract_ref": {
+                  "identity": "HARNESS-CONTRACT",
+                  "revision": "h1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "HARNESS"
+                },
+                "template_ref": {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                },
+                "semantic_contract_ref": {
+                  "identity": "MEANING-T1",
+                  "revision": "m1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              },
+              "selected_refs": [
+                {
+                  "identity": "T1",
+                  "revision": "v1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "BRAIN"
+                }
+              ],
+              "used_refs": [],
+              "selected_source": {
+                "identity": "SELECTION-S1",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_source": {
+                "identity": "USE-U0",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "used_empty_basis": "原ownerが実使用集合を空として供給;missingではない"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "qualified_source_refs": [
+          {
+            "identity": "SOURCE-F02-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "unqualified_source_refs": [],
+        "conflicting_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
           },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+          {
+            "identity": "SOURCE-F02-CONFLICT",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "unresolved_source_refs": [
+          {
+            "identity": "SOURCE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          },
+          {
+            "identity": "SOURCE-F02-CONFLICT",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "unresolved_sections": [
+          "F02.proposed_refs",
+          "F02.proposed_source"
+        ]
+      },
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-12",
@@ -125850,25 +127544,187 @@
         }
       ],
       "output_assertions": {
-        "issue": {
-          "axis": "template_set",
-          "state": "missing",
-          "path": "candidate/used_refs"
-        },
-        "effect_requests": [],
-        "authority_generated": false,
-        "preserved_source_ref": {
-          "identity": "SOURCE-F02-CORE",
-          "revision": "source1",
-          "scope": {
-            "project": "P",
-            "tenant": "synthetic-T",
-            "environment": "synthetic-test"
+        "distinct_from_explicit_empty": "FIXTURE-F02.input.candidate.used_refs=[] and qualified used_empty_basis is valid; removing the key produces used_set_missing, not the same empty output.",
+        "expected_effect_count": 0
+      },
+      "expected_output": [
+        {
+          "contract_ref": "HELIXOS-L5-002-F02",
+          "observation": {
+            "proposed_refs": [
+              {
+                "identity": "T1",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              },
+              {
+                "identity": "T2",
+                "revision": "v2",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              }
+            ],
+            "selected_refs": [
+              {
+                "identity": "T1",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              }
+            ],
+            "used_refs": [],
+            "provenance_refs": [
+              {
+                "identity": "CORE-P1",
+                "revision": "core1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "CORE"
+              },
+              {
+                "identity": "SELECTION-S1",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              {
+                "identity": "USE-U0",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            ]
           },
-          "owner": "CORE"
-        },
-        "comparison": "必要issueのaxis/state/pathと保持内容を照合し、同causeに伴う追加局所issueを捨てない。正常関数oracleは完全なexpected_output、追加入力不成立は必要観測のassertions。"
-      }
+          "findings": [
+            {
+              "code": "used_set_missing",
+              "contract_ref": "HELIXOS-L5-002-F02",
+              "axis": "template_set",
+              "state": "missing",
+              "target_path": "candidate/used_refs",
+              "source_refs": [
+                {
+                  "identity": "SOURCE-F02-CORE",
+                  "revision": "source1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "CORE"
+                },
+                {
+                  "identity": "SOURCE-F02-OS-original-owner",
+                  "revision": "source1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "OS-original-owner"
+                }
+              ],
+              "backflow_owner": "CORE/OS002",
+              "preserved_observation": {
+                "proposed_refs": [
+                  {
+                    "identity": "T1",
+                    "revision": "v1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "BRAIN"
+                  },
+                  {
+                    "identity": "T2",
+                    "revision": "v2",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "BRAIN"
+                  }
+                ],
+                "selected_refs": [
+                  {
+                    "identity": "T1",
+                    "revision": "v1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "BRAIN"
+                  }
+                ],
+                "used_refs": [],
+                "provenance_refs": [
+                  {
+                    "identity": "CORE-P1",
+                    "revision": "core1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  {
+                    "identity": "SELECTION-S1",
+                    "revision": "e1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "OS-original-owner"
+                  },
+                  {
+                    "identity": "USE-U0",
+                    "revision": "e1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "OS-original-owner"
+                  }
+                ]
+              }
+            }
+          ],
+          "unresolved_source_refs": [],
+          "effect_requests": []
+        }
+      ],
+      "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
     }
   ],
   "completion": {
