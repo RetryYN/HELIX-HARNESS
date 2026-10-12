@@ -7091,6 +7091,66 @@
           "authority_effect": "none"
         },
         "meaning": "追加合成対照のsource構成。実owner権限や実凍結/受入を生成しない。"
+      },
+      "F09PairMappingContent": {
+        "fields": {
+          "ref": "Ref",
+          "source_label": "Field<original label>",
+          "current_left": "Field<layer>",
+          "current_right": "Field<layer>",
+          "kind": "Field<unit|connection|composite>",
+          "basis_ref": "Field<Ref>"
+        },
+        "meaning": "意味対応の宣言。旧/current番号の存在だけで正しいmappingにしない。"
+      },
+      "F09MappingBasisContent": {
+        "fields": {
+          "ref": "Ref",
+          "kind": "Field<unit|connection|composite>",
+          "boundary_ref": "Field<Ref>",
+          "dependency_ref": "Field<Ref>",
+          "current_left": "Field<layer>",
+          "current_right": "Field<layer>",
+          "reason": "Field<owner meaning basis>"
+        },
+        "meaning": "当該fixtureのowner意味対応。他artifactから欠落linkを勝手に補完しない。"
+      },
+      "F09IntegrationDesignContent": {
+        "shape_ref": "F09VerificationInput.normal_shape.fields.integration_design.value",
+        "meaning": "元Given/When/Thenと境界/依存/失敗/oracle。全fieldを空labelで代用しない。"
+      },
+      "F09BoundaryContent": {
+        "fields": {
+          "ref": "Ref",
+          "producer": "Field<opaque participant identity>",
+          "consumer": "Field<opaque participant identity>",
+          "data_meaning": "Field<concrete command meaning>",
+          "scope_meaning": "Field<scope interpretation>"
+        },
+        "meaning": "この接続の当事者と受渡し。ABの名前から値を推測しない。"
+      },
+      "F09DependencyContent": {
+        "fields": {
+          "ref": "Ref",
+          "from": "Field<opaque participant identity>",
+          "to": "Field<opaque participant identity>",
+          "boundary_ref": "Ref",
+          "meaning": "Field<owner relation meaning>"
+        },
+        "meaning": "当該接続の原依存。方向を黙って反転しない。"
+      },
+      "F09OracleContent": {
+        "fields": {
+          "ref": "Ref",
+          "basis_ref": "Ref",
+          "boundary_ref": "Ref",
+          "dependency_ref": "Ref",
+          "command_id": "Field<opaque command identity>",
+          "normal_assertion": "Field<observable/relation/expected>",
+          "failure_path": "Field<event/expected>",
+          "meaning": "Field<source limit>"
+        },
+        "meaning": "GWT側と独立した凍結期待の合成仮定。正式な実test凍結や実行証拠ではない。"
       }
     },
     "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
@@ -7770,7 +7830,8 @@
           "backflow_owner": "結合検証設計owner",
           "preserve": "再送重複eventの失敗経路を未被覆へ。"
         }
-      ]
+      ],
+      "detail_contract": "integration_gwt_detail"
     },
     {
       "name": "compare_discipline_applicability",
@@ -8062,7 +8123,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106主呼出しのrootとF05-F08の28件の合成参照資料状態、23負例の部分期待を起草。残る78主呼出しの参照先と61負例の部分結果、全体のnull/empty型は未完。",
+      "106主呼出しのrootとF05-F09の34件の合成参照資料状態、28負例の部分期待を起草。残る72主呼出しの参照先と56負例の部分結果、全体のnull/empty型は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -8118,7 +8179,7 @@
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
     "negative_candidate_sources": "原資料をcandidateから分離する。F07 mutation_as_pre_redは、Redを除く明示fixture_preparationを候補変異と分け、同じ原mutation記録を保持する。その他candidate負例は正常owner材料を保持する。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106主呼出しのうちF05-F08の28件へ独立合成参照資料状態を供給。F06未解決sourceはunknown、F05authority/適用の内容上unknownは資料資格と別に保持。他78件はmissing。source不足と意味/条件違反を分け、実owner/trust/authority/実観測へ昇格しない。"
+    "referent_input_state": "106主呼出しのうちF05-F09の34件へ独立合成参照資料状態を供給。F06未解決、F05authority/適用unknown、F09pair link欠落/外国scopeを意味/資格の別状態へ保持。他72件はmissing。実owner/trust/authority/実観測へ昇格しない。"
   },
   "behavior_oracle_detail": {
     "design_ref": "HARNESS-L5-005-F08",
@@ -8337,5 +8398,182 @@
       "allowed_edges_empty": "qualifiedな宣言の許可辺0件であり、欠落表とは別。"
     },
     "limits": "8主呼出しと条件対照の合成source/部分結果設計。実コードのimport抽出、実design authority/適用binding、実runtime/CI、全製品に共通の方向表を成立させない。"
+  },
+  "integration_gwt_detail": {
+    "design_ref": "HARNESS-L5-005-F09",
+    "requirement_ref": "HARNESS-L3-005-F09",
+    "basic_oracle_ref": "HARNESS-L9-005-F09",
+    "independent_meaning_fixtures": {
+      "mapping_basis": {
+        "ref": {
+          "identity": "BOUNDARY-AB",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "kind": "connection",
+        "boundary_ref": {
+          "identity": "AB",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "dependency_ref": {
+          "identity": "A-to-B",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "current_left": "L4",
+        "current_right": "L9",
+        "reason": "この合成例の接続境界設計をL4、対照合をL9へ置くownerの意味対応。旧番号からの自動変換ではない。"
+      },
+      "boundary": {
+        "ref": {
+          "identity": "AB",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "producer": "A",
+        "consumer": "B",
+        "data_meaning": "CMD1 asks receiver B to debit amount 2",
+        "scope_meaning": "project P synthetic connection boundary"
+      },
+      "dependency": {
+        "ref": {
+          "identity": "A-to-B",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "from": "A",
+        "to": "B",
+        "boundary_ref": {
+          "identity": "AB",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "meaning": "この合成例のcommand受渡し。ABの文字列からownerや接続を推論しない。"
+      },
+      "oracle": {
+        "ref": {
+          "identity": "ORACLE-AB",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "verification-design-owner"
+        },
+        "basis_ref": {
+          "identity": "BOUNDARY-AB",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "boundary_ref": {
+          "identity": "AB",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "dependency_ref": {
+          "identity": "A-to-B",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "command_id": "CMD1",
+        "normal_assertion": {
+          "observable": "receiver debit events for CMD1",
+          "relation": "equal",
+          "expected": 1
+        },
+        "failure_path": {
+          "event": "first acknowledgement lost",
+          "expected": "retry does not duplicate debit"
+        },
+        "meaning": "このfixtureの独立検証設計owner原期待。変更したGWT/実装出力/candidateから期待を更新しない。"
+      }
+    },
+    "fixture_basis_limit": "L9合成例をowner別の意味資料へ具体化する設計仮定。実authority・実test凍結・独立実行の過去事実ではない。A/B/CMD1/amount2/expected1を全製品の方式/既定値へしない。",
+    "source_roles": {
+      "pair_mapping": "design-ownerの旧source label・宣言current pair/kind・明示basis_ref。labelだけで対応を生成しない。",
+      "mapping_basis": "ownerの接続種類/境界/依存と選択current pairの意味根拠。参照可能なbasisが他資料にあっても、欠落pair_mapping.basis_refを補完しない。",
+      "integration_design": "verification-design-ownerのGWT原文。資料がqualifiedでも空欄/意味不一致は別に検出する。",
+      "boundary_and_dependency": "design-ownerの具体受渡しと方向。identity文字列だけを意味にしない。",
+      "oracle": "GWTと同scope/境界/依存に結ぶ独立期待。Q内で正しい資料でもPの結果へ転用しない。"
+    },
+    "source_content_types": {
+      "pair_mapping": "F09PairMappingContent",
+      "mapping_basis": "F09MappingBasisContent",
+      "integration_design": "F09IntegrationDesignContent",
+      "boundary": "F09BoundaryContent",
+      "dependency": "F09DependencyContent",
+      "oracle": "F09OracleContent"
+    },
+    "comparison_steps": [
+      "owner原entryと各Ref/revision/scope/contentを比較。root資料の資格から埋込Refの資格を生成しない。",
+      "pair_mapping.basis_refを独立意味資料へ解決し、kind/境界/依存とcurrent左/右の選択を照合する。旧L8/L9番号や残るcurrent labelだけでは成立にしない。",
+      "Given状態/入力、When event、Then observable/relation/expectedを各fieldとして照合。空objectの名前と具体GWTを区別する。",
+      "独立boundary/dependency/oracle内容へcommand/方向/期待を結ぶ。ACK喪失時の再送でも同commandのdebitは1件という正常/失敗の別期待を保持する。",
+      "GWT資料の局所値とpair成立・未実行を分け、候補/表示/保存で実結合成功を生成しない。"
+    ],
+    "field_derivation": {
+      "given_state": "原Givenの状態と入力を供給したowner資料へ結ぶ。missing/empty Givenをoracleから埋めない。",
+      "when_event": "原Whenの事象と接続内容。Givenとは別の不足を保持。",
+      "then_observable": "原Thenの観測対象を同scopeのoracleへ照合。Then欠落はmissing、別Q oracleはunknownとscope conflict。",
+      "then_expected": "原Thenの具体期待を独立oracleへ比較。期待1と提出2の不一致はconflictで両値を保持し、oracleを2へ更新しない。",
+      "failure_path": "原eventと期待の両方が独立oracle/同command条件へ結ぶ場合のevent。期待欠落はmissing。空GWTで条件への連結が不明ならunknown。元eventそのものは原資料に保全する。",
+      "current_pair": "明示basisからのcurrent left/right/kind。basis_ref欠落はunknownで、他資料をfallbackにしない。",
+      "execution": "not_executedを保持。合成資料の資格や具体値から実testの成功を出力しない。"
+    },
+    "missing_null_empty": {
+      "then_missing": "Then原field missing。Given/When/独立した失敗材料は保全。",
+      "gwt_empty_objects": "3欄の名前だけでは観測/条件が不成立。missing fieldsを個別に残す。",
+      "gwt_null": "明示未定義をunknownに保全し、空の成功caseに変換しない。",
+      "failure_expected_missing": "event labelがあっても期待不足はmissing。",
+      "mapping_basis_missing": "旧/current labelがあっても意味対応はunknown。"
+    },
+    "limits": "6主呼出しと意味/出典対照の設計。実結合テスト、retry実装、実受入、正式codec/adapterの成立ではない。"
   }
 }
