@@ -1,0 +1,124 @@
+{
+  "document_id": "HARNESS-L9-010-PACK-BOUNDARY",
+  "layer": "L9",
+  "paired_document": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+  "status": "candidate_pending_independent_review",
+  "parent": "HARNESS-L2-010",
+  "source_main": "066dea64717cbd27c6f1feb068e4ce146021a4c9",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    }
+  ],
+  "verification_scope": "010のarchitecture境界の対検証設計。実物L9実行、L10総合成功、PO受入は未成立。",
+  "cases": [
+    {
+      "id": "HARNESS-L9-010-F01",
+      "design_ref": "HARNESS-L4-010-F01",
+      "requirement_ref": "HARNESS-L3-010-F01",
+      "system_oracle_ref": "HARNESS-L10-010-F01",
+      "positive_fixture": "共用能力AをCOREの一ownerに置き二consumerへ提供。独立能力Bは別packで交換可能。",
+      "expected_observation": "宣言されたbehaviorの入出力と分割時に失う不変条件を対象要求へ結ぶ。ownerは一件、consumerは別集合。共用能力は部品またはCOREへ所属させる。フォルダ存在・関数名だけからpack登録や適格性を作らない。",
+      "negative_fixture_mutations": [
+        "二owner",
+        "behavior根拠なし",
+        "共用能力をサービス専有とする",
+        "独立して交換できる異責務を一packへ束ねる"
+      ],
+      "negative_oracle": "各変異を一つずつ入れ、対象identity/不足項目/owner/戻し先を含むfindingまたは未成立が返ることを実接続で照合する。正常と同じ適格結果ならoracle不成立。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-010-F02",
+      "design_ref": "HARNESS-L4-010-F02",
+      "requirement_ref": "HARNESS-L3-010-F02",
+      "system_oracle_ref": "HARNESS-L10-010-F02",
+      "positive_fixture": "Aの全input/output/依存/義務/oracle/版と実利用依存観測を同revisionで渡す。",
+      "expected_observation": "same revision/scopeの完全な宣言と、build/runtime検証から渡される実利用依存の観測集合を比較する。未宣言の実利用依存、unknown owner/版/互換、不足項目は対象findingとして返す。観測未供給を空依存へ丸めない。",
+      "negative_fixture_mutations": [
+        "input欠落",
+        "output欠落",
+        "依存宣言欠落",
+        "義務欠落",
+        "oracle欠落",
+        "版欠落",
+        "未宣言依存追加",
+        "観測未供給"
+      ],
+      "negative_oracle": "各変異を一つずつ入れ、対象identity/不足項目/owner/戻し先を含むfindingまたは未成立が返ることを実接続で照合する。正常と同じ適格結果ならoracle不成立。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-010-F03",
+      "design_ref": "HARNESS-L4-010-F03",
+      "requirement_ref": "HARNESS-L3-010-F03",
+      "system_oracle_ref": "HARNESS-L10-010-F03",
+      "positive_fixture": "母集合A/B/Cのうち適格Aを収載、未適格Bを理由付き除外、unknown Cを未解決に残す。上位固有義務は未証明。",
+      "expected_observation": "指定された候補母集合を、収載・理由付き除外・未解決へ照合する。適格packだけを収載候補にできる。pack版/成熟度、release単位版、製品版は独立した参照で、下位成功から上位証明を作らない。",
+      "negative_fixture_mutations": [
+        "未適格pack収載",
+        "除外理由欠落",
+        "候補母集合から黙って削除",
+        "pack版を製品版へ転写",
+        "unknown適格性を成功とする"
+      ],
+      "negative_oracle": "各変異を一つずつ入れ、対象identity/不足項目/owner/戻し先を含むfindingまたは未成立が返ることを実接続で照合する。正常と同じ適格結果ならoracle不成立。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-010-F04",
+      "design_ref": "HARNESS-L4-010-F04",
+      "requirement_ref": "HARNESS-L3-010-F04",
+      "system_oracle_ref": "HARNESS-L10-010-F04",
+      "positive_fixture": "Aだけを固定入力/環境/版から再生成し、A置換失敗の復旧候補A旧版を返す。非対象Bの版/証拠を入力と比較する。",
+      "expected_observation": "入力bytes/revision、依存版、tool/環境条件と意味成果の比較条件を束縛する。置換提案は対象packだけを変更し非対象packの版と証拠を保持する。失敗時の直前適格版または明示置換先が不明なら不足を返す。切替・起動・rollbackの実操作は出力しない。",
+      "negative_fixture_mutations": [
+        "latest暗黙参照",
+        "復旧先不明",
+        "非対象版変更",
+        "非対象証拠消失",
+        "同入力別成果",
+        "比較環境不明"
+      ],
+      "negative_oracle": "各変異を一つずつ入れ、対象identity/不足項目/owner/戻し先を含むfindingまたは未成立が返ることを実接続で照合する。正常と同じ適格結果ならoracle不成立。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-010-B01",
+      "design_ref": "HARNESS-L4-010-B01",
+      "requirement_ref": "HARNESS-L3-010-B01",
+      "system_oracle_ref": "HARNESS-L10-010-B01",
+      "positive_fixture": "適格A、未完B、構成固有義務未証明の三状態を別々に照会する。",
+      "expected_observation": "各packの適格/未完と、構成固有義務の未証明を別々に返す。適格Aは上位未完でも表示できる。出力は候補と不足であり製品Accepted/Release/実行許可ではない。",
+      "negative_fixture_mutations": [
+        "上位未完を理由に適格Aを隠す",
+        "A greenで上位成立",
+        "B未完を脱落させる",
+        "候補を実行命令として発行"
+      ],
+      "negative_oracle": "各変異を一つずつ入れ、対象identity/不足項目/owner/戻し先を含むfindingまたは未成立が返ることを実接続で照合する。正常と同じ適格結果ならoracle不成立。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "evidence_contract": [
+    "入力と全候補母集合、対象revision/scope、各edgeのproducer/consumer/契約版",
+    "実物のpack境界・依存観測と宣言の差分",
+    "各正常/負例を実行した結果、期待値との内容差分、未実行と不足",
+    "対象packと非対象packの版/証拠、復旧候補の適格根拠",
+    "L4契約ID→L9caseID→実証拠の双方向対応。単体green・件数/hashだけでL9をcompleteにしない。"
+  ],
+  "completion": "五case全ての正常と列挙負例について同scopeの実接続観測を内容照合する。未解決・未実行・古い版は当該case未完。設計reviewはこの実行条件を定義するだけ。"
+}
