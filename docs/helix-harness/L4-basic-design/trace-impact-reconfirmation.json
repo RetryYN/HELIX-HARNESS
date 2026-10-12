@@ -317,7 +317,7 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "F01/F02/F04/F05の具体的fixtureを起草。残るB01/F03/N01の原資料・正常/負例・部分期待を作成する。",
+    "F01/F02/F04/F05/N01の具体fixtureは起草済み。残るB01/F03を具体化する。",
     "未見relation/無損失partition/再利用不変条件の内容比較と静的照合",
     "003未統合基本設計と後続ownerのexact binding",
     "独立exact HEAD意味reviewとmain admission",
@@ -613,7 +613,26 @@
         "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
         "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
       },
-      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。"
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "input_owners": [
+          "独立consumer/probe owner",
+          "要求/design/verification owner",
+          "OS原観測/上流意味owner"
+        ],
+        "comparison_detail": {
+          "probe": "合成のprevious_known集合にいないNEWと伏せた要求内容変更を別source packetで与える。実盲検実行/実consumer発見の証拠ではない。",
+          "content": "relationの条件集合、設計の期待内容、検証oracleの入力/期待値を要求原資料へ照合する。件数/IDで意味一致にしない。",
+          "qualification": "authority/対象revision/scopeと原観測/再要求化のtraceを個別に比較。relation不明ならUnknown。運用trace不足では必要traceは未評価のまま、判明した影響は保持。",
+          "preservation": "OLDの有効資料、無関係Q、選択外未観測集合を残す。未観測をpass/影響なしへ補完せず、一般的網羅保証へ外挿しない。",
+          "endpoint_join": "relation不明時は運用観測/再要求化のedgeが有っても要求とのjoinをunknown_relationへ残す。"
+        },
+        "legacy_basis": [
+          "LEGACY-ASSET-CAC0C64EB7540180B1FE:AAFD-AC-006/008/009/010/011",
+          "LEGACY-ASSET-719D5EC9C06FC4AAD0FF:HIL-FR-45/48/50"
+        ],
+        "failure_return": "未対応consumer/条件/source/revision/不足と再検証ownerを保持し、未成立の運転条件をOSへ返す。"
+      }
     }
   ],
   "fixture_progress": {
@@ -625,8 +644,7 @@
     },
     "remaining_contracts": [
       "B01",
-      "F03",
-      "N01"
+      "F03"
     ],
     "F02": {
       "normal": 3,
@@ -644,6 +662,12 @@
       "normal": 2,
       "negative": 34,
       "source_packets": 36,
+      "state": "draft_not_executed"
+    },
+    "N01": {
+      "normal": 2,
+      "negative": 25,
+      "source_packets": 27,
       "state": "draft_not_executed"
     }
   }
