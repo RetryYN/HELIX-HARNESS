@@ -520,7 +520,6 @@
   },
   "fixture_progress": {
     "remaining_functions": [
-      "F03",
       "F04",
       "F05",
       "N01"
@@ -547,10 +546,17 @@
       "state": "draft_basic_typed_and_content_counterexamples_qualification_pending",
       "content_counterexamples": 10,
       "content_counterexample_typed_cells": 140
+    },
+    "F03": {
+      "basic_calls": 43,
+      "typed_expected_cells": 731,
+      "nested_l9_dimension_cells": 430,
+      "nested_pair_cells": 129,
+      "state": "draft_basic_typed_cases_independent_qualification_pending"
     }
   },
   "pending": [
-    "4関数の内部比較/typed部分期待/対単体oracle、F01未定義action、F02独立qualification/未確定適用branchの具体化",
+    "3関数の内部比較/typed部分期待/対単体oracle、F01未定義action、F02/F03独立qualificationと追加内容反例の具体化",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -980,24 +986,69 @@
           "improvement_route": "PartialValue",
           "meaning_backflow": "PartialValue",
           "pair_result": "PartialValue",
-          "l9_dimension_results": "PartialValue",
+          "l9_dimension_results": "PartialValue（knownのvalueは各L9観点→PartialValue map。必要集合が未知ならnull）",
           "actual_ticket_issued": "PartialValue",
           "actual_reverse_executed": "PartialValue",
           "actual_quality_accepted": "PartialValue",
           "actual_user_accepted": "PartialValue",
           "actual_release": "PartialValue",
-          "actual_completion": "PartialValue"
+          "actual_completion": "PartialValue",
+          "pair_results": "PartialValue（knownのvalueはL8/L9/L10→PartialValue map。対のmembershipが未知ならnull）"
         },
         "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
         "unaffected_scope": "元の有効な非対象資料",
         "operation_effect": "none"
       },
       "internal_steps": [
-        "原sourceとcandidateを分け、各Ref/context/kind/owner/qualificationを独立照合。",
-        "基本契約の各input/output/invariantを内容で比較し、fieldごとの不足/意味差/戻し先を返す。",
-        "候補の強制成立/未知消去を原資料へ照合し、実操作は生成しない。"
+        "対象revision/scope/artifact/environmentとcarrier、005/015の谷証拠、由来/trace/設計信頼、右側の実物と対設計、各L9原観測、trigger/改善原資料を独立sourceとして解決・資格照合する。carrier一致やCIタグを各embedded sourceの実資格へ継承しない。",
+        "谷の同一contract/oracleでfreeze→実装前Red実観測→minimum_body→Green→local_refactor→atomic_ciの順序を確認する。Redの本体前HEADから最小実装HEAD、Green HEADから意味保存Refactor後HEADとCI対象までの接続と具体観測を比較する。実装後mutationを本体前Redの代替にしない。",
+        "design/implementation/test_design/test_codeの各必要双方向traceと、Refactor前後の公開契約/要求/architecture/stateの意味保存を照合する。谷不足ではstate_ceiling_from_valleyを当該state/nullとし、Provisionalや上位状態を生成しない。",
+        "正規originの要求/設計/pair/ticket/artifactと上流traceが当該scopeへ結べる変更はScoped Reverse候補。origin欠落/旧資産/trace欠落/信用できない設計/大きなずれはFull Reverse recovery candidateとして理由を保持し、復旧実行成功と区別する。",
+        "scope拡大ごとのL8↔L5/L9↔L4/L10↔L3を個別に、左右層・要求revision・scope包摂・必要/観測設計で比較する。pair_result集約が未成立でも、pair_resultsで影響しない他対を保持する。",
+        "L9のinterface/dependency_direction/state_data_ownership/transaction/failure_propagation/retry/timeout/idempotency/coupling/responsibility_duplicationを原期待/観測で個別比較する。ひとつの未観測を成功や空へ変えず、他9観点と谷証拠を保持する。",
+        "明確なdesign/implementation drift、origin欠落、同種finding再発、性能退行、Incident恒久対策、Scrum Reverse checkpoint、大きな設計退行の原資料から発行条件を区別する。通常照合はticket候補none。threshold/観測window/metric値を合成例から製品規格へ採用しない。",
+        "小さな意味保存境界Refactorはcurrent_Forward、独立構造/横断/architecture/性能改善はRefactor/Design-refactor/Performance-refactor候補。behavior/architecture/requirement/stateの意味差はBackflowへ返し、当該上流ownerの意味を局所Refactorで上書きしない。",
+        "candidateを原資料と別に照合し、通常照合で全体Reverse/新ticket、HARNESS発行、谷から品質/Accepted/Release、候補からReverse実行成功を生成しない。ticket_issuerは責務意味OS、実発行と実記録はOSが保持する。"
       ],
-      "detail_state": "signature_only_content_comparison_pending"
+      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "reverse_detail": {
+        "canonical_pairs": {
+          "L8": "L5",
+          "L9": "L4",
+          "L10": "L3"
+        },
+        "l9_dimensions": [
+          "interface",
+          "dependency_direction",
+          "state_data_ownership",
+          "transaction",
+          "failure_propagation",
+          "retry",
+          "timeout",
+          "idempotency",
+          "coupling",
+          "responsibility_duplication"
+        ],
+        "valley_order": [
+          "freeze",
+          "pre_body_red",
+          "minimum_body",
+          "green",
+          "local_refactor",
+          "atomic_ci"
+        ],
+        "constant_false_fields": [
+          "actual_ticket_issued",
+          "actual_reverse_executed",
+          "actual_quality_accepted",
+          "actual_user_accepted",
+          "actual_release",
+          "actual_completion"
+        ],
+        "pair_results_derivation": "承認済みF03と基本契約の三対を内部の個別結果へ分解する。基本の集約pair_resultは保持し、他の有効な対を欠落させない。",
+        "source_binding_limit": "合成設計入力の具体内容比較。実resolver/owner資格/実oracle凍結/TDD/CI/右側実観測ではない。",
+        "legacy_preservation": "旧v1.3のV-pair/TDD、refactoring-trigger-admission-requirements:1–54のtriggerとauthority分離を意味再導出し、旧scope数・route・RF runtimeや追加閾値を継承しない。"
+      }
     },
     {
       "id": "HARNESS-L5-003-F04",
