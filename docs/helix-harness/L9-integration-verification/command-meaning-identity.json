@@ -1,0 +1,451 @@
+{
+  "document_id": "HARNESS-L9-052-COMMAND-MEANING-IDENTITY",
+  "layer": "L9",
+  "paired_document": "docs/helix-harness/L4-basic-design/command-meaning-identity.json",
+  "parent": "HARNESS-L2-052",
+  "status": "candidate_pending_independent_review",
+  "source_main": "e756561cac897a3ac466d53fb4e83d9e32f4ecaa",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    }
+  ],
+  "verification_scope": "HARNESS052のpure意味コアとOS-owned snapshot/lookup/結果受渡しの接続。8上流義務すべてを独立入力/負例へ対応。OS053の実原子保存/故障観測・L10全体成立は別。",
+  "fixture": {
+    "scope": "S/r1",
+    "command": "C",
+    "bases": {
+      "A": "a1",
+      "B": "b1"
+    },
+    "rule": "R/r1",
+    "raw_payloads": [
+      "{\"a\":1,\"b\":[2,3]}",
+      "{ \"b\": [2,3], \"a\": 1 }"
+    ],
+    "normalized_payload": "{\"a\":1,\"b\":[2,3]}",
+    "digest_symbol": "D（L5で実bytes/algorithmから固定、実運転のdigest証拠ではない）",
+    "prior_operation": "O1",
+    "prior_result": "M1/r1",
+    "prior_receipt": "REC1/r1",
+    "lookup": "OS snapshot T1: query=C; found O1/M1/REC1。または独立new caseはquery=C、observed absent T0。",
+    "limits": "合成接続fixtureの概念値。object key順/空白だけの等価例はfixture Rule R/r1が明示している場合のみ。他domain/数値/Unicode等を一般等価としない。L5/L8で原bytes/typed fixture/expected digestを独立固定。"
+  },
+  "cases": [
+    {
+      "id": "HARNESS-L9-052-F01",
+      "design_ref": "HARNESS-L4-052-F01",
+      "requirement_ref": "HARNESS-L3-052-F01",
+      "system_oracle_ref": "HARNESS-L10-052-F01",
+      "positive_input": "C/Sr1/Aa1Bb1/Rr1/Dで初回と再送を比較。path/PR/到着時刻だけを変える等価入力と、意味payload内atom変更を独立に観測。 意味path比較の別fixtureはbefore payload={a:1,b:[2,3],path:p1}、afterでpathだけp2（Rr1はpathを意味fieldとする）。",
+      "expected_observation": [
+        "4軸を同じ対象へ結び、transport差だけでは新identityなし。",
+        "同IDでscope/base/payloadが違う場合、相違軸が返る。"
+      ],
+      "negative_fixture_mutations": [
+        "command IDだけ比較してscope差を隠す",
+        "pathをidentity keyにする",
+        "PR/Issue番号をidentity keyにする",
+        "到着時刻をidentity keyにする",
+        "B baseをtarget集合とともにdrop",
+        "payload内の意味path atomを勝手にstrip",
+        "異command IDのC2を同じpayloadだけでCとsameにする",
+        "base集合の並びだけB,Aへ変えて別identityにする",
+        "同asset Aのbaseを異revisionで重複させる"
+      ],
+      "negative_expectations": [
+        {
+          "change": "command IDだけ比較してscope差を隠す",
+          "expected": "conflict(scope)、先行M1/REC1不変。"
+        },
+        {
+          "change": "pathをidentity keyにする",
+          "expected": "transport pathだけの変更ではsame O1/M1、意味変更/revision発行0。"
+        },
+        {
+          "change": "PR/Issue番号をidentity keyにする",
+          "expected": "番号差だけでsameをnewへ分岐させない。"
+        },
+        {
+          "change": "到着時刻をidentity keyにする",
+          "expected": "時刻差だけでsameをnewへ分岐させない。"
+        },
+        {
+          "change": "B baseをtarget集合とともにdrop",
+          "expected": "独立target rootはA/Bのまま、unknown missing B。"
+        },
+        {
+          "change": "payload内の意味path atomを勝手にstrip",
+          "expected": "owner意味差はconflict(payload)、transport除外に混ぜない。"
+        },
+        {
+          "change": "異command IDのC2を同じpayloadだけでCとsameにする",
+          "expected": "query=C2の根拠付きabsentならnew候補。先行C/O1/M1/REC1不変、C identityへ統合0。"
+        },
+        {
+          "change": "base集合の並びだけB,Aへ変えて別identityにする",
+          "expected": "同じ全base exact集合としてsame O1/M1、新意味revision0。"
+        },
+        {
+          "change": "同asset Aのbaseを異revisionで重複させる",
+          "expected": "conflict(base A重複/矛盾)、一件へ勝手にdedupしない。"
+        }
+      ],
+      "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-052-F02",
+      "design_ref": "HARNESS-L4-052-F02",
+      "requirement_ref": "HARNESS-L3-052-F02",
+      "system_oracle_ref": "HARNESS-L10-052-F02",
+      "positive_input": "Rr1/Sr1の規則で二raw payloadを正規化。規則revisionだけRr2へ変える別入力も評価。",
+      "expected_observation": [
+        "Rr1/Sr1で宣言した等価payloadは同じnormalized bytes/D。",
+        "規則/scope revision差はdigest文字列一致でもconflict。"
+      ],
+      "negative_fixture_mutations": [
+        "rule revisionを欠落",
+        "ruleをRr2へ変更しdigest Dだけ維持",
+        "scope revisionをSr2へ変更しDだけ維持",
+        "caller digestだけを信頼しnormalized bytes差を無視",
+        "array順序を勝手にsort",
+        "OS側だけでpayload正規化"
+      ],
+      "negative_expectations": [
+        {
+          "change": "rule revisionを欠落",
+          "expected": "unknown(rule revision)、default採用0。"
+        },
+        {
+          "change": "ruleをRr2へ変更しdigest Dだけ維持",
+          "expected": "conflict(rule)、same判定0。"
+        },
+        {
+          "change": "scope revisionをSr2へ変更しDだけ維持",
+          "expected": "conflict(scope revision)、same判定0。"
+        },
+        {
+          "change": "caller digestだけを信頼しnormalized bytes差を無視",
+          "expected": "conflict(payload bytes/digest binding)、先行不変。"
+        },
+        {
+          "change": "array順序を勝手にsort",
+          "expected": "Rr1が順序を意味とする[3,2]はconflict(payload)。"
+        },
+        {
+          "change": "OS側だけでpayload正規化",
+          "expected": "classification=unknown、原因normalization_basis（HARNESS規則による独立正規化根拠なし）。OS outcome=not_observed、new/same禁止。"
+        }
+      ],
+      "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-052-F03",
+      "design_ref": "HARNESS-L4-052-F03",
+      "requirement_ref": "HARNESS-L3-052-F03",
+      "system_oracle_ref": "HARNESS-L10-052-F03",
+      "positive_input": "先行C/O1がfound、全軸/規則/normalized bytes一致。初回は独立query=C/absent T0。 比較結果Kは今回/先行の全比較根拠とM1/REC1へ束縛。独立OS結合snapshotはREC1→command binding(C,O1,Sr1)→M1を解決し、K→M1/REC1と逆照合する。",
+      "expected_observation": [
+        "初回はnew候補、再送はsame O1/M1、先行REC1参照不変。",
+        "再送で新意味revision0、実retry/commit成功の証拠は別。",
+        "scope/base/rule・scope revision/normalized bytes/digestの同一比較根拠がKとM1へ結ばれ、REC1から同command binding経由で同じM1へ辿れる。再送でKを供給しても既存binding/M1/REC1全内容は不変。結合の観測状態とsemantic sameは別field。"
+      ],
+      "negative_fixture_mutations": [
+        "全一致再送をnewとする",
+        "sameから実retry成功を出す",
+        "lookupをscope+Cで行い異scope既存Cを隠す",
+        "foundから先行identityを除く",
+        "absent根拠なしの空recordをnewとする",
+        "receiptからcomparison basisへの結合snapshotを欠落",
+        "receiptのcommand bindingが別identity result M2へ結ぶ"
+      ],
+      "negative_expectations": [
+        {
+          "change": "全一致再送をnewとする",
+          "expected": "same O1/M1だけ、新意味変更0。"
+        },
+        {
+          "change": "sameから実retry成功を出す",
+          "expected": "OS not_observedを保持、未実証運転はnot_proven。"
+        },
+        {
+          "change": "lookupをscope+Cで行い異scope既存Cを隠す",
+          "expected": "classification=unknown、原因lookup_query（command ID単独queryの根拠不成立）。OS outcome=not_observed、new禁止。異scopeのvalid foundを得た別caseのconflict(scope)とは区別。"
+        },
+        {
+          "change": "foundから先行identityを除く",
+          "expected": "unknown(prior identity)、absentに変換0。"
+        },
+        {
+          "change": "absent根拠なしの空recordをnewとする",
+          "expected": "unknown(lookup証拠)、new禁止。"
+        },
+        {
+          "change": "receiptからcomparison basisへの結合snapshotを欠落",
+          "expected": "semantic sameを保持、OS outcome binding=unknown(receipt_comparison_binding)。結合成立は未観測、OS053へbackflow、receipt更新0。"
+        },
+        {
+          "change": "receiptのcommand bindingが別identity result M2へ結ぶ",
+          "expected": "semantic sameを保持、OS outcome binding=binding_conflict(receipt_comparison_binding)。M1/REC1不変、別根拠で結合成立にしない。"
+        }
+      ],
+      "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-052-F04",
+      "design_ref": "HARNESS-L4-052-F04",
+      "requirement_ref": "HARNESS-L3-052-F04",
+      "system_oracle_ref": "HARNESS-L10-052-F04",
+      "positive_input": "同Cのpayload atom a=2、scope S2、base B=b2、rule Rr2の4独立後続入力。",
+      "expected_observation": [
+        "それぞれconflictと対象相違軸を返す。",
+        "先行O1/M1/REC1のidentity/revision/bytesは不変、二つ目意味revision0。"
+      ],
+      "negative_fixture_mutations": [
+        "異payloadを同ID冪等でsameにする",
+        "異scopeで先行receiptを置換",
+        "異baseで先行結果を置換",
+        "異rule revisionを同digestでsameとする",
+        "conflict後に別command IDを捏造して再受理"
+      ],
+      "negative_expectations": [
+        {
+          "change": "異payloadを同ID冪等でsameにする",
+          "expected": "conflict(payload)。"
+        },
+        {
+          "change": "異scopeで先行receiptを置換",
+          "expected": "conflict(scope)、REC1全内容不変。"
+        },
+        {
+          "change": "異baseで先行結果を置換",
+          "expected": "conflict(base B)、M1全内容不変。"
+        },
+        {
+          "change": "異rule revisionを同digestでsameとする",
+          "expected": "conflict(rule)、D一致では相殺しない。"
+        },
+        {
+          "change": "conflict後に別command IDを捏造して再受理",
+          "expected": "原Cとconflict保持、新command生成0。"
+        }
+      ],
+      "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-052-F05",
+      "design_ref": "HARNESS-L4-052-F05",
+      "requirement_ref": "HARNESS-L3-052-F05",
+      "system_oracle_ref": "HARNESS-L10-052-F05",
+      "positive_input": "意味sameとOS staleを同O1/C/Sr1/Aa1Bb1/result refへ束縛する。先行O1はincompleteで、同一意味の次episodeの全base CASをOSが拒否したfixture。これと独立した第二fixtureでは先行O1/G1/REC1はcommitted、後続別operationがcurrent G2へ進めた同一再送をOSがreplayする。",
+      "expected_observation": [
+        "semantic sameは保持するがOS staleを新canonicalization成功にしない。",
+        "過去O1/G1成功はcurrent G2と区別し、OS側のexact先行結果を参照。"
+      ],
+      "negative_fixture_mutations": [
+        "payload D一致でOS staleを消す",
+        "HARNESSがbase CASを実行",
+        "別scopeのOS成功receiptで補完",
+        "別command/operationのOS結果で補完",
+        "未観測OS結果をcommittedにする",
+        "current G2を先行O1/G1成功として表示"
+      ],
+      "negative_expectations": [
+        {
+          "change": "payload D一致でOS staleを消す",
+          "expected": "semantic same＋OS stale保持、新保存成功0。"
+        },
+        {
+          "change": "HARNESSがbase CASを実行",
+          "expected": "禁止CAS call0、OSへ不足を戻す。"
+        },
+        {
+          "change": "別scopeのOS成功receiptで補完",
+          "expected": "binding_conflict、当該OS結果は未成立。"
+        },
+        {
+          "change": "別command/operationのOS結果で補完",
+          "expected": "binding_conflict、元O1の未観測/未完保持。"
+        },
+        {
+          "change": "未観測OS結果をcommittedにする",
+          "expected": "OS not_observed、canonicalization成立主張なし。"
+        },
+        {
+          "change": "current G2を先行O1/G1成功として表示",
+          "expected": "先行G1とobserved current G2を別fieldで返す。"
+        }
+      ],
+      "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-052-F06",
+      "design_ref": "HARNESS-L4-052-F06",
+      "requirement_ref": "HARNESS-L3-052-F06",
+      "system_oracle_ref": "HARNESS-L10-052-F06",
+      "positive_input": "正常入力からcommand ID、scope、base B、payload/digest、rule revision、found prior identityを各一つだけ欠落。",
+      "expected_observation": [
+        "各不足をunknownと原field/ownerへ返す。",
+        "内容/scope/revision矛盾はconflict、別oracleによる補完なし。"
+      ],
+      "negative_fixture_mutations": [
+        "command ID欠落を到着時刻から補完",
+        "scope欠落を先行recordから補完",
+        "base B欠落をcurrent Bから補完",
+        "payload digest/根拠missingを同一とする",
+        "Resolution unknownを空集合へ丸める",
+        "他scope oracleで不足を埋める",
+        "別revision prior identityで補完"
+      ],
+      "negative_expectations": [
+        {
+          "change": "command ID欠落を到着時刻から補完",
+          "expected": "unknown(command ID)、捏造ID0。"
+        },
+        {
+          "change": "scope欠落を先行recordから補完",
+          "expected": "unknown(scope)、他scope補完0。"
+        },
+        {
+          "change": "base B欠落をcurrent Bから補完",
+          "expected": "unknown(base B)、CAS運転代行0。"
+        },
+        {
+          "change": "payload digest/根拠missingを同一とする",
+          "expected": "unknown(payload digest/basis)、same禁止。"
+        },
+        {
+          "change": "Resolution unknownを空集合へ丸める",
+          "expected": "unknown(元Ref)、原対象集合を保持。"
+        },
+        {
+          "change": "他scope oracleで不足を埋める",
+          "expected": "conflict(oracle scope)、passにしない。"
+        },
+        {
+          "change": "別revision prior identityで補完",
+          "expected": "conflict(prior revision)、原不足保持。"
+        }
+      ],
+      "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-052-N01",
+      "design_ref": "HARNESS-L4-052-N01",
+      "requirement_ref": "HARNESS-L3-052-N01",
+      "system_oracle_ref": "HARNESS-L10-052-N01",
+      "positive_input": "new/same/conflict/unknownとOS結果あり/未観測をそれぞれ入力根拠へ逆照合。",
+      "expected_observation": [
+        "入力4軸/規則scope版/先行今回digest/bytesとclassification/戻し先が追跡可能。",
+        "先行receipt全内容不変、実運転未観測はnot_proven。"
+      ],
+      "negative_fixture_mutations": [
+        "同名fixtureだけで実retry成功とする",
+        "意味sameで多artifact原子性を証明",
+        "意味sameで旧FR52/53全体closureを証明",
+        "先行receiptを他scope Refへ変更",
+        "count/hashだけでcomparison trace成功"
+      ],
+      "negative_expectations": [
+        {
+          "change": "同名fixtureだけで実retry成功とする",
+          "expected": "局所fixtureだけ、実retry not_proven。"
+        },
+        {
+          "change": "意味sameで多artifact原子性を証明",
+          "expected": "OS実観測なし、atomicity not_proven。"
+        },
+        {
+          "change": "意味sameで旧FR52/53全体closureを証明",
+          "expected": "旧全体closure not_proven、履歴操作追加0。"
+        },
+        {
+          "change": "先行receiptを他scope Refへ変更",
+          "expected": "conflict(receipt binding)、元REC1保持。"
+        },
+        {
+          "change": "count/hashだけでcomparison trace成功",
+          "expected": "入力/相違軸/owner/backflow不足をunknownへ。"
+        }
+      ],
+      "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-052-B01",
+      "design_ref": "HARNESS-L4-052-B01",
+      "requirement_ref": "HARNESS-L3-052-B01",
+      "system_oracle_ref": "HARNESS-L10-052-B01",
+      "positive_input": "pure比較とOS保存結果を別owner参照へ対応。",
+      "expected_observation": [
+        "意味比較以外の書込み/要求採択/authority/PO Accepted/履歴call0。",
+        "OSに保存/rollback/command durabilityと既存義務を保持。"
+      ],
+      "negative_fixture_mutations": [
+        "意味sameからdurability成功を生成",
+        "意味sameからrollback成功を生成",
+        "意味sameから要求採択/承認を生成",
+        "FR53 rename/split/mergeを追加",
+        "旧DB/CLI/runtimeへfallback"
+      ],
+      "negative_expectations": [
+        {
+          "change": "意味sameからdurability成功を生成",
+          "expected": "運転未観測を保持、durability成立主張0。"
+        },
+        {
+          "change": "意味sameからrollback成功を生成",
+          "expected": "rollback未観測、OS復旧義務保持。"
+        },
+        {
+          "change": "意味sameから要求採択/承認を生成",
+          "expected": "authority変化0、境界違反。"
+        },
+        {
+          "change": "FR53 rename/split/mergeを追加",
+          "expected": "履歴call0、未選択操作停止保持。"
+        },
+        {
+          "change": "旧DB/CLI/runtimeへfallback",
+          "expected": "旧runtime call0、現行未完を保持。"
+        }
+      ],
+      "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "evidence_contract": [
+    "当該L4/L3/L10 oracleとscope/revision/RuleRefのexact対応、実接続入力/出力とcall traceを同対象へ束縛する。",
+    "各正常と各単独変異でmeaning axes/normalized bytes/digest/先行identity/result/receipt/OS観測状態を比較。禁止write/補完/意味revision追加を明示する。",
+    "実L9ではPython意味処理とOS adapter境界の双方を観測する。count/hashやfixture存在だけではPASSしない。L8局所oracleや旧HOT49実行を実接続の代用にしない。",
+    "test/oracleはL6/L7で実装前に定義・凍結し、実装前Red→最小実装→Greenの実証拠を後続で得る。ここでは設計candidateのみ、全case not_executed。"
+  ],
+  "completion": "8 L4契約と8 L9 caseの双方向traceおよび単独負例を独立reviewする。実接続/OS運転/実L10/PO受入は未成立のまま。"
+}
