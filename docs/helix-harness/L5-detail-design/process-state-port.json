@@ -519,9 +519,7 @@
     "l3_l10_pairs": 430
   },
   "fixture_progress": {
-    "remaining_functions": [
-      "N01"
-    ],
+    "remaining_functions": [],
     "B01": {
       "basic_calls": 23,
       "typed_expected_cells": 414,
@@ -564,10 +562,16 @@
       "nested_port_cells": 232,
       "nested_backfill_cells": 348,
       "state": "draft_basic_typed_cases_independent_qualification_pending"
+    },
+    "N01": {
+      "basic_calls": 38,
+      "typed_expected_cells": 190,
+      "nested_target_cells": 1900,
+      "state": "draft_basic_typed_cases_independent_qualification_pending"
     }
   },
   "pending": [
-    "N01の内部比較/typed部分期待/対単体oracle、F01未定義action、F02〜F05独立qualificationと追加内容反例の具体化",
+    "全7関数のbasic typed例を起草済み。F01未定義action、F02〜F05/N01独立qualification/追加内容/返却例は未完",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -1255,7 +1259,7 @@
       },
       "output": {
         "partial_values": {
-          "target_results": "PartialValue",
+          "target_results": "PartialValue（knownのvalueは対象別row。各rowのscope/owner/原適用/品質段階/finding段階/数値根拠/安全scopeを個別PartialValueで保持）",
           "healthy": "PartialValue",
           "actual_security_operation": "PartialValue",
           "actual_operation_approved": "PartialValue",
@@ -1266,11 +1270,57 @@
         "operation_effect": "none"
       },
       "internal_steps": [
-        "原sourceとcandidateを分け、各Ref/context/kind/owner/qualificationを独立照合。",
-        "基本契約の各input/output/invariantを内容で比較し、fieldごとの不足/意味差/戻し先を返す。",
-        "候補の強制成立/未知消去を原資料へ照合し、実操作は生成しない。"
+        "対象集合/Context/carrierと各製品の承認済み品質適用原資料、security scope/policy/authority、品質各段/finding各段/数値根拠を独立sourceとして解決/資格照合する。scope/environment/artifact/revision別に分け、一対象の不成立で他対象を消さない。",
+        "製品ownerが指定した適用領域をapplicable/not_applicable/unknownへ区別し、N/A理由/原根拠とownerを保持する。適用未知や理由欠落をN/A、healthy、空集合へ補完しない。領域集合を合成availability/latencyの二つへ固定しない。",
+        "protected_asset/data_scope/operation/environment/network_scope/severity/disclosureの原条件とSECURITYのpolicy/authorityを照合する。OSの割当/運転やHARNESS条件の意味提供から特権方針/credential/認可を生成しない。",
+        "designed/implemented/verified/observed/operatedを別原証拠で照合する。設計oracleの具体owner、実観測の期待/観測owner・executed・対象binding・原経路を比較し、別環境・未実行・旧broker/provider/CIで不足を相殺しない。",
+        "inferred/reproduced/verified/repaired/reverified/operatedを品質段階と別系列で保持する。推定資料のcause_confirmed=falseを再現/原因確定/修復/再検証/運用成立へ昇格しない。",
+        "SLO/RTO/RPO/retentionは当該製品要求/Release原根拠へ照合する。未決値はunknown/nullで保持し、工程規則や他対象の値から既定数値を生成しない。",
+        "target_resultsの各対象/段階/領域のPartialValueを保持する。必要集合または各適用/実観測が未確定ならhealthyはunknown/nullとし、健康とも不健康とも確定しない。合成basicのhealthy=falseはhealthy主張未成立であり、未観測をfalseの実診断へ変換しない。",
+        "candidateを原資料と別に比較し、設計→実装/観測/運用、推定→修復、参照→実認可、数値根拠なし目標への差分を当該fieldで返す。未決は当該製品要求/Release owner、方針/認可はSECURITY、割当/運転はOSへ不足として返す。",
+        "関数は実security操作・認可生成・状態更新・完了を実施しない。actual_security_operation/actual_operation_approved/actual_completionはfalse、operation_effectはnone。"
       ],
-      "detail_state": "signature_only_content_comparison_pending"
+      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "quality_detail": {
+        "quality_stages": [
+          "designed",
+          "implemented",
+          "verified",
+          "observed",
+          "operated"
+        ],
+        "finding_stages": [
+          "inferred",
+          "reproduced",
+          "verified",
+          "repaired",
+          "reverified",
+          "operated"
+        ],
+        "numeric_targets": [
+          "SLO",
+          "RTO",
+          "RPO",
+          "retention"
+        ],
+        "security_fields": [
+          "protected_asset",
+          "data_scope",
+          "operation",
+          "environment",
+          "network_scope",
+          "severity",
+          "disclosure"
+        ],
+        "constant_false_fields": [
+          "actual_security_operation",
+          "actual_operation_approved",
+          "actual_completion"
+        ],
+        "healthy_projection_rule": "basic healthy=falseは成立を主張できないことの否定例。typed結果では未評価/未観測/適用unknownをunknown/nullにして、根拠のない不健康確定も生成しない。原basic期待は無改変で参照/hash束縛する。",
+        "legacy_preservation": "旧infrastructure-operations-quality-l1-request-candidates:7–13の状態分離/未決数値とsecurity-engagement-authority-requests:14–29の既存scope/原finding段階を意味再導出する。旧CI/runtime/包括Security許可や追加数値を採用しない。",
+        "source_binding_limit": "合成例の内部部分比較案。実source/owner/authority資格、正式schema/codec、実観測/実診断/認可の成立ではない。"
+      }
     }
   ]
 }
