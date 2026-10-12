@@ -31,7 +31,11 @@
       "requirement_ref": "HARNESS-L3-001-F01",
       "system_oracle_ref": "HARNESS-L10-001-F01",
       "positive_fixture": "旧L0–L14 pathの資料と現行L2要求/L11受入、L3要件/L10総合の四artifactを、明示したcurrent meaning refsから分類する。L0は独立anchorに残す。",
-      "expected_observation": "artifactの明示された意味と対象層を現行契約へ照合し、十二層と六pairの対応を返す。path/title/旧番号から層を推測しない。L2要求とL3要件は別artifactとして保持し、L0 anchorは十二層の外へ結ぶ。意味owner/sourceが不明なら該当artifactの分類をunknownにする。",
+      "expected_observation": [
+        "L2要求の対はL11受入、L3要件の対はL10総合として別identityを維持する。",
+        "旧pathの番号からcurrent layerを生成せず、12層の外にL0 anchorが一件残る。",
+        "current source不足のartifactはunknownとして返り、他の正しいpairと区別される。"
+      ],
       "negative_fixture_mutations": [
         "L2↔L10を登録",
         "L0を13番目の層に追加",
@@ -49,7 +53,12 @@
       "requirement_ref": "HARNESS-L3-001-F02",
       "system_oracle_ref": "HARNESS-L10-001-F02",
       "positive_fixture": "UIなし/不確実性なし、UIなし/不確実性あり、UIあり/不確実性なし、UIあり/不確実性ありの4組とunknown組を独立scopeで渡す。双方非適用の組には各N/A5属性を与え、Prototype/PoC成功だが要求合意なしの組も与える。",
-      "expected_observation": "Prototypeは画面有無、PoCは画面非依存の技術不確実性から別々に適用判定する。両者非適用かつ各N/A根拠が完全なscopeだけL2.5非適用を返す。不明は非適用へ丸めない。結果は003/008の要求二次形成/Backflowへ返し、要求合意の意味と独立に保持する。",
+      "expected_observation": [
+        "UIなし/不確実性なしは両者非適用で各N/A5属性が解決。UIなし/不確実性ありはPrototype非適用/PoC適用。",
+        "UIあり/不確実性なしはPrototype適用/PoC非適用。UIあり/不確実性ありは両者適用。",
+        "画面有無または技術成立性がunknownの組では該当適用がunknownのまま、非適用へ丸めない。",
+        "Prototype/PoC成功だが要求合意なしの組では合意不足と003/008への戻し先が残り、L3凍結可能を返さない。"
+      ],
       "negative_fixture_mutations": [
         "非UIを根拠にPoC不要とする",
         "技術不明をfalseに丸める",
@@ -71,7 +80,11 @@
       "requirement_ref": "HARNESS-L3-001-B01",
       "system_oracle_ref": "HARNESS-L10-001-B01",
       "positive_fixture": "同じ12層/6pair構成について合意/承認/実証がある入力とない入力を別scopeで照合。いずれも層対応は正しいが不足状態は異なる。",
-      "expected_observation": "層/pairの意味上の対応と、authority/合意/承認/操作/検証の各根拠を別に返す。HARNESS001は層と成果の意味、040はcatalog契約、056はpair結果の意味、OSはticket/実行/登録/保存を所有する。層の存在で他ownerの成立を生成せず、旧runtimeへfallbackしない。",
+      "expected_observation": [
+        "合意/承認/実証ありとなしの両scopeで層/pairの対応結果は同一。",
+        "なしのscopeに不足authority/実証参照が残り、ありのscopeの証拠を流用しない。",
+        "outputにOS ticket/登録/状態write指示や旧runtime起動が含まれない。"
+      ],
       "negative_fixture_mutations": [
         "catalog存在からL1承認を作る",
         "catalog存在からL2合意を作る",
