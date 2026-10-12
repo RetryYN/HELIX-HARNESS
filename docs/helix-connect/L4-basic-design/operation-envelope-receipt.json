@@ -1,0 +1,202 @@
+{
+  "parent": "HELIXCONNECT-L2-003",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+    "boundary": "envelope/両端receiptを同operationへ内容照合。技術結果と業務意味を分け、実通信/許可/承認を生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    }
+  ],
+  "source_pin_limit": "固定bytesは実source資格/全意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "read_lines": [
+        27,
+        32
+      ],
+      "quote": "## §0 関数境界\n\npure functionはnetwork、credential store、DB、filesystem、clockを直接読まず、明示入力を判定する。connector/Python adapterは\nobservation/proposalを返すだけで、projection commitはNode portに限定する。外部認証・接続、credential解決、write-back APIは\n本sliceに実装しない。\n",
+      "file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+      "selected_lines_sha256": "98542d7dc84d328984c1b8318bbbf87b12067f35e639e233b7c31322c77ab987",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+        "disposition": "unresolved",
+        "source_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42"
+      },
+      "reuse": "reference_only",
+      "preserve": "明示入力pure/adapter observationとproposal非commit、envelope/schema/provenance/fenceの再検証とunknown/partial result非昇格。",
+      "change": "旧Node/Python broker/DB/projectionを移植せず、CONNECT003の同operation送受信/契約外拒否/技術・業務責務分離へ再導出。",
+      "reason": "採択003と10/12承認が接続契約envelopeとendpoint業務owner保持を要求する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "read_lines": [
+        47,
+        57
+      ],
+      "quote": "| `ProductDataReadConnectorPort` | versioned requestを外部read adapterへ渡しrecord pageとcursorを返す | bounded ephemeral observation | arbitrary query、write-back、credential本文の返却、raw inputのpersistent seal |\n| `ProductDataProjectionWorker` | raw pageからcanonical entity/mapping proposalを導出 | Python proposal artifactだけ | harness.db、current pointer、watermarkへのwrite |\n| `ProductDataProposalIngestionPort` | worker envelope、source/schema/mapping/lineage/digestをNodeで再検証 | staged proposal | partial result、late fence、schema不明resultの昇格 |\n| `ProductDataPolicyGate` | classification、redaction、retention、freshness、agent-context field allowlistを評価 | policy receipt | PII/secret/raw payload複製、unknown classificationの通過 |\n| `ProductDataProjectionCommitter` | entity/mapping、旧current、snapshot、watermarkを一transactionでcommit | Node `HarnessDbPort`だけ | Python/connectorからのDB write、watermark先行更新 |\n| `ProductDataQuarantineStore` | drift/policy/authority findingとrelease条件をappend-only管理 | quarantine event | raw payload保存、無期限・ownerなしrelease |\n\nPythonは共通`PythonWorkerBroker`を通じてproposalだけを返す。run output root以外のwrite、DB pathの受領、repository/current\npointerへのアクセスを許可しない。Nodeは`complete`後にresult set、schema、provenance、lease/fence、artifact digestを再検証し、\n検証済みproposalだけをprojection transactionへ渡す。`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN`は\n`HIL_PYTHON_AUTHORITY_BYPASS`をproduct-data境界で失わず集約する。",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "selected_lines_sha256": "0da9dc830d9342630a3a9b55aa7965b69239abdb557b659949d9c02afcf0debd",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "disposition": "unresolved",
+        "source_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+      },
+      "reuse": "reference_only",
+      "preserve": "明示入力pure/adapter observationとproposal非commit、envelope/schema/provenance/fenceの再検証とunknown/partial result非昇格。",
+      "change": "旧Node/Python broker/DB/projectionを移植せず、CONNECT003の同operation送受信/契約外拒否/技術・業務責務分離へ再導出。",
+      "reason": "採択003と10/12承認が接続契約envelopeとendpoint業務owner保持を要求する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実登録/現在互換/許可/expiry/双方受領契約/envelope/技術観測/業務原判断/元未完のsource資格と必要集合、owner-qualified exact binding。",
+    "正式envelope schema/codec/operation識別/transport/clock/authority resolver/L5L8詳細、oracle凍結→実装前Red→最小Green→Refactor→再検証。",
+    "実L9/L10/PO L11、全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXCONNECT-L4-003",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "operation_envelope_receipt_reader",
+      "technical_business_separation_reader"
+    ],
+    "flow": [
+      "原登録/操作/現在互換/許可/受領契約→envelope/両端receipt同対象照合→理由付き局所保留",
+      "原技術receiptと業務判断/元未完→責務とstateを分けて保持→該当ownerへ返却"
+    ],
+    "python_boundary": "immutable入力のpure内容対照。通信・受領・認可・保存・DB/network/fs/env/clock/業務判断を行わない。",
+    "representation_limit": "原header/envelope/receipt/state/expiry/許可は合成例。製品wire schema/観測履歴/SEC裁定/Acceptedへ昇格しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXCONNECT-L4-003-F01",
+      "requirement_ref": "HELIXCONNECT-L3-003-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-003-F01",
+      "oracle_ref": "HELIXCONNECT-L9-003-F01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-003-F01",
+        "parent": "HELIXCONNECT-L2-003",
+        "title": "契約に束縛したenvelope",
+        "obligation": "接続identity/operation identity・契約revision・現在互換receipt・能力名・依存版・scope・correlation・expiry・idempotency・result state・適用許可とenvelopeを同送受信へ結ぶ。未知operation/契約外field/異revisionは正常受信とせず拒否または隔離する。",
+        "oracle_ref": "HELIXCONNECT-L10-003-F01"
+      },
+      "component": "operation_envelope_receipt_reader",
+      "input_meanings": [
+        "独立原登録・known operation・現在互換・許可/expiry・envelope受領契約",
+        "原header/envelopeと両端receipt/観測地点/元recovery",
+        "提出header/envelope/両端receipt/recovery"
+      ],
+      "output_meanings": [
+        "元operationへ結ぶ送受信state/理由と該当owner",
+        "原/提出内容対照と対象header/digest照合/元未完handoff"
+      ],
+      "content_comparison": [
+        "field存在だけで契約に束縛しない。原/提出一致と同operation対象一致を分ける。",
+        "未識別operation・契約外field・異版/期限外/許可外は正常受領にしない。",
+        "原unknown/拒否と未完handoffを保持し、技術成功を実受領/業務成立へ昇格しない。"
+      ],
+      "qualification_rule": "合成原receipt/許可/expiry/判断から実source資格/通信/受領/業務成立/authority/Accepted/設計閉包を生成しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXCONNECT-L4-003-B01",
+      "requirement_ref": "HELIXCONNECT-L3-003-B01",
+      "system_oracle_ref": "HELIXCONNECT-L10-003-B01",
+      "oracle_ref": "HELIXCONNECT-L9-003-B01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-003-B01",
+        "parent": "HELIXCONNECT-L2-003",
+        "title": "技術結果と業務意味",
+        "obligation": "CONNECTは技術上の伝送結果を返し、受信内容の業務意味・要求採否・承認・利用区分を変更/生成しない。業務結果と受領契約の責務をendpoint ownerへ保持する。",
+        "oracle_ref": "HELIXCONNECT-L10-003-B01"
+      },
+      "component": "technical_business_separation_reader",
+      "input_meanings": [
+        "原技術receiptと業務ownerの別原判断/未完",
+        "原envelopeと意味authority",
+        "提出技術/業務/意味ownerとshortcut claim"
+      ],
+      "output_meanings": [
+        "技術結果と業務state/ownerの別保持",
+        "原未完/意味authority/局所理由返却"
+      ],
+      "content_comparison": [
+        "技術ACKから業務完了/Acceptedを生成しない。原業務判断の対象operation/scopeも照合する。",
+        "envelopeを意味正本へ自動昇格せず、CONNECTは採否/業務意味/利用区分を代筆しない。",
+        "元業務owner/state/未完を保持し、技術成功で消さない。"
+      ],
+      "qualification_rule": "合成原receipt/許可/expiry/判断から実source資格/通信/受領/業務成立/authority/Accepted/設計閉包を生成しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 48,
+      "B01": 14
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
