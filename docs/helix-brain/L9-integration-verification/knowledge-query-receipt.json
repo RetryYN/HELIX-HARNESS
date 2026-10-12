@@ -5828,7 +5828,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -5872,7 +5890,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -5987,7 +6023,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "missing",
+                    "value_state": "missing",
+                    "value": null,
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "missing",
+                    "value_state": "missing",
+                    "value": null,
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -6031,7 +6085,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -6146,7 +6218,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -6190,7 +6280,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "missing",
+                    "value_state": "missing",
+                    "value": null,
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "missing",
+                    "value_state": "missing",
+                    "value": null,
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -6305,7 +6413,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -6349,7 +6475,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -6464,7 +6608,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -6508,7 +6670,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -6623,7 +6803,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -6667,7 +6865,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "missing",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -6782,7 +6998,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -6826,7 +7060,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -6941,7 +7193,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -6985,7 +7255,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -7100,7 +7388,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -7144,7 +7450,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -7259,7 +7583,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -7303,7 +7645,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -7418,7 +7778,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -7462,7 +7840,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "missing",
+                    "value_state": "missing",
+                    "value": null,
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "missing",
+                    "value_state": "missing",
+                    "value": null,
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -7550,9 +7946,9 @@
                   {
                     "field": "FIELD-P-UNSET",
                     "definition_state": "content_corresponding_in_fixture",
-                    "value_state": "known",
-                    "value": "P",
-                    "undecided_reason": null,
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
                     "obligation_state": "not_discharged"
                   }
                 ],
@@ -7577,7 +7973,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -7621,7 +8035,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -7736,7 +8168,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -7780,7 +8230,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "missing",
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [
@@ -7861,16 +8329,16 @@
                     "field": "FIELD-P-KNOWN",
                     "definition_state": "content_corresponding_in_fixture",
                     "value_state": "known",
-                    "value": "PATTERN-P",
+                    "value": "P",
                     "undecided_reason": null,
                     "obligation_state": "not_discharged"
                   },
                   {
                     "field": "FIELD-P-UNSET",
                     "definition_state": "content_corresponding_in_fixture",
-                    "value_state": "known",
-                    "value": "PATTERN-P",
-                    "undecided_reason": null,
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "P案件値は未決",
                     "obligation_state": "not_discharged"
                   }
                 ],
@@ -7895,7 +8363,25 @@
                     "value": null,
                     "reason": "P案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-P-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "PATTERN-P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-P-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "PATTERN-P",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               },
               {
                 "identity": "PATTERN-Q",
@@ -7905,16 +8391,16 @@
                     "field": "FIELD-Q-KNOWN",
                     "definition_state": "content_corresponding_in_fixture",
                     "value_state": "known",
-                    "value": "PATTERN-Q",
+                    "value": "Q",
                     "undecided_reason": null,
                     "obligation_state": "not_discharged"
                   },
                   {
                     "field": "FIELD-Q-UNSET",
                     "definition_state": "content_corresponding_in_fixture",
-                    "value_state": "known",
-                    "value": "PATTERN-Q",
-                    "undecided_reason": null,
+                    "value_state": "value_unset",
+                    "value": null,
+                    "undecided_reason": "Q案件値は未決",
                     "obligation_state": "not_discharged"
                   }
                 ],
@@ -7939,7 +8425,25 @@
                     "value": null,
                     "reason": "Q案件値は未決"
                   }
-                }
+                },
+                "submitted_field_results": [
+                  {
+                    "field": "FIELD-Q-KNOWN",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "PATTERN-Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  },
+                  {
+                    "field": "FIELD-Q-UNSET",
+                    "definition_state": "content_corresponding_in_fixture",
+                    "value_state": "known",
+                    "value": "PATTERN-Q",
+                    "undecided_reason": null,
+                    "obligation_state": "not_discharged"
+                  }
+                ]
               }
             ],
             "relation_results": [

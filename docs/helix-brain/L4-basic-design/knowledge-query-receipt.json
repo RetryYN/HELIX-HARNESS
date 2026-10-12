@@ -251,7 +251,8 @@
       ],
       "content_comparison": [
         "複数候補と両relationを併存させる。",
-        "既知値が別fieldのunknownを補完せず、他Pattern成功が欠落を相殺しない。"
+        "既知値が別fieldのunknownを補完せず、他Pattern成功が欠落を相殺しない。",
+        "提出receipt値はsubmitted_field_resultsへ分ける。field_resultsは原資料との照合後に保持する値/未知/未決理由を返し、拒否した補完値を結果へ載せない。"
       ],
       "qualification_rule": "独立合成内容の照合を実source資格/正式schema/実受取契約/全必要集合の成立へ昇格しない。",
       "operation_effect": "none"
