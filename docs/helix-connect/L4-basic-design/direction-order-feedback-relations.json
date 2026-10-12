@@ -1,6 +1,6 @@
 {
   "parent": "HELIXCONNECT-L2-009",
-  "status": "draft_basic_architecture_scenarios_pending_material_qualification",
+  "status": "draft_basic_contracts_partial_concrete_material_pending_qualification",
   "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
   "scope": {
     "version_target": "1.0",
@@ -173,7 +173,7 @@
   "operation_effect": "none",
   "remaining": [
     "必要集合はownerの原宣言に結ぶ。ここで列挙する入力役割は正式schema/最小field集合の採択ではない。各実source資格とexact必要集合/bindingは未成立。",
-    "L9のシナリオ設計を独立原packet/対象revision/scopeと具体期待へ展開し、内容反例/他scope保全/不正claimの静的検証と独立reviewを行う。",
+    "F06〜F10の110件は合成原packet/具体期待へ展開。F01〜F05の142件はシナリオのみであり、全原必要集合/関係target/追加反例/他scope保全/独立reviewは未完。",
     "正式schema/codec/transport/clock/resolverとL5/L8、test/oracle凍結→実装前Red実観測→最小Green→Refactor→再検証は未成立。",
     "実L9/L10、PO L11、全92親430対の基本/詳細設計閉包と実装準備は未成立。"
   ],
@@ -421,7 +421,19 @@
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
         "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
       ],
-      "candidate_effect": "none; actual operation count 0"
+      "candidate_effect": "none; actual operation count 0",
+      "content_material_rules": {
+        "needed_input_states": "原missing/unknown/stale/conflictを同値の提出で成立させない。原/提出のfield owner/値/当該operation targetを保全。",
+        "owner_by_role": {
+          "endpoint": "endpoint-owner",
+          "connection_identity": "connection-contract-owner",
+          "contract_revision": "connection-contract-owner",
+          "operation_authority": "HELIX-SECURITY"
+        },
+        "preservation": "原初回結果/個別適格辺/累積/未完/他scopeを保持。提出差替えを理由と返し先で示す。",
+        "phase_separation": "後続不足を初回拒否へ波及しない。各操作の候補は合成内容だけで、実作用0。",
+        "ack_join": "not_applicable"
+      }
     },
     {
       "id": "HELIXCONNECT-L4-009-F07",
@@ -458,7 +470,21 @@
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
         "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
       ],
-      "candidate_effect": "none; actual operation count 0"
+      "candidate_effect": "none; actual operation count 0",
+      "content_material_rules": {
+        "needed_input_states": "原missing/unknown/stale/conflictを同値の提出で成立させない。原/提出のfield owner/値/当該operation targetを保全。",
+        "owner_by_role": {
+          "reason_or_evidence_ref": "feedback-endpoint-owner",
+          "source_identity": "feedback-endpoint-owner",
+          "target_identity": "feedback-endpoint-owner",
+          "contract_revision": "connection-contract-owner",
+          "independent_reverse_connection": "connection-contract-owner",
+          "feedback_operation_authority": "HELIX-SECURITY"
+        },
+        "preservation": "原初回結果/個別適格辺/累積/未完/他scopeを保持。提出差替えを理由と返し先で示す。",
+        "phase_separation": "後続不足を初回拒否へ波及しない。各操作の候補は合成内容だけで、実作用0。",
+        "ack_join": "not_applicable"
+      }
     },
     {
       "id": "HELIXCONNECT-L4-009-F08",
@@ -493,7 +519,20 @@
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
         "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
       ],
-      "candidate_effect": "none; actual operation count 0"
+      "candidate_effect": "none; actual operation count 0",
+      "content_material_rules": {
+        "needed_input_states": "原missing/unknown/stale/conflictを同値の提出で成立させない。原/提出のfield owner/値/当該operation targetを保全。",
+        "owner_by_role": {
+          "retry_limit": "existing-policy-owner",
+          "budget": "existing-policy-owner",
+          "expiry": "existing-policy-owner",
+          "stop_route_owner": "termination-owner",
+          "existing_termination_policy": "termination-owner"
+        },
+        "preservation": "原初回結果/個別適格辺/累積/未完/他scopeを保持。提出差替えを理由と返し先で示す。",
+        "phase_separation": "後続不足を初回拒否へ波及しない。各操作の候補は合成内容だけで、実作用0。",
+        "ack_join": "not_applicable"
+      }
     },
     {
       "id": "HELIXCONNECT-L4-009-F09",
@@ -525,7 +564,18 @@
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
         "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
       ],
-      "candidate_effect": "none; actual operation count 0"
+      "candidate_effect": "none; actual operation count 0",
+      "content_material_rules": {
+        "needed_input_states": "原missing/unknown/stale/conflictを同値の提出で成立させない。原/提出のfield owner/値/当該operation targetを保全。",
+        "owner_by_role": {
+          "declared_join": "composite-join-owner",
+          "join_contract_revision": "composite-join-owner",
+          "needed_join_result_set": "composite-join-owner"
+        },
+        "preservation": "原初回結果/個別適格辺/累積/未完/他scopeを保持。提出差替えを理由と返し先で示す。",
+        "phase_separation": "後続不足を初回拒否へ波及しない。各操作の候補は合成内容だけで、実作用0。",
+        "ack_join": "not_applicable"
+      }
     },
     {
       "id": "HELIXCONNECT-L4-009-F10",
@@ -560,7 +610,20 @@
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
         "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
       ],
-      "candidate_effect": "none; actual operation count 0"
+      "candidate_effect": "none; actual operation count 0",
+      "content_material_rules": {
+        "needed_input_states": "原missing/unknown/stale/conflictを同値の提出で成立させない。原/提出のfield owner/値/当該operation targetを保全。",
+        "owner_by_role": {
+          "original_attempt": "receipt-endpoint-owner",
+          "ack_receipt": "receipt-endpoint-owner",
+          "ack_operation_identity": "receipt-endpoint-owner",
+          "ack_connection_identity": "receipt-endpoint-owner",
+          "ack_contract_revision": "connection-contract-owner"
+        },
+        "preservation": "原初回結果/個別適格辺/累積/未完/他scopeを保持。提出差替えを理由と返し先で示す。",
+        "phase_separation": "後続不足を初回拒否へ波及しない。各操作の候補は合成内容だけで、実作用0。",
+        "ack_join": "ACK原/提出同値だけでなく原attempt operation/connection/revisionへ結ぶ。正しいACKでも業務/構成体完了を生成しない。"
+      }
     }
   ]
 }
