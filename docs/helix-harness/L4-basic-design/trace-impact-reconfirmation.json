@@ -1,0 +1,901 @@
+{
+  "parent": "HARNESS-L2-004",
+  "source_main": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+  "status": "draft_pending_semantic_and_fixture_review",
+  "authority_effect": "none",
+  "scope": {
+    "authoring_stage": 1,
+    "historical_stage": "unassigned",
+    "version_target": "1.0",
+    "delegated_content_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+    "approved_pair_count": 7,
+    "boundary": "初回限定前提のtrace/影響条件。実copy/retire/旧runtime/実ticket/通常L3再開を選択しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-carry-forward-policy.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "ae0fc042804f5b608b3284adfd146a114df98857fb10f600e248edca12380c8b"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "d58a704fd5163a3469374f9d6aae38b6bb26975bf4a6b3cd2cbffab7529ea864"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 29,
+          "text": "### 要求の参照範囲と最新化"
+        },
+        {
+          "line": 66,
+          "text": "2. CLI、library、HARNESS等の非UI案件もL2を暗黙に飛ばしてはならない。`not_applicable`、理由、判定者、対象HEAD、要求への影響、再評価条件をreceiptへ残す。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 27,
+          "text": "相談、質問、仮説、叱責、不満、実況、比喩、作業依頼を、文字列や口調だけで`PO指示`、`PO判断`、承認済みdecisionへ昇格しない。AIの解釈へhuman provenanceを付与しない。"
+        },
+        {
+          "line": 37,
+          "text": "要求・設計・route・model・test・artifactの採択は`selection`、L3 freeze・検収・不可逆actionの認可は`approval`、Issue・PR・finding・proposal・S4の処理結果は`disposition`、validatorやAIの一時的技術評価は`runtime_judgment`として保持する。"
+        },
+        {
+          "line": 41,
+          "text": "明示的なrequest／directiveも作業入力であり、requirements、design、ADR、approvalの代替authorityではない。AIは目的、正本、受入条件、可逆性、安全境界、代替案を評価し、`指示だから`を理由に検証を省略しない。"
+        },
+        {
+          "line": 43,
+          "text": "directiveは許可された作業scopeや優先度を与え得るが、実装方式、技術的正しさ、完了、安全性を自動的に確定しない。AIは独立した技術理由と反証可能な検証結果を保持し、指示への服従をrationale、review verdict、completion evidenceとして再利用しない。"
+        },
+        {
+          "line": 49,
+          "text": "harness memoryはTTL付きagent coordination envelopeとtyped pointerだけを運ぶ。decision本文、approval本文、project要求・設計、利用者profileを保存せず、長期authorityは各正本へ置く。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "read_line_locators": [
+        27,
+        37,
+        41,
+        43,
+        49
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-19E54587EB063625EC53",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+      "sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 23,
+          "text": "| RFA-BR-01 | 目的・前提・選択肢を証拠で整理し、利用者意図の取り違えと監視負担を減らす | RFA-RF-01..04 |"
+        },
+        {
+          "line": 38,
+          "text": "既存CI高速化・Recovery・Cursor限定実行を本候補の完成待ちへ一括変更しない。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 10,
+          "text": "- DGH-BR-01: 外部の実例と既存資産を前提に、論点ごとに根拠を揃えてDesign候補を形成する。DG-R-01..04へ分解する。"
+        },
+        {
+          "line": 11,
+          "text": "- DGH-BR-02: 人間の反応とAI解釈を分離し、客観品質と主観意味を相殺せず必要なscopeだけ再作業する。HR-R-01..04へ分解する。"
+        },
+        {
+          "line": 12,
+          "text": "- DGH-BR-03: 反復で受容した軸を保持し、findingの解消・再発・未解決から収束を検証する。DC-R-01..04へ分解する。"
+        },
+        {
+          "line": 15,
+          "text": "人間の相談・反応を指示/承認へ勝手に昇格しない。半永続的な設計判断はADR、採否・認可はscope付き証拠、作業連絡は期限付きmemoryへ分離する。"
+        },
+        {
+          "line": 16,
+          "text": "Fullの成立とLiteへの昇格は別。Web製品化、別研究engine、全体planner解放、包括的公開権限は非対象。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "locator_correction": {
+        "upstream_locator_end": 19,
+        "actual_file_end": 16,
+        "meaning_change": false,
+        "note": "不存在の17〜19行を引用しない。004承認元のlegacy locatorは変更せず本設計の引用範囲を実在行に限定。"
+      },
+      "read_line_locators": [
+        10,
+        11,
+        12,
+        15,
+        16
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 20,
+          "text": "| AAFD-AC-006 | AAFD-R-06 | 11 changed dimension、previous/observed、unknown、invalidation exact setを欠落なく保持する |"
+        },
+        {
+          "line": 25,
+          "text": "| AAFD-AC-011 | AAFD-R-11 | stale directive、unresolved unknown、missing receiptからassignment/release/retireを発行しない |"
+        },
+        {
+          "line": 42,
+          "text": "- unknownを0、neutral、unchanged、observedへ変換する。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md",
+      "sha256": "33462610beba32ec952b1eb4cb3ef4f57886a0ddb7f116ea9949d50042099f59",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 13,
+          "text": "`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`で小さく収束する。S4の採用判断は"
+        },
+        {
+          "line": 14,
+          "text": "Scrum内でproduct authorityを変更せず、正規Vモデルの該当層へScrum Reverseする。"
+        },
+        {
+          "line": 16,
+          "text": "product要求・設計・実装はcanonical L1〜L12のForwardで進める。管理上の緊急性を理由にVペア、"
+        },
+        {
+          "line": 17,
+          "text": "上下edge、TDD、review、acceptanceを省略しない。"
+        },
+        {
+          "line": 24,
+          "text": "- Project Statusから上流意味、承認、完了状態を逆書込みしない。"
+        },
+        {
+          "line": 28,
+          "text": "Issueは観測、影響範囲、再発回数、提案するgate／checklist、現在のScrum stage、Scrum Reverse先を"
+        },
+        {
+          "line": 29,
+          "text": "欠落なく保持する。同一findingを重複起票せず、既存Issueへ観測証拠を追記する。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "read_line_locators": [
+        13,
+        14,
+        16,
+        17,
+        24,
+        28,
+        29
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 47,
+          "text": "| **FR-L1-16** | Incidentワークフロー（本番障害: 検出 → hotfix → 即release → 収束 → current L1〜L12へbackfill） | incident-workflow | 本番障害alert／SLO逸脱 | troubleshoot/recovery PLAN、postmortem、L12 feedback。Reverse fullback経由で選択済みdevelopment styleへ戻す | P0 | PM-03 (障害シグナル) / HM-06 |"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+      "sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 14,
+          "text": "HELIXが、資産所有者から明示的に認可されたサイバーセキュリティ業務を、既存の安全capability broker、"
+        },
+        {
+          "line": 29,
+          "text": "- findingの再現、修正、独立検証、remediation evidence"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-08373C0AEE18881133D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
+      "sha256": "17c7a6f8781768e4daf6da9fc2d9f09320a19d51bf17c4dfb8ca789ea3b51f01",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 7,
+          "text": "| NIO-L1-01 | HELIXは要求形成時に、対象systemの可用性・信頼性・性能・容量・費用・security・privacy・運用・保守・回復・observabilityの適用性を導出し、未決を隠さない。 |"
+        },
+        {
+          "line": 13,
+          "text": "数値SLO、target環境、予算、保持期間、blast radiusは対象RequirementまたはRelease契約で別途承認する。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+      "sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 28,
+          "text": "> 2026-09-05、PLAN-L3-77固有のL3 human gateが成立した。本書は承認済みcandidateだが、"
+        },
+        {
+          "line": 29,
+          "text": "> canonical promotionとG3再freezeが成立するまではcurrent authorityではない。runtime completion、"
+        },
+        {
+          "line": 30,
+          "text": "> authority自動write、merge／publish／release／cutoverは別境界に残す。"
+        },
+        {
+          "line": 40,
+          "text": "UILで正規化されたeventとfindingからRF0候補を導出する規則を、version、authority digest、source／detector identity、"
+        },
+        {
+          "line": 41,
+          "text": "baseline revision、比較演算、threshold source、観測window、minimum sample、hysteresis、cooldown、expiry、severity、"
+        },
+        {
+          "line": 42,
+          "text": "counterevidence、unknown dispositionへ束縛する。source registryの定義を複製せず、policy値をruntimeへ重複hardcodeしない。"
+        },
+        {
+          "line": 46,
+          "text": "invariant違反、再発、metric budget超過、悪化傾向、structural drift、release boundary、provider change、"
+        },
+        {
+          "line": 47,
+          "text": "scheduled safety-netを別trigger identityとして扱う。LOC、file size、Issue数、AI評価、単一瞬間値だけでは候補をadmitしない。"
+        },
+        {
+          "line": 48,
+          "text": "蓄積評価はversioned windowとminimum sampleを満たし、lifecycle boundaryは評価契機であって悪化証拠なしにrefactorを強制しない。"
+        },
+        {
+          "line": 53,
+          "text": "UIL candidateからRF0へ渡すadmissionはcandidate／finding／trigger evidenceのexact identityとdigest、source registry、"
+        },
+        {
+          "line": 54,
+          "text": "trigger policy、baseline、primary scopeはexactly one、related scope、semantic parity、route candidate、suppression、"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "read_line_locators": [
+        28,
+        29,
+        30,
+        40,
+        41,
+        42,
+        46,
+        47,
+        48,
+        53,
+        54
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 124,
+          "text": "4 artifact は**別物として別ディレクトリ**に置き、双方向 trace で結ぶ（混在禁止）。"
+        },
+        {
+          "line": 131,
+          "text": "| ④ テストコード | `tests/` |"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "semantic_rederivation": {
+        "preserve": "設計文書・実装コード・test設計・testコードを異なる成果物として双方向traceで結ぶ（122–131）。",
+        "change": "旧docs/design・src・docs/test-design・tests、旧TS命名と.helix物理構成は採用しない。新世代004のtrace意味へ導き、正式配置とcode bindingは後続詳細設計へ残す。",
+        "reason": "現行のHARNESS/OS責務分離、JSON正本、現行V12の設計と実装の区別、10/9配置方針を保持するため。旧sourceのtrace義務を旧物理pathへ依存させない。",
+        "applies_to": [
+          "HARNESS-L4-004-F01",
+          "HARNESS-L9-004-F01"
+        ],
+        "source_lines": [
+          122,
+          124,
+          128,
+          129,
+          130,
+          131
+        ],
+        "adoption": "semantic_rederivation_only_not_old_layout_or_runtime"
+      }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 129,
+          "text": "| **HIL-FR-39** | Design Refactor Gateはdesign graph、重複contract/policy/schema、責務とstate invariant、consumer集合、before/after oracleを比較し、`externalize/commonize/objectize/semantic-rename`を独立変換として計画する。renameは名称の文字列類似だけで決めず、入出力、副作用、failure、state transition、call graph、consumer contractを含むsemantic signatureで、同義名の統一または同名異義の分離を判定する。behavior preservation、全consumer compatibility、Scope Authority、設計pair更新、rollbackが揃う場合だけ既存`Refactor`実装へ接続し、observable behavior、public surface、DB semantics、要求の差分を検出した場合は`Redesign/Retrofit`へrerouteする。 | design-refactor PLAN、変換種別、before/after graph digest、semantic/name collision evidence、behavior-preservation receipt、reroute receipt |"
+        },
+        {
+          "line": 135,
+          "text": "| **HIL-FR-45** | Requirement Definition Ledgerはstable requirement IDとimmutable revisionを持ち、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationを型付きedgeで保存する。split/merge/rename/supersede/reject/N/Aはbefore/after semantic digest、全source atom disposition、downstream stale、review authorityを持つreceiptがある場合だけ適用する。 | requirement definition/revision、typed edge、change/applicability receipt、orphan/stale finding |"
+        },
+        {
+          "line": 140,
+          "text": "| **HIL-FR-50** | Ledger Design Refactorはlayer ledgerの重複、責務混在、semantic/name collision、変更波及、孤立edgeを比較し、externalize/commonize/objectize/semantic-rename/split/merge候補を生成する。全上下・左右consumer、before/after oracle、pair保持、rollbackが揃うbehavior-preserving変更だけをDesignRefactorへ送り、要求/公開contract/永続state変更はRedesign/Retrofitへrerouteする。 | ledger diff、refactor candidate/plan、pair-preservation receipt、reroute receipt |"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "semantic_rederivation": {
+        "preserve": "HIL-FR-39のsemantic signature/consumerとbefore-after oracle、45のstable ID/immutable revision/source atom disposition/downstream stale、50の全consumer/pairと意味保存・意味変更の別route（129/135/140）。",
+        "change": "旧Design Refactor Gate/Requirement Definition Ledger/Ledger Design Refactorのruntime、台帳schema、固定route、旧L6実装pairやcopy機構を採用しない。004の型付きrelation候補・影響/成立の分離・無損失分割と最上流Backflow/OS実運転境界へ意味を再導出する。",
+        "reason": "承認済み004と003のowner境界および現行V12のpairを満たし、旧graphや旧成功が要求authority/完了の根拠になる失敗を避けるため。意味変更・移管・retireは既存上流判断へ戻す。",
+        "applies_to": [
+          "HARNESS-L4-004-F02",
+          "HARNESS-L4-004-F03",
+          "HARNESS-L4-004-F04",
+          "HARNESS-L4-004-F05",
+          "HARNESS-L4-004-B01"
+        ],
+        "source_lines": [
+          129,
+          135,
+          140
+        ],
+        "adoption": "selected_semantic_comparison_not_whole_legacy_requirement_or_runtime"
+      }
+    }
+  ],
+  "legacy_rederivation_basis": {
+    "reuse_class": "semantic_rederivation",
+    "preserve": "正規pair/traceと意味変更のBackflow、指示と承認/技術証拠の分離、委任内自走と局所再確定、unknownを補完しない、元source/consumer保持とIncident還流。",
+    "change": "9/24のL2.5/Decide分離、9/26の右側Scoped Reverse/状態/Portと構造影響非成立伝播、10/11のhotfix即releaseを通常Portへ置換。旧S0-S4/DB/runtime/triggerを固定工程へ移さない。",
+    "reason": "既決の003/004親条件とPO差分を保持する。source候補全件採用や旧IR全移管ではない。",
+    "source_limit": "HBR-P3/HNFR-P3はarchiveのdocs/design/harnessとdocs/governance/candidatesでID検索したが直接行未特定。v1.3/AVS/RFA/DGH/AAFD/Management/FR16の実読原文と現在の採択L2/L11を区別し、近い文から旧sourceを捏造しない。",
+    "failure_basis": "RFAのWP調査不足/意図逸脱は利用者報告であり原因確定済みとしない。指示忠実性を完了証拠にするAVS、管理緊急性でpairを省略するManagement、旧即releaseのPort例外を防ぐ。",
+    "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
+  },
+  "remaining": [
+    "全7契約の静的照合は実施済み。独立exact HEAD意味reviewで未解決と未確認範囲を確認する。",
+    "003基本設計のmain統合後の接続と後続ownerのexact binding",
+    "独立review/現行main admission",
+    "L5/L8の論理型/関数/個別owner資格と実oracle凍結",
+    "正式schema/実装/新CI/実証拠/PO実物受入"
+  ],
+  "operation_effect": "none",
+  "layer": "L4",
+  "pair": "L9",
+  "contracts": [
+    {
+      "id": "HARNESS-L4-004-B01",
+      "requirement_ref": "HARNESS-L3-004-B01",
+      "l9_ref": "HARNESS-L9-004-B01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-B01",
+        "parent": "HARNESS-L2-004",
+        "title": "trace・変更判断と運転の境界",
+        "obligation": "HARNESSはtrace/影響/再検証範囲/意味保存/戻し先を導出し、OSは管理登録/状態/実operationを別契約で運転する。構造改善の意味変更、実装故障、外部環境変化を単一refactoring routeへ丸めず、旧L3 trigger/runtimeを採用しない。管理観測/改善は意味が変わる最上流へ候補として戻し、Issue/Project/CIから要求意味/承認/完了を生成しない。",
+        "oracle_ref": "HARNESS-L10-004-B01"
+      },
+      "component": "TraceOperationBoundary",
+      "input_materials": [
+        "変更の種類・元finding・scope/revision・owner",
+        "管理観測・製品意味・実装故障・外部環境差分"
+      ],
+      "output_materials": [
+        "種類別の根拠/意味owner/影響範囲を返す",
+        "HARNESSは導出、OSは登録/状態/実operationを持つ"
+      ],
+      "invariants": [
+        "意味変更と実装故障と外部環境変化を一つのRefactorへ丸めない",
+        "管理projectionから正本/承認/完了を逆生成しない"
+      ],
+      "owner_connection": {
+        "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+        "meaning": "HARNESSのtrace/影響/戻し先条件",
+        "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+      },
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "comparison_detail": {
+          "content": "同じreport findingをsemantic signature前後、同contractのbehavior、環境前後の原内容で区別する。reportの名称/件数から種類を確定しない。",
+          "upstream": "意味差分の最上流を候補として返す。今回の要求/受入差分はL3/L2。実装故障と環境変化を一つのRefactorへ丸めない。",
+          "owner": "HARNESSは条件/影響/戻し先を導出し、OSは別契約で運転する。種類が判明しても担当owner不足なら不足を保持し運転未成立に残す。",
+          "authority": "Issue closed/Project Done/CI greenと候補提示は上流意味/承認/完了の証拠ではない。旧trigger/runtimeは参照資料に限る。"
+        },
+        "legacy_basis": [
+          "LEGACY-ASSET-5DAB2F0E1C13F846CABB:13-25",
+          "LEGACY-ASSET-02319C2481B9E01698D5:31-41"
+        ],
+        "failure_return": "種類/意味差分/source/scope/revision/owner不足を分けて返し、無関係WORK-Qを保持する。"
+      }
+    },
+    {
+      "id": "HARNESS-L4-004-F01",
+      "requirement_ref": "HARNESS-L3-004-F01",
+      "l9_ref": "HARNESS-L9-004-F01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-F01",
+        "parent": "HARNESS-L2-004",
+        "title": "要求から対設計・検証へのtrace",
+        "obligation": "要求identity/revision/scope/sourceから設計と対検証へ上下方向のrelationを辿り、変更した要求条件に対応する設計/検証/oracle/再検証範囲を導出する。pair片側/孤立/出典/revision不足を識別し、件数/link存在だけで全条件の検証対応にしない。所有/実装/接続/検証の欠落、未所属と二重所有をそれぞれ識別し、unknown影響を影響なしへ補完しない。",
+        "oracle_ref": "HARNESS-L10-004-F01"
+      },
+      "component": "ConditionTraceCoverage",
+      "input_materials": [
+        "要求identity/revision/scope/sourceと個別の変更条件",
+        "設計/実装/接続/検証/oracleの上下・左右relationと所有"
+      ],
+      "output_materials": [
+        "条件ごとの未対応・片側pair・孤立・出典/revision不足を返す",
+        "未所属/二重所有と所有/実装/接続/検証の各欠落を別結果へ返す"
+      ],
+      "invariants": [
+        "件数/linkの存在は条件内容への対応の証明ではない",
+        "必要な設計/対検証/oracleと再検証範囲へ各変更条件を結ぶ"
+      ],
+      "owner_connection": {
+        "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+        "meaning": "HARNESSのtrace/影響/戻し先条件",
+        "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+      },
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "input_owners": [
+          "要求原文/個別条件owner",
+          "設計/対検証/oracle owner",
+          "所属/所有/実装/接続trace owner"
+        ],
+        "meaning_owner": "HARNESS",
+        "record_operation_owner": "OS",
+        "coverage_unit": "要求の個別条件。record件数やpath名でまとめて充足扱いにしない。",
+        "failure_return": "変更条件のdesign/verification/oracleと未対応範囲を当該ownerへ返す。unknown影響を無影響へ補完しない。",
+        "qualification_limit": "合成trace材料は実code/接続/実検証の証拠ではない。個別owner資格と正式schemaはL5/L8以下で閉じる。",
+        "comparison_detail": {
+          "selected_conditions": "要求原文の個別idを母集団とし、条件idが一致する設計/検証を探す。選択外recordはunmatchedへ残し、件数で代替しない。",
+          "bidirectional_trace": "条件→設計→検証の全endpointの実在と同revisionの両方向edgeを読む。endpoint欠落でedgeの存在を充足にしない。",
+          "semantic_oracle": "原文に結んだ要求oracle、設計behavior_contract、対検証oracleの入力/期待結果/意図したfailureを内容で比較する。",
+          "implementation_connection": "record自体が無ければmissing、設計とのjoinが不明ならunknown_design_join。合成recordの対応は実code/接続の成立を示さない。",
+          "partial_return": "不足/矛盾条件をUnknownとして返し、別条件の有効原資料を保持。changed_conditionsの検証候補は記録上のtargetであり、実行資格/検証済みを意味しない。"
+        }
+      },
+      "reverification_target_limit": "current検証資料のみを再検証target候補に列挙する。旧CIのrecordはrejected_external_verification_record_idsへ返し、欠けるcurrent条件はunresolved_reverification_conditionsへ残す。旧recordでcurrent targetを埋めない。"
+    },
+    {
+      "id": "HARNESS-L4-004-F02",
+      "requirement_ref": "HARNESS-L3-004-F02",
+      "l9_ref": "HARNESS-L9-004-F02",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-F02",
+        "parent": "HARNESS-L2-004",
+        "title": "影響と成立の分離",
+        "obligation": "単体/接続/構成体のrequirement-design-verification relationから影響をAffected/Unaffected/Unknownへ区別する。証拠/影響はrelationを通じて上へ伝えるが、下位の成立状態を上位へ直接伝えない。UnknownをUnaffectedにせず、再検証結果によってだけ上位成立状態を改める。",
+        "oracle_ref": "HARNESS-L10-004-F02"
+      },
+      "component": "ImpactAndEstablishment",
+      "input_materials": [
+        "単体/接続/構成体のrequirement-design-verification relation",
+        "変更scopeと対象別の既存成立記録・実再検証結果"
+      ],
+      "output_materials": [
+        "影響をAffected/Unaffected/Unknownへ分け、その根拠relationを返す",
+        "上位成立は再検証原結果からのみ改める条件へ結ぶ"
+      ],
+      "invariants": [
+        "下位状態のpassed/failedを上位へ直接伝えない",
+        "UnknownをUnaffectedへ変換せず、上位固有義務を保持"
+      ],
+      "owner_connection": {
+        "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+        "meaning": "HARNESSのtrace/影響/戻し先条件",
+        "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+      },
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "input_owners": [
+          "要求/設計membership owner",
+          "relation原記録owner",
+          "対象検証の原結果owner"
+        ],
+        "meaning_owner": "HARNESS",
+        "state_record_owner": "OS",
+        "impact_result": "Affected/Unaffected/Unknownの根拠relationを返す。未見/不足を閉世界で無影響と推定しない。",
+        "establishment_result": "元revisionの成立を保持し、変更後の上位成立は対象revisionの再検証と上位固有義務の原観測にのみ結ぶ。",
+        "qualification_limit": "合成再検証例を実観測/実状態更新へ昇格しない。"
+      }
+    },
+    {
+      "id": "HARNESS-L4-004-F03",
+      "requirement_ref": "HARNESS-L3-004-F03",
+      "l9_ref": "HARNESS-L9-004-F03",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-F03",
+        "parent": "HARNESS-L2-004",
+        "title": "限定再確定と意味変更の戻し先",
+        "obligation": "要求/public contract変更、trace欠落、Scrum実装事実の合流では影響する設計/対検証を再確定し必要なpair凍結を確認する。影響しない有効作業を一律失効させない。意味保存可能な不一致は右側Refactor/再検証、詳細L5/architecture境界L4/要件要求受入L3L2/価値L1の意味変更は該当層へBackflowし、発見層だけで戻し先を固定しない。通常照合のticket非発行と、明らかなずれ/由来欠落/同種finding再発/性能退行/障害後恒久対策/Scrum Reverse checkpoint/大きな設計退行のReverse ticket条件を003-F03へ結ぶ。局所は現在のForward ticket、独立構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactorの種類へ分け、実発行はOSへ返す。",
+        "oracle_ref": "HARNESS-L10-004-F03"
+      },
+      "component": "ScopedReconfirmationAndBackflow",
+      "input_materials": [
+        "要求/public contract変更・trace欠落・Scrum実装事実",
+        "意味差分の軸・003の承認済みReverse条件/改善種類"
+      ],
+      "output_materials": [
+        "影響する設計/対検証の再確定・必要なpair再凍結を返す",
+        "意味保存可能な右側Refactor/再検証と意味別Backflowを分ける"
+      ],
+      "invariants": [
+        "無関係な有効作業を一括失効させない",
+        "戻し先を検出層だけで固定せず、L5/L4/L3L2/L1の意味ownerへ返す",
+        "ticket条件/種類はHARNESS、実発行はOS。未統合003 L4は有効入力にしない"
+      ],
+      "owner_connection": {
+        "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+        "meaning": "HARNESSのtrace/影響/戻し先条件",
+        "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+      },
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "approved_connection_dependency": {
+        "requirement": {
+          "id": "HARNESS-L3-003-F03",
+          "parent": "HARNESS-L2-003",
+          "title": "Vの谷と右側の照合範囲",
+          "obligation": "005/015の凍結→実装前Red実観測→最小Green→局所Refactor/原子CIと双方向traceを同対象へ結び、出力をProvisionalにする。右側では結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。正規由来が分かる変更は当該scopeのScoped Reverse、由来不明/旧資産/trace欠落/設計を信用できない/大きなずれは全体Reverseの復旧候補に分ける。L9ではinterface、依存の向き、state/dataの所有、transaction、失敗伝播、retry、timeout、冪等性、結合度、責務重複を照合する。通常の照合ではticketを発行しない。明らかな設計/実装のずれ、由来欠落、同種findingの再発、性能退行、障害後の恒久対策、Scrum Reverse checkpoint、大きな設計退行ではReverse ticketの発行条件となる。小さな境界Refactorは現在のForward ticket内、独立した大きな構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactor ticketへ区別する。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。",
+          "oracle_ref": "HARNESS-L10-003-F03"
+        },
+        "oracle": {
+          "id": "HARNESS-L10-003-F03",
+          "parent": "HARNESS-L2-003",
+          "title": "Vの谷と右側の照合範囲",
+          "requirement_ref": "HARNESS-L3-003-F03",
+          "positive_input": "由来と対が明確な変更、由来不明/trace欠落、実装前Red不足を別々に照合する。通常照合と各Reverse trigger、局所/独立構造改善を分け、L9の各観点の不足を与える。",
+          "expected_observation": "谷の証拠条件と局所/全体照合の選択根拠が辿れ、原子CIを上位証明にしない。L9各観点とticket非発行/発行条件/種類の違いが辿れる。",
+          "negative_input": "正規scope照合でも全体Reverse既定、由来不明を局所成功で埋める、原子CIで品質/Accepted/Release成立。通常照合で毎回Reverse ticket、再発/性能退行のtrigger見落とし、L9のstate所有/transaction/冪等性未検証を照合済み、HARNESSによる実ticket発行。",
+          "failure_observation": "該当証拠/由来不足と復旧候補を残し、Reverse実行成功を生成しない。",
+          "execution_state": "not_executed"
+        },
+        "source_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+        "unmerged_basic_design_used": false
+      },
+      "connection_detail": {
+        "comparison_detail": {
+          "reconfirmation": "要求/public contract変更・trace欠落・Scrum実装事実の合流を原因別に残し、同revisionのrelationからD1/T1だけへ再確定と必要pair再凍結の候補を返す。Qは有効なまま。",
+          "backflow": "semantic signatureのvalue/要求受入/architecture/detailの最上流差分からL1/L3L2/L4/L5へ返す。意味保存可能な実装変更は右側のRefactor/再検証。由来欠落/設計退行は復旧候補へ残す。",
+          "triggers": "003承認済みの7種類を原観測内容から個別照合。値は合成fixtureに限り、新たな性能閾値や旧trigger policy/runtimeを採用しない。",
+          "ticket": "通常照合は新ticketなし。局所は現在Forward内、独立構造/architecture/性能改善は3種類へ分ける。発行条件/候補とOS実発行は別。",
+          "dependency": "003の承認済みL3/L10 objectを固定し、未統合003 L4/L9を有効入力にしない。"
+        },
+        "legacy_basis": [
+          "LEGACY-ASSET-12E2CD9B07EFAC343ED0:27-54",
+          "LEGACY-ASSET-719D5EC9C06FC4AAD0FF:HIL-FR-39/50",
+          "LEGACY-ASSET-5DAB2F0E1C13F846CABB:13-25"
+        ],
+        "failure_return": "当該scopeの再確定/未凍結pair/由来とticket候補だけを返す。全作業失効や上流authority更新を行わない。"
+      }
+    },
+    {
+      "id": "HARNESS-L4-004-F04",
+      "requirement_ref": "HARNESS-L3-004-F04",
+      "l9_ref": "HARNESS-L9-004-F04",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-F04",
+        "parent": "HARNESS-L2-004",
+        "title": "source atomの無損失変更",
+        "obligation": "入力source atom全件を、当該要求へ保持する集合、別の生存中候補へ残す集合、対象revision付き人間decisionで変更/retireする集合へ完全分割し、未計上atomを0にする。atom/原文digest/生存先/判断revisionと被覆receiptを辿り、container関連付け/仮登録で移管完了や採択を生成しない。",
+        "oracle_ref": "HARNESS-L10-004-F04"
+      },
+      "component": "SourceAtomPartition",
+      "input_materials": [
+        "選択入力sourceの全atom・原文digest・source revision",
+        "保持集合・生存中の別候補・対象revision付き人間decision"
+      ],
+      "output_materials": [
+        "全入力を保持/別生存先/人間decision変更またはretireへdisjoint partitionする",
+        "未計上/重複/失効した生存先/判断revision不足を返す"
+      ],
+      "invariants": [
+        "原atomごとに原文digest/生存先/判断revision/coverage receiptを辿る",
+        "container関連付け/仮登録/限定coverageを採用や全source移管にしない"
+      ],
+      "owner_connection": {
+        "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+        "meaning": "HARNESSのtrace/影響/戻し先条件",
+        "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+      },
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "source_population_owner": "原source owner",
+        "live_destination_owner": "保持要求または生存候補owner",
+        "meaning_change_decision_owner": "対象revisionの人間原判断owner",
+        "coverage_meaning_owner": "HARNESS",
+        "record_operation_owner": "OS",
+        "partition": "選択入力全件を保持/生存候補/人間判断による変更・retireへ完全かつ非重複に割り当てる。未計上・重複・不明/失効生存先・原文不一致を個別返却する。",
+        "qualification_limit": "source全体と個別ownerの実資格はL5/L8で閉じる。限定合成例を現行実移管/退役/採否へ昇格しない。"
+      }
+    },
+    {
+      "id": "HARNESS-L4-004-F05",
+      "requirement_ref": "HARNESS-L3-004-F05",
+      "l9_ref": "HARNESS-L9-004-F05",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-F05",
+        "parent": "HARNESS-L2-004",
+        "title": "旧資産参照と再利用・退役の条件",
+        "obligation": "選択する旧資産の要求/behavior/設計/検証/consumer/後継上流IDとpair/oracle/expected failure/受入/差戻しを照合する。完全一致再利用と意味再導出を分け、同製品責務/要求revision/意味/interface/権利/security/consumer/実行境界とsource-target digestの不変条件が不明ならコピー済み/移管済みにしない。適格な資産を不要に再実装せず、再導出対象をbyte copyで代替しない。初回は参照/意味再導出であり実copy/退役を選択しない。",
+        "oracle_ref": "HARNESS-L10-004-F05"
+      },
+      "component": "LegacyReuseAndRetirementConditions",
+      "input_materials": [
+        "旧資産の要求/behavior/設計/検証/consumer/後継上流ID",
+        "pair/oracle/expected failure/受入/差戻しと完全一致の不変条件"
+      ],
+      "output_materials": [
+        "参照/完全一致候補/意味再導出/未判定と不足を区別する",
+        "意味/interface/責務/権利/security/consumer/実行境界/source-target digestを個別照合"
+      ],
+      "invariants": [
+        "適格資産を不必要に再実装させず、再導出をbyte copyで代替しない",
+        "unknownをコピー済み/移管済みにしない",
+        "初回は参照/意味再導出。実copy/retireや旧test実行を選択しない"
+      ],
+      "owner_connection": {
+        "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+        "meaning": "HARNESSのtrace/影響/戻し先条件",
+        "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+      },
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "input_owners": [
+          "旧資産source/consumer owner",
+          "後継要求/design/oracle owner",
+          "権利/security/authority owner"
+        ],
+        "comparison_detail": {
+          "invariants": "製品責務・要求revision・意味・interface・権利・security・consumer・実行境界をsource/targetの内容で個別比較。unknownは一致にしない。",
+          "source_target": "各raw bytesと宣言digestの一致を先に確かめ、その後source-target digestを比較。値が一致しても再導出の意味差分をcopyで代替しない。",
+          "trace": "requirement/behavior/design/verification/consumer/後継上流/pair/oracle/expected failure/受入/差戻しを個別に残す。consumerのrequired pairと後継pairの内容/revisionを比較。",
+          "classification": "内容監査が未完なら未判定。旧test等の除外対象を完全一致候補にしない。",
+          "initial_limit": "全材料が合成なので分類は合成条件下の候補。初回は参照/意味再導出を選び、実copy/退役/実承認/旧test実行を生成しない。"
+        },
+        "failure_return": "不足/不変条件unknown/consumer/pair不一致を当該ownerへ返す。選択外4020資産全体の移管完了にしない。",
+        "current_control_source": "docs/governance/legacy-asset-reuse-control.md",
+        "legacy_basis": [
+          "LEGACY-ASSET-719D5EC9C06FC4AAD0FF:HIL-FR-39/45/50",
+          "LEGACY-ASSET-02319C2481B9E01698D5:29-41"
+        ]
+      }
+    },
+    {
+      "id": "HARNESS-L4-004-N01",
+      "requirement_ref": "HARNESS-L3-004-N01",
+      "l9_ref": "HARNESS-L9-004-N01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-N01",
+        "parent": "HARNESS-L2-004",
+        "title": "未見のrelationと未観測範囲",
+        "obligation": "同scopeの伏せた要求変更/新consumer relationに対し、対応する設計/対検証/影響集合を照合する条件を持つ。relation/authority/revisionが不足・矛盾・staleならUnknown/未評価に残し、未観測を影響無しや合格へ変えない。必要な運用観測/再要求化へのtraceも対象revisionへ結び、旧graphや別scope証拠で埋めない。",
+        "oracle_ref": "HARNESS-L10-004-N01"
+      },
+      "component": "UnseenRelationAndObservationLimits",
+      "input_materials": [
+        "伏せた要求変更/新consumerの独立原資料",
+        "relation/authority/revision・運用観測/再要求化のtrace"
+      ],
+      "output_materials": [
+        "未対応relationと評価限界を当該scopeへ局所化して返す",
+        "不足/conflict/staleはUnknown/未評価と再検証ownerへ返す"
+      ],
+      "invariants": [
+        "未見consumerを無影響、未観測を合格にしない",
+        "旧graph/別scope証拠で運用traceを埋めない",
+        "無関係な有効範囲を保持し、一般的網羅保証へ外挿しない"
+      ],
+      "owner_connection": {
+        "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+        "meaning": "HARNESSのtrace/影響/戻し先条件",
+        "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+      },
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "input_owners": [
+          "独立consumer/probe owner",
+          "要求/design/verification owner",
+          "OS原観測/上流意味owner"
+        ],
+        "comparison_detail": {
+          "probe": "合成のprevious_known集合にいないNEWと伏せた要求内容変更を別source packetで与える。実盲検実行/実consumer発見の証拠ではない。",
+          "content": "relationの条件集合、設計の期待内容、検証oracleの入力/期待値を要求原資料へ照合する。件数/IDで意味一致にしない。",
+          "qualification": "authority/対象revision/scopeと原観測/再要求化のtraceを個別に比較。relation不明ならUnknown。運用trace不足では必要traceは未評価のまま、判明した影響は保持。",
+          "preservation": "OLDの有効資料、無関係Q、選択外未観測集合を残す。未観測をpass/影響なしへ補完せず、一般的網羅保証へ外挿しない。",
+          "endpoint_join": "relation不明時は運用観測/再要求化のedgeが有っても要求とのjoinをunknown_relationへ残す。"
+        },
+        "legacy_basis": [
+          "LEGACY-ASSET-CAC0C64EB7540180B1FE:AAFD-AC-006/008/009/010/011",
+          "LEGACY-ASSET-719D5EC9C06FC4AAD0FF:HIL-FR-45/48/50"
+        ],
+        "failure_return": "未対応consumer/条件/source/revision/不足と再検証ownerを保持し、未成立の運転条件をOSへ返す。"
+      }
+    }
+  ],
+  "fixture_progress": {
+    "F04": {
+      "normal": 2,
+      "negative": 18,
+      "source_packets": 20,
+      "state": "draft_not_executed"
+    },
+    "remaining_contracts": [],
+    "F02": {
+      "normal": 3,
+      "negative": 14,
+      "source_packets": 17,
+      "state": "draft_not_executed"
+    },
+    "F01": {
+      "normal": 1,
+      "negative": 26,
+      "source_packets": 27,
+      "state": "draft_not_executed"
+    },
+    "F05": {
+      "normal": 2,
+      "negative": 34,
+      "source_packets": 36,
+      "state": "draft_not_executed"
+    },
+    "N01": {
+      "normal": 2,
+      "negative": 25,
+      "source_packets": 27,
+      "state": "draft_not_executed"
+    },
+    "B01": {
+      "normal": 3,
+      "negative": 20,
+      "source_packets": 23,
+      "state": "draft_not_executed"
+    },
+    "F03": {
+      "normal": 19,
+      "negative": 21,
+      "source_packets": 40,
+      "state": "draft_not_executed"
+    }
+  },
+  "synthetic_reference_binding": {
+    "qualification": "synthetic_content_bound_revision_not_formal_schema_or_actual_owner",
+    "rule": "各content-bearing ref/source/basisのrevisionは、同一node内で当該refを除いた内容のcanonical JSON SHA-256へ束縛する。子参照を先に束縛する。内容を変えた材料は別revisionとし、同じexact refへ別内容を結合しない。",
+    "mutation_replay": "reference_preparationの参照revisionのみをbefore/afterで先に照合・適用し、その後に記録された内容mutationを適用する。準備変更は意味期待やauthorityの成立を変更しない。",
+    "standalone_refs": "参照だけで内容nodeがない値は未資格の合成参照のまま。実owner bytes/資格はL5/L8で閉じる。",
+    "actual_identity_assigned": false,
+    "linked_ref_rule": "source_ref/target_ref/destination_ref/decision_refが同一内容nodeを指す場合は資格付けした同一revisionへ結ぶ。参照の誤りを意図した負例は誤りを保持する。不存在の参照はbaselineの資格付き参照で保持し、存在を生成しない。"
+  }
+}
