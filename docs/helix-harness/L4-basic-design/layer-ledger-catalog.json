@@ -98,7 +98,7 @@
   "authority_effect": "none",
   "operation_effect": "none",
   "remaining": [
-    "F01/F02の具体原packet/正常/負例・field matrixを起草済み。F03/F04/B01/N01の具体oracleと全関数の独立資格/内容組合せ・未見例は未完",
+    "F01/F02/F03の具体原packet/正常/負例・field/edge matrixを起草済み。F04/B01/N01の具体oracleと全関数の独立資格/内容組合せ・未見例は未完",
     "実owner-qualified L1/L2/authority/template版・対象scope/revision/互換契約binding",
     "L5/L8内部比較・edge casesと正式schema/codec/resolver",
     "独立reviewと所見閉包。実oracle凍結/Red/Green/Refactor・実L9/L10は未成立",
@@ -243,7 +243,13 @@
         "source/authority owner"
       ],
       "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "concrete_row_trace_rule": [
+        "各row fieldを独立expected_row_fieldsへ照合し、source spanの原rawをparseしてexpected_meaningへ比較する。semantic digestは原意味との一致と例示canonical JSON digestの双方を比較。",
+        "row bindingはstable subject/row revision/source span/原意味digest/対象revision/層を比較する。status/ownerの不足は個別fieldへ残し、独立に成立したidentity bindingを消さない。owner資格は未証明。",
+        "required_edge_sourceが指定する全edgeについてfrom側downstreamとto側upstreamの両記録と端点revision/対象revisionを比較。pairは両方向edgeを別々に比較し片方向traceと混同しない。",
+        "L0 anchorは独立source端点であり十二rowや第七pairへ数えない。正常例の意味/edge数は対照例で、実全要求のtrace網羅性は未証明。"
+      ]
     },
     {
       "id": "HARNESS-L4-040-F04",
@@ -367,7 +373,6 @@
       "state": "draft_concrete_catalog_cases_pending_qualification_detail_and_review"
     },
     "remaining_concrete_functions": [
-      "F03",
       "F04",
       "B01",
       "N01"
@@ -377,6 +382,13 @@
       "negative_cases": 2,
       "field_matrix_cases": 396,
       "state": "draft_concrete_layer_contract_cases_pending_qualification_and_review"
+    },
+    "F03": {
+      "normal_cases": 2,
+      "negative_cases": 2,
+      "row_field_matrix_cases": 216,
+      "edge_matrix_cases": 96,
+      "state": "draft_concrete_row_trace_cases_pending_qualification_and_review"
     }
   }
 }
