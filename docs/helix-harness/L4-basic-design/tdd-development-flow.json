@@ -424,7 +424,10 @@
           "C1"
         ],
         "state_ceiling": "Provisional",
-        "actual_tdd_success": "not_generated"
+        "actual_tdd_success": "not_generated",
+        "minimal_body_scope": "one_command_duplicate_debit",
+        "green_behavior": "synthetic_expected_receiver_debits1",
+        "oracle_binding": "synthetic_same_frozen_oracle"
       },
       "failure_conditions": [
         {

@@ -5556,6 +5556,16 @@
               "head": "H0",
               "actual": {
                 "receiver_debits": 2
+              },
+              "oracle_ref": {
+                "identity": "ORACLE-1",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "verification-design-owner"
               }
             },
             {
@@ -5563,7 +5573,17 @@
               "sequence": 3,
               "from_head": "H0",
               "to_head": "H1",
-              "contract_scope": "one_command_duplicate_debit"
+              "contract_scope": "one_command_duplicate_debit",
+              "oracle_ref": {
+                "identity": "ORACLE-1",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "verification-design-owner"
+              }
             },
             {
               "kind": "green",
@@ -5587,7 +5607,17 @@
               "kind": "local_refactor",
               "sequence": 5,
               "from_head": "H1",
-              "to_head": "H2"
+              "to_head": "H2",
+              "oracle_ref": {
+                "identity": "ORACLE-1",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "verification-design-owner"
+              }
             },
             {
               "kind": "atomic_ci",
@@ -5653,8 +5683,8 @@
             },
             "owner": "independent-fixture-owner"
           },
-          "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\"},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\"},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
-          "byte_sha256": "fbc5dbb0265b4efd81a2ab86f3b8f6bf78b5a979c3e0003e82aa67ee939e4665",
+          "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2},\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
+          "byte_sha256": "c457b702557b4202beafd8a3859df738c122f817f4c89d6ec8a442b735d30845",
           "owner_material": {
             "binding": {
               "identity": "TDD-TARGET",
@@ -5711,6 +5741,16 @@
                 "head": "H0",
                 "actual": {
                   "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
                 }
               },
               {
@@ -5718,7 +5758,17 @@
                 "sequence": 3,
                 "from_head": "H0",
                 "to_head": "H1",
-                "contract_scope": "one_command_duplicate_debit"
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "green",
@@ -5742,7 +5792,17 @@
                 "kind": "local_refactor",
                 "sequence": 5,
                 "from_head": "H1",
-                "to_head": "H2"
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "atomic_ci",
@@ -5808,7 +5868,10 @@
           "C1"
         ],
         "state_ceiling": "Provisional",
-        "actual_tdd_success": "not_generated"
+        "actual_tdd_success": "not_generated",
+        "minimal_body_scope": "one_command_duplicate_debit",
+        "green_behavior": "synthetic_expected_receiver_debits1",
+        "oracle_binding": "synthetic_same_frozen_oracle"
       },
       "negative_cases": [
         {
@@ -5894,6 +5957,16 @@
                 "head": "H0",
                 "actual": {
                   "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
                 }
               },
               {
@@ -5901,7 +5974,17 @@
                 "sequence": 3,
                 "from_head": "H0",
                 "to_head": "H1",
-                "contract_scope": "one_command_duplicate_debit"
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "green",
@@ -5925,7 +6008,17 @@
                 "kind": "local_refactor",
                 "sequence": 5,
                 "from_head": "H1",
-                "to_head": "H2"
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "atomic_ci",
@@ -6006,8 +6099,8 @@
               },
               "owner": "independent-fixture-owner"
             },
-            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\"},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-RELAXED\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\"},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
-            "byte_sha256": "28e28d7b06ef9a01dab4155c5cd99f197ced6a6789e3ae8c3f2922cd21d8cd90",
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2},\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-RELAXED\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
+            "byte_sha256": "c7f78b21030389f68993d308266f4f0fdf0d9de0f6a560f9cbe9e6b38177fb3b",
             "owner_material": {
               "binding": {
                 "identity": "TDD-TARGET",
@@ -6064,6 +6157,16 @@
                   "head": "H0",
                   "actual": {
                     "receiver_debits": 2
+                  },
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
                   }
                 },
                 {
@@ -6071,7 +6174,17 @@
                   "sequence": 3,
                   "from_head": "H0",
                   "to_head": "H1",
-                  "contract_scope": "one_command_duplicate_debit"
+                  "contract_scope": "one_command_duplicate_debit",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "green",
@@ -6095,7 +6208,17 @@
                   "kind": "local_refactor",
                   "sequence": 5,
                   "from_head": "H1",
-                  "to_head": "H2"
+                  "to_head": "H2",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "atomic_ci",
@@ -6178,7 +6301,7 @@
             "embedded_source_rule": "normal入力の参照先原意味と提出負例を別に照合。同Refの提出変異をcanonical owner更新としない。root bytes資格からembedded意味/実凍結/実観測を生成しない。"
           },
           "expected_partial_material": {
-            "field": "order",
+            "field": "oracle_binding",
             "state": "conflict",
             "reason": "Greenのoracle入替を拒否。",
             "binding": {
@@ -6198,7 +6321,10 @@
                 "C1"
               ],
               "state_ceiling": "Provisional",
-              "actual_tdd_success": "not_generated"
+              "actual_tdd_success": "not_generated",
+              "minimal_body_scope": "one_command_duplicate_debit",
+              "green_behavior": "synthetic_expected_receiver_debits1",
+              "oracle_binding": "synthetic_same_frozen_oracle"
             },
             "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
             "no_actual_completion": true
@@ -6269,6 +6395,16 @@
                 "head": "H0",
                 "actual": {
                   "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
                 }
               },
               {
@@ -6276,7 +6412,17 @@
                 "sequence": 1,
                 "from_head": "H0",
                 "to_head": "H1",
-                "contract_scope": "one_command_duplicate_debit"
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "green",
@@ -6300,7 +6446,17 @@
                 "kind": "local_refactor",
                 "sequence": 5,
                 "from_head": "H1",
-                "to_head": "H2"
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "atomic_ci",
@@ -6381,8 +6537,8 @@
               },
               "owner": "independent-fixture-owner"
             },
-            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2}},{\"kind\":\"minimal_body\",\"sequence\":1,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\"},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\"},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
-            "byte_sha256": "ded7092ebae7cf38dcea7f884535666f560360622d0b8502f3a1d81c0a1bcf99",
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2},\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"minimal_body\",\"sequence\":1,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
+            "byte_sha256": "d6b11e65e4cce297941dc13aaa30655243159fa13b165b87466406994926ba96",
             "owner_material": {
               "binding": {
                 "identity": "TDD-TARGET",
@@ -6439,6 +6595,16 @@
                   "head": "H0",
                   "actual": {
                     "receiver_debits": 2
+                  },
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
                   }
                 },
                 {
@@ -6446,7 +6612,17 @@
                   "sequence": 1,
                   "from_head": "H0",
                   "to_head": "H1",
-                  "contract_scope": "one_command_duplicate_debit"
+                  "contract_scope": "one_command_duplicate_debit",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "green",
@@ -6470,7 +6646,17 @@
                   "kind": "local_refactor",
                   "sequence": 5,
                   "from_head": "H1",
-                  "to_head": "H2"
+                  "to_head": "H2",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "atomic_ci",
@@ -6555,7 +6741,10 @@
                 "C1"
               ],
               "state_ceiling": "Provisional",
-              "actual_tdd_success": "not_generated"
+              "actual_tdd_success": "not_generated",
+              "minimal_body_scope": "one_command_duplicate_debit",
+              "green_behavior": "synthetic_expected_receiver_debits1",
+              "oracle_binding": "synthetic_same_frozen_oracle"
             },
             "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
             "no_actual_completion": true
@@ -6626,6 +6815,16 @@
                 "head": "H0",
                 "actual": {
                   "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
                 }
               },
               {
@@ -6633,7 +6832,17 @@
                 "sequence": 3,
                 "from_head": "H0",
                 "to_head": "H1",
-                "contract_scope": "one_command_duplicate_debit"
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "green",
@@ -6657,7 +6866,17 @@
                 "kind": "local_refactor",
                 "sequence": 5,
                 "from_head": "H1",
-                "to_head": "H2"
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "atomic_ci",
@@ -6738,8 +6957,8 @@
               },
               "owner": "independent-fixture-owner"
             },
-            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\"},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\"},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=two_debits\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
-            "byte_sha256": "d5ca4f4d8fe57a48eb9d38378d064e8c6d9c6bf30f64d3af4d6e7328624750f1",
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2},\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=two_debits\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
+            "byte_sha256": "eda56176cb286233dfa95485946166d850d2e568a1ab923ff4e573191d8aab1f",
             "owner_material": {
               "binding": {
                 "identity": "TDD-TARGET",
@@ -6796,6 +7015,16 @@
                   "head": "H0",
                   "actual": {
                     "receiver_debits": 2
+                  },
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
                   }
                 },
                 {
@@ -6803,7 +7032,17 @@
                   "sequence": 3,
                   "from_head": "H0",
                   "to_head": "H1",
-                  "contract_scope": "one_command_duplicate_debit"
+                  "contract_scope": "one_command_duplicate_debit",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "green",
@@ -6827,7 +7066,17 @@
                   "kind": "local_refactor",
                   "sequence": 5,
                   "from_head": "H1",
-                  "to_head": "H2"
+                  "to_head": "H2",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "atomic_ci",
@@ -6912,7 +7161,10 @@
                 "C1"
               ],
               "state_ceiling": "Provisional",
-              "actual_tdd_success": "not_generated"
+              "actual_tdd_success": "not_generated",
+              "minimal_body_scope": "one_command_duplicate_debit",
+              "green_behavior": "synthetic_expected_receiver_debits1",
+              "oracle_binding": "synthetic_same_frozen_oracle"
             },
             "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
             "no_actual_completion": true
@@ -6983,6 +7235,16 @@
                 "head": "H0",
                 "actual": {
                   "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
                 }
               },
               {
@@ -6990,7 +7252,17 @@
                 "sequence": 3,
                 "from_head": "H0",
                 "to_head": "H1",
-                "contract_scope": "one_command_duplicate_debit"
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "green",
@@ -7014,7 +7286,17 @@
                 "kind": "local_refactor",
                 "sequence": 5,
                 "from_head": "H1",
-                "to_head": "H2"
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "atomic_ci",
@@ -7095,8 +7377,8 @@
               },
               "owner": "independent-fixture-owner"
             },
-            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\"},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\"},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"AB→A\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
-            "byte_sha256": "2dfd3ef43f050ce365f895871f09b8c5b5882aae645f893816feaaa70b4ec141",
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2},\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"AB→A\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
+            "byte_sha256": "3a5e890a25ac75a2c8f69fc58e7b655453bc90f5dfc28c3b41f3bfe70b1238d1",
             "owner_material": {
               "binding": {
                 "identity": "TDD-TARGET",
@@ -7153,6 +7435,16 @@
                   "head": "H0",
                   "actual": {
                     "receiver_debits": 2
+                  },
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
                   }
                 },
                 {
@@ -7160,7 +7452,17 @@
                   "sequence": 3,
                   "from_head": "H0",
                   "to_head": "H1",
-                  "contract_scope": "one_command_duplicate_debit"
+                  "contract_scope": "one_command_duplicate_debit",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "green",
@@ -7184,7 +7486,17 @@
                   "kind": "local_refactor",
                   "sequence": 5,
                   "from_head": "H1",
-                  "to_head": "H2"
+                  "to_head": "H2",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "atomic_ci",
@@ -7269,7 +7581,10 @@
                 "C1"
               ],
               "state_ceiling": "Provisional",
-              "actual_tdd_success": "not_generated"
+              "actual_tdd_success": "not_generated",
+              "minimal_body_scope": "one_command_duplicate_debit",
+              "green_behavior": "synthetic_expected_receiver_debits1",
+              "oracle_binding": "synthetic_same_frozen_oracle"
             },
             "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
             "no_actual_completion": true
@@ -7340,6 +7655,16 @@
                 "head": "H0",
                 "actual": {
                   "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
                 }
               },
               {
@@ -7347,7 +7672,17 @@
                 "sequence": 3,
                 "from_head": "H0",
                 "to_head": "H1",
-                "contract_scope": "one_command_duplicate_debit"
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "green",
@@ -7371,7 +7706,17 @@
                 "kind": "local_refactor",
                 "sequence": 5,
                 "from_head": "H1",
-                "to_head": "H2"
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "atomic_ci",
@@ -7452,8 +7797,8 @@
               },
               "owner": "independent-fixture-owner"
             },
-            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\"},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\"},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"two_debits\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
-            "byte_sha256": "880bf878c49430a3e87238e8b4cf77737240962619e3c5979a23260d0024fda9",
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2},\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"two_debits\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
+            "byte_sha256": "088cbcaf5f0afedb868208ce806984640ff2fc8e61c0bbb4770a7cfc09cb0fab",
             "owner_material": {
               "binding": {
                 "identity": "TDD-TARGET",
@@ -7510,6 +7855,16 @@
                   "head": "H0",
                   "actual": {
                     "receiver_debits": 2
+                  },
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
                   }
                 },
                 {
@@ -7517,7 +7872,17 @@
                   "sequence": 3,
                   "from_head": "H0",
                   "to_head": "H1",
-                  "contract_scope": "one_command_duplicate_debit"
+                  "contract_scope": "one_command_duplicate_debit",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "green",
@@ -7541,7 +7906,17 @@
                   "kind": "local_refactor",
                   "sequence": 5,
                   "from_head": "H1",
-                  "to_head": "H2"
+                  "to_head": "H2",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "atomic_ci",
@@ -7626,7 +8001,10 @@
                 "C1"
               ],
               "state_ceiling": "Provisional",
-              "actual_tdd_success": "not_generated"
+              "actual_tdd_success": "not_generated",
+              "minimal_body_scope": "one_command_duplicate_debit",
+              "green_behavior": "synthetic_expected_receiver_debits1",
+              "oracle_binding": "synthetic_same_frozen_oracle"
             },
             "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
             "no_actual_completion": true
@@ -7697,6 +8075,16 @@
                 "head": "H0",
                 "actual": {
                   "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
                 }
               },
               {
@@ -7704,7 +8092,17 @@
                 "sequence": 3,
                 "from_head": "H0",
                 "to_head": "H1",
-                "contract_scope": "one_command_duplicate_debit"
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "green",
@@ -7728,7 +8126,17 @@
                 "kind": "local_refactor",
                 "sequence": 5,
                 "from_head": "H1",
-                "to_head": "H2"
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "atomic_ci",
@@ -7788,7 +8196,10 @@
               "C1"
             ],
             "state_ceiling": "Provisional",
-            "actual_tdd_success": "quality_accepted"
+            "actual_tdd_success": "quality_accepted",
+            "minimal_body_scope": "one_command_duplicate_debit",
+            "green_behavior": "synthetic_expected_receiver_debits1",
+            "oracle_binding": "synthetic_same_frozen_oracle"
           },
           "expected_issue": "原子CIで品質/受入を生成しない。",
           "non_target_preserved": {
@@ -7817,8 +8228,8 @@
               },
               "owner": "independent-fixture-owner"
             },
-            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\"},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\"},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
-            "byte_sha256": "fbc5dbb0265b4efd81a2ab86f3b8f6bf78b5a979c3e0003e82aa67ee939e4665",
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2},\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
+            "byte_sha256": "c457b702557b4202beafd8a3859df738c122f817f4c89d6ec8a442b735d30845",
             "owner_material": {
               "binding": {
                 "identity": "TDD-TARGET",
@@ -7875,6 +8286,16 @@
                   "head": "H0",
                   "actual": {
                     "receiver_debits": 2
+                  },
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
                   }
                 },
                 {
@@ -7882,7 +8303,17 @@
                   "sequence": 3,
                   "from_head": "H0",
                   "to_head": "H1",
-                  "contract_scope": "one_command_duplicate_debit"
+                  "contract_scope": "one_command_duplicate_debit",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "green",
@@ -7906,7 +8337,17 @@
                   "kind": "local_refactor",
                   "sequence": 5,
                   "from_head": "H1",
-                  "to_head": "H2"
+                  "to_head": "H2",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "atomic_ci",
@@ -7985,7 +8426,10 @@
                 "C1"
               ],
               "state_ceiling": "Provisional",
-              "actual_tdd_success": "not_generated"
+              "actual_tdd_success": "not_generated",
+              "minimal_body_scope": "one_command_duplicate_debit",
+              "green_behavior": "synthetic_expected_receiver_debits1",
+              "oracle_binding": "synthetic_same_frozen_oracle"
             },
             "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
             "no_actual_completion": true
@@ -8056,6 +8500,16 @@
                 "head": "H0",
                 "actual": {
                   "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
                 }
               },
               {
@@ -8063,7 +8517,17 @@
                 "sequence": 3,
                 "from_head": "H0",
                 "to_head": "H1",
-                "contract_scope": "one_command_duplicate_debit"
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "green",
@@ -8087,7 +8551,17 @@
                 "kind": "local_refactor",
                 "sequence": 5,
                 "from_head": "H1",
-                "to_head": "H2"
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "atomic_ci",
@@ -8168,8 +8642,8 @@
               },
               "owner": "independent-fixture-owner"
             },
-            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\"},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\"},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R2\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
-            "byte_sha256": "5369a4a4386f68da6ae1457fd2743ddc19bb862e0ce3741402c72ad0e083bb62",
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2},\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R2\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
+            "byte_sha256": "aedc6212629d940198c121ab340f6529dc432f4dcf749de648cf98fa9e66cc06",
             "owner_material": {
               "binding": {
                 "identity": "TDD-TARGET",
@@ -8226,6 +8700,16 @@
                   "head": "H0",
                   "actual": {
                     "receiver_debits": 2
+                  },
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
                   }
                 },
                 {
@@ -8233,7 +8717,17 @@
                   "sequence": 3,
                   "from_head": "H0",
                   "to_head": "H1",
-                  "contract_scope": "one_command_duplicate_debit"
+                  "contract_scope": "one_command_duplicate_debit",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "green",
@@ -8257,7 +8751,17 @@
                   "kind": "local_refactor",
                   "sequence": 5,
                   "from_head": "H1",
-                  "to_head": "H2"
+                  "to_head": "H2",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "atomic_ci",
@@ -8342,7 +8846,10 @@
                 "C1"
               ],
               "state_ceiling": "Provisional",
-              "actual_tdd_success": "not_generated"
+              "actual_tdd_success": "not_generated",
+              "minimal_body_scope": "one_command_duplicate_debit",
+              "green_behavior": "synthetic_expected_receiver_debits1",
+              "oracle_binding": "synthetic_same_frozen_oracle"
             },
             "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
             "no_actual_completion": true
@@ -8413,6 +8920,16 @@
                 "head": "H0",
                 "actual": {
                   "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
                 }
               },
               {
@@ -8420,7 +8937,17 @@
                 "sequence": 3,
                 "from_head": "H0",
                 "to_head": "H1",
-                "contract_scope": "duplicate_debit_and_unrequested_new_command"
+                "contract_scope": "duplicate_debit_and_unrequested_new_command",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "green",
@@ -8444,7 +8971,17 @@
                 "kind": "local_refactor",
                 "sequence": 5,
                 "from_head": "H1",
-                "to_head": "H2"
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "atomic_ci",
@@ -8525,8 +9062,8 @@
               },
               "owner": "independent-fixture-owner"
             },
-            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"duplicate_debit_and_unrequested_new_command\"},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\"},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
-            "byte_sha256": "bee1de23c2ea5d70f5aa34fc9dd9aa8693c80e872782e83fe219317fe5dfbce9",
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2},\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"duplicate_debit_and_unrequested_new_command\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
+            "byte_sha256": "dc35ce9a0776ed48bdc8d41b4b3c723eba0d0aba0beac4ae15b49bcd858cdc17",
             "owner_material": {
               "binding": {
                 "identity": "TDD-TARGET",
@@ -8583,6 +9120,16 @@
                   "head": "H0",
                   "actual": {
                     "receiver_debits": 2
+                  },
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
                   }
                 },
                 {
@@ -8590,7 +9137,17 @@
                   "sequence": 3,
                   "from_head": "H0",
                   "to_head": "H1",
-                  "contract_scope": "duplicate_debit_and_unrequested_new_command"
+                  "contract_scope": "duplicate_debit_and_unrequested_new_command",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "green",
@@ -8614,7 +9171,17 @@
                   "kind": "local_refactor",
                   "sequence": 5,
                   "from_head": "H1",
-                  "to_head": "H2"
+                  "to_head": "H2",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "atomic_ci",
@@ -8679,7 +9246,7 @@
             "embedded_source_rule": "正常canonical意味と提出変異を分離。同Refの提出変異をowner更新にしない。"
           },
           "expected_partial_material": {
-            "field": "order",
+            "field": "minimal_body_scope",
             "state": "conflict",
             "reason": "最小本体の契約外behavior追加を保持し、成功Greenで相殺しない。",
             "binding": {
@@ -8699,7 +9266,10 @@
                 "C1"
               ],
               "state_ceiling": "Provisional",
-              "actual_tdd_success": "not_generated"
+              "actual_tdd_success": "not_generated",
+              "minimal_body_scope": "one_command_duplicate_debit",
+              "green_behavior": "synthetic_expected_receiver_debits1",
+              "oracle_binding": "synthetic_same_frozen_oracle"
             },
             "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
             "no_actual_completion": true
@@ -8774,6 +9344,16 @@
                 "head": "H0",
                 "actual": {
                   "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
                 }
               },
               {
@@ -8781,7 +9361,17 @@
                 "sequence": 3,
                 "from_head": "H0",
                 "to_head": "H1",
-                "contract_scope": "one_command_duplicate_debit"
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "green",
@@ -8805,7 +9395,17 @@
                 "kind": "local_refactor",
                 "sequence": 5,
                 "from_head": "H1",
-                "to_head": "H2"
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
               },
               {
                 "kind": "atomic_ci",
@@ -8886,8 +9486,8 @@
               },
               "owner": "independent-fixture-owner"
             },
-            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\"},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":2}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\"},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
-            "byte_sha256": "84db358afa88c7c36029618bf5398b3c53275245b87dc8c869cdc1f3e39f61ea",
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1}},\"steps\":[{\"kind\":\"freeze\",\"sequence\":1,\"head\":\"H0\"},{\"kind\":\"pre_body_red\",\"sequence\":2,\"head\":\"H0\",\"actual\":{\"receiver_debits\":2},\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"minimal_body\",\"sequence\":3,\"from_head\":\"H0\",\"to_head\":\"H1\",\"contract_scope\":\"one_command_duplicate_debit\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"green\",\"sequence\":4,\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":2}},{\"kind\":\"local_refactor\",\"sequence\":5,\"from_head\":\"H1\",\"to_head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"}},{\"kind\":\"atomic_ci\",\"sequence\":6,\"head\":\"H2\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"actual\":{\"receiver_debits\":1}}],\"refactor_meaning\":{\"public_contract_before\":\"CMD1<=one_debit\",\"public_contract_after\":\"CMD1<=one_debit\",\"requirement_before\":\"R1\",\"requirement_after\":\"R1\",\"architecture_before\":\"A→AB\",\"architecture_after\":\"A→AB\",\"state_before\":\"one_debit\",\"state_after\":\"one_debit\"},\"ci_omissions\":{\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"中ticket回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]}}",
+            "byte_sha256": "9ca3d1d9de5db8c8d1c2d74a5d20240b867722f9d221d6b6df460266a39bcd00",
             "owner_material": {
               "binding": {
                 "identity": "TDD-TARGET",
@@ -8944,6 +9544,16 @@
                   "head": "H0",
                   "actual": {
                     "receiver_debits": 2
+                  },
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
                   }
                 },
                 {
@@ -8951,7 +9561,17 @@
                   "sequence": 3,
                   "from_head": "H0",
                   "to_head": "H1",
-                  "contract_scope": "one_command_duplicate_debit"
+                  "contract_scope": "one_command_duplicate_debit",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "green",
@@ -8975,7 +9595,17 @@
                   "kind": "local_refactor",
                   "sequence": 5,
                   "from_head": "H1",
-                  "to_head": "H2"
+                  "to_head": "H2",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  }
                 },
                 {
                   "kind": "atomic_ci",
@@ -9044,7 +9674,7 @@
             "embedded_source_rule": "正常canonical意味と提出変異を分離。同Refの提出変異をowner更新にしない。"
           },
           "expected_partial_material": {
-            "field": "order",
+            "field": "green_behavior",
             "state": "conflict",
             "reason": "同oracle期待1に対してGreenの観測2を成功として数えない。",
             "binding": {
@@ -9064,7 +9694,10 @@
                 "C1"
               ],
               "state_ceiling": "Provisional",
-              "actual_tdd_success": "not_generated"
+              "actual_tdd_success": "not_generated",
+              "minimal_body_scope": "one_command_duplicate_debit",
+              "green_behavior": "synthetic_expected_receiver_debits1",
+              "oracle_binding": "synthetic_same_frozen_oracle"
             },
             "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
             "no_actual_completion": true
