@@ -711,7 +711,20 @@
         "event_registration_execution_owner": "OS",
         "external_consumer": "独立consumerは008の再検証契約を実装し、自分のauthorityで処理する。OSを意味処理の必須基盤にしない。"
       },
-      "failure_return": "当該source/identity/revision/scope/版と読めた原資料を保持し、不足/unknown/conflict/staleを当該ownerへ返す。未解決で依存する下流成立を生成しない。"
+      "failure_return": "当該source/identity/revision/scope/版と読めた原資料を保持し、不足/unknown/conflict/staleを当該ownerへ返す。未解決で依存する下流成立を生成しない。",
+      "python_boundary_detail": {
+        "source_basis": "承認済み008-F07、旧ADR010:13–47とRDJ-FR002/008/009を意味再導出。Python意味コアは保持し、旧Node24/DB/CLI/runtime/旧testとCIは採用しない。",
+        "determinism": "同input/engine版/pack版で構造化意味を一致させる。別製品pack間の出力差は許容し、同一条件の差と区別する。",
+        "rule_boundary": "語彙/policy/質問/品質条件を製品版付きpack inputへ保持する。coreへ埋め込まない。",
+        "isolation": "network/DB/Git/GitHub/repository/credential/runtime stateを持たず外部writeなし。相談/意味処理は外部運転に依存しない。",
+        "qualification": "fixtureは合成構造化runの比較のみ。実Python実行/自然文解析/隔離/再現性を実証していない。",
+        "pending": [
+          "正式input/output型とcanonical encoding",
+          "実Python engine/versionと依存環境",
+          "実隔離/権限非付与の検証",
+          "oracle凍結と実装前Red/Green"
+        ]
+      }
     },
     {
       "id": "HARNESS-L4-008-N01",
@@ -756,7 +769,6 @@
     },
     "remaining_contracts": [
       "B01",
-      "F07",
       "N01"
     ],
     "F01": {
@@ -793,6 +805,12 @@
       "normal": 6,
       "negative": 27,
       "source_packets": 33,
+      "state": "draft_not_executed"
+    },
+    "F07": {
+      "normal": 3,
+      "negative": 38,
+      "source_packets": 41,
       "state": "draft_not_executed"
     }
   }
