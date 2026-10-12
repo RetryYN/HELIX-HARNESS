@@ -339,7 +339,8 @@
       "content_rules": [
         "原必要集合/属性は元ownerの宣言へ結び、原missing/unknownを提出推測で成立させない。",
         "観測source/revision/environment/resource/scopeと原過去観測を分離し、欠測/部分/古い観測をcurrent/healthyへしない。",
-        "環境と論理/物理path、永続/一時、scope対象/非対象、CORE/INFRA/OS/SEC/INT/LABOの正本を分ける。"
+        "環境と論理/物理path、永続/一時、scope対象/非対象、CORE/INFRA/OS/SEC/INT/LABOの正本を分ける。",
+        "Model Runtimeのcapacity/latency等に能力評価を提出しても資源値へ採らず、原資源観測を保持する。資源内容差はresource source、能力評価の内容はINTELLIGENCE/LABOへ返し、評価から資源/権限/実成立を生成しない。"
       ],
       "owner_by_role": {
         "runtime_identity": "resource-source-owner",

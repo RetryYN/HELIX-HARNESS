@@ -20103,6 +20103,142 @@
           },
           "execution_state": "not_executed",
           "effect": "none"
+        },
+        {
+          "id": "I001-F04-ABILITY-EVALUATION-AS-CAPACITY",
+          "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F04",
+          "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F04",
+          "l4_ref": "HELIXINFRASTRUCTURE-L4-001-F04",
+          "basis": "L10-001-F04の能力評価を資源値とする反例。LABO評価refはcapacity観測refを置換できず、原資源値を保持しINTELLIGENCE/LABOへ返す。",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-I001-F04-ABILITY-EVALUATION-AS-CAPACITY",
+              "revision": "fixture-content-eba4e731c463b5365ee5aac2eb04cf4fe29167649849e68359400d91d866a332",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"infra_owns_ability_evaluation\":true,\"infra_owns_ticket\":false,\"logical_is_physical\":false,\"missing_attributes_inferred\":false,\"old_observation_current\":false,\"other_environment_success\":false,\"raw_credential_copied\":false,\"resource_health_is_permission\":false,\"scope_outside_model_required\":false,\"temporary_is_persistent\":false},\"forbidden_value_field_names\":[],\"kind\":\"F04\",\"observation_target\":{\"environment\":\"ENV-STAGING\",\"observation_revision\":\"OBS-r2\",\"resource\":\"RESOURCE-P\",\"runtime_revision\":\"runtime-r2\",\"scope\":\"PRODUCT-P\"},\"original_logical_connection\":{\"consumer\":\"MECHANISM-B\",\"contract_revision\":\"CONNECT-P-r1\",\"direction\":\"A-to-B\",\"identity\":\"CONNECT-P\",\"kind\":\"logical_connection\",\"source\":\"MECHANISM-A\"},\"original_observation_state\":\"current_in_fixture_only\",\"original_physical_path\":{\"dependency_ref\":\"RESOURCE-DEP@r1\",\"destination\":\"RESOURCE-DEP\",\"direction\":\"P-to-DEP\",\"endpoint_ref\":\"ENDPOINT-DEP@r1\",\"environment\":\"ENV-STAGING\",\"kind\":\"physical_runtime_path\",\"protocol_ref\":\"PROTOCOL-P@r1\",\"purpose\":\"internal-evidence\",\"security_boundary_ref\":\"SEC-NET-BOUNDARY-P@r1\",\"source\":\"RESOURCE-P\"},\"original_previous_observation\":{\"environment\":\"ENV-STAGING\",\"revision\":\"OBS-r1\",\"state\":\"healthy_historical_fixture\",\"version\":\"runtime-r1\"},\"original_profile\":{\"capacity_ref\":\"CAPACITY-OBS-P@r1\",\"concurrency\":2,\"endpoint_ref\":\"ENDPOINT-MODEL-P@r1\",\"environment\":\"ENV-STAGING\",\"gpu_memory_needs_ref\":\"MEMORY-NEEDS-P@r1\",\"health\":\"healthy_in_fixture_only\",\"latency_ref\":\"LATENCY-OBS-P@r1\",\"model\":\"MODEL-P\",\"model_version\":\"MODEL-P-r1\",\"observation_revision\":\"OBS-r2\",\"runtime_identity\":\"MODEL-RUNTIME-P\",\"server\":\"NODE-P\",\"source\":\"COLLECTOR-P\"},\"original_target\":{\"environment\":\"ENV-STAGING\",\"observation_revision\":\"OBS-r2\",\"resource\":\"RESOURCE-P\",\"runtime_revision\":\"runtime-r2\",\"scope\":\"PRODUCT-P\"},\"original_unobserved_fields\":[],\"runtime_selected_in_original_scope\":true,\"submitted_logical_connection\":{\"consumer\":\"MECHANISM-B\",\"contract_revision\":\"CONNECT-P-r1\",\"direction\":\"A-to-B\",\"identity\":\"CONNECT-P\",\"kind\":\"logical_connection\",\"source\":\"MECHANISM-A\"},\"submitted_physical_path\":{\"dependency_ref\":\"RESOURCE-DEP@r1\",\"destination\":\"RESOURCE-DEP\",\"direction\":\"P-to-DEP\",\"endpoint_ref\":\"ENDPOINT-DEP@r1\",\"environment\":\"ENV-STAGING\",\"kind\":\"physical_runtime_path\",\"protocol_ref\":\"PROTOCOL-P@r1\",\"purpose\":\"internal-evidence\",\"security_boundary_ref\":\"SEC-NET-BOUNDARY-P@r1\",\"source\":\"RESOURCE-P\"},\"submitted_profile\":{\"capacity_ref\":{\"evaluation_ref\":\"LABO-ABILITY-EVALUATION-P@r1\",\"kind\":\"ability_evaluation\",\"model\":\"MODEL-P\",\"owner\":\"LABO\",\"scope\":\"PRODUCT-P/evaluation\"},\"concurrency\":2,\"endpoint_ref\":\"ENDPOINT-MODEL-P@r1\",\"environment\":\"ENV-STAGING\",\"gpu_memory_needs_ref\":\"MEMORY-NEEDS-P@r1\",\"health\":\"healthy_in_fixture_only\",\"latency_ref\":\"LATENCY-OBS-P@r1\",\"model\":\"MODEL-P\",\"model_version\":\"MODEL-P-r1\",\"observation_revision\":\"OBS-r2\",\"runtime_identity\":\"MODEL-RUNTIME-P\",\"server\":\"NODE-P\",\"source\":\"COLLECTOR-P\"}}",
+            "sha256": "eba4e731c463b5365ee5aac2eb04cf4fe29167649849e68359400d91d866a332",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "profile_field_results": {
+              "runtime_identity": "content_corresponding_in_fixture",
+              "model": "content_corresponding_in_fixture",
+              "model_version": "content_corresponding_in_fixture",
+              "server": "content_corresponding_in_fixture",
+              "gpu_memory_needs_ref": "content_corresponding_in_fixture",
+              "concurrency": "content_corresponding_in_fixture",
+              "latency_ref": "content_corresponding_in_fixture",
+              "capacity_ref": "submitted_content_conflict",
+              "health": "content_corresponding_in_fixture",
+              "endpoint_ref": "content_corresponding_in_fixture",
+              "environment": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "observation_revision": "content_corresponding_in_fixture"
+            },
+            "observation_target_results": {
+              "resource": "content_corresponding_in_fixture",
+              "environment": "content_corresponding_in_fixture",
+              "runtime_revision": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "observation_revision": "content_corresponding_in_fixture"
+            },
+            "retained_original_profile": {
+              "runtime_identity": "MODEL-RUNTIME-P",
+              "model": "MODEL-P",
+              "model_version": "MODEL-P-r1",
+              "server": "NODE-P",
+              "gpu_memory_needs_ref": "MEMORY-NEEDS-P@r1",
+              "concurrency": 2,
+              "latency_ref": "LATENCY-OBS-P@r1",
+              "capacity_ref": "CAPACITY-OBS-P@r1",
+              "health": "healthy_in_fixture_only",
+              "endpoint_ref": "ENDPOINT-MODEL-P@r1",
+              "environment": "ENV-STAGING",
+              "source": "COLLECTOR-P",
+              "observation_revision": "OBS-r2"
+            },
+            "retained_observation_state": "current_in_fixture_only",
+            "retained_previous_observation": {
+              "revision": "OBS-r1",
+              "environment": "ENV-STAGING",
+              "version": "runtime-r1",
+              "state": "healthy_historical_fixture"
+            },
+            "retained_unobserved_fields": [],
+            "candidate_state": "held_with_original_resource_values",
+            "failure_reasons": [
+              {
+                "area": "profile",
+                "field": "capacity_ref",
+                "result": "submitted_content_conflict",
+                "return_owner": "resource-source-owner"
+              },
+              {
+                "area": "runtime_attribute_kind",
+                "field": "capacity_ref",
+                "result": "ability_evaluation_not_resource_attribute",
+                "return_owner": "INTELLIGENCE/LABO"
+              }
+            ],
+            "failure_return_owners": [
+              "INTELLIGENCE/LABO",
+              "resource-source-owner"
+            ],
+            "details": {
+              "original_scope_membership": true,
+              "retained_runtime_profile": {
+                "runtime_identity": "MODEL-RUNTIME-P",
+                "model": "MODEL-P",
+                "model_version": "MODEL-P-r1",
+                "server": "NODE-P",
+                "gpu_memory_needs_ref": "MEMORY-NEEDS-P@r1",
+                "concurrency": 2,
+                "latency_ref": "LATENCY-OBS-P@r1",
+                "capacity_ref": "CAPACITY-OBS-P@r1",
+                "health": "healthy_in_fixture_only",
+                "endpoint_ref": "ENDPOINT-MODEL-P@r1",
+                "environment": "ENV-STAGING",
+                "source": "COLLECTOR-P",
+                "observation_revision": "OBS-r2"
+              },
+              "ability_evaluation_owner": [
+                "INT",
+                "LABO"
+              ],
+              "returned_evaluation_reference": {
+                "ref": "LABO-ABILITY-EVALUATION-P@r1",
+                "return_owner": "INTELLIGENCE/LABO",
+                "state": "not_applied_to_resource_attribute"
+              }
+            },
+            "claim_results": {
+              "missing_attributes_inferred": "none",
+              "other_environment_success": "none",
+              "old_observation_current": "none",
+              "logical_is_physical": "none",
+              "temporary_is_persistent": "none",
+              "raw_credential_copied": "none",
+              "scope_outside_model_required": "none",
+              "resource_health_is_permission": "none",
+              "infra_owns_ticket": "none",
+              "infra_owns_ability_evaluation": "rejected"
+            },
+            "effects": {
+              "actual_observation": false,
+              "actual_resource_change": false,
+              "actual_network": false,
+              "actual_persistence": false,
+              "actual_permission": false,
+              "actual_deployment": false,
+              "actual_evaluation": false,
+              "actual_acceptance": false,
+              "actual_implementation_ready": false
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ],
       "coverage_limit": "合成原属性/対象と静的期待。実source/全組合せ/必要集合の実閉包/実観測/実権限は未成立。"
