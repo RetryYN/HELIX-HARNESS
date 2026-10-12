@@ -137,10 +137,6 @@
           "text": "### 要求の参照範囲と最新化"
         },
         {
-          "line": 30,
-          "text": ""
-        },
-        {
           "line": 31,
           "text": "利用者要求はL2、FR／NFR／ACの定義・凍結はL3であり、利用者受入はL11である。"
         },
@@ -165,10 +161,6 @@
           "text": "その追加条件に既存revisionの承認を転用しない。"
         },
         {
-          "line": 37,
-          "text": ""
-        },
-        {
           "line": 38,
           "text": "GitHub Issue／PRは作業・実行証跡への参照先であり、要求の意味・採否・合意revisionの正本ではない。"
         },
@@ -181,16 +173,8 @@
           "text": "DBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。"
         },
         {
-          "line": 41,
-          "text": ""
-        },
-        {
           "line": 42,
           "text": "### 層と対"
-        },
-        {
-          "line": 43,
-          "text": ""
         },
         {
           "line": 44,
@@ -249,32 +233,16 @@
           "text": "| L12 | 運用テスト・改善還流 | L1 企画 | 運用時間軸、価値、監視、改善を検証し次cycleへ還流 |"
         },
         {
-          "line": 58,
-          "text": ""
-        },
-        {
           "line": 59,
           "text": "本番releaseはL11受入とL12運用テストの間のmilestoneであり、独立layerを増設しない。"
-        },
-        {
-          "line": 60,
-          "text": ""
         },
         {
           "line": 61,
           "text": "正規V-pairは `L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7` の6組だけである。"
         },
         {
-          "line": 62,
-          "text": ""
-        },
-        {
           "line": 63,
           "text": "## 3. L2画面工程"
-        },
-        {
-          "line": 64,
-          "text": ""
         },
         {
           "line": 65,
@@ -289,7 +257,12 @@
       "change": "現行Conceptと022のProvisional/Integrated/Verified/Accepted、003/004/005とのscope別契約へ再導出する。旧層番号/Lite-Full/DB/CLI/runtime/CIは採用しない。",
       "reason": "9/24/9/26/9/28の採択と022-004受入追補、10/12限定再開/今回の12object承認を保持する。",
       "failure_basis": "利用者受入の記録なしにoracle成功/CI greenをAcceptedへ読み替える不整合を防ぐ。",
-      "limit": "source snapshotの保全または未採用candidateを、現行authority/実proof/完了へ昇格しない。"
+      "limit": "source snapshotの保全または未採用candidateを、現行authority/実proof/完了へ昇格しない。",
+      "source_line_span": [
+        29,
+        66
+      ],
+      "quote_rule": "source_line_spanは原範囲、line_quotesはその範囲内の非空の内容行のみ。"
     },
     {
       "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
@@ -301,10 +274,6 @@
         {
           "line": 64,
           "text": "### FRS-BR-009 安全閉包と組合せの検収"
-        },
-        {
-          "line": 65,
-          "text": ""
         },
         {
           "line": 66,
@@ -319,18 +288,28 @@
       "change": "現行Conceptと022のProvisional/Integrated/Verified/Accepted、003/004/005とのscope別契約へ再導出する。旧層番号/Lite-Full/DB/CLI/runtime/CIは採用しない。",
       "reason": "9/24/9/26/9/28の採択と022-004受入追補、10/12限定再開/今回の12object承認を保持する。",
       "failure_basis": "利用者受入の記録なしにoracle成功/CI greenをAcceptedへ読み替える不整合を防ぐ。",
-      "limit": "source snapshotの保全または未採用candidateを、現行authority/実proof/完了へ昇格しない。"
+      "limit": "source snapshotの保全または未採用candidateを、現行authority/実proof/完了へ昇格しない。",
+      "source_line_span": [
+        64,
+        67
+      ],
+      "quote_rule": "source_line_spanは原範囲、line_quotesはその範囲内の非空の内容行のみ。"
     }
   ],
   "fixture_progress": {
     "remaining_contracts": [
-      "F01",
       "F02",
       "F03",
       "F04",
       "N01",
       "B01"
-    ]
+    ],
+    "F01": {
+      "normal": 3,
+      "negative": 140,
+      "source_packets": 143,
+      "state": "draft_not_executed"
+    }
   },
   "pending": [
     "6契約の具体的な原入力/独立期待/正常/反例と内容検証",
@@ -377,7 +356,67 @@
         "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
         "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
       },
-      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。",
+      "stage_input_detail": {
+        "required_input_ids_by_stage": {
+          "Integrated": [
+            "artifact",
+            "provisional_basis",
+            "L5_design",
+            "L8_verification_design",
+            "L4_design",
+            "L9_verification_design",
+            "core_trace",
+            "Integrated_quality_oracle",
+            "Integrated_security_oracle",
+            "Integrated_acceptance_oracle"
+          ],
+          "Verified": [
+            "artifact",
+            "provisional_basis",
+            "L5_design",
+            "L8_verification_design",
+            "L4_design",
+            "L9_verification_design",
+            "core_trace",
+            "L3_requirements",
+            "L10_verification_design",
+            "Verified_quality_oracle",
+            "Verified_security_oracle",
+            "Verified_acceptance_oracle"
+          ],
+          "Accepted": [
+            "artifact",
+            "provisional_basis",
+            "L5_design",
+            "L8_verification_design",
+            "L4_design",
+            "L9_verification_design",
+            "core_trace",
+            "L3_requirements",
+            "L10_verification_design",
+            "L2_requirements",
+            "L11_content_oracle",
+            "Accepted_quality_oracle",
+            "Accepted_security_oracle",
+            "Accepted_acceptance_oracle"
+          ]
+        },
+        "pair_targets": {
+          "L8_verification_design": "L5_design",
+          "L9_verification_design": "L4_design",
+          "L10_verification_design": "L3_requirements",
+          "L11_content_oracle": "L2_requirements"
+        },
+        "authority_limit": "profileのauthorityは合成材料のみ。実承認/資格/入力receipt/Provisional proofは成立していない。",
+        "source_basis": "承認済み022-F01と旧要求v1.3:29–66の層/対/要求/受入分離、FRS-BR009:64–67の組合せ別証拠を意味再導出。旧runtime/CI/旧層番号を移さない。",
+        "stage_limit": "quality/security/acceptance oracleを各stageの入力に結ぶ。入力が対応してもIntegrated/Verified/Acceptedの実proofを生成しない。",
+        "pending": [
+          "004/005/003の必要義務/戻し先の個別exact binding",
+          "正式input/profile schemaと実owner/authority",
+          "段階proofの実観測と実state運転"
+        ]
+      }
     },
     {
       "id": "HARNESS-L4-022-F02",
