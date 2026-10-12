@@ -541,9 +541,11 @@
       "basic_calls": 24,
       "typed_expected_cells": 336,
       "nested_return_cells": 120,
-      "state": "draft_basic_typed_and_content_counterexamples_qualification_pending",
+      "state": "draft_basic_typed_content_and_qualification_cases_pending_semantic_review",
       "content_counterexamples": 10,
-      "content_counterexample_typed_cells": 140
+      "content_counterexample_typed_cells": 140,
+      "qualification_calls": 64,
+      "qualification_typed_cells": 896
     },
     "F03": {
       "basic_calls": 43,
@@ -573,7 +575,7 @@
     }
   },
   "pending": [
-    "全7関数のbasic typed例を起草済み。F02〜F05/N01独立qualification/追加内容/返却例と全関数の組合せ・実bindingは未完",
+    "全7関数のbasic typed例を起草済み。F03〜F05/N01独立qualification/追加内容/返却例と全関数の組合せ・実bindingは未完",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -912,7 +914,8 @@
       "input": {
         "context": "ProcessContext",
         "original_sources": "SourceCell map（各対象の独立原資料）",
-        "candidate": "ProcessAssessment | null"
+        "candidate": "ProcessAssessment | null",
+        "source_qualifications": "Context/carrier/各適用/各N/A/各原結果/還流段を別に解決したSourceCell資格map。"
       },
       "output": {
         "partial_values": {
@@ -933,7 +936,8 @@
         },
         "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
         "unaffected_scope": "元の有効な非対象資料",
-        "operation_effect": "none"
+        "operation_effect": "none",
+        "source_qualification_results": "個別原sourceの資格状態を保持し、動的必要branchとの依存を区別する。"
       },
       "internal_steps": [
         "対象Context/carrierとL2原記録、001のPrototype/PoC独立適用判定、各N/A記録、各原結果、還流各段を独立sourceとして解決/資格照合する。非UI判定からPoC省略やL2欠落を補完しない。",
@@ -945,7 +949,7 @@
         "要求/設計変更に影響する合意と対のrevisionを再照合し、古い合意をstaleとして対象ownerへ戻す。影響しないscopeの有効材料を一括停止しない。",
         "candidateを原資料と別に比較する。PoC/Prototype成功・還流成立から要求採用/要件承認/L3凍結/完了を生成せず、関数の実作用はnoneに保つ。"
       ],
-      "detail_state": "draft_internal_basic_typed_and_content_counterexamples_qualification_pending",
+      "detail_state": "draft_basic_typed_content_and_qualification_cases_pending_semantic_review",
       "backflow_detail": {
         "additional_field_derivation": "承認済みF02と基本契約はPrototype/PoCを独立に扱う。基本例の原資料に既存のPrototype観測とPoC N/Aを、prototype_result/poc_na_resultとして内部出力へ明示する。要求意味・基本期待・適用範囲は変更しない。",
         "na_fields": [
@@ -971,7 +975,62 @@
           "actual_completion"
         ],
         "source_binding_limit": "typed basic期待は内容比較の合成例。source_packet_refはcarrier参照で、embedded sourceの実資格を代替しない。",
-        "legacy_preservation": "v1.3:29–66のL2/N/AとV-pair、AVS:24–50の異なるauthority、RFA:23–38の反復と局所影響を内部部分結果へ意味再導出する。旧runtime/CIと未採用候補の能力を採用しない。"
+        "legacy_preservation": "v1.3:29–66のL2/N/AとV-pair、AVS:24–50の異なるauthority、RFA:23–38の反復と局所影響を内部部分結果へ意味再導出する。旧runtime/CIと未採用候補の能力を採用しない。",
+        "qualification_groups": {
+          "context": [
+            "target"
+          ],
+          "l2": [
+            "l2_record"
+          ],
+          "prototype_applicability": [
+            "applicability",
+            "prototype"
+          ],
+          "prototype_na": [
+            "applicability",
+            "prototype",
+            "na"
+          ],
+          "poc_applicability": [
+            "applicability",
+            "poc"
+          ],
+          "poc_na": [
+            "applicability",
+            "poc",
+            "na"
+          ],
+          "prototype_result": [
+            "L2_5_results",
+            "prototype"
+          ],
+          "poc_result": [
+            "L2_5_results",
+            "poc"
+          ],
+          "backflow": [
+            "return_chain",
+            "backflow"
+          ],
+          "secondary_008": [
+            "return_chain",
+            "secondary_008"
+          ],
+          "decide": [
+            "return_chain",
+            "decide"
+          ],
+          "agreement": [
+            "return_chain",
+            "agreement"
+          ],
+          "pair_refreeze": [
+            "return_chain",
+            "pair_refreeze"
+          ]
+        },
+        "qualification_branch_rule": "片方のqualified applicableがあれば還流必要集合を保持する。両方N/Aによる不要成立には各適用と各N/AとL2の独立資格が必要。非必要sourceの資格不足は診断だけを保持。未確定membershipはstate/nullにし空集合へ変換しない。"
       }
     },
     {
