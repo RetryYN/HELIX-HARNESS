@@ -1,7 +1,7 @@
 {
   "parent": "HARNESS-L2-004",
   "source_main": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
-  "status": "draft_incomplete_fixtures_and_independent_review_pending",
+  "status": "draft_pending_semantic_and_fixture_review",
   "authority_effect": "none",
   "scope": {
     "authoring_stage": 1,
@@ -317,12 +317,11 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "F03の限定再確定/戻し先/ticket接続を具体化し、全7契約を照合して独立reviewへ送る。",
-    "未見relation/無損失partition/再利用不変条件の内容比較と静的照合",
-    "003未統合基本設計と後続ownerのexact binding",
-    "独立exact HEAD意味reviewとmain admission",
-    "L5/L8正式型/関数/個別owner資格/実oracle凍結",
-    "正式実装/新CI/実証拠/PO実物受入"
+    "全7契約の静的照合は実施済み。独立exact HEAD意味reviewで未解決と未確認範囲を確認する。",
+    "003基本設計のmain統合後の接続と後続ownerのexact binding",
+    "独立review/現行main admission",
+    "L5/L8の論理型/関数/個別owner資格と実oracle凍結",
+    "正式schema/実装/新CI/実証拠/PO実物受入"
   ],
   "operation_effect": "none",
   "layer": "L4",
@@ -499,7 +498,44 @@
         "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
         "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
       },
-      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。"
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "approved_connection_dependency": {
+        "requirement": {
+          "id": "HARNESS-L3-003-F03",
+          "parent": "HARNESS-L2-003",
+          "title": "Vの谷と右側の照合範囲",
+          "obligation": "005/015の凍結→実装前Red実観測→最小Green→局所Refactor/原子CIと双方向traceを同対象へ結び、出力をProvisionalにする。右側では結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。正規由来が分かる変更は当該scopeのScoped Reverse、由来不明/旧資産/trace欠落/設計を信用できない/大きなずれは全体Reverseの復旧候補に分ける。L9ではinterface、依存の向き、state/dataの所有、transaction、失敗伝播、retry、timeout、冪等性、結合度、責務重複を照合する。通常の照合ではticketを発行しない。明らかな設計/実装のずれ、由来欠落、同種findingの再発、性能退行、障害後の恒久対策、Scrum Reverse checkpoint、大きな設計退行ではReverse ticketの発行条件となる。小さな境界Refactorは現在のForward ticket内、独立した大きな構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactor ticketへ区別する。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。",
+          "oracle_ref": "HARNESS-L10-003-F03"
+        },
+        "oracle": {
+          "id": "HARNESS-L10-003-F03",
+          "parent": "HARNESS-L2-003",
+          "title": "Vの谷と右側の照合範囲",
+          "requirement_ref": "HARNESS-L3-003-F03",
+          "positive_input": "由来と対が明確な変更、由来不明/trace欠落、実装前Red不足を別々に照合する。通常照合と各Reverse trigger、局所/独立構造改善を分け、L9の各観点の不足を与える。",
+          "expected_observation": "谷の証拠条件と局所/全体照合の選択根拠が辿れ、原子CIを上位証明にしない。L9各観点とticket非発行/発行条件/種類の違いが辿れる。",
+          "negative_input": "正規scope照合でも全体Reverse既定、由来不明を局所成功で埋める、原子CIで品質/Accepted/Release成立。通常照合で毎回Reverse ticket、再発/性能退行のtrigger見落とし、L9のstate所有/transaction/冪等性未検証を照合済み、HARNESSによる実ticket発行。",
+          "failure_observation": "該当証拠/由来不足と復旧候補を残し、Reverse実行成功を生成しない。",
+          "execution_state": "not_executed"
+        },
+        "source_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+        "unmerged_basic_design_used": false
+      },
+      "connection_detail": {
+        "comparison_detail": {
+          "reconfirmation": "要求/public contract変更・trace欠落・Scrum実装事実の合流を原因別に残し、同revisionのrelationからD1/T1だけへ再確定と必要pair再凍結の候補を返す。Qは有効なまま。",
+          "backflow": "semantic signatureのvalue/要求受入/architecture/detailの最上流差分からL1/L3L2/L4/L5へ返す。意味保存可能な実装変更は右側のRefactor/再検証。由来欠落/設計退行は復旧候補へ残す。",
+          "triggers": "003承認済みの7種類を原観測内容から個別照合。値は合成fixtureに限り、新たな性能閾値や旧trigger policy/runtimeを採用しない。",
+          "ticket": "通常照合は新ticketなし。局所は現在Forward内、独立構造/architecture/性能改善は3種類へ分ける。発行条件/候補とOS実発行は別。",
+          "dependency": "003の承認済みL3/L10 objectを固定し、未統合003 L4/L9を有効入力にしない。"
+        },
+        "legacy_basis": [
+          "LEGACY-ASSET-12E2CD9B07EFAC343ED0:27-54",
+          "LEGACY-ASSET-719D5EC9C06FC4AAD0FF:HIL-FR-39/50",
+          "LEGACY-ASSET-5DAB2F0E1C13F846CABB:13-25"
+        ],
+        "failure_return": "当該scopeの再確定/未凍結pair/由来とticket候補だけを返す。全作業失効や上流authority更新を行わない。"
+      }
     },
     {
       "id": "HARNESS-L4-004-F04",
@@ -655,9 +691,7 @@
       "source_packets": 20,
       "state": "draft_not_executed"
     },
-    "remaining_contracts": [
-      "F03"
-    ],
+    "remaining_contracts": [],
     "F02": {
       "normal": 3,
       "negative": 14,
@@ -686,6 +720,12 @@
       "normal": 3,
       "negative": 20,
       "source_packets": 23,
+      "state": "draft_not_executed"
+    },
+    "F03": {
+      "normal": 19,
+      "negative": 21,
+      "source_packets": 40,
       "state": "draft_not_executed"
     }
   }
