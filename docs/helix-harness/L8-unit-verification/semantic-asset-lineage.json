@@ -1,0 +1,1929 @@
+{
+  "document_id": "HARNESS-L8-053-SEMANTIC-ASSET-LINEAGE",
+  "layer": "L8",
+  "paired_document": "HARNESS-L5-053-SEMANTIC-ASSET-LINEAGE",
+  "parent": "HARNESS-L2-053",
+  "status": "candidate_pending_independent_review",
+  "source_main": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-prerequisite-contracts-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b"
+    },
+    {
+      "path": "docs/governance/template-work-allocation.md",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "19a81006d3328e486607d66bbd5721af958ca1cf0f392e370c6baf028d28ff1c"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+      "revision": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "sha256": "ab18e7965f1210eb638501178db9ccc886feb86fdafa7572f6f71cae1c2e268a"
+    }
+  ],
+  "authority_boundary": "10/12限定再開範囲2と85103aa7の053承認6対。version_target1.0保持。10/8一般解禁は失効、旧下流の復元ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "lines": "143",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "keep": "path非依存ID/意味revision/lineageとauthority/oracle/typed edge保持",
+      "change": "初回は供給記録照合だけ、変換/保存を発行しない。",
+      "reason": "現限定L3が変換操作を選ばず、記録の意味照合へ範囲を固定しているため。",
+      "reuse_mode": "意味の再導出。旧実装/CI/test/操作を実行せず、完全一致copyなし。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+      "lines": "76",
+      "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "keep": "authority/oracle/typed edge保持を各個別負例で確認",
+      "change": "旧rename/split/merge実操作・旧fault注入を実行せず、供給記録の不足を照合する。",
+      "reason": "現限定L3が変換操作を選ばず、記録の意味照合へ範囲を固定しているため。",
+      "reuse_mode": "意味の再導出。旧実装/CI/test/操作を実行せず、完全一致copyなし。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "lines": "53、82",
+      "sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "keep": "HR-FR-HIL-19/HAC-HIL-19cのidentity/oracle消失・stale/rename/split/mergeでhistory保持を欠落負例へ対応。",
+      "change": "旧Admission/原子的Canonical化/rollback実操作はOS等のownerであり、現053初回の供給記録照合から操作を生成しない。",
+      "reason": "現承認L3-053が実変換を非選択とし、保存/権限/rollback/受入を記録照合と別軸に固定しているため。",
+      "reuse_mode": "意味の再導出。旧実装/CI/test/操作を実行せず、完全一致copyなし。"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "65–101",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "meaning": "UTW005の最新revision証拠の未束縛、UTW014の欠損→空集合、UTW020のaggregateで部分欠落不可視、UTW021の自己申告成立を、対象ID/revisionと個別欠落の照合で防ぐ。現failure-development-foundation-auditは053→042の停止を保持。実再発防止は未証明。"
+  },
+  "verification_scope": "L5の型・pure関数・原38負例と追加20branchの単体oracle設計。テスト実装/実行証拠ではない。",
+  "fixture_contract": {
+    "id": "ASSET-LINEAGE-BASE-01",
+    "scope": "project-P/tenant-T/environment-E",
+    "request_revision": "HARNESS-L2-053@1.0 / R@r1",
+    "source_snapshot": "owner supplied qualified記録の合成snapshot S@s1。実保存/権限の証明ではない。",
+    "assets": {
+      "A": "immutable ID A; semantic r1=meaning-M1、r2=meaning-M2; owner CORE",
+      "B": "immutable ID B; semantic b1=meaning-B; same display name as A allowed",
+      "C": "immutable ID C; semantic c1=meaning-C",
+      "D": "immutable ID D; semantic d1=meaning-D"
+    },
+    "location_records": [
+      "A/r1: old/a.json→new/a.json（move）",
+      "A/r1: label-a→label-b（rename）",
+      "B/b1: old/a.jsonを再利用、Aとは異ID"
+    ],
+    "semantic_change": "A/r1→A/r2、owner semantic diff M1→M2、影響oracle OA1→OA2/edge EA1→EA2 supplied。location差と別軸。",
+    "lineage_records": {
+      "LS": "split A/r2→B/b1,C/c1",
+      "LM": "merge B/b1,C/c1→D/d1",
+      "LX": "supersede A/r2→D/d1"
+    },
+    "mapping": "LS/LM/LX各endpointと影響history、authority QA、oracle QO、typed edge QEを当該scope/revisionへ個別にqualified対応。relation種別から実authority移転を推定しない。",
+    "operation_request": "record_comparisonのみ。変換要求を与える別caseはheld/not_selected。",
+    "unresolved_reference": "053→042 source revision/provenance意味不整合は全fixtureでunresolved。局所比較の成立と別軸。"
+  },
+  "fixture_realization": {
+    "binding": "各record/claim/operationに同request_ref/scope/snapshot_ref。foreign負例は原foreign bindingを保持。",
+    "records": "L9 BASEのA/r1,r2、B/b1、C/c1、D/d1、rename/move、LS/LM/LXと各QA/QO/QEをL5の対応型に写す。改変の無い原記録は全expected axis matched。",
+    "source_control": "L6 fixture builderでは各Envelope.bodyのexact serialized bytes、digest、Qualification.subject_ref/bodydigest/bindingと独立rootを合成固定する。意味改変時はsource資格もその改変へ束縛し、資格不足を狙うcaseだけ不足を残す。実owner承認の証拠へ昇格しない。",
+    "claim_control": "claimだけの負例で原recordや原scopeを変更しない。expected_classification/statesはoracle側のみ、LineageInputへ渡さない。",
+    "required_set_control": "独立qualified RelationBody.required_before/after/history/authority/oracle/typed_edgeをrelation_sourcesへ固定し、RelationRecord.relation_source_refで結ぶ。供給対応だけを消す負例では原必要集合も消さない。元必要集合のsource自体が欠ける場合はunknownであり空集合成功にしない。",
+    "comparison_control": "一つのcaseで与えた変異と同じ関数呼出しの戻り値を検査。expectedだけを返すstubでは原record preservation/独立matched軸/原Ref/owner原因/比較controlを満たせない。"
+  },
+  "cases": [
+    {
+      "id": "HARNESS-L8-053-F01",
+      "design_ref": "HARNESS-L5-053-F01",
+      "requirement_ref": "HARNESS-L3-053-F01",
+      "system_oracle_ref": "HARNESS-L10-053-F01",
+      "positive_fixture_ref": "ASSET-LINEAGE-BASE-01",
+      "positive_input": "異なるpathで同一asset ID、同一pathで異なるasset ID、同名異義の記録を個別に照合する。",
+      "expected_observation": [
+        "Aのmove/rename後もA/r1、旧path再利用B/b1は別ID。同名A/Bも別ID。各source/owner履歴へ束縛し、IDをlocationから生成しない。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L8-053-F01-NEG-01",
+          "change": "同pathのBを旧Aへ併合",
+          "expected_classification": "path_identity_inference",
+          "expected": "Bを別IDに保持、原A/B identityはmatched、確定した別IDを同一とするclaimはconflict。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F01-NEG-01",
+          "rule_ref": "HARNESS-L5-053-R-path_identity_inference",
+          "function_ref": "HARNESS-L5-053-compare_asset_identity",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "同pathのBを旧Aへ併合。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "異なるqualified asset_idの共通locationに対し、same_identity claimがbasis_kind=pathでasserted_success=trueを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F01-NEG-02",
+          "change": "同名異義A/Bを同一assetとする",
+          "expected_classification": "name_identity_inference",
+          "expected": "A/Bは別ID、名前一致をidentity oracleへしない。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F01-NEG-02",
+          "rule_ref": "HARNESS-L5-053-R-name_identity_inference",
+          "function_ref": "HARNESS-L5-053-compare_asset_identity",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "同名異義A/Bを同一assetとする。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "異なるqualified asset_idでdisplay_nameが一致し、same_identity claimがbasis_kind=nameで同一を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F01-NEG-03",
+          "change": "同A/r1に相反する意味owner記録を重複供給し先着採用",
+          "expected_classification": "identity_conflict",
+          "expected": "A/r1当該identity/owner対応はconflict、両sourceを保持、無関係B照合は継続。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1",
+              "axis": "identity",
+              "state": "conflict"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F01-NEG-03",
+          "rule_ref": "HARNESS-L5-053-R-identity_conflict",
+          "function_ref": "HARNESS-L5-053-compare_asset_identity",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "同A/r1に相反する意味owner記録を重複供給し先着採用。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "同asset_id/revision/bindingの独立qualified記録のasset.owner又はmeaning_refが相反し、closure/same_identity claimが片方だけで成立を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F01-NEG-04",
+          "change": "A/r1のID欠落をpathから生成",
+          "expected_classification": "identity_missing",
+          "expected": "identity missingを対象recordへ返し採番/推測0。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A record slot",
+              "axis": "identity",
+              "state": "missing"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F01-NEG-04",
+          "rule_ref": "HARNESS-L5-053-R-identity_missing",
+          "function_ref": "HARNESS-L5-053-compare_asset_identity",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "A/r1のID欠落をpathから生成。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "AssetRecord.asset.asset_id=nullに対し、assigned_identity claimがbasis_kind=pathでasserted_identityを補う。"
+        },
+        {
+          "id": "HARNESS-L8-053-F01-NEG-05",
+          "change": "異pathに移った同Aを新IDとする",
+          "expected_classification": "location_identity_change",
+          "expected": "原ID Aを保全、供給location履歴へ対応し新IDclaimを拒否。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1",
+              "axis": "identity",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1",
+              "axis": "location_history",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F01-NEG-05",
+          "rule_ref": "HARNESS-L5-053-R-location_identity_change",
+          "function_ref": "HARNESS-L5-053-compare_asset_identity",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "異pathに移った同Aを新IDとする。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "qualified LocationRecordのbefore/afterが同ID/revisionなのにassigned_identity claimが別asserted_identityを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F01-NEG-06",
+          "change": "body digestが同じA/Bを同IDとする",
+          "expected_classification": "hash_identity_inference",
+          "expected": "原別ID保持、digestをimmutable IDへ変換しない。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F01-NEG-06",
+          "rule_ref": "HARNESS-L5-053-R-hash_identity_inference",
+          "function_ref": "HARNESS-L5-053-compare_asset_identity",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "body digestが同じA/Bを同IDとする。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "異なるqualified asset_idでsource_ref.sha256又はmeaning_ref.sha256が一致し、same_identity claimがbasis_kind=digestだけで同一を報告する。"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_oracle_ref": "HARNESS-L9-053-F01",
+      "function_refs": [
+        "HARNESS-L5-053-validate_lineage_input",
+        "HARNESS-L5-053-compare_asset_identity",
+        "HARNESS-L5-053-build_lineage_analysis"
+      ]
+    },
+    {
+      "id": "HARNESS-L8-053-F02",
+      "design_ref": "HARNESS-L5-053-F02",
+      "requirement_ref": "HARNESS-L3-053-F02",
+      "system_oracle_ref": "HARNESS-L10-053-F02",
+      "positive_fixture_ref": "ASSET-LINEAGE-BASE-01",
+      "positive_input": "意味変更前後と、意味不変のlocation変更だけの記録を別入力として照合する。",
+      "expected_observation": [
+        "location-only A/r1は意味不変、A/r1→r2のqualified M1→M2は同ID異revisionのsemantic diffと影響OA/EAへ別に対応。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L8-053-F02-NEG-01",
+          "change": "意味不変のmoveだけでA/r2の意味revision成立",
+          "expected_classification": "location_as_semantic",
+          "expected": "ID A/r1の意味を保全しlocation軸の差だけを返す。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1",
+              "axis": "semantic_revision",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1",
+              "axis": "location_history",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F02-NEG-01",
+          "rule_ref": "HARNESS-L5-053-R-location_as_semantic",
+          "function_ref": "HARNESS-L5-053-compare_semantic_revision",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "意味不変のmoveだけでA/r2の意味revision成立。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "location変更だけで原meaning sourceとrevision=A/r1を維持しているのに、semantic_revision claimがbasis_kind=locationでr2を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F02-NEG-02",
+          "change": "M1→M2の意味差をlocation変更だけとして隠す",
+          "expected_classification": "semantic_as_location",
+          "expected": "A/r1→r2とsemantic diffの意味差を保全、影響OA/EAへtrace。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1→r2",
+              "axis": "semantic_revision",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1→r2",
+              "axis": "oracle_mapping",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1→r2",
+              "axis": "typed_edge_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F02-NEG-02",
+          "rule_ref": "HARNESS-L5-053-R-semantic_as_location",
+          "function_ref": "HARNESS-L5-053-compare_semantic_revision",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "M1→M2の意味差をlocation変更だけとして隠す。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "qualified SemanticDiff.meaning_changed=trueのA/r1→r2に対し、semantic_change claimがbasis_kind=locationでasserted_semantic_change=falseを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F02-NEG-03",
+          "change": "Aの意味変更で新ID Zを発行して履歴切断",
+          "expected_classification": "semantic_identity_change",
+          "expected": "供給before/after同Aを保全し異IDclaimと切断箇所を返す。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1→r2",
+              "axis": "identity",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1→r2",
+              "axis": "semantic_revision",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F02-NEG-03",
+          "rule_ref": "HARNESS-L5-053-R-semantic_identity_change",
+          "function_ref": "HARNESS-L5-053-compare_semantic_revision",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "Aの意味変更で新ID Zを発行して履歴切断。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "qualified SemanticRecordのbefore/after IDはともにAなのに、assigned_identity claimがbasis_kind=semanticで別ID Zを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F02-NEG-04",
+          "change": "意味before source欠落を差分無しへ読む",
+          "expected_classification": "semantic_source_missing",
+          "expected": "before意味軸missing、差分unknown、after存在で補完しない。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1 before",
+              "axis": "semantic_revision",
+              "state": "missing"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F02-NEG-04",
+          "rule_ref": "HARNESS-L5-053-R-semantic_source_missing",
+          "function_ref": "HARNESS-L5-053-compare_semantic_revision",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "意味before source欠落を差分無しへ読む。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "before_meaning_ref=null又は対象bodyが未供給なのに、semantic_change/closure claimが差分無し又は成立を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F02-NEG-05",
+          "change": "M1→M2に必要なoracle/edge影響対応を消す",
+          "expected_classification": "semantic_impact_missing",
+          "expected": "semantic diff自体と影響の欠落を別に返す、全対応成立にしない。",
+          "backflow_owner": "trace_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1→r2",
+              "axis": "semantic_revision",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1→r2",
+              "axis": "oracle_mapping",
+              "state": "missing"
+            },
+            {
+              "subject": "A/r1→r2",
+              "axis": "typed_edge_mapping",
+              "state": "missing"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F02-NEG-05",
+          "rule_ref": "HARNESS-L5-053-R-semantic_impact_missing",
+          "function_ref": "HARNESS-L5-053-compare_semantic_revision",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "M1→M2に必要なoracle/edge影響対応を消す。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "qualified meaning_changed=trueでoracle_impact又はedge_impact=null/必要mapping欠落なのにclosure claimが全対応成立を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F02-NEG-06",
+          "change": "同A/r1で意味bodyが相反しているのに意味不変",
+          "expected_classification": "revision_conflict",
+          "expected": "同ID/revisionの意味対応conflict、両原sourceを保持。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1",
+              "axis": "semantic_revision",
+              "state": "conflict"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F02-NEG-06",
+          "rule_ref": "HARNESS-L5-053-R-revision_conflict",
+          "function_ref": "HARNESS-L5-053-compare_semantic_revision",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "同A/r1で意味bodyが相反しているのに意味不変。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "同ID/revision/bindingのqualified MeaningBody.meaning_payloadが相反しているのにsemantic_change claimが意味不変を報告する。"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_oracle_ref": "HARNESS-L9-053-F02",
+      "function_refs": [
+        "HARNESS-L5-053-validate_lineage_input",
+        "HARNESS-L5-053-compare_semantic_revision",
+        "HARNESS-L5-053-build_lineage_analysis"
+      ]
+    },
+    {
+      "id": "HARNESS-L8-053-F03",
+      "design_ref": "HARNESS-L5-053-F03",
+      "requirement_ref": "HARNESS-L3-053-F03",
+      "system_oracle_ref": "HARNESS-L10-053-F03",
+      "positive_fixture_ref": "ASSET-LINEAGE-BASE-01",
+      "positive_input": "供給されたlocation履歴と前後identity/関係/authority/oracle/edgeが揃った記録を、それぞれ対応表へ照合する。",
+      "expected_observation": [
+        "LS/LM/LXの前後全endpoint/関係/historyとauthority/oracle/edgeを個別に対応。記録上matchedでも実変換/保存/authority移転は未成立。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L8-053-F03-NEG-01",
+          "change": "LS splitの親A/r2との履歴対応を削除",
+          "expected_classification": "history_mapping_missing",
+          "expected": "LS history_mapping missing、B/Cから親を推測しない。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "history_mapping",
+              "state": "missing"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F03-NEG-01",
+          "rule_ref": "HARNESS-L5-053-R-history_mapping_missing",
+          "function_ref": "HARNESS-L5-053-compare_lineage_records",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "LS splitの親A/r2との履歴対応を削除。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "RelationRecord.history=null又は独立RelationBodyのrequired_historyが供給対応で欠け、closure claimが成立を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F03-NEG-02",
+          "change": "LM mergeの元Bだけを対応から削除",
+          "expected_classification": "lineage_endpoint_missing",
+          "expected": "LM元endpoint B/b1の不足を返しCだけでmerge閉包にしない。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LM B/b1",
+              "axis": "identity",
+              "state": "missing"
+            },
+            {
+              "subject": "LM",
+              "axis": "lineage_relation",
+              "state": "unknown"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F03-NEG-02",
+          "rule_ref": "HARNESS-L5-053-R-lineage_endpoint_missing",
+          "function_ref": "HARNESS-L5-053-compare_lineage_records",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "LM mergeの元Bだけを対応から削除。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "独立qualified RelationBody.required_beforeのendpointが供給対応/asset解決で欠け、closure claimがそのendpointを除いて成立を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F03-NEG-03",
+          "change": "LX supersedeのrelation種別を欠落",
+          "expected_classification": "relation_kind_missing",
+          "expected": "LX relation missing、path/名前からsupersedeを生成しない。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LX",
+              "axis": "lineage_relation",
+              "state": "missing"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F03-NEG-03",
+          "rule_ref": "HARNESS-L5-053-R-relation_kind_missing",
+          "function_ref": "HARNESS-L5-053-compare_lineage_records",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "LX supersedeのrelation種別を欠落。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "RelationRecord.kind=nullに対しclosure claimがlocation/nameからsupersedeを補う。"
+        },
+        {
+          "id": "HARNESS-L8-053-F03-NEG-04",
+          "change": "LS baseをA/r1としsourceはA/r2",
+          "expected_classification": "base_revision_mismatch",
+          "expected": "LS base revision conflict、元r1/r2差を保持。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS A/r1 vs r2",
+              "axis": "semantic_revision",
+              "state": "conflict"
+            },
+            {
+              "subject": "LS",
+              "axis": "history_mapping",
+              "state": "conflict"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F03-NEG-04",
+          "rule_ref": "HARNESS-L5-053-R-base_revision_mismatch",
+          "function_ref": "HARNESS-L5-053-compare_lineage_records",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "LS baseをA/r1としsourceはA/r2。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "RelationRecord.base=A/r1だが独立qualified source endpointはA/r2であり、closure claimがsemantic_revision差を無視する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F03-NEG-05",
+          "change": "LX先D/d1不在を最新Dへ補完",
+          "expected_classification": "lineage_target_missing",
+          "expected": "LX target D/d1 missing、latest推測0、他relationの既知状態保持。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LX D/d1",
+              "axis": "identity",
+              "state": "missing"
+            },
+            {
+              "subject": "LX",
+              "axis": "lineage_relation",
+              "state": "unknown"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F03-NEG-05",
+          "rule_ref": "HARNESS-L5-053-R-lineage_target_missing",
+          "function_ref": "HARNESS-L5-053-compare_lineage_records",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "LX先D/d1不在を最新Dへ補完。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "独立qualified RelationBody.required_after=D/d1のexact assetが未供給で、closure claimが別D revisionで補う。"
+        },
+        {
+          "id": "HARNESS-L8-053-F03-NEG-06",
+          "change": "renameのlocation対応だけでauthority移転成立",
+          "expected_classification": "lineage_as_authority_transfer",
+          "expected": "location照合とauthority対応/実権限を別軸に返し移転成立にしない。",
+          "backflow_owner": "authority_record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1 rename",
+              "axis": "location_history",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F03-NEG-06",
+          "rule_ref": "HARNESS-L5-053-R-lineage_as_authority_transfer",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "renameのlocation対応だけでauthority移転成立。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "qualified rename locationの対応だけを根拠にpermission/authority移転claimが成立を報告する。このunitは実authority操作の証拠を消費しない。"
+        },
+        {
+          "id": "HARNESS-L8-053-F03-NEG-07",
+          "change": "他tenantのLS対応表をcurrentへ転用",
+          "expected_classification": "scope_cross_binding",
+          "expected": "当該LSのscope差を返し対応unknown、原scope/source保持。",
+          "backflow_owner": "record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "unknown"
+            },
+            {
+              "subject": "LS",
+              "axis": "history_mapping",
+              "state": "unknown"
+            },
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "unknown"
+            },
+            {
+              "subject": "LS",
+              "axis": "oracle_mapping",
+              "state": "unknown"
+            },
+            {
+              "subject": "LS",
+              "axis": "typed_edge_mapping",
+              "state": "unknown"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F03-NEG-07",
+          "rule_ref": "HARNESS-L5-053-R-scope_cross_binding",
+          "function_ref": "HARNESS-L5-053-compare_lineage_records",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "他tenantのLS対応表をcurrentへ転用。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "relation/mapping bindingのtenant/project/environment/request revisionがcurrentと違うのにclosure claimがcurrentへ転用する。"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_oracle_ref": "HARNESS-L9-053-F03",
+      "function_refs": [
+        "HARNESS-L5-053-validate_lineage_input",
+        "HARNESS-L5-053-compare_lineage_records",
+        "HARNESS-L5-053-check_lineage_operation_boundary",
+        "HARNESS-L5-053-build_lineage_analysis"
+      ]
+    },
+    {
+      "id": "HARNESS-L8-053-F04",
+      "design_ref": "HARNESS-L5-053-F04",
+      "requirement_ref": "HARNESS-L3-053-F04",
+      "system_oracle_ref": "HARNESS-L10-053-F04",
+      "positive_fixture_ref": "ASSET-LINEAGE-BASE-01",
+      "positive_input": "authorityだけ、oracleだけ、typed edgeだけを欠落した三つの入力を、全項目が辿れる入力と別々に比較する。",
+      "expected_observation": [
+        "完全入力とQAだけ/QOだけ/QEだけmissingの独立3入力を比較。対象LSの該当軸だけmissing、他matched軸/LM/LXを保全、全closure成功にしない。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L8-053-F04-NEG-01",
+          "change": "LS authority QAだけ欠落、history有りで保持成功",
+          "expected_classification": "authority_mapping_missing",
+          "expected": "LS authority_mapping missing、QO/QE/historyのmatchedは保持し全closure成功にしない。",
+          "backflow_owner": "authority_record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "missing"
+            },
+            {
+              "subject": "LS",
+              "axis": "oracle_mapping",
+              "state": "matched"
+            },
+            {
+              "subject": "LS",
+              "axis": "typed_edge_mapping",
+              "state": "matched"
+            },
+            {
+              "subject": "LS",
+              "axis": "history_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F04-NEG-01",
+          "rule_ref": "HARNESS-L5-053-R-authority_mapping_missing",
+          "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "LS authority QAだけ欠落、history有りで保持成功。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "独立RelationBody.required_authorityに対してRelationRecord.authority=null/必要mapping欠落で、closure claimがhistoryだけを根拠に成立を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F04-NEG-02",
+          "change": "LS oracle QOだけ欠落、authority有りで受入可能",
+          "expected_classification": "oracle_mapping_missing",
+          "expected": "LS oracle_mapping missing、QA/QE保持、受入可能を生成しない。",
+          "backflow_owner": "oracle_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "oracle_mapping",
+              "state": "missing"
+            },
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "matched"
+            },
+            {
+              "subject": "LS",
+              "axis": "typed_edge_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F04-NEG-02",
+          "rule_ref": "HARNESS-L5-053-R-oracle_mapping_missing",
+          "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "LS oracle QOだけ欠落、authority有りで受入可能。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "独立RelationBody.required_oracleに対してRelationRecord.oracle=null/必要mapping欠落で、closure claimがauthorityだけを根拠に成立を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F04-NEG-03",
+          "change": "LS typed edge QEだけ欠落、receiptで補完",
+          "expected_classification": "typed_edge_mapping_missing",
+          "expected": "LS typed_edge_mapping missing、QA/QO保持、closure成功へしない。",
+          "backflow_owner": "trace_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "typed_edge_mapping",
+              "state": "missing"
+            },
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "matched"
+            },
+            {
+              "subject": "LS",
+              "axis": "oracle_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F04-NEG-03",
+          "rule_ref": "HARNESS-L5-053-R-typed_edge_mapping_missing",
+          "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "LS typed edge QEだけ欠落、receiptで補完。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "独立RelationBody.required_typed_edgeに対してRelationRecord.typed_edge=null/必要mapping欠落で、closure claimがreceiptを根拠に成立を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F04-NEG-04",
+          "change": "QA対応先不明を自己申告でqualified",
+          "expected_classification": "authority_mapping_unknown",
+          "expected": "LS authority_mapping unknown、原未検証source保持。",
+          "backflow_owner": "authority_record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "unknown"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F04-NEG-04",
+          "rule_ref": "HARNESS-L5-053-R-authority_mapping_unknown",
+          "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "QA対応先不明を自己申告でqualified。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "authority mappingのtarget body又は独立qualification rootが未解決で、closure claimがbasis_kind=self_assertionで資格成立を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F04-NEG-05",
+          "change": "別revisionのQOをA/r2 oracleへ付替え",
+          "expected_classification": "oracle_revision_mismatch",
+          "expected": "oracle対象revision conflict、元Refと要求Ref差を返す。",
+          "backflow_owner": "oracle_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "oracle_mapping",
+              "state": "conflict"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F04-NEG-05",
+          "rule_ref": "HARNESS-L5-053-R-oracle_revision_mismatch",
+          "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "別revisionのQOをA/r2 oracleへ付替え。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "qualified MappingBodyのoracle endpoint revisionが独立RelationBodyの必要exact revisionと異なり、closure claimが差を無視する。"
+        },
+        {
+          "id": "HARNESS-L8-053-F04-NEG-06",
+          "change": "QE relation種別が違うがID一致で合格",
+          "expected_classification": "typed_edge_kind_mismatch",
+          "expected": "typed edge対応conflict、関係kind差を消さない。",
+          "backflow_owner": "trace_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "typed_edge_mapping",
+              "state": "conflict"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-F04-NEG-06",
+          "rule_ref": "HARNESS-L5-053-R-typed_edge_kind_mismatch",
+          "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "QE relation種別が違うがID一致で合格。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "同relation_idのqualified MappingBody.relation_kindとRelationRecord.kindが異なり、closure claimがID一致だけで成立を報告する。"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_oracle_ref": "HARNESS-L9-053-F04",
+      "function_refs": [
+        "HARNESS-L5-053-validate_lineage_input",
+        "HARNESS-L5-053-compare_lineage_mappings",
+        "HARNESS-L5-053-build_lineage_analysis"
+      ]
+    },
+    {
+      "id": "HARNESS-L8-053-N01",
+      "design_ref": "HARNESS-L5-053-N01",
+      "requirement_ref": "HARNESS-L3-053-N01",
+      "system_oracle_ref": "HARNESS-L10-053-N01",
+      "positive_fixture_ref": "ASSET-LINEAGE-BASE-01",
+      "positive_input": "identity/意味revisionの照合結果と、042依存を要求する実変換要求を別入力にする。",
+      "expected_observation": [
+        "全結果に053→042 unresolvedを保持。record_comparisonは局所成立、042依存又は初回非選択実operationはheld/not_selected。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L8-053-N01-NEG-01",
+          "change": "042をsource provenance保証へ読替え",
+          "expected_classification": "reference_meaning_mismatch",
+          "expected": "053→042 unresolved維持、dependent operation held、局所記録比較は継続。",
+          "backflow_owner": "harness053_requirement_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-N01-NEG-01",
+          "rule_ref": "HARNESS-L5-053-R-reference_meaning_mismatch",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "042をsource provenance保証へ読替え。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "reference_interpretation claimがasserted_reference_id=HARNESS-L2-042、asserted_reference_meaning=source_provenance_guaranteeを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-N01-NEG-02",
+          "change": "042の代替IDを推測して参照解決済み",
+          "expected_classification": "reference_substitution",
+          "expected": "原042参照とunresolvedを保持し代替採択を生成しない。",
+          "backflow_owner": "harness053_requirement_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-N01-NEG-02",
+          "rule_ref": "HARNESS-L5-053-R-reference_substitution",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "042の代替IDを推測して参照解決済み。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "reference_resolution claimが元042以外のasserted_reference_idで解決済みを報告し、採用scopeのowner訂正は未成立である。"
+        },
+        {
+          "id": "HARNESS-L8-053-N01-NEG-03",
+          "change": "参照未決なのにsplit実操作へ進む",
+          "expected_classification": "unselected_operation",
+          "expected": "operation held/not_selected、変換/保存0、理由ownerを返す。",
+          "backflow_owner": "harness053_requirement_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "held",
+          "expected_operation_selection": "not_selected",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-N01-NEG-03",
+          "rule_ref": "HARNESS-L5-053-R-unselected_operation",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "参照未決なのにsplit実操作へ進む。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "operationsに初回非選択の変換要求があり、対応するoperation_execution claimがasserted_success=trueを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-N01-NEG-04",
+          "change": "局所identity一致から053全能力完成",
+          "expected_classification": "local_as_global_completion",
+          "expected": "局所一致と未完履歴/未決参照/非選択操作を別に残す。",
+          "backflow_owner": "harness053_requirement_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-N01-NEG-04",
+          "rule_ref": "HARNESS-L5-053-R-local_as_global_completion",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "局所identity一致から053全能力完成。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "global_completion claimが局所identity対応だけを根拠にasserted_success=trueを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-N01-NEG-05",
+          "change": "042未決を理由に無関係A/B局所照合も全停止",
+          "expected_classification": "global_stop_added",
+          "expected": "dependent操作はheld、A/B局所照合を返す。全体gateを足さない。",
+          "backflow_owner": "harness053_requirement_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-N01-NEG-05",
+          "rule_ref": "HARNESS-L5-053-R-global_stop_added",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "042未決を理由に無関係A/B局所照合も全停止。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "local_comparison_allowed claimが042未決だけを根拠にasserted_local_comparison_allowed=falseを報告する。"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_oracle_ref": "HARNESS-L9-053-N01",
+      "function_refs": [
+        "HARNESS-L5-053-check_lineage_operation_boundary",
+        "HARNESS-L5-053-build_lineage_analysis"
+      ]
+    },
+    {
+      "id": "HARNESS-L8-053-B01",
+      "design_ref": "HARNESS-L5-053-B01",
+      "requirement_ref": "HARNESS-L3-053-B01",
+      "system_oracle_ref": "HARNESS-L10-053-B01",
+      "positive_fixture_ref": "ASSET-LINEAGE-BASE-01",
+      "positive_input": "記録の対応結果と各ownerの意味判断・保存結果・権限を別々に照合する。",
+      "expected_observation": [
+        "照合各axis matchedと実保存/rollback/権限/採択/受入を別に返し、操作0・未成立を保持。003/004/016を再定義せず052をgateにしない。"
+      ],
+      "negative_cases": [
+        {
+          "id": "HARNESS-L8-053-B01-NEG-01",
+          "change": "対応記録存在で実保存成立",
+          "expected_classification": "record_as_persistence",
+          "expected": "記録照合と実保存は別、実保存未証明を保存ownerへ。",
+          "backflow_owner": "persistence_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-B01-NEG-01",
+          "rule_ref": "HARNESS-L5-053-R-record_as_persistence",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "対応記録存在で実保存成立。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "persistence claimがrelation/history対応だけを根拠にasserted_success=trueを報告する。実保存は本unitにない。"
+        },
+        {
+          "id": "HARNESS-L8-053-B01-NEG-02",
+          "change": "split fixtureがあるのでrollback成功",
+          "expected_classification": "fixture_as_rollback",
+          "expected": "実rollback未証明、fixtureをreceiptへ昇格しない。",
+          "backflow_owner": "persistence_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-B01-NEG-02",
+          "rule_ref": "HARNESS-L5-053-R-fixture_as_rollback",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "split fixtureがあるのでrollback成功。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "rollback claimが合成fixtureだけを根拠にasserted_success=trueを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-B01-NEG-03",
+          "change": "全対応Refの存在だけで権限発行済み",
+          "expected_classification": "record_as_permission",
+          "expected": "Refの対応と実権限を分離、権限発行0。",
+          "backflow_owner": "authority_record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-B01-NEG-03",
+          "rule_ref": "HARNESS-L5-053-R-record_as_permission",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "全対応Refの存在だけで権限発行済み。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "permission claimが対応Refの存在だけを根拠にasserted_success=trueを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-B01-NEG-04",
+          "change": "lineage記録でPO採択/受入済み",
+          "expected_classification": "record_as_acceptance",
+          "expected": "原採択/受入authority未成立を保全、PO判断を生成しない。",
+          "backflow_owner": "PO",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-B01-NEG-04",
+          "rule_ref": "HARNESS-L5-053-R-record_as_acceptance",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "lineage記録でPO採択/受入済み。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "acceptance claimがlineage対応だけを根拠にasserted_success=trueを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-B01-NEG-05",
+          "change": "原FR53の全実操作まで移管完了",
+          "expected_classification": "legacy_completion_claim",
+          "expected": "保持した意味と非選択実操作を分け、全旧FR53移管を主張しない。",
+          "backflow_owner": "harness053_requirement_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-B01-NEG-05",
+          "rule_ref": "HARNESS-L5-053-R-legacy_completion_claim",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "原FR53の全実操作まで移管完了。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "legacy_completion claimが実変換非選択のrecord-only scopeから旧全能力の成立を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-B01-NEG-06",
+          "change": "053で003/004/016の変更/trace/差分条件を別定義",
+          "expected_classification": "owner_boundary_change",
+          "expected": "各既存ownerの条件を保持し053照合で置換しない。",
+          "backflow_owner": "harness053_requirement_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-B01-NEG-06",
+          "rule_ref": "HARNESS-L5-053-R-owner_boundary_change",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "053で003/004/016の変更/trace/差分条件を別定義。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "owner_redefinition claimが003/004/016の既存ownerを053へ置き換えるasserted_owner_idsを報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-B01-NEG-07",
+          "change": "052採択/先行を053照合の新必須条件",
+          "expected_classification": "new_precondition",
+          "expected": "053承認入力だけで局所照合し052gateを新設しない。",
+          "backflow_owner": "harness053_requirement_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-B01-NEG-07",
+          "rule_ref": "HARNESS-L5-053-R-new_precondition",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "052採択/先行を053照合の新必須条件。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "prerequisite claimが局所053照合の必須先行条件としてasserted_prerequisite_idsにHARNESS-L2-052を報告する。"
+        },
+        {
+          "id": "HARNESS-L8-053-B01-NEG-08",
+          "change": "split/mergeのauthority裁定手続きを053で追加",
+          "expected_classification": "authority_procedure_added",
+          "expected": "対応unknownをauthority ownerへ返し、新裁定/人承認手続きを作らない。",
+          "backflow_owner": "authority_record_owner",
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0,
+          "integration_negative_ref": "HARNESS-L9-053-B01-NEG-08",
+          "rule_ref": "HARNESS-L5-053-R-authority_procedure_added",
+          "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+          "unit_input": {
+            "base_fixture_ref": "ASSET-LINEAGE-BASE-01",
+            "mutation": "split/mergeのauthority裁定手続きを053で追加。上のpredicateが指定するrecord/claim fieldだけを変更し、無関係recordと独立required集合は保持する。",
+            "qualification_control": "record mutationのsource bytes/digest/owner根拠は当該変更へ再束縛する。資格欠落を指定したcaseはその欠落を保持。claimだけの変更は原recordを変更しない。",
+            "expected_values_are_not_input": true
+          },
+          "detectable_predicate": "authority_procedure claimのasserted_procedure_refが053固有の新承認/裁定手続きを指す。"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_oracle_ref": "HARNESS-L9-053-B01",
+      "function_refs": [
+        "HARNESS-L5-053-check_lineage_operation_boundary",
+        "HARNESS-L5-053-build_lineage_analysis"
+      ]
+    }
+  ],
+  "additional_unit_cases": [
+    {
+      "id": "HARNESS-L8-053-ADD-01",
+      "function_ref": "HARNESS-L5-053-validate_lineage_input",
+      "branch": "raw-field-absent",
+      "input": "LineageInput.assets fieldを未記載",
+      "expected": "input_shape_invalid; field path保持、実操作0。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported",
+      "expected_validated_input": "null",
+      "expected_input_issue": "input_shape_invalid"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-02",
+      "function_ref": "HARNESS-L5-053-validate_lineage_input",
+      "branch": "semantic-null-reachable",
+      "input": "A.asset.asset_id=null。raw形とslot/sourceは正常",
+      "expected": "ValidatedInputへ到達、F01 identity_missingはmissingを観測できる。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-03",
+      "function_ref": "HARNESS-L5-053-validate_lineage_input",
+      "branch": "relation-kind-null-reachable",
+      "input": "LX.kind=null。raw形と資格は正常",
+      "expected": "ValidatedInputへ到達、F03 relation_kind_missingはmissingを観測できる。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-04",
+      "function_ref": "HARNESS-L5-053-validate_lineage_input",
+      "branch": "source-bytes-mismatch",
+      "input": "原bytesは同じでsource_ref.sha256だけ不一致",
+      "expected": "source_bytes_mismatch; 原bytesを再生成せず当該Envelope利用不可。他record継続。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported",
+      "expected_input_issue": "source_bytes_mismatch"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-05",
+      "function_ref": "HARNESS-L5-053-validate_lineage_input",
+      "branch": "self-qualification",
+      "input": "QA qualification_refは存在するが独立root集合から除外、自己申告claimだけ有り",
+      "expected": "qualification_unresolved; authority_mapping unknown。自己申告でmatchedにしない。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "unknown",
+      "expected_input_issue": "qualification_unresolved"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-06",
+      "function_ref": "HARNESS-L5-053-validate_lineage_input",
+      "branch": "conflicting-source-reachable",
+      "input": "A/r1に別source_refのqualified conflicting owner記録を供給",
+      "expected": "両記録を比較へ通す。構造重複で先着を消さずF01 identity_conflictへ到達。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-07",
+      "function_ref": "HARNESS-L5-053-compare_asset_identity",
+      "branch": "opaque-id-preservation",
+      "input": "asset_id=A と asset_id=aを別owner供給IDとして照合",
+      "expected": "異IDを維持。casefold/trim/採番0。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-08",
+      "function_ref": "HARNESS-L5-053-compare_semantic_revision",
+      "branch": "unresolved-not-unchanged",
+      "input": "before Ref有りbody/資格欠落、after有り、claimなし",
+      "expected": "before semantic unknown、diff unknown、claim not_reported。意味不変にしない。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-09",
+      "function_ref": "HARNESS-L5-053-compare_semantic_revision",
+      "branch": "digest-not-meaning",
+      "input": "原bytes digest差有り、qualified diff.meaning_changed=false",
+      "expected": "digest差だけで意味変更にしない。ownerの意味差判断を保全。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-10",
+      "function_ref": "HARNESS-L5-053-compare_lineage_records",
+      "branch": "empty-not-null",
+      "input": "LM.beforeはowner原集合B/C、供給history=[]",
+      "expected": "明示empty保持。必要B/C link不足、history missing。欠落集合を成功へ変えない。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-11",
+      "function_ref": "HARNESS-L5-053-compare_lineage_records",
+      "branch": "unrelated-relation-preserved",
+      "input": "LSだけforeign scope、LM/LXは正常qualified",
+      "expected": "LS unknown、LM/LX matched保持。全record停止にしない。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-12",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "branch": "qualified-na",
+      "input": "非required axisに当該scope ownerのqualified非適用理由、required軸は全matched",
+      "expected": "当該非required axisのみnot_applicable。理由Ref/owner/binding保持。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-13",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "branch": "na-does-not-replace-required",
+      "input": "required QA欠落、別scopeの非適用理由Ref供給",
+      "expected": "authority missing/理由不適用unknown、required closure unestablished。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-14",
+      "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+      "branch": "operation-without-claim",
+      "input": "operations=[move(A/r1)]、claims=[]",
+      "expected": "held/not_selected、claim not_reported、location record維持、042 unresolved、effects0。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "held",
+      "expected_operation_selection": "not_selected",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-15",
+      "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+      "branch": "record-only-no-claim",
+      "input": "operations=[]、claims=[]、全record正常",
+      "expected": "not_requested/not_requested、claim not_reported、042 unresolved、effects0。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-16",
+      "function_ref": "HARNESS-L5-053-build_lineage_analysis",
+      "branch": "permutation",
+      "input": "qualified inputsのtuple順序を逆転。意味内容/Ref/bindingは同一",
+      "expected": "semantic result同値、決定的出力、原各source保全。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-17",
+      "function_ref": "HARNESS-L5-053-build_lineage_analysis",
+      "branch": "replay",
+      "input": "同immutable snapshotを2回解析",
+      "expected": "同値result、side_effect_count0、ID/revision発行0。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-18",
+      "function_ref": "HARNESS-L5-053-build_lineage_analysis",
+      "branch": "multiple-axis-failures",
+      "input": "LS.QA missingかつQO conflicting revision、QE matched",
+      "expected": "両causeと各axis状態/owner維持。全体conflict集計でmissing原因を消さない。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-19",
+      "function_ref": "HARNESS-L5-053-build_lineage_analysis",
+      "branch": "claim-does-not-overwrite",
+      "input": "A/B known異ID matchedかつsame_identity claim conflict",
+      "expected": "原identity matchedとclaim conflictを別field。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "conflict"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-20",
+      "function_ref": "HARNESS-L5-053-build_lineage_analysis",
+      "branch": "binding-separation",
+      "input": "異tenantの同ID/r1記録を一緒に解析",
+      "expected": "異binding別観測。ソートで同一source/identityへ併合しない。",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_claim_state": "not_reported"
+    }
+  ],
+  "function_oracles": [
+    {
+      "id": "HARNESS-L8-053-validate_lineage_input",
+      "function_ref": "HARNESS-L5-053-validate_lineage_input",
+      "case_refs": [
+        "HARNESS-L8-053-ADD-01",
+        "HARNESS-L8-053-ADD-02",
+        "HARNESS-L8-053-ADD-03",
+        "HARNESS-L8-053-ADD-04",
+        "HARNESS-L8-053-ADD-05",
+        "HARNESS-L8-053-ADD-06"
+      ],
+      "effect_oracle": "入力immutable、IO spy0、採番/保存/rollback/権限/採択/受入0、042unresolved保全。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-053-compare_asset_identity",
+      "function_ref": "HARNESS-L5-053-compare_asset_identity",
+      "case_refs": [
+        "HARNESS-L8-053-F01-NEG-01",
+        "HARNESS-L8-053-F01-NEG-02",
+        "HARNESS-L8-053-F01-NEG-03",
+        "HARNESS-L8-053-F01-NEG-04",
+        "HARNESS-L8-053-F01-NEG-05",
+        "HARNESS-L8-053-F01-NEG-06",
+        "HARNESS-L8-053-ADD-07"
+      ],
+      "effect_oracle": "入力immutable、IO spy0、採番/保存/rollback/権限/採択/受入0、042unresolved保全。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-053-compare_semantic_revision",
+      "function_ref": "HARNESS-L5-053-compare_semantic_revision",
+      "case_refs": [
+        "HARNESS-L8-053-F02-NEG-01",
+        "HARNESS-L8-053-F02-NEG-02",
+        "HARNESS-L8-053-F02-NEG-03",
+        "HARNESS-L8-053-F02-NEG-04",
+        "HARNESS-L8-053-F02-NEG-05",
+        "HARNESS-L8-053-F02-NEG-06",
+        "HARNESS-L8-053-ADD-08",
+        "HARNESS-L8-053-ADD-09"
+      ],
+      "effect_oracle": "入力immutable、IO spy0、採番/保存/rollback/権限/採択/受入0、042unresolved保全。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-053-compare_lineage_records",
+      "function_ref": "HARNESS-L5-053-compare_lineage_records",
+      "case_refs": [
+        "HARNESS-L8-053-F03-NEG-01",
+        "HARNESS-L8-053-F03-NEG-02",
+        "HARNESS-L8-053-F03-NEG-03",
+        "HARNESS-L8-053-F03-NEG-04",
+        "HARNESS-L8-053-F03-NEG-05",
+        "HARNESS-L8-053-F03-NEG-07",
+        "HARNESS-L8-053-ADD-10",
+        "HARNESS-L8-053-ADD-11"
+      ],
+      "effect_oracle": "入力immutable、IO spy0、採番/保存/rollback/権限/採択/受入0、042unresolved保全。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-053-compare_lineage_mappings",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "case_refs": [
+        "HARNESS-L8-053-F04-NEG-01",
+        "HARNESS-L8-053-F04-NEG-02",
+        "HARNESS-L8-053-F04-NEG-03",
+        "HARNESS-L8-053-F04-NEG-04",
+        "HARNESS-L8-053-F04-NEG-05",
+        "HARNESS-L8-053-F04-NEG-06",
+        "HARNESS-L8-053-ADD-12",
+        "HARNESS-L8-053-ADD-13"
+      ],
+      "effect_oracle": "入力immutable、IO spy0、採番/保存/rollback/権限/採択/受入0、042unresolved保全。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-053-check_lineage_operation_boundary",
+      "function_ref": "HARNESS-L5-053-check_lineage_operation_boundary",
+      "case_refs": [
+        "HARNESS-L8-053-F03-NEG-06",
+        "HARNESS-L8-053-N01-NEG-01",
+        "HARNESS-L8-053-N01-NEG-02",
+        "HARNESS-L8-053-N01-NEG-03",
+        "HARNESS-L8-053-N01-NEG-04",
+        "HARNESS-L8-053-N01-NEG-05",
+        "HARNESS-L8-053-B01-NEG-01",
+        "HARNESS-L8-053-B01-NEG-02",
+        "HARNESS-L8-053-B01-NEG-03",
+        "HARNESS-L8-053-B01-NEG-04",
+        "HARNESS-L8-053-B01-NEG-05",
+        "HARNESS-L8-053-B01-NEG-06",
+        "HARNESS-L8-053-B01-NEG-07",
+        "HARNESS-L8-053-B01-NEG-08",
+        "HARNESS-L8-053-ADD-14",
+        "HARNESS-L8-053-ADD-15"
+      ],
+      "effect_oracle": "入力immutable、IO spy0、採番/保存/rollback/権限/採択/受入0、042unresolved保全。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-053-build_lineage_analysis",
+      "function_ref": "HARNESS-L5-053-build_lineage_analysis",
+      "case_refs": [
+        "HARNESS-L8-053-ADD-16",
+        "HARNESS-L8-053-ADD-17",
+        "HARNESS-L8-053-ADD-18",
+        "HARNESS-L8-053-ADD-19",
+        "HARNESS-L8-053-ADD-20"
+      ],
+      "effect_oracle": "入力immutable、IO spy0、採番/保存/rollback/権限/採択/受入0、042unresolved保全。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "evidence_contract": {
+    "basis": "L5 exact revision/bodysha、ケースID、fixture原bytesと変異、subject/binding、担当関数、判定axis/claim/operation/owner、実行generationを接続。",
+    "negative_evidence": "原38 negativeのexpected全文/state/ownerを変更しない。コード一致だけでなく原record各軸、無関係record、source因果とclaim独立を検査。",
+    "control_evidence": "各negativeと変異無しpositiveを別実行。追加caseは担当関数の型/null/資格/決定性分岐へ対応。テスト数ではなく実到達/反証可能性を確認。",
+    "red_green": "凍結oracleの実装前Redと最小実装Greenは後続L6/L7の実証拠。本JSONの存在や静的検査をRed/Greenへ読み替えない。"
+  },
+  "completion": {
+    "design": "独立reviewと当該exact pairのadmission/read-afterで設計統合を確認。",
+    "execution": "not_executed",
+    "runtime_prevention": "unproven",
+    "global_scope": "全92親430対の設計/実装準備完了をこの一parentから宣言しない。"
+  }
+}
