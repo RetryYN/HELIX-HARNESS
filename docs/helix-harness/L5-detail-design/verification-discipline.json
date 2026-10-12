@@ -5681,8 +5681,8 @@
             "actual_results": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_type": "F06ExecutionObservation",
+                "empty_semantics": "供給された合成原観測が0件。key欠落/nullとは別。実successや現実の全実行有無を生成しない。"
               }
             }
           }
@@ -5710,8 +5710,8 @@
             "uncovered_invariants": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_type": "UncoveredInvariant",
+                "empty_semantics": "既知の宣言全件の参照/対象/意味比較が成立した場合の不足0件。母集合missingを空へしない。"
               }
             },
             "behavior_execution": {
@@ -7016,6 +7016,44 @@
           "interpretation": "Field<fixture interpretation statement>"
         },
         "meaning": "verification-design-ownerの独立oracle内容。F07 fixtureでは具体stringを使う。実出力との意味照合は実owner資料に結び、Red自身のexpected labelやtest/library名だけを期待の正本にしない。"
+      },
+      "F06InvariantContent": {
+        "fields": {
+          "ref": "Ref",
+          "behavior": "Field<concrete invariant behavior>"
+        },
+        "meaning": "design-ownerの宣言。identity名だけで意味を導出しない。"
+      },
+      "F06OracleContent": {
+        "fields": {
+          "ref": "Ref",
+          "invariant_ref": "Ref",
+          "assertion": "Field<observable/relation/expected>",
+          "failure": "Field<concrete expected failure>"
+        },
+        "meaning": "検証設計ownerの原内容。リンクと意味適格性を別比較する。"
+      },
+      "F06ExecutionObservation": {
+        "fields": {
+          "ref": "Ref",
+          "target_binding": "Ref",
+          "invariant_ref": "Ref",
+          "oracle_ref": "Ref",
+          "execution_state": "Field<not_executed|observed|unknown>",
+          "actual_behavior": "Field<original observed behavior>",
+          "oracle_evidence": "Field<original bound execution evidence>"
+        },
+        "meaning": "実観測を供給する際の論理item。owner/revision/scope/対象/証拠の資格が要る。現fixtureは0件で、正式実evidence codec/adapterは未構築。"
+      },
+      "UncoveredInvariant": {
+        "fields": {
+          "invariant_ref": "Ref",
+          "state": "missing|unknown|stale|conflict",
+          "reason": "string",
+          "oracle_ref": "null|Ref",
+          "backflow_owner": "string"
+        },
+        "meaning": "このrevisionのoracle被覆が未成立である理由。実behavior違反の観測や宣言のretireではない。"
       }
     },
     "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
@@ -7521,7 +7559,8 @@
           "backflow_owner": "execution-owner",
           "preserve": "trace成立と未実行を分離。"
         }
-      ]
+      ],
+      "detail_contract": "invariant_oracle_detail"
     },
     {
       "name": "compare_tdd_observation_order",
@@ -7985,7 +8024,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106主呼出しのrootを固定し、F07/F08の14件の独立合成referentsと12負例の部分期待を起草。残る92主呼出しの参照先と72負例の部分結果、全体のnull/empty型は未完。",
+      "106主呼出しのrootとF06/F07/F08の20件の合成参照資料状態、17負例の部分期待を起草。残る86主呼出しの参照先と67負例の部分結果、全体のnull/empty型は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -8041,7 +8080,7 @@
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
     "negative_candidate_sources": "原資料をcandidateから分離する。F07 mutation_as_pre_redは、Redを除く明示fixture_preparationを候補変異と分け、同じ原mutation記録を保持する。その他candidate負例は正常owner材料を保持する。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106主呼出しのうちF07/F08の14件へ独立合成referentsを供給。他92件はmissingを明示。source欠落対照は同じrootを保ち資格不足を成功で埋めない。実owner/trustや実観測へ昇格しない。"
+    "referent_input_state": "106主呼出しのうちF06/F07/F08の20件へ独立合成参照資料状態を供給。F06未解決はunknownで、資料内容を持つqualifiedと区別する。他86件はmissing。source欠落/同ref内容不一致の対照を意味負例から分ける。実owner/trustや実観測へ昇格しない。"
   },
   "behavior_oracle_detail": {
     "design_ref": "HARNESS-L5-005-F08",
@@ -8139,5 +8178,87 @@
       "oracle-other-revision": "TddOracleSourceContent",
       "record_roles": "F07VerificationInput.normal_shapeの対応role。欠落/null/emptyをFieldとして保全する。"
     }
+  },
+  "invariant_oracle_detail": {
+    "design_ref": "HARNESS-L5-005-F06",
+    "requirement_ref": "HARNESS-L3-005-F06",
+    "basic_oracle_ref": "HARNESS-L9-005-F06",
+    "source_roles": {
+      "declared_invariants": "design-ownerの対象revision/scopeの宣言母集合。候補の被覆件数から母集合を作らない。",
+      "oracle_designs": "verification-design-ownerの原oracle内容。refの存在と資格、対象invariantへの意味充足を別に比較する。",
+      "actual_results": "execution-ownerの独立原観測。空の合成入力から成功を作らない。実資料がmissing/unknownなら実行有無を推測しない。"
+    },
+    "source_content_types": {
+      "declared_invariants": "F06InvariantContent",
+      "oracle_designs": "F06OracleContent",
+      "actual_results": "F06ExecutionObservation"
+    },
+    "finite_meaning_basis": [
+      {
+        "invariant_ref": {
+          "identity": "INV-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "original_behavior": "balance never becomes negative",
+        "observable": "result.balance",
+        "relation": "greater_or_equal",
+        "expected": 0,
+        "boundary_example": {
+          "balance": -1,
+          "expected_relation_result": false
+        }
+      },
+      {
+        "invariant_ref": {
+          "identity": "INV-2",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "original_behavior": "one command produces at most one debit event",
+        "observable": "debit_event_count(command.identity)",
+        "relation": "less_or_equal",
+        "expected": 1,
+        "boundary_example": {
+          "command_identity": "C-1",
+          "debit_event_count": 2,
+          "balance": 10,
+          "expected_relation_result": false,
+          "wrong_balance_only_relation_result": true
+        }
+      }
+    ],
+    "meaning_basis_limit": "採択済みL3の意味をこのL9合成例へ具体化した、設計ownerの固定解釈。数値0/1、debitの方式、名前からの意味導出を製品の既定値へしない。一般の不変条件には独立ownerの具体期待/失敗対応を供給し、不明な同値関係を推測しない。",
+    "comparison_steps": [
+      "root packetと宣言母集合を固定する。各Refのidentity/revision/scope/ownerで独立entryへ解決し、資格未定の射影内容を肯定にしない。",
+      "oracleが指定するinvariant_refを現在の宣言へ比較。旧r0の原内容もfixture資料として読めるが、現r1の義務を被覆しない。",
+      "当該invariantの独立意味basisとoracleのobservable/relation/expected/failureを比較。参照件数やfailureの名前で判定しない。",
+      "trace_pairsには資格と対象・意味の対応が成立したpairだけを返す。不足のinvariantは理由/state/戻し先付きでuncovered_invariantsへ残す。",
+      "actual_resultsをtraceとは別に読む。trace成立とcandidate success claimから実行・振る舞い成功を生成しない。"
+    ],
+    "field_derivation": {
+      "trace_pairs": "元INV1の有効対応をINV2不足で捨てない。表示identityのtupleはsource_refsのexact bindingに結ぶ。",
+      "uncovered_invariants": "現在の宣言母集合のうち当該oracle被覆が未成立の項目とmissing/unknown/stale/conflict理由。実behavior違反を観測した項目の一覧ではない。",
+      "behavior_execution": "このfixtureは実行しないnot_executedの状態を保持する。現実の実行有無を空の資料だけから断定しない。",
+      "behavior_success": "not_generated。実結果が未供給なのにtraceからobserved_successへ昇格しない。"
+    },
+    "missing_null_empty": {
+      "declared_invariants_missing": "母集合不明。空集合の完全被覆にしない。",
+      "oracle_designs_empty": "供給されたoracleが0件。既知の宣言は未被覆として保持。",
+      "oracle_ref_unknown": "未解決という原source stateを保持。projectionのassertionが正しく見えても被覆へ数えない。",
+      "same_ref_other_content": "owner entryとcaller viewの内容不一致。意味不足のcaseとは別のsource conflictとして保持。",
+      "actual_results_empty": "合成入力で原観測を供給していない。success claimの代替にしない。"
+    },
+    "limits": "6主呼出しの合成source/部分結果の設計。実oracle/実run/正式resolver、自然言語同値を解く実engineの成立ではない。"
   }
 }
