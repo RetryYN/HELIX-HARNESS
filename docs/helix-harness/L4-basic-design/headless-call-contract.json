@@ -1,0 +1,747 @@
+{
+  "document_id": "HARNESS-L4-011-HEADLESS-CALL-CONTRACT",
+  "layer": "L4",
+  "paired_document": "docs/helix-harness/L9-integration-verification/headless-call-contract.json",
+  "parent": "HARNESS-L2-011",
+  "status": "candidate_pending_independent_review",
+  "source_main": "f07c93939f069ec35e8256693f6cb64b107b8986",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-prerequisite-contracts-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/command-meaning-identity.json",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "b50bcc43fc293e0678a7f9f59b2b4bd05ecfffecd4e47cca657cfd85f88be90a"
+    },
+    {
+      "path": "docs/governance/template-work-allocation.md",
+      "revision": "f07c93939f069ec35e8256693f6cb64b107b8986",
+      "sha256": "40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0"
+    }
+  ],
+  "purpose": "限定前提のpack呼出し境界と停止/再開・結果の意味接続。実transport、実executor、権限方式、保存writerの成立を主張しない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md",
+      "asset_id": "LEGACY-ASSET-BD13CC67526B48D461F9",
+      "sha256": "ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37",
+      "lines": "1–59",
+      "disposition": "semantic_rederivation",
+      "keep": "provider依存をcoreからadapterへ隔離する判断とA-71の前提混入失敗。",
+      "change": "現行011はprovider/CLI/hookそのものを必須にしない。旧API/CLI認証方針は現行製品契約へ自動採用せず、認証方式を本設計で変更・確定しない。",
+      "reason": "承認済み011の6義務と現行Conceptのowner分離から再導出し、旧runtimeの存在や旧合格を根拠にしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L6-20-runtime-adapter-session-lifecycle.md",
+      "asset_id": "LEGACY-ASSET-DF1DDC2109C83F9A1A04",
+      "sha256": "dd93a8efd80de8d4d6c229e0d958bdb75026b15e2bc1fbaa55800fc1440e4db8",
+      "lines": "42–60、100–113",
+      "disposition": "semantic_rederivation",
+      "keep": "進行・結果の共有lifecycleとprovider引数からdomain metadataを分けること。",
+      "change": "旧CLI/hook起動・PLAN引数・session log writerは移植しない。呼出し元と運転ownerの明示portへ分ける。",
+      "reason": "承認済み011の6義務と現行Conceptのowner分離から再導出し、旧runtimeの存在や旧合格を根拠にしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/external-if.md",
+      "asset_id": "LEGACY-ASSET-2EFC00A82748E40D2568",
+      "sha256": "52c9ec954373b1fe6c540379cb10f8af7670e0df8072598c4761eafba5732763",
+      "lines": "21–87、92–154",
+      "disposition": "semantic_rederivation",
+      "keep": "境界ごとのpre/post/invariantとwhat/howの分離。",
+      "change": "旧service/mode/DB/絶対pathを必須構成にしない。SECURITY/INFRA/OSの実境界は各ownerが保持する。",
+      "reason": "承認済み011の6義務と現行Conceptのowner分離から再導出し、旧runtimeの存在や旧合格を根拠にしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/if-detail.md",
+      "asset_id": "LEGACY-ASSET-A440E0F5465A4EBF9855",
+      "sha256": "e0eb73c02383e1151e72558e4eb0caf436d19105465dd739de3390216a931d96",
+      "lines": "21–90",
+      "disposition": "semantic_rederivation",
+      "keep": "intent/結果/error分類と明示的冪等性・期限。",
+      "change": "旧timeout skip+warn/exit0を結果成功へ写さない。timeout後の作用はunknown、期限切れの継続・無条件retryを禁止する設計とする。",
+      "reason": "承認済み011の6義務と現行Conceptのowner分離から再導出し、旧runtimeの存在や旧合格を根拠にしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "lines": "23–67",
+      "disposition": "semantic_rederivation",
+      "keep": "独立利用、必要安全依存閉包、個別成功と組合せ成功の分離。",
+      "change": "旧Slice/Module/Bundleのruntime/台帳を移植せず、統合済み010のpack宣言を参照する。",
+      "reason": "承認済み011の6義務と現行Conceptのowner分離から再導出し、旧runtimeの存在や旧合格を根拠にしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md",
+      "sha256": "81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a",
+      "asset_id": "LEGACY-ASSET-0327D0DF98618D3066FD",
+      "lines": "19–70",
+      "disposition": "semantic_rederivation",
+      "keep": "pure analyzerからeffect authorityへ直接到達させず、intent/receiptにscope、冪等キー、期限、結果不明を持つ。timeout/nonzero/partialをsuccessにしない。",
+      "change": "旧Node probe、署名方式、DB/CLI/物理root方式はcopyしない。authority判断はSECURITY、実効果と記録済み状態はcaller側ownerへ残す。",
+      "reason": "011は宣言呼出し契約であり、方式固定と運転を別ownerへ分離する。"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "65–101（UTW-006/010/013/014/020/021/022/034）",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "meaning": "単一runtime依存、fail-open、欠損空集合化、episode未閉包、部分失敗、自己申告、外部権限の後付けを、入力束縛・別状態軸・実作用の観測とowner返却で反証する。失敗から新要求やgateを生成しない。"
+  },
+  "authority_boundary": "10/12限定再開の範囲2と85103aa7の011全6組への委任承認。10/8一般解禁は失効。011の個別version_target未指定とroster Stage1/1.0対象を別軸で保持する。対象意味・版・承認を変更せずL4/L9起草と独立reviewを行う。",
+  "knowledge_use": {
+    "template": "DT-MSG-001は必読seedとして照合した材料。MSGCONTENTは初回要求整理への限定採用であり、本設計への正式template適用/運用promotionを生成しない。6義務の契約とoracleは承認済み011のL3/L10、現行Concept、旧比較から再導出する。VT104〜106を正式知識へ昇格しない。",
+    "limits": "正式schema/方式/数値をseedから写さない。BRAINのregistry/promoteとCORE適用writerを新設しない。"
+  },
+  "architecture": {
+    "components": [
+      {
+        "name": "CallBinding",
+        "owner": "HARNESS011",
+        "role": "宣言された入出力と対象能力・scope・revisionの照合"
+      },
+      {
+        "name": "ContractResolution",
+        "owner": "HARNESS011",
+        "role": "010のpack契約と明示された互換根拠/依存版の照合"
+      },
+      {
+        "name": "ControlAndObservationBinding",
+        "owner": "HARNESS011",
+        "role": "callerの制御要求とowner観測の所属・意味を照合"
+      },
+      {
+        "name": "CallerRuntimePorts",
+        "owner": "caller側の実行/保存owner（HELIX本体ではOS等）",
+        "role": "実dispatch、停止、clock、checkpoint/CAS、観測/保存/表示。意味coreから暗黙に呼ばない"
+      }
+    ],
+    "flow": [
+      "callerの能力・入出力・scope・contract/構成版を固定する",
+      "宣言依存と明示authority/期限の解決を照合する",
+      "意味coreは適格候補/不足を返し、caller executorが実operation直前の条件を確認する",
+      "ownerが実行/進行/結果/作用証拠を回収する",
+      "coreは所属と結果意味を照合し、callerへ未完/unknownを含めて返す",
+      "停止/再開は元記録を保持してcheckpointと現条件を再照合する"
+    ],
+    "dependency_direction": "宣言/owner観測snapshot → pure意味照合 → 候補/finding → callerの明示port。GUI/CLI/provider/CI/DBへの直接依存を意味coreへ作らない。",
+    "state_axes": {
+      "progress": "not_started/running/ended/unknownの意味分類。正式enumはL5。cancel_requestedは実停止と別の制御観測。",
+      "result": "success/failure/partial/unknownの意味分類。進行endedから推定しない。",
+      "effects": "observed_applied/observed_not_applied/unobservedを作用単位へ結び、集合被覆と証拠を保持。",
+      "recording": "保存/未保存/未観測はcaller ownerのreceiptにより別分類する。",
+      "identity": "correlationは追跡、idempotency keyは操作束縛、callとattemptは運転identity。相互代用しない。052の意味同一≠OS保存/再実行成功。"
+    },
+    "connections": [
+      {
+        "id": "E1",
+        "direction": "caller → HARNESS",
+        "meaning": "能力/input/ref/scope/contract/依存/制御/owner判断の入力",
+        "owner": "caller input owner",
+        "ordering": "宣言照合前にeffect開始しない。stale/unknownは保留。"
+      },
+      {
+        "id": "E2",
+        "direction": "execution owner → HARNESS → caller",
+        "meaning": "進行/結果/作用証拠の観測",
+        "owner": "各観測producer、保存表示はcaller",
+        "ordering": "同call/attempt/input/scope/構成へ結ぶ。遅延/重複は同観測ID・同bytesのみ吸収、同ID異内容はconflict、欠落順序はunknown。"
+      },
+      {
+        "id": "E3",
+        "direction": "caller → execution owner → caller/HARNESS",
+        "meaning": "停止要求/実停止/checkpoint/再開判断の観測",
+        "owner": "execution/checkpoint owner",
+        "ordering": "要求ACKは実停止ではない。既発行作用を解決してから未実施範囲を再開。"
+      }
+    ],
+    "retry_and_timeout": "暗黙retryを意味coreで行わない。callerが固定契約のoperation deadline/再送方針を渡し、未対応/不足は保留。技術timeoutでも作用不明を成功/全無作用へ丸めず、ownerへ照会する。具体clock encoding/上限/間隔/transportはL5と該当ownerの対設計で閉じる。"
+  },
+  "placement": {
+    "semantic_canonical": "docs/helix-harness/L4-basic-design/headless-call-contract.json",
+    "verification_canonical": "docs/helix-harness/L9-integration-verification/headless-call-contract.json",
+    "runtime_target": "helix/helix-harness/units/<登録されたpack>/src・tests。正式型番・物理transportは後続で固定する。",
+    "separation": "docsは意味契約、declarationsは宣言、recordsは実記録。GUI表示/運用checkpointを意味JSONへ二重正本化しない。"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-011-F01",
+      "requirement_ref": "HARNESS-L3-011-F01",
+      "system_oracle_ref": "HARNESS-L10-011-F01",
+      "oracle_ref": "HARNESS-L9-011-F01",
+      "title": "画面から独立した呼出し",
+      "boundary": "Consumer → PackCallPort",
+      "required_input_meanings": [
+        "pack_contract_ref",
+        "capability_name",
+        "input_revision",
+        "input_body",
+        "caller_scope",
+        "explicit_runtime_bindings"
+      ],
+      "behavior": "画面をconsumerへ置き、同じ宣言入力をheadless consumerと異なる環境のconsumerから同じpack契約へ渡す。packはGUI、固定ローカルpath、特定provider/CIを隠れた意味入力にしない。物理配置はexplicit runtime bindingで差を吸収し、全実環境に無条件対応すると主張しない。対象能力に正当に必要な依存はF02の宣言で渡す。",
+      "backflow": "隠れた入力/意味依存はHARNESS L3/L4、pack宣言不足は010、物理adapter不足は当該owner。Web要求は導かない。"
+    },
+    {
+      "id": "HARNESS-L4-011-F02",
+      "requirement_ref": "HARNESS-L3-011-F02",
+      "system_oracle_ref": "HARNESS-L10-011-F02",
+      "oracle_ref": "HARNESS-L9-011-F02",
+      "title": "呼出しと依存版の照合",
+      "boundary": "CallBinding → ContractResolution",
+      "required_input_meanings": [
+        "capability_name",
+        "contract_ref",
+        "contract_compatibility_ref",
+        "required_dependency_set",
+        "observed_dependency_set",
+        "configuration_ref"
+      ],
+      "behavior": "能力名・contractのexact revisionと、ownerが宣言した必要依存の版を照合する。version_target、Stage、maturityと実contract版を別軸にする。互換性は当該ownerの対象revisionに束縛した明示mappingの範囲に限る。unknown/missing/conflict/staleをlatest/fallback/空集合へ置換しない。実行中の構成を固定し、版変更は新しい照合として扱う。",
+      "backflow": "呼出しcontract意味はHARNESS、mapping/依存宣言は宣言owner、実版観測はcaller runtime owner、運転の構成変更はOS。"
+    },
+    {
+      "id": "HARNESS-L4-011-F03",
+      "requirement_ref": "HARNESS-L3-011-F03",
+      "system_oracle_ref": "HARNESS-L10-011-F03",
+      "oracle_ref": "HARNESS-L9-011-F03",
+      "title": "権限・隔離の受渡し",
+      "boundary": "Caller → AuthorityPort → ExecutionOwner",
+      "required_input_meanings": [
+        "caller_identity",
+        "project",
+        "tenant",
+        "environment",
+        "required_actions",
+        "resource_scope",
+        "authority_resolution_ref",
+        "authority_observation_ref"
+      ],
+      "behavior": "callerから渡されたproject/tenant/環境・actor・action・資源範囲へ、SECURITY等の正当なauthority ownerが提供した有効判断をexactに結ぶ。plain自己申告やcallable objectの存在を権限としない。意味coreは権限を発行/拡張せず、executorは実作用の直前にも有効性を確かめる。拒否/unknown/失効はdispatchさせず、強制と実アクセスの証拠はexecutor/SECURITYへ求める。HELIX稼働DB/鍵/内部統制の共有を必須構成にしない。認証方式はここで選定しない。",
+      "backflow": "authority/隔離はSECURITY、強制と実資源はexecution owner/INFRA、意味上の要求不足はHARNESS。"
+    },
+    {
+      "id": "HARNESS-L4-011-F04",
+      "requirement_ref": "HARNESS-L3-011-F04",
+      "system_oracle_ref": "HARNESS-L10-011-F04",
+      "oracle_ref": "HARNESS-L9-011-F04",
+      "title": "相関した進行・結果・証拠",
+      "boundary": "ExecutionOwner → ObservationBinding → Caller",
+      "required_input_meanings": [
+        "call_identity",
+        "attempt_identity",
+        "correlation_id",
+        "input_revision",
+        "scope_ref",
+        "progress_observations",
+        "result_observations",
+        "evidence_refs",
+        "configuration_ref"
+      ],
+      "behavior": "進行状態と結果状態と証拠を別fieldへ持ち、call/attempt/correlation/input/scope/構成を結ぶ。accepted/running/ended等の進行とsuccess/failure/partial/unknownの意味を混ぜない。終了通知、exit0、empty出力、表示成功、ACKだけから成功/保存を推定しない。報告された状態を消さず、所属や証拠に不足があればeffective resultは未完/unknownとして返す。保存/表示writerはcallerであり本契約は保存receiptを生成しない。",
+      "backflow": "証拠所属はproducer/OS、表示保存はcaller、判定意味はHARNESS。"
+    },
+    {
+      "id": "HARNESS-L4-011-F05",
+      "requirement_ref": "HARNESS-L3-011-F05",
+      "system_oracle_ref": "HARNESS-L10-011-F05",
+      "oracle_ref": "HARNESS-L9-011-F05",
+      "title": "停止・期限・再開",
+      "boundary": "Caller Control → ExecutionOwner → CheckpointResolution",
+      "required_input_meanings": [
+        "command_identity_ref",
+        "idempotency_key",
+        "call_identity",
+        "attempt_identity",
+        "deadline_ref",
+        "current_time_observation",
+        "cancel_request_ref",
+        "checkpoint_ref",
+        "prior_effect_refs",
+        "current_authority_ref",
+        "resume_configuration_ref"
+      ],
+      "behavior": "途中停止要求と停止が実際に成立した観測を区別する。期限はcallerの対象operationの有効な入力、clock観測はruntime owner入力であり意味coreがwall clockや既定timeoutを読むことはない。停止/期限到来は新しい作用開始を止め、既発行作用の成否が不明ならunknown/partialと実範囲を保持する。停止前成功の局所作用を消さず、call全体の期限切れ/中断をsuccessとしない。再開は記録済みcheckpointの元call/input/scope/contract/構成/冪等キーと既実施範囲の解決を要求し、現authority・期限を再照合する。未決の既作用を再実行しない。保存/CAS/重複作用の強制はexecution ownerの契約へ渡し、HARNESS052のsame/conflictだけでexactly-onceを保証しない。",
+      "backflow": "意味identityは052、checkpoint/保存/実行/CASはOS等execution owner、authorityはSECURITY、期限資源観測はruntime owner。"
+    },
+    {
+      "id": "HARNESS-L4-011-N01",
+      "requirement_ref": "HARNESS-L3-011-N01",
+      "system_oracle_ref": "HARNESS-L10-011-N01",
+      "oracle_ref": "HARNESS-L9-011-N01",
+      "title": "副作用と責務の観測",
+      "boundary": "DeclaredEffects ↔ ActualEffectObservation",
+      "required_input_meanings": [
+        "expected_access_set",
+        "expected_effect_set",
+        "actual_input_output_refs",
+        "actual_access_observations",
+        "before_after_resource_refs",
+        "coverage_scope",
+        "unobserved_scope",
+        "failure_injection_refs"
+      ],
+      "behavior": "正常/拒否/期限切れ/停止/再開で実入出力、アクセス、作用/未作用を対象revision/scopeへ照合する。宣言exact setと実観測の被覆を照合し、未観測を無作用へ変換しない。pure coreの局所判定と本物の実接続を分け、mockのcallback0やDB snapshotだけでは外部資源の未作用を証明しない。部分成功は実作用集合と未完集合を保持する。対象資源が観測不能なら当該利用成立は未証明としてownerへ返す。",
+      "backflow": "観測欠落はproducer/runtime owner、検証契約不足はHARNESS L4/L9、評価はLABO、実権限違反はSECURITY。"
+    }
+  ],
+  "remaining": [
+    "L5/L8で閉じたfield型、純粋関数/port型、互換/参照解決、結果/停止/再開の分類と局所oracleを具体化する。",
+    "L6/L7でtest/oracle凍結と実装前Redの対象を定める。実実装/Green/CIは未成立。",
+    "checkpoint/CAS/expiry/authority/外部資源/観測/transportのowner-qualified bindingと実接続が必要。意味一致から運転成立を作らない。",
+    "全92親・430義務、配置4論点、開発toolchain、実L9/L10、PO L11受入、release/内部deployは未完。"
+  ],
+  "failure_classifications": [
+    {
+      "id": "R-absence_blindness",
+      "code": "absence_blindness",
+      "condition": "観測不能/未観測資源を未作用へ変換",
+      "effective_utilization": "unproven",
+      "backflow_owner": "resource observation owner",
+      "affected_axis": "effects",
+      "oracle_refs": [
+        "HARNESS-L9-011-N01-NEG-04"
+      ]
+    },
+    {
+      "id": "R-authority_missing",
+      "code": "authority_missing",
+      "condition": "required action/resourceのowner authority判断が未供給",
+      "effective_utilization": "held",
+      "backflow_owner": "SECURITY",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F03-NEG-01"
+      ]
+    },
+    {
+      "id": "R-authority_stale",
+      "code": "authority_stale",
+      "condition": "dispatch直前のauthorityが失効/元scopeに不適合",
+      "effective_utilization": "rejected",
+      "backflow_owner": "SECURITY/execution owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F03-NEG-05"
+      ]
+    },
+    {
+      "id": "R-authority_unverified",
+      "code": "authority_unverified",
+      "condition": "自己発行/plain判断を正当なauthority ownerへ解決できない",
+      "effective_utilization": "held",
+      "backflow_owner": "SECURITY",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F03-NEG-04"
+      ]
+    },
+    {
+      "id": "R-axis_substitution",
+      "code": "axis_substitution",
+      "condition": "version_target/Stage/maturityをactual contract版へ代入",
+      "effective_utilization": "held",
+      "backflow_owner": "pack contract owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F02-NEG-01"
+      ]
+    },
+    {
+      "id": "R-capability_mismatch",
+      "code": "capability_mismatch",
+      "condition": "requested/resolved能力名の差を黙って利用",
+      "effective_utilization": "rejected",
+      "backflow_owner": "caller/pack contract owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F02-NEG-06"
+      ]
+    },
+    {
+      "id": "R-checkpoint_missing",
+      "code": "checkpoint_missing",
+      "condition": "再開に必要な記録済みcheckpoint/receipt/作用範囲が欠落",
+      "effective_utilization": "held",
+      "backflow_owner": "execution/checkpoint owner",
+      "affected_axis": "recording",
+      "oracle_refs": [
+        "HARNESS-L9-011-F05-NEG-01"
+      ]
+    },
+    {
+      "id": "R-configuration_drift",
+      "code": "configuration_drift",
+      "condition": "checkpoint固定構成と再開構成の差を黙って採用",
+      "effective_utilization": "held",
+      "backflow_owner": "caller/構成owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F05-NEG-08"
+      ]
+    },
+    {
+      "id": "R-correlation_missing",
+      "code": "correlation_missing",
+      "condition": "必要correlationがmissingでepisode所属を確定できない",
+      "effective_utilization": "unproven",
+      "backflow_owner": "observation producer/caller",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F04-NEG-03"
+      ]
+    },
+    {
+      "id": "R-coverage_shrink",
+      "code": "coverage_shrink",
+      "condition": "必要観測対象から失敗/未観測資源を除き全体成立を主張",
+      "effective_utilization": "unproven",
+      "backflow_owner": "observation producer/検証owner",
+      "affected_axis": "effects",
+      "oracle_refs": [
+        "HARNESS-L9-011-N01-NEG-06"
+      ]
+    },
+    {
+      "id": "R-deadline_substitution",
+      "code": "deadline_substitution",
+      "condition": "正当な継続根拠なしで元deadlineを延長/置換",
+      "effective_utilization": "held",
+      "backflow_owner": "caller/execution owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F05-NEG-06"
+      ]
+    },
+    {
+      "id": "R-dependency_mismatch",
+      "code": "dependency_mismatch",
+      "condition": "requested/observed依存版が明示互換range外又はmapping不足",
+      "effective_utilization": "held",
+      "backflow_owner": "dependency contract owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F02-NEG-04"
+      ]
+    },
+    {
+      "id": "R-dependency_unknown",
+      "code": "dependency_unknown",
+      "condition": "required dependencyの実版/存在観測がmissing/unknown",
+      "effective_utilization": "held",
+      "backflow_owner": "caller/依存観測producer",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F02-NEG-03"
+      ]
+    },
+    {
+      "id": "R-duplicate_effect_risk",
+      "code": "duplicate_effect_risk",
+      "condition": "未確認の既発行作用を解決せず再dispatchする/要求する",
+      "effective_utilization": "held",
+      "backflow_owner": "execution owner",
+      "affected_axis": "effects",
+      "oracle_refs": [
+        "HARNESS-L9-011-F05-NEG-05"
+      ]
+    },
+    {
+      "id": "R-evidence_cross_binding",
+      "code": "evidence_cross_binding",
+      "condition": "証拠のcall/attempt/input/scope/構成が対象と異なる",
+      "effective_utilization": "unproven",
+      "backflow_owner": "evidence producer/caller",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F04-NEG-02",
+        "HARNESS-L9-011-F04-NEG-04"
+      ]
+    },
+    {
+      "id": "R-expiry_success",
+      "code": "expiry_success",
+      "condition": "対象operation期限到来をcall全体successへ変換",
+      "effective_utilization": "held",
+      "backflow_owner": "execution owner",
+      "affected_axis": "result",
+      "oracle_refs": [
+        "HARNESS-L9-011-F05-NEG-03"
+      ]
+    },
+    {
+      "id": "R-hidden_dependency",
+      "code": "hidden_dependency",
+      "condition": "宣言外provider/CI依存が対象能力のcallを阻害",
+      "effective_utilization": "held",
+      "backflow_owner": "HARNESS/pack contract owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F01-NEG-03",
+        "HARNESS-L9-011-F01-NEG-04"
+      ]
+    },
+    {
+      "id": "R-hidden_input",
+      "code": "hidden_input",
+      "condition": "宣言外入力を実read/global/意味差で確認",
+      "effective_utilization": "held",
+      "backflow_owner": "HARNESS/pack contract owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F01-NEG-01",
+        "HARNESS-L9-011-F01-NEG-02"
+      ]
+    },
+    {
+      "id": "R-internal_shared_dependency",
+      "code": "internal_shared_dependency",
+      "condition": "HELIX本体稼働DB/鍵/統制の共有をcaller利用の必須構成にする",
+      "effective_utilization": "held",
+      "backflow_owner": "pack/execution owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F03-NEG-03"
+      ]
+    },
+    {
+      "id": "R-isolation_mismatch",
+      "code": "isolation_mismatch",
+      "condition": "caller project/tenant/環境と要求又は実アクセス先の不一致",
+      "effective_utilization": "rejected",
+      "backflow_owner": "SECURITY/execution owner",
+      "affected_axis": "effects",
+      "oracle_refs": [
+        "HARNESS-L9-011-F03-NEG-02"
+      ]
+    },
+    {
+      "id": "R-meaning_mismatch",
+      "code": "meaning_mismatch",
+      "condition": "同じ宣言入力で未宣言source由来の意味結果差",
+      "effective_utilization": "unproven",
+      "backflow_owner": "HARNESS意味owner",
+      "affected_axis": "result",
+      "oracle_refs": [
+        "HARNESS-L9-011-F01-NEG-05"
+      ]
+    },
+    {
+      "id": "R-observation_insufficient",
+      "code": "observation_insufficient",
+      "condition": "mock/局所greenのscopeで実境界の作用/未作用を証明する",
+      "effective_utilization": "unproven",
+      "backflow_owner": "runtime/検証owner",
+      "affected_axis": "effects",
+      "oracle_refs": [
+        "HARNESS-L9-011-N01-NEG-02",
+        "HARNESS-L9-011-N01-NEG-05"
+      ]
+    },
+    {
+      "id": "R-observation_missing",
+      "code": "observation_missing",
+      "condition": "文書宣言/hashのみで必要実観測が未供給",
+      "effective_utilization": "unproven",
+      "backflow_owner": "observation producer/runtime owner",
+      "affected_axis": "effects",
+      "oracle_refs": [
+        "HARNESS-L9-011-N01-NEG-01"
+      ]
+    },
+    {
+      "id": "R-partial_success",
+      "code": "partial_success",
+      "condition": "作用集合の一部完了を全体successへ変換",
+      "effective_utilization": "unproven",
+      "backflow_owner": "execution owner",
+      "affected_axis": "result",
+      "oracle_refs": [
+        "HARNESS-L9-011-N01-NEG-03"
+      ]
+    },
+    {
+      "id": "R-progress_result_conflation",
+      "code": "progress_result_conflation",
+      "condition": "progress endedのみで結果successを推定",
+      "effective_utilization": "unproven",
+      "backflow_owner": "result producer",
+      "affected_axis": "result",
+      "oracle_refs": [
+        "HARNESS-L9-011-F04-NEG-01"
+      ]
+    },
+    {
+      "id": "R-result_unproven",
+      "code": "result_unproven",
+      "condition": "exit0/空出力などで能力の必須意味結果が未成立",
+      "effective_utilization": "unproven",
+      "backflow_owner": "output producer",
+      "affected_axis": "result",
+      "oracle_refs": [
+        "HARNESS-L9-011-F04-NEG-06"
+      ]
+    },
+    {
+      "id": "R-resume_identity_conflict",
+      "code": "resume_identity_conflict",
+      "condition": "同キーの元call/input/scope/contractと再開意味が不一致",
+      "effective_utilization": "rejected",
+      "backflow_owner": "caller/HARNESS052/ checkpoint owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F05-NEG-02"
+      ]
+    },
+    {
+      "id": "R-scope_expansion",
+      "code": "scope_expansion",
+      "condition": "011の親scope外のWeb意味を採用成果へ混入",
+      "effective_utilization": "rejected",
+      "backflow_owner": "HARNESS上流意味owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F01-NEG-06"
+      ]
+    },
+    {
+      "id": "R-stale_binding",
+      "code": "stale_binding",
+      "condition": "以前の構成/contract revisionへの照合結果を現対象へ継承",
+      "effective_utilization": "held",
+      "backflow_owner": "caller/OS構成owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F02-NEG-05"
+      ]
+    },
+    {
+      "id": "R-stop_unobserved",
+      "code": "stop_unobserved",
+      "condition": "cancel ACKだけで実停止観測を代用",
+      "effective_utilization": "held",
+      "backflow_owner": "execution owner",
+      "affected_axis": "progress",
+      "oracle_refs": [
+        "HARNESS-L9-011-F05-NEG-04"
+      ]
+    },
+    {
+      "id": "R-unauthorized_effect",
+      "code": "unauthorized_effect",
+      "condition": "拒否/非許可scopeに対して実作用を独立観測",
+      "effective_utilization": "rejected",
+      "backflow_owner": "SECURITY/execution owner",
+      "affected_axis": "effects",
+      "oracle_refs": [
+        "HARNESS-L9-011-F03-NEG-06"
+      ]
+    },
+    {
+      "id": "R-unproven_execution",
+      "code": "unproven_execution",
+      "condition": "052意味同一/局所greenを実exactly-once receiptへ読み替え",
+      "effective_utilization": "unproven",
+      "backflow_owner": "execution owner",
+      "affected_axis": "effects",
+      "oracle_refs": [
+        "HARNESS-L9-011-F05-NEG-07"
+      ]
+    },
+    {
+      "id": "R-unproven_persistence",
+      "code": "unproven_persistence",
+      "condition": "表示又は結果成功で保存receipt不足を相殺",
+      "effective_utilization": "unproven",
+      "backflow_owner": "caller保存owner",
+      "affected_axis": "recording",
+      "oracle_refs": [
+        "HARNESS-L9-011-F04-NEG-05"
+      ]
+    },
+    {
+      "id": "R-unsupported_contract",
+      "code": "unsupported_contract",
+      "condition": "owner-qualified互換mappingの無いcontractを利用/読み替え",
+      "effective_utilization": "held",
+      "backflow_owner": "contract mapping owner",
+      "affected_axis": "identity",
+      "oracle_refs": [
+        "HARNESS-L9-011-F02-NEG-02"
+      ]
+    }
+  ],
+  "classification_result_mapping": {
+    "closed_set": "failure_classificationsのcodeだけを使う。コードは意味上の失敗分類であり進行/resultのenumへ混ぜない。正式wire/型はL5。",
+    "utilization": "heldは根拠訂正/解決まで新しい該当dispatchを保留、rejectedは当該不適合callを拒否、unprovenは該当利用成立の証拠不足。いずれも成功/操作許可を生成しない。",
+    "progress": "ownerが実観測した元進行を保持。停止要求/ACKだけではrunning/unknownをended/停止済みへ変換しない。元進行不明ならunknown。",
+    "result": "問題がcall業務結果の証明に掛かるとき、結果はunknown、独立証拠で部分作用が確定し全体未完ならpartial。必要成功証拠が揃い不足が保存等の独立軸だけにあるとき、元success/failureを保持するが該当保存等の利用成立はunproven。unauthorized作用や期限切れcallをsuccessにしない。",
+    "effects": "独立した対象実観測からobserved_applied/observed_not_appliedを作用単位で保持。未供給はunobserved。拒否/dispatch0だけでは既発行作用を消去しない。",
+    "recording": "対応ownerの有効receiptがあれば保存の実観測を保持、receipt未供給は未観測。別call/scope/checkpointのreceiptは有効集合から除外し元所属を保持。",
+    "identity": "requested/resolved/observedと証拠の元所属を差分として返す。所属訂正はproducerへの要求であり、他call証拠のscopeを本callへ書換えることではない。",
+    "disambiguation": "同じ原因の同一fieldで重複labelを作らず、観測された独立原因は複数findingへ保持する。missing依存はdependency_unknown、実版差はdependency_mismatch、構成束縛古さはstale_binding、再開構成差はconfiguration_drift。異scopeの再開入力はresume_identity_conflict、証拠だけの所属差はevidence_cross_binding。未作用観測への変換はabsence_blindness、宣言/hashだけはobservation_missing、mock/下位証拠への越権はobservation_insufficient。"
+  }
+}
