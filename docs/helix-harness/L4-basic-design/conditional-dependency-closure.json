@@ -106,9 +106,9 @@
       "sha256": "eaa3ef510cc95b374f9ff79789e9e052cb97604e14e571fadc4d4db6b232d649",
       "keep": "明示ownershipとrequired dependency exact set、入力順に依存しないtrace、未収載依存はmissing、拒否ではhandler不実行。",
       "change": "旧Lite provider dry-run、CLI/doctor、64KiB、旧AST/runtime方式を新規023へ自動採用しない。現4条件分類とscope/ownerの保持から再導出。",
-      "future_scope": "HARNESS023次のinventory-first材料。現在PR2974のauthority/設計へ追加していない。",
-      "lines": "全53行、read-only",
-      "reuse_mode": "意味の再導出、旧runtime/source/test実行なし、完全一致copyなし"
+      "lines": "21–33、35–49",
+      "reuse_mode": "意味の再導出、旧runtime/source/test実行なし、完全一致copyなし",
+      "reason": "現L2-023が選択した利用条件に必要な依存と安全条件を閉じるため、旧exact ownership/不足拒否/決定論を保持し4区分と局所保留へ意味を再導出する。旧Lite限定provider/CLI/AST実装を023の汎用条件分類へ強制すると未選択sourceの一律前提になるため具体方式は移さない。"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
@@ -182,7 +182,7 @@
     "qualification": "condition/compatibility/authority/evidenceはownerの正当なsource/判定根拠へ解決して初めて消費する。plain object/文字列/hash/countは実資格にしない。version rangeの解釈/互換profileは010契約ownerが供給し、独自semver/latest互換を発明しない。",
     "result_reduction": "分類の未解決と実利用の不足を別fieldへ保持。原宣言の意味/版変更を試みた場合utilization rejected、それ以外のrequired/pending不足はheld。有効全required根拠が揃ったscopeだけcandidate。candidateは実executorの再認可/期限/資源/保存を代替しない。無関係scopeの根拠付き候補まで停止しない。",
     "determinism": "根拠snapshotを注入しclock/env/networkを暗黙参照しない。各集合はidentity/revision/scope/ownerのUnicode scalar昇順、理由はdependency/condition/owner/source Refに束縛。順序変更だけで意味が変わらない。",
-    "backflow_split": "不足fieldと元条件状態を保持し、010契約改訂/011入力修正又は再実行/authority owner又はPOへ別に返す。必要人判断をAI代行で生成しない。返却先未特定はunknownとして保留する。"
+    "backflow_split": "不足fieldと元条件状態を保持し、010契約改訂/011入力修正又は再実行/authority owner又はPOへ別に返す。必要人判断をAI代行で生成しない。返却先未特定はunknownとして保留する。 互換range/profile/mappingの宣言自体が無ければ010契約ownerへ。宣言済みmappingと照合するobserved版がmissing、又はqualified mappingの許容pair外の実版なら011呼出しownerへ。両方欠ける場合は二原因を別々に返し、片方だけで不足を閉じない。"
   },
   "placement": "JSONはdocs/helix-harness対象layer正本。具体module/schema/runtime/台帳/pipeはL5以下で設計し、既存010/011正本の意味を複製更新しない。",
   "contracts": [
@@ -380,6 +380,19 @@
       ]
     },
     {
+      "code": "compatibility_mismatch",
+      "oracle_refs": [
+        "HARNESS-L9-023-F04-NEG-07"
+      ],
+      "conditions": [
+        "qualified mappingは有るがobserved実版が許容pair外"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
       "code": "compatibility_unknown",
       "oracle_refs": [
         "HARNESS-L9-023-F04-NEG-04"
@@ -389,7 +402,7 @@
       ],
       "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
       "backflow_owners": [
-        "call_owner"
+        "pack_contract_owner"
       ]
     },
     {
@@ -534,10 +547,14 @@
       "code": "implicit_fallback",
       "oracle_refs": [
         "HARNESS-L9-023-F02-NEG-08",
+        "HARNESS-L9-023-F02-NEG-10",
+        "HARNESS-L9-023-F02-NEG-11",
         "HARNESS-L9-023-F03-NEG-08"
       ],
       "conditions": [
         "不足条件を別sourceで迂回",
+        "不足条件を人の手作業で補完して迂回",
+        "不足条件を参照資料へ再分類して迂回",
         "選択source失敗で暗黙fallback"
       ],
       "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",

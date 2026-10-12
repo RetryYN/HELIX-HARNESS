@@ -321,6 +321,24 @@
           "backflow_owner": "pack_contract_owner",
           "expected_utilization": "held",
           "execution_state": "not_executed"
+        },
+        {
+          "id": "HARNESS-L9-023-F02-NEG-10",
+          "change": "不足条件を人の手作業で補完して迂回",
+          "expected_classification": "implicit_fallback",
+          "expected": "元O/Sのunknown条件と安全/receipt不足を保全し、人の自己申告でclosure成立にせず011呼出しownerへ返す。",
+          "backflow_owner": "call_owner",
+          "expected_utilization": "held",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "HARNESS-L9-023-F02-NEG-11",
+          "change": "不足条件を参照資料へ再分類して迂回",
+          "expected_classification": "implicit_fallback",
+          "expected": "元pending dependencyの必須役割と不足を保持し、referenceへの付替えで保留を消さず呼出しownerへ返す。",
+          "backflow_owner": "call_owner",
+          "expected_utilization": "held",
+          "execution_state": "not_executed"
         }
       ],
       "execution_state": "not_executed"
@@ -462,8 +480,8 @@
           "id": "HARNESS-L9-023-F04-NEG-04",
           "change": "明示mappingの無い依存版差をlatestへ読む",
           "expected_classification": "compatibility_unknown",
-          "expected": "requested/observed版差とmapping不足でheld、版を補完しない。",
-          "backflow_owner": "call_owner",
+          "expected": "requested/observed版差を保持し、qualified mapping自体の不足を010契約ownerへ返してheld。latestで版補完しない。",
+          "backflow_owner": "pack_contract_owner",
           "expected_utilization": "held",
           "execution_state": "not_executed"
         },
@@ -481,6 +499,15 @@
           "change": "局所mock/hashを実依存evidenceとする",
           "expected_classification": "evidence_unproven",
           "expected": "実evidence不足を返し利用held、分類能力は否定しない。",
+          "backflow_owner": "call_owner",
+          "expected_utilization": "held",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "HARNESS-L9-023-F04-NEG-07",
+          "change": "qualified mappingは有るがobserved実版が許容pair外",
+          "expected_classification": "compatibility_mismatch",
+          "expected": "宣言mappingはそのまま保持し、requested/observed実版差を011呼出しownerへ返す。pack宣言不足と取り違えずheld。",
           "backflow_owner": "call_owner",
           "expected_utilization": "held",
           "execution_state": "not_executed"
