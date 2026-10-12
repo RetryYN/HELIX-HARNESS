@@ -298,7 +298,6 @@
   ],
   "fixture_progress": {
     "remaining_contracts": [
-      "F02",
       "F03",
       "F04",
       "N01",
@@ -309,11 +308,17 @@
       "negative": 140,
       "source_packets": 143,
       "state": "draft_not_executed"
+    },
+    "F02": {
+      "normal": 4,
+      "negative": 109,
+      "source_packets": 113,
+      "state": "draft_not_executed"
     }
   },
   "pending": [
-    "6契約の具体的な原入力/独立期待/正常/反例と内容検証",
-    "003/004/005の必要object/義務へのexact binding",
+    "F03/F04/N01/B01の具体的な原入力/独立期待/正常/反例と内容検証。F01/F02は設計例の静的検証のみで、独立reviewと実観測は未成立。",
+    "003/004/005の必要object/義務への残りexact binding。F02は該当6契約を固定参照し、F01/F03/F04/N01/B01の接続は未完。",
     "正式stage proof/schema/codecとowner資格",
     "L5/L8詳細設計/実oracle凍結/実装前Red/Green/Refactor",
     "実L9/L10/利用者受入/新CI/計測/PO L11 Accepted"
@@ -447,7 +452,109 @@
         "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
         "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
       },
-      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。",
+      "integrated_proof_detail": {
+        "required_without_refactor": [
+          "provisional_basis",
+          "L8_reverse",
+          "L9_reverse",
+          "boundary_result",
+          "integration_result"
+        ],
+        "additional_after_refactor": [
+          "meaning_preservation",
+          "post_refactor_L8",
+          "post_refactor_L9"
+        ],
+        "pairs": {
+          "L8_reverse": "L8:L5",
+          "L9_reverse": "L9:L4",
+          "post_refactor_L8": "L8:L5",
+          "post_refactor_L9": "L9:L4"
+        },
+        "boundary_dimensions": {
+          "interface": "same_command_identity",
+          "dependency_direction": "adapter_to_core",
+          "state_owner": "core",
+          "data_owner": "core",
+          "transaction": "commit_once",
+          "failure_propagation": "cancel_does_not_commit",
+          "retry": "same_identity",
+          "timeout": "pending_not_committed",
+          "idempotency": "one_result",
+          "coupling_and_responsibility": "adapter_translates_core_decides"
+        },
+        "comparison": "原資料の対象/実使用oracle/pair/source/ownerと内容を照合。意味保存前後は同じ要求意味、再検証は変更後artifact revisionと同Integrated段階へ結ぶ。",
+        "refactor_limit": "意味変更は右側Refactor成功へ換算せず003/004の意味ownerへ返す。before revisionの成功を変更後へ流用しない。",
+        "execution_owner": "OSまたは利用者CI。④とOSは一律必須でない。HARNESS-COREは段階意味と照合契約。",
+        "qualified_dependency_bindings": [
+          {
+            "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "f683d35fa834eca85e9770544bd55c0a3bcc1328cc7317e6c1d2845080596734",
+            "contract_id": "HARNESS-L4-003-F03",
+            "contract_object_sha256": "c227980885195a362c0389ff5ddfa5b54a71376ad2dd25b665edd4fc09267380",
+            "selected_meaning": "005/015の凍結→実装前Red実観測→最小Green→局所Refactor/原子CIと双方向traceを同対象へ結び、出力をProvisionalにする。右側では結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。正規由来が分かる変更は当該scopeのScoped Reverse、由来不明/旧資産/trace欠落/設計を信用できない/大きなずれは全体Reverseの復旧候補に分ける。L9ではinterface、依存の向き、state/dataの所有、transaction、失敗伝播、retry、timeout、冪等性、結合度、責務重複を照合する。通常の照合ではticketを発行しない。明らかな設計/実装のずれ、由来欠落、同種findingの再発、性能退行、障害後の恒久対策、Scrum Reverse checkpoint、大きな設計退行ではReverse ticketの発行条件となる。小さな境界Refactorは現在のForward ticket内、独立した大きな構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactor ticketへ区別する。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。",
+            "retained_role": "Scoped Reverseと段階別の独立証拠。Provisionalの原根拠と実運転ownerを保持。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "f683d35fa834eca85e9770544bd55c0a3bcc1328cc7317e6c1d2845080596734",
+            "contract_id": "HARNESS-L4-003-F04",
+            "contract_object_sha256": "6dcaa04b9bc1a72bf2eb652896377837ec9253e184c798f0c7588288b3f465a6",
+            "selected_meaning": "Working→Provisional→Integrated→Verified→Accepted→Release-eligible→Deployed→Observedを別状態にし、原子CI、境界照合/Refactor/結合証明、L10 system証明、L11利用者受入、Port必須条件、対象環境配備、L12運用評価を各成立根拠へ結ぶ。022/005の固有義務差分と受入記録条件を保ち、前状態の成立から次状態を推定しない。",
+            "retained_role": "Scoped Reverseと段階別の独立証拠。Provisionalの原根拠と実運転ownerを保持。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/trace-impact-reconfirmation.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2",
+            "contract_id": "HARNESS-L4-004-F02",
+            "contract_object_sha256": "d42eba412f8bfa17c3d7c664994b625f0da4a66115dd9d5a1936ac4de48ef1ea",
+            "selected_meaning": "単体/接続/構成体のrequirement-design-verification relationから影響をAffected/Unaffected/Unknownへ区別する。証拠/影響はrelationを通じて上へ伝えるが、下位の成立状態を上位へ直接伝えない。UnknownをUnaffectedにせず、再検証結果によってだけ上位成立状態を改める。",
+            "retained_role": "影響と成立を分離し、意味保存Refactor/同段階再検証と意味変更Backflowを区別。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/trace-impact-reconfirmation.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2",
+            "contract_id": "HARNESS-L4-004-F03",
+            "contract_object_sha256": "650979f0105d9f130186ba88d6e9e26fe290ff0559d53034637dd2f5bf8439b3",
+            "selected_meaning": "要求/public contract変更、trace欠落、Scrum実装事実の合流では影響する設計/対検証を再確定し必要なpair凍結を確認する。影響しない有効作業を一律失効させない。意味保存可能な不一致は右側Refactor/再検証、詳細L5/architecture境界L4/要件要求受入L3L2/価値L1の意味変更は該当層へBackflowし、発見層だけで戻し先を固定しない。通常照合のticket非発行と、明らかなずれ/由来欠落/同種finding再発/性能退行/障害後恒久対策/Scrum Reverse checkpoint/大きな設計退行のReverse ticket条件を003-F03へ結ぶ。局所は現在のForward ticket、独立構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactorの種類へ分け、実発行はOSへ返す。",
+            "retained_role": "影響と成立を分離し、意味保存Refactor/同段階再検証と意味変更Backflowを区別。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/verification-discipline.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "f5aaccff49e5e6d0584169af009e15aaf59d963018f8f8cceb230d45de321ebb",
+            "contract_id": "HARNESS-L4-005-F02",
+            "contract_object_sha256": "2e08d5f738203c6572b08227a9e62628297665b607e361c57f1954ef161a8e60",
+            "selected_meaning": "unitは単体、connectionは境界/結合、compositeはシステム固有のoracle/expected failure/証拠条件を持つ。下位proofと組合せ契約を証拠に積み上げ、上位固有義務の差分を証明する。下位proofで表せない固有非機能は別証明し、下位proof/組合せ契約が揃い未解決固有義務が無いことを契約で示せる場合は機械導出してよい。",
+            "retained_role": "下位proofと境界/結合固有差分、具体的Given/When/Thenを保持。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/verification-discipline.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "f5aaccff49e5e6d0584169af009e15aaf59d963018f8f8cceb230d45de321ebb",
+            "contract_id": "HARNESS-L4-005-F09",
+            "contract_object_sha256": "5474dfe688f894d2ccb69d8109d442ff6bf7a37dc3eefa6cee2fc074b3d5ddad",
+            "selected_meaning": "適用結合検証では前提状態/入力、操作/事象、期待観測を別々に識別し、境界/依存/失敗経路と同じpair oracleへ結ぶ。旧L8/L9表記は保持し、現行pair/kindへの対応を入力契約で示して使う。層番号だけで対応済みにしない。",
+            "retained_role": "下位proofと境界/結合固有差分、具体的Given/When/Thenを保持。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          }
+        ],
+        "pending": [
+          "正式proof schema/codecと参照解決",
+          "実owner資格/実観測/実stage更新",
+          "L5/L8内部契約と内容比較実装"
+        ]
+      }
     },
     {
       "id": "HARNESS-L4-022-F03",
