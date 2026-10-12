@@ -317,7 +317,7 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "F01/F02/F04/F05/N01の具体fixtureは起草済み。残るB01/F03を具体化する。",
+    "F03の限定再確定/戻し先/ticket接続を具体化し、全7契約を照合して独立reviewへ送る。",
     "未見relation/無損失partition/再利用不変条件の内容比較と静的照合",
     "003未統合基本設計と後続ownerのexact binding",
     "独立exact HEAD意味reviewとmain admission",
@@ -358,7 +358,20 @@
         "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
         "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
       },
-      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。"
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "comparison_detail": {
+          "content": "同じreport findingをsemantic signature前後、同contractのbehavior、環境前後の原内容で区別する。reportの名称/件数から種類を確定しない。",
+          "upstream": "意味差分の最上流を候補として返す。今回の要求/受入差分はL3/L2。実装故障と環境変化を一つのRefactorへ丸めない。",
+          "owner": "HARNESSは条件/影響/戻し先を導出し、OSは別契約で運転する。種類が判明しても担当owner不足なら不足を保持し運転未成立に残す。",
+          "authority": "Issue closed/Project Done/CI greenと候補提示は上流意味/承認/完了の証拠ではない。旧trigger/runtimeは参照資料に限る。"
+        },
+        "legacy_basis": [
+          "LEGACY-ASSET-5DAB2F0E1C13F846CABB:13-25",
+          "LEGACY-ASSET-02319C2481B9E01698D5:31-41"
+        ],
+        "failure_return": "種類/意味差分/source/scope/revision/owner不足を分けて返し、無関係WORK-Qを保持する。"
+      }
     },
     {
       "id": "HARNESS-L4-004-F01",
@@ -643,7 +656,6 @@
       "state": "draft_not_executed"
     },
     "remaining_contracts": [
-      "B01",
       "F03"
     ],
     "F02": {
@@ -668,6 +680,12 @@
       "normal": 2,
       "negative": 25,
       "source_packets": 27,
+      "state": "draft_not_executed"
+    },
+    "B01": {
+      "normal": 3,
+      "negative": 20,
+      "source_packets": 23,
       "state": "draft_not_executed"
     }
   }
