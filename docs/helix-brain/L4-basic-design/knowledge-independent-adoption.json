@@ -1,0 +1,334 @@
+{
+  "parent": "HELIXBRAIN-L2-025",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 5",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+    "boundary": "段階別state/owner/対象revision、順序と独立性、選択入力の必要参照、未完と上流意味境界を照合。実採否/成熟を生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3f12d5a53b05dc478cc7138e362730d38c6aa835079b41b6124cb569f0fc6b9d"
+    },
+    {
+      "path": "docs/governance/decisions/seedfirst-knowledge-po-decision-2026-10-10.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4168da797e1a55da10e9f21d50a0dec21c0e79153c3200dace0a7762fbd888ae"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    }
+  ],
+  "source_pin_limit": "固定bytesは全意味の精読/実source資格/全体被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "read_lines": [
+        37,
+        47
+      ],
+      "quote": "### RCLS-BR-004 知恵を段階的に仕組みへ昇格する\n\nproject-local knowledgeから独立検証、cross-project検証、shadow enforcementを経たものだけをMechanismへ昇格する。機械化後は同じ規則をSkill proseへ重複保持しない。\n\n### RCLS-BR-005 学習の失効と隔離を保証する\n\n反例、authority revision、provider/model/version変更、expiry、security／license条件によりqualificationをstale、contradicted、revoked、revalidation requiredへ戻せる。\n\n### RCLS-BR-006 既存authorityを奪わない\n\nLearning SystemはRequirement、Design、merge、releaseを直接変更せず、proposal、evidence、retrieval packetを提供する。Requirement Discovery、UIL、System Synthesis、Pattern Promotion、HELIX-Bench、Resident Laneを再実装しない。",
+      "file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "selected_lines_sha256": "dbff66608accafc3005b920a6b9f0fa3f779f03a42548ed0b77b1217dcd3b498",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+        "disposition": "unresolved",
+        "source_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
+      },
+      "reuse": "reference_only; adopted BRAIN025 staged independent adoption semantics rederived",
+      "preserve": "project-local知識と独立/横断/shadowの段階的検証、proposal/evidenceの提供と既存authority非変更。",
+      "change": "旧runtimeや全ticket固定shadowgateを移植せず、LABO→OS→BRAIN独立検証→採否と対象scope根拠へ対応する。",
+      "reason": "9/26判断/採択025/10/12委任承認が状態と順序/未完/独立性/意味境界/単独証拠非昇格を要求する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実candidate/source/評価/登録/独立検証/採否とscopeごとの段階的根拠のsource資格。",
+    "対象操作と入力の必要集合、007/008/009/011/012/020/LABO/OS/BRAINchangeと条件付きINFRA017のowner-qualified binding、正式schema/codec/resolver。",
+    "L5/L8の型/比較/単体oracle、実装前凍結→実Red→最小Green→Refactor→再検証、実L9/L10/PO L11。",
+    "全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXBRAIN-L4-025",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "knowledge_stage_receipt_reader",
+      "scoped_independent_order_reader",
+      "single_evidence_nonpromotion_reader",
+      "operation_selected_reference_reader",
+      "unseen_candidate_scope_reader",
+      "knowledge_upstream_authority_reader"
+    ],
+    "flow": [
+      "段階原record/元receipt→対象とowner/state照合",
+      "原順序とscope指定根拠→独立/横断/shadow不足保持",
+      "単独証拠/未分離/未完→非昇格候補とowner返却",
+      "操作/input選択と必要参照→限定不足/非選択未観測",
+      "未見組合せと意味差分→局所保留/既存上流判断"
+    ],
+    "python_boundary": "immutable内容のpure比較と返却候補。実評価/登録/検証/adoption/成熟更新、要求/設計/merge/release、DB/network/fs/env/clock/authorityを行わない。",
+    "representation_limit": "scope/actor/段階根拠/必要参照表/seedは合成。実独立性や正式採否/必要集合を証明せず、全世界のenum/順序実行器/固定gateを新設しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXBRAIN-L4-025-F01",
+      "requirement_ref": "HELIXBRAIN-L3-025-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-025-F01",
+      "oracle_ref": "HELIXBRAIN-L9-025-F01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-025-F01",
+        "parent": "HELIXBRAIN-L2-025",
+        "title": "候補から採否までの状態参照",
+        "obligation": "製品CORE由来または構成候補、source/provenance、LABO評価結果、OS登録/振分け、BRAIN変更candidateと独立検証を同対象revisionへ結び、提案/評価/登録/独立検証/採否状態を区別したknowledge revisionとowner付きreceiptを返す。",
+        "oracle_ref": "HELIXBRAIN-L10-025-F01"
+      },
+      "component": "knowledge_stage_receipt_reader",
+      "input_meanings": [
+        "同候補を指す提案/評価/登録/独立検証/採否原record",
+        "原未完義務/finding/反例とowner",
+        "提出record/未完receipt"
+      ],
+      "output_meanings": [
+        "段階別state/owner/対象revisionの対応",
+        "元未完と局所不足の返却"
+      ],
+      "content_comparison": [
+        "record自身の版と候補対象版を混同しない。",
+        "別revision検証や段階混同で採否成立にしない。未完receiptを消さない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-025-F02",
+      "requirement_ref": "HELIXBRAIN-L3-025-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-025-F02",
+      "oracle_ref": "HELIXBRAIN-L9-025-F02",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-025-F02",
+        "parent": "HELIXBRAIN-L2-025",
+        "title": "順序と段階的独立検証",
+        "obligation": "L1-007のLABO評価→OS登録/振分け→BRAIN変更手続き内の独立検証→採否の順序/責務を保持する。旧RCLSの独立検証/横断検証/shadowの保持点を対象候補の適用scope/検証根拠へ対応づけ、未実行を完了にしない。旧runtimeや全ticket一律gateを追加しない。",
+        "oracle_ref": "HELIXBRAIN-L10-025-F02"
+      },
+      "component": "scoped_independent_order_reader",
+      "input_meanings": [
+        "LABO→OS→BRAIN独立検証→採否の原順序",
+        "対象scopeに独立に指定された独立/横断/shadow根拠",
+        "提出順序/actor/観測"
+      ],
+      "output_meanings": [
+        "順序/独立性/scope根拠と未実行",
+        "scope限定の不足と保留"
+      ],
+      "content_comparison": [
+        "自己評価を独立検証と扱わない。",
+        "shadow未実行を実施済みにせず、全ticket固定shadowgateを追加しない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-025-F03",
+      "requirement_ref": "HELIXBRAIN-L3-025-F03",
+      "system_oracle_ref": "HELIXBRAIN-L10-025-F03",
+      "oracle_ref": "HELIXBRAIN-L9-025-F03",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-025-F03",
+        "parent": "HELIXBRAIN-L2-025",
+        "title": "単独証拠と保留の非昇格",
+        "obligation": "AI生成/単一実績/LABO評価/OS ticket/文書存在のどれだけでもaccepted/matureへ昇格しない。rejection/hold/unknownとfinding/反例を元ownerへ返し、候補と採用済みを識別する。製品固有意味を汎用化しない。",
+        "oracle_ref": "HELIXBRAIN-L10-025-F03"
+      },
+      "component": "single_evidence_nonpromotion_reader",
+      "input_meanings": [
+        "五単独証拠または全必要根拠の原内容",
+        "原candidate/hold/unknown/未分離/反例",
+        "提出採用stateと昇格claim"
+      ],
+      "output_meanings": [
+        "非昇格理由と元candidate/adoption状態",
+        "元finding/反例と該当owner"
+      ],
+      "content_comparison": [
+        "AI生成/一実績/LABO結果/OS ticket/文書だけで昇格しない。",
+        "hold/unknown/rejection/未分離や製品意味をacceptedへ変換しない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-025-F04",
+      "requirement_ref": "HELIXBRAIN-L3-025-F04",
+      "system_oracle_ref": "HELIXBRAIN-L10-025-F04",
+      "oracle_ref": "HELIXBRAIN-L9-025-F04",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-025-F04",
+        "parent": "HELIXBRAIN-L2-025",
+        "title": "操作と入力ごとの閉包",
+        "obligation": "007/008/009/011/012/020、LABO/OS/BRAIN changeの必要条件を対象候補・操作へ照合し、Infrastructure maturityの場合だけINFRA-017を追加する。未選択候補経路は未観測に保ち、必要参照missing/unknownでは採否成立にしない。",
+        "oracle_ref": "HELIXBRAIN-L10-025-F04"
+      },
+      "component": "operation_selected_reference_reader",
+      "input_meanings": [
+        "原入力/操作選択と独立必要参照表",
+        "CORE由来/構成/評価入力/maturityの選択条件",
+        "提出選択/必要参照"
+      ],
+      "output_meanings": [
+        "選択根拠と必要参照/不足",
+        "非選択の未観測保持"
+      ],
+      "content_comparison": [
+        "必要参照を参考扱いにしない。unknownの選択を全不要にしない。",
+        "未選択実験全能力の完成を待たず、単体greenで全構成成立にしない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-025-N01",
+      "requirement_ref": "HELIXBRAIN-L3-025-N01",
+      "system_oracle_ref": "HELIXBRAIN-L10-025-N01",
+      "oracle_ref": "HELIXBRAIN-L9-025-N01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-025-N01",
+        "parent": "HELIXBRAIN-L2-025",
+        "title": "未見と適用限界",
+        "obligation": "伏せた製品context/候補/evaluation組合せでも同source/revision/state/scope/反例/独立検証/順序を内容oracleへ照合する。field存在/単体成功から汎用性/全構成/全seed/PO Acceptedを生成せず、未実行/未評価を保持する。",
+        "oracle_ref": "HELIXBRAIN-L10-025-N01"
+      },
+      "component": "unseen_candidate_scope_reader",
+      "input_meanings": [
+        "伏せた製品context/候補/evaluationの独立原意味",
+        "source/revision/state/scope/反例/独立/順序の対象内容",
+        "提出held-out内容と外挿claim"
+      ],
+      "output_meanings": [
+        "未知/未評価/意味混入/別revisionの不足",
+        "未見fixtureの適用限界"
+      ],
+      "content_comparison": [
+        "field存在だけで内容一致としない。",
+        "fixture成功を普遍性/全構成/全seed/PO Acceptedへ外挿しない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-025-B01",
+      "requirement_ref": "HELIXBRAIN-L3-025-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-025-B01",
+      "oracle_ref": "HELIXBRAIN-L9-025-B01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-025-B01",
+        "parent": "HELIXBRAIN-L2-025",
+        "title": "知識採否と上流authority",
+        "obligation": "BRAIN採否は知識revision/stateを扱い要求/設計/merge/releaseを直接変更しない。意味不変の技術差分へ新しいhuman approvalを加えず、人が持つ上流意味を変更する必要がある場合だけ既存判断へ戻す。限定知識内容のPO採用と運用promotionを区別する。",
+        "oracle_ref": "HELIXBRAIN-L10-025-B01"
+      },
+      "component": "knowledge_upstream_authority_reader",
+      "input_meanings": [
+        "技術差分/上流意味変更の独立原条件",
+        "限定seed意味採用と運用knowledgeの別state",
+        "要求/設計/merge/release直接変更claim"
+      ],
+      "output_meanings": [
+        "知識採否と上流判断の責務分離",
+        "既存meaning owner返却条件"
+      ],
+      "content_comparison": [
+        "意味不変技術差分へ新human approvalを追加しない。",
+        "知識採否から要求/設計/merge/releaseを直接変更しない。限定seed採用はruntime成熟ではない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 19,
+      "F02": 17,
+      "F03": 15,
+      "F04": 23,
+      "N01": 12,
+      "B01": 8
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
