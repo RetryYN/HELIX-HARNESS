@@ -1,0 +1,585 @@
+{
+  "parent": "HARNESS-L2-048",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 3",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "71c22542e119f5a3c2f0f07e0d4141c3ca05475f",
+    "boundary": "限定命名規範。実rename/DesignRefactor/CI運転は未選択。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "323c9f4a37c033a7570c391721c4977d74b315ab4b82d0bb70092e2d137441d4"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/ops-o9-naming-source-lines-2026-09-29.jsonl",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "f743f49bdfb1d652d29c00ecabe486bdfc6f25114da0715c05105b122f639554"
+    }
+  ],
+  "source_pin_limit": "bytes固定は全文精読/全意味被覆ではない。",
+  "legacy_comparison": {
+    "selected_clause_spans": [
+      {
+        "atom_id": "O9-infinity-loop-platform-requirements-L0130-S01",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 130,
+        "source_line_sha256": "sha256:be9fbfe0b179f547242bd50c3d6aedbecd6dc04aa72aa62cc6786f94fe650fd5",
+        "source_text": "| **HIL-FR-40** | Domain Object/Naming Catalogは設計objectを`Entity/ValueObject/Aggregate/DomainService/Policy/Specification/Command/Query/DomainEvent/Receipt/Port/Adapter/Repository`へ分類し、identity、immutability、aggregate boundary、invariant、authority、lifecycle、consumer、canonical termを保持する。各objectとimplementation symbol、test oracle IDを別edgeで決定論的に結び、内部rename後もoracle identityを維持する。 | domain object catalog、naming decision、symbol edge、oracle edge、boundary/invariant finding |",
+        "source_span_text": "Entity/ValueObject/Aggregate/DomainService/Policy/Specification/Command/Query/DomainEvent/Receipt/Port/Adapter/Repository",
+        "source_span_start_char": 57,
+        "source_span_end_char": 178,
+        "source_span_sha256": "sha256:75a01309cd8ac7698e604851f0f1732c87424a0d829e412dc45a525ffed52d6e",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-requirements-L0130-S02",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 130,
+        "source_line_sha256": "sha256:be9fbfe0b179f547242bd50c3d6aedbecd6dc04aa72aa62cc6786f94fe650fd5",
+        "source_text": "| **HIL-FR-40** | Domain Object/Naming Catalogは設計objectを`Entity/ValueObject/Aggregate/DomainService/Policy/Specification/Command/Query/DomainEvent/Receipt/Port/Adapter/Repository`へ分類し、identity、immutability、aggregate boundary、invariant、authority、lifecycle、consumer、canonical termを保持する。各objectとimplementation symbol、test oracle IDを別edgeで決定論的に結び、内部rename後もoracle identityを維持する。 | domain object catalog、naming decision、symbol edge、oracle edge、boundary/invariant finding |",
+        "source_span_text": "内部rename後もoracle identityを維持する",
+        "source_span_start_char": 343,
+        "source_span_end_char": 373,
+        "source_span_sha256": "sha256:bceb8ae85c907a9990dd881d5f02cafd609601156578b7a49764c95570f6fb3a",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-requirements-L0204-S01",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 204,
+        "source_line_sha256": "sha256:f9d8dde0cc8f928e8bbefbc4a0ba024686da3989e41b358d7ada45cf328e2311",
+        "source_text": "| **HIL-NFR-24** | Design Refactorは「将来使えそう」「綺麗になる」という推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求し、誤った名称統一、抽象化、scope creepを拒否する。 |",
+        "source_span_text": "名称の文字列類似だけでrename",
+        "source_span_start_char": 56,
+        "source_span_end_char": 73,
+        "source_span_sha256": "sha256:4074ed4b8072a7c367e01bbf3a4bc0a1332c57f5fcd0e032d69171b7afdf80fe",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-requirements-L0204-S02",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 204,
+        "source_line_sha256": "sha256:f9d8dde0cc8f928e8bbefbc4a0ba024686da3989e41b358d7ada45cf328e2311",
+        "source_text": "| **HIL-NFR-24** | Design Refactorは「将来使えそう」「綺麗になる」という推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求し、誤った名称統一、抽象化、scope creepを拒否する。 |",
+        "source_span_text": "全consumer、最小変換、behavior invariant、退行時rollback",
+        "source_span_start_char": 169,
+        "source_span_end_char": 214,
+        "source_span_sha256": "sha256:eb11780dc351527368943fd1ef63d708df9e2c73e774686870f531d77892f56c",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-requirements-L0205-S01",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 205,
+        "source_line_sha256": "sha256:83651c4dfcbc55f2c526ca0532a0c61515d27f42aa5037bc8707527ffd81956a",
+        "source_text": "| **HIL-NFR-25** | Domain Objectはclass化自体を目的にせず、identity/invariant/lifecycle/authorityがないpayloadをEntity/Aggregateへ昇格しない。Value Objectはimmutable、Aggregate更新はroot境界内transaction、Queryはside-effectなし、Domain Eventは完了事実の過去形、domainはPortを介してAdapterへ依存する。`Manager/Helper/Util/Data`等の責務不明名を根拠なしで許さず、testはprivate実装名でなくdomain object＋operation＋oracle IDへbindする。 |",
+        "source_span_text": "`Manager/Helper/Util/Data`等の責務不明名を根拠なしで許さず",
+        "source_span_start_char": 244,
+        "source_span_end_char": 286,
+        "source_span_sha256": "sha256:cf23313bd03230118c23da1a866f28952acd72253fb541db104a603f9fb7ddff",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-requirements-L0205-S02",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 205,
+        "source_line_sha256": "sha256:83651c4dfcbc55f2c526ca0532a0c61515d27f42aa5037bc8707527ffd81956a",
+        "source_text": "| **HIL-NFR-25** | Domain Objectはclass化自体を目的にせず、identity/invariant/lifecycle/authorityがないpayloadをEntity/Aggregateへ昇格しない。Value Objectはimmutable、Aggregate更新はroot境界内transaction、Queryはside-effectなし、Domain Eventは完了事実の過去形、domainはPortを介してAdapterへ依存する。`Manager/Helper/Util/Data`等の責務不明名を根拠なしで許さず、testはprivate実装名でなくdomain object＋operation＋oracle IDへbindする。 |",
+        "source_span_text": "testはprivate実装名でなくdomain object＋operation＋oracle IDへbindする",
+        "source_span_start_char": 287,
+        "source_span_end_char": 345,
+        "source_span_sha256": "sha256:8b7264013f461172fc68e4301c301b1e32426d1a1c82da98cb320354f7cb2838",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0291-S01",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 291,
+        "source_line_sha256": "sha256:6a3bddd9c842f85315e4ee4f6bac06761c21f09fa3a16e6a49a7caf2679decc8",
+        "source_text": "| `semantic_rename` | function、component、contract、event、fieldの内部識別子 | 入出力、副作用、failure、state transition、call graph、consumer contractのsemantic signatureとname collision | 文字列距離だけで同義と決める、public identifierを互換migrationなしで変更する |",
+        "source_span_text": "semantic signature",
+        "source_span_start_char": 132,
+        "source_span_end_char": 150,
+        "source_span_sha256": "sha256:f08d20fc4973145ea991e949f54c9b4d30526db4c62e179cb54222fc4aa72fc9",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0291-S02",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 291,
+        "source_line_sha256": "sha256:6a3bddd9c842f85315e4ee4f6bac06761c21f09fa3a16e6a49a7caf2679decc8",
+        "source_text": "| `semantic_rename` | function、component、contract、event、fieldの内部識別子 | 入出力、副作用、failure、state transition、call graph、consumer contractのsemantic signatureとname collision | 文字列距離だけで同義と決める、public identifierを互換migrationなしで変更する |",
+        "source_span_text": "文字列距離だけで同義と決める",
+        "source_span_start_char": 168,
+        "source_span_end_char": 182,
+        "source_span_sha256": "sha256:1bbbf193e1f245edfa3622fe8232cdc5ebb70a28cfcd4cacbc6ee58a2614697f",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0291-S03",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 291,
+        "source_line_sha256": "sha256:6a3bddd9c842f85315e4ee4f6bac06761c21f09fa3a16e6a49a7caf2679decc8",
+        "source_text": "| `semantic_rename` | function、component、contract、event、fieldの内部識別子 | 入出力、副作用、failure、state transition、call graph、consumer contractのsemantic signatureとname collision | 文字列距離だけで同義と決める、public identifierを互換migrationなしで変更する |",
+        "source_span_text": "public identifierを互換migrationなしで変更する",
+        "source_span_start_char": 183,
+        "source_span_end_char": 219,
+        "source_span_sha256": "sha256:9f338533ddda674fc0995785bc478e90f84eb569268cdb3ff3b2f7cc44735cdb",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0300-S01",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 300,
+        "source_line_sha256": "sha256:f0359447296211ae8f63fd11dfeb07e81dc394ae3c48bc90d86005cce0bb312b",
+        "source_text": "候補は`HIL_DESIGN_REFACTOR_NAME_ONLY`で拒否する。internal identifierはDesign Refactorで扱えるが、公開API/CLI、",
+        "source_span_text": "internal identifierはDesign Refactorで扱える",
+        "source_span_start_char": 40,
+        "source_span_end_char": 79,
+        "source_span_sha256": "sha256:a930a6eda3232ff5997415765be825da2b6e12aa06ade73f600f9f33a9b97044",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0300-S02",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 300,
+        "source_line_sha256": "sha256:f0359447296211ae8f63fd11dfeb07e81dc394ae3c48bc90d86005cce0bb312b",
+        "source_text": "候補は`HIL_DESIGN_REFACTOR_NAME_ONLY`で拒否する。internal identifierはDesign Refactorで扱えるが、公開API/CLI、",
+        "source_span_text": "公開API/CLI",
+        "source_span_start_char": 81,
+        "source_span_end_char": 90,
+        "source_span_sha256": "sha256:7ef28e044dffd077933ba2f9495124519a9bc3368bc36ee957471461972432c2",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0301-S01",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 301,
+        "source_line_sha256": "sha256:3a7d2c6f68b3b369a1cd3f5079286c1ad4080fc1a69e60bc8a1a3fb03fe58bed",
+        "source_text": "永続DB field/event、consumerが直接参照する設定keyのrenameはobservable contract変更としてRedesignまたは",
+        "source_span_text": "永続DB field/event、consumerが直接参照する設定keyのrename",
+        "source_span_start_char": 0,
+        "source_span_end_char": 44,
+        "source_span_sha256": "sha256:eb6bc6c5de1a3632aae89c2af274692266d7ef93129cb565b8c2ee3c18e83dd2",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0302-S01",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 302,
+        "source_line_sha256": "sha256:681e972a6659c7b8bb1df4ecc74dc3dd6ca86e23f2e00c657a64a4b8e92787e2",
+        "source_text": "compatibility migrationを持つRetrofitへrerouteする。",
+        "source_span_text": "compatibility migrationを持つRetrofitへreroute",
+        "source_span_start_char": 0,
+        "source_span_end_char": 42,
+        "source_span_sha256": "sha256:3e17a1d7efe503709330d543ac9d1676e202eff1a6c0145162fa9459196f81a2",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0332-S01",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 332,
+        "source_line_sha256": "sha256:35c5ca5cbacd100c900005871e7bbfd6a9251d08fb246826cfcd9eeda91d8a89",
+        "source_text": "| `domain_object_symbols` | object＋operation＋symbol version | path/export/symbol/visibility/alias/deprecated。内部renameでもobject IDは不変 |",
+        "source_span_text": "内部renameでもobject IDは不変",
+        "source_span_start_char": 109,
+        "source_span_end_char": 131,
+        "source_span_sha256": "sha256:f569c367f4e1f6221f32f845be1bc0eeaa022042356aad60f70e8b522d4f0a28",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0333-S01",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 333,
+        "source_line_sha256": "sha256:0b024fa5fdca1f2f7b12f2e696d9542ad666a1bac85a40ae4b4a88d3df41aba4",
+        "source_text": "| `domain_object_oracles` | object＋operation/invariant＋oracle ID | `U-*`/`IT-*`、test path、oracle kind。private symbol名だけのoracleを拒否 |",
+        "source_span_text": "private symbol名だけのoracleを拒否",
+        "source_span_start_char": 102,
+        "source_span_end_char": 129,
+        "source_span_sha256": "sha256:b8c73fe583e205687cdc4d8d6d0ce7197b8d39d7eabe4171f2a4020e75e03449",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0334-S01",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 334,
+        "source_line_sha256": "sha256:1904853a08145e89ef6746527c4958be20fc2e8743f909cfeea3ca8e6efb5ef1",
+        "source_text": "| `naming_decisions` | decision ID | candidate/canonical、semantic signature、consumer、根拠、例外owner/expiry |",
+        "source_span_text": "例外owner/expiry",
+        "source_span_start_char": 88,
+        "source_span_end_char": 102,
+        "source_span_sha256": "sha256:6fb6a5892ce0f14b6dea3b12dbb9f97b28089cf4fd4f3ae5e280daf527694689",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      },
+      {
+        "atom_id": "O9-infinity-loop-platform-basic-design-L0335-S01",
+        "legacy_asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+        "source_line": 335,
+        "source_line_sha256": "sha256:168f5ee68e252fd0dde9c0f081a5b768f4af8ddb5b2e6ac97326116069318305",
+        "source_text": "| `rename_receipts` | rename ID | before/after graph・consumer・oracle digest、route、rollback |",
+        "source_span_text": "route、rollback",
+        "source_span_start_char": 76,
+        "source_span_end_char": 90,
+        "source_span_sha256": "sha256:13cd7dcc5e06d7b97df9183c764efa01e6570b7cd91900da2aea87b87b7eef67",
+        "span_scope_note": "Only the exact clause represented by HARNESS-L2-048/-L11. Full source line and all complementary remainders remain in MPR-SH-O9-NAMING-001.",
+        "disposition": "carried",
+        "candidate_input": true,
+        "candidate_identity": "HARNESS-L2-048",
+        "source_holding_registration_id": "MPR-SH-O9-NAMING-001"
+      }
+    ],
+    "reuse": "semantic_rederivation_of_selected_clauses_only",
+    "preserve": "13役割の語彙起点、ID/oracle保持、文字列だけの統合拒否、全consumer/署名/最小変換/rollback、局所例外と返却。",
+    "change": "旧table/schema/エラーcode/runtimeは移さずpure候補比較と製品owner decisionを分離。",
+    "reason": "048の採択範囲と委任承認5対へ再導出。旧L4資産全体の採用/実行を意味しない。",
+    "holding": "MPR-SH-O9-NAMING-001。非選択remainder/FR53/full lines/旧runtime・CIは未移管。",
+    "asset_disposition_context": [
+      {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "use_limit": "選択clauseの意味再導出/旧L4はreference only。全資産の再利用採用/実行ではない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "disposition": "unresolved",
+        "use_limit": "選択clauseの意味再導出/旧L4はreference only。全資産の再利用採用/実行ではない。"
+      }
+    ]
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実source資格・必要集合・組合せ・追加未見内容と独立意味review。",
+    "製品の具体grammar/canonical decisionと選択BRAIN語彙/009/pairへのowner-qualified exact binding、正式schema/codec。",
+    "L5/L8内部処理と実oracle凍結→実装前Red→最小Green→Refactor→再検証、実L9/L10、PO L11受入。",
+    "全92親430対の基本/詳細設計閉包と実装準備。"
+  ],
+  "document_id": "HARNESS-L4-048",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "target_role_naming_reader",
+      "identity_oracle_reader",
+      "safe_correction_candidate_reader",
+      "exception_return_reader",
+      "naming_owner_router"
+    ],
+    "flow": [
+      "独立対象意味/役割 → 命名候補",
+      "object/symbol/oracle原edge → 対応比較",
+      "既決canonical/consumer/署名/rollback → 全条件候補",
+      "対象finding/例外 → 局所返却",
+      "規範/知識/製品decision/CI → owner境界"
+    ],
+    "python_boundary": "immutable入力のpure照合と候補のみ。clock/env/fs/network/DB/GitHub/Worker/実rename/許可/採択/受入を行わない。評価時点は入力として渡す。",
+    "representation_limit": "以下のJSON field/語彙値/日付/署名/digest方式は合成例の表現。正式codec/schema/grammar/canonical名の採用ではない。"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-048-F01",
+      "requirement_ref": "HARNESS-L3-048-F01",
+      "system_oracle_ref": "HARNESS-L10-048-F01",
+      "oracle_ref": "HARNESS-L9-048-F01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-048-F01",
+        "parent": "HARNESS-L2-048",
+        "title": "対象と役割からの命名",
+        "obligation": "設計object/文書責務名/module/class/function等symbolについて、対象意味と役割を示す候補を作る。旧13役割型を語彙の起点とし、製品の宣言役割/consumerと照合する。Manager/Helper/Util/Data等は役割根拠・consumer・期限付き例外無しではfinding候補とする。具体grammar/canonical名/各コード要素への適用を本要件から決定しない。",
+        "oracle_ref": "HARNESS-L10-048-F01"
+      },
+      "component": "target_role_naming_reader",
+      "input_meanings": [
+        "対象意味/宣言役割/consumer",
+        "選択語彙snapshot",
+        "曖昧名の根拠/期限付き例外"
+      ],
+      "output_meanings": [
+        "対象別命名候補",
+        "根拠不足finding/作成側返却"
+      ],
+      "content_comparison": [
+        "13型は語彙の起点であり全objectの強制分類ではない。対象意味と宣言役割/consumerを比較し文字列から役割を推測しない。",
+        "Manager等は根拠・consumer・期限付き例外を照合。具体grammar/canonical名をこの規範から決定しない。"
+      ],
+      "qualification_rule": "identity/revision/scope/owner/必要集合を原sourceと比較。資格missing/unknown/conflict/staleは局所未成立。具体資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-048-F02",
+      "requirement_ref": "HARNESS-L3-048-F02",
+      "system_oracle_ref": "HARNESS-L10-048-F02",
+      "oracle_ref": "HARNESS-L9-048-F02",
+      "approved_requirement": {
+        "id": "HARNESS-L3-048-F02",
+        "parent": "HARNESS-L2-048",
+        "title": "identity・symbol・oracleの独立対応",
+        "obligation": "stable object identity、implementation symbol、test oracleを別edgeで決定論的に結び、命名候補変更でもobject IDとoracle identityを保持する。oracleはdomain object＋operation＋oracle IDへbindし、private symbol名だけへbindしない。製品の要求/検証pairも同じidentityへ辿れる。",
+        "oracle_ref": "HARNESS-L10-048-F02"
+      },
+      "component": "identity_oracle_reader",
+      "input_meanings": [
+        "独立before/after object/symbol/oracle edge",
+        "domain operationと要求/検証pair"
+      ],
+      "output_meanings": [
+        "edge別の保持/欠落/不一致",
+        "影響対象"
+      ],
+      "content_comparison": [
+        "stable object IDとoracle IDは保持しsymbol edgeだけの差分と区別する。oracleはobject＋operation＋oracle IDに結ぶ。",
+        "private symbolのみ/edge欠落/異なるobjectのpairを拒否する。名称一致でedgeを補わない。"
+      ],
+      "qualification_rule": "identity/revision/scope/owner/必要集合を原sourceと比較。資格missing/unknown/conflict/staleは局所未成立。具体資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-048-F03",
+      "requirement_ref": "HARNESS-L3-048-F03",
+      "system_oracle_ref": "HARNESS-L10-048-F03",
+      "oracle_ref": "HARNESS-L9-048-F03",
+      "approved_requirement": {
+        "id": "HARNESS-L3-048-F03",
+        "parent": "HARNESS-L2-048",
+        "title": "自動修正候補の全条件",
+        "obligation": "canonical名が既決、internal identifierのみ、全consumer列挙、semantic signature（入出力/副作用/failure/state transition/call graph/consumer contract）とbehavior invariantを検証可能、最小変換とrollbackを用意、の全条件を満たす場合だけ自動修正PR/rename receipt候補を提示できる。初回では実rename/DesignRefactorは選択しない。",
+        "oracle_ref": "HARNESS-L10-048-F03"
+      },
+      "component": "safe_correction_candidate_reader",
+      "input_meanings": [
+        "ownerの既決canonical入力",
+        "internal範囲",
+        "全consumer必要集合と観測集合",
+        "独立before/after semantic signature",
+        "behavior invariant/最小変換/rollback"
+      ],
+      "output_meanings": [
+        "条件別照合結果",
+        "修正PR/receipt候補または不足finding"
+      ],
+      "content_comparison": [
+        "全条件が同じ対象revision/scopeで成立した場合だけ候補提示可。consumer件数だけで充足させずidentity集合を比較する。",
+        "署名の入出力/副作用/failure/state transition/call graph/consumer contractを原内容で比較。文字列類似だけの統合は拒否。",
+        "候補から実rename/merge/許可を生成しない。"
+      ],
+      "qualification_rule": "identity/revision/scope/owner/必要集合を原sourceと比較。資格missing/unknown/conflict/staleは局所未成立。具体資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-048-F04",
+      "requirement_ref": "HARNESS-L3-048-F04",
+      "system_oracle_ref": "HARNESS-L10-048-F04",
+      "oracle_ref": "HARNESS-L9-048-F04",
+      "approved_requirement": {
+        "id": "HARNESS-L3-048-F04",
+        "parent": "HARNESS-L2-048",
+        "title": "返却と期限付き例外",
+        "obligation": "role unknown/consumer不足/signature mismatch/public APIまたはCLI/persisted fieldまたはevent/直接参照される設定keyでは自動renameを拒否し、理由/影響/戻し先を示す。必要な意味変更は作成側またはRedesign/互換migrationを伴うRetrofitへ返す。理由/owner/expiryのある例外は当該fixture範囲で先へ進めるが、期限なし/ownerなしは不成立。検出だけで全工程を停止しない。",
+        "oracle_ref": "HARNESS-L10-048-F04"
+      },
+      "component": "exception_return_reader",
+      "input_meanings": [
+        "対象別finding/影響/境界",
+        "reason/owner/expiry/scopeを持つ例外と独立評価時点"
+      ],
+      "output_meanings": [
+        "対象別自動修正拒否",
+        "作成側/Redesign/互換Retrofitへの返却候補",
+        "例外の局所継続と未解決影響"
+      ],
+      "content_comparison": [
+        "role不明/consumer不足/signature mismatchは作成側へ、observable contract変更はRedesignまたは互換migrationを持つRetrofitへ返す。",
+        "例外はreason/owner/有効expiry/対象scopeを照合。例外で自動rename拒否を消さず当該fixtureの継続と区別し、他scopeを止めない。"
+      ],
+      "qualification_rule": "identity/revision/scope/owner/必要集合を原sourceと比較。資格missing/unknown/conflict/staleは局所未成立。具体資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-048-B01",
+      "requirement_ref": "HARNESS-L3-048-B01",
+      "system_oracle_ref": "HARNESS-L10-048-B01",
+      "oracle_ref": "HARNESS-L9-048-B01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-048-B01",
+        "parent": "HARNESS-L2-048",
+        "title": "命名知識と検査の権限境界",
+        "obligation": "HARNESSは命名規範/検証条件、BRAINは選択された再利用役割語彙の意味/例、製品設計ownerは具体命名decisionを持つ。BRAIN知識は規範/製品設計を上書きしない。将来検査は違反/候補/返却理由までで採択/merge/authorityを決めずbotは自己mergeしない。OS/SECURITY等の責務名・要求ID・採択本文の名称変更を含めない。",
+        "oracle_ref": "HARNESS-L10-048-B01"
+      },
+      "component": "naming_owner_router",
+      "input_meanings": [
+        "規範/選択知識/製品decision/検査候補の独立入力",
+        "要求ID/機構責務/採択本文の保全"
+      ],
+      "output_meanings": [
+        "owner別返却候補",
+        "権限越境finding"
+      ],
+      "content_comparison": [
+        "HARNESS規範、BRAIN語彙意味/例、製品owner具体命名decision、CI検査候補を分離。",
+        "知識が規範/製品decisionを上書きしない。CIは採択/merge/authorityを決めずbot自己mergeを拒否。既存ID/責務名/採択本文変更は対象外。"
+      ],
+      "qualification_rule": "identity/revision/scope/owner/必要集合を原sourceと比較。資格missing/unknown/conflict/staleは局所未成立。具体資格と正式表現は未binding。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 6,
+      "F02": 7,
+      "F03": 24,
+      "F04": 14,
+      "B01": 8
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
