@@ -1,0 +1,211 @@
+{
+  "parent": "HELIXCONNECT-L2-006",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2a",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+    "boundary": "片側交換選択時の四case/固定側/新revision照合/元未完と回復を内容対照。実交換を選択・実行せず非選択を初回固定gateにしない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    }
+  ],
+  "source_pin_limit": "固定bytesは実source資格/全意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "read_lines": [
+        61,
+        91
+      ],
+      "quote": "connector versionは次を必須とする。\n\n```ts\ninterface ProductConnectorContractV1 {\n  schema_version: \"helix-product-connector.v1\";\n  product_source_id: string;\n  source_kind: string;\n  external_identity_digest: string;\n  connector_id: string;\n  connector_version: string;\n  source_schema_version: string;\n  canonical_mapping_version: string;\n  credential_reference: string;\n  classification: string;\n  read_write_policy: \"read-only\";\n  sync_modes: Array<\"full\" | \"incremental\">;\n  freshness_sla_ms: number;\n  retention_policy_id: string;\n  redaction_policy_id: string;\n  quarantine_route_id: string;\n  owner: string;\n  config_digest: string;\n}\n```\n\ncredentialはopaque referenceだけを受理し、値、header、connection string、secret bodyをregistry、run、artifact、logへ保存しない。\n同じsourceでactive connector versionは最大1件とする。version/schema/mapping/config digest変更は旧run/snapshotをstaleにし、\n旧greenを新versionへ流用しない。disabled/revoked/quarantined connectorのclaimは0件にする。\nactivationはpure decisionだけで完了させず、operation ID、contract digest、expected registry head、idempotency keyを持つ\nNode commit transactionでregistry event、旧active stale化、新active pointer、receiptをCAS commitする。fault時の部分active化、\n同一key別digest、head競合を拒否し、seal済みactivation evidenceからNode reconcileできるようにする。",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "selected_lines_sha256": "accf49d49f765d85345027b16e4ae944b92db7bdab13ed7fc38418d7a7654e0d",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "disposition": "unresolved",
+        "source_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+      },
+      "reuse": "reference_only",
+      "preserve": "version/schema/mapping/config変更時stale再照合、旧greenの新version非流用、operation/evidence/digestの一意な回復とadapterによる固有事情隔離。",
+      "change": "旧active最大1/Node CAS/CLI/認証方式/API-key禁止を新CONNECT006の実装/方針へ移植せず、選択片側交換/固定側/互換/元未完/単一版再開の一般契約へ意味再導出。",
+      "reason": "承認006の四交換case/必要scopeだけを保持し、元authorityと未完を変えず固有adapter境界を保つ。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "read_lines": [
+        35,
+        43
+      ],
+      "quote": "| API | signature | DbC／result | 対応するL7 oracle | HAC | HST exact case | failure token |\n|---|---|---|---|---|---|---|\n| `parseProductConnectorContract` | `(raw: unknown) => ResultV1<ProductConnectorContractV1, ProductDataFailureV1>` | strict field/version、read-only、credential reference、policyを要求 | `U-PDC-001` | `HAC-HIL-11b` | `HST-CASE-010-10` | `HIL_CONNECTOR_CONTRACT_INVALID` |\n| `activateProductConnectorVersion` | `(bundle: ConnectorActivationBundleV1, store: ConnectorActivationStoreV1) => Promise<ResultV1<ConnectorActivationReceiptV1, ProductDataFailureV1>>` | operation/contract digest/expected registry head/idempotencyをNode CAS commitしactive最大1 | `U-PDC-002` | `HAC-HIL-11b` | `HST-CASE-010-10` | `HIL_CONNECTOR_CONTRACT_INVALID` |\n| `reconcileProductConnectorActivation` | `(bundle: ConnectorActivationBundleV1, store: ConnectorActivationStoreV1) => Promise<ResultV1<ConnectorActivationReceiptV1, ProductDataFailureV1>>` | 同一activation evidence/operation/digest/headから専用reconcileし別evidenceを拒否 | `U-PDC-002` | `HAC-HIL-11b` | supporting activation fault oracle | `HIL_CONNECTOR_CONTRACT_INVALID` |\n| `planProductFullSync` | `(contract, intent, lease) => ProductIngestionPlanV1` | cursorなし、全page、read-only、stable idempotency key | `U-PDC-003` | `HAC-HIL-11a` | `HST-CASE-010-01` | `なし（正常系）` |\n| `planProductIncrementalSync` | `(contract, watermark, intent, lease) => ProductIngestionPlanV1` | current cursor/fenceを開始点へ固定 | `U-PDC-004` | `HAC-HIL-11a` | `HST-CASE-010-02` | `なし（正常系）` |\n| `compareProductCursor` | `(codec, previous, candidate) => CursorOrderDecisionV1` | registered codecのみ、greater/equal/regressed/invalidを決定 | `U-PDC-005` | `HAC-HIL-11b` | `HST-CASE-010-07` | `HIL_PRODUCT_WATERMARK_REGRESSION` |\n| `validateProductPageChain` | `(plan, pages, terminal) => ResultV1<ValidatedRecordSetV1, ProductDataFailureV1>` | page sequence、record key、cursor、content digest、終端exactly-one | `U-PDC-006` | `HAC-HIL-11a` | `HST-CASE-010-11` | `HIL_PRODUCT_INGESTION_INVALID` |",
+      "file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+      "selected_lines_sha256": "1b9749b3197b6608292207fc0d5ac863e5cb6962ebf1e36c24874c0b0c7f3844",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+        "disposition": "unresolved",
+        "source_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42"
+      },
+      "reuse": "reference_only",
+      "preserve": "version/schema/mapping/config変更時stale再照合、旧greenの新version非流用、operation/evidence/digestの一意な回復とadapterによる固有事情隔離。",
+      "change": "旧active最大1/Node CAS/CLI/認証方式/API-key禁止を新CONNECT006の実装/方針へ移植せず、選択片側交換/固定側/互換/元未完/単一版再開の一般契約へ意味再導出。",
+      "reason": "承認006の四交換case/必要scopeだけを保持し、元authorityと未完を変えず固有adapter境界を保つ。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md",
+      "read_lines": [
+        35,
+        45
+      ],
+      "quote": "| 案 | 判定 | 理由 |\n|----|------|------|\n| API / SDK 直叩き (API key 管理) | **却下** | CLAUDE.md 契約プラン方針違反。認証情報管理リスク + API 従量コスト。禁止事項 (認証前提 fallback) に抵触 |\n| adapter なしで core が直接 CLI 呼出 | 却下 | provider lock-in。core が provider 固有を持ち、ルール同一性・テスト容易性を損なう |\n| ADR 化しない (external-if §6 のまま) | 却下 | A-71 の漏れが示すとおり、境界が固定されないと前提ズレが再発する |\n\n## 影響 (Consequences)\n\n- (+) provider 切替可 (adapter 差し替え)。FR-L1-42 provider 引継ぎの基盤。\n- (+) **API key 管理が不要** (契約プラン CLI 自己認証)。harness の秘密管理は GitHub (gh ログイン) + 観測系 inbound token のみに縮小。\n- (+) 同種の API-premise 前提ズレを構造的に防止 (IMP-030 guard の根拠)。",
+      "file_sha256": "ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37",
+      "selected_lines_sha256": "1ca2bf3e9d7cf10073a90b3412224ac1f7a95449333c3276ee6ee0aa7f2feae7",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-BD13CC67526B48D461F9",
+        "disposition": "unresolved",
+        "source_sha256": "ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37"
+      },
+      "reuse": "reference_only",
+      "preserve": "version/schema/mapping/config変更時stale再照合、旧greenの新version非流用、operation/evidence/digestの一意な回復とadapterによる固有事情隔離。",
+      "change": "旧active最大1/Node CAS/CLI/認証方式/API-key禁止を新CONNECT006の実装/方針へ移植せず、選択片側交換/固定側/互換/元未完/単一版再開の一般契約へ意味再導出。",
+      "reason": "承認006の四交換case/必要scopeだけを保持し、元authorityと未完を変えず固有adapter境界を保つ。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "交換選択/固定側実bytes/変更scope/登録新版/互換/許可/実送受信/元未完/回復の実source資格と必要集合、owner-qualified exact binding。",
+    "正式schema/codec/変更影響/transport/clock/resolver/切戻し実証拠とL5L8、凍結oracle→実装前Red→最小Green→Refactor→再検証。",
+    "実L9/L10/PO L11、全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXCONNECT-L4-006",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "one_side_replacement_reader",
+      "unfinished_resume_reader"
+    ],
+    "flow": [
+      "選択交換kind/固定側原bytes/旧新変更範囲→新版登録/互換/許可/receipt対象→局所保留/固定側保持",
+      "原未完/ACK/scope/期限/累積→交換/切戻しhandoffと単一新版再開根拠→通信停止/元owner返却"
+    ],
+    "python_boundary": "pure immutable内容対照。実交換/通信/retry/rollback/保存/認可/DB/network/clock/業務判断を行わない。",
+    "representation_limit": "四合成交換kind、許容変更field/版名/原bytes/再開stateは合成例。実製品配置/互換方式/固定4field表/schema/切替方式を採用しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXCONNECT-L4-006-F01",
+      "requirement_ref": "HELIXCONNECT-L3-006-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-006-F01",
+      "oracle_ref": "HELIXCONNECT-L9-006-F01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-006-F01",
+        "parent": "HELIXCONNECT-L2-006",
+        "title": "選択した片側交換の照合",
+        "obligation": "片側交換を選択するoperationに限り、非変更側の機構/契約版を固定し、送信側機構/adapter・受信側機構/adapterの各変更を個別に再照合する。互換なら固定側を改変せず通信できる。",
+        "oracle_ref": "HELIXCONNECT-L10-006-F01"
+      },
+      "component": "one_side_replacement_reader",
+      "input_meanings": [
+        "選択交換kind/変更前後profile/許容変更scope/固定側原bytesと提出",
+        "旧新target/新版登録/互換/許可/送受信receipt"
+      ],
+      "output_meanings": [
+        "固定側内容/bytes保持と変更scope/新版対象結合",
+        "内容候補または通信保留/endpoint-adapter-SEC返却"
+      ],
+      "content_comparison": [
+        "送信側機構/adapterと受信側機構/adapterの四交換を個別caseにする。",
+        "固定側機構/契約/成果物/依存版とbytesを保持し、両側改変を片側成功にしない。",
+        "旧結果/未登録版/非互換/意味差/未観測を新版通信成立へ昇格しない。",
+        "未選択交換は初回固定gateにしない。"
+      ],
+      "qualification_rule": "固定bytes/変更scope/登録/互換/実送受信/未完/許可/rollback/recoveryの合成例は実source資格/authority/実交換/再開/Accepted/設計閉包でない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXCONNECT-L4-006-F02",
+      "requirement_ref": "HELIXCONNECT-L3-006-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-006-F02",
+      "oracle_ref": "HELIXCONNECT-L9-006-F02",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-006-F02",
+        "parent": "HELIXCONNECT-L2-006",
+        "title": "交換時の未完と切戻し",
+        "obligation": "交換/切戻し時の未完operation/ACK/義務/期限/scope/累積attemptをHARNESS010/011の明示recovery先へ引継ぐ。非互換/unknown/stale/意味契約変更では通信を停止し、単一新revision再照合と再開条件成立前にretryしない。",
+        "oracle_ref": "HELIXCONNECT-L10-006-F02"
+      },
+      "component": "unfinished_resume_reader",
+      "input_meanings": [
+        "原未完operation/ACK/義務/期限/scope/累積と旧revisionの由来",
+        "交換/rollbackのhandoff/許可/単一新版/再開と提出attempt要求"
+      ],
+      "output_meanings": [
+        "元未完/累積/回復先と原切戻し観測保持",
+        "当該停止条件/局所ownerと追加attempt0候補"
+      ],
+      "content_comparison": [
+        "非互換/unknown/stale/意味差では通信停止、単一新revisionと再開条件前にretryしない。",
+        "元未完/ACK/期限/scope/累積を保持し、旧revisionを消すのでなく由来として残す。",
+        "handoff記録は実解決/rollback成立でなく、未観測を完了へ推測しない。",
+        "実許可/実再開/実retryは合成条件対応から生成しない。"
+      ],
+      "qualification_rule": "固定bytes/変更scope/登録/互換/実送受信/未完/許可/rollback/recoveryの合成例は実source資格/authority/実交換/再開/Accepted/設計閉包でない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 50,
+      "F02": 49
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
