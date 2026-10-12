@@ -562,7 +562,10 @@
       "basic_calls": 30,
       "typed_expected_cells": 210,
       "nested_state_cells": 240,
-      "state": "draft_basic_typed_cases_independent_qualification_pending"
+      "state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
+      "qualification_source_groups": 85,
+      "qualification_single_source_examples": 340,
+      "qualification_mixed_examples": 4
     },
     "F05": {
       "basic_calls": 29,
@@ -579,7 +582,7 @@
     }
   },
   "pending": [
-    "全7関数のbasic typed例とF03独立資格matrixを起草済み。F04/F05/N01の独立qualification、全関数の追加内容/組合せ/返却例・実bindingは未完",
+    "全7関数のbasic typed例とF03/F04独立資格例を起草済み。F05/N01の独立qualification、全関数の追加内容/組合せ/返却例・実bindingは未完",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -1480,7 +1483,7 @@
         "既知状態集合のmissing/conflictを個別に列挙し、該当原証拠/理由/ownerへ返却候補を渡す。未知集合/source資格を空集合/falseへ補わず、無関係scopeを一括停止しない。",
         "照合結果は状態成立の条件材料のみで、actual_state_update/actual_completionはfalse、operation_effectはnone。状態の実保存/実更新はOS、受入や配備の実作用は当該ownerが所有する。"
       ],
-      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "detail_state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
       "state_detail": {
         "state_order": [
           "Working",
@@ -1508,7 +1511,350 @@
           "actual_completion"
         ],
         "legacy_preservation": "旧v1.3:29–66の六V-pair、谷/検証/受入/運用の別証明を各状態へ意味再導出する。旧層番号や旧CI成功、PR/Issue/DB stateを実承認/完了にしない。",
-        "source_binding_limit": "各状態のtyped合成例。実owner/authority/各embedded観測/原受入資格・正式schema/codec・実操作ではない。"
+        "source_binding_limit": "各状態のtyped合成例。実owner/authority/各embedded観測/原受入資格・正式schema/codec・実操作ではない。",
+        "qualification_groups": {
+          "context": {
+            "affected_state": null,
+            "qualification_role": "target_membership"
+          },
+          "state_proof_membership": {
+            "affected_state": null,
+            "qualification_role": "target_membership"
+          },
+          "Working_root": {
+            "affected_state": "Working",
+            "qualification_role": "state_basis"
+          },
+          "Working_binding": {
+            "affected_state": "Working",
+            "qualification_role": "state_basis"
+          },
+          "Working_work_record": {
+            "affected_state": "Working",
+            "qualification_role": "state_basis"
+          },
+          "Working_artifact": {
+            "affected_state": "Working",
+            "qualification_role": "state_basis"
+          },
+          "Working_work_kind": {
+            "affected_state": "Working",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_root": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_binding": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_contract": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_oracle": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_freeze": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_pre_body_red": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_minimum_body": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_green": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_local_refactor": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_atomic_ci": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_trace": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_trace_artifacts": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_root": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_binding": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_pair": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_design": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_observed_boundary": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_refactor": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_required_obligations": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_observations_single_state_owner": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_observations_idempotent_delivery": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_required_l9_dimensions": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_interface": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_dependency_direction": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_state_data_ownership": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_transaction": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_failure_propagation": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_retry": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_timeout": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_idempotency": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_coupling": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_responsibility_duplication": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Verified_root": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_binding": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_pair": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_requirement": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_lower_proof_refs": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_system_specific_obligations": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_system_observations_global_balance_conservation": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_005_022_difference": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_root": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_binding": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_pair": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_l2": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_acceptance_scope": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_human_original": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_ai_interpretation": {
+            "affected_state": null,
+            "qualification_role": "interpretation_only"
+          },
+          "Release-eligible_root": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_binding": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_port": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_required": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_proofs": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_artifact_identity": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_environment": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_dependencies": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_security": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_rollback": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_deployment_conditions": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_acceptance": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_root": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_binding": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_deployment": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_artifact": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_target_environment": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_observed_environment": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_expected_digest": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_observed_digest": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_root": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_binding": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_pair": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_planning": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_operation_record": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_environment": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_value_axis": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_expected_debits_per_command": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_observed_debits_per_command": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_feedback_target": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "carrier": {
+            "affected_state": null,
+            "qualification_role": "target_membership"
+          }
+        },
+        "qualification_rule": "状態root/bindingと各工程・観測・人間原受入・AI解釈・Port条件・配備・運用原材料を個別に照合する。状態固有資格が未成立でも他状態の原結果を保持し、連続frontierは最初の未成立の前で止める。原受入の資格不足をAI解釈で補わない。"
       }
     },
     {
