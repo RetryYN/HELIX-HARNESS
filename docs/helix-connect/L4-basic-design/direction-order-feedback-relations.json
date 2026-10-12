@@ -697,7 +697,8 @@
         },
         "preservation": "原初回結果/個別適格辺/累積/未完/他scopeを保持。提出差替えを理由と返し先で示す。",
         "phase_separation": "後続不足を初回拒否へ波及しない。各操作の候補は合成内容だけで、実作用0。",
-        "ack_join": "ACK原/提出同値だけでなく原attempt operation/connection/revisionへ結ぶ。正しいACKでも業務/構成体完了を生成しない。"
+        "ack_join": "ACK原/提出同値だけでなく原attempt operation/connection/revisionへ結ぶ。正しいACKでも業務/構成体完了を生成しない。",
+        "ack_absence": "原送信attemptを保つ。ACK not_arrived（受領未到来がfixtureで示された状態）とmissing/unknown（原記録/観測根拠不足）を区別する。どちらも実受領/完了を成立させない。"
       }
     }
   ]

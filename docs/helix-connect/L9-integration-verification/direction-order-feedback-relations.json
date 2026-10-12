@@ -52864,18 +52864,18 @@
           "independent_source_packet": {
             "ref": {
               "identity": "SOURCE-C009-F10-ACK-NOT-ARRIVED",
-              "revision": "fixture-content-a51b4f3bfba1c68052df160673e5cbcbf0803581a2f640fc9a69f66a30bf7c61",
+              "revision": "fixture-content-f604aaaadb5b0c64413ed79096b31fdb95641e009518dc1acafd5a29ec8457ef",
               "scope": "PRODUCT-P/relation",
               "owner": "synthetic-fixture-owner"
             },
-            "raw_utf8": "{\"claims\":{\"ack_assumed\":false,\"feedback_resolved\":false,\"history_erased\":false,\"initial_revoked_by_later_missing\":false,\"join_assumed\":false,\"retry_despite_unknown\":false},\"later_phase_missing\":[\"feedback_reason\",\"loop_policy\",\"parallel_join\",\"ack\"],\"operation_kind\":\"F10\",\"original_inputs\":{\"ack_connection_identity\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"CONNECTION-AB\"},\"ack_contract_revision\":{\"owner\":\"connection-contract-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"AB-contract-r1\"},\"ack_operation_identity\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"OP-AB\"},\"original_attempt\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"connection\":\"CONNECTION-AB\",\"contract_revision\":\"AB-contract-r1\",\"identity\":\"ATTEMPT-AB-1\",\"operation\":\"OP-AB\",\"state\":\"sent_waiting_ack_in_fixture_only\"}}},\"original_needed_roles\":[\"original_attempt\",\"ack_receipt\",\"ack_operation_identity\",\"ack_connection_identity\",\"ack_contract_revision\"],\"original_preserved\":{\"cumulative_attempts\":2,\"eligible_edges\":[\"EDGE-A\",\"EDGE-B\"],\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]},\"original_target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"submitted_inputs\":{\"ack_connection_identity\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"CONNECTION-AB\"},\"ack_contract_revision\":{\"owner\":\"connection-contract-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"AB-contract-r1\"},\"ack_operation_identity\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"OP-AB\"},\"original_attempt\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"connection\":\"CONNECTION-AB\",\"contract_revision\":\"AB-contract-r1\",\"identity\":\"ATTEMPT-AB-1\",\"operation\":\"OP-AB\",\"state\":\"sent_waiting_ack_in_fixture_only\"}}},\"submitted_preserved\":{\"cumulative_attempts\":2,\"eligible_edges\":[\"EDGE-A\",\"EDGE-B\"],\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]}}",
-            "sha256": "a51b4f3bfba1c68052df160673e5cbcbf0803581a2f640fc9a69f66a30bf7c61",
+            "raw_utf8": "{\"claims\":{\"ack_assumed\":false,\"feedback_resolved\":false,\"history_erased\":false,\"initial_revoked_by_later_missing\":false,\"join_assumed\":false,\"retry_despite_unknown\":false},\"later_phase_missing\":[\"feedback_reason\",\"loop_policy\",\"parallel_join\",\"ack\"],\"operation_kind\":\"F10\",\"original_inputs\":{\"ack_connection_identity\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"CONNECTION-AB\"},\"ack_contract_revision\":{\"owner\":\"connection-contract-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"AB-contract-r1\"},\"ack_operation_identity\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"OP-AB\"},\"ack_receipt\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"not_arrived\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":null},\"original_attempt\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"connection\":\"CONNECTION-AB\",\"contract_revision\":\"AB-contract-r1\",\"identity\":\"ATTEMPT-AB-1\",\"operation\":\"OP-AB\",\"state\":\"sent_waiting_ack_in_fixture_only\"}}},\"original_needed_roles\":[\"original_attempt\",\"ack_receipt\",\"ack_operation_identity\",\"ack_connection_identity\",\"ack_contract_revision\"],\"original_preserved\":{\"cumulative_attempts\":2,\"eligible_edges\":[\"EDGE-A\",\"EDGE-B\"],\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]},\"original_target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"submitted_inputs\":{\"ack_connection_identity\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"CONNECTION-AB\"},\"ack_contract_revision\":{\"owner\":\"connection-contract-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"AB-contract-r1\"},\"ack_operation_identity\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"OP-AB\"},\"ack_receipt\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"not_arrived\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":null},\"original_attempt\":{\"owner\":\"receipt-endpoint-owner\",\"state\":\"known_fixture_only\",\"target\":{\"connection\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"revision\":\"AB-contract-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"connection\":\"CONNECTION-AB\",\"contract_revision\":\"AB-contract-r1\",\"identity\":\"ATTEMPT-AB-1\",\"operation\":\"OP-AB\",\"state\":\"sent_waiting_ack_in_fixture_only\"}}},\"submitted_preserved\":{\"cumulative_attempts\":2,\"eligible_edges\":[\"EDGE-A\",\"EDGE-B\"],\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]}}",
+            "sha256": "f604aaaadb5b0c64413ed79096b31fdb95641e009518dc1acafd5a29ec8457ef",
             "qualification": "synthetic_fixture_only_no_actual_source_qualification"
           },
           "expected_material": {
             "field_results": {
               "original_attempt": "content_corresponding_in_fixture",
-              "ack_receipt": "missing_original_information",
+              "ack_receipt": "not_arrived",
               "ack_operation_identity": "content_corresponding_in_fixture",
               "ack_connection_identity": "content_corresponding_in_fixture",
               "ack_contract_revision": "content_corresponding_in_fixture"
@@ -52884,7 +52884,7 @@
               {
                 "area": "needed_input",
                 "field": "ack_receipt",
-                "result": "missing_original_information",
+                "result": "not_arrived",
                 "return_owner": "receipt-endpoint-owner"
               }
             ],
@@ -52911,66 +52911,77 @@
               }
             },
             "retained_original_inputs": {
-              "original_attempt": {
-                "state": "known_fixture_only",
-                "value": {
-                  "identity": "ATTEMPT-AB-1",
-                  "operation": "OP-AB",
-                  "connection": "CONNECTION-AB",
-                  "contract_revision": "AB-contract-r1",
-                  "state": "sent_waiting_ack_in_fixture_only"
-                },
-                "owner": "receipt-endpoint-owner",
-                "target": {
-                  "scope": "PRODUCT-P/relation",
-                  "connection": "CONNECTION-AB",
-                  "operation": "OP-AB",
-                  "revision": "AB-contract-r1"
-                }
-              },
-              "ack_operation_identity": {
-                "state": "known_fixture_only",
-                "value": "OP-AB",
-                "owner": "receipt-endpoint-owner",
-                "target": {
-                  "scope": "PRODUCT-P/relation",
-                  "connection": "CONNECTION-AB",
-                  "operation": "OP-AB",
-                  "revision": "AB-contract-r1"
-                }
-              },
               "ack_connection_identity": {
-                "state": "known_fixture_only",
-                "value": "CONNECTION-AB",
                 "owner": "receipt-endpoint-owner",
+                "state": "known_fixture_only",
                 "target": {
-                  "scope": "PRODUCT-P/relation",
                   "connection": "CONNECTION-AB",
                   "operation": "OP-AB",
-                  "revision": "AB-contract-r1"
-                }
+                  "revision": "AB-contract-r1",
+                  "scope": "PRODUCT-P/relation"
+                },
+                "value": "CONNECTION-AB"
               },
               "ack_contract_revision": {
-                "state": "known_fixture_only",
-                "value": "AB-contract-r1",
                 "owner": "connection-contract-owner",
+                "state": "known_fixture_only",
                 "target": {
-                  "scope": "PRODUCT-P/relation",
                   "connection": "CONNECTION-AB",
                   "operation": "OP-AB",
-                  "revision": "AB-contract-r1"
+                  "revision": "AB-contract-r1",
+                  "scope": "PRODUCT-P/relation"
+                },
+                "value": "AB-contract-r1"
+              },
+              "ack_operation_identity": {
+                "owner": "receipt-endpoint-owner",
+                "state": "known_fixture_only",
+                "target": {
+                  "connection": "CONNECTION-AB",
+                  "operation": "OP-AB",
+                  "revision": "AB-contract-r1",
+                  "scope": "PRODUCT-P/relation"
+                },
+                "value": "OP-AB"
+              },
+              "original_attempt": {
+                "owner": "receipt-endpoint-owner",
+                "state": "known_fixture_only",
+                "target": {
+                  "connection": "CONNECTION-AB",
+                  "operation": "OP-AB",
+                  "revision": "AB-contract-r1",
+                  "scope": "PRODUCT-P/relation"
+                },
+                "value": {
+                  "connection": "CONNECTION-AB",
+                  "contract_revision": "AB-contract-r1",
+                  "identity": "ATTEMPT-AB-1",
+                  "operation": "OP-AB",
+                  "state": "sent_waiting_ack_in_fixture_only"
+                }
+              },
+              "ack_receipt": {
+                "state": "not_arrived",
+                "value": null,
+                "owner": "receipt-endpoint-owner",
+                "target": {
+                  "connection": "CONNECTION-AB",
+                  "operation": "OP-AB",
+                  "revision": "AB-contract-r1",
+                  "scope": "PRODUCT-P/relation"
                 }
               }
             },
             "ack_target_results": {
-              "record": "not_comparable_missing_or_unknown"
+              "record": "not_comparable_ack_not_arrived"
             },
             "operation_states": {
               "initial_edge_candidate": "original_initial_result_retained",
               "feedback_send_candidate": "not_evaluated",
               "additional_retry_candidate": 0,
               "join_candidate": "not_evaluated",
-              "ack_candidate": "waiting_ack_or_missing_original_attempt"
+              "ack_candidate": "waiting_ack_not_arrived"
             },
             "claim_results": {
               "initial_revoked_by_later_missing": "none",
