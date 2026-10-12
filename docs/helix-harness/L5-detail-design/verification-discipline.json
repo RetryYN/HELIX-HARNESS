@@ -5542,29 +5542,22 @@
             "permitted_edges": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [
-                  {
-                    "array_item_shapes": [
-                      "string"
-                    ],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
-                  }
-                ],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_type": "DirectedEdge",
+                "empty_semantics": "成立した同対象の表へ照合して当該classのedgeが0件。表不足やunknownを空へしない。"
               }
             },
             "forbidden_edges": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_type": "DirectedEdge",
+                "empty_semantics": "成立した同対象の表へ照合して当該classのedgeが0件。表不足やunknownを空へしない。"
               }
             },
             "cycles": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_type": "DirectedCycleWitness",
+                "empty_semantics": "供給された元graphで閉路が見つからないこと。元graph missingの代用にしない。"
               }
             },
             "table_origin": {
@@ -5574,8 +5567,8 @@
             "boundary_changes": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_type": "never (read-only comparison)",
+                "empty_semantics": "この比較から境界変更やauthority変更の副作用を出力しない。"
               }
             }
           }
@@ -6948,7 +6941,8 @@
           "qualification_basis": "SyntheticFixtureQualification",
           "source_change": "null|OriginalMutation",
           "embedded_reference_state": "explicit comparison boundary",
-          "source_preparation": "Field<FixtureInputPreparation>"
+          "source_preparation": "Field<FixtureInputPreparation>",
+          "fixture_derivation": "Field<FixtureDerivation>"
         },
         "meaning": "合成原materialの固定。正式wire codecではない。"
       },
@@ -7054,6 +7048,49 @@
           "backflow_owner": "string"
         },
         "meaning": "このrevisionのoracle被覆が未成立である理由。実behavior違反の観測や宣言のretireではない。"
+      },
+      "DirectedEdge": {
+        "shape": "tuple<dependency_source_identity, dependency_target_identity>",
+        "meaning": "方向付きの元edge。名前でdomain roleを推論せず、逆向き/重複を黙って正規化しない。"
+      },
+      "DirectedCycleWitness": {
+        "shape": "list<dependency_node_identity> with same first/last node",
+        "meaning": "各隣接pairが元actual_edgesに存在する閉路witness。入力graphや許可条件を変更しない。"
+      },
+      "F05ApplicabilityContent": {
+        "fields": {
+          "ref": "Ref",
+          "state": "Field<required|not_applicable|unknown>"
+        },
+        "meaning": "COREの原適用。実運用のN/A理由や判定者等の成立はCORE側契約へ戻す。"
+      },
+      "F05DirectionTableContent": {
+        "fields": {
+          "ref": "Ref",
+          "authority": "Field<Ref/state>",
+          "allowed_edges": "Field<collection<DirectedEdge>>",
+          "cycles_allowed": "Field<boolean>"
+        },
+        "meaning": "設計ownerの当該方向表と循環条件。旧固有表や規範比較から生成しない。"
+      },
+      "F05DesignAuthorityContent": {
+        "fields": {
+          "ref": "Ref",
+          "state": "Field<qualified_for_this_revision|unknown|missing|conflict|stale>",
+          "subject_owner": "Field<owner identity>",
+          "subject_revision": "Field<revision identity>",
+          "subject_scope": "Field<Scope>"
+        },
+        "meaning": "このfixtureでdesign-authority-ownerが供給する原状態。合成sourceが読めることをauthority成立と同一視しない。"
+      },
+      "FixtureDerivation": {
+        "fields": {
+          "kind": "declared_condition_contrast",
+          "basis_fixture": "exact basic fixture identity",
+          "changes": "string describing authored condition contrast",
+          "authority_effect": "none"
+        },
+        "meaning": "追加合成対照のsource構成。実owner権限や実凍結/受入を生成しない。"
       }
     },
     "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
@@ -7507,7 +7544,8 @@
           "backflow_owner": "設計authority-owner",
           "preserve": "当該表で合格を生成しない。"
         }
-      ]
+      ],
+      "detail_contract": "dependency_direction_detail"
     },
     {
       "name": "compare_invariant_oracle_trace",
@@ -8024,7 +8062,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106主呼出しのrootとF06/F07/F08の20件の合成参照資料状態、17負例の部分期待を起草。残る86主呼出しの参照先と67負例の部分結果、全体のnull/empty型は未完。",
+      "106主呼出しのrootとF05-F08の28件の合成参照資料状態、23負例の部分期待を起草。残る78主呼出しの参照先と61負例の部分結果、全体のnull/empty型は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -8080,7 +8118,7 @@
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
     "negative_candidate_sources": "原資料をcandidateから分離する。F07 mutation_as_pre_redは、Redを除く明示fixture_preparationを候補変異と分け、同じ原mutation記録を保持する。その他candidate負例は正常owner材料を保持する。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106主呼出しのうちF06/F07/F08の20件へ独立合成参照資料状態を供給。F06未解決はunknownで、資料内容を持つqualifiedと区別する。他86件はmissing。source欠落/同ref内容不一致の対照を意味負例から分ける。実owner/trustや実観測へ昇格しない。"
+    "referent_input_state": "106主呼出しのうちF05-F08の28件へ独立合成参照資料状態を供給。F06未解決sourceはunknown、F05authority/適用の内容上unknownは資料資格と別に保持。他78件はmissing。source不足と意味/条件違反を分け、実owner/trust/authority/実観測へ昇格しない。"
   },
   "behavior_oracle_detail": {
     "design_ref": "HARNESS-L5-005-F08",
@@ -8260,5 +8298,44 @@
       "actual_results_empty": "合成入力で原観測を供給していない。success claimの代替にしない。"
     },
     "limits": "6主呼出しの合成source/部分結果の設計。実oracle/実run/正式resolver、自然言語同値を解く実engineの成立ではない。"
+  },
+  "dependency_direction_detail": {
+    "design_ref": "HARNESS-L5-005-F05",
+    "requirement_ref": "HARNESS-L3-005-F05",
+    "basic_oracle_ref": "HARNESS-L9-005-F05",
+    "source_roles": {
+      "applicability": "COREの対象revision/scopeの原適用状態。requiredは検証成功ではない。不明をrequired/N_Aへ変換しない。",
+      "direction_table": "design-ownerの許可方向と循環条件。このfixtureは明示allowed_edgesのexact集合を使う。missing表を空の許可表へしない。",
+      "authority": "design-authority-ownerの原状態とsubject owner/revision/scope。合成原資料の資格と、内容上のqualified_for_this_revision/unknownを別に扱う。",
+      "actual_edges": "root合成原資料の向き付き辺集合。実コードから抽出した依存や実graph ownerの証拠は未成立。"
+    },
+    "source_content_types": {
+      "applicability": "F05ApplicabilityContent",
+      "direction_table": "F05DirectionTableContent",
+      "authority": "F05DesignAuthorityContent",
+      "actual_edges": "collection<DirectedEdge>"
+    },
+    "comparison_steps": [
+      "原CORE適用を独立entryへ照合。不明なら方向の成立を生成しない。",
+      "原表/authorityをそれぞれ独立entryへ解決し、同identity/revision/scope/ownerのviewと内容を照合。tableの対象scope/revisionを今回のbindingへ比較し、authorityのsubject owner/scope/revisionをtableへ比較する。別Qの表とauthorityがQ内で整合してもPへ転用しない。",
+      "各実辺のsource→targetをそのまま許可辺集合へ照合し、permitted/forbiddenを別に返す。逆向きや同じ名前を同一edgeへ正規化しない。",
+      "実graphのDFS経路でback edgeを検出し、始点へ閉じるcycle witnessを返す。入力辺の順/重複/identityを書き換えず、cycle witnessは元実辺へ戻れる。実cycleの有無と、原cycles_allowedで許されるかを別に照合する。",
+      "方向表/authority/適用不足でも、原graphで独立に観測可能なcycle witnessやread-only副作用0を捨てない。成功へ補完せず当該ownerへ戻す。"
+    ],
+    "field_derivation": {
+      "permitted_edges": "適用/表/authorityが当該対象に成立する場合に実辺と許可集合を照合。必要な原状態が不足ならunknown。",
+      "forbidden_edges": "同じ成立条件で許可集合に含まれない実辺を返す。unknown表から全辺禁止/許可を推定しない。",
+      "cycles": "原実graphの幾何学的cycle witness。cycleが存在しても宣言が許可する場合は、それだけを禁止違反にしない。",
+      "table_origin": "原表が供給されていればdeclared_design_ownerを保持。これは対象authorityの承認や方向の合格とは別。表missingはmissing。",
+      "boundary_changes": "空の副作用集合。この比較が製品境界/方向表/authorityを書き換えないこと。設計変更が不要という判定ではない。"
+    },
+    "missing_null_empty": {
+      "table_missing": "permitted/forbidden unknown、table_origin missing。旧src/lint/runtime/schemaへfallbackしない。",
+      "authority_unknown": "原state unknownを保持。owner資料を読めることをauthority成立へしない。",
+      "actual_edges_missing": "cycleの有無もunknown。空graph成功にしない。",
+      "actual_edges_empty": "供給された辺が0件という合成観測。未供給との区別を維持。",
+      "allowed_edges_empty": "qualifiedな宣言の許可辺0件であり、欠落表とは別。"
+    },
+    "limits": "8主呼出しと条件対照の合成source/部分結果設計。実コードのimport抽出、実design authority/適用binding、実runtime/CI、全製品に共通の方向表を成立させない。"
   }
 }
