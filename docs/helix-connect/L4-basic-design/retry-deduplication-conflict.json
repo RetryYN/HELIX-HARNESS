@@ -1,0 +1,225 @@
+{
+  "parent": "HELIXCONNECT-L2-004",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+    "boundary": "再送選択した当該operationの同内容/異digest/既存policy停止を内容照合。実再送/実効果/新policyを生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    }
+  ],
+  "source_pin_limit": "固定bytesは実source資格/全意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "read_lines": [
+        93,
+        109
+      ],
+      "quote": "## §3 full／incremental取り込み\n\n```text\nreceived -> claimed -> fetching -> staged -> validating -> committing -> completed\n                |          |          |            |              |\n                +----------+----------+------------+-> failed\n                                      +--------------> quarantined\n                +------------------------------------> cancelled\n```\n\nfullはcursorなしの固定source intentから全pageを取得し、source record key digestの重複・欠落、page chain、終端cursorを検査する。\nincrementalはcurrent watermarkを`cursor_start`として固定し、page/event sequenceと`cursor_end`の単調前進を検査する。\ncursorの比較はconnector登録済みcodecだけが行い、文字列辞書順や時刻推測へ縮退しない。\n\noperation idempotency keyはsource、connector version、mode、cursor start、intent digestから導出する。同じkey・同じdigestの再送は\n同じreceiptを返して増分0、同じkey・異なるdigestは`HIL_PRODUCT_IDEMPOTENCY_CONFLICT`で停止する。full/incrementalとも\nsnapshot、entity、mapping、watermarkを別々の成功として公開しない。",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "selected_lines_sha256": "d0ab6d27f5cdc06c77c3df5bd0d08625b1f8dfd75c7e1cea45b8ccd583beee3a",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "disposition": "unresolved",
+        "source_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+      },
+      "reuse": "reference_only",
+      "preserve": "同key同digestはreceipt保持/増分0、異digest停止、operation/版/fence/lineageを保持してfaultから収束する。",
+      "change": "旧cursor codec/Node/DB/projection/active最大1を移植せず、CONNECT004の選択再送/receiver実効果/衝突/累積上限/失効/未完の一般契約へ再導出。",
+      "reason": "採択004と10/12承認がreceiver重複排除、同operation単一版と既存retry policyを保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "read_lines": [
+        51,
+        63
+      ],
+      "quote": "| `validateProductWorkerProposal` | `(run, staged, authority) => ResultV1<ValidatedProductProposalV1, ProductDataFailureV1>` | complete/schema/provenance/current fenceを検証し、proposal-onlyかつdirect write 0を要求 | `U-PDC-014` | `HAC-HIL-11b` | `HST-CASE-010-06` | `HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN` |\n| `planProductProjectionTransaction` | `(current, snapshot, entities, mappings, tombstones, watermark) => ProjectionTransactionPlanV1` | 正常系は全stepを一計画へ閉じ、欠落stepはingestion反例として拒否 | `U-PDC-015` | `HAC-HIL-11a`, `HAC-HIL-11c` | `HST-CASE-010-01`（正常） / `HST-CASE-010-11`（反例） | `なし（正常系）` / `HIL_PRODUCT_INGESTION_INVALID` |\n| `commitProductProjection` | `(bundle: ProductProjectionCommitBundleV1, nodePort: ProductProjectionNodePortV1, store: ProductProjectionStoreV1) => Promise<ResultV1<ProductProjectionCommitReceiptV1, ProductDataFailureV1>>` | Node portはadapterとして唯一write authorityのstoreへ一回だけ委譲。同key同digest一回、異digest/CAS/failure増分0 | `U-PDC-016` | `HAC-HIL-11a`, `HAC-HIL-11b` | `HST-CASE-010-07` | `HIL_PRODUCT_WATERMARK_REGRESSION` |\n| `evaluateProductDataPolicy` | `(projection, contextRequest, policy, freshness) => ProductDataPolicyDecisionV1` | classification/redaction/retention/freshness/context allowlist全件評価 | `U-PDC-017` | `HAC-HIL-11b`, `HAC-HIL-11c` | `HST-CASE-010-12` | `HIL_PRODUCT_DATA_POLICY_VIOLATION` |\n| `buildProductQuarantineItem` | `(failure, scope, evidence, policy) => ResultV1<ProductQuarantineItemV1, ProductDataFailureV1>` | redacted fingerprint、owner、expiry、release条件必須、raw payload禁止 | `U-PDC-018` | `HAC-HIL-11b` | `HST-CASE-010-11` | `HIL_PRODUCT_INGESTION_INVALID` |\n| `reconcileProductProjection` | `(bundle: ProductProjectionCommitBundleV1, nodePort: ProductProjectionNodePortV1, store: ProductProjectionStoreV1) => Promise<ResultV1<ProductProjectionCommitReceiptV1, ProductDataFailureV1>>` | adapterから唯一write authorityへ一回だけ委譲し、同一operation/digest/expected snapshot-watermark-DB headでseal後DB faultを収束 | `U-PDC-019` | `HAC-HIL-11a`, `HAC-HIL-11b` | supporting fault oracle | `HIL_PRODUCT_INGESTION_INVALID` |\n| `deriveFullSyncDisappearances` | `(priorSnapshot, completeFullResult) => ResultV1<TombstoneProposalV1[], ProductDataFailureV1>` | full完了時だけrecord-key集合差分をtombstone＋mapping staleへ変換 | `U-PDC-020` | `HAC-HIL-11a`, `HAC-HIL-11c` | supporting disappearance oracle | `HIL_PRODUCT_INGESTION_INVALID` |\n\n`U-PDC-002`は`activateProductConnectorVersion` → `reconcileProductConnectorActivation`のstable順exact function setを持つ\nactivation commit/reconcile protocolである。activate固有mutationはregistry event、旧active stale、新pointer、append order、terminal receipt、\nexpected headとCAS、reconcile固有mutationはsealed activation evidence、operation/digest/head、pending receipt、別evidence再送である。\n初回commitとseal後faultからの収束を同じactivation identityで採点するため一つのcanonical Uとし、別Uは追加しない。\n",
+      "file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+      "selected_lines_sha256": "6ce191fedc436d7897314fe72782c46422e2d05c10bcef8d0627d715b0c21147",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+        "disposition": "unresolved",
+        "source_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42"
+      },
+      "reuse": "reference_only",
+      "preserve": "同key同digestはreceipt保持/増分0、異digest停止、operation/版/fence/lineageを保持してfaultから収束する。",
+      "change": "旧cursor codec/Node/DB/projection/active最大1を移植せず、CONNECT004の選択再送/receiver実効果/衝突/累積上限/失効/未完の一般契約へ再導出。",
+      "reason": "採択004と10/12承認がreceiver重複排除、同operation単一版と既存retry policyを保持する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実receiver重複排除/効果観測、応答喪失/attempt/ACK、元retry policy/許可/expiry/単一互換版/元未完のsource資格と必要集合、owner-qualified exact binding。",
+    "正式digest/identity/schema/codec/transport/clock/authority resolverとL5L8詳細、oracle凍結→実装前Red→最小Green→Refactor→再検証。",
+    "実L9/L10/PO L11、全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXCONNECT-L4-004",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "same_retry_effect_reader",
+      "digest_conflict_reader",
+      "contract_retry_stop_reader"
+    ],
+    "flow": [
+      "選択再送/同operation同digest/receiver契約→attempt別receiptと効果差分→未知/二重効果を保持",
+      "原operation/keyと別digest入力→衝突/効果増分なし照合→operation owner返却",
+      "元policy/累積attempt/ACK/result/expiry/許可/版→局所停止理由→元未完recovery保持"
+    ],
+    "python_boundary": "immutable原内容のpure対照。再送/受領/効果/DB/network/fs/env/clock/業務判断を行わない。",
+    "representation_limit": "元policyの数値/数え方、効果ID/観測state/許可/expiryは合成例。正式retry上限/方式/DB書込を採用しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXCONNECT-L4-004-F01",
+      "requirement_ref": "HELIXCONNECT-L3-004-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-004-F01",
+      "oracle_ref": "HELIXCONNECT-L9-004-F01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-004-F01",
+        "parent": "HELIXCONNECT-L2-004",
+        "title": "同一再送の重複効果防止",
+        "obligation": "当該operationで再送を選択するとき、同identity・同digest・scope/期限/許可・単一互換contract revisionを維持し、receiverの重複排除契約へ結ぶ。同内容の再送で処理効果を増やさない。",
+        "oracle_ref": "HELIXCONNECT-L10-004-F01"
+      },
+      "component": "same_retry_effect_reader",
+      "input_meanings": [
+        "再送選択と独立原operation/同digest/単一版",
+        "初回応答喪失と別attempt原receipt",
+        "receiver重複排除契約・効果観測と提出内容"
+      ],
+      "output_meanings": [
+        "同内容/別attempt/receiver効果の内容照合",
+        "未観測/二重効果/対象不足と該当owner"
+      ],
+      "content_comparison": [
+        "原/提出一致と同operation対象結合、効果一回を分ける。",
+        "receiver効果未観測を冪等済みにしない。同key別operationも拒否する。",
+        "非選択retryを固定完成gateにせず、合成効果/receiptを実再送/実効果へ昇格しない。"
+      ],
+      "qualification_rule": "元policy/効果/許可/receiptは合成例。実source資格/必要集合/binding/再送/効果一回/authority/Accepted/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXCONNECT-L4-004-F02",
+      "requirement_ref": "HELIXCONNECT-L3-004-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-004-F02",
+      "oracle_ref": "HELIXCONNECT-L9-004-F02",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-004-F02",
+        "parent": "HELIXCONNECT-L2-004",
+        "title": "異digest衝突の拒否",
+        "obligation": "同operation/idempotency identityに異digestを与えた場合は衝突として拒否し、別内容を再送と扱わず、受信側効果を増やさない。",
+        "oracle_ref": "HELIXCONNECT-L10-004-F02"
+      },
+      "component": "digest_conflict_reader",
+      "input_meanings": [
+        "原operation/keyと独立incoming digest",
+        "receiver衝突前後効果と元未完",
+        "提出incoming/effectと相殺claim"
+      ],
+      "output_meanings": [
+        "同digest/異digest/unknownと衝突停止候補",
+        "元operation/効果増分/元未完/理由とowner"
+      ],
+      "content_comparison": [
+        "異digestは別内容retryでなく衝突として停止する。",
+        "衝突後副作用や別内容成功で増分効果を相殺しない。",
+        "原効果不明を増分なしにせず、未完をoperation ownerへ返す。"
+      ],
+      "qualification_rule": "元policy/効果/許可/receiptは合成例。実source資格/必要集合/binding/再送/効果一回/authority/Accepted/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXCONNECT-L4-004-F03",
+      "requirement_ref": "HELIXCONNECT-L3-004-F03",
+      "system_oracle_ref": "HELIXCONNECT-L10-004-F03",
+      "oracle_ref": "HELIXCONNECT-L9-004-F03",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-004-F03",
+        "parent": "HELIXCONNECT-L2-004",
+        "title": "既存上限・再送不可・失効",
+        "obligation": "接続契約の再送上限/可否、期限/許可、累積attempt、ACK/resultを照合し、上限到達/再送不可業務結果/失効/staleでは追加attemptを出さない。新revisionを混在させず、CONNECTが再送policyや業務判断を作らない。",
+        "oracle_ref": "HELIXCONNECT-L10-004-F03"
+      },
+      "component": "contract_retry_stop_reader",
+      "input_meanings": [
+        "元接続契約retry policy/数え方/上限と累積attempt/ACK/result",
+        "元scope/期限/許可/単一互換版",
+        "原未完recoveryと提出retry/policy/履歴"
+      ],
+      "output_meanings": [
+        "停止地点/元累積/局所理由と返し先",
+        "原policy/履歴/未完と追加attempt候補"
+      ],
+      "content_comparison": [
+        "上限到達/再送不可業務結果/失効/staleで追加attemptを出さない。",
+        "元policy/累積/版を保持し、CONNECTは上限や業務判断を作らない。",
+        "未完/recoveryを保持し、非選択retryを全実装gateへ変換しない。"
+      ],
+      "qualification_rule": "元policy/効果/許可/receiptは合成例。実source資格/必要集合/binding/再送/効果一回/authority/Accepted/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 25,
+      "F02": 17,
+      "F03": 27
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
