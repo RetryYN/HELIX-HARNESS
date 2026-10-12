@@ -317,7 +317,7 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "F04の具体的分割/欠落/重複/生存先/判断revision/内容比較例を起草。残る6契約の正常/負例と独立原資料bytesを作成する。",
+    "F02/F04の具体的fixtureは起草済み。残る5契約の正常/負例・独立原資料bytes・期待部分結果を作成する。",
     "未見relation/無損失partition/再利用不変条件の内容比較と静的照合",
     "003未統合基本設計と後続ownerのexact binding",
     "独立exact HEAD意味reviewとmain admission",
@@ -397,9 +397,1997 @@
         "input": "当該ownerの独立原資料と提出候補を同scope/revisionへ結ぶ",
         "comparison": "個別要求条件と原資料内容の対応、導出範囲、不足の部分保持を照合する",
         "reject": "原材料の欠落/unknown/矛盾/staleを件数・hash・旧graph・CI成功で相殺する接続",
-        "effect": "照合結果は実operation/authority/成立状態を生成しない。"
+        "effect": "照合結果は実operation/authority/成立状態を生成しない。",
+        "partial_preservation": "影響集合、relation評価限界、既存成立記録、上位固有義務、対象再検証の原結果を別軸にする。Q等の無関係な有効記録は保持。"
       },
-      "fixture_state": "not_authored"
+      "fixture_state": "draft_concrete_fixtures_pending_semantic_review",
+      "normal_cases": [
+        {
+          "id": "H004-F02-NORMAL",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "b329dd94ee73ac54dfbb197c93341ec78c0543ff7158042035959e4f9dd4ea36",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H004-F02-NORMAL-SYSTEM-pass",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-NORMAL-SYSTEM-pass",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-NORMAL-SYSTEM-pass",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":{\"ref\":{\"identity\":\"SYSTEM-REVERIFY-pass\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"system-original-verification-owner\"},\"graph_revision\":\"GRAPH@r1\",\"subject\":\"S\",\"changed_dependency_revision\":\"U@r2\",\"required\":[\"system_balance_conservation\"],\"observations\":[{\"id\":\"system_balance_conservation\",\"expected_total\":10,\"observed_total\":10}],\"qualification\":\"synthetic_observation_not_actual_execution\"}},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "57f41bccf16ef1951969dc33c545d9271d5b177587cd13f84046aafe984005e0",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "supported_synthetic_reverification_pass",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H004-F02-NORMAL-SYSTEM-fail",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-NORMAL-SYSTEM-fail",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-NORMAL-SYSTEM-fail",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":{\"ref\":{\"identity\":\"SYSTEM-REVERIFY-fail\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"system-original-verification-owner\"},\"graph_revision\":\"GRAPH@r1\",\"subject\":\"S\",\"changed_dependency_revision\":\"U@r2\",\"required\":[\"system_balance_conservation\"],\"observations\":[{\"id\":\"system_balance_conservation\",\"expected_total\":10,\"observed_total\":11}],\"qualification\":\"synthetic_observation_not_actual_execution\"}},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "d9192c9f5564994fe6405478a0d4f602576c86a9f3197061242f078faec1f681",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "supported_synthetic_reverification_fail",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        }
+      ],
+      "negative_cases": [
+        {
+          "id": "H004-F02-MEMBERSHIP-UNKNOWN",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-MEMBERSHIP-UNKNOWN",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-MEMBERSHIP-UNKNOWN",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"unknown\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "b7dfee8a997d243f36a15f24698d3da2475dfac532e004adfc294d853376ef4d",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "reason": "局所relationの不足/unknown/staleを無影響へ変換せず、Qの有効記録を保持。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "design_membership",
+              1,
+              "coverage"
+            ],
+            "before": "complete_for_declared_scope",
+            "after": "unknown"
+          }
+        },
+        {
+          "id": "H004-F02-RELATION-MISSING",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-RELATION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-RELATION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "4944a719c10af8c66c9da126b301dce766b1a57a7f69a3e7143256947e2df585",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "reason": "局所relationの不足/unknown/staleを無影響へ変換せず、Qの有効記録を保持。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "relations"
+            ],
+            "before": [
+              {
+                "ref": {
+                  "identity": "EDGE-C-U",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "relation-original-owner"
+                },
+                "from_node": "U",
+                "to_node": "C",
+                "binding": "GRAPH@r1",
+                "meaning": "required_member"
+              },
+              {
+                "ref": {
+                  "identity": "EDGE-S-C",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "relation-original-owner"
+                },
+                "from_node": "C",
+                "to_node": "S",
+                "binding": "GRAPH@r1",
+                "meaning": "required_member"
+              }
+            ],
+            "after": [
+              {
+                "ref": {
+                  "identity": "EDGE-S-C",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "relation-original-owner"
+                },
+                "from_node": "C",
+                "to_node": "S",
+                "binding": "GRAPH@r1",
+                "meaning": "required_member"
+              }
+            ]
+          }
+        },
+        {
+          "id": "H004-F02-RELATION-FOREIGN-REVISION",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-RELATION-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-RELATION-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r0\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "60448f1ebd0896b56acb42350cecb80c7b5013123a41b25aa84d39257e182362",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "reason": "局所relationの不足/unknown/staleを無影響へ変換せず、Qの有効記録を保持。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "relations",
+              0,
+              "binding"
+            ],
+            "before": "GRAPH@r1",
+            "after": "GRAPH@r0"
+          }
+        },
+        {
+          "id": "H004-F02-UNIT-FAILED",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNIT-FAILED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNIT-FAILED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"failed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "ec611cacce2786365431504ebd2435ded309e22068b1bac77bd0d95d97fdaab4",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "failed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "reason": "単体failedを接続/構成体のfailedへ伝えない。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "original_establishment",
+              "U",
+              "result"
+            ],
+            "before": "passed",
+            "after": "failed"
+          }
+        },
+        {
+          "id": "H004-F02-UNIT-UNKNOWN",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNIT-UNKNOWN",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNIT-UNKNOWN",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"unknown\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "280ef7bfbff4ca85921a1d5afd7d6167e2f2d9ccdfe9159f968c148802e19552",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "unknown",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "reason": "単体unknownを接続/構成体のfailed/passedへ丸めない。",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "original_establishment",
+              "U",
+              "result"
+            ],
+            "before": "passed",
+            "after": "unknown"
+          }
+        },
+        {
+          "id": "H004-F02-AFFECTED-AS-UPPER-PASS",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-AFFECTED-AS-UPPER-PASS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-AFFECTED-AS-UPPER-PASS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "b329dd94ee73ac54dfbb197c93341ec78c0543ff7158042035959e4f9dd4ea36",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_upper_passed",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "actual_upper_passed"
+            ],
+            "before": false,
+            "after": true
+          },
+          "submitted_candidate": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": true,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          }
+        },
+        {
+          "id": "H004-F02-AFFECTED-AS-UPPER-FAIL",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-AFFECTED-AS-UPPER-FAIL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-AFFECTED-AS-UPPER-FAIL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "b329dd94ee73ac54dfbb197c93341ec78c0543ff7158042035959e4f9dd4ea36",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_upper_failed",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "actual_upper_failed"
+            ],
+            "before": false,
+            "after": true
+          },
+          "submitted_candidate": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": true,
+            "actual_completion": false
+          }
+        },
+        {
+          "id": "H004-F02-IMPACT-AS-STATE-UPDATE",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-IMPACT-AS-STATE-UPDATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-IMPACT-AS-STATE-UPDATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "b329dd94ee73ac54dfbb197c93341ec78c0543ff7158042035959e4f9dd4ea36",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_state_updated",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "actual_state_updated"
+            ],
+            "before": false,
+            "after": true
+          },
+          "submitted_candidate": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": true,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          }
+        },
+        {
+          "id": "H004-F02-OLD-PROOF-AS-REEXECUTION",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-OLD-PROOF-AS-REEXECUTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-OLD-PROOF-AS-REEXECUTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "b329dd94ee73ac54dfbb197c93341ec78c0543ff7158042035959e4f9dd4ea36",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_reverification_executed",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "actual_reverification_executed"
+            ],
+            "before": false,
+            "after": true
+          },
+          "submitted_candidate": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": true,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          }
+        },
+        {
+          "id": "H004-F02-LOWER-PASS-AS-COMPLETION",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-LOWER-PASS-AS-COMPLETION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-LOWER-PASS-AS-COMPLETION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "b329dd94ee73ac54dfbb197c93341ec78c0543ff7158042035959e4f9dd4ea36",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_completion",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "actual_completion"
+            ],
+            "before": false,
+            "after": true
+          },
+          "submitted_candidate": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": true
+          }
+        },
+        {
+          "id": "H004-F02-ERASE-UPPER-OBLIGATIONS",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-ERASE-UPPER-OBLIGATIONS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-ERASE-UPPER-OBLIGATIONS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "b329dd94ee73ac54dfbb197c93341ec78c0543ff7158042035959e4f9dd4ea36",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "establishment_by_node",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "establishment_by_node"
+            ],
+            "before": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "after": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            }
+          },
+          "submitted_candidate": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          }
+        },
+        {
+          "id": "H004-F02-UNAFFECTED-AS-AFFECTED",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNAFFECTED-AS-AFFECTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNAFFECTED-AS-AFFECTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "b329dd94ee73ac54dfbb197c93341ec78c0543ff7158042035959e4f9dd4ea36",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "impact_by_node",
+            "retain_unaffected_material": true
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-NORMAL",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "impact_by_node"
+            ],
+            "before": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "after": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Affected"
+            }
+          },
+          "submitted_candidate": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Affected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          }
+        },
+        {
+          "id": "H004-F02-UNKNOWN-AS-UNAFFECTED",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNKNOWN-AS-UNAFFECTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNKNOWN-AS-UNAFFECTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"unknown\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "b7dfee8a997d243f36a15f24698d3da2475dfac532e004adfc294d853376ef4d",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "reason": "局所relationの不足/unknown/staleを無影響へ変換せず、Qの有効記録を保持。",
+            "retain_unaffected_material": true,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "impact_by_node"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-MEMBERSHIP-UNKNOWN",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "impact_by_node"
+            ],
+            "before": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "after": {
+              "U": "Affected",
+              "C": "Unaffected",
+              "S": "Unaffected",
+              "Q": "Unaffected"
+            }
+          },
+          "submitted_candidate": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unaffected",
+              "S": "Unaffected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "reason": "局所relationの不足/unknown/staleを無影響へ変換せず、Qの有効記録を保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H004-F02-LOWER-FAIL-AS-UPPER-FAIL",
+          "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-LOWER-FAIL-AS-UPPER-FAIL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H004-F02-LOWER-FAIL-AS-UPPER-FAIL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"graph_revision\":\"GRAPH@r1\"},\"change\":{\"node\":\"U\",\"from_revision\":\"U@r1\",\"to_revision\":\"U@r2\",\"condition_before\":\"duplicate_delivery_unspecified\",\"condition_after\":\"duplicate_delivery_single_debit\"},\"design_membership\":[{\"node\":\"U\",\"ref\":{\"identity\":\"DESIGN-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"C\",\"ref\":{\"identity\":\"DESIGN-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"connection\",\"required_members\":[\"U\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"S\",\"ref\":{\"identity\":\"DESIGN-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"composite\",\"required_members\":[\"C\"],\"coverage\":\"complete_for_declared_scope\"},{\"node\":\"Q\",\"ref\":{\"identity\":\"DESIGN-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"design-original-owner\"},\"binding\":\"GRAPH@r1\",\"role\":\"unrelated_unit\",\"required_members\":[],\"coverage\":\"complete_for_declared_scope\"}],\"relations\":[{\"ref\":{\"identity\":\"EDGE-C-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"U\",\"to_node\":\"C\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"},{\"ref\":{\"identity\":\"EDGE-S-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"relation-original-owner\"},\"from_node\":\"C\",\"to_node\":\"S\",\"binding\":\"GRAPH@r1\",\"meaning\":\"required_member\"}],\"original_establishment\":{\"U\":{\"ref\":{\"identity\":\"ESTABLISHMENT-U\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"U@r1\",\"result\":\"failed\",\"original_expected\":1,\"original_observed\":1},\"C\":{\"ref\":{\"identity\":\"ESTABLISHMENT-C\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"C@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"S\":{\"ref\":{\"identity\":\"ESTABLISHMENT-S\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"S@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1},\"Q\":{\"ref\":{\"identity\":\"ESTABLISHMENT-Q\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"verification-original-owner\"},\"node_revision\":\"Q@r1\",\"result\":\"passed\",\"original_expected\":1,\"original_observed\":1}},\"required_upper_obligations\":{\"C\":[\"delivery_idempotency\"],\"S\":[\"system_balance_conservation\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_impact_fixture_not_actual_state_update\"}",
+            "sha256": "ec611cacce2786365431504ebd2435ded309e22068b1bac77bd0d95d97fdaab4",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "個別owner実bytes/authority資格と実再検証はL5/L8以下で閉じる。"
+          },
+          "expected_material": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "failed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "reason": "単体failedを接続/構成体のfailedへ伝えない。",
+            "retain_unaffected_material": true,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "establishment_by_node"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H004-F02-UNIT-FAILED",
+          "mutation_lane": "candidate",
+          "mutation": {
+            "path": [
+              "establishment_by_node"
+            ],
+            "before": {
+              "U": {
+                "previous_result": "failed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "after": {
+              "U": {
+                "previous_result": "failed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "failed_by_lower_state",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            }
+          },
+          "submitted_candidate": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "failed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "failed_by_lower_state",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false,
+            "reason": "単体failedを接続/構成体のfailedへ伝えない。",
+            "retain_unaffected_material": true
+          }
+        }
+      ],
+      "original_material_storage": "各case独立source packetに全入力bytesを保持。原入力変更とcandidate変更を区別。"
     },
     {
       "id": "HARNESS-L9-004-F03",
@@ -2338,10 +4326,15 @@
     "remaining_contracts": [
       "B01",
       "F01",
-      "F02",
       "F03",
       "F05",
       "N01"
-    ]
+    ],
+    "F02": {
+      "normal": 3,
+      "negative": 14,
+      "source_packets": 17,
+      "state": "draft_not_executed"
+    }
   }
 }

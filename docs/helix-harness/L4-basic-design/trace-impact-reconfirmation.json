@@ -317,7 +317,7 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "F04の具体的分割/欠落/重複/生存先/判断revision/内容比較例を起草。残る6契約の正常/負例と独立原資料bytesを作成する。",
+    "F02/F04の具体的fixtureは起草済み。残る5契約の正常/負例・独立原資料bytes・期待部分結果を作成する。",
     "未見relation/無損失partition/再利用不変条件の内容比較と静的照合",
     "003未統合基本設計と後続ownerのexact binding",
     "独立exact HEAD意味reviewとmain admission",
@@ -422,7 +422,19 @@
         "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
         "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
       },
-      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。"
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "input_owners": [
+          "要求/設計membership owner",
+          "relation原記録owner",
+          "対象検証の原結果owner"
+        ],
+        "meaning_owner": "HARNESS",
+        "state_record_owner": "OS",
+        "impact_result": "Affected/Unaffected/Unknownの根拠relationを返す。未見/不足を閉世界で無影響と推定しない。",
+        "establishment_result": "元revisionの成立を保持し、変更後の上位成立は対象revisionの再検証と上位固有義務の原観測にのみ結ぶ。",
+        "qualification_limit": "合成再検証例を実観測/実状態更新へ昇格しない。"
+      }
     },
     {
       "id": "HARNESS-L4-004-F03",
@@ -575,10 +587,15 @@
     "remaining_contracts": [
       "B01",
       "F01",
-      "F02",
       "F03",
       "F05",
       "N01"
-    ]
+    ],
+    "F02": {
+      "normal": 3,
+      "negative": 14,
+      "source_packets": 17,
+      "state": "draft_not_executed"
+    }
   }
 }
