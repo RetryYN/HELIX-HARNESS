@@ -214,7 +214,7 @@
     ]
   },
   "remaining": [
-    "B02/F01の具体fixtureを起草済み。残る8契約を具体化し、全10契約の内容照合と独立reviewへ送る。",
+    "B02/F01/F02の具体fixtureを起草済み。残る7契約を具体化して全10契約を静的照合する。",
     "全契約の静的意味/参照/原入力と候補分離/盲検入力条件の照合",
     "独立exact HEAD review/指摘解消/main admission",
     "L5/L8の論理型/関数/解析方式/正式schema/個別owner資格と実oracle凍結",
@@ -6318,9 +6318,2799 @@
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
         "comparison": "入出力の件数ではなく条件内容/source/pair/owner/版/未評価を照合する。",
         "partial_preservation": "当該不足だけを返し、元一次要求/原finding/旧scope/無関係な有効材料を保持する。",
-        "effect": "実合意/要件承認/操作認可/外部commit/学習許可/受入を生成しない。"
+        "effect": "実合意/要件承認/操作認可/外部commit/学習許可/受入を生成しない。",
+        "comparison_detail": {
+          "origin": "各Prototype/PoCの適用/結果とfindingを元一次revision/scopeへjoinし、誤った結果から変更を作らない。有効な別実験の差分と全元findingは保持。",
+          "secondary": "一次bytesを保存し、before/proposed/実験根拠から別の二次候補を形成。訂正はcandidateへ反映して元findingを消さない。",
+          "instruction": "取消/保留/対象変更を別結果にし、旧scope候補をactive/採用にしない。stale指示も自動採用しない。",
+          "agreement": "独立合意材料の対象revision/scope/内容/digestを比較。実験成功/沈黙/訂正/意味候補から合意を補完しない。合成合意材料は実PO authorityではない。",
+          "effects": "必要な対設計/検証の再導出候補は実再導出/再凍結の証明ではない。合意/採用/登録/一次上書きを生成しない。",
+          "not_applicable": "両実験のN/A原材料が揃えば実結果/findingを要求せず一次差分なしに残す。N/A根拠不足は未完。N/A自体を合意/下流昇格にしない。"
+        }
       },
-      "fixture_state": "not_authored"
+      "fixture_state": "draft_concrete_fixtures_pending_semantic_review",
+      "normal_cases": [
+        {
+          "id": "H008-F02-NORMAL",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "26bc7ca61d1cf36fe10c9a264d7116d5ee4079dfaf32da5d46013472bcd40703",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H008-F02-NORMAL-CANCEL",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-CANCEL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-CANCEL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"cancel\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "72b13f8695b11dbf3b125e6a53c2e9b40b47f97244696b9cc6198aad4f82342a",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": null,
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "cancelled_candidate_not_adopted",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H008-F02-NORMAL-DEFER",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-DEFER",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-DEFER",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"defer\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "e2c88e7b198dced1753f92f8996ab0a55c7efedf71ea68f8c8577bbf39f45fd0",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": null,
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "deferred_candidate_not_adopted",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H008-F02-NORMAL-TARGET_CHANGE",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-TARGET_CHANGE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-TARGET_CHANGE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"target_change\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"new_scope\":\"PRODUCT-OTHER\"},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "fd1bded7cf3ecc606bca6c91abf1b81e07bd6fce58a3dd3b336f09da3aa3bec1",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": null,
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "stale_for_new_target_not_adopted",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H008-F02-NORMAL-CORRECTION",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-CORRECTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-CORRECTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"correction\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"field\":\"retry_limit\",\"before_primary\":0,\"corrected\":1,\"reason\":\"synthetic-explicit-user-correction\"},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "a209b5d9737ab133bfe3df240fd8a2987c5fbb3ac68cf849c50ab533c3754dd1",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_superseded_by_user_correction"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 1
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "corrected_candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H008-F02-NORMAL-AGREEMENT-MATERIAL",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-AGREEMENT-MATERIAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-AGREEMENT-MATERIAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"candidate_fields\":{\"cancel_message\":\"show cancellation\",\"retry_limit\":2},\"candidate_sha256\":\"38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8\",\"state\":\"synthetic_explicit_agreement_material_not_actual_authority\",\"source\":{\"identity\":\"AGREEMENT-SOURCE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "10eea86c304e89dd3423ca8a15fb9344ee5e07dfafdab053120e562a882e3674",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "supported_synthetic_agreement_material",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H008-F02-NORMAL-BOTH-EXPERIMENTS-NA",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-BOTH-EXPERIMENTS-NA",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-NORMAL-BOTH-EXPERIMENTS-NA",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"not_applicable\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\",\"reason\":\"non-screen synthetic subject\",\"judge\":\"synthetic-applicability-owner\",\"target_revision\":\"REQ@r1\",\"requirement_impact\":\"no experiment-specific delta\",\"reevaluation\":\"applicability inputs change\"},\"result\":null},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"not_applicable\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\",\"reason\":\"no technical uncertainty synthetic subject\",\"judge\":\"synthetic-applicability-owner\",\"target_revision\":\"REQ@r1\",\"requirement_impact\":\"no experiment-specific delta\",\"reevaluation\":\"applicability inputs change\"},\"result\":null}},\"findings\":[],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "09811d4c3f41c32e0eb66c3ae60aa804e8e6bdd0057966baaa3265f2b21d91ff",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "not_applicable_synthetic_material",
+              "poc": "not_applicable_synthetic_material"
+            },
+            "finding_dispositions": {},
+            "retained_finding_ids": [],
+            "historical_secondary_fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "active_secondary_fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "required_redesign_fields": [],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        }
+      ],
+      "negative_cases": [
+        {
+          "id": "H008-F02-POC-RESULT-MISSING",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-POC-RESULT-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-POC-RESULT-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":null}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "a05a90957d4ebe71916133799bfa204a0eb55b5143e56c918c48a7e07cb05ff2",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "missing"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_unresolved_experiment"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "required_redesign_fields": [
+              "cancel_message"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_with_unresolved_basis",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "experiments",
+              "poc",
+              "result"
+            ],
+            "before": {
+              "outcome": "observed_synthetic_success",
+              "finding_refs": [
+                "F-POC"
+              ]
+            },
+            "after": null
+          },
+          "mutation_lane": "original",
+          "base_case_ref": "H008-F02-NORMAL"
+        },
+        {
+          "id": "H008-F02-POC-FOREIGN-REVISION",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-POC-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-POC-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r0\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "a582bac9f5d92ba089c71a5992c6fce72fe17ff58c2bd1f989361e944c19de0e",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "stale"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_unresolved_experiment"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "required_redesign_fields": [
+              "cancel_message"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_with_unresolved_basis",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "experiments",
+              "poc",
+              "binding"
+            ],
+            "before": "REQ@r1",
+            "after": "REQ@r0"
+          },
+          "mutation_lane": "original",
+          "base_case_ref": "H008-F02-NORMAL"
+        },
+        {
+          "id": "H008-F02-POC-FOREIGN-SCOPE",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-POC-FOREIGN-SCOPE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-POC-FOREIGN-SCOPE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-OTHER\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "291e9e7521cf9bc32aa726146d3f47435bf426bf52123c36567578599bf28050",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "conflict"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_unresolved_experiment"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "required_redesign_fields": [
+              "cancel_message"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_with_unresolved_basis",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "experiments",
+              "poc",
+              "scope"
+            ],
+            "before": "PRODUCT-P",
+            "after": "PRODUCT-OTHER"
+          },
+          "mutation_lane": "original",
+          "base_case_ref": "H008-F02-NORMAL"
+        },
+        {
+          "id": "H008-F02-POC-APPLICABILITY-MISSING",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-POC-APPLICABILITY-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-POC-APPLICABILITY-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":null,\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "384339bd9d42dcd3e426a9a63b9bbf4105bb79dbef000268655e8af7595f1e66",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "missing"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_unresolved_experiment"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "required_redesign_fields": [
+              "cancel_message"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_with_unresolved_basis",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "experiments",
+              "poc",
+              "applicability"
+            ],
+            "before": {
+              "state": "required",
+              "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+            },
+            "after": null
+          },
+          "mutation_lane": "original",
+          "base_case_ref": "H008-F02-NORMAL"
+        },
+        {
+          "id": "H008-F02-FINDING-FOREIGN-REVISION",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-FINDING-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-FINDING-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r0\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "c7ce715728e5dcd1fd568565c6856383cd2379e98254086e99769bebbadb23a5",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_conflicting_finding"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "required_redesign_fields": [
+              "cancel_message"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_with_unresolved_basis",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "findings",
+              1,
+              "binding"
+            ],
+            "before": "REQ@r1",
+            "after": "REQ@r0"
+          },
+          "mutation_lane": "original",
+          "base_case_ref": "H008-F02-NORMAL"
+        },
+        {
+          "id": "H008-F02-FINDING-WRONG-BEFORE",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-FINDING-WRONG-BEFORE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-FINDING-WRONG-BEFORE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":1,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "14fdaf20d9f4b63a236376f8b182ee41e7acac85102a1427d60ee5bcfbb504b2",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_conflicting_finding"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 0
+            },
+            "required_redesign_fields": [
+              "cancel_message"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_with_unresolved_basis",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "findings",
+              1,
+              "change",
+              "before"
+            ],
+            "before": 0,
+            "after": 1
+          },
+          "mutation_lane": "original",
+          "base_case_ref": "H008-F02-NORMAL"
+        },
+        {
+          "id": "H008-F02-INSTRUCTION-STALE",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-INSTRUCTION-STALE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-INSTRUCTION-STALE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r0\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "1b1c5d68be1cfe4fb1f72f0cb1c98e852cd0d2e3e42e980291c4775d3d166611",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": null,
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "stale",
+            "old_candidate_disposition": "unresolved_instruction_not_adopted",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "instruction",
+              "binding"
+            ],
+            "before": "REQ@r1",
+            "after": "REQ@r0"
+          },
+          "mutation_lane": "original",
+          "base_case_ref": "H008-F02-NORMAL"
+        },
+        {
+          "id": "H008-F02-POC-SUCCESS-AS-AGREEMENT",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-POC-SUCCESS-AS-AGREEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-POC-SUCCESS-AS-AGREEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "26bc7ca61d1cf36fe10c9a264d7116d5ee4079dfaf32da5d46013472bcd40703",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_path": [
+              "actual_requirement_agreed"
+            ]
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "actual_requirement_agreed"
+            ],
+            "before": false,
+            "after": true
+          },
+          "mutation_lane": "candidate",
+          "base_case_ref": "H008-F02-NORMAL",
+          "submitted_candidate": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": true,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          }
+        },
+        {
+          "id": "H008-F02-SILENCE-AS-AGREEMENT",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-SILENCE-AS-AGREEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-SILENCE-AS-AGREEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "26bc7ca61d1cf36fe10c9a264d7116d5ee4079dfaf32da5d46013472bcd40703",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_path": [
+              "agreement_condition"
+            ]
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "agreement_condition"
+            ],
+            "before": "missing",
+            "after": "supported_synthetic_agreement_material"
+          },
+          "mutation_lane": "candidate",
+          "base_case_ref": "H008-F02-NORMAL",
+          "submitted_candidate": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "supported_synthetic_agreement_material",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          }
+        },
+        {
+          "id": "H008-F02-SECONDARY-OVERWRITES-PRIMARY",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-SECONDARY-OVERWRITES-PRIMARY",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-SECONDARY-OVERWRITES-PRIMARY",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "26bc7ca61d1cf36fe10c9a264d7116d5ee4079dfaf32da5d46013472bcd40703",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_path": [
+              "preserved_primary",
+              "fields",
+              "retry_limit"
+            ]
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "preserved_primary",
+              "fields",
+              "retry_limit"
+            ],
+            "before": 0,
+            "after": 2
+          },
+          "mutation_lane": "candidate",
+          "base_case_ref": "H008-F02-NORMAL",
+          "submitted_candidate": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 2
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          }
+        },
+        {
+          "id": "H008-F02-CANCEL-OLD-CANDIDATE-ADOPTED",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-CANCEL-OLD-CANDIDATE-ADOPTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-CANCEL-OLD-CANDIDATE-ADOPTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"cancel\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "72b13f8695b11dbf3b125e6a53c2e9b40b47f97244696b9cc6198aad4f82342a",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": null,
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "cancelled_candidate_not_adopted",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_path": [
+              "actual_candidate_adopted"
+            ]
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "actual_candidate_adopted"
+            ],
+            "before": false,
+            "after": true
+          },
+          "mutation_lane": "candidate",
+          "base_case_ref": "H008-F02-NORMAL-CANCEL",
+          "submitted_candidate": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": null,
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "cancelled_candidate_not_adopted",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": true,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          }
+        },
+        {
+          "id": "H008-F02-DEFER-OLD-CANDIDATE-ADOPTED",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-DEFER-OLD-CANDIDATE-ADOPTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-DEFER-OLD-CANDIDATE-ADOPTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"defer\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "e2c88e7b198dced1753f92f8996ab0a55c7efedf71ea68f8c8577bbf39f45fd0",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": null,
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "deferred_candidate_not_adopted",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_path": [
+              "actual_candidate_adopted"
+            ]
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "actual_candidate_adopted"
+            ],
+            "before": false,
+            "after": true
+          },
+          "mutation_lane": "candidate",
+          "base_case_ref": "H008-F02-NORMAL-DEFER",
+          "submitted_candidate": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": null,
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "deferred_candidate_not_adopted",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": true,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          }
+        },
+        {
+          "id": "H008-F02-NEW-TARGET-OLD-CANDIDATE-ACTIVE",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-NEW-TARGET-OLD-CANDIDATE-ACTIVE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-NEW-TARGET-OLD-CANDIDATE-ACTIVE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"target_change\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"new_scope\":\"PRODUCT-OTHER\"},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "fd1bded7cf3ecc606bca6c91abf1b81e07bd6fce58a3dd3b336f09da3aa3bec1",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": null,
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "stale_for_new_target_not_adopted",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_path": [
+              "active_secondary_fields"
+            ]
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "active_secondary_fields"
+            ],
+            "before": null,
+            "after": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            }
+          },
+          "mutation_lane": "candidate",
+          "base_case_ref": "H008-F02-NORMAL-TARGET_CHANGE",
+          "submitted_candidate": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "stale_for_new_target_not_adopted",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          }
+        },
+        {
+          "id": "H008-F02-FINDING-DROPPED-AFTER-CORRECTION",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-FINDING-DROPPED-AFTER-CORRECTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-FINDING-DROPPED-AFTER-CORRECTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"correction\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"field\":\"retry_limit\",\"before_primary\":0,\"corrected\":1,\"reason\":\"synthetic-explicit-user-correction\"},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "a209b5d9737ab133bfe3df240fd8a2987c5fbb3ac68cf849c50ab533c3754dd1",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_superseded_by_user_correction"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 1
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "corrected_candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_path": [
+              "retained_finding_ids"
+            ]
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "retained_finding_ids"
+            ],
+            "before": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "after": [
+              "F-PROTOTYPE"
+            ]
+          },
+          "mutation_lane": "candidate",
+          "base_case_ref": "H008-F02-NORMAL-CORRECTION",
+          "submitted_candidate": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_superseded_by_user_correction"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 1
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "corrected_candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          }
+        },
+        {
+          "id": "H008-F02-CANDIDATE-AS-PAIR-REDERIVED",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-CANDIDATE-AS-PAIR-REDERIVED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-CANDIDATE-AS-PAIR-REDERIVED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "26bc7ca61d1cf36fe10c9a264d7116d5ee4079dfaf32da5d46013472bcd40703",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_path": [
+              "actual_pair_rederived"
+            ]
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "actual_pair_rederived"
+            ],
+            "before": false,
+            "after": true
+          },
+          "mutation_lane": "candidate",
+          "base_case_ref": "H008-F02-NORMAL",
+          "submitted_candidate": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": true,
+            "unrelated_Q": "preserved_valid_synthetic"
+          }
+        },
+        {
+          "id": "H008-F02-CORRECTION-AS-AGREEMENT",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-CORRECTION-AS-AGREEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-CORRECTION-AS-AGREEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"correction\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"field\":\"retry_limit\",\"before_primary\":0,\"corrected\":1,\"reason\":\"synthetic-explicit-user-correction\"},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "a209b5d9737ab133bfe3df240fd8a2987c5fbb3ac68cf849c50ab533c3754dd1",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_superseded_by_user_correction"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 1
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "corrected_candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_path": [
+              "actual_requirement_agreed"
+            ]
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "actual_requirement_agreed"
+            ],
+            "before": false,
+            "after": true
+          },
+          "mutation_lane": "candidate",
+          "base_case_ref": "H008-F02-NORMAL-CORRECTION",
+          "submitted_candidate": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_superseded_by_user_correction"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 1
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "corrected_candidate_pending_agreement",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": true,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          }
+        },
+        {
+          "id": "H008-F02-AGREEMENT-WRONG-CANDIDATE-CONTENT",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-AGREEMENT-WRONG-CANDIDATE-CONTENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-AGREEMENT-WRONG-CANDIDATE-CONTENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"candidate_fields\":{\"cancel_message\":\"show cancellation\",\"retry_limit\":3},\"candidate_sha256\":\"563877dd50f4b1f129925149c6f25d07d6c3c6ba3789f55748f0a2efd9734e90\",\"state\":\"synthetic_explicit_agreement_material_not_actual_authority\",\"source\":{\"identity\":\"AGREEMENT-SOURCE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "2a8daa245c63b6b913c5dde77ea8235c81a54f8688dbad7a9fb131f5512d7d7c",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_pending_agreement",
+            "agreement_condition": "conflict",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "mutation": {
+            "path": [
+              "agreement"
+            ],
+            "before": {
+              "scope": "PRODUCT-P",
+              "binding": "REQ@r1",
+              "candidate_fields": {
+                "cancel_message": "show cancellation",
+                "retry_limit": 2
+              },
+              "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
+              "state": "synthetic_explicit_agreement_material_not_actual_authority",
+              "source": {
+                "identity": "AGREEMENT-SOURCE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              }
+            },
+            "after": {
+              "scope": "PRODUCT-P",
+              "binding": "REQ@r1",
+              "candidate_fields": {
+                "cancel_message": "show cancellation",
+                "retry_limit": 3
+              },
+              "candidate_sha256": "563877dd50f4b1f129925149c6f25d07d6c3c6ba3789f55748f0a2efd9734e90",
+              "state": "synthetic_explicit_agreement_material_not_actual_authority",
+              "source": {
+                "identity": "AGREEMENT-SOURCE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              }
+            }
+          },
+          "mutation_lane": "original",
+          "base_case_ref": "H008-F02-NORMAL-AGREEMENT-MATERIAL"
+        },
+        {
+          "id": "H008-F02-CANCELLED-CANDIDATE-OLD-AGREEMENT",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-CANCELLED-CANDIDATE-OLD-AGREEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-CANCELLED-CANDIDATE-OLD-AGREEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"cancel\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"candidate_fields\":{\"cancel_message\":\"show cancellation\",\"retry_limit\":2},\"candidate_sha256\":\"38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8\",\"state\":\"synthetic_explicit_agreement_material_not_actual_authority\",\"source\":{\"identity\":\"AGREEMENT-SOURCE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "b3f87569c3343c4661fd748b0af5723460353e7a185682437202acb0d3eb7bd3",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_proposal"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": null,
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "cancelled_candidate_not_adopted",
+            "agreement_condition": "stale_for_inactive_candidate",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H008-F02-NORMAL-CANCEL",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "agreement"
+            ],
+            "before": null,
+            "after": {
+              "scope": "PRODUCT-P",
+              "binding": "REQ@r1",
+              "candidate_fields": {
+                "cancel_message": "show cancellation",
+                "retry_limit": 2
+              },
+              "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
+              "state": "synthetic_explicit_agreement_material_not_actual_authority",
+              "source": {
+                "identity": "AGREEMENT-SOURCE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              }
+            }
+          }
+        },
+        {
+          "id": "H008-F02-CORRECTED-CANDIDATE-OLD-AGREEMENT",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-CORRECTED-CANDIDATE-OLD-AGREEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-CORRECTED-CANDIDATE-OLD-AGREEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic\",\"finding_refs\":[\"F-PROTOTYPE\"]}},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"required\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\"},\"result\":{\"outcome\":\"observed_synthetic_success\",\"finding_refs\":[\"F-POC\"]}}},\"findings\":[{\"id\":\"F-PROTOTYPE\",\"origin\":\"prototype\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"cancel_message\",\"before\":null,\"proposed\":\"show cancellation\"}},{\"id\":\"F-POC\",\"origin\":\"poc\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"change\":{\"field\":\"retry_limit\",\"before\":0,\"proposed\":2}}],\"instruction\":{\"kind\":\"correction\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"field\":\"retry_limit\",\"before_primary\":0,\"corrected\":1,\"reason\":\"synthetic-explicit-user-correction\"},\"agreement\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"candidate_fields\":{\"cancel_message\":\"show cancellation\",\"retry_limit\":2},\"candidate_sha256\":\"38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8\",\"state\":\"synthetic_explicit_agreement_material_not_actual_authority\",\"source\":{\"identity\":\"AGREEMENT-SOURCE\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "ccd264e0e21a30adece9b5112d912f0e0215cb50670327843d04d4c07a0df5dd",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "supported_synthetic_material",
+              "poc": "supported_synthetic_material"
+            },
+            "finding_dispositions": {
+              "F-PROTOTYPE": "retained_proposal",
+              "F-POC": "retained_superseded_by_user_correction"
+            },
+            "retained_finding_ids": [
+              "F-PROTOTYPE",
+              "F-POC"
+            ],
+            "historical_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 2
+            },
+            "active_secondary_fields": {
+              "cancel_message": "show cancellation",
+              "retry_limit": 1
+            },
+            "required_redesign_fields": [
+              "cancel_message",
+              "retry_limit"
+            ],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "corrected_candidate_pending_agreement",
+            "agreement_condition": "conflict",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H008-F02-NORMAL-CORRECTION",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "agreement"
+            ],
+            "before": null,
+            "after": {
+              "scope": "PRODUCT-P",
+              "binding": "REQ@r1",
+              "candidate_fields": {
+                "cancel_message": "show cancellation",
+                "retry_limit": 2
+              },
+              "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
+              "state": "synthetic_explicit_agreement_material_not_actual_authority",
+              "source": {
+                "identity": "AGREEMENT-SOURCE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              }
+            }
+          }
+        },
+        {
+          "id": "H008-F02-NA-REASON-MISSING",
+          "contract_ref": "HARNESS-L9-008-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H008-F02-NA-REASON-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "read_rule": "一次原bytesと実験原結果/元finding/指示/合意を独立に読み、同一次revisionへの対応と内容差分を照合。"
+          },
+          "independent_source_packet": {
+            "ref": {
+              "identity": "CASE-SOURCE-H008-F02-NA-REASON-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "raw_utf8": "{\"primary\":{\"ref\":{\"identity\":\"PRIMARY-1\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"},\"binding\":\"REQ@r1\",\"fields\":{\"cancel_message\":null,\"retry_limit\":0},\"raw_utf8\":\"{\\\"cancel_message\\\":null,\\\"retry_limit\\\":0}\",\"sha256\":\"a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a\"},\"experiments\":{\"prototype\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"not_applicable\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\",\"reason\":null,\"judge\":\"synthetic-applicability-owner\",\"target_revision\":\"REQ@r1\",\"requirement_impact\":\"no experiment-specific delta\",\"reevaluation\":\"applicability inputs change\"},\"result\":null},\"poc\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"applicability\":{\"state\":\"not_applicable\",\"owner_contract\":\"001/003-approved-meaning-not-unmerged-basic-design\",\"reason\":\"no technical uncertainty synthetic subject\",\"judge\":\"synthetic-applicability-owner\",\"target_revision\":\"REQ@r1\",\"requirement_impact\":\"no experiment-specific delta\",\"reevaluation\":\"applicability inputs change\"},\"result\":null}},\"findings\":[],\"instruction\":{\"kind\":\"continue\",\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source\":{\"identity\":\"USER-INSTRUCTION\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\",\"owner\":\"synthetic-secondary-original-owner\"}},\"agreement\":null,\"unrelated_scope\":{\"id\":\"Q\",\"state\":\"valid_synthetic\"},\"qualification\":\"synthetic_secondary_candidate_not_actual_experiment_or_user_agreement\"}",
+            "sha256": "a6ec5ff7dc27bfa1a5a81ac77f482a3ae6aca7498799a5ae166c3c7d9ff084a8",
+            "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+            "effect": "none",
+            "embedded_referents": "001/003の適用/原結果とfinding/指示/合意は合成material。実owner資格と実Prototype/PoC/PO合意は未成立。"
+          },
+          "expected_material": {
+            "preserved_primary": {
+              "ref": {
+                "identity": "PRIMARY-1",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-secondary-original-owner"
+              },
+              "binding": "REQ@r1",
+              "fields": {
+                "cancel_message": null,
+                "retry_limit": 0
+              },
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+            },
+            "experiment_conditions": {
+              "prototype": "missing",
+              "poc": "not_applicable_synthetic_material"
+            },
+            "finding_dispositions": {},
+            "retained_finding_ids": [],
+            "historical_secondary_fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "active_secondary_fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "required_redesign_fields": [],
+            "instruction_condition": "supported_synthetic_material",
+            "old_candidate_disposition": "candidate_with_unresolved_basis",
+            "agreement_condition": "missing",
+            "actual_requirement_agreed": false,
+            "actual_primary_overwritten": false,
+            "actual_candidate_adopted": false,
+            "actual_pair_rederived": false,
+            "unrelated_Q": "preserved_valid_synthetic"
+          },
+          "execution_state": "not_executed",
+          "effect": "none",
+          "base_case_ref": "H008-F02-NORMAL-BOTH-EXPERIMENTS-NA",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "experiments",
+              "prototype",
+              "applicability",
+              "reason"
+            ],
+            "before": "non-screen synthetic subject",
+            "after": null
+          }
+        }
+      ]
     },
     {
       "id": "HARNESS-L9-008-F03",
@@ -6476,7 +9266,6 @@
     },
     "remaining_contracts": [
       "B01",
-      "F02",
       "F03",
       "F04",
       "F05",
@@ -6488,6 +9277,12 @@
       "normal": 4,
       "negative": 21,
       "source_packets": 25,
+      "state": "draft_not_executed"
+    },
+    "F02": {
+      "normal": 7,
+      "negative": 20,
+      "source_packets": 27,
       "state": "draft_not_executed"
     }
   }
