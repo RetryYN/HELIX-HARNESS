@@ -416,7 +416,7 @@ L3/L10の本文承認は[10/5の委任](decisions/l3-l10-approval-delegation-po-
 | 8 | 原子実装と局所検証（Worker、OS検収） | 凍結oracleに対して実装前Red→最小本体実装→同oracle Green→局所Refactor。formatter/lint/型/文書監査/局所testを設計どおり実装する | 環境エラーを意図したRedにしない。検査を弱めてGreenにしない。実装後mutation等はriskと適用根拠を持つ別証拠。出力はProvisional |
 | 9 | 対象CIと独立review（OS020、別担当） | HARNESS005の原子/境界/構成体義務から必要profileを構成。localとCIのtool/設定/入力/対象集合/省略義務を対応付け、exact HEADで独立reviewする | check定義だけでなく実起動と結果回収を確認。path filter/rename元/必要検査欠落/別HEAD green/denied/skippedを負例にする。未回収検査を成功にしない。全量/nightlyを既定復活しない |
 | 10 | 実接続・更新・故障・再開の検証 | BRAIN→CORE→OSの同revision往復、未完受理、CONNECT envelope/互換/再送/ACK、OS053の各write/CAS/receipt fault、実SEC/INFRA条件と復旧を検証する | 単体成功を接続へ伝播しない。publish≠受領、ACK≠解決。途中故障でpartial-current公開を拒否し、元episodeの未完/累積制約を引き継ぐ。失敗は該当接続/保存/意味ownerへ |
-| 11 | 構成体L10と計測・評価（HARNESS/OS/LABO） | 一つの要求例が知識→適用→義務→実行→検収→Backflowを一周する。固有不変条件と下位proof差分、未見fixture、必要metric/代表環境/分母/未観測/再発を同scopeへ結ぶ | 405組の文書数や全view生成を実systemの証拠にしない。省略義務/計測欠落/stale/未代表/未達を残し、fieldやscoreだけでVerifiedにしない。配置案/評価/採用を各ownerへ保持 |
+| 11 | 構成体L10と計測・評価（HARNESS/OS/LABO） | 一つの要求例が知識→適用→義務→実行→検収→Backflowを一周する。固有不変条件と下位proof差分、未見fixture、必要metric/代表環境/分母/未観測/再発を同scopeへ結ぶ | 文書上のpair組数や全view生成を実systemの証拠にしない。省略義務/計測欠落/stale/未代表/未達を残し、fieldやscoreだけでVerifiedにしない。配置案/評価/採用を各ownerへ保持 |
 | 12 | POの実物L11受入→通常L3 | 局所/接続/構成体の実証拠、内容oracleの成功/反例、revision/scope、未完、利用者判断をまとめる。受入済み範囲から通常BRAIN032→CORE009→OS002を進める | 文書承認/CI/AI VerifiedをAcceptedへ変換しない。PO事後確認と実物受入を別記録にする。未受入範囲とrelease/tag/内部デプロイ/配布切替は既存停止境界へ |
 
 順1〜3は限定文書要件の充足を確かめる作業で、順4〜12の実成果の完成を段階1の文書完了条件へ前倒ししない。一方、順4以降に必要な意味義務そのものの欠落は「設計で決める」として逃がさず順1へ戻す。依存する入出力は直列に具体化し、異なる責務の独立作業だけを既存原子PR単位で並行できる。
@@ -436,7 +436,7 @@ L3/L10の本文承認は[10/5の委任](decisions/l3-l10-approval-delegation-po-
 
 各順で[Conceptと七原則の照合表](audits/failure-development-foundation-audit-2026-10-12.md#conceptと七大原則の照合)へ戻る。初回対象の責務はHARNESSの工程契約、BRAINの汎用知識、COREの製品適用、OSの義務と運転を保持する。実装都合でownerを変えない。必要な規範の不足を先に閉じ、機構×歴史Stageの原子PRで独立reviewし、共通入力が確定してから後続へ降ろす。
 
-環境/ツールを選ぶ順5と再現する順7には、選択実資産の出所・能力差・同じ実体を検証/実行する条件が必要である。採択済みSECURITY010〜013と構成体023から対象L3/L10を閉じ、審査前candidate材料と審査/実行後に生じるreceiptを区別する。未知を安全に補完しない。023の歴史Stage4は保持して別PRで定義し、全Stage4運転を初回必須にしない。
+環境/ツールを選ぶ順5と再現する順7には、選択実資産の出所・能力差・同じ実体を検証/実行する条件が必要である。採択済みSECURITY010〜013と構成体023のL3/L10は、[Stage1の20対](https://github.com/RetryYN/HELIX-HARNESS/pull/2963)と[Stage4の5対](https://github.com/RetryYN/HELIX-HARNESS/pull/2964)で文書規範を閉じた。設計では、審査前candidate材料と審査/実行後に生じるreceiptを区別する。未知を安全に補完しない。023の歴史Stage4は保持して別PRで定義済みであり、全Stage4運転を初回必須にしない。
 
 ### 限定要件定義を閉じるための確認
 

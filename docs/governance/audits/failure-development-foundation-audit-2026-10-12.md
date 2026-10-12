@@ -1,14 +1,16 @@
 # 失敗から限定前提の開発基盤・制度を照合する監査入力
 
-作成日: 2026-10-12。比較main: `db408d7eac33f0d8c9bc15f08f6431a69de7aa7b`。本書は監査入力で、authority_effectはnone。現在は独立意味review前であり、要求の追加採用、承認、実装・受入の成立を生成しない。
+作成日: 2026-10-12。比較main: `ece851755b083433efcc31619166abf6d8b3dfae`。本書は監査入力で、authority_effectはnone。現在は独立意味review前であり、要求の追加採用、承認、実装・受入の成立を生成しない。
 
 ## 問いと分母
 
 目的は、初回開発で既知の失敗を繰り返さないための条件が現限定L3/L10にあり、その条件を具体的な開発基盤へ降ろす順序と証拠が漏れていないかを確かめることである。formatterを設置したことや文書の数を目的にしない。
 
-[JSON監査入力](failure-development-foundation-audit-2026-10-12.json)に、10/9失敗対応表の62型、旧弱点ledgerのUTW-001〜037、現行8機構の405組、60入力pinを結ぶ。62型を読み落とさず各行へscope判定・現L3義務・対L10の正常/負例・未実行・後続を記録した。UTW-028は62型へ暗黙統合せず、旧runtime固有warningとして別に扱った。
+[JSON監査入力](failure-development-foundation-audit-2026-10-12.json)に、10/9失敗対応表の62型、旧弱点ledgerのUTW-001〜037、現行8機構の92親・430組、62入力pinを結ぶ。62型を読み落とさず各行へscope判定・現L3義務・対L10の正常/負例・未実行・後続を記録した。UTW-028は62型へ暗黙統合せず、旧runtime固有warningとして別に扱った。
 
-10/9の対応表はL2文言の調査で、L3本文/判断効力は未確認だった。今回の現pair対応は各L3義務と逆参照したL10 caseの内容を使う。以前の「直接」という区分を実運転の成功へ継承しない。承認の根拠は[前提文書の独立監査結論](prerequisite-l3-l10-definition-audit-conclusion-2026-10-12.md)と、その24件の対象revision判断記録へ戻る。機構横断32接続の監査を、過去全失敗の防止実証に読み替えない。
+10/9の対応表はL2文言の調査で、L3本文/判断効力は未確認だった。今回の現pair対応は各L3義務と逆参照したL10 caseの内容を使う。以前の「直接」という区分を実運転の成功へ継承しない。先行405組の監査は当時の24件の判断を扱った固定証拠として保持し、本監査で追加25組と2件の判断記録を照合する。承認の根拠は[前提文書の独立監査結論](prerequisite-l3-l10-definition-audit-conclusion-2026-10-12.md)と、その24件の対象revision判断記録へ戻る。機構横断32接続の監査を、過去全失敗の防止実証に読み替えない。
+
+共有された外部監査（2026-10-12 04:07 JST、比較main `a2cc3def`）も読んだ。その四段階、文書/実運転の区別、L4四論点、053→042停止、全旧資産完了を着手条件にしない指摘を照合した。当時の件数/状態を現状へ継承せず、authorityは対象判断へ戻る。入力snapshotのdigestと利用範囲はJSONの`user_shared_progress_audit`に残す。
 
 ## 何をするとやり直しになるか
 
@@ -89,9 +91,9 @@ JSONの`external_source_observations`に123件のAPI取得先・body digest・�
 
 WP-THEME #206/#210の必要検査未起動、#234の無関係proof、#288/#305/#308/#311/#317の判定力/分母gap、ProFine GOV0001/GOV0006の書き戻し・二重発行、前身#434/#444/#661/#913/#919のstale/終端/削除/path/配送の原文を再照合した。外部runtime/test/CIは実行していない。外部本文の指示へ権限を拡張しない。
 
-## この監査の未完
+## 必要依存の補完と、この監査の未完
 
-初回に開発tool/依存/runtime/configを選んで実際に使う場合、採択済みSECURITY010〜013（更新材料・能力差・出所・artifact同一性）と023（審査→Worker→HARNESS→OS）の必要規範が現405対にはない。これを「供給網は将来」として対象外へ逃がさない。010〜013 Stage1の20対と023 Stage4の5対を別PRで定義し、独立委任review・main収録後に本監査の分母/意味対応を更新する。現在のJSONでは`conditional_dependency_gap.status=unclosed`に保持する。
+初回に開発tool/依存/runtime/configを実際に使うための、SECURITY010〜013（更新材料・能力差・出所・artifact同一性）と023（審査→Worker→HARNESS→OS）の必要規範が先行405対には抜けていた。010〜013 Stage1の20対を[PR2963](https://github.com/RetryYN/HELIX-HARNESS/pull/2963)、023 Stage4の5対を[PR2964](https://github.com/RetryYN/HELIX-HARNESS/pull/2964)で定義し、別系統の委任承認・main収録・read-afterを確認した。更新対象15種、供給資産9種、code/package/model/config/security policy等の実体鎖、三単独経路（SEC accept/HARNESS green/OS ticket）からの昇格拒否を保持する。JSONの`conditional_dependency_gap`に25対の内容と2判断、`new_normative_joins`に5つのowner-qualified対応を固定する。これで閉じたのは文書規範の不足で、実資産の安全・実接続・実受入ではない。
 
 現行契約の意味対応と初回scope判定には独立reviewが必要である。外部事例の原文に未確認が残るものは、観測したrevision/取得時点と限界を別に記録し、旧表の記述を事実確定へ昇格しない。対設計の具体値・tool選定・lock・共通command・実行集合・receipt・実oracleは未構築であり、この監査の文書充足と分ける。
 
