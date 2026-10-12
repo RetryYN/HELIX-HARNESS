@@ -1,0 +1,1368 @@
+{
+  "document_id": "HARNESS-L4-053-SEMANTIC-ASSET-LINEAGE",
+  "layer": "L4",
+  "paired_document": "docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+  "parent": "HARNESS-L2-053",
+  "status": "candidate_pending_independent_review",
+  "source_main": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-prerequisite-contracts-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b"
+    },
+    {
+      "path": "docs/governance/template-work-allocation.md",
+      "revision": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "sha256": "40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0"
+    }
+  ],
+  "purpose": "053承認6対からpath非依存identity/意味revision/供給lineage照合の境界と対oracleを導出。",
+  "authority_boundary": "10/12限定再開範囲2と85103aa7の053承認6対。version_target1.0保持。10/8一般解禁は失効、旧下流の復元ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "lines": "143",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "keep": "path非依存ID/意味revision/lineageとauthority/oracle/typed edge保持",
+      "change": "初回は供給記録照合だけ、変換/保存を発行しない。",
+      "reason": "現限定L3が変換操作を選ばず、記録の意味照合へ範囲を固定しているため。",
+      "reuse_mode": "意味の再導出。旧実装/CI/test/操作を実行せず、完全一致copyなし。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+      "lines": "76",
+      "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "keep": "authority/oracle/typed edge保持を各個別負例で確認",
+      "change": "旧rename/split/merge実操作・旧fault注入を実行せず、供給記録の不足を照合する。",
+      "reason": "現限定L3が変換操作を選ばず、記録の意味照合へ範囲を固定しているため。",
+      "reuse_mode": "意味の再導出。旧実装/CI/test/操作を実行せず、完全一致copyなし。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "lines": "53、82",
+      "sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "keep": "HR-FR-HIL-19/HAC-HIL-19cのidentity/oracle消失・stale/rename/split/mergeでhistory保持を欠落負例へ対応。",
+      "change": "旧Admission/原子的Canonical化/rollback実操作はOS等のownerであり、現053初回の供給記録照合から操作を生成しない。",
+      "reason": "現承認L3-053が実変換を非選択とし、保存/権限/rollback/受入を記録照合と別軸に固定しているため。",
+      "reuse_mode": "意味の再導出。旧実装/CI/test/操作を実行せず、完全一致copyなし。"
+    }
+  ],
+  "legacy_search": {
+    "scope": [
+      "archive/legacy-generation-2026-09-14/root/docs/design",
+      "archive/legacy-generation-2026-09-14/root/docs/plans",
+      "archive/legacy-generation-2026-09-14/root/src"
+    ],
+    "query": "HIL-FR-53|Semantic Revision and Asset Identity|asset_id.*revision|assetId.*revision",
+    "matched_paths": [
+      "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md"
+    ],
+    "limit": "この検索patternでは同役割の具体L4/L5/src実装は見つからない。旧機構不在を意味変更の根拠にせず、現承認6対から照合境界を導出する。追加語の検索でさらに照合できる。"
+  },
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "65–101",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "meaning": "UTW005の最新revision証拠の未束縛、UTW014の欠損→空集合、UTW020のaggregateで部分欠落不可視、UTW021の自己申告成立を、対象ID/revisionと個別欠落の照合で防ぐ。現failure-development-foundation-auditは053→042の停止を保持。実再発防止は未証明。"
+  },
+  "architecture": {
+    "owner": "053はHARNESS-COREのasset identity/意味revision/供給履歴の意味照合能力。新asset発行registry/保存DB/authority裁定主体を作らない。既存003の変更・004のtrace/stale・016の差分分類の意味を再定義しない。",
+    "input": "対象要求revision/scope、asset ID、semantic revision、semantic source/body/差分根拠、location履歴、供給されたrename/move/split/merge/supersede relation、前後endpoint ID/revision、history対応、authority/oracle/typed edgeの対応、owner資格根拠と任意の成立claim。未供給と明示emptyを区別。",
+    "identity": "asset IDはowner supplied immutable identity、opaqueとして比較。path/name/フォルダ/内容hashはIDへ変換しない。同ID異locationは供給履歴を照合。同path異ID/同名異義は別identityのまま。exact同ID/revisionの相反記録や不明ownerはconflict/unknown、先着採用なし。",
+    "revision_axes": "semantic revisionはowner supplied意味の版。locationだけの差を意味変更へ昇格しない。意味差はowner-qualified before/after sourceとsemantic diff根拠へ結び、同ID異revision、影響oracle/typed edgeを確認。body hashの差だけを意味差にしない。意味原本欠落ではunknown、差分無しとしない。",
+    "lineage": "rename/moveは同ID/location履歴、semantic changeは同ID/異semantic revision、split/merge/supersedeは前後endpoint ID/revisionと関係種別/影響history対応を別に照合。各対象のauthority/oracle/typed edge対応は独立軸。authority保持は供給記録の対応確認だけで実権限移転ではない。",
+    "snapshot": "全対応を同request revision/scopeとowner source snapshotへ束縛。base revision違い/endpoint不在/他tenantや対象revisionの根拠流用は当該relationだけunknown/conflict。不明を別ID推定やlocation一致で埋めない。",
+    "qualification": "ownerの適用範囲/対象revisionを示す正当な原source/判断根拠へ解決した記録だけ消費。plain Ref/digest/receipt/自己署名は意味/authority/oracleを成立させない。具体resolver、正式schemaと符号化・採番・保存はL5以下と各ownerへ。",
+    "result_axes": [
+      "identity",
+      "semantic_revision",
+      "location_history",
+      "lineage_relation",
+      "history_mapping",
+      "authority_mapping",
+      "oracle_mapping",
+      "typed_edge_mapping"
+    ],
+    "axis_states": [
+      "matched",
+      "missing",
+      "unknown",
+      "conflict",
+      "not_applicable"
+    ],
+    "axis_reduction": "各endpoint/relation/axisの状態と差分/source根拠を返す。N/Aはownerの当該scope非適用理由がqualifiedな場合だけ。既知欠落はmissing、不明はunknown、相反はconflict。matchedの別軸で欠落を相殺しない。全required軸matched以外は当該記録closure未成立。",
+    "operation_boundary": "record_comparisonは供給記録の照合だけ。rename/move/split/merge/supersede/Design Refactor実操作は初回非選択でheld/not_selectedを保全。053→042不整合は全結果にunresolved_referenceとして残し、042保証が必要な操作は053 ownerの参照訂正/適用判断までheld。無関係な局所記録照合まで止めない。",
+    "determinism": "注入snapshotのみを参照、時計/env/network/実filesystem操作なし。出力はasset ID/semantic revision/relation ID/axis/owner/source RefのUnicode scalar昇順。保存locatorを解決せず、scope違いをsortで併合しない。",
+    "backflow": "供給記録の欠落/矛盾はrecord ownerへ。053→042は053要求ownerの参照訂正/適用判断へ、意味変更が必要なら既存上流authorityへ返す。authority対応はauthority record owner、oracleはoracle owner、typed edgeはtrace ownerへ原因ごと返す。実保存/rollbackはOS/保存owner、実権限はSECURITY、受入は既存POへ残す。新承認手続きなし。",
+    "side_effects": "record照合からID/revisionの採番、rename/move/split/merge/supersede、保存/rollback、権限発行、採択/PO受入を実行/宣言しない。052の採択や先行を新たな条件にしない。",
+    "claim_states": [
+      "matched",
+      "unknown",
+      "conflict",
+      "not_reported"
+    ],
+    "operation_request_states": [
+      "not_requested",
+      "held"
+    ],
+    "operation_selection_states": [
+      "not_requested",
+      "not_selected"
+    ],
+    "claim_reduction": "原記録axisの状態と成立claimの状態は別field。owner-qualifiedな既知値/境界とclaimが矛盾すればclaim conflict、必要根拠がmissing/unknownで真偽を判定できなければclaim unknown。未知に対する自己申告でmatchedにしない。確定したA/B別IDを同一とするclaimはconflict。実保存/rollback/権限/受入は記録照合で証明できないためclaim unknown、純粋結果から成立させない。原記録の既知axisまでclaimの未知で上書きしない。"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-053-F01",
+      "requirement_ref": "HARNESS-L3-053-F01",
+      "system_oracle_ref": "HARNESS-L10-053-F01",
+      "oracle_ref": "HARNESS-L9-053-F01",
+      "boundary": "SemanticAssetLineage",
+      "title": "path非依存のasset identity",
+      "behavior": "要求・設計・資産はimmutable asset IDで識別し、path/nameの一致や変更から同一性・意味変更・authority移転を推定しない。採番/符号化/永続化方式は後続設計へ残す。",
+      "inputs": [
+        "owner asset/revision/location/lineage exact source snapshot",
+        "対象要求revision/scopeと独立axis対応根拠",
+        "任意claimと非選択operation要求"
+      ],
+      "outputs": [
+        "対象ID/revision/relation/axisごとの状態/差分/原根拠",
+        "unresolved_referenceとdependent operation held",
+        "原因別ownerへの不足返却"
+      ],
+      "backflow": "供給記録の欠落/矛盾はrecord ownerへ。053→042は053要求ownerの参照訂正/適用判断へ、意味変更が必要なら既存上流authorityへ返す。authority対応はauthority record owner、oracleはoracle owner、typed edgeはtrace ownerへ原因ごと返す。実保存/rollbackはOS/保存owner、実権限はSECURITY、受入は既存POへ残す。新承認手続きなし。"
+    },
+    {
+      "id": "HARNESS-L4-053-F02",
+      "requirement_ref": "HARNESS-L3-053-F02",
+      "system_oracle_ref": "HARNESS-L10-053-F02",
+      "oracle_ref": "HARNESS-L9-053-F02",
+      "boundary": "SemanticAssetLineage",
+      "title": "意味revisionと差分",
+      "behavior": "意味変更の前後を同一identityの異なるrevisionとして識別し、semantic diffと影響するoracle/typed edgeへ結ぶ。配置や名称だけの変更を新identity・意味変更として数えない。",
+      "inputs": [
+        "owner asset/revision/location/lineage exact source snapshot",
+        "対象要求revision/scopeと独立axis対応根拠",
+        "任意claimと非選択operation要求"
+      ],
+      "outputs": [
+        "対象ID/revision/relation/axisごとの状態/差分/原根拠",
+        "unresolved_referenceとdependent operation held",
+        "原因別ownerへの不足返却"
+      ],
+      "backflow": "供給記録の欠落/矛盾はrecord ownerへ。053→042は053要求ownerの参照訂正/適用判断へ、意味変更が必要なら既存上流authorityへ返す。authority対応はauthority record owner、oracleはoracle owner、typed edgeはtrace ownerへ原因ごと返す。実保存/rollbackはOS/保存owner、実権限はSECURITY、受入は既存POへ残す。新承認手続きなし。"
+    },
+    {
+      "id": "HARNESS-L4-053-F03",
+      "requirement_ref": "HARNESS-L3-053-F03",
+      "system_oracle_ref": "HARNESS-L10-053-F03",
+      "oracle_ref": "HARNESS-L9-053-F03",
+      "boundary": "SemanticAssetLineage",
+      "title": "供給されたlineage記録の対応",
+      "behavior": "供給済みのrename/move履歴は同identityのlocation履歴へ、split/merge/supersede記録は前後identity・revision・関係種別・影響history・authority・oracle・typed edgeへ個別に対応付ける。変換操作自体は初回に選択せず、この照合から発行しない。",
+      "inputs": [
+        "owner asset/revision/location/lineage exact source snapshot",
+        "対象要求revision/scopeと独立axis対応根拠",
+        "任意claimと非選択operation要求"
+      ],
+      "outputs": [
+        "対象ID/revision/relation/axisごとの状態/差分/原根拠",
+        "unresolved_referenceとdependent operation held",
+        "原因別ownerへの不足返却"
+      ],
+      "backflow": "供給記録の欠落/矛盾はrecord ownerへ。053→042は053要求ownerの参照訂正/適用判断へ、意味変更が必要なら既存上流authorityへ返す。authority対応はauthority record owner、oracleはoracle owner、typed edgeはtrace ownerへ原因ごと返す。実保存/rollbackはOS/保存owner、実権限はSECURITY、受入は既存POへ残す。新承認手続きなし。"
+    },
+    {
+      "id": "HARNESS-L4-053-F04",
+      "requirement_ref": "HARNESS-L3-053-F04",
+      "system_oracle_ref": "HARNESS-L10-053-F04",
+      "oracle_ref": "HARNESS-L9-053-F04",
+      "boundary": "SemanticAssetLineage",
+      "title": "authority・oracle・typed edge欠落",
+      "behavior": "lineage記録でauthority、acceptance oracle、typed edgeのいずれかが欠けるか対応不明なら、その項目をunknown/不成立として返す。他の項目やreceiptの存在で補わない。",
+      "inputs": [
+        "owner asset/revision/location/lineage exact source snapshot",
+        "対象要求revision/scopeと独立axis対応根拠",
+        "任意claimと非選択operation要求"
+      ],
+      "outputs": [
+        "対象ID/revision/relation/axisごとの状態/差分/原根拠",
+        "unresolved_referenceとdependent operation held",
+        "原因別ownerへの不足返却"
+      ],
+      "backflow": "供給記録の欠落/矛盾はrecord ownerへ。053→042は053要求ownerの参照訂正/適用判断へ、意味変更が必要なら既存上流authorityへ返す。authority対応はauthority record owner、oracleはoracle owner、typed edgeはtrace ownerへ原因ごと返す。実保存/rollbackはOS/保存owner、実権限はSECURITY、受入は既存POへ残す。新承認手続きなし。"
+    },
+    {
+      "id": "HARNESS-L4-053-N01",
+      "requirement_ref": "HARNESS-L3-053-N01",
+      "system_oracle_ref": "HARNESS-L10-053-N01",
+      "oracle_ref": "HARNESS-L9-053-N01",
+      "boundary": "SemanticAssetLineage",
+      "title": "未決参照と初回非選択の保持",
+      "behavior": "053が042をsource revision/再現可能性として参照する意味不整合を未決として保持する。042をprovenance保証として消費せず代替IDを推測しない。初回ではrename/move/split/merge/supersede/Design Refactorの実操作を選ばず、必要となる操作は053 ownerの参照訂正/適用判断まで保留する。",
+      "inputs": [
+        "owner asset/revision/location/lineage exact source snapshot",
+        "対象要求revision/scopeと独立axis対応根拠",
+        "任意claimと非選択operation要求"
+      ],
+      "outputs": [
+        "対象ID/revision/relation/axisごとの状態/差分/原根拠",
+        "unresolved_referenceとdependent operation held",
+        "原因別ownerへの不足返却"
+      ],
+      "backflow": "供給記録の欠落/矛盾はrecord ownerへ。053→042は053要求ownerの参照訂正/適用判断へ、意味変更が必要なら既存上流authorityへ返す。authority対応はauthority record owner、oracleはoracle owner、typed edgeはtrace ownerへ原因ごと返す。実保存/rollbackはOS/保存owner、実権限はSECURITY、受入は既存POへ残す。新承認手続きなし。"
+    },
+    {
+      "id": "HARNESS-L4-053-B01",
+      "requirement_ref": "HARNESS-L3-053-B01",
+      "system_oracle_ref": "HARNESS-L10-053-B01",
+      "oracle_ref": "HARNESS-L9-053-B01",
+      "boundary": "SemanticAssetLineage",
+      "title": "identityの意味と実操作の分離",
+      "behavior": "identity/location history、asset revision、split/merge disposition、semantic diffは確認する記録成果であり、その存在から保存/rollback/権限/採択/受入を生成しない。003/004/016の既存revision/trace/stale/差分条件を再定義せず、052の採択や実施順序を前提として新設しない。",
+      "inputs": [
+        "owner asset/revision/location/lineage exact source snapshot",
+        "対象要求revision/scopeと独立axis対応根拠",
+        "任意claimと非選択operation要求"
+      ],
+      "outputs": [
+        "対象ID/revision/relation/axisごとの状態/差分/原根拠",
+        "unresolved_referenceとdependent operation held",
+        "原因別ownerへの不足返却"
+      ],
+      "backflow": "供給記録の欠落/矛盾はrecord ownerへ。053→042は053要求ownerの参照訂正/適用判断へ、意味変更が必要なら既存上流authorityへ返す。authority対応はauthority record owner、oracleはoracle owner、typed edgeはtrace ownerへ原因ごと返す。実保存/rollbackはOS/保存owner、実権限はSECURITY、受入は既存POへ残す。新承認手続きなし。"
+    }
+  ],
+  "failure_classifications": [
+    {
+      "code": "authority_mapping_missing",
+      "oracle_refs": [
+        "HARNESS-L9-053-F04-NEG-01"
+      ],
+      "conditions": [
+        "LS authority QAだけ欠落、history有りで保持成功"
+      ],
+      "backflow_owners": [
+        "authority_record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "authority_mapping_unknown",
+      "oracle_refs": [
+        "HARNESS-L9-053-F04-NEG-04"
+      ],
+      "conditions": [
+        "QA対応先不明を自己申告でqualified"
+      ],
+      "backflow_owners": [
+        "authority_record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "authority_procedure_added",
+      "oracle_refs": [
+        "HARNESS-L9-053-B01-NEG-08"
+      ],
+      "conditions": [
+        "split/mergeのauthority裁定手続きを053で追加"
+      ],
+      "backflow_owners": [
+        "authority_record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "base_revision_mismatch",
+      "oracle_refs": [
+        "HARNESS-L9-053-F03-NEG-04"
+      ],
+      "conditions": [
+        "LS baseをA/r1としsourceはA/r2"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS A/r1 vs r2",
+          "axis": "semantic_revision",
+          "state": "conflict"
+        },
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "conflict"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "fixture_as_rollback",
+      "oracle_refs": [
+        "HARNESS-L9-053-B01-NEG-02"
+      ],
+      "conditions": [
+        "split fixtureがあるのでrollback成功"
+      ],
+      "backflow_owners": [
+        "persistence_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "global_stop_added",
+      "oracle_refs": [
+        "HARNESS-L9-053-N01-NEG-05"
+      ],
+      "conditions": [
+        "042未決を理由に無関係A/B局所照合も全停止"
+      ],
+      "backflow_owners": [
+        "harness053_requirement_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "hash_identity_inference",
+      "oracle_refs": [
+        "HARNESS-L9-053-F01-NEG-06"
+      ],
+      "conditions": [
+        "body digestが同じA/Bを同IDとする"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "history_mapping_missing",
+      "oracle_refs": [
+        "HARNESS-L9-053-F03-NEG-01"
+      ],
+      "conditions": [
+        "LS splitの親A/r2との履歴対応を削除"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "missing"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "identity_conflict",
+      "oracle_refs": [
+        "HARNESS-L9-053-F01-NEG-03"
+      ],
+      "conditions": [
+        "同A/r1に相反する意味owner記録を重複供給し先着採用"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/r1",
+          "axis": "identity",
+          "state": "conflict"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "identity_missing",
+      "oracle_refs": [
+        "HARNESS-L9-053-F01-NEG-04"
+      ],
+      "conditions": [
+        "A/r1のID欠落をpathから生成"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A record slot",
+          "axis": "identity",
+          "state": "missing"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "legacy_completion_claim",
+      "oracle_refs": [
+        "HARNESS-L9-053-B01-NEG-05"
+      ],
+      "conditions": [
+        "原FR53の全実操作まで移管完了"
+      ],
+      "backflow_owners": [
+        "harness053_requirement_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "lineage_as_authority_transfer",
+      "oracle_refs": [
+        "HARNESS-L9-053-F03-NEG-06"
+      ],
+      "conditions": [
+        "renameのlocation対応だけでauthority移転成立"
+      ],
+      "backflow_owners": [
+        "authority_record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/r1 rename",
+          "axis": "location_history",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "lineage_endpoint_missing",
+      "oracle_refs": [
+        "HARNESS-L9-053-F03-NEG-02"
+      ],
+      "conditions": [
+        "LM mergeの元Bだけを対応から削除"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LM B/b1",
+          "axis": "identity",
+          "state": "missing"
+        },
+        {
+          "subject": "LM",
+          "axis": "lineage_relation",
+          "state": "unknown"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "lineage_target_missing",
+      "oracle_refs": [
+        "HARNESS-L9-053-F03-NEG-05"
+      ],
+      "conditions": [
+        "LX先D/d1不在を最新Dへ補完"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LX D/d1",
+          "axis": "identity",
+          "state": "missing"
+        },
+        {
+          "subject": "LX",
+          "axis": "lineage_relation",
+          "state": "unknown"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "local_as_global_completion",
+      "oracle_refs": [
+        "HARNESS-L9-053-N01-NEG-04"
+      ],
+      "conditions": [
+        "局所identity一致から053全能力完成"
+      ],
+      "backflow_owners": [
+        "harness053_requirement_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "location_as_semantic",
+      "oracle_refs": [
+        "HARNESS-L9-053-F02-NEG-01"
+      ],
+      "conditions": [
+        "意味不変のmoveだけでA/r2の意味revision成立"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/r1",
+          "axis": "semantic_revision",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1",
+          "axis": "location_history",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "location_identity_change",
+      "oracle_refs": [
+        "HARNESS-L9-053-F01-NEG-05"
+      ],
+      "conditions": [
+        "異pathに移った同Aを新IDとする"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/r1",
+          "axis": "identity",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1",
+          "axis": "location_history",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "name_identity_inference",
+      "oracle_refs": [
+        "HARNESS-L9-053-F01-NEG-02"
+      ],
+      "conditions": [
+        "同名異義A/Bを同一assetとする"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "new_precondition",
+      "oracle_refs": [
+        "HARNESS-L9-053-B01-NEG-07"
+      ],
+      "conditions": [
+        "052採択/先行を053照合の新必須条件"
+      ],
+      "backflow_owners": [
+        "harness053_requirement_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "oracle_mapping_missing",
+      "oracle_refs": [
+        "HARNESS-L9-053-F04-NEG-02"
+      ],
+      "conditions": [
+        "LS oracle QOだけ欠落、authority有りで受入可能"
+      ],
+      "backflow_owners": [
+        "oracle_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "oracle_revision_mismatch",
+      "oracle_refs": [
+        "HARNESS-L9-053-F04-NEG-05"
+      ],
+      "conditions": [
+        "別revisionのQOをA/r2 oracleへ付替え"
+      ],
+      "backflow_owners": [
+        "oracle_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "conflict"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "owner_boundary_change",
+      "oracle_refs": [
+        "HARNESS-L9-053-B01-NEG-06"
+      ],
+      "conditions": [
+        "053で003/004/016の変更/trace/差分条件を別定義"
+      ],
+      "backflow_owners": [
+        "harness053_requirement_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "path_identity_inference",
+      "oracle_refs": [
+        "HARNESS-L9-053-F01-NEG-01"
+      ],
+      "conditions": [
+        "同pathのBを旧Aへ併合"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "record_as_acceptance",
+      "oracle_refs": [
+        "HARNESS-L9-053-B01-NEG-04"
+      ],
+      "conditions": [
+        "lineage記録でPO採択/受入済み"
+      ],
+      "backflow_owners": [
+        "PO"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "record_as_permission",
+      "oracle_refs": [
+        "HARNESS-L9-053-B01-NEG-03"
+      ],
+      "conditions": [
+        "全対応Refの存在だけで権限発行済み"
+      ],
+      "backflow_owners": [
+        "authority_record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "record_as_persistence",
+      "oracle_refs": [
+        "HARNESS-L9-053-B01-NEG-01"
+      ],
+      "conditions": [
+        "対応記録存在で実保存成立"
+      ],
+      "backflow_owners": [
+        "persistence_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "reference_meaning_mismatch",
+      "oracle_refs": [
+        "HARNESS-L9-053-N01-NEG-01"
+      ],
+      "conditions": [
+        "042をsource provenance保証へ読替え"
+      ],
+      "backflow_owners": [
+        "harness053_requirement_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "reference_substitution",
+      "oracle_refs": [
+        "HARNESS-L9-053-N01-NEG-02"
+      ],
+      "conditions": [
+        "042の代替IDを推測して参照解決済み"
+      ],
+      "backflow_owners": [
+        "harness053_requirement_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "relation_kind_missing",
+      "oracle_refs": [
+        "HARNESS-L9-053-F03-NEG-03"
+      ],
+      "conditions": [
+        "LX supersedeのrelation種別を欠落"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LX",
+          "axis": "lineage_relation",
+          "state": "missing"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "revision_conflict",
+      "oracle_refs": [
+        "HARNESS-L9-053-F02-NEG-06"
+      ],
+      "conditions": [
+        "同A/r1で意味bodyが相反しているのに意味不変"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/r1",
+          "axis": "semantic_revision",
+          "state": "conflict"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "scope_cross_binding",
+      "oracle_refs": [
+        "HARNESS-L9-053-F03-NEG-07"
+      ],
+      "conditions": [
+        "他tenantのLS対応表をcurrentへ転用"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "semantic_as_location",
+      "oracle_refs": [
+        "HARNESS-L9-053-F02-NEG-02"
+      ],
+      "conditions": [
+        "M1→M2の意味差をlocation変更だけとして隠す"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/r1→r2",
+          "axis": "semantic_revision",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "semantic_identity_change",
+      "oracle_refs": [
+        "HARNESS-L9-053-F02-NEG-03"
+      ],
+      "conditions": [
+        "Aの意味変更で新ID Zを発行して履歴切断"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/r1→r2",
+          "axis": "identity",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "semantic_revision",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "semantic_impact_missing",
+      "oracle_refs": [
+        "HARNESS-L9-053-F02-NEG-05"
+      ],
+      "conditions": [
+        "M1→M2に必要なoracle/edge影響対応を消す"
+      ],
+      "backflow_owners": [
+        "trace_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/r1→r2",
+          "axis": "semantic_revision",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "oracle_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "typed_edge_mapping",
+          "state": "missing"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "semantic_source_missing",
+      "oracle_refs": [
+        "HARNESS-L9-053-F02-NEG-04"
+      ],
+      "conditions": [
+        "意味before source欠落を差分無しへ読む"
+      ],
+      "backflow_owners": [
+        "record_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "A/r1 before",
+          "axis": "semantic_revision",
+          "state": "missing"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "typed_edge_kind_mismatch",
+      "oracle_refs": [
+        "HARNESS-L9-053-F04-NEG-06"
+      ],
+      "conditions": [
+        "QE relation種別が違うがID一致で合格"
+      ],
+      "backflow_owners": [
+        "trace_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "conflict"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "typed_edge_mapping_missing",
+      "oracle_refs": [
+        "HARNESS-L9-053-F04-NEG-03"
+      ],
+      "conditions": [
+        "LS typed edge QEだけ欠落、receiptで補完"
+      ],
+      "backflow_owners": [
+        "trace_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "unknown",
+      "expected_operation_state": "not_requested",
+      "expected_operation_selection": "not_requested",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    },
+    {
+      "code": "unselected_operation",
+      "oracle_refs": [
+        "HARNESS-L9-053-N01-NEG-03"
+      ],
+      "conditions": [
+        "参照未決なのにsplit実操作へ進む"
+      ],
+      "backflow_owners": [
+        "harness053_requirement_owner"
+      ],
+      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "expected_record_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state": "conflict",
+      "expected_operation_state": "held",
+      "expected_operation_selection": "not_selected",
+      "expected_reference_state": "unresolved",
+      "expected_side_effect_count": 0
+    }
+  ],
+  "remaining": [
+    "L5/L8でAsset/Revision/Location/Relation/各axis解決/claim/不足原因の論理型とpure関数、単体oracleを具体化。",
+    "実操作は初回非選択。053→042参照不整合は未決で、依存する実操作は停止。正式schema/ID符号化/採番/保存/実resolverは未成立。",
+    "全92親430対の基本/詳細、配置4論点、toolchain/文書監査、L6/L7 oracle凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/deployは未成立。VT104–106未採用保持。"
+  ]
+}
