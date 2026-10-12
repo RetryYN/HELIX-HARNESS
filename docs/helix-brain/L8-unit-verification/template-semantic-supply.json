@@ -1,0 +1,3029 @@
+{
+  "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
+  "layer": "L8",
+  "paired_document": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
+  "parent": "HELIXBRAIN-L2-032",
+  "status": "draft_candidate_not_independently_reviewed",
+  "source_main": "e1468f2570c89b526bbefeed16fdd27cdf6ecb46",
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "53f0c2d44b17133b8ad3b6eefab7fbf621203c3cc997131e81d341acb37a7467"
+    },
+    {
+      "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964"
+    },
+    {
+      "path": "docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a"
+    },
+    {
+      "path": "docs/governance/decisions/p3first-knowledge-po-decision-2026-10-12.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "c091ac5083a0ebffb441921ab614567cfece8d95ded91cba3de3d462f9d667a9"
+    },
+    {
+      "path": "docs/governance/template-work-allocation.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0"
+    },
+    {
+      "path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "3779f7612a1555a07796bb3097f124ca4c63878bc3a42ec6fc864cb317d5d1a8"
+    },
+    {
+      "path": "docs/helix-brain/candidates/first-cycle-reference-template-knowledge.json",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "321d1253e63a11c3b14b398138ee976e2960298d2007431808396171b2431caf"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "revision": "e1468f2570c89b526bbefeed16fdd27cdf6ecb46",
+      "sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027"
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+      "revision": "e1468f2570c89b526bbefeed16fdd27cdf6ecb46",
+      "sha256": "3744770e232c6974c2038e0b638efd3442907dd1213ac7efe1cb2f4ef88d078c"
+    }
+  ],
+  "authority_boundary": "10/12限定再開範囲2と47354be8承認の03214対、TEMPLATECONTRACT1.0。10/8一般解禁は失効。MSGCONTENT/P3FIRSTは限定内容のみ、運用promotion未実施、VT104–106未採用。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "lines": "16–60",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "reuse_mode": "semantic_rederivation",
+      "keep": "15項目、identity/意味正本/view/個別traceとcomponent境界",
+      "change": "旧registry/適用評価/planner/pair freezeを032に統合せず、汎用候補供給とCORE/OS/HARNESSを分ける。",
+      "reason": "承認済みBRAIN032の意味と10/12限定範囲から降ろす。旧runtime/schema/CIを復元しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "lines": "33–108",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "reuse_mode": "semantic_rederivation",
+      "keep": "項目の意味/必要入力/不成立と版/supersession、unknownをN/Aにしない",
+      "change": "TPL文法/整数版/lifecycle enum/式木/key/wireを継承せず、論理項目の境界を再導出する。",
+      "reason": "承認済みBRAIN032の意味と10/12限定範囲から降ろす。旧runtime/schema/CIを復元しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+      "lines": "37–47",
+      "sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "reuse_mode": "semantic_rederivation",
+      "keep": "段階独立検証と提案による既存authority非変更",
+      "change": "9/26配置/9/28採択に従いLABO評価→OS登録/振分け→BRAIN独立検証/採否を保持し、供給だけで昇格しない。",
+      "reason": "承認済みBRAIN032の意味と10/12限定範囲から降ろす。旧runtime/schema/CIを復元しない。"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "65–101",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "meaning": "UTW014の欠損→空集合、UTW020のaggregateで部分不足不可視、UTW021の自己申告/件数/hash完了を項目/義務/接続各軸で防ぐ。実再発防止は未証明。"
+  },
+  "verification_scope": "14義務/105原L9負例を保持し論理typed mutationとpredicateへ具体化。実fixture/追加unit分岐・静的照合と独立意味reviewは未完。実行/完了証拠ではない。",
+  "fixture_contract": {
+    "id": "TEMPLATE-SUPPLY-BASE-01",
+    "scope": "合成project-P/tenant-T/environment-E、要求032と採用knowledgeのexact revisionを別参照で固定。",
+    "source_controls": [
+      {
+        "template_identity": "DT-MSG-001",
+        "candidate_version": "0.1.0-seed-candidate",
+        "source_path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-001-connection-contract.md",
+        "source_sha256": "94cc4a2a3f795645bf274148e47f3a2e0622643f822a1815f4068fb2f3cbfa5c",
+        "definition_state": "source_bound_candidate; 各field要否/意味とoracleの最終照合は未完",
+        "dependency_state": "relationの参照先はこの3候補では供給しない。未解決は該当knowledge/要求ownerへ保持する。",
+        "meaning_contract_ref": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+        "knowledge_state": "限定内容採用済み、運用promotion未実施。元candidate stateを採否と混同しない。"
+      },
+      {
+        "template_identity": "DT-MSG-004",
+        "candidate_version": "0.1.0-seed-candidate",
+        "source_path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+        "source_sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+        "definition_state": "source_bound_candidate; 各field要否/意味とoracleの最終照合は未完",
+        "dependency_state": "relationの参照先はこの3候補では供給しない。未解決は該当knowledge/要求ownerへ保持する。",
+        "meaning_contract_ref": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+        "knowledge_state": "限定内容採用済み、運用promotion未実施。元candidate stateを採否と混同しない。"
+      },
+      {
+        "template_identity": "DT-MSG-005",
+        "candidate_version": "0.1.0-seed-candidate",
+        "source_path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-005-composite-architecture.md",
+        "source_sha256": "678e71797043d48e0f9e19c588e41cab059034fd5fe9cf5994f9d6c51d011589",
+        "definition_state": "source_bound_candidate; 各field要否/意味とoracleの最終照合は未完",
+        "dependency_state": "relationの参照先はこの3候補では供給しない。未解決は該当knowledge/要求ownerへ保持する。",
+        "meaning_contract_ref": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+        "knowledge_state": "限定内容採用済み、運用promotion未実施。元candidate stateを採否と混同しない。"
+      }
+    ],
+    "original_control": "MSG3件の限定採用payloadとsource行/sha/文脈へ戻る。実candidateのdefinition_state/dependency_stateにある未完を保持し、15carrierの存在を全field定義完成にしない。",
+    "complete_model_control": "不足/相反検出の対照用に、各descriptorが意味owner/原source/適用条件/trace/oracleへ完全対応する合成モデルを別fixtureとして作る。実MSG知識を完成済みへ変えず、合成モデルは新知識採用/authority証拠ではない。",
+    "isolated_mutations": "各negativeは一軸/一項目を変異し他14項目/他候補を保持。F02は15項目×missing/undefined/contradictoryの45入力を別に実行する。",
+    "value_controls": "案件値有り、値のみunknown、根拠付き非適用、applicability unknown、定義missingをそれぞれ別入力とする。section N/Aとfield N/Aは独立。",
+    "version_controls": "template/knowledge/pack/要求/oracleの版を別fieldで固定し同filename異ID、同ID異版、packだけ異版を別入力で照合。",
+    "dependency_controls": "局所候補、CORE返却、CORE由来source、LABO評価選択を別入力にする。選択scopeだけ不足を検出し未選択sourceは未観測。receiver receipt未供給でも局所意味を供給できる。",
+    "effect_controls": "記録/採択/値採用/義務消込/権限/実operationを0として観測。正常供給も運用promotionや実受領を宣言しない。",
+    "logical_input_type": "SupplyInput",
+    "normal_control_boundary": "完全合成controlの具体facts/source/qualificationは後続著述。実MSG payloadを完全とみなさずsource_controlsのdefinition_state/dependency_stateをそのまま保持。"
+  },
+  "cases": [
+    {
+      "id": "HELIXBRAIN-L8-032-B01",
+      "design_ref": "HELIXBRAIN-L5-032-B01",
+      "requirement_ref": "HELIXBRAIN-L3-032-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-B01",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "同じ問題の複数候補とconflicts_with/alternative_toを照合する。",
+      "expected_observation": "候補と未決inputが別個に残る。",
+      "original_system_negative_input": "一つを正解として採用済みに上書きする。",
+      "original_system_failure_observation": "選択をBRAINの成立結果にしない。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-B01-NEG-01",
+          "change": "複数候補/必要input/反例/限界を一つの絶対解へ上書き",
+          "expected_classification": "candidate_as_absolute_choice",
+          "expected_axis": "product_selection_claim",
+          "expected_state": "conflict",
+          "expected": "各代替と反例/限界を保持し採用0。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-B01-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-candidate_as_absolute_choice",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "actor": "BRAIN",
+              "kind": "absolute_product_choice",
+              "proposed_value": "candidate-A",
+              "basis_refs": [
+                "candidate-A",
+                "candidate-B"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-candidate_as_absolute_choice"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-B01"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-B02",
+      "design_ref": "HELIXBRAIN-L5-032-B02",
+      "requirement_ref": "HELIXBRAIN-L3-032-B02",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-B02",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "定義が完備して案件値が未決の候補をCOREへ返す流れを照合する。",
+      "expected_observation": "知識受領と未完義務が同時に表せる。",
+      "original_system_negative_input": "知識receiptだけから案件義務を消し込む。",
+      "original_system_failure_observation": "案件成立を認めずCORE/OSの未完を残す。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-B02-NEG-01",
+          "change": "BRAIN030受領可能性をCORE適用/OS義務成立へ変換",
+          "expected_classification": "receipt_as_product_discharge",
+          "expected_axis": "obligation_discharge_claim",
+          "expected_state": "unknown",
+          "expected": "知識受領/適用/記録を独立軸。",
+          "backflow_owner": "os_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-B02-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+          "rule_ref": "HELIXBRAIN-L5-032-R-receipt_as_product_discharge",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "actor": "BRAIN",
+              "kind": "project_obligation_discharge",
+              "basis_refs": [
+                "knowledge-receipt"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-receipt_as_product_discharge"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-B02-NEG-02",
+          "change": "知識受領だけでCOREのN/Aが成立と主張",
+          "expected_classification": "receipt_as_na",
+          "expected_axis": "applicability_claim",
+          "expected_state": "unknown",
+          "expected": "案件N/A理由/判定者/revision/再評価条件を推定しない。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-B02-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+          "rule_ref": "HELIXBRAIN-L5-032-R-receipt_as_na",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "kind": "field_not_applicable",
+              "basis_refs": [
+                "knowledge-receipt"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-receipt_as_na"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-B02"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F01",
+      "design_ref": "HELIXBRAIN-L5-032-F01",
+      "requirement_ref": "HELIXBRAIN-L3-032-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-F01",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "15項目を持つMSG004/001/005の限定採用内容をそれぞれ与える。各項目の根拠と原適用制限を照合する。",
+      "expected_observation": "全項目が個別に参照でき、単体・接続・構成体の内容差を保持する。返却は候補であり採用判断を伴わない。",
+      "original_system_negative_input": "同じ表示labelに異なる意味を入れる、relationの端と向きを落とす、またはBRAINが層・V-pair・設計完了規則を新設/再定義する。",
+      "original_system_failure_observation": "不一致項目・元revisionを示し、同じ意味の契約として返さない。HARNESS契約から逸脱した層/対/完了規則を成立結果にしない。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-F01-NEG-01",
+          "change": "同じ表示labelへ異なるowner意味を結ぶ",
+          "expected_classification": "descriptor_meaning_collision",
+          "expected_axis": "descriptor.definition",
+          "expected_state": "conflict",
+          "expected": "label一致で意味同一にしない。両sourceを保持。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F01-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_meaning_collision",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "meaning_comparisons",
+            "operation": "append",
+            "synthetic_value": {
+              "left": "same-label-fact-A",
+              "right": "same-label-fact-B",
+              "equivalent": false,
+              "source": "qualified-owner-comparison"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_meaning_collision"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F01-NEG-02",
+          "change": "relationの片端identity/revisionを除く",
+          "expected_classification": "relation_endpoint_missing",
+          "expected_axis": "relation.definition",
+          "expected_state": "missing",
+          "expected": "kind/方向/残る端を保持し、関係完全としない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F01-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-relation_endpoint_missing",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "relations[0].to_ref",
+            "operation": "replace",
+            "synthetic_value": null,
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-relation_endpoint_missing"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F01-NEG-03",
+          "change": "relationの向きを除く",
+          "expected_classification": "relation_direction_missing",
+          "expected_axis": "relation.definition",
+          "expected_state": "missing",
+          "expected": "端の名前類似から方向を生成しない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F01-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-relation_direction_missing",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "relations[0].direction",
+            "operation": "replace",
+            "synthetic_value": null,
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-relation_direction_missing"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F01-NEG-04",
+          "change": "BRAIN候補がHARNESSの層/V-pair/設計完了規則を上書きする",
+          "expected_classification": "harness_contract_redefined",
+          "expected_axis": "harness_contract",
+          "expected_state": "conflict",
+          "expected": "原HARNESS参照を保持し、BRAINの再定義を成立結果にしない。",
+          "backflow_owner": "harness_contract_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F01-NEG-04",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-harness_contract_redefined",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "actor": "BRAIN",
+              "kind": "harness_layer_pair_override",
+              "proposed_value": "synthetic-different-pair",
+              "basis_refs": [
+                "qualified-harness-original-pair"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-harness_contract_redefined"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-F01"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F02",
+      "design_ref": "HELIXBRAIN-L5-032-F02",
+      "requirement_ref": "HELIXBRAIN-L3-032-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-F02",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "F01の成立材料から15項目を一つずつ除去し、別に未定義と矛盾を各項目へ入れる。",
+      "expected_observation": "正常材料だけが完全な定義として識別される。欠落・未定義・矛盾の種類と対象項目が区別される。",
+      "original_system_negative_input": "required section/fieldを別Patternのrequired inputで代替する。",
+      "original_system_failure_observation": "元項目の不足が残り、完全性が成立しない。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-01",
+          "change": "required section欠落を別Patternのrequired inputで補う",
+          "expected_classification": "cross_pattern_section_substitution",
+          "expected_axis": "required section.definition",
+          "expected_state": "missing",
+          "expected": "元項目missing、別Pattern成功を相殺にしない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-cross_pattern_section_substitution",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors",
+            "operation": "remove_and_append_claim",
+            "synthetic_value": {
+              "remove_kind": "required section",
+              "claim_kind": "fill_definition",
+              "basis_pattern": "other-pattern-required-input"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-cross_pattern_section_substitution"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-02",
+          "change": "required field欠落を別Patternのrequired inputで補う",
+          "expected_classification": "cross_pattern_field_substitution",
+          "expected_axis": "required field.definition",
+          "expected_state": "missing",
+          "expected": "元項目missing、field単位の不足を保持。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-cross_pattern_field_substitution",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors",
+            "operation": "remove_and_append_claim",
+            "synthetic_value": {
+              "remove_kind": "required field",
+              "claim_kind": "fill_definition",
+              "basis_pattern": "other-pattern-required-input"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-cross_pattern_field_substitution"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-03",
+          "change": "template identityだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_01_missing",
+          "expected_axis": "template identity.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_01_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "template identity"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_01_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-04",
+          "change": "template identityだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_01_undefined",
+          "expected_axis": "template identity.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-04",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_01_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "template identity",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_01_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-05",
+          "change": "template identityだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_01_contradictory",
+          "expected_axis": "template identity.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-05",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_01_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "template identity",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_01_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-06",
+          "change": "versionだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_02_missing",
+          "expected_axis": "version.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-06",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_02_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "version"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_02_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-07",
+          "change": "versionだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_02_undefined",
+          "expected_axis": "version.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-07",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_02_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "version",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_02_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-08",
+          "change": "versionだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_02_contradictory",
+          "expected_axis": "version.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-08",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_02_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "version",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_02_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-09",
+          "change": "layer/pairだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_03_missing",
+          "expected_axis": "layer/pair.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-09",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_03_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "layer/pair"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_03_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-10",
+          "change": "layer/pairだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_03_undefined",
+          "expected_axis": "layer/pair.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-10",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_03_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "layer/pair",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_03_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-11",
+          "change": "layer/pairだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_03_contradictory",
+          "expected_axis": "layer/pair.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-11",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_03_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "layer/pair",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_03_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-12",
+          "change": "applicabilityだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_04_missing",
+          "expected_axis": "applicability.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-12",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_04_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "applicability"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_04_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-13",
+          "change": "applicabilityだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_04_undefined",
+          "expected_axis": "applicability.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-13",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_04_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "applicability",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_04_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-14",
+          "change": "applicabilityだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_04_contradictory",
+          "expected_axis": "applicability.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-14",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_04_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "applicability",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_04_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-15",
+          "change": "required inputだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_05_missing",
+          "expected_axis": "required input.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-15",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_05_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "required input"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_05_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-16",
+          "change": "required inputだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_05_undefined",
+          "expected_axis": "required input.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-16",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_05_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "required input",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_05_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-17",
+          "change": "required inputだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_05_contradictory",
+          "expected_axis": "required input.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-17",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_05_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "required input",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_05_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-18",
+          "change": "required sectionだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_06_missing",
+          "expected_axis": "required section.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-18",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_06_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "required section"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_06_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-19",
+          "change": "required sectionだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_06_undefined",
+          "expected_axis": "required section.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-19",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_06_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "required section",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_06_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-20",
+          "change": "required sectionだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_06_contradictory",
+          "expected_axis": "required section.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-20",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_06_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "required section",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_06_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-21",
+          "change": "required fieldだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_07_missing",
+          "expected_axis": "required field.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-21",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_07_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "required field"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_07_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-22",
+          "change": "required fieldだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_07_undefined",
+          "expected_axis": "required field.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-22",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_07_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "required field",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_07_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-23",
+          "change": "required fieldだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_07_contradictory",
+          "expected_axis": "required field.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-23",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_07_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "required field",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_07_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-24",
+          "change": "relationだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_08_missing",
+          "expected_axis": "relation.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-24",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_08_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "relation"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_08_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-25",
+          "change": "relationだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_08_undefined",
+          "expected_axis": "relation.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-25",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_08_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "relation",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_08_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-26",
+          "change": "relationだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_08_contradictory",
+          "expected_axis": "relation.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-26",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_08_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "relation",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_08_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-27",
+          "change": "意味ownerだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_09_missing",
+          "expected_axis": "意味owner.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-27",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_09_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "意味owner"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_09_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-28",
+          "change": "意味ownerだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_09_undefined",
+          "expected_axis": "意味owner.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-28",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_09_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "意味owner",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_09_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-29",
+          "change": "意味ownerだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_09_contradictory",
+          "expected_axis": "意味owner.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-29",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_09_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "意味owner",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_09_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-30",
+          "change": "traceだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_10_missing",
+          "expected_axis": "trace.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-30",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_10_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "trace"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_10_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-31",
+          "change": "traceだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_10_undefined",
+          "expected_axis": "trace.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-31",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_10_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "trace",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_10_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-32",
+          "change": "traceだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_10_contradictory",
+          "expected_axis": "trace.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-32",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_10_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "trace",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_10_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-33",
+          "change": "negative oracleだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_11_missing",
+          "expected_axis": "negative oracle.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-33",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_11_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "negative oracle"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_11_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-34",
+          "change": "negative oracleだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_11_undefined",
+          "expected_axis": "negative oracle.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-34",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_11_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "negative oracle",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_11_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-35",
+          "change": "negative oracleだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_11_contradictory",
+          "expected_axis": "negative oracle.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-35",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_11_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "negative oracle",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_11_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-36",
+          "change": "measurementだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_12_missing",
+          "expected_axis": "measurement.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-36",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_12_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "measurement"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_12_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-37",
+          "change": "measurementだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_12_undefined",
+          "expected_axis": "measurement.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-37",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_12_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "measurement",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_12_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-38",
+          "change": "measurementだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_12_contradictory",
+          "expected_axis": "measurement.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-38",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_12_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "measurement",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_12_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-39",
+          "change": "completionだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_13_missing",
+          "expected_axis": "completion.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-39",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_13_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "completion"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_13_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-40",
+          "change": "completionだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_13_undefined",
+          "expected_axis": "completion.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-40",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_13_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "completion",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_13_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-41",
+          "change": "completionだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_13_contradictory",
+          "expected_axis": "completion.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-41",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_13_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "completion",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_13_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-42",
+          "change": "downstream kindだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_14_missing",
+          "expected_axis": "downstream kind.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-42",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_14_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "downstream kind"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_14_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-43",
+          "change": "downstream kindだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_14_undefined",
+          "expected_axis": "downstream kind.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-43",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_14_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "downstream kind",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_14_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-44",
+          "change": "downstream kindだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_14_contradictory",
+          "expected_axis": "downstream kind.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-44",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_14_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "downstream kind",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_14_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-45",
+          "change": "supersessionだけをmissingにし他14項目を保持",
+          "expected_classification": "descriptor_15_missing",
+          "expected_axis": "supersession.definition",
+          "expected_state": "missing",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-45",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_15_missing",
+          "typed_mutation": {
+            "operation": "remove_slot",
+            "target_descriptor_kind": "supersession"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_15_missing",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-46",
+          "change": "supersessionだけをundefinedにし他14項目を保持",
+          "expected_classification": "descriptor_15_undefined",
+          "expected_axis": "supersession.definition",
+          "expected_state": "unknown",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-46",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_15_undefined",
+          "typed_mutation": {
+            "operation": "replace_meaning_with_null",
+            "target_descriptor_kind": "supersession",
+            "retain": "qualified source/binding/owner/slot"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_15_undefined",
+          "input_refinement_status": "defined_candidate_not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F02-NEG-47",
+          "change": "supersessionだけをcontradictoryにし他14項目を保持",
+          "expected_classification": "descriptor_15_contradictory",
+          "expected_axis": "supersession.definition",
+          "expected_state": "conflict",
+          "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F02-NEG-47",
+          "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+          "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_15_contradictory",
+          "typed_mutation": {
+            "operation": "append_conflicting_meaning_fact",
+            "target_descriptor_kind": "supersession",
+            "retain": "same subject/revision/scope; two qualified owner facts",
+            "comparison": "qualified independent MeaningComparison.equivalent=false"
+          },
+          "preserved_control": "対象以外14descriptorと別candidateのqualified factsを同bytesで保持。claim/結果codeは入力しない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-descriptor_15_contradictory",
+          "input_refinement_status": "defined_candidate_not_executed"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-F02"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F03",
+      "design_ref": "HELIXBRAIN-L5-032-F03",
+      "requirement_ref": "HELIXBRAIN-L3-032-F03",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-F03",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "同じ定義について、案件値供給済み、案件値のみ未供給、根拠付き非適用、適用条件unknownを比較する。",
+      "expected_observation": "案件値のみ未供給の材料は知識受領可能性と未完設計義務を別に表せる。非適用の根拠を保持する。",
+      "original_system_negative_input": "unknownをN/Aへ変換する、または定義欠落を案件値未決へ変える。",
+      "original_system_failure_observation": "変更を成立させず、元の不足種類・理由・返却先を保持する。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-F03-NEG-01",
+          "change": "定義あり案件値unknownをN/Aへ読み替える",
+          "expected_classification": "unknown_as_na",
+          "expected_axis": "field.value",
+          "expected_state": "unknown",
+          "expected": "definitionと元value不足を保全。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F03-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+          "rule_ref": "HELIXBRAIN-L5-032-R-unknown_as_na",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "values[0].value + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "value": null,
+              "claim_kind": "field_not_applicable",
+              "core_decision_ref": null
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-unknown_as_na"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F03-NEG-02",
+          "change": "定義missingを案件値unknownへ読み替える",
+          "expected_classification": "definition_as_value_gap",
+          "expected_axis": "field.definition",
+          "expected_state": "missing",
+          "expected": "定義missingの戻し先をCORE値不足へ付替えない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F03-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+          "rule_ref": "HELIXBRAIN-L5-032-R-definition_as_value_gap",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "section_fields[0].meaning_fact_refs + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "meaning_fact_refs": [],
+              "claim_kind": "value_only_gap"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-definition_as_value_gap"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F03-NEG-03",
+          "change": "applicability unknownを非適用へ変換する",
+          "expected_classification": "applicability_unknown_as_na",
+          "expected_axis": "applicability.evaluation",
+          "expected_state": "unknown",
+          "expected": "N/A理由を創作しない。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F03-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+          "rule_ref": "HELIXBRAIN-L5-032-R-applicability_unknown_as_na",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "applicability_records[0] + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "decision": "unknown",
+              "claim_kind": "field_not_applicable"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-applicability_unknown_as_na"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F03-NEG-04",
+          "change": "sectionのN/Aを全fieldへ無条件転写する",
+          "expected_classification": "section_na_all_fields",
+          "expected_axis": "field.applicability",
+          "expected_state": "unknown",
+          "expected": "各fieldの原適用条件/根拠を個別保持。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F03-NEG-04",
+          "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+          "rule_ref": "HELIXBRAIN-L5-032-R-section_na_all_fields",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "applicability_records + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "section_decision": "not_applicable",
+              "field_decision_ref": null,
+              "claim_kind": "all_section_fields_not_applicable"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-section_na_all_fields"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-F03"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F04",
+      "design_ref": "HELIXBRAIN-L5-032-F04",
+      "requirement_ref": "HELIXBRAIN-L3-032-F04",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-F04",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "同じfilenameの異なるidentity、同identityの異なる版、pack版のみ異なる候補を与える。",
+      "expected_observation": "各相違を正しい識別軸で返す。version_target=1.0を実版として扱わない。",
+      "original_system_negative_input": "別revisionのoracle、source無し、宣言互換範囲外、画像やtool node IDだけから推定した意味identity/版を混入する。",
+      "original_system_failure_observation": "当該参照を未評価または不適用として返し、別候補の成功で相殺しない。画像/tool node IDだけでidentity/版の一致や成立を返さない。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-01",
+          "change": "候補sourceを除く",
+          "expected_classification": "source_missing",
+          "expected_axis": "source",
+          "expected_state": "missing",
+          "expected": "未評価、同名source/latest補完0。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F04-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-source_missing",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "sources",
+            "operation": "remove_selected",
+            "synthetic_value": {
+              "target": "candidate-A-semantic-source"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-source_missing"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-02",
+          "change": "template versionを除く",
+          "expected_classification": "version_missing",
+          "expected_axis": "template.version",
+          "expected_state": "missing",
+          "expected": "knowledge/pack版を代替しない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F04-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-version_missing",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "binding.template_ref.revision",
+            "operation": "replace",
+            "synthetic_value": null,
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-version_missing"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-03",
+          "change": "候補の適用scopeを除く",
+          "expected_classification": "scope_missing",
+          "expected_axis": "scope",
+          "expected_state": "missing",
+          "expected": "他scopeへ補完せず未評価。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F04-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-scope_missing",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "binding.template_ref.scope",
+            "operation": "replace",
+            "synthetic_value": null,
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-scope_missing"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-04",
+          "change": "両端契約の互換根拠を未供給にする",
+          "expected_classification": "compatibility_unknown",
+          "expected_axis": "compatibility",
+          "expected_state": "unknown",
+          "expected": "当該利用を許さない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F04-NEG-04",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-compatibility_unknown",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "compatibility_records[0].source_ref + compatible",
+            "operation": "replace",
+            "synthetic_value": {
+              "source_ref": null,
+              "compatible": null
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-compatibility_unknown"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-05",
+          "change": "owner宣言互換範囲外の版を与える",
+          "expected_classification": "compatibility_mismatch",
+          "expected_axis": "compatibility",
+          "expected_state": "conflict",
+          "expected": "最新や別candidate成功で補わない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F04-NEG-05",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-compatibility_mismatch",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "compatibility_records[0]",
+            "operation": "replace",
+            "synthetic_value": {
+              "compatible": false,
+              "source_ref": "qualified-owner-outside-range"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-compatibility_mismatch"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-06",
+          "change": "別revisionのoracleを当該項目へ結ぶ",
+          "expected_classification": "oracle_revision_mismatch",
+          "expected_axis": "oracle.binding",
+          "expected_state": "conflict",
+          "expected": "元oracleと期待revisionを残す。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F04-NEG-06",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-oracle_revision_mismatch",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "oracle_bindings[0].oracle_ref.revision",
+            "operation": "replace",
+            "synthetic_value": "synthetic-other-revision",
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-oracle_revision_mismatch"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-07",
+          "change": "画像だけでtemplate identityを推定する",
+          "expected_classification": "image_identity_inference",
+          "expected_axis": "template.identity",
+          "expected_state": "unknown",
+          "expected": "画像からidentity/版を採番しない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F04-NEG-07",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-image_identity_inference",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "binding.template_ref.identity + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "identity": null,
+              "claim_kind": "template_identity",
+              "basis_role": "image_only"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-image_identity_inference"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-08",
+          "change": "tool node IDだけでtemplate版を推定する",
+          "expected_classification": "tool_node_identity_inference",
+          "expected_axis": "template.version",
+          "expected_state": "unknown",
+          "expected": "tool nodeを意味revisionへ変換しない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F04-NEG-08",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-tool_node_identity_inference",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "binding.template_ref.revision + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "revision": null,
+              "claim_kind": "template_version",
+              "basis_role": "tool_node_only"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-tool_node_identity_inference"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-09",
+          "change": "同filenameの別identityを同一と主張する",
+          "expected_classification": "filename_identity_join",
+          "expected_axis": "identity_claim",
+          "expected_state": "conflict",
+          "expected": "原別identity保持。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F04-NEG-09",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-filename_identity_join",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "kind": "same_template_identity",
+              "basis_refs": [
+                "same-filename-A",
+                "same-filename-B"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-filename_identity_join"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-10",
+          "change": "version_target=1.0をtemplate実版に代入する",
+          "expected_classification": "version_target_as_actual",
+          "expected_axis": "template.version_claim",
+          "expected_state": "conflict",
+          "expected": "能力版印と実artifact版を分ける。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F04-NEG-10",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-version_target_as_actual",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "kind": "template_version",
+              "proposed_value": "1.0",
+              "basis_refs": [
+                "version_target"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-version_target_as_actual"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-F04"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F05",
+      "design_ref": "HELIXBRAIN-L5-032-F05",
+      "requirement_ref": "HELIXBRAIN-L3-032-F05",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-F05",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "同じJSONから得たviewと、JSONを保持して表示だけ変えたviewを比較する。",
+      "expected_observation": "意味内容と知識stateがJSONに結ばれ、表示変更を意味更新にしない。",
+      "original_system_negative_input": "viewだけでmeasurement/completion欠落を補う。",
+      "original_system_failure_observation": "JSONの当該不足を保持し、生成成功を完全性の証拠にしない。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-F05-NEG-01",
+          "change": "JSON measurement欠落をviewだけで補う",
+          "expected_classification": "view_measurement_repair",
+          "expected_axis": "measurement.definition",
+          "expected_state": "missing",
+          "expected": "表示生成成功でも原missing保持。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F05-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
+          "rule_ref": "HELIXBRAIN-L5-032-R-view_measurement_repair",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors + claims",
+            "operation": "remove_and_append_claim",
+            "synthetic_value": {
+              "remove_kind": "measurement",
+              "basis_role": "derived_view",
+              "claim_kind": "fill_definition"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-view_measurement_repair"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F05-NEG-02",
+          "change": "JSON completion欠落をviewだけで補う",
+          "expected_classification": "view_completion_repair",
+          "expected_axis": "completion.definition",
+          "expected_state": "missing",
+          "expected": "JSONの項目をviewから更新しない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F05-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
+          "rule_ref": "HELIXBRAIN-L5-032-R-view_completion_repair",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors + claims",
+            "operation": "remove_and_append_claim",
+            "synthetic_value": {
+              "remove_kind": "completion",
+              "basis_role": "derived_view",
+              "claim_kind": "fill_definition"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-view_completion_repair"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F05-NEG-03",
+          "change": "表示変更だけで意味identity/版/state更新済みと報告",
+          "expected_classification": "view_as_semantic_update",
+          "expected_axis": "meaning_update_claim",
+          "expected_state": "conflict",
+          "expected": "元JSONと原stateを保持、write0。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F05-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
+          "rule_ref": "HELIXBRAIN-L5-032-R-view_as_semantic_update",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "kind": "meaning_revision_update",
+              "basis_refs": [
+                "changed-view"
+              ],
+              "semantic_json_change_ref": null
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-view_as_semantic_update"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-F05"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F06",
+      "design_ref": "HELIXBRAIN-L5-032-F06",
+      "requirement_ref": "HELIXBRAIN-L3-032-F06",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-F06",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "義務とoracleへの参照を持つ定義、および計測値だけ未定の同じ定義を与える。",
+      "expected_observation": "定義の関係は辿れ、案件値未決は未完のままCOREへ渡る。",
+      "original_system_negative_input": "義務と無関係な計測、別revisionのoracle、文書生成成功だけのcompletionを入れる。",
+      "original_system_failure_observation": "該当定義の不足または矛盾を示し、project義務成立を返さない。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-F06-NEG-01",
+          "change": "適用義務と無関係な計測根拠を与える",
+          "expected_classification": "unrelated_measurement",
+          "expected_axis": "measurement.binding",
+          "expected_state": "conflict",
+          "expected": "義務/oracleの相違を返す。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F06-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
+          "rule_ref": "HELIXBRAIN-L5-032-R-unrelated_measurement",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "oracle_bindings[0].obligation_ref",
+            "operation": "replace",
+            "synthetic_value": "synthetic-unrelated-obligation",
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-unrelated_measurement"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F06-NEG-02",
+          "change": "completionを別revisionのoracleへ結ぶ",
+          "expected_classification": "completion_oracle_revision",
+          "expected_axis": "completion.binding",
+          "expected_state": "conflict",
+          "expected": "当該成立条件未成立、project消込0。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F06-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
+          "rule_ref": "HELIXBRAIN-L5-032-R-completion_oracle_revision",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "oracle_bindings[completion].oracle_ref.revision",
+            "operation": "replace",
+            "synthetic_value": "synthetic-other-revision",
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-completion_oracle_revision"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F06-NEG-03",
+          "change": "文書生成成功だけをcompletion根拠にする",
+          "expected_classification": "generation_as_completion",
+          "expected_axis": "completion.definition",
+          "expected_state": "unknown",
+          "expected": "対oracleによる成立を推定しない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F06-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
+          "rule_ref": "HELIXBRAIN-L5-032-R-generation_as_completion",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors[completion].facts",
+            "operation": "replace",
+            "synthetic_value": {
+              "meaning": null,
+              "basis_refs": [
+                "document-generated"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-generation_as_completion"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F06-NEG-04",
+          "change": "値unknownに汎用既定閾値を創作する",
+          "expected_classification": "threshold_fabricated",
+          "expected_axis": "measurement.value",
+          "expected_state": "unknown",
+          "expected": "定義knownと案件値unknownを別に返す。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F06-NEG-04",
+          "function_ref": "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
+          "rule_ref": "HELIXBRAIN-L5-032-R-threshold_fabricated",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "values[measurement] + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "value": null,
+              "claim_kind": "measurement_threshold",
+              "basis_origin": "generic_default"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-threshold_fabricated"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-F06"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F07",
+      "design_ref": "HELIXBRAIN-L5-032-F07",
+      "requirement_ref": "HELIXBRAIN-L3-032-F07",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-F07",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "汎用項目に製品固有値を添えた材料と未見domain/actorの材料を与える。",
+      "expected_observation": "汎用定義と製品値の所属を識別し、製品値・不足判断をCOREへ返す。",
+      "original_system_negative_input": "BRAIN出力にtemplate選択、要求合意、設計完成、project義務消込を加える。",
+      "original_system_failure_observation": "当該裁定を契約の成立結果にせず、責務違反を示す。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-F07-NEG-01",
+          "change": "未見domain/actorのscreen/API/permission/state値を汎用定義へ混入",
+          "expected_classification": "product_values_as_generic",
+          "expected_axis": "generic_definition",
+          "expected_state": "conflict",
+          "expected": "元製品値はCORE材料へ残し、汎用化成立にしない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F07-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-product_values_as_generic",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors[required field].facts",
+            "operation": "append",
+            "synthetic_value": {
+              "owner": "BRAIN",
+              "meaning_origin": "project_screen_api_permission_state",
+              "domain": "previously-unseen-domain",
+              "actor": "previously-unseen-actor"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-product_values_as_generic"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F07-NEG-02",
+          "change": "BRAIN供給出力へ製品template採用を加える",
+          "expected_classification": "brain_selects_template",
+          "expected_axis": "product_selection_claim",
+          "expected_state": "conflict",
+          "expected": "候補提供とCORE採用を分離。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F07-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-brain_selects_template",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "actor": "BRAIN",
+              "kind": "product_template_adoption",
+              "proposed_value": "candidate-A"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-brain_selects_template"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F07-NEG-03",
+          "change": "BRAIN出力が要求合意を宣言",
+          "expected_classification": "brain_agrees_requirements",
+          "expected_axis": "requirements_agreement_claim",
+          "expected_state": "conflict",
+          "expected": "既存要求authorityを代行しない。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F07-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-brain_agrees_requirements",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "actor": "BRAIN",
+              "kind": "requirements_agreement",
+              "proposed_value": true
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-brain_agrees_requirements"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F07-NEG-04",
+          "change": "BRAIN出力が設計完成を宣言",
+          "expected_classification": "brain_finishes_design",
+          "expected_axis": "design_completion_claim",
+          "expected_state": "conflict",
+          "expected": "completion定義と案件完成を区別。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F07-NEG-04",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-brain_finishes_design",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "actor": "BRAIN",
+              "kind": "design_completion",
+              "proposed_value": true
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-brain_finishes_design"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F07-NEG-05",
+          "change": "BRAIN出力がproject義務を消し込む",
+          "expected_classification": "brain_closes_obligation",
+          "expected_axis": "obligation_discharge_claim",
+          "expected_state": "conflict",
+          "expected": "OS記録write/消込0。",
+          "backflow_owner": "os_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F07-NEG-05",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-brain_closes_obligation",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "actor": "BRAIN",
+              "kind": "os_obligation_discharge",
+              "proposed_value": true
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-brain_closes_obligation"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-F07"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F08",
+      "design_ref": "HELIXBRAIN-L5-032-F08",
+      "requirement_ref": "HELIXBRAIN-L3-032-F08",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-F08",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "限定内容採用済みで運用promotion未実施のMSG/VT103材料を与える。",
+      "expected_observation": "内容採否と運用stateが別に辿れ、未実施工程は未実施と返る。",
+      "original_system_negative_input": "AI生成のみ、評価scope無し、独立検証無しの材料を採用済みにする。",
+      "original_system_failure_observation": "promotionを成立させず不足工程を返す。032の返却が他工程の承認を代行しない。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-F08-NEG-01",
+          "change": "AI生成だけでaccepted/matureと主張",
+          "expected_classification": "generation_as_promotion",
+          "expected_axis": "promotion",
+          "expected_state": "unknown",
+          "expected": "候補生成と運用採否を別軸。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F08-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+          "rule_ref": "HELIXBRAIN-L5-032-R-generation_as_promotion",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "knowledge_records[0] + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "evaluation_ref": null,
+              "independent_verification_ref": null,
+              "adoption_ref": null,
+              "claim_kind": "knowledge_accepted",
+              "basis_refs": [
+                "ai-generation"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-generation_as_promotion"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F08-NEG-02",
+          "change": "評価範囲無しで昇格済みと主張",
+          "expected_classification": "evaluation_scope_missing",
+          "expected_axis": "promotion",
+          "expected_state": "unknown",
+          "expected": "不足scopeと既存採否ownerを返す。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F08-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+          "rule_ref": "HELIXBRAIN-L5-032-R-evaluation_scope_missing",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "knowledge_records[0].evaluation_scope + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "evaluation_scope": null,
+              "claim_kind": "knowledge_promoted"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-evaluation_scope_missing"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F08-NEG-03",
+          "change": "独立検証無しで昇格済みと主張",
+          "expected_classification": "independent_verification_missing",
+          "expected_axis": "promotion",
+          "expected_state": "unknown",
+          "expected": "元運用stateを保持。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F08-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+          "rule_ref": "HELIXBRAIN-L5-032-R-independent_verification_missing",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "knowledge_records[0].independent_verification_ref + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "independent_verification_ref": null,
+              "claim_kind": "knowledge_promoted"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-independent_verification_missing"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F08-NEG-04",
+          "change": "MSGCONTENT限定意味採択を運用knowledge acceptedへ変換",
+          "expected_classification": "limited_content_as_promotion",
+          "expected_axis": "promotion_claim",
+          "expected_state": "conflict",
+          "expected": "内容採否と運用stateは別。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F08-NEG-04",
+          "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+          "rule_ref": "HELIXBRAIN-L5-032-R-limited_content_as_promotion",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "kind": "knowledge_accepted",
+              "basis_refs": [
+                "MSGCONTENT-limited-adoption"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-limited_content_as_promotion"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-F08"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F09",
+      "design_ref": "HELIXBRAIN-L5-032-F09",
+      "requirement_ref": "HELIXBRAIN-L3-032-F09",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-F09",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "常時入力だけの局所候補、COREへ返す候補、CORE由来またはLABO評価を選んだ候補を分ける。",
+      "expected_observation": "選択条件で必要になる不足だけを返し、未選択source成功を主張しない。",
+      "original_system_negative_input": "receiver未受領を知識定義欠落へ変える、または選択sourceの欠落を別sourceで補う、または旧template/seed/設計例をauthorityや必須項目の代替にする。",
+      "original_system_failure_observation": "定義欠落と接続未成立を分離し、知識owner/CORE/OSへ原因別に返す。参照資料からのauthority生成や必須項目の代替を成立させない。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-F09-NEG-01",
+          "change": "受渡し先未受領を汎用定義欠落へ変換",
+          "expected_classification": "receipt_as_definition",
+          "expected_axis": "handoff",
+          "expected_state": "not_received",
+          "expected": "definition保持、未受領と定義不足を分離。",
+          "backflow_owner": "os_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F09-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+          "rule_ref": "HELIXBRAIN-L5-032-R-receipt_as_definition",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "handoff_records[0] + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "state": "not_received",
+              "claim_kind": "definition_missing_from_receipt"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-receipt_as_definition"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F09-NEG-02",
+          "change": "選択CORE由来source欠落を無関係sourceで補う",
+          "expected_classification": "selected_source_substitution",
+          "expected_axis": "selected_source",
+          "expected_state": "missing",
+          "expected": "選択scope/sourceの元欠落を残す。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F09-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+          "rule_ref": "HELIXBRAIN-L5-032-R-selected_source_substitution",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "dependencies.selected_source_refs + sources",
+            "operation": "remove_selected",
+            "synthetic_value": {
+              "core_source_selected": true,
+              "remove_source": "selected-core-source",
+              "retain": "unrelated-qualified-source"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-selected_source_substitution"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F09-NEG-03",
+          "change": "旧template/seed/設計例をauthorityに使う",
+          "expected_classification": "reference_as_authority",
+          "expected_axis": "authority_claim",
+          "expected_state": "conflict",
+          "expected": "限定内容採択と参考資料を分ける。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F09-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+          "rule_ref": "HELIXBRAIN-L5-032-R-reference_as_authority",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "kind": "upstream_authority",
+              "basis_role": "reference_only"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-reference_as_authority"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F09-NEG-04",
+          "change": "参考資料で必須項目missingを補う",
+          "expected_classification": "reference_as_required_definition",
+          "expected_axis": "descriptor.definition",
+          "expected_state": "missing",
+          "expected": "元required欠落を保持。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F09-NEG-04",
+          "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+          "rule_ref": "HELIXBRAIN-L5-032-R-reference_as_required_definition",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors + claims",
+            "operation": "remove_and_append_claim",
+            "synthetic_value": {
+              "remove_kind": "required input",
+              "claim_kind": "fill_definition",
+              "basis_role": "reference_only"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-reference_as_required_definition"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F09-NEG-05",
+          "change": "候補提供前に相手完了receiptを必須化",
+          "expected_classification": "future_receipt_as_precondition",
+          "expected_axis": "precondition_claim",
+          "expected_state": "conflict",
+          "expected": "未受領でも局所候補提供を継続。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F09-NEG-05",
+          "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+          "rule_ref": "HELIXBRAIN-L5-032-R-future_receipt_as_precondition",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "kind": "require_before_supply",
+              "proposed_value": "future-receiver-completion-receipt"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-future_receipt_as_precondition"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F09-NEG-06",
+          "change": "非選択LABO sourceを観測/評価済みと主張",
+          "expected_classification": "unselected_source_success",
+          "expected_axis": "unselected_source",
+          "expected_state": "unobserved",
+          "expected": "未観測保持、評価成功0。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-F09-NEG-06",
+          "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+          "rule_ref": "HELIXBRAIN-L5-032-R-unselected_source_success",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "dependencies + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "labo_evaluation_selected": false,
+              "claim_kind": "labo_evaluated",
+              "basis_refs": [
+                "unselected-labo-source"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-unselected_source_success"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-F09"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-N01",
+      "design_ref": "HELIXBRAIN-L5-032-N01",
+      "requirement_ref": "HELIXBRAIN-L3-032-N01",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-N01",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "返却した各項目を元source/knowledge版へ逆照合する。",
+      "expected_observation": "意味の変更点と未決点が同じ識別軸で辿れる。",
+      "original_system_negative_input": "一部項目だけ別knowledge版へ付け替える。",
+      "original_system_failure_observation": "混在を不一致として返す。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-N01-NEG-01",
+          "change": "一項目だけ別knowledge revisionへ付替え",
+          "expected_classification": "mixed_knowledge_revision",
+          "expected_axis": "descriptor.trace",
+          "expected_state": "conflict",
+          "expected": "template/knowledge/sourceの原組を保持。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N01-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-mixed_knowledge_revision",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors[trace].facts[0].binding.knowledge_ref.revision",
+            "operation": "replace",
+            "synthetic_value": "synthetic-other-knowledge-revision",
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-mixed_knowledge_revision"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N01-NEG-02",
+          "change": "supersession関係を省き旧knowledge参照をlatestへ付け替える",
+          "expected_classification": "silent_supersession",
+          "expected_axis": "descriptor.trace",
+          "expected_state": "conflict",
+          "expected": "原旧revision/sourceと明示supersession不足を保全し、latestで同一意味にしない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N01-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "rule_ref": "HELIXBRAIN-L5-032-R-silent_supersession",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors[trace].facts[0].binding.knowledge_ref.revision + relations",
+            "operation": "replace_and_remove",
+            "synthetic_value": {
+              "revision": "synthetic-new-knowledge-revision",
+              "remove_relation_kind": "supersession"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-silent_supersession"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-N01"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-N02",
+      "design_ref": "HELIXBRAIN-L5-032-N02",
+      "requirement_ref": "HELIXBRAIN-L3-032-N02",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-N02",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "各不足状態を一つずつ返却経路へ通す。",
+      "expected_observation": "状態・理由・対象revision・戻し先が保たれる。",
+      "original_system_negative_input": "空集合、任意fallback、全体greenへ縮退する。",
+      "original_system_failure_observation": "不足対象が可視で、全体成立を主張しない。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-N02-NEG-01",
+          "change": "不足を空集合に縮退",
+          "expected_classification": "missing_as_empty",
+          "expected_axis": "descriptor.definition",
+          "expected_state": "missing",
+          "expected": "不足identity/理由を保持。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N02-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-missing_as_empty",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors + claims",
+            "operation": "remove_and_append_claim",
+            "synthetic_value": {
+              "remove_kind": "required input",
+              "claim_kind": "no_gaps",
+              "proposed_value": []
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-missing_as_empty"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N02-NEG-02",
+          "change": "unknownを任意fallbackで成立",
+          "expected_classification": "unknown_fallback",
+          "expected_axis": "descriptor.definition",
+          "expected_state": "unknown",
+          "expected": "元revision/sourceを返す。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N02-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-unknown_fallback",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors[required input].facts[0].meaning + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "meaning": null,
+              "claim_kind": "fill_definition",
+              "basis_role": "arbitrary_fallback"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-unknown_fallback"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N02-NEG-03",
+          "change": "件数/hash一致だけで全体完全",
+          "expected_classification": "hash_as_complete",
+          "expected_axis": "completion_claim",
+          "expected_state": "unknown",
+          "expected": "意味不足を相殺しない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N02-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-hash_as_complete",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "claims",
+            "operation": "append",
+            "synthetic_value": {
+              "kind": "all_obligations_complete",
+              "basis_refs": [
+                "matching-hash",
+                "matching-count"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-hash_as_complete"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N02-NEG-04",
+          "change": "下位greenで未受領/未観測を全体成功",
+          "expected_classification": "lower_green_as_complete",
+          "expected_axis": "completion_claim",
+          "expected_state": "unknown",
+          "expected": "元各状態を維持。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N02-NEG-04",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-lower_green_as_complete",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "handoff_records + dependencies + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "handoff_state": "not_received",
+              "labo_evaluation_selected": false,
+              "claim_kind": "all_obligations_complete",
+              "basis_refs": [
+                "lower-pair-green"
+              ]
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-lower_green_as_complete"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N02-NEG-05",
+          "change": "descriptor.definitionの原missingを返却経路で無根拠に成立へ変換",
+          "expected_classification": "state_preservation_missing",
+          "expected_axis": "descriptor.definition",
+          "expected_state": "missing",
+          "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N02-NEG-05",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_missing",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "descriptors + claims",
+            "operation": "remove_and_append_claim",
+            "synthetic_value": {
+              "remove_kind": "required input",
+              "claim_kind": "return_definition_known"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-state_preservation_missing"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N02-NEG-06",
+          "change": "field.valueの原unknownを返却経路で無根拠に成立へ変換",
+          "expected_classification": "state_preservation_unknown",
+          "expected_axis": "field.value",
+          "expected_state": "unknown",
+          "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N02-NEG-06",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_unknown",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "values[0].value + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "value": null,
+              "claim_kind": "return_value_supplied"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-state_preservation_unknown"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N02-NEG-07",
+          "change": "descriptor.definitionの原conflictを返却経路で無根拠に成立へ変換",
+          "expected_classification": "state_preservation_conflict",
+          "expected_axis": "descriptor.definition",
+          "expected_state": "conflict",
+          "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N02-NEG-07",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_conflict",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "meaning_comparisons + claims",
+            "operation": "append",
+            "synthetic_value": {
+              "equivalent": false,
+              "source": "qualified-owner-comparison",
+              "claim_kind": "return_definition_known"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-state_preservation_conflict"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N02-NEG-08",
+          "change": "field.applicabilityの原not_applicableを返却経路で無根拠に成立へ変換",
+          "expected_classification": "state_preservation_not_applicable",
+          "expected_axis": "field.applicability",
+          "expected_state": "not_applicable",
+          "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N02-NEG-08",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_not_applicable",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "applicability_records[0] + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "decision": "not_applicable",
+              "source": "qualified-core-na-reason-and-reentry",
+              "claim_kind": "return_field_applicable"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-state_preservation_not_applicable"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N02-NEG-09",
+          "change": "unselected_sourceの原unobservedを返却経路で無根拠に成立へ変換",
+          "expected_classification": "state_preservation_unobserved",
+          "expected_axis": "unselected_source",
+          "expected_state": "unobserved",
+          "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N02-NEG-09",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_unobserved",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "dependencies + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "labo_evaluation_selected": false,
+              "claim_kind": "return_source_observed"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-state_preservation_unobserved"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N02-NEG-10",
+          "change": "handoffの原not_receivedを返却経路で無根拠に成立へ変換",
+          "expected_classification": "state_preservation_not_received",
+          "expected_axis": "handoff",
+          "expected_state": "not_received",
+          "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
+          "backflow_owner": "os_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N02-NEG-10",
+          "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+          "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_not_received",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "handoff_records[0] + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "state": "not_received",
+              "claim_kind": "return_received"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-state_preservation_not_received"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-N02"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-N03",
+      "design_ref": "HELIXBRAIN-L5-032-N03",
+      "requirement_ref": "HELIXBRAIN-L3-032-N03",
+      "system_oracle_ref": "HELIXBRAIN-L10-032-N03",
+      "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "positive_input": "製品要求値や資源が未供給の返却と、計測根拠のある返却を分ける。",
+      "expected_observation": "案件値未決と汎用定義不足を区別し、実測を仮定しない。",
+      "original_system_negative_input": "90秒/1CPU/256MiBなど参照fixtureの値を一般既定値にする。",
+      "original_system_failure_observation": "転用を成立させず、対象operationとownerの不足を保持する。",
+      "negative_cases": [
+        {
+          "id": "HELIXBRAIN-L8-032-N03-NEG-01",
+          "change": "参照fixture90秒を一般期限へ転用",
+          "expected_classification": "fixture_timeout_default",
+          "expected_axis": "operation_value",
+          "expected_state": "unknown",
+          "expected": "値/根拠/operation owner未決保持。",
+          "backflow_owner": "core_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N03-NEG-01",
+          "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+          "rule_ref": "HELIXBRAIN-L5-032-R-fixture_timeout_default",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "values[timeout] + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "value": null,
+              "claim_kind": "operation_deadline",
+              "proposed_value": "90 seconds",
+              "basis_origin": "reference_fixture"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-fixture_timeout_default"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N03-NEG-02",
+          "change": "参照fixture1CPUを実資源へ転用",
+          "expected_classification": "fixture_cpu_default",
+          "expected_axis": "resource_value",
+          "expected_state": "unknown",
+          "expected": "実資源未供給を維持。",
+          "backflow_owner": "infrastructure_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N03-NEG-02",
+          "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+          "rule_ref": "HELIXBRAIN-L5-032-R-fixture_cpu_default",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "values[cpu] + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "value": null,
+              "claim_kind": "resource_capacity",
+              "proposed_value": "1 CPU",
+              "basis_origin": "reference_fixture"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-fixture_cpu_default"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-N03-NEG-03",
+          "change": "参照fixture256MiBを実容量へ転用",
+          "expected_classification": "fixture_memory_default",
+          "expected_axis": "resource_value",
+          "expected_state": "unknown",
+          "expected": "fixtureと実計測を区別。",
+          "backflow_owner": "infrastructure_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "integration_case_ref": "HELIXBRAIN-L9-032-N03-NEG-03",
+          "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+          "rule_ref": "HELIXBRAIN-L5-032-R-fixture_memory_default",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "typed_mutation": {
+            "target": "values[memory] + claims",
+            "operation": "replace_and_append",
+            "synthetic_value": {
+              "value": null,
+              "claim_kind": "resource_capacity",
+              "proposed_value": "256 MiB",
+              "basis_origin": "reference_fixture"
+            },
+            "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
+          },
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "predicate_ref": "HELIXBRAIN-L5-032-R-fixture_memory_default"
+        }
+      ],
+      "execution_state": "not_executed",
+      "integration_case_ref": "HELIXBRAIN-L9-032-N03"
+    }
+  ],
+  "evidence_contract": {
+    "required": "対象L4/L9 revision、fixture原source/変異、descriptor/knowledge/template各版、scope/condition、原各axis、claim判定、原因/戻し先、副作用0を個別に記録する。",
+    "case_adequacy": "コード一致だけでなく原項目内容、変異した意味差、無関係項目保全、返却後の状態保存を対照実行で検査。件数/hash/空集合を意味oracle代替にしない。",
+    "real_execution": "L5/L8とL6/L7のtest/oracle凍結→実装前Red→最小実装→Greenの実証拠を後続で接続。今は全case not_executed。"
+  },
+  "completion": {
+    "state": "draft_incomplete",
+    "original_negative_count": 105,
+    "typed_mutation_defined": 105,
+    "typed_mutation_pending": 0,
+    "runtime_execution": "not_executed",
+    "semantic_review": "not_requested",
+    "meaning_coverage": "not_proven",
+    "remaining_typed_case_refs": [],
+    "remaining": "正常fixtureの具体facts・関数間入力対応・追加shape/null/資格/locality/determinism unit分岐と静的/独立意味review未完。105入力案だけを完成証拠にしない。"
+  }
+}
