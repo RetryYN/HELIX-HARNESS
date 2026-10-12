@@ -1,0 +1,982 @@
+{
+  "document_id": "HARNESS-L5-052-COMMAND-MEANING-IDENTITY",
+  "layer": "L5",
+  "paired_document": "docs/helix-harness/L8-unit-verification/command-meaning-identity.json",
+  "parent": "HARNESS-L2-052",
+  "status": "candidate_pending_independent_review",
+  "source_main": "e3ebf6cd675c690760893145502e99ca530cd11f",
+  "scope": "承認済み052の8義務、7 pure関数、型/正規化profile/OSとreceipt結合の詳細とL8。全92親430義務の一部分で実装・実運転未成立。",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/command-meaning-identity.json",
+      "sha256": "b50bcc43fc293e0678a7f9f59b2b4bd05ecfffecd4e47cca657cfd85f88be90a"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/command-meaning-identity.json",
+      "sha256": "abe3babce359ca12302d30656bb40dde6f38de29276d35d2071d404db49297c3"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-prerequisite-contracts-l3-l10-delegated-decision-2026-10-12.md",
+      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+      "sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+      "sha256": "30fb55d761550e9407ba818a048b8e1bde89d6671f5044a32fe5217ed86486ea"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "lines": "142",
+      "disposition": "semantic_rederivation",
+      "keep": "command冪等とbase revision比較。",
+      "change": "HARNESS052は意味identityの判定だけ、OS053は全必須write原子保存/CAS運転。旧Markdown/DB/層番号を継承しない。",
+      "reason": "採用済み052/OS053の非重複owner。FR53履歴変換は対象外。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+      "lines": "76",
+      "disposition": "semantic_rederivation",
+      "keep": "同command異payloadのconflictと先行結果不変の反証。",
+      "change": "故障注入/多artifact原子性とrename/split/mergeはこの対で実行せず、該当ownerの義務として残す。",
+      "reason": "局所意味照合から旧HOT49全体の合格を作らない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+      "lines": "145–153",
+      "disposition": "semantic_rederivation",
+      "keep": "同operation同payloadはdeduplicate、異payloadはconflict。",
+      "change": "単なるevent operation_id/digestの二値比較を、承認済みcommand/scope/base/意味digestと規則・scope revisionの比較に対応。書込み順とtableは移さない。",
+      "reason": "二軸だけでは異scope/baseと正規化規則不一致を見逃す。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md",
+      "sha256": "0a91276521551f976d1b692a243b86653d02ff4cf51a4d6a0344a36fb499bbd6",
+      "asset_id": "LEGACY-ASSET-5D4AF9B5877D5CAD7089",
+      "lines": "21–49",
+      "disposition": "semantic_rederivation",
+      "keep": "Python意味コアとNode単一commit境界、意味判断へDB path/credentialを渡さない。",
+      "change": "旧runtime/sourceをコピーせず、052 pure入力snapshotと053 writerの受渡しへ導出。旧runtime版・lease機構は別設計。",
+      "reason": "意味の同一性をOSの実commitやauthorityへ昇格させない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/event-projection-checkpoint-replay.md",
+      "sha256": "43cea6098e10bce5fe697ffaa08a9fd02b01d99a1b20dac071f49acfa761aa77",
+      "asset_id": "LEGACY-ASSET-33C30050BD9B4A523E60",
+      "lines": "338–355",
+      "disposition": "semantic_rederivation",
+      "keep": "一つの正規化/digest契約を参照し、scope selectorは意味正規化しない。",
+      "change": "第二normalizerをOSへ置かず、052のRuleRefへ一本化。旧doctor/rebuild/helperを呼ばない。",
+      "reason": "ownerの規則revisionごと再現できる比較が必要。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/canonical-digest.ts",
+      "sha256": "c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
+      "asset_id": "LEGACY-ASSET-4A9AB5B2EF182BC30431",
+      "lines": "1–48",
+      "disposition": "semantic_rederivation",
+      "keep": "object key順/array順/有限JSONとdigestの分離。",
+      "change": "旧TS関数を実行/copyしない。具体serializer・数値/重複key/Unicode/byte domainはL5で比較して選ぶ。hash一致だけでは意味一致を証明しない。 L5ではowner規則別decimal精度保持とbinary64 JCS profileを分け、raw重複key/UTF8/surrogateを事前拒否。旧TS値の有限数値互換はbinary64だけに対応、decimaldigestへの自動移行はしない。",
+      "reason": "旧object入力だけではraw JSONの重複key等を捉えない。Python意味コアで同一契約へ固定する。 旧JS数値化だけではrawdecimalの異なる桁を同じ値へ失うため、精度が意味となるownerを同profileへ縮小しない。"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "lines": "71–80、86–87、100（UTW-005/006/014/020/021/034）",
+    "meaning": "最新revision未束縛、exactly-once未閉包、欠損空集合化、partial failure診断不足、自己申告、CAS/replay/rollback未統合を、意味軸/先行不変/未観測とOS結果の独立接続へ結ぶ。失敗から要求追加や旧runtime合格を生成しない。"
+  },
+  "authority_boundary": "10/12限定再開・採用範囲2、052の対象L3/L10委任承認に従う。10/8一般設計解禁は10/10で失効。下流対設計の起草/独立reviewだけ。実operation/CI/実物受入/releaseは成立しない。",
+  "type_contract": {
+    "syntax": "全field必須、列挙fieldのみ、未知field/enum/variant拒否。nullは各fieldの意味だけ。Ref.shaはcontent bytesへ束縛し、valueの対象/ownerと原契約まで解決する。欠損を空tuple/nullの正例にしない。閉じた型は設計上の形で正式JSON Schema registryは未構築。",
+    "type_model": {
+      "Text": "非空Unicode scalar文字列。surrogate/空/未宣言wildcard/latestを拒否。command IDをtrim/casefold/数値化しない。payloadの空文字は許す。",
+      "Digest": "sha256: + 64 lowercase hex。digest一致だけは内容/authority証明でない。",
+      "Ref": {
+        "identity": "Text",
+        "revision": "Text",
+        "scope": "Text",
+        "owner": "Text",
+        "sha256": "64 lowercase hex"
+      },
+      "Locator": {
+        "identity": "Text",
+        "revision": "Text",
+        "scope": "Text",
+        "owner": "Text"
+      },
+      "Resolution": {
+        "ref": "Ref",
+        "kind": "scope | rule | target_set | lookup | identity_result | receipt | os_outcome | receipt_binding | budget",
+        "state": "valid | missing | unknown | stale | conflict",
+        "content_bytes": "immutable bytes | null（validでは必須）",
+        "value": "kindに対応する閉じた型 | null（非validだけ）"
+      },
+      "ScopeBody": {
+        "scope_ref": "Ref",
+        "normalization_rule_ref": "Ref",
+        "owner_ref": "Ref",
+        "applicability_ref": "Ref"
+      },
+      "RuleBody": {
+        "rule_ref": "Ref",
+        "applicable_scope_ref": "Ref",
+        "algorithm": "decimal_json_v1 | binary64_jcs_v1",
+        "number_semantics": "exact_decimal | ieee754_binary64",
+        "zero_semantics": "unsigned | signed",
+        "object_order": "unordered_utf16",
+        "array_order": "ordered",
+        "string_semantics": "unicode_scalar_exact",
+        "payload_domain": "json_whole_value",
+        "projection": "none",
+        "algorithm_contract_revision": "Text",
+        "owner_basis_ref": "Ref",
+        "binary64_rounding": "nearest_even | not_applicable（decimalのみ）"
+      },
+      "BudgetBody": {
+        "budget_ref": "Ref",
+        "subject_scope_ref": "Ref",
+        "input_bytes_limit": "positive safe integer（1..2^53-1、資源ownerの実制約）",
+        "json_depth_limit": "positive safe integer（1..2^53-1、資源ownerの実制約）",
+        "json_node_limit": "positive safe integer（1..2^53-1、資源ownerの実制約）",
+        "number_token_chars_limit": "positive safe integer（1..2^53-1、資源ownerの実制約）",
+        "output_bytes_limit": "positive safe integer（1..2^53-1、資源ownerの実制約）",
+        "source_ref": "Ref（既存資源/案件制約。新規の固定数値をここで作らない）"
+      },
+      "Base": {
+        "asset_id": "Text",
+        "expected_ref": "Ref | null（対象ownerが当該新規不存在を宣言した時だけ）"
+      },
+      "TargetSetBody": {
+        "scope_ref": "Ref",
+        "required_bases": "unique Base tuple",
+        "source_refs": "Ref tuple（caller basesから独立した要求/対象母集合）"
+      },
+      "CommandInput": {
+        "command_id": "Text",
+        "scope_ref": "Ref",
+        "bases": "Base tuple",
+        "rule_ref": "Ref",
+        "raw_payload_bytes": "immutable bytes",
+        "claimed_payload_digest": "Digest | null（caller照合用、算出の代替なし）",
+        "oracle_ref": "Ref（HARNESS-L10-052対象、当該scope/revision）",
+        "resolutions": "Resolution tuple",
+        "budget_ref": "Ref"
+      },
+      "ParsedValue": "discriminated immutable AST: null | bool(value) | string(scalar text) | number(raw JSON token) | array(ParsedValue tuple) | object(unique decoded-key/ParsedValue tuple)。raw入力だけから構築、任意Python object/float/dictのcaller供給を受けない。",
+      "NormalizedPayload": {
+        "rule_ref": "Ref",
+        "scope_ref": "Ref",
+        "raw_digest": "Digest",
+        "normalized_bytes": "immutable bytes",
+        "semantic_digest": "Digest",
+        "number_semantics": "exact_decimal | ieee754_binary64",
+        "algorithm": "decimal_json_v1 | binary64_jcs_v1",
+        "budget_ref": "Ref"
+      },
+      "Identity": {
+        "command_id": "Text",
+        "scope_ref": "Ref",
+        "bases": "sorted unique Base tuple",
+        "rule_ref": "Ref",
+        "normalization": "NormalizedPayload"
+      },
+      "IdentityBasisBody": {
+        "identity": "Identity",
+        "meaning_result_ref": "Ref",
+        "meaning_result_bytes": "immutable bytes",
+        "operation_ref": "Locator",
+        "receipt_ref": "Ref | null（incompleteで未成立の場合だけ）",
+        "receipt_required": "bool",
+        "raw_payload_bytes": "immutable bytes（先行raw原文、再正規化用）",
+        "source_resolutions": "先行scope/rule/target/oracle/budgetのResolution tuple。今回から不足を補わない。"
+      },
+      "LookupBody": {
+        "query_command_id": "Text",
+        "query_fields": "exact tuple(command_id)",
+        "state": "found | absent | unknown",
+        "owner_ref": "Ref（OS lookup owner）",
+        "snapshot_ref": "Ref",
+        "observation_ref": "Ref",
+        "prior_basis_ref": "Ref | null（found必須、absent/unknownはnull）"
+      },
+      "Comparison": {
+        "classification": "new | same | conflict | unknown",
+        "current_identity": "Identity | null",
+        "prior_identity_ref": "Ref | null",
+        "prior_operation_ref": "Locator | null",
+        "prior_result_ref": "Ref | null",
+        "prior_receipt_ref": "Ref | null",
+        "differences": "Difference tuple",
+        "findings": "Finding tuple",
+        "unresolved_refs": "Ref tuple",
+        "backflow": "Backflow tuple"
+      },
+      "Difference": {
+        "axis": "command | scope | base | rule | normalized_bytes | semantic_digest",
+        "asset_id": "Text | null",
+        "before": "閉じたaxis対応値",
+        "after": "同型"
+      },
+      "OSOutcomeBody": {
+        "operation_ref": "Locator",
+        "episode_id": "Text",
+        "scope_ref": "Ref",
+        "bases": "Base tuple",
+        "identity_result_ref": "Ref（今回K）",
+        "state": "committed | replay | stale | conflict | incomplete | unknown",
+        "receipt_ref": "Ref | null",
+        "historical_generation": "Locator | null",
+        "observed_current_generation": "Locator | null",
+        "source_refs": "Ref tuple（OS実観測、状態自己申告は不可）",
+        "command_id": "Text"
+      },
+      "OSBinding": {
+        "state": "committed | replay | stale | conflict | incomplete | unknown | not_observed | binding_conflict",
+        "source_ref": "Ref | null",
+        "findings": "Finding tuple",
+        "historical_generation": "Locator | null",
+        "observed_current_generation": "Locator | null",
+        "reported_state": "committed | replay | stale | conflict | incomplete | unknown | null（未供給）"
+      },
+      "ReceiptBindingBody": {
+        "receipt_ref": "Ref",
+        "receipt_bytes": "immutable bytes",
+        "command_id": "Text",
+        "operation_ref": "Locator",
+        "scope_ref": "Ref",
+        "binding_snapshot_ref": "Ref",
+        "binding_identity_result_ref": "Ref（既存M1）",
+        "resolved_identity_ref": "Ref",
+        "resolved_identity": "Identity",
+        "resolved_meaning_result_ref": "Ref",
+        "comparison_ref": "Ref（今回K）",
+        "source_refs": "Ref tuple（独立OS read/lookupの結合観測）"
+      },
+      "ReceiptBindingResult": {
+        "state": "bound | not_observed | unknown | binding_conflict",
+        "receipt_ref": "Ref | null",
+        "prior_result_ref": "Ref | null",
+        "comparison_ref": "Ref",
+        "source_ref": "Ref | null",
+        "findings": "Finding tuple"
+      },
+      "ComparisonTraceBody": {
+        "input_basis_refs": "Ref tuple",
+        "current_identity": "Identity | null",
+        "prior_identity_ref": "Ref | null",
+        "prior_normalized_bytes": "immutable bytes | null",
+        "prior_semantic_digest": "Digest | null",
+        "comparison": "Comparison",
+        "os_binding": "OSBinding",
+        "receipt_binding": "ReceiptBindingResult",
+        "prior_immutable_checks": "Ref/before bytes/after bytesの閉じたtuple",
+        "oracle_ref": "Ref",
+        "scope_ref": "Ref",
+        "runtime_observation": "not_observed | supplied（供給OS根拠の範囲だけ）",
+        "unproven": "unique enum tuple(retry,atomicity,durability,rollback,legacy_fr_closure,authority,acceptance)"
+      },
+      "Finding": {
+        "code": "FindingCode",
+        "field_pointer": "Text",
+        "subject_ref": "Ref | null",
+        "basis_refs": "Ref tuple",
+        "owner": "Text",
+        "result_field": "semantic | os_binding | receipt_binding | trace"
+      },
+      "Backflow": {
+        "owner": "Text",
+        "layer": "L3 | L4 | L5 | OS | input_owner",
+        "scope_ref": "Ref",
+        "subject_refs": "Ref tuple",
+        "cause_code": "FindingCode"
+      },
+      "ValueResult": "discriminated ready(value typed per symbol) | unknown(findings,unresolved_refs,backflow) | conflict(findings,differences,backflow)。OS/receipt bindingのunknown/conflictはComparison.classificationを上書きしない。",
+      "ValidatedInput": {
+        "input": "CommandInput",
+        "scope": "ScopeBody",
+        "rule": "RuleBody",
+        "target_set": "TargetSetBody",
+        "budget": "BudgetBody",
+        "source_resolutions": "Resolution tuple"
+      },
+      "NormalizationAttempt": "ready(NormalizedPayload) | unknown(Finding tuple,Backflow tuple) | conflict(Finding tuple,Backflow tuple)。比較digest欠落は成功variantに存在しない。",
+      "OSExpectation": {
+        "command_id": "Text",
+        "operation_ref": "Locator",
+        "episode_id": "Text",
+        "scope_ref": "Ref",
+        "bases": "Base tuple",
+        "comparison_ref": "Ref",
+        "source_ref": "Ref（OS当該依頼、scope/episode期待根拠）"
+      },
+      "ComparisonBody": {
+        "schema": "literal harness052-comparison.v1",
+        "input_ref": "Ref",
+        "current_identity": "Identity | null",
+        "prior_identity_ref": "Ref | null",
+        "comparison": "Comparison",
+        "oracle_ref": "Ref",
+        "scope_ref": "Ref"
+      },
+      "ObservationEnvelope": {
+        "comparison_ref": "Ref（固定ComparisonBodyのK）",
+        "os_binding": "OSBinding",
+        "receipt_binding": "ReceiptBindingResult",
+        "trace": "ComparisonTraceBody"
+      },
+      "ReceiptSourceBody": {
+        "receipt_ref": "Ref",
+        "content_bytes": "immutable bytes（既存OS receipt原文）",
+        "command_id": "Text",
+        "operation_ref": "Locator",
+        "scope_ref": "Ref",
+        "source_ref": "Ref（OS契約/read根拠。HARNESSがreceipt全保存schemaを所有しない）"
+      }
+    },
+    "finding_codes": [
+      "schema_invalid",
+      "required_missing",
+      "resolution_unknown",
+      "reference_conflict",
+      "owner_mismatch",
+      "oracle_mismatch",
+      "target_missing",
+      "base_conflict",
+      "rule_unsupported",
+      "rule_conflict",
+      "normalization_basis",
+      "payload_invalid",
+      "number_domain",
+      "budget_unknown",
+      "resource_limit",
+      "provider_failure",
+      "payload_binding_conflict",
+      "lookup_query",
+      "lookup_unknown",
+      "prior_missing",
+      "identity_conflict",
+      "os_not_observed",
+      "os_unknown",
+      "os_binding_conflict",
+      "receipt_not_observed",
+      "receipt_binding_unknown",
+      "receipt_binding_conflict",
+      "trace_unknown",
+      "prior_mutated",
+      "boundary_violation"
+    ],
+    "finding_rules": [
+      {
+        "id": "HARNESS-L5-052-R-schema_invalid",
+        "code": "schema_invalid",
+        "condition": "閉じたrecord field/型/enum/variantが不正。raw scalar ASTを任意objectで供給する場合も該当。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-required_missing",
+        "code": "required_missing",
+        "condition": "command/scope/base/payload/rule/priorの必須値またはResolutionが欠落。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-resolution_unknown",
+        "code": "resolution_unknown",
+        "condition": "必須Resolutionのmissing/unknown/stale。空集合やvalidへ変換しない。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-reference_conflict",
+        "code": "reference_conflict",
+        "condition": "Ref identity/revision/scope/owner/shaと実content bytes/対応valueが不一致、Resolution conflict。",
+        "result_field": "semantic",
+        "result_state": "conflict"
+      },
+      {
+        "id": "HARNESS-L5-052-R-owner_mismatch",
+        "code": "owner_mismatch",
+        "condition": "ScopeBodyとRuleBody/applicability/owner根拠の対象が不一致。",
+        "result_field": "semantic",
+        "result_state": "conflict"
+      },
+      {
+        "id": "HARNESS-L5-052-R-oracle_mismatch",
+        "code": "oracle_mismatch",
+        "condition": "oracle対象052/scope/revisionが異なる。",
+        "result_field": "semantic",
+        "result_state": "conflict"
+      },
+      {
+        "id": "HARNESS-L5-052-R-target_missing",
+        "code": "target_missing",
+        "condition": "独立TargetSet.required_basesの対象がcaller basesから欠落。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-base_conflict",
+        "code": "base_conflict",
+        "condition": "同asset base重複、異revision重複、母集合外対象、callerと独立required base値の矛盾。",
+        "result_field": "semantic",
+        "result_state": "conflict"
+      },
+      {
+        "id": "HARNESS-L5-052-R-rule_unsupported",
+        "code": "rule_unsupported",
+        "condition": "owner解決済みRuleBodyのalgorithm/domain/projectionが未対応。default/latestへ読み替えない。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-rule_conflict",
+        "code": "rule_conflict",
+        "condition": "解決済み同ID規則のrevision/本文/適用scope差、またはalgorithm/number/zero意味の組合せが契約不一致。",
+        "result_field": "semantic",
+        "result_state": "conflict"
+      },
+      {
+        "id": "HARNESS-L5-052-R-normalization_basis",
+        "code": "normalization_basis",
+        "condition": "OS-only normalized値またはHARNESS raw/owner規則の独立根拠欠落。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-payload_invalid",
+        "code": "payload_invalid",
+        "condition": "UTF8/JSON構文/duplicate decoded key/BOM/非finite/lone surrogate等で許容domainに入らないraw payload。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-number_domain",
+        "code": "number_domain",
+        "condition": "binary64 profileのfloat conversionがoverflow/非finite、またはdeclared意味domainの数値を表せない。黙ってstring化/Decimalprofile切替しない。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-budget_unknown",
+        "code": "budget_unknown",
+        "condition": "BudgetBodyと対象資源制約が未解決。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-resource_limit",
+        "code": "resource_limit",
+        "condition": "raw/depth/node/token/output上限の超過、MemoryError/RecursionError。部分bytes/digestを成功として返さない。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-provider_failure",
+        "code": "provider_failure",
+        "condition": "JCS provider非対応版/例外/欠落、serializer例外。結果なしを成功にしない。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-payload_binding_conflict",
+        "code": "payload_binding_conflict",
+        "condition": "claimed digestと独立normalized digest/bytesが不一致、先行normalized値のraw再計算が矛盾。",
+        "result_field": "semantic",
+        "result_state": "conflict"
+      },
+      {
+        "id": "HARNESS-L5-052-R-lookup_query",
+        "code": "lookup_query",
+        "condition": "先行lookupがcommand ID単独でない、query ID不一致、query観測が欠落。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-lookup_unknown",
+        "code": "lookup_unknown",
+        "condition": "lookup state unknown/missing/stale、absentに必要なOS観測Ref欠落。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-prior_missing",
+        "code": "prior_missing",
+        "condition": "foundに先行identity/result/必要receiptの解決根拠が欠落。",
+        "result_field": "semantic",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-identity_conflict",
+        "code": "identity_conflict",
+        "condition": "valid同commandのscope/base/rule/normalized bytes/digestが相違。",
+        "result_field": "semantic",
+        "result_state": "conflict"
+      },
+      {
+        "id": "HARNESS-L5-052-R-os_not_observed",
+        "code": "os_not_observed",
+        "condition": "OS結果未供給。",
+        "result_field": "os_binding",
+        "result_state": "not_observed"
+      },
+      {
+        "id": "HARNESS-L5-052-R-os_unknown",
+        "code": "os_unknown",
+        "condition": "OS結果参照がmissing/unknown/staleまたは実観測根拠不足。",
+        "result_field": "os_binding",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-os_binding_conflict",
+        "code": "os_binding_conflict",
+        "condition": "OS結果が別operation/episode対象/scope/base/今回Kへ束縛、またはcontent参照矛盾。",
+        "result_field": "os_binding",
+        "result_state": "binding_conflict"
+      },
+      {
+        "id": "HARNESS-L5-052-R-receipt_not_observed",
+        "code": "receipt_not_observed",
+        "condition": "OS結果とreceipt結合snapshotがどちらも未供給。",
+        "result_field": "receipt_binding",
+        "result_state": "not_observed"
+      },
+      {
+        "id": "HARNESS-L5-052-R-receipt_binding_unknown",
+        "code": "receipt_binding_unknown",
+        "condition": "結合が必要なsame/OS結果でreceipt→binding→M1またはK→M1/REC1の原参照/bytes/観測が不足。",
+        "result_field": "receipt_binding",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-receipt_binding_conflict",
+        "code": "receipt_binding_conflict",
+        "condition": "receipt結合snapshotが別C/O/scope/M1/REC1/Kまたはidentity各軸へ結ぶ。",
+        "result_field": "receipt_binding",
+        "result_state": "binding_conflict"
+      },
+      {
+        "id": "HARNESS-L5-052-R-trace_unknown",
+        "code": "trace_unknown",
+        "condition": "入力/規則/先行/相違軸/owner/backflowのtrace必要根拠が不足。",
+        "result_field": "trace",
+        "result_state": "unknown"
+      },
+      {
+        "id": "HARNESS-L5-052-R-prior_mutated",
+        "code": "prior_mutated",
+        "condition": "先行identity/result/receiptのRefまたはbytesのbefore/afterが変化。",
+        "result_field": "trace",
+        "result_state": "conflict"
+      },
+      {
+        "id": "HARNESS-L5-052-R-boundary_violation",
+        "code": "boundary_violation",
+        "condition": "HARNESSからOS write/CAS/retry/history/authority/旧runtime call、または意味sameを実成功に昇格する出力。",
+        "result_field": "trace",
+        "result_state": "conflict"
+      }
+    ],
+    "reduction": "semantic欄のconflictがあればconflict、なければunknownがあればunknown、全validならready。bind関数は各専用fieldだけを分類しsemanticを保全。",
+    "resolution_mapping": {
+      "scope": "ScopeBody",
+      "rule": "RuleBody",
+      "target_set": "TargetSetBody",
+      "lookup": "LookupBody",
+      "identity_result": "IdentityBasisBody",
+      "receipt": "ReceiptSourceBody",
+      "os_outcome": "OSOutcomeBody",
+      "receipt_binding": "ReceiptBindingBody",
+      "budget": "BudgetBody"
+    },
+    "resolution_mapping_contract": "Resolution.ref.sha256は供給content_bytes全体を検査。valueは当該既存owner source/contractに指定されたfieldの閉じたread projectionであり、任意の自己申告snapshotは不可。projectionのself Ref（ScopeBody.scope_ref/RuleBody.rule_ref/IdentityBasisBodyを指すref等）は外envelopeの検証済みResolution.refから付すmetadataであり、content_bytesへ自身shaを埋込まない。投影fieldごとに原sourceのpath/値へ逆照合し、source/contract/抽出値不明はrequired_missing/resolution_unknown。新sourceをこの型で設計する場合もselfrefはenvelopeにのみ置く。"
+  },
+  "normalization_selection": {
+    "owner_binding": "profileを一律採用せず、ScopeBody/RuleBodyとowner原契約がnumber semantics/zero semanticsを明示した時だけ適用。未知意味はrule_unsupportedとして上流へ戻す。新profile選択のために既存意味規則の版を黙って変更しない。",
+    "decimal_profile": "精度を失えないJSON数値のため、stdlib Decimal token/as_tupleと閉じたJSON emitterを使う。JCS互換ではなくRuleRef別の精度保持encoding。任意桁有限decimalをbinary64範囲へ縮小しない。",
+    "binary64_profile": "旧finiteJS number/UTF16key/array順に対応。RFC8785 publicprovider候補rfc8785==0.1.4、exactsourcecommit4d9b161f6054301d98d0566e813d020fb019ee10。rawparser/domainguardを別途設計しprovider int範囲を全数値へ適用しない。IEEE丸めはownerが宣言した場合のみ。 ライブラリがfloatとintでdomainを変える点はtoken→floatのowner対応で処理。新たな二系統normalizerをOSへ追加しない。",
+    "shared_boundary": "同じnormalize_payloadを今回/先行/各consumerへ適用、OS scope selectorで正規化しない。digestはstdlib hashlib一系統。未知domain/projectionは欠落を保持し、全対象の設計充足や実装準備完了を主張しない。",
+    "compatibility": "旧TS有限numberはbinary64へ、raw重複key/Unicode/精度問題を事前検査。decimal profileを旧digest互換としない。owner rule revision変更は同ID conflict、先行結果/receipt不変。"
+  },
+  "toolchain": {
+    "python_target": "CPython 3.12.15（設計target、local3.12.3で代替成立としない）",
+    "stdlib": "json/decimal/hashlib/mathの固定target実装。serializer oracleはlocale/Decimal contextに依存しない。",
+    "external_provider_candidate": "rfc8785==0.1.4 runtime dependenciesなし。Apache2.0という公開metadataを読取、runtime導入/配布/ライセンス適合の判断やlockはこの設計だけで成立しない。内部実装をcopy/importしない。",
+    "prepared_state": "未インストール・未lock・未実行。実provider artifact hash/環境probe/依存運用・設定/試験oracle凍結は後続L6/L7/環境対象の義務。旧test/CIは代替なし。",
+    "primary_sources": [
+      {
+        "url": "https://docs.python.org/3.12/library/json.html",
+        "use": "decoded pair hook/number token hook/strict前検査"
+      },
+      {
+        "url": "https://docs.python.org/3.12/library/decimal.html",
+        "use": "Decimal文字列入力/as_tupleによる桁保持（context丸めnormalization不使用）"
+      },
+      {
+        "url": "https://datatracker.ietf.org/doc/html/rfc8785",
+        "use": "binary64/UTF16key/Unicode保持/UTF8の対応、decimal profileとは別"
+      },
+      {
+        "url": "https://github.com/trailofbits/rfc8785.py/tree/4d9b161f6054301d98d0566e813d020fb019ee10",
+        "use": "0.1.4 publicAPIと実source/int domainの比較、未実行"
+      },
+      {
+        "url": "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296",
+        "use": "CPythontarget release一次資料"
+      }
+    ]
+  },
+  "functions": [
+    {
+      "id": "HARNESS-L5-052-validate_command_input",
+      "symbol": "validate_command_input",
+      "design_refs": [
+        "HARNESS-L4-052-F01",
+        "HARNESS-L4-052-F02",
+        "HARNESS-L4-052-F06",
+        "HARNESS-L4-052-B01"
+      ],
+      "oracle_ref": "HARNESS-L8-052-validate_command_input",
+      "input": "CommandInput、型対応Resolutionのexact bytes",
+      "output": "ValueResult[ValidatedInput]",
+      "effect": "none。immutable入力から新しい戻り値だけ。IO/DB/Git/API/clock/環境変数/秘密情報の参照なし。",
+      "algorithm": [
+        "全recordを閉じた型で検査。valid Resolutionはref.sha256とcontent_bytes、対応するvalueのfield/参照を照合。callerのstate=validやhashだけでowner成立を推定せず、scope→rule/applicability/ownerの原根拠と独立target rootを解決する。",
+        "command IDをraw Textとして固定。scope Refはidentity/revision/owner/shaを含めexact。RuleBody.rule_refとCommandInput.rule_ref、ScopeBody.normalization_rule_refを同じ本文へ束縛。別scope/oracle/規則で補完しない。",
+        "caller basesとTargetSet.required_basesをasset_idで双方向集合比較。duplicateは同値でも拒否、欠落はtarget_missing、余剰/異値はbase_conflict。null baseは独立target ownerの新規不存在宣言で裏付ける。ソートは後続表示/encoding用で不足補修ではない。",
+        "BudgetBodyをscope/resource原Refへ束縛。個別最大値は入力契約の実値、ここで16/256等の旧固定値を作らない。未供給はbudget_unknown。raw byte長をparse前に確認。",
+        "validな部分と未解決causeの両方を返す。semantic conflictが一つでもあればconflict、残る不足はunknownとしてfindingsに保持。どちらもある場合のconflictは不足解決を意味しない。"
+      ],
+      "failure_rules": [
+        "HARNESS-L5-052-R-schema_invalid",
+        "HARNESS-L5-052-R-required_missing",
+        "HARNESS-L5-052-R-resolution_unknown",
+        "HARNESS-L5-052-R-reference_conflict",
+        "HARNESS-L5-052-R-owner_mismatch",
+        "HARNESS-L5-052-R-oracle_mismatch",
+        "HARNESS-L5-052-R-target_missing",
+        "HARNESS-L5-052-R-base_conflict",
+        "HARNESS-L5-052-R-budget_unknown",
+        "HARNESS-L5-052-R-resource_limit"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-normalize_payload",
+      "symbol": "normalize_payload",
+      "design_refs": [
+        "HARNESS-L4-052-F02",
+        "HARNESS-L4-052-F06"
+      ],
+      "oracle_ref": "HARNESS-L8-052-normalize_payload",
+      "input": "ValidatedInput raw bytes、ScopeBody、RuleBody、BudgetBody、固定serializer profile",
+      "output": "ValueResult[NormalizedPayload]",
+      "effect": "none。immutable入力から新しい戻り値だけ。IO/DB/Git/API/clock/環境変数/秘密情報の参照なし。",
+      "algorithm": [
+        "規則profileをownerのexact RuleRef本文から選ぶ。decimal_json_v1はexact_decimal、binary64_jcs_v1はieee754_binary64を必須にする。binary64のzeroはunsignedだけ。未知profile/projection/domainはrule_unsupported、矛盾組合せはrule_conflict。caller profile override不可。 binary64_rounding=nearest_evenのowner明示が必須、decimalはnot_applicable。規則の自己Ref metadataはResolution外envelope由来。",
+        "bytesをUTF8 strictでdecodeしBOM拒否。json.loadsへobject_pairs_hookでdecoded key重複を全階層で拒否、parse_int/parse_floatでNumberToken(raw token)を保存、parse_constantでNaN/Infinity/-Infinityを拒否。余剰tail/不正構文も拒否。読み込んだ全string/keyをUnicode scalarとして検査しlone surrogate拒否。",
+        "raw JSONから生成したASTだけをimmutable tupleへ変換。key全体/array全項目を保持し、意味path/空文字/null/falseをstripしない。array順保持、objectkeyはUTF16BE byte順。NFC/NFD/trim/casefoldはしない。node/depth/token制約を検査。",
+        "decimal_json_v1: NumberTokenをDecimal(token)で正確に読みas_tuple()のsign/digits/exponentから生成する。context付きnormalize/quantizeやfloat変換は使わない。末尾0を除去しその個数をexponentへ加える。非zeroのcoefficientはleading zeroなし、signは負の場合だけ、exponent=0はcoefficientのみ、他はcoefficient+小文字e+指数（+とleadingzeroなし）。全zeroはunsignedなら0、signedならraw負符号を保持し-0/0。例100.0→1e2、0.0100→1e-2、1.0000000000000001は全桁保持。 Decimal constructorのInvalidOperation/ValueError/指数がtarget実装域を超える場合はnumber_domain/unknown（有限全domain成立にしない）。係数/指数の整数操作は正確に行い、正指数/負指数の長さも元token資源制約内で処理。",
+        "decimal profileのstring/keyはstdlib json.dumps(ensure_ascii=False,separators=(comma,colon),allow_nan=False)のJSON string escapingだけを使う。null/true/falseは固定token、array/objectは上記順/区切りへ連結しUTF8 bytes。json.dumpsのfloat/Decimal serializationやsort_keysを意味normalizerとして使わない。",
+        "binary64_jcs_v1: ownerがIEEE754 semanticsと丸めを宣言したNumberTokenだけfloat(token)へ変換しfiniteを検査。すべてのnumeric tokenはfloatへ（safe integerだけのprovider int domainへ勝手に制限しない）。bool/null/string/array/objectは同ASTから標準型へ投影しrfc8785.dumps public APIを一度使う。Unicode/key/array contractは共通、OSへsecondnormalizerを置かない。宣言なしでIEEE丸めを許さない。 underflowはnearest_even宣言に従う0でrawtoken/digestを保持し、上流のdecimal精度が必要な値へこのprofileを流用しない。",
+        "出力bytesの上限確認後、hashlib.sha256(normalized_bytes).hexdigestへsha256:prefixを付ける。raw hashは別field。claimed digestがある場合独立semantic_digestと照合。先行rawも同じ境界へ通してnormalized bytes/digestと保存根拠を照合する。部分出力やprovider例外を成功にしない。 JSONDecodeError/UnicodeDecodeError/invalid constant/duplicate keyはpayload_invalid、Decimal InvalidOperation/float OverflowErrorはnumber_domain、MemoryError/RecursionErrorはresource_limit、publicproviderのCanonicalizationError/UnicodeEncodeError/その他Exceptionはprovider_failureへ分類し原原因を残す。捕捉後default出力は禁止。"
+      ],
+      "failure_rules": [
+        "HARNESS-L5-052-R-rule_unsupported",
+        "HARNESS-L5-052-R-rule_conflict",
+        "HARNESS-L5-052-R-normalization_basis",
+        "HARNESS-L5-052-R-payload_invalid",
+        "HARNESS-L5-052-R-number_domain",
+        "HARNESS-L5-052-R-resource_limit",
+        "HARNESS-L5-052-R-provider_failure",
+        "HARNESS-L5-052-R-payload_binding_conflict",
+        "HARNESS-L5-052-R-required_missing"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-build_command_identity",
+      "symbol": "build_command_identity",
+      "design_refs": [
+        "HARNESS-L4-052-F01",
+        "HARNESS-L4-052-F02"
+      ],
+      "oracle_ref": "HARNESS-L8-052-build_command_identity",
+      "input": "ValidatedInput、NormalizedPayload",
+      "output": "ValueResult[Identity]",
+      "effect": "none。immutable入力から新しい戻り値だけ。IO/DB/Git/API/clock/環境変数/秘密情報の参照なし。",
+      "algorithm": [
+        "正規化出力のscope/rule Refとinput exact refsを照合。違えばreference_conflict、raw_digestを入力raw bytesへ逆照合。",
+        "command、scope Ref、全base exact集合、NormalizedPayload.semantic_digestを4軸に結ぶ。baseはasset_idのUnicode codepoint順でsorted tuple（比較集合は同じ）。規則/scope本文revisionとnormalized bytesも保持。",
+        "transport path/PR/Issue/時刻はCommandInput fieldでない。raw payload内に同名fieldがある場合は意味atomとして残す。別command IDは別query対象、payload同値だけで先行commandへ統合しない。"
+      ],
+      "failure_rules": [
+        "HARNESS-L5-052-R-reference_conflict",
+        "HARNESS-L5-052-R-base_conflict",
+        "HARNESS-L5-052-R-payload_binding_conflict"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-compare_prior_identity",
+      "symbol": "compare_prior_identity",
+      "design_refs": [
+        "HARNESS-L4-052-F03",
+        "HARNESS-L4-052-F04",
+        "HARNESS-L4-052-F06"
+      ],
+      "oracle_ref": "HARNESS-L8-052-compare_prior_identity",
+      "input": "current Identity、LookupBody Resolution、IdentityBasisBodyと先行raw/rule解決根拠",
+      "output": "Comparison",
+      "effect": "none。immutable入力から新しい戻り値だけ。IO/DB/Git/API/clock/環境変数/秘密情報の参照なし。",
+      "algorithm": [
+        "lookup query_fields=(command_id)とquery_command_id=current.command_id、owner/observation/snapshot Refの対象を検査。scope付きqueryをvalid absentへ変換せずlookup_query/unknown。unknown/missing/staleはlookup_unknown。",
+        "根拠付きabsentだけnew候補。current identityを返すが意味revision/operation/receiptは発行しない。foundは先行basis/result raw/normalized/scope/rule/baseを解決し、receipt_requiredならreceiptも解決。不足はprior_missing/unknown。incompleteのreceipt_required=false/nullは未観測を維持し、勝手に完了扱いしない。",
+        "valid foundの先行rawをその先行のexact owner ruleで再正規化し保存normalized値と照合する。今回規則と先行規則の相違はruleのdifferenceでconflictとして保持し、違う規則を同じdigestの根拠にしない。",
+        "同commandに対しscope/full base/rule/normalized bytes/semantic digestの全差分を独立列挙。相違があればidentity_conflict/conflict、先行operation/result/receipt参照と原bytesを未変更で保持。hashcollisionを模した等digest異bytesもconflict。",
+        "全一致はsame。prior_operation/result/receiptをexactに返し、今回comparison Kに今回/先行根拠を結ぶ。意味identityのraw source順/空白違いは許されたprofile等価で相違にしない。先行operation incompleteやOS拒否の状態はpure sameから変更しない。"
+      ],
+      "failure_rules": [
+        "HARNESS-L5-052-R-lookup_query",
+        "HARNESS-L5-052-R-lookup_unknown",
+        "HARNESS-L5-052-R-prior_missing",
+        "HARNESS-L5-052-R-reference_conflict",
+        "HARNESS-L5-052-R-payload_binding_conflict",
+        "HARNESS-L5-052-R-identity_conflict",
+        "HARNESS-L5-052-R-rule_conflict"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-bind_os_outcome",
+      "symbol": "bind_os_outcome",
+      "design_refs": [
+        "HARNESS-L4-052-F05",
+        "HARNESS-L4-052-B01"
+      ],
+      "oracle_ref": "HARNESS-L8-052-bind_os_outcome",
+      "input": "Comparison、今回K Ref、OSOutcomeBody Resolution|null、OSExpectation（当該operation/episode/command/scope/全base）",
+      "output": "OSBinding",
+      "effect": "none。immutable入力から新しい戻り値だけ。IO/DB/Git/API/clock/環境変数/秘密情報の参照なし。",
+      "algorithm": [
+        "OS結果未供給はnot_observed、missing/unknown/stale/原観測不足はunknown。Comparisonの分類はどちらでも保持する。",
+        "供給OS結果のcommand比較identity、operation/episode、scope、全base、identity_result_ref=今回Kをexact検査。operation/episode期待値はOSの当該依頼根拠から入力し、時刻/receipt名から推測しない。別対象はos_binding_conflict。",
+        "正しく束縛したstateを返す。same/newでもOSstale/conflict/incompleteをcommittedへ変更しない。過去O1/G1 replayとobserved current G2を独立Locatorで返し、先行成功を抹消しない。 reported_stateは元のOS観測値、stateは当該結果の対象束縛状態を含む表示。後段receipt結合不足/不一致がある場合もreported_stateと原OS Refは消さない。",
+        "CAS/lookup再実行/write/retryを呼ばない。OS053は保存時の全base/command再照合のownerで、SnapshotのcurrentnessをHARNESSが継続保証しない。"
+      ],
+      "failure_rules": [
+        "HARNESS-L5-052-R-os_not_observed",
+        "HARNESS-L5-052-R-os_unknown",
+        "HARNESS-L5-052-R-os_binding_conflict",
+        "HARNESS-L5-052-R-boundary_violation"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-bind_receipt_basis",
+      "symbol": "bind_receipt_basis",
+      "design_refs": [
+        "HARNESS-L4-052-F03",
+        "HARNESS-L4-052-N01"
+      ],
+      "oracle_ref": "HARNESS-L8-052-bind_receipt_basis",
+      "input": "Comparison、今回K Ref、先行M1/REC1、OS receipt結合Resolution|null、OSBinding",
+      "output": "ReceiptBindingResult",
+      "effect": "none。immutable入力から新しい戻り値だけ。IO/DB/Git/API/clock/環境変数/秘密情報の参照なし。",
+      "algorithm": [
+        "OS/receipt結合とも未供給のpure比較ではnot_observed。sameに結合観測を供給した場合、またはOS確定/replay結果を供給した場合は、必要receiptとsnapshotの不足をreceipt_binding_unknownへ。semantic sameは維持する。newで保存未観測なら結合成立を推定しない。",
+        "receipt bytesのRef digest、同command C/O/scope、binding_identity_result_ref=M1、resolved_identity_ref/meaning_result_refとComparison.prior refs、comparison_ref=Kを双方向照合。M1に解決した全4軸/rule/scope revision/normalized bytes/digestはKの比較beforeと同じでなければならない。Kの今回identityとbeforeの等価はComparisonによって照合する。",
+        "OS053 Plan.identity_result_ref→command_bindings.identity_result_ref_bytesとreceipt FKを、REC1→binding→M1の原lookup/read snapshotとして受ける。単なるRef文字列やcountでboundにしない。必要な解決内容が供給できない範囲はOS053へbackflow。",
+        "valid同対象ならbound、異対象/内容矛盾はbinding_conflict。Kは今回のpure比較出力で、既存binding/M1/REC1は更新しない。新成功receipt/意味revision/永続traceをHARNESSから書かない。"
+      ],
+      "failure_rules": [
+        "HARNESS-L5-052-R-receipt_not_observed",
+        "HARNESS-L5-052-R-receipt_binding_unknown",
+        "HARNESS-L5-052-R-receipt_binding_conflict",
+        "HARNESS-L5-052-R-boundary_violation"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-build_comparison_trace",
+      "symbol": "build_comparison_trace",
+      "design_refs": [
+        "HARNESS-L4-052-N01",
+        "HARNESS-L4-052-B01"
+      ],
+      "oracle_ref": "HARNESS-L8-052-build_comparison_trace",
+      "input": "全入力/比較/OSBinding/ReceiptBindingResult、入力before/after snapshot、対象oracle Ref",
+      "output": "ComparisonBody bytes/digest（K付与前）または固定K照合後ObservationEnvelope、Finding/Backflow tuple。stageを呼出側が明示。",
+      "effect": "none。immutable入力から新しい戻り値だけ。IO/DB/Git/API/clock/環境変数/秘密情報の参照なし。",
+      "algorithm": [
+        "入力4軸と規則/対象scope revision、先行/今回rawとnormalized digest/bytes、差分、不足/owner/戻し先を同oracle/scopeへ結ぶ。K本文は今回comparisonと入力Ref群を持ち、OS結果/receipt観測はKを指す別envelopeにする（自己hash循環を避ける）。 ComparisonBodyをまず固定するstageと、供給済みKを照合してObservationEnvelopeを返すstageを分ける。前者にK/OS/receipt観測fieldは無い。",
+        "callerが与えるK RefはPythonが返したcomparison本文bytesのshaと照合する。Kの論理identity/revisionはOSの出力addressであり、HARNESSがcanonical meaning revisionとして発行しない。OSから与えられた後にKを自身の本文へ埋込んで再hashしない。 ComparisonBody metadata encodingはbytesをstrict base64、閉じたstructはfieldをdictへ、tupleはarrayへ、Textはexactに投影し、json.dumps(sort_keys=True,ensure_ascii=False,separators=(comma,colon),allow_nan=False)→UTF8。float/Decimalはmetadataへ入れず、意味数値はnormalized bytesで既に固定。これはmetadata encodingでpayloadの第二normalizerではない。sha256はその全bytes。未知fieldはschema_invalid。",
+        "先行identity/result/receiptのbefore/after全bytesとRefを比較。相違はprior_mutated、補修/上書きしない。snapshot取得はOS/呼出側、局所oracleはimmutable引数全体を独立保存して比較する。",
+        "OS/receipt bindingの未観測、unknown、binding_conflictをsemantic分類とは独立fieldへ保持。retry/atomicity/durability/rollback/旧FR全体/authority/acceptanceは局所比較でnot_proven。 same/確定OS結果で必要receipt結合がunknownならeffective OSBinding.state=unknown、receipt結合がbinding_conflictならstate=binding_conflict。reported_state（stale/committed等）と原根拠を保全する。未供給pure比較のnot_observedは維持、boundは元stateを維持。semantic classificationへは影響しない。",
+        "全findingsをcode/field_pointer/subject identity/revision/scope/ownerのcodepoint順へsort。unknown/ref/causeを削らず同Refの異causeも保持、同一項目だけ重複を除く。禁止外部call/authority成功出力はboundary_violation。"
+      ],
+      "failure_rules": [
+        "HARNESS-L5-052-R-trace_unknown",
+        "HARNESS-L5-052-R-prior_mutated",
+        "HARNESS-L5-052-R-boundary_violation",
+        "HARNESS-L5-052-R-reference_conflict",
+        "HARNESS-L5-052-R-schema_invalid",
+        "HARNESS-L5-052-R-receipt_binding_unknown",
+        "HARNESS-L5-052-R-receipt_binding_conflict"
+      ]
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HARNESS-L5-052-F01",
+      "design_ref": "HARNESS-L4-052-F01",
+      "requirement_ref": "HARNESS-L3-052-F01",
+      "system_oracle_ref": "HARNESS-L10-052-F01",
+      "oracle_ref": "HARNESS-L8-052-F01",
+      "symbols": [
+        "validate_command_input",
+        "build_command_identity"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-F02",
+      "design_ref": "HARNESS-L4-052-F02",
+      "requirement_ref": "HARNESS-L3-052-F02",
+      "system_oracle_ref": "HARNESS-L10-052-F02",
+      "oracle_ref": "HARNESS-L8-052-F02",
+      "symbols": [
+        "validate_command_input",
+        "normalize_payload",
+        "build_command_identity"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-F03",
+      "design_ref": "HARNESS-L4-052-F03",
+      "requirement_ref": "HARNESS-L3-052-F03",
+      "system_oracle_ref": "HARNESS-L10-052-F03",
+      "oracle_ref": "HARNESS-L8-052-F03",
+      "symbols": [
+        "compare_prior_identity",
+        "bind_receipt_basis"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-F04",
+      "design_ref": "HARNESS-L4-052-F04",
+      "requirement_ref": "HARNESS-L3-052-F04",
+      "system_oracle_ref": "HARNESS-L10-052-F04",
+      "oracle_ref": "HARNESS-L8-052-F04",
+      "symbols": [
+        "compare_prior_identity"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-F05",
+      "design_ref": "HARNESS-L4-052-F05",
+      "requirement_ref": "HARNESS-L3-052-F05",
+      "system_oracle_ref": "HARNESS-L10-052-F05",
+      "oracle_ref": "HARNESS-L8-052-F05",
+      "symbols": [
+        "bind_os_outcome"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-F06",
+      "design_ref": "HARNESS-L4-052-F06",
+      "requirement_ref": "HARNESS-L3-052-F06",
+      "system_oracle_ref": "HARNESS-L10-052-F06",
+      "oracle_ref": "HARNESS-L8-052-F06",
+      "symbols": [
+        "validate_command_input",
+        "normalize_payload",
+        "compare_prior_identity"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-N01",
+      "design_ref": "HARNESS-L4-052-N01",
+      "requirement_ref": "HARNESS-L3-052-N01",
+      "system_oracle_ref": "HARNESS-L10-052-N01",
+      "oracle_ref": "HARNESS-L8-052-N01",
+      "symbols": [
+        "bind_receipt_basis",
+        "build_comparison_trace"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-052-B01",
+      "design_ref": "HARNESS-L4-052-B01",
+      "requirement_ref": "HARNESS-L3-052-B01",
+      "system_oracle_ref": "HARNESS-L10-052-B01",
+      "oracle_ref": "HARNESS-L8-052-B01",
+      "symbols": [
+        "validate_command_input",
+        "bind_os_outcome",
+        "build_comparison_trace"
+      ]
+    }
+  ],
+  "os_projection": {
+    "request": "OSの収集/lookup snapshotからCommandInput/ResolutionをpureAPIへ渡す。transportはimmutablebytes/closed JSON envelopeのbase64 bytes、number payloadはrawUTF8を保持、JSON.parse等で数値/duplicate情報を落としてから渡さない。base64はRFC4648標準alphabet/padding、strictdecode、再encoding一致を検査。OS DB root/credential/API tokenを渡さない。",
+    "response": "Comparison本文bytesとそのdigestを返しOSがK Refへ束縛。OS053 IdentityResultはcommand_id/scope_ref/bases/payload_digest/rule_ref/result_ref=K/classification/prior_operation_ref/prior_result_refを同値projectionする。Kの解決内容にNormalizedPayloadと比較全根拠を残す。ResultRef Kとprior_result M1は別役割。",
+    "two_stage": "意味比較→comparison本文固定/KをOSが束縛→OS実結果またはreceipt結合観測を別pure bindへ供給。K本文に自身K/未来OS結果を含めずhash循環/receipt後書きを作らない。",
+    "race": "実保存前OStransactionのlookup/CAS/全base再照合は053のowner。pureAPIはread snapshot時点だけ。",
+    "boundary": "7関数に外部call port無し。OS reader/writerやprocess transportの実接続はL9、局所L8はIO禁止call検出と固定snapshotだけ。"
+  },
+  "remaining": [
+    "L6/L7具体module/function/test実装前oracle凍結→Red→最小Green。今回は設計のみ全not_executed。",
+    "owner RuleBodyを各対象scopeへ正式束縛すること、未対応rule/domainのbackflowは未完保持。後続技術選定で要求scopeを縮小しない。",
+    "OS053でreceipt結合snapshot/全外部必須canonical write/SEC-INFRA資源/実readを供給すること。schema/transport/process及びbinding記録の実実装は未成立。",
+    "配置4論点、formatter/linter/docs意味監査/lockedtoolchainと全92親430義務の残り。実CI/PO実物L11/通常L3/release/internaldeployは未成立。"
+  ]
+}
