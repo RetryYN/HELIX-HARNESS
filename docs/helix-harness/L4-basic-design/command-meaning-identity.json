@@ -1,0 +1,321 @@
+{
+  "document_id": "HARNESS-L4-052-COMMAND-MEANING-IDENTITY",
+  "layer": "L4",
+  "paired_document": "docs/helix-harness/L9-integration-verification/command-meaning-identity.json",
+  "parent": "HARNESS-L2-052",
+  "status": "candidate_pending_independent_review",
+  "source_main": "e756561cac897a3ac466d53fb4e83d9e32f4ecaa",
+  "purpose": "052承認済み8義務の意味比較とOS053への接続境界。正式実装・実運転は未成立。",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-prerequisite-contracts-l3-l10-delegated-decision-2026-10-12.md",
+      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+      "sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+      "sha256": "30fb55d761550e9407ba818a048b8e1bde89d6671f5044a32fe5217ed86486ea"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "lines": "142",
+      "disposition": "semantic_rederivation",
+      "keep": "command冪等とbase revision比較。",
+      "change": "HARNESS052は意味identityの判定だけ、OS053は全必須write原子保存/CAS運転。旧Markdown/DB/層番号を継承しない。",
+      "reason": "採用済み052/OS053の非重複owner。FR53履歴変換は対象外。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+      "lines": "76",
+      "disposition": "semantic_rederivation",
+      "keep": "同command異payloadのconflictと先行結果不変の反証。",
+      "change": "故障注入/多artifact原子性とrename/split/mergeはこの対で実行せず、該当ownerの義務として残す。",
+      "reason": "局所意味照合から旧HOT49全体の合格を作らない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+      "lines": "145–153",
+      "disposition": "semantic_rederivation",
+      "keep": "同operation同payloadはdeduplicate、異payloadはconflict。",
+      "change": "単なるevent operation_id/digestの二値比較を、承認済みcommand/scope/base/意味digestと規則・scope revisionの比較に対応。書込み順とtableは移さない。",
+      "reason": "二軸だけでは異scope/baseと正規化規則不一致を見逃す。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md",
+      "sha256": "0a91276521551f976d1b692a243b86653d02ff4cf51a4d6a0344a36fb499bbd6",
+      "asset_id": "LEGACY-ASSET-5D4AF9B5877D5CAD7089",
+      "lines": "21–49",
+      "disposition": "semantic_rederivation",
+      "keep": "Python意味コアとNode単一commit境界、意味判断へDB path/credentialを渡さない。",
+      "change": "旧runtime/sourceをコピーせず、052 pure入力snapshotと053 writerの受渡しへ導出。旧runtime版・lease機構は別設計。",
+      "reason": "意味の同一性をOSの実commitやauthorityへ昇格させない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/event-projection-checkpoint-replay.md",
+      "sha256": "43cea6098e10bce5fe697ffaa08a9fd02b01d99a1b20dac071f49acfa761aa77",
+      "asset_id": "LEGACY-ASSET-33C30050BD9B4A523E60",
+      "lines": "338–355",
+      "disposition": "semantic_rederivation",
+      "keep": "一つの正規化/digest契約を参照し、scope selectorは意味正規化しない。",
+      "change": "第二normalizerをOSへ置かず、052のRuleRefへ一本化。旧doctor/rebuild/helperを呼ばない。",
+      "reason": "ownerの規則revisionごと再現できる比較が必要。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/canonical-digest.ts",
+      "sha256": "c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
+      "asset_id": "LEGACY-ASSET-4A9AB5B2EF182BC30431",
+      "lines": "1–48",
+      "disposition": "semantic_rederivation",
+      "keep": "object key順/array順/有限JSONとdigestの分離。",
+      "change": "旧TS関数を実行/copyしない。具体serializer・数値/重複key/Unicode/byte domainはL5で比較して選ぶ。hash一致だけでは意味一致を証明しない。",
+      "reason": "旧object入力だけではraw JSONの重複key等を捉えない。Python意味コアで同一契約へ固定する。"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "lines": "71–80、86–87、100（UTW-005/006/014/020/021/034）",
+    "meaning": "最新revision未束縛、exactly-once未閉包、欠損空集合化、partial failure診断不足、自己申告、CAS/replay/rollback未統合を、意味軸/先行不変/未観測とOS結果の独立接続へ結ぶ。失敗から要求追加や旧runtime合格を生成しない。"
+  },
+  "authority_boundary": "10/12限定再開・採用範囲2、052の対象L3/L10委任承認に従う。10/8一般設計解禁は10/10で失効。下流対設計の起草/独立reviewだけ。実operation/CI/実物受入/releaseは成立しない。",
+  "architecture": {
+    "meaning_owner": "HARNESS052のpure semantic core。規則とscope適用のownerをRefで照合し、正規化やsame/conflictをOSで再実装しない。BRAINは汎用知識、COREは製品適用、OSは運転であり、今回BRAIN知識promotionやCORE適用義務を新設しない。",
+    "components": [
+      {
+        "name": "InputBinding",
+        "role": "exact snapshot/Resolutionと独立対象base集合を検査。unknown/conflictとownerを保持。",
+        "effects": "none"
+      },
+      {
+        "name": "NormalizationBoundary",
+        "role": "owner RuleRef/scope revisionとraw payloadからnormalized意味bytes/digest/根拠を一か所で導出。",
+        "effects": "none"
+      },
+      {
+        "name": "SemanticIdentity",
+        "role": "command/scope/base/payloadの4軸と規則根拠を同identityへ結ぶ。",
+        "effects": "none"
+      },
+      {
+        "name": "PriorComparison",
+        "role": "同command IDのfound/根拠付きabsent/unknownを区別し、new/same/conflict/unknownを返す。",
+        "effects": "none"
+      },
+      {
+        "name": "OSOutcomeBinding",
+        "role": "意味分類と同対象OS結果の両方を保持。実commit/Acceptedの生成なし。",
+        "effects": "none"
+      },
+      {
+        "name": "ComparisonTrace",
+        "role": "各入力/比較/先行不変/未観測/戻し先を独立参照で追跡。",
+        "effects": "none"
+      }
+    ],
+    "flow": [
+      "OSはcommand ID単独で先行lookupし、当該command/scope/全base/規則/ownerのexact snapshotを供給。scopeを検索keyにしない。",
+      "InputBinding→NormalizationBoundary→SemanticIdentity→PriorComparisonでpure比較。意味結果と原根拠をOSへ返す。",
+      "OSはoperation authority/resourceと最新identity/baseを自分のtransactionで再照合して保存を運転。意味sameでも原運転未完を消さない。",
+      "OS結果が供給された場合はOSOutcomeBinding→ComparisonTraceで同操作参照を照合。未供給ならnot_observedで意味結果のみ保持。"
+    ],
+    "lookup_contract": "query_command_id、found/absent/unknown、owner/snapshot Ref、先行identity/result/receipt Refと解決内容。absentは当該IDに対するownerのexact lookup観測があり、欠落/空集合/検索条件違いを未存在にしない。found内の先行receipt参照はOSの証拠参照で、HARNESSが保存したreceiptではない。",
+    "normalization_boundary": "payload意味はowner契約から読む。transport contextは別envelopeでscope/commandから意味を補完しない。raw bytes→owner適用/正規化→normalized bytes→digest。単純なJSON key sortだけで全domainの意味同一性を仮定しない。許容input domain/bytes/number/重複key/Unicode/algorithm版と実装前oracleはL5/L8で閉じる。",
+    "result_contract": "semantic classificationとexact identity/result/trace、prior refs、differences、unresolved、backflowを返す。sameは先行意味結果、newは候補判定で意味revision発行ではない。OS結果は別ref/state。実装/CI/PO受入/完了authority fieldは無い。",
+    "concurrency": "HARNESSはlookup snapshot時点の比較をする。結果を実currentとして継続保証しない。OSのtransaction再照合/CASで競合を閉じ、拒否/失敗結果を意味new/sameで相殺しない。",
+    "physical_boundary": "runtime版・Python↔Node transport/API schema・formal配置はL5以降と親配置設計へ残す。意味コアにはDB/root/credential/Git write/API tokenを渡さない。"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-052-F01",
+      "requirement_ref": "HARNESS-L3-052-F01",
+      "system_oracle_ref": "HARNESS-L10-052-F01",
+      "oracle_ref": "HARNESS-L9-052-F01",
+      "title": "4軸の意味identity",
+      "boundary": "SemanticIdentity",
+      "required_input_meanings": [
+        "command ID",
+        "ScopeRef（identity/revision/owner/根拠bytes）",
+        "全対象BaseRef集合と独立対象集合根拠",
+        "SemanticPayloadとRuleRef"
+      ],
+      "behavior": "command IDはそのままexact比較し、scopeはidentityとrevision、baseは全対象asset identity/revision/scope、payloadは同一規則から導いた意味digestとnormalized bytesへ結ぶ。path、PR/Issue番号、到着時刻はtransport contextであり代替軸にしない。payload内のpath等は意味ownerが宣言しない限り自動除外しない。baseの並べ方やtransport差で同一identityを分岐させない。",
+      "failure": "必要値欠落はunknown、先行同IDで一軸以上相違はconflict。base重複/欠落/対象外を不足のない集合へ丸めない。",
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+    },
+    {
+      "id": "HARNESS-L4-052-F02",
+      "requirement_ref": "HARNESS-L3-052-F02",
+      "system_oracle_ref": "HARNESS-L10-052-F02",
+      "oracle_ref": "HARNESS-L9-052-F02",
+      "title": "規則とscope revisionの固定",
+      "boundary": "NormalizationBoundary",
+      "required_input_meanings": [
+        "raw semantic payload bytes",
+        "RuleRefのexact本文/contract/版",
+        "ScopeRefのexact本文/版",
+        "caller digest（照合値、独立計算の代替でない）"
+      ],
+      "behavior": "HARNESSの同じNormalizationBoundaryが入力と先行根拠を同じRuleRef/scope revisionで評価する。normalized bytesとdigestを結び、digestが一致しても規則/scope revisionの差を消さない。意味atomの除外/array扱い/数値/Unicode等はRuleRefの宣言に従い、任意のheuristicやOS側正規化を挟まない。具体algorithm/schema/toolchainはL5で閉じる。",
+      "failure": "規則missing/unknownならunknown、解決した規則revision/本文の不一致はconflict。未対応ruleをlatest/defaultへ読み替えない。",
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+    },
+    {
+      "id": "HARNESS-L4-052-F03",
+      "requirement_ref": "HARNESS-L3-052-F03",
+      "system_oracle_ref": "HARNESS-L10-052-F03",
+      "oracle_ref": "HARNESS-L9-052-F03",
+      "title": "同一再送と先行意味結果の保持",
+      "boundary": "PriorComparison",
+      "required_input_meanings": [
+        "今回identity根拠",
+        "OSのcommand ID単独lookup snapshot",
+        "先行identity/result/receiptの参照とbytes"
+      ],
+      "behavior": "lookupは今回command IDだけで行い、scope付き検索で異scopeの既存IDを隠さない。valid foundで全4軸と規則/scope revision/normalized bytesが同じならsameと先行operation/resultを返す。先行receipt参照は未変更で返す。別意味変更/revisionを発行しない。実再試行/保存成功は同一性判定から推定しない。",
+      "failure": "先行identity/result/必要receipt参照が欠けるfound、またはlookup unknownはunknown。証拠付きabsentだけnewであり、callerが先行recordを消した空入力はnewにならない。",
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+    },
+    {
+      "id": "HARNESS-L4-052-F04",
+      "requirement_ref": "HARNESS-L3-052-F04",
+      "system_oracle_ref": "HARNESS-L10-052-F04",
+      "oracle_ref": "HARNESS-L9-052-F04",
+      "title": "同じIDの異意味を拒否",
+      "boundary": "PriorComparison",
+      "required_input_meanings": [
+        "同IDのfound先行record",
+        "今回identity根拠",
+        "先行の不変snapshot Ref"
+      ],
+      "behavior": "同IDでpayload意味bytes/digest、scope identity/revision、全baseの一つでも相違ならconflict、相違軸とbefore/afterを返す。規則revision相違もconflictとして保持する。先行identity/result/receiptはimmutable入力であり、後続値の上書きや二つ目の意味revision発行は行わない。",
+      "failure": "conflictをsame/newへ折り返さず、先行operation/根拠を保持。当該OS操作の可否やauthorityは別owner。",
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+    },
+    {
+      "id": "HARNESS-L4-052-F05",
+      "requirement_ref": "HARNESS-L3-052-F05",
+      "system_oracle_ref": "HARNESS-L10-052-F05",
+      "oracle_ref": "HARNESS-L9-052-F05",
+      "title": "OS CAS結果との接続",
+      "boundary": "OSOutcomeBinding",
+      "required_input_meanings": [
+        "意味判定結果Ref",
+        "OS操作/episode/scope/base/意味判定Refへ束縛した運転結果snapshot"
+      ],
+      "behavior": "semantic classification=new/same/conflict/unknownとOSのcommitted/replay/stale/conflict/incomplete/unknown/not_observedを別fieldで保持する。意味new/sameだけでは新canonicalization成立にならず、OSのstale/conflict/未観測を維持する。先行成功の同一再送は現在headが進んだだけで過去成功を消さず、先行exact resultとobserved currentを分ける。OSは保存開始前に自身の最新command binding/全baseを再確認する。",
+      "failure": "別operation/scope/base/identity-resultのOS結果はbinding_conflict、結果未供給はnot_observed、不能はunknownとして原意味判定と併記。HARNESSはCAS/保存を代行しない。",
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+    },
+    {
+      "id": "HARNESS-L4-052-F06",
+      "requirement_ref": "HARNESS-L3-052-F06",
+      "system_oracle_ref": "HARNESS-L10-052-F06",
+      "oracle_ref": "HARNESS-L9-052-F06",
+      "title": "欠落・unknown・矛盾の分類",
+      "boundary": "InputBinding",
+      "required_input_meanings": [
+        "command/scope/base/payload/rule",
+        "全Resolutionの状態と原Ref",
+        "先行lookup状態/対象/証拠snapshot",
+        "対象oracle Ref"
+      ],
+      "behavior": "各必要値とResolutionをexactに照合する。missing/unknown/staleは当該値/owner/戻し先付きunknown、内容やidentity/scope/revisionの矛盾はconflict。別scope/revisionのoracleや先行identityを補助根拠として流用しない。先行未存在と先行参照不足を区別する。",
+      "failure": "未解決を空集合、false→true、新command ID、規則の推測へ変換しない。入力の一部成立は未完範囲を消さない。",
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+    },
+    {
+      "id": "HARNESS-L4-052-N01",
+      "requirement_ref": "HARNESS-L3-052-N01",
+      "system_oracle_ref": "HARNESS-L10-052-N01",
+      "oracle_ref": "HARNESS-L9-052-N01",
+      "title": "比較根拠と未観測範囲のtrace",
+      "boundary": "ComparisonTrace",
+      "required_input_meanings": [
+        "各入力Ref/bytes",
+        "規則/scope revision",
+        "先行/今回normalized payload/digest",
+        "classification/相違/戻し先",
+        "先行result/receiptとOS結果の独立参照"
+      ],
+      "behavior": "比較traceを同scope/revision/対象oracleへ結び、先行証拠不変、相違軸と欠落原因、意味判定と運転観測を区別して返す。count/hash/fixture名だけでPASSしない。traceは意味判定出力で、永続receiptの保存はOS側。",
+      "failure": "未観測retry/多artifact原子性/旧FR全体closureはnot_proven。prose/時刻/別scope証拠で不足を埋めず、traceを実durability証拠にしない。",
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+    },
+    {
+      "id": "HARNESS-L4-052-B01",
+      "requirement_ref": "HARNESS-L3-052-B01",
+      "system_oracle_ref": "HARNESS-L10-052-B01",
+      "oracle_ref": "HARNESS-L9-052-B01",
+      "title": "pure意味ownerと外部作用の分離",
+      "boundary": "ResponsibilityBoundary",
+      "required_input_meanings": [
+        "所有者付き入力/出力契約",
+        "委譲先の意味判定/OS運転参照",
+        "side-effect観測"
+      ],
+      "behavior": "HARNESS Python意味コアはimmutable snapshotから意味比較とfinding/traceを返す。Node/OSは入力収集・lookup・全base CAS・canonical revision/event/projection/receipt/rollback/durabilityを持つ。要求採否・authority・PO Acceptedは生成しない。003/004/008/016の条件、FR53履歴変換、旧runtime/DB名/schema、新承認者はここへ混載しない。",
+      "failure": "禁止write/authority/history/旧runtime callがあれば境界違反。意味結果を消して運転成功へ単純変換しない。",
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+    }
+  ],
+  "remaining": [
+    "L5/L8でexact型/正規化algorithm/schema/互換・エラー・局所oracleとtoolchainを定義する。旧TS/正規化実装のcopy・実行はしない。",
+    "L6/L7の実装前test/oracle定義凍結とRed/Green、OS053実adapter/lookup/全base CAS/receipt/readとの実L9/L10、操作別SEC/INFRA bindingsが必要。",
+    "全92親/430義務の他対設計と配置4論点/開発環境/文書監査は未完。053→042不整合と当該履歴実変換停止を保持。"
+  ]
+}
