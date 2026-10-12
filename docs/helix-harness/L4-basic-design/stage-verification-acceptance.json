@@ -1,0 +1,538 @@
+{
+  "parent": "HARNESS-L2-022",
+  "status": "draft_incomplete_fixtures_and_independent_review_pending",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "execution_state": "not_executed",
+  "scope": {
+    "l2_individual_version_target": "unspecified",
+    "roster_version_scope": "1.0",
+    "historical_stage": "2a",
+    "authoring_stage": "1_limited_prerequisite",
+    "delegated_content_revision": "ff5f0667f7326d94a79724a7d3b6eba77369019a",
+    "full_parent_capability_adopted": false
+  },
+  "architecture": {
+    "meaning_contract_owner": "HARNESS-CORE",
+    "execution_record_owner": "OSまたは利用者CI/受入手段",
+    "components": [
+      "RevisionQualifiedStageInputs",
+      "IntegratedBoundaryProof",
+      "VerifiedSystemDifferenceProof",
+      "AcceptedContentAndUserReceipt",
+      "UnseenArtifactEvidenceLimits",
+      "StageContractAndExecutionOwner"
+    ],
+    "flow": "同revisionの段階入力→Integrated境界証明→Verified固有差分→L11内容oracleと別利用者受入。HARNESSの導出と実state/運転/保存を分離する。",
+    "actual_state_updated": false
+  },
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-layer-acceptance-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "659ddd8975b2d0b87c5a393128a1b1d038f482fa9b7f0cd333ecc5879365d12d",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "f683d35fa834eca85e9770544bd55c0a3bcc1328cc7317e6c1d2845080596734",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/trace-impact-reconfirmation.json",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/verification-discipline.json",
+      "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+      "sha256": "f5aaccff49e5e6d0584169af009e15aaf59d963018f8f8cceb230d45de321ebb",
+      "use": "対象scopeの意味入力。文書の存在から実proof/運転成立を生成しない。"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse_class": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 29,
+          "text": "### 要求の参照範囲と最新化"
+        },
+        {
+          "line": 30,
+          "text": ""
+        },
+        {
+          "line": 31,
+          "text": "利用者要求はL2、FR／NFR／ACの定義・凍結はL3であり、利用者受入はL11である。"
+        },
+        {
+          "line": 32,
+          "text": "物理pathに残る旧`L1-requirements`等の名称から現行層を判定しない。"
+        },
+        {
+          "line": 33,
+          "text": "[L2要求の参照入口](../design/helix/L2-requirements/README.md)で、既存要求・追補・候補の出典と採用状態を確認する。"
+        },
+        {
+          "line": 34,
+          "text": "Concept v4の承認対象は上位入力として参照するが、候補本文の承認と正本化・runtime適用を同一視しない。"
+        },
+        {
+          "line": 35,
+          "text": "[Concept v4由来のL2整理案](../design/helix/L2-requirements/concept-v4-derived-requirements.md)はdraftであり、"
+        },
+        {
+          "line": 36,
+          "text": "その追加条件に既存revisionの承認を転用しない。"
+        },
+        {
+          "line": 37,
+          "text": ""
+        },
+        {
+          "line": 38,
+          "text": "GitHub Issue／PRは作業・実行証跡への参照先であり、要求の意味・採否・合意revisionの正本ではない。"
+        },
+        {
+          "line": 39,
+          "text": "Issueの有無やclose状態から要求を追加・削除せず、要求本文、出典、対象revisionの判断記録を確認する。"
+        },
+        {
+          "line": 40,
+          "text": "DBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。"
+        },
+        {
+          "line": 41,
+          "text": ""
+        },
+        {
+          "line": 42,
+          "text": "### 層と対"
+        },
+        {
+          "line": 43,
+          "text": ""
+        },
+        {
+          "line": 44,
+          "text": "| L | 工程 | V字の対 | 完了条件の核 |"
+        },
+        {
+          "line": 45,
+          "text": "|---|---|---|---|"
+        },
+        {
+          "line": 46,
+          "text": "| L1 | 企画 | L12 運用テスト | 価値、目的、対象、非対象、route判断が確定 |"
+        },
+        {
+          "line": 47,
+          "text": "| L2 | 要求＋画面プロト | L11 受入テスト | 要求とプロトを往復し、合意receiptまたは非UI N/A receiptが存在 |"
+        },
+        {
+          "line": 48,
+          "text": "| L3 | 要件定義・凍結 | L10 総合テスト | FR/NFR/AC、出所、優先度、非目標、test oracleが凍結 |"
+        },
+        {
+          "line": 49,
+          "text": "| L4 | 基本設計 | L9 結合テスト | 外部設計、architecture、境界、依存、接続が確定 |"
+        },
+        {
+          "line": 50,
+          "text": "| L5 | 詳細設計＋先行テスト設計 | L8 単体テスト | 内部設計、契約、edge case、test designが対で凍結 |"
+        },
+        {
+          "line": 51,
+          "text": "| L6 | 実装 | L7 TDD closure | L5契約内のproduct code。scope外機能を追加しない |"
+        },
+        {
+          "line": 52,
+          "text": "| L7 | テスト実装・TDD closure | L6 実装 | Red→Green→Refactor、実装とtestの双方向traceを閉じる |"
+        },
+        {
+          "line": 53,
+          "text": "| L8 | 単体テスト | L5 詳細設計 | 合成/局所データで内部設計を検証 |"
+        },
+        {
+          "line": 54,
+          "text": "| L9 | 結合テスト | L4 基本設計 | 接続、依存、transaction、adapter境界を検証 |"
+        },
+        {
+          "line": 55,
+          "text": "| L10 | 総合テスト | L3 要件 | system全体でFR/NFR/ACを検証 |"
+        },
+        {
+          "line": 56,
+          "text": "| L11 | 受入テスト | L2 要求＋画面プロト | 実利用・実データで要求とUXを検証 |"
+        },
+        {
+          "line": 57,
+          "text": "| L12 | 運用テスト・改善還流 | L1 企画 | 運用時間軸、価値、監視、改善を検証し次cycleへ還流 |"
+        },
+        {
+          "line": 58,
+          "text": ""
+        },
+        {
+          "line": 59,
+          "text": "本番releaseはL11受入とL12運用テストの間のmilestoneであり、独立layerを増設しない。"
+        },
+        {
+          "line": 60,
+          "text": ""
+        },
+        {
+          "line": 61,
+          "text": "正規V-pairは `L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7` の6組だけである。"
+        },
+        {
+          "line": 62,
+          "text": ""
+        },
+        {
+          "line": 63,
+          "text": "## 3. L2画面工程"
+        },
+        {
+          "line": 64,
+          "text": ""
+        },
+        {
+          "line": 65,
+          "text": "1. UIが存在する案件は、要求⇔画面プロトの反復と合意receiptなしにL3を凍結してはならない。"
+        },
+        {
+          "line": 66,
+          "text": "2. CLI、library、HARNESS等の非UI案件もL2を暗黙に飛ばしてはならない。`not_applicable`、理由、判定者、対象HEAD、要求への影響、再評価条件をreceiptへ残す。"
+        }
+      ],
+      "preserve": "要求/要件/実利用者受入と正規pairの分離、個別成功と組合せ検収の別証拠、GitHub/DB projectionから意味を生成しない。",
+      "change": "現行Conceptと022のProvisional/Integrated/Verified/Accepted、003/004/005とのscope別契約へ再導出する。旧層番号/Lite-Full/DB/CLI/runtime/CIは採用しない。",
+      "reason": "9/24/9/26/9/28の採択と022-004受入追補、10/12限定再開/今回の12object承認を保持する。",
+      "failure_basis": "利用者受入の記録なしにoracle成功/CI greenをAcceptedへ読み替える不整合を防ぐ。",
+      "limit": "source snapshotの保全または未採用candidateを、現行authority/実proof/完了へ昇格しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "archive_disposition": "unresolved",
+      "reuse_class": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 64,
+          "text": "### FRS-BR-009 安全閉包と組合せの検収"
+        },
+        {
+          "line": 65,
+          "text": ""
+        },
+        {
+          "line": 66,
+          "text": "利用者は各Sliceに必要な安全依存閉包を確認し、無関係な基盤完成を待たず、必要な安全条件が欠ける場合は投入を止められなければならない。"
+        },
+        {
+          "line": 67,
+          "text": "Lite／Fullは検収済みSliceの組合せとし、その統合・更新・rollback・L12運用検証を個別Sliceの成功とは別に確認する。"
+        }
+      ],
+      "preserve": "要求/要件/実利用者受入と正規pairの分離、個別成功と組合せ検収の別証拠、GitHub/DB projectionから意味を生成しない。",
+      "change": "現行Conceptと022のProvisional/Integrated/Verified/Accepted、003/004/005とのscope別契約へ再導出する。旧層番号/Lite-Full/DB/CLI/runtime/CIは採用しない。",
+      "reason": "9/24/9/26/9/28の採択と022-004受入追補、10/12限定再開/今回の12object承認を保持する。",
+      "failure_basis": "利用者受入の記録なしにoracle成功/CI greenをAcceptedへ読み替える不整合を防ぐ。",
+      "limit": "source snapshotの保全または未採用candidateを、現行authority/実proof/完了へ昇格しない。"
+    }
+  ],
+  "fixture_progress": {
+    "remaining_contracts": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "N01",
+      "B01"
+    ]
+  },
+  "pending": [
+    "6契約の具体的な原入力/独立期待/正常/反例と内容検証",
+    "003/004/005の必要object/義務へのexact binding",
+    "正式stage proof/schema/codecとowner資格",
+    "L5/L8詳細設計/実oracle凍結/実装前Red/Green/Refactor",
+    "実L9/L10/利用者受入/新CI/計測/PO L11 Accepted"
+  ],
+  "implementation_readiness": "not_ready",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "document_id": "HARNESS-L4-022-STAGE-ACCEPTANCE",
+  "layer": "L4",
+  "pair": "L9",
+  "contracts": [
+    {
+      "id": "HARNESS-L4-022-F01",
+      "requirement_ref": "HARNESS-L3-022-F01",
+      "l9_ref": "HARNESS-L9-022-F01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-F01",
+        "parent": "HARNESS-L2-022",
+        "title": "同revisionの段階入力",
+        "obligation": "対象artifact identity/revision/scopeとProvisional状態の根拠を、L5/L4対設計、L3要件、L2要求とL11成功条件/反例、L8/L9/L10検証設計の対象/oracleへ結ぶ。各入力の実使用版/適用範囲とauthorityを照合し、quality/security/acceptance oracleを各stageへ結ぶ。対の設計/コア追跡を用い、004/005/003の義務/戻し先を保ち、④開発の出力に限らない。",
+        "oracle_ref": "HARNESS-L10-022-F01"
+      },
+      "component": "RevisionQualifiedStageInputs",
+      "input_materials": [
+        "artifact identity/revision/scopeとProvisionalの原根拠",
+        "L5/L4/L3/L2/L11とL8/L9/L10対設計、quality/security/acceptance oracleの実使用版/authority"
+      ],
+      "output_materials": [
+        "段階ごとの有効入力/未評価/不足/別revisionを返す",
+        "④出力と外部成果を同じ入力契約へ照合する"
+      ],
+      "invariants": [
+        "Provisional根拠と入力版不明を推測で補わない",
+        "④やOSを一律必須にしない"
+      ],
+      "owner_connection": {
+        "meaning": "HARNESS-COREの段階契約",
+        "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
+        "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
+      },
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+    },
+    {
+      "id": "HARNESS-L4-022-F02",
+      "requirement_ref": "HARNESS-L3-022-F02",
+      "l9_ref": "HARNESS-L9-022-F02",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-F02",
+        "parent": "HARNESS-L2-022",
+        "title": "Integratedの境界証明",
+        "obligation": "ProvisionalからIntegratedへは、L8でL5、L9でL4と実物を照合するScoped Reverse、境界照合/意味保存Refactor/結合証明を同対象へ結ぶ。Refactor後は同じ段階で再検証する。下位stage/原子CIだけでIntegratedを生成せず、HARNESSは実CI運転を所有しない。",
+        "oracle_ref": "HARNESS-L10-022-F02"
+      },
+      "component": "IntegratedBoundaryProof",
+      "input_materials": [
+        "L8↔L5、L9↔L4のScoped Reverseと境界/結合原証拠",
+        "意味保存Refactor前後の同stage再検証資料"
+      ],
+      "output_materials": [
+        "同対象の境界/結合/再検証の不足とIntegrated候補条件",
+        "原子CI/単体proofを全体結合証明から区別する"
+      ],
+      "invariants": [
+        "Refactor後の実再検証なしにIntegratedを導かない",
+        "実CI運転はOS/利用者executorへ保持する"
+      ],
+      "owner_connection": {
+        "meaning": "HARNESS-COREの段階契約",
+        "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
+        "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
+      },
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+    },
+    {
+      "id": "HARNESS-L4-022-F03",
+      "requirement_ref": "HARNESS-L3-022-F03",
+      "l9_ref": "HARNESS-L9-022-F03",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-F03",
+        "parent": "HARNESS-L2-022",
+        "title": "Verifiedの固有義務差分",
+        "obligation": "IntegratedからVerifiedへはL10とL3要件を照合するsystem証明を用い、下位単体/結合proofを積み上げ、system固有義務との差分を005の構成的保証/差分証明契約で確認する。必要な固有oracle/result/evidenceが未実行/不一致ならVerifiedへ昇格しない。",
+        "oracle_ref": "HARNESS-L10-022-F03"
+      },
+      "component": "VerifiedSystemDifferenceProof",
+      "input_materials": [
+        "Integratedの当該scope原根拠と下位単体/結合proof",
+        "L10↔L3 system固有義務/oracle/result/evidenceと005差分条件"
+      ],
+      "output_materials": [
+        "下位前提とsystem固有の差分/未実行/不一致",
+        "当該scopeで実際に満たした段階とVerified候補の不足"
+      ],
+      "invariants": [
+        "下位成功やtrace存在からVerifiedを生成しない",
+        "別revision/system固有oracle未実行を成功にしない"
+      ],
+      "owner_connection": {
+        "meaning": "HARNESS-COREの段階契約",
+        "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
+        "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
+      },
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+    },
+    {
+      "id": "HARNESS-L4-022-F04",
+      "requirement_ref": "HARNESS-L3-022-F04",
+      "l9_ref": "HARNESS-L9-022-F04",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-F04",
+        "parent": "HARNESS-L2-022",
+        "title": "Acceptedの利用者受入記録",
+        "obligation": "VerifiedからAcceptedへはL11の能力別内容oracle（成功条件/反例）と、同じrevision/scopeに対する利用者受入およびその記録を別々に必要とする。oracle成功/CI green/L10 passから利用者受入を生成しない。内容oracle失敗や受入記録欠落/別revisionならAcceptedにせず、実際に満たした段階と当該scopeで確認した内容を引き継ぐ。",
+        "oracle_ref": "HARNESS-L10-022-F04"
+      },
+      "component": "AcceptedContentAndUserReceipt",
+      "input_materials": [
+        "同revision/scopeのVerified証拠とL11成功条件/反例の内容oracle",
+        "別資料の利用者受入判断と対象/受入者/記録"
+      ],
+      "output_materials": [
+        "Verified/内容oracle成功/実利用者受入を別に返す",
+        "当該scopeのAccepted候補と不足/意味差の戻し先"
+      ],
+      "invariants": [
+        "oracle/CI/L10成功から受入記録を生成しない",
+        "受入記録別revision/欠落ではAcceptedにしない"
+      ],
+      "owner_connection": {
+        "meaning": "HARNESS-COREの段階契約",
+        "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
+        "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
+      },
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+    },
+    {
+      "id": "HARNESS-L4-022-N01",
+      "requirement_ref": "HARNESS-L3-022-N01",
+      "l9_ref": "HARNESS-L9-022-N01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-N01",
+        "parent": "HARNESS-L2-022",
+        "title": "未見成果と証拠の有効範囲",
+        "obligation": "未公開の同scope artifact/外部成果に同じstage契約/oracleを適用し、結果内容/証拠/対象revisionの対応を照合する。oracle不在/失効/適用scope不一致は上位stateを生成せず未評価とし、下位成功や他成果の成功で埋めない。設計/実装/Refactorの各受入結果で確認したscopeと限界を引き継ぎ、全コード/全製品の品質保証へ外挿しない。改善scoreを意思決定/要求承認の根拠成立へ変換しない。",
+        "oracle_ref": "HARNESS-L10-022-N01"
+      },
+      "component": "UnseenArtifactEvidenceLimits",
+      "input_materials": [
+        "未公開の同scope artifact/外部成果と段階契約の個別oracle/result/evidence",
+        "失効/不在/適用不一致、実使用版、未評価、元の限定成立scope"
+      ],
+      "output_materials": [
+        "未見成果に適用できた範囲/未評価/失効と再評価候補",
+        "実確認scopeを引き継ぎ全製品保証と区別する"
+      ],
+      "invariants": [
+        "他artifactのpassと下位成功で未評価を埋めない",
+        "改善scoreを意思決定/要求承認へ変換しない"
+      ],
+      "owner_connection": {
+        "meaning": "HARNESS-COREの段階契約",
+        "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
+        "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
+      },
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+    },
+    {
+      "id": "HARNESS-L4-022-B01",
+      "requirement_ref": "HARNESS-L3-022-B01",
+      "l9_ref": "HARNESS-L9-022-B01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-B01",
+        "parent": "HARNESS-L2-022",
+        "title": "不一致・外部持込み・実行owner",
+        "obligation": "段階別検証と受入の契約はコアが所有し、サービス①〜⑦へ所有させない。意味保存可能な不一致は右側Refactorと同段階再検証を用い、左側へ一律差し戻さない。意味変更は003/004に従い詳細契約L5、architecture/境界L4、要件/要求受入L3/L2、価値L1へBackflowする。L11意味差をコードで合わせず要求へ戻す。外部成果は同revision/対/oracle/result/evidenceを満たした段階で⑥へ持ち込める。HARNESSは契約、OSまたは利用者CI/受入手段は運転/記録を持ち、OS/④を一律必須にしない。",
+        "oracle_ref": "HARNESS-L10-022-B01"
+      },
+      "component": "StageContractAndExecutionOwner",
+      "input_materials": [
+        "外部/内部成果の同じ段階資料、意味保存可否と上流意味差",
+        "003/004の戻し先、CORE契約とOS/利用者CI/受入手段"
+      ],
+      "output_materials": [
+        "同stage Refactor/再検証とL5/L4/L3L2/L1 Backflowを分ける",
+        "満たした段階での⑥持込み候補と実運転/記録ownerへ渡す不足"
+      ],
+      "invariants": [
+        "サービス①〜⑦に段階契約を所有させない",
+        "右側は左側authorityを更新せずL11意味差を直接コードで合わせない"
+      ],
+      "owner_connection": {
+        "meaning": "HARNESS-COREの段階契約",
+        "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
+        "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
+      },
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+    }
+  ]
+}
