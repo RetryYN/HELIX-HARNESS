@@ -1,0 +1,327 @@
+{
+  "document_id": "HARNESS-L5-001-V12-LAYER-CONTRACT",
+  "layer": "L5",
+  "paired_document": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+  "parent": "HARNESS-L2-001",
+  "status": "candidate_pending_independent_review",
+  "source_main": "eadffa6f4597df1f2719fbfd97f4cf21da78c2ed",
+  "parent_pair_revision": "2e22b5f9433eab135a60dfbddf9ba61761ccbbda",
+  "scope": "001の意味/対照合、L2.5独立適用、他owner成立の分離を担う3純粋Python domain関数。全工程実行器、catalog writer、authority producer、wire schemaをここで定義しない。",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+      "sha256": "d4d09cf0a2f30c41627d461d2e4aa85632e5c361d3d29aaf0525ffe7ea74d9ab"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+      "lines": "43–63、580–596",
+      "disposition": "semantic_rederivation",
+      "keep": "12層と六pair、要求/要件/設計/検証/受入/運用の工程意味を区別すること。",
+      "change": "v1.3:584のL0 charter→L1企画の互換mappingは現行001へ転写せず、L0を層外上位根拠として独立参照する。旧L6実装/L7closureのラベル・physical pathもcurrent分類の正本にせず、現行001のConcept/層内設計/実装/検証の成果区別へ対応する。",
+      "reason": "v1.3の互換mappingと旧repository-structure:66/109の層外anchor表現には食い違いがある。採用済み001と現行ConceptのL0層外・L4〜L6設計→実装→L7〜L10検証を正にし、旧番号からの推定を拒否する。",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "lines": "66、109、121–130、157",
+      "disposition": "semantic_rederivation",
+      "keep": "L0層外anchor、工程定義とsource referenceの区別。設計・実装・検証設計・検証コードの4artifactを双方向traceする。",
+      "change": "旧docs/process、docs/design、docs/test-design、src/testsの場所を復元しない。",
+      "reason": "10/9の機構×層とpack配置へ対応する。",
+      "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+      "lines": "16–35、45–66、75–82、86–100",
+      "sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+      "disposition": "semantic_rederivation",
+      "keep": "untrusted strict入力、pure結果、stable Finding、pair exact集合、unknownを非適用へ丸めない適用判定。",
+      "change": "旧TS module名/旧層の番号意味/上限定数/registry writeを移さず、001の独立したdomain contractへ降ろす。",
+      "reason": "001 L4のimmutable snapshot境界とcurrent層/責務/限定scope。"
+    }
+  ],
+  "types": {
+    "Text": "非空Unicode文字列、空白だけは不可。自動正規化しない。",
+    "Ref": {
+      "identity": "Text",
+      "revision": "Text（latest/wildcard不可）",
+      "owner": "Text",
+      "scope": "Text",
+      "content_sha256": "64桁lowercase hex"
+    },
+    "RefSet": "Ref tuple、identity/revision/owner/scope同keyの重複や異digestを拒否。順番は意味を持たない。",
+    "Layer": "L1 | L2 | L3 | L4 | L5 | L6 | L7 | L8 | L9 | L10 | L11 | L12",
+    "ArtifactKind": "charter | concept | planning | requirement | specification | basic_design | detail_design | function_design | implementation | function_verification | unit_verification | integration_verification | system_verification | acceptance | operation_evaluation",
+    "Meaning": {
+      "artifact_ref": "Ref",
+      "kind": "ArtifactKind",
+      "layer": "Layer | null（charter/concept/implementationのみnull）",
+      "paired_layer": "Layer | null（同上）",
+      "basis_refs": "RefSet",
+      "validity": "current | missing | unknown | conflict | stale",
+      "content_check_refs": "RefSet",
+      "implementation_design_ref": "Ref | null",
+      "implementation_test_ref": "Ref | null"
+    },
+    "ArtifactClaim": {
+      "artifact_ref": "Ref",
+      "kind": "ArtifactKind",
+      "layer": "Text | null",
+      "paired_layer": "Text | null",
+      "path_label": "Text",
+      "implementation_design_ref": "Ref | null",
+      "implementation_test_ref": "Ref | null"
+    },
+    "Fact": {
+      "fact_ref": "Ref",
+      "kind": "screen_presence | technical_uncertainty",
+      "value": "yes | no | unknown",
+      "basis_refs": "RefSet",
+      "content_check_refs": "RefSet",
+      "validity": "current | missing | unknown | conflict | stale"
+    },
+    "NaReason": {
+      "reason": "Text | null",
+      "decider_ref": "Ref | null",
+      "target_head": "Text | null",
+      "requirement_impact_refs": "RefSet | null",
+      "reevaluation_condition": "Text | null"
+    },
+    "Signal": "l1_approval | l2_agreement | l3_approval | operation_condition | actual_verification",
+    "Evidence": {
+      "signal": "Signal",
+      "subject_ref": "Ref",
+      "evidence_refs": "RefSet",
+      "state": "current | missing | unknown | conflict | stale",
+      "content_check_refs": "RefSet（実検証は設計だけでなく対象実行/期待/実観測を照合した根拠）"
+    },
+    "Context": {
+      "subject_ref": "Ref",
+      "current_roots": "RefSet",
+      "meaning_records": "Meaning tuple",
+      "facts": "Fact tuple",
+      "evidence_records": "Evidence tuple（5signalを各1件、未知/欠落もstateとして保持）",
+      "source_check_refs": "RefSet（current owner/対象版/内容照合の根拠）",
+      "na_records": "NaBasis tuple。route/subject/revision/scopeで一意。非適用側のcurrent根拠、missing/unknownも保持。"
+    },
+    "Finding": {
+      "code": "closed code下記",
+      "pointer": "input JSON Pointer",
+      "subject_ref": "Ref",
+      "requirement_ref": "001 atomic L3 ID",
+      "backflow_owner": "Text",
+      "evidence_refs": "RefSet"
+    },
+    "Result": "{outcome: satisfied | incomplete | unknown | conflict | stale | invalid, value: 当該閉じたoutput | null, findings: Finding tuple}",
+    "NaBasis": {
+      "route": "prototype | poc",
+      "subject_ref": "Ref",
+      "reason": "NaReason",
+      "validity": "current | missing | unknown | conflict | stale",
+      "basis_refs": "RefSet",
+      "content_check_refs": "RefSet"
+    }
+  },
+  "common_contract": [
+    "recordは列挙fieldだけを許し全field必須。明示nullは型許容箇所だけ。tuple全要素を検査し不正をshort circuitで隠さない。duplicate ID/keyとunknown propertyはinvalid。 ArtifactClaimの完全同値重複はinput_invalid、同key異kind/layerの二重意味はartifact_identity_conflict/conflict。",
+    "inputは未検査で、contextは別のimmutable owner-qualified snapshot。根拠欠落をinputの表示、path、catalog件数、hash一致で補わない。各実参照はsubject/revision/scope/ownerと解決済み内容へ照合し、scope外証拠はreference_conflict。snapshot生成/認可/保存は各owner。",
+    "current_rootsとsource_check_refsの存在だけでは成立しない。Meaning/Fact/Evidenceの内容をその根拠へ照合できないものはcontent_unproven/incomplete。meaning未知は当該artifactだけunknown。無関係な正しい対応を消さず、全工程成立も生成しない。",
+    "型/field不正はinvalid、内容矛盾conflict、古い根拠stale、根拠unknownはunknown、missing/未証明はincomplete。複数findingを保持しoutcomeはinvalid→conflict→stale→unknown→incompleteの優先順。",
+    "invalidはvalue=null。他の失敗では閉じたoutputを満たす解決済み独立結果と未解決を保持できる範囲だけ返し、不足fieldを推測せず必要ならnull。",
+    "findingはcode/pointer/subject identity/revision順のUnicode code point sort。同一input/context bytesで同値、集合順/clock/locale/host state非依存、inputを変更しない。file/network/process/DB/Git/GitHub/OS writer/旧runtime呼出し0。",
+    "型と集合比較は既存toolの能力を使い、001の意味差分だけ新規実装へ残す。pack010と文字列Refの類似だけで先行共通libraryを新設しない。"
+  ],
+  "canonical_meaning": {
+    "planning": "L1",
+    "requirement": "L2",
+    "specification": "L3",
+    "basic_design": "L4",
+    "detail_design": "L5",
+    "function_design": "L6",
+    "function_verification": "L7",
+    "unit_verification": "L8",
+    "integration_verification": "L9",
+    "system_verification": "L10",
+    "acceptance": "L11",
+    "operation_evaluation": "L12"
+  },
+  "canonical_pairs": [
+    [
+      "L1",
+      "L12"
+    ],
+    [
+      "L2",
+      "L11"
+    ],
+    [
+      "L3",
+      "L10"
+    ],
+    [
+      "L4",
+      "L9"
+    ],
+    [
+      "L5",
+      "L8"
+    ],
+    [
+      "L6",
+      "L7"
+    ]
+  ],
+  "outside_kinds": [
+    "charter",
+    "concept",
+    "implementation"
+  ],
+  "functions": [
+    {
+      "id": "HARNESS-L5-001-F01",
+      "l4_ref": "HARNESS-L4-001-F01",
+      "requirement_ref": "HARNESS-L3-001-F01",
+      "oracle_ref": "HARNESS-L8-001-F01",
+      "symbol": "check_artifact_layer_correspondence",
+      "input": {
+        "layer_universe": "Text tuple",
+        "pairs": "{left: Text, right: Text} tuple",
+        "artifacts": "ArtifactClaim tuple",
+        "charter_ref": "Ref",
+        "concept_ref": "Ref"
+      },
+      "output": {
+        "correspondences": "{artifact_ref: Ref, kind: ArtifactKind, layer: Layer | null, paired_layer: Layer | null, implementation_design_ref: Ref | null, implementation_test_ref: Ref | null} tuple",
+        "unresolved_artifact_refs": "RefSet",
+        "charter_ref": "Ref",
+        "concept_ref": "Ref"
+      },
+      "steps": [
+        "十二層集合と6pair集合をcanonical値と双方向比較。L0/L2.5/Concept/implementationをlayer/pairへ追加しない。",
+        "各ArtifactClaimをartifact exact Refからcurrent Meaningへ照合。canonical_meaningでkind/layer/pairを確認。path_labelは表示だけで判定に使用しない。source missing/unknownは当該未解決として保持。",
+        "同じartifact identity/revision/owner/scopeをL2要求とL3要件など複数意味へ割り当てたらartifact_identity_conflict。別artifactの正常pairは保持。",
+        "charter/conceptは独立したkindで層外、layer/paired_layerはnull。implementationも層外であり、L6設計とL7検証のexact RefをMeaningの指定traceへ照合する。両参照が不足ならimplementation_trace_missing、誤参照ならreference_conflict。実装をauthority anchorとして利用しない。 input charter_ref/concept_refもcurrent Meaningのcharter/concept exact identityへ照合し、交換/implementationへの転用はreference_conflict。非implementationのdesign/test refsはnullでなければartifact_meaning_mismatch。",
+        "照合したkind/layer/pairとtraceのみ返す。旧L6実装/L7 closureのpath/labelから現行layerを埋めない。未知を消さず結果全体成立へ昇格しない。",
+        "locatorは誤claimのfield、pairの単一right差分は/pairs/index/right、集合余分/不足は/pairs、layer集合差分は/layer_universe。二重意味は/artifacts、trace両欠落は/artifacts/index/implementation_design_ref。未知artifactのclaim差分はその/artifacts/index/layerでunknownを保持。"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-001-F02",
+      "l4_ref": "HARNESS-L4-001-F02",
+      "requirement_ref": "HARNESS-L3-001-F02",
+      "oracle_ref": "HARNESS-L8-001-F02",
+      "symbol": "check_prototype_poc_applicability",
+      "input": {
+        "screen_fact_ref": "Ref",
+        "technical_fact_ref": "Ref",
+        "prototype_claim": "applicable | not_applicable | unknown",
+        "poc_claim": "applicable | not_applicable | unknown",
+        "prototype_na": "NaReason | null",
+        "poc_na": "NaReason | null",
+        "l2_requirement_ref": "Ref | null",
+        "claimed_agreement_refs": "RefSet",
+        "prototype_result_refs": "RefSet",
+        "poc_result_refs": "RefSet"
+      },
+      "output": {
+        "prototype": "applicable | not_applicable | unknown",
+        "poc": "applicable | not_applicable | unknown",
+        "l25": "required | not_applicable | unknown",
+        "agreement_state": "Evidence.state",
+        "backflow_refs": "RefSet",
+        "missing_na_fields": "Text tuple"
+      },
+      "steps": [
+        "画面factと技術不確実性factを別々にkind/current内容へ照合。yes→applicable、no→not_applicable、unknown/missing→unknown。UIのnoから技術factをnoへ補完しない。currentのyes/noとclaimが違う場合はapplicability_mismatch/conflict。独立factがunknown/missingなら、claimを真偽どちらで主張してもfact_unknown/unknownとして該当/prototype_claimまたは/poc_claimに残し、真偽不一致というconflictへ置換しない。",
+        "not_applicableの各側は別NaReasonの理由/判定者/対象HEAD/要求影響/再評価条件を全部検査。null/空の必要内容はna_basis_missing、missing_na_fieldsには該当input locator。HEADを対象scopeの要求revisionへ照合し、影響と判定者をcurrent根拠へ結ぶ。要求影響は内容根拠があれば空集合（無影響）でもよい。 非nullのN/A内容はcontextの同route NaBasisとexact内容比較する。対象HEADが古ければreference_stale、内容食い違いはreference_conflict、根拠内容照合不足はcontent_unproven。",
+        "両側not_applicableかつ両N/A根拠が完全の場合だけl25=not_applicable。一方applicableがあればrequired、残る側unknownも保持。それ以外はunknown。N/A不足でもl25をnot_applicableとしない。",
+        "L2要求Refとcontextのcurrent要求Meaningを照合。nullならreference_missing。claimed_agreement_refsはcurrent l2_agreement Evidenceと同対象の内容へ照合する。prototype/poc resultは合意の証拠に転用しない。合意missingならagreement_missing。 現行合意がmissingで試作結果だけを合意として渡す場合は/claimed_agreement_refsのagreement_missing/incompleteとし、試作の成功から合意を生成しない。",
+        "二つの適用と合意不足/003・008へのBackflow候補を独立に返す。L3凍結可能、承認、操作許可を返さない。"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-001-B01",
+      "l4_ref": "HARNESS-L4-001-B01",
+      "requirement_ref": "HARNESS-L3-001-B01",
+      "oracle_ref": "HARNESS-L8-001-B01",
+      "symbol": "project_layer_authority_boundary",
+      "input": {
+        "layer_correspondences": "check_artifact_layer_correspondenceのoutput record",
+        "catalog_ref": "Ref",
+        "claimed_evidence": "Evidence tuple（5signal各1）"
+      },
+      "output": {
+        "layer_correspondences": "検査済みの入力対応（他owner state不足で消さない）",
+        "evidence_states": "{signal: Signal, state: Evidence.state, evidence_refs: RefSet} tuple",
+        "missing_signals": "Signal tuple"
+      },
+      "steps": [
+        "層対応の各RefとMeaningを再照合。inputが先行関数の成功という自己申告だけでは受け入れない。catalogの存在と層の対応をauthorityの成立条件として使わない。",
+        "5signalのclaimed_evidenceをcontext evidence_recordsと対象Ref/owner/revision/scope/内容で独立照合する。current根拠がmissingなのにcurrentを主張したらauthority_inferred。当該stateをmissingとして保持。未知/古い/矛盾は共通findingも保持する。 catalog/他signalのRefだけを根拠にした成立主張はその/claimed_evidence/indexにauthority_inferred。別scope/revisionの証拠混入はreference_conflict/staleとして別に扱う。",
+        "actual_verificationは対象oracleと実観測の内容根拠へ照合し、検証設計だけしかない場合はverification_unobservedとmissing。証拠のfield/hash/数/green表示で実行済みにしない。 locatorは/claimed_evidence/index。",
+        "正しい対応と各signalの状態/不足を別々に返す。OS ticket/write/execute/fallbackなど宣言外fieldを入力へ追加すればinput_invalid。outputは状態writeや実行intentを持たず、旧runtimeを呼ばない。"
+      ]
+    }
+  ],
+  "finding_classification": {
+    "input_invalid": "invalid",
+    "reference_missing": "incomplete",
+    "reference_unknown": "unknown",
+    "reference_conflict": "conflict",
+    "reference_stale": "stale",
+    "content_unproven": "incomplete",
+    "layer_universe_mismatch": "conflict",
+    "pair_mismatch": "conflict",
+    "artifact_meaning_mismatch": "conflict",
+    "artifact_identity_conflict": "conflict",
+    "implementation_trace_missing": "incomplete",
+    "applicability_mismatch": "conflict",
+    "fact_unknown": "unknown",
+    "na_basis_missing": "incomplete",
+    "agreement_missing": "incomplete（根拠unknown/stale/conflictなら当該分類も保持）",
+    "authority_inferred": "incomplete（current根拠が無い。矛盾/stale/unknownは当該findingも保持）",
+    "verification_unobserved": "incomplete"
+  },
+  "remaining": [
+    "L6/L7でmodule/symbol/test実物とoracle凍結を準備。実装前Red実観測とGreen/実検証/PO受入は未成立。",
+    "040 catalog、056 pair結果、003/008要求二次形成、OS実保存/実運転、CONNECT wireの対設計へscope付き不足を戻す。全92親/430義務の残りをこの001対で充足したとしない。"
+  ]
+}
