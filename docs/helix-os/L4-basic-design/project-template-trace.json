@@ -218,9 +218,11 @@
         "FindingAndShareTrace"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-B01 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "BRAIN汎用知識の原版/state",
+        "CORE適用/影響の原出力",
+        "LABO評価の原出力または未評価",
+        "SECURITY操作/data利用条件",
+        "案件記録receiptと独立した実接続/受入証拠"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -271,9 +273,11 @@
         "RecordInputBinding"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-B02 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "選択operation",
+        "常時project/scope/source/要求revision/契約ref",
+        "選択/実使用操作の原set/版/CORE出力",
+        "評価共有を選択した場合のLABOscope/必要入力/利用許可",
+        "まだ発生しない結果と非選択sourceの原状態"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -338,9 +342,9 @@
         "EventObligationTrace"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-F01 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "projectごとの工程状態と発生元",
+        "要求revisionと作業/実装/検証/提供/運用trace",
+        "release kanban原状態または未提示理由"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -391,9 +395,9 @@
         "TemplateSetTrace"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-F02 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "提案/選択/実使用の別原集合と各根拠event",
+        "template identity/version/意味契約revision/knowledge利用状態",
+        "CORE適用出力とHARNESS契約版/要求revision"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -458,9 +462,10 @@
         "EventObligationTrace"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-F03 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "原event/actor/source/correlation",
+        "project/scope/要求revision/選択または使用template版",
+        "対象unit/connection/composite義務・成果・pairのidentity/版",
+        "非関係項目の原不適用根拠または未解決"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -749,9 +754,9 @@
         "DispositionAndHandoffTrace"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-F04 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "CORE4判定の出力refと理由/判定者/要求revision/再評価条件",
+        "原条件true/false/unknownとconditional未完",
+        "各義務の未実施/不合格/未評価"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -886,9 +891,9 @@
         "DispositionAndHandoffTrace"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-F05 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "Backflow返却/ACK/受理/意味解決/消込の別event",
+        "OS023の受信側未完義務受理と元ticket条件の出力",
+        "対象revision/scopeと適用契約が求める消込証拠"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -967,9 +972,9 @@
         "EventCorrectionProjection"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-F06 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "原eventの出所/因果/旧scope/失敗",
+        "旧分類・訂正event・新分類の各参照",
+        "各schema/engine版または原未供給状態"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -1034,9 +1039,9 @@
         "MeaningImpactHistory"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-F07 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "原使用旧版/未移管state",
+        "CORE意味差/影響出力と再評価する要求/義務/成果/pair",
+        "無関係scopeの原有効記録、view-only原意味不変根拠"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -1101,9 +1106,10 @@
         "EvaluationRecordSelection"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-F08 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "LABO指定/合意の評価scope/期間と独立必要原記録集合",
+        "実供給原記録集合と抽出source",
+        "duplicate/再送の原相関",
+        "包含/除外対象と理由、未接続/未観測/未回収/比較不能範囲"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -1196,9 +1202,9 @@
         "FindingAndShareTrace"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-F09 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "5finding候補の発生元と対象義務",
+        "使用版/再作業/受入/運用原記録",
+        "因果根拠の原関係と未決理由"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -1249,9 +1255,9 @@
         "FindingAndShareTrace"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-N01 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "発生元操作/利用許可の既存SECURITY出力",
+        "data classと許可scope/今回共有scope",
+        "不足/不一致時の既存共有制約"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -1324,6 +1330,48 @@
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0
+        },
+        {
+          "code": "permission_mismatch",
+          "change": "有資格の既存SEC原出力と今回共有のpermission内容が不一致",
+          "axis": "permission",
+          "state": "conflict",
+          "backflow_owner": "SECURITY",
+          "expected": "当該permission不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+          "expected_side_effect_count": 0,
+          "expected_preserved": {
+            "original_binding": "当該原record/SEC出力/project/scope/版",
+            "observable": "当該permission不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+            "effects": "新許可/遡及成功を生成しない。原eventとQ有効作業を保持。"
+          }
+        },
+        {
+          "code": "data_class_mismatch",
+          "change": "有資格の既存SEC原出力と今回共有のdata_class内容が不一致",
+          "axis": "data_class",
+          "state": "conflict",
+          "backflow_owner": "SECURITY",
+          "expected": "当該data_class不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+          "expected_side_effect_count": 0,
+          "expected_preserved": {
+            "original_binding": "当該原record/SEC出力/project/scope/版",
+            "observable": "当該data_class不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+            "effects": "新許可/遡及成功を生成しない。原eventとQ有効作業を保持。"
+          }
+        },
+        {
+          "code": "scope_mismatch",
+          "change": "有資格の既存SEC原出力と今回共有のscope内容が不一致",
+          "axis": "scope",
+          "state": "conflict",
+          "backflow_owner": "SECURITY",
+          "expected": "当該scope不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+          "expected_side_effect_count": 0,
+          "expected_preserved": {
+            "original_binding": "当該原record/SEC出力/project/scope/版",
+            "observable": "当該scope不一致の共有を未成立とし原記録/既存許可出力と無関係有効共有を保存。",
+            "effects": "新許可/遡及成功を生成しない。原eventとQ有効作業を保持。"
+          }
         }
       ],
       "comparison_order": [
@@ -1345,9 +1393,9 @@
         "EvaluationRecordSelection"
       ],
       "required_input_meanings": [
-        "対象project/scope/source/要求revisionと既存owner契約",
-        "操作選択に応じた原set/event/判定/義務/訂正/意味影響/評価範囲/利用条件の各根拠",
-        "原義務 HELIXOS-L3-002-N02 の内容と該当L10正常入力を入力境界として保持。各actor/event/source/correlation/参照の内容を別に照合。"
+        "選択/非選択sourceと未発生event",
+        "観測期間/必要範囲と未回収/未評価",
+        "検証側未見inputと実input/output/原oracleの別参照"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
