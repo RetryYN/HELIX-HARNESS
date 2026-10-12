@@ -72,6 +72,11 @@
       "path": "docs/helix-harness/L10-verification/nfr-verification.json",
       "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
       "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/governance/decisions/incidentport-adoption-po-decision-2026-10-11.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "144594a305825f7b44bf4615cda15d3a7dab17cd2301a8072829ec9a76485210"
     }
   ],
   "legacy_comparison": [
@@ -306,7 +311,7 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "B01/F01/F02/F03/F05/N01の具体的正常/負例・独立原資料bytes。F04の8正常/22負例は作成済み・意味review未完。",
+    "B01/F01/F02/F03/N01の具体的正常/負例・独立原資料bytes。F04/F05は具体化済み・意味review未完。",
     "L9接続10観点ごとの具体的不足caseとowner参照",
     "未統合015基本設計と後続022等のexact binding",
     "独立exact HEAD意味review・main admission",
@@ -511,7 +516,32 @@
         "Port成立は操作の実施/新許可の生成ではない",
         "配備/Issue closeから恒久対策/backfill完了を導かない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。",
+      "connection_detail": {
+        "port_definition_owner": "HARNESS",
+        "operation_and_original_record_owner": "OS",
+        "existing_authority_owner": "SECURITY",
+        "style_owner": "対象製品の要求owner",
+        "port_fields": [
+          "proofs",
+          "artifact_identity",
+          "environment",
+          "dependencies",
+          "security",
+          "rollback",
+          "deployment_conditions",
+          "acceptance"
+        ],
+        "initial_order": "開発開始時に義務を持ち、証拠未充足は各工程で埋める。未充足を隠さずRelease-eligible条件へ返す。",
+        "completion_axes": [
+          "暫定収束",
+          "恒久対策原証拠",
+          "current L1–L12 backfill",
+          "Reverse fullback実結果",
+          "選択方式の該当層への復帰"
+        ],
+        "return": "戻り先unknownは当該ownerへ不足として返し、F01の再開/凍結条件で照合。実運転はOSが持つ。"
+      }
     },
     {
       "id": "HARNESS-L4-003-N01",
@@ -652,8 +682,13 @@
       "F01",
       "F02",
       "F03",
-      "F05",
       "N01"
-    ]
+    ],
+    "F05": {
+      "normal": 3,
+      "negative": 26,
+      "source_packets": 29,
+      "state": "draft_not_executed"
+    }
   }
 }
