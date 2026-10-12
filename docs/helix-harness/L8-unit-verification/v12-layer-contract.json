@@ -1,0 +1,434 @@
+{
+  "document_id": "HARNESS-L8-001-V12-LAYER-CONTRACT",
+  "layer": "L8",
+  "paired_document": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+  "parent": "HARNESS-L2-001",
+  "status": "candidate_pending_independent_review",
+  "source_main": "eadffa6f4597df1f2719fbfd97f4cf21da78c2ed",
+  "parent_pair_revision": "2e22b5f9433eab135a60dfbddf9ba61761ccbbda",
+  "scope": "001の3純粋domain関数の局所内容oracle。実consumer接続/authority発行/検証実行はL9/L10と各ownerへ残す。",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+      "sha256": "d4d09cf0a2f30c41627d461d2e4aa85632e5c361d3d29aaf0525ffe7ea74d9ab"
+    }
+  ],
+  "fixture_contract": "合成Refのidentity=FX-001-符号、revision=r1、owner=fixture明記意味owner、scope=fixture/001、digestは対応合成原文bytes。実registry/採用knowledgeではない。各input/context/oracleをtest定義時に凍結。変異に合わせて期待Meaning/合意/母集合を変更しない。異なる実状態の正常scopeは別contextを先に凍結。",
+  "fixture_basis": {
+    "meaning": "current Meaningは12 canonical kind/layer/pair、独立charter C0/concept C、implementation I（trace D6/V7）を持つ。Q2 requirement L2/L11とQ3 specification L3/L10は別identity。Uはsource unknown。旧pathラベルはdisplayだけ。 基準正常にはknown K4 basic_design L4/L9があり、unknown別fixtureは同じindexのK4をUへ置換する。両contextとoracleはtest定義時に別々に固定。",
+    "reference_contents": "C0/C/I/D6/V7/Q2/Q3/current meaningとbasis/source_checkは同対象の意味内容を確認できる合成原文を持つ。D6はfunction_design L6/V7、V7はfunction_verification L7/D6の同義務trace。",
+    "applicability": "4 scopeのscreen/tech Factは(no,no),(no,yes),(yes,no),(yes,yes)。no側は理由、PO判定者Ref、r1、要求影響Ref、再評価条件の5属性を独立に持つ。第5scopeは両fact unknown。各scopeのQ2とcurrent l2_agreementがある。第6scopeはscreen=yes/tech=yes・両result実証はあるがl2_agreement missing。 各非適用側の5属性は同route/subjectのcontext NaBasisにも固定。Poc/PrototypeのNaBasisは別であり入力の説明に合わせて変更しない。",
+    "authority": "同じ層意味の2scopeを先に固定。Pは全5signal currentでcurrent意味/合意/承認/実観測のcontent根拠あり。Mは全5signal missingだがcatalogと層対応は正常。design-only Vはactual_verification missing、検証設計Refだけあり。",
+    "unknown_claim_U": {
+      "artifact_ref": "U@r1",
+      "kind": "basic_design（未確認のinput claim、Meaning根拠はunknown）",
+      "layer": null,
+      "paired_layer": null,
+      "path_label": "old/L4",
+      "implementation_design_ref": null,
+      "implementation_test_ref": null
+    }
+  },
+  "cases": [
+    {
+      "id": "HARNESS-L8-001-F01",
+      "design_ref": "HARNESS-L5-001-F01",
+      "l9_ref": "HARNESS-L9-001-F01",
+      "requirement_ref": "HARNESS-L3-001-F01",
+      "symbol": "check_artifact_layer_correspondence",
+      "positive_input": "12層/6pairのcanonical集合。基準artifacts順序Q2,Q3,D6,I,K4,C,C0,V7で全current。別のunknown正常はindex4だけU/source unknownを持つ独立fixture。IはD6/V7 trace。 unknown別正常のU claimはfixture_basis.unknown_claim_Uの全field、layer=null/paired_layer=null/path_label=old/L4。",
+      "expected_observation": "基準はsatisfied、Q2=L2/L11、Q3=L3/L10、D6=L6/L7、K4=L4/L9、V7=L7/L6。C0/C/I layer=null、I trace保持。unknown別正常だけUをunresolvedとしてoutcome=unknown、他の対応は同じ。 unknown別正常のcorrespondencesにUのentryは一件も無く、unresolved_artifact_refsにUが一件残る。",
+      "negative_mutations": [
+        {
+          "l9_mutation_index": 1,
+          "mutation": "L2↔L10を登録",
+          "input_pointer": "/pairs/1/right",
+          "change": "L2のrightをL11からL10へ",
+          "expected": {
+            "finding_code": "pair_mismatch",
+            "outcome": "conflict",
+            "finding_pointer": "/pairs/1/right"
+          }
+        },
+        {
+          "l9_mutation_index": 2,
+          "mutation": "L0を13番目の層に追加",
+          "input_pointer": "/layer_universe",
+          "change": "L0を追加",
+          "expected": {
+            "finding_code": "layer_universe_mismatch",
+            "outcome": "conflict",
+            "finding_pointer": "/layer_universe"
+          }
+        },
+        {
+          "l9_mutation_index": 3,
+          "mutation": "L0の第七pairを登録",
+          "input_pointer": "/pairs",
+          "change": "{L0,L13}の第七pairを追加",
+          "expected": {
+            "finding_code": "pair_mismatch",
+            "outcome": "conflict",
+            "finding_pointer": "/pairs"
+          }
+        },
+        {
+          "l9_mutation_index": 4,
+          "mutation": "旧pathの数字だけからcurrent layerを決定",
+          "input_pointer": "/artifacts/0/layer",
+          "change": "path_label=old/L3のQ2をlayer=L3へ。Meaningはrequirement/L2のまま",
+          "expected": {
+            "finding_code": "artifact_meaning_mismatch",
+            "outcome": "conflict",
+            "finding_pointer": "/artifacts/0/layer"
+          }
+        },
+        {
+          "l9_mutation_index": 5,
+          "mutation": "L2要求とL3要件を同一artifactへまとめる",
+          "input_pointer": "/artifacts",
+          "change": "Q3のartifact_refをQ2へ置換し同identityにrequirement/specificationを二重宣言",
+          "expected": {
+            "finding_code": "artifact_identity_conflict",
+            "outcome": "conflict",
+            "finding_pointer": "/artifacts"
+          }
+        },
+        {
+          "l9_mutation_index": 6,
+          "mutation": "意味source未供給をpathで補う",
+          "input_pointer": "/artifacts/4/layer",
+          "change": "unknown正常のU claimのlayerだけをnullからL4へ変更。kind/paired_layer=null/path_label=old/L4とcontext U unknownは不変。",
+          "expected": {
+            "finding_code": "reference_unknown",
+            "outcome": "unknown",
+            "finding_pointer": "/artifacts/4/layer",
+            "output_constraints": {
+              "forbidden_correspondence_refs": [
+                "U@r1"
+              ],
+              "required_unresolved_refs": [
+                "U@r1"
+              ],
+              "retained_correspondences": "Q2,Q3,D6,I,C,C0,V7のkind/layer/pair/traceはunknown正常と不変。UをL4で出す実装は、unknown finding併記でも失敗。"
+            }
+          }
+        },
+        {
+          "l9_mutation_index": 7,
+          "mutation": "旧L6実装ラベルから実装成果を現行L6設計に分類",
+          "input_pointer": "/artifacts/3/layer",
+          "change": "I implementationのlayerをL6へ。旧L6 implementationラベルは表示のみ",
+          "expected": {
+            "finding_code": "artifact_meaning_mismatch",
+            "outcome": "conflict",
+            "finding_pointer": "/artifacts/3/layer"
+          }
+        },
+        {
+          "l9_mutation_index": 8,
+          "mutation": "旧L7 closureラベルから現行L7を決定",
+          "input_pointer": "/artifacts/2/layer",
+          "change": "D6 function_designを旧L7 closureラベルからL7へ変更",
+          "expected": {
+            "finding_code": "artifact_meaning_mismatch",
+            "outcome": "conflict",
+            "finding_pointer": "/artifacts/2/layer"
+          }
+        },
+        {
+          "l9_mutation_index": 9,
+          "mutation": "Concept成果をL1企画へ自動分類",
+          "input_pointer": "/artifacts/5/layer",
+          "change": "C conceptをL1へ変更",
+          "expected": {
+            "finding_code": "artifact_meaning_mismatch",
+            "outcome": "conflict",
+            "finding_pointer": "/artifacts/5/layer"
+          }
+        },
+        {
+          "l9_mutation_index": 10,
+          "mutation": "実装成果を第十三層/第七pairへ挿入",
+          "input_pointer": "/layer_universe",
+          "change": "基準fixtureの/layer_universeへimplementationだけを追加。/pairsは六組のまま保持。第七pair挿入は下の別単独変異。",
+          "expected": {
+            "finding_code": "layer_universe_mismatch",
+            "outcome": "conflict",
+            "finding_pointer": "/layer_universe"
+          },
+          "independent_variant": {
+            "input_pointer": "/pairs",
+            "change": "別の基準fixtureから/pairsへ{left:implementation,right:L7}だけを追加。/layer_universeは十二層のまま。",
+            "expected": {
+              "finding_code": "pair_mismatch",
+              "outcome": "conflict",
+              "finding_pointer": "/pairs"
+            },
+            "l9_mutation_index": 10
+          }
+        },
+        {
+          "l9_mutation_index": 11,
+          "mutation": "実装成果からL6設計/L7検証へのtraceを削除",
+          "input_pointer": "/artifacts/3/implementation_design_ref",
+          "change": "Iのdesign/test refs両方を明示nullへ（必要fieldは保持）",
+          "expected": {
+            "finding_code": "implementation_trace_missing",
+            "outcome": "incomplete",
+            "finding_pointer": "/artifacts/3/implementation_design_ref"
+          }
+        }
+      ],
+      "execution_state": "not_executed",
+      "mutation_fixture_rule": "変異6だけunknown U別fixture、他10変異は全currentの基準fixtureへ適用。正常から存在するunknownでincomplete分類を隠さない。"
+    },
+    {
+      "id": "HARNESS-L8-001-F02",
+      "design_ref": "HARNESS-L5-001-F02",
+      "l9_ref": "HARNESS-L9-001-F02",
+      "requirement_ref": "HARNESS-L3-001-F02",
+      "symbol": "check_prototype_poc_applicability",
+      "positive_input": "4組+unknown組+両result成功/合意missing組を別contextで評価。",
+      "expected_observation": "no/no→NA/NAかつ完全N/Aでl25 NA、no/yes→NA/applicable、yes/no→applicable/NA、yes/yes→両applicable。unknown/unknown→unknown。合意missing組はagreement_missingでL3凍結可能を返さない。",
+      "negative_mutations": [
+        {
+          "l9_mutation_index": 1,
+          "mutation": "非UIを根拠にPoC不要とする",
+          "input_pointer": "/poc_claim",
+          "change": "no UI/yes tech scopeでnot_applicableを主張。技術Factはyesのまま",
+          "expected": {
+            "finding_code": "applicability_mismatch",
+            "outcome": "conflict",
+            "finding_pointer": "/poc_claim"
+          }
+        },
+        {
+          "l9_mutation_index": 2,
+          "mutation": "技術不明をfalseに丸める",
+          "input_pointer": "/poc_claim",
+          "change": "tech unknown scopeでnot_applicableを主張。Factはunknownのまま",
+          "expected": {
+            "finding_code": "fact_unknown",
+            "outcome": "unknown",
+            "finding_pointer": "/poc_claim"
+          }
+        },
+        {
+          "l9_mutation_index": 3,
+          "mutation": "画面有無不明をfalseに丸める",
+          "input_pointer": "/prototype_claim",
+          "change": "UI unknown scopeでnot_applicableを主張。Factはunknownのまま",
+          "expected": {
+            "finding_code": "fact_unknown",
+            "outcome": "unknown",
+            "finding_pointer": "/prototype_claim"
+          }
+        },
+        {
+          "l9_mutation_index": 4,
+          "mutation": "Prototype/PoC成功でL2合意を生成",
+          "input_pointer": "/claimed_agreement_refs",
+          "change": "両result成功/合意missing scopeでresult Refをagreementとして渡す",
+          "expected": {
+            "finding_code": "agreement_missing",
+            "outcome": "incomplete",
+            "finding_pointer": "/claimed_agreement_refs"
+          }
+        },
+        {
+          "l9_mutation_index": 5,
+          "mutation": "L2を省略",
+          "input_pointer": "/l2_requirement_ref",
+          "change": "明示null",
+          "expected": {
+            "finding_code": "reference_missing",
+            "outcome": "incomplete",
+            "finding_pointer": "/l2_requirement_ref"
+          }
+        },
+        {
+          "l9_mutation_index": 6,
+          "mutation": "N/A理由欠落",
+          "input_pointer": "/prototype_na/reason",
+          "change": "no/no scopeでnull、他4属性とpoc_naは保持",
+          "expected": {
+            "finding_code": "na_basis_missing",
+            "outcome": "incomplete",
+            "finding_pointer": "/prototype_na/reason"
+          }
+        },
+        {
+          "l9_mutation_index": 7,
+          "mutation": "判定者欠落",
+          "input_pointer": "/prototype_na/decider_ref",
+          "change": "no/no scopeでnull、他4属性保持",
+          "expected": {
+            "finding_code": "na_basis_missing",
+            "outcome": "incomplete",
+            "finding_pointer": "/prototype_na/decider_ref"
+          }
+        },
+        {
+          "l9_mutation_index": 8,
+          "mutation": "対象HEAD欠落",
+          "input_pointer": "/prototype_na/target_head",
+          "change": "no/no scopeでnull、他4属性保持",
+          "expected": {
+            "finding_code": "na_basis_missing",
+            "outcome": "incomplete",
+            "finding_pointer": "/prototype_na/target_head"
+          }
+        },
+        {
+          "l9_mutation_index": 9,
+          "mutation": "要求影響欠落",
+          "input_pointer": "/prototype_na/requirement_impact_refs",
+          "change": "no/no scopeでnull、他4属性保持",
+          "expected": {
+            "finding_code": "na_basis_missing",
+            "outcome": "incomplete",
+            "finding_pointer": "/prototype_na/requirement_impact_refs"
+          }
+        },
+        {
+          "l9_mutation_index": 10,
+          "mutation": "再評価条件欠落",
+          "input_pointer": "/prototype_na/reevaluation_condition",
+          "change": "no/no scopeでnull、他4属性保持",
+          "expected": {
+            "finding_code": "na_basis_missing",
+            "outcome": "incomplete",
+            "finding_pointer": "/prototype_na/reevaluation_condition"
+          }
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-001-B01",
+      "design_ref": "HARNESS-L5-001-B01",
+      "l9_ref": "HARNESS-L9-001-B01",
+      "requirement_ref": "HARNESS-L3-001-B01",
+      "symbol": "project_layer_authority_boundary",
+      "positive_input": "層対応正常のPとM、design-onlyを別contextで評価。",
+      "expected_observation": "対応値は同じ。P5signal current、M5signal missing、design-only actual_verification missing。各scope証拠を他scopeへ流用せず、ticket/状態write/fallback intentはoutputに無い。",
+      "negative_mutations": [
+        {
+          "l9_mutation_index": 1,
+          "mutation": "catalog存在からL1承認を作る",
+          "input_pointer": "/claimed_evidence/0",
+          "change": "Mでl1_approval currentをcatalog Refだけで主張",
+          "expected": {
+            "finding_code": "authority_inferred",
+            "outcome": "incomplete",
+            "finding_pointer": "/claimed_evidence/0"
+          }
+        },
+        {
+          "l9_mutation_index": 2,
+          "mutation": "catalog存在からL2合意を作る",
+          "input_pointer": "/claimed_evidence/1",
+          "change": "Mでl2_agreement currentをcatalog Refだけで主張",
+          "expected": {
+            "finding_code": "authority_inferred",
+            "outcome": "incomplete",
+            "finding_pointer": "/claimed_evidence/1"
+          }
+        },
+        {
+          "l9_mutation_index": 3,
+          "mutation": "catalog存在からL3承認を作る",
+          "input_pointer": "/claimed_evidence/2",
+          "change": "Mでl3_approval currentをcatalog Refだけで主張",
+          "expected": {
+            "finding_code": "authority_inferred",
+            "outcome": "incomplete",
+            "finding_pointer": "/claimed_evidence/2"
+          }
+        },
+        {
+          "l9_mutation_index": 4,
+          "mutation": "検証設計だけで実検証成功",
+          "input_pointer": "/claimed_evidence/4",
+          "change": "design-only scopeでactual_verification currentを検証設計Refだけで主張",
+          "expected": {
+            "finding_code": "verification_unobserved",
+            "outcome": "incomplete",
+            "finding_pointer": "/claimed_evidence/4"
+          }
+        },
+        {
+          "l9_mutation_index": 5,
+          "mutation": "照合結果からOS ticketを発行",
+          "input_pointer": "/ticket_intent",
+          "change": "unknown field ticket_intent={operation:issue}追加",
+          "expected": {
+            "finding_code": "input_invalid",
+            "outcome": "invalid",
+            "finding_pointer": "/ticket_intent"
+          }
+        },
+        {
+          "l9_mutation_index": 6,
+          "mutation": "旧runtimeを実行fallbackにする",
+          "input_pointer": "/runtime_fallback",
+          "change": "unknown field runtime_fallback=legacy追加",
+          "expected": {
+            "finding_code": "input_invalid",
+            "outcome": "invalid",
+            "finding_pointer": "/runtime_fallback"
+          }
+        }
+      ],
+      "execution_state": "not_executed"
+    }
+  ],
+  "extra_cases": [
+    {
+      "id": "HARNESS-L8-001-X01",
+      "targets": "all three",
+      "input": "各Refのowner/scope/revisionを別current値へ単独変更、same-key duplicate/異digest、missing/unknown/stale根拠、content check無し、unknown fieldを個別に評価。",
+      "expected": "対応したreference_*、content_unproven、input_invalid。単なるhash/root field存在で成功にしない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-001-X02",
+      "targets": "all three",
+      "input": "同fixture二回と集合順変更、effect observer stubでinput不変と0呼出しを検査。",
+      "expected": "同じ結果/finding集合。入出力に操作命令なし。意図的な実装欠陥の別oracle強度試験は実装前Redを代替しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-001-X03",
+      "targets": "check_artifact_layer_correspondence",
+      "input": "canonical 12kind全てのmeaning-backed artifactを与えた正常、各一kind/layer/pair変更。Iのtraceを解決済みだが別義務のD6-other/V7-otherへ置換。C0とCのRefsを交換。",
+      "expected": "正常は12層各1と六pair対向を維持。内容変異artifact_meaning_mismatch/pair_mismatch、別trace/anchorはreference_conflict。入力のself-declaredkindやpathで通らない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-001-X04",
+      "targets": "check_prototype_poc_applicability",
+      "input": "PoC側もN/A5属性を一つずつnull、no側NaReason全体null、target_head古い、unknown片側＋他側applicable、要求影響を根拠付き空tupleにする別正常。",
+      "expected": "各N/A不足locator、古い対象はreference_stale、applicable＋unknownはl25 requiredでunknown側保持。根拠付き無影響は有効だがnullは不足。Prototype側だけの検査では通らない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-001-X05",
+      "targets": "project_layer_authority_boundary",
+      "input": "operation_conditionだけmissing、各5signalをunknown/stale/conflict、5signal不足/重複、実観測Ref別revision、actual_verification count/hashだけcurrent。",
+      "expected": "operation不足は保持。他signal流用不可。共通finding/stateを保持。signal欠落/重複はinput_invalid。実内容無しはverification_unobserved/content_unproven。catalogや層対応は各authorityへ昇格しない。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "evidence_contract": [
+    "同一revisionの固定input/context/oracle bytes、3symbol→L8→L4/L9→L3/L10双方向trace",
+    "3正常family、L9の27保持項目に対応する28独立変異と5追加familyの入力/期待/実観測/差分。不正型だけで内容oracleを代替しない。",
+    "未実行/未知/不足/失敗とowner戻し先、実検証・PO受入へ局所成功を転写しない。"
+  ],
+  "completion": "実装前oracle凍結後に実物で観測する。文書存在/型検査/件数/hash/設計reviewを実L8成功にしない。"
+}
