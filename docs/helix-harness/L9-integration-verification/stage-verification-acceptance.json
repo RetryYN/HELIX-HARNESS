@@ -41186,11 +41186,11 @@
           "mutation_lane": "original"
         },
         {
-          "id": "H022-B01-WRONG-MEANING_CONTRACT_OWNER",
+          "id": "H022-B01-SERVICE-6-OWNS-CONTRACT",
           "contract_ref": "HARNESS-L9-022-B01",
           "original_material": {
             "source_packet_ref": {
-              "identity": "CASE-SOURCE-H022-B01-WRONG-MEANING_CONTRACT_OWNER",
+              "identity": "CASE-SOURCE-H022-B01-SERVICE-6-OWNS-CONTRACT",
               "revision": "fixture-r1",
               "scope": "PRODUCT-P",
               "owner": "synthetic-independent-owner-route-source"
@@ -41199,7 +41199,7 @@
           },
           "independent_source_packet": {
             "ref": {
-              "identity": "CASE-SOURCE-H022-B01-WRONG-MEANING_CONTRACT_OWNER",
+              "identity": "CASE-SOURCE-H022-B01-SERVICE-6-OWNS-CONTRACT",
               "revision": "fixture-r1",
               "scope": "PRODUCT-P",
               "owner": "synthetic-independent-owner-route-source"
