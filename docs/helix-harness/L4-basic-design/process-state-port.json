@@ -306,7 +306,7 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "全7契約の具体的な正常/負例・独立原資料bytesと期待部分結果",
+    "B01/F01/F02/F03/F05/N01の具体的正常/負例・独立原資料bytes。F04の8正常/22負例は作成済み・意味review未完。",
     "L9接続10観点ごとの具体的不足caseとowner参照",
     "未統合015基本設計と後続022等のexact binding",
     "独立exact HEAD意味review・main admission",
@@ -572,35 +572,88 @@
   "artifact_state_basis": [
     {
       "state": "Working",
-      "basis": "作業中。後続証明なし"
+      "basis": "作業中。後続証明なし",
+      "source_material_key": "state_proofs.Working",
+      "prior_state": null,
+      "content_oracle": "同対象の独立原資料を比較し、自己申告state/passedだけでは成立させない。上位固有義務・原受入・配備環境・運用評価を個別に照合。"
     },
     {
       "state": "Provisional",
-      "basis": "同対象の谷証拠と原子CI"
+      "basis": "同対象の谷証拠と原子CI",
+      "source_material_key": "state_proofs.Provisional",
+      "prior_state": "Working",
+      "content_oracle": "同対象の独立原資料を比較し、自己申告state/passedだけでは成立させない。上位固有義務・原受入・配備環境・運用評価を個別に照合。"
     },
     {
       "state": "Integrated",
-      "basis": "境界照合・Refactor・結合の固有証明"
+      "basis": "境界照合・Refactor・結合の固有証明",
+      "source_material_key": "state_proofs.Integrated",
+      "prior_state": "Provisional",
+      "content_oracle": "同対象の独立原資料を比較し、自己申告state/passedだけでは成立させない。上位固有義務・原受入・配備環境・運用評価を個別に照合。"
     },
     {
       "state": "Verified",
-      "basis": "L10 system証明と005/022固有義務差分"
+      "basis": "L10 system証明と005/022固有義務差分",
+      "source_material_key": "state_proofs.Verified",
+      "prior_state": "Integrated",
+      "content_oracle": "同対象の独立原資料を比較し、自己申告state/passedだけでは成立させない。上位固有義務・原受入・配備環境・運用評価を個別に照合。"
     },
     {
       "state": "Accepted",
-      "basis": "同対象L11利用者原受入"
+      "basis": "同対象L11利用者原受入",
+      "source_material_key": "state_proofs.Accepted",
+      "prior_state": "Verified",
+      "content_oracle": "同対象の独立原資料を比較し、自己申告state/passedだけでは成立させない。上位固有義務・原受入・配備環境・運用評価を個別に照合。"
     },
     {
       "state": "Release-eligible",
-      "basis": "通常Release Portの全必須条件"
+      "basis": "通常Release Portの全必須条件",
+      "source_material_key": "state_proofs.Release-eligible",
+      "prior_state": "Accepted",
+      "content_oracle": "同対象の独立原資料を比較し、自己申告state/passedだけでは成立させない。上位固有義務・原受入・配備環境・運用評価を個別に照合。"
     },
     {
       "state": "Deployed",
-      "basis": "対象環境の実配備記録"
+      "basis": "対象環境の実配備記録",
+      "source_material_key": "state_proofs.Deployed",
+      "prior_state": "Release-eligible",
+      "content_oracle": "同対象の独立原資料を比較し、自己申告state/passedだけでは成立させない。上位固有義務・原受入・配備環境・運用評価を個別に照合。"
     },
     {
       "state": "Observed",
-      "basis": "対象のL12運用評価"
+      "basis": "対象のL12運用評価",
+      "source_material_key": "state_proofs.Observed",
+      "prior_state": "Deployed",
+      "content_oracle": "同対象の独立原資料を比較し、自己申告state/passedだけでは成立させない。上位固有義務・原受入・配備環境・運用評価を個別に照合。"
     }
-  ]
+  ],
+  "state_evidence_connection": {
+    "input_owner": "OS/実行/結合/総合検証/L11原受入/Port/L12の各原証拠owner",
+    "meaning_owner": "HARNESS",
+    "record_owner": "OS",
+    "flow": [
+      "独立原証拠→同revision/scope/artifact/environmentの結合",
+      "各状態固有内容と005/022差分の照合",
+      "前状態への依存と固有条件を別に返す",
+      "当該不足と当該owner→OSの状態記録/Backflow運転"
+    ],
+    "preservation": "先行証拠が不足しても、独立に読めた後続原証拠を消さない。後続の自己条件支持と先行依存を満たした状態frontierを分ける。",
+    "actual_side_effect": "本照合材料はOS状態更新/利用者受入/release/deploy/運用評価を実施しない。"
+  },
+  "fixture_progress": {
+    "F04": {
+      "normal": 8,
+      "negative": 22,
+      "source_packets": 30,
+      "state": "draft_not_executed"
+    },
+    "remaining_contracts": [
+      "B01",
+      "F01",
+      "F02",
+      "F03",
+      "F05",
+      "N01"
+    ]
+  }
 }
