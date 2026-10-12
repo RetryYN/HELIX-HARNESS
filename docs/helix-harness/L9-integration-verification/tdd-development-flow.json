@@ -112,20 +112,44 @@
           "text": "   Greenは最小実装、Refactorは同じoracleがgreenのまま構造を単純化した証拠で閉じる。"
         },
         {
-          "line": 142,
-          "text": "## Workflow Placement / ワークフロー上の位置づけ"
+          "line": 117,
+          "text": "- CIはPRでtargeted oracleとcritical gateを実行し、省略分をpost-merge fullとnightlyで回収する。"
         },
         {
-          "line": 143,
-          "text": ""
+          "line": 118,
+          "text": "  targeted greenをfull greenと偽らず、unknown impactはfullへfail-closeする。"
         },
         {
-          "line": 144,
-          "text": "- G3: FR/NFR/ACとL10 oracleに加え、no-code-firstの採否、変更対象の責務owner、"
+          "line": 119,
+          "text": "- refactorは公開behaviorを変えない。新behavior、schema、migration、failure semanticsの変更を検出したら"
+        },
+        {
+          "line": 135,
+          "text": "- id: DDD-INV-001 oracle: U-DDDTDD-001 - Governance/domain module は acyclic を保ち、下位 contract は上位 runtime orchestration に依存しない。"
+        },
+        {
+          "line": 145,
+          "text": "  許容するcomplexity budgetをdiscipline baselineとしてfreezeする。"
+        },
+        {
+          "line": 146,
+          "text": "- L4/L9: bounded context、Aggregate/Port/Adapter境界とsystem/integration oracleを対で固定する。"
         },
         {
           "line": 147,
           "text": "  object modelが不要なら`none`または`pure_function`と理由を残す。"
+        },
+        {
+          "line": 148,
+          "text": "- L5/L8: precondition、postcondition、invariant、failure/rollback、edge caseと単体・結合oracleを対で固定する。"
+        },
+        {
+          "line": 149,
+          "text": "- Forward L6: L7 implementation が始まる前に、domain boundary、invariant、rule ID を定義または更新する。"
+        },
+        {
+          "line": 150,
+          "text": "- L6/L7: Red → 最小Green → behavior-preserving Refactorの順で閉じ、契約外コードを追加しない。"
         }
       ],
       "preserve": "実欠陥を検出したRed、最小Green、意味保存Refactor、設計と対検証の固定を保持。",
@@ -1736,7 +1760,250 @@
         }
       ],
       "execution_state": "not_executed",
-      "normal_variants": []
+      "normal_variants": [
+        {
+          "id": "HARNESS-L9-015-B01-OS-CI",
+          "input": {
+            "binding": {
+              "identity": "TDD-TARGET",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "source_assumption": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。",
+            "non_target": {
+              "binding": {
+                "identity": "OTHER-Q",
+                "revision": "r1",
+                "scope": {
+                  "project": "Q",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "design-owner"
+              },
+              "state": "valid_original"
+            },
+            "ci_contract_ref": {
+              "identity": "CI-CONTRACT",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "HARNESS"
+            },
+            "ci_operator": {
+              "kind": "os_ci",
+              "ref": {
+                "identity": "OS-CI",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS"
+              }
+            },
+            "quality": {
+              "oracle_ref": {
+                "identity": "QUALITY-ORACLE",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "verification-design-owner"
+              },
+              "required_behavior": "一つのcommandを重複debitしない",
+              "observed_behavior": "一つのcommandを重複debitしない",
+              "state": "synthetic_met",
+              "input": {
+                "command": "CMD1",
+                "deliveries": 2
+              },
+              "expected": {
+                "receiver_debits": 1
+              },
+              "observed": {
+                "receiver_debits": 1
+              }
+            },
+            "omissions": {
+              "required_refs": [
+                "C1"
+              ],
+              "records": [
+                {
+                  "duty_identity": "C1",
+                  "reason": "合流先で接続を回収",
+                  "joining_ticket_ref": {
+                    "identity": "JOIN-MEDIUM",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "OS"
+                  }
+                }
+              ],
+              "unrecovered_refs": [
+                "C1"
+              ]
+            },
+            "measurement": {
+              "before_cost": 10,
+              "after_cost": 8,
+              "before_time": 10,
+              "after_time": 8,
+              "unit": "synthetic_units"
+            }
+          },
+          "expected_material": {
+            "operator_contract": "same_contract_OS_ci_supported",
+            "quality": "synthetic_met",
+            "unrecovered_refs": [
+              "C1"
+            ],
+            "cost_time_material": "synthetic_improvement_only",
+            "improvement_success": "not_generated",
+            "state_ceiling": "Provisional"
+          },
+          "source_packet": {
+            "source_ref": {
+              "identity": "SOURCE-HARNESS-L9-015-B01-OS-CI",
+              "revision": "fixture-r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "independent-fixture-owner"
+            },
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"ci_contract_ref\":{\"identity\":\"CI-CONTRACT\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"HARNESS\"},\"ci_operator\":{\"kind\":\"os_ci\",\"ref\":{\"identity\":\"OS-CI\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}},\"quality\":{\"oracle_ref\":{\"identity\":\"QUALITY-ORACLE\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"required_behavior\":\"一つのcommandを重複debitしない\",\"observed_behavior\":\"一つのcommandを重複debitしない\",\"state\":\"synthetic_met\",\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1},\"observed\":{\"receiver_debits\":1}},\"omissions\":{\"required_refs\":[\"C1\"],\"records\":[{\"duty_identity\":\"C1\",\"reason\":\"合流先で接続を回収\",\"joining_ticket_ref\":{\"identity\":\"JOIN-MEDIUM\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"OS\"}}],\"unrecovered_refs\":[\"C1\"]},\"measurement\":{\"before_cost\":10,\"after_cost\":8,\"before_time\":10,\"after_time\":8,\"unit\":\"synthetic_units\"}}",
+            "byte_sha256": "7f359a5c85940a95355ae41d7c7c896fe4454ad5b5ef90afd90ef1006c483c25",
+            "owner_material": {
+              "binding": {
+                "identity": "TDD-TARGET",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "design-owner"
+              },
+              "source_assumption": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。",
+              "non_target": {
+                "binding": {
+                  "identity": "OTHER-Q",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "Q",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "design-owner"
+                },
+                "state": "valid_original"
+              },
+              "ci_contract_ref": {
+                "identity": "CI-CONTRACT",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "HARNESS"
+              },
+              "ci_operator": {
+                "kind": "os_ci",
+                "ref": {
+                  "identity": "OS-CI",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "OS"
+                }
+              },
+              "quality": {
+                "oracle_ref": {
+                  "identity": "QUALITY-ORACLE",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "required_behavior": "一つのcommandを重複debitしない",
+                "observed_behavior": "一つのcommandを重複debitしない",
+                "state": "synthetic_met",
+                "input": {
+                  "command": "CMD1",
+                  "deliveries": 2
+                },
+                "expected": {
+                  "receiver_debits": 1
+                },
+                "observed": {
+                  "receiver_debits": 1
+                }
+              },
+              "omissions": {
+                "required_refs": [
+                  "C1"
+                ],
+                "records": [
+                  {
+                    "duty_identity": "C1",
+                    "reason": "合流先で接続を回収",
+                    "joining_ticket_ref": {
+                      "identity": "JOIN-MEDIUM",
+                      "revision": "r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "OS"
+                    }
+                  }
+                ],
+                "unrecovered_refs": [
+                  "C1"
+                ]
+              },
+              "measurement": {
+                "before_cost": 10,
+                "after_cost": 8,
+                "before_time": 10,
+                "after_time": 8,
+                "unit": "synthetic_units"
+              }
+            },
+            "source_change": null,
+            "qualification_kind": "synthetic_design_fixture_not_actual_owner_authority",
+            "authority_effect": "none",
+            "embedded_source_rule": "normal入力の参照先原意味と提出負例を別に照合。同Refの提出変異をcanonical owner更新としない。root bytes資格からembedded意味/実凍結/実観測を生成しない。"
+          },
+          "execution_state": "not_executed"
+        }
+      ]
     },
     {
       "id": "HARNESS-L9-015-F01",
@@ -5044,9 +5311,14 @@
               },
               "freeze_sequence": 1
             },
-            "red": {
+            "body_change": {
+              "from_head": "H0",
+              "to_head": "H1",
+              "sequence": 3
+            },
+            "post_mutation": {
               "ref": {
-                "identity": "RED",
+                "identity": "MUTATION-AFTER-BODY",
                 "revision": "r1",
                 "scope": {
                   "project": "P",
@@ -5055,7 +5327,9 @@
                 },
                 "owner": "execution-owner"
               },
-              "head": "H0",
+              "sequence": 5,
+              "role": "oracle_strength_only",
+              "head": "H1",
               "oracle_ref": {
                 "identity": "ORACLE-1",
                 "revision": "r1",
@@ -5066,21 +5340,18 @@
                 },
                 "owner": "verification-design-owner"
               },
-              "sequence": 2,
-              "executed": true,
+              "input": {
+                "command": "CMD1",
+                "deliveries": 2
+              },
+              "expected": {
+                "receiver_debits": 1
+              },
               "actual": {
                 "receiver_debits": 2
               },
-              "failure_kind": "intended_behavior_mismatch"
-            },
-            "body_change": {
-              "from_head": "H0",
-              "to_head": "H1",
-              "sequence": 3
-            },
-            "post_mutation": {
-              "sequence": 5,
-              "role": "oracle_strength_only"
+              "seeded_defect": "duplicate_debit",
+              "executed": true
             }
           },
           "candidate": {
@@ -5090,7 +5361,7 @@
             "post_mutation_role": "oracle_strength_only",
             "actual_tdd_success": "not_generated"
           },
-          "expected_issue": "実装後mutationは代用にならない。",
+          "expected_issue": "本体前Red欠落を保持。実装後H1の具体mutation検出はoracle強度の別証拠であり、実装前H0の観測を生成しない。",
           "non_target_preserved": {
             "binding": {
               "identity": "OTHER-Q",
@@ -5109,7 +5380,7 @@
           "source_packet": {
             "source_ref": {
               "identity": "SOURCE-HARNESS-L9-015-F02-mutation_substitute",
-              "revision": "fixture-r1",
+              "revision": "fixture-r2",
               "scope": {
                 "project": "P",
                 "tenant": "synthetic-T",
@@ -5117,9 +5388,354 @@
               },
               "owner": "independent-fixture-owner"
             },
-            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"change_kind\":\"existing\",\"pre_body\":{\"head\":\"H0\",\"state\":\"unrepaired\",\"defect\":\"duplicate_debit\"},\"frozen_oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"test_ref\":{\"identity\":\"TEST-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1},\"freeze_sequence\":1},\"red\":{\"ref\":{\"identity\":\"RED\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"execution-owner\"},\"head\":\"H0\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"sequence\":2,\"executed\":true,\"actual\":{\"receiver_debits\":2},\"failure_kind\":\"intended_behavior_mismatch\"},\"body_change\":{\"from_head\":\"H0\",\"to_head\":\"H1\",\"sequence\":3},\"post_mutation\":{\"sequence\":5,\"role\":\"oracle_strength_only\"}}",
-            "byte_sha256": "ae80ddd73be870065319f9c6b15d18777e1031bfb3d555453393b8532f3c5432",
+            "original_bytes_utf8": "{\"binding\":{\"identity\":\"TDD-TARGET\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"source_assumption\":\"独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。\",\"non_target\":{\"binding\":{\"identity\":\"OTHER-Q\",\"revision\":\"r1\",\"scope\":{\"project\":\"Q\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"design-owner\"},\"state\":\"valid_original\"},\"change_kind\":\"existing\",\"pre_body\":{\"head\":\"H0\",\"state\":\"unrepaired\",\"defect\":\"duplicate_debit\"},\"frozen_oracle\":{\"ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"test_ref\":{\"identity\":\"TEST-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1},\"freeze_sequence\":1},\"body_change\":{\"from_head\":\"H0\",\"to_head\":\"H1\",\"sequence\":3},\"post_mutation\":{\"ref\":{\"identity\":\"MUTATION-AFTER-BODY\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"execution-owner\"},\"sequence\":5,\"role\":\"oracle_strength_only\",\"head\":\"H1\",\"oracle_ref\":{\"identity\":\"ORACLE-1\",\"revision\":\"r1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"verification-design-owner\"},\"input\":{\"command\":\"CMD1\",\"deliveries\":2},\"expected\":{\"receiver_debits\":1},\"actual\":{\"receiver_debits\":2},\"seeded_defect\":\"duplicate_debit\",\"executed\":true}}",
+            "byte_sha256": "518ed0580b9d4d1422fda7817c08aa5aa62e3eb050ed9a654026bcc0505724a1",
             "owner_material": {
+              "binding": {
+                "identity": "TDD-TARGET",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "design-owner"
+              },
+              "source_assumption": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。",
+              "non_target": {
+                "binding": {
+                  "identity": "OTHER-Q",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "Q",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "design-owner"
+                },
+                "state": "valid_original"
+              },
+              "change_kind": "existing",
+              "pre_body": {
+                "head": "H0",
+                "state": "unrepaired",
+                "defect": "duplicate_debit"
+              },
+              "frozen_oracle": {
+                "ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "test_ref": {
+                  "identity": "TEST-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "input": {
+                  "command": "CMD1",
+                  "deliveries": 2
+                },
+                "expected": {
+                  "receiver_debits": 1
+                },
+                "freeze_sequence": 1
+              },
+              "body_change": {
+                "from_head": "H0",
+                "to_head": "H1",
+                "sequence": 3
+              },
+              "post_mutation": {
+                "ref": {
+                  "identity": "MUTATION-AFTER-BODY",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "execution-owner"
+                },
+                "sequence": 5,
+                "role": "oracle_strength_only",
+                "head": "H1",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "input": {
+                  "command": "CMD1",
+                  "deliveries": 2
+                },
+                "expected": {
+                  "receiver_debits": 1
+                },
+                "actual": {
+                  "receiver_debits": 2
+                },
+                "seeded_defect": "duplicate_debit",
+                "executed": true
+              }
+            },
+            "source_change": null,
+            "qualification_kind": "synthetic_design_fixture_not_actual_owner_authority",
+            "authority_effect": "none",
+            "embedded_source_rule": "normal入力の参照先原意味と提出負例を別に照合。同Refの提出変異をcanonical owner更新としない。root bytes資格からembedded意味/実凍結/実観測を生成しない。",
+            "source_preparation": {
+              "operation": "replace",
+              "field_path": "$",
+              "before": {
+                "binding": {
+                  "identity": "TDD-TARGET",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "design-owner"
+                },
+                "source_assumption": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。",
+                "non_target": {
+                  "binding": {
+                    "identity": "OTHER-Q",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "Q",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "design-owner"
+                  },
+                  "state": "valid_original"
+                },
+                "change_kind": "existing",
+                "pre_body": {
+                  "head": "H0",
+                  "state": "unrepaired",
+                  "defect": "duplicate_debit"
+                },
+                "frozen_oracle": {
+                  "ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  },
+                  "test_ref": {
+                    "identity": "TEST-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  },
+                  "input": {
+                    "command": "CMD1",
+                    "deliveries": 2
+                  },
+                  "expected": {
+                    "receiver_debits": 1
+                  },
+                  "freeze_sequence": 1
+                },
+                "red": {
+                  "ref": {
+                    "identity": "RED",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "execution-owner"
+                  },
+                  "head": "H0",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  },
+                  "sequence": 2,
+                  "executed": true,
+                  "actual": {
+                    "receiver_debits": 2
+                  },
+                  "failure_kind": "intended_behavior_mismatch"
+                },
+                "body_change": {
+                  "from_head": "H0",
+                  "to_head": "H1",
+                  "sequence": 3
+                },
+                "post_mutation": {
+                  "sequence": 5,
+                  "role": "oracle_strength_only"
+                }
+              },
+              "after": {
+                "binding": {
+                  "identity": "TDD-TARGET",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "design-owner"
+                },
+                "source_assumption": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。",
+                "non_target": {
+                  "binding": {
+                    "identity": "OTHER-Q",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "Q",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "design-owner"
+                  },
+                  "state": "valid_original"
+                },
+                "change_kind": "existing",
+                "pre_body": {
+                  "head": "H0",
+                  "state": "unrepaired",
+                  "defect": "duplicate_debit"
+                },
+                "frozen_oracle": {
+                  "ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  },
+                  "test_ref": {
+                    "identity": "TEST-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  },
+                  "input": {
+                    "command": "CMD1",
+                    "deliveries": 2
+                  },
+                  "expected": {
+                    "receiver_debits": 1
+                  },
+                  "freeze_sequence": 1
+                },
+                "body_change": {
+                  "from_head": "H0",
+                  "to_head": "H1",
+                  "sequence": 3
+                },
+                "post_mutation": {
+                  "ref": {
+                    "identity": "MUTATION-AFTER-BODY",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "execution-owner"
+                  },
+                  "sequence": 5,
+                  "role": "oracle_strength_only",
+                  "head": "H1",
+                  "oracle_ref": {
+                    "identity": "ORACLE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "verification-design-owner"
+                  },
+                  "input": {
+                    "command": "CMD1",
+                    "deliveries": 2
+                  },
+                  "expected": {
+                    "receiver_debits": 1
+                  },
+                  "actual": {
+                    "receiver_debits": 2
+                  },
+                  "seeded_defect": "duplicate_debit",
+                  "executed": true
+                }
+              },
+              "purpose": "実装前Redを欠き、実装後H1の意図欠陥注入を同oracleが検出した具体材料を置く。後者は前者の代用ではない。"
+            }
+          },
+          "expected_partial_material": {
+            "field": "red_before_body",
+            "state": "missing",
+            "reason": "本体前Red欠落を保持。実装後H1の具体mutation検出はoracle強度の別証拠であり、実装前H0の観測を生成しない。",
+            "binding": {
+              "identity": "TDD-TARGET",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "preserved_base_material": {
+              "pre_body_head": "H0",
+              "red_meaning": "intended_duplicate_debit_detected",
+              "red_before_body": "synthetic_order_supported",
+              "post_mutation_role": "oracle_strength_only",
+              "actual_tdd_success": "not_generated"
+            },
+            "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
+            "no_actual_completion": true
+          },
+          "fixture_preparation": {
+            "operation": "replace",
+            "field_path": "$",
+            "before": {
               "binding": {
                 "identity": "TDD-TARGET",
                 "revision": "r1",
@@ -5219,34 +5835,111 @@
                 "role": "oracle_strength_only"
               }
             },
-            "source_change": null,
-            "qualification_kind": "synthetic_design_fixture_not_actual_owner_authority",
-            "authority_effect": "none",
-            "embedded_source_rule": "normal入力の参照先原意味と提出負例を別に照合。同Refの提出変異をcanonical owner更新としない。root bytes資格からembedded意味/実凍結/実観測を生成しない。"
-          },
-          "expected_partial_material": {
-            "field": "red_before_body",
-            "state": "missing",
-            "reason": "実装後mutationは代用にならない。",
-            "binding": {
-              "identity": "TDD-TARGET",
-              "revision": "r1",
-              "scope": {
-                "project": "P",
-                "tenant": "synthetic-T",
-                "environment": "synthetic-test"
+            "after": {
+              "binding": {
+                "identity": "TDD-TARGET",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "design-owner"
               },
-              "owner": "design-owner"
+              "source_assumption": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。",
+              "non_target": {
+                "binding": {
+                  "identity": "OTHER-Q",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "Q",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "design-owner"
+                },
+                "state": "valid_original"
+              },
+              "change_kind": "existing",
+              "pre_body": {
+                "head": "H0",
+                "state": "unrepaired",
+                "defect": "duplicate_debit"
+              },
+              "frozen_oracle": {
+                "ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "test_ref": {
+                  "identity": "TEST-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "input": {
+                  "command": "CMD1",
+                  "deliveries": 2
+                },
+                "expected": {
+                  "receiver_debits": 1
+                },
+                "freeze_sequence": 1
+              },
+              "body_change": {
+                "from_head": "H0",
+                "to_head": "H1",
+                "sequence": 3
+              },
+              "post_mutation": {
+                "ref": {
+                  "identity": "MUTATION-AFTER-BODY",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "execution-owner"
+                },
+                "sequence": 5,
+                "role": "oracle_strength_only",
+                "head": "H1",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "input": {
+                  "command": "CMD1",
+                  "deliveries": 2
+                },
+                "expected": {
+                  "receiver_debits": 1
+                },
+                "actual": {
+                  "receiver_debits": 2
+                },
+                "seeded_defect": "duplicate_debit",
+                "executed": true
+              }
             },
-            "preserved_base_material": {
-              "pre_body_head": "H0",
-              "red_meaning": "intended_duplicate_debit_detected",
-              "red_before_body": "synthetic_order_supported",
-              "post_mutation_role": "oracle_strength_only",
-              "actual_tdd_success": "not_generated"
-            },
-            "preservation_semantics": "基本正常期待の保存であり、変異後computed成功値ではない。欠陥field/未成立の上位状態を別に保持。",
-            "no_actual_completion": true
+            "purpose": "実装前Redを欠き、実装後H1の意図欠陥注入を同oracleが検出した具体材料を置く。後者は前者の代用ではない。"
           }
         }
       ],
@@ -12267,11 +12960,12 @@
   ],
   "verification_boundary": "合成fixtureは検証設計であり実製品成功ではない。code/trace/実Red/Green/CIの成立は実operation証拠と独立照合から確認する。",
   "completion": {
-    "state": "draft_not_executed_not_independently_reviewed",
+    "state": "draft_pending_independent_review",
     "requirements": 5,
-    "normal_calls": 6,
+    "normal_calls": 7,
     "negative_cases": 27,
     "actual_integration_result": "not_executed",
     "full92_430": "unproven"
-  }
+  },
+  "source_role_comparison": "正常rootを原資料例、負例rootを提出変異として分離。同Refの提出変異をownerの原内容更新にしない。F02 mutation代替はRed欠落前提を明示。L5/L8で個別参照資料の原bytes/内容/資格を具体化する。"
 }

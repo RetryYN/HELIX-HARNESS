@@ -112,20 +112,44 @@
           "text": "   Greenは最小実装、Refactorは同じoracleがgreenのまま構造を単純化した証拠で閉じる。"
         },
         {
-          "line": 142,
-          "text": "## Workflow Placement / ワークフロー上の位置づけ"
+          "line": 117,
+          "text": "- CIはPRでtargeted oracleとcritical gateを実行し、省略分をpost-merge fullとnightlyで回収する。"
         },
         {
-          "line": 143,
-          "text": ""
+          "line": 118,
+          "text": "  targeted greenをfull greenと偽らず、unknown impactはfullへfail-closeする。"
         },
         {
-          "line": 144,
-          "text": "- G3: FR/NFR/ACとL10 oracleに加え、no-code-firstの採否、変更対象の責務owner、"
+          "line": 119,
+          "text": "- refactorは公開behaviorを変えない。新behavior、schema、migration、failure semanticsの変更を検出したら"
+        },
+        {
+          "line": 135,
+          "text": "- id: DDD-INV-001 oracle: U-DDDTDD-001 - Governance/domain module は acyclic を保ち、下位 contract は上位 runtime orchestration に依存しない。"
+        },
+        {
+          "line": 145,
+          "text": "  許容するcomplexity budgetをdiscipline baselineとしてfreezeする。"
+        },
+        {
+          "line": 146,
+          "text": "- L4/L9: bounded context、Aggregate/Port/Adapter境界とsystem/integration oracleを対で固定する。"
         },
         {
           "line": 147,
           "text": "  object modelが不要なら`none`または`pure_function`と理由を残す。"
+        },
+        {
+          "line": 148,
+          "text": "- L5/L8: precondition、postcondition、invariant、failure/rollback、edge caseと単体・結合oracleを対で固定する。"
+        },
+        {
+          "line": 149,
+          "text": "- Forward L6: L7 implementation が始まる前に、domain boundary、invariant、rule ID を定義または更新する。"
+        },
+        {
+          "line": 150,
+          "text": "- L6/L7: Red → 最小Green → behavior-preserving Refactorの順で閉じ、契約外コードを追加しない。"
         }
       ],
       "preserve": "実欠陥を検出したRed、最小Green、意味保存Refactor、設計と対検証の固定を保持。",
@@ -255,7 +279,34 @@
       "005の検証義務/CI範囲/省略回収",
       "022の検証/受入組合せ"
     ],
-    "dependency_limit": "005 L4/L9は統合済み参照。未統合005 L5/L8を承認済み入力にせず、003/022等の未充足対設計・実bindingは実装前の不足として保持。"
+    "dependency_limit": "005 L4/L9は統合済み参照。未統合005 L5/L8を承認済み入力にせず、003/022等の未充足対設計・実bindingは実装前の不足として保持。",
+    "component_connections": [
+      {
+        "producer": "FrozenContractIntake",
+        "consumer": "PreBodyRedEvidence",
+        "material": "同対象L6/L5とtest/oracleのexact Ref・原内容・凍結順序。凍結成立とRed実観測は別。",
+        "failure": "欠落/別revision/本体後の凍結は当該対象へ不足を保持。"
+      },
+      {
+        "producer": "PreBodyRedEvidence",
+        "consumer": "MinimalGreenLocalRefactor",
+        "material": "新規未実装/既存未修正HEADの意図欠陥を検出した実観測。実装前対象・凍結oracle・本体変更との因果順序。",
+        "failure": "実装後mutation/環境障害/未実行を実装前Redへ変換しない。"
+      },
+      {
+        "producer": "MinimalGreenLocalRefactor",
+        "consumer": "DevelopmentTraceAndFrontier",
+        "material": "対象codeと同oracle Green/局所意味保存/原子CI・省略記録・4artifact trace。",
+        "failure": "不足proofを件数/labelで相殺せず、public/要求/architecture/state変更は上流へ戻す。"
+      },
+      {
+        "producer": "QualityAndCiHandoff",
+        "consumer": "DevelopmentTraceAndFrontier",
+        "material": "OS検収または利用者CIへ渡す同一検証契約、quality観測、未回収義務、取得できた計測区分。",
+        "failure": "単独利用をOS必須にせず、費用/時間改善でquality未達を改善成功にしない。"
+      }
+    ],
+    "proof_resolution": "工程名やsequenceだけを成功にしない。freeze/Red/Green/code/refactor/CI/traceの原producerを別役割として同対象に結び、提出labelと具体原内容を比較する。実binding/source欠落は該当部分結果へ保持する。"
   },
   "contracts": [
     {
@@ -394,7 +445,7 @@
         },
         {
           "code": "mutation_substitute",
-          "meaning": "実装後mutationは代用にならない。"
+          "meaning": "本体前Red欠落を保持。実装後H1の具体mutation検出はoracle強度の別証拠であり、実装前H0の観測を生成しない。"
         }
       ],
       "effect": "normative_contract_only_no_execution"
@@ -520,7 +571,7 @@
     }
   ],
   "remaining": [
-    "基本fixture原source identity/bytes/資格と具体負例の忠実性を横断確認",
+    "基本5契約/27負例のsource役割・具体意味対照と全変異再現を照合。exact HEAD独立意味reviewは未成立。",
     "L5/L8の関数/型/アルゴリズム/具体負例を起草",
     "正式schema/codec、実Worker/利用者CI binding、安全/隔離/資源/接続と実凍結",
     "本体前実Red/最小Green/意味保存Refactor/原子CI/独立実証・PO受入",
