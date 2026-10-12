@@ -890,7 +890,8 @@
       "algorithm": [
         "FieldInput定義根拠/案件値を別に照合。定義missing/knowledge版不足はBRAIN、定義known値unknownは008、適用契約不整合はHARNESSへ返す材料。",
         "原不足を質問/矛盾/derived要求候補/N/A判断候補へ分類する根拠を照合。分類未定はunresolved。原field/source/版/scope/未完義務/戻し先を保存。",
-        "別template成功で相殺せず原gapと成功候補を別resultにする。候補をticket/人間合意/義務消込へ昇格しない。"
+        "別template成功で相殺せず原gapと成功候補を別resultにする。候補をticket/人間合意/義務消込へ昇格しない。",
+        "GapProposal.kindはownerの原候補であり結果oracleではない。kindだけを転写せず各source_refsの同subject/版/scopeの本文とfield/値/相反原命題/提案constraint/非適用根拠を照合し、未解決の分類はunresolvedとして元提案と区別して返す。"
       ],
       "effect": "none",
       "failure_rules": [
@@ -3403,7 +3404,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "runtime_execution": "not_executed",
-    "next": "6正常fixtureの参照/型/owner body/資格を検証し、gap4/impact/別scope/等価比較の具体fixtureと24追加変異を閉じて独立reviewへ送る。"
+    "next": "24追加入力の静的構築/原根拠閉包を確認した。次は各関数の具体的な正常出力・候補分類の原根拠照合・影響根拠の強度を詰め、独立reviewへ送る。実trust/実行oracle凍結/実装準備完了は未成立。"
   },
   "remaining": [
     "L5/L8でlogical型/各axis判定/集合/適用/N/A/trace/gap/影響pure関数と単体oracleへ降ろす。",
