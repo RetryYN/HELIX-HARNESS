@@ -530,7 +530,9 @@
     "B01": {
       "basic_calls": 23,
       "typed_expected_cells": 414,
-      "state": "draft_not_executed_root_and_embedded_qualification_pending"
+      "state": "draft_basic_typed_and_qualification_cases_pending_semantic_review",
+      "qualification_calls": 56,
+      "qualification_typed_cells": 1008
     }
   },
   "pending": [
@@ -561,7 +563,8 @@
       "input": {
         "context": "ProcessContext",
         "original_sources": "purpose/premises/legacy_assets/external_examples/comparison、technical_quality oracle/result、human original reaction、AI interpretation、unresolved findings、management original finding/progressionの個別SourceCell",
-        "candidate": "ProcessAssessment | null"
+        "candidate": "ProcessAssessment | null",
+        "source_qualifications": "各embedded sourceの独立SourceCell資格map。carrierのknownをembedded sourceへ継承しない。"
       },
       "output": {
         "partial_values": {
@@ -586,9 +589,11 @@
         },
         "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
         "unaffected_scope": "元の有効な非対象資料",
-        "operation_effect": "none"
+        "operation_effect": "none",
+        "source_qualification_results": "個別source資格のknown/missing/unknown/conflict/stale map（原入力の資格観測を保全）"
       },
       "internal_steps": [
+        "carrierと全embedded source資格を独立に照合し、qualification_detailのfield_dependenciesだけを当該state/nullへ戻す。known rootや別owner成功でembedded sourceをknownへ補完しない。",
         "各根拠sourceの対象・原内容・選択肢/比較理由を独立に読む。purpose/premises/旧資産/外部例/比較の不足を当該資料だけへ返す。外部例の合成入力を実researchにしない。",
         "technical originalと独立oracleの期待owner/観測owner、実行原記録、対象revision/scopeを照合。人の受容・作業依頼で未観測/二重writer/別revisionを相殺しない。",
         "人のoriginal reactionのkind/source/対象とrequired axesを照合。受容済み軸を保持し未受容/未解決だけを返す。original欠落や別scopeなら受容済み軸はmissing/staleのnull、観測した空集合と区別する。",
@@ -596,7 +601,112 @@
         "管理findingの原意味差を該当上流ownerへ返す。管理Issue/緊急性と当該pair/受入の証拠は別評価。product要求write、pair省略、実受入を行わない。",
         "各fieldをPartialValueで返す。状態不成立でも読めた別owner資料はknownとして残し、一つの失敗で全結果をmissingにしない。候補評価を追加しても原結果を上書きしない。"
       ],
-      "detail_state": "draft_concrete_typed_cases_pending_semantic_review"
+      "detail_state": "draft_concrete_typed_cases_pending_semantic_review",
+      "qualification_detail": {
+        "source_groups": {
+          "grounding_purpose": [
+            "grounding",
+            "purpose"
+          ],
+          "grounding_premises": [
+            "grounding",
+            "premises"
+          ],
+          "grounding_legacy_assets": [
+            "grounding",
+            "legacy_assets"
+          ],
+          "grounding_external_examples": [
+            "grounding",
+            "external_examples"
+          ],
+          "grounding_comparison": [
+            "grounding",
+            "comparison"
+          ],
+          "technical_quality": [
+            "technical_quality"
+          ],
+          "human_original": [
+            "human_convergence",
+            "original"
+          ],
+          "human_required_axes": [
+            "human_convergence",
+            "required_axes"
+          ],
+          "human_findings": [
+            "human_convergence",
+            "unresolved_findings"
+          ],
+          "AI_interpretation": [
+            "human_convergence",
+            "ai_interpretation"
+          ],
+          "management_finding": [
+            "management_improvement"
+          ],
+          "management_progression": [
+            "management_progression"
+          ]
+        },
+        "field_dependencies": {
+          "grounding_result": [
+            "grounding_purpose",
+            "grounding_premises",
+            "grounding_legacy_assets",
+            "grounding_external_examples",
+            "grounding_comparison"
+          ],
+          "grounding_missing": [
+            "grounding_purpose",
+            "grounding_premises",
+            "grounding_legacy_assets",
+            "grounding_external_examples",
+            "grounding_comparison"
+          ],
+          "technical_quality_result": [
+            "technical_quality"
+          ],
+          "human_convergence_result": [
+            "human_original",
+            "human_required_axes",
+            "human_findings"
+          ],
+          "retained_accepted_axes": [
+            "human_original"
+          ],
+          "unresolved_findings": [
+            "human_findings"
+          ],
+          "management_return_layer": [
+            "management_finding"
+          ],
+          "management_return_result": [
+            "management_finding"
+          ],
+          "management_progression_result": [
+            "management_progression"
+          ],
+          "management_missing_conditions": [
+            "management_progression"
+          ]
+        },
+        "constant_false_fields": [
+          "ai_interpretation_is_human",
+          "direct_requirement_write",
+          "request_as_approval",
+          "actual_L11_accepted",
+          "actual_completion",
+          "reaction_as_requirement_approval",
+          "actual_pair_omitted",
+          "actual_acceptance_omitted"
+        ],
+        "carrier_rule": "target/contextのcarrier資格未成立では当該source依存結果をstate/nullにし、別scopeの有効材料を保持する。known carrierでもembeddedの不成立を補完しない。",
+        "mixed_failure_rule": "同一fieldに異なる不成立stateがある場合はfieldをunknown/nullとし、個別source_qualification_results/qualification_returnsで全stateを保持。優先順位で不足を捨てない。",
+        "source_binding_limit": "source_packet_refは物理carrier参照。primitive/listのlocator refは合成例の内容参照で、実原記録/owner資格ではない。",
+        "logical_type_limit": "内部論理型案。正式schema/codec/trust/署名方式を採用しない。"
+      }
     },
     {
       "id": "HARNESS-L5-003-F01",
