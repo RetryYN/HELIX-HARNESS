@@ -6896,13 +6896,6 @@
         },
         "meaning": "比較材料のみ。実test/受入/状態遷移を生成しない。"
       },
-      "QualifiedOriginalSources": {
-        "fields": {
-          "entries": "immutable collection<OriginalSourceEntry>",
-          "qualification_root": "independent owner/scope/revision qualification basis"
-        },
-        "meaning": "callerの成功claim/expected materialを資格rootへ戻さない。実trust/codec/resolverは未構築。"
-      },
       "OriginalSourceEntry": {
         "fields": {
           "ref": "Ref",
@@ -6915,11 +6908,12 @@
       },
       "Comparison": {
         "fields": {
-          "observation": "Field<T>",
+          "observation": "map<declared output field, ObservationField<declared field type>>",
           "issues": "list<Violation>",
           "candidate_differences": "list<Violation>",
           "non_target_preserved": "original non-target snapshot",
-          "effects": "empty list"
+          "effects": "empty list",
+          "execution_kind": "synthetic_design_comparison|actual_comparison_evidence"
         },
         "meaning": "部分材料があっても他不足を相殺しない。比較が一致しても実工程完了は別証拠。"
       },
@@ -6933,8 +6927,50 @@
           "preserved_original": "logical source material"
         },
         "meaning": "affected identityとfieldを局所化し、別対象の有効作業を保持する。"
+      },
+      "ObservationField": {
+        "variants": [
+          "known<T>(source_refs, value)",
+          "missing(original_field_path, backflow_owner)",
+          "unknown(reason, source_refs, backflow_owner)",
+          "conflict(original_value, supplied_value, source_refs, backflow_owner)",
+          "stale(expected_binding, supplied_binding, backflow_owner)"
+        ],
+        "meaning": "型付き部分結果。1fieldの不足で他fieldの元結果を置換しない。knownは合成/実証拠のkindを保持し実工程完了ではない。"
+      },
+      "FixtureSourcePacket": {
+        "fields": {
+          "source_ref": "Ref",
+          "basis": "path/revision/sha256/fixture_ref",
+          "owner_material": "Field<VerificationInput>",
+          "original_bytes_utf8": "string (fixture serialization only)",
+          "byte_sha256": "fixture bytes digest",
+          "qualification_basis": "SyntheticFixtureQualification",
+          "source_change": "null|OriginalMutation",
+          "embedded_reference_state": "explicit comparison boundary"
+        },
+        "meaning": "合成原materialの固定。正式wire codecではない。"
+      },
+      "SyntheticFixtureQualification": {
+        "fields": {
+          "kind": "synthetic_independent_oracle_design_fixture",
+          "owner": "opaque owner identity",
+          "case_identity": "opaque fixture identity",
+          "scope": "Scope",
+          "authority_effect": "none",
+          "meaning": "source-limit statement"
+        },
+        "meaning": "L8合成originalのqualification仮定。実operationのauthority/resolver/trustを生成しない。"
+      },
+      "VerificationSources": {
+        "fields": {
+          "fixture_root": "Field<FixtureSourcePacket>",
+          "referents": "Field<immutable collection<OriginalSourceEntry>>"
+        },
+        "meaning": "入力の資格を先に仮定しない。fixture_rootはL8合成入力の固定に限り、referentsは埋込参照先の独立owner資料。referents missingは空集合でもqualifiedでもなく、関連義務の肯定結果を未成立とする。実adapterのtrust/codec/resolverは未構築。"
       }
-    }
+    },
+    "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
   },
   "reference_resolution_contract": {
     "owner": "source owners/adapters、比較規範HARNESS",
@@ -6944,7 +6980,9 @@
       "bytesと独立owner資格を照合しdecoded原内容へ結ぶ。opaque文字列/claimだけでqualifiedにしない。",
       "元not_executed/unknown/N_A/原closedを保持し、候補出力と期待oracleを原sourceへ混入しない。"
     ],
-    "source_mutation_rule": "負例で原観測内容を変える場合は独立合成owner sourceの新identity/revisionへ同時に結ぶ。candidate改竄と原観測の本当の不足を分離し、同ref別payload conflictだけで意味比較の負例を代用しない。"
+    "source_mutation_rule": "負例の原観測変更はSOURCE-<case identity>@fixture-r1の新packetへ束縛し、baseのL9 snapshotと具体field差分を保持する。同source_refで別owner materialはconflict。埋込domain refの違い/不足は当該関係比較で検出し、原packetの資格不足と混同しない。実source変更のrevision更新は実adapter契約へ引き継ぐ。",
+    "source_packet_boundary": "fixture source_refは原material packetそのものを識別する。original内のdomain refは要求/設計/結果/条件等への関係であり、packet資格から埋込objectの資格や意味成立を生成しない。同refの実referentを供給するadapterの原entryはbytes/contentと独立owner資格を別途比較する。",
+    "missing_scope": "root source missingは全packetの照合未成立。埋込requirement/oracle/condition欠落は当該義務へ局所化し、同packet内の別義務やQの状態を破棄しない。"
   },
   "functions": [
     {
@@ -6953,7 +6991,7 @@
       "design_ref": "HARNESS-L5-005-B01",
       "input_type": "B01VerificationInput",
       "output_type": "B01VerificationObservation",
-      "signature": "compare_evidence_continuity(original: B01VerificationInput, sources: QualifiedOriginalSources, candidate: Field<B01VerificationObservation>) -> Comparison<B01VerificationObservation>",
+      "signature": "compare_evidence_continuity(original: B01VerificationInput, sources: VerificationSources, candidate: Field<B01VerificationObservation>) -> Comparison<B01VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "規範originalのrequirement revision/oracle revision/expected failure/target HEAD/meaning digest/修復対象と必要consumer受入を解決する。run、review、acceptance、repairは別owner originalへ解決し、保存receiptをrunへ置換しない。",
@@ -7047,7 +7085,7 @@
       "design_ref": "HARNESS-L5-005-F01",
       "input_type": "F01VerificationInput",
       "output_type": "F01VerificationObservation",
-      "signature": "derive_verification_duties(original: F01VerificationInput, sources: QualifiedOriginalSources, candidate: Field<F01VerificationObservation>) -> Comparison<F01VerificationObservation>",
+      "signature": "derive_verification_duties(original: F01VerificationInput, sources: VerificationSources, candidate: Field<F01VerificationObservation>) -> Comparison<F01VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "ticket原関係forward/V-pair/変更種別/layer/changed_subjects/touched_connectors/riskと適用するHARNESS owner rule原内容を解決する。未解決rule/pair/riskはunknownとして当該scopeへ残し、Worker名や宣言affected集合を導出の代用にしない。",
@@ -7141,7 +7179,7 @@
       "design_ref": "HARNESS-L5-005-F02",
       "input_type": "F02VerificationInput",
       "output_type": "F02VerificationObservation",
-      "signature": "compare_proof_composition(original: F02VerificationInput, sources: QualifiedOriginalSources, candidate: Field<F02VerificationObservation>) -> Comparison<F02VerificationObservation>",
+      "signature": "compare_proof_composition(original: F02VerificationInput, sources: VerificationSources, candidate: Field<F02VerificationObservation>) -> Comparison<F02VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "構成のunit/connection/composite原subject母集合、各lower proofのsubject/oracle/revision/scopeとその原観測を解決する。state provenという文字列だけで実証拠を補わず、合成fixtureの資格仮定を実製品へ継承しない。",
@@ -7200,7 +7238,7 @@
       "design_ref": "HARNESS-L5-005-F03",
       "input_type": "F03VerificationInput",
       "output_type": "F03VerificationObservation",
-      "signature": "plan_ticket_verification(original: F03VerificationInput, sources: QualifiedOriginalSources, candidate: Field<F03VerificationObservation>) -> Comparison<F03VerificationObservation>",
+      "signature": "plan_ticket_verification(original: F03VerificationInput, sources: VerificationSources, candidate: Field<F03VerificationObservation>) -> Comparison<F03VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "原ticketのallowed artifactsと実diffを集合照合しscope外を局所化する。forward smallはunit、mediumは触る境界/connector、largeは構成体の明示契約へ結ぶ。高riskの上位集合は原risk根拠と影響対象から得る。段数や全件を固定追加せず、unknown riskをknown_lowにしない。",
@@ -7266,7 +7304,7 @@
       "design_ref": "HARNESS-L5-005-F04",
       "input_type": "F04VerificationInput",
       "output_type": "F04VerificationObservation",
-      "signature": "compare_impact_and_causal_trace(original: F04VerificationInput, sources: QualifiedOriginalSources, candidate: Field<F04VerificationObservation>) -> Comparison<F04VerificationObservation>",
+      "signature": "compare_impact_and_causal_trace(original: F04VerificationInput, sources: VerificationSources, candidate: Field<F04VerificationObservation>) -> Comparison<F04VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "declared impactの影響対象と境界oracleに対し当該PRの接続/composite実結果を照合する。未実行AB/Xを必要検査不足へ残し、unitだけのgreenを当該PR合流成立へ転用しない。",
@@ -7332,7 +7370,7 @@
       "design_ref": "HARNESS-L5-005-F05",
       "input_type": "F05VerificationInput",
       "output_type": "F05VerificationObservation",
-      "signature": "compare_dependency_direction(original: F05VerificationInput, sources: QualifiedOriginalSources, candidate: Field<F05VerificationObservation>) -> Comparison<F05VerificationObservation>",
+      "signature": "compare_dependency_direction(original: F05VerificationInput, sources: VerificationSources, candidate: Field<F05VerificationObservation>) -> Comparison<F05VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "COREの適用原状態と設計ownerの方向表・循環条件・対象revision/scope/authorityを解決する。表missing/authority unknownは旧表fallbackで補わない。",
@@ -7391,7 +7429,7 @@
       "design_ref": "HARNESS-L5-005-F06",
       "input_type": "F06VerificationInput",
       "output_type": "F06VerificationObservation",
-      "signature": "compare_invariant_oracle_trace(original: F06VerificationInput, sources: QualifiedOriginalSources, candidate: Field<F06VerificationObservation>) -> Comparison<F06VerificationObservation>",
+      "signature": "compare_invariant_oracle_trace(original: F06VerificationInput, sources: VerificationSources, candidate: Field<F06VerificationObservation>) -> Comparison<F06VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "宣言不変条件の原母集合を解決する。各invariantのidentity/revision/scopeに結ぶoracle designを検索し、欠落/未解決/別revisionを別分類にする。",
@@ -7443,7 +7481,7 @@
       "design_ref": "HARNESS-L5-005-F07",
       "input_type": "F07VerificationInput",
       "output_type": "F07VerificationObservation",
-      "signature": "compare_tdd_observation_order(original: F07VerificationInput, sources: QualifiedOriginalSources, candidate: Field<F07VerificationObservation>) -> Comparison<F07VerificationObservation>",
+      "signature": "compare_tdd_observation_order(original: F07VerificationInput, sources: VerificationSources, candidate: Field<F07VerificationObservation>) -> Comparison<F07VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "TDD原適用とfreeze/red/body_change/greenを別originalへ解決する。freeze前本体H0、変更H0→H1、Red H0、Green H1、同oracle identity/revision/scopeを照合する。",
@@ -7516,7 +7554,7 @@
       "design_ref": "HARNESS-L5-005-F08",
       "input_type": "F08VerificationInput",
       "output_type": "F08VerificationObservation",
-      "signature": "compare_behavior_oracle(original: F08VerificationInput, sources: QualifiedOriginalSources, candidate: Field<F08VerificationObservation>) -> Comparison<F08VerificationObservation>",
+      "signature": "compare_behavior_oracle(original: F08VerificationInput, sources: VerificationSources, candidate: Field<F08VerificationObservation>) -> Comparison<F08VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "独立したrequirement/design behavior原根拠とoracleのbasis ref/expected_originを解決する。実装出力を期待の正本へ逆流させない。",
@@ -7561,7 +7599,7 @@
       "design_ref": "HARNESS-L5-005-F09",
       "input_type": "F09VerificationInput",
       "output_type": "F09VerificationObservation",
-      "signature": "compare_integration_gwt(original: F09VerificationInput, sources: QualifiedOriginalSources, candidate: Field<F09VerificationObservation>) -> Comparison<F09VerificationObservation>",
+      "signature": "compare_integration_gwt(original: F09VerificationInput, sources: VerificationSources, candidate: Field<F09VerificationObservation>) -> Comparison<F09VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "原pair_mappingの旧source_labelとcurrent pair/kind/boundary意味根拠を解決する。旧層番号だけでcurrent pairを導かず、対応不明はunknown。",
@@ -7613,7 +7651,7 @@
       "design_ref": "HARNESS-L5-005-N01",
       "input_type": "N01VerificationInput",
       "output_type": "N01VerificationObservation",
-      "signature": "compare_discipline_applicability(original: N01VerificationInput, sources: QualifiedOriginalSources, candidate: Field<N01VerificationObservation>) -> Comparison<N01VerificationObservation>",
+      "signature": "compare_discipline_applicability(original: N01VerificationInput, sources: VerificationSources, candidate: Field<N01VerificationObservation>) -> Comparison<N01VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "各規律のidentity/basis/CORE適用/対象revision/scopeを解決し、required/N_A/unknownを原分類ごとに保つ。全5規律実行や不明identityを既知ruleへ置換するfallbackを作らない。",
@@ -7693,7 +7731,7 @@
       "design_ref": "HARNESS-L5-005-N02",
       "input_type": "N02VerificationInput",
       "output_type": "N02VerificationObservation",
-      "signature": "partition_recovery_results(original: N02VerificationInput, sources: QualifiedOriginalSources, candidate: Field<N02VerificationObservation>) -> Comparison<N02VerificationObservation>",
+      "signature": "partition_recovery_results(original: N02VerificationInput, sources: VerificationSources, candidate: Field<N02VerificationObservation>) -> Comparison<N02VerificationObservation>",
       "effect": "none",
       "algorithm": [
         "製品ownerのrequired_result_kindsとL11/L10/L12に由来する対象環境/oracleを解決する。各kindの原結果は別ref/revision/scope/環境へ結ぶ。",
@@ -7897,12 +7935,62 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "84分類の具体単独mutationはL8候補へ起草済み。独立原source catalog/再結合と型付き部分期待出力の確定は未完。",
+      "106呼出しのroot原source packet/basis/bytesとcandidate分離を起草済み。埋込referent source/資格と84分類の型付き部分field値の確定は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
       "実oracle凍結→実装前Red→最小Green、実CI/実L9/L10/計測/PO L11受入",
       "他81親を含む全92親430対の基本/詳細設計充足確認"
     ]
+  },
+  "comparison_precedence": [
+    {
+      "phase": "source_packet",
+      "checks": [
+        "root ref/revision/scope/ownerのpresence",
+        "独立owner資格・原bytes/decoded payloadの一致",
+        "同source_ref別payload conflict・source revision/bytes stale"
+      ],
+      "effect": "不足したpacket由来の肯定結果を作らず、他packet/対象の比較を保持する。"
+    },
+    {
+      "phase": "embedded_relations",
+      "checks": [
+        "入力fieldのmissing/null/emptyを保存",
+        "参照target revision/scope/ownerと設計上の役割の一致",
+        "既存referent原sourceの資格・内容。未供給/未解決をunknown/missingとして保持"
+      ],
+      "effect": "root packet qualifiedからdomain ref qualifiedを生成しない。未知参照のある関連義務を局所停止する。"
+    },
+    {
+      "phase": "domain_conditions",
+      "checks": [
+        "各関数の具体algorithmと該当84failure条件",
+        "適用/規範母集合と観測の内容",
+        "元not_executed/unknown/原closure/独立各結果"
+      ],
+      "effect": "規範/結果に矛盾する候補を不成立として返す。資格不備だけでこのphaseの欠陥検出を代用しない。"
+    },
+    {
+      "phase": "candidate_comparison",
+      "checks": [
+        "candidate suppliedのとき型付きcomputed observationの各fieldへ比較",
+        "無根拠completion/相殺/unknown消込/過剰gate",
+        "candidateにexpected/source qualificationを自己供給させない"
+      ],
+      "effect": "candidate missingは比較未依頼を示す。computed observation自体が不明なら比較一致/候補成功にしない。"
+    }
+  ],
+  "fixture_source_construction": {
+    "basis": {
+      "path": "docs/helix-harness/L9-integration-verification/verification-discipline.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "19498cf4c9cc07d7335592cda45bfdfbaea51cba08ec39c5118ac83b4e8e0221"
+    },
+    "normal_sources": "各L9正常/variantの合成owner materialをimmutable root source_refへ固定する。",
+    "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
+    "negative_candidate_sources": "original source packetは正常値を保持し、candidateの一fieldだけを変更する。candidateがowner materialを生成・資格付けする経路はない。",
+    "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
+    "referent_input_state": "106呼出しのreferentsはmissingを明示する。埋込原sourceの資格なしで正常期待をcomputed肯定結果として出力しない。正常/負例のdomain検出能力は独立referentを具体化した後に意味reviewする。"
   }
 }
