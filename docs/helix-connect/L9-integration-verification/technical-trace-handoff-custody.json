@@ -4480,16 +4480,16 @@
               {
                 "identity": "EVENT-P-3",
                 "content_results": {
+                  "attempt_identity": "content_corresponding_in_fixture",
+                  "evidence_ref": "content_corresponding_in_fixture",
                   "identity": "missing",
-                  "ordinal": "missing",
-                  "previous_event_ref": "missing",
-                  "kind": "missing",
-                  "target": "missing",
-                  "attempt_identity": "missing",
-                  "observed_endpoint": "missing",
-                  "result_state": "missing",
-                  "evidence_ref": "missing",
-                  "permission_result_ref": "missing"
+                  "kind": "content_corresponding_in_fixture",
+                  "observed_endpoint": "content_corresponding_in_fixture",
+                  "ordinal": "content_corresponding_in_fixture",
+                  "permission_result_ref": "content_corresponding_in_fixture",
+                  "previous_event_ref": "content_corresponding_in_fixture",
+                  "result_state": "content_corresponding_in_fixture",
+                  "target": "content_corresponding_in_fixture"
                 },
                 "target_results": {
                   "connection_identity": "content_corresponding_in_fixture",
@@ -4846,61 +4846,7 @@
             "failure_reasons": [
               {
                 "area": "event_content_2",
-                "field": "attempt_identity",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "evidence_ref",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
                 "field": "identity",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "kind",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "observed_endpoint",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "ordinal",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "permission_result_ref",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "previous_event_ref",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "result_state",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "target",
                 "result": "missing",
                 "return_owner": "connection-operation-owner"
               },
@@ -11619,16 +11565,16 @@
               {
                 "identity": "EVENT-P-3",
                 "content_results": {
-                  "identity": "missing",
-                  "ordinal": "missing",
-                  "previous_event_ref": "missing",
-                  "kind": "missing",
-                  "target": "missing",
-                  "attempt_identity": "missing",
-                  "observed_endpoint": "missing",
-                  "result_state": "missing",
-                  "evidence_ref": "missing",
-                  "permission_result_ref": "missing"
+                  "attempt_identity": "content_corresponding_in_fixture",
+                  "evidence_ref": "content_corresponding_in_fixture",
+                  "identity": "content_corresponding_in_fixture",
+                  "kind": "content_corresponding_in_fixture",
+                  "observed_endpoint": "content_corresponding_in_fixture",
+                  "ordinal": "content_corresponding_in_fixture",
+                  "permission_result_ref": "content_corresponding_in_fixture",
+                  "previous_event_ref": "content_corresponding_in_fixture",
+                  "result_state": "content_corresponding_in_fixture",
+                  "target": "content_corresponding_in_fixture"
                 },
                 "target_results": {
                   "connection_identity": "content_corresponding_in_fixture",
@@ -12007,63 +11953,9 @@
             "business_completion": "not_generated_by_technical_trace",
             "failure_reasons": [
               {
-                "area": "event_content_2",
-                "field": "attempt_identity",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "evidence_ref",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "identity",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "kind",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "observed_endpoint",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "ordinal",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "permission_result_ref",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "previous_event_ref",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "result_state",
-                "result": "missing",
-                "return_owner": "connection-operation-owner"
-              },
-              {
-                "area": "event_content_2",
-                "field": "target",
-                "result": "missing",
+                "area": "submitted_event_identity",
+                "field": "EVENT-P-3",
+                "result": "duplicate_event_identity",
                 "return_owner": "connection-operation-owner"
               },
               {

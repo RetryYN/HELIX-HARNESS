@@ -175,7 +175,8 @@
       "content_comparison": [
         "原historyはappend前後で保持し、過去上書きはappendでない。",
         "当該必要集合の欠落/順序不明/別版はunknown。未選択eventを全件固定必須にしない。",
-        "成功/失敗/部分/重複/衝突/unknownと観測端を保持し、業務完了を代筆しない。"
+        "成功/失敗/部分/重複/衝突/unknownと観測端を保持し、業務完了を代筆しない。",
+        "提出identity欠落の例は原positionの項目内容を対照してidentityだけmissingを返すが、position一致からidentity資格を作らない。重複identityは各記録を原提出集合に保持し、内容が同じでもduplicate_event_identityを返す。"
       ],
       "qualification_rule": "原event/必要集合/元owner/SECの実資格は合成例で成立しない。実append/保存/伝送/解決/業務完了/Accepted/設計閉包へ昇格しない。",
       "operation_effect": "none"
