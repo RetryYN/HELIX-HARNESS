@@ -1,0 +1,614 @@
+{
+  "document_id": "HARNESS-L8-010-PACK-BOUNDARY",
+  "layer": "L8",
+  "paired_document": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+  "parent": "HARNESS-L2-010",
+  "status": "candidate_pending_independent_review",
+  "source_main": "a52f8a25948f490479ff9a4aed821a527e7e190c",
+  "parent_pair_revision": "b06f9cd6b6e4ecd12a57df54368092c0fa8088df",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+      "sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
+      "sha256": "d030634a263087dca369ae44d99ad186566a0326bb436e98e0ce127e4c6111f9"
+    }
+  ],
+  "scope": "同じimmutable input/contextを局所関数へ供給した時のdomain結果。L9の実接続/実OS/環境故障を局所stub成功で代用しない。",
+  "fixture_notation": "以下は合成oracle fixture。A/B/C/S1/S2/x等はfixture-local Refへ展開する。identity=FX-010-符号、revision=r1（明示変更時はその値）、scope=fixture/010、ownerはfixture明記owner、digestは対応する合成JSON bytesのSHA-256。実pack登録/採用知識ではない。各正常/負例のinput/contextはtest定義時に独立して固定する。要求・期待behavior・owner・母集合・合否oracleを変異に合わせて変更しない。実観測の内容が変わる負例では、その異常観測を記録した別の合成原文/Refをcontextへ結び、根拠のintegrity違反とdomain違反を別に検証する。actualに合わせた後付けoracle変更はしない。",
+  "fixture_basis": {
+    "A": {
+      "owner": "CORE",
+      "consumers": [
+        "S1",
+        "S2"
+      ],
+      "behavior_atoms": [
+        "x"
+      ],
+      "kind": "core",
+      "input": [
+        "in-A"
+      ],
+      "output": [
+        "out-A"
+      ],
+      "required_dependencies": [
+        "D"
+      ],
+      "local_pairs": [
+        [
+          "ob-A",
+          "or-A"
+        ]
+      ],
+      "qualified": true,
+      "proofs": [
+        "proof-A"
+      ],
+      "maturity": "m1"
+    },
+    "B": {
+      "owner": "component-B",
+      "consumers": [],
+      "behavior_atoms": [
+        "y"
+      ],
+      "kind": "component",
+      "qualified": false,
+      "proofs": [],
+      "maturity": "m0"
+    },
+    "C": {
+      "owner": "component-C",
+      "qualified": "unknown"
+    },
+    "D": {
+      "owner": "component-D",
+      "revision": "r1"
+    },
+    "upper": {
+      "release_unit_revision": "u1",
+      "release_unit_state": "draft",
+      "product_revision": "p1",
+      "product_state": "draft",
+      "unproved": [
+        "upper-o1"
+      ]
+    },
+    "new_A": {
+      "revision": "r2",
+      "same_input": [
+        "in-A"
+      ],
+      "same_environment": [
+        "env1"
+      ],
+      "semantic_result": "same-x",
+      "recovery": "A@r1"
+    },
+    "unchanged_B": {
+      "revision": "r1",
+      "proofs": [
+        "proof-B-retained"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "HARNESS-L8-010-F01",
+      "design_ref": "HARNESS-L5-010-F01",
+      "symbol": "check_pack_boundary",
+      "l9_ref": "HARNESS-L9-010-F01",
+      "requirement_ref": "HARNESS-L3-010-F01",
+      "positive_input": "Aのboundary宣言とAのowner/consumer/xをbasisへ解決。独立B(y)は別pack。",
+      "expected_observation": [
+        "outcome=satisfied",
+        "value.owner_ref=CORE",
+        "value.consumer_refs={S1,S2}",
+        "value.behavior_atom_refs={x}",
+        "Bの意味/版/証拠は変更されない"
+      ],
+      "negative_mutations": [
+        {
+          "l9_mutation_index": 1,
+          "mutation": "二owner",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "owner_conflict",
+            "finding_pointer": "/owner_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/owner_refs",
+          "change": "append CORE2",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 2,
+          "mutation": "behavior根拠なし",
+          "expected": {
+            "outcome": "incomplete",
+            "finding_code": "boundary_mismatch",
+            "finding_pointer": "/behavior_atom_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/behavior_atom_refs",
+          "change": "set []",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 3,
+          "mutation": "共用能力をサービス専有とする",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "shared_owner_mismatch",
+            "finding_pointer": "/kind_ref",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/kind_ref",
+          "change": "replace core kind with service S1 kind while sharing_class=shared",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 4,
+          "mutation": "独立して交換できる異責務を一packへ束ねる",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "boundary_mismatch",
+            "finding_pointer": "/behavior_atom_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/behavior_atom_refs",
+          "change": "set {x,y}; inseparable_group_refs={} against fixed basis groups",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-F02",
+      "design_ref": "HARNESS-L5-010-F02",
+      "symbol": "check_pack_declaration",
+      "l9_ref": "HARNESS-L9-010-F02",
+      "requirement_ref": "HARNESS-L3-010-F02",
+      "positive_input": "Aの六項目とDの実依存観測。local_pairs={(ob-A,or-A)}、basisも同じ。",
+      "expected_observation": [
+        "outcome=satisfied",
+        "undeclared_dependency_refs={}、missing_required_dependency_refs={}",
+        "local_pairs={(ob-A,or-A)}、contract_revision=r1"
+      ],
+      "negative_mutations": [
+        {
+          "l9_mutation_index": 1,
+          "mutation": "input欠落",
+          "expected": {
+            "outcome": "invalid",
+            "finding_code": "input_invalid",
+            "finding_pointer": "/input_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/input_refs",
+          "change": "delete required field",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 2,
+          "mutation": "output欠落",
+          "expected": {
+            "outcome": "invalid",
+            "finding_code": "input_invalid",
+            "finding_pointer": "/output_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/output_refs",
+          "change": "delete required field",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 3,
+          "mutation": "依存宣言欠落",
+          "expected": {
+            "outcome": "invalid",
+            "finding_code": "input_invalid",
+            "finding_pointer": "/declared_dependency_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/declared_dependency_refs",
+          "change": "delete required field",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 4,
+          "mutation": "義務欠落",
+          "expected": {
+            "outcome": "invalid",
+            "finding_code": "input_invalid",
+            "finding_pointer": "/local_pairs/0/obligation_ref",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/local_pairs/0/obligation_ref",
+          "change": "delete required field",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 5,
+          "mutation": "oracle欠落",
+          "expected": {
+            "outcome": "invalid",
+            "finding_code": "input_invalid",
+            "finding_pointer": "/local_pairs/0/oracle_ref",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/local_pairs/0/oracle_ref",
+          "change": "delete required field",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 6,
+          "mutation": "版欠落",
+          "expected": {
+            "outcome": "invalid",
+            "finding_code": "input_invalid",
+            "finding_pointer": "/contract_revision",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/contract_revision",
+          "change": "delete required field",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 7,
+          "mutation": "未宣言依存追加",
+          "expected": {
+            "outcome": "incomplete",
+            "finding_code": "dependency_undeclared",
+            "finding_pointer": "/observed_dependencies/value/observed_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/observed_dependencies/value/observed_refs",
+          "change": "append E@r1; declared remains {D}",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 8,
+          "mutation": "観測未供給",
+          "expected": {
+            "outcome": "invalid",
+            "finding_code": "input_invalid",
+            "finding_pointer": "/observed_dependencies",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/observed_dependencies",
+          "change": "delete required observation field",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-F03",
+      "design_ref": "HARNESS-L5-010-F03",
+      "symbol": "check_composition_candidate",
+      "l9_ref": "HARNESS-L9-010-F03",
+      "requirement_ref": "HARNESS-L3-010-F03",
+      "positive_input": "母集合={A,B,C}、収載={A}、除外={B:未適格}、未解決={C}。upper before/proposedともu1/draft,p1/draft。",
+      "expected_observation": [
+        "outcome=incomplete（Cとupper-o1を保持）",
+        "included={A}、excluded={B:理由/根拠あり}、unresolved={C}",
+        "upper_state=u1/draft,p1/draft（Aのm1→m2だけの変更でも不変）",
+        "upper_unproved_refs={upper-o1}"
+      ],
+      "negative_mutations": [
+        {
+          "l9_mutation_index": 1,
+          "mutation": "未適格pack収載",
+          "expected": {
+            "outcome": "incomplete",
+            "finding_code": "pack_not_qualified",
+            "finding_pointer": "/included_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/included_refs",
+          "change": "set {A,B}; remove B from excluded, keep C unresolved",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 2,
+          "mutation": "除外理由欠落",
+          "expected": {
+            "outcome": "incomplete",
+            "finding_code": "exclusion_basis_missing",
+            "finding_pointer": "/excluded/0/basis_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/excluded/0/basis_refs",
+          "change": "set []",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 3,
+          "mutation": "候補母集合から黙って削除",
+          "expected": {
+            "outcome": "incomplete",
+            "finding_code": "candidate_partition_mismatch",
+            "finding_pointer": "/candidate_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/candidate_refs",
+          "change": "remove C; remove C from unresolved; context mother remains {A,B,C}",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 4,
+          "mutation": "pack版を製品版へ転写",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "upper_state_inferred",
+            "finding_pointer": "/proposed_upper/product_revision",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/proposed_upper/product_revision",
+          "change": "set r1 (pack version) instead of p1",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 5,
+          "mutation": "unknown適格性を成功とする",
+          "expected": {
+            "outcome": "unknown",
+            "finding_code": "pack_not_qualified",
+            "finding_pointer": "/qualifications",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/qualifications",
+          "change": "set C state=qualified and include C; basis C state remains unknown",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 6,
+          "mutation": "pack成熟度の昇格だけでrelease単位/製品の成熟度・状態を昇格",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "upper_state_inferred",
+            "finding_pointer": "/proposed_upper",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/proposed_upper",
+          "change": "set release/product state to pack m2 using pack maturity change only",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 7,
+          "mutation": "母集合外（未指定）のpackを収載",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "candidate_outside",
+            "finding_pointer": "/included_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/included_refs",
+          "change": "append E@r1 not in mother",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-F04",
+      "design_ref": "HARNESS-L5-010-F04",
+      "symbol": "check_local_replacement",
+      "l9_ref": "HARNESS-L9-010-F04",
+      "requirement_ref": "HARNESS-L3-010-F04",
+      "positive_input": "A@r1→A@r2、固定in-A/env1から意味same-xを二観測、復旧=A@r1 qualified。B@r1/proof-B-retainedはbefore/after同じ。",
+      "expected_observation": [
+        "outcome=satisfied",
+        "old=A@r1,new=A@r2,recovery=A@r1",
+        "unchanged_refs={B@r1}、proof集合=before/after同じ",
+        "切替/rollbackの実行指示はoutputに無い"
+      ],
+      "negative_mutations": [
+        {
+          "l9_mutation_index": 1,
+          "mutation": "latest暗黙参照",
+          "expected": {
+            "outcome": "invalid",
+            "finding_code": "input_invalid",
+            "finding_pointer": "/new_pack_ref/revision",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/new_pack_ref/revision",
+          "change": "set latest",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 2,
+          "mutation": "復旧先不明",
+          "expected": {
+            "outcome": "invalid",
+            "finding_code": "input_invalid",
+            "finding_pointer": "/recovery_fact",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/recovery_fact",
+          "change": "delete required field",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 3,
+          "mutation": "非対象版変更",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "unchanged_pack_changed",
+            "finding_pointer": "/unchanged_after/0/pack_ref/revision",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/unchanged_after/0/pack_ref/revision",
+          "change": "set r2 for B; before remains r1",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 4,
+          "mutation": "非対象証拠消失",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "unchanged_pack_changed",
+            "finding_pointer": "/unchanged_after/0/proof_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/unchanged_after/0/proof_refs",
+          "change": "remove proof-B-retained",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 5,
+          "mutation": "同入力別成果",
+          "expected": {
+            "outcome": "conflict",
+            "finding_code": "reproduction_mismatch",
+            "finding_pointer": "/reproduction_comparison/value/comparison_outcome",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/reproduction_comparison/value/comparison_outcome",
+          "change": "set different; observed semantic result becomes not-x",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 6,
+          "mutation": "比較環境不明",
+          "expected": {
+            "outcome": "incomplete",
+            "finding_code": "reference_missing",
+            "finding_pointer": "/environment_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/environment_refs",
+          "change": "set {}; fixed env1 basis unchanged",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-B01",
+      "design_ref": "HARNESS-L5-010-B01",
+      "symbol": "project_pack_qualification",
+      "l9_ref": "HARNESS-L9-010-B01",
+      "requirement_ref": "HARNESS-L3-010-B01",
+      "positive_input": "A qualified/proof-A、B incomplete、upper-o1未証明、C unknownを未解決として同scopeで渡す。",
+      "expected_observation": [
+        "outcome=incomplete",
+        "pack_states={A:qualified,B:incomplete}、Cはunknown/未解決として保持",
+        "upper_unproved_refs={upper-o1}、unresolved={C}",
+        "Accepted/Release/実行許可のfieldは無い"
+      ],
+      "negative_mutations": [
+        {
+          "l9_mutation_index": 1,
+          "mutation": "上位未完を理由に適格Aを隠す",
+          "expected": {
+            "outcome": "incomplete",
+            "finding_code": "local_state_hidden",
+            "finding_pointer": "/qualifications",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/qualifications",
+          "change": "omit A even though context A qualified",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 2,
+          "mutation": "A greenで上位成立",
+          "expected": {
+            "outcome": "incomplete",
+            "finding_code": "qualification_basis_missing",
+            "finding_pointer": "/upper_proof_refs",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/upper_proof_refs",
+          "change": "use proof-A to close upper-o1 (wrong oracle)",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 3,
+          "mutation": "B未完を脱落させる",
+          "expected": {
+            "outcome": "incomplete",
+            "finding_code": "unresolved_lost",
+            "finding_pointer": "/qualifications",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/qualifications",
+          "change": "omit B; context B remains incomplete",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        },
+        {
+          "l9_mutation_index": 4,
+          "mutation": "候補を実行命令として発行",
+          "expected": {
+            "outcome": "invalid",
+            "finding_code": "input_invalid",
+            "finding_pointer": "/execution_intent",
+            "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+          },
+          "input_pointer": "/execution_intent",
+          "change": "add unknown field execution_intent={operation:execute,subject:A}",
+          "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+        }
+      ],
+      "execution_state": "not_executed"
+    }
+  ],
+  "extra_cases": [
+    {
+      "id": "HARNESS-L8-010-X01",
+      "targets": "all five functions",
+      "input": "基準fixtureの一Refについて、identity/owner/scope/revision/digestをそれぞれ単独変更。別scopeのproof/current根拠を混入。全basisをmissing/unknown/conflict/staleへ一件ずつ変える。",
+      "expected": "変更fieldと当該Refを示すreference/fact finding。対象の分類と全findingが残り、正常satisfiedにならない。hash一致でもfact内容の照合根拠無しはfact_content_unproven。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-X02",
+      "targets": "all five functions",
+      "input": "同一fixture/根拠を二回評価。意味上集合の順だけ入れ替える。異なるfield/type、同key重複/同key異digest、余分なfieldを一つずつ入れる。",
+      "expected": "二評価と順変更の結果値/finding集合は一致し入力は不変。不正変異はinput_invalid/reference_conflict等で、invalid後も無関係な成功へ転写しない。clock/hostへの依存は無い。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-X03",
+      "targets": "check_pack_declaration",
+      "input": "型は正しいがinput_refs/output_refs/local_pairsを一つずつ空にする。Dの実観測を空にする。Dを宣言/観測双方から抜きbasisにはDを残す。依存無しbasisとvalidな空観測の別正常を比較。",
+      "expected": "空必須契約はdeclaration_missing/incomplete。必要D欠落はdependency_missing/incomplete。明示した依存無しbasisとcompleteな空観測だけはsatisfied。型不正検出だけを意味条件の証拠へしない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-X04",
+      "targets": "check_local_replacement",
+      "input": "型は正しいrecovery_factをunknown、不適格、別scopeへ一つずつ変更。reproduction factを同hashだがcomparison_content_check_refs空へ変更。",
+      "expected": "復旧根拠不明はrecovery_unknown/unknown、不適格はrecovery_unknown/incomplete、別scopeはreference_conflict/conflict。比較内容根拠無しはfact_content_unproven/incomplete。置換/復旧成功を返さない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-X05",
+      "targets": "check_composition_candidate/project_pack_qualification",
+      "input": "Aのqualified文字列/proof countは保ち、proved_pairsのoracleを別IDへ差し替える、proof内容を未実行/別revision、content_check_refsを空へ一つずつ変更。",
+      "expected": "pack_not_qualified/qualification_basis_missing/fact_content_unproven。Aを収載/qualifiedとして返さず、欠けるpair/proof/内容根拠を特定。型/hash/件数のgreenで不成立を相殺しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-010-X06",
+      "targets": "all five functions",
+      "input": "同じ入力を、I/O/network/process/DB/Git/GitHubの呼出しを観測する禁止effect stubを備えた局所test環境で評価。正常outputを実行intentへ変える意図的な実装欠陥も別oracle強度証拠として使う。",
+      "expected": "通常評価のeffect呼出しは0、返却recordは宣言した純粋output fieldだけ。意図的な実装欠陥ではtest oracleが失敗する。これは実装後mutationの証拠で、実装前Redを代替しない。実SEC隔離/実OS受渡しの成立証拠でもない。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "evidence_contract": [
+    "各fixture展開値/context/oracleの同一revisionと凍結bytes",
+    "全正常と29単独負例、共通Ref/不正/決定性の追加caseについて具体input→expected→actual差分",
+    "各L5 symbol/契約→L8 case→L4/L9→L3/L10の双方向trace",
+    "未実行/失敗/未知と戻し先。局所結果を実接続/実資源/利用者受入へ昇格しない。"
+  ],
+  "completion": "内容oracleを先に固定し実物で正常/全変異/追加caseを照合する。設計review/型検査/hash/件数だけから実L8成功にしない。"
+}

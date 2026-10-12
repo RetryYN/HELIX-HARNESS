@@ -1,0 +1,389 @@
+{
+  "document_id": "HARNESS-L5-010-PACK-BOUNDARY",
+  "layer": "L5",
+  "paired_document": "docs/helix-harness/L8-unit-verification/pack-boundary.json",
+  "parent": "HARNESS-L2-010",
+  "status": "candidate_pending_independent_review",
+  "source_main": "a52f8a25948f490479ff9a4aed821a527e7e190c",
+  "parent_pair_revision": "b06f9cd6b6e4ecd12a57df54368092c0fa8088df",
+  "scope": "010の純粋な意味照合5関数のdomain型/algorithm/errorと対L8。JSON意味正本。通信/保存wire schema、snapshot生成/認可、実登録/切替は各ownerの設計で具体化。",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+      "sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
+      "sha256": "d030634a263087dca369ae44d99ad186566a0326bb436e98e0ce127e4c6111f9"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+      "lines": "16–35、45–66、75–82",
+      "disposition": "semantic_rederivation",
+      "keep": "pure function、typed result/finding、strict入力、不明保持、exact集合の双方向比較、結果のstable順。",
+      "change": "旧TS module/関数名/旧schema/固定depth,node制限を移さず、010の局所判定をPython意味コアのdomain契約へ対応する。",
+      "reason": "010 L4のsnapshot→純粋判定→候補と現行責務分離。",
+      "sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/source-boundary-architecture.md",
+      "lines": "20–30、47–57",
+      "disposition": "semantic_rederivation",
+      "keep": "immutable analyzerとeffect実行、default denyの未指定依存拒否。",
+      "change": "旧parser/loader/DB/CLI配置を復元しない。観測と保存を注入する外側のconsumerは別owner。",
+      "reason": "010 F02の宣言外依存拒否とL4の副作用禁止。",
+      "sha256": "6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610"
+    }
+  ],
+  "type_contract": {
+    "syntax": "recordは列挙fieldだけを許可し全field必須。tuple要素は全件検査し一つのunknown/不正をshort circuitで隠さない。型名参照は本type_modelと各input/output recordだけ。wire JSON Schemaの別正本をここへ複製しない。",
+    "type_model": {
+      "Text": "非空Unicode文字列。空白だけを非空としない。表記の自動正規化/意味identity判定を行わない。",
+      "Reference": {
+        "identity": "Text",
+        "revision": "Text（latest/wildcardは不可、完全一致の値）",
+        "owner": "Text",
+        "scope": "Text",
+        "content_sha256": "64桁lowercase hex（参照bytesの整合性のみ）"
+      },
+      "ReferenceSet": "Referenceのtuple。identity/revision/owner/scopeを集合keyとし、同key異digestと重複keyを拒否。配列の順番を意味にしない。",
+      "BoundFact": {
+        "subject_ref": "Reference",
+        "basis_refs": "ReferenceSet",
+        "validity": "valid | missing | unknown | conflict | stale",
+        "value": "kindに対応する下記の閉じたBasis record。任意object/free textを渡さない。",
+        "kind": "boundary_basis | declaration_basis | dependency_observation | qualification_basis | reproduction_basis | composition_basis"
+      },
+      "Context": {
+        "subject_ref": "Reference",
+        "current_basis_refs": "ReferenceSet（意味owner/authority/対象scopeが解決されたcurrent snapshot）",
+        "resolved_facts": "BoundFactのtuple。同じsubject/kind/対象revision/scopeの二重定義と同key異valueをreference_conflictにする。",
+        "expected_local_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+        "fact_check_refs": "ReferenceSet（fact内容の独立照合根拠。field存在/hashだけで成立にしない）"
+      },
+      "Finding": {
+        "code": "本設計のclosed error_code",
+        "pointer": "input fieldへのJSON Pointer形式locator",
+        "subject_ref": "Reference",
+        "requirement_ref": "親010のatomic L3 ID",
+        "backflow_owner": "Text",
+        "evidence_refs": "ReferenceSet"
+      },
+      "Result": {
+        "outcome": "satisfied | incomplete | unknown | conflict | stale | invalid",
+        "value": "各関数のoutput record、またはnull",
+        "findings": "Findingのtuple。code/pointer/subject identity/revision順でUnicode code point sort"
+      },
+      "QualificationFact": {
+        "pack_ref": "Reference",
+        "state": "qualified | incomplete | unknown | conflict | stale",
+        "proof_refs": "ReferenceSet",
+        "proved_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+        "basis_refs": "ReferenceSet"
+      },
+      "UpperState": {
+        "release_unit_revision": "Text",
+        "release_unit_state_ref": "Reference",
+        "product_revision": "Text",
+        "product_state_ref": "Reference"
+      },
+      "BoundaryBasis": {
+        "behavior_atom_refs": "ReferenceSet",
+        "owner_ref": "Reference",
+        "owner_kind": "service | component | core",
+        "sharing_class": "local | shared | unknown",
+        "inseparable_groups": "ReferenceSetのtuple"
+      },
+      "DeclarationBasis": {
+        "input_refs": "ReferenceSet",
+        "output_refs": "ReferenceSet",
+        "required_dependency_refs": "ReferenceSet",
+        "local_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+        "contract_revision": "Text",
+        "dependency_absence_basis_refs": "ReferenceSet"
+      },
+      "DependencyObservation": {
+        "observed_refs": "ReferenceSet",
+        "observation_scope_ref": "Reference",
+        "complete_observation_basis_refs": "ReferenceSet"
+      },
+      "QualificationBasis": {
+        "pack_ref": "Reference",
+        "state": "qualified | incomplete | unknown | conflict | stale",
+        "proved_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+        "proof_refs": "ReferenceSet",
+        "content_check_refs": "ReferenceSet（pair/proofの対象・期待内容・実内容を比較したcurrent根拠）"
+      },
+      "ReproductionBasis": {
+        "old_pack_ref": "Reference",
+        "new_pack_ref": "Reference",
+        "input_snapshot_refs": "ReferenceSet",
+        "environment_refs": "ReferenceSet",
+        "expected_semantic_result_ref": "Reference",
+        "observed_semantic_result_refs": "ReferenceSet",
+        "comparison_contract_ref": "Reference",
+        "comparison_outcome": "same | different | unknown",
+        "comparison_content_check_refs": "ReferenceSet",
+        "recovery_basis_refs": "ReferenceSet"
+      },
+      "CompositionBasis": {
+        "candidate_refs": "ReferenceSet",
+        "upper_state": "UpperState",
+        "upper_obligation_refs": "ReferenceSet",
+        "upper_proved_refs": "ReferenceSet",
+        "upper_unproved_refs": "ReferenceSet"
+      }
+    },
+    "cardinality": "（1以上）等はdomain充足条件であり、tuple自体は空でも型上はtuple。空の必須契約/根拠はdomain finding/incompleteにする。required field自体の欠落はinput_invalid。"
+  },
+  "shared_pre_post": {
+    "pre": "inputは未検査。contextは別引数のowner-qualified snapshotであり、inputの宣言/validity/qualifiedに合わせて書き換えない。各関数が実際に参照するbasis/factを同subject revision/scope/owner/current根拠と内容へ照合する。current root/owner不明は当該結果をunknownにする。declared unresolvedのCの局所stateは個別に保持し、無関係Aのcurrent根拠を不明へ落とさない。field存在/digest一致だけでfactの内容やauthorityを生成せずcontent_check_refs不足はfact_content_unproven。",
+    "post": "satisfiedは当該純粋契約の一致だけ。required field欠落/型/duplicateはinvalid。解決すべき参照missingはincomplete、unknownはunknown、異payload/owner矛盾はconflict、古い参照はstale。既に宣言した未完/未解決/上位未証明の集合を正しく投影する場合はincompleteとして残す。複数分類があればinvalid→conflict→stale→unknown→incompleteの順でoutcomeを一つ選び、全findingを残す。",
+    "partial_value": "invalidはvalue=null。他の非satisfiedでは、根拠を照合できた独立packと、finding/未完/不明を同scopeで保持する閉じたoutput recordだけを返してよい。必要fieldを解決できずoutput型を満たせない場合はnull。未成立packを収載候補/qualifiedにせず、別packの既存適格性も隠さない。",
+    "determinism": "同じ入力値と根拠bytes/版から同じ結果値/finding集合を返す。集合順序とclock/locale/host stateを意味へ混入させない。入力を変更しない。",
+    "effect": "Python意味コアの純粋domain関数。file/network/process/DB/Git/GitHub/台帳writer/実行器を呼ばない。",
+    "no_code_first": "既存JSON型/集合比較/immutable DTOを再利用する。旧TS runtime/parser/DBや巨大Engineを移植せず、既存toolが担えない010固有の内容差分だけ実装対象にする。"
+  },
+  "common_error_codes": [
+    "input_invalid",
+    "reference_missing",
+    "reference_unknown",
+    "reference_conflict",
+    "reference_stale",
+    "fact_content_unproven"
+  ],
+  "functions": [
+    {
+      "symbol": "check_pack_boundary",
+      "input": {
+        "pack_ref": "Reference",
+        "kind_ref": "Reference",
+        "behavior_atom_refs": "ReferenceSet（1以上）",
+        "owner_refs": "ReferenceSet（正常時1）",
+        "consumer_refs": "ReferenceSet",
+        "sharing_class": "local | shared | unknown",
+        "inseparable_group_refs": "ReferenceSet"
+      },
+      "output": {
+        "owner_ref": "Reference",
+        "consumer_refs": "ReferenceSet",
+        "behavior_atom_refs": "ReferenceSet",
+        "boundary_basis_refs": "ReferenceSet"
+      },
+      "steps": [
+        "共通のreference/context照合を行う。field型/重複が不正ならinvalid、不足と不明は当該範囲へ返す。",
+        "宣言atom集合をcontextのowner確定behavior集合と双方向比較する。関数/path名からatomを作らない。",
+        "owner_refsの一意性とcontextのownerを照合する。consumerをownerに数えない。sharedの場合、部品/CORE所属のkind根拠が必要。",
+        "複数contractをまとめる場合、contextの分割で失う不変条件とinseparable groupへ全atomを結ぶ。独立atomの混載はboundary_mismatch。説明文字列の存在だけで密結合を認めない。",
+        "正常では一owner、consumer集合、atom集合とその根拠を返す。登録/適格性/上位成立は返さない。"
+      ],
+      "codes": [
+        "owner_conflict",
+        "boundary_mismatch",
+        "shared_owner_mismatch"
+      ],
+      "id": "HARNESS-L5-010-F01",
+      "l4_ref": "HARNESS-L4-010-F01",
+      "requirement_ref": "HARNESS-L3-010-F01",
+      "oracle_ref": "HARNESS-L8-010-F01"
+    },
+    {
+      "symbol": "check_pack_declaration",
+      "input": {
+        "pack_ref": "Reference",
+        "input_refs": "ReferenceSet（1以上）",
+        "output_refs": "ReferenceSet（1以上）",
+        "declared_dependency_refs": "ReferenceSet（空は明示した依存なし根拠が必要）",
+        "local_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple（1以上）",
+        "contract_revision": "Text",
+        "observed_dependencies": "BoundFact(kind=dependency_observation、value=DependencyObservation)"
+      },
+      "output": {
+        "undeclared_dependency_refs": "ReferenceSet",
+        "missing_required_dependency_refs": "ReferenceSet",
+        "local_pairs": "inputと同じ閉じたpair集合",
+        "contract_revision": "Text"
+      },
+      "steps": [
+        "input/output/依存宣言/局所義務/oracle/版の六項目を個別に検査。欠落を空集合で補わない。",
+        "宣言の各Refとcontextの契約内容/owner/scope/revisionを照合し、local_pairsをexpected_local_pairsと両方向比較する。",
+        "観測factが未供給/unknown/staleなら成功を返さない。観測の生成・process probeを呼ばない。",
+        "observed minus declaredをundeclared_dependency_refs、required declared minus observedをmissing_required_dependency_refsへ返す。各不一致を依存identity単位で残す。",
+        "両差分が空で、全契約内容が合う場合だけsatisfied。依存なしはvalidな空観測と依存なし根拠を必要とし、観測無しとは区別。"
+      ],
+      "codes": [
+        "declaration_missing",
+        "dependency_undeclared",
+        "dependency_missing",
+        "local_pair_mismatch"
+      ],
+      "id": "HARNESS-L5-010-F02",
+      "l4_ref": "HARNESS-L4-010-F02",
+      "requirement_ref": "HARNESS-L3-010-F02",
+      "oracle_ref": "HARNESS-L8-010-F02"
+    },
+    {
+      "symbol": "check_composition_candidate",
+      "input": {
+        "candidate_refs": "ReferenceSet",
+        "included_refs": "ReferenceSet",
+        "excluded": "{pack_ref: Reference, reason: Text, basis_refs: ReferenceSet}のtuple",
+        "unresolved_refs": "ReferenceSet",
+        "qualifications": "QualificationFactのtuple",
+        "before_upper": "UpperState",
+        "proposed_upper": "UpperState"
+      },
+      "output": {
+        "included_refs": "ReferenceSet",
+        "excluded": "inputと同じ理由/根拠付き集合",
+        "unresolved_refs": "ReferenceSet",
+        "upper_state": "before_upperと同じ値",
+        "upper_unproved_refs": "ReferenceSet"
+      },
+      "steps": [
+        "contextのCompositionBasis.candidate_refsとinput母集合をまず両方向比較し固定母集合の切り詰め/増加を検出。収載/除外/未解決の三集合と母集合を両方向比較し、重複所属、母集合外、未処置を個別findingへ。",
+        "各収載packのqualified factについて対象Ref、全局所pair/proof内容とcurrent根拠をcontextへ照合する。state文字列やproof countだけでは適格としない。未検証/未適格/unknownは収載不可。",
+        "除外理由/basis不足を残す。unknown packを母集合から削除せず、理由付き除外または未解決にする。",
+        "pack版と成熟度を各pack factに保持し、before_upperとproposed_upperの全fieldを比較する。pack昇格だけを根拠とする上位版/成熟度/状態の変更はupper_state_inferred。",
+        "上位固有義務の未証明をcontextからそのまま返す。対象は構成候補であり、組合せ適格性判定やAccepted/Releaseは発行しない。"
+      ],
+      "codes": [
+        "candidate_outside",
+        "candidate_partition_mismatch",
+        "exclusion_basis_missing",
+        "pack_not_qualified",
+        "upper_state_inferred"
+      ],
+      "id": "HARNESS-L5-010-F03",
+      "l4_ref": "HARNESS-L4-010-F03",
+      "requirement_ref": "HARNESS-L3-010-F03",
+      "oracle_ref": "HARNESS-L8-010-F03"
+    },
+    {
+      "symbol": "check_local_replacement",
+      "input": {
+        "old_pack_ref": "Reference",
+        "new_pack_ref": "Reference",
+        "input_snapshot_refs": "ReferenceSet（1以上）",
+        "environment_refs": "ReferenceSet（1以上）",
+        "reproduction_comparison": "BoundFact(kind=reproduction_basis、value=ReproductionBasis)",
+        "unchanged_before": "{pack_ref: Reference, proof_refs: ReferenceSet}のtuple",
+        "unchanged_after": "同じrecordのtuple",
+        "recovery_fact": "QualificationFact"
+      },
+      "output": {
+        "old_pack_ref": "Reference",
+        "new_pack_ref": "Reference",
+        "recovery_pack_ref": "Reference",
+        "unchanged_refs": "ReferenceSet",
+        "reproduction_evidence_refs": "ReferenceSet"
+      },
+      "steps": [
+        "固定入力/依存/環境のexact Refを照合。latestや未特定環境を拒否する。",
+        "再生成比較factの対象入力/意味成果/比較方法・結果をcontextへ照合。二つのhash一致だけを再現性の全証拠にしない。異成果/未観測は残す。",
+        "非対象集合を両方向に比較し、各pack Refとproof Ref集合がbefore/afterで完全一致することを確認。消失と追加/版変更を区別。",
+        "復旧候補は直前適格版または明示置換のowner根拠と全局所proofへ結ぶ。root/版/適格性不明はrecovery_unknown。",
+        "対象の旧/新/復旧候補と非対象保持の結果を返す。pointer変更/起動/rollback/write/FR53履歴変換を実行せず成功として返さない。"
+      ],
+      "codes": [
+        "reproduction_mismatch",
+        "unchanged_pack_changed",
+        "recovery_unknown"
+      ],
+      "id": "HARNESS-L5-010-F04",
+      "l4_ref": "HARNESS-L4-010-F04",
+      "requirement_ref": "HARNESS-L3-010-F04",
+      "oracle_ref": "HARNESS-L8-010-F04"
+    },
+    {
+      "symbol": "project_pack_qualification",
+      "input": {
+        "qualifications": "QualificationFactのtuple",
+        "upper_obligation_refs": "ReferenceSet",
+        "upper_proof_refs": "ReferenceSet",
+        "unresolved_refs": "ReferenceSet"
+      },
+      "output": {
+        "pack_states": "{pack_ref: Reference, state: QualificationFact.state}のtuple",
+        "upper_unproved_refs": "ReferenceSet",
+        "unresolved_refs": "ReferenceSet"
+      },
+      "steps": [
+        "qualified factの根拠内容をcontextへ照合し、不足packをqualifiedへ補完しない。",
+        "各packのstateを独立に投影。上位未完を理由に既に適格なAを隠さない。",
+        "上位固有義務の未証明を、下位証明とは別集合で返す。既知の未完B、未解決を削除せず同scopeへ保持。",
+        "outputは局所状態/上位未証明だけ。ticket・提供許可・Accepted/Release・構成適格判定は発行しない。"
+      ],
+      "codes": [
+        "qualification_basis_missing",
+        "local_state_hidden",
+        "unresolved_lost"
+      ],
+      "id": "HARNESS-L5-010-B01",
+      "l4_ref": "HARNESS-L4-010-B01",
+      "requirement_ref": "HARNESS-L3-010-B01",
+      "oracle_ref": "HARNESS-L8-010-B01"
+    }
+  ],
+  "remaining": [
+    "この型契約はPython domain input/output。CONNECT wire schemaとOS snapshot保存/authority bindingは別owner。参照先の未確定/不足を実装開始時に解消しないまま成功へ補完しない。",
+    "L6/L7でsymbol/module/実装前testコードとoracle凍結を具体化。実装前Red/Green、局所CI、実L8/L9/L10、L11受入は未成立。",
+    "toolchain/runtime exact版、実SEC隔離/権限、INFRA資源とscope別検査構成は別の対設計で閉じる。未採用VT104〜106を正式templateとして使用しない。"
+  ],
+  "finding_classification": {
+    "input_invalid": "invalid",
+    "reference_missing": "incomplete",
+    "reference_unknown": "unknown",
+    "reference_conflict": "conflict",
+    "reference_stale": "stale",
+    "fact_content_unproven": "incomplete",
+    "owner_conflict": "conflict",
+    "boundary_mismatch": "incompleteなら根拠missing、conflictなら既決境界との矛盾",
+    "shared_owner_mismatch": "conflict",
+    "declaration_missing": "incomplete",
+    "dependency_undeclared": "incomplete",
+    "dependency_missing": "incomplete",
+    "local_pair_mismatch": "conflict",
+    "candidate_outside": "conflict",
+    "candidate_partition_mismatch": "incomplete",
+    "exclusion_basis_missing": "incomplete",
+    "pack_not_qualified": "incompleteなら未証明/未適格、unknownなら根拠unknown、conflict/staleなら当該事実の分類",
+    "upper_state_inferred": "conflict",
+    "reproduction_mismatch": "conflict",
+    "unchanged_pack_changed": "conflict",
+    "recovery_unknown": "unknownなら根拠unknown、incompleteなら不適格/根拠missing",
+    "qualification_basis_missing": "incomplete",
+    "local_state_hidden": "incomplete",
+    "unresolved_lost": "incomplete"
+  }
+}
