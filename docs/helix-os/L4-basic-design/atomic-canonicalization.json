@@ -1,0 +1,341 @@
+{
+  "document_id": "OS-L4-053-ATOMIC-CANONICALIZATION",
+  "layer": "L4",
+  "paired_document": "docs/helix-os/L9-integration-verification/atomic-canonicalization.json",
+  "parent": "HELIXOS-L2-053",
+  "status": "candidate_pending_independent_review",
+  "source_main": "010395ecbbd95101bb0a6b4974a52ce3a4908b97",
+  "scope": "053の承認済み11義務を全write固定→原子commit/publication→3read→失敗/復旧へ具体化。意味ownerの判断と保存を分離。FR53履歴操作、配布/ReleaseManifest/内部デプロイは対象外。",
+  "source_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-prerequisite053-l3-l10-delegated-decision-2026-10-12.md",
+      "sha256": "75f12b09d65eceb5c42a1a650c3471c7c30dae30ea112f643b72dbf17b94c543"
+    },
+    {
+      "path": "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "sha256": "2c700ffcbb89c034d9f0b43a7f69483e785abbef28bb07601857a1d0caa72030"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "lines": "142",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "disposition": "semantic_rederivation",
+      "keep": "FR52の全artifact単一operation、部分current拒否、CAS、冪等、receipt。",
+      "change": "Markdown正本を既決JSONAUTHに従いJSON意味正本へ対応。旧DB名/旧schema/FR53履歴操作を移さない。",
+      "reason": "OS053の承認済み11義務と責務分離。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "lines": "76",
+      "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "disposition": "semantic_rederivation",
+      "keep": "HOT49の保存段fault、同command/異payload、部分currentを観測する反証。",
+      "change": "rename/split/mergeをこの053対へ混載せず、052意味判定と053全baseCAS/3read経路へ限定対応。",
+      "reason": "HARNESS053→042不整合は未解消のままで当該操作停止を保持。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": "19–29",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "disposition": "semantic_rederivation",
+      "keep": "JSON構造的意味と生成viewの責務/authority分離。",
+      "change": "旧template registry/parser/schema/層番号を移植しない。",
+      "reason": "OS保存は意味ownerの契約に従い、viewから意味更新を作らない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "lines": "142–153",
+      "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "disposition": "semantic_rederivation",
+      "keep": "event/projection横断の同一transactionと片側成功禁止。",
+      "change": "旧JSONL fsync→harness.db→checkpointの外側write順、旧table/trigger/Node固定を再採用せず、全必須write/receipt/current公開が同じ原子境界を満たすadapter契約へ再導出。",
+      "reason": "旧DB内transactionの成功だけでは、今回の全正本/receipt/read経路の原子性を証明できない。"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "65–101（UTW-002/005/020/021/034）",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "meaning": "continuation正本競合、最新revision未束縛、partial failure粗粒度、自己申告、CAS/replay/rollback未統合を、対象operation/全write/実read/復旧反例へ結ぶ。新しいgateや旧実測の再利用ではない。"
+  },
+  "architecture": {
+    "owner": "HELIX-OS",
+    "components": [
+      {
+        "name": "OperationWritePlan",
+        "role": "意味ownerが提示したJSON/参照差分を受け、command/scope/all bases/owner/必須write exact setをimmutable入力へ固定。内容を作成/承認しない。"
+      },
+      {
+        "name": "CommandIdentityBoundary",
+        "role": "HARNESS052のowner-qualified同一/異意味結果を参照し、保存時の既存operationを照合。正規化の再実装なし。"
+      },
+      {
+        "name": "AtomicBundleStore",
+        "role": "全正本bytes、asset revision、event、trace、impact、stale関係、選択projection、receipt、current参照を一つの原子commit境界で確定。write毎autocommitと境界外のcurrent先行公開を禁止。"
+      },
+      {
+        "name": "CommittedSnapshotReader",
+        "role": "current pointer/canonical/projection三経路を同じ確定snapshotへ束縛。writerの未commit viewを公開readerとして流用しない。"
+      },
+      {
+        "name": "FailureRecoveryBoundary",
+        "role": "write/照合/commit/receipt faultとrollback/隔離の実結果を保持。既存証拠経路以外の新fallbackを生成しない。"
+      }
+    ],
+    "dependency_direction": "owner-qualified意味/authority/SEC/INFRA入力→OS operation固定→HARNESS052照合参照→保存adapter→確定snapshot reader→OS019等の証拠consumer。外側writeはOS。HARNESS/BRAINはDBを書かず、OSは意味payloadを独自に正規化しない。",
+    "storage_boundary": "初回の構成は一つのatomic storeを使い、全必須writeとreceipt/current参照を同じtransactionへ置く。外部Git/filesystem/別DB/remote projectionを、単一DBのcommitで原子的に更新済みとみなさない。その境界が必須なら同じ契約を実現するadapterの対設計が必要で、不足をoptionalにしない。",
+    "placement": "実行instanceのstoreはrepoの外。公開できる開発監査記録records/は別の投影であり、実operationの正本や代替receiptへ自動昇格しない。docs/の意味owner正本とoperationが保存するasset revision/元source参照は別identity/役割で保持し、docsを無承認で書換えない。具体store path/形式/schemaと全対象assetのbindingはL5/L8で固定。"
+  },
+  "ports": [
+    {
+      "name": "OwnerInputPort",
+      "input": "対象asset identity/revision/scope/owner/source bytes、採否/authority根拠、変更前後、選択projection契約、全参照/未解決",
+      "output": "意味ownerが確定したoperation候補、不足は同ownerへ",
+      "effect": "意味生成/採否/権限拡張なし"
+    },
+    {
+      "name": "AtomicCommitPort",
+      "input": "固定command identity/operation/scope/全expected bases/必須write集合/各内容bytes/receipt候補",
+      "output": "committed（全writeと公開証拠） | stale/conflict | incomplete | unknown、成功/未完writeと失敗位置",
+      "effect": "全write/receipt/current同一commit。全base比較と全writeの保存・内容照合・公開を同じ競合排除区間で行う。adapterが能力を証明できなければ実operation未成立。"
+    },
+    {
+      "name": "ReadCommittedPort",
+      "input": "scope、currentまたは明示した確定revision、経路pointer/canonical/projection",
+      "output": "同一committed revision/operationの全必要内容またはmissing/unknown/stale/conflict",
+      "effect": "独立readerの確定snapshot。途中bytesや別revisionのviewをcurrentへ混在させない。"
+    },
+    {
+      "name": "ReceiptRecoveryPort",
+      "input": "同operationの失敗/各write outcome/rollback観測/既存証拠経路参照",
+      "output": "成功/失敗receiptの保存結果、または保存不能unknownと未完/最終確認状態",
+      "effect": "既存receipt/証拠経路の有効範囲だけ。新規fallback先の生成や口頭成功なし。"
+    }
+  ],
+  "operation_model": {
+    "identity_axes": [
+      "operation ID",
+      "command ID",
+      "scope/revision",
+      "全対象base集合",
+      "HARNESS052規則revisionと意味payload digest/result参照"
+    ],
+    "write_families": [
+      "json_canonical",
+      "asset_revision",
+      "event",
+      "trace",
+      "impact",
+      "stale_relation",
+      "projection",
+      "receipt"
+    ],
+    "write_selection": "familyは分類で、件数/一family一writeは固定しない。全対象の複数asset/base/projectionを各write identity/owner/before/after/source/payloadへ結ぶ。意味上該当しないfamilyはownerの適用判断と根拠を明示し、必要なfamilyを黙って省略しない。",
+    "internal_phases": [
+      "plan_fixed",
+      "commit_pending",
+      "committed",
+      "failed_unpublished",
+      "recovery_unknown"
+    ],
+    "phase_meaning": "この053の内部処理状態だけ。OS全体/authority/PO Accepted/製品成熟度の新state enumではない。committedは全write/current公開が実観測で確認された場合だけ。",
+    "flow": [
+      "固定入力/authority/全write closureを確認。不足/未知の実operationは開始しない。",
+      "HARNESS052の同一command結果を照合。既存同一committed結果なら再公開/新revision生成せず同じreceiptへ結ぶ。未完再試行は先行episode/復旧義務を保持。",
+      "writer排他区間内で全baseを再読しCAS比較。競合一件でも新canonical revisionをcommitしない。",
+      "全writeの内容と参照を保存・照合し、receiptを同じtransactionに結ぶ。順序は参照依存を満たすがcurrent公開は全件完了後の一commitだけ。",
+      "commit確定を独立readerのpointer/canonical/projectionで照合。成功応答は全内容同revisionの場合だけ。commit結果が不明ならunknownで再読/復旧へ。",
+      "各faultで未commit/途中bytesの可視性を分離し、rollback実証・隔離・未証明を記録。新currentを成立表示しない。"
+    ],
+    "receipt_visibility": "transaction内のreceipt recordはcommit時点のoperation/command/scope、base/before/after、全write/owner/outcome/count/参照/projection revisionを保存する。commit後の独立read結果を予告したfieldや、実施済みと称するread証拠は入れない。receipt候補はcommit前にwriterから見えても成功ではない。保存済みreceiptと全write/参照/currentの独立3readが一致するときだけ、その保存済みreceiptをL3-F06の成功receiptとして応答へ渡す。read-afterは応答/consumer側の別観測であり、この原子境界に新たな必須writeを追加せず、receiptを後から書換えない。commit後に不一致/読出し不能なら保存済みrecordを保全し、呼出し結果はconflict/unknownと復旧義務を返す。G1を観測した事実も保全し、commit済み事実を無かったことにしたり、receiptだけで全成功を返さない。commit応答喪失はreceipt保存失敗とは別で、既存storeのreceiptと全内容のread-after一致が確認できる場合だけ先行成功結果を返す。"
+  },
+  "invariants": [
+    "JSON意味正本/元sourceとviewは別kind。viewだけの変更で新canonical revisionを成立させない。",
+    "committed snapshotは固定write集合と全base、各owner/before/after、全参照/selected projection/receiptへ全件結ぶ。件数/hash一致だけを内容の代わりにしない。",
+    "公開readerは全commit前の中間結果を見せない。一read response中にold/newを混在させない。保存中のwriter private viewはcurrentではない。",
+    "全baseCASと公開は同じ競合排除区間。CAS後に排他を離して別writeで公開するTOCTOU経路は認めない。",
+    "同command同意味/scope/baseは先行結果、異payload/scope/baseはconflict。052根拠missing/unknownでOS独自判断へfallbackしない。",
+    "rollback/隔離/既存receiptが確認不能ならunknown/incomplete。last-known beforeと今のcurrent確認不能を分け、最後の確認値を現時点成功として返さない。",
+    "同operation/scopeのpartial-currentを他operationの成功で補わない。operation成功は要求採択/PO受入/FR53履歴操作の成立ではない。",
+    "commit前の失敗では先行currentの保持が必須である。read不能のunknownは証明不足を表し、先行currentを消してよい例外ではない。commit応答喪失では実commitの有無を既存証拠で調べるまで成功を返さない。"
+  ],
+  "adapter_research": {
+    "role": "一次資料による実現方式の比較。SQLiteの製品採用/版/DDL/host設定はL5/L8で選び、今回の設計reviewを実adapterの成立としない。",
+    "candidate": "単一SQLite databaseの明示transaction。全必須recordを一transactionへ収め、独立reader接続/dirty readなし/永続化条件を検証する。複数DBやGit/fileへの別writeを含むscopeはこの候補だけでは閉じない。",
+    "alternatives": "逐次filesystem+DB+receiptを成功順だけで公開する案は全read原子性/receipt faultを閉じないため不採用。多DB/distributed coordinatorは初回の単一storeで済まない対象と証拠がある場合に比較し、将来予測で導入しない。",
+    "primary_sources": [
+      {
+        "url": "https://www.sqlite.org/atomiccommit.html",
+        "supports": "一transactionの全件/なしと耐障害性はOS/VFS/flush等の前提へ依存。実環境証拠を省かない。"
+      },
+      {
+        "url": "https://www.sqlite.org/isolation.html",
+        "supports": "独立接続のcommit済み可視性と同接続の未commit可視性は異なる。shared cache/read_uncommittedの例外。"
+      },
+      {
+        "url": "https://www.sqlite.org/lang_transaction.html",
+        "supports": "明示transaction、単一writer、BEGIN IMMEDIATE、commit BUSYや保存errorでtransactionが残ることがある。全rollbackを自己申告しない。"
+      }
+    ]
+  },
+  "contracts": [
+    {
+      "id": "OS-L4-053-F01",
+      "requirement_ref": "HELIXOS-L3-053-F01",
+      "system_oracle_ref": "HELIXOS-L10-053-F01",
+      "oracle_ref": "OS-L9-053-F01",
+      "boundary": "OperationWritePlan/OwnerInputPort",
+      "behavior": "開始前に同operation/command/scope、全base、各対象owner/source、before/afterと必須writeをexact集合へ固定。参照元のowner-qualified適用契約から集合を逆照合し、inputの自己列挙だけで完全としない。owner/base/必須projection/receipt link不足はoperation未完、意味をOSで補完しない。",
+      "required_witness": "固定plan→独立closure根拠→各write/owner/source/baseの双方向参照",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    },
+    {
+      "id": "OS-L4-053-F02",
+      "requirement_ref": "HELIXOS-L3-053-F02",
+      "system_oracle_ref": "HELIXOS-L10-053-F02",
+      "oracle_ref": "OS-L9-053-F02",
+      "boundary": "AtomicBundleStore/CommittedSnapshotReader",
+      "behavior": "全writeとreceiptを保存/照合してから一commitでcurrent参照を公開。各保存/内容照合/commit faultで、先行committed snapshotが読めるかまたはcurrent unknownかを実観測する。途中bytesの存在を確定readへ流さない。",
+      "required_witness": "同commitの必須write、公開marker、独立3read経路の全内容",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    },
+    {
+      "id": "OS-L4-053-F03",
+      "requirement_ref": "HELIXOS-L3-053-F03",
+      "system_oracle_ref": "HELIXOS-L10-053-F03",
+      "oracle_ref": "OS-L9-053-F03",
+      "boundary": "FailureRecoveryBoundary/ReceiptRecoveryPort",
+      "behavior": "失敗位置/成功/未完write/部分bytes/rollbackまたは隔離を同operationへ記録。rollback完了は実復元とbefore/read確認へ結び、rollback呼出しだけで証明しない。隔離は正常currentと別、復旧先unknownを保持。",
+      "required_witness": "fault→各write/復旧先→rollback/隔離観測→残存義務",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    },
+    {
+      "id": "OS-L4-053-F04",
+      "requirement_ref": "HELIXOS-L3-053-F04",
+      "system_oracle_ref": "HELIXOS-L10-053-F04",
+      "oracle_ref": "OS-L9-053-F04",
+      "boundary": "AtomicCommitPort",
+      "behavior": "全expected base集合をwriter競合排除中に再比較し、一つでも違えば新bundle/新canonical公開なし。比較とcommitを別排他区間にしない。先行競合operationのcurrentと元operationの未完を別に返す。",
+      "required_witness": "全baseのexpected/current差分、CAS競合、公開absence",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    },
+    {
+      "id": "OS-L4-053-F05",
+      "requirement_ref": "HELIXOS-L3-053-F05",
+      "system_oracle_ref": "HELIXOS-L10-053-F05",
+      "oracle_ref": "OS-L9-053-F05",
+      "boundary": "CommandIdentityBoundary/AtomicCommitPort",
+      "behavior": "HARNESS052の同一結果と先行receiptを参照し、同ID/scope/base/意味payload再送は同じoperation結果へ結ぶ。異payload/scope/baseはconflict。未完再送は先行復旧義務を引継ぎ、052 missing/unknownで新revisionを作らない。",
+      "required_witness": "052規則/結果→保存前identity→先行/再送の実revision数とreceipt",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    },
+    {
+      "id": "OS-L4-053-F06",
+      "requirement_ref": "HELIXOS-L3-053-F06",
+      "system_oracle_ref": "HELIXOS-L10-053-F06",
+      "oracle_ref": "OS-L9-053-F06",
+      "boundary": "ReceiptRecoveryPort/ReadCommittedPort",
+      "behavior": "成功receiptは全writeとowner/operation/command/scope/before/after/base/全参照/projection/実outcomeを持ち、実store/readへ逆照合。失敗receiptは失敗位置/可視性/rollback/隔離/復旧義務を同scopeへ保持。countだけでは成功にしない。 transaction内receiptはcommit時点のwrite/参照結果であり、commit後readの未来結果を含めない。別の独立read-after観測との全一致で成功receiptとして返す。不一致/読出し不能はrecordを保全してconflict/unknownと復旧義務へ分け、後書きでreceiptを成功へ補修しない。",
+      "required_witness": "receipt各行→実write/読出し/失敗とownerの逆参照",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    },
+    {
+      "id": "OS-L4-053-F07",
+      "requirement_ref": "HELIXOS-L3-053-F07",
+      "system_oracle_ref": "HELIXOS-L10-053-F07",
+      "oracle_ref": "OS-L9-053-F07",
+      "boundary": "ReceiptRecoveryPort",
+      "behavior": "receipt保存不能では、別の既存証拠経路の有効根拠がある場合だけその参照を返し、なければunknown。成功口頭主張、新規fallback file/records/外部送信で穴を埋めない。commit応答喪失はread-afterによる既存結果確認と分ける。",
+      "required_witness": "保存不能の境界、既存経路の適用/root/対象内容、unknown/残存復旧",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    },
+    {
+      "id": "OS-L4-053-F08",
+      "requirement_ref": "HELIXOS-L3-053-F08",
+      "system_oracle_ref": "HELIXOS-L10-053-F08",
+      "oracle_ref": "OS-L9-053-F08",
+      "boundary": "OwnerInputPort/AtomicBundleStore",
+      "behavior": "JSON正本とviewを別write kindで束縛し、JSON成功に伴う選択viewは同operation/source revisionのprojectionとして保存。view編集だけは新意味revisionにならず、owner判断を代行しない。",
+      "required_witness": "JSON before/after→選択view source/revision→current read内容",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    },
+    {
+      "id": "OS-L4-053-N01",
+      "requirement_ref": "HELIXOS-L3-053-N01",
+      "system_oracle_ref": "HELIXOS-L10-053-N01",
+      "oracle_ref": "OS-L9-053-N01",
+      "boundary": "CommittedSnapshotReader",
+      "behavior": "faultごとにpointer/canonical/projection三経路を独立readerで観測。同じwriter接続内のSELECTは公開可視性証拠にしない。未観測/読出し不能はnot_proven/unknownとして残す。",
+      "required_witness": "fault×read経路×対象revision×観測内容/未観測の矩形",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    },
+    {
+      "id": "OS-L4-053-N02",
+      "requirement_ref": "HELIXOS-L3-053-N02",
+      "system_oracle_ref": "HELIXOS-L10-053-N02",
+      "oracle_ref": "OS-L9-053-N02",
+      "boundary": "FailureRecoveryBoundary",
+      "behavior": "before/after/各write/owner/失敗位置/復旧/052意味結果のidentity/revision/scopeを保持し、欠落/古い/矛盾を原因ownerへ返す。別scope receiptや件数のみ、任意fallbackで未完を消さない。",
+      "required_witness": "全traceの双方向照合、未完と戻し先の原operation結合",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    },
+    {
+      "id": "OS-L4-053-B01",
+      "requirement_ref": "HELIXOS-L3-053-B01",
+      "system_oracle_ref": "HELIXOS-L10-053-B01",
+      "oracle_ref": "OS-L9-053-B01",
+      "boundary": "OwnerInputPort/OS boundary",
+      "behavior": "OSは確定意味/authorityの保存だけ。成功receiptから要求採択/上流承認/PO Accepted/FR53 rename等を発行しない。旧DB名/schema/runtime起動を入力の類似から作らない。",
+      "required_witness": "owner判断とoperation保存結果を別参照、境界外出力が無いこと",
+      "backflow": "正本/意味/採否は対象owner/HARNESS、保存/CAS/復旧はOS、authorityはSECURITY、実資源はINFRASTRUCTUREへscope付きで返す。"
+    }
+  ],
+  "remaining": [
+    "L5/L8で全対象assetとclosure source/adapter、schema/domain型、CAS/保存/読出し/receipt/復旧の具体algorithm、孤立reader、durability/lock/設定/版、failure分類を固定する。",
+    "SQLite候補を選ぶ場合、全必須writeが本当に同一store/transactionへ載ることを対象単位で照合。外側source/viewのwriteが残るならその原子性を別設計で閉じる。未閉包のまま実装準備完了にしない。",
+    "L6/L7の実装前test/oracleコード凍結→実装前Red→Green、実L9/L10、実SEC/INFRA/authorityとPO L11受入は未成立。",
+    "053→042不整合の履歴変換、release/内部デプロイ、全Nightly、全OS能力はこの対から解禁しない。"
+  ]
+}
