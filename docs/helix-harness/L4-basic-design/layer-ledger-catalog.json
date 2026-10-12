@@ -98,7 +98,7 @@
   "authority_effect": "none",
   "operation_effect": "none",
   "remaining": [
-    "F01の具体原packet/正常/負例を起草済み。F02/F03/F04/B01/N01の具体oracleと全関数の独立source資格/内容組合せ・未見例は未完",
+    "F01/F02の具体原packet/正常/負例・field matrixを起草済み。F03/F04/B01/N01の具体oracleと全関数の独立資格/内容組合せ・未見例は未完",
     "実owner-qualified L1/L2/authority/template版・対象scope/revision/互換契約binding",
     "L5/L8内部比較・edge casesと正式schema/codec/resolver",
     "独立reviewと所見閉包。実oracle凍結/Red/Green/Refactor・実L9/L10は未成立",
@@ -206,7 +206,8 @@
         "template/authority owner"
       ],
       "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "concrete_comparison_rule": "層ごとに原required_contentと観測contentを比較する。type/粒度/node/edge/入出力/gateのvalid typed内容差をconflict、別authority/source/template revisionをstale、原内容不在をmissing、明示TBDをunknownとして個別結果を保持。authority/template binding不足は他fieldを消さない。合成値を正式契約へ固定しない。"
     },
     {
       "id": "HARNESS-L4-040-F03",
@@ -366,11 +367,16 @@
       "state": "draft_concrete_catalog_cases_pending_qualification_detail_and_review"
     },
     "remaining_concrete_functions": [
-      "F02",
       "F03",
       "F04",
       "B01",
       "N01"
-    ]
+    ],
+    "F02": {
+      "normal_cases": 12,
+      "negative_cases": 2,
+      "field_matrix_cases": 396,
+      "state": "draft_concrete_layer_contract_cases_pending_qualification_and_review"
+    }
   }
 }
