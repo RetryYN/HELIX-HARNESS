@@ -317,7 +317,7 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "F02/F04の具体的fixtureは起草済み。残る5契約の正常/負例・独立原資料bytes・期待部分結果を作成する。",
+    "F01/F02/F04の具体的fixtureは起草済み。残る4契約の正常/負例・独立原資料bytes・期待部分結果を作成する。",
     "未見relation/無損失partition/再利用不変条件の内容比較と静的照合",
     "003未統合基本設計と後続ownerのexact binding",
     "独立exact HEAD意味reviewとmain admission",
@@ -390,7 +390,26 @@
         "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
         "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
       },
-      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。"
+      "failure_return": "当該条件/source/revision/scope、読めた原資料、不足/矛盾/未観測、当該ownerを保持する。",
+      "connection_detail": {
+        "input_owners": [
+          "要求原文/個別条件owner",
+          "設計/対検証/oracle owner",
+          "所属/所有/実装/接続trace owner"
+        ],
+        "meaning_owner": "HARNESS",
+        "record_operation_owner": "OS",
+        "coverage_unit": "要求の個別条件。record件数やpath名でまとめて充足扱いにしない。",
+        "failure_return": "変更条件のdesign/verification/oracleと未対応範囲を当該ownerへ返す。unknown影響を無影響へ補完しない。",
+        "qualification_limit": "合成trace材料は実code/接続/実検証の証拠ではない。個別owner資格と正式schemaはL5/L8以下で閉じる。",
+        "comparison_detail": {
+          "selected_conditions": "要求原文の個別idを母集団とし、条件idが一致する設計/検証を探す。選択外recordはunmatchedへ残し、件数で代替しない。",
+          "bidirectional_trace": "条件→設計→検証の全endpointの実在と同revisionの両方向edgeを読む。endpoint欠落でedgeの存在を充足にしない。",
+          "semantic_oracle": "原文に結んだ要求oracle、設計behavior_contract、対検証oracleの入力/期待結果/意図したfailureを内容で比較する。",
+          "implementation_connection": "record自体が無ければmissing、設計とのjoinが不明ならunknown_design_join。合成recordの対応は実code/接続の成立を示さない。",
+          "partial_return": "不足/矛盾条件をUnknownとして返し、別条件の有効原資料を保持。changed_conditionsの検証候補は記録上のtargetであり、実行資格/検証済みを意味しない。"
+        }
+      }
     },
     {
       "id": "HARNESS-L4-004-F02",
@@ -586,7 +605,6 @@
     },
     "remaining_contracts": [
       "B01",
-      "F01",
       "F03",
       "F05",
       "N01"
@@ -595,6 +613,12 @@
       "normal": 3,
       "negative": 14,
       "source_packets": 17,
+      "state": "draft_not_executed"
+    },
+    "F01": {
+      "normal": 1,
+      "negative": 24,
+      "source_packets": 25,
       "state": "draft_not_executed"
     }
   }
