@@ -1,6 +1,6 @@
 {
   "parent": "HELIXCONNECT-L2-009",
-  "status": "draft_basic_contracts_partial_concrete_material_pending_qualification",
+  "status": "draft_basic_concrete_content_material_pending_qualification_review",
   "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
   "scope": {
     "version_target": "1.0",
@@ -173,7 +173,7 @@
   "operation_effect": "none",
   "remaining": [
     "必要集合はownerの原宣言に結ぶ。ここで列挙する入力役割は正式schema/最小field集合の採択ではない。各実source資格とexact必要集合/bindingは未成立。",
-    "F06〜F10の110件は合成原packet/具体期待へ展開。F01〜F05の142件はシナリオのみであり、全原必要集合/関係target/追加反例/他scope保全/独立reviewは未完。",
+    "全10契約の具体合成原packet/期待を初期展開した。各実source資格/必要集合/targetと意味の全反例・組合せ閉包・独立reviewは未完。",
     "正式schema/codec/transport/clock/resolverとL5/L8、test/oracle凍結→実装前Red実観測→最小Green→Refactor→再検証は未成立。",
     "実L9/L10、PO L11、全92親430対の基本/詳細設計閉包と実装準備は未成立。"
   ],
@@ -238,7 +238,21 @@
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
         "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
       ],
-      "candidate_effect": "none; actual operation count 0"
+      "candidate_effect": "none; actual operation count 0",
+      "content_material_rules": {
+        "role_state": "原必要役割のmissing/unknown/stale/conflictは原/提出同値でも通過しない。",
+        "owner_by_role": {
+          "direction": "connection-contract-owner",
+          "forward_connection": "connection-contract-owner",
+          "reverse_connection_if_used": "connection-contract-owner",
+          "endpoint_contract_per_direction": "endpoint-owner",
+          "scope_per_direction": "HELIX-SECURITY",
+          "authority_per_operation": "HELIX-SECURITY"
+        },
+        "binding": "方向別identity/端点/版/scope/操作許可、原宣言順/必要先行、各辺結果/必要join、原source/return target/lineage、既存loop policy/累積/checkpointへ個別に結ぶ。",
+        "conditional_reverse": "reverse非選択はnot_selected。必要逆directionの不足だけを独立forwardの停止へ波及しない。",
+        "state_separation": "内容候補/実伝送/受領/解決/業務承認/構成体完了を分離し、実作用0と原未完/他scopeを保持。"
+      }
     },
     {
       "id": "HELIXCONNECT-L4-009-F02",
@@ -273,7 +287,21 @@
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
         "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
       ],
-      "candidate_effect": "none; actual operation count 0"
+      "candidate_effect": "none; actual operation count 0",
+      "content_material_rules": {
+        "role_state": "原必要役割のmissing/unknown/stale/conflictは原/提出同値でも通過しない。",
+        "owner_by_role": {
+          "declared_topology": "HARNESS/OS-workflow-owner",
+          "topology_owner": "HARNESS/OS-workflow-owner",
+          "ordered_edge_set": "HARNESS/OS-workflow-owner",
+          "needed_predecessor_results": "HARNESS/OS-workflow-owner",
+          "predecessor_contract_conditions": "HARNESS/OS-workflow-owner"
+        },
+        "binding": "方向別identity/端点/版/scope/操作許可、原宣言順/必要先行、各辺結果/必要join、原source/return target/lineage、既存loop policy/累積/checkpointへ個別に結ぶ。",
+        "conditional_reverse": "reverse非選択はnot_selected。必要逆directionの不足だけを独立forwardの停止へ波及しない。",
+        "state_separation": "内容候補/実伝送/受領/解決/業務承認/構成体完了を分離し、実作用0と原未完/他scopeを保持。",
+        "predecessor_target": "原必要先行の辺ID/operation/契約版と宣言順/必要条件を対照し、必要結果/条件の空集合を通過させない。"
+      }
     },
     {
       "id": "HELIXCONNECT-L4-009-F03",
@@ -307,7 +335,20 @@
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
         "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
       ],
-      "candidate_effect": "none; actual operation count 0"
+      "candidate_effect": "none; actual operation count 0",
+      "content_material_rules": {
+        "role_state": "原必要役割のmissing/unknown/stale/conflictは原/提出同値でも通過しない。",
+        "owner_by_role": {
+          "independent_edge_identities": "edge-owner",
+          "scope_contract_operation_result_per_edge": "edge-owner",
+          "declared_join": "composite-join-owner",
+          "needed_join_result_set": "composite-join-owner"
+        },
+        "binding": "方向別identity/端点/版/scope/操作許可、原宣言順/必要先行、各辺結果/必要join、原source/return target/lineage、既存loop policy/累積/checkpointへ個別に結ぶ。",
+        "conditional_reverse": "reverse非選択はnot_selected。必要逆directionの不足だけを独立forwardの停止へ波及しない。",
+        "state_separation": "内容候補/実伝送/受領/解決/業務承認/構成体完了を分離し、実作用0と原未完/他scopeを保持。",
+        "join_eligibility": "必要全辺の独立適格性と必要結果を満たすjoinだけを候補にする。結果successだけで許可/互換不成立を代用しない。"
+      }
     },
     {
       "id": "HELIXCONNECT-L4-009-F04",
@@ -346,7 +387,23 @@
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
         "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
       ],
-      "candidate_effect": "none; actual operation count 0"
+      "candidate_effect": "none; actual operation count 0",
+      "content_material_rules": {
+        "role_state": "原必要役割のmissing/unknown/stale/conflictは原/提出同値でも通過しない。",
+        "owner_by_role": {
+          "source_connection": "feedback-endpoint-owner",
+          "source_operation": "feedback-endpoint-owner",
+          "target_connection": "feedback-endpoint-owner",
+          "target_owner": "feedback-endpoint-owner",
+          "reason_or_evidence_ref": "feedback-endpoint-owner",
+          "correlation_lineage": "feedback-endpoint-owner",
+          "contract_revision": "connection-contract-owner",
+          "stop_resume_state": "feedback-endpoint-owner"
+        },
+        "binding": "方向別identity/端点/版/scope/操作許可、原宣言順/必要先行、各辺結果/必要join、原source/return target/lineage、既存loop policy/累積/checkpointへ個別に結ぶ。",
+        "conditional_reverse": "reverse非選択はnot_selected。必要逆directionの不足だけを独立forwardの停止へ波及しない。",
+        "state_separation": "内容候補/実伝送/受領/解決/業務承認/構成体完了を分離し、実作用0と原未完/他scopeを保持。"
+      }
     },
     {
       "id": "HELIXCONNECT-L4-009-F05",
@@ -386,7 +443,25 @@
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
         "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
       ],
-      "candidate_effect": "none; actual operation count 0"
+      "candidate_effect": "none; actual operation count 0",
+      "content_material_rules": {
+        "role_state": "原必要役割のmissing/unknown/stale/conflictは原/提出同値でも通過しない。",
+        "owner_by_role": {
+          "forward_edge": "existing-OS040-operation-owner",
+          "feedback_edge": "existing-OS040-operation-owner",
+          "existing_retry_policy": "existing-policy-owner",
+          "existing_budget_policy": "existing-policy-owner",
+          "existing_termination_policy": "existing-OS040-operation-owner",
+          "expiry": "existing-policy-owner",
+          "terminal_route_owner": "existing-OS040-operation-owner",
+          "operation_lineage": "existing-OS040-operation-owner",
+          "cumulative_attempts": "existing-OS040-operation-owner",
+          "checkpoint": "existing-OS040-operation-owner"
+        },
+        "binding": "方向別identity/端点/版/scope/操作許可、原宣言順/必要先行、各辺結果/必要join、原source/return target/lineage、既存loop policy/累積/checkpointへ個別に結ぶ。",
+        "conditional_reverse": "reverse非選択はnot_selected。必要逆directionの不足だけを独立forwardの停止へ波及しない。",
+        "state_separation": "内容候補/実伝送/受領/解決/業務承認/構成体完了を分離し、実作用0と原未完/他scopeを保持。"
+      }
     },
     {
       "id": "HELIXCONNECT-L4-009-F06",
