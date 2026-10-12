@@ -6564,8 +6564,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "元claimsから回復成功を生成しない。候補主張は比較差分へ返す。"
               }
             },
             "non_target": {
@@ -6692,8 +6694,10 @@
                 "claims": {
                   "presence": "Field",
                   "value": {
-                    "array_item_shapes": [],
-                    "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                    "array_item_shapes": [
+                      "never"
+                    ],
+                    "empty_semantics": "元claimsから回復成功を生成しない。候補主張は比較差分へ返す。"
                   }
                 },
                 "non_target": {
@@ -6852,30 +6856,7 @@
           "fields": {
             "result_states": {
               "presence": "Field",
-              "value": {
-                "fields": {
-                  "backup_exists": {
-                    "presence": "Field",
-                    "value": "string"
-                  },
-                  "restore": {
-                    "presence": "Field",
-                    "value": "string"
-                  },
-                  "rollback": {
-                    "presence": "Field",
-                    "value": "string"
-                  },
-                  "permanent_repair": {
-                    "presence": "Field",
-                    "value": "string"
-                  },
-                  "recurrence_prevention": {
-                    "presence": "Field",
-                    "value": "string"
-                  }
-                }
-              }
+              "value": "map<RecoveryKind,ObservationField<observed_exists|observed_success|unknown|not_executed>>"
             },
             "consumer_acceptance": {
               "presence": "Field",
@@ -6883,10 +6864,15 @@
             },
             "global_rto_rpo": {
               "presence": "Field",
-              "value": {
-                "nullable_slot": "unresolved_domain_payload",
-                "meaning": "nullを合格/非適用/空配列へ補わない。"
-              }
+              "value": "never (supplied_null only; no global value generation)"
+            },
+            "product_targets": {
+              "presence": "Field",
+              "value": "ProductRecoveryTargets"
+            },
+            "result_details": {
+              "presence": "Field",
+              "value": "collection<RecoveryResultDetail>"
             }
           }
         },
@@ -7181,6 +7167,38 @@
           "kind": "synthetic_result_fixture_not_actual_run"
         },
         "meaning": "oracle内容と個別結果を比較する合成例。実runの証拠ではない。"
+      },
+      "RecoveryKind": {
+        "alternatives": [
+          "backup_exists",
+          "restore",
+          "rollback",
+          "permanent_repair",
+          "recurrence_prevention"
+        ],
+        "meaning": "この005規範で区別するkind。製品のrequired setは製品contractから読む。"
+      },
+      "RecoveryResultDetail": {
+        "fields": {
+          "kind": "RecoveryKind",
+          "result_ref": "Ref",
+          "subject_binding": "Ref",
+          "declared_state": "observed_exists|observed_success|unknown|not_executed",
+          "target_environment": "opaque environment identity",
+          "original_environment": "opaque environment identity",
+          "oracle_ref": "null|Ref",
+          "comparison_state": "synthetic_observed|unknown|not_executed|foreign_environment_conflict|oracle_missing|integrity_conflict",
+          "backflow_owner": "null|owner identity"
+        },
+        "meaning": "backupにはこのfixtureでoracle_ref無し。他kindの不足を消さない。"
+      },
+      "ProductRecoveryTargets": {
+        "fields": {
+          "RTO": "Field<product-owned quantity with unit>",
+          "RPO": "Field<product-owned quantity with unit>",
+          "retention": "Field<product-owned quantity with unit>"
+        },
+        "meaning": "未供給値/単位/条件はunknown。一律既定を置かない。"
       }
     },
     "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
@@ -7994,7 +8012,8 @@
           "backflow_owner": "product-requirement-owner",
           "preserve": "個別製品値未供給と元結果を維持。"
         }
-      ]
+      ],
+      "detail_contract": "recovery_result_detail"
     }
   ],
   "contracts": [
@@ -8154,7 +8173,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106主呼出しのrootとF05-F09/N01の44件の合成参照資料状態、37負例の部分期待を起草。残る62主呼出しの参照先と47負例の部分結果、全体のnull/empty型は未完。",
+      "106主呼出しのrootとF05-F09/N01/N02の51件の合成参照資料状態、42負例の部分期待を起草。残る55主呼出しの参照先と42負例の部分結果、全体のnull/empty型は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -8210,7 +8229,7 @@
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
     "negative_candidate_sources": "原資料をcandidateから分離する。F07 mutation_as_pre_redのRed欠落、N01 unknown_rule_fallbackの未知identity、other_rule_cancelsのdirection合成成功は、明示fixture_preparation/source_preparationを候補変異と分けて追跡する。それ以外のcandidate負例は正常owner材料を保持する。実実行・実authorityの成立を生成しない。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106主呼出しのうちF05-F09/N01の44件へ独立合成参照資料状態を供給。F06未解決oracleとN01未公開oracleはunknown。root資格を意味/authority/実観測へ昇格しない。他62件はmissing。"
+    "referent_input_state": "106主呼出しのうちF05-F09/N01/N02の51件へ独立合成資料状態を供給。未解決oracle、unknown適用、N/A不備、別scope/環境成功を保全。root資格を意味/authority/実観測へ昇格しない。他55件はmissing。"
   },
   "behavior_oracle_detail": {
     "design_ref": "HARNESS-L5-005-F08",
@@ -8749,5 +8768,254 @@
     "partial_results": "rule_resultsは規律identity、原CORE宣言、対象binding、根拠状態、検証状態、N/A4属性、戻し先を保持。valid_na以外のN/A主張は消込もrequiredへの再分類もしない。unknown_rulesは原unknownを保持し、N/A不備は別rowに残す。",
     "fixture_preparation": "不明identityとdirection成功は候補変異前の明示合成前提。source_preparationで追跡し、実実行や承認の過去事実を生成しない。",
     "limits": "10主呼出しの詳細比較設計。正式resolver/authority/実oracle凍結/未公開実test/CI/受入ではない。新たな一律gateは追加しない。"
+  },
+  "recovery_result_detail": {
+    "design_ref": "HARNESS-L5-005-N02",
+    "requirement_ref": "HARNESS-L3-005-N02",
+    "basic_oracle_ref": "HARNESS-L9-005-N02",
+    "independent_fixtures": {
+      "product_contract": {
+        "ref": {
+          "identity": "PRODUCT-RECOVERY",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "product-owner"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "contract": {
+          "ref": {
+            "identity": "PRODUCT-RECOVERY",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "product-owner"
+          },
+          "required_result_kinds": [
+            "backup_exists",
+            "restore",
+            "rollback",
+            "permanent_repair",
+            "recurrence_prevention"
+          ],
+          "target_environment": "synthetic-test",
+          "oracle_refs": {
+            "restore": {
+              "identity": "RESTORE-O",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "product-verification-owner"
+            },
+            "rollback": {
+              "identity": "ROLLBACK-O",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "product-verification-owner"
+            },
+            "permanent_repair": {
+              "identity": "REPAIR-O",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "product-verification-owner"
+            },
+            "recurrence_prevention": {
+              "identity": "PREVENT-O",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "product-verification-owner"
+            }
+          }
+        },
+        "meaning": "この製品fixtureの5結果を独立に照合する。全製品必須集合ではない。",
+        "product_targets": null,
+        "targets_state": "not_supplied"
+      },
+      "oracles": {
+        "restore": {
+          "ref": {
+            "identity": "RESTORE-O",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "product-verification-owner"
+          },
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "kind": "restore",
+          "target_environment": "synthetic-test",
+          "expected": {
+            "restored_records": [
+              {
+                "item": "synthetic-A",
+                "value": 7
+              },
+              {
+                "item": "synthetic-B",
+                "value": 11
+              }
+            ],
+            "integrity_relation": "exact_records_equal_to_backup"
+          },
+          "limit": "独立製品検証ownerの合成期待。数値/方式/環境を全製品へ固定せず、実凍結・実run・受入を主張しない。"
+        },
+        "rollback": {
+          "ref": {
+            "identity": "ROLLBACK-O",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "product-verification-owner"
+          },
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "kind": "rollback",
+          "target_environment": "synthetic-test",
+          "expected": {
+            "active_revision": "synthetic-product-r0",
+            "health_probe": "passed"
+          },
+          "limit": "独立製品検証ownerの合成期待。数値/方式/環境を全製品へ固定せず、実凍結・実run・受入を主張しない。"
+        },
+        "permanent_repair": {
+          "ref": {
+            "identity": "REPAIR-O",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "product-verification-owner"
+          },
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "kind": "permanent_repair",
+          "target_environment": "synthetic-test",
+          "expected": {
+            "cause": "synthetic-C1",
+            "cause_removed": true,
+            "verification": "passed"
+          },
+          "limit": "独立製品検証ownerの合成期待。数値/方式/環境を全製品へ固定せず、実凍結・実run・受入を主張しない。"
+        },
+        "recurrence_prevention": {
+          "ref": {
+            "identity": "PREVENT-O",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "product-verification-owner"
+          },
+          "subject_binding": {
+            "identity": "CHANGE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          },
+          "kind": "recurrence_prevention",
+          "target_environment": "synthetic-test",
+          "expected": {
+            "counterexample": "synthetic-C1-replay",
+            "recurrence_observed": false,
+            "verification": "passed"
+          },
+          "limit": "独立製品検証ownerの合成期待。数値/方式/環境を全製品へ固定せず、実凍結・実run・受入を主張しない。"
+        }
+      },
+      "backup_records": [
+        {
+          "item": "synthetic-A",
+          "value": 7
+        },
+        {
+          "item": "synthetic-B",
+          "value": 11
+        }
+      ]
+    },
+    "source_roles": {
+      "product_contract": "製品ownerの対象binding、独立結果kind、環境、oracle参照。ここで全製品のkind集合/数値/環境を定めない。",
+      "oracles": "製品検証ownerのkind別具体期待。restoreはbackup原内容とintegrity、rollbackは対象版とhealth、恒久修復は原因/修復/再検証、再発防止は元反例の再照合。",
+      "result": "製品実行ownerの元結果と合成観測内容を独立entryに固定する。raw stateだけを具体成功根拠にしない。",
+      "targets": "このfixtureの製品目標値は未供給。global nullは要求値0/正当非適用の証明ではない。"
+    },
+    "comparison_steps": [
+      "当該製品contractの対象revision/scope/環境と選択kindを解決し、結果とoracleをkind別に照合。missing/unknown/別環境を別kindの結果から埋めない。",
+      "backupでは独立原snapshot存在だけを返す。restore成功は同環境と原backup recordsへのintegrity一致へ結ぶ。snapshotの存在だけではrestore未実行を変更しない。",
+      "rollbackは旧対象版の回復とhealthの当該結果だけを照合。原因除去/恒久修復/再発防止は別oracleと別結果へ結ぶ。",
+      "元stateと内容比較結果をresult_detailsへ残す。同環境の内容不一致はconflict、別環境成功は対象環境にunknownと環境conflictを残す。",
+      "個別製品の値は未供給のまま返し、HARNESSからRTO/RPO/保持期間/運用成立/製品受入を生成しない。"
+    ],
+    "partial_results": "result_statesはkindごとのObservationField。result_detailsは元state/ref/環境/oracle/不足と戻し先。集計knownはmapの供給状態だけで、各unknown/conflictを成功へ集約しない。",
+    "fixture_limit": "records7/11、rollback対象synthetic-product-r0等は今回の独立合成対照のみ。実test・backup/restore/rollback操作・製品数値/CI/受入の成立ではない。",
+    "legacy_basis": "LEGACY-ASSET-5166C9AB5D52E9926082 行10/11の独立結果とintegrity/原因修復再検証を再導出。旧candidate全体の採否は変えない。"
   }
 }
