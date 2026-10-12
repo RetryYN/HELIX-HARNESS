@@ -206,7 +206,8 @@
       "content_comparison": [
         "全必須辺の個別登録/互換/operation受渡し/終端を照合し、一辺greenを全構成へ外挿しない。",
         "原順序/mappingのunknown/別版/不足は原/提出一致でも全体終端にしない。",
-        "receipt不足/重複は各集合の件数を返し、同内容の複数記録を一つへ推測で選ばない。"
+        "receipt不足/重複は各集合の件数を返し、同内容の複数記録を一つへ推測で選ばない。",
+        "提出receiptが同辺に複数ある場合、内容比較はambiguous_duplicate_not_comparedとし、0件のmissingと区別する。元/提出の全記録と個数を保持し、重複を一件へ推測で縮約しない。"
       ],
       "qualification_rule": "原owner必要集合/各辺/許可/実効果の合成例は実source資格/実通信終端/authority/Accepted/設計閉包でない。",
       "operation_effect": "none"

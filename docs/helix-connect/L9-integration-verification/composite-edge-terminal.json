@@ -19007,7 +19007,7 @@
                 "edge_identity": "EDGE-P-2",
                 "original_receipt_count": 1,
                 "submitted_receipt_count": 2,
-                "receipt_content_result": "missing",
+                "receipt_content_result": "ambiguous_duplicate_not_compared",
                 "edge_target_results": {
                   "edge_identity": "content_corresponding_in_fixture",
                   "connection_identity": "content_corresponding_in_fixture",
@@ -19316,7 +19316,7 @@
               {
                 "area": "receipt_content",
                 "field": "EDGE-P-2",
-                "result": "missing",
+                "result": "ambiguous_duplicate_not_compared",
                 "return_owner": "connection-owner-2"
               },
               {
