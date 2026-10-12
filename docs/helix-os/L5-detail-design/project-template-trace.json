@@ -1,0 +1,2664 @@
+{
+  "parent": "HELIXOS-L2-002",
+  "status": "draft_candidate_not_independently_reviewed",
+  "source_main": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+  "source_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-template002-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "bc43990ff996350a96ca53284c0bd8b102f7b224daf755a5b890257a9390d7f0"
+    },
+    {
+      "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "c67edf6f5f2553e79e790ac519a8e7dc335b213fc2ce243cc6881e74fc7ac4b5"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "88816f81ca26c02c3913eea6b609e16eda0d6b5b4fa59ea69e024268969bc703"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/os-template-trace-002-source-lines-2026-10-10.jsonl",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "a567a88929afedd83d28e95202125526972286341280395e41357b08e15652a2"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "ffb07668c14daba5d20154bbf395b1e41b81bbb8430200c74298ffcc23d75742"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "30be7c06aa9e116bf2c88a4c3a927e0dbabcada20c8960c7aa6d762967857468"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "sha256": "30fb55d761550e9407ba818a048b8e1bde89d6671f5044a32fe5217ed86486ea"
+    }
+  ],
+  "authority_boundary": {
+    "approved_parent": "HELIXOS-L2-002",
+    "approved_l3_l10_content": "a2f6961068619e550dd0467898927b6bc8451c75",
+    "restart": "2026-10-12 adopted scope2;10/8 general unlock revoked",
+    "version_target": "既存002は版指定追加なし",
+    "scope": "13承認義務の一つのL5/L8 pair。確定L4/L9を入力とし、全限定92親430対の完了/実記録の成立は含まない。"
+  },
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "individual_lines": [
+        24,
+        36,
+        58,
+        86,
+        91
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "carried facetに限り案件記録のtemplate/要求/義務traceとexact set・Backflow・scope責務分離を意味再導出する。各行の採用/保留はlegacy_facet_dispositionsに従う。",
+      "change": "carried facetを起点に、OSTRACE採択済みのevent/revision/因果・評価入力集合を各ownerへ具体化する。pending facetの方式・gate・意味は本pairで変更しない。",
+      "reason": "002の採用済み案件追跡の具体化であり、source/template/instance digest全体、recipe/予防gate昇格、旧DB収束gateは元holdingに保持する。",
+      "facet_atom_refs": [
+        "OST002-LEGACY-001",
+        "OST002-LEGACY-002",
+        "OST002-LEGACY-003",
+        "OST002-LEGACY-004",
+        "OST002-LEGACY-005"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "individual_lines": [
+        54,
+        56,
+        58
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "carried facetに限り案件記録のtemplate/要求/義務traceとexact set・Backflow・scope責務分離を意味再導出する。各行の採用/保留はlegacy_facet_dispositionsに従う。",
+      "change": "carried facetを起点に、OSTRACE採択済みのevent/revision/因果・評価入力集合を各ownerへ具体化する。pending facetの方式・gate・意味は本pairで変更しない。",
+      "reason": "002の採用済み案件追跡の具体化であり、source/template/instance digest全体、recipe/予防gate昇格、旧DB収束gateは元holdingに保持する。",
+      "facet_atom_refs": [
+        "OST002-LEGACY-006",
+        "OST002-LEGACY-007",
+        "OST002-LEGACY-008"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "individual_lines": [
+        33,
+        46,
+        47,
+        54,
+        73,
+        74,
+        97,
+        98,
+        103,
+        107
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "参照class/trace、未知の保持、原versionへの解決とpairの検証を分ける。",
+      "change": "今回002の承認義務をlogical型/関数/局所単体oracleへ導く。旧TPL grammar/整数版/lifecycle/式木/registry方式を採用しない。保留6facetは変更しない。",
+      "reason": "案件記録の原owner出力を追跡し意味判断/完了を誤生成する失敗を防ぐ。"
+    }
+  ],
+  "legacy_facet_dispositions": [
+    {
+      "atom_id": "OST002-LEGACY-001",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "source_line": 24,
+      "source_text": "選択済みtemplateとrequirement/obligationを束縛した設計値",
+      "source_span_sha256": "sha256:b63ebfe12a60e7faffebbe805427bb4ab9a032cbc2b86bb1c0dfe4c603394bea",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "carried",
+      "target_requirement": "HELIXOS-L2-002",
+      "preserved_pending_registration_ref": null,
+      "note": "案件記録の選択template/要求/義務への参照。instance schemaは固定しない"
+    },
+    {
+      "atom_id": "OST002-LEGACY-002",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "source_line": 36,
+      "source_text": "exact template set",
+      "source_span_sha256": "sha256:a76e0d60acba923def9d160ac6cc9902816624b4ab3e746c210d212df9a07964",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "carried",
+      "target_requirement": "HELIXOS-L2-002",
+      "preserved_pending_registration_ref": null,
+      "note": "各案件の候補/選択/使用setを区分して結ぶ"
+    },
+    {
+      "atom_id": "OST002-LEGACY-003",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "source_line": 58,
+      "source_text": "back-propagationはfindingまたはproposal eventとしてRequirement Engine／template revisionへ戻す。",
+      "source_span_sha256": "sha256:ae19d85fc689be8bb3bdb806503e4e44db6f1db743e1861a1dc297fe5467d558",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "carried",
+      "target_requirement": "HELIXOS-L2-002",
+      "preserved_pending_registration_ref": null,
+      "note": "Backflow eventを要求形成/knowledge ownerへ辿る"
+    },
+    {
+      "atom_id": "OST002-LEGACY-004",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "source_line": 86,
+      "source_text": "requirement/obligation trace",
+      "source_span_sha256": "sha256:4fa37ab2ccdbb1dfd48a84ab6cc8d3a5b896987b157f4cc45cd716e47255561b",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "carried",
+      "target_requirement": "HELIXOS-L2-002",
+      "preserved_pending_registration_ref": null,
+      "note": "義務と成果/pairへの追跡"
+    },
+    {
+      "atom_id": "OST002-LEGACY-005",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "source_line": 91,
+      "source_text": "- source/template/instance revision digest一致",
+      "source_span_sha256": "sha256:642c12eb70f141ef4fce04998d7e14919d730fc7262ea1525b8748062f8ac193",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "note": "instanceを含むrevision digest全体の一致は今回の案件記録追補では証明しない"
+    },
+    {
+      "atom_id": "OST002-LEGACY-006",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line": 56,
+      "source_text": "harness/projectのscopeを分離し",
+      "source_span_sha256": "sha256:4f91f9fa0e41de590b4c5562d06491676dc2bbf236fd0eedf67e9e95262662aa",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "carried",
+      "target_requirement": "HELIXOS-L2-002",
+      "preserved_pending_registration_ref": null,
+      "note": "案件scope/知識と原記録責務を分離"
+    },
+    {
+      "atom_id": "OST002-LEGACY-007",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line": 54,
+      "source_text": "recipe 蓄積/予防 gate 昇格",
+      "source_span_sha256": "sha256:7eda094471598769f0b62a5e2bc292516293a56d3bbb0ee02d427b306980360d",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "note": "旧改善循環のrecipe蓄積/予防gate昇格全体は別の既存holding/還流要求を含み本追補では移管しない"
+    },
+    {
+      "atom_id": "OST002-LEGACY-008",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "sha256:7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line": 58,
+      "source_text": "**DB 未収束＝未完了**",
+      "source_span_sha256": "sha256:3475da16d4527cfa3a65e753cd7104e60ce64caa9ee9f70ee46ee55e8210ea62",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "note": "旧DB収束gate全体は保持。今回の記録/評価inputへの限定条件で置換/弱化しない"
+    },
+    {
+      "atom_id": "OST002-LEGACY-009",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_file_sha256": "sha256:11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
+      "source_line": 47,
+      "source_text": "recipe 蓄積/予防 gate 昇格",
+      "source_span_sha256": "sha256:7eda094471598769f0b62a5e2bc292516293a56d3bbb0ee02d427b306980360d",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "revision_pair_item": "PREISO-REV-000008",
+      "related_archive_atom_ref": "OST002-LEGACY-007",
+      "revision_relation": "別revisionの入力facetとして独立保持。同値へ統合せず、P7の文言差分も未決のまま保持する。",
+      "note": "監査基準revisionの旧facetを別に保全。全文差分はMPR-SH-PREISOLATION-003へ残し今回の有限facetで全revision closureとしない。"
+    },
+    {
+      "atom_id": "OST002-LEGACY-010",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_file_sha256": "sha256:11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
+      "source_line": 49,
+      "source_text": "harness-memory（保守の根幹）と project-memory を分離",
+      "source_span_sha256": "sha256:8e919eca6c1e1d39ab44e4fbb71c9a6e78c2ffce789e068e96473b3a43e6e812",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "revision_pair_item": "PREISO-REV-000008",
+      "related_archive_atom_ref": "OST002-LEGACY-006",
+      "revision_relation": "別revisionの入力facetとして独立保持。同値へ統合せず、P7の文言差分も未決のまま保持する。",
+      "note": "監査基準revisionの旧facetを別に保全。全文差分はMPR-SH-PREISOLATION-003へ残し今回の有限facetで全revision closureとしない。"
+    },
+    {
+      "atom_id": "OST002-LEGACY-011",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_file_sha256": "sha256:11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
+      "source_line": 51,
+      "source_text": "**DB 未収束＝未完了**",
+      "source_span_sha256": "sha256:3475da16d4527cfa3a65e753cd7104e60ce64caa9ee9f70ee46ee55e8210ea62",
+      "source_span_rule": "指定line内のliteral substring UTF-8 bytes、LFなし。",
+      "coverage_disposition": "pending",
+      "target_requirement": null,
+      "preserved_pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+      "revision_pair_item": "PREISO-REV-000008",
+      "related_archive_atom_ref": "OST002-LEGACY-008",
+      "revision_relation": "別revisionの入力facetとして独立保持。同値へ統合せず、P7の文言差分も未決のまま保持する。",
+      "note": "監査基準revisionの旧facetを別に保全。全文差分はMPR-SH-PREISOLATION-003へ残し今回の有限facetで全revision closureとしない。"
+    }
+  ],
+  "legacy_facet_boundary": {
+    "carried_atom_refs": [
+      "OST002-LEGACY-001",
+      "OST002-LEGACY-002",
+      "OST002-LEGACY-003",
+      "OST002-LEGACY-004",
+      "OST002-LEGACY-006"
+    ],
+    "pending_atom_refs": [
+      "OST002-LEGACY-005",
+      "OST002-LEGACY-007",
+      "OST002-LEGACY-008",
+      "OST002-LEGACY-009",
+      "OST002-LEGACY-010",
+      "OST002-LEGACY-011"
+    ],
+    "pending_registration_ref": "MPR-SH-OS-TEMPLATE-TRACE-002-001",
+    "full_revision_difference_ref": "MPR-SH-PREISOLATION-003",
+    "meaning": "保留6facetの原意味は保持し、本pairで移管・置換・弱化・retireしない。PREISO-REV-000008の3facetは別revision入力で、archiveと同値へ統合せず、全文revision closureを主張しない。"
+  },
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "lines": [
+      65,
+      101
+    ],
+    "cases": [
+      "UTW-002",
+      "UTW-005",
+      "UTW-020",
+      "UTW-021"
+    ],
+    "use": "正本/projection、revision、部分失敗、自己申告の混同を原採択条件の反例として照合。新要求/gateへ昇格しない。"
+  },
+  "document_id": "HELIXOS-L5-002-PROJECT-TEMPLATE-TRACE",
+  "layer": "L5",
+  "paired_document": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+  "purpose": "承認002の原記録追跡13契約を、immutableなowner原入力の局所内容比較と13対単体oracleへ具体化。保存/実接続/評価を単体一致へ読み替えない。",
+  "type_contract": {
+    "syntax": "logical object/Field/union記法。正式wire JSON Schema/codec/transport/runtimeではない。",
+    "types": {
+      "RawValue": {
+        "shape": "null|boolean|number|string|RawValue[]|map<string,RawValue>",
+        "meaning": "未解釈のwire形だけ。これをdomain意味比較の代用にしない。"
+      },
+      "Field": {
+        "generic": "Field<T>",
+        "variants": "missing | supplied(T) | supplied(null)",
+        "meaning": "key欠落、原明示null/unknown、空集合を別に保持。"
+      },
+      "Scope": {
+        "fields": {
+          "project": "Field<string>",
+          "tenant": "Field<string>",
+          "environment": "Field<string>"
+        },
+        "meaning": "合成fixtureのscope軸。実scope規格を生成しない。"
+      },
+      "Ref": {
+        "fields": {
+          "identity": "Field<string>",
+          "revision": "Field<string>",
+          "scope": "Field<Scope>",
+          "owner": "Field<string>"
+        },
+        "meaning": "opaque identity/revision。文字列grammar/latest/digest/pathから意味・資格を生成しない。"
+      },
+      "B01RecordInputowneroutputsItem": {
+        "fields": {
+          "ref": "Field<Ref>",
+          "kind": "Field<string>",
+          "state": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "B01RecordInputrecordreceipt": {
+        "fields": {
+          "ref": "Field<Ref>",
+          "operation": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "B01RecordInput": {
+        "fields": {
+          "owner_outputs": "Field<(B01RecordInputowneroutputsItem)[]>",
+          "record_receipt": "Field<B01RecordInputrecordreceipt>",
+          "actual_connection_evidence": "Field<Ref | null>",
+          "PO_acceptance_evidence": "Field<Ref | null>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "B02RecordInputbinding": {
+        "fields": {
+          "project_scope": "Field<Scope>",
+          "requirement_ref": "Field<Ref>",
+          "HARNESS_contract_ref": "Field<Ref>",
+          "template_ref": "Field<Ref>",
+          "semantic_contract_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "B02RecordInputQworkstate": {
+        "fields": {
+          "binding": "Field<B02RecordInputbinding>",
+          "state": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "B02RecordInput": {
+        "fields": {
+          "binding": "Field<B02RecordInputbinding>",
+          "operation": "Field<string>",
+          "source_event_ref": "Field<Ref>",
+          "OS001_contract_ref": "Field<Ref>",
+          "result_state": "Field<string>",
+          "receipt_state": "Field<string>",
+          "evaluation_selected": "Field<boolean>",
+          "Q_work_state": "Field<B02RecordInputQworkstate>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F01RecordInputprojectstatesItem": {
+        "fields": {
+          "binding": "Field<B02RecordInputbinding>",
+          "implementation": "Field<string>",
+          "verification": "Field<string>",
+          "release_kanban": "Field<F01RecordInputprojectstatesItemreleasekanban>",
+          "source_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F01RecordInputprojectstatesItemreleasekanban": {
+        "fields": {
+          "state": "Field<string>",
+          "source_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F01RecordInput": {
+        "fields": {
+          "project_states": "Field<(F01RecordInputprojectstatesItem)[]>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F02RecordInput": {
+        "fields": {
+          "binding": "Field<B02RecordInputbinding>",
+          "proposed_refs": "Field<(Ref)[]>",
+          "selected_refs": "Field<(Ref)[]>",
+          "used_refs": "Field<Ref[]>",
+          "proposed_source": "Field<Ref>",
+          "selected_source": "Field<Ref>",
+          "used_source": "Field<Ref>",
+          "used_empty_basis": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F03RecordInputeventsItem": {
+        "fields": {
+          "event_ref": "Field<Ref>",
+          "record_kind": "Field<string>",
+          "binding": "Field<B02RecordInputbinding>",
+          "actor_ref": "Field<Ref>",
+          "source_ref": "Field<Ref>",
+          "correlation_ref": "Field<Ref>",
+          "obligation_ref": "Field<Ref>",
+          "artifact_ref": "Field<Ref | null>",
+          "pair_ref": "Field<Ref | null>",
+          "nonrelated_basis": "Field<F03RecordInputeventsItemnonrelatedbasis>",
+          "original_state": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F03RecordInputeventsItemnonrelatedbasis": {
+        "fields": {
+          "source_ref": "Field<Ref>",
+          "reason": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F03RecordInputkindobligationsItem": {
+        "fields": {
+          "ref": "Field<Ref>",
+          "kind": "Field<string>",
+          "artifact_ref": "Field<Ref>",
+          "pair_ref": "Field<Ref>",
+          "state": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F03RecordInput": {
+        "fields": {
+          "events": "Field<(F03RecordInputeventsItem)[]>",
+          "kind_obligations": "Field<(F03RecordInputkindobligationsItem)[]>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F04RecordInputcoreoutputsItem": {
+        "fields": {
+          "output_ref": "Field<Ref>",
+          "binding": "Field<B02RecordInputbinding>",
+          "template_ref": "Field<Ref>",
+          "disposition": "Field<string>",
+          "reason": "Field<string>",
+          "decider": "Field<string>",
+          "target_revision": "Field<string>",
+          "reentry": "Field<string>",
+          "original_condition": "Field<boolean | null>",
+          "unfinished_obligation_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F04RecordInputobligationoriginalstatesItem": {
+        "fields": {
+          "ref": "Field<Ref>",
+          "state": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F04RecordInput": {
+        "fields": {
+          "core_outputs": "Field<(F04RecordInputcoreoutputsItem)[]>",
+          "obligation_original_states": "Field<(F04RecordInputobligationoriginalstatesItem)[]>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F05RecordInputoriginalreturneventreturntarget": {
+        "fields": {
+          "owner": "Field<string>",
+          "target_scope": "Field<Scope>",
+          "requirement_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F05RecordInputoriginalreturneventstopreason": {
+        "fields": {
+          "code": "Field<string>",
+          "unfinished_obligation_refs": "Field<(Ref)[]>",
+          "detail": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F05RecordInputoriginalreturnevent": {
+        "fields": {
+          "event_ref": "Field<Ref>",
+          "binding": "Field<B02RecordInputbinding>",
+          "backflow_ref": "Field<Ref>",
+          "return_target": "Field<F05RecordInputoriginalreturneventreturntarget>",
+          "stop_reason": "Field<F05RecordInputoriginalreturneventstopreason>",
+          "source_ref": "Field<Ref>",
+          "correlation_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F05RecordInput": {
+        "fields": {
+          "binding": "Field<B02RecordInputbinding>",
+          "backflow_ref": "Field<Ref>",
+          "returned_event_ref": "Field<Ref>",
+          "ack_event_ref": "Field<Ref>",
+          "receiver_acceptance_ref": "Field<Ref | null>",
+          "meaning_resolution_ref": "Field<Ref | null>",
+          "original_discharge_ref": "Field<Ref | null>",
+          "unfinished_obligation_refs": "Field<(Ref)[]>",
+          "receiver_owner": "Field<string>",
+          "OS023_contract_ref": "Field<Ref>",
+          "original_return_event": "Field<F05RecordInputoriginalreturnevent>",
+          "return_target": "Field<F05RecordInputoriginalreturneventreturntarget>",
+          "stop_reason": "Field<F05RecordInputoriginalreturneventstopreason>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F06RecordInputoriginalevent": {
+        "fields": {
+          "event_ref": "Field<Ref>",
+          "binding": "Field<B02RecordInputbinding>",
+          "actor_ref": "Field<Ref>",
+          "source_ref": "Field<Ref>",
+          "correlation_ref": "Field<Ref>",
+          "outcome": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F06RecordInputoldprojectionstalebasisenginechange": {
+        "fields": {
+          "from": "Field<Ref>",
+          "to": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F06RecordInputoldprojectionstalebasis": {
+        "fields": {
+          "correction_ref": "Field<Ref>",
+          "replacement_projection_ref": "Field<Ref>",
+          "engine_change": "Field<F06RecordInputoldprojectionstalebasisenginechange>",
+          "schema_change": "Field<F06RecordInputoldprojectionstalebasisenginechange>",
+          "source_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F06RecordInputoldprojection": {
+        "fields": {
+          "ref": "Field<Ref>",
+          "original_event_ref": "Field<Ref>",
+          "engine_ref": "Field<Ref>",
+          "schema_ref": "Field<Ref>",
+          "classification": "Field<string>",
+          "currency_state": "Field<string>",
+          "stale_basis": "Field<F06RecordInputoldprojectionstalebasis>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F06RecordInputcorrection": {
+        "fields": {
+          "event_ref": "Field<Ref>",
+          "corrects_projection_ref": "Field<Ref>",
+          "original_event_ref": "Field<Ref>",
+          "source_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F06RecordInputnewprojection": {
+        "fields": {
+          "ref": "Field<Ref>",
+          "original_event_ref": "Field<Ref>",
+          "correction_ref": "Field<Ref>",
+          "engine_ref": "Field<Ref>",
+          "schema_ref": "Field<Ref>",
+          "classification": "Field<string>",
+          "currency_state": "Field<string>",
+          "supersedes_projection_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F06RecordInput": {
+        "fields": {
+          "original_event": "Field<F06RecordInputoriginalevent>",
+          "old_projection": "Field<F06RecordInputoldprojection>",
+          "correction": "Field<F06RecordInputcorrection>",
+          "new_projection": "Field<F06RecordInputnewprojection>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F07RecordInputCOREimpactsItem": {
+        "fields": {
+          "CORE_output_ref": "Field<Ref>",
+          "binding": "Field<B02RecordInputbinding>",
+          "target_obligation_ref": "Field<Ref>",
+          "state": "Field<string>",
+          "reason": "Field<string>",
+          "old_used_ref": "Field<Ref>",
+          "new_candidate_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F07RecordInputviewonlysource": {
+        "fields": {
+          "CORE_output_ref": "Field<Ref>",
+          "semantic_difference": "Field<boolean>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F07RecordInput": {
+        "fields": {
+          "binding": "Field<B02RecordInputbinding>",
+          "used_ref": "Field<Ref>",
+          "candidate_ref": "Field<Ref>",
+          "CORE_impacts": "Field<(F07RecordInputCOREimpactsItem)[]>",
+          "view_only_source": "Field<F07RecordInputviewonlysource>",
+          "migration_receipt": "Field<Ref | null>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F08RecordInputLABOscope": {
+        "fields": {
+          "ref": "Field<Ref>",
+          "binding": "Field<B02RecordInputbinding>",
+          "period": "Field<string>",
+          "required_record_refs": "Field<(Ref)[]>",
+          "required_set_source_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F08RecordInputoriginalrecordsItem": {
+        "fields": {
+          "event_ref": "Field<Ref>",
+          "binding": "Field<B02RecordInputbinding>",
+          "period": "Field<string>",
+          "source_ref": "Field<Ref>",
+          "retry_of": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F08RecordInput": {
+        "fields": {
+          "LABO_scope": "Field<F08RecordInputLABOscope>",
+          "original_records": "Field<(F08RecordInputoriginalrecordsItem)[]>",
+          "extraction_source_ref": "Field<Ref>",
+          "connection_evidence": "Field<Ref | null>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F09RecordInputfindingcandidatesItem": {
+        "fields": {
+          "candidate_ref": "Field<Ref>",
+          "kind": "Field<string>",
+          "binding": "Field<B02RecordInputbinding>",
+          "origin_event_ref": "Field<Ref>",
+          "obligation_ref": "Field<Ref>",
+          "used_template_ref": "Field<Ref>",
+          "rework_event_ref": "Field<Ref>",
+          "acceptance_event_ref": "Field<Ref>",
+          "operation_result_ref": "Field<Ref>",
+          "causal_basis_ref": "Field<Ref | null>",
+          "unresolved_reason": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F09RecordInputcausalevidenceItem": {
+        "fields": {
+          "ref": "Field<Ref>",
+          "origin_event_ref": "Field<Ref>",
+          "target_ref": "Field<Ref>",
+          "source_ref": "Field<Ref>",
+          "meaning": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F09RecordInput": {
+        "fields": {
+          "finding_candidates": "Field<(F09RecordInputfindingcandidatesItem)[]>",
+          "causal_evidence": "Field<(F09RecordInputcausalevidenceItem)[]>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "N01RecordInputexistingpermissionoutput": {
+        "fields": {
+          "ref": "Field<Ref>",
+          "source_owner": "Field<string>",
+          "source_operation_ref": "Field<Ref>",
+          "data_class": "Field<string>",
+          "scope": "Field<Scope>",
+          "recipient_ref": "Field<Ref>",
+          "meaning": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "N01RecordInput": {
+        "fields": {
+          "binding": "Field<B02RecordInputbinding>",
+          "source_operation_ref": "Field<Ref>",
+          "permission_output_ref": "Field<Ref>",
+          "data_class": "Field<string>",
+          "permission_scope": "Field<Scope>",
+          "target_scope": "Field<Scope>",
+          "recipient_ref": "Field<Ref>",
+          "existing_permission_output": "Field<N01RecordInputexistingpermissionoutput>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "N02RecordInput": {
+        "fields": {
+          "binding": "Field<B02RecordInputbinding>",
+          "source_selected": "Field<boolean>",
+          "source_ref": "Field<Ref>",
+          "future_result_state": "Field<string>",
+          "period_observation_state": "Field<string>",
+          "held_out_input": "Field<string>",
+          "runtime_evidence": "Field<Ref | null>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "B01RecordObservation": {
+        "fields": {
+          "record_receipt_only": "Field<boolean>",
+          "owner_states": "Field<(string)[]>",
+          "connection": "Field<string>",
+          "PO_Accepted": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "B02RecordObservation": {
+        "fields": {
+          "initial_record_input": "Field<string>",
+          "result": "Field<string>",
+          "receipt": "Field<string>",
+          "evaluation": "Field<string>",
+          "Q_work": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F01RecordObservationP": {
+        "fields": {
+          "implementation": "Field<string>",
+          "verification": "Field<string>",
+          "kanban": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F01RecordObservationQ": {
+        "fields": {
+          "implementation": "Field<string>",
+          "verification": "Field<string>",
+          "kanban": "Field<string>",
+          "kanban_source_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F01RecordObservation": {
+        "fields": {
+          "P": "Field<F01RecordObservationP>",
+          "Q": "Field<F01RecordObservationQ>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F02RecordObservation": {
+        "fields": {
+          "proposed_refs": "Field<(Ref)[]>",
+          "selected_refs": "Field<(Ref)[]>",
+          "used_refs": "Field<Ref[]>",
+          "provenance_refs": "Field<(Ref)[]>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F03RecordObservation": {
+        "fields": {
+          "record_count": "Field<number>",
+          "event_trace": "Field<(F03RecordInputeventsItem)[]>",
+          "kind_obligations": "Field<(F03RecordInputkindobligationsItem)[]>",
+          "completion_generated": "Field<boolean>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F04RecordObservation": {
+        "fields": {
+          "conditional_original_value": "Field<boolean>",
+          "OS_new_judgment_count": "Field<number>",
+          "core_disposition_records": "Field<(F04RecordInputcoreoutputsItem)[]>",
+          "unfinished_obligation_records": "Field<(F04RecordInputobligationoriginalstatesItem)[]>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F05RecordObservationreturnsourcebinding": {
+        "fields": {
+          "event_ref": "Field<Ref>",
+          "binding": "Field<B02RecordInputbinding>",
+          "backflow_ref": "Field<Ref>",
+          "source_ref": "Field<Ref>",
+          "correlation_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F05RecordObservation": {
+        "fields": {
+          "known_stage_refs": "Field<(Ref)[]>",
+          "unresolved_stages": "Field<(string)[]>",
+          "unfinished_obligation_refs": "Field<(Ref)[]>",
+          "return_target": "Field<F05RecordInputoriginalreturneventreturntarget>",
+          "stop_reason": "Field<F05RecordInputoriginalreturneventstopreason>",
+          "return_source_binding": "Field<F05RecordObservationreturnsourcebinding>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F06RecordObservation": {
+        "fields": {
+          "original_event": "Field<F06RecordInputoriginalevent>",
+          "old_projection_ref": "Field<Ref>",
+          "correction_ref": "Field<Ref>",
+          "new_projection_ref": "Field<Ref>",
+          "old_failure_preserved": "Field<boolean>",
+          "old_projection": "Field<F06RecordInputoldprojection>",
+          "new_projection": "Field<F06RecordInputnewprojection>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F07RecordObservation": {
+        "fields": {
+          "used_ref": "Field<Ref>",
+          "migration": "Field<string>",
+          "affected_refs": "Field<(Ref)[]>",
+          "unknown_refs": "Field<(Ref)[]>",
+          "unaffected_preserved_refs": "Field<(Ref)[]>",
+          "view_semantic_difference": "Field<boolean>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F08RecordObservationretrymappingItem": {
+        "fields": {
+          "retry_ref": "Field<Ref>",
+          "original_ref": "Field<Ref>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F08RecordObservationexcludedItem": {
+        "fields": {
+          "ref": "Field<Ref>",
+          "reason": "Field<string>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F08RecordObservation": {
+        "fields": {
+          "included_original_refs": "Field<(Ref)[]>",
+          "retry_mapping": "Field<(F08RecordObservationretrymappingItem)[]>",
+          "missing_refs": "Field<(Ref)[]>",
+          "excluded": "Field<(F08RecordObservationexcludedItem)[]>",
+          "complete": "Field<boolean>",
+          "connection": "Field<string>",
+          "OS_evaluation_generated": "Field<boolean>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "F09RecordObservation": {
+        "fields": {
+          "candidate_refs": "Field<(Ref)[]>",
+          "grounded_causal_refs": "Field<(Ref)[]>",
+          "unresolved_candidate_refs": "Field<(Ref)[]>",
+          "LABO_evaluation_generated": "Field<boolean>",
+          "BRAIN_promotion_generated": "Field<boolean>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "N01RecordObservation": {
+        "fields": {
+          "sharing_scope": "Field<Scope>",
+          "permission_basis_ref": "Field<Ref>",
+          "data_class": "Field<string>",
+          "new_permission_generated": "Field<boolean>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "N02RecordObservation": {
+        "fields": {
+          "source": "Field<string>",
+          "future_result": "Field<string>",
+          "period": "Field<string>",
+          "held_out_execution": "Field<string>",
+          "runtime_evidence": "Field<string>",
+          "defect_zero_generated": "Field<boolean>"
+        },
+        "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+      },
+      "TraceContext": {
+        "fields": {
+          "operation": "string",
+          "contract_ref": "Ref",
+          "binding": "Field<Scope>",
+          "selected_sections": "string[]",
+          "project_binding": "B02RecordInputbinding"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "OwnerRecord": {
+        "fields": {
+          "subject_ref": "Ref",
+          "section_key": "string",
+          "record_kind": "string",
+          "payload": "map<string,SourceSectionValue>",
+          "owner": "string"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "SourceEnvelope": {
+        "fields": {
+          "source_ref": "Ref",
+          "owner": "string",
+          "source_json_utf8": "string",
+          "source_sha256": "string",
+          "decoded_records": "OwnerRecord[]",
+          "qualification_ref": "Ref"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "Qualification": {
+        "fields": {
+          "ref": "Ref",
+          "root_ref": "Ref",
+          "source_ref": "Ref",
+          "owner": "string",
+          "subject_refs": "Ref[]",
+          "source_sha256": "string"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "QualificationRoot": {
+        "fields": {
+          "ref": "Ref",
+          "owner": "string",
+          "allowed_subject_refs": "Ref[]",
+          "allowed_source_ref": "Ref",
+          "allowed_source_sha256": "string"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "CaseInput": {
+        "fields": {
+          "variant": "B01RecordInput|B02RecordInput|F01RecordInput|F02RecordInput|F03RecordInput|F04RecordInput|F05RecordInput|F06RecordInput|F07RecordInput|F08RecordInput|F09RecordInput|N01RecordInput|N02RecordInput"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "CaseObservation": {
+        "fields": {
+          "variant": "B01RecordObservation|B02RecordObservation|F01RecordObservation|F02RecordObservation|F03RecordObservation|F04RecordObservation|F05RecordObservation|F06RecordObservation|F07RecordObservation|F08RecordObservation|F09RecordObservation|N01RecordObservation|N02RecordObservation"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "TraceClaim": {
+        "fields": {
+          "name": "string",
+          "target_ref": "Field<Ref>",
+          "value": "RawValue",
+          "basis_refs": "Ref[]"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "RecordTraceInput": {
+        "fields": {
+          "context": "TraceContext",
+          "candidate": "CaseInput",
+          "claims": "TraceClaim[]",
+          "sources": "SourceEnvelope[]",
+          "qualifications": "Qualification[]",
+          "qualification_roots": "QualificationRoot[]"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "InputIssue": {
+        "fields": {
+          "path": "string",
+          "state": "string",
+          "detail": "string",
+          "backflow_owner": "string",
+          "axis": "string",
+          "source_ref": "Field<Ref>",
+          "related_source_refs": "Ref[]"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "ValidatedRecordTrace": {
+        "fields": {
+          "input": "Field<RecordTraceInput>",
+          "input_issues": "InputIssue[]",
+          "qualified_records": "OwnerRecord[]",
+          "source_issues": "InputIssue[]",
+          "qualified_source_refs": "Ref[]",
+          "unqualified_source_refs": "Ref[]",
+          "conflicting_source_refs": "Ref[]",
+          "unresolved_source_refs": "Ref[]",
+          "unresolved_sections": "string[]"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "TraceFinding": {
+        "fields": {
+          "code": "string",
+          "contract_ref": "string",
+          "axis": "string",
+          "state": "string",
+          "target_path": "string",
+          "source_refs": "Ref[]",
+          "backflow_owner": "string",
+          "preserved_observation": "CaseObservation"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "TraceSectionResult": {
+        "fields": {
+          "contract_ref": "string",
+          "observation": "CaseObservation",
+          "findings": "TraceFinding[]",
+          "unresolved_source_refs": "Ref[]",
+          "effect_requests": "RawValue[]"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "RecordTraceAnalysis": {
+        "fields": {
+          "sections": "TraceSectionResult[]",
+          "input_issues": "InputIssue[]",
+          "effects": "RawValue[]",
+          "authority_generated": "boolean"
+        },
+        "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+      },
+      "SourceSection": {
+        "fields": {
+          "selector": "string",
+          "value": "CaseInput | RawValue"
+        },
+        "meaning": "selectorは凍結原入力内の明示field path。valueはその原領域のtyped子値。mapのkeyはselectorで、pathをidentityにせず原subject/refへ結合する。"
+      },
+      "SourceSectionValue": {
+        "variant": "CaseInput child fields (typed scalar/Ref/Scope/nested domain record/array/null)",
+        "meaning": "input_types_by_contractのselector先の型へdecodeする。任意RawValueのまま意味比較しない。unknown/null/missingはFieldで保持。"
+      }
+    },
+    "input_types_by_contract": {
+      "B01": "B01RecordInput",
+      "B02": "B02RecordInput",
+      "F01": "F01RecordInput",
+      "F02": "F02RecordInput",
+      "F03": "F03RecordInput",
+      "F04": "F04RecordInput",
+      "F05": "F05RecordInput",
+      "F06": "F06RecordInput",
+      "F07": "F07RecordInput",
+      "F08": "F08RecordInput",
+      "F09": "F09RecordInput",
+      "N01": "N01RecordInput",
+      "N02": "N02RecordInput"
+    },
+    "observation_types_by_contract": {
+      "B01": "B01RecordObservation",
+      "B02": "B02RecordObservation",
+      "F01": "F01RecordObservation",
+      "F02": "F02RecordObservation",
+      "F03": "F03RecordObservation",
+      "F04": "F04RecordObservation",
+      "F05": "F05RecordObservation",
+      "F06": "F06RecordObservation",
+      "F07": "F07RecordObservation",
+      "F08": "F08RecordObservation",
+      "F09": "F09RecordObservation",
+      "N01": "N01RecordObservation",
+      "N02": "N02RecordObservation"
+    },
+    "invariants": [
+      "原owner出力とcandidateは別入力。candidateを変更してもsources/資格rootを再生成しない。",
+      "missing/null/empty/not_occurred/unobserved/unknown/failed/staleを別に保持。unknownをfalse/NA/empty/successへ変換しない。",
+      "各原refはidentity/revision/scope/ownerと元record内容へ解決。sourceはbyte一致だけでなく独立資格rootのowner/subject/ref/digest制約に照合する。",
+      "scope/project/要求版/template版/義務kindの別成功を互いの補償に使わない。",
+      "戻すobservationは有資格原sourceから再構築し、candidateの欠落/越境claimを採用しない。原source自体がmissing/conflictなら当該観測をunknownとして返す。"
+    ]
+  },
+  "reference_resolution_contract": {
+    "records": "context.contract_refから選択sectionを固定。SourceEnvelope.decoded_records.subject_refの同identity/revision/scope/ownerをexact解決し、record_kind/section_key/payloadの内容を比較。複数相反recordは捨てずsource_conflict。",
+    "bytes": "source_json_utf8のUTF-8 bytesをhashしsource_sha256一致を検査し、parse結果recordsとdecoded_recordsを全内容比較。資格・digestはbodyへ自己再帰させない。",
+    "qualification": "Qualification.root_refは独立供給qualification_rootsへ解決。owner/subject集合/source_ref/source_sha256をroot許容集合へ照合し、同owner名だけでtrustしない。fixture rootは合成入力の前提に限り、実trust authorityを成立させない。",
+    "locality": "root/candidate shapeがdecode不能ならinput_issuesへinvalid_shape、input=null、qualified_records/各source分類ref空を返しsource資格照合前に停止する。decode可能時はsourceごとにbytes/body/資格を照合し、未資格sourceはsource_issues/unqualified_source_refs/unresolved_source_refsと依存sectionへ局所化する。有資格だが同subject/sectionに相反payloadがあればsource_issues/conflicting_source_refs/unresolved_source_refsへ両sourceを記録し、双方をqualified_recordsから外す。他の有資格OS/Qのsourceはqualified_records/qualified_source_refsで保持する。",
+    "section_resolution": "有資格原recordのsection_key/selectorからinput_types_by_contractの原入力領域を再構築する。同selectorを複数ownerが相反内容で供給したらsource_conflict。各領域内のrefは原recordの明示refへ内容・版・scope・ownerを結び、所在やsubject wrapperだけで内側refの意味資格を証明しない。外部ownerの原契約自体が未供給なら該当意味の未解決として保持し、原record追跡の成立を外部機構成立にしない。"
+  },
+  "functions": [
+    {
+      "id": "HELIXOS-L5-002-validate_record_trace_input",
+      "symbol": "validate_record_trace_input",
+      "input": "RawValue",
+      "output": "ValidatedRecordTrace",
+      "contract_refs": [
+        "HELIXOS-L5-002-B01",
+        "HELIXOS-L5-002-B02",
+        "HELIXOS-L5-002-F01",
+        "HELIXOS-L5-002-F02",
+        "HELIXOS-L5-002-F03",
+        "HELIXOS-L5-002-F04",
+        "HELIXOS-L5-002-F05",
+        "HELIXOS-L5-002-F06",
+        "HELIXOS-L5-002-F07",
+        "HELIXOS-L5-002-F08",
+        "HELIXOS-L5-002-F09",
+        "HELIXOS-L5-002-N01",
+        "HELIXOS-L5-002-N02"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "RawValueのroot/candidate構造を先にdecode。形不正はinput_issuesのinvalid_shape、input=null、qualified_records/各source分類ref=[]。候補の必要意味key missing/nullはFieldとして保持し後続比較へ渡す。",
+        "decode可能時はSourceEnvelopeのbytes/parse/body/独立資格root/owner/subject/ref/hashを個別照合。未資格sourceはsource_issues、unqualified_source_refs/unresolved_source_refsと依存sectionへ結ぶ。",
+        "有資格原record同士が同subject/sectionで相反する場合は双方のsourceをconflicting_source_refs/unresolved_source_refsへ記録し、双方をqualified_recordsから外す。原payloadを捨てずissue evidenceに保持し、片方を正しい元として採用しない。",
+        "残る有資格sourceだけqualified_source_refs/qualified_recordsへ保持する。CORE不足で無関係なOS/Qの記録を失効させない。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-ADD-01",
+        "HELIXOS-L8-002-ADD-02",
+        "HELIXOS-L8-002-ADD-03",
+        "HELIXOS-L8-002-ADD-04",
+        "HELIXOS-L8-002-ADD-05",
+        "HELIXOS-L8-002-ADD-06",
+        "HELIXOS-L8-002-ADD-07",
+        "HELIXOS-L8-002-ADD-08",
+        "HELIXOS-L8-002-ADD-09",
+        "HELIXOS-L8-002-ADD-10",
+        "HELIXOS-L8-002-ADD-11"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-validate_record_trace_input"
+    },
+    {
+      "id": "HELIXOS-L5-002-check_record_claims",
+      "symbol": "check_record_claims",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-B01",
+        "HELIXOS-L5-002-N02"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "owner_outputsをknowledge/applicability/evaluation/permissionの元出力ref・stateに照合する。record_receiptはrecordだけの観測へ保存する。",
+        "実接続/PO受入の原証拠が未供給ならnot_proven。記録receiptからowner判断や接続成立を主張するclaimを個別に返す。",
+        "source_selected=falseはunobserved、future_result not_occurredとperiod insufficientを区別して保持。",
+        "held_out/実runtime evidenceの未供給を残す。入力整合/件数/fixture存在や一経路成功から全scope、欠陥0、Acceptedを主張するclaimを返す。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-B01",
+        "HELIXOS-L8-002-N02"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-check_record_claims"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_operation_dependencies",
+      "symbol": "compare_operation_dependencies",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-B02"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "context.operationに対応する原契約から常時binding/source/要求版と選択操作条件を照合。first-recordではfuture result/receiptのnot_occurredを欠落へ変えない。",
+        "template selection/useとevaluation selected時だけ各原契約の集合/版/CORE出力、LABO必要集合/利用条件を照合。未選択のsourceはunobserved。",
+        "未来receipt/全seed gateや非対象Q停止のclaimを原選択と比較し返す。Pの当該不足からQ状態を失効させない。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-B02"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_operation_dependencies"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_project_stages",
+      "symbol": "compare_project_stages",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-F01"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "各project_statesをbinding.requirement_refとproject_scopeで独立に照合。implementation/verificationと未接続等の原状態を他projectへ転写しない。",
+        "release_kanbanは元owner recordからstate/source_refを解決。null/未提示はnot_suppliedで、GitHub PR/Issue signalから提供stateを作らない。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F01"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_project_stages"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_template_sets",
+      "symbol": "compare_template_sets",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-F02"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "proposed/selected/usedの三集合をそれぞれの原sourceへ照合。空usedはused_empty_basisが有資格に明示した場合だけ空として保持する。",
+        "各template identity/revision/意味契約/利用stateとHARNESS契約・CORE出力を原参照へ解決。latestや任意様式fallbackを拒否し、他template成功を補償にしない。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F02",
+        "HELIXOS-L8-002-ADD-12"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_template_sets"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "symbol": "compare_event_obligation_trace",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-F03"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "eventsをevent_refで原sourceに結び、actor/source/correlationとbindingのproject/scope/要求revision/template版を個別比較する。",
+        "obligation_refからkind_obligationsのunit/connection/compositeを解決し、artifact/pairの両端identity/revisionを同義務に照合。単体成功は他kindへ伝播しない。",
+        "非関係は有資格nonrelated_basisの対象端と理由へ照合。空欄/未知からN/Aや架空端を生成しない。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F03"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_event_obligation_trace"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_core_dispositions",
+      "symbol": "compare_core_dispositions",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-F04"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "CORE output_refごとにdisposition/reason/decider/target_revision/reentry/original_condition/template/対象義務を有資格元出力へ比較。N/A4属性を個別に失敗させる。",
+        "conditional false/unknownとNAを分け、obligation_original_statesは各義務refのnot_started/failed/not_evaluatedを保持。OS新裁定と他義務の代償消込を認めない。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F04"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_core_dispositions"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_backflow_evidence",
+      "symbol": "compare_backflow_evidence",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-F05"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "原返却eventのevent/binding/backflow/source/correlationに返却先と停止理由を独立結合。candidate各値は欠落/別案件値を個別比較し原値を保持する。",
+        "返却/ACK/受理/意味解決/元義務消込を別eventに解決。receiver_acceptanceとmeaning_resolutionとoriginal_dischargeがnullなら未供給のまま。",
+        "OS023原契約が求める受理/対象revision/scopeの消込証拠を照合し、ACK/document/別義務成功だけの消込claimを返す。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F05"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_backflow_evidence"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_correction_history",
+      "symbol": "compare_correction_history",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-F06"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "original_eventとold_projection/correction/new_projectionを原ownerの各ref/bindingへ解決。E1旧失敗/旧scope/actor/source/correlationを新分類で上書きしない。",
+        "C1の分類/stale、stale_basisのE2/C2・engine/schema変更両端・sourceを原owner出力へ照合。C2 current/supersedes C1と区別。OSが新しい分類やstaleを裁定しない。",
+        "旧/新engine/schema版未供給は原状態として保持し分類schemaから原sourceを推定しない。C1削除とC1現行残留を別findingにする。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F06"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_correction_history"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_core_impact_history",
+      "symbol": "compare_core_impact_history",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-F07"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "used_refとcandidate_refを分け、各CORE_impactsを対象義務/binding/old_used/new_candidateに結ぶ。affected/unknown/unaffectedはCORE原内容へ照合。",
+        "view_only_sourceのsemantic_differenceとmigration_receiptを別々に扱う。digest/path/viewだけで移管済みを生成せず、P影響でQをstaleへしない。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F07"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_core_impact_history"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_labo_record_selection",
+      "symbol": "compare_labo_record_selection",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-F08"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "LABO_scopeのbinding/period/required_record_refsとrequired_set_source_refを有資格LABO原契約へ解決。供給済recordから必要母集合を作らない。",
+        "original_recordsの原event、版/scope/periodとretry_of原関係を照合。選択scopeの原集合、再送対応、全除外理由、必要集合との差を独立に返す。",
+        "E3 missingを空集合成功へ丸めず、Qの異版/期間を黙示包含しない。OSは母集団/測定/因果評価を新設せずconnection証拠未供給を残す。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F08"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_labo_record_selection"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_finding_causal_trace",
+      "symbol": "compare_finding_causal_trace",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-F09"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "各finding candidateのorigin/義務/使用template/再作業/受入/運用結果を同binding原sourceに照合。",
+        "causal_basis_refが独立causal_evidenceのorigin/target/sourceと一致するものだけ原因果を辿る。未供給は理由付きunresolved、時間/path/回数/AI評価を原因果へ昇格しない。",
+        "LABO評価/BRAIN採否は外部owner出力のまま。OSの候補trace成功から改善/知識昇格を生成しない。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F09"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_finding_causal_trace"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_security_use_binding",
+      "symbol": "compare_security_use_binding",
+      "input": "ValidatedRecordTrace",
+      "output": "TraceSectionResult[]",
+      "contract_refs": [
+        "HELIXOS-L5-002-N01"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "existing_permission_outputをSECURITY原出力へ解決し今回source_operation/data_class/permission_scope/target_scope/recipientを個別照合。",
+        "許可/分類/scope欠落と不一致は該当共有だけ未成立。原event時の許可状態を後付け許可で成功へ書き換えない。実許可発行・共有操作は行わない。"
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-N01"
+      ],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_security_use_binding"
+    },
+    {
+      "id": "HELIXOS-L5-002-build_record_trace_analysis",
+      "symbol": "build_record_trace_analysis",
+      "input": "ValidatedRecordTrace",
+      "output": "RecordTraceAnalysis",
+      "contract_refs": [
+        "HELIXOS-L5-002-B01",
+        "HELIXOS-L5-002-B02",
+        "HELIXOS-L5-002-F01",
+        "HELIXOS-L5-002-F02",
+        "HELIXOS-L5-002-F03",
+        "HELIXOS-L5-002-F04",
+        "HELIXOS-L5-002-F05",
+        "HELIXOS-L5-002-F06",
+        "HELIXOS-L5-002-F07",
+        "HELIXOS-L5-002-F08",
+        "HELIXOS-L5-002-F09",
+        "HELIXOS-L5-002-N01",
+        "HELIXOS-L5-002-N02"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "各選択sectionの関数結果とinput/source issuesを元context/原refへ結ぶ。",
+        "原観測と全局所findingを保持し、effect_requests=[]/effects=[]、authority_generated=false。候補collection成功から実保存や実接続を生成しない。"
+      ],
+      "unit_case_refs": [],
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-build_record_trace_analysis"
+    }
+  ],
+  "contracts": [
+    {
+      "requirement_ref": "HELIXOS-L3-002-B01",
+      "system_oracle_ref": "HELIXOS-L10-002-B01",
+      "title": "意味・記録・評価のowner",
+      "behavior": "OS002は案件記録の追跡を持つ。合意/sourceは001、evidence/continuityは007/019、未完義務handoffは023、改善/評価/再発の既存接続は005/024/048へ残す。汎用知識意味/版はBRAIN、適用/意味影響はCORE、効果/退行評価はLABO、操作/data利用条件はSECURITYを参照する。",
+      "component_refs": [
+        "RecordInputBinding",
+        "TemplateSetTrace",
+        "EventObligationTrace",
+        "DispositionAndHandoffTrace",
+        "EventCorrectionProjection",
+        "MeaningImpactHistory",
+        "EvaluationRecordSelection",
+        "FindingAndShareTrace"
+      ],
+      "id": "HELIXOS-L5-002-B01",
+      "basic_design_ref": "HELIXOS-L4-002-B01",
+      "oracle_ref": "HELIXOS-L8-002-B01",
+      "input_type": "B01RecordInput",
+      "observation_type": "B01RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-check_record_claims",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "owner_outputsをknowledge/applicability/evaluation/permissionの元出力ref・stateに照合する。record_receiptはrecordだけの観測へ保存する。",
+        "実接続/PO受入の原証拠が未供給ならnot_proven。記録receiptからowner判断や接続成立を主張するclaimを個別に返す。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-B02",
+      "system_oracle_ref": "HELIXOS-L10-002-B02",
+      "title": "開始時と操作時の依存",
+      "behavior": "常時必要は記録対象project/scope、source/要求revisionと該当契約参照。特定template選択/使用操作ではset/版/適用出力、評価へ送る操作では選択評価scope/必要入力/利用許可を照合する。関係しない知識/全seedや今回初めて生じる結果/受領証拠を開始前提にしない。",
+      "component_refs": [
+        "RecordInputBinding"
+      ],
+      "id": "HELIXOS-L5-002-B02",
+      "basic_design_ref": "HELIXOS-L4-002-B02",
+      "oracle_ref": "HELIXOS-L8-002-B02",
+      "input_type": "B02RecordInput",
+      "observation_type": "B02RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_operation_dependencies",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "context.operationに対応する原契約から常時binding/source/要求版と選択操作条件を照合。first-recordではfuture result/receiptのnot_occurredを欠落へ変えない。",
+        "template selection/useとevaluation selected時だけ各原契約の集合/版/CORE出力、LABO必要集合/利用条件を照合。未選択のsourceはunobserved。",
+        "未来receipt/全seed gateや非対象Q停止のclaimを原選択と比較し返す。Pの当該不足からQ状態を失効させない。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-F01",
+      "system_oracle_ref": "HELIXOS-L10-002-F01",
+      "title": "要求から運用までの個別追跡",
+      "behavior": "project群の要求から作業・実装・検証・提供・運用までを、対象project/scopeと要求revisionへ結び、欠落・競合・未接続・未合意・未実装・未検証を区別する。提供はrelease kanban上の状態として追跡し、部分成功で全体完了にしない。",
+      "component_refs": [
+        "EventObligationTrace"
+      ],
+      "id": "HELIXOS-L5-002-F01",
+      "basic_design_ref": "HELIXOS-L4-002-F01",
+      "oracle_ref": "HELIXOS-L8-002-F01",
+      "input_type": "F01RecordInput",
+      "observation_type": "F01RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_project_stages",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "各project_statesをbinding.requirement_refとproject_scopeで独立に照合。implementation/verificationと未接続等の原状態を他projectへ転写しない。",
+        "release_kanbanは元owner recordからstate/source_refを解決。null/未提示はnot_suppliedで、GitHub PR/Issue signalから提供stateを作らない。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-F02",
+      "system_oracle_ref": "HELIXOS-L10-002-F02",
+      "title": "候補・選択・使用setの区別",
+      "behavior": "project/製品scope、要求identity/revision、HARNESS契約版、CORE009の選択/判定/義務/不足/意味影響候補と根拠、BRAIN template identity/version/意味契約revision/利用状態を照合する。提案set・案件が選択したset・実際に使用したsetを分け、各記録の所属setを示す。",
+      "component_refs": [
+        "TemplateSetTrace"
+      ],
+      "id": "HELIXOS-L5-002-F02",
+      "basic_design_ref": "HELIXOS-L4-002-F02",
+      "oracle_ref": "HELIXOS-L8-002-F02",
+      "input_type": "F02RecordInput",
+      "observation_type": "F02RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_template_sets",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "proposed/selected/usedの三集合をそれぞれの原sourceへ照合。空usedはused_empty_basisが有資格に明示した場合だけ空として保持する。",
+        "各template identity/revision/意味契約/利用stateとHARNESS契約・CORE出力を原参照へ解決。latestや任意様式fallbackを拒否し、他template成功を補償にしない。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-F03",
+      "system_oracle_ref": "HELIXOS-L10-002-F03",
+      "title": "各記録の因果とrevision",
+      "behavior": "template適用、義務生成/消込、N/A、Backflow、設計成果、finding、再作業、受入、運用結果を、それぞれの発生event・actor・source・相関参照、project/scope、要求revision、選択/使用template版、義務・成果・対検証identity/revisionと因果へ結ぶ。関係しない項目は架空値で埋めず不適用根拠または未解決を残す。",
+      "component_refs": [
+        "EventObligationTrace"
+      ],
+      "id": "HELIXOS-L5-002-F03",
+      "basic_design_ref": "HELIXOS-L4-002-F03",
+      "oracle_ref": "HELIXOS-L8-002-F03",
+      "input_type": "F03RecordInput",
+      "observation_type": "F03RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_event_obligation_trace",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "eventsをevent_refで原sourceに結び、actor/source/correlationとbindingのproject/scope/要求revision/template版を個別比較する。",
+        "obligation_refからkind_obligationsのunit/connection/compositeを解決し、artifact/pairの両端identity/revisionを同義務に照合。単体成功は他kindへ伝播しない。",
+        "非関係は有資格nonrelated_basisの対象端と理由へ照合。空欄/未知からN/Aや架空端を生成しない。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-F04",
+      "system_oracle_ref": "HELIXOS-L10-002-F04",
+      "title": "判定と未完義務の保存",
+      "behavior": "CORE009のrequired/conditional/N/A/unresolved、根拠・判定者・対象revision・再評価条件を出力参照へ結ぶ。conditional未充足、義務の未実施/不合格/未評価を分け、OSが適用規則やN/A判断を新設しない。",
+      "component_refs": [
+        "DispositionAndHandoffTrace"
+      ],
+      "id": "HELIXOS-L5-002-F04",
+      "basic_design_ref": "HELIXOS-L4-002-F04",
+      "oracle_ref": "HELIXOS-L8-002-F04",
+      "input_type": "F04RecordInput",
+      "observation_type": "F04RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_core_dispositions",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "CORE output_refごとにdisposition/reason/decider/target_revision/reentry/original_condition/template/対象義務を有資格元出力へ比較。N/A4属性を個別に失敗させる。",
+        "conditional false/unknownとNAを分け、obligation_original_statesは各義務refのnot_started/failed/not_evaluatedを保持。OS新裁定と他義務の代償消込を認めない。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-F05",
+      "system_oracle_ref": "HELIXOS-L10-002-F05",
+      "title": "Backflow受領と消込",
+      "behavior": "Backflowの返却先・停止理由・未完義務・受領/解決証拠を別々に記録する。受領/ACKと意味判断/解決を分け、元義務の消込には適用契約が求める対象revision/scopeの証拠を結ぶ。既存023の受信側による未完義務受理と元ticket完了の条件を保持する。",
+      "component_refs": [
+        "DispositionAndHandoffTrace"
+      ],
+      "id": "HELIXOS-L5-002-F05",
+      "basic_design_ref": "HELIXOS-L4-002-F05",
+      "oracle_ref": "HELIXOS-L8-002-F05",
+      "input_type": "F05RecordInput",
+      "observation_type": "F05RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_backflow_evidence",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "原返却eventのevent/binding/backflow/source/correlationに返却先と停止理由を独立結合。candidate各値は欠落/別案件値を個別比較し原値を保持する。",
+        "返却/ACK/受理/意味解決/元義務消込を別eventに解決。receiver_acceptanceとmeaning_resolutionとoriginal_dischargeがnullなら未供給のまま。",
+        "OS023原契約が求める受理/対象revision/scopeの消込証拠を照合し、ACK/document/別義務成功だけの消込claimを返す。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-F06",
+      "system_oracle_ref": "HELIXOS-L10-002-F06",
+      "title": "原eventと訂正の履歴",
+      "behavior": "原eventと訂正・分類projectionを分け、後からの分類や訂正で旧失敗・旧scope・原eventを消さない。schema/engine版変更後も原記録と旧分類/stale/新分類を辿る。",
+      "component_refs": [
+        "EventCorrectionProjection"
+      ],
+      "id": "HELIXOS-L5-002-F06",
+      "basic_design_ref": "HELIXOS-L4-002-F06",
+      "oracle_ref": "HELIXOS-L8-002-F06",
+      "input_type": "F06RecordInput",
+      "observation_type": "F06RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_correction_history",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "original_eventとold_projection/correction/new_projectionを原ownerの各ref/bindingへ解決。E1旧失敗/旧scope/actor/source/correlationを新分類で上書きしない。",
+        "C1の分類/stale、stale_basisのE2/C2・engine/schema変更両端・sourceを原owner出力へ照合。C2 current/supersedes C1と区別。OSが新しい分類やstaleを裁定しない。",
+        "旧/新engine/schema版未供給は原状態として保持し分類schemaから原sourceを推定しない。C1削除とC1現行残留を別findingにする。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-F07",
+      "system_oracle_ref": "HELIXOS-L10-002-F07",
+      "title": "使用版変更と局所影響",
+      "behavior": "同projectの使用template旧新版とCOREの意味影響対象/理由を再評価する要求・義務・成果・pairのrevision/scopeへ結ぶ。旧版利用/stale/再評価待ち/影響Unknownを区別する。意味影響をOSが独自算出せず、無関係な有効scopeを保持する。",
+      "component_refs": [
+        "MeaningImpactHistory"
+      ],
+      "id": "HELIXOS-L5-002-F07",
+      "basic_design_ref": "HELIXOS-L4-002-F07",
+      "oracle_ref": "HELIXOS-L8-002-F07",
+      "input_type": "F07RecordInput",
+      "observation_type": "F07RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_core_impact_history",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "used_refとcandidate_refを分け、各CORE_impactsを対象義務/binding/old_used/new_candidateに結ぶ。affected/unknown/unaffectedはCORE原内容へ照合。",
+        "view_only_sourceのsemantic_differenceとmigration_receiptを別々に扱う。digest/path/viewだけで移管済みを生成せず、P影響でQをstaleへしない。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-F08",
+      "system_oracle_ref": "HELIXOS-L10-002-F08",
+      "title": "評価入力の原記録集合",
+      "behavior": "005/024を通じLABOへ渡す選択評価scopeについてproject・要求revision・使用template版・期間、原記録集合と抽出根拠、包含/除外対象と理由、重複/再送の対応、未接続/未観測/未回収/比較不能を結ぶ。LABO指定/合意の範囲と必要入力が未決なら不完全として示す。",
+      "component_refs": [
+        "EvaluationRecordSelection"
+      ],
+      "id": "HELIXOS-L5-002-F08",
+      "basic_design_ref": "HELIXOS-L4-002-F08",
+      "oracle_ref": "HELIXOS-L8-002-F08",
+      "input_type": "F08RecordInput",
+      "observation_type": "F08RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_labo_record_selection",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "LABO_scopeのbinding/period/required_record_refsとrequired_set_source_refを有資格LABO原契約へ解決。供給済recordから必要母集合を作らない。",
+        "original_recordsの原event、版/scope/periodとretry_of原関係を照合。選択scopeの原集合、再送対応、全除外理由、必要集合との差を独立に返す。",
+        "E3 missingを空集合成功へ丸めず、Qの異版/期間を黙示包含しない。OSは母集団/測定/因果評価を新設せずconnection証拠未供給を残す。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-F09",
+      "system_oracle_ref": "HELIXOS-L10-002-F09",
+      "title": "finding候補の原記録",
+      "behavior": "不足/過剰要求/誤選定/再作業/欠陥流出のfinding候補を、発生元・対象義務・使用版・再作業・受入・運用原記録へ結ぶ。因果未決は未決として渡し、LABO評価やBRAIN採否の成立にしない。",
+      "component_refs": [
+        "FindingAndShareTrace"
+      ],
+      "id": "HELIXOS-L5-002-F09",
+      "basic_design_ref": "HELIXOS-L4-002-F09",
+      "oracle_ref": "HELIXOS-L8-002-F09",
+      "input_type": "F09RecordInput",
+      "observation_type": "F09RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_finding_causal_trace",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "各finding candidateのorigin/義務/使用template/再作業/受入/運用結果を同binding原sourceに照合。",
+        "causal_basis_refが独立causal_evidenceのorigin/target/sourceと一致するものだけ原因果を辿る。未供給は理由付きunresolved、時間/path/回数/AI評価を原因果へ昇格しない。",
+        "LABO評価/BRAIN採否は外部owner出力のまま。OSの候補trace成功から改善/知識昇格を生成しない。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-N01",
+      "system_oracle_ref": "HELIXOS-L10-002-N01",
+      "title": "共有scopeとdata利用条件",
+      "behavior": "発生元の操作/利用許可とdata classを対象scopeへ結び、既存SECURITY条件に従う。利用許可/data class/scope不一致では該当共有を未成立にし、許可外dataを評価/別projectへ渡さない。",
+      "component_refs": [
+        "FindingAndShareTrace"
+      ],
+      "id": "HELIXOS-L5-002-N01",
+      "basic_design_ref": "HELIXOS-L4-002-N01",
+      "oracle_ref": "HELIXOS-L8-002-N01",
+      "input_type": "N01RecordInput",
+      "observation_type": "N01RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-compare_security_use_binding",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "existing_permission_outputをSECURITY原出力へ解決し今回source_operation/data_class/permission_scope/target_scope/recipientを個別照合。",
+        "許可/分類/scope欠落と不一致は該当共有だけ未成立。原event時の許可状態を後付け許可で成功へ書き換えない。実許可発行・共有操作は行わない。"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXOS-L3-002-N02",
+      "system_oracle_ref": "HELIXOS-L10-002-N02",
+      "title": "未観測と実証の区別",
+      "behavior": "非選択sourceを未観測、まだ発生しない義務/結果を未発生として保つ。未観測/観測期間不足を欠陥0や改善成功へ変換せず、入力整合/登録件数を実記録/handoff/接続/全seed/旧atom被覆/実行成功にしない。",
+      "component_refs": [
+        "RecordInputBinding",
+        "EvaluationRecordSelection"
+      ],
+      "id": "HELIXOS-L5-002-N02",
+      "basic_design_ref": "HELIXOS-L4-002-N02",
+      "oracle_ref": "HELIXOS-L8-002-N02",
+      "input_type": "N02RecordInput",
+      "observation_type": "N02RecordObservation",
+      "function_refs": [
+        "HELIXOS-L5-002-validate_record_trace_input",
+        "HELIXOS-L5-002-check_record_claims",
+        "HELIXOS-L5-002-build_record_trace_analysis"
+      ],
+      "algorithm": [
+        "source_selected=falseはunobserved、future_result not_occurredとperiod insufficientを区別して保持。",
+        "held_out/実runtime evidenceの未供給を残す。入力整合/件数/fixture存在や一経路成功から全scope、欠陥0、Acceptedを主張するclaimを返す。"
+      ]
+    }
+  ],
+  "state_semantics": {
+    "classifications": "missingは必要原入力未供給、unknownは元判断/観測未決、conflictは原内容との相反、staleは元ownerが宣言した旧分類状態。未選択/未発生は不足と別。",
+    "normal_incomplete": "正常比較結果にnot_proven/not_supplied/unknown/未完が残ってよい。finding無しを記録/接続/全体完了として使用しない。",
+    "input_shape": "invalid_shapeはRawValueのroot/candidate構造がlogical input型へdecodeできない状態。必要意味fieldのmissingやunknownとは別で、input=null、qualified_records/qualified_source_refs=[]を返して資格照合/意味比較を実行しない。",
+    "source_locality": "source未資格ではunqualified_source_refsとunresolved_source_refsへ原refを保持し、依存sectionをunresolved_sectionsへ結ぶ。有資格原sourceのみqualified_records/qualified_source_refsへ渡す。両方有資格だが同subject/sectionが相反ならconflicting_source_refsへ両元refを保持し、双方を有効意味入力から外す（片方を黙示採用しない）。"
+  },
+  "storage_boundary": {
+    "consumer": "OS053 atomic-canonicalization L5のwriter/reader/CAS/rollbackは別契約。",
+    "input": "RecordTraceAnalysisは原ref/内容/不足を束縛した比較材料だけ。実保存には対象operation/authority/隔離/資源/source/revisionとOS053原証拠が別に要る。",
+    "effects": "本14関数のeffectはnone。DB/Git/GitHub write・許可発行・割当/lease・運転・評価・knowledge採否・PO Acceptedを発行しない。"
+  },
+  "implementation_preparation": {
+    "state": "not_ready",
+    "remaining": [
+      "本L5/L8の独立reviewと文書pair確定",
+      "正式record schema/codec/source resolver/trust rootと各外部owner binding",
+      "OS053実保存/authority/隔離/資源と接続の証拠",
+      "実装前test/oracle凍結→Red実観測→最小実装→Green",
+      "未観測/held-outの独立実input、PO L11実物受入、通常L3再開"
+    ]
+  },
+  "fixture_source_construction": {
+    "body": "For each fixed owner section, body contains records:[{subject_ref,section_key,record_kind,payload:{selector:original value},owner}]. qualification/root fields match frozen bytes and role/subject. L8 normal_fixtures.input contains the complete built result.",
+    "envelope": "source_json_utf8 encodes {records:[{subject_ref,section_key,record_kind,payload:source_snapshot,owner}]}. source_sha256 is SHA256 bytes. decoded_records is parsed records. qualification_ref points to separate Qualification.",
+    "roots": "Root is separate immutable fixture basis {owner,allowed_subject_refs:[subject],allowed_source_ref:source,allowed_source_sha256:hash}. This tests root/ref/body/byte closure, not origin authentication. It is never rebuilt after mutation.",
+    "domain_comparison": "Resolve each owner section from qualified records and reconstruct complete original input sections. Candidate values are compared to the corresponding original fields and operation contract. Comparison findings are returned with original materials, not replacing unknown source by normal expected values. context.project_bindingの要求/HARNESS/template/意味版は原選択から独立供給し、candidateから再作成しない。各record固有ref/版は別軸で辿る。"
+  },
+  "failure_rules": [
+    {
+      "code": "record_as_owner_decision",
+      "contract_ref": "HELIXOS-L5-002-B01",
+      "handler_ref": "HELIXOS-L5-002-check_record_claims",
+      "axis": "owner",
+      "state": "conflict",
+      "predicate": "claims中のowner_decisionsが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "該当BRAIN/CORE/LABO",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "collection_as_connection",
+      "contract_ref": "HELIXOS-L5-002-B01",
+      "handler_ref": "HELIXOS-L5-002-check_record_claims",
+      "axis": "connection",
+      "state": "unknown",
+      "predicate": "claims中のconnection_provenが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "OS005/024とLABO",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "future_receipt_gate",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "conflict",
+      "predicate": "claims中のrequired_initial_receiptが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "OS002/該当評価owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "all_seed_gate",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "conflict",
+      "predicate": "claims中のrequired_all_seed_adoptionが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "OS002/該当評価owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "unrelated_scope_stop",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "conflict",
+      "predicate": "claims中のstop_projectが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "OS002/該当評価owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "other_project_completion",
+      "contract_ref": "HELIXOS-L5-002-F01",
+      "handler_ref": "HELIXOS-L5-002-compare_project_stages",
+      "axis": "project_scope",
+      "state": "conflict",
+      "predicate": "claims中のcomplete_project_from_otherが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "github_as_release",
+      "contract_ref": "HELIXOS-L5-002-F01",
+      "handler_ref": "HELIXOS-L5-002-compare_project_stages",
+      "axis": "release_state",
+      "state": "unknown",
+      "predicate": "claims中のrelease_kanban_from_githubが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "OS002/提供記録owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "proposal_as_used",
+      "contract_ref": "HELIXOS-L5-002-F02",
+      "handler_ref": "HELIXOS-L5-002-compare_template_sets",
+      "axis": "template_set",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/used_refsが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "CORE/OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "arbitrary_fallback",
+      "contract_ref": "HELIXOS-L5-002-F02",
+      "handler_ref": "HELIXOS-L5-002-compare_template_sets",
+      "axis": "template_set",
+      "state": "conflict",
+      "predicate": "claims中のfallback_templateが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "CORE/OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "other_template_compensation",
+      "contract_ref": "HELIXOS-L5-002-F02",
+      "handler_ref": "HELIXOS-L5-002-compare_template_sets",
+      "axis": "template_set",
+      "state": "conflict",
+      "predicate": "claims中のtemplate_compensationが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "CORE/OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_project_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "project",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/binding/project_scope/projectがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_project_conflict",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "project",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/events/0/binding/project_scope/projectが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_scope_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "scope",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/binding/project_scopeがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_scope_conflict",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "scope",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/events/0/binding/project_scopeが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_requirement_revision_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "requirement_revision",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/binding/requirement_ref/revisionがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_requirement_revision_conflict",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "requirement_revision",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/events/0/binding/requirement_ref/revisionが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_template_revision_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "template_revision",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/binding/template_ref/revisionがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_template_revision_conflict",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "template_revision",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/events/0/binding/template_ref/revisionが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_obligation_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "obligation",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/obligation_refがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_obligation_conflict",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "obligation",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/events/0/obligation_refが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_artifact_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "artifact",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/artifact_refがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_artifact_conflict",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "artifact",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/events/0/artifact_refが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_pair_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "pair",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/pair_refがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "record_pair_conflict",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "pair",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/events/0/pair_refが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "元record/source owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "causal_event_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "event",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/event_refがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "causal_actor_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "actor",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/actor_refがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "causal_source_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "source",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/source_refがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "causal_correlation_missing",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "correlation",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/events/0/correlation_refがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "元event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "nonrelated_fabrication",
+      "contract_ref": "HELIXOS-L5-002-F03",
+      "handler_ref": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "axis": "applicability",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/events/3/artifact_refが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "元record owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F03.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "na_reason_missing",
+      "contract_ref": "HELIXOS-L5-002-F04",
+      "handler_ref": "HELIXOS-L5-002-compare_core_dispositions",
+      "axis": "NA_reason",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/core_outputs/2/reasonがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "CORE",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F04.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "na_decider_missing",
+      "contract_ref": "HELIXOS-L5-002-F04",
+      "handler_ref": "HELIXOS-L5-002-compare_core_dispositions",
+      "axis": "NA_decider",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/core_outputs/2/deciderがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "CORE",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F04.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "na_target_revision_missing",
+      "contract_ref": "HELIXOS-L5-002-F04",
+      "handler_ref": "HELIXOS-L5-002-compare_core_dispositions",
+      "axis": "NA_target_revision",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/core_outputs/2/target_revisionがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "CORE",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F04.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "na_reentry_missing",
+      "contract_ref": "HELIXOS-L5-002-F04",
+      "handler_ref": "HELIXOS-L5-002-compare_core_dispositions",
+      "axis": "NA_reentry",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/core_outputs/2/reentryがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "CORE",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F04.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "unknown_as_na",
+      "contract_ref": "HELIXOS-L5-002-F04",
+      "handler_ref": "HELIXOS-L5-002-compare_core_dispositions",
+      "axis": "disposition_obligation",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/core_outputs/3/dispositionが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "CORE/該当義務owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F04.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "os_judgment",
+      "contract_ref": "HELIXOS-L5-002-F04",
+      "handler_ref": "HELIXOS-L5-002-compare_core_dispositions",
+      "axis": "disposition_obligation",
+      "state": "conflict",
+      "predicate": "claims中のOS_new_dispositionが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "CORE/該当義務owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F04.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "unit_as_composite",
+      "contract_ref": "HELIXOS-L5-002-F04",
+      "handler_ref": "HELIXOS-L5-002-compare_core_dispositions",
+      "axis": "disposition_obligation",
+      "state": "conflict",
+      "predicate": "claims中のdischarge_from_other_kindが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "CORE/該当義務owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F04.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "conditional_discharge",
+      "contract_ref": "HELIXOS-L5-002-F04",
+      "handler_ref": "HELIXOS-L5-002-compare_core_dispositions",
+      "axis": "disposition_obligation",
+      "state": "conflict",
+      "predicate": "claims中のdischarge_conditionalが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "CORE/該当義務owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F04.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "ack_as_resolution",
+      "contract_ref": "HELIXOS-L5-002-F05",
+      "handler_ref": "HELIXOS-L5-002-compare_backflow_evidence",
+      "axis": "handoff_discharge",
+      "state": "unknown",
+      "predicate": "claims中のresolve_from_ackが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "OS023/原義務owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F05.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "no_acceptance_discharge",
+      "contract_ref": "HELIXOS-L5-002-F05",
+      "handler_ref": "HELIXOS-L5-002-compare_backflow_evidence",
+      "axis": "handoff_discharge",
+      "state": "unknown",
+      "predicate": "claims中のdischarge_without_acceptanceが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "OS023/原義務owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F05.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "document_as_completion",
+      "contract_ref": "HELIXOS-L5-002-F05",
+      "handler_ref": "HELIXOS-L5-002-compare_backflow_evidence",
+      "axis": "handoff_discharge",
+      "state": "unknown",
+      "predicate": "claims中のcomplete_from_documentが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "OS023/原義務owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F05.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "other_obligation_compensation",
+      "contract_ref": "HELIXOS-L5-002-F05",
+      "handler_ref": "HELIXOS-L5-002-compare_backflow_evidence",
+      "axis": "handoff_discharge",
+      "state": "unknown",
+      "predicate": "claims中のdischarge_from_otherが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "OS023/原義務owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F05.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "backflow_return_target_missing",
+      "contract_ref": "HELIXOS-L5-002-F05",
+      "handler_ref": "HELIXOS-L5-002-compare_backflow_evidence",
+      "axis": "backflow_return_target",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/return_targetがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "OS023/原返却event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F05.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "backflow_return_target_conflict",
+      "contract_ref": "HELIXOS-L5-002-F05",
+      "handler_ref": "HELIXOS-L5-002-compare_backflow_evidence",
+      "axis": "backflow_return_target",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/return_targetが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "OS023/原返却event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F05.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "backflow_stop_reason_missing",
+      "contract_ref": "HELIXOS-L5-002-F05",
+      "handler_ref": "HELIXOS-L5-002-compare_backflow_evidence",
+      "axis": "backflow_stop_reason",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/stop_reasonがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "OS023/原返却event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F05.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "backflow_stop_reason_conflict",
+      "contract_ref": "HELIXOS-L5-002-F05",
+      "handler_ref": "HELIXOS-L5-002-compare_backflow_evidence",
+      "axis": "backflow_stop_reason",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/stop_reasonが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "OS023/原返却event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F05.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "overwrite_original",
+      "contract_ref": "HELIXOS-L5-002-F06",
+      "handler_ref": "HELIXOS-L5-002-compare_correction_history",
+      "axis": "original_history",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/original_event/outcomeが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "OS007/019/原event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F06.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "remove_failure",
+      "contract_ref": "HELIXOS-L5-002-F06",
+      "handler_ref": "HELIXOS-L5-002-compare_correction_history",
+      "axis": "original_history",
+      "state": "conflict",
+      "predicate": "原sourceが必要とするcandidate/old_projection/classificationがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "OS007/019/原event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F06.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "schema_as_provenance",
+      "contract_ref": "HELIXOS-L5-002-F06",
+      "handler_ref": "HELIXOS-L5-002-compare_correction_history",
+      "axis": "original_history",
+      "state": "conflict",
+      "predicate": "原sourceが必要とするcandidate/old_projection/schema_refがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "OS007/019/原event owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F06.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "old_projection_not_stale",
+      "contract_ref": "HELIXOS-L5-002-F06",
+      "handler_ref": "HELIXOS-L5-002-compare_correction_history",
+      "axis": "projection_currency_history",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/old_projection/currency_stateが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "OS007/019/原分類owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F06.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "old_projection_removed",
+      "contract_ref": "HELIXOS-L5-002-F06",
+      "handler_ref": "HELIXOS-L5-002-compare_correction_history",
+      "axis": "projection_currency_history",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/old_projectionがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "OS007/019/原分類owner",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F06.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "unknown_as_unaffected",
+      "contract_ref": "HELIXOS-L5-002-F07",
+      "handler_ref": "HELIXOS-L5-002-compare_core_impact_history",
+      "axis": "impact_history",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/CORE_impacts/1/stateが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "CORE/OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F07.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "digest_as_migrated",
+      "contract_ref": "HELIXOS-L5-002-F07",
+      "handler_ref": "HELIXOS-L5-002-compare_core_impact_history",
+      "axis": "impact_history",
+      "state": "conflict",
+      "predicate": "claims中のmigrated_from_view_digestが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "CORE/OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F07.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "all_scope_stale",
+      "contract_ref": "HELIXOS-L5-002-F07",
+      "handler_ref": "HELIXOS-L5-002-compare_core_impact_history",
+      "axis": "impact_history",
+      "state": "conflict",
+      "predicate": "claims中のstale_all_projectsが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "CORE/OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F07.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "silent_exclusion",
+      "contract_ref": "HELIXOS-L5-002-F08",
+      "handler_ref": "HELIXOS-L5-002-compare_labo_record_selection",
+      "axis": "evaluation_inputs",
+      "state": "conflict",
+      "predicate": "claims中のexclude_missing_required_recordが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "LABO/OS005/024",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F08.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "retry_as_use",
+      "contract_ref": "HELIXOS-L5-002-F08",
+      "handler_ref": "HELIXOS-L5-002-compare_labo_record_selection",
+      "axis": "evaluation_inputs",
+      "state": "conflict",
+      "predicate": "claims中のcount_retry_as_originalが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "LABO/OS005/024",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F08.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "cross_version_compare",
+      "contract_ref": "HELIXOS-L5-002-F08",
+      "handler_ref": "HELIXOS-L5-002-compare_labo_record_selection",
+      "axis": "evaluation_inputs",
+      "state": "conflict",
+      "predicate": "claims中のinclude_outside_scopeが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "LABO/OS005/024",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F08.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "missing_as_empty",
+      "contract_ref": "HELIXOS-L5-002-F08",
+      "handler_ref": "HELIXOS-L5-002-compare_labo_record_selection",
+      "axis": "evaluation_inputs",
+      "state": "conflict",
+      "predicate": "claims中のcollection_complete_from_missingが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "LABO/OS005/024",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F08.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "os_evaluation_population",
+      "contract_ref": "HELIXOS-L5-002-F08",
+      "handler_ref": "HELIXOS-L5-002-compare_labo_record_selection",
+      "axis": "evaluation_inputs",
+      "state": "conflict",
+      "predicate": "claims中のOS_new_population_and_measurementが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "LABO/OS005/024",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F08.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "temporal_as_cause",
+      "contract_ref": "HELIXOS-L5-002-F09",
+      "handler_ref": "HELIXOS-L5-002-compare_finding_causal_trace",
+      "axis": "causal_evaluation",
+      "state": "unknown",
+      "predicate": "claims中のcausal_from_time_pathが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "LABO/BRAIN",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F09.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "self_evaluation_promotion",
+      "contract_ref": "HELIXOS-L5-002-F09",
+      "handler_ref": "HELIXOS-L5-002-compare_finding_causal_trace",
+      "axis": "causal_evaluation",
+      "state": "unknown",
+      "predicate": "claims中のpromote_from_self_evaluationが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "LABO/BRAIN",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F09.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "permission_missing",
+      "contract_ref": "HELIXOS-L5-002-N01",
+      "handler_ref": "HELIXOS-L5-002-compare_security_use_binding",
+      "axis": "permission",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/permission_output_refがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "SECURITY",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "data_class_missing",
+      "contract_ref": "HELIXOS-L5-002-N01",
+      "handler_ref": "HELIXOS-L5-002-compare_security_use_binding",
+      "axis": "data_class",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/data_classがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "SECURITY",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "scope_missing",
+      "contract_ref": "HELIXOS-L5-002-N01",
+      "handler_ref": "HELIXOS-L5-002-compare_security_use_binding",
+      "axis": "scope",
+      "state": "missing",
+      "predicate": "原sourceが必要とするcandidate/target_scopeがcandidateで欠落。原未選択/非関係/未発生とは区別する。",
+      "backflow_owner": "SECURITY",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "foreign_permission",
+      "contract_ref": "HELIXOS-L5-002-N01",
+      "handler_ref": "HELIXOS-L5-002-compare_security_use_binding",
+      "axis": "permission_scope",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/permission_scopeが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "SECURITY",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "retroactive_permission",
+      "contract_ref": "HELIXOS-L5-002-N01",
+      "handler_ref": "HELIXOS-L5-002-compare_security_use_binding",
+      "axis": "permission_scope",
+      "state": "conflict",
+      "predicate": "claims中のpast_operation_success_from_later_permissionが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "SECURITY",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "permission_mismatch",
+      "contract_ref": "HELIXOS-L5-002-N01",
+      "handler_ref": "HELIXOS-L5-002-compare_security_use_binding",
+      "axis": "permission",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/permission_output_refが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "SECURITY",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "data_class_mismatch",
+      "contract_ref": "HELIXOS-L5-002-N01",
+      "handler_ref": "HELIXOS-L5-002-compare_security_use_binding",
+      "axis": "data_class",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/data_classが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "SECURITY",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "scope_mismatch",
+      "contract_ref": "HELIXOS-L5-002-N01",
+      "handler_ref": "HELIXOS-L5-002-compare_security_use_binding",
+      "axis": "scope",
+      "state": "conflict",
+      "predicate": "candidateのcandidate/target_scopeが有資格原owner recordの同対象属性/状態/端と相反。比較先のidentity/revision/scopeを別対象へ置換したことを内容で検出する。",
+      "backflow_owner": "SECURITY",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N01.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "one_path_all_scopes",
+      "contract_ref": "HELIXOS-L5-002-N02",
+      "handler_ref": "HELIXOS-L5-002-check_record_claims",
+      "axis": "observation_proof",
+      "state": "unknown",
+      "predicate": "claims中のall_scopes_verified_from_oneが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "該当検証owner/PO",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "unobserved_zero",
+      "contract_ref": "HELIXOS-L5-002-N02",
+      "handler_ref": "HELIXOS-L5-002-check_record_claims",
+      "axis": "observation_proof",
+      "state": "unknown",
+      "predicate": "claims中のdefect_count_without_observationが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "該当検証owner/PO",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "fixture_as_accepted",
+      "contract_ref": "HELIXOS-L5-002-N02",
+      "handler_ref": "HELIXOS-L5-002-check_record_claims",
+      "axis": "observation_proof",
+      "state": "unknown",
+      "predicate": "claims中のPO_accepted_from_fixtureが選択操作の原契約/原状態/必要証拠に反し、原sourceが当該昇格/停止/補償を証明しない。",
+      "backflow_owner": "該当検証owner/PO",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-N02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "used_set_missing",
+      "contract_ref": "HELIXOS-L5-002-F02",
+      "handler_ref": "HELIXOS-L5-002-compare_template_sets",
+      "axis": "template_set",
+      "state": "missing",
+      "predicate": "used_refs keyが必要な選択操作でmissing。明示empty used_empty_basisと区別し、原有資格使用集合を保持する。",
+      "backflow_owner": "CORE/OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-F02.expected_material",
+      "side_effect_count": 0
+    }
+  ],
+  "comparison_precedence": [
+    "wire形がdecodeできない場合はinput_issuesを返す。candidateの必要意味keyのmissing/nullはFieldとして意味比較へ渡す。",
+    "原source bytes/body/資格root未成立は当該source_issueと依存項目unresolvedを返し、意味成立を推測しない。",
+    "原sourceが有資格なら要求された意味key/端/版/scopeを比較。相手refが未登録でも、原targetと異なることが内容上明白ならconflictを残し、そのref未解決も併記する。",
+    "原属性missing、unknown、conflictを他field/集合/義務から補償しない。複数局所findingはcode/対象ref/pathで安定整列し、同codeの別対象を捨てない。"
+  ]
+}
