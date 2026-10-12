@@ -6322,8 +6322,10 @@
             "claims": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "この比較器は原claimsから証拠を生成しない。未対応のclaimは入力不足/差分へ返す。空は成功や未完義務消込ではない。"
               }
             },
             "non_target": {
@@ -6420,10 +6422,7 @@
                       },
                       "basis_ref": {
                         "presence": "Field",
-                        "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
-                        }
+                        "value": "Ref"
                       }
                     }
                   }
@@ -6451,10 +6450,7 @@
                       },
                       "actual_result": {
                         "presence": "Field",
-                        "value": {
-                          "nullable_slot": "unresolved_domain_payload",
-                          "meaning": "nullを合格/非適用/空配列へ補わない。"
-                        }
+                        "value": "N01SyntheticResult (actual owner result contract remains unestablished)"
                       }
                     }
                   }
@@ -6476,10 +6472,7 @@
                   },
                   "examples": {
                     "presence": "Field",
-                    "value": {
-                      "nullable_slot": "unresolved_domain_payload",
-                      "meaning": "nullを合格/非適用/空配列へ補わない。"
-                    }
+                    "value": "immutable collection<Ref to independently owned case source>; content missing/unknown preserved"
                   }
                 }
               }
@@ -6535,13 +6528,23 @@
             "fallback_rules": {
               "presence": "Field",
               "value": {
-                "array_item_shapes": [],
-                "empty_semantics": "空と欠落は別。空fixtureで未供給item型はopen_slotとして対設計で具体化する。"
+                "array_item_shapes": [
+                  "never"
+                ],
+                "empty_semantics": "比較器はfallbackを生成しない。入力candidateの置換要求は差分/issueへ。"
               }
             },
             "all_rules_pass": {
               "presence": "Field",
               "value": "string"
+            },
+            "rule_results": {
+              "presence": "Field",
+              "value": "collection<N01RuleResult>"
+            },
+            "unseen_oracle_content": {
+              "presence": "Field",
+              "value": "independent oracle content; unknown while not supplied"
             }
           }
         },
@@ -7000,7 +7003,7 @@
           "after": "Field<logical value>|key_absent",
           "purpose": "string"
         },
-        "meaning": "候補変異と分けた合成対照の前提。F07のRed欠落対照で使用し、原sourceの差分履歴を消さない。authorityの変更や実fixtureの凍結成立ではない。"
+        "meaning": "候補変異と分けた合成対照の前提。F07のRed欠落とN01の未知identity/規律単独成功で使用。原source差分を追跡し、authority変更や実凍結/実実行を生成しない。"
       },
       "TddOracleSourceContent": {
         "fields": {
@@ -7151,6 +7154,33 @@
           "meaning": "Field<source limit>"
         },
         "meaning": "GWT側と独立した凍結期待の合成仮定。正式な実test凍結や実行証拠ではない。"
+      },
+      "N01RuleResult": {
+        "fields": {
+          "identity": "opaque original rule identity",
+          "application_ref": "Ref",
+          "subject_binding": "Ref",
+          "declared_state": "required|N/A|unknown",
+          "disposition": "required|valid_na|na_not_established|unknown",
+          "basis_state": "synthetic_meaning_basis_supplied|four_attributes_checked|supplied_null",
+          "verification_state": "not_executed|synthetic_observed_pass|not_applicable|unevaluated",
+          "na_attributes": "null|map<reason|decider|target_revision|reevaluation,ObservationField>",
+          "backflow_owner": "null|owner identity"
+        },
+        "meaning": "null na_attributesはN/A主張のないrowだけ。欠落4属性を空の成功判定にしない。"
+      },
+      "N01SyntheticResult": {
+        "fields": {
+          "ref": "Ref",
+          "subject_binding": "Ref",
+          "rule_identity": "opaque original identity",
+          "oracle_ref": "Ref",
+          "observed_edges": "collection<DirectedEdge>",
+          "observed_cycles": "collection<DirectedCycleWitness>",
+          "status": "pass|fail",
+          "kind": "synthetic_result_fixture_not_actual_run"
+        },
+        "meaning": "oracle内容と個別結果を比較する合成例。実runの証拠ではない。"
       }
     },
     "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
@@ -7911,7 +7941,8 @@
           "backflow_owner": "independent-verification-owner",
           "preserve": "未観測/未実行を維持し新一律gateを追加しない。"
         }
-      ]
+      ],
+      "detail_contract": "discipline_applicability_detail"
     },
     {
       "name": "partition_recovery_results",
@@ -8123,7 +8154,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106主呼出しのrootとF05-F09の34件の合成参照資料状態、28負例の部分期待を起草。残る72主呼出しの参照先と56負例の部分結果、全体のnull/empty型は未完。",
+      "106主呼出しのrootとF05-F09/N01の44件の合成参照資料状態、37負例の部分期待を起草。残る62主呼出しの参照先と47負例の部分結果、全体のnull/empty型は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -8177,9 +8208,9 @@
     },
     "normal_sources": "各L9正常/variantの合成owner materialをimmutable root source_refへ固定する。",
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
-    "negative_candidate_sources": "原資料をcandidateから分離する。F07 mutation_as_pre_redは、Redを除く明示fixture_preparationを候補変異と分け、同じ原mutation記録を保持する。その他candidate負例は正常owner材料を保持する。",
+    "negative_candidate_sources": "原資料をcandidateから分離する。F07 mutation_as_pre_redのRed欠落、N01 unknown_rule_fallbackの未知identity、other_rule_cancelsのdirection合成成功は、明示fixture_preparation/source_preparationを候補変異と分けて追跡する。それ以外のcandidate負例は正常owner材料を保持する。実実行・実authorityの成立を生成しない。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106主呼出しのうちF05-F09の34件へ独立合成参照資料状態を供給。F06未解決、F05authority/適用unknown、F09pair link欠落/外国scopeを意味/資格の別状態へ保持。他72件はmissing。実owner/trust/authority/実観測へ昇格しない。"
+    "referent_input_state": "106主呼出しのうちF05-F09/N01の44件へ独立合成参照資料状態を供給。F06未解決oracleとN01未公開oracleはunknown。root資格を意味/authority/実観測へ昇格しない。他62件はmissing。"
   },
   "behavior_oracle_detail": {
     "design_ref": "HARNESS-L5-005-F08",
@@ -8575,5 +8606,148 @@
       "mapping_basis_missing": "旧/current labelがあっても意味対応はunknown。"
     },
     "limits": "6主呼出しと意味/出典対照の設計。実結合テスト、retry実装、実受入、正式codec/adapterの成立ではない。"
+  },
+  "discipline_applicability_detail": {
+    "design_ref": "HARNESS-L5-005-N01",
+    "requirement_ref": "HARNESS-L3-005-N01",
+    "basic_oracle_ref": "HARNESS-L9-005-N01",
+    "source_roles": {
+      "catalog": "HARNESSの既存3規律の意味対応。全5規律の一律実行や不明identityの置換を要求しない。",
+      "application": "COREの当該対象revision/scopeへの原判断。宣言状態を保全。",
+      "basis": "design-ownerのdirectionが必要な意味根拠。nullのintegration根拠と分ける。",
+      "decider": "CORE判定者の合成資料。原N/Aの欠落decider linkを埋めない。",
+      "oracle": "同規律・同対象の独立期待。結果の成功labelだけを期待にしない。",
+      "observation": "execution-ownerの正規化合成wrapper。未実行/nullと合成実結果を分ける。",
+      "unseen": "原fixed_oracle_refのみ。未供給内容/独立性/実凍結をunknownに保持。"
+    },
+    "independent_fixtures": {
+      "catalog": {
+        "ref": {
+          "identity": "N01-RULE-CATALOG",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "HARNESS"
+        },
+        "entries": [
+          {
+            "identity": "direction",
+            "requirement_ref": "HARNESS-L3-005-F05"
+          },
+          {
+            "identity": "tdd",
+            "requirement_ref": "HARNESS-L3-005-F07"
+          },
+          {
+            "identity": "integration",
+            "requirement_ref": "HARNESS-L3-005-F09"
+          }
+        ],
+        "limit": "このfixtureで使用する3規律の既存意味対応。全規律一覧・一律適用義務ではない。"
+      },
+      "basis": {
+        "ref": {
+          "identity": "DIR-BASIS",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "rule_identity": "direction",
+        "meaning": "この比較対象には宣言した依存方向の照合がある。実装TDD対象無しの判断とは別。",
+        "requirement_ref": "HARNESS-L3-005-F05"
+      },
+      "oracle": {
+        "ref": {
+          "identity": "DIR-ORACLE",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "verification-design-owner"
+        },
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "rule_identity": "direction",
+        "basis_ref": {
+          "identity": "DIR-BASIS",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "allowed_edges": [
+          {
+            "from": "application",
+            "to": "domain"
+          }
+        ],
+        "cycles_allowed": false,
+        "assertion": "観測した依存辺が宣言方向を満たし、循環がない。",
+        "limit": "独立検証設計ownerの合成期待。実oracle凍結の成立ではない。"
+      },
+      "decider": {
+        "ref": {
+          "identity": "CORE-D",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "role": "applicability_decider",
+        "subject_binding": {
+          "identity": "CHANGE-1",
+          "revision": "r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "design-owner"
+        },
+        "limit": "合成CORE判定者。actor資料が存在しても欠落na_record.deciderを補完しない。実権限の証明ではない。"
+      }
+    },
+    "comparison_steps": [
+      "原CORE判断をcatalogの既存意味対応と対象bindingへ照合する。不明identityを既知aliasへfallbackしない。",
+      "N/Aの4属性を各Fieldとして照合。欠落/null/旧revisionではdeclared N/Aを保全しvalid_naにしない。理由以外が揃っても不足を補完しない。",
+      "同規律oracleの方向/循環期待へ原観測を比較。成功したdirectionの合成資料でもintegrationの未評価を独立保存する。",
+      "未公開という名前を独立性の証明にせず、未供給oracle内容と未実行を別fieldで保全する。対象無しを入力不明/未実行と混同しない。"
+    ],
+    "partial_results": "rule_resultsは規律identity、原CORE宣言、対象binding、根拠状態、検証状態、N/A4属性、戻し先を保持。valid_na以外のN/A主張は消込もrequiredへの再分類もしない。unknown_rulesは原unknownを保持し、N/A不備は別rowに残す。",
+    "fixture_preparation": "不明identityとdirection成功は候補変異前の明示合成前提。source_preparationで追跡し、実実行や承認の過去事実を生成しない。",
+    "limits": "10主呼出しの詳細比較設計。正式resolver/authority/実oracle凍結/未公開実test/CI/受入ではない。新たな一律gateは追加しない。"
   }
 }
