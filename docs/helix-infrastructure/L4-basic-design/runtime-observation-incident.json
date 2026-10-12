@@ -1,0 +1,204 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-004",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2a",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+    "boundary": "選択001資源の基本観測と既存要求由来incident意味の参照。019詳細freshness/confidenceは後続版。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        104,
+        106
+      ],
+      "quote": "`OperationPolicy`はSLO、availability、latency、error rate、process／job／queue、API／DB／MCP接続、CPU／memory／storage／network、\nretry／timeout／circuit breaker、certificate／credential validity、post-deploy delta、cost、alert、Runbook、recovery authorityを保持する。\n`OperationalObservation`はpolicy version、environment、window、source、quality、correlation、payload digest、findingを保持する。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "cf49e2199024605fd8c7e00d81b2a69b3af90a949e4f576a8301d196189aacc9",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "policyとobservationの対象版/source/品質参照を分離する。",
+      "change": "旧SLO/Runbook/credential/control-planeの能力を移植せず、004採択の基本観測source/revisionへ再導出する。",
+      "reason": "10/12承認004とL2/L11の責務/1.0条件へ意味再導出。旧runtime/CI/testの実行や旧能力の自動採用をしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        110,
+        112
+      ],
+      "quote": "異常を関連Release、Deployment、Requirement、Contract、変更差分へ相関し、symptom、impact、start／detect／recover time、直前変更、\ncontainment、rollback、root-cause state、recurrence preventionを記録する。duplicate／out-of-order observationは冪等処理し、stale correlation、\nmissing provenance、insufficient qualityからroot causeを推測確定しない。自動復旧はversioned Runbookとbounded authority内だけとする。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "221c124aaa9f5ca71fe954c30272623f9b05e3862300d1374e276f3d4095bc20",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "missing provenance/stale/品質不足から原因を推測確定しない。",
+      "change": "旧IncidentRecord全能力や自動復旧を追加せず、incident meaningを承認済み要求ownerへ返す。",
+      "reason": "10/12承認004とL2/L11の責務/1.0条件へ意味再導出。旧runtime/CI/testの実行や旧能力の自動採用をしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        9,
+        9
+      ],
+      "quote": "| NIO-L3-03 | measurement evidenceはmetric定義、単位、scope、source、authority、timestamp、freshness、collector health、sample count、digestを持つ。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "be8e79cf3b6169071eae8e99d3199e4476335108aec215096b4bd3fd7d2f5a8c",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "未承認NIOのsource/scope/freshness観測意味を比較資料として保持する。",
+      "change": "未承認candidateを採択/必須化せず、004 source/revisionと欠測/staleを非成功にする既決意味だけを再導出する。",
+      "reason": "10/12承認004とL2/L11の責務/1.0条件へ意味再導出。旧runtime/CI/testの実行や旧能力の自動採用をしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        15,
+        15
+      ],
+      "quote": "| NIO-L3-09 | designed/implemented/verified/observed/operatedの状態遷移は証拠付きで、collector停止・欠測・staleをhealthyへ変換しない。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "8ab66cd6f2752242c6548e1c96cb4db026f636cb0ecf4ba202b87ef445652ee0",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "collector停止/欠測/staleをhealthyへ変換しない。",
+      "change": "019詳細freshness/confidenceの後続版を1.0 gateへ前倒しせず、基本観測のunknown/unobservedを保持する。",
+      "reason": "10/12承認004とL2/L11の責務/1.0条件へ意味再導出。旧runtime/CI/testの実行や旧能力の自動採用をしない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実collector/source/001資源/承認済みincident意味/severityのowner-qualified exact bindingは未成立。",
+    "正式schema/codec/incident意味resolver、基本新旧判定、collector失敗検出、並行観測/全組合せ/対L5L8/oracle凍結は未完。019詳細state modelをこの不足の代替にしない。",
+    "実装前Red→Green→Refactor→再検証、実観測/実L9L10/PO L11、全92親430対閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXINFRASTRUCTURE-L4-004",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "basic_observation_reader",
+      "approved_incident_meaning_reader",
+      "later_capability_boundary_reader"
+    ],
+    "flow": [
+      "001資源target＋原観測source/revision→未確認範囲の保持",
+      "承認済みincident意味/重さ参照→同対象の状態情報/意味不足の返却",
+      "004基本成立と019後続不足の分離→元ownerへ未完を返す"
+    ],
+    "python_boundary": "予定するPython接続は原観測と意味参照の読み出し/内容対照。collector、incident判定器、復旧、保存/認可はこのDraftで実装しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-004-F01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-004-F01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-004-F01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-004-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-004",
+        "title": "runtime観測とincident",
+        "obligation": "health/metric/log/resource/dependency/queue/error/latency/deployment/recoveryをsource/revisionへ結び、正常/劣化/利用不能/容量枯渇/依存失敗/data・network unavailable/security isolation/unknownを区別する。incident meaning/severityは既存承認要求を参照する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-004-F01"
+      },
+      "content_rules": [
+        "001資源の対象identity/revision/environment/scopeと、health/metric/log/resource/dependency/queue/error/latency/deployment/recovery各観測のsource/revision/観測範囲を結ぶ。観測元入力と提出値を区別して保全する。",
+        "正常/劣化/利用不能/容量枯渇/依存失敗/data unavailable/network unavailable/security isolation/unknownを区別する。分類の意味・severityは承認済み要求owner由来の参照と対象条件を辿り、INFRAが独自の閾値やseverityを作らない。",
+        "telemetry欠測/collector failure/source不明/古い値ではunknownまたはunobservedへ戻し、healthy/current/原因確定へ変換しない。未確認resourceとincident評価待ちを保持する。",
+        "観測不足はsource/collector owner、意味・severityの参照不足や対象不一致は上流incident-meaning ownerへ返す。source一致や合成分類は実incident成立/解決/復旧許可を意味しない。"
+      ],
+      "representation_limit": "合成参照/分類/新旧markerは正式schema/閾値/実資格/製品severityを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-004-B01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-004-B01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-004-B01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-004-B01",
+        "parent": "HELIXINFRASTRUCTURE-L2-004",
+        "title": "後続観測能力の非前倒し",
+        "obligation": "019の詳細freshness/collector-confidence stateは後続版のまま保持し、1.0の受入必須条件にしない。004のsource/revisionと欠測/古い値の非成功条件は保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-004-B01"
+      },
+      "content_rules": [
+        "019の詳細freshness/collector-confidenceを後続版に保持し、詳細値の不存在だけで004の基本成立を失格にしない。019完成待ちを初回1.0 gateにしない。",
+        "004のsource/revision、対象版、欠測/staleの非成功条件は残す。詳細confidenceがある場合でも基本観測不足や古い値の通過を認めない。",
+        "基本成立、unknown/unobserved、後続版能力の未完を分離し、基本不足だけを観測source/collectorへ返す。詳細知識を採用済みと宣言しない。"
+      ],
+      "representation_limit": "合成参照/分類/新旧markerは正式schema/閾値/実資格/製品severityを採用しない。"
+    }
+  ]
+}
